@@ -1,0 +1,38 @@
+{
+  "meta": {
+    "title": "FullParty.gg",
+    "tagline": "The real endgame is organization."
+  },
+  "pages": {
+    "auth": {
+      "express_options": "Express login via Google or Discord",
+      "login": "Login",
+      "register": "Register",
+      "username": "Username",
+      "email": "Email",
+      "password": "Password",
+      "password_confirmation": "Confirm Password",
+      "remember_me": "Remember me",
+      "forgot_password": "Forgot your password?",
+      "no_account": "Don't have an account?",
+      "sign_up_now": "Sign up now.",
+      "continue_with": "Continue with",
+      "existing_account": "Already have an account?",
+      "log_in_now": "Log in!"
+    },
+    "verify_email": {
+      "title": "Verify your email",
+      "subtitle": "Before you continue, please confirm your email address.",
+      "resent_success": "A new verification link has been sent to your email address.",
+      "sent_to": "We sent a verification email to:",
+      "instructions": "Open the email and click the verification link to activate your account and continue to FullParty.",
+      "help_title": "Didn't get the email?",
+      "help_spam": "Check your spam or junk folder.",
+      "help_delay": "It may take a minute or two to arrive.",
+      "help_resend": "You can request a new verification email below.",
+      "resend_button": "Resend verification email",
+      "resending": "Sending...",
+      "logout_button": "Log out"
+    }
+  }
+}

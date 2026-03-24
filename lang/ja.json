@@ -1,0 +1,20 @@
+{
+  "meta": {
+    "title": "FullParty.gg",
+    "tagline": "本当のエンドゲームは、整理と運営です。"
+  },
+  "pages": {
+    "auth": {
+      "express_options": "Google または Discord ですぐにログイン",
+      "login": "ログイン",
+      "register": "登録",
+      "email": "メールアドレス",
+      "password": "パスワード",
+      "remember_me": "ログイン状態を保持する",
+      "forgot_password": "パスワードをお忘れですか？",
+      "no_account": "アカウントをお持ちではありませんか？",
+      "sign_up_now": "今すぐ登録。",
+      "continue_with": "次で続行"
+    }
+  }
+}

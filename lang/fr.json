@@ -1,0 +1,20 @@
+{
+  "meta": {
+    "title": "FullParty.gg",
+    "tagline": "La véritable fin de jeu, c'est l'organisation."
+  },
+  "pages": {
+    "auth": {
+      "express_options": "Connexion rapide via Google ou Discord",
+      "login": "Connexion",
+      "register": "S'inscrire",
+      "email": "E-mail",
+      "password": "Mot de passe",
+      "remember_me": "Se souvenir de moi",
+      "forgot_password": "Mot de passe oublié ?",
+      "no_account": "Vous n'avez pas de compte ?",
+      "sign_up_now": "Inscrivez-vous maintenant.",
+      "continue_with": "Continuer avec"
+    }
+  }
+}

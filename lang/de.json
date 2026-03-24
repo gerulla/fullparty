@@ -1,0 +1,20 @@
+{
+  "meta": {
+    "title": "FullParty.gg",
+    "tagline": "Das wahre Endgame ist Organisation."
+  },
+  "pages": {
+    "auth": {
+      "express_options": "Schnelle Anmeldung über Google oder Discord",
+      "login": "Anmelden",
+      "register": "Registrieren",
+      "email": "E-Mail",
+      "password": "Passwort",
+      "remember_me": "Angemeldet bleiben",
+      "forgot_password": "Passwort vergessen?",
+      "no_account": "Noch kein Konto?",
+      "sign_up_now": "Jetzt registrieren.",
+      "continue_with": "Weiter mit"
+    }
+  }
+}

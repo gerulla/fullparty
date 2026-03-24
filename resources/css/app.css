@@ -1,0 +1,40 @@
+@import "@fontsource/geist/400.css";
+@import "@fontsource/geist/500.css";
+@import "@fontsource/geist/600.css";
+@import "@fontsource/geist/700.css";
+
+@import 'tailwindcss';
+@import "@nuxt/ui";
+@import "tw-animate-css";
+
+/*---break---*/
+
+@custom-variant dark (&:is(.dark *));
+
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../../storage/framework/views/*.php';
+@source '../**/*.blade.php';
+@source '../**/*.js';
+
+/*@theme {*/
+/*    --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',*/
+/*        'Segoe UI Symbol', 'Noto Color Emoji';*/
+/*}*/
+
+@theme {
+    --font-sans: "Geist", ui-sans-serif, system-ui, sans-serif;
+}
+
+@theme static {
+    --color-brand-50: #f6f3fb;
+    --color-brand-100: #eee8f7;
+    --color-brand-200: #ddd2ef;
+    --color-brand-300: #c3addf;
+    --color-brand-400: #a07ac7;
+    --color-brand-500: #8457b0;
+    --color-brand-600: #70439b;
+    --color-brand-700: #5f3883;
+    --color-brand-800: #4f306b;
+    --color-brand-900: #43295a;
+    --color-brand-950: #2c183d;
+}

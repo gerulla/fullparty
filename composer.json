@@ -10,10 +10,12 @@
     "license": "MIT",
     "require": {
         "php": "^8.3",
+        "gerulla/xivauth-provider": "^1.0",
         "inertiajs/inertia-laravel": "^2.0",
         "laravel/framework": "^13.0",
-        "laravel/socialite": "^5.25",
+        "laravel/socialite": "^5.26",
         "laravel/tinker": "^3.0",
+        "socialiteproviders/discord": "^4.2",
         "symfony/http-client": "^8.0",
         "symfony/postmark-mailer": "^8.0",
         "tightenco/ziggy": "^2.6"

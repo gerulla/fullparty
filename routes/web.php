@@ -60,6 +60,10 @@ Route::prefix('auth')->group(function () {
 
 Route::middleware(['auth', 'verified'])->group(function () {
 	Route::get('/dashboard', function () {
-		return Inertia::render('Dashboard');
+		return Inertia::render('Dashboard/Dashboard');
 	})->name('dashboard');
+	
+	Route::get('/account/characters', function () {
+		return Inertia::render('Dashboard/Account/MyCharacters');
+	})->name('account.characters');
 });

@@ -17,6 +17,8 @@
     },
     "dependencies": {
         "@fontsource/geist": "^5.2.8",
+        "@fontsource/ibm-plex-mono": "^5.1.0",
+        "@fontsource/ibm-plex-sans": "^5.1.0",
         "@inertiajs/vue3": "^2.3.18",
         "@nuxt/ui": "^4.6.0",
         "@tanstack/vue-table": "^8.21.3",

@@ -3,18 +3,18 @@ import {Link, usePage} from "@inertiajs/vue3";
 import Placeholder from "@/components/Placeholder.vue";
 import {computed} from "vue";
 import {useI18n} from "vue-i18n";
+import DevelopmentNotice from "@/components/DevelopmentNotice.vue";
 
 const { t } = useI18n();
 
 const top = [
-	{ label: 'Profile', href: '/dashboard', icon: 'i-lucide-layout-dashboard' },
+	{ label: 'Dashboard', href: '/dashboard', icon: 'i-lucide-house' },
+	{ label: 'Runs', href: '/dashboard/runs', icon: 'i-lucide-calendar-days' },
 ]
 
 const account = [
-	{ label: 'My Characters', href: '/characters', icon: 'i-lucide-users' },
-	{ label: 'Runs', href: '/runs', icon: 'i-lucide-calendar-range' },
-	{ label: 'Registrations', href: '/registrations', icon: 'i-lucide-form' },
-	{ label: 'Settings', href: '/settings', icon: 'i-lucide-settings' }
+	{ label: 'My Characters', href: '/account/characters', icon: 'i-lucide-user-circle' },
+	{ label: 'Applications', href: '/account/applications', icon: 'i-lucide-file-text' },
 ]
 const groups = [
 	{ label: 'Groups', href: '/groups', icon: 'i-lucide-shield' },
@@ -35,7 +35,7 @@ const currentUrl = computed(() => page.url)
 </script>
 
 <template>
-	<UDashboardSidebar collapsible default-size="20"  :ui="{ footer: 'px-0', body: 'px-0' }" class=" ">
+	<UDashboardSidebar default-size="15"  :ui="{ footer: '',  body: 'px-2' }" class="bg-brand-950">
 		<template #header="{ collapsed }">
 			<Placeholder class="w-full h-full"/>
 		</template>
@@ -99,18 +99,7 @@ const currentUrl = computed(() => page.url)
 		</template>
 
 		<template #footer="{ collapsed }">
-			<div class="flex flex-col w-full h-full">
-				<Link
-					:href="route('logout')"
-					method="post"
-					as="button"
-					class="sidebar-link link-default"
-				>
-					<UIcon name="i-lucide-log-out" :class="!collapsed ? 'sidebar-link-icon' : 'sidebar-link-icon-large'" />
-					<span v-if="!collapsed">{{ t('pages.verify_email.logout_button') }}</span>
-
-				</Link>
-			</div>
+			<DevelopmentNotice />
 		</template>
 	</UDashboardSidebar>
 </template>
@@ -119,24 +108,24 @@ const currentUrl = computed(() => page.url)
 @reference "../../../css/app.css";
 
 .sidebar-link-icon {
-	@apply h-4 w-4;
+	@apply h-5 w-5;
 }
 .sidebar-link-icon-large {
 	@apply h-8 w-8;
 }
 .sidebar-line-separator {
-	@apply h-px w-full my-2 bg-neutral-300 dark:bg-neutral-600;
+	@apply h-px w-full my-2 bg-brand-300;
 }
 .sidebar-separator {
-	@apply mt-6 mb-2 px-5 text-sm font-semibold uppercase tracking-wider text-neutral-400 dark:text-neutral-500;
+	@apply mt-6 mb-2 px-5 text-sm font-semibold uppercase tracking-wider text-brand-300/80 ;
 }
 .link-highlighted {
-	@apply dark:bg-brand-600/40 text-neutral-200 bg-brand;
+	@apply text-neutral-200 bg-brand rounded-xs;
 }
 .link-default {
-	@apply dark:text-neutral-200 hover:bg-brand hover:text-white dark:hover:bg-brand-600;
+	@apply text-brand-100/80 hover:bg-brand hover:text-white rounded-xs;
 }
 .sidebar-link {
-	@apply flex items-center gap-2 py-2 px-5 text-lg transition;
+	@apply flex items-center gap-2 py-2 px-5  transition;
 }
 </style>

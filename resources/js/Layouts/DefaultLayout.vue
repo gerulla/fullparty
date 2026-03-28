@@ -1,6 +1,13 @@
 <script setup lang="ts">
 import CSidebar from "@/components/Navigation/CSidebar.vue";
 import CTopbar from "@/components/Navigation/CTopbar.vue";
+
+defineProps({
+	title: {
+		type: String,
+		default: "Title"
+	}
+});
 </script>
 
 <template>
@@ -9,7 +16,7 @@ import CTopbar from "@/components/Navigation/CTopbar.vue";
 			<CSidebar />
 
 			<UDashboardPanel>
-				<CTopbar />
+				<CTopbar :title="title" />
 
 				<slot />
 			</UDashboardPanel>

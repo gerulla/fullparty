@@ -24,7 +24,7 @@ const updateLocale = (value: string) => {
 			<div class="w-7/12 h-screen flex items-center">
 				<img class="object-cover w-full h-full" :src="char1" alt="">
 			</div>
-			<div class="w-5/12 h-screen bg-white dark:bg-gray-900 flex justify-center items-center">
+			<div class="w-5/12 h-screen flex justify-center items-center">
 				<div class="p-4 mx-24">
 					<div class="w-full p-2 mb-4">
 						<h1 class="dark:text-white text-6xl font-bold italic">{{ t('meta.title') }}</h1>

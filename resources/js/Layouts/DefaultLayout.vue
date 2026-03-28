@@ -1,12 +1,20 @@
-<script setup>
-
+<script setup lang="ts">
+import CSidebar from "@/components/Navigation/CSidebar.vue";
+import CTopbar from "@/components/Navigation/CTopbar.vue";
 </script>
 
 <template>
-<div>
-	<p>DefaultLayout</p>
-	<slot />
-</div>
+	<div class="min-h-screen">
+		<UDashboardGroup>
+			<CSidebar />
+
+			<UDashboardPanel>
+				<CTopbar />
+
+				<slot />
+			</UDashboardPanel>
+		</UDashboardGroup>
+	</div>
 </template>
 
 <style scoped>

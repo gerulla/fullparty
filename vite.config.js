@@ -22,7 +22,7 @@ export default defineConfig({
                 colors: {
                     primary: 'brand',
                     brand: 'brand',
-                    neutral: 'slate'
+                    neutral: 'neutral'
                 }
             }
         })

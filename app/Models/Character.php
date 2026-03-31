@@ -18,6 +18,7 @@ class Character extends Model
      */
     protected $fillable = [
         'user_id',
+		'is_primary',
         'name',
         'world',
         'datacenter',

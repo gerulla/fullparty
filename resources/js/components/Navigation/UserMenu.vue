@@ -3,32 +3,39 @@ import { ref } from 'vue'
 import type { DropdownMenuItem } from '@nuxt/ui'
 import { router } from '@inertiajs/vue3'
 import {route} from "ziggy-js";
+import {useI18n} from "vue-i18n";
+import {computed} from 'vue';
+import { usePage } from '@inertiajs/vue3'
 
+const page = usePage()
+
+const user = computed(() => page.props.auth?.user)
+const { t } = useI18n();
 const logoutRedirect = () => {
 	router.post(route('logout'))
 }
 
-const items = ref<DropdownMenuItem[][]>([
+const items = computed<DropdownMenuItem[][]>(() => [
 	[
 		{
-			label: 'Profile',
-			icon: 'i-lucide-user'
+			label: t('navigation.topbar.menu.profile'),
+			icon: 'i-lucide-user',
 		},
 		{
-			label: 'Settings',
+			label: t('navigation.topbar.menu.settings'),
 			icon: 'i-lucide-cog',
 		},
 	],
 	[
 		{
-			label: 'Logout',
+			label: t('navigation.topbar.menu.logout'),
 			icon: 'i-lucide-log-out',
 			color: 'error',
 			onSelect() {
-				logoutRedirect();
-			}
-		}
-	]
+				logoutRedirect()
+			},
+		},
+	],
 ])
 </script>
 
@@ -36,13 +43,13 @@ const items = ref<DropdownMenuItem[][]>([
 	<UDropdownMenu :items="items">
 		<div class="flex items-center gap-2 cursor-pointer hover:bg-neutral-100 dark:hover:bg-neutral-800 rounded-sm px-2 py-2">
 			<UUser
-				name="Giki Chomusuke"
+				:name="user.primary_character ? user.primary_character.name : user.name"
 				:avatar="{
-					src: 'https://img2.finalfantasyxiv.com/f/15cff6ad5af687333d4ae7545c7b4ec4_7206469080400ed57a5373d0a9c55c59fc0.jpg?1774692966',
+					src: user.primary_character ? user.primary_character.avatar_url : user.avatar_url,
 					loading: 'lazy',
 					icon: 'i-lucide-image'
 				}"
-				description="G3ru1a"
+				:description="user.name"
 				:chip="{
 					color: 'success',
 					position: 'top-right'

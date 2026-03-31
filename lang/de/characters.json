@@ -1,0 +1,75 @@
+{
+  "title": "Meine Charaktere",
+  "subtitle": "Verwalten Sie Ihre FFXIV-Charaktere und Verifizierungsstatus.",
+  "none_found": "Keine Charaktere gefunden.",
+  "add": {
+    "title": "Charakter hinzufügen",
+    "subtitle": "Wählen Sie aus, wie Sie Ihren Charakter verifizieren möchten",
+    "add_button": "Charakter hinzufügen",
+    "options": {
+      "xivauth": {
+        "title": "Von XIVAuth importieren",
+        "subtitle": "Importieren Sie Ihre verifizierten Charaktere automatisch von XIVAuth. Einfacher und schneller Vorgang."
+      },
+      "manual": {
+        "title": "Manuell verifizieren",
+        "subtitle": "Fügen Sie einen Charakter über den Lodestone hinzu. Erfordert das Platzieren eines Verifizierungscodes auf Ihrem Charakterprofil."
+      }
+    }
+  },
+  "manual": {
+    "progress": "Schritt {current} von {total}",
+    "steps": [
+      "Charakterinfo",
+      "Verifizierungscode",
+      "Abgeschlossen"
+    ],
+    "step1": {
+      "title": "Manuelle Verifizierung",
+      "subtitle": "Geben Sie Ihre Lodestone-Profil-URL oder Charakter-ID ein",
+      "input": {
+        "label": "Lodestone-Profil-URL oder Charakter-ID",
+        "placeholder": "https://na.finalfantasyxiv.com/lodestone/character/123456789",
+        "hint": "Sie können entweder die vollständige Lodestone-URL oder nur die Charakter-ID-Nummer einfügen"
+      },
+      "help_line": "{label} Gehen Sie zum {lodestone}, suchen Sie nach Ihrem Charakter und kopieren Sie die URL von der Profilseite Ihres Charakters.",
+      "where_to_find": "Wo finde ich das:",
+      "lodestone": "FFXIV Lodestone"
+    },
+    "step2": {
+      "title": "Charakterbesitz verifizieren",
+      "subtitle": "Fügen Sie den Verifizierungscode zu Ihrem Lodestone-Profil hinzu",
+      "code_label": "Ihr Verifizierungscode",
+      "instructions_label": "Anweisungen:",
+      "instructions": [
+        "1. Kopieren Sie den obigen Verifizierungscode",
+        "2. Öffnen Sie Ihr {profile}",
+        "3. Bearbeiten Sie Ihr Profil und fügen Sie den Code irgendwo in Ihren Charakterprofiltext ein",
+        "4. Speichern Sie Ihre Profiländerungen",
+        "5. Klicken Sie unten auf \"Jetzt verifizieren\""
+      ],
+      "profile": "Lodestone-Profil",
+      "toast_success": {
+        "title": "Code kopiert",
+        "description": "Der Verifizierungscode wurde in Ihre Zwischenablage kopiert."
+      },
+      "toast_error": {
+        "title": "Kopieren fehlgeschlagen",
+        "description": "Der Verifizierungscode konnte nicht kopiert werden."
+      },
+      "toast_taken": {
+        "title": "Charakter bereits registriert",
+        "description": "Dieser Charakter ist bereits registriert. Wenn dies Ihr Charakter ist und Sie ihn nicht registriert haben, wenden Sie sich bitte an den Support."
+      }
+    },
+    "errors": {
+      "invalid_token": "Verifizierungscode stimmt nicht überein. Bitte versuchen Sie es erneut.",
+      "invalid_lodestone_id": "Ungültige Lodestone-ID. Bitte geben Sie eine gültige Charakter-ID oder Lodestone-URL ein.",
+      "character_not_found": "Charakter nicht gefunden. Bitte überprüfen Sie die ID und versuchen Sie es erneut.",
+      "lodestone_error": "Charakterinformationen konnten nicht abgerufen werden. Bitte versuchen Sie es später erneut.",
+      "parse_error": "Charakterinformationen konnten nicht analysiert werden. Bitte versuchen Sie es später erneut."
+    }
+  },
+  "added_manually": "Manuell hinzugefügt",
+  "from_xivauth": "Von XIVAuth"
+}

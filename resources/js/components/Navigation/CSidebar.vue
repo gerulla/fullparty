@@ -7,37 +7,42 @@ import DevelopmentNotice from "@/components/DevelopmentNotice.vue";
 
 const { t } = useI18n();
 
-const top = [
-	{ label: 'Dashboard', href: '/dashboard', icon: 'i-lucide-house' },
-	{ label: 'Runs', href: '/dashboard/runs', icon: 'i-lucide-calendar-days' },
-]
+const top = computed(() => [
+	{ label: t('navigation.sidebar.dashboard'), href: '/dashboard', icon: 'i-lucide-house' },
+	{ label: t('navigation.sidebar.runs'), href: '/dashboard/runs', icon: 'i-lucide-calendar-days' },
+])
 
-const account = [
-	{ label: 'My Characters', href: '/account/characters', icon: 'i-lucide-user-circle' },
-	{ label: 'Applications', href: '/account/applications', icon: 'i-lucide-file-text' },
-]
-const groups = [
-	{ label: 'Groups', href: '/groups', icon: 'i-lucide-shield' },
-	{ label: 'Applications', href: '/applications', icon: 'i-lucide-clipboard-list' },
-	{ label: 'Members', href: '/applications', icon: 'i-lucide-clipboard-list' },
-	{ label: 'Schedule', href: '/applications', icon: 'i-lucide-clipboard-list' },
-	{ label: 'Audit', href: '/applications', icon: 'i-lucide-clipboard-list' },
-]
+const account = computed(() => [
+	{ label: t('navigation.sidebar.characters'), href: '/account/characters', icon: 'i-lucide-user-circle' },
+	{ label: t('navigation.sidebar.applications'), href: '/account/applications', icon: 'i-lucide-file-text' },
+])
 
-const admin = [
-	{ label: 'Secret Options', href: '/applications', icon: 'i-lucide-clipboard-list' },
-	{ label: 'Configurations', href: '/applications', icon: 'i-lucide-clipboard-list' },
-]
+const groups = computed(() => [
+	{ label: t('navigation.sidebar.groups'), href: '/groups', icon: 'i-lucide-shield' },
+	{ label: t('navigation.sidebar.applications'), href: '/applications', icon: 'i-lucide-clipboard-list' },
+	{ label: t('navigation.sidebar.members'), href: '/applications', icon: 'i-lucide-clipboard-list' },
+	{ label: t('navigation.sidebar.schedule'), href: '/applications', icon: 'i-lucide-clipboard-list' },
+	{ label: t('navigation.sidebar.audit'), href: '/applications', icon: 'i-lucide-clipboard-list' },
+])
+
+const admin = computed(() => [
+	{ label: t('navigation.sidebar.secret_options'), href: '/applications', icon: 'i-lucide-clipboard-list' },
+	{ label: t('navigation.sidebar.configurations'), href: '/applications', icon: 'i-lucide-clipboard-list' },
+])
 
 const page = usePage()
-const logo = "/logo_white.png";
+const full_logo = "/logos/full.png";
+const compact_logo = "/logos/compact.png";
 const currentUrl = computed(() => page.url)
 </script>
 
 <template>
 	<UDashboardSidebar default-size="15"  :ui="{ footer: '',  body: 'px-2' }" class="bg-brand-950">
 		<template #header="{ collapsed }">
-			<Placeholder class="w-full h-full"/>
+			<div v-if="!collapsed" class="w-full h-full p-4">
+				<img :src="full_logo" class="w-full h-auto" alt="FullParty Logo">
+			</div>
+			<img v-else :src="compact_logo" class="w-full h-auto" alt="FullParty Logo">
 		</template>
 
 		<template #default="{ collapsed }">
@@ -53,7 +58,7 @@ const currentUrl = computed(() => page.url)
 					<span v-if="!collapsed">{{ item.label }}</span>
 				</Link>
 
-				<h1 v-if="!collapsed" class="sidebar-separator">ACCOUNT</h1>
+				<h1 v-if="!collapsed" class="sidebar-separator">{{t('navigation.sidebar.account')}}</h1>
 				<div v-else class="sidebar-line-separator"></div>
 
 				<Link
@@ -68,7 +73,7 @@ const currentUrl = computed(() => page.url)
 				</Link>
 
 
-				<h1 v-if="!collapsed" class="sidebar-separator">GROUP</h1>
+				<h1 v-if="!collapsed" class="sidebar-separator">{{t('navigation.sidebar.groups')}}</h1>
 				<div v-else class="sidebar-line-separator"></div>
 
 				<Link
@@ -82,7 +87,7 @@ const currentUrl = computed(() => page.url)
 					<span v-if="!collapsed">{{ item.label }}</span>
 				</Link>
 
-				<h1 v-if="!collapsed" class="sidebar-separator">ADMIN</h1>
+				<h1 v-if="!collapsed" class="sidebar-separator">{{t('navigation.sidebar.admin')}}</h1>
 				<div v-else class="sidebar-line-separator"></div>
 
 				<Link

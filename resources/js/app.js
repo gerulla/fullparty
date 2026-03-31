@@ -5,22 +5,14 @@ import DefaultLayout from './Layouts/DefaultLayout.vue';
 import ui from '@nuxt/ui/vue-plugin'
 import { ZiggyVue } from 'ziggy-js';
 import { createI18n } from 'vue-i18n'
-import en from '/lang/en.json'
-import de from '/lang/de.json'
-import fr from '/lang/fr.json'
-import ja from '/lang/ja.json'
+import { messages, availableLocales, getDefaultLocale } from './lang'
 
 const i18n = createI18n({
     legacy: false,
-    locale: 'en',
+    locale: getDefaultLocale(),
     fallbackLocale: 'en',
-    availableLocales: ['en', 'de', 'fr', 'ja'],
-    messages: {
-        en: en,
-        de: de,
-        fr: fr,
-        ja: ja,
-    }
+    availableLocales,
+    messages,
 })
 
 createInertiaApp({

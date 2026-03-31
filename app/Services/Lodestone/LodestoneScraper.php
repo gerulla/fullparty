@@ -54,13 +54,13 @@ class LodestoneScraper
      * @throws LodestoneFetchException
      * @throws LodestoneParseException
      */
-    public function scrape(string $lodestoneIdOrUrl, bool $includeClassJobs = true): LodestoneCharacterData
+    public function scrape(string $lodestoneIdOrUrl, bool $includeClassJobs = true, bool $ignoreCache = false): LodestoneCharacterData
     {
         // 1. Normalize input to extract Lodestone ID and build URLs
         $urls = $this->normalizer->normalize($lodestoneIdOrUrl);
 
         // 2. Check cache (optional optimization)
-        if ($cached = $this->getCached($urls->lodestoneId)) {
+        if ($ignoreCache === false && $cached = $this->getCached($urls->lodestoneId)) {
             return $cached;
         }
 
@@ -102,9 +102,9 @@ class LodestoneScraper
     /**
      * Scrape only profile data (skip class/jobs for faster scraping).
      */
-    public function scrapeProfile(string $lodestoneIdOrUrl): LodestoneCharacterData
+    public function scrapeProfile(string $lodestoneIdOrUrl, bool $ignoreCache = false): LodestoneCharacterData
     {
-        return $this->scrape($lodestoneIdOrUrl, includeClassJobs: false);
+        return $this->scrape($lodestoneIdOrUrl, includeClassJobs: false, ignoreCache: $ignoreCache);
     }
 
     /**

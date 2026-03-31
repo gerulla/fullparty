@@ -2,7 +2,6 @@
 import { computed, ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { en, de, fr, ja } from '@nuxt/ui/locale'
-import {Head} from "@inertiajs/vue3";
 
 const locales = { en, de, fr, ja }
 const char1 = '/ft.jpg'

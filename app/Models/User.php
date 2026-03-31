@@ -31,7 +31,17 @@ class User extends Authenticatable implements MustVerifyEmail
         ];
     }
 	
-	public function socialAccounts()
+	public function primaryCharacter(): \Illuminate\Database\Eloquent\Relations\HasOne|User
+	{
+		return $this->hasOne(Character::class)->where('is_primary', true);
+	}
+	
+	public function characters(): User|\Illuminate\Database\Eloquent\Relations\HasMany
+	{
+		return $this->hasMany(Character::class);
+	}
+	
+	public function socialAccounts(): User|\Illuminate\Database\Eloquent\Relations\HasMany
 	{
 		return $this->hasMany(SocialAccount::class);
 	}

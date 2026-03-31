@@ -1,0 +1,75 @@
+{
+  "title": "Mes personnages",
+  "subtitle": "Gérez vos personnages FFXIV et leur statut de vérification.",
+  "none_found": "Aucun personnage trouvé.",
+  "add": {
+    "title": "Ajouter un personnage",
+    "subtitle": "Choisissez comment vous souhaitez vérifier la propriété de votre personnage",
+    "add_button": "Ajouter un personnage",
+    "options": {
+      "xivauth": {
+        "title": "Importer depuis XIVAuth",
+        "subtitle": "Importez automatiquement vos personnages vérifiés depuis XIVAuth. Processus facile et rapide."
+      },
+      "manual": {
+        "title": "Vérifier manuellement",
+        "subtitle": "Ajoutez un personnage en utilisant le Lodestone. Nécessite de placer un code de vérification sur votre profil de personnage."
+      }
+    }
+  },
+  "manual": {
+    "progress": "Étape {current} sur {total}",
+    "steps": [
+      "Info personnage",
+      "Code de vérification",
+      "Terminé"
+    ],
+    "step1": {
+      "title": "Vérification manuelle",
+      "subtitle": "Entrez l'URL de votre profil Lodestone ou votre ID de personnage",
+      "input": {
+        "label": "URL du profil Lodestone ou ID de personnage",
+        "placeholder": "https://na.finalfantasyxiv.com/lodestone/character/123456789",
+        "hint": "Vous pouvez coller soit l'URL Lodestone complète, soit uniquement le numéro d'ID du personnage"
+      },
+      "help_line": "{label} Allez sur le {lodestone}, recherchez votre personnage et copiez l'URL de la page de profil de votre personnage.",
+      "where_to_find": "Où trouver ceci :",
+      "lodestone": "FFXIV Lodestone"
+    },
+    "step2": {
+      "title": "Vérifier la propriété du personnage",
+      "subtitle": "Ajoutez le code de vérification à votre profil Lodestone",
+      "code_label": "Votre code de vérification",
+      "instructions_label": "Instructions :",
+      "instructions": [
+        "1. Copiez le code de vérification ci-dessus",
+        "2. Ouvrez votre {profile}",
+        "3. Modifiez votre profil et collez le code n'importe où dans le texte de votre profil de personnage",
+        "4. Enregistrez les modifications de votre profil",
+        "5. Cliquez sur \"Vérifier maintenant\" ci-dessous"
+      ],
+      "profile": "Profil Lodestone",
+      "toast_success": {
+        "title": "Code copié",
+        "description": "Le code de vérification a été copié dans votre presse-papiers."
+      },
+      "toast_error": {
+        "title": "Échec de la copie",
+        "description": "Impossible de copier le code de vérification."
+      },
+      "toast_taken": {
+        "title": "Personnage déjà enregistré",
+        "description": "Ce personnage est déjà enregistré. Si c'est votre personnage et que vous ne l'avez pas enregistré, veuillez contacter le support."
+      }
+    },
+    "errors": {
+      "invalid_token": "Le code de vérification ne correspond pas. Veuillez réessayer.",
+      "invalid_lodestone_id": "ID Lodestone invalide. Veuillez entrer un ID de personnage ou une URL Lodestone valide.",
+      "character_not_found": "Personnage non trouvé. Veuillez vérifier l'ID et réessayer.",
+      "lodestone_error": "Impossible de récupérer les informations du personnage. Veuillez réessayer plus tard.",
+      "parse_error": "Impossible d'analyser les informations du personnage. Veuillez réessayer plus tard."
+    }
+  },
+  "added_manually": "Ajouté manuellement",
+  "from_xivauth": "Depuis XIVAuth"
+}

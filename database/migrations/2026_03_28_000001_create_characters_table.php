@@ -20,6 +20,8 @@ return new class extends Migration
             $table->string('lodestone_id')->unique();
             $table->string('avatar_url')->nullable();
             $table->string('token')->nullable();
+			$table->boolean('is_primary')->default(false);
+			$table->string('add_method')->default('manual');
             $table->timestamp('expires_at')->nullable();
             $table->timestamp('verified_at')->nullable();
             $table->timestamps();

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CharacterController;
 use App\Http\Controllers\DiscordAuthController;
 use App\Http\Controllers\GoogleAuthController;
 use App\Http\Controllers\XIVAuthController;
@@ -63,7 +64,9 @@ Route::middleware(['auth', 'verified'])->group(function () {
 		return Inertia::render('Dashboard/Dashboard');
 	})->name('dashboard');
 	
-	Route::get('/account/characters', function () {
-		return Inertia::render('Dashboard/Account/MyCharacters');
-	})->name('account.characters');
+	
+//	Character Routes
+	Route::get('/account/characters', [CharacterController::class, 'list'])->name('account.characters');
+	Route::post('/characters/exists', [CharacterController::class, 'exists'])->name('characters.exists');
+	Route::post('/characters/verify', [CharacterController::class, 'verify'])->name('characters.verify');
 });

@@ -1,0 +1,31 @@
+{
+  "sidebar": {
+    "dashboard": "Dashboard",
+    "runs": "Runs",
+    "account": "Konto",
+    "characters": "Meine Charaktere",
+    "applications": "Bewerbungen",
+    "groups": "Gruppen",
+    "members": "Mitglieder",
+    "schedule": "Zeitplan",
+    "audit": "Prüfprotokoll",
+    "admin": "Admin",
+    "secret_options": "Geheime Optionen",
+    "configurations": "Konfigurationen",
+    "notice": {
+      "title": "Hinweis",
+      "description": "FullParty befindet sich noch in aktiver Entwicklung. Wenn du auf ein Problem stößt oder Feedback teilen möchtest, schau auf GitHub vorbei oder tritt dem Discord-Server bei.",
+      "github": "GitHub",
+      "discord": "Discord beitreten",
+      "dev_tag": "Entwickler"
+    }
+  },
+  "topbar": {
+    "search_bar": "Suche nach Raids, Spielern oder Events...",
+    "menu": {
+      "profile": "Profil",
+      "settings": "Einstellungen",
+      "logout": "Abmelden"
+    }
+  }
+}

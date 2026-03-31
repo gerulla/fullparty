@@ -29,7 +29,7 @@ defineProps({
 	<UDashboardNavbar>
 		<template #leading>
 <!--			<UDashboardSidebarCollapse />-->
-			<UInput placeholder="Search raids, players, or events..." :ui="{base: 'rounded-sm placeholder:text-neutral-500'}" leading-icon="i-lucide-search" size="lg" class="min-w-96"/>
+			<UInput :placeholder="t('navigation.topbar.search_bar')" :ui="{base: 'rounded-sm placeholder:text-neutral-500'}" leading-icon="i-lucide-search" size="lg" class="min-w-96"/>
 		</template>
 
 		<template #trailing>

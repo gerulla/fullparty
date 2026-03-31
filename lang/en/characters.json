@@ -1,0 +1,75 @@
+{
+  "title": "My Characters",
+  "subtitle": "Manage your FFXIV characters and verification status.",
+  "none_found": "No characters found.",
+  "add": {
+    "title": "Add Character",
+    "subtitle": "Choose how you'd like to verify your character ownership",
+    "add_button": "Add Character",
+    "options": {
+      "xivauth": {
+        "title": "Import from XIVAuth",
+        "subtitle": "Automatically import your verified characters from XIVAuth. Easy and quick process."
+      },
+      "manual": {
+        "title": "Verify Manually",
+        "subtitle": "Add a character using the Lodestone. Requires placing a verification code on your character profile."
+      }
+    }
+  },
+  "manual": {
+    "progress": "Step {current} of {total}",
+    "steps": [
+      "Character Info",
+      "Verification Code",
+      "Complete"
+    ],
+    "step1": {
+      "title": "Manual Verification",
+      "subtitle": "Enter your Lodestone profile URL or character ID",
+      "input": {
+        "label": "Lodestone Profile URL or Character ID",
+        "placeholder": "https://na.finalfantasyxiv.com/lodestone/character/123456789",
+        "hint": "You can paste either the full Lodestone URL or just the character ID number"
+      },
+      "help_line": "{label} Go to the {lodestone}, search for your character, and copy the URL from your character's profile page.",
+      "where_to_find": "Where to find this:",
+      "lodestone": "FFXIV Lodestone"
+    },
+    "step2": {
+      "title": "Verify Character Ownership",
+      "subtitle": "Add the verification code to your Lodestone profile",
+      "code_label": "Your Verification Code",
+      "instructions_label": "Instructions:",
+      "instructions": [
+        "1.Copy the verification code above",
+        "2.Open your {profile}",
+        "3.Edit your profile and paste the code anywhere in your character profile text",
+        "4.Save your profile changes",
+        "5.Click \"Verify Now\" below"
+      ],
+      "profile": "Lodestone Profile",
+      "toast_success": {
+        "title": "Code Copied",
+        "description": "The verification code has been copied to your clipboard."
+      },
+      "toast_error": {
+        "title": "Copy Failed",
+        "description": "Could not copy the verification code."
+      },
+      "toast_taken": {
+        "title": "Character Already Registered",
+        "description": "This character is already registered. If this is your character and you did not register it please contact support."
+      }
+    },
+    "errors": {
+      "invalid_token": "Verification code does not match. Please try again.",
+      "invalid_lodestone_id": "Invalid Lodestone ID. Please enter a valid character ID or Lodestone URL.",
+      "character_not_found": "Character not found. Please check the ID and try again.",
+      "lodestone_error": "Could not retrieve character information. Please try again later.",
+      "parse_error": "Could not parse character information. Please try again later."
+    }
+  },
+  "added_manually": "Added Manually",
+  "from_xivauth": "From XIVAuth"
+}

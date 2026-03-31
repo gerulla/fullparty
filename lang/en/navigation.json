@@ -1,0 +1,31 @@
+{
+  "sidebar": {
+    "dashboard": "Dashboard",
+    "runs": "Runs",
+    "account": "Account",
+    "characters": "My Characters",
+    "applications": "Applications",
+    "groups": "Groups",
+    "members": "Members",
+    "schedule": "Schedule",
+    "audit": "Audit",
+    "admin": "Admin",
+    "secret_options": "Secret Options",
+    "configurations": "Configurations",
+    "notice": {
+      "title": "Heads Up",
+      "description": "FullParty is still in active development. If you run into an issue or want to share feedback, check GitHub or join the Discord server.",
+      "github": "GitHub",
+      "discord": "Join Discord",
+      "dev_tag": "Developer"
+    }
+  },
+  "topbar": {
+    "search_bar": "Search raids, players, or events...",
+    "menu": {
+      "profile": "Profile",
+      "settings": "Settings",
+      "logout": "Logout"
+    }
+  }
+}

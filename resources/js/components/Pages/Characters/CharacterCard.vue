@@ -1,6 +1,17 @@
 <script setup>
 
 import Placeholder from "@/components/Placeholder.vue";
+import { ref } from 'vue';
+import {useI18n} from "vue-i18n";
+
+const { t } = useI18n()
+const open = ref(false)
+defineProps({
+	character: {
+		type: Object,
+		required: true,
+	},
+})
 </script>
 
 <template>
@@ -11,24 +22,25 @@ import Placeholder from "@/components/Placeholder.vue";
 				<div id="div1" class="flex flex-row items-start">
 					<img
 						class="h-24 w-24 rounded-sm object-cover"
-						src="https://img2.finalfantasyxiv.com/f/15cff6ad5af687333d4ae7545c7b4ec4_7206469080400ed57a5373d0a9c55c59fc0.jpg?1774692966"
-						alt=""
+						:src="character.avatar_url"
+						:alt="character.name+' avatar'"
 					>
 				</div>
 
 				<div id="div2" class="ml-4 flex h-24 flex-col justify-between items-start">
 					<div class="flex flex-row gap-1">
-						<p class="text-lg font-semibold">Giki Chomusuke</p>
-						<UBadge :ui="{base:'rounded-sm'}" icon="i-lucide-star" size="md" color="neutral" variant="soft">Primary</UBadge>
-						<UBadge :ui="{base:'rounded-sm'}" icon="i-lucide-check-circle" size="md" color="success" variant="soft">Verified</UBadge>
+						<p class="text-lg font-semibold">{{character.name}}</p>
+						<UBadge v-if="character.is_primary" :ui="{base:'rounded-sm'}" icon="i-lucide-star" size="md" color="neutral" variant="soft">Primary</UBadge>
+						<UBadge v-if="character.verified_at!==null" :ui="{base:'rounded-sm'}" icon="i-lucide-check-circle" size="md" color="success" variant="soft">Verified</UBadge>
+						<UBadge v-else :ui="{base:'rounded-sm'}" icon="i-lucide-x-circle" size="md" color="error" variant="soft">Unverified</UBadge>
 					</div>
 
 					<div class="flex flex-row gap-1 text-muted text-sm gap-2">
-						<span>Lich</span>
+						<span>{{character.world}}</span>
 						<span>&middot;</span>
-						<span>Light</span>
+						<span>{{character.datacenter}}</span>
 						<span>&middot;</span>
-						<span>Added Manually</span>
+						<span>{{ character.add_method === 'manual' ? t('characters.added_manually') : t('characters.from_xivauth') }}</span>
 					</div>
 
 					<div class="flex flex-row gap-1 text-brand">
@@ -37,6 +49,19 @@ import Placeholder from "@/components/Placeholder.vue";
 							<UIcon name="i-lucide-square-arrow-out-up-right" size="12" />
 						</UButton>
 					</div>
+				</div>
+
+				<div id="div3" class="ml-auto flex flex-col items-center justify-between">
+					<UIcon name="i-lucide-refresh-ccw" variant="ghost" color="neutral" size="16" />
+					<UButton
+						color="neutral"
+						variant="ghost"
+						trailing-icon="i-lucide-chevron-down"
+						:ui="{
+							trailingIcon: 'transition-transform duration-200' + (open ? ' rotate-180' : ''),
+						  }"
+						block
+					/>
 				</div>
 			</div>
 

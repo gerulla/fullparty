@@ -22,6 +22,7 @@ final readonly class LodestoneCharacterData
         public string $dataCenter,
         public string $avatarUrl,
         public ?string $portraitUrl = null,
+        public string $bio = '',
         public array $extraData = [],
     ) {}
 
@@ -44,6 +45,7 @@ final readonly class LodestoneCharacterData
             world: $profileData['world'] ?? '',
             dataCenter: $profileData['data_center'] ?? '',
             avatarUrl: $profileData['avatar_url'] ?? '',
+			bio: $profileData['bio'] ?? '',
             portraitUrl: $profileData['portrait_url'] ?? null,
             extraData: array_merge($profileData['extra_data'] ?? [], $classJobData),
         );
@@ -55,15 +57,16 @@ final readonly class LodestoneCharacterData
     public function toArray(): array
     {
         return [
-            'lodestone_id' => $this->lodestoneId,
-            'profile_url' => $this->profileUrl,
-            'class_job_url' => $this->classJobUrl,
+            'lodestoneId' => $this->lodestoneId,
+            'profileUrl' => $this->profileUrl,
+            'classJobUrl' => $this->classJobUrl,
             'name' => $this->name,
             'world' => $this->world,
-            'data_center' => $this->dataCenter,
-            'avatar_url' => $this->avatarUrl,
-            'portrait_url' => $this->portraitUrl,
-            'extra_data' => $this->extraData,
+            'dataCenter' => $this->dataCenter,
+            'avatarUrl' => $this->avatarUrl,
+			'bio' => $this->bio,
+            'portraitUrl' => $this->portraitUrl,
+            'extraData' => $this->extraData,
         ];
     }
 

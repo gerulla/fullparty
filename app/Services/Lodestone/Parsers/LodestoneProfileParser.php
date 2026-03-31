@@ -51,6 +51,7 @@ class LodestoneProfileParser
             'data_center' => $this->parseDataCenter($xpath),
             'avatar_url' => $this->parseAvatarUrl($xpath),
             'portrait_url' => $this->parsePortraitUrl($xpath),
+			'bio' => $this->parseBio($xpath),
             'extra_data' => $this->parseExtraData($xpath),
         ];
     }
@@ -196,8 +197,6 @@ class LodestoneProfileParser
 
     /**
      * Parse portrait URL (full character image).
-     *
-     * PLACEHOLDER SELECTOR - This is optional, so returns null if not found.
      */
     private function parsePortraitUrl(DOMXPath $xpath): ?string
     {
@@ -218,6 +217,27 @@ class LodestoneProfileParser
 
         return null;
     }
+	
+	/**
+	 * Parse the Character Profile / Bio / Self Introduction
+	 */
+	private function parseBio(DOMXPath $xpath): ?string
+	{
+		$selectors = [
+			"//div[@class='character__selfintroduction']",
+		];
+		
+		foreach ($selectors as $selector) {
+			$nodes = $xpath->query($selector);
+			if ($nodes && $nodes->length > 0) {
+				$text = trim($nodes->item(0)->textContent);
+				if (!empty($text)) {
+					return $text;
+				}
+			}
+		}
+		return null;
+	}
 
     /**
      * Parse additional profile data for extra_data array.

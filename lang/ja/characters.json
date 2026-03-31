@@ -1,0 +1,75 @@
+{
+  "title": "マイキャラクター",
+  "subtitle": "FFXIVキャラクターと確認ステータスを管理します。",
+  "none_found": "キャラクターが見つかりません。",
+  "add": {
+    "title": "キャラクターを追加",
+    "subtitle": "キャラクターの所有権を確認する方法を選択してください",
+    "add_button": "キャラクターを追加",
+    "options": {
+      "xivauth": {
+        "title": "XIVAuthからインポート",
+        "subtitle": "XIVAuthから確認済みのキャラクターを自動的にインポートします。簡単で迅速なプロセスです。"
+      },
+      "manual": {
+        "title": "手動で確認",
+        "subtitle": "Lodestoneを使用してキャラクターを追加します。キャラクタープロフィールに確認コードを配置する必要があります。"
+      }
+    }
+  },
+  "manual": {
+    "progress": "ステップ {current} / {total}",
+    "steps": [
+      "キャラクター情報",
+      "確認コード",
+      "完了"
+    ],
+    "step1": {
+      "title": "手動確認",
+      "subtitle": "LodestoneプロフィールURLまたはキャラクターIDを入力してください",
+      "input": {
+        "label": "LodestoneプロフィールURLまたはキャラクターID",
+        "placeholder": "https://na.finalfantasyxiv.com/lodestone/character/123456789",
+        "hint": "完全なLodestone URLまたはキャラクターID番号のみを貼り付けることができます"
+      },
+      "help_line": "{label} {lodestone}に移動し、キャラクターを検索して、キャラクターのプロフィールページからURLをコピーします。",
+      "where_to_find": "見つけ方：",
+      "lodestone": "FFXIV Lodestone"
+    },
+    "step2": {
+      "title": "キャラクター所有権を確認",
+      "subtitle": "Lodestoneプロフィールに確認コードを追加してください",
+      "code_label": "あなたの確認コード",
+      "instructions_label": "手順：",
+      "instructions": [
+        "1. 上記の確認コードをコピーします",
+        "2. {profile}を開きます",
+        "3. プロフィールを編集し、キャラクタープロフィールテキストの任意の場所にコードを貼り付けます",
+        "4. プロフィールの変更を保存します",
+        "5. 下の「今すぐ確認」をクリックします"
+      ],
+      "profile": "Lodestoneプロフィール",
+      "toast_success": {
+        "title": "コードをコピーしました",
+        "description": "確認コードがクリップボードにコピーされました。"
+      },
+      "toast_error": {
+        "title": "コピーに失敗しました",
+        "description": "確認コードをコピーできませんでした。"
+      },
+      "toast_taken": {
+        "title": "キャラクターは既に登録されています",
+        "description": "このキャラクターは既に登録されています。あなたのキャラクターで、登録していない場合は、サポートにお問い合わせください。"
+      }
+    },
+    "errors": {
+      "invalid_token": "確認コードが一致しません。もう一度お試しください。",
+      "invalid_lodestone_id": "無効なLodestone IDです。有効なキャラクターIDまたはLodestone URLを入力してください。",
+      "character_not_found": "キャラクターが見つかりません。IDを確認してもう一度お試しください。",
+      "lodestone_error": "キャラクター情報を取得できませんでした。後でもう一度お試しください。",
+      "parse_error": "キャラクター情報を解析できませんでした。後でもう一度お試しください。"
+    }
+  },
+  "added_manually": "手動で追加",
+  "from_xivauth": "XIVAuthから"
+}

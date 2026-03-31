@@ -1,13 +1,15 @@
 <script setup>
+import {useI18n} from "vue-i18n";
 
+const { t } = useI18n();
 </script>
 
 <template>
 	<div class="relative mt-6">
 		<div class="relative rounded-2xl border border-white/10 bg-brand-900 p-4 text-sm text-white/80">
-			<p class="font-semibold text-white">Heads up</p>
+			<p class="font-semibold text-white">{{t('navigation.sidebar.notice.title')}}</p>
 			<p class="mt-1 leading-5">
-				FullParty is still in active development. If you run into an issue or want to share feedback, check GitHub or join the Discord server.
+				{{t('navigation.sidebar.notice.description')}}
 			</p>
 
 			<div class="mt-3 flex gap-2">
@@ -15,13 +17,13 @@
 					href="#"
 					class="inline-flex items-center rounded-lg bg-brand-700 px-3 py-1.5 text-xs font-medium text-white hover:bg-brand-600 transition"
 				>
-					GitHub
+					{{t('navigation.sidebar.notice.github')}}
 				</a>
 				<a
 					href="#"
 					class="inline-flex items-center rounded-lg border border-white/10 px-3 py-1.5 text-xs font-medium text-white/90 hover:bg-white/5 transition"
 				>
-					Join Discord
+					{{t('navigation.sidebar.notice.discord')}}
 				</a>
 			</div>
 
@@ -35,7 +37,7 @@
 					description: 'text-white/60',
 				}"
 				name="Giki"
-				description="Developer"
+				:description="t('navigation.sidebar.notice.dev_tag')"
 				:avatar="{
 					src: 'https://img2.finalfantasyxiv.com/f/15cff6ad5af687333d4ae7545c7b4ec4_7206469080400ed57a5373d0a9c55c59fc0.jpg?1774692966',
 					loading: 'lazy',

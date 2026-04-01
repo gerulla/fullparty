@@ -11,13 +11,14 @@ const { t } = useI18n()
 const toast = useToast()
 const page = usePage()
 
-const self_open = ref(true);
+const self_open = ref(false);
 const step = ref(1);
-const max_steps = ref(3);
+const max_steps = ref(4);
+const verification_success = ref(false);
 const character = ref(null);
 // Verification Process
 const checkExistsForm = useForm({
-	lodestone_id: '47431834'
+	lodestone_id: ''
 });
 const checkExists = () => {
 	checkExistsForm.post(route('characters.exists'), {
@@ -60,6 +61,9 @@ const verifyForm = useForm({
 	character_id: ''
 });
 const verify = () => {
+	//Move to loading section
+	step.value = 3;
+	//Run Verification
 	verifyForm.token = verificationCode.value;
 	verifyForm.character_id = character.value.id;
 	verifyForm.post(route('characters.verify'), {
@@ -68,6 +72,9 @@ const verify = () => {
 		onSuccess: () => {
 			const result = page.props.flash?.data?.character_verification
 			console.log(result)
+			// Move to end Screen
+			verification_success.value = true;
+			step.value = 4;
 		},
 		onError: (data) => {
 			if(!data || !data.error) return;
@@ -77,6 +84,9 @@ const verify = () => {
 				icon: 'i-lucide-circle-alert',
 				color: 'error'
 			})
+			// Move to end Screen
+			verification_success.value = false;
+			step.value = 4;
 		}
 	})
 }
@@ -114,9 +124,11 @@ const open = () => {
 const hide = () => {
 	self_open.value = false;
 }
-const close = () => {
+const close = (status = false) => {
 	step.value = 1;
-	emit('close', false);
+	verification_success.value = false;
+	character.value = null;
+	emit('close', status);
 }
 
 defineExpose({
@@ -130,7 +142,7 @@ defineExpose({
 		:ui="{ content: 'rounded-sm', header: 'border-0'}"
 	>
 		<template #header>
-			<div class="w-full flex flex-col items-stretch">
+			<div v-if="step != 4" class="w-full flex flex-col items-stretch">
 				<div class="w-full flex flex-row items-stretch justify-between mb-1">
 					<p class="text-xs text muted uppercase">
 						{{t('characters.manual.progress', {current: step, total: max_steps})}}
@@ -200,6 +212,7 @@ defineExpose({
 						:ui="{base:'rounded-none'}"
 						:label="t('general.continue')"
 						:loading="checkExistsForm.processing"
+						:disabled="checkExistsForm.lodestone_id.length == 0"
 					/>
 				</div>
 			</form>
@@ -276,7 +289,90 @@ defineExpose({
 				</div>
 			</form>
 			<div v-if="step==3" class="step-container">
-
+				<div class="w-full flex flex-col items-center justify-center gap-2 py-8">
+					<div class="bg-brand/30 p-4 mb-4 rounded-full">
+						<UIcon
+							name="i-lucide-loader-circle"
+							class="animate-spin text-brand-500"
+							size="42"
+						/>
+					</div>
+					<p class="text-xl font-bold">{{ t('characters.manual.step3.title') }}</p>
+					<p class="text-muted">{{ t('characters.manual.step3.subtitle') }}</p>
+				</div>
+			</div>
+			<div v-if="step==4" class="step-container">
+				<div v-if="verification_success" class="">
+					<div class="w-full flex flex-col items-center justify-center gap-2 mb-2">
+						<div class="bg-success/10 p-4 mb-4 rounded-full">
+							<UIcon
+								name="i-lucide-check-circle"
+								class="text-success-600"
+								size="42"
+							/>
+						</div>
+						<p class="text-lg font-bold">{{ t('characters.manual.success.title') }}</p>
+						<p class=" text-sm text-muted">{{ t('characters.manual.success.subtitle') }}</p>
+					</div>
+					<div v-if="character" class="w-full flex flex-row items-center p-4 border border-muted rounded-sm gap-4">
+						<div class="h-full">
+							<img class="h-18 w-18 rounded-sm" :src="character.avatar" :alt="character.name + ' avatar'">
+						</div>
+						<div class="flex flex-col items-start ">
+							<p class="font-bold">{{character.name}}</p>
+							<p class="text-sm text-muted">{{character.world}} - {{character.datacenter}}</p>
+						</div>
+					</div>
+					<UButton
+						:label="t('characters.manual.success.button')"
+						color="neutral"
+						size="lg"
+						class="w-full my-4 justify-center rounded-none"
+						@click.prevent="close(true)"
+					/>
+				</div>
+				<div v-else class="">
+					<div class="w-full flex flex-col items-center justify-center gap-2">
+						<div class="bg-error/10 p-4 mb-4 rounded-full">
+							<UIcon
+								name="i-lucide-x"
+								class="text-error-600"
+								size="42"
+							/>
+						</div>
+						<p class="text-lg font-bold">{{ t('characters.manual.fail.title') }}</p>
+						<p class=" text-sm text-muted">{{ t('characters.manual.fail.subtitle') }}</p>
+					</div>
+					<div class="w-full flex flex-col gap-2 p-4 pb-0">
+						<div class="w-full flex flex-row items-center">
+							<div class="w-full flex items-center justify-center py-4 border border-brand rounded-sm bg-brand/10">
+								<p class="font-black uppercase text-xl">{{verificationCode}}</p>
+							</div>
+						</div>
+					</div>
+					<div class="w-full flex flex-col p-4 my-4 border border-muted rounded-sm gap-2">
+						<p class="text-sm font-bold">{{t('characters.manual.fail.common_label')}}</p>
+						<p class="text-sm text-muted">{{t('characters.manual.fail.common_issues.0')}}</p>
+						<p class="text-sm text-muted">{{t('characters.manual.fail.common_issues.1')}}</p>
+						<p class="text-sm text-muted">{{t('characters.manual.fail.common_issues.2')}}</p>
+					</div>
+					<UButton
+						:label="t('general.try_again')"
+						icon="i-lucide-refresh-ccw"
+						color="neutral"
+						size="lg"
+						class="w-full mb-2 mt-4 justify-center"
+						@click.prevent="verify"
+					/>
+					<UButton
+						:label="t('characters.manual.fail.button')"
+						color="neutral"
+						size="lg"
+						variant="outline"
+						class="w-full justify-center"
+						@click.prevent="close"
+					/>
+				</div>
 			</div>
 		</template>
 	</UModal>

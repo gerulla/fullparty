@@ -44,15 +44,18 @@ defineProps({
 					</div>
 
 					<div class="flex flex-row gap-1 text-brand">
-						<UButton type="button" @submit.prevent="" class="font-thin p-0 text-sm hover:underline hover:bg-transparent cursor-pointer" variant="ghost">
+						<a :href="'https://na.finalfantasyxiv.com/lodestone/character/'+character.lodestone_id" class="flex flex-row items-center gap-1 font-thin p-0 text-sm hover:underline hover:bg-transparent cursor-pointer" variant="ghost">
 							View Lodestone Profile
 							<UIcon name="i-lucide-square-arrow-out-up-right" size="12" />
-						</UButton>
+						</a>
 					</div>
 				</div>
 
 				<div id="div3" class="ml-auto flex flex-col items-center justify-between">
-					<UIcon name="i-lucide-refresh-ccw" variant="ghost" color="neutral" size="16" />
+					<div class="flex flex-row items-center">
+						<UButton v-if="!character.is_primary && character.verified_at !== null" label="Make Primary" color="neutral" variant="soft" icon="i-lucide-star" class="mr-2" />
+						<UButton icon="i-lucide-refresh-ccw" variant="ghost" color="neutral" />
+					</div>
 					<UButton
 						color="neutral"
 						variant="ghost"

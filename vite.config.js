@@ -23,6 +23,22 @@ export default defineConfig({
                     primary: 'brand',
                     brand: 'brand',
                     neutral: 'neutral'
+                },
+                button: {
+                  slots: {
+                      base: [
+                          'rounded-none'
+                      ]
+                  }
+                },
+                modal: {
+                    variants: {
+                        overlay: {
+                            true: {
+                                overlay: 'bg-black/50'
+                            }
+                        }
+                    }
                 }
             }
         })

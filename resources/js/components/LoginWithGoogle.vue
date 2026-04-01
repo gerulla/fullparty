@@ -28,7 +28,7 @@ const { t } = useI18n();
 			/>
 		</svg>
 
-		<span>{{ t('pages.auth.continue_with')}} Google</span>
+		<span>{{ t('auth.continue_with')}} Google</span>
 	</a>
 </template>
 

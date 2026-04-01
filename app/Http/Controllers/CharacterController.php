@@ -31,7 +31,9 @@ class CharacterController extends Controller
 		$character = Character::where('lodestone_id', $validated['lodestone_id'])->first();
 		if ($character && $character->isVerified()) {
 			return Redirect::back()->with('flash_data', [
-				'taken' => true,
+				'manual_character_lookup' => [
+					'taken' => true,
+				]
 			]);
 		// If the character exists but has not been verified, tell the user to claim it
 		}else if($character){

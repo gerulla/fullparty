@@ -15,7 +15,7 @@ const { t } = useI18n();
 			/>
 		</svg>
 
-		<span>{{ t('pages.auth.continue_with')}} Discord</span>
+		<span>{{ t('auth.continue_with')}} Discord</span>
 	</a>
 </template>
 

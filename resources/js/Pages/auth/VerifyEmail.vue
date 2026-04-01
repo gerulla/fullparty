@@ -39,10 +39,10 @@ defineOptions({
 
 				<div class="min-w-0">
 					<h1 class="text-3xl font-bold tracking-tight text-gray-900 dark:text-white">
-						{{ t('pages.verify_email.title') }}
+						{{ t('auth.verify_email.title') }}
 					</h1>
 					<p class="mt-2 text-sm leading-6 text-gray-600 dark:text-gray-300">
-						{{ t('pages.verify_email.subtitle') }}
+						{{ t('auth.verify_email.subtitle') }}
 					</p>
 				</div>
 			</div>
@@ -51,13 +51,13 @@ defineOptions({
 				v-if="wasResent"
 				class="mb-6 rounded-xl border border-emerald-200 bg-emerald-50 px-4 py-3 text-sm text-emerald-800 dark:border-emerald-900/60 dark:bg-emerald-950/40 dark:text-emerald-300"
 			>
-				{{ t('pages.verify_email.resent_success') }}
+				{{ t('auth.verify_email.resent_success') }}
 			</div>
 
 			<div class="space-y-4">
 				<div class="rounded-xl bg-gray-50 p-4 dark:bg-gray-800/60">
 					<p class="text-sm text-gray-600 dark:text-gray-300">
-						{{ t('pages.verify_email.sent_to') }}
+						{{ t('auth.verify_email.sent_to') }}
 					</p>
 					<p class="mt-1 break-all text-sm font-semibold text-gray-900 dark:text-white">
 						{{ email }}
@@ -65,17 +65,17 @@ defineOptions({
 				</div>
 
 				<p class="text-sm leading-6 text-gray-600 dark:text-gray-300">
-					{{ t('pages.verify_email.instructions') }}
+					{{ t('auth.verify_email.instructions') }}
 				</p>
 
 				<div class="rounded-xl border border-gray-200 p-4 dark:border-gray-800">
 					<h2 class="text-sm font-semibold text-gray-900 dark:text-white">
-						{{ t('pages.verify_email.help_title') }}
+						{{ t('auth.verify_email.help_title') }}
 					</h2>
 					<ul class="mt-3 space-y-2 text-sm text-gray-600 dark:text-gray-300">
-						<li>• {{ t('pages.verify_email.help_spam') }}</li>
-						<li>• {{ t('pages.verify_email.help_delay') }}</li>
-						<li>• {{ t('pages.verify_email.help_resend') }}</li>
+						<li>• {{ t('auth.verify_email.help_spam') }}</li>
+						<li>• {{ t('auth.verify_email.help_delay') }}</li>
+						<li>• {{ t('auth.verify_email.help_resend') }}</li>
 					</ul>
 				</div>
 			</div>
@@ -89,8 +89,8 @@ defineOptions({
 				>
 					{{
 						resendForm.processing
-							? t('pages.verify_email.resending')
-							: t('pages.verify_email.resend_button')
+							? t('auth.verify_email.resending')
+							: t('auth.verify_email.resend_button')
 					}}
 				</button>
 
@@ -100,7 +100,7 @@ defineOptions({
 					as="button"
 					class="inline-flex w-full items-center justify-center rounded-md border border-gray-300 px-5 py-3 text-sm font-semibold text-gray-700 transition hover:bg-gray-50 dark:border-gray-700 dark:text-gray-200 dark:hover:bg-gray-800"
 				>
-					{{ t('pages.verify_email.logout_button') }}
+					{{ t('auth.verify_email.logout_button') }}
 				</Link>
 			</div>
 		</div>

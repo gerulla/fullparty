@@ -15,7 +15,7 @@ const { t } = useI18n();
         XIV
     </span>
 
-		<span>{{ t('pages.auth.continue_with')}} XIVAuth</span>
+		<span>{{ t('auth.continue_with')}} XIVAuth</span>
 	</a>
 </template>
 

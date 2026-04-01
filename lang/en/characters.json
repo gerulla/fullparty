@@ -22,6 +22,7 @@
     "steps": [
       "Character Info",
       "Verification Code",
+      "Verifying...",
       "Complete"
     ],
     "step1": {
@@ -61,6 +62,26 @@
         "title": "Character Already Registered",
         "description": "This character is already registered. If this is your character and you did not register it please contact support."
       }
+    },
+    "step3": {
+      "title": "Checking Your Profile",
+      "subtitle": "Please wait while we verify your Lodestone profile..."
+    },
+    "success": {
+      "title": "Character Verified!",
+      "subtitle": "Your character has been successfully verified and added to your account.",
+      "button": "Return to My Characters"
+    },
+    "fail": {
+      "title": "Verification Failed",
+      "subtitle": "We couldn't find the verification code on your Lodestone profile.",
+      "common_label": "Common Issues:",
+      "common_issues": [
+        "The verification code wasn't added to your profile",
+        "Profile changes haven't updated yet (try waiting a few minutes)",
+        "The code was modified or has extra spaces"
+      ],
+      "button": "Start Over"
     },
     "errors": {
       "invalid_token": "Verification code does not match. Please try again.",

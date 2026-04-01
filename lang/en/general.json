@@ -22,6 +22,7 @@
   "copy": "Copy",
   "copied": "Copied!",
   "error": "Error",
+  "try_again": "Try Again",
   "copied_to_clipboard": "Copied to clipboard!",
   "copied_to_clipboard_short": "Copied!",
   "copied_to_clipboard_short_timeout": 2000

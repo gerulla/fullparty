@@ -2,8 +2,11 @@
 import {useI18n} from "vue-i18n";
 import {ref} from 'vue';
 
-const { t } = useI18n()
+const props = defineProps<{
+	xivauth_connected: boolean
+}>()
 
+const { t } = useI18n()
 const self_open = ref(false);
 
 const emit = defineEmits<{ choice: [String] }>();
@@ -15,7 +18,8 @@ const hide = () => {
 }
 
 const xivimport = () => {
-	emit('choice', 'xivauth');
+	if(props.xivauth_connected)
+		emit('choice', 'xivauth');
 }
 const manual = async () => {
 	emit('choice', 'manual');
@@ -40,8 +44,8 @@ defineExpose({
 		/>
 
 		<template #body>
-			<div class="w-full h-full flex flex-col items-stretch gap-2">
-				<div class="option-block" @click="xivimport()">
+			<div class="w-full h-full flex items-stretch gap-2" :class="xivauth_connected ? 'flex-col' : 'flex-col-reverse'">
+				<div :class="xivauth_connected ? 'option-block' : 'option-disabled'" @click="xivimport()">
 					<div class="w-full flex flex-row items-stretch gap-2">
 						<p class="font-bold">{{t('characters.add.options.xivauth.title')}}</p>
 						<UBadge
@@ -75,5 +79,10 @@ defineExpose({
 .option-block {
 	@apply w-full flex flex-col items-start border-2 border-neutral-200 cursor-pointer
 		dark:border-neutral-700 hover:border-brand dark:hover:border-brand rounded-sm p-4 gap-2 transition
+}
+
+.option-disabled {
+	@apply w-full flex flex-col items-start border-2 border-neutral-100
+		dark:border-neutral-800  rounded-sm p-4 gap-2 transition text-muted cursor-not-allowed
 }
 </style>

@@ -19,6 +19,15 @@ return new class extends Migration
             $table->string('password')->nullable();
 			$table->string('avatar_url')->nullable();
 			$table->timestamp('last_login_at')->nullable();
+			$table->boolean('is_admin')->default(false);
+			$table->boolean('public_profile')->default(true);
+			$table->boolean('public_characters')->default(true);
+			$table->boolean('run_reminders')->default(true);
+			$table->boolean('application_notifications')->default(true);
+			$table->boolean('group_updates')->default(true);
+			$table->boolean('assignment_updates')->default(true);
+			$table->boolean('email_notifications')->default(false);
+			$table->boolean('discord_notifications')->default(false);
             $table->rememberToken();
             $table->timestamps();
         });

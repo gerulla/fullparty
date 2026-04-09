@@ -4,6 +4,8 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CharacterController;
 use App\Http\Controllers\DiscordAuthController;
 use App\Http\Controllers\GoogleAuthController;
+use App\Http\Controllers\SettingsController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\XIVAuthController;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Support\Facades\Route;
@@ -64,9 +66,15 @@ Route::middleware(['auth', 'verified'])->group(function () {
 		return Inertia::render('Dashboard/Dashboard');
 	})->name('dashboard');
 	
+	//Settings
+	Route::get('/settings', [SettingsController::class, 'index'])->name('settings');
+	Route::post('/settings/username', [UserController::class, 'changeUsername'])->name('settings.username');
+	Route::post('/settings/notifications', [UserController::class, 'changeNotificationSettings'])->name('settings.notifications');
+	Route::post('/settings/privacy', [UserController::class, 'changePrivacySettings'])->name('settings.privacy');
 	
-//	Character Routes
+	//Character Routes
 	Route::get('/account/characters', [CharacterController::class, 'list'])->name('account.characters');
 	Route::post('/characters/exists', [CharacterController::class, 'exists'])->name('characters.exists');
 	Route::post('/characters/verify', [CharacterController::class, 'verify'])->name('characters.verify');
+	Route::post('/characters/xivauth', [CharacterController::class, 'fetchXIVAuthCharacters'])->name('characters.xivauth');
 });

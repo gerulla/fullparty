@@ -24,6 +24,9 @@ const items = computed<DropdownMenuItem[][]>(() => [
 		{
 			label: t('navigation.topbar.menu.settings'),
 			icon: 'i-lucide-cog',
+			onSelect(){
+				router.get(route('settings'));
+			}
 		},
 	],
 	[

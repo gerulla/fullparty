@@ -12,6 +12,7 @@ use App\Services\Lodestone\LodestoneScraper;
 use Carbon\Carbon;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Str;
 use Inertia\Inertia;
 use Inertia\Response;
@@ -19,6 +20,10 @@ use Illuminate\Support\Facades\Redirect;
 
 class CharacterController extends Controller
 {
+	private function generateVerificationToken(): string
+	{
+		return 'FP-' . strtoupper(Str::random(10));
+	}
  
 	public function exists(Request $request): \Illuminate\Http\RedirectResponse
 	{
@@ -39,7 +44,7 @@ class CharacterController extends Controller
 		}else if($character){
 			//Renew token if expired
 			if($character->isTokenExpired()){
-				$token = "FP-" . strtoupper(Str::random(10));
+				$token = $this->generateVerificationToken();
 				$character->update([
 					'token' => $token,
 					'expires_at' => Carbon::now()->addDay(),
@@ -64,7 +69,7 @@ class CharacterController extends Controller
 		// If the character does not exist, scrape it and create it
 		try {
 			$data = $scraper->scrapeProfile($validated['lodestone_id']);
-			$token = "FP-" . strtoupper(Str::random(10));
+			$token = $this->generateVerificationToken();
 			$character = Character::create([
 				'user_id' => auth()->id(),
 				'name' => $data->name,
@@ -75,8 +80,6 @@ class CharacterController extends Controller
 				'token' => $token,
 				'expires_at' => Carbon::now()->addDay(),
 			]);
-			
-			$character->save();
 			
 			return Redirect::back()->with('flash_data', [
 				'manual_character_lookup' => [
@@ -117,6 +120,20 @@ class CharacterController extends Controller
 			'character_id' => ['required', 'exists:characters,id'],
 		]);
 		$character = Character::find($validated['character_id']);
+		
+		if($character->isVerified()){
+			return Redirect::back()->with('flash_data', [
+				'character_verification' => [
+					'taken' => true,
+				]
+			]);
+		}
+		if($character->isTokenExpired()){
+			return Redirect::back()->withErrors([
+				'error' => 'expired_token'
+			]);
+		}
+		
 		$scraper = app(LodestoneScraper::class);
 		// If the character does not exist, scrape it and create it
 		try {
@@ -126,7 +143,7 @@ class CharacterController extends Controller
 					'error' => 'invalid_token'
 				]);
 			}
-			if(count(auth()->user()->characters) == 1){
+			if (auth()->user()->characters()->count() === 1) {
 				$character->is_primary = true;
 			}
 			$character->user_id = auth()->id();
@@ -154,6 +171,34 @@ class CharacterController extends Controller
 				'error' => 'parse_error',
 			]);
 		}
+	}
+	
+	public function fetchXIVAuthCharacters(Request $request){
+		$validated = $request->validate([
+			'xivauth_token' => ['required', 'string'],
+			'xivauth_refresh_token' => ['required', 'string']
+		]);
+		$xivauthSocial = $request->user()->socialAccounts()->where('provider', 'xivauth')->first();
+		if(!$xivauthSocial){
+			return Redirect::back()->withErrors([
+				'error' => 'xivauth_not_linked',
+			]);
+		}
+		try{
+			$token = XIVAuthController::getValidXivAuthAccessToken($xivauthSocial);
+		}catch (\Exception $exception){
+			return Redirect::back()->withErrors([
+				'error' => json_encode($exception)
+			]);
+		}
+		//Get User Data
+		$response = Http::withHeaders([
+			'Accept' => 'application/json',
+			'Authorization' => 'Bearer ' . $token,
+		])->get('https://xivauth.net/api/v1/characters');
+		
+		$data = json_decode($response->getBody(), true);
+		dd($response);
 	}
 	
 	/**

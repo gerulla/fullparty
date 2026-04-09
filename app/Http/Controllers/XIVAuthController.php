@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\SocialAccount;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Str;
 use Laravel\Socialite\Socialite;
 
@@ -64,14 +66,14 @@ class XIVAuthController extends Controller
 			$user = User::create([
 				'name' => $xivauthUser->getName() ?: 'User-' . Str::random(6),
 				'email' => $providerEmail,
-				'email_verified_at' => ! empty($attributes['email_verified']) && $providerEmail ? now() : null,
+				'email_verified_at' => now(),
 				'avatar_url' => null,
 				'password' => null,
 			]);
 		} else {
 			$updates = [];
 			
-			if (! $user->email_verified_at && ! empty($attributes['email_verified']) && $providerEmail) {
+			if ( !$user->email_verified_at && !empty($attributes['email_verified']) && $providerEmail) {
 				$updates['email_verified_at'] = now();
 			}
 			
@@ -98,5 +100,37 @@ class XIVAuthController extends Controller
 		request()->session()->regenerate();
 		
 		return redirect()->intended(route('dashboard'));
+	}
+	
+	public static function getValidXivAuthAccessToken(SocialAccount $account): string
+	{
+		if ($account->expires_at && $account->expires_at->isFuture() && $account->access_token) {
+			return $account->access_token;
+		}
+		
+		$response = Http::asForm()->withHeaders([
+			'Authorization' => 'Bearer ' . $account->refresh_token,
+		])->post('https://xivauth.net/oauth/token', [
+			'grant_type' => 'client_credentials',
+			'client_id' => config('services.xivauth.client_id'),
+			'client_secret' => config('services.xivauth.client_secret'),
+			'scope' => 'user character:all refresh user:email'
+		]);
+		
+		if (! $response->successful()) {
+			throw new \RuntimeException($response->body());
+		}
+		
+		$data = $response->json();
+		
+		$account->update([
+			'access_token' => $data['access_token'],
+			'refresh_token' => $data['refresh_token'] ?? $account->refresh_token,
+			'expires_at' => isset($data['expires_in'])
+				? Carbon::now()->addSeconds((int) $data['expires_in'])
+				: null,
+		]);
+		
+		return $account->access_token;
 	}
 }

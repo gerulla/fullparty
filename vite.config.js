@@ -24,12 +24,27 @@ export default defineConfig({
                     brand: 'brand',
                     neutral: 'neutral'
                 },
+                card: {
+                    slots: {
+                        root: 'rounded-none'
+                    }
+                },
+                input: {
+                    slots: {
+                        base: 'rounded-none'
+                    }
+                },
                 button: {
                   slots: {
                       base: [
                           'rounded-none'
                       ]
                   }
+                },
+                selectMenu: {
+                    slots: {
+                        base: 'rounded-none'
+                    }
                 },
                 modal: {
                     variants: {

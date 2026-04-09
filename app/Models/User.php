@@ -11,7 +11,22 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
-#[Fillable(['name', 'email', 'password', 'email_verified_at', 'avatar_url'])]
+#[Fillable([
+	'name',
+	'email',
+	'password',
+	'email_verified_at',
+	'avatar_url',
+	'is_admin',
+	'public_profile',
+	'public_characters',
+	'run_reminders',
+	'application_notifications',
+	'group_updates',
+	'assignment_updates',
+	'email_notifications',
+	'discord_notifications',
+])]
 #[Hidden(['password', 'remember_token'])]
 class User extends Authenticatable implements MustVerifyEmail
 {
@@ -38,7 +53,7 @@ class User extends Authenticatable implements MustVerifyEmail
 	
 	public function characters(): User|\Illuminate\Database\Eloquent\Relations\HasMany
 	{
-		return $this->hasMany(Character::class);
+		return $this->hasMany(Character::class)->where('verified_at', '!=', null);
 	}
 	
 	public function socialAccounts(): User|\Illuminate\Database\Eloquent\Relations\HasMany

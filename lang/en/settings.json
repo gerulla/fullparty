@@ -1,0 +1,49 @@
+{
+  "title": "Settings",
+  "subtitle": "Manage your account preferences and notifications.",
+  "account": {
+    "title": "Account Settings",
+    "username": "Username",
+    "email": "Email",
+    "save": "Save Changes"
+  },
+  "connect": "Connect",
+  "connected": "Connected",
+  "not_connected": "Not Connected",
+  "connected_accounts": "Connected Accounts",
+  "notifications": {
+    "title": "Notifications",
+    "save": "Save Preferences",
+    "run_reminders": "Run Reminders",
+    "application_notifications": "Application Updates",
+    "group_updates": "Group Updates",
+    "assignment_updates": "Run Assignments",
+    "email_notifications": "Email Notifications",
+    "discord_notifications": "Discord Notifications",
+    "run_reminders_description": "Get notified before scheduled runs",
+    "application_notifications_description": "Notifications when your applications are reviewed",
+    "group_updates_description": "Get notified when invited to groups",
+    "assignment_updates_description": "Notifications when assigned to a run slot",
+    "email_notifications_description": "Receive notifications via email",
+    "discord_notifications_description": "Send notifications to Discord (requires connection)"
+  },
+  "privacy": {
+    "public": "Public",
+    "private": "Private",
+    "title": "Privacy & Security",
+    "profile_visibility": "Profile Visibility",
+    "profile_visibility_description": "Make your profile visible to other users",
+    "show_character_data": "Show Character Data",
+    "show_character_data_description": "Display job levels and progression on your profile",
+    "save": "Save Preferences",
+    "danger_zone": "Danger Zone",
+    "delete_account": "Delete Account",
+    "delete_account_description": "Once you delete your account, there is no going back. Please be certain."
+  },
+  "toasts": {
+    "username_updated": "Username updated successfully",
+    "notification_updated": "Notification preferences updated successfully",
+    "privacy_updated": "Privacy settings updated successfully",
+    "title": "Success!"
+  }
+}

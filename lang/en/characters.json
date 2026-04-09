@@ -9,7 +9,7 @@
     "options": {
       "xivauth": {
         "title": "Import from XIVAuth",
-        "subtitle": "Automatically import your verified characters from XIVAuth. Easy and quick process."
+        "subtitle": "Automatically import your verified characters from XIVAuth. You need to have your XIVAuth account linked."
       },
       "manual": {
         "title": "Verify Manually",

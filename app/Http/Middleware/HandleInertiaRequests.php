@@ -42,13 +42,13 @@ class HandleInertiaRequests extends Middleware
 				'data' => fn () => $request->session()->get('flash_data', []),],
 			'auth' => [
 				'user' => fn () => $request->user()
-					? [
-						'id' => $request->user()->id,
-						'name' => $request->user()->name,
-						'email' => $request->user()->email,
-						'avatar_url' => $request->user()->avatar_url,
-						'primary_character' => $request->user()->primaryCharacter,
-					]
+					? array_merge(
+						$request->user()->load(['primaryCharacter', 'socialAccounts'])->toArray(),
+						[
+							'primary_character' => $request->user()->primaryCharacter,
+							'social_accounts' => $request->user()->socialAccounts,
+						]
+					)
 					: null,
 			],
 		]);

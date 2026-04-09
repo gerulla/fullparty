@@ -77,4 +77,5 @@ Route::middleware(['auth', 'verified'])->group(function () {
 	Route::post('/characters/exists', [CharacterController::class, 'exists'])->name('characters.exists');
 	Route::post('/characters/verify', [CharacterController::class, 'verify'])->name('characters.verify');
 	Route::post('/characters/xivauth', [CharacterController::class, 'fetchXIVAuthCharacters'])->name('characters.xivauth');
+	Route::post('/characters/xivauth/import', [CharacterController::class, 'importXIVAuthCharacter'])->name('characters.xivauth.import');
 });

@@ -6,6 +6,7 @@ use App\Exceptions\LodestoneFetchException;
 use App\Exceptions\LodestoneInvalidInputException;
 use App\Exceptions\LodestoneParseException;
 use App\Http\Requests\StoreCharacterRequest;
+use App\Http\Requests\StoreXIVAuthCharacterRequest;
 use App\Http\Requests\UpdateCharacterRequest;
 use App\Models\Character;
 use App\Services\Lodestone\LodestoneScraper;
@@ -174,10 +175,6 @@ class CharacterController extends Controller
 	}
 	
 	public function fetchXIVAuthCharacters(Request $request){
-		$validated = $request->validate([
-			'xivauth_token' => ['required', 'string'],
-			'xivauth_refresh_token' => ['required', 'string']
-		]);
 		$xivauthSocial = $request->user()->socialAccounts()->where('provider', 'xivauth')->first();
 		if(!$xivauthSocial){
 			return Redirect::back()->withErrors([
@@ -188,7 +185,7 @@ class CharacterController extends Controller
 			$token = XIVAuthController::getValidXivAuthAccessToken($xivauthSocial);
 		}catch (\Exception $exception){
 			return Redirect::back()->withErrors([
-				'error' => json_encode($exception)
+				'error' => 'xivauth_token_invalid'
 			]);
 		}
 		//Get User Data
@@ -198,7 +195,53 @@ class CharacterController extends Controller
 		])->get('https://xivauth.net/api/v1/characters');
 		
 		$data = json_decode($response->getBody(), true);
-		dd($response);
+		return Redirect::back()->with('flash_data', [
+			'characters' => $data
+		]);
+	}
+	
+	public function importXIVAuthCharacter(StoreXIVAuthCharacterRequest $request){
+		$validated = $request->validated();
+		
+		$is_primary = false;
+		if (auth()->user()->characters()->count() === 0) {
+			$is_primary = true;
+		}
+		$character = Character::where('lodestone_id', $validated['lodestone_id'])->first();
+		// If character doesnt exist, create it
+		if(!$character){
+			$character = Character::create([
+				'user_id' => auth()->id(),
+				'name' => $validated['name'],
+				'world' => $validated['world'],
+				'datacenter' => $validated['datacenter'],
+				'lodestone_id' => $validated['lodestone_id'],
+				'avatar_url' => $validated['avatar_url'],
+				'add_method' => 'xivauth',
+				'is_primary' => $is_primary,
+				'verified_at' => Carbon::now(),
+			]);
+		}else{
+			// If character exists, set the user to own it.
+			$character->update([
+				'user_id' => auth()->id(),
+				'is_primary' => $is_primary,
+			]);
+		}
+		
+		return Redirect::back()->with('flash_data', [
+			'xivauth_character_import' => [
+				'character' => [
+					'id' => $character->id,
+					'lodestone_id' => $character->lodestone_id,
+					'name' => $character->name,
+					'world' => $character->world,
+					'datacenter' => $character->datacenter,
+					'avatar' => $character->avatar_url,
+					'token' => $character->token,
+				],
+			],
+		]);
 	}
 	
 	/**

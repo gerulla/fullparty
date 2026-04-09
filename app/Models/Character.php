@@ -27,6 +27,7 @@ class Character extends Model
         'token',
         'expires_at',
         'verified_at',
+		'add_method',
     ];
 
     /**

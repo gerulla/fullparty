@@ -108,16 +108,15 @@ class XIVAuthController extends Controller
 			return $account->access_token;
 		}
 		
-		$response = Http::asForm()->withHeaders([
-			'Authorization' => 'Bearer ' . $account->refresh_token,
-		])->post('https://xivauth.net/oauth/token', [
-			'grant_type' => 'client_credentials',
+		$response = Http::asForm()->post('https://xivauth.net/oauth/token', [
+			'grant_type' => 'refresh_token',
 			'client_id' => config('services.xivauth.client_id'),
 			'client_secret' => config('services.xivauth.client_secret'),
-			'scope' => 'user character:all refresh user:email'
+			'scope' => 'user character:all refresh user:email',
+			'refresh_token' => $account->refresh_token
 		]);
 		
-		if (! $response->successful()) {
+		if (!$response->successful()) {
 			throw new \RuntimeException($response->body());
 		}
 		

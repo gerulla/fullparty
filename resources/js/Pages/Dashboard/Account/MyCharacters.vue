@@ -40,8 +40,9 @@ const handleChoice = (param) => {
 }
 
 const modalResult = (result) => {
+	manualModal.value?.hide();
+	xivModal.value?.hide();
 	if(!result) {
-		manualModal.value?.hide();
 		setTimeout(() => addModal.value?.open(), 250);
 	}
 }

@@ -91,6 +91,36 @@
       "parse_error": "Could not parse character information. Please try again later."
     }
   },
+  "xivauth": {
+    "progress": "Step {current} of {total}",
+    "steps": [
+      "Fetching Characters...",
+      "Select Character to Import",
+      "Importing Character...",
+      "Complete"
+    ],
+    "step1": {
+      "title": "Fetching Characters",
+      "subtitle": "Loading your verified characters from XIVAuth. This may take a few minutes."
+    },
+    "step2": {
+      "title": "Select Character to Import",
+      "subtitle": "Choose the character you'd like to import from XIVAuth."
+    },
+    "step3": {
+      "title": "Importing Character",
+      "subtitle": "Importing your character from XIVAuth. This may take a few minutes."
+    },
+    "success": {
+      "title": "Character Imported!",
+      "subtitle": "Your character has been successfully imported from XIVAuth.",
+      "button": "Return to My Characters"
+    },
+    "errors": {
+      "xivauth_not_linked": "Looks like you haven't linked your XIVAuth account yet. Please link your account to import your characters.",
+      "xivauth_token_invalid": "We couldn't authorize you with XIVAuth. Please try again or contact support."
+    }
+  },
   "added_manually": "Added Manually",
   "from_xivauth": "From XIVAuth"
 }

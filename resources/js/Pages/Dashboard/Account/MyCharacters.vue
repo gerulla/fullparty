@@ -56,7 +56,7 @@ defineProps({
 </script>
 
 <template>
-	<div class="w-full bg-neutral-100 dark:bg-neutral-900">
+	<div class="w-full">
 		<PageHeader :title="t('characters.title')" :subtitle="t('characters.subtitle')">
 			<AddCharacterModal @choice="handleChoice" :xivauth_connected="hasProvider('xivauth')" ref="addModal"/>
 			<ManualVerificationModal @close="modalResult" ref="manualModal"/>

@@ -13,7 +13,7 @@ const { t } = useI18n();
 </script>
 
 <template>
-	<div class="w-full bg-neutral-100 dark:bg-neutral-900">
+	<div class="w-full">
 		<PageHeader :title="t('admin.character_definitions.title')" :subtitle="t('admin.character_definitions.subtitle')" />
 
 		<div class="w-full flex flex-col items-start gap-6 mt-4">

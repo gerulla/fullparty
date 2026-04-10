@@ -27,7 +27,7 @@ defineProps({
 			<UDashboardGroup>
 				<CSidebar />
 
-				<UDashboardPanel>
+				<UDashboardPanel :ui="{ body: 'bg-neutral-100 dark:bg-neutral-900' }">
 					<template #header>
 						<CTopbar :title="title" />
 					</template>

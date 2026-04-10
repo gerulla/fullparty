@@ -5,7 +5,7 @@ const { t } = useI18n()
 </script>
 
 <template>
-	<div class="w-full min-h-screen sm:px-4 md:px-6 bg-neutral-100 dark:bg-neutral-900">
+	<div class="w-full">
 		<PageHeader title="Dashboard" subtitle="Welcome back! Here's what's happening with your runs." />
 	</div>
 </template>

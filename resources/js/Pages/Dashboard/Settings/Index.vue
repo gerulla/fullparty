@@ -50,7 +50,7 @@ watch(
 </script>
 
 <template>
-	<div class="w-full bg-neutral-100 dark:bg-neutral-900">
+	<div class="w-full">
 		<PageHeader :title="t('settings.title')" :subtitle="t('settings.subtitle')" />
 
 		<div class="w-full flex flex-col items-start mt-4 gap-8">

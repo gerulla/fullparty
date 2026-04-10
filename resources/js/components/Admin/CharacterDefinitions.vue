@@ -121,6 +121,10 @@ const columns = [
 	{ accessorKey: 'is_active', header: t('admin.character_definitions.table.active') },
 	{ id: 'actions' }
 ];
+
+const shouldFixTableHeight = () => {
+	return (table.value?.tableApi?.getFilteredRowModel().rows.length ?? 0) > pagination.value.pageSize;
+};
 </script>
 
 <template>
@@ -151,7 +155,7 @@ const columns = [
 		</template>
 
 		<div class="flex flex-col gap-4">
-			<div class="max-h-[32rem] overflow-auto">
+			<div :class="shouldFixTableHeight() ? 'h-[28rem] overflow-auto' : 'overflow-auto'">
 				<UTable
 					ref="table"
 					v-model:pagination="pagination"

@@ -127,6 +127,10 @@ const columns = computed(() => [
 	{ id: 'actions' }
 ]);
 
+const shouldFixTableHeight = () => {
+	return (table.value?.tableApi?.getFilteredRowModel().rows.length ?? 0) > pagination.value.pageSize;
+};
+
 const getRoleLabel = (role: string) => {
 	const roleTranslationMap = {
 		'healer': t('admin.character_classes.fields.role.options.healer'),
@@ -170,7 +174,7 @@ const getRoleLabel = (role: string) => {
 		</template>
 
 		<div class="flex flex-col gap-4">
-			<div class="max-h-[32rem] overflow-auto">
+			<div :class="shouldFixTableHeight() ? 'h-[28rem] overflow-auto' : 'overflow-auto'">
 				<UTable
 					ref="table"
 					v-model:pagination="pagination"

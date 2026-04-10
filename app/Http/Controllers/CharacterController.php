@@ -350,6 +350,30 @@ class CharacterController extends Controller
 			? 'phantom_job_marked_preferred'
 			: 'phantom_job_unmarked_preferred');
 	}
+
+	public function makePrimary(Character $character): \Illuminate\Http\RedirectResponse
+	{
+		if ($character->user_id !== auth()->id()) {
+			abort(403);
+		}
+
+		if (!$character->isVerified()) {
+			return Redirect::back()->withErrors([
+				'error' => 'character_not_verified',
+			]);
+		}
+
+		DB::transaction(function () use ($character) {
+			Character::query()
+				->where('user_id', auth()->id())
+				->where('is_primary', true)
+				->update(['is_primary' => false]);
+
+			$character->update(['is_primary' => true]);
+		});
+
+		return Redirect::back()->with('success', 'character_marked_primary');
+	}
 	
 	/**
 	 * List all characters the user has registered

@@ -12,6 +12,7 @@ import ForkedTowerMagicProgress from "@/components/Characters/ForkedTowerMagicPr
 const { t } = useI18n()
 const open = ref(false)
 const isRefreshing = ref(false)
+const isMakingPrimary = ref(false)
 const props = defineProps({
 	character: {
 		type: Object,
@@ -51,6 +52,17 @@ const refreshCharacterData = () => {
 		preserveScroll: true,
 		onFinish: () => {
 			isRefreshing.value = false;
+		},
+	});
+};
+
+const makePrimary = () => {
+	isMakingPrimary.value = true;
+
+	router.post(route('characters.make-primary', props.character.id), {}, {
+		preserveScroll: true,
+		onFinish: () => {
+			isMakingPrimary.value = false;
 		},
 	});
 };
@@ -95,7 +107,17 @@ const refreshCharacterData = () => {
 
 				<div id="div3" class="ml-auto flex flex-col items-center justify-between">
 					<div class="flex flex-row items-center">
-						<UButton v-if="!character.is_primary && character.verified_at !== null" :label="t('characters.card.make_primary')" color="neutral" variant="soft" icon="i-lucide-star" class="mr-2" />
+						<UButton
+							v-if="!character.is_primary && character.verified_at !== null"
+							@click.stop="makePrimary"
+							:label="t('characters.card.make_primary')"
+							:loading="isMakingPrimary"
+							:disabled="isMakingPrimary"
+							color="neutral"
+							variant="soft"
+							icon="i-lucide-star"
+							class="mr-2"
+						/>
 						<UButton
 							@click.stop="refreshCharacterData"
 							:loading="isRefreshing"

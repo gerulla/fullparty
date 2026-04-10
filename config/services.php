@@ -53,4 +53,12 @@ return [
 		'redirect' => env('DISCORD_REDIRECT_URI'),
 	],
 
+	'ff_logs' => [
+		'client_id' => env('FFLOGS_CLIENT_ID'),
+		'client_secret' => env('FFLOGS_CLIENT_SECRET'),
+		'token_url' => env('FFLOGS_TOKEN_URL', 'https://www.fflogs.com/oauth/token'),
+		'graphql_url' => env('FFLOGS_GRAPHQL_URL', 'https://www.fflogs.com/api/v2/client'),
+		'forked_tower_blood_zone_id' => env('FFLOGS_FORKED_TOWER_BLOOD_ZONE_ID'),
+	],
+
 ];

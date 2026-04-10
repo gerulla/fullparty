@@ -19,6 +19,13 @@
   "previous": "Previous",
   "continue": "Continue",
   "next": "Next",
+  "roles": {
+    "tank": "Tank",
+    "healer": "Healer",
+    "melee_dps": "Melee DPS",
+    "physical_ranged_dps": "Physical Ranged DPS",
+    "magic_ranged_dps": "Magic Ranged DPS"
+  },
   "edit": "Edit",
   "update": "Update",
   "add": "Add",

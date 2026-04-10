@@ -9,11 +9,16 @@ use App\Http\Requests\StoreCharacterRequest;
 use App\Http\Requests\StoreXIVAuthCharacterRequest;
 use App\Http\Requests\UpdateCharacterRequest;
 use App\Models\Character;
+use App\Models\CharacterClass;
+use App\Models\PhantomJob;
+use App\Services\FFLogs\ForkedTowerBloodProgressFetcher;
 use App\Services\Lodestone\LodestoneScraper;
 use Carbon\Carbon;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Support\Collection;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 use Inertia\Inertia;
 use Inertia\Response;
@@ -243,15 +248,296 @@ class CharacterController extends Controller
 			],
 		]);
 	}
+
+	public function refreshCharacterData(Character $character): \Illuminate\Http\RedirectResponse
+	{
+		if ($character->user_id !== auth()->id()) {
+			abort(403);
+		}
+
+		$scraper = app(LodestoneScraper::class);
+		$forkedTowerBloodProgressFetcher = app(ForkedTowerBloodProgressFetcher::class);
+
+		try {
+			$data = $scraper->scrape($character->lodestone_id, ignoreCache: true);
+			$forkedTowerBloodProgress = $forkedTowerBloodProgressFetcher->fetchForCharacter($character);
+
+			DB::transaction(function () use ($character, $data, $forkedTowerBloodProgress) {
+				$character->update([
+					'name' => $data->name,
+					'world' => $data->world,
+					'datacenter' => $data->dataCenter,
+					'avatar_url' => $data->avatarUrl,
+				]);
+
+				$this->syncCharacterClassLevels($character, $data->extraData);
+				$this->syncPhantomJobLevels($character, $data->extraData);
+				$this->syncOccultProgress($character, $data->extraData, $forkedTowerBloodProgress);
+			});
+
+			return Redirect::back()->with('success', 'character_data_refreshed');
+		} catch (LodestoneInvalidInputException $e) {
+			return Redirect::back()->withErrors([
+				'error' => 'invalid_lodestone_id',
+			]);
+		} catch (LodestoneFetchException $e) {
+			return Redirect::back()->withErrors([
+				'error' => $e->getCode() === 404
+					? 'character_not_found'
+					: 'lodestone_error',
+			]);
+		} catch (LodestoneParseException $e) {
+			return Redirect::back()->withErrors([
+				'error' => 'parse_error',
+			]);
+		} catch (\Throwable $e) {
+			return Redirect::back()->withErrors([
+				'error' => 'character_refresh_failed',
+			]);
+		}
+	}
+
+	public function markPreferredClass(Request $request, Character $character): \Illuminate\Http\RedirectResponse
+	{
+		if ($character->user_id !== auth()->id()) {
+			abort(403);
+		}
+
+		$validated = $request->validate([
+			'character_class_id' => ['required', 'exists:character_classes,id'],
+			'is_preferred' => ['required', 'boolean'],
+		]);
+
+		$existingProgress = $character->classes()
+			->where('character_classes.id', $validated['character_class_id'])
+			->first();
+
+		$character->classes()->syncWithoutDetaching([
+			$validated['character_class_id'] => [
+				'level' => $existingProgress?->pivot?->level ?? 0,
+				'is_preferred' => $validated['is_preferred'],
+			],
+		]);
+
+		return Redirect::back()->with('success', $validated['is_preferred']
+			? 'character_class_marked_preferred'
+			: 'character_class_unmarked_preferred');
+	}
+
+	public function markPreferredPhantomJob(Request $request, Character $character): \Illuminate\Http\RedirectResponse
+	{
+		if ($character->user_id !== auth()->id()) {
+			abort(403);
+		}
+
+		$validated = $request->validate([
+			'phantom_job_id' => ['required', 'exists:phantom_jobs,id'],
+			'is_preferred' => ['required', 'boolean'],
+		]);
+
+		$existingProgress = $character->phantomJobs()
+			->where('phantom_jobs.id', $validated['phantom_job_id'])
+			->first();
+
+		$character->phantomJobs()->syncWithoutDetaching([
+			$validated['phantom_job_id'] => [
+				'current_level' => $existingProgress?->pivot?->current_level ?? 0,
+				'is_preferred' => $validated['is_preferred'],
+			],
+		]);
+
+		return Redirect::back()->with('success', $validated['is_preferred']
+			? 'phantom_job_marked_preferred'
+			: 'phantom_job_unmarked_preferred');
+	}
 	
 	/**
 	 * List all characters the user has registered
 	 */
 	public function list()
 	{
+		$characterClasses = CharacterClass::query()
+			->orderBy('role')
+			->orderBy('name')
+			->get();
+
+		$phantomJobs = PhantomJob::query()
+			->orderBy('name')
+			->get();
+
+		$characters = auth()->user()->characters()
+			->with([
+				'fieldValues.fieldDefinition',
+				'classes',
+				'phantomJobs',
+				'occultProgress',
+			])
+			->get()
+			->map(fn (Character $character) => $this->transformCharacterForCard($character, $characterClasses, $phantomJobs));
+
 		return Inertia::render('Dashboard/Account/MyCharacters', [
-			'characters' => auth()->user()->characters()->with('fieldValues')->get(),
+			'characters' => $characters,
 		]);
+	}
+
+	private function transformCharacterForCard(Character $character, Collection $characterClasses, Collection $phantomJobs): array
+	{
+		$classProgress = $character->classes->keyBy('id');
+		$phantomJobProgress = $character->phantomJobs->keyBy('id');
+
+		return [
+			'id' => $character->id,
+			'is_primary' => $character->is_primary,
+			'name' => $character->name,
+			'world' => $character->world,
+			'datacenter' => $character->datacenter,
+			'lodestone_id' => $character->lodestone_id,
+			'avatar_url' => $character->avatar_url,
+			'verified_at' => $character->verified_at,
+			'add_method' => $character->add_method,
+			'classes' => $characterClasses->map(function (CharacterClass $characterClass) use ($character, $classProgress) {
+				$progress = $classProgress->get($characterClass->id);
+				$level = $progress?->pivot?->level ?? $this->resolveCharacterClassLevel($character, $characterClass->shorthand);
+
+				return [
+					'id' => $characterClass->id,
+					'name' => $characterClass->name,
+					'shorthand' => $characterClass->shorthand,
+					'icon_url' => $characterClass->icon_url,
+					'role' => $characterClass->role,
+					'level' => $level,
+					'is_preferred' => $progress?->pivot?->is_preferred ?? false,
+				];
+			})->values(),
+			'occult' => [
+				'knowledge_level' => $character->occultProgress?->knowledge_level ?? 0,
+				'blood_progress' => $character->occultProgress?->forkedTowerBloodProgress() ?? $this->emptyForkedTowerBloodProgress(),
+				'phantom_jobs' => $phantomJobs->map(function (PhantomJob $phantomJob) use ($phantomJobProgress) {
+					$progress = $phantomJobProgress->get($phantomJob->id);
+					$currentLevel = $progress?->pivot?->current_level ?? 0;
+					$isMaxed = $currentLevel >= $phantomJob->max_level;
+
+					return [
+						'id' => $phantomJob->id,
+						'name' => $phantomJob->name,
+						'icon_url' => $phantomJob->icon_url,
+						'black_icon_url' => $phantomJob->black_icon_url,
+						'current_level' => $currentLevel,
+						'max_level' => $phantomJob->max_level,
+						'is_preferred' => $progress?->pivot?->is_preferred ?? false,
+						'is_maxed' => $isMaxed,
+					];
+				})->values(),
+			],
+		];
+	}
+
+	private function getLoadedFieldValue(Character $character, string $slug): mixed
+	{
+		$fieldValue = $character->fieldValues
+			->first(fn ($fieldValue) => $fieldValue->fieldDefinition?->slug === $slug);
+
+		return $fieldValue?->getCastedValue();
+	}
+
+	private function resolveCharacterClassLevel(Character $character, string $shorthand): int
+	{
+		$normalizedShorthand = strtolower($shorthand);
+
+		return (int) (
+			$this->getLoadedFieldValue($character, sprintf('job.%s.level', $normalizedShorthand))
+			?? $this->getLoadedFieldValue($character, sprintf('%s_level', $normalizedShorthand))
+			?? 0
+		);
+	}
+
+	private function syncCharacterClassLevels(Character $character, array $extraData): void
+	{
+		$existingProgress = $character->classes()
+			->get()
+			->keyBy('id');
+
+		$syncPayload = CharacterClass::query()
+			->get()
+			->mapWithKeys(function (CharacterClass $characterClass) use ($existingProgress, $extraData) {
+				$existing = $existingProgress->get($characterClass->id);
+				$level = (int) ($extraData[sprintf('job.%s.level', strtolower($characterClass->shorthand))] ?? 0);
+
+				return [
+					$characterClass->id => [
+						'level' => $level,
+						'is_preferred' => $existing?->pivot?->is_preferred ?? false,
+					],
+				];
+			})
+			->all();
+
+		$character->classes()->sync($syncPayload);
+	}
+
+	private function syncPhantomJobLevels(Character $character, array $extraData): void
+	{
+		$existingProgress = $character->phantomJobs()
+			->get()
+			->keyBy('id');
+
+		$syncPayload = PhantomJob::query()
+			->get()
+			->mapWithKeys(function (PhantomJob $phantomJob) use ($existingProgress, $extraData) {
+				$existing = $existingProgress->get($phantomJob->id);
+				$currentLevel = (int) ($extraData[sprintf('phantom.%s.level', $this->normalizeOccultSlug($phantomJob->name))] ?? 0);
+
+				return [
+					$phantomJob->id => [
+						'current_level' => $currentLevel,
+						'is_preferred' => $existing?->pivot?->is_preferred ?? false,
+					],
+				];
+			})
+			->all();
+
+		$character->phantomJobs()->sync($syncPayload);
+	}
+
+	private function syncOccultProgress(Character $character, array $extraData, array $forkedTowerBloodProgress): void
+	{
+		$bosses = collect($forkedTowerBloodProgress['bosses'] ?? [])->keyBy('key');
+
+		$character->occultProgress()->updateOrCreate(
+			['character_id' => $character->id],
+			[
+				'knowledge_level' => (int) ($extraData['progression.occult.knowledge_level'] ?? 0),
+				'demon_tablet_kills' => (int) ($bosses->get('demon_tablet')['kills'] ?? 0),
+				'demon_tablet_progress' => (int) ($bosses->get('demon_tablet')['progress'] ?? 0),
+				'dead_stars_kills' => (int) ($bosses->get('dead_stars')['kills'] ?? 0),
+				'dead_stars_progress' => (int) ($bosses->get('dead_stars')['progress'] ?? 0),
+				'marble_dragon_kills' => (int) ($bosses->get('marble_dragon')['kills'] ?? 0),
+				'marble_dragon_progress' => (int) ($bosses->get('marble_dragon')['progress'] ?? 0),
+				'magitaur_kills' => (int) ($bosses->get('magitaur')['kills'] ?? 0),
+				'magitaur_progress' => (int) ($bosses->get('magitaur')['progress'] ?? 0),
+			]
+		);
+	}
+
+	private function emptyForkedTowerBloodProgress(): array
+	{
+		return [
+			'clears' => 0,
+			'bosses' => [
+				['key' => 'demon_tablet', 'kills' => 0, 'progress' => 0],
+				['key' => 'dead_stars', 'kills' => 0, 'progress' => 0],
+				['key' => 'marble_dragon', 'kills' => 0, 'progress' => 0],
+				['key' => 'magitaur', 'kills' => 0, 'progress' => 0],
+			],
+		];
+	}
+
+	private function normalizeOccultSlug(string $value): string
+	{
+		$normalized = strtolower(trim($value));
+		$normalized = preg_replace('/^phantom\s+/i', '', $normalized);
+
+		return str_replace(' ', '_', $normalized);
 	}
 	
     /**
@@ -313,38 +599,4 @@ class CharacterController extends Controller
         // - Return success response
     }
 
-    /**
-     * Regenerate verification token for a character.
-     */
-    public function regenerateToken(Character $character): JsonResponse
-    {
-        // TODO: Implement token regeneration logic
-        // Steps:
-        // 1. Generate new token
-        // 2. Set new expiration
-        // 3. Clear verified_at
-        // 4. Save and return
-    }
-
-    /**
-     * Get field values for a specific character.
-     */
-    public function fieldValues(Character $character): JsonResponse
-    {
-        // TODO: Implement field values retrieval
-        // - Load field values with definitions
-        // - Return formatted response
-    }
-
-    /**
-     * Update field values for a specific character.
-     */
-    public function updateFieldValues(Request $request, Character $character): JsonResponse
-    {
-        // TODO: Implement field values update
-        // Steps:
-        // 1. Validate field values against definitions
-        // 2. Update or create field values
-        // 3. Return updated values
-    }
 }

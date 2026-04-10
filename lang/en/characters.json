@@ -122,5 +122,32 @@
     }
   },
   "added_manually": "Added Manually",
-  "from_xivauth": "From XIVAuth"
+  "from_xivauth": "From XIVAuth",
+  "card": {
+    "view_lodestone_profile": "View Lodestone Profile",
+    "make_primary": "Make Primary",
+    "preferred": "Preferred",
+    "maxed": "Maxed",
+    "knowledge_level": "Knowledge Level",
+    "level": "Level {level}",
+    "phantom_level": "Level {current} / {max}",
+    "sections": {
+      "classes": "Classes",
+      "occult": "Occult",
+      "forked_tower_blood": "Forked Tower of Blood",
+      "forked_tower_magic": "Forked Tower of Magic"
+    },
+    "forked_tower": {
+      "clear_count": "Clear Count",
+      "clears": "{count} clears",
+      "kills": "Kills",
+      "bosses": {
+        "demon_tablet": "Demon Tablet",
+        "dead_stars": "Dead Stars",
+        "marble_dragon": "Marble Dragon",
+        "magitaur": "Magitaur",
+        "tba": "TBA"
+      }
+    }
+  }
 }

@@ -1,0 +1,63 @@
+{
+  "section_title": "Character Classes",
+  "section_badge": "{count} classes",
+  "search_placeholder": "Search character classes...",
+  "table": {
+    "name": "Name",
+    "shorthand": "Shorthand",
+    "role": "Role",
+    "icon": "Icon",
+    "flaticon": "Flat Icon",
+    "missing_icon": "No icon",
+    "missing_flaticon": "No flat icon",
+    "yes": "Yes",
+    "no": "No"
+  },
+  "toasts": {
+    "created": "Character class created successfully",
+    "updated": "Character class updated successfully",
+    "deleted": "Character class deleted successfully"
+  },
+  "create_modal": {
+    "title": "Create Character Class",
+    "subtitle": "Define a new fixed class for characters"
+  },
+  "edit_modal": {
+    "title": "Edit Character Class",
+    "subtitle": "Edit the details of the '{name}' class"
+  },
+  "delete_modal": {
+    "title": "Delete {name}?",
+    "subtitle": "Are you sure you want to delete the '{name}' class?",
+    "warning": "Warning: Any character progress linked to this class will also be permanently deleted."
+  },
+  "fields": {
+    "name": {
+      "label": "Class Name",
+      "placeholder": "e.g., White Mage"
+    },
+    "shorthand": {
+      "label": "Shorthand",
+      "placeholder": "e.g., WHM"
+    },
+    "role": {
+      "label": "Role",
+      "placeholder": "Select a role",
+      "options": {
+        "healer": "Healer",
+        "tank": "Tank",
+        "melee_dps": "Melee DPS",
+        "magic_ranged_dps": "Magic Ranged DPS",
+        "physical_ranged_dps": "Physical Ranged DPS"
+      }
+    },
+    "icon_url": {
+      "label": "Icon URL",
+      "placeholder": "https://example.com/icon.png"
+    },
+    "flaticon_url": {
+      "label": "Flat Icon URL",
+      "placeholder": "https://example.com/flaticon.png"
+    }
+  }
+}

@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Character extends Model
@@ -54,6 +55,25 @@ class Character extends Model
     public function fieldValues(): HasMany
     {
         return $this->hasMany(CharacterFieldValue::class);
+    }
+
+    /**
+     * Get the classes attached to this character with level metadata.
+     */
+    public function classes(): BelongsToMany
+    {
+        return $this->belongsToMany(CharacterClass::class, 'character_class_character')
+            ->using(CharacterClassProgress::class)
+            ->withPivot(['level', 'is_preferred'])
+            ->withTimestamps();
+    }
+
+    /**
+     * Get the preferred classes for this character.
+     */
+    public function preferredClasses(): BelongsToMany
+    {
+        return $this->classes()->wherePivot('is_preferred', true);
     }
 
     /**

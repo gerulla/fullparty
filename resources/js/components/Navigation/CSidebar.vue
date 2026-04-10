@@ -26,7 +26,7 @@ const groups = computed(() => [
 ])
 
 const admin = computed(() => [
-	{ label: t('navigation.sidebar.character_definitions'), href: '/admin/characters/definitions', icon: 'i-lucide-user-pen' },
+	{ label: t('navigation.sidebar.character_definitions'), href: '/admin/character-data', icon: 'i-lucide-user-pen' },
 	{ label: t('navigation.sidebar.run_definitions'), href: '/admin/runs/definitions', icon: 'i-lucide-file-pen' },
 ])
 

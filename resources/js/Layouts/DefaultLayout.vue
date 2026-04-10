@@ -28,9 +28,13 @@ defineProps({
 				<CSidebar />
 
 				<UDashboardPanel>
-					<CTopbar :title="title" />
+					<template #header>
+						<CTopbar :title="title" />
+					</template>
 
-					<slot />
+					<template #body>
+						<slot />
+					</template>
 				</UDashboardPanel>
 			</UDashboardGroup>
 		</div>

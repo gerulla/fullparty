@@ -50,7 +50,7 @@ watch(
 </script>
 
 <template>
-	<div class="w-full min-h-screen sm:px-4 md:px-6 bg-neutral-100 dark:bg-neutral-900 overflow-y-scroll">
+	<div class="w-full bg-neutral-100 dark:bg-neutral-900">
 		<PageHeader :title="t('settings.title')" :subtitle="t('settings.subtitle')" />
 
 		<div class="w-full flex flex-col items-start mt-4 gap-8">
@@ -59,8 +59,6 @@ watch(
 			<Notifications :user="user" />
 			<PrivacySecurity :user="user" />
 		</div>
-
-		<p class="mt-16">EOF</p>
 	</div>
 </template>
 

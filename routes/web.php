@@ -1,8 +1,10 @@
 <?php
 
 use App\Http\Controllers\AdminCharacterController;
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CharacterController;
+use App\Http\Controllers\CharacterClassController;
 use App\Http\Controllers\DiscordAuthController;
 use App\Http\Controllers\GoogleAuthController;
 use App\Http\Controllers\SettingsController;
@@ -82,10 +84,17 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
 	//Admin Routes
 	Route::prefix('admin')->group(function () {
-		Route::get('/characters/definitions', [AdminCharacterController::class, 'definitions'])->name('admin.characters.definitions');
+		Route::get('/character-data', [AdminController::class, 'characterData'])->name('admin.character-data');
+		Route::redirect('/characters/definitions', '/admin/character-data')->name('admin.characters.definitions');
 		Route::post('/characters/definitions', [AdminCharacterController::class, 'storeDefinition'])->name('admin.characters.definitions.store');
 		Route::put('/characters/definitions/{definition}', [AdminCharacterController::class, 'updateDefinition'])->name('admin.characters.definitions.update');
 		Route::delete('/characters/definitions/{definition}', [AdminCharacterController::class, 'destroyDefinition'])->name('admin.characters.definitions.destroy');
 		Route::post('/characters/definitions/order', [AdminCharacterController::class, 'updateOrder'])->name('admin.characters.definitions.order');
+
+		Route::get('/character-classes', [CharacterClassController::class, 'index'])->name('admin.character-classes.index');
+		Route::post('/character-classes', [CharacterClassController::class, 'store'])->name('admin.character-classes.store');
+		Route::get('/character-classes/{characterClass}', [CharacterClassController::class, 'show'])->name('admin.character-classes.show');
+		Route::put('/character-classes/{characterClass}', [CharacterClassController::class, 'update'])->name('admin.character-classes.update');
+		Route::delete('/character-classes/{characterClass}', [CharacterClassController::class, 'destroy'])->name('admin.character-classes.destroy');
 	});
 });

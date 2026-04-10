@@ -5,22 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\CharacterFieldDefinition;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
-use Inertia\Inertia;
 
 class AdminCharacterController extends Controller
 {
-	/**
-	 * Display the character field definitions management page.
-	 */
-	public function definitions()
-	{
-		$definitions = CharacterFieldDefinition::ordered()->get();
-
-		return Inertia::render('Admin/Characters/Definitions', [
-			'definitions' => $definitions,
-		]);
-	}
-
 	/**
 	 * Store a newly created field definition.
 	 */

@@ -1,0 +1,61 @@
+{
+  "section_title": "Phantom Jobs",
+  "section_badge": "{count} jobs",
+  "search_placeholder": "Search phantom jobs...",
+  "table": {
+    "name": "Name",
+    "max_level": "Max Level",
+    "icon": "Icon",
+    "black_icon": "Black Icon",
+    "transparent_icon": "Transparent Icon",
+    "sprite": "Sprite",
+    "missing_icon": "No icon",
+    "missing_black_icon": "No black icon",
+    "missing_transparent_icon": "No transparent icon",
+    "missing_sprite": "No sprite"
+  },
+  "toasts": {
+    "created": "Phantom job created successfully",
+    "updated": "Phantom job updated successfully",
+    "deleted": "Phantom job deleted successfully"
+  },
+  "create_modal": {
+    "title": "Create Phantom Job",
+    "subtitle": "Define a new phantom job for characters"
+  },
+  "edit_modal": {
+    "title": "Edit Phantom Job",
+    "subtitle": "Edit the details of the '{name}' phantom job"
+  },
+  "delete_modal": {
+    "title": "Delete {name}?",
+    "subtitle": "Are you sure you want to delete the '{name}' phantom job?",
+    "warning": "Warning: Any character progress linked to this phantom job will also be permanently deleted."
+  },
+  "fields": {
+    "name": {
+      "label": "Phantom Job Name",
+      "placeholder": "e.g., Freelancer"
+    },
+    "max_level": {
+      "label": "Max Level",
+      "placeholder": "e.g., 99"
+    },
+    "icon_url": {
+      "label": "Icon URL",
+      "placeholder": "https://example.com/icon.png"
+    },
+    "black_icon_url": {
+      "label": "Black Icon URL",
+      "placeholder": "https://example.com/black-icon.png"
+    },
+    "transparent_icon_url": {
+      "label": "Transparent Icon URL",
+      "placeholder": "https://example.com/transparent-icon.png"
+    },
+    "sprite_url": {
+      "label": "Sprite URL",
+      "placeholder": "https://example.com/sprite.png"
+    }
+  }
+}

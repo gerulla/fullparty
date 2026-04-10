@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\CharacterClass;
 use App\Models\CharacterFieldDefinition;
+use App\Models\PhantomJob;
 use Inertia\Inertia;
 
 class AdminController extends Controller
@@ -17,6 +18,9 @@ class AdminController extends Controller
             'definitions' => CharacterFieldDefinition::ordered()->get(),
             'characterClasses' => CharacterClass::query()
                 ->orderBy('role')
+                ->orderBy('name')
+                ->get(),
+            'phantomJobs' => PhantomJob::query()
                 ->orderBy('name')
                 ->get(),
         ]);

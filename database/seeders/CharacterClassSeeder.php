@@ -3,12 +3,9 @@
 namespace Database\Seeders;
 
 use App\Models\CharacterClass;
+use App\Services\ManagedImageStorage;
 use Illuminate\Database\Seeder;
-use Illuminate\Http\Client\Response;
-use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Str;
-use RuntimeException;
 
 class CharacterClassSeeder extends Seeder
 {
@@ -17,6 +14,8 @@ class CharacterClassSeeder extends Seeder
      */
     public function run(): void
     {
+        $managedImageStorage = app(ManagedImageStorage::class);
+
         Storage::disk('public')->deleteDirectory('character-classes');
 
         foreach ($this->classes() as $class) {
@@ -25,8 +24,8 @@ class CharacterClassSeeder extends Seeder
                 [
                     'name' => $class['name'],
                     'role' => $this->normalizeRole($class['role']),
-                    'icon_url' => $this->downloadImage($class['icon_url'], 'icons'),
-                    'flaticon_url' => $this->downloadImage($class['flaticon_url'], 'flat-icons'),
+                    'icon_url' => $managedImageStorage->downloadImageIfPresent($class['icon_url'], 'icon_url', 'character-classes/icons'),
+                    'flaticon_url' => $managedImageStorage->downloadImageIfPresent($class['flaticon_url'], 'flaticon_url', 'character-classes/flat-icons'),
                 ]
             );
         }
@@ -202,49 +201,5 @@ class CharacterClassSeeder extends Seeder
             'magical ranged dps' => 'magic ranged dps',
             default => $role,
         };
-    }
-
-    private function downloadImage(string $url, string $directory): string
-    {
-        $response = $this->fetchImage($url);
-        $extension = $this->resolveExtension($response, $url);
-        $path = 'character-classes/'.$directory.'/'.Str::uuid().'.'.$extension;
-
-        Storage::disk('public')->put($path, $response->body());
-
-        return Storage::disk('public')->url($path);
-    }
-
-    private function fetchImage(string $url): Response
-    {
-        $response = Http::timeout(30)->get($url);
-
-        if (! $response->successful()) {
-            throw new RuntimeException("Failed to download character class image from [{$url}].");
-        }
-
-        $contentType = strtolower((string) $response->header('Content-Type'));
-
-        if (! str_starts_with($contentType, 'image/')) {
-            throw new RuntimeException("URL [{$url}] did not return an image.");
-        }
-
-        return $response;
-    }
-
-    private function resolveExtension(Response $response, string $url): string
-    {
-        $contentType = strtolower((string) $response->header('Content-Type'));
-
-        $extension = match ($contentType) {
-            'image/jpeg', 'image/jpg' => 'jpg',
-            'image/png' => 'png',
-            'image/gif' => 'gif',
-            'image/webp' => 'webp',
-            'image/svg+xml' => 'svg',
-            default => pathinfo(parse_url($url, PHP_URL_PATH) ?? '', PATHINFO_EXTENSION),
-        };
-
-        return filled($extension) ? strtolower($extension) : 'png';
     }
 }

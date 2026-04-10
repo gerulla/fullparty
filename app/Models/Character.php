@@ -77,6 +77,25 @@ class Character extends Model
     }
 
     /**
+     * Get the phantom jobs attached to this character with progress metadata.
+     */
+    public function phantomJobs(): BelongsToMany
+    {
+        return $this->belongsToMany(PhantomJob::class, 'character_phantom_job')
+            ->using(PhantomJobProgress::class)
+            ->withPivot(['current_level', 'is_preferred'])
+            ->withTimestamps();
+    }
+
+    /**
+     * Get the preferred phantom jobs for this character.
+     */
+    public function preferredPhantomJobs(): BelongsToMany
+    {
+        return $this->phantomJobs()->wherePivot('is_preferred', true);
+    }
+
+    /**
      * Check if character is verified.
      */
     public function isVerified(): bool

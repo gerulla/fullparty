@@ -7,6 +7,7 @@ use App\Http\Controllers\CharacterController;
 use App\Http\Controllers\CharacterClassController;
 use App\Http\Controllers\DiscordAuthController;
 use App\Http\Controllers\GoogleAuthController;
+use App\Http\Controllers\PhantomJobController;
 use App\Http\Controllers\SettingsController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\XIVAuthController;
@@ -96,5 +97,11 @@ Route::middleware(['auth', 'verified'])->group(function () {
 		Route::get('/character-classes/{characterClass}', [CharacterClassController::class, 'show'])->name('admin.character-classes.show');
 		Route::put('/character-classes/{characterClass}', [CharacterClassController::class, 'update'])->name('admin.character-classes.update');
 		Route::delete('/character-classes/{characterClass}', [CharacterClassController::class, 'destroy'])->name('admin.character-classes.destroy');
+
+		Route::get('/phantom-jobs', [PhantomJobController::class, 'index'])->name('admin.phantom-jobs.index');
+		Route::post('/phantom-jobs', [PhantomJobController::class, 'store'])->name('admin.phantom-jobs.store');
+		Route::get('/phantom-jobs/{phantomJob}', [PhantomJobController::class, 'show'])->name('admin.phantom-jobs.show');
+		Route::put('/phantom-jobs/{phantomJob}', [PhantomJobController::class, 'update'])->name('admin.phantom-jobs.update');
+		Route::delete('/phantom-jobs/{phantomJob}', [PhantomJobController::class, 'destroy'])->name('admin.phantom-jobs.destroy');
 	});
 });

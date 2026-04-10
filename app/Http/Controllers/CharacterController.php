@@ -12,6 +12,7 @@ use App\Models\Character;
 use App\Models\CharacterClass;
 use App\Models\PhantomJob;
 use App\Services\FFLogs\ForkedTowerBloodProgressFetcher;
+use App\Services\Lodestone\LodestoneInputNormalizer;
 use App\Services\Lodestone\LodestoneScraper;
 use Carbon\Carbon;
 use Illuminate\Http\JsonResponse;
@@ -38,16 +39,20 @@ class CharacterController extends Controller
 		]);
 		
 		$scraper = app(LodestoneScraper::class);
+		$inputNormalizer = app(LodestoneInputNormalizer::class);
+		$lodestoneId = $inputNormalizer->extractLodestoneId($validated['lodestone_id']);
 		//If character exists and has been verified, tell the user the character is taken
-		$character = Character::where('lodestone_id', $validated['lodestone_id'])->first();
+		$character = Character::where('lodestone_id', $lodestoneId)->first();
+		
 		if ($character && $character->isVerified()) {
 			return Redirect::back()->with('flash_data', [
 				'manual_character_lookup' => [
 					'taken' => true,
 				]
 			]);
+		}
 		// If the character exists but has not been verified, tell the user to claim it
-		}else if($character){
+		if($character){
 			//Renew token if expired
 			if($character->isTokenExpired()){
 				$token = $this->generateVerificationToken();

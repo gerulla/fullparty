@@ -34,7 +34,7 @@ class LodestoneInputNormalizer
      *
      * @throws LodestoneInvalidInputException
      */
-    private function extractLodestoneId(string $input): string
+    public function extractLodestoneId(string $input): string
     {
         $input = trim($input);
 

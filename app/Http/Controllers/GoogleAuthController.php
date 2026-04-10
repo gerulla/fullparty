@@ -52,8 +52,11 @@ class GoogleAuthController extends Controller
 		}
 		
 		$user = null;
-		
-		if ($providerEmail) {
+		// If the user is already authenticated, associate this social account with the user.
+		if(auth()->check()) {
+			$user = auth()->user();
+			// If the user is not authenticated, check if a user with the email exists.
+		}else if ($providerEmail) {
 			$user = User::query()
 				->where('email', $providerEmail)
 				->first();

@@ -41,7 +41,19 @@ export default defineConfig({
                       ]
                   }
                 },
+                textarea: {
+                    slots: {
+                        base: [
+                            'rounded-none'
+                        ]
+                    }
+                },
                 selectMenu: {
+                    slots: {
+                        base: 'rounded-none'
+                    }
+                },
+                select: {
                     slots: {
                         base: 'rounded-none'
                     }

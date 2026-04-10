@@ -26,8 +26,8 @@ const groups = computed(() => [
 ])
 
 const admin = computed(() => [
-	{ label: t('navigation.sidebar.secret_options'), href: '/applications', icon: 'i-lucide-clipboard-list' },
-	{ label: t('navigation.sidebar.configurations'), href: '/applications', icon: 'i-lucide-clipboard-list' },
+	{ label: t('navigation.sidebar.character_definitions'), href: '/admin/characters/definitions', icon: 'i-lucide-user-pen' },
+	{ label: t('navigation.sidebar.run_definitions'), href: '/admin/runs/definitions', icon: 'i-lucide-file-pen' },
 ])
 
 const page = usePage()
@@ -37,7 +37,7 @@ const currentUrl = computed(() => page.url)
 </script>
 
 <template>
-	<UDashboardSidebar default-size="15"  :ui="{ footer: '',  body: 'px-2' }" class="bg-brand-950">
+	<UDashboardSidebar :default-size="15"  :ui="{ footer: '',  body: 'px-2' }" class="bg-brand-950">
 		<template #header="{ collapsed }">
 			<div v-if="!collapsed" class="w-full h-full p-4">
 				<img :src="full_logo" class="w-full h-auto" alt="FullParty Logo">

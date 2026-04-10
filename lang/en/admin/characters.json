@@ -1,0 +1,22 @@
+{
+  "title": "Character Data",
+  "subtitle": "Manage dynamic fields for character profiles",
+  "table_header": "Field Definitions",
+  "delete_modal": {
+    "title": "Delete {field}?",
+    "subtitle": "Are you sure you want to delete the '{field}' field definition?",
+    "warning": "Warning: All associated field values will also be permanently deleted."
+  },
+  "create_modal": {
+    "title": "Create Field Definition",
+    "subtitle": "Define a new field for character profiles"
+  },
+  "edit_modal": {
+    "title": "Edit Field Definition",
+    "subtitle": "Edit the details of the '{field}' field definition"
+  },
+  "field_name": "Field Name",
+  "field_type": "Field Type",
+  "description": "Description",
+  "active": "Active"
+}

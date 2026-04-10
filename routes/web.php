@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminCharacterController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CharacterController;
 use App\Http\Controllers\DiscordAuthController;
@@ -78,4 +79,13 @@ Route::middleware(['auth', 'verified'])->group(function () {
 	Route::post('/characters/verify', [CharacterController::class, 'verify'])->name('characters.verify');
 	Route::post('/characters/xivauth', [CharacterController::class, 'fetchXIVAuthCharacters'])->name('characters.xivauth');
 	Route::post('/characters/xivauth/import', [CharacterController::class, 'importXIVAuthCharacter'])->name('characters.xivauth.import');
+
+	//Admin Routes
+	Route::prefix('admin')->group(function () {
+		Route::get('/characters/definitions', [AdminCharacterController::class, 'definitions'])->name('admin.characters.definitions');
+		Route::post('/characters/definitions', [AdminCharacterController::class, 'storeDefinition'])->name('admin.characters.definitions.store');
+		Route::put('/characters/definitions/{definition}', [AdminCharacterController::class, 'updateDefinition'])->name('admin.characters.definitions.update');
+		Route::delete('/characters/definitions/{definition}', [AdminCharacterController::class, 'destroyDefinition'])->name('admin.characters.definitions.destroy');
+		Route::post('/characters/definitions/order', [AdminCharacterController::class, 'updateOrder'])->name('admin.characters.definitions.order');
+	});
 });

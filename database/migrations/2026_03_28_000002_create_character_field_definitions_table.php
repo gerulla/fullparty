@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name'); // Display label, e.g., "Phantom Level"
             $table->string('slug')->unique(); // Key for storage, e.g., "phantom_level"
-            $table->enum('type', ['text', 'number', 'boolean'])->default('text');
+            $table->enum('type', ['text', 'number', 'date', 'textarea', 'select', 'checkbox'])->default('text');
             $table->text('description')->nullable();
             $table->json('validation_rules')->nullable(); // Store validation config as JSON
             $table->integer('sort_order')->default(0);

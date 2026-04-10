@@ -8,14 +8,28 @@ function buildMessages() {
 
         if (!match) continue
 
-        const [, locale, fileName] = match
+        const [, locale, filePath] = match
         const content = localeFiles[path].default ?? localeFiles[path]
 
         if (!messages[locale]) {
             messages[locale] = {}
         }
 
-        messages[locale][fileName] = content
+        // Split the file path by '/' to handle nested directories
+        const pathParts = filePath.split('/')
+        let current = messages[locale]
+
+        // Navigate through nested structure, creating objects as needed
+        for (let i = 0; i < pathParts.length - 1; i++) {
+            if (!current[pathParts[i]]) {
+                current[pathParts[i]] = {}
+            }
+            current = current[pathParts[i]]
+        }
+
+        // Set the content at the final key
+        const finalKey = pathParts[pathParts.length - 1]
+        current[finalKey] = content
     }
 
     return messages

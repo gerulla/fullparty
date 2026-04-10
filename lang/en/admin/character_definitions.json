@@ -5,12 +5,19 @@
   "search_placeholder": "Search field definitions...",
   "table": {
     "name": "Name",
-    "type": "Type",
     "description": "Description",
-    "active": "Active?",
+    "type": "Type",
+    "group": "Group",
+    "source_type": "Source",
+    "visibility": "Visibility",
+    "active": "Status",
     "no_description": "No description",
     "active_badge": "Active",
-    "inactive_badge": "Inactive"
+    "inactive_badge": "Inactive",
+    "visible_badge": "Visible",
+    "hidden_badge": "Hidden",
+    "editable_badge": "Editable",
+    "readonly_badge": "Read-only"
   },
   "toasts": {
     "created": "Field definition created successfully",
@@ -35,6 +42,35 @@
       "label": "Field Name",
       "placeholder": "e.g., Discord Username"
     },
+    "group": {
+      "label": "Group",
+      "placeholder": "e.g., profile",
+      "options": {
+        "profile": "Profile",
+        "metadata": "Metadata",
+        "social": "Social",
+        "recruitment": "Recruitment",
+        "system": "System"
+      }
+    },
+    "display_contexts": {
+      "label": "Display Contexts",
+      "description": "Choose where this field may be rendered",
+      "options": {
+        "profile": "Profile",
+        "account": "Account",
+        "admin": "Admin"
+      }
+    },
+    "source_type": {
+      "label": "Source Type",
+      "description": "Define who owns and updates this value",
+      "options": {
+        "user": "User",
+        "system": "System",
+        "hybrid": "Hybrid"
+      }
+    },
     "type": {
       "label": "Field Type",
       "options": {
@@ -49,6 +85,18 @@
     "active": {
       "label": "Active?",
       "description": "Make the field value available for use"
+    },
+    "editable": {
+      "label": "Editable?",
+      "description": "Allow direct editing in forms"
+    },
+    "visible": {
+      "label": "Visible?",
+      "description": "Allow this field to be shown in user-facing views"
+    },
+    "tags": {
+      "label": "Tags",
+      "placeholder": "Comma-separated tags, e.g., public, profile-card"
     },
     "description": {
       "label": "Description",

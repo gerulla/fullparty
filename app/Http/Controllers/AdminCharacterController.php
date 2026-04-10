@@ -8,18 +8,16 @@ use Illuminate\Support\Str;
 
 class AdminCharacterController extends Controller
 {
+	private const DISPLAY_CONTEXTS = ['profile', 'account', 'admin'];
+
+	private const SOURCE_TYPES = ['user', 'system', 'hybrid'];
+
 	/**
 	 * Store a newly created field definition.
 	 */
 	public function storeDefinition(Request $request)
 	{
-		$validated = $request->validate([
-			'name' => ['required', 'string', 'max:255'],
-			'type' => ['required', 'in:text,number,date,textarea,select,checkbox'],
-			'description' => ['nullable', 'string'],
-			'validation_rules' => ['nullable', 'array'],
-			'is_active' => ['boolean'],
-		]);
+		$validated = $this->validateDefinition($request);
 
 		// Generate slug from name
 		$validated['slug'] = Str::slug($validated['name']);
@@ -38,13 +36,7 @@ class AdminCharacterController extends Controller
 	 */
 	public function updateDefinition(Request $request, CharacterFieldDefinition $definition)
 	{
-		$validated = $request->validate([
-			'name' => ['required', 'string', 'max:255'],
-			'type' => ['required', 'in:text,number,date,textarea,select,checkbox'],
-			'description' => ['nullable', 'string'],
-			'validation_rules' => ['nullable', 'array'],
-			'is_active' => ['boolean'],
-		]);
+		$validated = $this->validateDefinition($request);
 
 		// Regenerate slug if name changed
 		if ($validated['name'] !== $definition->name) {
@@ -81,5 +73,24 @@ class AdminCharacterController extends Controller
 		}
 
 		return redirect()->back()->with('success', 'field_order_updated');
+	}
+
+	private function validateDefinition(Request $request): array
+	{
+		return $request->validate([
+			'name' => ['required', 'string', 'max:255'],
+			'type' => ['required', 'in:text,number,date,textarea,select,checkbox'],
+			'description' => ['nullable', 'string'],
+			'group' => ['required', 'string', 'max:255'],
+			'display_contexts' => ['nullable', 'array'],
+			'display_contexts.*' => ['required', 'in:' . implode(',', self::DISPLAY_CONTEXTS)],
+			'source_type' => ['required', 'in:' . implode(',', self::SOURCE_TYPES)],
+			'is_editable' => ['boolean'],
+			'is_visible' => ['boolean'],
+			'tags' => ['nullable', 'array'],
+			'tags.*' => ['required', 'string', 'max:255'],
+			'validation_rules' => ['nullable', 'array'],
+			'is_active' => ['boolean'],
+		]);
 	}
 }

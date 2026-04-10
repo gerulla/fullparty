@@ -20,6 +20,12 @@ class CharacterFieldDefinition extends Model
         'slug',
         'type',
         'description',
+        'group',
+        'display_contexts',
+        'source_type',
+        'is_editable',
+        'is_visible',
+        'tags',
         'validation_rules',
         'sort_order',
         'is_active',
@@ -31,7 +37,11 @@ class CharacterFieldDefinition extends Model
      * @var array<string, string>
      */
     protected $casts = [
+        'display_contexts' => 'array',
+        'tags' => 'array',
         'validation_rules' => 'array',
+        'is_editable' => 'boolean',
+        'is_visible' => 'boolean',
         'is_active' => 'boolean',
         'sort_order' => 'integer',
     ];

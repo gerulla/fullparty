@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use App\Models\Group;
 use Illuminate\Http\Request;
 use Inertia\Middleware;
 
@@ -51,6 +52,43 @@ class HandleInertiaRequests extends Middleware
 					)
 					: null,
 			],
+			'navigation' => [
+				'group_quick_links' => fn () => $request->user()
+					? [
+						'owned' => $this->serializeGroupQuickLinks(
+							$request->user()->ownedGroups()->get(['id', 'name', 'slug'])
+						),
+						'moderated' => $this->serializeGroupQuickLinks(
+							$request->user()->moderatedGroups()->get(['groups.id', 'groups.name', 'groups.slug'])
+						),
+						'member' => $this->serializeGroupQuickLinks(
+							$request->user()->memberGroups()->get(['groups.id', 'groups.name', 'groups.slug'])
+						),
+					]
+					: [
+						'owned' => [],
+						'moderated' => [],
+						'member' => [],
+					],
+			],
 		]);
     }
+
+	/**
+	 * @param \Illuminate\Support\Collection<int, Group> $groups
+	 * @return array<int, array<string, string|int>>
+	 */
+	private function serializeGroupQuickLinks($groups): array
+	{
+		return $groups
+			->sortBy('name')
+			->values()
+			->map(fn (Group $group) => [
+				'id' => $group->id,
+				'name' => $group->name,
+				'slug' => $group->slug,
+				'href' => route('groups.dashboard', $group, false),
+			])
+			->all();
+	}
 }

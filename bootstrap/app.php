@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Middleware\EnsureGroupDashboardAccess;
 use App\Http\Middleware\HandleInertiaRequests;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
@@ -12,6 +13,10 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware): void {
+        $middleware->alias([
+            'group.dashboard.access' => EnsureGroupDashboardAccess::class,
+        ]);
+
         $middleware->web(append: [
 			HandleInertiaRequests::class,
 		]);

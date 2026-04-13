@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import CSidebar from "@/components/Navigation/CSidebar.vue";
 import CTopbar from "@/components/Navigation/CTopbar.vue";
+import GroupNavigation from "@/components/Groups/GroupNavigation.vue";
+import { usePage } from '@inertiajs/vue3'
 import { computed, ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { en, de, fr, ja } from '@nuxt/ui/locale'
@@ -9,10 +11,17 @@ const locales = { en, de, fr, ja }
 const char1 = '/ft.jpg'
 
 const { t, locale } = useI18n({ useScope: 'global' })
+const page = usePage()
 
 const currentUiLocale = computed(() => {
 	return locales[locale.value as keyof typeof locales] ?? locales.en
 })
+
+const currentGroup = computed(() => page.props.group ?? null)
+const showGroupNavigation = computed(() => {
+	return page.url.includes('/dashboard') && currentGroup.value !== null
+})
+
 defineProps({
 	title: {
 		type: String,
@@ -30,6 +39,10 @@ defineProps({
 				<UDashboardPanel :ui="{ body: 'bg-neutral-100 dark:bg-neutral-900' }">
 					<template #header>
 						<CTopbar :title="title" />
+						<GroupNavigation
+							v-if="showGroupNavigation"
+							:group="currentGroup"
+						/>
 					</template>
 
 					<template #body>

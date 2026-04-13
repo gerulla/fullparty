@@ -8,6 +8,8 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Attributes\Hidden;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
@@ -59,5 +61,37 @@ class User extends Authenticatable implements MustVerifyEmail
 	public function socialAccounts(): User|\Illuminate\Database\Eloquent\Relations\HasMany
 	{
 		return $this->hasMany(SocialAccount::class);
+	}
+
+	public function ownedGroups(): HasMany
+	{
+		return $this->hasMany(Group::class, 'owner_id');
+	}
+
+	public function groupMemberships(): HasMany
+	{
+		return $this->hasMany(GroupMembership::class);
+	}
+
+	public function groups(): BelongsToMany
+	{
+		return $this->belongsToMany(Group::class, 'group_memberships')
+			->withPivot(['role', 'joined_at'])
+			->withTimestamps();
+	}
+
+	public function moderatedGroups(): BelongsToMany
+	{
+		return $this->groups()->wherePivot('role', GroupMembership::ROLE_MODERATOR);
+	}
+
+	public function memberGroups(): BelongsToMany
+	{
+		return $this->groups()->wherePivot('role', GroupMembership::ROLE_MEMBER);
+	}
+
+	public function organizedRuns(): HasMany
+	{
+		return $this->hasMany(ScheduledRun::class, 'organized_by_user_id');
 	}
 }

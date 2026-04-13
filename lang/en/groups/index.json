@@ -1,0 +1,126 @@
+{
+  "title": "Groups",
+  "subtitle": "Manage your raid groups and discover new communities",
+  "tabs": {
+    "my_groups": "My Groups",
+    "discover": "Discover"
+  },
+  "search": {
+    "placeholder": "Search your groups and visible communities",
+    "clear": "Clear search",
+    "title": "Search Results",
+    "subtitle": "{count} matching groups",
+    "loading": "Searching groups..."
+  },
+  "sections": {
+    "owned": "Groups I Own",
+    "moderated": "Groups I Moderate",
+    "member": "Groups I'm In",
+    "discover": "Discoverable Groups"
+  },
+  "section_subtitles": {
+    "owned": "Full control and ownership",
+    "moderated": "Shared responsibility and group management",
+    "member": "Groups you're part of and can participate in",
+    "discover": "Visible groups ordered by their latest activity"
+  },
+  "roles": {
+    "owner": "Owner",
+    "moderator": "Moderator",
+    "member": "Member"
+  },
+  "table": {
+    "columns": {
+      "group": "Group",
+      "members": "Members",
+      "upcoming_runs": "Upcoming Runs",
+      "last_activity": "Last Activity"
+    },
+    "no_description": "No description yet.",
+    "no_activity": "No activity yet.",
+    "empty": "Nothing to show here yet."
+  },
+  "create_modal": {
+    "title": "Create Group",
+    "subtitle": "Set up your group's identity, visibility, and invite presence before you start organizing runs.",
+    "open_button": "Create Group",
+    "progress": "Step {current} of {total}",
+    "steps": {
+      "1": "Identity",
+      "2": "Presence",
+      "3": "Visibility"
+    },
+    "slug_preview": "Public invite URL: /invite/{slug}",
+    "slug_fallback": "yourslug",
+    "slug_warning": "Your slug is permanent once the group is created.",
+    "sections": {
+      "identity": {
+        "title": "Group Identity",
+        "subtitle": "Choose the name, slug, and data center your group will be known by."
+      },
+      "presence": {
+        "title": "Community Presence",
+        "subtitle": "Add optional links and imagery that make the group feel established."
+      },
+      "visibility": {
+        "title": "Visibility & Access",
+        "subtitle": "Control whether people can discover the group and whether they can join it freely."
+      }
+    },
+    "fields": {
+      "name": {
+        "label": "Group Name",
+        "placeholder": "Forked Tower Enjoyers"
+      },
+      "slug": {
+        "label": "Slug",
+        "placeholder": "ftel",
+        "help": "Lowercase letters only, maximum 8 characters."
+      },
+      "description": {
+        "label": "Description",
+        "placeholder": "Tell people what your group focuses on and who it is for."
+      },
+      "datacenter": {
+        "label": "Data Center",
+        "placeholder": "Select a data center"
+      },
+      "profile_picture_url": {
+        "label": "Profile Picture URL",
+        "placeholder": "https://example.com/group-image.png"
+      },
+      "profile_picture": {
+        "label": "Profile Picture",
+        "placeholder": "Choose an image",
+        "help": "Optional. Upload an image to represent your group.",
+        "preview_alt": "Group profile picture preview",
+        "preview_label": "Visible Crop Preview",
+        "preview_help": "This preview shows the centered square crop that will be resized and used as your group's profile image."
+      },
+      "discord_invite_url": {
+        "label": "Discord Invite URL",
+        "placeholder": "https://discord.gg/yourserver",
+        "help": "Optional. Add a Discord invite so members can easily join your server."
+      },
+      "is_public": {
+        "label": "Public Group",
+        "help": "Anyone can join public groups, and public-facing future runs can be seen by outsiders."
+      },
+      "is_visible": {
+        "label": "Visible in Discovery",
+        "help": "Visible groups can appear in discovery and search, even if they are private."
+      }
+    },
+    "visibility_summary": {
+      "label": "What this means",
+      "default_name": "This group",
+      "public_visible": "{name} can be joined by anyone and will show up in search and profiles.",
+      "public_hidden": "{name} can be joined by anyone, but it will not show up in discovery or searchable profiles.",
+      "private_visible": "{name} can only be joined via invite, but it will still show up in search and profiles.",
+      "private_hidden": "{name} can only be joined via invite and will stay hidden from discovery and searchable profiles."
+    },
+    "toasts": {
+      "created": "Your group has been created."
+    }
+  }
+}

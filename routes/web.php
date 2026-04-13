@@ -7,6 +7,12 @@ use App\Http\Controllers\CharacterController;
 use App\Http\Controllers\CharacterClassController;
 use App\Http\Controllers\DiscordAuthController;
 use App\Http\Controllers\GoogleAuthController;
+use App\Http\Controllers\GroupController;
+use App\Http\Controllers\GroupDashboardController;
+use App\Http\Controllers\GroupInviteController;
+use App\Http\Controllers\GroupMembershipController;
+use App\Http\Controllers\GroupRunController;
+use App\Http\Controllers\GroupSettingsController;
 use App\Http\Controllers\PhantomJobController;
 use App\Http\Controllers\SettingsController;
 use App\Http\Controllers\UserController;
@@ -19,6 +25,9 @@ use Illuminate\Http\Request;
 Route::get('/', function () {
     return Inertia::render('Home');
 });
+
+Route::get('/groups/{group:slug}', [GroupController::class, 'show'])->name('groups.show');
+Route::get('/invite/{token}', [GroupInviteController::class, 'show'])->name('groups.invites.show');
 
 Route::prefix('auth')->group(function () {
 	//Login and Register Pages
@@ -69,6 +78,31 @@ Route::middleware(['auth', 'verified'])->group(function () {
 	Route::get('/dashboard', function () {
 		return Inertia::render('Dashboard/Dashboard');
 	})->name('dashboard');
+
+	Route::get('/groups', [GroupController::class, 'index'])->name('groups.index');
+	Route::get('/group-search-results', [GroupController::class, 'search'])->name('groups.search');
+	Route::post('/groups', [GroupController::class, 'store'])->name('groups.store');
+
+	Route::post('/groups/{group:slug}/join', [GroupMembershipController::class, 'join'])->name('groups.join');
+	Route::post('/groups/{group:slug}/leave', [GroupMembershipController::class, 'leave'])->name('groups.leave');
+	Route::put('/groups/{group:slug}/members/{user}', [GroupMembershipController::class, 'update'])->name('groups.members.update');
+	Route::delete('/groups/{group:slug}/members/{user}', [GroupMembershipController::class, 'destroy'])->name('groups.members.destroy');
+	Route::post('/groups/{group:slug}/transfer-ownership', [GroupMembershipController::class, 'transferOwnership'])->name('groups.transfer-ownership');
+
+	Route::post('/groups/{group:slug}/invites', [GroupInviteController::class, 'store'])->name('groups.invites.store');
+	Route::delete('/groups/{group:slug}/invites/{invite}', [GroupInviteController::class, 'destroy'])->name('groups.invites.destroy');
+	Route::post('/invite/{token}/accept', [GroupInviteController::class, 'accept'])->name('groups.invites.accept');
+
+	Route::prefix('/groups/{group:slug}/dashboard')->middleware('group.dashboard.access')->group(function () {
+		Route::get('/', [GroupDashboardController::class, 'show'])->name('groups.dashboard');
+		Route::get('/runs', [GroupRunController::class, 'index'])->name('groups.dashboard.runs.index');
+		Route::post('/runs', [GroupRunController::class, 'store'])->name('groups.dashboard.runs.store');
+		Route::get('/runs/{scheduledRun}', [GroupRunController::class, 'show'])->name('groups.dashboard.runs.show');
+		Route::put('/runs/{scheduledRun}', [GroupRunController::class, 'update'])->name('groups.dashboard.runs.update');
+		Route::delete('/runs/{scheduledRun}', [GroupRunController::class, 'destroy'])->name('groups.dashboard.runs.destroy');
+		Route::get('/settings', [GroupSettingsController::class, 'show'])->name('groups.dashboard.settings');
+		Route::put('/settings', [GroupSettingsController::class, 'update'])->name('groups.dashboard.settings.update');
+	});
 	
 	//Settings
 	Route::get('/settings', [SettingsController::class, 'index'])->name('settings');

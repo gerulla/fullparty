@@ -154,7 +154,7 @@ class CharacterController extends Controller
 					'error' => 'invalid_token'
 				]);
 			}
-			if (auth()->user()->characters()->count() === 1) {
+			if (auth()->user()->characters()->count() === 0) {
 				$character->is_primary = true;
 			}
 			$character->user_id = auth()->id();

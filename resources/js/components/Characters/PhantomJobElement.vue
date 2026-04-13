@@ -37,8 +37,8 @@ const togglePreferred = () => {
 
 <template>
 	<div v-if="phantomJob"
-		 class="group relative flex items-center gap-2 rounded-sm border border-default bg-muted/20 px-3 py-2 pr-11"
-		 :class="phantomJob.current_level === 0 ? 'opacity-50' : 'opacity-100'"
+		 class="group relative flex items-center gap-2 rounded-sm border bg-muted/20 px-3 py-2 pr-11"
+		 :class="[phantomJob.current_level === 0 ? 'opacity-50' : 'opacity-100', phantomJob.is_preferred ? 'border-rose-400/50 ' : 'border-default']"
 	>
 		<img
 			v-if="phantomJob.icon_url"

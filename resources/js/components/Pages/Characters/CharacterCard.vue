@@ -9,16 +9,16 @@ import PhantomJobElement from "@/components/Characters/PhantomJobElement.vue";
 import ForkedTowerBloodProgress from "@/components/Characters/ForkedTowerBloodProgress.vue";
 import ForkedTowerMagicProgress from "@/components/Characters/ForkedTowerMagicProgress.vue";
 
-const { t } = useI18n()
-const open = ref(false)
-const isRefreshing = ref(false)
-const isMakingPrimary = ref(false)
 const props = defineProps({
 	character: {
 		type: Object,
 		required: true,
 	},
 })
+const { t } = useI18n()
+const open = ref(props.character.is_primary)
+const isRefreshing = ref(false)
+const isMakingPrimary = ref(false)
 
 const classRoleOrder = ['tank', 'healer', 'melee dps', 'physical ranged dps', 'magic ranged dps'];
 
@@ -90,9 +90,9 @@ const makePrimary = () => {
 					</div>
 
 					<div class="flex flex-row gap-1 text-muted text-sm gap-2">
-						<span>{{character.world}}</span>
-						<span>&middot;</span>
 						<span>{{character.datacenter}}</span>
+						<span>&middot;</span>
+						<span>{{character.world}}</span>
 						<span>&middot;</span>
 						<span>{{ character.add_method === 'manual' ? t('characters.added_manually') : t('characters.from_xivauth') }}</span>
 					</div>

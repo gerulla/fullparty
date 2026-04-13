@@ -37,8 +37,8 @@ const togglePreferred = () => {
 
 <template>
 	<div v-if="characterClass"
-		 class="group relative flex items-center gap-2 rounded-sm border border-default bg-muted/20 px-3 py-2 pr-11"
-		:class="characterClass.level === 0 ? 'opacity-50' : 'opacity-100'"
+		 class="group relative flex items-center gap-2 rounded-sm border bg-muted/20 px-3 py-2 pr-11"
+		:class="[characterClass.level === 0 ? 'opacity-50' : 'opacity-100', characterClass.is_preferred ? 'border-rose-400/50 ' : 'border-default']"
 	>
 		<img
 			v-if="characterClass.icon_url"

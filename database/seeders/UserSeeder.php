@@ -132,16 +132,16 @@ class UserSeeder extends Seeder
     private function seededUserConfig(): array
     {
         return [
-            'name' => env('SEED_USER_1_NAME', 'yenpress'),
-            'email' => env('SEED_USER_1_EMAIL', 'egidiufarcas@maze.ws'),
-            'avatar_url' => env('SEED_USER_1_AVATAR_URL', 'https://cdn.discordapp.com/avatars/182520880277094400/253a7174a3523a566d5728ed8b9c59c4.jpg'),
-            'discord_user_id' => env('SEED_USER_1_DISCORD_USER_ID', '182520880277094400'),
-            'discord_name' => env('SEED_USER_1_DISCORD_NAME', 'yenpress'),
-            'discord_email' => env('SEED_USER_1_DISCORD_EMAIL', 'egidiufarcas@maze.ws'),
-            'discord_avatar_url' => env('SEED_USER_1_DISCORD_AVATAR_URL', 'https://cdn.discordapp.com/avatars/182520880277094400/253a7174a3523a566d5728ed8b9c59c4.jpg'),
+            'name' => env('SEED_USER_1_NAME', 'name'),
+            'email' => env('SEED_USER_1_EMAIL', 'email@test.com'),
+            'avatar_url' => env('SEED_USER_1_AVATAR_URL', 'laugh.png'),
+            'discord_user_id' => env('SEED_USER_1_DISCORD_USER_ID', '12312232213221213123221'),
+            'discord_name' => env('SEED_USER_1_DISCORD_NAME', 'name'),
+            'discord_email' => env('SEED_USER_1_DISCORD_EMAIL', 'email@test.com'),
+            'discord_avatar_url' => env('SEED_USER_1_DISCORD_AVATAR_URL', 'laugh.png'),
             'discord_access_token' => $this->nullableEnv('SEED_USER_1_DISCORD_ACCESS_TOKEN'),
             'discord_refresh_token' => $this->nullableEnv('SEED_USER_1_DISCORD_REFRESH_TOKEN'),
-            'discord_nickname' => env('SEED_USER_1_DISCORD_NICKNAME', 'yenpress'),
+            'discord_nickname' => env('SEED_USER_1_DISCORD_NICKNAME', 'name'),
         ];
     }
 

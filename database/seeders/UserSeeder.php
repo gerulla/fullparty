@@ -15,15 +15,16 @@ class UserSeeder extends Seeder
     public function run(): void
     {
         $now = now();
+        $seededUser = $this->seededUserConfig();
 
         DB::table('users')->upsert([
             [
                 'id' => 1,
-                'name' => 'yenpress',
-                'email' => 'egidiufarcas@maze.ws',
+                'name' => $seededUser['name'],
+                'email' => $seededUser['email'],
                 'email_verified_at' => '2026-04-13 15:59:47',
                 'password' => null,
-                'avatar_url' => 'https://cdn.discordapp.com/avatars/182520880277094400/253a7174a3523a566d5728ed8b9c59c4.jpg',
+                'avatar_url' => $seededUser['avatar_url'],
                 'last_login_at' => null,
                 'is_admin' => false,
                 'public_profile' => true,
@@ -66,16 +67,16 @@ class UserSeeder extends Seeder
                 'id' => 1,
                 'user_id' => 1,
                 'provider' => 'discord',
-                'provider_user_id' => '182520880277094400',
-                'provider_name' => 'yenpress',
-                'provider_email' => 'egidiufarcas@maze.ws',
-                'avatar_url' => 'https://cdn.discordapp.com/avatars/182520880277094400/253a7174a3523a566d5728ed8b9c59c4.jpg',
-                'access_token' => '',
-                'refresh_token' => '',
+                'provider_user_id' => $seededUser['discord_user_id'],
+                'provider_name' => $seededUser['discord_name'],
+                'provider_email' => $seededUser['discord_email'],
+                'avatar_url' => $seededUser['discord_avatar_url'],
+                'access_token' => $seededUser['discord_access_token'],
+                'refresh_token' => $seededUser['discord_refresh_token'],
                 'provider_data' => json_encode([
-                    'name' => 'yenpress',
-                    'avatar' => 'https://cdn.discordapp.com/avatars/182520880277094400/253a7174a3523a566d5728ed8b9c59c4.jpg',
-                    'nickname' => 'yenpress',
+                    'name' => $seededUser['discord_name'],
+                    'avatar' => $seededUser['discord_avatar_url'],
+                    'nickname' => $seededUser['discord_nickname'],
                 ]),
                 'expires_at' => '2026-04-20 15:59:47',
                 'created_at' => '2026-04-13 15:59:47',
@@ -123,5 +124,31 @@ class UserSeeder extends Seeder
             'created_at' => $timestamp,
             'updated_at' => $timestamp,
         ];
+    }
+
+    /**
+     * @return array<string, string|null>
+     */
+    private function seededUserConfig(): array
+    {
+        return [
+            'name' => env('SEED_USER_1_NAME', 'yenpress'),
+            'email' => env('SEED_USER_1_EMAIL', 'egidiufarcas@maze.ws'),
+            'avatar_url' => env('SEED_USER_1_AVATAR_URL', 'https://cdn.discordapp.com/avatars/182520880277094400/253a7174a3523a566d5728ed8b9c59c4.jpg'),
+            'discord_user_id' => env('SEED_USER_1_DISCORD_USER_ID', '182520880277094400'),
+            'discord_name' => env('SEED_USER_1_DISCORD_NAME', 'yenpress'),
+            'discord_email' => env('SEED_USER_1_DISCORD_EMAIL', 'egidiufarcas@maze.ws'),
+            'discord_avatar_url' => env('SEED_USER_1_DISCORD_AVATAR_URL', 'https://cdn.discordapp.com/avatars/182520880277094400/253a7174a3523a566d5728ed8b9c59c4.jpg'),
+            'discord_access_token' => $this->nullableEnv('SEED_USER_1_DISCORD_ACCESS_TOKEN'),
+            'discord_refresh_token' => $this->nullableEnv('SEED_USER_1_DISCORD_REFRESH_TOKEN'),
+            'discord_nickname' => env('SEED_USER_1_DISCORD_NICKNAME', 'yenpress'),
+        ];
+    }
+
+    private function nullableEnv(string $key): ?string
+    {
+        $value = env($key);
+
+        return $value === false || $value === '' ? null : $value;
     }
 }

@@ -46,6 +46,7 @@ class GroupInviteController extends Controller
                     'name' => $group->owner?->name,
                     'avatar_url' => $group->owner?->avatar_url,
                 ],
+                'current_user_is_banned' => $group->isBanned(auth()->id()),
                 'current_user_is_member' => $group->hasMember(auth()->id()),
             ],
         ]);
@@ -82,9 +83,18 @@ class GroupInviteController extends Controller
 
             $invite->load('group');
 
+            if ($invite->group->isBanned(auth()->id())) {
+                return [
+                    'accepted' => false,
+                    'banned' => true,
+                    'group' => $invite->group,
+                ];
+            }
+
             if (!$this->canAcceptInvite($invite)) {
                 return [
                     'accepted' => false,
+                    'banned' => false,
                     'group' => null,
                 ];
             }
@@ -96,6 +106,7 @@ class GroupInviteController extends Controller
             if ($existingMembership) {
                 return [
                     'accepted' => true,
+                    'banned' => false,
                     'group' => $invite->group,
                 ];
             }
@@ -110,11 +121,18 @@ class GroupInviteController extends Controller
 
             return [
                 'accepted' => true,
+                'banned' => false,
                 'group' => $invite->group,
             ];
         });
 
         if (!$result['accepted']) {
+            if ($result['banned']) {
+                return redirect()->route('groups.invites.show', $token)->withErrors([
+                    'error' => 'group_banned',
+                ]);
+            }
+
             return redirect()->route('groups.index')->withErrors([
                 'error' => 'group_invite_invalid',
             ]);
@@ -153,6 +171,10 @@ class GroupInviteController extends Controller
     private function canAcceptInvite(GroupInvite $invite): bool
     {
         if ($invite->is_system && !$invite->group->is_public) {
+            return false;
+        }
+
+        if ($invite->group->isBanned(auth()->id())) {
             return false;
         }
 

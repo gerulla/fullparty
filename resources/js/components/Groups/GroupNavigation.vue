@@ -7,6 +7,9 @@ const props = defineProps<{
 	group: {
 		slug: string
 		name?: string
+		permissions?: {
+			can_manage_members?: boolean
+		}
 	}
 }>()
 
@@ -24,17 +27,29 @@ const leftitems = computed(() => [
 		icon: 'i-lucide-calendar-range',
 		href: route('groups.dashboard.runs.index', props.group.slug),
 		active: page.url.startsWith(route('groups.dashboard.runs.index', props.group.slug, false)),
+	},
+	{
+		label: 'Members',
+		icon: 'i-lucide-users',
+		href: route('groups.dashboard.members', props.group.slug),
+		active: page.url.startsWith(route('groups.dashboard.members', props.group.slug, false)),
 	}
 ])
 
-const rightitems = computed(() => [
-	{
-		label: 'Settings',
-		icon: 'i-lucide-settings-2',
-		href: route('groups.dashboard.settings', props.group.slug),
-		active: page.url.startsWith(route('groups.dashboard.settings', props.group.slug, false)),
+const rightitems = computed(() => {
+	if (!props.group.permissions?.can_manage_members) {
+		return []
 	}
-])
+
+	return [
+		{
+			label: 'Settings',
+			icon: 'i-lucide-settings-2',
+			href: route('groups.dashboard.settings', props.group.slug),
+			active: page.url.startsWith(route('groups.dashboard.settings', props.group.slug, false)),
+		}
+	]
+})
 </script>
 
 <template>

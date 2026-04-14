@@ -23,6 +23,12 @@ class GroupMembershipController extends Controller
             ]);
         }
 
+        if ($group->isBanned(auth()->id())) {
+            return redirect()->back()->withErrors([
+                'error' => 'group_banned',
+            ]);
+        }
+
         $group->memberships()->firstOrCreate(
             ['user_id' => auth()->id()],
             [
@@ -122,6 +128,65 @@ class GroupMembershipController extends Controller
         return redirect()->back()->with('success', 'group_member_removed');
     }
 
+    public function ban(Request $request, Group $group, User $user): RedirectResponse
+    {
+        $group->loadMissing('memberships');
+        $this->authorizeMemberManagerAccess($group, $user->id);
+
+        $validated = $request->validate([
+            'reason' => ['nullable', 'string', 'max:2000'],
+        ]);
+
+        $membership = $group->memberships()
+            ->where('user_id', $user->id)
+            ->firstOrFail();
+
+        if ($membership->role === GroupMembership::ROLE_OWNER) {
+            return redirect()->back()->withErrors([
+                'error' => 'group_owner_cannot_be_removed',
+            ]);
+        }
+
+        DB::transaction(function () use ($group, $membership, $validated) {
+            ScheduledRun::query()
+                ->where('group_id', $group->id)
+                ->where('organized_by_user_id', $membership->user_id)
+                ->update(['organized_by_user_id' => $group->owner_id]);
+
+            $group->bans()->updateOrCreate(
+                ['user_id' => $membership->user_id],
+                [
+                    'banned_by_user_id' => auth()->id(),
+                    'reason' => $validated['reason'] ?? null,
+                ]
+            );
+
+            $membership->delete();
+        });
+
+        return redirect()->back()->with('success', 'group_member_banned');
+    }
+
+    public function unban(Group $group, User $user): RedirectResponse
+    {
+        $group->loadMissing(['memberships', 'bans']);
+        $this->authorizeBanManagerAccess($group);
+
+        $ban = $group->bans()
+            ->where('user_id', $user->id)
+            ->first();
+
+        if (!$ban) {
+            return redirect()->back()->withErrors([
+                'error' => 'group_ban_not_found',
+            ]);
+        }
+
+        $ban->delete();
+
+        return redirect()->back()->with('success', 'group_member_unbanned');
+    }
+
     public function transferOwnership(Request $request, Group $group): RedirectResponse
     {
         $group->loadMissing('memberships');
@@ -187,6 +252,13 @@ class GroupMembershipController extends Controller
             ->firstWhere('user_id', $targetUserId);
 
         if (!$targetMembership || $targetMembership->role !== GroupMembership::ROLE_MEMBER) {
+            abort(403);
+        }
+    }
+
+    private function authorizeBanManagerAccess(Group $group): void
+    {
+        if (!$group->hasModeratorAccess(auth()->id())) {
             abort(403);
         }
     }

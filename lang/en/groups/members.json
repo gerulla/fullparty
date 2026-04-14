@@ -1,0 +1,77 @@
+{
+  "title": "Group Members",
+  "subtitle": "Review your group roster, linked characters, and membership actions in one place.",
+  "access": {
+    "owner": "Owner Access",
+    "moderator": "Moderator Access",
+    "member": "Member Access"
+  },
+  "roster": {
+    "title": "Member Roster",
+    "subtitle": "See who is in the group, what characters they have linked, and what actions are available to you.",
+    "count": "{count} members",
+    "search_placeholder": "Search members",
+    "joined_at": "Joined {date}",
+    "runs_participated": "{count} runs participated",
+    "characters_label": "Characters",
+    "no_characters": "No verified characters linked yet.",
+    "not_available": "Not available",
+    "empty": "No members to show yet."
+  },
+  "bans": {
+    "title": "Banned Members",
+    "subtitle": "Review users who are blocked from rejoining this group.",
+    "count": "{count} banned",
+    "search_placeholder": "Search banned members",
+    "empty": "No banned members to show.",
+    "columns": {
+      "member": "Member",
+      "characters": "Characters",
+      "reason": "Reason",
+      "banned_by": "Banned By",
+      "banned_at": "Banned At",
+      "actions": "Actions"
+    },
+    "no_reason": "No reason provided",
+    "system": "System"
+  },
+  "table": {
+    "columns": {
+      "member": "Member",
+      "role": "Role",
+      "joined_at": "Joined",
+      "runs_participated": "Runs",
+      "characters": "Characters",
+      "actions": "Actions"
+    }
+  },
+  "actions": {
+    "promote": "Promote",
+    "demote": "Demote",
+    "kick": "Kick",
+    "ban": "Ban",
+    "unban": "Unban"
+  },
+  "kick_modal": {
+    "title": "Remove {name}?",
+    "subtitle": "This will remove the selected member from {group}.",
+    "warning": "They will lose dashboard access immediately and will need to rejoin through a public join flow or a fresh invite."
+  },
+  "ban_modal": {
+    "title": "Ban {name}?",
+    "subtitle": "This will remove the selected member from {group} and prevent them from joining again.",
+    "warning": "Banned users can still view discoverable groups, but they will not be able to join through public access or invite links.",
+    "reason": {
+      "label": "Reason",
+      "help": "Optional. Add a note explaining why this ban was applied.",
+      "placeholder": "Enter an optional reason for the ban"
+    }
+  },
+  "toasts": {
+    "promoted": "Member promoted to moderator.",
+    "demoted": "Moderator changed back to member.",
+    "removed": "Member removed from the group.",
+    "banned": "Member banned from the group.",
+    "unbanned": "Member unbanned successfully."
+  }
+}

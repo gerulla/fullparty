@@ -335,7 +335,9 @@ class GroupController extends Controller
                 ->firstWhere('user_id', $currentUserId)
                 ?->role,
             'permissions' => [
-                'can_join' => $group->is_public && !$group->hasMember($currentUserId),
+                'can_join' => $group->is_public
+                    && !$group->hasMember($currentUserId)
+                    && !$group->isBanned($currentUserId),
                 'can_access_dashboard' => $group->hasMember($currentUserId),
             ],
             'stats' => [

@@ -10,6 +10,7 @@ use App\Http\Controllers\GoogleAuthController;
 use App\Http\Controllers\GroupController;
 use App\Http\Controllers\GroupDashboardController;
 use App\Http\Controllers\GroupInviteController;
+use App\Http\Controllers\GroupMemberController;
 use App\Http\Controllers\GroupMembershipController;
 use App\Http\Controllers\GroupRunController;
 use App\Http\Controllers\GroupSettingsController;
@@ -88,6 +89,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
 	Route::post('/groups/{group:slug}/leave', [GroupMembershipController::class, 'leave'])->name('groups.leave');
 	Route::put('/groups/{group:slug}/members/{user}', [GroupMembershipController::class, 'update'])->name('groups.members.update');
 	Route::delete('/groups/{group:slug}/members/{user}', [GroupMembershipController::class, 'destroy'])->name('groups.members.destroy');
+	Route::post('/groups/{group:slug}/members/{user}/ban', [GroupMembershipController::class, 'ban'])->name('groups.members.ban');
+	Route::delete('/groups/{group:slug}/bans/{user}', [GroupMembershipController::class, 'unban'])->name('groups.members.unban');
 	Route::post('/groups/{group:slug}/transfer-ownership', [GroupMembershipController::class, 'transferOwnership'])->name('groups.transfer-ownership');
 
 	Route::post('/groups/{group:slug}/invites', [GroupInviteController::class, 'store'])->name('groups.invites.store');
@@ -96,6 +99,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
 	Route::prefix('/groups/{group:slug}/dashboard')->middleware('group.dashboard.access')->group(function () {
 		Route::get('/', [GroupDashboardController::class, 'show'])->name('groups.dashboard');
+		Route::get('/members', [GroupMemberController::class, 'index'])->name('groups.dashboard.members');
 		Route::get('/runs', [GroupRunController::class, 'index'])->name('groups.dashboard.runs.index');
 		Route::post('/runs', [GroupRunController::class, 'store'])->name('groups.dashboard.runs.store');
 		Route::get('/runs/{scheduledRun}', [GroupRunController::class, 'show'])->name('groups.dashboard.runs.show');

@@ -57,6 +57,11 @@ class Group extends Model
         return $this->hasMany(GroupInvite::class);
     }
 
+    public function bans(): HasMany
+    {
+        return $this->hasMany(GroupBan::class);
+    }
+
     public function systemInvite(): HasOne
     {
         return $this->hasOne(GroupInvite::class)->where('is_system', true);
@@ -99,6 +104,21 @@ class Group extends Model
 
         return $this->memberships
             ->contains(fn (GroupMembership $membership) => $membership->user_id === $userId);
+    }
+
+    public function isBanned(?int $userId): bool
+    {
+        if ($userId === null) {
+            return false;
+        }
+
+        if ($this->relationLoaded('bans')) {
+            return $this->bans->contains(fn (GroupBan $ban) => $ban->user_id === $userId);
+        }
+
+        return $this->bans()
+            ->where('user_id', $userId)
+            ->exists();
     }
 
     public function ensureSystemInvite(): void

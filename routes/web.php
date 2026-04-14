@@ -82,6 +82,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
 	Route::get('/groups', [GroupController::class, 'index'])->name('groups.index');
 	Route::get('/group-search-results', [GroupController::class, 'search'])->name('groups.search');
 	Route::post('/groups', [GroupController::class, 'store'])->name('groups.store');
+	Route::delete('/groups/{group:slug}', [GroupController::class, 'destroy'])->name('groups.destroy');
 
 	Route::post('/groups/{group:slug}/join', [GroupMembershipController::class, 'join'])->name('groups.join');
 	Route::post('/groups/{group:slug}/leave', [GroupMembershipController::class, 'leave'])->name('groups.leave');

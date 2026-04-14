@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class StoreCharacterRequest extends FormRequest
 {
@@ -25,7 +26,7 @@ class StoreCharacterRequest extends FormRequest
         return [
             'name' => ['required', 'string', 'max:255'],
             'world' => ['required', 'string', 'max:255'],
-            'datacenter' => ['required', 'string', 'max:255'],
+            'datacenter' => ['required', 'string', Rule::in(config('datacenters.values', []))],
             'lodestone_id' => ['required', 'string', 'unique:characters,lodestone_id'],
             'avatar_url' => ['nullable', 'url', 'max:500'],
             'token' => ['nullable', 'string', 'max:255'],

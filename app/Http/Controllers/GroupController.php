@@ -210,7 +210,7 @@ class GroupController extends Controller
             'description' => ['nullable', 'string'],
             'profile_picture' => ['nullable', 'image', 'max:5120'],
             'discord_invite_url' => ['nullable', 'url', 'max:500'],
-            'datacenter' => ['required', 'string', 'max:255'],
+            'datacenter' => ['required', 'string', Rule::in(config('datacenters.values', []))],
             'is_public' => ['required', 'boolean'],
             'is_visible' => ['required', 'boolean'],
             'slug' => [

@@ -29,7 +29,7 @@ class UpdateCharacterRequest extends FormRequest
         return [
             'name' => ['sometimes', 'string', 'max:255'],
             'world' => ['sometimes', 'string', 'max:255'],
-            'datacenter' => ['sometimes', 'string', 'max:255'],
+            'datacenter' => ['sometimes', 'string', Rule::in(config('datacenters.values', []))],
             'lodestone_id' => [
                 'sometimes',
                 'string',

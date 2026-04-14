@@ -25,7 +25,7 @@ class StoreXIVAuthCharacterRequest extends FormRequest
 		return [
 			'name' => ['required', 'string', 'max:255'],
 			'world' => ['required', 'string', 'max:255'],
-			'datacenter' => ['required', 'string', 'max:255'],
+			'datacenter' => ['required', 'string', \Illuminate\Validation\Rule::in(config('datacenters.values', []))],
 			'lodestone_id' => ['required', 'string'],
 			'avatar_url' => ['nullable', 'url', 'max:500'],
 			'token' => ['nullable', 'string', 'max:255'],

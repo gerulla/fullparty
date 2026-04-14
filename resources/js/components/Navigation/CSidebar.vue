@@ -119,7 +119,7 @@ watch([currentUrl, groupQuickLinkSections], () => {
 					:key="item.href"
 					:href="item.href"
 					class="sidebar-link"
-					:class="currentUrl.startsWith(item.href) ? 'link-highlighted': 'link-default'"
+					:class="currentUrl === item.href ? 'link-highlighted': 'link-default'"
 				>
 					<UIcon :name="item.icon" :class="!collapsed ? 'sidebar-link-icon' : 'sidebar-link-icon-large'" />
 					<span v-if="!collapsed">{{ item.label }}</span>
@@ -133,8 +133,7 @@ watch([currentUrl, groupQuickLinkSections], () => {
 					>
 						<button
 							type="button"
-							class="sidebar-link w-full justify-between"
-							:class="groupDrawerOpen[section.key] ? 'link-highlighted' : 'link-default'"
+							class="sidebar-link w-full justify-between link-default"
 							@click="groupDrawerOpen[section.key] = !groupDrawerOpen[section.key]"
 						>
 							<div class="flex min-w-0 items-center gap-2">

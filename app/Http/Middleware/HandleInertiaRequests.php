@@ -71,6 +71,15 @@ class HandleInertiaRequests extends Middleware
 						'member' => [],
 					],
 			],
+			'lookups' => [
+				'datacenters' => fn () => collect(config('datacenters.values', []))
+					->map(fn (string $value) => [
+						'label' => $value,
+						'value' => $value,
+					])
+					->values()
+					->all(),
+			],
 		]);
     }
 

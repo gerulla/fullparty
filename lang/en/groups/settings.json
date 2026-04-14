@@ -1,0 +1,143 @@
+{
+  "title": "Group Settings",
+  "subtitle": "Manage your group's general configuration and access-sensitive details.",
+  "access": {
+    "owner": "Owner Access",
+    "moderator": "Moderator Access"
+  },
+  "general": {
+    "title": "General Settings",
+    "subtitle": "Update the mutable details that define how your group appears and how members join it.",
+    "owner_only_notice": "Only group owners can update these settings. Moderators can review them here.",
+    "visibility_summary_label": "Visibility Summary",
+    "visibility_summary": {
+      "default_name": "This group",
+      "public_visible": "{name} can be joined by anyone and will show up in search and profiles.",
+      "public_hidden": "{name} can be joined by anyone, but it will not show up in discovery or searchable profiles.",
+      "private_visible": "{name} can only be joined via invite, but it will still show up in search and profiles.",
+      "private_hidden": "{name} can only be joined via invite and will stay hidden from discovery and searchable profiles."
+    },
+    "fields": {
+      "name": {
+        "label": "Group Name",
+        "placeholder": "Forked Tower Enjoyers"
+      },
+      "description": {
+        "label": "Description",
+        "placeholder": "Tell people what your group focuses on and who it is for."
+      },
+      "profile_picture": {
+        "label": "Profile Picture",
+        "placeholder": "Choose an image",
+        "help": "Optional. Upload a new image to replace the current group picture.",
+        "preview_alt": "Group profile picture preview",
+        "preview_label": "Visible Crop Preview",
+        "preview_help": "This preview shows the centered square crop that will be resized and used as your group's profile image."
+      },
+      "discord_invite_url": {
+        "label": "Discord Invite URL",
+        "placeholder": "https://discord.gg/yourserver",
+        "help": "Optional. Add a Discord invite so members can easily join your server."
+      },
+      "datacenter": {
+        "label": "Data Center",
+        "placeholder": "Select a data center"
+      },
+      "is_public": {
+        "label": "Public Group",
+        "help": "Anyone can join public groups, and public-facing future runs can be seen by outsiders."
+      },
+      "is_visible": {
+        "label": "Visible in Discovery",
+        "help": "Visible groups can appear in discovery and search, even if they are private."
+      }
+    },
+    "toasts": {
+      "updated": "Group settings have been updated."
+    }
+  },
+  "invites": {
+    "title": "Invite Links",
+    "subtitle": "Manage invite links for new members.",
+    "create_button": "Create Link",
+    "empty": "No invite links have been created yet.",
+    "system_creator": "System",
+    "created_by": "Created by {name} on {date}",
+    "uses": "Uses",
+    "expires": "Expires",
+    "never": "Never",
+    "unlimited": "Unlimited",
+    "statuses": {
+      "active": "Active",
+      "expired": "Expired",
+      "system": "System"
+    },
+    "create_modal": {
+      "title": "Create Invite Link",
+      "subtitle": "Set optional limits for uses and expiry. Leave fields empty to keep the invite open-ended.",
+      "max_uses": {
+        "label": "Maximum Uses",
+        "placeholder": "Leave empty for unlimited"
+      },
+      "expires_in": {
+        "label": "Expires In",
+        "placeholder": "Select an expiry window",
+        "options": {
+          "12_hours": "12 Hours",
+          "24_hours": "24 Hours",
+          "1_day": "1 Day",
+          "2_days": "2 Days",
+          "3_days": "3 Days",
+          "4_days": "4 Days",
+          "1_week": "1 Week",
+          "unlimited": "Never"
+        }
+      }
+    },
+    "toasts": {
+      "created": "Invite link created.",
+      "copied": "Invite link copied.",
+      "revoked": "Invite link revoked."
+    }
+  },
+  "ownership": {
+    "title": "Ownership",
+    "subtitle": "Transfer ownership to another existing member when you need to hand the group over.",
+    "owner_only_notice": "Only the current owner can transfer ownership.",
+    "warning_title": "Transfering ownership is a high-impact action.",
+    "warning_description": "Once transferred, you will lose owner rights and become a moderator in the group.",
+    "selected_member": "New owner",
+    "empty": "You need at least one other member in the group before ownership can be transferred.",
+    "transfer_button": "Transfer Ownership",
+    "confirm_modal": {
+      "title": "Transfer Ownership",
+      "subtitle": "Choose the member who should become the new owner, then confirm the transfer.",
+      "member": {
+        "label": "Select Member",
+        "placeholder": "Choose a member"
+      },
+      "warning": "This action cannot be undone from this flow. You will immediately become a moderator.",
+      "confirm_button": "Confirm Transfer"
+    },
+    "toasts": {
+      "transferred": "Ownership transferred successfully."
+    }
+  },
+  "danger_zone": {
+    "title": "Danger Zone",
+    "subtitle": "Delete the group permanently if you are absolutely sure it should be removed.",
+    "owner_only_notice": "Only the current owner can delete this group.",
+    "warning_title": "This action cannot be undone.",
+    "warning_description": "Deleting the group will permanently remove its settings, invites, memberships, and scheduled runs.",
+    "delete_button": "Delete Group",
+    "confirm_modal": {
+      "title": "Delete Group",
+      "subtitle": "This will permanently delete {name}. Please confirm that you want to continue.",
+      "warning": "Once deleted, this group and all of its related data will be gone forever.",
+      "confirm_button": "Yes, Delete Group"
+    },
+    "toasts": {
+      "deleted": "Group deleted successfully."
+    }
+  }
+}

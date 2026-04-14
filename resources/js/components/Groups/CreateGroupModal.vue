@@ -1,29 +1,17 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue';
 import { useI18n } from "vue-i18n";
-import { useForm } from "@inertiajs/vue3";
+import { useForm, usePage } from "@inertiajs/vue3";
 import { route } from "ziggy-js";
 import { useToast } from "@nuxt/ui/composables";
 
 const { t } = useI18n();
 const toast = useToast();
+const page = usePage();
 const self_open = ref(false);
 const step = ref(1);
 const max_steps = 3;
-
-const datacenterOptions = [
-	{ label: 'Aether', value: 'Aether' },
-	{ label: 'Crystal', value: 'Crystal' },
-	{ label: 'Dynamis', value: 'Dynamis' },
-	{ label: 'Primal', value: 'Primal' },
-	{ label: 'Chaos', value: 'Chaos' },
-	{ label: 'Light', value: 'Light' },
-	{ label: 'Elemental', value: 'Elemental' },
-	{ label: 'Gaia', value: 'Gaia' },
-	{ label: 'Mana', value: 'Mana' },
-	{ label: 'Meteor', value: 'Meteor' },
-	{ label: 'Materia', value: 'Materia' },
-];
+const datacenterOptions = computed(() => page.props.lookups?.datacenters ?? []);
 
 const form = useForm({
 	name: '',

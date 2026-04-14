@@ -40,6 +40,7 @@ class GroupInviteController extends Controller
                 'is_public' => $group->is_public,
                 'is_visible' => $group->is_visible,
                 'slug' => $group->slug,
+                'member_count' => $group->memberships->count(),
                 'owner' => [
                     'id' => $group->owner?->id,
                     'name' => $group->owner?->name,
@@ -73,30 +74,53 @@ class GroupInviteController extends Controller
 
     public function accept(string $token): RedirectResponse
     {
-        $invite = GroupInvite::query()
-            ->with('group')
-            ->where('token', $token)
-            ->firstOrFail();
+        $result = DB::transaction(function () use ($token) {
+            $invite = GroupInvite::query()
+                ->where('token', $token)
+                ->lockForUpdate()
+                ->firstOrFail();
 
-        if (!$this->canAcceptInvite($invite)) {
+            $invite->load('group');
+
+            if (!$this->canAcceptInvite($invite)) {
+                return [
+                    'accepted' => false,
+                    'group' => null,
+                ];
+            }
+
+            $existingMembership = $invite->group->memberships()
+                ->where('user_id', auth()->id())
+                ->first();
+
+            if ($existingMembership) {
+                return [
+                    'accepted' => true,
+                    'group' => $invite->group,
+                ];
+            }
+
+            $invite->group->memberships()->create([
+                'user_id' => auth()->id(),
+                'role' => GroupMembership::ROLE_MEMBER,
+                'joined_at' => now(),
+            ]);
+
+            $invite->increment('uses');
+
+            return [
+                'accepted' => true,
+                'group' => $invite->group,
+            ];
+        });
+
+        if (!$result['accepted']) {
             return redirect()->route('groups.index')->withErrors([
                 'error' => 'group_invite_invalid',
             ]);
         }
 
-        DB::transaction(function () use ($invite) {
-            $invite->group->memberships()->firstOrCreate(
-                ['user_id' => auth()->id()],
-                [
-                    'role' => GroupMembership::ROLE_MEMBER,
-                    'joined_at' => now(),
-                ]
-            );
-
-            $invite->increment('uses');
-        });
-
-        return redirect()->route('groups.show', $invite->group)->with('success', 'group_joined');
+        return redirect()->route('groups.show', $result['group'])->with('success', 'group_joined');
     }
 
     public function destroy(Group $group, GroupInvite $invite): RedirectResponse

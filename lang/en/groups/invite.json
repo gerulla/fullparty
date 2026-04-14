@@ -1,0 +1,27 @@
+{
+  "title": "Group Invitation",
+  "subtitle": "You’ve been invited to join this group.",
+  "states": {
+    "member": "You’re already part of this group.",
+    "active": "This invite is active.",
+    "expired": "This invite is no longer available."
+  },
+  "labels": {
+    "datacenter": "Data Center",
+    "members": "Members",
+    "public": "Public Group",
+    "private": "Private Group"
+  },
+  "actions": {
+    "accept": "Accept Invite",
+    "sign_in": "Sign In to Accept",
+    "open_dashboard": "Open Group Dashboard",
+    "decline": "Decline",
+    "unavailable": "Invite Unavailable"
+  },
+  "messages": {
+    "guest": "Sign in with your account to accept this invite and join the group.",
+    "accepting": "Accepting invitation...",
+    "already_member": "You're already part of this group."
+  }
+}

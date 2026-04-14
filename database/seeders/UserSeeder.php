@@ -96,6 +96,9 @@ class UserSeeder extends Seeder
             'created_at',
             'updated_at',
         ]);
+
+        $this->syncPrimaryKeySequence('users');
+        $this->syncPrimaryKeySequence('social_accounts');
     }
 
     /**
@@ -150,5 +153,20 @@ class UserSeeder extends Seeder
         $value = env($key);
 
         return $value === false || $value === '' ? null : $value;
+    }
+
+    private function syncPrimaryKeySequence(string $table): void
+    {
+        if (DB::getDriverName() !== 'pgsql') {
+            return;
+        }
+
+        DB::statement("
+            SELECT setval(
+                pg_get_serial_sequence('{$table}', 'id'),
+                COALESCE((SELECT MAX(id) FROM {$table}), 1),
+                true
+            )
+        ");
     }
 }

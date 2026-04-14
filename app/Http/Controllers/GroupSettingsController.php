@@ -8,6 +8,7 @@ use App\Services\ManagedImageStorage;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Validation\Rule;
 use Inertia\Inertia;
 use Inertia\Response;
 
@@ -94,7 +95,7 @@ class GroupSettingsController extends Controller
             'description' => ['nullable', 'string'],
             'profile_picture' => ['nullable', 'image', 'max:5120'],
             'discord_invite_url' => ['nullable', 'url', 'max:500'],
-            'datacenter' => ['required', 'string', 'max:255'],
+            'datacenter' => ['required', 'string', Rule::in(config('datacenters.values', []))],
             'is_public' => ['required', 'boolean'],
             'is_visible' => ['required', 'boolean'],
         ]);

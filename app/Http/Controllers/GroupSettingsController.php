@@ -4,7 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Group;
 use App\Models\GroupMembership;
+use App\Services\AuditLogger;
 use App\Services\ManagedImageStorage;
+use App\Support\Audit\AuditScope;
+use App\Support\Audit\AuditSeverity;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -17,7 +20,8 @@ class GroupSettingsController extends Controller
     private const IMAGE_DIRECTORY = 'groups';
 
     public function __construct(
-        private readonly ManagedImageStorage $managedImageStorage
+        private readonly ManagedImageStorage $managedImageStorage,
+        private readonly AuditLogger $auditLogger
     ) {}
 
     public function show(Group $group): Response
@@ -107,6 +111,16 @@ class GroupSettingsController extends Controller
             shouldProcess: true
         );
 
+        $originalValues = [
+            'name' => $group->name,
+            'description' => $group->description,
+            'profile_picture_url' => $group->profile_picture_url,
+            'discord_invite_url' => $group->discord_invite_url,
+            'datacenter' => $group->datacenter,
+            'is_public' => $group->is_public,
+            'is_visible' => $group->is_visible,
+        ];
+
         DB::transaction(function () use ($group, $validated, $profilePictureUrl) {
             $group->update([
                 'name' => $validated['name'],
@@ -125,6 +139,38 @@ class GroupSettingsController extends Controller
             }
         });
 
+        $updatedValues = [
+            'name' => $group->name,
+            'description' => $group->description,
+            'profile_picture_url' => $group->profile_picture_url,
+            'discord_invite_url' => $group->discord_invite_url,
+            'datacenter' => $group->datacenter,
+            'is_public' => $group->is_public,
+            'is_visible' => $group->is_visible,
+        ];
+
+        $changedFields = collect($updatedValues)
+            ->keys()
+            ->filter(fn (string $field) => $originalValues[$field] !== $updatedValues[$field])
+            ->values()
+            ->all();
+
+        if ($changedFields !== []) {
+            $this->auditLogger->log(
+                action: 'group.updated',
+                severity: AuditSeverity::MODERATION_CHANGE,
+                scopeType: AuditScope::GROUP,
+                scopeId: $group->id,
+                message: 'audit_log.events.group.updated',
+                actor: auth()->user(),
+                subject: $group,
+                metadata: [
+                    'changed_fields' => $changedFields,
+                    'changes' => $this->buildChangeMetadata($originalValues, $updatedValues),
+                ],
+            );
+        }
+
         return redirect()->back()->with('success', 'group_updated');
     }
 
@@ -140,5 +186,24 @@ class GroupSettingsController extends Controller
         if (!$group->hasModeratorAccess(auth()->id())) {
             abort(403);
         }
+    }
+
+    /**
+     * @param  array<string, mixed>  $originalValues
+     * @param  array<string, mixed>  $updatedValues
+     * @return array<string, array{old: mixed, new: mixed}>
+     */
+    private function buildChangeMetadata(array $originalValues, array $updatedValues): array
+    {
+        return collect($updatedValues)
+            ->keys()
+            ->filter(fn (string $field) => $originalValues[$field] !== $updatedValues[$field])
+            ->mapWithKeys(fn (string $field) => [
+                $field => [
+                    'old' => $originalValues[$field],
+                    'new' => $updatedValues[$field],
+                ],
+            ])
+            ->all();
     }
 }

@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Group;
 use App\Models\GroupInvite;
 use App\Models\GroupMembership;
+use App\Services\AuditLogger;
+use App\Support\Audit\AuditScope;
+use App\Support\Audit\AuditSeverity;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -13,6 +16,10 @@ use Inertia\Response;
 
 class GroupInviteController extends Controller
 {
+    public function __construct(
+        private readonly AuditLogger $auditLogger
+    ) {}
+
     public function show(string $token): Response
     {
         $invite = GroupInvite::query()
@@ -62,13 +69,28 @@ class GroupInviteController extends Controller
             'expires_at' => ['nullable', 'date', 'after:now'],
         ]);
 
-        $group->invites()->create([
+        $invite = $group->invites()->create([
             'created_by' => auth()->id(),
             'token' => GroupInvite::generateUniqueToken(),
             'max_uses' => $validated['max_uses'] ?? null,
             'expires_at' => $validated['expires_at'] ?? null,
             'is_system' => false,
         ]);
+
+        $this->auditLogger->log(
+            action: 'group.invite.created',
+            severity: AuditSeverity::MODERATION_CHANGE,
+            scopeType: AuditScope::GROUP,
+            scopeId: $group->id,
+            message: 'audit_log.events.group.invite.created',
+            actor: auth()->user(),
+            subject: $invite,
+            metadata: [
+                'invite_id' => $invite->id,
+                'max_uses' => $invite->max_uses,
+                'expires_at' => $invite->expires_at?->toIso8601String(),
+            ],
+        );
 
         return redirect()->back()->with('success', 'group_invite_created');
     }
@@ -108,6 +130,7 @@ class GroupInviteController extends Controller
                     'accepted' => true,
                     'banned' => false,
                     'group' => $invite->group,
+                    'joined' => false,
                 ];
             }
 
@@ -123,6 +146,8 @@ class GroupInviteController extends Controller
                 'accepted' => true,
                 'banned' => false,
                 'group' => $invite->group,
+                'invite' => $invite,
+                'joined' => true,
             ];
         });
 
@@ -136,6 +161,22 @@ class GroupInviteController extends Controller
             return redirect()->route('groups.index')->withErrors([
                 'error' => 'group_invite_invalid',
             ]);
+        }
+
+        if ($result['joined']) {
+            $this->auditLogger->log(
+                action: 'group.member.joined_via_invite',
+                severity: AuditSeverity::INFO,
+                scopeType: AuditScope::GROUP,
+                scopeId: $result['group']->id,
+                message: 'audit_log.events.group.member.joined_via_invite',
+                actor: auth()->user(),
+                subject: auth()->user(),
+                metadata: [
+                    'invite_id' => $result['invite']->id ?? null,
+                    'invite_token' => $result['invite']->token ?? null,
+                ],
+            );
         }
 
         return redirect()->route('groups.show', $result['group'])->with('success', 'group_joined');
@@ -156,7 +197,29 @@ class GroupInviteController extends Controller
             ]);
         }
 
+        $inviteSnapshot = [
+            'id' => $invite->id,
+            'token' => $invite->token,
+            'max_uses' => $invite->max_uses,
+            'uses' => $invite->uses,
+            'expires_at' => $invite->expires_at?->toIso8601String(),
+        ];
+
         $invite->delete();
+
+        $this->auditLogger->log(
+            action: 'group.invite.revoked',
+            severity: AuditSeverity::MODERATION_CHANGE,
+            scopeType: AuditScope::GROUP,
+            scopeId: $group->id,
+            message: 'audit_log.events.group.invite.revoked',
+            actor: auth()->user(),
+            subject: [
+                'subject_type' => GroupInvite::class,
+                'subject_id' => $inviteSnapshot['id'],
+            ],
+            metadata: $inviteSnapshot,
+        );
 
         return redirect()->back()->with('success', 'group_invite_deleted');
     }

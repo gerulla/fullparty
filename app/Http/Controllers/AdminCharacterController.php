@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\CharacterFieldDefinition;
+use App\Services\AuditLogger;
+use App\Support\Audit\AuditScope;
+use App\Support\Audit\AuditSeverity;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
@@ -11,6 +14,10 @@ class AdminCharacterController extends Controller
 	private const DISPLAY_CONTEXTS = ['profile', 'account', 'admin'];
 
 	private const SOURCE_TYPES = ['user', 'system', 'hybrid'];
+
+	public function __construct(
+		private readonly AuditLogger $auditLogger
+	) {}
 
 	/**
 	 * Store a newly created field definition.
@@ -28,6 +35,17 @@ class AdminCharacterController extends Controller
 
 		$definition = CharacterFieldDefinition::create($validated);
 
+		$this->auditLogger->log(
+			action: 'admin.field_definition.created',
+			severity: AuditSeverity::CRITICAL,
+			scopeType: AuditScope::ADMIN,
+			scopeId: null,
+			message: 'audit_log.events.admin.field_definition.created',
+			actor: auth()->user(),
+			subject: $definition,
+			metadata: $this->definitionSnapshot($definition),
+		);
+
 		return redirect()->back()->with('success', 'field_definition_created');
 	}
 
@@ -37,6 +55,7 @@ class AdminCharacterController extends Controller
 	public function updateDefinition(Request $request, CharacterFieldDefinition $definition)
 	{
 		$validated = $this->validateDefinition($request);
+		$originalValues = $this->definitionSnapshot($definition);
 
 		// Regenerate slug if name changed
 		if ($validated['name'] !== $definition->name) {
@@ -44,6 +63,25 @@ class AdminCharacterController extends Controller
 		}
 
 		$definition->update($validated);
+
+		$updatedValues = $this->definitionSnapshot($definition->fresh());
+		$changes = $this->buildChanges($originalValues, $updatedValues);
+
+		if ($changes !== []) {
+			$this->auditLogger->log(
+				action: 'admin.field_definition.updated',
+				severity: AuditSeverity::CRITICAL,
+				scopeType: AuditScope::ADMIN,
+				scopeId: null,
+				message: 'audit_log.events.admin.field_definition.updated',
+				actor: auth()->user(),
+				subject: $definition,
+				metadata: [
+					'changed_fields' => array_keys($changes),
+					'changes' => $changes,
+				],
+			);
+		}
 
 		return redirect()->back()->with('success', 'field_definition_updated');
 	}
@@ -53,7 +91,22 @@ class AdminCharacterController extends Controller
 	 */
 	public function destroyDefinition(CharacterFieldDefinition $definition)
 	{
+		$snapshot = $this->definitionSnapshot($definition);
 		$definition->delete();
+
+		$this->auditLogger->log(
+			action: 'admin.field_definition.deleted',
+			severity: AuditSeverity::CRITICAL,
+			scopeType: AuditScope::ADMIN,
+			scopeId: null,
+			message: 'audit_log.events.admin.field_definition.deleted',
+			actor: auth()->user(),
+			subject: [
+				'subject_type' => CharacterFieldDefinition::class,
+				'subject_id' => $snapshot['id'],
+			],
+			metadata: $snapshot,
+		);
 
 		return redirect()->back()->with('success', 'field_definition_deleted');
 	}
@@ -71,6 +124,18 @@ class AdminCharacterController extends Controller
 		foreach ($validated['order'] as $index => $id) {
 			CharacterFieldDefinition::where('id', $id)->update(['sort_order' => $index]);
 		}
+
+		$this->auditLogger->log(
+			action: 'admin.field_definition.reordered',
+			severity: AuditSeverity::CRITICAL,
+			scopeType: AuditScope::ADMIN,
+			scopeId: null,
+			message: 'audit_log.events.admin.field_definition.reordered',
+			actor: auth()->user(),
+			metadata: [
+				'ordered_ids' => array_values($validated['order']),
+			],
+		);
 
 		return redirect()->back()->with('success', 'field_order_updated');
 	}
@@ -92,5 +157,47 @@ class AdminCharacterController extends Controller
 			'validation_rules' => ['nullable', 'array'],
 			'is_active' => ['boolean'],
 		]);
+	}
+
+	/**
+	 * @return array<string, mixed>
+	 */
+	private function definitionSnapshot(CharacterFieldDefinition $definition): array
+	{
+		return [
+			'id' => $definition->id,
+			'name' => $definition->name,
+			'slug' => $definition->slug,
+			'type' => $definition->type,
+			'description' => $definition->description,
+			'group' => $definition->group,
+			'display_contexts' => $definition->display_contexts ?? [],
+			'source_type' => $definition->source_type,
+			'is_editable' => $definition->is_editable,
+			'is_visible' => $definition->is_visible,
+			'tags' => $definition->tags ?? [],
+			'validation_rules' => $definition->validation_rules ?? [],
+			'is_active' => $definition->is_active,
+			'sort_order' => $definition->sort_order,
+		];
+	}
+
+	/**
+	 * @param  array<string, mixed>  $originalValues
+	 * @param  array<string, mixed>  $updatedValues
+	 * @return array<string, array{old: mixed, new: mixed}>
+	 */
+	private function buildChanges(array $originalValues, array $updatedValues): array
+	{
+		return collect($updatedValues)
+			->keys()
+			->filter(fn (string $field) => $originalValues[$field] !== $updatedValues[$field])
+			->mapWithKeys(fn (string $field) => [
+				$field => [
+					'old' => $originalValues[$field],
+					'new' => $updatedValues[$field],
+				],
+			])
+			->all();
 	}
 }

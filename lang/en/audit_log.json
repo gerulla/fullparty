@@ -1,0 +1,223 @@
+{
+  "group": {
+    "title": "Audit Log",
+    "subtitle": "Review moderation and management activity for this group.",
+    "access": {
+      "owner": "Owner Access",
+      "moderator": "Moderator Access"
+    }
+  },
+  "admin": {
+    "title": "Admin Audit Log",
+    "subtitle": "Review site-wide audit activity across groups, accounts, and system events.",
+    "access": "Admin Access"
+  },
+  "defaults": {
+    "system": "System",
+    "no_metadata": "No additional metadata recorded for this event.",
+    "empty": "Empty",
+    "true": "True",
+    "false": "False"
+  },
+  "filters": {
+    "search_placeholder": "Search titles, descriptions, users, or actions",
+    "any_action": "Any Action",
+    "any_severity": "Any Severity",
+    "any_user": "Any User",
+    "any_group": "Any Group",
+    "action": {
+      "label": "By Action"
+    },
+    "severity": {
+      "label": "By Severity"
+    },
+    "user": {
+      "label": "By User"
+    },
+    "group": {
+      "label": "By Group"
+    },
+    "before_date": {
+      "label": "Before Date",
+      "placeholder": "Show entries on or before..."
+    },
+    "after_date": {
+      "label": "After Date",
+      "placeholder": "Show entries on or after..."
+    }
+  },
+  "severities": {
+    "info": "Info",
+    "moderation_change": "Moderation Change",
+    "severe_change": "Severe Change",
+    "critical": "Critical"
+  },
+  "scopes": {
+    "group": "Group",
+    "user": "User",
+    "character": "Character",
+    "admin": "Admin",
+    "system": "System",
+    "unknown": "Unknown"
+  },
+  "list": {
+    "empty": "No audit log entries match the current filters.",
+    "loading_more": "Load More",
+    "recorded_event": "Recorded audit event",
+    "details": "Details",
+    "changes": "Changes",
+    "show_changes": "Show",
+    "hide_changes": "Hide",
+    "old_value": "Previous",
+    "new_value": "New"
+  },
+  "activity": {
+    "user": {
+      "registered": "registered an account.",
+      "logged_in": "logged in.",
+      "social_account": {
+        "linked": "linked a social account."
+      },
+      "settings": {
+        "username_updated": "updated account username settings.",
+        "notifications_updated": "updated notification settings.",
+        "privacy_updated": "updated privacy settings."
+      }
+    },
+    "admin": {
+      "field_definition": {
+        "created": "created a field definition.",
+        "updated": "updated a field definition.",
+        "deleted": "deleted a field definition.",
+        "reordered": "reordered field definitions."
+      },
+      "character_class": {
+        "created": "created a character class.",
+        "updated": "updated a character class.",
+        "deleted": "deleted a character class."
+      },
+      "phantom_job": {
+        "created": "created a phantom job.",
+        "updated": "updated a phantom job.",
+        "deleted": "deleted a phantom job."
+      }
+    },
+    "character": {
+      "verified": "verified a character.",
+      "refresh_requested": "requested a character refresh.",
+      "made_primary": "made a character primary."
+    },
+    "group": {
+      "created": "created the group.",
+      "updated": "updated the group settings.",
+      "deleted": "deleted the group.",
+      "invite": {
+        "created": "created an invite link.",
+        "revoked": "revoked an invite link."
+      },
+      "member": {
+        "joined": "joined the group.",
+        "joined_via_invite": "joined the group via invite.",
+        "left": "left the group.",
+        "promoted": "promoted a member to moderator.",
+        "demoted": "changed a moderator back to member.",
+        "removed": "removed a member from the group.",
+        "banned": "banned a member from the group.",
+        "unbanned": "unbanned a member."
+      },
+      "ownership": {
+        "transferred": "transferred group ownership."
+      }
+    }
+  },
+  "fields": {
+    "name": "Name",
+    "description": "Description",
+    "profile_picture_url": "Profile Picture",
+    "discord_invite_url": "Discord Invite",
+    "datacenter": "Datacenter",
+    "is_public": "Public",
+    "is_visible": "Visible",
+    "role": "Role",
+    "membership_status": "Membership Status",
+    "ban_reason": "Ban Reason",
+    "owner_user_id": "Owner",
+    "previous_role": "Previous Role",
+    "invite_id": "Invite ID",
+    "invite_token": "Invite Token",
+    "max_uses": "Max Uses",
+    "expires_at": "Expires At",
+    "uses": "Uses",
+    "slug": "Slug",
+    "email": "Email",
+    "provider": "Provider",
+    "provider_user_id": "Provider User ID",
+    "login_method": "Login Method",
+    "registration_method": "Registration Method",
+    "remember": "Remember Me",
+    "linked_while_authenticated": "Linked While Authenticated",
+    "lodestone_id": "Lodestone ID",
+    "verification_method": "Verification Method",
+    "is_primary": "Primary Character",
+    "changed_fields": "Changed Fields"
+  },
+  "events": {
+    "user": {
+      "registered": "User registered",
+      "logged_in": "User logged in",
+      "social_account": {
+        "linked": "Social account linked"
+      },
+      "settings": {
+        "username_updated": "Username updated",
+        "notifications_updated": "Notification settings updated",
+        "privacy_updated": "Privacy settings updated"
+      }
+    },
+    "admin": {
+      "field_definition": {
+        "created": "Field definition created",
+        "updated": "Field definition updated",
+        "deleted": "Field definition deleted",
+        "reordered": "Field definitions reordered"
+      },
+      "character_class": {
+        "created": "Character class created",
+        "updated": "Character class updated",
+        "deleted": "Character class deleted"
+      },
+      "phantom_job": {
+        "created": "Phantom job created",
+        "updated": "Phantom job updated",
+        "deleted": "Phantom job deleted"
+      }
+    },
+    "character": {
+      "verified": "Character verified",
+      "refresh_requested": "Character refresh requested",
+      "made_primary": "Character made primary"
+    },
+    "group": {
+      "created": "Group created",
+      "updated": "Group settings updated",
+      "deleted": "Group deleted",
+      "invite": {
+        "created": "Invite link created",
+        "revoked": "Invite link revoked"
+      },
+      "member": {
+        "joined": "Member joined public group",
+        "joined_via_invite": "Member joined via invite",
+        "left": "Member left group",
+        "promoted": "Member promoted to moderator",
+        "demoted": "Moderator changed back to member",
+        "removed": "Member removed from group",
+        "banned": "Member banned from group",
+        "unbanned": "Member unbanned from group"
+      },
+      "ownership": {
+        "transferred": "Group ownership transferred"
+      }
+    }
+  }
+}

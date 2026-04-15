@@ -22,6 +22,7 @@ const groups = computed(() => [
 
 const admin = computed(() => [
 	{ label: t('navigation.sidebar.character_definitions'), href: '/admin/character-data', icon: 'i-lucide-user-pen' },
+	{ label: t('navigation.sidebar.admin_audit_log'), href: '/admin/audit-log', icon: 'i-lucide-scroll-text' },
 	{ label: t('navigation.sidebar.run_definitions'), href: '/admin/runs/definitions', icon: 'i-lucide-file-pen' },
 ])
 
@@ -29,6 +30,7 @@ const page = usePage()
 const full_logo = "/logos/full.png";
 const compact_logo = "/logos/compact.png";
 const currentUrl = computed(() => page.url)
+const isAdmin = computed(() => Boolean(page.props.auth?.user?.is_admin))
 const groupQuickLinks = computed(() => page.props.navigation?.group_quick_links ?? {
 	owned: [],
 	moderated: [],
@@ -163,19 +165,21 @@ watch([currentUrl, groupQuickLinkSections], () => {
 					</div>
 				</div>
 
-				<h1 v-if="!collapsed" class="sidebar-separator">{{t('navigation.sidebar.admin')}}</h1>
-				<div v-else class="sidebar-line-separator"></div>
+				<template v-if="isAdmin">
+					<h1 v-if="!collapsed" class="sidebar-separator">{{t('navigation.sidebar.admin')}}</h1>
+					<div v-else class="sidebar-line-separator"></div>
 
-				<Link
-					v-for="item in admin"
-					:key="item.href"
-					:href="item.href"
-					class="sidebar-link"
-					:class="currentUrl.startsWith(item.href) ? 'link-highlighted': 'link-default'"
-				>
-					<UIcon :name="item.icon" :class="!collapsed ? 'sidebar-link-icon' : 'sidebar-link-icon-large'" />
-					<span v-if="!collapsed">{{ item.label }}</span>
-				</Link>
+					<Link
+						v-for="item in admin"
+						:key="item.href"
+						:href="item.href"
+						class="sidebar-link"
+						:class="currentUrl.startsWith(item.href) ? 'link-highlighted': 'link-default'"
+					>
+						<UIcon :name="item.icon" :class="!collapsed ? 'sidebar-link-icon' : 'sidebar-link-icon-large'" />
+						<span v-if="!collapsed">{{ item.label }}</span>
+					</Link>
+				</template>
 			</div>
 		</template>
 

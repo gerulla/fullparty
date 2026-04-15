@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\SocialAccount;
 use App\Models\User;
+use App\Services\AuditLogger;
+use App\Support\Audit\AuditScope;
+use App\Support\Audit\AuditSeverity;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
@@ -11,6 +14,10 @@ use Laravel\Socialite\Socialite;
 
 class DiscordAuthController extends Controller
 {
+	public function __construct(
+		private readonly AuditLogger $auditLogger
+	) {}
+
 	public function redirect() {
 		return Socialite::driver('discord')->redirect();
 	}
@@ -47,11 +54,27 @@ class DiscordAuthController extends Controller
 			
 			Auth::login($socialAccount->user);
 			request()->session()->regenerate();
+
+			$this->auditLogger->log(
+				action: 'user.logged_in',
+				severity: AuditSeverity::INFO,
+				scopeType: AuditScope::USER,
+				scopeId: $socialAccount->user->id,
+				message: 'audit_log.events.user.logged_in',
+				actor: $socialAccount->user,
+				subject: $socialAccount->user,
+				metadata: [
+					'login_method' => 'social',
+					'provider' => $provider,
+				],
+			);
 			
 			return redirect()->intended(route('dashboard'));
 		}
 		
 		$user = null;
+		$createdUser = false;
+		$linkingExistingSession = auth()->check();
 		// If the user is already authenticated, associate this social account with the user.
 		if(auth()->check()) {
 			$user = auth()->user();
@@ -72,6 +95,8 @@ class DiscordAuthController extends Controller
 				'avatar_url' => $discordUser->getAvatar(),
 				'password' => null,
 			]);
+
+			$createdUser = true;
 		} else {
 			// If the user exists, check and update the avatar if it's not set
 			if (!$user->avatar_url && $discordUser->getAvatar()) {
@@ -99,9 +124,55 @@ class DiscordAuthController extends Controller
 				'avatar' => $discordUser->getAvatar(),
 			],
 		]);
+
+		if ($createdUser) {
+			$this->auditLogger->log(
+				action: 'user.registered',
+				severity: AuditSeverity::INFO,
+				scopeType: AuditScope::USER,
+				scopeId: $user->id,
+				message: 'audit_log.events.user.registered',
+				actor: $user,
+				subject: $user,
+				metadata: [
+					'registration_method' => 'social',
+					'provider' => $provider,
+					'email' => $user->email,
+				],
+			);
+		}
+
+		$this->auditLogger->log(
+			action: 'user.social_account.linked',
+			severity: AuditSeverity::INFO,
+			scopeType: AuditScope::USER,
+			scopeId: $user->id,
+			message: 'audit_log.events.user.social_account.linked',
+			actor: $user,
+			subject: $user,
+			metadata: [
+				'provider' => $provider,
+				'provider_user_id' => $providerUserId,
+				'linked_while_authenticated' => $linkingExistingSession,
+			],
+		);
 		
 		Auth::login($user);
 		request()->session()->regenerate();
+
+		$this->auditLogger->log(
+			action: 'user.logged_in',
+			severity: AuditSeverity::INFO,
+			scopeType: AuditScope::USER,
+			scopeId: $user->id,
+			message: 'audit_log.events.user.logged_in',
+			actor: $user,
+			subject: $user,
+			metadata: [
+				'login_method' => 'social',
+				'provider' => $provider,
+			],
+		);
 		
 		return redirect()->intended(route('dashboard'));
 	}

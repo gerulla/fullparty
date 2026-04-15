@@ -9,6 +9,7 @@ use App\Http\Controllers\DiscordAuthController;
 use App\Http\Controllers\GoogleAuthController;
 use App\Http\Controllers\GroupController;
 use App\Http\Controllers\GroupDashboardController;
+use App\Http\Controllers\GroupAuditLogController;
 use App\Http\Controllers\GroupInviteController;
 use App\Http\Controllers\GroupMemberController;
 use App\Http\Controllers\GroupMembershipController;
@@ -105,6 +106,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
 		Route::get('/runs/{scheduledRun}', [GroupRunController::class, 'show'])->name('groups.dashboard.runs.show');
 		Route::put('/runs/{scheduledRun}', [GroupRunController::class, 'update'])->name('groups.dashboard.runs.update');
 		Route::delete('/runs/{scheduledRun}', [GroupRunController::class, 'destroy'])->name('groups.dashboard.runs.destroy');
+		Route::get('/audit-log', [GroupAuditLogController::class, 'index'])->name('groups.dashboard.audit-log');
 		Route::get('/settings', [GroupSettingsController::class, 'show'])->name('groups.dashboard.settings');
 		Route::put('/settings', [GroupSettingsController::class, 'update'])->name('groups.dashboard.settings.update');
 	});
@@ -129,6 +131,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
 	//Admin Routes
 	Route::prefix('admin')->group(function () {
 		Route::get('/character-data', [AdminController::class, 'characterData'])->name('admin.character-data');
+		Route::get('/audit-log', [AdminController::class, 'auditLog'])->name('admin.audit-log');
 		Route::redirect('/characters/definitions', '/admin/character-data')->name('admin.characters.definitions');
 		Route::post('/characters/definitions', [AdminCharacterController::class, 'storeDefinition'])->name('admin.characters.definitions.store');
 		Route::put('/characters/definitions/{definition}', [AdminCharacterController::class, 'updateDefinition'])->name('admin.characters.definitions.update');

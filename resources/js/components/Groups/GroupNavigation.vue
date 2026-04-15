@@ -43,6 +43,12 @@ const rightitems = computed(() => {
 
 	return [
 		{
+			label: 'Audit Log',
+			icon: 'i-lucide-scroll-text',
+			href: route('groups.dashboard.audit-log', props.group.slug),
+			active: page.url.startsWith(route('groups.dashboard.audit-log', props.group.slug, false)),
+		},
+		{
 			label: 'Settings',
 			icon: 'i-lucide-settings-2',
 			href: route('groups.dashboard.settings', props.group.slug),

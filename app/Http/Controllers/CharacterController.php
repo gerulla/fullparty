@@ -11,9 +11,12 @@ use App\Http\Requests\UpdateCharacterRequest;
 use App\Models\Character;
 use App\Models\CharacterClass;
 use App\Models\PhantomJob;
+use App\Services\AuditLogger;
 use App\Services\FFLogs\ForkedTowerBloodProgressFetcher;
 use App\Services\Lodestone\LodestoneInputNormalizer;
 use App\Services\Lodestone\LodestoneScraper;
+use App\Support\Audit\AuditScope;
+use App\Support\Audit\AuditSeverity;
 use Carbon\Carbon;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Collection;
@@ -27,6 +30,10 @@ use Illuminate\Support\Facades\Redirect;
 
 class CharacterController extends Controller
 {
+	public function __construct(
+		private readonly AuditLogger $auditLogger
+	) {}
+
 	private function generateVerificationToken(): string
 	{
 		return 'FP-' . strtoupper(Str::random(10));
@@ -161,6 +168,21 @@ class CharacterController extends Controller
 			$character->verified_at = Carbon::now();
 			$character->token = null;
 			$character->save();
+
+			$this->auditLogger->log(
+				action: 'character.verified',
+				severity: AuditSeverity::INFO,
+				scopeType: AuditScope::CHARACTER,
+				scopeId: $character->id,
+				message: 'audit_log.events.character.verified',
+				actor: auth()->user(),
+				subject: $character,
+				metadata: [
+					'verification_method' => 'lodestone_token',
+					'lodestone_id' => $character->lodestone_id,
+					'is_primary' => $character->is_primary,
+				],
+			);
 			
 			return Redirect::back()->with('flash_data', [
 				'character_verification' => [
@@ -237,7 +259,30 @@ class CharacterController extends Controller
 				'user_id' => auth()->id(),
 				'is_primary' => $is_primary,
 			]);
+
+			if (!$character->verified_at) {
+				$character->update([
+					'verified_at' => Carbon::now(),
+				]);
+			}
 		}
+
+		$character->refresh();
+
+		$this->auditLogger->log(
+			action: 'character.verified',
+			severity: AuditSeverity::INFO,
+			scopeType: AuditScope::CHARACTER,
+			scopeId: $character->id,
+			message: 'audit_log.events.character.verified',
+			actor: auth()->user(),
+			subject: $character,
+			metadata: [
+				'verification_method' => 'xivauth',
+				'lodestone_id' => $character->lodestone_id,
+				'is_primary' => $character->is_primary,
+			],
+		);
 		
 		return Redirect::back()->with('flash_data', [
 			'xivauth_character_import' => [
@@ -259,6 +304,20 @@ class CharacterController extends Controller
 		if ($character->user_id !== auth()->id()) {
 			abort(403);
 		}
+
+		$this->auditLogger->log(
+			action: 'character.refresh_requested',
+			severity: AuditSeverity::INFO,
+			scopeType: AuditScope::CHARACTER,
+			scopeId: $character->id,
+			message: 'audit_log.events.character.refresh_requested',
+			actor: auth()->user(),
+			subject: $character,
+			metadata: [
+				'lodestone_id' => $character->lodestone_id,
+				'name' => $character->name,
+			],
+		);
 
 		$scraper = app(LodestoneScraper::class);
 		$forkedTowerBloodProgressFetcher = app(ForkedTowerBloodProgressFetcher::class);
@@ -376,6 +435,21 @@ class CharacterController extends Controller
 
 			$character->update(['is_primary' => true]);
 		});
+
+		$this->auditLogger->log(
+			action: 'character.made_primary',
+			severity: AuditSeverity::INFO,
+			scopeType: AuditScope::CHARACTER,
+			scopeId: $character->id,
+			message: 'audit_log.events.character.made_primary',
+			actor: auth()->user(),
+			subject: $character->fresh(),
+			metadata: [
+				'lodestone_id' => $character->lodestone_id,
+				'name' => $character->name,
+				'is_primary' => true,
+			],
+		);
 
 		return Redirect::back()->with('success', 'character_marked_primary');
 	}

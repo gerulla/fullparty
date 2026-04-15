@@ -5,7 +5,10 @@ namespace App\Http\Controllers;
 use App\Models\Group;
 use App\Models\GroupMembership;
 use App\Models\ScheduledRun;
+use App\Services\AuditLogger;
 use App\Services\ManagedImageStorage;
+use App\Support\Audit\AuditScope;
+use App\Support\Audit\AuditSeverity;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Http\RedirectResponse;
@@ -20,7 +23,8 @@ class GroupController extends Controller
     private const IMAGE_DIRECTORY = 'groups';
 
     public function __construct(
-        private readonly ManagedImageStorage $managedImageStorage
+        private readonly ManagedImageStorage $managedImageStorage,
+        private readonly AuditLogger $auditLogger
     ) {}
 
     public function index(Request $request): Response
@@ -166,6 +170,23 @@ class GroupController extends Controller
             return $group;
         });
 
+        $this->auditLogger->log(
+            action: 'group.created',
+            severity: AuditSeverity::MODERATION_CHANGE,
+            scopeType: AuditScope::GROUP,
+            scopeId: $group->id,
+            message: 'audit_log.events.group.created',
+            actor: auth()->user(),
+            subject: $group,
+            metadata: [
+                'name' => $group->name,
+                'slug' => $group->slug,
+                'datacenter' => $group->datacenter,
+                'is_public' => $group->is_public,
+                'is_visible' => $group->is_visible,
+            ],
+        );
+
         return redirect()->route('groups.show', $group)->with('success', 'group_created');
     }
 
@@ -194,8 +215,28 @@ class GroupController extends Controller
             abort(403);
         }
 
+        $groupSnapshot = [
+            'id' => $group->id,
+            'name' => $group->name,
+            'slug' => $group->slug,
+        ];
+
         $this->managedImageStorage->deleteManagedImage($group->profile_picture_url, self::IMAGE_DIRECTORY);
         $group->delete();
+
+        $this->auditLogger->log(
+            action: 'group.deleted',
+            severity: AuditSeverity::SEVERE_CHANGE,
+            scopeType: AuditScope::GROUP,
+            scopeId: $groupSnapshot['id'],
+            message: 'audit_log.events.group.deleted',
+            actor: auth()->user(),
+            subject: [
+                'subject_type' => Group::class,
+                'subject_id' => $groupSnapshot['id'],
+            ],
+            metadata: $groupSnapshot,
+        );
 
         return redirect()->route('groups.index')->with('success', 'group_deleted');
     }

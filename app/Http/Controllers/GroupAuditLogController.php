@@ -3,71 +3,74 @@
 namespace App\Http\Controllers;
 
 use App\Models\AuditLog;
-use App\Models\Character;
-use App\Models\CharacterClass;
-use App\Models\CharacterFieldDefinition;
-use App\Models\PhantomJob;
 use App\Models\Group;
-use App\Models\User;
 use Inertia\Inertia;
 use Inertia\Response;
 
-class AdminController extends Controller
+class GroupAuditLogController extends Controller
 {
-    /**
-     * Display the consolidated character data admin page.
-     */
-    public function characterData(): Response
+    public function index(Group $group): Response
     {
-        $this->authorizeAdminAccess();
-
-        return Inertia::render('Admin/CharacterData', [
-            'definitions' => CharacterFieldDefinition::ordered()->get(),
-            'characterClasses' => CharacterClass::query()
-                ->orderBy('role')
-                ->orderBy('name')
-                ->get(),
-            'phantomJobs' => PhantomJob::query()
-                ->orderBy('name')
-                ->get(),
+        $group->load([
+            'owner',
+            'memberships.user',
         ]);
-    }
 
-    public function auditLog(): Response
-    {
-        $this->authorizeAdminAccess();
+        $this->authorizeModeratorAccess($group);
 
         $auditLogs = AuditLog::query()
             ->with(['actor', 'subject'])
+            ->where('scope_type', 'group')
+            ->where('scope_id', $group->id)
             ->latest('created_at')
             ->get();
-        $scopeEntities = $this->resolveScopeEntities($auditLogs);
 
-        return Inertia::render('Admin/AuditLog', [
+        return Inertia::render('Dashboard/Groups/AuditLog/Index', [
+            'group' => [
+                'id' => $group->id,
+                'name' => $group->name,
+                'description' => $group->description,
+                'profile_picture_url' => $group->profile_picture_url,
+                'discord_invite_url' => $group->discord_invite_url,
+                'datacenter' => $group->datacenter,
+                'is_public' => $group->is_public,
+                'is_visible' => $group->is_visible,
+                'slug' => $group->slug,
+                'owner' => [
+                    'id' => $group->owner?->id,
+                    'name' => $group->owner?->name,
+                    'avatar_url' => $group->owner?->avatar_url,
+                ],
+                'current_user_role' => $group->memberships
+                    ->firstWhere('user_id', auth()->id())
+                    ?->role,
+                'permissions' => [
+                    'can_manage_group' => $group->isOwnedBy(auth()->id()),
+                    'can_manage_members' => $group->hasModeratorAccess(auth()->id()),
+                    'can_manage_roles' => $group->isOwnedBy(auth()->id()),
+                    'can_view_bans' => $group->hasModeratorAccess(auth()->id()),
+                ],
+            ],
             'auditLogs' => $auditLogs
                 ->map(fn (AuditLog $auditLog) => [
                     'id' => $auditLog->id,
                     'action' => $auditLog->action,
                     'severity' => $auditLog->severity,
-                    'scope' => [
-                        'type' => $auditLog->scope_type,
-                        'id' => $auditLog->scope_id,
-                        'label' => $scopeEntities[$auditLog->scope_type][$auditLog->scope_id] ?? null,
-                    ],
                     'actor' => [
                         'id' => $auditLog->actor?->id,
-                        'name' => $auditLog->actor?->name ?? 'System',
+                        'name' => $auditLog->actor?->name ?? __('audit_log.defaults.system'),
                         'avatar_url' => $auditLog->actor?->avatar_url,
                         'is_system' => $auditLog->actor === null,
                     ],
                     'subject' => [
                         'type' => $auditLog->subject_type,
-                        'id' => $auditLog->subject?->id,
-                        'name' => $auditLog->subject?->name ?? 'System',
-                        'avatar_url' => $auditLog->subject?->avatar_url,
-                        'is_system' => $auditLog->subject === null,
-                    ],
-                    'title' => $auditLog->message,
+						'id' => $auditLog->subject?->id,
+						'name' => $auditLog->subject?->name ?? __('audit_log.defaults.system'),
+						'avatar_url' => $auditLog->subject?->avatar_url,
+						'is_system' => $auditLog->subject === null,
+					],
+                    'title' => __($auditLog->message),
+                    'summary' => $this->resolveSummary($auditLog),
                     'changes' => $this->resolveChanges($auditLog->metadata['changes'] ?? null),
                     'details' => $this->resolveMetadataDetails($auditLog->metadata ?? []),
                     'search_text' => $this->buildSearchText($auditLog),
@@ -91,9 +94,9 @@ class AdminController extends Controller
                         'value' => $severity,
                         'label' => 'audit_log.severities.'.$severity,
                     ]),
-                'users' => $auditLogs
-                    ->pluck('actor')
-                    ->filter()
+                'users' => $group->memberships
+                    ->map(fn ($membership) => $membership->user)
+                    ->merge($auditLogs->pluck('actor')->filter())
                     ->unique('id')
                     ->sortBy('name')
                     ->values()
@@ -104,75 +107,35 @@ class AdminController extends Controller
                     ->when($auditLogs->contains(fn (AuditLog $auditLog) => $auditLog->actor === null), function ($users) {
                         return $users->prepend([
                             'value' => '__system__',
-                            'label' => 'audit_log.defaults.system',
+                            'label' => __('audit_log.defaults.system'),
                         ]);
                     })
-                    ->values(),
-                'groups' => collect($scopeEntities['group'] ?? [])
-                    ->map(fn (string $name, int $id) => [
-                        'value' => (string) $id,
-                        'label' => $name,
-                    ])
-                    ->sortBy('label')
                     ->values(),
             ],
         ]);
     }
 
-    /**
-     * @param  \Illuminate\Support\Collection<int, AuditLog>  $auditLogs
-     * @return array<string, array<int, string>>
-     */
-    private function resolveScopeEntities($auditLogs): array
+    private function resolveSummary(AuditLog $auditLog): string
     {
-        $groupIds = $auditLogs
-            ->where('scope_type', 'group')
-            ->pluck('scope_id')
-            ->filter()
-            ->unique()
-            ->all();
-
-        $userIds = $auditLogs
-            ->where('scope_type', 'user')
-            ->pluck('scope_id')
-            ->filter()
-            ->unique()
-            ->all();
-
-        $characterIds = $auditLogs
-            ->where('scope_type', 'character')
-            ->pluck('scope_id')
-            ->filter()
-            ->unique()
-            ->all();
-
-        return [
-            'group' => Group::query()
-                ->whereIn('id', $groupIds)
-                ->get(['id', 'name'])
-                ->pluck('name', 'id')
-                ->all(),
-            'user' => User::query()
-                ->whereIn('id', $userIds)
-                ->get(['id', 'name'])
-                ->pluck('name', 'id')
-                ->all(),
-            'character' => Character::query()
-                ->whereIn('id', $characterIds)
-                ->get(['id', 'name'])
-                ->pluck('name', 'id')
-                ->all(),
-        ];
-    }
-
-    private function authorizeAdminAccess(): void
-    {
-        if (!auth()->user()?->is_admin) {
-            abort(403);
+        if (is_string($summary = __('audit_log.activity.'.$auditLog->action)) && $summary !== 'audit_log.activity.'.$auditLog->action) {
+            return $summary;
         }
+
+        $metadata = $auditLog->metadata ?? [];
+
+        if (!is_array($metadata) || $metadata === []) {
+            return __('audit_log.defaults.no_metadata');
+        }
+
+        $details = $this->resolveMetadataDetails($metadata);
+
+        return $details !== []
+            ? implode(' | ', $details)
+            : __('audit_log.defaults.no_metadata');
     }
 
     /**
+     * @param  array<string, mixed>  $metadata
      * @return array<int, array{label: string, old: string, new: string}>
      */
     private function resolveChanges(mixed $changes): array
@@ -224,6 +187,10 @@ class AdminController extends Controller
             ->all();
     }
 
+    /**
+     * @param  AuditLog  $auditLog
+     * @return string
+     */
     private function buildSearchText(AuditLog $auditLog): string
     {
         $metadata = is_array($auditLog->metadata) ? $auditLog->metadata : [];
@@ -233,10 +200,10 @@ class AdminController extends Controller
             ->all());
 
         return implode(' ', array_filter([
-            $auditLog->message,
+            __($auditLog->message),
+            $this->resolveSummary($auditLog),
             $auditLog->action,
             $auditLog->severity,
-            $auditLog->scope_type,
             $auditLog->actor?->name,
             $auditLog->subject?->name,
             $details,
@@ -273,5 +240,12 @@ class AdminController extends Controller
         $stringValue = trim((string) $value);
 
         return $stringValue !== '' ? $stringValue : __('audit_log.defaults.empty');
+    }
+
+    private function authorizeModeratorAccess(Group $group): void
+    {
+        if (!$group->hasModeratorAccess(auth()->id())) {
+            abort(403);
+        }
     }
 }

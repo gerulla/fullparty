@@ -1,0 +1,112 @@
+{
+  "title": "グループ設定",
+  "subtitle": "グループの一般設定とアクセスに関わる詳細を管理します。",
+  "access": {
+    "owner": "オーナー権限",
+    "moderator": "モデレーター権限"
+  },
+  "general": {
+    "title": "一般設定",
+    "subtitle": "グループの見え方や参加方法を定義する変更可能な情報を更新します。",
+    "owner_only_notice": "これらの設定を更新できるのはグループオーナーのみです。モデレーターはここで確認できます。",
+    "visibility_summary_label": "公開設定の概要",
+    "visibility_summary": {
+      "default_name": "このグループ",
+      "public_visible": "{name} は誰でも参加でき、検索やプロフィールに表示されます。",
+      "public_hidden": "{name} は誰でも参加できますが、発見画面や検索可能なプロフィールには表示されません。",
+      "private_visible": "{name} は招待経由でのみ参加できますが、検索やプロフィールには表示されます。",
+      "private_hidden": "{name} は招待経由でのみ参加でき、発見画面や検索可能なプロフィールには表示されません。"
+    },
+    "fields": {
+      "name": { "placeholder": "Forked Tower Enjoyers" },
+      "description": { "placeholder": "グループの目的や対象メンバーを説明してください。" },
+      "profile_picture": {
+        "placeholder": "画像を選択",
+        "help": "任意。現在のグループ画像を置き換える新しい画像をアップロードします。",
+        "preview_alt": "グループプロフィール画像のプレビュー",
+        "preview_label": "表示される切り抜きプレビュー",
+        "preview_help": "このプレビューは、中央の正方形トリミングがリサイズされ、グループのプロフィール画像として使われることを示します。"
+      },
+      "discord_invite_url": {
+        "placeholder": "https://discord.gg/yourserver",
+        "help": "任意。メンバーが簡単に参加できるように Discord 招待を追加します。"
+      },
+      "datacenter": { "placeholder": "データセンターを選択" },
+      "is_public": {
+        "label": "公開グループ",
+        "help": "公開グループには誰でも参加でき、今後の公開 Runs は外部ユーザーにも表示されます。"
+      },
+      "is_visible": {
+        "label": "検索に表示する",
+        "help": "表示可能なグループは、非公開でも検索や発見に表示されます。"
+      }
+    },
+    "toasts": { "updated": "グループ設定を更新しました。" }
+  },
+  "invites": {
+    "title": "招待リンク",
+    "subtitle": "新規メンバー向けの招待リンクを管理します。",
+    "create_button": "リンクを作成",
+    "empty": "まだ招待リンクは作成されていません。",
+    "system_creator": "システム",
+    "created_by": "{name} が {date} に作成",
+    "uses": "使用回数",
+    "expires": "有効期限",
+    "never": "なし",
+    "unlimited": "無制限",
+    "statuses": { "active": "有効", "expired": "期限切れ", "system": "システム" },
+    "create_modal": {
+      "title": "招待リンクを作成",
+      "subtitle": "使用回数や期限の上限を任意で設定できます。空欄のままなら制限なしです。",
+      "max_uses": { "label": "最大使用回数", "placeholder": "無制限にする場合は空欄" },
+      "expires_in": {
+        "label": "有効期限",
+        "placeholder": "期限を選択",
+        "options": {
+          "12_hours": "12時間",
+          "24_hours": "24時間",
+          "1_day": "1日",
+          "2_days": "2日",
+          "3_days": "3日",
+          "4_days": "4日",
+          "1_week": "1週間",
+          "unlimited": "なし"
+        }
+      }
+    },
+    "toasts": { "created": "招待リンクを作成しました。", "copied": "招待リンクをコピーしました。", "revoked": "招待リンクを無効化しました。" }
+  },
+  "ownership": {
+    "title": "所有権",
+    "subtitle": "グループを引き継ぐ必要がある場合、既存メンバーに所有権を移譲できます。",
+    "owner_only_notice": "所有権を移譲できるのは現在のオーナーのみです。",
+    "warning_title": "所有権の移譲は影響の大きい操作です。",
+    "warning_description": "移譲後、あなたはオーナー権限を失い、グループ内ではモデレーターになります。",
+    "selected_member": "新しいオーナー",
+    "empty": "所有権を移譲するには、グループ内に自分以外のメンバーが少なくとも1人必要です。",
+    "transfer_button": "所有権を移譲",
+    "confirm_modal": {
+      "title": "所有権を移譲",
+      "subtitle": "新しいオーナーにするメンバーを選択して、移譲を確定してください。",
+      "member": { "label": "メンバーを選択", "placeholder": "メンバーを選んでください" },
+      "warning": "この操作はこの画面から元に戻せません。実行後、あなたは即座にモデレーターになります。",
+      "confirm_button": "移譲を確定"
+    },
+    "toasts": { "transferred": "所有権を移譲しました。" }
+  },
+  "danger_zone": {
+    "title": "危険ゾーン",
+    "subtitle": "本当に削除する必要がある場合のみ、グループを完全に削除してください。",
+    "owner_only_notice": "このグループを削除できるのは現在のオーナーのみです。",
+    "warning_title": "この操作は元に戻せません。",
+    "warning_description": "グループを削除すると、設定、招待、メンバーシップ、予定された Runs が完全に削除されます。",
+    "delete_button": "グループを削除",
+    "confirm_modal": {
+      "title": "グループを削除",
+      "subtitle": "{name} を完全に削除します。続行することを確認してください。",
+      "warning": "削除すると、このグループと関連データはすべて完全に失われます。",
+      "confirm_button": "はい、グループを削除します"
+    },
+    "toasts": { "deleted": "グループを削除しました。" }
+  }
+}

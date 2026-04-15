@@ -35,7 +35,7 @@ const { t } = useI18n();
 					<UIcon name="i-lucide-mail" size="28" class="text-primary-500"/>
 				</div>
 				<div class="social-info">
-					<p class="font-semibold">{{t('settings.account.email')}}</p>
+					<p class="font-semibold">{{ t('general.email') }}</p>
 					<p class="text-sm font-muted">{{ user.email }}</p>
 				</div>
 				<div class="social-action">

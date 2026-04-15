@@ -4,8 +4,6 @@
   "table_header": "Field Definitions",
   "search_placeholder": "Search field definitions...",
   "table": {
-    "name": "Name",
-    "description": "Description",
     "type": "Type",
     "group": "Group",
     "source_type": "Source",
@@ -99,7 +97,6 @@
       "placeholder": "Comma-separated tags, e.g., public, profile-card"
     },
     "description": {
-      "label": "Description",
       "placeholder": "Optional description for this field"
     }
   }

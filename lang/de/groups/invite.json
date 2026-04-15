@@ -1,0 +1,21 @@
+{
+  "title": "Gruppeneinladung",
+  "subtitle": "Du wurdest eingeladen, dieser Gruppe beizutreten.",
+  "states": {
+    "member": "Du bist bereits Teil dieser Gruppe.",
+    "active": "Diese Einladung ist aktiv.",
+    "expired": "Diese Einladung ist nicht mehr verfügbar."
+  },
+  "actions": {
+    "accept": "Einladung annehmen",
+    "sign_in": "Zum Annehmen anmelden",
+    "open_dashboard": "Gruppen-Dashboard öffnen",
+    "decline": "Ablehnen",
+    "unavailable": "Einladung nicht verfügbar"
+  },
+  "messages": {
+    "guest": "Melde dich mit deinem Konto an, um diese Einladung anzunehmen und der Gruppe beizutreten.",
+    "accepting": "Einladung wird angenommen...",
+    "already_member": "Du bist bereits Teil dieser Gruppe."
+  }
+}

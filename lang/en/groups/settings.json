@@ -19,15 +19,12 @@
     },
     "fields": {
       "name": {
-        "label": "Group Name",
         "placeholder": "Forked Tower Enjoyers"
       },
       "description": {
-        "label": "Description",
         "placeholder": "Tell people what your group focuses on and who it is for."
       },
       "profile_picture": {
-        "label": "Profile Picture",
         "placeholder": "Choose an image",
         "help": "Optional. Upload a new image to replace the current group picture.",
         "preview_alt": "Group profile picture preview",
@@ -35,12 +32,10 @@
         "preview_help": "This preview shows the centered square crop that will be resized and used as your group's profile image."
       },
       "discord_invite_url": {
-        "label": "Discord Invite URL",
         "placeholder": "https://discord.gg/yourserver",
         "help": "Optional. Add a Discord invite so members can easily join your server."
       },
       "datacenter": {
-        "label": "Data Center",
         "placeholder": "Select a data center"
       },
       "is_public": {

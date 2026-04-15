@@ -3,7 +3,6 @@
   "section_badge": "{count} jobs",
   "search_placeholder": "Search phantom jobs...",
   "table": {
-    "name": "Name",
     "max_level": "Max Level",
     "icon": "Icon",
     "black_icon": "Black Icon",

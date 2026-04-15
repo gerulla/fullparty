@@ -1,0 +1,45 @@
+{
+  "title": "Einstellungen",
+  "subtitle": "Verwalte deine Kontoeinstellungen und Benachrichtigungen.",
+  "account": {
+    "title": "Kontoeinstellungen",
+    "save": "Änderungen speichern"
+  },
+  "connect": "Verbinden",
+  "connected": "Verbunden",
+  "not_connected": "Nicht verbunden",
+  "connected_accounts": "Verbundene Konten",
+  "notifications": {
+    "title": "Benachrichtigungen",
+    "save": "Einstellungen speichern",
+    "run_reminders": "Run-Erinnerungen",
+    "application_notifications": "Bewerbungs-Updates",
+    "group_updates": "Gruppen-Updates",
+    "assignment_updates": "Run-Zuweisungen",
+    "email_notifications": "E-Mail-Benachrichtigungen",
+    "discord_notifications": "Discord-Benachrichtigungen",
+    "run_reminders_description": "Benachrichtigt werden, bevor geplante Runs beginnen",
+    "application_notifications_description": "Benachrichtigungen, wenn deine Bewerbungen geprüft werden",
+    "group_updates_description": "Benachrichtigungen, wenn du in Gruppen eingeladen wirst",
+    "assignment_updates_description": "Benachrichtigungen, wenn dir ein Run-Slot zugewiesen wird",
+    "email_notifications_description": "Benachrichtigungen per E-Mail erhalten",
+    "discord_notifications_description": "Benachrichtigungen an Discord senden (Verbindung erforderlich)"
+  },
+  "privacy": {
+    "title": "Datenschutz & Sicherheit",
+    "profile_visibility": "Profilsichtbarkeit",
+    "profile_visibility_description": "Mache dein Profil für andere Benutzer sichtbar",
+    "show_character_data": "Charakterdaten anzeigen",
+    "show_character_data_description": "Job-Level und Fortschritt in deinem Profil anzeigen",
+    "save": "Einstellungen speichern",
+    "danger_zone": "Gefahrenbereich",
+    "delete_account": "Konto löschen",
+    "delete_account_description": "Wenn du dein Konto löschst, gibt es kein Zurück mehr. Bitte sei dir sicher."
+  },
+  "toasts": {
+    "username_updated": "Benutzername erfolgreich aktualisiert",
+    "notification_updated": "Benachrichtigungseinstellungen erfolgreich aktualisiert",
+    "privacy_updated": "Datenschutzeinstellungen erfolgreich aktualisiert",
+    "title": "Erfolg!"
+  }
+}

@@ -1,0 +1,235 @@
+{
+  "group": {
+    "title": "監査ログ",
+    "subtitle": "このグループのモデレーションおよび管理アクションを確認します。",
+    "access": {
+      "owner": "オーナー権限",
+      "moderator": "モデレーター権限"
+    }
+  },
+  "admin": {
+    "title": "管理者監査ログ",
+    "subtitle": "グループ、アカウント、システムイベント全体の監査活動を確認します。",
+    "access": "管理者権限"
+  },
+  "defaults": {
+    "system": "システム",
+    "no_metadata": "このイベントには追加のメタデータが記録されていません。",
+    "empty": "空",
+    "true": "真",
+    "false": "偽"
+  },
+  "filters": {
+    "search_placeholder": "タイトル、説明、ユーザー、アクションを検索",
+    "any_action": "すべてのアクション",
+    "any_severity": "すべての重大度",
+    "any_user": "すべてのユーザー",
+    "any_group": "すべてのグループ",
+    "action": {
+      "label": "アクションで絞り込み"
+    },
+    "severity": {
+      "label": "重大度で絞り込み"
+    },
+    "user": {
+      "label": "ユーザーで絞り込み"
+    },
+    "group": {
+      "label": "グループで絞り込み"
+    },
+    "before_date": {
+      "label": "この日付以前",
+      "placeholder": "この日またはそれ以前の記録を表示..."
+    },
+    "after_date": {
+      "label": "この日付以後",
+      "placeholder": "この日またはそれ以後の記録を表示..."
+    }
+  },
+  "severities": {
+    "info": "情報",
+    "moderation_change": "モデレーション変更",
+    "severe_change": "重大変更",
+    "critical": "致命的"
+  },
+  "scopes": {
+    "group": "グループ",
+    "user": "ユーザー",
+    "character": "キャラクター",
+    "admin": "管理",
+    "system": "システム",
+    "unknown": "不明"
+  },
+  "list": {
+    "empty": "現在のフィルターに一致する監査ログはありません。",
+    "loading_more": "さらに読み込む",
+    "recorded_event": "記録された監査イベント",
+    "details": "詳細",
+    "changes": "変更",
+    "show_changes": "表示",
+    "hide_changes": "非表示",
+    "old_value": "変更前",
+    "new_value": "変更後"
+  },
+  "activity": {
+    "user": {
+      "registered": "がアカウントを登録しました。",
+      "logged_in": "がログインしました。",
+      "social_account": {
+        "linked": "がソーシャルアカウントを連携しました。"
+      },
+      "settings": {
+        "username_updated": "がユーザー名設定を更新しました。",
+        "notifications_updated": "が通知設定を更新しました。",
+        "privacy_updated": "がプライバシー設定を更新しました。"
+      }
+    },
+    "admin": {
+      "field_definition": {
+        "created": "がフィールド定義を作成しました。",
+        "updated": "がフィールド定義を更新しました。",
+        "deleted": "がフィールド定義を削除しました。",
+        "reordered": "がフィールド定義の順序を変更しました。"
+      },
+      "character_class": {
+        "created": "がキャラクタークラスを作成しました。",
+        "updated": "がキャラクタークラスを更新しました。",
+        "deleted": "がキャラクタークラスを削除しました。"
+      },
+      "phantom_job": {
+        "created": "がファントムジョブを作成しました。",
+        "updated": "がファントムジョブを更新しました。",
+        "deleted": "がファントムジョブを削除しました。"
+      }
+    },
+    "character": {
+      "verified": "がキャラクターを確認しました。",
+      "refresh_requested": "がキャラクター更新を要求しました。",
+      "made_primary": "がキャラクターをメインに設定しました。"
+    },
+    "group": {
+      "created": "がグループを作成しました。",
+      "updated": "がグループ設定を更新しました。",
+      "deleted": "がグループを削除しました。",
+      "invite": {
+        "created": "が招待リンクを作成しました。",
+        "revoked": "が招待リンクを無効化しました。"
+      },
+      "member": {
+        "joined": "がグループに参加しました。",
+        "joined_via_invite": "が招待経由でグループに参加しました。",
+        "left": "がグループを退出しました。",
+        "promoted": "がメンバーをモデレーターに昇格しました。",
+        "demoted": "がモデレーターをメンバーに降格しました。",
+        "removed": "がメンバーをグループから削除しました。",
+        "banned": "がメンバーをグループからBANしました。",
+        "unbanned": "がメンバーのBANを解除しました。"
+      },
+      "ownership": {
+        "transferred": "がグループの所有権を移譲しました。"
+      }
+    }
+  },
+  "activity_targeted": {
+    "group": {
+      "member": {
+        "promoted": "が昇格しました",
+        "demoted": "が降格しました",
+        "removed": "を削除しました",
+        "banned": "をBANしました",
+        "unbanned": "のBANを解除しました",
+        "joined_via_invite": "が招待を承認しました:"
+      }
+    }
+  },
+  "fields": {
+    "name": "名前",
+    "description": "説明",
+    "profile_picture_url": "プロフィール画像",
+    "discord_invite_url": "Discord招待",
+    "datacenter": "データセンター",
+    "is_public": "公開",
+    "is_visible": "表示",
+    "role": "ロール",
+    "membership_status": "メンバーシップ状態",
+    "ban_reason": "BAN理由",
+    "owner_user_id": "オーナー",
+    "previous_role": "以前のロール",
+    "invite_id": "招待ID",
+    "invite_token": "招待トークン",
+    "max_uses": "最大使用回数",
+    "expires_at": "有効期限",
+    "uses": "使用回数",
+    "slug": "Slug",
+    "email": "メールアドレス",
+    "provider": "プロバイダー",
+    "provider_user_id": "プロバイダーユーザーID",
+    "login_method": "ログイン方法",
+    "registration_method": "登録方法",
+    "remember": "ログイン状態を保持",
+    "linked_while_authenticated": "認証中に連携",
+    "lodestone_id": "Lodestone ID",
+    "verification_method": "確認方法",
+    "is_primary": "メインキャラクター",
+    "changed_fields": "変更された項目"
+  },
+  "events": {
+    "user": {
+      "registered": "ユーザー登録",
+      "logged_in": "ユーザーログイン",
+      "social_account": {
+        "linked": "ソーシャルアカウント連携"
+      },
+      "settings": {
+        "username_updated": "ユーザー名を更新",
+        "notifications_updated": "通知設定を更新",
+        "privacy_updated": "プライバシー設定を更新"
+      }
+    },
+    "admin": {
+      "field_definition": {
+        "created": "フィールド定義を作成",
+        "updated": "フィールド定義を更新",
+        "deleted": "フィールド定義を削除",
+        "reordered": "フィールド定義の順序を変更"
+      },
+      "character_class": {
+        "created": "キャラクタークラスを作成",
+        "updated": "キャラクタークラスを更新",
+        "deleted": "キャラクタークラスを削除"
+      },
+      "phantom_job": {
+        "created": "ファントムジョブを作成",
+        "updated": "ファントムジョブを更新",
+        "deleted": "ファントムジョブを削除"
+      }
+    },
+    "character": {
+      "verified": "キャラクター確認",
+      "refresh_requested": "キャラクター更新を要求",
+      "made_primary": "キャラクターをメインに設定"
+    },
+    "group": {
+      "created": "グループ作成",
+      "updated": "グループ設定を更新",
+      "deleted": "グループ削除",
+      "invite": {
+        "created": "招待リンクを作成",
+        "revoked": "招待リンクを無効化"
+      },
+      "member": {
+        "joined": "メンバーが公開グループに参加",
+        "joined_via_invite": "メンバーが招待経由で参加",
+        "left": "メンバーがグループを退出",
+        "promoted": "メンバーをモデレーターに昇格",
+        "demoted": "モデレーターをメンバーに降格",
+        "removed": "メンバーをグループから削除",
+        "banned": "メンバーをグループからBAN",
+        "unbanned": "メンバーのBANを解除"
+      },
+      "ownership": {
+        "transferred": "グループ所有権を移譲"
+      }
+    }
+  }
+}

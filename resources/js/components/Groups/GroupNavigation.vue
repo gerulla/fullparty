@@ -2,6 +2,7 @@
 import { computed } from 'vue'
 import { route } from 'ziggy-js'
 import { Link, usePage } from '@inertiajs/vue3'
+import { useI18n } from 'vue-i18n'
 
 const props = defineProps<{
 	group: {
@@ -14,22 +15,23 @@ const props = defineProps<{
 }>()
 
 const page = usePage()
+const { t } = useI18n()
 
 const leftitems = computed(() => [
 	{
-		label: 'General',
+		label: t('groups.index.navigation.general'),
 		icon: 'i-lucide-layout-dashboard',
 		href: route('groups.dashboard', props.group.slug),
 		active: page.url === route('groups.dashboard', props.group.slug, false),
 	},
 	{
-		label: 'Runs',
+		label: t('groups.index.navigation.runs'),
 		icon: 'i-lucide-calendar-range',
 		href: route('groups.dashboard.runs.index', props.group.slug),
 		active: page.url.startsWith(route('groups.dashboard.runs.index', props.group.slug, false)),
 	},
 	{
-		label: 'Members',
+		label: t('groups.index.navigation.members'),
 		icon: 'i-lucide-users',
 		href: route('groups.dashboard.members', props.group.slug),
 		active: page.url.startsWith(route('groups.dashboard.members', props.group.slug, false)),
@@ -43,13 +45,13 @@ const rightitems = computed(() => {
 
 	return [
 		{
-			label: 'Audit Log',
+			label: t('groups.index.navigation.audit_log'),
 			icon: 'i-lucide-scroll-text',
 			href: route('groups.dashboard.audit-log', props.group.slug),
 			active: page.url.startsWith(route('groups.dashboard.audit-log', props.group.slug, false)),
 		},
 		{
-			label: 'Settings',
+			label: t('groups.index.navigation.settings'),
 			icon: 'i-lucide-settings-2',
 			href: route('groups.dashboard.settings', props.group.slug),
 			active: page.url.startsWith(route('groups.dashboard.settings', props.group.slug, false)),

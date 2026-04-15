@@ -38,11 +38,9 @@
   "table": {
     "columns": {
       "member": "Member",
-      "role": "Role",
       "joined_at": "Joined",
       "runs_participated": "Runs",
-      "characters": "Characters",
-      "actions": "Actions"
+      "characters": "Characters"
     }
   },
   "actions": {

@@ -130,6 +130,18 @@
       }
     }
   },
+  "activity_targeted": {
+    "group": {
+      "member": {
+        "promoted": "promoted",
+        "demoted": "demoted",
+        "removed": "removed",
+        "banned": "banned",
+        "unbanned": "unbanned",
+        "joined_via_invite": "accepted an invite for"
+      }
+    }
+  },
   "fields": {
     "name": "Name",
     "description": "Description",

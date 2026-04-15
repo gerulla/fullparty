@@ -1,0 +1,75 @@
+{
+  "title": "Gruppenmitglieder",
+  "subtitle": "Überprüfe die Mitgliederliste deiner Gruppe, verknüpfte Charaktere und Mitgliedschaftsaktionen an einem Ort.",
+  "access": {
+    "owner": "Besitzerzugriff",
+    "moderator": "Moderatorzugriff",
+    "member": "Mitgliedszugriff"
+  },
+  "roster": {
+    "title": "Mitgliederliste",
+    "subtitle": "Sieh, wer in der Gruppe ist, welche Charaktere verknüpft sind und welche Aktionen dir zur Verfügung stehen.",
+    "count": "{count} Mitglieder",
+    "search_placeholder": "Mitglieder suchen",
+    "joined_at": "Beigetreten {date}",
+    "runs_participated": "{count} absolvierte Runs",
+    "characters_label": "Charaktere",
+    "no_characters": "Noch keine verifizierten Charaktere verknüpft.",
+    "not_available": "Nicht verfügbar",
+    "empty": "Noch keine Mitglieder zum Anzeigen."
+  },
+  "bans": {
+    "title": "Gebannte Mitglieder",
+    "subtitle": "Überprüfe Benutzer, die dieser Gruppe nicht erneut beitreten dürfen.",
+    "count": "{count} gebannt",
+    "search_placeholder": "Gebannte Mitglieder suchen",
+    "empty": "Keine gebannten Mitglieder vorhanden.",
+    "columns": {
+      "member": "Mitglied",
+      "characters": "Charaktere",
+      "reason": "Grund",
+      "banned_by": "Gebannt von",
+      "banned_at": "Gebannt am",
+      "actions": "Aktionen"
+    },
+    "no_reason": "Kein Grund angegeben",
+    "system": "System"
+  },
+  "table": {
+    "columns": {
+      "member": "Mitglied",
+      "joined_at": "Beigetreten",
+      "runs_participated": "Runs",
+      "characters": "Charaktere"
+    }
+  },
+  "actions": {
+    "promote": "Befördern",
+    "demote": "Zurückstufen",
+    "kick": "Entfernen",
+    "ban": "Bannen",
+    "unban": "Entbannen"
+  },
+  "kick_modal": {
+    "title": "{name} entfernen?",
+    "subtitle": "Dadurch wird das ausgewählte Mitglied aus {group} entfernt.",
+    "warning": "Die Person verliert sofort den Dashboard-Zugriff und muss über einen öffentlichen Beitritt oder eine neue Einladung erneut beitreten."
+  },
+  "ban_modal": {
+    "title": "{name} bannen?",
+    "subtitle": "Dadurch wird das ausgewählte Mitglied aus {group} entfernt und kann nicht erneut beitreten.",
+    "warning": "Gebannte Benutzer können sichtbare Gruppen weiterhin sehen, aber weder über öffentlichen Zugang noch über Einladungslinks beitreten.",
+    "reason": {
+      "label": "Grund",
+      "help": "Optional. Füge eine Notiz hinzu, warum dieser Bann verhängt wurde.",
+      "placeholder": "Gib einen optionalen Grund für den Bann ein"
+    }
+  },
+  "toasts": {
+    "promoted": "Mitglied zum Moderator befördert.",
+    "demoted": "Moderator wieder zum Mitglied zurückgestuft.",
+    "removed": "Mitglied aus der Gruppe entfernt.",
+    "banned": "Mitglied aus der Gruppe gebannt.",
+    "unbanned": "Mitglied erfolgreich entbannt."
+  }
+}

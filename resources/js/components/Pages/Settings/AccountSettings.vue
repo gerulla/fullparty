@@ -25,11 +25,11 @@ const submit = () => {
 			</div>
 		</template>
 		<form @submit.prevent="submit" class="w-full flex flex-col items-start gap-4">
-			<UFormField class="w-full" :label="t('settings.account.username')">
-				<UInput v-model="form.username" :placeholder="t('settings.account.username')" size="xl" class="w-full"/>
+			<UFormField class="w-full" :label="t('general.username')">
+				<UInput v-model="form.username" :placeholder="t('general.username')" size="xl" class="w-full"/>
 			</UFormField>
-			<UFormField class="w-full" :label="t('settings.account.email')">
-				<UInput v-model="user.email" :placeholder="t('settings.account.email')" size="xl" class="w-full" disabled/>
+			<UFormField class="w-full" :label="t('general.email')">
+				<UInput v-model="user.email" :placeholder="t('general.email')" size="xl" class="w-full" disabled/>
 			</UFormField>
 			<UButton type="submit" :label="t('settings.account.save')" size="lg" color="neutral" :loading="form.processing"/>
 		</form>

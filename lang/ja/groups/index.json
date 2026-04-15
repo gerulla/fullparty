@@ -1,0 +1,127 @@
+{
+  "title": "グループ",
+  "subtitle": "レイドグループを管理し、新しいコミュニティを見つけましょう",
+  "tabs": {
+    "my_groups": "自分のグループ",
+    "discover": "探す"
+  },
+  "search": {
+    "placeholder": "自分のグループと表示可能なコミュニティを検索",
+    "clear": "検索をクリア",
+    "title": "検索結果",
+    "subtitle": "{count} 件の一致するグループ",
+    "loading": "グループを検索中..."
+  },
+  "sections": {
+    "owned": "自分が所有するグループ",
+    "moderated": "自分が管理するグループ",
+    "member": "参加中のグループ",
+    "discover": "公開されているグループ"
+  },
+  "section_subtitles": {
+    "owned": "完全な管理権と所有権",
+    "moderated": "共同責任とグループ管理",
+    "member": "参加して活動できるグループ",
+    "discover": "最新の活動順に並んだ表示可能なグループ"
+  },
+  "roles": {
+    "owner": "オーナー",
+    "moderator": "モデレーター",
+    "member": "メンバー"
+  },
+  "navigation": {
+    "general": "概要",
+    "runs": "Runs",
+    "members": "メンバー",
+    "audit_log": "監査ログ",
+    "settings": "設定"
+  },
+  "table": {
+    "columns": {
+      "group": "グループ",
+      "upcoming_runs": "今後のRuns",
+      "last_activity": "最終活動"
+    },
+    "no_description": "まだ説明はありません。",
+    "no_activity": "まだ活動はありません。",
+    "empty": "まだ表示するものはありません。"
+  },
+  "create_modal": {
+    "title": "グループを作成",
+    "subtitle": "Runs の管理を始める前に、グループのアイデンティティ、公開設定、招待設定を整えましょう。",
+    "open_button": "グループを作成",
+    "progress": "ステップ {current} / {total}",
+    "steps": {
+      "1": "基本情報",
+      "2": "プレゼンス",
+      "3": "公開設定"
+    },
+    "slug_preview": "公開招待URL: /invite/{slug}",
+    "slug_fallback": "yourslug",
+    "slug_warning": "グループ作成後、slug は変更できません。",
+    "sections": {
+      "identity": {
+        "title": "グループ情報",
+        "subtitle": "グループ名、slug、データセンターを選択してください。"
+      },
+      "presence": {
+        "title": "コミュニティ情報",
+        "subtitle": "任意のリンクや画像を追加して、グループの雰囲気を整えましょう。"
+      },
+      "visibility": {
+        "title": "公開範囲と参加設定",
+        "subtitle": "グループが発見可能かどうか、自由に参加できるかどうかを設定します。"
+      }
+    },
+    "fields": {
+      "name": {
+        "placeholder": "Forked Tower Enjoyers"
+      },
+      "slug": {
+        "label": "Slug",
+        "placeholder": "ftel",
+        "help": "小文字英字のみ、最大8文字。"
+      },
+      "description": {
+        "placeholder": "グループの目的や対象メンバーを説明してください。"
+      },
+      "datacenter": {
+        "placeholder": "データセンターを選択"
+      },
+      "profile_picture_url": {
+        "label": "プロフィール画像URL",
+        "placeholder": "https://example.com/group-image.png"
+      },
+      "profile_picture": {
+        "placeholder": "画像を選択",
+        "help": "任意。グループを表す画像をアップロードします。",
+        "preview_alt": "グループプロフィール画像のプレビュー",
+        "preview_label": "表示される切り抜きプレビュー",
+        "preview_help": "このプレビューは、中央の正方形トリミングがリサイズされ、グループのプロフィール画像として使われることを示します。"
+      },
+      "discord_invite_url": {
+        "placeholder": "https://discord.gg/yourserver",
+        "help": "任意。メンバーが簡単に参加できるように Discord 招待を追加します。"
+      },
+      "is_public": {
+        "label": "公開グループ",
+        "help": "公開グループには誰でも参加でき、今後の公開 Runs は外部ユーザーにも表示されます。"
+      },
+      "is_visible": {
+        "label": "検索に表示する",
+        "help": "表示可能なグループは、非公開でも検索や発見に表示されます。"
+      }
+    },
+    "visibility_summary": {
+      "label": "この設定の意味",
+      "default_name": "このグループ",
+      "public_visible": "{name} は誰でも参加でき、検索やプロフィールに表示されます。",
+      "public_hidden": "{name} は誰でも参加できますが、発見画面や検索可能なプロフィールには表示されません。",
+      "private_visible": "{name} は招待経由でのみ参加できますが、検索やプロフィールには表示されます。",
+      "private_hidden": "{name} は招待経由でのみ参加でき、発見画面や検索可能なプロフィールには表示されません。"
+    },
+    "toasts": {
+      "created": "グループを作成しました。"
+    }
+  }
+}

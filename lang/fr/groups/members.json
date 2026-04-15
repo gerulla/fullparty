@@ -1,0 +1,75 @@
+{
+  "title": "Membres du groupe",
+  "subtitle": "Consultez la liste des membres de votre groupe, leurs personnages liés et les actions de gestion au même endroit.",
+  "access": {
+    "owner": "Accès propriétaire",
+    "moderator": "Accès modérateur",
+    "member": "Accès membre"
+  },
+  "roster": {
+    "title": "Liste des membres",
+    "subtitle": "Voyez qui fait partie du groupe, quels personnages ils ont liés et quelles actions sont disponibles.",
+    "count": "{count} membres",
+    "search_placeholder": "Rechercher des membres",
+    "joined_at": "A rejoint le {date}",
+    "runs_participated": "{count} runs effectués",
+    "characters_label": "Personnages",
+    "no_characters": "Aucun personnage vérifié lié pour le moment.",
+    "not_available": "Non disponible",
+    "empty": "Aucun membre à afficher pour le moment."
+  },
+  "bans": {
+    "title": "Membres bannis",
+    "subtitle": "Consultez les utilisateurs empêchés de rejoindre à nouveau ce groupe.",
+    "count": "{count} bannis",
+    "search_placeholder": "Rechercher des membres bannis",
+    "empty": "Aucun membre banni à afficher.",
+    "columns": {
+      "member": "Membre",
+      "characters": "Personnages",
+      "reason": "Raison",
+      "banned_by": "Banni par",
+      "banned_at": "Banni le",
+      "actions": "Actions"
+    },
+    "no_reason": "Aucune raison fournie",
+    "system": "Système"
+  },
+  "table": {
+    "columns": {
+      "member": "Membre",
+      "joined_at": "A rejoint",
+      "runs_participated": "Runs",
+      "characters": "Personnages"
+    }
+  },
+  "actions": {
+    "promote": "Promouvoir",
+    "demote": "Rétrograder",
+    "kick": "Expulser",
+    "ban": "Bannir",
+    "unban": "Débannir"
+  },
+  "kick_modal": {
+    "title": "Retirer {name} ?",
+    "subtitle": "Cela retirera le membre sélectionné de {group}.",
+    "warning": "Cette personne perdra immédiatement l'accès au tableau de bord et devra rejoindre à nouveau via une adhésion publique ou une nouvelle invitation."
+  },
+  "ban_modal": {
+    "title": "Bannir {name} ?",
+    "subtitle": "Cela retirera le membre sélectionné de {group} et l'empêchera de rejoindre à nouveau.",
+    "warning": "Les utilisateurs bannis peuvent toujours voir les groupes visibles, mais ils ne pourront pas rejoindre via l'accès public ou des liens d'invitation.",
+    "reason": {
+      "label": "Raison",
+      "help": "Optionnel. Ajoutez une note expliquant pourquoi ce bannissement a été appliqué.",
+      "placeholder": "Saisissez une raison optionnelle pour le bannissement"
+    }
+  },
+  "toasts": {
+    "promoted": "Membre promu au rang de modérateur.",
+    "demoted": "Le modérateur a été rétrogradé au rang de membre.",
+    "removed": "Membre retiré du groupe.",
+    "banned": "Membre banni du groupe.",
+    "unbanned": "Membre débanni avec succès."
+  }
+}

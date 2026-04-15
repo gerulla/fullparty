@@ -29,10 +29,16 @@
     "moderator": "Moderator",
     "member": "Member"
   },
+  "navigation": {
+    "general": "General",
+    "runs": "Runs",
+    "members": "Members",
+    "audit_log": "Audit Log",
+    "settings": "Settings"
+  },
   "table": {
     "columns": {
       "group": "Group",
-      "members": "Members",
       "upcoming_runs": "Upcoming Runs",
       "last_activity": "Last Activity"
     },
@@ -69,7 +75,6 @@
     },
     "fields": {
       "name": {
-        "label": "Group Name",
         "placeholder": "Forked Tower Enjoyers"
       },
       "slug": {
@@ -78,11 +83,9 @@
         "help": "Lowercase letters only, maximum 8 characters."
       },
       "description": {
-        "label": "Description",
         "placeholder": "Tell people what your group focuses on and who it is for."
       },
       "datacenter": {
-        "label": "Data Center",
         "placeholder": "Select a data center"
       },
       "profile_picture_url": {
@@ -90,7 +93,6 @@
         "placeholder": "https://example.com/group-image.png"
       },
       "profile_picture": {
-        "label": "Profile Picture",
         "placeholder": "Choose an image",
         "help": "Optional. Upload an image to represent your group.",
         "preview_alt": "Group profile picture preview",
@@ -98,7 +100,6 @@
         "preview_help": "This preview shows the centered square crop that will be resized and used as your group's profile image."
       },
       "discord_invite_url": {
-        "label": "Discord Invite URL",
         "placeholder": "https://discord.gg/yourserver",
         "help": "Optional. Add a Discord invite so members can easily join your server."
       },

@@ -1,0 +1,45 @@
+{
+  "title": "Paramètres",
+  "subtitle": "Gérez les préférences de votre compte et vos notifications.",
+  "account": {
+    "title": "Paramètres du compte",
+    "save": "Enregistrer les modifications"
+  },
+  "connect": "Connecter",
+  "connected": "Connecté",
+  "not_connected": "Non connecté",
+  "connected_accounts": "Comptes connectés",
+  "notifications": {
+    "title": "Notifications",
+    "save": "Enregistrer les préférences",
+    "run_reminders": "Rappels de run",
+    "application_notifications": "Mises à jour des candidatures",
+    "group_updates": "Mises à jour de groupe",
+    "assignment_updates": "Attributions de run",
+    "email_notifications": "Notifications par e-mail",
+    "discord_notifications": "Notifications Discord",
+    "run_reminders_description": "Recevoir une notification avant les runs planifiés",
+    "application_notifications_description": "Notifications lorsque vos candidatures sont examinées",
+    "group_updates_description": "Recevoir une notification lorsque vous êtes invité à un groupe",
+    "assignment_updates_description": "Notifications lorsqu'un rôle vous est attribué dans un run",
+    "email_notifications_description": "Recevoir des notifications par e-mail",
+    "discord_notifications_description": "Envoyer les notifications sur Discord (connexion requise)"
+  },
+  "privacy": {
+    "title": "Confidentialité et sécurité",
+    "profile_visibility": "Visibilité du profil",
+    "profile_visibility_description": "Rendre votre profil visible aux autres utilisateurs",
+    "show_character_data": "Afficher les données du personnage",
+    "show_character_data_description": "Afficher les niveaux de job et la progression sur votre profil",
+    "save": "Enregistrer les préférences",
+    "danger_zone": "Zone de danger",
+    "delete_account": "Supprimer le compte",
+    "delete_account_description": "Une fois votre compte supprimé, il n'y a pas de retour en arrière. Veuillez en être certain."
+  },
+  "toasts": {
+    "username_updated": "Nom d'utilisateur mis à jour avec succès",
+    "notification_updated": "Préférences de notification mises à jour avec succès",
+    "privacy_updated": "Paramètres de confidentialité mis à jour avec succès",
+    "title": "Succès !"
+  }
+}

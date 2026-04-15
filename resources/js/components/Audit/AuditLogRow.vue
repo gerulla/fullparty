@@ -109,16 +109,12 @@ const actionText = computed(() => {
 		return baseActionText.value;
 	}
 
-	const targetedActionLabels: Record<string, string> = {
-		'group.member.promoted': 'promoted',
-		'group.member.demoted': 'demoted',
-		'group.member.removed': 'removed',
-		'group.member.banned': 'banned',
-		'group.member.unbanned': 'unbanned',
-		'group.member.joined_via_invite': 'accepted an invite for',
-	};
+	const key = `audit_log.activity_targeted.${props.row.action}`;
+	const translated = t(key);
 
-	return targetedActionLabels[props.row.action] ?? baseActionText.value;
+	return translated === key
+		? baseActionText.value
+		: translated;
 });
 
 const scopeBadge = computed(() => ({

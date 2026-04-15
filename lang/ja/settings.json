@@ -1,0 +1,45 @@
+{
+  "title": "設定",
+  "subtitle": "アカウント設定と通知を管理します。",
+  "account": {
+    "title": "アカウント設定",
+    "save": "変更を保存"
+  },
+  "connect": "連携",
+  "connected": "連携済み",
+  "not_connected": "未連携",
+  "connected_accounts": "連携済みアカウント",
+  "notifications": {
+    "title": "通知",
+    "save": "設定を保存",
+    "run_reminders": "ランリマインダー",
+    "application_notifications": "応募更新",
+    "group_updates": "グループ更新",
+    "assignment_updates": "ラン割り当て",
+    "email_notifications": "メール通知",
+    "discord_notifications": "Discord通知",
+    "run_reminders_description": "予定されたランの前に通知を受け取る",
+    "application_notifications_description": "応募が確認されたときに通知を受け取る",
+    "group_updates_description": "グループに招待されたときに通知を受け取る",
+    "assignment_updates_description": "ランの枠に割り当てられたときに通知を受け取る",
+    "email_notifications_description": "メールで通知を受け取る",
+    "discord_notifications_description": "Discord に通知を送信する（連携が必要）"
+  },
+  "privacy": {
+    "title": "プライバシーとセキュリティ",
+    "profile_visibility": "プロフィール公開設定",
+    "profile_visibility_description": "他のユーザーにプロフィールを表示する",
+    "show_character_data": "キャラクターデータを表示",
+    "show_character_data_description": "プロフィールにジョブレベルと進行状況を表示する",
+    "save": "設定を保存",
+    "danger_zone": "危険ゾーン",
+    "delete_account": "アカウントを削除",
+    "delete_account_description": "アカウントを削除すると元に戻せません。十分にご注意ください。"
+  },
+  "toasts": {
+    "username_updated": "ユーザー名を更新しました",
+    "notification_updated": "通知設定を更新しました",
+    "privacy_updated": "プライバシー設定を更新しました",
+    "title": "成功！"
+  }
+}

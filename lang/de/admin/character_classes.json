@@ -1,0 +1,17 @@
+{
+  "section_title": "Charakterklassen",
+  "section_badge": "{count} Klassen",
+  "search_placeholder": "Charakterklassen durchsuchen...",
+  "table": { "shorthand": "Kürzel", "icon": "Symbol", "flaticon": "Flat Icon", "missing_icon": "Kein Symbol", "missing_flaticon": "Kein Flat Icon" },
+  "toasts": { "created": "Charakterklasse erfolgreich erstellt", "updated": "Charakterklasse erfolgreich aktualisiert", "deleted": "Charakterklasse erfolgreich gelöscht" },
+  "create_modal": { "title": "Charakterklasse erstellen", "subtitle": "Definiere eine neue feste Klasse für Charaktere" },
+  "edit_modal": { "title": "Charakterklasse bearbeiten", "subtitle": "Bearbeite die Details der Klasse '{name}'" },
+  "delete_modal": { "title": "{name} löschen?", "subtitle": "Möchtest du die Klasse '{name}' wirklich löschen?", "warning": "Warnung: Jeglicher mit dieser Klasse verknüpfte Charakterfortschritt wird ebenfalls dauerhaft gelöscht." },
+  "fields": {
+    "name": { "label": "Klassenname", "placeholder": "z. B. White Mage" },
+    "shorthand": { "label": "Kürzel", "placeholder": "z. B. WHM" },
+    "role": { "placeholder": "Wähle eine Rolle aus", "options": { "healer": "Heiler", "tank": "Tank", "melee_dps": "Nahkampf-DPS", "magic_ranged_dps": "Magischer Fernkampf-DPS", "physical_ranged_dps": "Physischer Fernkampf-DPS" } },
+    "icon_url": { "label": "Symbol-URL", "placeholder": "https://example.com/icon.png" },
+    "flaticon_url": { "label": "Flat-Icon-URL", "placeholder": "https://example.com/flaticon.png" }
+  }
+}

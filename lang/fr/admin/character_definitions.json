@@ -1,0 +1,23 @@
+{
+  "title": "Données des personnages",
+  "subtitle": "Gérez les champs dynamiques des profils de personnage",
+  "table_header": "Définitions de champs",
+  "search_placeholder": "Rechercher des définitions de champs...",
+  "table": { "type": "Type", "group": "Groupe", "source_type": "Source", "visibility": "Visibilité", "active": "Statut", "no_description": "Aucune description", "active_badge": "Actif", "inactive_badge": "Inactif", "visible_badge": "Visible", "hidden_badge": "Masqué", "editable_badge": "Modifiable", "readonly_badge": "Lecture seule" },
+  "toasts": { "created": "Définition de champ créée avec succès", "updated": "Définition de champ mise à jour avec succès", "deleted": "Définition de champ supprimée avec succès" },
+  "delete_modal": { "title": "Supprimer {field} ?", "subtitle": "Voulez-vous vraiment supprimer la définition de champ '{field}' ?", "warning": "Attention : toutes les valeurs associées à ce champ seront également supprimées définitivement." },
+  "create_modal": { "title": "Créer une définition de champ", "subtitle": "Définissez un nouveau champ pour les profils de personnage" },
+  "edit_modal": { "title": "Modifier la définition de champ", "subtitle": "Modifiez les détails de la définition de champ '{field}'" },
+  "fields": {
+    "name": { "label": "Nom du champ", "placeholder": "ex. Nom d'utilisateur Discord" },
+    "group": { "label": "Groupe", "placeholder": "ex. profile", "options": { "profile": "Profil", "metadata": "Métadonnées", "social": "Social", "recruitment": "Recrutement", "system": "Système" } },
+    "display_contexts": { "label": "Contextes d'affichage", "description": "Choisissez où ce champ peut être affiché", "options": { "profile": "Profil", "account": "Compte", "admin": "Admin" } },
+    "source_type": { "label": "Type de source", "description": "Définissez qui possède et met à jour cette valeur", "options": { "user": "Utilisateur", "system": "Système", "hybrid": "Hybride" } },
+    "type": { "label": "Type de champ", "options": { "text": "Texte", "number": "Nombre", "date": "Date", "textarea": "Zone de texte", "select": "Sélection", "checkbox": "Case à cocher" } },
+    "active": { "label": "Actif ?", "description": "Rendre la valeur du champ disponible à l'utilisation" },
+    "editable": { "label": "Modifiable ?", "description": "Autoriser la modification directe dans les formulaires" },
+    "visible": { "label": "Visible ?", "description": "Autoriser l'affichage de ce champ dans les vues destinées aux utilisateurs" },
+    "tags": { "label": "Tags", "placeholder": "Tags séparés par des virgules, ex. public, profile-card" },
+    "description": { "placeholder": "Description facultative pour ce champ" }
+  }
+}

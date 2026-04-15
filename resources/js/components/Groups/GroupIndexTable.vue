@@ -126,7 +126,7 @@ const statItems = (group: any) => ([
 	{
 		icon: 'i-lucide-users',
 		value: group.stats.member_count,
-		label: t('groups.index.table.columns.members'),
+		label: t('general.members'),
 	},
 	{
 		icon: 'i-lucide-calendar-range',

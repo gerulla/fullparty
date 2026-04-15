@@ -1,0 +1,75 @@
+{
+  "title": "グループメンバー",
+  "subtitle": "グループのメンバー一覧、連携済みキャラクター、メンバー操作をまとめて確認できます。",
+  "access": {
+    "owner": "オーナー権限",
+    "moderator": "モデレーター権限",
+    "member": "メンバー権限"
+  },
+  "roster": {
+    "title": "メンバー一覧",
+    "subtitle": "グループ内のメンバー、連携済みキャラクター、利用可能な操作を確認できます。",
+    "count": "{count} 人のメンバー",
+    "search_placeholder": "メンバーを検索",
+    "joined_at": "{date} に参加",
+    "runs_participated": "{count} 回のRunsに参加",
+    "characters_label": "キャラクター",
+    "no_characters": "まだ確認済みキャラクターは連携されていません。",
+    "not_available": "利用不可",
+    "empty": "表示するメンバーはいません。"
+  },
+  "bans": {
+    "title": "BANされたメンバー",
+    "subtitle": "このグループへの再参加が禁止されているユーザーを確認します。",
+    "count": "{count} 人がBAN中",
+    "search_placeholder": "BANメンバーを検索",
+    "empty": "表示するBANメンバーはいません。",
+    "columns": {
+      "member": "メンバー",
+      "characters": "キャラクター",
+      "reason": "理由",
+      "banned_by": "BAN実行者",
+      "banned_at": "BAN日時",
+      "actions": "操作"
+    },
+    "no_reason": "理由はありません",
+    "system": "システム"
+  },
+  "table": {
+    "columns": {
+      "member": "メンバー",
+      "joined_at": "参加日",
+      "runs_participated": "Runs",
+      "characters": "キャラクター"
+    }
+  },
+  "actions": {
+    "promote": "昇格",
+    "demote": "降格",
+    "kick": "キック",
+    "ban": "BAN",
+    "unban": "BAN解除"
+  },
+  "kick_modal": {
+    "title": "{name} を削除しますか？",
+    "subtitle": "選択したメンバーを {group} から削除します。",
+    "warning": "このユーザーは直ちにダッシュボードへのアクセスを失い、公開参加か新しい招待で再参加する必要があります。"
+  },
+  "ban_modal": {
+    "title": "{name} をBANしますか？",
+    "subtitle": "選択したメンバーを {group} から削除し、再参加できないようにします。",
+    "warning": "BANされたユーザーは公開中のグループを見ることはできますが、公開参加や招待リンクでは参加できません。",
+    "reason": {
+      "label": "理由",
+      "help": "任意。このBANの理由をメモとして残せます。",
+      "placeholder": "BAN理由を任意で入力してください"
+    }
+  },
+  "toasts": {
+    "promoted": "メンバーをモデレーターに昇格しました。",
+    "demoted": "モデレーターをメンバーに降格しました。",
+    "removed": "メンバーをグループから削除しました。",
+    "banned": "メンバーをグループからBANしました。",
+    "unbanned": "BANを解除しました。"
+  }
+}

@@ -44,7 +44,7 @@ defineOptions({
 		<div class="flex items-center w-full mb-4">
 			<form class="space-y-4 w-full" @submit.prevent="submit">
 				<UFormField name="email" class="w-full" :error="form.errors.email">
-					<UInput v-model="form.email" size="xl" class="w-full" :placeholder="t('auth.email')"/>
+					<UInput v-model="form.email" size="xl" class="w-full" :placeholder="t('general.email')"/>
 				</UFormField>
 
 				<UFormField name="password" :error="form.errors.password">

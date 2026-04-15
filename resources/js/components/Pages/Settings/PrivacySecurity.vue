@@ -15,11 +15,11 @@ const form = useForm({
 
 const items = ref([
 	{
-		label: t('settings.privacy.public'),
+		label: t('general.public'),
 		value: true
 	},
 	{
-		label: t('settings.privacy.private'),
+		label: t('general.private'),
 		value: false
 	}
 ]);

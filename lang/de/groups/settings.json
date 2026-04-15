@@ -1,0 +1,112 @@
+{
+  "title": "Gruppeneinstellungen",
+  "subtitle": "Verwalte die allgemeine Konfiguration deiner Gruppe und zugriffssensible Details.",
+  "access": {
+    "owner": "Besitzerzugriff",
+    "moderator": "Moderatorzugriff"
+  },
+  "general": {
+    "title": "Allgemeine Einstellungen",
+    "subtitle": "Aktualisiere die veränderbaren Details, die definieren, wie deine Gruppe erscheint und wie Mitglieder beitreten.",
+    "owner_only_notice": "Nur Gruppenbesitzer können diese Einstellungen aktualisieren. Moderatoren können sie hier einsehen.",
+    "visibility_summary_label": "Sichtbarkeitsübersicht",
+    "visibility_summary": {
+      "default_name": "Diese Gruppe",
+      "public_visible": "{name} kann von jedem betreten werden und erscheint in Suche und Profilen.",
+      "public_hidden": "{name} kann von jedem betreten werden, erscheint aber nicht in der Entdeckung oder in durchsuchbaren Profilen.",
+      "private_visible": "{name} kann nur per Einladung betreten werden, erscheint aber weiterhin in Suche und Profilen.",
+      "private_hidden": "{name} kann nur per Einladung betreten werden und bleibt in Entdeckung und durchsuchbaren Profilen verborgen."
+    },
+    "fields": {
+      "name": { "placeholder": "Forked Tower Enjoyers" },
+      "description": { "placeholder": "Beschreibe, worauf sich deine Gruppe konzentriert und für wen sie gedacht ist." },
+      "profile_picture": {
+        "placeholder": "Bild auswählen",
+        "help": "Optional. Lade ein neues Bild hoch, um das aktuelle Gruppenbild zu ersetzen.",
+        "preview_alt": "Vorschau des Gruppenprofilbilds",
+        "preview_label": "Sichtbare Beschnittvorschau",
+        "preview_help": "Diese Vorschau zeigt den zentrierten quadratischen Zuschnitt, der skaliert und als Profilbild deiner Gruppe verwendet wird."
+      },
+      "discord_invite_url": {
+        "placeholder": "https://discord.gg/yourserver",
+        "help": "Optional. Füge eine Discord-Einladung hinzu, damit Mitglieder deinem Server leicht beitreten können."
+      },
+      "datacenter": { "placeholder": "Wähle ein Datenzentrum" },
+      "is_public": {
+        "label": "Öffentliche Gruppe",
+        "help": "Jeder kann öffentlichen Gruppen beitreten, und öffentliche zukünftige Runs können von Außenstehenden gesehen werden."
+      },
+      "is_visible": {
+        "label": "In der Entdeckung sichtbar",
+        "help": "Sichtbare Gruppen können in Entdeckung und Suche erscheinen, auch wenn sie privat sind."
+      }
+    },
+    "toasts": { "updated": "Gruppeneinstellungen wurden aktualisiert." }
+  },
+  "invites": {
+    "title": "Einladungslinks",
+    "subtitle": "Verwalte Einladungslinks für neue Mitglieder.",
+    "create_button": "Link erstellen",
+    "empty": "Es wurden noch keine Einladungslinks erstellt.",
+    "system_creator": "System",
+    "created_by": "Erstellt von {name} am {date}",
+    "uses": "Nutzungen",
+    "expires": "Läuft ab",
+    "never": "Nie",
+    "unlimited": "Unbegrenzt",
+    "statuses": { "active": "Aktiv", "expired": "Abgelaufen", "system": "System" },
+    "create_modal": {
+      "title": "Einladungslink erstellen",
+      "subtitle": "Lege optionale Limits für Nutzungen und Ablauf fest. Lasse Felder leer, um die Einladung unbegrenzt offen zu lassen.",
+      "max_uses": { "label": "Maximale Nutzungen", "placeholder": "Leer lassen für unbegrenzt" },
+      "expires_in": {
+        "label": "Läuft ab in",
+        "placeholder": "Zeitfenster auswählen",
+        "options": {
+          "12_hours": "12 Stunden",
+          "24_hours": "24 Stunden",
+          "1_day": "1 Tag",
+          "2_days": "2 Tage",
+          "3_days": "3 Tage",
+          "4_days": "4 Tage",
+          "1_week": "1 Woche",
+          "unlimited": "Nie"
+        }
+      }
+    },
+    "toasts": { "created": "Einladungslink erstellt.", "copied": "Einladungslink kopiert.", "revoked": "Einladungslink widerrufen." }
+  },
+  "ownership": {
+    "title": "Besitz",
+    "subtitle": "Übertrage den Besitz an ein anderes bestehendes Mitglied, wenn du die Gruppe übergeben musst.",
+    "owner_only_notice": "Nur der aktuelle Besitzer kann den Besitz übertragen.",
+    "warning_title": "Das Übertragen des Besitzes ist eine weitreichende Aktion.",
+    "warning_description": "Nach der Übertragung verlierst du deine Besitzerrechte und wirst Moderator der Gruppe.",
+    "selected_member": "Neuer Besitzer",
+    "empty": "Du brauchst mindestens ein weiteres Mitglied in der Gruppe, bevor der Besitz übertragen werden kann.",
+    "transfer_button": "Besitz übertragen",
+    "confirm_modal": {
+      "title": "Besitz übertragen",
+      "subtitle": "Wähle das Mitglied aus, das neuer Besitzer werden soll, und bestätige dann die Übertragung.",
+      "member": { "label": "Mitglied auswählen", "placeholder": "Wähle ein Mitglied" },
+      "warning": "Diese Aktion kann in diesem Ablauf nicht rückgängig gemacht werden. Du wirst sofort Moderator.",
+      "confirm_button": "Übertragung bestätigen"
+    },
+    "toasts": { "transferred": "Besitz erfolgreich übertragen." }
+  },
+  "danger_zone": {
+    "title": "Gefahrenbereich",
+    "subtitle": "Lösche die Gruppe dauerhaft, wenn du absolut sicher bist, dass sie entfernt werden soll.",
+    "owner_only_notice": "Nur der aktuelle Besitzer kann diese Gruppe löschen.",
+    "warning_title": "Diese Aktion kann nicht rückgängig gemacht werden.",
+    "warning_description": "Durch das Löschen der Gruppe werden ihre Einstellungen, Einladungen, Mitgliedschaften und geplanten Runs dauerhaft entfernt.",
+    "delete_button": "Gruppe löschen",
+    "confirm_modal": {
+      "title": "Gruppe löschen",
+      "subtitle": "Dadurch wird {name} dauerhaft gelöscht. Bitte bestätige, dass du fortfahren möchtest.",
+      "warning": "Nach dem Löschen sind diese Gruppe und alle zugehörigen Daten für immer verloren.",
+      "confirm_button": "Ja, Gruppe löschen"
+    },
+    "toasts": { "deleted": "Gruppe erfolgreich gelöscht." }
+  }
+}

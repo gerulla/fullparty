@@ -1,0 +1,127 @@
+{
+  "title": "Gruppen",
+  "subtitle": "Verwalte deine Raid-Gruppen und entdecke neue Communities",
+  "tabs": {
+    "my_groups": "Meine Gruppen",
+    "discover": "Entdecken"
+  },
+  "search": {
+    "placeholder": "Durchsuche deine Gruppen und sichtbare Communities",
+    "clear": "Suche löschen",
+    "title": "Suchergebnisse",
+    "subtitle": "{count} passende Gruppen",
+    "loading": "Gruppen werden durchsucht..."
+  },
+  "sections": {
+    "owned": "Gruppen, die ich besitze",
+    "moderated": "Gruppen, die ich moderiere",
+    "member": "Gruppen, in denen ich bin",
+    "discover": "Sichtbare Gruppen"
+  },
+  "section_subtitles": {
+    "owned": "Volle Kontrolle und Besitz",
+    "moderated": "Geteilte Verantwortung und Gruppenverwaltung",
+    "member": "Gruppen, zu denen du gehörst und an denen du teilnehmen kannst",
+    "discover": "Sichtbare Gruppen, sortiert nach ihrer letzten Aktivität"
+  },
+  "roles": {
+    "owner": "Besitzer",
+    "moderator": "Moderator",
+    "member": "Mitglied"
+  },
+  "navigation": {
+    "general": "Allgemein",
+    "runs": "Runs",
+    "members": "Mitglieder",
+    "audit_log": "Audit-Log",
+    "settings": "Einstellungen"
+  },
+  "table": {
+    "columns": {
+      "group": "Gruppe",
+      "upcoming_runs": "Bevorstehende Runs",
+      "last_activity": "Letzte Aktivität"
+    },
+    "no_description": "Noch keine Beschreibung.",
+    "no_activity": "Noch keine Aktivität.",
+    "empty": "Hier gibt es noch nichts zu sehen."
+  },
+  "create_modal": {
+    "title": "Gruppe erstellen",
+    "subtitle": "Richte die Identität, Sichtbarkeit und Einladung deiner Gruppe ein, bevor du Runs organisierst.",
+    "open_button": "Gruppe erstellen",
+    "progress": "Schritt {current} von {total}",
+    "steps": {
+      "1": "Identität",
+      "2": "Präsenz",
+      "3": "Sichtbarkeit"
+    },
+    "slug_preview": "Öffentliche Einladungs-URL: /invite/{slug}",
+    "slug_fallback": "deinslug",
+    "slug_warning": "Dein Slug ist dauerhaft, sobald die Gruppe erstellt wurde.",
+    "sections": {
+      "identity": {
+        "title": "Gruppenidentität",
+        "subtitle": "Wähle den Namen, Slug und das Datenzentrum, unter denen deine Gruppe bekannt sein wird."
+      },
+      "presence": {
+        "title": "Community-Präsenz",
+        "subtitle": "Füge optionale Links und Bilder hinzu, damit sich die Gruppe etablierter anfühlt."
+      },
+      "visibility": {
+        "title": "Sichtbarkeit & Zugriff",
+        "subtitle": "Lege fest, ob Leute die Gruppe entdecken können und ob sie frei beitreten dürfen."
+      }
+    },
+    "fields": {
+      "name": {
+        "placeholder": "Forked Tower Enjoyers"
+      },
+      "slug": {
+        "label": "Slug",
+        "placeholder": "ftel",
+        "help": "Nur Kleinbuchstaben, maximal 8 Zeichen."
+      },
+      "description": {
+        "placeholder": "Beschreibe, worauf sich deine Gruppe konzentriert und für wen sie gedacht ist."
+      },
+      "datacenter": {
+        "placeholder": "Wähle ein Datenzentrum"
+      },
+      "profile_picture_url": {
+        "label": "Profilbild-URL",
+        "placeholder": "https://example.com/group-image.png"
+      },
+      "profile_picture": {
+        "placeholder": "Bild auswählen",
+        "help": "Optional. Lade ein Bild hoch, das deine Gruppe repräsentiert.",
+        "preview_alt": "Vorschau des Gruppenprofilbilds",
+        "preview_label": "Sichtbare Beschnittvorschau",
+        "preview_help": "Diese Vorschau zeigt den zentrierten quadratischen Zuschnitt, der skaliert und als Profilbild deiner Gruppe verwendet wird."
+      },
+      "discord_invite_url": {
+        "placeholder": "https://discord.gg/yourserver",
+        "help": "Optional. Füge eine Discord-Einladung hinzu, damit Mitglieder deinem Server leicht beitreten können."
+      },
+      "is_public": {
+        "label": "Öffentliche Gruppe",
+        "help": "Jeder kann öffentlichen Gruppen beitreten, und öffentliche zukünftige Runs können von Außenstehenden gesehen werden."
+      },
+      "is_visible": {
+        "label": "In der Entdeckung sichtbar",
+        "help": "Sichtbare Gruppen können in Entdeckung und Suche erscheinen, auch wenn sie privat sind."
+      }
+    },
+    "visibility_summary": {
+      "label": "Was das bedeutet",
+      "default_name": "Diese Gruppe",
+      "public_visible": "{name} kann von jedem betreten werden und erscheint in Suche und Profilen.",
+      "public_hidden": "{name} kann von jedem betreten werden, erscheint aber nicht in der Entdeckung oder in durchsuchbaren Profilen.",
+      "private_visible": "{name} kann nur per Einladung betreten werden, erscheint aber weiterhin in Suche und Profilen.",
+      "private_hidden": "{name} kann nur per Einladung betreten werden und bleibt in Entdeckung und durchsuchbaren Profilen verborgen."
+    },
+    "toasts": {
+      "created": "Deine Gruppe wurde erstellt."
+    }
+  }
+}

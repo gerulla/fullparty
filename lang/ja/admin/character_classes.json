@@ -1,0 +1,17 @@
+{
+  "section_title": "キャラクタークラス",
+  "section_badge": "{count} クラス",
+  "search_placeholder": "キャラクタークラスを検索...",
+  "table": { "shorthand": "略称", "icon": "アイコン", "flaticon": "フラットアイコン", "missing_icon": "アイコンなし", "missing_flaticon": "フラットアイコンなし" },
+  "toasts": { "created": "キャラクタークラスを作成しました", "updated": "キャラクタークラスを更新しました", "deleted": "キャラクタークラスを削除しました" },
+  "create_modal": { "title": "キャラクタークラスを作成", "subtitle": "キャラクター用の固定クラスを新しく定義します" },
+  "edit_modal": { "title": "キャラクタークラスを編集", "subtitle": "'{name}' クラスの詳細を編集します" },
+  "delete_modal": { "title": "{name} を削除しますか？", "subtitle": "'{name}' クラスを本当に削除しますか？", "warning": "警告: このクラスに紐づくキャラクター進行状況もすべて完全に削除されます。" },
+  "fields": {
+    "name": { "label": "クラス名", "placeholder": "例: White Mage" },
+    "shorthand": { "label": "略称", "placeholder": "例: WHM" },
+    "role": { "placeholder": "ロールを選択", "options": { "healer": "ヒーラー", "tank": "タンク", "melee_dps": "近接DPS", "magic_ranged_dps": "魔法遠隔DPS", "physical_ranged_dps": "物理遠隔DPS" } },
+    "icon_url": { "label": "アイコンURL", "placeholder": "https://example.com/icon.png" },
+    "flaticon_url": { "label": "フラットアイコンURL", "placeholder": "https://example.com/flaticon.png" }
+  }
+}

@@ -3,8 +3,6 @@
   "subtitle": "Manage your account preferences and notifications.",
   "account": {
     "title": "Account Settings",
-    "username": "Username",
-    "email": "Email",
     "save": "Save Changes"
   },
   "connect": "Connect",
@@ -28,8 +26,6 @@
     "discord_notifications_description": "Send notifications to Discord (requires connection)"
   },
   "privacy": {
-    "public": "Public",
-    "private": "Private",
     "title": "Privacy & Security",
     "profile_visibility": "Profile Visibility",
     "profile_visibility_description": "Make your profile visible to other users",

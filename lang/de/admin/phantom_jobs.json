@@ -1,0 +1,18 @@
+{
+  "section_title": "Phantom-Jobs",
+  "section_badge": "{count} Jobs",
+  "search_placeholder": "Phantom-Jobs durchsuchen...",
+  "table": { "max_level": "Maximale Stufe", "icon": "Symbol", "black_icon": "Schwarzes Symbol", "transparent_icon": "Transparentes Symbol", "sprite": "Sprite", "missing_icon": "Kein Symbol", "missing_black_icon": "Kein schwarzes Symbol", "missing_transparent_icon": "Kein transparentes Symbol", "missing_sprite": "Kein Sprite" },
+  "toasts": { "created": "Phantom-Job erfolgreich erstellt", "updated": "Phantom-Job erfolgreich aktualisiert", "deleted": "Phantom-Job erfolgreich gelöscht" },
+  "create_modal": { "title": "Phantom-Job erstellen", "subtitle": "Definiere einen neuen Phantom-Job für Charaktere" },
+  "edit_modal": { "title": "Phantom-Job bearbeiten", "subtitle": "Bearbeite die Details des Phantom-Jobs '{name}'" },
+  "delete_modal": { "title": "{name} löschen?", "subtitle": "Möchtest du den Phantom-Job '{name}' wirklich löschen?", "warning": "Warnung: Jeglicher mit diesem Phantom-Job verknüpfte Charakterfortschritt wird ebenfalls dauerhaft gelöscht." },
+  "fields": {
+    "name": { "label": "Phantom-Job-Name", "placeholder": "z. B. Freelancer" },
+    "max_level": { "label": "Maximale Stufe", "placeholder": "z. B. 99" },
+    "icon_url": { "label": "Symbol-URL", "placeholder": "https://example.com/icon.png" },
+    "black_icon_url": { "label": "URL für schwarzes Symbol", "placeholder": "https://example.com/black-icon.png" },
+    "transparent_icon_url": { "label": "URL für transparentes Symbol", "placeholder": "https://example.com/transparent-icon.png" },
+    "sprite_url": { "label": "Sprite-URL", "placeholder": "https://example.com/sprite.png" }
+  }
+}

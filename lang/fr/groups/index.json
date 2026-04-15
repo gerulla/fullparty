@@ -1,0 +1,127 @@
+{
+  "title": "Groupes",
+  "subtitle": "Gérez vos groupes de raid et découvrez de nouvelles communautés",
+  "tabs": {
+    "my_groups": "Mes groupes",
+    "discover": "Découvrir"
+  },
+  "search": {
+    "placeholder": "Recherchez vos groupes et les communautés visibles",
+    "clear": "Effacer la recherche",
+    "title": "Résultats de recherche",
+    "subtitle": "{count} groupes correspondants",
+    "loading": "Recherche des groupes..."
+  },
+  "sections": {
+    "owned": "Groupes que je possède",
+    "moderated": "Groupes que je modère",
+    "member": "Groupes dont je fais partie",
+    "discover": "Groupes visibles"
+  },
+  "section_subtitles": {
+    "owned": "Contrôle total et propriété",
+    "moderated": "Responsabilité partagée et gestion du groupe",
+    "member": "Groupes dont vous faites partie et auxquels vous pouvez participer",
+    "discover": "Groupes visibles classés par activité la plus récente"
+  },
+  "roles": {
+    "owner": "Propriétaire",
+    "moderator": "Modérateur",
+    "member": "Membre"
+  },
+  "navigation": {
+    "general": "Général",
+    "runs": "Runs",
+    "members": "Membres",
+    "audit_log": "Journal d'audit",
+    "settings": "Paramètres"
+  },
+  "table": {
+    "columns": {
+      "group": "Groupe",
+      "upcoming_runs": "Runs à venir",
+      "last_activity": "Dernière activité"
+    },
+    "no_description": "Aucune description pour le moment.",
+    "no_activity": "Aucune activité pour le moment.",
+    "empty": "Rien à afficher pour le moment."
+  },
+  "create_modal": {
+    "title": "Créer un groupe",
+    "subtitle": "Configurez l'identité, la visibilité et la présence d'invitation de votre groupe avant de commencer à organiser des runs.",
+    "open_button": "Créer un groupe",
+    "progress": "Étape {current} sur {total}",
+    "steps": {
+      "1": "Identité",
+      "2": "Présence",
+      "3": "Visibilité"
+    },
+    "slug_preview": "URL d'invitation publique : /invite/{slug}",
+    "slug_fallback": "votreslug",
+    "slug_warning": "Votre slug est permanent une fois le groupe créé.",
+    "sections": {
+      "identity": {
+        "title": "Identité du groupe",
+        "subtitle": "Choisissez le nom, le slug et le centre de données sous lesquels votre groupe sera connu."
+      },
+      "presence": {
+        "title": "Présence communautaire",
+        "subtitle": "Ajoutez des liens et des images facultatifs pour rendre le groupe plus établi."
+      },
+      "visibility": {
+        "title": "Visibilité et accès",
+        "subtitle": "Contrôlez si les gens peuvent découvrir le groupe et s'ils peuvent le rejoindre librement."
+      }
+    },
+    "fields": {
+      "name": {
+        "placeholder": "Forked Tower Enjoyers"
+      },
+      "slug": {
+        "label": "Slug",
+        "placeholder": "ftel",
+        "help": "Lettres minuscules uniquement, 8 caractères maximum."
+      },
+      "description": {
+        "placeholder": "Expliquez l'objectif de votre groupe et à qui il s'adresse."
+      },
+      "datacenter": {
+        "placeholder": "Sélectionnez un centre de données"
+      },
+      "profile_picture_url": {
+        "label": "URL de l'image de profil",
+        "placeholder": "https://example.com/group-image.png"
+      },
+      "profile_picture": {
+        "placeholder": "Choisir une image",
+        "help": "Optionnel. Téléversez une image pour représenter votre groupe.",
+        "preview_alt": "Aperçu de l'image de profil du groupe",
+        "preview_label": "Aperçu du recadrage visible",
+        "preview_help": "Cet aperçu montre le recadrage carré centré qui sera redimensionné et utilisé comme image de profil de votre groupe."
+      },
+      "discord_invite_url": {
+        "placeholder": "https://discord.gg/yourserver",
+        "help": "Optionnel. Ajoutez une invitation Discord pour que les membres puissent rejoindre facilement votre serveur."
+      },
+      "is_public": {
+        "label": "Groupe public",
+        "help": "Tout le monde peut rejoindre les groupes publics, et les runs publics à venir peuvent être vus par les non-membres."
+      },
+      "is_visible": {
+        "label": "Visible dans la découverte",
+        "help": "Les groupes visibles peuvent apparaître dans la découverte et la recherche, même s'ils sont privés."
+      }
+    },
+    "visibility_summary": {
+      "label": "Ce que cela signifie",
+      "default_name": "Ce groupe",
+      "public_visible": "{name} peut être rejoint par n'importe qui et apparaîtra dans la recherche et les profils.",
+      "public_hidden": "{name} peut être rejoint par n'importe qui, mais n'apparaîtra pas dans la découverte ni dans les profils consultables.",
+      "private_visible": "{name} ne peut être rejoint que via une invitation, mais apparaîtra quand même dans la recherche et les profils.",
+      "private_hidden": "{name} ne peut être rejoint que via une invitation et restera caché dans la découverte et les profils consultables."
+    },
+    "toasts": {
+      "created": "Votre groupe a été créé."
+    }
+  }
+}

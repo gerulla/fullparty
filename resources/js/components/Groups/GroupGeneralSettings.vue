@@ -115,7 +115,7 @@ const submit = () => {
 			/>
 
 			<UFormField
-				:label="t('groups.settings.general.fields.name.label')"
+				:label="t('general.name')"
 				:error="form.errors.name"
 				required
 			>
@@ -128,7 +128,7 @@ const submit = () => {
 			</UFormField>
 
 			<UFormField
-				:label="t('groups.settings.general.fields.description.label')"
+				:label="t('general.description')"
 				:error="form.errors.description"
 			>
 				<UTextarea
@@ -141,7 +141,7 @@ const submit = () => {
 			</UFormField>
 
 			<UFormField
-				:label="t('groups.settings.general.fields.profile_picture.label')"
+				:label="t('general.profile_picture')"
 				:help="t('groups.settings.general.fields.profile_picture.help')"
 				:error="form.errors.profile_picture"
 			>
@@ -184,7 +184,7 @@ const submit = () => {
 			</UFormField>
 
 			<UFormField
-				:label="t('groups.settings.general.fields.discord_invite_url.label')"
+				:label="t('general.discord_invite_url')"
 				:help="t('groups.settings.general.fields.discord_invite_url.help')"
 				:error="form.errors.discord_invite_url"
 			>
@@ -197,7 +197,7 @@ const submit = () => {
 			</UFormField>
 
 			<UFormField
-				:label="t('groups.settings.general.fields.datacenter.label')"
+				:label="t('general.datacenter')"
 				:error="form.errors.datacenter"
 				required
 			>

@@ -1,0 +1,17 @@
+{
+  "section_title": "Classes de personnage",
+  "section_badge": "{count} classes",
+  "search_placeholder": "Rechercher des classes de personnage...",
+  "table": { "shorthand": "Abréviation", "icon": "Icône", "flaticon": "Icône plate", "missing_icon": "Aucune icône", "missing_flaticon": "Aucune icône plate" },
+  "toasts": { "created": "Classe de personnage créée avec succès", "updated": "Classe de personnage mise à jour avec succès", "deleted": "Classe de personnage supprimée avec succès" },
+  "create_modal": { "title": "Créer une classe de personnage", "subtitle": "Définissez une nouvelle classe fixe pour les personnages" },
+  "edit_modal": { "title": "Modifier la classe de personnage", "subtitle": "Modifiez les détails de la classe '{name}'" },
+  "delete_modal": { "title": "Supprimer {name} ?", "subtitle": "Voulez-vous vraiment supprimer la classe '{name}' ?", "warning": "Attention : toute progression de personnage liée à cette classe sera également supprimée définitivement." },
+  "fields": {
+    "name": { "label": "Nom de la classe", "placeholder": "ex. White Mage" },
+    "shorthand": { "label": "Abréviation", "placeholder": "ex. WHM" },
+    "role": { "placeholder": "Sélectionnez un rôle", "options": { "healer": "Soigneur", "tank": "Tank", "melee_dps": "DPS mêlée", "magic_ranged_dps": "DPS magique à distance", "physical_ranged_dps": "DPS physique à distance" } },
+    "icon_url": { "label": "URL de l'icône", "placeholder": "https://example.com/icon.png" },
+    "flaticon_url": { "label": "URL de l'icône plate", "placeholder": "https://example.com/flaticon.png" }
+  }
+}

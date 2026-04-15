@@ -158,11 +158,11 @@ const bannedTableData = computed(() => props.bannedMembers.map((member) => ({
 
 const memberColumns = computed(() => [
 	{ accessorKey: 'name', header: t('groups.members.table.columns.member') },
-	{ accessorKey: 'role', header: t('groups.members.table.columns.role') },
+	{ accessorKey: 'role', header: t('general.role') },
 	{ accessorKey: 'joined_at', header: t('groups.members.table.columns.joined_at') },
 	{ accessorKey: 'participated_run_count', header: t('groups.members.table.columns.runs_participated') },
 	{ accessorKey: 'character_summary', header: t('groups.members.table.columns.characters') },
-	{ id: 'actions', header: t('groups.members.table.columns.actions') },
+	{ id: 'actions', header: t('general.actions') },
 ]);
 
 const bannedColumns = computed(() => [
@@ -171,7 +171,7 @@ const bannedColumns = computed(() => [
 	{ accessorKey: 'reason_display', header: t('groups.members.bans.columns.reason') },
 	{ accessorKey: 'banned_by_name', header: t('groups.members.bans.columns.banned_by') },
 	{ accessorKey: 'banned_at', header: t('groups.members.bans.columns.banned_at') },
-	{ id: 'actions', header: t('groups.members.table.columns.actions') },
+	{ id: 'actions', header: t('general.actions') },
 ]);
 
 const shouldFixTableHeight = (tableRef: any, pageSize: number) => {

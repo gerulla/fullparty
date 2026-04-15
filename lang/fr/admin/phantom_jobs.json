@@ -1,0 +1,18 @@
+{
+  "section_title": "Jobs fantômes",
+  "section_badge": "{count} jobs",
+  "search_placeholder": "Rechercher des jobs fantômes...",
+  "table": { "max_level": "Niveau max", "icon": "Icône", "black_icon": "Icône noire", "transparent_icon": "Icône transparente", "sprite": "Sprite", "missing_icon": "Aucune icône", "missing_black_icon": "Aucune icône noire", "missing_transparent_icon": "Aucune icône transparente", "missing_sprite": "Aucun sprite" },
+  "toasts": { "created": "Job fantôme créé avec succès", "updated": "Job fantôme mis à jour avec succès", "deleted": "Job fantôme supprimé avec succès" },
+  "create_modal": { "title": "Créer un job fantôme", "subtitle": "Définissez un nouveau job fantôme pour les personnages" },
+  "edit_modal": { "title": "Modifier le job fantôme", "subtitle": "Modifiez les détails du job fantôme '{name}'" },
+  "delete_modal": { "title": "Supprimer {name} ?", "subtitle": "Voulez-vous vraiment supprimer le job fantôme '{name}' ?", "warning": "Attention : toute progression de personnage liée à ce job fantôme sera également supprimée définitivement." },
+  "fields": {
+    "name": { "label": "Nom du job fantôme", "placeholder": "ex. Freelancer" },
+    "max_level": { "label": "Niveau max", "placeholder": "ex. 99" },
+    "icon_url": { "label": "URL de l'icône", "placeholder": "https://example.com/icon.png" },
+    "black_icon_url": { "label": "URL de l'icône noire", "placeholder": "https://example.com/black-icon.png" },
+    "transparent_icon_url": { "label": "URL de l'icône transparente", "placeholder": "https://example.com/transparent-icon.png" },
+    "sprite_url": { "label": "URL du sprite", "placeholder": "https://example.com/sprite.png" }
+  }
+}

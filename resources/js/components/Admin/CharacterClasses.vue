@@ -119,9 +119,9 @@ const confirmDelete = () => {
 };
 
 const columns = computed(() => [
-	{ accessorKey: 'name', header: t('admin.character_classes.table.name') },
+	{ accessorKey: 'name', header: t('general.name') },
 	{ accessorKey: 'shorthand', header: t('admin.character_classes.table.shorthand') },
-	{ accessorKey: 'role', header: t('admin.character_classes.table.role') },
+	{ accessorKey: 'role', header: t('general.role') },
 	{ accessorKey: 'icon_url', header: t('admin.character_classes.table.icon') },
 	{ accessorKey: 'flaticon_url', header: t('admin.character_classes.table.flaticon') },
 	{ id: 'actions' }

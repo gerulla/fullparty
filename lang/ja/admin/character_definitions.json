@@ -1,0 +1,23 @@
+{
+  "title": "キャラクターデータ",
+  "subtitle": "キャラクタープロフィール用の動的フィールドを管理します",
+  "table_header": "フィールド定義",
+  "search_placeholder": "フィールド定義を検索...",
+  "table": { "type": "タイプ", "group": "グループ", "source_type": "ソース", "visibility": "表示設定", "active": "状態", "no_description": "説明なし", "active_badge": "有効", "inactive_badge": "無効", "visible_badge": "表示", "hidden_badge": "非表示", "editable_badge": "編集可", "readonly_badge": "読み取り専用" },
+  "toasts": { "created": "フィールド定義を作成しました", "updated": "フィールド定義を更新しました", "deleted": "フィールド定義を削除しました" },
+  "delete_modal": { "title": "{field} を削除しますか？", "subtitle": "'{field}' フィールド定義を本当に削除しますか？", "warning": "警告: 関連するすべてのフィールド値も完全に削除されます。" },
+  "create_modal": { "title": "フィールド定義を作成", "subtitle": "キャラクタープロフィール用の新しいフィールドを定義します" },
+  "edit_modal": { "title": "フィールド定義を編集", "subtitle": "'{field}' フィールド定義の詳細を編集します" },
+  "fields": {
+    "name": { "label": "フィールド名", "placeholder": "例: Discord ユーザー名" },
+    "group": { "label": "グループ", "placeholder": "例: profile", "options": { "profile": "プロフィール", "metadata": "メタデータ", "social": "ソーシャル", "recruitment": "募集", "system": "システム" } },
+    "display_contexts": { "label": "表示コンテキスト", "description": "このフィールドをどこに表示できるかを選択します", "options": { "profile": "プロフィール", "account": "アカウント", "admin": "管理" } },
+    "source_type": { "label": "ソースタイプ", "description": "この値を誰が所有し、更新するかを定義します", "options": { "user": "ユーザー", "system": "システム", "hybrid": "ハイブリッド" } },
+    "type": { "label": "フィールドタイプ", "options": { "text": "テキスト", "number": "数値", "date": "日付", "textarea": "テキストエリア", "select": "選択", "checkbox": "チェックボックス" } },
+    "active": { "label": "有効?", "description": "フィールド値を利用可能にします" },
+    "editable": { "label": "編集可能?", "description": "フォームで直接編集できるようにします" },
+    "visible": { "label": "表示する?", "description": "ユーザー向け画面でこのフィールドを表示できるようにします" },
+    "tags": { "label": "タグ", "placeholder": "カンマ区切りのタグ 例: public, profile-card" },
+    "description": { "placeholder": "このフィールドの任意の説明" }
+  }
+}

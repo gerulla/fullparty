@@ -6,12 +6,6 @@
     "active": "This invite is active.",
     "expired": "This invite is no longer available."
   },
-  "labels": {
-    "datacenter": "Data Center",
-    "members": "Members",
-    "public": "Public Group",
-    "private": "Private Group"
-  },
   "actions": {
     "accept": "Accept Invite",
     "sign_in": "Sign In to Accept",

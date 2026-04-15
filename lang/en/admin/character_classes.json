@@ -3,15 +3,11 @@
   "section_badge": "{count} classes",
   "search_placeholder": "Search character classes...",
   "table": {
-    "name": "Name",
     "shorthand": "Shorthand",
-    "role": "Role",
     "icon": "Icon",
     "flaticon": "Flat Icon",
     "missing_icon": "No icon",
-    "missing_flaticon": "No flat icon",
-    "yes": "Yes",
-    "no": "No"
+    "missing_flaticon": "No flat icon"
   },
   "toasts": {
     "created": "Character class created successfully",
@@ -41,7 +37,6 @@
       "placeholder": "e.g., WHM"
     },
     "role": {
-      "label": "Role",
       "placeholder": "Select a role",
       "options": {
         "healer": "Healer",

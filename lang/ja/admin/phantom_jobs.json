@@ -1,0 +1,18 @@
+{
+  "section_title": "ファントムジョブ",
+  "section_badge": "{count} ジョブ",
+  "search_placeholder": "ファントムジョブを検索...",
+  "table": { "max_level": "最大レベル", "icon": "アイコン", "black_icon": "黒アイコン", "transparent_icon": "透過アイコン", "sprite": "スプライト", "missing_icon": "アイコンなし", "missing_black_icon": "黒アイコンなし", "missing_transparent_icon": "透過アイコンなし", "missing_sprite": "スプライトなし" },
+  "toasts": { "created": "ファントムジョブを作成しました", "updated": "ファントムジョブを更新しました", "deleted": "ファントムジョブを削除しました" },
+  "create_modal": { "title": "ファントムジョブを作成", "subtitle": "キャラクター用の新しいファントムジョブを定義します" },
+  "edit_modal": { "title": "ファントムジョブを編集", "subtitle": "'{name}' ファントムジョブの詳細を編集します" },
+  "delete_modal": { "title": "{name} を削除しますか？", "subtitle": "'{name}' ファントムジョブを本当に削除しますか？", "warning": "警告: このファントムジョブに紐づくキャラクター進行状況もすべて完全に削除されます。" },
+  "fields": {
+    "name": { "label": "ファントムジョブ名", "placeholder": "例: Freelancer" },
+    "max_level": { "label": "最大レベル", "placeholder": "例: 99" },
+    "icon_url": { "label": "アイコンURL", "placeholder": "https://example.com/icon.png" },
+    "black_icon_url": { "label": "黒アイコンURL", "placeholder": "https://example.com/black-icon.png" },
+    "transparent_icon_url": { "label": "透過アイコンURL", "placeholder": "https://example.com/transparent-icon.png" },
+    "sprite_url": { "label": "スプライトURL", "placeholder": "https://example.com/sprite.png" }
+  }
+}

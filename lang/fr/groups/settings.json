@@ -1,0 +1,112 @@
+{
+  "title": "Paramètres du groupe",
+  "subtitle": "Gérez la configuration générale de votre groupe et les détails sensibles liés à l'accès.",
+  "access": {
+    "owner": "Accès propriétaire",
+    "moderator": "Accès modérateur"
+  },
+  "general": {
+    "title": "Paramètres généraux",
+    "subtitle": "Mettez à jour les détails modifiables qui définissent l'apparence de votre groupe et la manière dont les membres le rejoignent.",
+    "owner_only_notice": "Seuls les propriétaires du groupe peuvent mettre à jour ces paramètres. Les modérateurs peuvent les consulter ici.",
+    "visibility_summary_label": "Résumé de visibilité",
+    "visibility_summary": {
+      "default_name": "Ce groupe",
+      "public_visible": "{name} peut être rejoint par n'importe qui et apparaîtra dans la recherche et les profils.",
+      "public_hidden": "{name} peut être rejoint par n'importe qui, mais n'apparaîtra pas dans la découverte ni dans les profils consultables.",
+      "private_visible": "{name} ne peut être rejoint que via une invitation, mais apparaîtra quand même dans la recherche et les profils.",
+      "private_hidden": "{name} ne peut être rejoint que via une invitation et restera caché dans la découverte et les profils consultables."
+    },
+    "fields": {
+      "name": { "placeholder": "Forked Tower Enjoyers" },
+      "description": { "placeholder": "Expliquez l'objectif de votre groupe et à qui il s'adresse." },
+      "profile_picture": {
+        "placeholder": "Choisir une image",
+        "help": "Optionnel. Téléversez une nouvelle image pour remplacer l'image actuelle du groupe.",
+        "preview_alt": "Aperçu de l'image de profil du groupe",
+        "preview_label": "Aperçu du recadrage visible",
+        "preview_help": "Cet aperçu montre le recadrage carré centré qui sera redimensionné et utilisé comme image de profil de votre groupe."
+      },
+      "discord_invite_url": {
+        "placeholder": "https://discord.gg/yourserver",
+        "help": "Optionnel. Ajoutez une invitation Discord pour que les membres puissent rejoindre facilement votre serveur."
+      },
+      "datacenter": { "placeholder": "Sélectionnez un centre de données" },
+      "is_public": {
+        "label": "Groupe public",
+        "help": "Tout le monde peut rejoindre les groupes publics, et les runs publics à venir peuvent être vus par les non-membres."
+      },
+      "is_visible": {
+        "label": "Visible dans la découverte",
+        "help": "Les groupes visibles peuvent apparaître dans la découverte et la recherche, même s'ils sont privés."
+      }
+    },
+    "toasts": { "updated": "Les paramètres du groupe ont été mis à jour." }
+  },
+  "invites": {
+    "title": "Liens d'invitation",
+    "subtitle": "Gérez les liens d'invitation pour les nouveaux membres.",
+    "create_button": "Créer un lien",
+    "empty": "Aucun lien d'invitation n'a encore été créé.",
+    "system_creator": "Système",
+    "created_by": "Créé par {name} le {date}",
+    "uses": "Utilisations",
+    "expires": "Expire",
+    "never": "Jamais",
+    "unlimited": "Illimité",
+    "statuses": { "active": "Actif", "expired": "Expiré", "system": "Système" },
+    "create_modal": {
+      "title": "Créer un lien d'invitation",
+      "subtitle": "Définissez des limites optionnelles pour l'utilisation et l'expiration. Laissez les champs vides pour garder l'invitation ouverte.",
+      "max_uses": { "label": "Utilisations maximales", "placeholder": "Laisser vide pour illimité" },
+      "expires_in": {
+        "label": "Expire dans",
+        "placeholder": "Sélectionnez une durée d'expiration",
+        "options": {
+          "12_hours": "12 heures",
+          "24_hours": "24 heures",
+          "1_day": "1 jour",
+          "2_days": "2 jours",
+          "3_days": "3 jours",
+          "4_days": "4 jours",
+          "1_week": "1 semaine",
+          "unlimited": "Jamais"
+        }
+      }
+    },
+    "toasts": { "created": "Lien d'invitation créé.", "copied": "Lien d'invitation copié.", "revoked": "Lien d'invitation révoqué." }
+  },
+  "ownership": {
+    "title": "Propriété",
+    "subtitle": "Transférez la propriété à un autre membre existant lorsque vous devez céder le groupe.",
+    "owner_only_notice": "Seul le propriétaire actuel peut transférer la propriété.",
+    "warning_title": "Le transfert de propriété est une action à fort impact.",
+    "warning_description": "Une fois transférée, vous perdrez vos droits de propriétaire et deviendrez modérateur du groupe.",
+    "selected_member": "Nouveau propriétaire",
+    "empty": "Vous devez avoir au moins un autre membre dans le groupe avant de pouvoir transférer la propriété.",
+    "transfer_button": "Transférer la propriété",
+    "confirm_modal": {
+      "title": "Transférer la propriété",
+      "subtitle": "Choisissez le membre qui doit devenir le nouveau propriétaire, puis confirmez le transfert.",
+      "member": { "label": "Sélectionner un membre", "placeholder": "Choisir un membre" },
+      "warning": "Cette action ne peut pas être annulée depuis ce flux. Vous deviendrez immédiatement modérateur.",
+      "confirm_button": "Confirmer le transfert"
+    },
+    "toasts": { "transferred": "Propriété transférée avec succès." }
+  },
+  "danger_zone": {
+    "title": "Zone de danger",
+    "subtitle": "Supprimez définitivement le groupe si vous êtes absolument certain qu'il doit être retiré.",
+    "owner_only_notice": "Seul le propriétaire actuel peut supprimer ce groupe.",
+    "warning_title": "Cette action ne peut pas être annulée.",
+    "warning_description": "La suppression du groupe retirera définitivement ses paramètres, invitations, adhésions et runs planifiés.",
+    "delete_button": "Supprimer le groupe",
+    "confirm_modal": {
+      "title": "Supprimer le groupe",
+      "subtitle": "Cela supprimera définitivement {name}. Veuillez confirmer que vous souhaitez continuer.",
+      "warning": "Une fois supprimé, ce groupe et toutes ses données associées disparaîtront définitivement.",
+      "confirm_button": "Oui, supprimer le groupe"
+    },
+    "toasts": { "deleted": "Groupe supprimé avec succès." }
+  }
+}

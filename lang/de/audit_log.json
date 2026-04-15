@@ -1,0 +1,235 @@
+{
+  "group": {
+    "title": "Audit-Log",
+    "subtitle": "Überprüfe Moderations- und Verwaltungsaktivitäten für diese Gruppe.",
+    "access": {
+      "owner": "Besitzerzugriff",
+      "moderator": "Moderatorzugriff"
+    }
+  },
+  "admin": {
+    "title": "Admin-Audit-Log",
+    "subtitle": "Überprüfe systemweite Audit-Aktivitäten über Gruppen, Konten und Systemereignisse hinweg.",
+    "access": "Admin-Zugriff"
+  },
+  "defaults": {
+    "system": "System",
+    "no_metadata": "Für dieses Ereignis wurden keine zusätzlichen Metadaten erfasst.",
+    "empty": "Leer",
+    "true": "Wahr",
+    "false": "Falsch"
+  },
+  "filters": {
+    "search_placeholder": "Titel, Beschreibungen, Benutzer oder Aktionen durchsuchen",
+    "any_action": "Beliebige Aktion",
+    "any_severity": "Beliebige Schwere",
+    "any_user": "Beliebiger Benutzer",
+    "any_group": "Beliebige Gruppe",
+    "action": {
+      "label": "Nach Aktion"
+    },
+    "severity": {
+      "label": "Nach Schwere"
+    },
+    "user": {
+      "label": "Nach Benutzer"
+    },
+    "group": {
+      "label": "Nach Gruppe"
+    },
+    "before_date": {
+      "label": "Vor Datum",
+      "placeholder": "Einträge an oder vor ..."
+    },
+    "after_date": {
+      "label": "Nach Datum",
+      "placeholder": "Einträge an oder nach ..."
+    }
+  },
+  "severities": {
+    "info": "Info",
+    "moderation_change": "Moderationsänderung",
+    "severe_change": "Schwerwiegende Änderung",
+    "critical": "Kritisch"
+  },
+  "scopes": {
+    "group": "Gruppe",
+    "user": "Benutzer",
+    "character": "Charakter",
+    "admin": "Admin",
+    "system": "System",
+    "unknown": "Unbekannt"
+  },
+  "list": {
+    "empty": "Keine Audit-Log-Einträge entsprechen den aktuellen Filtern.",
+    "loading_more": "Mehr laden",
+    "recorded_event": "Erfasstes Audit-Ereignis",
+    "details": "Details",
+    "changes": "Änderungen",
+    "show_changes": "Anzeigen",
+    "hide_changes": "Ausblenden",
+    "old_value": "Vorher",
+    "new_value": "Neu"
+  },
+  "activity": {
+    "user": {
+      "registered": "hat ein Konto registriert.",
+      "logged_in": "hat sich angemeldet.",
+      "social_account": {
+        "linked": "hat ein Social-Konto verknüpft."
+      },
+      "settings": {
+        "username_updated": "hat die Benutzernamenseinstellungen aktualisiert.",
+        "notifications_updated": "hat die Benachrichtigungseinstellungen aktualisiert.",
+        "privacy_updated": "hat die Datenschutzeinstellungen aktualisiert."
+      }
+    },
+    "admin": {
+      "field_definition": {
+        "created": "hat eine Felddefinition erstellt.",
+        "updated": "hat eine Felddefinition aktualisiert.",
+        "deleted": "hat eine Felddefinition gelöscht.",
+        "reordered": "hat Felddefinitionen neu angeordnet."
+      },
+      "character_class": {
+        "created": "hat eine Charakterklasse erstellt.",
+        "updated": "hat eine Charakterklasse aktualisiert.",
+        "deleted": "hat eine Charakterklasse gelöscht."
+      },
+      "phantom_job": {
+        "created": "hat einen Phantom-Job erstellt.",
+        "updated": "hat einen Phantom-Job aktualisiert.",
+        "deleted": "hat einen Phantom-Job gelöscht."
+      }
+    },
+    "character": {
+      "verified": "hat einen Charakter verifiziert.",
+      "refresh_requested": "hat eine Charakteraktualisierung angefordert.",
+      "made_primary": "hat einen Charakter als primär festgelegt."
+    },
+    "group": {
+      "created": "hat die Gruppe erstellt.",
+      "updated": "hat die Gruppeneinstellungen aktualisiert.",
+      "deleted": "hat die Gruppe gelöscht.",
+      "invite": {
+        "created": "hat einen Einladungslink erstellt.",
+        "revoked": "hat einen Einladungslink widerrufen."
+      },
+      "member": {
+        "joined": "ist der Gruppe beigetreten.",
+        "joined_via_invite": "ist der Gruppe per Einladung beigetreten.",
+        "left": "hat die Gruppe verlassen.",
+        "promoted": "hat ein Mitglied zum Moderator befördert.",
+        "demoted": "hat einen Moderator wieder zum Mitglied gemacht.",
+        "removed": "hat ein Mitglied aus der Gruppe entfernt.",
+        "banned": "hat ein Mitglied aus der Gruppe gebannt.",
+        "unbanned": "hat die Sperre eines Mitglieds aufgehoben."
+      },
+      "ownership": {
+        "transferred": "hat den Gruppenbesitz übertragen."
+      }
+    }
+  },
+  "activity_targeted": {
+    "group": {
+      "member": {
+        "promoted": "hat befördert",
+        "demoted": "hat zurückgestuft",
+        "removed": "hat entfernt",
+        "banned": "hat gebannt",
+        "unbanned": "hat entbannt",
+        "joined_via_invite": "hat eine Einladung angenommen für"
+      }
+    }
+  },
+  "fields": {
+    "name": "Name",
+    "description": "Beschreibung",
+    "profile_picture_url": "Profilbild",
+    "discord_invite_url": "Discord-Einladung",
+    "datacenter": "Datenzentrum",
+    "is_public": "Öffentlich",
+    "is_visible": "Sichtbar",
+    "role": "Rolle",
+    "membership_status": "Mitgliedschaftsstatus",
+    "ban_reason": "Banngrund",
+    "owner_user_id": "Besitzer",
+    "previous_role": "Vorherige Rolle",
+    "invite_id": "Einladungs-ID",
+    "invite_token": "Einladungstoken",
+    "max_uses": "Max. Nutzungen",
+    "expires_at": "Läuft ab am",
+    "uses": "Nutzungen",
+    "slug": "Slug",
+    "email": "E-Mail",
+    "provider": "Anbieter",
+    "provider_user_id": "Anbieter-Benutzer-ID",
+    "login_method": "Anmeldemethode",
+    "registration_method": "Registrierungsmethode",
+    "remember": "Angemeldet bleiben",
+    "linked_while_authenticated": "Während Authentifizierung verknüpft",
+    "lodestone_id": "Lodestone-ID",
+    "verification_method": "Verifizierungsmethode",
+    "is_primary": "Primärcharakter",
+    "changed_fields": "Geänderte Felder"
+  },
+  "events": {
+    "user": {
+      "registered": "Benutzer registriert",
+      "logged_in": "Benutzer angemeldet",
+      "social_account": {
+        "linked": "Social-Konto verknüpft"
+      },
+      "settings": {
+        "username_updated": "Benutzername aktualisiert",
+        "notifications_updated": "Benachrichtigungseinstellungen aktualisiert",
+        "privacy_updated": "Datenschutzeinstellungen aktualisiert"
+      }
+    },
+    "admin": {
+      "field_definition": {
+        "created": "Felddefinition erstellt",
+        "updated": "Felddefinition aktualisiert",
+        "deleted": "Felddefinition gelöscht",
+        "reordered": "Felddefinitionen neu angeordnet"
+      },
+      "character_class": {
+        "created": "Charakterklasse erstellt",
+        "updated": "Charakterklasse aktualisiert",
+        "deleted": "Charakterklasse gelöscht"
+      },
+      "phantom_job": {
+        "created": "Phantom-Job erstellt",
+        "updated": "Phantom-Job aktualisiert",
+        "deleted": "Phantom-Job gelöscht"
+      }
+    },
+    "character": {
+      "verified": "Charakter verifiziert",
+      "refresh_requested": "Charakteraktualisierung angefordert",
+      "made_primary": "Charakter als primär festgelegt"
+    },
+    "group": {
+      "created": "Gruppe erstellt",
+      "updated": "Gruppeneinstellungen aktualisiert",
+      "deleted": "Gruppe gelöscht",
+      "invite": {
+        "created": "Einladungslink erstellt",
+        "revoked": "Einladungslink widerrufen"
+      },
+      "member": {
+        "joined": "Mitglied ist öffentlicher Gruppe beigetreten",
+        "joined_via_invite": "Mitglied ist per Einladung beigetreten",
+        "left": "Mitglied hat Gruppe verlassen",
+        "promoted": "Mitglied zum Moderator befördert",
+        "demoted": "Moderator wieder zum Mitglied gemacht",
+        "removed": "Mitglied aus Gruppe entfernt",
+        "banned": "Mitglied aus Gruppe gebannt",
+        "unbanned": "Mitglied entsperrt"
+      },
+      "ownership": {
+        "transferred": "Gruppenbesitz übertragen"
+      }
+    }
+  }
+}

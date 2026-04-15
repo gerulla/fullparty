@@ -180,11 +180,11 @@ const confirmDelete = () => {
 };
 
 const columns = [
-	{ accessorKey: 'name', header: t('admin.character_definitions.table.name') },
+	{ accessorKey: 'name', header: t('general.name') },
 	{ accessorKey: 'type', header: t('admin.character_definitions.table.type') },
 	{ accessorKey: 'group', header: t('admin.character_definitions.table.group') },
 	{ accessorKey: 'source_type', header: t('admin.character_definitions.table.source_type') },
-	{ accessorKey: 'description', header: t('admin.character_definitions.table.description') },
+	{ accessorKey: 'description', header: t('general.description') },
 	{ accessorKey: 'is_visible', header: t('admin.character_definitions.table.visibility') },
 	{ accessorKey: 'is_active', header: t('admin.character_definitions.table.active') },
 	{ id: 'actions' }

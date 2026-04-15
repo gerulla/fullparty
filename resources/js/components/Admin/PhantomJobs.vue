@@ -114,7 +114,7 @@ const confirmDelete = () => {
 };
 
 const columns = computed(() => [
-	{ accessorKey: 'name', header: t('admin.phantom_jobs.table.name') },
+	{ accessorKey: 'name', header: t('general.name') },
 	{ accessorKey: 'max_level', header: t('admin.phantom_jobs.table.max_level') },
 	{ accessorKey: 'icon_url', header: t('admin.phantom_jobs.table.icon') },
 	{ accessorKey: 'black_icon_url', header: t('admin.phantom_jobs.table.black_icon') },

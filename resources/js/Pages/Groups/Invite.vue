@@ -101,19 +101,19 @@ const acceptInvite = () => {
 
 				<div class="grid gap-3 sm:grid-cols-3">
 					<div class="invite-info-block">
-						<p class="invite-info-label">{{ t('groups.invite.labels.members') }}</p>
+						<p class="invite-info-label">{{ t('general.members') }}</p>
 						<p class="invite-info-value">{{ group.member_count }}</p>
 					</div>
 
 					<div class="invite-info-block">
-						<p class="invite-info-label">{{ t('groups.invite.labels.datacenter') }}</p>
+						<p class="invite-info-label">{{ t('general.datacenter') }}</p>
 						<p class="invite-info-value">{{ group.datacenter }}</p>
 					</div>
 
 					<div class="invite-info-block">
-						<p class="invite-info-label">{{ group.is_public ? t('groups.invite.labels.public') : t('groups.invite.labels.private') }}</p>
+						<p class="invite-info-label">{{ group.is_public ? t('general.public_group') : t('general.private_group') }}</p>
 						<p class="invite-info-value">
-							{{ group.is_public ? t('groups.invite.labels.public') : t('groups.invite.labels.private') }}
+							{{ group.is_public ? t('general.public_group') : t('general.private_group') }}
 						</p>
 					</div>
 				</div>

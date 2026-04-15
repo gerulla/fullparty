@@ -1,0 +1,23 @@
+{
+  "title": "Charakterdaten",
+  "subtitle": "Verwalte dynamische Felder für Charakterprofile",
+  "table_header": "Felddefinitionen",
+  "search_placeholder": "Felddefinitionen durchsuchen...",
+  "table": { "type": "Typ", "group": "Gruppe", "source_type": "Quelle", "visibility": "Sichtbarkeit", "active": "Status", "no_description": "Keine Beschreibung", "active_badge": "Aktiv", "inactive_badge": "Inaktiv", "visible_badge": "Sichtbar", "hidden_badge": "Versteckt", "editable_badge": "Bearbeitbar", "readonly_badge": "Schreibgeschützt" },
+  "toasts": { "created": "Felddefinition erfolgreich erstellt", "updated": "Felddefinition erfolgreich aktualisiert", "deleted": "Felddefinition erfolgreich gelöscht" },
+  "delete_modal": { "title": "{field} löschen?", "subtitle": "Möchtest du die Felddefinition '{field}' wirklich löschen?", "warning": "Warnung: Alle zugehörigen Feldwerte werden ebenfalls dauerhaft gelöscht." },
+  "create_modal": { "title": "Felddefinition erstellen", "subtitle": "Definiere ein neues Feld für Charakterprofile" },
+  "edit_modal": { "title": "Felddefinition bearbeiten", "subtitle": "Bearbeite die Details der Felddefinition '{field}'" },
+  "fields": {
+    "name": { "label": "Feldname", "placeholder": "z. B. Discord-Benutzername" },
+    "group": { "label": "Gruppe", "placeholder": "z. B. profile", "options": { "profile": "Profil", "metadata": "Metadaten", "social": "Soziales", "recruitment": "Rekrutierung", "system": "System" } },
+    "display_contexts": { "label": "Anzeigekontexte", "description": "Wähle aus, wo dieses Feld angezeigt werden darf", "options": { "profile": "Profil", "account": "Konto", "admin": "Admin" } },
+    "source_type": { "label": "Quelltyp", "description": "Lege fest, wer diesen Wert besitzt und aktualisiert", "options": { "user": "Benutzer", "system": "System", "hybrid": "Hybrid" } },
+    "type": { "label": "Feldtyp", "options": { "text": "Text", "number": "Zahl", "date": "Datum", "textarea": "Textbereich", "select": "Auswahl", "checkbox": "Kontrollkästchen" } },
+    "active": { "label": "Aktiv?", "description": "Den Feldwert zur Verwendung verfügbar machen" },
+    "editable": { "label": "Bearbeitbar?", "description": "Direkte Bearbeitung in Formularen erlauben" },
+    "visible": { "label": "Sichtbar?", "description": "Erlaube, dass dieses Feld in benutzerseitigen Ansichten angezeigt wird" },
+    "tags": { "label": "Tags", "placeholder": "Kommagetrennte Tags, z. B. public, profile-card" },
+    "description": { "placeholder": "Optionale Beschreibung für dieses Feld" }
+  }
+}

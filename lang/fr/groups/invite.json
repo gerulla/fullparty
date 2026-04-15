@@ -1,0 +1,21 @@
+{
+  "title": "Invitation de groupe",
+  "subtitle": "Vous avez été invité à rejoindre ce groupe.",
+  "states": {
+    "member": "Vous faites déjà partie de ce groupe.",
+    "active": "Cette invitation est active.",
+    "expired": "Cette invitation n'est plus disponible."
+  },
+  "actions": {
+    "accept": "Accepter l'invitation",
+    "sign_in": "Se connecter pour accepter",
+    "open_dashboard": "Ouvrir le tableau de bord du groupe",
+    "decline": "Refuser",
+    "unavailable": "Invitation indisponible"
+  },
+  "messages": {
+    "guest": "Connectez-vous avec votre compte pour accepter cette invitation et rejoindre le groupe.",
+    "accepting": "Acceptation de l'invitation...",
+    "already_member": "Vous faites déjà partie de ce groupe."
+  }
+}

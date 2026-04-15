@@ -1,19 +1,19 @@
 {
   "title": "Meine Charaktere",
-  "subtitle": "Verwalten Sie Ihre FFXIV-Charaktere und Verifizierungsstatus.",
+  "subtitle": "Verwalte deine FFXIV-Charaktere und ihren Verifizierungsstatus.",
   "none_found": "Keine Charaktere gefunden.",
   "add": {
     "title": "Charakter hinzufügen",
-    "subtitle": "Wählen Sie aus, wie Sie Ihren Charakter verifizieren möchten",
+    "subtitle": "Wähle aus, wie du den Besitz deines Charakters verifizieren möchtest",
     "add_button": "Charakter hinzufügen",
     "options": {
       "xivauth": {
-        "title": "Von XIVAuth importieren",
-        "subtitle": "Importieren Sie Ihre verifizierten Charaktere automatisch von XIVAuth. Einfacher und schneller Vorgang."
+        "title": "Aus XIVAuth importieren",
+        "subtitle": "Importiere deine verifizierten Charaktere automatisch aus XIVAuth. Dein XIVAuth-Konto muss verknüpft sein."
       },
       "manual": {
         "title": "Manuell verifizieren",
-        "subtitle": "Fügen Sie einen Charakter über den Lodestone hinzu. Erfordert das Platzieren eines Verifizierungscodes auf Ihrem Charakterprofil."
+        "subtitle": "Füge einen Charakter über den Lodestone hinzu. Dazu musst du einen Verifizierungscode in dein Charakterprofil einfügen."
       }
     }
   },
@@ -22,36 +22,37 @@
     "steps": [
       "Charakterinfo",
       "Verifizierungscode",
+      "Wird verifiziert...",
       "Abgeschlossen"
     ],
     "step1": {
       "title": "Manuelle Verifizierung",
-      "subtitle": "Geben Sie Ihre Lodestone-Profil-URL oder Charakter-ID ein",
+      "subtitle": "Gib deine Lodestone-Profil-URL oder Charakter-ID ein",
       "input": {
         "label": "Lodestone-Profil-URL oder Charakter-ID",
         "placeholder": "https://na.finalfantasyxiv.com/lodestone/character/123456789",
-        "hint": "Sie können entweder die vollständige Lodestone-URL oder nur die Charakter-ID-Nummer einfügen"
+        "hint": "Du kannst entweder die vollständige Lodestone-URL oder nur die numerische Charakter-ID einfügen"
       },
-      "help_line": "{label} Gehen Sie zum {lodestone}, suchen Sie nach Ihrem Charakter und kopieren Sie die URL von der Profilseite Ihres Charakters.",
-      "where_to_find": "Wo finde ich das:",
+      "help_line": "{label} Gehe zum {lodestone}, suche deinen Charakter und kopiere die URL von der Profilseite deines Charakters.",
+      "where_to_find": "Hier findest du sie:",
       "lodestone": "FFXIV Lodestone"
     },
     "step2": {
       "title": "Charakterbesitz verifizieren",
-      "subtitle": "Fügen Sie den Verifizierungscode zu Ihrem Lodestone-Profil hinzu",
-      "code_label": "Ihr Verifizierungscode",
-      "instructions_label": "Anweisungen:",
+      "subtitle": "Füge den Verifizierungscode zu deinem Lodestone-Profil hinzu",
+      "code_label": "Dein Verifizierungscode",
+      "instructions_label": "Anleitung:",
       "instructions": [
-        "1. Kopieren Sie den obigen Verifizierungscode",
-        "2. Öffnen Sie Ihr {profile}",
-        "3. Bearbeiten Sie Ihr Profil und fügen Sie den Code irgendwo in Ihren Charakterprofiltext ein",
-        "4. Speichern Sie Ihre Profiländerungen",
-        "5. Klicken Sie unten auf \"Jetzt verifizieren\""
+        "1.Kopiere den Verifizierungscode oben",
+        "2.Öffne dein {profile}",
+        "3.Bearbeite dein Profil und füge den Code irgendwo in deinen Profiltext ein",
+        "4.Speichere deine Profiländerungen",
+        "5.Klicke unten auf \"Jetzt verifizieren\""
       ],
       "profile": "Lodestone-Profil",
       "toast_success": {
         "title": "Code kopiert",
-        "description": "Der Verifizierungscode wurde in Ihre Zwischenablage kopiert."
+        "description": "Der Verifizierungscode wurde in deine Zwischenablage kopiert."
       },
       "toast_error": {
         "title": "Kopieren fehlgeschlagen",
@@ -59,17 +60,94 @@
       },
       "toast_taken": {
         "title": "Charakter bereits registriert",
-        "description": "Dieser Charakter ist bereits registriert. Wenn dies Ihr Charakter ist und Sie ihn nicht registriert haben, wenden Sie sich bitte an den Support."
+        "description": "Dieser Charakter ist bereits registriert. Falls es dein Charakter ist und du ihn nicht registriert hast, wende dich bitte an den Support."
       }
     },
+    "step3": {
+      "title": "Dein Profil wird geprüft",
+      "subtitle": "Bitte warte, während wir dein Lodestone-Profil verifizieren..."
+    },
+    "success": {
+      "title": "Charakter verifiziert!",
+      "subtitle": "Dein Charakter wurde erfolgreich verifiziert und deinem Konto hinzugefügt.",
+      "button": "Zurück zu Meine Charaktere"
+    },
+    "fail": {
+      "title": "Verifizierung fehlgeschlagen",
+      "subtitle": "Wir konnten den Verifizierungscode nicht in deinem Lodestone-Profil finden.",
+      "common_label": "Häufige Probleme:",
+      "common_issues": [
+        "Der Verifizierungscode wurde nicht zu deinem Profil hinzugefügt",
+        "Profiländerungen wurden noch nicht aktualisiert (versuche es in ein paar Minuten erneut)",
+        "Der Code wurde verändert oder enthält zusätzliche Leerzeichen"
+      ],
+      "button": "Erneut starten"
+    },
     "errors": {
-      "invalid_token": "Verifizierungscode stimmt nicht überein. Bitte versuchen Sie es erneut.",
-      "invalid_lodestone_id": "Ungültige Lodestone-ID. Bitte geben Sie eine gültige Charakter-ID oder Lodestone-URL ein.",
-      "character_not_found": "Charakter nicht gefunden. Bitte überprüfen Sie die ID und versuchen Sie es erneut.",
-      "lodestone_error": "Charakterinformationen konnten nicht abgerufen werden. Bitte versuchen Sie es später erneut.",
-      "parse_error": "Charakterinformationen konnten nicht analysiert werden. Bitte versuchen Sie es später erneut."
+      "invalid_token": "Der Verifizierungscode stimmt nicht überein. Bitte versuche es erneut.",
+      "invalid_lodestone_id": "Ungültige Lodestone-ID. Bitte gib eine gültige Charakter-ID oder Lodestone-URL ein.",
+      "character_not_found": "Charakter nicht gefunden. Bitte überprüfe die ID und versuche es erneut.",
+      "lodestone_error": "Charakterinformationen konnten nicht abgerufen werden. Bitte versuche es später erneut.",
+      "parse_error": "Charakterinformationen konnten nicht verarbeitet werden. Bitte versuche es später erneut."
+    }
+  },
+  "xivauth": {
+    "progress": "Schritt {current} von {total}",
+    "steps": [
+      "Charaktere werden geladen...",
+      "Zu importierenden Charakter auswählen",
+      "Charakter wird importiert...",
+      "Abgeschlossen"
+    ],
+    "step1": {
+      "title": "Charaktere werden geladen",
+      "subtitle": "Deine verifizierten Charaktere werden aus XIVAuth geladen. Dies kann einige Minuten dauern."
+    },
+    "step2": {
+      "title": "Zu importierenden Charakter auswählen",
+      "subtitle": "Wähle den Charakter aus, den du aus XIVAuth importieren möchtest."
+    },
+    "step3": {
+      "title": "Charakter wird importiert",
+      "subtitle": "Dein Charakter wird aus XIVAuth importiert. Dies kann einige Minuten dauern."
+    },
+    "success": {
+      "title": "Charakter importiert!",
+      "subtitle": "Dein Charakter wurde erfolgreich aus XIVAuth importiert.",
+      "button": "Zurück zu Meine Charaktere"
+    },
+    "errors": {
+      "xivauth_not_linked": "Es sieht so aus, als hättest du dein XIVAuth-Konto noch nicht verknüpft. Bitte verknüpfe dein Konto, um deine Charaktere zu importieren.",
+      "xivauth_token_invalid": "Wir konnten dich nicht mit XIVAuth autorisieren. Bitte versuche es erneut oder kontaktiere den Support."
     }
   },
   "added_manually": "Manuell hinzugefügt",
-  "from_xivauth": "Von XIVAuth"
+  "from_xivauth": "Von XIVAuth",
+  "card": {
+    "view_lodestone_profile": "Lodestone-Profil anzeigen",
+    "make_primary": "Als Primär festlegen",
+    "preferred": "Bevorzugt",
+    "maxed": "Maximal",
+    "knowledge_level": "Wissensstufe",
+    "level": "Stufe {level}",
+    "phantom_level": "Stufe {current} / {max}",
+    "sections": {
+      "classes": "Klassen",
+      "occult": "Okkult",
+      "forked_tower_blood": "Forked Tower of Blood",
+      "forked_tower_magic": "Forked Tower of Magic"
+    },
+    "forked_tower": {
+      "clear_count": "Abschlussanzahl",
+      "clears": "{count} Abschlüsse",
+      "kills": "Kills",
+      "bosses": {
+        "demon_tablet": "Demon Tablet",
+        "dead_stars": "Dead Stars",
+        "marble_dragon": "Marble Dragon",
+        "magitaur": "Magitaur",
+        "tba": "TBA"
+      }
+    }
+  }
 }

@@ -169,7 +169,7 @@ defineExpose({
 					</div>
 
 					<UFormField
-						:label="t('groups.index.create_modal.fields.name.label')"
+						:label="t('general.name')"
 						:error="form.errors.name"
 						required
 					>
@@ -201,7 +201,7 @@ defineExpose({
 					</div>
 
 					<UFormField
-						:label="t('groups.index.create_modal.fields.description.label')"
+						:label="t('general.description')"
 						:error="form.errors.description"
 					>
 						<UTextarea
@@ -214,7 +214,7 @@ defineExpose({
 					</UFormField>
 
 					<UFormField
-						:label="t('groups.index.create_modal.fields.datacenter.label')"
+						:label="t('general.datacenter')"
 						:error="form.errors.datacenter"
 						required
 					>
@@ -236,7 +236,7 @@ defineExpose({
 					</div>
 
 					<UFormField
-						:label="t('groups.index.create_modal.fields.profile_picture.label')"
+						:label="t('general.profile_picture')"
 						:help="t('groups.index.create_modal.fields.profile_picture.help')"
 						:error="form.errors.profile_picture"
 					>
@@ -275,7 +275,7 @@ defineExpose({
 					</UFormField>
 
 					<UFormField
-						:label="t('groups.index.create_modal.fields.discord_invite_url.label')"
+						:label="t('general.discord_invite_url')"
 						:help="t('groups.index.create_modal.fields.discord_invite_url.help')"
 						:error="form.errors.discord_invite_url"
 					>

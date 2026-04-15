@@ -100,6 +100,12 @@
         "created": "created a phantom job.",
         "updated": "updated a phantom job.",
         "deleted": "deleted a phantom job."
+      },
+      "activity_type": {
+        "created": "created an activity type.",
+        "updated": "updated an activity type.",
+        "published": "published an activity type.",
+        "archived": "archived an activity type."
       }
     },
     "character": {
@@ -202,6 +208,12 @@
         "created": "Phantom job created",
         "updated": "Phantom job updated",
         "deleted": "Phantom job deleted"
+      },
+      "activity_type": {
+        "created": "Activity type created",
+        "updated": "Activity type updated",
+        "published": "Activity type published",
+        "archived": "Activity type archived"
       }
     },
     "character": {

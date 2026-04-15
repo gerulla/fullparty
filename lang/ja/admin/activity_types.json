@@ -1,0 +1,107 @@
+{
+  "title": "Activity Types",
+  "subtitle": "Create and publish reusable activity blueprints for slot layouts, slot metadata, and application forms.",
+  "create": "Create Activity Type",
+  "create_title": "Create Activity Type",
+  "create_subtitle": "Start a new activity type draft and define the blueprint that groups will use.",
+  "edit_title": "Edit Activity Type",
+  "edit_subtitle": "Update the draft blueprint and publish when it is ready.",
+  "status_active": "Active",
+  "status_inactive": "Inactive",
+  "version_badge": "Published v{version}",
+  "no_description": "No description yet.",
+  "empty": "No activity types have been created yet.",
+  "delete_confirm": "Delete this activity type? This will archive it.",
+  "back": "Back to Activity Types",
+  "form": {
+    "error_title": "This draft still has a few issues to fix."
+  },
+  "general": {
+    "title": "General",
+    "subtitle": "Set the core identity and translated copy for this activity type.",
+    "slug": "Slug",
+    "slug_help": "Used internally and in URLs. Lowercase letters, numbers, and dashes only.",
+    "slug_placeholder": "forked-tower",
+    "name": "Localized Name",
+    "name_help": "The English name is required. Other locales can be added now or later.",
+    "name_placeholder": "Activity type name",
+    "description": "Localized Description",
+    "description_help": "Short explanation shown to admins and eventually to group managers.",
+    "description_placeholder": "Describe what this activity type is for",
+    "active": "Active",
+    "active_help": "Inactive activity types stay in the admin history but should not be used for new activities."
+  },
+  "layout": {
+    "title": "Layout",
+    "subtitle": "Define the slot groups this activity will generate.",
+    "groups_count": "{count} groups",
+    "total_slots": "{count} total slots",
+    "add_group": "Add Group",
+    "group_title": "Group {index}",
+    "group_hint": "A group can represent a party, alliance, squad, or any slot bucket you need.",
+    "group_key": "Group Key",
+    "group_key_placeholder": "party-1",
+    "group_size": "Group Size",
+    "group_label": "Localized Group Label",
+    "group_label_help": "This label will be shown in the activity UI.",
+    "group_label_placeholder": "Party 1"
+  },
+  "slot_fields": {
+    "title": "Slot Fields",
+    "subtitle": "Define metadata captured for each slot when organizers assign characters."
+  },
+  "application": {
+    "title": "Application Questions",
+    "subtitle": "Define what applicants need to submit for this activity type."
+  },
+  "schema": {
+    "fields_count": "{count} fields",
+    "add_field": "Add Field",
+    "field_title": "Field {index}",
+    "field_hint": "Use stable keys and translated labels so this schema can power multiple UIs.",
+    "key": "Key",
+    "key_placeholder": "preferred_classes",
+    "type": "Field Type",
+    "source": "Option Source",
+    "required": "Required",
+    "label": "Localized Label",
+    "label_help": "This is the main label shown to users.",
+    "label_placeholder": "Label",
+    "help_text": "Localized Help Text",
+    "help_text_help": "Optional supporting text shown below the field.",
+    "help_text_placeholder": "Helpful guidance for users",
+    "options_title": "Static Options",
+    "options_subtitle": "Only needed when the source is set to static options.",
+    "add_option": "Add Option",
+    "option_title": "Option {index}",
+    "option_value": "Stored Value",
+    "option_value_placeholder": "party-a",
+    "option_label": "Localized Option Label",
+    "option_label_placeholder": "Party A",
+    "field_types": {
+      "text": "Text",
+      "textarea": "Textarea",
+      "number": "Number",
+      "boolean": "Boolean",
+      "single_select": "Single Select",
+      "multi_select": "Multi Select",
+      "url": "URL"
+    },
+    "option_sources": {
+      "character_classes": "Character Classes",
+      "phantom_jobs": "Phantom Jobs",
+      "static_options": "Static Options"
+    }
+  },
+  "summary": {
+    "title": "Draft Summary",
+    "subtitle": "A quick snapshot of the blueprint you are building.",
+    "draft_name": "Draft Name",
+    "untitled": "Untitled activity type",
+    "no_slug": "No slug yet",
+    "groups": "Groups",
+    "slots": "Slots",
+    "slot_fields": "Slot Fields",
+    "application_questions": "Application Questions"
+  }
+}

@@ -4,18 +4,9 @@ import CTopbar from "@/components/Navigation/CTopbar.vue";
 import GroupNavigation from "@/components/Groups/GroupNavigation.vue";
 import { usePage } from '@inertiajs/vue3'
 import { computed, ref } from 'vue'
-import { useI18n } from 'vue-i18n'
-import { en, de, fr, ja } from '@nuxt/ui/locale'
-
-const locales = { en, de, fr, ja }
-const char1 = '/ft.jpg'
-
-const { t, locale } = useI18n({ useScope: 'global' })
+import { usePersistentLocale } from "@/composables/usePersistentLocale";
 const page = usePage()
-
-const currentUiLocale = computed(() => {
-	return locales[locale.value as keyof typeof locales] ?? locales.en
-})
+const { currentUiLocale } = usePersistentLocale();
 
 const currentGroup = computed(() => page.props.group ?? null)
 const showGroupNavigation = computed(() => {

@@ -100,6 +100,12 @@
         "created": "a créé un job fantôme.",
         "updated": "a mis à jour un job fantôme.",
         "deleted": "a supprimé un job fantôme."
+      },
+      "activity_type": {
+        "created": "a créé un Activity Type.",
+        "updated": "a mis à jour un Activity Type.",
+        "published": "a publié un Activity Type.",
+        "archived": "a archivé un Activity Type."
       }
     },
     "character": {
@@ -202,6 +208,12 @@
         "created": "Job fantôme créé",
         "updated": "Job fantôme mis à jour",
         "deleted": "Job fantôme supprimé"
+      },
+      "activity_type": {
+        "created": "Activity Type créé",
+        "updated": "Activity Type mis à jour",
+        "published": "Activity Type publié",
+        "archived": "Activity Type archivé"
       }
     },
     "character": {

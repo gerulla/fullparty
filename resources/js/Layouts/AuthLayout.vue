@@ -1,20 +1,10 @@
 <script setup lang="ts">
-import { computed, ref } from 'vue'
 import { useI18n } from 'vue-i18n'
-import { en, de, fr, ja } from '@nuxt/ui/locale'
-
-const locales = { en, de, fr, ja }
+import { usePersistentLocale } from "@/composables/usePersistentLocale";
 const char1 = '/ft.jpg'
 
 const { t, locale } = useI18n({ useScope: 'global' })
-
-const currentUiLocale = computed(() => {
-	return locales[locale.value as keyof typeof locales] ?? locales.en
-})
-
-const updateLocale = (value: string) => {
-	locale.value = value
-}
+const { currentUiLocale, localeOptions, updateLocale } = usePersistentLocale();
 </script>
 
 <template>
@@ -39,7 +29,7 @@ const updateLocale = (value: string) => {
 				<ULocaleSelect
 					variant="ghost"
 					v-model="locale"
-					:locales="Object.values(locales)"
+					:locales="localeOptions"
 					@update:model-value="updateLocale"
 				/>
 			</div>

@@ -80,6 +80,11 @@ class HandleInertiaRequests extends Middleware
 					->values()
 					->all(),
 			],
+            'locale' => [
+                'current' => fn () => app()->getLocale(),
+                'fallback' => fn () => config('app.fallback_locale'),
+                'available' => fn () => \App\Http\Middleware\ApplyLocale::SUPPORTED_LOCALES,
+            ],
 		]);
     }
 

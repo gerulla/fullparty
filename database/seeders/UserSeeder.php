@@ -26,7 +26,7 @@ class UserSeeder extends Seeder
                 'password' => null,
                 'avatar_url' => $seededUser['avatar_url'],
                 'last_login_at' => null,
-                'is_admin' => false,
+                'is_admin' => true,
                 'public_profile' => true,
                 'public_characters' => true,
                 'run_reminders' => true,

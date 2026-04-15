@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdminCharacterController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\ActivityTypeController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CharacterController;
 use App\Http\Controllers\CharacterClassController;
@@ -19,6 +20,7 @@ use App\Http\Controllers\PhantomJobController;
 use App\Http\Controllers\SettingsController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\XIVAuthController;
+use App\Http\Controllers\LocaleController;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -76,6 +78,8 @@ Route::prefix('auth')->group(function () {
 	Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 });
 
+Route::post('/locale', [LocaleController::class, 'update'])->name('locale.update');
+
 Route::middleware(['auth', 'verified'])->group(function () {
 	Route::get('/dashboard', function () {
 		return Inertia::render('Dashboard/Dashboard');
@@ -132,6 +136,15 @@ Route::middleware(['auth', 'verified'])->group(function () {
 	Route::prefix('admin')->group(function () {
 		Route::get('/character-data', [AdminController::class, 'characterData'])->name('admin.character-data');
 		Route::get('/audit-log', [AdminController::class, 'auditLog'])->name('admin.audit-log');
+		
+		Route::get('/activity-types', [ActivityTypeController::class, 'index'])->name('admin.activity-types.index');
+		Route::get('/activity-types/create', [ActivityTypeController::class, 'create'])->name('admin.activity-types.create');
+		Route::post('/activity-types', [ActivityTypeController::class, 'store'])->name('admin.activity-types.store');
+		Route::get('/activity-types/{activityType}/edit', [ActivityTypeController::class, 'edit'])->name('admin.activity-types.edit');
+		Route::put('/activity-types/{activityType}', [ActivityTypeController::class, 'update'])->name('admin.activity-types.update');
+		Route::post('/activity-types/{activityType}/publish', [ActivityTypeController::class, 'publish'])->name('admin.activity-types.publish');
+		Route::delete('/activity-types/{activityType}', [ActivityTypeController::class, 'destroy'])->name('admin.activity-types.destroy');
+		
 		Route::redirect('/characters/definitions', '/admin/character-data')->name('admin.characters.definitions');
 		Route::post('/characters/definitions', [AdminCharacterController::class, 'storeDefinition'])->name('admin.characters.definitions.store');
 		Route::put('/characters/definitions/{definition}', [AdminCharacterController::class, 'updateDefinition'])->name('admin.characters.definitions.update');

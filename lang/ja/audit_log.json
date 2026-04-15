@@ -100,6 +100,12 @@
         "created": "がファントムジョブを作成しました。",
         "updated": "がファントムジョブを更新しました。",
         "deleted": "がファントムジョブを削除しました。"
+      },
+      "activity_type": {
+        "created": "がActivity Typeを作成しました。",
+        "updated": "がActivity Typeを更新しました。",
+        "published": "がActivity Typeを公開しました。",
+        "archived": "がActivity Typeをアーカイブしました。"
       }
     },
     "character": {
@@ -202,6 +208,12 @@
         "created": "ファントムジョブを作成",
         "updated": "ファントムジョブを更新",
         "deleted": "ファントムジョブを削除"
+      },
+      "activity_type": {
+        "created": "Activity Typeを作成",
+        "updated": "Activity Typeを更新",
+        "published": "Activity Typeを公開",
+        "archived": "Activity Typeをアーカイブ"
       }
     },
     "character": {

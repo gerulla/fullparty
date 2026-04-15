@@ -1,21 +1,11 @@
 <script setup lang="ts">
-import { route } from 'ziggy-js'
-import { useI18n } from "vue-i18n"
-import { de, en, fr, ja } from "@nuxt/ui/locale"
-import { computed, ref } from "vue"
 import NotificationButton from "@/components/NotificationButton.vue";
 import UserMenu from "@/components/Navigation/UserMenu.vue";
+import { usePersistentLocale } from "@/composables/usePersistentLocale";
+import { useI18n } from "vue-i18n";
 
-const locales = { en, de, fr, ja }
 const { t, locale } = useI18n({ useScope: 'global' })
-
-const currentUiLocale = computed(() => {
-	return locales[locale.value as keyof typeof locales] ?? locales.en
-})
-
-const updateLocale = (value: string) => {
-	locale.value = value
-}
+const { localeOptions, updateLocale } = usePersistentLocale();
 
 defineProps({
 	title: {
@@ -42,7 +32,7 @@ defineProps({
 			<ULocaleSelect
 				variant="ghost"
 				v-model="locale"
-				:locales="Object.values(locales)"
+				:locales="localeOptions"
 				@update:model-value="updateLocale"
 			/>
 			<UserMenu />

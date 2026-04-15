@@ -15,7 +15,7 @@
     "admin": "Admin",
     "character_definitions": "Character Data",
     "admin_audit_log": "Audit Log",
-    "run_definitions": "Run Types",
+    "activity_types": "Activity Types",
     "notice": {
       "title": "Heads Up",
       "description": "FullParty is still in active development. If you run into an issue or want to share feedback, check GitHub or join the Discord server.",

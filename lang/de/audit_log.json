@@ -100,6 +100,12 @@
         "created": "hat einen Phantom-Job erstellt.",
         "updated": "hat einen Phantom-Job aktualisiert.",
         "deleted": "hat einen Phantom-Job gelöscht."
+      },
+      "activity_type": {
+        "created": "hat einen Activity Type erstellt.",
+        "updated": "hat einen Activity Type aktualisiert.",
+        "published": "hat einen Activity Type veröffentlicht.",
+        "archived": "hat einen Activity Type archiviert."
       }
     },
     "character": {
@@ -202,6 +208,12 @@
         "created": "Phantom-Job erstellt",
         "updated": "Phantom-Job aktualisiert",
         "deleted": "Phantom-Job gelöscht"
+      },
+      "activity_type": {
+        "created": "Activity Type erstellt",
+        "updated": "Activity Type aktualisiert",
+        "published": "Activity Type veröffentlicht",
+        "archived": "Activity Type archiviert"
       }
     },
     "character": {

@@ -19,6 +19,7 @@ class DatabaseSeeder extends Seeder
             UserSeeder::class,
             CharacterClassSeeder::class,
             PhantomJobSeeder::class,
+            ActivityTypeSeeder::class,
             GroupSeeder::class,
         ]);
     }

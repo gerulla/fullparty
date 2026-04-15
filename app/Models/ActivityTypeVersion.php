@@ -1,0 +1,43 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+
+class ActivityTypeVersion extends Model
+{
+    use HasFactory;
+
+    protected $fillable = [
+        'activity_type_id',
+        'version',
+        'name',
+        'description',
+        'layout_schema',
+        'slot_schema',
+        'application_schema',
+        'published_by_user_id',
+        'published_at',
+    ];
+
+    protected $casts = [
+        'name' => 'array',
+        'description' => 'array',
+        'layout_schema' => 'array',
+        'slot_schema' => 'array',
+        'application_schema' => 'array',
+        'published_at' => 'datetime',
+    ];
+
+    public function activityType(): BelongsTo
+    {
+        return $this->belongsTo(ActivityType::class);
+    }
+
+    public function publisher(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'published_by_user_id');
+    }
+}

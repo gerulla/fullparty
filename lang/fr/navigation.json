@@ -15,7 +15,7 @@
     "admin": "Admin",
     "character_definitions": "Données des personnages",
     "admin_audit_log": "Journal d'audit",
-    "run_definitions": "Types de run",
+    "activity_types": "Activity Types",
     "notice": {
       "title": "Information",
       "description": "FullParty est encore en développement actif. Si vous rencontrez un problème ou souhaitez partager un retour, consultez GitHub ou rejoignez le serveur Discord.",

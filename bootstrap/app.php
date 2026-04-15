@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Middleware\EnsureGroupDashboardAccess;
+use App\Http\Middleware\ApplyLocale;
 use App\Http\Middleware\HandleInertiaRequests;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
@@ -18,6 +19,7 @@ return Application::configure(basePath: dirname(__DIR__))
         ]);
 
         $middleware->web(append: [
+			ApplyLocale::class,
 			HandleInertiaRequests::class,
 		]);
     })

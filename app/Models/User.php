@@ -94,4 +94,14 @@ class User extends Authenticatable implements MustVerifyEmail
 	{
 		return $this->hasMany(ScheduledRun::class, 'organized_by_user_id');
 	}
+
+	public function createdActivityTypes(): HasMany
+	{
+		return $this->hasMany(ActivityType::class, 'created_by_user_id');
+	}
+
+	public function publishedActivityTypeVersions(): HasMany
+	{
+		return $this->hasMany(ActivityTypeVersion::class, 'published_by_user_id');
+	}
 }

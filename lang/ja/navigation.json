@@ -15,7 +15,7 @@
     "admin": "管理",
     "character_definitions": "キャラクターデータ",
     "admin_audit_log": "監査ログ",
-    "run_definitions": "Runタイプ",
+    "activity_types": "Activity Types",
     "notice": {
       "title": "お知らせ",
       "description": "FullParty は現在も開発中です。問題を見つけたりフィードバックを共有したい場合は、GitHub を確認するか Discord サーバーに参加してください。",

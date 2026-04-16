@@ -79,8 +79,8 @@ watch([currentUrl, groupQuickLinkSections], () => {
 <template>
 	<UDashboardSidebar :default-size="15"  :ui="{ footer: '',  body: 'px-2' }" class="bg-brand-950">
 		<template #header="{ collapsed }">
-			<div v-if="!collapsed" class="w-full h-full p-4">
-				<img :src="full_logo" class="w-full h-auto" alt="FullParty Logo">
+			<div v-if="!collapsed" class="w-full h-full mt-4">
+				<img :src="full_logo" class="h-full w-auto mx-auto " alt="FullParty Logo">
 			</div>
 			<img v-else :src="compact_logo" class="w-full h-auto" alt="FullParty Logo">
 		</template>

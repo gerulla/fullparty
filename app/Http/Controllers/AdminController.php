@@ -63,7 +63,7 @@ class AdminController extends Controller
                     'subject' => [
                         'type' => $auditLog->subject_type,
                         'id' => $auditLog->subject?->id,
-                        'name' => $auditLog->subject?->name ?? 'System',
+                        'name' => $this->resolveSubjectName($auditLog),
                         'avatar_url' => $auditLog->subject?->avatar_url,
                         'is_system' => $auditLog->subject === null,
                     ],
@@ -273,5 +273,25 @@ class AdminController extends Controller
         $stringValue = trim((string) $value);
 
         return $stringValue !== '' ? $stringValue : __('audit_log.defaults.empty');
+    }
+
+    private function resolveSubjectName(AuditLog $auditLog): string
+    {
+        $subjectName = $auditLog->subject?->name;
+
+        if (filled($subjectName)) {
+            return $subjectName;
+        }
+
+        $metadata = is_array($auditLog->metadata) ? $auditLog->metadata : [];
+
+        if (
+            $auditLog->subject_type === \App\Models\ActivityType::class
+            && filled($metadata['activity_type_name'] ?? null)
+        ) {
+            return (string) $metadata['activity_type_name'];
+        }
+
+        return 'System';
     }
 }

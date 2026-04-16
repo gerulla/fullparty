@@ -148,6 +148,16 @@
       }
     }
   },
+  "activity_named": {
+    "admin": {
+      "activity_type": {
+        "created": "created",
+        "updated": "updated",
+        "published": "published",
+        "archived": "archived"
+      }
+    }
+  },
   "fields": {
     "name": "Name",
     "description": "Description",

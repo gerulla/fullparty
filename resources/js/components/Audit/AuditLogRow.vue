@@ -95,6 +95,13 @@ const showAffectedUser = computed(() => (
 	&& props.row.subject.id !== props.row.actor.id
 ));
 
+const showNamedSubject = computed(() => (
+	!showAffectedUser.value
+	&& props.row.subject.type === 'App\\Models\\ActivityType'
+	&& !props.row.subject.is_system
+	&& Boolean(props.row.subject.name)
+));
+
 const baseActionText = computed(() => {
 	const key = `audit_log.activity.${props.row.action}`;
 	const translated = t(key);
@@ -105,16 +112,25 @@ const baseActionText = computed(() => {
 });
 
 const actionText = computed(() => {
-	if (!showAffectedUser.value) {
-		return baseActionText.value;
+	if (showAffectedUser.value) {
+		const key = `audit_log.activity_targeted.${props.row.action}`;
+		const translated = t(key);
+
+		return translated === key
+			? baseActionText.value
+			: translated;
 	}
 
-	const key = `audit_log.activity_targeted.${props.row.action}`;
-	const translated = t(key);
+	if (showNamedSubject.value) {
+		const key = `audit_log.activity_named.${props.row.action}`;
+		const translated = t(key);
 
-	return translated === key
-		? baseActionText.value
-		: translated;
+		return translated === key
+			? baseActionText.value
+			: translated;
+	}
+
+	return baseActionText.value;
 });
 
 const scopeBadge = computed(() => ({
@@ -182,6 +198,7 @@ const formatTimestamp = (value: string) => new Intl.DateTimeFormat(undefined, {
 								<span class="font-semibold">{{ row.actor.name }}</span>
 								<span class="ml-1" :class="actionStyle.textClass">{{ actionText }}</span>
 								<span v-if="showAffectedUser" class="ml-1 font-semibold text-toned">{{ row.subject.name }}</span>
+								<span v-if="showNamedSubject" class="ml-1 font-semibold text-toned">{{ row.subject.name }}</span>
 								<span v-if="scopeSuffix" class="ml-1 text-muted">{{ scopeSuffix }}</span>
 							</p>
 							<UBadge

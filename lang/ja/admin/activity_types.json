@@ -16,6 +16,10 @@
   "form": {
     "error_title": "This draft still has a few issues to fix."
   },
+  "toasts": {
+    "created": "Activity type created successfully.",
+    "updated": "Activity type updated successfully."
+  },
   "general": {
     "title": "General",
     "subtitle": "Set the core identity and translated copy for this activity type.",

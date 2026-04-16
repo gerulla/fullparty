@@ -1,8 +1,10 @@
 <script setup lang="ts">
 import PageHeader from "@/components/PageHeader.vue";
-import { router } from "@inertiajs/vue3";
+import { router, usePage } from "@inertiajs/vue3";
+import { useToast } from "@nuxt/ui/composables";
 import { useI18n } from "vue-i18n";
 import { localizedValue } from "@/utils/localizedValue";
+import { watch } from "vue";
 
 defineProps<{
 	activityTypes: Array<any>
@@ -13,6 +15,36 @@ defineProps<{
 }>();
 
 const { t, locale } = useI18n();
+const page = usePage();
+const toast = useToast();
+
+watch(
+	() => page.props.flash?.success,
+	(success) => {
+		if (!success) {
+			return;
+		}
+
+		if (success.includes('activity_type_created')) {
+			toast.add({
+				title: t('general.success'),
+				description: t('admin.activity_types.toasts.created'),
+				color: 'success',
+				icon: 'i-lucide-check',
+			});
+		}
+
+		if (success.includes('activity_type_updated')) {
+			toast.add({
+				title: t('general.success'),
+				description: t('admin.activity_types.toasts.updated'),
+				color: 'success',
+				icon: 'i-lucide-check',
+			});
+		}
+	},
+	{ immediate: true }
+);
 
 const destroyActivityType = (activityTypeId: number) => {
 	if (!window.confirm(t('admin.activity_types.delete_confirm'))) {

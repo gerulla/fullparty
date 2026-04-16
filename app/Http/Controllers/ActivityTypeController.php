@@ -92,10 +92,15 @@ class ActivityTypeController extends Controller
             message: 'audit_log.events.admin.activity_type.created',
             actor: auth()->user(),
             subject: $activityType,
-            metadata: $this->activityTypeSnapshot($activityType),
+            metadata: [
+                ...$this->activityTypeSnapshot($activityType),
+                'activity_type_name' => $this->resolveAuditActivityTypeName($activityType),
+            ],
         );
 
-        return redirect()->back()->with('success', 'activity_type_created');
+        return redirect()
+            ->route('admin.activity-types.index')
+            ->with('success', 'activity_type_created');
     }
 
     public function update(Request $request, ActivityType $activityType): RedirectResponse
@@ -121,13 +126,16 @@ class ActivityTypeController extends Controller
                 actor: auth()->user(),
                 subject: $activityType,
                 metadata: [
+                    'activity_type_name' => $this->resolveAuditActivityTypeName($activityType->fresh()),
                     'changed_fields' => array_keys($changes),
                     'changes' => $changes,
                 ],
             );
         }
 
-        return redirect()->back()->with('success', 'activity_type_updated');
+        return redirect()
+            ->route('admin.activity-types.index')
+            ->with('success', 'activity_type_updated');
     }
 
     public function publish(ActivityType $activityType): RedirectResponse
@@ -180,6 +188,7 @@ class ActivityTypeController extends Controller
                 'published_version' => $version->version,
                 'slug' => $activityType->slug,
                 'draft_name' => $activityType->draft_name,
+                'activity_type_name' => $this->resolveAuditActivityTypeName($activityType),
             ],
         );
 
@@ -201,7 +210,10 @@ class ActivityTypeController extends Controller
             message: 'audit_log.events.admin.activity_type.archived',
             actor: auth()->user(),
             subject: $activityType,
-            metadata: $snapshot,
+            metadata: [
+                ...$snapshot,
+                'activity_type_name' => $this->resolveAuditActivityTypeName($activityType),
+            ],
         );
 
         return redirect()->back()->with('success', 'activity_type_archived');
@@ -535,5 +547,26 @@ class ActivityTypeController extends Controller
                 ],
             ])
             ->all();
+    }
+
+    private function resolveAuditActivityTypeName(ActivityType $activityType): string
+    {
+        $draftName = $activityType->draft_name;
+
+        if (is_array($draftName)) {
+            foreach (['en', config('app.fallback_locale')] as $locale) {
+                if (is_string($locale) && filled($draftName[$locale] ?? null)) {
+                    return trim((string) $draftName[$locale]);
+                }
+            }
+
+            foreach ($draftName as $value) {
+                if (filled($value)) {
+                    return trim((string) $value);
+                }
+            }
+        }
+
+        return $activityType->slug;
     }
 }

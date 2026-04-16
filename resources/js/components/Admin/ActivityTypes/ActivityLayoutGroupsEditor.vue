@@ -45,10 +45,11 @@ const removeGroup = (index: number) => {
 
 const updateGroupLabel = (index: number, label: Record<string, string>) => {
 	const currentGroup = props.modelValue[index];
-	const previousEnglishLabel = currentGroup?.label?.en ?? '';
-	const nextEnglishLabel = label?.en ?? '';
-	const previousGeneratedKey = slugify(previousEnglishLabel);
-	const nextGeneratedKey = slugify(nextEnglishLabel);
+	const fallbackLocale = props.locales[0] ?? 'en';
+	const previousPrimaryLabel = currentGroup?.label?.[fallbackLocale] ?? '';
+	const nextPrimaryLabel = label?.[fallbackLocale] ?? '';
+	const previousGeneratedKey = slugify(previousPrimaryLabel);
+	const nextGeneratedKey = slugify(nextPrimaryLabel);
 
 	updateGroup(index, {
 		label,

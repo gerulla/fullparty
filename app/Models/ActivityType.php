@@ -18,6 +18,7 @@ class ActivityType extends Model
         'draft_layout_schema',
         'draft_slot_schema',
         'draft_application_schema',
+        'draft_progress_schema',
         'is_active',
         'created_by_user_id',
         'current_published_version_id',
@@ -29,6 +30,7 @@ class ActivityType extends Model
         'draft_layout_schema' => 'array',
         'draft_slot_schema' => 'array',
         'draft_application_schema' => 'array',
+        'draft_progress_schema' => 'array',
         'is_active' => 'boolean',
     ];
 

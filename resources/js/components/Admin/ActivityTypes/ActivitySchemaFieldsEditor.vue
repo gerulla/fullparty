@@ -102,10 +102,11 @@ const removeOption = (fieldIndex: number, optionIndex: number) => {
 
 const updateFieldLabel = (index: number, label: Record<string, string>) => {
 	const currentField = props.modelValue[index];
-	const previousEnglishLabel = currentField?.label?.en ?? '';
-	const nextEnglishLabel = label?.en ?? '';
-	const previousGeneratedKey = slugify(previousEnglishLabel);
-	const nextGeneratedKey = slugify(nextEnglishLabel);
+	const fallbackLocale = props.locales[0] ?? 'en';
+	const previousPrimaryLabel = currentField?.label?.[fallbackLocale] ?? '';
+	const nextPrimaryLabel = label?.[fallbackLocale] ?? '';
+	const previousGeneratedKey = slugify(previousPrimaryLabel);
+	const nextGeneratedKey = slugify(nextPrimaryLabel);
 
 	updateField(index, {
 		label,

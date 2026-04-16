@@ -13,12 +13,7 @@ defineProps<{
 
 const { t } = useI18n();
 
-const createLocalizedRecord = () => ({
-	en: '',
-	de: '',
-	fr: '',
-	ja: '',
-});
+const createLocalizedRecord = () => ({ en: '' });
 
 const form = useForm({
 	slug: '',
@@ -40,6 +35,9 @@ const form = useForm({
 	},
 	draft_slot_schema: [],
 	draft_application_schema: [],
+	draft_progress_schema: {
+		milestones: [],
+	},
 	is_active: true,
 });
 

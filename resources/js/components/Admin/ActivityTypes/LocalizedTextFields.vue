@@ -16,6 +16,7 @@ const emit = defineEmits<{
 }>();
 
 const isModalOpen = ref(false);
+const primaryLocale = computed(() => props.locales[0] ?? 'en');
 
 const localeStatuses = computed(() => props.locales.map((locale) => {
 	const value = props.modelValue?.[locale];
@@ -68,18 +69,18 @@ const updateLocale = (locale: string, value: string) => {
 
 			<UTextarea
 				v-if="multiline"
-				:model-value="modelValue?.en ?? ''"
+				:model-value="modelValue?.[primaryLocale] ?? ''"
 				:rows="rows ?? 3"
 				class="w-full"
-				:placeholder="placeholderPrefix ? `${placeholderPrefix} (en)` : 'en'"
-				@update:model-value="(value) => updateLocale('en', value)"
+				:placeholder="placeholderPrefix ? `${placeholderPrefix} (${primaryLocale})` : primaryLocale"
+				@update:model-value="(value) => updateLocale(primaryLocale, value)"
 			/>
 			<UInput
 				v-else
-				:model-value="modelValue?.en ?? ''"
+				:model-value="modelValue?.[primaryLocale] ?? ''"
 				class="w-full"
-				:placeholder="placeholderPrefix ? `${placeholderPrefix} (en)` : 'en'"
-				@update:model-value="(value) => updateLocale('en', value)"
+				:placeholder="placeholderPrefix ? `${placeholderPrefix} (${primaryLocale})` : primaryLocale"
+				@update:model-value="(value) => updateLocale(primaryLocale, value)"
 			/>
 		</div>
 
@@ -98,7 +99,7 @@ const updateLocale = (locale: string, value: string) => {
 					>
 						<div class="mb-2 flex items-center justify-between">
 							<span class="text-xs font-semibold uppercase tracking-wide text-muted">{{ locale }}</span>
-							<UBadge v-if="locale === 'en'" color="primary" variant="subtle" label="Required" />
+							<UBadge v-if="locale === primaryLocale" color="primary" variant="subtle" label="Required" />
 						</div>
 
 						<UTextarea

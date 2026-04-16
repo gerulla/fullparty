@@ -54,6 +54,33 @@
     "title": "Application Questions",
     "subtitle": "Define what applicants need to submit for this activity type."
   },
+  "progress": {
+    "title": "Progress Tracking",
+    "subtitle": "Define the milestones groups can report when they finish an activity.",
+    "milestones_count": "{count} milestones",
+    "add_milestone": "Add Milestone",
+    "milestone_title": "Milestone {index}",
+    "milestone_hint": "Use one milestone per boss, phase, or checkpoint you want to track later.",
+    "key": "Milestone Key",
+    "key_placeholder": "dead-stars",
+    "order": "Order",
+    "label": "Localized Milestone Label",
+    "label_help": "This label is shown when groups record or review progress.",
+    "label_placeholder": "Dead Stars",
+    "fflogs_title": "FF Logs Mapping",
+    "fflogs_subtitle": "Map each milestone to either a full encounter or to a specific phase inside that encounter.",
+    "matcher_type": "Matcher Type",
+    "encounter_id": "Encounter ID",
+    "encounter_id_placeholder": "2063",
+    "phase_id": "Phase ID",
+    "phase_id_placeholder": "3",
+    "empty_title": "No milestones yet",
+    "empty_description": "Add milestones if this activity type should support end-of-run progress tracking.",
+    "matcher_types": {
+      "encounter": "Encounter",
+      "phase": "Phase"
+    }
+  },
   "schema": {
     "fields_count": "{count} fields",
     "add_field": "Add Field",
@@ -102,6 +129,7 @@
     "groups": "Groups",
     "slots": "Slots",
     "slot_fields": "Slot Fields",
-    "application_questions": "Application Questions"
+    "application_questions": "Application Questions",
+    "progress_milestones": "Progress Milestones"
   }
 }

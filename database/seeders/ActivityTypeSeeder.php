@@ -28,6 +28,7 @@ class ActivityTypeSeeder extends Seeder
                     'draft_layout_schema' => $activityTypeData['draft_layout_schema'],
                     'draft_slot_schema' => $activityTypeData['draft_slot_schema'],
                     'draft_application_schema' => $activityTypeData['draft_application_schema'],
+                    'draft_progress_schema' => $activityTypeData['draft_progress_schema'],
                     'is_active' => true,
                     'created_by_user_id' => $activityType->exists
                         ? $activityType->created_by_user_id
@@ -45,6 +46,7 @@ class ActivityTypeSeeder extends Seeder
                     'layout_schema' => $activityTypeData['draft_layout_schema'],
                     'slot_schema' => $activityTypeData['draft_slot_schema'],
                     'application_schema' => $activityTypeData['draft_application_schema'],
+                    'progress_schema' => $activityTypeData['draft_progress_schema'],
                     'published_by_user_id' => $publisherId,
                     'published_at' => now(),
                 ]);
@@ -145,6 +147,34 @@ class ActivityTypeSeeder extends Seeder
                         required: false,
                     ),
                 ],
+                'draft_progress_schema' => [
+                    'milestones' => [
+                        $this->progressMilestone(
+                            key: 'demon-tablet',
+                            label: ['en' => 'Demon Tablet', 'de' => 'Demon Tablet', 'fr' => 'Demon Tablet', 'ja' => 'Demon Tablet'],
+                            order: 1,
+                            encounterId: 2062,
+                        ),
+                        $this->progressMilestone(
+                            key: 'dead-stars',
+                            label: ['en' => 'Dead Stars', 'de' => 'Dead Stars', 'fr' => 'Dead Stars', 'ja' => 'Dead Stars'],
+                            order: 2,
+                            encounterId: 2063,
+                        ),
+                        $this->progressMilestone(
+                            key: 'marble-dragon',
+                            label: ['en' => 'Marble Dragon', 'de' => 'Marble Dragon', 'fr' => 'Marble Dragon', 'ja' => 'Marble Dragon'],
+                            order: 3,
+                            encounterId: 2065,
+                        ),
+                        $this->progressMilestone(
+                            key: 'magitaur',
+                            label: ['en' => 'Magitaur', 'de' => 'Magitaur', 'fr' => 'Magitaur', 'ja' => 'Magitaur'],
+                            order: 4,
+                            encounterId: 2066,
+                        ),
+                    ],
+                ],
             ],
             [
                 'slug' => 'cloud-of-darkness-chaotic',
@@ -203,6 +233,9 @@ class ActivityTypeSeeder extends Seeder
                         source: null,
                         required: false,
                     ),
+                ],
+                'draft_progress_schema' => [
+                    'milestones' => [],
                 ],
             ],
             [
@@ -271,6 +304,9 @@ class ActivityTypeSeeder extends Seeder
                         type: 'url',
                         source: null,
                     ),
+                ],
+                'draft_progress_schema' => [
+                    'milestones' => [],
                 ],
             ],
         ];
@@ -341,6 +377,28 @@ class ActivityTypeSeeder extends Seeder
         return [
             'value' => $value,
             'label' => $this->localized($label),
+        ];
+    }
+
+    /**
+     * @return array<string, mixed>
+     */
+    private function progressMilestone(
+        string $key,
+        array|string $label,
+        int $order,
+        int $encounterId,
+        ?int $phaseId = null,
+    ): array {
+        return [
+            'key' => $key,
+            'label' => $this->localized($label),
+            'order' => $order,
+            'fflogs_matcher' => [
+                'type' => $phaseId === null ? 'encounter' : 'phase',
+                'encounter_id' => $encounterId,
+                'phase_id' => $phaseId,
+            ],
         ];
     }
 

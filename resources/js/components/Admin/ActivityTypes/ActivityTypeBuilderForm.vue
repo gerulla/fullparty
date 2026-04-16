@@ -1,10 +1,11 @@
 <script setup lang="ts">
+import ActivityProgressMilestonesEditor from "@/components/Admin/ActivityTypes/ActivityProgressMilestonesEditor.vue";
 import ActivityLayoutGroupsEditor from "@/components/Admin/ActivityTypes/ActivityLayoutGroupsEditor.vue";
 import ActivitySchemaFieldsEditor from "@/components/Admin/ActivityTypes/ActivitySchemaFieldsEditor.vue";
 import ActivityTypeSummaryCard from "@/components/Admin/ActivityTypes/ActivityTypeSummaryCard.vue";
 import LocalizedTextFields from "@/components/Admin/ActivityTypes/LocalizedTextFields.vue";
 import { slugify } from "@/utils/slugify";
-import { Link } from "@inertiajs/vue3";
+import { router, usePage } from "@inertiajs/vue3";
 import { computed } from "vue";
 import { useI18n } from "vue-i18n";
 
@@ -23,22 +24,42 @@ const emit = defineEmits<{
 }>();
 
 const { t } = useI18n();
+const page = usePage();
+const localeConfig = computed(() => page.props.locale as {
+	available?: string[]
+	fallback?: string
+});
+const locales = computed(() => {
+	const fallback = localeConfig.value?.fallback;
+	const available = localeConfig.value?.available ?? [];
 
-const locales = ['en', 'de', 'fr', 'ja'];
+	if (available.length > 0) {
+		const withoutFallback = available.filter((locale) => locale !== fallback);
+
+		return fallback ? [fallback, ...withoutFallback] : available;
+	}
+
+	return fallback ? [fallback] : ['en'];
+});
 
 const topErrors = computed(() => Object.entries(props.form.errors ?? {}).slice(0, 8));
+const primaryLocale = computed(() => localeConfig.value?.fallback ?? locales.value[0] ?? 'en');
 
 const updateDraftName = (value: Record<string, string>) => {
-	const previousEnglishName = props.form.draft_name?.en ?? '';
-	const nextEnglishName = value?.en ?? '';
-	const previousGeneratedSlug = slugify(previousEnglishName);
-	const nextGeneratedSlug = slugify(nextEnglishName);
+	const previousPrimaryName = props.form.draft_name?.[primaryLocale.value] ?? '';
+	const nextPrimaryName = value?.[primaryLocale.value] ?? '';
+	const previousGeneratedSlug = slugify(previousPrimaryName);
+	const nextGeneratedSlug = slugify(nextPrimaryName);
 
 	props.form.draft_name = value;
 
 	if (!props.form.slug || props.form.slug === previousGeneratedSlug) {
 		props.form.slug = nextGeneratedSlug;
 	}
+};
+
+const goBack = () => {
+	router.get(props.backHref);
 };
 </script>
 
@@ -130,6 +151,11 @@ const updateDraftName = (value: Record<string, string>) => {
 					:supported-field-types="schemaReference.supportedFieldTypes"
 					:supported-option-sources="schemaReference.supportedOptionSources"
 				/>
+
+				<ActivityProgressMilestonesEditor
+					v-model="form.draft_progress_schema"
+					:locales="locales"
+				/>
 			</div>
 
 			<div class="flex flex-col gap-4">
@@ -149,6 +175,7 @@ const updateDraftName = (value: Record<string, string>) => {
 							color="neutral"
 							variant="outline"
 							:label="t('general.cancel')"
+							@click="goBack"
 						/>
 					</div>
 				</UCard>

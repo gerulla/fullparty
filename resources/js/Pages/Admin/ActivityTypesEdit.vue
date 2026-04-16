@@ -17,10 +17,11 @@ const { t } = useI18n();
 const form = useForm({
 	slug: props.activityType.slug,
 	draft_name: props.activityType.draft_name,
-	draft_description: props.activityType.draft_description ?? { en: '', de: '', fr: '', ja: '' },
+	draft_description: props.activityType.draft_description ?? { en: '' },
 	draft_layout_schema: props.activityType.draft_layout_schema,
 	draft_slot_schema: props.activityType.draft_slot_schema,
 	draft_application_schema: props.activityType.draft_application_schema,
+	draft_progress_schema: props.activityType.draft_progress_schema ?? { milestones: [] },
 	is_active: props.activityType.is_active,
 });
 

@@ -140,6 +140,7 @@ class ActivityTypeController extends Controller
             'draft_layout_schema' => $activityType->draft_layout_schema,
             'draft_slot_schema' => $activityType->draft_slot_schema,
             'draft_application_schema' => $activityType->draft_application_schema,
+            'draft_progress_schema' => $activityType->draft_progress_schema,
         ];
 
         $this->validateDraftSchema($draftPayload);
@@ -154,6 +155,7 @@ class ActivityTypeController extends Controller
                 'layout_schema' => $activityType->draft_layout_schema,
                 'slot_schema' => $activityType->draft_slot_schema,
                 'application_schema' => $activityType->draft_application_schema,
+                'progress_schema' => $activityType->draft_progress_schema,
                 'published_by_user_id' => auth()->id(),
                 'published_at' => now(),
             ]);
@@ -225,6 +227,7 @@ class ActivityTypeController extends Controller
             'draft_layout_schema' => ['required', 'array'],
             'draft_slot_schema' => ['required', 'array'],
             'draft_application_schema' => ['required', 'array'],
+            'draft_progress_schema' => ['required', 'array'],
             'is_active' => ['sometimes', 'boolean'],
         ];
     }
@@ -238,6 +241,7 @@ class ActivityTypeController extends Controller
         $layoutSchema = $validated['draft_layout_schema'] ?? null;
         $slotSchema = $validated['draft_slot_schema'] ?? null;
         $applicationSchema = $validated['draft_application_schema'] ?? null;
+        $progressSchema = $validated['draft_progress_schema'] ?? null;
 
         if (!is_array($name) || !array_key_exists('en', $name) || blank($name['en'])) {
             throw ValidationException::withMessages([
@@ -275,6 +279,74 @@ class ActivityTypeController extends Controller
 
         $this->validateSchemaFields($slotSchema, 'draft_slot_schema');
         $this->validateSchemaFields($applicationSchema, 'draft_application_schema');
+        $this->validateProgressSchema($progressSchema, 'draft_progress_schema');
+    }
+
+    private function validateProgressSchema(mixed $progressSchema, string $attribute): void
+    {
+        if (!is_array($progressSchema)) {
+            throw ValidationException::withMessages([
+                $attribute => 'Progress schema must be an object.',
+            ]);
+        }
+
+        $milestones = $progressSchema['milestones'] ?? null;
+
+        if (!is_array($milestones)) {
+            throw ValidationException::withMessages([
+                "$attribute.milestones" => 'Progress milestones must be an array.',
+            ]);
+        }
+
+        foreach ($milestones as $index => $milestone) {
+            if (!is_array($milestone)) {
+                throw ValidationException::withMessages([
+                    "$attribute.milestones.$index" => 'Each milestone must be an object.',
+                ]);
+            }
+
+            if (blank($milestone['key'] ?? null)) {
+                throw ValidationException::withMessages([
+                    "$attribute.milestones.$index.key" => 'Each milestone requires a key.',
+                ]);
+            }
+
+            if (!is_numeric($milestone['order'] ?? null) || (int) $milestone['order'] < 1) {
+                throw ValidationException::withMessages([
+                    "$attribute.milestones.$index.order" => 'Each milestone requires a valid order.',
+                ]);
+            }
+
+            $matcher = $milestone['fflogs_matcher'] ?? null;
+
+            if (!is_array($matcher)) {
+                throw ValidationException::withMessages([
+                    "$attribute.milestones.$index.fflogs_matcher" => 'Each milestone requires an FF Logs matcher.',
+                ]);
+            }
+
+            $matcherType = $matcher['type'] ?? null;
+
+            if (!in_array($matcherType, ['encounter', 'phase'], true)) {
+                throw ValidationException::withMessages([
+                    "$attribute.milestones.$index.fflogs_matcher.type" => 'Unsupported FF Logs matcher type.',
+                ]);
+            }
+
+            if (!is_numeric($matcher['encounter_id'] ?? null) || (int) $matcher['encounter_id'] < 1) {
+                throw ValidationException::withMessages([
+                    "$attribute.milestones.$index.fflogs_matcher.encounter_id" => 'Each milestone requires a valid FF Logs encounter ID.',
+                ]);
+            }
+
+            if ($matcherType === 'phase' && (!is_numeric($matcher['phase_id'] ?? null) || (int) $matcher['phase_id'] < 1)) {
+                throw ValidationException::withMessages([
+                    "$attribute.milestones.$index.fflogs_matcher.phase_id" => 'Phase milestones require a valid FF Logs phase ID.',
+                ]);
+            }
+
+            $this->assertLocalizedValue($milestone['label'] ?? null, "$attribute.milestones.$index.label");
+        }
     }
 
     private function validateSchemaFields(mixed $fields, string $attribute): void
@@ -407,6 +479,7 @@ class ActivityTypeController extends Controller
             'draft_layout_schema' => $activityType->draft_layout_schema,
             'draft_slot_schema' => $activityType->draft_slot_schema,
             'draft_application_schema' => $activityType->draft_application_schema,
+            'draft_progress_schema' => $activityType->draft_progress_schema,
             'created_by' => $activityType->creator?->name,
             'current_published_version' => $currentVersion ? [
                 'id' => $currentVersion->id,
@@ -439,6 +512,7 @@ class ActivityTypeController extends Controller
             'draft_layout_schema' => $activityType->draft_layout_schema,
             'draft_slot_schema' => $activityType->draft_slot_schema,
             'draft_application_schema' => $activityType->draft_application_schema,
+            'draft_progress_schema' => $activityType->draft_progress_schema,
             'is_active' => $activityType->is_active,
             'current_published_version_id' => $activityType->current_published_version_id,
         ];

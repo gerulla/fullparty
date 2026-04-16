@@ -18,6 +18,7 @@ class ActivityTypeVersion extends Model
         'layout_schema',
         'slot_schema',
         'application_schema',
+        'progress_schema',
         'published_by_user_id',
         'published_at',
     ];
@@ -28,6 +29,7 @@ class ActivityTypeVersion extends Model
         'layout_schema' => 'array',
         'slot_schema' => 'array',
         'application_schema' => 'array',
+        'progress_schema' => 'array',
         'published_at' => 'datetime',
     ];
 

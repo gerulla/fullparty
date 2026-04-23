@@ -21,6 +21,7 @@ class DatabaseSeeder extends Seeder
             PhantomJobSeeder::class,
             ActivityTypeSeeder::class,
             GroupSeeder::class,
+            ActivitySeeder::class,
         ]);
     }
 }

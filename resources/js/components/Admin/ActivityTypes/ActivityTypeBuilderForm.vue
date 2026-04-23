@@ -1,7 +1,9 @@
 <script setup lang="ts">
 import ActivityProgressMilestonesEditor from "@/components/Admin/ActivityTypes/ActivityProgressMilestonesEditor.vue";
+import ActivityProgPointsEditor from "@/components/Admin/ActivityTypes/ActivityProgPointsEditor.vue";
 import ActivityLayoutGroupsEditor from "@/components/Admin/ActivityTypes/ActivityLayoutGroupsEditor.vue";
 import ActivitySchemaFieldsEditor from "@/components/Admin/ActivityTypes/ActivitySchemaFieldsEditor.vue";
+import ActivityTypeSectionCard from "@/components/Admin/ActivityTypes/ActivityTypeSectionCard.vue";
 import ActivityTypeSummaryCard from "@/components/Admin/ActivityTypes/ActivityTypeSummaryCard.vue";
 import LocalizedTextFields from "@/components/Admin/ActivityTypes/LocalizedTextFields.vue";
 import { slugify } from "@/utils/slugify";
@@ -81,14 +83,10 @@ const goBack = () => {
 					</template>
 				</UAlert>
 
-				<UCard class="dark:bg-elevated/25">
-					<template #header>
-						<div>
-							<h2 class="text-lg font-semibold">{{ t('admin.activity_types.general.title') }}</h2>
-							<p class="text-sm text-muted">{{ t('admin.activity_types.general.subtitle') }}</p>
-						</div>
-					</template>
-
+				<ActivityTypeSectionCard
+					:title="t('admin.activity_types.general.title')"
+					:description="t('admin.activity_types.general.subtitle')"
+				>
 					<div class="flex flex-col gap-5">
 						<UFormField :label="t('admin.activity_types.general.slug')" :description="t('admin.activity_types.general.slug_help')" required>
 							<UInput
@@ -125,7 +123,7 @@ const goBack = () => {
 							<USwitch v-model="form.is_active" />
 						</UFormField>
 					</div>
-				</UCard>
+				</ActivityTypeSectionCard>
 
 				<ActivityLayoutGroupsEditor
 					v-model="form.draft_layout_schema.groups"
@@ -154,6 +152,11 @@ const goBack = () => {
 
 				<ActivityProgressMilestonesEditor
 					v-model="form.draft_progress_schema"
+					:locales="locales"
+				/>
+
+				<ActivityProgPointsEditor
+					v-model="form.draft_prog_points"
 					:locales="locales"
 				/>
 			</div>

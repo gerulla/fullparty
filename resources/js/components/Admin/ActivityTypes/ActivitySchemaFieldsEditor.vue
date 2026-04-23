@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import ActivityTypeSectionCard from "@/components/Admin/ActivityTypes/ActivityTypeSectionCard.vue";
 import LocalizedTextFields from "@/components/Admin/ActivityTypes/LocalizedTextFields.vue";
 import { slugify } from "@/utils/slugify";
 import { computed } from "vue";
@@ -118,19 +119,16 @@ const updateFieldLabel = (index: number, label: Record<string, string>) => {
 </script>
 
 <template>
-	<UCard class="dark:bg-elevated/25">
-		<template #header>
-			<div class="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
-				<div>
-					<h2 class="text-lg font-semibold">{{ title }}</h2>
-					<p class="text-sm text-muted">{{ description }}</p>
-				</div>
+	<ActivityTypeSectionCard
+		:title="title"
+		:description="description"
+	>
+		<template #headerMeta>
+			<UBadge color="neutral" variant="subtle" :label="t('admin.activity_types.schema.fields_count', { count: modelValue.length })" />
+		</template>
 
-				<div class="flex items-center gap-2">
-					<UBadge color="neutral" variant="subtle" :label="t('admin.activity_types.schema.fields_count', { count: modelValue.length })" />
-					<UButton icon="i-lucide-plus" color="neutral" variant="soft" :label="t('admin.activity_types.schema.add_field')" @click="addField" />
-				</div>
-			</div>
+		<template #headerActions>
+			<UButton icon="i-lucide-plus" color="neutral" variant="soft" :label="t('admin.activity_types.schema.add_field')" @click="addField" />
 		</template>
 
 		<div class="flex flex-col gap-4">
@@ -270,5 +268,5 @@ const updateFieldLabel = (index: number, label: Record<string, string>) => {
 				</div>
 			</UCard>
 		</div>
-	</UCard>
+	</ActivityTypeSectionCard>
 </template>

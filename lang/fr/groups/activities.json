@@ -1,0 +1,159 @@
+{
+    "title": "Activities",
+    "subtitle": "{group}'s upcoming schedule and monthly calendar at a glance.",
+    "header_badge": "{count} upcoming",
+    "statuses": {
+        "draft": "Draft",
+        "planned": "Planned",
+        "scheduled": "Scheduled",
+        "upcoming": "Upcoming",
+        "ongoing": "Ongoing",
+        "complete": "Complete",
+        "cancelled": "Cancelled"
+    },
+    "upcoming": {
+        "title": "Upcoming Activities",
+        "subtitle": "A detailed view of what's coming up next for the group.",
+        "count": "{count} scheduled",
+        "empty": "No upcoming activities are scheduled yet."
+    },
+    "selected_day": {
+        "title": "Selected Day",
+        "subtitle": "Activities scheduled for {date}.",
+        "count": "{count} on this day",
+        "empty": "No activities are scheduled for this day."
+    },
+    "calendar": {
+        "title": "Monthly Calendar",
+        "subtitle": "A month view of the group's activity schedule.",
+        "month_count": "{count} this month",
+        "previous": "Previous",
+        "next": "Next",
+        "day_count": "{count} items",
+        "more": "+{count} more"
+    },
+    "cards": {
+        "unknown_type": "Unknown activity type",
+        "unscheduled": "TBD",
+        "no_time": "Time not set",
+        "no_relative_time": "Schedule pending",
+        "no_organizer": "Organizer not set",
+        "manage": "Manage activity",
+        "slots": "{count} slots",
+        "applications": "{count} applications",
+        "milestones": "{count} milestones"
+    },
+    "management": {
+        "title": "Activity Management",
+        "subtitle": "Manage the live details for this {type} activity.",
+        "placeholder": "This is the entry point for slot assignment, applications, and progress updates.",
+        "coming_soon": "The full activity management interface comes next. This page is now the dedicated destination for roster assignment and activity administration.",
+        "summary_title": "Activity Summary",
+        "summary_subtitle": "A quick read on the basics before the full management tools land.",
+        "type": "Activity Type",
+        "starts_at": "Starts At",
+        "organizer": "Organizer",
+        "slots": "Slots",
+        "applications": "Applications",
+        "milestones": "Milestones"
+    },
+    "create": {
+        "cta": "Create Activity",
+        "title": "Create Activity",
+        "subtitle": "Set up a new activity for your group.",
+        "back": "Back to Activities",
+        "placeholder": "The dedicated activity creation flow will live here.",
+        "submit": "Create Activity",
+        "no_types_title": "No activity types available",
+        "no_types_description": "Create and publish an activity type from the admin area before creating activities for groups.",
+        "roles": {
+            "owner": "Owner",
+            "moderator": "Moderator"
+        },
+        "form": {
+            "title": "Activity Setup",
+            "subtitle": "Pick the activity type, basic schedule details, and who is organizing it."
+        },
+        "fields": {
+            "activity_type": {
+                "label": "Activity Type",
+                "placeholder": "Select an activity type"
+            },
+            "organizer": {
+                "label": "Organizer Character",
+                "placeholder": "Select an organizer character",
+                "no_user": "User not set"
+            },
+            "title": {
+                "label": "Custom Title",
+                "placeholder": "Optional custom title for this activity"
+            },
+            "duration": {
+                "label": "Duration (Hours)",
+                "placeholder": "Custom duration in hours",
+                "preset": "{count} Hour",
+                "custom": "Custom",
+                "select_placeholder": "Select a duration"
+            },
+            "prog_point": {
+                "label": "Target Prog Point",
+                "placeholder": "Select the intended prog point"
+            },
+            "status": {
+                "label": "Initial Status",
+                "placeholder": "Select a status"
+            },
+            "notes": {
+                "label": "Notes",
+                "placeholder": "Optional notes for the roster and applicants"
+            },
+            "start_date": {
+                "label": "Start Date"
+            },
+            "start_time": {
+                "label": "Start Time",
+                "hour_placeholder": "Hour",
+                "minute_placeholder": "Minute"
+            },
+            "starts_at": {
+                "label": "Starts At",
+                "server_time_hint": "All activity times are entered in FF14 Server Time (UTC+0)."
+            },
+            "is_public": {
+                "label": "Public Activity",
+                "help": "Public activities are visible based on the group's visibility rules."
+            },
+            "needs_application": {
+                "label": "Needs Application",
+                "help": "Turn this on if members should apply instead of assigning themselves."
+            }
+        },
+        "summary": {
+            "title": "Draft Summary",
+            "subtitle": "A quick preview of what this activity currently looks like.",
+            "activity": "Activity",
+            "slots": "Slots",
+            "status": "Status",
+            "organizer": "Organizer",
+            "starts_at": "Starts At",
+            "starts_at_st": "FF14 ST",
+            "starts_at_local": "Your Local ({timezone})",
+            "duration": "Duration",
+            "duration_value": "{count}h",
+            "visibility": "Visibility",
+            "visibility_public": "Public",
+            "visibility_private": "Private link only",
+            "assignment": "Signup Mode",
+            "assignment_application": "Applications required",
+            "assignment_self_assign": "Self assignment",
+            "target_prog_point": "Target Prog Point",
+            "notes": "Notes",
+            "no_type": "No activity type selected",
+            "no_organizer": "Organizer not selected",
+            "no_date": "Date not set",
+            "no_target_prog_point": "No target prog point selected",
+            "no_notes": "No extra notes yet.",
+            "help": "This is just the scaffold for now. Next we can shape the exact create flow, defaults, and previews however you want."
+        }
+    }
+}

@@ -72,6 +72,11 @@ class Group extends Model
         return $this->hasMany(ScheduledRun::class);
     }
 
+    public function activities(): HasMany
+    {
+        return $this->hasMany(Activity::class);
+    }
+
     public function scopeVisible($query)
     {
         return $query->where('is_visible', true);

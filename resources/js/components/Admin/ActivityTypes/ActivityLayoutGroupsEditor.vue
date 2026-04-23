@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import ActivityTypeSectionCard from "@/components/Admin/ActivityTypes/ActivityTypeSectionCard.vue";
 import LocalizedTextFields from "@/components/Admin/ActivityTypes/LocalizedTextFields.vue";
 import { slugify } from "@/utils/slugify";
 import { computed } from "vue";
@@ -61,20 +62,17 @@ const updateGroupLabel = (index: number, label: Record<string, string>) => {
 </script>
 
 <template>
-	<UCard class="dark:bg-elevated/25">
-		<template #header>
-			<div class="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
-				<div>
-					<h2 class="text-lg font-semibold">{{ t('admin.activity_types.layout.title') }}</h2>
-					<p class="text-sm text-muted">{{ t('admin.activity_types.layout.subtitle') }}</p>
-				</div>
+	<ActivityTypeSectionCard
+		:title="t('admin.activity_types.layout.title')"
+		:description="t('admin.activity_types.layout.subtitle')"
+	>
+		<template #headerMeta>
+			<UBadge color="primary" variant="subtle" :label="t('admin.activity_types.layout.groups_count', { count: modelValue.length })" />
+			<UBadge color="neutral" variant="subtle" :label="t('admin.activity_types.layout.total_slots', { count: totalSlots })" />
+		</template>
 
-				<div class="flex items-center gap-2">
-					<UBadge color="primary" variant="subtle" :label="t('admin.activity_types.layout.groups_count', { count: modelValue.length })" />
-					<UBadge color="neutral" variant="subtle" :label="t('admin.activity_types.layout.total_slots', { count: totalSlots })" />
-					<UButton icon="i-lucide-plus" color="neutral" variant="soft" :label="t('admin.activity_types.layout.add_group')" @click="addGroup" />
-				</div>
-			</div>
+		<template #headerActions>
+			<UButton icon="i-lucide-plus" color="neutral" variant="soft" :label="t('admin.activity_types.layout.add_group')" @click="addGroup" />
 		</template>
 
 		<div class="flex flex-col gap-4">
@@ -131,5 +129,5 @@ const updateGroupLabel = (index: number, label: Record<string, string>) => {
 				</div>
 			</UCard>
 		</div>
-	</UCard>
+	</ActivityTypeSectionCard>
 </template>

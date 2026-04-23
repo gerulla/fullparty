@@ -29,6 +29,7 @@ class ActivityTypeSeeder extends Seeder
                     'draft_slot_schema' => $activityTypeData['draft_slot_schema'],
                     'draft_application_schema' => $activityTypeData['draft_application_schema'],
                     'draft_progress_schema' => $activityTypeData['draft_progress_schema'],
+                    'draft_prog_points' => $activityTypeData['draft_prog_points'] ?? [],
                     'is_active' => true,
                     'created_by_user_id' => $activityType->exists
                         ? $activityType->created_by_user_id
@@ -47,6 +48,7 @@ class ActivityTypeSeeder extends Seeder
                     'slot_schema' => $activityTypeData['draft_slot_schema'],
                     'application_schema' => $activityTypeData['draft_application_schema'],
                     'progress_schema' => $activityTypeData['draft_progress_schema'],
+                    'prog_points' => $activityTypeData['draft_prog_points'] ?? [],
                     'published_by_user_id' => $publisherId,
                     'published_at' => now(),
                 ]);
@@ -175,6 +177,14 @@ class ActivityTypeSeeder extends Seeder
                         ),
                     ],
                 ],
+                'draft_prog_points' => [
+                    $this->progPoint('demon-tablet', ['en' => 'Demon Tablet', 'de' => 'Demon Tablet', 'fr' => 'Demon Tablet', 'ja' => 'Demon Tablet']),
+                    $this->progPoint('dead-stars', ['en' => 'Dead Stars', 'de' => 'Dead Stars', 'fr' => 'Dead Stars', 'ja' => 'Dead Stars']),
+                    $this->progPoint('bridges', ['en' => 'Bridges', 'de' => 'Bridges', 'fr' => 'Bridges', 'ja' => 'Bridges']),
+                    $this->progPoint('marble-dragon', ['en' => 'Marble Dragon', 'de' => 'Marble Dragon', 'fr' => 'Marble Dragon', 'ja' => 'Marble Dragon']),
+                    $this->progPoint('puzzle', ['en' => 'Puzzle', 'de' => 'Puzzle', 'fr' => 'Puzzle', 'ja' => 'Puzzle']),
+                    $this->progPoint('magitaur', ['en' => 'Magitaur', 'de' => 'Magitaur', 'fr' => 'Magitaur', 'ja' => 'Magitaur']),
+                ],
             ],
             [
                 'slug' => 'cloud-of-darkness-chaotic',
@@ -237,6 +247,7 @@ class ActivityTypeSeeder extends Seeder
                 'draft_progress_schema' => [
                     'milestones' => [],
                 ],
+                'draft_prog_points' => [],
             ],
             [
                 'slug' => 'savage-raids',
@@ -308,6 +319,7 @@ class ActivityTypeSeeder extends Seeder
                 'draft_progress_schema' => [
                     'milestones' => [],
                 ],
+                'draft_prog_points' => [],
             ],
         ];
     }
@@ -399,6 +411,17 @@ class ActivityTypeSeeder extends Seeder
                 'encounter_id' => $encounterId,
                 'phase_id' => $phaseId,
             ],
+        ];
+    }
+
+    /**
+     * @return array<string, mixed>
+     */
+    private function progPoint(string $key, array|string $label): array
+    {
+        return [
+            'key' => $key,
+            'label' => $this->localized($label),
         ];
     }
 

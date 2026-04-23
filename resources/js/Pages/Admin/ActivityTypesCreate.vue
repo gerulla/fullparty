@@ -38,6 +38,7 @@ const form = useForm({
 	draft_progress_schema: {
 		milestones: [],
 	},
+	draft_prog_points: [],
 	is_active: true,
 });
 

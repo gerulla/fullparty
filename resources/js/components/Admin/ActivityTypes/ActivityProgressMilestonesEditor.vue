@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import ActivityTypeSectionCard from "@/components/Admin/ActivityTypes/ActivityTypeSectionCard.vue";
 import LocalizedTextFields from "@/components/Admin/ActivityTypes/LocalizedTextFields.vue";
 import { slugify } from "@/utils/slugify";
 import { computed } from "vue";
@@ -113,19 +114,16 @@ const updateMilestoneLabel = (index: number, label: Record<string, string>) => {
 </script>
 
 <template>
-	<UCard class="dark:bg-elevated/25">
-		<template #header>
-			<div class="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
-				<div>
-					<h2 class="text-lg font-semibold">{{ t('admin.activity_types.progress.title') }}</h2>
-					<p class="text-sm text-muted">{{ t('admin.activity_types.progress.subtitle') }}</p>
-				</div>
+	<ActivityTypeSectionCard
+		:title="t('admin.activity_types.progress.title')"
+		:description="t('admin.activity_types.progress.subtitle')"
+	>
+		<template #headerMeta>
+			<UBadge color="neutral" variant="subtle" :label="t('admin.activity_types.progress.milestones_count', { count: milestones.length })" />
+		</template>
 
-				<div class="flex items-center gap-2">
-					<UBadge color="neutral" variant="subtle" :label="t('admin.activity_types.progress.milestones_count', { count: milestones.length })" />
-					<UButton icon="i-lucide-plus" color="neutral" variant="soft" :label="t('admin.activity_types.progress.add_milestone')" @click="addMilestone" />
-				</div>
-			</div>
+		<template #headerActions>
+			<UButton icon="i-lucide-plus" color="neutral" variant="soft" :label="t('admin.activity_types.progress.add_milestone')" @click="addMilestone" />
 		</template>
 
 		<div class="flex flex-col gap-4">
@@ -264,5 +262,5 @@ const updateMilestoneLabel = (index: number, label: Record<string, string>) => {
 				:description="t('admin.activity_types.progress.empty_description')"
 			/>
 		</div>
-	</UCard>
+	</ActivityTypeSectionCard>
 </template>

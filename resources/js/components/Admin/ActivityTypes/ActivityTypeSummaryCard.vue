@@ -11,6 +11,7 @@ const props = defineProps<{
 		draft_slot_schema: Array<unknown>
 		draft_application_schema: Array<unknown>
 		draft_progress_schema: { milestones?: Array<unknown> }
+		draft_prog_points?: Array<unknown>
 	}
 }>();
 
@@ -63,6 +64,11 @@ const totalSlots = computed(() => (props.form.draft_layout_schema?.groups ?? [])
 				<div class="rounded-lg border border-default p-4">
 					<p class="text-xs uppercase tracking-wide text-muted">{{ t('admin.activity_types.summary.progress_milestones') }}</p>
 					<p class="mt-2 text-2xl font-semibold">{{ form.draft_progress_schema?.milestones?.length ?? 0 }}</p>
+				</div>
+
+				<div class="rounded-lg border border-default p-4">
+					<p class="text-xs uppercase tracking-wide text-muted">{{ t('admin.activity_types.summary.prog_points') }}</p>
+					<p class="mt-2 text-2xl font-semibold">{{ form.draft_prog_points?.length ?? 0 }}</p>
 				</div>
 			</div>
 		</div>

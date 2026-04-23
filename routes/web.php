@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdminCharacterController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\GroupActivityController;
 use App\Http\Controllers\ActivityTypeController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CharacterController;
@@ -14,7 +15,6 @@ use App\Http\Controllers\GroupAuditLogController;
 use App\Http\Controllers\GroupInviteController;
 use App\Http\Controllers\GroupMemberController;
 use App\Http\Controllers\GroupMembershipController;
-use App\Http\Controllers\GroupRunController;
 use App\Http\Controllers\GroupSettingsController;
 use App\Http\Controllers\PhantomJobController;
 use App\Http\Controllers\SettingsController;
@@ -102,14 +102,15 @@ Route::middleware(['auth', 'verified'])->group(function () {
 	Route::delete('/groups/{group:slug}/invites/{invite}', [GroupInviteController::class, 'destroy'])->name('groups.invites.destroy');
 	Route::post('/invite/{token}/accept', [GroupInviteController::class, 'accept'])->name('groups.invites.accept');
 
-	Route::prefix('/groups/{group:slug}/dashboard')->middleware('group.dashboard.access')->group(function () {
+		Route::prefix('/groups/{group:slug}/dashboard')->middleware('group.dashboard.access')->group(function () {
 		Route::get('/', [GroupDashboardController::class, 'show'])->name('groups.dashboard');
 		Route::get('/members', [GroupMemberController::class, 'index'])->name('groups.dashboard.members');
-		Route::get('/runs', [GroupRunController::class, 'index'])->name('groups.dashboard.runs.index');
-		Route::post('/runs', [GroupRunController::class, 'store'])->name('groups.dashboard.runs.store');
-		Route::get('/runs/{scheduledRun}', [GroupRunController::class, 'show'])->name('groups.dashboard.runs.show');
-		Route::put('/runs/{scheduledRun}', [GroupRunController::class, 'update'])->name('groups.dashboard.runs.update');
-		Route::delete('/runs/{scheduledRun}', [GroupRunController::class, 'destroy'])->name('groups.dashboard.runs.destroy');
+		Route::get('/activities', [GroupActivityController::class, 'index'])->name('groups.dashboard.activities.index');
+		Route::get('/activities/create', [GroupActivityController::class, 'create'])->name('groups.dashboard.activities.create');
+		Route::post('/activities', [GroupActivityController::class, 'store'])->name('groups.dashboard.activities.store');
+		Route::get('/activities/{activity}', [GroupActivityController::class, 'show'])->name('groups.dashboard.activities.show');
+		Route::put('/activities/{activity}', [GroupActivityController::class, 'update'])->name('groups.dashboard.activities.update');
+		Route::delete('/activities/{activity}', [GroupActivityController::class, 'destroy'])->name('groups.dashboard.activities.destroy');
 		Route::get('/audit-log', [GroupAuditLogController::class, 'index'])->name('groups.dashboard.audit-log');
 		Route::get('/settings', [GroupSettingsController::class, 'show'])->name('groups.dashboard.settings');
 		Route::put('/settings', [GroupSettingsController::class, 'update'])->name('groups.dashboard.settings.update');

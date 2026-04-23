@@ -22,6 +22,7 @@ const form = useForm({
 	draft_slot_schema: props.activityType.draft_slot_schema,
 	draft_application_schema: props.activityType.draft_application_schema,
 	draft_progress_schema: props.activityType.draft_progress_schema ?? { milestones: [] },
+	draft_prog_points: props.activityType.draft_prog_points ?? [],
 	is_active: props.activityType.is_active,
 });
 

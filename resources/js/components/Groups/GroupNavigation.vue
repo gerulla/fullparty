@@ -25,10 +25,10 @@ const leftitems = computed(() => [
 		active: page.url === route('groups.dashboard', props.group.slug, false),
 	},
 	{
-		label: t('groups.index.navigation.runs'),
+		label: t('groups.index.navigation.activities'),
 		icon: 'i-lucide-calendar-range',
-		href: route('groups.dashboard.runs.index', props.group.slug),
-		active: page.url.startsWith(route('groups.dashboard.runs.index', props.group.slug, false)),
+		href: route('groups.dashboard.activities.index', props.group.slug),
+		active: page.url.startsWith(route('groups.dashboard.activities.index', props.group.slug, false)),
 	},
 	{
 		label: t('groups.index.navigation.members'),

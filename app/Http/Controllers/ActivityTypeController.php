@@ -149,6 +149,7 @@ class ActivityTypeController extends Controller
             'draft_slot_schema' => $activityType->draft_slot_schema,
             'draft_application_schema' => $activityType->draft_application_schema,
             'draft_progress_schema' => $activityType->draft_progress_schema,
+            'draft_prog_points' => $activityType->draft_prog_points,
         ];
 
         $this->validateDraftSchema($draftPayload);
@@ -164,6 +165,7 @@ class ActivityTypeController extends Controller
                 'slot_schema' => $activityType->draft_slot_schema,
                 'application_schema' => $activityType->draft_application_schema,
                 'progress_schema' => $activityType->draft_progress_schema,
+                'prog_points' => $activityType->draft_prog_points,
                 'published_by_user_id' => auth()->id(),
                 'published_at' => now(),
             ]);
@@ -240,6 +242,7 @@ class ActivityTypeController extends Controller
             'draft_slot_schema' => ['required', 'array'],
             'draft_application_schema' => ['required', 'array'],
             'draft_progress_schema' => ['required', 'array'],
+            'draft_prog_points' => ['nullable', 'array'],
             'is_active' => ['sometimes', 'boolean'],
         ];
     }
@@ -254,6 +257,7 @@ class ActivityTypeController extends Controller
         $slotSchema = $validated['draft_slot_schema'] ?? null;
         $applicationSchema = $validated['draft_application_schema'] ?? null;
         $progressSchema = $validated['draft_progress_schema'] ?? null;
+        $progPoints = $validated['draft_prog_points'] ?? null;
 
         if (!is_array($name) || !array_key_exists('en', $name) || blank($name['en'])) {
             throw ValidationException::withMessages([
@@ -292,6 +296,36 @@ class ActivityTypeController extends Controller
         $this->validateSchemaFields($slotSchema, 'draft_slot_schema');
         $this->validateSchemaFields($applicationSchema, 'draft_application_schema');
         $this->validateProgressSchema($progressSchema, 'draft_progress_schema');
+        $this->validateProgPoints($progPoints, 'draft_prog_points');
+    }
+
+    private function validateProgPoints(mixed $progPoints, string $attribute): void
+    {
+        if (is_null($progPoints)) {
+            return;
+        }
+
+        if (!is_array($progPoints)) {
+            throw ValidationException::withMessages([
+                $attribute => 'Prog points must be an array.',
+            ]);
+        }
+
+        foreach ($progPoints as $index => $progPoint) {
+            if (!is_array($progPoint)) {
+                throw ValidationException::withMessages([
+                    "$attribute.$index" => 'Each prog point must be an object.',
+                ]);
+            }
+
+            if (blank($progPoint['key'] ?? null)) {
+                throw ValidationException::withMessages([
+                    "$attribute.$index.key" => 'Each prog point requires a key.',
+                ]);
+            }
+
+            $this->assertLocalizedValue($progPoint['label'] ?? null, "$attribute.$index.label");
+        }
     }
 
     private function validateProgressSchema(mixed $progressSchema, string $attribute): void
@@ -492,6 +526,7 @@ class ActivityTypeController extends Controller
             'draft_slot_schema' => $activityType->draft_slot_schema,
             'draft_application_schema' => $activityType->draft_application_schema,
             'draft_progress_schema' => $activityType->draft_progress_schema,
+            'draft_prog_points' => $activityType->draft_prog_points,
             'created_by' => $activityType->creator?->name,
             'current_published_version' => $currentVersion ? [
                 'id' => $currentVersion->id,
@@ -525,6 +560,7 @@ class ActivityTypeController extends Controller
             'draft_slot_schema' => $activityType->draft_slot_schema,
             'draft_application_schema' => $activityType->draft_application_schema,
             'draft_progress_schema' => $activityType->draft_progress_schema,
+            'draft_prog_points' => $activityType->draft_prog_points,
             'is_active' => $activityType->is_active,
             'current_published_version_id' => $activityType->current_published_version_id,
         ];

@@ -85,6 +85,21 @@
       "phase": "Phase"
     }
   },
+  "prog_points": {
+    "title": "Prog Points",
+    "subtitle": "Define simpler progress checkpoints that can be referenced by activity instances and future statistics.",
+    "count": "{count} prog points",
+    "add": "Add Prog Point",
+    "item_title": "Prog Point {index}",
+    "item_hint": "Use these for named progression checkpoints like bridges, puzzle, or cleanup stages.",
+    "key": "Prog Point Key",
+    "key_placeholder": "bridges",
+    "label": "Localized Prog Point Label",
+    "label_help": "This label is shown anywhere the activity references these prog points later.",
+    "label_placeholder": "Bridges",
+    "empty_title": "No prog points yet",
+    "empty_description": "Add prog points if this activity type needs named checkpoints beyond FF Logs milestone mapping."
+  },
   "schema": {
     "fields_count": "{count} fields",
     "add_field": "Add Field",
@@ -134,6 +149,7 @@
     "slots": "Slots",
     "slot_fields": "Slot Fields",
     "application_questions": "Application Questions",
-    "progress_milestones": "Progress Milestones"
+    "progress_milestones": "Progress Milestones",
+    "prog_points": "Prog Points"
   }
 }

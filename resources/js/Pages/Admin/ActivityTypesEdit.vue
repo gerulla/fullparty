@@ -10,6 +10,7 @@ const props = defineProps<{
 		supportedFieldTypes: string[]
 		supportedOptionSources: string[]
 	}
+	existingTags: string[]
 }>();
 
 const { t } = useI18n();
@@ -18,6 +19,7 @@ const form = useForm({
 	slug: props.activityType.slug,
 	draft_name: props.activityType.draft_name,
 	draft_description: props.activityType.draft_description ?? { en: '' },
+	tags: props.activityType.tags ?? [],
 	draft_layout_schema: props.activityType.draft_layout_schema,
 	draft_slot_schema: props.activityType.draft_slot_schema,
 	draft_application_schema: props.activityType.draft_application_schema,
@@ -53,6 +55,7 @@ const submit = () => {
 			<ActivityTypeBuilderForm
 				:form="form"
 				:schema-reference="schemaReference"
+				:existing-tags="existingTags"
 				:submit-label="t('general.update')"
 				back-href="/admin/activity-types"
 				@submit="submit"

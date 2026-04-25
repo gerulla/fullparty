@@ -5,6 +5,7 @@ import {router, usePage} from "@inertiajs/vue3";
 import PageHeader from "@/components/PageHeader.vue";
 import { localizedValue } from "@/utils/localizedValue";
 import {route} from "ziggy-js";
+import { getActivityStatusMeta } from "@/utils/activityStatusMeta";
 
 const props = defineProps<{
 	group: {
@@ -28,6 +29,8 @@ const props = defineProps<{
 		description: string | null
 		status: string
 		starts_at: string | null
+		is_public: boolean
+		secret_key: string | null
 		organized_by: {
 			id: number
 			name: string
@@ -65,8 +68,27 @@ const startsAtLabel = computed(() => {
 	}).format(new Date(props.activity.starts_at));
 });
 
+const statusMeta = computed(() => getActivityStatusMeta(props.activity.status));
+
+const canEditActivity = computed(() => props.activity.status !== 'complete');
+
 const goBack = () => {
 	router.get(route('groups.dashboard.activities.index', props.group.slug));
+};
+
+const goToOverviewPage = () => {
+	router.get(route('groups.activities.overview', {
+		group: props.group.slug,
+		activity: props.activity.id,
+		secretKey: props.activity.is_public ? undefined : props.activity.secret_key,
+	}));
+};
+
+const goToEditPage = () => {
+	router.get(route('groups.dashboard.activities.edit', {
+		group: props.group.slug,
+		activity: props.activity.id,
+	}));
 };
 </script>
 
@@ -83,14 +105,31 @@ const goBack = () => {
 			:title="activityTitle"
 			:subtitle="t('groups.activities.management.subtitle', { type: activityTypeName })"
 		>
-			<UBadge
-				size="lg"
-				variant="subtle"
-				class="min-w-44 justify-center py-2"
-				color="primary"
-				icon="i-lucide-panel-right-open"
-				:label="t(`groups.activities.statuses.${activity.status}`)"
-			/>
+			<div class="flex items-center gap-2">
+				<UBadge
+					size="lg"
+					variant="subtle"
+					class="min-w-44 justify-center py-2"
+					:color="statusMeta.color"
+					:icon="statusMeta.icon"
+					:label="t(`groups.activities.statuses.${activity.status}`)"
+				/>
+				<UButton
+					v-if="canEditActivity"
+					color="neutral"
+					variant="soft"
+					icon="i-lucide-pencil"
+					:label="t('groups.activities.management.edit')"
+					@click="goToEditPage"
+				/>
+				<UButton
+					color="neutral"
+					variant="soft"
+					icon="i-lucide-eye"
+					:label="t('groups.activities.management.view_overview')"
+					@click="goToOverviewPage"
+				/>
+			</div>
 		</PageHeader>
 
 		<div class="mt-4 grid grid-cols-1 gap-6 xl:grid-cols-[1.25fr_0.75fr]">

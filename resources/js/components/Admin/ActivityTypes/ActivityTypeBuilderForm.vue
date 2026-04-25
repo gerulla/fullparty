@@ -8,7 +8,7 @@ import ActivityTypeSummaryCard from "@/components/Admin/ActivityTypes/ActivityTy
 import LocalizedTextFields from "@/components/Admin/ActivityTypes/LocalizedTextFields.vue";
 import { slugify } from "@/utils/slugify";
 import { router, usePage } from "@inertiajs/vue3";
-import { computed } from "vue";
+import { computed, ref, watch } from "vue";
 import { useI18n } from "vue-i18n";
 
 const props = defineProps<{
@@ -17,6 +17,7 @@ const props = defineProps<{
 		supportedFieldTypes: string[]
 		supportedOptionSources: string[]
 	}
+	existingTags: string[]
 	submitLabel: string
 	backHref: string
 }>();
@@ -46,6 +47,12 @@ const locales = computed(() => {
 
 const topErrors = computed(() => Object.entries(props.form.errors ?? {}).slice(0, 8));
 const primaryLocale = computed(() => localeConfig.value?.fallback ?? locales.value[0] ?? 'en');
+const availableTags = ref([...props.existingTags]);
+const tagSearchTerm = ref('');
+
+watch(() => props.existingTags, (tags) => {
+	availableTags.value = [...tags];
+}, { immediate: true });
 
 const updateDraftName = (value: Record<string, string>) => {
 	const previousPrimaryName = props.form.draft_name?.[primaryLocale.value] ?? '';
@@ -62,6 +69,30 @@ const updateDraftName = (value: Record<string, string>) => {
 
 const goBack = () => {
 	router.get(props.backHref);
+};
+
+const addCreatedTag = (rawTag: string) => {
+	const tag = rawTag.trim();
+
+	if (!tag) {
+		tagSearchTerm.value = '';
+
+		return;
+	}
+
+	if (!Array.isArray(props.form.tags)) {
+		props.form.tags = [];
+	}
+
+	if (!props.form.tags.includes(tag)) {
+		props.form.tags = [...props.form.tags, tag];
+	}
+
+	if (!availableTags.value.includes(tag)) {
+		availableTags.value = [...availableTags.value, tag].sort((left, right) => left.localeCompare(right));
+	}
+
+	tagSearchTerm.value = '';
 };
 </script>
 
@@ -113,6 +144,22 @@ const goBack = () => {
 							:placeholder-prefix="t('admin.activity_types.general.description_placeholder')"
 							multiline
 						/>
+
+						<UFormField
+							:label="t('admin.activity_types.general.tags')"
+							:description="t('admin.activity_types.general.tags_help')"
+						>
+							<UInputMenu
+								v-model="form.tags"
+								v-model:search-term="tagSearchTerm"
+								class="w-full"
+								:items="availableTags"
+								multiple
+								create-item="always"
+								:placeholder="t('admin.activity_types.general.tags_placeholder')"
+								@create="addCreatedTag"
+							/>
+						</UFormField>
 
 						<UFormField
 							:label="t('admin.activity_types.general.active')"

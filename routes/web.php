@@ -31,6 +31,7 @@ Route::get('/', function () {
 });
 
 Route::get('/groups/{group:slug}', [GroupController::class, 'show'])->name('groups.show');
+Route::get('/groups/{group:slug}/activities/{activity}/{secretKey?}', [GroupActivityController::class, 'overview'])->name('groups.activities.overview');
 Route::get('/invite/{token}', [GroupInviteController::class, 'show'])->name('groups.invites.show');
 
 Route::prefix('auth')->group(function () {
@@ -108,6 +109,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
 		Route::get('/activities', [GroupActivityController::class, 'index'])->name('groups.dashboard.activities.index');
 		Route::get('/activities/create', [GroupActivityController::class, 'create'])->name('groups.dashboard.activities.create');
 		Route::post('/activities', [GroupActivityController::class, 'store'])->name('groups.dashboard.activities.store');
+		Route::get('/activities/{activity}/edit', [GroupActivityController::class, 'edit'])->name('groups.dashboard.activities.edit');
 		Route::get('/activities/{activity}', [GroupActivityController::class, 'show'])->name('groups.dashboard.activities.show');
 		Route::put('/activities/{activity}', [GroupActivityController::class, 'update'])->name('groups.dashboard.activities.update');
 		Route::delete('/activities/{activity}', [GroupActivityController::class, 'destroy'])->name('groups.dashboard.activities.destroy');

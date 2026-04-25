@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class ActivityType extends Model
@@ -49,5 +50,12 @@ class ActivityType extends Model
     public function versions(): HasMany
     {
         return $this->hasMany(ActivityTypeVersion::class)->orderByDesc('version');
+    }
+
+    public function tags(): BelongsToMany
+    {
+        return $this->belongsToMany(ActivityTag::class, 'activity_type_activity_tag')
+            ->withTimestamps()
+            ->orderBy('name');
     }
 }

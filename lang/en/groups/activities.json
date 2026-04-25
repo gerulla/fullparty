@@ -33,6 +33,9 @@
         "day_count": "{count} items",
         "more": "+{count} more"
     },
+    "legend": {
+        "title": "Status Legend"
+    },
     "cards": {
         "unknown_type": "Unknown activity type",
         "unscheduled": "TBD",
@@ -51,12 +54,24 @@
         "coming_soon": "The full activity management interface comes next. This page is now the dedicated destination for roster assignment and activity administration.",
         "summary_title": "Activity Summary",
         "summary_subtitle": "A quick read on the basics before the full management tools land.",
+        "edit": "Edit Activity",
+        "view_overview": "View Overview",
         "type": "Activity Type",
         "starts_at": "Starts At",
         "organizer": "Organizer",
         "slots": "Slots",
         "applications": "Applications",
         "milestones": "Milestones"
+    },
+    "overview": {
+        "title": "Activity Overview",
+        "subtitle": "{group} shared this {type} activity.",
+        "description": "This is the attendee-facing overview for the activity and its application flow.",
+        "summary_title": "Quick Summary",
+        "summary_subtitle": "The key details before the application tools land here.",
+        "applications_title": "Applications",
+        "applications_ready": "Application submission will live from this page. For now, this direct link is the right access path.",
+        "applications_login": "You will need to log in before applying once the application flow is added here."
     },
     "create": {
         "cta": "Create Activity",
@@ -74,6 +89,24 @@
         "form": {
             "title": "Activity Setup",
             "subtitle": "Pick the activity type, basic schedule details, and who is organizing it."
+        },
+        "sections": {
+            "basics": {
+                "title": "Basics",
+                "subtitle": "Choose the activity, organizer, and the main setup details."
+            },
+            "schedule": {
+                "title": "Schedule",
+                "subtitle": "Set the start time in FF14 Server Time and how long the activity will run."
+            },
+            "access": {
+                "title": "Access",
+                "subtitle": "Decide who can see the activity and how people join it."
+            },
+            "notes": {
+                "title": "Notes",
+                "subtitle": "Add any extra context for the roster, applicants, or attendees."
+            }
         },
         "fields": {
             "activity_type": {
@@ -155,6 +188,21 @@
             "no_target_prog_point": "No target prog point selected",
             "no_notes": "No extra notes yet.",
             "help": "This is just the scaffold for now. Next we can shape the exact create flow, defaults, and previews however you want."
+        }
+    },
+    "edit": {
+        "title": "Edit Activity",
+        "subtitle": "Update the activity details moderators are allowed to change.",
+        "back": "Back to Activity Management",
+        "submit": "Save Changes",
+        "form": {
+            "title": "Edit Activity",
+            "subtitle": "Update the mutable details for this activity without changing its core structure."
+        },
+        "sections": {
+            "basics": {
+                "subtitle": "Adjust the organizer, title, status, and target prog point."
+            }
         }
     }
 }

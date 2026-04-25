@@ -4,6 +4,7 @@ import { useI18n } from "vue-i18n";
 import { usePage } from "@inertiajs/vue3";
 import { localizedValue } from "@/utils/localizedValue";
 import type { ActivityIndexItem } from "@/components/Groups/Activities/types";
+import { getActivityStatusBorderClass } from "@/utils/activityStatusMeta";
 
 type CalendarDay = {
 	key: string
@@ -48,6 +49,8 @@ const activityTime = (activity: ActivityIndexItem) => {
 	}).format(new Date(activity.starts_at));
 };
 
+const activityStatusBorderClass = (activity: ActivityIndexItem) => getActivityStatusBorderClass(activity.status);
+
 const selectDay = () => {
 	emit('select', props.day.key);
 };
@@ -86,7 +89,8 @@ const selectDay = () => {
 			<div
 				v-for="activity in visibleActivities"
 				:key="activity.id"
-				class="rounded-sm bg-primary/15 px-2 py-1.5 text-xs"
+				class="rounded-sm border-t-2 bg-primary/15 px-2 py-1.5 text-xs"
+				:class="activityStatusBorderClass(activity)"
 			>
 				<p class="font-medium text-toned">
 					{{ activityTime(activity) }}

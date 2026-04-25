@@ -9,6 +9,7 @@ defineProps<{
 		supportedFieldTypes: string[]
 		supportedOptionSources: string[]
 	}
+	existingTags: string[]
 }>();
 
 const { t } = useI18n();
@@ -19,6 +20,7 @@ const form = useForm({
 	slug: '',
 	draft_name: createLocalizedRecord(),
 	draft_description: createLocalizedRecord(),
+	tags: [],
 	draft_layout_schema: {
 		groups: [
 			{
@@ -69,6 +71,7 @@ const submit = () => {
 			<ActivityTypeBuilderForm
 				:form="form"
 				:schema-reference="schemaReference"
+				:existing-tags="existingTags"
 				:submit-label="t('general.create')"
 				back-href="/admin/activity-types"
 				@submit="submit"

@@ -8,6 +8,7 @@ import type { ActivityIndexItem } from "@/components/Groups/Activities/types";
 
 const props = defineProps<{
 	groupSlug: string
+	canManageActivities: boolean
 	activity: ActivityIndexItem
 }>();
 
@@ -92,6 +93,15 @@ const statusMeta = computed(() => ({
 }[props.activity.status] ?? { color: 'neutral', icon: 'i-lucide-calendar-range' }));
 
 const goToManagementPage = () => {
+	if (!props.canManageActivities) {
+		router.get(route('groups.activities.overview', {
+			group: props.groupSlug,
+			activity: props.activity.id,
+		}));
+
+		return;
+	}
+
 	router.get(route('groups.dashboard.activities.show', {
 		group: props.groupSlug,
 		activity: props.activity.id,

@@ -1,15 +1,11 @@
 <script setup lang="ts">
 import { computed, toRef } from "vue";
-import { route } from "ziggy-js";
 import { useI18n } from "vue-i18n";
 import { useActivityFormFields, type ActivityTypeOption, type OrganizerCharacterOption } from "@/components/Groups/Activities/useActivityFormFields";
 
 const props = defineProps<{
-	groupSlug: string
 	activityTypes: ActivityTypeOption[]
 	organizerCharacters: OrganizerCharacterOption[]
-	mode?: 'create' | 'edit'
-	lockActivityType?: boolean
 	submitLabel?: string
 	form: {
 		activity_type_id: number | null
@@ -21,11 +17,8 @@ const props = defineProps<{
 		starts_at: string | null
 		duration_hours: number
 		target_prog_point_key: string | null
-		is_public: boolean
-		needs_application: boolean
 		errors: Record<string, string | undefined>
 		processing: boolean
-		post: (url: string, options?: Record<string, unknown>) => void
 	}
 }>();
 
@@ -34,10 +27,7 @@ const emit = defineEmits<{
 }>();
 
 const { t } = useI18n();
-const canSubmit = computed(() => Boolean(props.form.activity_type_id && props.form.status));
-const isEditMode = computed(() => props.mode === 'edit');
 const {
-	activityTypeItems,
 	organizerCharacterItems,
 	selectedOrganizerCharacter,
 	progPointItems,
@@ -48,26 +38,20 @@ const {
 	startMinute,
 	hourItems,
 	minuteItems,
-	durationPresets,
+	durationItems,
 	selectedDurationOption,
 	isCustomDuration,
 } = useActivityFormFields(
 	toRef(props, 'activityTypes'),
 	toRef(props, 'organizerCharacters'),
 	props.form,
-	{ mode: 'create' },
+	{ mode: 'edit' },
 );
 
+const canSubmit = computed(() => Boolean(props.form.status));
+
 const submit = () => {
-	if (isEditMode.value) {
-		emit('submit');
-
-		return;
-	}
-
-	props.form.post(route('groups.dashboard.activities.store', { group: props.groupSlug }), {
-		preserveScroll: true,
-	});
+	emit('submit');
 };
 </script>
 
@@ -75,8 +59,8 @@ const submit = () => {
 	<UCard class="dark:bg-elevated/25">
 		<template #header>
 			<div class="flex flex-col gap-1">
-				<p class="font-semibold text-md">{{ t('groups.activities.create.form.title') }}</p>
-				<p class="text-sm text-muted">{{ t('groups.activities.create.form.subtitle') }}</p>
+				<p class="font-semibold text-md">{{ t('groups.activities.edit.form.title') }}</p>
+				<p class="text-sm text-muted">{{ t('groups.activities.edit.form.subtitle') }}</p>
 			</div>
 		</template>
 
@@ -84,26 +68,10 @@ const submit = () => {
 			<section class="space-y-5">
 				<div class="space-y-1">
 					<p class="font-medium text-sm">{{ t('groups.activities.create.sections.basics.title') }}</p>
-					<p class="text-sm text-muted">{{ t('groups.activities.create.sections.basics.subtitle') }}</p>
+					<p class="text-sm text-muted">{{ t('groups.activities.edit.sections.basics.subtitle') }}</p>
 				</div>
 
 				<div class="grid grid-cols-1 gap-5 xl:grid-cols-2">
-					<UFormField
-						:label="t('groups.activities.create.fields.activity_type.label')"
-						:error="form.errors.activity_type_id"
-							required
-						>
-						<USelectMenu
-							v-model="form.activity_type_id"
-							size="lg"
-							class="w-full"
-							:items="activityTypeItems"
-							value-key="value"
-							:disabled="lockActivityType"
-							:placeholder="t('groups.activities.create.fields.activity_type.placeholder')"
-						/>
-					</UFormField>
-
 					<UFormField
 						:label="t('groups.activities.create.fields.organizer.label')"
 						:error="form.errors.organized_by_character_id || form.errors.organized_by_user_id"
@@ -120,20 +88,6 @@ const submit = () => {
 							:items="organizerCharacterItems"
 							:placeholder="t('groups.activities.create.fields.organizer.placeholder')"
 							@update:model-value="updateOrganizerCharacter"
-						/>
-					</UFormField>
-				</div>
-
-				<div class="grid grid-cols-1 gap-5 xl:grid-cols-[minmax(0,1fr)_220px]">
-					<UFormField
-						:label="t('groups.activities.create.fields.title.label')"
-						:error="form.errors.title"
-					>
-						<UInput
-							v-model="form.title"
-							size="lg"
-							class="w-full"
-							:placeholder="t('groups.activities.create.fields.title.placeholder')"
 						/>
 					</UFormField>
 
@@ -153,20 +107,34 @@ const submit = () => {
 					</UFormField>
 				</div>
 
-				<UFormField
-					v-if="progPointItems.length > 0"
-					:label="t('groups.activities.create.fields.prog_point.label')"
-					:error="form.errors.target_prog_point_key"
-				>
-					<USelectMenu
-						v-model="form.target_prog_point_key"
-						size="lg"
-						class="w-full"
-						:items="progPointItems"
-						value-key="value"
-						:placeholder="t('groups.activities.create.fields.prog_point.placeholder')"
-					/>
-				</UFormField>
+				<div class="grid grid-cols-1 gap-5 xl:grid-cols-[minmax(0,1fr)_minmax(0,1fr)]">
+					<UFormField
+						:label="t('groups.activities.create.fields.title.label')"
+						:error="form.errors.title"
+					>
+						<UInput
+							v-model="form.title"
+							size="lg"
+							class="w-full"
+							:placeholder="t('groups.activities.create.fields.title.placeholder')"
+						/>
+					</UFormField>
+
+					<UFormField
+						v-if="progPointItems.length > 0"
+						:label="t('groups.activities.create.fields.prog_point.label')"
+						:error="form.errors.target_prog_point_key"
+					>
+						<USelectMenu
+							v-model="form.target_prog_point_key"
+							size="lg"
+							class="w-full"
+							:items="progPointItems"
+							value-key="value"
+							:placeholder="t('groups.activities.create.fields.prog_point.placeholder')"
+						/>
+					</UFormField>
+				</div>
 			</section>
 
 			<div class="border-t border-default"></div>
@@ -225,27 +193,13 @@ const submit = () => {
 					required
 				>
 					<div class="flex flex-col gap-3 xl:flex-row xl:items-center">
-						<div class="grid flex-1 grid-cols-2 gap-2 sm:grid-cols-4">
-							<UButton
-								v-for="hours in durationPresets"
-								:key="hours"
-								type="button"
-								size="lg"
-								:variant="selectedDurationOption === String(hours) ? 'solid' : 'soft'"
-								color="neutral"
-								:label="`${hours}h`"
-								@click="selectedDurationOption = String(hours)"
-							/>
-
-							<UButton
-								type="button"
-								size="lg"
-								:variant="isCustomDuration ? 'solid' : 'soft'"
-								color="neutral"
-								:label="t('groups.activities.create.fields.duration.custom')"
-								@click="selectedDurationOption = 'custom'"
-							/>
-						</div>
+						<USelectMenu
+							v-model="selectedDurationOption"
+							size="lg"
+							class="w-full xl:max-w-xs"
+							:items="durationItems"
+							value-key="value"
+						/>
 
 						<UInput
 							:model-value="String(form.duration_hours ?? '')"
@@ -261,37 +215,6 @@ const submit = () => {
 						/>
 					</div>
 				</UFormField>
-			</section>
-
-			<div class="border-t border-default"></div>
-
-			<section class="space-y-5">
-				<div class="space-y-1">
-					<p class="font-medium text-sm">{{ t('groups.activities.create.sections.access.title') }}</p>
-					<p class="text-sm text-muted">{{ t('groups.activities.create.sections.access.subtitle') }}</p>
-				</div>
-
-				<div class="grid grid-cols-1 gap-4 xl:grid-cols-2">
-					<UFormField
-						:label="t('groups.activities.create.fields.is_public.label')"
-						:description="t('groups.activities.create.fields.is_public.help')"
-						:error="form.errors.is_public"
-						orientation="horizontal"
-						class="rounded-lg border border-default px-4 py-4"
-					>
-						<USwitch v-model="form.is_public" />
-					</UFormField>
-
-					<UFormField
-						:label="t('groups.activities.create.fields.needs_application.label')"
-						:description="t('groups.activities.create.fields.needs_application.help')"
-						:error="form.errors.needs_application"
-						orientation="horizontal"
-						class="rounded-lg border border-default px-4 py-4"
-					>
-						<USwitch v-model="form.needs_application" />
-					</UFormField>
-				</div>
 			</section>
 
 			<div class="border-t border-default"></div>
@@ -320,9 +243,9 @@ const submit = () => {
 				<UButton
 					type="submit"
 					color="neutral"
-					:icon="isEditMode ? 'i-lucide-save' : 'i-lucide-plus'"
+					icon="i-lucide-save"
 					size="lg"
-					:label="submitLabel || t('groups.activities.create.submit')"
+					:label="submitLabel || t('groups.activities.edit.submit')"
 					:disabled="!canSubmit"
 					:loading="form.processing"
 				/>

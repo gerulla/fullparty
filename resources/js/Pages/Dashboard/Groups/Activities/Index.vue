@@ -74,6 +74,7 @@ const upcomingCount = computed(() => {
 			<ActivityUpcomingList
 				class="w-full xl:w-1/3"
 				:group-slug="group.slug"
+				:can-manage-activities="group.permissions.can_manage_activities"
 				:activities="activities"
 				:selected-date-key="selectedDateKey"
 			/>

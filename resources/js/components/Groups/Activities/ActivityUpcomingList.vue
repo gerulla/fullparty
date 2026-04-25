@@ -3,9 +3,11 @@ import { computed } from "vue";
 import { useI18n } from "vue-i18n";
 import ActivityUpcomingListItem from "@/components/Groups/Activities/ActivityUpcomingListItem.vue";
 import type { ActivityIndexItem } from "@/components/Groups/Activities/types";
+import { getActivityStatusDotClass } from "@/utils/activityStatusMeta";
 
 const props = defineProps<{
 	groupSlug: string
+	canManageActivities: boolean
 	activities: ActivityIndexItem[]
 	selectedDateKey?: string | null
 }>();
@@ -70,6 +72,16 @@ const selectedDateLabel = computed(() => {
 		year: 'numeric',
 	}).format(new Date(year, month - 1, day));
 });
+
+const statusLegendItems = computed(() => [
+	{ key: 'draft', colorClass: getActivityStatusDotClass('draft') },
+	{ key: 'planned', colorClass: getActivityStatusDotClass('planned') },
+	{ key: 'scheduled', colorClass: getActivityStatusDotClass('scheduled') },
+	{ key: 'upcoming', colorClass: getActivityStatusDotClass('upcoming') },
+	{ key: 'ongoing', colorClass: getActivityStatusDotClass('ongoing') },
+	{ key: 'complete', colorClass: getActivityStatusDotClass('complete') },
+	{ key: 'cancelled', colorClass: getActivityStatusDotClass('cancelled') },
+]);
 </script>
 
 <template>
@@ -101,6 +113,7 @@ const selectedDateLabel = computed(() => {
 				v-for="activity in visibleActivities"
 				:key="activity.id"
 				:group-slug="groupSlug"
+				:can-manage-activities="canManageActivities"
 				:activity="activity"
 			/>
 		</div>
@@ -108,5 +121,24 @@ const selectedDateLabel = computed(() => {
 		<div v-else class="rounded-sm border border-dashed border-default bg-muted/10 px-4 py-10 text-center text-sm text-muted">
 			{{ selectedDateKey ? t('groups.activities.selected_day.empty') : t('groups.activities.upcoming.empty') }}
 		</div>
+
+		<template #footer>
+			<div class="flex flex-col gap-2">
+				<p class="text-xs font-medium uppercase tracking-wide text-muted">
+					{{ t('groups.activities.legend.title') }}
+				</p>
+
+				<div class="flex flex-wrap gap-2">
+					<div
+						v-for="item in statusLegendItems"
+						:key="item.key"
+						class="inline-flex items-center gap-2 rounded-full border border-default px-2.5 py-1 text-xs text-muted"
+					>
+						<span class="h-2.5 w-2.5 rounded-full" :class="item.colorClass"></span>
+						<span>{{ t(`groups.activities.statuses.${item.key}`) }}</span>
+					</div>
+				</div>
+			</div>
+		</template>
 	</UCard>
 </template>

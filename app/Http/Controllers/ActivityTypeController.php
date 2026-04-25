@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ActivityTag;
 use App\Models\ActivityType;
 use App\Models\ActivityTypeVersion;
 use App\Services\AuditLogger;
@@ -26,7 +27,7 @@ class ActivityTypeController extends Controller
         $this->authorizeAdminAccess();
 
         $activityTypes = ActivityType::query()
-            ->with(['creator:id,name', 'currentPublishedVersion.publisher:id,name', 'versions.publisher:id,name'])
+            ->with(['creator:id,name', 'currentPublishedVersion.publisher:id,name', 'versions.publisher:id,name', 'tags:id,name'])
             ->latest('updated_at')
             ->get();
 
@@ -57,6 +58,7 @@ class ActivityTypeController extends Controller
 
         return Inertia::render('Admin/ActivityTypesCreate', [
             'schemaReference' => $this->schemaReference(),
+            'existingTags' => $this->availableTags(),
         ]);
     }
 
@@ -64,11 +66,12 @@ class ActivityTypeController extends Controller
     {
         $this->authorizeAdminAccess();
 
-        $activityType->load(['creator:id,name', 'currentPublishedVersion.publisher:id,name', 'versions.publisher:id,name']);
+        $activityType->load(['creator:id,name', 'currentPublishedVersion.publisher:id,name', 'versions.publisher:id,name', 'tags:id,name']);
 
         return Inertia::render('Admin/ActivityTypesEdit', [
             'activityType' => $this->transformActivityType($activityType),
             'schemaReference' => $this->schemaReference(),
+            'existingTags' => $this->availableTags(),
         ]);
     }
 
@@ -78,11 +81,13 @@ class ActivityTypeController extends Controller
 
         $validated = $request->validate($this->rules());
         $this->validateDraftSchema($validated);
+        $tagNames = $this->extractTagNames($validated);
 
         $activityType = ActivityType::create([
-            ...$validated,
+            ...collect($validated)->except('tags')->all(),
             'created_by_user_id' => auth()->id(),
         ]);
+        $this->syncTags($activityType, $tagNames);
 
         $this->auditLogger->log(
             action: 'admin.activity_type.created',
@@ -110,10 +115,12 @@ class ActivityTypeController extends Controller
         $originalValues = $this->activityTypeSnapshot($activityType);
         $validated = $request->validate($this->rules($activityType->id));
         $this->validateDraftSchema($validated);
+        $tagNames = $this->extractTagNames($validated);
 
-        $activityType->update($validated);
+        $activityType->update(collect($validated)->except('tags')->all());
+        $this->syncTags($activityType, $tagNames);
 
-        $updatedValues = $this->activityTypeSnapshot($activityType->fresh());
+        $updatedValues = $this->activityTypeSnapshot($activityType->fresh()->load('tags:id,name'));
         $changes = $this->buildChanges($originalValues, $updatedValues);
 
         if ($changes !== []) {
@@ -238,6 +245,8 @@ class ActivityTypeController extends Controller
             'draft_name.*' => ['required', 'string', 'max:255'],
             'draft_description' => ['nullable', 'array'],
             'draft_description.*' => ['nullable', 'string'],
+            'tags' => ['nullable', 'array'],
+            'tags.*' => ['string', 'max:50'],
             'draft_layout_schema' => ['required', 'array'],
             'draft_slot_schema' => ['required', 'array'],
             'draft_application_schema' => ['required', 'array'],
@@ -258,6 +267,7 @@ class ActivityTypeController extends Controller
         $applicationSchema = $validated['draft_application_schema'] ?? null;
         $progressSchema = $validated['draft_progress_schema'] ?? null;
         $progPoints = $validated['draft_prog_points'] ?? null;
+        $tags = $validated['tags'] ?? null;
 
         if (!is_array($name) || !array_key_exists('en', $name) || blank($name['en'])) {
             throw ValidationException::withMessages([
@@ -297,6 +307,67 @@ class ActivityTypeController extends Controller
         $this->validateSchemaFields($applicationSchema, 'draft_application_schema');
         $this->validateProgressSchema($progressSchema, 'draft_progress_schema');
         $this->validateProgPoints($progPoints, 'draft_prog_points');
+        $this->validateTags($tags, 'tags');
+    }
+
+    private function validateTags(mixed $tags, string $attribute): void
+    {
+        if (is_null($tags)) {
+            return;
+        }
+
+        if (!is_array($tags)) {
+            throw ValidationException::withMessages([
+                $attribute => 'Tags must be an array.',
+            ]);
+        }
+
+        $normalizedTags = collect($tags)
+            ->map(fn (mixed $tag) => is_string($tag) ? trim($tag) : null)
+            ->filter(fn (?string $tag) => filled($tag))
+            ->values();
+
+        if ($normalizedTags->count() !== count($tags)) {
+            throw ValidationException::withMessages([
+                $attribute => 'Tags must only contain non-empty strings.',
+            ]);
+        }
+
+        if ($normalizedTags->duplicates()->isNotEmpty()) {
+            throw ValidationException::withMessages([
+                $attribute => 'Tags must be unique.',
+            ]);
+        }
+    }
+
+    /**
+     * @param  array<string, mixed>  $validated
+     * @return array<int, string>
+     */
+    private function extractTagNames(array $validated): array
+    {
+        return collect($validated['tags'] ?? [])
+            ->map(fn (mixed $tag) => is_string($tag) ? trim($tag) : null)
+            ->filter(fn (?string $tag) => filled($tag))
+            ->unique()
+            ->values()
+            ->all();
+    }
+
+    /**
+     * @param  array<int, string>  $tagNames
+     */
+    private function syncTags(ActivityType $activityType, array $tagNames): void
+    {
+        $tagIds = collect($tagNames)
+            ->map(fn (string $tagName) => ActivityTag::firstOrCreate(['name' => $tagName])->id)
+            ->all();
+
+        $activityType->tags()->sync($tagIds);
+
+        ActivityTag::query()
+            ->doesntHave('activityTypes')
+            ->delete();
     }
 
     private function validateProgPoints(mixed $progPoints, string $attribute): void
@@ -522,6 +593,7 @@ class ActivityTypeController extends Controller
             'is_active' => $activityType->is_active,
             'draft_name' => $activityType->draft_name,
             'draft_description' => $activityType->draft_description,
+            'tags' => $activityType->tags->pluck('name')->values()->all(),
             'draft_layout_schema' => $activityType->draft_layout_schema,
             'draft_slot_schema' => $activityType->draft_slot_schema,
             'draft_application_schema' => $activityType->draft_application_schema,
@@ -556,6 +628,7 @@ class ActivityTypeController extends Controller
             'slug' => $activityType->slug,
             'draft_name' => $activityType->draft_name,
             'draft_description' => $activityType->draft_description,
+            'tags' => $activityType->tags->pluck('name')->values()->all(),
             'draft_layout_schema' => $activityType->draft_layout_schema,
             'draft_slot_schema' => $activityType->draft_slot_schema,
             'draft_application_schema' => $activityType->draft_application_schema,
@@ -582,6 +655,18 @@ class ActivityTypeController extends Controller
                     'new' => $updatedValues[$field],
                 ],
             ])
+            ->all();
+    }
+
+    /**
+     * @return array<int, string>
+     */
+    private function availableTags(): array
+    {
+        return ActivityTag::query()
+            ->orderBy('name')
+            ->pluck('name')
+            ->values()
             ->all();
     }
 

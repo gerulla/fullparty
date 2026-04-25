@@ -18,61 +18,108 @@ use Inertia\Response;
 
 class GroupActivityController extends Controller
 {
+    public function overview(Request $request, Group $group, Activity $activity, ?string $secretKey = null): Response
+    {
+        $this->ensureActivityBelongsToGroup($group, $activity);
+        $group->loadMissing('memberships');
+
+        if (!$this->canAccessOverview($request, $group, $activity, $secretKey)) {
+            abort(404);
+        }
+
+        $activity->load([
+            'organizer',
+            'organizerCharacter',
+            'activityType',
+            'activityTypeVersion',
+        ]);
+
+        return Inertia::render('Groups/Activities/Overview', [
+            'group' => [
+                'id' => $group->id,
+                'name' => $group->name,
+                'slug' => $group->slug,
+                'is_public' => $group->is_public,
+            ],
+            'activity' => [
+                'id' => $activity->id,
+                'activity_type' => [
+                    'id' => $activity->activityType?->id,
+                    'slug' => $activity->activityType?->slug,
+                    'draft_name' => $activity->activityType?->draft_name,
+                ],
+                'activity_type_version_id' => $activity->activity_type_version_id,
+                'title' => $activity->title,
+                'description' => $activity->description,
+                'notes' => $activity->notes,
+                'status' => $activity->status,
+                'starts_at' => $activity->starts_at?->toIso8601String(),
+                'duration_hours' => $activity->duration_hours,
+                'target_prog_point_key' => $activity->target_prog_point_key,
+                'needs_application' => $activity->needs_application,
+                'organized_by' => $activity->organizer ? [
+                    'id' => $activity->organizer->id,
+                    'name' => $activity->organizer->name,
+                    'avatar_url' => $activity->organizer->avatar_url,
+                ] : null,
+                'organized_by_character' => $activity->organizerCharacter ? [
+                    'id' => $activity->organizerCharacter->id,
+                    'user_id' => $activity->organizerCharacter->user_id,
+                    'name' => $activity->organizerCharacter->name,
+                    'avatar_url' => $activity->organizerCharacter->avatar_url,
+                ] : null,
+            ],
+            'permissions' => [
+                'can_apply' => $request->user() !== null,
+                'can_manage' => $group->hasModeratorAccess($request->user()?->id),
+            ],
+        ]);
+    }
+
     public function create(Group $group): Response
     {
         $group->loadMissing('memberships.user');
         $this->authorizeModeratorAccess($group);
 
-        $organizerUserIds = $group->memberships
-            ->filter(fn (GroupMembership $membership) => in_array($membership->role, [
-                GroupMembership::ROLE_OWNER,
-                GroupMembership::ROLE_MODERATOR,
-            ], true))
-            ->pluck('user_id')
-            ->all();
-
         return Inertia::render('Dashboard/Groups/Activities/Create', [
-            'group' => [
-                'id' => $group->id,
-                'name' => $group->name,
-                'slug' => $group->slug,
-                'current_user_role' => $group->memberships
-                    ->firstWhere('user_id', auth()->id())
-                    ?->role,
-                'permissions' => [
-                    'can_manage_activities' => $group->hasModeratorAccess(auth()->id()),
-                ],
+            'group' => $this->buildDashboardGroupPayload($group),
+            'activityTypes' => $this->availableActivityTypesForForm(),
+            'organizerCharacters' => $this->organizerCharactersForUserIds($this->moderatorUserIds($group)),
+        ]);
+    }
+
+    public function edit(Group $group, Activity $activity): Response
+    {
+        $group->loadMissing('memberships.user');
+        $this->authorizeModeratorAccess($group);
+        $this->ensureActivityBelongsToGroup($group, $activity);
+        $this->ensureActivityIsMutable($activity);
+
+        $activity->load([
+            'activityType.currentPublishedVersion',
+            'organizerCharacter.user',
+        ]);
+
+        $activityType = $activity->activityType;
+
+        return Inertia::render('Dashboard/Groups/Activities/Edit', [
+            'group' => $this->buildDashboardGroupPayload($group),
+            'activity' => [
+                'id' => $activity->id,
+                'activity_type_id' => $activity->activity_type_id,
+                'title' => $activity->title,
+                'status' => $activity->status,
+                'notes' => $activity->notes,
+                'starts_at' => $activity->starts_at?->setTimezone('UTC')->format('Y-m-d\TH:i'),
+                'duration_hours' => $activity->duration_hours,
+                'target_prog_point_key' => $activity->target_prog_point_key,
+                'is_public' => $activity->is_public,
+                'needs_application' => $activity->needs_application,
+                'organized_by_user_id' => $activity->organized_by_user_id,
+                'organized_by_character_id' => $activity->organized_by_character_id,
             ],
-            'activityTypes' => ActivityType::query()
-                ->with('currentPublishedVersion')
-                ->where('is_active', true)
-                ->whereNotNull('current_published_version_id')
-                ->orderBy('slug')
-                ->get()
-                ->map(fn (ActivityType $activityType) => [
-                    'id' => $activityType->id,
-                    'slug' => $activityType->slug,
-                    'draft_name' => $activityType->draft_name,
-                    'current_published_version_id' => $activityType->current_published_version_id,
-                    'slot_count' => collect($activityType->currentPublishedVersion?->layout_schema['groups'] ?? [])
-                        ->sum(fn (array $groupDefinition) => (int) ($groupDefinition['size'] ?? 0)),
-                    'prog_points' => $activityType->currentPublishedVersion?->prog_points ?? [],
-                ])
-                ->values(),
-            'organizerCharacters' => Character::query()
-                ->with('user:id,name')
-                ->whereIn('user_id', $organizerUserIds)
-                ->orderBy('name')
-                ->get()
-                ->map(fn (Character $character) => [
-                    'id' => $character->id,
-                    'user_id' => $character->user_id,
-                    'name' => $character->name,
-                    'user_name' => $character->user?->name,
-                    'avatar_url' => $character->avatar_url,
-                    'world' => $character->world,
-                ])
-                ->values(),
+            'activityTypes' => $activityType ? collect([$activityType])->map(fn (ActivityType $type) => $this->serializeActivityTypeForForm($type))->values() : [],
+            'organizerCharacters' => $this->organizerCharactersForUserIds($this->moderatorUserIds($group)),
         ]);
     }
 
@@ -93,34 +140,15 @@ class GroupActivityController extends Controller
             abort(403);
         }
 
+        $canManageActivities = $group->hasModeratorAccess(auth()->id());
+        $visibleActivities = $canManageActivities
+            ? $group->activities
+            : $group->activities->where('is_public', true);
+
         return Inertia::render('Dashboard/Groups/Activities/Index', [
-            'group' => [
-                'id' => $group->id,
-                'name' => $group->name,
-                'slug' => $group->slug,
-                'current_user_role' => $group->memberships
-                    ->firstWhere('user_id', auth()->id())
-                    ?->role,
-                'permissions' => [
-                    'can_manage_activities' => $group->hasModeratorAccess(auth()->id()),
-                ],
-            ],
-            'activityTypes' => ActivityType::query()
-                ->with('currentPublishedVersion')
-                ->where('is_active', true)
-                ->whereNotNull('current_published_version_id')
-                ->orderBy('slug')
-                ->get()
-                ->map(fn (ActivityType $activityType) => [
-                    'id' => $activityType->id,
-                    'slug' => $activityType->slug,
-                    'draft_name' => $activityType->draft_name,
-                    'current_published_version_id' => $activityType->current_published_version_id,
-                    'slot_count' => collect($activityType->currentPublishedVersion?->layout_schema['groups'] ?? [])
-                        ->sum(fn (array $groupDefinition) => (int) ($groupDefinition['size'] ?? 0)),
-                ])
-                ->values(),
-            'activities' => $group->activities
+            'group' => $this->buildDashboardGroupPayload($group, $canManageActivities),
+            'activityTypes' => $this->availableActivityTypesForForm(false),
+            'activities' => $visibleActivities
                 ->sortByDesc('updated_at')
                 ->values()
                 ->map(fn (Activity $activity) => [
@@ -140,7 +168,6 @@ class GroupActivityController extends Controller
                     'furthest_progress_key' => $activity->furthest_progress_key,
                     'is_public' => $activity->is_public,
                     'needs_application' => $activity->needs_application,
-                    'secret_key' => $activity->secret_key,
                     'organized_by' => $activity->organizer ? [
                         'id' => $activity->organizer->id,
                         'name' => $activity->organizer->name,
@@ -213,10 +240,7 @@ class GroupActivityController extends Controller
     {
         $this->ensureActivityBelongsToGroup($group, $activity);
         $group->loadMissing('memberships');
-
-        if (!$group->hasMember(auth()->id())) {
-            abort(403);
-        }
+        $this->authorizeModeratorAccess($group);
 
         $activity->load([
             'organizer',
@@ -320,19 +344,15 @@ class GroupActivityController extends Controller
         $group->loadMissing('memberships');
         $this->authorizeModeratorAccess($group);
         $this->ensureActivityBelongsToGroup($group, $activity);
+        $this->ensureActivityIsMutable($activity);
 
-        $validated = $request->validate($this->rules($group, false));
+        $validated = $request->validate($this->rules($group, false, true));
         $validated = $this->normalizeAndValidateOrganizerCharacter($validated);
         $validated = $this->normalizeStartsAt($validated);
 
         $activityTypeVersion = null;
 
-        if (isset($validated['activity_type_id'])) {
-            $activityTypeVersion = ActivityType::query()
-                ->with('currentPublishedVersion')
-                ->find($validated['activity_type_id'])
-                ?->currentPublishedVersion;
-        } elseif ($activity->activityTypeVersion) {
+        if ($activity->activityTypeVersion) {
             $activityTypeVersion = $activity->activityTypeVersion;
         }
 
@@ -360,7 +380,10 @@ class GroupActivityController extends Controller
         ]);
 
         return redirect()
-            ->route('groups.dashboard.activities.index', $group)
+            ->route('groups.dashboard.activities.show', [
+                'group' => $group,
+                'activity' => $activity,
+            ])
             ->with('success', 'activity_updated');
     }
 
@@ -369,6 +392,7 @@ class GroupActivityController extends Controller
         $group->loadMissing('memberships');
         $this->authorizeModeratorAccess($group);
         $this->ensureActivityBelongsToGroup($group, $activity);
+        $this->ensureActivityIsMutable($activity);
 
         $activity->delete();
 
@@ -380,7 +404,7 @@ class GroupActivityController extends Controller
     /**
      * @return array<string, array<int, \Illuminate\Contracts\Validation\ValidationRule|string>>
      */
-    private function rules(Group $group, bool $requireActivityType = true): array
+    private function rules(Group $group, bool $requireActivityType = true, bool $isUpdate = false): array
     {
         $moderatorIds = $group->memberships
             ->filter(fn (GroupMembership $membership) => in_array($membership->role, [
@@ -407,16 +431,16 @@ class GroupActivityController extends Controller
             'title' => ['sometimes', 'nullable', 'string', 'max:255'],
             'description' => ['sometimes', 'nullable', 'string'],
             'notes' => ['sometimes', 'nullable', 'string'],
-            'starts_at' => ['sometimes', 'nullable', 'date'],
+            'starts_at' => ['sometimes', 'nullable', 'date_format:Y-m-d\TH:i'],
             'duration_hours' => ['sometimes', 'nullable', 'integer', 'min:1', 'max:24'],
             'target_prog_point_key' => ['sometimes', 'nullable', 'string', 'max:255'],
-            'is_public' => ['sometimes', 'boolean'],
-            'needs_application' => ['sometimes', 'boolean'],
+            'is_public' => $isUpdate ? ['prohibited'] : ['sometimes', 'boolean'],
+            'needs_application' => $isUpdate ? ['prohibited'] : ['sometimes', 'boolean'],
         ];
 
         $rules['activity_type_id'] = $requireActivityType
             ? ['required', 'integer', 'exists:activity_types,id']
-            : ['sometimes', 'integer', 'exists:activity_types,id'];
+            : ['prohibited'];
 
         return $rules;
     }
@@ -557,5 +581,113 @@ class GroupActivityController extends Controller
         if ($activity->group_id !== $group->id) {
             abort(404);
         }
+    }
+
+    private function ensureActivityIsMutable(Activity $activity): void
+    {
+        if ($activity->status === Activity::STATUS_COMPLETE) {
+            abort(403);
+        }
+    }
+
+    private function canAccessOverview(Request $request, Group $group, Activity $activity, ?string $secretKey): bool
+    {
+        if ($activity->is_public) {
+            if ($group->is_public) {
+                return true;
+            }
+
+            return $group->hasMember($request->user()?->id);
+        }
+
+        return filled($secretKey)
+            && filled($activity->secret_key)
+            && hash_equals((string) $activity->secret_key, (string) $secretKey);
+    }
+
+    /**
+     * @return array<string, mixed>
+     */
+    private function buildDashboardGroupPayload(Group $group, ?bool $canManageActivities = null): array
+    {
+        return [
+            'id' => $group->id,
+            'name' => $group->name,
+            'slug' => $group->slug,
+            'current_user_role' => $group->memberships
+                ->firstWhere('user_id', auth()->id())
+                ?->role,
+            'permissions' => [
+                'can_manage_activities' => $canManageActivities ?? $group->hasModeratorAccess(auth()->id()),
+            ],
+        ];
+    }
+
+    /**
+     * @return array<int, int>
+     */
+    private function moderatorUserIds(Group $group): array
+    {
+        return $group->memberships
+            ->filter(fn (GroupMembership $membership) => in_array($membership->role, [
+                GroupMembership::ROLE_OWNER,
+                GroupMembership::ROLE_MODERATOR,
+            ], true))
+            ->pluck('user_id')
+            ->all();
+    }
+
+    /**
+     * @return \Illuminate\Support\Collection<int, array<string, mixed>>
+     */
+    private function organizerCharactersForUserIds(array $userIds)
+    {
+        return Character::query()
+            ->with('user:id,name')
+            ->whereIn('user_id', $userIds)
+            ->orderBy('name')
+            ->get()
+            ->map(fn (Character $character) => [
+                'id' => $character->id,
+                'user_id' => $character->user_id,
+                'name' => $character->name,
+                'user_name' => $character->user?->name,
+                'avatar_url' => $character->avatar_url,
+                'world' => $character->world,
+            ])
+            ->values();
+    }
+
+    /**
+     * @return \Illuminate\Support\Collection<int, array<string, mixed>>
+     */
+    private function availableActivityTypesForForm(bool $includeProgPoints = true)
+    {
+        return ActivityType::query()
+            ->with('currentPublishedVersion')
+            ->where('is_active', true)
+            ->whereNotNull('current_published_version_id')
+            ->orderBy('slug')
+            ->get()
+            ->map(fn (ActivityType $activityType) => $this->serializeActivityTypeForForm($activityType, $includeProgPoints))
+            ->values();
+    }
+
+    /**
+     * @return array<string, mixed>
+     */
+    private function serializeActivityTypeForForm(ActivityType $activityType, bool $includeProgPoints = true): array
+    {
+        return [
+            'id' => $activityType->id,
+            'slug' => $activityType->slug,
+            'draft_name' => $activityType->draft_name,
+            'current_published_version_id' => $activityType->current_published_version_id,
+            'slot_count' => collect($activityType->currentPublishedVersion?->layout_schema['groups'] ?? [])
+                ->sum(fn (array $groupDefinition) => (int) ($groupDefinition['size'] ?? 0)),
+            'prog_points' => $includeProgPoints
+                ? ($activityType->currentPublishedVersion?->prog_points ?? [])
+                : [],
+        ];
     }
 }

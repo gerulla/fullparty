@@ -72,19 +72,23 @@
             "check_in": "Start Check-In",
             "go_to_application": "Go To Application",
             "application_link_copied": "Application link copied.",
-            "export": "Export"
+            "export": "Export",
+            "export_csv": "Export CSV"
         },
         "roster": {
             "title": "Roster Assignments",
             "subtitle": "Parties and slots are generated from the activity layout and ready to be filled.",
             "slots_count": "{count} slots",
             "assigned": "Assigned",
+            "checked_in": "Checked in",
             "open": "Open",
             "slot_placeholder": "Click to assign",
             "filled_placeholder": "Assigned character details and controls will live here next.",
             "filled_slot": "Filled Slot",
             "empty_slot": "Empty Slot",
             "check_in_all": "Check In All",
+            "check_in_action": "Check-in",
+            "undo_check_in": "Undo Checkin",
             "roles": {
                 "tank": "Tank",
                 "healer": "Healer",
@@ -95,6 +99,14 @@
                 "slot": "Slot",
                 "details": "Details",
                 "status": "Status"
+            },
+            "csv_headers": {
+                "group": "Group",
+                "slot": "Slot",
+                "status": "Status",
+                "character": "Character",
+                "world": "World",
+                "datacenter": "Datacenter"
             },
             "empty": "No roster slots were generated for this activity."
         },

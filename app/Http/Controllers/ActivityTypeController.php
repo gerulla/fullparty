@@ -156,6 +156,7 @@ class ActivityTypeController extends Controller
             'draft_slot_schema' => $activityType->draft_slot_schema,
             'draft_application_schema' => $activityType->draft_application_schema,
             'draft_progress_schema' => $activityType->draft_progress_schema,
+            'draft_bench_size' => $activityType->draft_bench_size,
             'draft_prog_points' => $activityType->draft_prog_points,
             'draft_fflogs_zone_id' => $activityType->draft_fflogs_zone_id,
         ];
@@ -173,6 +174,7 @@ class ActivityTypeController extends Controller
                 'slot_schema' => $activityType->draft_slot_schema,
                 'application_schema' => $activityType->draft_application_schema,
                 'progress_schema' => $activityType->draft_progress_schema,
+                'bench_size' => $activityType->draft_bench_size,
                 'prog_points' => $activityType->draft_prog_points,
                 'fflogs_zone_id' => $activityType->draft_fflogs_zone_id,
                 'published_by_user_id' => auth()->id(),
@@ -253,6 +255,7 @@ class ActivityTypeController extends Controller
             'draft_slot_schema' => ['required', 'array'],
             'draft_application_schema' => ['required', 'array'],
             'draft_progress_schema' => ['required', 'array'],
+            'draft_bench_size' => ['sometimes', 'integer', 'min:0', 'max:24'],
             'draft_prog_points' => ['nullable', 'array'],
             'draft_fflogs_zone_id' => ['nullable', 'integer', 'min:1'],
             'is_active' => ['sometimes', 'boolean'],
@@ -269,6 +272,7 @@ class ActivityTypeController extends Controller
         $slotSchema = $validated['draft_slot_schema'] ?? null;
         $applicationSchema = $validated['draft_application_schema'] ?? null;
         $progressSchema = $validated['draft_progress_schema'] ?? null;
+        $benchSize = $validated['draft_bench_size'] ?? 0;
         $progPoints = $validated['draft_prog_points'] ?? null;
         $tags = $validated['tags'] ?? null;
 
@@ -309,8 +313,18 @@ class ActivityTypeController extends Controller
         $this->validateSchemaFields($slotSchema, 'draft_slot_schema');
         $this->validateSchemaFields($applicationSchema, 'draft_application_schema');
         $this->validateProgressSchema($progressSchema, 'draft_progress_schema');
+        $this->validateBenchSize($benchSize, 'draft_bench_size');
         $this->validateProgPoints($progPoints, 'draft_prog_points');
         $this->validateTags($tags, 'tags');
+    }
+
+    private function validateBenchSize(mixed $benchSize, string $attribute): void
+    {
+        if (!is_numeric($benchSize) || (int) $benchSize < 0) {
+            throw ValidationException::withMessages([
+                $attribute => 'Bench size must be a valid non-negative number.',
+            ]);
+        }
     }
 
     private function validateTags(mixed $tags, string $attribute): void
@@ -601,12 +615,14 @@ class ActivityTypeController extends Controller
             'draft_slot_schema' => $activityType->draft_slot_schema,
             'draft_application_schema' => $activityType->draft_application_schema,
             'draft_progress_schema' => $activityType->draft_progress_schema,
+            'draft_bench_size' => $activityType->draft_bench_size,
             'draft_prog_points' => $activityType->draft_prog_points,
             'draft_fflogs_zone_id' => $activityType->draft_fflogs_zone_id,
             'created_by' => $activityType->creator?->name,
             'current_published_version' => $currentVersion ? [
                 'id' => $currentVersion->id,
                 'version' => $currentVersion->version,
+                'bench_size' => $currentVersion->bench_size,
                 'fflogs_zone_id' => $currentVersion->fflogs_zone_id,
                 'published_at' => $currentVersion->published_at?->toIso8601String(),
                 'published_by' => $currentVersion->publisher?->name,
@@ -638,6 +654,7 @@ class ActivityTypeController extends Controller
             'draft_slot_schema' => $activityType->draft_slot_schema,
             'draft_application_schema' => $activityType->draft_application_schema,
             'draft_progress_schema' => $activityType->draft_progress_schema,
+            'draft_bench_size' => $activityType->draft_bench_size,
             'draft_prog_points' => $activityType->draft_prog_points,
             'draft_fflogs_zone_id' => $activityType->draft_fflogs_zone_id,
             'is_active' => $activityType->is_active,

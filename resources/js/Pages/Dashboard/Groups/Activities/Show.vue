@@ -47,11 +47,25 @@ type ActivityDetails = {
 		avatar_url: string | null
 	} | null
 	slot_count: number
+	bench_slot_count: number
 	application_count: number
 	pending_application_count: number
 	progress_milestone_count: number
 	slot_field_definitions: QueueFilterField[]
 	slots: ActivitySlot[]
+	missing_assignments: Array<{
+		id: number
+		character: {
+			id: number
+			name: string
+			avatar_url: string | null
+			world: string | null
+			datacenter: string | null
+		} | null
+		slot_label: LocalizedText
+		group_label: LocalizedText
+		marked_missing_at: string | null
+	}>
 	progress_milestones: Array<{
 		id: number
 		milestone_key: string
@@ -89,8 +103,10 @@ const isLoading = ref(true);
 const isSlotSwapPending = ref(false);
 const pendingSwapSlotIds = ref<number[]>([]);
 const isSlotAssignmentPending = ref(false);
+const pendingMissingUndoIds = ref<number[]>([]);
 const assignmentModalApplication = ref<QueueApplication | null>(null);
 const assignmentModalSlotId = ref<number | null>(null);
+const assignmentModalSourceSlotId = ref<number | null>(null);
 const assignmentModalMode = ref<'assign' | 'edit'>('assign');
 const activityData = ref<ActivityDetails | null>(null);
 
@@ -109,8 +125,9 @@ const activityTitle = computed(() => currentActivity.value?.title || activityTyp
 const canEditActivity = computed(() => currentActivity.value?.status !== 'complete');
 const organizerName = computed(() => currentActivity.value?.organized_by_character?.name || null);
 const organizerAvatarUrl = computed(() => currentActivity.value?.organized_by_character?.avatar_url || null);
-const assignedCount = computed(() => currentActivity.value?.slots.filter((slot) => slot.assigned_character_id !== null).length ?? 0);
+const assignedCount = computed(() => currentActivity.value?.slots.filter((slot) => !slot.is_bench && slot.assigned_character_id !== null).length ?? 0);
 const pendingApplicationCount = computed(() => currentActivity.value?.pending_application_count ?? 0);
+const missingAssignments = computed(() => currentActivity.value?.missing_assignments ?? []);
 const assignmentModalOpen = computed({
 	get: () => Boolean(assignmentModalApplication.value && assignmentModalSlot.value),
 	set: (value: boolean) => {
@@ -170,6 +187,17 @@ const goToApplicationPage = () => {
 	router.get(route('groups.activities.application', activityApplicationRouteParams.value));
 };
 
+const exportRoster = () => {
+	if (!currentActivity.value) {
+		return;
+	}
+
+	window.location.href = route('groups.dashboard.activities.export-roster', {
+		group: props.group.slug,
+		activity: currentActivity.value.id,
+	});
+};
+
 const copyApplicationLink = async () => {
 	if (!activityApplicationRouteParams.value) {
 		return;
@@ -205,6 +233,23 @@ const fetchManagementData = async () => {
 
 const handleSlotSwap = async (payload: { sourceSlotId: number, targetSlotId: number }) => {
 	if (!currentActivity.value || isSlotSwapPending.value || isSlotAssignmentPending.value) {
+		return;
+	}
+
+	const sourceSlot = currentActivity.value.slots.find((slot) => slot.id === payload.sourceSlotId);
+	const targetSlot = currentActivity.value.slots.find((slot) => slot.id === payload.targetSlotId);
+
+	if (!sourceSlot || !targetSlot) {
+		return;
+	}
+
+	if (sourceSlot.is_bench && !targetSlot.is_bench) {
+		await openAssignmentModalFromSlot(targetSlot.id, sourceSlot.id);
+		return;
+	}
+
+	if (!sourceSlot.is_bench && targetSlot.is_bench && targetSlot.assigned_character_id) {
+		await openAssignmentModalFromSlot(sourceSlot.id, targetSlot.id);
 		return;
 	}
 
@@ -245,19 +290,77 @@ const handleSlotSwap = async (payload: { sourceSlotId: number, targetSlotId: num
 };
 
 const openAssignmentModal = (payload: { slotId: number, application: QueueApplication }) => {
-	if (isSlotSwapPending.value || isSlotAssignmentPending.value) {
+	if (!currentActivity.value || isSlotSwapPending.value || isSlotAssignmentPending.value) {
+		return;
+	}
+
+	const targetSlot = currentActivity.value.slots.find((slot) => slot.id === payload.slotId);
+
+	if (!targetSlot) {
+		return;
+	}
+
+	if (targetSlot.is_bench) {
+		void handleAssignApplicantToSlot({
+			applicationId: payload.application.id,
+			slotId: payload.slotId,
+			fieldValues: {},
+		});
 		return;
 	}
 
 	assignmentModalMode.value = 'assign';
 	assignmentModalSlotId.value = payload.slotId;
+	assignmentModalSourceSlotId.value = null;
 	assignmentModalApplication.value = payload.application;
 };
 
 const closeAssignmentModal = () => {
 	assignmentModalMode.value = 'assign';
 	assignmentModalSlotId.value = null;
+	assignmentModalSourceSlotId.value = null;
 	assignmentModalApplication.value = null;
+};
+
+const fetchSlotAssignmentContext = async (slotId: number) => {
+	if (!currentActivity.value) {
+		return null;
+	}
+
+	const response = await axios.get(route('groups.dashboard.activities.slot-assignments.context', {
+		group: props.group.slug,
+		activity: props.activity.id,
+		slot: slotId,
+	}));
+
+	return response.data?.application ?? null;
+};
+
+const openAssignmentModalFromSlot = async (targetSlotId: number, sourceSlotId: number) => {
+	if (!currentActivity.value || isSlotSwapPending.value || isSlotAssignmentPending.value) {
+		return;
+	}
+
+	try {
+		const application = await fetchSlotAssignmentContext(sourceSlotId);
+
+		if (!application) {
+			return;
+		}
+
+		assignmentModalMode.value = 'assign';
+		assignmentModalSlotId.value = targetSlotId;
+		assignmentModalSourceSlotId.value = sourceSlotId;
+		assignmentModalApplication.value = application;
+	} catch (error) {
+		console.error(error);
+		toast.add({
+			title: t('general.error'),
+			description: 'Unable to prepare this roster move.',
+			color: 'error',
+			icon: 'i-lucide-octagon-alert',
+		});
+	}
 };
 
 const openSlotEditModal = async (slotId: number) => {
@@ -271,16 +374,15 @@ const openSlotEditModal = async (slotId: number) => {
 		return;
 	}
 
-	try {
-		const response = await axios.get(route('groups.dashboard.activities.slot-assignments.context', {
-			group: props.group.slug,
-			activity: props.activity.id,
-			slot: slotId,
-		}));
+	if (slot.is_bench) {
+		return;
+	}
 
+	try {
 		assignmentModalMode.value = 'edit';
 		assignmentModalSlotId.value = slotId;
-		assignmentModalApplication.value = response.data?.application ?? null;
+		assignmentModalSourceSlotId.value = null;
+		assignmentModalApplication.value = await fetchSlotAssignmentContext(slotId);
 	} catch (error) {
 		console.error(error);
 		toast.add({
@@ -302,27 +404,101 @@ const handleSlotReturnedToQueue = (event: Event) => {
 
 	activityData.value = {
 		...currentActivity.value,
+		pending_application_count: currentActivity.value.pending_application_count + 1,
 		slots: currentActivity.value.slots.map((slot) => slot.id === updatedSlot.id ? updatedSlot : slot),
 	};
 };
 
-const handleAssignApplicantToSlot = async (payload: { applicationId: number, slotId: number, fieldValues: Record<string, string | string[]> }) => {
-	if (!currentActivity.value || isSlotAssignmentPending.value) {
+const returnSlotToQueue = async (slotId: number) => {
+	if (!currentActivity.value || currentActivity.value.status === 'complete' || isSlotAssignmentPending.value || isSlotSwapPending.value) {
 		return;
 	}
 
 	isSlotAssignmentPending.value = true;
-	pendingSwapSlotIds.value = [payload.slotId];
+	pendingSwapSlotIds.value = [slotId];
 
 	try {
-		const response = await axios.post(route('groups.dashboard.activities.slot-assignments.store', {
+		const response = await axios.post(route('groups.dashboard.activities.slot-unassignments.store', {
 			group: props.group.slug,
 			activity: props.activity.id,
-			slot: payload.slotId,
-		}), {
-			application_id: payload.applicationId,
-			field_values: payload.fieldValues,
+			slot: slotId,
+		}));
+
+		const updatedSlot = response.data?.slot ?? null;
+		const restoredApplication = response.data?.application ?? null;
+
+		if (updatedSlot) {
+			activityData.value = {
+				...currentActivity.value,
+				pending_application_count: currentActivity.value.pending_application_count + 1,
+				slots: currentActivity.value.slots.map((slot) => slot.id === updatedSlot.id ? updatedSlot : slot),
+			};
+		}
+
+		if (restoredApplication) {
+			window.dispatchEvent(new CustomEvent('fullparty:activity-application-returned', {
+				detail: {
+					application: restoredApplication,
+				},
+			}));
+		}
+	} catch (error) {
+		console.error(error);
+		toast.add({
+			title: t('general.error'),
+			description: 'Unable to return this slot to the queue.',
+			color: 'error',
+			icon: 'i-lucide-octagon-alert',
 		});
+	} finally {
+		isSlotAssignmentPending.value = false;
+		pendingSwapSlotIds.value = [];
+	}
+};
+
+const moveSlotToBench = async (slotId: number) => {
+	if (!currentActivity.value || isSlotAssignmentPending.value || isSlotSwapPending.value) {
+		return;
+	}
+
+	const sourceSlot = currentActivity.value.slots.find((slot) => slot.id === slotId);
+	const targetBenchSlot = currentActivity.value.slots.find((slot) => slot.is_bench && slot.assigned_character_id === null);
+
+	if (!sourceSlot || sourceSlot.is_bench || !targetBenchSlot) {
+		return;
+	}
+
+	await handleSlotSwap({
+		sourceSlotId: sourceSlot.id,
+		targetSlotId: targetBenchSlot.id,
+	});
+};
+
+const checkInSlot = async (slotId: number) => {
+	if (!currentActivity.value || currentActivity.value.status === 'complete' || isSlotAssignmentPending.value || isSlotSwapPending.value) {
+		return;
+	}
+
+	const slot = currentActivity.value.slots.find((entry) => entry.id === slotId);
+
+	if (!slot || !slot.assigned_character_id || slot.is_bench) {
+		return;
+	}
+
+	isSlotAssignmentPending.value = true;
+	pendingSwapSlotIds.value = [slotId];
+
+	try {
+		const response = await axios.post(route(
+			slot.attendance_status === 'checked_in'
+				? 'groups.dashboard.activities.slot-checkins.undo'
+				: 'groups.dashboard.activities.slot-checkins.store',
+			{
+				group: props.group.slug,
+				activity: props.activity.id,
+				slot: slotId,
+			},
+		));
 
 		const updatedSlot = response.data?.slot ?? null;
 
@@ -332,19 +508,199 @@ const handleAssignApplicantToSlot = async (payload: { applicationId: number, slo
 				slots: currentActivity.value.slots.map((slot) => slot.id === updatedSlot.id ? updatedSlot : slot),
 			};
 		}
+	} catch (error) {
+		console.error(error);
+		toast.add({
+			title: t('general.error'),
+			description: slot.attendance_status === 'checked_in'
+				? 'Unable to undo check-in for this slot.'
+				: 'Unable to check in this slot.',
+			color: 'error',
+			icon: 'i-lucide-octagon-alert',
+		});
+	} finally {
+		isSlotAssignmentPending.value = false;
+		pendingSwapSlotIds.value = [];
+	}
+};
 
-		window.dispatchEvent(new CustomEvent('fullparty:activity-application-assigned', {
-			detail: {
-				applicationId: payload.applicationId,
-			},
+const checkInGroup = async (groupKey: string) => {
+	if (!currentActivity.value || currentActivity.value.status === 'complete' || isSlotAssignmentPending.value || isSlotSwapPending.value) {
+		return;
+	}
+
+	const targetSlotIds = currentActivity.value.slots
+		.filter((slot) => slot.group_key === groupKey && slot.assigned_character_id !== null && slot.attendance_status !== 'checked_in')
+		.map((slot) => slot.id);
+
+	if (targetSlotIds.length === 0) {
+		return;
+	}
+
+	isSlotAssignmentPending.value = true;
+	pendingSwapSlotIds.value = targetSlotIds;
+
+	try {
+		const response = await axios.post(route('groups.dashboard.activities.slot-group-checkins.store', {
+			group: props.group.slug,
+			activity: props.activity.id,
+		}), {
+			group_key: groupKey,
+		});
+
+		const updatedSlots = response.data?.slots ?? [];
+
+		if (updatedSlots.length > 0) {
+			const updatedSlotsById = new Map(updatedSlots.map((slot: ActivitySlot) => [slot.id, slot]));
+
+			activityData.value = {
+				...currentActivity.value,
+				slots: currentActivity.value.slots.map((slot) => updatedSlotsById.get(slot.id) ?? slot),
+			};
+		}
+	} catch (error) {
+		console.error(error);
+		toast.add({
+			title: t('general.error'),
+			description: 'Unable to check in this group.',
+			color: 'error',
+			icon: 'i-lucide-octagon-alert',
+		});
+	} finally {
+		isSlotAssignmentPending.value = false;
+		pendingSwapSlotIds.value = [];
+	}
+};
+
+const markSlotMissing = async (slotId: number) => {
+	if (!currentActivity.value || currentActivity.value.status === 'complete' || isSlotAssignmentPending.value || isSlotSwapPending.value) {
+		return;
+	}
+
+	isSlotAssignmentPending.value = true;
+	pendingSwapSlotIds.value = [slotId];
+
+	try {
+		const response = await axios.post(route('groups.dashboard.activities.slot-missing.store', {
+			group: props.group.slug,
+			activity: props.activity.id,
+			slot: slotId,
 		}));
+
+		const updatedSlot = response.data?.slot ?? null;
+		const missingAssignment = response.data?.missing_assignment ?? null;
+
+		if (updatedSlot) {
+			activityData.value = {
+				...currentActivity.value,
+				slots: currentActivity.value.slots.map((slot) => slot.id === updatedSlot.id ? updatedSlot : slot),
+				missing_assignments: missingAssignment
+					? [missingAssignment, ...currentActivity.value.missing_assignments.filter((entry) => entry.id !== missingAssignment.id)]
+					: currentActivity.value.missing_assignments,
+			};
+		}
+	} catch (error) {
+		console.error(error);
+		toast.add({
+			title: t('general.error'),
+			description: 'Unable to mark this slot as missing.',
+			color: 'error',
+			icon: 'i-lucide-octagon-alert',
+		});
+	} finally {
+		isSlotAssignmentPending.value = false;
+		pendingSwapSlotIds.value = [];
+	}
+};
+
+const undoMissingAssignment = async (assignmentId: number) => {
+	if (!currentActivity.value || currentActivity.value.status === 'complete' || pendingMissingUndoIds.value.includes(assignmentId)) {
+		return;
+	}
+
+	pendingMissingUndoIds.value = [...pendingMissingUndoIds.value, assignmentId];
+
+	try {
+		const response = await axios.post(route('groups.dashboard.activities.slot-missing.undo', {
+			group: props.group.slug,
+			activity: props.activity.id,
+			assignment: assignmentId,
+		}));
+
+		const updatedSlots = response.data?.slots ?? [];
+		const updatedSlotsById = new Map(updatedSlots.map((slot: ActivitySlot) => [slot.id, slot]));
+
+		activityData.value = {
+			...currentActivity.value,
+			slots: updatedSlots.length > 0
+				? currentActivity.value.slots.map((slot) => updatedSlotsById.get(slot.id) ?? slot)
+				: currentActivity.value.slots,
+			missing_assignments: currentActivity.value.missing_assignments.filter((entry) => entry.id !== assignmentId),
+		};
+	} catch (error: any) {
+		console.error(error);
+
+		const warningMessage = error?.response?.data?.errors?.assignment?.[0];
+
+		toast.add({
+			title: warningMessage ? 'Warning' : t('general.error'),
+			description: warningMessage ?? 'Unable to undo this missing slot.',
+			color: warningMessage ? 'warning' : 'error',
+			icon: warningMessage ? 'i-lucide-triangle-alert' : 'i-lucide-octagon-alert',
+		});
+	} finally {
+		pendingMissingUndoIds.value = pendingMissingUndoIds.value.filter((id) => id !== assignmentId);
+	}
+};
+
+const handleAssignApplicantToSlot = async (payload: { applicationId: number, slotId: number, fieldValues: Record<string, string | string[]>, sourceSlotId?: number | null }) => {
+	if (!currentActivity.value || isSlotAssignmentPending.value) {
+		return;
+	}
+
+	isSlotAssignmentPending.value = true;
+	pendingSwapSlotIds.value = [payload.slotId, ...(payload.sourceSlotId ? [payload.sourceSlotId] : [])];
+
+	try {
+		const response = await axios.post(route('groups.dashboard.activities.slot-assignments.store', {
+			group: props.group.slug,
+			activity: props.activity.id,
+			slot: payload.slotId,
+		}), {
+			application_id: payload.applicationId,
+			field_values: payload.fieldValues,
+			source_slot_id: payload.sourceSlotId ?? assignmentModalSourceSlotId.value,
+		});
+
+		const updatedSlots = response.data?.slots ?? [];
+
+		if (updatedSlots.length > 0) {
+			const updatedSlotsById = new Map(updatedSlots.map((slot: ActivitySlot) => [slot.id, slot]));
+			const isFromQueue = !(payload.sourceSlotId ?? assignmentModalSourceSlotId.value);
+
+			activityData.value = {
+				...currentActivity.value,
+				pending_application_count: isFromQueue
+					? Math.max(0, currentActivity.value.pending_application_count - 1)
+					: currentActivity.value.pending_application_count,
+				slots: currentActivity.value.slots.map((slot) => updatedSlotsById.get(slot.id) ?? slot),
+			};
+		}
+
+		if (!(payload.sourceSlotId ?? assignmentModalSourceSlotId.value)) {
+			window.dispatchEvent(new CustomEvent('fullparty:activity-application-assigned', {
+				detail: {
+					applicationId: payload.applicationId,
+				},
+			}));
+		}
 
 		closeAssignmentModal();
 	} catch (error) {
 		console.error(error);
 		toast.add({
 			title: t('general.error'),
-			description: 'Unable to assign this application to the roster slot.',
+			description: 'Unable to assign this application to the selected slot.',
 			color: 'error',
 			icon: 'i-lucide-octagon-alert',
 		});
@@ -398,6 +754,7 @@ onBeforeUnmount(() => {
 				@view-overview="goToOverviewPage"
 				@go-to-application="goToApplicationPage"
 				@copy-application-link="copyApplicationLink"
+				@export-roster="exportRoster"
 				@update-roster-view="rosterView = $event"
 				@toggle-applicant-queue="showApplicantQueue = !showApplicantQueue"
 			/>
@@ -470,10 +827,90 @@ onBeforeUnmount(() => {
 					:slots="currentActivity.slots"
 					:is-swap-pending="isSlotSwapPending || isSlotAssignmentPending"
 					:pending-swap-slot-ids="pendingSwapSlotIds"
+					:can-return-to-queue="currentActivity.status !== 'complete'"
+					:can-mark-missing="currentActivity.status !== 'complete'"
+					:can-check-in="currentActivity.status !== 'complete'"
 					@swap-slots="handleSlotSwap"
 					@assign-application-to-slot="openAssignmentModal"
 					@click-slot="openSlotEditModal"
+					@return-slot-to-queue="returnSlotToQueue"
+					@move-slot-to-bench="moveSlotToBench"
+					@mark-slot-missing="markSlotMissing"
+					@check-in-slot="checkInSlot"
+					@check-in-group="checkInGroup"
 				/>
+
+				<section
+					v-if="missingAssignments.length > 0"
+					class="mt-6 border border-default bg-muted shadow-sm dark:bg-elevated/50"
+				>
+					<div class="border-b border-default px-5 py-4">
+						<div class="flex items-center gap-3">
+							<div class="flex h-9 w-9 items-center justify-center rounded-sm bg-error text-inverted">
+								<UIcon name="i-lucide-user-x" class="size-4" />
+							</div>
+							<div class="flex items-center gap-3">
+								<h3 class="font-semibold text-lg text-toned">
+									Missing
+								</h3>
+								<UBadge color="error" variant="soft" :label="String(missingAssignments.length)" />
+							</div>
+						</div>
+					</div>
+
+					<div class="flex flex-col gap-3 px-5 py-5">
+						<div
+							v-for="entry in missingAssignments"
+							:key="entry.id"
+							class="flex flex-col gap-2 border border-default bg-default/60 p-4 md:flex-row md:items-center md:justify-between"
+						>
+							<div class="flex items-center gap-3">
+								<UAvatar
+									v-if="entry.character?.avatar_url"
+									:src="entry.character.avatar_url"
+									size="lg"
+									alt=""
+								/>
+								<div class="flex flex-col gap-1">
+									<p class="font-medium text-toned">
+										{{ entry.character?.name ?? 'Unknown character' }}
+									</p>
+									<p class="text-sm text-muted">
+										{{ entry.character?.world || 'Unknown world' }}
+									</p>
+								</div>
+							</div>
+
+							<div class="flex flex-col gap-1 text-sm text-muted md:items-end">
+								<p>
+									{{ localizedValue(entry.group_label, locale, fallbackLocale) || localizedValue(entry.slot_label, locale, fallbackLocale) || 'Roster slot' }}
+								</p>
+								<p v-if="entry.marked_missing_at">
+									{{ new Intl.DateTimeFormat(locale, {
+										year: 'numeric',
+										month: '2-digit',
+										day: '2-digit',
+										hour: '2-digit',
+										minute: '2-digit',
+									}).format(new Date(entry.marked_missing_at)) }}
+								</p>
+							</div>
+
+							<div class="md:ml-4 md:self-center">
+								<UButton
+									label="Undo missing"
+									icon="i-lucide-rotate-ccw"
+									variant="soft"
+									color="neutral"
+									size="sm"
+									:loading="pendingMissingUndoIds.includes(entry.id)"
+									:disabled="currentActivity?.status === 'complete'"
+									@click="undoMissingAssignment(entry.id)"
+								/>
+							</div>
+						</div>
+					</div>
+				</section>
 
 				<section v-else-if="isLoading" class="flex flex-col gap-4 transition-all duration-300 ease-in-out">
 					<h2 class="font-semibold text-lg text-toned">

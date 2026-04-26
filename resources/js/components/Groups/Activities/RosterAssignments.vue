@@ -12,17 +12,28 @@ const props = defineProps<{
 	slots: ActivitySlot[]
 	isSwapPending?: boolean
 	pendingSwapSlotIds?: number[]
+	canReturnToQueue?: boolean
+	canMarkMissing?: boolean
+	canCheckIn?: boolean
 }>();
 
 const emit = defineEmits<{
 	swapSlots: [payload: { sourceSlotId: number, targetSlotId: number }]
 	assignApplicationToSlot: [payload: { slotId: number, application: QueueApplication }]
 	clickSlot: [slotId: number]
+	returnSlotToQueue: [slotId: number]
+	moveSlotToBench: [slotId: number]
+	markSlotMissing: [slotId: number]
+	checkInSlot: [slotId: number]
+	checkInGroup: [groupKey: string]
 }>();
 
 const { t } = useI18n();
 const draggedSlotId = ref<number | null>(null);
 const dropTargetSlotId = ref<number | null>(null);
+const firstAvailableBenchSlotId = computed(() => (
+	props.slots.find((slot) => slot.is_bench && slot.assigned_character_id === null)?.id ?? null
+));
 
 const currentViewComponent = computed(() => {
 	if (props.view === 'role') {
@@ -89,6 +100,10 @@ const handleDropSlot = (targetSlotId: number) => {
 			:drop-target-slot-id="dropTargetSlotId"
 			:is-swap-pending="isSwapPending"
 			:pending-swap-slot-ids="pendingSwapSlotIds"
+			:can-return-to-queue="canReturnToQueue"
+			:can-move-to-bench="firstAvailableBenchSlotId !== null"
+			:can-mark-missing="canMarkMissing"
+			:can-check-in="canCheckIn"
 			@drag-start="handleDragStart"
 			@drag-end="handleDragEnd"
 			@drag-enter="handleDragEnter"
@@ -96,6 +111,11 @@ const handleDropSlot = (targetSlotId: number) => {
 			@drop-slot="handleDropSlot"
 			@drop-application="emit('assignApplicationToSlot', $event)"
 			@click-slot="emit('clickSlot', $event)"
+			@return-slot-to-queue="emit('returnSlotToQueue', $event)"
+			@move-slot-to-bench="emit('moveSlotToBench', $event)"
+			@mark-slot-missing="emit('markSlotMissing', $event)"
+			@check-in-slot="emit('checkInSlot', $event)"
+			@check-in-group="emit('checkInGroup', $event)"
 		/>
 
 		<div

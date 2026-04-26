@@ -11,6 +11,10 @@ const props = defineProps<{
 	dropTargetSlotId?: number | null
 	isSwapPending?: boolean
 	pendingSwapSlotIds?: number[]
+	canReturnToQueue?: boolean
+	canMoveToBench?: boolean
+	canMarkMissing?: boolean
+	canCheckIn?: boolean
 }>();
 
 const emit = defineEmits<{
@@ -21,6 +25,10 @@ const emit = defineEmits<{
 	dropSlot: [slotId: number]
 	dropApplication: [payload: { slotId: number, application: QueueApplication }]
 	clickSlot: [slotId: number]
+	returnSlotToQueue: [slotId: number]
+	moveSlotToBench: [slotId: number]
+	markSlotMissing: [slotId: number]
+	checkInSlot: [slotId: number]
 }>();
 
 const { t } = useI18n();
@@ -72,12 +80,18 @@ const roleGroups = computed(() => {
 		healer: [] as ActivitySlot[],
 		dps: [] as ActivitySlot[],
 	};
+	const benchSlots: ActivitySlot[] = [];
 
 	for (const slot of [...props.slots].sort((left, right) => left.sort_order - right.sort_order)) {
+		if (slot.is_bench) {
+			benchSlots.push(slot);
+			continue;
+		}
+
 		groups[inferRoleKey(slot)].push(slot);
 	}
 
-	return (Object.keys(groups) as Array<keyof typeof groups>)
+	const rosterGroups = (Object.keys(groups) as Array<keyof typeof groups>)
 		.map((key) => ({
 			key,
 			label: t(roleMeta[key].labelKey),
@@ -85,6 +99,18 @@ const roleGroups = computed(() => {
 			slots: groups[key],
 		}))
 		.filter((group) => group.slots.length > 0);
+
+	return benchSlots.length > 0
+		? [
+			...rosterGroups,
+			{
+				key: 'bench',
+				label: 'Bench',
+				icon: 'i-lucide-armchair',
+				slots: benchSlots,
+			},
+		]
+		: rosterGroups;
 });
 </script>
 
@@ -126,6 +152,10 @@ const roleGroups = computed(() => {
 					:drop-target-slot-id="dropTargetSlotId"
 					:is-swap-pending="isSwapPending"
 					:is-pending-swap="pendingSwapSlotIds?.includes(slot.id)"
+					:can-return-to-queue="canReturnToQueue"
+					:can-move-to-bench="canMoveToBench"
+					:can-mark-missing="canMarkMissing"
+					:can-check-in="canCheckIn"
 					@drag-start="emit('dragStart', $event)"
 					@drag-end="emit('dragEnd')"
 					@drag-enter="emit('dragEnter', $event)"
@@ -133,6 +163,10 @@ const roleGroups = computed(() => {
 					@drop-slot="emit('dropSlot', $event)"
 					@drop-application="emit('dropApplication', $event)"
 					@click-slot="emit('clickSlot', $event)"
+					@return-slot-to-queue="emit('returnSlotToQueue', $event)"
+					@move-slot-to-bench="emit('moveSlotToBench', $event)"
+					@mark-slot-missing="emit('markSlotMissing', $event)"
+					@check-in-slot="emit('checkInSlot', $event)"
 				/>
 			</div>
 		</section>

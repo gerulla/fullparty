@@ -29,6 +29,7 @@ class ActivityTypeSeeder extends Seeder
                     'draft_slot_schema' => $activityTypeData['draft_slot_schema'],
                     'draft_application_schema' => $activityTypeData['draft_application_schema'],
                     'draft_progress_schema' => $activityTypeData['draft_progress_schema'],
+                    'draft_bench_size' => $activityTypeData['draft_bench_size'] ?? 0,
                     'draft_prog_points' => $activityTypeData['draft_prog_points'] ?? [],
                     'draft_fflogs_zone_id' => $activityTypeData['draft_fflogs_zone_id'] ?? null,
                     'is_active' => true,
@@ -49,6 +50,7 @@ class ActivityTypeSeeder extends Seeder
                     'slot_schema' => $activityTypeData['draft_slot_schema'],
                     'application_schema' => $activityTypeData['draft_application_schema'],
                     'progress_schema' => $activityTypeData['draft_progress_schema'],
+                    'bench_size' => $activityTypeData['draft_bench_size'] ?? 0,
                     'prog_points' => $activityTypeData['draft_prog_points'] ?? [],
                     'fflogs_zone_id' => $activityTypeData['draft_fflogs_zone_id'] ?? null,
                     'published_by_user_id' => $publisherId,
@@ -82,6 +84,7 @@ class ActivityTypeSeeder extends Seeder
                     'fr' => 'Activite Forked Tower a grande echelle avec 6 groupes, affectation de classe et de job fantome par slot, et preferences de candidature multilingues.',
                     'ja' => '6PT構成、各枠にクラスとファントムジョブを設定でき、多言語の申請項目を持つ大規模なForked Tower向けアクティビティです。',
                 ]),
+                'draft_bench_size' => 8,
                 'draft_fflogs_zone_id' => 69,
                 'draft_layout_schema' => [
                     'groups' => [
@@ -196,6 +199,7 @@ class ActivityTypeSeeder extends Seeder
                     'fr' => 'Activite Chaotique a 24 joueurs avec affectation par groupe, classes et positions de raid.',
                     'ja' => '24人用のChaotic向けアクティビティ。PT単位の編成、ジョブ、レイドポジション設定に対応します。',
                 ]),
+                'draft_bench_size' => 8,
                 'draft_fflogs_zone_id' => 66,
                 'draft_layout_schema' => [
                     'groups' => [
@@ -260,6 +264,7 @@ class ActivityTypeSeeder extends Seeder
                     'fr' => 'Activite standard de raid sadique a 8 joueurs avec planification des positions et liens d\'experience.',
                     'ja' => '8人向け零式レイド用アクティビティ。ロール位置や経験リンクの提出に対応します。',
                 ]),
+                'draft_bench_size' => 8,
                 'draft_fflogs_zone_id' => null,
                 'draft_layout_schema' => [
                     'groups' => [

@@ -115,6 +115,11 @@ class Activity extends Model
         return $this->hasMany(ActivityProgressMilestone::class)->orderBy('sort_order');
     }
 
+    public function slotAssignments(): HasMany
+    {
+        return $this->hasMany(ActivitySlotAssignment::class)->latest('assigned_at');
+    }
+
     public static function generateSecretKey(): string
     {
         do {

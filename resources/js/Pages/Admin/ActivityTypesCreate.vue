@@ -40,6 +40,7 @@ const form = useForm({
 	draft_progress_schema: {
 		milestones: [],
 	},
+	draft_bench_size: 0,
 	draft_prog_points: [],
 	draft_fflogs_zone_id: null,
 	is_active: true,

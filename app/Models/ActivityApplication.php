@@ -13,11 +13,13 @@ class ActivityApplication extends Model
 
     public const STATUS_PENDING = 'pending';
     public const STATUS_APPROVED = 'approved';
+    public const STATUS_ON_BENCH = 'on_bench';
     public const STATUS_DECLINED = 'declined';
 
     public const STATUSES = [
         self::STATUS_PENDING,
         self::STATUS_APPROVED,
+        self::STATUS_ON_BENCH,
         self::STATUS_DECLINED,
     ];
 

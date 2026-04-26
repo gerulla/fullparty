@@ -28,6 +28,7 @@ const emit = defineEmits<{
 	viewOverview: []
 	goToApplication: []
 	copyApplicationLink: []
+	exportRoster: []
 	updateRosterView: [value: 'party' | 'role' | 'list']
 	toggleApplicantQueue: []
 }>();
@@ -154,13 +155,18 @@ const rosterViewOptions = computed(() => ([
 				</div>
 
 				<div class="flex flex-wrap items-center gap-2 xl:justify-end">
-					<UButton
-						color="neutral"
-						variant="outline"
-						class="bg-background shadow-sm"
-						icon="i-lucide-user-round-check"
-						:label="t('groups.activities.management.overview.check_in')"
-					/>
+					<UTooltip text="Planned for the in-game plugin">
+						<span class="inline-flex">
+							<UButton
+								color="neutral"
+								variant="outline"
+								class="bg-background shadow-sm"
+								icon="i-lucide-user-round-check"
+								:label="t('groups.activities.management.overview.check_in')"
+								disabled
+							/>
+						</span>
+					</UTooltip>
 					<div
 						v-if="needsApplication"
 						class="inline-flex items-stretch"
@@ -186,7 +192,8 @@ const rosterViewOptions = computed(() => ([
 						variant="outline"
 						class="bg-background shadow-sm"
 						icon="i-lucide-download"
-						:label="t('groups.activities.management.overview.export')"
+						:label="t('groups.activities.management.overview.export_csv')"
+						@click="emit('exportRoster')"
 					/>
 				</div>
 			</div>

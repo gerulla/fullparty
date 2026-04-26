@@ -7,6 +7,7 @@ use App\Models\ActivityApplication;
 use App\Models\ActivitySlot;
 use App\Models\Group;
 use App\Services\Groups\ActivitySlotSerializer;
+use App\Services\Groups\ActivitySlotAttendanceService;
 use App\Services\Groups\ApplicantQueue\ApplicantQueuePayloadBuilder;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\DB;
@@ -19,6 +20,7 @@ class GroupActivitySlotUnassignmentController extends Controller
         Activity $activity,
         ActivitySlot $slot,
         ActivitySlotSerializer $slotSerializer,
+        ActivitySlotAttendanceService $attendanceService,
         ApplicantQueuePayloadBuilder $queuePayloadBuilder,
     ): JsonResponse {
         $this->authorize('manageDashboard', [$activity, $group]);
@@ -43,17 +45,20 @@ class GroupActivitySlotUnassignmentController extends Controller
         $application = $activity->applications()
             ->with(['answers', 'selectedCharacter.occultProgress', 'selectedCharacter.phantomJobs', 'user'])
             ->where('selected_character_id', $slot->assigned_character_id)
-            ->where('status', ActivityApplication::STATUS_APPROVED)
+            ->whereIn('status', [
+                ActivityApplication::STATUS_APPROVED,
+                ActivityApplication::STATUS_ON_BENCH,
+            ])
             ->latest('reviewed_at')
             ->first();
 
         if (!$application) {
             throw ValidationException::withMessages([
-                'slot' => 'No approved application could be found for this roster assignment.',
+                'slot' => 'No assigned application could be found for this roster assignment.',
             ]);
         }
 
-        DB::transaction(function () use ($slot, $application) {
+        DB::transaction(function () use ($slot, $application, $activity, $attendanceService) {
             $slot->update([
                 'assigned_character_id' => null,
                 'assigned_by_user_id' => null,
@@ -70,9 +75,16 @@ class GroupActivitySlotUnassignmentController extends Controller
                 'reviewed_by_user_id' => null,
                 'reviewed_at' => null,
             ]);
+
+            if ($application->selected_character_id) {
+                $attendanceService->endActiveAssignment(
+                    $activity,
+                    (int) $application->selected_character_id,
+                );
+            }
         });
 
-        $slot->load(['assignedCharacter', 'fieldValues']);
+        $slot->load(['assignedCharacter', 'fieldValues', 'assignments']);
 
         return response()->json([
             'slot' => $slotSerializer->serialize($slot),

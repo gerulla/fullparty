@@ -9,16 +9,22 @@ use Illuminate\Validation\ValidationException;
 
 class ActivitySlotAssignmentService
 {
+    public function __construct(
+        private readonly ActivitySlotBench $slotBench,
+        private readonly ActivitySlotAttendanceService $attendanceService,
+    ) {}
+
     /**
      * @param  array<string, mixed>  $fieldSelections
      * @param  array<string, array<string, mixed>>  $fieldDefinitions
      */
     public function assignFromApplication(
-        ActivitySlot $slot,
+        ActivitySlot $targetSlot,
         ActivityApplication $application,
         array $fieldSelections,
         array $fieldDefinitions,
         int $assignedByUserId,
+        ?ActivitySlot $sourceSlot = null,
     ): void {
         if (!$application->selected_character_id) {
             throw ValidationException::withMessages([
@@ -26,63 +32,188 @@ class ActivitySlotAssignmentService
             ]);
         }
 
-        $applicationAnswers = $application->answers->keyBy('question_key');
+        if ($sourceSlot && (int) $sourceSlot->assigned_character_id !== (int) $application->selected_character_id) {
+            throw ValidationException::withMessages([
+                'source_slot_id' => 'The source slot does not match the selected application character.',
+            ]);
+        }
 
-        DB::transaction(function () use ($slot, $application, $fieldSelections, $fieldDefinitions, $assignedByUserId, $applicationAnswers) {
-            $slot->update([
+        $applicationAnswers = $application->answers->keyBy('question_key');
+        $isTargetBench = $this->slotBench->isBench($targetSlot);
+        $isSourceBench = $sourceSlot ? $this->slotBench->isBench($sourceSlot) : false;
+
+        DB::transaction(function () use (
+            $targetSlot,
+            $sourceSlot,
+            $application,
+            $fieldSelections,
+            $fieldDefinitions,
+            $assignedByUserId,
+            $applicationAnswers,
+            $isTargetBench,
+            $isSourceBench,
+        ) {
+            $activity = $targetSlot->activity;
+            $targetPreviousCharacterId = $targetSlot->assigned_character_id;
+            $targetHadDifferentOccupant = $targetPreviousCharacterId !== null
+                && (int) $targetPreviousCharacterId !== (int) $application->selected_character_id;
+            $displacedApplication = $this->findApplicationForAssignedCharacter($targetSlot);
+
+            if ($sourceSlot && !$isSourceBench && $isTargetBench && $targetSlot->assigned_character_id) {
+                throw ValidationException::withMessages([
+                    'slot' => 'Promoting a bench player into a filled roster slot must use the reassignment flow.',
+                ]);
+            }
+
+            $targetSlot->update([
                 'assigned_character_id' => $application->selected_character_id,
                 'assigned_by_user_id' => $assignedByUserId,
             ]);
 
+            if ($isTargetBench) {
+                $this->clearSlotFieldValues($targetSlot);
+            } else {
+                $this->applySlotFieldSelections($targetSlot, $fieldSelections, $fieldDefinitions, $applicationAnswers->all());
+            }
+
             $application->update([
-                'status' => ActivityApplication::STATUS_APPROVED,
+                'status' => $isTargetBench ? ActivityApplication::STATUS_ON_BENCH : ActivityApplication::STATUS_APPROVED,
                 'reviewed_by_user_id' => $assignedByUserId,
                 'reviewed_at' => now(),
             ]);
 
-            foreach ($slot->fieldValues as $fieldValue) {
-                $definition = $fieldDefinitions[$fieldValue->field_key] ?? null;
+            $this->attendanceService->moveOrCreateActiveAssignment(
+                $targetSlot,
+                (int) $application->selected_character_id,
+                $application->id,
+                $assignedByUserId,
+                $this->attendanceService->buildFieldValueSnapshot($targetSlot),
+            );
 
-                if (!$definition) {
-                    $fieldValue->update(['value' => null]);
-                    continue;
-                }
-
-                $selectedValue = $fieldSelections[$fieldValue->field_key] ?? null;
-
-                if ($selectedValue === null || $selectedValue === '' || $selectedValue === []) {
-                    throw ValidationException::withMessages([
-                        "field_values.{$fieldValue->field_key}" => 'Please choose a value for every slot field.',
+            if ($sourceSlot && (int) $sourceSlot->id !== (int) $targetSlot->id) {
+                if ($isSourceBench && !$isTargetBench && $displacedApplication && $targetHadDifferentOccupant) {
+                    $sourceSlot->update([
+                        'assigned_character_id' => $displacedApplication->selected_character_id,
+                        'assigned_by_user_id' => $assignedByUserId,
                     ]);
-                }
+                    $this->clearSlotFieldValues($sourceSlot);
 
-                $applicationKey = (string) ($definition['application_key'] ?? '');
-                $applicationAnswer = $applicationKey !== '' ? $applicationAnswers->get($applicationKey) : null;
-                $allowedOptionKeys = $this->normalizeAnswerValues($applicationAnswer?->value);
-                $normalizedSelection = $this->normalizeSelection($selectedValue);
-
-                if (count($normalizedSelection) === 0) {
-                    throw ValidationException::withMessages([
-                        "field_values.{$fieldValue->field_key}" => 'Please choose a value for every slot field.',
+                    $displacedApplication->update([
+                        'status' => ActivityApplication::STATUS_ON_BENCH,
+                        'reviewed_by_user_id' => $assignedByUserId,
+                        'reviewed_at' => now(),
                     ]);
-                }
 
-                foreach ($normalizedSelection as $selection) {
-                    if (!in_array($selection, $allowedOptionKeys, true)) {
-                        throw ValidationException::withMessages([
-                            "field_values.{$fieldValue->field_key}" => 'Selected slot values must come from the application.',
-                        ]);
-                    }
+                    $this->attendanceService->moveOrCreateActiveAssignment(
+                        $sourceSlot,
+                        (int) $displacedApplication->selected_character_id,
+                        $displacedApplication->id,
+                        $assignedByUserId,
+                        $this->attendanceService->buildFieldValueSnapshot($sourceSlot),
+                    );
+                } else {
+                    $sourceSlot->update([
+                        'assigned_character_id' => null,
+                        'assigned_by_user_id' => null,
+                    ]);
+                    $this->clearSlotFieldValues($sourceSlot);
                 }
-
-                $fieldValue->update([
-                    'value' => $this->resolveStoredValue(
-                        $definition,
-                        count($normalizedSelection) > 1 ? $normalizedSelection : $normalizedSelection[0],
-                    ),
+            } elseif ($displacedApplication && (int) $displacedApplication->id !== (int) $application->id) {
+                $displacedApplication->update([
+                    'status' => ActivityApplication::STATUS_PENDING,
+                    'reviewed_by_user_id' => null,
+                    'reviewed_at' => null,
                 ]);
+
+                if ($activity && $displacedApplication->selected_character_id) {
+                    $this->attendanceService->endActiveAssignment(
+                        $activity,
+                        (int) $displacedApplication->selected_character_id,
+                    );
+                }
             }
         });
+    }
+
+    private function findApplicationForAssignedCharacter(ActivitySlot $slot): ?ActivityApplication
+    {
+        if (!$slot->assigned_character_id) {
+            return null;
+        }
+
+        return $slot->activity
+            ?->applications()
+            ->where('selected_character_id', $slot->assigned_character_id)
+            ->whereIn('status', [
+                ActivityApplication::STATUS_APPROVED,
+                ActivityApplication::STATUS_ON_BENCH,
+            ])
+            ->latest('reviewed_at')
+            ->first();
+    }
+
+    private function clearSlotFieldValues(ActivitySlot $slot): void
+    {
+        foreach ($slot->fieldValues as $fieldValue) {
+            $fieldValue->update([
+                'value' => null,
+            ]);
+        }
+    }
+
+    /**
+     * @param  array<string, mixed>  $fieldSelections
+     * @param  array<string, array<string, mixed>>  $fieldDefinitions
+     * @param  array<string, mixed>  $applicationAnswers
+     */
+    private function applySlotFieldSelections(
+        ActivitySlot $slot,
+        array $fieldSelections,
+        array $fieldDefinitions,
+        array $applicationAnswers,
+    ): void {
+        foreach ($slot->fieldValues as $fieldValue) {
+            $definition = $fieldDefinitions[$fieldValue->field_key] ?? null;
+
+            if (!$definition) {
+                $fieldValue->update(['value' => null]);
+                continue;
+            }
+
+            $selectedValue = $fieldSelections[$fieldValue->field_key] ?? null;
+
+            if ($selectedValue === null || $selectedValue === '' || $selectedValue === []) {
+                throw ValidationException::withMessages([
+                    "field_values.{$fieldValue->field_key}" => 'Please choose a value for every slot field.',
+                ]);
+            }
+
+            $applicationKey = (string) ($definition['application_key'] ?? '');
+            $applicationAnswer = $applicationKey !== '' ? ($applicationAnswers[$applicationKey] ?? null) : null;
+            $allowedOptionKeys = $this->normalizeAnswerValues($applicationAnswer?->value);
+            $normalizedSelection = $this->normalizeSelection($selectedValue);
+
+            if (count($normalizedSelection) === 0) {
+                throw ValidationException::withMessages([
+                    "field_values.{$fieldValue->field_key}" => 'Please choose a value for every slot field.',
+                ]);
+            }
+
+            foreach ($normalizedSelection as $selection) {
+                if (!in_array($selection, $allowedOptionKeys, true)) {
+                    throw ValidationException::withMessages([
+                        "field_values.{$fieldValue->field_key}" => 'Selected slot values must come from the application.',
+                    ]);
+                }
+            }
+
+            $fieldValue->update([
+                'value' => $this->resolveStoredValue(
+                    $definition,
+                    count($normalizedSelection) > 1 ? $normalizedSelection : $normalizedSelection[0],
+                ),
+            ]);
+        }
     }
 
     /**

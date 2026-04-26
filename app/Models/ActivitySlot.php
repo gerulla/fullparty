@@ -47,4 +47,9 @@ class ActivitySlot extends Model
     {
         return $this->hasMany(ActivitySlotFieldValue::class);
     }
+
+    public function assignments(): HasMany
+    {
+        return $this->hasMany(ActivitySlotAssignment::class);
+    }
 }

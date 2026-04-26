@@ -31,22 +31,42 @@ class GroupActivitySlotAssignmentController extends Controller
 
         $validated = $request->validate([
             'application_id' => ['required', 'integer'],
-            'field_values' => ['required', 'array'],
+            'field_values' => ['sometimes', 'array'],
+            'source_slot_id' => ['sometimes', 'nullable', 'integer'],
         ]);
+
+        $sourceSlot = null;
+
+        if (!empty($validated['source_slot_id'])) {
+            $sourceSlot = $activity->slots()
+                ->with(['assignedCharacter', 'fieldValues', 'activity', 'assignments'])
+                ->find((int) $validated['source_slot_id']);
+
+            if (!$sourceSlot) {
+                abort(404);
+            }
+        }
 
         /** @var ActivityApplication|null $application */
         $application = $activity->applications()
             ->with(['answers', 'selectedCharacter'])
-            ->where(function ($query) use ($slot) {
-                $query->where('status', ActivityApplication::STATUS_PENDING)
-                    ->orWhere(function ($approvedQuery) use ($slot) {
-                        $approvedQuery->where('status', ActivityApplication::STATUS_APPROVED)
-                            ->where('selected_character_id', $slot->assigned_character_id);
-                    });
-            })
             ->find((int) $validated['application_id']);
 
         if (!$application) {
+            abort(404);
+        }
+
+        $isAllowedStatus = $application->status === ActivityApplication::STATUS_PENDING
+            || (
+                $application->status === ActivityApplication::STATUS_APPROVED
+                && (int) $application->selected_character_id === (int) $slot->assigned_character_id
+            )
+            || (
+                $application->status === ActivityApplication::STATUS_ON_BENCH
+                && $sourceSlot !== null
+            );
+
+        if (!$isAllowedStatus) {
             abort(404);
         }
 
@@ -55,20 +75,28 @@ class GroupActivitySlotAssignmentController extends Controller
             ->keyBy(fn (array $definition) => (string) $definition['key'])
             ->all();
 
-        $slot->load(['assignedCharacter', 'fieldValues']);
+        $slot->load(['assignedCharacter', 'fieldValues', 'activity', 'assignments']);
 
         $slotAssignmentService->assignFromApplication(
             $slot,
             $application,
-            $validated['field_values'],
+            $validated['field_values'] ?? [],
             $fieldDefinitions,
             (int) $request->user()->id,
+            $sourceSlot,
         );
 
-        $slot->load(['assignedCharacter', 'fieldValues']);
+        $slot->load(['assignedCharacter', 'fieldValues', 'assignments']);
+        $updatedSlots = [$slotSerializer->serialize($slot)];
+
+        if ($sourceSlot) {
+            $sourceSlot->load(['assignedCharacter', 'fieldValues', 'assignments']);
+            $updatedSlots[] = $slotSerializer->serialize($sourceSlot);
+        }
 
         return response()->json([
             'slot' => $slotSerializer->serialize($slot),
+            'slots' => $updatedSlots,
         ]);
     }
 }

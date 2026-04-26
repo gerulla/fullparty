@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import type { ContextMenuItem } from "@nuxt/ui";
 import { computed } from "vue";
 import { useI18n } from "vue-i18n";
 import { usePage } from "@inertiajs/vue3";
@@ -13,6 +14,10 @@ const props = defineProps<{
 	dropTargetSlotId?: number | null
 	isSwapPending?: boolean
 	pendingSwapSlotIds?: number[]
+	canReturnToQueue?: boolean
+	canMoveToBench?: boolean
+	canMarkMissing?: boolean
+	canCheckIn?: boolean
 }>();
 
 const emit = defineEmits<{
@@ -23,6 +28,10 @@ const emit = defineEmits<{
 	dropSlot: [slotId: number]
 	dropApplication: [payload: { slotId: number, application: QueueApplication }]
 	clickSlot: [slotId: number]
+	returnSlotToQueue: [slotId: number]
+	moveSlotToBench: [slotId: number]
+	markSlotMissing: [slotId: number]
+	checkInSlot: [slotId: number]
 }>();
 
 const { t, locale } = useI18n();
@@ -112,9 +121,51 @@ const rows = computed(() => [...props.slots]
 		groupLabel: localizedText(slot.group_label, slot.group_key),
 		slotLabel: localizedText(slot.slot_label, slot.slot_key),
 		statusLabel: slot.assigned_character_id
-			? t('groups.activities.management.roster.assigned')
+			? (slot.attendance_status === 'checked_in'
+				? t('groups.activities.management.roster.checked_in')
+				: t('groups.activities.management.roster.assigned'))
 			: t('groups.activities.management.roster.open'),
-		statusColor: slot.assigned_character_id ? 'success' : 'neutral',
+		statusColor: slot.assigned_character_id
+			? (slot.attendance_status === 'checked_in' ? 'info' : 'success')
+			: 'neutral',
+		contextMenuItems: [
+			[
+				{
+					label: slot.attendance_status === 'checked_in'
+						? t('groups.activities.management.roster.undo_check_in')
+						: t('groups.activities.management.roster.check_in_action'),
+					icon: 'i-lucide-user-check',
+					disabled: slot.is_bench || !props.canCheckIn || props.isSwapPending,
+					onSelect: () => emit('checkInSlot', slot.id),
+				},
+				{
+					label: 'Mark as missing / absent',
+					icon: 'i-lucide-user-x',
+					disabled: !props.canMarkMissing || props.isSwapPending,
+					onSelect: () => emit('markSlotMissing', slot.id),
+				},
+			],
+			[
+				{
+					label: 'Move to bench',
+					icon: 'i-lucide-arrow-down-to-line',
+					disabled: slot.is_bench || !props.canMoveToBench || props.isSwapPending,
+					onSelect: () => emit('moveSlotToBench', slot.id),
+				},
+				{
+					label: 'Change assignments',
+					icon: 'i-lucide-pencil',
+					disabled: slot.is_bench || props.isSwapPending,
+					onSelect: () => emit('clickSlot', slot.id),
+				},
+				{
+					label: 'Return to queue',
+					icon: 'i-lucide-undo-2',
+					disabled: !props.canReturnToQueue || props.isSwapPending,
+					onSelect: () => emit('returnSlotToQueue', slot.id),
+				},
+			],
+		] as ContextMenuItem[][],
 		fields: slot.assigned_character_id
 			? slot.field_values.map((field) => localizedText(field.field_label, field.field_key))
 			: [],
@@ -122,73 +173,73 @@ const rows = computed(() => [...props.slots]
 </script>
 
 <template>
-	<section class="border border-default bg-muted shadow-sm dark:bg-elevated/50">
-		<div class="overflow-x-auto">
-			<table class="min-w-full divide-y divide-default">
-				<thead>
-					<tr class="text-left text-xs uppercase tracking-wide text-muted">
-						<th class="px-5 py-4 font-medium">{{ t('groups.activities.management.roster.list_headers.party') }}</th>
-						<th class="px-5 py-4 font-medium">{{ t('groups.activities.management.roster.list_headers.slot') }}</th>
-						<th class="px-5 py-4 font-medium">{{ t('groups.activities.management.roster.list_headers.details') }}</th>
-						<th class="px-5 py-4 font-medium">{{ t('groups.activities.management.roster.list_headers.status') }}</th>
-					</tr>
-				</thead>
-				<tbody class="divide-y divide-default">
-					<tr
-						v-for="row in rows"
-						:key="row.id"
-						class="transition-colors duration-200 hover:bg-background/70"
-						:class="[
-							row.slot.assigned_character_id ? 'cursor-grab' : '',
-							draggedSlotId === row.id ? 'bg-primary/10 opacity-70' : '',
-							dropTargetSlotId === row.id && draggedSlotId !== row.id ? 'bg-white/8 shadow-[inset_0_0_0_2px_rgba(255,255,255,0.95)]' : '',
-							pendingSwapSlotIds?.includes(row.id) ? 'bg-elevated/80 shadow-[inset_0_1px_0_rgba(255,255,255,0.08)]' : '',
-						]"
-						:draggable="Boolean(row.slot.assigned_character_id) && !isSwapPending"
-						@dragstart="handleDragStart($event, row.slot)"
-						@dragend="emit('dragEnd')"
-						@dragenter.prevent="emit('dragEnter', row.id)"
-						@dragleave.prevent="emit('dragLeave', row.id)"
-						@dragover="handleDragOver($event, row.id)"
-						@drop="handleDrop($event, row.id)"
-						@click="handleRowClick(row.slot)"
-					>
-						<td class="px-5 py-4 text-sm font-medium text-toned">
-							<USkeleton v-if="pendingSwapSlotIds?.includes(row.id)" class="h-5 w-24 bg-muted/70" />
-							<template v-else>{{ row.groupLabel }}</template>
-						</td>
-						<td class="px-5 py-4 text-sm text-toned">
-							<USkeleton v-if="pendingSwapSlotIds?.includes(row.id)" class="h-5 w-28 bg-muted/70" />
-							<template v-else>{{ row.slotLabel }}</template>
-						</td>
-						<td class="px-5 py-4">
-							<div v-if="pendingSwapSlotIds?.includes(row.id)" class="flex flex-wrap gap-2">
-								<USkeleton class="h-5 w-20 bg-muted/70" />
-								<USkeleton class="h-5 w-24 bg-muted/70" />
-								<USkeleton class="h-5 w-16 bg-muted/70" />
-							</div>
-							<div v-else class="flex flex-wrap gap-2">
-								<UBadge
-									v-for="field in row.fields"
-									:key="field"
-									color="neutral"
-									variant="outline"
-									:label="field"
-								/>
-							</div>
-						</td>
-						<td class="px-5 py-4">
-							<USkeleton v-if="pendingSwapSlotIds?.includes(row.id)" class="h-5 w-20 bg-muted/70" />
+	<section class="flex flex-col gap-2">
+		<div class="grid grid-cols-4 gap-4 border border-default bg-muted/50 px-5 py-4 text-left text-xs uppercase tracking-wide text-muted dark:bg-elevated/30">
+			<div>{{ t('groups.activities.management.roster.list_headers.party') }}</div>
+			<div>{{ t('groups.activities.management.roster.list_headers.slot') }}</div>
+			<div>{{ t('groups.activities.management.roster.list_headers.details') }}</div>
+			<div>{{ t('groups.activities.management.roster.list_headers.status') }}</div>
+		</div>
+
+		<div class="flex flex-col gap-2">
+			<UContextMenu
+				v-for="row in rows"
+				:key="row.id"
+				:items="row.contextMenuItems"
+				:disabled="!row.slot.assigned_character_id"
+			>
+				<div
+					class="grid grid-cols-4 items-center gap-4 border border-default bg-muted px-5 py-4 transition-colors duration-200 hover:bg-background/70 dark:bg-elevated/50"
+					:class="[
+						row.slot.assigned_character_id ? 'cursor-grab' : '',
+						draggedSlotId === row.id ? 'bg-primary/10 opacity-70' : '',
+						dropTargetSlotId === row.id && draggedSlotId !== row.id ? 'bg-white/8 shadow-[inset_0_0_0_2px_rgba(255,255,255,0.95)]' : '',
+						pendingSwapSlotIds?.includes(row.id) ? 'bg-elevated/80 shadow-[inset_0_1px_0_rgba(255,255,255,0.08)]' : '',
+					]"
+					:draggable="Boolean(row.slot.assigned_character_id) && !isSwapPending"
+					@dragstart="handleDragStart($event, row.slot)"
+					@dragend="emit('dragEnd')"
+					@dragenter.prevent="emit('dragEnter', row.id)"
+					@dragleave.prevent="emit('dragLeave', row.id)"
+					@dragover="handleDragOver($event, row.id)"
+					@drop="handleDrop($event, row.id)"
+					@click="handleRowClick(row.slot)"
+				>
+					<div class="text-sm font-medium text-toned">
+						<USkeleton v-if="pendingSwapSlotIds?.includes(row.id)" class="h-5 w-24 bg-muted/70" />
+						<template v-else>{{ row.groupLabel }}</template>
+					</div>
+					<div class="text-sm text-toned">
+						<USkeleton v-if="pendingSwapSlotIds?.includes(row.id)" class="h-5 w-28 bg-muted/70" />
+						<template v-else>{{ row.slotLabel }}</template>
+					</div>
+					<div>
+						<div v-if="pendingSwapSlotIds?.includes(row.id)" class="flex flex-wrap gap-2">
+							<USkeleton class="h-5 w-20 bg-muted/70" />
+							<USkeleton class="h-5 w-24 bg-muted/70" />
+							<USkeleton class="h-5 w-16 bg-muted/70" />
+						</div>
+						<div v-else class="flex flex-wrap gap-2">
 							<UBadge
-								v-else
-								:color="row.statusColor"
-								variant="subtle"
-								:label="row.statusLabel"
+								v-for="field in row.fields"
+								:key="field"
+								color="neutral"
+								variant="outline"
+								:label="field"
 							/>
-						</td>
-					</tr>
-				</tbody>
-			</table>
+						</div>
+					</div>
+					<div>
+						<USkeleton v-if="pendingSwapSlotIds?.includes(row.id)" class="h-5 w-20 bg-muted/70" />
+						<UBadge
+							v-else
+							:color="row.statusColor"
+							variant="subtle"
+							:label="row.statusLabel"
+						/>
+					</div>
+				</div>
+			</UContextMenu>
 		</div>
 	</section>
 </template>

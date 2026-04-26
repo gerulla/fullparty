@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import type { ContextMenuItem } from "@nuxt/ui";
 import { computed, ref } from "vue";
 import { useI18n } from "vue-i18n";
 import { usePage } from "@inertiajs/vue3";
@@ -13,6 +14,10 @@ const props = defineProps<{
 	dropTargetSlotId?: number | null
 	isSwapPending?: boolean
 	isPendingSwap?: boolean
+	canReturnToQueue?: boolean
+	canMoveToBench?: boolean
+	canMarkMissing?: boolean
+	canCheckIn?: boolean
 }>();
 
 const emit = defineEmits<{
@@ -23,6 +28,10 @@ const emit = defineEmits<{
 	dropSlot: [slotId: number]
 	dropApplication: [payload: { slotId: number, application: QueueApplication }]
 	clickSlot: [slotId: number]
+	returnSlotToQueue: [slotId: number]
+	moveSlotToBench: [slotId: number]
+	markSlotMissing: [slotId: number]
+	checkInSlot: [slotId: number]
 }>();
 
 const { t, locale } = useI18n();
@@ -54,8 +63,18 @@ const visibleFieldEntries = computed(() => (
 		: []
 ));
 const roleToneClass = computed(() => {
+	if (props.slot.is_bench) {
+		return assignedCharacter.value
+			? 'border-primary/70 bg-primary/10 hover:border-primary'
+			: 'border-dashed border-default bg-elevated hover:border-primary';
+	}
+
 	if (!assignedCharacter.value) {
 		return 'border-dashed border-default bg-elevated hover:border-primary';
+	}
+
+	if (props.slot.attendance_status === 'checked_in') {
+		return 'border-sky-400/70 bg-sky-400/10 hover:border-sky-300';
 	}
 
 	if (roleField.value === 'tank') {
@@ -77,8 +96,67 @@ const phantomDisplayValue = computed(() => phantomField.value
 	? (typeof phantomField.value.display_value === 'string' ? phantomField.value.display_value : localizedText(phantomField.value.display_value, ''))
 	: null);
 const canDrag = computed(() => Boolean(props.slot.assigned_character_id) && !props.isSwapPending);
+const canShowContextMenu = computed(() => Boolean(props.slot.assigned_character_id));
 const isDraggedSource = computed(() => props.draggedSlotId === props.slot.id);
 const isDropTarget = computed(() => props.dropTargetSlotId === props.slot.id && props.draggedSlotId !== props.slot.id);
+const statusBadge = computed(() => {
+	if (!props.slot.assigned_character_id) {
+		return {
+			color: 'neutral' as const,
+			label: t('groups.activities.management.roster.open'),
+		};
+	}
+
+	if (props.slot.attendance_status === 'checked_in') {
+		return {
+			color: 'info' as const,
+			label: t('groups.activities.management.roster.checked_in'),
+		};
+	}
+
+	return {
+		color: 'success' as const,
+		label: t('groups.activities.management.roster.assigned'),
+	};
+});
+const contextMenuItems = computed<ContextMenuItem[][]>(() => [
+	[
+		{
+			label: props.slot.attendance_status === 'checked_in'
+				? t('groups.activities.management.roster.undo_check_in')
+				: t('groups.activities.management.roster.check_in_action'),
+			icon: 'i-lucide-user-check',
+			disabled: props.slot.is_bench || !props.canCheckIn || props.isSwapPending,
+			onSelect: () => emit('checkInSlot', props.slot.id),
+		},
+		{
+			label: 'Mark as missing / absent',
+			icon: 'i-lucide-user-x',
+			disabled: !props.canMarkMissing || props.isSwapPending,
+			onSelect: () => emit('markSlotMissing', props.slot.id),
+		},
+	],
+	[
+		{
+			label: 'Move to bench',
+			icon: 'i-lucide-arrow-down-to-line',
+			disabled: props.slot.is_bench || !props.canMoveToBench || props.isSwapPending,
+			onSelect: () => emit('moveSlotToBench', props.slot.id),
+		},
+		{
+			label: 'Change assignments',
+			icon: 'i-lucide-pencil',
+			disabled: props.slot.is_bench || props.isSwapPending,
+			onSelect: () => emit('clickSlot', props.slot.id),
+		},
+		{
+			label: 'Return to queue',
+			icon: 'i-lucide-undo-2',
+			disabled: !props.canReturnToQueue || props.isSwapPending,
+			onSelect: () => emit('returnSlotToQueue', props.slot.id),
+		},
+	],
+]);
 
 const removeDragPreview = () => {
 	if (!dragPreviewElement) {
@@ -208,7 +286,130 @@ const handleClick = () => {
 </script>
 
 <template>
+	<UContextMenu
+		v-if="canShowContextMenu"
+		:items="contextMenuItems"
+	>
+		<div
+			ref="slotCardElement"
+			class="relative min-h-28 border px-4 py-4 transition duration-200 ease-out hover:shadow-lg"
+			:class="[
+				roleToneClass,
+				canDrag ? 'cursor-grab hover:scale-[1.02]' : 'cursor-pointer',
+				isDraggedSource ? 'scale-[0.98] opacity-35 saturate-75' : '',
+				isDropTarget ? 'border-white shadow-[0_0_0_2px_rgba(255,255,255,0.95),0_0_0_6px_rgba(255,255,255,0.22)]' : '',
+				props.isPendingSwap ? 'overflow-hidden' : '',
+			]"
+			:draggable="canDrag"
+			@dragstart="handleDragStart"
+			@dragend="handleDragEnd"
+			@dragenter.prevent="emit('dragEnter', slot.id)"
+			@dragleave.prevent="emit('dragLeave', slot.id)"
+			@dragover="handleDragOver"
+			@drop="handleDrop"
+			@click="handleClick"
+		>
+			<div
+				v-if="isPendingSwap"
+				class="absolute inset-0 z-10 flex flex-col gap-3 border border-white/10 bg-elevated/95 px-4 py-4 shadow-[inset_0_1px_0_rgba(255,255,255,0.08)] backdrop-blur-[1px]"
+			>
+				<div class="flex items-start justify-between gap-3">
+					<div class="flex flex-col gap-2">
+						<USkeleton class="h-4 w-20 bg-muted/70" />
+						<USkeleton class="h-5 w-28 bg-muted/70" />
+					</div>
+					<USkeleton class="h-5 w-16 bg-muted/70" />
+				</div>
+
+				<div class="flex items-start justify-between gap-3">
+					<div class="flex items-center gap-3">
+						<USkeleton class="h-10 w-10 rounded-full bg-muted/70" />
+						<div class="flex flex-col gap-2">
+							<USkeleton class="h-4 w-28 bg-muted/70" />
+							<USkeleton class="h-4 w-16 bg-muted/70" />
+						</div>
+					</div>
+
+					<div class="flex items-center gap-2">
+						<USkeleton class="h-10 w-10 rounded-sm bg-muted/70" />
+						<USkeleton class="h-10 w-10 rounded-sm bg-muted/70" />
+					</div>
+				</div>
+
+				<div class="mt-auto flex flex-col gap-2">
+					<USkeleton class="h-4 w-full bg-muted/70" />
+					<USkeleton class="h-4 w-3/4 self-end bg-muted/70" />
+				</div>
+			</div>
+
+			<div class="flex h-full flex-col gap-3">
+				<div class="flex items-start justify-between gap-3">
+					<div class="flex flex-col gap-1">
+						<p class="text-xs uppercase tracking-wide text-primary">
+							{{ slotLabel }}
+						</p>
+						<p v-if="!assignedCharacter" class="font-medium text-toned">
+							{{ t('groups.activities.management.roster.empty_slot') }}
+						</p>
+					</div>
+
+					<UBadge
+						:color="statusBadge.color"
+						variant="subtle"
+						:label="statusBadge.label"
+					/>
+				</div>
+
+				<div v-if="assignedCharacter" class="space-y-3">
+					<div class="flex items-start justify-between gap-3">
+						<UUser
+							:name="assignedCharacter.name"
+							:description="assignedCharacter.world || undefined"
+							:avatar="assignedCharacter.avatar_url ? { src: assignedCharacter.avatar_url, loading: 'lazy' } : undefined"
+							size="lg"
+						/>
+
+						<div class="flex items-center">
+							<img
+								v-if="classIconUrl"
+								:src="classIconUrl"
+								:alt="classDisplayValue || ''"
+								class="h-10 w-10 rounded-sm p-1 object-contain"
+							>
+							<img
+								v-if="phantomIconUrl"
+								:src="phantomIconUrl"
+								:alt="phantomDisplayValue || ''"
+								class="h-10 w-10 rounded-sm  p-1 object-contain"
+							>
+						</div>
+					</div>
+
+					<div v-if="visibleFieldEntries.length > 0" class="space-y-2">
+						<div
+							v-for="field in visibleFieldEntries"
+							:key="field.id"
+							class="flex items-start justify-between gap-3 text-sm"
+						>
+							<span class="text-muted">
+								{{ field.label }}
+							</span>
+							<span class="text-right font-medium text-toned">
+								{{ field.value }}
+							</span>
+						</div>
+					</div>
+				</div>
+
+				<div v-else class="mt-auto text-sm text-muted">
+					{{ t('groups.activities.management.roster.open') }}
+				</div>
+			</div>
+		</div>
+	</UContextMenu>
+
 	<div
+		v-else
 		ref="slotCardElement"
 		class="relative min-h-28 border px-4 py-4 transition duration-200 ease-out hover:shadow-lg"
 		:class="[
@@ -261,7 +462,6 @@ const handleClick = () => {
 		</div>
 
 		<div class="flex h-full flex-col gap-3">
-			<!-- Slot card header: slot identity and assignment status -->
 			<div class="flex items-start justify-between gap-3">
 				<div class="flex flex-col gap-1">
 					<p class="text-xs uppercase tracking-wide text-primary">
@@ -273,15 +473,12 @@ const handleClick = () => {
 				</div>
 
 				<UBadge
-					:color="slot.assigned_character_id ? 'success' : 'neutral'"
+					:color="statusBadge.color"
 					variant="subtle"
-					:label="slot.assigned_character_id
-						? t('groups.activities.management.roster.assigned')
-						: t('groups.activities.management.roster.open')"
+					:label="statusBadge.label"
 				/>
 			</div>
 
-			<!-- Filled-slot content: assigned character and role-defining icons -->
 			<div v-if="assignedCharacter" class="space-y-3">
 				<div class="flex items-start justify-between gap-3">
 					<UUser
@@ -307,7 +504,6 @@ const handleClick = () => {
 					</div>
 				</div>
 
-				<!-- Filled-slot metadata rows such as position or extra slot fields -->
 				<div v-if="visibleFieldEntries.length > 0" class="space-y-2">
 					<div
 						v-for="field in visibleFieldEntries"
@@ -324,7 +520,6 @@ const handleClick = () => {
 				</div>
 			</div>
 
-			<!-- Empty-slot fallback state -->
 			<div v-else class="mt-auto text-sm text-muted">
 				{{ t('groups.activities.management.roster.open') }}
 			</div>

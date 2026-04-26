@@ -33,6 +33,7 @@ class GroupActivitySlotAssignmentContextController extends Controller
             ->where('selected_character_id', $slot->assigned_character_id)
             ->whereIn('status', [
                 ActivityApplication::STATUS_APPROVED,
+                ActivityApplication::STATUS_ON_BENCH,
                 ActivityApplication::STATUS_PENDING,
             ])
             ->latest('reviewed_at')

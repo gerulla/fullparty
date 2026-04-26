@@ -9,6 +9,7 @@ use App\Models\ActivityTypeVersion;
 use App\Models\Character;
 use App\Models\Group;
 use App\Models\GroupMembership;
+use App\Services\Groups\ActivitySlotBench;
 use Carbon\CarbonImmutable;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -396,6 +397,7 @@ class GroupActivityController extends Controller
     {
         $slotDefinitions = $activityTypeVersion->slot_schema ?? [];
         $groups = $activityTypeVersion->layout_schema['groups'] ?? [];
+        $benchSize = max(0, (int) ($activityTypeVersion->bench_size ?? 0));
         $sortOrder = 1;
 
         foreach ($groups as $groupDefinition) {
@@ -425,6 +427,19 @@ class GroupActivityController extends Controller
 
                 $sortOrder++;
             }
+        }
+
+        for ($position = 1; $position <= $benchSize; $position++) {
+            $activity->slots()->create([
+                'group_key' => ActivitySlotBench::GROUP_KEY,
+                'group_label' => ['en' => 'Bench'],
+                'slot_key' => sprintf('%s-slot-%d', ActivitySlotBench::GROUP_KEY, $position),
+                'slot_label' => ['en' => sprintf('Bench %d', $position)],
+                'position_in_group' => $position,
+                'sort_order' => $sortOrder,
+            ]);
+
+            $sortOrder++;
         }
     }
 
@@ -464,6 +479,8 @@ class GroupActivityController extends Controller
      */
     private function buildDashboardGroupPayload(Group $group, ?bool $canManageActivities = null): array
     {
+        $canModerateGroup = $group->hasModeratorAccess(auth()->id());
+
         return [
             'id' => $group->id,
             'name' => $group->name,
@@ -472,7 +489,9 @@ class GroupActivityController extends Controller
                 ->firstWhere('user_id', auth()->id())
                 ?->role,
             'permissions' => [
-                'can_manage_activities' => $canManageActivities ?? $group->hasModeratorAccess(auth()->id()),
+                'can_manage_group' => $group->isOwnedBy(auth()->id()),
+                'can_manage_members' => $canModerateGroup,
+                'can_manage_activities' => $canManageActivities ?? $canModerateGroup,
             ],
         ];
     }

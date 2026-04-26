@@ -3,7 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Activity;
+use App\Models\ActivityApplication;
 use App\Models\Group;
+use App\Services\Groups\ActivitySlotBench;
+use App\Services\Groups\ActivityBenchSlotBackfillService;
+use App\Services\Groups\ActivitySlotAttendanceService;
 use App\Services\Groups\ActivitySlotFieldDefinitionBuilder;
 use App\Services\Groups\ActivitySlotSerializer;
 use Illuminate\Http\JsonResponse;
@@ -13,8 +17,11 @@ class GroupActivityManagementDataController extends Controller
     public function show(
         Group $group,
         Activity $activity,
+        ActivityBenchSlotBackfillService $benchSlotBackfillService,
+        ActivitySlotAttendanceService $attendanceService,
         ActivitySlotSerializer $slotSerializer,
         ActivitySlotFieldDefinitionBuilder $fieldDefinitionBuilder,
+        ActivitySlotBench $slotBench,
     ): JsonResponse
     {
         $this->authorize('manageDashboard', [$activity, $group]);
@@ -25,10 +32,20 @@ class GroupActivityManagementDataController extends Controller
             'activityType',
             'activityTypeVersion',
             'slots.assignedCharacter',
+            'slots.assignments',
             'slots.fieldValues',
             'progressMilestones',
             'applications',
+            'slotAssignments.character',
+            'slotAssignments.slot',
         ]);
+
+        $benchSlotBackfillService->ensureBenchSlots($activity);
+        $attendanceService->ensureActiveAssignments($activity);
+        $activity->load(['slotAssignments.character', 'slotAssignments.slot']);
+
+        $mainSlots = $activity->slots->filter(fn ($slot) => !$slotBench->isBench($slot))->values();
+        $benchSlots = $activity->slots->filter(fn ($slot) => $slotBench->isBench($slot))->values();
 
         return response()->json([
             'activity' => [
@@ -62,14 +79,32 @@ class GroupActivityManagementDataController extends Controller
                     'name' => $activity->organizerCharacter->name,
                     'avatar_url' => $activity->organizerCharacter->avatar_url,
                 ] : null,
-                'slot_count' => $activity->slots->count(),
+                'slot_count' => $mainSlots->count(),
+                'bench_slot_count' => $benchSlots->count(),
                 'application_count' => $activity->applications->count(),
                 'pending_application_count' => $activity->applications
-                    ->where('status', 'pending')
+                    ->where('status', ActivityApplication::STATUS_PENDING)
                     ->count(),
                 'progress_milestone_count' => $activity->progressMilestones->count(),
                 'slot_field_definitions' => $fieldDefinitionBuilder->build($activity->activityTypeVersion),
                 'slots' => $activity->slots->map(fn ($slot) => $slotSerializer->serialize($slot))->values(),
+                'missing_assignments' => $activity->slotAssignments
+                    ->where('attendance_status', \App\Models\ActivitySlotAssignment::STATUS_MISSING)
+                    ->sortByDesc('marked_missing_at')
+                    ->values()
+                    ->map(fn ($assignment) => [
+                        'id' => $assignment->id,
+                        'character' => $assignment->character ? [
+                            'id' => $assignment->character->id,
+                            'name' => $assignment->character->name,
+                            'avatar_url' => $assignment->character->avatar_url,
+                            'world' => $assignment->character->world,
+                            'datacenter' => $assignment->character->datacenter,
+                        ] : null,
+                        'slot_label' => $assignment->slot?->slot_label,
+                        'group_label' => $assignment->slot?->group_label,
+                        'marked_missing_at' => $assignment->marked_missing_at?->toIso8601String(),
+                    ]),
                 'progress_milestones' => $activity->progressMilestones->map(fn ($milestone) => [
                     'id' => $milestone->id,
                     'milestone_key' => $milestone->milestone_key,

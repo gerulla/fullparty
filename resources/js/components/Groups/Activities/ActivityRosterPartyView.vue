@@ -13,6 +13,10 @@ const props = defineProps<{
 	dropTargetSlotId?: number | null
 	isSwapPending?: boolean
 	pendingSwapSlotIds?: number[]
+	canReturnToQueue?: boolean
+	canMoveToBench?: boolean
+	canMarkMissing?: boolean
+	canCheckIn?: boolean
 }>();
 
 const emit = defineEmits<{
@@ -23,6 +27,11 @@ const emit = defineEmits<{
 	dropSlot: [slotId: number]
 	dropApplication: [payload: { slotId: number, application: QueueApplication }]
 	clickSlot: [slotId: number]
+	returnSlotToQueue: [slotId: number]
+	moveSlotToBench: [slotId: number]
+	markSlotMissing: [slotId: number]
+	checkInSlot: [slotId: number]
+	checkInGroup: [groupKey: string]
 }>();
 
 const { t, locale } = useI18n();
@@ -87,10 +96,13 @@ const slotGroups = computed(() => {
 					</div>
 
 					<UButton
+						v-if="group.key !== 'bench'"
 						color="neutral"
 						variant="ghost"
 						icon="i-lucide-user-check"
 						:label="t('groups.activities.management.roster.check_in_all')"
+						:disabled="!canCheckIn || isSwapPending || !group.slots.some((slot) => slot.assigned_character_id !== null && slot.attendance_status !== 'checked_in')"
+						@click="emit('checkInGroup', group.key)"
 					/>
 				</div>
 			</header>
@@ -104,6 +116,10 @@ const slotGroups = computed(() => {
 					:drop-target-slot-id="dropTargetSlotId"
 					:is-swap-pending="isSwapPending"
 					:is-pending-swap="pendingSwapSlotIds?.includes(slot.id)"
+					:can-return-to-queue="canReturnToQueue"
+					:can-move-to-bench="canMoveToBench"
+					:can-mark-missing="canMarkMissing"
+					:can-check-in="canCheckIn"
 					@drag-start="emit('dragStart', $event)"
 					@drag-end="emit('dragEnd')"
 					@drag-enter="emit('dragEnter', $event)"
@@ -111,6 +127,10 @@ const slotGroups = computed(() => {
 					@drop-slot="emit('dropSlot', $event)"
 					@drop-application="emit('dropApplication', $event)"
 					@click-slot="emit('clickSlot', $event)"
+					@return-slot-to-queue="emit('returnSlotToQueue', $event)"
+					@move-slot-to-bench="emit('moveSlotToBench', $event)"
+					@mark-slot-missing="emit('markSlotMissing', $event)"
+					@check-in-slot="emit('checkInSlot', $event)"
 				/>
 			</div>
 		</section>

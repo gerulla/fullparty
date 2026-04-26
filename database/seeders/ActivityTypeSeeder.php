@@ -30,6 +30,7 @@ class ActivityTypeSeeder extends Seeder
                     'draft_application_schema' => $activityTypeData['draft_application_schema'],
                     'draft_progress_schema' => $activityTypeData['draft_progress_schema'],
                     'draft_prog_points' => $activityTypeData['draft_prog_points'] ?? [],
+                    'draft_fflogs_zone_id' => $activityTypeData['draft_fflogs_zone_id'] ?? null,
                     'is_active' => true,
                     'created_by_user_id' => $activityType->exists
                         ? $activityType->created_by_user_id
@@ -49,6 +50,7 @@ class ActivityTypeSeeder extends Seeder
                     'application_schema' => $activityTypeData['draft_application_schema'],
                     'progress_schema' => $activityTypeData['draft_progress_schema'],
                     'prog_points' => $activityTypeData['draft_prog_points'] ?? [],
+                    'fflogs_zone_id' => $activityTypeData['draft_fflogs_zone_id'] ?? null,
                     'published_by_user_id' => $publisherId,
                     'published_at' => now(),
                 ]);
@@ -69,10 +71,10 @@ class ActivityTypeSeeder extends Seeder
             [
                 'slug' => 'forked-tower',
                 'draft_name' => $this->localized([
-                    'en' => 'Forked Tower',
-                    'de' => 'Forked Tower',
-                    'fr' => 'Tour Bifurquee',
-                    'ja' => 'Forked Tower',
+                    'en' => 'Forked Tower of Blood',
+                    'de' => 'Forked Tower of Blood',
+                    'fr' => 'Tour Bifurquee de Sang',
+                    'ja' => 'Forked Tower of Blood',
                 ]),
                 'draft_description' => $this->localized([
                     'en' => 'Large-scale Forked Tower activity with 6 parties, class + phantom job slot assignments, and multilingual application preferences.',
@@ -80,6 +82,7 @@ class ActivityTypeSeeder extends Seeder
                     'fr' => 'Activite Forked Tower a grande echelle avec 6 groupes, affectation de classe et de job fantome par slot, et preferences de candidature multilingues.',
                     'ja' => '6PT構成、各枠にクラスとファントムジョブを設定でき、多言語の申請項目を持つ大規模なForked Tower向けアクティビティです。',
                 ]),
+                'draft_fflogs_zone_id' => 69,
                 'draft_layout_schema' => [
                     'groups' => [
                         $this->group('party-a', ['en' => 'Party A', 'de' => 'Gruppe A', 'fr' => 'Equipe A', 'ja' => 'PT A'], 8),
@@ -125,7 +128,7 @@ class ActivityTypeSeeder extends Seeder
                     ),
                     $this->schemaField(
                         key: 'wants_to_party_lead',
-                        label: ['en' => 'Wants to Party Lead', 'de' => 'Moechte die Gruppe leiten', 'fr' => 'Souhaite lead le groupe', 'ja' => 'PTリーダー希望'],
+                        label: ['en' => 'Want to Party Lead', 'de' => 'Moechte die Gruppe leiten', 'fr' => 'Souhaite lead le groupe', 'ja' => 'PTリーダー希望'],
                         type: 'boolean',
                         source: null,
                     ),
@@ -140,13 +143,6 @@ class ActivityTypeSeeder extends Seeder
                             $this->staticOption('de', ['en' => 'German', 'de' => 'Deutsch', 'fr' => 'Allemand', 'ja' => 'ドイツ語']),
                             $this->staticOption('ja', ['en' => 'Japanese', 'de' => 'Japanisch', 'fr' => 'Japonais', 'ja' => '日本語']),
                         ],
-                    ),
-                    $this->schemaField(
-                        key: 'notes',
-                        label: ['en' => 'Notes', 'de' => 'Notizen', 'fr' => 'Notes', 'ja' => 'メモ'],
-                        type: 'textarea',
-                        source: null,
-                        required: false,
                     ),
                 ],
                 'draft_progress_schema' => [
@@ -200,6 +196,7 @@ class ActivityTypeSeeder extends Seeder
                     'fr' => 'Activite Chaotique a 24 joueurs avec affectation par groupe, classes et positions de raid.',
                     'ja' => '24人用のChaotic向けアクティビティ。PT単位の編成、ジョブ、レイドポジション設定に対応します。',
                 ]),
+                'draft_fflogs_zone_id' => 66,
                 'draft_layout_schema' => [
                     'groups' => [
                         $this->group('party-a', ['en' => 'Party A', 'de' => 'Gruppe A', 'fr' => 'Equipe A', 'ja' => 'PT A'], 8),
@@ -263,6 +260,7 @@ class ActivityTypeSeeder extends Seeder
                     'fr' => 'Activite standard de raid sadique a 8 joueurs avec planification des positions et liens d\'experience.',
                     'ja' => '8人向け零式レイド用アクティビティ。ロール位置や経験リンクの提出に対応します。',
                 ]),
+                'draft_fflogs_zone_id' => null,
                 'draft_layout_schema' => [
                     'groups' => [
                         $this->group('party', ['en' => 'Party', 'de' => 'Gruppe', 'fr' => 'Equipe', 'ja' => 'PT'], 8),
@@ -435,10 +433,10 @@ class ActivityTypeSeeder extends Seeder
             $this->staticOption('ot', ['en' => 'Off Tank', 'de' => 'Off Tank', 'fr' => 'Off tank', 'ja' => 'ST']),
             $this->staticOption('h1', ['en' => 'Healer 1', 'de' => 'Heiler 1', 'fr' => 'Soigneur 1', 'ja' => 'H1']),
             $this->staticOption('h2', ['en' => 'Healer 2', 'de' => 'Heiler 2', 'fr' => 'Soigneur 2', 'ja' => 'H2']),
-            $this->staticOption('m1', ['en' => 'Melee 1', 'de' => 'Nahkampf 1', 'fr' => 'Melee 1', 'ja' => 'M1']),
-            $this->staticOption('m2', ['en' => 'Melee 2', 'de' => 'Nahkampf 2', 'fr' => 'Melee 2', 'ja' => 'M2']),
-            $this->staticOption('r1', ['en' => 'Ranged 1', 'de' => 'Fernkampf 1', 'fr' => 'Distance 1', 'ja' => 'R1']),
-            $this->staticOption('r2', ['en' => 'Ranged 2', 'de' => 'Fernkampf 2', 'fr' => 'Distance 2', 'ja' => 'R2']),
+            $this->staticOption('m1', ['en' => 'DPS 1 / Melee 1', 'de' => 'DPS 1 / Nahkampf 1', 'fr' => 'DPS 1 / Melee 1', 'ja' => 'DPS 1 / M1']),
+            $this->staticOption('m2', ['en' => 'DPS 2 / Melee 2', 'de' => 'DPS 2 / Nahkampf 2', 'fr' => 'DPS 2 / Melee 2', 'ja' => 'DPS 2 / M2']),
+            $this->staticOption('r1', ['en' => 'DPS 3 / Phys Ranged', 'de' => 'DPS 3 / Phys. Fernkampf', 'fr' => 'DPS 3 / Distance physique', 'ja' => 'DPS 3 / Phys Ranged']),
+            $this->staticOption('r2', ['en' => 'DPS 4 / Magic Ranged', 'de' => 'DPS 4 / Mag. Fernkampf', 'fr' => 'DPS 4 / Distance magique', 'ja' => 'DPS 4 / Magic Ranged']),
         ];
     }
 }

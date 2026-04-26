@@ -24,6 +24,8 @@ class AdminCharacterController extends Controller
 	 */
 	public function storeDefinition(Request $request)
 	{
+		$this->authorizeAdminAccess();
+
 		$validated = $this->validateDefinition($request);
 
 		// Generate slug from name
@@ -54,6 +56,8 @@ class AdminCharacterController extends Controller
 	 */
 	public function updateDefinition(Request $request, CharacterFieldDefinition $definition)
 	{
+		$this->authorizeAdminAccess();
+
 		$validated = $this->validateDefinition($request);
 		$originalValues = $this->definitionSnapshot($definition);
 
@@ -91,6 +95,8 @@ class AdminCharacterController extends Controller
 	 */
 	public function destroyDefinition(CharacterFieldDefinition $definition)
 	{
+		$this->authorizeAdminAccess();
+
 		$snapshot = $this->definitionSnapshot($definition);
 		$definition->delete();
 
@@ -116,6 +122,8 @@ class AdminCharacterController extends Controller
 	 */
 	public function updateOrder(Request $request)
 	{
+		$this->authorizeAdminAccess();
+
 		$validated = $request->validate([
 			'order' => ['required', 'array'],
 			'order.*' => ['required', 'exists:character_field_definitions,id'],
@@ -199,5 +207,12 @@ class AdminCharacterController extends Controller
 				],
 			])
 			->all();
+	}
+
+	private function authorizeAdminAccess(): void
+	{
+		if (!auth()->user()?->is_admin) {
+			abort(403);
+		}
 	}
 }

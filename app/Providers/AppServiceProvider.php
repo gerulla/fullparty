@@ -2,7 +2,10 @@
 
 namespace App\Providers;
 
+use App\Models\Activity;
+use App\Policies\GroupActivityPolicy;
 use Illuminate\Support\Facades\Event;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -20,6 +23,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        Gate::policy(Activity::class, GroupActivityPolicy::class);
+
 		Event::listen(function (\SocialiteProviders\Manager\SocialiteWasCalled $event) {
 			$event->extendSocialite('discord', \SocialiteProviders\Discord\Provider::class);
 			$event->extendSocialite('xivauth', \SocialiteProviders\XIVAuth\Provider::class);

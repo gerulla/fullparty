@@ -2,131 +2,79 @@
 
 namespace Database\Seeders;
 
+use App\Models\Character;
+use App\Models\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Str;
 
 class UserSeeder extends Seeder
 {
+    private const GENERATED_USER_COUNT = 320;
+
     /**
      * Seed the application's database.
      */
     public function run(): void
     {
-        $now = now();
         $seededUser = $this->seededUserConfig();
 
-        DB::table('users')->upsert([
-            [
-                'id' => 1,
-                'name' => $seededUser['name'],
-                'email' => $seededUser['email'],
-                'email_verified_at' => '2026-04-13 15:59:47',
-                'password' => null,
-                'avatar_url' => $seededUser['avatar_url'],
-                'last_login_at' => null,
-                'is_admin' => true,
-                'public_profile' => true,
-                'public_characters' => true,
-                'run_reminders' => true,
-                'application_notifications' => true,
-                'group_updates' => true,
-                'assignment_updates' => true,
-                'email_notifications' => false,
-                'discord_notifications' => false,
-                'remember_token' => null,
-                'created_at' => '2026-04-13 15:59:47',
-                'updated_at' => '2026-04-13 15:59:47',
-            ],
-            $this->randomUserRow(2, $now->copy()->subMinutes(14)),
-            $this->randomUserRow(3, $now->copy()->subMinutes(7)),
-        ], ['id'], [
-            'name',
-            'email',
-            'email_verified_at',
-            'password',
-            'avatar_url',
-            'last_login_at',
-            'is_admin',
-            'public_profile',
-            'public_characters',
-            'run_reminders',
-            'application_notifications',
-            'group_updates',
-            'assignment_updates',
-            'email_notifications',
-            'discord_notifications',
-            'remember_token',
-            'created_at',
-            'updated_at',
-        ]);
-
-        DB::table('social_accounts')->upsert([
-            [
-                'id' => 1,
-                'user_id' => 1,
-                'provider' => 'discord',
-                'provider_user_id' => $seededUser['discord_user_id'],
-                'provider_name' => $seededUser['discord_name'],
-                'provider_email' => $seededUser['discord_email'],
-                'avatar_url' => $seededUser['discord_avatar_url'],
-                'access_token' => $seededUser['discord_access_token'],
-                'refresh_token' => $seededUser['discord_refresh_token'],
-                'provider_data' => json_encode([
-                    'name' => $seededUser['discord_name'],
-                    'avatar' => $seededUser['discord_avatar_url'],
-                    'nickname' => $seededUser['discord_nickname'],
-                ]),
-                'expires_at' => '2026-04-20 15:59:47',
-                'created_at' => '2026-04-13 15:59:47',
-                'updated_at' => '2026-04-13 15:59:47',
-            ],
-        ], ['id'], [
-            'user_id',
-            'provider',
-            'provider_user_id',
-            'provider_name',
-            'provider_email',
-            'avatar_url',
-            'access_token',
-            'refresh_token',
-            'provider_data',
-            'expires_at',
-            'created_at',
-            'updated_at',
-        ]);
-
-        $this->syncPrimaryKeySequence('users');
-        $this->syncPrimaryKeySequence('social_accounts');
-    }
-
-    /**
-     * @return array<string, mixed>
-     */
-    private function randomUserRow(int $id, $timestamp): array
-    {
-        return [
-            'id' => $id,
-            'name' => fake()->unique()->userName(),
-            'email' => fake()->unique()->safeEmail(),
-            'email_verified_at' => $timestamp,
-            'password' => Hash::make('password'),
-            'avatar_url' => fake()->imageUrl(256, 256, 'people'),
-            'last_login_at' => $timestamp,
-            'is_admin' => false,
+        $adminUserId = DB::table('users')->insertGetId([
+            'id' => 1,
+            'name' => $seededUser['name'],
+            'email' => $seededUser['email'],
+            'email_verified_at' => '2026-04-13 15:59:47',
+            'password' => null,
+            'avatar_url' => $seededUser['avatar_url'],
+            'last_login_at' => null,
+            'is_admin' => true,
             'public_profile' => true,
             'public_characters' => true,
             'run_reminders' => true,
             'application_notifications' => true,
             'group_updates' => true,
             'assignment_updates' => true,
-            'email_notifications' => fake()->boolean(),
-            'discord_notifications' => fake()->boolean(),
-            'remember_token' => Str::random(10),
-            'created_at' => $timestamp,
-            'updated_at' => $timestamp,
-        ];
+            'email_notifications' => false,
+            'discord_notifications' => false,
+            'remember_token' => null,
+            'created_at' => '2026-04-13 15:59:47',
+            'updated_at' => '2026-04-13 15:59:47',
+        ]);
+
+        $this->syncPrimaryKeySequence('users');
+
+        $generatedUsers = User::factory()
+            ->count(self::GENERATED_USER_COUNT)
+            ->create();
+
+        $generatedUsers->each(function (User $user): void {
+            Character::factory()
+                ->for($user)
+                ->primary()
+                ->create();
+        });
+
+        DB::table('social_accounts')->insert([
+            'id' => 1,
+            'user_id' => $adminUserId,
+            'provider' => 'discord',
+            'provider_user_id' => $seededUser['discord_user_id'],
+            'provider_name' => $seededUser['discord_name'],
+            'provider_email' => $seededUser['discord_email'],
+            'avatar_url' => $seededUser['discord_avatar_url'],
+            'access_token' => $seededUser['discord_access_token'],
+            'refresh_token' => $seededUser['discord_refresh_token'],
+            'provider_data' => json_encode([
+                'name' => $seededUser['discord_name'],
+                'avatar' => $seededUser['discord_avatar_url'],
+                'nickname' => $seededUser['discord_nickname'],
+            ]),
+            'expires_at' => '2026-04-20 15:59:47',
+            'created_at' => '2026-04-13 15:59:47',
+            'updated_at' => '2026-04-13 15:59:47',
+        ]);
+
+        $this->syncPrimaryKeySequence('characters');
+        $this->syncPrimaryKeySequence('social_accounts');
     }
 
     /**

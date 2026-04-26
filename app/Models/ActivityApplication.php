@@ -11,6 +11,16 @@ class ActivityApplication extends Model
 {
     use HasFactory;
 
+    public const STATUS_PENDING = 'pending';
+    public const STATUS_APPROVED = 'approved';
+    public const STATUS_DECLINED = 'declined';
+
+    public const STATUSES = [
+        self::STATUS_PENDING,
+        self::STATUS_APPROVED,
+        self::STATUS_DECLINED,
+    ];
+
     protected $fillable = [
         'activity_id',
         'user_id',

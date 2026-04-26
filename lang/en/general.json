@@ -30,6 +30,8 @@
   "update": "Update",
   "add": "Add",
   "remove": "Remove",
+  "view": "View",
+  "open": "Open",
   "copy": "Copy",
   "copied": "Copied!",
   "success": "Success",

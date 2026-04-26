@@ -21,6 +21,7 @@ class ActivityType extends Model
         'draft_application_schema',
         'draft_progress_schema',
         'draft_prog_points',
+        'draft_fflogs_zone_id',
         'is_active',
         'created_by_user_id',
         'current_published_version_id',
@@ -34,6 +35,7 @@ class ActivityType extends Model
         'draft_application_schema' => 'array',
         'draft_progress_schema' => 'array',
         'draft_prog_points' => 'array',
+        'draft_fflogs_zone_id' => 'integer',
         'is_active' => 'boolean',
     ];
 

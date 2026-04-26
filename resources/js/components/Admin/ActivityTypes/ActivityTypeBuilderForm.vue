@@ -162,6 +162,19 @@ const addCreatedTag = (rawTag: string) => {
 						</UFormField>
 
 						<UFormField
+							:label="t('admin.activity_types.general.fflogs_zone_id')"
+							:description="t('admin.activity_types.general.fflogs_zone_id_help')"
+						>
+							<UInput
+								v-model.number="form.draft_fflogs_zone_id"
+								class="w-full"
+								type="number"
+								min="1"
+								:placeholder="t('admin.activity_types.general.fflogs_zone_id_placeholder')"
+							/>
+						</UFormField>
+
+						<UFormField
 							:label="t('admin.activity_types.general.active')"
 							:description="t('admin.activity_types.general.active_help')"
 							orientation="horizontal"

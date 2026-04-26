@@ -157,6 +157,7 @@ class ActivityTypeController extends Controller
             'draft_application_schema' => $activityType->draft_application_schema,
             'draft_progress_schema' => $activityType->draft_progress_schema,
             'draft_prog_points' => $activityType->draft_prog_points,
+            'draft_fflogs_zone_id' => $activityType->draft_fflogs_zone_id,
         ];
 
         $this->validateDraftSchema($draftPayload);
@@ -173,6 +174,7 @@ class ActivityTypeController extends Controller
                 'application_schema' => $activityType->draft_application_schema,
                 'progress_schema' => $activityType->draft_progress_schema,
                 'prog_points' => $activityType->draft_prog_points,
+                'fflogs_zone_id' => $activityType->draft_fflogs_zone_id,
                 'published_by_user_id' => auth()->id(),
                 'published_at' => now(),
             ]);
@@ -252,6 +254,7 @@ class ActivityTypeController extends Controller
             'draft_application_schema' => ['required', 'array'],
             'draft_progress_schema' => ['required', 'array'],
             'draft_prog_points' => ['nullable', 'array'],
+            'draft_fflogs_zone_id' => ['nullable', 'integer', 'min:1'],
             'is_active' => ['sometimes', 'boolean'],
         ];
     }
@@ -599,10 +602,12 @@ class ActivityTypeController extends Controller
             'draft_application_schema' => $activityType->draft_application_schema,
             'draft_progress_schema' => $activityType->draft_progress_schema,
             'draft_prog_points' => $activityType->draft_prog_points,
+            'draft_fflogs_zone_id' => $activityType->draft_fflogs_zone_id,
             'created_by' => $activityType->creator?->name,
             'current_published_version' => $currentVersion ? [
                 'id' => $currentVersion->id,
                 'version' => $currentVersion->version,
+                'fflogs_zone_id' => $currentVersion->fflogs_zone_id,
                 'published_at' => $currentVersion->published_at?->toIso8601String(),
                 'published_by' => $currentVersion->publisher?->name,
             ] : null,
@@ -634,6 +639,7 @@ class ActivityTypeController extends Controller
             'draft_application_schema' => $activityType->draft_application_schema,
             'draft_progress_schema' => $activityType->draft_progress_schema,
             'draft_prog_points' => $activityType->draft_prog_points,
+            'draft_fflogs_zone_id' => $activityType->draft_fflogs_zone_id,
             'is_active' => $activityType->is_active,
             'current_published_version_id' => $activityType->current_published_version_id,
         ];

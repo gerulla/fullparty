@@ -42,6 +42,15 @@ watch(
 				icon: 'i-lucide-check',
 			});
 		}
+
+		if (success.includes('activity_type_published')) {
+			toast.add({
+				title: t('general.success'),
+				description: t('admin.activity_types.toasts.published'),
+				color: 'success',
+				icon: 'i-lucide-upload',
+			});
+		}
 	},
 	{ immediate: true }
 );
@@ -60,6 +69,12 @@ const goToCreatePage = () => {
 
 const goToEditPage = (activityTypeId: number) => {
 	router.get(`/admin/activity-types/${activityTypeId}/edit`);
+};
+
+const publishActivityType = (activityTypeId: number) => {
+	router.post(`/admin/activity-types/${activityTypeId}/publish`, {}, {
+		preserveScroll: true,
+	});
 };
 </script>
 
@@ -113,6 +128,14 @@ const goToEditPage = (activityTypeId: number) => {
 					</div>
 
 					<div class="flex items-center gap-2">
+						<UButton
+							color="primary"
+							variant="soft"
+							icon="i-lucide-upload"
+							:label="t('admin.activity_types.publish')"
+							@click="publishActivityType(activityType.id)"
+						/>
+
 						<UButton
 							color="neutral"
 							variant="soft"

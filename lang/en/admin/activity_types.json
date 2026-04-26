@@ -6,6 +6,7 @@
   "create_subtitle": "Start a new activity type draft and define the blueprint that groups will use.",
   "edit_title": "Edit Activity Type",
   "edit_subtitle": "Update the draft blueprint and publish when it is ready.",
+  "publish": "Publish",
   "status_active": "Active",
   "status_inactive": "Inactive",
   "version_badge": "Published v{version}",
@@ -18,7 +19,8 @@
   },
   "toasts": {
     "created": "Activity type created successfully.",
-    "updated": "Activity type updated successfully."
+    "updated": "Activity type updated successfully.",
+    "published": "Activity type published successfully."
   },
   "general": {
     "title": "General",
@@ -32,6 +34,9 @@
     "description": "Localized Description",
     "description_help": "Short explanation shown to admins and eventually to group managers.",
     "description_placeholder": "Describe what this activity type is for",
+    "fflogs_zone_id": "FF Logs Zone ID",
+    "fflogs_zone_id_help": "Optional zone identifier used when this activity type needs FF Logs-backed data lookups.",
+    "fflogs_zone_id_placeholder": "54",
     "tags": "Tags",
     "tags_help": "Optional freeform tags used for search and filtering.",
     "tags_placeholder": "Type a tag and press enter",
@@ -153,6 +158,7 @@
     "slot_fields": "Slot Fields",
     "application_questions": "Application Questions",
     "progress_milestones": "Progress Milestones",
-    "prog_points": "Prog Points"
+    "prog_points": "Prog Points",
+    "fflogs_zone_id": "FF Logs Zone ID"
   }
 }

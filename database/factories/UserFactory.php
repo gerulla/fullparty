@@ -29,6 +29,16 @@ class UserFactory extends Factory
             'email' => fake()->unique()->safeEmail(),
             'email_verified_at' => now(),
             'password' => static::$password ??= Hash::make('password'),
+            'avatar_url' => fake()->imageUrl(256, 256, 'people'),
+            'is_admin' => false,
+            'public_profile' => true,
+            'public_characters' => true,
+            'run_reminders' => true,
+            'application_notifications' => true,
+            'group_updates' => true,
+            'assignment_updates' => true,
+            'email_notifications' => fake()->boolean(),
+            'discord_notifications' => fake()->boolean(),
             'remember_token' => Str::random(10),
         ];
     }
@@ -40,6 +50,13 @@ class UserFactory extends Factory
     {
         return $this->state(fn (array $attributes) => [
             'email_verified_at' => null,
+        ]);
+    }
+
+    public function admin(): static
+    {
+        return $this->state(fn (array $attributes) => [
+            'is_admin' => true,
         ]);
     }
 }

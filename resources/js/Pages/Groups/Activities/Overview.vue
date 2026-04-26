@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import { computed } from "vue";
+import { router, usePage } from "@inertiajs/vue3";
+import { route } from "ziggy-js";
 import { useI18n } from "vue-i18n";
-import { usePage } from "@inertiajs/vue3";
 import PageHeader from "@/components/PageHeader.vue";
 import { localizedValue } from "@/utils/localizedValue";
 import { getActivityStatusMeta } from "@/utils/activityStatusMeta";
@@ -76,6 +77,13 @@ const startsAtLabel = computed(() => {
 const organizerLabel = computed(() => props.activity.organized_by_character?.name || props.activity.organized_by?.name || t('groups.activities.cards.no_organizer'));
 
 const statusMeta = computed(() => getActivityStatusMeta(props.activity.status));
+
+const goToManagementPage = () => {
+	router.get(route('groups.dashboard.activities.show', {
+		group: props.group.slug,
+		activity: props.activity.id,
+	}));
+};
 </script>
 
 <template>
@@ -84,14 +92,24 @@ const statusMeta = computed(() => getActivityStatusMeta(props.activity.status));
 			:title="activityTitle"
 			:subtitle="t('groups.activities.overview.subtitle', { group: group.name, type: activityTypeName })"
 		>
-			<UBadge
-				size="lg"
-				variant="subtle"
-				class="min-w-44 justify-center py-2"
-				:color="statusMeta.color"
-				:icon="statusMeta.icon"
-				:label="t(`groups.activities.statuses.${activity.status}`)"
-			/>
+			<div class="flex items-center justify-end gap-2">
+				<UBadge
+					size="md"
+					variant="subtle"
+					class="min-w-44 justify-center py-2"
+					:color="statusMeta.color"
+					:icon="statusMeta.icon"
+					:label="t(`groups.activities.statuses.${activity.status}`)"
+				/>
+				<UButton
+					v-if="permissions.can_manage"
+					color="neutral"
+					variant="outline"
+					icon="i-lucide-settings-2"
+					:label="t('groups.activities.overview.go_to_management')"
+					@click="goToManagementPage"
+				/>
+			</div>
 		</PageHeader>
 
 		<div class="mt-4 grid grid-cols-1 gap-6 xl:grid-cols-[1.1fr_0.9fr]">

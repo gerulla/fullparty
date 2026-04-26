@@ -3,17 +3,12 @@
 namespace App\Services\FFLogs;
 
 use App\Models\Character;
-use Illuminate\Support\Facades\Cache;
-use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
 use RuntimeException;
 
 class ForkedTowerBloodProgressFetcher
 {
-    private const TOKEN_CACHE_KEY = 'fflogs:client_credentials_token';
-
-    private const TOKEN_CACHE_TTL_BUFFER = 60;
-
     private const BOSS_ORDER = [
         'Demon Tablet' => 'demon_tablet',
         'Dead Stars' => 'dead_stars',
@@ -28,91 +23,25 @@ class ForkedTowerBloodProgressFetcher
         'magitaur' => ['magitaur'],
     ];
 
-    private const DATACENTER_REGION_MAP = [
-        'aether' => 'NA',
-        'crystal' => 'NA',
-        'dynamis' => 'NA',
-        'primal' => 'NA',
-        'chaos' => 'EU',
-        'light' => 'EU',
-        'elemental' => 'JP',
-        'gaia' => 'JP',
-        'mana' => 'JP',
-        'meteor' => 'JP',
-        'materia' => 'OC',
-    ];
+    public function __construct(
+        private readonly CharacterZoneProgressFetcher $zoneProgressFetcher,
+    ) {}
 
     public function fetchForCharacter(Character $character): array
     {
-        $response = $this->queryCharacterZoneRankings(
-            name: $character->name,
-            serverSlug: $this->resolveServerSlug($character->world),
-            serverRegion: $this->resolveServerRegion($character->datacenter),
+        return $this->buildProgressPayload(
+            $this->zoneProgressFetcher->fetchRawZoneRankingsForCharacter($character, $this->forkedTowerZoneId())
         );
-
-        $zoneRankings = $this->extractZoneRankings($character, $response);
-
-        return $this->buildProgressPayload($zoneRankings);
     }
 
     public function fetchDebugPayloadForCharacter(Character $character): array
     {
-        $response = $this->queryCharacterZoneRankings(
-            name: $character->name,
-            serverSlug: $this->resolveServerSlug($character->world),
-            serverRegion: $this->resolveServerRegion($character->datacenter),
-        );
-
-        $zoneRankings = $this->extractZoneRankings($character, $response);
+        $zoneRankings = $this->zoneProgressFetcher->fetchRawZoneRankingsForCharacter($character, $this->forkedTowerZoneId());
 
         return [
             'progress' => $this->buildProgressPayload($zoneRankings),
             'zone_rankings' => $zoneRankings,
         ];
-    }
-
-    private function queryCharacterZoneRankings(string $name, string $serverSlug, string $serverRegion): array
-    {
-        $zoneId = (int) config('services.ff_logs.forked_tower_blood_zone_id');
-
-        if ($zoneId <= 0) {
-            throw new RuntimeException('FF Logs Forked Tower of Blood zone ID is not configured.');
-        }
-
-        $query = <<<'GRAPHQL'
-query CharacterForkedTowerZoneRankings(
-  $name: String!,
-  $serverSlug: String!,
-  $serverRegion: String!,
-  $zoneId: Int!
-) {
-  characterData {
-    character(name: $name, serverSlug: $serverSlug, serverRegion: $serverRegion) {
-      zoneRankings(zoneID: $zoneId)
-    }
-  }
-}
-GRAPHQL;
-
-        $response = Http::withToken($this->getAccessToken())
-            ->acceptJson()
-            ->post(config('services.ff_logs.graphql_url'), [
-                'query' => $query,
-                'variables' => [
-                    'name' => $name,
-                    'serverSlug' => $serverSlug,
-                    'serverRegion' => $serverRegion,
-                    'zoneId' => $zoneId,
-                ],
-            ])
-            ->throw()
-            ->json();
-
-        if (!empty($response['errors'])) {
-            throw new RuntimeException('FF Logs GraphQL query failed: ' . json_encode($response['errors']));
-        }
-
-        return $response;
     }
 
     private function buildProgressPayload(array $zoneRankings): array
@@ -157,30 +86,6 @@ GRAPHQL;
         ];
     }
 
-    private function extractZoneRankings(Character $character, array $response): array
-    {
-        if (data_get($response, 'data.characterData.character') === null) {
-            throw new RuntimeException(sprintf(
-                'FF Logs could not resolve character [%s] on server [%s] in region [%s].',
-                $character->name,
-                $character->world,
-                $this->resolveServerRegion($character->datacenter),
-            ));
-        }
-
-        $zoneRankings = data_get($response, 'data.characterData.character.zoneRankings');
-
-        if (is_string($zoneRankings)) {
-            $decoded = json_decode($zoneRankings, true);
-
-            if (json_last_error() === JSON_ERROR_NONE) {
-                return $decoded;
-            }
-        }
-
-        return is_array($zoneRankings) ? $zoneRankings : [];
-    }
-
     private function extractRankingBossName(array $ranking): ?string
     {
         $candidates = [
@@ -197,6 +102,31 @@ GRAPHQL;
         }
 
         return null;
+    }
+
+    /**
+     * @return Collection<int, array<string, mixed>>
+     */
+    private function extractEncounterRankings(array $zoneRankings): Collection
+    {
+        $candidatePaths = [
+            'rankings',
+            'encounterRankings',
+        ];
+
+        foreach ($candidatePaths as $path) {
+            $value = data_get($zoneRankings, $path);
+
+            if (is_array($value) && array_is_list($value)) {
+                return collect(array_values(array_filter($value, 'is_array')));
+            }
+        }
+
+        if (array_is_list($zoneRankings)) {
+            return collect(array_values(array_filter($zoneRankings, 'is_array')));
+        }
+
+        return collect();
     }
 
     private function resolveBossName(?string $fightName): ?string
@@ -252,72 +182,6 @@ GRAPHQL;
         return 0;
     }
 
-    private function extractEncounterRankings(array $zoneRankings): array
-    {
-        $candidatePaths = [
-            'rankings',
-            'encounterRankings',
-        ];
-
-        foreach ($candidatePaths as $path) {
-            $value = data_get($zoneRankings, $path);
-
-            if (is_array($value) && array_is_list($value)) {
-                return array_values(array_filter($value, 'is_array'));
-            }
-        }
-
-        if (array_is_list($zoneRankings)) {
-            return array_values(array_filter($zoneRankings, 'is_array'));
-        }
-
-        return [];
-    }
-
-    private function getAccessToken(): string
-    {
-        $cachedToken = Cache::get(self::TOKEN_CACHE_KEY);
-
-        if ($cachedToken) {
-            return $cachedToken;
-        }
-
-        $clientId = config('services.ff_logs.client_id');
-        $clientSecret = config('services.ff_logs.client_secret');
-
-        if (!$clientId || !$clientSecret) {
-            throw new RuntimeException('FF Logs credentials are not configured.');
-        }
-
-        $response = Http::asForm()
-            ->withBasicAuth($clientId, $clientSecret)
-            ->post(config('services.ff_logs.token_url'), [
-                'grant_type' => 'client_credentials',
-            ])
-            ->throw()
-            ->json();
-
-        $token = $response['access_token'] ?? null;
-
-        if (!$token) {
-            throw new RuntimeException('FF Logs access token was not returned.');
-        }
-
-        $expiresIn = max(0, ((int) ($response['expires_in'] ?? 3600)) - self::TOKEN_CACHE_TTL_BUFFER);
-
-        Cache::put(self::TOKEN_CACHE_KEY, $token, now()->addSeconds($expiresIn));
-
-        return $token;
-    }
-
-    private function resolveServerSlug(string $world): string
-    {
-        return Str::of($world)
-            ->trim()
-            ->replace("'", '')
-            ->value();
-    }
-
     private function normalizeName(string $value): string
     {
         return Str::of($value)
@@ -327,14 +191,14 @@ GRAPHQL;
             ->value();
     }
 
-    private function resolveServerRegion(?string $datacenter): string
+    private function forkedTowerZoneId(): int
     {
-        $normalizedDatacenter = Str::of((string) $datacenter)->lower()->trim()->value();
+        $zoneId = (int) config('services.ff_logs.forked_tower_blood_zone_id');
 
-        if (isset(self::DATACENTER_REGION_MAP[$normalizedDatacenter])) {
-            return self::DATACENTER_REGION_MAP[$normalizedDatacenter];
+        if ($zoneId <= 0) {
+            throw new RuntimeException('FF Logs Forked Tower of Blood zone ID is not configured.');
         }
 
-        throw new RuntimeException("Unable to resolve FF Logs server region for datacenter [{$datacenter}].");
+        return $zoneId;
     }
 }

@@ -20,6 +20,7 @@ class ActivityTypeVersion extends Model
         'application_schema',
         'progress_schema',
         'prog_points',
+        'fflogs_zone_id',
         'published_by_user_id',
         'published_at',
     ];
@@ -32,6 +33,7 @@ class ActivityTypeVersion extends Model
         'application_schema' => 'array',
         'progress_schema' => 'array',
         'prog_points' => 'array',
+        'fflogs_zone_id' => 'integer',
         'published_at' => 'datetime',
     ];
 

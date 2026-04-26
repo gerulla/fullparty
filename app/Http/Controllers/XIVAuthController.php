@@ -22,13 +22,16 @@ class XIVAuthController extends Controller
 
 	public function redirect() {
 		return Socialite::driver('xivauth')
+			->enablePKCE()
 			->withEmailScope()
 			->withCharactersScope()
 			->redirect();
 	}
 	
 	public function callback() {
-		$xivauthUser = Socialite::driver('xivauth')->user();
+		$xivauthUser = Socialite::driver('xivauth')
+			->enablePKCE()
+			->user();
 		
 		$provider = 'xivauth';
 		$providerUserId = (string) $xivauthUser->getId();

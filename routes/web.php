@@ -3,6 +3,10 @@
 use App\Http\Controllers\AdminCharacterController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\GroupActivityController;
+use App\Http\Controllers\GroupActivityApplicationController;
+use App\Http\Controllers\GroupActivityApplicantQueueController;
+use App\Http\Controllers\GroupActivityFflogsController;
+use App\Http\Controllers\GroupActivityManagementDataController;
 use App\Http\Controllers\ActivityTypeController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CharacterController;
@@ -31,7 +35,12 @@ Route::get('/', function () {
 });
 
 Route::get('/groups/{group:slug}', [GroupController::class, 'show'])->name('groups.show');
-Route::get('/groups/{group:slug}/activities/{activity}/{secretKey?}', [GroupActivityController::class, 'overview'])->name('groups.activities.overview');
+Route::get('/groups/{group:slug}/activities/{activity}/application/{secretKey?}', [GroupActivityApplicationController::class, 'show'])
+    ->where('secretKey', '[A-Za-z0-9]{40}')
+    ->name('groups.activities.application');
+Route::get('/groups/{group:slug}/activities/{activity}/{secretKey?}', [GroupActivityController::class, 'overview'])
+    ->where('secretKey', '[A-Za-z0-9]{40}')
+    ->name('groups.activities.overview');
 Route::get('/invite/{token}', [GroupInviteController::class, 'show'])->name('groups.invites.show');
 
 Route::prefix('auth')->group(function () {
@@ -90,6 +99,12 @@ Route::middleware(['auth', 'verified'])->group(function () {
 	Route::get('/group-search-results', [GroupController::class, 'search'])->name('groups.search');
 	Route::post('/groups', [GroupController::class, 'store'])->name('groups.store');
 	Route::delete('/groups/{group:slug}', [GroupController::class, 'destroy'])->name('groups.destroy');
+	Route::post('/groups/{group:slug}/activities/{activity}/application/{secretKey?}', [GroupActivityApplicationController::class, 'store'])
+		->where('secretKey', '[A-Za-z0-9]{40}')
+		->name('groups.activities.application.store');
+	Route::put('/groups/{group:slug}/activities/{activity}/application/{secretKey?}', [GroupActivityApplicationController::class, 'update'])
+		->where('secretKey', '[A-Za-z0-9]{40}')
+		->name('groups.activities.application.update');
 
 	Route::post('/groups/{group:slug}/join', [GroupMembershipController::class, 'join'])->name('groups.join');
 	Route::post('/groups/{group:slug}/leave', [GroupMembershipController::class, 'leave'])->name('groups.leave');
@@ -110,6 +125,9 @@ Route::middleware(['auth', 'verified'])->group(function () {
 		Route::get('/activities/create', [GroupActivityController::class, 'create'])->name('groups.dashboard.activities.create');
 		Route::post('/activities', [GroupActivityController::class, 'store'])->name('groups.dashboard.activities.store');
 		Route::get('/activities/{activity}/edit', [GroupActivityController::class, 'edit'])->name('groups.dashboard.activities.edit');
+		Route::get('/activities/{activity}/management-data', [GroupActivityManagementDataController::class, 'show'])->name('groups.dashboard.activities.management-data');
+		Route::get('/activities/{activity}/applicant-queue', [GroupActivityApplicantQueueController::class, 'show'])->name('groups.dashboard.activities.applicant-queue');
+		Route::get('/activities/{activity}/characters/{character}/fflogs-progress', [GroupActivityFflogsController::class, 'show'])->name('groups.dashboard.activities.fflogs-progress');
 		Route::get('/activities/{activity}', [GroupActivityController::class, 'show'])->name('groups.dashboard.activities.show');
 		Route::put('/activities/{activity}', [GroupActivityController::class, 'update'])->name('groups.dashboard.activities.update');
 		Route::delete('/activities/{activity}', [GroupActivityController::class, 'destroy'])->name('groups.dashboard.activities.destroy');

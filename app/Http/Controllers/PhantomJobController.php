@@ -22,11 +22,15 @@ class PhantomJobController extends Controller
 
     public function index(): RedirectResponse
     {
+        $this->authorizeAdminAccess();
+
         return redirect()->route('admin.character-data');
     }
 
     public function store(Request $request): RedirectResponse
     {
+        $this->authorizeAdminAccess();
+
         $validated = $request->validate($this->rules());
 
         $validated['icon_url'] = $this->managedImageStorage->downloadImageIfPresent(
@@ -68,11 +72,15 @@ class PhantomJobController extends Controller
 
     public function show(PhantomJob $phantomJob): RedirectResponse
     {
+        $this->authorizeAdminAccess();
+
         return redirect()->route('admin.character-data');
     }
 
     public function update(Request $request, PhantomJob $phantomJob): RedirectResponse
     {
+        $this->authorizeAdminAccess();
+
         $originalValues = $this->phantomJobSnapshot($phantomJob);
         $validated = $request->validate($this->rules($phantomJob->id));
 
@@ -127,6 +135,8 @@ class PhantomJobController extends Controller
 
     public function destroy(PhantomJob $phantomJob): RedirectResponse
     {
+        $this->authorizeAdminAccess();
+
         $snapshot = $this->phantomJobSnapshot($phantomJob);
         $this->managedImageStorage->deleteManagedImage($phantomJob->icon_url, self::IMAGE_DIRECTORY);
         $this->managedImageStorage->deleteManagedImage($phantomJob->black_icon_url, self::IMAGE_DIRECTORY);
@@ -205,5 +215,12 @@ class PhantomJobController extends Controller
                 ],
             ])
             ->all();
+    }
+
+    private function authorizeAdminAccess(): void
+    {
+        if (!auth()->user()?->is_admin) {
+            abort(403);
+        }
     }
 }

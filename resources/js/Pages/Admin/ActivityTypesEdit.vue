@@ -25,6 +25,7 @@ const form = useForm({
 	draft_application_schema: props.activityType.draft_application_schema,
 	draft_progress_schema: props.activityType.draft_progress_schema ?? { milestones: [] },
 	draft_prog_points: props.activityType.draft_prog_points ?? [],
+	draft_fflogs_zone_id: props.activityType.draft_fflogs_zone_id ?? null,
 	is_active: props.activityType.is_active,
 });
 
@@ -34,6 +35,10 @@ const goBack = () => {
 
 const submit = () => {
 	form.put(`/admin/activity-types/${props.activityType.id}`);
+};
+
+const publish = () => {
+	router.post(`/admin/activity-types/${props.activityType.id}/publish`);
 };
 </script>
 
@@ -49,7 +54,14 @@ const submit = () => {
 		<PageHeader
 			:title="t('admin.activity_types.edit_title')"
 			:subtitle="t('admin.activity_types.edit_subtitle')"
-		/>
+		>
+			<UButton
+				color="primary"
+				icon="i-lucide-upload"
+				:label="t('admin.activity_types.publish')"
+				@click="publish"
+			/>
+		</PageHeader>
 
 		<div class="mt-6">
 			<ActivityTypeBuilderForm

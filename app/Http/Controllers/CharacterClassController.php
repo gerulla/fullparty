@@ -22,11 +22,15 @@ class CharacterClassController extends Controller
 
     public function index(): RedirectResponse
     {
+        $this->authorizeAdminAccess();
+
         return redirect()->route('admin.character-data');
     }
 
     public function store(Request $request): RedirectResponse
     {
+        $this->authorizeAdminAccess();
+
         $validated = $request->validate($this->rules());
 
         $validated['icon_url'] = $this->managedImageStorage->downloadImageIfPresent(
@@ -58,11 +62,15 @@ class CharacterClassController extends Controller
 
     public function show(CharacterClass $characterClass): RedirectResponse
     {
+        $this->authorizeAdminAccess();
+
         return redirect()->route('admin.character-data');
     }
 
     public function update(Request $request, CharacterClass $characterClass): RedirectResponse
     {
+        $this->authorizeAdminAccess();
+
         $originalValues = $this->characterClassSnapshot($characterClass);
         $validated = $request->validate($this->rules($characterClass->id));
 
@@ -105,6 +113,8 @@ class CharacterClassController extends Controller
 
     public function destroy(CharacterClass $characterClass): RedirectResponse
     {
+        $this->authorizeAdminAccess();
+
         $snapshot = $this->characterClassSnapshot($characterClass);
         $this->managedImageStorage->deleteManagedImage($characterClass->icon_url, self::IMAGE_DIRECTORY);
         $this->managedImageStorage->deleteManagedImage($characterClass->flaticon_url, self::IMAGE_DIRECTORY);
@@ -184,5 +194,12 @@ class CharacterClassController extends Controller
                 ],
             ])
             ->all();
+    }
+
+    private function authorizeAdminAccess(): void
+    {
+        if (!auth()->user()?->is_admin) {
+            abort(403);
+        }
     }
 }

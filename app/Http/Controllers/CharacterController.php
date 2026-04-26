@@ -23,6 +23,7 @@ use Illuminate\Support\Collection;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
 use Inertia\Inertia;
 use Inertia\Response;
@@ -324,7 +325,10 @@ class CharacterController extends Controller
 
 		try {
 			$data = $scraper->scrape($character->lodestone_id, ignoreCache: true);
-			$forkedTowerBloodProgress = $forkedTowerBloodProgressFetcher->fetchForCharacter($character);
+			$forkedTowerBloodProgress = $this->fetchForkedTowerBloodProgress(
+				$forkedTowerBloodProgressFetcher,
+				$character,
+			);
 
 			DB::transaction(function () use ($character, $data, $forkedTowerBloodProgress) {
 				$character->update([
@@ -358,6 +362,23 @@ class CharacterController extends Controller
 			return Redirect::back()->withErrors([
 				'error' => 'character_refresh_failed',
 			]);
+		}
+	}
+
+	private function fetchForkedTowerBloodProgress(
+		ForkedTowerBloodProgressFetcher $forkedTowerBloodProgressFetcher,
+		Character $character,
+	): array {
+		try {
+			return $forkedTowerBloodProgressFetcher->fetchForCharacter($character);
+		} catch (\Throwable $exception) {
+			Log::warning('Unable to refresh FF Logs progress during character refresh.', [
+				'character_id' => $character->id,
+				'lodestone_id' => $character->lodestone_id,
+				'exception' => $exception->getMessage(),
+			]);
+
+			return $this->emptyForkedTowerBloodProgress();
 		}
 	}
 

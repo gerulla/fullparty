@@ -43,7 +43,7 @@ const items = computed<DropdownMenuItem[][]>(() => [
 </script>
 
 <template>
-	<UDropdownMenu :items="items">
+	<UDropdownMenu v-if="user" :items="items">
 		<div class="flex items-center gap-2 cursor-pointer hover:bg-neutral-100 dark:hover:bg-neutral-800 rounded-sm px-2 py-2">
 			<UUser
 				:name="user.primary_character ? user.primary_character.name : user.name"

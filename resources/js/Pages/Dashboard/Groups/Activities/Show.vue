@@ -1,11 +1,65 @@
 <script setup lang="ts">
-import { computed } from "vue";
+import axios from "axios";
+import { computed, onMounted, ref } from "vue";
 import { useI18n } from "vue-i18n";
-import {router, usePage} from "@inertiajs/vue3";
-import PageHeader from "@/components/PageHeader.vue";
+import { router, usePage } from "@inertiajs/vue3";
 import { localizedValue } from "@/utils/localizedValue";
-import {route} from "ziggy-js";
-import { getActivityStatusMeta } from "@/utils/activityStatusMeta";
+import { route } from "ziggy-js";
+import { useToast } from "@nuxt/ui/composables";
+import ActivityOverview from "@/components/Groups/Activities/ActivityOverview.vue";
+import RosterAssignments from "@/components/Groups/Activities/RosterAssignments.vue";
+import ApplicantQueue from "@/components/Groups/Activities/ApplicantQueue.vue";
+import type { ActivitySlot } from "@/components/Groups/Activities/rosterTypes";
+
+type LocalizedText = Record<string, string | null | undefined> | null | undefined;
+
+type ActivityDetails = {
+	id: number
+	activity_type: {
+		id: number | null
+		slug: string | null
+		draft_name: LocalizedText
+	}
+	activity_type_version_id: number
+	fflogs_zone_id: number | null
+	title: string | null
+	description: string | null
+	notes: string | null
+	status: string
+	starts_at: string | null
+	duration_hours: number | null
+	target_prog_point_key: string | null
+	furthest_progress_key: string | null
+	is_public: boolean
+	needs_application: boolean
+	secret_key: string | null
+	organized_by: {
+		id: number
+		name: string
+		avatar_url: string | null
+	} | null
+	organized_by_character: {
+		id: number
+		user_id: number
+		name: string
+		avatar_url: string | null
+	} | null
+	slot_count: number
+	application_count: number
+	pending_application_count: number
+	progress_milestone_count: number
+	slots: ActivitySlot[]
+	progress_milestones: Array<{
+		id: number
+		milestone_key: string
+		milestone_label: LocalizedText
+		sort_order: number
+		kills: number
+		best_progress_percent: number | null
+		source: string | null
+		notes: string | null
+	}>
+}
 
 const props = defineProps<{
 	group: {
@@ -19,68 +73,49 @@ const props = defineProps<{
 	}
 	activity: {
 		id: number
-		activity_type: {
-			id: number | null
-			slug: string | null
-			draft_name: Record<string, string | null | undefined> | null | undefined
-		}
-		activity_type_version_id: number
-		title: string | null
-		description: string | null
-		status: string
-		starts_at: string | null
-		is_public: boolean
-		secret_key: string | null
-		organized_by: {
-			id: number
-			name: string
-			avatar_url: string | null
-		} | null
-		slot_count: number
-		application_count: number
-		progress_milestone_count: number
 	}
 }>();
 
 const { t, locale } = useI18n();
 const page = usePage();
+const toast = useToast();
 const fallbackLocale = computed(() => String(page.props.locale?.fallback ?? 'en'));
+const rosterView = ref<'party' | 'role' | 'list'>('party');
+const showApplicantQueue = ref(true);
+const isLoading = ref(true);
+const activityData = ref<ActivityDetails | null>(null);
 
+const currentActivity = computed(() => activityData.value);
 const activityTypeName = computed(() => {
-	return localizedValue(props.activity.activity_type?.draft_name, locale.value, fallbackLocale.value)
-		|| props.activity.activity_type?.slug
+	if (!currentActivity.value) {
+		return '';
+	}
+
+	return localizedValue(currentActivity.value.activity_type?.draft_name, locale.value, fallbackLocale.value)
+		|| currentActivity.value.activity_type?.slug
 		|| t('groups.activities.cards.unknown_type');
 });
 
-const activityTitle = computed(() => props.activity.title || activityTypeName.value);
-
-const startsAtLabel = computed(() => {
-	if (!props.activity.starts_at) {
-		return t('groups.activities.cards.no_time');
-	}
-
-	return new Intl.DateTimeFormat(locale.value, {
-		weekday: 'long',
-		day: 'numeric',
-		month: 'long',
-		hour: '2-digit',
-		minute: '2-digit',
-	}).format(new Date(props.activity.starts_at));
-});
-
-const statusMeta = computed(() => getActivityStatusMeta(props.activity.status));
-
-const canEditActivity = computed(() => props.activity.status !== 'complete');
+const activityTitle = computed(() => currentActivity.value?.title || activityTypeName.value);
+const canEditActivity = computed(() => currentActivity.value?.status !== 'complete');
+const organizerName = computed(() => currentActivity.value?.organized_by_character?.name || null);
+const organizerAvatarUrl = computed(() => currentActivity.value?.organized_by_character?.avatar_url || null);
+const assignedCount = computed(() => currentActivity.value?.slots.filter((slot) => slot.assigned_character_id !== null).length ?? 0);
+const pendingApplicationCount = computed(() => currentActivity.value?.pending_application_count ?? 0);
 
 const goBack = () => {
 	router.get(route('groups.dashboard.activities.index', props.group.slug));
 };
 
 const goToOverviewPage = () => {
+	if (!currentActivity.value) {
+		return;
+	}
+
 	router.get(route('groups.activities.overview', {
 		group: props.group.slug,
-		activity: props.activity.id,
-		secretKey: props.activity.is_public ? undefined : props.activity.secret_key,
+		activity: currentActivity.value.id,
+		secretKey: currentActivity.value.is_public ? undefined : currentActivity.value.secret_key,
 	}));
 };
 
@@ -90,10 +125,67 @@ const goToEditPage = () => {
 		activity: props.activity.id,
 	}));
 };
+
+const activityApplicationRouteParams = computed(() => {
+	if (!currentActivity.value) {
+		return null;
+	}
+
+	return {
+		group: props.group.slug,
+		activity: currentActivity.value.id,
+		secretKey: currentActivity.value.is_public ? undefined : currentActivity.value.secret_key,
+	};
+});
+
+const goToApplicationPage = () => {
+	if (!activityApplicationRouteParams.value) {
+		return;
+	}
+
+	router.get(route('groups.activities.application', activityApplicationRouteParams.value));
+};
+
+const copyApplicationLink = async () => {
+	if (!activityApplicationRouteParams.value) {
+		return;
+	}
+
+	await navigator.clipboard.writeText(`${window.location.origin}${route('groups.activities.application', activityApplicationRouteParams.value, false)}`);
+
+	toast.add({
+		title: t('general.success'),
+		description: t('groups.activities.management.overview.application_link_copied'),
+		color: 'success',
+		icon: 'i-lucide-copy-check',
+	});
+};
+
+const fetchManagementData = async () => {
+	isLoading.value = true;
+
+	try {
+		const response = await axios.get(route('groups.dashboard.activities.management-data', {
+			group: props.group.slug,
+			activity: props.activity.id,
+		}));
+
+		activityData.value = response.data?.activity ?? null;
+	} catch (error) {
+		console.error(error);
+		activityData.value = null;
+	} finally {
+		isLoading.value = false;
+	}
+};
+
+onMounted(() => {
+	void fetchManagementData();
+});
 </script>
 
 <template>
-	<div class="w-full">
+	<div class="w-full overflow-x-hidden">
 		<UButton
 			:label="t('groups.activities.back')"
 			icon="i-lucide-arrow-left"
@@ -101,88 +193,133 @@ const goToEditPage = () => {
 			color="neutral"
 			@click.stop="goBack"
 		/>
-		<PageHeader
-			:title="activityTitle"
-			:subtitle="t('groups.activities.management.subtitle', { type: activityTypeName })"
-		>
-			<div class="flex items-center gap-2">
-				<UBadge
-					size="lg"
-					variant="subtle"
-					class="min-w-44 justify-center py-2"
-					:color="statusMeta.color"
-					:icon="statusMeta.icon"
-					:label="t(`groups.activities.statuses.${activity.status}`)"
+
+		<div class="mt-4">
+			<ActivityOverview
+				v-if="currentActivity"
+				:title="activityTitle"
+				:status="currentActivity.status"
+				:can-edit="canEditActivity"
+				:roster-view="rosterView"
+				:show-applicant-queue="showApplicantQueue"
+				:group-name="group.name"
+				:activity-type-name="activityTypeName"
+				:starts-at="currentActivity.starts_at"
+				:duration-hours="currentActivity.duration_hours"
+				:organizer-name="organizerName"
+				:organizer-avatar-url="organizerAvatarUrl"
+				:slot-count="currentActivity.slot_count"
+				:assigned-count="assignedCount"
+				:pending-application-count="pendingApplicationCount"
+				:needs-application="currentActivity.needs_application"
+				:description="currentActivity.description"
+				:notes="currentActivity.notes"
+				@edit="goToEditPage"
+				@view-overview="goToOverviewPage"
+				@go-to-application="goToApplicationPage"
+				@copy-application-link="copyApplicationLink"
+				@update-roster-view="rosterView = $event"
+				@toggle-applicant-queue="showApplicantQueue = !showApplicantQueue"
+			/>
+
+			<section
+				v-else-if="isLoading"
+				class="border border-default bg-muted dark:bg-elevated/50 px-5 py-5 shadow-sm"
+			>
+				<div class="flex flex-col gap-4">
+					<div class="flex flex-col gap-4 border-b border-default pb-4 xl:flex-row xl:items-start xl:justify-between">
+						<div class="flex flex-col gap-3">
+							<div class="flex flex-wrap items-center gap-3">
+								<USkeleton class="h-8 w-64" />
+								<USkeleton class="h-6 w-24" />
+								<USkeleton class="h-6 w-32" />
+							</div>
+						</div>
+
+						<div class="flex flex-wrap items-center gap-2 xl:justify-end">
+							<USkeleton class="h-10 w-28" />
+							<USkeleton class="h-10 w-32" />
+						</div>
+					</div>
+
+					<div class="flex flex-wrap items-center gap-x-6 gap-y-3">
+						<USkeleton class="h-5 w-32" />
+						<USkeleton class="h-5 w-40" />
+						<USkeleton class="h-5 w-28" />
+					</div>
+
+					<div class="flex flex-wrap items-center gap-x-6 gap-y-3 border-t border-default pt-4">
+						<USkeleton class="h-5 w-36" />
+						<USkeleton class="h-5 w-40" />
+						<USkeleton class="h-5 w-44" />
+					</div>
+
+					<div class="flex flex-col gap-3 border-t border-default pt-4">
+						<USkeleton class="h-4 w-full" />
+						<USkeleton class="h-4 w-11/12" />
+						<USkeleton class="h-4 w-3/4" />
+					</div>
+				</div>
+			</section>
+
+			<UAlert
+				v-else
+				color="error"
+				variant="soft"
+				:title="t('general.error')"
+				description="Unable to load activity details."
+			>
+				<template #actions>
+					<UButton
+						color="error"
+						variant="outline"
+						size="sm"
+						icon="i-lucide-refresh-cw"
+						label="Retry"
+						@click="fetchManagementData"
+					/>
+				</template>
+			</UAlert>
+		</div>
+
+		<div class="mt-6 flex flex-col gap-6 xl:flex-row xl:items-start">
+			<div class="min-w-0 flex-1">
+				<RosterAssignments
+					v-if="currentActivity"
+					:view="rosterView"
+					:slots="currentActivity.slots"
 				/>
-				<UButton
-					v-if="canEditActivity"
-					color="neutral"
-					variant="soft"
-					icon="i-lucide-pencil"
-					:label="t('groups.activities.management.edit')"
-					@click="goToEditPage"
-				/>
-				<UButton
-					color="neutral"
-					variant="soft"
-					icon="i-lucide-eye"
-					:label="t('groups.activities.management.view_overview')"
-					@click="goToOverviewPage"
-				/>
+
+				<section v-else-if="isLoading" class="flex flex-col gap-4 transition-all duration-300 ease-in-out">
+					<h2 class="font-semibold text-lg text-toned">
+						{{ t('groups.activities.management.roster.title') }}
+					</h2>
+
+					<div class="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-3">
+						<USkeleton class="h-36 w-full" />
+						<USkeleton class="h-36 w-full" />
+						<USkeleton class="h-36 w-full" />
+						<USkeleton class="h-36 w-full" />
+						<USkeleton class="h-36 w-full" />
+						<USkeleton class="h-36 w-full" />
+					</div>
+				</section>
 			</div>
-		</PageHeader>
 
-		<div class="mt-4 grid grid-cols-1 gap-6 xl:grid-cols-[1.25fr_0.75fr]">
-			<UCard class="dark:bg-elevated/25">
-				<template #header>
-					<div class="flex flex-col gap-1">
-						<p class="font-semibold text-md">{{ t('groups.activities.management.title') }}</p>
-						<p class="text-sm text-muted">{{ t('groups.activities.management.placeholder') }}</p>
-					</div>
-				</template>
-
-				<div class="rounded-sm border border-dashed border-default bg-muted/10 px-5 py-10 text-sm text-muted">
-					{{ t('groups.activities.management.coming_soon') }}
+			<div
+				class="sticky top-4 self-start transition-all duration-300 ease-in-out"
+				:class="showApplicantQueue
+					? 'xl:w-96 xl:opacity-100'
+					: 'xl:w-0 xl:opacity-0 xl:pointer-events-none'"
+			>
+				<div class="w-full min-w-0 xl:w-96">
+					<ApplicantQueue
+						:group-slug="group.slug"
+						:activity-id="activity.id"
+						:initial-pending-application-count="currentActivity?.pending_application_count"
+					/>
 				</div>
-			</UCard>
-
-			<UCard class="dark:bg-elevated/25">
-				<template #header>
-					<div class="flex flex-col gap-1">
-						<p class="font-semibold text-md">{{ t('groups.activities.management.summary_title') }}</p>
-						<p class="text-sm text-muted">{{ t('groups.activities.management.summary_subtitle') }}</p>
-					</div>
-				</template>
-
-				<div class="flex flex-col gap-3">
-					<div class="rounded-sm border border-default bg-muted/10 px-4 py-4">
-						<p class="text-xs uppercase tracking-wide text-muted">{{ t('groups.activities.management.type') }}</p>
-						<p class="mt-2 font-semibold text-toned">{{ activityTypeName }}</p>
-					</div>
-					<div class="rounded-sm border border-default bg-muted/10 px-4 py-4">
-						<p class="text-xs uppercase tracking-wide text-muted">{{ t('groups.activities.management.starts_at') }}</p>
-						<p class="mt-2 font-semibold text-toned">{{ startsAtLabel }}</p>
-					</div>
-					<div class="rounded-sm border border-default bg-muted/10 px-4 py-4">
-						<p class="text-xs uppercase tracking-wide text-muted">{{ t('groups.activities.management.organizer') }}</p>
-						<p class="mt-2 font-semibold text-toned">{{ activity.organized_by?.name || t('groups.activities.cards.no_organizer') }}</p>
-					</div>
-					<div class="grid grid-cols-3 gap-3">
-						<div class="rounded-sm border border-default bg-muted/10 px-4 py-4">
-							<p class="text-xs uppercase tracking-wide text-muted">{{ t('groups.activities.management.slots') }}</p>
-							<p class="mt-2 text-xl font-semibold text-toned">{{ activity.slot_count }}</p>
-						</div>
-						<div class="rounded-sm border border-default bg-muted/10 px-4 py-4">
-							<p class="text-xs uppercase tracking-wide text-muted">{{ t('groups.activities.management.applications') }}</p>
-							<p class="mt-2 text-xl font-semibold text-toned">{{ activity.application_count }}</p>
-						</div>
-						<div class="rounded-sm border border-default bg-muted/10 px-4 py-4">
-							<p class="text-xs uppercase tracking-wide text-muted">{{ t('groups.activities.management.milestones') }}</p>
-							<p class="mt-2 text-xl font-semibold text-toned">{{ activity.progress_milestone_count }}</p>
-						</div>
-					</div>
-				</div>
-			</UCard>
+			</div>
 		</div>
 	</div>
 </template>

@@ -37,7 +37,8 @@ export default defineConfig({
                 button: {
                   slots: {
                       base: [
-                          'rounded-none'
+                          'rounded-none',
+                          'cursor-pointer'
                       ]
                   }
                 },

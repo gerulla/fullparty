@@ -51,3 +51,10 @@
     --color-brand-900: #43295a;
     --color-brand-950: #2c183d;
 }
+
+@layer base {
+    button:not(:disabled),
+    [role="button"]:not([aria-disabled="true"]) {
+        cursor: pointer;
+    }
+}

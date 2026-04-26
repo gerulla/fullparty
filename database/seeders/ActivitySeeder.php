@@ -3,12 +3,13 @@
 namespace Database\Seeders;
 
 use App\Models\Activity;
+use App\Models\ActivityApplication;
 use App\Models\ActivityType;
-use App\Models\ActivityTypeVersion;
 use App\Models\Group;
+use App\Models\GroupMembership;
+use App\Models\User;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Carbon;
-use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Collection;
 use RuntimeException;
 
 class ActivitySeeder extends Seeder
@@ -18,189 +19,372 @@ class ActivitySeeder extends Seeder
      */
     public function run(): void
     {
-        $group = Group::query()
-            ->with('memberships')
-            ->where('slug', 'ftel')
-            ->first();
+        $groups = Group::query()
+            ->with([
+                'memberships.user.primaryCharacter',
+            ])
+            ->orderBy('id')
+            ->get();
 
-        if (!$group) {
-            throw new RuntimeException('Forked Tower Enjoyers group was not found. Seed groups before activities.');
+        if ($groups->count() < 20) {
+            throw new RuntimeException('Expected at least 20 groups before seeding activities.');
         }
 
-        $activityType = ActivityType::query()
+        $activityTypes = ActivityType::query()
             ->with('currentPublishedVersion')
-            ->where('slug', 'forked-tower')
-            ->first();
+            ->get()
+            ->keyBy('slug');
 
-        if (!$activityType || !$activityType->currentPublishedVersion) {
-            throw new RuntimeException('Forked Tower activity type was not found. Seed activity types before activities.');
+        $forkedTower = $activityTypes->get('forked-tower');
+        $chaotic = $activityTypes->get('cloud-of-darkness-chaotic');
+        $savage = $activityTypes->get('savage-raids');
+
+        if (!$forkedTower?->currentPublishedVersion || !$chaotic?->currentPublishedVersion || !$savage?->currentPublishedVersion) {
+            throw new RuntimeException('Expected published activity types for forked tower, chaotic, and savage.');
         }
 
-        DB::transaction(function () use ($group, $activityType) {
-            DB::table('activity_slot_field_values')->delete();
-            DB::table('activity_slots')->delete();
-            DB::table('activity_application_answers')->delete();
-            DB::table('activity_applications')->delete();
-            DB::table('activity_progress_milestones')->delete();
-            DB::table('activities')->delete();
+        $referenceDate = now()->startOfDay();
 
-            $organizerIds = $group->memberships
-                ->pluck('user_id')
-                ->unique()
-                ->values()
-                ->all();
+        $groups->each(function (Group $group) use ($forkedTower, $chaotic, $savage) {
+            $groupMemberUsers = $group->memberships
+                ->map(fn (GroupMembership $membership) => $membership->user)
+                ->filter(fn (?User $user) => $user instanceof User && $user->primaryCharacter)
+                ->values();
 
-            foreach ($this->activityBlueprints() as $index => $blueprint) {
-                $startsAt = Carbon::parse($blueprint['starts_at']);
-                $status = $this->resolveStatus($startsAt, $index);
-                $organizerId = $organizerIds[$index % count($organizerIds)] ?? $group->owner_id;
+            if ($groupMemberUsers->isEmpty()) {
+                return;
+            }
 
-                $activity = $group->activities()->create([
-                    'activity_type_id' => $activityType->id,
-                    'activity_type_version_id' => $activityType->currentPublishedVersion->id,
-                    'organized_by_user_id' => $organizerId,
-                    'status' => $status,
-                    'title' => $blueprint['title'],
-                    'description' => $blueprint['description'],
-                    'starts_at' => $startsAt,
-                    'is_completed' => $status === Activity::STATUS_COMPLETE,
-                    'completed_at' => $status === Activity::STATUS_COMPLETE ? $startsAt->copy()->addHours(3) : null,
-                    'created_at' => $startsAt->copy()->subDays(5),
-                    'updated_at' => $status === Activity::STATUS_COMPLETE
-                        ? $startsAt->copy()->addHours(3)
-                        : $startsAt->copy()->subHours(4),
-                ]);
+            $organizerPool = $group->memberships
+                ->filter(fn (GroupMembership $membership) => $membership->user && $membership->user->primaryCharacter)
+                ->values();
 
-                $this->materializeSlots($activity, $activityType->currentPublishedVersion);
-                $this->materializeProgressMilestones($activity, $activityType->currentPublishedVersion, $status);
+            $activityCount = $group->slug === 'ftel'
+                ? 24
+                : fake()->numberBetween(5, 50);
+
+            foreach (range(1, $activityCount) as $activityIndex) {
+                $type = $group->slug === 'ftel'
+                    ? $forkedTower
+                    : $this->pickActivityType($forkedTower, $chaotic, $savage);
+
+                /** @var GroupMembership $organizerMembership */
+                $organizerMembership = $organizerPool->random();
+                $organizer = $organizerMembership->user;
+                $startsAt = $this->futureStartsAt($activityIndex);
+                $status = $this->resolveFutureStatus($startsAt);
+                $progPointKey = $this->pickTargetProgPointKey($type->currentPublishedVersion->prog_points ?? []);
+                $slotGroups = $type->currentPublishedVersion->layout_schema['groups'] ?? [];
+                $minAssignedSlots = $this->minimumAssignedSlotCount($slotGroups);
+                $maxAssignedSlots = $this->maximumAssignedSlotCount($slotGroups, $minAssignedSlots);
+
+                $activity = Activity::factory()
+                    ->for($group)
+                    ->for($type)
+                    ->for($type->currentPublishedVersion, 'activityTypeVersion')
+                    ->withRandomAssignments($minAssignedSlots, $maxAssignedSlots)
+                    ->create([
+                        'organized_by_user_id' => $organizer->id,
+                        'organized_by_character_id' => $organizer->primaryCharacter->id,
+                        'status' => $status,
+                        'title' => $this->activityTitleForType($type->slug),
+                        'description' => fake()->sentence(),
+                        'notes' => fake()->boolean(35) ? fake()->paragraph() : null,
+                        'starts_at' => $startsAt,
+                        'duration_hours' => fake()->randomElement([2, 3, 6]),
+                        'target_prog_point_key' => $progPointKey,
+                        'is_public' => $group->is_public ? fake()->boolean(80) : fake()->boolean(35),
+                        'needs_application' => true,
+                        'created_at' => $startsAt->copy()->subDays(fake()->numberBetween(3, 14)),
+                        'updated_at' => $startsAt->copy()->subHours(fake()->numberBetween(1, 48)),
+                    ]);
+
+                $this->seedApplicationsForActivity($activity, $groupMemberUsers, $organizerPool);
+            }
+        });
+
+        $groups->each(function (Group $group) use ($forkedTower, $chaotic, $savage, $referenceDate) {
+            $groupMemberUsers = $group->memberships
+                ->map(fn (GroupMembership $membership) => $membership->user)
+                ->filter(fn (?User $user) => $user instanceof User && $user->primaryCharacter)
+                ->values();
+
+            if ($groupMemberUsers->isEmpty()) {
+                return;
+            }
+
+            $organizerPool = $group->memberships
+                ->filter(fn (GroupMembership $membership) => $membership->user && $membership->user->primaryCharacter)
+                ->values();
+
+            $historicalActivityCount = $group->slug === 'ftel'
+                ? 12
+                : fake()->numberBetween(4, 6);
+
+            foreach (range(1, $historicalActivityCount) as $activityIndex) {
+                $type = $group->slug === 'ftel'
+                    ? $forkedTower
+                    : $this->pickActivityType($forkedTower, $chaotic, $savage);
+
+                /** @var GroupMembership $organizerMembership */
+                $organizerMembership = $organizerPool->random();
+                $organizer = $organizerMembership->user;
+                $startsAt = $this->historicalStartsAt($referenceDate, $activityIndex);
+                $progPointKey = $this->pickTargetProgPointKey($type->currentPublishedVersion->prog_points ?? []);
+                $slotGroups = $type->currentPublishedVersion->layout_schema['groups'] ?? [];
+                $minAssignedSlots = $this->historicalMinimumAssignedSlotCount($slotGroups);
+                $maxAssignedSlots = $this->historicalMaximumAssignedSlotCount($slotGroups, $minAssignedSlots);
+                $durationHours = fake()->randomElement([2, 3, 6]);
+
+                Activity::factory()
+                    ->for($group)
+                    ->for($type)
+                    ->for($type->currentPublishedVersion, 'activityTypeVersion')
+                    ->complete()
+                    ->withRandomAssignments($minAssignedSlots, $maxAssignedSlots)
+                    ->create([
+                        'organized_by_user_id' => $organizer->id,
+                        'organized_by_character_id' => $organizer->primaryCharacter->id,
+                        'status' => Activity::STATUS_COMPLETE,
+                        'title' => $this->historicalActivityTitleForType($type->slug),
+                        'description' => fake()->sentence(),
+                        'notes' => fake()->boolean(30) ? fake()->paragraph() : null,
+                        'starts_at' => $startsAt,
+                        'duration_hours' => $durationHours,
+                        'target_prog_point_key' => $progPointKey,
+                        'is_public' => $group->is_public ? fake()->boolean(80) : fake()->boolean(35),
+                        'needs_application' => true,
+                        'is_completed' => true,
+                        'completed_at' => $startsAt->copy()->addHours($durationHours),
+                        'created_at' => $startsAt->copy()->subDays(fake()->numberBetween(7, 28)),
+                        'updated_at' => $startsAt->copy()->subHours(fake()->numberBetween(2, 72)),
+                    ]);
             }
         });
     }
 
     /**
-     * @return array<int, array{title: string, description: string, starts_at: string}>
+     * @param  array<int, array<string, mixed>>  $groups
      */
-    private function activityBlueprints(): array
+    private function minimumAssignedSlotCount(array $groups): int
     {
-        return [
-            $this->activityBlueprint('Forked Tower Fresh Prog', 'Fresh pull night focused on getting everyone comfortable with boss one assignments.', '2026-04-02 19:30:00'),
-            $this->activityBlueprint('Forked Tower Boss 2 Cleanup', 'Follow-up run for players who already saw Demon Tablet and want smoother boss two pulls.', '2026-04-02 22:00:00'),
-            $this->activityBlueprint('Forked Tower Reclear Night', 'Weekly reclear pace with flexible party lead assignments.', '2026-04-04 19:00:00'),
-            $this->activityBlueprint('Forked Tower Learning Party', 'Relaxed teaching-focused run for newer members and alt characters.', '2026-04-08 19:30:00'),
-            $this->activityBlueprint('Forked Tower Boss 3 Prog', 'Marble Dragon progression with emphasis on cleaner transitions and recoveries.', '2026-04-08 22:00:00'),
-            $this->activityBlueprint('Forked Tower Weekend Push', 'Longer weekend block for groups aiming to get deeper into boss three.', '2026-04-08 23:30:00'),
-            $this->activityBlueprint('Forked Tower Midweek Reclear', 'Structured reclear run with pre-assigned support and lead roles.', '2026-04-14 19:30:00'),
-            $this->activityBlueprint('Forked Tower Tonight', 'Tonight\'s run for members available on short notice.', '2026-04-16 20:00:00'),
-            $this->activityBlueprint('Forked Tower Friday Prog', 'Friday evening progression run with callout coverage for every party.', '2026-04-16 22:30:00'),
-            $this->activityBlueprint('Forked Tower Saturday Learning', 'Weekend learner-friendly session for new signups and backups.', '2026-04-18 18:30:00'),
-            $this->activityBlueprint('Forked Tower Boss 4 Attempts', 'Dedicated Magitaur attempts for members already consistent on earlier bosses.', '2026-04-18 21:30:00'),
-            $this->activityBlueprint('Forked Tower Weekly Clear', 'Core weekly clear run with experienced players filling key spots.', '2026-04-22 19:30:00'),
-            $this->activityBlueprint('Forked Tower Late Night Alt Run', 'Alt-focused run with looser roster expectations and backup slots.', '2026-04-22 22:00:00'),
-            $this->activityBlueprint('Forked Tower Sunday Push', 'Long-form progression push for anyone close to a clear.', '2026-04-22 23:30:00'),
-            $this->activityBlueprint('Forked Tower Cleanup & Clears', 'Cleanup session for parties needing one more consistent set of pulls.', '2026-04-27 19:30:00'),
-            $this->activityBlueprint('Forked Tower End of Month Reclear', 'Month-end reclear to wrap up April and test alternate compositions.', '2026-04-29 19:30:00'),
-            $this->activityBlueprint('Forked Tower Casual Night', 'Casual social run for whoever is around at the end of the month.', '2026-04-29 22:30:00'),
-        ];
+        $slotCount = collect($groups)->sum(fn (array $group) => (int) ($group['size'] ?? 0));
+
+        return match (true) {
+            $slotCount <= 8 => 1,
+            $slotCount <= 24 => fake()->numberBetween(4, 10),
+            default => fake()->numberBetween(8, 20),
+        };
     }
 
     /**
-     * @return array{title: string, description: string, starts_at: string}
+     * @param  array<int, array<string, mixed>>  $groups
      */
-    private function activityBlueprint(string $title, string $description, string $startsAt): array
+    private function maximumAssignedSlotCount(array $groups, int $minimum): int
     {
-        return [
-            'title' => $title,
-            'description' => $description,
-            'starts_at' => $startsAt,
-        ];
+        $slotCount = collect($groups)->sum(fn (array $group) => (int) ($group['size'] ?? 0));
+
+        return match (true) {
+            $slotCount <= 8 => $slotCount,
+            $slotCount <= 24 => max($minimum, fake()->numberBetween(10, $slotCount)),
+            default => max($minimum, fake()->numberBetween(20, $slotCount)),
+        };
     }
 
-    private function resolveStatus(Carbon $startsAt, int $index): string
+    /**
+     * @param  array<int, array<string, mixed>>  $groups
+     */
+    private function historicalMinimumAssignedSlotCount(array $groups): int
     {
-        $now = now();
+        $slotCount = collect($groups)->sum(fn (array $group) => (int) ($group['size'] ?? 0));
 
-        if ($startsAt->isFuture()) {
-            if ($startsAt->isSameDay($now)) {
-                return $startsAt->lessThanOrEqualTo($now->copy()->addHours(2))
-                    ? Activity::STATUS_ONGOING
-                    : Activity::STATUS_UPCOMING;
-            }
+        return match (true) {
+            $slotCount <= 8 => max(4, min(8, $slotCount)),
+            $slotCount <= 24 => fake()->numberBetween(10, min(18, $slotCount)),
+            default => fake()->numberBetween(18, min(36, $slotCount)),
+        };
+    }
 
-            $daysUntil = $now->diffInDays($startsAt, false);
+    /**
+     * @param  array<int, array<string, mixed>>  $groups
+     */
+    private function historicalMaximumAssignedSlotCount(array $groups, int $minimum): int
+    {
+        $slotCount = collect($groups)->sum(fn (array $group) => (int) ($group['size'] ?? 0));
+        $floor = max($minimum, (int) floor($slotCount * 0.75));
 
-            if ($daysUntil <= 2) {
-                return Activity::STATUS_UPCOMING;
-            }
+        return match (true) {
+            $slotCount <= 8 => $slotCount,
+            $slotCount <= 24 => min($slotCount, max($floor, fake()->numberBetween($minimum, $slotCount))),
+            default => min($slotCount, max($floor, fake()->numberBetween($minimum, $slotCount))),
+        };
+    }
 
-            if ($daysUntil <= 7) {
-                return Activity::STATUS_SCHEDULED;
-            }
+    private function pickActivityType(ActivityType $forkedTower, ActivityType $chaotic, ActivityType $savage): ActivityType
+    {
+        $roll = fake()->numberBetween(1, 100);
 
-            return Activity::STATUS_PLANNED;
+        if ($roll <= 60) {
+            return $savage;
         }
 
-        return $index % 6 === 0
-            ? Activity::STATUS_CANCELLED
-            : Activity::STATUS_COMPLETE;
-    }
-
-    private function materializeSlots(Activity $activity, ActivityTypeVersion $activityTypeVersion): void
-    {
-        $slotDefinitions = $activityTypeVersion->slot_schema ?? [];
-        $groups = $activityTypeVersion->layout_schema['groups'] ?? [];
-        $sortOrder = 1;
-
-        foreach ($groups as $groupDefinition) {
-            $groupKey = (string) ($groupDefinition['key'] ?? 'group');
-            $groupLabel = is_array($groupDefinition['label'] ?? null) ? $groupDefinition['label'] : ['en' => $groupKey];
-            $size = max(1, (int) ($groupDefinition['size'] ?? 1));
-
-            for ($position = 1; $position <= $size; $position++) {
-                $slot = $activity->slots()->create([
-                    'group_key' => $groupKey,
-                    'group_label' => $groupLabel,
-                    'slot_key' => sprintf('%s-slot-%d', $groupKey, $position),
-                    'slot_label' => ['en' => sprintf('%s %d', $groupLabel['en'] ?? $groupKey, $position)],
-                    'position_in_group' => $position,
-                    'sort_order' => $sortOrder,
-                ]);
-
-                foreach ($slotDefinitions as $fieldDefinition) {
-                    $slot->fieldValues()->create([
-                        'field_key' => (string) ($fieldDefinition['key'] ?? ''),
-                        'field_label' => is_array($fieldDefinition['label'] ?? null) ? $fieldDefinition['label'] : ['en' => (string) ($fieldDefinition['key'] ?? '')],
-                        'field_type' => (string) ($fieldDefinition['type'] ?? 'text'),
-                        'source' => $fieldDefinition['source'] ?? null,
-                        'value' => null,
-                    ]);
-                }
-
-                $sortOrder++;
-            }
+        if ($roll <= 80) {
+            return $chaotic;
         }
+
+        return $forkedTower;
     }
 
-    private function materializeProgressMilestones(Activity $activity, ActivityTypeVersion $activityTypeVersion, string $status): void
+    private function futureStartsAt(int $activityIndex): \Illuminate\Support\Carbon
     {
-        $milestones = $activityTypeVersion->progress_schema['milestones'] ?? [];
+        $base = now()->startOfDay()->addDays(fake()->numberBetween(1, 90));
+        $hour = fake()->randomElement([18, 19, 20, 21, 22]);
+        $minute = fake()->randomElement([0, 15, 30, 45]);
 
-        foreach ($milestones as $index => $milestoneDefinition) {
-            $isEarlierMilestone = $status === Activity::STATUS_COMPLETE && $index < 2;
-            $isFinalMilestone = $status === Activity::STATUS_COMPLETE && $index === count($milestones) - 1;
+        return $base
+            ->copy()
+            ->setTime($hour, $minute)
+            ->addDays(intdiv($activityIndex, 4));
+    }
 
-            $activity->progressMilestones()->create([
-                'milestone_key' => (string) ($milestoneDefinition['key'] ?? ('milestone-'.($index + 1))),
-                'milestone_label' => is_array($milestoneDefinition['label'] ?? null) ? $milestoneDefinition['label'] : ['en' => (string) ($milestoneDefinition['key'] ?? 'Milestone')],
-                'sort_order' => (int) ($milestoneDefinition['order'] ?? $index + 1),
-                'kills' => $status === Activity::STATUS_COMPLETE
-                    ? ($isEarlierMilestone ? 1 : ($isFinalMilestone ? 1 : 0))
-                    : 0,
-                'best_progress_percent' => $status === Activity::STATUS_COMPLETE
-                    ? ($isEarlierMilestone || $isFinalMilestone ? 100 : null)
-                    : null,
-                'source' => null,
-                'notes' => null,
+    private function historicalStartsAt(\Illuminate\Support\Carbon $referenceDate, int $activityIndex): \Illuminate\Support\Carbon
+    {
+        $daysBack = fake()->numberBetween(5, 150) + intdiv($activityIndex, 3);
+        $hour = fake()->randomElement([18, 19, 20, 21, 22]);
+        $minute = fake()->randomElement([0, 15, 30, 45]);
+
+        return $referenceDate
+            ->copy()
+            ->subDays($daysBack)
+            ->setTime($hour, $minute);
+    }
+
+    private function resolveFutureStatus(\Illuminate\Support\Carbon $startsAt): string
+    {
+        $daysUntil = now()->diffInDays($startsAt, false);
+
+        if ($daysUntil <= 2) {
+            return Activity::STATUS_UPCOMING;
+        }
+
+        if ($daysUntil <= 10) {
+            return Activity::STATUS_SCHEDULED;
+        }
+
+        return Activity::STATUS_PLANNED;
+    }
+
+    /**
+     * @param  array<int, array<string, mixed>>  $progPoints
+     */
+    private function pickTargetProgPointKey(array $progPoints): ?string
+    {
+        if ($progPoints === []) {
+            return null;
+        }
+
+        $point = collect($progPoints)->random();
+
+        return $point['key'] ?? null;
+    }
+
+    private function activityTitleForType(string $slug): string
+    {
+        return match ($slug) {
+            'forked-tower' => fake()->randomElement([
+                'Forked Tower Weekly Clear',
+                'Forked Tower Fresh Prog',
+                'Forked Tower Bridges Cleanup',
+                'Forked Tower Late Night Push',
+                'Forked Tower Magitaur Attempts',
+            ]),
+            'cloud-of-darkness-chaotic' => fake()->randomElement([
+                'Chaotic Alliance Fill',
+                'Cloud of Darkness Reclear',
+                'Chaotic Learning Run',
+                'Alliance Night Pulls',
+            ]),
+            default => fake()->randomElement([
+                'Savage Weekly Reclear',
+                'Savage Prog Night',
+                'Savage Alt Run',
+                'Savage Static Fill',
+            ]),
+        };
+    }
+
+    private function historicalActivityTitleForType(string $slug): string
+    {
+        return match ($slug) {
+            'forked-tower' => fake()->randomElement([
+                'Forked Tower Reclear Night',
+                'Forked Tower Archive Clear',
+                'Forked Tower Weekly History',
+                'Forked Tower Blood Cleanup',
+            ]),
+            'cloud-of-darkness-chaotic' => fake()->randomElement([
+                'Chaotic Archive Clear',
+                'Cloud of Darkness Farm',
+                'Chaotic Reclear Night',
+            ]),
+            default => fake()->randomElement([
+                'Savage Reclear Archive',
+                'Savage Historical Farm',
+                'Savage Weekly Log Run',
+            ]),
+        };
+    }
+
+    private function seedApplicationsForActivity(Activity $activity, Collection $groupMemberUsers, Collection $organizerPool): void
+    {
+        $applicantPool = $groupMemberUsers
+            ->reject(fn (User $user) => $user->id === $activity->organized_by_user_id)
+            ->shuffle()
+            ->values();
+
+        if ($applicantPool->isEmpty()) {
+            return;
+        }
+
+        $memberCount = $groupMemberUsers->count();
+        $baseCount = (int) round($memberCount * fake()->randomFloat(2, 0.08, 0.65));
+        $applicationCount = max(1, min(
+            100,
+            $applicantPool->count(),
+            $baseCount + fake()->numberBetween(0, 12)
+        ));
+
+        $selectedApplicants = $applicantPool->take($applicationCount);
+
+        $selectedApplicants->each(function (User $user) use ($activity, $organizerPool): void {
+            $status = fake()->randomElement([
+                ActivityApplication::STATUS_PENDING,
+                ActivityApplication::STATUS_PENDING,
+                ActivityApplication::STATUS_PENDING,
+                ActivityApplication::STATUS_APPROVED,
+                ActivityApplication::STATUS_DECLINED,
             ]);
-        }
+
+            $reviewerId = null;
+            $reviewedAt = null;
+
+            if ($status !== ActivityApplication::STATUS_PENDING) {
+                /** @var GroupMembership $reviewerMembership */
+                $reviewerMembership = $organizerPool->random();
+                $reviewerId = $reviewerMembership->user_id;
+                $reviewedAt = $activity->starts_at->copy()->subHours(fake()->numberBetween(4, 48));
+            }
+
+            ActivityApplication::factory()
+                ->for($activity)
+                ->for($user)
+                ->create([
+                    'status' => $status,
+                    'notes' => fake()->boolean(55) ? fake()->sentence() : null,
+                    'submitted_at' => $activity->starts_at->copy()->subDays(fake()->numberBetween(1, 10)),
+                    'reviewed_by_user_id' => $reviewerId,
+                    'reviewed_at' => $reviewedAt,
+                ]);
+        });
     }
 }

@@ -41,6 +41,7 @@ const form = useForm({
 		milestones: [],
 	},
 	draft_prog_points: [],
+	draft_fflogs_zone_id: null,
 	is_active: true,
 });
 

@@ -5,6 +5,7 @@ import { usePage } from "@inertiajs/vue3";
 import { localizedValue } from "@/utils/localizedValue";
 import ActivityCharacterFflogsProgress from "@/components/Groups/Activities/ActivityCharacterFflogsProgress.vue";
 import ApplicantUserStats from "@/components/Groups/Activities/ApplicantUserStats.vue";
+import { setQueueApplicationDragData } from "@/components/Groups/Activities/rosterDragData";
 
 type LocalizedText = Record<string, string | null | undefined> | null | undefined;
 
@@ -243,10 +244,30 @@ const notePreview = computed(() => {
 		? `${props.application.notes.slice(0, 120)}...`
 		: props.application.notes;
 });
+
+const canDragToRoster = computed(() => Boolean(props.application.selected_character));
+
+const handleDragStart = (event: DragEvent) => {
+	if (!canDragToRoster.value) {
+		event.preventDefault();
+		return;
+	}
+
+	setQueueApplicationDragData(event, props.application);
+
+	if (event.dataTransfer) {
+		event.dataTransfer.effectAllowed = 'copyMove';
+	}
+};
 </script>
 
 <template>
-	<div class="border border-default bg-default px-4 py-4 hover:border-brand hover:scale-105 transition-all cursor-move">
+	<div
+		class="border border-default bg-default px-4 py-4 transition-all hover:border-brand hover:scale-105"
+		:class="canDragToRoster ? 'cursor-grab' : 'cursor-default'"
+		:draggable="canDragToRoster"
+		@dragstart="handleDragStart"
+	>
 		<!-- Queue card header: applicant identity and current application status -->
 		<div class="flex items-start justify-between gap-3">
 			<UUser
@@ -357,15 +378,6 @@ const notePreview = computed(() => {
 						</div>
 					</div>
 
-					<UButton
-						class="ml-auto shrink-0"
-						color="primary"
-						variant="outline"
-						size="md"
-						icon="i-lucide-user-plus"
-						:label="t('groups.activities.management.queue.assign_to_roster')"
-						@click.prevent
-					/>
 				</div>
 			</template>
 

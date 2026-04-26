@@ -1,11 +1,12 @@
 <script setup lang="ts">
 import axios from "axios";
-import { computed, ref } from "vue";
+import { computed, onBeforeUnmount, onMounted, ref } from "vue";
 import { useI18n } from "vue-i18n";
 import { usePage } from "@inertiajs/vue3";
 import { localizedValue } from "@/utils/localizedValue";
 import { route } from "ziggy-js";
 import ApplicantQueueItem from "@/components/Groups/Activities/ApplicantQueueItem.vue";
+import { getRosterSlotDragData, isRosterSlotDrag } from "@/components/Groups/Activities/rosterDragData";
 
 type LocalizedText = Record<string, string | null | undefined> | null | undefined;
 
@@ -83,6 +84,7 @@ const props = defineProps<{
 	groupSlug: string
 	activityId: number
 	initialPendingApplicationCount?: number
+	activityStatus?: string | null
 }>();
 
 const { t, locale } = useI18n();
@@ -103,6 +105,8 @@ const milestoneFilter = ref<string[]>([]);
 const slotFieldFilters = ref<Record<string, string[]>>({});
 const minimumKnowledgeLevel = ref('');
 const minimumPhantomMastery = ref('');
+const isQueueDropActive = ref(false);
+const isReturningSlot = ref(false);
 
 const fallbackLocale = computed(() => String(page.props.locale?.fallback ?? 'en'));
 
@@ -175,6 +179,8 @@ const clearFilters = () => {
 	minimumPhantomMastery.value = '';
 };
 
+const canAcceptRosterDrop = computed(() => props.activityStatus !== 'complete' && !isReturningSlot.value);
+
 const fetchQueuePayload = async () => {
 	isLoading.value = true;
 
@@ -203,7 +209,99 @@ const fetchQueuePayload = async () => {
 	}
 };
 
-void fetchQueuePayload();
+const handleApplicationAssigned = (event: Event) => {
+	const customEvent = event as CustomEvent<{ applicationId?: number }>;
+	const assignedApplicationId = customEvent.detail?.applicationId;
+
+	if (!assignedApplicationId) {
+		return;
+	}
+
+	applications.value = applications.value.filter((application) => application.id !== assignedApplicationId);
+};
+
+const handleApplicationReturned = (event: Event) => {
+	const customEvent = event as CustomEvent<{ application?: ActivityApplication }>;
+	const restoredApplication = customEvent.detail?.application;
+
+	if (!restoredApplication) {
+		return;
+	}
+
+	applications.value = [
+		restoredApplication,
+		...applications.value.filter((application) => application.id !== restoredApplication.id),
+	];
+};
+
+const handleDragOver = (event: DragEvent) => {
+	if (!canAcceptRosterDrop.value || !isRosterSlotDrag(event)) {
+		return;
+	}
+
+	event.preventDefault();
+	isQueueDropActive.value = true;
+
+	if (event.dataTransfer) {
+		event.dataTransfer.dropEffect = 'move';
+	}
+};
+
+const handleDragLeave = () => {
+	isQueueDropActive.value = false;
+};
+
+const handleDrop = async (event: DragEvent) => {
+	isQueueDropActive.value = false;
+
+	if (!canAcceptRosterDrop.value) {
+		return;
+	}
+
+	const droppedSlot = getRosterSlotDragData(event);
+
+	if (!droppedSlot?.id) {
+		return;
+	}
+
+	event.preventDefault();
+	isReturningSlot.value = true;
+
+	try {
+		const response = await axios.post(route('groups.dashboard.activities.slot-unassignments.store', {
+			group: props.groupSlug,
+			activity: props.activityId,
+			slot: droppedSlot.id,
+		}));
+
+		window.dispatchEvent(new CustomEvent('fullparty:activity-slot-returned-to-queue', {
+			detail: {
+				slot: response.data?.slot ?? null,
+			},
+		}));
+
+		window.dispatchEvent(new CustomEvent('fullparty:activity-application-returned', {
+			detail: {
+				application: response.data?.application ?? null,
+			},
+		}));
+	} catch (error) {
+		console.error(error);
+	} finally {
+		isReturningSlot.value = false;
+	}
+};
+
+onMounted(() => {
+	void fetchQueuePayload();
+	window.addEventListener('fullparty:activity-application-assigned', handleApplicationAssigned as EventListener);
+	window.addEventListener('fullparty:activity-application-returned', handleApplicationReturned as EventListener);
+});
+
+onBeforeUnmount(() => {
+	window.removeEventListener('fullparty:activity-application-assigned', handleApplicationAssigned as EventListener);
+	window.removeEventListener('fullparty:activity-application-returned', handleApplicationReturned as EventListener);
+});
 
 const visibleApplications = computed(() => {
 	const filteredByStatus = applications.value.filter((application) => application.status === 'pending');
@@ -270,7 +368,13 @@ const visibleApplications = computed(() => {
 </script>
 
 <template>
-	<aside class="flex max-h-[calc(100vh-2rem)] flex-col border border-default bg-muted dark:bg-elevated/50">
+	<aside
+		class="flex max-h-[calc(100vh-2rem)] flex-col border border-default bg-muted transition duration-200 dark:bg-elevated/50"
+		:class="isQueueDropActive ? 'border-white shadow-[0_0_0_2px_rgba(255,255,255,0.95),0_0_0_10px_rgba(255,255,255,0.12)]' : ''"
+		@dragover="handleDragOver"
+		@dragleave="handleDragLeave"
+		@drop="handleDrop"
+	>
 		<div class="flex items-center justify-between gap-3 border-b border-default px-4 py-4">
 			<div class="flex items-center gap-3">
 				<h2 class="font-semibold text-sm uppercase tracking-[0.12em] text-toned">
@@ -285,6 +389,14 @@ const visibleApplications = computed(() => {
 		</div>
 
 		<div class="border-b border-default px-4 py-4">
+			<div
+				v-if="canAcceptRosterDrop"
+				class="mb-4 rounded-sm border border-dashed border-default px-3 py-2 text-xs uppercase tracking-[0.12em] text-muted"
+				:class="isQueueDropActive ? 'border-white text-toned bg-white/5' : ''"
+			>
+				Drop a roster slot here to move it back to the applicant queue
+			</div>
+
 			<div class="flex items-center gap-3">
 				<UInput
 					v-model="searchTerm"

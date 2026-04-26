@@ -2,10 +2,25 @@
 import { computed } from "vue";
 import { useI18n } from "vue-i18n";
 import ActivityRosterSlotCard from "@/components/Groups/Activities/ActivityRosterSlotCard.vue";
+import type { QueueApplication } from "@/components/Groups/Activities/queueTypes";
 import type { ActivitySlot } from "@/components/Groups/Activities/rosterTypes";
 
 const props = defineProps<{
 	slots: ActivitySlot[]
+	draggedSlotId?: number | null
+	dropTargetSlotId?: number | null
+	isSwapPending?: boolean
+	pendingSwapSlotIds?: number[]
+}>();
+
+const emit = defineEmits<{
+	dragStart: [slotId: number]
+	dragEnd: []
+	dragEnter: [slotId: number]
+	dragLeave: [slotId: number]
+	dropSlot: [slotId: number]
+	dropApplication: [payload: { slotId: number, application: QueueApplication }]
+	clickSlot: [slotId: number]
 }>();
 
 const { t } = useI18n();
@@ -107,6 +122,17 @@ const roleGroups = computed(() => {
 					v-for="slot in group.slots"
 					:key="slot.id"
 					:slot="slot"
+					:dragged-slot-id="draggedSlotId"
+					:drop-target-slot-id="dropTargetSlotId"
+					:is-swap-pending="isSwapPending"
+					:is-pending-swap="pendingSwapSlotIds?.includes(slot.id)"
+					@drag-start="emit('dragStart', $event)"
+					@drag-end="emit('dragEnd')"
+					@drag-enter="emit('dragEnter', $event)"
+					@drag-leave="emit('dragLeave', $event)"
+					@drop-slot="emit('dropSlot', $event)"
+					@drop-application="emit('dropApplication', $event)"
+					@click-slot="emit('clickSlot', $event)"
 				/>
 			</div>
 		</section>

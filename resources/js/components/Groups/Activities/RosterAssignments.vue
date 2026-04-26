@@ -1,17 +1,28 @@
 <script setup lang="ts">
-import { computed } from "vue";
+import { computed, ref } from "vue";
 import { useI18n } from "vue-i18n";
 import ActivityRosterPartyView from "@/components/Groups/Activities/ActivityRosterPartyView.vue";
 import ActivityRosterRoleView from "@/components/Groups/Activities/ActivityRosterRoleView.vue";
 import ActivityRosterListView from "@/components/Groups/Activities/ActivityRosterListView.vue";
+import type { QueueApplication } from "@/components/Groups/Activities/queueTypes";
 import type { ActivitySlot } from "@/components/Groups/Activities/rosterTypes";
 
 const props = defineProps<{
 	view: 'party' | 'role' | 'list'
 	slots: ActivitySlot[]
+	isSwapPending?: boolean
+	pendingSwapSlotIds?: number[]
+}>();
+
+const emit = defineEmits<{
+	swapSlots: [payload: { sourceSlotId: number, targetSlotId: number }]
+	assignApplicationToSlot: [payload: { slotId: number, application: QueueApplication }]
+	clickSlot: [slotId: number]
 }>();
 
 const { t } = useI18n();
+const draggedSlotId = ref<number | null>(null);
+const dropTargetSlotId = ref<number | null>(null);
 
 const currentViewComponent = computed(() => {
 	if (props.view === 'role') {
@@ -24,6 +35,44 @@ const currentViewComponent = computed(() => {
 
 	return ActivityRosterPartyView;
 });
+
+const handleDragStart = (slotId: number) => {
+	draggedSlotId.value = slotId;
+};
+
+const handleDragEnd = () => {
+	draggedSlotId.value = null;
+	dropTargetSlotId.value = null;
+};
+
+const handleDragEnter = (slotId: number) => {
+	if (draggedSlotId.value === slotId) {
+		dropTargetSlotId.value = null;
+		return;
+	}
+
+	dropTargetSlotId.value = slotId;
+};
+
+const handleDragLeave = (slotId: number) => {
+	if (dropTargetSlotId.value === slotId) {
+		dropTargetSlotId.value = null;
+	}
+};
+
+const handleDropSlot = (targetSlotId: number) => {
+	if (draggedSlotId.value === null || draggedSlotId.value === targetSlotId || props.isSwapPending) {
+		handleDragEnd();
+		return;
+	}
+
+	emit('swapSlots', {
+		sourceSlotId: draggedSlotId.value,
+		targetSlotId,
+	});
+
+	handleDragEnd();
+};
 </script>
 
 <template>
@@ -36,6 +85,17 @@ const currentViewComponent = computed(() => {
 			v-if="slots.length > 0"
 			:is="currentViewComponent"
 			:slots="slots"
+			:dragged-slot-id="draggedSlotId"
+			:drop-target-slot-id="dropTargetSlotId"
+			:is-swap-pending="isSwapPending"
+			:pending-swap-slot-ids="pendingSwapSlotIds"
+			@drag-start="handleDragStart"
+			@drag-end="handleDragEnd"
+			@drag-enter="handleDragEnter"
+			@drag-leave="handleDragLeave"
+			@drop-slot="handleDropSlot"
+			@drop-application="emit('assignApplicationToSlot', $event)"
+			@click-slot="emit('clickSlot', $event)"
 		/>
 
 		<div

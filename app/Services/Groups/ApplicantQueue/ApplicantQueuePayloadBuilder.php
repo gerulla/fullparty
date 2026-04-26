@@ -6,11 +6,8 @@ use App\Http\Controllers\Concerns\InteractsWithActivitySlotFieldDisplay;
 use App\Models\Activity;
 use App\Models\ActivitySlot;
 use App\Models\ActivityTypeVersion;
-use App\Models\Character;
-use App\Models\CharacterClass;
-use App\Models\PhantomJob;
+use App\Services\Groups\ActivitySlotFieldDefinitionBuilder;
 use Illuminate\Support\Collection;
-use Illuminate\Support\Str;
 
 class ApplicantQueuePayloadBuilder
 {
@@ -19,6 +16,7 @@ class ApplicantQueuePayloadBuilder
     public function __construct(
         private readonly ApplicantMilestoneResolver $milestoneResolver,
         private readonly ApplicationAnswerPresenter $answerPresenter,
+        private readonly ActivitySlotFieldDefinitionBuilder $slotFieldDefinitionBuilder,
     ) {}
 
     /**
@@ -34,7 +32,7 @@ class ApplicantQueuePayloadBuilder
                 'milestones' => $this->serializeQueueMilestones($activity->activityTypeVersion),
             ],
             'applications' => $activity->applications
-                ->map(fn ($application) => $this->serializeActivityApplication($application, $activity->activityTypeVersion))
+                ->map(fn ($application) => $this->serializeApplication($application, $activity->activityTypeVersion))
                 ->values(),
         ];
     }
@@ -42,7 +40,7 @@ class ApplicantQueuePayloadBuilder
     /**
      * @return array<string, mixed>
      */
-    private function serializeActivityApplication($application, ?ActivityTypeVersion $activityTypeVersion): array
+    public function serializeApplication($application, ?ActivityTypeVersion $activityTypeVersion): array
     {
         return [
             'id' => $application->id,
@@ -83,59 +81,10 @@ class ApplicantQueuePayloadBuilder
      */
     private function serializeQueueSlotFields(?ActivityTypeVersion $activityTypeVersion): array
     {
-        return collect($activityTypeVersion?->slot_schema ?? [])
-            ->map(fn (array $field) => [
-                'key' => (string) ($field['key'] ?? ''),
-                'application_key' => $this->resolveSlotFieldApplicationKey($field, $activityTypeVersion),
-                'label' => is_array($field['label'] ?? null)
-                    ? $field['label']
-                    : ['en' => (string) ($field['key'] ?? '')],
-                'type' => (string) ($field['type'] ?? 'text'),
-                'source' => $field['source'] ?? null,
-                'options' => $this->resolveSchemaFieldOptions($field),
-            ])
+        return collect($this->slotFieldDefinitionBuilder->build($activityTypeVersion))
             ->filter(fn (array $field) => $field['key'] !== '' && $field['application_key'] !== '' && count($field['options']) > 0)
             ->values()
             ->all();
-    }
-
-    private function resolveSlotFieldApplicationKey(array $slotField, ?ActivityTypeVersion $activityTypeVersion): string
-    {
-        $slotKey = (string) ($slotField['key'] ?? '');
-        $slotSource = $slotField['source'] ?? null;
-        $applicationSchema = collect($activityTypeVersion?->application_schema ?? [])
-            ->filter(fn ($question) => is_array($question) && filled($question['key'] ?? null))
-            ->values();
-
-        if ($slotKey === '' || $applicationSchema->isEmpty()) {
-            return '';
-        }
-
-        $exactMatch = $applicationSchema
-            ->first(fn (array $question) => (string) ($question['key'] ?? '') === $slotKey);
-
-        if (is_array($exactMatch)) {
-            return (string) $exactMatch['key'];
-        }
-
-        $sourceAwareMatch = $applicationSchema->first(function (array $question) use ($slotKey, $slotSource) {
-            if (($question['source'] ?? null) !== $slotSource) {
-                return false;
-            }
-
-            return Str::contains((string) ($question['key'] ?? ''), $slotKey);
-        });
-
-        if (is_array($sourceAwareMatch)) {
-            return (string) $sourceAwareMatch['key'];
-        }
-
-        $fallbackMatch = $applicationSchema
-            ->first(fn (array $question) => ($question['source'] ?? null) === $slotSource);
-
-        return is_array($fallbackMatch)
-            ? (string) ($fallbackMatch['key'] ?? '')
-            : '';
     }
 
     /**
@@ -160,53 +109,6 @@ class ApplicantQueuePayloadBuilder
             ->filter(fn (array $milestone) => $milestone['key'] !== '')
             ->values()
             ->all();
-    }
-
-    /**
-     * @return array<int, array<string, mixed>>
-     */
-    private function resolveSchemaFieldOptions(array $field): array
-    {
-        return match ($field['source'] ?? null) {
-            'character_classes' => CharacterClass::query()
-                ->orderBy('name')
-                ->get()
-                ->map(fn (CharacterClass $characterClass) => [
-                    'key' => (string) $characterClass->id,
-                    'label' => ['en' => $characterClass->name],
-                    'meta' => [
-                        'icon_url' => $characterClass->icon_url,
-                        'role' => $characterClass->role,
-                        'shorthand' => $characterClass->shorthand,
-                    ],
-                ])
-                ->values()
-                ->all(),
-            'phantom_jobs' => PhantomJob::query()
-                ->orderBy('name')
-                ->get()
-                ->map(fn (PhantomJob $phantomJob) => [
-                    'key' => (string) $phantomJob->id,
-                    'label' => ['en' => $phantomJob->name],
-                    'meta' => [
-                        'icon_url' => $phantomJob->icon_url,
-                    ],
-                ])
-                ->values()
-                ->all(),
-            'static_options' => collect($field['options'] ?? [])
-                ->map(fn (array $option) => [
-                    'key' => (string) ($option['key'] ?? $option['value'] ?? ''),
-                    'label' => is_array($option['label'] ?? null)
-                        ? $option['label']
-                        : ['en' => (string) ($option['key'] ?? $option['value'] ?? '')],
-                    'meta' => is_array($option['meta'] ?? null) ? $option['meta'] : null,
-                ])
-                ->filter(fn (array $option) => $option['key'] !== '')
-                ->values()
-                ->all(),
-            default => [],
-        };
     }
 
     /**

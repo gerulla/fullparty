@@ -2,16 +2,20 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\Concerns\InteractsWithActivitySlotFieldDisplay;
 use App\Models\Activity;
 use App\Models\Group;
+use App\Services\Groups\ActivitySlotFieldDefinitionBuilder;
+use App\Services\Groups\ActivitySlotSerializer;
 use Illuminate\Http\JsonResponse;
 
 class GroupActivityManagementDataController extends Controller
 {
-    use InteractsWithActivitySlotFieldDisplay;
-
-    public function show(Group $group, Activity $activity): JsonResponse
+    public function show(
+        Group $group,
+        Activity $activity,
+        ActivitySlotSerializer $slotSerializer,
+        ActivitySlotFieldDefinitionBuilder $fieldDefinitionBuilder,
+    ): JsonResponse
     {
         $this->authorize('manageDashboard', [$activity, $group]);
 
@@ -64,33 +68,8 @@ class GroupActivityManagementDataController extends Controller
                     ->where('status', 'pending')
                     ->count(),
                 'progress_milestone_count' => $activity->progressMilestones->count(),
-                'slots' => $activity->slots->map(fn ($slot) => [
-                    'id' => $slot->id,
-                    'group_key' => $slot->group_key,
-                    'group_label' => $slot->group_label,
-                    'slot_key' => $slot->slot_key,
-                    'slot_label' => $slot->slot_label,
-                    'position_in_group' => $slot->position_in_group,
-                    'sort_order' => $slot->sort_order,
-                    'assigned_character_id' => $slot->assigned_character_id,
-                    'assigned_character' => $slot->assignedCharacter ? [
-                        'id' => $slot->assignedCharacter->id,
-                        'name' => $slot->assignedCharacter->name,
-                        'avatar_url' => $slot->assignedCharacter->avatar_url,
-                        'world' => $slot->assignedCharacter->world,
-                        'datacenter' => $slot->assignedCharacter->datacenter,
-                    ] : null,
-                    'field_values' => $slot->fieldValues->map(fn ($fieldValue) => [
-                        'id' => $fieldValue->id,
-                        'field_key' => $fieldValue->field_key,
-                        'field_label' => $fieldValue->field_label,
-                        'field_type' => $fieldValue->field_type,
-                        'source' => $fieldValue->source,
-                        'value' => $fieldValue->value,
-                        'display_value' => $this->resolveSlotFieldDisplayValue($fieldValue),
-                        'display_meta' => $this->resolveSlotFieldDisplayMeta($fieldValue),
-                    ])->values(),
-                ])->values(),
+                'slot_field_definitions' => $fieldDefinitionBuilder->build($activity->activityTypeVersion),
+                'slots' => $activity->slots->map(fn ($slot) => $slotSerializer->serialize($slot))->values(),
                 'progress_milestones' => $activity->progressMilestones->map(fn ($milestone) => [
                     'id' => $milestone->id,
                     'milestone_key' => $milestone->milestone_key,

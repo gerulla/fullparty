@@ -1,17 +1,35 @@
 <script setup lang="ts">
-import { computed } from "vue";
+import { computed, ref } from "vue";
 import { useI18n } from "vue-i18n";
 import { usePage } from "@inertiajs/vue3";
 import { localizedValue } from "@/utils/localizedValue";
+import { getQueueApplicationDragData, isQueueApplicationDrag, setRosterSlotDragData } from "@/components/Groups/Activities/rosterDragData";
+import type { QueueApplication } from "@/components/Groups/Activities/queueTypes";
 import type { ActivitySlot, LocalizedText } from "@/components/Groups/Activities/rosterTypes";
 
 const props = defineProps<{
 	slot: ActivitySlot
+	draggedSlotId?: number | null
+	dropTargetSlotId?: number | null
+	isSwapPending?: boolean
+	isPendingSwap?: boolean
+}>();
+
+const emit = defineEmits<{
+	dragStart: [slotId: number]
+	dragEnd: []
+	dragEnter: [slotId: number]
+	dragLeave: [slotId: number]
+	dropSlot: [slotId: number]
+	dropApplication: [payload: { slotId: number, application: QueueApplication }]
+	clickSlot: [slotId: number]
 }>();
 
 const { t, locale } = useI18n();
 const page = usePage();
 const fallbackLocale = computed(() => String(page.props.locale?.fallback ?? 'en'));
+const slotCardElement = ref<HTMLElement | null>(null);
+let dragPreviewElement: HTMLElement | null = null;
 
 const localizedText = (value: LocalizedText, fallback: string) => (
 	localizedValue(value, locale.value, fallbackLocale.value) || fallback
@@ -58,13 +76,190 @@ const classDisplayValue = computed(() => classField.value
 const phantomDisplayValue = computed(() => phantomField.value
 	? (typeof phantomField.value.display_value === 'string' ? phantomField.value.display_value : localizedText(phantomField.value.display_value, ''))
 	: null);
+const canDrag = computed(() => Boolean(props.slot.assigned_character_id) && !props.isSwapPending);
+const isDraggedSource = computed(() => props.draggedSlotId === props.slot.id);
+const isDropTarget = computed(() => props.dropTargetSlotId === props.slot.id && props.draggedSlotId !== props.slot.id);
+
+const removeDragPreview = () => {
+	if (!dragPreviewElement) {
+		return;
+	}
+
+	dragPreviewElement.remove();
+	dragPreviewElement = null;
+};
+
+const createDragPreview = () => {
+	if (!slotCardElement.value) {
+		return null;
+	}
+
+	removeDragPreview();
+
+	const preview = slotCardElement.value.cloneNode(true) as HTMLElement;
+	const rect = slotCardElement.value.getBoundingClientRect();
+
+	preview.style.position = 'fixed';
+	preview.style.top = '-10000px';
+	preview.style.left = '-10000px';
+	preview.style.width = `${rect.width}px`;
+	preview.style.pointerEvents = 'none';
+	preview.style.opacity = '1';
+	preview.style.transform = 'rotate(1.5deg)';
+	preview.style.boxShadow = '0 20px 45px rgba(15, 23, 42, 0.28)';
+	preview.style.zIndex = '9999';
+
+	document.body.appendChild(preview);
+	dragPreviewElement = preview;
+
+	return {
+		element: preview,
+		offsetX: Math.min(rect.width / 2, 120),
+		offsetY: Math.min(rect.height / 2, 60),
+	};
+};
+
+const handleDragStart = (event: DragEvent) => {
+	if (!canDrag.value) {
+		event.preventDefault();
+		return;
+	}
+
+	event.dataTransfer?.setData('text/plain', String(props.slot.id));
+	setRosterSlotDragData(event, props.slot);
+	const preview = createDragPreview();
+
+	if (preview) {
+		event.dataTransfer?.setDragImage?.(preview.element, preview.offsetX, preview.offsetY);
+	}
+
+	if (event.dataTransfer) {
+		event.dataTransfer.effectAllowed = 'move';
+	}
+
+	emit('dragStart', props.slot.id);
+};
+
+const handleDragOver = (event: DragEvent) => {
+	if (props.isSwapPending) {
+		return;
+	}
+
+	if (isQueueApplicationDrag(event)) {
+		event.preventDefault();
+
+		if (event.dataTransfer) {
+			event.dataTransfer.dropEffect = 'copy';
+		}
+
+		emit('dragEnter', props.slot.id);
+		return;
+	}
+
+	if (props.draggedSlotId === null || props.draggedSlotId === undefined) {
+		return;
+	}
+
+	event.preventDefault();
+
+	if (event.dataTransfer) {
+		event.dataTransfer.dropEffect = 'move';
+	}
+
+	emit('dragEnter', props.slot.id);
+};
+
+const handleDrop = (event: DragEvent) => {
+	if (props.isSwapPending) {
+		return;
+	}
+
+	const droppedApplication = getQueueApplicationDragData(event);
+
+	if (droppedApplication) {
+		event.preventDefault();
+		emit('dropApplication', {
+			slotId: props.slot.id,
+			application: droppedApplication,
+		});
+		return;
+	}
+
+	if (props.draggedSlotId === null || props.draggedSlotId === undefined) {
+		return;
+	}
+
+	event.preventDefault();
+	emit('dropSlot', props.slot.id);
+};
+
+const handleDragEnd = () => {
+	removeDragPreview();
+	emit('dragEnd');
+};
+
+const handleClick = () => {
+	if (!props.slot.assigned_character_id || props.isSwapPending) {
+		return;
+	}
+
+	emit('clickSlot', props.slot.id);
+};
 </script>
 
 <template>
 	<div
-		class="min-h-28 cursor-pointer border px-4 py-4 transition duration-200 ease-out hover:scale-105 hover:shadow-lg"
-		:class="roleToneClass"
+		ref="slotCardElement"
+		class="relative min-h-28 border px-4 py-4 transition duration-200 ease-out hover:shadow-lg"
+		:class="[
+			roleToneClass,
+			canDrag ? 'cursor-grab hover:scale-[1.02]' : 'cursor-pointer',
+			isDraggedSource ? 'scale-[0.98] opacity-35 saturate-75' : '',
+			isDropTarget ? 'border-white shadow-[0_0_0_2px_rgba(255,255,255,0.95),0_0_0_6px_rgba(255,255,255,0.22)]' : '',
+			props.isPendingSwap ? 'overflow-hidden' : '',
+		]"
+		:draggable="canDrag"
+		@dragstart="handleDragStart"
+		@dragend="handleDragEnd"
+		@dragenter.prevent="emit('dragEnter', slot.id)"
+		@dragleave.prevent="emit('dragLeave', slot.id)"
+		@dragover="handleDragOver"
+		@drop="handleDrop"
+		@click="handleClick"
 	>
+		<div
+			v-if="isPendingSwap"
+			class="absolute inset-0 z-10 flex flex-col gap-3 border border-white/10 bg-elevated/95 px-4 py-4 shadow-[inset_0_1px_0_rgba(255,255,255,0.08)] backdrop-blur-[1px]"
+		>
+			<div class="flex items-start justify-between gap-3">
+				<div class="flex flex-col gap-2">
+					<USkeleton class="h-4 w-20 bg-muted/70" />
+					<USkeleton class="h-5 w-28 bg-muted/70" />
+				</div>
+				<USkeleton class="h-5 w-16 bg-muted/70" />
+			</div>
+
+			<div class="flex items-start justify-between gap-3">
+				<div class="flex items-center gap-3">
+					<USkeleton class="h-10 w-10 rounded-full bg-muted/70" />
+					<div class="flex flex-col gap-2">
+						<USkeleton class="h-4 w-28 bg-muted/70" />
+						<USkeleton class="h-4 w-16 bg-muted/70" />
+					</div>
+				</div>
+
+				<div class="flex items-center gap-2">
+					<USkeleton class="h-10 w-10 rounded-sm bg-muted/70" />
+					<USkeleton class="h-10 w-10 rounded-sm bg-muted/70" />
+				</div>
+			</div>
+
+			<div class="mt-auto flex flex-col gap-2">
+				<USkeleton class="h-4 w-full bg-muted/70" />
+				<USkeleton class="h-4 w-3/4 self-end bg-muted/70" />
+			</div>
+		</div>
+
 		<div class="flex h-full flex-col gap-3">
 			<!-- Slot card header: slot identity and assignment status -->
 			<div class="flex items-start justify-between gap-3">

@@ -37,6 +37,9 @@
   "try_again": "再試行",
   "name": "名前",
   "description": "説明",
+  "notes": "メモ",
+  "severity": "重要度",
+  "shared": "共有",
   "role": "ロール",
   "actions": "操作",
   "username": "ユーザー名",
@@ -49,6 +52,11 @@
   "private_group": "非公開グループ",
   "profile_picture": "プロフィール画像",
   "discord_invite_url": "Discord招待リンク",
+  "severity_levels": {
+    "info": "情報",
+    "warning": "警告",
+    "critical": "重大"
+  },
   "copied_to_clipboard": "クリップボードにコピーしました！",
   "copied_to_clipboard_short": "コピーしました！",
   "copied_to_clipboard_short_timeout": 2000

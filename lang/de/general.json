@@ -37,6 +37,9 @@
   "try_again": "Erneut versuchen",
   "name": "Name",
   "description": "Beschreibung",
+  "notes": "Notizen",
+  "severity": "Schweregrad",
+  "shared": "Geteilt",
   "role": "Rolle",
   "actions": "Aktionen",
   "username": "Benutzername",
@@ -49,6 +52,11 @@
   "private_group": "Private Gruppe",
   "profile_picture": "Profilbild",
   "discord_invite_url": "Discord-Einladungslink",
+  "severity_levels": {
+    "info": "Info",
+    "warning": "Warnung",
+    "critical": "Kritisch"
+  },
   "copied_to_clipboard": "In die Zwischenablage kopiert!",
   "copied_to_clipboard_short": "Kopiert!",
   "copied_to_clipboard_short_timeout": 2000

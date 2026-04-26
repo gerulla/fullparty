@@ -280,8 +280,8 @@ const noteCountLabel = (notes: (typeof props.members)[number]['notes']) => {
 	const totalCount = notes.current_group_count + notes.shared_count;
 
 	return totalCount > 0
-		? `${t('groups.members.actions.notes')} (${totalCount})`
-		: t('groups.members.actions.notes');
+		? `${t('general.notes')} (${totalCount})`
+		: t('general.notes');
 };
 
 const openKickModal = (member: (typeof props.members)[number]) => {

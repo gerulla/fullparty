@@ -9,6 +9,7 @@ use App\Models\Group;
 use App\Services\Groups\ActivitySlotBench;
 use App\Services\Groups\ActivitySlotAttendanceService;
 use App\Services\Groups\ActivitySlotSerializer;
+use App\Services\Groups\GroupActivityAuditService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Validation\ValidationException;
 
@@ -19,6 +20,7 @@ class GroupActivitySlotMissingController extends Controller
         Activity $activity,
         ActivitySlot $slot,
         ActivitySlotAttendanceService $attendanceService,
+        GroupActivityAuditService $activityAuditService,
         ActivitySlotSerializer $slotSerializer,
     ): JsonResponse {
         $this->authorize('manageDashboard', [$activity, $group]);
@@ -40,8 +42,20 @@ class GroupActivitySlotMissingController extends Controller
         }
 
         $slot->load(['activity', 'fieldValues', 'assignments']);
+        $characterName = $slot->assignedCharacter?->name;
         $missingAssignment = $attendanceService->markMissing($slot, (int) auth()->id());
         $slot->load(['assignedCharacter', 'fieldValues', 'assignments']);
+
+        $activityAuditService->logAttendanceEvent(
+            'marked_missing',
+            $slot,
+            auth()->user(),
+            [
+                'character_name' => $characterName,
+                'marked_missing_at' => $missingAssignment?->marked_missing_at?->toIso8601String(),
+            ],
+            \App\Support\Audit\AuditSeverity::SEVERE_CHANGE,
+        );
 
         return response()->json([
             'slot' => $slotSerializer->serialize($slot),
@@ -56,6 +70,7 @@ class GroupActivitySlotMissingController extends Controller
         ActivitySlotAttendanceService $attendanceService,
         ActivitySlotSerializer $slotSerializer,
         ActivitySlotBench $slotBench,
+        GroupActivityAuditService $activityAuditService,
     ): JsonResponse {
         $this->authorize('manageDashboard', [$activity, $group]);
 
@@ -76,6 +91,18 @@ class GroupActivitySlotMissingController extends Controller
         }
 
         $result = $attendanceService->undoMissing($assignment, (int) auth()->id(), $slotBench);
+        /** @var ActivitySlot $restoredSlot */
+        $restoredSlot = $result['slots'][0];
+
+        $activityAuditService->logAttendanceEvent(
+            'missing_reverted',
+            $restoredSlot,
+            auth()->user(),
+            [
+                'character_name' => $result['assignment']->character?->name,
+                'restored_destination' => $slotBench->isBench($restoredSlot) ? 'bench' : 'original_slot',
+            ],
+        );
 
         return response()->json([
             'slots' => collect($result['slots'])

@@ -117,6 +117,30 @@
       "created": "created the group.",
       "updated": "updated the group settings.",
       "deleted": "deleted the group.",
+      "activity": {
+        "created": "created an activity.",
+        "updated": "updated an activity.",
+        "deleted": "deleted an activity.",
+        "application": {
+          "submitted": "submitted an activity application.",
+          "updated": "updated an activity application."
+        },
+        "roster": {
+          "assigned": "assigned a roster slot.",
+          "updated": "updated a roster assignment.",
+          "reassigned": "reassigned a roster slot.",
+          "replaced": "replaced a roster assignment.",
+          "swapped": "moved people around the roster.",
+          "returned_to_queue": "returned a roster slot to the queue."
+        },
+        "attendance": {
+          "checked_in": "checked in a roster slot.",
+          "check_in_reverted": "undid a roster check-in.",
+          "group_checked_in": "checked in an entire party or group.",
+          "marked_missing": "marked a roster slot as missing.",
+          "missing_reverted": "undid a missing roster slot."
+        }
+      },
       "invite": {
         "created": "created an invite link.",
         "revoked": "revoked an invite link."
@@ -171,9 +195,11 @@
     "description": "Description",
     "profile_picture_url": "Profile Picture",
     "discord_invite_url": "Discord Invite",
+    "title": "Title",
     "datacenter": "Datacenter",
     "is_public": "Public",
     "is_visible": "Visible",
+    "status": "Status",
     "role": "Role",
     "note_severity": "Note Severity",
     "note_excerpt": "Note Excerpt",
@@ -190,6 +216,32 @@
     "expires_at": "Expires At",
     "uses": "Uses",
     "slug": "Slug",
+    "activity_title": "Activity",
+    "activity_type_slug": "Activity Type",
+    "slot_label": "Slot",
+    "group_label": "Group",
+    "source_slot_label": "Source Slot",
+    "source_group_label": "Source Group",
+    "source_character_name": "Source Character",
+    "target_slot_label": "Target Slot",
+    "target_group_label": "Target Group",
+    "target_character_name": "Target Character",
+    "character_name": "Character",
+    "selected_character_name": "Selected Character",
+    "displaced_character_name": "Displaced Character",
+    "application_status": "Application Status",
+    "starts_at": "Starts At",
+    "duration_hours": "Duration (Hours)",
+    "needs_application": "Needs Application",
+    "target_prog_point_key": "Target Prog Point",
+    "organized_by_user_id": "Organizer",
+    "organized_by_character_id": "Organizer Character",
+    "checked_in_at": "Checked In At",
+    "checked_in_count": "Checked In Count",
+    "marked_missing_at": "Marked Missing At",
+    "restored_destination": "Restored Destination",
+    "is_bench": "Bench Slot",
+    "field_assignment_updated": "Field Assignment Updated",
     "email": "Email",
     "provider": "Provider",
     "provider_user_id": "Provider User ID",
@@ -248,6 +300,30 @@
       "created": "Group created",
       "updated": "Group settings updated",
       "deleted": "Group deleted",
+      "activity": {
+        "created": "Activity created",
+        "updated": "Activity updated",
+        "deleted": "Activity deleted",
+        "application": {
+          "submitted": "Activity application submitted",
+          "updated": "Activity application updated"
+        },
+        "roster": {
+          "assigned": "Roster slot assigned",
+          "updated": "Roster assignment updated",
+          "reassigned": "Roster slot reassigned",
+          "replaced": "Roster assignment replaced",
+          "swapped": "Roster positions moved",
+          "returned_to_queue": "Roster slot returned to queue"
+        },
+        "attendance": {
+          "checked_in": "Roster slot checked in",
+          "check_in_reverted": "Roster check-in reverted",
+          "group_checked_in": "Roster group checked in",
+          "marked_missing": "Roster slot marked missing",
+          "missing_reverted": "Missing roster slot reverted"
+        }
+      },
       "invite": {
         "created": "Invite link created",
         "revoked": "Invite link revoked"

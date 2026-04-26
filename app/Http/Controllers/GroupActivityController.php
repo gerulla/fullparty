@@ -10,6 +10,7 @@ use App\Models\Character;
 use App\Models\Group;
 use App\Models\GroupMembership;
 use App\Services\Groups\ActivitySlotBench;
+use App\Services\Groups\GroupActivityAuditService;
 use Carbon\CarbonImmutable;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -21,6 +22,10 @@ use Inertia\Response;
 class GroupActivityController extends Controller
 {
     use InteractsWithGroupActivityAttendees;
+
+    public function __construct(
+        private readonly GroupActivityAuditService $activityAuditService,
+    ) {}
 
     public function overview(Request $request, Group $group, Activity $activity, ?string $secretKey = null): Response
     {
@@ -196,6 +201,7 @@ class GroupActivityController extends Controller
 
             $this->materializeSlots($activity, $activityTypeVersion);
             $this->materializeProgressMilestones($activity, $activityTypeVersion);
+            $this->activityAuditService->logActivityCreated($activity, auth()->user());
         });
 
         return redirect()
@@ -235,6 +241,20 @@ class GroupActivityController extends Controller
 
         $validated = $this->normalizeAndValidateTargetProgPoint($validated, $activityTypeVersion);
 
+        $original = $activity->only([
+            'organized_by_user_id',
+            'organized_by_character_id',
+            'status',
+            'title',
+            'description',
+            'notes',
+            'starts_at',
+            'duration_hours',
+            'target_prog_point_key',
+            'is_public',
+            'needs_application',
+        ]);
+
         $activity->update([
             'organized_by_user_id' => $validated['organized_by_user_id'] ?? $activity->organized_by_user_id,
             'organized_by_character_id' => array_key_exists('organized_by_character_id', $validated)
@@ -256,6 +276,39 @@ class GroupActivityController extends Controller
                 : ($activity->secret_key ?: Activity::generateSecretKey()),
         ]);
 
+        $changes = [];
+
+        foreach ([
+            'organized_by_user_id',
+            'organized_by_character_id',
+            'status',
+            'title',
+            'description',
+            'notes',
+            'starts_at',
+            'duration_hours',
+            'target_prog_point_key',
+            'is_public',
+            'needs_application',
+        ] as $field) {
+            $old = $original[$field] ?? null;
+            $new = $activity->{$field};
+
+            if ($field === 'starts_at') {
+                $old = $old?->toIso8601String();
+                $new = $new?->toIso8601String();
+            }
+
+            if ($old !== $new) {
+                $changes[$field] = [
+                    'old' => $old,
+                    'new' => $new,
+                ];
+            }
+        }
+
+        $this->activityAuditService->logActivityUpdated($activity, auth()->user(), $changes);
+
         return redirect()
             ->route('groups.dashboard.activities.show', [
                 'group' => $group,
@@ -271,6 +324,7 @@ class GroupActivityController extends Controller
         $this->ensureActivityBelongsToGroup($group, $activity);
         $this->ensureActivityIsMutable($activity);
 
+        $this->activityAuditService->logActivityDeleted($group, $activity, auth()->user());
         $activity->delete();
 
         return redirect()

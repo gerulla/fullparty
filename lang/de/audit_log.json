@@ -117,6 +117,30 @@
       "created": "hat die Gruppe erstellt.",
       "updated": "hat die Gruppeneinstellungen aktualisiert.",
       "deleted": "hat die Gruppe gelöscht.",
+      "activity": {
+        "created": "hat eine Aktivität erstellt.",
+        "updated": "hat eine Aktivität aktualisiert.",
+        "deleted": "hat eine Aktivität gelöscht.",
+        "application": {
+          "submitted": "hat eine Aktivitätsbewerbung eingereicht.",
+          "updated": "hat eine Aktivitätsbewerbung aktualisiert."
+        },
+        "roster": {
+          "assigned": "hat einen Roster-Slot zugewiesen.",
+          "updated": "hat eine Roster-Zuweisung aktualisiert.",
+          "reassigned": "hat einen Roster-Slot neu zugewiesen.",
+          "replaced": "hat eine Roster-Zuweisung ersetzt.",
+          "swapped": "hat Personen im Roster verschoben.",
+          "returned_to_queue": "hat einen Roster-Slot zurück in die Warteschlange gesetzt."
+        },
+        "attendance": {
+          "checked_in": "hat einen Roster-Slot eingecheckt.",
+          "check_in_reverted": "hat einen Roster-Check-in rückgängig gemacht.",
+          "group_checked_in": "hat eine gesamte Partei oder Gruppe eingecheckt.",
+          "marked_missing": "hat einen Roster-Slot als fehlend markiert.",
+          "missing_reverted": "hat einen fehlenden Roster-Slot wiederhergestellt."
+        }
+      },
       "invite": {
         "created": "hat einen Einladungslink erstellt.",
         "revoked": "hat einen Einladungslink widerrufen."
@@ -161,9 +185,11 @@
     "description": "Beschreibung",
     "profile_picture_url": "Profilbild",
     "discord_invite_url": "Discord-Einladung",
+    "title": "Titel",
     "datacenter": "Datenzentrum",
     "is_public": "Öffentlich",
     "is_visible": "Sichtbar",
+    "status": "Status",
     "role": "Rolle",
     "note_severity": "Notizschwere",
     "note_excerpt": "Notizauszug",
@@ -180,6 +206,32 @@
     "expires_at": "Läuft ab am",
     "uses": "Nutzungen",
     "slug": "Slug",
+    "activity_title": "Aktivität",
+    "activity_type_slug": "Aktivitätstyp",
+    "slot_label": "Slot",
+    "group_label": "Gruppe",
+    "source_slot_label": "Quell-Slot",
+    "source_group_label": "Quellgruppe",
+    "source_character_name": "Quellcharakter",
+    "target_slot_label": "Ziel-Slot",
+    "target_group_label": "Zielgruppe",
+    "target_character_name": "Zielcharakter",
+    "character_name": "Charakter",
+    "selected_character_name": "Ausgewählter Charakter",
+    "displaced_character_name": "Verdrängter Charakter",
+    "application_status": "Bewerbungsstatus",
+    "starts_at": "Beginnt am",
+    "duration_hours": "Dauer (Stunden)",
+    "needs_application": "Benötigt Bewerbung",
+    "target_prog_point_key": "Ziel-Prog-Punkt",
+    "organized_by_user_id": "Organisator",
+    "organized_by_character_id": "Organisator-Charakter",
+    "checked_in_at": "Eingecheckt am",
+    "checked_in_count": "Anzahl Check-ins",
+    "marked_missing_at": "Als fehlend markiert am",
+    "restored_destination": "Wiederhergestellt nach",
+    "is_bench": "Bench-Slot",
+    "field_assignment_updated": "Feldzuweisung aktualisiert",
     "email": "E-Mail",
     "provider": "Anbieter",
     "provider_user_id": "Anbieter-Benutzer-ID",
@@ -238,6 +290,30 @@
       "created": "Gruppe erstellt",
       "updated": "Gruppeneinstellungen aktualisiert",
       "deleted": "Gruppe gelöscht",
+      "activity": {
+        "created": "Aktivität erstellt",
+        "updated": "Aktivität aktualisiert",
+        "deleted": "Aktivität gelöscht",
+        "application": {
+          "submitted": "Aktivitätsbewerbung eingereicht",
+          "updated": "Aktivitätsbewerbung aktualisiert"
+        },
+        "roster": {
+          "assigned": "Roster-Slot zugewiesen",
+          "updated": "Roster-Zuweisung aktualisiert",
+          "reassigned": "Roster-Slot neu zugewiesen",
+          "replaced": "Roster-Zuweisung ersetzt",
+          "swapped": "Roster-Positionen verschoben",
+          "returned_to_queue": "Roster-Slot in Warteschlange zurückgesetzt"
+        },
+        "attendance": {
+          "checked_in": "Roster-Slot eingecheckt",
+          "check_in_reverted": "Roster-Check-in rückgängig gemacht",
+          "group_checked_in": "Roster-Gruppe eingecheckt",
+          "marked_missing": "Roster-Slot als fehlend markiert",
+          "missing_reverted": "Fehlenden Roster-Slot wiederhergestellt"
+        }
+      },
       "invite": {
         "created": "Einladungslink erstellt",
         "revoked": "Einladungslink widerrufen"

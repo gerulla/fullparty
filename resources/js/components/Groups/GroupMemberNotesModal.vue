@@ -81,9 +81,9 @@ const addendumNoteId = ref<number | null>(null);
 const pendingDeleteNoteId = ref<number | null>(null);
 
 const severityOptions = computed(() => [
-	{ label: t('groups.members.notes.severities.info'), value: 'info' },
-	{ label: t('groups.members.notes.severities.warning'), value: 'warning' },
-	{ label: t('groups.members.notes.severities.critical'), value: 'critical' },
+	{ label: t('general.severity_levels.info'), value: 'info' },
+	{ label: t('general.severity_levels.warning'), value: 'warning' },
+	{ label: t('general.severity_levels.critical'), value: 'critical' },
 ]);
 
 const totalVisibleNoteCount = computed(() => {
@@ -110,17 +110,17 @@ const formatDate = (value: string | null) => {
 
 const severityBadge = (severity: MemberNote['severity']) => ({
 	info: {
-		label: t('groups.members.notes.severities.info'),
+		label: t('general.severity_levels.info'),
 		color: 'info',
 		icon: 'i-lucide-info',
 	},
 	warning: {
-		label: t('groups.members.notes.severities.warning'),
+		label: t('general.severity_levels.warning'),
 		color: 'warning',
 		icon: 'i-lucide-triangle-alert',
 	},
 	critical: {
-		label: t('groups.members.notes.severities.critical'),
+		label: t('general.severity_levels.critical'),
 		color: 'error',
 		icon: 'i-lucide-octagon-alert',
 	},
@@ -280,7 +280,7 @@ watch(isOpen, (open) => {
 
 							<div class="flex flex-col gap-4">
 								<UFormField
-									:label="t('groups.members.notes.fields.severity.label')"
+									:label="t('general.severity')"
 									:error="noteForm.errors.severity"
 								>
 									<USelect
@@ -365,14 +365,14 @@ watch(isOpen, (open) => {
 													color="secondary"
 													variant="soft"
 													icon="i-lucide-globe"
-													:label="t('groups.members.notes.shared_badge')"
+													:label="t('general.shared')"
 												/>
 											</div>
 										</div>
 
 										<div v-if="editingNoteId === note.id" class="flex flex-col gap-4">
 											<UFormField
-												:label="t('groups.members.notes.fields.severity.label')"
+												:label="t('general.severity')"
 												:error="noteUpdateForm.errors.severity"
 											>
 												<USelect

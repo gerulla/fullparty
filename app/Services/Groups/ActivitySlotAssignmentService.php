@@ -12,6 +12,7 @@ class ActivitySlotAssignmentService
     public function __construct(
         private readonly ActivitySlotBench $slotBench,
         private readonly ActivitySlotAttendanceService $attendanceService,
+        private readonly GroupActivityAuditService $activityAuditService,
     ) {}
 
     /**
@@ -41,6 +42,10 @@ class ActivitySlotAssignmentService
         $applicationAnswers = $application->answers->keyBy('question_key');
         $isTargetBench = $this->slotBench->isBench($targetSlot);
         $isSourceBench = $sourceSlot ? $this->slotBench->isBench($sourceSlot) : false;
+        $targetPreviousCharacterId = $targetSlot->assigned_character_id;
+        $targetPreviousCharacterName = $targetSlot->assignedCharacter?->name;
+        $targetHadDifferentOccupant = $targetPreviousCharacterId !== null
+            && (int) $targetPreviousCharacterId !== (int) $application->selected_character_id;
 
         DB::transaction(function () use (
             $targetSlot,
@@ -52,11 +57,10 @@ class ActivitySlotAssignmentService
             $applicationAnswers,
             $isTargetBench,
             $isSourceBench,
+            $targetPreviousCharacterId,
+            $targetHadDifferentOccupant,
         ) {
             $activity = $targetSlot->activity;
-            $targetPreviousCharacterId = $targetSlot->assigned_character_id;
-            $targetHadDifferentOccupant = $targetPreviousCharacterId !== null
-                && (int) $targetPreviousCharacterId !== (int) $application->selected_character_id;
             $displacedApplication = $this->findApplicationForAssignedCharacter($targetSlot);
 
             if ($sourceSlot && !$isSourceBench && $isTargetBench && $targetSlot->assigned_character_id) {
@@ -133,6 +137,30 @@ class ActivitySlotAssignmentService
                 }
             }
         });
+
+        $event = match (true) {
+            $sourceSlot !== null && $targetHadDifferentOccupant => 'replaced',
+            $sourceSlot !== null => 'reassigned',
+            $targetPreviousCharacterId !== null && (int) $targetPreviousCharacterId === (int) $application->selected_character_id => 'updated',
+            $targetHadDifferentOccupant => 'replaced',
+            default => 'assigned',
+        };
+
+        $metadata = [
+            'application_status' => $application->fresh()?->status,
+            'selected_character_name' => $application->selectedCharacter?->name,
+            'source_slot_label' => $sourceSlot ? ($sourceSlot->slot_label['en'] ?? $sourceSlot->slot_key) : null,
+            'source_group_label' => $sourceSlot ? ($sourceSlot->group_label['en'] ?? $sourceSlot->group_key) : null,
+            'displaced_character_name' => $targetPreviousCharacterName,
+            'field_assignment_updated' => $event === 'updated',
+        ];
+
+        $this->activityAuditService->logRosterEvent(
+            $event,
+            $targetSlot->fresh(['activity.group', 'assignedCharacter']),
+            $assignedByUserId,
+            $metadata,
+        );
     }
 
     private function findApplicationForAssignedCharacter(ActivitySlot $slot): ?ActivityApplication

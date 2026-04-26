@@ -37,6 +37,9 @@
   "try_again": "Réessayer",
   "name": "Nom",
   "description": "Description",
+  "notes": "Notes",
+  "severity": "Gravité",
+  "shared": "Partagé",
   "role": "Rôle",
   "actions": "Actions",
   "username": "Nom d'utilisateur",
@@ -49,6 +52,11 @@
   "private_group": "Groupe privé",
   "profile_picture": "Image de profil",
   "discord_invite_url": "Lien d'invitation Discord",
+  "severity_levels": {
+    "info": "Info",
+    "warning": "Avertissement",
+    "critical": "Critique"
+  },
   "copied_to_clipboard": "Copié dans le presse-papiers !",
   "copied_to_clipboard_short": "Copié !",
   "copied_to_clipboard_short_timeout": 2000

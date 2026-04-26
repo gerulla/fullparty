@@ -10,6 +10,7 @@ use App\Models\Character;
 use App\Models\CharacterClass;
 use App\Models\Group;
 use App\Models\PhantomJob;
+use App\Services\Groups\GroupActivityAuditService;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -20,6 +21,10 @@ use Inertia\Response;
 class GroupActivityApplicationController extends Controller
 {
     use InteractsWithGroupActivityAttendees;
+
+    public function __construct(
+        private readonly GroupActivityAuditService $activityAuditService,
+    ) {}
 
     public function show(Request $request, Group $group, Activity $activity, ?string $secretKey = null): Response
     {
@@ -86,6 +91,8 @@ class GroupActivityApplicationController extends Controller
             ]);
 
             $this->syncApplicationAnswers($application, $validated['answers'] ?? []);
+            $application->loadMissing(['activity.group', 'selectedCharacter', 'user']);
+            $this->activityAuditService->logApplicationSubmitted($application, $user);
         });
 
         return redirect()
@@ -129,6 +136,8 @@ class GroupActivityApplicationController extends Controller
             ]);
 
             $this->syncApplicationAnswers($application, $validated['answers'] ?? []);
+            $application->loadMissing(['activity.group', 'selectedCharacter', 'user']);
+            $this->activityAuditService->logApplicationUpdated($application, auth()->user());
         });
 
         return redirect()

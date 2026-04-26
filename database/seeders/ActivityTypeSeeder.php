@@ -136,6 +136,18 @@ class ActivityTypeSeeder extends Seeder
                         source: null,
                     ),
                     $this->schemaField(
+                        key: 'can_be_on_standby',
+                        label: ['en' => 'Can be on standby?', 'de' => 'Kann auf Abruf bereitstehen?', 'fr' => 'Peut etre en standby ?', 'ja' => '待機参加は可能ですか？'],
+                        type: 'boolean',
+                        source: null,
+                        helpText: [
+                            'en' => 'Use this if you are willing to be placed on the bench or be on-call in case anyone scheduled is missing or drops out.',
+                            'de' => 'Nutze dies, wenn du bereit bist, auf die Bank gesetzt zu werden oder auf Abruf bereitzustehen, falls eingeplante Spieler fehlen oder ausfallen.',
+                            'fr' => 'Utilisez ceci si vous acceptez d etre place sur le banc ou d etre joignable au cas ou une personne prevue serait absente ou se desisterait.',
+                            'ja' => '予定メンバーが欠席したり離脱した場合に、ベンチ待機や呼び出し対応が可能であれば選択してください。',
+                        ],
+                    ),
+                    $this->schemaField(
                         key: 'preferred_languages',
                         label: ['en' => 'Preferred Languages', 'de' => 'Bevorzugte Sprachen', 'fr' => 'Langues preferees', 'ja' => '希望言語'],
                         type: 'multi_select',
@@ -236,6 +248,18 @@ class ActivityTypeSeeder extends Seeder
                         type: 'multi_select',
                         source: 'static_options',
                         options: $this->raidPositionOptions(),
+                    ),
+                    $this->schemaField(
+                        key: 'can_be_on_standby',
+                        label: ['en' => 'Can be on standby?', 'de' => 'Kann auf Abruf bereitstehen?', 'fr' => 'Peut etre en standby ?', 'ja' => '待機参加は可能ですか？'],
+                        type: 'boolean',
+                        source: null,
+                        helpText: [
+                            'en' => 'Use this if you are willing to be placed on the bench or be on-call in case anyone scheduled is missing or drops out.',
+                            'de' => 'Nutze dies, wenn du bereit bist, auf die Bank gesetzt zu werden oder auf Abruf bereitzustehen, falls eingeplante Spieler fehlen oder ausfallen.',
+                            'fr' => 'Utilisez ceci si vous acceptez d etre place sur le banc ou d etre joignable au cas ou une personne prevue serait absente ou se desisterait.',
+                            'ja' => '予定メンバーが欠席したり離脱した場合に、ベンチ待機や呼び出し対応が可能であれば選択してください。',
+                        ],
                     ),
                     $this->schemaField(
                         key: 'notes',
@@ -372,6 +396,7 @@ class ActivityTypeSeeder extends Seeder
         ?string $source,
         bool $required = true,
         ?array $options = null,
+        array|string|null $helpText = null,
     ): array {
         return array_filter([
             'key' => $key,
@@ -379,7 +404,7 @@ class ActivityTypeSeeder extends Seeder
             'type' => $type,
             'source' => $source,
             'required' => $required,
-            'help_text' => $this->localized(''),
+            'help_text' => $this->localized($helpText ?? ''),
             'options' => $options,
         ], static fn ($value) => $value !== null);
     }

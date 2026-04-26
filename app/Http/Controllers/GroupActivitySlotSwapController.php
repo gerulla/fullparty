@@ -7,6 +7,7 @@ use App\Models\ActivityApplication;
 use App\Models\ActivitySlot;
 use App\Models\Group;
 use App\Services\Groups\ActivitySlotBench;
+use App\Services\Groups\GroupActivityAuditService;
 use App\Services\Groups\ActivitySlotAttendanceService;
 use App\Services\Groups\ActivitySlotSerializer;
 use Illuminate\Http\JsonResponse;
@@ -21,6 +22,7 @@ class GroupActivitySlotSwapController extends Controller
         Group $group,
         Activity $activity,
         ActivitySlotBench $slotBench,
+        GroupActivityAuditService $activityAuditService,
         ActivitySlotAttendanceService $attendanceService,
         ActivitySlotSerializer $slotSerializer,
     ): JsonResponse {
@@ -57,6 +59,8 @@ class GroupActivitySlotSwapController extends Controller
 
         $sourceIsBench = $slotBench->isBench($sourceSlot);
         $targetIsBench = $slotBench->isBench($targetSlot);
+        $sourceCharacterName = $sourceSlot->assignedCharacter?->name;
+        $targetCharacterName = $targetSlot->assignedCharacter?->name;
 
         if ($sourceIsBench && !$targetIsBench) {
             throw ValidationException::withMessages([
@@ -112,6 +116,20 @@ class GroupActivitySlotSwapController extends Controller
 
         $sourceSlot->load(['assignedCharacter', 'fieldValues', 'assignments']);
         $targetSlot->load(['assignedCharacter', 'fieldValues', 'assignments']);
+
+        $activityAuditService->logRosterEvent(
+            'swapped',
+            $targetSlot,
+            $request->user(),
+            [
+                'source_slot_label' => $sourceSlot->slot_label['en'] ?? $sourceSlot->slot_key,
+                'source_group_label' => $sourceSlot->group_label['en'] ?? $sourceSlot->group_key,
+                'source_character_name' => $sourceCharacterName,
+                'target_slot_label' => $targetSlot->slot_label['en'] ?? $targetSlot->slot_key,
+                'target_group_label' => $targetSlot->group_label['en'] ?? $targetSlot->group_key,
+                'target_character_name' => $targetCharacterName,
+            ],
+        );
 
         return response()->json([
             'slots' => [

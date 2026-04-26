@@ -117,6 +117,30 @@
       "created": "がグループを作成しました。",
       "updated": "がグループ設定を更新しました。",
       "deleted": "がグループを削除しました。",
+      "activity": {
+        "created": "がアクティビティを作成しました。",
+        "updated": "がアクティビティを更新しました。",
+        "deleted": "がアクティビティを削除しました。",
+        "application": {
+          "submitted": "がアクティビティ応募を送信しました。",
+          "updated": "がアクティビティ応募を更新しました。"
+        },
+        "roster": {
+          "assigned": "がロスター枠を割り当てました。",
+          "updated": "がロスター割り当てを更新しました。",
+          "reassigned": "がロスター枠を再割り当てしました。",
+          "replaced": "がロスター割り当てを置き換えました。",
+          "swapped": "がロスター内で人員を移動しました。",
+          "returned_to_queue": "がロスター枠をキューへ戻しました。"
+        },
+        "attendance": {
+          "checked_in": "がロスター枠をチェックインしました。",
+          "check_in_reverted": "がロスターチェックインを取り消しました。",
+          "group_checked_in": "がパーティーまたはグループ全体をチェックインしました。",
+          "marked_missing": "がロスター枠を欠席扱いにしました。",
+          "missing_reverted": "が欠席扱いを取り消しました。"
+        }
+      },
       "invite": {
         "created": "が招待リンクを作成しました。",
         "revoked": "が招待リンクを無効化しました。"
@@ -161,9 +185,11 @@
     "description": "説明",
     "profile_picture_url": "プロフィール画像",
     "discord_invite_url": "Discord招待",
+    "title": "タイトル",
     "datacenter": "データセンター",
     "is_public": "公開",
     "is_visible": "表示",
+    "status": "ステータス",
     "role": "ロール",
     "note_severity": "メモの重要度",
     "note_excerpt": "メモ抜粋",
@@ -180,6 +206,32 @@
     "expires_at": "有効期限",
     "uses": "使用回数",
     "slug": "Slug",
+    "activity_title": "アクティビティ",
+    "activity_type_slug": "アクティビティ種別",
+    "slot_label": "枠",
+    "group_label": "グループ",
+    "source_slot_label": "移動元枠",
+    "source_group_label": "移動元グループ",
+    "source_character_name": "移動元キャラクター",
+    "target_slot_label": "移動先枠",
+    "target_group_label": "移動先グループ",
+    "target_character_name": "移動先キャラクター",
+    "character_name": "キャラクター",
+    "selected_character_name": "選択キャラクター",
+    "displaced_character_name": "押し出されたキャラクター",
+    "application_status": "応募ステータス",
+    "starts_at": "開始日時",
+    "duration_hours": "時間数",
+    "needs_application": "応募必須",
+    "target_prog_point_key": "目標Progポイント",
+    "organized_by_user_id": "主催者",
+    "organized_by_character_id": "主催キャラクター",
+    "checked_in_at": "チェックイン日時",
+    "checked_in_count": "チェックイン数",
+    "marked_missing_at": "欠席記録日時",
+    "restored_destination": "復元先",
+    "is_bench": "ベンチ枠",
+    "field_assignment_updated": "枠設定更新",
     "email": "メールアドレス",
     "provider": "プロバイダー",
     "provider_user_id": "プロバイダーユーザーID",
@@ -238,6 +290,30 @@
       "created": "グループ作成",
       "updated": "グループ設定を更新",
       "deleted": "グループ削除",
+      "activity": {
+        "created": "アクティビティ作成",
+        "updated": "アクティビティ更新",
+        "deleted": "アクティビティ削除",
+        "application": {
+          "submitted": "アクティビティ応募送信",
+          "updated": "アクティビティ応募更新"
+        },
+        "roster": {
+          "assigned": "ロスター枠割り当て",
+          "updated": "ロスター割り当て更新",
+          "reassigned": "ロスター枠再割り当て",
+          "replaced": "ロスター割り当て置換",
+          "swapped": "ロスター位置移動",
+          "returned_to_queue": "ロスター枠をキューへ戻す"
+        },
+        "attendance": {
+          "checked_in": "ロスター枠チェックイン",
+          "check_in_reverted": "ロスターチェックイン取り消し",
+          "group_checked_in": "ロスターグループチェックイン",
+          "marked_missing": "ロスター枠を欠席扱い",
+          "missing_reverted": "欠席扱いを取り消し"
+        }
+      },
       "invite": {
         "created": "招待リンクを作成",
         "revoked": "招待リンクを無効化"

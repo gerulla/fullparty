@@ -6,6 +6,7 @@ use App\Models\Activity;
 use App\Models\ActivityApplication;
 use App\Models\ActivitySlot;
 use App\Models\Group;
+use App\Services\Groups\GroupActivityAuditService;
 use App\Services\Groups\ActivitySlotSerializer;
 use App\Services\Groups\ActivitySlotAttendanceService;
 use App\Services\Groups\ApplicantQueue\ApplicantQueuePayloadBuilder;
@@ -19,6 +20,7 @@ class GroupActivitySlotUnassignmentController extends Controller
         Group $group,
         Activity $activity,
         ActivitySlot $slot,
+        GroupActivityAuditService $activityAuditService,
         ActivitySlotSerializer $slotSerializer,
         ActivitySlotAttendanceService $attendanceService,
         ApplicantQueuePayloadBuilder $queuePayloadBuilder,
@@ -58,6 +60,8 @@ class GroupActivitySlotUnassignmentController extends Controller
             ]);
         }
 
+        $slotCharacterName = $slot->assignedCharacter?->name ?? $application->selectedCharacter?->name;
+
         DB::transaction(function () use ($slot, $application, $activity, $attendanceService) {
             $slot->update([
                 'assigned_character_id' => null,
@@ -85,6 +89,16 @@ class GroupActivitySlotUnassignmentController extends Controller
         });
 
         $slot->load(['assignedCharacter', 'fieldValues', 'assignments']);
+
+        $activityAuditService->logRosterEvent(
+            'returned_to_queue',
+            $slot,
+            auth()->user(),
+            [
+                'character_name' => $slotCharacterName,
+                'application_status' => $application->status,
+            ],
+        );
 
         return response()->json([
             'slot' => $slotSerializer->serialize($slot),

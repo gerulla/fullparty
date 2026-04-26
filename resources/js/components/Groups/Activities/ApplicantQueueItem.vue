@@ -323,14 +323,14 @@ const memberNotesButtonLabel = computed(() => {
 	const notes = props.application.user?.notes;
 
 	if (!notes?.can_view) {
-		return t('groups.members.actions.notes');
+		return t('general.notes');
 	}
 
 	const totalCount = notes.current_group_count + notes.shared_count;
 
 	return totalCount > 0
-		? `${t('groups.members.actions.notes')} (${totalCount})`
-		: t('groups.members.actions.notes');
+		? `${t('general.notes')} (${totalCount})`
+		: t('general.notes');
 });
 
 const handleDragStart = (event: DragEvent) => {
@@ -647,7 +647,7 @@ const handleDragStart = (event: DragEvent) => {
 						<!-- Modal freeform notes from the applicant -->
 						<div class="space-y-3 border border-default bg-default/60 p-4">
 							<p class="text-[11px] font-medium uppercase tracking-[0.12em] text-muted">
-								{{ t('groups.activities.management.queue.modal.notes') }}
+								{{ t('general.notes') }}
 							</p>
 
 							<p class="text-sm whitespace-pre-line text-toned">

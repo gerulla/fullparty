@@ -7,6 +7,7 @@ use App\Models\ActivitySlot;
 use App\Models\Group;
 use App\Services\Groups\ActivitySlotAttendanceService;
 use App\Services\Groups\ActivitySlotSerializer;
+use App\Services\Groups\GroupActivityAuditService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;
@@ -18,6 +19,7 @@ class GroupActivitySlotCheckInController extends Controller
         Activity $activity,
         ActivitySlot $slot,
         ActivitySlotAttendanceService $attendanceService,
+        GroupActivityAuditService $activityAuditService,
         ActivitySlotSerializer $slotSerializer,
     ): JsonResponse {
         $this->authorize('manageDashboard', [$activity, $group]);
@@ -42,6 +44,15 @@ class GroupActivitySlotCheckInController extends Controller
         $attendanceService->checkInSlot($slot, (int) auth()->id());
         $slot->load(['assignedCharacter', 'fieldValues', 'assignments']);
 
+        $activityAuditService->logAttendanceEvent(
+            'checked_in',
+            $slot,
+            auth()->user(),
+            [
+                'checked_in_at' => now()->toIso8601String(),
+            ],
+        );
+
         return response()->json([
             'slot' => $slotSerializer->serialize($slot),
         ]);
@@ -52,6 +63,7 @@ class GroupActivitySlotCheckInController extends Controller
         Activity $activity,
         ActivitySlot $slot,
         ActivitySlotAttendanceService $attendanceService,
+        GroupActivityAuditService $activityAuditService,
         ActivitySlotSerializer $slotSerializer,
     ): JsonResponse {
         $this->authorize('manageDashboard', [$activity, $group]);
@@ -83,6 +95,12 @@ class GroupActivitySlotCheckInController extends Controller
 
         $slot->load(['assignedCharacter', 'fieldValues', 'assignments']);
 
+        $activityAuditService->logAttendanceEvent(
+            'check_in_reverted',
+            $slot,
+            auth()->user(),
+        );
+
         return response()->json([
             'slot' => $slotSerializer->serialize($slot),
         ]);
@@ -93,6 +111,7 @@ class GroupActivitySlotCheckInController extends Controller
         Group $group,
         Activity $activity,
         ActivitySlotAttendanceService $attendanceService,
+        GroupActivityAuditService $activityAuditService,
         ActivitySlotSerializer $slotSerializer,
     ): JsonResponse {
         $this->authorize('manageDashboard', [$activity, $group]);
@@ -112,6 +131,18 @@ class GroupActivitySlotCheckInController extends Controller
             (string) $validated['group_key'],
             (int) auth()->id(),
         );
+
+        if ($slots->isNotEmpty()) {
+            $activityAuditService->logGroupAttendanceEvent(
+                'group_checked_in',
+                $activity,
+                (string) (($slots->first()->group_label['en'] ?? $validated['group_key'])),
+                auth()->user(),
+                [
+                    'checked_in_count' => $slots->count(),
+                ],
+            );
+        }
 
         return response()->json([
             'slots' => $slots

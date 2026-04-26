@@ -117,6 +117,30 @@
       "created": "a créé le groupe.",
       "updated": "a mis à jour les paramètres du groupe.",
       "deleted": "a supprimé le groupe.",
+      "activity": {
+        "created": "a créé une activité.",
+        "updated": "a mis à jour une activité.",
+        "deleted": "a supprimé une activité.",
+        "application": {
+          "submitted": "a envoyé une candidature d'activité.",
+          "updated": "a mis à jour une candidature d'activité."
+        },
+        "roster": {
+          "assigned": "a attribué un slot de roster.",
+          "updated": "a mis à jour une attribution de roster.",
+          "reassigned": "a réattribué un slot de roster.",
+          "replaced": "a remplacé une attribution de roster.",
+          "swapped": "a déplacé des personnes dans le roster.",
+          "returned_to_queue": "a renvoyé un slot de roster dans la file."
+        },
+        "attendance": {
+          "checked_in": "a validé la présence sur un slot de roster.",
+          "check_in_reverted": "a annulé une validation de présence du roster.",
+          "group_checked_in": "a validé la présence d'un groupe ou d'une équipe entière.",
+          "marked_missing": "a marqué un slot de roster comme absent.",
+          "missing_reverted": "a annulé l'absence d'un slot de roster."
+        }
+      },
       "invite": {
         "created": "a créé un lien d'invitation.",
         "revoked": "a révoqué un lien d'invitation."
@@ -161,9 +185,11 @@
     "description": "Description",
     "profile_picture_url": "Image de profil",
     "discord_invite_url": "Invitation Discord",
+    "title": "Titre",
     "datacenter": "Centre de données",
     "is_public": "Public",
     "is_visible": "Visible",
+    "status": "Statut",
     "role": "Rôle",
     "note_severity": "Gravité de la note",
     "note_excerpt": "Extrait de la note",
@@ -180,6 +206,32 @@
     "expires_at": "Expire le",
     "uses": "Utilisations",
     "slug": "Slug",
+    "activity_title": "Activité",
+    "activity_type_slug": "Type d'activité",
+    "slot_label": "Slot",
+    "group_label": "Groupe",
+    "source_slot_label": "Slot source",
+    "source_group_label": "Groupe source",
+    "source_character_name": "Personnage source",
+    "target_slot_label": "Slot cible",
+    "target_group_label": "Groupe cible",
+    "target_character_name": "Personnage cible",
+    "character_name": "Personnage",
+    "selected_character_name": "Personnage sélectionné",
+    "displaced_character_name": "Personnage remplacé",
+    "application_status": "Statut de candidature",
+    "starts_at": "Commence le",
+    "duration_hours": "Durée (heures)",
+    "needs_application": "Candidature requise",
+    "target_prog_point_key": "Point de progression cible",
+    "organized_by_user_id": "Organisateur",
+    "organized_by_character_id": "Personnage organisateur",
+    "checked_in_at": "Validé le",
+    "checked_in_count": "Nombre de validations",
+    "marked_missing_at": "Marqué absent le",
+    "restored_destination": "Destination restaurée",
+    "is_bench": "Slot de banc",
+    "field_assignment_updated": "Attribution de champ mise à jour",
     "email": "E-mail",
     "provider": "Fournisseur",
     "provider_user_id": "ID utilisateur du fournisseur",
@@ -238,6 +290,30 @@
       "created": "Groupe créé",
       "updated": "Paramètres du groupe mis à jour",
       "deleted": "Groupe supprimé",
+      "activity": {
+        "created": "Activité créée",
+        "updated": "Activité mise à jour",
+        "deleted": "Activité supprimée",
+        "application": {
+          "submitted": "Candidature d'activité envoyée",
+          "updated": "Candidature d'activité mise à jour"
+        },
+        "roster": {
+          "assigned": "Slot de roster attribué",
+          "updated": "Attribution de roster mise à jour",
+          "reassigned": "Slot de roster réattribué",
+          "replaced": "Attribution de roster remplacée",
+          "swapped": "Positions du roster déplacées",
+          "returned_to_queue": "Slot de roster renvoyé à la file"
+        },
+        "attendance": {
+          "checked_in": "Slot de roster validé",
+          "check_in_reverted": "Validation du roster annulée",
+          "group_checked_in": "Groupe du roster validé",
+          "marked_missing": "Slot de roster marqué absent",
+          "missing_reverted": "Absence du slot de roster annulée"
+        }
+      },
       "invite": {
         "created": "Lien d'invitation créé",
         "revoked": "Lien d'invitation révoqué"

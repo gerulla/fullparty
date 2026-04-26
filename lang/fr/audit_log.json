@@ -127,6 +127,14 @@
         "left": "a quitté le groupe.",
         "promoted": "a promu un membre au rang de modérateur.",
         "demoted": "a rétrogradé un modérateur au rang de membre.",
+        "note": {
+          "created": "a ajouté une note de membre.",
+          "updated": "a mis à jour une note de membre.",
+          "deleted": "a supprimé une note de membre.",
+          "addendum": {
+            "created": "a ajouté du contexte à une note."
+          }
+        },
         "removed": "a retiré un membre du groupe.",
         "banned": "a banni un membre du groupe.",
         "unbanned": "a débanni un membre."
@@ -157,6 +165,11 @@
     "is_public": "Public",
     "is_visible": "Visible",
     "role": "Rôle",
+    "note_severity": "Gravité de la note",
+    "note_excerpt": "Extrait de la note",
+    "note_body": "Texte de la note",
+    "addendum_excerpt": "Extrait du contexte",
+    "is_shared_with_groups": "Partagée avec d'autres groupes",
     "membership_status": "Statut d'adhésion",
     "ban_reason": "Raison du bannissement",
     "owner_user_id": "Propriétaire",
@@ -235,6 +248,14 @@
         "left": "Membre ayant quitté le groupe",
         "promoted": "Membre promu au rang de modérateur",
         "demoted": "Modérateur redevenu membre",
+        "note": {
+          "created": "Note de membre créée",
+          "updated": "Note de membre mise à jour",
+          "deleted": "Note de membre supprimée",
+          "addendum": {
+            "created": "Contexte de note ajouté"
+          }
+        },
         "removed": "Membre retiré du groupe",
         "banned": "Membre banni du groupe",
         "unbanned": "Membre débanni"

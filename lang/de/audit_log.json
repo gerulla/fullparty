@@ -127,6 +127,14 @@
         "left": "hat die Gruppe verlassen.",
         "promoted": "hat ein Mitglied zum Moderator befördert.",
         "demoted": "hat einen Moderator wieder zum Mitglied gemacht.",
+        "note": {
+          "created": "hat eine Mitgliedsnotiz hinzugefügt.",
+          "updated": "hat eine Mitgliedsnotiz aktualisiert.",
+          "deleted": "hat eine Mitgliedsnotiz gelöscht.",
+          "addendum": {
+            "created": "hat Notizkontext hinzugefügt."
+          }
+        },
         "removed": "hat ein Mitglied aus der Gruppe entfernt.",
         "banned": "hat ein Mitglied aus der Gruppe gebannt.",
         "unbanned": "hat die Sperre eines Mitglieds aufgehoben."
@@ -157,6 +165,11 @@
     "is_public": "Öffentlich",
     "is_visible": "Sichtbar",
     "role": "Rolle",
+    "note_severity": "Notizschwere",
+    "note_excerpt": "Notizauszug",
+    "note_body": "Notiztext",
+    "addendum_excerpt": "Kontextauszug",
+    "is_shared_with_groups": "Mit anderen Gruppen geteilt",
     "membership_status": "Mitgliedschaftsstatus",
     "ban_reason": "Banngrund",
     "owner_user_id": "Besitzer",
@@ -235,6 +248,14 @@
         "left": "Mitglied hat Gruppe verlassen",
         "promoted": "Mitglied zum Moderator befördert",
         "demoted": "Moderator wieder zum Mitglied gemacht",
+        "note": {
+          "created": "Mitgliedsnotiz erstellt",
+          "updated": "Mitgliedsnotiz aktualisiert",
+          "deleted": "Mitgliedsnotiz gelöscht",
+          "addendum": {
+            "created": "Notizkontext hinzugefügt"
+          }
+        },
         "removed": "Mitglied aus Gruppe entfernt",
         "banned": "Mitglied aus Gruppe gebannt",
         "unbanned": "Mitglied entsperrt"

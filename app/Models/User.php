@@ -73,6 +73,16 @@ class User extends Authenticatable implements MustVerifyEmail
 		return $this->hasMany(GroupMembership::class);
 	}
 
+	public function receivedGroupNotes(): HasMany
+	{
+		return $this->hasMany(GroupUserNote::class);
+	}
+
+	public function authoredGroupNotes(): HasMany
+	{
+		return $this->hasMany(GroupUserNote::class, 'author_user_id');
+	}
+
 	public function groups(): BelongsToMany
 	{
 		return $this->belongsToMany(Group::class, 'group_memberships')

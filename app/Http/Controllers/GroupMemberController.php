@@ -5,12 +5,15 @@ namespace App\Http\Controllers;
 use App\Models\Group;
 use App\Models\GroupBan;
 use App\Models\GroupMembership;
+use App\Models\User;
+use App\Services\Groups\GroupUserNoteVisibilityService;
 use Inertia\Inertia;
 use Inertia\Response;
+use Illuminate\Support\Collection;
 
 class GroupMemberController extends Controller
 {
-    public function index(Group $group): Response
+    public function index(Group $group, GroupUserNoteVisibilityService $noteVisibilityService): Response
     {
         $group->load([
             'owner',
@@ -20,15 +23,27 @@ class GroupMemberController extends Controller
         ]);
 
         $currentUserId = auth()->id();
+        $canManageMembers = $group->hasModeratorAccess($currentUserId);
 
         if (!$group->hasMember($currentUserId)) {
             abort(403);
         }
 
+        $targetUserIds = $group->memberships
+            ->pluck('user_id')
+            ->merge($group->bans->pluck('user_id'))
+            ->filter()
+            ->unique()
+            ->values();
+
+        $visibleNotes = $noteVisibilityService->loadVisibleNotesForTargets($group, $currentUserId, $targetUserIds);
+        $groupNotesByUserId = $visibleNotes['group_notes_by_user_id'];
+        $sharedNotesByUserId = $visibleNotes['shared_notes_by_user_id'];
+
         return Inertia::render('Dashboard/Groups/Members/Index', [
             'group' => $this->serializeGroup($group, $currentUserId),
-            'members' => $this->serializeMembers($group, $currentUserId),
-            'bannedMembers' => $this->serializeBannedMembers($group),
+            'members' => $this->serializeMembers($group, $currentUserId, $groupNotesByUserId, $sharedNotesByUserId, $noteVisibilityService),
+            'bannedMembers' => $this->serializeBannedMembers($group, $currentUserId, $groupNotesByUserId, $sharedNotesByUserId, $noteVisibilityService),
         ]);
     }
 
@@ -61,7 +76,13 @@ class GroupMemberController extends Controller
         ];
     }
 
-    private function serializeMembers(Group $group, int $currentUserId): array
+    private function serializeMembers(
+        Group $group,
+        int $currentUserId,
+        Collection $groupNotesByUserId,
+        Collection $sharedNotesByUserId,
+        GroupUserNoteVisibilityService $noteVisibilityService,
+    ): array
     {
         return $group->memberships
             ->sort(function (GroupMembership $left, GroupMembership $right) {
@@ -106,6 +127,14 @@ class GroupMemberController extends Controller
                     'can_kick' => $this->canKick($group, $membership, $currentUserId),
                     'can_ban' => $this->canBan($group, $membership, $currentUserId),
                 ],
+                'notes' => $this->serializeVisibleNotesForUser(
+                    $group,
+                    $membership->user,
+                    $currentUserId,
+                    $groupNotesByUserId,
+                    $sharedNotesByUserId,
+                    $noteVisibilityService,
+                ),
             ])
             ->all();
     }
@@ -143,7 +172,13 @@ class GroupMemberController extends Controller
         return $this->canKick($group, $membership, $currentUserId);
     }
 
-    private function serializeBannedMembers(Group $group): array
+    private function serializeBannedMembers(
+        Group $group,
+        int $currentUserId,
+        Collection $groupNotesByUserId,
+        Collection $sharedNotesByUserId,
+        GroupUserNoteVisibilityService $noteVisibilityService,
+    ): array
     {
         return $group->bans
             ->sort(function (GroupBan $left, GroupBan $right) {
@@ -182,7 +217,32 @@ class GroupMemberController extends Controller
                 'permissions' => [
                     'can_unban' => $group->hasModeratorAccess(auth()->id()),
                 ],
+                'notes' => $this->serializeVisibleNotesForUser(
+                    $group,
+                    $ban->user,
+                    $currentUserId,
+                    $groupNotesByUserId,
+                    $sharedNotesByUserId,
+                    $noteVisibilityService,
+                ),
             ])
             ->all();
+    }
+
+    private function serializeVisibleNotesForUser(
+        Group $group,
+        ?User $user,
+        int $currentUserId,
+        Collection $groupNotesByUserId,
+        Collection $sharedNotesByUserId,
+        GroupUserNoteVisibilityService $noteVisibilityService
+    ): array {
+        return $noteVisibilityService->serializeVisibleNotesForUser(
+            $group,
+            $user,
+            $currentUserId,
+            $groupNotesByUserId,
+            $sharedNotesByUserId,
+        );
     }
 }

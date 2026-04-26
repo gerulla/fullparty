@@ -127,6 +127,14 @@
         "left": "left the group.",
         "promoted": "promoted a member to moderator.",
         "demoted": "changed a moderator back to member.",
+        "note": {
+          "created": "added a member note.",
+          "updated": "updated a member note.",
+          "deleted": "deleted a member note.",
+          "addendum": {
+            "created": "added note context."
+          }
+        },
         "removed": "removed a member from the group.",
         "banned": "banned a member from the group.",
         "unbanned": "unbanned a member."
@@ -167,6 +175,11 @@
     "is_public": "Public",
     "is_visible": "Visible",
     "role": "Role",
+    "note_severity": "Note Severity",
+    "note_excerpt": "Note Excerpt",
+    "note_body": "Note Body",
+    "addendum_excerpt": "Context Excerpt",
+    "is_shared_with_groups": "Shared With Other Groups",
     "membership_status": "Membership Status",
     "ban_reason": "Ban Reason",
     "owner_user_id": "Owner",
@@ -245,6 +258,14 @@
         "left": "Member left group",
         "promoted": "Member promoted to moderator",
         "demoted": "Moderator changed back to member",
+        "note": {
+          "created": "Member note created",
+          "updated": "Member note updated",
+          "deleted": "Member note deleted",
+          "addendum": {
+            "created": "Note context added"
+          }
+        },
         "removed": "Member removed from group",
         "banned": "Member banned from group",
         "unbanned": "Member unbanned from group"

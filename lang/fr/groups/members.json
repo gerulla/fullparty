@@ -44,11 +44,75 @@
     }
   },
   "actions": {
+    "notes": "Notes",
     "promote": "Promouvoir",
     "demote": "Rétrograder",
     "kick": "Expulser",
     "ban": "Bannir",
     "unban": "Débannir"
+  },
+  "notes": {
+    "hidden": "Aucune note n'est disponible pour cet utilisateur.",
+    "unknown_group": "Groupe inconnu",
+    "shared_badge": "Partagé",
+    "shared_from": "Partagé par {author} le {date}",
+    "actions": {
+      "add_context": "Ajouter du contexte",
+      "save_context": "Enregistrer le contexte"
+    },
+    "addenda": {
+      "title": "Mises à jour de contexte",
+      "byline": "{author} a ajouté le {date}",
+      "form": {
+        "label": "Ajouter du contexte",
+        "placeholder": "Ajouter du contexte complémentaire à cette note"
+      }
+    },
+    "modal": {
+      "title": "Notes de membre pour {name}",
+      "subtitle": "Ces notes appartiennent au groupe et restent cachées à l'utilisateur concerné."
+    },
+    "count": {
+      "total": "{count} notes visibles",
+      "current_group": "{count} provenant de ce groupe",
+      "shared": "{count} partagées par d'autres groupes"
+    },
+    "create": {
+      "title": "Ajouter une note",
+      "subtitle": "Utilisez les notes pour conserver le contexte, les préoccupations et les préférences propres au groupe.",
+      "submit": "Ajouter une note"
+    },
+    "fields": {
+      "severity": {
+        "label": "Gravité"
+      },
+      "shared": {
+        "label": "Partager avec d'autres groupes",
+        "help": "Activez cette option pour permettre aux modérateurs et propriétaires d'autres groupes de voir cette note lorsqu'ils consultent le même utilisateur."
+      },
+      "body": {
+        "label": "Note",
+        "help": "Les notes sont internes uniquement et ne sont jamais montrées à l'utilisateur concerné.",
+        "placeholder": "Ajouter une note à propos de cet utilisateur"
+      }
+    },
+    "severities": {
+      "info": "Info",
+      "warning": "Avertissement",
+      "critical": "Critique"
+    },
+    "sections": {
+      "current_group": {
+        "title": "Notes de ce groupe",
+        "subtitle": "Notes internes appartenant à ce groupe.",
+        "empty": "Aucune note de ce groupe pour le moment."
+      },
+      "shared": {
+        "title": "Notes partagées d'autres groupes",
+        "subtitle": "Notes que d'autres groupes ont explicitement choisi de partager.",
+        "empty": "Aucune note partagée disponible."
+      }
+    }
   },
   "kick_modal": {
     "title": "Retirer {name} ?",
@@ -66,6 +130,10 @@
     }
   },
   "toasts": {
+    "note_added": "Note de membre ajoutée.",
+    "note_updated": "Note de membre mise à jour.",
+    "note_deleted": "Note de membre supprimée.",
+    "note_addendum_added": "Contexte ajouté à la note.",
     "promoted": "Membre promu au rang de modérateur.",
     "demoted": "Le modérateur a été rétrogradé au rang de membre.",
     "removed": "Membre retiré du groupe.",

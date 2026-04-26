@@ -44,11 +44,75 @@
     }
   },
   "actions": {
+    "notes": "Notes",
     "promote": "Promote",
     "demote": "Demote",
     "kick": "Kick",
     "ban": "Ban",
     "unban": "Unban"
+  },
+  "notes": {
+    "hidden": "Notes are not available for this user.",
+    "unknown_group": "Unknown group",
+    "shared_badge": "Shared",
+    "shared_from": "Shared by {author} on {date}",
+    "actions": {
+      "add_context": "Add Context",
+      "save_context": "Save Context"
+    },
+    "addenda": {
+      "title": "Context Updates",
+      "byline": "{author} added on {date}",
+      "form": {
+        "label": "Add Context",
+        "placeholder": "Add supporting context to this note"
+      }
+    },
+    "modal": {
+      "title": "Member Notes for {name}",
+      "subtitle": "These notes are owned by the group and remain hidden from the user they are about."
+    },
+    "count": {
+      "total": "{count} visible notes",
+      "current_group": "{count} from this group",
+      "shared": "{count} shared from other groups"
+    },
+    "create": {
+      "title": "Add Note",
+      "subtitle": "Use notes to capture group-specific context, concerns, and preferences.",
+      "submit": "Add Note"
+    },
+    "fields": {
+      "severity": {
+        "label": "Severity"
+      },
+      "shared": {
+        "label": "Share with other groups",
+        "help": "Enable this to let moderators and owners in other groups view this note when they review the same user."
+      },
+      "body": {
+        "label": "Note",
+        "help": "Notes are internal only and never shown to the user they describe.",
+        "placeholder": "Add a note about this user"
+      }
+    },
+    "severities": {
+      "info": "Info",
+      "warning": "Warning",
+      "critical": "Critical"
+    },
+    "sections": {
+      "current_group": {
+        "title": "This Group's Notes",
+        "subtitle": "Internal notes owned by this group.",
+        "empty": "No notes from this group yet."
+      },
+      "shared": {
+        "title": "Shared Notes from Other Groups",
+        "subtitle": "Notes other groups explicitly chose to share.",
+        "empty": "No shared notes available."
+      }
+    }
   },
   "kick_modal": {
     "title": "Remove {name}?",
@@ -66,6 +130,10 @@
     }
   },
   "toasts": {
+    "note_added": "Member note added.",
+    "note_updated": "Member note updated.",
+    "note_deleted": "Member note deleted.",
+    "note_addendum_added": "Context added to note.",
     "promoted": "Member promoted to moderator.",
     "demoted": "Moderator changed back to member.",
     "removed": "Member removed from the group.",

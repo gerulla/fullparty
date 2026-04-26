@@ -14,6 +14,7 @@ class GroupActivityApplicantQueueController extends Controller
         $this->authorize('manageDashboard', [$activity, $group]);
 
         $activity->load([
+            'group.memberships',
             'activityTypeVersion',
             'applications' => fn ($query) => $query
                 ->where('status', 'pending')
@@ -25,6 +26,6 @@ class GroupActivityApplicantQueueController extends Controller
                 ]),
         ]);
 
-        return response()->json($payloadBuilder->build($activity));
+        return response()->json($payloadBuilder->build($activity, auth()->id()));
     }
 }

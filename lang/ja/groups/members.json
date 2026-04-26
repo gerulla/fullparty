@@ -44,11 +44,75 @@
     }
   },
   "actions": {
+    "notes": "メモ",
     "promote": "昇格",
     "demote": "降格",
     "kick": "キック",
     "ban": "BAN",
     "unban": "BAN解除"
+  },
+  "notes": {
+    "hidden": "このユーザーに対するメモは利用できません。",
+    "unknown_group": "不明なグループ",
+    "shared_badge": "共有",
+    "shared_from": "{author} が {date} に共有",
+    "actions": {
+      "add_context": "補足を追加",
+      "save_context": "補足を保存"
+    },
+    "addenda": {
+      "title": "補足コンテキスト",
+      "byline": "{author} が {date} に追加",
+      "form": {
+        "label": "補足を追加",
+        "placeholder": "このメモに補足コンテキストを追加"
+      }
+    },
+    "modal": {
+      "title": "{name} のメンバーメモ",
+      "subtitle": "これらのメモはグループ所有であり、対象ユーザー本人には表示されません。"
+    },
+    "count": {
+      "total": "表示中のメモ {count} 件",
+      "current_group": "このグループ {count} 件",
+      "shared": "他グループ共有 {count} 件"
+    },
+    "create": {
+      "title": "メモを追加",
+      "subtitle": "グループ固有の文脈、懸念事項、好みを記録するために使います。",
+      "submit": "メモを追加"
+    },
+    "fields": {
+      "severity": {
+        "label": "重要度"
+      },
+      "shared": {
+        "label": "他のグループにも共有する",
+        "help": "有効にすると、他グループのモデレーターやオーナーが同じユーザーを確認する際にこのメモを閲覧できます。"
+      },
+      "body": {
+        "label": "メモ",
+        "help": "メモは内部用であり、対象ユーザーには一切表示されません。",
+        "placeholder": "このユーザーについてメモを追加"
+      }
+    },
+    "severities": {
+      "info": "情報",
+      "warning": "警告",
+      "critical": "重大"
+    },
+    "sections": {
+      "current_group": {
+        "title": "このグループのメモ",
+        "subtitle": "このグループが所有する内部メモです。",
+        "empty": "このグループのメモはまだありません。"
+      },
+      "shared": {
+        "title": "他グループから共有されたメモ",
+        "subtitle": "他グループが明示的に共有したメモです。",
+        "empty": "共有メモはありません。"
+      }
+    }
   },
   "kick_modal": {
     "title": "{name} を削除しますか？",
@@ -66,6 +130,10 @@
     }
   },
   "toasts": {
+    "note_added": "メンバーメモを追加しました。",
+    "note_updated": "メンバーメモを更新しました。",
+    "note_deleted": "メンバーメモを削除しました。",
+    "note_addendum_added": "メモに補足を追加しました。",
     "promoted": "メンバーをモデレーターに昇格しました。",
     "demoted": "モデレーターをメンバーに降格しました。",
     "removed": "メンバーをグループから削除しました。",

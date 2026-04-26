@@ -7,6 +7,7 @@ use App\Models\Activity;
 use App\Models\ActivitySlot;
 use App\Models\ActivityTypeVersion;
 use App\Services\Groups\ActivitySlotFieldDefinitionBuilder;
+use App\Services\Groups\GroupUserNoteVisibilityService;
 use Illuminate\Support\Collection;
 
 class ApplicantQueuePayloadBuilder
@@ -17,13 +18,28 @@ class ApplicantQueuePayloadBuilder
         private readonly ApplicantMilestoneResolver $milestoneResolver,
         private readonly ApplicationAnswerPresenter $answerPresenter,
         private readonly ActivitySlotFieldDefinitionBuilder $slotFieldDefinitionBuilder,
+        private readonly GroupUserNoteVisibilityService $noteVisibilityService,
     ) {}
 
     /**
      * @return array<string, mixed>
      */
-    public function build(Activity $activity): array
+    public function build(Activity $activity, int $currentUserId): array
     {
+        $group = $activity->group;
+        $targetUserIds = $activity->applications
+            ->pluck('user_id')
+            ->filter()
+            ->unique()
+            ->values();
+
+        $visibleNotes = $group
+            ? $this->noteVisibilityService->loadVisibleNotesForTargets($group, $currentUserId, $targetUserIds)
+            : [
+                'group_notes_by_user_id' => collect(),
+                'shared_notes_by_user_id' => collect(),
+            ];
+
         return [
             'fflogs_zone_id' => $activity->activityTypeVersion?->fflogs_zone_id,
             'pending_application_count' => $activity->applications->count(),
@@ -32,7 +48,14 @@ class ApplicantQueuePayloadBuilder
                 'milestones' => $this->serializeQueueMilestones($activity->activityTypeVersion),
             ],
             'applications' => $activity->applications
-                ->map(fn ($application) => $this->serializeApplication($application, $activity->activityTypeVersion))
+                ->map(fn ($application) => $this->serializeApplication(
+                    $application,
+                    $activity->activityTypeVersion,
+                    $group,
+                    $currentUserId,
+                    $visibleNotes['group_notes_by_user_id'],
+                    $visibleNotes['shared_notes_by_user_id'],
+                ))
                 ->values(),
         ];
     }
@@ -40,7 +63,14 @@ class ApplicantQueuePayloadBuilder
     /**
      * @return array<string, mixed>
      */
-    public function serializeApplication($application, ?ActivityTypeVersion $activityTypeVersion): array
+    public function serializeApplication(
+        $application,
+        ?ActivityTypeVersion $activityTypeVersion,
+        $group,
+        int $currentUserId,
+        Collection $groupNotesByUserId,
+        Collection $sharedNotesByUserId,
+    ): array
     {
         return [
             'id' => $application->id,
@@ -48,6 +78,22 @@ class ApplicantQueuePayloadBuilder
                 'id' => $application->user->id,
                 'name' => $application->user->name,
                 'avatar_url' => $application->user->avatar_url,
+                'notes' => $group
+                    ? $this->noteVisibilityService->serializeVisibleNotesForUser(
+                        $group,
+                        $application->user,
+                        $currentUserId,
+                        $groupNotesByUserId,
+                        $sharedNotesByUserId,
+                    )
+                    : [
+                        'can_view' => false,
+                        'can_add' => false,
+                        'current_group_count' => 0,
+                        'shared_count' => 0,
+                        'current_group' => [],
+                        'shared' => [],
+                    ],
             ] : null,
             'selected_character' => $application->selectedCharacter ? [
                 'id' => $application->selectedCharacter->id,

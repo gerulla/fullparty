@@ -44,11 +44,75 @@
     }
   },
   "actions": {
+    "notes": "Notizen",
     "promote": "Befördern",
     "demote": "Zurückstufen",
     "kick": "Entfernen",
     "ban": "Bannen",
     "unban": "Entbannen"
+  },
+  "notes": {
+    "hidden": "Für diesen Benutzer sind keine Notizen verfügbar.",
+    "unknown_group": "Unbekannte Gruppe",
+    "shared_badge": "Geteilt",
+    "shared_from": "Geteilt von {author} am {date}",
+    "actions": {
+      "add_context": "Kontext hinzufügen",
+      "save_context": "Kontext speichern"
+    },
+    "addenda": {
+      "title": "Kontext-Updates",
+      "byline": "{author} hinzugefügt am {date}",
+      "form": {
+        "label": "Kontext hinzufügen",
+        "placeholder": "Ergänzenden Kontext zu dieser Notiz hinzufügen"
+      }
+    },
+    "modal": {
+      "title": "Mitgliedsnotizen für {name}",
+      "subtitle": "Diese Notizen gehören der Gruppe und bleiben vor dem betroffenen Benutzer verborgen."
+    },
+    "count": {
+      "total": "{count} sichtbare Notizen",
+      "current_group": "{count} aus dieser Gruppe",
+      "shared": "{count} aus anderen Gruppen geteilt"
+    },
+    "create": {
+      "title": "Notiz hinzufügen",
+      "subtitle": "Nutze Notizen, um gruppenspezifischen Kontext, Bedenken und Vorlieben festzuhalten.",
+      "submit": "Notiz hinzufügen"
+    },
+    "fields": {
+      "severity": {
+        "label": "Schweregrad"
+      },
+      "shared": {
+        "label": "Mit anderen Gruppen teilen",
+        "help": "Aktiviere dies, damit Moderatoren und Besitzer in anderen Gruppen diese Notiz sehen können, wenn sie denselben Benutzer prüfen."
+      },
+      "body": {
+        "label": "Notiz",
+        "help": "Notizen sind nur intern und werden dem beschriebenen Benutzer niemals angezeigt.",
+        "placeholder": "Eine Notiz über diesen Benutzer hinzufügen"
+      }
+    },
+    "severities": {
+      "info": "Info",
+      "warning": "Warnung",
+      "critical": "Kritisch"
+    },
+    "sections": {
+      "current_group": {
+        "title": "Notizen dieser Gruppe",
+        "subtitle": "Interne Notizen, die dieser Gruppe gehören.",
+        "empty": "Noch keine Notizen aus dieser Gruppe."
+      },
+      "shared": {
+        "title": "Geteilte Notizen aus anderen Gruppen",
+        "subtitle": "Notizen, die andere Gruppen ausdrücklich freigegeben haben.",
+        "empty": "Keine geteilten Notizen verfügbar."
+      }
+    }
   },
   "kick_modal": {
     "title": "{name} entfernen?",
@@ -66,6 +130,10 @@
     }
   },
   "toasts": {
+    "note_added": "Mitgliedsnotiz hinzugefügt.",
+    "note_updated": "Mitgliedsnotiz aktualisiert.",
+    "note_deleted": "Mitgliedsnotiz gelöscht.",
+    "note_addendum_added": "Kontext zur Notiz hinzugefügt.",
     "promoted": "Mitglied zum Moderator befördert.",
     "demoted": "Moderator wieder zum Mitglied zurückgestuft.",
     "removed": "Mitglied aus der Gruppe entfernt.",

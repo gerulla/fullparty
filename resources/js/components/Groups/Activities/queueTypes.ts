@@ -25,6 +25,76 @@ export type QueueApplication = {
 		id: number
 		name: string
 		avatar_url: string | null
+		notes: {
+			can_view: boolean
+			can_add: boolean
+			current_group_count: number
+			shared_count: number
+			current_group: Array<{
+				id: number
+				severity: 'info' | 'warning' | 'critical'
+				body: string
+				is_shared_with_groups: boolean
+				created_at: string | null
+				permissions: {
+					can_edit_body: boolean
+					can_delete: boolean
+					can_add_addendum: boolean
+				}
+				author: {
+					id: number
+					name: string
+					avatar_url: string | null
+				} | null
+				addenda: Array<{
+					id: number
+					body: string
+					created_at: string | null
+					author: {
+						id: number
+						name: string
+						avatar_url: string | null
+					} | null
+				}>
+				source_group: {
+					id: number | null
+					name: string | null
+					slug: string | null
+				} | null
+			}>
+			shared: Array<{
+				id: number
+				severity: 'info' | 'warning' | 'critical'
+				body: string
+				is_shared_with_groups: boolean
+				created_at: string | null
+				permissions: {
+					can_edit_body: boolean
+					can_delete: boolean
+					can_add_addendum: boolean
+				}
+				author: {
+					id: number
+					name: string
+					avatar_url: string | null
+				} | null
+				addenda: Array<{
+					id: number
+					body: string
+					created_at: string | null
+					author: {
+						id: number
+						name: string
+						avatar_url: string | null
+					} | null
+				}>
+				source_group: {
+					id: number | null
+					name: string | null
+					slug: string | null
+				} | null
+			}>
+		}
 	} | null
 	selected_character: {
 		id: number

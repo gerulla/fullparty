@@ -25,6 +25,7 @@ use App\Http\Controllers\GroupDashboardController;
 use App\Http\Controllers\GroupAuditLogController;
 use App\Http\Controllers\GroupInviteController;
 use App\Http\Controllers\GroupMemberController;
+use App\Http\Controllers\GroupMemberNoteController;
 use App\Http\Controllers\GroupMembershipController;
 use App\Http\Controllers\GroupSettingsController;
 use App\Http\Controllers\PhantomJobController;
@@ -118,6 +119,10 @@ Route::middleware(['auth', 'verified'])->group(function () {
 	Route::put('/groups/{group:slug}/members/{user}', [GroupMembershipController::class, 'update'])->name('groups.members.update');
 	Route::delete('/groups/{group:slug}/members/{user}', [GroupMembershipController::class, 'destroy'])->name('groups.members.destroy');
 	Route::post('/groups/{group:slug}/members/{user}/ban', [GroupMembershipController::class, 'ban'])->name('groups.members.ban');
+	Route::post('/groups/{group:slug}/members/{user}/notes', [GroupMemberNoteController::class, 'store'])->name('groups.members.notes.store');
+	Route::put('/groups/{group:slug}/member-notes/{note}', [GroupMemberNoteController::class, 'update'])->name('groups.members.notes.update');
+	Route::delete('/groups/{group:slug}/member-notes/{note}', [GroupMemberNoteController::class, 'destroy'])->name('groups.members.notes.destroy');
+	Route::post('/groups/{group:slug}/member-notes/{note}/addenda', [GroupMemberNoteController::class, 'storeAddendum'])->name('groups.members.notes.addenda.store');
 	Route::delete('/groups/{group:slug}/bans/{user}', [GroupMembershipController::class, 'unban'])->name('groups.members.unban');
 	Route::post('/groups/{group:slug}/transfer-ownership', [GroupMembershipController::class, 'transferOwnership'])->name('groups.transfer-ownership');
 

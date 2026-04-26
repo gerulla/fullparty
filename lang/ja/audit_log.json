@@ -127,6 +127,14 @@
         "left": "がグループを退出しました。",
         "promoted": "がメンバーをモデレーターに昇格しました。",
         "demoted": "がモデレーターをメンバーに降格しました。",
+        "note": {
+          "created": "がメンバーメモを追加しました。",
+          "updated": "がメンバーメモを更新しました。",
+          "deleted": "がメンバーメモを削除しました。",
+          "addendum": {
+            "created": "がメモの補足を追加しました。"
+          }
+        },
         "removed": "がメンバーをグループから削除しました。",
         "banned": "がメンバーをグループからBANしました。",
         "unbanned": "がメンバーのBANを解除しました。"
@@ -157,6 +165,11 @@
     "is_public": "公開",
     "is_visible": "表示",
     "role": "ロール",
+    "note_severity": "メモの重要度",
+    "note_excerpt": "メモ抜粋",
+    "note_body": "メモ本文",
+    "addendum_excerpt": "補足抜粋",
+    "is_shared_with_groups": "他グループと共有",
     "membership_status": "メンバーシップ状態",
     "ban_reason": "BAN理由",
     "owner_user_id": "オーナー",
@@ -235,6 +248,14 @@
         "left": "メンバーがグループを退出",
         "promoted": "メンバーをモデレーターに昇格",
         "demoted": "モデレーターをメンバーに降格",
+        "note": {
+          "created": "メンバーメモを作成",
+          "updated": "メンバーメモを更新",
+          "deleted": "メンバーメモを削除",
+          "addendum": {
+            "created": "メモ補足を追加"
+          }
+        },
         "removed": "メンバーをグループから削除",
         "banned": "メンバーをグループからBAN",
         "unbanned": "メンバーのBANを解除"

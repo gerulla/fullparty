@@ -6,6 +6,7 @@ import { useForm } from "@inertiajs/vue3";
 import { route } from "ziggy-js";
 import { useToast } from "@nuxt/ui/composables";
 import { useI18n } from "vue-i18n";
+import GroupMemberNotesModal from "@/components/Groups/GroupMemberNotesModal.vue";
 
 const props = defineProps<{
 	group: {
@@ -39,6 +40,46 @@ const props = defineProps<{
 			can_kick: boolean
 			can_ban: boolean
 		}
+		notes: {
+			can_view: boolean
+			can_add: boolean
+			current_group_count: number
+			shared_count: number
+			current_group: Array<{
+				id: number
+				severity: 'info' | 'warning' | 'critical'
+				body: string
+				is_shared_with_groups: boolean
+				created_at: string | null
+				author: {
+					id: number
+					name: string
+					avatar_url: string | null
+				} | null
+				source_group: {
+					id: number | null
+					name: string | null
+					slug: string | null
+				} | null
+			}>
+			shared: Array<{
+				id: number
+				severity: 'info' | 'warning' | 'critical'
+				body: string
+				is_shared_with_groups: boolean
+				created_at: string | null
+				author: {
+					id: number
+					name: string
+					avatar_url: string | null
+				} | null
+				source_group: {
+					id: number | null
+					name: string | null
+					slug: string | null
+				} | null
+			}>
+		}
 	}>
 	bannedMembers: Array<{
 		id: number
@@ -61,6 +102,46 @@ const props = defineProps<{
 		} | null
 		permissions: {
 			can_unban: boolean
+		}
+		notes: {
+			can_view: boolean
+			can_add: boolean
+			current_group_count: number
+			shared_count: number
+			current_group: Array<{
+				id: number
+				severity: 'info' | 'warning' | 'critical'
+				body: string
+				is_shared_with_groups: boolean
+				created_at: string | null
+				author: {
+					id: number
+					name: string
+					avatar_url: string | null
+				} | null
+				source_group: {
+					id: number | null
+					name: string | null
+					slug: string | null
+				} | null
+			}>
+			shared: Array<{
+				id: number
+				severity: 'info' | 'warning' | 'critical'
+				body: string
+				is_shared_with_groups: boolean
+				created_at: string | null
+				author: {
+					id: number
+					name: string
+					avatar_url: string | null
+				} | null
+				source_group: {
+					id: number | null
+					name: string | null
+					slug: string | null
+				} | null
+			}>
 		}
 	}>
 }>();
@@ -99,6 +180,13 @@ const memberToBan = ref<(typeof props.members)[number] | null>(null);
 const isKickModalOpen = ref(false);
 const isBanModalOpen = ref(false);
 const memberPendingUnbanId = ref<number | null>(null);
+const isNotesModalOpen = ref(false);
+const selectedNotesSubject = ref<{
+	id: number
+	name: string
+	avatar_url: string | null
+	notes: (typeof props.members)[number]['notes']
+} | null>(null);
 
 const memberCountLabel = computed(() => t('groups.members.roster.count', { count: props.members.length }));
 const bannedCountLabel = computed(() => t('groups.members.bans.count', { count: props.bannedMembers.length }));
@@ -176,6 +264,24 @@ const bannedColumns = computed(() => [
 
 const shouldFixTableHeight = (tableRef: any, pageSize: number) => {
 	return (tableRef?.tableApi?.getFilteredRowModel().rows.length ?? 0) > pageSize;
+};
+
+const openNotesModal = (subject: {
+	id: number
+	name: string
+	avatar_url: string | null
+	notes: (typeof props.members)[number]['notes']
+}) => {
+	selectedNotesSubject.value = subject;
+	isNotesModalOpen.value = true;
+};
+
+const noteCountLabel = (notes: (typeof props.members)[number]['notes']) => {
+	const totalCount = notes.current_group_count + notes.shared_count;
+
+	return totalCount > 0
+		? `${t('groups.members.actions.notes')} (${totalCount})`
+		: t('groups.members.actions.notes');
 };
 
 const openKickModal = (member: (typeof props.members)[number]) => {
@@ -297,6 +403,39 @@ watch(memberGlobalFilter, () => {
 watch(bannedGlobalFilter, () => {
 	bannedPagination.value.pageIndex = 0;
 });
+
+watch(
+	[() => props.members, () => props.bannedMembers],
+	() => {
+		if (!selectedNotesSubject.value) {
+			return;
+		}
+
+		const nextMember = props.members.find((member) => member.id === selectedNotesSubject.value?.id);
+
+		if (nextMember) {
+			selectedNotesSubject.value = {
+				id: nextMember.id,
+				name: nextMember.name,
+				avatar_url: nextMember.avatar_url,
+				notes: nextMember.notes,
+			};
+			return;
+		}
+
+		const nextBannedMember = props.bannedMembers.find((member) => member.user_id === selectedNotesSubject.value?.id);
+
+		if (nextBannedMember?.user_id) {
+			selectedNotesSubject.value = {
+				id: nextBannedMember.user_id,
+				name: nextBannedMember.name ?? t('groups.members.roster.not_available'),
+				avatar_url: nextBannedMember.avatar_url,
+				notes: nextBannedMember.notes,
+			};
+		}
+	},
+	{ deep: true }
+);
 </script>
 
 <template>
@@ -393,7 +532,20 @@ watch(bannedGlobalFilter, () => {
 						</template>
 
 						<template #actions-cell="{ row }">
-							<div v-if="row.original.permissions.can_promote || row.original.permissions.can_demote || row.original.permissions.can_kick || row.original.permissions.can_ban" class="flex flex-wrap items-center gap-2">
+							<div v-if="row.original.notes.can_view || row.original.permissions.can_promote || row.original.permissions.can_demote || row.original.permissions.can_kick || row.original.permissions.can_ban" class="flex flex-wrap items-center gap-2">
+								<UButton
+									v-if="row.original.notes.can_view"
+									color="secondary"
+									variant="subtle"
+									icon="i-lucide-notebook-pen"
+									:label="noteCountLabel(row.original.notes)"
+									@click="openNotesModal({
+										id: row.original.id,
+										name: row.original.name,
+										avatar_url: row.original.avatar_url,
+										notes: row.original.notes,
+									})"
+								/>
 								<UButton
 									v-if="row.original.permissions.can_promote"
 									color="primary"
@@ -560,7 +712,20 @@ watch(bannedGlobalFilter, () => {
 						</template>
 
 						<template #actions-cell="{ row }">
-							<div v-if="row.original.permissions.can_unban && row.original.user_id" class="flex flex-wrap items-center gap-2">
+							<div v-if="row.original.notes.can_view || (row.original.permissions.can_unban && row.original.user_id)" class="flex flex-wrap items-center gap-2">
+								<UButton
+									v-if="row.original.notes.can_view"
+									color="secondary"
+									variant="subtle"
+									icon="i-lucide-notebook-pen"
+									:label="noteCountLabel(row.original.notes)"
+									@click="openNotesModal({
+										id: row.original.user_id,
+										name: row.original.name,
+										avatar_url: row.original.avatar_url,
+										notes: row.original.notes,
+									})"
+								/>
 								<UButton
 									color="success"
 									variant="subtle"
@@ -668,6 +833,12 @@ watch(bannedGlobalFilter, () => {
 			</div>
 		</template>
 	</UModal>
+
+	<GroupMemberNotesModal
+		v-model:open="isNotesModalOpen"
+		:group-slug="group.slug"
+		:subject="selectedNotesSubject"
+	/>
 </template>
 
 <style scoped>

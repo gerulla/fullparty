@@ -6,6 +6,7 @@ import { localizedValue } from "@/utils/localizedValue";
 import ActivityCharacterFflogsProgress from "@/components/Groups/Activities/ActivityCharacterFflogsProgress.vue";
 import ApplicantUserStats from "@/components/Groups/Activities/ApplicantUserStats.vue";
 import { setQueueApplicationDragData } from "@/components/Groups/Activities/rosterDragData";
+import GroupMemberNotesModal from "@/components/Groups/GroupMemberNotesModal.vue";
 
 type LocalizedText = Record<string, string | null | undefined> | null | undefined;
 
@@ -32,6 +33,76 @@ type ActivityApplication = {
 		id: number
 		name: string
 		avatar_url: string | null
+		notes: {
+			can_view: boolean
+			can_add: boolean
+			current_group_count: number
+			shared_count: number
+			current_group: Array<{
+				id: number
+				severity: 'info' | 'warning' | 'critical'
+				body: string
+				is_shared_with_groups: boolean
+				created_at: string | null
+				permissions: {
+					can_edit_body: boolean
+					can_delete: boolean
+					can_add_addendum: boolean
+				}
+				author: {
+					id: number
+					name: string
+					avatar_url: string | null
+				} | null
+				addenda: Array<{
+					id: number
+					body: string
+					created_at: string | null
+					author: {
+						id: number
+						name: string
+						avatar_url: string | null
+					} | null
+				}>
+				source_group: {
+					id: number | null
+					name: string | null
+					slug: string | null
+				} | null
+			}>
+			shared: Array<{
+				id: number
+				severity: 'info' | 'warning' | 'critical'
+				body: string
+				is_shared_with_groups: boolean
+				created_at: string | null
+				permissions: {
+					can_edit_body: boolean
+					can_delete: boolean
+					can_add_addendum: boolean
+				}
+				author: {
+					id: number
+					name: string
+					avatar_url: string | null
+				} | null
+				addenda: Array<{
+					id: number
+					body: string
+					created_at: string | null
+					author: {
+						id: number
+						name: string
+						avatar_url: string | null
+					} | null
+				}>
+				source_group: {
+					id: number | null
+					name: string | null
+					slug: string | null
+				} | null
+			}>
+		}
 	} | null
 	selected_character: {
 		id: number
@@ -90,6 +161,7 @@ const props = defineProps<{
 const { t, locale } = useI18n();
 const page = usePage();
 const isModalOpen = ref(false);
+const isNotesModalOpen = ref(false);
 const fallbackLocale = computed(() => String(page.props.locale?.fallback ?? 'en'));
 
 const localizedText = (value: LocalizedText, fallback: string) => (
@@ -246,6 +318,20 @@ const notePreview = computed(() => {
 });
 
 const canDragToRoster = computed(() => Boolean(props.application.selected_character));
+const canViewMemberNotes = computed(() => Boolean(props.application.user?.notes.can_view));
+const memberNotesButtonLabel = computed(() => {
+	const notes = props.application.user?.notes;
+
+	if (!notes?.can_view) {
+		return t('groups.members.actions.notes');
+	}
+
+	const totalCount = notes.current_group_count + notes.shared_count;
+
+	return totalCount > 0
+		? `${t('groups.members.actions.notes')} (${totalCount})`
+		: t('groups.members.actions.notes');
+});
 
 const handleDragStart = (event: DragEvent) => {
 	if (!canDragToRoster.value) {
@@ -339,15 +425,25 @@ const handleDragStart = (event: DragEvent) => {
 		</p>
 
 		<!-- Queue card action: opens the full application detail modal -->
-		<div class="mt-4 flex justify-center">
+		<div class="mt-4 flex items-center gap-2">
 			<UButton
 				color="neutral"
 				variant="outline"
 				size="md"
 				icon="i-lucide-expand"
-				class="w-full items-center justify-center"
+				class="flex-1 items-center justify-center"
 				:label="t('general.view')"
 				@click="isModalOpen = true"
+			/>
+			<UButton
+				v-if="canViewMemberNotes"
+				color="secondary"
+				variant="soft"
+				size="md"
+				icon="i-lucide-notebook-pen"
+				class="flex-1 items-center justify-center"
+				:label="memberNotesButtonLabel"
+				@click="isNotesModalOpen = true"
 			/>
 		</div>
 
@@ -578,5 +674,16 @@ const handleDragStart = (event: DragEvent) => {
 				</div>
 			</template>
 		</UModal>
+
+		<GroupMemberNotesModal
+			v-model:open="isNotesModalOpen"
+			:group-slug="groupSlug"
+			:subject="props.application.user ? {
+				id: props.application.user.id,
+				name: props.application.user.name,
+				avatar_url: props.application.user.avatar_url,
+				notes: props.application.user.notes,
+			} : null"
+		/>
 	</div>
 </template>

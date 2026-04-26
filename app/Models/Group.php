@@ -62,6 +62,11 @@ class Group extends Model
         return $this->hasMany(GroupBan::class);
     }
 
+    public function userNotes(): HasMany
+    {
+        return $this->hasMany(GroupUserNote::class);
+    }
+
     public function systemInvite(): HasOne
     {
         return $this->hasOne(GroupInvite::class)->where('is_system', true);

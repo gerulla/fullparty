@@ -209,13 +209,71 @@ class ActivitySlotAttendanceService
 
     public function checkInSlot(ActivitySlot $slot, int $checkedInByUserId): ?ActivitySlotAssignment
     {
+        return $this->markAttendance($slot, $checkedInByUserId, ActivitySlotAssignment::STATUS_CHECKED_IN);
+    }
+
+    public function markLateSlot(ActivitySlot $slot, int $checkedInByUserId): ?ActivitySlotAssignment
+    {
+        return $this->markAttendance($slot, $checkedInByUserId, ActivitySlotAssignment::STATUS_LATE);
+    }
+
+    public function undoCheckInSlot(ActivitySlot $slot): ?ActivitySlotAssignment
+    {
         $activity = $slot->activity;
 
         if (!$activity || !$slot->assigned_character_id) {
             return null;
         }
 
-        return DB::transaction(function () use ($activity, $slot, $checkedInByUserId) {
+        return DB::transaction(function () use ($activity, $slot) {
+            $assignment = ActivitySlotAssignment::query()
+                ->where('activity_id', $activity->id)
+                ->where('character_id', $slot->assigned_character_id)
+                ->whereNull('ended_at')
+                ->latest('assigned_at')
+                ->first();
+
+            if (!$assignment) {
+                $assignment = ActivitySlotAssignment::query()->create([
+                    'activity_id' => $activity->id,
+                    'group_id' => $activity->group_id,
+                    'activity_slot_id' => $slot->id,
+                    'character_id' => $slot->assigned_character_id,
+                    'field_values_snapshot' => $this->buildFieldValueSnapshot($slot),
+                    'attendance_status' => ActivitySlotAssignment::STATUS_ASSIGNED,
+                    'assigned_at' => now(),
+                    'assigned_by_user_id' => $slot->assigned_by_user_id,
+                ]);
+            }
+
+            if (!in_array($assignment->attendance_status, [
+                ActivitySlotAssignment::STATUS_CHECKED_IN,
+                ActivitySlotAssignment::STATUS_LATE,
+            ], true)) {
+                return null;
+            }
+
+            $assignment->update([
+                'activity_slot_id' => $slot->id,
+                'field_values_snapshot' => $this->buildFieldValueSnapshot($slot),
+                'attendance_status' => ActivitySlotAssignment::STATUS_ASSIGNED,
+                'checked_in_at' => null,
+                'checked_in_by_user_id' => null,
+            ]);
+
+            return $assignment->fresh();
+        });
+    }
+
+    private function markAttendance(ActivitySlot $slot, int $checkedInByUserId, string $attendanceStatus): ?ActivitySlotAssignment
+    {
+        $activity = $slot->activity;
+
+        if (!$activity || !$slot->assigned_character_id) {
+            return null;
+        }
+
+        return DB::transaction(function () use ($activity, $slot, $checkedInByUserId, $attendanceStatus) {
             $assignment = ActivitySlotAssignment::query()
                 ->where('activity_id', $activity->id)
                 ->where('character_id', $slot->assigned_character_id)
@@ -239,41 +297,9 @@ class ActivitySlotAttendanceService
             $assignment->update([
                 'activity_slot_id' => $slot->id,
                 'field_values_snapshot' => $this->buildFieldValueSnapshot($slot),
-                'attendance_status' => ActivitySlotAssignment::STATUS_CHECKED_IN,
+                'attendance_status' => $attendanceStatus,
                 'checked_in_at' => now(),
                 'checked_in_by_user_id' => $checkedInByUserId,
-            ]);
-
-            return $assignment->fresh();
-        });
-    }
-
-    public function undoCheckInSlot(ActivitySlot $slot): ?ActivitySlotAssignment
-    {
-        $activity = $slot->activity;
-
-        if (!$activity || !$slot->assigned_character_id) {
-            return null;
-        }
-
-        return DB::transaction(function () use ($activity, $slot) {
-            $assignment = ActivitySlotAssignment::query()
-                ->where('activity_id', $activity->id)
-                ->where('character_id', $slot->assigned_character_id)
-                ->whereNull('ended_at')
-                ->latest('assigned_at')
-                ->first();
-
-            if (!$assignment) {
-                return null;
-            }
-
-            $assignment->update([
-                'activity_slot_id' => $slot->id,
-                'field_values_snapshot' => $this->buildFieldValueSnapshot($slot),
-                'attendance_status' => ActivitySlotAssignment::STATUS_ASSIGNED,
-                'checked_in_at' => null,
-                'checked_in_by_user_id' => null,
             ]);
 
             return $assignment->fresh();

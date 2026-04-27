@@ -135,6 +135,7 @@
         },
         "attendance": {
           "checked_in": "hat einen Roster-Slot eingecheckt.",
+          "marked_late": "hat einen Roster-Slot als verspätet markiert.",
           "check_in_reverted": "hat einen Roster-Check-in rückgängig gemacht.",
           "group_checked_in": "hat eine gesamte Partei oder Gruppe eingecheckt.",
           "marked_missing": "hat einen Roster-Slot als fehlend markiert.",
@@ -308,6 +309,7 @@
         },
         "attendance": {
           "checked_in": "Roster-Slot eingecheckt",
+          "marked_late": "Roster-Slot als verspätet markiert",
           "check_in_reverted": "Roster-Check-in rückgängig gemacht",
           "group_checked_in": "Roster-Gruppe eingecheckt",
           "marked_missing": "Roster-Slot als fehlend markiert",

@@ -32,6 +32,7 @@ const emit = defineEmits<{
 	moveSlotToBench: [slotId: number]
 	markSlotMissing: [slotId: number]
 	checkInSlot: [slotId: number]
+	markSlotLate: [slotId: number]
 }>();
 
 const { t, locale } = useI18n();
@@ -77,6 +78,10 @@ const roleToneClass = computed(() => {
 		return 'border-sky-400/70 bg-sky-400/10 hover:border-sky-300';
 	}
 
+	if (props.slot.attendance_status === 'late') {
+		return 'border-amber-400/70 bg-amber-400/10 hover:border-amber-300';
+	}
+
 	if (roleField.value === 'tank') {
 		return 'border-blue-500/70 bg-blue-500/10 hover:border-blue-400';
 	}
@@ -114,6 +119,13 @@ const statusBadge = computed(() => {
 		};
 	}
 
+	if (props.slot.attendance_status === 'late') {
+		return {
+			color: 'warning' as const,
+			label: t('groups.activities.management.roster.late'),
+		};
+	}
+
 	return {
 		color: 'success' as const,
 		label: t('groups.activities.management.roster.assigned'),
@@ -122,12 +134,18 @@ const statusBadge = computed(() => {
 const contextMenuItems = computed<ContextMenuItem[][]>(() => [
 	[
 		{
-			label: props.slot.attendance_status === 'checked_in'
+			label: ['checked_in', 'late'].includes(props.slot.attendance_status ?? '')
 				? t('groups.activities.management.roster.undo_check_in')
 				: t('groups.activities.management.roster.check_in_action'),
 			icon: 'i-lucide-user-check',
 			disabled: props.slot.is_bench || !props.canCheckIn || props.isSwapPending,
 			onSelect: () => emit('checkInSlot', props.slot.id),
+		},
+		{
+			label: t('groups.activities.management.roster.mark_late_action'),
+			icon: 'i-lucide-clock-alert',
+			disabled: props.slot.is_bench || !props.canCheckIn || props.isSwapPending || props.slot.attendance_status === 'late',
+			onSelect: () => emit('markSlotLate', props.slot.id),
 		},
 		{
 			label: 'Mark as missing / absent',

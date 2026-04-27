@@ -622,6 +622,14 @@ const moveSlotToBench = async (slotId: number) => {
 };
 
 const checkInSlot = async (slotId: number) => {
+	await updateSlotAttendance(slotId, 'check_in');
+};
+
+const markSlotLate = async (slotId: number) => {
+	await updateSlotAttendance(slotId, 'late');
+};
+
+const updateSlotAttendance = async (slotId: number, mode: 'check_in' | 'late') => {
 	if (!currentActivity.value || isActivityArchived.value || isSlotAssignmentPending.value || isSlotSwapPending.value) {
 		return;
 	}
@@ -637,7 +645,9 @@ const checkInSlot = async (slotId: number) => {
 
 	try {
 		const response = await axios.post(route(
-			slot.attendance_status === 'checked_in'
+			mode === 'late'
+				? 'groups.dashboard.activities.slot-checkins.late'
+				: ['checked_in', 'late'].includes(slot.attendance_status ?? '')
 				? 'groups.dashboard.activities.slot-checkins.undo'
 				: 'groups.dashboard.activities.slot-checkins.store',
 			{
@@ -659,7 +669,9 @@ const checkInSlot = async (slotId: number) => {
 		console.error(error);
 		toast.add({
 			title: t('general.error'),
-			description: slot.attendance_status === 'checked_in'
+			description: mode === 'late'
+				? t('groups.activities.management.messages.mark_late_failed')
+				: ['checked_in', 'late'].includes(slot.attendance_status ?? '')
 				? t('groups.activities.management.messages.undo_check_in_failed')
 				: t('groups.activities.management.messages.check_in_failed'),
 			color: 'error',
@@ -991,6 +1003,7 @@ onBeforeUnmount(() => {
 					@move-slot-to-bench="moveSlotToBench"
 					@mark-slot-missing="markSlotMissing"
 					@check-in-slot="checkInSlot"
+					@mark-slot-late="markSlotLate"
 					@check-in-group="checkInGroup"
 				/>
 

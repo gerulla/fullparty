@@ -142,6 +142,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
 		Route::get('/activities/{activity}/management-data', [GroupActivityManagementDataController::class, 'show'])->name('groups.dashboard.activities.management-data');
 		Route::get('/activities/{activity}/export-roster', [GroupActivityRosterExportController::class, 'show'])->name('groups.dashboard.activities.export-roster');
 		Route::post('/activities/{activity}/slots/{slot}/check-in', [GroupActivitySlotCheckInController::class, 'store'])->name('groups.dashboard.activities.slot-checkins.store');
+		Route::post('/activities/{activity}/slots/{slot}/mark-late', [GroupActivitySlotCheckInController::class, 'storeLate'])->name('groups.dashboard.activities.slot-checkins.late');
 		Route::post('/activities/{activity}/slots/{slot}/undo-check-in', [GroupActivitySlotCheckInController::class, 'undo'])->name('groups.dashboard.activities.slot-checkins.undo');
 		Route::post('/activities/{activity}/slot-groups/check-in', [GroupActivitySlotCheckInController::class, 'storeGroup'])->name('groups.dashboard.activities.slot-group-checkins.store');
 		Route::post('/activities/{activity}/slot-swaps', [GroupActivitySlotSwapController::class, 'store'])->name('groups.dashboard.activities.slot-swaps.store');

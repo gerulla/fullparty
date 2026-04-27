@@ -135,6 +135,7 @@
         },
         "attendance": {
           "checked_in": "checked in a roster slot.",
+          "marked_late": "marked a roster slot as late.",
           "check_in_reverted": "undid a roster check-in.",
           "group_checked_in": "checked in an entire party or group.",
           "marked_missing": "marked a roster slot as missing.",
@@ -318,6 +319,7 @@
         },
         "attendance": {
           "checked_in": "Roster slot checked in",
+          "marked_late": "Roster slot marked late",
           "check_in_reverted": "Roster check-in reverted",
           "group_checked_in": "Roster group checked in",
           "marked_missing": "Roster slot marked missing",

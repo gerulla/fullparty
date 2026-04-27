@@ -76,6 +76,7 @@
             "return_to_queue_failed": "Unable to return this slot to the queue.",
             "undo_check_in_failed": "Unable to undo check-in for this slot.",
             "check_in_failed": "Unable to check in this slot.",
+            "mark_late_failed": "Unable to mark this slot as late.",
             "check_in_group_failed": "Unable to check in this group.",
             "mark_missing_failed": "Unable to mark this slot as missing.",
             "warning_title": "Warning",
@@ -175,6 +176,7 @@
             "slots_count": "{count} slots",
             "assigned": "Assigned",
             "checked_in": "Checked in",
+            "late": "Late",
             "open": "Open",
             "slot_placeholder": "Click to assign",
             "filled_placeholder": "Assigned character details and controls will live here next.",
@@ -182,6 +184,7 @@
             "empty_slot": "Empty Slot",
             "check_in_all": "Check In All",
             "check_in_action": "Check-in",
+            "mark_late_action": "Mark late",
             "undo_check_in": "Undo Checkin",
             "roles": {
                 "tank": "Tank",

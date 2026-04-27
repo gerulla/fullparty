@@ -12,11 +12,13 @@ class ActivitySlotAssignment extends Model
 
     public const STATUS_ASSIGNED = 'assigned';
     public const STATUS_CHECKED_IN = 'checked_in';
+    public const STATUS_LATE = 'late';
     public const STATUS_MISSING = 'missing';
 
     public const STATUSES = [
         self::STATUS_ASSIGNED,
         self::STATUS_CHECKED_IN,
+        self::STATUS_LATE,
         self::STATUS_MISSING,
     ];
 

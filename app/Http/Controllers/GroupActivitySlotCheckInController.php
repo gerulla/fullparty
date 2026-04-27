@@ -58,6 +58,50 @@ class GroupActivitySlotCheckInController extends Controller
         ]);
     }
 
+    public function storeLate(
+        Group $group,
+        Activity $activity,
+        ActivitySlot $slot,
+        ActivitySlotAttendanceService $attendanceService,
+        GroupActivityAuditService $activityAuditService,
+        ActivitySlotSerializer $slotSerializer,
+    ): JsonResponse {
+        $this->authorize('manageDashboard', [$activity, $group]);
+
+        if ($activity->isArchived()) {
+            throw ValidationException::withMessages([
+                'activity' => 'Archived activities cannot be updated for attendance.',
+            ]);
+        }
+
+        if ((int) $slot->activity_id !== (int) $activity->id) {
+            abort(404);
+        }
+
+        if (!$slot->assigned_character_id) {
+            throw ValidationException::withMessages([
+                'slot' => 'Only filled slots can be marked late.',
+            ]);
+        }
+
+        $slot->load(['activity', 'assignedCharacter', 'fieldValues', 'assignments']);
+        $attendanceService->markLateSlot($slot, (int) auth()->id());
+        $slot->load(['assignedCharacter', 'fieldValues', 'assignments']);
+
+        $activityAuditService->logAttendanceEvent(
+            'marked_late',
+            $slot,
+            auth()->user(),
+            [
+                'checked_in_at' => now()->toIso8601String(),
+            ],
+        );
+
+        return response()->json([
+            'slot' => $slotSerializer->serialize($slot),
+        ]);
+    }
+
     public function undo(
         Group $group,
         Activity $activity,
@@ -89,7 +133,7 @@ class GroupActivitySlotCheckInController extends Controller
 
         if (!$assignment) {
             throw ValidationException::withMessages([
-                'slot' => 'Only checked-in slots can undo check-in.',
+                'slot' => 'Only checked-in or late slots can undo check-in.',
             ]);
         }
 

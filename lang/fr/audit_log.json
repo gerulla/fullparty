@@ -135,6 +135,7 @@
         },
         "attendance": {
           "checked_in": "a validé la présence sur un slot de roster.",
+          "marked_late": "a marqué un slot de roster comme en retard.",
           "check_in_reverted": "a annulé une validation de présence du roster.",
           "group_checked_in": "a validé la présence d'un groupe ou d'une équipe entière.",
           "marked_missing": "a marqué un slot de roster comme absent.",
@@ -308,6 +309,7 @@
         },
         "attendance": {
           "checked_in": "Slot de roster validé",
+          "marked_late": "Slot de roster marqué en retard",
           "check_in_reverted": "Validation du roster annulée",
           "group_checked_in": "Groupe du roster validé",
           "marked_missing": "Slot de roster marqué absent",

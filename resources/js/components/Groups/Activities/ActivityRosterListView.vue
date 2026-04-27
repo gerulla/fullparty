@@ -32,6 +32,7 @@ const emit = defineEmits<{
 	moveSlotToBench: [slotId: number]
 	markSlotMissing: [slotId: number]
 	checkInSlot: [slotId: number]
+	markSlotLate: [slotId: number]
 }>();
 
 const { t, locale } = useI18n();
@@ -123,20 +124,32 @@ const rows = computed(() => [...props.slots]
 		statusLabel: slot.assigned_character_id
 			? (slot.attendance_status === 'checked_in'
 				? t('groups.activities.management.roster.checked_in')
-				: t('groups.activities.management.roster.assigned'))
+				: slot.attendance_status === 'late'
+					? t('groups.activities.management.roster.late')
+					: t('groups.activities.management.roster.assigned'))
 			: t('groups.activities.management.roster.open'),
 		statusColor: slot.assigned_character_id
-			? (slot.attendance_status === 'checked_in' ? 'info' : 'success')
+			? (slot.attendance_status === 'checked_in'
+				? 'info'
+				: slot.attendance_status === 'late'
+					? 'warning'
+					: 'success')
 			: 'neutral',
 		contextMenuItems: [
 			[
 				{
-					label: slot.attendance_status === 'checked_in'
+					label: ['checked_in', 'late'].includes(slot.attendance_status ?? '')
 						? t('groups.activities.management.roster.undo_check_in')
 						: t('groups.activities.management.roster.check_in_action'),
 					icon: 'i-lucide-user-check',
 					disabled: slot.is_bench || !props.canCheckIn || props.isSwapPending,
 					onSelect: () => emit('checkInSlot', slot.id),
+				},
+				{
+					label: t('groups.activities.management.roster.mark_late_action'),
+					icon: 'i-lucide-clock-alert',
+					disabled: slot.is_bench || !props.canCheckIn || props.isSwapPending || slot.attendance_status === 'late',
+					onSelect: () => emit('markSlotLate', slot.id),
 				},
 				{
 					label: 'Mark as missing / absent',

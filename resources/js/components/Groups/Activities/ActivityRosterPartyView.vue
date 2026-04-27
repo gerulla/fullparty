@@ -31,6 +31,7 @@ const emit = defineEmits<{
 	moveSlotToBench: [slotId: number]
 	markSlotMissing: [slotId: number]
 	checkInSlot: [slotId: number]
+	markSlotLate: [slotId: number]
 	checkInGroup: [groupKey: string]
 }>();
 
@@ -131,6 +132,7 @@ const slotGroups = computed(() => {
 					@move-slot-to-bench="emit('moveSlotToBench', $event)"
 					@mark-slot-missing="emit('markSlotMissing', $event)"
 					@check-in-slot="emit('checkInSlot', $event)"
+					@mark-slot-late="emit('markSlotLate', $event)"
 				/>
 			</div>
 		</section>

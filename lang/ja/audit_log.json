@@ -135,6 +135,7 @@
         },
         "attendance": {
           "checked_in": "がロスター枠をチェックインしました。",
+          "marked_late": "がロスター枠を遅刻扱いにしました。",
           "check_in_reverted": "がロスターチェックインを取り消しました。",
           "group_checked_in": "がパーティーまたはグループ全体をチェックインしました。",
           "marked_missing": "がロスター枠を欠席扱いにしました。",
@@ -308,6 +309,7 @@
         },
         "attendance": {
           "checked_in": "ロスター枠チェックイン",
+          "marked_late": "ロスター枠を遅刻扱い",
           "check_in_reverted": "ロスターチェックイン取り消し",
           "group_checked_in": "ロスターグループチェックイン",
           "marked_missing": "ロスター枠を欠席扱い",

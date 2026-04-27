@@ -31,7 +31,7 @@
   },
   "navigation": {
     "general": "Allgemein",
-    "activities": "Aktivitäten",
+        "activities": "Runs",
     "members": "Mitglieder",
     "audit_log": "Audit-Log",
     "settings": "Einstellungen"

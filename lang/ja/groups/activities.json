@@ -1,5 +1,5 @@
 {
-    "title": "Activities",
+    "title": "Runs",
     "subtitle": "{group}'s upcoming schedule and monthly calendar at a glance.",
     "header_badge": "{count} upcoming",
     "statuses": {
@@ -13,20 +13,20 @@
         "cancelled": "Cancelled"
     },
     "upcoming": {
-        "title": "Upcoming Activities",
+        "title": "Upcoming Runs",
         "subtitle": "A detailed view of what's coming up next for the group.",
         "count": "{count} scheduled",
-        "empty": "No upcoming activities are scheduled yet."
+        "empty": "No upcoming runs are scheduled yet."
     },
     "selected_day": {
         "title": "Selected Day",
-        "subtitle": "Activities scheduled for {date}.",
+        "subtitle": "Runs scheduled for {date}.",
         "count": "{count} on this day",
-        "empty": "No activities are scheduled for this day."
+        "empty": "No runs are scheduled for this day."
     },
     "calendar": {
         "title": "Monthly Calendar",
-        "subtitle": "A month view of the group's activity schedule.",
+        "subtitle": "A month view of the group's run schedule.",
         "month_count": "{count} this month",
         "previous": "Previous",
         "next": "Next",
@@ -37,38 +37,38 @@
         "title": "Status Legend"
     },
     "cards": {
-        "unknown_type": "Unknown activity type",
+        "unknown_type": "Unknown run type",
         "unscheduled": "TBD",
         "no_time": "Time not set",
         "no_relative_time": "Schedule pending",
         "no_organizer": "Organizer not set",
-        "manage": "Manage activity",
+        "manage": "Manage run",
         "slots": "{count} slots",
         "applications": "{count} applications",
         "milestones": "{count} milestones"
     },
     "management": {
-        "title": "Activity Management",
-        "subtitle": "Manage the live details for this {type} activity.",
+        "title": "Run Management",
+        "subtitle": "Manage the live details for this {type} run.",
         "placeholder": "This is the entry point for slot assignment, applications, and progress updates.",
         "coming_soon": "The full activity management interface comes next. This page is now the dedicated destination for roster assignment and activity administration.",
-        "summary_title": "Activity Summary",
+        "summary_title": "Run Summary",
         "summary_subtitle": "A quick read on the basics before the full management tools land.",
-        "edit": "Edit Activity",
+        "edit": "Edit Run",
         "complete_activity": "Complete Run",
         "publish_roster": "Publish Roster",
-        "cancel_activity": "Cancel Activity",
-        "cancel_activity_confirm": "Cancel this activity? This archives it, disables further edits, and stops new applications.",
+        "cancel_activity": "Cancel Run",
+        "cancel_activity_confirm": "Cancel this run? This archives it, disables further edits, and stops new applications.",
         "cancel_activity_modal": {
             "title": "ARE YOU SURE",
-            "body": "Cancelling this activity archives it immediately. Moderators will no longer be able to edit it, and applicants will no longer be able to apply.",
-            "confirm": "Yes, Cancel Activity"
+            "body": "Cancelling this run archives it immediately. Moderators will no longer be able to edit it, and applicants will no longer be able to apply.",
+            "confirm": "Yes, Cancel Run"
         },
         "messages": {
             "check_in_planned_tooltip": "Planned for the in-game plugin",
-            "load_failed": "Unable to load activity details.",
+            "load_failed": "Unable to load run details.",
             "retry": "Retry",
-            "complete_failed": "Unable to complete this activity.",
+            "complete_failed": "Unable to complete this run.",
             "swap_failed": "Unable to swap roster slots.",
             "prepare_move_failed": "Unable to prepare this roster move.",
             "load_slot_assignment_failed": "Unable to load slot assignment details.",
@@ -87,8 +87,8 @@
             "unknown_slot": "Roster slot"
         },
         "complete_activity_modal": {
-            "title": "Complete Activity",
-            "description": "Record the final run outcome before this activity is archived.",
+            "title": "Complete Run",
+            "description": "Record the final run outcome before this run is archived.",
             "progress": "Step {current} of {total}",
             "warning_title": "Completed runs become immutable",
             "warning_body": "Once completed, this run becomes archival-only. Moderators will no longer be able to edit the roster, applications, or activity details.",
@@ -119,7 +119,7 @@
             "confirm_title": "Final Confirmation",
             "confirm_body": "Double check this progression result before completing the activity.",
             "none_selected": "None selected",
-            "confirm": "Complete Activity",
+            "confirm": "Complete Run",
             "methods": {
                 "fflogs": "FF Logs",
                 "manual": "Manual",
@@ -264,9 +264,9 @@
         }
     },
     "overview": {
-        "title": "Activity Overview",
-        "subtitle": "{group} shared this {type} activity.",
-        "description": "This is the attendee-facing overview for the activity and its application flow.",
+        "title": "Run Overview",
+        "subtitle": "{group} shared this {type} run.",
+        "description": "This is the attendee-facing overview for the run and its application flow.",
         "go_to_management": "Go To Management",
         "summary_title": "Quick Summary",
         "summary_subtitle": "The key details before the application tools land here.",
@@ -276,13 +276,13 @@
     },
     "application": {
         "title": "Application",
-        "subtitle": "Apply to join {group}'s {type} activity.",
-        "subtitle_existing": "Update your application for {group}'s {type} activity.",
-        "back": "Back to Activity Overview",
+        "subtitle": "Apply to join {group}'s {type} run.",
+        "subtitle_existing": "Update your application for {group}'s {type} run.",
+        "back": "Back to Run Overview",
         "run_info_title": "Run Info",
-        "run_info_subtitle": "A quick reminder of the activity details while you apply.",
+        "run_info_subtitle": "A quick reminder of the run details while you apply.",
         "summary_schema": "Application Questions",
-        "summary_schema_hint": "This activity type's question schema will be rendered here next.",
+        "summary_schema_hint": "This run type's question schema will be rendered here next.",
         "summary_notes": "Host Notes",
         "class_picker": {
             "empty": "Select classes",
@@ -318,12 +318,12 @@
         }
     },
     "create": {
-        "cta": "Create Activity",
-        "title": "Create Activity",
-        "subtitle": "Set up a new activity for your group.",
-        "back": "Back to Activities",
+        "cta": "Create Run",
+        "title": "Create Run",
+        "subtitle": "Set up a new run for your group.",
+        "back": "Back to Runs",
         "placeholder": "The dedicated activity creation flow will live here.",
-        "submit": "Create Activity",
+        "submit": "Create Run",
         "no_types_title": "No activity types available",
         "no_types_description": "Create and publish an activity type from the admin area before creating activities for groups.",
         "roles": {
@@ -435,13 +435,13 @@
         }
     },
     "edit": {
-        "title": "Edit Activity",
-        "subtitle": "Update the activity details moderators are allowed to change.",
-        "back": "Back to Activity Management",
+        "title": "Edit Run",
+        "subtitle": "Update the run details moderators are allowed to change.",
+        "back": "Back to Run Management",
         "submit": "Save Changes",
         "form": {
-            "title": "Edit Activity",
-            "subtitle": "Update the mutable details for this activity without changing its core structure."
+            "title": "Edit Run",
+            "subtitle": "Update the mutable details for this run without changing its core structure."
         },
         "sections": {
             "basics": {

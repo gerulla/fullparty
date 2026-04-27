@@ -31,7 +31,7 @@
   },
   "navigation": {
     "general": "概要",
-    "activities": "アクティビティ",
+        "activities": "Runs",
     "members": "メンバー",
     "audit_log": "監査ログ",
     "settings": "設定"

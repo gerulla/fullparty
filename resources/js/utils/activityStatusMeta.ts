@@ -1,4 +1,4 @@
-export type ActivityStatus = 'draft' | 'planned' | 'scheduled' | 'upcoming' | 'ongoing' | 'complete' | 'cancelled';
+export type ActivityStatus = 'draft' | 'planned' | 'scheduled' | 'assigned' | 'upcoming' | 'ongoing' | 'complete' | 'cancelled';
 
 type ActivityStatusMeta = {
 	color: string
@@ -25,6 +25,12 @@ const STATUS_META: Record<ActivityStatus, ActivityStatusMeta> = {
 		icon: 'i-lucide-calendar-check-2',
 		borderClass: 'border-t-warning',
 		dotClass: 'bg-warning',
+	},
+	assigned: {
+		color: 'primary',
+		icon: 'i-lucide-user-round-check',
+		borderClass: 'border-t-primary',
+		dotClass: 'bg-primary',
 	},
 	upcoming: {
 		color: 'primary',

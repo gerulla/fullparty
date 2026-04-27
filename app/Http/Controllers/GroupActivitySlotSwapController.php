@@ -28,6 +28,10 @@ class GroupActivitySlotSwapController extends Controller
     ): JsonResponse {
         $this->authorize('manageDashboard', [$activity, $group]);
 
+        if ($activity->isArchived()) {
+            abort(403);
+        }
+
         $validated = $request->validate([
             'source_slot_id' => ['required', 'integer'],
             'target_slot_id' => ['required', 'integer', 'different:source_slot_id'],

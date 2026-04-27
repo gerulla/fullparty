@@ -15,6 +15,7 @@ class Activity extends Model
     public const STATUS_DRAFT = 'draft';
     public const STATUS_PLANNED = 'planned';
     public const STATUS_SCHEDULED = 'scheduled';
+    public const STATUS_ASSIGNED = 'assigned';
     public const STATUS_UPCOMING = 'upcoming';
     public const STATUS_ONGOING = 'ongoing';
     public const STATUS_COMPLETE = 'complete';
@@ -24,10 +25,29 @@ class Activity extends Model
         self::STATUS_DRAFT,
         self::STATUS_PLANNED,
         self::STATUS_SCHEDULED,
+        self::STATUS_ASSIGNED,
         self::STATUS_UPCOMING,
         self::STATUS_ONGOING,
         self::STATUS_COMPLETE,
         self::STATUS_CANCELLED,
+    ];
+
+    public const ARCHIVED_STATUSES = [
+        self::STATUS_COMPLETE,
+        self::STATUS_CANCELLED,
+    ];
+
+    public const ASSIGNABLE_STATUSES = [
+        self::STATUS_PLANNED,
+        self::STATUS_SCHEDULED,
+    ];
+
+    public const COMPLETABLE_STATUSES = [
+        self::STATUS_PLANNED,
+        self::STATUS_SCHEDULED,
+        self::STATUS_ASSIGNED,
+        self::STATUS_UPCOMING,
+        self::STATUS_ONGOING,
     ];
 
     protected $fillable = [
@@ -118,6 +138,36 @@ class Activity extends Model
     public function slotAssignments(): HasMany
     {
         return $this->hasMany(ActivitySlotAssignment::class)->latest('assigned_at');
+    }
+
+    public function isArchived(): bool
+    {
+        return in_array($this->status, self::ARCHIVED_STATUSES, true);
+    }
+
+    public static function isArchivedStatus(?string $status): bool
+    {
+        return in_array($status, self::ARCHIVED_STATUSES, true);
+    }
+
+    public function canBeCancelled(): bool
+    {
+        return !$this->isArchived();
+    }
+
+    public function canBeDeleted(): bool
+    {
+        return $this->status === self::STATUS_PLANNED;
+    }
+
+    public function canBeMarkedAssigned(): bool
+    {
+        return in_array($this->status, self::ASSIGNABLE_STATUSES, true);
+    }
+
+    public function canBeCompleted(): bool
+    {
+        return in_array($this->status, self::COMPLETABLE_STATUSES, true);
     }
 
     public static function generateSecretKey(): string

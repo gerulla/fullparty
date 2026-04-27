@@ -7,6 +7,7 @@ use App\Models\ActivityApplication;
 use App\Models\Group;
 use App\Services\Groups\ActivitySlotBench;
 use App\Services\Groups\ActivityBenchSlotBackfillService;
+use App\Services\Groups\ActivityCompletionService;
 use App\Services\Groups\ActivitySlotAttendanceService;
 use App\Services\Groups\ActivitySlotFieldDefinitionBuilder;
 use App\Services\Groups\ActivitySlotSerializer;
@@ -18,6 +19,7 @@ class GroupActivityManagementDataController extends Controller
         Group $group,
         Activity $activity,
         ActivityBenchSlotBackfillService $benchSlotBackfillService,
+        ActivityCompletionService $completionService,
         ActivitySlotAttendanceService $attendanceService,
         ActivitySlotSerializer $slotSerializer,
         ActivitySlotFieldDefinitionBuilder $fieldDefinitionBuilder,
@@ -65,9 +67,14 @@ class GroupActivityManagementDataController extends Controller
                 'duration_hours' => $activity->duration_hours,
                 'target_prog_point_key' => $activity->target_prog_point_key,
                 'furthest_progress_key' => $activity->furthest_progress_key,
+                'furthest_progress_percent' => $activity->furthest_progress_percent,
                 'is_public' => $activity->is_public,
                 'needs_application' => $activity->needs_application,
                 'secret_key' => $activity->secret_key,
+                'progress_entry_mode' => $activity->progress_entry_mode,
+                'progress_link_url' => $activity->progress_link_url,
+                'progress_notes' => $activity->progress_notes,
+                'completed_at' => $activity->completed_at?->toIso8601String(),
                 'organized_by' => $activity->organizer ? [
                     'id' => $activity->organizer->id,
                     'name' => $activity->organizer->name,
@@ -86,6 +93,17 @@ class GroupActivityManagementDataController extends Controller
                     ->where('status', ActivityApplication::STATUS_PENDING)
                     ->count(),
                 'progress_milestone_count' => $activity->progressMilestones->count(),
+                'prog_points' => collect($activity->activityTypeVersion?->prog_points ?? [])
+                    ->map(fn (array $progPoint) => [
+                        'key' => (string) ($progPoint['key'] ?? ''),
+                        'label' => is_array($progPoint['label'] ?? null)
+                            ? $progPoint['label']
+                            : ['en' => (string) ($progPoint['key'] ?? '')],
+                    ])
+                    ->filter(fn (array $progPoint) => $progPoint['key'] !== '')
+                    ->values()
+                    ->all(),
+                'can_use_fflogs_completion' => $completionService->supportsFflogsCompletion($activity->activityTypeVersion),
                 'slot_field_definitions' => $fieldDefinitionBuilder->build($activity->activityTypeVersion),
                 'slots' => $activity->slots->map(fn ($slot) => $slotSerializer->serialize($slot))->values(),
                 'missing_assignments' => $activity->slotAssignments

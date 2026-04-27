@@ -5,6 +5,7 @@ import { router, usePage } from "@inertiajs/vue3";
 import { route } from "ziggy-js";
 import { localizedValue } from "@/utils/localizedValue";
 import type { ActivityIndexItem } from "@/components/Groups/Activities/types";
+import { getActivityStatusMeta } from "@/utils/activityStatusMeta";
 
 const props = defineProps<{
 	groupSlug: string
@@ -82,15 +83,7 @@ const relativeLabel = computed(() => {
 	return formatter.format(diffDays, 'day');
 });
 
-const statusMeta = computed(() => ({
-	draft: { color: 'neutral', icon: 'i-lucide-file-pen-line' },
-	planned: { color: 'neutral', icon: 'i-lucide-clipboard-list' },
-	scheduled: { color: 'warning', icon: 'i-lucide-calendar-check-2' },
-	upcoming: { color: 'primary', icon: 'i-lucide-sparkles' },
-	ongoing: { color: 'secondary', icon: 'i-lucide-activity' },
-	complete: { color: 'success', icon: 'i-lucide-flag' },
-	cancelled: { color: 'error', icon: 'i-lucide-ban' },
-}[props.activity.status] ?? { color: 'neutral', icon: 'i-lucide-calendar-range' }));
+const statusMeta = computed(() => getActivityStatusMeta(props.activity.status));
 
 const goToManagementPage = () => {
 	if (!props.canManageActivities) {

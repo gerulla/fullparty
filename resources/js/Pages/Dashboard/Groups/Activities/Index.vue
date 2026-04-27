@@ -7,6 +7,7 @@ import PageHeader from "@/components/PageHeader.vue";
 import ActivityUpcomingList from "@/components/Groups/Activities/ActivityUpcomingList.vue";
 import ActivityMonthCalendar from "@/components/Groups/Activities/ActivityMonthCalendar.vue";
 import type { ActivityIndexItem } from "@/components/Groups/Activities/types";
+import { isArchivedActivityStatus } from "@/utils/activityLifecycle";
 
 const props = defineProps<{
 	group: {
@@ -36,7 +37,7 @@ const upcomingCount = computed(() => {
 			return false;
 		}
 
-		if (['complete', 'cancelled'].includes(activity.status)) {
+		if (isArchivedActivityStatus(activity.status)) {
 			return false;
 		}
 

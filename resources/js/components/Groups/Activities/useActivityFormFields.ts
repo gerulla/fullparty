@@ -83,12 +83,12 @@ export const useActivityFormFields = (
 		value: progPoint.key,
 	})));
 
-	const statusItems = computed(() => [
-		{ label: t('groups.activities.statuses.draft'), value: 'draft' },
-		{ label: t('groups.activities.statuses.planned'), value: 'planned' },
-		{ label: t('groups.activities.statuses.scheduled'), value: 'scheduled' },
-		{ label: t('groups.activities.statuses.upcoming'), value: 'upcoming' },
-	]);
+	const statusItems = computed(() => options.mode === 'create'
+		? [
+			{ label: t('groups.activities.statuses.planned'), value: 'planned' },
+			{ label: t('groups.activities.statuses.scheduled'), value: 'scheduled' },
+		]
+		: []);
 
 	watch(selectedActivityType, (activityType) => {
 		const validProgPointKeys = (activityType?.prog_points ?? []).map((progPoint) => progPoint.key);

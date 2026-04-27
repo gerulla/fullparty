@@ -3,6 +3,7 @@ import { computed } from "vue";
 import { useI18n } from "vue-i18n";
 import ActivityUpcomingListItem from "@/components/Groups/Activities/ActivityUpcomingListItem.vue";
 import type { ActivityIndexItem } from "@/components/Groups/Activities/types";
+import { isArchivedActivityStatus } from "@/utils/activityLifecycle";
 import { getActivityStatusDotClass } from "@/utils/activityStatusMeta";
 
 const props = defineProps<{
@@ -31,7 +32,7 @@ const upcomingActivities = computed(() => {
 				return false;
 			}
 
-			if (['complete', 'cancelled'].includes(activity.status)) {
+			if (isArchivedActivityStatus(activity.status)) {
 				return false;
 			}
 
@@ -74,10 +75,9 @@ const selectedDateLabel = computed(() => {
 });
 
 const statusLegendItems = computed(() => [
-	{ key: 'draft', colorClass: getActivityStatusDotClass('draft') },
 	{ key: 'planned', colorClass: getActivityStatusDotClass('planned') },
 	{ key: 'scheduled', colorClass: getActivityStatusDotClass('scheduled') },
-	{ key: 'upcoming', colorClass: getActivityStatusDotClass('upcoming') },
+	{ key: 'assigned', colorClass: getActivityStatusDotClass('assigned') },
 	{ key: 'ongoing', colorClass: getActivityStatusDotClass('ongoing') },
 	{ key: 'complete', colorClass: getActivityStatusDotClass('complete') },
 	{ key: 'cancelled', colorClass: getActivityStatusDotClass('cancelled') },

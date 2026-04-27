@@ -25,6 +25,10 @@ class GroupActivitySlotAssignmentController extends Controller
     ): JsonResponse {
         $this->authorize('manageDashboard', [$activity, $group]);
 
+        if ($activity->isArchived()) {
+            abort(403);
+        }
+
         if ((int) $slot->activity_id !== (int) $activity->id) {
             abort(404);
         }

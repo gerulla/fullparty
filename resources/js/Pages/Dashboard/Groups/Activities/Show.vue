@@ -4,12 +4,14 @@ import { computed, onBeforeUnmount, onMounted, ref } from "vue";
 import { useI18n } from "vue-i18n";
 import { router, usePage } from "@inertiajs/vue3";
 import { localizedValue } from "@/utils/localizedValue";
+import { canCompleteActivity, canPublishActivityRoster, isArchivedActivityStatus } from "@/utils/activityLifecycle";
 import { route } from "ziggy-js";
 import { useToast } from "@nuxt/ui/composables";
 import ActivityOverview from "@/components/Groups/Activities/ActivityOverview.vue";
 import RosterAssignments from "@/components/Groups/Activities/RosterAssignments.vue";
 import ApplicantQueue from "@/components/Groups/Activities/ApplicantQueue.vue";
 import AssignApplicantToSlotModal from "@/components/Groups/Activities/AssignApplicantToSlotModal.vue";
+import CompleteActivityModal from "@/components/Groups/Activities/CompleteActivityModal.vue";
 import type { QueueApplication, QueueFilterField } from "@/components/Groups/Activities/queueTypes";
 import type { ActivitySlot } from "@/components/Groups/Activities/rosterTypes";
 
@@ -32,9 +34,14 @@ type ActivityDetails = {
 	duration_hours: number | null
 	target_prog_point_key: string | null
 	furthest_progress_key: string | null
+	furthest_progress_percent: number | null
 	is_public: boolean
 	needs_application: boolean
 	secret_key: string | null
+	progress_entry_mode: string | null
+	progress_link_url: string | null
+	progress_notes: string | null
+	completed_at: string | null
 	organized_by: {
 		id: number
 		name: string
@@ -51,6 +58,11 @@ type ActivityDetails = {
 	application_count: number
 	pending_application_count: number
 	progress_milestone_count: number
+	can_use_fflogs_completion: boolean
+	prog_points: Array<{
+		key: string
+		label: LocalizedText
+	}>
 	slot_field_definitions: QueueFilterField[]
 	slots: ActivitySlot[]
 	missing_assignments: Array<{
@@ -103,7 +115,12 @@ const isLoading = ref(true);
 const isSlotSwapPending = ref(false);
 const pendingSwapSlotIds = ref<number[]>([]);
 const isSlotAssignmentPending = ref(false);
+const isCompleteModalOpen = ref(false);
+const isCompletingActivity = ref(false);
+const isCancelConfirmOpen = ref(false);
+const isCancellingActivity = ref(false);
 const pendingMissingUndoIds = ref<number[]>([]);
+const completionErrors = ref<Record<string, string[]>>({});
 const assignmentModalApplication = ref<QueueApplication | null>(null);
 const assignmentModalSlotId = ref<number | null>(null);
 const assignmentModalSourceSlotId = ref<number | null>(null);
@@ -122,12 +139,46 @@ const activityTypeName = computed(() => {
 });
 
 const activityTitle = computed(() => currentActivity.value?.title || activityTypeName.value);
-const canEditActivity = computed(() => currentActivity.value?.status !== 'complete');
+const isActivityArchived = computed(() => isArchivedActivityStatus(currentActivity.value?.status));
+const canEditActivity = computed(() => !currentActivity.value || !isActivityArchived.value);
+const canCompleteActivityAction = computed(() => Boolean(currentActivity.value && canCompleteActivity(currentActivity.value.status)));
+const canPublishRoster = computed(() => Boolean(currentActivity.value && canPublishActivityRoster(currentActivity.value.status)));
+const canCancelActivity = computed(() => Boolean(currentActivity.value && !isActivityArchived.value));
 const organizerName = computed(() => currentActivity.value?.organized_by_character?.name || null);
 const organizerAvatarUrl = computed(() => currentActivity.value?.organized_by_character?.avatar_url || null);
 const assignedCount = computed(() => currentActivity.value?.slots.filter((slot) => !slot.is_bench && slot.assigned_character_id !== null).length ?? 0);
 const pendingApplicationCount = computed(() => currentActivity.value?.pending_application_count ?? 0);
 const missingAssignments = computed(() => currentActivity.value?.missing_assignments ?? []);
+const completedProgression = computed(() => {
+	if (!currentActivity.value || currentActivity.value.status !== 'complete') {
+		return null;
+	}
+
+	const furthestProgPoint = currentActivity.value.prog_points.find((progPoint) => progPoint.key === currentActivity.value?.furthest_progress_key);
+	const milestones = [...currentActivity.value.progress_milestones]
+		.sort((left, right) => left.sort_order - right.sort_order)
+		.filter((milestone) => milestone.kills > 0 || milestone.best_progress_percent !== null)
+		.map((milestone) => ({
+			key: milestone.milestone_key,
+			label: localizedValue(milestone.milestone_label, locale.value, fallbackLocale.value) || milestone.milestone_key,
+			kills: milestone.kills,
+			bestProgressPercent: milestone.best_progress_percent,
+		}));
+
+	return {
+		completedAt: currentActivity.value.completed_at,
+		sourceLabel: currentActivity.value.progress_entry_mode
+			? t(`groups.activities.management.complete_activity_modal.methods.${currentActivity.value.progress_entry_mode}`)
+			: t('groups.activities.management.overview.progression.not_recorded'),
+		furthestPointLabel: furthestProgPoint
+			? (localizedValue(furthestProgPoint.label, locale.value, fallbackLocale.value) || furthestProgPoint.key)
+			: null,
+		bestProgressPercent: currentActivity.value.furthest_progress_percent,
+		progressLinkUrl: currentActivity.value.progress_link_url,
+		notes: currentActivity.value.progress_notes,
+		milestones,
+	};
+});
 const assignmentModalOpen = computed({
 	get: () => Boolean(assignmentModalApplication.value && assignmentModalSlot.value),
 	set: (value: boolean) => {
@@ -165,6 +216,102 @@ const goToEditPage = () => {
 		group: props.group.slug,
 		activity: props.activity.id,
 	}));
+};
+
+const cancelActivity = () => {
+	if (!currentActivity.value) {
+		return;
+	}
+
+	isCancelConfirmOpen.value = true;
+};
+
+const confirmCancelActivity = () => {
+	if (!currentActivity.value || isCancellingActivity.value) {
+		return;
+	}
+
+	isCancellingActivity.value = true;
+	router.post(route('groups.dashboard.activities.cancel', {
+		group: props.group.slug,
+		activity: props.activity.id,
+	}), {}, {
+		preserveScroll: true,
+		onSuccess: () => {
+			isCancelConfirmOpen.value = false;
+			void fetchManagementData();
+		},
+		onFinish: () => {
+			isCancellingActivity.value = false;
+		},
+	});
+};
+
+const completeActivity = () => {
+	if (!currentActivity.value) {
+		return;
+	}
+
+	completionErrors.value = {};
+	isCompleteModalOpen.value = true;
+};
+
+const confirmCompleteActivity = async (payload: {
+	progress_entry_mode: 'manual' | 'fflogs' | null
+	progress_link_url: string | null
+	progress_notes: string | null
+	furthest_progress_key: string | null
+	milestones: Array<{
+		milestone_key: string
+		kills: number
+		best_progress_percent: number | null
+	}>
+}) => {
+	if (!currentActivity.value || isCompletingActivity.value) {
+		return;
+	}
+
+	isCompletingActivity.value = true;
+	completionErrors.value = {};
+
+	try {
+		await axios.post(route('groups.dashboard.activities.complete', {
+			group: props.group.slug,
+			activity: props.activity.id,
+		}), payload);
+
+		isCompleteModalOpen.value = false;
+		void fetchManagementData();
+	} catch (error: any) {
+		console.error(error);
+
+		completionErrors.value = error?.response?.data?.errors ?? {};
+
+		toast.add({
+			title: t('general.error'),
+			description: error?.response?.data?.message ?? t('groups.activities.management.messages.complete_failed'),
+			color: 'error',
+			icon: 'i-lucide-octagon-alert',
+		});
+	} finally {
+		isCompletingActivity.value = false;
+	}
+};
+
+const publishRoster = () => {
+	if (!currentActivity.value) {
+		return;
+	}
+
+	router.post(route('groups.dashboard.activities.publish-roster', {
+		group: props.group.slug,
+		activity: props.activity.id,
+	}), {}, {
+		preserveScroll: true,
+		onSuccess: () => {
+			void fetchManagementData();
+		},
+	});
 };
 
 const activityApplicationRouteParams = computed(() => {
@@ -232,7 +379,7 @@ const fetchManagementData = async () => {
 };
 
 const handleSlotSwap = async (payload: { sourceSlotId: number, targetSlotId: number }) => {
-	if (!currentActivity.value || isSlotSwapPending.value || isSlotAssignmentPending.value) {
+	if (!currentActivity.value || isActivityArchived.value || isSlotSwapPending.value || isSlotAssignmentPending.value) {
 		return;
 	}
 
@@ -279,7 +426,7 @@ const handleSlotSwap = async (payload: { sourceSlotId: number, targetSlotId: num
 		console.error(error);
 		toast.add({
 			title: t('general.error'),
-			description: 'Unable to swap roster slots.',
+			description: t('groups.activities.management.messages.swap_failed'),
 			color: 'error',
 			icon: 'i-lucide-octagon-alert',
 		});
@@ -290,7 +437,7 @@ const handleSlotSwap = async (payload: { sourceSlotId: number, targetSlotId: num
 };
 
 const openAssignmentModal = (payload: { slotId: number, application: QueueApplication }) => {
-	if (!currentActivity.value || isSlotSwapPending.value || isSlotAssignmentPending.value) {
+	if (!currentActivity.value || isActivityArchived.value || isSlotSwapPending.value || isSlotAssignmentPending.value) {
 		return;
 	}
 
@@ -337,7 +484,7 @@ const fetchSlotAssignmentContext = async (slotId: number) => {
 };
 
 const openAssignmentModalFromSlot = async (targetSlotId: number, sourceSlotId: number) => {
-	if (!currentActivity.value || isSlotSwapPending.value || isSlotAssignmentPending.value) {
+	if (!currentActivity.value || isActivityArchived.value || isSlotSwapPending.value || isSlotAssignmentPending.value) {
 		return;
 	}
 
@@ -356,7 +503,7 @@ const openAssignmentModalFromSlot = async (targetSlotId: number, sourceSlotId: n
 		console.error(error);
 		toast.add({
 			title: t('general.error'),
-			description: 'Unable to prepare this roster move.',
+			description: t('groups.activities.management.messages.prepare_move_failed'),
 			color: 'error',
 			icon: 'i-lucide-octagon-alert',
 		});
@@ -364,7 +511,7 @@ const openAssignmentModalFromSlot = async (targetSlotId: number, sourceSlotId: n
 };
 
 const openSlotEditModal = async (slotId: number) => {
-	if (!currentActivity.value || isSlotSwapPending.value || isSlotAssignmentPending.value) {
+	if (!currentActivity.value || isActivityArchived.value || isSlotSwapPending.value || isSlotAssignmentPending.value) {
 		return;
 	}
 
@@ -387,7 +534,7 @@ const openSlotEditModal = async (slotId: number) => {
 		console.error(error);
 		toast.add({
 			title: t('general.error'),
-			description: 'Unable to load slot assignment details.',
+			description: t('groups.activities.management.messages.load_slot_assignment_failed'),
 			color: 'error',
 			icon: 'i-lucide-octagon-alert',
 		});
@@ -410,7 +557,7 @@ const handleSlotReturnedToQueue = (event: Event) => {
 };
 
 const returnSlotToQueue = async (slotId: number) => {
-	if (!currentActivity.value || currentActivity.value.status === 'complete' || isSlotAssignmentPending.value || isSlotSwapPending.value) {
+	if (!currentActivity.value || isActivityArchived.value || isSlotAssignmentPending.value || isSlotSwapPending.value) {
 		return;
 	}
 
@@ -446,7 +593,7 @@ const returnSlotToQueue = async (slotId: number) => {
 		console.error(error);
 		toast.add({
 			title: t('general.error'),
-			description: 'Unable to return this slot to the queue.',
+			description: t('groups.activities.management.messages.return_to_queue_failed'),
 			color: 'error',
 			icon: 'i-lucide-octagon-alert',
 		});
@@ -457,7 +604,7 @@ const returnSlotToQueue = async (slotId: number) => {
 };
 
 const moveSlotToBench = async (slotId: number) => {
-	if (!currentActivity.value || isSlotAssignmentPending.value || isSlotSwapPending.value) {
+	if (!currentActivity.value || isActivityArchived.value || isSlotAssignmentPending.value || isSlotSwapPending.value) {
 		return;
 	}
 
@@ -475,7 +622,7 @@ const moveSlotToBench = async (slotId: number) => {
 };
 
 const checkInSlot = async (slotId: number) => {
-	if (!currentActivity.value || currentActivity.value.status === 'complete' || isSlotAssignmentPending.value || isSlotSwapPending.value) {
+	if (!currentActivity.value || isActivityArchived.value || isSlotAssignmentPending.value || isSlotSwapPending.value) {
 		return;
 	}
 
@@ -513,8 +660,8 @@ const checkInSlot = async (slotId: number) => {
 		toast.add({
 			title: t('general.error'),
 			description: slot.attendance_status === 'checked_in'
-				? 'Unable to undo check-in for this slot.'
-				: 'Unable to check in this slot.',
+				? t('groups.activities.management.messages.undo_check_in_failed')
+				: t('groups.activities.management.messages.check_in_failed'),
 			color: 'error',
 			icon: 'i-lucide-octagon-alert',
 		});
@@ -525,7 +672,7 @@ const checkInSlot = async (slotId: number) => {
 };
 
 const checkInGroup = async (groupKey: string) => {
-	if (!currentActivity.value || currentActivity.value.status === 'complete' || isSlotAssignmentPending.value || isSlotSwapPending.value) {
+	if (!currentActivity.value || isActivityArchived.value || isSlotAssignmentPending.value || isSlotSwapPending.value) {
 		return;
 	}
 
@@ -562,7 +709,7 @@ const checkInGroup = async (groupKey: string) => {
 		console.error(error);
 		toast.add({
 			title: t('general.error'),
-			description: 'Unable to check in this group.',
+			description: t('groups.activities.management.messages.check_in_group_failed'),
 			color: 'error',
 			icon: 'i-lucide-octagon-alert',
 		});
@@ -573,7 +720,7 @@ const checkInGroup = async (groupKey: string) => {
 };
 
 const markSlotMissing = async (slotId: number) => {
-	if (!currentActivity.value || currentActivity.value.status === 'complete' || isSlotAssignmentPending.value || isSlotSwapPending.value) {
+	if (!currentActivity.value || isActivityArchived.value || isSlotAssignmentPending.value || isSlotSwapPending.value) {
 		return;
 	}
 
@@ -603,7 +750,7 @@ const markSlotMissing = async (slotId: number) => {
 		console.error(error);
 		toast.add({
 			title: t('general.error'),
-			description: 'Unable to mark this slot as missing.',
+			description: t('groups.activities.management.messages.mark_missing_failed'),
 			color: 'error',
 			icon: 'i-lucide-octagon-alert',
 		});
@@ -614,7 +761,7 @@ const markSlotMissing = async (slotId: number) => {
 };
 
 const undoMissingAssignment = async (assignmentId: number) => {
-	if (!currentActivity.value || currentActivity.value.status === 'complete' || pendingMissingUndoIds.value.includes(assignmentId)) {
+	if (!currentActivity.value || isActivityArchived.value || pendingMissingUndoIds.value.includes(assignmentId)) {
 		return;
 	}
 
@@ -643,8 +790,8 @@ const undoMissingAssignment = async (assignmentId: number) => {
 		const warningMessage = error?.response?.data?.errors?.assignment?.[0];
 
 		toast.add({
-			title: warningMessage ? 'Warning' : t('general.error'),
-			description: warningMessage ?? 'Unable to undo this missing slot.',
+			title: warningMessage ? t('groups.activities.management.messages.warning_title') : t('general.error'),
+			description: warningMessage ?? t('groups.activities.management.messages.undo_missing_failed'),
 			color: warningMessage ? 'warning' : 'error',
 			icon: warningMessage ? 'i-lucide-triangle-alert' : 'i-lucide-octagon-alert',
 		});
@@ -654,7 +801,7 @@ const undoMissingAssignment = async (assignmentId: number) => {
 };
 
 const handleAssignApplicantToSlot = async (payload: { applicationId: number, slotId: number, fieldValues: Record<string, string | string[]>, sourceSlotId?: number | null }) => {
-	if (!currentActivity.value || isSlotAssignmentPending.value) {
+	if (!currentActivity.value || isActivityArchived.value || isSlotAssignmentPending.value) {
 		return;
 	}
 
@@ -700,7 +847,7 @@ const handleAssignApplicantToSlot = async (payload: { applicationId: number, slo
 		console.error(error);
 		toast.add({
 			title: t('general.error'),
-			description: 'Unable to assign this application to the selected slot.',
+			description: t('groups.activities.management.messages.assign_failed'),
 			color: 'error',
 			icon: 'i-lucide-octagon-alert',
 		});
@@ -736,6 +883,9 @@ onBeforeUnmount(() => {
 				:title="activityTitle"
 				:status="currentActivity.status"
 				:can-edit="canEditActivity"
+				:can-complete="canCompleteActivityAction"
+				:can-publish-roster="canPublishRoster"
+				:can-cancel="canCancelActivity"
 				:roster-view="rosterView"
 				:show-applicant-queue="showApplicantQueue"
 				:group-name="group.name"
@@ -750,11 +900,15 @@ onBeforeUnmount(() => {
 				:needs-application="currentActivity.needs_application"
 				:description="currentActivity.description"
 				:notes="currentActivity.notes"
+				:completed-progression="completedProgression"
 				@edit="goToEditPage"
 				@view-overview="goToOverviewPage"
 				@go-to-application="goToApplicationPage"
 				@copy-application-link="copyApplicationLink"
 				@export-roster="exportRoster"
+				@complete="completeActivity"
+				@publish-roster="publishRoster"
+				@cancel="cancelActivity"
 				@update-roster-view="rosterView = $event"
 				@toggle-applicant-queue="showApplicantQueue = !showApplicantQueue"
 			/>
@@ -804,7 +958,7 @@ onBeforeUnmount(() => {
 				color="error"
 				variant="soft"
 				:title="t('general.error')"
-				description="Unable to load activity details."
+				:description="t('groups.activities.management.messages.load_failed')"
 			>
 				<template #actions>
 					<UButton
@@ -812,7 +966,7 @@ onBeforeUnmount(() => {
 						variant="outline"
 						size="sm"
 						icon="i-lucide-refresh-cw"
-						label="Retry"
+						:label="t('groups.activities.management.messages.retry')"
 						@click="fetchManagementData"
 					/>
 				</template>
@@ -827,9 +981,9 @@ onBeforeUnmount(() => {
 					:slots="currentActivity.slots"
 					:is-swap-pending="isSlotSwapPending || isSlotAssignmentPending"
 					:pending-swap-slot-ids="pendingSwapSlotIds"
-					:can-return-to-queue="currentActivity.status !== 'complete'"
-					:can-mark-missing="currentActivity.status !== 'complete'"
-					:can-check-in="currentActivity.status !== 'complete'"
+					:can-return-to-queue="!isActivityArchived"
+					:can-mark-missing="!isActivityArchived"
+					:can-check-in="!isActivityArchived"
 					@swap-slots="handleSlotSwap"
 					@assign-application-to-slot="openAssignmentModal"
 					@click-slot="openSlotEditModal"
@@ -851,7 +1005,7 @@ onBeforeUnmount(() => {
 							</div>
 							<div class="flex items-center gap-3">
 								<h3 class="font-semibold text-lg text-toned">
-									Missing
+									{{ t('groups.activities.management.messages.missing_title') }}
 								</h3>
 								<UBadge color="error" variant="soft" :label="String(missingAssignments.length)" />
 							</div>
@@ -873,17 +1027,17 @@ onBeforeUnmount(() => {
 								/>
 								<div class="flex flex-col gap-1">
 									<p class="font-medium text-toned">
-										{{ entry.character?.name ?? 'Unknown character' }}
+										{{ entry.character?.name ?? t('groups.activities.management.messages.unknown_character') }}
 									</p>
 									<p class="text-sm text-muted">
-										{{ entry.character?.world || 'Unknown world' }}
+										{{ entry.character?.world || t('groups.activities.management.messages.unknown_world') }}
 									</p>
 								</div>
 							</div>
 
 							<div class="flex flex-col gap-1 text-sm text-muted md:items-end">
 								<p>
-									{{ localizedValue(entry.group_label, locale, fallbackLocale) || localizedValue(entry.slot_label, locale, fallbackLocale) || 'Roster slot' }}
+									{{ localizedValue(entry.group_label, locale, fallbackLocale) || localizedValue(entry.slot_label, locale, fallbackLocale) || t('groups.activities.management.messages.unknown_slot') }}
 								</p>
 								<p v-if="entry.marked_missing_at">
 									{{ new Intl.DateTimeFormat(locale, {
@@ -898,13 +1052,13 @@ onBeforeUnmount(() => {
 
 							<div class="md:ml-4 md:self-center">
 								<UButton
-									label="Undo missing"
+									:label="t('groups.activities.management.messages.undo_missing')"
 									icon="i-lucide-rotate-ccw"
 									variant="soft"
 									color="neutral"
 									size="sm"
 									:loading="pendingMissingUndoIds.includes(entry.id)"
-									:disabled="currentActivity?.status === 'complete'"
+									:disabled="isActivityArchived"
 									@click="undoMissingAssignment(entry.id)"
 								/>
 							</div>
@@ -954,5 +1108,47 @@ onBeforeUnmount(() => {
 			:is-submitting="isSlotAssignmentPending"
 			@confirm="handleAssignApplicantToSlot"
 		/>
+
+		<CompleteActivityModal
+			v-model:open="isCompleteModalOpen"
+			:group-slug="group.slug"
+			:activity-id="activity.id"
+			:is-submitting="isCompletingActivity"
+			:can-use-fflogs-completion="currentActivity?.can_use_fflogs_completion ?? false"
+			:prog-points="currentActivity?.prog_points ?? []"
+			:progress-milestones="currentActivity?.progress_milestones ?? []"
+			:errors="completionErrors"
+			@confirm="confirmCompleteActivity"
+		/>
+
+		<UModal
+			v-model:open="isCancelConfirmOpen"
+			:title="t('groups.activities.management.cancel_activity_modal.title')"
+			:description="t('groups.activities.management.cancel_activity_confirm')"
+		>
+			<template #body>
+				<p class="text-sm text-muted">
+					{{ t('groups.activities.management.cancel_activity_modal.body') }}
+				</p>
+			</template>
+
+			<template #footer>
+				<div class="flex w-full items-center justify-end gap-3">
+					<UButton
+						color="neutral"
+						variant="ghost"
+						:label="t('general.cancel')"
+						@click="isCancelConfirmOpen = false"
+					/>
+					<UButton
+						color="error"
+						icon="i-lucide-ban"
+						:label="t('groups.activities.management.cancel_activity_modal.confirm')"
+						:loading="isCancellingActivity"
+						@click="confirmCancelActivity"
+					/>
+				</div>
+			</template>
+		</UModal>
 	</div>
 </template>

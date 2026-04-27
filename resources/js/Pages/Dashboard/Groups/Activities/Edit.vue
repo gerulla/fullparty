@@ -79,7 +79,6 @@ const submit = () => {
 		.transform((data) => ({
 			organized_by_user_id: data.organized_by_user_id,
 			organized_by_character_id: data.organized_by_character_id,
-			status: data.status,
 			title: data.title,
 			notes: data.notes,
 			starts_at: data.starts_at,

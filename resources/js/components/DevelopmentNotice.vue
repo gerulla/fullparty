@@ -20,7 +20,9 @@ const { t } = useI18n();
 					{{t('navigation.sidebar.notice.github')}}
 				</a>
 				<a
-					href="#"
+					href="https://discord.gg/NhvQX8mbyS"
+					target="_blank"
+					rel="noopener noreferrer"
 					class="inline-flex items-center rounded-lg border border-white/10 px-3 py-1.5 text-xs font-medium text-white/90 hover:bg-white/5 transition"
 				>
 					{{t('navigation.sidebar.notice.discord')}}

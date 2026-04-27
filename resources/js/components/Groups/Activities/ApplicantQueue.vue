@@ -4,6 +4,7 @@ import { computed, onBeforeUnmount, onMounted, ref } from "vue";
 import { useI18n } from "vue-i18n";
 import { usePage } from "@inertiajs/vue3";
 import { localizedValue } from "@/utils/localizedValue";
+import { isArchivedActivityStatus } from "@/utils/activityLifecycle";
 import { route } from "ziggy-js";
 import ApplicantQueueItem from "@/components/Groups/Activities/ApplicantQueueItem.vue";
 import { getRosterSlotDragData, isRosterSlotDrag } from "@/components/Groups/Activities/rosterDragData";
@@ -179,7 +180,7 @@ const clearFilters = () => {
 	minimumPhantomMastery.value = '';
 };
 
-const canAcceptRosterDrop = computed(() => props.activityStatus !== 'complete' && !isReturningSlot.value);
+const canAcceptRosterDrop = computed(() => !isArchivedActivityStatus(props.activityStatus) && !isReturningSlot.value);
 
 const fetchQueuePayload = async () => {
 	isLoading.value = true;

@@ -153,10 +153,7 @@ class GroupActivityApplicationController extends Controller
             abort(404);
         }
 
-        if (!$activity->needs_application || in_array($activity->status, [
-            Activity::STATUS_COMPLETE,
-            Activity::STATUS_CANCELLED,
-        ], true)) {
+        if (!$activity->needs_application || $activity->isArchived()) {
             abort(404);
         }
     }

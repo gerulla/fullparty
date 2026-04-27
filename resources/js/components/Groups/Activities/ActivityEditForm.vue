@@ -31,7 +31,6 @@ const {
 	organizerCharacterItems,
 	selectedOrganizerCharacter,
 	progPointItems,
-	statusItems,
 	updateOrganizerCharacter,
 	startDate,
 	startHour,
@@ -71,7 +70,7 @@ const submit = () => {
 					<p class="text-sm text-muted">{{ t('groups.activities.edit.sections.basics.subtitle') }}</p>
 				</div>
 
-				<div class="grid grid-cols-1 gap-5 xl:grid-cols-2">
+				<div class="grid grid-cols-1 gap-5">
 					<UFormField
 						:label="t('groups.activities.create.fields.organizer.label')"
 						:error="form.errors.organized_by_character_id || form.errors.organized_by_user_id"
@@ -88,21 +87,6 @@ const submit = () => {
 							:items="organizerCharacterItems"
 							:placeholder="t('groups.activities.create.fields.organizer.placeholder')"
 							@update:model-value="updateOrganizerCharacter"
-						/>
-					</UFormField>
-
-					<UFormField
-						:label="t('groups.activities.create.fields.status.label')"
-						:error="form.errors.status"
-						required
-					>
-						<USelect
-							v-model="form.status"
-							size="lg"
-							class="w-full"
-							:items="statusItems"
-							value-key="value"
-							:placeholder="t('groups.activities.create.fields.status.placeholder')"
 						/>
 					</UFormField>
 				</div>

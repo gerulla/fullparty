@@ -25,9 +25,9 @@ class GroupActivitySlotMissingController extends Controller
     ): JsonResponse {
         $this->authorize('manageDashboard', [$activity, $group]);
 
-        if ($activity->status === Activity::STATUS_COMPLETE) {
+        if ($activity->isArchived()) {
             throw ValidationException::withMessages([
-                'activity' => 'Completed activities cannot be updated for attendance.',
+                'activity' => 'Archived activities cannot be updated for attendance.',
             ]);
         }
 
@@ -74,9 +74,9 @@ class GroupActivitySlotMissingController extends Controller
     ): JsonResponse {
         $this->authorize('manageDashboard', [$activity, $group]);
 
-        if ($activity->status === Activity::STATUS_COMPLETE) {
+        if ($activity->isArchived()) {
             throw ValidationException::withMessages([
-                'activity' => 'Completed activities cannot be updated for attendance.',
+                'activity' => 'Archived activities cannot be updated for attendance.',
             ]);
         }
 

@@ -174,7 +174,7 @@ class ApplicantQueuePayloadBuilder
                 ->whereNotNull('assigned_character_id')
                 ->whereHas('assignedCharacter', fn ($query) => $query->where('user_id', $userId))
                 ->whereHas('activity', function ($query) {
-                    $query->where('status', '!=', Activity::STATUS_CANCELLED)
+                    $query->whereNotIn('status', array_diff(Activity::ARCHIVED_STATUSES, [Activity::STATUS_COMPLETE]))
                         ->where(function ($nestedQuery) {
                             $nestedQuery->where('status', Activity::STATUS_COMPLETE)
                                 ->orWhere(function ($dateQuery) {

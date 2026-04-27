@@ -244,7 +244,6 @@ class GroupActivityController extends Controller
         $original = $activity->only([
             'organized_by_user_id',
             'organized_by_character_id',
-            'status',
             'title',
             'description',
             'notes',
@@ -260,7 +259,6 @@ class GroupActivityController extends Controller
             'organized_by_character_id' => array_key_exists('organized_by_character_id', $validated)
                 ? $validated['organized_by_character_id']
                 : $activity->organized_by_character_id,
-            'status' => $validated['status'],
             'title' => $validated['title'] ?? $activity->title,
             'description' => $validated['description'] ?? $activity->description,
             'notes' => $validated['notes'] ?? $activity->notes,
@@ -281,7 +279,6 @@ class GroupActivityController extends Controller
         foreach ([
             'organized_by_user_id',
             'organized_by_character_id',
-            'status',
             'title',
             'description',
             'notes',
@@ -322,7 +319,7 @@ class GroupActivityController extends Controller
         $group->loadMissing('memberships');
         $this->authorizeModeratorAccess($group);
         $this->ensureActivityBelongsToGroup($group, $activity);
-        $this->ensureActivityIsMutable($activity);
+        $this->ensureActivityCanBeDeleted($activity);
 
         $this->activityAuditService->logActivityDeleted($group, $activity, auth()->user());
         $activity->delete();
@@ -330,6 +327,63 @@ class GroupActivityController extends Controller
         return redirect()
             ->route('groups.dashboard.activities.index', $group)
             ->with('success', 'activity_deleted');
+    }
+
+    public function cancel(Group $group, Activity $activity): RedirectResponse
+    {
+        $group->loadMissing('memberships');
+        $this->authorizeModeratorAccess($group);
+        $this->ensureActivityBelongsToGroup($group, $activity);
+        $this->ensureActivityCanBeCancelled($activity);
+
+        $previousStatus = $activity->status;
+
+        $activity->update([
+            'status' => Activity::STATUS_CANCELLED,
+        ]);
+
+        $this->activityAuditService->logActivityUpdated($activity, auth()->user(), [
+            'status' => [
+                'old' => $previousStatus,
+                'new' => Activity::STATUS_CANCELLED,
+            ],
+        ]);
+
+        return redirect()
+            ->route('groups.dashboard.activities.show', [
+                'group' => $group,
+                'activity' => $activity,
+            ])
+            ->with('success', 'activity_cancelled');
+    }
+
+    public function publishRoster(Group $group, Activity $activity): RedirectResponse
+    {
+        $group->loadMissing('memberships');
+        $this->authorizeModeratorAccess($group);
+        $this->ensureActivityBelongsToGroup($group, $activity);
+        $this->ensureActivityCanBeMarkedAssigned($activity);
+
+        $previousStatus = $activity->status;
+
+        $activity->update([
+            'status' => Activity::STATUS_ASSIGNED,
+        ]);
+
+        // TODO: Notify affected users about their assigned roster positions.
+        $this->activityAuditService->logActivityUpdated($activity, auth()->user(), [
+            'status' => [
+                'old' => $previousStatus,
+                'new' => Activity::STATUS_ASSIGNED,
+            ],
+        ]);
+
+        return redirect()
+            ->route('groups.dashboard.activities.show', [
+                'group' => $group,
+                'activity' => $activity,
+            ])
+            ->with('success', 'activity_roster_published');
     }
 
     /**
@@ -358,7 +412,12 @@ class GroupActivityController extends Controller
                 'integer',
                 'exists:characters,id',
             ],
-            'status' => ['required', Rule::in(Activity::STATUSES)],
+            'status' => $isUpdate
+                ? ['prohibited']
+                : ['required', Rule::in([
+                    Activity::STATUS_PLANNED,
+                    Activity::STATUS_SCHEDULED,
+                ])],
             'title' => ['sometimes', 'nullable', 'string', 'max:255'],
             'description' => ['sometimes', 'nullable', 'string'],
             'notes' => ['sometimes', 'nullable', 'string'],
@@ -523,7 +582,28 @@ class GroupActivityController extends Controller
 
     private function ensureActivityIsMutable(Activity $activity): void
     {
-        if ($activity->status === Activity::STATUS_COMPLETE) {
+        if ($activity->isArchived()) {
+            abort(403);
+        }
+    }
+
+    private function ensureActivityCanBeCancelled(Activity $activity): void
+    {
+        if (!$activity->canBeCancelled()) {
+            abort(403);
+        }
+    }
+
+    private function ensureActivityCanBeDeleted(Activity $activity): void
+    {
+        if (!$activity->canBeDeleted()) {
+            abort(403);
+        }
+    }
+
+    private function ensureActivityCanBeMarkedAssigned(Activity $activity): void
+    {
+        if (!$activity->canBeMarkedAssigned()) {
             abort(403);
         }
     }

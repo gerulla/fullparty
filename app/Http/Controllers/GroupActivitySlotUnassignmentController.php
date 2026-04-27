@@ -27,9 +27,9 @@ class GroupActivitySlotUnassignmentController extends Controller
     ): JsonResponse {
         $this->authorize('manageDashboard', [$activity, $group]);
 
-        if ($activity->status === Activity::STATUS_COMPLETE) {
+        if ($activity->isArchived()) {
             throw ValidationException::withMessages([
-                'activity' => 'Completed activities cannot be moved back into the applicant queue.',
+                'activity' => 'Archived activities cannot be moved back into the applicant queue.',
             ]);
         }
 

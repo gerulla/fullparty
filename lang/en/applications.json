@@ -1,0 +1,46 @@
+{
+  "title": "My Applications",
+  "subtitle": "Review your recent run applications and manage anything still pending.",
+  "empty_title": "No applications yet",
+  "empty_description": "Once you apply to runs, they will show up here from newest to oldest.",
+  "summary_fallback": "Your submitted run details and current application status are summarized here.",
+  "character": "Character",
+  "run_time": "Run Time",
+  "submitted": "Submitted",
+  "activity_type": "Activity Type",
+  "notes": "Notes",
+  "review_reason": "Moderator Note",
+  "no_notes": "No extra notes were included.",
+  "not_available": "Not available",
+  "unknown_group": "Unknown group",
+  "unknown_character": "Unknown character",
+  "editable": "Still pending review",
+  "locked": "Locked for changes",
+  "locked_help": "Applications can only be edited or withdrawn while they are still pending review.",
+  "statuses": {
+    "withdrawn": "Withdrawn"
+  },
+  "sections": {
+    "active_title": "Active Applications",
+    "active_description": "Your current signups that are still live, pending, or otherwise in motion.",
+    "active_empty_title": "No active applications",
+    "active_empty_description": "Anything still in progress will show up here.",
+    "history_title": "History",
+    "history_description": "Past, declined, withdrawn, or otherwise closed-out applications stay here for reference.",
+    "history_empty_title": "No application history yet",
+    "history_empty_description": "Once an application is completed, declined, withdrawn, or archived, it will move here."
+  },
+  "edit": "Edit Application",
+  "cancel": "Cancel Application",
+  "withdraw": {
+    "title": "Cancel Application",
+    "description": "Withdraw this pending application from the run queue.",
+    "warning_title": "This withdraws your application",
+    "warning_description": "The application will move to your history. If you want to sign up again later, you will need to submit a new one.",
+    "confirm": "Withdraw Application",
+    "success_title": "Application withdrawn",
+    "success_description": "Your application has been withdrawn and moved to your history.",
+    "error_title": "Unable to cancel application",
+    "error_description": "This application could not be cancelled right now."
+  }
+}

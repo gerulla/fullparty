@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { ref } from 'vue'
 import type { DropdownMenuItem } from '@nuxt/ui'
 import { router } from '@inertiajs/vue3'
 import {route} from "ziggy-js";
@@ -13,6 +12,14 @@ const user = computed(() => page.props.auth?.user)
 const { t } = useI18n();
 const logoutRedirect = () => {
 	router.post(route('logout'))
+}
+
+const goToLogin = () => {
+	router.get(route('login'))
+}
+
+const goToRegister = () => {
+	router.get(route('register'))
 }
 
 const items = computed<DropdownMenuItem[][]>(() => [
@@ -61,6 +68,25 @@ const items = computed<DropdownMenuItem[][]>(() => [
 			<UIcon name="i-lucide-chevron-down" class="w-4 h-4" />
 		</div>
 	</UDropdownMenu>
+
+	<div v-else class="flex items-center gap-2">
+		<UButton
+			color="neutral"
+			variant="ghost"
+			size="lg"
+			icon="i-lucide-log-in"
+			:label="t('auth.login')"
+			@click="goToLogin"
+		/>
+		<UButton
+			color="neutral"
+			variant="ghost"
+			size="lg"
+			icon="i-lucide-user-round-plus"
+			:label="t('auth.register')"
+			@click="goToRegister"
+		/>
+	</div>
 </template>
 
 <style scoped>

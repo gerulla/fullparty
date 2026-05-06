@@ -1,0 +1,46 @@
+{
+  "title": "Meine Bewerbungen",
+  "subtitle": "Pruefe deine letzten Run-Bewerbungen und verwalte alles, was noch auf Pruefung wartet.",
+  "empty_title": "Noch keine Bewerbungen",
+  "empty_description": "Sobald du dich fuer Runs bewirbst, erscheinen sie hier von neu nach alt.",
+  "summary_fallback": "Hier siehst du eine Zusammenfassung deiner eingereichten Run-Daten und des aktuellen Bewerbungsstatus.",
+  "character": "Charakter",
+  "run_time": "Run-Zeit",
+  "submitted": "Gesendet",
+  "activity_type": "Aktivitaetstyp",
+  "notes": "Notizen",
+  "review_reason": "Hinweis des Moderationsteams",
+  "no_notes": "Es wurden keine weiteren Notizen hinzugefuegt.",
+  "not_available": "Nicht verfuegbar",
+  "unknown_group": "Unbekannte Gruppe",
+  "unknown_character": "Unbekannter Charakter",
+  "editable": "Wartet noch auf Pruefung",
+  "locked": "Nicht mehr aenderbar",
+  "locked_help": "Bewerbungen koennen nur bearbeitet oder zurueckgezogen werden, solange sie noch auf Pruefung warten.",
+  "statuses": {
+    "withdrawn": "Zurueckgezogen"
+  },
+  "sections": {
+    "active_title": "Aktive Bewerbungen",
+    "active_description": "Deine aktuellen Anmeldungen, die noch laufen, geprueft werden oder sonst noch aktiv sind.",
+    "active_empty_title": "Keine aktiven Bewerbungen",
+    "active_empty_description": "Alles, was noch im Gange ist, erscheint hier.",
+    "history_title": "Verlauf",
+    "history_description": "Vergangene, abgelehnte, zurueckgezogene oder sonst abgeschlossene Bewerbungen bleiben hier zur Referenz sichtbar.",
+    "history_empty_title": "Noch kein Bewerbungsverlauf",
+    "history_empty_description": "Sobald eine Bewerbung abgeschlossen, abgelehnt, zurueckgezogen oder archiviert wurde, erscheint sie hier."
+  },
+  "edit": "Bewerbung bearbeiten",
+  "cancel": "Bewerbung abbrechen",
+  "withdraw": {
+    "title": "Bewerbung abbrechen",
+    "description": "Ziehe diese noch ausstehende Bewerbung aus der Warteschlange zurueck.",
+    "warning_title": "Dadurch wird deine Bewerbung zurueckgezogen",
+    "warning_description": "Die Bewerbung wird in deinen Verlauf verschoben. Wenn du dich spaeter erneut anmelden willst, musst du eine neue Bewerbung senden.",
+    "confirm": "Bewerbung zurueckziehen",
+    "success_title": "Bewerbung zurueckgezogen",
+    "success_description": "Deine Bewerbung wurde zurueckgezogen und in deinen Verlauf verschoben.",
+    "error_title": "Bewerbung konnte nicht abgebrochen werden",
+    "error_description": "Diese Bewerbung konnte gerade nicht abgebrochen werden."
+  }
+}

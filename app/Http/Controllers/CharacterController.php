@@ -10,9 +10,10 @@ use App\Http\Requests\StoreXIVAuthCharacterRequest;
 use App\Http\Requests\UpdateCharacterRequest;
 use App\Models\Character;
 use App\Models\CharacterClass;
+use App\Models\ActivityApplication;
 use App\Models\PhantomJob;
 use App\Services\AuditLogger;
-use App\Services\FFLogs\ForkedTowerBloodProgressFetcher;
+use App\Services\Characters\CharacterProfileRefreshService;
 use App\Services\Lodestone\LodestoneInputNormalizer;
 use App\Services\Lodestone\LodestoneScraper;
 use App\Support\Audit\AuditScope;
@@ -32,7 +33,8 @@ use Illuminate\Support\Facades\Redirect;
 class CharacterController extends Controller
 {
 	public function __construct(
-		private readonly AuditLogger $auditLogger
+		private readonly AuditLogger $auditLogger,
+		private readonly CharacterProfileRefreshService $characterProfileRefreshService,
 	) {}
 
 	private function generateVerificationToken(): string
@@ -61,14 +63,7 @@ class CharacterController extends Controller
 		}
 		// If the character exists but has not been verified, tell the user to claim it
 		if($character){
-			//Renew token if expired
-			if($character->isTokenExpired()){
-				$token = $this->generateVerificationToken();
-				$character->update([
-					'token' => $token,
-					'expires_at' => Carbon::now()->addDay(),
-				]);
-			}
+			$this->renewVerificationTokenIfNeeded($character);
 			return Redirect::back()->with('flash_data', [
 				'manual_character_lookup' => [
 					'exists' => true,
@@ -147,7 +142,7 @@ class CharacterController extends Controller
 				]
 			]);
 		}
-		if($character->isTokenExpired()){
+		if(blank($character->token) || $character->isTokenExpired()){
 			return Redirect::back()->withErrors([
 				'error' => 'expired_token'
 			]);
@@ -162,13 +157,7 @@ class CharacterController extends Controller
 					'error' => 'invalid_token'
 				]);
 			}
-			if (auth()->user()->characters()->count() === 0) {
-				$character->is_primary = true;
-			}
-			$character->user_id = auth()->id();
-			$character->verified_at = Carbon::now();
-			$character->token = null;
-			$character->save();
+			$this->finalizeCharacterVerification($character, auth()->user(), 'lodestone_token');
 
 			$this->auditLogger->log(
 				action: 'character.verified',
@@ -184,6 +173,8 @@ class CharacterController extends Controller
 					'is_primary' => $character->is_primary,
 				],
 			);
+
+			$this->refreshVerifiedCharacterOnce($character);
 			
 			return Redirect::back()->with('flash_data', [
 				'character_verification' => [
@@ -255,18 +246,17 @@ class CharacterController extends Controller
 				'verified_at' => Carbon::now(),
 			]);
 		}else{
-			// If character exists, set the user to own it.
-			$character->update([
-				'user_id' => auth()->id(),
-				'is_primary' => $is_primary,
+			$character->fill([
+				'name' => $validated['name'],
+				'world' => $validated['world'],
+				'datacenter' => $validated['datacenter'],
+				'avatar_url' => $validated['avatar_url'],
+				'add_method' => 'xivauth',
 			]);
-
-			if (!$character->verified_at) {
-				$character->update([
-					'verified_at' => Carbon::now(),
-				]);
-			}
 		}
+
+		$this->finalizeCharacterVerification($character, auth()->user(), 'xivauth', $is_primary);
+		$this->refreshVerifiedCharacterOnce($character);
 
 		$character->refresh();
 
@@ -320,28 +310,8 @@ class CharacterController extends Controller
 			],
 		);
 
-		$scraper = app(LodestoneScraper::class);
-		$forkedTowerBloodProgressFetcher = app(ForkedTowerBloodProgressFetcher::class);
-
 		try {
-			$data = $scraper->scrape($character->lodestone_id, ignoreCache: true);
-			$forkedTowerBloodProgress = $this->fetchForkedTowerBloodProgress(
-				$forkedTowerBloodProgressFetcher,
-				$character,
-			);
-
-			DB::transaction(function () use ($character, $data, $forkedTowerBloodProgress) {
-				$character->update([
-					'name' => $data->name,
-					'world' => $data->world,
-					'datacenter' => $data->dataCenter,
-					'avatar_url' => $data->avatarUrl,
-				]);
-
-				$this->syncCharacterClassLevels($character, $data->extraData);
-				$this->syncPhantomJobLevels($character, $data->extraData);
-				$this->syncOccultProgress($character, $data->extraData, $forkedTowerBloodProgress);
-			});
+			$this->characterProfileRefreshService->refresh($character, ignoreCache: true);
 
 			return Redirect::back()->with('success', 'character_data_refreshed');
 		} catch (LodestoneInvalidInputException $e) {
@@ -365,20 +335,88 @@ class CharacterController extends Controller
 		}
 	}
 
-	private function fetchForkedTowerBloodProgress(
-		ForkedTowerBloodProgressFetcher $forkedTowerBloodProgressFetcher,
+	private function renewVerificationTokenIfNeeded(Character $character): void
+	{
+		if (!$character->isTokenExpired() && filled($character->token)) {
+			return;
+		}
+
+		$character->update([
+			'token' => $this->generateVerificationToken(),
+			'expires_at' => Carbon::now()->addDay(),
+		]);
+	}
+
+	private function finalizeCharacterVerification(
 		Character $character,
-	): array {
+		\App\Models\User $user,
+		string $verificationMethod,
+		?bool $isPrimaryOverride = null,
+	): void {
+		DB::transaction(function () use ($character, $user, $verificationMethod, $isPrimaryOverride): void {
+			$isPrimary = $isPrimaryOverride ?? $user->characters()->count() === 0;
+
+			$character->user_id = $user->id;
+			$character->verified_at = Carbon::now();
+			$character->token = null;
+			$character->expires_at = null;
+			$character->is_primary = $isPrimary;
+			$character->add_method = $verificationMethod === 'xivauth' ? 'xivauth' : 'manual';
+			$character->save();
+
+			$this->claimCharacterApplications($character, $user);
+		});
+	}
+
+	private function claimCharacterApplications(Character $character, \App\Models\User $user): void
+	{
+		$applications = ActivityApplication::query()
+			->whereNull('user_id')
+			->where('applicant_lodestone_id', $character->lodestone_id)
+			->lockForUpdate()
+			->get();
+
+		if ($applications->isEmpty()) {
+			return;
+		}
+
+		$conflictingActivityIds = ActivityApplication::query()
+			->where('user_id', $user->id)
+			->whereIn('activity_id', $applications->pluck('activity_id'))
+			->pluck('activity_id')
+			->all();
+
+		foreach ($applications as $application) {
+			if (in_array($application->activity_id, $conflictingActivityIds, true)) {
+				Log::warning('Skipping guest application claim because the user already has an application for the activity.', [
+					'application_id' => $application->id,
+					'activity_id' => $application->activity_id,
+					'user_id' => $user->id,
+					'character_id' => $character->id,
+					'lodestone_id' => $character->lodestone_id,
+				]);
+
+				continue;
+			}
+
+			$application->update([
+				'user_id' => $user->id,
+				'selected_character_id' => $character->id,
+				'guest_access_token' => null,
+			]);
+		}
+	}
+
+	private function refreshVerifiedCharacterOnce(Character $character): void
+	{
 		try {
-			return $forkedTowerBloodProgressFetcher->fetchForCharacter($character);
+			$this->characterProfileRefreshService->refresh($character, ignoreCache: true);
 		} catch (\Throwable $exception) {
-			Log::warning('Unable to refresh FF Logs progress during character refresh.', [
+			Log::warning('Unable to auto-refresh character data after verification.', [
 				'character_id' => $character->id,
 				'lodestone_id' => $character->lodestone_id,
 				'exception' => $exception->getMessage(),
 			]);
-
-			return $this->emptyForkedTowerBloodProgress();
 		}
 	}
 
@@ -575,74 +613,6 @@ class CharacterController extends Controller
 		);
 	}
 
-	private function syncCharacterClassLevels(Character $character, array $extraData): void
-	{
-		$existingProgress = $character->classes()
-			->get()
-			->keyBy('id');
-
-		$syncPayload = CharacterClass::query()
-			->get()
-			->mapWithKeys(function (CharacterClass $characterClass) use ($existingProgress, $extraData) {
-				$existing = $existingProgress->get($characterClass->id);
-				$level = (int) ($extraData[sprintf('job.%s.level', strtolower($characterClass->shorthand))] ?? 0);
-
-				return [
-					$characterClass->id => [
-						'level' => $level,
-						'is_preferred' => $existing?->pivot?->is_preferred ?? false,
-					],
-				];
-			})
-			->all();
-
-		$character->classes()->sync($syncPayload);
-	}
-
-	private function syncPhantomJobLevels(Character $character, array $extraData): void
-	{
-		$existingProgress = $character->phantomJobs()
-			->get()
-			->keyBy('id');
-
-		$syncPayload = PhantomJob::query()
-			->get()
-			->mapWithKeys(function (PhantomJob $phantomJob) use ($existingProgress, $extraData) {
-				$existing = $existingProgress->get($phantomJob->id);
-				$currentLevel = (int) ($extraData[sprintf('phantom.%s.level', $this->normalizeOccultSlug($phantomJob->name))] ?? 0);
-
-				return [
-					$phantomJob->id => [
-						'current_level' => $currentLevel,
-						'is_preferred' => $existing?->pivot?->is_preferred ?? false,
-					],
-				];
-			})
-			->all();
-
-		$character->phantomJobs()->sync($syncPayload);
-	}
-
-	private function syncOccultProgress(Character $character, array $extraData, array $forkedTowerBloodProgress): void
-	{
-		$bosses = collect($forkedTowerBloodProgress['bosses'] ?? [])->keyBy('key');
-
-		$character->occultProgress()->updateOrCreate(
-			['character_id' => $character->id],
-			[
-				'knowledge_level' => (int) ($extraData['progression.occult.knowledge_level'] ?? 0),
-				'demon_tablet_kills' => (int) ($bosses->get('demon_tablet')['kills'] ?? 0),
-				'demon_tablet_progress' => (int) ($bosses->get('demon_tablet')['progress'] ?? 0),
-				'dead_stars_kills' => (int) ($bosses->get('dead_stars')['kills'] ?? 0),
-				'dead_stars_progress' => (int) ($bosses->get('dead_stars')['progress'] ?? 0),
-				'marble_dragon_kills' => (int) ($bosses->get('marble_dragon')['kills'] ?? 0),
-				'marble_dragon_progress' => (int) ($bosses->get('marble_dragon')['progress'] ?? 0),
-				'magitaur_kills' => (int) ($bosses->get('magitaur')['kills'] ?? 0),
-				'magitaur_progress' => (int) ($bosses->get('magitaur')['progress'] ?? 0),
-			]
-		);
-	}
-
 	private function emptyForkedTowerBloodProgress(): array
 	{
 		return [
@@ -656,14 +626,6 @@ class CharacterController extends Controller
 		];
 	}
 
-	private function normalizeOccultSlug(string $value): string
-	{
-		$normalized = strtolower(trim($value));
-		$normalized = preg_replace('/^phantom\s+/i', '', $normalized);
-
-		return str_replace(' ', '_', $normalized);
-	}
-	
     /**
      * Store a newly created resource in storage.
      */

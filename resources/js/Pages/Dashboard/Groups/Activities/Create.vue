@@ -53,6 +53,7 @@ const form = useForm({
 	target_prog_point_key: null as string | null,
 	is_public: true,
 	needs_application: true,
+	allow_guest_applications: false,
 });
 
 const goBack = () => {

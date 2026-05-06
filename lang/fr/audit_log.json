@@ -123,7 +123,10 @@
         "deleted": "a supprimé une activité.",
         "application": {
           "submitted": "a envoyé une candidature d'activité.",
-          "updated": "a mis à jour une candidature d'activité."
+          "updated": "a mis à jour une candidature d'activité.",
+          "declined": "a refusé une candidature d'activité.",
+          "cancelled": "a clôturé une candidature d'activité après l'annulation du run.",
+          "withdrawn": "a retiré une candidature d'activité."
         },
         "roster": {
           "assigned": "a attribué un slot de roster.",
@@ -221,9 +224,11 @@
     "selected_character_name": "Personnage sélectionné",
     "displaced_character_name": "Personnage remplacé",
     "application_status": "Statut de candidature",
+    "review_reason": "Note de revue",
     "starts_at": "Commence le",
     "duration_hours": "Durée (heures)",
     "needs_application": "Candidature requise",
+    "allow_guest_applications": "Autoriser les candidatures invitées",
     "target_prog_point_key": "Point de progression cible",
     "organized_by_user_id": "Organisateur",
     "organized_by_character_id": "Personnage organisateur",
@@ -297,7 +302,10 @@
         "deleted": "Activité supprimée",
         "application": {
           "submitted": "Candidature d'activité envoyée",
-          "updated": "Candidature d'activité mise à jour"
+          "updated": "Candidature d'activité mise à jour",
+          "declined": "Candidature d'activité refusée",
+          "cancelled": "Candidature d'activité clôturée après annulation du run",
+          "withdrawn": "Candidature d'activité retirée"
         },
         "roster": {
           "assigned": "Slot de roster attribué",

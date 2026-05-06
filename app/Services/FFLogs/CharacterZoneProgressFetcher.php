@@ -55,6 +55,35 @@ class CharacterZoneProgressFetcher
         ];
     }
 
+    public function fetchEncounterProgressForIdentity(
+        string $name,
+        string $world,
+        ?string $datacenter,
+        ?string $lodestoneId,
+        int $zoneId,
+    ): array {
+        $zoneRankings = $this->fetchRawZoneRankingsForIdentity($name, $world, $datacenter, $lodestoneId, $zoneId);
+        $encounters = $this->extractEncounterRankings($zoneRankings)
+            ->map(fn (array $ranking) => [
+                'name' => $this->extractRankingBossName($ranking) ?? 'Unknown Encounter',
+                'kills' => $this->resolveEncounterKills($ranking),
+                'progress' => $this->resolveEncounterProgress($ranking),
+            ])
+            ->sortBy([
+                ['kills', 'desc'],
+                ['progress', 'desc'],
+                ['name', 'asc'],
+            ])
+            ->values();
+
+        return [
+            'zone_id' => $zoneId,
+            'encounters' => $encounters->all(),
+            'encounter_count' => $encounters->count(),
+            'total_kills' => $encounters->sum('kills'),
+        ];
+    }
+
     public function fetchRawZoneRankingsForCharacter(Character $character, int $zoneId): array
     {
         if ($zoneId <= 0) {
@@ -73,6 +102,40 @@ class CharacterZoneProgressFetcher
                 );
 
                 return $this->extractZoneRankings($character, $response);
+            }
+        );
+    }
+
+    public function fetchRawZoneRankingsForIdentity(
+        string $name,
+        string $world,
+        ?string $datacenter,
+        ?string $lodestoneId,
+        int $zoneId,
+    ): array {
+        if ($zoneId <= 0) {
+            throw new RuntimeException('FF Logs zone ID must be a positive integer.');
+        }
+
+        $normalizedName = trim($name);
+        $normalizedWorld = trim($world);
+
+        if ($normalizedName === '' || $normalizedWorld === '') {
+            throw new RuntimeException('FF Logs character identity is incomplete.');
+        }
+
+        return Cache::remember(
+            $this->zoneProgressIdentityCacheKey($normalizedName, $normalizedWorld, $datacenter, $lodestoneId, $zoneId),
+            now()->addHours(self::ZONE_PROGRESS_CACHE_TTL_HOURS),
+            function () use ($normalizedName, $normalizedWorld, $datacenter, $zoneId) {
+                $response = $this->queryCharacterZoneRankings(
+                    name: $normalizedName,
+                    serverSlug: $this->resolveServerSlug($normalizedWorld),
+                    serverRegion: $this->resolveServerRegion($datacenter),
+                    zoneId: $zoneId,
+                );
+
+                return $this->extractZoneRankingsForIdentity($normalizedName, $normalizedWorld, $datacenter, $response);
             }
         );
     }
@@ -123,6 +186,34 @@ GRAPHQL;
                 $character->name,
                 $character->world,
                 $this->resolveServerRegion($character->datacenter),
+            ));
+        }
+
+        $zoneRankings = data_get($response, 'data.characterData.character.zoneRankings');
+
+        if (is_string($zoneRankings)) {
+            $decoded = json_decode($zoneRankings, true);
+
+            if (json_last_error() === JSON_ERROR_NONE) {
+                return $decoded;
+            }
+        }
+
+        return is_array($zoneRankings) ? $zoneRankings : [];
+    }
+
+    private function extractZoneRankingsForIdentity(
+        string $name,
+        string $world,
+        ?string $datacenter,
+        array $response,
+    ): array {
+        if (data_get($response, 'data.characterData.character') === null) {
+            throw new RuntimeException(sprintf(
+                'FF Logs could not resolve character [%s] on server [%s] in region [%s].',
+                $name,
+                $world,
+                $this->resolveServerRegion($datacenter),
             ));
         }
 
@@ -275,6 +366,23 @@ GRAPHQL;
             Str::slug($character->name),
             Str::slug((string) $character->world),
             Str::slug((string) $character->datacenter),
+            $zoneId,
+        );
+    }
+
+    private function zoneProgressIdentityCacheKey(
+        string $name,
+        string $world,
+        ?string $datacenter,
+        ?string $lodestoneId,
+        int $zoneId,
+    ): string {
+        return sprintf(
+            'fflogs:zone-progress:identity:%s:%s:%s:%s:zone:%d',
+            $lodestoneId ?: 'unknown',
+            Str::slug($name),
+            Str::slug($world),
+            Str::slug((string) $datacenter),
             $zoneId,
         );
     }

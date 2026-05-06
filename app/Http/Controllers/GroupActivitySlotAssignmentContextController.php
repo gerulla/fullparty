@@ -45,7 +45,12 @@ class GroupActivitySlotAssignmentContextController extends Controller
         }
 
         return response()->json([
-            'application' => $queuePayloadBuilder->serializeApplication($application, $activity->activityTypeVersion),
+            'application' => $queuePayloadBuilder->serializeApplicationForModerator(
+                $application,
+                $activity->activityTypeVersion,
+                $activity->group,
+                (int) auth()->id(),
+            ),
         ]);
     }
 }

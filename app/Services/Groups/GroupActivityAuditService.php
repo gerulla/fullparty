@@ -98,10 +98,11 @@ class GroupActivityAuditService
             activity: $application->activity,
             message: 'audit_log.events.group.activity.application.submitted',
             actor: $actor,
-            subject: $application->user,
+            subject: $application->user ?? $application,
             metadata: [
                 'activity_title' => $this->activityTitle($application->activity),
-                'selected_character_name' => $application->selectedCharacter?->name,
+                'selected_character_name' => $application->selectedCharacter?->name ?? $application->applicant_character_name,
+                'applicant_lodestone_id' => $application->applicant_lodestone_id,
                 'application_status' => $application->status,
             ],
         );
@@ -118,11 +119,77 @@ class GroupActivityAuditService
             activity: $application->activity,
             message: 'audit_log.events.group.activity.application.updated',
             actor: $actor,
-            subject: $application->user,
+            subject: $application->user ?? $application,
             metadata: [
                 'activity_title' => $this->activityTitle($application->activity),
-                'selected_character_name' => $application->selectedCharacter?->name,
+                'selected_character_name' => $application->selectedCharacter?->name ?? $application->applicant_character_name,
+                'applicant_lodestone_id' => $application->applicant_lodestone_id,
                 'application_status' => $application->status,
+            ],
+        );
+    }
+
+    public function logApplicationWithdrawn(ActivityApplication $application, mixed $actor): void
+    {
+        $application->loadMissing(['activity.group', 'selectedCharacter']);
+
+        $this->log(
+            action: 'group.activity.application.withdrawn',
+            severity: AuditSeverity::INFO,
+            group: $application->activity?->group,
+            activity: $application->activity,
+            message: 'audit_log.events.group.activity.application.withdrawn',
+            actor: $actor,
+            subject: $application->user ?? $application,
+            metadata: [
+                'activity_title' => $this->activityTitle($application->activity),
+                'selected_character_name' => $application->selectedCharacter?->name ?? $application->applicant_character_name,
+                'applicant_lodestone_id' => $application->applicant_lodestone_id,
+                'application_status' => $application->status,
+            ],
+        );
+    }
+
+    public function logApplicationDeclined(ActivityApplication $application, mixed $actor): void
+    {
+        $application->loadMissing(['activity.group', 'selectedCharacter']);
+
+        $this->log(
+            action: 'group.activity.application.declined',
+            severity: AuditSeverity::MODERATION_CHANGE,
+            group: $application->activity?->group,
+            activity: $application->activity,
+            message: 'audit_log.events.group.activity.application.declined',
+            actor: $actor,
+            subject: $application->user ?? $application,
+            metadata: [
+                'activity_title' => $this->activityTitle($application->activity),
+                'selected_character_name' => $application->selectedCharacter?->name ?? $application->applicant_character_name,
+                'applicant_lodestone_id' => $application->applicant_lodestone_id,
+                'application_status' => $application->status,
+                'review_reason' => $application->review_reason,
+            ],
+        );
+    }
+
+    public function logApplicationCancelled(ActivityApplication $application, mixed $actor): void
+    {
+        $application->loadMissing(['activity.group', 'selectedCharacter']);
+
+        $this->log(
+            action: 'group.activity.application.cancelled',
+            severity: AuditSeverity::MODERATION_CHANGE,
+            group: $application->activity?->group,
+            activity: $application->activity,
+            message: 'audit_log.events.group.activity.application.cancelled',
+            actor: $actor,
+            subject: $application->user ?? $application,
+            metadata: [
+                'activity_title' => $this->activityTitle($application->activity),
+                'selected_character_name' => $application->selectedCharacter?->name ?? $application->applicant_character_name,
+                'applicant_lodestone_id' => $application->applicant_lodestone_id,
+                'application_status' => $application->status,
+                'review_reason' => $application->review_reason,
             ],
         );
     }

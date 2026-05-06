@@ -78,6 +78,7 @@ class GroupActivitySlotUnassignmentController extends Controller
                 'status' => ActivityApplication::STATUS_PENDING,
                 'reviewed_by_user_id' => null,
                 'reviewed_at' => null,
+                'review_reason' => null,
             ]);
 
             if ($application->selected_character_id) {
@@ -102,7 +103,12 @@ class GroupActivitySlotUnassignmentController extends Controller
 
         return response()->json([
             'slot' => $slotSerializer->serialize($slot),
-            'application' => $queuePayloadBuilder->serializeApplication($application, $activity->activityTypeVersion),
+            'application' => $queuePayloadBuilder->serializeApplicationForModerator(
+                $application,
+                $activity->activityTypeVersion,
+                $activity->group,
+                (int) auth()->id(),
+            ),
         ]);
     }
 }

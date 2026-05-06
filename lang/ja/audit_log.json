@@ -123,7 +123,10 @@
         "deleted": "がアクティビティを削除しました。",
         "application": {
           "submitted": "がアクティビティ応募を送信しました。",
-          "updated": "がアクティビティ応募を更新しました。"
+          "updated": "がアクティビティ応募を更新しました。",
+          "declined": "がアクティビティ応募を却下しました。",
+          "cancelled": "がラン中止によりアクティビティ応募を終了しました。",
+          "withdrawn": "がアクティビティ応募を取り下げました。"
         },
         "roster": {
           "assigned": "がロスター枠を割り当てました。",
@@ -221,9 +224,11 @@
     "selected_character_name": "選択キャラクター",
     "displaced_character_name": "押し出されたキャラクター",
     "application_status": "応募ステータス",
+    "review_reason": "審査メモ",
     "starts_at": "開始日時",
     "duration_hours": "時間数",
     "needs_application": "応募必須",
+    "allow_guest_applications": "ゲスト応募を許可",
     "target_prog_point_key": "目標Progポイント",
     "organized_by_user_id": "主催者",
     "organized_by_character_id": "主催キャラクター",
@@ -297,7 +302,10 @@
         "deleted": "アクティビティ削除",
         "application": {
           "submitted": "アクティビティ応募送信",
-          "updated": "アクティビティ応募更新"
+          "updated": "アクティビティ応募更新",
+          "declined": "アクティビティ応募却下",
+          "cancelled": "ラン中止によるアクティビティ応募終了",
+          "withdrawn": "アクティビティ応募取り下げ"
         },
         "roster": {
           "assigned": "ロスター枠割り当て",

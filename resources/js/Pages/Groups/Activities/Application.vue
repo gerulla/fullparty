@@ -30,6 +30,7 @@ const props = defineProps<{
 		duration_hours: number | null
 		target_prog_point_key: string | null
 		needs_application: boolean
+		allow_guest_applications: boolean
 		slot_count: number
 		assigned_slot_count: number
 		pending_application_count: number
@@ -68,8 +69,23 @@ const props = defineProps<{
 		status: string
 		notes: string | null
 		submitted_at: string | null
+		applicant_character?: {
+			lodestone_id: string
+			name: string
+			world: string
+			datacenter: string
+			avatar_url: string | null
+		} | null
 		answers: Record<string, unknown>
 	} | null
+	secretKey?: string
+	guestAccessToken?: string
+	guestCharacterSearch: {
+		worlds: Array<{
+			label: string
+			value: string
+		}>
+	}
 	characters: Array<{
 		id: number
 		name: string
@@ -78,6 +94,8 @@ const props = defineProps<{
 	}>
 	permissions: {
 		can_apply: boolean
+		can_apply_as_guest: boolean
+		can_edit_application: boolean
 		can_manage: boolean
 		has_existing_application: boolean
 	}
@@ -150,27 +168,11 @@ const applicationPageSubtitle = computed(() => {
 		});
 });
 
-const currentSecretKey = computed(() => {
-	if (typeof window === 'undefined') {
-		return undefined;
-	}
-
-	const segments = window.location.pathname.split('/').filter(Boolean);
-	const lastSegment = segments.at(-1);
-	const previousSegment = segments.at(-2);
-
-	if (previousSegment === 'application' && lastSegment && /^[A-Za-z0-9]{40}$/.test(lastSegment)) {
-		return lastSegment;
-	}
-
-	return undefined;
-});
-
 const goBack = () => {
 	router.get(route('groups.activities.overview', {
 		group: props.group.slug,
 		activity: props.activity.id,
-		secretKey: currentSecretKey.value,
+		secretKey: props.secretKey || undefined,
 	}));
 };
 </script>
@@ -263,11 +265,15 @@ const goBack = () => {
 			<ActivityApplicationForm
 				:group-slug="group.slug"
 				:activity-id="activity.id"
-				:secret-key="currentSecretKey"
+				:secret-key="secretKey"
+				:guest-access-token="guestAccessToken"
 				:characters="characters"
 				:questions="applicationSchema"
 				:application="application"
 				:can-apply="permissions.can_apply"
+				:can-apply-as-guest="permissions.can_apply_as_guest"
+				:can-edit-application="permissions.can_edit_application"
+				:guest-worlds="guestCharacterSearch.worlds"
 				@cancel="goBack"
 			/>
 		</div>

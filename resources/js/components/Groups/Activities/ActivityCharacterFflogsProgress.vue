@@ -17,21 +17,31 @@ type FflogsProgressResponse = {
 	total_kills: number
 } | null
 
-const props = defineProps<{
+const props = withDefaults(defineProps<{
 	open: boolean
 	groupSlug: string
 	activityId: number
+	applicationId: number
 	characterId: number | null
 	characterName: string | null
 	world: string | null
 	fflogsZoneId: number | null
-}>();
+	shouldFetch?: boolean
+}>(), {
+	shouldFetch: true,
+});
 
 const { t } = useI18n();
 const progress = ref<FflogsProgressResponse>(null);
 const isLoading = ref(false);
 const hasLoaded = ref(false);
 const error = ref<string | null>(null);
+const isPending = computed(() => (
+	props.open
+	&& Boolean(props.fflogsZoneId)
+	&& !hasLoaded.value
+	&& !error.value
+));
 
 const bestEncounterProgress = computed(() => {
 	if (!progress.value?.encounters?.length) {
@@ -42,7 +52,7 @@ const bestEncounterProgress = computed(() => {
 });
 
 const fetchProgress = async () => {
-	if (!props.characterId || !props.fflogsZoneId || isLoading.value || hasLoaded.value) {
+	if (!props.applicationId || !props.fflogsZoneId || !props.shouldFetch || isLoading.value || hasLoaded.value) {
 		return;
 	}
 
@@ -50,10 +60,10 @@ const fetchProgress = async () => {
 	error.value = null;
 
 	try {
-		const response = await window.axios.get(route('groups.dashboard.activities.fflogs-progress', {
+		const response = await window.axios.get(route('groups.dashboard.activities.application-fflogs-progress', {
 			group: props.groupSlug,
 			activity: props.activityId,
-			character: props.characterId,
+			application: props.applicationId,
 		}));
 
 		progress.value = response.data?.progress ?? null;
@@ -66,6 +76,13 @@ const fetchProgress = async () => {
 	}
 };
 
+const resetState = () => {
+	progress.value = null;
+	isLoading.value = false;
+	hasLoaded.value = false;
+	error.value = null;
+};
+
 const getEncounterProgressColor = (progress: number) => {
 	let color = 'neutral'
 	if(progress > 15 && progress <= 50) color = 'primary';
@@ -76,8 +93,18 @@ const getEncounterProgressColor = (progress: number) => {
 	return color;
 }
 
-watch(() => props.open, (isOpen) => {
-	if (isOpen) {
+watch(() => [
+	props.applicationId,
+	props.fflogsZoneId,
+	props.characterId,
+	props.characterName,
+	props.world,
+], () => {
+	resetState();
+});
+
+watch(() => [props.open, props.shouldFetch, props.applicationId], ([isOpen, shouldFetch]) => {
+	if (isOpen && shouldFetch) {
 		void fetchProgress();
 	}
 }, { immediate: true });
@@ -95,7 +122,7 @@ watch(() => props.open, (isOpen) => {
 		</div>
 
 		<!-- FF Logs loading state: only shown the first time the modal requests progress -->
-		<div v-if="isLoading" class="space-y-3">
+		<div v-if="isPending" class="space-y-3">
 			<USkeleton class="h-10 w-full" />
 			<USkeleton class="h-16 w-full" />
 			<USkeleton class="h-16 w-full" />

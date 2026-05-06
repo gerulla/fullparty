@@ -11,9 +11,12 @@ use App\Models\CharacterClass;
 use App\Models\Group;
 use App\Models\PhantomJob;
 use App\Services\Groups\GroupActivityAuditService;
+use App\Services\Lodestone\LodestoneCharacterSearchService;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Validation\Rule;
 use Illuminate\Validation\ValidationException;
 use Inertia\Inertia;
 use Inertia\Response;
@@ -24,6 +27,7 @@ class GroupActivityApplicationController extends Controller
 
     public function __construct(
         private readonly GroupActivityAuditService $activityAuditService,
+        private readonly LodestoneCharacterSearchService $lodestoneCharacterSearchService,
     ) {}
 
     public function show(Request $request, Group $group, Activity $activity, ?string $secretKey = null): Response
@@ -41,22 +45,172 @@ class GroupActivityApplicationController extends Controller
         $activity->setAttribute('assigned_slot_count', $activity->slots()->whereNotNull('assigned_character_id')->count());
 
         $existingApplication = $request->user()
-            ? $activity->applications->firstWhere('user_id', $request->user()->id)
+            ? $activity->applications
+                ->where('user_id', $request->user()->id)
+                ->first(fn (ActivityApplication $application) => $application->status !== ActivityApplication::STATUS_WITHDRAWN)
             : null;
 
-        return Inertia::render('Groups/Activities/Application', [
+        return $this->renderApplicationPage(
+            request: $request,
+            group: $group,
+            activity: $activity,
+            application: $existingApplication,
+            secretKey: $secretKey,
+        );
+    }
+
+    public function editGuest(Request $request, Group $group, Activity $activity, string $accessToken, ?string $secretKey = null): Response|RedirectResponse
+    {
+        $group->loadMissing('memberships');
+        $this->ensureApplicationPageAccessible($request, $group, $activity, $secretKey, allowArchivedGuestAccess: true);
+
+        $activity->load(array_merge($this->attendeeActivityRelations(), [
+            'applications.answers',
+        ]));
+        $activity->loadCount([
+            'slots',
+            'applications as pending_application_count' => fn ($query) => $query->where('status', ActivityApplication::STATUS_PENDING),
+        ]);
+        $activity->setAttribute('assigned_slot_count', $activity->slots()->whereNotNull('assigned_character_id')->count());
+
+        $application = $this->findGuestApplicationByAccessToken($activity, $accessToken);
+
+        if (!$this->applicationIsEditable($application)) {
+            return redirect()->route('groups.activities.application.status', [
+                ...$this->activityAttendeeRouteParameters($group, $activity, $secretKey),
+                'accessToken' => $accessToken,
+            ]);
+        }
+
+        return $this->renderApplicationPage(
+            request: $request,
+            group: $group,
+            activity: $activity,
+            application: $application,
+            secretKey: $secretKey,
+            guestAccessToken: $accessToken,
+        );
+    }
+
+    public function confirmation(Request $request, Group $group, Activity $activity, ?string $secretKey = null): Response|RedirectResponse
+    {
+        $group->loadMissing('memberships');
+        $this->ensureApplicationPageAccessible($request, $group, $activity, $secretKey);
+
+        $confirmation = $request->session()->get($this->confirmationSessionKey($activity->id));
+
+        if (!is_array($confirmation) || blank($confirmation['application_id'] ?? null)) {
+            return redirect()->route('groups.activities.application', $this->activityAttendeeRouteParameters($group, $activity, $secretKey));
+        }
+
+        $activity->load($this->attendeeActivityRelations());
+        $activity->loadCount([
+            'slots',
+            'applications as pending_application_count' => fn ($query) => $query->where('status', ActivityApplication::STATUS_PENDING),
+        ]);
+        $activity->setAttribute('assigned_slot_count', $activity->slots()->whereNotNull('assigned_character_id')->count());
+
+        $application = $activity->applications()
+            ->with('answers')
+            ->find($confirmation['application_id']);
+
+        if (!$application instanceof ActivityApplication) {
+            return redirect()->route('groups.activities.application', $this->activityAttendeeRouteParameters($group, $activity, $secretKey));
+        }
+
+        if ($application->user_id !== null && $application->user_id !== $request->user()?->id) {
+            abort(403);
+        }
+
+        return Inertia::render('Groups/Activities/ApplicationConfirmation', [
             'group' => $this->serializePublicGroup($group),
             'activity' => $this->serializeAttendeeActivity($activity),
             'applicationSchema' => $this->serializeApplicationSchema($activity->activityTypeVersion),
-            'application' => $this->serializeExistingApplication($existingApplication),
-            'characters' => $request->user()
-                ? $this->applicationCharactersForUser($request->user()->id)
-                : [],
-            'permissions' => [
-                'can_apply' => $request->user() !== null,
-                'can_manage' => $group->hasModeratorAccess($request->user()?->id),
-                'has_existing_application' => $existingApplication !== null,
+            'application' => $this->serializeExistingApplication($application),
+            'secretKey' => $secretKey,
+            'guestAccessToken' => null,
+            'confirmation' => [
+                'view' => 'confirmation',
+                'mode' => ($confirmation['mode'] ?? 'submitted') === 'updated' ? 'updated' : 'submitted',
+                'can_edit' => $application->user_id !== null
+                    && $application->user_id === $request->user()?->id
+                    && $this->applicationIsEditable($application),
             ],
+        ]);
+    }
+
+    public function status(Request $request, Group $group, Activity $activity, string $accessToken, ?string $secretKey = null): Response
+    {
+        $group->loadMissing('memberships');
+        $this->ensureApplicationPageAccessible($request, $group, $activity, $secretKey, allowArchivedGuestAccess: true);
+
+        $activity->load($this->attendeeActivityRelations());
+        $activity->loadCount([
+            'slots',
+            'applications as pending_application_count' => fn ($query) => $query->where('status', ActivityApplication::STATUS_PENDING),
+        ]);
+        $activity->setAttribute('assigned_slot_count', $activity->slots()->whereNotNull('assigned_character_id')->count());
+
+        $application = $activity->applications()
+            ->with('answers')
+            ->whereNull('user_id')
+            ->where('guest_access_token', $accessToken)
+            ->firstOrFail();
+
+        return Inertia::render('Groups/Activities/ApplicationConfirmation', [
+            'group' => $this->serializePublicGroup($group),
+            'activity' => $this->serializeAttendeeActivity($activity),
+            'applicationSchema' => $this->serializeApplicationSchema($activity->activityTypeVersion),
+            'application' => $this->serializeExistingApplication($application),
+            'secretKey' => $secretKey,
+            'guestAccessToken' => $accessToken,
+            'confirmation' => [
+                'view' => 'status',
+                'mode' => 'submitted',
+                'can_edit' => $this->applicationIsEditable($application),
+            ],
+        ]);
+    }
+
+    public function searchCharacters(Request $request, Group $group, Activity $activity, ?string $secretKey = null): JsonResponse
+    {
+        $group->loadMissing('memberships');
+        $this->ensureApplicationPageAccessible($request, $group, $activity, $secretKey);
+
+        if (!$activity->allow_guest_applications) {
+            abort(404);
+        }
+
+        $validated = $request->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'world' => [
+                'required',
+                'string',
+                Rule::in($this->lodestoneCharacterSearchService->availableWorlds()),
+            ],
+        ]);
+
+        $results = $this->lodestoneCharacterSearchService->search(
+            (string) $validated['name'],
+            (string) $validated['world'],
+        );
+
+        $verifiedLodestoneIds = Character::query()
+            ->whereIn('lodestone_id', collect($results)->map(fn ($result) => $result->lodestoneId)->all())
+            ->whereNotNull('verified_at')
+            ->pluck('lodestone_id')
+            ->all();
+
+        $results = array_values(array_filter(
+            $results,
+            fn ($result): bool => !in_array($result->lodestoneId, $verifiedLodestoneIds, true),
+        ));
+
+        return response()->json([
+            'data' => array_map(
+                fn ($result) => $result->toArray(),
+                $results,
+            ),
         ]);
     }
 
@@ -66,38 +220,68 @@ class GroupActivityApplicationController extends Controller
         $this->ensureApplicationPageAccessible($request, $group, $activity, $secretKey);
 
         $user = $request->user();
-
-        if (!$user) {
-            abort(403);
-        }
-
         $activity->loadMissing('activityTypeVersion');
 
-        if ($activity->applications()->where('user_id', $user->id)->exists()) {
+        if ($user && $activity->applications()
+            ->where('user_id', $user->id)
+            ->where('status', '!=', ActivityApplication::STATUS_WITHDRAWN)
+            ->exists()) {
             abort(422, 'You have already submitted an application for this activity.');
         }
 
-        $validated = $this->validateApplicationPayload($request, $activity, $user->id);
+        if (!$user && !$activity->allow_guest_applications) {
+            abort(403);
+        }
 
-        DB::transaction(function () use ($activity, $user, $validated) {
+        $validated = $this->validateApplicationPayload($request, $activity, $user?->id);
+
+        if ($this->hasExistingApplicationForApplicantLodestoneId($activity, $validated['applicant']['lodestone_id'])) {
+            abort(422, 'An application already exists for this character.');
+        }
+
+        $application = DB::transaction(function () use ($activity, $user, $validated) {
+            $selectedCharacterId = $user
+                ? ($validated['selected_character_id'] ?? null)
+                : $this->resolveGuestApplicantCharacter($validated['applicant'])->id;
+
             $application = $activity->applications()->create([
-                'user_id' => $user->id,
-                'selected_character_id' => $validated['selected_character_id'] ?? null,
+                'user_id' => $user?->id,
+                'selected_character_id' => $selectedCharacterId,
+                'applicant_lodestone_id' => $validated['applicant']['lodestone_id'],
+                'applicant_character_name' => $validated['applicant']['name'],
+                'applicant_world' => $validated['applicant']['world'],
+                'applicant_datacenter' => $validated['applicant']['datacenter'],
+                'applicant_avatar_url' => $validated['applicant']['avatar_url'],
+                'guest_access_token' => $user ? null : ActivityApplication::generateGuestAccessToken(),
                 'status' => ActivityApplication::STATUS_PENDING,
                 'notes' => $validated['notes'] ?? null,
                 'reviewed_by_user_id' => null,
                 'submitted_at' => now(),
                 'reviewed_at' => null,
+                'review_reason' => null,
             ]);
 
             $this->syncApplicationAnswers($application, $validated['answers'] ?? []);
             $application->loadMissing(['activity.group', 'selectedCharacter', 'user']);
             $this->activityAuditService->logApplicationSubmitted($application, $user);
+
+            return $application;
         });
 
+        if (!$user) {
+            return redirect()->route('groups.activities.application.status', [
+                ...$this->activityAttendeeRouteParameters($group, $activity, $secretKey),
+                'accessToken' => $application->guest_access_token,
+            ]);
+        }
+
+        $request->session()->put($this->confirmationSessionKey($activity->id), [
+            'application_id' => $application->id,
+            'mode' => 'submitted',
+        ]);
+
         return redirect()
-            ->route('groups.activities.application', $this->activityAttendeeRouteParameters($group, $activity, $secretKey))
-            ->with('success', 'activity_application_submitted');
+            ->route('groups.activities.application.confirmation', $this->activityAttendeeRouteParameters($group, $activity, $secretKey));
     }
 
     public function update(Request $request, Group $group, Activity $activity, ?string $secretKey = null): RedirectResponse
@@ -117,35 +301,117 @@ class GroupActivityApplicationController extends Controller
         $application = $activity->applications()
             ->with('answers')
             ->where('user_id', $user->id)
+            ->where('status', '!=', ActivityApplication::STATUS_WITHDRAWN)
             ->first();
 
         if (!$application) {
             abort(404);
         }
 
+        if (!$this->applicationIsEditable($application)) {
+            abort(403);
+        }
+
         $validated = $this->validateApplicationPayload($request, $activity, $user->id);
 
-        DB::transaction(function () use ($application, $validated) {
+        if ($this->hasExistingApplicationForApplicantLodestoneId(
+            $activity,
+            $validated['applicant']['lodestone_id'],
+            $application->id,
+        )) {
+            abort(422, 'An application already exists for this character.');
+        }
+
+        $applicationId = DB::transaction(function () use ($application, $validated) {
             $application->update([
                 'selected_character_id' => $validated['selected_character_id'] ?? null,
+                'applicant_lodestone_id' => $validated['applicant']['lodestone_id'],
+                'applicant_character_name' => $validated['applicant']['name'],
+                'applicant_world' => $validated['applicant']['world'],
+                'applicant_datacenter' => $validated['applicant']['datacenter'],
+                'applicant_avatar_url' => $validated['applicant']['avatar_url'],
                 'status' => ActivityApplication::STATUS_PENDING,
                 'notes' => $validated['notes'] ?? null,
                 'reviewed_by_user_id' => null,
                 'submitted_at' => now(),
                 'reviewed_at' => null,
+                'review_reason' => null,
             ]);
 
             $this->syncApplicationAnswers($application, $validated['answers'] ?? []);
             $application->loadMissing(['activity.group', 'selectedCharacter', 'user']);
             $this->activityAuditService->logApplicationUpdated($application, auth()->user());
+
+            return $application->id;
         });
 
+        $request->session()->put($this->confirmationSessionKey($activity->id), [
+            'application_id' => $applicationId,
+            'mode' => 'updated',
+        ]);
+
         return redirect()
-            ->route('groups.activities.application', $this->activityAttendeeRouteParameters($group, $activity, $secretKey))
-            ->with('success', 'activity_application_updated');
+            ->route('groups.activities.application.confirmation', $this->activityAttendeeRouteParameters($group, $activity, $secretKey));
     }
 
-    private function ensureApplicationPageAccessible(Request $request, Group $group, Activity $activity, ?string $secretKey): void
+    public function updateGuest(Request $request, Group $group, Activity $activity, string $accessToken, ?string $secretKey = null): RedirectResponse
+    {
+        $group->loadMissing('memberships');
+        $this->ensureApplicationPageAccessible($request, $group, $activity, $secretKey, allowArchivedGuestAccess: true);
+
+        $activity->loadMissing('activityTypeVersion');
+        $application = $this->findGuestApplicationByAccessToken($activity, $accessToken);
+
+        if (!$this->applicationIsEditable($application)) {
+            abort(403);
+        }
+
+        $validated = $this->validateApplicationPayload($request, $activity);
+
+        if ($this->hasExistingApplicationForApplicantLodestoneId(
+            $activity,
+            $validated['applicant']['lodestone_id'],
+            $application->id,
+        )) {
+            abort(422, 'An application already exists for this character.');
+        }
+
+        DB::transaction(function () use ($application, $validated) {
+            $selectedCharacter = $this->resolveGuestApplicantCharacter($validated['applicant']);
+
+            $application->update([
+                'selected_character_id' => $selectedCharacter->id,
+                'applicant_lodestone_id' => $validated['applicant']['lodestone_id'],
+                'applicant_character_name' => $validated['applicant']['name'],
+                'applicant_world' => $validated['applicant']['world'],
+                'applicant_datacenter' => $validated['applicant']['datacenter'],
+                'applicant_avatar_url' => $validated['applicant']['avatar_url'],
+                'status' => ActivityApplication::STATUS_PENDING,
+                'notes' => $validated['notes'] ?? null,
+                'reviewed_by_user_id' => null,
+                'submitted_at' => now(),
+                'reviewed_at' => null,
+                'review_reason' => null,
+            ]);
+
+            $this->syncApplicationAnswers($application, $validated['answers'] ?? []);
+            $application->loadMissing(['activity.group', 'selectedCharacter', 'user']);
+            $this->activityAuditService->logApplicationUpdated($application, null);
+        });
+
+        return redirect()->route('groups.activities.application.status', [
+            ...$this->activityAttendeeRouteParameters($group, $activity, $secretKey),
+            'accessToken' => $application->guest_access_token,
+        ]);
+    }
+
+    private function ensureApplicationPageAccessible(
+        Request $request,
+        Group $group,
+        Activity $activity,
+        ?string $secretKey,
+        bool $allowArchivedGuestAccess = false,
+    ): void
     {
         $this->ensureActivityBelongsToGroup($group, $activity);
 
@@ -153,9 +419,48 @@ class GroupActivityApplicationController extends Controller
             abort(404);
         }
 
-        if (!$activity->needs_application || $activity->isArchived()) {
+        // TODO: Add the non-application self-assignment/direct-join flow for activities that do not use applications.
+        if (!$activity->needs_application) {
             abort(404);
         }
+
+        if (
+            $activity->isArchived()
+            && !($allowArchivedGuestAccess && $activity->status === Activity::STATUS_CANCELLED)
+        ) {
+            abort(404);
+        }
+    }
+
+    private function renderApplicationPage(
+        Request $request,
+        Group $group,
+        Activity $activity,
+        ?ActivityApplication $application,
+        ?string $secretKey = null,
+        ?string $guestAccessToken = null,
+    ): Response {
+        return Inertia::render('Groups/Activities/Application', [
+            'group' => $this->serializePublicGroup($group),
+            'activity' => $this->serializeAttendeeActivity($activity),
+            'applicationSchema' => $this->serializeApplicationSchema($activity->activityTypeVersion),
+            'application' => $this->serializeExistingApplication($application),
+            'characters' => $request->user()
+                ? $this->applicationCharactersForUser($request->user()->id)
+                : [],
+            'guestCharacterSearch' => [
+                'worlds' => $this->lodestoneCharacterSearchService->worldOptions(),
+            ],
+            'secretKey' => $secretKey,
+            'guestAccessToken' => $guestAccessToken,
+            'permissions' => [
+                'can_apply' => $guestAccessToken === null && $request->user() !== null,
+                'can_apply_as_guest' => ($request->user() === null && $activity->allow_guest_applications) || $guestAccessToken !== null,
+                'can_edit_application' => $application ? $this->applicationIsEditable($application) : true,
+                'can_manage' => $group->hasModeratorAccess($request->user()?->id),
+                'has_existing_application' => $application !== null,
+            ],
+        ]);
     }
 
     /**
@@ -240,6 +545,14 @@ class GroupActivityApplicationController extends Controller
             'status' => $application->status,
             'notes' => $application->notes,
             'submitted_at' => $application->submitted_at?->toIso8601String(),
+            'review_reason' => $application->review_reason,
+            'applicant_character' => $application->applicant_lodestone_id ? [
+                'lodestone_id' => $application->applicant_lodestone_id,
+                'name' => $application->applicant_character_name,
+                'world' => $application->applicant_world,
+                'datacenter' => $application->applicant_datacenter,
+                'avatar_url' => $application->applicant_avatar_url,
+            ] : null,
             'answers' => $application->answers
                 ->mapWithKeys(fn ($answer) => [$answer->question_key => $answer->value])
                 ->all(),
@@ -268,24 +581,39 @@ class GroupActivityApplicationController extends Controller
     /**
      * @return array<string, mixed>
      */
-    private function validateApplicationPayload(Request $request, Activity $activity, int $userId): array
+    private function validateApplicationPayload(Request $request, Activity $activity, ?int $userId = null): array
     {
         $validated = $request->validate([
-            'selected_character_id' => ['sometimes', 'nullable', 'integer', 'exists:characters,id'],
+            'selected_character_id' => [$userId ? 'sometimes' : 'prohibited', 'nullable', 'integer', 'exists:characters,id'],
             'notes' => ['sometimes', 'nullable', 'string'],
             'answers' => ['sometimes', 'array'],
+            'guest_applicant' => [$userId ? 'prohibited' : 'required', 'array'],
+            'guest_applicant.lodestone_id' => [$userId ? 'prohibited' : 'required', 'string', 'max:255'],
+            'guest_applicant.name' => [$userId ? 'prohibited' : 'required', 'string', 'max:255'],
+            'guest_applicant.world' => [$userId ? 'prohibited' : 'required', 'string', 'max:255'],
+            'guest_applicant.datacenter' => [$userId ? 'prohibited' : 'required', 'string', 'max:255'],
+            'guest_applicant.avatar_url' => [$userId ? 'prohibited' : 'nullable', 'url', 'max:2048'],
         ]);
 
         $characterId = $validated['selected_character_id'] ?? null;
+        $selectedCharacter = null;
 
         if ($characterId) {
-            $character = Character::query()->find($characterId);
+            $selectedCharacter = Character::query()->find($characterId);
 
-            if (!$character || $character->user_id !== $userId) {
+            if (!$selectedCharacter || $selectedCharacter->user_id !== $userId) {
                 throw ValidationException::withMessages([
                     'selected_character_id' => 'The selected character is invalid for this application.',
                 ]);
             }
+        }
+
+        $validated['applicant'] = $selectedCharacter
+            ? $this->characterApplicantSnapshot($selectedCharacter)
+            : $this->guestApplicantSnapshot($validated['guest_applicant'] ?? []);
+
+        if (!$userId) {
+            $this->ensureGuestApplicantCanBeUsed($validated['applicant']);
         }
 
         $validated['answers'] = $this->normalizeApplicationAnswers(
@@ -318,6 +646,132 @@ class GroupActivityApplicationController extends Controller
         }
 
         return $validated;
+    }
+
+    private function hasExistingApplicationForApplicantLodestoneId(Activity $activity, string $lodestoneId, ?int $ignoreApplicationId = null): bool
+    {
+        $query = $activity->applications()
+            ->where('applicant_lodestone_id', $lodestoneId)
+            ->where('status', '!=', ActivityApplication::STATUS_WITHDRAWN);
+
+        if ($ignoreApplicationId !== null) {
+            $query->whereKeyNot($ignoreApplicationId);
+        }
+
+        return $query->exists();
+    }
+
+    /**
+     * @param  array{lodestone_id: string, name: string, world: string, datacenter: string, avatar_url: ?string}  $applicant
+     */
+    private function ensureGuestApplicantCanBeUsed(array $applicant): void
+    {
+        $verifiedCharacterExists = Character::query()
+            ->where('lodestone_id', $applicant['lodestone_id'])
+            ->whereNotNull('verified_at')
+            ->exists();
+
+        if ($verifiedCharacterExists) {
+            throw ValidationException::withMessages([
+                'guest_applicant.lodestone_id' => 'This character is already claimed by a verified FullParty account.',
+            ]);
+        }
+    }
+
+    /**
+     * @param  array{lodestone_id: string, name: string, world: string, datacenter: string, avatar_url: ?string}  $applicant
+     */
+    private function resolveGuestApplicantCharacter(array $applicant): Character
+    {
+        $character = Character::query()
+            ->where('lodestone_id', $applicant['lodestone_id'])
+            ->lockForUpdate()
+            ->first();
+
+        if (!$character) {
+            return Character::query()->create([
+                'user_id' => null,
+                'is_primary' => false,
+                'name' => $applicant['name'],
+                'world' => $applicant['world'],
+                'datacenter' => $applicant['datacenter'],
+                'lodestone_id' => $applicant['lodestone_id'],
+                'avatar_url' => $applicant['avatar_url'],
+                'token' => null,
+                'expires_at' => null,
+                'verified_at' => null,
+                'add_method' => 'guest_application',
+            ]);
+        }
+
+        if ($character->verified_at !== null) {
+            throw ValidationException::withMessages([
+                'guest_applicant.lodestone_id' => 'This character is already claimed by a verified FullParty account.',
+            ]);
+        }
+
+        $character->fill([
+            'name' => $applicant['name'],
+            'world' => $applicant['world'],
+            'datacenter' => $applicant['datacenter'],
+            'avatar_url' => $applicant['avatar_url'],
+        ]);
+
+        if ($character->isDirty(['name', 'world', 'datacenter', 'avatar_url'])) {
+            $character->save();
+        }
+
+        return $character;
+    }
+
+    private function findGuestApplicationByAccessToken(Activity $activity, string $accessToken): ActivityApplication
+    {
+        return $activity->applications()
+            ->with('answers')
+            ->whereNull('user_id')
+            ->where('guest_access_token', $accessToken)
+            ->firstOrFail();
+    }
+
+    private function confirmationSessionKey(int $activityId): string
+    {
+        return sprintf('activities.%d.application_confirmation', $activityId);
+    }
+
+    private function applicationIsEditable(ActivityApplication $application): bool
+    {
+        return $application->status === ActivityApplication::STATUS_PENDING;
+    }
+
+    /**
+     * @return array{lodestone_id: string, name: string, world: string, datacenter: string, avatar_url: ?string}
+     */
+    private function characterApplicantSnapshot(Character $character): array
+    {
+        return [
+            'lodestone_id' => (string) $character->lodestone_id,
+            'name' => (string) $character->name,
+            'world' => (string) $character->world,
+            'datacenter' => (string) $character->datacenter,
+            'avatar_url' => filled($character->avatar_url) ? (string) $character->avatar_url : null,
+        ];
+    }
+
+    /**
+     * @param  array<string, mixed>  $guestApplicant
+     * @return array{lodestone_id: string, name: string, world: string, datacenter: string, avatar_url: ?string}
+     */
+    private function guestApplicantSnapshot(array $guestApplicant): array
+    {
+        return [
+            'lodestone_id' => trim((string) ($guestApplicant['lodestone_id'] ?? '')),
+            'name' => trim((string) ($guestApplicant['name'] ?? '')),
+            'world' => trim((string) ($guestApplicant['world'] ?? '')),
+            'datacenter' => trim((string) ($guestApplicant['datacenter'] ?? '')),
+            'avatar_url' => filled($guestApplicant['avatar_url'] ?? null)
+                ? trim((string) $guestApplicant['avatar_url'])
+                : null,
+        ];
     }
 
     /**

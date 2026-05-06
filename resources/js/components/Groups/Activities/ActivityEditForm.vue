@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, toRef } from "vue";
+import { computed, toRef, watch } from "vue";
 import { useI18n } from "vue-i18n";
 import { useActivityFormFields, type ActivityTypeOption, type OrganizerCharacterOption } from "@/components/Groups/Activities/useActivityFormFields";
 
@@ -17,6 +17,8 @@ const props = defineProps<{
 		starts_at: string | null
 		duration_hours: number
 		target_prog_point_key: string | null
+		needs_application: boolean
+		allow_guest_applications: boolean
 		errors: Record<string, string | undefined>
 		processing: boolean
 	}
@@ -52,6 +54,12 @@ const canSubmit = computed(() => Boolean(props.form.status));
 const submit = () => {
 	emit('submit');
 };
+
+watch(() => props.form.needs_application, (needsApplication) => {
+	if (!needsApplication) {
+		props.form.allow_guest_applications = false;
+	}
+}, { immediate: true });
 </script>
 
 <template>
@@ -221,6 +229,28 @@ const submit = () => {
 						:placeholder="t('groups.activities.create.fields.notes.placeholder')"
 					/>
 				</UFormField>
+			</section>
+
+			<div class="border-t border-default"></div>
+
+			<section class="space-y-5">
+				<div class="space-y-1">
+					<p class="font-medium text-sm">{{ t('groups.activities.create.sections.access.title') }}</p>
+					<p class="text-sm text-muted">{{ t('groups.activities.edit.sections.access.subtitle') }}</p>
+				</div>
+
+				<div class="grid grid-cols-1 gap-4">
+					<UFormField
+						v-if="form.needs_application"
+						:label="t('groups.activities.create.fields.allow_guest_applications.label')"
+						:description="t('groups.activities.create.fields.allow_guest_applications.help')"
+						:error="form.errors.allow_guest_applications"
+						orientation="horizontal"
+						class="rounded-lg border border-default px-4 py-4"
+					>
+						<USwitch v-model="form.allow_guest_applications" />
+					</UFormField>
+				</div>
 			</section>
 
 			<div class="flex items-center gap-3 border-t border-default pt-2">

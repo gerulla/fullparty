@@ -1,0 +1,46 @@
+{
+  "title": "Mes candidatures",
+  "subtitle": "Consultez vos candidatures recentes et gerez celles qui sont encore en attente de revue.",
+  "empty_title": "Aucune candidature pour le moment",
+  "empty_description": "Une fois que vous postulerez a des runs, ils apparaitront ici du plus recent au plus ancien.",
+  "summary_fallback": "Les details du run et le statut actuel de votre candidature sont resumes ici.",
+  "character": "Personnage",
+  "run_time": "Horaire du run",
+  "submitted": "Envoyee",
+  "activity_type": "Type d'activite",
+  "notes": "Notes",
+  "review_reason": "Note de moderation",
+  "no_notes": "Aucune note supplementaire n'a ete ajoutee.",
+  "not_available": "Non disponible",
+  "unknown_group": "Groupe inconnu",
+  "unknown_character": "Personnage inconnu",
+  "editable": "Toujours en attente de revue",
+  "locked": "Modifications verrouillees",
+  "locked_help": "Les candidatures ne peuvent etre modifiees ou retirees que tant qu'elles sont encore en attente de revue.",
+  "statuses": {
+    "withdrawn": "Retiree"
+  },
+  "sections": {
+    "active_title": "Candidatures actives",
+    "active_description": "Vos inscriptions encore en cours, en attente ou toujours actives.",
+    "active_empty_title": "Aucune candidature active",
+    "active_empty_description": "Tout ce qui est encore en cours apparaitra ici.",
+    "history_title": "Historique",
+    "history_description": "Les candidatures passees, refusees, retirees ou autrement terminees restent ici comme reference.",
+    "history_empty_title": "Pas encore d'historique",
+    "history_empty_description": "Une fois qu'une candidature est terminee, refusee, retiree ou archivee, elle apparaitra ici."
+  },
+  "edit": "Modifier la candidature",
+  "cancel": "Annuler la candidature",
+  "withdraw": {
+    "title": "Annuler la candidature",
+    "description": "Retirez cette candidature en attente de la file du run.",
+    "warning_title": "Cela retirera votre candidature",
+    "warning_description": "La candidature sera deplacee vers votre historique. Si vous voulez vous reinscrire plus tard, vous devrez envoyer une nouvelle candidature.",
+    "confirm": "Retirer la candidature",
+    "success_title": "Candidature retiree",
+    "success_description": "Votre candidature a ete retiree et deplacee vers votre historique.",
+    "error_title": "Impossible d'annuler la candidature",
+    "error_description": "Cette candidature n'a pas pu etre annulee pour le moment."
+  }
+}

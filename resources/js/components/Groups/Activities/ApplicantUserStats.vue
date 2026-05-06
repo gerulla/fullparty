@@ -21,6 +21,7 @@ const props = defineProps<{
 			overall: StatItem[]
 		}
 	} | null
+	emptyMessage?: string
 }>();
 
 const { t } = useI18n();
@@ -184,7 +185,7 @@ const podiumIconClass = (index: number) => {
 		</div>
 
 		<p v-else class="text-sm text-muted">
-			{{ t('groups.activities.management.queue.modal.no_user_stats') }}
+			{{ props.emptyMessage || t('groups.activities.management.queue.modal.no_user_stats') }}
 		</p>
 	</div>
 </template>

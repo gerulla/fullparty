@@ -19,8 +19,18 @@ export type QueueApplicationAnswer = {
 	display_items: QueueApplicationAnswerDisplayItem[]
 }
 
+export type QueueApplicationUserStatItem = {
+	label: string
+	count: number
+	role?: string | null
+	icon_url?: string | null
+	flat_icon_url?: string | null
+	transparent_icon_url?: string | null
+}
+
 export type QueueApplication = {
 	id: number
+	is_guest: boolean
 	user: {
 		id: number
 		name: string
@@ -96,6 +106,14 @@ export type QueueApplication = {
 			}>
 		}
 	} | null
+	applicant_character: {
+		lodestone_id: string
+		name: string
+		avatar_url: string | null
+		world: string | null
+		datacenter: string | null
+		is_claimed: boolean
+	} | null
 	selected_character: {
 		id: number
 		name: string
@@ -108,6 +126,18 @@ export type QueueApplication = {
 	status: string
 	notes: string | null
 	submitted_at: string | null
+	reviewed_at: string | null
+	review_reason: string | null
+	user_stats: {
+		class: {
+			group: QueueApplicationUserStatItem[]
+			overall: QueueApplicationUserStatItem[]
+		}
+		phantom_job: {
+			group: QueueApplicationUserStatItem[]
+			overall: QueueApplicationUserStatItem[]
+		}
+	} | null
 	progress_milestones: Array<{
 		key: string
 		label: LocalizedText

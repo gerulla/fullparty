@@ -84,6 +84,7 @@ class ActivitySlotAssignmentService
                 'status' => $isTargetBench ? ActivityApplication::STATUS_ON_BENCH : ActivityApplication::STATUS_APPROVED,
                 'reviewed_by_user_id' => $assignedByUserId,
                 'reviewed_at' => now(),
+                'review_reason' => null,
             ]);
 
             $this->attendanceService->moveOrCreateActiveAssignment(
@@ -106,6 +107,7 @@ class ActivitySlotAssignmentService
                         'status' => ActivityApplication::STATUS_ON_BENCH,
                         'reviewed_by_user_id' => $assignedByUserId,
                         'reviewed_at' => now(),
+                        'review_reason' => null,
                     ]);
 
                     $this->attendanceService->moveOrCreateActiveAssignment(
@@ -127,6 +129,7 @@ class ActivitySlotAssignmentService
                     'status' => ActivityApplication::STATUS_PENDING,
                     'reviewed_by_user_id' => null,
                     'reviewed_at' => null,
+                    'review_reason' => null,
                 ]);
 
                 if ($activity && $displacedApplication->selected_character_id) {

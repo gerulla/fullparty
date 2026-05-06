@@ -10,6 +10,7 @@ use App\Models\Character;
 use App\Models\Group;
 use App\Models\GroupMembership;
 use App\Services\Groups\ActivitySlotBench;
+use App\Services\Groups\ActivityCancellationService;
 use App\Services\Groups\GroupActivityAuditService;
 use Carbon\CarbonImmutable;
 use Illuminate\Http\RedirectResponse;
@@ -25,6 +26,7 @@ class GroupActivityController extends Controller
 
     public function __construct(
         private readonly GroupActivityAuditService $activityAuditService,
+        private readonly ActivityCancellationService $activityCancellationService,
     ) {}
 
     public function overview(Request $request, Group $group, Activity $activity, ?string $secretKey = null): Response
@@ -87,6 +89,7 @@ class GroupActivityController extends Controller
                 'target_prog_point_key' => $activity->target_prog_point_key,
                 'is_public' => $activity->is_public,
                 'needs_application' => $activity->needs_application,
+                'allow_guest_applications' => $activity->allow_guest_applications,
                 'organized_by_user_id' => $activity->organized_by_user_id,
                 'organized_by_character_id' => $activity->organized_by_character_id,
             ],
@@ -140,6 +143,7 @@ class GroupActivityController extends Controller
                     'furthest_progress_key' => $activity->furthest_progress_key,
                     'is_public' => $activity->is_public,
                     'needs_application' => $activity->needs_application,
+                    'allow_guest_applications' => $activity->allow_guest_applications,
                     'organized_by' => $activity->organizer ? [
                         'id' => $activity->organizer->id,
                         'name' => $activity->organizer->name,
@@ -196,6 +200,7 @@ class GroupActivityController extends Controller
                 'target_prog_point_key' => $validated['target_prog_point_key'] ?? null,
                 'is_public' => $validated['is_public'] ?? true,
                 'needs_application' => $validated['needs_application'] ?? true,
+                'allow_guest_applications' => $validated['allow_guest_applications'] ?? false,
                 'secret_key' => ($validated['is_public'] ?? true) ? null : Activity::generateSecretKey(),
             ]);
 
@@ -252,6 +257,7 @@ class GroupActivityController extends Controller
             'target_prog_point_key',
             'is_public',
             'needs_application',
+            'allow_guest_applications',
         ]);
 
         $activity->update([
@@ -269,6 +275,7 @@ class GroupActivityController extends Controller
                 : $activity->target_prog_point_key,
             'is_public' => $validated['is_public'] ?? $activity->is_public,
             'needs_application' => $validated['needs_application'] ?? $activity->needs_application,
+            'allow_guest_applications' => $validated['allow_guest_applications'] ?? $activity->allow_guest_applications,
             'secret_key' => ($validated['is_public'] ?? $activity->is_public)
                 ? null
                 : ($activity->secret_key ?: Activity::generateSecretKey()),
@@ -287,6 +294,7 @@ class GroupActivityController extends Controller
             'target_prog_point_key',
             'is_public',
             'needs_application',
+            'allow_guest_applications',
         ] as $field) {
             $old = $original[$field] ?? null;
             $new = $activity->{$field};
@@ -337,10 +345,7 @@ class GroupActivityController extends Controller
         $this->ensureActivityCanBeCancelled($activity);
 
         $previousStatus = $activity->status;
-
-        $activity->update([
-            'status' => Activity::STATUS_CANCELLED,
-        ]);
+        $this->activityCancellationService->cancel($activity, auth()->user());
 
         $this->activityAuditService->logActivityUpdated($activity, auth()->user(), [
             'status' => [
@@ -426,6 +431,7 @@ class GroupActivityController extends Controller
             'target_prog_point_key' => ['sometimes', 'nullable', 'string', 'max:255'],
             'is_public' => $isUpdate ? ['prohibited'] : ['sometimes', 'boolean'],
             'needs_application' => $isUpdate ? ['prohibited'] : ['sometimes', 'boolean'],
+            'allow_guest_applications' => ['sometimes', 'boolean'],
         ];
 
         $rules['activity_type_id'] = $requireActivityType

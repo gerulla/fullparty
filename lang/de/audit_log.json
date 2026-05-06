@@ -123,7 +123,10 @@
         "deleted": "hat eine Aktivität gelöscht.",
         "application": {
           "submitted": "hat eine Aktivitätsbewerbung eingereicht.",
-          "updated": "hat eine Aktivitätsbewerbung aktualisiert."
+          "updated": "hat eine Aktivitätsbewerbung aktualisiert.",
+          "declined": "hat eine Aktivitätsbewerbung abgelehnt.",
+          "cancelled": "hat eine Aktivitätsbewerbung wegen einer Run-Absage geschlossen.",
+          "withdrawn": "hat eine Aktivitätsbewerbung zurückgezogen."
         },
         "roster": {
           "assigned": "hat einen Roster-Slot zugewiesen.",
@@ -221,9 +224,11 @@
     "selected_character_name": "Ausgewählter Charakter",
     "displaced_character_name": "Verdrängter Charakter",
     "application_status": "Bewerbungsstatus",
+    "review_reason": "Pruefungsnotiz",
     "starts_at": "Beginnt am",
     "duration_hours": "Dauer (Stunden)",
     "needs_application": "Benötigt Bewerbung",
+    "allow_guest_applications": "Gastbewerbungen erlauben",
     "target_prog_point_key": "Ziel-Prog-Punkt",
     "organized_by_user_id": "Organisator",
     "organized_by_character_id": "Organisator-Charakter",
@@ -297,7 +302,10 @@
         "deleted": "Aktivität gelöscht",
         "application": {
           "submitted": "Aktivitätsbewerbung eingereicht",
-          "updated": "Aktivitätsbewerbung aktualisiert"
+          "updated": "Aktivitätsbewerbung aktualisiert",
+          "declined": "Aktivitätsbewerbung abgelehnt",
+          "cancelled": "Aktivitätsbewerbung wegen Run-Absage geschlossen",
+          "withdrawn": "Aktivitätsbewerbung zurückgezogen"
         },
         "roster": {
           "assigned": "Roster-Slot zugewiesen",

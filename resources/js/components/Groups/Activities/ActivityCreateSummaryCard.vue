@@ -38,6 +38,7 @@ const props = defineProps<{
 		target_prog_point_key: string | null
 		is_public: boolean
 		needs_application: boolean
+		allow_guest_applications: boolean
 	}
 	activityTypes: ActivityTypeOption[]
 	organizerCharacters: OrganizerCharacterOption[]
@@ -108,6 +109,18 @@ const assignmentLabel = computed(() => t(
 		? 'groups.activities.create.summary.assignment_application'
 		: 'groups.activities.create.summary.assignment_self_assign'
 ));
+
+const guestApplicationsLabel = computed(() => {
+	if (!props.form.needs_application) {
+		return t('groups.activities.create.summary.guest_applications_not_applicable');
+	}
+
+	return t(
+		props.form.allow_guest_applications
+			? 'groups.activities.create.summary.guest_applications_enabled'
+			: 'groups.activities.create.summary.guest_applications_disabled'
+	);
+});
 </script>
 
 <template>
@@ -189,6 +202,11 @@ const assignmentLabel = computed(() => t(
 					<p class="text-xs uppercase tracking-wide text-muted">{{ t('groups.activities.create.summary.assignment') }}</p>
 					<p class="mt-2 font-semibold text-toned">{{ assignmentLabel }}</p>
 				</div>
+			</div>
+
+			<div class="rounded-sm border border-default bg-muted/10 px-4 py-4">
+				<p class="text-xs uppercase tracking-wide text-muted">{{ t('groups.activities.create.summary.guest_applications') }}</p>
+				<p class="mt-2 font-semibold text-toned">{{ guestApplicationsLabel }}</p>
 			</div>
 
 

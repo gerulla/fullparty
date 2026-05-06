@@ -30,6 +30,7 @@ const props = defineProps<{
 		duration_hours: number | null
 		target_prog_point_key: string | null
 		needs_application: boolean
+		allow_guest_applications: boolean
 		organized_by: {
 			id: number
 			name: string

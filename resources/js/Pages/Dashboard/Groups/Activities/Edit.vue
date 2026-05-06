@@ -29,6 +29,7 @@ const props = defineProps<{
 		target_prog_point_key: string | null
 		is_public: boolean
 		needs_application: boolean
+		allow_guest_applications: boolean
 	}
 	activityTypes: Array<{
 		id: number
@@ -65,6 +66,7 @@ const form = useForm({
 	target_prog_point_key: props.activity.target_prog_point_key,
 	is_public: props.activity.is_public,
 	needs_application: props.activity.needs_application,
+	allow_guest_applications: props.activity.allow_guest_applications,
 });
 
 const goBack = () => {
@@ -84,6 +86,7 @@ const submit = () => {
 			starts_at: data.starts_at,
 			duration_hours: data.duration_hours,
 			target_prog_point_key: data.target_prog_point_key,
+			allow_guest_applications: data.allow_guest_applications,
 		}))
 		.put(route('groups.dashboard.activities.update', {
 		group: props.group.slug,

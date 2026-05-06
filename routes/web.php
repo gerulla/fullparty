@@ -2,8 +2,10 @@
 
 use App\Http\Controllers\AdminCharacterController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\AccountApplicationController;
 use App\Http\Controllers\GroupActivityController;
 use App\Http\Controllers\GroupActivityApplicationController;
+use App\Http\Controllers\GroupActivityApplicationDeclineController;
 use App\Http\Controllers\GroupActivityApplicantQueueController;
 use App\Http\Controllers\GroupActivityFflogsCompletionPreviewController;
 use App\Http\Controllers\GroupActivityFflogsController;
@@ -48,6 +50,27 @@ Route::get('/groups/{group:slug}', [GroupController::class, 'show'])->name('grou
 Route::get('/groups/{group:slug}/activities/{activity}/application/{secretKey?}', [GroupActivityApplicationController::class, 'show'])
     ->where('secretKey', '[A-Za-z0-9]{40}')
     ->name('groups.activities.application');
+Route::get('/groups/{group:slug}/activities/{activity}/application-edit/{accessToken}/{secretKey?}', [GroupActivityApplicationController::class, 'editGuest'])
+    ->where('accessToken', '[A-Za-z0-9]{40}')
+    ->where('secretKey', '[A-Za-z0-9]{40}')
+    ->name('groups.activities.application.edit-guest');
+Route::get('/groups/{group:slug}/activities/{activity}/application-confirmation/{secretKey?}', [GroupActivityApplicationController::class, 'confirmation'])
+    ->where('secretKey', '[A-Za-z0-9]{40}')
+    ->name('groups.activities.application.confirmation');
+Route::get('/groups/{group:slug}/activities/{activity}/application-status/{accessToken}/{secretKey?}', [GroupActivityApplicationController::class, 'status'])
+    ->where('accessToken', '[A-Za-z0-9]{40}')
+    ->where('secretKey', '[A-Za-z0-9]{40}')
+    ->name('groups.activities.application.status');
+Route::get('/groups/{group:slug}/activities/{activity}/application-search/{secretKey?}', [GroupActivityApplicationController::class, 'searchCharacters'])
+    ->where('secretKey', '[A-Za-z0-9]{40}')
+    ->name('groups.activities.application.search-characters');
+Route::post('/groups/{group:slug}/activities/{activity}/application/{secretKey?}', [GroupActivityApplicationController::class, 'store'])
+    ->where('secretKey', '[A-Za-z0-9]{40}')
+    ->name('groups.activities.application.store');
+Route::put('/groups/{group:slug}/activities/{activity}/application-edit/{accessToken}/{secretKey?}', [GroupActivityApplicationController::class, 'updateGuest'])
+    ->where('accessToken', '[A-Za-z0-9]{40}')
+    ->where('secretKey', '[A-Za-z0-9]{40}')
+    ->name('groups.activities.application.update-guest');
 Route::get('/groups/{group:slug}/activities/{activity}/{secretKey?}', [GroupActivityController::class, 'overview'])
     ->where('secretKey', '[A-Za-z0-9]{40}')
     ->name('groups.activities.overview');
@@ -109,9 +132,6 @@ Route::middleware(['auth', 'verified'])->group(function () {
 	Route::get('/group-search-results', [GroupController::class, 'search'])->name('groups.search');
 	Route::post('/groups', [GroupController::class, 'store'])->name('groups.store');
 	Route::delete('/groups/{group:slug}', [GroupController::class, 'destroy'])->name('groups.destroy');
-	Route::post('/groups/{group:slug}/activities/{activity}/application/{secretKey?}', [GroupActivityApplicationController::class, 'store'])
-		->where('secretKey', '[A-Za-z0-9]{40}')
-		->name('groups.activities.application.store');
 	Route::put('/groups/{group:slug}/activities/{activity}/application/{secretKey?}', [GroupActivityApplicationController::class, 'update'])
 		->where('secretKey', '[A-Za-z0-9]{40}')
 		->name('groups.activities.application.update');
@@ -152,7 +172,9 @@ Route::middleware(['auth', 'verified'])->group(function () {
 		Route::post('/activities/{activity}/missing-assignments/{assignment}/undo', [GroupActivitySlotMissingController::class, 'undo'])->name('groups.dashboard.activities.slot-missing.undo');
 		Route::post('/activities/{activity}/slots/{slot}/return-to-queue', [GroupActivitySlotUnassignmentController::class, 'store'])->name('groups.dashboard.activities.slot-unassignments.store');
 		Route::get('/activities/{activity}/applicant-queue', [GroupActivityApplicantQueueController::class, 'show'])->name('groups.dashboard.activities.applicant-queue');
+		Route::post('/activities/{activity}/applications/{application}/decline', [GroupActivityApplicationDeclineController::class, 'store'])->name('groups.dashboard.activities.application-declines.store');
 		Route::get('/activities/{activity}/characters/{character}/fflogs-progress', [GroupActivityFflogsController::class, 'show'])->name('groups.dashboard.activities.fflogs-progress');
+		Route::get('/activities/{activity}/applications/{application}/fflogs-progress', [GroupActivityFflogsController::class, 'showForApplication'])->name('groups.dashboard.activities.application-fflogs-progress');
 		Route::post('/activities/{activity}/fflogs-completion-preview', [GroupActivityFflogsCompletionPreviewController::class, 'show'])->name('groups.dashboard.activities.fflogs-completion-preview');
 		Route::get('/activities/{activity}', [GroupActivityController::class, 'show'])->name('groups.dashboard.activities.show');
 		Route::put('/activities/{activity}', [GroupActivityController::class, 'update'])->name('groups.dashboard.activities.update');
@@ -173,6 +195,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
 	
 	//Character Routes
 	Route::get('/account/characters', [CharacterController::class, 'list'])->name('account.characters');
+	Route::get('/account/applications', [AccountApplicationController::class, 'index'])->name('account.applications');
+	Route::delete('/account/applications/{application}', [AccountApplicationController::class, 'destroy'])->name('account.applications.destroy');
 	Route::post('/characters/exists', [CharacterController::class, 'exists'])->name('characters.exists');
 	Route::post('/characters/verify', [CharacterController::class, 'verify'])->name('characters.verify');
 	Route::post('/characters/{character}/refresh', [CharacterController::class, 'refreshCharacterData'])->name('characters.refresh');

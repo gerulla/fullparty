@@ -123,7 +123,6 @@ const booleanValue = computed({
 		<UCheckbox
 			v-else-if="question.type === 'boolean'"
 			v-model="booleanValue"
-			:label="helpText"
 			:disabled="disabled"
 		/>
 

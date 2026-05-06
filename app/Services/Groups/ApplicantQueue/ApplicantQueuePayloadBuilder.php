@@ -27,18 +27,11 @@ class ApplicantQueuePayloadBuilder
     public function build(Activity $activity, int $currentUserId): array
     {
         $group = $activity->group;
-        $targetUserIds = $activity->applications
-            ->pluck('user_id')
-            ->filter()
-            ->unique()
-            ->values();
-
-        $visibleNotes = $group
-            ? $this->noteVisibilityService->loadVisibleNotesForTargets($group, $currentUserId, $targetUserIds)
-            : [
-                'group_notes_by_user_id' => collect(),
-                'shared_notes_by_user_id' => collect(),
-            ];
+        $visibleNotes = $this->visibleNotesForApplications(
+            $activity->applications,
+            $group,
+            $currentUserId,
+        );
 
         return [
             'fflogs_zone_id' => $activity->activityTypeVersion?->fflogs_zone_id,
@@ -63,6 +56,31 @@ class ApplicantQueuePayloadBuilder
     /**
      * @return array<string, mixed>
      */
+    public function serializeApplicationForModerator(
+        $application,
+        ?ActivityTypeVersion $activityTypeVersion,
+        $group,
+        int $currentUserId,
+    ): array {
+        $visibleNotes = $this->visibleNotesForApplications(
+            collect([$application]),
+            $group,
+            $currentUserId,
+        );
+
+        return $this->serializeApplication(
+            $application,
+            $activityTypeVersion,
+            $group,
+            $currentUserId,
+            $visibleNotes['group_notes_by_user_id'],
+            $visibleNotes['shared_notes_by_user_id'],
+        );
+    }
+
+    /**
+     * @return array<string, mixed>
+     */
     public function serializeApplication(
         $application,
         ?ActivityTypeVersion $activityTypeVersion,
@@ -74,6 +92,7 @@ class ApplicantQueuePayloadBuilder
     {
         return [
             'id' => $application->id,
+            'is_guest' => $application->user_id === null,
             'user' => $application->user ? [
                 'id' => $application->user->id,
                 'name' => $application->user->name,
@@ -95,6 +114,14 @@ class ApplicantQueuePayloadBuilder
                         'shared' => [],
                     ],
             ] : null,
+            'applicant_character' => $application->applicant_lodestone_id ? [
+                'lodestone_id' => $application->applicant_lodestone_id,
+                'name' => $application->applicant_character_name,
+                'avatar_url' => $application->applicant_avatar_url,
+                'world' => $application->applicant_world,
+                'datacenter' => $application->applicant_datacenter,
+                'is_claimed' => $application->selectedCharacter?->user_id !== null,
+            ] : null,
             'selected_character' => $application->selectedCharacter ? [
                 'id' => $application->selectedCharacter->id,
                 'name' => $application->selectedCharacter->name,
@@ -110,6 +137,8 @@ class ApplicantQueuePayloadBuilder
             'status' => $application->status,
             'notes' => $application->notes,
             'submitted_at' => $application->submitted_at?->toIso8601String(),
+            'reviewed_at' => $application->reviewed_at?->toIso8601String(),
+            'review_reason' => $application->review_reason,
             'answers' => $application->answers
                 ->map(fn ($answer) => $this->answerPresenter->present($answer, $activityTypeVersion))
                 ->filter()
@@ -202,6 +231,26 @@ class ApplicantQueuePayloadBuilder
                 'overall' => $this->topPhantomJobStats($allSlots),
             ],
         ];
+    }
+
+    /**
+     * @param  Collection<int, mixed>  $applications
+     * @return array{group_notes_by_user_id: Collection, shared_notes_by_user_id: Collection}
+     */
+    private function visibleNotesForApplications(Collection $applications, $group, int $currentUserId): array
+    {
+        $targetUserIds = $applications
+            ->pluck('user_id')
+            ->filter()
+            ->unique()
+            ->values();
+
+        return $group
+            ? $this->noteVisibilityService->loadVisibleNotesForTargets($group, $currentUserId, $targetUserIds)
+            : [
+                'group_notes_by_user_id' => collect(),
+                'shared_notes_by_user_id' => collect(),
+            ];
     }
 
     /**

@@ -70,6 +70,7 @@ class GroupActivityManagementDataController extends Controller
                 'furthest_progress_percent' => $activity->furthest_progress_percent,
                 'is_public' => $activity->is_public,
                 'needs_application' => $activity->needs_application,
+                'allow_guest_applications' => $activity->allow_guest_applications,
                 'secret_key' => $activity->secret_key,
                 'progress_entry_mode' => $activity->progress_entry_mode,
                 'progress_link_url' => $activity->progress_link_url,

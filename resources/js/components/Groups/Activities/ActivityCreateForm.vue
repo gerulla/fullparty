@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, toRef } from "vue";
+import { computed, toRef, watch } from "vue";
 import { route } from "ziggy-js";
 import { useI18n } from "vue-i18n";
 import { useActivityFormFields, type ActivityTypeOption, type OrganizerCharacterOption } from "@/components/Groups/Activities/useActivityFormFields";
@@ -23,6 +23,7 @@ const props = defineProps<{
 		target_prog_point_key: string | null
 		is_public: boolean
 		needs_application: boolean
+		allow_guest_applications: boolean
 		errors: Record<string, string | undefined>
 		processing: boolean
 		post: (url: string, options?: Record<string, unknown>) => void
@@ -69,6 +70,12 @@ const submit = () => {
 		preserveScroll: true,
 	});
 };
+
+watch(() => props.form.needs_application, (needsApplication) => {
+	if (!needsApplication) {
+		props.form.allow_guest_applications = false;
+	}
+}, { immediate: true });
 </script>
 
 <template>
@@ -290,6 +297,17 @@ const submit = () => {
 						class="rounded-lg border border-default px-4 py-4"
 					>
 						<USwitch v-model="form.needs_application" />
+					</UFormField>
+
+					<UFormField
+						v-if="form.needs_application"
+						:label="t('groups.activities.create.fields.allow_guest_applications.label')"
+						:description="t('groups.activities.create.fields.allow_guest_applications.help')"
+						:error="form.errors.allow_guest_applications"
+						orientation="horizontal"
+						class="rounded-lg border border-default px-4 py-4"
+					>
+						<USwitch v-model="form.allow_guest_applications" />
 					</UFormField>
 				</div>
 			</section>

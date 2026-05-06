@@ -7,79 +7,15 @@ import { localizedValue } from "@/utils/localizedValue";
 import { isArchivedActivityStatus } from "@/utils/activityLifecycle";
 import { route } from "ziggy-js";
 import ApplicantQueueItem from "@/components/Groups/Activities/ApplicantQueueItem.vue";
+import ApplicantQueueDetailsModal from "@/components/Groups/Activities/ApplicantQueueDetailsModal.vue";
 import { getRosterSlotDragData, isRosterSlotDrag } from "@/components/Groups/Activities/rosterDragData";
-
-type LocalizedText = Record<string, string | null | undefined> | null | undefined;
-
-type ActivityApplication = {
-	id: number
-	user: {
-		id: number
-		name: string
-		avatar_url: string | null
-	} | null
-	selected_character: {
-		id: number
-		name: string
-		avatar_url: string | null
-		world: string | null
-		datacenter: string | null
-		occult_level: number | null
-		phantom_mastery: number | null
-	} | null
-	status: string
-	notes: string | null
-	submitted_at: string | null
-	progress_milestones: Array<{
-		key: string
-		label: LocalizedText
-		reached: boolean
-		source: string
-		kills: number
-		progress_percent: number
-	}>
-	answers: Array<{
-		question_key: string
-		question_label: LocalizedText
-		question_type: string
-		source: string | null
-		raw_value: unknown
-		display_values: string[]
-		role_values: string[]
-		display_items: Array<{
-			label: string
-			role?: string | null
-			icon_url?: string | null
-			flat_icon_url?: string | null
-			transparent_icon_url?: string | null
-		}>
-	}>
-};
-
-type QueueFilterField = {
-	key: string
-	application_key: string
-	label: LocalizedText
-	type: string
-	source: string | null
-	options: Array<{
-		key: string
-		label: LocalizedText
-		meta?: {
-			icon_url?: string | null
-			role?: string | null
-			shorthand?: string | null
-		} | null
-	}>
-}
-
-type QueueFilterMilestone = {
-	key: string
-	label: LocalizedText
-	matcher_type: string
-	encounter_id: number | null
-	phase_id: number | null
-}
+import GroupMemberNotesModal from "@/components/Groups/GroupMemberNotesModal.vue";
+import type {
+	LocalizedText,
+	QueueApplication,
+	QueueFilterField,
+	QueueFilterMilestone,
+} from "@/components/Groups/Activities/queueTypes";
 
 const props = defineProps<{
 	groupSlug: string
@@ -92,7 +28,7 @@ const { t, locale } = useI18n();
 const page = usePage();
 const isLoading = ref(true);
 const fflogsZoneId = ref<number | null>(null);
-const applications = ref<ActivityApplication[]>([]);
+const applications = ref<QueueApplication[]>([]);
 const queueFilters = ref<{
 	slot_fields: QueueFilterField[]
 	milestones: QueueFilterMilestone[]
@@ -108,6 +44,9 @@ const minimumKnowledgeLevel = ref('');
 const minimumPhantomMastery = ref('');
 const isQueueDropActive = ref(false);
 const isReturningSlot = ref(false);
+const isApplicationModalOpen = ref(false);
+const isNotesModalOpen = ref(false);
+const selectedApplication = ref<QueueApplication | null>(null);
 
 const fallbackLocale = computed(() => String(page.props.locale?.fallback ?? 'en'));
 
@@ -222,7 +161,7 @@ const handleApplicationAssigned = (event: Event) => {
 };
 
 const handleApplicationReturned = (event: Event) => {
-	const customEvent = event as CustomEvent<{ application?: ActivityApplication }>;
+	const customEvent = event as CustomEvent<{ application?: QueueApplication }>;
 	const restoredApplication = customEvent.detail?.application;
 
 	if (!restoredApplication) {
@@ -233,6 +172,14 @@ const handleApplicationReturned = (event: Event) => {
 		restoredApplication,
 		...applications.value.filter((application) => application.id !== restoredApplication.id),
 	];
+};
+
+const handleApplicationDeclined = (applicationId: number) => {
+	applications.value = applications.value.filter((application) => application.id !== applicationId);
+
+	if (selectedApplication.value?.id === applicationId) {
+		selectedApplication.value = null;
+	}
 };
 
 const handleDragOver = (event: DragEvent) => {
@@ -293,6 +240,33 @@ const handleDrop = async (event: DragEvent) => {
 	}
 };
 
+const selectedNotesSubject = computed(() => {
+	if (!selectedApplication.value?.user) {
+		return null;
+	}
+
+	return {
+		id: selectedApplication.value.user.id,
+		name: selectedApplication.value.user.name,
+		avatar_url: selectedApplication.value.user.avatar_url,
+		notes: selectedApplication.value.user.notes,
+	};
+});
+
+const openApplicationDetails = (application: QueueApplication) => {
+	selectedApplication.value = application;
+	isApplicationModalOpen.value = true;
+};
+
+const openApplicationNotes = (application: QueueApplication) => {
+	if (!application.user?.notes.can_view) {
+		return;
+	}
+
+	selectedApplication.value = application;
+	isNotesModalOpen.value = true;
+};
+
 onMounted(() => {
 	void fetchQueuePayload();
 	window.addEventListener('fullparty:activity-application-assigned', handleApplicationAssigned as EventListener);
@@ -325,7 +299,9 @@ const visibleApplications = computed(() => {
 		? filteredByPhantomMastery
 		: filteredByPhantomMastery.filter((application) => {
 		const applicantName = application.user?.name?.toLowerCase() ?? '';
-		const characterName = application.selected_character?.name?.toLowerCase() ?? '';
+		const characterName = application.selected_character?.name?.toLowerCase()
+			?? application.applicant_character?.name?.toLowerCase()
+			?? '';
 
 		return applicantName.includes(normalizedSearchTerm) || characterName.includes(normalizedSearchTerm);
 	});
@@ -506,10 +482,9 @@ const visibleApplications = computed(() => {
 					<ApplicantQueueItem
 						v-for="application in visibleApplications"
 						:key="application.id"
-						:group-slug="groupSlug"
-						:activity-id="activityId"
-						:fflogs-zone-id="fflogsZoneId"
 						:application="application"
+						@open-details="openApplicationDetails"
+						@open-notes="openApplicationNotes"
 					/>
 			</div>
 
@@ -517,5 +492,20 @@ const visibleApplications = computed(() => {
 				{{ t('groups.activities.management.queue.empty') }}
 			</div>
 		</div>
+
+		<ApplicantQueueDetailsModal
+			v-model:open="isApplicationModalOpen"
+			:group-slug="groupSlug"
+			:activity-id="activityId"
+			:fflogs-zone-id="fflogsZoneId"
+			:application="selectedApplication"
+			@declined="handleApplicationDeclined"
+		/>
+
+		<GroupMemberNotesModal
+			v-model:open="isNotesModalOpen"
+			:group-slug="groupSlug"
+			:subject="selectedNotesSubject"
+		/>
 	</aside>
 </template>

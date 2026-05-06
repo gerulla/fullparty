@@ -123,7 +123,10 @@
         "deleted": "deleted an activity.",
         "application": {
           "submitted": "submitted an activity application.",
-          "updated": "updated an activity application."
+          "updated": "updated an activity application.",
+          "declined": "declined an activity application.",
+          "cancelled": "cancelled an activity application.",
+          "withdrawn": "withdrew an activity application."
         },
         "roster": {
           "assigned": "assigned a roster slot.",
@@ -231,9 +234,11 @@
     "selected_character_name": "Selected Character",
     "displaced_character_name": "Displaced Character",
     "application_status": "Application Status",
+    "review_reason": "Review Reason",
     "starts_at": "Starts At",
     "duration_hours": "Duration (Hours)",
     "needs_application": "Needs Application",
+    "allow_guest_applications": "Allow Guest Applications",
     "target_prog_point_key": "Target Prog Point",
     "organized_by_user_id": "Organizer",
     "organized_by_character_id": "Organizer Character",
@@ -307,7 +312,10 @@
         "deleted": "Activity deleted",
         "application": {
           "submitted": "Activity application submitted",
-          "updated": "Activity application updated"
+          "updated": "Activity application updated",
+          "declined": "Activity application declined",
+          "cancelled": "Activity application cancelled",
+          "withdrawn": "Activity application withdrawn"
         },
         "roster": {
           "assigned": "Roster slot assigned",

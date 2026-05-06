@@ -57,6 +57,18 @@ class CharacterFactory extends Factory
         ]);
     }
 
+    public function provisional(): static
+    {
+        return $this->state(fn (array $attributes) => [
+            'user_id' => null,
+            'is_primary' => false,
+            'verified_at' => null,
+            'token' => null,
+            'expires_at' => null,
+            'add_method' => 'guest_application',
+        ]);
+    }
+
     /**
      * @return array<int, array{world: string, datacenter: string}>
      */

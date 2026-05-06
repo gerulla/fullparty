@@ -77,6 +77,7 @@ trait InteractsWithGroupActivityAttendees
             'duration_hours' => $activity->duration_hours,
             'target_prog_point_key' => $activity->target_prog_point_key,
             'needs_application' => $activity->needs_application,
+            'allow_guest_applications' => $activity->allow_guest_applications,
             'slot_count' => (int) ($activity->slots_count ?? 0),
             'assigned_slot_count' => (int) ($activity->assigned_slot_count ?? 0),
             'pending_application_count' => (int) ($activity->pending_application_count ?? 0),

@@ -1,4 +1,3 @@
-# FullParty
 
 <p align="center">
   <img src="public/logos/full.png" width="420" alt="FullParty logo">

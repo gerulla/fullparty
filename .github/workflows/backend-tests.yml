@@ -70,4 +70,4 @@ jobs:
           php artisan key:generate --ansi
 
       - name: Run backend test suite on PostgreSQL
-        run: php artisan test --configuration=phpunit.pgsql.xml
+        run: ./vendor/bin/pest --configuration=phpunit.pgsql.xml

@@ -76,7 +76,8 @@
       "registered": "がアカウントを登録しました。",
       "logged_in": "がログインしました。",
       "social_account": {
-        "linked": "がソーシャルアカウントを連携しました。"
+        "linked": "がソーシャルアカウントを連携しました。",
+        "unlinked": "がソーシャルアカウントの連携を解除しました。"
       },
       "settings": {
         "username_updated": "がユーザー名設定を更新しました。",
@@ -111,7 +112,8 @@
     "character": {
       "verified": "がキャラクターを確認しました。",
       "refresh_requested": "がキャラクター更新を要求しました。",
-      "made_primary": "がキャラクターをメインに設定しました。"
+      "made_primary": "がキャラクターをメインに設定しました。",
+      "removed": "がアカウントからキャラクターを削除しました。"
     },
     "group": {
       "created": "がグループを作成しました。",
@@ -255,7 +257,8 @@
       "registered": "ユーザー登録",
       "logged_in": "ユーザーログイン",
       "social_account": {
-        "linked": "ソーシャルアカウント連携"
+        "linked": "ソーシャルアカウント連携",
+        "unlinked": "ソーシャルアカウント連携解除"
       },
       "settings": {
         "username_updated": "ユーザー名を更新",

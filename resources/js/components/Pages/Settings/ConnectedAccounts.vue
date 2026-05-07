@@ -1,23 +1,68 @@
 <script setup>
-import {useI18n} from "vue-i18n";
-import {computed} from "vue";
-import {router} from "@inertiajs/vue3";
-import {route} from 'ziggy-js'
+import { computed, ref } from "vue";
+import { router } from "@inertiajs/vue3";
+import { route } from "ziggy-js";
+import { useI18n } from "vue-i18n";
+
 const props = defineProps({
 	user: Object
 })
 
-const provider_names = computed(() => {
-	return props.user.social_accounts.map(account => account.provider)
-});
+const { t } = useI18n();
 
-const getProviderIdentification = (provider_name) => {
-	const provider = props.user.social_accounts.find(account => account.provider === provider_name);
-	if(!provider) return null;
+const providerNames = computed(() => props.user.social_accounts.map(account => account.provider));
+
+const getProviderAccount = (providerName) => {
+	return props.user.social_accounts.find(account => account.provider === providerName) ?? null;
+}
+
+const getProviderIdentification = (providerName) => {
+	const provider = getProviderAccount(providerName);
+	if (!provider) return null;
 	return provider.provider_name ? provider.provider_name : provider.provider_email;
 }
 
-const { t } = useI18n();
+const unlinkModalOpen = ref(false);
+const isUnlinking = ref(false);
+const unlinkTarget = ref(null);
+
+const promptUnlink = (providerName) => {
+	const provider = getProviderAccount(providerName);
+
+	if (!provider) {
+		return;
+	}
+
+	unlinkTarget.value = provider;
+	unlinkModalOpen.value = true;
+}
+
+const unlinkSocialAccount = () => {
+	if (!unlinkTarget.value) {
+		return;
+	}
+
+	isUnlinking.value = true;
+
+	router.delete(route('settings.social-accounts.destroy', unlinkTarget.value.id), {
+		preserveScroll: true,
+		onFinish: () => {
+			isUnlinking.value = false;
+			unlinkModalOpen.value = false;
+			unlinkTarget.value = null;
+		},
+	});
+}
+
+const providerDisplayName = computed(() => {
+	if (!unlinkTarget.value) {
+		return '';
+	}
+
+	return unlinkTarget.value.provider === 'xivauth'
+		? 'XIVAuth'
+		: unlinkTarget.value.provider.charAt(0).toUpperCase() + unlinkTarget.value.provider.slice(1);
+});
 </script>
 
 <template>
@@ -50,10 +95,15 @@ const { t } = useI18n();
 				</div>
 				<div class="social-info">
 					<p class="font-semibold">Discord</p>
-					<p class="text-sm font-muted">{{ provider_names.includes("discord") ? getProviderIdentification('discord') : t('settings.not_connected')}}</p>
+					<p class="text-sm font-muted">{{ providerNames.includes('discord') ? getProviderIdentification('discord') : t('settings.not_connected') }}</p>
 				</div>
-				<div class="social-action">
-					<UBadge v-if="provider_names.includes('discord')" color="success" variant="soft" class="rounded-none" size="lg">{{ t('settings.connected') }}</UBadge>
+				<div class="social-action gap-2">
+					<template v-if="providerNames.includes('discord')">
+						<UBadge color="success" variant="soft" class="rounded-none" size="lg">{{ t('settings.connected') }}</UBadge>
+						<UButton color="error" variant="ghost" icon="i-lucide-unlink" size="lg" @click="promptUnlink('discord')">
+							{{ t('settings.unlink') }}
+						</UButton>
+					</template>
 					<UButton :to="route('discord.redirect')" v-else color="neutral" icon="i-lucide-link" size="lg">{{ t('settings.connect') }}</UButton>
 				</div>
 			</div>
@@ -68,10 +118,15 @@ const { t } = useI18n();
 				</div>
 				<div class="social-info">
 					<p class="font-semibold">Google</p>
-					<p class="text-sm font-muted">{{ provider_names.includes("google") ? getProviderIdentification('google') : t('settings.not_connected')}}</p>
+					<p class="text-sm font-muted">{{ providerNames.includes('google') ? getProviderIdentification('google') : t('settings.not_connected') }}</p>
 				</div>
-				<div class="social-action">
-					<UBadge v-if="provider_names.includes('google')" color="success" variant="soft" class="rounded-none" size="lg">{{ t('settings.connected') }}</UBadge>
+				<div class="social-action gap-2">
+					<template v-if="providerNames.includes('google')">
+						<UBadge color="success" variant="soft" class="rounded-none" size="lg">{{ t('settings.connected') }}</UBadge>
+						<UButton color="error" variant="ghost" icon="i-lucide-unlink" size="lg" @click="promptUnlink('google')">
+							{{ t('settings.unlink') }}
+						</UButton>
+					</template>
 					<UButton :to="route('google.redirect')" v-else color="neutral" icon="i-lucide-link" size="lg">{{ t('settings.connect') }}</UButton>
 				</div>
 			</div>
@@ -81,14 +136,41 @@ const { t } = useI18n();
 				</div>
 				<div class="social-info">
 					<p class="font-semibold">XIVAuth</p>
-					<p class="text-sm font-muted">{{ provider_names.includes("xivauth") ? getProviderIdentification('xivauth') : t('settings.not_connected')}}</p>
+					<p class="text-sm font-muted">{{ providerNames.includes('xivauth') ? getProviderIdentification('xivauth') : t('settings.not_connected') }}</p>
 				</div>
-				<div class="social-action">
-					<UBadge v-if="provider_names.includes('xivauth')" color="success" variant="soft" class="rounded-none" size="lg">{{ t('settings.connected') }}</UBadge>
+				<div class="social-action gap-2">
+					<template v-if="providerNames.includes('xivauth')">
+						<UBadge color="success" variant="soft" class="rounded-none" size="lg">{{ t('settings.connected') }}</UBadge>
+						<UButton color="error" variant="ghost" icon="i-lucide-unlink" size="lg" @click="promptUnlink('xivauth')">
+							{{ t('settings.unlink') }}
+						</UButton>
+					</template>
 					<UButton :to="route('xivauth.redirect')" v-else color="neutral" icon="i-lucide-link" size="lg">{{ t('settings.connect') }}</UButton>
 				</div>
 			</div>
 		</div>
+
+		<UModal
+			v-model:open="unlinkModalOpen"
+			:title="t('settings.unlink_social_account_title')"
+			:description="t('settings.unlink_social_account_description', { provider: providerDisplayName })"
+		>
+			<template #body>
+				<p class="text-sm text-toned">
+					{{ t('settings.unlink_social_account_warning') }}
+				</p>
+			</template>
+			<template #footer>
+				<div class="flex w-full justify-end gap-2">
+					<UButton color="neutral" variant="ghost" @click="unlinkModalOpen = false">
+						{{ t('settings.unlink_social_account_cancel') }}
+					</UButton>
+					<UButton color="error" variant="solid" :loading="isUnlinking" @click="unlinkSocialAccount">
+						{{ t('settings.unlink_social_account_confirm') }}
+					</UButton>
+				</div>
+			</template>
+		</UModal>
 	</UCard>
 </template>
 
@@ -101,6 +183,7 @@ const { t } = useI18n();
 .social-icon {
 	@apply h-12 w-12 rounded-sm flex items-center justify-center
 }
+
 .social-info {
 	@apply flex flex-col items-start
 }

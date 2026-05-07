@@ -6,9 +6,15 @@
     "save": "Save Changes"
   },
   "connect": "Connect",
+  "unlink": "Unlink",
   "connected": "Connected",
   "not_connected": "Not Connected",
   "connected_accounts": "Connected Accounts",
+  "unlink_social_account_title": "Unlink Connected Account",
+  "unlink_social_account_description": "This will unlink {provider} from your FullParty account.",
+  "unlink_social_account_warning": "You will be able to link it again later if needed.",
+  "unlink_social_account_confirm": "Unlink Account",
+  "unlink_social_account_cancel": "Keep Linked",
   "notifications": {
     "title": "Notifications",
     "save": "Save Preferences",
@@ -48,6 +54,8 @@
     "username_updated": "Username updated successfully",
     "notification_updated": "Notification preferences updated successfully",
     "privacy_updated": "Privacy settings updated successfully",
+    "social_account_unlinked": "Connected account unlinked successfully",
+    "social_account_unlink_blocked": "Add another sign-in method or set a password before unlinking your last social account.",
     "title": "Success!"
   }
 }

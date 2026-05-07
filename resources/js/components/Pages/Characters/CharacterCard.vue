@@ -19,6 +19,8 @@ const { t } = useI18n()
 const open = ref(props.character.is_primary)
 const isRefreshing = ref(false)
 const isMakingPrimary = ref(false)
+const isRemoving = ref(false)
+const removeModalOpen = ref(false)
 
 const classRoleOrder = ['tank', 'healer', 'melee dps', 'physical ranged dps', 'magic ranged dps'];
 
@@ -63,6 +65,18 @@ const makePrimary = () => {
 		preserveScroll: true,
 		onFinish: () => {
 			isMakingPrimary.value = false;
+		},
+	});
+};
+
+const removeCharacter = () => {
+	isRemoving.value = true;
+
+	router.delete(route('characters.destroy', props.character.id), {
+		preserveScroll: true,
+		onFinish: () => {
+			isRemoving.value = false;
+			removeModalOpen.value = false;
 		},
 	});
 };
@@ -125,6 +139,14 @@ const makePrimary = () => {
 							icon="i-lucide-refresh-ccw"
 							variant="ghost"
 							color="neutral"
+						/>
+						<UButton
+							@click.stop="removeModalOpen = true"
+							:label="t('characters.card.unclaim_character')"
+							color="error"
+							variant="ghost"
+							icon="i-lucide-trash-2"
+							class="mr-2"
 						/>
 					</div>
 					<UButton
@@ -200,6 +222,32 @@ const makePrimary = () => {
 				</div>
 			</template>
 		</UCollapsible>
+		<UModal v-model:open="removeModalOpen" :title="t('characters.card.unclaim_title')" :description="t('characters.card.unclaim_description')">
+			<template #body>
+				<div class="flex flex-col gap-3">
+					<p class="text-sm text-toned">
+						{{ character.name }} - {{ character.world }}
+					</p>
+				</div>
+			</template>
+			<template #footer>
+				<div class="flex w-full justify-end gap-2">
+					<UButton
+						color="neutral"
+						variant="ghost"
+						:label="t('characters.card.unclaim_cancel')"
+						@click="removeModalOpen = false"
+					/>
+					<UButton
+						color="error"
+						variant="solid"
+						:label="t('characters.card.unclaim_confirm')"
+						:loading="isRemoving"
+						@click="removeCharacter"
+					/>
+				</div>
+			</template>
+		</UModal>
 	</UCard>
 </template>
 

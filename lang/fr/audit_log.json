@@ -76,7 +76,8 @@
       "registered": "a enregistré un compte.",
       "logged_in": "s'est connecté.",
       "social_account": {
-        "linked": "a lié un compte social."
+        "linked": "a lié un compte social.",
+        "unlinked": "a dissocié un compte social."
       },
       "settings": {
         "username_updated": "a mis à jour les paramètres du nom d'utilisateur.",
@@ -111,7 +112,8 @@
     "character": {
       "verified": "a vérifié un personnage.",
       "refresh_requested": "a demandé une actualisation du personnage.",
-      "made_primary": "a défini un personnage comme principal."
+      "made_primary": "a défini un personnage comme principal.",
+      "removed": "a retiré un personnage du compte."
     },
     "group": {
       "created": "a créé le groupe.",
@@ -255,7 +257,8 @@
       "registered": "Utilisateur inscrit",
       "logged_in": "Utilisateur connecté",
       "social_account": {
-        "linked": "Compte social lié"
+        "linked": "Compte social lié",
+        "unlinked": "Compte social dissocié"
       },
       "settings": {
         "username_updated": "Nom d'utilisateur mis à jour",

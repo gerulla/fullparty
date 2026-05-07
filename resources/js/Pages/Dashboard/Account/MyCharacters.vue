@@ -1,14 +1,16 @@
 <script setup lang="ts">
 import {useI18n} from "vue-i18n";
-import {computed, ref} from "vue";
+import {computed, ref, watch} from "vue";
 import PageHeader from "@/components/PageHeader.vue";
 import CharacterCard from "@/components/Pages/Characters/CharacterCard.vue";
 import AddCharacterModal from "@/components/Characters/AddCharacterModal.vue";
 import ManualVerificationModal from "@/components/Characters/ManualVerificationModal.vue";
 import XIVAuthCharacterImportModal from "@/components/Characters/XIVAuthCharacterImportModal.vue";
 import {usePage} from "@inertiajs/vue3";
+import {useToast} from "@nuxt/ui/composables";
 const { t } = useI18n()
 const page = usePage();
+const toast = useToast()
 
 const user = computed(() => page.props.auth?.user)
 const hasProvider = (provider_name) => {
@@ -53,6 +55,41 @@ defineProps({
 		required: true,
 	},
 })
+
+watch(
+	() => page.props.flash?.success,
+	(success) => {
+		if (!success) return
+
+		if (success.includes('character_data_refreshed')) {
+			toast.add({
+				title: t('characters.toasts.title'),
+				description: t('characters.toasts.character_refreshed'),
+				color: 'success',
+				icon: 'i-lucide-check'
+			})
+		}
+
+		if (success.includes('character_marked_primary')) {
+			toast.add({
+				title: t('characters.toasts.title'),
+				description: t('characters.toasts.character_primary'),
+				color: 'success',
+				icon: 'i-lucide-check'
+			})
+		}
+
+		if (success.includes('character_unclaimed')) {
+			toast.add({
+				title: t('characters.toasts.title'),
+				description: t('characters.toasts.character_unclaimed'),
+				color: 'success',
+				icon: 'i-lucide-check'
+			})
+		}
+	},
+	{ immediate: true }
+)
 </script>
 
 <template>

@@ -6,9 +6,15 @@
     "save": "Enregistrer les modifications"
   },
   "connect": "Connecter",
+  "unlink": "Dissocier",
   "connected": "Connecté",
   "not_connected": "Non connecté",
   "connected_accounts": "Comptes connectés",
+  "unlink_social_account_title": "Dissocier le compte connecté",
+  "unlink_social_account_description": "Cela dissociera {provider} de votre compte FullParty.",
+  "unlink_social_account_warning": "Vous pourrez le reconnecter plus tard si nécessaire.",
+  "unlink_social_account_confirm": "Dissocier le compte",
+  "unlink_social_account_cancel": "Le laisser connecté",
   "notifications": {
     "title": "Notifications",
     "save": "Enregistrer les préférences",
@@ -48,6 +54,8 @@
     "username_updated": "Nom d'utilisateur mis à jour avec succès",
     "notification_updated": "Préférences de notification mises à jour avec succès",
     "privacy_updated": "Paramètres de confidentialité mis à jour avec succès",
+    "social_account_unlinked": "Compte connecté dissocié avec succès",
+    "social_account_unlink_blocked": "Ajoutez une autre méthode de connexion ou définissez un mot de passe avant de dissocier votre dernier compte social.",
     "title": "Succès !"
   }
 }

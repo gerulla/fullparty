@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\SocialAccount;
 use App\Models\User;
 use App\Services\AuditLogger;
+use App\Services\Notifications\AccountCharacterNotificationService;
 use App\Support\Audit\AuditScope;
 use App\Support\Audit\AuditSeverity;
 use Carbon\Carbon;
@@ -17,7 +18,8 @@ use Laravel\Socialite\Socialite;
 class XIVAuthController extends Controller
 {
 	public function __construct(
-		private readonly AuditLogger $auditLogger
+		private readonly AuditLogger $auditLogger,
+        private readonly AccountCharacterNotificationService $accountCharacterNotificationService,
 	) {}
 
 	public function redirect() {
@@ -158,6 +160,8 @@ class XIVAuthController extends Controller
 				'linked_while_authenticated' => $linkingExistingSession,
 			],
 		);
+
+        $this->accountCharacterNotificationService->notifySocialAccountLinked($user, $provider, $user);
 		
 		Auth::login($user);
 		request()->session()->regenerate();

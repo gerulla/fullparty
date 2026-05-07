@@ -123,9 +123,20 @@
   },
   "added_manually": "手動で追加",
   "from_xivauth": "XIVAuth から",
+  "toasts": {
+    "title": "成功しました",
+    "character_refreshed": "キャラクターデータを更新しました",
+    "character_primary": "メインキャラクターを更新しました",
+    "character_unclaimed": "キャラクターの紐付けを解除しました"
+  },
   "card": {
     "view_lodestone_profile": "Lodestone プロフィールを見る",
     "make_primary": "メインに設定",
+    "unclaim_character": "キャラクターの紐付けを解除",
+    "unclaim_title": "キャラクターの紐付けを解除",
+    "unclaim_description": "この操作でキャラクターはアカウントから外れます。必要であれば後で再び紐付けできます。",
+    "unclaim_confirm": "紐付けを解除",
+    "unclaim_cancel": "戻る",
     "preferred": "優先",
     "maxed": "最大",
     "knowledge_level": "知識レベル",

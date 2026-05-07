@@ -1,7 +1,10 @@
 <?php
 
 use App\Models\Character;
+use App\Models\NotificationEvent;
+use App\Models\UserNotification;
 use App\Models\User;
+use App\Support\Notifications\NotificationCategory;
 use App\Services\FFLogs\ForkedTowerBloodProgressFetcher;
 use App\DTOs\LodestoneCharacterData;
 use App\Services\Lodestone\LodestoneScraper;
@@ -74,4 +77,13 @@ it('refreshes character data even when ff logs progress lookup fails', function 
                 ['key' => 'magitaur', 'kills' => 0, 'progress' => 0],
             ],
         ]);
+
+    $event = NotificationEvent::query()->where('type', 'characters.refreshed')->sole();
+
+    expect($event->category)->toBe(NotificationCategory::ACCOUNT_CHARACTER_UPDATES)
+        ->and($event->message_params['character'])->toBe('New Name')
+        ->and($event->message_params['world'])->toBe('Twintania');
+
+    expect(UserNotification::query()->where('notification_event_id', $event->id)->sole()->user_id)
+        ->toBe($user->id);
 });

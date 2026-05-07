@@ -31,6 +31,30 @@ const TYPE_META: Record<string, { icon: string, iconColor: string }> = {
 		icon: 'i-lucide-shield-check',
 		iconColor: 'text-emerald-500',
 	},
+	'user.social_account.linked': {
+		icon: 'i-lucide-link',
+		iconColor: 'text-cyan-500',
+	},
+	'user.social_account.unlinked': {
+		icon: 'i-lucide-unlink',
+		iconColor: 'text-rose-500',
+	},
+	'characters.added': {
+		icon: 'i-lucide-user-round-plus',
+		iconColor: 'text-emerald-500',
+	},
+	'characters.refreshed': {
+		icon: 'i-lucide-refresh-ccw',
+		iconColor: 'text-sky-500',
+	},
+	'characters.primary_changed': {
+		icon: 'i-lucide-star',
+		iconColor: 'text-amber-500',
+	},
+	'characters.unclaimed': {
+		icon: 'i-lucide-unlink',
+		iconColor: 'text-rose-500',
+	},
 }
 
 const CATEGORY_META: Record<string, { icon: string, iconColor: string }> = {

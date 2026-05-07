@@ -24,6 +24,16 @@ return [
         ],
     ],
     'user' => [
+        'social_account' => [
+            'linked' => [
+                'title' => 'Connected account linked',
+                'body' => 'Your :provider account was linked to FullParty.',
+            ],
+            'unlinked' => [
+                'title' => 'Connected account unlinked',
+                'body' => 'Your :provider account was unlinked from FullParty.',
+            ],
+        ],
         'settings' => [
             'notifications_updated' => [
                 'title' => 'Notification settings updated',
@@ -37,6 +47,24 @@ return [
                 'title' => 'Privacy settings updated',
                 'body' => 'Your privacy settings were updated. Changed settings: :settings',
             ],
+        ],
+    ],
+    'characters' => [
+        'added' => [
+            'title' => 'Character added',
+            'body' => ':character (:world / :datacenter) was added to your account via :method.',
+        ],
+        'refreshed' => [
+            'title' => 'Character refreshed',
+            'body' => ':character (:world / :datacenter) was refreshed with the latest profile data.',
+        ],
+        'primary_changed' => [
+            'title' => 'Primary character updated',
+            'body' => ':character (:world / :datacenter) is now your primary character.',
+        ],
+        'unclaimed' => [
+            'title' => 'Character unclaimed',
+            'body' => ':character (:world / :datacenter) was removed from your account.',
         ],
     ],
 ];

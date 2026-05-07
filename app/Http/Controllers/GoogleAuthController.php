@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\SocialAccount;
 use App\Models\User;
 use App\Services\AuditLogger;
+use App\Services\Notifications\AccountCharacterNotificationService;
 use App\Support\Audit\AuditScope;
 use App\Support\Audit\AuditSeverity;
 use Illuminate\Http\Request;
@@ -15,7 +16,8 @@ use Laravel\Socialite\Socialite;
 class GoogleAuthController extends Controller
 {
     public function __construct(
-        private readonly AuditLogger $auditLogger
+        private readonly AuditLogger $auditLogger,
+        private readonly AccountCharacterNotificationService $accountCharacterNotificationService,
     ) {}
 
     public function redirect() {
@@ -130,7 +132,7 @@ class GoogleAuthController extends Controller
 		]);
 
         if ($createdUser) {
-            $this->auditLogger->log(
+		$this->auditLogger->log(
                 action: 'user.registered',
                 severity: AuditSeverity::INFO,
                 scopeType: AuditScope::USER,
@@ -159,7 +161,9 @@ class GoogleAuthController extends Controller
                 'provider_user_id' => $providerUserId,
                 'linked_while_authenticated' => $linkingExistingSession,
             ],
-        );
+		);
+
+        $this->accountCharacterNotificationService->notifySocialAccountLinked($user, $provider, $user);
 		
 		Auth::login($user);
 		request()->session()->regenerate();

@@ -123,9 +123,20 @@
   },
   "added_manually": "Added Manually",
   "from_xivauth": "From XIVAuth",
+  "toasts": {
+    "title": "Success!",
+    "character_refreshed": "Character data refreshed successfully",
+    "character_primary": "Primary character updated successfully",
+    "character_unclaimed": "Character unclaimed successfully"
+  },
   "card": {
     "view_lodestone_profile": "View Lodestone Profile",
     "make_primary": "Make Primary",
+    "unclaim_character": "Unclaim Character",
+    "unclaim_title": "Unclaim Character",
+    "unclaim_description": "This removes the character from your account. You can reclaim it later if needed.",
+    "unclaim_confirm": "Unclaim Character",
+    "unclaim_cancel": "Keep Character",
     "preferred": "Preferred",
     "maxed": "Maxed",
     "knowledge_level": "Knowledge Level",

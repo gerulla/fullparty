@@ -76,7 +76,8 @@
       "registered": "registered an account.",
       "logged_in": "logged in.",
       "social_account": {
-        "linked": "linked a social account."
+        "linked": "linked a social account.",
+        "unlinked": "unlinked a social account."
       },
       "settings": {
         "username_updated": "updated account username settings.",
@@ -111,7 +112,8 @@
     "character": {
       "verified": "verified a character.",
       "refresh_requested": "requested a character refresh.",
-      "made_primary": "made a character primary."
+      "made_primary": "made a character primary.",
+      "removed": "removed a character from the account."
     },
     "group": {
       "created": "created the group.",
@@ -265,7 +267,8 @@
       "registered": "User registered",
       "logged_in": "User logged in",
       "social_account": {
-        "linked": "Social account linked"
+        "linked": "Social account linked",
+        "unlinked": "Social account unlinked"
       },
       "settings": {
         "username_updated": "Username updated",

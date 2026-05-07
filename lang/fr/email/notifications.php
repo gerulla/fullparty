@@ -24,6 +24,16 @@ return [
         ],
     ],
     'user' => [
+        'social_account' => [
+            'linked' => [
+                'title' => 'Compte connecté lié',
+                'body' => 'Votre compte :provider a été lié à FullParty.',
+            ],
+            'unlinked' => [
+                'title' => 'Compte connecté dissocié',
+                'body' => 'Votre compte :provider a été dissocié de FullParty.',
+            ],
+        ],
         'settings' => [
             'notifications_updated' => [
                 'title' => 'Préférences de notification mises à jour',
@@ -37,6 +47,24 @@ return [
                 'title' => 'Paramètres de confidentialité mis à jour',
                 'body' => 'Vos paramètres de confidentialité ont été mis à jour. Paramètres modifiés : :settings',
             ],
+        ],
+    ],
+    'characters' => [
+        'added' => [
+            'title' => 'Personnage ajouté',
+            'body' => ':character (:world / :datacenter) a été ajouté à votre compte via :method.',
+        ],
+        'refreshed' => [
+            'title' => 'Personnage actualisé',
+            'body' => ':character (:world / :datacenter) a été actualisé avec les dernières données du profil.',
+        ],
+        'primary_changed' => [
+            'title' => 'Personnage principal mis à jour',
+            'body' => ':character (:world / :datacenter) est maintenant votre personnage principal.',
+        ],
+        'unclaimed' => [
+            'title' => 'Personnage dissocié',
+            'body' => ':character (:world / :datacenter) a été retiré de votre compte.',
         ],
     ],
 ];

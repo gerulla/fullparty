@@ -123,9 +123,20 @@
   },
   "added_manually": "Manuell hinzugefügt",
   "from_xivauth": "Von XIVAuth",
+  "toasts": {
+    "title": "Erfolg!",
+    "character_refreshed": "Charakterdaten wurden erfolgreich aktualisiert",
+    "character_primary": "Primärcharakter wurde erfolgreich aktualisiert",
+    "character_unclaimed": "Charakter wurde erfolgreich freigegeben"
+  },
   "card": {
     "view_lodestone_profile": "Lodestone-Profil anzeigen",
     "make_primary": "Als Primär festlegen",
+    "unclaim_character": "Charakter freigeben",
+    "unclaim_title": "Charakter freigeben",
+    "unclaim_description": "Dadurch wird der Charakter aus deinem Konto entfernt. Du kannst ihn später bei Bedarf erneut beanspruchen.",
+    "unclaim_confirm": "Charakter freigeben",
+    "unclaim_cancel": "Charakter behalten",
     "preferred": "Bevorzugt",
     "maxed": "Maximal",
     "knowledge_level": "Wissensstufe",

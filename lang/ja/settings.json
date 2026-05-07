@@ -6,9 +6,15 @@
     "save": "変更を保存"
   },
   "connect": "連携",
+  "unlink": "連携解除",
   "connected": "連携済み",
   "not_connected": "未連携",
   "connected_accounts": "連携済みアカウント",
+  "unlink_social_account_title": "連携アカウントを解除",
+  "unlink_social_account_description": "この操作で {provider} と FullParty の連携が解除されます。",
+  "unlink_social_account_warning": "必要であれば後で再度連携できます。",
+  "unlink_social_account_confirm": "連携を解除",
+  "unlink_social_account_cancel": "このままにする",
   "notifications": {
     "title": "通知",
     "save": "設定を保存",
@@ -48,6 +54,8 @@
     "username_updated": "ユーザー名を更新しました",
     "notification_updated": "通知設定を更新しました",
     "privacy_updated": "プライバシー設定を更新しました",
+    "social_account_unlinked": "連携アカウントを解除しました",
+    "social_account_unlink_blocked": "最後のソーシャルアカウントを解除する前に、別のサインイン方法を追加するかパスワードを設定してください。",
     "title": "成功！"
   }
 }

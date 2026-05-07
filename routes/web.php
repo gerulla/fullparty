@@ -35,6 +35,7 @@ use App\Http\Controllers\GroupMembershipController;
 use App\Http\Controllers\GroupSettingsController;
 use App\Http\Controllers\PhantomJobController;
 use App\Http\Controllers\SettingsController;
+use App\Http\Controllers\SocialAccountController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\XIVAuthController;
 use App\Http\Controllers\LocaleController;
@@ -193,6 +194,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
 	Route::post('/settings/username', [UserController::class, 'changeUsername'])->name('settings.username');
 	Route::post('/settings/notifications', [UserController::class, 'changeNotificationSettings'])->name('settings.notifications');
 	Route::post('/settings/privacy', [UserController::class, 'changePrivacySettings'])->name('settings.privacy');
+	Route::delete('/settings/social-accounts/{socialAccount}', [SocialAccountController::class, 'destroy'])->name('settings.social-accounts.destroy');
 	
 	//Character Routes
 	Route::get('/account/characters', [CharacterController::class, 'list'])->name('account.characters');
@@ -207,6 +209,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
 	Route::post('/characters/verify', [CharacterController::class, 'verify'])->name('characters.verify');
 	Route::post('/characters/{character}/refresh', [CharacterController::class, 'refreshCharacterData'])->name('characters.refresh');
 	Route::post('/characters/{character}/make-primary', [CharacterController::class, 'makePrimary'])->name('characters.make-primary');
+	Route::delete('/characters/{character}', [CharacterController::class, 'destroy'])->name('characters.destroy');
 	Route::post('/characters/{character}/preferred-class', [CharacterController::class, 'markPreferredClass'])->name('characters.preferred-class');
 	Route::post('/characters/{character}/preferred-phantom-job', [CharacterController::class, 'markPreferredPhantomJob'])->name('characters.preferred-phantom-job');
 	Route::post('/characters/xivauth', [CharacterController::class, 'fetchXIVAuthCharacters'])->name('characters.xivauth');

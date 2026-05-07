@@ -44,6 +44,31 @@ watch(
 				icon: 'i-lucide-check'
 			})
 		}
+		if(success.includes('social_account_unlinked')){
+			toast.add({
+				title: t('settings.toasts.title'),
+				description: t('settings.toasts.social_account_unlinked'),
+				color: 'success',
+				icon: 'i-lucide-check'
+			})
+		}
+	},
+	{ immediate: true }
+)
+
+watch(
+	() => page.props.errors?.error,
+	(error) => {
+		if (!error) return
+
+		if (error === 'social_account_unlink_last_login_method') {
+			toast.add({
+				title: t('settings.toasts.title'),
+				description: t('settings.toasts.social_account_unlink_blocked'),
+				color: 'error',
+				icon: 'i-lucide-triangle-alert'
+			})
+		}
 	},
 	{ immediate: true }
 )

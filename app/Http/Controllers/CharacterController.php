@@ -16,6 +16,7 @@ use App\Services\AuditLogger;
 use App\Services\Characters\CharacterProfileRefreshService;
 use App\Services\Lodestone\LodestoneInputNormalizer;
 use App\Services\Lodestone\LodestoneScraper;
+use App\Services\Notifications\AccountCharacterNotificationService;
 use App\Support\Audit\AuditScope;
 use App\Support\Audit\AuditSeverity;
 use Carbon\Carbon;
@@ -35,6 +36,7 @@ class CharacterController extends Controller
 	public function __construct(
 		private readonly AuditLogger $auditLogger,
 		private readonly CharacterProfileRefreshService $characterProfileRefreshService,
+		private readonly AccountCharacterNotificationService $accountCharacterNotificationService,
 	) {}
 
 	private function generateVerificationToken(): string
@@ -175,6 +177,8 @@ class CharacterController extends Controller
 			);
 
 			$this->refreshVerifiedCharacterOnce($character);
+
+            $this->accountCharacterNotificationService->notifyCharacterAdded($character->fresh(), 'lodestone_token', auth()->user());
 			
 			return Redirect::back()->with('flash_data', [
 				'character_verification' => [
@@ -258,6 +262,8 @@ class CharacterController extends Controller
 		$this->finalizeCharacterVerification($character, auth()->user(), 'xivauth', $is_primary);
 		$this->refreshVerifiedCharacterOnce($character);
 
+        $this->accountCharacterNotificationService->notifyCharacterAdded($character->fresh(), 'xivauth', auth()->user());
+
 		$character->refresh();
 
 		$this->auditLogger->log(
@@ -312,6 +318,8 @@ class CharacterController extends Controller
 
 		try {
 			$this->characterProfileRefreshService->refresh($character, ignoreCache: true);
+
+            $this->accountCharacterNotificationService->notifyCharacterRefreshed($character->fresh(), auth()->user());
 
 			return Redirect::back()->with('success', 'character_data_refreshed');
 		} catch (LodestoneInvalidInputException $e) {
@@ -510,6 +518,8 @@ class CharacterController extends Controller
 			],
 		);
 
+        $this->accountCharacterNotificationService->notifyPrimaryCharacterChanged($character->fresh(), auth()->user());
+
 		return Redirect::back()->with('success', 'character_marked_primary');
 	}
 	
@@ -677,12 +687,59 @@ class CharacterController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Character $character): JsonResponse
+    public function destroy(Character $character): \Illuminate\Http\RedirectResponse
     {
-        // TODO: Implement character deletion logic
-        // - Check authorization
-        // - Delete character (cascade will handle field values)
-        // - Return success response
+        if ($character->user_id !== auth()->id()) {
+            abort(403);
+        }
+
+        $recipient = auth()->user();
+
+        DB::transaction(function () use ($character): void {
+            $replacementPrimary = null;
+
+            if ($character->is_primary) {
+                $replacementPrimary = Character::query()
+                    ->where('user_id', auth()->id())
+                    ->whereKeyNot($character->id)
+                    ->orderByDesc('verified_at')
+                    ->orderBy('id')
+                    ->first();
+            }
+
+            $character->update([
+                'user_id' => null,
+                'verified_at' => null,
+                'token' => $this->generateVerificationToken(),
+                'expires_at' => Carbon::now()->addDay(),
+                'is_primary' => false,
+            ]);
+
+            if ($replacementPrimary) {
+                Character::query()
+                    ->whereKey($replacementPrimary->id)
+                    ->update(['is_primary' => true]);
+            }
+        });
+
+        $this->auditLogger->log(
+            action: 'character.removed',
+            severity: AuditSeverity::INFO,
+            scopeType: AuditScope::USER,
+            scopeId: auth()->id(),
+            message: 'audit_log.events.character.removed',
+            actor: auth()->user(),
+            subject: auth()->user(),
+            metadata: [
+                'character_id' => $character->id,
+                'lodestone_id' => $character->lodestone_id,
+                'name' => $character->name,
+            ],
+        );
+
+        $this->accountCharacterNotificationService->notifyCharacterUnclaimed($character->fresh(), $recipient, $recipient);
+
+        return Redirect::back()->with('success', 'character_unclaimed');
     }
 
 }

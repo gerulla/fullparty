@@ -123,9 +123,20 @@
   },
   "added_manually": "Ajouté manuellement",
   "from_xivauth": "Depuis XIVAuth",
+  "toasts": {
+    "title": "Succès !",
+    "character_refreshed": "Les données du personnage ont été actualisées avec succès",
+    "character_primary": "Le personnage principal a été mis à jour avec succès",
+    "character_unclaimed": "Le personnage a été dissocié avec succès"
+  },
   "card": {
     "view_lodestone_profile": "Voir le profil Lodestone",
     "make_primary": "Définir comme principal",
+    "unclaim_character": "Dissocier le personnage",
+    "unclaim_title": "Dissocier le personnage",
+    "unclaim_description": "Cela retire le personnage de votre compte. Vous pourrez le revendiquer à nouveau plus tard si nécessaire.",
+    "unclaim_confirm": "Dissocier le personnage",
+    "unclaim_cancel": "Conserver le personnage",
     "preferred": "Préféré",
     "maxed": "Max",
     "knowledge_level": "Niveau de connaissance",

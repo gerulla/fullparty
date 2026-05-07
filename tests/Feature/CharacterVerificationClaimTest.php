@@ -7,9 +7,12 @@ use App\Models\ActivityType;
 use App\Models\ActivityTypeVersion;
 use App\Models\Character;
 use App\Models\Group;
+use App\Models\NotificationEvent;
+use App\Models\UserNotification;
 use App\Models\User;
 use App\Services\FFLogs\ForkedTowerBloodProgressFetcher;
 use App\Services\Lodestone\LodestoneScraper;
+use App\Support\Notifications\NotificationCategory;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 uses(RefreshDatabase::class);
@@ -155,6 +158,15 @@ it('claims matching guest applications and auto-refreshes on xivauth import', fu
         ->and($secondApplication->user_id)->toBe($user->id)
         ->and($secondApplication->selected_character_id)->toBe($character->id)
         ->and($secondApplication->guest_access_token)->toBeNull();
+
+    $event = NotificationEvent::query()->where('type', 'characters.added')->sole();
+
+    expect($event->category)->toBe(NotificationCategory::ACCOUNT_CHARACTER_UPDATES)
+        ->and($event->message_params['character'])->toBe('Claimed Applicant')
+        ->and($event->message_params['method'])->toBe('XIVAuth');
+
+    expect(UserNotification::query()->where('notification_event_id', $event->id)->sole()->user_id)
+        ->toBe($user->id);
 });
 
 it('claims matching guest applications and auto-refreshes on manual verification', function () {
@@ -257,6 +269,15 @@ it('claims matching guest applications and auto-refreshes on manual verification
     expect($application->user_id)->toBe($user->id)
         ->and($application->selected_character_id)->toBe($character->id)
         ->and($application->guest_access_token)->toBeNull();
+
+    $event = NotificationEvent::query()->where('type', 'characters.added')->sole();
+
+    expect($event->category)->toBe(NotificationCategory::ACCOUNT_CHARACTER_UPDATES)
+        ->and($event->message_params['character'])->toBe('Verified Applicant')
+        ->and($event->message_params['method'])->toBe('Lodestone');
+
+    expect(UserNotification::query()->where('notification_event_id', $event->id)->sole()->user_id)
+        ->toBe($user->id);
 });
 
 it('generates a fresh verification token for provisional characters during manual lookup', function () {

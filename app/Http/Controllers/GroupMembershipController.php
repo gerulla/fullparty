@@ -7,6 +7,7 @@ use App\Models\GroupMembership;
 use App\Models\ScheduledRun;
 use App\Models\User;
 use App\Services\AuditLogger;
+use App\Services\Notifications\GroupUpdateNotificationService;
 use App\Support\Audit\AuditScope;
 use App\Support\Audit\AuditSeverity;
 use Illuminate\Http\RedirectResponse;
@@ -17,7 +18,8 @@ use Illuminate\Validation\Rule;
 class GroupMembershipController extends Controller
 {
     public function __construct(
-        private readonly AuditLogger $auditLogger
+        private readonly AuditLogger $auditLogger,
+        private readonly GroupUpdateNotificationService $groupUpdateNotificationService,
     ) {}
 
     public function join(Group $group): RedirectResponse
@@ -53,6 +55,12 @@ class GroupMembershipController extends Controller
                 message: 'audit_log.events.group.member.joined',
                 actor: auth()->user(),
                 subject: auth()->user(),
+            );
+
+            $this->groupUpdateNotificationService->notifyMemberJoined(
+                $group->fresh(),
+                auth()->user(),
+                auth()->user(),
             );
         }
 
@@ -96,6 +104,12 @@ class GroupMembershipController extends Controller
             message: 'audit_log.events.group.member.left',
             actor: auth()->user(),
             subject: auth()->user(),
+        );
+
+        $this->groupUpdateNotificationService->notifyMemberLeft(
+            $group->fresh(),
+            auth()->user(),
+            auth()->user(),
         );
 
         return redirect()->route('groups.index')->with('success', 'group_left');
@@ -150,6 +164,12 @@ class GroupMembershipController extends Controller
                 ],
             ],
         );
+
+        if ($validated['role'] === GroupMembership::ROLE_MODERATOR) {
+            $this->groupUpdateNotificationService->notifyMemberPromoted($group->fresh(), $user, auth()->user());
+        } else {
+            $this->groupUpdateNotificationService->notifyMemberDemoted($group->fresh(), $user, auth()->user());
+        }
 
         return redirect()->back()->with('success', 'group_member_updated');
     }
@@ -253,6 +273,8 @@ class GroupMembershipController extends Controller
             ],
         );
 
+        $this->groupUpdateNotificationService->notifyMemberBanned($group->fresh(), $user, auth()->user());
+
         return redirect()->back()->with('success', 'group_member_banned');
     }
 
@@ -351,6 +373,15 @@ class GroupMembershipController extends Controller
                     ],
                 ],
             ],
+        );
+
+        $previousOwner = User::query()->findOrFail($previousOwnerId);
+
+        $this->groupUpdateNotificationService->notifyOwnershipTransferred(
+            $group->fresh(),
+            $previousOwner,
+            $newOwnerMembership->user()->firstOrFail(),
+            auth()->user(),
         );
 
         return redirect()->back()->with('success', 'group_ownership_transferred');

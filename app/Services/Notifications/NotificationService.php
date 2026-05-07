@@ -69,7 +69,7 @@ class NotificationService
                 ]);
 
                 if ($notification->wasRecentlyCreated) {
-                    $this->notificationRealtimeService->broadcastUserInboxUpdated($recipient);
+                    $this->broadcastInboxUpdated($recipient);
                 }
 
                 return $notification;
@@ -113,7 +113,7 @@ class NotificationService
                         'aggregate_count' => $incrementBy,
                     ]);
 
-                    $this->notificationRealtimeService->broadcastUserInboxUpdated($recipient);
+                    $this->broadcastInboxUpdated($recipient);
 
                     return $notification;
                 }
@@ -129,7 +129,7 @@ class NotificationService
                     'updated_at' => now(),
                 ])->save();
 
-                $this->notificationRealtimeService->broadcastUserInboxUpdated($recipient);
+                $this->broadcastInboxUpdated($recipient);
 
                 return $existingNotification->fresh();
             })
@@ -355,6 +355,11 @@ class NotificationService
         $event->forceFill([
             'message_params' => $messageParams,
         ])->save();
+    }
+
+    private function broadcastInboxUpdated(User $recipient): void
+    {
+        $this->notificationRealtimeService->broadcastUserInboxUpdated($recipient);
     }
 
     private function resolveActorId(User|int|null $actor): ?int

@@ -119,6 +119,12 @@
       "created": "がグループを作成しました。",
       "updated": "がグループ設定を更新しました。",
       "deleted": "がグループを削除しました。",
+      "followed": "がグループをフォローしました。",
+      "unfollowed": "がグループのフォローを解除しました。",
+      "notifications": {
+        "enabled": "がグループ通知を有効にしました。",
+        "muted": "がグループ通知をミュートしました。"
+      },
       "activity": {
         "created": "がアクティビティを作成しました。",
         "updated": "がアクティビティを更新しました。",
@@ -299,6 +305,12 @@
       "created": "グループ作成",
       "updated": "グループ設定を更新",
       "deleted": "グループ削除",
+      "followed": "グループをフォロー",
+      "unfollowed": "グループのフォローを解除",
+      "notifications": {
+        "enabled": "グループ通知を有効化",
+        "muted": "グループ通知をミュート"
+      },
       "activity": {
         "created": "アクティビティ作成",
         "updated": "アクティビティ更新",

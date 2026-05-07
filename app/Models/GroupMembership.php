@@ -31,6 +31,21 @@ class GroupMembership extends Model
         'joined_at' => 'datetime',
     ];
 
+    protected static function booted(): void
+    {
+        static::created(function (GroupMembership $membership): void {
+            $membership->group()
+                ->first()?->followers()
+                ->syncWithoutDetaching([$membership->user_id]);
+        });
+
+        static::deleted(function (GroupMembership $membership): void {
+            $membership->group()
+                ->first()?->followers()
+                ->detach($membership->user_id);
+        });
+    }
+
     public function group(): BelongsTo
     {
         return $this->belongsTo(Group::class);

@@ -52,6 +52,13 @@ class Group extends Model
             ->withTimestamps();
     }
 
+    public function followers(): BelongsToMany
+    {
+        return $this->belongsToMany(User::class, 'group_follows')
+            ->withPivot(['notifications_enabled'])
+            ->withTimestamps();
+    }
+
     public function invites(): HasMany
     {
         return $this->hasMany(GroupInvite::class);

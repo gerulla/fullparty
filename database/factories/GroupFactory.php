@@ -46,6 +46,10 @@ class GroupFactory extends Factory
             if ($group->is_public) {
                 $group->ensureSystemInvite();
             }
+
+            $group->followers()->syncWithoutDetaching([
+                $group->owner_id => ['notifications_enabled' => true],
+            ]);
         });
     }
 
@@ -83,6 +87,10 @@ class GroupFactory extends Factory
                     'joined_at' => now(),
                 ]
             );
+
+            $group->followers()->syncWithoutDetaching([
+                $member->id => ['notifications_enabled' => true],
+            ]);
         });
     }
 }

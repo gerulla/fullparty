@@ -27,6 +27,7 @@ use App\Http\Controllers\DiscordAuthController;
 use App\Http\Controllers\GoogleAuthController;
 use App\Http\Controllers\GroupController;
 use App\Http\Controllers\GroupDashboardController;
+use App\Http\Controllers\GroupFollowController;
 use App\Http\Controllers\GroupAuditLogController;
 use App\Http\Controllers\GroupInviteController;
 use App\Http\Controllers\GroupMemberController;
@@ -140,6 +141,9 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
 	Route::post('/groups/{group:slug}/join', [GroupMembershipController::class, 'join'])->name('groups.join');
 	Route::post('/groups/{group:slug}/leave', [GroupMembershipController::class, 'leave'])->name('groups.leave');
+	Route::post('/groups/{group:slug}/follow', [GroupFollowController::class, 'store'])->name('groups.follow');
+	Route::delete('/groups/{group:slug}/follow', [GroupFollowController::class, 'destroy'])->name('groups.unfollow');
+	Route::patch('/groups/{group:slug}/follow-notifications', [GroupFollowController::class, 'updateNotifications'])->name('groups.follow-notifications.update');
 	Route::put('/groups/{group:slug}/members/{user}', [GroupMembershipController::class, 'update'])->name('groups.members.update');
 	Route::delete('/groups/{group:slug}/members/{user}', [GroupMembershipController::class, 'destroy'])->name('groups.members.destroy');
 	Route::post('/groups/{group:slug}/members/{user}/ban', [GroupMembershipController::class, 'ban'])->name('groups.members.ban');

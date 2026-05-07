@@ -1,6 +1,24 @@
 <?php
 
 return [
+    'runs' => [
+        'cancelled' => [
+            'title' => 'Run cancelled',
+            'body' => ':activity was cancelled.',
+        ],
+        'starting_soon' => [
+            'title' => 'Run starting soon',
+            'body' => ':activity is starting soon.',
+        ],
+        'starting_now' => [
+            'title' => 'Run starting now',
+            'body' => ':activity is starting now.',
+        ],
+        'completed' => [
+            'title' => 'Run complete',
+            'body' => ':activity is now complete.',
+        ],
+    ],
     'assignments' => [
         'roster_published_assigned' => [
             'title' => 'Roster veroffentlicht',

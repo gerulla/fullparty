@@ -13,6 +13,7 @@ use App\Services\Groups\ActivitySlotBench;
 use App\Services\Groups\ActivityCancellationService;
 use App\Services\Groups\GroupActivityAuditService;
 use App\Services\Notifications\AssignmentNotificationService;
+use App\Services\Notifications\GroupUpdateNotificationService;
 use Carbon\CarbonImmutable;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -28,6 +29,7 @@ class GroupActivityController extends Controller
     public function __construct(
         private readonly GroupActivityAuditService $activityAuditService,
         private readonly ActivityCancellationService $activityCancellationService,
+        private readonly GroupUpdateNotificationService $groupUpdateNotificationService,
     ) {}
 
     public function overview(Request $request, Group $group, Activity $activity, ?string $secretKey = null): Response
@@ -186,7 +188,7 @@ class GroupActivityController extends Controller
 
         $validated = $this->normalizeAndValidateTargetProgPoint($validated, $activityTypeVersion);
 
-        DB::transaction(function () use ($group, $activityType, $activityTypeVersion, $validated) {
+        $activity = DB::transaction(function () use ($group, $activityType, $activityTypeVersion, $validated) {
             $activity = $group->activities()->create([
                 'activity_type_id' => $activityType->id,
                 'activity_type_version_id' => $activityTypeVersion->id,
@@ -208,7 +210,13 @@ class GroupActivityController extends Controller
             $this->materializeSlots($activity, $activityTypeVersion);
             $this->materializeProgressMilestones($activity, $activityTypeVersion);
             $this->activityAuditService->logActivityCreated($activity, auth()->user());
+            return $activity;
         });
+
+        $this->groupUpdateNotificationService->notifyRunCreated(
+            $activity->fresh('group'),
+            auth()->user(),
+        );
 
         return redirect()
             ->route('groups.dashboard.activities.index', $group)

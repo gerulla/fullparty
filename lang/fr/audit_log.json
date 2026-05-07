@@ -119,6 +119,12 @@
       "created": "a créé le groupe.",
       "updated": "a mis à jour les paramètres du groupe.",
       "deleted": "a supprimé le groupe.",
+      "followed": "a suivi le groupe.",
+      "unfollowed": "a cessé de suivre le groupe.",
+      "notifications": {
+        "enabled": "a activé les notifications du groupe.",
+        "muted": "a coupé les notifications du groupe."
+      },
       "activity": {
         "created": "a créé une activité.",
         "updated": "a mis à jour une activité.",
@@ -299,6 +305,12 @@
       "created": "Groupe créé",
       "updated": "Paramètres du groupe mis à jour",
       "deleted": "Groupe supprimé",
+      "followed": "Groupe suivi",
+      "unfollowed": "Groupe non suivi",
+      "notifications": {
+        "enabled": "Notifications du groupe activées",
+        "muted": "Notifications du groupe coupées"
+      },
       "activity": {
         "created": "Activité créée",
         "updated": "Activité mise à jour",

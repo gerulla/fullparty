@@ -404,7 +404,7 @@ it('does not create a decline notification when the declined application belongs
     expect(UserNotification::query()->count())->toBe(0);
 });
 
-it('notifies signed in applicants when their applications are cancelled with the run', function () {
+it('does not create a separate application-category cancellation notification when a run is cancelled', function () {
     $owner = User::factory()->create();
     $group = Group::factory()->public()->create([
         'owner_id' => $owner->id,
@@ -447,13 +447,5 @@ it('notifies signed in applicants when their applications are cancelled with the
         'activity' => $activity->id,
     ]));
 
-    $event = NotificationEvent::query()->where('type', 'applications.cancelled')->sole();
-
-    expect($event->title_key)->toBe('notifications.applications.cancelled.title')
-        ->and($event->action_url)->toBe(route('account.applications'))
-        ->and($event->message_params['character'])->toBe('Rin Vale');
-
-    $notification = UserNotification::query()->where('notification_event_id', $event->id)->sole();
-
-    expect($notification->user_id)->toBe($signedInApplicant->id);
+    expect(NotificationEvent::query()->where('type', 'applications.cancelled')->doesntExist())->toBeTrue();
 });

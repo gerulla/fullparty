@@ -119,6 +119,12 @@
       "created": "created the group.",
       "updated": "updated the group settings.",
       "deleted": "deleted the group.",
+      "followed": "followed the group.",
+      "unfollowed": "unfollowed the group.",
+      "notifications": {
+        "enabled": "enabled group notifications.",
+        "muted": "muted group notifications."
+      },
       "activity": {
         "created": "created an activity.",
         "updated": "updated an activity.",
@@ -309,6 +315,12 @@
       "created": "Group created",
       "updated": "Group settings updated",
       "deleted": "Group deleted",
+      "followed": "Group followed",
+      "unfollowed": "Group unfollowed",
+      "notifications": {
+        "enabled": "Group notifications enabled",
+        "muted": "Group notifications muted"
+      },
       "activity": {
         "created": "Activity created",
         "updated": "Activity updated",

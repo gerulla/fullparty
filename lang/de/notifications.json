@@ -114,5 +114,61 @@
       "title": "Zuweisung zurück in Prüfung",
       "body": "Deine Bewerbung für {activity} als {character} wurde zurück in die Prüfungswarteschlange gesetzt."
     }
+  },
+  "runs": {
+    "cancelled": {
+      "title": "Run cancelled",
+      "body": "{activity} was cancelled."
+    },
+    "starting_soon": {
+      "title": "Run starting soon",
+      "body": "{activity} is starting soon."
+    },
+    "starting_now": {
+      "title": "Run starting now",
+      "body": "{activity} is starting now."
+    },
+    "completed": {
+      "title": "Run complete",
+      "body": "{activity} is now complete."
+    }
+  },
+  "groups": {
+    "run_planned": {
+      "title": "Run planning updated",
+      "body": "{activity} is being planned for {group}."
+    },
+    "run_scheduled": {
+      "title": "New run scheduled",
+      "body": "{activity} was scheduled for {group}."
+    },
+    "member_promoted": {
+      "title": "Role updated",
+      "body": "You were promoted to moderator in {group}."
+    },
+    "member_demoted": {
+      "title": "Role updated",
+      "body": "You were moved back to member in {group}."
+    },
+    "ownership_transferred_to_you": {
+      "title": "Group ownership transferred",
+      "body": "{group} was transferred to you by {user}."
+    },
+    "ownership_transferred_from_you": {
+      "title": "Group ownership transferred",
+      "body": "You transferred ownership of {group} to {user}."
+    },
+    "member_joined": {
+      "title": "Member joined",
+      "body": "{user} joined {group}."
+    },
+    "member_left": {
+      "title": "Member left",
+      "body": "{user} left {group}."
+    },
+    "member_banned": {
+      "title": "Removed from group",
+      "body": "You were banned from {group}."
+    }
   }
 }

@@ -6,6 +6,7 @@ use App\Models\Activity;
 use App\Models\ActivityApplication;
 use App\Models\ActivitySlot;
 use App\Services\Notifications\ApplicationNotificationService;
+use App\Services\Notifications\RunNotificationService;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 
@@ -16,6 +17,7 @@ class ActivityCancellationService
     public function __construct(
         private readonly GroupActivityAuditService $activityAuditService,
         private readonly ApplicationNotificationService $applicationNotificationService,
+        private readonly RunNotificationService $runNotificationService,
     ) {}
 
     /**
@@ -83,12 +85,16 @@ class ActivityCancellationService
             return $applicationsToCancel;
         });
 
-        // TODO: Fan these cancellation notifications out to off-site channels when the product explicitly enables them.
         $cancelledApplications->each(function (ActivityApplication $application) use ($actor): void {
             $application->loadMissing(['activity.group', 'selectedCharacter', 'user']);
             $this->activityAuditService->logApplicationCancelled($application, $actor);
-            $this->applicationNotificationService->notifyCancelled($application, $actor);
         });
+
+        $this->runNotificationService->notifyCancelled(
+            $activity->fresh(['group', 'applications.user', 'applications.selectedCharacter']),
+            $actor,
+            $cancelledApplications,
+        );
 
         return $cancelledApplications;
     }

@@ -119,6 +119,12 @@
       "created": "hat die Gruppe erstellt.",
       "updated": "hat die Gruppeneinstellungen aktualisiert.",
       "deleted": "hat die Gruppe gelöscht.",
+      "followed": "hat der Gruppe gefolgt.",
+      "unfollowed": "hat der Gruppe nicht mehr gefolgt.",
+      "notifications": {
+        "enabled": "hat Gruppenbenachrichtigungen aktiviert.",
+        "muted": "hat Gruppenbenachrichtigungen stummgeschaltet."
+      },
       "activity": {
         "created": "hat eine Aktivität erstellt.",
         "updated": "hat eine Aktivität aktualisiert.",
@@ -299,6 +305,12 @@
       "created": "Gruppe erstellt",
       "updated": "Gruppeneinstellungen aktualisiert",
       "deleted": "Gruppe gelöscht",
+      "followed": "Gruppe gefolgt",
+      "unfollowed": "Gruppe entfolgt",
+      "notifications": {
+        "enabled": "Gruppenbenachrichtigungen aktiviert",
+        "muted": "Gruppenbenachrichtigungen stummgeschaltet"
+      },
       "activity": {
         "created": "Aktivität erstellt",
         "updated": "Aktivität aktualisiert",

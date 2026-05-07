@@ -6,6 +6,7 @@ use App\Models\Group;
 use App\Models\GroupInvite;
 use App\Models\GroupMembership;
 use App\Services\AuditLogger;
+use App\Services\Notifications\GroupUpdateNotificationService;
 use App\Support\Audit\AuditScope;
 use App\Support\Audit\AuditSeverity;
 use Illuminate\Http\RedirectResponse;
@@ -17,7 +18,8 @@ use Inertia\Response;
 class GroupInviteController extends Controller
 {
     public function __construct(
-        private readonly AuditLogger $auditLogger
+        private readonly AuditLogger $auditLogger,
+        private readonly GroupUpdateNotificationService $groupUpdateNotificationService,
     ) {}
 
     public function show(string $token): Response
@@ -176,6 +178,12 @@ class GroupInviteController extends Controller
                     'invite_id' => $result['invite']->id ?? null,
                     'invite_token' => $result['invite']->token ?? null,
                 ],
+            );
+
+            $this->groupUpdateNotificationService->notifyMemberJoined(
+                $result['group']->fresh(),
+                auth()->user(),
+                auth()->user(),
             );
         }
 

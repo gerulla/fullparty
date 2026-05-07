@@ -15,60 +15,42 @@ class AccountCharacterNotificationService
 
     public function notifySocialAccountLinked(User $user, string $provider, mixed $actor = null): void
     {
-        if (!$user->account_character_notifications) {
-            return;
-        }
-
-        $event = $this->notificationService->createEvent(
+        $this->dispatchAccountCharacterNotification(
+            recipient: $user,
             type: 'user.social_account.linked',
-            category: NotificationCategory::ACCOUNT_CHARACTER_UPDATES,
             titleKey: 'notifications.user.social_account.linked.title',
             bodyKey: 'notifications.user.social_account.linked.body',
             messageParams: [
                 'provider' => $this->providerLabel($provider),
             ],
             actionUrl: route('settings'),
-            actor: $actor instanceof User ? $actor : $user,
+            actor: $actor,
             subject: $user,
             payload: [
                 'provider' => $provider,
             ],
+            sendOffSite: true,
         );
-
-        $this->notificationService->sendInAppNotifications($event, $user);
-        $this->notificationService->sendOffSiteNotifications($event, $user, [
-            NotificationChannel::EMAIL,
-            NotificationChannel::DISCORD,
-        ]);
     }
 
     public function notifySocialAccountUnlinked(User $user, string $provider, mixed $actor = null): void
     {
-        if (!$user->account_character_notifications) {
-            return;
-        }
-
-        $event = $this->notificationService->createEvent(
+        $this->dispatchAccountCharacterNotification(
+            recipient: $user,
             type: 'user.social_account.unlinked',
-            category: NotificationCategory::ACCOUNT_CHARACTER_UPDATES,
             titleKey: 'notifications.user.social_account.unlinked.title',
             bodyKey: 'notifications.user.social_account.unlinked.body',
             messageParams: [
                 'provider' => $this->providerLabel($provider),
             ],
             actionUrl: route('settings'),
-            actor: $actor instanceof User ? $actor : $user,
+            actor: $actor,
             subject: $user,
             payload: [
                 'provider' => $provider,
             ],
+            sendOffSite: true,
         );
-
-        $this->notificationService->sendInAppNotifications($event, $user);
-        $this->notificationService->sendOffSiteNotifications($event, $user, [
-            NotificationChannel::EMAIL,
-            NotificationChannel::DISCORD,
-        ]);
     }
 
     public function notifyCharacterAdded(Character $character, string $method, mixed $actor = null): void
@@ -79,9 +61,9 @@ class AccountCharacterNotificationService
             return;
         }
 
-        $event = $this->notificationService->createEvent(
+        $this->dispatchAccountCharacterNotification(
+            recipient: $recipient,
             type: 'characters.added',
-            category: NotificationCategory::ACCOUNT_CHARACTER_UPDATES,
             titleKey: 'notifications.characters.added.title',
             bodyKey: 'notifications.characters.added.body',
             messageParams: [
@@ -91,20 +73,15 @@ class AccountCharacterNotificationService
                 'method' => $this->characterMethodLabel($method),
             ],
             actionUrl: route('account.characters'),
-            actor: $actor instanceof User ? $actor : $recipient,
+            actor: $actor,
             subject: $character,
             payload: [
                 'character_id' => $character->id,
                 'lodestone_id' => $character->lodestone_id,
                 'method' => $method,
             ],
+            sendOffSite: true,
         );
-
-        $this->notificationService->sendInAppNotifications($event, $recipient);
-        $this->notificationService->sendOffSiteNotifications($event, $recipient, [
-            NotificationChannel::EMAIL,
-            NotificationChannel::DISCORD,
-        ]);
     }
 
     public function notifyCharacterRefreshed(Character $character, mixed $actor = null): void
@@ -115,9 +92,9 @@ class AccountCharacterNotificationService
             return;
         }
 
-        $event = $this->notificationService->createEvent(
+        $this->dispatchAccountCharacterNotification(
+            recipient: $recipient,
             type: 'characters.refreshed',
-            category: NotificationCategory::ACCOUNT_CHARACTER_UPDATES,
             titleKey: 'notifications.characters.refreshed.title',
             bodyKey: 'notifications.characters.refreshed.body',
             messageParams: [
@@ -126,15 +103,14 @@ class AccountCharacterNotificationService
                 'datacenter' => $character->datacenter,
             ],
             actionUrl: route('account.characters'),
-            actor: $actor instanceof User ? $actor : $recipient,
+            actor: $actor,
             subject: $character,
             payload: [
                 'character_id' => $character->id,
                 'lodestone_id' => $character->lodestone_id,
             ],
+            sendOffSite: false,
         );
-
-        $this->notificationService->sendInAppNotifications($event, $recipient);
     }
 
     public function notifyPrimaryCharacterChanged(Character $character, mixed $actor = null): void
@@ -145,9 +121,9 @@ class AccountCharacterNotificationService
             return;
         }
 
-        $event = $this->notificationService->createEvent(
+        $this->dispatchAccountCharacterNotification(
+            recipient: $recipient,
             type: 'characters.primary_changed',
-            category: NotificationCategory::ACCOUNT_CHARACTER_UPDATES,
             titleKey: 'notifications.characters.primary_changed.title',
             bodyKey: 'notifications.characters.primary_changed.body',
             messageParams: [
@@ -156,30 +132,21 @@ class AccountCharacterNotificationService
                 'datacenter' => $character->datacenter,
             ],
             actionUrl: route('account.characters'),
-            actor: $actor instanceof User ? $actor : $recipient,
+            actor: $actor,
             subject: $character,
             payload: [
                 'character_id' => $character->id,
                 'lodestone_id' => $character->lodestone_id,
             ],
+            sendOffSite: true,
         );
-
-        $this->notificationService->sendInAppNotifications($event, $recipient);
-        $this->notificationService->sendOffSiteNotifications($event, $recipient, [
-            NotificationChannel::EMAIL,
-            NotificationChannel::DISCORD,
-        ]);
     }
 
     public function notifyCharacterUnclaimed(Character $character, User $recipient, mixed $actor = null): void
     {
-        if (!$recipient->account_character_notifications) {
-            return;
-        }
-
-        $event = $this->notificationService->createEvent(
+        $this->dispatchAccountCharacterNotification(
+            recipient: $recipient,
             type: 'characters.unclaimed',
-            category: NotificationCategory::ACCOUNT_CHARACTER_UPDATES,
             titleKey: 'notifications.characters.unclaimed.title',
             bodyKey: 'notifications.characters.unclaimed.body',
             messageParams: [
@@ -188,19 +155,14 @@ class AccountCharacterNotificationService
                 'datacenter' => $character->datacenter,
             ],
             actionUrl: route('account.characters'),
-            actor: $actor instanceof User ? $actor : $recipient,
+            actor: $actor,
             subject: $character,
             payload: [
                 'character_id' => $character->id,
                 'lodestone_id' => $character->lodestone_id,
             ],
+            sendOffSite: true,
         );
-
-        $this->notificationService->sendInAppNotifications($event, $recipient);
-        $this->notificationService->sendOffSiteNotifications($event, $recipient, [
-            NotificationChannel::EMAIL,
-            NotificationChannel::DISCORD,
-        ]);
     }
 
     private function characterRecipient(Character $character): ?User
@@ -233,5 +195,49 @@ class AccountCharacterNotificationService
             'lodestone_token', 'manual' => 'Lodestone',
             default => ucfirst($method),
         };
+    }
+
+    /**
+     * @param  array<string, mixed>  $messageParams
+     * @param  array<string, mixed>  $payload
+     */
+    private function dispatchAccountCharacterNotification(
+        User $recipient,
+        string $type,
+        string $titleKey,
+        string $bodyKey,
+        array $messageParams,
+        ?string $actionUrl,
+        mixed $actor,
+        mixed $subject,
+        array $payload,
+        bool $sendOffSite,
+    ): void {
+        if (!$recipient->account_character_notifications) {
+            return;
+        }
+
+        $event = $this->notificationService->createEvent(
+            type: $type,
+            category: NotificationCategory::ACCOUNT_CHARACTER_UPDATES,
+            titleKey: $titleKey,
+            bodyKey: $bodyKey,
+            messageParams: $messageParams,
+            actionUrl: $actionUrl,
+            actor: $actor instanceof User ? $actor : $recipient,
+            subject: $subject,
+            payload: $payload,
+        );
+
+        $this->notificationService->sendInAppNotifications($event, $recipient);
+
+        if (!$sendOffSite) {
+            return;
+        }
+
+        $this->notificationService->sendOffSiteNotifications($event, $recipient, [
+            NotificationChannel::EMAIL,
+            NotificationChannel::DISCORD,
+        ]);
     }
 }

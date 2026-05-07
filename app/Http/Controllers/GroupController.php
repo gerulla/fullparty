@@ -7,6 +7,7 @@ use App\Models\GroupMembership;
 use App\Models\ScheduledRun;
 use App\Services\AuditLogger;
 use App\Services\ManagedImageStorage;
+use App\Services\Notifications\GroupUpdateNotificationService;
 use App\Support\Audit\AuditScope;
 use App\Support\Audit\AuditSeverity;
 use Illuminate\Http\JsonResponse;
@@ -24,7 +25,8 @@ class GroupController extends Controller
 
     public function __construct(
         private readonly ManagedImageStorage $managedImageStorage,
-        private readonly AuditLogger $auditLogger
+        private readonly AuditLogger $auditLogger,
+        private readonly GroupUpdateNotificationService $groupUpdateNotificationService,
     ) {}
 
     public function index(Request $request): Response

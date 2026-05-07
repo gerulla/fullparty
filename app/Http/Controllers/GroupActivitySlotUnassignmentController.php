@@ -9,6 +9,7 @@ use App\Models\ActivitySlotAssignment;
 use App\Models\Group;
 use App\Services\Notifications\AssignmentNotificationService;
 use App\Services\Groups\ActivityManagementRealtimeService;
+use App\Services\Groups\ActivitySlotDesignationService;
 use App\Services\Groups\GroupActivityAuditService;
 use App\Services\Groups\ActivitySlotSerializer;
 use App\Services\Groups\ActivitySlotAttendanceService;
@@ -30,6 +31,7 @@ class GroupActivitySlotUnassignmentController extends Controller
         ActivitySlotSerializer $slotSerializer,
         ActivitySlotAttendanceService $attendanceService,
         ActivitySlotStateTokenService $slotStateTokenService,
+        ActivitySlotDesignationService $slotDesignationService,
         ApplicantQueuePayloadBuilder $queuePayloadBuilder,
         AssignmentNotificationService $assignmentNotificationService,
         ActivityManagementRealtimeService $activityManagementRealtimeService,
@@ -119,6 +121,7 @@ class GroupActivitySlotUnassignmentController extends Controller
             }
         });
 
+        $slotDesignationService->clearInvalidDesignations([$slot], auth()->user());
         $slot->load(['assignedCharacter', 'fieldValues', 'assignments']);
 
         $activityAuditService->logRosterEvent(

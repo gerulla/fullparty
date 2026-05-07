@@ -468,6 +468,90 @@ it('notifies manually assigned members when the roster is published', function (
         ->and(NotificationDelivery::query()->where('user_id', $member->id)->where('channel', NotificationChannel::DISCORD)->count())->toBe(1);
 });
 
+it('does not inherit designations when replacing assignees in designated published slots', function () {
+    Queue::fake();
+
+    extract(createPublishedAssignmentFieldNotificationSetup());
+
+    $applicant = User::factory()->create([
+        'assignment_notifications' => true,
+        'email_notifications' => true,
+        'discord_notifications' => false,
+    ]);
+    $character = Character::factory()->primary()->create([
+        'user_id' => $applicant->id,
+        'name' => 'Designation Target',
+        'lodestone_id' => '77774444',
+    ]);
+
+    $character->classes()->attach($tankClass->id, [
+        'level' => 100,
+        'is_preferred' => true,
+    ]);
+    $character->phantomJobs()->attach($phantomKnight->id, [
+        'current_level' => $phantomKnight->max_level,
+        'is_preferred' => true,
+    ]);
+
+    $mainSlot->update([
+        'is_host' => true,
+    ]);
+
+    $application = ActivityApplication::factory()->create([
+        'activity_id' => $activity->id,
+        'user_id' => $applicant->id,
+        'selected_character_id' => $character->id,
+        'applicant_lodestone_id' => $character->lodestone_id,
+        'applicant_character_name' => $character->name,
+        'applicant_world' => $character->world,
+        'applicant_datacenter' => $character->datacenter,
+    ]);
+
+    $application->answers()
+        ->where('question_key', 'character_class')
+        ->update([
+            'value' => [(string) $tankClass->id],
+        ]);
+
+    $application->answers()
+        ->where('question_key', 'phantom_job')
+        ->update([
+            'value' => [(string) $phantomKnight->id],
+        ]);
+
+    $this->actingAs($owner);
+
+    $this->postJson(route('groups.dashboard.activities.slot-assignments.store', [
+        'group' => $group->slug,
+        'activity' => $activity->id,
+        'slot' => $mainSlot->id,
+    ]), [
+        'application_id' => $application->id,
+        'expected_slot_state_token' => activity_slot_state_token($mainSlot->fresh()),
+        'field_values' => [
+            'character_class' => (string) $tankClass->id,
+            'phantom_job' => (string) $phantomKnight->id,
+        ],
+    ])->assertOk();
+
+    $eventTypes = NotificationEvent::query()
+        ->pluck('type')
+        ->sort()
+        ->values()
+        ->all();
+
+    expect($eventTypes)->toBe([
+        'assignments.assigned',
+    ]);
+
+    expect(UserNotification::query()->where('user_id', $applicant->id)->count())->toBe(1)
+        ->and(NotificationDelivery::query()->where('user_id', $applicant->id)->where('channel', NotificationChannel::EMAIL)->count())->toBe(1)
+        ->and($mainSlot->fresh()->is_host)->toBeFalse()
+        ->and($mainSlot->fresh()->assigned_character_id)->toBe($character->id);
+
+    Queue::assertPushed(SendNotificationEmailDeliveryJob::class, 1);
+});
+
 it('does not create assignment notifications while the roster is still unpublished', function () {
     $owner = User::factory()->create();
     $group = Group::factory()->public()->create([

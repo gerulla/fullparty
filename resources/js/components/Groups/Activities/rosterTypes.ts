@@ -31,6 +31,8 @@ export type ActivitySlot = {
 	position_in_group: number
 	sort_order: number
 	is_bench: boolean
+	is_host: boolean
+	is_raid_leader: boolean
 	assigned_character_id: number | null
 	assignment_source: 'application' | 'manual' | null
 	assignment_application_id: number | null

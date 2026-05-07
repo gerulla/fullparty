@@ -33,6 +33,8 @@ const emit = defineEmits<{
 	markSlotMissing: [slotId: number]
 	checkInSlot: [slotId: number]
 	markSlotLate: [slotId: number]
+	markSlotHost: [slotId: number]
+	markSlotRaidLeader: [slotId: number]
 }>();
 
 const { t, locale } = useI18n();
@@ -135,6 +137,21 @@ const rows = computed(() => [...props.slots]
 					? 'warning'
 					: 'success')
 			: 'neutral',
+		designationBadges: [
+			slot.is_host
+				? { label: t('groups.activities.management.roster.host_badge'), color: 'info' as const }
+				: null,
+			slot.is_raid_leader
+				? { label: t('groups.activities.management.roster.raid_leader_badge'), color: 'warning' as const }
+				: null,
+		].filter((badge): badge is { label: string, color: 'info' | 'warning' } => Boolean(badge)),
+		rowToneClass: slot.is_raid_leader && slot.is_host
+			? 'border-amber-400/70 bg-amber-400/10 ring-2 ring-sky-400/50 hover:bg-amber-400/15'
+			: slot.is_raid_leader
+			? 'border-amber-400/70 bg-amber-400/10 hover:bg-amber-400/15'
+			: slot.is_host
+				? 'border-sky-400/70 bg-sky-400/10 hover:bg-sky-400/15'
+				: 'border-default bg-muted hover:bg-background/70 dark:bg-elevated/50',
 		contextMenuItems: [
 			[
 				{
@@ -156,6 +173,26 @@ const rows = computed(() => [...props.slots]
 					icon: 'i-lucide-user-x',
 					disabled: !props.canMarkMissing || props.isSwapPending,
 					onSelect: () => emit('markSlotMissing', slot.id),
+				},
+			],
+			[
+				{
+					label: slot.is_host
+						? t('groups.activities.management.roster.unmark_host_action')
+						: t('groups.activities.management.roster.mark_host_action'),
+					icon: 'i-lucide-badge-check',
+					color: 'info',
+					disabled: slot.is_bench || props.isSwapPending,
+					onSelect: () => emit('markSlotHost', slot.id),
+				},
+				{
+					label: slot.is_raid_leader
+						? t('groups.activities.management.roster.unmark_raid_leader_action')
+						: t('groups.activities.management.roster.mark_raid_leader_action'),
+					icon: 'i-lucide-crown',
+					color: 'warning',
+					disabled: slot.is_bench || props.isSwapPending,
+					onSelect: () => emit('markSlotRaidLeader', slot.id),
 				},
 			],
 			[
@@ -202,8 +239,9 @@ const rows = computed(() => [...props.slots]
 				:disabled="!row.slot.assigned_character_id"
 			>
 				<div
-					class="grid grid-cols-4 items-center gap-4 border border-default bg-muted px-5 py-4 transition-colors duration-200 hover:bg-background/70 dark:bg-elevated/50"
+					class="grid grid-cols-4 items-center gap-4 border px-5 py-4 transition-colors duration-200"
 					:class="[
+						row.rowToneClass,
 						row.slot.assigned_character_id ? 'cursor-grab' : '',
 						draggedSlotId === row.id ? 'bg-primary/10 opacity-70' : '',
 						dropTargetSlotId === row.id && draggedSlotId !== row.id ? 'bg-white/8 shadow-[inset_0_0_0_2px_rgba(255,255,255,0.95)]' : '',
@@ -233,6 +271,13 @@ const rows = computed(() => [...props.slots]
 							<USkeleton class="h-5 w-16 bg-muted/70" />
 						</div>
 						<div v-else class="flex flex-wrap gap-2">
+							<UBadge
+								v-for="badge in row.designationBadges"
+								:key="badge.label"
+								:color="badge.color"
+								variant="soft"
+								:label="badge.label"
+							/>
 							<UBadge
 								v-for="field in row.fields"
 								:key="field"

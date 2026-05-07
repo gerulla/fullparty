@@ -9,6 +9,7 @@ use App\Models\Group;
 use App\Services\Groups\ActivitySlotBench;
 use App\Services\Groups\ActivityManagementRealtimeService;
 use App\Services\Groups\ActivitySlotAttendanceService;
+use App\Services\Groups\ActivitySlotDesignationService;
 use App\Services\Groups\ActivitySlotSerializer;
 use App\Services\Groups\ActivitySlotStateTokenService;
 use App\Services\Groups\GroupActivityAuditService;
@@ -27,6 +28,7 @@ class GroupActivitySlotSwapController extends Controller
         ActivitySlotBench $slotBench,
         GroupActivityAuditService $activityAuditService,
         ActivitySlotAttendanceService $attendanceService,
+        ActivitySlotDesignationService $slotDesignationService,
         ActivitySlotSerializer $slotSerializer,
         ActivitySlotStateTokenService $slotStateTokenService,
         AssignmentNotificationService $assignmentNotificationService,
@@ -102,6 +104,14 @@ class GroupActivitySlotSwapController extends Controller
                 'assigned_character_id' => $targetSlot->assigned_character_id,
                 'assigned_by_user_id' => $targetSlot->assigned_by_user_id,
             ];
+            $sourceDesignationState = [
+                'is_host' => (bool) $sourceSlot->is_host,
+                'is_raid_leader' => (bool) $sourceSlot->is_raid_leader,
+            ];
+            $targetDesignationState = [
+                'is_host' => (bool) $targetSlot->is_host,
+                'is_raid_leader' => (bool) $targetSlot->is_raid_leader,
+            ];
 
             $sourceFieldValues = $sourceSlot->fieldValues
                 ->mapWithKeys(fn ($fieldValue) => [$fieldValue->field_key => $fieldValue->value])
@@ -112,6 +122,22 @@ class GroupActivitySlotSwapController extends Controller
 
             $sourceSlot->update($targetAssignment);
             $targetSlot->update($sourceAssignment);
+            $sourceSlot->update([
+                'is_host' => $targetAssignment['assigned_character_id'] !== null && !$sourceIsBench
+                    ? $targetDesignationState['is_host']
+                    : false,
+                'is_raid_leader' => $targetAssignment['assigned_character_id'] !== null && !$sourceIsBench
+                    ? $targetDesignationState['is_raid_leader']
+                    : false,
+            ]);
+            $targetSlot->update([
+                'is_host' => $sourceAssignment['assigned_character_id'] !== null && !$targetIsBench
+                    ? $sourceDesignationState['is_host']
+                    : false,
+                'is_raid_leader' => $sourceAssignment['assigned_character_id'] !== null && !$targetIsBench
+                    ? $sourceDesignationState['is_raid_leader']
+                    : false,
+            ]);
 
             $this->syncFieldValues($sourceSlot, $targetFieldValues, $sourceIsBench, $targetIsBench);
             $this->syncFieldValues($targetSlot, $sourceFieldValues, $targetIsBench, $sourceIsBench);
@@ -133,6 +159,7 @@ class GroupActivitySlotSwapController extends Controller
             );
         });
 
+        $slotDesignationService->clearInvalidDesignations([$sourceSlot, $targetSlot], $request->user());
         $sourceSlot->load(['assignedCharacter', 'fieldValues', 'assignments']);
         $targetSlot->load(['assignedCharacter', 'fieldValues', 'assignments']);
 

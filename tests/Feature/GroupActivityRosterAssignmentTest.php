@@ -536,6 +536,68 @@ it('manually assigns a group member character to an empty slot without creating 
         ->and($auditLog->metadata['assignment_source'])->toBe(ActivitySlotAssignment::SOURCE_MANUAL);
 });
 
+it('moves raid leader designations with manual reassignments between roster slots', function () {
+    extract(createRosterAssignmentSetup());
+    extract(createGroupMemberCharacterForManualAssignment($group));
+
+    $secondMainSlot = $activity->slots()->create([
+        'group_key' => $mainSlot->group_key,
+        'group_label' => $mainSlot->group_label,
+        'slot_key' => 'party-a-slot-2',
+        'slot_label' => ['en' => 'Party A Slot 2'],
+        'position_in_group' => 2,
+        'sort_order' => 2,
+    ]);
+
+    $character->classes()->attach($tankClass->id, [
+        'level' => 100,
+        'is_preferred' => true,
+    ]);
+    $character->phantomJobs()->attach($phantomKnight->id, [
+        'current_level' => $phantomKnight->max_level,
+        'is_preferred' => true,
+    ]);
+
+    $this->actingAs($owner);
+
+    $this->postJson(route('groups.dashboard.activities.slot-assignments.store', [
+        'group' => $group->slug,
+        'activity' => $activity->id,
+        'slot' => $mainSlot->id,
+    ]), [
+        'character_id' => $character->id,
+        'expected_slot_state_token' => activity_slot_state_token($mainSlot),
+        'field_values' => [
+            'character_class' => (string) $tankClass->id,
+            'phantom_job' => (string) $phantomKnight->id,
+        ],
+    ])->assertOk();
+
+    $mainSlot->update([
+        'is_host' => false,
+        'is_raid_leader' => true,
+    ]);
+
+    $this->postJson(route('groups.dashboard.activities.slot-assignments.store', [
+        'group' => $group->slug,
+        'activity' => $activity->id,
+        'slot' => $secondMainSlot->id,
+    ]), [
+        'character_id' => $character->id,
+        'source_slot_id' => $mainSlot->id,
+        'expected_slot_state_token' => activity_slot_state_token($secondMainSlot),
+        'expected_source_slot_state_token' => activity_slot_state_token($mainSlot->fresh()),
+        'field_values' => [
+            'character_class' => (string) $tankClass->id,
+            'phantom_job' => (string) $phantomKnight->id,
+        ],
+    ])->assertOk();
+
+    expect($mainSlot->fresh()->is_raid_leader)->toBeFalse()
+        ->and($secondMainSlot->fresh()->is_raid_leader)->toBeTrue()
+        ->and($secondMainSlot->fresh()->assigned_character_id)->toBe($character->id);
+});
+
 it('does not allow manually assigned slots to be returned to the queue', function () {
     extract(createRosterAssignmentSetup());
     extract(createGroupMemberCharacterForManualAssignment($group));

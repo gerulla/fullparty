@@ -16,6 +16,7 @@ use App\Http\Controllers\GroupActivityRosterExportController;
 use App\Http\Controllers\GroupActivitySlotCheckInController;
 use App\Http\Controllers\GroupActivitySlotAssignmentContextController;
 use App\Http\Controllers\GroupActivitySlotAssignmentController;
+use App\Http\Controllers\GroupActivitySlotDesignationController;
 use App\Http\Controllers\GroupActivityManualSlotAssignmentOptionsController;
 use App\Http\Controllers\GroupActivitySlotMissingController;
 use App\Http\Controllers\GroupActivitySlotUnassignmentController;
@@ -183,6 +184,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
 		Route::get('/activities/{activity}/slots/{slot}/assignment-context', [GroupActivitySlotAssignmentContextController::class, 'show'])->name('groups.dashboard.activities.slot-assignments.context');
 		Route::get('/activities/{activity}/slots/{slot}/manual-assignment-options', [GroupActivityManualSlotAssignmentOptionsController::class, 'show'])->name('groups.dashboard.activities.slot-manual-assignment-options.show');
 		Route::post('/activities/{activity}/slots/{slot}/assign-application', [GroupActivitySlotAssignmentController::class, 'store'])->name('groups.dashboard.activities.slot-assignments.store');
+		Route::post('/activities/{activity}/slots/{slot}/designation', [GroupActivitySlotDesignationController::class, 'store'])->name('groups.dashboard.activities.slot-designations.store');
 		Route::post('/activities/{activity}/slots/{slot}/mark-missing', [GroupActivitySlotMissingController::class, 'store'])->name('groups.dashboard.activities.slot-missing.store');
 		Route::post('/activities/{activity}/missing-assignments/{assignment}/undo', [GroupActivitySlotMissingController::class, 'undo'])->name('groups.dashboard.activities.slot-missing.undo');
 		Route::post('/activities/{activity}/slots/{slot}/return-to-queue', [GroupActivitySlotUnassignmentController::class, 'store'])->name('groups.dashboard.activities.slot-unassignments.store');

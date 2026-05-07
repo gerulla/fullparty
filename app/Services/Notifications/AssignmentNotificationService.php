@@ -59,6 +59,15 @@ class AssignmentNotificationService
                     published: true,
                 );
             }
+
+            if ($slot->assignedCharacter) {
+                $this->notifySlotDesignations(
+                    $activity,
+                    $slot->assignedCharacter,
+                    $slot,
+                    $actor,
+                );
+            }
         }
     }
 
@@ -76,6 +85,15 @@ class AssignmentNotificationService
             $actor,
             published: false,
         );
+
+        if ($slot && $application->selectedCharacter) {
+            $this->notifySlotDesignations(
+                $activity,
+                $application->selectedCharacter,
+                $slot,
+                $actor,
+            );
+        }
     }
 
     public function notifyManualPlacementChanged(Activity $activity, Character $character, ?ActivitySlot $slot, mixed $actor): void
@@ -91,6 +109,68 @@ class AssignmentNotificationService
             $actor,
             published: false,
         );
+
+        if ($slot) {
+            $this->notifySlotDesignations($activity, $character, $slot, $actor);
+        }
+    }
+
+    public function notifyDesignationChanged(
+        Activity $activity,
+        Character $character,
+        ActivitySlot $slot,
+        string $designation,
+        bool $assigned,
+        mixed $actor,
+    ): void {
+        if ($activity->status !== Activity::STATUS_ASSIGNED) {
+            return;
+        }
+
+        $recipient = $this->characterRecipient($character);
+
+        if (!$recipient) {
+            return;
+        }
+
+        $event = $this->notificationService->createEvent(
+            type: $assigned ? 'assignments.designation_assigned' : 'assignments.designation_removed',
+            category: NotificationCategory::ASSIGNMENTS,
+            titleKey: $assigned
+                ? 'notifications.assignments.designation_assigned.title'
+                : 'notifications.assignments.designation_removed.title',
+            bodyKey: $assigned
+                ? 'notifications.assignments.designation_assigned.body'
+                : 'notifications.assignments.designation_removed.body',
+            messageParams: [
+                'activity' => $this->activityTitle($activity),
+                'group' => $activity->group?->name,
+                'character' => $character->name,
+                'slot' => $this->slotLabel($slot),
+                'slot_group' => $this->groupLabel($slot),
+                'designation' => $this->designationLabel($designation),
+            ],
+            actionUrl: route('account.applications'),
+            actor: $actor instanceof User ? $actor : null,
+            subject: $character,
+            payload: [
+                'activity_id' => $activity->id,
+                'group_id' => $activity->group?->id,
+                'group_slug' => $activity->group?->slug,
+                'character_id' => $character->id,
+                'character_name' => $character->name,
+                'slot_id' => $slot->id,
+                'slot_key' => $slot->slot_key,
+                'slot_label' => $this->slotLabel($slot),
+                'slot_group' => $this->groupLabel($slot),
+                'designation_key' => $designation,
+                'designation_label' => $this->designationLabel($designation),
+                'designation_assigned' => $assigned,
+            ],
+        );
+
+        $this->notificationService->sendInAppNotifications($event, $recipient);
+        $this->notificationService->sendOffSiteNotifications($event, $recipient);
     }
 
     private function notifyApplicationPlacement(
@@ -163,6 +243,35 @@ class AssignmentNotificationService
 
         $this->notificationService->sendInAppNotifications($event, $recipient);
         $this->notificationService->sendOffSiteNotifications($event, $recipient);
+    }
+
+    private function notifySlotDesignations(
+        Activity $activity,
+        Character $character,
+        ActivitySlot $slot,
+        mixed $actor,
+    ): void {
+        if ($slot->is_host) {
+            $this->notifyDesignationChanged(
+                $activity,
+                $character,
+                $slot,
+                ActivitySlot::DESIGNATION_HOST,
+                true,
+                $actor,
+            );
+        }
+
+        if ($slot->is_raid_leader) {
+            $this->notifyDesignationChanged(
+                $activity,
+                $character,
+                $slot,
+                ActivitySlot::DESIGNATION_RAID_LEADER,
+                true,
+                $actor,
+            );
+        }
     }
 
     /**
@@ -337,5 +446,14 @@ class AssignmentNotificationService
         }
 
         return $slot->group_label['en'] ?? $slot->group_key;
+    }
+
+    private function designationLabel(string $designation): string
+    {
+        return match ($designation) {
+            ActivitySlot::DESIGNATION_HOST => 'Host',
+            ActivitySlot::DESIGNATION_RAID_LEADER => 'Raid Leader',
+            default => 'Designation',
+        };
     }
 }

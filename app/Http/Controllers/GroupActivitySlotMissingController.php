@@ -7,6 +7,7 @@ use App\Models\ActivitySlotAssignment;
 use App\Models\ActivitySlot;
 use App\Models\Group;
 use App\Services\Groups\ActivitySlotBench;
+use App\Services\Groups\ActivitySlotDesignationService;
 use App\Services\Groups\ActivityManagementRealtimeService;
 use App\Services\Groups\ActivitySlotAttendanceService;
 use App\Services\Groups\ActivitySlotSerializer;
@@ -27,6 +28,7 @@ class GroupActivitySlotMissingController extends Controller
         GroupActivityAuditService $activityAuditService,
         ActivitySlotSerializer $slotSerializer,
         ActivitySlotStateTokenService $slotStateTokenService,
+        ActivitySlotDesignationService $slotDesignationService,
         ActivityManagementRealtimeService $activityManagementRealtimeService,
     ): JsonResponse {
         $this->authorize('manageDashboard', [$activity, $group]);
@@ -54,6 +56,7 @@ class GroupActivitySlotMissingController extends Controller
         $slotStateTokenService->assertMatches($slot, $validated['expected_slot_state_token']);
         $characterName = $slot->assignedCharacter?->name;
         $missingAssignment = $attendanceService->markMissing($slot, (int) auth()->id());
+        $slotDesignationService->clearInvalidDesignations([$slot], auth()->user());
         $slot->load(['assignedCharacter', 'fieldValues', 'assignments']);
 
         $activityAuditService->logAttendanceEvent(

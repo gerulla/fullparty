@@ -16,6 +16,7 @@ class ActivitySlotAssignmentService
     public function __construct(
         private readonly ActivitySlotBench $slotBench,
         private readonly ActivitySlotAttendanceService $attendanceService,
+        private readonly ActivitySlotDesignationService $slotDesignationService,
         private readonly GroupActivityAuditService $activityAuditService,
         private readonly AssignmentNotificationService $assignmentNotificationService,
     ) {}
@@ -70,6 +71,8 @@ class ActivitySlotAssignmentService
             $displacedApplication,
         ) {
             $activity = $targetSlot->activity;
+            $targetDesignationState = $this->designationState($targetSlot);
+            $sourceDesignationState = $sourceSlot ? $this->designationState($sourceSlot) : $this->emptyDesignationState();
 
             if ($sourceSlot && !$isSourceBench && $isTargetBench && $targetSlot->assigned_character_id) {
                 throw ValidationException::withMessages([
@@ -81,6 +84,11 @@ class ActivitySlotAssignmentService
                 'assigned_character_id' => $application->selected_character_id,
                 'assigned_by_user_id' => $assignedByUserId,
             ]);
+            $this->applyDesignationState(
+                $targetSlot,
+                $sourceSlot ? $sourceDesignationState : $this->emptyDesignationState(),
+                !$isTargetBench,
+            );
 
             if ($isTargetBench) {
                 $this->clearSlotFieldValues($targetSlot);
@@ -109,6 +117,7 @@ class ActivitySlotAssignmentService
                         'assigned_character_id' => $displacedApplication->selected_character_id,
                         'assigned_by_user_id' => $assignedByUserId,
                     ]);
+                    $this->applyDesignationState($sourceSlot, $targetDesignationState, false);
                     $this->clearSlotFieldValues($sourceSlot);
 
                     $displacedApplication->update([
@@ -130,9 +139,11 @@ class ActivitySlotAssignmentService
                         'assigned_character_id' => null,
                         'assigned_by_user_id' => null,
                     ]);
+                    $this->applyDesignationState($sourceSlot, $this->emptyDesignationState(), false);
                     $this->clearSlotFieldValues($sourceSlot);
                 }
             } elseif ($displacedApplication && (int) $displacedApplication->id !== (int) $application->id) {
+                $this->applyDesignationState($targetSlot, $this->emptyDesignationState(), !$isTargetBench);
                 $displacedApplication->update([
                     'status' => ActivityApplication::STATUS_PENDING,
                     'reviewed_by_user_id' => null,
@@ -172,6 +183,15 @@ class ActivitySlotAssignmentService
             $assignedByUserId,
             $metadata,
         );
+
+        $slotsNeedingCleanup = array_filter([
+            $targetSlot,
+            $sourceSlot,
+        ]);
+
+        if ($slotsNeedingCleanup !== []) {
+            $this->slotDesignationService->clearInvalidDesignations($slotsNeedingCleanup, $assignedByUserId);
+        }
 
         $updatedTargetSlot = $targetSlot->fresh(['fieldValues']);
         $targetFieldValuesChanged = $updatedTargetSlot
@@ -275,10 +295,18 @@ class ActivitySlotAssignmentService
             $isTargetBench,
             $activity,
         ) {
+            $targetDesignationState = $this->designationState($targetSlot);
+            $sourceDesignationState = $sourceSlot ? $this->designationState($sourceSlot) : $this->emptyDesignationState();
+
             $targetSlot->update([
                 'assigned_character_id' => $character->id,
                 'assigned_by_user_id' => $assignedByUserId,
             ]);
+            $this->applyDesignationState(
+                $targetSlot,
+                $sourceSlot ? $sourceDesignationState : $targetDesignationState,
+                !$isTargetBench,
+            );
 
             if ($isTargetBench) {
                 $this->clearSlotFieldValues($targetSlot);
@@ -299,6 +327,7 @@ class ActivitySlotAssignmentService
                     'assigned_character_id' => null,
                     'assigned_by_user_id' => null,
                 ]);
+                $this->applyDesignationState($sourceSlot, $this->emptyDesignationState(), false);
                 $this->clearSlotFieldValues($sourceSlot);
 
                 $sourceAssignment = ActivitySlotAssignment::query()
@@ -334,6 +363,15 @@ class ActivitySlotAssignmentService
                 'field_assignment_updated' => $targetPreviousCharacterId === $character->id,
             ],
         );
+
+        $slotsNeedingCleanup = array_filter([
+            $targetSlot,
+            $sourceSlot,
+        ]);
+
+        if ($slotsNeedingCleanup !== []) {
+            $this->slotDesignationService->clearInvalidDesignations($slotsNeedingCleanup, $assignedByUserId);
+        }
 
         if (
             $targetSlot->activity?->status !== Activity::STATUS_ASSIGNED
@@ -584,5 +622,38 @@ class ActivitySlotAssignmentService
                 'label' => $label,
             ],
         };
+    }
+
+    /**
+     * @return array{is_host: bool, is_raid_leader: bool}
+     */
+    private function designationState(ActivitySlot $slot): array
+    {
+        return [
+            'is_host' => (bool) $slot->is_host,
+            'is_raid_leader' => (bool) $slot->is_raid_leader,
+        ];
+    }
+
+    /**
+     * @return array{is_host: bool, is_raid_leader: bool}
+     */
+    private function emptyDesignationState(): array
+    {
+        return [
+            'is_host' => false,
+            'is_raid_leader' => false,
+        ];
+    }
+
+    /**
+     * @param  array{is_host: bool, is_raid_leader: bool}  $designationState
+     */
+    private function applyDesignationState(ActivitySlot $slot, array $designationState, bool $canCarryDesignation): void
+    {
+        $slot->update([
+            'is_host' => $canCarryDesignation ? $designationState['is_host'] : false,
+            'is_raid_leader' => $canCarryDesignation ? $designationState['is_raid_leader'] : false,
+        ]);
     }
 }

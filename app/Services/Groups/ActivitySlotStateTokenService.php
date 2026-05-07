@@ -50,6 +50,8 @@ class ActivitySlotStateTokenService
         $payload = [
             'slot_id' => (int) $slot->id,
             'assigned_character_id' => $slot->assigned_character_id !== null ? (int) $slot->assigned_character_id : null,
+            'is_host' => (bool) $slot->is_host,
+            'is_raid_leader' => (bool) $slot->is_raid_leader,
             'field_values' => $slot->fieldValues
                 ->sortBy('field_key')
                 ->mapWithKeys(fn ($fieldValue) => [$fieldValue->field_key => $fieldValue->value])

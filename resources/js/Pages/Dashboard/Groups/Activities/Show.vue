@@ -101,6 +101,8 @@ type ActivityManagementPatch = {
 	remove_missing_assignment_ids?: number[]
 }
 
+type SlotDesignation = 'host' | 'raid_leader'
+
 const props = defineProps<{
 	group: {
 		id: number
@@ -232,6 +234,16 @@ const findSlotById = (slotId: number | null | undefined) => (
 		? null
 		: currentActivity.value.slots.find((slot) => slot.id === slotId) ?? null
 );
+
+const currentDesignationSlotId = (designation: SlotDesignation) => {
+	if (!currentActivity.value) {
+		return null;
+	}
+
+	return currentActivity.value.slots.find((slot) => (
+		designation === 'host' ? slot.is_host : slot.is_raid_leader
+	))?.id ?? null;
+};
 
 const handleSlotStateConflict = async (error: any) => {
 	if (error?.response?.status !== 409) {
@@ -889,6 +901,14 @@ const markSlotLate = async (slotId: number) => {
 	await updateSlotAttendance(slotId, 'late');
 };
 
+const markSlotHost = async (slotId: number) => {
+	await updateSlotDesignation(slotId, 'host');
+};
+
+const markSlotRaidLeader = async (slotId: number) => {
+	await updateSlotDesignation(slotId, 'raid_leader');
+};
+
 const updateSlotAttendance = async (slotId: number, mode: 'check_in' | 'late') => {
 	if (!currentActivity.value || isActivityArchived.value || isSlotAssignmentPending.value || isSlotSwapPending.value) {
 		return;
@@ -941,6 +961,63 @@ const updateSlotAttendance = async (slotId: number, mode: 'check_in' | 'late') =
 				: ['checked_in', 'late'].includes(slot.attendance_status ?? '')
 				? t('groups.activities.management.messages.undo_check_in_failed')
 				: t('groups.activities.management.messages.check_in_failed'),
+			color: 'error',
+			icon: 'i-lucide-octagon-alert',
+		});
+	} finally {
+		isSlotAssignmentPending.value = false;
+		pendingSwapSlotIds.value = [];
+	}
+};
+
+const updateSlotDesignation = async (slotId: number, designation: SlotDesignation) => {
+	if (!currentActivity.value || isActivityArchived.value || isSlotAssignmentPending.value || isSlotSwapPending.value) {
+		return;
+	}
+
+	const slot = currentActivity.value.slots.find((entry) => entry.id === slotId);
+	const previousDesignationSlotId = currentDesignationSlotId(designation);
+	const pendingSlotIds = [slotId, previousDesignationSlotId]
+		.filter((value): value is number => value !== null);
+
+	if (!slot || !slot.assigned_character_id || slot.is_bench) {
+		return;
+	}
+
+	isSlotAssignmentPending.value = true;
+	pendingSwapSlotIds.value = [...new Set(pendingSlotIds)];
+
+	try {
+		const response = await axios.post(route('groups.dashboard.activities.slot-designations.store', {
+			group: props.group.slug,
+			activity: props.activity.id,
+			slot: slotId,
+		}), {
+			designation,
+			expected_slot_state_token: slot.state_token,
+			expected_current_designation_slot_id: previousDesignationSlotId,
+		});
+
+		const updatedSlots = Array.isArray(response.data?.slots) ? response.data.slots as ActivitySlot[] : [];
+
+		if (updatedSlots.length > 0 && currentActivity.value) {
+			const updatedSlotsById = new Map(updatedSlots.map((updatedSlot) => [updatedSlot.id, updatedSlot]));
+
+			activityData.value = {
+				...currentActivity.value,
+				slots: currentActivity.value.slots.map((currentSlot) => updatedSlotsById.get(currentSlot.id) ?? currentSlot),
+			};
+		}
+	} catch (error: any) {
+		console.error(error);
+
+		if (await handleSlotStateConflict(error)) {
+			return;
+		}
+
+		toast.add({
+			title: t('groups.activities.management.messages.warning_title'),
+			description: error?.response?.data?.message ?? t('groups.activities.management.messages.mark_designation_failed'),
 			color: 'error',
 			icon: 'i-lucide-octagon-alert',
 		});
@@ -1407,6 +1484,8 @@ onBeforeUnmount(() => {
 					@mark-slot-missing="markSlotMissing"
 					@check-in-slot="checkInSlot"
 					@mark-slot-late="markSlotLate"
+					@mark-slot-host="markSlotHost"
+					@mark-slot-raid-leader="markSlotRaidLeader"
 					@check-in-group="checkInGroup"
 				/>
 

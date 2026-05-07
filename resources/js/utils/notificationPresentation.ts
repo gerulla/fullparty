@@ -55,6 +55,14 @@ const TYPE_META: Record<string, { icon: string, iconColor: string }> = {
 		icon: 'i-lucide-unlink',
 		iconColor: 'text-rose-500',
 	},
+	'assignments.designation_assigned': {
+		icon: 'i-lucide-badge-check',
+		iconColor: 'text-sky-500',
+	},
+	'assignments.designation_removed': {
+		icon: 'i-lucide-badge-x',
+		iconColor: 'text-amber-500',
+	},
 	'system.maintenance.upcoming': {
 		icon: 'i-lucide-wrench',
 		iconColor: 'text-amber-500',

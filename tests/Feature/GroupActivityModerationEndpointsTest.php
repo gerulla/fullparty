@@ -9,11 +9,17 @@ use App\Models\ActivityTypeVersion;
 use App\Models\AuditLog;
 use App\Models\Character;
 use App\Models\Group;
+use App\Models\NotificationDelivery;
+use App\Models\NotificationEvent;
+use App\Models\SocialAccount;
 use App\Models\User;
+use App\Models\UserNotification;
 use App\Services\FFLogs\ActivityReportProgressFetcher;
 use App\Services\FFLogs\CharacterZoneProgressFetcher;
+use App\Support\Notifications\NotificationChannel;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Event;
+use Illuminate\Support\Facades\Queue;
 
 uses(RefreshDatabase::class);
 
@@ -371,4 +377,304 @@ it('does not allow moderators to decline applications that are no longer pending
         ->assertJsonValidationErrors(['application']);
 
     expect($application->fresh()->status)->toBe(ActivityApplication::STATUS_APPROVED);
+});
+
+it('marks host designations on published slots with audit, notifications, and live sync', function () {
+    Queue::fake();
+
+    extract(createModerationEndpointSetup([], [
+        'status' => Activity::STATUS_ASSIGNED,
+    ]));
+
+    $secondSlot = $activity->slots()->create([
+        'group_key' => 'party-a',
+        'group_label' => ['en' => 'Party A'],
+        'slot_key' => 'party-a-slot-2',
+        'slot_label' => ['en' => 'Party A 2'],
+        'position_in_group' => 2,
+        'sort_order' => 2,
+    ]);
+
+    $firstUser = User::factory()->create([
+        'assignment_notifications' => true,
+        'email_notifications' => true,
+        'discord_notifications' => false,
+    ]);
+    $secondUser = User::factory()->create([
+        'assignment_notifications' => true,
+        'email_notifications' => true,
+        'discord_notifications' => false,
+    ]);
+
+    $firstCharacter = Character::factory()->primary()->create([
+        'user_id' => $firstUser->id,
+        'name' => 'Host Candidate',
+        'lodestone_id' => '40000001',
+    ]);
+    $secondCharacter = Character::factory()->primary()->create([
+        'user_id' => $secondUser->id,
+        'name' => 'Raid Candidate',
+        'lodestone_id' => '40000002',
+    ]);
+
+    $slot->update([
+        'assigned_character_id' => $firstCharacter->id,
+        'assigned_by_user_id' => $owner->id,
+    ]);
+    $secondSlot->update([
+        'assigned_character_id' => $secondCharacter->id,
+        'assigned_by_user_id' => $owner->id,
+    ]);
+
+    ActivityApplication::factory()->approved($owner)->create([
+        'activity_id' => $activity->id,
+        'user_id' => $firstUser->id,
+        'selected_character_id' => $firstCharacter->id,
+        'applicant_lodestone_id' => $firstCharacter->lodestone_id,
+        'applicant_character_name' => $firstCharacter->name,
+        'applicant_world' => $firstCharacter->world,
+        'applicant_datacenter' => $firstCharacter->datacenter,
+    ]);
+    ActivityApplication::factory()->approved($owner)->create([
+        'activity_id' => $activity->id,
+        'user_id' => $secondUser->id,
+        'selected_character_id' => $secondCharacter->id,
+        'applicant_lodestone_id' => $secondCharacter->lodestone_id,
+        'applicant_character_name' => $secondCharacter->name,
+        'applicant_world' => $secondCharacter->world,
+        'applicant_datacenter' => $secondCharacter->datacenter,
+    ]);
+
+    Event::fake([ActivityManagementUpdated::class]);
+
+    $this->actingAs($owner);
+
+    $this->postJson(route('groups.dashboard.activities.slot-designations.store', [
+        'group' => $group->slug,
+        'activity' => $activity->id,
+        'slot' => $slot->id,
+    ]), [
+        'designation' => 'host',
+        'expected_slot_state_token' => activity_slot_state_token($slot->fresh()),
+        'expected_current_designation_slot_id' => null,
+    ])
+        ->assertOk()
+        ->assertJsonPath('slot.is_host', true);
+
+    expect($slot->fresh()->is_host)->toBeTrue()
+        ->and($secondSlot->fresh()->is_host)->toBeFalse();
+
+    Event::assertDispatched(ActivityManagementUpdated::class, function (ActivityManagementUpdated $event) use ($activity, $group, $slot) {
+        return $event->activityId === $activity->id
+            && $event->groupId === $group->id
+            && count($event->patch['updated_slots'] ?? []) === 1
+            && ($event->patch['updated_slots'][0]['id'] ?? null) === $slot->id
+            && ($event->patch['updated_slots'][0]['is_host'] ?? false) === true;
+    });
+
+    expect(AuditLog::query()->where('action', 'group.activity.roster.host_marked')->count())->toBe(1)
+        ->and(NotificationEvent::query()->where('type', 'assignments.designation_assigned')->count())->toBe(1)
+        ->and(UserNotification::query()->where('user_id', $firstUser->id)->count())->toBe(1)
+        ->and(NotificationDelivery::query()->where('user_id', $firstUser->id)->where('channel', NotificationChannel::EMAIL)->count())->toBe(1);
+
+    $this->postJson(route('groups.dashboard.activities.slot-designations.store', [
+        'group' => $group->slug,
+        'activity' => $activity->id,
+        'slot' => $secondSlot->id,
+    ]), [
+        'designation' => 'host',
+        'expected_slot_state_token' => activity_slot_state_token($secondSlot->fresh()),
+        'expected_current_designation_slot_id' => $slot->id,
+    ])
+        ->assertOk()
+        ->assertJsonCount(2, 'slots');
+
+    expect($slot->fresh()->is_host)->toBeFalse()
+        ->and($secondSlot->fresh()->is_host)->toBeTrue()
+        ->and(AuditLog::query()->where('action', 'group.activity.roster.host_marked')->count())->toBe(2)
+        ->and(AuditLog::query()->where('action', 'group.activity.roster.host_cleared')->count())->toBe(1)
+        ->and(NotificationEvent::query()->where('type', 'assignments.designation_assigned')->count())->toBe(2)
+        ->and(NotificationEvent::query()->where('type', 'assignments.designation_removed')->count())->toBe(1);
+
+    Event::assertDispatched(ActivityManagementUpdated::class, function (ActivityManagementUpdated $event) use ($activity, $group, $slot, $secondSlot) {
+        $updatedSlots = collect($event->patch['updated_slots'] ?? []);
+
+        return $event->activityId === $activity->id
+            && $event->groupId === $group->id
+            && $updatedSlots->count() === 2
+            && $updatedSlots->contains(fn (array $entry) => ($entry['id'] ?? null) === $slot->id && ($entry['is_host'] ?? true) === false)
+            && $updatedSlots->contains(fn (array $entry) => ($entry['id'] ?? null) === $secondSlot->id && ($entry['is_host'] ?? false) === true);
+    });
+});
+
+it('replaces an existing host designation when the same slot is marked as raid leader', function () {
+    Queue::fake();
+
+    extract(createModerationEndpointSetup([], [
+        'status' => Activity::STATUS_ASSIGNED,
+    ]));
+
+    $user = User::factory()->create([
+        'assignment_notifications' => true,
+        'email_notifications' => true,
+        'discord_notifications' => false,
+    ]);
+
+    $character = Character::factory()->primary()->create([
+        'user_id' => $user->id,
+        'name' => 'Dual Marker Candidate',
+        'lodestone_id' => '40000009',
+    ]);
+
+    $slot->update([
+        'assigned_character_id' => $character->id,
+        'assigned_by_user_id' => $owner->id,
+        'is_host' => true,
+        'is_raid_leader' => false,
+    ]);
+
+    ActivityApplication::factory()->approved($owner)->create([
+        'activity_id' => $activity->id,
+        'user_id' => $user->id,
+        'selected_character_id' => $character->id,
+        'applicant_lodestone_id' => $character->lodestone_id,
+        'applicant_character_name' => $character->name,
+        'applicant_world' => $character->world,
+        'applicant_datacenter' => $character->datacenter,
+    ]);
+
+    Event::fake([ActivityManagementUpdated::class]);
+
+    $this->actingAs($owner);
+
+    $this->postJson(route('groups.dashboard.activities.slot-designations.store', [
+        'group' => $group->slug,
+        'activity' => $activity->id,
+        'slot' => $slot->id,
+    ]), [
+        'designation' => 'raid_leader',
+        'expected_slot_state_token' => activity_slot_state_token($slot->fresh()),
+        'expected_current_designation_slot_id' => null,
+    ])
+        ->assertOk()
+        ->assertJsonPath('slot.is_host', false)
+        ->assertJsonPath('slot.is_raid_leader', true);
+
+    expect($slot->fresh()->is_host)->toBeFalse()
+        ->and($slot->fresh()->is_raid_leader)->toBeTrue()
+        ->and(AuditLog::query()->where('action', 'group.activity.roster.host_cleared')->count())->toBe(1)
+        ->and(AuditLog::query()->where('action', 'group.activity.roster.raid_leader_marked')->count())->toBe(1)
+        ->and(NotificationEvent::query()->where('type', 'assignments.designation_removed')->count())->toBe(1)
+        ->and(NotificationEvent::query()->where('type', 'assignments.designation_assigned')->count())->toBe(1);
+
+    Event::assertDispatched(ActivityManagementUpdated::class, function (ActivityManagementUpdated $event) use ($activity, $group, $slot) {
+        $updatedSlots = collect($event->patch['updated_slots'] ?? []);
+
+        return $event->activityId === $activity->id
+            && $event->groupId === $group->id
+            && $updatedSlots->count() === 1
+            && $updatedSlots->contains(fn (array $entry) => ($entry['id'] ?? null) === $slot->id
+                && ($entry['is_host'] ?? true) === false
+                && ($entry['is_raid_leader'] ?? false) === true);
+    });
+});
+
+it('clears host designations when a designated slot is returned to the queue', function () {
+    extract(createModerationEndpointSetup([], [
+        'status' => Activity::STATUS_ASSIGNED,
+    ]));
+
+    $applicant = User::factory()->create([
+        'assignment_notifications' => true,
+    ]);
+    $character = Character::factory()->primary()->create([
+        'user_id' => $applicant->id,
+        'name' => 'Queue Return',
+        'lodestone_id' => '50000001',
+    ]);
+
+    $slot->update([
+        'assigned_character_id' => $character->id,
+        'assigned_by_user_id' => $owner->id,
+        'is_host' => true,
+    ]);
+
+    ActivityApplication::factory()->approved($owner)->create([
+        'activity_id' => $activity->id,
+        'user_id' => $applicant->id,
+        'selected_character_id' => $character->id,
+        'applicant_lodestone_id' => $character->lodestone_id,
+        'applicant_character_name' => $character->name,
+        'applicant_world' => $character->world,
+        'applicant_datacenter' => $character->datacenter,
+    ]);
+
+    $this->actingAs($owner);
+
+    $this->postJson(route('groups.dashboard.activities.slot-unassignments.store', [
+        'group' => $group->slug,
+        'activity' => $activity->id,
+        'slot' => $slot->id,
+    ]), [
+        'expected_slot_state_token' => activity_slot_state_token($slot->fresh()),
+    ])->assertOk();
+
+    expect($slot->fresh()->is_host)->toBeFalse()
+        ->and(AuditLog::query()->where('action', 'group.activity.roster.host_cleared')->count())->toBe(1);
+});
+
+it('moves host designations with the assignee when roster slots are swapped', function () {
+    extract(createModerationEndpointSetup([], [
+        'status' => Activity::STATUS_ASSIGNED,
+    ]));
+
+    $secondSlot = $activity->slots()->create([
+        'group_key' => 'party-a',
+        'group_label' => ['en' => 'Party A'],
+        'slot_key' => 'party-a-slot-2',
+        'slot_label' => ['en' => 'Party A 2'],
+        'position_in_group' => 2,
+        'sort_order' => 2,
+    ]);
+
+    $firstUser = User::factory()->create();
+    $secondUser = User::factory()->create();
+
+    $firstCharacter = Character::factory()->primary()->create([
+        'user_id' => $firstUser->id,
+        'name' => 'Travelling Host',
+        'lodestone_id' => '60000001',
+    ]);
+    $secondCharacter = Character::factory()->primary()->create([
+        'user_id' => $secondUser->id,
+        'name' => 'Static Support',
+        'lodestone_id' => '60000002',
+    ]);
+
+    $slot->update([
+        'assigned_character_id' => $firstCharacter->id,
+        'assigned_by_user_id' => $owner->id,
+        'is_host' => true,
+    ]);
+    $secondSlot->update([
+        'assigned_character_id' => $secondCharacter->id,
+        'assigned_by_user_id' => $owner->id,
+        'is_host' => false,
+    ]);
+
+    $this->actingAs($owner);
+
+    $this->postJson(route('groups.dashboard.activities.slot-swaps.store', [
+        'group' => $group->slug,
+        'activity' => $activity->id,
+    ]), [
+        'source_slot_id' => $slot->id,
+        'target_slot_id' => $secondSlot->id,
+        'expected_source_slot_state_token' => activity_slot_state_token($slot->fresh()),
+        'expected_target_slot_state_token' => activity_slot_state_token($secondSlot->fresh()),
+    ])->assertOk();
+
+    expect($slot->fresh()->is_host)->toBeFalse()
+        ->and($secondSlot->fresh()->is_host)->toBeTrue()
+        ->and($secondSlot->fresh()->assigned_character_id)->toBe($firstCharacter->id);
 });

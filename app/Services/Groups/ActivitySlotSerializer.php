@@ -30,6 +30,8 @@ class ActivitySlotSerializer
             'position_in_group' => $slot->position_in_group,
             'sort_order' => $slot->sort_order,
             'is_bench' => $this->slotBench->isBench($slot),
+            'is_host' => (bool) $slot->is_host,
+            'is_raid_leader' => (bool) $slot->is_raid_leader,
             'assigned_character_id' => $slot->assigned_character_id,
             'assignment_source' => $attendanceAssignment?->assignment_source,
             'assignment_application_id' => $attendanceAssignment?->application_id,

@@ -33,6 +33,8 @@ const emit = defineEmits<{
 	markSlotMissing: [slotId: number]
 	checkInSlot: [slotId: number]
 	markSlotLate: [slotId: number]
+	markSlotHost: [slotId: number]
+	markSlotRaidLeader: [slotId: number]
 }>();
 
 const { t, locale } = useI18n();
@@ -63,6 +65,29 @@ const visibleFieldEntries = computed(() => (
 		? fieldEntries.value.filter((field) => field.value && field.source !== 'character_classes' && field.source !== 'phantom_jobs')
 		: []
 ));
+const designationMarker = computed(() => {
+	if (props.slot.is_raid_leader) {
+		return {
+			key: 'raid-leader',
+			label: t('groups.activities.management.roster.raid_leader_badge'),
+			icon: 'i-lucide-crown',
+			wrapperClass: '-left-2 -top-2 bg-amber-400 text-amber-950 ring-amber-200/80',
+			iconClass: 'text-amber-400 drop-shadow-[0_4px_10px_rgba(251,191,36,0.85)]',
+		};
+	}
+
+	if (props.slot.is_host) {
+		return {
+			key: 'host',
+			label: t('groups.activities.management.roster.host_badge'),
+			icon: 'i-lucide-swords',
+			wrapperClass: '-left-2 -top-2 bg-sky-500 text-sky-50 ring-sky-300/70',
+			iconClass: 'text-sky-500 drop-shadow-[0_4px_10px_rgba(14,165,233,0.85)]',
+		};
+	}
+
+	return null;
+});
 const roleToneClass = computed(() => {
 	if (props.slot.is_bench) {
 		return assignedCharacter.value
@@ -72,6 +97,14 @@ const roleToneClass = computed(() => {
 
 	if (!assignedCharacter.value) {
 		return 'border-dashed border-default bg-elevated hover:border-primary';
+	}
+
+	if (props.slot.is_raid_leader) {
+		return 'border-amber-400/80 bg-amber-400/15 hover:border-amber-300';
+	}
+
+	if (props.slot.is_host) {
+		return 'border-sky-400/80 bg-sky-400/15 hover:border-sky-300';
 	}
 
 	if (props.slot.attendance_status === 'checked_in') {
@@ -147,14 +180,34 @@ const contextMenuItems = computed<ContextMenuItem[][]>(() => [
 			disabled: props.slot.is_bench || !props.canCheckIn || props.isSwapPending || props.slot.attendance_status === 'late',
 			onSelect: () => emit('markSlotLate', props.slot.id),
 		},
-		{
-			label: 'Mark as missing / absent',
-			icon: 'i-lucide-user-x',
-			disabled: !props.canMarkMissing || props.isSwapPending,
-			onSelect: () => emit('markSlotMissing', props.slot.id),
-		},
-	],
-	[
+				{
+					label: 'Mark as missing / absent',
+					icon: 'i-lucide-user-x',
+					disabled: !props.canMarkMissing || props.isSwapPending,
+					onSelect: () => emit('markSlotMissing', props.slot.id),
+				},
+			],
+			[
+				{
+					label: props.slot.is_host
+						? t('groups.activities.management.roster.unmark_host_action')
+						: t('groups.activities.management.roster.mark_host_action'),
+					icon: 'i-lucide-badge-check',
+					color: 'info',
+					disabled: props.slot.is_bench || props.isSwapPending,
+					onSelect: () => emit('markSlotHost', props.slot.id),
+				},
+				{
+					label: props.slot.is_raid_leader
+						? t('groups.activities.management.roster.unmark_raid_leader_action')
+						: t('groups.activities.management.roster.mark_raid_leader_action'),
+					icon: 'i-lucide-crown',
+					color: 'warning',
+					disabled: props.slot.is_bench || props.isSwapPending,
+					onSelect: () => emit('markSlotRaidLeader', props.slot.id),
+				},
+			],
+			[
 		{
 			label: 'Move to bench',
 			icon: 'i-lucide-arrow-down-to-line',
@@ -325,8 +378,22 @@ const handleClick = () => {
 			@dragleave.prevent="emit('dragLeave', slot.id)"
 			@dragover="handleDragOver"
 			@drop="handleDrop"
-			@click="handleClick"
-		>
+		@click="handleClick"
+	>
+			<div
+				v-if="designationMarker"
+				class="pointer-events-none absolute z-20 flex h-8 w-8 items-center justify-center shadow-lg bg-transparent"
+				:class="designationMarker.wrapperClass"
+				:aria-label="designationMarker.label"
+				:title="designationMarker.label"
+			>
+				<UIcon
+					:name="designationMarker.icon"
+					class="h-8 w-8 -rotate-35"
+					:class="designationMarker.iconClass"
+				/>
+			</div>
+
 			<div
 				v-if="isPendingSwap"
 				class="absolute inset-0 z-10 flex flex-col gap-3 border border-white/10 bg-elevated/95 px-4 py-4 shadow-[inset_0_1px_0_rgba(255,255,255,0.08)] backdrop-blur-[1px]"
@@ -446,6 +513,20 @@ const handleClick = () => {
 		@drop="handleDrop"
 		@click="handleClick"
 	>
+		<div
+			v-if="designationMarker"
+			class="pointer-events-none absolute z-20 flex h-8 w-8 items-center justify-center shadow-lg bg-transparent"
+			:class="designationMarker.wrapperClass"
+			:aria-label="designationMarker.label"
+			:title="designationMarker.label"
+		>
+			<UIcon
+				:name="designationMarker.icon"
+				class="h-8 w-8 -rotate-35"
+				:class="designationMarker.iconClass"
+			/>
+		</div>
+
 		<div
 			v-if="isPendingSwap"
 			class="absolute inset-0 z-10 flex flex-col gap-3 border border-white/10 bg-elevated/95 px-4 py-4 shadow-[inset_0_1px_0_rgba(255,255,255,0.08)] backdrop-blur-[1px]"

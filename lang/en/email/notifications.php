@@ -40,6 +40,14 @@ return [
             'title' => 'Assignment returned to review',
             'body' => 'Your application for :activity as :character has been returned to the review queue.',
         ],
+        'designation_assigned' => [
+            'title' => 'Run role updated',
+            'body' => 'You were marked as :designation for :activity in :slot.',
+        ],
+        'designation_removed' => [
+            'title' => 'Run role updated',
+            'body' => 'You are no longer marked as :designation for :activity.',
+        ],
     ],
     'user' => [
         'social_account' => [

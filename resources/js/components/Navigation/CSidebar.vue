@@ -5,20 +5,29 @@ import {useI18n} from "vue-i18n";
 import DevelopmentNotice from "@/components/DevelopmentNotice.vue";
 
 const { t } = useI18n();
+const loginHref = route('login');
+const page = usePage()
+const isAuthenticated = computed(() => Boolean(page.props.auth?.user))
+const authLink = (href, icon, label) => ({
+	label,
+	icon,
+	href: isAuthenticated.value ? href : loginHref,
+	activeHref: href,
+})
 
 const top = computed(() => [
-	{ label: t('navigation.sidebar.dashboard'), href: '/dashboard', icon: 'i-lucide-house' },
-	{ label: t('navigation.sidebar.runs'), href: '/dashboard/runs', icon: 'i-lucide-calendar-days' },
+	authLink(route('dashboard'), 'i-lucide-house', t('navigation.sidebar.dashboard')),
+	authLink('/dashboard/runs', 'i-lucide-calendar-days', t('navigation.sidebar.runs')),
 ])
 
 const account = computed(() => [
-	{ label: t('navigation.sidebar.characters'), href: '/account/characters', icon: 'i-lucide-user-circle' },
-	{ label: t('navigation.sidebar.notifications'), href: '/account/notifications', icon: 'i-lucide-bell' },
-	{ label: t('navigation.sidebar.applications'), href: '/account/applications', icon: 'i-lucide-file-text' },
+	authLink(route('account.characters'), 'i-lucide-user-circle', t('navigation.sidebar.characters')),
+	authLink(route('account.notifications.index'), 'i-lucide-bell', t('navigation.sidebar.notifications')),
+	authLink(route('account.applications'), 'i-lucide-file-text', t('navigation.sidebar.applications')),
 ])
 
 const groups = computed(() => [
-	{ label: t('navigation.sidebar.groups'), href: '/groups', icon: 'i-lucide-shield' },
+	{ label: t('navigation.sidebar.groups'), href: route('groups.index'), icon: 'i-lucide-shield' },
 ])
 
 const admin = computed(() => [
@@ -29,7 +38,6 @@ const admin = computed(() => [
 	{ label: t('navigation.sidebar.pulse'), href: '/pulse', icon: 'i-lucide-activity', external: true },
 ])
 
-const page = usePage()
 const full_logo = "/logos/full.png";
 const compact_logo = "/logos/compact.png";
 const currentUrl = computed(() => page.url)
@@ -92,10 +100,10 @@ watch([currentUrl, groupQuickLinkSections], () => {
 			<div class="mt-4 flex flex-col w-full h-full ">
 				<Link
 					v-for="item in top"
-					:key="item.href"
+					:key="item.activeHref"
 					:href="item.href"
 					class="sidebar-link"
-					:class="currentUrl.startsWith(item.href) ? 'link-highlighted': 'link-default'"
+					:class="currentUrl.startsWith(item.activeHref) ? 'link-highlighted': 'link-default'"
 				>
 					<UIcon :name="item.icon" :class="!collapsed ? 'sidebar-link-icon' : 'sidebar-link-icon-large'" />
 					<span v-if="!collapsed">{{ item.label }}</span>
@@ -106,10 +114,10 @@ watch([currentUrl, groupQuickLinkSections], () => {
 
 				<Link
 					v-for="item in account"
-					:key="item.href"
+					:key="item.activeHref"
 					:href="item.href"
 					class="sidebar-link"
-					:class="currentUrl.startsWith(item.href) ? 'link-highlighted': 'link-default'"
+					:class="currentUrl.startsWith(item.activeHref) ? 'link-highlighted': 'link-default'"
 				>
 					<UIcon :name="item.icon" :class="!collapsed ? 'sidebar-link-icon' : 'sidebar-link-icon-large'" />
 					<span v-if="!collapsed">{{ item.label }}</span>

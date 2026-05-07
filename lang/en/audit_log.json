@@ -150,7 +150,11 @@
           "reassigned": "reassigned a roster slot.",
           "replaced": "replaced a roster assignment.",
           "swapped": "moved people around the roster.",
-          "returned_to_queue": "returned a roster slot to the queue."
+          "returned_to_queue": "returned a roster slot to the queue.",
+          "host_marked": "marked a roster slot as host.",
+          "host_cleared": "cleared the host designation from a roster slot.",
+          "raid_leader_marked": "marked a roster slot as raid leader.",
+          "raid_leader_cleared": "cleared the raid leader designation from a roster slot."
         },
         "attendance": {
           "checked_in": "checked in a roster slot.",
@@ -264,6 +268,9 @@
     "restored_destination": "Restored Destination",
     "is_bench": "Bench Slot",
     "field_assignment_updated": "Field Assignment Updated",
+    "designation": "Designation",
+    "moved_to_slot_label": "Moved To Slot",
+    "moved_to_group_label": "Moved To Group",
     "email": "Email",
     "provider": "Provider",
     "provider_user_id": "Provider User ID",
@@ -359,7 +366,11 @@
           "reassigned": "Roster slot reassigned",
           "replaced": "Roster assignment replaced",
           "swapped": "Roster positions moved",
-          "returned_to_queue": "Roster slot returned to queue"
+          "returned_to_queue": "Roster slot returned to queue",
+          "host_marked": "Roster slot marked as host",
+          "host_cleared": "Roster host designation cleared",
+          "raid_leader_marked": "Roster slot marked as raid leader",
+          "raid_leader_cleared": "Roster raid leader designation cleared"
         },
         "attendance": {
           "checked_in": "Roster slot checked in",

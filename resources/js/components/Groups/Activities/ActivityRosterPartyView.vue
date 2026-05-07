@@ -32,6 +32,8 @@ const emit = defineEmits<{
 	markSlotMissing: [slotId: number]
 	checkInSlot: [slotId: number]
 	markSlotLate: [slotId: number]
+	markSlotHost: [slotId: number]
+	markSlotRaidLeader: [slotId: number]
 	checkInGroup: [groupKey: string]
 }>();
 
@@ -133,6 +135,8 @@ const slotGroups = computed(() => {
 					@mark-slot-missing="emit('markSlotMissing', $event)"
 					@check-in-slot="emit('checkInSlot', $event)"
 					@mark-slot-late="emit('markSlotLate', $event)"
+					@mark-slot-host="emit('markSlotHost', $event)"
+					@mark-slot-raid-leader="emit('markSlotRaidLeader', $event)"
 				/>
 			</div>
 		</section>

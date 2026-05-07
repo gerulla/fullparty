@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import NotificationButton from "@/components/NotificationButton.vue";
+import NotificationBell from "@/components/Navigation/NotificationBell.vue";
 import UserMenu from "@/components/Navigation/UserMenu.vue";
 import { usePersistentLocale } from "@/composables/usePersistentLocale";
 import { useI18n } from "vue-i18n";
@@ -27,7 +27,7 @@ defineProps({
 		</template>
 
 		<template #right>
-			<NotificationButton />
+			<NotificationBell />
 			<UColorModeButton />
 			<ULocaleSelect
 				variant="ghost"

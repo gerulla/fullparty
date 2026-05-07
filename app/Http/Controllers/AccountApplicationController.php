@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Activity;
 use App\Models\ActivityApplication;
 use App\Services\Groups\GroupActivityAuditService;
+use App\Services\Notifications\ApplicationNotificationService;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -16,6 +17,7 @@ class AccountApplicationController extends Controller
 {
     public function __construct(
         private readonly GroupActivityAuditService $activityAuditService,
+        private readonly ApplicationNotificationService $applicationNotificationService,
     ) {}
 
     public function index(Request $request): Response
@@ -74,6 +76,11 @@ class AccountApplicationController extends Controller
 
             $this->activityAuditService->logApplicationWithdrawn($application, $user);
         });
+
+        $this->applicationNotificationService->notifyWithdrawn(
+            $application->fresh(['activity.group', 'selectedCharacter', 'user']),
+            $user,
+        );
 
         return redirect()->route('account.applications');
     }

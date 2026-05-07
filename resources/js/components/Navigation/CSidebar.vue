@@ -13,6 +13,7 @@ const top = computed(() => [
 
 const account = computed(() => [
 	{ label: t('navigation.sidebar.characters'), href: '/account/characters', icon: 'i-lucide-user-circle' },
+	{ label: t('navigation.sidebar.notifications'), href: '/account/notifications', icon: 'i-lucide-bell' },
 	{ label: t('navigation.sidebar.applications'), href: '/account/applications', icon: 'i-lucide-file-text' },
 ])
 

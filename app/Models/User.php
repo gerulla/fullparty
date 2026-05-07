@@ -22,10 +22,12 @@ use Illuminate\Notifications\Notifiable;
 	'is_admin',
 	'public_profile',
 	'public_characters',
-	'run_reminders',
 	'application_notifications',
-	'group_updates',
-	'assignment_updates',
+	'run_and_reminder_notifications',
+	'group_update_notifications',
+	'assignment_notifications',
+	'account_character_notifications',
+	'system_notice_notifications',
 	'email_notifications',
 	'discord_notifications',
 ])]
@@ -45,6 +47,17 @@ class User extends Authenticatable implements MustVerifyEmail
         return [
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
+            'is_admin' => 'boolean',
+            'public_profile' => 'boolean',
+            'public_characters' => 'boolean',
+            'application_notifications' => 'boolean',
+            'run_and_reminder_notifications' => 'boolean',
+            'group_update_notifications' => 'boolean',
+            'assignment_notifications' => 'boolean',
+            'account_character_notifications' => 'boolean',
+            'system_notice_notifications' => 'boolean',
+            'email_notifications' => 'boolean',
+            'discord_notifications' => 'boolean',
         ];
     }
 	
@@ -61,6 +74,16 @@ class User extends Authenticatable implements MustVerifyEmail
 	public function socialAccounts(): User|\Illuminate\Database\Eloquent\Relations\HasMany
 	{
 		return $this->hasMany(SocialAccount::class);
+	}
+
+	public function inAppNotifications(): HasMany
+	{
+		return $this->hasMany(UserNotification::class)->latest();
+	}
+
+	public function notificationDeliveries(): HasMany
+	{
+		return $this->hasMany(NotificationDelivery::class)->latest();
 	}
 
 	public function ownedGroups(): HasMany

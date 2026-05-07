@@ -7,6 +7,7 @@ use App\Models\ActivityApplication;
 use App\Models\Group;
 use App\Services\Groups\ApplicantQueue\ApplicantQueuePayloadBuilder;
 use App\Services\Groups\GroupActivityAuditService;
+use App\Services\Notifications\ApplicationNotificationService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -21,6 +22,7 @@ class GroupActivityApplicationDeclineController extends Controller
         ActivityApplication $application,
         GroupActivityAuditService $activityAuditService,
         ApplicantQueuePayloadBuilder $queuePayloadBuilder,
+        ApplicationNotificationService $applicationNotificationService,
     ): JsonResponse {
         $this->authorize('manageDashboard', [$activity, $group]);
 
@@ -57,6 +59,11 @@ class GroupActivityApplicationDeclineController extends Controller
             $application->loadMissing(['activity.group', 'selectedCharacter', 'user']);
             $activityAuditService->logApplicationDeclined($application, $request->user());
         });
+
+        $applicationNotificationService->notifyDeclined(
+            $application->fresh(['activity.group', 'selectedCharacter', 'user']),
+            $request->user(),
+        );
 
         return response()->json([
             'application' => $queuePayloadBuilder->serializeApplicationForModerator(

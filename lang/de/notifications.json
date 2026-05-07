@@ -1,0 +1,64 @@
+{
+  "ui": {
+    "title": "Benachrichtigungen",
+    "empty": "Noch keine Benachrichtigungen.",
+    "view_all": "Alle Benachrichtigungen anzeigen",
+    "mark_all_as_read": "Alle als gelesen markieren",
+    "new_badge": "Neu",
+    "important_badge": "Wichtig",
+    "fallback_title": "Benachrichtigung",
+    "just_now": "Gerade eben"
+  },
+  "page": {
+    "title": "Benachrichtigungen",
+    "subtitle": "Behalte Konto-, Run- und Gruppen-Updates vom neuesten bis zum ältesten im Blick.",
+    "empty_title": "Noch keine Benachrichtigungen",
+    "empty_description": "Sobald FullParty dir etwas mitteilen möchte, erscheint es hier.",
+    "showing_latest_first": "Neueste Benachrichtigungen werden zuerst angezeigt.",
+    "total_count": "{count} Benachrichtigungen in deinem Verlauf.",
+    "unread_count": "{count} ungelesen",
+    "load_more": "Mehr laden",
+    "loading_more": "Lädt...",
+    "mark_all_success_title": "Benachrichtigungen aktualisiert",
+    "mark_all_success_description": "Alle Benachrichtigungen wurden als gelesen markiert."
+  },
+  "user": {
+    "settings": {
+      "notifications_updated": {
+        "title": "Benachrichtigungseinstellungen aktualisiert",
+        "body": "Deine Benachrichtigungseinstellungen wurden aktualisiert. Geänderte Präferenzen: {settings}"
+      },
+      "username_updated": {
+        "title": "Kontoeinstellungen aktualisiert",
+        "body": "Deine Kontoeinstellungen wurden aktualisiert. Geänderte Einstellungen: {settings}"
+      },
+      "privacy_updated": {
+        "title": "Datenschutzeinstellungen aktualisiert",
+        "body": "Deine Datenschutzeinstellungen wurden aktualisiert. Geänderte Einstellungen: {settings}"
+      }
+    }
+  },
+  "applications": {
+    "submitted": {
+      "title": "Neue Bewerbung erhalten",
+      "body": "{character} hat sich für {activity} beworben."
+    },
+    "updated": {
+      "title": "Bewerbung aktualisiert",
+      "body": "{character} hat die Bewerbung für {activity} aktualisiert."
+    },
+    "withdrawn": {
+      "title": "Bewerbung zurückgezogen",
+      "body": "{character} hat die Bewerbung für {activity} zurückgezogen."
+    },
+    "declined": {
+      "title": "Bewerbung abgelehnt",
+      "body": "Deine Bewerbung als {character} für {activity} wurde abgelehnt.",
+      "body_with_reason": "Deine Bewerbung als {character} für {activity} wurde abgelehnt. Grund: {reason}"
+    },
+    "cancelled": {
+      "title": "Bewerbung storniert",
+      "body": "Deine Bewerbung als {character} für {activity} wurde storniert, weil der Run abgesagt wurde."
+    }
+  }
+}

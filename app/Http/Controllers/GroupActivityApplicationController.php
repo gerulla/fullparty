@@ -12,6 +12,7 @@ use App\Models\Group;
 use App\Models\PhantomJob;
 use App\Services\Groups\GroupActivityAuditService;
 use App\Services\Lodestone\LodestoneCharacterSearchService;
+use App\Services\Notifications\ApplicationNotificationService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -28,6 +29,7 @@ class GroupActivityApplicationController extends Controller
     public function __construct(
         private readonly GroupActivityAuditService $activityAuditService,
         private readonly LodestoneCharacterSearchService $lodestoneCharacterSearchService,
+        private readonly ApplicationNotificationService $applicationNotificationService,
     ) {}
 
     public function show(Request $request, Group $group, Activity $activity, ?string $secretKey = null): Response
@@ -268,6 +270,11 @@ class GroupActivityApplicationController extends Controller
             return $application;
         });
 
+        $this->applicationNotificationService->notifySubmitted(
+            $application->fresh(['activity.group', 'selectedCharacter', 'user']),
+            $user,
+        );
+
         if (!$user) {
             return redirect()->route('groups.activities.application.status', [
                 ...$this->activityAttendeeRouteParameters($group, $activity, $secretKey),
@@ -345,6 +352,11 @@ class GroupActivityApplicationController extends Controller
             return $application->id;
         });
 
+        $this->applicationNotificationService->notifyUpdated(
+            $application->fresh(['activity.group', 'selectedCharacter', 'user']),
+            $user,
+        );
+
         $request->session()->put($this->confirmationSessionKey($activity->id), [
             'application_id' => $applicationId,
             'mode' => 'updated',
@@ -398,6 +410,11 @@ class GroupActivityApplicationController extends Controller
             $application->loadMissing(['activity.group', 'selectedCharacter', 'user']);
             $this->activityAuditService->logApplicationUpdated($application, null);
         });
+
+        $this->applicationNotificationService->notifyUpdated(
+            $application->fresh(['activity.group', 'selectedCharacter', 'user']),
+            null,
+        );
 
         return redirect()->route('groups.activities.application.status', [
             ...$this->activityAttendeeRouteParameters($group, $activity, $secretKey),

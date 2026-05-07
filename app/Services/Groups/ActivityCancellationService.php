@@ -5,6 +5,7 @@ namespace App\Services\Groups;
 use App\Models\Activity;
 use App\Models\ActivityApplication;
 use App\Models\ActivitySlot;
+use App\Services\Notifications\ApplicationNotificationService;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 
@@ -14,6 +15,7 @@ class ActivityCancellationService
 
     public function __construct(
         private readonly GroupActivityAuditService $activityAuditService,
+        private readonly ApplicationNotificationService $applicationNotificationService,
     ) {}
 
     /**
@@ -81,10 +83,11 @@ class ActivityCancellationService
             return $applicationsToCancel;
         });
 
-        // TODO: Notify affected applicants and rostered characters that this run was cancelled.
+        // TODO: Fan these cancellation notifications out to off-site channels when the product explicitly enables them.
         $cancelledApplications->each(function (ActivityApplication $application) use ($actor): void {
             $application->loadMissing(['activity.group', 'selectedCharacter', 'user']);
             $this->activityAuditService->logApplicationCancelled($application, $actor);
+            $this->applicationNotificationService->notifyCancelled($application, $actor);
         });
 
         return $cancelledApplications;

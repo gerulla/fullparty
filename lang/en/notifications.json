@@ -1,0 +1,64 @@
+{
+  "ui": {
+    "title": "Notifications",
+    "empty": "No notifications yet.",
+    "view_all": "View all notifications",
+    "mark_all_as_read": "Mark all as read",
+    "new_badge": "New",
+    "important_badge": "Important",
+    "fallback_title": "Notification",
+    "just_now": "Just now"
+  },
+  "page": {
+    "title": "Notifications",
+    "subtitle": "Catch up on account, run, and group updates from newest to oldest.",
+    "empty_title": "No notifications yet",
+    "empty_description": "Once FullParty has something to tell you, it will show up here.",
+    "showing_latest_first": "Showing newest notifications first.",
+    "total_count": "{count} notifications in your history.",
+    "unread_count": "{count} unread",
+    "load_more": "Load More",
+    "loading_more": "Loading...",
+    "mark_all_success_title": "Notifications updated",
+    "mark_all_success_description": "All notifications were marked as read."
+  },
+  "user": {
+    "settings": {
+      "notifications_updated": {
+        "title": "Notification settings updated",
+        "body": "Your notification preferences were updated. Changed preferences: {settings}"
+      },
+      "username_updated": {
+        "title": "Account settings updated",
+        "body": "Your account settings were updated. Changed settings: {settings}"
+      },
+      "privacy_updated": {
+        "title": "Privacy settings updated",
+        "body": "Your privacy settings were updated. Changed settings: {settings}"
+      }
+    }
+  },
+  "applications": {
+    "submitted": {
+      "title": "New application received",
+      "body": "{character} submitted an application for {activity}."
+    },
+    "updated": {
+      "title": "Application updated",
+      "body": "{character} updated their application for {activity}."
+    },
+    "withdrawn": {
+      "title": "Application withdrawn",
+      "body": "{character} withdrew their application for {activity}."
+    },
+    "declined": {
+      "title": "Application declined",
+      "body": "Your application as {character} for {activity} was declined.",
+      "body_with_reason": "Your application as {character} for {activity} was declined. Reason: {reason}"
+    },
+    "cancelled": {
+      "title": "Application cancelled",
+      "body": "Your application as {character} for {activity} was cancelled because the run was cancelled."
+    }
+  }
+}

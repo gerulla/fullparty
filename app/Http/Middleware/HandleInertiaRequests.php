@@ -3,11 +3,16 @@
 namespace App\Http\Middleware;
 
 use App\Models\Group;
+use App\Services\Notifications\UserNotificationSerializer;
 use Illuminate\Http\Request;
 use Inertia\Middleware;
 
 class HandleInertiaRequests extends Middleware
 {
+    public function __construct(
+        private readonly UserNotificationSerializer $notificationSerializer,
+    ) {}
+
     /**
      * The root template that's loaded on the first page visit.
      *
@@ -71,6 +76,21 @@ class HandleInertiaRequests extends Middleware
 						'member' => [],
 					],
 			],
+            'notifications' => [
+                'unread_count' => fn () => $request->user()
+                    ? $request->user()->inAppNotifications()->whereNull('read_at')->count()
+                    : 0,
+                'latest' => fn () => $request->user()
+                    ? $this->notificationSerializer->serializeCollection(
+                        $request->user()
+                            ->inAppNotifications()
+                            ->with('notificationEvent')
+                            ->latest('created_at')
+                            ->limit(5)
+                            ->get()
+                    )
+                    : [],
+            ],
 			'lookups' => [
 				'datacenters' => fn () => collect(config('datacenters.values', []))
 					->map(fn (string $value) => [

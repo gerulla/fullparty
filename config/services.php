@@ -53,6 +53,10 @@ return [
 		'redirect' => env('DISCORD_REDIRECT_URI'),
 	],
 
+    'discord_notifications' => [
+        'enabled' => env('DISCORD_NOTIFICATIONS_ENABLED', false),
+    ],
+
 	'ff_logs' => [
 		'client_id' => env('FFLOGS_CLIENT_ID'),
 		'client_secret' => env('FFLOGS_CLIENT_SECRET'),

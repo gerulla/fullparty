@@ -3,6 +3,7 @@
 use App\Http\Controllers\AdminCharacterController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AccountApplicationController;
+use App\Http\Controllers\AccountNotificationController;
 use App\Http\Controllers\GroupActivityController;
 use App\Http\Controllers\GroupActivityApplicationController;
 use App\Http\Controllers\GroupActivityApplicationDeclineController;
@@ -197,6 +198,11 @@ Route::middleware(['auth', 'verified'])->group(function () {
 	Route::get('/account/characters', [CharacterController::class, 'list'])->name('account.characters');
 	Route::get('/account/applications', [AccountApplicationController::class, 'index'])->name('account.applications');
 	Route::delete('/account/applications/{application}', [AccountApplicationController::class, 'destroy'])->name('account.applications.destroy');
+	Route::get('/account/notifications', [AccountNotificationController::class, 'index'])->name('account.notifications.index');
+	Route::get('/account/notifications/feed', [AccountNotificationController::class, 'feed'])->name('account.notifications.feed');
+	Route::get('/account/notifications/summary', [AccountNotificationController::class, 'summary'])->name('account.notifications.summary');
+	Route::post('/account/notifications/read-all', [AccountNotificationController::class, 'readAll'])->name('account.notifications.read-all');
+	Route::get('/account/notifications/{notification}/open', [AccountNotificationController::class, 'open'])->name('account.notifications.open');
 	Route::post('/characters/exists', [CharacterController::class, 'exists'])->name('characters.exists');
 	Route::post('/characters/verify', [CharacterController::class, 'verify'])->name('characters.verify');
 	Route::post('/characters/{character}/refresh', [CharacterController::class, 'refreshCharacterData'])->name('characters.refresh');

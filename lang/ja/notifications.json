@@ -1,0 +1,64 @@
+{
+  "ui": {
+    "title": "通知",
+    "empty": "まだ通知はありません。",
+    "view_all": "すべての通知を見る",
+    "mark_all_as_read": "すべて既読にする",
+    "new_badge": "新着",
+    "important_badge": "重要",
+    "fallback_title": "通知",
+    "just_now": "たった今"
+  },
+  "page": {
+    "title": "通知",
+    "subtitle": "アカウント、募集、グループの更新を新しい順に確認できます。",
+    "empty_title": "まだ通知はありません",
+    "empty_description": "FullParty からお知らせがあると、ここに表示されます。",
+    "showing_latest_first": "新しい通知から表示しています。",
+    "total_count": "履歴に {count} 件の通知があります。",
+    "unread_count": "未読 {count} 件",
+    "load_more": "さらに読み込む",
+    "loading_more": "読み込み中...",
+    "mark_all_success_title": "通知を更新しました",
+    "mark_all_success_description": "すべての通知を既読にしました。"
+  },
+  "user": {
+    "settings": {
+      "notifications_updated": {
+        "title": "通知設定を更新しました",
+        "body": "通知設定が更新されました。変更された設定: {settings}"
+      },
+      "username_updated": {
+        "title": "アカウント設定を更新しました",
+        "body": "アカウント設定が更新されました。変更された設定: {settings}"
+      },
+      "privacy_updated": {
+        "title": "プライバシー設定を更新しました",
+        "body": "プライバシー設定が更新されました。変更された設定: {settings}"
+      }
+    }
+  },
+  "applications": {
+    "submitted": {
+      "title": "新しい応募が届きました",
+      "body": "{character} が {activity} に応募しました。"
+    },
+    "updated": {
+      "title": "応募内容が更新されました",
+      "body": "{character} が {activity} の応募内容を更新しました。"
+    },
+    "withdrawn": {
+      "title": "応募が取り下げられました",
+      "body": "{character} が {activity} の応募を取り下げました。"
+    },
+    "declined": {
+      "title": "応募が辞退されました",
+      "body": "{activity} への {character} としての応募は見送られました。",
+      "body_with_reason": "{activity} への {character} としての応募は見送られました。理由: {reason}"
+    },
+    "cancelled": {
+      "title": "応募がキャンセルされました",
+      "body": "{activity} への {character} としての応募は、募集が中止されたためキャンセルされました。"
+    }
+  }
+}

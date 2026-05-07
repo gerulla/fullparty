@@ -8,10 +8,12 @@ const props = defineProps({
 const { t } = useI18n();
 
 const form = useForm({
-	run_reminders: props.user.run_reminders,
 	application_notifications: props.user.application_notifications,
-	group_updates: props.user.group_updates,
-	assignment_updates: props.user.assignment_updates,
+	run_and_reminder_notifications: props.user.run_and_reminder_notifications,
+	group_update_notifications: props.user.group_update_notifications,
+	assignment_notifications: props.user.assignment_notifications,
+	account_character_notifications: props.user.account_character_notifications,
+	system_notice_notifications: props.user.system_notice_notifications,
 	email_notifications: props.user.email_notifications,
 	discord_notifications: props.user.discord_notifications,
 })
@@ -35,48 +37,84 @@ function submit() {
 			</div>
 		</template>
 		<form @submit.prevent="submit" class="w-full flex flex-col items-stretch gap-4 mb-4">
-			<div class="option">
-				<div>
-					<p class="font-semibold">{{ t('settings.notifications.run_reminders') }}</p>
-					<p class="text-sm">{{ t('settings.notifications.run_reminders_description') }}</p>
+			<div class="section">
+				<div class="section-heading">
+					<p class="font-semibold text-toned">{{ t('settings.notifications.categories_title') }}</p>
+					<p class="text-sm text-muted">{{ t('settings.notifications.categories_description') }}</p>
 				</div>
-				<UCheckbox v-model="form.run_reminders" />
-			</div>
-			<div class="option">
-				<div>
-					<p class="font-semibold">{{ t('settings.notifications.application_notifications') }}</p>
-					<p class="text-sm">{{ t('settings.notifications.application_notifications_description') }}</p>
+
+				<div class="option">
+					<div>
+						<p class="font-semibold">{{ t('settings.notifications.applications') }}</p>
+						<p class="text-sm">{{ t('settings.notifications.applications_description') }}</p>
+					</div>
+					<USwitch v-model="form.application_notifications" />
 				</div>
-				<UCheckbox v-model="form.application_notifications"/>
-			</div>
-			<div class="option">
-				<div>
-					<p class="font-semibold">{{ t('settings.notifications.group_updates') }}</p>
-					<p class="text-sm">{{ t('settings.notifications.group_updates_description') }}</p>
+
+				<div class="option">
+					<div>
+						<p class="font-semibold">{{ t('settings.notifications.assignments') }}</p>
+						<p class="text-sm">{{ t('settings.notifications.assignments_description') }}</p>
+					</div>
+					<USwitch v-model="form.assignment_notifications" />
 				</div>
-				<UCheckbox v-model="form.group_updates"/>
-			</div>
-			<div class="option">
-				<div>
-					<p class="font-semibold">{{ t('settings.notifications.assignment_updates') }}</p>
-					<p class="text-sm">{{ t('settings.notifications.assignment_updates_description') }}</p>
+
+				<div class="option">
+					<div>
+						<p class="font-semibold">{{ t('settings.notifications.runs_and_reminders') }}</p>
+						<p class="text-sm">{{ t('settings.notifications.runs_and_reminders_description') }}</p>
+					</div>
+					<USwitch v-model="form.run_and_reminder_notifications" />
 				</div>
-				<UCheckbox v-model="form.assignment_updates"/>
-			</div>
-			<div class="option">
-				<div>
-					<p class="font-semibold">{{ t('settings.notifications.email_notifications') }}</p>
-					<p class="text-sm">{{ t('settings.notifications.email_notifications_description') }}</p>
+
+				<div class="option">
+					<div>
+						<p class="font-semibold">{{ t('settings.notifications.group_updates') }}</p>
+						<p class="text-sm">{{ t('settings.notifications.group_updates_description') }}</p>
+					</div>
+					<USwitch v-model="form.group_update_notifications" />
 				</div>
-				<UCheckbox v-model="form.email_notifications" />
-			</div>
-			<div :class="hasProvider('discord') ? 'option' : 'option-muted'">
-				<div>
-					<p class="font-semibold">{{ t('settings.notifications.discord_notifications') }}</p>
-					<p class="text-sm">{{ t('settings.notifications.discord_notifications_description') }}</p>
+
+				<div class="option">
+					<div>
+						<p class="font-semibold">{{ t('settings.notifications.account_character_updates') }}</p>
+						<p class="text-sm">{{ t('settings.notifications.account_character_updates_description') }}</p>
+					</div>
+					<USwitch v-model="form.account_character_notifications" />
 				</div>
-				<UCheckbox v-model="form.discord_notifications" :disabled="!hasProvider('discord')"/>
+
+				<div class="option">
+					<div>
+						<p class="font-semibold">{{ t('settings.notifications.system_notices') }}</p>
+						<p class="text-sm">{{ t('settings.notifications.system_notices_description') }}</p>
+					</div>
+					<USwitch v-model="form.system_notice_notifications" />
+				</div>
 			</div>
+
+			<div class="section">
+				<div class="section-heading">
+					<p class="font-semibold text-toned">{{ t('settings.notifications.delivery_title') }}</p>
+					<p class="text-sm text-muted">{{ t('settings.notifications.delivery_description') }}</p>
+				</div>
+
+				<div class="option">
+					<div>
+						<p class="font-semibold">{{ t('settings.notifications.email_notifications') }}</p>
+						<p class="text-sm">{{ t('settings.notifications.email_notifications_description') }}</p>
+					</div>
+					<USwitch v-model="form.email_notifications" />
+				</div>
+
+				<div :class="hasProvider('discord') ? 'option' : 'option-muted'">
+					<div>
+						<p class="font-semibold">{{ t('settings.notifications.discord_notifications') }}</p>
+						<p class="text-sm">{{ t('settings.notifications.discord_notifications_description') }}</p>
+					</div>
+					<USwitch v-model="form.discord_notifications" :disabled="!hasProvider('discord')" />
+				</div>
+			</div>
+
 			<div class="m-0 p-0">
 				<UButton type="submit" :label="t('settings.notifications.save')" size="lg" color="neutral"/>
 			</div>
@@ -93,5 +131,13 @@ function submit() {
 
 .option-muted {
 	@apply w-full flex flex-row items-center justify-between text-muted cursor-not-allowed;
+}
+
+.section {
+	@apply flex flex-col gap-4;
+}
+
+.section-heading {
+	@apply flex flex-col gap-1 pb-1;
 }
 </style>

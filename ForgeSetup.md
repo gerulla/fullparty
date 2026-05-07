@@ -64,12 +64,17 @@ DB_USERNAME=your-user
 DB_PASSWORD=your-password
 
 QUEUE_CONNECTION=database
-CACHE_STORE=database
+CACHE_STORE=redis
 SESSION_DRIVER=database
 
-BROADCAST_CONNECTION=reverb
+REDIS_CLIENT=phpredis
+REDIS_HOST=127.0.0.1
+REDIS_PASSWORD=null
+REDIS_PORT=6379
 
 PULSE_CACHE_DRIVER=array
+
+BROADCAST_CONNECTION=reverb
 ```
 
 Also configure:
@@ -77,6 +82,70 @@ Also configure:
 - mail settings
 - Google / Discord / XIVAuth credentials if those login providers are enabled
 - Reverb credentials and host settings
+- FF Logs API credentials if FF Logs integrations are enabled
+
+### Redis cache recommendation
+
+For Forge, FullParty should use Redis for the main application cache:
+
+```env
+CACHE_STORE=redis
+REDIS_CLIENT=phpredis
+REDIS_HOST=127.0.0.1
+REDIS_PASSWORD=null
+REDIS_PORT=6379
+```
+
+Why:
+
+- Redis is the better production cache backend for Laravel
+- it avoids putting general cache traffic in the database
+- it plays more nicely with operational features like locks and cache-heavy app flows
+
+Important distinction:
+
+- the app cache should use Redis
+- Pulse should still keep:
+
+```env
+PULSE_CACHE_DRIVER=array
+```
+
+That Pulse-specific cache setting is intentional for this repo and avoids the dashboard cache hydration issue we already hit.
+
+### Social authentication environment variables
+
+If you are using social login providers on the Forge instance, configure:
+
+```env
+GOOGLE_CLIENT_ID=
+GOOGLE_CLIENT_SECRET=
+GOOGLE_REDIRECT_URI=https://your-domain.example/auth/google/callback
+
+DISCORD_CLIENT_ID=
+DISCORD_CLIENT_SECRET=
+DISCORD_REDIRECT_URI=https://your-domain.example/auth/discord/callback
+
+XIVAUTH_CLIENT_ID=
+XIVAUTH_CLIENT_SECRET=
+XIVAUTH_REDIRECT_URI=https://your-domain.example/auth/xivauth/callback
+```
+
+If a provider is not being used, its variables can be left unset.
+
+### FF Logs environment variables
+
+If FF Logs-backed features are enabled, configure:
+
+```env
+FFLOGS_CLIENT_ID=
+FFLOGS_CLIENT_SECRET=
+FFLOGS_TOKEN_URL=https://www.fflogs.com/oauth/token
+FFLOGS_GRAPHQL_URL=https://www.fflogs.com/api/v2/client
+FFLOGS_FORKED_TOWER_BLOOD_ZONE_ID=
+```
+
+The URL values can usually stay at their defaults unless FF Logs changes its API endpoints or you have a specific override reason.
 
 ## 3. Reverb Environment
 

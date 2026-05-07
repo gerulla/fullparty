@@ -60,5 +60,27 @@
       "title": "Bewerbung storniert",
       "body": "Deine Bewerbung als {character} für {activity} wurde storniert, weil der Run abgesagt wurde."
     }
+  },
+  "assignments": {
+    "roster_published_assigned": {
+      "title": "Roster veröffentlicht",
+      "body": "Die Aufstellung für {activity} wurde veröffentlicht. Du bist als {character} auf {slot} eingetragen."
+    },
+    "roster_published_bench": {
+      "title": "Roster veröffentlicht",
+      "body": "Die Aufstellung für {activity} wurde veröffentlicht. Du bist als {character} auf der Bank."
+    },
+    "assigned": {
+      "title": "Roster-Zuweisung aktualisiert",
+      "body": "Du bist jetzt als {character} auf {slot} für {activity} eingetragen."
+    },
+    "on_bench": {
+      "title": "Bank-Zuweisung aktualisiert",
+      "body": "Du bist jetzt als {character} auf der Bank für {activity}."
+    },
+    "returned_to_queue": {
+      "title": "Zuweisung zurück in Prüfung",
+      "body": "Deine Bewerbung für {activity} als {character} wurde zurück in die Prüfungswarteschlange gesetzt."
+    }
   }
 }

@@ -6,6 +6,7 @@ use App\Models\Activity;
 use App\Models\ActivityApplication;
 use App\Models\ActivitySlot;
 use App\Models\Group;
+use App\Services\Notifications\AssignmentNotificationService;
 use App\Services\Groups\GroupActivityAuditService;
 use App\Services\Groups\ActivitySlotSerializer;
 use App\Services\Groups\ActivitySlotAttendanceService;
@@ -24,6 +25,7 @@ class GroupActivitySlotUnassignmentController extends Controller
         ActivitySlotSerializer $slotSerializer,
         ActivitySlotAttendanceService $attendanceService,
         ApplicantQueuePayloadBuilder $queuePayloadBuilder,
+        AssignmentNotificationService $assignmentNotificationService,
     ): JsonResponse {
         $this->authorize('manageDashboard', [$activity, $group]);
 
@@ -100,6 +102,14 @@ class GroupActivitySlotUnassignmentController extends Controller
                 'application_status' => $application->status,
             ],
         );
+
+        if ($activity->status === Activity::STATUS_ASSIGNED) {
+            $assignmentNotificationService->notifyPlacementChanged(
+                $application->fresh(['activity.group', 'user', 'selectedCharacter']),
+                null,
+                auth()->user(),
+            );
+        }
 
         return response()->json([
             'slot' => $slotSerializer->serialize($slot),

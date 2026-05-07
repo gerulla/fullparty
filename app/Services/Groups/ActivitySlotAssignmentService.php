@@ -2,8 +2,10 @@
 
 namespace App\Services\Groups;
 
+use App\Models\Activity;
 use App\Models\ActivityApplication;
 use App\Models\ActivitySlot;
+use App\Services\Notifications\AssignmentNotificationService;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\ValidationException;
 
@@ -13,6 +15,7 @@ class ActivitySlotAssignmentService
         private readonly ActivitySlotBench $slotBench,
         private readonly ActivitySlotAttendanceService $attendanceService,
         private readonly GroupActivityAuditService $activityAuditService,
+        private readonly AssignmentNotificationService $assignmentNotificationService,
     ) {}
 
     /**
@@ -27,6 +30,8 @@ class ActivitySlotAssignmentService
         int $assignedByUserId,
         ?ActivitySlot $sourceSlot = null,
     ): void {
+        $targetSlot->loadMissing('fieldValues');
+
         if (!$application->selected_character_id) {
             throw ValidationException::withMessages([
                 'application_id' => 'The application must have a selected character before it can be assigned.',
@@ -46,6 +51,8 @@ class ActivitySlotAssignmentService
         $targetPreviousCharacterName = $targetSlot->assignedCharacter?->name;
         $targetHadDifferentOccupant = $targetPreviousCharacterId !== null
             && (int) $targetPreviousCharacterId !== (int) $application->selected_character_id;
+        $displacedApplication = $this->findApplicationForAssignedCharacter($targetSlot);
+        $originalTargetFieldValueSnapshot = $this->attendanceService->buildFieldValueSnapshot($targetSlot);
 
         DB::transaction(function () use (
             $targetSlot,
@@ -57,11 +64,10 @@ class ActivitySlotAssignmentService
             $applicationAnswers,
             $isTargetBench,
             $isSourceBench,
-            $targetPreviousCharacterId,
             $targetHadDifferentOccupant,
+            $displacedApplication,
         ) {
             $activity = $targetSlot->activity;
-            $displacedApplication = $this->findApplicationForAssignedCharacter($targetSlot);
 
             if ($sourceSlot && !$isSourceBench && $isTargetBench && $targetSlot->assigned_character_id) {
                 throw ValidationException::withMessages([
@@ -164,6 +170,43 @@ class ActivitySlotAssignmentService
             $assignedByUserId,
             $metadata,
         );
+
+        $updatedTargetSlot = $targetSlot->fresh(['fieldValues']);
+        $targetFieldValuesChanged = $updatedTargetSlot
+            ? $this->attendanceService->buildFieldValueSnapshot($updatedTargetSlot) !== $originalTargetFieldValueSnapshot
+            : false;
+
+        if (
+            $targetSlot->activity?->status !== Activity::STATUS_ASSIGNED
+            || ($event === 'updated' && !$targetFieldValuesChanged)
+        ) {
+            return;
+        }
+
+        $updatedApplication = $application->fresh(['activity.group', 'user', 'selectedCharacter']);
+
+        if ($updatedApplication && $updatedTargetSlot) {
+            $this->assignmentNotificationService->notifyPlacementChanged(
+                $updatedApplication,
+                $updatedTargetSlot,
+                $assignedByUserId,
+            );
+        }
+
+        if ($displacedApplication && (int) $displacedApplication->id !== (int) $application->id) {
+            $updatedDisplacedApplication = $displacedApplication->fresh(['activity.group', 'user', 'selectedCharacter']);
+            $displacedSlot = $updatedDisplacedApplication?->status === ActivityApplication::STATUS_ON_BENCH && $sourceSlot
+                ? $sourceSlot->fresh()
+                : null;
+
+            if ($updatedDisplacedApplication) {
+                $this->assignmentNotificationService->notifyPlacementChanged(
+                    $updatedDisplacedApplication,
+                    $displacedSlot,
+                    $assignedByUserId,
+                );
+            }
+        }
     }
 
     private function findApplicationForAssignedCharacter(ActivitySlot $slot): ?ActivityApplication

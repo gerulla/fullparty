@@ -12,6 +12,7 @@ use App\Models\GroupMembership;
 use App\Services\Groups\ActivitySlotBench;
 use App\Services\Groups\ActivityCancellationService;
 use App\Services\Groups\GroupActivityAuditService;
+use App\Services\Notifications\AssignmentNotificationService;
 use Carbon\CarbonImmutable;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -362,7 +363,11 @@ class GroupActivityController extends Controller
             ->with('success', 'activity_cancelled');
     }
 
-    public function publishRoster(Group $group, Activity $activity): RedirectResponse
+    public function publishRoster(
+        Group $group,
+        Activity $activity,
+        AssignmentNotificationService $assignmentNotificationService,
+    ): RedirectResponse
     {
         $group->loadMissing('memberships');
         $this->authorizeModeratorAccess($group);
@@ -375,7 +380,11 @@ class GroupActivityController extends Controller
             'status' => Activity::STATUS_ASSIGNED,
         ]);
 
-        // TODO: Notify affected users about their assigned roster positions.
+        $assignmentNotificationService->notifyRosterPublished(
+            $activity->fresh(['group', 'applications.user', 'applications.selectedCharacter', 'slots']),
+            auth()->user(),
+        );
+
         $this->activityAuditService->logActivityUpdated($activity, auth()->user(), [
             'status' => [
                 'old' => $previousStatus,

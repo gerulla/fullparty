@@ -60,5 +60,27 @@
       "title": "応募がキャンセルされました",
       "body": "{activity} への {character} としての応募は、募集が中止されたためキャンセルされました。"
     }
+  },
+  "assignments": {
+    "roster_published_assigned": {
+      "title": "ロスターが公開されました",
+      "body": "{activity} のロスターが公開されました。あなたは {character} として {slot} に配置されています。"
+    },
+    "roster_published_bench": {
+      "title": "ロスターが公開されました",
+      "body": "{activity} のロスターが公開されました。あなたは {character} としてベンチに入っています。"
+    },
+    "assigned": {
+      "title": "ロスター配置が更新されました",
+      "body": "あなたは {activity} で {character} として {slot} に再配置されました。"
+    },
+    "on_bench": {
+      "title": "ベンチ配置が更新されました",
+      "body": "あなたは {activity} で {character} としてベンチに再配置されました。"
+    },
+    "returned_to_queue": {
+      "title": "配置が再審査に戻りました",
+      "body": "{activity} への {character} としての応募は、再審査キューに戻されました。"
+    }
   }
 }

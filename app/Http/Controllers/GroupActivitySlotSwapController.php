@@ -7,9 +7,10 @@ use App\Models\ActivityApplication;
 use App\Models\ActivitySlot;
 use App\Models\Group;
 use App\Services\Groups\ActivitySlotBench;
-use App\Services\Groups\GroupActivityAuditService;
 use App\Services\Groups\ActivitySlotAttendanceService;
 use App\Services\Groups\ActivitySlotSerializer;
+use App\Services\Groups\GroupActivityAuditService;
+use App\Services\Notifications\AssignmentNotificationService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -25,6 +26,7 @@ class GroupActivitySlotSwapController extends Controller
         GroupActivityAuditService $activityAuditService,
         ActivitySlotAttendanceService $attendanceService,
         ActivitySlotSerializer $slotSerializer,
+        AssignmentNotificationService $assignmentNotificationService,
     ): JsonResponse {
         $this->authorize('manageDashboard', [$activity, $group]);
 
@@ -65,6 +67,10 @@ class GroupActivitySlotSwapController extends Controller
         $targetIsBench = $slotBench->isBench($targetSlot);
         $sourceCharacterName = $sourceSlot->assignedCharacter?->name;
         $targetCharacterName = $targetSlot->assignedCharacter?->name;
+        $involvedCharacterIds = array_values(array_filter([
+            $sourceSlot->assigned_character_id,
+            $targetSlot->assigned_character_id,
+        ]));
 
         if ($sourceIsBench && !$targetIsBench) {
             throw ValidationException::withMessages([
@@ -134,6 +140,36 @@ class GroupActivitySlotSwapController extends Controller
                 'target_character_name' => $targetCharacterName,
             ],
         );
+
+        if ($activity->status === Activity::STATUS_ASSIGNED && $involvedCharacterIds !== []) {
+            $applicationsByCharacter = $activity->applications()
+                ->with(['activity.group', 'user', 'selectedCharacter'])
+                ->whereIn('selected_character_id', $involvedCharacterIds)
+                ->whereIn('status', [
+                    ActivityApplication::STATUS_APPROVED,
+                    ActivityApplication::STATUS_ON_BENCH,
+                ])
+                ->get()
+                ->keyBy('selected_character_id');
+
+            foreach ([$sourceSlot, $targetSlot] as $slot) {
+                if (!$slot->assigned_character_id) {
+                    continue;
+                }
+
+                $application = $applicationsByCharacter->get($slot->assigned_character_id);
+
+                if (!$application) {
+                    continue;
+                }
+
+                $assignmentNotificationService->notifyPlacementChanged(
+                    $application,
+                    $slot,
+                    $request->user(),
+                );
+            }
+        }
 
         return response()->json([
             'slots' => [

@@ -35,7 +35,7 @@
                                 href="{{ $actionUrl }}"
                                 style="display:inline-block;background:#70439b;color:#ffffff;text-decoration:none;font-size:14px;font-weight:600;padding:12px 18px;border-radius:2px;"
                             >
-                                {{ __('email.labels.open') }} {{ config('app.name', 'FullParty') }}
+                                {{ __('email/labels.open') }} {{ config('app.name', 'FullParty') }}
                             </a>
                         </td>
                     </tr>

@@ -1,6 +1,28 @@
 <?php
 
 return [
+    'assignments' => [
+        'roster_published_assigned' => [
+            'title' => 'Roster published',
+            'body' => 'The roster for :activity has been published. You are assigned to :slot as :character.',
+        ],
+        'roster_published_bench' => [
+            'title' => 'Roster published',
+            'body' => 'The roster for :activity has been published. You are on the bench as :character.',
+        ],
+        'assigned' => [
+            'title' => 'Roster assignment updated',
+            'body' => 'You are now assigned to :slot for :activity as :character.',
+        ],
+        'on_bench' => [
+            'title' => 'Bench assignment updated',
+            'body' => 'You are now on the bench for :activity as :character.',
+        ],
+        'returned_to_queue' => [
+            'title' => 'Assignment returned to review',
+            'body' => 'Your application for :activity as :character has been returned to the review queue.',
+        ],
+    ],
     'user' => [
         'settings' => [
             'notifications_updated' => [

@@ -60,5 +60,27 @@
       "title": "Candidature annulée",
       "body": "Votre candidature en tant que {character} pour {activity} a été annulée parce que le run a été annulé."
     }
+  },
+  "assignments": {
+    "roster_published_assigned": {
+      "title": "Roster publié",
+      "body": "Le roster pour {activity} a été publié. Vous êtes assigné à {slot} en tant que {character}."
+    },
+    "roster_published_bench": {
+      "title": "Roster publié",
+      "body": "Le roster pour {activity} a été publié. Vous êtes sur le banc en tant que {character}."
+    },
+    "assigned": {
+      "title": "Affectation du roster mise à jour",
+      "body": "Vous êtes maintenant assigné à {slot} pour {activity} en tant que {character}."
+    },
+    "on_bench": {
+      "title": "Affectation au banc mise à jour",
+      "body": "Vous êtes maintenant sur le banc pour {activity} en tant que {character}."
+    },
+    "returned_to_queue": {
+      "title": "Affectation renvoyée en révision",
+      "body": "Votre candidature pour {activity} en tant que {character} a été renvoyée dans la file de révision."
+    }
   }
 }

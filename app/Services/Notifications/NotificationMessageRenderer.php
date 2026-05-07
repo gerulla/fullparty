@@ -8,27 +8,18 @@ use Illuminate\Support\Facades\Lang;
 
 class NotificationMessageRenderer
 {
-    private const EMAIL_NOTIFICATION_KEY_MAP = [
-        'notifications.user.settings.notifications_updated.title' => 'email.notifications.user.settings.notifications_updated.title',
-        'notifications.user.settings.notifications_updated.body' => 'email.notifications.user.settings.notifications_updated.body',
-        'notifications.user.settings.username_updated.title' => 'email.notifications.user.settings.username_updated.title',
-        'notifications.user.settings.username_updated.body' => 'email.notifications.user.settings.username_updated.body',
-        'notifications.user.settings.privacy_updated.title' => 'email.notifications.user.settings.privacy_updated.title',
-        'notifications.user.settings.privacy_updated.body' => 'email.notifications.user.settings.privacy_updated.body',
-    ];
-
     private const EMAIL_LABEL_KEY_MAP = [
-        'general.username' => 'email.labels.username',
-        'settings.notifications.applications' => 'email.labels.notifications.applications',
-        'settings.notifications.assignments' => 'email.labels.notifications.assignments',
-        'settings.notifications.runs_and_reminders' => 'email.labels.notifications.runs_and_reminders',
-        'settings.notifications.group_updates' => 'email.labels.notifications.group_updates',
-        'settings.notifications.account_character_updates' => 'email.labels.notifications.account_character_updates',
-        'settings.notifications.system_notices' => 'email.labels.notifications.system_notices',
-        'settings.notifications.email_notifications' => 'email.labels.notifications.email_notifications',
-        'settings.notifications.discord_notifications' => 'email.labels.notifications.discord_notifications',
-        'settings.privacy.profile_visibility' => 'email.labels.privacy.profile_visibility',
-        'settings.privacy.show_character_data' => 'email.labels.privacy.show_character_data',
+        'general.username' => 'email/labels.username',
+        'settings.notifications.applications' => 'email/labels.notifications.applications',
+        'settings.notifications.assignments' => 'email/labels.notifications.assignments',
+        'settings.notifications.runs_and_reminders' => 'email/labels.notifications.runs_and_reminders',
+        'settings.notifications.group_updates' => 'email/labels.notifications.group_updates',
+        'settings.notifications.account_character_updates' => 'email/labels.notifications.account_character_updates',
+        'settings.notifications.system_notices' => 'email/labels.notifications.system_notices',
+        'settings.notifications.email_notifications' => 'email/labels.notifications.email_notifications',
+        'settings.notifications.discord_notifications' => 'email/labels.notifications.discord_notifications',
+        'settings.privacy.profile_visibility' => 'email/labels.privacy.profile_visibility',
+        'settings.privacy.show_character_data' => 'email/labels.privacy.show_character_data',
     ];
 
     /**
@@ -111,7 +102,9 @@ class NotificationMessageRenderer
             return '';
         }
 
-        $translationKey = self::EMAIL_NOTIFICATION_KEY_MAP[$key] ?? $key;
+        $translationKey = str_starts_with($key, 'notifications.')
+            ? 'email/notifications.'.substr($key, strlen('notifications.'))
+            : $key;
 
         return $this->translate($translationKey, $params, $locale);
     }

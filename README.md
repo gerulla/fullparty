@@ -152,6 +152,8 @@ That starts:
 - the queue listener
 - the Vite dev server
 
+The queue listener is important even in local development. FullParty sends emails, off-site notifications, and other async work through Laravel queues, so those jobs will not be processed unless a queue worker/listener is running.
+
 ### Reverb Setup
 
 FullParty uses Laravel Reverb for live notification updates.
@@ -213,6 +215,8 @@ php artisan reverb:start
 ```
 
 Important: `composer run dev` does **not** currently start Reverb for you. You need Reverb running alongside the normal dev stack.
+
+Also note: email notifications are queued. Even with Reverb running, notification emails will not be sent unless the queue listener / worker is running too.
 
 So a full local realtime setup is:
 

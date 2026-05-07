@@ -6,6 +6,7 @@ use App\Models\NotificationEvent;
 use App\Models\SocialAccount;
 use App\Models\User;
 use App\Services\Notifications\NotificationService;
+use App\Services\Notifications\NotificationMessageRenderer;
 use App\Support\Notifications\NotificationCategory;
 use App\Support\Notifications\NotificationChannel;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -327,6 +328,27 @@ it('sends email deliveries through the email delivery service and marks them as 
         ->and($delivery->sent_at)->not->toBeNull()
         ->and($delivery->target)->toBe($recipient->email);
 
+});
+
+it('renders assignment notification emails with translated copy instead of raw keys', function () {
+    $recipient = User::factory()->create();
+
+    $event = NotificationEvent::query()->create([
+        'type' => 'assignments.roster_published_assigned',
+        'category' => NotificationCategory::ASSIGNMENTS,
+        'title_key' => 'notifications.assignments.roster_published_assigned.title',
+        'body_key' => 'notifications.assignments.roster_published_assigned.body',
+        'message_params' => [
+            'activity' => 'Weekly Savage',
+            'slot' => 'Party A 1',
+            'character' => 'Astra Vale',
+        ],
+    ]);
+
+    $message = app(NotificationMessageRenderer::class)->render($event, $recipient);
+
+    expect($message['subject'])->toBe('Roster published')
+        ->and($message['body'])->toBe('The roster for Weekly Savage has been published. You are assigned to Party A 1 as Astra Vale.');
 });
 
 it('rejects invalid notification categories', function () {

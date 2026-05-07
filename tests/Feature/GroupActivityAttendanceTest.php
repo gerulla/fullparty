@@ -121,7 +121,9 @@ it('checks in a filled slot and records an attendance audit event', function () 
         'group' => $group->slug,
         'activity' => $activity->id,
         'slot' => $slot->id,
-    ]));
+    ]), [
+        'expected_slot_state_token' => activity_slot_state_token($slot),
+    ]);
 
     $response->assertOk();
 
@@ -159,13 +161,17 @@ it('undoes a check in and restores the assignment to assigned status', function 
         'group' => $group->slug,
         'activity' => $activity->id,
         'slot' => $slot->id,
-    ]))->assertOk();
+    ]), [
+        'expected_slot_state_token' => activity_slot_state_token($slot),
+    ])->assertOk();
 
     $response = $this->postJson(route('groups.dashboard.activities.slot-checkins.undo', [
         'group' => $group->slug,
         'activity' => $activity->id,
         'slot' => $slot->id,
-    ]));
+    ]), [
+        'expected_slot_state_token' => activity_slot_state_token($slot->fresh(['activity.slotAssignments', 'fieldValues', 'assignments'])),
+    ]);
 
     $response->assertOk();
 
@@ -211,7 +217,9 @@ it('marks a slot missing and restores the assignment to bench when the original 
         'group' => $group->slug,
         'activity' => $activity->id,
         'slot' => $mainSlot->id,
-    ]));
+    ]), [
+        'expected_slot_state_token' => activity_slot_state_token($mainSlot),
+    ]);
 
     $markResponse->assertOk();
 
@@ -233,7 +241,9 @@ it('marks a slot missing and restores the assignment to bench when the original 
         'group' => $group->slug,
         'activity' => $activity->id,
         'assignment' => $missingAssignment->id,
-    ]));
+    ]), [
+        'expected_slot_state_token' => activity_slot_state_token($mainSlot->fresh(['activity.slotAssignments', 'fieldValues', 'assignments'])),
+    ]);
 
     $response->assertOk();
 
@@ -274,6 +284,10 @@ it('checks in all filled slots in a slot group and records a group attendance au
         'activity' => $activity->id,
     ]), [
         'group_key' => 'party-a',
+        'expected_slot_state_tokens' => [
+            $mainSlots[0]->id => activity_slot_state_token($mainSlots[0]),
+            $mainSlots[1]->id => activity_slot_state_token($mainSlots[1]),
+        ],
     ]);
 
     $response->assertOk()->assertJsonCount(2, 'slots');
@@ -317,7 +331,9 @@ it('returns a validation error when undoing a missing assignment without any ope
         'group' => $group->slug,
         'activity' => $activity->id,
         'slot' => $mainSlot->id,
-    ]))->assertOk();
+    ]), [
+        'expected_slot_state_token' => activity_slot_state_token($mainSlot),
+    ])->assertOk();
 
     $missingAssignment = ActivitySlotAssignment::query()
         ->where('activity_id', $activity->id)
@@ -342,7 +358,9 @@ it('returns a validation error when undoing a missing assignment without any ope
         'group' => $group->slug,
         'activity' => $activity->id,
         'assignment' => $missingAssignment->id,
-    ]));
+    ]), [
+        'expected_slot_state_token' => activity_slot_state_token($mainSlot->fresh(['activity.slotAssignments', 'fieldValues', 'assignments'])),
+    ]);
 
     $response
         ->assertStatus(422)

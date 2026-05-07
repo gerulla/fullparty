@@ -395,6 +395,7 @@ it('notifies a manually assigned member when they are added to a published roste
         'slot' => $mainSlot->id,
     ]), [
         'character_id' => $character->id,
+        'expected_slot_state_token' => activity_slot_state_token($mainSlot->fresh()),
         'field_values' => [
             'character_class' => (string) $tankClass->id,
             'phantom_job' => (string) $phantomKnight->id,
@@ -505,6 +506,7 @@ it('does not create assignment notifications while the roster is still unpublish
         'slot' => $slot->id,
     ]), [
         'application_id' => $application->id,
+        'expected_slot_state_token' => activity_slot_state_token($slot->fresh()),
     ])->assertOk();
 
     expect(NotificationEvent::query()->where('category', NotificationCategory::ASSIGNMENTS)->count())->toBe(0);
@@ -604,6 +606,8 @@ it('notifies affected users when assignments change after the roster has been pu
     ]), [
         'application_id' => $benchApplication->id,
         'source_slot_id' => $benchSlot->id,
+        'expected_slot_state_token' => activity_slot_state_token($mainSlot->fresh()),
+        'expected_source_slot_state_token' => activity_slot_state_token($benchSlot->fresh()),
     ])->assertOk();
 
     $events = NotificationEvent::query()
@@ -740,6 +744,8 @@ it('notifies affected users when published filled slots are swapped', function (
     ]), [
         'source_slot_id' => $firstSlot->id,
         'target_slot_id' => $secondSlot->id,
+        'expected_source_slot_state_token' => activity_slot_state_token($firstSlot->fresh()),
+        'expected_target_slot_state_token' => activity_slot_state_token($secondSlot->fresh()),
     ])->assertOk();
 
     $events = NotificationEvent::query()
@@ -814,7 +820,9 @@ it('notifies the applicant when a published roster assignment is returned to the
         'group' => $group->slug,
         'activity' => $activity->id,
         'slot' => $slot->id,
-    ]))->assertOk();
+    ]), [
+        'expected_slot_state_token' => activity_slot_state_token($slot->fresh()),
+    ])->assertOk();
 
     $event = NotificationEvent::query()->where('type', 'assignments.returned_to_queue')->sole();
     $notification = UserNotification::query()->where('notification_event_id', $event->id)->sole();
@@ -913,6 +921,7 @@ it('notifies the applicant when published slot field assignments change, but not
         'slot' => $mainSlot->id,
     ]), [
         'application_id' => $application->id,
+        'expected_slot_state_token' => activity_slot_state_token($mainSlot->fresh()),
         'field_values' => [
             'character_class' => (string) $tankClass->id,
             'phantom_job' => (string) $phantomKnight->id,
@@ -927,6 +936,7 @@ it('notifies the applicant when published slot field assignments change, but not
         'slot' => $mainSlot->id,
     ]), [
         'application_id' => $application->id,
+        'expected_slot_state_token' => activity_slot_state_token($mainSlot->fresh()),
         'field_values' => [
             'character_class' => (string) $healerClass->id,
             'phantom_job' => (string) $phantomBard->id,
@@ -950,6 +960,7 @@ it('notifies the applicant when published slot field assignments change, but not
         'slot' => $mainSlot->id,
     ]), [
         'application_id' => $application->id,
+        'expected_slot_state_token' => activity_slot_state_token($mainSlot->fresh()),
         'field_values' => [
             'character_class' => (string) $healerClass->id,
             'phantom_job' => (string) $phantomBard->id,

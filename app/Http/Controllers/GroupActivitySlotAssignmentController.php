@@ -7,9 +7,12 @@ use App\Models\ActivityApplication;
 use App\Models\ActivitySlot;
 use App\Models\Character;
 use App\Models\Group;
+use App\Services\Groups\ActivityManagementRealtimeService;
 use App\Services\Groups\ActivitySlotAssignmentService;
 use App\Services\Groups\ActivitySlotFieldDefinitionBuilder;
 use App\Services\Groups\ActivitySlotSerializer;
+use App\Services\Groups\ActivitySlotStateTokenService;
+use App\Services\Groups\ApplicantQueue\ApplicantQueuePayloadBuilder;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
@@ -23,6 +26,9 @@ class GroupActivitySlotAssignmentController extends Controller
         ActivitySlotFieldDefinitionBuilder $fieldDefinitionBuilder,
         ActivitySlotAssignmentService $slotAssignmentService,
         ActivitySlotSerializer $slotSerializer,
+        ActivitySlotStateTokenService $slotStateTokenService,
+        ApplicantQueuePayloadBuilder $queuePayloadBuilder,
+        ActivityManagementRealtimeService $activityManagementRealtimeService,
     ): JsonResponse {
         $this->authorize('manageDashboard', [$activity, $group]);
 
@@ -39,6 +45,8 @@ class GroupActivitySlotAssignmentController extends Controller
             'character_id' => ['sometimes', 'nullable', 'integer', 'required_without:application_id'],
             'field_values' => ['sometimes', 'array'],
             'source_slot_id' => ['sometimes', 'nullable', 'integer'],
+            'expected_slot_state_token' => ['required', 'string'],
+            'expected_source_slot_state_token' => ['sometimes', 'nullable', 'string'],
         ]);
 
         $sourceSlot = null;
@@ -58,6 +66,16 @@ class GroupActivitySlotAssignmentController extends Controller
             ->all();
 
         $slot->load(['assignedCharacter', 'fieldValues', 'activity', 'assignments']);
+        $slotStateTokenService->assertMatches($slot, $validated['expected_slot_state_token']);
+
+        if ($sourceSlot) {
+            $slotStateTokenService->assertMatches($sourceSlot, $validated['expected_source_slot_state_token'] ?? null);
+        }
+
+        $targetPreviousCharacterId = $slot->assigned_character_id;
+        $removedQueueApplicationIds = [];
+        $restoredQueueApplication = null;
+        $queueApplicationSyncIds = [];
 
         if (!empty($validated['character_id'])) {
             $groupMemberUserIds = $group->memberships()
@@ -113,6 +131,8 @@ class GroupActivitySlotAssignmentController extends Controller
             $applicationFieldDefinitions = collect($fieldDefinitions)
                 ->filter(fn (array $definition) => filled($definition['application_key'] ?? null))
                 ->all();
+            $wasPendingQueueApplication = $sourceSlot === null
+                && $application->status === ActivityApplication::STATUS_PENDING;
 
             $slotAssignmentService->assignFromApplication(
                 $slot,
@@ -122,6 +142,10 @@ class GroupActivitySlotAssignmentController extends Controller
                 (int) $request->user()->id,
                 $sourceSlot,
             );
+
+            if ($wasPendingQueueApplication) {
+                $removedQueueApplicationIds[] = (int) $application->id;
+            }
         }
 
         $slot->load(['assignedCharacter', 'fieldValues', 'assignments']);
@@ -132,9 +156,47 @@ class GroupActivitySlotAssignmentController extends Controller
             $updatedSlots[] = $slotSerializer->serialize($sourceSlot);
         }
 
+        if (
+            empty($validated['character_id'])
+            && $sourceSlot === null
+            && $targetPreviousCharacterId !== null
+            && (int) $targetPreviousCharacterId !== (int) $slot->assigned_character_id
+        ) {
+            $displacedApplication = $activity->applications()
+                ->with(['answers', 'selectedCharacter.occultProgress', 'selectedCharacter.phantomJobs', 'user'])
+                ->where('selected_character_id', $targetPreviousCharacterId)
+                ->where('status', ActivityApplication::STATUS_PENDING)
+                ->latest('submitted_at')
+                ->first();
+
+            if ($displacedApplication) {
+                $restoredQueueApplication = $queuePayloadBuilder->serializeApplicationForModerator(
+                    $displacedApplication,
+                    $activity->activityTypeVersion,
+                    $activity->group,
+                    (int) $request->user()->id,
+                );
+                $queueApplicationSyncIds[] = (int) $displacedApplication->id;
+            }
+        }
+
+        $pendingApplicationCount = $activity->applications()
+            ->where('status', ActivityApplication::STATUS_PENDING)
+            ->count();
+
+        $activityManagementRealtimeService->broadcastPatch($activity, [
+            'updated_slots' => $updatedSlots,
+            'pending_application_count' => $pendingApplicationCount,
+            'queue_application_sync_ids' => array_values(array_unique($queueApplicationSyncIds)),
+            'queue_application_remove_ids' => array_values(array_unique($removedQueueApplicationIds)),
+        ]);
+
         return response()->json([
             'slot' => $slotSerializer->serialize($slot),
             'slots' => $updatedSlots,
+            'pending_application_count' => $pendingApplicationCount,
+            'queue_application_remove_ids' => array_values(array_unique($removedQueueApplicationIds)),
+            'restored_queue_application' => $restoredQueueApplication,
         ]);
     }
 }

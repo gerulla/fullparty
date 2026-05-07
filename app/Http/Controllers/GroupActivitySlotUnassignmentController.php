@@ -8,25 +8,31 @@ use App\Models\ActivitySlot;
 use App\Models\ActivitySlotAssignment;
 use App\Models\Group;
 use App\Services\Notifications\AssignmentNotificationService;
+use App\Services\Groups\ActivityManagementRealtimeService;
 use App\Services\Groups\GroupActivityAuditService;
 use App\Services\Groups\ActivitySlotSerializer;
 use App\Services\Groups\ActivitySlotAttendanceService;
+use App\Services\Groups\ActivitySlotStateTokenService;
 use App\Services\Groups\ApplicantQueue\ApplicantQueuePayloadBuilder;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\ValidationException;
 
 class GroupActivitySlotUnassignmentController extends Controller
 {
     public function store(
+        Request $request,
         Group $group,
         Activity $activity,
         ActivitySlot $slot,
         GroupActivityAuditService $activityAuditService,
         ActivitySlotSerializer $slotSerializer,
         ActivitySlotAttendanceService $attendanceService,
+        ActivitySlotStateTokenService $slotStateTokenService,
         ApplicantQueuePayloadBuilder $queuePayloadBuilder,
         AssignmentNotificationService $assignmentNotificationService,
+        ActivityManagementRealtimeService $activityManagementRealtimeService,
     ): JsonResponse {
         $this->authorize('manageDashboard', [$activity, $group]);
 
@@ -45,6 +51,13 @@ class GroupActivitySlotUnassignmentController extends Controller
                 'slot' => 'Only filled roster slots can be returned to the queue.',
             ]);
         }
+
+        $validated = $request->validate([
+            'expected_slot_state_token' => ['required', 'string'],
+        ]);
+
+        $slot->load(['activity', 'assignedCharacter', 'fieldValues', 'assignments']);
+        $slotStateTokenService->assertMatches($slot, $validated['expected_slot_state_token']);
 
         $activeAssignment = ActivitySlotAssignment::query()
             ->where('activity_id', $activity->id)
@@ -126,14 +139,27 @@ class GroupActivitySlotUnassignmentController extends Controller
             );
         }
 
+        $pendingApplicationCount = $activity->applications()
+            ->where('status', ActivityApplication::STATUS_PENDING)
+            ->count();
+        $serializedApplication = $queuePayloadBuilder->serializeApplicationForModerator(
+            $application,
+            $activity->activityTypeVersion,
+            $activity->group,
+            (int) auth()->id(),
+        );
+
+        $activityManagementRealtimeService->broadcastPatch($activity, [
+            'updated_slots' => [$slotSerializer->serialize($slot)],
+            'pending_application_count' => $pendingApplicationCount,
+            'queue_application_sync_ids' => [(int) $application->id],
+            'queue_application_remove_ids' => [],
+        ]);
+
         return response()->json([
             'slot' => $slotSerializer->serialize($slot),
-            'application' => $queuePayloadBuilder->serializeApplicationForModerator(
-                $application,
-                $activity->activityTypeVersion,
-                $activity->group,
-                (int) auth()->id(),
-            ),
+            'application' => $serializedApplication,
+            'pending_application_count' => $pendingApplicationCount,
         ]);
     }
 }

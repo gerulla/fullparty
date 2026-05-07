@@ -2,8 +2,11 @@ import Echo from 'laravel-echo'
 import Pusher from 'pusher-js'
 
 const key = import.meta.env.VITE_REVERB_APP_KEY
+const isAuthenticated = document
+	.querySelector('meta[name="fullparty-authenticated"]')
+	?.getAttribute('content') === '1'
 
-if (key) {
+if (key && isAuthenticated) {
 	window.Pusher = Pusher
 
 	window.Echo = new Echo({

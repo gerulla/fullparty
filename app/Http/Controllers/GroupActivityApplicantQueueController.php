@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Activity;
+use App\Models\ActivityApplication;
 use App\Models\Group;
 use App\Services\Groups\ApplicantQueue\ApplicantQueuePayloadBuilder;
 use Illuminate\Http\JsonResponse;
@@ -27,5 +28,35 @@ class GroupActivityApplicantQueueController extends Controller
         ]);
 
         return response()->json($payloadBuilder->build($activity, auth()->id()));
+    }
+
+    public function showApplication(
+        Group $group,
+        Activity $activity,
+        ActivityApplication $application,
+        ApplicantQueuePayloadBuilder $payloadBuilder,
+    ): JsonResponse {
+        $this->authorize('manageDashboard', [$activity, $group]);
+
+        if ((int) $application->activity_id !== (int) $activity->id) {
+            abort(404);
+        }
+
+        $application->load([
+            'activity.group',
+            'answers',
+            'selectedCharacter.occultProgress',
+            'selectedCharacter.phantomJobs',
+            'user',
+        ]);
+
+        return response()->json([
+            'application' => $payloadBuilder->serializeApplicationForModerator(
+                $application,
+                $activity->activityTypeVersion,
+                $activity->group,
+                (int) auth()->id(),
+            ),
+        ]);
     }
 }

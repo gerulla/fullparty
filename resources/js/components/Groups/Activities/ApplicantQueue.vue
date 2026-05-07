@@ -149,6 +149,34 @@ const fetchQueuePayload = async () => {
 	}
 };
 
+const fetchQueueApplication = async (applicationId: number): Promise<QueueApplication | null> => {
+	try {
+		const response = await axios.get(route('groups.dashboard.activities.applicant-queue.application', {
+			group: props.groupSlug,
+			activity: props.activityId,
+			application: applicationId,
+		}));
+
+		return response.data?.application ?? null;
+	} catch (error) {
+		console.error(error);
+		return null;
+	}
+};
+
+const upsertApplication = (application: QueueApplication) => {
+	const existingIndex = applications.value.findIndex((entry) => entry.id === application.id);
+
+	if (existingIndex === -1) {
+		applications.value = [application, ...applications.value];
+		return;
+	}
+
+	const nextApplications = [...applications.value];
+	nextApplications.splice(existingIndex, 1, application);
+	applications.value = nextApplications;
+};
+
 const handleApplicationAssigned = (event: Event) => {
 	const customEvent = event as CustomEvent<{ applicationId?: number }>;
 	const assignedApplicationId = customEvent.detail?.applicationId;
@@ -158,6 +186,12 @@ const handleApplicationAssigned = (event: Event) => {
 	}
 
 	applications.value = applications.value.filter((application) => application.id !== assignedApplicationId);
+
+	if (selectedApplication.value?.id === assignedApplicationId) {
+		selectedApplication.value = null;
+		isApplicationModalOpen.value = false;
+		isNotesModalOpen.value = false;
+	}
 };
 
 const handleApplicationReturned = (event: Event) => {
@@ -172,6 +206,54 @@ const handleApplicationReturned = (event: Event) => {
 		restoredApplication,
 		...applications.value.filter((application) => application.id !== restoredApplication.id),
 	];
+};
+
+const handleManagementQueueSync = async (event: Event) => {
+	const customEvent = event as CustomEvent<{
+		syncApplicationIds?: number[]
+		removeApplicationIds?: number[]
+	}>;
+	const syncApplicationIds = customEvent.detail?.syncApplicationIds ?? [];
+	const removeApplicationIds = new Set(customEvent.detail?.removeApplicationIds ?? []);
+
+	if (removeApplicationIds.size > 0) {
+		applications.value = applications.value.filter((application) => !removeApplicationIds.has(application.id));
+
+		if (selectedApplication.value && removeApplicationIds.has(selectedApplication.value.id)) {
+			selectedApplication.value = null;
+			isApplicationModalOpen.value = false;
+			isNotesModalOpen.value = false;
+		}
+	}
+
+	if (syncApplicationIds.length === 0) {
+		return;
+	}
+
+	const refreshedApplications = await Promise.all(syncApplicationIds.map((applicationId) => fetchQueueApplication(applicationId)));
+
+	for (let index = 0; index < refreshedApplications.length; index += 1) {
+		const refreshedApplication = refreshedApplications[index];
+		const applicationId = syncApplicationIds[index];
+
+		if (!refreshedApplication || refreshedApplication.status !== 'pending') {
+			applications.value = applications.value.filter((application) => application.id !== applicationId);
+
+			if (selectedApplication.value?.id === applicationId) {
+				selectedApplication.value = null;
+				isApplicationModalOpen.value = false;
+				isNotesModalOpen.value = false;
+			}
+
+			continue;
+		}
+
+		upsertApplication(refreshedApplication);
+
+		if (selectedApplication.value?.id === refreshedApplication.id) {
+			selectedApplication.value = refreshedApplication;
+		}
+	}
 };
 
 const handleApplicationDeclined = (applicationId: number) => {
@@ -271,11 +353,13 @@ onMounted(() => {
 	void fetchQueuePayload();
 	window.addEventListener('fullparty:activity-application-assigned', handleApplicationAssigned as EventListener);
 	window.addEventListener('fullparty:activity-application-returned', handleApplicationReturned as EventListener);
+	window.addEventListener('fullparty:activity-management-queue-sync', handleManagementQueueSync as EventListener);
 });
 
 onBeforeUnmount(() => {
 	window.removeEventListener('fullparty:activity-application-assigned', handleApplicationAssigned as EventListener);
 	window.removeEventListener('fullparty:activity-application-returned', handleApplicationReturned as EventListener);
+	window.removeEventListener('fullparty:activity-management-queue-sync', handleManagementQueueSync as EventListener);
 });
 
 const visibleApplications = computed(() => {

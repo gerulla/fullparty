@@ -7,8 +7,10 @@ use App\Models\ActivityApplication;
 use App\Models\ActivitySlot;
 use App\Models\Group;
 use App\Services\Groups\ActivitySlotBench;
+use App\Services\Groups\ActivityManagementRealtimeService;
 use App\Services\Groups\ActivitySlotAttendanceService;
 use App\Services\Groups\ActivitySlotSerializer;
+use App\Services\Groups\ActivitySlotStateTokenService;
 use App\Services\Groups\GroupActivityAuditService;
 use App\Services\Notifications\AssignmentNotificationService;
 use Illuminate\Http\JsonResponse;
@@ -26,7 +28,9 @@ class GroupActivitySlotSwapController extends Controller
         GroupActivityAuditService $activityAuditService,
         ActivitySlotAttendanceService $attendanceService,
         ActivitySlotSerializer $slotSerializer,
+        ActivitySlotStateTokenService $slotStateTokenService,
         AssignmentNotificationService $assignmentNotificationService,
+        ActivityManagementRealtimeService $activityManagementRealtimeService,
     ): JsonResponse {
         $this->authorize('manageDashboard', [$activity, $group]);
 
@@ -37,6 +41,8 @@ class GroupActivitySlotSwapController extends Controller
         $validated = $request->validate([
             'source_slot_id' => ['required', 'integer'],
             'target_slot_id' => ['required', 'integer', 'different:source_slot_id'],
+            'expected_source_slot_state_token' => ['required', 'string'],
+            'expected_target_slot_state_token' => ['required', 'string'],
         ]);
 
         $slots = $activity->slots()
@@ -56,6 +62,9 @@ class GroupActivitySlotSwapController extends Controller
         if (!$sourceSlot || !$targetSlot) {
             abort(404);
         }
+
+        $slotStateTokenService->assertMatches($sourceSlot, $validated['expected_source_slot_state_token']);
+        $slotStateTokenService->assertMatches($targetSlot, $validated['expected_target_slot_state_token']);
 
         if (!$sourceSlot->assigned_character_id) {
             throw ValidationException::withMessages([
@@ -180,11 +189,17 @@ class GroupActivitySlotSwapController extends Controller
             }
         }
 
+        $serializedSlots = [
+            $slotSerializer->serialize($sourceSlot),
+            $slotSerializer->serialize($targetSlot),
+        ];
+
+        $activityManagementRealtimeService->broadcastPatch($activity, [
+            'updated_slots' => $serializedSlots,
+        ]);
+
         return response()->json([
-            'slots' => [
-                $slotSerializer->serialize($sourceSlot),
-                $slotSerializer->serialize($targetSlot),
-            ],
+            'slots' => $serializedSlots,
         ]);
     }
 

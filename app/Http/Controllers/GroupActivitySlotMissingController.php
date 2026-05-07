@@ -7,21 +7,27 @@ use App\Models\ActivitySlotAssignment;
 use App\Models\ActivitySlot;
 use App\Models\Group;
 use App\Services\Groups\ActivitySlotBench;
+use App\Services\Groups\ActivityManagementRealtimeService;
 use App\Services\Groups\ActivitySlotAttendanceService;
 use App\Services\Groups\ActivitySlotSerializer;
+use App\Services\Groups\ActivitySlotStateTokenService;
 use App\Services\Groups\GroupActivityAuditService;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;
 
 class GroupActivitySlotMissingController extends Controller
 {
     public function store(
+        Request $request,
         Group $group,
         Activity $activity,
         ActivitySlot $slot,
         ActivitySlotAttendanceService $attendanceService,
         GroupActivityAuditService $activityAuditService,
         ActivitySlotSerializer $slotSerializer,
+        ActivitySlotStateTokenService $slotStateTokenService,
+        ActivityManagementRealtimeService $activityManagementRealtimeService,
     ): JsonResponse {
         $this->authorize('manageDashboard', [$activity, $group]);
 
@@ -42,6 +48,10 @@ class GroupActivitySlotMissingController extends Controller
         }
 
         $slot->load(['activity', 'fieldValues', 'assignments']);
+        $validated = $request->validate([
+            'expected_slot_state_token' => ['required', 'string'],
+        ]);
+        $slotStateTokenService->assertMatches($slot, $validated['expected_slot_state_token']);
         $characterName = $slot->assignedCharacter?->name;
         $missingAssignment = $attendanceService->markMissing($slot, (int) auth()->id());
         $slot->load(['assignedCharacter', 'fieldValues', 'assignments']);
@@ -57,13 +67,25 @@ class GroupActivitySlotMissingController extends Controller
             \App\Support\Audit\AuditSeverity::SEVERE_CHANGE,
         );
 
+        $serializedSlot = $slotSerializer->serialize($slot);
+        $serializedMissingAssignment = $missingAssignment
+            ? $activityManagementRealtimeService->serializeMissingAssignment($missingAssignment)
+            : null;
+
+        $activityManagementRealtimeService->broadcastPatch($activity, [
+            'updated_slots' => [$serializedSlot],
+            'upsert_missing_assignments' => $serializedMissingAssignment ? [$serializedMissingAssignment] : [],
+            'remove_missing_assignment_ids' => [],
+        ]);
+
         return response()->json([
-            'slot' => $slotSerializer->serialize($slot),
-            'missing_assignment' => $missingAssignment ? $this->serializeMissingAssignment($missingAssignment) : null,
+            'slot' => $serializedSlot,
+            'missing_assignment' => $serializedMissingAssignment,
         ]);
     }
 
     public function undo(
+        Request $request,
         Group $group,
         Activity $activity,
         ActivitySlotAssignment $assignment,
@@ -71,6 +93,8 @@ class GroupActivitySlotMissingController extends Controller
         ActivitySlotSerializer $slotSerializer,
         ActivitySlotBench $slotBench,
         GroupActivityAuditService $activityAuditService,
+        ActivitySlotStateTokenService $slotStateTokenService,
+        ActivityManagementRealtimeService $activityManagementRealtimeService,
     ): JsonResponse {
         $this->authorize('manageDashboard', [$activity, $group]);
 
@@ -90,6 +114,15 @@ class GroupActivitySlotMissingController extends Controller
             ]);
         }
 
+        $validated = $request->validate([
+            'expected_slot_state_token' => ['sometimes', 'nullable', 'string'],
+        ]);
+
+        if ($assignment->slot) {
+            $assignment->slot->load(['activity', 'assignedCharacter', 'fieldValues', 'assignments']);
+            $slotStateTokenService->assertMatches($assignment->slot, $validated['expected_slot_state_token'] ?? null);
+        }
+
         $result = $attendanceService->undoMissing($assignment, (int) auth()->id(), $slotBench);
         /** @var ActivitySlot $restoredSlot */
         $restoredSlot = $result['slots'][0];
@@ -104,28 +137,20 @@ class GroupActivitySlotMissingController extends Controller
             ],
         );
 
-        return response()->json([
-            'slots' => collect($result['slots'])
-                ->map(fn (ActivitySlot $slot) => $slotSerializer->serialize($slot))
-                ->values(),
-            'assignment' => $this->serializeMissingAssignment($result['assignment']),
-        ]);
-    }
+        $serializedSlots = collect($result['slots'])
+            ->map(fn (ActivitySlot $slot) => $slotSerializer->serialize($slot))
+            ->values()
+            ->all();
 
-    private function serializeMissingAssignment(ActivitySlotAssignment $assignment): array
-    {
-        return [
-            'id' => $assignment->id,
-            'character' => $assignment->character ? [
-                'id' => $assignment->character->id,
-                'name' => $assignment->character->name,
-                'avatar_url' => $assignment->character->avatar_url,
-                'world' => $assignment->character->world,
-                'datacenter' => $assignment->character->datacenter,
-            ] : null,
-            'slot_label' => $assignment->slot?->slot_label,
-            'group_label' => $assignment->slot?->group_label,
-            'marked_missing_at' => $assignment->marked_missing_at?->toIso8601String(),
-        ];
+        $activityManagementRealtimeService->broadcastPatch($activity, [
+            'updated_slots' => $serializedSlots,
+            'upsert_missing_assignments' => [],
+            'remove_missing_assignment_ids' => [(int) $result['assignment']->id],
+        ]);
+
+        return response()->json([
+            'slots' => $serializedSlots,
+            'assignment' => $activityManagementRealtimeService->serializeMissingAssignment($result['assignment']),
+        ]);
     }
 }

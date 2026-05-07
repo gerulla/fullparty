@@ -113,6 +113,7 @@ class GroupActivityManagementDataController extends Controller
                     ->values()
                     ->map(fn ($assignment) => [
                         'id' => $assignment->id,
+                        'slot_id' => $assignment->slot?->id,
                         'character' => $assignment->character ? [
                             'id' => $assignment->character->id,
                             'name' => $assignment->character->name,

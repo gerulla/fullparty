@@ -5,8 +5,10 @@ namespace App\Http\Controllers;
 use App\Models\Activity;
 use App\Models\ActivitySlot;
 use App\Models\Group;
+use App\Services\Groups\ActivityManagementRealtimeService;
 use App\Services\Groups\ActivitySlotAttendanceService;
 use App\Services\Groups\ActivitySlotSerializer;
+use App\Services\Groups\ActivitySlotStateTokenService;
 use App\Services\Groups\GroupActivityAuditService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -21,6 +23,8 @@ class GroupActivitySlotCheckInController extends Controller
         ActivitySlotAttendanceService $attendanceService,
         GroupActivityAuditService $activityAuditService,
         ActivitySlotSerializer $slotSerializer,
+        ActivitySlotStateTokenService $slotStateTokenService,
+        ActivityManagementRealtimeService $activityManagementRealtimeService,
     ): JsonResponse {
         $this->authorize('manageDashboard', [$activity, $group]);
 
@@ -41,6 +45,10 @@ class GroupActivitySlotCheckInController extends Controller
         }
 
         $slot->load(['activity', 'assignedCharacter', 'fieldValues', 'assignments']);
+        $validated = request()->validate([
+            'expected_slot_state_token' => ['required', 'string'],
+        ]);
+        $slotStateTokenService->assertMatches($slot, $validated['expected_slot_state_token']);
         $attendanceService->checkInSlot($slot, (int) auth()->id());
         $slot->load(['assignedCharacter', 'fieldValues', 'assignments']);
 
@@ -53,8 +61,13 @@ class GroupActivitySlotCheckInController extends Controller
             ],
         );
 
+        $serializedSlot = $slotSerializer->serialize($slot);
+        $activityManagementRealtimeService->broadcastPatch($activity, [
+            'updated_slots' => [$serializedSlot],
+        ]);
+
         return response()->json([
-            'slot' => $slotSerializer->serialize($slot),
+            'slot' => $serializedSlot,
         ]);
     }
 
@@ -65,6 +78,8 @@ class GroupActivitySlotCheckInController extends Controller
         ActivitySlotAttendanceService $attendanceService,
         GroupActivityAuditService $activityAuditService,
         ActivitySlotSerializer $slotSerializer,
+        ActivitySlotStateTokenService $slotStateTokenService,
+        ActivityManagementRealtimeService $activityManagementRealtimeService,
     ): JsonResponse {
         $this->authorize('manageDashboard', [$activity, $group]);
 
@@ -85,6 +100,10 @@ class GroupActivitySlotCheckInController extends Controller
         }
 
         $slot->load(['activity', 'assignedCharacter', 'fieldValues', 'assignments']);
+        $validated = request()->validate([
+            'expected_slot_state_token' => ['required', 'string'],
+        ]);
+        $slotStateTokenService->assertMatches($slot, $validated['expected_slot_state_token']);
         $attendanceService->markLateSlot($slot, (int) auth()->id());
         $slot->load(['assignedCharacter', 'fieldValues', 'assignments']);
 
@@ -97,8 +116,13 @@ class GroupActivitySlotCheckInController extends Controller
             ],
         );
 
+        $serializedSlot = $slotSerializer->serialize($slot);
+        $activityManagementRealtimeService->broadcastPatch($activity, [
+            'updated_slots' => [$serializedSlot],
+        ]);
+
         return response()->json([
-            'slot' => $slotSerializer->serialize($slot),
+            'slot' => $serializedSlot,
         ]);
     }
 
@@ -109,6 +133,8 @@ class GroupActivitySlotCheckInController extends Controller
         ActivitySlotAttendanceService $attendanceService,
         GroupActivityAuditService $activityAuditService,
         ActivitySlotSerializer $slotSerializer,
+        ActivitySlotStateTokenService $slotStateTokenService,
+        ActivityManagementRealtimeService $activityManagementRealtimeService,
     ): JsonResponse {
         $this->authorize('manageDashboard', [$activity, $group]);
 
@@ -129,6 +155,10 @@ class GroupActivitySlotCheckInController extends Controller
         }
 
         $slot->load(['activity', 'assignedCharacter', 'fieldValues', 'assignments']);
+        $validated = request()->validate([
+            'expected_slot_state_token' => ['required', 'string'],
+        ]);
+        $slotStateTokenService->assertMatches($slot, $validated['expected_slot_state_token']);
         $assignment = $attendanceService->undoCheckInSlot($slot);
 
         if (!$assignment) {
@@ -145,8 +175,13 @@ class GroupActivitySlotCheckInController extends Controller
             auth()->user(),
         );
 
+        $serializedSlot = $slotSerializer->serialize($slot);
+        $activityManagementRealtimeService->broadcastPatch($activity, [
+            'updated_slots' => [$serializedSlot],
+        ]);
+
         return response()->json([
-            'slot' => $slotSerializer->serialize($slot),
+            'slot' => $serializedSlot,
         ]);
     }
 
@@ -157,6 +192,8 @@ class GroupActivitySlotCheckInController extends Controller
         ActivitySlotAttendanceService $attendanceService,
         GroupActivityAuditService $activityAuditService,
         ActivitySlotSerializer $slotSerializer,
+        ActivitySlotStateTokenService $slotStateTokenService,
+        ActivityManagementRealtimeService $activityManagementRealtimeService,
     ): JsonResponse {
         $this->authorize('manageDashboard', [$activity, $group]);
 
@@ -168,7 +205,21 @@ class GroupActivitySlotCheckInController extends Controller
 
         $validated = $request->validate([
             'group_key' => ['required', 'string'],
+            'expected_slot_state_tokens' => ['required', 'array'],
         ]);
+
+        $groupSlots = $activity->slots()
+            ->with(['activity', 'assignedCharacter', 'fieldValues', 'assignments'])
+            ->where('group_key', (string) $validated['group_key'])
+            ->whereNotNull('assigned_character_id')
+            ->get();
+
+        foreach ($groupSlots as $slot) {
+            $slotStateTokenService->assertMatches(
+                $slot,
+                data_get($validated['expected_slot_state_tokens'], (string) $slot->id),
+            );
+        }
 
         $slots = $attendanceService->checkInGroup(
             $activity,
@@ -188,10 +239,17 @@ class GroupActivitySlotCheckInController extends Controller
             );
         }
 
+        $serializedSlots = $slots
+            ->map(fn (ActivitySlot $slot) => $slotSerializer->serialize($slot))
+            ->values()
+            ->all();
+
+        $activityManagementRealtimeService->broadcastPatch($activity, [
+            'updated_slots' => $serializedSlots,
+        ]);
+
         return response()->json([
-            'slots' => $slots
-                ->map(fn (ActivitySlot $slot) => $slotSerializer->serialize($slot))
-                ->values(),
+            'slots' => $serializedSlots,
         ]);
     }
 }

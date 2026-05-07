@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Activity;
 use App\Models\ActivityApplication;
 use App\Models\Group;
+use App\Services\Groups\ActivityManagementRealtimeService;
 use App\Services\Groups\ApplicantQueue\ApplicantQueuePayloadBuilder;
 use App\Services\Groups\GroupActivityAuditService;
 use App\Services\Notifications\ApplicationNotificationService;
@@ -23,6 +24,7 @@ class GroupActivityApplicationDeclineController extends Controller
         GroupActivityAuditService $activityAuditService,
         ApplicantQueuePayloadBuilder $queuePayloadBuilder,
         ApplicationNotificationService $applicationNotificationService,
+        ActivityManagementRealtimeService $activityManagementRealtimeService,
     ): JsonResponse {
         $this->authorize('manageDashboard', [$activity, $group]);
 
@@ -65,13 +67,25 @@ class GroupActivityApplicationDeclineController extends Controller
             $request->user(),
         );
 
+        $serializedApplication = $queuePayloadBuilder->serializeApplicationForModerator(
+            $application->fresh(['answers', 'selectedCharacter.occultProgress', 'selectedCharacter.phantomJobs', 'user']),
+            $activity->activityTypeVersion,
+            $activity->group,
+            (int) $request->user()->id,
+        );
+        $pendingApplicationCount = $activity->applications()
+            ->where('status', ActivityApplication::STATUS_PENDING)
+            ->count();
+
+        $activityManagementRealtimeService->broadcastPatch($activity, [
+            'pending_application_count' => $pendingApplicationCount,
+            'queue_application_sync_ids' => [],
+            'queue_application_remove_ids' => [(int) $application->id],
+        ]);
+
         return response()->json([
-            'application' => $queuePayloadBuilder->serializeApplicationForModerator(
-                $application->fresh(['answers', 'selectedCharacter.occultProgress', 'selectedCharacter.phantomJobs', 'user']),
-                $activity->activityTypeVersion,
-                $activity->group,
-                (int) $request->user()->id,
-            ),
+            'application' => $serializedApplication,
+            'pending_application_count' => $pendingApplicationCount,
         ]);
     }
 }

@@ -1,5 +1,7 @@
 <?php
 
+use App\Models\ActivitySlot;
+use App\Services\Groups\ActivitySlotStateTokenService;
 use Tests\TestCase;
 
 /*
@@ -43,7 +45,9 @@ expect()->extend('toBeOne', function () {
 |
 */
 
-function something()
+function activity_slot_state_token(ActivitySlot $slot): string
 {
-    // ..
+    $slot->loadMissing(['activity.slotAssignments', 'assignedCharacter', 'fieldValues', 'assignments']);
+
+    return app(ActivitySlotStateTokenService::class)->generate($slot);
 }

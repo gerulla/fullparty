@@ -37,6 +37,7 @@ export type ActivitySlot = {
 	can_return_to_queue: boolean
 	attendance_status: 'assigned' | 'checked_in' | 'late' | null
 	checked_in_at: string | null
+	state_token: string
 	assigned_character: {
 		id: number
 		name: string

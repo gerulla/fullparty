@@ -11,6 +11,7 @@ class ActivitySlotSerializer
 
     public function __construct(
         private readonly ActivitySlotBench $slotBench,
+        private readonly ActivitySlotStateTokenService $slotStateTokenService,
     ) {}
 
     /**
@@ -18,7 +19,7 @@ class ActivitySlotSerializer
      */
     public function serialize(ActivitySlot $slot): array
     {
-        $attendanceAssignment = $this->resolveAttendanceAssignment($slot);
+        $attendanceAssignment = $this->slotStateTokenService->resolveActiveAssignment($slot);
 
         return [
             'id' => $slot->id,
@@ -35,6 +36,7 @@ class ActivitySlotSerializer
             'can_return_to_queue' => $attendanceAssignment?->application_id !== null,
             'attendance_status' => $attendanceAssignment?->attendance_status ?? ($slot->assigned_character_id ? 'assigned' : null),
             'checked_in_at' => $attendanceAssignment?->checked_in_at?->toIso8601String(),
+            'state_token' => $this->slotStateTokenService->generate($slot),
             'assigned_character' => $slot->assignedCharacter ? [
                 'id' => $slot->assignedCharacter->id,
                 'name' => $slot->assignedCharacter->name,
@@ -53,35 +55,5 @@ class ActivitySlotSerializer
                 'display_meta' => $this->resolveSlotFieldDisplayMeta($fieldValue),
             ])->values(),
         ];
-    }
-
-    private function resolveAttendanceAssignment(ActivitySlot $slot): mixed
-    {
-        if (!$slot->assigned_character_id) {
-            return null;
-        }
-
-        if ($slot->relationLoaded('activity') && $slot->activity && $slot->activity->relationLoaded('slotAssignments')) {
-            $assignment = $slot->activity->slotAssignments
-                ->filter(fn ($assignment) => $assignment->ended_at === null
-                    && (int) $assignment->activity_slot_id === (int) $slot->id
-                    && (int) $assignment->character_id === (int) $slot->assigned_character_id)
-                ->sortByDesc('assigned_at')
-                ->first();
-
-            if ($assignment) {
-                return $assignment;
-            }
-        }
-
-        if ($slot->relationLoaded('assignments')) {
-            return $slot->assignments
-                ->filter(fn ($assignment) => $assignment->ended_at === null
-                    && (int) $assignment->character_id === (int) $slot->assigned_character_id)
-                ->sortByDesc('assigned_at')
-                ->first();
-        }
-
-        return null;
     }
 }

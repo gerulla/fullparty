@@ -642,7 +642,9 @@ it('returns assigned guest applications back to the queue', function () {
         'group' => $activity->group->slug,
         'activity' => $activity->id,
         'slot' => $slot->id,
-    ]));
+    ]), [
+        'expected_slot_state_token' => activity_slot_state_token($slot->fresh()),
+    ]);
 
     $response
         ->assertOk()

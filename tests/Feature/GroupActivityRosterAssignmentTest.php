@@ -1,5 +1,6 @@
 <?php
 
+use App\Events\ActivityManagementUpdated;
 use App\Models\Activity;
 use App\Models\ActivityApplication;
 use App\Models\ActivitySlotAssignment;
@@ -12,6 +13,7 @@ use App\Models\Group;
 use App\Models\PhantomJob;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Facades\Event;
 
 uses(RefreshDatabase::class);
 
@@ -194,6 +196,7 @@ it('assigns a pending application to a roster slot and creates an active assignm
         'slot' => $mainSlot->id,
     ]), [
         'application_id' => $application->id,
+        'expected_slot_state_token' => activity_slot_state_token($mainSlot),
         'field_values' => [
             'character_class' => (string) $tankClass->id,
             'phantom_job' => (string) $phantomKnight->id,
@@ -239,6 +242,81 @@ it('assigns a pending application to a roster slot and creates an active assignm
         ->and($auditLog->metadata['application_status'])->toBe(ActivityApplication::STATUS_APPROVED);
 });
 
+it('rejects stale slot assignment writes when another moderator changed the slot first', function () {
+    extract(createRosterAssignmentSetup());
+    extract(createApplicantForAssignment($activity, $tankClass, $phantomKnight));
+
+    $staleToken = activity_slot_state_token($mainSlot->fresh());
+    $replacement = createApplicantForAssignment($activity, $healerClass, $phantomBard);
+
+    $this->actingAs($owner);
+
+    $this->postJson(route('groups.dashboard.activities.slot-assignments.store', [
+        'group' => $group->slug,
+        'activity' => $activity->id,
+        'slot' => $mainSlot->id,
+    ]), [
+        'application_id' => $application->id,
+        'expected_slot_state_token' => $staleToken,
+        'field_values' => [
+            'character_class' => (string) $tankClass->id,
+            'phantom_job' => (string) $phantomKnight->id,
+        ],
+    ])->assertOk();
+
+    $response = $this->postJson(route('groups.dashboard.activities.slot-assignments.store', [
+        'group' => $group->slug,
+        'activity' => $activity->id,
+        'slot' => $mainSlot->id,
+    ]), [
+        'application_id' => $replacement['application']->id,
+        'expected_slot_state_token' => $staleToken,
+        'field_values' => [
+            'character_class' => (string) $healerClass->id,
+            'phantom_job' => (string) $phantomBard->id,
+        ],
+    ]);
+
+    $response
+        ->assertStatus(409)
+        ->assertJsonPath('message', 'This slot changed while you were editing it. Refresh and try again.');
+
+    expect($mainSlot->fresh()->assigned_character_id)->toBe($character->id)
+        ->and($replacement['application']->fresh()->status)->toBe(ActivityApplication::STATUS_PENDING);
+});
+
+it('broadcasts a management patch when a pending applicant is assigned from the queue', function () {
+    extract(createRosterAssignmentSetup());
+    extract(createApplicantForAssignment($activity, $tankClass, $phantomKnight));
+
+    Event::fake([ActivityManagementUpdated::class]);
+
+    $this->actingAs($owner)
+        ->postJson(route('groups.dashboard.activities.slot-assignments.store', [
+            'group' => $group->slug,
+            'activity' => $activity->id,
+            'slot' => $mainSlot->id,
+        ]), [
+            'application_id' => $application->id,
+            'expected_slot_state_token' => activity_slot_state_token($mainSlot),
+            'field_values' => [
+                'character_class' => (string) $tankClass->id,
+                'phantom_job' => (string) $phantomKnight->id,
+            ],
+        ])
+        ->assertOk()
+        ->assertJsonPath('pending_application_count', 0)
+        ->assertJsonPath('queue_application_remove_ids.0', $application->id);
+
+    Event::assertDispatched(ActivityManagementUpdated::class, function (ActivityManagementUpdated $event) use ($activity, $group, $application) {
+        return $event->activityId === $activity->id
+            && $event->groupId === $group->id
+            && ($event->patch['pending_application_count'] ?? null) === 0
+            && ($event->patch['queue_application_remove_ids'] ?? []) === [$application->id]
+            && count($event->patch['updated_slots'] ?? []) === 1;
+    });
+});
+
 it('assigns applications to bench slots without requiring slot field selections', function () {
     extract(createRosterAssignmentSetup());
     extract(createApplicantForAssignment($activity, $tankClass, $phantomKnight));
@@ -251,6 +329,7 @@ it('assigns applications to bench slots without requiring slot field selections'
         'slot' => $benchSlot->id,
     ]), [
         'application_id' => $application->id,
+        'expected_slot_state_token' => activity_slot_state_token($benchSlot),
     ]);
 
     $response->assertOk();
@@ -283,6 +362,7 @@ it('rejects slot field selections that are not present in the application answer
         'slot' => $mainSlot->id,
     ]), [
         'application_id' => $application->id,
+        'expected_slot_state_token' => activity_slot_state_token($mainSlot),
         'field_values' => [
             'character_class' => (string) $healerClass->id,
             'phantom_job' => (string) $phantomKnight->id,
@@ -312,6 +392,7 @@ it('returns the displaced application to pending when replacing a filled roster 
         'slot' => $mainSlot->id,
     ]), [
         'application_id' => $occupant['application']->id,
+        'expected_slot_state_token' => activity_slot_state_token($mainSlot),
         'field_values' => [
             'character_class' => (string) $tankClass->id,
             'phantom_job' => (string) $phantomKnight->id,
@@ -324,6 +405,7 @@ it('returns the displaced application to pending when replacing a filled roster 
         'slot' => $mainSlot->id,
     ]), [
         'application_id' => $replacement['application']->id,
+        'expected_slot_state_token' => activity_slot_state_token($mainSlot->fresh(['activity.slotAssignments', 'fieldValues', 'assignments'])),
         'field_values' => [
             'character_class' => (string) $healerClass->id,
             'phantom_job' => (string) $phantomBard->id,
@@ -388,6 +470,8 @@ it('rejects source slot reassignments when the source slot does not contain the 
     ]), [
         'application_id' => $candidate['application']->id,
         'source_slot_id' => $benchSlot->id,
+        'expected_slot_state_token' => activity_slot_state_token($mainSlot),
+        'expected_source_slot_state_token' => activity_slot_state_token($benchSlot),
         'field_values' => [
             'character_class' => (string) $healerClass->id,
             'phantom_job' => (string) $phantomBard->id,
@@ -423,6 +507,7 @@ it('manually assigns a group member character to an empty slot without creating 
         'slot' => $mainSlot->id,
     ]), [
         'character_id' => $character->id,
+        'expected_slot_state_token' => activity_slot_state_token($mainSlot),
         'field_values' => [
             'character_class' => (string) $tankClass->id,
             'phantom_job' => (string) $phantomKnight->id,
@@ -488,7 +573,9 @@ it('does not allow manually assigned slots to be returned to the queue', functio
         'group' => $group->slug,
         'activity' => $activity->id,
         'slot' => $mainSlot->id,
-    ]))
+    ]), [
+        'expected_slot_state_token' => activity_slot_state_token($mainSlot),
+    ])
         ->assertStatus(422)
         ->assertJsonValidationErrors(['slot']);
 });
@@ -505,6 +592,7 @@ it('allows manual assignments to use the full slot field option list', function 
         'slot' => $mainSlot->id,
     ]), [
         'character_id' => $character->id,
+        'expected_slot_state_token' => activity_slot_state_token($mainSlot),
         'field_values' => [
             'character_class' => (string) $healerClass->id,
             'phantom_job' => (string) $phantomBard->id,

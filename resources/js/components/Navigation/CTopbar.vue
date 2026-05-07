@@ -2,10 +2,14 @@
 import NotificationBell from "@/components/Navigation/NotificationBell.vue";
 import UserMenu from "@/components/Navigation/UserMenu.vue";
 import { usePersistentLocale } from "@/composables/usePersistentLocale";
+import { usePage } from "@inertiajs/vue3";
+import { computed } from "vue";
 import { useI18n } from "vue-i18n";
 
 const { t, locale } = useI18n({ useScope: 'global' })
 const { localeOptions, updateLocale } = usePersistentLocale();
+const page = usePage();
+const user = computed(() => page.props.auth?.user ?? null);
 
 defineProps({
 	title: {
@@ -27,7 +31,7 @@ defineProps({
 		</template>
 
 		<template #right>
-			<NotificationBell />
+			<NotificationBell v-if="user" />
 			<UColorModeButton />
 			<ULocaleSelect
 				variant="ghost"

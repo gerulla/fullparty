@@ -1,5 +1,6 @@
 <?php
 
+use App\Events\ActivityManagementUpdated;
 use App\Models\Activity;
 use App\Models\ActivityApplication;
 use App\Models\ActivitySlotAssignment;
@@ -12,6 +13,7 @@ use App\Models\User;
 use App\Services\FFLogs\ActivityReportProgressFetcher;
 use App\Services\FFLogs\CharacterZoneProgressFetcher;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Facades\Event;
 
 uses(RefreshDatabase::class);
 
@@ -306,6 +308,8 @@ it('allows moderators to decline pending applications with an optional reason', 
         'status' => ActivityApplication::STATUS_PENDING,
     ]);
 
+    Event::fake([ActivityManagementUpdated::class]);
+
     $this->actingAs($owner);
 
     $response = $this->postJson(route('groups.dashboard.activities.application-declines.store', [
@@ -336,6 +340,13 @@ it('allows moderators to decline pending applications with an optional reason', 
     expect($auditLog->actor_user_id)->toBe($owner->id)
         ->and($auditLog->metadata['application_status'])->toBe(ActivityApplication::STATUS_DECLINED)
         ->and($auditLog->metadata['review_reason'])->toBe('Roster already locked for this run.');
+
+    Event::assertDispatched(ActivityManagementUpdated::class, function (ActivityManagementUpdated $event) use ($activity, $group, $application) {
+        return $event->activityId === $activity->id
+            && $event->groupId === $group->id
+            && ($event->patch['queue_application_remove_ids'] ?? []) === [$application->id]
+            && ($event->patch['pending_application_count'] ?? null) === 0;
+    });
 });
 
 it('does not allow moderators to decline applications that are no longer pending', function () {

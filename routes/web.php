@@ -49,6 +49,12 @@ use Illuminate\Http\Request;
 Route::get('/', function () {
     return Inertia::render('Home');
 });
+Route::get('/privacy-policy', function () {
+    return Inertia::render('Legal/PrivacyPolicy');
+})->name('legal.privacy');
+Route::get('/cookies', function () {
+    return Inertia::render('Legal/CookiesPolicy');
+})->name('legal.cookies');
 
 Route::get('/groups/{group:slug}', [GroupController::class, 'show'])->name('groups.show');
 Route::get('/groups/{group:slug}/activities/{activity}/application/{secretKey?}', [GroupActivityApplicationController::class, 'show'])

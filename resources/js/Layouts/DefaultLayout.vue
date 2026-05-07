@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import CSidebar from "@/components/Navigation/CSidebar.vue";
 import CTopbar from "@/components/Navigation/CTopbar.vue";
+import DashboardFooter from "@/components/DashboardFooter.vue";
 import GroupNavigation from "@/components/Groups/GroupNavigation.vue";
 import SystemBanner from "@/components/SystemBanner.vue";
 import { usePage } from '@inertiajs/vue3'
@@ -43,7 +44,13 @@ defineProps({
 					</template>
 
 					<template #body>
-						<slot />
+						<div class="flex min-h-full flex-col">
+							<div class="flex-1">
+								<slot />
+							</div>
+
+							<DashboardFooter class="mt-8" />
+						</div>
 					</template>
 				</UDashboardPanel>
 			</UDashboardGroup>

@@ -34,5 +34,12 @@
       "settings": "Einstellungen",
       "logout": "Abmelden"
     }
+  },
+  "footer": {
+    "cookies": "Cookies",
+    "privacy": "Datenschutz",
+    "github": "GitHub",
+    "discord": "Discord",
+    "copyright": "Copyright {year} FullParty"
   }
 }

@@ -54,6 +54,7 @@ At minimum:
 - configure mail if needed
 - configure Google / Discord / XIVAuth credentials if you want those auth providers locally
 - configure Reverb if you want live notifications
+- configure `FULLPARTY_LEGAL_CONTROLLER_NAME` and `FULLPARTY_LEGAL_CONTACT_EMAIL` if you want the built-in legal pages to reflect your local or self-hosted instance accurately
 
 5. Generate the app key and run migrations
 

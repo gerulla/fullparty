@@ -121,6 +121,18 @@ After that, configure your `.env` for:
 - mail
 - auth providers if needed
 - Reverb if you want live notifications
+- legal/controller details if you plan to deploy a public instance
+
+## Important for Self-Hosters
+
+If you deploy your own copy of FullParty, you **must** review and replace the bundled legal pages so they accurately describe your own service, operator, contact details, providers, and data practices.
+
+At minimum, set these environment values for your instance:
+
+- `FULLPARTY_LEGAL_CONTROLLER_NAME`
+- `FULLPARTY_LEGAL_CONTACT_EMAIL`
+
+The bundled privacy and cookies pages are intended for the official deployment they are configured for. They are not a generic, one-size-fits-all legal policy for every fork or self-hosted copy.
 
 ## Documentation
 

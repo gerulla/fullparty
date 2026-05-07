@@ -83,6 +83,16 @@ Also configure:
 - Google / Discord / XIVAuth credentials if those login providers are enabled
 - Reverb credentials and host settings
 - FF Logs API credentials if FF Logs integrations are enabled
+- legal/controller details for the privacy and cookies pages
+
+For the bundled legal pages, configure:
+
+```env
+FULLPARTY_LEGAL_CONTROLLER_NAME=Your Operator or Company Name
+FULLPARTY_LEGAL_CONTACT_EMAIL=privacy@example.com
+```
+
+If you self-host or fork FullParty, do not leave the legal pages untouched. They should be reviewed and adapted so they accurately reflect your own service, operator, providers, and data practices.
 
 ### Postmark stream configuration
 

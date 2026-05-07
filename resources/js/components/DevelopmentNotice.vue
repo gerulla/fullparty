@@ -1,7 +1,15 @@
 <script setup>
+import {usePage} from "@inertiajs/vue3";
+import {computed} from "vue";
 import {useI18n} from "vue-i18n";
 
 const { t } = useI18n();
+const page = usePage();
+
+const siteLinks = computed(() => page.props.site_links ?? {
+	github: null,
+	discord: null,
+});
 </script>
 
 <template>
@@ -14,13 +22,15 @@ const { t } = useI18n();
 
 			<div class="mt-3 flex gap-2">
 				<a
-					href="#"
+					:href="siteLinks.github || '#'"
+					target="_blank"
+					rel="noopener noreferrer"
 					class="inline-flex items-center rounded-lg bg-brand-700 px-3 py-1.5 text-xs font-medium text-white hover:bg-brand-600 transition"
 				>
 					{{t('navigation.sidebar.notice.github')}}
 				</a>
 				<a
-					href="https://discord.gg/NhvQX8mbyS"
+					:href="siteLinks.discord || '#'"
 					target="_blank"
 					rel="noopener noreferrer"
 					class="inline-flex items-center rounded-lg border border-white/10 px-3 py-1.5 text-xs font-medium text-white/90 hover:bg-white/5 transition"

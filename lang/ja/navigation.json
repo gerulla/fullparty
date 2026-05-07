@@ -34,5 +34,12 @@
       "settings": "設定",
       "logout": "ログアウト"
     }
+  },
+  "footer": {
+    "cookies": "Cookies",
+    "privacy": "プライバシーポリシー",
+    "github": "GitHub",
+    "discord": "Discord",
+    "copyright": "Copyright {year} FullParty"
   }
 }

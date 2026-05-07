@@ -57,12 +57,22 @@ return [
         'enabled' => env('DISCORD_NOTIFICATIONS_ENABLED', false),
     ],
 
-	'ff_logs' => [
+    'ff_logs' => [
 		'client_id' => env('FFLOGS_CLIENT_ID'),
 		'client_secret' => env('FFLOGS_CLIENT_SECRET'),
 		'token_url' => env('FFLOGS_TOKEN_URL', 'https://www.fflogs.com/oauth/token'),
 		'graphql_url' => env('FFLOGS_GRAPHQL_URL', 'https://www.fflogs.com/api/v2/client'),
 		'forked_tower_blood_zone_id' => env('FFLOGS_FORKED_TOWER_BLOOD_ZONE_ID'),
 	],
+
+    'project_links' => [
+        'discord' => env('FULLPARTY_DISCORD_URL'),
+        'github' => env('FULLPARTY_GITHUB_URL'),
+    ],
+
+    'legal' => [
+        'controller_name' => env('FULLPARTY_LEGAL_CONTROLLER_NAME'),
+        'contact_email' => env('FULLPARTY_LEGAL_CONTACT_EMAIL'),
+    ],
 
 ];

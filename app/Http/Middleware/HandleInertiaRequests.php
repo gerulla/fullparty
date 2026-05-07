@@ -87,6 +87,14 @@ class HandleInertiaRequests extends Middleware
                     : [],
             ],
             'system_banner' => fn () => $this->systemBannerService->serialize(),
+            'site_links' => [
+                'discord' => fn () => config('services.project_links.discord'),
+                'github' => fn () => config('services.project_links.github'),
+            ],
+            'legal' => [
+                'controller_name' => fn () => config('services.legal.controller_name'),
+                'contact_email' => fn () => config('services.legal.contact_email'),
+            ],
 			'lookups' => [
 				'datacenters' => fn () => collect(config('datacenters.values', []))
 					->map(fn (string $value) => [

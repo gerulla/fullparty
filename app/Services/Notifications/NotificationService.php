@@ -79,6 +79,65 @@ class NotificationService
 
     /**
      * @param  User|iterable<int, User>  $recipients
+     * @return Collection<int, UserNotification>
+     */
+    public function sendAggregatedInAppNotifications(
+        NotificationEvent $event,
+        User|iterable $recipients,
+        string $aggregateKey,
+        int $incrementBy = 1,
+    ): Collection {
+        if ($incrementBy < 1) {
+            throw new InvalidArgumentException('Aggregate notifications must increment by at least one item.');
+        }
+
+        $normalizedRecipients = $this->normalizeRecipients($recipients);
+
+        return $normalizedRecipients
+            ->filter(fn (User $recipient) => $this->recipientWantsEvent($recipient, $event))
+            ->map(function (User $recipient) use ($event, $aggregateKey, $incrementBy) {
+                $existingNotification = UserNotification::query()
+                    ->where('user_id', $recipient->id)
+                    ->where('aggregate_key', $aggregateKey)
+                    ->whereNull('read_at')
+                    ->latest('created_at')
+                    ->first();
+
+                if (!$existingNotification) {
+                    $this->syncAggregateCountOnEvent($event, $incrementBy);
+
+                    $notification = UserNotification::query()->create([
+                        'notification_event_id' => $event->id,
+                        'user_id' => $recipient->id,
+                        'aggregate_key' => $aggregateKey,
+                        'aggregate_count' => $incrementBy,
+                    ]);
+
+                    $this->notificationRealtimeService->broadcastUserInboxUpdated($recipient);
+
+                    return $notification;
+                }
+
+                $newCount = (int) $existingNotification->aggregate_count + $incrementBy;
+
+                $this->syncAggregateCountOnEvent($event, $newCount);
+
+                $existingNotification->forceFill([
+                    'notification_event_id' => $event->id,
+                    'aggregate_count' => $newCount,
+                    'created_at' => now(),
+                    'updated_at' => now(),
+                ])->save();
+
+                $this->notificationRealtimeService->broadcastUserInboxUpdated($recipient);
+
+                return $existingNotification->fresh();
+            })
+            ->values();
+    }
+
+    /**
+     * @param  User|iterable<int, User>  $recipients
      * @param  array<int, string>|null  $channels
      * @return Collection<int, NotificationDelivery>
      */
@@ -286,6 +345,16 @@ class NotificationService
             ->first(fn (SocialAccount $socialAccount) => $socialAccount->provider === NotificationChannel::DISCORD);
 
         return filled($discordAccount?->provider_user_id) ? $discordAccount->provider_user_id : null;
+    }
+
+    private function syncAggregateCountOnEvent(NotificationEvent $event, int $count): void
+    {
+        $messageParams = $event->message_params ?? [];
+        $messageParams['count'] = $count;
+
+        $event->forceFill([
+            'message_params' => $messageParams,
+        ])->save();
     }
 
     private function resolveActorId(User|int|null $actor): ?int

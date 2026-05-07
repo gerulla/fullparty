@@ -32,6 +32,8 @@ class UserNotificationSerializer
             'type' => $notification->notificationEvent?->type,
             'category' => $notification->notificationEvent?->category,
             'is_mandatory' => (bool) $notification->notificationEvent?->is_mandatory,
+            'aggregate_count' => (int) ($notification->aggregate_count ?: 1),
+            'aggregate_key' => $notification->aggregate_key,
             'title_key' => $notification->notificationEvent?->title_key,
             'body_key' => $notification->notificationEvent?->body_key,
             'message_params' => $notification->notificationEvent?->message_params,

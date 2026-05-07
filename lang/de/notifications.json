@@ -39,6 +39,10 @@
     }
   },
   "applications": {
+    "new_for_review": {
+      "title": "Bewerbungen warten auf Prüfung",
+      "body": "{count} neue Bewerbungen für {activity} warten auf Prüfung."
+    },
     "submitted": {
       "title": "Neue Bewerbung erhalten",
       "body": "{character} hat sich für {activity} beworben."

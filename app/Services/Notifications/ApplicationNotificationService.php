@@ -25,18 +25,22 @@ class ApplicationNotificationService
         }
 
         $event = $this->notificationService->createEvent(
-            type: 'applications.submitted',
+            type: 'applications.new_for_review',
             category: NotificationCategory::APPLICATIONS,
-            titleKey: 'notifications.applications.submitted.title',
-            bodyKey: 'notifications.applications.submitted.body',
+            titleKey: 'notifications.applications.new_for_review.title',
+            bodyKey: 'notifications.applications.new_for_review.body',
             messageParams: $this->messageParams($application),
             actionUrl: $this->moderatorActionUrl($application),
             actor: $actor instanceof User ? $actor : null,
-            subject: $application,
+            subject: $application->activity,
             payload: $this->payload($application),
         );
 
-        $this->notificationService->sendInAppNotifications($event, $recipients);
+        $this->notificationService->sendAggregatedInAppNotifications(
+            $event,
+            $recipients,
+            $this->submittedAggregateKey($application),
+        );
     }
 
     public function notifyUpdated(ActivityApplication $application, mixed $actor): void
@@ -235,5 +239,13 @@ class ApplicationNotificationService
         return $application->selectedCharacter?->name
             ?? $application->applicant_character_name
             ?? 'Applicant';
+    }
+
+    private function submittedAggregateKey(ActivityApplication $application): string
+    {
+        return sprintf(
+            'applications.new_for_review.activity.%d',
+            (int) ($application->activity?->id ?? 0),
+        );
     }
 }

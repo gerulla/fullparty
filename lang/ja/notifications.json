@@ -39,6 +39,10 @@
     }
   },
   "applications": {
+    "new_for_review": {
+      "title": "審査待ちの応募があります",
+      "body": "{activity} には審査待ちの新しい応募が {count} 件あります。"
+    },
     "submitted": {
       "title": "新しい応募が届きました",
       "body": "{character} が {activity} に応募しました。"

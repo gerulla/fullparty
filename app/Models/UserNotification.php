@@ -13,10 +13,13 @@ class UserNotification extends Model
     protected $fillable = [
         'notification_event_id',
         'user_id',
+        'aggregate_key',
+        'aggregate_count',
         'read_at',
     ];
 
     protected $casts = [
+        'aggregate_count' => 'integer',
         'read_at' => 'datetime',
     ];
 

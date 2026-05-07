@@ -3,6 +3,7 @@
 use App\Events\UserNotificationsUpdated;
 use App\Models\NotificationDelivery;
 use App\Models\NotificationEvent;
+use App\Models\UserNotification;
 use App\Models\SocialAccount;
 use App\Models\User;
 use App\Services\Notifications\NotificationService;
@@ -86,6 +87,83 @@ it('creates in app notifications only for recipients who want the category and s
     Event::assertDispatched(UserNotificationsUpdated::class, function (UserNotificationsUpdated $event) use ($optedInUser) {
         return $event->userId === $optedInUser->id;
     });
+});
+
+it('aggregates unread in app notifications by aggregate key and resets after read', function () {
+    Event::fake([UserNotificationsUpdated::class]);
+
+    $recipient = User::factory()->create([
+        'application_notifications' => true,
+    ]);
+
+    $service = app(NotificationService::class);
+
+    $firstEvent = $service->createEvent(
+        type: 'applications.new_for_review',
+        category: NotificationCategory::APPLICATIONS,
+        titleKey: 'notifications.applications.new_for_review.title',
+        bodyKey: 'notifications.applications.new_for_review.body',
+        messageParams: [
+            'activity' => 'Weekly Savage',
+        ],
+    );
+
+    $secondEvent = $service->createEvent(
+        type: 'applications.new_for_review',
+        category: NotificationCategory::APPLICATIONS,
+        titleKey: 'notifications.applications.new_for_review.title',
+        bodyKey: 'notifications.applications.new_for_review.body',
+        messageParams: [
+            'activity' => 'Weekly Savage',
+        ],
+    );
+
+    $firstPass = $service->sendAggregatedInAppNotifications(
+        $firstEvent,
+        $recipient,
+        'applications.new_for_review.activity.1',
+    );
+    $secondPass = $service->sendAggregatedInAppNotifications(
+        $secondEvent,
+        $recipient,
+        'applications.new_for_review.activity.1',
+    );
+
+    expect($firstPass)->toHaveCount(1)
+        ->and($secondPass)->toHaveCount(1)
+        ->and(UserNotification::query()->count())->toBe(1);
+
+    $notification = UserNotification::query()->sole();
+
+    expect($notification->notification_event_id)->toBe($secondEvent->id)
+        ->and($notification->aggregate_key)->toBe('applications.new_for_review.activity.1')
+        ->and($notification->aggregate_count)->toBe(2)
+        ->and($secondEvent->fresh()->message_params['count'])->toBe(2);
+
+    $notification->markAsRead();
+
+    $thirdEvent = $service->createEvent(
+        type: 'applications.new_for_review',
+        category: NotificationCategory::APPLICATIONS,
+        titleKey: 'notifications.applications.new_for_review.title',
+        bodyKey: 'notifications.applications.new_for_review.body',
+        messageParams: [
+            'activity' => 'Weekly Savage',
+        ],
+    );
+
+    $thirdPass = $service->sendAggregatedInAppNotifications(
+        $thirdEvent,
+        $recipient,
+        'applications.new_for_review.activity.1',
+    );
+
+    expect($thirdPass)->toHaveCount(1)
+        ->and(UserNotification::query()->count())->toBe(2)
+        ->and(UserNotification::query()->whereNull('read_at')->sole()->aggregate_count)->toBe(1)
+        ->and($thirdEvent->fresh()->message_params['count'])->toBe(1);
+
+    Event::assertDispatchedTimes(UserNotificationsUpdated::class, 3);
 });
 
 it('lets mandatory system notices bypass the optional system notice preference for in app notifications', function () {

@@ -3,6 +3,8 @@ export type NotificationRecord = {
 	type: string | null
 	category: string | null
 	is_mandatory: boolean
+	aggregate_count: number
+	aggregate_key: string | null
 	title_key: string | null
 	body_key: string | null
 	message_params: Record<string, unknown> | null

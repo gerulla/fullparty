@@ -44,7 +44,7 @@ class GroupActivityManagementDataController extends Controller
 
         $benchSlotBackfillService->ensureBenchSlots($activity);
         $attendanceService->ensureActiveAssignments($activity);
-        $activity->load(['slotAssignments.character', 'slotAssignments.slot']);
+        $activity->load(['slots.assignments', 'slotAssignments.character', 'slotAssignments.slot']);
 
         $mainSlots = $activity->slots->filter(fn ($slot) => !$slotBench->isBench($slot))->values();
         $benchSlots = $activity->slots->filter(fn ($slot) => $slotBench->isBench($slot))->values();

@@ -264,6 +264,41 @@ it('updates mutable activity fields while keeping private access intact', functi
         ->and($auditLog->metadata['changes']['allow_guest_applications']['new'])->toBeFalse();
 });
 
+it('allows moderators to schedule a planned activity', function () {
+    $owner = User::factory()->create();
+    $group = Group::factory()->public()->create([
+        'owner_id' => $owner->id,
+    ]);
+    $activityType = createCrudActivityType($owner);
+
+    $activity = Activity::factory()->create([
+        'group_id' => $group->id,
+        'activity_type_id' => $activityType->id,
+        'activity_type_version_id' => $activityType->current_published_version_id,
+        'organized_by_user_id' => $owner->id,
+        'status' => Activity::STATUS_PLANNED,
+    ]);
+
+    $this->actingAs($owner)
+        ->post(route('groups.dashboard.activities.schedule', [
+            'group' => $group->slug,
+            'activity' => $activity->id,
+        ]))
+        ->assertRedirect(route('groups.dashboard.activities.show', [
+            'group' => $group->slug,
+            'activity' => $activity->id,
+        ]));
+
+    $activity->refresh();
+
+    expect($activity->status)->toBe(Activity::STATUS_SCHEDULED);
+
+    $auditLog = AuditLog::query()->where('action', 'group.activity.updated')->sole();
+
+    expect($auditLog->metadata['changes']['status']['old'])->toBe(Activity::STATUS_PLANNED)
+        ->and($auditLog->metadata['changes']['status']['new'])->toBe(Activity::STATUS_SCHEDULED);
+});
+
 it('does not allow archived activities to be updated', function () {
     $owner = User::factory()->create();
     $group = Group::factory()->public()->create([

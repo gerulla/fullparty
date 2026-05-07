@@ -60,6 +60,40 @@ class GroupUpdateNotificationService
         $this->notificationService->sendInAppNotifications($event, $recipients);
     }
 
+    public function notifyRunScheduled(Activity $activity, mixed $actor): void
+    {
+        $activity->loadMissing('group');
+
+        $recipients = $this->followerRecipients($activity->group, $actor instanceof User ? $actor->id : null);
+
+        if ($recipients->isEmpty()) {
+            return;
+        }
+
+        $event = $this->notificationService->createEvent(
+            type: 'groups.run_scheduled',
+            category: NotificationCategory::GROUP_UPDATES,
+            titleKey: 'notifications.groups.run_scheduled.title',
+            bodyKey: 'notifications.groups.run_scheduled.body',
+            messageParams: [
+                'group' => $activity->group?->name,
+                'activity' => $this->activityTitle($activity),
+            ],
+            actionUrl: route('groups.show', $activity->group),
+            actor: $actor instanceof User ? $actor : null,
+            subject: $activity,
+            payload: [
+                'group_id' => $activity->group?->id,
+                'group_slug' => $activity->group?->slug,
+                'activity_id' => $activity->id,
+                'activity_title' => $this->activityTitle($activity),
+                'status' => $activity->status,
+            ],
+        );
+
+        $this->notificationService->sendInAppNotifications($event, $recipients);
+    }
+
     public function notifyMemberPromoted(Group $group, User $member, mixed $actor): void
     {
         $this->notifyTargetUser(

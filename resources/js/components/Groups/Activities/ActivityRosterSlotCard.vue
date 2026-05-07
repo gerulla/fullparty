@@ -170,7 +170,7 @@ const contextMenuItems = computed<ContextMenuItem[][]>(() => [
 		{
 			label: 'Return to queue',
 			icon: 'i-lucide-undo-2',
-			disabled: !props.canReturnToQueue || props.isSwapPending,
+			disabled: !props.canReturnToQueue || !props.slot.can_return_to_queue || props.isSwapPending,
 			onSelect: () => emit('returnSlotToQueue', props.slot.id),
 		},
 	],
@@ -295,7 +295,7 @@ const handleDragEnd = () => {
 };
 
 const handleClick = () => {
-	if (!props.slot.assigned_character_id || props.isSwapPending) {
+	if (props.isSwapPending) {
 		return;
 	}
 

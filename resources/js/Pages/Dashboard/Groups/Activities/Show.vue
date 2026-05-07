@@ -4,15 +4,16 @@ import { computed, onBeforeUnmount, onMounted, ref } from "vue";
 import { useI18n } from "vue-i18n";
 import { router, usePage } from "@inertiajs/vue3";
 import { localizedValue } from "@/utils/localizedValue";
-import { canCompleteActivity, canPublishActivityRoster, isArchivedActivityStatus } from "@/utils/activityLifecycle";
+import { canCompleteActivity, canPublishActivityRoster, canScheduleActivity, isArchivedActivityStatus } from "@/utils/activityLifecycle";
 import { route } from "ziggy-js";
 import { useToast } from "@nuxt/ui/composables";
 import ActivityOverview from "@/components/Groups/Activities/ActivityOverview.vue";
 import RosterAssignments from "@/components/Groups/Activities/RosterAssignments.vue";
 import ApplicantQueue from "@/components/Groups/Activities/ApplicantQueue.vue";
 import AssignApplicantToSlotModal from "@/components/Groups/Activities/AssignApplicantToSlotModal.vue";
+import ManualAssignCharacterToSlotModal from "@/components/Groups/Activities/ManualAssignCharacterToSlotModal.vue";
 import CompleteActivityModal from "@/components/Groups/Activities/CompleteActivityModal.vue";
-import type { QueueApplication, QueueFilterField } from "@/components/Groups/Activities/queueTypes";
+import type { ManualAssignmentCharacter, QueueApplication, QueueFilterField } from "@/components/Groups/Activities/queueTypes";
 import type { ActivitySlot } from "@/components/Groups/Activities/rosterTypes";
 
 type LocalizedText = Record<string, string | null | undefined> | null | undefined;
@@ -117,6 +118,8 @@ const pendingSwapSlotIds = ref<number[]>([]);
 const isSlotAssignmentPending = ref(false);
 const isCompleteModalOpen = ref(false);
 const isCompletingActivity = ref(false);
+const isScheduleConfirmOpen = ref(false);
+const isSchedulingActivity = ref(false);
 const isCancelConfirmOpen = ref(false);
 const isCancellingActivity = ref(false);
 const pendingMissingUndoIds = ref<number[]>([]);
@@ -125,6 +128,11 @@ const assignmentModalApplication = ref<QueueApplication | null>(null);
 const assignmentModalSlotId = ref<number | null>(null);
 const assignmentModalSourceSlotId = ref<number | null>(null);
 const assignmentModalMode = ref<'assign' | 'edit'>('assign');
+const manualAssignmentModalOpen = ref(false);
+const manualAssignmentSlotId = ref<number | null>(null);
+const manualAssignmentSourceSlotId = ref<number | null>(null);
+const manualAssignmentInitialCharacterId = ref<number | null>(null);
+const manualAssignmentCharacters = ref<ManualAssignmentCharacter[]>([]);
 const activityData = ref<ActivityDetails | null>(null);
 
 const currentActivity = computed(() => activityData.value);
@@ -141,6 +149,7 @@ const activityTypeName = computed(() => {
 const activityTitle = computed(() => currentActivity.value?.title || activityTypeName.value);
 const isActivityArchived = computed(() => isArchivedActivityStatus(currentActivity.value?.status));
 const canEditActivity = computed(() => !currentActivity.value || !isActivityArchived.value);
+const canScheduleActivityAction = computed(() => Boolean(currentActivity.value && canScheduleActivity(currentActivity.value.status)));
 const canCompleteActivityAction = computed(() => Boolean(currentActivity.value && canCompleteActivity(currentActivity.value.status)));
 const canPublishRoster = computed(() => Boolean(currentActivity.value && canPublishActivityRoster(currentActivity.value.status)));
 const canCancelActivity = computed(() => Boolean(currentActivity.value && !isActivityArchived.value));
@@ -194,6 +203,17 @@ const assignmentModalSlot = computed(() => {
 
 	return currentActivity.value.slots.find((slot) => slot.id === assignmentModalSlotId.value) ?? null;
 });
+const manualAssignmentModalSlot = computed(() => {
+	if (!currentActivity.value || manualAssignmentSlotId.value === null) {
+		return null;
+	}
+
+	return currentActivity.value.slots.find((slot) => slot.id === manualAssignmentSlotId.value) ?? null;
+});
+const lockManualAssignmentCharacter = computed(() => Boolean(
+	manualAssignmentModalSlot.value?.assigned_character_id
+	&& manualAssignmentModalSlot.value.assignment_source === 'manual',
+));
 
 const goBack = () => {
 	router.get(route('groups.dashboard.activities.index', props.group.slug));
@@ -224,6 +244,35 @@ const cancelActivity = () => {
 	}
 
 	isCancelConfirmOpen.value = true;
+};
+
+const scheduleActivity = () => {
+	if (!currentActivity.value) {
+		return;
+	}
+
+	isScheduleConfirmOpen.value = true;
+};
+
+const confirmScheduleActivity = () => {
+	if (!currentActivity.value || isSchedulingActivity.value) {
+		return;
+	}
+
+	isSchedulingActivity.value = true;
+	router.post(route('groups.dashboard.activities.schedule', {
+		group: props.group.slug,
+		activity: props.activity.id,
+	}), {}, {
+		preserveScroll: true,
+		onSuccess: () => {
+			isScheduleConfirmOpen.value = false;
+			void fetchManagementData();
+		},
+		onFinish: () => {
+			isSchedulingActivity.value = false;
+		},
+	});
 };
 
 const confirmCancelActivity = () => {
@@ -469,6 +518,14 @@ const closeAssignmentModal = () => {
 	assignmentModalApplication.value = null;
 };
 
+const closeManualAssignmentModal = () => {
+	manualAssignmentModalOpen.value = false;
+	manualAssignmentSlotId.value = null;
+	manualAssignmentSourceSlotId.value = null;
+	manualAssignmentInitialCharacterId.value = null;
+	manualAssignmentCharacters.value = [];
+};
+
 const fetchSlotAssignmentContext = async (slotId: number) => {
 	if (!currentActivity.value) {
 		return null;
@@ -483,8 +540,58 @@ const fetchSlotAssignmentContext = async (slotId: number) => {
 	return response.data?.application ?? null;
 };
 
+const fetchManualAssignmentOptions = async (slotId: number, sourceSlotId?: number | null) => {
+	const response = await axios.get(route('groups.dashboard.activities.slot-manual-assignment-options.show', {
+		group: props.group.slug,
+		activity: props.activity.id,
+		slot: slotId,
+	}), {
+		params: sourceSlotId ? { source_slot_id: sourceSlotId } : undefined,
+	});
+
+	return response.data?.characters ?? [];
+};
+
+const openManualAssignmentModalForSlot = async (
+	slotId: number,
+	options: {
+		sourceSlotId?: number | null
+		initialCharacterId?: number | null
+	} = {},
+) => {
+	if (!currentActivity.value || isActivityArchived.value || isSlotSwapPending.value || isSlotAssignmentPending.value) {
+		return;
+	}
+
+	try {
+		manualAssignmentCharacters.value = await fetchManualAssignmentOptions(slotId, options.sourceSlotId);
+		manualAssignmentSlotId.value = slotId;
+		manualAssignmentSourceSlotId.value = options.sourceSlotId ?? null;
+		manualAssignmentInitialCharacterId.value = options.initialCharacterId ?? null;
+		manualAssignmentModalOpen.value = true;
+	} catch (error) {
+		console.error(error);
+		toast.add({
+			title: t('general.error'),
+			description: t('groups.activities.management.messages.load_manual_assignment_failed'),
+			color: 'error',
+			icon: 'i-lucide-octagon-alert',
+		});
+	}
+};
+
 const openAssignmentModalFromSlot = async (targetSlotId: number, sourceSlotId: number) => {
 	if (!currentActivity.value || isActivityArchived.value || isSlotSwapPending.value || isSlotAssignmentPending.value) {
+		return;
+	}
+
+	const sourceSlot = currentActivity.value.slots.find((slot) => slot.id === sourceSlotId);
+
+	if (sourceSlot?.assignment_source === 'manual' && sourceSlot.assigned_character_id) {
+		await openManualAssignmentModalForSlot(targetSlotId, {
+			sourceSlotId,
+			initialCharacterId: sourceSlot.assigned_character_id,
+		});
 		return;
 	}
 
@@ -518,10 +625,24 @@ const openSlotEditModal = async (slotId: number) => {
 	const slot = currentActivity.value.slots.find((entry) => entry.id === slotId);
 
 	if (!slot?.assigned_character_id) {
+		await openManualAssignmentModalForSlot(slotId);
 		return;
 	}
 
 	if (slot.is_bench) {
+		if (slot.assignment_source === 'manual') {
+			await openManualAssignmentModalForSlot(slotId, {
+				initialCharacterId: slot.assigned_character_id,
+			});
+		}
+
+		return;
+	}
+
+	if (slot.assignment_source === 'manual') {
+		await openManualAssignmentModalForSlot(slotId, {
+			initialCharacterId: slot.assigned_character_id,
+		});
 		return;
 	}
 
@@ -869,6 +990,51 @@ const handleAssignApplicantToSlot = async (payload: { applicationId: number, slo
 	}
 };
 
+const handleAssignCharacterToSlot = async (payload: { characterId: number, slotId: number, fieldValues: Record<string, string | string[]>, sourceSlotId?: number | null }) => {
+	if (!currentActivity.value || isActivityArchived.value || isSlotAssignmentPending.value) {
+		return;
+	}
+
+	isSlotAssignmentPending.value = true;
+	pendingSwapSlotIds.value = [payload.slotId, ...(payload.sourceSlotId ? [payload.sourceSlotId] : [])];
+
+	try {
+		const response = await axios.post(route('groups.dashboard.activities.slot-assignments.store', {
+			group: props.group.slug,
+			activity: props.activity.id,
+			slot: payload.slotId,
+		}), {
+			character_id: payload.characterId,
+			field_values: payload.fieldValues,
+			source_slot_id: payload.sourceSlotId ?? manualAssignmentSourceSlotId.value,
+		});
+
+		const updatedSlots = response.data?.slots ?? [];
+
+		if (updatedSlots.length > 0) {
+			const updatedSlotsById = new Map(updatedSlots.map((slot: ActivitySlot) => [slot.id, slot]));
+
+			activityData.value = {
+				...currentActivity.value,
+				slots: currentActivity.value.slots.map((slot) => updatedSlotsById.get(slot.id) ?? slot),
+			};
+		}
+
+		closeManualAssignmentModal();
+	} catch (error) {
+		console.error(error);
+		toast.add({
+			title: t('general.error'),
+			description: t('groups.activities.management.messages.manual_assign_failed'),
+			color: 'error',
+			icon: 'i-lucide-octagon-alert',
+		});
+	} finally {
+		isSlotAssignmentPending.value = false;
+		pendingSwapSlotIds.value = [];
+	}
+};
+
 onMounted(() => {
 	void fetchManagementData();
 	window.addEventListener('fullparty:activity-slot-returned-to-queue', handleSlotReturnedToQueue as EventListener);
@@ -880,7 +1046,7 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-	<div class="w-full overflow-x-hidden">
+	<div class="w-full">
 		<UButton
 			:label="t('groups.activities.back')"
 			icon="i-lucide-arrow-left"
@@ -895,6 +1061,7 @@ onBeforeUnmount(() => {
 				:title="activityTitle"
 				:status="currentActivity.status"
 				:can-edit="canEditActivity"
+				:can-schedule="canScheduleActivityAction"
 				:can-complete="canCompleteActivityAction"
 				:can-publish-roster="canPublishRoster"
 				:can-cancel="canCancelActivity"
@@ -918,6 +1085,7 @@ onBeforeUnmount(() => {
 				@go-to-application="goToApplicationPage"
 				@copy-application-link="copyApplicationLink"
 				@export-roster="exportRoster"
+				@schedule="scheduleActivity"
 				@complete="completeActivity"
 				@publish-roster="publishRoster"
 				@cancel="cancelActivity"
@@ -1096,12 +1264,12 @@ onBeforeUnmount(() => {
 			</div>
 
 			<div
-				class="sticky top-4 self-start transition-all duration-300 ease-in-out"
+				class="sticky top-4 self-start overflow-hidden transition-all duration-300 ease-in-out"
 				:class="showApplicantQueue
 					? 'xl:w-96 xl:opacity-100'
 					: 'xl:w-0 xl:opacity-0 xl:pointer-events-none'"
 			>
-				<div class="w-full min-w-0 xl:w-96">
+				<div class="w-full min-w-0">
 					<ApplicantQueue
 						:group-slug="group.slug"
 						:activity-id="activity.id"
@@ -1122,6 +1290,17 @@ onBeforeUnmount(() => {
 			@confirm="handleAssignApplicantToSlot"
 		/>
 
+		<ManualAssignCharacterToSlotModal
+			v-model:open="manualAssignmentModalOpen"
+			:slot="manualAssignmentModalSlot"
+			:characters="manualAssignmentCharacters"
+			:slot-field-definitions="currentActivity?.slot_field_definitions ?? []"
+			:is-submitting="isSlotAssignmentPending"
+			:initial-character-id="manualAssignmentInitialCharacterId"
+			:lock-character="lockManualAssignmentCharacter"
+			@confirm="handleAssignCharacterToSlot"
+		/>
+
 		<CompleteActivityModal
 			v-model:open="isCompleteModalOpen"
 			:group-slug="group.slug"
@@ -1133,6 +1312,36 @@ onBeforeUnmount(() => {
 			:errors="completionErrors"
 			@confirm="confirmCompleteActivity"
 		/>
+
+		<UModal
+			v-model:open="isScheduleConfirmOpen"
+			:title="t('groups.activities.management.schedule_activity_modal.title')"
+			:description="t('groups.activities.management.schedule_activity_confirm')"
+		>
+			<template #body>
+				<p class="text-sm text-muted">
+					{{ t('groups.activities.management.schedule_activity_modal.body') }}
+				</p>
+			</template>
+
+			<template #footer>
+				<div class="flex w-full items-center justify-end gap-3">
+					<UButton
+						color="neutral"
+						variant="ghost"
+						:label="t('general.cancel')"
+						@click="isScheduleConfirmOpen = false"
+					/>
+					<UButton
+						color="primary"
+						icon="i-lucide-calendar-check-2"
+						:label="t('groups.activities.management.schedule_activity_modal.confirm')"
+						:loading="isSchedulingActivity"
+						@click="confirmScheduleActivity"
+					/>
+				</div>
+			</template>
+		</UModal>
 
 		<UModal
 			v-model:open="isCancelConfirmOpen"

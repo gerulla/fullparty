@@ -16,6 +16,7 @@ use App\Http\Controllers\GroupActivityRosterExportController;
 use App\Http\Controllers\GroupActivitySlotCheckInController;
 use App\Http\Controllers\GroupActivitySlotAssignmentContextController;
 use App\Http\Controllers\GroupActivitySlotAssignmentController;
+use App\Http\Controllers\GroupActivityManualSlotAssignmentOptionsController;
 use App\Http\Controllers\GroupActivitySlotMissingController;
 use App\Http\Controllers\GroupActivitySlotUnassignmentController;
 use App\Http\Controllers\GroupActivitySlotSwapController;
@@ -180,6 +181,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
 		Route::post('/activities/{activity}/slot-groups/check-in', [GroupActivitySlotCheckInController::class, 'storeGroup'])->name('groups.dashboard.activities.slot-group-checkins.store');
 		Route::post('/activities/{activity}/slot-swaps', [GroupActivitySlotSwapController::class, 'store'])->name('groups.dashboard.activities.slot-swaps.store');
 		Route::get('/activities/{activity}/slots/{slot}/assignment-context', [GroupActivitySlotAssignmentContextController::class, 'show'])->name('groups.dashboard.activities.slot-assignments.context');
+		Route::get('/activities/{activity}/slots/{slot}/manual-assignment-options', [GroupActivityManualSlotAssignmentOptionsController::class, 'show'])->name('groups.dashboard.activities.slot-manual-assignment-options.show');
 		Route::post('/activities/{activity}/slots/{slot}/assign-application', [GroupActivitySlotAssignmentController::class, 'store'])->name('groups.dashboard.activities.slot-assignments.store');
 		Route::post('/activities/{activity}/slots/{slot}/mark-missing', [GroupActivitySlotMissingController::class, 'store'])->name('groups.dashboard.activities.slot-missing.store');
 		Route::post('/activities/{activity}/missing-assignments/{assignment}/undo', [GroupActivitySlotMissingController::class, 'undo'])->name('groups.dashboard.activities.slot-missing.undo');
@@ -191,6 +193,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
 		Route::post('/activities/{activity}/fflogs-completion-preview', [GroupActivityFflogsCompletionPreviewController::class, 'show'])->name('groups.dashboard.activities.fflogs-completion-preview');
 		Route::get('/activities/{activity}', [GroupActivityController::class, 'show'])->name('groups.dashboard.activities.show');
 		Route::put('/activities/{activity}', [GroupActivityController::class, 'update'])->name('groups.dashboard.activities.update');
+		Route::post('/activities/{activity}/schedule', [GroupActivityController::class, 'schedule'])->name('groups.dashboard.activities.schedule');
 		Route::post('/activities/{activity}/complete', [GroupActivityCompletionController::class, 'store'])->name('groups.dashboard.activities.complete');
 		Route::post('/activities/{activity}/publish-roster', [GroupActivityController::class, 'publishRoster'])->name('groups.dashboard.activities.publish-roster');
 		Route::post('/activities/{activity}/cancel', [GroupActivityController::class, 'cancel'])->name('groups.dashboard.activities.cancel');

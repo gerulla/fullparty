@@ -175,3 +175,18 @@ export type QueueFilterMilestone = {
 	encounter_id: number | null
 	phase_id: number | null
 }
+
+export type ManualAssignmentCharacter = {
+	id: number
+	name: string
+	avatar_url: string | null
+	world: string | null
+	datacenter: string | null
+	user: {
+		id: number
+		name: string
+		avatar_url: string | null
+	} | null
+	character_class_ids: string[]
+	phantom_job_ids: string[]
+}

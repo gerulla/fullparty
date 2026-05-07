@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Activity;
 use App\Models\ActivityApplication;
 use App\Models\ActivitySlot;
+use App\Models\ActivitySlotAssignment;
 use App\Models\Group;
 use App\Services\Notifications\AssignmentNotificationService;
 use App\Services\Groups\GroupActivityAuditService;
@@ -42,6 +43,20 @@ class GroupActivitySlotUnassignmentController extends Controller
         if (!$slot->assigned_character_id) {
             throw ValidationException::withMessages([
                 'slot' => 'Only filled roster slots can be returned to the queue.',
+            ]);
+        }
+
+        $activeAssignment = ActivitySlotAssignment::query()
+            ->where('activity_id', $activity->id)
+            ->where('activity_slot_id', $slot->id)
+            ->where('character_id', $slot->assigned_character_id)
+            ->whereNull('ended_at')
+            ->latest('assigned_at')
+            ->first();
+
+        if ($activeAssignment && $activeAssignment->application_id === null) {
+            throw ValidationException::withMessages([
+                'slot' => 'Manually assigned slots cannot be returned to the queue.',
             ]);
         }
 

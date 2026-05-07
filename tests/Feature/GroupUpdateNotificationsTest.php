@@ -154,6 +154,75 @@ it('notifies followers when a run is created in scheduled state', function () {
     );
 });
 
+it('notifies followers when a planned run is later scheduled', function () {
+    $owner = User::factory()->create([
+        'group_update_notifications' => true,
+    ]);
+    $moderator = User::factory()->create([
+        'group_update_notifications' => true,
+    ]);
+    $member = User::factory()->create([
+        'group_update_notifications' => true,
+    ]);
+    $follower = User::factory()->create([
+        'group_update_notifications' => true,
+    ]);
+
+    $group = Group::factory()->public()->create([
+        'owner_id' => $owner->id,
+    ]);
+
+    $group->memberships()->createMany([
+        [
+            'user_id' => $moderator->id,
+            'role' => GroupMembership::ROLE_MODERATOR,
+            'joined_at' => now(),
+        ],
+        [
+            'user_id' => $member->id,
+            'role' => GroupMembership::ROLE_MEMBER,
+            'joined_at' => now(),
+        ],
+    ]);
+
+    $group->followers()->syncWithoutDetaching([$follower->id]);
+
+    extract(createGroupUpdateActivityType($owner));
+
+    $activity = Activity::factory()->create([
+        'group_id' => $group->id,
+        'activity_type_id' => $type->id,
+        'activity_type_version_id' => $version->id,
+        'organized_by_user_id' => $moderator->id,
+        'status' => Activity::STATUS_PLANNED,
+        'title' => 'Planned Into Scheduled',
+    ]);
+
+    $this->actingAs($moderator)
+        ->post(route('groups.dashboard.activities.schedule', [
+            'group' => $group,
+            'activity' => $activity,
+        ]))
+        ->assertRedirect(route('groups.dashboard.activities.show', [
+            'group' => $group,
+            'activity' => $activity,
+        ]));
+
+    $event = NotificationEvent::query()->where('type', 'groups.run_scheduled')->latest('id')->sole();
+
+    $recipientIds = UserNotification::query()
+        ->where('notification_event_id', $event->id)
+        ->pluck('user_id')
+        ->sort()
+        ->values()
+        ->all();
+
+    expect($recipientIds)->toBe(
+        collect([$owner->id, $member->id, $follower->id])->sort()->values()->all()
+    )
+        ->and($activity->fresh()->status)->toBe(Activity::STATUS_SCHEDULED);
+});
+
 it('notifies the affected user when they are promoted and demoted', function () {
     $owner = User::factory()->create();
     $member = User::factory()->create([

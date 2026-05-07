@@ -7,6 +7,7 @@ const props = defineProps<{
 	title: string
 	status: string
 	canEdit: boolean
+	canSchedule: boolean
 	canComplete: boolean
 	canPublishRoster: boolean
 	canCancel: boolean
@@ -46,6 +47,7 @@ const emit = defineEmits<{
 	goToApplication: []
 	copyApplicationLink: []
 	exportRoster: []
+	schedule: []
 	complete: []
 	publishRoster: []
 	cancel: []
@@ -269,6 +271,15 @@ const milestoneProgressWidth = (progress: number | null) => {
 				</div>
 
 				<div class="flex flex-row items-center gap-2">
+					<UButton
+						v-if="canSchedule"
+						color="primary"
+						variant="outline"
+						class="bg-background shadow-sm"
+						icon="i-lucide-calendar-check-2"
+						:label="t('groups.activities.management.schedule_activity')"
+						@click="emit('schedule')"
+					/>
 					<UButton
 						v-if="canComplete"
 						color="success"

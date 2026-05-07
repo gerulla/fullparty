@@ -165,6 +165,23 @@ function createApplicantForAssignment(
     return compact('user', 'character', 'application');
 }
 
+function createGroupMemberCharacterForManualAssignment(Group $group): array
+{
+    $user = User::factory()->create();
+    $group->memberships()->create([
+        'user_id' => $user->id,
+        'role' => 'member',
+        'joined_at' => now(),
+    ]);
+
+    $character = Character::factory()->primary()->create([
+        'user_id' => $user->id,
+        'verified_at' => now(),
+    ]);
+
+    return compact('user', 'character');
+}
+
 it('assigns a pending application to a roster slot and creates an active assignment snapshot', function () {
     extract(createRosterAssignmentSetup());
     extract(createApplicantForAssignment($activity, $tankClass, $phantomKnight));
@@ -383,4 +400,131 @@ it('rejects source slot reassignments when the source slot does not contain the 
 
     expect($mainSlot->fresh()->assigned_character_id)->toBeNull();
     expect($benchSlot->fresh()->assigned_character_id)->toBe($benchOccupant['character']->id);
+});
+
+it('manually assigns a group member character to an empty slot without creating an application link', function () {
+    extract(createRosterAssignmentSetup());
+    extract(createGroupMemberCharacterForManualAssignment($group));
+
+    $character->classes()->attach($tankClass->id, [
+        'level' => 100,
+        'is_preferred' => true,
+    ]);
+    $character->phantomJobs()->attach($phantomKnight->id, [
+        'current_level' => $phantomKnight->max_level,
+        'is_preferred' => true,
+    ]);
+
+    $this->actingAs($owner);
+
+    $response = $this->postJson(route('groups.dashboard.activities.slot-assignments.store', [
+        'group' => $group->slug,
+        'activity' => $activity->id,
+        'slot' => $mainSlot->id,
+    ]), [
+        'character_id' => $character->id,
+        'field_values' => [
+            'character_class' => (string) $tankClass->id,
+            'phantom_job' => (string) $phantomKnight->id,
+        ],
+    ]);
+
+    $response->assertOk();
+
+    $mainSlot->refresh()->load('fieldValues');
+
+    expect($mainSlot->assigned_character_id)->toBe($character->id);
+
+    $assignment = ActivitySlotAssignment::query()
+        ->where('activity_id', $activity->id)
+        ->where('character_id', $character->id)
+        ->whereNull('ended_at')
+        ->first();
+
+    expect($assignment)->not->toBeNull();
+    expect($assignment?->application_id)->toBeNull()
+        ->and($assignment?->assignment_source)->toBe(ActivitySlotAssignment::SOURCE_MANUAL);
+
+    $auditLog = AuditLog::query()->where('action', 'group.activity.roster.manual_assigned')->sole();
+
+    expect($auditLog->metadata['selected_character_name'])->toBe($character->name)
+        ->and($auditLog->metadata['assignment_source'])->toBe(ActivitySlotAssignment::SOURCE_MANUAL);
+});
+
+it('does not allow manually assigned slots to be returned to the queue', function () {
+    extract(createRosterAssignmentSetup());
+    extract(createGroupMemberCharacterForManualAssignment($group));
+
+    $character->classes()->attach($tankClass->id, [
+        'level' => 100,
+        'is_preferred' => true,
+    ]);
+    $character->phantomJobs()->attach($phantomKnight->id, [
+        'current_level' => $phantomKnight->max_level,
+        'is_preferred' => true,
+    ]);
+
+    $mainSlot->update([
+        'assigned_character_id' => $character->id,
+        'assigned_by_user_id' => $owner->id,
+    ]);
+
+    ActivitySlotAssignment::query()->create([
+        'activity_id' => $activity->id,
+        'group_id' => $group->id,
+        'activity_slot_id' => $mainSlot->id,
+        'character_id' => $character->id,
+        'application_id' => null,
+        'assignment_source' => ActivitySlotAssignment::SOURCE_MANUAL,
+        'field_values_snapshot' => [],
+        'attendance_status' => ActivitySlotAssignment::STATUS_ASSIGNED,
+        'assigned_at' => now(),
+        'assigned_by_user_id' => $owner->id,
+    ]);
+
+    $this->actingAs($owner);
+
+    $this->postJson(route('groups.dashboard.activities.slot-unassignments.store', [
+        'group' => $group->slug,
+        'activity' => $activity->id,
+        'slot' => $mainSlot->id,
+    ]))
+        ->assertStatus(422)
+        ->assertJsonValidationErrors(['slot']);
+});
+
+it('allows manual assignments to use the full slot field option list', function () {
+    extract(createRosterAssignmentSetup());
+    extract(createGroupMemberCharacterForManualAssignment($group));
+
+    $this->actingAs($owner);
+
+    $response = $this->postJson(route('groups.dashboard.activities.slot-assignments.store', [
+        'group' => $group->slug,
+        'activity' => $activity->id,
+        'slot' => $mainSlot->id,
+    ]), [
+        'character_id' => $character->id,
+        'field_values' => [
+            'character_class' => (string) $healerClass->id,
+            'phantom_job' => (string) $phantomBard->id,
+        ],
+    ]);
+
+    $response->assertOk();
+
+    $mainSlot->refresh()->load('fieldValues');
+
+    expect($mainSlot->fieldValues->firstWhere('field_key', 'character_class')?->value)
+        ->toMatchArray([
+            'id' => $healerClass->id,
+            'name' => 'White Mage',
+            'role' => 'healer',
+            'shorthand' => 'WHM',
+        ]);
+    expect($mainSlot->fieldValues->firstWhere('field_key', 'phantom_job')?->value)
+        ->toMatchArray([
+            'id' => $phantomBard->id,
+            'name' => 'Phantom Bard',
+        ]);
 });

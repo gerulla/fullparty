@@ -202,7 +202,9 @@ it('notifies signed in applicants of their roster positions when the roster is p
     $group = Group::factory()->public()->create([
         'owner_id' => $owner->id,
     ]);
-    $activity = createAssignmentNotificationActivity($owner, $group);
+    $activity = createAssignmentNotificationActivity($owner, $group, [
+        'status' => Activity::STATUS_SCHEDULED,
+    ]);
 
     $rosterUser = User::factory()->create([
         'assignment_notifications' => true,
@@ -342,7 +344,127 @@ it('notifies signed in applicants of their roster positions when the roster is p
         ->and($discordDeliveries->pluck('status')->unique()->values()->all())->toBe([NotificationDelivery::STATUS_SKIPPED])
         ->and($discordDeliveries->pluck('status_reason')->unique()->values()->all())->toBe(['discord_transport_unavailable']);
 
-    Queue::assertPushed(SendNotificationEmailDeliveryJob::class, 2);
+Queue::assertPushed(SendNotificationEmailDeliveryJob::class, 2);
+});
+
+it('notifies a manually assigned member when they are added to a published roster slot', function () {
+    Queue::fake();
+
+    extract(createPublishedAssignmentFieldNotificationSetup());
+
+    $member = User::factory()->create([
+        'assignment_notifications' => true,
+        'email_notifications' => true,
+        'discord_notifications' => true,
+    ]);
+    $group->memberships()->create([
+        'user_id' => $member->id,
+        'role' => 'member',
+        'joined_at' => now(),
+    ]);
+
+    $character = Character::factory()->primary()->create([
+        'user_id' => $member->id,
+        'name' => 'Nyx Vireo',
+        'lodestone_id' => '77665544',
+        'verified_at' => now(),
+    ]);
+
+    $character->classes()->attach($tankClass->id, [
+        'level' => 100,
+        'is_preferred' => true,
+    ]);
+    $character->phantomJobs()->attach($phantomKnight->id, [
+        'current_level' => $phantomKnight->max_level,
+        'is_preferred' => true,
+    ]);
+
+    SocialAccount::query()->create([
+        'user_id' => $member->id,
+        'provider' => NotificationChannel::DISCORD,
+        'provider_user_id' => 'discord-manual-member',
+        'provider_name' => 'Manual Member',
+        'provider_email' => $member->email,
+    ]);
+
+    $this->actingAs($owner);
+
+    $this->postJson(route('groups.dashboard.activities.slot-assignments.store', [
+        'group' => $group->slug,
+        'activity' => $activity->id,
+        'slot' => $mainSlot->id,
+    ]), [
+        'character_id' => $character->id,
+        'field_values' => [
+            'character_class' => (string) $tankClass->id,
+            'phantom_job' => (string) $phantomKnight->id,
+        ],
+    ])->assertOk();
+
+    $event = NotificationEvent::query()->where('type', 'assignments.assigned')->sole();
+
+    expect($event->message_params['character'])->toBe('Nyx Vireo')
+        ->and(UserNotification::query()->where('user_id', $member->id)->count())->toBe(1)
+        ->and(NotificationDelivery::query()->where('user_id', $member->id)->where('channel', NotificationChannel::EMAIL)->count())->toBe(1)
+        ->and(NotificationDelivery::query()->where('user_id', $member->id)->where('channel', NotificationChannel::DISCORD)->count())->toBe(1);
+});
+
+it('notifies manually assigned members when the roster is published', function () {
+    Queue::fake();
+
+    $owner = User::factory()->create();
+    $group = Group::factory()->public()->create([
+        'owner_id' => $owner->id,
+    ]);
+    $activity = createAssignmentNotificationActivity($owner, $group, [
+        'status' => Activity::STATUS_SCHEDULED,
+    ]);
+
+    $member = User::factory()->create([
+        'assignment_notifications' => true,
+        'email_notifications' => true,
+        'discord_notifications' => true,
+    ]);
+    $group->memberships()->create([
+        'user_id' => $member->id,
+        'role' => 'member',
+        'joined_at' => now(),
+    ]);
+
+    $character = Character::factory()->primary()->create([
+        'user_id' => $member->id,
+        'name' => 'Kael Thorn',
+        'lodestone_id' => '44556677',
+        'verified_at' => now(),
+    ]);
+
+    $mainSlot = $activity->slots()->where('group_key', 'party-a')->firstOrFail();
+    $mainSlot->update([
+        'assigned_character_id' => $character->id,
+        'assigned_by_user_id' => $owner->id,
+    ]);
+
+    SocialAccount::query()->create([
+        'user_id' => $member->id,
+        'provider' => NotificationChannel::DISCORD,
+        'provider_user_id' => 'discord-manual-publish',
+        'provider_name' => 'Manual Publish',
+        'provider_email' => $member->email,
+    ]);
+
+    $this->actingAs($owner);
+
+    $this->post(route('groups.dashboard.activities.publish-roster', [
+        'group' => $group->slug,
+        'activity' => $activity->id,
+    ]))->assertRedirect();
+
+    $event = NotificationEvent::query()->where('type', 'assignments.roster_published_assigned')->sole();
+
+    expect($event->message_params['character'])->toBe('Kael Thorn')
+        ->and(UserNotification::query()->where('user_id', $member->id)->count())->toBe(1)
+        ->and(NotificationDelivery::query()->where('user_id', $member->id)->where('channel', NotificationChannel::EMAIL)->count())->toBe(1)
+        ->and(NotificationDelivery::query()->where('user_id', $member->id)->where('channel', NotificationChannel::DISCORD)->count())->toBe(1);
 });
 
 it('does not create assignment notifications while the roster is still unpublished', function () {

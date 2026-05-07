@@ -5,6 +5,8 @@ namespace App\Services\Groups;
 use App\Models\Activity;
 use App\Models\ActivityApplication;
 use App\Models\ActivitySlot;
+use App\Models\ActivitySlotAssignment;
+use App\Models\Character;
 use App\Services\Notifications\AssignmentNotificationService;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\ValidationException;
@@ -209,6 +211,147 @@ class ActivitySlotAssignmentService
         }
     }
 
+    /**
+     * @param  array<string, mixed>  $fieldSelections
+     * @param  array<string, array<string, mixed>>  $fieldDefinitions
+     */
+    public function assignManualCharacter(
+        ActivitySlot $targetSlot,
+        Character $character,
+        array $fieldSelections,
+        array $fieldDefinitions,
+        int $assignedByUserId,
+        ?ActivitySlot $sourceSlot = null,
+    ): void {
+        $targetSlot->loadMissing('fieldValues');
+        $character->loadMissing(['user', 'classes', 'phantomJobs']);
+
+        $activity = $targetSlot->activity;
+
+        if (!$activity) {
+            throw ValidationException::withMessages([
+                'slot' => 'The selected slot is not attached to an activity.',
+            ]);
+        }
+
+        if ($sourceSlot && (int) $sourceSlot->assigned_character_id !== (int) $character->id) {
+            throw ValidationException::withMessages([
+                'source_slot_id' => 'The source slot does not match the selected character.',
+            ]);
+        }
+
+        if (
+            $targetSlot->assigned_character_id !== null
+            && (int) $targetSlot->assigned_character_id !== (int) $character->id
+        ) {
+            throw ValidationException::withMessages([
+                'slot' => 'Manual assignment is only available for empty slots or the currently assigned manual character.',
+            ]);
+        }
+
+        $conflictingSlot = $activity->slots()
+            ->where('assigned_character_id', $character->id)
+            ->when($sourceSlot, fn ($query) => $query->where('id', '!=', $sourceSlot->id))
+            ->where('id', '!=', $targetSlot->id)
+            ->first();
+
+        if ($conflictingSlot) {
+            throw ValidationException::withMessages([
+                'character_id' => 'This character is already assigned to another slot in this run.',
+            ]);
+        }
+
+        $targetPreviousCharacterId = $targetSlot->assigned_character_id;
+        $originalTargetFieldValueSnapshot = $this->attendanceService->buildFieldValueSnapshot($targetSlot);
+        $isTargetBench = $this->slotBench->isBench($targetSlot);
+
+        DB::transaction(function () use (
+            $targetSlot,
+            $sourceSlot,
+            $character,
+            $fieldSelections,
+            $fieldDefinitions,
+            $assignedByUserId,
+            $isTargetBench,
+            $activity,
+        ) {
+            $targetSlot->update([
+                'assigned_character_id' => $character->id,
+                'assigned_by_user_id' => $assignedByUserId,
+            ]);
+
+            if ($isTargetBench) {
+                $this->clearSlotFieldValues($targetSlot);
+            } else {
+                $this->applyManualSlotFieldSelections($targetSlot, $fieldSelections, $fieldDefinitions, $character);
+            }
+
+            $this->attendanceService->moveOrCreateActiveAssignment(
+                $targetSlot,
+                (int) $character->id,
+                null,
+                $assignedByUserId,
+                $this->attendanceService->buildFieldValueSnapshot($targetSlot),
+            );
+
+            if ($sourceSlot && (int) $sourceSlot->id !== (int) $targetSlot->id) {
+                $sourceSlot->update([
+                    'assigned_character_id' => null,
+                    'assigned_by_user_id' => null,
+                ]);
+                $this->clearSlotFieldValues($sourceSlot);
+
+                $sourceAssignment = ActivitySlotAssignment::query()
+                    ->where('activity_id', $activity->id)
+                    ->where('character_id', $character->id)
+                    ->whereNull('ended_at')
+                    ->latest('assigned_at')
+                    ->first();
+
+                if ($sourceAssignment) {
+                    $sourceAssignment->update([
+                        'assignment_source' => ActivitySlotAssignment::SOURCE_MANUAL,
+                    ]);
+                }
+            }
+        });
+
+        $updatedTargetSlot = $targetSlot->fresh(['fieldValues']);
+        $targetFieldValuesChanged = $updatedTargetSlot
+            ? $this->attendanceService->buildFieldValueSnapshot($updatedTargetSlot) !== $originalTargetFieldValueSnapshot
+            : false;
+        $event = $targetPreviousCharacterId === null ? 'manual_assigned' : 'manual_updated';
+
+        $this->activityAuditService->logRosterEvent(
+            $event,
+            $targetSlot->fresh(['activity.group', 'assignedCharacter']),
+            $assignedByUserId,
+            [
+                'selected_character_name' => $character->name,
+                'assignment_source' => ActivitySlotAssignment::SOURCE_MANUAL,
+                'source_slot_label' => $sourceSlot ? ($sourceSlot->slot_label['en'] ?? $sourceSlot->slot_key) : null,
+                'source_group_label' => $sourceSlot ? ($sourceSlot->group_label['en'] ?? $sourceSlot->group_key) : null,
+                'field_assignment_updated' => $targetPreviousCharacterId === $character->id,
+            ],
+        );
+
+        if (
+            $targetSlot->activity?->status !== Activity::STATUS_ASSIGNED
+            || ($targetPreviousCharacterId === $character->id && !$targetFieldValuesChanged)
+        ) {
+            return;
+        }
+
+        if ($updatedTargetSlot) {
+            $this->assignmentNotificationService->notifyManualPlacementChanged(
+                $activity,
+                $character->fresh('user') ?? $character,
+                $updatedTargetSlot,
+                $assignedByUserId,
+            );
+        }
+    }
+
     private function findApplicationForAssignedCharacter(ActivitySlot $slot): ?ActivityApplication
     {
         if (!$slot->assigned_character_id) {
@@ -231,6 +374,63 @@ class ActivitySlotAssignmentService
         foreach ($slot->fieldValues as $fieldValue) {
             $fieldValue->update([
                 'value' => null,
+            ]);
+        }
+    }
+
+    /**
+     * @param  array<string, mixed>  $fieldSelections
+     * @param  array<string, array<string, mixed>>  $fieldDefinitions
+     */
+    private function applyManualSlotFieldSelections(
+        ActivitySlot $slot,
+        array $fieldSelections,
+        array $fieldDefinitions,
+        Character $character,
+    ): void {
+        foreach ($slot->fieldValues as $fieldValue) {
+            $definition = $fieldDefinitions[$fieldValue->field_key] ?? null;
+
+            if (!$definition) {
+                $fieldValue->update(['value' => null]);
+                continue;
+            }
+
+            $selectedValue = $fieldSelections[$fieldValue->field_key] ?? null;
+
+            if ($selectedValue === null || $selectedValue === '' || $selectedValue === []) {
+                throw ValidationException::withMessages([
+                    "field_values.{$fieldValue->field_key}" => 'Please choose a value for every slot field.',
+                ]);
+            }
+
+            $normalizedSelection = $this->normalizeSelection($selectedValue);
+
+            if (count($normalizedSelection) === 0) {
+                throw ValidationException::withMessages([
+                    "field_values.{$fieldValue->field_key}" => 'Please choose a value for every slot field.',
+                ]);
+            }
+
+            $allowedOptionKeys = collect($definition['options'] ?? [])
+                ->map(fn (array $option) => (string) ($option['key'] ?? ''))
+                ->filter()
+                ->values()
+                ->all();
+
+            foreach ($normalizedSelection as $selection) {
+                if (!in_array($selection, $allowedOptionKeys, true)) {
+                    throw ValidationException::withMessages([
+                        "field_values.{$fieldValue->field_key}" => 'Selected slot values must be valid options for this field.',
+                    ]);
+                }
+            }
+
+            $fieldValue->update([
+                'value' => $this->resolveStoredValue(
+                    $definition,
+                    count($normalizedSelection) > 1 ? $normalizedSelection : $normalizedSelection[0],
+                ),
             ]);
         }
     }

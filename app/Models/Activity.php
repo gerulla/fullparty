@@ -38,13 +38,14 @@ class Activity extends Model
     ];
 
     public const ASSIGNABLE_STATUSES = [
-        self::STATUS_PLANNED,
         self::STATUS_SCHEDULED,
     ];
 
-    public const COMPLETABLE_STATUSES = [
+    public const SCHEDULABLE_STATUSES = [
         self::STATUS_PLANNED,
-        self::STATUS_SCHEDULED,
+    ];
+
+    public const COMPLETABLE_STATUSES = [
         self::STATUS_ASSIGNED,
         self::STATUS_UPCOMING,
         self::STATUS_ONGOING,
@@ -165,6 +166,11 @@ class Activity extends Model
     public function canBeMarkedAssigned(): bool
     {
         return in_array($this->status, self::ASSIGNABLE_STATUSES, true);
+    }
+
+    public function canBeScheduled(): bool
+    {
+        return in_array($this->status, self::SCHEDULABLE_STATUSES, true);
     }
 
     public function canBeCompleted(): bool

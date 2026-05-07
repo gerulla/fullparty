@@ -214,8 +214,35 @@ it('returns an assignment context payload for guest applicants on filled slots',
         ->assertJsonPath('application.applicant_character.name', 'Guest Tank');
 });
 
-it('returns a completion preview for supported ff logs completion requests', function () {
+it('includes assignment source metadata for filled slots in management data', function () {
     extract(createModerationEndpointSetup());
+
+    $application = ActivityApplication::factory()->approved($owner)->create([
+        'activity_id' => $activity->id,
+    ]);
+    $application->load('selectedCharacter');
+
+    $slot->update([
+        'assigned_character_id' => $application->selectedCharacter->id,
+        'assigned_by_user_id' => $owner->id,
+    ]);
+
+    $this->actingAs($owner);
+
+    $this->getJson(route('groups.dashboard.activities.management-data', [
+        'group' => $group->slug,
+        'activity' => $activity->id,
+    ]))
+        ->assertOk()
+        ->assertJsonPath('activity.slots.0.assignment_source', 'application')
+        ->assertJsonPath('activity.slots.0.assignment_application_id', $application->id)
+        ->assertJsonPath('activity.slots.0.can_return_to_queue', true);
+});
+
+it('returns a completion preview for supported ff logs completion requests', function () {
+    extract(createModerationEndpointSetup([], [
+        'status' => Activity::STATUS_ASSIGNED,
+    ]));
 
     $previewFetcher = Mockery::mock(ActivityReportProgressFetcher::class);
     $previewFetcher
@@ -245,7 +272,9 @@ it('returns a completion preview for supported ff logs completion requests', fun
 });
 
 it('returns a friendly validation response when ff logs completion preview processing fails', function () {
-    extract(createModerationEndpointSetup());
+    extract(createModerationEndpointSetup([], [
+        'status' => Activity::STATUS_ASSIGNED,
+    ]));
 
     $previewFetcher = Mockery::mock(ActivityReportProgressFetcher::class);
     $previewFetcher

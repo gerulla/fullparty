@@ -107,7 +107,7 @@ const handleDrop = (event: DragEvent, slotId: number) => {
 };
 
 const handleRowClick = (slot: ActivitySlot) => {
-	if (!slot.assigned_character_id || props.isSwapPending) {
+	if (props.isSwapPending) {
 		return;
 	}
 
@@ -174,7 +174,7 @@ const rows = computed(() => [...props.slots]
 				{
 					label: 'Return to queue',
 					icon: 'i-lucide-undo-2',
-					disabled: !props.canReturnToQueue || props.isSwapPending,
+					disabled: !props.canReturnToQueue || !slot.can_return_to_queue || props.isSwapPending,
 					onSelect: () => emit('returnSlotToQueue', slot.id),
 				},
 			],

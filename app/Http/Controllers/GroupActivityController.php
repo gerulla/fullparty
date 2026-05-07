@@ -371,6 +371,39 @@ class GroupActivityController extends Controller
             ->with('success', 'activity_cancelled');
     }
 
+    public function schedule(Group $group, Activity $activity): RedirectResponse
+    {
+        $group->loadMissing('memberships');
+        $this->authorizeModeratorAccess($group);
+        $this->ensureActivityBelongsToGroup($group, $activity);
+        $this->ensureActivityCanBeScheduled($activity);
+
+        $previousStatus = $activity->status;
+
+        $activity->update([
+            'status' => Activity::STATUS_SCHEDULED,
+        ]);
+
+        $this->groupUpdateNotificationService->notifyRunScheduled(
+            $activity->fresh('group'),
+            auth()->user(),
+        );
+
+        $this->activityAuditService->logActivityUpdated($activity, auth()->user(), [
+            'status' => [
+                'old' => $previousStatus,
+                'new' => Activity::STATUS_SCHEDULED,
+            ],
+        ]);
+
+        return redirect()
+            ->route('groups.dashboard.activities.show', [
+                'group' => $group,
+                'activity' => $activity,
+            ])
+            ->with('success', 'activity_scheduled');
+    }
+
     public function publishRoster(
         Group $group,
         Activity $activity,
@@ -627,6 +660,13 @@ class GroupActivityController extends Controller
     private function ensureActivityCanBeMarkedAssigned(Activity $activity): void
     {
         if (!$activity->canBeMarkedAssigned()) {
+            abort(403);
+        }
+    }
+
+    private function ensureActivityCanBeScheduled(Activity $activity): void
+    {
+        if (!$activity->canBeScheduled()) {
             abort(403);
         }
     }

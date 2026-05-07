@@ -10,6 +10,9 @@ class ActivitySlotAssignment extends Model
 {
     use HasFactory;
 
+    public const SOURCE_APPLICATION = 'application';
+    public const SOURCE_MANUAL = 'manual';
+
     public const STATUS_ASSIGNED = 'assigned';
     public const STATUS_CHECKED_IN = 'checked_in';
     public const STATUS_LATE = 'late';
@@ -28,6 +31,7 @@ class ActivitySlotAssignment extends Model
         'activity_slot_id',
         'character_id',
         'application_id',
+        'assignment_source',
         'field_values_snapshot',
         'attendance_status',
         'assigned_at',
@@ -46,6 +50,17 @@ class ActivitySlotAssignment extends Model
         'marked_missing_at' => 'datetime',
         'ended_at' => 'datetime',
     ];
+
+    protected static function booted(): void
+    {
+        static::creating(function (self $assignment) {
+            if (!filled($assignment->assignment_source)) {
+                $assignment->assignment_source = $assignment->application_id
+                    ? self::SOURCE_APPLICATION
+                    : self::SOURCE_MANUAL;
+            }
+        });
+    }
 
     public function activity(): BelongsTo
     {

@@ -159,15 +159,24 @@ class GroupActivitySlotSwapController extends Controller
 
                 $application = $applicationsByCharacter->get($slot->assigned_character_id);
 
-                if (!$application) {
+                if ($application) {
+                    $assignmentNotificationService->notifyPlacementChanged(
+                        $application,
+                        $slot,
+                        $request->user(),
+                    );
+
                     continue;
                 }
 
-                $assignmentNotificationService->notifyPlacementChanged(
-                    $application,
-                    $slot,
-                    $request->user(),
-                );
+                if ($slot->assignedCharacter) {
+                    $assignmentNotificationService->notifyManualPlacementChanged(
+                        $activity,
+                        $slot->assignedCharacter,
+                        $slot,
+                        $request->user(),
+                    );
+                }
             }
         }
 

@@ -63,6 +63,9 @@ class ActivitySlotAttendanceService
                 'activity_slot_id' => $slot->id,
                 'character_id' => $slot->assigned_character_id,
                 'application_id' => $application?->id,
+                'assignment_source' => $application?->id
+                    ? ActivitySlotAssignment::SOURCE_APPLICATION
+                    : ActivitySlotAssignment::SOURCE_MANUAL,
                 'field_values_snapshot' => $this->buildFieldValueSnapshot($slot),
                 'attendance_status' => ActivitySlotAssignment::STATUS_ASSIGNED,
                 'assigned_at' => $slot->updated_at ?? now(),
@@ -97,6 +100,9 @@ class ActivitySlotAttendanceService
             $assignment->update([
                 'activity_slot_id' => $slot->id,
                 'application_id' => $applicationId,
+                'assignment_source' => $applicationId
+                    ? ActivitySlotAssignment::SOURCE_APPLICATION
+                    : ActivitySlotAssignment::SOURCE_MANUAL,
                 'field_values_snapshot' => $fieldValueSnapshot ?? $assignment->field_values_snapshot,
                 'assigned_by_user_id' => $assignedByUserId,
             ]);
@@ -110,6 +116,9 @@ class ActivitySlotAttendanceService
             'activity_slot_id' => $slot->id,
             'character_id' => $characterId,
             'application_id' => $applicationId,
+            'assignment_source' => $applicationId
+                ? ActivitySlotAssignment::SOURCE_APPLICATION
+                : ActivitySlotAssignment::SOURCE_MANUAL,
             'field_values_snapshot' => $fieldValueSnapshot,
             'attendance_status' => ActivitySlotAssignment::STATUS_ASSIGNED,
             'assigned_at' => now(),
@@ -178,6 +187,7 @@ class ActivitySlotAttendanceService
                     'group_id' => $activity->group_id,
                     'activity_slot_id' => $slot->id,
                     'character_id' => $slot->assigned_character_id,
+                    'assignment_source' => ActivitySlotAssignment::SOURCE_MANUAL,
                     'field_values_snapshot' => $this->buildFieldValueSnapshot($slot),
                     'attendance_status' => ActivitySlotAssignment::STATUS_ASSIGNED,
                     'assigned_at' => now(),
@@ -239,6 +249,7 @@ class ActivitySlotAttendanceService
                     'group_id' => $activity->group_id,
                     'activity_slot_id' => $slot->id,
                     'character_id' => $slot->assigned_character_id,
+                    'assignment_source' => ActivitySlotAssignment::SOURCE_MANUAL,
                     'field_values_snapshot' => $this->buildFieldValueSnapshot($slot),
                     'attendance_status' => ActivitySlotAssignment::STATUS_ASSIGNED,
                     'assigned_at' => now(),
@@ -287,6 +298,7 @@ class ActivitySlotAttendanceService
                     'group_id' => $activity->group_id,
                     'activity_slot_id' => $slot->id,
                     'character_id' => $slot->assigned_character_id,
+                    'assignment_source' => ActivitySlotAssignment::SOURCE_MANUAL,
                     'field_values_snapshot' => $this->buildFieldValueSnapshot($slot),
                     'attendance_status' => ActivitySlotAssignment::STATUS_ASSIGNED,
                     'assigned_at' => now(),

@@ -30,6 +30,9 @@ class ActivitySlotSerializer
             'sort_order' => $slot->sort_order,
             'is_bench' => $this->slotBench->isBench($slot),
             'assigned_character_id' => $slot->assigned_character_id,
+            'assignment_source' => $attendanceAssignment?->assignment_source,
+            'assignment_application_id' => $attendanceAssignment?->application_id,
+            'can_return_to_queue' => $attendanceAssignment?->application_id !== null,
             'attendance_status' => $attendanceAssignment?->attendance_status ?? ($slot->assigned_character_id ? 'assigned' : null),
             'checked_in_at' => $attendanceAssignment?->checked_in_at?->toIso8601String(),
             'assigned_character' => $slot->assignedCharacter ? [
@@ -58,18 +61,22 @@ class ActivitySlotSerializer
             return null;
         }
 
-        if ($slot->relationLoaded('assignments')) {
-            return $slot->assignments
+        if ($slot->relationLoaded('activity') && $slot->activity && $slot->activity->relationLoaded('slotAssignments')) {
+            $assignment = $slot->activity->slotAssignments
                 ->filter(fn ($assignment) => $assignment->ended_at === null
+                    && (int) $assignment->activity_slot_id === (int) $slot->id
                     && (int) $assignment->character_id === (int) $slot->assigned_character_id)
                 ->sortByDesc('assigned_at')
                 ->first();
+
+            if ($assignment) {
+                return $assignment;
+            }
         }
 
-        if ($slot->relationLoaded('activity') && $slot->activity && $slot->activity->relationLoaded('slotAssignments')) {
-            return $slot->activity->slotAssignments
+        if ($slot->relationLoaded('assignments')) {
+            return $slot->assignments
                 ->filter(fn ($assignment) => $assignment->ended_at === null
-                    && (int) $assignment->activity_slot_id === (int) $slot->id
                     && (int) $assignment->character_id === (int) $slot->assigned_character_id)
                 ->sortByDesc('assigned_at')
                 ->first();

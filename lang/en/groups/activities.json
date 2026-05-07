@@ -56,6 +56,13 @@
         "summary_title": "Run Summary",
         "summary_subtitle": "A quick read on the basics before the full management tools land.",
         "edit": "Edit Run",
+        "schedule_activity": "Schedule Run",
+        "schedule_activity_confirm": "Schedule this run? It will become visible on calendars, and users may be able to apply depending on the run settings.",
+        "schedule_activity_modal": {
+            "title": "Schedule Run",
+            "body": "Scheduling this run makes it part of the group's live schedule. It can appear on calendars and, depending on the run's access and application settings, users may be able to find it and apply.",
+            "confirm": "Yes, Schedule Run"
+        },
         "complete_activity": "Complete Run",
         "publish_roster": "Publish Roster",
         "cancel_activity": "Cancel Run",
@@ -73,6 +80,7 @@
             "swap_failed": "Unable to swap roster slots.",
             "prepare_move_failed": "Unable to prepare this roster move.",
             "load_slot_assignment_failed": "Unable to load slot assignment details.",
+            "load_manual_assignment_failed": "Unable to load group member assignment options.",
             "return_to_queue_failed": "Unable to return this slot to the queue.",
             "undo_check_in_failed": "Unable to undo check-in for this slot.",
             "check_in_failed": "Unable to check in this slot.",
@@ -82,11 +90,22 @@
             "warning_title": "Warning",
             "undo_missing_failed": "Unable to undo this missing slot.",
             "assign_failed": "Unable to assign this application to the selected slot.",
+            "manual_assign_failed": "Unable to assign this group member to the selected slot.",
             "missing_title": "Missing",
             "undo_missing": "Undo missing",
             "unknown_character": "Unknown character",
             "unknown_world": "Unknown world",
             "unknown_slot": "Roster slot"
+        },
+        "manual_assignment": {
+            "title": "Manual Assignment",
+            "member_character": "Group Member Character",
+            "select_character": "Select a group member character",
+            "select_character_warning": "Choose a group member character to continue.",
+            "incompatible_fields": "The selected character does not have compatible options for the slot fields on this slot.",
+            "editing_assignment_title": "Editing manual assignment",
+            "editing_assignment_body": "This slot was manually assigned, so you can update its slot field values here. Returning it to the queue stays disabled.",
+            "confirm": "Assign to Slot"
         },
         "complete_activity_modal": {
             "title": "Complete Run",

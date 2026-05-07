@@ -32,6 +32,9 @@ export type ActivitySlot = {
 	sort_order: number
 	is_bench: boolean
 	assigned_character_id: number | null
+	assignment_source: 'application' | 'manual' | null
+	assignment_application_id: number | null
+	can_return_to_queue: boolean
 	attendance_status: 'assigned' | 'checked_in' | 'late' | null
 	checked_in_at: string | null
 	assigned_character: {

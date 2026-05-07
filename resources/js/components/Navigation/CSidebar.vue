@@ -25,6 +25,7 @@ const admin = computed(() => [
 	{ label: t('navigation.sidebar.character_definitions'), href: '/admin/character-data', icon: 'i-lucide-user-pen' },
 	{ label: t('navigation.sidebar.admin_audit_log'), href: '/admin/audit-log', icon: 'i-lucide-scroll-text' },
 	{ label: t('navigation.sidebar.activity_types'), href: '/admin/activity-types', icon: 'i-lucide-file-pen' },
+	{ label: t('navigation.sidebar.pulse'), href: '/pulse', icon: 'i-lucide-activity', external: true },
 ])
 
 const page = usePage()
@@ -170,16 +171,22 @@ watch([currentUrl, groupQuickLinkSections], () => {
 					<h1 v-if="!collapsed" class="sidebar-separator">{{t('navigation.sidebar.admin')}}</h1>
 					<div v-else class="sidebar-line-separator"></div>
 
-					<Link
+					<component
+						:is="item.external ? 'a' : Link"
 						v-for="item in admin"
 						:key="item.href"
 						:href="item.href"
 						class="sidebar-link"
-						:class="currentUrl.startsWith(item.href) ? 'link-highlighted': 'link-default'"
+						:class="!item.external && currentUrl.startsWith(item.href) ? 'link-highlighted': 'link-default'"
+						:target="item.external ? '_blank' : undefined"
+						:rel="item.external ? 'noopener noreferrer' : undefined"
 					>
 						<UIcon :name="item.icon" :class="!collapsed ? 'sidebar-link-icon' : 'sidebar-link-icon-large'" />
-						<span v-if="!collapsed">{{ item.label }}</span>
-					</Link>
+						<span v-if="!collapsed" class="flex min-w-0 items-center gap-2">
+							<span class="truncate">{{ item.label }}</span>
+							<UIcon v-if="item.external" name="i-lucide-arrow-up-right" class="h-3.5 w-3.5 shrink-0 text-brand-200/70" />
+						</span>
+					</component>
 				</template>
 			</div>
 		</template>

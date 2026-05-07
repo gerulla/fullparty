@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Models\Activity;
+use App\Models\User;
 use App\Policies\GroupActivityPolicy;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Gate;
@@ -24,6 +25,7 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         Gate::policy(Activity::class, GroupActivityPolicy::class);
+        Gate::define('viewPulse', fn (?User $user) => (bool) $user?->is_admin);
 
 		Event::listen(function (\SocialiteProviders\Manager\SocialiteWasCalled $event) {
 			$event->extendSocialite('discord', \SocialiteProviders\Discord\Provider::class);

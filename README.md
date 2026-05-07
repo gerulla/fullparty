@@ -1,4 +1,3 @@
-
 <p align="center">
   <img src="public/logos/full.png" width="420" alt="FullParty logo">
 </p>
@@ -29,7 +28,7 @@
 
 FullParty is a web app for organizing structured Final Fantasy XIV group runs.
 
-It is built to replace spreadsheet-heavy and Discord-only coordination with a proper roster system: verified characters, scheduled runs, explicit player slots, bench handling, application review, roster assignment, and attendance tracking in a dashboard-first workflow.
+It is built to replace spreadsheet-heavy and Discord-only coordination with a proper roster system: verified characters, scheduled runs, explicit player slots, bench handling, application review, roster assignment, attendance tracking, and notifications in a dashboard-first workflow.
 
 ## What It Does
 
@@ -43,7 +42,7 @@ FullParty is centered around a few core concepts:
 - `Character`: a linked FFXIV character
 - `Application`: a player's submitted signup for a run
 
-The product goal is to give FFXIV communities a serious coordination tool for static groups, learning parties, prog groups, and larger community-run events.
+The product goal is to give FFXIV communities a serious coordination tool for statics, learning parties, prog groups, and larger community-run events.
 
 ## Current Features
 
@@ -52,22 +51,20 @@ The product goal is to give FFXIV communities a serious coordination tool for st
 - Character linking and verification
 - Guest applications and signed-in applications
 - Automatic claiming of guest applications when a character is later verified
-- Group membership and moderator permissions
-- Run creation and editing
-- Slot-based roster planning
-- Bench assignment and return-to-queue flows
+- Group membership, moderation, and audit logging
+- Run creation, editing, publishing, cancellation, and completion
+- Slot-based roster planning with bench handling and return-to-queue flows
 - Application review, decline, and run-cancellation outcomes
 - Guest application status links with read-only revisit support
 - Attendance tools:
   check-in, late, missing, and undo missing
-- FF Logs lookups in moderation flows
-- User-facing application history
-- Group audit log coverage for key moderation actions
+- Real-time in-site notifications with Reverb
+- Queue-backed off-site notification delivery
+- Pulse integration for admin-only operational visibility
 - Localization support for multiple languages
 
 ## Roadmap
 
-- Automated notifications for applications, assignments, declines, and cancellations
 - Recurring run templates and duplicate-run workflows
 - Calendar-first scheduling views
 - Direct self-assignment flow for runs that do not use applications
@@ -83,10 +80,14 @@ The product goal is to give FFXIV communities a serious coordination tool for st
   Vue 3, Inertia, Nuxt UI 4, Tailwind CSS 4, Vue I18n
 - Data:
   PostgreSQL in production intent
+- Realtime:
+  Laravel Reverb
+- Monitoring:
+  Laravel Pulse
 - Testing:
   Pest + Laravel testing tools
 
-## Getting Started
+## Quick Start
 
 ### Requirements
 
@@ -95,28 +96,16 @@ The product goal is to give FFXIV communities a serious coordination tool for st
 - Node.js `20+` and npm
 - PostgreSQL
 
-SQLite is also used for the default local test suite, but the application is designed with PostgreSQL in mind.
-
 ### Installation
-
-1. Clone the repository
 
 ```bash
 git clone https://github.com/gerulla/fullparty.git
 cd fullparty
-```
-
-2. Install backend and frontend dependencies
-
-```bash
 composer install
 npm install
-```
-
-3. Create your environment file
-
-```bash
 cp .env.example .env
+php artisan key:generate
+php artisan migrate
 ```
 
 On Windows PowerShell:
@@ -125,162 +114,20 @@ On Windows PowerShell:
 Copy-Item .env.example .env
 ```
 
-4. Configure your `.env`
+After that, configure your `.env` for:
 
-- set the app URL
-- configure your PostgreSQL database
-- configure mail if needed
-- configure Google / Discord / XIVAuth credentials if you want those auth providers locally
-- configure Reverb if you want live notifications and other broadcast features
+- app URL
+- PostgreSQL
+- mail
+- auth providers if needed
+- Reverb if you want live notifications
 
-5. Generate the app key and run migrations
+## Documentation
 
-```bash
-php artisan key:generate
-php artisan migrate
-```
-
-6. Start the local development stack
-
-```bash
-composer run dev
-```
-
-That starts:
-
-- the Laravel app server
-- the queue listener
-- the Vite dev server
-
-The queue listener is important even in local development. FullParty sends emails, off-site notifications, and other async work through Laravel queues, so those jobs will not be processed unless a queue worker/listener is running.
-
-### Reverb Setup
-
-FullParty uses Laravel Reverb for live notification updates.
-
-Reverb is required if you want the notification bell to update without a page reload.
-
-#### 1. Make sure the backend and frontend dependencies are installed
-
-The repo already expects:
-
-- `laravel/reverb` on the PHP side
-- `laravel-echo` and `pusher-js` on the frontend
-
-Those are already declared in the project dependencies, so a normal `composer install` and `npm install` should bring them in.
-
-#### 2. Enable broadcasting in `.env`
-
-Set these values in your local environment:
-
-```env
-BROADCAST_CONNECTION=reverb
-
-REVERB_APP_ID=your-app-id
-REVERB_APP_KEY=your-app-key
-REVERB_APP_SECRET=your-app-secret
-
-REVERB_SERVER_HOST=127.0.0.1
-REVERB_SERVER_PORT=8080
-
-REVERB_HOST=127.0.0.1
-REVERB_PORT=8080
-REVERB_SCHEME=http
-
-VITE_REVERB_APP_KEY="${REVERB_APP_KEY}"
-VITE_REVERB_HOST="${REVERB_HOST}"
-VITE_REVERB_PORT="${REVERB_PORT}"
-VITE_REVERB_SCHEME="${REVERB_SCHEME}"
-```
-
-For local development:
-
-- `REVERB_SERVER_HOST` / `REVERB_SERVER_PORT` are where the Reverb server process listens
-- `REVERB_HOST` / `REVERB_PORT` / `REVERB_SCHEME` are what the Laravel app and browser client use to connect
-
-If you use a custom local domain like `fullparty.test`, set `REVERB_HOST` to that hostname when needed.
-
-#### 3. Clear config after changing Reverb environment values
-
-```bash
-php artisan config:clear
-```
-
-#### 4. Start the Reverb server
-
-Run Reverb as its own long-lived process:
-
-```bash
-php artisan reverb:start
-```
-
-Important: `composer run dev` does **not** currently start Reverb for you. You need Reverb running alongside the normal dev stack.
-
-Also note: email notifications are queued. Even with Reverb running, notification emails will not be sent unless the queue listener / worker is running too.
-
-So a full local realtime setup is:
-
-```bash
-composer run dev
-php artisan reverb:start
-```
-
-Or, if you prefer separate processes:
-
-```bash
-php artisan serve
-php artisan queue:listen --tries=1
-npm run dev
-php artisan reverb:start
-```
-
-#### 5. Sanity check
-
-If Reverb is configured correctly:
-
-- the app boots with `BROADCAST_CONNECTION=reverb`
-- the notification bell updates when new on-site notifications are created
-- clicking the bell still refreshes the latest notification list as a fallback
-
-If package installs or Composer scripts fail with broadcaster errors, check:
-
-- `BROADCAST_CONNECTION` is not being overridden by another environment variable
-- `php artisan config:clear` has been run after env changes
-- the Reverb PHP package installed successfully
-- the Reverb server process is actually running
-
-### Production Reverb Notes
-
-For a lightweight deployment, Reverb can run on the same server as the Laravel app, but it is still a separate long-running process and should be supervised accordingly.
-
-At minimum, production should ensure:
-
-- Reverb runs under a process manager
-- the queue worker is running
-- websocket traffic is reachable on the configured host/port
-- TLS / reverse proxy setup is handled appropriately if the app is served over HTTPS
-
-## Production Build
-
-To build frontend assets:
-
-```bash
-npm run build
-```
-
-## Running Tests
-
-Run the default backend suite:
-
-```bash
-php artisan test
-```
-
-Run the PostgreSQL-targeted test configuration:
-
-```bash
-php vendor/bin/pest --configuration=phpunit.pgsql.xml
-```
+- [LocalDevelopment.md](LocalDevelopment.md):
+  local setup, Laravel Herd workflow, queues, scheduler, Reverb, Pulse, and tests
+- [ForgeSetup.md](ForgeSetup.md):
+  production-style deployment on Laravel Forge, including queue workers, scheduler, Reverb, Pulse, and heartbeat monitoring
 
 ## Contributing
 

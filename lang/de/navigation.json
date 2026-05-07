@@ -17,6 +17,7 @@
     "character_definitions": "Charakterdaten",
     "admin_audit_log": "Audit-Log",
     "activity_types": "Activity Types",
+    "pulse": "Pulse",
     "notice": {
       "title": "Hinweis",
       "description": "FullParty befindet sich noch in aktiver Entwicklung. Wenn du auf ein Problem stößt oder Feedback teilen möchtest, schau auf GitHub vorbei oder tritt dem Discord-Server bei.",

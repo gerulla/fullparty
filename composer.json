@@ -13,6 +13,7 @@
         "gerulla/xivauth-provider": "^1.0",
         "inertiajs/inertia-laravel": "^2.0",
         "laravel/framework": "^13.0",
+        "laravel/pulse": "^1.7",
         "laravel/reverb": "^1.0",
         "laravel/socialite": "^5.26",
         "laravel/tinker": "^3.0",
@@ -54,6 +55,10 @@
         "dev": [
             "Composer\\Config::disableProcessTimeout",
             "npx concurrently -c \"#93c5fd,#c4b5fd,#fdba74\" \"php artisan serve\" \"php artisan queue:listen --tries=1\" \"npm run dev\" --names='server,queue,vite'"
+        ],
+        "dev:herd": [
+            "Composer\\Config::disableProcessTimeout",
+            "npx concurrently -c \"#c4b5fd,#86efac,#93c5fd,#fdba74\" \"php artisan queue:listen --tries=1\" \"php artisan schedule:work\" \"php artisan reverb:start\" \"npm run dev\" --names='queue,scheduler,reverb,vite'"
         ],
         "test": [
             "@php artisan config:clear --ansi",

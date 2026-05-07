@@ -2,13 +2,15 @@
 import CSidebar from "@/components/Navigation/CSidebar.vue";
 import CTopbar from "@/components/Navigation/CTopbar.vue";
 import GroupNavigation from "@/components/Groups/GroupNavigation.vue";
+import SystemBanner from "@/components/SystemBanner.vue";
 import { usePage } from '@inertiajs/vue3'
-import { computed, ref } from 'vue'
+import { computed } from 'vue'
 import { usePersistentLocale } from "@/composables/usePersistentLocale";
 const page = usePage()
 const { currentUiLocale } = usePersistentLocale();
 
 const currentGroup = computed(() => page.props.group ?? null)
+const systemBanner = computed(() => page.props.system_banner ?? null)
 const showGroupNavigation = computed(() => {
 	return page.url.includes('/dashboard') && currentGroup.value !== null
 })
@@ -29,6 +31,10 @@ defineProps({
 
 				<UDashboardPanel :ui="{ body: 'bg-neutral-100 dark:bg-neutral-900' }">
 					<template #header>
+						<SystemBanner
+							v-if="systemBanner"
+							:banner="systemBanner"
+						/>
 						<CTopbar :title="title" />
 						<GroupNavigation
 							v-if="showGroupNavigation"

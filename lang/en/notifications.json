@@ -170,5 +170,16 @@
       "title": "Removed from group",
       "body": "You were banned from {group}."
     }
+  },
+  "system": {
+    "maintenance": {
+      "title": "{headline}",
+      "body": "{message}",
+      "body_with_schedule": "{message}\nScheduled for: {scheduled_for}"
+    },
+    "announcement": {
+      "title": "{headline}",
+      "body": "{message}"
+    }
   }
 }

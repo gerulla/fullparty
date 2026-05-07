@@ -1,0 +1,74 @@
+{
+  "title": "System Notifications",
+  "subtitle": "Send site-wide maintenance notices and update announcements, and review the latest sent history.",
+  "admin_access": "Admin Access",
+  "banner": {
+    "title": "System Banner",
+    "description": "Show an ongoing site-wide banner above the topbar for outages, degraded service, or other active updates that should stay visible.",
+    "live_title": "Banner is currently live",
+    "live_description": "Saving this form updates the active site-wide banner immediately.",
+    "empty_title": "No active banner",
+    "empty_description": "Save a banner here when you want a persistent site-wide notice without sending notifications.",
+    "preview": "Live Preview",
+    "preview_empty_title": "Banner title preview",
+    "preview_empty_message": "Banner message preview",
+    "save": "Save Banner",
+    "clear": "Clear Banner",
+    "fields": {
+      "title": "Banner Title",
+      "message": "Banner Message",
+      "action_label": "Action Button Label",
+      "action_url": "Action Button URL"
+    },
+    "placeholders": {
+      "title": "Service issue affecting roster updates...",
+      "message": "Let people know what is happening, what is affected, and where to look for updates.",
+      "action_label": "View status",
+      "action_url": "https://status.fullparty.gg/"
+    }
+  },
+  "fields": {
+    "headline": "Headline",
+    "message": "Message",
+    "scheduled_for": "Scheduled For",
+    "action_url": "Action URL"
+  },
+  "placeholders": {
+    "headline": "Write a clear notification title...",
+    "message": "Write the notification body...",
+    "action_url": "https://status.example.com/maintenance"
+  },
+  "maintenance": {
+    "title": "Mandatory Maintenance Notice",
+    "description": "Use this for important service-impacting maintenance or urgent site-wide operational notices.",
+    "notice_title": "Mandatory delivery",
+    "notice_description": "These notices ignore the optional system-notices preference and are sent in-site and off-site.",
+    "send": "Send Maintenance Notice"
+  },
+  "announcement": {
+    "title": "Optional Update Announcement",
+    "description": "Use this for feature updates, project news, and other lower-priority product communication.",
+    "notice_title": "Optional delivery",
+    "notice_description": "These notices respect the user's system-notices preference, but still use in-site and off-site channels when enabled.",
+    "send": "Send Update Announcement"
+  },
+  "history": {
+    "title": "Recent History",
+    "subtitle": "Showing the latest system notifications sent through FullParty.",
+    "empty": "No system notifications have been sent yet.",
+    "open_link": "Open Link",
+    "sent_by": "Sent by {user}",
+    "reads": "{count} users have opened it",
+    "deliveries": "{count} off-site deliveries",
+    "badges": {
+      "mandatory": "Mandatory",
+      "optional": "Optional"
+    }
+  },
+  "toasts": {
+    "maintenance_sent": "Maintenance notification sent.",
+    "announcement_sent": "Update announcement sent.",
+    "banner_saved": "System banner saved.",
+    "banner_cleared": "System banner cleared."
+  }
+}

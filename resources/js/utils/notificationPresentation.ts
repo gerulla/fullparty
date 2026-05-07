@@ -1,5 +1,5 @@
 export type NotificationRecord = {
-	id: number
+	id: string
 	type: string | null
 	category: string | null
 	is_mandatory: boolean
@@ -54,6 +54,14 @@ const TYPE_META: Record<string, { icon: string, iconColor: string }> = {
 	'characters.unclaimed': {
 		icon: 'i-lucide-unlink',
 		iconColor: 'text-rose-500',
+	},
+	'system.maintenance.upcoming': {
+		icon: 'i-lucide-wrench',
+		iconColor: 'text-amber-500',
+	},
+	'system.announcement': {
+		icon: 'i-lucide-megaphone',
+		iconColor: 'text-sky-500',
 	},
 }
 
@@ -115,7 +123,9 @@ export const resolveNotificationTitle = (notification: NotificationRecord, t: Tr
 		return t('notifications.ui.fallback_title')
 	}
 
-	return t(notification.title_key)
+	const params = notification.message_params ? { ...notification.message_params } : {}
+
+	return t(notification.title_key, params)
 }
 
 export const resolveNotificationDescription = (notification: NotificationRecord, t: Translator) => {

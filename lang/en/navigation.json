@@ -16,6 +16,7 @@
     "admin": "Admin",
     "character_definitions": "Character Data",
     "admin_audit_log": "Audit Log",
+    "system_notifications": "System Notifications",
     "activity_types": "Activity Types",
     "pulse": "Pulse",
     "notice": {

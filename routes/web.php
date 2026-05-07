@@ -37,6 +37,7 @@ use App\Http\Controllers\GroupSettingsController;
 use App\Http\Controllers\PhantomJobController;
 use App\Http\Controllers\SettingsController;
 use App\Http\Controllers\SocialAccountController;
+use App\Http\Controllers\SystemNotificationController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\XIVAuthController;
 use App\Http\Controllers\LocaleController;
@@ -209,6 +210,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
 	Route::get('/account/notifications/summary', [AccountNotificationController::class, 'summary'])->name('account.notifications.summary');
 	Route::post('/account/notifications/read-all', [AccountNotificationController::class, 'readAll'])->name('account.notifications.read-all');
 	Route::get('/account/notifications/{notification}/open', [AccountNotificationController::class, 'open'])->name('account.notifications.open');
+	Route::get('/account/notification-broadcasts/{broadcast}/open', [AccountNotificationController::class, 'openBroadcast'])->name('account.notifications.broadcasts.open');
 	Route::post('/characters/exists', [CharacterController::class, 'exists'])->name('characters.exists');
 	Route::post('/characters/verify', [CharacterController::class, 'verify'])->name('characters.verify');
 	Route::post('/characters/{character}/refresh', [CharacterController::class, 'refreshCharacterData'])->name('characters.refresh');
@@ -223,6 +225,11 @@ Route::middleware(['auth', 'verified'])->group(function () {
 	Route::prefix('admin')->group(function () {
 		Route::get('/character-data', [AdminController::class, 'characterData'])->name('admin.character-data');
 		Route::get('/audit-log', [AdminController::class, 'auditLog'])->name('admin.audit-log');
+		Route::get('/system-notifications', [SystemNotificationController::class, 'index'])->name('admin.system-notifications.index');
+		Route::post('/system-notifications/maintenance', [SystemNotificationController::class, 'storeMaintenance'])->name('admin.system-notifications.maintenance.store');
+		Route::post('/system-notifications/announcements', [SystemNotificationController::class, 'storeAnnouncement'])->name('admin.system-notifications.announcements.store');
+		Route::put('/system-notifications/banner', [SystemNotificationController::class, 'storeBanner'])->name('admin.system-notifications.banner.store');
+		Route::delete('/system-notifications/banner', [SystemNotificationController::class, 'clearBanner'])->name('admin.system-notifications.banner.clear');
 		
 		Route::get('/activity-types', [ActivityTypeController::class, 'index'])->name('admin.activity-types.index');
 		Route::get('/activity-types/create', [ActivityTypeController::class, 'create'])->name('admin.activity-types.create');

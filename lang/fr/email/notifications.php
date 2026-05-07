@@ -85,4 +85,15 @@ return [
             'body' => ':character (:world / :datacenter) a été retiré de votre compte.',
         ],
     ],
+    'system' => [
+        'maintenance' => [
+            'title' => ':headline',
+            'body' => ':message',
+            'body_with_schedule' => ":message\nScheduled for: :scheduled_for",
+        ],
+        'announcement' => [
+            'title' => ':headline',
+            'body' => ':message',
+        ],
+    ],
 ];

@@ -3,14 +3,16 @@
 namespace App\Http\Middleware;
 
 use App\Models\Group;
-use App\Services\Notifications\UserNotificationSerializer;
+use App\Services\Notifications\NotificationInboxService;
+use App\Services\SystemBannerService;
 use Illuminate\Http\Request;
 use Inertia\Middleware;
 
 class HandleInertiaRequests extends Middleware
 {
     public function __construct(
-        private readonly UserNotificationSerializer $notificationSerializer,
+        private readonly NotificationInboxService $notificationInboxService,
+        private readonly SystemBannerService $systemBannerService,
     ) {}
 
     /**
@@ -78,19 +80,13 @@ class HandleInertiaRequests extends Middleware
 			],
             'notifications' => [
                 'unread_count' => fn () => $request->user()
-                    ? $request->user()->inAppNotifications()->whereNull('read_at')->count()
+                    ? $this->notificationInboxService->unreadCount($request->user())
                     : 0,
                 'latest' => fn () => $request->user()
-                    ? $this->notificationSerializer->serializeCollection(
-                        $request->user()
-                            ->inAppNotifications()
-                            ->with('notificationEvent')
-                            ->latest('created_at')
-                            ->limit(5)
-                            ->get()
-                    )
+                    ? $this->notificationInboxService->latest($request->user(), 5)
                     : [],
             ],
+            'system_banner' => fn () => $this->systemBannerService->serialize(),
 			'lookups' => [
 				'datacenters' => fn () => collect(config('datacenters.values', []))
 					->map(fn (string $value) => [

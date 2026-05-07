@@ -107,6 +107,14 @@
         "updated": "a mis à jour un Activity Type.",
         "published": "a publié un Activity Type.",
         "archived": "a archivé un Activity Type."
+      },
+      "system_notification": {
+        "maintenance_sent": "a envoyé une notification de maintenance obligatoire.",
+        "announcement_sent": "a envoyé une annonce de mise à jour."
+      },
+      "system_banner": {
+        "updated": "a mis à jour la bannière système du site.",
+        "cleared": "a supprimé la bannière système du site."
       }
     },
     "character": {
@@ -256,7 +264,12 @@
     "lodestone_id": "ID Lodestone",
     "verification_method": "Méthode de vérification",
     "is_primary": "Personnage principal",
-    "changed_fields": "Champs modifiés"
+    "changed_fields": "Champs modifiés",
+    "headline": "Titre",
+    "scheduled_for": "Prévu pour",
+    "notification_event_id": "Événement de notification",
+    "action_label": "Libellé d'action",
+    "action_url": "URL d'action"
   },
   "events": {
     "user": {
@@ -294,6 +307,14 @@
         "updated": "Activity Type mis à jour",
         "published": "Activity Type publié",
         "archived": "Activity Type archivé"
+      },
+      "system_notification": {
+        "maintenance_sent": "Notification de maintenance envoyée",
+        "announcement_sent": "Annonce de mise à jour envoyée"
+      },
+      "system_banner": {
+        "updated": "Bannière système mise à jour",
+        "cleared": "Bannière système supprimée"
       }
     },
     "character": {

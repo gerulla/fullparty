@@ -43,8 +43,13 @@ class EmailNotificationDeliveryService
 
         try {
             $message = $this->messageRenderer->render($event, $recipient);
+            $mailerName = $this->resolveMailerName($event);
 
-            Mail::to($recipient->email)->send(
+            $mail = $mailerName
+                ? Mail::mailer($mailerName)
+                : Mail::mailer();
+
+            $mail->to($recipient->email)->send(
                 new NotificationDeliveryMail(
                     subjectLine: $message['subject'],
                     bodyText: $message['body'],
@@ -69,5 +74,23 @@ class EmailNotificationDeliveryService
                 ],
             ]);
         }
+    }
+
+    private function resolveMailerName(\App\Models\NotificationEvent $event): ?string
+    {
+        $defaultMailer = (string) config('mail.default');
+
+        if ($defaultMailer !== 'postmark') {
+            return null;
+        }
+
+        if (
+            $event->category === \App\Support\Notifications\NotificationCategory::SYSTEM_NOTICES
+            && !$event->is_mandatory
+        ) {
+            return 'postmark_broadcast';
+        }
+
+        return 'postmark';
     }
 }

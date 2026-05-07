@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
 
@@ -50,5 +51,10 @@ class NotificationEvent extends Model
     public function deliveries(): HasMany
     {
         return $this->hasMany(NotificationDelivery::class)->latest();
+    }
+
+    public function systemBroadcast(): HasOne
+    {
+        return $this->hasOne(SystemNotificationBroadcast::class);
     }
 }

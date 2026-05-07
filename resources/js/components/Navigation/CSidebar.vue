@@ -24,6 +24,7 @@ const groups = computed(() => [
 const admin = computed(() => [
 	{ label: t('navigation.sidebar.character_definitions'), href: '/admin/character-data', icon: 'i-lucide-user-pen' },
 	{ label: t('navigation.sidebar.admin_audit_log'), href: '/admin/audit-log', icon: 'i-lucide-scroll-text' },
+	{ label: t('navigation.sidebar.system_notifications'), href: '/admin/system-notifications', icon: 'i-lucide-megaphone' },
 	{ label: t('navigation.sidebar.activity_types'), href: '/admin/activity-types', icon: 'i-lucide-file-pen' },
 	{ label: t('navigation.sidebar.pulse'), href: '/pulse', icon: 'i-lucide-activity', external: true },
 ])

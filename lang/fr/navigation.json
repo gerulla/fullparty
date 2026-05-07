@@ -16,6 +16,7 @@
     "admin": "Admin",
     "character_definitions": "Données des personnages",
     "admin_audit_log": "Journal d'audit",
+    "system_notifications": "Notifications système",
     "activity_types": "Activity Types",
     "pulse": "Pulse",
     "notice": {

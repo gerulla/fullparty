@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\SystemNotificationBroadcast;
 use App\Models\UserNotification;
+use App\Services\Notifications\NotificationInboxService;
 use App\Services\Notifications\NotificationRealtimeService;
-use App\Services\Notifications\UserNotificationSerializer;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -16,29 +17,30 @@ class AccountNotificationController extends Controller
     private const PAGE_SIZE = 50;
 
     public function __construct(
-        private readonly UserNotificationSerializer $notificationSerializer,
+        private readonly NotificationInboxService $notificationInboxService,
         private readonly NotificationRealtimeService $notificationRealtimeService,
     ) {}
 
     public function index(Request $request): Response
     {
-        $pageData = $this->notificationSerializer->serializePaginator(
-            $this->notificationsQuery($request)->paginate(self::PAGE_SIZE)
+        $pageData = $this->notificationInboxService->paginate(
+            $request->user(),
+            page: (int) $request->integer('page', 1),
+            perPage: self::PAGE_SIZE,
         );
 
         return Inertia::render('Dashboard/Account/Notifications', [
             'notificationsPage' => $pageData,
-            'unreadCount' => $request->user()
-                ->inAppNotifications()
-                ->whereNull('read_at')
-                ->count(),
+            'unreadCount' => $this->notificationInboxService->unreadCount($request->user()),
         ]);
     }
 
     public function feed(Request $request): JsonResponse
     {
-        $pageData = $this->notificationSerializer->serializePaginator(
-            $this->notificationsQuery($request)->paginate(self::PAGE_SIZE)
+        $pageData = $this->notificationInboxService->paginate(
+            $request->user(),
+            page: (int) $request->integer('page', 1),
+            perPage: self::PAGE_SIZE,
         );
 
         return response()->json($pageData);
@@ -47,29 +49,14 @@ class AccountNotificationController extends Controller
     public function summary(Request $request): JsonResponse
     {
         return response()->json([
-            'unread_count' => $request->user()
-                ->inAppNotifications()
-                ->whereNull('read_at')
-                ->count(),
-            'latest' => $this->notificationSerializer->serializeCollection(
-                $request->user()
-                    ->inAppNotifications()
-                    ->with('notificationEvent')
-                    ->latest('created_at')
-                    ->limit(5)
-                    ->get()
-            ),
+            'unread_count' => $this->notificationInboxService->unreadCount($request->user()),
+            'latest' => $this->notificationInboxService->latest($request->user(), 5),
         ]);
     }
 
     public function readAll(Request $request): RedirectResponse
     {
-        $updated = $request->user()
-            ->inAppNotifications()
-            ->whereNull('read_at')
-            ->update([
-                'read_at' => now(),
-            ]);
+        $updated = $this->notificationInboxService->markAllRead($request->user());
 
         if ($updated > 0) {
             $this->notificationRealtimeService->broadcastUserInboxUpdated($request->user());
@@ -98,11 +85,13 @@ class AccountNotificationController extends Controller
         );
     }
 
-    private function notificationsQuery(Request $request)
+    public function openBroadcast(Request $request, SystemNotificationBroadcast $broadcast): RedirectResponse
     {
-        return $request->user()
-            ->inAppNotifications()
-            ->with('notificationEvent')
-            ->orderByDesc('created_at');
+        $this->notificationInboxService->markBroadcastAsRead($request->user(), $broadcast);
+        $this->notificationRealtimeService->broadcastUserInboxUpdated($request->user());
+
+        return redirect()->to(
+            $this->notificationInboxService->broadcastActionUrl($broadcast)
+        );
     }
 }

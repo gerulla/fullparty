@@ -84,6 +84,32 @@ Also configure:
 - Reverb credentials and host settings
 - FF Logs API credentials if FF Logs integrations are enabled
 
+### Postmark stream configuration
+
+If you are using Postmark for production email delivery, configure both message streams explicitly:
+
+```env
+MAIL_MAILER=postmark
+POSTMARK_API_KEY=your-postmark-server-token
+POSTMARK_TRANSACTIONAL_MESSAGE_STREAM_ID=outbound
+POSTMARK_BROADCAST_MESSAGE_STREAM_ID=broadcast
+```
+
+In this repo:
+
+- transactional notifications use the transactional Postmark stream
+- optional system announcement emails use the broadcast Postmark stream
+
+That means important app mail such as:
+
+- account notifications
+- assignment notifications
+- application notifications
+- run reminders
+- maintenance notices
+
+stays on the transactional stream, while optional feature/news/update announcements use the broadcast stream.
+
 ### Redis cache recommendation
 
 For Forge, FullParty should use Redis for the main application cache:

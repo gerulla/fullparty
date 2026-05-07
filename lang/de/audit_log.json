@@ -107,6 +107,14 @@
         "updated": "hat einen Activity Type aktualisiert.",
         "published": "hat einen Activity Type veröffentlicht.",
         "archived": "hat einen Activity Type archiviert."
+      },
+      "system_notification": {
+        "maintenance_sent": "hat eine verpflichtende Wartungsbenachrichtigung gesendet.",
+        "announcement_sent": "hat eine Update-Benachrichtigung gesendet."
+      },
+      "system_banner": {
+        "updated": "hat das systemweite Banner aktualisiert.",
+        "cleared": "hat das systemweite Banner entfernt."
       }
     },
     "character": {
@@ -256,7 +264,12 @@
     "lodestone_id": "Lodestone-ID",
     "verification_method": "Verifizierungsmethode",
     "is_primary": "Primärcharakter",
-    "changed_fields": "Geänderte Felder"
+    "changed_fields": "Geänderte Felder",
+    "headline": "Überschrift",
+    "scheduled_for": "Geplant für",
+    "notification_event_id": "Benachrichtigungsereignis",
+    "action_label": "Aktionsbeschriftung",
+    "action_url": "Aktions-URL"
   },
   "events": {
     "user": {
@@ -294,6 +307,14 @@
         "updated": "Activity Type aktualisiert",
         "published": "Activity Type veröffentlicht",
         "archived": "Activity Type archiviert"
+      },
+      "system_notification": {
+        "maintenance_sent": "Wartungsbenachrichtigung gesendet",
+        "announcement_sent": "Update-Benachrichtigung gesendet"
+      },
+      "system_banner": {
+        "updated": "Systemweites Banner aktualisiert",
+        "cleared": "Systemweites Banner entfernt"
       }
     },
     "character": {

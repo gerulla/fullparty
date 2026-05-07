@@ -2,6 +2,7 @@
 
 use App\Events\UserNotificationsUpdated;
 use App\Models\NotificationEvent;
+use App\Models\SystemNotificationBroadcast;
 use App\Models\User;
 use App\Models\UserNotification;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -34,8 +35,8 @@ it('shows the notifications history page with the first 50 newest notifications 
             ->component('Dashboard/Account/Notifications')
             ->where('unreadCount', 55)
             ->has('notificationsPage.items', 50)
-            ->where('notificationsPage.items.0.id', $newestNotification->id)
-            ->where('notificationsPage.items.49.id', $oldestOnFirstPage->id)
+            ->where('notificationsPage.items.0.id', "user:{$newestNotification->id}")
+            ->where('notificationsPage.items.49.id', "user:{$oldestOnFirstPage->id}")
             ->where('notificationsPage.pagination.current_page', 1)
             ->where('notificationsPage.pagination.next_page', 2)
             ->where('notificationsPage.pagination.has_more_pages', true)
@@ -66,8 +67,8 @@ it('returns later notification pages through the feed endpoint', function () {
     $response
         ->assertOk()
         ->assertJsonCount(5, 'items')
-        ->assertJsonPath('items.0.id', $expectedSecondPage[0]->id)
-        ->assertJsonPath('items.4.id', $expectedSecondPage[4]->id)
+        ->assertJsonPath('items.0.id', "user:{$expectedSecondPage[0]->id}")
+        ->assertJsonPath('items.4.id', "user:{$expectedSecondPage[4]->id}")
         ->assertJsonPath('pagination.current_page', 2)
         ->assertJsonPath('pagination.next_page', null)
         ->assertJsonPath('pagination.has_more_pages', false)
@@ -100,8 +101,8 @@ it('returns the unread count and latest notifications for the bell summary endpo
         ->assertOk()
         ->assertJsonPath('unread_count', 6)
         ->assertJsonCount(5, 'latest')
-        ->assertJsonPath('latest.0.id', $expectedLatest[0]->id)
-        ->assertJsonPath('latest.4.id', $expectedLatest[4]->id)
+        ->assertJsonPath('latest.0.id', "user:{$expectedLatest[0]->id}")
+        ->assertJsonPath('latest.4.id', "user:{$expectedLatest[4]->id}")
         ->assertJsonPath('latest.0.is_unread', true);
 });
 
@@ -132,9 +133,31 @@ it('shares unread counts and latest notifications in inertia props for authentic
         ->assertInertia(fn (Assert $page) => $page
             ->where('notifications.unread_count', 6)
             ->has('notifications.latest', 5)
-            ->where('notifications.latest.0.id', $latestUnread->id)
+            ->where('notifications.latest.0.id', "user:{$latestUnread->id}")
             ->where('notifications.latest.0.is_unread', true)
         );
+});
+
+it('includes visible system notification broadcasts in the inbox without creating user notification rows', function () {
+    $user = User::factory()->create([
+        'system_notice_notifications' => true,
+    ]);
+
+    $broadcast = createSystemBroadcast(
+        type: 'system.announcement',
+        isMandatory: false,
+        createdAt: now(),
+    );
+
+    $this->actingAs($user);
+
+    $this->getJson(route('account.notifications.summary'))
+        ->assertOk()
+        ->assertJsonPath('unread_count', 1)
+        ->assertJsonPath('latest.0.id', "broadcast:{$broadcast->id}")
+        ->assertJsonPath('latest.0.is_unread', true);
+
+    expect($user->fresh()->inAppNotifications)->toHaveCount(0);
 });
 
 it('marks all of the users notifications as read', function () {
@@ -160,6 +183,28 @@ it('marks all of the users notifications as read', function () {
     Event::assertDispatched(UserNotificationsUpdated::class, function (UserNotificationsUpdated $event) use ($user) {
         return $event->userId === $user->id;
     });
+});
+
+it('marks visible broadcast notifications as read when marking all notifications as read', function () {
+    Event::fake([UserNotificationsUpdated::class]);
+
+    $user = User::factory()->create([
+        'system_notice_notifications' => true,
+    ]);
+
+    $broadcast = createSystemBroadcast();
+
+    $this->actingAs($user)
+        ->post(route('account.notifications.read-all'))
+        ->assertRedirect();
+
+    $this->getJson(route('account.notifications.summary'))
+        ->assertOk()
+        ->assertJsonPath('unread_count', 0);
+
+    expect($broadcast->reads()->where('user_id', $user->id)->exists())->toBeTrue();
+
+    Event::assertDispatchedTimes(UserNotificationsUpdated::class, 1);
 });
 
 it('opens a notification, marks it as read, and redirects to its action url', function () {
@@ -204,6 +249,26 @@ it('redirects notification opens without an action url back to the notifications
     Event::assertDispatched(UserNotificationsUpdated::class, function (UserNotificationsUpdated $event) use ($user) {
         return $event->userId === $user->id;
     });
+});
+
+it('opens a broadcast notification, marks it as read, and redirects to its action url', function () {
+    Event::fake([UserNotificationsUpdated::class]);
+
+    $user = User::factory()->create([
+        'system_notice_notifications' => true,
+    ]);
+
+    $broadcast = createSystemBroadcast(
+        actionUrl: '/settings',
+    );
+
+    $this->actingAs($user)
+        ->get(route('account.notifications.broadcasts.open', $broadcast))
+        ->assertRedirect('/settings');
+
+    expect($broadcast->reads()->where('user_id', $user->id)->exists())->toBeTrue();
+
+    Event::assertDispatchedTimes(UserNotificationsUpdated::class, 1);
 });
 
 it('does not allow users to open another users notification', function () {
@@ -256,4 +321,46 @@ function createNotificationForUser(
     ])->saveQuietly();
 
     return $notification;
+}
+
+function createSystemBroadcast(
+    string $type = 'system.maintenance.upcoming',
+    bool $isMandatory = true,
+    ?string $actionUrl = '/settings',
+    ?Carbon $createdAt = null,
+): SystemNotificationBroadcast {
+    $timestamp = $createdAt ?? now();
+
+    $event = NotificationEvent::query()->create([
+        'type' => $type,
+        'category' => 'system_notices',
+        'is_mandatory' => $isMandatory,
+        'title_key' => $type === 'system.announcement'
+            ? 'notifications.system.announcement.title'
+            : 'notifications.system.maintenance.title',
+        'body_key' => $type === 'system.announcement'
+            ? 'notifications.system.announcement.body'
+            : 'notifications.system.maintenance.body',
+        'message_params' => [
+            'headline' => 'Heads up',
+            'message' => 'Something site-wide happened.',
+        ],
+        'action_url' => $actionUrl,
+    ]);
+
+    $event->forceFill([
+        'created_at' => $timestamp,
+        'updated_at' => $timestamp,
+    ])->saveQuietly();
+
+    $broadcast = SystemNotificationBroadcast::query()->create([
+        'notification_event_id' => $event->id,
+    ]);
+
+    $broadcast->forceFill([
+        'created_at' => $timestamp,
+        'updated_at' => $timestamp,
+    ])->saveQuietly();
+
+    return $broadcast;
 }

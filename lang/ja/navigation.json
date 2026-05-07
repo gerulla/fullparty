@@ -16,6 +16,7 @@
     "admin": "管理",
     "character_definitions": "キャラクターデータ",
     "admin_audit_log": "監査ログ",
+    "system_notifications": "システム通知",
     "activity_types": "Activity Types",
     "pulse": "Pulse",
     "notice": {

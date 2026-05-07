@@ -107,6 +107,14 @@
         "updated": "がActivity Typeを更新しました。",
         "published": "がActivity Typeを公開しました。",
         "archived": "がActivity Typeをアーカイブしました。"
+      },
+      "system_notification": {
+        "maintenance_sent": "必須のメンテナンス通知を送信しました。",
+        "announcement_sent": "更新のお知らせを送信しました。"
+      },
+      "system_banner": {
+        "updated": "サイト全体のシステムバナーを更新しました。",
+        "cleared": "サイト全体のシステムバナーを解除しました。"
       }
     },
     "character": {
@@ -256,7 +264,12 @@
     "lodestone_id": "Lodestone ID",
     "verification_method": "確認方法",
     "is_primary": "メインキャラクター",
-    "changed_fields": "変更された項目"
+    "changed_fields": "変更された項目",
+    "headline": "見出し",
+    "scheduled_for": "予定日時",
+    "notification_event_id": "通知イベント",
+    "action_label": "アクションラベル",
+    "action_url": "アクションURL"
   },
   "events": {
     "user": {
@@ -294,6 +307,14 @@
         "updated": "Activity Typeを更新",
         "published": "Activity Typeを公開",
         "archived": "Activity Typeをアーカイブ"
+      },
+      "system_notification": {
+        "maintenance_sent": "メンテナンス通知を送信",
+        "announcement_sent": "更新通知を送信"
+      },
+      "system_banner": {
+        "updated": "システムバナーを更新",
+        "cleared": "システムバナーを解除"
       }
     },
     "character": {

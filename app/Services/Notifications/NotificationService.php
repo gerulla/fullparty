@@ -199,6 +199,46 @@ class NotificationService
     }
 
     /**
+     * @return array{status: string, reason: ?string, target: ?string}
+     */
+    public function determineDeliveryOutcome(NotificationEvent $event, User $recipient, string $channel): array
+    {
+        NotificationChannel::ensureValid($channel);
+        $recipient->loadMissing('socialAccounts');
+
+        return $this->resolveDeliveryOutcome($event, $recipient, $channel);
+    }
+
+    /**
+     * @return EloquentCollection<int, User>
+     */
+    public function eligibleBroadcastRecipients(
+        NotificationEvent $event,
+        int $minUserId,
+        int $maxUserId,
+    ): EloquentCollection {
+        $query = User::query()
+            ->with('socialAccounts')
+            ->whereBetween('id', [$minUserId, $maxUserId])
+            ->orderBy('id');
+
+        if (!$event->is_mandatory) {
+            $query->where(NotificationCategory::preferenceField($event->category), true);
+        }
+
+        return $query->get();
+    }
+
+    /**
+     * @param  iterable<int, User>  $recipients
+     * @return EloquentCollection<int, User>
+     */
+    public function normalizeRecipientsForBroadcast(iterable $recipients): EloquentCollection
+    {
+        return $this->normalizeRecipients($recipients);
+    }
+
+    /**
      * @param  array<int, string>|null  $channels
      * @return array<int, string>
      */

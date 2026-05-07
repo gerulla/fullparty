@@ -107,6 +107,14 @@
         "updated": "updated an activity type.",
         "published": "published an activity type.",
         "archived": "archived an activity type."
+      },
+      "system_notification": {
+        "maintenance_sent": "sent a mandatory maintenance notification.",
+        "announcement_sent": "sent an update announcement."
+      },
+      "system_banner": {
+        "updated": "updated the site-wide system banner.",
+        "cleared": "cleared the site-wide system banner."
       }
     },
     "character": {
@@ -266,7 +274,12 @@
     "lodestone_id": "Lodestone ID",
     "verification_method": "Verification Method",
     "is_primary": "Primary Character",
-    "changed_fields": "Changed Fields"
+    "changed_fields": "Changed Fields",
+    "headline": "Headline",
+    "scheduled_for": "Scheduled For",
+    "notification_event_id": "Notification Event",
+    "action_label": "Action Label",
+    "action_url": "Action URL"
   },
   "events": {
     "user": {
@@ -304,6 +317,14 @@
         "updated": "Activity type updated",
         "published": "Activity type published",
         "archived": "Activity type archived"
+      },
+      "system_notification": {
+        "maintenance_sent": "Maintenance notification sent",
+        "announcement_sent": "Update announcement sent"
+      },
+      "system_banner": {
+        "updated": "System banner updated",
+        "cleared": "System banner cleared"
       }
     },
     "character": {

@@ -1,6 +1,7 @@
 <?php
 
 use App\Events\UserNotificationsUpdated;
+use App\Mail\NotificationDeliveryMail;
 use App\Models\NotificationDelivery;
 use App\Models\NotificationEvent;
 use App\Models\UserNotification;
@@ -372,6 +373,7 @@ it('can promote a previously skipped discord delivery to pending once the recipi
 it('sends email deliveries through the email delivery service and marks them as sent', function () {
     Mail::fake();
     Queue::fake();
+    config()->set('mail.default', 'postmark');
 
     $recipient = User::factory()->create([
         'application_notifications' => true,
@@ -399,6 +401,10 @@ it('sends email deliveries through the email delivery service and marks them as 
 
     app(EmailNotificationDeliveryService::class)->send($delivery->id);
 
+    Mail::assertSent(NotificationDeliveryMail::class, function (NotificationDeliveryMail $mail) {
+        return $mail->usesMailer('postmark');
+    });
+
     $delivery->refresh();
 
     expect($delivery->status)->toBe(NotificationDelivery::STATUS_SENT)
@@ -406,6 +412,39 @@ it('sends email deliveries through the email delivery service and marks them as 
         ->and($delivery->sent_at)->not->toBeNull()
         ->and($delivery->target)->toBe($recipient->email);
 
+});
+
+it('routes optional system announcement emails through the postmark broadcast stream', function () {
+    Mail::fake();
+    Queue::fake();
+    config()->set('mail.default', 'postmark');
+
+    $recipient = User::factory()->create([
+        'system_notice_notifications' => true,
+        'email_notifications' => true,
+    ]);
+
+    $event = NotificationEvent::query()->create([
+        'type' => 'system.announcement',
+        'category' => NotificationCategory::SYSTEM_NOTICES,
+        'is_mandatory' => false,
+        'title_key' => 'notifications.system.announcement.title',
+        'body_key' => 'notifications.system.announcement.body',
+        'message_params' => [
+            'headline' => 'New feature',
+            'message' => 'Follower muting is now live.',
+        ],
+    ]);
+
+    app(NotificationService::class)->sendOffSiteNotifications($event, $recipient, [NotificationChannel::EMAIL]);
+
+    $delivery = NotificationDelivery::query()->sole();
+
+    app(EmailNotificationDeliveryService::class)->send($delivery->id);
+
+    Mail::assertSent(NotificationDeliveryMail::class, function (NotificationDeliveryMail $mail) {
+        return $mail->usesMailer('postmark_broadcast');
+    });
 });
 
 it('renders assignment notification emails with translated copy instead of raw keys', function () {

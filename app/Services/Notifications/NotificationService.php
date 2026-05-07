@@ -18,6 +18,7 @@ class NotificationService
 {
     public function __construct(
         private readonly NotificationDeliveryDispatcher $deliveryDispatcher,
+        private readonly NotificationRealtimeService $notificationRealtimeService,
     ) {}
 
     public function createEvent(
@@ -61,10 +62,18 @@ class NotificationService
 
         return $normalizedRecipients
             ->filter(fn (User $recipient) => $this->recipientWantsEvent($recipient, $event))
-            ->map(fn (User $recipient) => UserNotification::query()->firstOrCreate([
-                'notification_event_id' => $event->id,
-                'user_id' => $recipient->id,
-            ]))
+            ->map(function (User $recipient) use ($event) {
+                $notification = UserNotification::query()->firstOrCreate([
+                    'notification_event_id' => $event->id,
+                    'user_id' => $recipient->id,
+                ]);
+
+                if ($notification->wasRecentlyCreated) {
+                    $this->notificationRealtimeService->broadcastUserInboxUpdated($recipient);
+                }
+
+                return $notification;
+            })
             ->values();
     }
 

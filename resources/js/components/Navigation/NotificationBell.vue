@@ -12,9 +12,19 @@ import {
 	type NotificationRecord,
 } from '@/utils/notificationPresentation'
 
+declare global {
+	interface Window {
+		Echo?: {
+			private: (channel: string) => {
+				listen: (event: string, callback: (payload: unknown) => void) => unknown
+			}
+			leave?: (channel: string) => void
+		}
+	}
+}
+
 const page = usePage()
 const { t, locale } = useI18n()
-const POLL_INTERVAL_MS = 15000
 
 const user = computed(() => page.props.auth?.user ?? null)
 const unreadCount = ref(Number(page.props.notifications?.unread_count ?? 0))
@@ -22,7 +32,7 @@ const latestNotifications = ref<NotificationRecord[]>(
 	(page.props.notifications?.latest ?? []) as NotificationRecord[],
 )
 const isPolling = ref(false)
-let pollHandle: number | null = null
+const subscribedChannelName = ref<string | null>(null)
 
 const syncFromPageProps = () => {
 	unreadCount.value = Number(page.props.notifications?.unread_count ?? 0)
@@ -46,21 +56,35 @@ const refreshNotificationSummary = async () => {
 	}
 }
 
-const startPolling = () => {
-	if (pollHandle !== null || !user.value) {
+const subscribeToNotificationsChannel = (userId: number) => {
+	if (!window.Echo) {
 		return
 	}
 
-	pollHandle = window.setInterval(() => {
-		void refreshNotificationSummary()
-	}, POLL_INTERVAL_MS)
+	const channelName = `App.Models.User.${userId}`
+
+	if (subscribedChannelName.value === channelName) {
+		return
+	}
+
+	if (subscribedChannelName.value && window.Echo.leave) {
+		window.Echo.leave(subscribedChannelName.value)
+	}
+
+	window.Echo.private(channelName)
+		.listen('.notifications.updated', () => {
+			void refreshNotificationSummary()
+		})
+
+	subscribedChannelName.value = channelName
 }
 
-const stopPolling = () => {
-	if (pollHandle !== null) {
-		window.clearInterval(pollHandle)
-		pollHandle = null
+const unsubscribeFromNotificationsChannel = () => {
+	if (subscribedChannelName.value && window.Echo?.leave) {
+		window.Echo.leave(subscribedChannelName.value)
 	}
+
+	subscribedChannelName.value = null
 }
 
 const markAllAsRead = () => {
@@ -78,6 +102,10 @@ const markAllAsRead = () => {
 	})
 }
 
+const handleBellClick = () => {
+	void refreshNotificationSummary()
+}
+
 watch(() => page.props.notifications, () => {
 	syncFromPageProps()
 }, { deep: true })
@@ -85,12 +113,12 @@ watch(() => page.props.notifications, () => {
 watch(user, (nextUser) => {
 	if (nextUser) {
 		syncFromPageProps()
-		startPolling()
+		subscribeToNotificationsChannel(Number(nextUser.id))
 		void refreshNotificationSummary()
 		return
 	}
 
-	stopPolling()
+	unsubscribeFromNotificationsChannel()
 }, { immediate: true })
 
 const handleVisibilityChange = () => {
@@ -105,7 +133,7 @@ onMounted(() => {
 
 onBeforeUnmount(() => {
 	document.removeEventListener('visibilitychange', handleVisibilityChange)
-	stopPolling()
+	unsubscribeFromNotificationsChannel()
 })
 </script>
 
@@ -121,6 +149,7 @@ onBeforeUnmount(() => {
 				:class="{ 'bg-gray-100 dark:bg-gray-800': open }"
 				class="relative"
 				icon="i-lucide-bell"
+				@click="handleBellClick"
 			>
 				<UChip
 					v-if="unreadCount > 0"

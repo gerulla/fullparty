@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\UserNotification;
+use App\Services\Notifications\NotificationRealtimeService;
 use App\Services\Notifications\UserNotificationSerializer;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
@@ -16,6 +17,7 @@ class AccountNotificationController extends Controller
 
     public function __construct(
         private readonly UserNotificationSerializer $notificationSerializer,
+        private readonly NotificationRealtimeService $notificationRealtimeService,
     ) {}
 
     public function index(Request $request): Response
@@ -62,12 +64,16 @@ class AccountNotificationController extends Controller
 
     public function readAll(Request $request): RedirectResponse
     {
-        $request->user()
+        $updated = $request->user()
             ->inAppNotifications()
             ->whereNull('read_at')
             ->update([
                 'read_at' => now(),
             ]);
+
+        if ($updated > 0) {
+            $this->notificationRealtimeService->broadcastUserInboxUpdated($request->user());
+        }
 
         return back();
     }
@@ -80,6 +86,8 @@ class AccountNotificationController extends Controller
             $notification->update([
                 'read_at' => now(),
             ]);
+
+            $this->notificationRealtimeService->broadcastUserInboxUpdated($request->user());
         }
 
         $notification->loadMissing('notificationEvent');

@@ -131,6 +131,7 @@ Copy-Item .env.example .env
 - configure your PostgreSQL database
 - configure mail if needed
 - configure Google / Discord / XIVAuth credentials if you want those auth providers locally
+- configure Reverb if you want live notifications and other broadcast features
 
 5. Generate the app key and run migrations
 
@@ -150,6 +151,110 @@ That starts:
 - the Laravel app server
 - the queue listener
 - the Vite dev server
+
+### Reverb Setup
+
+FullParty uses Laravel Reverb for live notification updates.
+
+Reverb is required if you want the notification bell to update without a page reload.
+
+#### 1. Make sure the backend and frontend dependencies are installed
+
+The repo already expects:
+
+- `laravel/reverb` on the PHP side
+- `laravel-echo` and `pusher-js` on the frontend
+
+Those are already declared in the project dependencies, so a normal `composer install` and `npm install` should bring them in.
+
+#### 2. Enable broadcasting in `.env`
+
+Set these values in your local environment:
+
+```env
+BROADCAST_CONNECTION=reverb
+
+REVERB_APP_ID=your-app-id
+REVERB_APP_KEY=your-app-key
+REVERB_APP_SECRET=your-app-secret
+
+REVERB_SERVER_HOST=127.0.0.1
+REVERB_SERVER_PORT=8080
+
+REVERB_HOST=127.0.0.1
+REVERB_PORT=8080
+REVERB_SCHEME=http
+
+VITE_REVERB_APP_KEY="${REVERB_APP_KEY}"
+VITE_REVERB_HOST="${REVERB_HOST}"
+VITE_REVERB_PORT="${REVERB_PORT}"
+VITE_REVERB_SCHEME="${REVERB_SCHEME}"
+```
+
+For local development:
+
+- `REVERB_SERVER_HOST` / `REVERB_SERVER_PORT` are where the Reverb server process listens
+- `REVERB_HOST` / `REVERB_PORT` / `REVERB_SCHEME` are what the Laravel app and browser client use to connect
+
+If you use a custom local domain like `fullparty.test`, set `REVERB_HOST` to that hostname when needed.
+
+#### 3. Clear config after changing Reverb environment values
+
+```bash
+php artisan config:clear
+```
+
+#### 4. Start the Reverb server
+
+Run Reverb as its own long-lived process:
+
+```bash
+php artisan reverb:start
+```
+
+Important: `composer run dev` does **not** currently start Reverb for you. You need Reverb running alongside the normal dev stack.
+
+So a full local realtime setup is:
+
+```bash
+composer run dev
+php artisan reverb:start
+```
+
+Or, if you prefer separate processes:
+
+```bash
+php artisan serve
+php artisan queue:listen --tries=1
+npm run dev
+php artisan reverb:start
+```
+
+#### 5. Sanity check
+
+If Reverb is configured correctly:
+
+- the app boots with `BROADCAST_CONNECTION=reverb`
+- the notification bell updates when new on-site notifications are created
+- clicking the bell still refreshes the latest notification list as a fallback
+
+If package installs or Composer scripts fail with broadcaster errors, check:
+
+- `BROADCAST_CONNECTION` is not being overridden by another environment variable
+- `php artisan config:clear` has been run after env changes
+- the Reverb PHP package installed successfully
+- the Reverb server process is actually running
+
+### Production Reverb Notes
+
+For a lightweight deployment, Reverb can run on the same server as the Laravel app, but it is still a separate long-running process and should be supervised accordingly.
+
+At minimum, production should ensure:
+
+- Reverb runs under a process manager
+- the queue worker is running
+- websocket traffic is reachable on the configured host/port
+- TLS / reverse proxy setup is handled appropriately if the app is served over HTTPS
 
 ## Production Build
 

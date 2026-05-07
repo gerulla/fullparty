@@ -1,5 +1,6 @@
 <?php
 
+use App\Events\UserNotificationsUpdated;
 use App\Models\NotificationDelivery;
 use App\Models\NotificationEvent;
 use App\Models\SocialAccount;
@@ -8,6 +9,7 @@ use App\Services\Notifications\NotificationService;
 use App\Support\Notifications\NotificationCategory;
 use App\Support\Notifications\NotificationChannel;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Queue;
 use App\Jobs\SendNotificationEmailDeliveryJob;
@@ -52,6 +54,8 @@ it('creates notification events with actor, subject, and rendering metadata', fu
 });
 
 it('creates in app notifications only for recipients who want the category and stays idempotent', function () {
+    Event::fake([UserNotificationsUpdated::class]);
+
     $optedInUser = User::factory()->create([
         'application_notifications' => true,
     ]);
@@ -76,6 +80,11 @@ it('creates in app notifications only for recipients who want the category and s
 
     expect($optedInUser->fresh()->inAppNotifications)->toHaveCount(1)
         ->and($optedOutUser->fresh()->inAppNotifications)->toHaveCount(0);
+
+    Event::assertDispatchedTimes(UserNotificationsUpdated::class, 1);
+    Event::assertDispatched(UserNotificationsUpdated::class, function (UserNotificationsUpdated $event) use ($optedInUser) {
+        return $event->userId === $optedInUser->id;
+    });
 });
 
 it('lets mandatory system notices bypass the optional system notice preference for in app notifications', function () {

@@ -1,10 +1,12 @@
 <?php
 
+use App\Events\UserNotificationsUpdated;
 use App\Models\NotificationEvent;
 use App\Models\User;
 use App\Models\UserNotification;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Event;
 use Inertia\Testing\AssertableInertia as Assert;
 
 uses(RefreshDatabase::class);
@@ -136,6 +138,8 @@ it('shares unread counts and latest notifications in inertia props for authentic
 });
 
 it('marks all of the users notifications as read', function () {
+    Event::fake([UserNotificationsUpdated::class]);
+
     $user = User::factory()->create();
     $otherUser = User::factory()->create();
 
@@ -151,9 +155,16 @@ it('marks all of the users notifications as read', function () {
     expect($first->fresh()->read_at)->not->toBeNull()
         ->and($second->fresh()->read_at)->not->toBeNull()
         ->and($otherUsersNotification->fresh()->read_at)->toBeNull();
+
+    Event::assertDispatchedTimes(UserNotificationsUpdated::class, 1);
+    Event::assertDispatched(UserNotificationsUpdated::class, function (UserNotificationsUpdated $event) use ($user) {
+        return $event->userId === $user->id;
+    });
 });
 
 it('opens a notification, marks it as read, and redirects to its action url', function () {
+    Event::fake([UserNotificationsUpdated::class]);
+
     $user = User::factory()->create();
     $notification = createNotificationForUser(
         $user,
@@ -166,9 +177,16 @@ it('opens a notification, marks it as read, and redirects to its action url', fu
         ->assertRedirect('/settings');
 
     expect($notification->fresh()->read_at)->not->toBeNull();
+
+    Event::assertDispatchedTimes(UserNotificationsUpdated::class, 1);
+    Event::assertDispatched(UserNotificationsUpdated::class, function (UserNotificationsUpdated $event) use ($user) {
+        return $event->userId === $user->id;
+    });
 });
 
 it('redirects notification opens without an action url back to the notifications page', function () {
+    Event::fake([UserNotificationsUpdated::class]);
+
     $user = User::factory()->create();
     $notification = createNotificationForUser(
         $user,
@@ -181,6 +199,11 @@ it('redirects notification opens without an action url back to the notifications
         ->assertRedirect(route('account.notifications.index'));
 
     expect($notification->fresh()->read_at)->not->toBeNull();
+
+    Event::assertDispatchedTimes(UserNotificationsUpdated::class, 1);
+    Event::assertDispatched(UserNotificationsUpdated::class, function (UserNotificationsUpdated $event) use ($user) {
+        return $event->userId === $user->id;
+    });
 });
 
 it('does not allow users to open another users notification', function () {

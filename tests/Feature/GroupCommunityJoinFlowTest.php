@@ -27,6 +27,25 @@ it('allows open community groups to be joined directly and keeps a permanent slu
     expect($group->memberships()->where('user_id', $viewer->id)->exists())->toBeTrue();
 });
 
+it('redirects root invite badges to the localized invite page', function () {
+    $owner = User::factory()->create();
+    $group = Group::factory()->open()->create([
+        'owner_id' => $owner->id,
+        'slug' => 'ftel',
+        'group_type' => Group::TYPE_COMMUNITY,
+    ]);
+
+    expect($group->systemInvite?->token)->toBe('ftel');
+
+    $this->get('/ftel')
+        ->assertRedirect('/en/invite/ftel');
+});
+
+it('does not redirect unknown root invite badges', function () {
+    $this->get('/notreal')
+        ->assertNotFound();
+});
+
 it('does not allow direct joins for invite-only or application-based groups', function (string $groupType, string $joinMode) {
     $owner = User::factory()->create();
     $viewer = User::factory()->create();

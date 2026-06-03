@@ -64,6 +64,26 @@ class GroupInviteController extends Controller
         ])->withViewData('serverMeta', $this->serverMeta->groupInvite($group));
     }
 
+    public function shortcut(Request $request, string $token): RedirectResponse
+    {
+        $normalizedToken = strtolower($token);
+
+        if (! GroupInvite::query()->where('token', $normalizedToken)->exists()) {
+            abort(404);
+        }
+
+        $parameters = [
+            'locale' => app()->getLocale(),
+            'token' => $normalizedToken,
+        ];
+
+        if ($request->query->count() > 0) {
+            $parameters['_query'] = $request->query();
+        }
+
+        return redirect()->route('groups.invites.show', $parameters);
+    }
+
     public function store(Request $request, Group $group): RedirectResponse
     {
         $group->loadMissing('memberships');

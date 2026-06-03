@@ -640,3 +640,8 @@ Route::prefix('{locale?}')
             });
         });
     });
+
+Route::get('/{token}', [GroupInviteController::class, 'shortcut'])
+    ->where('token', '[A-Za-z0-9]{1,10}')
+    ->middleware('throttle:invite')
+    ->name('groups.invites.shortcut');

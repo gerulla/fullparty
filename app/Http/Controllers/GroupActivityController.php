@@ -75,11 +75,18 @@ class GroupActivityController extends Controller
             'applications as pending_application_count' => fn ($query) => $query->where('status', ActivityApplication::STATUS_PENDING),
         ]);
 
+        $canUseParticipationFlow = $this->canUseActivityParticipationFlow($group, $activity, $request->user()?->id);
+
         $permissions = [
-            'can_apply' => $request->user() !== null,
+            'can_apply' => $request->user() !== null && $canUseParticipationFlow,
+            'can_apply_as_guest' => $request->user() === null
+                && $activity->is_public
+                && $activity->allow_guest_applications
+                && $canUseParticipationFlow,
             'can_manage' => $group->hasModeratorAccess($request->user()?->id),
             'can_self_assign' => ! $activity->needs_application
                 && $request->user() !== null
+                && $canUseParticipationFlow
                 && ! $activity->isArchived(),
         ];
 
@@ -92,7 +99,7 @@ class GroupActivityController extends Controller
                 $slotSerializer,
                 $rosterSummaryPresetBuilder->build($activity->activityTypeVersion),
             ),
-            'secretKey' => $secretKey,
+            'secretKey' => null,
             'permissions' => $permissions,
         ];
 
@@ -191,7 +198,6 @@ class GroupActivityController extends Controller
         $visibleActivities = $canManageActivities
             ? $group->activities
             : $group->activities
-                ->where('is_public', true)
                 ->reject(fn (Activity $activity) => Activity::isModeratorOnlyStatus($activity->status));
 
         return Inertia::render('Dashboard/Groups/Activities/Index', [
@@ -224,7 +230,7 @@ class GroupActivityController extends Controller
                     'beginner_friendly' => $activity->beginner_friendly,
                     'run_style' => $activity->run_style,
                     'is_public' => $activity->is_public,
-                    'secret_key' => $canManageActivities ? $activity->secret_key : null,
+                    'secret_key' => null,
                     'needs_application' => $activity->needs_application,
                     'allow_guest_applications' => $activity->allow_guest_applications,
                     'organized_by' => $activity->organizer ? [
@@ -281,7 +287,9 @@ class GroupActivityController extends Controller
 
         $validated = $this->normalizeAndValidateTargetProgPoint($validated, $activityTypeVersion);
 
-        $activity = DB::transaction(function () use ($group, $activityType, $activityTypeVersion, $validated) {
+        $isPublic = $validated['is_public'] ?? true;
+
+        $activity = DB::transaction(function () use ($group, $activityType, $activityTypeVersion, $validated, $isPublic) {
             $activity = $group->activities()->create([
                 'activity_type_id' => $activityType->id,
                 'activity_type_version_id' => $activityTypeVersion->id,
@@ -301,10 +309,10 @@ class GroupActivityController extends Controller
                 'beginner_friendly' => $validated['beginner_friendly'] ?? false,
                 'run_style' => $validated['run_style'] ?? Activity::RUN_STYLE_PROGRESSION,
                 'target_prog_point_key' => $validated['target_prog_point_key'] ?? null,
-                'is_public' => $validated['is_public'] ?? true,
+                'is_public' => $isPublic,
                 'needs_application' => $validated['needs_application'] ?? true,
-                'allow_guest_applications' => $validated['allow_guest_applications'] ?? false,
-                'secret_key' => ($validated['is_public'] ?? true) ? null : Activity::generateSecretKey(),
+                'allow_guest_applications' => $isPublic && ($validated['allow_guest_applications'] ?? false),
+                'secret_key' => null,
             ]);
 
             $this->materializeSlots($activity, $activityTypeVersion);
@@ -375,6 +383,7 @@ class GroupActivityController extends Controller
             'needs_application',
             'allow_guest_applications',
         ]);
+        $nextIsPublic = $validated['is_public'] ?? $activity->is_public;
 
         $activity->update([
             'organized_by_user_id' => $validated['organized_by_user_id'] ?? $activity->organized_by_user_id,
@@ -396,12 +405,10 @@ class GroupActivityController extends Controller
             'target_prog_point_key' => array_key_exists('target_prog_point_key', $validated)
                 ? $validated['target_prog_point_key']
                 : $activity->target_prog_point_key,
-            'is_public' => $validated['is_public'] ?? $activity->is_public,
+            'is_public' => $nextIsPublic,
             'needs_application' => $validated['needs_application'] ?? $activity->needs_application,
-            'allow_guest_applications' => $validated['allow_guest_applications'] ?? $activity->allow_guest_applications,
-            'secret_key' => ($validated['is_public'] ?? $activity->is_public)
-                ? null
-                : ($activity->secret_key ?: Activity::generateSecretKey()),
+            'allow_guest_applications' => $nextIsPublic && ($validated['allow_guest_applications'] ?? $activity->allow_guest_applications),
+            'secret_key' => null,
         ]);
 
         $changes = [];
@@ -628,7 +635,7 @@ class GroupActivityController extends Controller
             'beginner_friendly' => ['sometimes', 'boolean'],
             'run_style' => ['sometimes', 'string', Rule::in(Activity::RUN_STYLES)],
             'target_prog_point_key' => ['sometimes', 'nullable', 'string', 'max:255'],
-            'is_public' => $isUpdate ? ['prohibited'] : ['sometimes', 'boolean'],
+            'is_public' => ['sometimes', 'boolean'],
             'needs_application' => $isUpdate ? ['prohibited'] : ['sometimes', 'boolean'],
             'allow_guest_applications' => ['sometimes', 'boolean'],
         ];

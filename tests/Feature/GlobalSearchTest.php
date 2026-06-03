@@ -121,7 +121,7 @@ it('matches runs and activity types by activity tags', function () {
         ->assertJsonPath('activities.0.title', 'AAC Light-heavyweight M4 (Savage)');
 });
 
-it('does not leak hidden groups or private runs to non members', function () {
+it('returns members-only runs from visible groups without leaking hidden groups', function () {
     $viewer = User::factory()->create();
     $activityType = createGlobalSearchActivityType([
         'slug' => 'hidden-match',
@@ -162,7 +162,8 @@ it('does not leak hidden groups or private runs to non members', function () {
 
     $response
         ->assertOk()
-        ->assertJsonCount(0, 'runs')
+        ->assertJsonCount(1, 'runs')
+        ->assertJsonPath('runs.0.title', 'Private Match Run')
         ->assertJsonCount(1, 'groups')
         ->assertJsonPath('groups.0.title', 'Visible Match Group');
 });

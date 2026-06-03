@@ -153,7 +153,7 @@ it('derives turnout from filled slots even before assignment snapshots are mater
         ->assertJsonPath('data.recent_runs.0.turnout_count', 2);
 });
 
-it('only exposes public runs in discovery activity details', function () {
+it('exposes discoverable runs in discovery activity details', function () {
     $user = User::factory()->create();
     $group = Group::factory()->open()->create([
         'slug' => 'pubruns',
@@ -163,23 +163,26 @@ it('only exposes public runs in discovery activity details', function () {
         'is_public' => true,
         'starts_at' => now()->subDay(),
     ]);
-    $privateActivity = Activity::factory()->complete()->private()->create([
+    $membersOnlyActivity = Activity::factory()->complete()->private()->create([
         'group_id' => $group->id,
+        'activity_type_id' => $publicActivity->activity_type_id,
+        'activity_type_version_id' => $publicActivity->activity_type_version_id,
         'starts_at' => now()->subHours(12),
     ]);
 
     $this->actingAs($user)
         ->getJson(route('groups.details', $group))
         ->assertOk()
-        ->assertJsonPath('data.activity_summary.completed_runs', 1)
-        ->assertJsonPath('data.activity_summary.total_runs', 1)
-        ->assertJsonPath('data.content_summary.total_runs', 1)
-        ->assertJsonPath('data.content_items.0.total_runs', 1)
-        ->assertJsonCount(1, 'data.recent_runs')
+        ->assertJsonPath('data.activity_summary.completed_runs', 2)
+        ->assertJsonPath('data.activity_summary.total_runs', 2)
+        ->assertJsonPath('data.content_summary.total_runs', 2)
+        ->assertJsonPath('data.content_items.0.total_runs', 2)
+        ->assertJsonCount(2, 'data.recent_runs')
         ->assertJsonCount(1, 'data.content_items')
-        ->assertJsonPath('data.recent_runs.0.id', $publicActivity->id);
+        ->assertJsonPath('data.recent_runs.0.id', $membersOnlyActivity->id)
+        ->assertJsonPath('data.recent_runs.1.id', $publicActivity->id);
 
-    expect($publicActivity->id)->not->toBe($privateActivity->id);
+    expect($publicActivity->id)->not->toBe($membersOnlyActivity->id);
 });
 
 it('only exposes owner and moderators in discovery team details', function () {

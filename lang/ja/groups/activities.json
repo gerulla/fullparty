@@ -786,6 +786,16 @@
                 "label": "Public Activity",
                 "help": "Public activities are visible based on the group's visibility rules."
             },
+            "visibility": {
+                "label": "表示範囲",
+                "help": "このRunを公開するか、メンバー限定にするかを選択します。",
+                "public": "公開",
+                "members_only": "メンバーのみ",
+                "state_label": "表示範囲: {visibility}",
+                "toggle_label": "このRunを公開にする",
+                "public_description": "グループを見つけられる人はこのRunを閲覧でき、ゲスト応募は別途有効にできます。",
+                "members_only_description": "Runは見つけられますが、応募または自己割り当てできるのはグループメンバーのみです。"
+            },
             "needs_application": {
                 "label": "応募必須",
                 "help": "Turn this on if members should apply instead of assigning themselves."
@@ -809,7 +819,7 @@
             "duration_value": "{count}h",
             "visibility": "表示設定",
             "visibility_public": "公開",
-            "visibility_private": "Private link only",
+            "visibility_private": "メンバーのみ",
             "datacenter": "データセンター",
             "run_style": "Run Style",
             "intensity": "Intensity",

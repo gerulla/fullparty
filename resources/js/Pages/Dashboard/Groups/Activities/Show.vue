@@ -198,7 +198,6 @@ const goToOverviewPage = () => {
 	router.get(route('groups.activities.overview', {
 		group: props.group.slug,
 		activity: currentActivity.value.id,
-		secretKey: currentActivity.value.is_public ? undefined : currentActivity.value.secret_key,
 	}));
 };
 
@@ -380,7 +379,6 @@ const activityApplicationRouteParams = computed(() => {
 	return {
 		group: props.group.slug,
 		activity: currentActivity.value.id,
-		secretKey: currentActivity.value.is_public ? undefined : currentActivity.value.secret_key,
 	};
 });
 

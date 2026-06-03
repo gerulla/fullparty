@@ -104,6 +104,7 @@ const fieldStepMap: Record<string, number> = {
 	starts_at: 0,
 	duration_hours: 0,
 	datacenter: 0,
+	is_public: 0,
 	allow_guest_applications: 0,
 	organized_by_user_id: 1,
 	organized_by_character_id: 1,
@@ -130,6 +131,7 @@ const submit = () => {
 		beginner_friendly: data.beginner_friendly,
 		run_style: data.run_style,
 		target_prog_point_key: data.target_prog_point_key,
+		is_public: data.is_public,
 		allow_guest_applications: data.allow_guest_applications,
 	})).put(route('groups.dashboard.activities.update', {
 		group: props.group.slug,

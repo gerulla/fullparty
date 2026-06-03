@@ -5,6 +5,7 @@ import { useI18n } from "vue-i18n";
 import { useActivityFormFields } from "@/components/Groups/Activities/useActivityFormFields";
 import { usePage } from "@inertiajs/vue3";
 import { activityTextLimits } from "@/utils/activityTextLimits";
+import ActivityVisibilityPicker from "@/components/Groups/Activities/ActivityVisibilityPicker.vue";
 
 const props = defineProps<{
 	step: number
@@ -26,6 +27,7 @@ const props = defineProps<{
 		beginner_friendly: boolean
 		run_style: string
 		target_prog_point_key: string | null
+		is_public: boolean
 		needs_application: boolean
 		allow_guest_applications: boolean
 		errors: Record<string, string | undefined>
@@ -102,6 +104,12 @@ const updateMinimumItemLevel = (value: unknown) => {
 
 watch(() => props.form.needs_application, (needsApplication) => {
 	if (!needsApplication) {
+		props.form.allow_guest_applications = false;
+	}
+}, { immediate: true });
+
+watch(() => props.form.is_public, (isPublic) => {
+	if (!isPublic) {
 		props.form.allow_guest_applications = false;
 	}
 }, { immediate: true });
@@ -262,8 +270,13 @@ const goNext = () => {
 						/>
 					</UFormField>
 
+					<ActivityVisibilityPicker
+						v-model="form.is_public"
+						:error="form.errors.is_public"
+					/>
+
 					<UFormField
-						v-if="form.needs_application"
+						v-if="form.needs_application && form.is_public"
 						:label="t('groups.activities.create.fields.allow_guest_applications.label')"
 						:description="t('groups.activities.create.fields.allow_guest_applications.help')"
 						:error="form.errors.allow_guest_applications"

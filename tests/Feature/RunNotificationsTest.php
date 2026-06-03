@@ -10,6 +10,7 @@ use App\Models\Character;
 use App\Models\DiscordGuildIntegration;
 use App\Models\DiscordUserIntegration;
 use App\Models\Group;
+use App\Models\GroupMembership;
 use App\Models\IntegrationClient;
 use App\Models\NotificationDelivery;
 use App\Models\NotificationEvent;
@@ -937,17 +938,34 @@ it('dispatches a guild discord run reminder event for linked group runs', functi
         'email_notifications' => true,
         'discord_notifications' => false,
     ]);
+    $unlinkedUser = User::factory()->create([
+        'run_and_reminder_notifications' => false,
+        'email_notifications' => false,
+        'discord_notifications' => false,
+    ]);
+
+    GroupMembership::query()->create([
+        'group_id' => $group->id,
+        'user_id' => $firstUser->id,
+        'role' => GroupMembership::ROLE_MEMBER,
+        'joined_at' => now(),
+    ]);
 
     createRunNotificationDiscordIntegration($firstUser, 'discord-guild-first', 'First User');
     createRunNotificationDiscordIntegration($secondUser, 'discord-guild-second', 'Second User');
 
-    foreach ([$firstUser, $secondUser] as $index => $user) {
+    $characters = [];
+
+    foreach ([$firstUser, $secondUser, $unlinkedUser] as $index => $user) {
         $character = Character::factory()->primary()->create([
             'user_id' => $user->id,
             'name' => 'Guild Member '.$index,
             'world' => $index === 0 ? 'Twintania' : 'Ragnarok',
+            'datacenter' => $index === 0 ? 'Light' : 'Chaos',
+            'avatar_url' => null,
             'lodestone_id' => '8080808'.$index,
         ]);
+        $characters[$index] = $character;
 
         ActivityApplication::factory()->approved($owner)->create([
             'activity_id' => $activity->id,
@@ -960,7 +978,7 @@ it('dispatches a guild discord run reminder event for linked group runs', functi
 
     $this->artisan('notifications:dispatch-run-reminders')->assertExitCode(0);
 
-    Http::assertSent(function (HttpRequest $request) use ($activity, $firstUser, $group, $secondUser): bool {
+    Http::assertSent(function (HttpRequest $request) use ($activity, $characters, $firstUser, $group, $secondUser, $unlinkedUser): bool {
         if ($request->url() !== 'https://discord-bot.fullparty.test/events') {
             return false;
         }
@@ -985,20 +1003,65 @@ it('dispatches a guild discord run reminder event for linked group runs', functi
                 [
                     'user_id' => $firstUser->id,
                     'discord_user_id' => 'discord-guild-first',
+                    'is_discord_linked' => true,
+                    'is_group_member' => true,
+                    'group_role' => GroupMembership::ROLE_MEMBER,
+                    'source' => 'application',
                     'primary_character' => [
                         'name' => 'Guild Member 0',
                         'world' => 'Twintania',
+                    ],
+                    'character' => [
+                        'id' => $characters[0]->id,
+                        'name' => 'Guild Member 0',
+                        'world' => 'Twintania',
+                        'datacenter' => 'Light',
+                        'avatar_url' => null,
                     ],
                 ],
                 [
                     'user_id' => $secondUser->id,
                     'discord_user_id' => 'discord-guild-second',
+                    'is_discord_linked' => true,
+                    'is_group_member' => true,
+                    'group_role' => GroupMembership::ROLE_MEMBER,
+                    'source' => 'application',
                     'primary_character' => [
                         'name' => 'Guild Member 1',
                         'world' => 'Ragnarok',
                     ],
+                    'character' => [
+                        'id' => $characters[1]->id,
+                        'name' => 'Guild Member 1',
+                        'world' => 'Ragnarok',
+                        'datacenter' => 'Chaos',
+                        'avatar_url' => null,
+                    ],
                 ],
             ])
+            ->and($payload['data']['unlinked_participants'])->toBe([
+                [
+                    'user_id' => $unlinkedUser->id,
+                    'discord_user_id' => null,
+                    'is_discord_linked' => false,
+                    'is_group_member' => true,
+                    'group_role' => GroupMembership::ROLE_MEMBER,
+                    'source' => 'application',
+                    'primary_character' => [
+                        'name' => 'Guild Member 2',
+                        'world' => 'Ragnarok',
+                    ],
+                    'character' => [
+                        'id' => $characters[2]->id,
+                        'name' => 'Guild Member 2',
+                        'world' => 'Ragnarok',
+                        'datacenter' => 'Chaos',
+                        'avatar_url' => null,
+                    ],
+                ],
+            ])
+            ->and($payload['data']['unlinked_count'])->toBe(1)
+            ->and($payload['data']['total_placed_count'])->toBe(3)
             ->and($payload['data']['run']['display_name'])->toBe('Guild Reminder Run')
             ->and($payload['data']['group']['name'])->toBe('Guild Linked Group')
             ->and($payload['data']['discord_guild']['name'])->toBe('Raid Guild');

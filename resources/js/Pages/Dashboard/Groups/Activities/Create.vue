@@ -46,7 +46,7 @@ const form = useForm({
 	beginner_friendly: false,
 	run_style: props.activityOptions.runStyles[0] ?? 'progression',
 	target_prog_point_key: null as string | null,
-	is_public: true,
+	is_public: false,
 	needs_application: true,
 	allow_guest_applications: false,
 });

@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Cache;
 
 class FeaturedGroupService
 {
-    private const CACHE_KEY = 'groups:featured:v1';
+    private const CACHE_KEY = 'groups:featured:v2';
 
     private const FEATURED_LIMIT = 8;
 
@@ -54,7 +54,6 @@ class FeaturedGroupService
         return $group->updated_at === null
             || $group->updated_at->greaterThanOrEqualTo(now()->subMonths(6))
             || $group->activities()
-                ->where('is_public', true)
                 ->where(function (Builder $query): void {
                     $query
                         ->where('updated_at', '>=', now()->subMonths(6))
@@ -79,7 +78,6 @@ class FeaturedGroupService
                 $query
                     ->where('groups.updated_at', '>=', now()->subMonths(6))
                     ->orWhereHas('activities', fn (Builder $activityQuery) => $activityQuery
-                        ->where('is_public', true)
                         ->where(function (Builder $recentActivityQuery): void {
                             $recentActivityQuery
                                 ->where('updated_at', '>=', now()->subMonths(6))
@@ -151,7 +149,7 @@ class FeaturedGroupService
                 'activities as recent_public_activity_count' => fn (Builder $query) => $this->recentPublicActivityFilter($query),
             ])
             ->withMax([
-                'activities as latest_public_activity_at' => fn (Builder $query) => $query->where('is_public', true),
+                'activities as latest_public_activity_at',
             ], 'updated_at')
             ->orderByDesc('groups.updated_at')
             ->limit(self::FALLBACK_CANDIDATE_LIMIT)
@@ -170,7 +168,6 @@ class FeaturedGroupService
     private function upcomingPublicActivityFilter(Builder $query): void
     {
         $query
-            ->where('is_public', true)
             ->where('starts_at', '>=', now())
             ->whereNotIn('status', [
                 Activity::STATUS_DRAFT,
@@ -182,7 +179,6 @@ class FeaturedGroupService
     private function recentPublicActivityFilter(Builder $query): void
     {
         $query
-            ->where('is_public', true)
             ->where(function (Builder $query): void {
                 $query
                     ->where('starts_at', '>=', now()->subDays(60))

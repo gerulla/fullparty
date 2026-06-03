@@ -786,6 +786,16 @@
                 "label": "Public Activity",
                 "help": "Public activities are visible based on the group's visibility rules."
             },
+            "visibility": {
+                "label": "Visibility",
+                "help": "Choose whether this run is public or limited to members.",
+                "public": "Public",
+                "members_only": "Members Only",
+                "state_label": "Visibility: {visibility}",
+                "toggle_label": "Make this run public",
+                "public_description": "Anyone who can discover the group can view this run, and guest applications can be enabled separately.",
+                "members_only_description": "People can discover the run, but only group members can apply or assign themselves."
+            },
             "needs_application": {
                 "label": "Needs Application",
                 "help": "Turn this on if members should apply instead of assigning themselves."
@@ -809,7 +819,7 @@
             "duration_value": "{count}h",
             "visibility": "Visibility",
             "visibility_public": "Public",
-            "visibility_private": "Private link only",
+            "visibility_private": "Members Only",
             "datacenter": "Data Center",
             "run_style": "Run Style",
             "intensity": "Intensity",

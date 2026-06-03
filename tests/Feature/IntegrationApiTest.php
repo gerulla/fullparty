@@ -9,6 +9,7 @@ use App\Models\Character;
 use App\Models\DiscordGuildIntegration;
 use App\Models\DiscordUserIntegration;
 use App\Models\Group;
+use App\Models\GroupMembership;
 use App\Models\IntegrationClient;
 use App\Models\User;
 use App\Models\UserOnboardingState;
@@ -256,7 +257,7 @@ it('returns only ongoing applications for a linked discord user', function () {
         ->assertJsonPath('data.2.id', $pending->id);
 });
 
-it('returns public upcoming runs for a linked discord guild', function () {
+it('returns discoverable upcoming runs for a linked discord guild', function () {
     $token = IntegrationClient::makePlainApiToken();
     IntegrationClient::factory()
         ->withApiToken($token)
@@ -372,11 +373,11 @@ it('returns public upcoming runs for a linked discord guild', function () {
         'status' => ActivityApplication::STATUS_WITHDRAWN,
     ]);
 
-    Activity::factory()->private()->create([
+    $membersOnly = Activity::factory()->private()->create([
         'group_id' => $group->id,
         'activity_type_version_id' => $version->id,
         'activity_type_id' => $version->activity_type_id,
-        'title' => 'Private hidden',
+        'title' => 'Members-only run',
         'status' => Activity::STATUS_SCHEDULED,
         'starts_at' => now()->addMinutes(30),
     ]);
@@ -413,28 +414,32 @@ it('returns public upcoming runs for a linked discord guild', function () {
         'Authorization' => 'Bearer '.$token,
     ])
         ->assertOk()
-        ->assertJsonCount(1, 'data')
-        ->assertJsonPath('data.0.id', $first->id)
-        ->assertJsonPath('data.0.display_name', 'Soon public')
-        ->assertJsonPath('data.0.is_public', true)
+        ->assertJsonCount(2, 'data')
+        ->assertJsonPath('data.0.id', $membersOnly->id)
+        ->assertJsonPath('data.0.display_name', 'Members-only run')
+        ->assertJsonPath('data.0.is_public', false)
         ->assertJsonPath('data.0.group.slug', 'guildgrp')
-        ->assertJsonPath('data.0.activity_type.name.en', 'The Weapon\'s Refrain (Ultimate)')
-        ->assertJsonPath('data.0.target_prog_point_key', 'titan-cleanup')
-        ->assertJsonPath('data.0.target_prog_point.key', 'titan-cleanup')
-        ->assertJsonPath('data.0.target_prog_point.label.en', 'Titan Cleanup')
-        ->assertJsonPath('data.0.target_prog_point.order', 3)
-        ->assertJsonPath('data.0.host.user_id', $host->id)
-        ->assertJsonPath('data.0.host.name', 'Host Person')
-        ->assertJsonPath('data.0.host.avatar_url', 'https://example.com/host-avatar.png')
-        ->assertJsonPath('data.0.host.discord_user_id', '800000000000000001')
-        ->assertJsonPath('data.0.host.character.name', 'Host Character')
-        ->assertJsonPath('data.0.host.character.avatar_url', 'https://example.com/host-character.png')
-        ->assertJsonPath('data.0.organizer.discord_user_id', '800000000000000001')
-        ->assertJsonPath('data.0.organizer.avatar_url', 'https://example.com/host-avatar.png')
-        ->assertJsonPath('data.0.counts.assigned_slots', 2)
-        ->assertJsonPath('data.0.counts.total_slots', 3)
-        ->assertJsonPath('data.0.counts.total_applicants', 3)
-        ->assertJsonPath('data.0.urls.application', route('groups.activities.application', [
+        ->assertJsonPath('data.1.id', $first->id)
+        ->assertJsonPath('data.1.display_name', 'Soon public')
+        ->assertJsonPath('data.1.is_public', true)
+        ->assertJsonPath('data.1.group.slug', 'guildgrp')
+        ->assertJsonPath('data.1.activity_type.name.en', 'The Weapon\'s Refrain (Ultimate)')
+        ->assertJsonPath('data.1.target_prog_point_key', 'titan-cleanup')
+        ->assertJsonPath('data.1.target_prog_point.key', 'titan-cleanup')
+        ->assertJsonPath('data.1.target_prog_point.label.en', 'Titan Cleanup')
+        ->assertJsonPath('data.1.target_prog_point.order', 3)
+        ->assertJsonPath('data.1.host.user_id', $host->id)
+        ->assertJsonPath('data.1.host.name', 'Host Person')
+        ->assertJsonPath('data.1.host.avatar_url', 'https://example.com/host-avatar.png')
+        ->assertJsonPath('data.1.host.discord_user_id', '800000000000000001')
+        ->assertJsonPath('data.1.host.character.name', 'Host Character')
+        ->assertJsonPath('data.1.host.character.avatar_url', 'https://example.com/host-character.png')
+        ->assertJsonPath('data.1.organizer.discord_user_id', '800000000000000001')
+        ->assertJsonPath('data.1.organizer.avatar_url', 'https://example.com/host-avatar.png')
+        ->assertJsonPath('data.1.counts.assigned_slots', 2)
+        ->assertJsonPath('data.1.counts.total_slots', 3)
+        ->assertJsonPath('data.1.counts.total_applicants', 3)
+        ->assertJsonPath('data.1.urls.application', route('groups.activities.application', [
             'group' => $group,
             'activity' => $first,
         ], false))
@@ -476,6 +481,12 @@ it('returns role assignment participants with discord ids and an unlinked count 
     $activity->slots()->delete();
 
     $linkedUser = User::factory()->create();
+    GroupMembership::query()->create([
+        'group_id' => $group->id,
+        'user_id' => $linkedUser->id,
+        'role' => GroupMembership::ROLE_MEMBER,
+        'joined_at' => now(),
+    ]);
     $linkedCharacter = Character::factory()->primary()->create([
         'user_id' => $linkedUser->id,
         'name' => 'Linked Slot',
@@ -526,6 +537,9 @@ it('returns role assignment participants with discord ids and an unlinked count 
     $unlinkedCharacter = Character::factory()->primary()->create([
         'user_id' => $unlinkedUser->id,
         'name' => 'No Discord',
+        'world' => 'Omega',
+        'datacenter' => 'Chaos',
+        'avatar_url' => null,
     ]);
     ActivitySlot::factory()->assignedTo($unlinkedCharacter)->create([
         'activity_id' => $activity->id,
@@ -550,12 +564,26 @@ it('returns role assignment participants with discord ids and an unlinked count 
         ->assertJsonPath('data.discord_user_ids.0', '900000000000000001')
         ->assertJsonPath('data.discord_user_ids.1', '900000000000000002')
         ->assertJsonPath('data.participants.0.discord_user_id', '900000000000000001')
+        ->assertJsonPath('data.participants.0.is_discord_linked', true)
+        ->assertJsonPath('data.participants.0.is_group_member', true)
+        ->assertJsonPath('data.participants.0.group_role', GroupMembership::ROLE_MEMBER)
         ->assertJsonPath('data.participants.0.source', 'slot')
         ->assertJsonPath('data.participants.0.character.name', 'Linked Slot')
         ->assertJsonPath('data.participants.0.slot.slot_key', 'party-a-slot-1')
         ->assertJsonPath('data.participants.1.discord_user_id', '900000000000000002')
+        ->assertJsonPath('data.participants.1.is_discord_linked', true)
+        ->assertJsonPath('data.participants.1.is_group_member', true)
+        ->assertJsonPath('data.participants.1.group_role', GroupMembership::ROLE_MEMBER)
         ->assertJsonPath('data.participants.1.source', 'application')
         ->assertJsonPath('data.participants.1.character.name', 'Linked Bench')
+        ->assertJsonPath('data.unlinked_participants.0.user_id', $unlinkedUser->id)
+        ->assertJsonPath('data.unlinked_participants.0.discord_user_id', null)
+        ->assertJsonPath('data.unlinked_participants.0.is_discord_linked', false)
+        ->assertJsonPath('data.unlinked_participants.0.is_group_member', false)
+        ->assertJsonPath('data.unlinked_participants.0.group_role', null)
+        ->assertJsonPath('data.unlinked_participants.0.source', 'slot')
+        ->assertJsonPath('data.unlinked_participants.0.character.name', 'No Discord')
+        ->assertJsonPath('data.unlinked_participants.0.character.world', 'Omega')
         ->assertJsonPath('data.unlinked_count', 1)
         ->assertJsonPath('data.total_placed_count', 3);
 });

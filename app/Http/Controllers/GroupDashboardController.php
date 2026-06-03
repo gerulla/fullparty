@@ -385,7 +385,7 @@ class GroupDashboardController extends Controller
             'target_prog_point_key' => $activity->target_prog_point_key,
             'target_prog_point_label' => $this->resolveTargetProgPointLabel($activity),
             'is_public' => $activity->is_public,
-            'secret_key' => $canManageActivities ? $activity->secret_key : null,
+            'secret_key' => null,
             'can_view_overview' => $canViewOverview,
             'has_existing_application' => $hasExistingApplication,
             'can_apply' => $canApply,
@@ -430,20 +430,14 @@ class GroupDashboardController extends Controller
     }
 
     /**
-     * @return array{group: Group, activity: Activity, secretKey?: string}
+     * @return array{group: Group, activity: Activity}
      */
     private function activityAttendeeRouteParameters(Group $group, Activity $activity): array
     {
-        $parameters = [
+        return [
             'group' => $group,
             'activity' => $activity,
         ];
-
-        if (filled($activity->secret_key)) {
-            $parameters['secretKey'] = $activity->secret_key;
-        }
-
-        return $parameters;
     }
 
     private function canViewActivityOverview(Activity $activity, Group $group, bool $canManageActivities): bool
@@ -452,11 +446,7 @@ class GroupDashboardController extends Controller
             return $canManageActivities;
         }
 
-        if ($activity->is_public) {
-            return $group->is_visible || $group->hasMember(auth()->id());
-        }
-
-        return $canManageActivities && filled($activity->secret_key);
+        return $group->is_visible || $group->hasMember(auth()->id()) || $canManageActivities;
     }
 
     private function resolveDashboardActivityDisplayName(Activity $activity): string

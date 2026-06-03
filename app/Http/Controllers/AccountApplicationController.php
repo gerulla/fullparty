@@ -304,7 +304,6 @@ class AccountApplicationController extends Controller
                 'starts_at' => $activity?->starts_at?->toIso8601String(),
                 'duration_hours' => $activity?->duration_hours,
                 'is_public' => (bool) ($activity?->is_public ?? false),
-                'secret_key' => $activity?->secret_key,
                 'type_name' => $activity?->activityTypeVersion?->name,
                 'target_prog_point_key' => $targetProgPoint['key'],
                 'target_prog_point_label' => $targetProgPoint['label'],

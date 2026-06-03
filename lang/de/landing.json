@@ -59,7 +59,7 @@
             "points": {
                 "recruit": "Prüfe Bewerber mit Charakterkontext",
                 "manage": "Baue Roster, Bench, Hosts und Raid Leads",
-                "schedule": "Plane öffentliche, private und gastfreundliche Runs",
+                "schedule": "Plane öffentliche, mitgliederbeschränkte und gastfreundliche Runs",
                 "communicate": "Verwalte Mitglieder, Rollen und Anfragen",
                 "ready": "Verbinde Run-Historie und Benachrichtigungen"
             }

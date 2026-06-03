@@ -71,6 +71,7 @@ const completedProgression = computed(() => buildActivityCompletionSummary({
 }));
 const showApplicationButton = computed(() => (
 	props.activity.needs_application
+	&& (props.permissions.can_apply || props.permissions.can_apply_as_guest)
 	&& !isArchivedActivityStatus(props.activity.status)
 ));
 const mainSlots = computed(() => props.activity.slots.filter((slot) => !slot.is_bench));

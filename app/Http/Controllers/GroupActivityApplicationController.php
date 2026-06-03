@@ -137,7 +137,7 @@ class GroupActivityApplicationController extends Controller
             'activity' => $this->serializeAttendeeActivity($activity),
             'applicationSchema' => $this->serializeApplicationSchema($activity->activityTypeVersion),
             'application' => $this->serializeExistingApplication($application),
-            'secretKey' => $secretKey,
+            'secretKey' => null,
             'guestAccessToken' => null,
             'confirmation' => [
                 'view' => 'confirmation',
@@ -176,7 +176,7 @@ class GroupActivityApplicationController extends Controller
             'activity' => $this->serializeAttendeeActivity($activity),
             'applicationSchema' => $this->serializeApplicationSchema($activity->activityTypeVersion),
             'application' => $this->serializeExistingApplication($application),
-            'secretKey' => $secretKey,
+            'secretKey' => null,
             'guestAccessToken' => $accessToken,
             'confirmation' => [
                 'view' => 'status',
@@ -492,6 +492,10 @@ class GroupActivityApplicationController extends Controller
             abort(404);
         }
 
+        if (! $this->canUseActivityParticipationFlow($group, $activity, $request->user()?->id)) {
+            abort(404);
+        }
+
         if (
             $activity->isArchived()
             && ! ($allowArchivedGuestAccess && $activity->status === Activity::STATUS_CANCELLED)
@@ -509,6 +513,11 @@ class GroupActivityApplicationController extends Controller
         ?string $guestAccessToken = null,
     ): Response {
         $acceptsApplications = $activity->acceptsApplications();
+        $canUseParticipationFlow = $this->canUseActivityParticipationFlow(
+            $group,
+            $activity,
+            $request->user()?->id,
+        );
 
         return Inertia::render('Groups/Activities/Application', [
             'group' => $this->serializePublicGroup($group),
@@ -528,11 +537,17 @@ class GroupActivityApplicationController extends Controller
             'guestCharacterSearch' => [
                 'worlds' => $this->lodestoneCharacterSearchService->worldOptions(),
             ],
-            'secretKey' => $secretKey,
+            'secretKey' => null,
             'guestAccessToken' => $guestAccessToken,
             'permissions' => [
-                'can_apply' => $acceptsApplications && $guestAccessToken === null && $request->user() !== null,
-                'can_apply_as_guest' => $acceptsApplications && (($request->user() === null && $activity->allow_guest_applications) || $guestAccessToken !== null),
+                'can_apply' => $acceptsApplications
+                    && $guestAccessToken === null
+                    && $request->user() !== null
+                    && $canUseParticipationFlow,
+                'can_apply_as_guest' => $acceptsApplications
+                    && $activity->is_public
+                    && $canUseParticipationFlow
+                    && (($request->user() === null && $activity->allow_guest_applications) || $guestAccessToken !== null),
                 'can_edit_application' => $application ? $this->applicationIsEditable($activity, $application) : $acceptsApplications,
                 'can_withdraw_application' => $application ? $this->applicationWithdrawalService->applicationCanBeWithdrawn($activity, $application) : false,
                 'can_manage' => $group->hasModeratorAccess($request->user()?->id),

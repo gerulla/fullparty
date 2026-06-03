@@ -85,7 +85,7 @@ class GroupActivityManagementDataController extends Controller
                 'is_public' => $activity->is_public,
                 'needs_application' => $activity->needs_application,
                 'allow_guest_applications' => $activity->allow_guest_applications,
-                'secret_key' => $activity->secret_key,
+                'secret_key' => null,
                 'progress_entry_mode' => $activity->progress_entry_mode,
                 'progress_link_url' => $activity->progress_link_url,
                 'progress_notes' => $activity->progress_notes,

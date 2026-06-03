@@ -5,6 +5,7 @@ import { useI18n } from "vue-i18n";
 import { useActivityFormFields } from "@/components/Groups/Activities/useActivityFormFields";
 import { usePage } from "@inertiajs/vue3";
 import { activityTextLimits } from "@/utils/activityTextLimits";
+import ActivityVisibilityPicker from "@/components/Groups/Activities/ActivityVisibilityPicker.vue";
 
 const props = defineProps<{
 	step: number
@@ -126,6 +127,12 @@ watch(selectedActivityType, (activityType, previousActivityType) => {
 
 watch(() => props.form.needs_application, (needsApplication) => {
 	if (!needsApplication) {
+		props.form.allow_guest_applications = false;
+	}
+}, { immediate: true });
+
+watch(() => props.form.is_public, (isPublic) => {
+	if (!isPublic) {
 		props.form.allow_guest_applications = false;
 	}
 }, { immediate: true });
@@ -288,15 +295,10 @@ const goNext = () => {
 				</div>
 
 				<div class="grid grid-cols-1 gap-4 xl:grid-cols-3">
-					<UFormField
-						:label="t('groups.activities.create.fields.is_public.label')"
-						:description="t('groups.activities.create.fields.is_public.help')"
+					<ActivityVisibilityPicker
+						v-model="form.is_public"
 						:error="form.errors.is_public"
-						orientation="horizontal"
-						class="rounded-lg border border-default px-4 py-4"
-					>
-						<USwitch v-model="form.is_public" />
-					</UFormField>
+					/>
 
 					<UFormField
 						:label="t('groups.activities.create.fields.needs_application.label')"
@@ -309,7 +311,7 @@ const goNext = () => {
 					</UFormField>
 
 					<UFormField
-						v-if="form.needs_application"
+						v-if="form.needs_application && form.is_public"
 						:label="t('groups.activities.create.fields.allow_guest_applications.label')"
 						:description="t('groups.activities.create.fields.allow_guest_applications.help')"
 						:error="form.errors.allow_guest_applications"

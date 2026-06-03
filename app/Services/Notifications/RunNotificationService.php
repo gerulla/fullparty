@@ -5,6 +5,7 @@ namespace App\Services\Notifications;
 use App\Models\Activity;
 use App\Models\ActivityApplication;
 use App\Models\ActivitySlot;
+use App\Models\Group;
 use App\Models\IntegrationClient;
 use App\Models\NotificationEvent;
 use App\Models\User;
@@ -250,6 +251,12 @@ class RunNotificationService
         $activity->loadMissing([
             'activityTypeVersion',
             'group.activeDiscordGuildIntegration',
+            'group.memberships',
+            'slots.assignedCharacter.user.discordUserIntegration',
+            'slots.assignedCharacter.user.primaryCharacter',
+            'applications.user.discordUserIntegration',
+            'applications.user.primaryCharacter',
+            'applications.selectedCharacter',
         ]);
 
         $group = $activity->group;
@@ -259,23 +266,18 @@ class RunNotificationService
             return;
         }
 
-        $recipients = $this->placedRunUsers($activity);
-        $recipients->loadMissing(['discordUserIntegration', 'primaryCharacter']);
+        $rosterParticipants = $this->placedRunParticipantEntries($activity)
+            ->map(fn (array $entry): array => $this->serializeDiscordGuildParticipant($entry, $group));
 
-        $participants = $recipients
-            ->filter(fn (User $user): bool => filled($user->discordUserIntegration?->discord_user_id))
-            ->map(fn (User $user): array => [
-                'user_id' => $user->id,
-                'discord_user_id' => $user->discordUserIntegration?->discord_user_id,
-                'primary_character' => [
-                    'name' => $user->primaryCharacter?->name,
-                    'world' => $user->primaryCharacter?->world,
-                ],
-            ])
+        $participants = $rosterParticipants
+            ->filter(fn (array $participant): bool => filled($participant['discord_user_id'] ?? null))
             ->unique('discord_user_id')
             ->values();
+        $unlinkedParticipants = $rosterParticipants
+            ->filter(fn (array $participant): bool => blank($participant['discord_user_id'] ?? null))
+            ->values();
 
-        if ($participants->isEmpty()) {
+        if ($rosterParticipants->isEmpty()) {
             return;
         }
 
@@ -295,6 +297,9 @@ class RunNotificationService
                     ->values()
                     ->all(),
                 'participants' => $participants->all(),
+                'unlinked_participants' => $unlinkedParticipants->all(),
+                'unlinked_count' => $unlinkedParticipants->count(),
+                'total_placed_count' => $rosterParticipants->count(),
                 'run' => [
                     'id' => $activity->id,
                     'display_name' => $this->activityTitle($activity),
@@ -538,6 +543,43 @@ class RunNotificationService
     }
 
     /**
+     * @return Collection<int, array{user: User, character: mixed, source: string}>
+     */
+    private function placedRunParticipantEntries(Activity $activity): Collection
+    {
+        $entries = collect();
+
+        $activity->slots
+            ->filter(fn (ActivitySlot $slot): bool => $slot->assignedCharacter?->user instanceof User)
+            ->each(function (ActivitySlot $slot) use ($entries): void {
+                $entries->push([
+                    'user' => $slot->assignedCharacter->user,
+                    'character' => $slot->assignedCharacter,
+                    'source' => 'slot',
+                ]);
+            });
+
+        $activity->applications
+            ->filter(fn (ActivityApplication $application): bool => in_array($application->status, [
+                ActivityApplication::STATUS_APPROVED,
+                ActivityApplication::STATUS_ON_BENCH,
+            ], true))
+            ->filter(fn (ActivityApplication $application): bool => $application->user instanceof User)
+            ->each(function (ActivityApplication $application) use ($entries): void {
+                $entries->push([
+                    'user' => $application->user,
+                    'character' => $application->selectedCharacter,
+                    'source' => 'application',
+                ]);
+            });
+
+        return $entries
+            ->sortBy(fn (array $entry): int => $entry['source'] === 'slot' ? 0 : 1)
+            ->unique(fn (array $entry): int => $entry['user']->id)
+            ->values();
+    }
+
+    /**
      * @param  Collection<int, ActivityApplication>|null  $placedApplications
      * @return EloquentCollection<int, User>
      */
@@ -710,11 +752,61 @@ class RunNotificationService
             'activity' => $activity->id,
         ];
 
-        if (filled($activity->secret_key)) {
-            $parameters['secretKey'] = $activity->secret_key;
+        return route('groups.activities.overview', $parameters);
+    }
+
+    /**
+     * @param  array{user: User, character: mixed, source: string}  $entry
+     * @return array<string, mixed>
+     */
+    private function serializeDiscordGuildParticipant(array $entry, Group $group): array
+    {
+        $user = $entry['user'];
+        $character = $entry['character'] ?: $user->primaryCharacter;
+        $discordUserId = $this->activeDiscordUserId($user);
+        $groupRole = $this->groupRoleForUser($group, $user);
+
+        return [
+            'user_id' => $user->id,
+            'discord_user_id' => $discordUserId,
+            'is_discord_linked' => $discordUserId !== null,
+            'is_group_member' => $groupRole !== null,
+            'group_role' => $groupRole,
+            'source' => $entry['source'],
+            'primary_character' => [
+                'name' => $character?->name,
+                'world' => $character?->world,
+            ],
+            'character' => $character ? [
+                'id' => $character->id,
+                'name' => $character->name,
+                'world' => $character->world,
+                'datacenter' => $character->datacenter,
+                'avatar_url' => $character->avatar_url ?? null,
+            ] : null,
+        ];
+    }
+
+    private function activeDiscordUserId(?User $user): ?string
+    {
+        $integration = $user?->discordUserIntegration;
+
+        if (! $integration || blank($integration->discord_user_id) || $integration->user_app_installed_at === null) {
+            return null;
         }
 
-        return route('groups.activities.overview', $parameters);
+        return $integration->discord_user_id;
+    }
+
+    private function groupRoleForUser(Group $group, User $user): ?string
+    {
+        if ($group->owner_id === $user->id) {
+            return 'owner';
+        }
+
+        return $group->memberships
+            ->firstWhere('user_id', $user->id)
+            ?->role;
     }
 
     /**

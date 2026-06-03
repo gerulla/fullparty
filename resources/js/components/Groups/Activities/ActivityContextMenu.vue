@@ -32,26 +32,23 @@ const activityTypeName = computed(() => (
 
 const activityTitle = computed(() => props.activity.title || activityTypeName.value);
 const discordTimestamp = computed(() => props.activity.starts_at ? utcToDiscordTimestamp(props.activity.starts_at) : null);
-const canCopyRunLink = computed(() => props.activity.is_public || Boolean(props.activity.secret_key));
-const canOpenOverview = computed(() => canCopyRunLink.value);
+const canCopyRunLink = computed(() => true);
+const canOpenOverview = computed(() => true);
 const canOpenManagement = computed(() => props.canManageActivities);
 const canEditRun = computed(() => props.canManageActivities && !isArchivedActivityStatus(props.activity.status));
 const canCopyApplicationLink = computed(() => (
 	props.activity.needs_application
 	&& canAcceptActivityApplications(props.activity.status)
-	&& (props.activity.is_public || Boolean(props.activity.secret_key))
 ));
 
 const overviewRouteParameters = computed(() => ({
 	group: props.groupSlug,
 	activity: props.activity.id,
-	secretKey: props.activity.is_public ? undefined : props.activity.secret_key || undefined,
 }));
 
 const applicationRouteParameters = computed(() => ({
 	group: props.groupSlug,
 	activity: props.activity.id,
-	secretKey: props.activity.is_public ? undefined : props.activity.secret_key || undefined,
 }));
 
 const copyWithFeedback = async (

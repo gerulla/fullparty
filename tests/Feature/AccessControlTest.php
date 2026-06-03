@@ -209,32 +209,41 @@ it('keeps complete and cancelled public activity overviews visible', function (s
     'cancelled' => [Activity::STATUS_CANCELLED],
 ]);
 
-it('requires the correct secret key to access private activity overview pages', function () {
+it('lets non members view members-only activity overviews but not application pages', function () {
     extract(createAccessControlActivity([], [
         'is_public' => false,
     ]));
 
-    $withoutKey = $this->get(route('groups.activities.overview', [
-        'group' => $group->slug,
-        'activity' => $activity->id,
-    ]));
-    $wrongKey = $this->get(route('groups.activities.overview', [
-        'group' => $group->slug,
-        'activity' => $activity->id,
-        'secretKey' => str_repeat('a', 40),
-    ]));
-    $correctKey = $this->get(route('groups.activities.overview', [
-        'group' => $group->slug,
-        'activity' => $activity->id,
-        'secretKey' => $activity->secret_key,
-    ]));
+    $member = User::factory()->create();
+    $group->memberships()->create([
+        'user_id' => $member->id,
+        'role' => GroupMembership::ROLE_MEMBER,
+        'joined_at' => now(),
+    ]);
 
-    $withoutKey->assertNotFound();
-    $wrongKey->assertNotFound();
-    $correctKey->assertOk();
+    $this->get(route('groups.activities.overview', [
+        'group' => $group->slug,
+        'activity' => $activity->id,
+    ]))->assertOk();
+
+    $outsider = User::factory()->create();
+
+    $this->actingAs($outsider)
+        ->get(route('groups.activities.application', [
+            'group' => $group->slug,
+            'activity' => $activity->id,
+        ]))
+        ->assertNotFound();
+
+    $this->actingAs($member)
+        ->get(route('groups.activities.application', [
+            'group' => $group->slug,
+            'activity' => $activity->id,
+        ]))
+        ->assertOk();
 });
 
-it('does not let guest application tokens bypass private activity secret access', function () {
+it('does not let guest application tokens bypass members-only activity membership requirements', function () {
     extract(createAccessControlActivity([], [
         'is_public' => false,
     ]));
@@ -243,27 +252,18 @@ it('does not let guest application tokens bypass private activity secret access'
         'activity_id' => $activity->id,
     ]);
 
-    $withoutKey = $this->get(route('groups.activities.application.status', [
+    $this->get(route('groups.activities.application.status', [
         'group' => $group->slug,
         'activity' => $activity->id,
         'accessToken' => $application->guest_access_token,
-    ]));
-    $wrongKey = $this->get(route('groups.activities.application.status', [
-        'group' => $group->slug,
-        'activity' => $activity->id,
-        'accessToken' => $application->guest_access_token,
-        'secretKey' => str_repeat('b', 40),
-    ]));
-    $correctKey = $this->get(route('groups.activities.application.status', [
+    ]))->assertNotFound();
+
+    $this->get(route('groups.activities.application.status', [
         'group' => $group->slug,
         'activity' => $activity->id,
         'accessToken' => $application->guest_access_token,
         'secretKey' => $activity->secret_key,
-    ]));
-
-    $withoutKey->assertNotFound();
-    $wrongKey->assertNotFound();
-    $correctKey->assertOk();
+    ]))->assertNotFound();
 });
 
 it('does not allow guest application tokens to be reused on another activity', function () {

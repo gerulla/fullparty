@@ -521,7 +521,6 @@ const openNextRun = () => {
 	router.get(route("groups.activities.overview", {
 		group: nextRun.group.slug,
 		activity: nextRun.activity_id,
-		secretKey: nextRun.secret_key || undefined,
 	}))
 }
 

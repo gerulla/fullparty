@@ -771,16 +771,10 @@ class AssignmentNotificationService
             return route('account.applications');
         }
 
-        $parameters = [
+        return route('groups.activities.overview', [
             'group' => $group->slug,
             'activity' => $activity->id,
-        ];
-
-        if (filled($activity->secret_key)) {
-            $parameters['secretKey'] = $activity->secret_key;
-        }
-
-        return route('groups.activities.overview', $parameters);
+        ]);
     }
 
     private function activityTitle(?Activity $activity): string

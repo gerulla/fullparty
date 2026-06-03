@@ -646,6 +646,66 @@ it('does not return full application runs in discovery search', function () {
         ->assertJsonPath('items.0.can_apply', true);
 });
 
+it('returns members-only runs in discovery while blocking non-member applications', function () {
+    $viewer = User::factory()->create();
+    $activityType = createRunDiscoveryActivityType([
+        'slug' => 'members-only-discovery',
+        'draft_name' => ['en' => 'Members Only Discovery'],
+    ]);
+    $group = Group::factory()
+        ->open()
+        ->create([
+            'datacenter' => 'Light',
+            'group_type' => Group::TYPE_COMMUNITY,
+            'preferred_languages' => ['en'],
+        ]);
+
+    $activity = Activity::factory()->create([
+        'group_id' => $group->id,
+        'activity_type_id' => $activityType->id,
+        'activity_type_version_id' => $activityType->current_published_version_id,
+        'status' => Activity::STATUS_SCHEDULED,
+        'title' => 'Members First Pull',
+        'starts_at' => now()->addWeek()->startOfWeek()->addDays(2)->setTime(19, 0),
+        'datacenter' => 'Light',
+        'is_public' => false,
+        'needs_application' => true,
+        'allow_guest_applications' => false,
+    ]);
+
+    $params = [
+        'query' => 'Members First',
+        'timezone' => 'Europe/London',
+        'date_range' => 'next_week',
+        'group_type' => Group::TYPE_COMMUNITY,
+    ];
+
+    $this->actingAs($viewer)
+        ->getJson(route('dashboard.runs.discover', $params))
+        ->assertOk()
+        ->assertJsonPath('ids', [$activity->id])
+        ->assertJsonPath('items.0.id', $activity->id)
+        ->assertJsonPath('items.0.can_apply', false)
+        ->assertJsonPath('items.0.links.apply', null);
+
+    $group->memberships()->create([
+        'user_id' => $viewer->id,
+        'role' => 'member',
+        'joined_at' => now(),
+    ]);
+
+    $this->actingAs($viewer)
+        ->getJson(route('dashboard.runs.discover', $params))
+        ->assertOk()
+        ->assertJsonPath('ids', [$activity->id])
+        ->assertJsonPath('items.0.can_apply', true)
+        ->assertJsonPath('items.0.links.apply', route('groups.activities.application', [
+            'locale' => app()->getLocale(),
+            'group' => $group->slug,
+            'activity' => $activity->id,
+        ]));
+});
+
 it('sorts discovery results by the selected sort option before pagination', function () {
     $viewer = User::factory()->create();
 

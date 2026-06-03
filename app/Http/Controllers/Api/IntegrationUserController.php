@@ -318,7 +318,6 @@ class IntegrationUserController extends Controller
                 'overview' => route('groups.activities.overview', [
                     'group' => $activity->group,
                     'activity' => $activity,
-                    'secretKey' => $activity->secret_key ?: null,
                 ], false),
             ],
         ];
@@ -372,7 +371,6 @@ class IntegrationUserController extends Controller
                 'overview' => $activity ? route('groups.activities.overview', [
                     'group' => $activity->group,
                     'activity' => $activity,
-                    'secretKey' => $activity->secret_key ?: null,
                 ], false) : null,
             ],
         ];

@@ -59,7 +59,7 @@
             "points": {
                 "recruit": "Étudiez les candidats avec le contexte personnage",
                 "manage": "Construisez rosters, bancs, hosts et raid leads",
-                "schedule": "Planifiez des runs publics, privés et ouverts aux invités",
+                "schedule": "Planifiez des runs publics, réservés aux membres et ouverts aux invités",
                 "communicate": "Gérez membres, rôles et demandes",
                 "ready": "Reliez historique des runs et notifications"
             }

@@ -270,7 +270,6 @@ const editApplication = (application: AccountApplication) => {
 	router.get(route("groups.activities.application", {
 		group: application.group.slug,
 		activity: application.activity.id,
-		secretKey: application.activity.secret_key || undefined,
 	}));
 };
 
@@ -286,7 +285,6 @@ const openOverview = (application: AccountApplication) => {
 	router.get(route("groups.activities.overview", {
 		group: application.group.slug,
 		activity: application.activity.id,
-		secretKey: application.activity.secret_key || undefined,
 	}));
 };
 

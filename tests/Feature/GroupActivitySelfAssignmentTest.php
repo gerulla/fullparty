@@ -227,7 +227,7 @@ it('does not allow banned group members to self-assign roster slots', function (
     expect($slot->fresh()->assigned_character_id)->toBeNull();
 });
 
-it('does not allow secret-key viewers without group membership to self-assign roster slots', function () {
+it('does not allow non-members with old secret links to self-assign members-only roster slots', function () {
     extract(createNonApplicationSelfAssignmentSetup());
 
     $slot = $mainSlots->first();

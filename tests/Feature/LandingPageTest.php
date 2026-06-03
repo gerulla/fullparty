@@ -20,7 +20,7 @@ it('renders server-side embed meta for the landing page', function () {
         ->assertSee('<meta name="twitter:card" content="summary_large_image">', false);
 });
 
-it('shows public this week runs with assigned member stack data', function () {
+it('shows discoverable this week runs with assigned member stack data', function () {
     CarbonImmutable::setTestNow(CarbonImmutable::parse('2026-05-21 12:00:00'));
 
     try {
@@ -101,7 +101,7 @@ it('shows public this week runs with assigned member stack data', function () {
             'activity_type_id' => $type->id,
             'activity_type_version_id' => $version->id,
             'status' => Activity::STATUS_SCHEDULED,
-            'title' => 'Private Thursday',
+            'title' => 'Members-only Thursday',
             'starts_at' => CarbonImmutable::parse('2026-05-21 21:00:00'),
             'is_public' => false,
         ]);
@@ -144,7 +144,7 @@ it('shows public this week runs with assigned member stack data', function () {
                 ->where('landing.this_week.days.0.runs.0.href', null)
                 ->where('landing.this_week.days.3.key', 'thu')
                 ->where('landing.this_week.days.3.is_today', true)
-                ->where('landing.this_week.days.3.hidden_run_count', 1)
+                ->where('landing.this_week.days.3.hidden_run_count', 2)
                 ->has('landing.this_week.days.3.runs', 2)
                 ->where('landing.this_week.days.3.runs.0.id', $activity->id)
                 ->where('landing.this_week.days.3.runs.0.title', 'Thursday Prog')

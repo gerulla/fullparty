@@ -530,7 +530,6 @@ it('includes selected roster details in assignment notification payloads', funct
         ->and($event->action_url)->toBe(route('groups.activities.overview', [
             'group' => $group->slug,
             'activity' => $activity->id,
-            'secretKey' => $activity->secret_key,
         ]))
         ->and($event->payload['roster'])
         ->toMatchArray([

@@ -71,6 +71,7 @@ export type AttendeeActivity = {
 
 export type ActivityOverviewPermissions = {
 	can_apply: boolean
+	can_apply_as_guest: boolean
 	can_manage: boolean
 	can_self_assign: boolean
 }

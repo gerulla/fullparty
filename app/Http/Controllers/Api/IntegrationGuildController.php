@@ -117,7 +117,6 @@ class IntegrationGuildController extends Controller
                     ->whereIn('status', ActivityApplication::ACTIVE_STATUSES),
             ])
             ->where('group_id', $guildIntegration->group_id)
-            ->where('is_public', true)
             ->whereNotNull('starts_at')
             ->where('starts_at', '>=', now())
             ->whereNotIn('status', [
@@ -150,7 +149,8 @@ class IntegrationGuildController extends Controller
         abort_unless((int) $activity->group_id === (int) $guildIntegration->group_id, 404);
 
         $activity->loadMissing([
-            'group:id,name,slug',
+            'group:id,name,slug,owner_id',
+            'group.memberships:id,group_id,user_id,role',
             'activityTypeVersion:id,name,small_image_url,banner_image_url,difficulty,prog_points',
             'organizer:id,name,avatar_url',
             'organizer.discordUserIntegration:id,user_id,discord_user_id,user_app_installed_at',
@@ -163,16 +163,22 @@ class IntegrationGuildController extends Controller
         ]);
 
         $placedUsers = $this->placedRunUsers($activity);
+        $group = $activity->group;
         $participants = $placedUsers
-            ->map(fn (array $entry): ?array => $this->serializeRoleAssignmentParticipant($entry))
+            ->map(fn (array $entry): ?array => $this->serializeRoleAssignmentParticipant($entry, $group))
             ->filter()
             ->unique('discord_user_id')
+            ->values();
+        $unlinkedParticipants = $placedUsers
+            ->filter(fn (array $entry): bool => $this->activeDiscordUserId($entry['user'] ?? null) === null)
+            ->map(fn (array $entry): ?array => $this->serializeRoleAssignmentParticipant($entry, $group, false))
+            ->filter()
             ->values();
 
         return response()->json([
             'data' => [
                 'run' => $this->serializeGuildRun($activity),
-                'group' => $this->serializeGroup($guildIntegration->group),
+                'group' => $this->serializeGroup($group),
                 'discord_guild' => [
                     'id' => $guildIntegration->discord_guild_id,
                     'name' => $guildIntegration->name,
@@ -184,9 +190,8 @@ class IntegrationGuildController extends Controller
                     ->values()
                     ->all(),
                 'participants' => $participants->all(),
-                'unlinked_count' => $placedUsers
-                    ->filter(fn (array $entry): bool => $this->activeDiscordUserId($entry['user'] ?? null) === null)
-                    ->count(),
+                'unlinked_participants' => $unlinkedParticipants->all(),
+                'unlinked_count' => $unlinkedParticipants->count(),
                 'total_placed_count' => $placedUsers->count(),
             ],
         ]);
@@ -461,22 +466,26 @@ class IntegrationGuildController extends Controller
      * @param  array{user: User|null, character: mixed, source: string, slot: ActivitySlot|null, application: ActivityApplication|null}  $entry
      * @return array<string, mixed>|null
      */
-    private function serializeRoleAssignmentParticipant(array $entry): ?array
+    private function serializeRoleAssignmentParticipant(array $entry, Group $group, bool $requireDiscordUser = true): ?array
     {
         $user = $entry['user'];
         $discordUserId = $this->activeDiscordUserId($user);
 
-        if (! $user || $discordUserId === null) {
+        if (! $user || ($requireDiscordUser && $discordUserId === null)) {
             return null;
         }
 
         $character = $entry['character'] ?: $user->primaryCharacter;
         $slot = $entry['slot'];
         $application = $entry['application'];
+        $groupRole = $this->groupRoleForUser($group, $user);
 
         return [
             'user_id' => $user->id,
             'discord_user_id' => $discordUserId,
+            'is_discord_linked' => $discordUserId !== null,
+            'is_group_member' => $groupRole !== null,
+            'group_role' => $groupRole,
             'source' => $entry['source'],
             'character' => $character ? [
                 'id' => $character->id,
@@ -501,6 +510,17 @@ class IntegrationGuildController extends Controller
                 'status' => $application->status,
             ] : null,
         ];
+    }
+
+    private function groupRoleForUser(Group $group, User $user): ?string
+    {
+        if ($group->owner_id === $user->id) {
+            return 'owner';
+        }
+
+        return $group->memberships
+            ->firstWhere('user_id', $user->id)
+            ?->role;
     }
 
     private function activeDiscordUserId(?User $user): ?string

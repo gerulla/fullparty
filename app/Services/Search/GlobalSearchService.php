@@ -173,11 +173,7 @@ final class GlobalSearchService
             return $group->hasModeratorAccess($user->id);
         }
 
-        if (! $activity->is_public) {
-            return false;
-        }
-
-        return $group->is_visible || $group->hasMember($user->id);
+        return $group->is_visible || $group->hasMember($user->id) || $group->hasModeratorAccess($user->id);
     }
 
     /**

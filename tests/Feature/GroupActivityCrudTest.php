@@ -100,7 +100,7 @@ function createCrudActivityType(User $creator): ActivityType
     return $type->fresh('currentPublishedVersion');
 }
 
-it('allows moderators to create private application activities with guest applications enabled', function () {
+it('allows moderators to create members-only application activities and disables guest applications', function () {
     $owner = User::factory()->create();
     $group = Group::factory()->open()->create([
         'owner_id' => $owner->id,
@@ -155,8 +155,8 @@ it('allows moderators to create private application activities with guest applic
         ->and($activity->target_prog_point_key)->toBe('enrage')
         ->and($activity->is_public)->toBeFalse()
         ->and($activity->needs_application)->toBeTrue()
-        ->and($activity->allow_guest_applications)->toBeTrue()
-        ->and($activity->secret_key)->not->toBeNull();
+        ->and($activity->allow_guest_applications)->toBeFalse()
+        ->and($activity->secret_key)->toBeNull();
 
     expect($activity->slots()->count())->toBe(3);
     expect($activity->slots()->where('group_key', 'bench')->count())->toBe(1);
@@ -576,7 +576,7 @@ it('rejects organizer characters that do not belong to the organizer user', func
     expect($group->activities()->count())->toBe(0);
 });
 
-it('updates mutable activity fields while keeping private access intact', function () {
+it('updates mutable activity fields while keeping members-only access intact', function () {
     $owner = User::factory()->create();
     $moderator = User::factory()->create();
     $group = Group::factory()->inviteOnly()->create([
@@ -606,8 +606,6 @@ it('updates mutable activity fields while keeping private access intact', functi
         'beginner_friendly' => false,
         'run_style' => Activity::RUN_STYLE_PROGRESSION,
     ]);
-
-    $originalSecretKey = $activity->secret_key;
 
     $this->actingAs($owner);
 
@@ -649,8 +647,9 @@ it('updates mutable activity fields while keeping private access intact', functi
         ->and($activity->beginner_friendly)->toBeTrue()
         ->and($activity->run_style)->toBe(Activity::RUN_STYLE_RECLEAR)
         ->and($activity->target_prog_point_key)->toBe('enrage')
+        ->and($activity->is_public)->toBeFalse()
         ->and($activity->allow_guest_applications)->toBeFalse()
-        ->and($activity->secret_key)->toBe($originalSecretKey);
+        ->and($activity->secret_key)->toBeNull();
 
     $auditLog = AuditLog::query()->where('action', 'group.activity.updated')->sole();
 
@@ -662,6 +661,55 @@ it('updates mutable activity fields while keeping private access intact', functi
         ->and($auditLog->metadata['changes']['datacenter']['new'])->toBe('Aether')
         ->and($auditLog->metadata['changes']['min_item_level']['new'])->toBeNull()
         ->and($auditLog->metadata['changes']['allow_guest_applications']['new'])->toBeFalse();
+});
+
+it('allows moderators to update activity visibility', function () {
+    $owner = User::factory()->create();
+    $group = Group::factory()->open()->create([
+        'owner_id' => $owner->id,
+    ]);
+    $activityType = createCrudActivityType($owner);
+    $activity = Activity::factory()->create([
+        'group_id' => $group->id,
+        'activity_type_id' => $activityType->id,
+        'activity_type_version_id' => $activityType->current_published_version_id,
+        'organized_by_user_id' => $owner->id,
+        'status' => Activity::STATUS_DRAFT,
+        'is_public' => true,
+        'secret_key' => null,
+    ]);
+
+    $this->actingAs($owner)
+        ->put(route('groups.dashboard.activities.update', [
+            'group' => $group->slug,
+            'activity' => $activity->id,
+        ]), [
+            'is_public' => false,
+        ])
+        ->assertRedirect(route('groups.dashboard.activities.show', [
+            'group' => $group->slug,
+            'activity' => $activity->id,
+        ]));
+
+    $activity->refresh();
+
+    expect($activity->is_public)->toBeFalse()
+        ->and($activity->secret_key)->toBeNull();
+
+    $this->put(route('groups.dashboard.activities.update', [
+        'group' => $group->slug,
+        'activity' => $activity->id,
+    ]), [
+        'is_public' => true,
+    ])->assertRedirect(route('groups.dashboard.activities.show', [
+        'group' => $group->slug,
+        'activity' => $activity->id,
+    ]));
+
+    $activity->refresh();
+
+    expect($activity->is_public)->toBeTrue()
+        ->and($activity->secret_key)->toBeNull();
 });
 
 it('rejects updating activities with past start times', function () {
@@ -931,7 +979,6 @@ it('rejects prohibited fields during activity updates', function () {
         'activity' => $activity->id,
     ]), [
         'status' => Activity::STATUS_CANCELLED,
-        'is_public' => false,
         'needs_application' => false,
         'activity_type_id' => $activityType->id,
     ]);

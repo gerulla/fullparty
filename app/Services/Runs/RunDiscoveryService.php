@@ -490,18 +490,21 @@ final class RunDiscoveryService
             return true;
         }
 
-        if (! $activity->is_public) {
-            return false;
-        }
-
         return ! Activity::isModeratorOnlyStatus($activity->status);
     }
 
     private function canUserTakeDiscoveryAction(Activity $activity, User $user): bool
     {
-        return $this->userHasExistingApplication($activity)
+        if ($this->userHasExistingApplication($activity)
             || $this->canUserApplyToActivity($activity, $user)
-            || $this->canUserSelfAssignToActivity($activity, $user);
+            || $this->canUserSelfAssignToActivity($activity, $user)) {
+            return true;
+        }
+
+        return ! $activity->is_public
+            && $this->canUserAccessOverviewWithoutSecret($activity, $user->id)
+            && $this->hasOpenMainSlot($activity)
+            && ($activity->needs_application ? $activity->acceptsApplications() : ! $activity->isArchived());
     }
 
     private function userHasExistingApplication(Activity $activity): bool
@@ -524,6 +527,10 @@ final class RunDiscoveryService
             return false;
         }
 
+        if (! $this->canUserUseParticipationFlow($activity, $user->id)) {
+            return false;
+        }
+
         if (! $this->hasOpenMainSlot($activity)) {
             return false;
         }
@@ -538,6 +545,10 @@ final class RunDiscoveryService
         }
 
         if (! $this->canUserAccessOverviewWithoutSecret($activity, $user->id)) {
+            return false;
+        }
+
+        if (! $this->canUserUseParticipationFlow($activity, $user->id)) {
             return false;
         }
 
@@ -578,15 +589,30 @@ final class RunDiscoveryService
             return $group->hasModeratorAccess($userId);
         }
 
-        if ($activity->is_public) {
-            if ($group->is_visible) {
-                return true;
-            }
-
-            return $group->hasMember($userId);
+        if ($group->is_visible) {
+            return true;
         }
 
-        return false;
+        return $group->hasMember($userId) || $group->hasModeratorAccess($userId);
+    }
+
+    private function canUserUseParticipationFlow(Activity $activity, int $userId): bool
+    {
+        $group = $activity->group;
+
+        if (! $group || $group->isBanned($userId)) {
+            return false;
+        }
+
+        if (Activity::isModeratorOnlyStatus($activity->status)) {
+            return $group->hasModeratorAccess($userId);
+        }
+
+        if ($activity->is_public) {
+            return $group->is_visible || $group->hasMember($userId) || $group->hasModeratorAccess($userId);
+        }
+
+        return $group->hasMember($userId) || $group->hasModeratorAccess($userId);
     }
 
     /**

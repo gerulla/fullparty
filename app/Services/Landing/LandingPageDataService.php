@@ -30,7 +30,7 @@ final class LandingPageDataService
     {
         $start = CarbonImmutable::now()->startOfWeek();
         $end = $start->addWeek();
-        $activities = $this->publicActivitiesBetween($start, $end);
+        $activities = $this->discoverableActivitiesBetween($start, $end);
 
         return [
             'start' => $start->toDateString(),
@@ -62,7 +62,7 @@ final class LandingPageDataService
     /**
      * @return Collection<int, Activity>
      */
-    private function publicActivitiesBetween(CarbonImmutable $start, CarbonImmutable $end): Collection
+    private function discoverableActivitiesBetween(CarbonImmutable $start, CarbonImmutable $end): Collection
     {
         return Activity::query()
             ->with([
@@ -76,7 +76,6 @@ final class LandingPageDataService
                 'slots.assignedCharacter' => fn ($query) => $query->select(['id', 'name', 'avatar_url']),
             ])
             ->whereHas('group', fn (Builder $query) => $query->where('is_visible', true))
-            ->where('is_public', true)
             ->whereNotIn('status', [
                 Activity::STATUS_CANCELLED,
                 ...Activity::MODERATOR_ONLY_STATUSES,

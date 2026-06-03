@@ -59,7 +59,7 @@
       "points": {
         "recruit": "Review applicants with character context",
         "manage": "Build rosters, benches, hosts, and raid leads",
-        "schedule": "Schedule public, private, and guest-friendly runs",
+        "schedule": "Schedule public, members-only, and guest-friendly runs",
         "communicate": "Manage members, roles, and requests",
         "ready": "Keep run history and notifications connected"
       }

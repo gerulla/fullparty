@@ -549,7 +549,6 @@ final class HomeActivityOverviewDataService
         return [
             'group' => $activity->group,
             'activity' => $activity,
-            'secretKey' => $activity->secret_key ?: null,
         ];
     }
 

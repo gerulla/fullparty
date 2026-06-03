@@ -181,7 +181,6 @@ const goToActivity = (activity: ActivityIndexItem) => {
 	router.get(route('groups.activities.overview', {
 		group: props.groupSlug,
 		activity: activity.id,
-		secretKey: activity.is_public ? undefined : activity.secret_key || undefined,
 	}));
 };
 

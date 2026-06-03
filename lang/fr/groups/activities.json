@@ -786,6 +786,16 @@
                 "label": "Activité publique",
                 "help": "Les activités publiques sont visibles selon les règles de visibilité du groupe."
             },
+            "visibility": {
+                "label": "Visibilité",
+                "help": "Choisissez si ce run est public ou limité aux membres.",
+                "public": "Public",
+                "members_only": "Membres uniquement",
+                "state_label": "Visibilité : {visibility}",
+                "toggle_label": "Rendre ce run public",
+                "public_description": "Toute personne pouvant découvrir le groupe peut voir ce run, et les candidatures invitées peuvent être activées séparément.",
+                "members_only_description": "Le run peut être découvert, mais seuls les membres du groupe peuvent postuler ou s'assigner eux-mêmes."
+            },
             "needs_application": {
                 "label": "Candidature requise",
                 "help": "Activez ceci si les membres doivent postuler au lieu de s'inscrire eux-mêmes."
@@ -809,7 +819,7 @@
             "duration_value": "{count} h",
             "visibility": "Visibilité",
             "visibility_public": "Public",
-            "visibility_private": "Lien privé uniquement",
+            "visibility_private": "Membres uniquement",
             "datacenter": "Centre de données",
             "run_style": "Style de run",
             "intensity": "Intensité",

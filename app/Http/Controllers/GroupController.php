@@ -343,14 +343,14 @@ class GroupController extends Controller
 
     private function serializeGroupDiscoveryDetail(Group $group, int $currentUserId): array
     {
-        $publicRunsQuery = $group->activities()->where('is_public', true);
-        $allPublicRuns = (clone $publicRunsQuery)
+        $discoverableRunsQuery = $group->activities();
+        $allDiscoverableRuns = (clone $discoverableRunsQuery)
             ->with('activityTypeVersion.activityType')
             ->orderByDesc('starts_at')
             ->orderByDesc('id')
             ->get();
 
-        $recentRuns = (clone $publicRunsQuery)
+        $recentRuns = (clone $discoverableRunsQuery)
             ->with(['activityTypeVersion.activityType', 'progressMilestones'])
             ->withCount([
                 'slotAssignments as checked_in_assignment_count' => fn (Builder $query) => $query->whereIn('attendance_status', [
@@ -370,13 +370,13 @@ class GroupController extends Controller
 
         return array_merge($this->serializeGroupListItem($group, $currentUserId), [
             ...$this->serializeGroupInteractionState($group, $currentUserId, true),
-            'activity_summary' => $this->serializeGroupActivitySummary($publicRunsQuery, $recentRuns),
+            'activity_summary' => $this->serializeGroupActivitySummary($discoverableRunsQuery, $recentRuns),
             'recent_runs' => $recentRuns
                 ->map(fn (Activity $activity) => $this->serializeGroupRecentRun($activity))
                 ->values()
                 ->all(),
-            'content_summary' => $this->serializeGroupContentSummary($allPublicRuns),
-            'content_items' => $this->serializeGroupContentItems($allPublicRuns),
+            'content_summary' => $this->serializeGroupContentSummary($allDiscoverableRuns),
+            'content_items' => $this->serializeGroupContentItems($allDiscoverableRuns),
             'team_members' => $this->serializeGroupTeamMembers($group),
         ]);
     }

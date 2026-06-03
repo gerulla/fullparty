@@ -28,17 +28,31 @@ trait InteractsWithGroupActivityAttendees
             return $group->hasModeratorAccess($userId);
         }
 
-        if ($activity->is_public) {
-            if ($group->is_visible) {
-                return true;
-            }
-
-            return $group->hasMember($userId);
+        if ($group->is_visible) {
+            return true;
         }
 
-        return filled($secretKey)
-            && filled($activity->secret_key)
-            && hash_equals((string) $activity->secret_key, (string) $secretKey);
+        return $group->hasMember($userId) || $group->hasModeratorAccess($userId);
+    }
+
+    private function canUseActivityParticipationFlow(Group $group, Activity $activity, ?int $userId): bool
+    {
+        if ($group->isBanned($userId)) {
+            return false;
+        }
+
+        if (Activity::isModeratorOnlyStatus($activity->status)) {
+            return false;
+        }
+
+        if ($activity->is_public) {
+            return $group->is_visible
+                || $group->hasMember($userId)
+                || $group->hasModeratorAccess($userId);
+        }
+
+        return $userId !== null
+            && ($group->hasMember($userId) || $group->hasModeratorAccess($userId));
     }
 
     /**
@@ -153,15 +167,9 @@ trait InteractsWithGroupActivityAttendees
      */
     private function activityAttendeeRouteParameters(Group $group, Activity $activity, ?string $secretKey): array
     {
-        $parameters = [
+        return [
             'group' => $group,
             'activity' => $activity,
         ];
-
-        if (filled($secretKey)) {
-            $parameters['secretKey'] = $secretKey;
-        }
-
-        return $parameters;
     }
 }

@@ -460,7 +460,6 @@ final class HomeBannerDataService
             'activity_title' => $activity->title,
             'activity_type_name' => $activity->activityTypeVersion?->name,
             'starts_at' => $activity->starts_at?->toIso8601String(),
-            'secret_key' => $activity->secret_key,
             'group' => [
                 'name' => $activity->group?->name,
                 'slug' => $activity->group?->slug,

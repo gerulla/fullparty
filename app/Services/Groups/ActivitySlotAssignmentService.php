@@ -575,7 +575,7 @@ class ActivitySlotAssignmentService
     {
         $answerOptionKeys = $this->normalizeAnswerValues($value);
 
-        if (! in_array(self::ANY_OPTION_KEY, $answerOptionKeys, true) || ! $this->definitionHasAnyOption($definition)) {
+        if (! in_array(self::ANY_OPTION_KEY, $answerOptionKeys, true)) {
             return $answerOptionKeys;
         }
 
@@ -584,15 +584,6 @@ class ActivitySlotAssignmentService
             ->filter(fn (string $key) => $key !== '' && $key !== self::ANY_OPTION_KEY)
             ->values()
             ->all();
-    }
-
-    /**
-     * @param  array<string, mixed>  $definition
-     */
-    private function definitionHasAnyOption(array $definition): bool
-    {
-        return collect($definition['options'] ?? [])
-            ->contains(fn (array $option) => (string) ($option['key'] ?? $option['value'] ?? '') === self::ANY_OPTION_KEY);
     }
 
     /**

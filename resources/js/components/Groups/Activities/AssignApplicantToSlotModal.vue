@@ -63,8 +63,7 @@ const compatibleOptionsByField = computed(() => {
 			: answer?.raw_value !== null && answer?.raw_value !== undefined && answer?.raw_value !== ''
 				? [String(answer.raw_value)]
 				: [];
-		const selectedAnyOption = rawValues.includes(ANY_OPTION_KEY)
-			&& field.options.some((option) => option.key === ANY_OPTION_KEY);
+		const selectedAnyOption = rawValues.includes(ANY_OPTION_KEY);
 		const compatibleOptions = selectedAnyOption
 			? field.options.filter((option) => option.key !== ANY_OPTION_KEY)
 			: field.options.filter((option) => rawValues.includes(option.key));

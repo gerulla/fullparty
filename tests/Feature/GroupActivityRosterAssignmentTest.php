@@ -814,10 +814,13 @@ it('treats an application any option as all concrete static slot options', funct
     extract(createRosterAssignmentSetup());
     extract(createApplicantForAssignment($activity, $tankClass, $phantomKnight));
 
-    $raidPositionOptions = [
-        ['key' => 'any', 'label' => ['en' => 'Put Me Anywhere Coach']],
+    $slotRaidPositionOptions = [
         ['key' => 'mt', 'label' => ['en' => 'Main Tank']],
         ['key' => 'ot', 'label' => ['en' => 'Off Tank']],
+    ];
+    $applicationRaidPositionOptions = [
+        ...$slotRaidPositionOptions,
+        ['key' => 'any', 'label' => ['en' => 'Put Me Anywhere Coach']],
     ];
     $version = ActivityTypeVersion::query()->findOrFail($activity->activity_type_version_id);
 
@@ -829,7 +832,7 @@ it('treats an application any option as all concrete static slot options', funct
                 'label' => ['en' => 'Raid Position'],
                 'type' => 'single_select',
                 'source' => 'static_options',
-                'options' => $raidPositionOptions,
+                'options' => $slotRaidPositionOptions,
             ],
         ],
         'application_schema' => [
@@ -839,7 +842,7 @@ it('treats an application any option as all concrete static slot options', funct
                 'label' => ['en' => 'Preferred Raid Positions'],
                 'type' => 'multi_select',
                 'source' => 'static_options',
-                'options' => $raidPositionOptions,
+                'options' => $applicationRaidPositionOptions,
             ],
         ],
     ]);

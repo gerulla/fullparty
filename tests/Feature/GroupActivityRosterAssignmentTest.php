@@ -810,6 +810,82 @@ it('rejects slot field selections that are not present in the application answer
     expect($application->fresh()->status)->toBe(ActivityApplication::STATUS_PENDING);
 });
 
+it('treats an application any option as all concrete static slot options', function () {
+    extract(createRosterAssignmentSetup());
+    extract(createApplicantForAssignment($activity, $tankClass, $phantomKnight));
+
+    $raidPositionOptions = [
+        ['key' => 'any', 'label' => ['en' => 'Put Me Anywhere Coach']],
+        ['key' => 'mt', 'label' => ['en' => 'Main Tank']],
+        ['key' => 'ot', 'label' => ['en' => 'Off Tank']],
+    ];
+    $version = ActivityTypeVersion::query()->findOrFail($activity->activity_type_version_id);
+
+    $version->update([
+        'slot_schema' => [
+            ...$version->slot_schema,
+            [
+                'key' => 'raid_position',
+                'label' => ['en' => 'Raid Position'],
+                'type' => 'single_select',
+                'source' => 'static_options',
+                'options' => $raidPositionOptions,
+            ],
+        ],
+        'application_schema' => [
+            ...$version->application_schema,
+            [
+                'key' => 'preferred_raid_positions',
+                'label' => ['en' => 'Preferred Raid Positions'],
+                'type' => 'multi_select',
+                'source' => 'static_options',
+                'options' => $raidPositionOptions,
+            ],
+        ],
+    ]);
+
+    $mainSlot->fieldValues()->create([
+        'field_key' => 'raid_position',
+        'field_label' => ['en' => 'Raid Position'],
+        'field_type' => 'single_select',
+        'source' => 'static_options',
+        'value' => null,
+    ]);
+    $application->answers()->create([
+        'question_key' => 'preferred_raid_positions',
+        'question_label' => ['en' => 'Preferred Raid Positions'],
+        'question_type' => 'multi_select',
+        'source' => 'static_options',
+        'value' => ['any'],
+    ]);
+
+    $this->actingAs($owner);
+
+    $response = $this->postJson(route('groups.dashboard.activities.slot-assignments.store', [
+        'group' => $group->slug,
+        'activity' => $activity->id,
+        'slot' => $mainSlot->id,
+    ]), [
+        'application_id' => $application->id,
+        'expected_slot_state_token' => activity_slot_state_token($mainSlot->fresh(['fieldValues', 'assignments'])),
+        'field_values' => [
+            'character_class' => (string) $tankClass->id,
+            'phantom_job' => (string) $phantomKnight->id,
+            'raid_position' => 'ot',
+        ],
+    ]);
+
+    $response->assertOk();
+
+    $mainSlot->refresh()->load('fieldValues');
+
+    expect($mainSlot->fieldValues->firstWhere('field_key', 'raid_position')?->value)
+        ->toMatchArray([
+            'key' => 'ot',
+            'label' => ['en' => 'Off Tank'],
+        ]);
+});
+
 it('returns the displaced application to pending when replacing a filled roster slot', function () {
     extract(createRosterAssignmentSetup());
     extract(createApplicantForAssignment($activity, $tankClass, $phantomKnight));

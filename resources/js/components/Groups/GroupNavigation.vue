@@ -1,8 +1,9 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
 import { route } from 'ziggy-js'
-import { Link, usePage } from '@inertiajs/vue3'
+import { Link, router, usePage } from '@inertiajs/vue3'
 import { useI18n } from 'vue-i18n'
+import type { NavigationMenuItem } from '@nuxt/ui'
 
 const props = defineProps<{
 	group: {
@@ -60,6 +61,11 @@ const discordIntegrationHref = computed(() => route('groups.dashboard.discord-in
 const discordIntegrationPath = computed(() => routePath('groups.dashboard.discord-integration'))
 const isPublicActivityRoute = computed(() => page.url.startsWith(publicActivitiesPath.value))
 const showsLegacyLeaderboard = computed(() => props.group.slug === 'ftel')
+const canUpdateGroupSettings = computed(() => Boolean(
+	props.group.permissions?.can_update_group_settings
+	|| props.group.permissions?.can_manage_discovery
+	|| props.group.permissions?.can_manage_group,
+))
 
 const isManagementUser = computed(() => Boolean(
 	props.group.permissions?.can_manage_group
@@ -71,89 +77,130 @@ const isManagementUser = computed(() => Boolean(
 	|| props.group.permissions?.can_manage_membership_application_form,
 ))
 
-const leftitems = computed(() => [
-	{
-		label: t('groups.index.navigation.general'),
-		icon: 'i-lucide-layout-dashboard',
-		href: dashboardHref.value,
-		active: page.url === dashboardPath.value,
-	},
-	{
-		label: t('groups.index.navigation.activities'),
-		icon: 'i-lucide-calendar-range',
-		href: activitiesHref.value,
-		active: isRouteActive(activitiesPath.value) || isPublicActivityRoute.value,
-	},
-	{
+const visitWithInertia = (to: string) => (event: Event) => {
+	event.preventDefault()
+	router.visit(to)
+}
+
+const desktopLinkItem = (item: NavigationMenuItem & { to: string }): NavigationMenuItem => ({
+	...item,
+	onSelect: visitWithInertia(item.to),
+})
+
+const dataMenuItems = computed<NavigationMenuItem[]>(() => [
+	desktopLinkItem({
 		label: t('groups.index.navigation.statistics'),
 		icon: 'i-lucide-chart-no-axes-combined',
-		href: statisticsHref.value,
+		to: statisticsHref.value,
 		active: isRouteActive(statisticsPath.value),
-	},
-	{
+	}),
+	desktopLinkItem({
 		label: t('groups.index.navigation.leaderboard'),
 		icon: 'i-lucide-trophy',
-		href: leaderboardHref.value,
+		to: leaderboardHref.value,
 		active: isRouteActive(leaderboardPath.value),
-	},
-	...(showsLegacyLeaderboard.value ? [{
+	}),
+	...(showsLegacyLeaderboard.value ? [desktopLinkItem({
 		label: t('groups.index.navigation.legacy_leaderboard'),
 		icon: 'i-lucide-archive',
-		href: legacyLeaderboardHref.value,
+		to: legacyLeaderboardHref.value,
 		active: isRouteActive(legacyLeaderboardPath.value),
-	}] : []),
-	...(props.group.permissions?.can_view_members ? [{
-		label: t('groups.index.navigation.members'),
-		icon: 'i-lucide-users',
-		href: membersHref.value,
-		active: isRouteActive(membersPath.value),
-	}] : []),
-	...(props.group.permissions?.can_review_membership_applications ? [{
-		label: t('groups.index.navigation.membership_applications'),
-		icon: 'i-lucide-clipboard-check',
-		href: membershipApplicationsHref.value,
-		active: isRouteActive(membershipApplicationsPath.value),
-	}] : []),
+	})] : []),
 ])
 
-const rightitems = computed(() => {
-	if (!props.group.permissions?.can_manage_members && !props.group.permissions?.can_manage_membership_application_form) {
-		return []
-	}
+const desktopModerationMenuItems = computed<NavigationMenuItem[]>(() => [
+	...(props.group.permissions?.can_review_membership_applications ? [desktopLinkItem({
+		label: t('groups.index.navigation.membership_applications'),
+		icon: 'i-lucide-clipboard-check',
+		to: membershipApplicationsHref.value,
+		active: isRouteActive(membershipApplicationsPath.value),
+	})] : []),
+	...(props.group.permissions?.can_manage_discovery ? [desktopLinkItem({
+		label: t('groups.index.navigation.discovery_settings'),
+		icon: 'i-lucide-radar',
+		to: discoverySettingsHref.value,
+		active: isRouteActive(discoverySettingsPath.value),
+	})] : []),
+])
 
-	return [
-		...(props.group.permissions?.can_manage_membership_application_form ? [{
-			label: t('groups.index.navigation.application_form'),
-			icon: 'i-lucide-list-checks',
-			href: route('groups.dashboard.membership-application-form.edit', props.group.slug),
-			active: isRouteActive(membershipApplicationFormPath.value),
-		}] : []),
-		{
-			label: t('groups.index.navigation.audit_log'),
-			icon: 'i-lucide-scroll-text',
-			href: auditLogHref.value,
-			active: isRouteActive(auditLogPath.value),
-		},
-		...(props.group.permissions?.can_manage_discovery ? [{
-			label: t('groups.index.navigation.discovery_settings'),
-			icon: 'i-lucide-radar',
-			href: discoverySettingsHref.value,
-			active: isRouteActive(discoverySettingsPath.value),
-		}] : []),
-		...(props.group.permissions?.can_manage_group ? [{
-			label: t('groups.index.navigation.discord_integration'),
-			icon: 'ic:baseline-discord',
-			href: discordIntegrationHref.value,
-			active: isRouteActive(discordIntegrationPath.value),
-		}] : []),
-		{
-			label: t('groups.index.navigation.settings'),
-			icon: 'i-lucide-settings-2',
-			href: settingsHref.value,
-			active: isRouteActive(settingsPath.value),
-		}
-	]
-})
+const desktopConfigurationMenuItems = computed<NavigationMenuItem[]>(() => [
+	...(props.group.permissions?.can_manage_membership_application_form ? [desktopLinkItem({
+		label: t('groups.index.navigation.application_form'),
+		icon: 'i-lucide-list-checks',
+		to: route('groups.dashboard.membership-application-form.edit', props.group.slug),
+		active: isRouteActive(membershipApplicationFormPath.value),
+	})] : []),
+	...(props.group.permissions?.can_manage_group ? [desktopLinkItem({
+		label: t('groups.index.navigation.discord_integration'),
+		icon: 'ic:baseline-discord',
+		to: discordIntegrationHref.value,
+		active: isRouteActive(discordIntegrationPath.value),
+	})] : []),
+	...(canUpdateGroupSettings.value ? [desktopLinkItem({
+		label: t('groups.index.navigation.settings'),
+		icon: 'i-lucide-settings-2',
+		to: settingsHref.value,
+		active: isRouteActive(settingsPath.value),
+	})] : []),
+])
+
+const desktopLeftItems = computed<NavigationMenuItem[]>(() => [
+	desktopLinkItem({
+		label: t('groups.index.navigation.general'),
+		icon: 'i-lucide-layout-dashboard',
+		to: dashboardHref.value,
+		active: page.url === dashboardPath.value,
+	}),
+	desktopLinkItem({
+		label: t('groups.index.navigation.activities'),
+		icon: 'i-lucide-calendar-range',
+		to: activitiesHref.value,
+		active: isRouteActive(activitiesPath.value) || isPublicActivityRoute.value,
+	}),
+	{
+		label: t('groups.index.navigation.data'),
+		icon: 'i-lucide-chart-no-axes-combined',
+		active: dataMenuItems.value.some((item) => item.active),
+		children: dataMenuItems.value,
+	},
+	...(props.group.permissions?.can_view_members ? [desktopLinkItem({
+		label: t('groups.index.navigation.members'),
+		icon: 'i-lucide-users',
+		to: membersHref.value,
+		active: isRouteActive(membersPath.value),
+	})] : []),
+])
+
+const desktopRightItems = computed<NavigationMenuItem[]>(() => [
+	...(desktopModerationMenuItems.value.length > 0 ? [{
+		label: t('groups.index.navigation.moderation'),
+		icon: 'i-lucide-shield-check',
+		active: desktopModerationMenuItems.value.some((item) => item.active),
+		children: desktopModerationMenuItems.value,
+	}] : []),
+	...(desktopConfigurationMenuItems.value.length > 0 ? [{
+		label: t('groups.index.navigation.configuration'),
+		icon: 'i-lucide-sliders-horizontal',
+		active: desktopConfigurationMenuItems.value.some((item) => item.active),
+		children: desktopConfigurationMenuItems.value,
+	}] : []),
+	...(props.group.permissions?.can_manage_members ? [desktopLinkItem({
+		label: t('groups.index.navigation.audit_log'),
+		icon: 'i-lucide-scroll-text',
+		to: auditLogHref.value,
+		active: isRouteActive(auditLogPath.value),
+	})] : []),
+])
+
+const desktopNavigationUi = {
+	root: 'relative z-50 !overflow-visible',
+	list: '!overflow-visible',
+	viewportWrapper: 'z-50 !overflow-visible',
+	viewport: 'z-50 !overflow-visible rounded-none border border-default bg-elevated/95 shadow-xl backdrop-blur-xl ring-0',
+	content: 'w-60 !max-h-none !overflow-visible',
+	childList: 'gap-1 p-1.5',
+	childLink: 'rounded-none',
+}
 
 const settingsActive = computed(() => isRouteActive(settingsPath.value))
 
@@ -329,31 +376,28 @@ const mobileItems = computed(() => isManagementUser.value ? managerMobileItems.v
 </script>
 
 <template>
-	<UDashboardToolbar class="hidden xl:flex">
-		<div class="flex h-full flex-wrap items-stretch gap-2 ">
-			<Link
-				v-for="item in leftitems"
-				:key="item.href"
-				:href="item.href"
-				class="group-nav-link"
-				:class="item.active ? 'group-nav-link-active' : 'group-nav-link-default'"
-			>
-				<UIcon :name="item.icon" class="h-4 w-4" />
-				<span>{{ item.label }}</span>
-			</Link>
-		</div>
-		<div class="ml-auto flex h-full flex-wrap items-stretch gap-2 ">
-			<Link
-				v-for="item in rightitems"
-				:key="item.href"
-				:href="item.href"
-				class="group-nav-link"
-				:class="item.active ? 'group-nav-link-active' : 'group-nav-link-default'"
-			>
-				<UIcon :name="item.icon" class="h-4 w-4" />
-				<span>{{ item.label }}</span>
-			</Link>
-		</div>
+	<UDashboardToolbar class="relative z-40 hidden !overflow-visible !overflow-x-visible !overflow-y-visible xl:flex">
+		<UNavigationMenu
+			:items="desktopLeftItems"
+			variant="link"
+			color="brand"
+			highlight-color="brand"
+			content-orientation="vertical"
+			highlight
+			:ui="desktopNavigationUi"
+			class="relative z-50"
+		/>
+		<UNavigationMenu
+			v-if="desktopRightItems.length > 0"
+			:items="desktopRightItems"
+			variant="link"
+			color="brand"
+			highlight-color="brand"
+			content-orientation="vertical"
+			highlight
+			:ui="desktopNavigationUi"
+			class="relative z-50 ml-auto"
+		/>
 	</UDashboardToolbar>
 
 	<nav class="fixed inset-x-0 bottom-0 z-50 border-t border-white/10 bg-neutral-950/94 px-3 pt-2 pb-[calc(0.5rem+env(safe-area-inset-bottom))] shadow-[0_-18px_42px_rgba(0,0,0,0.38)] backdrop-blur-xl xl:hidden">
@@ -462,18 +506,3 @@ const mobileItems = computed(() => isManagementUser.value ? managerMobileItems.v
 		</div>
 	</nav>
 </template>
-
-<style scoped>
-@reference '../../../css/app.css';
-.group-nav-link {
-	@apply inline-flex items-center gap-2 border-b-0 rounded-none px-3 py-2 text-sm font-normal transition;
-}
-
-.group-nav-link-active {
-	@apply text-brand border-b border-b-brand;
-}
-
-.group-nav-link-default {
-	@apply text-muted hover:border-b;
-}
-</style>

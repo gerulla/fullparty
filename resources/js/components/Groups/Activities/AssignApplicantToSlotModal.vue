@@ -25,6 +25,7 @@ const { t, locale } = useI18n();
 const page = usePage();
 const fallbackLocale = computed(() => String(page.props.locale?.fallback ?? 'en'));
 const selections = ref<Record<string, string | string[]>>({});
+const ANY_OPTION_KEY = 'any';
 
 const isOpen = computed({
 	get: () => props.open,
@@ -62,9 +63,13 @@ const compatibleOptionsByField = computed(() => {
 			: answer?.raw_value !== null && answer?.raw_value !== undefined && answer?.raw_value !== ''
 				? [String(answer.raw_value)]
 				: [];
+		const selectedAnyOption = rawValues.includes(ANY_OPTION_KEY)
+			&& field.options.some((option) => option.key === ANY_OPTION_KEY);
+		const compatibleOptions = selectedAnyOption
+			? field.options.filter((option) => option.key !== ANY_OPTION_KEY)
+			: field.options.filter((option) => rawValues.includes(option.key));
 
-		map[field.key] = field.options
-			.filter((option) => rawValues.includes(option.key))
+		map[field.key] = compatibleOptions
 			.map((option) => ({
 				label: localizedText(option.label, option.key),
 				value: option.key,

@@ -13,6 +13,8 @@ use Illuminate\Validation\ValidationException;
 
 class ActivitySlotAssignmentService
 {
+    private const ANY_OPTION_KEY = 'any';
+
     public function __construct(
         private readonly ActivitySlotBench $slotBench,
         private readonly ActivitySlotAttendanceService $attendanceService,
@@ -539,7 +541,7 @@ class ActivitySlotAssignmentService
 
             $applicationKey = (string) ($definition['application_key'] ?? '');
             $applicationAnswer = $applicationKey !== '' ? ($applicationAnswers[$applicationKey] ?? null) : null;
-            $allowedOptionKeys = $this->normalizeAnswerValues($applicationAnswer?->value);
+            $allowedOptionKeys = $this->allowedOptionKeysForApplicationAnswer($definition, $applicationAnswer?->value);
             $normalizedSelection = $this->normalizeSelection($selectedValue);
 
             if (count($normalizedSelection) === 0) {
@@ -563,6 +565,34 @@ class ActivitySlotAssignmentService
                 ),
             ]);
         }
+    }
+
+    /**
+     * @param  array<string, mixed>  $definition
+     * @return array<int, string>
+     */
+    private function allowedOptionKeysForApplicationAnswer(array $definition, mixed $value): array
+    {
+        $answerOptionKeys = $this->normalizeAnswerValues($value);
+
+        if (! in_array(self::ANY_OPTION_KEY, $answerOptionKeys, true) || ! $this->definitionHasAnyOption($definition)) {
+            return $answerOptionKeys;
+        }
+
+        return collect($definition['options'] ?? [])
+            ->map(fn (array $option) => (string) ($option['key'] ?? $option['value'] ?? ''))
+            ->filter(fn (string $key) => $key !== '' && $key !== self::ANY_OPTION_KEY)
+            ->values()
+            ->all();
+    }
+
+    /**
+     * @param  array<string, mixed>  $definition
+     */
+    private function definitionHasAnyOption(array $definition): bool
+    {
+        return collect($definition['options'] ?? [])
+            ->contains(fn (array $option) => (string) ($option['key'] ?? $option['value'] ?? '') === self::ANY_OPTION_KEY);
     }
 
     /**

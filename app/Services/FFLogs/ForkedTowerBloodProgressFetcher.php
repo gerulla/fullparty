@@ -27,16 +27,47 @@ class ForkedTowerBloodProgressFetcher
         private readonly CharacterZoneProgressFetcher $zoneProgressFetcher,
     ) {}
 
-    public function fetchForCharacter(Character $character): array
+    public function fetchForCharacter(Character $character, bool $ignoreCache = false): array
     {
         return $this->buildProgressPayload(
-            $this->zoneProgressFetcher->fetchRawZoneRankingsForCharacter($character, $this->forkedTowerZoneId())
+            $this->zoneProgressFetcher->fetchRawZoneRankingsForCharacter($character, $this->forkedTowerZoneId(), $ignoreCache)
         );
     }
 
-    public function fetchDebugPayloadForCharacter(Character $character): array
+    public function fetchDebugPayloadForCharacter(Character $character, bool $ignoreCache = false): array
     {
-        $zoneRankings = $this->zoneProgressFetcher->fetchRawZoneRankingsForCharacter($character, $this->forkedTowerZoneId());
+        $zoneRankings = $this->zoneProgressFetcher->fetchRawZoneRankingsForCharacter(
+            $character,
+            $this->forkedTowerZoneId(),
+            $ignoreCache,
+        );
+
+        return [
+            'progress' => $this->buildProgressPayload($zoneRankings),
+            'zone_rankings' => $zoneRankings,
+        ];
+    }
+
+    public function fetchForResolvedIdentity(string $name, string $serverSlug, string $serverRegion): array
+    {
+        return $this->buildProgressPayload(
+            $this->zoneProgressFetcher->fetchRawZoneRankingsForResolvedIdentity(
+                name: $name,
+                serverSlug: $serverSlug,
+                serverRegion: $serverRegion,
+                zoneId: $this->forkedTowerZoneId(),
+            )
+        );
+    }
+
+    public function fetchDebugPayloadForResolvedIdentity(string $name, string $serverSlug, string $serverRegion): array
+    {
+        $zoneRankings = $this->zoneProgressFetcher->fetchRawZoneRankingsForResolvedIdentity(
+            name: $name,
+            serverSlug: $serverSlug,
+            serverRegion: $serverRegion,
+            zoneId: $this->forkedTowerZoneId(),
+        );
 
         return [
             'progress' => $this->buildProgressPayload($zoneRankings),
@@ -61,7 +92,7 @@ class ForkedTowerBloodProgressFetcher
         foreach ($this->extractEncounterRankings($zoneRankings) as $ranking) {
             $bossName = $this->resolveBossName($this->extractRankingBossName($ranking));
 
-            if (!$bossName || !isset($bosses[$bossName])) {
+            if (! $bossName || ! isset($bosses[$bossName])) {
                 continue;
             }
 
@@ -131,7 +162,7 @@ class ForkedTowerBloodProgressFetcher
 
     private function resolveBossName(?string $fightName): ?string
     {
-        if (!$fightName) {
+        if (! $fightName) {
             return null;
         }
 

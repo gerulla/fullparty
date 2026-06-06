@@ -84,25 +84,20 @@ class CharacterZoneProgressFetcher
         ];
     }
 
-    public function fetchRawZoneRankingsForCharacter(Character $character, int $zoneId): array
+    public function fetchRawZoneRankingsForCharacter(Character $character, int $zoneId, bool $ignoreCache = false): array
     {
         if ($zoneId <= 0) {
             throw new RuntimeException('FF Logs zone ID must be a positive integer.');
         }
 
+        if ($ignoreCache) {
+            return $this->refreshRawZoneRankingsForCharacter($character, $zoneId);
+        }
+
         return Cache::remember(
             $this->zoneProgressCacheKey($character, $zoneId),
             now()->addHours(self::ZONE_PROGRESS_CACHE_TTL_HOURS),
-            function () use ($character, $zoneId) {
-                $response = $this->queryCharacterZoneRankings(
-                    name: $character->name,
-                    serverSlug: $this->resolveServerSlug($character->world),
-                    serverRegion: $this->resolveServerRegion($character->datacenter),
-                    zoneId: $zoneId,
-                );
-
-                return $this->extractZoneRankings($character, $response);
-            }
+            fn () => $this->queryRawZoneRankingsForCharacter($character, $zoneId)
         );
     }
 
@@ -140,6 +135,59 @@ class CharacterZoneProgressFetcher
         );
     }
 
+    public function fetchRawZoneRankingsForResolvedIdentity(
+        string $name,
+        string $serverSlug,
+        string $serverRegion,
+        int $zoneId,
+    ): array {
+        if ($zoneId <= 0) {
+            throw new RuntimeException('FF Logs zone ID must be a positive integer.');
+        }
+
+        $normalizedName = trim($name);
+        $normalizedServerSlug = trim($serverSlug);
+        $normalizedServerRegion = strtoupper(trim($serverRegion));
+
+        if ($normalizedName === '' || $normalizedServerSlug === '' || $normalizedServerRegion === '') {
+            throw new RuntimeException('FF Logs character identity is incomplete.');
+        }
+
+        $response = $this->queryCharacterZoneRankings(
+            name: $normalizedName,
+            serverSlug: $this->resolveServerSlug($normalizedServerSlug),
+            serverRegion: $normalizedServerRegion,
+            zoneId: $zoneId,
+        );
+
+        return $this->extractZoneRankingsForIdentity($normalizedName, $normalizedServerSlug, $normalizedServerRegion, $response);
+    }
+
+    private function refreshRawZoneRankingsForCharacter(Character $character, int $zoneId): array
+    {
+        $zoneRankings = $this->queryRawZoneRankingsForCharacter($character, $zoneId);
+
+        Cache::put(
+            $this->zoneProgressCacheKey($character, $zoneId),
+            $zoneRankings,
+            now()->addHours(self::ZONE_PROGRESS_CACHE_TTL_HOURS),
+        );
+
+        return $zoneRankings;
+    }
+
+    private function queryRawZoneRankingsForCharacter(Character $character, int $zoneId): array
+    {
+        $response = $this->queryCharacterZoneRankings(
+            name: $character->name,
+            serverSlug: $this->resolveServerSlug($character->world),
+            serverRegion: $this->resolveServerRegion($character->datacenter),
+            zoneId: $zoneId,
+        );
+
+        return $this->extractZoneRankings($character, $response);
+    }
+
     private function queryCharacterZoneRankings(string $name, string $serverSlug, string $serverRegion, int $zoneId): array
     {
         $query = <<<'GRAPHQL'
@@ -171,8 +219,8 @@ GRAPHQL;
             ->throw()
             ->json();
 
-        if (!empty($response['errors'])) {
-            throw new RuntimeException('FF Logs GraphQL query failed: ' . json_encode($response['errors']));
+        if (! empty($response['errors'])) {
+            throw new RuntimeException('FF Logs GraphQL query failed: '.json_encode($response['errors']));
         }
 
         return $response;
@@ -314,7 +362,7 @@ GRAPHQL;
         $clientId = config('services.ff_logs.client_id');
         $clientSecret = config('services.ff_logs.client_secret');
 
-        if (!$clientId || !$clientSecret) {
+        if (! $clientId || ! $clientSecret) {
             throw new RuntimeException('FF Logs credentials are not configured.');
         }
 
@@ -328,7 +376,7 @@ GRAPHQL;
 
         $token = $response['access_token'] ?? null;
 
-        if (!$token) {
+        if (! $token) {
             throw new RuntimeException('FF Logs access token was not returned.');
         }
 

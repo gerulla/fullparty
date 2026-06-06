@@ -314,11 +314,21 @@ class CharacterController extends Controller
         );
 
         try {
-            $this->characterProfileRefreshService->refresh($character, ignoreCache: true);
+            $refreshResult = $this->characterProfileRefreshService->refresh($character, ignoreCache: true);
 
             $this->accountCharacterNotificationService->notifyCharacterRefreshed($character->fresh(), auth()->user());
 
-            return Redirect::back()->with('success', 'character_data_refreshed');
+            $response = Redirect::back()->with('success', 'character_data_refreshed');
+
+            if ($refreshResult['fflogs_error'] ?? null) {
+                $response->with('flash_data', [
+                    'character_refresh_debug' => [
+                        'fflogs_error' => $refreshResult['fflogs_error'],
+                    ],
+                ]);
+            }
+
+            return $response;
         } catch (LodestoneInvalidInputException $e) {
             return Redirect::back()->withErrors([
                 'error' => 'invalid_lodestone_id',

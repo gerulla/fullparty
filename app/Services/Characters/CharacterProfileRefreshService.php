@@ -21,14 +21,24 @@ class CharacterProfileRefreshService
     ) {}
 
     /**
+     * @return array{fflogs_error: array<string, mixed>|null}
+     *
      * @throws LodestoneInvalidInputException
      * @throws LodestoneFetchException
      * @throws LodestoneParseException
      */
-    public function refresh(Character $character, bool $ignoreCache = true): void
+    public function refresh(Character $character, bool $ignoreCache = true): array
     {
         $data = $this->scraper->scrape($character->lodestone_id, ignoreCache: $ignoreCache);
-        $forkedTowerBloodProgress = $this->fetchForkedTowerBloodProgress($character);
+        $character->forceFill([
+            'name' => $data->name,
+            'world' => $data->world,
+            'datacenter' => $data->dataCenter,
+            'avatar_url' => $data->avatarUrl,
+        ]);
+
+        $forkedTowerBloodProgressResult = $this->fetchForkedTowerBloodProgress($character, $ignoreCache);
+        $forkedTowerBloodProgress = $forkedTowerBloodProgressResult['progress'];
 
         DB::transaction(function () use ($character, $data, $forkedTowerBloodProgress): void {
             $character->update([
@@ -42,12 +52,22 @@ class CharacterProfileRefreshService
             $this->syncPhantomJobLevels($character, $data->extraData);
             $this->syncOccultProgress($character, $data->extraData, $forkedTowerBloodProgress);
         });
+
+        return [
+            'fflogs_error' => $forkedTowerBloodProgressResult['error'],
+        ];
     }
 
-    private function fetchForkedTowerBloodProgress(Character $character): array
+    /**
+     * @return array{progress: array<string, mixed>, error: array<string, mixed>|null}
+     */
+    private function fetchForkedTowerBloodProgress(Character $character, bool $ignoreCache): array
     {
         try {
-            return $this->forkedTowerBloodProgressFetcher->fetchForCharacter($character);
+            return [
+                'progress' => $this->forkedTowerBloodProgressFetcher->fetchForCharacter($character, ignoreCache: $ignoreCache),
+                'error' => null,
+            ];
         } catch (\Throwable $exception) {
             Log::warning('Unable to refresh FF Logs progress during character refresh.', [
                 'character_id' => $character->id,
@@ -55,7 +75,20 @@ class CharacterProfileRefreshService
                 'exception' => $exception->getMessage(),
             ]);
 
-            return $this->emptyForkedTowerBloodProgress();
+            return [
+                'progress' => $this->emptyForkedTowerBloodProgress(),
+                'error' => [
+                    'source' => 'fflogs',
+                    'type' => $exception::class,
+                    'message' => $exception->getMessage(),
+                    'character_id' => $character->id,
+                    'lodestone_id' => $character->lodestone_id,
+                    'name' => $character->name,
+                    'world' => $character->world,
+                    'datacenter' => $character->datacenter,
+                    'zone_id' => config('services.ff_logs.forked_tower_blood_zone_id'),
+                ],
+            ];
         }
     }
 

@@ -23,6 +23,16 @@ const getProvider = (provider_name) => {
 	return provider ?? null;
 }
 
+const logCharacterRefreshDebug = (debug) => {
+	const fflogsError = debug?.fflogs_error;
+
+	if (!fflogsError) {
+		return;
+	}
+
+	console.error('[FullParty] FF Logs progress refresh failed during character refresh.', fflogsError);
+}
+
 
 const addModal = ref<InstanceType<typeof AddCharacterModal> | null>(null);
 const manualModal = ref<InstanceType<typeof ManualVerificationModal> | null>(null);
@@ -88,6 +98,12 @@ watch(
 			})
 		}
 	},
+	{ immediate: true }
+)
+
+watch(
+	() => page.props.flash?.data?.character_refresh_debug,
+	(debug) => logCharacterRefreshDebug(debug),
 	{ immediate: true }
 )
 </script>

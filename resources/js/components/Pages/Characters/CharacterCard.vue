@@ -51,6 +51,18 @@ const refreshCharacterData = () => {
 	isRefreshing.value = true;
 
 	router.post(route('characters.refresh', props.character.id), {}, {
+		onError: (errors) => {
+			console.error('[FullParty] Character refresh request failed.', {
+				character: {
+					id: props.character.id,
+					name: props.character.name,
+					world: props.character.world,
+					datacenter: props.character.datacenter,
+					lodestone_id: props.character.lodestone_id,
+				},
+				errors,
+			});
+		},
 		onFinish: () => {
 			isRefreshing.value = false;
 		},

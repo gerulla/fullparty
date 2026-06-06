@@ -1,13 +1,13 @@
 <?php
 
+use App\DTOs\LodestoneCharacterData;
 use App\Models\Character;
 use App\Models\NotificationEvent;
-use App\Models\UserNotification;
 use App\Models\User;
-use App\Support\Notifications\NotificationCategory;
+use App\Models\UserNotification;
 use App\Services\FFLogs\ForkedTowerBloodProgressFetcher;
-use App\DTOs\LodestoneCharacterData;
 use App\Services\Lodestone\LodestoneScraper;
+use App\Support\Notifications\NotificationCategory;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 uses(RefreshDatabase::class);
@@ -47,8 +47,12 @@ it('refreshes character data even when ff logs progress lookup fails', function 
     $ffLogsFetcher
         ->shouldReceive('fetchForCharacter')
         ->once()
-        ->withArgs(fn (Character $refreshedCharacter) => $refreshedCharacter->is($character))
-        ->andThrow(new \RuntimeException('FF Logs could not resolve character.'));
+        ->withArgs(fn (Character $refreshedCharacter, bool $ignoreCache) => $refreshedCharacter->is($character)
+            && $refreshedCharacter->name === 'New Name'
+            && $refreshedCharacter->world === 'Twintania'
+            && $refreshedCharacter->datacenter === 'Light'
+            && $ignoreCache)
+        ->andThrow(new RuntimeException('FF Logs could not resolve character.'));
 
     app()->instance(LodestoneScraper::class, $lodestoneScraper);
     app()->instance(ForkedTowerBloodProgressFetcher::class, $ffLogsFetcher);
@@ -58,6 +62,8 @@ it('refreshes character data even when ff logs progress lookup fails', function 
     $response
         ->assertRedirect()
         ->assertSessionHas('success', 'character_data_refreshed')
+        ->assertSessionHas('flash_data.character_refresh_debug.fflogs_error.source', 'fflogs')
+        ->assertSessionHas('flash_data.character_refresh_debug.fflogs_error.message', 'FF Logs could not resolve character.')
         ->assertSessionMissing('errors');
 
     expect($character->fresh())

@@ -12,6 +12,7 @@ use App\Models\CharacterClass;
 use App\Models\Group;
 use App\Models\PhantomJob;
 use App\Models\UserActivityApplicationDefault;
+use App\Services\Groups\ActivityApplicationCharacterRefreshService;
 use App\Services\Groups\ActivityApplicationWithdrawalService;
 use App\Services\Groups\GroupActivityAuditService;
 use App\Services\Lodestone\LodestoneCharacterSearchService;
@@ -22,6 +23,7 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Validation\Rule;
 use Illuminate\Validation\ValidationException;
 use Inertia\Inertia;
@@ -31,6 +33,8 @@ class GroupActivityApplicationController extends Controller
 {
     use InteractsWithGroupActivityAttendees;
 
+    private const APPLICATION_CHARACTER_REFRESH_COOLDOWN_SECONDS = 3600;
+
     public function __construct(
         private readonly GroupActivityAuditService $activityAuditService,
         private readonly LodestoneCharacterSearchService $lodestoneCharacterSearchService,
@@ -38,6 +42,7 @@ class GroupActivityApplicationController extends Controller
         private readonly RequestTextInputSanitizer $requestTextInputSanitizer,
         private readonly TextInputSanitizer $textInputSanitizer,
         private readonly ActivityApplicationWithdrawalService $applicationWithdrawalService,
+        private readonly ActivityApplicationCharacterRefreshService $applicationCharacterRefreshService,
     ) {}
 
     public function show(Request $request, Group $group, Activity $activity, ?string $secretKey = null): Response
@@ -304,6 +309,10 @@ class GroupActivityApplicationController extends Controller
             return $application;
         });
 
+        if ($user) {
+            $this->refreshApplicationCharacterForApplicant($application);
+        }
+
         $this->applicationNotificationService->notifySubmitted(
             $application->fresh(['activity.group', 'selectedCharacter', 'user']),
             $user,
@@ -391,6 +400,8 @@ class GroupActivityApplicationController extends Controller
             return $application->id;
         });
 
+        $this->refreshApplicationCharacterForApplicant($application->fresh('selectedCharacter'));
+
         $this->applicationNotificationService->notifyUpdated(
             $application->fresh(['activity.group', 'selectedCharacter', 'user']),
             $user,
@@ -403,6 +414,22 @@ class GroupActivityApplicationController extends Controller
 
         return redirect()
             ->route('groups.activities.application.confirmation', $this->activityAttendeeRouteParameters($group, $activity, $secretKey));
+    }
+
+    private function refreshApplicationCharacterForApplicant(ActivityApplication $application): void
+    {
+        try {
+            $this->applicationCharacterRefreshService->refreshSelectedCharacterIfDue(
+                $application,
+                self::APPLICATION_CHARACTER_REFRESH_COOLDOWN_SECONDS,
+            );
+        } catch (\Throwable $exception) {
+            Log::warning('Unable to refresh Lodestone data during activity application submission.', [
+                'activity_application_id' => $application->id,
+                'selected_character_id' => $application->selected_character_id,
+                'exception' => $exception->getMessage(),
+            ]);
+        }
     }
 
     public function updateGuest(Request $request, Group $group, Activity $activity, string $accessToken, ?string $secretKey = null): RedirectResponse

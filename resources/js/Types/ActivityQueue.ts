@@ -63,6 +63,8 @@ export type QueueApplication = {
 		avatar_url: string | null
 		world: string | null
 		datacenter: string | null
+		lodestone_refreshed_at: string | null
+		lodestone_last_checked_at: string | null
 		occult_level: number | null
 		phantom_mastery: number | null
 	} | null

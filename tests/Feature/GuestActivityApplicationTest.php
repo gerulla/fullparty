@@ -12,6 +12,7 @@ use App\Models\Group;
 use App\Models\PhantomJob;
 use App\Models\User;
 use App\Models\UserActivityApplicationDefault;
+use App\Services\Groups\ActivityApplicationCharacterRefreshService;
 use App\Services\Lodestone\LodestoneCharacterSearchService;
 use App\Support\Input\TextInputSanitizer;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -595,6 +596,45 @@ it('allows authenticated users to reapply after withdrawing a previous applicati
 
     expect(ActivityApplication::query()->where('activity_id', $activity->id)->count())->toBe(2);
     expect(ActivityApplication::query()->where('activity_id', $activity->id)->where('status', ActivityApplication::STATUS_PENDING)->count())->toBe(1);
+});
+
+it('checks a signed-in applicants selected character through the lodestone cooldown refresh path', function () {
+    $activity = createGuestApplicationActivity([
+        'allow_guest_applications' => false,
+    ]);
+    $user = User::factory()->create();
+    $character = Character::factory()->primary()->create([
+        'user_id' => $user->id,
+        'lodestone_refreshed_at' => now()->subHours(2),
+    ]);
+
+    $refreshService = Mockery::mock(ActivityApplicationCharacterRefreshService::class);
+    $refreshService
+        ->shouldReceive('refreshSelectedCharacterIfDue')
+        ->once()
+        ->withArgs(fn (ActivityApplication $application, int $cooldownSeconds): bool => (int) $application->selected_character_id === (int) $character->id
+            && $cooldownSeconds === 3600)
+        ->andReturn([
+            'refreshed' => true,
+            'available_at' => now()->addHour(),
+            'character' => $character,
+            'fflogs_error' => null,
+        ]);
+
+    app()->instance(ActivityApplicationCharacterRefreshService::class, $refreshService);
+
+    $this->actingAs($user)->post(route('groups.activities.application.store', [
+        'group' => $activity->group->slug,
+        'activity' => $activity->id,
+    ]), [
+        'selected_character_id' => $character->id,
+        'answers' => [
+            'experience' => 'Ready to go.',
+        ],
+    ])->assertRedirect(route('groups.activities.application.confirmation', [
+        'group' => $activity->group->slug,
+        'activity' => $activity->id,
+    ]));
 });
 
 it('does not overwrite remembered application defaults when an authenticated user edits an existing application', function () {

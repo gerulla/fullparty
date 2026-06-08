@@ -264,6 +264,11 @@ const handleApplicationDeclined = (applicationId: number) => {
 	}
 };
 
+const handleApplicationRefreshed = (application: QueueApplication) => {
+	upsertApplication(application);
+	selectedApplication.value = application;
+};
+
 const handleDragOver = (event: DragEvent) => {
 	if (!canAcceptRosterDrop.value || !isRosterSlotDrag(event)) {
 		return;
@@ -565,6 +570,7 @@ const visibleApplications = computed(() => {
 			:fflogs-zone-id="fflogsZoneId"
 			:application="selectedApplication"
 			@declined="handleApplicationDeclined"
+			@refreshed="handleApplicationRefreshed"
 		/>
 
 		<MembersNotesModal :notes="memberNotes" />

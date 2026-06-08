@@ -12,6 +12,10 @@ import type { LocalizedText } from "@/Types/Common";
 import type { QueueApplication } from "@/Types/ActivityQueue";
 import { activityTextLimits } from "@/utils/activityTextLimits";
 import { createDateTimeFormatter } from "@/utils/dateTimeFormat";
+import { formatRelativeTime } from "@/utils/formatRelativeTime";
+import { useMinuteTicker } from "@/composables/useMinuteTicker";
+
+const CHARACTER_REFRESH_COOLDOWN_MS = 5 * 60 * 1000;
 
 const props = defineProps<{
 	groupSlug: string
@@ -21,6 +25,7 @@ const props = defineProps<{
 }>();
 const emit = defineEmits<{
 	declined: [applicationId: number]
+	refreshed: [application: QueueApplication]
 }>();
 
 const isOpen = defineModel<boolean>('open', { required: true });
@@ -28,10 +33,12 @@ const canFetchPanelData = ref(false);
 const isDeclineModalOpen = ref(false);
 const declineReason = ref('');
 const isDeclining = ref(false);
+const isRefreshingCharacter = ref(false);
 
 const { t, locale } = useI18n();
 const page = usePage();
 const toast = useToast();
+const nowMs = useMinuteTicker();
 const fallbackLocale = computed(() => String(page.props.locale?.fallback ?? 'en'));
 
 const localizedText = (value: LocalizedText, fallback: string) => (
@@ -171,6 +178,47 @@ const classDisplayItems = computed(() => classAnswer.value?.display_items ?? [])
 const phantomDisplayItems = computed(() => phantomAnswer.value?.display_items ?? []);
 const shouldShowOccultLevel = computed(() => phantomAnswer.value !== null && props.application?.selected_character?.occult_level !== null && props.application?.selected_character?.occult_level !== undefined);
 const shouldShowPhantomMastery = computed(() => phantomAnswer.value !== null && props.application?.selected_character?.phantom_mastery !== null && props.application?.selected_character?.phantom_mastery !== undefined);
+const selectedCharacterLastCheckedAt = computed(() => props.application?.selected_character?.lodestone_last_checked_at ?? null);
+const selectedCharacterRefreshAvailableAtMs = computed(() => {
+	if (!selectedCharacterLastCheckedAt.value) {
+		return null;
+	}
+
+	return new Date(selectedCharacterLastCheckedAt.value).getTime() + CHARACTER_REFRESH_COOLDOWN_MS;
+});
+const selectedCharacterRefreshAvailableAtLabel = computed(() => {
+	if (!selectedCharacterRefreshAvailableAtMs.value) {
+		return '';
+	}
+
+	return formatRelativeTime(
+		new Date(selectedCharacterRefreshAvailableAtMs.value).toISOString(),
+		locale.value,
+		t('notifications.ui.just_now'),
+		'',
+		nowMs.value,
+	);
+});
+const selectedCharacterLastCheckedLabel = computed(() => formatRelativeTime(
+	selectedCharacterLastCheckedAt.value,
+	locale.value,
+	t('notifications.ui.just_now'),
+	t('groups.activities.management.queue.modal.character_not_checked'),
+	nowMs.value,
+));
+const canRefreshSelectedCharacter = computed(() => Boolean(props.application?.selected_character?.id)
+	&& !isRefreshingCharacter.value
+	&& (
+		selectedCharacterRefreshAvailableAtMs.value === null
+		|| selectedCharacterRefreshAvailableAtMs.value <= nowMs.value
+	));
+const selectedCharacterRefreshTitle = computed(() => (
+	canRefreshSelectedCharacter.value
+		? t('groups.activities.management.queue.modal.refresh_character')
+		: t('groups.activities.management.queue.modal.character_refresh_available', {
+			time: selectedCharacterRefreshAvailableAtLabel.value,
+		})
+));
 const userStatsEmptyMessage = computed(() => (
 	props.application?.is_guest
 		? t('groups.activities.management.queue.modal.no_user_stats_guest')
@@ -206,6 +254,54 @@ const closeDeclineModal = () => {
 	}
 
 	isDeclineModalOpen.value = false;
+};
+
+const refreshSelectedCharacter = async () => {
+	if (!props.application?.selected_character?.id || isRefreshingCharacter.value) {
+		return;
+	}
+
+	isRefreshingCharacter.value = true;
+
+	try {
+		const response = await axios.post(route('groups.dashboard.activities.applicant-queue.application-character-refresh', {
+			group: props.groupSlug,
+			activity: props.activityId,
+			application: props.application.id,
+		}));
+		const refreshedApplication = response.data?.application as QueueApplication | undefined;
+
+		if (refreshedApplication) {
+			emit('refreshed', refreshedApplication);
+		}
+
+		toast.add({
+			title: t('groups.activities.management.queue.modal.character_refresh_success_title'),
+			description: t('groups.activities.management.queue.modal.character_refresh_success_description'),
+			color: 'success',
+		});
+	} catch (error) {
+		const response = error && typeof error === 'object' && 'response' in error
+			? (error as { response?: { status?: number, data?: { message?: string } } }).response
+			: null;
+
+		if (response?.status === 429) {
+			toast.add({
+				title: t('groups.activities.management.queue.modal.character_refresh_cooldown_title'),
+				description: response.data?.message || t('groups.activities.management.queue.modal.character_refresh_cooldown'),
+				color: 'warning',
+			});
+			return;
+		}
+
+		toast.add({
+			title: t('groups.activities.management.queue.modal.character_refresh_error_title'),
+			description: response?.data?.message || t('groups.activities.management.queue.modal.character_refresh_failed'),
+			color: 'error',
+		});
+	} finally {
+		isRefreshingCharacter.value = false;
+	}
 };
 
 const declineApplication = async () => {
@@ -356,11 +452,31 @@ watch(isOpen, (open) => {
 								</span>
 							</div>
 
-							<div v-if="shouldShowPhantomMastery" class="flex items-start justify-between gap-4">
+							<div v-if="shouldShowPhantomMastery" class="flex items-start justify-between gap-4 md:col-start-1 md:row-start-4">
 								<span class="text-muted">{{ t('groups.activities.management.queue.modal.phantom_mastery') }}</span>
 								<span class="text-right font-medium text-toned">
 									{{ application.selected_character?.phantom_mastery }}
 								</span>
+							</div>
+
+							<div v-if="shouldShowOccultLevel && application.selected_character" class="flex items-center justify-between gap-4 md:col-start-2 md:row-start-4">
+								<span class="text-muted">{{ t('groups.activities.management.queue.modal.character_last_checked') }}</span>
+								<div class="flex items-center justify-end gap-2 text-right">
+									<span class="font-medium text-toned">
+										{{ selectedCharacterLastCheckedLabel }}
+									</span>
+									<UButton
+										size="xs"
+										color="neutral"
+										variant="ghost"
+										icon="i-lucide-refresh-cw"
+										:loading="isRefreshingCharacter"
+										:disabled="!canRefreshSelectedCharacter"
+										:aria-label="t('groups.activities.management.queue.modal.refresh_character')"
+										:title="selectedCharacterRefreshTitle"
+										@click="refreshSelectedCharacter"
+									/>
+								</div>
 							</div>
 						</div>
 					</div>

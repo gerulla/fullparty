@@ -125,6 +125,8 @@ class ApplicantQueuePayloadBuilder
                 'avatar_url' => $application->selectedCharacter->avatar_url,
                 'world' => $application->selectedCharacter->world,
                 'datacenter' => $application->selectedCharacter->datacenter,
+                'lodestone_refreshed_at' => $application->selectedCharacter->lodestone_refreshed_at?->toIso8601String(),
+                'lodestone_last_checked_at' => ($application->selectedCharacter->lodestone_refreshed_at ?? $application->selectedCharacter->updated_at)?->toIso8601String(),
                 'occult_level' => $application->selectedCharacter->occultProgress?->knowledge_level,
                 'blood_progress' => $application->selectedCharacter->occultProgress?->forkedTowerBloodProgress(),
                 'phantom_mastery' => $application->selectedCharacter->phantomJobs

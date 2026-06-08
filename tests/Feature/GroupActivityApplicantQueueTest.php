@@ -10,6 +10,7 @@ use App\Models\Group;
 use App\Models\GroupMembership;
 use App\Models\PhantomJob;
 use App\Models\User;
+use App\Services\Groups\ActivityApplicationCharacterRefreshService;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 uses(RefreshDatabase::class);
@@ -184,4 +185,106 @@ it('forbids non moderators from loading the applicant queue payload', function (
     ]));
 
     $response->assertForbidden();
+});
+
+it('refreshes an application character for moderators and returns the updated queue item', function () {
+    extract(createApplicantQueueActivity());
+
+    $member = User::factory()->create();
+    $character = Character::factory()->primary()->create([
+        'user_id' => $member->id,
+        'name' => 'Old Applicant',
+        'world' => 'Lich',
+        'datacenter' => 'Light',
+        'lodestone_refreshed_at' => now()->subMinutes(10),
+    ]);
+    $application = createQueueApplication($activity, $characterClass, [
+        'user_id' => $member->id,
+        'selected_character_id' => $character->id,
+        'status' => ActivityApplication::STATUS_PENDING,
+    ]);
+
+    $availableAt = now()->addMinutes(5);
+    $refreshService = Mockery::mock(ActivityApplicationCharacterRefreshService::class);
+    $refreshService
+        ->shouldReceive('refreshSelectedCharacterIfDue')
+        ->once()
+        ->withArgs(fn (ActivityApplication $refreshedApplication, int $cooldownSeconds): bool => $refreshedApplication->is($application)
+            && $cooldownSeconds === 300)
+        ->andReturnUsing(function (ActivityApplication $refreshedApplication) use ($character, $availableAt): array {
+            $character->update([
+                'name' => 'Fresh Applicant',
+                'world' => 'Twintania',
+                'datacenter' => 'Light',
+                'lodestone_refreshed_at' => now(),
+            ]);
+            $refreshedApplication->update([
+                'applicant_character_name' => 'Fresh Applicant',
+                'applicant_world' => 'Twintania',
+                'applicant_datacenter' => 'Light',
+            ]);
+
+            return [
+                'refreshed' => true,
+                'available_at' => $availableAt,
+                'character' => $character->fresh(),
+                'fflogs_error' => null,
+            ];
+        });
+
+    app()->instance(ActivityApplicationCharacterRefreshService::class, $refreshService);
+
+    $response = $this->actingAs($owner)->postJson(route('groups.dashboard.activities.applicant-queue.application-character-refresh', [
+        'group' => $group->slug,
+        'activity' => $activity->id,
+        'application' => $application->id,
+    ]));
+
+    $response
+        ->assertOk()
+        ->assertJsonPath('application.id', $application->id)
+        ->assertJsonPath('application.selected_character.name', 'Fresh Applicant')
+        ->assertJsonPath('application.selected_character.world', 'Twintania')
+        ->assertJsonPath('refresh_available_at', $availableAt->toIso8601String());
+
+    expect($application->fresh()->applicant_character_name)->toBe('Fresh Applicant');
+});
+
+it('prevents moderator application character refreshes during the cooldown window', function () {
+    extract(createApplicantQueueActivity());
+
+    $member = User::factory()->create();
+    $character = Character::factory()->primary()->create([
+        'user_id' => $member->id,
+        'lodestone_refreshed_at' => now(),
+    ]);
+    $application = createQueueApplication($activity, $characterClass, [
+        'user_id' => $member->id,
+        'selected_character_id' => $character->id,
+        'status' => ActivityApplication::STATUS_PENDING,
+    ]);
+
+    $availableAt = now()->addMinutes(4);
+    $refreshService = Mockery::mock(ActivityApplicationCharacterRefreshService::class);
+    $refreshService
+        ->shouldReceive('refreshSelectedCharacterIfDue')
+        ->once()
+        ->withArgs(fn (ActivityApplication $refreshedApplication, int $cooldownSeconds): bool => $refreshedApplication->is($application)
+            && $cooldownSeconds === 300)
+        ->andReturn([
+            'refreshed' => false,
+            'available_at' => $availableAt,
+            'character' => $character,
+            'fflogs_error' => null,
+        ]);
+
+    app()->instance(ActivityApplicationCharacterRefreshService::class, $refreshService);
+
+    $this->actingAs($owner)->postJson(route('groups.dashboard.activities.applicant-queue.application-character-refresh', [
+        'group' => $group->slug,
+        'activity' => $activity->id,
+        'application' => $application->id,
+    ]))
+        ->assertStatus(429)
+        ->assertJsonPath('refresh_available_at', $availableAt->toIso8601String());
 });

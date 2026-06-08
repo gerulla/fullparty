@@ -20,7 +20,7 @@ class Character extends Model
      */
     protected $fillable = [
         'user_id',
-		'is_primary',
+        'is_primary',
         'name',
         'world',
         'datacenter',
@@ -29,7 +29,8 @@ class Character extends Model
         'token',
         'expires_at',
         'verified_at',
-		'add_method',
+        'lodestone_refreshed_at',
+        'add_method',
     ];
 
     /**
@@ -40,6 +41,7 @@ class Character extends Model
     protected $casts = [
         'expires_at' => 'datetime',
         'verified_at' => 'datetime',
+        'lodestone_refreshed_at' => 'datetime',
     ];
 
     /**
@@ -109,7 +111,7 @@ class Character extends Model
      */
     public function isVerified(): bool
     {
-        return !is_null($this->verified_at);
+        return ! is_null($this->verified_at);
     }
 
     /**
@@ -132,7 +134,7 @@ class Character extends Model
             ->with('fieldDefinition')
             ->first();
 
-        if (!$fieldValue) {
+        if (! $fieldValue) {
             return null;
         }
 

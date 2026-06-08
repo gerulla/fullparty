@@ -10,6 +10,7 @@ use App\Models\CharacterClass;
 use App\Models\PhantomJob;
 use App\Services\FFLogs\ForkedTowerBloodProgressFetcher;
 use App\Services\Lodestone\LodestoneScraper;
+use Carbon\CarbonInterface;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 
@@ -30,22 +31,25 @@ class CharacterProfileRefreshService
     public function refresh(Character $character, bool $ignoreCache = true): array
     {
         $data = $this->scraper->scrape($character->lodestone_id, ignoreCache: $ignoreCache);
+        $refreshedAt = now();
         $character->forceFill([
             'name' => $data->name,
             'world' => $data->world,
             'datacenter' => $data->dataCenter,
             'avatar_url' => $data->avatarUrl,
+            'lodestone_refreshed_at' => $refreshedAt,
         ]);
 
         $forkedTowerBloodProgressResult = $this->fetchForkedTowerBloodProgress($character, $ignoreCache);
         $forkedTowerBloodProgress = $forkedTowerBloodProgressResult['progress'];
 
-        DB::transaction(function () use ($character, $data, $forkedTowerBloodProgress): void {
+        DB::transaction(function () use ($character, $data, $forkedTowerBloodProgress, $refreshedAt): void {
             $character->update([
                 'name' => $data->name,
                 'world' => $data->world,
                 'datacenter' => $data->dataCenter,
                 'avatar_url' => $data->avatarUrl,
+                'lodestone_refreshed_at' => $refreshedAt,
             ]);
 
             $this->syncCharacterClassLevels($character, $data->extraData);
@@ -56,6 +60,41 @@ class CharacterProfileRefreshService
         return [
             'fflogs_error' => $forkedTowerBloodProgressResult['error'],
         ];
+    }
+
+    /**
+     * @return array{refreshed: bool, available_at: CarbonInterface|null, fflogs_error: array<string, mixed>|null}
+     *
+     * @throws LodestoneInvalidInputException
+     * @throws LodestoneFetchException
+     * @throws LodestoneParseException
+     */
+    public function refreshIfOlderThan(Character $character, int $cooldownSeconds): array
+    {
+        $availableAt = $this->refreshAvailableAt($character, $cooldownSeconds);
+
+        if ($availableAt && $availableAt->isFuture()) {
+            return [
+                'refreshed' => false,
+                'available_at' => $availableAt,
+                'fflogs_error' => null,
+            ];
+        }
+
+        $refreshResult = $this->refresh($character, ignoreCache: true);
+
+        return [
+            'refreshed' => true,
+            'available_at' => $this->refreshAvailableAt($character->fresh(), $cooldownSeconds),
+            'fflogs_error' => $refreshResult['fflogs_error'],
+        ];
+    }
+
+    public function refreshAvailableAt(Character $character, int $cooldownSeconds): ?CarbonInterface
+    {
+        $lastCheckedAt = $character->lodestone_refreshed_at ?? $character->updated_at;
+
+        return $lastCheckedAt?->copy()->addSeconds($cooldownSeconds);
     }
 
     /**

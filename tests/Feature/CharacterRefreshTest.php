@@ -5,6 +5,7 @@ use App\Models\Character;
 use App\Models\NotificationEvent;
 use App\Models\User;
 use App\Models\UserNotification;
+use App\Services\Characters\CharacterProfileRefreshService;
 use App\Services\FFLogs\ForkedTowerBloodProgressFetcher;
 use App\Services\Lodestone\LodestoneScraper;
 use App\Support\Notifications\NotificationCategory;
@@ -69,7 +70,8 @@ it('refreshes character data even when ff logs progress lookup fails', function 
     expect($character->fresh())
         ->name->toBe('New Name')
         ->world->toBe('Twintania')
-        ->avatar_url->toBe('https://example.com/new-avatar.png');
+        ->avatar_url->toBe('https://example.com/new-avatar.png')
+        ->lodestone_refreshed_at->not->toBeNull();
 
     expect($character->fresh()->occultProgress)->not->toBeNull();
     expect($character->fresh()->occultProgress->knowledge_level)->toBe(7);
@@ -92,4 +94,26 @@ it('refreshes character data even when ff logs progress lookup fails', function 
 
     expect(UserNotification::query()->where('notification_event_id', $event->id)->sole()->user_id)
         ->toBe($user->id);
+});
+
+it('skips profile refreshes while the lodestone cooldown is active', function () {
+    $character = Character::factory()->create([
+        'lodestone_refreshed_at' => now()->subMinutes(30),
+    ]);
+
+    $lodestoneScraper = Mockery::mock(LodestoneScraper::class);
+    $lodestoneScraper->shouldNotReceive('scrape');
+
+    $ffLogsFetcher = Mockery::mock(ForkedTowerBloodProgressFetcher::class);
+    $ffLogsFetcher->shouldNotReceive('fetchForCharacter');
+
+    app()->instance(LodestoneScraper::class, $lodestoneScraper);
+    app()->instance(ForkedTowerBloodProgressFetcher::class, $ffLogsFetcher);
+
+    $result = app(CharacterProfileRefreshService::class)
+        ->refreshIfOlderThan($character, 3600);
+
+    expect($result['refreshed'])->toBeFalse()
+        ->and($result['available_at']?->greaterThan(now()))->toBeTrue()
+        ->and($result['fflogs_error'])->toBeNull();
 });

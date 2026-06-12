@@ -51,6 +51,10 @@
             "min_chars": "Saisissez au moins 2 caractères pour rechercher.",
             "empty": "Aucun run, groupe ou activité correspondant."
         },
+        "system_banner": {
+            "hide": "Masquer",
+            "show": "Afficher"
+        },
         "menu": {
             "profile": "Profil",
             "settings": "Paramètres",

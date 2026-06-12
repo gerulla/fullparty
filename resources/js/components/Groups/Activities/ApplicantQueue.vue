@@ -38,6 +38,7 @@ const queueFilters = ref<{
 	milestones: [],
 });
 const searchTerm = ref('');
+const sortMode = ref<'oldest' | 'newest' | 'most_group_runs' | 'least_group_runs'>('oldest');
 const areFiltersOpen = ref(false);
 const milestoneFilter = ref<string[]>([]);
 const slotFieldFilters = ref<Record<string, string[]>>({});
@@ -60,7 +61,7 @@ const localizedText = (value: LocalizedText, fallback: string) => (
 const slotFieldFilterItems = computed(() => queueFilters.value.slot_fields.map((field) => ({
 	...field,
 	labelText: localizedText(field.label, field.key),
-	items: field.options.map((option) => ({
+	items: (field.filter_options?.length ? field.filter_options : field.options).map((option) => ({
 		label: localizedText(option.label, option.key),
 		value: option.key,
 	})),
@@ -70,6 +71,24 @@ const milestoneFilterItems = computed(() => queueFilters.value.milestones.map((m
 	label: localizedText(milestone.label, milestone.key),
 	value: milestone.key,
 })));
+const sortItems = computed(() => [
+	{
+		label: t('groups.activities.management.queue.sort.oldest'),
+		value: 'oldest',
+	},
+	{
+		label: t('groups.activities.management.queue.sort.newest'),
+		value: 'newest',
+	},
+	{
+		label: t('groups.activities.management.queue.sort.most_group_runs'),
+		value: 'most_group_runs',
+	},
+	{
+		label: t('groups.activities.management.queue.sort.least_group_runs'),
+		value: 'least_group_runs',
+	},
+]);
 
 const normalizedMinimumKnowledgeLevel = computed(() => {
 	const parsed = Number.parseInt(minimumKnowledgeLevel.value, 10);
@@ -107,6 +126,38 @@ const normalizeAnswerValues = (rawValue: unknown): string[] => {
 
 	return [String(rawValue)];
 };
+
+const submittedAtTimestamp = (application: QueueApplication): number => {
+	if (!application.submitted_at) {
+		return Number.MAX_SAFE_INTEGER;
+	}
+
+	const timestamp = new Date(application.submitted_at).getTime();
+
+	return Number.isNaN(timestamp) ? Number.MAX_SAFE_INTEGER : timestamp;
+};
+
+const groupRunCount = (application: QueueApplication): number => application.user_stats?.group_run_count ?? 0;
+
+const sortApplications = (items: QueueApplication[]): QueueApplication[] => [...items].sort((left, right) => {
+	if (sortMode.value === 'newest') {
+		return submittedAtTimestamp(right) - submittedAtTimestamp(left);
+	}
+
+	if (sortMode.value === 'most_group_runs') {
+		const groupRunDiff = groupRunCount(right) - groupRunCount(left);
+
+		return groupRunDiff !== 0 ? groupRunDiff : submittedAtTimestamp(left) - submittedAtTimestamp(right);
+	}
+
+	if (sortMode.value === 'least_group_runs') {
+		const groupRunDiff = groupRunCount(left) - groupRunCount(right);
+
+		return groupRunDiff !== 0 ? groupRunDiff : submittedAtTimestamp(left) - submittedAtTimestamp(right);
+	}
+
+	return submittedAtTimestamp(left) - submittedAtTimestamp(right);
+});
 
 const updateSlotFieldFilter = (fieldKey: string, value: string[] | undefined) => {
 	slotFieldFilters.value = {
@@ -376,7 +427,7 @@ const visibleApplications = computed(() => {
 		return applicantName.includes(normalizedSearchTerm) || characterName.includes(normalizedSearchTerm);
 	});
 
-	return searchedApplications.filter((application) => {
+	const filteredApplications = searchedApplications.filter((application) => {
 		const matchesSlotFields = slotFieldFilterItems.value.every((field) => {
 			const selectedValues = slotFieldFilters.value[field.key] ?? [];
 
@@ -411,6 +462,8 @@ const visibleApplications = computed(() => {
 
 		return true;
 	});
+
+	return sortApplications(filteredApplications);
 });
 </script>
 
@@ -451,6 +504,17 @@ const visibleApplications = computed(() => {
 					icon="i-lucide-search"
 					class="flex-1"
 					:placeholder="t('groups.activities.management.queue.search_placeholder')"
+				/>
+
+				<USelectMenu
+					v-model="sortMode"
+					size="lg"
+					class="w-48 shrink-0"
+					:items="sortItems"
+					value-key="value"
+					:placeholder="t('groups.activities.management.queue.sort.label')"
+					:search-input="false"
+					:content="{ class: 'min-w-64' }"
 				/>
 
 				<UButton

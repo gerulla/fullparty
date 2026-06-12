@@ -345,8 +345,10 @@
             "mark_raid_leader_action": "Marquer comme raid leader",
             "unmark_raid_leader_action": "Retirer le raid leader",
             "undo_check_in": "Annuler le pointage",
+            "unmark_late_action": "Retirer le retard",
             "host_badge": "Hôte",
             "raid_leader_badge": "Raid leader",
+            "self_badge": "Votre personnage",
             "roles": {
                 "tank": "Tank",
                 "healer": "Soigneur",
@@ -453,7 +455,14 @@
             },
             "guest_badge": "Invité",
             "unknown_applicant": "Candidat inconnu",
-            "no_submission_time": "Heure d'envoi non disponible"
+            "no_submission_time": "Heure d'envoi non disponible",
+            "sort": {
+                "label": "Trier par",
+                "oldest": "Candidatures les plus anciennes",
+                "newest": "Candidatures les plus récentes",
+                "most_group_runs": "Le plus de runs avec ce groupe",
+                "least_group_runs": "Le moins de runs avec ce groupe"
+            }
         },
         "controls": {
             "view": "Vue",

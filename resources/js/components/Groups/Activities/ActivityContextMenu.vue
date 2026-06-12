@@ -38,7 +38,7 @@ const canOpenManagement = computed(() => props.canManageActivities);
 const canEditRun = computed(() => props.canManageActivities && !isArchivedActivityStatus(props.activity.status));
 const canCopyApplicationLink = computed(() => (
 	props.activity.needs_application
-	&& canAcceptActivityApplications(props.activity.status)
+	&& canAcceptActivityApplications(props.activity.status, props.activity.starts_at)
 ));
 
 const overviewRouteParameters = computed(() => ({

@@ -51,6 +51,10 @@
       "min_chars": "Type at least 2 characters to search.",
       "empty": "No matching runs, groups, or activities."
     },
+    "system_banner": {
+      "hide": "Hide",
+      "show": "Show"
+    },
     "menu": {
       "profile": "Profile",
       "settings": "Settings",

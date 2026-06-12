@@ -30,6 +30,8 @@ export type QueueApplicationUserStatItem = {
 }
 
 export type QueueApplicationUserStats = {
+	group_run_count: number
+	overall_run_count: number
 	class: {
 		group: QueueApplicationUserStatItem[]
 		overall: QueueApplicationUserStatItem[]
@@ -92,6 +94,17 @@ export type QueueFilterField = {
 	type: string
 	source: string | null
 	options: Array<{
+		key: string
+		label: LocalizedText
+		meta?: {
+			icon_url?: string | null
+			flaticon_url?: string | null
+			transparent_icon_url?: string | null
+			role?: string | null
+			shorthand?: string | null
+		} | null
+	}>
+	filter_options?: Array<{
 		key: string
 		label: LocalizedText
 		meta?: {

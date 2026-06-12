@@ -1,5 +1,5 @@
 export const ARCHIVED_ACTIVITY_STATUSES = ['complete', 'cancelled'] as const;
-export const APPLICATION_OPEN_ACTIVITY_STATUSES = ['draft', 'scheduled'] as const;
+export const APPLICATION_OPEN_ACTIVITY_STATUSES = ['draft', 'scheduled', 'assigned', 'upcoming'] as const;
 export const SCHEDULABLE_ACTIVITY_STATUSES = ['draft'] as const;
 export const ASSIGNABLE_ACTIVITY_STATUSES = ['scheduled'] as const;
 export const COMPLETABLE_ACTIVITY_STATUSES = ['assigned', 'upcoming', 'ongoing'] as const;
@@ -10,9 +10,16 @@ export const isArchivedActivityStatus = (status: string | null | undefined): boo
 	ARCHIVED_ACTIVITY_STATUSES.includes((status ?? '') as typeof ARCHIVED_ACTIVITY_STATUSES[number])
 );
 
-export const canAcceptActivityApplications = (status: string | null | undefined): boolean => (
-	APPLICATION_OPEN_ACTIVITY_STATUSES.includes((status ?? '') as typeof APPLICATION_OPEN_ACTIVITY_STATUSES[number])
-);
+export const canAcceptActivityApplications = (
+	status: string | null | undefined,
+	startsAt: string | null | undefined = null,
+): boolean => {
+	if (!APPLICATION_OPEN_ACTIVITY_STATUSES.includes((status ?? '') as typeof APPLICATION_OPEN_ACTIVITY_STATUSES[number])) {
+		return false;
+	}
+
+	return !startsAt || new Date(startsAt).getTime() > Date.now();
+};
 
 export const canPublishActivityRoster = (status: string | null | undefined): boolean => (
 	ASSIGNABLE_ACTIVITY_STATUSES.includes((status ?? '') as typeof ASSIGNABLE_ACTIVITY_STATUSES[number])

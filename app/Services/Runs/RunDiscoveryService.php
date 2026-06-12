@@ -1001,7 +1001,7 @@ final class RunDiscoveryService
         }
 
         return match ($applicationStatus) {
-            'applications_open' => $activity->needs_application && Activity::isAcceptingApplicationsStatus($activity->status),
+            'applications_open' => $activity->needs_application && $activity->acceptsApplications(),
             'direct_join' => ! $activity->needs_application,
             default => true,
         };

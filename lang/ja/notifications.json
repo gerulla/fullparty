@@ -198,6 +198,10 @@
         "member_banned": {
             "title": "Removed from group",
             "body": "You were banned from {group}."
+        },
+        "member_upcoming_assignments_cleared": {
+            "title": "今後のロスター枠を解除しました",
+            "body": "{user} がアカウントを削除したため、{group} の今後のロスター枠から外されました: {runs}。"
         }
     },
     "system": {

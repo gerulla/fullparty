@@ -49,6 +49,8 @@ class Activity extends Model
     public const APPLICATION_OPEN_STATUSES = [
         self::STATUS_DRAFT,
         self::STATUS_SCHEDULED,
+        self::STATUS_ASSIGNED,
+        self::STATUS_UPCOMING,
     ];
 
     public const ASSIGNABLE_STATUSES = [
@@ -255,7 +257,11 @@ class Activity extends Model
 
     public function acceptsApplications(): bool
     {
-        return self::isAcceptingApplicationsStatus($this->status);
+        if (! self::isAcceptingApplicationsStatus($this->status)) {
+            return false;
+        }
+
+        return $this->starts_at === null || $this->starts_at->isFuture();
     }
 
     public static function isAcceptingApplicationsStatus(?string $status): bool

@@ -129,7 +129,7 @@ const seoDescription = computed(() => t("meta.seo.activities.application_descrip
 	title: activityTitle.value,
 	group: props.group.name,
 }));
-const acceptsApplications = computed(() => canAcceptActivityApplications(props.activity.status));
+const acceptsApplications = computed(() => canAcceptActivityApplications(props.activity.status, props.activity.starts_at));
 const dateLabel = computed(() => {
 	if (!props.activity.starts_at) {
 		return t('groups.activities.cards.no_time');

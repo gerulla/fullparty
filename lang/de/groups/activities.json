@@ -345,6 +345,7 @@
             "mark_raid_leader_action": "Als Raid-Leitung markieren",
             "unmark_raid_leader_action": "Raid-Leitungs-Markierung entfernen",
             "undo_check_in": "Undo Checkin",
+            "unmark_late_action": "Verspätung entfernen",
             "host_badge": "Host",
             "raid_leader_badge": "Raid-Leitung",
             "self_badge": "Dein Charakter",
@@ -454,7 +455,14 @@
             },
             "guest_badge": "Guest",
             "unknown_applicant": "Unknown applicant",
-            "no_submission_time": "Submission time not available"
+            "no_submission_time": "Submission time not available",
+            "sort": {
+                "label": "Sortieren nach",
+                "oldest": "Älteste Bewerbungen zuerst",
+                "newest": "Neueste Bewerbungen zuerst",
+                "most_group_runs": "Meiste Runs mit dieser Gruppe",
+                "least_group_runs": "Wenigste Runs mit dieser Gruppe"
+            }
         },
         "controls": {
             "view": "View",

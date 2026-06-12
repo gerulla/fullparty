@@ -1,13 +1,17 @@
 <?php
 
+use App\Models\Activity;
 use App\Models\ActivityApplication;
+use App\Models\ActivitySlotAssignment;
 use App\Models\AuditLog;
 use App\Models\Character;
 use App\Models\DiscordUserIntegration;
 use App\Models\Group;
 use App\Models\GroupMembership;
+use App\Models\NotificationEvent;
 use App\Models\SocialAccount;
 use App\Models\User;
+use App\Models\UserNotification;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\DB;
 
@@ -86,7 +90,8 @@ it('anonymizes the account while preserving history-bearing records', function (
         ->and($user->discord_notifications)->toBeFalse();
 
     expect($character->user_id)->toBe($user->id)
-        ->and($application->user_id)->toBe($user->id);
+        ->and($application->user_id)->toBe($user->id)
+        ->and($application->status)->toBe(ActivityApplication::STATUS_WITHDRAWN);
 
     expect($group->memberships()->where('user_id', $user->id)->exists())->toBeFalse()
         ->and(SocialAccount::query()->where('user_id', $user->id)->exists())->toBeFalse()
@@ -98,6 +103,131 @@ it('anonymizes the account while preserving history-bearing records', function (
 
     expect($auditLog->actor_user_id)->toBe($user->id)
         ->and($auditLog->scope_id)->toBe($user->id);
+});
+
+it('clears upcoming assigned slots and notifies group moderators when deleting an account', function () {
+    $owner = User::factory()->create(['name' => 'Group Owner']);
+    $admin = User::factory()->create();
+    $moderator = User::factory()->create();
+    $member = User::factory()->create();
+    $user = User::factory()->create(['name' => 'Retiring Raider']);
+
+    $group = Group::factory()->create([
+        'owner_id' => $owner->id,
+        'name' => 'Storm Keepers',
+    ]);
+
+    foreach ([
+        $admin->id => GroupMembership::ROLE_ADMIN,
+        $moderator->id => GroupMembership::ROLE_MODERATOR,
+        $member->id => GroupMembership::ROLE_MEMBER,
+        $user->id => GroupMembership::ROLE_MEMBER,
+    ] as $userId => $role) {
+        $group->memberships()->create([
+            'user_id' => $userId,
+            'role' => $role,
+            'joined_at' => now(),
+        ]);
+    }
+
+    $character = Character::factory()->primary()->create([
+        'user_id' => $user->id,
+        'name' => 'Retiring Hero',
+    ]);
+
+    $upcomingActivity = Activity::factory()->create([
+        'group_id' => $group->id,
+        'organized_by_user_id' => $owner->id,
+        'status' => Activity::STATUS_SCHEDULED,
+        'starts_at' => now()->addDay(),
+        'title' => 'Future Prog Night',
+    ]);
+
+    $historicalActivity = Activity::factory()->complete()->create([
+        'group_id' => $group->id,
+        'organized_by_user_id' => $owner->id,
+        'starts_at' => now()->subDays(2),
+        'title' => 'Past Clear Night',
+    ]);
+
+    $upcomingApplication = ActivityApplication::factory()->approved($owner)->create([
+        'activity_id' => $upcomingActivity->id,
+        'user_id' => $user->id,
+        'selected_character_id' => $character->id,
+    ]);
+
+    $historicalApplication = ActivityApplication::factory()->approved($owner)->create([
+        'activity_id' => $historicalActivity->id,
+        'user_id' => $user->id,
+        'selected_character_id' => $character->id,
+    ]);
+
+    $upcomingSlot = $upcomingActivity->slots()->firstOrFail();
+    $upcomingSlot->update([
+        'assigned_character_id' => $character->id,
+        'assigned_by_user_id' => $owner->id,
+    ]);
+    $upcomingFieldValue = $upcomingSlot->fieldValues()->create([
+        'field_key' => 'delete_test_raid_position',
+        'field_label' => ['en' => 'Raid Position'],
+        'field_type' => 'select',
+        'source' => 'static_options',
+        'value' => ['key' => 'mt', 'label' => ['en' => 'Main Tank']],
+    ]);
+
+    ActivitySlotAssignment::query()->create([
+        'activity_id' => $upcomingActivity->id,
+        'group_id' => $group->id,
+        'activity_slot_id' => $upcomingSlot->id,
+        'character_id' => $character->id,
+        'application_id' => $upcomingApplication->id,
+        'field_values_snapshot' => [],
+        'attendance_status' => ActivitySlotAssignment::STATUS_ASSIGNED,
+        'assigned_at' => now()->subHour(),
+        'assigned_by_user_id' => $owner->id,
+    ]);
+
+    $historicalSlot = $historicalActivity->slots()->firstOrFail();
+    $historicalSlot->update([
+        'assigned_character_id' => $character->id,
+        'assigned_by_user_id' => $owner->id,
+    ]);
+
+    $this->actingAs($user)
+        ->delete(route('settings.account.destroy'))
+        ->assertRedirect('/');
+
+    expect($upcomingApplication->fresh()->status)->toBe(ActivityApplication::STATUS_WITHDRAWN)
+        ->and($historicalApplication->fresh()->status)->toBe(ActivityApplication::STATUS_APPROVED)
+        ->and($upcomingSlot->fresh()->assigned_character_id)->toBeNull()
+        ->and($upcomingSlot->fresh()->assigned_by_user_id)->toBeNull()
+        ->and($upcomingFieldValue->fresh()->value)->toBeNull()
+        ->and($historicalSlot->fresh()->assigned_character_id)->toBe($character->id);
+
+    expect(ActivitySlotAssignment::query()
+        ->where('activity_id', $upcomingActivity->id)
+        ->where('character_id', $character->id)
+        ->whereNull('ended_at')
+        ->exists())->toBeFalse();
+
+    $event = NotificationEvent::query()
+        ->where('type', 'groups.member_upcoming_assignments_cleared')
+        ->sole();
+
+    expect($event->message_params['user'])->toBe('Retiring Raider')
+        ->and($event->message_params['group'])->toBe('Storm Keepers')
+        ->and($event->message_params['runs'])->toBe('Future Prog Night')
+        ->and($event->payload['runs'][0]['title'])->toBe('Future Prog Night')
+        ->and($event->action_url)->toBe(route('groups.dashboard.activities.index', $group));
+
+    $recipientIds = UserNotification::query()
+        ->where('notification_event_id', $event->id)
+        ->pluck('user_id')
+        ->sort()
+        ->values()
+        ->all();
+
+    expect($recipientIds)->toBe(collect([$owner->id, $admin->id, $moderator->id])->sort()->values()->all());
 });
 
 it('blocks account deletion while the user still owns groups', function () {

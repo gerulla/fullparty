@@ -584,6 +584,54 @@ it('shows runs the viewer can apply to, self-assign to, or already has an applic
         ->assertJsonPath('items.2.can_apply', false);
 });
 
+it('lets users apply to published future runs in discovery', function () {
+    $viewer = User::factory()->create();
+    Character::factory()->primary()->create([
+        'user_id' => $viewer->id,
+    ]);
+
+    $activityType = createRunDiscoveryActivityType([
+        'slug' => 'published-applications',
+        'draft_name' => ['en' => 'Published Applications'],
+    ]);
+
+    $group = Group::factory()
+        ->open()
+        ->create([
+            'datacenter' => 'Light',
+            'group_type' => Group::TYPE_COMMUNITY,
+            'preferred_languages' => ['en'],
+        ]);
+
+    $activity = Activity::factory()->create([
+        'group_id' => $group->id,
+        'activity_type_id' => $activityType->id,
+        'activity_type_version_id' => $activityType->current_published_version_id,
+        'status' => Activity::STATUS_ASSIGNED,
+        'title' => 'Published Future Run',
+        'starts_at' => now()->addWeek()->startOfWeek()->addDays(2)->setTime(19, 0),
+        'datacenter' => 'Light',
+        'is_public' => true,
+        'needs_application' => true,
+    ]);
+
+    $this->actingAs($viewer)
+        ->getJson(route('dashboard.runs.discover', [
+            'timezone' => 'Europe/London',
+            'date_range' => 'next_week',
+            'group_type' => Group::TYPE_COMMUNITY,
+            'application_status' => 'applications_open',
+        ]))
+        ->assertOk()
+        ->assertJsonPath('ids', [$activity->id])
+        ->assertJsonPath('items.0.can_apply', true)
+        ->assertJsonPath('items.0.links.apply', route('groups.activities.application', [
+            'locale' => app()->getLocale(),
+            'group' => $group->slug,
+            'activity' => $activity->id,
+        ]));
+});
+
 it('does not return full application runs in discovery search', function () {
     $viewer = User::factory()->create();
     $otherUser = User::factory()->create();

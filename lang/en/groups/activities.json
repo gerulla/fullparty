@@ -345,6 +345,7 @@
             "mark_raid_leader_action": "Mark Raid Leader",
             "unmark_raid_leader_action": "Unmark Raid Leader",
             "undo_check_in": "Undo Checkin",
+            "unmark_late_action": "Unmark Late",
             "host_badge": "Host",
             "raid_leader_badge": "Raid Leader",
             "self_badge": "Your Character",
@@ -454,7 +455,14 @@
                 },
                 "guest_badge": "Guest",
                 "unknown_applicant": "Unknown applicant",
-                "no_submission_time": "Submission time not available"
+                "no_submission_time": "Submission time not available",
+                "sort": {
+                    "label": "Sort by",
+                    "oldest": "Oldest applications first",
+                    "newest": "Newest applications first",
+                    "most_group_runs": "Most runs with this group",
+                    "least_group_runs": "Least runs with this group"
+                }
             },
         "controls": {
             "view": "View",

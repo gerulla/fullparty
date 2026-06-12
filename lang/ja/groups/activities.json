@@ -345,6 +345,7 @@
             "mark_raid_leader_action": "レイドリーダーに指定",
             "unmark_raid_leader_action": "レイドリーダー指定を解除",
             "undo_check_in": "Undo Checkin",
+            "unmark_late_action": "遅刻を解除",
             "host_badge": "ホスト",
             "raid_leader_badge": "レイドリーダー",
             "self_badge": "自分のキャラクター",
@@ -454,7 +455,14 @@
             },
             "guest_badge": "Guest",
             "unknown_applicant": "Unknown applicant",
-            "no_submission_time": "Submission time not available"
+            "no_submission_time": "Submission time not available",
+            "sort": {
+                "label": "並び替え",
+                "oldest": "古い応募から",
+                "newest": "新しい応募から",
+                "most_group_runs": "このグループでの参加が多い順",
+                "least_group_runs": "このグループでの参加が少ない順"
+            }
         },
         "controls": {
             "view": "View",

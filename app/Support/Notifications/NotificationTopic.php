@@ -139,6 +139,7 @@ class NotificationTopic
         'groups.member_joined' => self::GROUP_MEMBERSHIP,
         'groups.member_left' => self::GROUP_MEMBERSHIP,
         'groups.member_banned' => self::GROUP_MEMBERSHIP,
+        'groups.member_upcoming_assignments_cleared' => self::GROUP_MEMBERSHIP,
         'groups.member_promoted' => self::GROUP_ROLES,
         'groups.member_demoted' => self::GROUP_ROLES,
         'groups.ownership_transferred_from_you' => self::GROUP_ROLES,

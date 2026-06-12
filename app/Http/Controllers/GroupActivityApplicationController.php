@@ -14,6 +14,7 @@ use App\Models\PhantomJob;
 use App\Models\UserActivityApplicationDefault;
 use App\Services\Groups\ActivityApplicationCharacterRefreshService;
 use App\Services\Groups\ActivityApplicationWithdrawalService;
+use App\Services\Groups\ActivitySlotBench;
 use App\Services\Groups\GroupActivityAuditService;
 use App\Services\Lodestone\LodestoneCharacterSearchService;
 use App\Services\Notifications\ApplicationNotificationService;
@@ -992,14 +993,27 @@ class GroupActivityApplicationController extends Controller
     private function applicationIsEditable(Activity $activity, ActivityApplication $application): bool
     {
         return $activity->acceptsApplications()
-            && $application->status === ActivityApplication::STATUS_PENDING
-            && ! $this->applicationWithdrawalService->applicationIsRostered($application);
+            && in_array($application->status, ActivityApplication::ACTIVE_STATUSES, true)
+            && ! $this->applicationIsAssignedToRoster($activity, $application);
+    }
+
+    private function applicationIsAssignedToRoster(Activity $activity, ActivityApplication $application): bool
+    {
+        if (! $application->selected_character_id) {
+            return false;
+        }
+
+        return $activity->slots()
+            ->where('assigned_character_id', $application->selected_character_id)
+            ->where('group_key', '!=', ActivitySlotBench::GROUP_KEY)
+            ->exists();
     }
 
     private function ensureSelectedCharacterIsNotAlreadyAssigned(Activity $activity, int $characterId): void
     {
         $assignedSlotExists = $activity->slots()
             ->where('assigned_character_id', $characterId)
+            ->where('group_key', '!=', ActivitySlotBench::GROUP_KEY)
             ->exists();
 
         if (! $assignedSlotExists) {

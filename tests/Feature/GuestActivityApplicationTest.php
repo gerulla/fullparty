@@ -4,6 +4,7 @@ use App\DTOs\LodestoneCharacterSearchResult;
 use App\Models\Activity;
 use App\Models\ActivityApplication;
 use App\Models\ActivityApplicationAnswer;
+use App\Models\ActivitySlot;
 use App\Models\ActivityType;
 use App\Models\ActivityTypeVersion;
 use App\Models\Character;
@@ -13,6 +14,7 @@ use App\Models\PhantomJob;
 use App\Models\User;
 use App\Models\UserActivityApplicationDefault;
 use App\Services\Groups\ActivityApplicationCharacterRefreshService;
+use App\Services\Groups\ActivitySlotBench;
 use App\Services\Lodestone\LodestoneCharacterSearchService;
 use App\Support\Input\TextInputSanitizer;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -105,6 +107,67 @@ it('allows guests to submit applications when enabled', function () {
 
     expect($application->answers)->toHaveCount(1);
     expect($application->answers->first()->question_key)->toBe('experience');
+});
+
+it('allows authenticated users to submit applications after the roster is published but before the run starts', function () {
+    $activity = createGuestApplicationActivity([
+        'status' => Activity::STATUS_ASSIGNED,
+        'starts_at' => now()->addHours(2),
+        'allow_guest_applications' => false,
+    ]);
+    $user = User::factory()->create();
+    $character = Character::factory()->primary()->create([
+        'user_id' => $user->id,
+    ]);
+
+    $response = $this->actingAs($user)
+        ->post(route('groups.activities.application.store', [
+            'group' => $activity->group->slug,
+            'activity' => $activity->id,
+        ]), [
+            'selected_character_id' => $character->id,
+            'answers' => [
+                'experience' => 'Late applicant, still available.',
+            ],
+        ]);
+
+    $application = ActivityApplication::query()->sole();
+
+    $response->assertRedirect(route('groups.activities.application.confirmation', [
+        'group' => $activity->group->slug,
+        'activity' => $activity->id,
+    ]));
+
+    expect($application->user_id)->toBe($user->id)
+        ->and($application->selected_character_id)->toBe($character->id)
+        ->and($application->status)->toBe(ActivityApplication::STATUS_PENDING);
+});
+
+it('does not allow new applications after the run start time has passed', function () {
+    $activity = createGuestApplicationActivity([
+        'status' => Activity::STATUS_ASSIGNED,
+        'starts_at' => now()->subMinute(),
+    ]);
+
+    $response = $this->post(route('groups.activities.application.store', [
+        'group' => $activity->group->slug,
+        'activity' => $activity->id,
+    ]), [
+        'guest_applicant' => [
+            'lodestone_id' => '47431834',
+            'name' => 'Warrior Light',
+            'world' => 'Twintania',
+            'datacenter' => 'Light',
+            'avatar_url' => 'https://example.com/avatar.png',
+        ],
+        'answers' => [
+            'experience' => 'Too late.',
+        ],
+    ]);
+
+    $response->assertForbidden();
+
+    expect(ActivityApplication::query()->count())->toBe(0);
 });
 
 it('sanitizes guest applicant free-text fields, notes, and textarea answers', function () {
@@ -962,7 +1025,7 @@ it('allows guests to update their application from the access token route', func
         ->and($application->answers->sole()->value)->toBe('Reached clear.');
 });
 
-it('does not allow guests to edit approved applications even before the roster is published', function () {
+it('allows guests to edit approved applications when they are not assigned to the main roster', function () {
     $activity = createGuestApplicationActivity([
         'status' => Activity::STATUS_SCHEDULED,
     ]);
@@ -977,11 +1040,7 @@ it('does not allow guests to edit approved applications even before the roster i
         'accessToken' => $application->guest_access_token,
     ]));
 
-    $editResponse->assertRedirect(route('groups.activities.application.status', [
-        'group' => $activity->group->slug,
-        'activity' => $activity->id,
-        'accessToken' => $application->guest_access_token,
-    ]));
+    $editResponse->assertOk();
 
     $statusResponse = $this->get(route('groups.activities.application.status', [
         'group' => $activity->group->slug,
@@ -993,7 +1052,7 @@ it('does not allow guests to edit approved applications even before the roster i
         ->assertOk()
         ->assertInertia(fn (Assert $page) => $page
             ->component('Groups/Activities/ApplicationConfirmation')
-            ->where('confirmation.can_edit', false)
+            ->where('confirmation.can_edit', true)
             ->where('confirmation.can_withdraw', true)
         );
 
@@ -1014,8 +1073,13 @@ it('does not allow guests to edit approved applications even before the roster i
         ],
     ]);
 
-    $updateResponse->assertForbidden();
-    expect($application->fresh()->status)->toBe(ActivityApplication::STATUS_APPROVED);
+    $updateResponse->assertRedirect(route('groups.activities.application.status', [
+        'group' => $activity->group->slug,
+        'activity' => $activity->id,
+        'accessToken' => $application->guest_access_token,
+    ]));
+
+    expect($application->fresh()->status)->toBe(ActivityApplication::STATUS_PENDING);
 });
 
 it('does not allow guests to submit applications for verified characters', function () {
@@ -1049,7 +1113,7 @@ it('does not allow guests to submit applications for verified characters', funct
     expect(ActivityApplication::query()->count())->toBe(0);
 });
 
-it('does not allow guests to edit applications once the roster is published', function () {
+it('allows guests to edit pending applications after the roster is published when they are not assigned to the main roster', function () {
     $activity = createGuestApplicationActivity([
         'status' => Activity::STATUS_ASSIGNED,
     ]);
@@ -1057,6 +1121,56 @@ it('does not allow guests to edit applications once the roster is published', fu
     $application = ActivityApplication::factory()->guest()->create([
         'activity_id' => $activity->id,
         'status' => ActivityApplication::STATUS_PENDING,
+    ]);
+
+    $editResponse = $this->get(route('groups.activities.application.edit-guest', [
+        'group' => $activity->group->slug,
+        'activity' => $activity->id,
+        'accessToken' => $application->guest_access_token,
+    ]));
+
+    $editResponse->assertOk();
+
+    $updateResponse = $this->put(route('groups.activities.application.update-guest', [
+        'group' => $activity->group->slug,
+        'activity' => $activity->id,
+        'accessToken' => $application->guest_access_token,
+    ]), [
+        'guest_applicant' => [
+            'lodestone_id' => $application->applicant_lodestone_id,
+            'name' => $application->applicant_character_name,
+            'world' => $application->applicant_world,
+            'datacenter' => $application->applicant_datacenter,
+            'avatar_url' => $application->applicant_avatar_url,
+        ],
+        'answers' => [
+            'experience' => 'Updated after publish.',
+        ],
+    ]);
+
+    $updateResponse->assertRedirect(route('groups.activities.application.status', [
+        'group' => $activity->group->slug,
+        'activity' => $activity->id,
+        'accessToken' => $application->guest_access_token,
+    ]));
+
+    expect($application->fresh()->answers()->where('question_key', 'experience')->value('value'))->toBe('Updated after publish.');
+});
+
+it('does not allow guests to edit applications assigned to the main roster', function () {
+    $activity = createGuestApplicationActivity([
+        'status' => Activity::STATUS_ASSIGNED,
+    ]);
+
+    $application = ActivityApplication::factory()->guest()->create([
+        'activity_id' => $activity->id,
+        'status' => ActivityApplication::STATUS_PENDING,
+    ]);
+    $application->load('selectedCharacter');
+
+    $activity->slots()->firstOrFail()->update([
+        'assigned_character_id' => $application->selectedCharacter->id,
+        'assigned_by_user_id' => $activity->group->owner_id,
     ]);
 
     $editResponse = $this->get(route('groups.activities.application.edit-guest', [
@@ -1091,7 +1205,64 @@ it('does not allow guests to edit applications once the roster is published', fu
     $updateResponse->assertForbidden();
 });
 
-it('does not allow authenticated users to update applications once the roster is published', function () {
+it('allows guests to edit applications assigned to the bench', function () {
+    $activity = createGuestApplicationActivity([
+        'status' => Activity::STATUS_ASSIGNED,
+    ]);
+
+    $application = ActivityApplication::factory()->guest()->create([
+        'activity_id' => $activity->id,
+        'status' => ActivityApplication::STATUS_ON_BENCH,
+    ]);
+    $application->load('selectedCharacter');
+
+    ActivitySlot::factory()->create([
+        'activity_id' => $activity->id,
+        'group_key' => ActivitySlotBench::GROUP_KEY,
+        'group_label' => ['en' => 'Bench'],
+        'slot_key' => 'bench-slot-1',
+        'slot_label' => ['en' => 'Bench 1'],
+        'position_in_group' => 1,
+        'sort_order' => 999,
+        'assigned_character_id' => $application->selectedCharacter->id,
+        'assigned_by_user_id' => $activity->group->owner_id,
+    ]);
+
+    $editResponse = $this->get(route('groups.activities.application.edit-guest', [
+        'group' => $activity->group->slug,
+        'activity' => $activity->id,
+        'accessToken' => $application->guest_access_token,
+    ]));
+
+    $editResponse->assertOk();
+
+    $updateResponse = $this->put(route('groups.activities.application.update-guest', [
+        'group' => $activity->group->slug,
+        'activity' => $activity->id,
+        'accessToken' => $application->guest_access_token,
+    ]), [
+        'guest_applicant' => [
+            'lodestone_id' => $application->applicant_lodestone_id,
+            'name' => $application->applicant_character_name,
+            'world' => $application->applicant_world,
+            'datacenter' => $application->applicant_datacenter,
+            'avatar_url' => $application->applicant_avatar_url,
+        ],
+        'answers' => [
+            'experience' => 'Bench edit still allowed.',
+        ],
+    ]);
+
+    $updateResponse->assertRedirect(route('groups.activities.application.status', [
+        'group' => $activity->group->slug,
+        'activity' => $activity->id,
+        'accessToken' => $application->guest_access_token,
+    ]));
+
+    expect($application->fresh()->answers()->where('question_key', 'experience')->value('value'))->toBe('Bench edit still allowed.');
+});
+
+it('allows authenticated users to update applications after the roster is published when they are not assigned to the main roster', function () {
     $activity = createGuestApplicationActivity([
         'status' => Activity::STATUS_ASSIGNED,
         'allow_guest_applications' => false,
@@ -1120,14 +1291,19 @@ it('does not allow authenticated users to update applications once the roster is
     ]), [
         'selected_character_id' => $character->id,
         'answers' => [
-            'experience' => 'Should not save.',
+            'experience' => 'Updated after publish.',
         ],
     ]);
 
-    $response->assertForbidden();
+    $response->assertRedirect(route('groups.activities.application.confirmation', [
+        'group' => $activity->group->slug,
+        'activity' => $activity->id,
+    ]));
+
+    expect($application->fresh()->answers()->where('question_key', 'experience')->value('value'))->toBe('Updated after publish.');
 });
 
-it('does not allow authenticated users to edit approved applications even before the roster is published', function () {
+it('allows authenticated users to edit approved applications when they are not assigned to the main roster', function () {
     $activity = createGuestApplicationActivity([
         'status' => Activity::STATUS_SCHEDULED,
         'allow_guest_applications' => false,
@@ -1158,9 +1334,56 @@ it('does not allow authenticated users to edit approved applications even before
         ->assertOk()
         ->assertInertia(fn (Assert $page) => $page
             ->component('Groups/Activities/Application')
-            ->where('permissions.can_edit_application', false)
+            ->where('permissions.can_edit_application', true)
             ->where('permissions.can_withdraw_application', true)
         );
+
+    $response = $this->put(route('groups.activities.application.update', [
+        'group' => $activity->group->slug,
+        'activity' => $activity->id,
+    ]), [
+        'selected_character_id' => $character->id,
+        'answers' => [
+            'experience' => 'Approved application updated.',
+        ],
+    ]);
+
+    $response->assertRedirect(route('groups.activities.application.confirmation', [
+        'group' => $activity->group->slug,
+        'activity' => $activity->id,
+    ]));
+
+    expect($application->fresh()->status)->toBe(ActivityApplication::STATUS_PENDING)
+        ->and($application->fresh()->answers()->where('question_key', 'experience')->value('value'))->toBe('Approved application updated.');
+});
+
+it('does not allow authenticated users to update applications assigned to the main roster', function () {
+    $activity = createGuestApplicationActivity([
+        'status' => Activity::STATUS_ASSIGNED,
+        'allow_guest_applications' => false,
+    ]);
+    $user = User::factory()->create();
+    $character = Character::factory()->primary()->create([
+        'user_id' => $user->id,
+    ]);
+
+    ActivityApplication::factory()->create([
+        'activity_id' => $activity->id,
+        'user_id' => $user->id,
+        'selected_character_id' => $character->id,
+        'applicant_lodestone_id' => $character->lodestone_id,
+        'applicant_character_name' => $character->name,
+        'applicant_world' => $character->world,
+        'applicant_datacenter' => $character->datacenter,
+        'status' => ActivityApplication::STATUS_PENDING,
+    ]);
+
+    $activity->slots()->firstOrFail()->update([
+        'assigned_character_id' => $character->id,
+        'assigned_by_user_id' => $activity->group->owner_id,
+    ]);
+
+    $this->actingAs($user);
 
     $response = $this->put(route('groups.activities.application.update', [
         'group' => $activity->group->slug,
@@ -1173,7 +1396,59 @@ it('does not allow authenticated users to edit approved applications even before
     ]);
 
     $response->assertForbidden();
-    expect($application->fresh()->status)->toBe(ActivityApplication::STATUS_APPROVED);
+});
+
+it('allows authenticated users to update applications assigned to the bench', function () {
+    $activity = createGuestApplicationActivity([
+        'status' => Activity::STATUS_ASSIGNED,
+        'allow_guest_applications' => false,
+    ]);
+    $user = User::factory()->create();
+    $character = Character::factory()->primary()->create([
+        'user_id' => $user->id,
+    ]);
+
+    $application = ActivityApplication::factory()->create([
+        'activity_id' => $activity->id,
+        'user_id' => $user->id,
+        'selected_character_id' => $character->id,
+        'applicant_lodestone_id' => $character->lodestone_id,
+        'applicant_character_name' => $character->name,
+        'applicant_world' => $character->world,
+        'applicant_datacenter' => $character->datacenter,
+        'status' => ActivityApplication::STATUS_ON_BENCH,
+    ]);
+
+    ActivitySlot::factory()->create([
+        'activity_id' => $activity->id,
+        'group_key' => ActivitySlotBench::GROUP_KEY,
+        'group_label' => ['en' => 'Bench'],
+        'slot_key' => 'bench-slot-1',
+        'slot_label' => ['en' => 'Bench 1'],
+        'position_in_group' => 1,
+        'sort_order' => 999,
+        'assigned_character_id' => $character->id,
+        'assigned_by_user_id' => $activity->group->owner_id,
+    ]);
+
+    $this->actingAs($user);
+
+    $response = $this->put(route('groups.activities.application.update', [
+        'group' => $activity->group->slug,
+        'activity' => $activity->id,
+    ]), [
+        'selected_character_id' => $character->id,
+        'answers' => [
+            'experience' => 'Bench edit still allowed.',
+        ],
+    ]);
+
+    $response->assertRedirect(route('groups.activities.application.confirmation', [
+        'group' => $activity->group->slug,
+        'activity' => $activity->id,
+    ]));
+
+    expect($application->fresh()->answers()->where('question_key', 'experience')->value('value'))->toBe('Bench edit still allowed.');
 });
 
 it('does not allow authenticated users to apply with a character already assigned to the run', function () {

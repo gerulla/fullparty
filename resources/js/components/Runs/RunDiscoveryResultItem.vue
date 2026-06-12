@@ -132,7 +132,7 @@ const goToApply = () => {
 		return;
 	}
 
-	router.get(props.item.links.apply);
+	router.get(props.item.links.apply, {}, { preserveScroll: false });
 };
 
 const goToGroup = () => {

@@ -198,6 +198,10 @@
         "member_banned": {
             "title": "Retiré du groupe",
             "body": "Vous avez été banni de {group}."
+        },
+        "member_upcoming_assignments_cleared": {
+            "title": "Places de roster à venir libérées",
+            "body": "{user} a supprimé son compte et a été retiré des places de roster à venir dans {group} : {runs}."
         }
     },
     "system": {

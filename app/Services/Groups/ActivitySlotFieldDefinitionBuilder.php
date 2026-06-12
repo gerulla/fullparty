@@ -15,22 +15,32 @@ class ActivitySlotFieldDefinitionBuilder
     public function build(?ActivityTypeVersion $activityTypeVersion): array
     {
         return collect($activityTypeVersion?->slot_schema ?? [])
-            ->map(fn (array $field) => [
-                'key' => (string) ($field['key'] ?? ''),
-                'application_key' => $this->resolveApplicationKey($field, $activityTypeVersion),
-                'label' => is_array($field['label'] ?? null)
-                    ? $field['label']
-                    : ['en' => (string) ($field['key'] ?? '')],
-                'type' => (string) ($field['type'] ?? 'text'),
-                'source' => $field['source'] ?? null,
-                'options' => $this->resolveOptions($field),
-            ])
+            ->map(function (array $field) use ($activityTypeVersion) {
+                $applicationQuestion = $this->resolveApplicationQuestion($field, $activityTypeVersion);
+
+                return [
+                    'key' => (string) ($field['key'] ?? ''),
+                    'application_key' => is_array($applicationQuestion) ? (string) ($applicationQuestion['key'] ?? '') : '',
+                    'label' => is_array($field['label'] ?? null)
+                        ? $field['label']
+                        : ['en' => (string) ($field['key'] ?? '')],
+                    'type' => (string) ($field['type'] ?? 'text'),
+                    'source' => $field['source'] ?? null,
+                    'options' => $this->resolveOptions($field),
+                    'filter_options' => is_array($applicationQuestion)
+                        ? $this->resolveOptions($applicationQuestion)
+                        : [],
+                ];
+            })
             ->filter(fn (array $field) => $field['key'] !== '')
             ->values()
             ->all();
     }
 
-    private function resolveApplicationKey(array $slotField, ?ActivityTypeVersion $activityTypeVersion): string
+    /**
+     * @return array<string, mixed>|null
+     */
+    private function resolveApplicationQuestion(array $slotField, ?ActivityTypeVersion $activityTypeVersion): ?array
     {
         $slotKey = (string) ($slotField['key'] ?? '');
         $slotSource = $slotField['source'] ?? null;
@@ -39,14 +49,14 @@ class ActivitySlotFieldDefinitionBuilder
             ->values();
 
         if ($slotKey === '' || $applicationSchema->isEmpty()) {
-            return '';
+            return null;
         }
 
         $exactMatch = $applicationSchema
             ->first(fn (array $question) => (string) ($question['key'] ?? '') === $slotKey);
 
         if (is_array($exactMatch)) {
-            return (string) $exactMatch['key'];
+            return $exactMatch;
         }
 
         $sourceAwareMatch = $applicationSchema->first(function (array $question) use ($slotKey, $slotSource) {
@@ -58,15 +68,13 @@ class ActivitySlotFieldDefinitionBuilder
         });
 
         if (is_array($sourceAwareMatch)) {
-            return (string) $sourceAwareMatch['key'];
+            return $sourceAwareMatch;
         }
 
         $fallbackMatch = $applicationSchema
             ->first(fn (array $question) => ($question['source'] ?? null) === $slotSource);
 
-        return is_array($fallbackMatch)
-            ? (string) ($fallbackMatch['key'] ?? '')
-            : '';
+        return is_array($fallbackMatch) ? $fallbackMatch : null;
     }
 
     /**

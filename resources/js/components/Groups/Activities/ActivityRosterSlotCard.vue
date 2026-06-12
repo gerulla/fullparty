@@ -266,9 +266,11 @@ const emptySlotContextMenuItems = computed<ContextMenuItem[][]>(() => (
 const contextMenuItems = computed<ContextMenuItem[][]>(() => [
 	[
 		{
-			label: ['checked_in', 'late'].includes(props.slot.attendance_status ?? '')
-				? t('groups.activities.management.roster.undo_check_in')
-				: t('groups.activities.management.roster.check_in_action'),
+			label: props.slot.attendance_status === 'late'
+				? t('groups.activities.management.roster.unmark_late_action')
+				: props.slot.attendance_status === 'checked_in'
+					? t('groups.activities.management.roster.undo_check_in')
+					: t('groups.activities.management.roster.check_in_action'),
 			icon: 'i-lucide-user-check',
 			disabled: props.slot.is_bench || !props.canCheckIn || props.isSwapPending,
 			onSelect: () => emit('checkInSlot', props.slot.id),

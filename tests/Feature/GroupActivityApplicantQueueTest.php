@@ -187,6 +187,72 @@ it('forbids non moderators from loading the applicant queue payload', function (
     $response->assertForbidden();
 });
 
+it('includes application-only any options in queue filters without making them slot options', function () {
+    extract(createApplicantQueueActivity());
+
+    $version = ActivityTypeVersion::query()->findOrFail($activity->activity_type_version_id);
+    $slotRaidPositionOptions = [
+        ['key' => 'mt', 'label' => ['en' => 'Main Tank']],
+        ['key' => 'ot', 'label' => ['en' => 'Off Tank']],
+    ];
+    $applicationRaidPositionOptions = [
+        ...$slotRaidPositionOptions,
+        ['key' => 'any', 'label' => ['en' => 'Put Me Anywhere Coach']],
+    ];
+
+    $version->update([
+        'slot_schema' => [
+            ...$version->slot_schema,
+            [
+                'key' => 'raid_position',
+                'label' => ['en' => 'Raid Position'],
+                'type' => 'single_select',
+                'source' => 'static_options',
+                'options' => $slotRaidPositionOptions,
+            ],
+        ],
+        'application_schema' => [
+            ...$version->application_schema,
+            [
+                'key' => 'preferred_raid_positions',
+                'label' => ['en' => 'Preferred Raid Positions'],
+                'type' => 'multi_select',
+                'source' => 'static_options',
+                'options' => $applicationRaidPositionOptions,
+            ],
+        ],
+    ]);
+
+    $anyApplication = createQueueApplication($activity, $characterClass, [
+        'status' => ActivityApplication::STATUS_PENDING,
+    ]);
+    $anyApplication->answers()->updateOrCreate(
+        ['question_key' => 'preferred_raid_positions'],
+        [
+            'question_label' => ['en' => 'Preferred Raid Positions'],
+            'question_type' => 'multi_select',
+            'source' => 'static_options',
+            'value' => ['any'],
+        ],
+    );
+
+    $this->actingAs($owner);
+
+    $response = $this->getJson(route('groups.dashboard.activities.applicant-queue', [
+        'group' => $group->slug,
+        'activity' => $activity->id,
+    ]));
+
+    $response->assertOk();
+
+    $raidPositionFilter = collect($response->json('queue_filters.slot_fields'))
+        ->firstWhere('key', 'raid_position');
+
+    expect($raidPositionFilter)->not->toBeNull()
+        ->and(collect($raidPositionFilter['options'])->pluck('key')->all())->toBe(['mt', 'ot'])
+        ->and(collect($raidPositionFilter['filter_options'])->pluck('key')->all())->toBe(['mt', 'ot', 'any']);
+});
+
 it('refreshes an application character for moderators and returns the updated queue item', function () {
     extract(createApplicantQueueActivity());
 

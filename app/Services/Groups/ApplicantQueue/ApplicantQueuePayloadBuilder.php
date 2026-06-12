@@ -219,6 +219,8 @@ class ApplicantQueuePayloadBuilder
             : collect();
 
         return [
+            'group_run_count' => $groupSlots->pluck('activity_id')->unique()->count(),
+            'overall_run_count' => $allSlots->pluck('activity_id')->unique()->count(),
             'class' => [
                 'group' => $this->topClassStats($groupSlots),
                 'overall' => $this->topClassStats($allSlots),

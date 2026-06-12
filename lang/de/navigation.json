@@ -51,6 +51,10 @@
             "min_chars": "Gib mindestens 2 Zeichen ein, um zu suchen.",
             "empty": "Keine passenden Runs, Gruppen oder Aktivitäten gefunden."
         },
+        "system_banner": {
+            "hide": "Ausblenden",
+            "show": "Anzeigen"
+        },
         "menu": {
             "profile": "Profil",
             "settings": "Einstellungen",

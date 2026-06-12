@@ -180,7 +180,7 @@ class GroupDashboardController extends Controller
                     'completed_count' => (int) $statusCounts->get(Activity::STATUS_COMPLETE, 0),
                     'cancelled_count' => (int) $statusCounts->get(Activity::STATUS_CANCELLED, 0),
                     'open_application_count' => $activities
-                        ->filter(fn (Activity $activity) => $activity->acceptsApplications())
+                        ->filter(fn (Activity $activity) => $activity->needs_application && $activity->acceptsApplications())
                         ->count(),
                     'guest_friendly_count' => $activities
                         ->where('allow_guest_applications', true)

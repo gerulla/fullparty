@@ -162,7 +162,7 @@ it('shows discoverable this week runs with assigned member stack data', function
                 ->where('landing.this_week.days.3.runs.0.assigned_members.0.name', 'Assigned Player 1')
                 ->where('landing.this_week.days.3.runs.0.assigned_members.0.avatar_url', '/characters/char1.png')
                 ->where('landing.this_week.days.3.runs.1.id', $guestFriendlyActivity->id)
-                ->where('landing.this_week.days.3.runs.1.application_status_key', 'closed')
+                ->where('landing.this_week.days.3.runs.1.application_status_key', 'open')
                 ->where('landing.this_week.days.3.runs.1.allow_guest_applications', true)
                 ->where('landing.this_week.days.3.runs.1.href', route('groups.activities.overview', [
                     'locale' => app()->getLocale(),

@@ -23,13 +23,13 @@ class GroupActivitySlotAssignmentContextController extends Controller
             abort(404);
         }
 
-        if (!$slot->assigned_character_id) {
+        if (! $slot->assigned_character_id) {
             abort(404);
         }
 
         /** @var ActivityApplication|null $application */
         $application = $activity->applications()
-            ->with(['answers', 'selectedCharacter.occultProgress', 'selectedCharacter.phantomJobs', 'user'])
+            ->with(['answers', 'selectedCharacter.occultProgress', 'selectedCharacter.classes', 'selectedCharacter.phantomJobs', 'user'])
             ->where('selected_character_id', $slot->assigned_character_id)
             ->whereIn('status', [
                 ActivityApplication::STATUS_APPROVED,
@@ -40,7 +40,7 @@ class GroupActivitySlotAssignmentContextController extends Controller
             ->latest('submitted_at')
             ->first();
 
-        if (!$application) {
+        if (! $application) {
             abort(404);
         }
 

@@ -297,15 +297,36 @@ class GroupDashboardController extends Controller
 
         return $visibleActivities
             ->groupBy(function (Activity $activity) {
-                if ($activity->activity_type_version_id !== null) {
-                    return 'version:'.$activity->activity_type_version_id;
+                $activityTypeId = $activity->activity_type_id
+                    ?? $activity->activityTypeVersion?->activity_type_id;
+
+                if ($activityTypeId !== null) {
+                    return 'type:'.$activityTypeId;
                 }
 
                 return 'name:'.$this->resolveDashboardActivityDisplayName($activity);
             })
             ->map(function (Collection $runs, string $key) use ($now) {
                 /** @var Activity $representativeRun */
-                $representativeRun = $runs->first();
+                $representativeRun = $runs
+                    ->sort(function (Activity $left, Activity $right) {
+                        $versionComparison = ((int) ($right->activityTypeVersion?->version ?? 0))
+                            <=> ((int) ($left->activityTypeVersion?->version ?? 0));
+
+                        if ($versionComparison !== 0) {
+                            return $versionComparison;
+                        }
+
+                        $startsAtComparison = ($right->starts_at?->getTimestamp() ?? 0)
+                            <=> ($left->starts_at?->getTimestamp() ?? 0);
+
+                        if ($startsAtComparison !== 0) {
+                            return $startsAtComparison;
+                        }
+
+                        return $right->id <=> $left->id;
+                    })
+                    ->first();
 
                 return [
                     'key' => $key,

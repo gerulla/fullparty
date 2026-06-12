@@ -26,7 +26,7 @@ defineProps<{
 <template>
 	<footer
 		class="shrink-0 border-t border-default/70 px-3 pt-4 sm:px-4 xl:px-8"
-		:class="hasBottomNavigation ? 'pb-24 xl:pb-4' : 'pb-4'"
+		:class="hasBottomNavigation ? 'pb-24 lg:pb-4' : 'pb-4'"
 	>
 		<div class="flex flex-col gap-3 text-sm text-muted md:flex-row md:items-center md:justify-between">
 			<nav class="flex flex-wrap items-center gap-x-5 gap-y-2">

@@ -3,13 +3,22 @@
 namespace App\Services\Groups;
 
 use App\Http\Controllers\Concerns\InteractsWithActivitySlotFieldDisplay;
+use App\Models\Activity;
 use App\Models\ActivitySlot;
 use App\Models\ActivitySlotAssignment;
+use App\Models\ActivitySlotFieldValue;
+use App\Models\ActivityTypeVersion;
 use App\Services\Groups\ApplicantQueue\ApplicationAnswerPresenter;
+use Illuminate\Support\Collection;
 
 class ActivitySlotSerializer
 {
     use InteractsWithActivitySlotFieldDisplay;
+
+    /**
+     * @var array<int, array<int, array<string, mixed>>>
+     */
+    private array $slotSchemaByActivityId = [];
 
     public function __construct(
         private readonly ActivitySlotBench $slotBench,
@@ -67,7 +76,7 @@ class ActivitySlotSerializer
                 'datacenter' => $slot->assignedCharacter->datacenter,
             ] : null,
             'application_field_groups' => $this->serializeApplicationFieldGroups($slot, $attendanceAssignment),
-            'field_values' => $slot->fieldValues->map(fn ($fieldValue) => [
+            'field_values' => $this->orderedFieldValues($slot)->map(fn ($fieldValue) => [
                 'id' => $fieldValue->id,
                 'field_key' => $fieldValue->field_key,
                 'field_label' => $fieldValue->field_label,
@@ -78,6 +87,87 @@ class ActivitySlotSerializer
                 'display_meta' => $this->resolveSlotFieldDisplayMeta($fieldValue),
             ])->values(),
         ];
+    }
+
+    /**
+     * @return Collection<int, ActivitySlotFieldValue>
+     */
+    private function orderedFieldValues(ActivitySlot $slot): Collection
+    {
+        $schemaOrder = collect($this->slotSchemaForSlot($slot))
+            ->values()
+            ->mapWithKeys(fn (array $field, int $index): array => [
+                (string) ($field['key'] ?? '') => $index,
+            ])
+            ->filter(fn (int $index, string $key): bool => $key !== '')
+            ->all();
+
+        return $slot->fieldValues
+            ->sort(function (ActivitySlotFieldValue $first, ActivitySlotFieldValue $second) use ($schemaOrder): int {
+                return [
+                    $this->fieldOrder($first, $schemaOrder),
+                    (int) $first->id,
+                ] <=> [
+                    $this->fieldOrder($second, $schemaOrder),
+                    (int) $second->id,
+                ];
+            })
+            ->values();
+    }
+
+    /**
+     * @param  array<string, int>  $schemaOrder
+     */
+    private function fieldOrder(ActivitySlotFieldValue $fieldValue, array $schemaOrder): int
+    {
+        return $schemaOrder[$fieldValue->field_key] ?? $this->fallbackFieldOrder($fieldValue);
+    }
+
+    /**
+     * @return array<int, array<string, mixed>>
+     */
+    private function slotSchemaForSlot(ActivitySlot $slot): array
+    {
+        $activityId = (int) $slot->activity_id;
+
+        if (array_key_exists($activityId, $this->slotSchemaByActivityId)) {
+            return $this->slotSchemaByActivityId[$activityId];
+        }
+
+        $activityTypeVersion = null;
+
+        if ($slot->relationLoaded('activity') && $slot->activity instanceof Activity) {
+            $activityTypeVersion = $slot->activity->relationLoaded('activityTypeVersion')
+                ? $slot->activity->activityTypeVersion
+                : null;
+
+            if (! $activityTypeVersion instanceof ActivityTypeVersion && $slot->activity->activity_type_version_id) {
+                $activityTypeVersion = ActivityTypeVersion::query()->find($slot->activity->activity_type_version_id);
+            }
+        }
+
+        if (! $activityTypeVersion instanceof ActivityTypeVersion) {
+            $activityTypeVersionId = Activity::query()
+                ->whereKey($activityId)
+                ->value('activity_type_version_id');
+
+            $activityTypeVersion = $activityTypeVersionId
+                ? ActivityTypeVersion::query()->find($activityTypeVersionId)
+                : null;
+        }
+
+        return $this->slotSchemaByActivityId[$activityId] = is_array($activityTypeVersion?->slot_schema)
+            ? $activityTypeVersion->slot_schema
+            : [];
+    }
+
+    private function fallbackFieldOrder(ActivitySlotFieldValue $fieldValue): int
+    {
+        return match ($fieldValue->source) {
+            'character_classes' => 10,
+            'phantom_jobs' => 20,
+            default => 100,
+        };
     }
 
     /**

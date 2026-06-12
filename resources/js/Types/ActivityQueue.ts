@@ -69,6 +69,8 @@ export type QueueApplication = {
 		lodestone_last_checked_at: string | null
 		occult_level: number | null
 		phantom_mastery: number | null
+		preferred_character_class_ids: string[]
+		preferred_phantom_job_ids: string[]
 	} | null
 	status: string
 	notes: string | null

@@ -56,6 +56,12 @@ const relativeStartsAtLabel = computed(() => formatRelativeTime(
 	t("groups.activities.cards.no_relative_time"),
 ));
 
+const targetProgPointLabel = computed(() => (
+	props.activity.target_prog_point_key
+		? localizedValue(props.activity.target_prog_point_label, locale.value, fallbackLocale.value) || props.activity.target_prog_point_key
+		: null
+));
+
 const imageUrl = computed(() => props.activity.banner_image_url || props.activity.small_image_url || null);
 
 const goToView = () => {
@@ -124,9 +130,15 @@ const goToApply = () => {
 				>
 					{{ activitySubtitle }}
 				</p>
-				<p class=" text-sm text-white/68 drop-shadow-[0_2px_10px_rgba(0,0,0,0.42)]">
-					{{ relativeStartsAtLabel }}
-				</p>
+				<div class="flex flex-wrap items-center gap-2 text-sm text-white/68 drop-shadow-[0_2px_10px_rgba(0,0,0,0.42)]">
+					<span>{{ relativeStartsAtLabel }}</span>
+					<UBadge
+						v-if="targetProgPointLabel"
+						:label="targetProgPointLabel"
+						color="neutral"
+						variant="soft"
+					/>
+				</div>
 
 				<div class="flex flex-wrap gap-2">
 					<UBadge

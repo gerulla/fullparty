@@ -27,6 +27,12 @@ const fallbackLocale = computed(() => String(page.props.locale?.fallback ?? 'en'
 const selections = ref<Record<string, string | string[]>>({});
 const ANY_OPTION_KEY = 'any';
 
+type CompatibleOption = {
+	label: string
+	value: string
+	isFavorite: boolean
+}
+
 const isOpen = computed({
 	get: () => props.open,
 	set: (value: boolean) => emit('update:open', value),
@@ -54,7 +60,7 @@ const targetFieldDefinitions = computed(() => {
 });
 
 const compatibleOptionsByField = computed(() => {
-	const map: Record<string, Array<{ label: string, value: string }>> = {};
+	const map: Record<string, CompatibleOption[]> = {};
 
 	for (const field of targetFieldDefinitions.value) {
 		const answer = props.application?.answers.find((entry) => entry.question_key === field.application_key);
@@ -63,6 +69,14 @@ const compatibleOptionsByField = computed(() => {
 			: answer?.raw_value !== null && answer?.raw_value !== undefined && answer?.raw_value !== ''
 				? [String(answer.raw_value)]
 				: [];
+		const submittedValueSet = new Set(rawValues);
+		const preferredOptionKeys = new Set(
+			field.source === 'character_classes'
+				? props.application?.selected_character?.preferred_character_class_ids ?? []
+				: field.source === 'phantom_jobs'
+					? props.application?.selected_character?.preferred_phantom_job_ids ?? []
+					: [],
+		);
 		const selectedAnyOption = rawValues.includes(ANY_OPTION_KEY);
 		const compatibleOptions = selectedAnyOption
 			? field.options.filter((option) => option.key !== ANY_OPTION_KEY)
@@ -72,6 +86,7 @@ const compatibleOptionsByField = computed(() => {
 			.map((option) => ({
 				label: localizedText(option.label, option.key),
 				value: option.key,
+				isFavorite: submittedValueSet.has(option.key) && preferredOptionKeys.has(option.key),
 			}));
 	}
 
@@ -100,7 +115,7 @@ const canSubmit = computed(() => {
 
 const normalizeCurrentSlotValue = (
 	currentSlotValue: unknown,
-	compatibleOptions: Array<{ label: string, value: string }>,
+	compatibleOptions: CompatibleOption[],
 ): string | string[] => {
 	if (Array.isArray(currentSlotValue)) {
 		return currentSlotValue
@@ -282,7 +297,18 @@ const submit = () => {
 							value-key="value"
 							:placeholder="t('groups.activities.management.queue.filter_any')"
 							@update:model-value="(value) => updateFieldSelection(field.key, value)"
-						/>
+						>
+							<template #item-label="{ item }">
+								<div class="flex min-w-0 items-center gap-2">
+									<span class="truncate">{{ (item as CompatibleOption).label }}</span>
+									<UIcon
+										v-if="(item as CompatibleOption).isFavorite"
+										name="mdi:heart"
+										class="size-4 shrink-0 text-red-500"
+									/>
+								</div>
+							</template>
+						</USelectMenu>
 					</UFormField>
 				</div>
 			</div>

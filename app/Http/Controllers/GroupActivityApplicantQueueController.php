@@ -28,6 +28,7 @@ class GroupActivityApplicantQueueController extends Controller
                 ->with([
                     'user',
                     'selectedCharacter.occultProgress',
+                    'selectedCharacter.classes',
                     'selectedCharacter.phantomJobs',
                     'answers',
                 ]),
@@ -52,6 +53,7 @@ class GroupActivityApplicantQueueController extends Controller
             'activity.group',
             'answers',
             'selectedCharacter.occultProgress',
+            'selectedCharacter.classes',
             'selectedCharacter.phantomJobs',
             'user',
         ]);
@@ -113,6 +115,7 @@ class GroupActivityApplicantQueueController extends Controller
             'activity.group',
             'answers',
             'selectedCharacter.occultProgress',
+            'selectedCharacter.classes',
             'selectedCharacter.phantomJobs',
             'user',
         ]);

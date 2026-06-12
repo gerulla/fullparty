@@ -167,6 +167,61 @@ it('returns only pending applications in the applicant queue payload and include
     expect($guestQueueItem['applicant_character']['is_claimed'])->toBeFalse();
 });
 
+it('includes selected character preferred class and phantom job ids in applicant queue payloads', function () {
+    extract(createApplicantQueueActivity());
+
+    $member = User::factory()->create();
+    $otherClass = CharacterClass::create([
+        'name' => 'Paladin',
+        'shorthand' => 'PLD',
+        'role' => 'tank',
+    ]);
+    $otherPhantomJob = PhantomJob::create([
+        'name' => 'Phantom Bard',
+        'max_level' => 20,
+    ]);
+    $character = Character::factory()->primary()->create([
+        'user_id' => $member->id,
+    ]);
+    $character->classes()->attach($characterClass->id, [
+        'level' => 100,
+        'is_preferred' => true,
+    ]);
+    $character->classes()->attach($otherClass->id, [
+        'level' => 100,
+        'is_preferred' => false,
+    ]);
+    $character->phantomJobs()->attach($phantomJob->id, [
+        'current_level' => 20,
+        'is_preferred' => true,
+    ]);
+    $character->phantomJobs()->attach($otherPhantomJob->id, [
+        'current_level' => 20,
+        'is_preferred' => false,
+    ]);
+
+    $application = ActivityApplication::factory()->create([
+        'activity_id' => $activity->id,
+        'user_id' => $member->id,
+        'selected_character_id' => $character->id,
+        'status' => ActivityApplication::STATUS_PENDING,
+    ]);
+
+    $response = $this->actingAs($owner)->getJson(route('groups.dashboard.activities.applicant-queue', [
+        'group' => $group->slug,
+        'activity' => $activity->id,
+    ]));
+
+    $response->assertOk();
+
+    $queueItem = collect($response->json('applications'))
+        ->firstWhere('id', $application->id);
+
+    expect($queueItem)->not->toBeNull()
+        ->and($queueItem['selected_character']['preferred_character_class_ids'])->toBe([(string) $characterClass->id])
+        ->and($queueItem['selected_character']['preferred_phantom_job_ids'])->toBe([(string) $phantomJob->id]);
+});
+
 it('forbids non moderators from loading the applicant queue payload', function () {
     extract(createApplicantQueueActivity());
 

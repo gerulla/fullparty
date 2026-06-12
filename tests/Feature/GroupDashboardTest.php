@@ -359,6 +359,57 @@ it('renders the community dashboard page for static groups', function () {
         );
 });
 
+it('groups dashboard content by activity type instead of published version', function () {
+    $owner = User::factory()->create();
+    $group = Group::factory()->open()->create([
+        'owner_id' => $owner->id,
+        'slug' => 'dashvers',
+    ]);
+    $activityType = ActivityType::factory()->create([
+        'slug' => 'forked-tower',
+        'draft_name' => ['en' => 'Forked Tower'],
+    ]);
+    $firstVersion = ActivityTypeVersion::factory()->for($activityType)->create([
+        'version' => 1,
+        'name' => ['en' => 'Forked Tower V1'],
+        'small_image_url' => '/storage/activities/forked-tower-v1.webp',
+    ]);
+    $secondVersion = ActivityTypeVersion::factory()->for($activityType)->create([
+        'version' => 2,
+        'name' => ['en' => 'Forked Tower V2'],
+        'small_image_url' => '/storage/activities/forked-tower-v2.webp',
+    ]);
+
+    $activityType->update(['current_published_version_id' => $secondVersion->id]);
+
+    Activity::factory()->complete()->create([
+        'group_id' => $group->id,
+        'activity_type_id' => $activityType->id,
+        'activity_type_version_id' => $firstVersion->id,
+        'starts_at' => now()->subWeek(),
+    ]);
+    Activity::factory()->create([
+        'group_id' => $group->id,
+        'activity_type_id' => $activityType->id,
+        'activity_type_version_id' => $secondVersion->id,
+        'status' => Activity::STATUS_SCHEDULED,
+        'starts_at' => now()->addDay(),
+    ]);
+
+    $this->actingAs($owner)
+        ->get(route('groups.dashboard', $group))
+        ->assertOk()
+        ->assertInertia(fn (Assert $page) => $page
+            ->has('group.content_items', 1)
+            ->where('group.content_items.0.key', 'type:'.$activityType->id)
+            ->where('group.content_items.0.activity_name', 'Forked Tower V2')
+            ->where('group.content_items.0.activity_image_url', '/storage/activities/forked-tower-v2.webp')
+            ->where('group.content_items.0.total_runs', 2)
+            ->where('group.content_items.0.completed_runs', 1)
+            ->where('group.content_items.0.active_runs', 1)
+        );
+});
+
 it('renders the group statistics page when no participants have been rostered', function () {
     Cache::flush();
 

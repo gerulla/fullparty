@@ -347,6 +347,7 @@
             "undo_check_in": "Annuler le pointage",
             "host_badge": "Hôte",
             "raid_leader_badge": "Raid leader",
+            "self_badge": "Votre personnage",
             "roles": {
                 "tank": "Tank",
                 "healer": "Soigneur",

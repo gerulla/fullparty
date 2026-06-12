@@ -12,6 +12,15 @@ import type { QueueApplication } from "@/Types/ActivityQueue";
 import type { ActivitySlot, ActivitySlotCompositionHintInput } from "@/Types/ActivityRoster";
 import { emptyCompositionSlotToneClass } from "@/utils/activityCompositionHints";
 
+type SlotMarker = {
+	key: string
+	label: string
+	icon: string
+	wrapperClass: string
+	iconClass: string
+	rotationClass: string
+}
+
 const props = defineProps<{
 	slot: ActivitySlot
 	draggedSlotId?: number | null
@@ -60,6 +69,21 @@ const localizedText = (value: LocalizedText, fallback: string) => (
 
 const slotLabel = computed(() => localizedText(props.slot.slot_label, props.slot.slot_key));
 const assignedCharacter = computed(() => props.slot.assigned_character);
+const viewerUserId = computed<number | null>(() => {
+	const userId = page.props.auth?.user?.id;
+
+	return typeof userId === 'number' ? userId : null;
+});
+const isViewerAssignedCharacter = computed(() => (
+	assignedCharacter.value !== null
+	&& viewerUserId.value !== null
+	&& assignedCharacter.value.user_id === viewerUserId.value
+));
+const isLate = computed(() => props.slot.attendance_status === 'late');
+const isCheckedIn = computed(() => (
+	props.slot.attendance_status === 'checked_in'
+	|| props.slot.checked_in_at !== null
+));
 const classField = computed(() => props.slot.field_values.find((field) => field.source === 'character_classes') ?? null);
 const phantomField = computed(() => props.slot.field_values.find((field) => field.source === 'phantom_jobs') ?? null);
 const roleField = computed(() => classField.value?.display_meta?.role ?? null);
@@ -76,28 +100,41 @@ const visibleFieldEntries = computed(() => (
 		? fieldEntries.value.filter((field) => field.value && field.source !== 'character_classes' && field.source !== 'phantom_jobs')
 		: []
 ));
-const designationMarker = computed(() => {
+const designationMarkers = computed(() => {
+	const markers: SlotMarker[] = [];
+
 	if (props.slot.is_raid_leader) {
-		return {
+		markers.push({
 			key: 'raid-leader',
 			label: t('groups.activities.management.roster.raid_leader_badge'),
 			icon: 'i-lucide-crown',
 			wrapperClass: '-left-2 -top-2 bg-amber-400 text-amber-950 ring-amber-200/80',
 			iconClass: 'text-amber-400 drop-shadow-[0_4px_10px_rgba(251,191,36,0.85)]',
-		};
-	}
-
-	if (props.slot.is_host) {
-		return {
+			rotationClass: '-rotate-35',
+		});
+	} else if (props.slot.is_host) {
+		markers.push({
 			key: 'host',
 			label: t('groups.activities.management.roster.host_badge'),
 			icon: 'i-lucide-swords',
 			wrapperClass: '-left-2 -top-2 bg-sky-500 text-sky-50 ring-sky-300/70',
 			iconClass: 'text-sky-500 drop-shadow-[0_4px_10px_rgba(14,165,233,0.85)]',
-		};
+			rotationClass: '-rotate-35',
+		});
 	}
 
-	return null;
+	if (isViewerAssignedCharacter.value) {
+		markers.push({
+			key: 'self',
+			label: t('groups.activities.management.roster.self_badge'),
+			icon: 'i-mingcute-badge-line',
+			wrapperClass: '-right-2 -top-2 bg-primary text-inverted ring-primary/60',
+			iconClass: 'text-primary drop-shadow-[0_4px_10px_rgba(168,85,247,0.85)]',
+			rotationClass: 'rotate-35',
+		});
+	}
+
+	return markers;
 });
 const emptyHintToneClass = computed(() => (
 	!props.slot.is_bench && !assignedCharacter.value ? emptyCompositionSlotToneClass(props.slot) : null
@@ -113,22 +150,6 @@ const roleToneClass = computed(() => {
 		return emptyHintToneClass.value ?? 'border-dashed border-default bg-elevated hover:border-primary';
 	}
 
-	if (props.slot.is_raid_leader) {
-		return 'border-amber-400/80 bg-amber-400/15 hover:border-amber-300';
-	}
-
-	if (props.slot.is_host) {
-		return 'border-sky-400/80 bg-sky-400/15 hover:border-sky-300';
-	}
-
-	if (props.slot.attendance_status === 'checked_in') {
-		return 'border-sky-400/70 bg-sky-400/10 hover:border-sky-300';
-	}
-
-	if (props.slot.attendance_status === 'late') {
-		return 'border-amber-400/70 bg-amber-400/10 hover:border-amber-300';
-	}
-
 	if (roleField.value === 'tank') {
 		return 'border-blue-500/70 bg-blue-500/10 hover:border-blue-400';
 	}
@@ -138,6 +159,29 @@ const roleToneClass = computed(() => {
 	}
 
 	return 'border-red-500/70 bg-red-500/10 hover:border-red-400';
+});
+const assignedCharacterNameClass = computed(() => {
+	if (isViewerAssignedCharacter.value) {
+		return 'text-primary';
+	}
+
+	if (props.slot.is_raid_leader) {
+		return 'text-amber-300';
+	}
+
+	if (props.slot.is_host) {
+		return 'text-sky-300';
+	}
+
+	if (props.slot.attendance_status === 'checked_in') {
+		return '';
+	}
+
+	if (props.slot.attendance_status === 'late') {
+		return 'text-orange-300';
+	}
+
+	return '';
 });
 const classIconUrl = computed(() => classField.value?.display_meta?.flaticon_url || classField.value?.display_meta?.icon_url || null);
 const phantomIconUrl = computed(() => phantomField.value?.display_meta?.transparent_icon_url || phantomField.value?.display_meta?.icon_url || phantomField.value?.display_meta?.sprite_url || null);
@@ -454,16 +498,17 @@ const handleClick = () => {
 		@click="handleClick"
 	>
 			<div
-				v-if="designationMarker"
+				v-for="marker in designationMarkers"
+				:key="marker.key"
 				class="pointer-events-none absolute z-20 flex h-8 w-8 items-center justify-center shadow-lg bg-transparent"
-				:class="designationMarker.wrapperClass"
-				:aria-label="designationMarker.label"
-				:title="designationMarker.label"
+				:class="marker.wrapperClass"
+				:aria-label="marker.label"
+				:title="marker.label"
 			>
 				<UIcon
-					:name="designationMarker.icon"
-					class="h-8 w-8 -rotate-35"
-					:class="designationMarker.iconClass"
+					:name="marker.icon"
+					class="h-8 w-8"
+					:class="[marker.iconClass, marker.rotationClass]"
 				/>
 			</div>
 
@@ -530,7 +575,24 @@ const handleClick = () => {
 							:description="assignedCharacter.world || undefined"
 							:avatar="assignedCharacter.avatar_url ? { src: assignedCharacter.avatar_url, loading: 'lazy' } : undefined"
 							size="lg"
-						/>
+							:ui="{ name: assignedCharacterNameClass }"
+						>
+							<template #name>
+								<span class="inline-flex min-w-0 items-center gap-1.5">
+									<span class="truncate">{{ assignedCharacter.name }}</span>
+									<UIcon
+										v-if="isLate"
+										name="i-mdi-clock-outline"
+										class="size-3.5 shrink-0 text-current opacity-80"
+									/>
+									<UIcon
+										v-if="isCheckedIn"
+										name="i-mdi-check-bold"
+										class="size-3.5 shrink-0 text-current opacity-80"
+									/>
+								</span>
+							</template>
+						</UUser>
 
 						<div class="flex items-center">
 							<img
@@ -597,16 +659,17 @@ const handleClick = () => {
 			@click="handleClick"
 		>
 			<div
-				v-if="designationMarker"
+				v-for="marker in designationMarkers"
+				:key="marker.key"
 				class="pointer-events-none absolute z-20 flex h-8 w-8 items-center justify-center shadow-lg bg-transparent"
-				:class="designationMarker.wrapperClass"
-				:aria-label="designationMarker.label"
-				:title="designationMarker.label"
+				:class="marker.wrapperClass"
+				:aria-label="marker.label"
+				:title="marker.label"
 			>
 				<UIcon
-					:name="designationMarker.icon"
-					class="h-8 w-8 -rotate-35"
-					:class="designationMarker.iconClass"
+					:name="marker.icon"
+					class="h-8 w-8"
+					:class="[marker.iconClass, marker.rotationClass]"
 				/>
 			</div>
 
@@ -673,7 +736,24 @@ const handleClick = () => {
 							:description="assignedCharacter.world || undefined"
 							:avatar="assignedCharacter.avatar_url ? { src: assignedCharacter.avatar_url, loading: 'lazy' } : undefined"
 							size="lg"
-						/>
+							:ui="{ name: assignedCharacterNameClass }"
+						>
+							<template #name>
+								<span class="inline-flex min-w-0 items-center gap-1.5">
+									<span class="truncate">{{ assignedCharacter.name }}</span>
+									<UIcon
+										v-if="isLate"
+										name="i-mdi-clock-outline"
+										class="size-3.5 shrink-0 text-current opacity-80"
+									/>
+									<UIcon
+										v-if="isCheckedIn"
+										name="i-mdi-check-bold"
+										class="size-3.5 shrink-0 text-current opacity-80"
+									/>
+								</span>
+							</template>
+						</UUser>
 
 						<div class="flex items-center">
 							<img

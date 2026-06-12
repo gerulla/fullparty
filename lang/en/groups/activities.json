@@ -347,6 +347,7 @@
             "undo_check_in": "Undo Checkin",
             "host_badge": "Host",
             "raid_leader_badge": "Raid Leader",
+            "self_badge": "Your Character",
             "roles": {
                 "tank": "Tank",
                 "healer": "Healer",

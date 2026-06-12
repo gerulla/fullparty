@@ -7,6 +7,15 @@ import { emptyCompositionSlotToneClass } from "@/utils/activityCompositionHints"
 import type { ActivityApplicationFieldGroup, ActivitySlot, ActivitySlotFieldValue } from "@/Types/ActivityRoster";
 import type { LocalizedText } from "@/Types/Common";
 
+type SlotMarker = {
+	key: string
+	label: string
+	icon: string
+	wrapperClass: string
+	iconClass: string
+	rotationClass: string
+}
+
 const props = defineProps<{
 	slot: ActivitySlot
 }>();
@@ -36,6 +45,11 @@ const isViewerAssignedCharacter = computed(() => (
 	props.slot.assigned_character !== null
 	&& viewerUserId.value !== null
 	&& props.slot.assigned_character.user_id === viewerUserId.value
+));
+const isLate = computed(() => props.slot.attendance_status === "late");
+const isCheckedIn = computed(() => (
+	props.slot.attendance_status === "checked_in"
+	|| props.slot.checked_in_at !== null
 ));
 
 const benchApplicationFieldGroups = computed<ActivityApplicationFieldGroup[]>(() => (
@@ -78,26 +92,6 @@ const attendanceBadge = computed(() => {
 });
 
 const slotToneClass = computed(() => {
-	if (isViewerAssignedCharacter.value) {
-		return "border-primary/90 bg-primary/20 ring-1 ring-primary/50 shadow-[0_0_0_1px_rgba(0,200,255,0.22)]";
-	}
-
-	if (props.slot.is_raid_leader) {
-		return "border-amber-400/70 bg-amber-500/10";
-	}
-
-	if (props.slot.is_host) {
-		return "border-sky-400/70 bg-sky-500/10";
-	}
-
-	if (props.slot.attendance_status === "checked_in") {
-		return "border-emerald-400/70 bg-emerald-500/10";
-	}
-
-	if (props.slot.attendance_status === "late") {
-		return "border-amber-400/70 bg-amber-500/10";
-	}
-
 	if (roleField.value === "tank") {
 		return "border-blue-500/70 bg-blue-500/10";
 	}
@@ -127,6 +121,30 @@ const slotToneClass = computed(() => {
 	}
 
 	return "border-dashed border-default bg-elevated/50";
+});
+
+const assignedCharacterNameClass = computed(() => {
+	if (isViewerAssignedCharacter.value) {
+		return "text-primary";
+	}
+
+	if (props.slot.is_raid_leader) {
+		return "text-amber-300";
+	}
+
+	if (props.slot.is_host) {
+		return "text-sky-300";
+	}
+
+	if (props.slot.attendance_status === "checked_in") {
+		return "";
+	}
+
+	if (props.slot.attendance_status === "late") {
+		return "text-orange-300";
+	}
+
+	return "";
 });
 
 const fieldDisplayValue = (field: ActivitySlotFieldValue): string => {
@@ -217,28 +235,41 @@ const slotFrameClass = computed(() => (
 		: "h-18 py-2"
 ));
 
-const designationMarker = computed(() => {
+const designationMarkers = computed(() => {
+	const markers: SlotMarker[] = [];
+
 	if (props.slot.is_raid_leader) {
-		return {
+		markers.push({
 			key: "raid-leader",
 			label: t("groups.activities.management.roster.raid_leader_badge"),
 			icon: "i-lucide-crown",
 			wrapperClass: "-left-2 -top-2 bg-amber-400 text-amber-950 ring-amber-200/80",
 			iconClass: "text-amber-400 drop-shadow-[0_4px_10px_rgba(251,191,36,0.85)]",
-		};
-	}
-
-	if (props.slot.is_host) {
-		return {
+			rotationClass: "-rotate-35",
+		});
+	} else if (props.slot.is_host) {
+		markers.push({
 			key: "host",
 			label: t("groups.activities.management.roster.host_badge"),
 			icon: "i-lucide-swords",
 			wrapperClass: "-left-2 -top-2 bg-sky-500 text-sky-50 ring-sky-300/70",
 			iconClass: "text-sky-500 drop-shadow-[0_4px_10px_rgba(14,165,233,0.85)]",
-		};
+			rotationClass: "-rotate-35",
+		});
 	}
 
-	return null;
+	if (isViewerAssignedCharacter.value) {
+		markers.push({
+			key: "self",
+			label: t("groups.activities.management.roster.self_badge"),
+			icon: "i-mingcute-badge-line",
+			wrapperClass: "-right-2 -top-2 bg-primary text-inverted ring-primary/60",
+			iconClass: "text-primary drop-shadow-[0_4px_10px_rgba(168,85,247,0.85)]",
+			rotationClass: "rotate-35",
+		});
+	}
+
+	return markers;
 });
 </script>
 
@@ -248,16 +279,17 @@ const designationMarker = computed(() => {
 		:class="[slotToneClass, slotFrameClass]"
 	>
 		<div
-			v-if="designationMarker"
+			v-for="marker in designationMarkers"
+			:key="marker.key"
 			class="pointer-events-none absolute z-20 flex h-8 w-8 items-center justify-center bg-transparent shadow-lg"
-			:class="designationMarker.wrapperClass"
-			:aria-label="designationMarker.label"
-			:title="designationMarker.label"
+			:class="marker.wrapperClass"
+			:aria-label="marker.label"
+			:title="marker.label"
 		>
 			<UIcon
-				:name="designationMarker.icon"
-				class="h-8 w-8 -rotate-35"
-				:class="designationMarker.iconClass"
+				:name="marker.icon"
+				class="h-8 w-8"
+				:class="[marker.iconClass, marker.rotationClass]"
 			/>
 		</div>
 
@@ -295,7 +327,24 @@ const designationMarker = computed(() => {
 							:avatar="{
 								src: slot.assigned_character.avatar_url ?? null
 							}"
-						/>
+							:ui="{ name: assignedCharacterNameClass }"
+						>
+							<template #name>
+								<span class="inline-flex min-w-0 items-center gap-1.5">
+									<span class="truncate">{{ slot.assigned_character.name }}</span>
+									<UIcon
+										v-if="isLate"
+										name="i-mdi-clock-outline"
+										class="size-3.5 shrink-0 text-current opacity-80"
+									/>
+									<UIcon
+										v-if="isCheckedIn"
+										name="i-mdi-check-bold"
+										class="size-3.5 shrink-0 text-current opacity-80"
+									/>
+								</span>
+							</template>
+						</UUser>
 					</div>
 					<div class="flex flex-col gap-1 overflow-hidden">
 						<div
@@ -323,7 +372,24 @@ const designationMarker = computed(() => {
 							:avatar="{
 								src: slot.assigned_character.avatar_url ?? null
 							}"
-						/>
+							:ui="{ name: assignedCharacterNameClass }"
+						>
+							<template #name>
+								<span class="inline-flex min-w-0 items-center gap-1.5">
+									<span class="truncate">{{ slot.assigned_character.name }}</span>
+									<UIcon
+										v-if="isLate"
+										name="i-mdi-clock-outline"
+										class="size-3.5 shrink-0 text-current opacity-80"
+									/>
+									<UIcon
+										v-if="isCheckedIn"
+										name="i-mdi-check-bold"
+										class="size-3.5 shrink-0 text-current opacity-80"
+									/>
+								</span>
+							</template>
+						</UUser>
 						<div
 							v-if="showsInlineSlotIcons"
 							class="ml-auto flex shrink-0 items-center gap-1"

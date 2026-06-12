@@ -347,6 +347,7 @@
             "undo_check_in": "Undo Checkin",
             "host_badge": "ホスト",
             "raid_leader_badge": "レイドリーダー",
+            "self_badge": "自分のキャラクター",
             "roles": {
                 "tank": "タンク",
                 "healer": "ヒーラー",

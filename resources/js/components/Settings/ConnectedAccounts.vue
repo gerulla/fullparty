@@ -185,7 +185,8 @@ const providerDisplayName = computed(() => {
 @reference "../../../css/app.css";
 
 .social-block {
-	@apply w-full flex flex-row items-stretch p-4 border border-neutral-200 dark:border-neutral-700 rounded-sm gap-4;
+	@apply w-full grid items-center p-4 border border-neutral-200 dark:border-neutral-700 rounded-sm gap-4;
+	grid-template-columns: auto minmax(0, 1fr) auto;
 }
 
 .social-icon {
@@ -193,10 +194,32 @@ const providerDisplayName = computed(() => {
 }
 
 .social-info {
-	@apply flex flex-col items-start;
+	@apply flex min-w-0 flex-col items-start;
 }
 
 .social-action {
-	@apply flex items-center ml-auto;
+	@apply flex flex-wrap items-center justify-end;
+}
+
+@media (max-width: 430px) {
+	.social-block {
+		grid-template-areas:
+			"info icon"
+			"action icon";
+		grid-template-columns: minmax(0, 1fr) auto;
+	}
+
+	.social-icon {
+		grid-area: icon;
+	}
+
+	.social-info {
+		grid-area: info;
+	}
+
+	.social-action {
+		grid-area: action;
+		@apply justify-start;
+	}
 }
 </style>

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, onBeforeUnmount, onMounted, ref, watch } from 'vue'
+import { computed, onMounted, ref, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
 
 const props = defineProps<{
@@ -14,9 +14,7 @@ const props = defineProps<{
 }>()
 
 const { t } = useI18n()
-const isMobileViewport = ref(false)
 const isCollapsed = ref(false)
-let mobileMediaQuery: MediaQueryList | null = null
 
 const collapsedStorageKey = computed(() => [
 	'fullparty.system_banner.collapsed',
@@ -24,7 +22,7 @@ const collapsedStorageKey = computed(() => [
 	props.banner.updated_at ?? 'current',
 ].join('.'))
 
-const isCompact = computed(() => isMobileViewport.value && isCollapsed.value)
+const isCompact = computed(() => isCollapsed.value)
 
 const isExternalUrl = (url: string | null) => {
 	if (!url) {
@@ -52,20 +50,8 @@ const setCollapsed = (collapsed: boolean) => {
 	}
 }
 
-const updateViewportState = () => {
-	isMobileViewport.value = mobileMediaQuery?.matches ?? false
-}
-
 onMounted(() => {
-	mobileMediaQuery = window.matchMedia('(max-width: 767px)')
-	updateViewportState()
 	readCollapsedState()
-
-	mobileMediaQuery.addEventListener('change', updateViewportState)
-})
-
-onBeforeUnmount(() => {
-	mobileMediaQuery?.removeEventListener('change', updateViewportState)
 })
 
 watch(collapsedStorageKey, () => {
@@ -126,7 +112,6 @@ watch(collapsedStorageKey, () => {
 					:aria-label="banner.action_label"
 				/>
 				<UButton
-					class="md:hidden"
 					color="warning"
 					variant="ghost"
 					:icon="isCompact ? 'i-lucide-chevron-down' : 'i-lucide-chevron-up'"

@@ -376,7 +376,7 @@ const mobileItems = computed(() => isManagementUser.value ? managerMobileItems.v
 </script>
 
 <template>
-	<UDashboardToolbar class="relative z-40 hidden !overflow-visible !overflow-x-visible !overflow-y-visible xl:flex">
+	<UDashboardToolbar class="relative z-40 hidden !overflow-visible !overflow-x-visible !overflow-y-visible lg:flex">
 		<UNavigationMenu
 			:items="desktopLeftItems"
 			variant="link"
@@ -400,7 +400,7 @@ const mobileItems = computed(() => isManagementUser.value ? managerMobileItems.v
 		/>
 	</UDashboardToolbar>
 
-	<nav class="fixed inset-x-0 bottom-0 z-50 border-t border-white/10 bg-neutral-950/94 px-3 pt-2 pb-[calc(0.5rem+env(safe-area-inset-bottom))] shadow-[0_-18px_42px_rgba(0,0,0,0.38)] backdrop-blur-xl xl:hidden">
+	<nav class="fixed inset-x-0 bottom-0 z-50 border-t border-white/10 bg-neutral-950/94 px-3 pt-2 pb-[calc(0.5rem+env(safe-area-inset-bottom))] shadow-[0_-18px_42px_rgba(0,0,0,0.38)] backdrop-blur-xl lg:hidden">
 		<Transition
 			enter-active-class="transition duration-200 ease-out"
 			enter-from-class="translate-y-full opacity-0"

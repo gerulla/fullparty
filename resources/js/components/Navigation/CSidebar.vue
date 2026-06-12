@@ -126,7 +126,7 @@ const closeSidebarMenu = () => {
 </script>
 
 <template>
-	<UDashboardSidebar v-model:open="sidebarOpen" :default-size="15"  :ui="{ footer: '',  body: 'px-4' }" class="border-0">
+	<UDashboardSidebar v-model:open="sidebarOpen" :default-size="15"  :ui="{ footer: '',  body: 'px-4' }" class="max-w-96 border-0 lg:max-2xl:!w-1/4">
 		<template #header="{ collapsed }">
 			<div v-if="!collapsed" class="w-full h-full mt-8">
 				<img :src="full_logo" class="h-full w-auto mx-auto " alt="FullParty Logo">

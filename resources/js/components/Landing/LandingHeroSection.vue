@@ -9,6 +9,7 @@ const { t } = useI18n()
 const page = usePage()
 const mobileMenuOpen = ref(false)
 const hasScrolled = ref(false)
+const isAuthenticated = computed(() => Boolean(page.props.auth?.user))
 
 const heroStyle = {
 	backgroundImage: 'url("/landing.png")',
@@ -41,6 +42,10 @@ const goToLogin = () => {
 
 const goToRegister = () => {
 	router.get(route("register"))
+}
+
+const goToAccount = () => {
+	router.get(route("dashboard"))
 }
 
 const startFirstRun = () => {
@@ -86,6 +91,11 @@ const goToLoginFromMenu = () => {
 const goToRegisterFromMenu = () => {
 	closeMobileMenu()
 	goToRegister()
+}
+
+const goToAccountFromMenu = () => {
+	closeMobileMenu()
+	goToAccount()
 }
 
 const updateHasScrolled = () => {
@@ -154,18 +164,28 @@ onUnmounted(() => {
 			<div class="hidden shrink-0 items-center justify-end gap-1 sm:gap-2 lg:flex">
 				<AppLocaleSelect variant="ghost" />
 				<UButton
-					color="neutral"
-					variant="ghost"
-					:label="t('auth.login')"
-					class="text-neutral-100 hover:text-white"
-					@click="goToLogin"
-				/>
-				<UButton
+					v-if="isAuthenticated"
 					color="neutral"
 					variant="solid"
-					:label="t('auth.register')"
-					@click="goToRegister"
+					icon="i-lucide-user-round"
+					:label="t('landing.nav.my_account')"
+					@click="goToAccount"
 				/>
+				<template v-else>
+					<UButton
+						color="neutral"
+						variant="ghost"
+						:label="t('auth.login')"
+						class="text-neutral-100 hover:text-white"
+						@click="goToLogin"
+					/>
+					<UButton
+						color="neutral"
+						variant="solid"
+						:label="t('auth.register')"
+						@click="goToRegister"
+					/>
+				</template>
 			</div>
 
 			<UButton
@@ -213,19 +233,29 @@ onUnmounted(() => {
 						<AppLocaleSelect variant="ghost" />
 						<div class="mt-5 grid gap-3">
 							<UButton
-								color="neutral"
-								variant="outline"
-								block
-								:label="t('auth.login')"
-								class="border-white/20 text-white hover:bg-white/10"
-								@click="goToLoginFromMenu"
-							/>
-							<UButton
+								v-if="isAuthenticated"
 								color="primary"
 								block
-								:label="t('auth.register')"
-								@click="goToRegisterFromMenu"
+								icon="i-lucide-user-round"
+								:label="t('landing.nav.my_account')"
+								@click="goToAccountFromMenu"
 							/>
+							<template v-else>
+								<UButton
+									color="neutral"
+									variant="outline"
+									block
+									:label="t('auth.login')"
+									class="border-white/20 text-white hover:bg-white/10"
+									@click="goToLoginFromMenu"
+								/>
+								<UButton
+									color="primary"
+									block
+									:label="t('auth.register')"
+									@click="goToRegisterFromMenu"
+								/>
+							</template>
 						</div>
 					</div>
 				</div>

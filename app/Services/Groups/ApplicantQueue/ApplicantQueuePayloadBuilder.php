@@ -94,6 +94,8 @@ class ApplicantQueuePayloadBuilder
         Collection $groupNotesByUserId,
         Collection $sharedNotesByUserId,
     ): array {
+        $selectedCharacter = $application->selectedCharacter;
+
         return [
             'id' => $application->id,
             'is_guest' => $application->user_id === null,
@@ -117,21 +119,33 @@ class ApplicantQueuePayloadBuilder
                 'avatar_url' => $application->applicant_avatar_url,
                 'world' => $application->applicant_world,
                 'datacenter' => $application->applicant_datacenter,
-                'is_claimed' => $application->selectedCharacter?->user_id !== null,
+                'is_claimed' => $selectedCharacter?->user_id !== null,
             ] : null,
-            'selected_character' => $application->selectedCharacter ? [
-                'id' => $application->selectedCharacter->id,
-                'name' => $application->selectedCharacter->name,
-                'avatar_url' => $application->selectedCharacter->avatar_url,
-                'world' => $application->selectedCharacter->world,
-                'datacenter' => $application->selectedCharacter->datacenter,
-                'lodestone_refreshed_at' => $application->selectedCharacter->lodestone_refreshed_at?->toIso8601String(),
-                'lodestone_last_checked_at' => ($application->selectedCharacter->lodestone_refreshed_at ?? $application->selectedCharacter->updated_at)?->toIso8601String(),
-                'occult_level' => $application->selectedCharacter->occultProgress?->knowledge_level,
-                'blood_progress' => $application->selectedCharacter->occultProgress?->forkedTowerBloodProgress(),
-                'phantom_mastery' => $application->selectedCharacter->phantomJobs
+            'selected_character' => $selectedCharacter ? [
+                'id' => $selectedCharacter->id,
+                'name' => $selectedCharacter->name,
+                'avatar_url' => $selectedCharacter->avatar_url,
+                'world' => $selectedCharacter->world,
+                'datacenter' => $selectedCharacter->datacenter,
+                'lodestone_refreshed_at' => $selectedCharacter->lodestone_refreshed_at?->toIso8601String(),
+                'lodestone_last_checked_at' => ($selectedCharacter->lodestone_refreshed_at ?? $selectedCharacter->updated_at)?->toIso8601String(),
+                'occult_level' => $selectedCharacter->occultProgress?->knowledge_level,
+                'blood_progress' => $selectedCharacter->occultProgress?->forkedTowerBloodProgress(),
+                'phantom_mastery' => $selectedCharacter->phantomJobs
                     ->filter(fn ($phantomJob) => (int) ($phantomJob->pivot?->current_level ?? 0) >= (int) $phantomJob->max_level)
                     ->count(),
+                'preferred_character_class_ids' => $selectedCharacter->classes
+                    ->filter(fn ($characterClass) => (bool) $characterClass->pivot?->is_preferred)
+                    ->pluck('id')
+                    ->map(fn ($id) => (string) $id)
+                    ->values()
+                    ->all(),
+                'preferred_phantom_job_ids' => $selectedCharacter->phantomJobs
+                    ->filter(fn ($phantomJob) => (bool) $phantomJob->pivot?->is_preferred)
+                    ->pluck('id')
+                    ->map(fn ($id) => (string) $id)
+                    ->values()
+                    ->all(),
             ] : null,
             'status' => $application->status,
             'notes' => $application->notes,

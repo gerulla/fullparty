@@ -2,6 +2,8 @@
 
 use App\Models\Activity;
 use App\Models\ActivitySlotAssignment;
+use App\Models\ActivityType;
+use App\Models\ActivityTypeVersion;
 use App\Models\Character;
 use App\Models\Group;
 use App\Models\GroupMembership;
@@ -183,6 +185,54 @@ it('exposes discoverable runs in discovery activity details', function () {
         ->assertJsonPath('data.recent_runs.1.id', $publicActivity->id);
 
     expect($publicActivity->id)->not->toBe($membersOnlyActivity->id);
+});
+
+it('groups discovery content by activity type instead of published version', function () {
+    $user = User::factory()->create();
+    $group = Group::factory()->open()->create([
+        'slug' => 'vergroup',
+    ]);
+    $activityType = ActivityType::factory()->create([
+        'slug' => 'forked-tower',
+        'draft_name' => ['en' => 'Forked Tower'],
+    ]);
+    $firstVersion = ActivityTypeVersion::factory()->for($activityType)->create([
+        'version' => 1,
+        'name' => ['en' => 'Forked Tower V1'],
+        'small_image_url' => '/storage/activities/forked-tower-v1.webp',
+    ]);
+    $secondVersion = ActivityTypeVersion::factory()->for($activityType)->create([
+        'version' => 2,
+        'name' => ['en' => 'Forked Tower V2'],
+        'small_image_url' => '/storage/activities/forked-tower-v2.webp',
+    ]);
+
+    $activityType->update(['current_published_version_id' => $secondVersion->id]);
+
+    Activity::factory()->complete()->create([
+        'group_id' => $group->id,
+        'activity_type_id' => $activityType->id,
+        'activity_type_version_id' => $firstVersion->id,
+        'starts_at' => now()->subWeek(),
+    ]);
+    Activity::factory()->create([
+        'group_id' => $group->id,
+        'activity_type_id' => $activityType->id,
+        'activity_type_version_id' => $secondVersion->id,
+        'status' => Activity::STATUS_SCHEDULED,
+        'starts_at' => now()->addDay(),
+    ]);
+
+    $this->actingAs($user)
+        ->getJson(route('groups.details', $group))
+        ->assertOk()
+        ->assertJsonCount(1, 'data.content_items')
+        ->assertJsonPath('data.content_items.0.key', 'type:'.$activityType->id)
+        ->assertJsonPath('data.content_items.0.activity_name', 'Forked Tower V2')
+        ->assertJsonPath('data.content_items.0.activity_image_url', '/storage/activities/forked-tower-v2.webp')
+        ->assertJsonPath('data.content_items.0.total_runs', 2)
+        ->assertJsonPath('data.content_items.0.completed_runs', 1)
+        ->assertJsonPath('data.content_items.0.active_runs', 1);
 });
 
 it('only exposes owner and moderators in discovery team details', function () {

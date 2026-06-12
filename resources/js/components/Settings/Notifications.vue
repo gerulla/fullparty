@@ -838,7 +838,12 @@ onUnmounted(() => {
 	}
 
 	.notification-row {
-		@apply grid-cols-1 gap-4;
+		@apply gap-4;
+		grid-template-columns: repeat(3, minmax(0, 1fr)) 2.5rem;
+	}
+
+	.notification-copy {
+		@apply col-span-4;
 	}
 
 	.granular-header {
@@ -846,16 +851,29 @@ onUnmounted(() => {
 	}
 
 	.granular-row {
-		@apply grid-cols-1 gap-4;
+		@apply gap-4;
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+	}
+
+	.granular-row > :first-child {
+		@apply col-span-3;
 	}
 
 	.channel-cell {
-		@apply justify-between;
+		@apply flex-col items-start justify-start gap-2;
 	}
 
 	.channel-cell::before {
 		@apply text-xs font-semibold uppercase tracking-[0.12em] text-muted;
 		content: attr(data-label);
+	}
+
+	.channel-cell[data-label=""] {
+		@apply items-end justify-end;
+	}
+
+	.channel-cell[data-label=""]::before {
+		content: none;
 	}
 }
 </style>

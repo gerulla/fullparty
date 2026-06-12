@@ -11,11 +11,26 @@ use App\Models\NotificationEvent;
 use App\Models\User;
 use App\Models\UserNotification;
 use App\Services\FFLogs\ForkedTowerBloodProgressFetcher;
+use App\Services\Lodestone\ForkedTowerBloodAchievementProgressFetcher;
 use App\Services\Lodestone\LodestoneScraper;
 use App\Support\Notifications\NotificationCategory;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 uses(RefreshDatabase::class);
+
+function characterClaimEmptyLodestoneAchievementProgress(): array
+{
+    return [
+        'clears' => 0,
+        'data_source' => 'lodestone_achievement',
+        'bosses' => [
+            ['key' => 'demon_tablet', 'kills' => 0, 'progress' => 0],
+            ['key' => 'dead_stars', 'kills' => 0, 'progress' => 0],
+            ['key' => 'marble_dragon', 'kills' => 0, 'progress' => 0],
+            ['key' => 'magitaur', 'kills' => 0, 'progress' => 0],
+        ],
+    ];
+}
 
 function createCharacterClaimActivity(): Activity
 {
@@ -124,8 +139,12 @@ it('claims matching guest applications and auto-refreshes on xivauth import', fu
             ],
         ]);
 
+    $lodestoneAchievementFetcher = Mockery::mock(ForkedTowerBloodAchievementProgressFetcher::class);
+    $lodestoneAchievementFetcher->shouldNotReceive('fetchForCharacter');
+
     app()->instance(LodestoneScraper::class, $lodestoneScraper);
     app()->instance(ForkedTowerBloodProgressFetcher::class, $ffLogsFetcher);
+    app()->instance(ForkedTowerBloodAchievementProgressFetcher::class, $lodestoneAchievementFetcher);
 
     $this->actingAs($user);
 
@@ -242,8 +261,12 @@ it('claims matching guest applications and auto-refreshes on manual verification
             ],
         ]);
 
+    $lodestoneAchievementFetcher = Mockery::mock(ForkedTowerBloodAchievementProgressFetcher::class);
+    $lodestoneAchievementFetcher->shouldNotReceive('fetchForCharacter');
+
     app()->instance(LodestoneScraper::class, $lodestoneScraper);
     app()->instance(ForkedTowerBloodProgressFetcher::class, $ffLogsFetcher);
+    app()->instance(ForkedTowerBloodAchievementProgressFetcher::class, $lodestoneAchievementFetcher);
 
     $this->actingAs($user);
 
@@ -442,8 +465,15 @@ it('does not auto claim guest applications when the user already has an applicat
             ],
         ]);
 
+    $lodestoneAchievementFetcher = Mockery::mock(ForkedTowerBloodAchievementProgressFetcher::class);
+    $lodestoneAchievementFetcher
+        ->shouldReceive('fetchForCharacter')
+        ->once()
+        ->andReturn(characterClaimEmptyLodestoneAchievementProgress());
+
     app()->instance(LodestoneScraper::class, $lodestoneScraper);
     app()->instance(ForkedTowerBloodProgressFetcher::class, $ffLogsFetcher);
+    app()->instance(ForkedTowerBloodAchievementProgressFetcher::class, $lodestoneAchievementFetcher);
 
     $this->actingAs($user);
 

@@ -6,6 +6,15 @@
   <a href="https://github.com/gerulla/fullparty/actions/workflows/backend-tests.yml">
     <img src="https://github.com/gerulla/fullparty/actions/workflows/backend-tests.yml/badge.svg" alt="Backend Tests">
   </a>
+  <a href="LICENSE">
+    <img src="https://img.shields.io/badge/License-GPLv3-blue.svg" alt="GPL v3">
+  </a>
+  <a href="https://forge.laravel.com/fullparty/andromeda-e9h/3219969">
+    <img src="https://img.shields.io/endpoint?url=https%3A%2F%2Fforge.laravel.com%2Fsite-badges%2Fe8481948-411f-46eb-9304-57b91245880d&style=plastic" alt="Laravel Forge Site Deployment Status">
+  </a>
+</p>
+
+<p align="center">
   <a href="https://laravel.com">
     <img src="https://img.shields.io/badge/Laravel-13-FF2D20?logo=laravel&logoColor=white" alt="Laravel 13">
   </a>
@@ -20,9 +29,6 @@
   </a>
   <a href="https://www.postgresql.org">
     <img src="https://img.shields.io/badge/PostgreSQL-16-4169E1?logo=postgresql&logoColor=white" alt="PostgreSQL">
-  </a>
-  <a href="LICENSE">
-    <img src="https://img.shields.io/badge/License-GPLv3-blue.svg" alt="GPL v3">
   </a>
 </p>
 

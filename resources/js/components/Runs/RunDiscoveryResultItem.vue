@@ -349,7 +349,7 @@ const toggleSaved = () => {
 							@click="goToViewDetails"
 						/>
 						<UButton
-							v-if="item.links.apply && (item.can_apply || item.has_existing_application)"
+							v-if="item.links.apply"
 							color="neutral"
 							variant="outline"
 							class="w-full justify-center rounded-none border-brand-400/45 text-white hover:bg-brand-500/10"

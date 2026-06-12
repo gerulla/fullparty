@@ -202,7 +202,11 @@
         "forked_tower": {
             "clear_count": "Nombre de victoires",
             "clears": "{count} victoires",
+            "clears_at_least": "{count}+ victoires",
             "kills": "Éliminations",
+            "kills_at_least": "Au moins {count}",
+            "verified_with_fflogs": "Vérifié avec FFLogs",
+            "verified_with_lodestone": "Vérifié avec Lodestone",
             "bosses": {
                 "demon_tablet": "Tablette démoniaque",
                 "dead_stars": "Étoiles mortes",

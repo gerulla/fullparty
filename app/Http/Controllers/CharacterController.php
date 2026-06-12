@@ -11,6 +11,7 @@ use App\Http\Requests\UpdateCharacterRequest;
 use App\Models\ActivityApplication;
 use App\Models\Character;
 use App\Models\CharacterClass;
+use App\Models\OccultProgress;
 use App\Models\PhantomJob;
 use App\Models\User;
 use App\Services\AuditLogger;
@@ -634,6 +635,7 @@ class CharacterController extends Controller
     {
         return [
             'clears' => 0,
+            'data_source' => OccultProgress::DATA_SOURCE_FFLOGS,
             'bosses' => [
                 ['key' => 'demon_tablet', 'kills' => 0, 'progress' => 0],
                 ['key' => 'dead_stars', 'kills' => 0, 'progress' => 0],

@@ -630,6 +630,9 @@ final class RunDiscoveryService
         $canManage = $group?->hasModeratorAccess($user->id) ?? false;
         $hasExistingApplication = $this->userHasExistingApplication($activity);
         $canApply = $this->canUserApplyToActivity($activity, $user);
+        $canOpenApplicationPage = $activity->needs_application
+            && $activity->acceptsApplications()
+            && $this->hasOpenMainSlot($activity);
         $region = Group::regionForDatacenter($activity->datacenter ?: $group?->datacenter);
 
         $secondaryLocationLabel = $activity->organizerCharacter?->world
@@ -696,7 +699,7 @@ final class RunDiscoveryService
                         'group' => $group?->slug,
                         'activity' => $activity->id,
                     ]),
-                'apply' => ($canApply || $hasExistingApplication)
+                'apply' => ($canApply || $hasExistingApplication || $canOpenApplicationPage)
                     ? route('groups.activities.application', [
                         'locale' => app()->getLocale(),
                         'group' => $group?->slug,

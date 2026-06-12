@@ -686,7 +686,11 @@ it('returns members-only runs in discovery while blocking non-member application
         ->assertJsonPath('ids', [$activity->id])
         ->assertJsonPath('items.0.id', $activity->id)
         ->assertJsonPath('items.0.can_apply', false)
-        ->assertJsonPath('items.0.links.apply', null);
+        ->assertJsonPath('items.0.links.apply', route('groups.activities.application', [
+            'locale' => app()->getLocale(),
+            'group' => $group->slug,
+            'activity' => $activity->id,
+        ]));
 
     $group->memberships()->create([
         'user_id' => $viewer->id,

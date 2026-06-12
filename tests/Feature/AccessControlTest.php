@@ -9,6 +9,7 @@ use App\Models\Group;
 use App\Models\GroupMembership;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Inertia\Testing\AssertableInertia as Assert;
 
 uses(RefreshDatabase::class);
 
@@ -209,7 +210,7 @@ it('keeps complete and cancelled public activity overviews visible', function (s
     'cancelled' => [Activity::STATUS_CANCELLED],
 ]);
 
-it('lets non members view members-only activity overviews but not application pages', function () {
+it('lets non members view members-only application pages without submitting', function () {
     extract(createAccessControlActivity([], [
         'is_public' => false,
     ]));
@@ -233,6 +234,19 @@ it('lets non members view members-only activity overviews but not application pa
             'group' => $group->slug,
             'activity' => $activity->id,
         ]))
+        ->assertOk()
+        ->assertInertia(fn (Assert $page) => $page
+            ->component('Groups/Activities/Application')
+            ->where('permissions.can_apply', false)
+            ->where('permissions.requires_group_membership', true)
+            ->where('permissions.can_join_group', true)
+        );
+
+    $this->actingAs($outsider)
+        ->post(route('groups.activities.application.store', [
+            'group' => $group->slug,
+            'activity' => $activity->id,
+        ]))
         ->assertNotFound();
 
     $this->actingAs($member)
@@ -241,6 +255,30 @@ it('lets non members view members-only activity overviews but not application pa
             'activity' => $activity->id,
         ]))
         ->assertOk();
+});
+
+it('points non members toward group applications for application based groups', function () {
+    extract(createAccessControlActivity([
+        'join_mode' => Group::JOIN_MODE_APPLICATION,
+    ], [
+        'is_public' => false,
+    ]));
+
+    $outsider = User::factory()->create();
+
+    $this->actingAs($outsider)
+        ->get(route('groups.activities.application', [
+            'group' => $group->slug,
+            'activity' => $activity->id,
+        ]))
+        ->assertOk()
+        ->assertInertia(fn (Assert $page) => $page
+            ->component('Groups/Activities/Application')
+            ->where('permissions.can_apply', false)
+            ->where('permissions.requires_group_membership', true)
+            ->where('permissions.can_join_group', false)
+            ->where('permissions.can_request_group_membership', true)
+        );
 });
 
 it('does not let guest application tokens bypass members-only activity membership requirements', function () {

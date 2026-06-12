@@ -202,7 +202,11 @@
         "forked_tower": {
             "clear_count": "クリア回数",
             "clears": "{count} クリア",
+            "clears_at_least": "{count}+ クリア",
             "kills": "討伐数",
+            "kills_at_least": "最低 {count}",
+            "verified_with_fflogs": "FFLogsで確認済み",
+            "verified_with_lodestone": "Lodestoneで確認済み",
             "bosses": {
                 "demon_tablet": "デーモンタブレット",
                 "dead_stars": "デッドスターズ",

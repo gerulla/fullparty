@@ -92,6 +92,7 @@ class HandleInertiaRequests extends Middleware
                     : [],
             ],
             'system_banner' => fn () => $this->systemBannerService->serialize(),
+            'app_version' => fn () => $this->serializeAppVersion(),
             'site_links' => [
                 'discord' => fn () => config('services.project_links.discord'),
                 'github' => fn () => config('services.project_links.github'),
@@ -146,6 +147,38 @@ class HandleInertiaRequests extends Middleware
                 'href' => route('groups.dashboard', $group, false),
             ])
             ->all();
+    }
+
+    /**
+     * @return array{version: string, commit: string|null, deployed_at: string|null}
+     */
+    private function serializeAppVersion(): array
+    {
+        $path = storage_path('app/version.json');
+
+        if (! is_file($path)) {
+            return [
+                'version' => 'dev',
+                'commit' => null,
+                'deployed_at' => null,
+            ];
+        }
+
+        $payload = json_decode((string) file_get_contents($path), true);
+
+        if (! is_array($payload)) {
+            return [
+                'version' => 'dev',
+                'commit' => null,
+                'deployed_at' => null,
+            ];
+        }
+
+        return [
+            'version' => filled($payload['version'] ?? null) ? (string) $payload['version'] : 'dev',
+            'commit' => filled($payload['commit'] ?? null) ? (string) $payload['commit'] : null,
+            'deployed_at' => filled($payload['deployed_at'] ?? null) ? (string) $payload['deployed_at'] : null,
+        ];
     }
 
     /**

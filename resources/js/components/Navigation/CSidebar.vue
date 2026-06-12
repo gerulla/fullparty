@@ -72,6 +72,26 @@ const groupDrawerOpen = ref({
 	joined: false,
 })
 const sidebarOpen = ref(false)
+const appVersion = computed(() => {
+	const version = page.props.app_version?.version
+
+	return typeof version === 'string' && version.trim() !== '' ? version.trim() : 'dev'
+})
+const appVersionTitle = computed(() => {
+	const details = [appVersion.value]
+	const commit = page.props.app_version?.commit
+	const deployedAt = page.props.app_version?.deployed_at
+
+	if (typeof commit === 'string' && commit.trim() !== '') {
+		details.push(commit.trim())
+	}
+
+	if (typeof deployedAt === 'string' && deployedAt.trim() !== '') {
+		details.push(deployedAt.trim())
+	}
+
+	return details.join(' • ')
+})
 
 const groupQuickLinkSections = computed(() => [
 	{
@@ -240,7 +260,17 @@ const closeSidebarMenu = () => {
 		</template>
 
 		<template #footer="{ collapsed }">
-			<DevelopmentNotice />
+			<div class="flex flex-col gap-4 px-4 pb-4">
+				<DevelopmentNotice v-if="!collapsed" />
+				<div
+					class="flex items-center gap-2 text-xs text-brand-100/45"
+					:class="collapsed ? 'justify-center' : 'justify-between'"
+					:title="appVersionTitle"
+				>
+					<span v-if="!collapsed" class="uppercase tracking-wider">FullParty</span>
+					<span class="font-mono">{{ appVersion }}</span>
+				</div>
+			</div>
 		</template>
 	</UDashboardSidebar>
 </template>

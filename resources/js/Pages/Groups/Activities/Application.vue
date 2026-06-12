@@ -103,6 +103,9 @@ const props = defineProps<{
 		can_withdraw_application: boolean
 		can_manage: boolean
 		has_existing_application: boolean
+		requires_group_membership: boolean
+		can_join_group: boolean
+		can_request_group_membership: boolean
 	}
 }>();
 
@@ -373,6 +376,9 @@ const withdrawApplication = () => {
 				:can-apply-as-guest="permissions.can_apply_as_guest"
 				:can-edit-application="permissions.can_edit_application"
 				:can-withdraw-application="permissions.can_withdraw_application"
+				:requires-group-membership="permissions.requires_group_membership"
+				:can-join-group="permissions.can_join_group"
+				:can-request-group-membership="permissions.can_request_group_membership"
 				:guest-worlds="guestCharacterSearch.worlds"
 				@cancel="goBack"
 				@withdraw="openWithdrawalModal"

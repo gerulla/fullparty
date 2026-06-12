@@ -7,8 +7,10 @@ use App\Exceptions\LodestoneInvalidInputException;
 use App\Exceptions\LodestoneParseException;
 use App\Models\Character;
 use App\Models\CharacterClass;
+use App\Models\OccultProgress;
 use App\Models\PhantomJob;
 use App\Services\FFLogs\ForkedTowerBloodProgressFetcher;
+use App\Services\Lodestone\ForkedTowerBloodAchievementProgressFetcher;
 use App\Services\Lodestone\LodestoneScraper;
 use Carbon\CarbonInterface;
 use Illuminate\Support\Facades\DB;
@@ -19,6 +21,7 @@ class CharacterProfileRefreshService
     public function __construct(
         private readonly LodestoneScraper $scraper,
         private readonly ForkedTowerBloodProgressFetcher $forkedTowerBloodProgressFetcher,
+        private readonly ForkedTowerBloodAchievementProgressFetcher $forkedTowerBloodAchievementProgressFetcher,
     ) {}
 
     /**
@@ -103,8 +106,29 @@ class CharacterProfileRefreshService
     private function fetchForkedTowerBloodProgress(Character $character, bool $ignoreCache): array
     {
         try {
+            $progress = $this->withForkedTowerDataSource(
+                $this->forkedTowerBloodProgressFetcher->fetchForCharacter($character, ignoreCache: $ignoreCache),
+                OccultProgress::DATA_SOURCE_FFLOGS,
+            );
+
+            if ($this->hasForkedTowerProgress($progress)) {
+                return [
+                    'progress' => $progress,
+                    'error' => null,
+                ];
+            }
+
+            $lodestoneAchievementProgress = $this->fetchForkedTowerBloodAchievementProgress($character, $ignoreCache);
+
+            if ($this->hasForkedTowerProgress($lodestoneAchievementProgress)) {
+                return [
+                    'progress' => $lodestoneAchievementProgress,
+                    'error' => null,
+                ];
+            }
+
             return [
-                'progress' => $this->forkedTowerBloodProgressFetcher->fetchForCharacter($character, ignoreCache: $ignoreCache),
+                'progress' => $progress,
                 'error' => null,
             ];
         } catch (\Throwable $exception) {
@@ -114,21 +138,85 @@ class CharacterProfileRefreshService
                 'exception' => $exception->getMessage(),
             ]);
 
+            $fflogsError = [
+                'source' => 'fflogs',
+                'type' => $exception::class,
+                'message' => $exception->getMessage(),
+                'character_id' => $character->id,
+                'lodestone_id' => $character->lodestone_id,
+                'name' => $character->name,
+                'world' => $character->world,
+                'datacenter' => $character->datacenter,
+                'zone_id' => config('services.ff_logs.forked_tower_blood_zone_id'),
+            ];
+
+            $lodestoneAchievementProgress = $this->fetchForkedTowerBloodAchievementProgress($character, $ignoreCache);
+
+            if ($this->hasForkedTowerProgress($lodestoneAchievementProgress)) {
+                return [
+                    'progress' => $lodestoneAchievementProgress,
+                    'error' => $fflogsError,
+                ];
+            }
+
             return [
                 'progress' => $this->emptyForkedTowerBloodProgress(),
-                'error' => [
-                    'source' => 'fflogs',
-                    'type' => $exception::class,
-                    'message' => $exception->getMessage(),
-                    'character_id' => $character->id,
-                    'lodestone_id' => $character->lodestone_id,
-                    'name' => $character->name,
-                    'world' => $character->world,
-                    'datacenter' => $character->datacenter,
-                    'zone_id' => config('services.ff_logs.forked_tower_blood_zone_id'),
-                ],
+                'error' => $fflogsError,
             ];
         }
+    }
+
+    /**
+     * @return array<string, mixed>
+     */
+    private function fetchForkedTowerBloodAchievementProgress(Character $character, bool $ignoreCache): array
+    {
+        try {
+            return $this->forkedTowerBloodAchievementProgressFetcher->fetchForCharacter(
+                $character,
+                ignoreCache: $ignoreCache,
+            );
+        } catch (\Throwable $exception) {
+            Log::warning('Unable to refresh Lodestone achievement progress during character refresh.', [
+                'character_id' => $character->id,
+                'lodestone_id' => $character->lodestone_id,
+                'exception' => $exception->getMessage(),
+            ]);
+
+            return $this->withForkedTowerDataSource(
+                $this->emptyForkedTowerBloodProgress(),
+                OccultProgress::DATA_SOURCE_LODESTONE_ACHIEVEMENT,
+            );
+        }
+    }
+
+    /**
+     * @param  array<string, mixed>  $progress
+     * @return array<string, mixed>
+     */
+    private function withForkedTowerDataSource(array $progress, string $dataSource): array
+    {
+        $progress['data_source'] = $dataSource;
+
+        return $progress;
+    }
+
+    /**
+     * @param  array<string, mixed>  $progress
+     */
+    private function hasForkedTowerProgress(array $progress): bool
+    {
+        if ((int) ($progress['clears'] ?? 0) > 0) {
+            return true;
+        }
+
+        foreach ($progress['bosses'] ?? [] as $boss) {
+            if ((int) ($boss['kills'] ?? 0) > 0 || (int) ($boss['progress'] ?? 0) > 0) {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     private function syncCharacterClassLevels(Character $character, array $extraData): void
@@ -186,6 +274,7 @@ class CharacterProfileRefreshService
         $character->occultProgress()->updateOrCreate(
             ['character_id' => $character->id],
             [
+                'data_source' => (string) ($forkedTowerBloodProgress['data_source'] ?? OccultProgress::DATA_SOURCE_FFLOGS),
                 'knowledge_level' => (int) ($extraData['progression.occult.knowledge_level'] ?? 0),
                 'demon_tablet_kills' => (int) ($bosses->get('demon_tablet')['kills'] ?? 0),
                 'demon_tablet_progress' => (int) ($bosses->get('demon_tablet')['progress'] ?? 0),
@@ -203,6 +292,7 @@ class CharacterProfileRefreshService
     {
         return [
             'clears' => 0,
+            'data_source' => OccultProgress::DATA_SOURCE_FFLOGS,
             'bosses' => [
                 ['key' => 'demon_tablet', 'kills' => 0, 'progress' => 0],
                 ['key' => 'dead_stars', 'kills' => 0, 'progress' => 0],

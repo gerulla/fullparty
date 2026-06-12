@@ -4,6 +4,7 @@ namespace App\Services\Groups\ApplicantQueue;
 
 use App\Models\ActivityTypeVersion;
 use App\Models\Character;
+use App\Models\OccultProgress;
 use App\Services\FFLogs\CharacterZoneProgressFetcher;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Log;
@@ -68,7 +69,7 @@ class ApplicantMilestoneResolver
         if ($websiteProgress !== null) {
             return [
                 'reached' => $websiteProgress['kills'] > 0 || $websiteProgress['progress_percent'] > 0,
-                'source' => 'website',
+                'source' => $websiteProgress['source'] ?? 'website',
                 'kills' => $websiteProgress['kills'],
                 'progress_percent' => $websiteProgress['progress_percent'],
             ];
@@ -89,7 +90,7 @@ class ApplicantMilestoneResolver
     }
 
     /**
-     * @return array{kills:int, progress_percent:int}|null
+     * @return array{kills:int, progress_percent:int, source?:string}|null
      */
     private function resolveWebsiteMilestoneProgress(Character $character, int $encounterId): ?array
     {
@@ -119,6 +120,9 @@ class ApplicantMilestoneResolver
         return [
             'kills' => (int) ($boss['kills'] ?? 0),
             'progress_percent' => (int) ($boss['progress'] ?? 0),
+            'source' => $character->occultProgress?->data_source === OccultProgress::DATA_SOURCE_LODESTONE_ACHIEVEMENT
+                ? OccultProgress::DATA_SOURCE_LODESTONE_ACHIEVEMENT
+                : 'website',
         ];
     }
 

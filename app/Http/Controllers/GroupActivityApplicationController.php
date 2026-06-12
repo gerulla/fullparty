@@ -48,7 +48,7 @@ class GroupActivityApplicationController extends Controller
     public function show(Request $request, Group $group, Activity $activity, ?string $secretKey = null): Response
     {
         $group->loadMissing('memberships');
-        $this->ensureApplicationPageAccessible($request, $group, $activity, $secretKey);
+        $this->ensureApplicationPageAccessible($request, $group, $activity, $secretKey, allowParticipationBlocked: true);
 
         $activity->load(array_merge($this->attendeeActivityRelations(), [
             'applications.answers',
@@ -508,6 +508,7 @@ class GroupActivityApplicationController extends Controller
         Activity $activity,
         ?string $secretKey,
         bool $allowArchivedGuestAccess = false,
+        bool $allowParticipationBlocked = false,
     ): void {
         $this->ensureActivityBelongsToGroup($group, $activity);
 
@@ -519,7 +520,10 @@ class GroupActivityApplicationController extends Controller
             abort(404);
         }
 
-        if (! $this->canUseActivityParticipationFlow($group, $activity, $request->user()?->id)) {
+        if (
+            ! $allowParticipationBlocked
+            && ! $this->canUseActivityParticipationFlow($group, $activity, $request->user()?->id)
+        ) {
             abort(404);
         }
 
@@ -545,6 +549,11 @@ class GroupActivityApplicationController extends Controller
             $activity,
             $request->user()?->id,
         );
+        $requiresGroupMembership = $acceptsApplications
+            && $guestAccessToken === null
+            && $application === null
+            && $request->user() !== null
+            && ! $canUseParticipationFlow;
 
         return Inertia::render('Groups/Activities/Application', [
             'group' => $this->serializePublicGroup($group),
@@ -579,6 +588,11 @@ class GroupActivityApplicationController extends Controller
                 'can_withdraw_application' => $application ? $this->applicationWithdrawalService->applicationCanBeWithdrawn($activity, $application) : false,
                 'can_manage' => $group->hasModeratorAccess($request->user()?->id),
                 'has_existing_application' => $application !== null,
+                'requires_group_membership' => $requiresGroupMembership,
+                'can_join_group' => $requiresGroupMembership && $group->allowsOpenJoin(),
+                'can_request_group_membership' => $requiresGroupMembership
+                    && $group->usesMembershipApplications()
+                    && $group->is_visible,
             ],
         ]);
     }

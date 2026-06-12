@@ -10,8 +10,13 @@ class OccultProgress extends Model
 {
     use HasFactory;
 
+    public const DATA_SOURCE_FFLOGS = 'fflogs';
+
+    public const DATA_SOURCE_LODESTONE_ACHIEVEMENT = 'lodestone_achievement';
+
     protected $fillable = [
         'character_id',
+        'data_source',
         'knowledge_level',
         'demon_tablet_kills',
         'demon_tablet_progress',
@@ -49,6 +54,7 @@ class OccultProgress extends Model
     {
         return [
             'clears' => $this->clears(),
+            'data_source' => $this->data_source ?? self::DATA_SOURCE_FFLOGS,
             'bosses' => [
                 [
                     'key' => 'demon_tablet',

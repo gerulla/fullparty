@@ -11,13 +11,34 @@ const props = defineProps({
 	},
 })
 
+const isLodestoneVerified = computed(() => props.progress?.data_source === 'lodestone_achievement');
+const hasClearProof = computed(() => Number(props.progress?.clears ?? 0) > 0);
+const sourceBadgeLabel = computed(() => (
+	isLodestoneVerified.value
+		? t('characters.card.forked_tower.verified_with_lodestone')
+		: t('characters.card.forked_tower.verified_with_fflogs')
+));
+
 const displayProgress = computed(() => ({
 	clears: props.progress?.clears ?? 0,
+	data_source: props.progress?.data_source ?? 'fflogs',
 	bosses: (props.progress?.bosses ?? []).map((boss) => ({
 		...boss,
 		label: t(`characters.card.forked_tower.bosses.${boss.key}`),
 	})),
 }));
+
+const clearCountLabel = computed(() => (
+	isLodestoneVerified.value && displayProgress.value.clears > 0
+		? t('characters.card.forked_tower.clears_at_least', { count: displayProgress.value.clears })
+		: t('characters.card.forked_tower.clears', { count: displayProgress.value.clears })
+));
+
+const bossKillLabel = (kills) => (
+	isLodestoneVerified.value && Number(kills) > 0
+		? t('characters.card.forked_tower.kills_at_least', { count: kills })
+		: kills
+);
 </script>
 
 <template>
@@ -29,10 +50,19 @@ const displayProgress = computed(() => ({
 			</h3>
 		</div>
 
-		<div class="flex items-center justify-between rounded-sm border border-default bg-muted/20 px-3 py-2">
-			<p class="text-sm font-semibold">{{ t('characters.card.forked_tower.clear_count') }}</p>
+		<div class="flex items-center justify-between gap-3 rounded-sm border border-default bg-muted/20 px-3 py-2">
+			<div class="flex min-w-0 flex-wrap items-center gap-2">
+				<p class="text-sm font-semibold">{{ t('characters.card.forked_tower.clear_count') }}</p>
+				<UBadge
+					v-if="hasClearProof"
+					:label="sourceBadgeLabel"
+					:color="isLodestoneVerified ? 'primary' : 'neutral'"
+					variant="subtle"
+					size="sm"
+				/>
+			</div>
 			<UBadge
-				:label="t('characters.card.forked_tower.clears', { count: displayProgress.clears })"
+				:label="clearCountLabel"
 				color="error"
 				variant="subtle"
 				size="md"
@@ -63,7 +93,7 @@ const displayProgress = computed(() => ({
 
 				<div class="flex items-center justify-between text-sm text-muted">
 					<span>{{ t('characters.card.forked_tower.kills') }}</span>
-					<span class="text-base font-semibold text-toned">{{ boss.kills }}</span>
+					<span class="text-base font-semibold text-toned">{{ bossKillLabel(boss.kills) }}</span>
 				</div>
 			</div>
 		</div>

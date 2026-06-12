@@ -22,6 +22,9 @@ const props = defineProps<{
 	canApplyAsGuest: boolean
 	canEditApplication: boolean
 	canWithdrawApplication?: boolean
+	requiresGroupMembership?: boolean
+	canJoinGroup?: boolean
+	canRequestGroupMembership?: boolean
 	guestWorlds: GuestWorldOption[]
 }>();
 
@@ -77,10 +80,12 @@ const favoriteOptionKeysForQuestion = (question: ApplicationQuestion): string[] 
 	return [];
 };
 const applicationsClosed = computed(() => !props.acceptsApplications);
-const guestModeEnabled = computed(() => props.acceptsApplications && !props.canApply && props.canApplyAsGuest);
+const showMembershipRequiredAlert = computed(() => props.acceptsApplications && Boolean(props.requiresGroupMembership) && props.application === null);
+const guestModeEnabled = computed(() => props.acceptsApplications && !showMembershipRequiredAlert.value && !props.canApply && props.canApplyAsGuest);
 const applicationLocked = computed(() => props.acceptsApplications && props.application !== null && !props.canEditApplication);
-const showLoginRequiredAlert = computed(() => props.acceptsApplications && !props.canApply && !props.canApplyAsGuest);
+const showLoginRequiredAlert = computed(() => props.acceptsApplications && !showMembershipRequiredAlert.value && !props.canApply && !props.canApplyAsGuest);
 const showNoCharactersAlert = computed(() => props.acceptsApplications && props.canApply && props.characters.length === 0);
+const joiningGroup = ref(false);
 const guestSearchName = ref(props.application?.applicant_character?.name ?? '');
 const guestSearchWorld = ref(props.application?.applicant_character?.world ?? '');
 const guestSearchResults = ref<GuestCharacterSearchResult[]>([]);
@@ -123,6 +128,31 @@ const goToLogin = () => {
 
 const goToCharacters = () => {
 	router.get(route('account.characters'));
+};
+
+const joinGroup = () => {
+	if (!props.canJoinGroup || joiningGroup.value) {
+		return;
+	}
+
+	joiningGroup.value = true;
+
+	router.post(route('groups.join', props.groupSlug), {
+		redirect_to: 'back',
+	}, {
+		preserveScroll: true,
+		onFinish: () => {
+			joiningGroup.value = false;
+		},
+	});
+};
+
+const goToMembershipApplication = () => {
+	if (!props.canRequestGroupMembership) {
+		return;
+	}
+
+	router.get(route('groups.membership-applications.create', props.groupSlug));
 };
 
 const searchGuestCharacters = async () => {
@@ -266,7 +296,38 @@ const submit = () => {
 			</UAlert>
 
 			<UAlert
-				v-else-if="showNoCharactersAlert"
+				v-if="showMembershipRequiredAlert"
+				color="warning"
+				variant="soft"
+				icon="i-lucide-users-round"
+				:title="t('groups.activities.application.form.member_only_title')"
+				:description="t('groups.activities.application.form.member_only_description')"
+			>
+				<template #actions>
+					<UButton
+						v-if="canJoinGroup"
+						color="warning"
+						variant="outline"
+						size="sm"
+						icon="i-lucide-user-plus"
+						:label="t('groups.activities.application.form.member_only_join')"
+						:loading="joiningGroup"
+						@click.prevent="joinGroup"
+					/>
+					<UButton
+						v-else-if="canRequestGroupMembership"
+						color="warning"
+						variant="outline"
+						size="sm"
+						icon="i-lucide-file-check-2"
+						:label="t('groups.activities.application.form.member_only_request')"
+						@click.prevent="goToMembershipApplication"
+					/>
+				</template>
+			</UAlert>
+
+			<UAlert
+				v-if="!showMembershipRequiredAlert && showNoCharactersAlert"
 				color="warning"
 				variant="soft"
 				icon="i-lucide-user-round-x"
@@ -286,7 +347,7 @@ const submit = () => {
 			</UAlert>
 
 			<UAlert
-				v-if="applicationLocked"
+				v-if="!showMembershipRequiredAlert && applicationLocked"
 				color="warning"
 				variant="soft"
 				icon="i-lucide-lock"
@@ -307,7 +368,7 @@ const submit = () => {
 			</UAlert>
 
 			<UAlert
-				v-if="guestModeEnabled"
+				v-if="!showMembershipRequiredAlert && guestModeEnabled"
 				color="info"
 				variant="soft"
 				icon="i-lucide-info"
@@ -326,7 +387,7 @@ const submit = () => {
 				</template>
 			</UAlert>
 
-			<section v-if="canApply" class="space-y-5">
+			<section v-if="!showMembershipRequiredAlert && canApply" class="space-y-5">
 				<UFormField
 					:label="t('groups.activities.application.form.character_field')"
 					:description="t('groups.activities.application.form.character_description')"
@@ -345,7 +406,7 @@ const submit = () => {
 				</UFormField>
 			</section>
 
-			<section v-else-if="canApplyAsGuest" class="space-y-5">
+			<section v-else-if="!showMembershipRequiredAlert && canApplyAsGuest" class="space-y-5">
 				<div class="flex flex-row items-end justify-items-stretch justify-between gap-3">
 					<UFormField
 						:label="t('groups.activities.application.form.guest_name_field')"
@@ -469,12 +530,12 @@ const submit = () => {
 			</section>
 
 			<div
-				v-if="questions.length > 0"
+				v-if="!showMembershipRequiredAlert && questions.length > 0"
 				class="border-t border-default"
 			></div>
 
 			<section
-				v-if="questions.length > 0"
+				v-if="!showMembershipRequiredAlert && questions.length > 0"
 				class="space-y-5"
 			>
 				<div class="grid grid-cols-1 gap-5 xl:grid-cols-2">
@@ -491,9 +552,9 @@ const submit = () => {
 				</div>
 			</section>
 
-			<div class="border-t border-default"></div>
+			<div v-if="!showMembershipRequiredAlert" class="border-t border-default"></div>
 
-			<section class="space-y-5">
+			<section v-if="!showMembershipRequiredAlert" class="space-y-5">
 				<UFormField
 					:label="t('groups.activities.application.form.notes_field')"
 					:description="t('groups.activities.application.form.notes_description')"
@@ -511,7 +572,7 @@ const submit = () => {
 				</UFormField>
 			</section>
 
-			<div class="border-t border-default pt-4">
+			<div v-if="!showMembershipRequiredAlert" class="border-t border-default pt-4">
 				<UCheckbox
 					v-if="showRememberChoicesOption"
 					v-model="form.remember_application_defaults"
@@ -525,7 +586,7 @@ const submit = () => {
 				</p>
 			</div>
 
-			<div class="flex items-center gap-3 pt-2">
+			<div v-if="!showMembershipRequiredAlert" class="flex items-center gap-3 pt-2">
 				<UButton
 					type="button"
 					color="neutral"

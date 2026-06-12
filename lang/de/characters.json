@@ -202,7 +202,11 @@
         "forked_tower": {
             "clear_count": "Abschlussanzahl",
             "clears": "{count} Abschlüsse",
+            "clears_at_least": "{count}+ Abschlüsse",
             "kills": "Besiegt",
+            "kills_at_least": "Mindestens {count}",
+            "verified_with_fflogs": "Mit FFLogs verifiziert",
+            "verified_with_lodestone": "Mit Lodestone verifiziert",
             "bosses": {
                 "demon_tablet": "Dämonentafel",
                 "dead_stars": "Tote Sterne",

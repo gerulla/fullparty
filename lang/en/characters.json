@@ -202,7 +202,11 @@
     "forked_tower": {
       "clear_count": "Clear Count",
       "clears": "{count} clears",
+      "clears_at_least": "{count}+ clears",
       "kills": "Kills",
+      "kills_at_least": "At least {count}",
+      "verified_with_fflogs": "Verified with FFLogs",
+      "verified_with_lodestone": "Verified with Lodestone",
       "bosses": {
         "demon_tablet": "Demon Tablet",
         "dead_stars": "Dead Stars",

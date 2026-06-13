@@ -257,6 +257,30 @@ it('lets non members view members-only application pages without submitting', fu
         ->assertOk();
 });
 
+it('lets group owners apply to members-only runs even without a membership row', function () {
+    extract(createAccessControlActivity([], [
+        'is_public' => false,
+    ]));
+
+    $group->memberships()->where('user_id', $owner->id)->delete();
+    $group->unsetRelation('memberships');
+
+    expect($group->memberships()->where('user_id', $owner->id)->exists())->toBeFalse();
+
+    $this->actingAs($owner)
+        ->get(route('groups.activities.application', [
+            'group' => $group->slug,
+            'activity' => $activity->id,
+        ]))
+        ->assertOk()
+        ->assertInertia(fn (Assert $page) => $page
+            ->component('Groups/Activities/Application')
+            ->where('permissions.can_apply', true)
+            ->where('permissions.requires_group_membership', false)
+            ->where('permissions.can_join_group', false)
+        );
+});
+
 it('points non members toward group applications for application based groups', function () {
     extract(createAccessControlActivity([
         'join_mode' => Group::JOIN_MODE_APPLICATION,

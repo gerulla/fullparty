@@ -252,6 +252,7 @@
         "option_sources": {
             "character_classes": "Classes de personnage",
             "phantom_jobs": "Jobs fantômes",
+            "raid_positions": "Positions de raid",
             "static_options": "Options statiques"
         }
     },

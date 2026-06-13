@@ -11,6 +11,7 @@ use App\Models\Character;
 use App\Models\CharacterClass;
 use App\Models\Group;
 use App\Models\PhantomJob;
+use App\Models\RaidPosition;
 use App\Models\UserActivityApplicationDefault;
 use App\Services\Groups\ActivityApplicationCharacterRefreshService;
 use App\Services\Groups\ActivityApplicationWithdrawalService;
@@ -653,6 +654,20 @@ class GroupActivityApplicationController extends Controller
                         'icon_url' => $phantomJob->icon_url,
                         'transparent_icon_url' => $phantomJob->transparent_icon_url,
                         'sprite_url' => $phantomJob->sprite_url,
+                    ],
+                ])
+                ->values()
+                ->all(),
+            'raid_positions' => RaidPosition::query()
+                ->where('is_active', true)
+                ->orderBy('sort_order')
+                ->orderBy('name')
+                ->get()
+                ->map(fn (RaidPosition $raidPosition) => [
+                    'key' => $raidPosition->key,
+                    'label' => ['en' => $raidPosition->name],
+                    'meta' => [
+                        'icon_url' => $raidPosition->icon_url,
                     ],
                 ])
                 ->values()

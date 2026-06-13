@@ -5,6 +5,7 @@ namespace App\Services\Groups\ApplicantQueue;
 use App\Models\ActivityTypeVersion;
 use App\Models\CharacterClass;
 use App\Models\PhantomJob;
+use App\Models\RaidPosition;
 use Illuminate\Support\Collection;
 
 class ApplicationAnswerPresenter
@@ -82,6 +83,18 @@ class ApplicationAnswerPresenter
                 ->map(fn ($entry) => (string) $entry === self::ANY_OPTION_KEY && $anyLabel !== null
                     ? $anyLabel
                     : $labels[(int) $entry] ?? null)
+                ->filter();
+        }
+
+        if ($source === 'raid_positions') {
+            $labels = RaidPosition::query()
+                ->whereIn('key', $values->reject(fn ($entry) => (string) $entry === self::ANY_OPTION_KEY)->map(fn ($entry) => (string) $entry)->all())
+                ->pluck('name', 'key');
+
+            return $values
+                ->map(fn ($entry) => (string) $entry === self::ANY_OPTION_KEY && $anyLabel !== null
+                    ? $anyLabel
+                    : $labels[(string) $entry] ?? null)
                 ->filter();
         }
 
@@ -223,6 +236,38 @@ class ApplicationAnswerPresenter
                         'label' => $phantomJob->name,
                         'icon_url' => $phantomJob->icon_url,
                         'transparent_icon_url' => $phantomJob->transparent_icon_url,
+                    ];
+                })
+                ->filter()
+                ->values();
+        }
+
+        if ($source === 'raid_positions') {
+            $raidPositions = RaidPosition::query()
+                ->whereIn('key', $values->reject(fn ($entry) => (string) $entry === self::ANY_OPTION_KEY)->map(fn ($entry) => (string) $entry)->all())
+                ->get()
+                ->keyBy('key');
+
+            return $values
+                ->map(function ($entry) use ($raidPositions, $anyLabel) {
+                    if ((string) $entry === self::ANY_OPTION_KEY && $anyLabel !== null) {
+                        return [
+                            'label' => $anyLabel,
+                            'icon_url' => null,
+                            'is_any' => true,
+                        ];
+                    }
+
+                    /** @var RaidPosition|null $raidPosition */
+                    $raidPosition = $raidPositions->get((string) $entry);
+
+                    if (! $raidPosition) {
+                        return null;
+                    }
+
+                    return [
+                        'label' => $raidPosition->name,
+                        'icon_url' => $raidPosition->icon_url,
                     ];
                 })
                 ->filter()

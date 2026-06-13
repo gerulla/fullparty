@@ -1022,6 +1022,7 @@ class ActivityTypeController extends Controller
             'supportedOptionSources' => [
                 'character_classes',
                 'phantom_jobs',
+                'raid_positions',
                 'static_options',
             ],
             'rosterSummarySources' => [

@@ -40,7 +40,7 @@ const answerBadgeColor = (source: string | null, value: string) => {
 		return 'secondary';
 	}
 
-	if (source === 'static_options') {
+	if (source === 'raid_positions' || source === 'static_options') {
 		return 'warning';
 	}
 
@@ -105,7 +105,7 @@ const summaryAnswers = computed(() => props.application.answers
 			return true;
 		}
 
-		if (answer.source === 'static_options') {
+		if (answer.source === 'raid_positions' || answer.source === 'static_options') {
 			return answer.question_key.toLowerCase().includes('position');
 		}
 

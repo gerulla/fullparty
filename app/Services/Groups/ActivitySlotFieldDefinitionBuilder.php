@@ -5,6 +5,7 @@ namespace App\Services\Groups;
 use App\Models\ActivityTypeVersion;
 use App\Models\CharacterClass;
 use App\Models\PhantomJob;
+use App\Models\RaidPosition;
 use Illuminate\Support\Str;
 
 class ActivitySlotFieldDefinitionBuilder
@@ -111,6 +112,20 @@ class ActivitySlotFieldDefinitionBuilder
                         'black_icon_url' => $phantomJob->black_icon_url,
                         'transparent_icon_url' => $phantomJob->transparent_icon_url,
                         'sprite_url' => $phantomJob->sprite_url,
+                    ],
+                ])
+                ->values()
+                ->all(),
+            'raid_positions' => RaidPosition::query()
+                ->where('is_active', true)
+                ->orderBy('sort_order')
+                ->orderBy('name')
+                ->get()
+                ->map(fn (RaidPosition $raidPosition) => [
+                    'key' => $raidPosition->key,
+                    'label' => ['en' => $raidPosition->name],
+                    'meta' => [
+                        'icon_url' => $raidPosition->icon_url,
                     ],
                 ])
                 ->values()

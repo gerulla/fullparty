@@ -252,6 +252,7 @@
         "option_sources": {
             "character_classes": "キャラクタークラス",
             "phantom_jobs": "ファントムジョブ",
+            "raid_positions": "レイドポジション",
             "static_options": "Static Options"
         }
     },

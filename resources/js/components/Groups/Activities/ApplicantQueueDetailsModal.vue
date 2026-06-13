@@ -84,7 +84,7 @@ const answerBadgeColor = (source: string | null, value: string) => {
 		return 'secondary';
 	}
 
-	if (source === 'static_options') {
+	if (source === 'raid_positions' || source === 'static_options') {
 		return 'warning';
 	}
 
@@ -157,7 +157,7 @@ const detailedAnswers = computed(() => (props.application?.answers ?? [])
 			return false;
 		}
 
-		if (answer.source === 'static_options') {
+		if (answer.source === 'raid_positions' || answer.source === 'static_options') {
 			return !answer.question_key.toLowerCase().includes('position');
 		}
 
@@ -172,7 +172,10 @@ const detailedAnswers = computed(() => (props.application?.answers ?? [])
 
 const classAnswer = computed(() => props.application?.answers.find((answer) => answer.source === 'character_classes') ?? null);
 const phantomAnswer = computed(() => props.application?.answers.find((answer) => answer.source === 'phantom_jobs') ?? null);
-const positionAnswer = computed(() => props.application?.answers.find((answer) => answer.source === 'static_options' && answer.question_key.toLowerCase().includes('position')) ?? null);
+const positionAnswer = computed(() => props.application?.answers.find((answer) => (
+	(answer.source === 'raid_positions' || answer.source === 'static_options')
+	&& answer.question_key.toLowerCase().includes('position')
+)) ?? null);
 const playableRoles = computed(() => classAnswer.value?.role_values ?? []);
 const classDisplayItems = computed(() => classAnswer.value?.display_items ?? []);
 const phantomDisplayItems = computed(() => phantomAnswer.value?.display_items ?? []);

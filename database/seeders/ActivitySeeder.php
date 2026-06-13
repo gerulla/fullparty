@@ -12,6 +12,7 @@ use App\Models\CharacterClass;
 use App\Models\Group;
 use App\Models\GroupMembership;
 use App\Models\PhantomJob;
+use App\Models\RaidPosition;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Carbon;
@@ -1713,7 +1714,7 @@ class ActivitySeeder extends Seeder
             ];
         }
 
-        if ($fieldSource === 'static_options') {
+        if ($fieldSource === 'raid_positions' || $fieldSource === 'static_options') {
             $option = $this->resolveStaticOptionForSlot($slotPosition, $fieldKey, $definition);
 
             if (! $option) {
@@ -1777,8 +1778,7 @@ class ActivitySeeder extends Seeder
      */
     private function resolveStaticOptionForSlot(int $slotPosition, string $fieldKey, array $definition): ?array
     {
-        $options = collect($definition['options'] ?? [])
-            ->filter(fn ($option): bool => is_array($option));
+        $options = $this->optionsForAnswerGeneration($definition);
 
         if ($options->isEmpty()) {
             return null;
@@ -1800,6 +1800,30 @@ class ActivitySeeder extends Seeder
         }
 
         return $options->random();
+    }
+
+    /**
+     * @param  array<string, mixed>  $definition
+     * @return Collection<int, array<string, mixed>>
+     */
+    private function optionsForAnswerGeneration(array $definition): Collection
+    {
+        if (($definition['source'] ?? null) === 'raid_positions') {
+            return RaidPosition::query()
+                ->where('is_active', true)
+                ->orderBy('sort_order')
+                ->orderBy('name')
+                ->get()
+                ->map(fn (RaidPosition $raidPosition): array => [
+                    'key' => $raidPosition->key,
+                    'label' => ['en' => $raidPosition->name],
+                ])
+                ->values();
+        }
+
+        return collect($definition['options'] ?? [])
+            ->filter(fn ($option): bool => is_array($option))
+            ->values();
     }
 
     private function roleKeyForClass(?string $role): ?string
@@ -1866,8 +1890,8 @@ class ActivitySeeder extends Seeder
             return $phantomJobIds->random();
         }
 
-        if ($source === 'static_options') {
-            $options = collect($question['options'] ?? [])
+        if ($source === 'raid_positions' || $source === 'static_options') {
+            $options = $this->optionsForAnswerGeneration($question)
                 ->map(fn ($option) => (string) ($option['value'] ?? $option['key'] ?? ''))
                 ->filter();
 

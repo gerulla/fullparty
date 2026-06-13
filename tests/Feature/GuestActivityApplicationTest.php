@@ -11,6 +11,7 @@ use App\Models\Character;
 use App\Models\CharacterClass;
 use App\Models\Group;
 use App\Models\PhantomJob;
+use App\Models\RaidPosition;
 use App\Models\User;
 use App\Models\UserActivityApplicationDefault;
 use App\Services\Groups\ActivityApplicationCharacterRefreshService;
@@ -460,6 +461,56 @@ it('adds schema-defined any choices to application question options', function (
             ->where('applicationSchema.0.options.0.key', (string) $characterClass->id)
             ->where('applicationSchema.0.options.1.key', 'any')
             ->where('applicationSchema.0.options.1.label.en', 'Put Me Anywhere Coach')
+        );
+});
+
+it('resolves shared raid position choices for application questions', function () {
+    $activity = createGuestApplicationActivity([
+        'allow_guest_applications' => false,
+    ]);
+    RaidPosition::query()->create([
+        'key' => 'mt',
+        'name' => 'Main Tank',
+        'sort_order' => 10,
+        'is_active' => true,
+    ]);
+    RaidPosition::query()->create([
+        'key' => 'ot',
+        'name' => 'Off Tank',
+        'sort_order' => 20,
+        'is_active' => true,
+    ]);
+    $activity->activityTypeVersion->update([
+        'application_schema' => [
+            [
+                'key' => 'preferred_raid_positions',
+                'label' => ['en' => 'Preferred Raid Positions'],
+                'type' => 'multi_select',
+                'source' => 'raid_positions',
+                'accepts_any' => true,
+                'any_label' => ['en' => 'Put Me Anywhere Coach'],
+            ],
+        ],
+    ]);
+    $user = User::factory()->create();
+    Character::factory()->primary()->create([
+        'user_id' => $user->id,
+    ]);
+
+    $this->actingAs($user);
+
+    $this->get(route('groups.activities.application', [
+        'group' => $activity->group->slug,
+        'activity' => $activity->id,
+    ]))->assertOk()
+        ->assertInertia(fn (Assert $page) => $page
+            ->component('Groups/Activities/Application')
+            ->where('applicationSchema.0.key', 'preferred_raid_positions')
+            ->where('applicationSchema.0.options.0.key', 'mt')
+            ->where('applicationSchema.0.options.0.label.en', 'Main Tank')
+            ->where('applicationSchema.0.options.1.key', 'ot')
+            ->where('applicationSchema.0.options.2.key', 'any')
+            ->where('applicationSchema.0.options.2.label.en', 'Put Me Anywhere Coach')
         );
 });
 

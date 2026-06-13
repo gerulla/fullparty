@@ -1,0 +1,57 @@
+{
+  "section_title": "Raid-Positionen",
+  "section_description": "Wiederverwendbare Raid-Positionen für zukünftige Aktivitätsvorlagen.",
+  "section_badge": "{count} Positionen",
+  "search_placeholder": "Raid-Positionen suchen...",
+  "sort_order": "Sortierung: {order}",
+  "status": {
+    "active": "Aktiv",
+    "inactive": "Inaktiv"
+  },
+  "empty": {
+    "title": "Keine Raid-Positionen gefunden",
+    "description": "Erstelle Raid-Positionen wie Main Tank, H1, M1 oder R1."
+  },
+  "actions": {
+    "edit": "Raid-Position bearbeiten",
+    "delete": "Raid-Position löschen"
+  },
+  "toasts": {
+    "created": "Raid-Position erfolgreich erstellt",
+    "updated": "Raid-Position erfolgreich aktualisiert",
+    "deleted": "Raid-Position erfolgreich gelöscht"
+  },
+  "create_modal": {
+    "title": "Raid-Position erstellen",
+    "subtitle": "Definiere eine wiederverwendbare Raid-Position."
+  },
+  "edit_modal": {
+    "title": "Raid-Position bearbeiten",
+    "subtitle": "Bearbeite die Details von „{name}“."
+  },
+  "delete_modal": {
+    "title": "{name} löschen?",
+    "description": "Dadurch wird die Raid-Position aus den Systemdaten entfernt.",
+    "confirm": "Position löschen"
+  },
+  "fields": {
+    "name": {
+      "label": "Positionsname",
+      "placeholder": "z. B. Main Tank"
+    },
+    "key": {
+      "label": "Gespeicherter Schlüssel",
+      "placeholder": "z. B. main_tank"
+    },
+    "icon_url": {
+      "label": "Icon-URL",
+      "placeholder": "https://example.com/icon.png"
+    },
+    "sort_order": {
+      "label": "Sortierung"
+    },
+    "is_active": {
+      "label": "Aktiv"
+    }
+  }
+}

@@ -110,6 +110,11 @@
                 "updated": "がファントムジョブを更新しました。",
                 "deleted": "がファントムジョブを削除しました。"
             },
+            "raid_position": {
+                "created": "がレイドポジションを作成しました。",
+                "updated": "がレイドポジションを更新しました。",
+                "deleted": "がレイドポジションを削除しました。"
+            },
             "activity_type": {
                 "created": "がActivity Typeを作成しました。",
                 "updated": "がActivity Typeを更新しました。",
@@ -352,6 +357,11 @@
                 "created": "ファントムジョブを作成",
                 "updated": "ファントムジョブを更新",
                 "deleted": "ファントムジョブを削除"
+            },
+            "raid_position": {
+                "created": "レイドポジションを作成",
+                "updated": "レイドポジションを更新",
+                "deleted": "レイドポジションを削除"
             },
             "activity_type": {
                 "created": "Activity Typeを作成",

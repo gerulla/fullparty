@@ -17,6 +17,7 @@ class ProductionSeeder extends Seeder
         $this->call([
             CharacterClassSeeder::class,
             PhantomJobSeeder::class,
+            RaidPositionSeeder::class,
             LargeContentActivityTypeSeeder::class,
             ExtremeActivityTypeSeeder::class,
             SavageActivityTypeSeeder::class,

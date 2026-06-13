@@ -2,13 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ActivityType;
 use App\Models\AuditLog;
 use App\Models\Character;
 use App\Models\CharacterClass;
 use App\Models\CharacterFieldDefinition;
-use App\Models\PhantomJob;
 use App\Models\Group;
+use App\Models\PhantomJob;
+use App\Models\RaidPosition;
 use App\Models\User;
+use Illuminate\Support\Collection;
 use Inertia\Inertia;
 use Inertia\Response;
 
@@ -119,8 +122,20 @@ class AdminController extends Controller
         ]);
     }
 
+    public function systemData(): Response
+    {
+        $this->authorizeAdminAccess();
+
+        return Inertia::render('Admin/SystemData', [
+            'raidPositions' => RaidPosition::query()
+                ->orderBy('sort_order')
+                ->orderBy('name')
+                ->get(),
+        ]);
+    }
+
     /**
-     * @param  \Illuminate\Support\Collection<int, AuditLog>  $auditLogs
+     * @param  Collection<int, AuditLog>  $auditLogs
      * @return array<string, array<int, string>>
      */
     private function resolveScopeEntities($auditLogs): array
@@ -167,7 +182,7 @@ class AdminController extends Controller
 
     private function authorizeAdminAccess(): void
     {
-        if (!auth()->user()?->is_admin) {
+        if (! auth()->user()?->is_admin) {
             abort(403);
         }
     }
@@ -177,13 +192,13 @@ class AdminController extends Controller
      */
     private function resolveChanges(mixed $changes): array
     {
-        if (!is_array($changes) || $changes === []) {
+        if (! is_array($changes) || $changes === []) {
             return [];
         }
 
         return collect($changes)
             ->map(function ($change, $field) {
-                if (!is_array($change) || !array_key_exists('old', $change) || !array_key_exists('new', $change)) {
+                if (! is_array($change) || ! array_key_exists('old', $change) || ! array_key_exists('new', $change)) {
                     return null;
                 }
 
@@ -286,7 +301,7 @@ class AdminController extends Controller
         $metadata = is_array($auditLog->metadata) ? $auditLog->metadata : [];
 
         if (
-            $auditLog->subject_type === \App\Models\ActivityType::class
+            $auditLog->subject_type === ActivityType::class
             && filled($metadata['activity_type_name'] ?? null)
         ) {
             return (string) $metadata['activity_type_name'];

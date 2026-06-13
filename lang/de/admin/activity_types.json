@@ -221,6 +221,11 @@
         "type": "Feldtyp",
         "source": "Option Source",
         "required": "Required",
+        "accepts_any": "'Beliebig'-Auswahl erlauben",
+        "accepts_any_help": "Fuegt eine nur fuer Bewerbungen sichtbare Auswahl hinzu, wenn Bewerber jede verfuegbare Option uebernehmen koennen. Slot-Auswahlen bleiben unveraendert.",
+        "any_label": "Lokalisierte 'Beliebig'-Beschriftung",
+        "any_label_help": "Diese Beschriftung wird Bewerbern fuer die flexible Beliebig-Auswahl angezeigt.",
+        "any_label_placeholder": "Beliebig",
         "label": "Localized Label",
         "label_help": "This is the main label shown to users.",
         "label_placeholder": "Label",
@@ -247,6 +252,7 @@
         "option_sources": {
             "character_classes": "Charakterklassen",
             "phantom_jobs": "Phantom-Jobs",
+            "raid_positions": "Raid-Positionen",
             "static_options": "Static Options"
         }
     },

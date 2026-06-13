@@ -1,0 +1,57 @@
+{
+  "section_title": "Raid Positions",
+  "section_description": "Reusable raid position entries for future activity setup.",
+  "section_badge": "{count} positions",
+  "search_placeholder": "Search raid positions...",
+  "sort_order": "Sort order: {order}",
+  "status": {
+    "active": "Active",
+    "inactive": "Inactive"
+  },
+  "empty": {
+    "title": "No raid positions found",
+    "description": "Create raid positions such as Main Tank, H1, M1, or R1."
+  },
+  "actions": {
+    "edit": "Edit raid position",
+    "delete": "Delete raid position"
+  },
+  "toasts": {
+    "created": "Raid position created successfully",
+    "updated": "Raid position updated successfully",
+    "deleted": "Raid position deleted successfully"
+  },
+  "create_modal": {
+    "title": "Create Raid Position",
+    "subtitle": "Define a reusable raid position."
+  },
+  "edit_modal": {
+    "title": "Edit Raid Position",
+    "subtitle": "Edit the details of '{name}'."
+  },
+  "delete_modal": {
+    "title": "Delete {name}?",
+    "description": "This removes the raid position from the system data list.",
+    "confirm": "Delete position"
+  },
+  "fields": {
+    "name": {
+      "label": "Position Name",
+      "placeholder": "e.g., Main Tank"
+    },
+    "key": {
+      "label": "Stored Key",
+      "placeholder": "e.g., main_tank"
+    },
+    "icon_url": {
+      "label": "Icon URL",
+      "placeholder": "https://example.com/icon.png"
+    },
+    "sort_order": {
+      "label": "Sort Order"
+    },
+    "is_active": {
+      "label": "Active"
+    }
+  }
+}

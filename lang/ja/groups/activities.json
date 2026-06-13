@@ -569,7 +569,8 @@
                 "healer": "ヒーラー",
                 "melee": "近接",
                 "phys": "遠隔物理",
-                "magic": "遠隔魔法"
+                "magic": "遠隔魔法",
+                "other": "その他"
             }
         },
         "phantom_picker": {

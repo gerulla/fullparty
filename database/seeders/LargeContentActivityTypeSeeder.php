@@ -123,8 +123,7 @@ class LargeContentActivityTypeSeeder extends Seeder
                         key: 'raid_position',
                         label: ['en' => 'Raid Position', 'de' => 'Raid-Position', 'fr' => 'Position de raid', 'ja' => 'レイドポジション'],
                         type: 'single_select',
-                        source: 'static_options',
-                        options: $this->raidPositionOptions(),
+                        source: 'raid_positions',
                     ),
                     $this->schemaField(
                         key: 'phantom_job',
@@ -144,8 +143,9 @@ class LargeContentActivityTypeSeeder extends Seeder
                         key: 'preferred_raid_positions',
                         label: ['en' => 'Preferred Raid Positions', 'de' => 'Bevorzugte Raid-Positionen', 'fr' => 'Positions de raid preferees', 'ja' => '希望ポジション'],
                         type: 'multi_select',
-                        source: 'static_options',
-                        options: $this->raidPositionOptions(),
+                        source: 'raid_positions',
+                        acceptsAny: true,
+                        anyLabel: ['en' => 'Put Me Anywhere Coach', 'de' => 'Setz mich ein, wo du willst, Coach', 'fr' => 'Mets-moi où tu veux, coach', 'ja' => 'どこでもいいです'],
                     ),
                     $this->schemaField(
                         key: 'preferred_phantom_jobs',
@@ -359,8 +359,7 @@ class LargeContentActivityTypeSeeder extends Seeder
                         key: 'raid_position',
                         label: ['en' => 'Raid Position', 'de' => 'Raid-Position', 'fr' => 'Position de raid', 'ja' => 'レイドポジション'],
                         type: 'single_select',
-                        source: 'static_options',
-                        options: $this->raidPositionOptions(),
+                        source: 'raid_positions',
                     ),
                 ],
                 'draft_application_schema' => [
@@ -374,8 +373,9 @@ class LargeContentActivityTypeSeeder extends Seeder
                         key: 'preferred_raid_positions',
                         label: ['en' => 'Preferred Raid Positions', 'de' => 'Bevorzugte Raid-Positionen', 'fr' => 'Positions de raid preferees', 'ja' => '希望ポジション'],
                         type: 'multi_select',
-                        source: 'static_options',
-                        options: $this->raidPositionOptions(),
+                        source: 'raid_positions',
+                        acceptsAny: true,
+                        anyLabel: ['en' => 'Put Me Anywhere Coach', 'de' => 'Setz mich ein, wo du willst, Coach', 'fr' => 'Mets-moi où tu veux, coach', 'ja' => 'どこでもいいです'],
                     ),
                     $this->schemaField(
                         key: 'can_be_on_standby',
@@ -467,6 +467,8 @@ class LargeContentActivityTypeSeeder extends Seeder
         bool $required = true,
         ?array $options = null,
         array|string|null $helpText = null,
+        bool $acceptsAny = false,
+        array|string|null $anyLabel = null,
     ): array {
         return array_filter([
             'key' => $key,
@@ -476,6 +478,8 @@ class LargeContentActivityTypeSeeder extends Seeder
             'required' => $required,
             'help_text' => $this->localized($helpText ?? ''),
             'options' => $options,
+            'accepts_any' => $acceptsAny ? true : null,
+            'any_label' => $acceptsAny ? $this->localized($anyLabel ?? 'Any') : null,
         ], static fn ($value) => $value !== null);
     }
 
@@ -520,23 +524,6 @@ class LargeContentActivityTypeSeeder extends Seeder
         return [
             'key' => $key,
             'label' => $this->localized($label),
-        ];
-    }
-
-    /**
-     * @return array<int, array<string, mixed>>
-     */
-    private function raidPositionOptions(): array
-    {
-        return [
-            $this->staticOption('mt', ['en' => 'Main Tank', 'de' => 'Main Tank', 'fr' => 'Tank principal', 'ja' => 'MT']),
-            $this->staticOption('ot', ['en' => 'Off Tank', 'de' => 'Off Tank', 'fr' => 'Off tank', 'ja' => 'ST']),
-            $this->staticOption('h1', ['en' => 'Healer 1', 'de' => 'Heiler 1', 'fr' => 'Soigneur 1', 'ja' => 'H1']),
-            $this->staticOption('h2', ['en' => 'Healer 2', 'de' => 'Heiler 2', 'fr' => 'Soigneur 2', 'ja' => 'H2']),
-            $this->staticOption('m1', ['en' => 'DPS 1 / Melee 1', 'de' => 'DPS 1 / Nahkampf 1', 'fr' => 'DPS 1 / Melee 1', 'ja' => 'DPS 1 / M1']),
-            $this->staticOption('m2', ['en' => 'DPS 2 / Melee 2', 'de' => 'DPS 2 / Nahkampf 2', 'fr' => 'DPS 2 / Melee 2', 'ja' => 'DPS 2 / M2']),
-            $this->staticOption('r1', ['en' => 'DPS 3 / Phys Ranged', 'de' => 'DPS 3 / Phys. Fernkampf', 'fr' => 'DPS 3 / Distance physique', 'ja' => 'DPS 3 / Phys Ranged']),
-            $this->staticOption('r2', ['en' => 'DPS 4 / Magic Ranged', 'de' => 'DPS 4 / Mag. Fernkampf', 'fr' => 'DPS 4 / Distance magique', 'ja' => 'DPS 4 / Magic Ranged']),
         ];
     }
 

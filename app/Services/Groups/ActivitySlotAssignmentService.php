@@ -671,6 +671,10 @@ class ActivitySlotAssignmentService
                 'id' => (int) $selection,
                 'name' => is_array($label) ? ($label['en'] ?? reset($label) ?: '') : (string) $label,
             ],
+            'raid_positions' => [
+                'key' => $selection,
+                'label' => $label,
+            ],
             'static_options' => [
                 'key' => $selection,
                 'label' => $label,

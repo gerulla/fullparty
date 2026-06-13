@@ -1,0 +1,57 @@
+{
+  "section_title": "Positions de raid",
+  "section_description": "Positions de raid réutilisables pour les futures configurations d'activité.",
+  "section_badge": "{count} positions",
+  "search_placeholder": "Rechercher des positions de raid...",
+  "sort_order": "Ordre de tri : {order}",
+  "status": {
+    "active": "Active",
+    "inactive": "Inactive"
+  },
+  "empty": {
+    "title": "Aucune position de raid trouvée",
+    "description": "Créez des positions comme Main Tank, H1, M1 ou R1."
+  },
+  "actions": {
+    "edit": "Modifier la position de raid",
+    "delete": "Supprimer la position de raid"
+  },
+  "toasts": {
+    "created": "Position de raid créée avec succès",
+    "updated": "Position de raid mise à jour avec succès",
+    "deleted": "Position de raid supprimée avec succès"
+  },
+  "create_modal": {
+    "title": "Créer une position de raid",
+    "subtitle": "Définissez une position de raid réutilisable."
+  },
+  "edit_modal": {
+    "title": "Modifier la position de raid",
+    "subtitle": "Modifiez les détails de « {name} »."
+  },
+  "delete_modal": {
+    "title": "Supprimer {name} ?",
+    "description": "Cette action retire la position de raid de la liste des données système.",
+    "confirm": "Supprimer la position"
+  },
+  "fields": {
+    "name": {
+      "label": "Nom de la position",
+      "placeholder": "ex. Main Tank"
+    },
+    "key": {
+      "label": "Clé enregistrée",
+      "placeholder": "ex. main_tank"
+    },
+    "icon_url": {
+      "label": "URL de l'icône",
+      "placeholder": "https://example.com/icon.png"
+    },
+    "sort_order": {
+      "label": "Ordre de tri"
+    },
+    "is_active": {
+      "label": "Active"
+    }
+  }
+}

@@ -12,6 +12,7 @@ use App\Models\CharacterClass;
 use App\Models\Group;
 use App\Models\GroupMembership;
 use App\Models\PhantomJob;
+use App\Models\RaidPosition;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Carbon;
@@ -673,7 +674,8 @@ class ActivitySeeder extends Seeder
 
         $progressMilestoneRows = [];
         $milestones = $context['progress_milestones'];
-        $furthestProgressOrder = $this->progressOrderForKey($context['prog_points'], $furthestProgressKey);
+        $furthestProgressOrder = $this->progressOrderForKey($context['prog_points'], $furthestProgressKey)
+            ?? $this->progressOrderForKey($milestones, $furthestProgressKey);
 
         foreach ($milestones as $index => $milestoneDefinition) {
             $milestoneOrder = (int) ($milestoneDefinition['order'] ?? $index + 1);
@@ -1226,6 +1228,11 @@ class ActivitySeeder extends Seeder
     ): array {
         $furthestProgressKey = $this->seededFurthestProgressKey($context['prog_points'], $targetProgPointKey);
 
+        if ($furthestProgressKey === null && $context['progress_milestones'] !== []) {
+            $furthestProgressKey = $this->firstProgressPointKey($context['prog_points'])
+                ?? $this->firstProgressMilestoneKey($context['progress_milestones']);
+        }
+
         return [
             'progress_entry_mode' => $context['progress_milestones'] === [] ? null : 'manual',
             'progress_notes' => fake()->boolean(45) ? fake()->sentence() : null,
@@ -1234,6 +1241,26 @@ class ActivitySeeder extends Seeder
             'progress_recorded_by_user_id' => $recordedByUserId,
             'progress_recorded_at' => $completedAt->copy()->addMinutes(fake()->numberBetween(5, 90)),
         ];
+    }
+
+    /**
+     * @param  array<int, array<string, mixed>>  $progPoints
+     */
+    private function firstProgressPointKey(array $progPoints): ?string
+    {
+        return $this->orderedProgPoints($progPoints)
+            ->first()['key'] ?? null;
+    }
+
+    /**
+     * @param  array<int, array<string, mixed>>  $milestones
+     */
+    private function firstProgressMilestoneKey(array $milestones): ?string
+    {
+        return collect($milestones)
+            ->filter(fn ($milestone): bool => is_array($milestone) && filled($milestone['key'] ?? null))
+            ->sortBy(fn (array $milestone): int => (int) ($milestone['order'] ?? 1))
+            ->first()['key'] ?? null;
     }
 
     /**
@@ -1713,7 +1740,7 @@ class ActivitySeeder extends Seeder
             ];
         }
 
-        if ($fieldSource === 'static_options') {
+        if ($fieldSource === 'raid_positions' || $fieldSource === 'static_options') {
             $option = $this->resolveStaticOptionForSlot($slotPosition, $fieldKey, $definition);
 
             if (! $option) {
@@ -1777,8 +1804,7 @@ class ActivitySeeder extends Seeder
      */
     private function resolveStaticOptionForSlot(int $slotPosition, string $fieldKey, array $definition): ?array
     {
-        $options = collect($definition['options'] ?? [])
-            ->filter(fn ($option): bool => is_array($option));
+        $options = $this->optionsForAnswerGeneration($definition);
 
         if ($options->isEmpty()) {
             return null;
@@ -1800,6 +1826,30 @@ class ActivitySeeder extends Seeder
         }
 
         return $options->random();
+    }
+
+    /**
+     * @param  array<string, mixed>  $definition
+     * @return Collection<int, array<string, mixed>>
+     */
+    private function optionsForAnswerGeneration(array $definition): Collection
+    {
+        if (($definition['source'] ?? null) === 'raid_positions') {
+            return RaidPosition::query()
+                ->where('is_active', true)
+                ->orderBy('sort_order')
+                ->orderBy('name')
+                ->get()
+                ->map(fn (RaidPosition $raidPosition): array => [
+                    'key' => $raidPosition->key,
+                    'label' => ['en' => $raidPosition->name],
+                ])
+                ->values();
+        }
+
+        return collect($definition['options'] ?? [])
+            ->filter(fn ($option): bool => is_array($option))
+            ->values();
     }
 
     private function roleKeyForClass(?string $role): ?string
@@ -1866,8 +1916,8 @@ class ActivitySeeder extends Seeder
             return $phantomJobIds->random();
         }
 
-        if ($source === 'static_options') {
-            $options = collect($question['options'] ?? [])
+        if ($source === 'raid_positions' || $source === 'static_options') {
+            $options = $this->optionsForAnswerGeneration($question)
                 ->map(fn ($option) => (string) ($option['value'] ?? $option['key'] ?? ''))
                 ->filter();
 

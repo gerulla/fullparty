@@ -221,6 +221,11 @@
     "type": "Field Type",
     "source": "Option Source",
     "required": "Required",
+    "accepts_any": "Accept 'Any' Selection",
+    "accepts_any_help": "Adds an application-only choice for applicants who can take any available option. Slot choices are unchanged.",
+    "any_label": "Localized Any Label",
+    "any_label_help": "This label is shown to applicants for the flexible Any choice.",
+    "any_label_placeholder": "Any",
     "label": "Localized Label",
     "label_help": "This is the main label shown to users.",
     "label_placeholder": "Label",
@@ -247,6 +252,7 @@
     "option_sources": {
       "character_classes": "Character Classes",
       "phantom_jobs": "Phantom Jobs",
+      "raid_positions": "Raid Positions",
       "static_options": "Static Options"
     }
   },

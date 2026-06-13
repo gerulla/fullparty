@@ -82,6 +82,8 @@ export type ActivityTypeSchemaField = {
 	label: LocalizedStringRecord
 	help_text?: LocalizedStringRecord
 	options?: ActivityTypeSchemaOption[]
+	accepts_any?: boolean
+	any_label?: LocalizedStringRecord
 }
 
 export type ActivityTypeProgressMilestone = {

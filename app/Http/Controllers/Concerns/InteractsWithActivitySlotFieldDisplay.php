@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Concerns;
 
 use App\Models\CharacterClass;
 use App\Models\PhantomJob;
+use App\Models\RaidPosition;
 
 trait InteractsWithActivitySlotFieldDisplay
 {
@@ -18,7 +19,7 @@ trait InteractsWithActivitySlotFieldDisplay
                     return filled($entry['id'] ?? null) || filled($entry['key'] ?? null);
                 }
 
-                return !blank($entry);
+                return ! blank($entry);
             }));
         }
 
@@ -57,7 +58,7 @@ trait InteractsWithActivitySlotFieldDisplay
                     /** @var CharacterClass|null $class */
                     $class = $classes->get($classId);
 
-                    if (!$class) {
+                    if (! $class) {
                         return null;
                     }
 
@@ -94,7 +95,7 @@ trait InteractsWithActivitySlotFieldDisplay
                     /** @var PhantomJob|null $phantomJob */
                     $phantomJob = $phantomJobs->get($phantomJobId);
 
-                    if (!$phantomJob) {
+                    if (! $phantomJob) {
                         return null;
                     }
 
@@ -111,6 +112,41 @@ trait InteractsWithActivitySlotFieldDisplay
                 ->all();
         }
 
+        if ($source === 'raid_positions') {
+            $raidPositionKeys = collect($values)
+                ->map(fn ($entry) => (string) (is_array($entry) ? ($entry['key'] ?? '') : $entry))
+                ->filter(fn (string $key) => filled($key))
+                ->values();
+
+            if ($raidPositionKeys->isEmpty()) {
+                return [];
+            }
+
+            $raidPositions = RaidPosition::query()
+                ->select(['key', 'name', 'icon_url'])
+                ->whereIn('key', $raidPositionKeys->all())
+                ->get()
+                ->keyBy('key');
+
+            return $raidPositionKeys
+                ->map(function (string $raidPositionKey) use ($raidPositions) {
+                    /** @var RaidPosition|null $raidPosition */
+                    $raidPosition = $raidPositions->get($raidPositionKey);
+
+                    if (! $raidPosition) {
+                        return null;
+                    }
+
+                    return [
+                        'label' => $raidPosition->name,
+                        'icon_url' => $raidPosition->icon_url,
+                    ];
+                })
+                ->filter()
+                ->values()
+                ->all();
+        }
+
         return [];
     }
 
@@ -119,7 +155,7 @@ trait InteractsWithActivitySlotFieldDisplay
      */
     private function resolveSlotFieldDisplayValue($fieldValue)
     {
-        if (!$fieldValue) {
+        if (! $fieldValue) {
             return null;
         }
 
@@ -164,13 +200,13 @@ trait InteractsWithActivitySlotFieldDisplay
 
     private function resolveSlotFieldDisplayMeta($fieldValue): ?array
     {
-        if (!$fieldValue) {
+        if (! $fieldValue) {
             return null;
         }
 
         $value = $fieldValue->value;
 
-        if (!is_array($value)) {
+        if (! is_array($value)) {
             return null;
         }
 
@@ -183,7 +219,7 @@ trait InteractsWithActivitySlotFieldDisplay
 
             static $classCache = [];
 
-            if (!array_key_exists($classId, $classCache)) {
+            if (! array_key_exists($classId, $classCache)) {
                 $classCache[$classId] = CharacterClass::query()
                     ->select(['id', 'name', 'shorthand', 'icon_url', 'flaticon_url', 'role'])
                     ->find($classId);
@@ -210,7 +246,7 @@ trait InteractsWithActivitySlotFieldDisplay
 
             static $phantomJobCache = [];
 
-            if (!array_key_exists($phantomJobId, $phantomJobCache)) {
+            if (! array_key_exists($phantomJobId, $phantomJobCache)) {
                 $phantomJobCache[$phantomJobId] = PhantomJob::query()
                     ->select(['id', 'name', 'icon_url', 'black_icon_url', 'transparent_icon_url', 'sprite_url'])
                     ->find($phantomJobId);
@@ -228,7 +264,7 @@ trait InteractsWithActivitySlotFieldDisplay
             ];
         }
 
-        if ($fieldValue->source === 'static_options') {
+        if ($fieldValue->source === 'raid_positions' || $fieldValue->source === 'static_options') {
             return [
                 'key' => $value['key'] ?? null,
                 'label' => $value['label'] ?? null,

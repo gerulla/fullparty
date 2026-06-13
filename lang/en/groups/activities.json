@@ -569,7 +569,8 @@
                 "healer": "Healer",
                 "melee": "Melee",
                 "phys": "Physical Ranged",
-                "magic": "Magic Ranged"
+                "magic": "Magic Ranged",
+                "other": "Other"
             }
         },
         "phantom_picker": {

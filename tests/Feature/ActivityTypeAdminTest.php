@@ -134,6 +134,13 @@ function activityTypeAdminPayload(CharacterClass $characterClass, PhantomJob $ph
                 'type' => 'multi_select',
                 'source' => 'character_classes',
                 'required' => true,
+                'accepts_any' => true,
+                'any_label' => [
+                    'en' => 'Put Me Anywhere Coach',
+                    'de' => '',
+                    'fr' => '',
+                    'ja' => '',
+                ],
             ],
             [
                 'key' => 'phantom_job',
@@ -291,6 +298,8 @@ it('allows admins to save roster summary presets on activity type drafts', funct
     $activityType = ActivityType::query()->where('slug', 'forked-tower')->sole();
 
     expect($activityType->draft_roster_summary_presets)->toHaveCount(1)
+        ->and($activityType->draft_application_schema[0]['accepts_any'])->toBeTrue()
+        ->and($activityType->draft_application_schema[0]['any_label']['en'])->toBe('Put Me Anywhere Coach')
         ->and($activityType->draft_roster_summary_presets[0]['key'])->toBe('minimum-composition')
         ->and($activityType->draft_roster_summary_presets[0]['requirements'])->toHaveCount(3)
         ->and($activityType->draft_roster_summary_presets[0]['requirements'][0])->toMatchArray([

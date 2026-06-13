@@ -54,6 +54,7 @@ use App\Http\Controllers\GroupStatisticsController;
 use App\Http\Controllers\IntegrationClientController;
 use App\Http\Controllers\LocaleController;
 use App\Http\Controllers\PhantomJobController;
+use App\Http\Controllers\RaidPositionController;
 use App\Http\Controllers\RunDiscoveryController;
 use App\Http\Controllers\SettingsController;
 use App\Http\Controllers\SitemapController;
@@ -589,6 +590,7 @@ Route::prefix('{locale?}')
                 // Admin dashboards and audit surfaces.
                 Route::get('/character-data', [AdminController::class, 'characterData'])->name('admin.character-data');
                 Route::get('/audit-log', [AdminController::class, 'auditLog'])->name('admin.audit-log');
+                Route::get('/system-data', [AdminController::class, 'systemData'])->name('admin.system-data');
 
                 // System-wide notifications and temporary banners.
                 Route::get('/system-notifications', [SystemNotificationController::class, 'index'])->name('admin.system-notifications.index');
@@ -640,6 +642,11 @@ Route::prefix('{locale?}')
                 Route::get('/phantom-jobs/{phantomJob}', [PhantomJobController::class, 'show'])->name('admin.phantom-jobs.show');
                 Route::put('/phantom-jobs/{phantomJob}', [PhantomJobController::class, 'update'])->name('admin.phantom-jobs.update');
                 Route::delete('/phantom-jobs/{phantomJob}', [PhantomJobController::class, 'destroy'])->name('admin.phantom-jobs.destroy');
+
+                // System data administration.
+                Route::post('/raid-positions', [RaidPositionController::class, 'store'])->name('admin.raid-positions.store');
+                Route::put('/raid-positions/{raidPosition}', [RaidPositionController::class, 'update'])->name('admin.raid-positions.update');
+                Route::delete('/raid-positions/{raidPosition}', [RaidPositionController::class, 'destroy'])->name('admin.raid-positions.destroy');
             });
         });
     });

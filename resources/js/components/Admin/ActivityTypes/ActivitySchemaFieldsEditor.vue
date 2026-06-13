@@ -33,6 +33,9 @@ const optionSourceOptions = computed(() => props.supportedOptionSources.map((sou
 })));
 
 const createLocalizedRecord = () => Object.fromEntries(props.locales.map((locale) => [locale, '']));
+const createAnyLabelRecord = () => Object.fromEntries(props.locales.map((locale) => [locale, locale === 'en' ? 'Any' : '']));
+const isSelectionType = (type: string) => type === 'single_select' || type === 'multi_select';
+const isApplicationSelectionField = (field: ActivityTypeSchemaField) => props.fieldKind === 'application' && isSelectionType(field.type);
 
 const createField = (): ActivityTypeSchemaField => ({
 	key: '',
@@ -57,6 +60,21 @@ const updateField = (index: number, updates: Partial<ActivityTypeSchemaField>) =
 	emit('update:modelValue', props.modelValue.map((field, fieldIndex) => (
 		fieldIndex === index ? { ...field, ...updates } : field
 	)));
+};
+
+const updateFieldType = (index: number, type: string) => {
+	updateField(index, isSelectionType(type)
+		? { type }
+		: { type, accepts_any: false });
+};
+
+const updateAcceptsAny = (index: number, acceptsAny: boolean) => {
+	const field = props.modelValue[index];
+
+	updateField(index, {
+		accepts_any: acceptsAny,
+		any_label: acceptsAny ? field.any_label ?? createAnyLabelRecord() : field.any_label,
+	});
 };
 
 const removeField = (index: number) => {
@@ -155,7 +173,7 @@ const updateFieldLabel = (index: number, label: Record<string, string>) => {
 								:items="fieldTypeOptions"
 								value-key="value"
 								class="w-full"
-								@update:model-value="(value) => updateField(index, { type: value })"
+								@update:model-value="(value) => updateFieldType(index, String(value))"
 							/>
 						</UFormField>
 
@@ -180,6 +198,32 @@ const updateFieldLabel = (index: number, label: Record<string, string>) => {
 							@update:model-value="(value) => updateField(index, { required: value })"
 						/>
 					</UFormField>
+
+					<div
+						v-if="isApplicationSelectionField(field)"
+						class="grid gap-4 md:grid-cols-[minmax(0,20rem)_1fr]"
+					>
+						<UFormField
+							:label="t('admin.activity_types.schema.accepts_any')"
+							:description="t('admin.activity_types.schema.accepts_any_help')"
+							orientation="horizontal"
+						>
+							<USwitch
+								:model-value="Boolean(field.accepts_any)"
+								@update:model-value="(value) => updateAcceptsAny(index, value)"
+							/>
+						</UFormField>
+
+						<LocalizedTextFields
+							v-if="field.accepts_any"
+							:model-value="field.any_label ?? createAnyLabelRecord()"
+							:locales="locales"
+							:label="t('admin.activity_types.schema.any_label')"
+							:description="t('admin.activity_types.schema.any_label_help')"
+							:placeholder-prefix="t('admin.activity_types.schema.any_label_placeholder')"
+							@update:model-value="(value) => updateField(index, { any_label: value })"
+						/>
+					</div>
 
 					<LocalizedTextFields
 						:model-value="field.label"

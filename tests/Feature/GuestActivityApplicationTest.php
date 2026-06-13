@@ -11,6 +11,7 @@ use App\Models\Character;
 use App\Models\CharacterClass;
 use App\Models\Group;
 use App\Models\PhantomJob;
+use App\Models\RaidPosition;
 use App\Models\User;
 use App\Models\UserActivityApplicationDefault;
 use App\Services\Groups\ActivityApplicationCharacterRefreshService;
@@ -417,6 +418,99 @@ it('sends preferred class and phantom job ids for authenticated application char
             ->where('characters.0.id', $character->id)
             ->where('characters.0.preferred_character_class_ids', [(string) $whiteMage->id])
             ->where('characters.0.preferred_phantom_job_ids', [(string) $phantomBard->id])
+        );
+});
+
+it('adds schema-defined any choices to application question options', function () {
+    $activity = createGuestApplicationActivity([
+        'allow_guest_applications' => false,
+    ]);
+    $characterClass = CharacterClass::query()->create([
+        'name' => 'White Mage',
+        'shorthand' => 'WHM',
+        'role' => 'healer',
+    ]);
+    $activity->activityTypeVersion->update([
+        'application_schema' => [
+            [
+                'key' => 'preferred_classes',
+                'label' => ['en' => 'Preferred Classes'],
+                'type' => 'multi_select',
+                'source' => 'character_classes',
+                'required' => true,
+                'accepts_any' => true,
+                'any_label' => ['en' => 'Put Me Anywhere Coach'],
+            ],
+        ],
+    ]);
+    $user = User::factory()->create();
+    Character::factory()->primary()->create([
+        'user_id' => $user->id,
+    ]);
+
+    $this->actingAs($user);
+
+    $this->get(route('groups.activities.application', [
+        'group' => $activity->group->slug,
+        'activity' => $activity->id,
+    ]))->assertOk()
+        ->assertInertia(fn (Assert $page) => $page
+            ->component('Groups/Activities/Application')
+            ->where('applicationSchema.0.key', 'preferred_classes')
+            ->where('applicationSchema.0.accepts_any', true)
+            ->where('applicationSchema.0.options.0.key', (string) $characterClass->id)
+            ->where('applicationSchema.0.options.1.key', 'any')
+            ->where('applicationSchema.0.options.1.label.en', 'Put Me Anywhere Coach')
+        );
+});
+
+it('resolves shared raid position choices for application questions', function () {
+    $activity = createGuestApplicationActivity([
+        'allow_guest_applications' => false,
+    ]);
+    RaidPosition::query()->create([
+        'key' => 'mt',
+        'name' => 'Main Tank',
+        'sort_order' => 10,
+        'is_active' => true,
+    ]);
+    RaidPosition::query()->create([
+        'key' => 'ot',
+        'name' => 'Off Tank',
+        'sort_order' => 20,
+        'is_active' => true,
+    ]);
+    $activity->activityTypeVersion->update([
+        'application_schema' => [
+            [
+                'key' => 'preferred_raid_positions',
+                'label' => ['en' => 'Preferred Raid Positions'],
+                'type' => 'multi_select',
+                'source' => 'raid_positions',
+                'accepts_any' => true,
+                'any_label' => ['en' => 'Put Me Anywhere Coach'],
+            ],
+        ],
+    ]);
+    $user = User::factory()->create();
+    Character::factory()->primary()->create([
+        'user_id' => $user->id,
+    ]);
+
+    $this->actingAs($user);
+
+    $this->get(route('groups.activities.application', [
+        'group' => $activity->group->slug,
+        'activity' => $activity->id,
+    ]))->assertOk()
+        ->assertInertia(fn (Assert $page) => $page
+            ->component('Groups/Activities/Application')
+            ->where('applicationSchema.0.key', 'preferred_raid_positions')
+            ->where('applicationSchema.0.options.0.key', 'mt')
+            ->where('applicationSchema.0.options.0.label.en', 'Main Tank')
+            ->where('applicationSchema.0.options.1.key', 'ot')
+            ->where('applicationSchema.0.options.2.key', 'any')
+            ->where('applicationSchema.0.options.2.label.en', 'Put Me Anywhere Coach')
         );
 });
 

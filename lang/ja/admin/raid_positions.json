@@ -1,0 +1,57 @@
+{
+  "section_title": "レイドポジション",
+  "section_description": "今後のアクティビティ設定で再利用できるレイドポジションです。",
+  "section_badge": "{count} 件",
+  "search_placeholder": "レイドポジションを検索...",
+  "sort_order": "並び順: {order}",
+  "status": {
+    "active": "有効",
+    "inactive": "無効"
+  },
+  "empty": {
+    "title": "レイドポジションが見つかりません",
+    "description": "Main Tank、H1、M1、R1 などのポジションを作成できます。"
+  },
+  "actions": {
+    "edit": "レイドポジションを編集",
+    "delete": "レイドポジションを削除"
+  },
+  "toasts": {
+    "created": "レイドポジションを作成しました",
+    "updated": "レイドポジションを更新しました",
+    "deleted": "レイドポジションを削除しました"
+  },
+  "create_modal": {
+    "title": "レイドポジションを作成",
+    "subtitle": "再利用できるレイドポジションを定義します。"
+  },
+  "edit_modal": {
+    "title": "レイドポジションを編集",
+    "subtitle": "「{name}」の詳細を編集します。"
+  },
+  "delete_modal": {
+    "title": "{name} を削除しますか？",
+    "description": "このレイドポジションをシステムデータ一覧から削除します。",
+    "confirm": "ポジションを削除"
+  },
+  "fields": {
+    "name": {
+      "label": "ポジション名",
+      "placeholder": "例: Main Tank"
+    },
+    "key": {
+      "label": "保存キー",
+      "placeholder": "例: main_tank"
+    },
+    "icon_url": {
+      "label": "アイコンURL",
+      "placeholder": "https://example.com/icon.png"
+    },
+    "sort_order": {
+      "label": "並び順"
+    },
+    "is_active": {
+      "label": "有効"
+    }
+  }
+}

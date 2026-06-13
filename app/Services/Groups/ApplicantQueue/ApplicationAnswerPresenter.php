@@ -5,16 +5,19 @@ namespace App\Services\Groups\ApplicantQueue;
 use App\Models\ActivityTypeVersion;
 use App\Models\CharacterClass;
 use App\Models\PhantomJob;
+use App\Models\RaidPosition;
 use Illuminate\Support\Collection;
 
 class ApplicationAnswerPresenter
 {
+    private const ANY_OPTION_KEY = 'any';
+
     /**
      * @return array<int, array<string, mixed>>
      */
     public function presentDisplayItems(?string $source, mixed $value): array
     {
-        return $this->resolveDisplayItems($source, $value)->values()->all();
+        return $this->resolveDisplayItems($source, $value, null)->values()->all();
     }
 
     /**
@@ -41,7 +44,7 @@ class ApplicationAnswerPresenter
             'raw_value' => $answer->value,
             'display_values' => $displayValues->values()->all(),
             'role_values' => $this->resolveRoleValues($answer->source, $answer->value)->values()->all(),
-            'display_items' => $this->presentDisplayItems($answer->source, $answer->value),
+            'display_items' => $this->resolveDisplayItems($answer->source, $answer->value, $questionDefinition)->values()->all(),
         ];
     }
 
@@ -57,30 +60,47 @@ class ApplicationAnswerPresenter
             return collect();
         }
 
+        $anyLabel = $this->anyDisplayLabel($questionDefinition);
+
         if ($source === 'character_classes') {
             $labels = CharacterClass::query()
-                ->whereIn('id', $values->map(fn ($entry) => (int) $entry)->all())
+                ->whereIn('id', $values->reject(fn ($entry) => (string) $entry === self::ANY_OPTION_KEY)->map(fn ($entry) => (int) $entry)->all())
                 ->pluck('name', 'id');
 
             return $values
-                ->map(fn ($entry) => $labels[(int) $entry] ?? null)
+                ->map(fn ($entry) => (string) $entry === self::ANY_OPTION_KEY && $anyLabel !== null
+                    ? $anyLabel
+                    : $labels[(int) $entry] ?? null)
                 ->filter();
         }
 
         if ($source === 'phantom_jobs') {
             $labels = PhantomJob::query()
-                ->whereIn('id', $values->map(fn ($entry) => (int) $entry)->all())
+                ->whereIn('id', $values->reject(fn ($entry) => (string) $entry === self::ANY_OPTION_KEY)->map(fn ($entry) => (int) $entry)->all())
                 ->pluck('name', 'id');
 
             return $values
-                ->map(fn ($entry) => $labels[(int) $entry] ?? null)
+                ->map(fn ($entry) => (string) $entry === self::ANY_OPTION_KEY && $anyLabel !== null
+                    ? $anyLabel
+                    : $labels[(int) $entry] ?? null)
+                ->filter();
+        }
+
+        if ($source === 'raid_positions') {
+            $labels = RaidPosition::query()
+                ->whereIn('key', $values->reject(fn ($entry) => (string) $entry === self::ANY_OPTION_KEY)->map(fn ($entry) => (string) $entry)->all())
+                ->pluck('name', 'key');
+
+            return $values
+                ->map(fn ($entry) => (string) $entry === self::ANY_OPTION_KEY && $anyLabel !== null
+                    ? $anyLabel
+                    : $labels[(string) $entry] ?? null)
                 ->filter();
         }
 
         if ($source === 'static_options') {
-            $options = collect($questionDefinition['options'] ?? [])
-                ->filter(fn ($option) => is_array($option) && filled($option['value'] ?? null))
-                ->keyBy(fn (array $option) => (string) $option['value']);
+            $options = $this->optionDefinitions($questionDefinition)
+                ->keyBy(fn (array $option) => (string) ($option['value'] ?? $option['key'] ?? ''));
 
             return $values
                 ->map(function ($entry) use ($options) {
@@ -142,7 +162,7 @@ class ApplicationAnswerPresenter
     /**
      * @return Collection<int, array<string, mixed>>
      */
-    private function resolveDisplayItems(?string $source, mixed $value): Collection
+    private function resolveDisplayItems(?string $source, mixed $value, ?array $questionDefinition): Collection
     {
         $values = is_array($value) ? collect($value)->values() : collect([$value])->filter(fn ($entry) => ! blank($entry));
 
@@ -150,14 +170,26 @@ class ApplicationAnswerPresenter
             return collect();
         }
 
+        $anyLabel = $this->anyDisplayLabel($questionDefinition);
+
         if ($source === 'character_classes') {
             $classes = CharacterClass::query()
-                ->whereIn('id', $values->map(fn ($entry) => (int) $entry)->all())
+                ->whereIn('id', $values->reject(fn ($entry) => (string) $entry === self::ANY_OPTION_KEY)->map(fn ($entry) => (int) $entry)->all())
                 ->get()
                 ->keyBy('id');
 
             return $values
-                ->map(function ($entry) use ($classes) {
+                ->map(function ($entry) use ($classes, $anyLabel) {
+                    if ((string) $entry === self::ANY_OPTION_KEY && $anyLabel !== null) {
+                        return [
+                            'label' => $anyLabel,
+                            'role' => null,
+                            'icon_url' => null,
+                            'flat_icon_url' => null,
+                            'is_any' => true,
+                        ];
+                    }
+
                     /** @var CharacterClass|null $class */
                     $class = $classes->get((int) $entry);
 
@@ -178,12 +210,21 @@ class ApplicationAnswerPresenter
 
         if ($source === 'phantom_jobs') {
             $phantomJobs = PhantomJob::query()
-                ->whereIn('id', $values->map(fn ($entry) => (int) $entry)->all())
+                ->whereIn('id', $values->reject(fn ($entry) => (string) $entry === self::ANY_OPTION_KEY)->map(fn ($entry) => (int) $entry)->all())
                 ->get()
                 ->keyBy('id');
 
             return $values
-                ->map(function ($entry) use ($phantomJobs) {
+                ->map(function ($entry) use ($phantomJobs, $anyLabel) {
+                    if ((string) $entry === self::ANY_OPTION_KEY && $anyLabel !== null) {
+                        return [
+                            'label' => $anyLabel,
+                            'icon_url' => null,
+                            'transparent_icon_url' => null,
+                            'is_any' => true,
+                        ];
+                    }
+
                     /** @var PhantomJob|null $phantomJob */
                     $phantomJob = $phantomJobs->get((int) $entry);
 
@@ -201,6 +242,93 @@ class ApplicationAnswerPresenter
                 ->values();
         }
 
+        if ($source === 'raid_positions') {
+            $raidPositions = RaidPosition::query()
+                ->whereIn('key', $values->reject(fn ($entry) => (string) $entry === self::ANY_OPTION_KEY)->map(fn ($entry) => (string) $entry)->all())
+                ->get()
+                ->keyBy('key');
+
+            return $values
+                ->map(function ($entry) use ($raidPositions, $anyLabel) {
+                    if ((string) $entry === self::ANY_OPTION_KEY && $anyLabel !== null) {
+                        return [
+                            'label' => $anyLabel,
+                            'icon_url' => null,
+                            'is_any' => true,
+                        ];
+                    }
+
+                    /** @var RaidPosition|null $raidPosition */
+                    $raidPosition = $raidPositions->get((string) $entry);
+
+                    if (! $raidPosition) {
+                        return null;
+                    }
+
+                    return [
+                        'label' => $raidPosition->name,
+                        'icon_url' => $raidPosition->icon_url,
+                    ];
+                })
+                ->filter()
+                ->values();
+        }
+
         return collect();
+    }
+
+    /**
+     * @param  array<string, mixed>|null  $questionDefinition
+     * @return Collection<int, array<string, mixed>>
+     */
+    private function optionDefinitions(?array $questionDefinition): Collection
+    {
+        $options = collect($questionDefinition['options'] ?? [])
+            ->filter(fn ($option) => is_array($option) && filled($option['value'] ?? $option['key'] ?? null))
+            ->values();
+
+        if (! $this->supportsAnyOption($questionDefinition)) {
+            return $options;
+        }
+
+        if ($options->contains(fn (array $option) => (string) ($option['value'] ?? $option['key'] ?? '') === self::ANY_OPTION_KEY)) {
+            return $options;
+        }
+
+        return $options
+            ->push([
+                'value' => self::ANY_OPTION_KEY,
+                'key' => self::ANY_OPTION_KEY,
+                'label' => is_array($questionDefinition['any_label'] ?? null)
+                    ? $questionDefinition['any_label']
+                    : ['en' => 'Any'],
+            ]);
+    }
+
+    /**
+     * @param  array<string, mixed>|null  $questionDefinition
+     */
+    private function anyDisplayLabel(?array $questionDefinition): ?string
+    {
+        if (! $this->supportsAnyOption($questionDefinition)) {
+            return null;
+        }
+
+        $label = $questionDefinition['any_label'] ?? null;
+
+        if (! is_array($label)) {
+            return 'Any';
+        }
+
+        return (string) ($label['en'] ?? reset($label) ?: 'Any');
+    }
+
+    /**
+     * @param  array<string, mixed>|null  $questionDefinition
+     */
+    private function supportsAnyOption(?array $questionDefinition): bool
+    {
+        return (bool) ($questionDefinition['accepts_any'] ?? false)
+            && in_array((string) ($questionDefinition['type'] ?? ''), ['single_select', 'multi_select'], true);
     }
 }

@@ -818,10 +818,6 @@ it('treats an application any option as all concrete static slot options', funct
         ['key' => 'mt', 'label' => ['en' => 'Main Tank']],
         ['key' => 'ot', 'label' => ['en' => 'Off Tank']],
     ];
-    $applicationRaidPositionOptions = [
-        ...$slotRaidPositionOptions,
-        ['key' => 'any', 'label' => ['en' => 'Put Me Anywhere Coach']],
-    ];
     $version = ActivityTypeVersion::query()->findOrFail($activity->activity_type_version_id);
 
     $version->update([
@@ -842,7 +838,9 @@ it('treats an application any option as all concrete static slot options', funct
                 'label' => ['en' => 'Preferred Raid Positions'],
                 'type' => 'multi_select',
                 'source' => 'static_options',
-                'options' => $applicationRaidPositionOptions,
+                'options' => $slotRaidPositionOptions,
+                'accepts_any' => true,
+                'any_label' => ['en' => 'Put Me Anywhere Coach'],
             ],
         ],
     ]);

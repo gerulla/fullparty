@@ -13,7 +13,9 @@ use App\Models\CharacterClass;
 use App\Models\Group;
 use App\Models\GroupMembership;
 use App\Models\PhantomJob;
+use App\Models\RaidPosition;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Collection;
 
 /**
  * @extends Factory<Activity>
@@ -443,7 +445,7 @@ class ActivityFactory extends Factory
             ];
         }
 
-        if ($fieldValue->source === 'static_options') {
+        if ($fieldValue->source === 'raid_positions' || $fieldValue->source === 'static_options') {
             $option = $this->resolveStaticOptionForSlot($slot, $fieldValue->field_key, $definition);
 
             if (! $option) {
@@ -505,7 +507,7 @@ class ActivityFactory extends Factory
      */
     private function resolveStaticOptionForSlot(ActivitySlot $slot, string $fieldKey, array $definition): ?array
     {
-        $options = collect($definition['options'] ?? []);
+        $options = $this->optionsForSlot($definition);
 
         if ($options->isEmpty()) {
             return null;
@@ -523,5 +525,29 @@ class ActivityFactory extends Factory
         }
 
         return $options->random();
+    }
+
+    /**
+     * @param  array<string, mixed>  $definition
+     * @return Collection<int, array<string, mixed>>
+     */
+    private function optionsForSlot(array $definition): Collection
+    {
+        if (($definition['source'] ?? null) === 'raid_positions') {
+            return RaidPosition::query()
+                ->where('is_active', true)
+                ->orderBy('sort_order')
+                ->orderBy('name')
+                ->get()
+                ->map(fn (RaidPosition $raidPosition): array => [
+                    'key' => $raidPosition->key,
+                    'label' => ['en' => $raidPosition->name],
+                ])
+                ->values();
+        }
+
+        return collect($definition['options'] ?? [])
+            ->filter(fn ($option): bool => is_array($option))
+            ->values();
     }
 }

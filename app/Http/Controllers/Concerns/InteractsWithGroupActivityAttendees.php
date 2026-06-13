@@ -25,14 +25,17 @@ trait InteractsWithGroupActivityAttendees
         }
 
         if (Activity::isModeratorOnlyStatus($activity->status)) {
-            return $group->hasModeratorAccess($userId);
+            return $group->hasModeratorAccess($userId)
+                || $this->isActivityOrganizer($activity, $userId);
         }
 
         if ($group->is_visible) {
             return true;
         }
 
-        return $group->hasMember($userId) || $group->hasModeratorAccess($userId);
+        return $group->hasMember($userId)
+            || $group->hasModeratorAccess($userId)
+            || $this->isActivityOrganizer($activity, $userId);
     }
 
     private function canUseActivityParticipationFlow(Group $group, Activity $activity, ?int $userId): bool
@@ -42,7 +45,12 @@ trait InteractsWithGroupActivityAttendees
         }
 
         if (Activity::isModeratorOnlyStatus($activity->status)) {
-            return false;
+            return $group->hasModeratorAccess($userId)
+                || $this->isActivityOrganizer($activity, $userId);
+        }
+
+        if ($this->isActivityOrganizer($activity, $userId)) {
+            return true;
         }
 
         if ($activity->is_public) {
@@ -53,6 +61,11 @@ trait InteractsWithGroupActivityAttendees
 
         return $userId !== null
             && ($group->hasMember($userId) || $group->hasModeratorAccess($userId));
+    }
+
+    private function isActivityOrganizer(Activity $activity, ?int $userId): bool
+    {
+        return $userId !== null && (int) $activity->organized_by_user_id === $userId;
     }
 
     /**

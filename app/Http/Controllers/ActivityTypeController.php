@@ -414,7 +414,7 @@ class ActivityTypeController extends Controller
         }
 
         $this->validateSchemaFields($slotSchema, 'draft_slot_schema');
-        $this->validateSchemaFields($applicationSchema, 'draft_application_schema');
+        $this->validateSchemaFields($applicationSchema, 'draft_application_schema', supportsAnySelection: true);
         $layoutGroupKeys = collect($layoutSchema['groups'])
             ->pluck('key')
             ->filter(fn (mixed $key) => filled($key))
@@ -900,7 +900,7 @@ class ActivityTypeController extends Controller
         }
     }
 
-    private function validateSchemaFields(mixed $fields, string $attribute): void
+    private function validateSchemaFields(mixed $fields, string $attribute, bool $supportsAnySelection = false): void
     {
         if (! is_array($fields)) {
             throw ValidationException::withMessages([
@@ -939,6 +939,19 @@ class ActivityTypeController extends Controller
 
             if (isset($field['help_text'])) {
                 $this->assertLocalizedValue($field['help_text'], "$attribute.$index.help_text", false);
+            }
+
+            $fieldType = (string) ($field['type'] ?? '');
+            $acceptsAny = (bool) ($field['accepts_any'] ?? false);
+
+            if ($acceptsAny) {
+                if (! $supportsAnySelection || ! in_array($fieldType, ['single_select', 'multi_select'], true)) {
+                    throw ValidationException::withMessages([
+                        "$attribute.$index.accepts_any" => 'Any selections are only supported on application select fields.',
+                    ]);
+                }
+
+                $this->assertLocalizedValue($field['any_label'] ?? null, "$attribute.$index.any_label");
             }
 
             if (($field['source'] ?? null) === 'static_options') {

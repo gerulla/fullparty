@@ -569,7 +569,8 @@
                 "healer": "Heiler",
                 "melee": "Nahkampf",
                 "phys": "Physischer Fernkampf",
-                "magic": "Magischer Fernkampf"
+                "magic": "Magischer Fernkampf",
+                "other": "Andere"
             }
         },
         "phantom_picker": {

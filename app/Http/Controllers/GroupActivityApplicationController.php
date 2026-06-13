@@ -34,6 +34,8 @@ class GroupActivityApplicationController extends Controller
 {
     use InteractsWithGroupActivityAttendees;
 
+    private const ANY_OPTION_KEY = 'any';
+
     private const APPLICATION_CHARACTER_REFRESH_COOLDOWN_SECONDS = 3600;
 
     public function __construct(
@@ -611,6 +613,8 @@ class GroupActivityApplicationController extends Controller
                 'source' => $question['source'] ?? null,
                 'required' => (bool) ($question['required'] ?? false),
                 'help_text' => is_array($question['help_text'] ?? null) ? $question['help_text'] : null,
+                'accepts_any' => (bool) ($question['accepts_any'] ?? false),
+                'any_label' => is_array($question['any_label'] ?? null) ? $question['any_label'] : null,
                 'options' => $this->resolveQuestionOptions($question),
             ])
             ->filter(fn (array $question) => $question['key'] !== '')
@@ -624,7 +628,7 @@ class GroupActivityApplicationController extends Controller
      */
     private function resolveQuestionOptions(array $question): array
     {
-        return match ($question['source'] ?? null) {
+        $options = match ($question['source'] ?? null) {
             'character_classes' => CharacterClass::query()
                 ->orderBy('name')
                 ->get()
@@ -665,6 +669,57 @@ class GroupActivityApplicationController extends Controller
                 ->values()
                 ->all(),
         };
+
+        return $this->appendAnyOption($question, $options);
+    }
+
+    /**
+     * @param  array<string, mixed>  $question
+     * @param  array<int, array<string, mixed>>  $options
+     * @return array<int, array<string, mixed>>
+     */
+    private function appendAnyOption(array $question, array $options): array
+    {
+        if (! $this->supportsAnyOption($question)) {
+            return $options;
+        }
+
+        $hasAnyOption = collect($options)
+            ->contains(fn (array $option) => (string) ($option['key'] ?? '') === self::ANY_OPTION_KEY);
+
+        if ($hasAnyOption) {
+            return $options;
+        }
+
+        $options[] = [
+            'key' => self::ANY_OPTION_KEY,
+            'label' => $this->anyOptionLabel($question),
+            'meta' => [
+                'is_any' => true,
+            ],
+        ];
+
+        return $options;
+    }
+
+    /**
+     * @param  array<string, mixed>  $question
+     * @return array<string, string|null>
+     */
+    private function anyOptionLabel(array $question): array
+    {
+        return is_array($question['any_label'] ?? null)
+            ? $question['any_label']
+            : ['en' => 'Any'];
+    }
+
+    /**
+     * @param  array<string, mixed>  $question
+     */
+    private function supportsAnyOption(array $question): bool
+    {
+        return (bool) ($question['accepts_any'] ?? false)
+            && in_array((string) ($question['type'] ?? ''), ['single_select', 'multi_select'], true);
     }
 
     /**

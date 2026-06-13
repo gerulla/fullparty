@@ -74,6 +74,8 @@ const groupedOptions = computed(() => roleGroups
 		options: props.options.filter((option) => option.meta?.role === group.key),
 	}))
 	.filter((group) => group.options.length > 0));
+const ungroupedOptions = computed(() => props.options.filter((option) => !option.meta?.role));
+const ungroupedOptionLabel = computed(() => t('groups.activities.application.class_picker.categories.other'));
 
 const summaryLabel = computed(() => {
 	if (selectedItems.value.length === 0) {
@@ -253,6 +255,44 @@ const isSelected = (optionKey: string) => selectedKeys.value.includes(optionKey)
 							</button>
 						</div>
 					</section>
+
+					<section
+						v-if="ungroupedOptions.length > 0"
+						class="space-y-2"
+					>
+						<div class="flex items-center gap-3">
+							<p class="font-medium text-sm text-toned">{{ ungroupedOptionLabel }}</p>
+							<div class="h-px flex-1 bg-default"></div>
+						</div>
+
+						<div class="w-full flex flex-row gap-2 ">
+							<button
+								v-for="option in ungroupedOptions"
+								:key="option.key"
+								type="button"
+								class="application-class-option"
+								:class="isSelected(option.key)
+									? 'application-class-option--selected'
+									: 'application-class-option--idle'"
+								@pointerdown="handlePointerStart"
+								@pointerup="handlePointerToggle(option.key, $event)"
+								@click="handleClickToggle(option.key)"
+							>
+								<img
+									v-if="option.meta?.icon_url"
+									:src="option.meta.icon_url"
+									:alt="localizedValue(option.label, locale, fallbackLocale) || option.key"
+									class="size-10 rounded-sm"
+								/>
+								<div
+									v-else
+									class="flex size-10 items-center justify-center rounded-sm bg-muted text-xs font-semibold text-toned"
+								>
+									{{ option.meta?.shorthand || localizedValue(option.label, locale, fallbackLocale)?.slice(0, 2) || option.key.slice(0, 2) }}
+								</div>
+							</button>
+						</div>
+					</section>
 				</div>
 
 				<div
@@ -294,6 +334,17 @@ const isSelected = (optionKey: string) => selectedKeys.value.includes(optionKey)
 							:label="group.label"
 							:disabled="disabled"
 							@click="toggleOptionGroup(group.options)"
+						/>
+
+						<UButton
+							v-if="ungroupedOptions.length > 0"
+							color="neutral"
+							:variant="areOptionsSelected(ungroupedOptions) ? 'solid' : 'soft'"
+							size="sm"
+							icon="i-lucide-asterisk"
+							:label="ungroupedOptionLabel"
+							:disabled="disabled"
+							@click="toggleOptionGroup(ungroupedOptions)"
 						/>
 					</div>
 				</div>

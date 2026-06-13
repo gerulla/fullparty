@@ -51,6 +51,7 @@ const admin = computed(() => [
 	{ label: t('navigation.sidebar.featured_groups'), href: localizedRoute('admin.featured-groups.index'), icon: 'i-lucide-sparkles', activePatterns: ['admin.featured-groups.*'] },
 	{ label: t('navigation.sidebar.integrations'), href: localizedRoute('admin.integrations.index'), icon: 'i-lucide-plug-zap', activePatterns: ['admin.integrations.*'] },
 	{ label: t('navigation.sidebar.activity_types'), href: localizedRoute('admin.activity-types.index'), icon: 'i-lucide-file-pen', activePatterns: ['admin.activity-types.*'] },
+	{ label: t('navigation.sidebar.system_data'), href: localizedRoute('admin.system-data'), icon: 'i-lucide-database', activePatterns: ['admin.system-data'] },
 	{ label: t('navigation.sidebar.pulse'), href: '/pulse', icon: 'i-lucide-activity', external: true },
 ])
 

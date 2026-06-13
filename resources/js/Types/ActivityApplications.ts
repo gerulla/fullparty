@@ -20,6 +20,8 @@ export type ApplicationQuestion = {
 	required?: boolean
 	help_text?: LocalizedText
 	options: ApplicationQuestionOption[]
+	accepts_any?: boolean
+	any_label?: LocalizedText
 }
 
 export type GuestWorldOption = {

@@ -110,6 +110,11 @@
                 "updated": "hat einen Phantom-Job aktualisiert.",
                 "deleted": "hat einen Phantom-Job gelöscht."
             },
+            "raid_position": {
+                "created": "hat eine Raid-Position erstellt.",
+                "updated": "hat eine Raid-Position aktualisiert.",
+                "deleted": "hat eine Raid-Position gelöscht."
+            },
             "activity_type": {
                 "created": "hat einen Activity Type erstellt.",
                 "updated": "hat einen Activity Type aktualisiert.",
@@ -352,6 +357,11 @@
                 "created": "Phantom-Job erstellt",
                 "updated": "Phantom-Job aktualisiert",
                 "deleted": "Phantom-Job gelöscht"
+            },
+            "raid_position": {
+                "created": "Raid-Position erstellt",
+                "updated": "Raid-Position aktualisiert",
+                "deleted": "Raid-Position gelöscht"
             },
             "activity_type": {
                 "created": "Activity Type erstellt",

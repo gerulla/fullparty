@@ -146,6 +146,8 @@ class LargeContentActivityTypeSeeder extends Seeder
                         type: 'multi_select',
                         source: 'static_options',
                         options: $this->raidPositionOptions(),
+                        acceptsAny: true,
+                        anyLabel: ['en' => 'Put Me Anywhere Coach', 'de' => 'Setz mich ein, Coach', 'fr' => 'Placez-moi ou vous voulez', 'ja' => 'どこでも大丈夫です'],
                     ),
                     $this->schemaField(
                         key: 'preferred_phantom_jobs',
@@ -376,6 +378,8 @@ class LargeContentActivityTypeSeeder extends Seeder
                         type: 'multi_select',
                         source: 'static_options',
                         options: $this->raidPositionOptions(),
+                        acceptsAny: true,
+                        anyLabel: ['en' => 'Put Me Anywhere Coach', 'de' => 'Setz mich ein, Coach', 'fr' => 'Placez-moi ou vous voulez', 'ja' => 'どこでも大丈夫です'],
                     ),
                     $this->schemaField(
                         key: 'can_be_on_standby',
@@ -467,6 +471,8 @@ class LargeContentActivityTypeSeeder extends Seeder
         bool $required = true,
         ?array $options = null,
         array|string|null $helpText = null,
+        bool $acceptsAny = false,
+        array|string|null $anyLabel = null,
     ): array {
         return array_filter([
             'key' => $key,
@@ -476,6 +482,8 @@ class LargeContentActivityTypeSeeder extends Seeder
             'required' => $required,
             'help_text' => $this->localized($helpText ?? ''),
             'options' => $options,
+            'accepts_any' => $acceptsAny ? true : null,
+            'any_label' => $acceptsAny ? $this->localized($anyLabel ?? 'Any') : null,
         ], static fn ($value) => $value !== null);
     }
 

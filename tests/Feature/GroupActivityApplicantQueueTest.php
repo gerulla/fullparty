@@ -250,10 +250,6 @@ it('includes application-only any options in queue filters without making them s
         ['key' => 'mt', 'label' => ['en' => 'Main Tank']],
         ['key' => 'ot', 'label' => ['en' => 'Off Tank']],
     ];
-    $applicationRaidPositionOptions = [
-        ...$slotRaidPositionOptions,
-        ['key' => 'any', 'label' => ['en' => 'Put Me Anywhere Coach']],
-    ];
 
     $version->update([
         'slot_schema' => [
@@ -273,7 +269,9 @@ it('includes application-only any options in queue filters without making them s
                 'label' => ['en' => 'Preferred Raid Positions'],
                 'type' => 'multi_select',
                 'source' => 'static_options',
-                'options' => $applicationRaidPositionOptions,
+                'options' => $slotRaidPositionOptions,
+                'accepts_any' => true,
+                'any_label' => ['en' => 'Put Me Anywhere Coach'],
             ],
         ],
     ]);

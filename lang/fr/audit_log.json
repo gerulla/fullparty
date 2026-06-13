@@ -110,6 +110,11 @@
                 "updated": "a mis à jour un job fantôme.",
                 "deleted": "a supprimé un job fantôme."
             },
+            "raid_position": {
+                "created": "a créé une position de raid.",
+                "updated": "a mis à jour une position de raid.",
+                "deleted": "a supprimé une position de raid."
+            },
             "activity_type": {
                 "created": "a créé un Activity Type.",
                 "updated": "a mis à jour un Activity Type.",
@@ -352,6 +357,11 @@
                 "created": "Job fantôme créé",
                 "updated": "Job fantôme mis à jour",
                 "deleted": "Job fantôme supprimé"
+            },
+            "raid_position": {
+                "created": "Position de raid créée",
+                "updated": "Position de raid mise à jour",
+                "deleted": "Position de raid supprimée"
             },
             "activity_type": {
                 "created": "Activity Type créé",

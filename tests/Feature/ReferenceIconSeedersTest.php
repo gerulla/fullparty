@@ -2,9 +2,11 @@
 
 use App\Models\CharacterClass;
 use App\Models\PhantomJob;
+use App\Models\RaidPosition;
 use App\Support\SeedData\ReferenceIconCatalog;
 use Database\Seeders\CharacterClassSeeder;
 use Database\Seeders\PhantomJobSeeder;
+use Database\Seeders\RaidPositionSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 uses(RefreshDatabase::class);
@@ -32,4 +34,13 @@ it('seeds phantom jobs with committed local icon urls', function () {
         ->and($phantomBard->black_icon_url)->toBe($phantomBardSeedData['black_icon_url'])
         ->and($phantomBard->transparent_icon_url)->toBe($phantomBardSeedData['transparent_icon_url'])
         ->and($phantomBard->sprite_url)->toBe($phantomBardSeedData['sprite_url']);
+});
+
+it('seeds reusable raid positions', function () {
+    $this->seed(RaidPositionSeeder::class);
+
+    expect(RaidPosition::query()->count())->toBe(8)
+        ->and(RaidPosition::query()->where('key', 'mt')->value('name'))->toBe('Main Tank')
+        ->and(RaidPosition::query()->where('key', 'ot')->value('name'))->toBe('Off Tank')
+        ->and(RaidPosition::query()->where('key', 'r2')->value('sort_order'))->toBe(80);
 });

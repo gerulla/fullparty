@@ -569,7 +569,8 @@
                 "healer": "Soigneur",
                 "melee": "Mêlée",
                 "phys": "Distance physique",
-                "magic": "Distance magique"
+                "magic": "Distance magique",
+                "other": "Autre"
             }
         },
         "phantom_picker": {

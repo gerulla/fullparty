@@ -420,6 +420,49 @@ it('sends preferred class and phantom job ids for authenticated application char
         );
 });
 
+it('adds schema-defined any choices to application question options', function () {
+    $activity = createGuestApplicationActivity([
+        'allow_guest_applications' => false,
+    ]);
+    $characterClass = CharacterClass::query()->create([
+        'name' => 'White Mage',
+        'shorthand' => 'WHM',
+        'role' => 'healer',
+    ]);
+    $activity->activityTypeVersion->update([
+        'application_schema' => [
+            [
+                'key' => 'preferred_classes',
+                'label' => ['en' => 'Preferred Classes'],
+                'type' => 'multi_select',
+                'source' => 'character_classes',
+                'required' => true,
+                'accepts_any' => true,
+                'any_label' => ['en' => 'Put Me Anywhere Coach'],
+            ],
+        ],
+    ]);
+    $user = User::factory()->create();
+    Character::factory()->primary()->create([
+        'user_id' => $user->id,
+    ]);
+
+    $this->actingAs($user);
+
+    $this->get(route('groups.activities.application', [
+        'group' => $activity->group->slug,
+        'activity' => $activity->id,
+    ]))->assertOk()
+        ->assertInertia(fn (Assert $page) => $page
+            ->component('Groups/Activities/Application')
+            ->where('applicationSchema.0.key', 'preferred_classes')
+            ->where('applicationSchema.0.accepts_any', true)
+            ->where('applicationSchema.0.options.0.key', (string) $characterClass->id)
+            ->where('applicationSchema.0.options.1.key', 'any')
+            ->where('applicationSchema.0.options.1.label.en', 'Put Me Anywhere Coach')
+        );
+});
+
 it('stores remembered application defaults for authenticated users on create by default', function () {
     $activity = createGuestApplicationActivity([
         'allow_guest_applications' => false,

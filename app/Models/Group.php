@@ -198,6 +198,10 @@ class Group extends Model
 
     public function hasMember(?int $userId): bool
     {
+        if ($this->isOwnedBy($userId)) {
+            return true;
+        }
+
         if ($userId === null) {
             return false;
         }

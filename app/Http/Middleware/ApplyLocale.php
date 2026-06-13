@@ -19,18 +19,24 @@ class ApplyLocale
     public function handle(Request $request, Closure $next): Response
     {
         $routeLocale = $request->route('locale');
-        $locale = is_string($routeLocale) && in_array($routeLocale, self::SUPPORTED_LOCALES, true)
+        $routeLocale = is_string($routeLocale) && in_array($routeLocale, self::SUPPORTED_LOCALES, true)
             ? $routeLocale
-            : $request->session()->get('locale')
-            ?? $request->cookie('locale')
+            : null;
+
+        $preferredLocale = $this->preferredLocale($request);
+        $locale = $preferredLocale
+            ?? $routeLocale
             ?? config('app.locale');
 
         if (! in_array($locale, self::SUPPORTED_LOCALES, true)) {
             $locale = config('app.locale');
         }
 
-        $request->session()->put('locale', $locale);
-        Cookie::queue(cookie()->forever('locale', $locale));
+        if ($preferredLocale !== null) {
+            $request->session()->put('locale', $preferredLocale);
+            Cookie::queue(cookie()->forever('locale', $preferredLocale));
+        }
+
         App::setLocale($locale);
         URL::defaults(['locale' => $locale]);
 
@@ -38,7 +44,10 @@ class ApplyLocale
             ($request->isMethod('GET') || $request->isMethod('HEAD'))
             && $request->route() !== null
             && in_array('locale', $request->route()->parameterNames(), true)
-            && ! $this->hasLocalizedRoutePrefix($request)
+            && (
+                ! $this->hasLocalizedRoutePrefix($request)
+                || ($preferredLocale !== null && $routeLocale !== $preferredLocale)
+            )
             && ! $request->hasValidSignature(false)
         ) {
             $routeName = $request->route()?->getName();
@@ -58,6 +67,23 @@ class ApplyLocale
         $request->route()?->forgetParameter('locale');
 
         return $next($request);
+    }
+
+    private function preferredLocale(Request $request): ?string
+    {
+        $sessionLocale = $request->session()->get('locale');
+
+        if (is_string($sessionLocale) && in_array($sessionLocale, self::SUPPORTED_LOCALES, true)) {
+            return $sessionLocale;
+        }
+
+        $cookieLocale = $request->cookie('locale');
+
+        if (is_string($cookieLocale) && in_array($cookieLocale, self::SUPPORTED_LOCALES, true)) {
+            return $cookieLocale;
+        }
+
+        return null;
     }
 
     private function hasLocalizedRoutePrefix(Request $request): bool

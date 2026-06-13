@@ -674,7 +674,8 @@ class ActivitySeeder extends Seeder
 
         $progressMilestoneRows = [];
         $milestones = $context['progress_milestones'];
-        $furthestProgressOrder = $this->progressOrderForKey($context['prog_points'], $furthestProgressKey);
+        $furthestProgressOrder = $this->progressOrderForKey($context['prog_points'], $furthestProgressKey)
+            ?? $this->progressOrderForKey($milestones, $furthestProgressKey);
 
         foreach ($milestones as $index => $milestoneDefinition) {
             $milestoneOrder = (int) ($milestoneDefinition['order'] ?? $index + 1);
@@ -1227,6 +1228,11 @@ class ActivitySeeder extends Seeder
     ): array {
         $furthestProgressKey = $this->seededFurthestProgressKey($context['prog_points'], $targetProgPointKey);
 
+        if ($furthestProgressKey === null && $context['progress_milestones'] !== []) {
+            $furthestProgressKey = $this->firstProgressPointKey($context['prog_points'])
+                ?? $this->firstProgressMilestoneKey($context['progress_milestones']);
+        }
+
         return [
             'progress_entry_mode' => $context['progress_milestones'] === [] ? null : 'manual',
             'progress_notes' => fake()->boolean(45) ? fake()->sentence() : null,
@@ -1235,6 +1241,26 @@ class ActivitySeeder extends Seeder
             'progress_recorded_by_user_id' => $recordedByUserId,
             'progress_recorded_at' => $completedAt->copy()->addMinutes(fake()->numberBetween(5, 90)),
         ];
+    }
+
+    /**
+     * @param  array<int, array<string, mixed>>  $progPoints
+     */
+    private function firstProgressPointKey(array $progPoints): ?string
+    {
+        return $this->orderedProgPoints($progPoints)
+            ->first()['key'] ?? null;
+    }
+
+    /**
+     * @param  array<int, array<string, mixed>>  $milestones
+     */
+    private function firstProgressMilestoneKey(array $milestones): ?string
+    {
+        return collect($milestones)
+            ->filter(fn ($milestone): bool => is_array($milestone) && filled($milestone['key'] ?? null))
+            ->sortBy(fn (array $milestone): int => (int) ($milestone['order'] ?? 1))
+            ->first()['key'] ?? null;
     }
 
     /**

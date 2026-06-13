@@ -1,4 +1,5 @@
 import { usePage } from "@inertiajs/vue3";
+import axios from "axios";
 import { computed, watch } from "vue";
 import { useI18n } from "vue-i18n";
 import { de, en, fr, ja } from "@nuxt/ui/locale";
@@ -60,7 +61,7 @@ export function usePersistentLocale() {
 		}
 	}, { immediate: true });
 
-	const updateLocale = (value: string) => {
+	const updateLocale = async (value: string) => {
 		if (!availableLocaleCodes.value.includes(value)) {
 			return;
 		}
@@ -83,6 +84,7 @@ export function usePersistentLocale() {
 					: {}),
 			});
 
+			await persistLocale(value);
 			window.location.assign(targetUrl);
 
 			return;
@@ -98,7 +100,16 @@ export function usePersistentLocale() {
 		}
 
 		currentUrl.pathname = `/${segments.join('/')}`;
+		await persistLocale(value);
 		window.location.assign(currentUrl.toString());
+	};
+
+	const persistLocale = async (value: string) => {
+		await axios.post(route('locale.update'), { locale: value }, {
+			headers: {
+				Accept: 'application/json',
+			},
+		});
 	};
 
 	return {

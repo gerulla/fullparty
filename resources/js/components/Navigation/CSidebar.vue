@@ -21,6 +21,7 @@ const authLink = (href, icon, label, activePatterns) => ({
 	activePatterns,
 })
 const isRouteActive = (patterns) => {
+	currentUrl.value
 	const routeMatcher = route()
 
 	return patterns.some((pattern) => routeMatcher.current(pattern))
@@ -124,25 +125,31 @@ watch([currentUrl, groupQuickLinkSections], () => {
 const closeSidebarMenu = () => {
 	sidebarOpen.value = false
 }
+
+const isGroupQuickLinkSectionActive = (section) => {
+	currentUrl.value
+
+	return section.items.some((group) => currentUrl.value.startsWith(group.href))
+}
 </script>
 
 <template>
-	<UDashboardSidebar v-model:open="sidebarOpen" :default-size="15"  :ui="{ footer: '',  body: 'px-4' }" class="max-w-96 border-0 lg:max-2xl:!w-1/4">
+	<UDashboardSidebar id="main" v-model:open="sidebarOpen" :default-size="15" collapsible :collapsed-size="4" :ui="{ footer: '',  body: 'px-0' }" class="max-w-96 border-0 lg:max-2xl:data-[collapsed=false]:!w-1/5">
 		<template #header="{ collapsed }">
 			<div v-if="!collapsed" class="w-full h-full mt-8">
-				<img :src="full_logo" class="h-full w-auto mx-auto " alt="FullParty Logo">
+				<img :src="full_logo" class="h-full w-auto mx-auto object-contain" alt="FullParty Logo">
 			</div>
-			<img v-else :src="compact_logo" class="w-full h-auto" alt="FullParty Logo">
+			<img v-else :src="compact_logo" class="mx-auto mt-4 h-9 w-auto object-contain" alt="FullParty Logo">
 		</template>
 
 		<template #default="{ collapsed }">
-			<div class="mt-4 flex flex-col w-full h-full ">
+			<div class=" mt-4 flex flex-col w-full h-full " :class="collapsed ? '' : 'px-4'">
 				<Link
 					v-for="item in top"
 					:key="item.href"
 					:href="item.href"
 					class="sidebar-link"
-					:class="isRouteActive(item.activePatterns) ? 'link-highlighted': 'link-default'"
+					:class="[isRouteActive(item.activePatterns) ? 'link-highlighted': 'link-default', collapsed ? 'w-full justify-center': '']"
 					@click="closeSidebarMenu"
 				>
 					<UIcon :name="item.icon" :class="!collapsed ? 'sidebar-link-icon' : 'sidebar-link-icon-large'" />
@@ -150,14 +157,14 @@ const closeSidebarMenu = () => {
 				</Link>
 
 				<h1 v-if="!collapsed" class="sidebar-separator">{{t('navigation.sidebar.runs')}}</h1>
-				<div v-else class="sidebar-line-separator"></div>
+				<USeparator v-else class="sidebar-line-separator" />
 
 				<Link
 					v-for="item in runs"
 					:key="item.href"
 					:href="item.href"
 					class="sidebar-link"
-					:class="isRouteActive(item.activePatterns) ? 'link-highlighted': 'link-default'"
+					:class="[isRouteActive(item.activePatterns) ? 'link-highlighted': 'link-default', collapsed ? 'w-full justify-center': '']"
 					@click="closeSidebarMenu"
 				>
 					<UIcon :name="item.icon" :class="!collapsed ? 'sidebar-link-icon' : 'sidebar-link-icon-large'" />
@@ -165,14 +172,14 @@ const closeSidebarMenu = () => {
 				</Link>
 
 				<h1 v-if="!collapsed" class="sidebar-separator">{{t('navigation.sidebar.account')}}</h1>
-				<div v-else class="sidebar-line-separator"></div>
+				<USeparator v-else class="sidebar-line-separator" />
 
 				<Link
 					v-for="item in account"
 					:key="item.href"
 					:href="item.href"
 					class="sidebar-link"
-					:class="isRouteActive(item.activePatterns) ? 'link-highlighted': 'link-default'"
+					:class="[isRouteActive(item.activePatterns) ? 'link-highlighted': 'link-default', collapsed ? 'w-full justify-center': '']"
 					@click="closeSidebarMenu"
 				>
 					<UIcon :name="item.icon" :class="!collapsed ? 'sidebar-link-icon' : 'sidebar-link-icon-large'" />
@@ -181,7 +188,7 @@ const closeSidebarMenu = () => {
 
 
 				<h1 v-if="!collapsed" class="sidebar-separator">{{t('navigation.sidebar.groups')}}</h1>
-				<div v-else class="sidebar-line-separator"></div>
+				<USeparator v-else class="sidebar-line-separator" />
 
 				<component
 					:is="item.native ? 'a' : Link"
@@ -189,7 +196,7 @@ const closeSidebarMenu = () => {
 					:key="item.href"
 					:href="item.href"
 					class="sidebar-link"
-					:class="item.activePatterns.length > 0 && isRouteActive(item.activePatterns) ? 'link-highlighted': 'link-default'"
+					:class="[item.activePatterns.length > 0 && isRouteActive(item.activePatterns) ? 'link-highlighted': 'link-default', collapsed ? 'w-full justify-center': '']"
 					@click="closeSidebarMenu"
 				>
 					<UIcon :name="item.icon" :class="!collapsed ? 'sidebar-link-icon' : 'sidebar-link-icon-large'" />
@@ -234,10 +241,44 @@ const closeSidebarMenu = () => {
 						</div>
 					</div>
 				</div>
+				<div v-else-if="groupQuickLinkSections.length > 0" class="mt-2 flex flex-col gap-2">
+					<UPopover
+						v-for="section in groupQuickLinkSections"
+						:key="section.key"
+						:content="{ side: 'right', align: 'start', sideOffset: 12, collisionPadding: 12 }"
+						:ui="{ content: 'min-w-56 border border-default bg-neutral-950/95 p-2 shadow-xl shadow-neutral-950/50' }"
+					>
+						<button
+							type="button"
+							class="sidebar-link w-full justify-center"
+							:class="isGroupQuickLinkSectionActive(section) ? 'link-highlighted' : 'link-default'"
+						>
+							<UIcon :name="section.icon" class="sidebar-link-icon-large" />
+						</button>
+
+						<template #content="{ close }">
+							<div class="flex flex-col gap-1">
+								<p class="px-3 py-2 text-xs font-semibold uppercase tracking-wider text-brand-300/80">
+									{{ section.label }}
+								</p>
+								<Link
+									v-for="group in section.items"
+									:key="group.id"
+									:href="group.href"
+									class="sidebar-sublink"
+									:class="currentUrl.startsWith(group.href) ? 'sublink-highlighted' : 'sublink-default'"
+									@click="close(); closeSidebarMenu()"
+								>
+									<span class="truncate">{{ group.name }}</span>
+								</Link>
+							</div>
+						</template>
+					</UPopover>
+				</div>
 
 				<template v-if="isAdmin">
 					<h1 v-if="!collapsed" class="sidebar-separator">{{t('navigation.sidebar.admin')}}</h1>
-					<div v-else class="sidebar-line-separator"></div>
+					<USeparator v-else class="sidebar-line-separator" />
 
 					<component
 						:is="item.external ? 'a' : Link"
@@ -245,7 +286,7 @@ const closeSidebarMenu = () => {
 						:key="item.href"
 						:href="item.href"
 						class="sidebar-link"
-						:class="!item.external && isRouteActive(item.activePatterns) ? 'link-highlighted': 'link-default'"
+						:class="[!item.external && isRouteActive(item.activePatterns) ? 'link-highlighted': 'link-default', collapsed ? 'w-full justify-center': '']"
 						:target="item.external ? '_blank' : undefined"
 						:rel="item.external ? 'noopener noreferrer' : undefined"
 						@click="closeSidebarMenu"
@@ -283,10 +324,10 @@ const closeSidebarMenu = () => {
 	@apply h-5 w-5;
 }
 .sidebar-link-icon-large {
-	@apply h-8 w-8;
+	@apply h-6 w-6;
 }
 .sidebar-line-separator {
-	@apply h-px w-full my-2 bg-brand-300;
+	@apply mx-auto my-3 w-8 opacity-70;
 }
 .sidebar-separator {
 	@apply mt-6 mb-2 px-5 text-sm font-semibold uppercase tracking-wider text-brand-300/80 ;

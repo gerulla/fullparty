@@ -5,7 +5,7 @@ import {Link, useForm, usePage} from '@inertiajs/vue3'
 import {route} from 'ziggy-js';
 import {useToast} from "@nuxt/ui/composables";
 import {useClipboard} from '@vueuse/core';
-import LoginWithGoogle from "@/resources/js/components/LoginWithGoogle.vue";
+import LoginWithGoogle from "@/components/LoginWithGoogle.vue";
 
 const { t } = useI18n()
 const toast = useToast()

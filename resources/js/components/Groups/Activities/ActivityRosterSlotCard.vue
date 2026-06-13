@@ -68,6 +68,13 @@ const localizedText = (value: LocalizedText, fallback: string) => (
 );
 
 const slotLabel = computed(() => localizedText(props.slot.slot_label, props.slot.slot_key));
+const compactSlotLabel = computed(() => {
+	const parts = slotLabel.value.trim().split(/\s+/);
+
+	return parts.length >= 3 && /^\d+$/.test(parts[parts.length - 1] ?? '')
+		? parts.slice(1).join(' ')
+		: slotLabel.value;
+});
 const assignedCharacter = computed(() => props.slot.assigned_character);
 const viewerUserId = computed<number | null>(() => {
 	const userId = page.props.auth?.user?.id;
@@ -481,7 +488,7 @@ const handleClick = () => {
 	>
 		<div
 			ref="slotCardElement"
-			class="relative min-h-24 border px-4 py-4 transition duration-200 ease-out hover:shadow-lg"
+			class="roster-slot-card relative min-h-24 border px-4 py-4 transition duration-200 ease-out hover:shadow-lg"
 			:class="[
 				roleToneClass,
 				canDrag ? 'cursor-grab hover:scale-[1.02]' : 'cursor-pointer',
@@ -551,7 +558,8 @@ const handleClick = () => {
 				<div class="flex items-start justify-between gap-3">
 					<div class="flex flex-col gap-1">
 						<p class="text-xs uppercase tracking-wide text-primary">
-							{{ slotLabel }}
+							<span class="roster-slot-card-label-full">{{ slotLabel }}</span>
+							<span class="roster-slot-card-label-compact hidden">{{ compactSlotLabel }}</span>
 						</p>
 						<p v-if="!assignedCharacter" class="font-medium text-toned">
 							{{ t('groups.activities.management.roster.empty_slot') }}
@@ -577,7 +585,7 @@ const handleClick = () => {
 							:description="assignedCharacter.world || undefined"
 							:avatar="assignedCharacter.avatar_url ? { src: assignedCharacter.avatar_url, loading: 'lazy' } : undefined"
 							size="lg"
-							:ui="{ name: assignedCharacterNameClass }"
+							:ui="{ avatar: 'roster-slot-card-avatar', name: assignedCharacterNameClass }"
 						>
 							<template #name>
 								<span class="inline-flex min-w-0 items-center gap-1.5">
@@ -596,7 +604,7 @@ const handleClick = () => {
 							</template>
 						</UUser>
 
-						<div class="flex items-center">
+						<div class="roster-slot-card-primary-icons flex items-center">
 							<img
 								v-if="classIconUrl"
 								:src="classIconUrl"
@@ -618,13 +626,31 @@ const handleClick = () => {
 							:key="field.id"
 							class="flex items-start justify-between gap-3 text-sm"
 						>
-							<span class="text-muted">
+							<span class="roster-slot-card-field-label text-muted">
 								{{ field.label }}
 							</span>
-							<span class="text-right font-medium text-toned">
+							<span class="roster-slot-card-field-value text-right font-medium text-toned">
 								{{ field.value }}
 							</span>
 						</div>
+					</div>
+
+					<div
+						v-if="classIconUrl || phantomIconUrl"
+						class="roster-slot-card-compact-icons hidden items-center justify-center gap-1"
+					>
+						<img
+							v-if="classIconUrl"
+							:src="classIconUrl"
+							:alt="classDisplayValue || ''"
+							class="h-10 w-10 rounded-sm p-1 object-contain"
+						>
+						<img
+							v-if="phantomIconUrl"
+							:src="phantomIconUrl"
+							:alt="phantomDisplayValue || ''"
+							class="h-10 w-10 rounded-sm p-1 object-contain"
+						>
 					</div>
 				</div>
 
@@ -642,7 +668,7 @@ const handleClick = () => {
 	>
 		<div
 			ref="slotCardElement"
-			class="relative min-h-24 border px-4 py-4 transition duration-200 ease-out hover:shadow-lg"
+			class="roster-slot-card relative min-h-24 border px-4 py-4 transition duration-200 ease-out hover:shadow-lg"
 			:class="[
 				roleToneClass,
 				canDrag ? 'cursor-grab hover:scale-[1.02]' : 'cursor-pointer',
@@ -712,7 +738,8 @@ const handleClick = () => {
 				<div class="flex items-start justify-between gap-3">
 					<div class="flex flex-col gap-1">
 						<p class="text-xs uppercase tracking-wide text-primary">
-							{{ slotLabel }}
+							<span class="roster-slot-card-label-full">{{ slotLabel }}</span>
+							<span class="roster-slot-card-label-compact hidden">{{ compactSlotLabel }}</span>
 						</p>
 						<p v-if="!assignedCharacter" class="font-medium text-toned">
 							{{ t('groups.activities.management.roster.empty_slot') }}
@@ -738,7 +765,7 @@ const handleClick = () => {
 							:description="assignedCharacter.world || undefined"
 							:avatar="assignedCharacter.avatar_url ? { src: assignedCharacter.avatar_url, loading: 'lazy' } : undefined"
 							size="lg"
-							:ui="{ name: assignedCharacterNameClass }"
+							:ui="{ avatar: 'roster-slot-card-avatar', name: assignedCharacterNameClass }"
 						>
 							<template #name>
 								<span class="inline-flex min-w-0 items-center gap-1.5">
@@ -757,7 +784,7 @@ const handleClick = () => {
 							</template>
 						</UUser>
 
-						<div class="flex items-center">
+						<div class="roster-slot-card-primary-icons flex items-center">
 							<img
 								v-if="classIconUrl"
 								:src="classIconUrl"
@@ -779,16 +806,69 @@ const handleClick = () => {
 							:key="field.id"
 							class="flex items-start justify-between gap-3 text-sm"
 						>
-							<span class="text-muted">
+							<span class="roster-slot-card-field-label text-muted">
 								{{ field.label }}
 							</span>
-							<span class="text-right font-medium text-toned">
+							<span class="roster-slot-card-field-value text-right font-medium text-toned">
 								{{ field.value }}
 							</span>
 						</div>
+					</div>
+
+					<div
+						v-if="classIconUrl || phantomIconUrl"
+						class="roster-slot-card-compact-icons hidden items-center justify-center gap-1"
+					>
+						<img
+							v-if="classIconUrl"
+							:src="classIconUrl"
+							:alt="classDisplayValue || ''"
+							class="h-10 w-10 rounded-sm p-1 object-contain"
+						>
+						<img
+							v-if="phantomIconUrl"
+							:src="phantomIconUrl"
+							:alt="phantomDisplayValue || ''"
+							class="h-10 w-10 rounded-sm p-1 object-contain"
+						>
 					</div>
 				</div>
 			</div>
 		</div>
 	</ActivitySlotCompositionHintContextMenu>
 </template>
+
+<style scoped>
+.roster-slot-card {
+	container-type: inline-size;
+}
+
+@container (max-width: 18rem) {
+	:deep(.roster-slot-card-avatar),
+	.roster-slot-card-field-label {
+		display: none;
+	}
+
+	.roster-slot-card-field-value {
+		text-align: left;
+	}
+}
+
+@container (max-width: 12rem) {
+	.roster-slot-card-label-full {
+		display: none;
+	}
+
+	.roster-slot-card-label-compact {
+		display: inline;
+	}
+
+	.roster-slot-card-primary-icons {
+		display: none;
+	}
+
+	.roster-slot-card-compact-icons {
+		display: flex;
+	}
+}
+</style>

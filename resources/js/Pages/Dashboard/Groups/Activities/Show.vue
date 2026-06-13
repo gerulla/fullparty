@@ -1620,7 +1620,10 @@ onBeforeUnmount(() => {
 			</UAlert>
 		</div>
 
-		<div class="mt-6 flex flex-col gap-6 xl:flex-row xl:items-start">
+		<div
+			class="mt-6 flex flex-col gap-y-6 xl:flex-row xl:items-start"
+			:class="showApplicantQueue && hasApplicantQueue ? 'xl:gap-x-6' : 'xl:gap-x-0'"
+		>
 			<div class="hidden min-w-0 flex-1 xl:block">
 				<RosterAssignments
 					v-if="currentActivity"
@@ -1742,10 +1745,10 @@ onBeforeUnmount(() => {
 
 			<div
 				v-if="hasApplicantQueue"
-				class="w-full self-start overflow-hidden transition-all duration-300 ease-in-out xl:sticky xl:top-4 xl:w-auto"
+				class="w-full self-start overflow-hidden transition-all duration-300 ease-in-out xl:sticky xl:top-4 xl:shrink-0"
 				:class="showApplicantQueue
-					? 'xl:w-96 xl:opacity-100'
-					: 'xl:w-0 xl:opacity-0 xl:pointer-events-none'"
+					? 'xl:basis-96 xl:max-w-96 xl:opacity-100'
+					: 'xl:basis-0 xl:max-w-0 xl:opacity-0 xl:pointer-events-none'"
 			>
 				<div class="w-full min-w-0">
 					<ApplicantQueue

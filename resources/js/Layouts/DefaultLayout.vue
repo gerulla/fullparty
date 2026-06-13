@@ -74,7 +74,7 @@ defineProps({
 <template>
 	<UApp :locale="currentUiLocale" class="">
 		<div class="min-h-screen bg-linear-to-br from-brand-900 via-neutral-950 via-15% to-neutral-950 to-90%" >
-			<UDashboardGroup>
+			<UDashboardGroup storage="local" storage-key="fullparty-dashboard">
 				<CSidebar />
 
 				<UDashboardPanel :ui="{ body: 'p-2 sm:p-3 lg:p-4 xl:p-6' }">

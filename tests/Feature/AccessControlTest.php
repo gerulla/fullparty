@@ -281,6 +281,97 @@ it('lets group owners apply to members-only runs even without a membership row',
         );
 });
 
+it('lets owners apply to public application runs in hidden invite-only static groups', function () {
+    extract(createAccessControlActivity([
+        'group_type' => Group::TYPE_STATIC,
+        'join_mode' => Group::JOIN_MODE_INVITE_ONLY,
+        'is_visible' => false,
+    ], [
+        'is_public' => true,
+        'needs_application' => true,
+        'allow_guest_applications' => false,
+        'status' => Activity::STATUS_SCHEDULED,
+    ]));
+
+    $group->memberships()->where('user_id', $owner->id)->delete();
+    $group->unsetRelation('memberships');
+
+    $this->actingAs($owner)
+        ->get(route('groups.activities.application', [
+            'group' => $group->slug,
+            'activity' => $activity->id,
+        ]))
+        ->assertOk()
+        ->assertInertia(fn (Assert $page) => $page
+            ->component('Groups/Activities/Application')
+            ->where('permissions.can_apply', true)
+            ->where('permissions.requires_group_membership', false)
+            ->where('permissions.can_join_group', false)
+        );
+});
+
+it('lets run organizers apply to public application runs in hidden invite-only static groups', function () {
+    extract(createAccessControlActivity([
+        'group_type' => Group::TYPE_STATIC,
+        'join_mode' => Group::JOIN_MODE_INVITE_ONLY,
+        'is_visible' => false,
+    ], [
+        'is_public' => true,
+        'needs_application' => true,
+        'allow_guest_applications' => false,
+        'status' => Activity::STATUS_SCHEDULED,
+    ]));
+
+    $organizer = User::factory()->create();
+    $organizerCharacter = Character::factory()->primary()->create([
+        'user_id' => $organizer->id,
+    ]);
+    $activity->forceFill([
+        'organized_by_user_id' => $organizer->id,
+        'organized_by_character_id' => $organizerCharacter->id,
+    ])->save();
+    $group->unsetRelation('memberships');
+
+    $this->actingAs($organizer)
+        ->get(route('groups.activities.application', [
+            'group' => $group->slug,
+            'activity' => $activity->id,
+        ]))
+        ->assertOk()
+        ->assertInertia(fn (Assert $page) => $page
+            ->component('Groups/Activities/Application')
+            ->where('permissions.can_apply', true)
+            ->where('permissions.requires_group_membership', false)
+            ->where('permissions.can_join_group', false)
+        );
+});
+
+it('lets owners apply to draft application runs in hidden invite-only static groups', function () {
+    extract(createAccessControlActivity([
+        'group_type' => Group::TYPE_STATIC,
+        'join_mode' => Group::JOIN_MODE_INVITE_ONLY,
+        'is_visible' => false,
+    ], [
+        'is_public' => true,
+        'needs_application' => true,
+        'allow_guest_applications' => false,
+        'status' => Activity::STATUS_DRAFT,
+    ]));
+
+    $this->actingAs($owner)
+        ->get(route('groups.activities.application', [
+            'group' => $group->slug,
+            'activity' => $activity->id,
+        ]))
+        ->assertOk()
+        ->assertInertia(fn (Assert $page) => $page
+            ->component('Groups/Activities/Application')
+            ->where('permissions.can_apply', true)
+            ->where('permissions.requires_group_membership', false)
+            ->where('permissions.can_join_group', false)
+        );
+});
+
 it('points non members toward group applications for application based groups', function () {
     extract(createAccessControlActivity([
         'join_mode' => Group::JOIN_MODE_APPLICATION,

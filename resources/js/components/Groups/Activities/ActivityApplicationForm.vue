@@ -64,6 +64,40 @@ const form = useForm({
 });
 
 const selectedCharacter = computed(() => props.characters.find((character) => character.id === form.selected_character_id) || null);
+const leftQuestionRank = (question: ApplicationQuestion): number => {
+	if (question.source === 'character_classes') {
+		return 0;
+	}
+
+	if (question.source === 'phantom_jobs') {
+		return 1;
+	}
+
+	return -1;
+};
+const isLeftQuestion = (question: ApplicationQuestion): boolean => leftQuestionRank(question) !== -1;
+const isRaidPositionQuestion = (question: ApplicationQuestion): boolean => question.source === 'raid_positions' || question.key.includes('raid_position');
+const isCheckboxQuestion = (question: ApplicationQuestion): boolean => question.type === 'boolean';
+
+const leftQuestions = computed(() => props.questions
+	.filter((question) => !isCheckboxQuestion(question) && isLeftQuestion(question))
+	.slice()
+	.sort((left, right) => leftQuestionRank(left) - leftQuestionRank(right)));
+
+const leftQuestionKeys = computed(() => new Set(leftQuestions.value.map((question) => question.key)));
+const otherInputQuestions = computed(() => props.questions
+	.map((question, index) => ({ question, index }))
+	.filter(({ question }) => !isCheckboxQuestion(question) && !leftQuestionKeys.value.has(question.key))
+	.sort((left, right) => {
+		const leftRank = isRaidPositionQuestion(left.question) ? 0 : 1;
+		const rightRank = isRaidPositionQuestion(right.question) ? 0 : 1;
+
+		return leftRank - rightRank || left.index - right.index;
+	})
+	.map(({ question }) => question));
+const checkboxQuestions = computed(() => props.questions.filter(isCheckboxQuestion));
+const hasInputQuestions = computed(() => leftQuestions.value.length > 0 || otherInputQuestions.value.length > 0);
+
 const favoriteOptionKeysForQuestion = (question: ApplicationQuestion): string[] => {
 	if (!selectedCharacter.value) {
 		return [];
@@ -538,17 +572,59 @@ const submit = () => {
 				v-if="!showMembershipRequiredAlert && questions.length > 0"
 				class="space-y-5"
 			>
-				<div class="grid grid-cols-1 gap-5 xl:grid-cols-2">
-					<ApplicationQuestionField
-						v-for="question in questions"
+				<div
+					v-if="hasInputQuestions"
+					class="grid grid-cols-1 gap-5 md:grid-cols-2"
+				>
+					<div
+						v-if="leftQuestions.length > 0"
+						class="space-y-5"
+					>
+						<ApplicationQuestionField
+							v-for="question in leftQuestions"
+							:key="question.key"
+							v-model="form.answers[question.key]"
+							:question="question"
+							:error="form.errors[`answers.${question.key}`] || form.errors[question.key]"
+							:disabled="applicationLocked || !canSubmit"
+							:favorite-option-keys="favoriteOptionKeysForQuestion(question)"
+						/>
+					</div>
+
+					<div
+						v-if="otherInputQuestions.length > 0"
+						class="space-y-5"
+					>
+						<ApplicationQuestionField
+							v-for="question in otherInputQuestions"
+							:key="question.key"
+							v-model="form.answers[question.key]"
+							:question="question"
+							:error="form.errors[`answers.${question.key}`] || form.errors[question.key]"
+							:disabled="applicationLocked || !canSubmit"
+							:favorite-option-keys="favoriteOptionKeysForQuestion(question)"
+						/>
+					</div>
+				</div>
+
+				<div
+					v-if="checkboxQuestions.length > 0"
+					class="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3"
+				>
+					<div
+						v-for="question in checkboxQuestions"
 						:key="question.key"
-						v-model="form.answers[question.key]"
-						:question="question"
-						:error="form.errors[`answers.${question.key}`] || form.errors[question.key]"
-						:disabled="applicationLocked || !canSubmit"
-						:favorite-option-keys="favoriteOptionKeysForQuestion(question)"
-						:class="question.type === 'textarea' ? 'xl:col-span-2' : ''"
-					/>
+						class="py-1"
+					>
+						<ApplicationQuestionField
+							v-model="form.answers[question.key]"
+							:question="question"
+							:error="form.errors[`answers.${question.key}`] || form.errors[question.key]"
+							:disabled="applicationLocked || !canSubmit"
+							:favorite-option-keys="favoriteOptionKeysForQuestion(question)"
+							boolean-control="toggle"
+						/>
+					</div>
 				</div>
 			</section>
 

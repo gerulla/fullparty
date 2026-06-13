@@ -14,6 +14,7 @@ const props = defineProps<{
 	error?: string
 	disabled?: boolean
 	favoriteOptionKeys?: string[]
+	booleanControl?: 'checkbox' | 'toggle'
 }>();
 
 const emit = defineEmits<{
@@ -122,11 +123,19 @@ const booleanValue = computed({
 			:disabled="disabled"
 		/>
 
-		<UCheckbox
-			v-else-if="question.type === 'boolean'"
-			v-model="booleanValue"
-			:disabled="disabled"
-		/>
+		<template v-else-if="question.type === 'boolean'">
+			<USwitch
+				v-if="booleanControl === 'toggle'"
+				v-model="booleanValue"
+				:disabled="disabled"
+			/>
+
+			<UCheckbox
+				v-else
+				v-model="booleanValue"
+				:disabled="disabled"
+			/>
+		</template>
 
 		<USelectMenu
 			v-else-if="question.type === 'single_select'"

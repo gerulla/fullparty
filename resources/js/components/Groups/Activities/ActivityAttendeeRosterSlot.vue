@@ -327,7 +327,7 @@ const designationMarkers = computed(() => {
 							:avatar="{
 								src: slot.assigned_character.avatar_url ?? null
 							}"
-							:ui="{ name: assignedCharacterNameClass }"
+							:ui="{ avatar: 'xl:max-2xl:hidden', name: assignedCharacterNameClass }"
 						>
 							<template #name>
 								<span class="inline-flex min-w-0 items-center gap-1.5">
@@ -372,7 +372,7 @@ const designationMarkers = computed(() => {
 							:avatar="{
 								src: slot.assigned_character.avatar_url ?? null
 							}"
-							:ui="{ name: assignedCharacterNameClass }"
+							:ui="{ avatar: 'xl:max-2xl:hidden', name: assignedCharacterNameClass }"
 						>
 							<template #name>
 								<span class="inline-flex min-w-0 items-center gap-1.5">
@@ -407,14 +407,14 @@ const designationMarkers = computed(() => {
 
 					<div
 						v-if="visibleFieldEntries.length > 0"
-						class="ml-10 flex min-w-0 flex-wrap items-center gap-x-2 gap-y-0.5 text-[11px] leading-tight"
+						class="ml-10 flex min-w-0 flex-wrap items-center gap-x-2 gap-y-0.5 text-[11px] leading-tight xl:max-2xl:ml-0"
 					>
 						<span
 							v-for="field in visibleFieldEntries"
 							:key="field.id"
 							class="inline-flex min-w-0 max-w-full items-center gap-1"
 						>
-							<span class="shrink-0 text-muted">{{ field.label }}</span>
+							<span class="shrink-0 text-muted xl:max-2xl:hidden">{{ field.label }}</span>
 							<span class="truncate font-medium text-toned">{{ field.value }}</span>
 						</span>
 					</div>

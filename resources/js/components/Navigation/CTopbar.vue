@@ -24,7 +24,7 @@ defineProps({
 <template>
 	<UDashboardNavbar>
 		<template #leading>
-<!--			<UDashboardSidebarCollapse />-->
+			<UDashboardSidebarCollapse />
 			<div class="min-w-0">
 				<UButton
 					color="neutral"

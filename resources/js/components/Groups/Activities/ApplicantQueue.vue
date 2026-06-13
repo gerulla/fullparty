@@ -469,7 +469,7 @@ const visibleApplications = computed(() => {
 
 <template>
 	<aside
-		class="flex max-h-[calc(100vh-2rem)] flex-col border border-default bg-muted transition duration-200 dark:bg-elevated/50"
+		class="flex w-full max-h-[calc(100vh-2rem)] flex-col border border-default bg-muted transition duration-200 dark:bg-elevated/50 xl:max-w-96"
 		:class="isQueueDropActive ? 'border-white shadow-[0_0_0_2px_rgba(255,255,255,0.95),0_0_0_10px_rgba(255,255,255,0.12)]' : ''"
 		@dragover="handleDragOver"
 		@dragleave="handleDragLeave"
@@ -497,35 +497,37 @@ const visibleApplications = computed(() => {
 				Drop a roster slot here to move it back to the applicant queue
 			</div>
 
-			<div class="flex items-center gap-3">
+			<div class="flex flex-col gap-3">
 				<UInput
 					v-model="searchTerm"
 					size="lg"
 					icon="i-lucide-search"
-					class="flex-1"
+					class="w-full"
 					:placeholder="t('groups.activities.management.queue.search_placeholder')"
 				/>
 
-				<USelectMenu
-					v-model="sortMode"
-					size="lg"
-					class="w-48 shrink-0"
-					:items="sortItems"
-					value-key="value"
-					:placeholder="t('groups.activities.management.queue.sort.label')"
-					:search-input="false"
-					:content="{ class: 'min-w-64' }"
-				/>
+				<div class="flex items-center gap-3">
+					<USelectMenu
+						v-model="sortMode"
+						size="lg"
+						class="min-w-0 flex-1"
+						:items="sortItems"
+						value-key="value"
+						:placeholder="t('groups.activities.management.queue.sort.label')"
+						:search-input="false"
+						:content="{ class: 'min-w-64' }"
+					/>
 
-				<UButton
-					color="neutral"
-					variant="soft"
-					icon="i-lucide-sliders-horizontal"
-					:label="activeFilterCount > 0
-						? t('groups.activities.management.queue.filters_with_count', { count: activeFilterCount })
-						: t('groups.activities.management.queue.filters')"
-					@click="areFiltersOpen = !areFiltersOpen"
-				/>
+					<UButton
+						color="neutral"
+						variant="soft"
+						icon="i-lucide-sliders-horizontal"
+						:label="activeFilterCount > 0
+							? t('groups.activities.management.queue.filters_with_count', { count: activeFilterCount })
+							: t('groups.activities.management.queue.filters')"
+						@click="areFiltersOpen = !areFiltersOpen"
+					/>
+				</div>
 			</div>
 
 			<div v-if="areFiltersOpen" class="mt-4 space-y-4 border-t border-default pt-4">

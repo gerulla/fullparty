@@ -764,12 +764,12 @@ it('stores manually recorded completion progress', function () {
             'activity' => $activity->id,
         ]), [
             'progress_entry_mode' => 'manual',
-            'furthest_progress_key' => 'boss-1',
+            'furthest_progress_key' => 'boss-4',
             'milestones' => [
-                ['milestone_key' => 'boss-1', 'kills' => 0, 'best_progress_percent' => 10],
-                ['milestone_key' => 'boss-2', 'kills' => 0, 'best_progress_percent' => 0],
-                ['milestone_key' => 'boss-3', 'kills' => 0, 'best_progress_percent' => 0],
-                ['milestone_key' => 'boss-4', 'kills' => 0, 'best_progress_percent' => 0],
+                ['milestone_key' => 'boss-1', 'kills' => 1, 'best_progress_percent' => 100],
+                ['milestone_key' => 'boss-2', 'kills' => 1, 'best_progress_percent' => 100],
+                ['milestone_key' => 'boss-3', 'kills' => 1, 'best_progress_percent' => 100],
+                ['milestone_key' => 'boss-4', 'kills' => 0, 'best_progress_percent' => 50],
             ],
         ])
         ->assertOk();
@@ -780,25 +780,25 @@ it('stores manually recorded completion progress', function () {
 
     expect($activity->status)->toBe(Activity::STATUS_COMPLETE)
         ->and($activity->progress_entry_mode)->toBe('manual')
-        ->and($activity->furthest_progress_key)->toBe('boss-1')
-        ->and($activity->furthest_progress_percent)->toBe('10.00')
+        ->and($activity->furthest_progress_key)->toBe('boss-4')
+        ->and($activity->furthest_progress_percent)->toBe('50.00')
         ->and($milestones)->toHaveCount(4)
-        ->and($milestones->get('boss-1')->kills)->toBe(0)
-        ->and($milestones->get('boss-1')->best_progress_percent)->toBe('10.00')
-        ->and($milestones->get('boss-2')->best_progress_percent)->toBe('0.00')
-        ->and($milestones->get('boss-3')->best_progress_percent)->toBe('0.00')
-        ->and($milestones->get('boss-4')->best_progress_percent)->toBe('0.00')
+        ->and($milestones->get('boss-1')->kills)->toBe(1)
+        ->and($milestones->get('boss-1')->best_progress_percent)->toBe('100.00')
+        ->and($milestones->get('boss-2')->best_progress_percent)->toBe('100.00')
+        ->and($milestones->get('boss-3')->best_progress_percent)->toBe('100.00')
+        ->and($milestones->get('boss-4')->best_progress_percent)->toBe('50.00')
         ->and($event->payload['completion']['progress_entry_mode'])->toBe('manual')
         ->and($event->payload['completion']['progress_recorded_by_user_id'])->toBe($owner->id)
-        ->and($event->payload['completion']['furthest_progress_key'])->toBe('boss-1')
-        ->and($event->payload['completion']['furthest_progress_label'])->toBe(['en' => 'Boss 1'])
-        ->and($event->payload['completion']['furthest_progress_percent'])->toBe(10)
+        ->and($event->payload['completion']['furthest_progress_key'])->toBe('boss-4')
+        ->and($event->payload['completion']['furthest_progress_label'])->toBe(['en' => 'Boss 4'])
+        ->and($event->payload['completion']['furthest_progress_percent'])->toBe(50)
         ->and($event->payload['completion']['milestones'])->toHaveCount(4)
         ->and($event->payload['completion']['milestones'][0])->toMatchArray([
             'milestone_key' => 'boss-1',
             'milestone_label' => ['en' => 'Boss 1'],
-            'kills' => 0,
-            'best_progress_percent' => 10,
+            'kills' => 1,
+            'best_progress_percent' => 100,
             'source' => 'manual',
         ]);
 });

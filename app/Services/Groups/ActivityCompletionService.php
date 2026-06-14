@@ -121,7 +121,7 @@ class ActivityCompletionService
                 'progress_link_url' => blank($payload['progress_link_url'] ?? null) ? null : $payload['progress_link_url'],
                 'progress_notes' => blank($payload['progress_notes'] ?? null) ? null : $payload['progress_notes'],
                 'furthest_progress_key' => $furthestProgressKey,
-                'furthest_progress_percent' => $this->resolveFurthestProgressPercent($activity->progressMilestones),
+                'furthest_progress_percent' => $this->resolveFurthestProgressPercent($activity->progressMilestones, $furthestProgressKey),
                 'is_completed' => true,
                 'completed_at' => now(),
                 'progress_recorded_by_user_id' => $recordedByUserId,
@@ -239,15 +239,23 @@ class ActivityCompletionService
     /**
      * @param  Collection<int, ActivityProgressMilestone>  $milestones
      */
-    private function resolveFurthestProgressPercent(Collection $milestones): ?float
+    private function resolveFurthestProgressPercent(Collection $milestones, ?string $furthestProgressKey): ?float
     {
-        $bestProgress = $milestones
-            ->pluck('best_progress_percent')
-            ->filter(fn ($value) => $value !== null)
-            ->map(fn ($value) => (float) $value);
+        if (blank($furthestProgressKey)) {
+            return null;
+        }
 
-        return $bestProgress->isEmpty()
-            ? null
-            : round((float) $bestProgress->max(), 2);
+        $furthestMilestone = $milestones
+            ->firstWhere('milestone_key', $furthestProgressKey);
+
+        if (! $furthestMilestone instanceof ActivityProgressMilestone) {
+            return null;
+        }
+
+        if ($furthestMilestone->best_progress_percent !== null) {
+            return round((float) $furthestMilestone->best_progress_percent, 2);
+        }
+
+        return $furthestMilestone->kills > 0 ? 100.0 : null;
     }
 }

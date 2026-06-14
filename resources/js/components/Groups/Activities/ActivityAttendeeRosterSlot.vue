@@ -241,7 +241,7 @@ const designationMarkers = computed(() => {
 	if (props.slot.is_raid_leader) {
 		markers.push({
 			key: "raid-leader",
-			label: t("groups.activities.management.roster.raid_leader_badge"),
+			label: t("groups.activities.management.roster.marker_tooltips.party_lead"),
 			icon: "i-lucide-crown",
 			wrapperClass: "-left-2 -top-2 bg-amber-400 text-amber-950 ring-amber-200/80",
 			iconClass: "text-amber-400 drop-shadow-[0_4px_10px_rgba(251,191,36,0.85)]",
@@ -250,7 +250,7 @@ const designationMarkers = computed(() => {
 	} else if (props.slot.is_host) {
 		markers.push({
 			key: "host",
-			label: t("groups.activities.management.roster.host_badge"),
+			label: t("groups.activities.management.roster.marker_tooltips.host"),
 			icon: "i-lucide-swords",
 			wrapperClass: "-left-2 -top-2 bg-sky-500 text-sky-50 ring-sky-300/70",
 			iconClass: "text-sky-500 drop-shadow-[0_4px_10px_rgba(14,165,233,0.85)]",
@@ -261,7 +261,7 @@ const designationMarkers = computed(() => {
 	if (isViewerAssignedCharacter.value) {
 		markers.push({
 			key: "self",
-			label: t("groups.activities.management.roster.self_badge"),
+			label: t("groups.activities.management.roster.marker_tooltips.self"),
 			icon: "i-mingcute-badge-line",
 			wrapperClass: "-right-2 -top-2 bg-primary text-inverted ring-primary/60",
 			iconClass: "text-primary drop-shadow-[0_4px_10px_rgba(168,85,247,0.85)]",
@@ -278,20 +278,24 @@ const designationMarkers = computed(() => {
 		class="relative border px-3 transition-colors"
 		:class="[slotToneClass, slotFrameClass]"
 	>
-		<div
+		<UTooltip
 			v-for="marker in designationMarkers"
 			:key="marker.key"
-			class="pointer-events-none absolute z-20 flex h-8 w-8 items-center justify-center bg-transparent shadow-lg"
-			:class="marker.wrapperClass"
-			:aria-label="marker.label"
-			:title="marker.label"
+			:text="marker.label"
 		>
-			<UIcon
-				:name="marker.icon"
-				class="h-8 w-8"
-				:class="[marker.iconClass, marker.rotationClass]"
-			/>
-		</div>
+			<div
+				class="pointer-events-auto absolute z-20 flex h-8 w-8 items-center justify-center bg-transparent shadow-lg"
+				:class="marker.wrapperClass"
+				:aria-label="marker.label"
+				:title="marker.label"
+			>
+				<UIcon
+					:name="marker.icon"
+					class="h-8 w-8"
+					:class="[marker.iconClass, marker.rotationClass]"
+				/>
+			</div>
+		</UTooltip>
 
 		<div class="flex h-full min-h-0 justify-center flex-col gap-1.5 overflow-hidden">
 <!--			<div class="flex items-start justify-between gap-2">-->

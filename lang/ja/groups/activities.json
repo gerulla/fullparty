@@ -349,6 +349,11 @@
             "host_badge": "ホスト",
             "raid_leader_badge": "レイドリーダー",
             "self_badge": "自分のキャラクター",
+            "marker_tooltips": {
+                "party_lead": "パーティリード",
+                "host": "ホスト",
+                "self": "あなた"
+            },
             "roles": {
                 "tank": "タンク",
                 "healer": "ヒーラー",

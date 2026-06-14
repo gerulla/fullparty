@@ -349,6 +349,11 @@
             "host_badge": "Hôte",
             "raid_leader_badge": "Raid leader",
             "self_badge": "Votre personnage",
+            "marker_tooltips": {
+                "party_lead": "Chef de groupe",
+                "host": "Hôte",
+                "self": "Vous"
+            },
             "roles": {
                 "tank": "Tank",
                 "healer": "Soigneur",

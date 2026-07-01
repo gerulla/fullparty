@@ -91,9 +91,13 @@ class ActivityApplicationWithdrawalService
 
         $patch = [
             'pending_application_count' => $pendingApplicationCount,
+            'queue_change_reason' => 'application_withdrawn',
             'queue_application_sync_ids' => [],
             'queue_application_remove_ids' => $previousStatus === ActivityApplication::STATUS_PENDING
                 ? [(int) $application->id]
+                : [],
+            'queue_withdrawn_application_names' => $previousStatus === ActivityApplication::STATUS_PENDING && $updatedApplication
+                ? [$this->applicationDisplayName($updatedApplication)]
                 : [],
         ];
 
@@ -119,6 +123,14 @@ class ActivityApplicationWithdrawalService
     public function applicationIsRostered(ActivityApplication $application): bool
     {
         return $this->findAssignedSlot($application) instanceof ActivitySlot;
+    }
+
+    private function applicationDisplayName(ActivityApplication $application): string
+    {
+        return $application->applicant_character_name
+            ?: $application->selectedCharacter?->name
+            ?: $application->user?->name
+            ?: 'Applicant';
     }
 
     private function findAssignedSlot(ActivityApplication $application): ?ActivitySlot

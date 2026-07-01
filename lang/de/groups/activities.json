@@ -233,6 +233,8 @@
             "milestones_hint": "Enter the normalized final result that should be stored for this run.",
             "milestones_autofilled_hint": "Review the autofilled result and adjust anything that needs correction.",
             "manual_step_help": "Enter the final normalized progression result for this run.",
+            "empty_progress_warning_title": "Einige Fortschrittsfelder sind leer",
+            "empty_progress_warning_body": "Wenn du sie leer lassen möchtest, klicke erneut auf Weiter.",
             "kills": "Kills",
             "best_progress_percent": "Best Progress %",
             "errors": {
@@ -377,6 +379,12 @@
         },
         "queue": {
             "title": "Applicant Queue",
+            "new_application_notice_one": "{count} neue Bewerbung erhalten",
+            "new_application_notice_many": "{count} neue Bewerbungen erhalten",
+            "application_edited_notice": "{name} hat die Bewerbung bearbeitet",
+            "application_withdrawn_notice": "{name} hat die Bewerbung zurückgezogen",
+            "dismiss_new_application_notice": "Hinweis zu neuen Bewerbungen schließen",
+            "dismiss_queue_event_notice": "Hinweis schließen",
             "search_placeholder": "Search applicants...",
             "filters": "Filter",
             "filters_with_count": "Filters ({count})",

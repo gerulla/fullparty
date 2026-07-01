@@ -244,6 +244,14 @@ const goToManagementPage = () => {
 					:icon="statusMeta.icon"
 					:label="t(`groups.activities.statuses.${activity.status}`)"
 				/>
+				<UBadge
+					v-if="activity.allow_guest_applications"
+					size="md"
+					color="primary"
+					variant="subtle"
+					icon="i-lucide-user-plus"
+					:label="t('groups.activities.overview.details.guest_applications')"
+				/>
 				<UButton
 					v-if="showApplicationButton"
 					color="primary"
@@ -287,7 +295,6 @@ const goToManagementPage = () => {
 				:notes="activity.notes"
 				:target-prog-point-label="targetProgPointLabel"
 				detail-mode="application"
-				:allow-guest-applications="activity.allow_guest_applications"
 				:pending-application-count="activity.pending_application_count"
 			/>
 

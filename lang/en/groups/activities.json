@@ -233,6 +233,8 @@
             "milestones_hint": "Enter the normalized final result that should be stored for this run.",
             "milestones_autofilled_hint": "Review the autofilled result and adjust anything that needs correction.",
             "manual_step_help": "Enter the final normalized progression result for this run.",
+            "empty_progress_warning_title": "Some progress fields are empty",
+            "empty_progress_warning_body": "If you want to leave them empty, click Continue again.",
             "kills": "Kills",
             "best_progress_percent": "Best Progress %",
             "errors": {
@@ -377,6 +379,12 @@
         },
             "queue": {
             "title": "Applicant Queue",
+            "new_application_notice_one": "{count} new application received",
+            "new_application_notice_many": "{count} new applications received",
+            "application_edited_notice": "{name} edited their application",
+            "application_withdrawn_notice": "{name} has withdrawn",
+            "dismiss_new_application_notice": "Dismiss new application notice",
+            "dismiss_queue_event_notice": "Dismiss queue notice",
             "search_placeholder": "Search applicants...",
             "filters": "Filters",
             "filters_with_count": "Filters ({count})",

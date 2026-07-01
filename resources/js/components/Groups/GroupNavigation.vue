@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
 import { route } from 'ziggy-js'
-import { Link, router, usePage } from '@inertiajs/vue3'
+import { Link, usePage } from '@inertiajs/vue3'
 import { useI18n } from 'vue-i18n'
 import type { NavigationMenuItem } from '@nuxt/ui'
 
@@ -77,14 +77,8 @@ const isManagementUser = computed(() => Boolean(
 	|| props.group.permissions?.can_manage_membership_application_form,
 ))
 
-const visitWithInertia = (to: string) => (event: Event) => {
-	event.preventDefault()
-	router.visit(to)
-}
-
 const desktopLinkItem = (item: NavigationMenuItem & { to: string }): NavigationMenuItem => ({
 	...item,
-	onSelect: visitWithInertia(item.to),
 })
 
 const dataMenuItems = computed<NavigationMenuItem[]>(() => [

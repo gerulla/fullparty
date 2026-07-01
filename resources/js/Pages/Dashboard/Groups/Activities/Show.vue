@@ -437,8 +437,23 @@ const fetchManagementData = async () => {
 const dispatchQueueSyncEvent = (
 	syncApplicationIds: number[] = [],
 	removeApplicationIds: number[] = [],
+	options: {
+		invalidate?: boolean
+		reason?: string | null
+		newApplicationCount?: number
+		newApplicationIds?: number[]
+		updatedApplicationNames?: string[]
+		withdrawnApplicationNames?: string[]
+	} = {},
 ) => {
-	if (syncApplicationIds.length === 0 && removeApplicationIds.length === 0) {
+	if (
+		syncApplicationIds.length === 0
+		&& removeApplicationIds.length === 0
+		&& !options.invalidate
+		&& !options.newApplicationCount
+		&& (options.updatedApplicationNames ?? []).length === 0
+		&& (options.withdrawnApplicationNames ?? []).length === 0
+	) {
 		return;
 	}
 
@@ -446,6 +461,12 @@ const dispatchQueueSyncEvent = (
 		detail: {
 			syncApplicationIds,
 			removeApplicationIds,
+			invalidate: options.invalidate ?? false,
+			reason: options.reason ?? null,
+			newApplicationCount: options.newApplicationCount ?? 0,
+			newApplicationIds: options.newApplicationIds ?? [],
+			updatedApplicationNames: options.updatedApplicationNames ?? [],
+			withdrawnApplicationNames: options.withdrawnApplicationNames ?? [],
 		},
 	}));
 };
@@ -476,6 +497,11 @@ const removeMissingAssignmentsFromResponse = (error: any) => {
 };
 
 const applyManagementPatch = (patch: ActivityManagementPatch) => {
+	if (patch.type === 'reload') {
+		void fetchManagementData();
+		return;
+	}
+
 	if (!currentActivity.value) {
 		return;
 	}
@@ -516,6 +542,14 @@ const applyManagementPatch = (patch: ActivityManagementPatch) => {
 	dispatchQueueSyncEvent(
 		patch.queue_application_sync_ids ?? [],
 		patch.queue_application_remove_ids ?? [],
+		{
+			invalidate: patch.queue_invalidate ?? false,
+			reason: patch.queue_change_reason ?? null,
+			newApplicationCount: patch.queue_new_application_count ?? 0,
+			newApplicationIds: patch.queue_new_application_ids ?? [],
+			updatedApplicationNames: patch.queue_updated_application_names ?? [],
+			withdrawnApplicationNames: patch.queue_withdrawn_application_names ?? [],
+		},
 	);
 };
 

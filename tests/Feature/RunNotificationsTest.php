@@ -991,7 +991,9 @@ it('dispatches a guild discord run reminder event for linked group runs', functi
             ->and($payload['data']['type'])->toBe('runs.starting_soon')
             ->and($payload['data']['reminder_type'])->toBe('starting_soon')
             ->and($payload['data']['run_id'])->toBe($activity->id)
-            ->and($payload['data']['activity_id'])->toBe($activity->id)
+            ->and($payload['data']['activity_id'])->toBe($activity->activity_type_id)
+            ->and($payload['data']['activity_type_id'])->toBe($activity->activity_type_id)
+            ->and($payload['data']['activity_type_version_id'])->toBe($activity->activity_type_version_id)
             ->and($payload['data']['group_id'])->toBe($group->id)
             ->and($payload['data']['group_slug'])->toBe($group->slug)
             ->and($payload['data']['discord_guild_id'])->toBe('900100200300400500')
@@ -1063,6 +1065,8 @@ it('dispatches a guild discord run reminder event for linked group runs', functi
             ->and($payload['data']['unlinked_count'])->toBe(1)
             ->and($payload['data']['total_placed_count'])->toBe(3)
             ->and($payload['data']['run']['display_name'])->toBe('Guild Reminder Run')
+            ->and($payload['data']['run']['activity_type']['id'])->toBe($activity->activity_type_id)
+            ->and($payload['data']['run']['activity_type']['version_id'])->toBe($activity->activity_type_version_id)
             ->and($payload['data']['group']['name'])->toBe('Guild Linked Group')
             ->and($payload['data']['discord_guild']['name'])->toBe('Raid Guild');
 

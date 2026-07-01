@@ -1,6 +1,7 @@
 <?php
 
 use App\DTOs\LodestoneCharacterSearchResult;
+use App\Events\ActivityManagementUpdated;
 use App\Models\Activity;
 use App\Models\ActivityApplication;
 use App\Models\ActivityApplicationAnswer;
@@ -19,6 +20,7 @@ use App\Services\Groups\ActivitySlotBench;
 use App\Services\Lodestone\LodestoneCharacterSearchService;
 use App\Support\Input\TextInputSanitizer;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Facades\Event;
 use Inertia\Testing\AssertableInertia as Assert;
 
 uses(RefreshDatabase::class);
@@ -66,6 +68,8 @@ function createGuestApplicationActivity(array $activityOverrides = []): Activity
 it('allows guests to submit applications when enabled', function () {
     $activity = createGuestApplicationActivity();
 
+    Event::fake([ActivityManagementUpdated::class]);
+
     $response = $this->post(route('groups.activities.application.store', [
         'group' => $activity->group->slug,
         'activity' => $activity->id,
@@ -108,6 +112,17 @@ it('allows guests to submit applications when enabled', function () {
 
     expect($application->answers)->toHaveCount(1);
     expect($application->answers->first()->question_key)->toBe('experience');
+
+    Event::assertDispatched(
+        ActivityManagementUpdated::class,
+        fn (ActivityManagementUpdated $event): bool => $event->groupId === $activity->group_id
+            && $event->activityId === $activity->id
+            && $event->patch['pending_application_count'] === 1
+            && $event->patch['queue_invalidate'] === true
+            && $event->patch['queue_change_reason'] === 'application_created'
+            && $event->patch['queue_new_application_count'] === 1
+            && $event->patch['queue_new_application_ids'] === [$application->id]
+    );
 });
 
 it('allows authenticated users to submit applications after the roster is published but before the run starts', function () {
@@ -755,6 +770,50 @@ it('allows authenticated users to reapply after withdrawing a previous applicati
     expect(ActivityApplication::query()->where('activity_id', $activity->id)->where('status', ActivityApplication::STATUS_PENDING)->count())->toBe(1);
 });
 
+it('redirects authenticated duplicate submissions to the existing application confirmation', function () {
+    $activity = createGuestApplicationActivity([
+        'allow_guest_applications' => false,
+    ]);
+    $user = User::factory()->create();
+    $character = Character::factory()->primary()->create([
+        'user_id' => $user->id,
+        'lodestone_id' => '22446688',
+    ]);
+
+    $application = ActivityApplication::factory()->create([
+        'activity_id' => $activity->id,
+        'user_id' => $user->id,
+        'selected_character_id' => $character->id,
+        'status' => ActivityApplication::STATUS_PENDING,
+        'applicant_lodestone_id' => $character->lodestone_id,
+        'applicant_character_name' => $character->name,
+        'applicant_world' => $character->world,
+        'applicant_datacenter' => $character->datacenter,
+    ]);
+
+    $response = $this->actingAs($user)->post(route('groups.activities.application.store', [
+        'group' => $activity->group->slug,
+        'activity' => $activity->id,
+    ]), [
+        'selected_character_id' => $character->id,
+        'answers' => [
+            'experience' => 'Accidental second tap.',
+        ],
+    ]);
+
+    $response
+        ->assertRedirect(route('groups.activities.application.confirmation', [
+            'group' => $activity->group->slug,
+            'activity' => $activity->id,
+        ]))
+        ->assertSessionHas("activities.{$activity->id}.application_confirmation", [
+            'application_id' => $application->id,
+            'mode' => 'submitted',
+        ]);
+
+    expect(ActivityApplication::query()->where('activity_id', $activity->id)->count())->toBe(1);
+});
+
 it('checks a signed-in applicants selected character through the lodestone cooldown refresh path', function () {
     $activity = createGuestApplicationActivity([
         'allow_guest_applications' => false,
@@ -1083,6 +1142,8 @@ it('allows guests to update their application from the access token route', func
         'applicant_datacenter' => 'Light',
     ]);
 
+    Event::fake([ActivityManagementUpdated::class]);
+
     $response = $this->put(route('groups.activities.application.update-guest', [
         'group' => $activity->group->slug,
         'activity' => $activity->id,
@@ -1117,6 +1178,14 @@ it('allows guests to update their application from the access token route', func
         ->and($application->selectedCharacter?->user_id)->toBeNull()
         ->and($application->selectedCharacter?->world)->toBe('Lich')
         ->and($application->answers->sole()->value)->toBe('Reached clear.');
+
+    Event::assertDispatched(
+        ActivityManagementUpdated::class,
+        fn (ActivityManagementUpdated $event): bool => $event->groupId === $activity->group_id
+            && $event->activityId === $activity->id
+            && $event->patch['queue_change_reason'] === 'application_updated'
+            && $event->patch['queue_updated_application_names'] === ['Warrior Light']
+    );
 });
 
 it('allows guests to edit approved applications when they are not assigned to the main roster', function () {
@@ -1174,6 +1243,43 @@ it('allows guests to edit approved applications when they are not assigned to th
     ]));
 
     expect($application->fresh()->status)->toBe(ActivityApplication::STATUS_PENDING);
+});
+
+it('broadcasts pending guest application withdrawals to the roster queue', function () {
+    $activity = createGuestApplicationActivity([
+        'status' => Activity::STATUS_SCHEDULED,
+    ]);
+
+    $application = ActivityApplication::factory()->guest()->create([
+        'activity_id' => $activity->id,
+        'status' => ActivityApplication::STATUS_PENDING,
+        'applicant_character_name' => 'Warrior Light',
+    ]);
+    $accessToken = $application->guest_access_token;
+
+    Event::fake([ActivityManagementUpdated::class]);
+
+    $response = $this->delete(route('groups.activities.application.destroy-guest', [
+        'group' => $activity->group->slug,
+        'activity' => $activity->id,
+        'accessToken' => $accessToken,
+    ]));
+
+    $response->assertRedirect(route('groups.activities.application', [
+        'group' => $activity->group->slug,
+        'activity' => $activity->id,
+    ]));
+
+    expect($application->fresh()->status)->toBe(ActivityApplication::STATUS_WITHDRAWN);
+
+    Event::assertDispatched(
+        ActivityManagementUpdated::class,
+        fn (ActivityManagementUpdated $event): bool => $event->groupId === $activity->group_id
+            && $event->activityId === $activity->id
+            && $event->patch['queue_change_reason'] === 'application_withdrawn'
+            && $event->patch['queue_application_remove_ids'] === [$application->id]
+            && $event->patch['queue_withdrawn_application_names'] === ['Warrior Light']
+    );
 });
 
 it('does not allow guests to submit applications for verified characters', function () {

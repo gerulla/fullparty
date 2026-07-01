@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\ActivityType;
 use App\Models\DiscordGuildIntegration;
 use App\Models\DiscordUserIntegration;
 use App\Models\Group;
@@ -285,6 +286,11 @@ it('sends discord guild settings updates to the bot', function () {
         'name' => 'Settings Server',
         'guild_installed_at' => now(),
     ]);
+    $activityType = ActivityType::factory()
+        ->withPublishedVersion()
+        ->create([
+            'draft_name' => ['en' => 'Abyssos Savage'],
+        ]);
 
     $this->actingAs($owner)
         ->put(route('groups.dashboard.discord-integration.settings.update', $group), [
@@ -293,11 +299,17 @@ it('sends discord guild settings updates to the bot', function () {
             'template_role_id' => '333',
             'moderation_role_id' => null,
             'name_sync_enabled' => true,
+            'run_role_template_overrides' => [
+                [
+                    'activity_id' => $activityType->id,
+                    'role_id' => '555',
+                ],
+            ],
         ])
         ->assertRedirect()
         ->assertSessionHas('success', 'discord_guild_settings_updated');
 
-    Http::assertSent(function (HttpRequest $request) use ($group): bool {
+    Http::assertSent(function (HttpRequest $request) use ($group, $activityType): bool {
         $body = $request->body();
         $timestamp = $request->header('X-FullParty-Timestamp')[0] ?? null;
         $payload = json_decode($body, true);
@@ -319,6 +331,13 @@ it('sends discord guild settings updates to the bot', function () {
                 'enable_name_sync' => true,
                 'nickname_sync_enabled' => true,
                 'sync_discord_names_to_ff14' => true,
+                'run_role_template_overrides' => [
+                    [
+                        'activity_id' => $activityType->id,
+                        'activity_name' => 'Abyssos Savage',
+                        'role_id' => '555',
+                    ],
+                ],
             ]);
 
         return is_string($timestamp)

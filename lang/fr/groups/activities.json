@@ -233,6 +233,8 @@
             "milestones_hint": "Saisissez le résultat final normalisé à enregistrer pour ce run.",
             "milestones_autofilled_hint": "Vérifiez le résultat pré-rempli et corrigez ce qui doit l'être.",
             "manual_step_help": "Saisissez le résultat de progression final normalisé pour ce run.",
+            "empty_progress_warning_title": "Certains champs de progression sont vides",
+            "empty_progress_warning_body": "Si vous voulez les laisser vides, cliquez à nouveau sur Continuer.",
             "kills": "Éliminations",
             "best_progress_percent": "% de meilleure progression",
             "errors": {
@@ -377,6 +379,12 @@
         },
         "queue": {
             "title": "File des candidats",
+            "new_application_notice_one": "{count} nouvelle candidature reçue",
+            "new_application_notice_many": "{count} nouvelles candidatures reçues",
+            "application_edited_notice": "{name} a modifié sa candidature",
+            "application_withdrawn_notice": "{name} a retiré sa candidature",
+            "dismiss_new_application_notice": "Fermer l'avis de nouvelle candidature",
+            "dismiss_queue_event_notice": "Fermer l'avis de la file",
             "search_placeholder": "Rechercher des candidats...",
             "filters": "Filtres",
             "filters_with_count": "Filtres ({count})",

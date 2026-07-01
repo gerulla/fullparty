@@ -98,12 +98,20 @@ export type ActivityDetails = {
 }
 
 export type ActivityManagementPatch = {
+	type?: "reload"
+	reason?: string
 	updated_slots?: ActivitySlot[]
 	updated_slot_composition_hints?: Array<{
 		slot_id: number
 		composition_hints: ActivitySlotCompositionHint[]
 	}>
 	pending_application_count?: number
+	queue_invalidate?: boolean
+	queue_change_reason?: "application_created" | "application_updated" | "application_withdrawn" | string
+	queue_new_application_count?: number
+	queue_new_application_ids?: number[]
+	queue_updated_application_names?: string[]
+	queue_withdrawn_application_names?: string[]
 	queue_application_sync_ids?: number[]
 	queue_application_remove_ids?: number[]
 	upsert_missing_assignments?: ActivityDetails["missing_assignments"]

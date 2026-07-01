@@ -46,6 +46,7 @@ const isFetchingFflogsPreview = ref(false);
 const fflogsPreviewError = ref<string | null>(null);
 const fflogsPreviewMeta = ref<{ report_code?: string | null, report_title?: string | null } | null>(null);
 const milestoneInputErrors = ref<Record<string, string>>({});
+const missingProgressConfirmationVisible = ref(false);
 
 const state = reactive({
 	progressEntryMode: 'manual' as 'manual' | 'fflogs',
@@ -97,6 +98,10 @@ const milestoneInputValue = (milestoneKey: string, field: keyof MilestoneInputSt
 	state.milestones[milestoneKey]?.[field] ?? ''
 );
 
+const isEmptyMilestoneInput = (value: MilestoneNumberInput): boolean => (
+	value === '' || value === null || value === undefined || String(value).trim() === ''
+);
+
 const shouldAutoCompleteProgress = (value: MilestoneNumberInput): boolean => {
 	const inputValue = value === null || value === undefined ? '' : String(value).trim();
 
@@ -107,6 +112,7 @@ const updateMilestoneValue = (milestoneKey: string, field: keyof MilestoneInputS
 	const milestone = ensureMilestoneInputState(milestoneKey);
 
 	milestone[field] = value;
+	missingProgressConfirmationVisible.value = false;
 	delete milestoneInputErrors.value[`${milestoneKey}.${field}`];
 
 	if (field === 'kills' && shouldAutoCompleteProgress(value)) {
@@ -209,6 +215,21 @@ const progressSummary = computed(() => props.progressMilestones.map((milestone) 
 	bestProgressPercent: normalizeProgressPercentInput(milestoneInputValue(milestone.milestone_key, 'best_progress_percent')),
 })));
 
+const hasMissingProgressFields = computed(() => {
+	if (progPointItems.value.length > 0 && !state.furthestProgressKey) {
+		return true;
+	}
+
+	return props.progressMilestones.some((milestone) => {
+		const values = state.milestones[milestone.milestone_key] ?? {
+			kills: '',
+			best_progress_percent: '',
+		};
+
+		return isEmptyMilestoneInput(values.kills) || isEmptyMilestoneInput(values.best_progress_percent);
+	});
+});
+
 const stepLabel = computed(() => {
 	if (!hasProgressMilestones.value) {
 		return step.value === 1
@@ -272,6 +293,7 @@ const resetState = () => {
 	fflogsPreviewError.value = null;
 	fflogsPreviewMeta.value = null;
 	milestoneInputErrors.value = {};
+	missingProgressConfirmationVisible.value = false;
 };
 
 watch(() => props.open, (isOpen) => {
@@ -285,6 +307,10 @@ watch(() => props.progressMilestones.map((milestone) => milestone.milestone_key)
 		seedMissingMilestones();
 	}
 }, { immediate: true });
+
+watch(() => state.furthestProgressKey, () => {
+	missingProgressConfirmationVisible.value = false;
+});
 
 const close = () => {
 	emit('update:open', false);
@@ -350,11 +376,15 @@ const next = () => {
 		return;
 	}
 
+	const isProgressResultStep = hasProgressMilestones.value
+		&& ((step.value === 3 && state.progressEntryMode === 'manual') || (step.value === 4 && state.progressEntryMode === 'fflogs'));
+
 	if (hasProgressMilestones.value && step.value === 3 && state.progressEntryMode === 'fflogs') {
 		void (async () => {
 			const fetched = await fetchFflogsPreview();
 
 			if (fetched) {
+				missingProgressConfirmationVisible.value = false;
 				step.value = 4;
 			}
 		})();
@@ -362,18 +392,24 @@ const next = () => {
 		return;
 	}
 
-	if (
-		hasProgressMilestones.value
-		&& ((step.value === 3 && state.progressEntryMode === 'manual') || (step.value === 4 && state.progressEntryMode === 'fflogs'))
-		&& !validateMilestoneInputs()
-	) {
-		return;
+	if (isProgressResultStep) {
+		if (!validateMilestoneInputs()) {
+			return;
+		}
+
+		if (hasMissingProgressFields.value && !missingProgressConfirmationVisible.value) {
+			missingProgressConfirmationVisible.value = true;
+
+			return;
+		}
 	}
 
+	missingProgressConfirmationVisible.value = false;
 	step.value = Math.min(maxSteps.value, step.value + 1);
 };
 
 const back = () => {
+	missingProgressConfirmationVisible.value = false;
 	step.value = Math.max(1, step.value - 1);
 };
 
@@ -527,6 +563,15 @@ const submit = () => {
 					>
 						{{ t('groups.activities.management.complete_activity_modal.manual_step_help') }}
 					</div>
+
+					<UAlert
+						v-if="missingProgressConfirmationVisible"
+						color="warning"
+						variant="soft"
+						icon="i-lucide-triangle-alert"
+						:title="t('groups.activities.management.complete_activity_modal.empty_progress_warning_title')"
+						:description="t('groups.activities.management.complete_activity_modal.empty_progress_warning_body')"
+					/>
 
 					<UFormField
 						v-if="progPointItems.length > 0"

@@ -137,6 +137,10 @@ const guestSearchError = ref<string | null>(null);
 const guestSearchAttempted = ref(false);
 const guestSearchLoading = ref(false);
 const canSubmit = computed(() => {
+	if (form.processing) {
+		return false;
+	}
+
 	if (applicationLocked.value) {
 		return false;
 	}
@@ -245,6 +249,10 @@ const selectGuestCharacter = (character: GuestCharacterSearchResult) => {
 };
 
 const submit = () => {
+	if (form.processing) {
+		return;
+	}
+
 	const targetRoute = props.application
 		? props.guestAccessToken
 			? 'groups.activities.application.update-guest'

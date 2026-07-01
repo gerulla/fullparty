@@ -29,7 +29,6 @@ defineProps<{
 	notes: string | null
 	targetProgPointLabel: string
 	detailMode: "application" | "self_assignment"
-	allowGuestApplications?: boolean
 	pendingApplicationCount?: number
 	assignmentModeLabel?: string
 }>();
@@ -221,18 +220,6 @@ const detailsOpen = ref(false);
 						</p>
 						<p class="mt-2 font-semibold text-toned">
 							{{ assignmentModeLabel }}
-						</p>
-					</div>
-
-					<div
-						v-else-if="allowGuestApplications"
-						class="bg-background px-4 py-4"
-					>
-						<p class="text-xs uppercase tracking-[0.22em] text-muted">
-							{{ t("groups.activities.overview.details.guest_applications") }}
-						</p>
-						<p class="mt-2 font-semibold text-toned">
-							{{ t("groups.activities.create.summary.guest_applications_enabled") }}
 						</p>
 					</div>
 

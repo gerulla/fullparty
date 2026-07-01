@@ -18,6 +18,13 @@ import type {
 	QueueFilterMilestone,
 } from "@/Types/ActivityQueue";
 
+type QueueEventNotice = {
+	id: number
+	label: string
+	icon: string
+	color: "primary" | "warning" | "error"
+};
+
 const props = defineProps<{
 	groupSlug: string
 	activityId: number
@@ -26,6 +33,7 @@ const props = defineProps<{
 }>();
 
 const { t, locale } = useI18n();
+const toast = useToast();
 const page = usePage();
 const isLoading = ref(true);
 const fflogsZoneId = ref<number | null>(null);
@@ -51,8 +59,32 @@ const selectedApplication = ref<QueueApplication | null>(null);
 const memberNotes = useMemberNotes({
 	groupSlug: computed(() => props.groupSlug),
 });
+const newApplicationNoticeCount = ref(0);
+const queueEventNotices = ref<QueueEventNotice[]>([]);
+let queueRefreshTimeout: number | null = null;
+let nextQueueEventNoticeId = 1;
+const announcedNewApplicationIds = new Set<number>();
 
 const fallbackLocale = computed(() => String(page.props.locale?.fallback ?? 'en'));
+
+const newApplicationCountLabel = (count: number) => t(
+	count === 1
+		? 'groups.activities.management.queue.new_application_notice_one'
+		: 'groups.activities.management.queue.new_application_notice_many',
+	{ count },
+);
+
+const newApplicationNoticeLabel = computed(() => newApplicationCountLabel(newApplicationNoticeCount.value));
+
+const applicationEditedLabel = (name: string) => t(
+	'groups.activities.management.queue.application_edited_notice',
+	{ name },
+);
+
+const applicationWithdrawnLabel = (name: string) => t(
+	'groups.activities.management.queue.application_withdrawn_notice',
+	{ name },
+);
 
 const localizedText = (value: LocalizedText, fallback: string) => (
 	localizedValue(value, locale.value, fallbackLocale.value) || fallback
@@ -175,21 +207,73 @@ const clearFilters = () => {
 
 const canAcceptRosterDrop = computed(() => !isArchivedActivityStatus(props.activityStatus) && !isReturningSlot.value);
 
-const fetchQueuePayload = async () => {
+const showNewApplicationNotice = (count: number) => {
+	if (count <= 0) {
+		return;
+	}
+
+	newApplicationNoticeCount.value += count;
+	toast.add({
+		title: newApplicationCountLabel(count),
+		color: 'primary',
+		icon: 'i-lucide-inbox',
+	});
+};
+
+const showQueueEventNotice = (
+	label: string,
+	color: QueueEventNotice["color"],
+	icon: string,
+) => {
+	queueEventNotices.value = [
+		{
+			id: nextQueueEventNoticeId,
+			label,
+			color,
+			icon,
+		},
+		...queueEventNotices.value,
+	].slice(0, 3);
+	nextQueueEventNoticeId += 1;
+
+	toast.add({
+		title: label,
+		color,
+		icon,
+	});
+};
+
+const fetchQueuePayload = async (options: { announceNewApplications?: boolean } = {}) => {
 	isLoading.value = true;
 
 	try {
+		const previousApplicationIds = new Set(applications.value.map((application) => application.id));
 		const response = await axios.get(route('groups.dashboard.activities.applicant-queue', {
 			group: props.groupSlug,
 			activity: props.activityId,
 		}));
+		const nextApplications = response.data?.applications ?? [];
 
 		fflogsZoneId.value = response.data?.fflogs_zone_id ?? null;
-		applications.value = response.data?.applications ?? [];
+		applications.value = nextApplications;
 		queueFilters.value = response.data?.queue_filters ?? {
 			slot_fields: [],
 			milestones: [],
 		};
+
+		if (options.announceNewApplications && previousApplicationIds.size > 0) {
+			const newPendingApplications = nextApplications.filter((application: QueueApplication) => (
+				application.status === 'pending'
+				&& !previousApplicationIds.has(application.id)
+				&& !announcedNewApplicationIds.has(application.id)
+			));
+
+			for (const application of newPendingApplications) {
+				announcedNewApplicationIds.add(application.id);
+			}
+
+			showNewApplicationNotice(newPendingApplications.length);
+		}
 	} catch (error) {
 		console.error(error);
 		fflogsZoneId.value = null;
@@ -201,6 +285,32 @@ const fetchQueuePayload = async () => {
 	} finally {
 		isLoading.value = false;
 	}
+};
+
+const clearQueueRefreshTimeout = () => {
+	if (queueRefreshTimeout === null) {
+		return;
+	}
+
+	window.clearTimeout(queueRefreshTimeout);
+	queueRefreshTimeout = null;
+};
+
+const scheduleQueueRefresh = (options: { announceNewApplications?: boolean } = {}) => {
+	clearQueueRefreshTimeout();
+
+	queueRefreshTimeout = window.setTimeout(() => {
+		queueRefreshTimeout = null;
+		void fetchQueuePayload(options);
+	}, 250);
+};
+
+const dismissNewApplicationNotice = () => {
+	newApplicationNoticeCount.value = 0;
+};
+
+const dismissQueueEventNotice = (noticeId: number) => {
+	queueEventNotices.value = queueEventNotices.value.filter((notice) => notice.id !== noticeId);
 };
 
 const fetchQueueApplication = async (applicationId: number): Promise<QueueApplication | null> => {
@@ -265,9 +375,35 @@ const handleManagementQueueSync = async (event: Event) => {
 	const customEvent = event as CustomEvent<{
 		syncApplicationIds?: number[]
 		removeApplicationIds?: number[]
+		invalidate?: boolean
+		reason?: string | null
+		newApplicationCount?: number
+		newApplicationIds?: number[]
+		updatedApplicationNames?: string[]
+		withdrawnApplicationNames?: string[]
 	}>;
 	const syncApplicationIds = customEvent.detail?.syncApplicationIds ?? [];
 	const removeApplicationIds = new Set(customEvent.detail?.removeApplicationIds ?? []);
+	const newApplicationCount = Number(customEvent.detail?.newApplicationCount ?? 0);
+	const newApplicationIds = customEvent.detail?.newApplicationIds ?? [];
+	const updatedApplicationNames = customEvent.detail?.updatedApplicationNames ?? [];
+	const withdrawnApplicationNames = customEvent.detail?.withdrawnApplicationNames ?? [];
+
+	for (const applicationId of newApplicationIds) {
+		announcedNewApplicationIds.add(applicationId);
+	}
+
+	if (Number.isFinite(newApplicationCount) && newApplicationCount > 0) {
+		showNewApplicationNotice(newApplicationCount);
+	}
+
+	for (const name of updatedApplicationNames.filter((value) => value.trim() !== '')) {
+		showQueueEventNotice(applicationEditedLabel(name), 'warning', 'i-lucide-pencil');
+	}
+
+	for (const name of withdrawnApplicationNames.filter((value) => value.trim() !== '')) {
+		showQueueEventNotice(applicationWithdrawnLabel(name), 'error', 'i-lucide-user-minus');
+	}
 
 	if (removeApplicationIds.size > 0) {
 		applications.value = applications.value.filter((application) => !removeApplicationIds.has(application.id));
@@ -276,6 +412,11 @@ const handleManagementQueueSync = async (event: Event) => {
 			selectedApplication.value = null;
 			isApplicationModalOpen.value = false;
 		}
+	}
+
+	if (customEvent.detail?.invalidate) {
+		scheduleQueueRefresh();
+		return;
 	}
 
 	if (syncApplicationIds.length === 0) {
@@ -386,14 +527,27 @@ const openApplicationDetails = (application: QueueApplication) => {
 	isApplicationModalOpen.value = true;
 };
 
+const refreshQueueWhenVisible = () => {
+	if (document.visibilityState !== 'visible') {
+		return;
+	}
+
+	scheduleQueueRefresh({ announceNewApplications: true });
+};
+
 onMounted(() => {
 	void fetchQueuePayload();
+	window.addEventListener('focus', refreshQueueWhenVisible);
+	document.addEventListener('visibilitychange', refreshQueueWhenVisible);
 	window.addEventListener('fullparty:activity-application-assigned', handleApplicationAssigned as EventListener);
 	window.addEventListener('fullparty:activity-application-returned', handleApplicationReturned as EventListener);
 	window.addEventListener('fullparty:activity-management-queue-sync', handleManagementQueueSync as EventListener);
 });
 
 onBeforeUnmount(() => {
+	clearQueueRefreshTimeout();
+	window.removeEventListener('focus', refreshQueueWhenVisible);
+	document.removeEventListener('visibilitychange', refreshQueueWhenVisible);
 	window.removeEventListener('fullparty:activity-application-assigned', handleApplicationAssigned as EventListener);
 	window.removeEventListener('fullparty:activity-application-returned', handleApplicationReturned as EventListener);
 	window.removeEventListener('fullparty:activity-management-queue-sync', handleManagementQueueSync as EventListener);
@@ -475,16 +629,70 @@ const visibleApplications = computed(() => {
 		@dragleave="handleDragLeave"
 		@drop="handleDrop"
 	>
-		<div class="flex items-center justify-between gap-3 border-b border-default px-4 py-4">
-			<div class="flex items-center gap-3">
-				<h2 class="font-semibold text-sm uppercase tracking-[0.12em] text-toned">
-					{{ t('groups.activities.management.queue.title') }}
-				</h2>
-				<UBadge
-					color="primary"
-					variant="soft"
-					:label="String(isLoading ? (initialPendingApplicationCount ?? 0) : visibleApplications.length)"
+		<div class="border-b border-default px-4 py-4">
+			<div class="flex items-center justify-between gap-3">
+				<div class="flex items-center gap-3">
+					<h2 class="font-semibold text-sm uppercase tracking-[0.12em] text-toned">
+						{{ t('groups.activities.management.queue.title') }}
+					</h2>
+					<UBadge
+						color="primary"
+						variant="soft"
+						:label="String(isLoading ? (initialPendingApplicationCount ?? 0) : visibleApplications.length)"
+					/>
+				</div>
+			</div>
+
+			<div
+				v-if="newApplicationNoticeCount > 0"
+				class="mt-3 flex items-center justify-between gap-3 border border-primary/40 bg-primary/10 px-3 py-2 text-sm text-highlighted"
+			>
+				<div class="flex items-center gap-2">
+					<UIcon name="i-lucide-inbox" class="size-4 text-primary" />
+					<span>{{ newApplicationNoticeLabel }}</span>
+				</div>
+				<UButton
+					color="neutral"
+					variant="ghost"
+					size="xs"
+					icon="i-lucide-x"
+					:aria-label="t('groups.activities.management.queue.dismiss_new_application_notice')"
+					@click="dismissNewApplicationNotice"
 				/>
+			</div>
+
+			<div v-if="queueEventNotices.length > 0" class="mt-3 flex flex-col gap-2">
+				<div
+					v-for="notice in queueEventNotices"
+					:key="notice.id"
+					class="flex items-center justify-between gap-3 border px-3 py-2 text-sm text-highlighted"
+					:class="{
+						'border-warning/40 bg-warning/10': notice.color === 'warning',
+						'border-error/40 bg-error/10': notice.color === 'error',
+						'border-primary/40 bg-primary/10': notice.color === 'primary',
+					}"
+				>
+					<div class="flex items-center gap-2">
+						<UIcon
+							:name="notice.icon"
+							class="size-4"
+							:class="{
+								'text-warning': notice.color === 'warning',
+								'text-error': notice.color === 'error',
+								'text-primary': notice.color === 'primary',
+							}"
+						/>
+						<span>{{ notice.label }}</span>
+					</div>
+					<UButton
+						color="neutral"
+						variant="ghost"
+						size="xs"
+						icon="i-lucide-x"
+						:aria-label="t('groups.activities.management.queue.dismiss_queue_event_notice')"
+						@click="dismissQueueEventNotice(notice.id)"
+					/>
+				</div>
 			</div>
 		</div>
 

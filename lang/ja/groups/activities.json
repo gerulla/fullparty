@@ -233,6 +233,8 @@
             "milestones_hint": "Enter the normalized final result that should be stored for this run.",
             "milestones_autofilled_hint": "Review the autofilled result and adjust anything that needs correction.",
             "manual_step_help": "Enter the final normalized progression result for this run.",
+            "empty_progress_warning_title": "未入力の進捗項目があります",
+            "empty_progress_warning_body": "空のまま進める場合は、もう一度「続行」をクリックしてください。",
             "kills": "討伐数",
             "best_progress_percent": "Best Progress %",
             "errors": {
@@ -377,6 +379,12 @@
         },
         "queue": {
             "title": "Applicant Queue",
+            "new_application_notice_one": "新しい応募が{count}件届きました",
+            "new_application_notice_many": "新しい応募が{count}件届きました",
+            "application_edited_notice": "{name} が応募内容を編集しました",
+            "application_withdrawn_notice": "{name} が応募を取り下げました",
+            "dismiss_new_application_notice": "新しい応募の通知を閉じる",
+            "dismiss_queue_event_notice": "キュー通知を閉じる",
             "search_placeholder": "Search applicants...",
             "filters": "フィルター",
             "filters_with_count": "Filters ({count})",

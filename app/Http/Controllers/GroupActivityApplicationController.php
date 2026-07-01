@@ -15,6 +15,7 @@ use App\Models\RaidPosition;
 use App\Models\UserActivityApplicationDefault;
 use App\Services\Groups\ActivityApplicationCharacterRefreshService;
 use App\Services\Groups\ActivityApplicationWithdrawalService;
+use App\Services\Groups\ActivityManagementRealtimeService;
 use App\Services\Groups\ActivitySlotBench;
 use App\Services\Groups\GroupActivityAuditService;
 use App\Services\Lodestone\LodestoneCharacterSearchService;
@@ -47,6 +48,7 @@ class GroupActivityApplicationController extends Controller
         private readonly TextInputSanitizer $textInputSanitizer,
         private readonly ActivityApplicationWithdrawalService $applicationWithdrawalService,
         private readonly ActivityApplicationCharacterRefreshService $applicationCharacterRefreshService,
+        private readonly ActivityManagementRealtimeService $activityManagementRealtimeService,
     ) {}
 
     public function show(Request $request, Group $group, Activity $activity, ?string $secretKey = null): Response
@@ -252,11 +254,20 @@ class GroupActivityApplicationController extends Controller
         $activity->loadMissing('activityTypeVersion');
         $this->ensureActivityAcceptsApplications($activity);
 
-        if ($user && $activity->applications()
+        $existingUserApplication = $user ? $activity->applications()
             ->where('user_id', $user->id)
             ->where('status', '!=', ActivityApplication::STATUS_WITHDRAWN)
-            ->exists()) {
-            abort(422, 'You have already submitted an application for this activity.');
+            ->first() : null;
+
+        if ($existingUserApplication) {
+            return $this->redirectToApplicationConfirmation(
+                $request,
+                $group,
+                $activity,
+                $secretKey,
+                $existingUserApplication,
+                'submitted',
+            );
         }
 
         if (! $user && ! $activity->allow_guest_applications) {
@@ -321,6 +332,7 @@ class GroupActivityApplicationController extends Controller
             $application->fresh(['activity.group', 'selectedCharacter', 'user']),
             $user,
         );
+        $this->broadcastApplicantQueueChanged($activity, $application, 1);
 
         if (! $user) {
             return redirect()->route('groups.activities.application.status', [
@@ -329,9 +341,27 @@ class GroupActivityApplicationController extends Controller
             ]);
         }
 
+        return $this->redirectToApplicationConfirmation(
+            $request,
+            $group,
+            $activity,
+            $secretKey,
+            $application,
+            'submitted',
+        );
+    }
+
+    private function redirectToApplicationConfirmation(
+        Request $request,
+        Group $group,
+        Activity $activity,
+        ?string $secretKey,
+        ActivityApplication $application,
+        string $mode,
+    ): RedirectResponse {
         $request->session()->put($this->confirmationSessionKey($activity->id), [
             'application_id' => $application->id,
-            'mode' => 'submitted',
+            'mode' => $mode,
         ]);
 
         return redirect()
@@ -410,6 +440,7 @@ class GroupActivityApplicationController extends Controller
             $application->fresh(['activity.group', 'selectedCharacter', 'user']),
             $user,
         );
+        $this->broadcastApplicantQueueChanged($activity, $application->fresh(['selectedCharacter', 'user']));
 
         $request->session()->put($this->confirmationSessionKey($activity->id), [
             'application_id' => $applicationId,
@@ -418,6 +449,38 @@ class GroupActivityApplicationController extends Controller
 
         return redirect()
             ->route('groups.activities.application.confirmation', $this->activityAttendeeRouteParameters($group, $activity, $secretKey));
+    }
+
+    private function broadcastApplicantQueueChanged(
+        Activity $activity,
+        ?ActivityApplication $application = null,
+        int $newApplicationCount = 0,
+    ): void {
+        $pendingApplicationCount = $activity->applications()
+            ->where('status', ActivityApplication::STATUS_PENDING)
+            ->count();
+        $updatedApplicationNames = $newApplicationCount === 0 && $application
+            ? [$this->applicationDisplayName($application)]
+            : [];
+
+        $this->activityManagementRealtimeService->broadcastPatch($activity, [
+            'pending_application_count' => $pendingApplicationCount,
+            'queue_invalidate' => true,
+            'queue_change_reason' => $newApplicationCount > 0 ? 'application_created' : 'application_updated',
+            'queue_new_application_count' => $newApplicationCount,
+            'queue_new_application_ids' => $newApplicationCount > 0 && $application
+                ? [(int) $application->id]
+                : [],
+            'queue_updated_application_names' => $updatedApplicationNames,
+        ]);
+    }
+
+    private function applicationDisplayName(ActivityApplication $application): string
+    {
+        return $application->applicant_character_name
+            ?: $application->selectedCharacter?->name
+            ?: $application->user?->name
+            ?: 'Applicant';
     }
 
     private function refreshApplicationCharacterForApplicant(ActivityApplication $application): void
@@ -486,6 +549,7 @@ class GroupActivityApplicationController extends Controller
             $application->fresh(['activity.group', 'selectedCharacter', 'user']),
             null,
         );
+        $this->broadcastApplicantQueueChanged($activity, $application->fresh(['selectedCharacter', 'user']));
 
         return redirect()->route('groups.activities.application.status', [
             ...$this->activityAttendeeRouteParameters($group, $activity, $secretKey),

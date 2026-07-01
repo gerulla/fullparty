@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ActivityType;
 use App\Models\DiscordGuildIntegration;
 use App\Models\DiscordUserIntegration;
 use App\Models\Group;
@@ -27,6 +28,7 @@ class GroupDiscordIntegrationController extends Controller
             'group' => $this->serializeGroup($group),
             'integration' => $this->serializeIntegration($integration),
             'inviteUrl' => route('discord-app.guild.redirect'),
+            'activityTypes' => $this->serializeActivityTypes(),
             'snapshot' => fn () => $this->fetchGuildSettingsSnapshot($integration, $webhooks),
             'membershipCoverage' => Inertia::defer(
                 fn () => $this->fetchMembershipCoverage($integration, $webhooks),
@@ -83,6 +85,9 @@ class GroupDiscordIntegrationController extends Controller
             'enable_name_sync' => ['nullable', 'boolean'],
             'nickname_sync_enabled' => ['nullable', 'boolean'],
             'sync_discord_names_to_ff14' => ['nullable', 'boolean'],
+            'run_role_template_overrides' => ['nullable', 'array'],
+            'run_role_template_overrides.*.activity_id' => ['required', 'integer', 'exists:activity_types,id'],
+            'run_role_template_overrides.*.role_id' => ['required', 'string', 'max:64'],
         ]);
         $memberFacingChannelId = $validated['member_facing_channel_id']
             ?? $validated['run_announcement_channel_id']
@@ -107,6 +112,7 @@ class GroupDiscordIntegrationController extends Controller
             'enable_name_sync' => (bool) $validated['name_sync_enabled'],
             'nickname_sync_enabled' => (bool) $validated['name_sync_enabled'],
             'sync_discord_names_to_ff14' => (bool) $validated['name_sync_enabled'],
+            'run_role_template_overrides' => $this->roleTemplateOverridesForDispatch($validated['run_role_template_overrides'] ?? []),
         ];
 
         $webhooks->dispatchDiscordBotEvent(
@@ -147,6 +153,29 @@ class GroupDiscordIntegrationController extends Controller
             ],
             'discord_link_token_expires_at' => $group->discord_link_token_expires_at?->toIso8601String(),
         ];
+    }
+
+    /**
+     * @return array<int, array{id: int, name: string, difficulty: string|null}>
+     */
+    private function serializeActivityTypes(): array
+    {
+        return ActivityType::query()
+            ->where('is_active', true)
+            ->whereNotNull('current_published_version_id')
+            ->with('currentPublishedVersion:id,activity_type_id,name,difficulty')
+            ->orderBy('slug')
+            ->get()
+            ->map(fn (ActivityType $activityType): array => [
+                'id' => $activityType->id,
+                'name' => $this->localizedValue(
+                    $activityType->currentPublishedVersion?->name,
+                    $activityType->slug,
+                ),
+                'difficulty' => $activityType->currentPublishedVersion?->difficulty,
+            ])
+            ->values()
+            ->all();
     }
 
     /**
@@ -274,10 +303,121 @@ class GroupDiscordIntegrationController extends Controller
         $settings['enable_name_sync'] = $settings['name_sync_enabled'];
         $settings['nickname_sync_enabled'] = $settings['name_sync_enabled'];
         $settings['sync_discord_names_to_ff14'] = $settings['name_sync_enabled'];
+        $settings['run_role_template_overrides'] = $this->roleTemplateOverridesForDisplay($settings['run_role_template_overrides'] ?? []);
 
         $snapshot['settings'] = $settings;
 
         return $snapshot;
+    }
+
+    /**
+     * @param  array<int, array<string, mixed>>  $overrides
+     * @return array<int, array{activity_id: int, activity_name: string, role_id: string}>
+     */
+    private function roleTemplateOverridesForDispatch(array $overrides): array
+    {
+        $activityIds = collect($overrides)
+            ->pluck('activity_id')
+            ->filter(fn ($id): bool => is_numeric($id))
+            ->map(fn ($id): int => (int) $id)
+            ->unique()
+            ->values();
+
+        if ($activityIds->isEmpty()) {
+            return [];
+        }
+
+        $activityNames = ActivityType::query()
+            ->whereIn('id', $activityIds)
+            ->with('currentPublishedVersion:id,activity_type_id,name')
+            ->get()
+            ->mapWithKeys(fn (ActivityType $activityType): array => [
+                $activityType->id => $this->localizedValue(
+                    $activityType->currentPublishedVersion?->name,
+                    $activityType->slug,
+                ),
+            ]);
+
+        return collect($overrides)
+            ->map(function (array $override) use ($activityNames): ?array {
+                $activityId = (int) ($override['activity_id'] ?? 0);
+                $roleId = (string) ($override['role_id'] ?? '');
+                $activityName = $activityNames->get($activityId);
+
+                if ($activityId <= 0 || blank($roleId) || blank($activityName)) {
+                    return null;
+                }
+
+                return [
+                    'activity_id' => $activityId,
+                    'activity_name' => $activityName,
+                    'role_id' => $roleId,
+                ];
+            })
+            ->filter()
+            ->keyBy('activity_id')
+            ->values()
+            ->all();
+    }
+
+    /**
+     * @return array<int, array{activity_id: int, activity_name: string, role_id: string}>
+     */
+    private function roleTemplateOverridesForDisplay(mixed $overrides): array
+    {
+        if (! is_array($overrides)) {
+            return [];
+        }
+
+        return collect($overrides)
+            ->map(function ($override): ?array {
+                if (! is_array($override)) {
+                    return null;
+                }
+
+                $activityId = $override['activity_id'] ?? null;
+                $roleId = $override['role_id'] ?? null;
+
+                if (! is_numeric($activityId) || blank($roleId)) {
+                    return null;
+                }
+
+                return [
+                    'activity_id' => (int) $activityId,
+                    'activity_name' => (string) ($override['activity_name'] ?? sprintf('Activity Type #%d', (int) $activityId)),
+                    'role_id' => (string) $roleId,
+                ];
+            })
+            ->filter()
+            ->keyBy('activity_id')
+            ->values()
+            ->all();
+    }
+
+    /**
+     * @param  array<string, string>|null  $value
+     */
+    private function localizedValue(?array $value, string $fallback): string
+    {
+        if (! is_array($value)) {
+            return $fallback;
+        }
+
+        $locale = app()->getLocale();
+
+        foreach ([$locale, 'en'] as $key) {
+            if (filled($value[$key] ?? null)) {
+                return (string) $value[$key];
+            }
+        }
+
+        foreach ($value as $translation) {
+            if (filled($translation)) {
+                return (string) $translation;
+            }
+        }
+
+        return $fallback;
     }
 
     /**

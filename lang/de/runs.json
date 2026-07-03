@@ -104,7 +104,8 @@
                     "marathon": "Marathon",
                     "speedrun": "Speedrun",
                     "practice": "Übung",
-                    "blind": "Blind"
+                    "blind": "Blind",
+                    "chaos": "Chaos"
                 },
                 "roles": {
                     "any": "Beliebig",

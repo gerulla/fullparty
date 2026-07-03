@@ -106,6 +106,8 @@ class Activity extends Model
 
     public const RUN_STYLE_BLIND = 'blind';
 
+    public const RUN_STYLE_CHAOS = 'chaos';
+
     public const RUN_STYLES = [
         self::RUN_STYLE_PROGRESSION,
         self::RUN_STYLE_CLEAR,
@@ -115,6 +117,7 @@ class Activity extends Model
         self::RUN_STYLE_SPEEDRUN,
         self::RUN_STYLE_PRACTICE,
         self::RUN_STYLE_BLIND,
+        self::RUN_STYLE_CHAOS,
     ];
 
     public const TITLE_MAX_LENGTH = 255;

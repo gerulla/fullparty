@@ -104,7 +104,8 @@
                     "marathon": "長時間",
                     "speedrun": "スピードラン",
                     "practice": "練習",
-                    "blind": "予習なし"
+                    "blind": "予習なし",
+                    "chaos": "カオス"
                 },
                 "roles": {
                     "any": "指定なし",

@@ -25,7 +25,8 @@
         "marathon": "Marathon",
         "speedrun": "Speedrun",
         "practice": "Practice",
-        "blind": "Blind"
+        "blind": "Blind",
+        "chaos": "カオス"
     },
     "difficulties": {
         "normal": "Normal",

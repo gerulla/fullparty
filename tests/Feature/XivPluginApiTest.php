@@ -179,6 +179,8 @@ it('lets run hosts broadcast plugin commands to resolved party lead targets', fu
     Event::assertDispatched(XivPluginRunCommandIssued::class, function (XivPluginRunCommandIssued $event) use ($activity, $leader): bool {
         return $event->activityId === $activity->id
             && $event->command['target']['user_ids'] === [$leader->id]
+            && ! array_key_exists('slots', $event->command['target'])
+            && $event->command['target']['slot_count'] === 1
             && $event->command['command'] === 'place_markers';
     });
 });

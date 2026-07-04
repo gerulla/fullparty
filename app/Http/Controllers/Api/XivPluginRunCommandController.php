@@ -74,7 +74,16 @@ class XivPluginRunCommandController extends Controller
             'expires_at' => $expiresAt->toIso8601String(),
         ];
 
-        broadcast(new XivPluginRunCommandIssued($activity->id, $command));
+        $broadcastCommand = $command;
+        $broadcastCommand['target'] = [
+            'type' => $target['type'],
+            'user_ids' => $target['user_ids'],
+            'slot_ids' => $target['slot_ids'],
+            'user_count' => count($target['user_ids']),
+            'slot_count' => count($target['slot_ids']),
+        ];
+
+        broadcast(new XivPluginRunCommandIssued($activity->id, $broadcastCommand));
 
         return new JsonResponse([
             'data' => $command,

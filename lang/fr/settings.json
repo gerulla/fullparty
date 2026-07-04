@@ -28,6 +28,27 @@
     "unlink_social_account_warning": "Vous pourrez le reconnecter plus tard si nécessaire.",
     "unlink_social_account_confirm": "Dissocier le compte",
     "unlink_social_account_cancel": "Le laisser connecté",
+    "active_sessions": {
+        "title": "Sessions d'apps connectées",
+        "subtitle": "Apps et plugins connectés à votre compte.",
+        "empty_title": "Aucune session d'app active",
+        "empty_description": "Les apps et plugins connectés apparaîtront ici.",
+        "unknown_app": "App connectée",
+        "unknown_date": "Date inconnue",
+        "no_expiry": "Aucune expiration",
+        "connected_at": "Connecté le {date}",
+        "valid_until": "Actif jusqu'au {date}",
+        "revoke": "Révoquer",
+        "scopes": {
+            "xivplugin_read": "Accès au plugin XIV"
+        },
+        "revoke_modal": {
+            "title": "Révoquer la session d'app",
+            "description": "Cela déconnectera {name} de votre compte FullParty.",
+            "warning": "L'app ou le plugin devra être reconnecté avant de pouvoir accéder à votre compte.",
+            "confirm": "Révoquer la session"
+        }
+    },
     "notifications": {
         "title": "Notifications",
         "save": "Enregistrer les préférences",
@@ -188,6 +209,7 @@
         "profile_picture_updated": "Photo de profil mise à jour avec succès",
         "privacy_updated": "Paramètres de confidentialité mis à jour avec succès",
         "social_account_unlinked": "Compte connecté dissocié avec succès",
+        "linked_session_revoked": "Session d'app connectée révoquée avec succès",
         "social_account_unlink_blocked": "Ajoutez une autre méthode de connexion ou définissez un mot de passe avant de dissocier votre dernier compte social.",
         "social_oauth_invalid_state": "Cette tentative de connexion a expiré. Veuillez réessayer de connecter le compte.",
         "error_title": "Une erreur est survenue",

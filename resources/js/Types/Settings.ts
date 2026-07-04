@@ -14,6 +14,16 @@ export type SettingsDiscordUserIntegration = {
 	user_app_installed_at: string | null
 }
 
+export type SettingsLinkedSession = {
+	id: string
+	name: string | null
+	client_name: string | null
+	scopes: string[]
+	created_at: string | null
+	expires_at: string | null
+	refresh_expires_at: string | null
+}
+
 export type SettingsUser = {
 	name: string
 	email: string

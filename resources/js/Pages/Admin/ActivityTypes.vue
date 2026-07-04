@@ -107,6 +107,15 @@ watch(
 				icon: 'i-lucide-upload',
 			});
 		}
+
+		if (success.includes('activity_type_cloned')) {
+			toast.add({
+				title: t('general.success'),
+				description: t('admin.activity_types.toasts.cloned'),
+				color: 'success',
+				icon: 'i-lucide-copy',
+			});
+		}
 	},
 	{ immediate: true }
 );
@@ -154,6 +163,10 @@ const goToEditPage = (activityTypeId: number) => {
 
 const publishActivityType = (activityTypeId: number) => {
 	router.post(route('admin.activity-types.publish', activityTypeId), {});
+};
+
+const cloneActivityType = (activityTypeId: number) => {
+	router.post(route('admin.activity-types.clone', activityTypeId), {});
 };
 
 const clearSearch = () => {
@@ -240,6 +253,14 @@ const clearSearch = () => {
 							icon="i-lucide-upload"
 							:label="t('admin.activity_types.publish')"
 							@click="publishActivityType(activityType.id)"
+						/>
+
+						<UButton
+							color="neutral"
+							variant="soft"
+							icon="i-lucide-copy"
+							:label="t('admin.activity_types.clone')"
+							@click="cloneActivityType(activityType.id)"
 						/>
 
 						<UButton

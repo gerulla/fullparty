@@ -1,8 +1,9 @@
 <script setup lang="ts">
-import type { SettingsUser } from "@/Types/Settings";
+import type { SettingsLinkedSession, SettingsUser } from "@/Types/Settings";
 import {useI18n} from "vue-i18n";
 import PageHeader from "@/components/PageHeader.vue";
 import AccountSettings from "@/components/Settings/AccountSettings.vue";
+import ActiveLinkedSessions from "@/components/Settings/ActiveLinkedSessions.vue";
 import ConnectedAccounts from "@/components/Settings/ConnectedAccounts.vue";
 import Notifications from "@/components/Settings/Notifications.vue";
 import PrivacySecurity from "@/components/Settings/PrivacySecurity.vue";
@@ -11,6 +12,10 @@ import {computed, watch} from "vue";
 import {useToast} from "@nuxt/ui/composables";
 
 const { t } = useI18n();
+
+const props = defineProps<{
+	activeLinkedSessions: SettingsLinkedSession[]
+}>()
 
 const page = usePage()
 const toast = useToast()
@@ -93,6 +98,14 @@ watch(
 				icon: 'i-lucide-check'
 			})
 		}
+		if(success.includes('linked_session_revoked')){
+			toast.add({
+				title: t('settings.toasts.title'),
+				description: t('settings.toasts.linked_session_revoked'),
+				color: 'success',
+				icon: 'i-lucide-unplug'
+			})
+		}
 	},
 	{ immediate: true }
 )
@@ -133,6 +146,7 @@ watch(
 				<AccountSettings :user="user" />
 				<ConnectedAccounts :user="user" />
 			</div>
+			<ActiveLinkedSessions :sessions="props.activeLinkedSessions" />
 			<Notifications :user="user" />
 			<PrivacySecurity :user="user" />
 		</div>

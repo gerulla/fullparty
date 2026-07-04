@@ -109,6 +109,7 @@ it('allows moderators to create members-only application activities and disables
         'user_id' => $owner->id,
     ]);
     $activityType = createCrudActivityType($owner);
+    $startsAt = CarbonImmutable::now('UTC')->addDays(14)->setTime(20, 30);
 
     $this->actingAs($owner);
 
@@ -121,7 +122,7 @@ it('allows moderators to create members-only application activities and disables
         'status' => Activity::STATUS_DRAFT,
         'title' => 'Tuesday Savage Prog',
         'notes' => 'Bring food and pots.',
-        'starts_at' => '2026-06-15T20:30',
+        'starts_at' => $startsAt->format('Y-m-d\TH:i'),
         'duration_hours' => 2.5,
         'datacenter' => 'Chaos',
         'intensity' => Activity::INTENSITY_HARDCORE,
@@ -145,7 +146,7 @@ it('allows moderators to create members-only application activities and disables
         ->and($activity->organized_by_user_id)->toBe($owner->id)
         ->and($activity->organized_by_character_id)->toBe($organizerCharacter->id)
         ->and($activity->title)->toBe('Tuesday Savage Prog')
-        ->and($activity->starts_at?->format('Y-m-d H:i'))->toBe('2026-06-15 20:30')
+        ->and($activity->starts_at?->format('Y-m-d H:i'))->toBe($startsAt->format('Y-m-d H:i'))
         ->and($activity->duration_hours)->toBe(2.5)
         ->and($activity->datacenter)->toBe('Chaos')
         ->and($activity->intensity)->toBe(Activity::INTENSITY_HARDCORE)
@@ -606,6 +607,7 @@ it('updates mutable activity fields while keeping members-only access intact', f
         'beginner_friendly' => false,
         'run_style' => Activity::RUN_STYLE_PROGRESSION,
     ]);
+    $updatedStartsAt = CarbonImmutable::now('UTC')->addDays(21)->setTime(21, 15);
 
     $this->actingAs($owner);
 
@@ -617,7 +619,7 @@ it('updates mutable activity fields while keeping members-only access intact', f
         'organized_by_character_id' => $moderatorCharacter->id,
         'title' => 'Updated Run',
         'notes' => 'Updated moderator notes.',
-        'starts_at' => '2026-07-01T21:15',
+        'starts_at' => $updatedStartsAt->format('Y-m-d\TH:i'),
         'duration_hours' => 3.5,
         'datacenter' => 'Aether',
         'intensity' => Activity::INTENSITY_MIDCORE,
@@ -639,7 +641,7 @@ it('updates mutable activity fields while keeping members-only access intact', f
         ->and($activity->organized_by_character_id)->toBe($moderatorCharacter->id)
         ->and($activity->title)->toBe('Updated Run')
         ->and($activity->notes)->toBe('Updated moderator notes.')
-        ->and($activity->starts_at?->format('Y-m-d H:i'))->toBe('2026-07-01 21:15')
+        ->and($activity->starts_at?->format('Y-m-d H:i'))->toBe($updatedStartsAt->format('Y-m-d H:i'))
         ->and($activity->duration_hours)->toBe(3.5)
         ->and($activity->datacenter)->toBe('Aether')
         ->and($activity->intensity)->toBe(Activity::INTENSITY_MIDCORE)

@@ -6,6 +6,7 @@
   "create_subtitle": "Start a new activity type draft and define the blueprint that groups will use.",
   "edit_title": "Edit Activity Type",
   "edit_subtitle": "Update the draft blueprint and publish when it is ready.",
+  "clone": "Clone",
   "publish": "Publish",
   "status_active": "Active",
   "status_inactive": "Inactive",
@@ -25,7 +26,8 @@
   "toasts": {
     "created": "Activity type created successfully.",
     "updated": "Activity type updated successfully.",
-    "published": "Activity type published successfully."
+    "published": "Activity type published successfully.",
+    "cloned": "Activity type cloned. Update the new draft before publishing it."
   },
   "general": {
     "title": "General",

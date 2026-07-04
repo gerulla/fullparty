@@ -117,6 +117,7 @@
             },
             "activity_type": {
                 "created": "a créé un Activity Type.",
+                "cloned": "a cloné un Activity Type.",
                 "updated": "a mis à jour un Activity Type.",
                 "published": "a publié un Activity Type.",
                 "archived": "a archivé un Activity Type."
@@ -231,6 +232,7 @@
         "admin": {
             "activity_type": {
                 "created": "créé",
+                "cloned": "cloné",
                 "updated": "mis à jour",
                 "published": "publié",
                 "archived": "archivé"
@@ -365,6 +367,7 @@
             },
             "activity_type": {
                 "created": "Activity Type créé",
+                "cloned": "Activity Type cloné",
                 "updated": "Activity Type mis à jour",
                 "published": "Activity Type publié",
                 "archived": "Activity Type archivé"

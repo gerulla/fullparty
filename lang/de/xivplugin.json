@@ -1,0 +1,30 @@
+{
+    "device": {
+        "title": "XIV-Plugin verbinden",
+        "description": "Verbinde dein FullParty-Konto mit dem XIV-Plugin im Spiel.",
+        "subtitle": "Gib den Code ein, der dir im Plugin angezeigt wird, um es mit deinem FullParty-Konto zu verbinden.",
+        "code_label": "Plugin-Code",
+        "code_placeholder": "ABCD-EFGH",
+        "invalid_code": "Dieser Plugin-Code ist falsch oder abgelaufen.",
+        "continue": "Weiter",
+        "continuing": "Wird geprüft...",
+        "approved_title": "Plugin verbunden",
+        "approved_description": "Du kannst jetzt zum Plugin zurückkehren.",
+        "denied_title": "Verbindung abgebrochen",
+        "denied_description": "Das Plugin wurde nicht mit deinem Konto verbunden."
+    },
+    "authorize": {
+        "title": "Plugin-Zugriff erlauben?",
+        "description": "Bestätige die Verbindung des FullParty-XIV-Plugins.",
+        "subtitle": "{client} möchte sich mit deinem FullParty-Konto verbinden.",
+        "plugin": "Plugin",
+        "code": "Code: {code}",
+        "access_title": "Damit kann das Plugin:",
+        "basic_access": "Dein FullParty-Konto für die Plugin-Nutzung bestätigen.",
+        "approve": "Zugriff erlauben",
+        "deny": "Abbrechen"
+    },
+    "scopes": {
+        "xivplugin_read": "Dein FullParty-Konto und deine Charakterübersicht für Plugin-Funktionen lesen."
+    }
+}

@@ -17,6 +17,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
 use Illuminate\Validation\ValidationException;
 use Inertia\Inertia;
@@ -196,6 +197,58 @@ class ActivityTypeController extends Controller
             ->with('success', 'activity_type_updated');
     }
 
+    public function duplicate(ActivityType $activityType): RedirectResponse
+    {
+        $this->authorizeAdminAccess();
+
+        $activityType->loadMissing('tags:id,name');
+        $clone = DB::transaction(function () use ($activityType): ActivityType {
+            $clone = ActivityType::create([
+                'slug' => $this->uniqueCloneSlug($activityType->slug),
+                'draft_name' => $this->cloneLocalizedName($activityType->draft_name),
+                'draft_description' => $activityType->draft_description,
+                'draft_small_image_url' => $this->managedImageStorage->copyManagedImage($activityType->draft_small_image_url, self::IMAGE_DIRECTORY),
+                'draft_banner_image_url' => $this->managedImageStorage->copyManagedImage($activityType->draft_banner_image_url, self::IMAGE_DIRECTORY),
+                'draft_difficulty' => $activityType->draft_difficulty,
+                'draft_default_min_item_level' => $activityType->draft_default_min_item_level,
+                'draft_layout_schema' => $activityType->draft_layout_schema,
+                'draft_slot_schema' => $activityType->draft_slot_schema,
+                'draft_application_schema' => $activityType->draft_application_schema,
+                'draft_roster_summary_presets' => $activityType->draft_roster_summary_presets ?? [],
+                'draft_progress_schema' => $activityType->draft_progress_schema,
+                'draft_bench_size' => $activityType->draft_bench_size,
+                'draft_prog_points' => $activityType->draft_prog_points,
+                'draft_fflogs_zone_id' => $activityType->draft_fflogs_zone_id,
+                'is_active' => true,
+                'created_by_user_id' => auth()->id(),
+            ]);
+
+            $this->syncTags($clone, $activityType->tags->pluck('name')->values()->all());
+
+            return $clone;
+        });
+
+        $this->auditLogger->log(
+            action: 'admin.activity_type.cloned',
+            severity: AuditSeverity::CRITICAL,
+            scopeType: AuditScope::ADMIN,
+            scopeId: null,
+            message: 'audit_log.events.admin.activity_type.cloned',
+            actor: auth()->user(),
+            subject: $clone,
+            metadata: [
+                ...$this->activityTypeSnapshot($clone->load('tags:id,name')),
+                'source_activity_type_id' => $activityType->id,
+                'source_activity_type_slug' => $activityType->slug,
+                'activity_type_name' => $this->resolveAuditActivityTypeName($clone),
+            ],
+        );
+
+        return redirect()
+            ->route('admin.activity-types.edit', $clone)
+            ->with('success', 'activity_type_cloned');
+    }
+
     public function publish(ActivityType $activityType): RedirectResponse
     {
         $this->authorizeAdminAccess();
@@ -320,6 +373,37 @@ class ActivityTypeController extends Controller
         };
 
         $query->orWhereRaw($expression, [$likeSearch]);
+    }
+
+    /**
+     * @param  array<string, string>|null  $localizedName
+     * @return array<string, string>
+     */
+    private function cloneLocalizedName(?array $localizedName): array
+    {
+        $name = collect($localizedName ?? ['en' => 'Activity Type'])
+            ->map(fn (mixed $value) => filled($value) ? sprintf('%s (Copy)', (string) $value) : '')
+            ->all();
+
+        if (blank($name['en'] ?? null)) {
+            $name['en'] = 'Activity Type (Copy)';
+        }
+
+        return $name;
+    }
+
+    private function uniqueCloneSlug(string $sourceSlug): string
+    {
+        $sourceSlug = Str::slug($sourceSlug) ?: 'activity-type';
+        $index = 1;
+
+        do {
+            $suffix = $index === 1 ? '-copy' : "-copy-{$index}";
+            $candidate = Str::limit($sourceSlug, 255 - strlen($suffix), '').$suffix;
+            $index++;
+        } while (ActivityType::query()->where('slug', $candidate)->exists());
+
+        return $candidate;
     }
 
     /**

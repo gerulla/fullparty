@@ -117,6 +117,7 @@
             },
             "activity_type": {
                 "created": "がActivity Typeを作成しました。",
+                "cloned": "がActivity Typeを複製しました。",
                 "updated": "がActivity Typeを更新しました。",
                 "published": "がActivity Typeを公開しました。",
                 "archived": "がActivity Typeをアーカイブしました。"
@@ -231,6 +232,7 @@
         "admin": {
             "activity_type": {
                 "created": "作成しました",
+                "cloned": "複製しました",
                 "updated": "更新しました",
                 "published": "公開しました",
                 "archived": "アーカイブしました"
@@ -365,6 +367,7 @@
             },
             "activity_type": {
                 "created": "Activity Typeを作成",
+                "cloned": "Activity Typeを複製",
                 "updated": "Activity Typeを更新",
                 "published": "Activity Typeを公開",
                 "archived": "Activity Typeをアーカイブ"

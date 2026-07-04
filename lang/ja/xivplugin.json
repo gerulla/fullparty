@@ -1,0 +1,30 @@
+{
+    "device": {
+        "title": "XIVプラグインを接続",
+        "description": "FullPartyアカウントをゲーム内XIVプラグインに接続します。",
+        "subtitle": "プラグインに表示されたコードを入力して、FullPartyアカウントに接続してください。",
+        "code_label": "プラグインコード",
+        "code_placeholder": "ABCD-EFGH",
+        "invalid_code": "このプラグインコードは正しくないか、有効期限が切れています。",
+        "continue": "続ける",
+        "continuing": "確認中...",
+        "approved_title": "プラグインを接続しました",
+        "approved_description": "プラグインに戻って大丈夫です。",
+        "denied_title": "接続をキャンセルしました",
+        "denied_description": "プラグインはアカウントに接続されませんでした。"
+    },
+    "authorize": {
+        "title": "プラグインのアクセスを許可しますか？",
+        "description": "FullParty XIVプラグインの接続を承認します。",
+        "subtitle": "{client} がFullPartyアカウントへの接続を求めています。",
+        "plugin": "プラグイン",
+        "code": "コード: {code}",
+        "access_title": "このプラグインに許可されること:",
+        "basic_access": "プラグイン利用のためにFullPartyアカウントを確認すること。",
+        "approve": "アクセスを許可",
+        "deny": "キャンセル"
+    },
+    "scopes": {
+        "xivplugin_read": "プラグイン機能のためにFullPartyアカウントとキャラクター概要を読み取ります。"
+    }
+}

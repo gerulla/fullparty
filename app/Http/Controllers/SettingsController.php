@@ -69,7 +69,7 @@ class SettingsController extends Controller
                     : null;
 
                 return [
-                    'id' => $token->id,
+                    'id' => trim((string) $token->id),
                     'name' => $token->name,
                     'client_name' => $token->client?->name,
                     'scopes' => $token->scopes ?? [],

@@ -18,6 +18,10 @@ use Laravel\Passport\Passport;
 
 uses(RefreshDatabase::class);
 
+beforeEach(function () {
+    mock_test_passport_resource_server();
+});
+
 it('returns the authenticated users groups with their group rank', function () {
     $user = User::factory()->create();
 

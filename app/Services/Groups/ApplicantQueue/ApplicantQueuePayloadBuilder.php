@@ -4,6 +4,7 @@ namespace App\Services\Groups\ApplicantQueue;
 
 use App\Http\Controllers\Concerns\InteractsWithActivitySlotFieldDisplay;
 use App\Models\Activity;
+use App\Models\ActivityApplicationAnswer;
 use App\Models\ActivitySlot;
 use App\Models\ActivityTypeVersion;
 use App\Services\Groups\ActivitySlotFieldDefinitionBuilder;
@@ -152,7 +153,7 @@ class ApplicantQueuePayloadBuilder
             'submitted_at' => $application->submitted_at?->toIso8601String(),
             'reviewed_at' => $application->reviewed_at?->toIso8601String(),
             'review_reason' => $application->review_reason,
-            'answers' => $application->answers
+            'answers' => $this->orderedAnswers($application->answers, $activityTypeVersion)
                 ->map(fn ($answer) => $this->answerPresenter->present($answer, $activityTypeVersion))
                 ->filter()
                 ->values(),
@@ -162,6 +163,29 @@ class ApplicantQueuePayloadBuilder
             ),
             'user_stats' => $this->serializeApplicantUserStats($application->user_id, $application->activity?->group_id),
         ];
+    }
+
+    /**
+     * @param  Collection<int, ActivityApplicationAnswer>  $answers
+     * @return Collection<int, ActivityApplicationAnswer>
+     */
+    private function orderedAnswers(Collection $answers, ?ActivityTypeVersion $activityTypeVersion): Collection
+    {
+        $schemaOrder = collect($activityTypeVersion?->application_schema ?? [])
+            ->pluck('key')
+            ->filter()
+            ->values()
+            ->flip()
+            ->all();
+
+        return $answers
+            ->sort(function (ActivityApplicationAnswer $first, ActivityApplicationAnswer $second) use ($schemaOrder): int {
+                $firstIndex = $schemaOrder[$first->question_key] ?? PHP_INT_MAX;
+                $secondIndex = $schemaOrder[$second->question_key] ?? PHP_INT_MAX;
+
+                return [$firstIndex, $first->id] <=> [$secondIndex, $second->id];
+            })
+            ->values();
     }
 
     /**

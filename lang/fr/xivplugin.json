@@ -1,0 +1,30 @@
+{
+    "device": {
+        "title": "Connecter le plugin XIV",
+        "description": "Connecte ton compte FullParty au plugin XIV en jeu.",
+        "subtitle": "Entre le code affiché dans le plugin pour le connecter à ton compte FullParty.",
+        "code_label": "Code du plugin",
+        "code_placeholder": "ABCD-EFGH",
+        "invalid_code": "Ce code de plugin est incorrect ou a expiré.",
+        "continue": "Continuer",
+        "continuing": "Vérification...",
+        "approved_title": "Plugin connecté",
+        "approved_description": "Tu peux maintenant retourner dans le plugin.",
+        "denied_title": "Connexion annulée",
+        "denied_description": "Le plugin n'a pas été connecté à ton compte."
+    },
+    "authorize": {
+        "title": "Autoriser l'accès au plugin ?",
+        "description": "Approuve la connexion du plugin XIV FullParty.",
+        "subtitle": "{client} veut se connecter à ton compte FullParty.",
+        "plugin": "Plugin",
+        "code": "Code : {code}",
+        "access_title": "Cela permet au plugin de :",
+        "basic_access": "Confirmer ton compte FullParty pour l'utilisation du plugin.",
+        "approve": "Autoriser l'accès",
+        "deny": "Annuler"
+    },
+    "scopes": {
+        "xivplugin_read": "Lire ton compte FullParty et le résumé de tes personnages pour les fonctionnalités du plugin."
+    }
+}

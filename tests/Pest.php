@@ -2,6 +2,8 @@
 
 use App\Models\ActivitySlot;
 use App\Services\Groups\ActivitySlotStateTokenService;
+use League\OAuth2\Server\ResourceServer;
+use Psr\Http\Message\ServerRequestInterface;
 use Tests\TestCase;
 
 /*
@@ -50,4 +52,14 @@ function activity_slot_state_token(ActivitySlot $slot): string
     $slot->loadMissing(['activity.slotAssignments', 'assignedCharacter', 'fieldValues', 'assignments']);
 
     return app(ActivitySlotStateTokenService::class)->generate($slot);
+}
+
+function mock_test_passport_resource_server(): void
+{
+    $mock = Mockery::mock(ResourceServer::class);
+
+    $mock->shouldReceive('validateAuthenticatedRequest')
+        ->andReturnUsing(fn (ServerRequestInterface $request) => $request);
+
+    app()->instance(ResourceServer::class, $mock);
 }

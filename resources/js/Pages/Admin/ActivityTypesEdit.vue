@@ -6,9 +6,11 @@ import type {
 } from "@/Types/AdminActivityTypes";
 import ActivityTypeBuilderForm from "@/components/Admin/ActivityTypes/ActivityTypeBuilderForm.vue";
 import PageHeader from "@/components/PageHeader.vue";
-import { router, useForm } from "@inertiajs/vue3";
+import { router, useForm, usePage } from "@inertiajs/vue3";
+import { useToast } from "@nuxt/ui/composables";
 import { route } from "ziggy-js";
 import { useI18n } from "vue-i18n";
+import { watch } from "vue";
 
 const props = defineProps<{
 	activityType: any
@@ -27,6 +29,8 @@ const props = defineProps<{
 }>();
 
 const { t } = useI18n();
+const page = usePage();
+const toast = useToast();
 
 const form = useForm({
 	slug: props.activityType.slug,
@@ -68,6 +72,23 @@ const submit = () => {
 const publish = () => {
 	router.post(route('admin.activity-types.publish', props.activityType.id));
 };
+
+watch(
+	() => page.props.flash?.success,
+	(success) => {
+		if (!success?.includes('activity_type_cloned')) {
+			return;
+		}
+
+		toast.add({
+			title: t('general.success'),
+			description: t('admin.activity_types.toasts.cloned'),
+			color: 'success',
+			icon: 'i-lucide-copy',
+		});
+	},
+	{ immediate: true }
+);
 </script>
 
 <template>

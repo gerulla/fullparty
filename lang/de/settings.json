@@ -28,6 +28,27 @@
     "unlink_social_account_warning": "Du kannst es später bei Bedarf erneut verknüpfen.",
     "unlink_social_account_confirm": "Konto trennen",
     "unlink_social_account_cancel": "Verbunden lassen",
+    "active_sessions": {
+        "title": "Verknüpfte App-Sitzungen",
+        "subtitle": "Apps und Plugins, die mit deinem Konto verbunden sind.",
+        "empty_title": "Keine aktiven App-Sitzungen",
+        "empty_description": "Verbundene Apps und Plugins werden hier angezeigt.",
+        "unknown_app": "Verbundene App",
+        "unknown_date": "Unbekanntes Datum",
+        "no_expiry": "Kein Ablaufdatum",
+        "connected_at": "Verbunden am {date}",
+        "valid_until": "Aktiv bis {date}",
+        "revoke": "Widerrufen",
+        "scopes": {
+            "xivplugin_read": "XIV-Plugin-Zugriff"
+        },
+        "revoke_modal": {
+            "title": "App-Sitzung widerrufen",
+            "description": "Dadurch wird {name} von deinem FullParty-Konto getrennt.",
+            "warning": "Die App oder das Plugin muss erneut verknüpft werden, bevor es wieder auf dein Konto zugreifen kann.",
+            "confirm": "Sitzung widerrufen"
+        }
+    },
     "notifications": {
         "title": "Benachrichtigungen",
         "save": "Einstellungen speichern",
@@ -188,6 +209,7 @@
         "profile_picture_updated": "Profilbild erfolgreich aktualisiert",
         "privacy_updated": "Datenschutzeinstellungen erfolgreich aktualisiert",
         "social_account_unlinked": "Verknüpftes Konto erfolgreich getrennt",
+        "linked_session_revoked": "Verknüpfte App-Sitzung erfolgreich widerrufen",
         "social_account_unlink_blocked": "Füge eine andere Anmeldemethode hinzu oder setze ein Passwort, bevor du dein letztes Social-Konto trennst.",
         "social_oauth_invalid_state": "Dieser Verbindungsversuch ist abgelaufen. Bitte versuche erneut, das Konto zu verbinden.",
         "error_title": "Etwas ist schiefgelaufen",

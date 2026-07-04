@@ -28,6 +28,27 @@
   "unlink_social_account_warning": "You will be able to link it again later if needed.",
   "unlink_social_account_confirm": "Unlink Account",
   "unlink_social_account_cancel": "Keep Linked",
+  "active_sessions": {
+    "title": "Linked App Sessions",
+    "subtitle": "Apps and plugins connected to your account.",
+    "empty_title": "No active app sessions",
+    "empty_description": "Connected apps and plugins will appear here.",
+    "unknown_app": "Connected app",
+    "unknown_date": "Unknown date",
+    "no_expiry": "No expiry",
+    "connected_at": "Connected {date}",
+    "valid_until": "Active until {date}",
+    "revoke": "Revoke",
+    "scopes": {
+      "xivplugin_read": "XIV Plugin access"
+    },
+    "revoke_modal": {
+      "title": "Revoke app session",
+      "description": "This will disconnect {name} from your FullParty account.",
+      "warning": "The app or plugin will need to be linked again before it can access your account.",
+      "confirm": "Revoke session"
+    }
+  },
   "notifications": {
     "title": "Notifications",
     "save": "Save Preferences",
@@ -188,6 +209,7 @@
     "profile_picture_updated": "Profile picture updated successfully",
     "privacy_updated": "Privacy settings updated successfully",
     "social_account_unlinked": "Connected account unlinked successfully",
+    "linked_session_revoked": "Linked app session revoked successfully",
     "social_account_unlink_blocked": "Add another sign-in method or set a password before unlinking your last social account.",
     "social_oauth_invalid_state": "That connection attempt expired. Please try connecting the account again.",
     "error_title": "Something went wrong",

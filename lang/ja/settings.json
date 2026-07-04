@@ -28,6 +28,27 @@
     "unlink_social_account_warning": "必要であれば後で再度連携できます。",
     "unlink_social_account_confirm": "連携を解除",
     "unlink_social_account_cancel": "このままにする",
+    "active_sessions": {
+        "title": "連携中のアプリセッション",
+        "subtitle": "アカウントに接続されているアプリやプラグインです。",
+        "empty_title": "有効なアプリセッションはありません",
+        "empty_description": "連携したアプリやプラグインはここに表示されます。",
+        "unknown_app": "連携中のアプリ",
+        "unknown_date": "不明な日時",
+        "no_expiry": "有効期限なし",
+        "connected_at": "{date} に連携",
+        "valid_until": "{date} まで有効",
+        "revoke": "取り消す",
+        "scopes": {
+            "xivplugin_read": "XIVプラグインアクセス"
+        },
+        "revoke_modal": {
+            "title": "アプリセッションを取り消す",
+            "description": "{name} と FullParty アカウントの連携を解除します。",
+            "warning": "このアプリやプラグインが再びアカウントへアクセスするには、再連携が必要です。",
+            "confirm": "セッションを取り消す"
+        }
+    },
     "notifications": {
         "title": "通知",
         "save": "設定を保存",
@@ -188,6 +209,7 @@
         "profile_picture_updated": "プロフィール画像を更新しました",
         "privacy_updated": "プライバシー設定を更新しました",
         "social_account_unlinked": "連携アカウントを解除しました",
+        "linked_session_revoked": "連携中のアプリセッションを取り消しました",
         "social_account_unlink_blocked": "最後のソーシャルアカウントを解除する前に、別のサインイン方法を追加するかパスワードを設定してください。",
         "social_oauth_invalid_state": "この連携操作は期限切れです。もう一度アカウント連携をお試しください。",
         "error_title": "問題が発生しました",

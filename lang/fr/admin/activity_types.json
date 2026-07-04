@@ -6,6 +6,7 @@
     "create_subtitle": "Démarrez un nouveau brouillon de type d'activité et définissez le modèle que les groupes utiliseront.",
     "edit_title": "Modifier le type d'activité",
     "edit_subtitle": "Mettez à jour le modèle brouillon et publiez-le lorsqu'il est prêt.",
+    "clone": "Cloner",
     "publish": "Publier",
     "status_active": "Actif",
     "status_inactive": "Inactif",
@@ -25,7 +26,8 @@
     "toasts": {
         "created": "Type d'activité créé avec succès.",
         "updated": "Type d'activité mis à jour avec succès.",
-        "published": "Type d'activité publié avec succès."
+        "published": "Type d'activité publié avec succès.",
+        "cloned": "Type d'activité cloné. Mettez à jour le nouveau brouillon avant de le publier."
     },
     "general": {
         "title": "Général",

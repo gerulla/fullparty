@@ -367,6 +367,80 @@ it('stores activity type images and snapshots copies into published versions', f
     Storage::disk('public')->assertExists($publishedBannerImagePath);
 });
 
+it('allows admins to clone activity types into independent editable drafts', function () {
+    Storage::fake('public');
+
+    $admin = User::factory()->create([
+        'is_admin' => true,
+    ]);
+
+    $characterClass = CharacterClass::create([
+        'name' => 'White Mage',
+        'shorthand' => 'WHM',
+        'role' => 'healer',
+    ]);
+
+    $phantomBard = PhantomJob::create([
+        'name' => 'Phantom Bard',
+        'max_level' => 20,
+    ]);
+
+    $phantomZerker = PhantomJob::create([
+        'name' => 'Phantom Zerker',
+        'max_level' => 20,
+    ]);
+
+    $payload = activityTypeAdminPayload($characterClass, $phantomBard, $phantomZerker);
+    $payload['tags'] = ['forked-tower', 'chaos'];
+    $payload['draft_small_image'] = UploadedFile::fake()->image('small-card.png', 1000, 1700);
+    $payload['draft_banner_image'] = UploadedFile::fake()->image('banner.png', 1500, 500);
+
+    $this->actingAs($admin)
+        ->post(route('admin.activity-types.store'), $payload)
+        ->assertRedirect(route('admin.activity-types.index'));
+
+    $source = ActivityType::query()->where('slug', 'forked-tower')->sole();
+    $sourceSmallImagePath = activityTypePublicStoragePath($source->draft_small_image_url);
+    $sourceBannerImagePath = activityTypePublicStoragePath($source->draft_banner_image_url);
+
+    $this->actingAs($admin)
+        ->post(route('admin.activity-types.publish', $source))
+        ->assertRedirect();
+
+    $response = $this->actingAs($admin)
+        ->post(route('admin.activity-types.clone', $source));
+
+    $clone = ActivityType::query()
+        ->where('slug', 'forked-tower-copy')
+        ->with('tags:id,name')
+        ->sole();
+
+    $response->assertRedirect(route('admin.activity-types.edit', $clone));
+
+    $cloneSmallImagePath = activityTypePublicStoragePath($clone->draft_small_image_url);
+    $cloneBannerImagePath = activityTypePublicStoragePath($clone->draft_banner_image_url);
+
+    expect($clone->draft_name['en'])->toBe('Forked Tower (Copy)')
+        ->and($clone->draft_description)->toBe($source->draft_description)
+        ->and($clone->draft_layout_schema)->toBe($source->draft_layout_schema)
+        ->and($clone->draft_slot_schema)->toBe($source->draft_slot_schema)
+        ->and($clone->draft_application_schema)->toBe($source->draft_application_schema)
+        ->and($clone->draft_progress_schema)->toBe($source->draft_progress_schema)
+        ->and($clone->draft_prog_points)->toBe($source->draft_prog_points)
+        ->and($clone->draft_difficulty)->toBe($source->draft_difficulty)
+        ->and($clone->current_published_version_id)->toBeNull()
+        ->and($clone->versions()->count())->toBe(0)
+        ->and($clone->created_by_user_id)->toBe($admin->id)
+        ->and($clone->tags->pluck('name')->sort()->values()->all())->toBe(['chaos', 'forked-tower'])
+        ->and($cloneSmallImagePath)->not->toBe($sourceSmallImagePath)
+        ->and($cloneBannerImagePath)->not->toBe($sourceBannerImagePath);
+
+    Storage::disk('public')->assertExists($sourceSmallImagePath);
+    Storage::disk('public')->assertExists($sourceBannerImagePath);
+    Storage::disk('public')->assertExists($cloneSmallImagePath);
+    Storage::disk('public')->assertExists($cloneBannerImagePath);
+});
+
 it('stores uploaded admin images with a server-detected image extension instead of the client filename extension', function () {
     Storage::fake('public');
 

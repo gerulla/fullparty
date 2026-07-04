@@ -13,6 +13,7 @@
         "gerulla/xivauth-provider": "^1.0",
         "inertiajs/inertia-laravel": "^2.0",
         "laravel/framework": "^13.0",
+        "laravel/passport": "^13.7",
         "laravel/pulse": "^1.7",
         "laravel/reverb": "^1.0",
         "laravel/socialite": "^5.26",

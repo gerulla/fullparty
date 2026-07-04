@@ -57,12 +57,15 @@ use App\Http\Controllers\PhantomJobController;
 use App\Http\Controllers\RaidPositionController;
 use App\Http\Controllers\RunDiscoveryController;
 use App\Http\Controllers\SettingsController;
+use App\Http\Controllers\SettingsLinkedSessionController;
 use App\Http\Controllers\SitemapController;
 use App\Http\Controllers\SocialAccountController;
 use App\Http\Controllers\SystemNotificationController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\UserOnboardingController;
 use App\Http\Controllers\XIVAuthController;
+use App\Http\Controllers\XivPluginDeviceAuthorizationController;
+use App\Http\Controllers\XivPluginDeviceController;
 use App\Http\Middleware\ApplyLocale;
 use App\Services\Landing\LandingPageDataService;
 use App\Support\Seo\ServerMeta;
@@ -107,6 +110,10 @@ Route::get('/privacy-policy', fn (Request $request) => $redirectToLocalizedPath(
 Route::get('/cookies', fn (Request $request) => $redirectToLocalizedPath($request, 'cookies'));
 Route::get('/group-search-results', fn (Request $request) => $redirectToLocalizedPath($request, 'group-search-results'));
 Route::get('/dashboard', fn (Request $request) => $redirectToLocalizedPath($request, 'home'));
+Route::get('/xivplugin', [XivPluginDeviceController::class, 'show'])->name('xivplugin.device');
+Route::get('/xivplugin/authorize', XivPluginDeviceAuthorizationController::class)
+    ->middleware('auth')
+    ->name('xivplugin.device.authorize');
 
 Route::get('/auth/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
     $request->fulfill();
@@ -526,6 +533,7 @@ Route::prefix('{locale?}')
             Route::patch('/settings/time-display', [UserController::class, 'changeTimeDisplayPreference'])->name('settings.time-display');
             Route::post('/settings/discord-integration/link-token', [UserController::class, 'generateDiscordLinkToken'])->name('settings.discord-integration.link-token');
             Route::delete('/settings/discord-integration', [UserController::class, 'disconnectDiscordIntegration'])->name('settings.discord-integration.destroy');
+            Route::delete('/settings/linked-sessions/{token}', [SettingsLinkedSessionController::class, 'destroy'])->name('settings.linked-sessions.destroy');
             Route::post('/settings/privacy', [UserController::class, 'changePrivacySettings'])->name('settings.privacy');
             Route::delete('/settings/account', [UserController::class, 'destroyAccount'])->name('settings.account.destroy');
             Route::delete('/settings/social-accounts/{socialAccount}', [SocialAccountController::class, 'destroy'])->name('settings.social-accounts.destroy');
@@ -619,6 +627,7 @@ Route::prefix('{locale?}')
                 Route::post('/activity-types', [ActivityTypeController::class, 'store'])->name('admin.activity-types.store');
                 Route::get('/activity-types/{activityType}/edit', [ActivityTypeController::class, 'edit'])->name('admin.activity-types.edit');
                 Route::put('/activity-types/{activityType}', [ActivityTypeController::class, 'update'])->name('admin.activity-types.update');
+                Route::post('/activity-types/{activityType}/clone', [ActivityTypeController::class, 'duplicate'])->name('admin.activity-types.clone');
                 Route::post('/activity-types/{activityType}/publish', [ActivityTypeController::class, 'publish'])->name('admin.activity-types.publish');
                 Route::delete('/activity-types/{activityType}', [ActivityTypeController::class, 'destroy'])->name('admin.activity-types.destroy');
 

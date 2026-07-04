@@ -9,6 +9,7 @@ use App\Models\Character;
 use Illuminate\Contracts\Support\Arrayable;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
+use Illuminate\Support\Collection;
 
 class XivPluginRunApplicationResource extends JsonResource
 {
@@ -60,7 +61,7 @@ class XivPluginRunApplicationResource extends JsonResource
                 'slot_label' => $this->slot->slot_label ?? [],
                 'position_in_group' => $this->slot->position_in_group,
             ] : null,
-            'answers' => $application->answers
+            'answers' => $this->orderedAnswers($application)
                 ->map(fn (ActivityApplicationAnswer $answer): array => [
                     'question_key' => $answer->question_key,
                     'question_label' => $answer->question_label ?? [],
@@ -72,6 +73,28 @@ class XivPluginRunApplicationResource extends JsonResource
                 ->all(),
             'details' => $this->withAbsoluteUrls($this->details),
         ];
+    }
+
+    /**
+     * @return Collection<int, ActivityApplicationAnswer>
+     */
+    private function orderedAnswers(ActivityApplication $application)
+    {
+        $schemaOrder = collect($application->activity?->activityTypeVersion?->application_schema ?? [])
+            ->pluck('key')
+            ->filter()
+            ->values()
+            ->flip()
+            ->all();
+
+        return $application->answers
+            ->sort(function (ActivityApplicationAnswer $first, ActivityApplicationAnswer $second) use ($schemaOrder): int {
+                $firstIndex = $schemaOrder[$first->question_key] ?? PHP_INT_MAX;
+                $secondIndex = $schemaOrder[$second->question_key] ?? PHP_INT_MAX;
+
+                return [$firstIndex, $first->id] <=> [$secondIndex, $second->id];
+            })
+            ->values();
     }
 
     private function withAbsoluteUrls(mixed $value): mixed

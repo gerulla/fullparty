@@ -7,6 +7,7 @@ return [
             'clear_markers',
             'sync_timer',
             'ready_check',
+            'ready_check_confirm',
             'countdown',
             'open_overlay',
             'show_message',

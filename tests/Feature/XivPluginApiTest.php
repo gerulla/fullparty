@@ -186,6 +186,67 @@ it('lets run hosts broadcast plugin commands to resolved party lead targets', fu
     });
 });
 
+it('accepts ready check confirmation plugin commands for selected users', function () {
+    Event::fake([XivPluginRunCommandIssued::class]);
+
+    $host = User::factory()->create(['name' => 'Run Host']);
+    $leader = User::factory()->create(['name' => 'Party Lead']);
+    $hostCharacter = Character::factory()->create(['user_id' => $host->id, 'name' => 'Host Character']);
+    $leaderCharacter = Character::factory()->create(['user_id' => $leader->id, 'name' => 'Leader Character']);
+    $group = Group::factory()
+        ->withMember($host)
+        ->withMember($leader)
+        ->create(['slug' => 'plgrdyc']);
+    $activity = Activity::factory()->create([
+        'group_id' => $group->id,
+        'status' => Activity::STATUS_SCHEDULED,
+        'starts_at' => now()->addHour(),
+    ]);
+    $slots = $activity->slots()->take(2)->get();
+    $slots[0]->update([
+        'assigned_character_id' => $hostCharacter->id,
+        'assigned_by_user_id' => $host->id,
+        'is_host' => true,
+    ]);
+    $slots[1]->update([
+        'assigned_character_id' => $leaderCharacter->id,
+        'assigned_by_user_id' => $host->id,
+        'is_raid_leader' => true,
+    ]);
+
+    Passport::actingAs($host, ['xivplugin:read']);
+
+    $this->postJson(route('api.xivplugin.runs.commands.store', $activity), [
+        'command' => 'ready_check_confirm',
+        'target' => [
+            'type' => 'users',
+            'user_ids' => [$host->id, $leader->id],
+        ],
+        'payload' => [
+            'message' => 'Ready check confirmation requested',
+            'initiator_user_id' => (string) $host->id,
+            'initiator_name' => 'Host Character',
+        ],
+        'expires_in_seconds' => 120,
+    ])
+        ->assertOk()
+        ->assertJsonPath('data.command', 'ready_check_confirm')
+        ->assertJsonPath('data.target.type', 'users')
+        ->assertJsonPath('data.target.user_ids.0', $host->id)
+        ->assertJsonPath('data.target.user_ids.1', $leader->id)
+        ->assertJsonPath('data.payload.initiator_user_id', (string) $host->id)
+        ->assertJsonPath('data.payload.initiator_name', 'Host Character');
+
+    Event::assertDispatched(XivPluginRunCommandIssued::class, function (XivPluginRunCommandIssued $event) use ($activity, $host, $leader): bool {
+        return $event->activityId === $activity->id
+            && $event->command['command'] === 'ready_check_confirm'
+            && $event->command['target']['type'] === 'users'
+            && $event->command['target']['user_ids'] === [$host->id, $leader->id]
+            && ! array_key_exists('slots', $event->command['target'])
+            && $event->command['payload']['initiator_user_id'] === (string) $host->id;
+    });
+});
+
 it('lets party leads publish compact plugin party snapshots', function () {
     Event::fake([XivPluginRunPartySnapshotUpdated::class]);
 

@@ -33,7 +33,11 @@ class XivPluginRunController extends Controller
 
         abort_if($activity->status === Activity::STATUS_DRAFT && ! $canModerate, 404);
         abort_if($activity->isArchived(), 404);
-        abort_if($activity->status !== Activity::STATUS_DRAFT && ($activity->starts_at === null || $activity->starts_at->isPast()), 404);
+        abort_if(
+            $activity->status !== Activity::STATUS_DRAFT
+            && ($activity->starts_at === null || $activity->starts_at->lt(now()->subHours(6))),
+            404
+        );
 
         $activity->loadCount([
             'applications as active_application_count' => fn ($query) => $query->whereIn('status', ActivityApplication::ACTIVE_STATUSES),

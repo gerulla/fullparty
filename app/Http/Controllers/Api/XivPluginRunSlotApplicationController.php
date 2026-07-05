@@ -28,7 +28,11 @@ class XivPluginRunSlotApplicationController extends Controller
 
         abort_unless($group->hasModeratorAccess($user->id), 404);
         abort_if($activity->isArchived(), 404);
-        abort_if($activity->status !== Activity::STATUS_DRAFT && ($activity->starts_at === null || $activity->starts_at->isPast()), 404);
+        abort_if(
+            $activity->status !== Activity::STATUS_DRAFT
+            && ($activity->starts_at === null || $activity->starts_at->lt(now()->subHours(6))),
+            404
+        );
 
         $assignment = $slot->assignments()
             ->whereNull('ended_at')

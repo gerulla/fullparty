@@ -520,7 +520,7 @@ it('lets plugin clients acknowledge run commands', function () {
     });
 });
 
-it('lists future group runs and only includes drafts for moderators', function () {
+it('lists future and recently started group runs and only includes drafts for moderators', function () {
     $member = User::factory()->create();
     $moderator = User::factory()->create();
 
@@ -530,6 +530,13 @@ it('lists future group runs and only includes drafts for moderators', function (
         ->create([
             'slug' => 'plgruns',
         ]);
+
+    $recentRun = Activity::factory()->create([
+        'group_id' => $group->id,
+        'status' => Activity::STATUS_SCHEDULED,
+        'title' => 'Current Run',
+        'starts_at' => now()->subHours(2),
+    ]);
 
     $futureRun = Activity::factory()->create([
         'group_id' => $group->id,
@@ -564,19 +571,21 @@ it('lists future group runs and only includes drafts for moderators', function (
 
     $this->getJson(route('api.xivplugin.groups.runs.index', $group))
         ->assertOk()
-        ->assertJsonCount(1, 'data')
-        ->assertJsonPath('data.0.id', $futureRun->id)
-        ->assertJsonPath('data.0.name', 'Future Run')
-        ->assertJsonPath('data.0.application_count', null);
+        ->assertJsonCount(2, 'data')
+        ->assertJsonPath('data.0.id', $recentRun->id)
+        ->assertJsonPath('data.0.name', 'Current Run')
+        ->assertJsonPath('data.0.application_count', null)
+        ->assertJsonPath('data.1.id', $futureRun->id);
 
     Passport::actingAs($moderator, ['xivplugin:read']);
 
     $this->getJson(route('api.xivplugin.groups.runs.index', $group))
         ->assertOk()
-        ->assertJsonCount(2, 'data')
-        ->assertJsonPath('data.0.id', $futureRun->id)
-        ->assertJsonPath('data.0.application_count', 1)
-        ->assertJsonPath('data.1.id', $draftRun->id);
+        ->assertJsonCount(3, 'data')
+        ->assertJsonPath('data.0.id', $recentRun->id)
+        ->assertJsonPath('data.1.id', $futureRun->id)
+        ->assertJsonPath('data.1.application_count', 1)
+        ->assertJsonPath('data.2.id', $draftRun->id);
 });
 
 it('returns run details with roster data and moderator access metadata', function () {
@@ -601,7 +610,7 @@ it('returns run details with roster data and moderator access metadata', functio
         'group_id' => $group->id,
         'status' => Activity::STATUS_SCHEDULED,
         'title' => null,
-        'starts_at' => now()->addHours(3),
+        'starts_at' => now()->subHours(2),
         'duration_hours' => 2.5,
     ]);
 

@@ -7,6 +7,7 @@ use App\Http\Controllers\Api\XivPluginRealtimeController;
 use App\Http\Controllers\Api\XivPluginRunCommandAcknowledgementController;
 use App\Http\Controllers\Api\XivPluginRunCommandController;
 use App\Http\Controllers\Api\XivPluginRunController;
+use App\Http\Controllers\Api\XivPluginRunPartySnapshotController;
 use App\Http\Controllers\Api\XivPluginRunSlotApplicationController;
 use App\Http\Controllers\Api\XivPluginUserController;
 use Illuminate\Support\Facades\Route;
@@ -35,6 +36,9 @@ Route::prefix('xivplugin')
 
         Route::post('/runs/{activity}/commands', [XivPluginRunCommandController::class, 'store'])
             ->name('runs.commands.store');
+
+        Route::post('/runs/{activity}/party-snapshot', [XivPluginRunPartySnapshotController::class, 'store'])
+            ->name('runs.party-snapshot.store');
 
         Route::post('/runs/{activity}/commands/{commandId}/ack', [XivPluginRunCommandAcknowledgementController::class, 'store'])
             ->where('commandId', '[A-Za-z0-9_-]+')

@@ -58,6 +58,31 @@ class XivPluginRunRealtimeService
             ->contains(fn (ActivitySlot $slot): bool => $slot->is_host);
     }
 
+    public function canPublishPartySnapshot(Activity $activity, User $user): bool
+    {
+        $this->loadRealtimeRelations($activity);
+
+        if (! $this->canAccessRun($activity, $user)) {
+            return false;
+        }
+
+        if ($activity->group->hasModeratorAccess($user->id)) {
+            return true;
+        }
+
+        return $this->assignedSlotsForUser($activity, $user)
+            ->contains(fn (ActivitySlot $slot): bool => $slot->is_host || $slot->is_raid_leader);
+    }
+
+    public function partyKeyExists(Activity $activity, string $partyKey): bool
+    {
+        $this->loadRealtimeRelations($activity);
+
+        return $activity->slots
+            ->pluck('group_key')
+            ->contains($partyKey);
+    }
+
     /**
      * @return array<string, mixed>
      */

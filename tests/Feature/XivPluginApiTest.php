@@ -2,6 +2,7 @@
 
 use App\Events\XivPluginRunCommandAcknowledged;
 use App\Events\XivPluginRunCommandIssued;
+use App\Events\XivPluginRunPartySnapshotUpdated;
 use App\Models\Activity;
 use App\Models\ActivityApplication;
 use App\Models\ActivitySlotAssignment;
@@ -183,6 +184,204 @@ it('lets run hosts broadcast plugin commands to resolved party lead targets', fu
             && $event->command['target']['slot_count'] === 1
             && $event->command['command'] === 'place_markers';
     });
+});
+
+it('lets party leads publish compact plugin party snapshots', function () {
+    Event::fake([XivPluginRunPartySnapshotUpdated::class]);
+
+    $leader = User::factory()->create(['name' => 'Party Lead']);
+    $leaderCharacter = Character::factory()->create([
+        'user_id' => $leader->id,
+        'name' => 'Lead Character',
+        'world' => 'Lich',
+    ]);
+    $characterClass = CharacterClass::query()->create([
+        'name' => 'Astrologian',
+        'shorthand' => 'AST',
+        'role' => 'healer',
+    ]);
+    $phantomJob = PhantomJob::query()->create([
+        'name' => 'Geomancer',
+        'max_level' => 20,
+    ]);
+    $group = Group::factory()->withMember($leader)->create(['slug' => 'plgsnap']);
+    $activity = Activity::factory()->create([
+        'group_id' => $group->id,
+        'status' => Activity::STATUS_SCHEDULED,
+        'starts_at' => now()->addHour(),
+    ]);
+    $slot = $activity->slots()->firstOrFail();
+    $slot->update([
+        'assigned_character_id' => $leaderCharacter->id,
+        'assigned_by_user_id' => $leader->id,
+        'is_raid_leader' => true,
+    ]);
+
+    Passport::actingAs($leader, ['xivplugin:read']);
+
+    $this->postJson(route('api.xivplugin.runs.party-snapshot.store', $activity), [
+        'seq' => 42,
+        'party_key' => 'party-a',
+        'members' => [
+            [
+                'p' => 1,
+                'cid' => $leaderCharacter->id,
+                'n' => 'Should Be Omitted',
+                'w' => 'Lich',
+                'cj' => $characterClass->id,
+                'pj' => $phantomJob->id,
+            ],
+            [
+                'p' => 2,
+                'n' => 'Unmatched Character',
+                'w' => 'Phoenix',
+                'cj' => $characterClass->id,
+            ],
+        ],
+    ])
+        ->assertOk()
+        ->assertJsonPath('data.run_id', $activity->id)
+        ->assertJsonPath('data.sender_user_id', $leader->id)
+        ->assertJsonPath('data.party_key', 'party-a')
+        ->assertJsonPath('data.seq', 42)
+        ->assertJsonPath('data.members.0.cid', $leaderCharacter->id)
+        ->assertJsonMissingPath('data.members.0.n')
+        ->assertJsonPath('data.members.0.cj', $characterClass->id)
+        ->assertJsonPath('data.members.0.pj', $phantomJob->id)
+        ->assertJsonPath('data.members.1.n', 'Unmatched Character')
+        ->assertJsonPath('data.members.1.w', 'Phoenix');
+
+    Event::assertDispatched(XivPluginRunPartySnapshotUpdated::class, function (XivPluginRunPartySnapshotUpdated $event) use ($activity, $leader, $leaderCharacter): bool {
+        return $event->activityId === $activity->id
+            && $event->snapshot['sender_user_id'] === $leader->id
+            && $event->snapshot['party_key'] === 'party-a'
+            && $event->snapshot['seq'] === 42
+            && $event->snapshot['members'][0]['cid'] === $leaderCharacter->id
+            && ! array_key_exists('n', $event->snapshot['members'][0]);
+    });
+});
+
+it('does not let regular assigned plugin users publish party snapshots', function () {
+    Event::fake([XivPluginRunPartySnapshotUpdated::class]);
+
+    $user = User::factory()->create();
+    $character = Character::factory()->create(['user_id' => $user->id]);
+    $characterClass = CharacterClass::query()->create([
+        'name' => 'Warrior',
+        'shorthand' => 'WAR',
+        'role' => 'tank',
+    ]);
+    $group = Group::factory()->withMember($user)->create(['slug' => 'plgsnp2']);
+    $activity = Activity::factory()->create([
+        'group_id' => $group->id,
+        'status' => Activity::STATUS_SCHEDULED,
+        'starts_at' => now()->addHour(),
+    ]);
+    $activity->slots()->firstOrFail()->update([
+        'assigned_character_id' => $character->id,
+        'assigned_by_user_id' => $user->id,
+    ]);
+
+    Passport::actingAs($user, ['xivplugin:read']);
+
+    $this->postJson(route('api.xivplugin.runs.party-snapshot.store', $activity), [
+        'seq' => 1,
+        'party_key' => 'party-a',
+        'members' => [
+            [
+                'p' => 1,
+                'cid' => $character->id,
+                'cj' => $characterClass->id,
+            ],
+        ],
+    ])->assertForbidden();
+
+    Event::assertNotDispatched(XivPluginRunPartySnapshotUpdated::class);
+});
+
+it('rejects party snapshots for unknown run party keys', function () {
+    Event::fake([XivPluginRunPartySnapshotUpdated::class]);
+
+    $leader = User::factory()->create();
+    $character = Character::factory()->create(['user_id' => $leader->id]);
+    $characterClass = CharacterClass::query()->create([
+        'name' => 'Paladin',
+        'shorthand' => 'PLD',
+        'role' => 'tank',
+    ]);
+    $group = Group::factory()->withMember($leader)->create(['slug' => 'plgsnp3']);
+    $activity = Activity::factory()->create([
+        'group_id' => $group->id,
+        'status' => Activity::STATUS_SCHEDULED,
+        'starts_at' => now()->addHour(),
+    ]);
+    $activity->slots()->firstOrFail()->update([
+        'assigned_character_id' => $character->id,
+        'assigned_by_user_id' => $leader->id,
+        'is_raid_leader' => true,
+    ]);
+
+    Passport::actingAs($leader, ['xivplugin:read']);
+
+    $this->postJson(route('api.xivplugin.runs.party-snapshot.store', $activity), [
+        'seq' => 1,
+        'party_key' => 'party-z',
+        'members' => [
+            [
+                'p' => 1,
+                'cid' => $character->id,
+                'cj' => $characterClass->id,
+            ],
+        ],
+    ])
+        ->assertUnprocessable()
+        ->assertJsonValidationErrors(['party_key']);
+
+    Event::assertNotDispatched(XivPluginRunPartySnapshotUpdated::class);
+});
+
+it('rate limits plugin party snapshots per run and user', function () {
+    Event::fake([XivPluginRunPartySnapshotUpdated::class]);
+
+    $leader = User::factory()->create();
+    $character = Character::factory()->create(['user_id' => $leader->id]);
+    $characterClass = CharacterClass::query()->create([
+        'name' => 'White Mage',
+        'shorthand' => 'WHM',
+        'role' => 'healer',
+    ]);
+    $group = Group::factory()->withMember($leader)->create(['slug' => 'plgsnp4']);
+    $activity = Activity::factory()->create([
+        'group_id' => $group->id,
+        'status' => Activity::STATUS_SCHEDULED,
+        'starts_at' => now()->addHour(),
+    ]);
+    $activity->slots()->firstOrFail()->update([
+        'assigned_character_id' => $character->id,
+        'assigned_by_user_id' => $leader->id,
+        'is_raid_leader' => true,
+    ]);
+
+    Passport::actingAs($leader, ['xivplugin:read']);
+
+    $payload = [
+        'seq' => 1,
+        'party_key' => 'party-a',
+        'members' => [
+            [
+                'p' => 1,
+                'cid' => $character->id,
+                'cj' => $characterClass->id,
+            ],
+        ],
+    ];
+
+    $this->postJson(route('api.xivplugin.runs.party-snapshot.store', $activity), $payload)
+        ->assertOk();
+
+    $this->postJson(route('api.xivplugin.runs.party-snapshot.store', $activity), $payload)
+        ->assertTooManyRequests()
+        ->assertJsonPath('message', 'Too many party snapshots. Please wait before sending another update.');
 });
 
 it('lets plugin clients acknowledge run commands', function () {

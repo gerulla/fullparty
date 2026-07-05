@@ -384,6 +384,107 @@ it('rate limits plugin party snapshots per run and user', function () {
         ->assertJsonPath('message', 'Too many party snapshots. Please wait before sending another update.');
 });
 
+it('lets party leads check in multiple assigned run members through the plugin api', function () {
+    $leader = User::factory()->create();
+    $member = User::factory()->create();
+    $leaderCharacter = Character::factory()->create(['user_id' => $leader->id]);
+    $memberCharacter = Character::factory()->create(['user_id' => $member->id]);
+    $group = Group::factory()
+        ->withMember($leader)
+        ->withMember($member)
+        ->create(['slug' => 'plgchin']);
+    $activity = Activity::factory()->create([
+        'group_id' => $group->id,
+        'status' => Activity::STATUS_SCHEDULED,
+        'starts_at' => now()->addHour(),
+    ]);
+    $slots = $activity->slots()->take(2)->get();
+    $slots[0]->update([
+        'assigned_character_id' => $leaderCharacter->id,
+        'assigned_by_user_id' => $leader->id,
+        'is_raid_leader' => true,
+    ]);
+    $slots[1]->update([
+        'assigned_character_id' => $memberCharacter->id,
+        'assigned_by_user_id' => $leader->id,
+    ]);
+
+    Passport::actingAs($leader, ['xivplugin:read']);
+
+    $this->postJson(route('api.xivplugin.runs.check-ins.store', $activity), [
+        'slot_ids' => [$slots[0]->id],
+        'character_ids' => [$memberCharacter->id],
+    ])
+        ->assertOk()
+        ->assertJsonPath('data.run_id', $activity->id)
+        ->assertJsonPath('data.checked_in_count', 2)
+        ->assertJsonPath('data.slots.0.attendance_status', ActivitySlotAssignment::STATUS_CHECKED_IN)
+        ->assertJsonPath('data.slots.1.attendance_status', ActivitySlotAssignment::STATUS_CHECKED_IN);
+
+    foreach ([$leaderCharacter, $memberCharacter] as $character) {
+        $this->assertDatabaseHas('activity_slot_assignments', [
+            'activity_id' => $activity->id,
+            'character_id' => $character->id,
+            'attendance_status' => ActivitySlotAssignment::STATUS_CHECKED_IN,
+            'checked_in_by_user_id' => $leader->id,
+            'ended_at' => null,
+        ]);
+    }
+});
+
+it('does not let regular assigned plugin users check in run members', function () {
+    $user = User::factory()->create();
+    $character = Character::factory()->create(['user_id' => $user->id]);
+    $group = Group::factory()->withMember($user)->create(['slug' => 'plgchk2']);
+    $activity = Activity::factory()->create([
+        'group_id' => $group->id,
+        'status' => Activity::STATUS_SCHEDULED,
+        'starts_at' => now()->addHour(),
+    ]);
+    $slot = $activity->slots()->firstOrFail();
+    $slot->update([
+        'assigned_character_id' => $character->id,
+        'assigned_by_user_id' => $user->id,
+    ]);
+
+    Passport::actingAs($user, ['xivplugin:read']);
+
+    $this->postJson(route('api.xivplugin.runs.check-ins.store', $activity), [
+        'slot_ids' => [$slot->id],
+    ])->assertForbidden();
+
+    $this->assertDatabaseMissing('activity_slot_assignments', [
+        'activity_id' => $activity->id,
+        'character_id' => $character->id,
+        'attendance_status' => ActivitySlotAssignment::STATUS_CHECKED_IN,
+    ]);
+});
+
+it('rejects plugin check ins for characters not assigned to the run', function () {
+    $leader = User::factory()->create();
+    $leaderCharacter = Character::factory()->create(['user_id' => $leader->id]);
+    $unassignedCharacter = Character::factory()->create();
+    $group = Group::factory()->withMember($leader)->create(['slug' => 'plgchk3']);
+    $activity = Activity::factory()->create([
+        'group_id' => $group->id,
+        'status' => Activity::STATUS_SCHEDULED,
+        'starts_at' => now()->addHour(),
+    ]);
+    $activity->slots()->firstOrFail()->update([
+        'assigned_character_id' => $leaderCharacter->id,
+        'assigned_by_user_id' => $leader->id,
+        'is_raid_leader' => true,
+    ]);
+
+    Passport::actingAs($leader, ['xivplugin:read']);
+
+    $this->postJson(route('api.xivplugin.runs.check-ins.store', $activity), [
+        'character_ids' => [$unassignedCharacter->id],
+    ])
+        ->assertUnprocessable()
+        ->assertJsonValidationErrors(['character_ids']);
+});
+
 it('lets plugin clients acknowledge run commands', function () {
     Event::fake([XivPluginRunCommandAcknowledged::class]);
 

@@ -4,6 +4,7 @@ use App\Http\Controllers\Api\XivPluginBroadcastAuthController;
 use App\Http\Controllers\Api\XivPluginGroupController;
 use App\Http\Controllers\Api\XivPluginGroupRunController;
 use App\Http\Controllers\Api\XivPluginRealtimeController;
+use App\Http\Controllers\Api\XivPluginRunCheckInController;
 use App\Http\Controllers\Api\XivPluginRunCommandAcknowledgementController;
 use App\Http\Controllers\Api\XivPluginRunCommandController;
 use App\Http\Controllers\Api\XivPluginRunController;
@@ -39,6 +40,9 @@ Route::prefix('xivplugin')
 
         Route::post('/runs/{activity}/party-snapshot', [XivPluginRunPartySnapshotController::class, 'store'])
             ->name('runs.party-snapshot.store');
+
+        Route::post('/runs/{activity}/check-ins', [XivPluginRunCheckInController::class, 'store'])
+            ->name('runs.check-ins.store');
 
         Route::post('/runs/{activity}/commands/{commandId}/ack', [XivPluginRunCommandAcknowledgementController::class, 'store'])
             ->where('commandId', '[A-Za-z0-9_-]+')

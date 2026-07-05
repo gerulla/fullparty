@@ -74,6 +74,11 @@ class XivPluginRunRealtimeService
             ->contains(fn (ActivitySlot $slot): bool => $slot->is_host || $slot->is_raid_leader);
     }
 
+    public function canCheckInPartyMembers(Activity $activity, User $user): bool
+    {
+        return $this->canPublishPartySnapshot($activity, $user);
+    }
+
     public function partyKeyExists(Activity $activity, string $partyKey): bool
     {
         $this->loadRealtimeRelations($activity);

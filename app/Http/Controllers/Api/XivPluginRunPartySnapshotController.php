@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Events\XivPluginRunPartySnapshotUpdated;
 use App\Http\Controllers\Controller;
 use App\Models\Activity;
+use App\Models\PhantomJob;
 use App\Services\XivPlugin\XivPluginRunRealtimeService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -19,6 +20,8 @@ class XivPluginRunPartySnapshotController extends Controller
         Activity $activity,
         XivPluginRunRealtimeService $realtimeService,
     ): JsonResponse {
+        $this->normalizeSnapshotJobNames($request);
+
         $validated = $request->validate([
             'seq' => ['required', 'integer', 'min:0'],
             'party_key' => ['required', 'string', 'max:64', 'regex:/^[a-z0-9_.:-]+$/'],
@@ -27,8 +30,8 @@ class XivPluginRunPartySnapshotController extends Controller
             'members.*.cid' => ['sometimes', 'nullable', 'integer', 'exists:characters,id'],
             'members.*.n' => ['sometimes', 'nullable', 'string', 'max:80'],
             'members.*.w' => ['sometimes', 'nullable', 'string', 'max:80'],
-            'members.*.cj' => ['required', 'integer', 'exists:character_classes,id'],
-            'members.*.pj' => ['sometimes', 'nullable', 'integer', 'exists:phantom_jobs,id'],
+            'members.*.cj' => ['required', 'string', 'max:8', 'exists:character_classes,shorthand'],
+            'members.*.pj' => ['sometimes', 'nullable', 'string', 'max:80', 'exists:phantom_jobs,name'],
         ]);
 
         $user = $request->user();
@@ -86,7 +89,7 @@ class XivPluginRunPartySnapshotController extends Controller
 
                 $payload = [
                     'p' => (int) $member['p'],
-                    'cj' => (int) $member['cj'],
+                    'cj' => (string) $member['cj'],
                 ];
 
                 if (filled($member['cid'] ?? null)) {
@@ -97,12 +100,50 @@ class XivPluginRunPartySnapshotController extends Controller
                 }
 
                 if (filled($member['pj'] ?? null)) {
-                    $payload['pj'] = (int) $member['pj'];
+                    $payload['pj'] = (string) $member['pj'];
                 }
 
                 return $payload;
             })
             ->values()
             ->all();
+    }
+
+    private function normalizeSnapshotJobNames(Request $request): void
+    {
+        $members = $request->input('members');
+
+        if (! is_array($members)) {
+            return;
+        }
+
+        $phantomJobNames = PhantomJob::query()
+            ->pluck('name')
+            ->mapWithKeys(fn (string $name): array => [strtolower(trim($name)) => $name])
+            ->all();
+
+        $request->merge([
+            'members' => collect($members)
+                ->map(function (mixed $member) use ($phantomJobNames): mixed {
+                    if (! is_array($member)) {
+                        return $member;
+                    }
+
+                    if (array_key_exists('cj', $member)) {
+                        $member['cj'] = strtoupper(trim((string) $member['cj']));
+                    }
+
+                    if (array_key_exists('pj', $member)) {
+                        $phantomJobName = trim((string) $member['pj']);
+
+                        $member['pj'] = $phantomJobName === ''
+                            ? null
+                            : ($phantomJobNames[strtolower($phantomJobName)] ?? $phantomJobName);
+                    }
+
+                    return $member;
+                })
+                ->all(),
+        ]);
     }
 }

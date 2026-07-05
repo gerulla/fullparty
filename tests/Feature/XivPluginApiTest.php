@@ -228,14 +228,14 @@ it('lets party leads publish compact plugin party snapshots', function () {
                 'cid' => $leaderCharacter->id,
                 'n' => 'Should Be Omitted',
                 'w' => 'Lich',
-                'cj' => $characterClass->id,
-                'pj' => $phantomJob->id,
+                'cj' => 'ast',
+                'pj' => 'geomancer',
             ],
             [
                 'p' => 2,
                 'n' => 'Unmatched Character',
                 'w' => 'Phoenix',
-                'cj' => $characterClass->id,
+                'cj' => 'AST',
             ],
         ],
     ])
@@ -246,8 +246,8 @@ it('lets party leads publish compact plugin party snapshots', function () {
         ->assertJsonPath('data.seq', 42)
         ->assertJsonPath('data.members.0.cid', $leaderCharacter->id)
         ->assertJsonMissingPath('data.members.0.n')
-        ->assertJsonPath('data.members.0.cj', $characterClass->id)
-        ->assertJsonPath('data.members.0.pj', $phantomJob->id)
+        ->assertJsonPath('data.members.0.cj', 'AST')
+        ->assertJsonPath('data.members.0.pj', 'Geomancer')
         ->assertJsonPath('data.members.1.n', 'Unmatched Character')
         ->assertJsonPath('data.members.1.w', 'Phoenix');
 
@@ -257,6 +257,8 @@ it('lets party leads publish compact plugin party snapshots', function () {
             && $event->snapshot['party_key'] === 'party-a'
             && $event->snapshot['seq'] === 42
             && $event->snapshot['members'][0]['cid'] === $leaderCharacter->id
+            && $event->snapshot['members'][0]['cj'] === 'AST'
+            && $event->snapshot['members'][0]['pj'] === 'Geomancer'
             && ! array_key_exists('n', $event->snapshot['members'][0]);
     });
 });
@@ -291,7 +293,7 @@ it('does not let regular assigned plugin users publish party snapshots', functio
             [
                 'p' => 1,
                 'cid' => $character->id,
-                'cj' => $characterClass->id,
+                'cj' => 'WAR',
             ],
         ],
     ])->assertForbidden();
@@ -330,7 +332,7 @@ it('rejects party snapshots for unknown run party keys', function () {
             [
                 'p' => 1,
                 'cid' => $character->id,
-                'cj' => $characterClass->id,
+                'cj' => 'PLD',
             ],
         ],
     ])
@@ -371,7 +373,7 @@ it('rate limits plugin party snapshots per run and user', function () {
             [
                 'p' => 1,
                 'cid' => $character->id,
-                'cj' => $characterClass->id,
+                'cj' => 'WHM',
             ],
         ],
     ];

@@ -60,7 +60,7 @@ const handleCompactTap = () => {
 <template>
 	<div
 		v-if="characterClass"
-		class="relative flex flex-col items-center justify-center gap-1 rounded-sm border bg-neutral-800/50 px-2 py-2 text-center xl:hidden"
+		class="relative isolate flex flex-col items-center justify-center gap-1 overflow-hidden rounded-sm border bg-neutral-900 px-2 py-2 text-center [backface-visibility:hidden] [contain:paint] xl:hidden"
 		:class="[characterClass.level === 0 ? 'opacity-50' : 'opacity-100', characterClass.is_preferred ? 'border-rose-400/50 ' : 'border-default']"
 		@click="handleCompactTap"
 	>

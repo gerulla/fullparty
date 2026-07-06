@@ -8,8 +8,7 @@ use Database\Seeders\CharacterClassSeeder;
 use Database\Seeders\PhantomJobSeeder;
 use Database\Seeders\RaidPositionSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Support\Facades\Http;
-use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\File;
 
 uses(RefreshDatabase::class);
 
@@ -47,10 +46,15 @@ it('seeds reusable raid positions', function () {
         ->and(RaidPosition::query()->where('key', 'r2')->value('sort_order'))->toBe(80);
 });
 
-it('converts remote reference icon urls to storage backed webp files', function () {
-    $targetPath = 'reference-icons/character-classes/icons/brd.webp';
+it('converts remote reference icon urls to tracked local webp files', function () {
+    $sourceRoot = storage_path('app/testing/reference-icon-source');
+    $targetRoot = storage_path('app/testing/reference-icon-target');
+    $sourcePath = $sourceRoot.DIRECTORY_SEPARATOR.'character-classes'.DIRECTORY_SEPARATOR.'icons'.DIRECTORY_SEPARATOR.'96px-Bard_Icon_3.png';
+    $targetPath = $targetRoot.DIRECTORY_SEPARATOR.'character-classes'.DIRECTORY_SEPARATOR.'icons'.DIRECTORY_SEPARATOR.'brd.webp';
 
-    Storage::disk('public')->delete($targetPath);
+    File::deleteDirectory($sourceRoot);
+    File::deleteDirectory($targetRoot);
+    File::ensureDirectoryExists(dirname($sourcePath));
 
     CharacterClass::query()->create([
         'name' => 'Bard',
@@ -66,19 +70,20 @@ it('converts remote reference icon urls to storage backed webp files', function 
     $png = ob_get_clean();
     imagedestroy($canvas);
 
-    Http::fake([
-        'ffxiv.gamerescape.com/*' => Http::response($png, 200, [
-            'Content-Type' => 'image/png',
-        ]),
-    ]);
+    file_put_contents($sourcePath, $png);
 
-    $this->artisan('reference-icons:convert-webp')
+    $this->artisan('reference-icons:convert-webp', [
+        '--only' => 'character-classes',
+        '--source-root' => $sourceRoot,
+        '--target-root' => $targetRoot,
+    ])
         ->assertSuccessful();
 
     $bard = CharacterClass::query()->where('shorthand', 'BRD')->sole();
 
-    expect($bard->icon_url)->toBe(Storage::disk('public')->url($targetPath))
-        ->and(Storage::disk('public')->exists($targetPath))->toBeTrue();
+    expect($bard->icon_url)->toBe('/reference-icons/character-classes/icons/brd.webp')
+        ->and(is_file($targetPath))->toBeTrue();
 
-    Storage::disk('public')->delete($targetPath);
+    File::deleteDirectory($sourceRoot);
+    File::deleteDirectory($targetRoot);
 });

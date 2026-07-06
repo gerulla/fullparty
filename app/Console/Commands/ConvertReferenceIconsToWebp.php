@@ -7,8 +7,6 @@ use App\Models\PhantomJob;
 use App\Support\SeedData\ReferenceIconCatalog;
 use Illuminate\Console\Command;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\Http;
-use Illuminate\Support\Facades\Storage;
 
 class ConvertReferenceIconsToWebp extends Command
 {
@@ -17,22 +15,26 @@ class ConvertReferenceIconsToWebp extends Command
     protected $signature = 'reference-icons:convert-webp
                             {--dry-run : Report conversions without writing files or updating records}
                             {--force : Recreate WebP files even when the destination already exists}
-                            {--no-download : Do not download remote source URLs when local files are missing}
-                            {--delete-originals : Delete source images after a successful conversion}';
+                            {--only= : Limit conversion to character-classes or phantom-jobs}
+                            {--source-root= : Local source root for UUID storage files}
+                            {--target-root=public/reference-icons : Git-tracked target directory for WebP assets}';
 
-    protected $description = 'Convert local character class and phantom job icon files to storage-backed WebP assets and update their database references.';
+    protected $description = 'Promote local character class and phantom job icon files to tracked WebP assets and update their database references.';
 
     /**
-     * @var array{converted: int, updated: int, skipped: int, downloaded: int, missing: int, failed: int}
+     * @var array{converted: int, updated: int, skipped: int, missing: int, failed: int}
      */
     private array $totals = [
         'converted' => 0,
         'updated' => 0,
         'skipped' => 0,
-        'downloaded' => 0,
         'missing' => 0,
         'failed' => 0,
     ];
+
+    private string $sourceRoot;
+
+    private string $targetRoot;
 
     public function handle(): int
     {
@@ -42,56 +44,79 @@ class ConvertReferenceIconsToWebp extends Command
             return self::FAILURE;
         }
 
+        $this->sourceRoot = $this->resolvePath((string) ($this->option('source-root') ?: 'storage/app/public'));
+        $this->targetRoot = $this->resolvePath((string) $this->option('target-root'));
+
         $dryRun = (bool) $this->option('dry-run');
         $force = (bool) $this->option('force');
-        $allowDownloads = ! (bool) $this->option('no-download');
-        $deleteOriginals = (bool) $this->option('delete-originals');
-        $characterClassPaths = $this->characterClassFallbackPaths();
-        $phantomJobPaths = $this->phantomJobFallbackPaths();
+        $only = (string) ($this->option('only') ?? '');
 
-        CharacterClass::query()
-            ->orderBy('id')
-            ->each(function (CharacterClass $characterClass) use ($dryRun, $force, $allowDownloads, $deleteOriginals, $characterClassPaths): void {
-                $label = sprintf('Class %s', $characterClass->shorthand);
-                $fallbackPaths = $characterClassPaths[$characterClass->shorthand] ?? [];
+        if (! in_array($only, ['', 'character-classes', 'phantom-jobs'], true)) {
+            $this->error('The --only option must be character-classes or phantom-jobs.');
 
-                $this->convertModelField($characterClass, 'icon_url', "{$label} icon", $dryRun, $force, $allowDownloads, $deleteOriginals, $fallbackPaths['icon_url'] ?? null);
-                $this->convertModelField($characterClass, 'flaticon_url', "{$label} flat icon", $dryRun, $force, $allowDownloads, $deleteOriginals, $fallbackPaths['flaticon_url'] ?? null);
-            });
+            return self::FAILURE;
+        }
 
-        PhantomJob::query()
-            ->orderBy('id')
-            ->each(function (PhantomJob $phantomJob) use ($dryRun, $force, $allowDownloads, $deleteOriginals, $phantomJobPaths): void {
-                $label = sprintf('Phantom job %s', $phantomJob->name);
-                $fallbackPaths = $phantomJobPaths[$phantomJob->name] ?? [];
+        if ($only !== 'phantom-jobs') {
+            $characterClassPaths = $this->characterClassPaths();
 
-                $this->convertModelField($phantomJob, 'icon_url', "{$label} icon", $dryRun, $force, $allowDownloads, $deleteOriginals, $fallbackPaths['icon_url'] ?? null);
-                $this->convertModelField($phantomJob, 'black_icon_url', "{$label} black icon", $dryRun, $force, $allowDownloads, $deleteOriginals, $fallbackPaths['black_icon_url'] ?? null);
-                $this->convertModelField($phantomJob, 'transparent_icon_url', "{$label} transparent icon", $dryRun, $force, $allowDownloads, $deleteOriginals, $fallbackPaths['transparent_icon_url'] ?? null);
-                $this->convertModelField($phantomJob, 'sprite_url', "{$label} sprite", $dryRun, $force, $allowDownloads, $deleteOriginals, $fallbackPaths['sprite_url'] ?? null);
-            });
+            CharacterClass::query()
+                ->orderBy('id')
+                ->each(function (CharacterClass $characterClass) use ($dryRun, $force, $characterClassPaths): void {
+                    $label = sprintf('Class %s', $characterClass->shorthand);
+                    $paths = $characterClassPaths[$characterClass->shorthand] ?? [];
+
+                    $this->convertModelField($characterClass, 'icon_url', "{$label} icon", $paths['icon_url'] ?? null, $dryRun, $force);
+                    $this->convertModelField($characterClass, 'flaticon_url', "{$label} flat icon", $paths['flaticon_url'] ?? null, $dryRun, $force);
+                });
+        }
+
+        if ($only !== 'character-classes') {
+            $phantomJobPaths = $this->phantomJobPaths();
+
+            PhantomJob::query()
+                ->orderBy('id')
+                ->each(function (PhantomJob $phantomJob) use ($dryRun, $force, $phantomJobPaths): void {
+                    $label = sprintf('Phantom job %s', $phantomJob->name);
+                    $paths = $phantomJobPaths[$phantomJob->name] ?? [];
+
+                    $this->convertModelField($phantomJob, 'icon_url', "{$label} icon", $paths['icon_url'] ?? null, $dryRun, $force);
+                    $this->convertModelField($phantomJob, 'black_icon_url', "{$label} black icon", $paths['black_icon_url'] ?? null, $dryRun, $force);
+                    $this->convertModelField($phantomJob, 'transparent_icon_url', "{$label} transparent icon", $paths['transparent_icon_url'] ?? null, $dryRun, $force);
+                    $this->convertModelField($phantomJob, 'sprite_url', "{$label} sprite", $paths['sprite_url'] ?? null, $dryRun, $force);
+                });
+        }
 
         $this->newLine();
         $this->info(sprintf('%s: %d', $dryRun ? 'Would convert' : 'Converted', $this->totals['converted']));
         $this->line(sprintf('%s: %d', $dryRun ? 'Would update references' : 'Updated references', $this->totals['updated']));
         $this->line(sprintf('Already WebP / blank / unchanged: %d', $this->totals['skipped']));
-        $this->line(sprintf('%s remote images: %d', $dryRun ? 'Would download' : 'Downloaded', $this->totals['downloaded']));
-        $this->line(sprintf('Missing local files: %d', $this->totals['missing']));
+        $this->line(sprintf('Missing local source files: %d', $this->totals['missing']));
         $this->line(sprintf('Failed: %d', $this->totals['failed']));
 
-        return $this->totals['failed'] === 0 ? self::SUCCESS : self::FAILURE;
+        return $this->totals['failed'] === 0 && $this->totals['missing'] === 0
+            ? self::SUCCESS
+            : self::FAILURE;
     }
 
+    /**
+     * @param  array{reference_path: string, seed_public_path: string, storage_source_path: string|null, source_candidates?: array<int, string>}|null  $paths
+     */
     private function convertModelField(
         Model $model,
         string $field,
         string $label,
+        ?array $paths,
         bool $dryRun,
         bool $force,
-        bool $allowDownloads,
-        bool $deleteOriginals,
-        ?array $referencePaths = null,
     ): void {
+        if (! $paths) {
+            $this->totals['missing']++;
+            $this->warn(sprintf('Missing catalog entry for %s', $label));
+
+            return;
+        }
+
         $url = $model->getAttribute($field);
 
         if (! is_string($url) || blank($url)) {
@@ -100,52 +125,34 @@ class ConvertReferenceIconsToWebp extends Command
             return;
         }
 
-        $targetStoragePath = $this->normalizeStoragePath($referencePaths['storage_path'] ?? null);
+        $newUrl = '/'.ltrim($paths['reference_path'], '/');
+        $targetPath = $this->targetPath($paths['reference_path']);
+        $sourcePath = $this->sourcePath($url, $paths);
 
-        if (! $targetStoragePath && strtolower(pathinfo((string) parse_url($url, PHP_URL_PATH), PATHINFO_EXTENSION)) === 'webp') {
-            $this->totals['skipped']++;
-
-            return;
-        }
-
-        $sourcePath = $this->localPathFromUrl($url);
-        $fallbackPublicPath = $referencePaths['public_path'] ?? null;
-        $sourceUrl = $this->sourceUrl($url, $referencePaths['source_url'] ?? null);
-
-        if ((! $sourcePath || ! is_file($sourcePath)) && is_string($fallbackPublicPath) && is_file(public_path($fallbackPublicPath))) {
-            $sourcePath = public_path($fallbackPublicPath);
-        }
-
-        if ((! $sourcePath || ! is_file($sourcePath)) && ! $sourceUrl) {
+        if (! is_file($targetPath) && ! $sourcePath) {
             $this->totals['missing']++;
-            $this->warn(sprintf('Missing %s (%s)', $label, $url));
+            $this->warn(sprintf('Missing local source for %s', $label));
 
             return;
         }
 
-        $targetPath = $targetStoragePath
-            ? storage_path('app/public/'.str_replace(['/', '\\'], DIRECTORY_SEPARATOR, $targetStoragePath))
-            : $this->webpPathFor($sourcePath);
-        $newUrl = $targetStoragePath
-            ? Storage::disk('public')->url($targetStoragePath)
-            : $this->publicUrlForPath($targetPath);
+        $shouldConvert = (! is_file($targetPath) || $force) && $sourcePath;
 
-        $shouldConvert = ! is_file($targetPath) || $force;
+        $converted = false;
 
         if ($shouldConvert && $dryRun) {
             $this->totals['converted']++;
-            $this->totals['downloaded'] += $sourceUrl && (! $sourcePath || ! is_file($sourcePath)) ? 1 : 0;
+            $converted = true;
             $this->line(sprintf('<info>Would convert</info> %s -> %s', $label, $newUrl));
         }
 
         if ($shouldConvert && ! $dryRun) {
-            $binary = $this->imageBinary($sourcePath, $sourceUrl, $label, $allowDownloads);
-
-            if (! $binary || ! $this->convertImage($binary, $targetPath, $label)) {
+            if (! $this->convertImage($sourcePath, $targetPath, $label)) {
                 return;
             }
 
             $this->totals['converted']++;
+            $converted = true;
             $this->line(sprintf('<info>Converted</info> %s -> %s', $label, $newUrl));
         }
 
@@ -155,32 +162,49 @@ class ConvertReferenceIconsToWebp extends Command
             if (! $dryRun) {
                 $model->forceFill([$field => $newUrl])->save();
             }
-        } else {
-            $this->totals['skipped']++;
+
+            return;
         }
 
-        if ($deleteOriginals && ! $dryRun && is_file($targetPath) && is_string($sourcePath) && is_file($sourcePath) && $sourcePath !== $targetPath) {
-            unlink($sourcePath);
+        if ($converted) {
+            return;
         }
+
+        $this->totals['skipped']++;
     }
 
-    private function sourceUrl(string $currentUrl, mixed $catalogSourceUrl): ?string
+    /**
+     * @param  array{reference_path: string, seed_public_path: string, storage_source_path: string|null, source_candidates?: array<int, string>}  $paths
+     */
+    private function sourcePath(string $currentUrl, array $paths): ?string
     {
-        if ($this->isRemoteUrl($currentUrl)) {
-            return $currentUrl;
+        $currentPath = $this->localPathFromUrl($currentUrl);
+
+        if ($currentPath && is_file($currentPath)) {
+            return $currentPath;
         }
 
-        if (is_string($catalogSourceUrl) && $this->isRemoteUrl($catalogSourceUrl)) {
-            return $catalogSourceUrl;
+        foreach ($paths['source_candidates'] ?? [] as $sourceCandidate) {
+            foreach ([$this->sourceRoot, $this->targetRoot] as $root) {
+                $candidatePath = rtrim($root, '\\/').DIRECTORY_SEPARATOR.str_replace(['/', '\\'], DIRECTORY_SEPARATOR, ltrim($sourceCandidate, '\\/'));
+
+                if (is_file($candidatePath)) {
+                    return $candidatePath;
+                }
+            }
         }
 
-        return null;
-    }
+        if ($paths['storage_source_path']) {
+            $storageSource = $this->sourceRoot.DIRECTORY_SEPARATOR.str_replace(['/', '\\'], DIRECTORY_SEPARATOR, $paths['storage_source_path']);
 
-    private function isRemoteUrl(string $url): bool
-    {
-        return in_array(parse_url($url, PHP_URL_SCHEME), ['http', 'https'], true)
-            && filled(parse_url($url, PHP_URL_HOST));
+            if (is_file($storageSource)) {
+                return $storageSource;
+            }
+        }
+
+        $seedPath = public_path($paths['seed_public_path']);
+
+        return is_file($seedPath) ? $seedPath : null;
     }
 
     private function localPathFromUrl(string $url): ?string
@@ -211,95 +235,20 @@ class ConvertReferenceIconsToWebp extends Command
         return public_path(str_replace(['/', '\\'], DIRECTORY_SEPARATOR, $relativePath));
     }
 
-    private function normalizeStoragePath(mixed $path): ?string
+    private function targetPath(string $referencePath): string
     {
-        if (! is_string($path) || blank($path)) {
-            return null;
-        }
+        $relativePath = preg_replace('#^reference-icons[\\\\/]?#', '', $referencePath) ?: $referencePath;
 
-        $normalized = trim(str_replace('\\', '/', $path), '/');
-
-        if ($normalized === '' || str_contains($normalized, '..')) {
-            return null;
-        }
-
-        return $normalized;
+        return rtrim($this->targetRoot, '\\/').DIRECTORY_SEPARATOR.str_replace(['/', '\\'], DIRECTORY_SEPARATOR, ltrim($relativePath, '\\/'));
     }
 
-    private function webpPathFor(string $sourcePath): string
+    private function convertImage(string $sourcePath, string $targetPath, string $label): bool
     {
-        $converted = preg_replace('/\.[^\.\\\\\/]+$/', '.webp', $sourcePath);
+        $binary = file_get_contents($sourcePath);
 
-        return is_string($converted) && $converted !== $sourcePath
-            ? $converted
-            : $sourcePath.'.webp';
-    }
-
-    private function publicUrlForPath(string $absolutePath): string
-    {
-        $publicPath = rtrim(str_replace('\\', '/', public_path()), '/').'/';
-        $normalizedPath = str_replace('\\', '/', $absolutePath);
-        $relativePath = str_starts_with($normalizedPath, $publicPath)
-            ? substr($normalizedPath, strlen($publicPath))
-            : basename($normalizedPath);
-
-        return '/'.ltrim($relativePath, '/');
-    }
-
-    private function imageBinary(?string $sourcePath, ?string $sourceUrl, string $label, bool $allowDownloads): ?string
-    {
-        if ($sourcePath && is_file($sourcePath)) {
-            $binary = file_get_contents($sourcePath);
-
-            if ($binary !== false) {
-                return $binary;
-            }
-
+        if ($binary === false) {
             $this->totals['failed']++;
             $this->error(sprintf('Unable to read %s', $sourcePath));
-
-            return null;
-        }
-
-        if (! $sourceUrl) {
-            return null;
-        }
-
-        if (! $allowDownloads) {
-            $this->totals['missing']++;
-            $this->warn(sprintf('Missing local file for %s; remote downloads are disabled.', $label));
-
-            return null;
-        }
-
-        try {
-            $response = Http::withHeaders([
-                'User-Agent' => 'FullParty reference icon importer (+https://fullparty.gg)',
-            ])->timeout(20)->get($sourceUrl);
-        } catch (\Throwable) {
-            $this->totals['failed']++;
-            $this->error(sprintf('Unable to download %s (%s)', $label, $sourceUrl));
-
-            return null;
-        }
-
-        if (! $response->successful()) {
-            $this->totals['failed']++;
-            $this->error(sprintf('Unable to download %s (%s returned %d)', $label, $sourceUrl, $response->status()));
-
-            return null;
-        }
-
-        $this->totals['downloaded']++;
-
-        return $response->body();
-    }
-
-    private function convertImage(string $binary, string $targetPath, string $label): bool
-    {
-        if ($binary === '') {
-            $this->totals['failed']++;
-            $this->error(sprintf('Downloaded image for %s was empty.', $label));
 
             return false;
         }
@@ -344,22 +293,83 @@ class ConvertReferenceIconsToWebp extends Command
     }
 
     /**
-     * @return array<string, array{icon_url: array{public_path: string, storage_path: string, source_url: string}, flaticon_url: array{public_path: string, storage_path: string, source_url: string}}>
+     * @return array<string, array{icon_url: array{reference_path: string, seed_public_path: string, storage_source_path: string|null, source_candidates: array<int, string>}, flaticon_url: array{reference_path: string, seed_public_path: string, storage_source_path: string|null, source_candidates: array<int, string>}}>
      */
-    private function characterClassFallbackPaths(): array
+    private function characterClassPaths(): array
     {
-        return collect(ReferenceIconCatalog::characterClasses())
-            ->mapWithKeys(fn (array $characterClass): array => [
-                (string) $characterClass['shorthand'] => [
-                    'icon_url' => [
-                        'public_path' => (string) $characterClass['icon_public_path'],
-                        'storage_path' => (string) $characterClass['icon_storage_path'],
-                        'source_url' => (string) $characterClass['icon_source_url'],
+        $classes = ReferenceIconCatalog::characterClasses();
+        $iconStoragePaths = $this->orderedStoragePaths('character-classes/icons', count($classes));
+        $flatIconStoragePaths = $this->orderedStoragePaths('character-classes/flat-icons', count($classes));
+
+        return collect($classes)
+            ->values()
+            ->mapWithKeys(function (array $characterClass, int $index): array {
+                $shorthand = strtolower((string) $characterClass['shorthand']);
+                $iconSourceFilename = $this->sourceFilename((string) $characterClass['icon_source_url']);
+                $flatIconSourceFilename = $this->sourceFilename((string) $characterClass['flaticon_source_url']);
+
+                return [
+                    (string) $characterClass['shorthand'] => [
+                        'icon_url' => [
+                            'reference_path' => (string) $characterClass['icon_reference_path'],
+                            'seed_public_path' => (string) $characterClass['icon_public_path'],
+                            'storage_source_path' => $iconStoragePaths[$index] ?? null,
+                            'source_candidates' => $this->sourceCandidates([
+                                $iconSourceFilename ? "character-classes/icons/{$iconSourceFilename}" : null,
+                                "character-classes/icons/{$shorthand}.png",
+                            ]),
+                        ],
+                        'flaticon_url' => [
+                            'reference_path' => (string) $characterClass['flaticon_reference_path'],
+                            'seed_public_path' => (string) $characterClass['flaticon_public_path'],
+                            'storage_source_path' => $flatIconStoragePaths[$index] ?? null,
+                            'source_candidates' => $this->sourceCandidates([
+                                $flatIconSourceFilename ? "character-classes/flat-icons/{$flatIconSourceFilename}" : null,
+                                $flatIconSourceFilename ? "character-classes/flaticons/{$flatIconSourceFilename}" : null,
+                                "character-classes/flat-icons/{$shorthand}.png",
+                                "character-classes/flaticons/{$shorthand}.png",
+                            ]),
+                        ],
                     ],
-                    'flaticon_url' => [
-                        'public_path' => (string) $characterClass['flaticon_public_path'],
-                        'storage_path' => (string) $characterClass['flaticon_storage_path'],
-                        'source_url' => (string) $characterClass['flaticon_source_url'],
+                ];
+            })
+            ->all();
+    }
+
+    /**
+     * @return array<string, array{icon_url: array{reference_path: string, seed_public_path: string, storage_source_path: string|null}, black_icon_url: array{reference_path: string, seed_public_path: string, storage_source_path: string|null}, transparent_icon_url: array{reference_path: string, seed_public_path: string, storage_source_path: string|null}, sprite_url: array{reference_path: string, seed_public_path: string, storage_source_path: string|null}}>
+     */
+    private function phantomJobPaths(): array
+    {
+        $phantomJobs = ReferenceIconCatalog::phantomJobs();
+        $iconStoragePaths = $this->orderedStoragePaths('phantom-jobs/icons', count($phantomJobs));
+        $blackIconStoragePaths = $this->orderedStoragePaths('phantom-jobs/black-icons', count($phantomJobs));
+        $transparentIconStoragePaths = $this->orderedStoragePaths('phantom-jobs/transparent-icons', count($phantomJobs));
+        $spriteStoragePaths = $this->orderedStoragePaths('phantom-jobs/sprites', count($phantomJobs));
+
+        return collect($phantomJobs)
+            ->values()
+            ->mapWithKeys(fn (array $phantomJob, int $index): array => [
+                (string) $phantomJob['name'] => [
+                    'icon_url' => [
+                        'reference_path' => (string) $phantomJob['icon_reference_path'],
+                        'seed_public_path' => (string) $phantomJob['icon_public_path'],
+                        'storage_source_path' => $iconStoragePaths[$index] ?? null,
+                    ],
+                    'black_icon_url' => [
+                        'reference_path' => (string) $phantomJob['black_icon_reference_path'],
+                        'seed_public_path' => (string) $phantomJob['black_icon_public_path'],
+                        'storage_source_path' => $blackIconStoragePaths[$index] ?? null,
+                    ],
+                    'transparent_icon_url' => [
+                        'reference_path' => (string) $phantomJob['transparent_icon_reference_path'],
+                        'seed_public_path' => (string) $phantomJob['transparent_icon_public_path'],
+                        'storage_source_path' => $transparentIconStoragePaths[$index] ?? null,
+                    ],
+                    'sprite_url' => [
+                        'reference_path' => (string) $phantomJob['sprite_reference_path'],
+                        'seed_public_path' => (string) $phantomJob['sprite_public_path'],
+                        'storage_source_path' => $spriteStoragePaths[$index] ?? null,
                     ],
                 ],
             ])
@@ -367,35 +377,74 @@ class ConvertReferenceIconsToWebp extends Command
     }
 
     /**
-     * @return array<string, array{icon_url: array{public_path: string, storage_path: string, source_url: string}, black_icon_url: array{public_path: string, storage_path: string, source_url: string}, transparent_icon_url: array{public_path: string, storage_path: string, source_url: string}, sprite_url: array{public_path: string, storage_path: string, source_url: string}}>
+     * @return array<int, string>
      */
-    private function phantomJobFallbackPaths(): array
+    private function orderedStoragePaths(string $directory, int $expectedCount): array
     {
-        return collect(ReferenceIconCatalog::phantomJobs())
-            ->mapWithKeys(fn (array $phantomJob): array => [
-                (string) $phantomJob['name'] => [
-                    'icon_url' => [
-                        'public_path' => (string) $phantomJob['icon_public_path'],
-                        'storage_path' => (string) $phantomJob['icon_storage_path'],
-                        'source_url' => (string) $phantomJob['icon_source_url'],
-                    ],
-                    'black_icon_url' => [
-                        'public_path' => (string) $phantomJob['black_icon_public_path'],
-                        'storage_path' => (string) $phantomJob['black_icon_storage_path'],
-                        'source_url' => (string) $phantomJob['black_icon_source_url'],
-                    ],
-                    'transparent_icon_url' => [
-                        'public_path' => (string) $phantomJob['transparent_icon_public_path'],
-                        'storage_path' => (string) $phantomJob['transparent_icon_storage_path'],
-                        'source_url' => (string) $phantomJob['transparent_icon_source_url'],
-                    ],
-                    'sprite_url' => [
-                        'public_path' => (string) $phantomJob['sprite_public_path'],
-                        'storage_path' => (string) $phantomJob['sprite_storage_path'],
-                        'source_url' => (string) $phantomJob['sprite_source_url'],
-                    ],
-                ],
+        $path = $this->sourceRoot.DIRECTORY_SEPARATOR.str_replace(['/', '\\'], DIRECTORY_SEPARATOR, $directory);
+
+        if (! is_dir($path)) {
+            return [];
+        }
+
+        $files = collect(scandir($path) ?: [])
+            ->filter(fn (string $file): bool => ! str_starts_with($file, '.') && is_file($path.DIRECTORY_SEPARATOR.$file))
+            ->map(fn (string $file): array => [
+                'file' => $file,
+                'relative_path' => trim($directory, '/').'/'.$file,
+                'modified_at' => filemtime($path.DIRECTORY_SEPARATOR.$file) ?: 0,
             ])
+            ->sortBy([
+                ['modified_at', 'asc'],
+                ['file', 'asc'],
+            ])
+            ->values();
+
+        if ($files->isNotEmpty() && $files->count() !== $expectedCount) {
+            $this->warn(sprintf(
+                'Expected %d files in %s, found %d. Files will still be matched by oldest first.',
+                $expectedCount,
+                $directory,
+                $files->count(),
+            ));
+        }
+
+        return $files
+            ->pluck('relative_path')
             ->all();
+    }
+
+    private function sourceFilename(string $url): ?string
+    {
+        $path = parse_url($url, PHP_URL_PATH);
+
+        if (! is_string($path) || $path === '') {
+            return null;
+        }
+
+        $filename = basename(urldecode($path));
+
+        return $filename !== '' ? $filename : null;
+    }
+
+    /**
+     * @param  array<int, string|null>  $paths
+     * @return array<int, string>
+     */
+    private function sourceCandidates(array $paths): array
+    {
+        return array_values(array_unique(array_filter(
+            $paths,
+            fn (?string $path): bool => is_string($path) && $path !== '',
+        )));
+    }
+
+    private function resolvePath(string $path): string
+    {
+        if (preg_match('/^[A-Za-z]:[\\\\\\/]/', $path) === 1 || str_starts_with($path, DIRECTORY_SEPARATOR)) {
+            return rtrim($path, '\\/');
+        }
+
+        return rtrim(base_path($path), '\\/');
     }
 }

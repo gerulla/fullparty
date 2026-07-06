@@ -18,6 +18,8 @@ final class ReferenceIconCatalog
             $flatIconPublicPath = "seed-data/character-classes/flat-icons/{$slug}.png";
             $iconStoragePath = "reference-icons/character-classes/icons/{$slug}.webp";
             $flatIconStoragePath = "reference-icons/character-classes/flat-icons/{$slug}.webp";
+            $iconReferencePath = "reference-icons/character-classes/icons/{$slug}.webp";
+            $flatIconReferencePath = "reference-icons/character-classes/flat-icons/{$slug}.webp";
 
             return [
                 'name' => $characterClass['name'],
@@ -26,11 +28,13 @@ final class ReferenceIconCatalog
                 'icon_source_url' => $characterClass['icon_source_url'],
                 'icon_public_path' => $iconPublicPath,
                 'icon_storage_path' => $iconStoragePath,
-                'icon_url' => self::preferredSeedUrl($iconStoragePath, $iconPublicPath, $characterClass['icon_source_url']),
+                'icon_reference_path' => $iconReferencePath,
+                'icon_url' => self::preferredSeedUrl($iconReferencePath, $iconStoragePath, $iconPublicPath, $characterClass['icon_source_url']),
                 'flaticon_source_url' => $characterClass['flaticon_source_url'],
                 'flaticon_public_path' => $flatIconPublicPath,
                 'flaticon_storage_path' => $flatIconStoragePath,
-                'flaticon_url' => self::preferredSeedUrl($flatIconStoragePath, $flatIconPublicPath, $characterClass['flaticon_source_url']),
+                'flaticon_reference_path' => $flatIconReferencePath,
+                'flaticon_url' => self::preferredSeedUrl($flatIconReferencePath, $flatIconStoragePath, $flatIconPublicPath, $characterClass['flaticon_source_url']),
             ];
         }, self::CHARACTER_CLASSES);
     }
@@ -50,6 +54,10 @@ final class ReferenceIconCatalog
             $blackIconStoragePath = "reference-icons/phantom-jobs/black-icons/{$slug}.webp";
             $transparentIconStoragePath = "reference-icons/phantom-jobs/transparent-icons/{$slug}.webp";
             $spriteStoragePath = "reference-icons/phantom-jobs/sprites/{$slug}.webp";
+            $iconReferencePath = "reference-icons/phantom-jobs/icons/{$slug}.webp";
+            $blackIconReferencePath = "reference-icons/phantom-jobs/black-icons/{$slug}.webp";
+            $transparentIconReferencePath = "reference-icons/phantom-jobs/transparent-icons/{$slug}.webp";
+            $spriteReferencePath = "reference-icons/phantom-jobs/sprites/{$slug}.webp";
 
             return [
                 'name' => $phantomJob['name'],
@@ -57,19 +65,23 @@ final class ReferenceIconCatalog
                 'icon_source_url' => $phantomJob['icon_source_url'],
                 'icon_public_path' => $iconPublicPath,
                 'icon_storage_path' => $iconStoragePath,
-                'icon_url' => self::preferredSeedUrl($iconStoragePath, $iconPublicPath, $phantomJob['icon_source_url']),
+                'icon_reference_path' => $iconReferencePath,
+                'icon_url' => self::preferredSeedUrl($iconReferencePath, $iconStoragePath, $iconPublicPath, $phantomJob['icon_source_url']),
                 'black_icon_source_url' => $phantomJob['black_icon_source_url'],
                 'black_icon_public_path' => $blackIconPublicPath,
                 'black_icon_storage_path' => $blackIconStoragePath,
-                'black_icon_url' => self::preferredSeedUrl($blackIconStoragePath, $blackIconPublicPath, $phantomJob['black_icon_source_url']),
+                'black_icon_reference_path' => $blackIconReferencePath,
+                'black_icon_url' => self::preferredSeedUrl($blackIconReferencePath, $blackIconStoragePath, $blackIconPublicPath, $phantomJob['black_icon_source_url']),
                 'transparent_icon_source_url' => $phantomJob['transparent_icon_source_url'],
                 'transparent_icon_public_path' => $transparentIconPublicPath,
                 'transparent_icon_storage_path' => $transparentIconStoragePath,
-                'transparent_icon_url' => self::preferredSeedUrl($transparentIconStoragePath, $transparentIconPublicPath, $phantomJob['transparent_icon_source_url']),
+                'transparent_icon_reference_path' => $transparentIconReferencePath,
+                'transparent_icon_url' => self::preferredSeedUrl($transparentIconReferencePath, $transparentIconStoragePath, $transparentIconPublicPath, $phantomJob['transparent_icon_source_url']),
                 'sprite_source_url' => $phantomJob['sprite_source_url'],
                 'sprite_public_path' => $spritePublicPath,
                 'sprite_storage_path' => $spriteStoragePath,
-                'sprite_url' => self::preferredSeedUrl($spriteStoragePath, $spritePublicPath, $phantomJob['sprite_source_url']),
+                'sprite_reference_path' => $spriteReferencePath,
+                'sprite_url' => self::preferredSeedUrl($spriteReferencePath, $spriteStoragePath, $spritePublicPath, $phantomJob['sprite_source_url']),
             ];
         }, self::PHANTOM_JOBS);
     }
@@ -132,8 +144,12 @@ final class ReferenceIconCatalog
             : $sourceUrl;
     }
 
-    private static function preferredSeedUrl(string $storagePath, string $publicPath, string $sourceUrl): string
+    private static function preferredSeedUrl(string $referencePath, string $storagePath, string $publicPath, string $sourceUrl): string
     {
+        if (is_file(public_path($referencePath))) {
+            return self::publicUrl($referencePath);
+        }
+
         if (is_file(storage_path('app/public/'.str_replace(['/', '\\'], DIRECTORY_SEPARATOR, $storagePath)))) {
             return Storage::disk('public')->url($storagePath);
         }

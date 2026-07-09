@@ -408,6 +408,7 @@ Route::prefix('{locale?}')
                 // Group dashboard landing and non-activity sections.
                 Route::get('/', [GroupDashboardController::class, 'show'])->name('groups.dashboard');
                 Route::get('/members', [GroupMemberController::class, 'index'])->name('groups.dashboard.members');
+                Route::get('/members/{user}/activity-summary', [GroupMemberController::class, 'activitySummary'])->name('groups.dashboard.members.activity-summary');
                 Route::get('/statistics', GroupStatisticsController::class)->name('groups.dashboard.statistics');
                 Route::post('/statistics/refresh', [GroupStatisticsController::class, 'refresh'])->name('groups.dashboard.statistics.refresh');
                 Route::get('/leaderboard', GroupLeaderboardController::class)->name('groups.dashboard.leaderboard');

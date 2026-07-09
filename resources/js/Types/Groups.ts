@@ -428,6 +428,7 @@ export type GroupMemberManagementGroup = {
 		can_manage_membership_application_form?: boolean
 		can_manage_roles: boolean
 		can_view_bans: boolean
+		can_view_member_activity_summary: boolean
 	}
 }
 
@@ -438,6 +439,51 @@ export type GroupMemberCharacter = {
 	datacenter?: string | null
 	avatar_url: string | null
 	is_primary: boolean
+}
+
+export type GroupMemberActivitySummaryCharacterClass = {
+	id: number | null
+	name: string | null
+	shorthand: string | null
+	role: string | null
+	icon_url: string | null
+	flaticon_url: string | null
+}
+
+export type GroupMemberActivitySummaryPhantomJob = {
+	id: number | null
+	name: string | null
+	icon_url: string | null
+	transparent_icon_url: string | null
+}
+
+export type GroupMemberActivitySummaryRun = {
+	id: number
+	title: string | null
+	activity_type_name: string | null
+	activity_icon_url: string | null
+	starts_at: string | null
+	completed_at: string | null
+	character: {
+		id: number
+		name: string
+		world: string
+		datacenter: string | null
+		avatar_url: string | null
+	}
+	character_class: GroupMemberActivitySummaryCharacterClass | null
+	phantom_job: GroupMemberActivitySummaryPhantomJob | null
+	group: {
+		id: number
+		name: string
+		slug: string
+		is_current_group: boolean
+	} | null
+}
+
+export type GroupMemberActivitySummary = {
+	last_group_run: GroupMemberActivitySummaryRun | null
+	last_run: GroupMemberActivitySummaryRun | null
 }
 
 export type GroupMemberRecord = {

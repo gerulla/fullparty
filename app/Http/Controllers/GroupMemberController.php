@@ -7,7 +7,9 @@ use App\Models\GroupBan;
 use App\Models\GroupMembership;
 use App\Models\User;
 use App\Services\Groups\GroupCompletedParticipationService;
+use App\Services\Groups\GroupMemberActivitySummaryService;
 use App\Services\Groups\GroupUserNoteVisibilityService;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Collection;
 use Inertia\Inertia;
 use Inertia\Response;
@@ -60,6 +62,27 @@ class GroupMemberController extends Controller
         ]);
     }
 
+    public function activitySummary(
+        Group $group,
+        User $user,
+        GroupMemberActivitySummaryService $activitySummaryService,
+    ): JsonResponse {
+        $currentUserId = auth()->id();
+        $group->loadMissing('memberships');
+
+        if (! $group->hasModeratorAccess($currentUserId)) {
+            abort(403);
+        }
+
+        if (! $group->memberships->contains('user_id', $user->id)) {
+            abort(404);
+        }
+
+        return response()->json([
+            'data' => $activitySummaryService->forMember($group, $user),
+        ]);
+    }
+
     private function serializeGroup(Group $group, int $currentUserId): array
     {
         return [
@@ -86,6 +109,7 @@ class GroupMemberController extends Controller
                 'can_manage_roles' => $group->isOwnedBy($currentUserId) || $group->hasAdminAccess($currentUserId),
                 'can_view_bans' => $group->hasModeratorAccess($currentUserId),
                 'can_view_members' => $group->hasMember($currentUserId),
+                'can_view_member_activity_summary' => $group->hasModeratorAccess($currentUserId),
                 'can_review_membership_applications' => $group->usesMembershipApplications() && $group->hasModeratorAccess($currentUserId),
                 'can_manage_membership_application_form' => $group->usesMembershipApplications() && $group->hasAdminAccess($currentUserId),
             ],

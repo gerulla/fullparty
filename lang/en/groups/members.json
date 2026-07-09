@@ -14,6 +14,20 @@
     "not_available": "Not available",
     "empty": "No members to show yet."
   },
+  "activity_summary": {
+    "toggle": "Activity",
+    "last_group_run": "Last run with this group",
+    "last_run": "Last run",
+    "date": "Date",
+    "time": "Time",
+    "unknown_activity": "Unknown activity",
+    "not_recorded": "Not recorded",
+    "empty_group": "No completed runs with this group yet.",
+    "empty_any": "No completed runs found yet.",
+    "load_error": "Activity could not be loaded.",
+    "load_error_hint": "Try again in a moment.",
+    "retry": "Retry"
+  },
   "bans": {
     "title": "Banned Members",
     "subtitle": "Review users who are blocked from rejoining this group.",

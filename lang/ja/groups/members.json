@@ -14,6 +14,20 @@
         "not_available": "利用不可",
         "empty": "表示するメンバーはいません。"
     },
+    "activity_summary": {
+        "toggle": "アクティビティ",
+        "last_group_run": "このグループでの直近のラン",
+        "last_run": "直近のラン",
+        "date": "日付",
+        "time": "時刻",
+        "unknown_activity": "不明なアクティビティ",
+        "not_recorded": "未記録",
+        "empty_group": "このグループで完了済みのランはまだありません。",
+        "empty_any": "完了済みのランはまだ見つかりません。",
+        "load_error": "アクティビティを読み込めませんでした。",
+        "load_error_hint": "少し待ってからもう一度お試しください。",
+        "retry": "再試行"
+    },
     "bans": {
         "title": "参加禁止中のメンバー",
         "subtitle": "このグループへの再参加が禁止されているユーザーを確認します。",

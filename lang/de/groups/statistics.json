@@ -1,6 +1,6 @@
 {
     "title": "Statistiken",
-    "subtitle": "Aktivitaet, Teilnahme, Bewerbungen und Loadout-Trends fuer {group}.",
+    "subtitle": "Aktivität, Teilnahme, Bewerbungen und Loadout-Trends für {group}.",
     "common": {
         "other": "Andere"
     },
@@ -26,7 +26,7 @@
         },
         "average_participants": {
             "label": "Durchschnitt / Raid",
-            "description": "Ueber alle Runs"
+            "description": "Über alle Runs"
         },
         "active_players": {
             "label": "Aktive Spieler",
@@ -43,18 +43,18 @@
     },
     "applications": {
         "distribution_title": "Bewerbungs-Verteilung",
-        "distribution_subtitle": "Aktuelle Bewerbungsergebnisse ueber alle Runs der Gruppe.",
+        "distribution_subtitle": "Aktuelle Bewerbungsergebnisse über alle Runs der Gruppe.",
         "volume_title": "Bewerbungs-Volumen",
         "volume_subtitle": "Monatliches Bewerbungsvolumen der letzten 12 Monate.",
         "total_label": "Bewerbungen",
         "empty_title": "Noch keine Bewerbungen",
-        "empty_description": "Bewerbungsaktivitaet erscheint hier, sobald Spieler sich fuer Runs bewerben.",
+        "empty_description": "Bewerbungsaktivitaet erscheint hier, sobald Spieler sich für Runs bewerben.",
         "statuses": {
             "pending": "Ausstehend",
             "approved": "Angenommen",
             "declined": "Abgelehnt",
             "cancelled": "Abgebrochen",
-            "withdrawn": "Zurueckgezogen"
+            "withdrawn": "Zurückgezogen"
         }
     },
     "loadouts": {

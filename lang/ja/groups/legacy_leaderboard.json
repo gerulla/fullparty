@@ -1,50 +1,50 @@
 {
-  "title": "FTEL レガシー殿堂",
-  "subtitle": "旧 {group} サイトから保存された履歴スナップショットです。",
-  "badge": "履歴",
-  "notice": {
-    "title": "旧サイトの記録",
-    "description": "このランキングは以前の FTEL サイトから保存されたものです。静的な記録であり、新しい FullParty のランによって変化しません。"
-  },
-  "summary": {
-    "total_players": "エクスポート内のプレイヤー",
-    "ranked_participants": "ランク入り参加者",
-    "total_participations": "総参加回数",
-    "raid_leader_participations": "レイドリーダー参加回数"
-  },
-  "boards": {
-    "entry_count": "{count} 件",
-    "participations": {
-      "title": "参加回数ランキング",
-      "subtitle": "旧サイト上のラン参加回数で並べたキャラクターです。",
-      "primary_label": "ラン",
-      "secondary_label": "リード",
-      "empty": "参加履歴が見つかりませんでした。"
+    "title": "FTEL レガシー殿堂",
+    "subtitle": "旧 {group} サイトから保存された履歴スナップショットです。",
+    "badge": "履歴",
+    "notice": {
+        "title": "旧サイトの記録",
+        "description": "このランキングは以前の FTEL サイトから保存されたものです。静的な記録であり、新しい FullParty のランによって変化しません。"
     },
-    "raid_leaders": {
-      "title": "レイドリーダー参加ランキング",
-      "subtitle": "旧サイト上のレイドリーダー参加回数で並べたキャラクターです。",
-      "primary_label": "リード",
-      "secondary_label": "ラン",
-      "empty": "レイドリーダー履歴が見つかりませんでした。"
-    }
-  },
-  "badges": {
-    "leader": {
-      "bronze": "ブロンズリーダー",
-      "silver": "シルバーリーダー",
-      "gold": "ゴールドリーダー",
-      "platinum": "プラチナリーダー",
-      "diamond": "ダイヤモンドリーダー",
-      "legendary": "レジェンダリーリーダー"
+    "summary": {
+        "total_players": "エクスポート内のプレイヤー",
+        "ranked_participants": "ランク入り参加者",
+        "total_participations": "総参加回数",
+        "raid_leader_participations": "レイドリーダー参加回数"
     },
-    "participation": {
-      "active": "アクティブ",
-      "veteran": "ベテラン",
-      "elite": "エリート"
+    "boards": {
+        "entry_count": "{count} 件",
+        "participations": {
+            "title": "参加回数ランキング",
+            "subtitle": "旧サイト上のラン参加回数で並べたキャラクターです。",
+            "primary_label": "ラン",
+            "secondary_label": "リード",
+            "empty": "参加履歴が見つかりませんでした。"
+        },
+        "raid_leaders": {
+            "title": "レイドリーダー参加ランキング",
+            "subtitle": "旧サイト上のレイドリーダー参加回数で並べたキャラクターです。",
+            "primary_label": "リード",
+            "secondary_label": "ラン",
+            "empty": "レイドリーダー履歴が見つかりませんでした。"
+        }
+    },
+    "badges": {
+        "leader": {
+            "bronze": "ブロンズリーダー",
+            "silver": "シルバーリーダー",
+            "gold": "ゴールドリーダー",
+            "platinum": "プラチナリーダー",
+            "diamond": "ダイヤモンドリーダー",
+            "legendary": "レジェンダリーリーダー"
+        },
+        "participation": {
+            "active": "アクティブ",
+            "veteran": "ベテラン",
+            "elite": "エリート"
+        }
+    },
+    "common": {
+        "unknown_world": "ワールド未記録"
     }
-  },
-  "common": {
-    "unknown_world": "ワールド未記録"
-  }
 }

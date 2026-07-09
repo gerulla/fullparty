@@ -282,10 +282,10 @@
             }
         }
     },
-    "subtitle": "Run、グループ、通知、アカウント準備状況をまとめたあなたのホームです。",
+    "subtitle": "ラン、グループ、通知、アカウント準備状況をまとめたあなたのホームです。",
     "actions": {
         "characters": "マイキャラクター",
-        "applications": "My Applications",
+        "applications": "自分の応募",
         "groups": "マイグループ",
         "notifications": "通知",
         "settings": "設定"
@@ -295,89 +295,89 @@
         "not_available": "利用不可"
     },
     "identity": {
-        "eyebrow": "Your Home Base",
-        "setup_score": "{configured}/{total} ready",
-        "verified_email": "Email verified",
-        "email_needs_attention": "Email needs attention",
-        "ready_badge": "Ready to join runs",
+        "eyebrow": "あなたのホームベース",
+        "setup_score": "{configured}/{total} 準備完了",
+        "verified_email": "メール認証済み",
+        "email_needs_attention": "メール確認が必要です",
+        "ready_badge": "ラン参加の準備完了",
         "with_character": "ここは、次の予定、確認が必要なこと、すばやく戻れる場所をまとめたホーム画面です。",
-        "without_character": "This page becomes much more useful once you connect a primary character and start joining groups or applying to runs.",
-        "no_connected_accounts": "No connected accounts yet"
+        "without_character": "メインキャラクターを連携し、グループ参加やラン応募を始めると、このページはさらに便利になります。",
+        "no_connected_accounts": "連携済みアカウントはまだありません"
     },
     "hero_stats": {
-        "unread": "Unread Alerts",
-        "unread_hint": "Fresh inbox items waiting for you",
-        "active_applications": "Active Applications",
-        "active_applications_hint": "{count} still pending review",
-        "confirmed_runs": "Confirmed Runs",
-        "confirmed_runs_hint": "Approved or benched runs still ahead",
+        "unread": "未読アラート",
+        "unread_hint": "新しい受信項目があります",
+        "active_applications": "進行中の応募",
+        "active_applications_hint": "{count}件がまだ審査待ちです",
+        "confirmed_runs": "確定済みラン",
+        "confirmed_runs_hint": "承認済みまたはベンチ入りの今後のラン",
         "groups": "グループ",
-        "groups_hint": "{count} owned directly"
+        "groups_hint": "直接所有しているグループ {count} 件"
     },
     "profile": {
-        "title": "Profile Snapshot",
-        "subtitle": "A quick read on the identity other players and organizers meet on the site.",
+        "title": "プロフィール概要",
+        "subtitle": "他のプレイヤーや主催者に表示されるあなたの情報をすばやく確認できます。",
         "visible": "表示",
         "hidden": "非表示",
-        "none_yet": "None yet",
+        "none_yet": "まだありません",
         "group_presence_value": "所有 {owned} · モデレート {moderated} · メンバー {member}",
         "details": {
             "email": "メールアドレス",
             "primary_character": "メインキャラクター",
-            "linked_accounts": "Linked Accounts",
-            "public_profile": "Public Profile",
-            "public_characters": "Public Characters",
-            "group_presence": "Group Presence"
+            "linked_accounts": "連携済みアカウント",
+            "public_profile": "公開プロフィール",
+            "public_characters": "公開キャラクター",
+            "group_presence": "グループでの所属状況"
         }
     },
     "setup": {
-        "title": "Readiness",
+        "title": "準備状況",
         "subtitle": "グループ、ロスター、申請をより使いやすくするための小さな設定です。",
-        "coverage": "Coverage",
-        "complete": "Ready",
+        "coverage": "カバー率",
+        "complete": "準備完了",
         "incomplete": "未設定",
         "items": {
             "primary_character": "メインキャラクター",
-            "verified_characters": "Verified Characters",
-            "xivauth": "XIVAuth Connected",
-            "discord": "Discord Connected",
-            "public_profile": "Public Profile",
-            "public_characters": "Public Characters"
+            "verified_characters": "認証済みキャラクター",
+            "xivauth": "XIVAuth連携済み",
+            "discord": "Discord連携済み",
+            "public_profile": "公開プロフィール",
+            "public_characters": "公開キャラクター"
         }
     },
     "groups": {
         "title": "あなたのグループ",
         "subtitle": "すでに参加、役割、またはダッシュボードへのアクセスがあるコミュニティです。",
-        "count": "{count} total",
+        "count": "合計 {count}",
         "empty_title": "グループはまだありません。",
         "empty_description": "グループに参加または作成すると、クイックリンクがここに表示されます。",
         "sections": {
-            "owned": "Owned",
-            "moderated": "Moderated",
+            "owned": "所有中",
+            "moderated": "モデレーター中",
             "member": "メンバー"
         }
     },
     "next_up": {
-        "title": "Next Up",
-        "subtitle": "Your clearest look at the content you are actively moving through right now.",
-        "queue_label": "Coming Up Next",
-        "submitted": "Submitted {time}",
-        "more_title": "Also In Motion",
-        "no_description": "No additional notes were provided for this run.",
-        "empty_title": "Nothing is lined up right now.",
-        "empty_description": "Runへの申請やロスター配置が始まると、ここからすばやく戻れます。"
+        "title": "次の予定",
+        "subtitle": "現在進行中のコンテンツ状況をいちばん見やすく確認できます。",
+        "queue_label": "次に控えている予定",
+        "submitted": "{time}に送信",
+        "more_title": "ほかの進行中項目",
+        "no_description": "このランには追加メモがありません。",
+        "empty_title": "現在予定されているものはありません。",
+        "empty_description": "ランへの申請やロスター配置が始まると、ここからすばやく戻れます。"
     },
     "alerts": {
-        "title": "Latest Alerts",
+        "title": "最新アラート",
         "subtitle": "確認が必要かもしれない最新の更新、リマインダー、システム通知です。",
-        "empty_title": "Your inbox is quiet.",
+        "empty_title": "受信箱は静かです。",
         "empty_description": "新しいリマインダー、ロスター更新、お知らせがここに表示されます。"
     },
     "activity": {
-        "title": "Application Activity",
-        "subtitle": "最近の申請、承認、過去のRun記録をまとめて確認できます。",
-        "submitted": "Submitted {time}",
-        "empty_title": "No application history yet.",
+        "title": "応募アクティビティ",
+        "subtitle": "最近の申請、承認、過去のラン記録をまとめて確認できます。",
+        "submitted": "{time}に送信",
+        "empty_title": "応募履歴はまだありません。",
         "empty_description": "コンテンツへの申請を始めると、最近のアクティビティがここに表示されます。"
     }
 }

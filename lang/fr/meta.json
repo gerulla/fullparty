@@ -29,7 +29,7 @@
             "verify_email_description": "Vérifiez votre adresse e-mail pour continuer à utiliser votre compte FullParty."
         },
         "groups": {
-            "profile_description": "Consultez {group}, un groupe FFXIV sur {datacenter}, avec ses runs en cours, son staff et son activité récente."
+            "profile_description": "Consultez {group}, un groupe FFXIV sur {datacenter}, avec ses runs en cours, son équipe et son activité récente."
         },
         "activities": {
             "overview_description": "Consultez {title}, un run FullParty organisé par {group}.",

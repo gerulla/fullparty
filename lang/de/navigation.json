@@ -14,14 +14,14 @@
         "joined_groups": "Beigetretene Gruppen",
         "members": "Mitglieder",
         "schedule": "Zeitplan",
-        "audit": "Audit",
+        "audit": "Audit-Log",
         "admin": "Admin",
         "character_definitions": "Charakterdaten",
         "admin_audit_log": "Audit-Log",
         "system_notifications": "Systembenachrichtigungen",
         "featured_groups": "Empfohlene Gruppen",
         "integrations": "Integrationen",
-        "activity_types": "Aktivitaetstypen",
+        "activity_types": "Aktivitätstypen",
         "system_data": "Systemdaten",
         "pulse": "Pulse",
         "notice": {
@@ -67,6 +67,6 @@
         "privacy": "Datenschutz",
         "github": "GitHub",
         "discord": "Discord",
-        "copyright": "Copyright {year} FullParty"
+        "copyright": "© {year} FullParty"
     }
 }

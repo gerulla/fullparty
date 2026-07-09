@@ -3,72 +3,72 @@
     "subtitle": "Sende seitenweite Wartungshinweise und Update-Ankündigungen und prüfe den Verlauf der zuletzt gesendeten Meldungen.",
     "admin_access": "Admin-Zugriff",
     "banner": {
-        "title": "System Banner",
+        "title": "Systembanner",
         "description": "Zeigt ein dauerhaftes seitenweites Banner über der Topbar für Ausfälle, eingeschränkten Betrieb oder andere aktive Hinweise, die sichtbar bleiben sollen.",
-        "live_title": "Banner is currently live",
-        "live_description": "Saving this form updates the active site-wide banner immediately.",
-        "empty_title": "No active banner",
-        "empty_description": "Save a banner here when you want a persistent site-wide notice without sending notifications.",
-        "preview": "Live Preview",
-        "preview_empty_title": "Banner title preview",
-        "preview_empty_message": "Banner message preview",
-        "save": "Save Banner",
-        "clear": "Clear Banner",
+        "live_title": "Banner ist derzeit aktiv",
+        "live_description": "Beim Speichern wird das aktive seitenweite Banner sofort aktualisiert.",
+        "empty_title": "Kein aktives Banner",
+        "empty_description": "Speichere hier ein Banner, wenn du einen dauerhaften seitenweiten Hinweis ohne Benachrichtigungen anzeigen willst.",
+        "preview": "Live-Vorschau",
+        "preview_empty_title": "Vorschau des Bannertitels",
+        "preview_empty_message": "Vorschau der Bannernachricht",
+        "save": "Banner speichern",
+        "clear": "Banner entfernen",
         "fields": {
-            "title": "Banner Title",
-            "message": "Banner Message",
-            "action_label": "Action Button Label",
-            "action_url": "Action Button URL"
+            "title": "Bannertitel",
+            "message": "Bannernachricht",
+            "action_label": "Beschriftung des Aktionsbuttons",
+            "action_url": "URL des Aktionsbuttons"
         },
         "placeholders": {
-            "title": "Service issue affecting roster updates...",
+            "title": "Serviceproblem betrifft Roster-Updates...",
             "message": "Sag den Leuten, was passiert, was betroffen ist und wo sie weitere Updates finden.",
-            "action_label": "View status",
+            "action_label": "Status ansehen",
             "action_url": "https://status.fullparty.gg/"
         }
     },
     "fields": {
         "headline": "Überschrift",
-        "message": "Message",
+        "message": "Nachricht",
         "scheduled_for": "Geplant für",
         "action_url": "Aktions-URL"
     },
     "placeholders": {
-        "headline": "Write a clear notification title...",
-        "message": "Write the notification body...",
+        "headline": "Schreibe einen klaren Benachrichtigungstitel...",
+        "message": "Schreibe den Benachrichtigungstext...",
         "action_url": "https://status.example.com/maintenance"
     },
     "maintenance": {
-        "title": "Mandatory Maintenance Notice",
-        "description": "Use this for important service-impacting maintenance or urgent site-wide operational notices.",
-        "notice_title": "Mandatory delivery",
-        "notice_description": "These notices ignore the optional system-notices preference and are sent in-site and off-site.",
-        "send": "Send Maintenance Notice"
+        "title": "Verpflichtender Wartungshinweis",
+        "description": "Nutze dies für wichtige wartungsbedingte Serviceeinschraenkungen oder dringende seitenweite Betriebshinweise.",
+        "notice_title": "Verpflichtende Zustellung",
+        "notice_description": "Diese Hinweise ignorieren die optionale Einstellung für Systemhinweise und werden in-site sowie extern gesendet.",
+        "send": "Wartungshinweis senden"
     },
     "announcement": {
-        "title": "Optional Update Announcement",
+        "title": "Optionale Update-Ankündigung",
         "description": "Nutze dies für Feature-Updates, Projektnachrichten und andere Produktmeldungen mit niedrigerer Priorität.",
-        "notice_title": "Optional delivery",
+        "notice_title": "Optionale Zustellung",
         "notice_description": "Diese Hinweise beachten die Systemhinweis-Einstellung der Nutzer, verwenden aber weiterhin In-Site- und Off-Site-Kanäle, wenn sie aktiviert sind.",
-        "send": "Send Update Announcement"
+        "send": "Update-Ankündigung senden"
     },
     "history": {
-        "title": "Recent History",
-        "subtitle": "Showing the latest system notifications sent through FullParty.",
-        "empty": "No system notifications have been sent yet.",
-        "open_link": "Open Link",
-        "sent_by": "Sent by {user}",
-        "reads": "{count} users have opened it",
-        "deliveries": "{count} off-site deliveries",
+        "title": "Letzter Verlauf",
+        "subtitle": "Zeigt die neuesten Systembenachrichtigungen, die über FullParty gesendet wurden.",
+        "empty": "Es wurden noch keine Systembenachrichtigungen gesendet.",
+        "open_link": "Link oeffnen",
+        "sent_by": "Gesendet von {user}",
+        "reads": "{count} Nutzer haben es geoeffnet",
+        "deliveries": "{count} externe Zustellungen",
         "badges": {
-            "mandatory": "Mandatory",
+            "mandatory": "Verpflichtend",
             "optional": "Optional"
         }
     },
     "toasts": {
-        "maintenance_sent": "Maintenance notification sent.",
-        "announcement_sent": "Update announcement sent.",
-        "banner_saved": "System banner saved.",
-        "banner_cleared": "System banner cleared."
+        "maintenance_sent": "Wartungshinweis gesendet.",
+        "announcement_sent": "Update-Ankündigung gesendet.",
+        "banner_saved": "Systembanner gespeichert.",
+        "banner_cleared": "Systembanner entfernt."
     }
 }

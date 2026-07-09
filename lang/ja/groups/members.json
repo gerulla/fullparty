@@ -7,7 +7,7 @@
         "count": "{count} 人のメンバー",
         "search_placeholder": "メンバーを検索",
         "joined_at": "{date} に参加",
-        "runs_participated": "{count} 回のRunsに参加",
+        "runs_participated": "{count} 回のランに参加",
         "runs_badge": "{count} 回",
         "characters_label": "キャラクター",
         "no_characters": "まだ確認済みキャラクターは連携されていません。",
@@ -15,30 +15,30 @@
         "empty": "表示するメンバーはいません。"
     },
     "bans": {
-        "title": "BANされたメンバー",
+        "title": "参加禁止中のメンバー",
         "subtitle": "このグループへの再参加が禁止されているユーザーを確認します。",
-        "count": "{count} 人がBAN中",
-        "search_placeholder": "BANメンバーを検索",
-        "empty": "表示するBANメンバーはいません。",
+        "count": "{count} 人が参加禁止中",
+        "search_placeholder": "参加禁止中のメンバーを検索",
+        "empty": "表示する参加禁止中のメンバーはいません。",
         "columns": {
             "member": "メンバー",
             "characters": "キャラクター",
             "reason": "理由",
-            "banned_by": "BAN実行者",
-            "banned_at": "BAN日時",
+            "banned_by": "実行者",
+            "banned_at": "参加禁止日時",
             "actions": "操作"
         },
         "no_reason": "理由はありません",
-        "badge": "BAN中",
+        "badge": "参加禁止中",
         "unknown_member": "不明なメンバー",
-        "banned_at_relative": "{date} にBAN",
+        "banned_at_relative": "{date} に参加禁止",
         "reason_inline": "理由: {reason}",
         "system": "システム"
     },
     "view": {
         "list": "リスト表示",
         "blocks": "カード表示",
-        "banned": "BANメンバーを表示",
+        "banned": "参加禁止中のメンバーを表示",
         "members": "メンバーを表示",
         "load_more": "さらに読み込む",
         "no_search_results": "別の検索語を試すか、検索をクリアしてください。"
@@ -56,8 +56,8 @@
         "promote": "昇格",
         "demote": "降格",
         "kick": "キック",
-        "ban": "BAN",
-        "unban": "BAN解除"
+        "ban": "参加禁止",
+        "unban": "参加禁止を解除"
     },
     "notes": {
         "hidden": "このユーザーに対するメモは利用できません。",
@@ -129,13 +129,13 @@
         "warning": "このユーザーは直ちにダッシュボードへのアクセスを失い、公開参加か新しい招待で再参加する必要があります。"
     },
     "ban_modal": {
-        "title": "{name} をBANしますか？",
+        "title": "{name} を参加禁止にしますか？",
         "subtitle": "選択したメンバーを {group} から削除し、再参加できないようにします。",
-        "warning": "BANされたユーザーは公開中のグループを見ることはできますが、公開参加や招待リンクでは参加できません。",
+        "warning": "参加禁止中のユーザーは公開中のグループを見ることはできますが、公開参加や招待リンクでは参加できません。",
         "reason": {
             "label": "理由",
-            "help": "任意。このBANの理由をメモとして残せます。",
-            "placeholder": "BAN理由を任意で入力してください"
+            "help": "任意。この参加禁止の理由をメモとして残せます。",
+            "placeholder": "参加禁止理由を任意で入力してください"
         }
     },
     "toasts": {
@@ -148,7 +148,7 @@
         "promoted": "メンバーの役職を昇格しました。",
         "demoted": "メンバーの役職を降格しました。",
         "removed": "メンバーをグループから削除しました。",
-        "banned": "メンバーをグループからBANしました。",
-        "unbanned": "BANを解除しました。"
+        "banned": "メンバーをグループから参加禁止にしました。",
+        "unbanned": "参加禁止を解除しました。"
     }
 }

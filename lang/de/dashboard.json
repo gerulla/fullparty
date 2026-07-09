@@ -119,7 +119,7 @@
         },
         "performance": {
             "encounter": "Wolke der Dunkelheit (Chaotisch)",
-            "difficulty": "Savage",
+            "difficulty": "Episch",
             "date": "18. Mai 2026",
             "best_parse": "Beste Analyse",
             "all_stars": "Alle Sterne",
@@ -295,89 +295,89 @@
         "not_available": "Nicht verfügbar"
     },
     "identity": {
-        "eyebrow": "Your Home Base",
-        "setup_score": "{configured}/{total} ready",
-        "verified_email": "Email verified",
-        "email_needs_attention": "Email needs attention",
-        "ready_badge": "Ready to join runs",
+        "eyebrow": "Deine Homebase",
+        "setup_score": "{configured}/{total} bereit",
+        "verified_email": "E-Mail verifiziert",
+        "email_needs_attention": "E-Mail braucht Aufmerksamkeit",
+        "ready_badge": "Bereit für Runs",
         "with_character": "Diese Seite ist dein Zuhause: was als Nächstes ansteht, was Aufmerksamkeit braucht und wo du am schnellsten wieder einsteigen kannst.",
-        "without_character": "This page becomes much more useful once you connect a primary character and start joining groups or applying to runs.",
-        "no_connected_accounts": "No connected accounts yet"
+        "without_character": "Diese Seite wird deutlich nützlicher, sobald du einen primären Charakter verbindest und Gruppen beitrittst oder dich für Runs bewirbst.",
+        "no_connected_accounts": "Noch keine verknüpften Accounts"
     },
     "hero_stats": {
-        "unread": "Unread Alerts",
-        "unread_hint": "Fresh inbox items waiting for you",
+        "unread": "Ungelesene Hinweise",
+        "unread_hint": "Neue Inbox-Einträge warten auf dich",
         "active_applications": "Aktive Bewerbungen",
-        "active_applications_hint": "{count} still pending review",
-        "confirmed_runs": "Confirmed Runs",
-        "confirmed_runs_hint": "Approved or benched runs still ahead",
+        "active_applications_hint": "{count} noch in Prüfung",
+        "confirmed_runs": "Bestaetigte Runs",
+        "confirmed_runs_hint": "Angenommene oder Ersatzbank-Runs, die noch anstehen",
         "groups": "Gruppen",
-        "groups_hint": "{count} owned directly"
+        "groups_hint": "{count} direkt im Besitz"
     },
     "profile": {
-        "title": "Profile Snapshot",
-        "subtitle": "A quick read on the identity other players and organizers meet on the site.",
+        "title": "Profilübersicht",
+        "subtitle": "Ein kurzer Blick auf das Profil, das andere Spieler und Organisatoren auf der Seite sehen.",
         "visible": "Sichtbar",
         "hidden": "Versteckt",
-        "none_yet": "None yet",
+        "none_yet": "Noch keine",
         "group_presence_value": "{owned} im Besitz · {moderated} moderiert · {member} Mitglied",
         "details": {
             "email": "E-Mail",
             "primary_character": "Primärcharakter",
-            "linked_accounts": "Linked Accounts",
-            "public_profile": "Public Profile",
-            "public_characters": "Public Characters",
-            "group_presence": "Group Presence"
+            "linked_accounts": "Verknuepfte Accounts",
+            "public_profile": "Öffentliches Profil",
+            "public_characters": "Öffentliche Charaktere",
+            "group_presence": "Gruppenpraesenz"
         }
     },
     "setup": {
-        "title": "Readiness",
+        "title": "Bereitschaft",
         "subtitle": "Die kleinen Dinge, die Gruppen, Roster und Bewerbungen besser funktionieren lassen.",
-        "coverage": "Coverage",
-        "complete": "Ready",
+        "coverage": "Abdeckung",
+        "complete": "Bereit",
         "incomplete": "Fehlt",
         "items": {
             "primary_character": "Primärcharakter",
-            "verified_characters": "Verified Characters",
-            "xivauth": "XIVAuth Connected",
-            "discord": "Discord Connected",
-            "public_profile": "Public Profile",
-            "public_characters": "Public Characters"
+            "verified_characters": "Verifizierte Charaktere",
+            "xivauth": "XIVAuth verbunden",
+            "discord": "Discord verbunden",
+            "public_profile": "Öffentliches Profil",
+            "public_characters": "Öffentliche Charaktere"
         }
     },
     "groups": {
         "title": "Deine Gruppen",
         "subtitle": "Die Communities, in denen du bereits einen Platz, eine Rolle oder ein Dashboard hast.",
-        "count": "{count} total",
+        "count": "{count} insgesamt",
         "empty_title": "Noch keine Gruppen.",
         "empty_description": "Sobald du Gruppen beitrittst oder erstellst, erscheinen deine Schnellzugriffe hier.",
         "sections": {
-            "owned": "Owned",
-            "moderated": "Moderated",
+            "owned": "Besitz",
+            "moderated": "Moderiert",
             "member": "Mitglied"
         }
     },
     "next_up": {
-        "title": "Next Up",
-        "subtitle": "Your clearest look at the content you are actively moving through right now.",
-        "queue_label": "Coming Up Next",
-        "submitted": "Submitted {time}",
-        "more_title": "Also In Motion",
-        "no_description": "No additional notes were provided for this run.",
-        "empty_title": "Nothing is lined up right now.",
+        "title": "Als Nächstes",
+        "subtitle": "Dein klarster Blick auf die Inhalte, an denen du gerade aktiv dran bist.",
+        "queue_label": "Als Nächstes",
+        "submitted": "Gesendet {time}",
+        "more_title": "Ebenfalls in Bewegung",
+        "no_description": "Für diesen Run wurden keine zusätzlichen Notizen angegeben.",
+        "empty_title": "Derzeit ist nichts geplant.",
         "empty_description": "Sobald du dich für Runs anmeldest oder in Roster eingeteilt wirst, ist dies dein schnellster Weg zurück zur Aktion."
     },
     "alerts": {
-        "title": "Latest Alerts",
+        "title": "Neueste Hinweise",
         "subtitle": "Aktuelle Updates, Erinnerungen und Systemhinweise, die deine Aufmerksamkeit brauchen könnten.",
-        "empty_title": "Your inbox is quiet.",
+        "empty_title": "Deine Inbox ist ruhig.",
         "empty_description": "Neue Erinnerungen, Roster-Updates und Hinweise erscheinen hier."
     },
     "activity": {
-        "title": "Application Activity",
+        "title": "Bewerbungsaktivitaet",
         "subtitle": "Deine neuesten Anmeldungen, Zusagen und älteren Run-Einträge an einem Ort.",
-        "submitted": "Submitted {time}",
-        "empty_title": "No application history yet.",
+        "submitted": "Gesendet {time}",
+        "empty_title": "Noch keine Bewerbungshistorie.",
         "empty_description": "Sobald du dich für Inhalte anmeldest, erscheint deine letzte Aktivität hier."
     }
 }

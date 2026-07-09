@@ -1,5 +1,5 @@
 {
-  "title": "システムデータ",
-  "subtitle": "FullParty 全体で使う再利用可能なシステムデータを管理します。",
-  "admin_only": "管理者のみ"
+    "title": "システムデータ",
+    "subtitle": "FullParty 全体で使う再利用可能なシステムデータを管理します。",
+    "admin_only": "管理者のみ"
 }

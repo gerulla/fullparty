@@ -1,7 +1,7 @@
 {
     "nav": {
         "home": "FullParty Startseite",
-        "features": "Features",
+        "features": "Funktionen",
         "this_week": "Diese Woche",
         "players": "Für Spieler",
         "leaders": "Für Leiter",
@@ -30,7 +30,7 @@
                 "description": "Sammle strukturierte Anmeldungen, vergleiche Bewerber und triff Roster-Entscheidungen ohne Kontextverlust."
             },
             "rosters": {
-                "title": "Roster Building",
+                "title": "Roster-Aufbau",
                 "description": "Weise bestätigte Spieler klaren Slots, Backups, Hosts und Raid Leads für jeden Run zu."
             },
             "groups": {
@@ -93,8 +93,8 @@
             "sun": "So"
         },
         "styles": {
-            "savage": "Savage",
-            "ultimate": "Ultimate",
+            "savage": "Episch",
+            "ultimate": "Fatal",
             "unknown": "Run"
         },
         "applications": {

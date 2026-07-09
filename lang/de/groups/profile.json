@@ -4,9 +4,9 @@
         "no_description": "Diese Gruppe hat noch keine öffentliche Beschreibung hinzugefügt."
     },
     "badges": {
-        "open": "Open group",
-        "invite_only": "Invite only",
-        "application": "Application based"
+        "open": "Offene Gruppe",
+        "invite_only": "Nur Einladung",
+        "application": "Bewerbungsbasiert"
     },
     "actions": {
         "back": "Zurück",
@@ -19,7 +19,7 @@
     "snapshot": {
         "members": "Mitglieder",
         "active_runs": "Aktive Runs",
-        "staff": "Staff"
+        "staff": "Team"
     },
     "activity": {
         "current_title": "Gruppenaktivität",
@@ -46,14 +46,14 @@
     "access": {
         "title": "Gruppenzugang",
         "subtitle": "Wie andere diese Gruppe finden und beitreten können.",
-        "open_title": "Open group",
-        "open_description": "Anyone with a FullParty account can join this group.",
-        "invite_only_title": "Invite only",
-        "invite_only_description": "New members need an invite from the group staff.",
-        "application_title": "Application based",
-        "application_description": "New members apply for staff review. Invite links can still add members directly.",
+        "open_title": "Offene Gruppe",
+        "open_description": "Alle mit einem FullParty-Account können dieser Gruppe beitreten.",
+        "invite_only_title": "Nur Einladung",
+        "invite_only_description": "Neue Mitglieder brauchen eine Einladung vom Gruppenteam.",
+        "application_title": "Bewerbungsbasiert",
+        "application_description": "Neue Mitglieder bewerben sich zur Prüfung durch das Team. Einladungslinks können Mitglieder weiterhin direkt hinzufügen.",
         "static_title": "Static-Roster",
-        "static_description": "This group uses a fixed roster style.",
+        "static_description": "Diese Gruppe nutzt einen festen Roster-Stil.",
         "visible_title": "Auffindbar",
         "visible_description": "Diese Gruppe kann in öffentlicher Suche und Discovery erscheinen.",
         "hidden_title": "Nicht auffindbar",

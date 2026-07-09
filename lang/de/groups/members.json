@@ -126,7 +126,7 @@
     "kick_modal": {
         "title": "{name} entfernen?",
         "subtitle": "Dadurch wird das ausgewählte Mitglied aus {group} entfernt.",
-        "warning": "They will lose dashboard access immediately and will need to rejoin through an open join mode or a fresh invite."
+        "warning": "Sie verlieren sofort den Dashboard-Zugriff und müssen über eine offene Beitrittsart oder eine neue Einladung erneut beitreten."
     },
     "ban_modal": {
         "title": "{name} bannen?",

@@ -2,15 +2,15 @@
     "title": "Discord連携",
     "subtitle": "{group} をDiscordサーバーに接続します。",
     "install": {
-        "title": "FullParty Botをインストール",
-        "subtitle": "このグループで使うDiscordサーバーにBotを追加します。",
-        "description": "Botをインストールしたら、リンクトークンを生成してDiscord内で使用し、FullPartyが正しいサーバーとグループを紐付けられるようにします。"
+        "title": "FullParty ボットをインストール",
+        "subtitle": "このグループで使うDiscordサーバーにボットを追加します。",
+        "description": "ボットをインストールしたら、リンクトークンを生成してDiscord内で使用し、FullPartyが正しいサーバーとグループを紐付けられるようにします。"
     },
     "setup": {
         "invite": {
-            "title": "Botを招待",
+            "title": "ボットを招待",
             "subtitle": "FullPartyをDiscordサーバーに追加します。",
-            "description": "まず、このグループで使うサーバーにFullParty Botを招待してください。"
+            "description": "まず、このグループで使うサーバーにFullParty ボットを招待してください。"
         },
         "link": {
             "title": "このグループを連携",
@@ -19,7 +19,7 @@
         },
         "complete": {
             "title": "設定を完了",
-            "subtitle": "連携後にFullPartyのBot設定が表示されます。",
+            "subtitle": "連携後にFullPartyのボット設定が表示されます。",
             "description": "コマンドが成功したらこのページを更新してください。サーバー設定が表示されます。",
             "command_title": "Discordで使用",
             "command_description": "/link token"
@@ -36,7 +36,7 @@
     "link": {
         "title": "このグループを連携",
         "subtitle": "短時間だけ有効なトークンでDiscord側からサーバーを確認します。",
-        "description": "ここでトークンを生成し、このグループに接続したいDiscordサーバーでBotのリンクコマンドを実行してください。",
+        "description": "ここでトークンを生成し、このグループに接続したいDiscordサーバーでボットのリンクコマンドを実行してください。",
         "generated_token": "リンクトークン",
         "expires_at": "{date} に期限切れ",
         "active_token_title": "有効なリンクトークンがあります",
@@ -45,17 +45,17 @@
         "no_token_description": "Discordから連携する準備ができたらトークンを生成してください。"
     },
     "settings": {
-        "title": "Bot設定",
-        "subtitle": "Botが投稿する場所と使用できるロールを選択します。",
+        "title": "ボット設定",
+        "subtitle": "ボットが投稿する場所と使用できるロールを選択します。",
         "general_title": "一般設定",
-        "general_description": "サーバー全体のBot動作とモデレーション補助を設定します。",
+        "general_description": "サーバー全体のボット動作とモデレーション補助を設定します。",
         "run_title": "ラン設定",
-        "run_description": "ラン機能でBotが使用するロール設定を選択します。",
+        "run_description": "ラン機能でボットが使用するロール設定を選択します。",
         "none": "なし",
-        "bot_log_channel": "Botログチャンネル",
+        "bot_log_channel": "ボットログチャンネル",
         "member_facing_channel": "メンバー向けチャンネル",
         "template_role": "テンプレートロール",
-        "template_role_description": "Discord Botはラン用ロールを割り当てるとき、このロールを複製します。",
+        "template_role_description": "Discord ボットはラン用ロールを割り当てるとき、このロールを複製します。",
         "role_overrides_title": "ロール上書き",
         "role_overrides_description": "特定の活動タイプでは別のテンプレートロールを使用します。",
         "override_activity": "活動タイプ",
@@ -67,9 +67,9 @@
         "name_sync_hint": "Discordの表示名を連携キャラクター名に合わせます。",
         "option_unavailable": "利用不可",
         "not_linked_title": "先にDiscordサーバーを連携してください",
-        "not_linked_description": "Botをインストールしてこのグループを連携してから、Bot設定を変更できます。",
-        "snapshot_unavailable_title": "Botスナップショットを取得できません",
-        "snapshot_unavailable_description": "連携済みBotからサーバーのチャンネルやロールが返りませんでした。Botがオンラインになってからもう一度お試しください。"
+        "not_linked_description": "ボットをインストールしてこのグループを連携してから、ボット設定を変更できます。",
+        "snapshot_unavailable_title": "ボットスナップショットを取得できません",
+        "snapshot_unavailable_description": "連携済みボットからサーバーのチャンネルやロールが返りませんでした。ボットがオンラインになってからもう一度お試しください。"
     },
     "stats": {
         "title": "サーバーカバー率",
@@ -78,13 +78,13 @@
         "not_linked": "未連携",
         "available_percent": "FullPartyで利用可能",
         "coverage_hint": "連携済みユーザーは、DiscordログインだけでなくFullParty Discordアプリをインストールしたメンバーです。",
-        "coverage_unavailable": "Botにキャッシュ済みメンバーリストができるまで、カバー率データは利用できません。",
-        "bot_permissions": "Bot権限",
+        "coverage_unavailable": "ボットにキャッシュ済みメンバーリストができるまで、カバー率データは利用できません。",
+        "bot_permissions": "ボット権限",
         "unknown": "不明",
         "none": "なし"
     },
     "actions": {
-        "invite": "Botを招待",
+        "invite": "ボットを招待",
         "generate_token": "リンクトークンを生成",
         "copy_token": "トークンをコピー",
         "save_settings": "設定を保存",
@@ -93,6 +93,6 @@
     },
     "toasts": {
         "token_copied": "リンクトークンをコピーしました。",
-        "settings_saved": "Discord Bot設定を保存しました。"
+        "settings_saved": "Discord ボット設定を保存しました。"
     }
 }

@@ -8,12 +8,12 @@
         "visibility_summary_label": "Sichtbarkeitsübersicht",
         "visibility_summary": {
             "default_name": "Diese Gruppe",
-            "open_visible": "{name} can be joined by anyone and can appear in discovery.",
+            "open_visible": "{name} kann von allen betreten werden und in der Suche erscheinen.",
             "open_hidden": "{name} kann von jedem mit der permanenten Slug-Einladung betreten werden, bleibt aber aus der Suche ausgeblendet.",
-            "invite_only_visible": "{name} requires a generated invite link and can appear in discovery.",
-            "invite_only_hidden": "{name} requires a generated invite link and will stay out of discovery.",
-            "application_visible": "{name} will use applications for new members and can appear in discovery. Invite links can still add members directly.",
-            "application_hidden": "{name} will use applications for new members and stay out of discovery. Invite links can still add members directly."
+            "invite_only_visible": "{name} erfordert einen generierten Einladungslink und kann in der Suche erscheinen.",
+            "invite_only_hidden": "{name} erfordert einen generierten Einladungslink und bleibt aus der Suche ausgeblendet.",
+            "application_visible": "{name} nutzt Bewerbungen für neue Mitglieder und kann in der Suche erscheinen. Einladungslinks können Mitglieder weiterhin direkt hinzufügen.",
+            "application_hidden": "{name} nutzt Bewerbungen für neue Mitglieder und bleibt aus der Suche ausgeblendet. Einladungslinks können Mitglieder weiterhin direkt hinzufügen."
         },
         "fields": {
             "name": {
@@ -46,12 +46,12 @@
             },
             "join_mode": {
                 "label": "Beitrittsart",
-                "placeholder": "Select a join mode",
-                "help": "Open is community-only. Invite-only and application-based groups can still use generated invite links."
+                "placeholder": "Beitrittsart auswählen",
+                "help": "Offen ist nur für Communities verfügbar. Gruppen mit Einladung oder Bewerbung können weiterhin generierte Einladungslinks nutzen."
             },
             "is_visible": {
                 "label": "In der Entdeckung sichtbar",
-                "help": "Visible groups can appear in discovery and search."
+                "help": "Sichtbare Gruppen können in der Suche und Entdeckung erscheinen."
             }
         },
         "validation": {

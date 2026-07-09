@@ -55,9 +55,9 @@
         "breakdown": "{documented} documentées / {auto} auto / {failed} manquées"
     },
     "empty": {
-        "overall": "Les participants avec composition apparaîtront ici lorsque des runs auront des slots assignés.",
-        "raid_leaders": "Le classement raid leader apparaîtra lorsque des slots seront marqués comme raid leader.",
-        "hosts": "Le classement des hôtes apparaîtra lorsque des slots seront marqués comme hôte.",
+        "overall": "Les participants avec composition apparaîtront ici lorsque des runs auront des emplacements assignés.",
+        "raid_leaders": "Le classement raid leader apparaîtra lorsque des emplacements seront marqués comme raid leader.",
+        "hosts": "Le classement des hôtes apparaîtra lorsque des emplacements seront marqués comme hôte.",
         "host_success": "La réussite des hôtes apparaîtra après que des runs hébergés terminés existent."
     }
 }

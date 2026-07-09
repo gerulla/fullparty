@@ -12,21 +12,21 @@
     "join_modes": {
         "open": {
             "label": "グループを開く",
-            "description": "People can join whenever. Community open groups also get a permanent slug invite."
+            "description": "誰でもいつでも参加できます。公開コミュニティグループには固定スラッグの招待リンクも用意されます。"
         },
         "invite_only": {
             "label": "招待制",
-            "description": "People can only join through generated invite links."
+            "description": "生成された招待リンクからのみ参加できます。"
         },
         "application": {
             "label": "申請制",
-            "description": "People apply for review. Generated invite links can still add members directly."
+            "description": "参加には審査が必要です。生成された招待リンクでは引き続き直接メンバーを追加できます。"
         }
     },
     "voice_expectations": {
-        "required": "Voice Required",
-        "preferred": "Voice Preferred",
-        "optional": "Voice Optional"
+        "required": "ボイス必須",
+        "preferred": "ボイス推奨",
+        "optional": "ボイス任意"
     },
     "active_days": {
         "mon": "月曜日",
@@ -43,26 +43,26 @@
         "members": "メンバー",
         "role": "ロール",
         "discord": "Discord",
-        "languages": "Languages",
-        "metadata_tags": "Metadata Tags",
+        "languages": "言語",
+        "metadata_tags": "メタデータタグ",
         "extra_tags": "追加タグ",
         "activity_window": "活動時間帯",
-        "recent_activity": "Recent Activity",
-        "region": "Region",
+        "recent_activity": "最近のアクティビティ",
+        "region": "リージョン",
         "group_type": "グループタイプ",
         "join_mode": "参加方式",
-        "timezone": "Timezone",
+        "timezone": "タイムゾーン",
         "active_days": "主な活動曜日",
-        "active_hours": "Active Hours"
+        "active_hours": "活動時間"
     },
     "states": {
         "open_group": "グループを開く",
         "invite_only_group": "招待制",
         "application_group": "申請制",
         "visible_in_discovery": "検索に表示する",
-        "hidden_from_discovery": "Hidden from Discovery",
-        "not_shared": "Not shared",
-        "no_description_short": "This group has not added a description yet.",
+        "hidden_from_discovery": "ディスカバリー非表示",
+        "not_shared": "未共有",
+        "no_description_short": "このグループはまだ説明を追加していません。",
         "no_description_long": "このグループにはまだ説明がありません。何を走るのか、誰向けなのか、参加希望者がどうすればよいのかをここで伝えましょう。",
         "no_recent_activity": "最近のアクティビティはありません"
     },
@@ -70,6 +70,6 @@
         "active_time_pair_required": "活動開始時刻と終了時刻は両方とも指定してください。",
         "active_timezone_required": "活動日または活動時間を設定する場合は、活動タイムゾーンが必要です。",
         "active_end_time_after_start": "活動終了時刻は開始時刻より後である必要があります。",
-        "invalid_join_mode_for_group_type": "Choose a join mode supported by this group type."
+        "invalid_join_mode_for_group_type": "このグループ種別で利用できる参加方法を選択してください。"
     }
 }

@@ -9,7 +9,7 @@
         "applications": "応募",
         "groups": "グループ",
         "my_requests": "自分のリクエスト",
-        "discord_bot": "Discord Bot",
+        "discord_bot": "Discordボット",
         "my_groups": "マイグループ",
         "joined_groups": "参加中のグループ",
         "members": "メンバー",
@@ -63,10 +63,10 @@
         }
     },
     "footer": {
-        "cookies": "Cookies",
+        "cookies": "Cookie",
         "privacy": "プライバシーポリシー",
         "github": "GitHub",
         "discord": "Discord",
-        "copyright": "Copyright {year} FullParty"
+        "copyright": "© {year} FullParty"
     }
 }

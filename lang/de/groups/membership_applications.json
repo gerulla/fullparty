@@ -7,15 +7,15 @@
     "answers": {
         "yes": "Ja",
         "no": "Nein",
-        "no_answer": "No answer"
+        "no_answer": "Keine Antwort"
     },
     "apply": {
         "title": "Beitritt zu {group} anfragen",
         "subtitle": "Sende eine Anfrage zur Prüfung an das Gruppenteam.",
-        "toggle_answer": "Your answer",
-        "submitted_answers": "Submitted Answers",
+        "toggle_answer": "Deine Antwort",
+        "submitted_answers": "Gesendete Antworten",
         "actions": {
-            "back": "Back to Groups",
+            "back": "Zurück zu Gruppen",
             "submit": "Anfrage senden",
             "update": "Anfrage aktualisieren"
         },
@@ -32,18 +32,18 @@
         "title": "Anfragen",
         "subtitle": "Prüfe, genehmige oder lehne Personen ab, die dieser Gruppe beitreten möchten.",
         "pending_title": "Offene Anfragen",
-        "pending_subtitle": "{count} waiting for review",
+        "pending_subtitle": "{count} warten auf Prüfung",
         "reviewed_title": "Geprüfte Anfragen",
         "reviewed_subtitle": "Kürzlich angenommene und abgelehnte Anfragen.",
         "empty_pending_title": "Keine offenen Anfragen",
         "empty_pending_description": "Neue Anfragen erscheinen hier.",
         "empty_reviewed_title": "Keine geprüften Anfragen",
         "empty_reviewed_description": "Angenommene und abgelehnte Anfragen erscheinen hier.",
-        "not_reviewed": "Not reviewed",
-        "unknown_user": "Unknown user",
+        "not_reviewed": "Nicht geprüft",
+        "unknown_user": "Unbekannter Nutzer",
         "submitted_at": "Gesendet {date}",
         "reviewed_at": "Geprüft {date}",
-        "reviewed_by": "Reviewed by {user}",
+        "reviewed_by": "Geprüft von {user}",
         "actions": {
             "approve": "Genehmigen",
             "decline": "Ablehnen",
@@ -52,11 +52,11 @@
         "decline_modal": {
             "title": "Anfrage ablehnen",
             "reason_label": "Grund",
-            "reason_help": "Optional. Keep it short and useful for the group record."
+            "reason_help": "Optional. Halte es kurz und hilfreich für den Gruppeneintrag."
         },
         "validation": {
             "already_reviewed": "Diese Anfrage wurde bereits geprüft.",
-            "applicant_banned": "Gesperrte Benutzer koennen nicht in die Gruppe aufgenommen werden."
+            "applicant_banned": "Gesperrte Benutzer können nicht in die Gruppe aufgenommen werden."
         }
     },
     "requests": {
@@ -88,69 +88,69 @@
         "title": "Anfrageformular",
         "subtitle": "Erstelle die Fragen, die Leute vor dem Beitritt beantworten.",
         "inactive_title": "Dieses Formular ist bereit, aber die Gruppe basiert nicht auf Bewerbungen.",
-        "inactive_description": "Switch the group join mode to Application Based when you want this form to appear to applicants.",
-        "question_count": "{count} of {max} questions",
-        "new_question": "New question",
-        "new_option": "New option",
-        "question_title": "Question {number}",
+        "inactive_description": "Stelle die Beitrittsart der Gruppe auf bewerbungsbasiert, wenn dieses Formular Bewerbern angezeigt werden soll.",
+        "question_count": "{count} von {max} Fragen",
+        "new_question": "Neue Frage",
+        "new_option": "Neue Option",
+        "question_title": "Frage {number}",
         "question_hint": "Benenne, beschreibe und konfiguriere dieses Bewerbungsfeld.",
         "actions": {
-            "add_question": "Add Question",
-            "save": "Save Form",
-            "move_up": "Move question up",
-            "move_down": "Move question down",
-            "remove_question": "Remove question",
-            "add_option": "Option hinzufuegen",
-            "remove_option": "Remove option"
+            "add_question": "Frage hinzufügen",
+            "save": "Formular speichern",
+            "move_up": "Frage nach oben verschieben",
+            "move_down": "Frage nach unten verschieben",
+            "remove_question": "Frage entfernen",
+            "add_option": "Option hinzufügen",
+            "remove_option": "Option entfernen"
         },
         "field_types": {
-            "small_text": "Small Text",
-            "big_text": "Big Text",
-            "select": "Select Menu",
-            "toggle": "Toggle"
+            "small_text": "Kurzer Text",
+            "big_text": "Langer Text",
+            "select": "Auswahlmenü",
+            "toggle": "Schalter"
         },
         "fields": {
             "name": {
                 "label": "Name",
-                "help": "The question shown to applicants.",
-                "placeholder": "Question"
+                "help": "Die Frage, die Bewerbern angezeigt wird.",
+                "placeholder": "Frage"
             },
             "description": {
                 "label": "Beschreibung",
-                "help": "Optional extra context below the question.",
+                "help": "Optionaler Zusatzkontext unter der Frage.",
                 "placeholder": "Beschreibung"
             },
             "type": {
-                "label": "Input Type"
+                "label": "Eingabetyp"
             },
             "required": {
                 "label": "Erforderlich",
-                "help": "Applicants must provide an answer. A toggle can be on or off."
+                "help": "Bewerber müssen eine Antwort angeben. Ein Schalter kann ein- oder ausgeschaltet sein."
             }
         },
         "options": {
-            "title": "Options",
-            "subtitle": "Auswahlfragen benoetigen mindestens eine Option.",
+            "title": "Optionen",
+            "subtitle": "Auswahlfragen benötigen mindestens eine Option.",
             "label": "Option {number}",
             "placeholder": "Option"
         },
         "validation": {
             "fields_required": "Gib mindestens eine Frage an.",
-            "minimum_fields": "Anfrageformulare benoetigen mindestens eine Frage.",
-            "max_fields": "Application forms can have up to {max} questions.",
-            "field_invalid": "Jede Frage muss ein gueltiges Objekt sein.",
-            "type_invalid": "Waehle einen gueltigen Eingabetyp.",
+            "minimum_fields": "Anfrageformulare benötigen mindestens eine Frage.",
+            "max_fields": "Bewerbungsformulare können bis zu {max} Fragen enthalten.",
+            "field_invalid": "Jede Frage muss ein gültiges Objekt sein.",
+            "type_invalid": "Wähle einen gültigen Eingabetyp.",
             "name_required": "Der englische Name ist erforderlich.",
             "localized_text_invalid": "Lokalisierter Text muss Text sein.",
-            "localized_text_max": "Localized text must be {max} characters or fewer.",
-            "options_required": "Auswahlfragen benoetigen mindestens eine Option.",
-            "options_max": "Select menu questions can have up to {max} options.",
-            "option_invalid": "Jede Option muss ein gueltiges Objekt sein.",
+            "localized_text_max": "Lokalisierter Text darf höchstens {max} Zeichen lang sein.",
+            "options_required": "Auswahlfragen benötigen mindestens eine Option.",
+            "options_max": "Auswahlfragen können bis zu {max} Optionen haben.",
+            "option_invalid": "Jede Option muss ein gültiges Objekt sein.",
             "answer_unknown": "Diese Antwort passt nicht zum aktuellen Anfrageformular.",
             "answer_required": "Diese Antwort ist erforderlich.",
-            "answer_invalid": "Gib eine gueltige Antwort an.",
-            "answer_max": "This answer must be {max} characters or fewer.",
-            "answer_option_invalid": "Waehle eine der verfuegbaren Optionen."
+            "answer_invalid": "Gib eine gültige Antwort an.",
+            "answer_max": "Diese Antwort darf höchstens {max} Zeichen lang sein.",
+            "answer_option_invalid": "Wähle eine der verfügbaren Optionen."
         }
     }
 }

@@ -82,7 +82,7 @@
             "recruiting_method_label": "Méthode de recrutement",
             "recruiting_method_placeholder": "Sélectionnez une méthode",
             "tags_placeholder": "Rechercher par tag supplémentaire",
-            "tags_help": "Utilisez ce champ pour des tags libres comme Late Night ou Blind Prog.",
+            "tags_help": "Utilisez ce champ pour des tags libres comme Soirée tardive ou Prog à l'aveugle.",
             "recruiting_methods": {
                 "open": "Ouvert",
                 "invite_only": "Invitation",
@@ -285,7 +285,7 @@
                 "help": "Définissez les attentes sur le niveau de connaissance ou d'expérience que les gens doivent avoir.",
                 "options": {
                     "beginner_friendly": "Débutant bienvenu",
-                    "casual": "Casual",
+                    "casual": "Décontracté",
                     "midcore": "Midcore",
                     "semi_hardcore": "Semi-Hardcore",
                     "hardcore": "Hardcore",
@@ -304,7 +304,7 @@
             },
             "tags": {
                 "label": "Tags supplémentaires",
-                "placeholder": "Ajoutez ou créez des tags comme Late Night ou Blind Prog",
+                "placeholder": "Ajoutez ou créez des tags comme Soirée tardive ou Prog à l'aveugle",
                 "help": "Optionnel. Utilisez jusqu'à {max} tags libres pour ajouter de la nuance ou des détails de niche.",
                 "suggestions": {
                     "late_night": "Soirée tardive",

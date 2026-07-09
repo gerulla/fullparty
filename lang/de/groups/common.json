@@ -7,26 +7,26 @@
     },
     "group_types": {
         "community": "Community",
-        "static": "Static"
+        "static": "Stammgruppe"
     },
     "join_modes": {
         "open": {
             "label": "Gruppe öffnen",
-            "description": "People can join whenever. Community open groups also get a permanent slug invite."
+            "description": "Leute können jederzeit beitreten. Offene Community-Gruppen erhalten ausserdem eine permanente Slug-Einladung."
         },
         "invite_only": {
             "label": "Nur Einladung",
-            "description": "People can only join through generated invite links."
+            "description": "Leute können nur über generierte Einladungslinks beitreten."
         },
         "application": {
             "label": "Bewerbungsbasiert",
-            "description": "People apply for review. Generated invite links can still add members directly."
+            "description": "Leute bewerben sich zur Prüfung. Generierte Einladungslinks können Mitglieder weiterhin direkt hinzufügen."
         }
     },
     "voice_expectations": {
-        "required": "Voice Required",
-        "preferred": "Voice Preferred",
-        "optional": "Voice Optional"
+        "required": "Voice erforderlich",
+        "preferred": "Voice bevorzugt",
+        "optional": "Voice optional"
     },
     "active_days": {
         "mon": "Montag",
@@ -43,33 +43,33 @@
         "members": "Mitglieder",
         "role": "Rolle",
         "discord": "Discord",
-        "languages": "Languages",
-        "metadata_tags": "Metadata Tags",
+        "languages": "Sprachen",
+        "metadata_tags": "Metadaten-Tags",
         "extra_tags": "Zusätzliche Tags",
         "activity_window": "Aktivitätsfenster",
-        "recent_activity": "Recent Activity",
+        "recent_activity": "Letzte Aktivität",
         "region": "Region",
         "group_type": "Gruppentyp",
         "join_mode": "Beitrittsart",
-        "timezone": "Timezone",
+        "timezone": "Zeitzone",
         "active_days": "Aktive Tage",
-        "active_hours": "Active Hours"
+        "active_hours": "Aktive Zeiten"
     },
     "states": {
         "open_group": "Gruppe öffnen",
         "invite_only_group": "Nur Einladung",
         "application_group": "Bewerbungsbasiert",
         "visible_in_discovery": "In der Entdeckung sichtbar",
-        "hidden_from_discovery": "Hidden from Discovery",
-        "not_shared": "Not shared",
-        "no_description_short": "This group has not added a description yet.",
+        "hidden_from_discovery": "In der Suche ausgeblendet",
+        "not_shared": "Nicht geteilt",
+        "no_description_short": "Diese Gruppe hat noch keine Beschreibung hinzugefügt.",
         "no_description_long": "Diese Gruppe hat noch keine Beschreibung hinzugefügt. Nutze diesen Bereich, um klarzumachen, was ihr lauft, für wen es gedacht ist und wie Leute beitreten sollten.",
-        "no_recent_activity": "Noch keine aktuelle Aktivitaet"
+        "no_recent_activity": "Noch keine aktuelle Aktivität"
     },
     "validation": {
         "active_time_pair_required": "Aktive Start- und Endzeiten müssen gemeinsam angegeben werden.",
         "active_timezone_required": "Eine aktive Zeitzone ist erforderlich, wenn aktive Tage oder Zeiten angegeben werden.",
         "active_end_time_after_start": "Die aktive Endzeit muss nach der Startzeit liegen.",
-        "invalid_join_mode_for_group_type": "Choose a join mode supported by this group type."
+        "invalid_join_mode_for_group_type": "Wähle eine Beitrittsart, die dieser Gruppentyp unterstützt."
     }
 }

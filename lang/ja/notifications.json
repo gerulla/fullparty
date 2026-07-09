@@ -123,7 +123,7 @@
             "body": "{activity} への {character} としての応募は、再審査キューに戻されました。"
         },
         "removed": {
-            "title": "Run から外されました",
+            "title": "ランから外されました",
             "body": "{activity} から {character} としての配置が外されました。"
         },
         "marked_missing": {
@@ -145,21 +145,21 @@
     },
     "runs": {
         "cancelled": {
-            "title": "Run cancelled",
-            "body": "{activity} was cancelled.",
-            "body_with_reason": "{activity} was cancelled. 理由: {reason}"
+            "title": "ランがキャンセルされました",
+            "body": "{activity} はキャンセルされました。",
+            "body_with_reason": "{activity} はキャンセルされました。理由: {reason}"
         },
         "starting_soon": {
-            "title": "Run starting soon",
-            "body": "{activity} is starting soon."
+            "title": "ランがまもなく開始します",
+            "body": "{activity} がまもなく開始します。"
         },
         "starting_now": {
-            "title": "Run starting now",
-            "body": "{activity} is starting now."
+            "title": "ランが開始しました",
+            "body": "{activity} が開始しました。"
         },
         "completed": {
-            "title": "Run complete",
-            "body": "{activity} is now complete."
+            "title": "ラン完了",
+            "body": "{activity} が完了しました。"
         }
     },
     "groups": {
@@ -168,8 +168,8 @@
             "body": "{activity} は {group} 用の下書き状態です。"
         },
         "run_scheduled": {
-            "title": "New run scheduled",
-            "body": "{activity} was scheduled for {group}."
+            "title": "新しいランが予定されました",
+            "body": "{activity} が {group} に予定されました。"
         },
         "member_promoted": {
             "title": "ロールを更新しました",
@@ -181,23 +181,23 @@
         },
         "ownership_transferred_to_you": {
             "title": "グループ所有権を移譲",
-            "body": "{group} was transferred to you by {user}."
+            "body": "{user} から {group} の所有権があなたに移譲されました。"
         },
         "ownership_transferred_from_you": {
             "title": "グループ所有権を移譲",
-            "body": "You transferred ownership of {group} to {user}."
+            "body": "{group} の所有権を {user} に移譲しました。"
         },
         "member_joined": {
-            "title": "Member joined",
-            "body": "{user} joined {group}."
+            "title": "メンバーが参加しました",
+            "body": "{user} が {group} に参加しました。"
         },
         "member_left": {
-            "title": "Member left",
-            "body": "{user} left {group}."
+            "title": "メンバーが退出しました",
+            "body": "{user} が {group} を脱退しました。"
         },
         "member_banned": {
-            "title": "Removed from group",
-            "body": "You were banned from {group}."
+            "title": "グループから削除されました",
+            "body": "{group} から追放されました。"
         },
         "member_upcoming_assignments_cleared": {
             "title": "今後のロスター枠を解除しました",
@@ -208,7 +208,7 @@
         "maintenance": {
             "title": "{headline}",
             "body": "{message}",
-            "body_with_schedule": "{message}\nScheduled for: {scheduled_for}"
+            "body_with_schedule": "{message}\n予定日時: {scheduled_for}"
         },
         "announcement": {
             "title": "{headline}",

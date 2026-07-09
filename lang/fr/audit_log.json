@@ -166,25 +166,25 @@
                     "withdrawn": "a retiré une candidature d'activité."
                 },
                 "roster": {
-                    "assigned": "a attribué un slot de roster.",
+                    "assigned": "a attribué un emplacement de roster.",
                     "updated": "a mis à jour une attribution de roster.",
-                    "reassigned": "a réattribué un slot de roster.",
+                    "reassigned": "a réattribué un emplacement de roster.",
                     "replaced": "a remplacé une attribution de roster.",
                     "swapped": "a déplacé des personnes dans le roster.",
-                    "returned_to_queue": "a renvoyé un slot de roster dans la file.",
-                    "manual_removed": "a retiré d'un slot un personnage assigné manuellement.",
+                    "returned_to_queue": "a renvoyé un emplacement de roster dans la file.",
+                    "manual_removed": "a retiré d'un emplacement un personnage assigné manuellement.",
                     "host_marked": "a marqué un emplacement du roster comme hôte.",
                     "host_cleared": "a retiré la désignation d’hôte d’un emplacement du roster.",
                     "raid_leader_marked": "a marqué un emplacement du roster comme raid leader.",
                     "raid_leader_cleared": "a retiré la désignation de raid leader d’un emplacement du roster."
                 },
                 "attendance": {
-                    "checked_in": "a validé la présence sur un slot de roster.",
-                    "marked_late": "a marqué un slot de roster comme en retard.",
+                    "checked_in": "a validé la présence sur un emplacement de roster.",
+                    "marked_late": "a marqué un emplacement de roster comme en retard.",
                     "check_in_reverted": "a annulé une validation de présence du roster.",
                     "group_checked_in": "a validé la présence d'un groupe ou d'une équipe entière.",
-                    "marked_missing": "a marqué un slot de roster comme absent.",
-                    "missing_reverted": "a annulé l'absence d'un slot de roster."
+                    "marked_missing": "a marqué un emplacement de roster comme absent.",
+                    "missing_reverted": "a annulé l'absence d'un emplacement de roster."
                 }
             },
             "invite": {
@@ -269,10 +269,10 @@
         "activity_type_slug": "Type d'activité",
         "slot_label": "Emplacement",
         "group_label": "Groupe",
-        "source_slot_label": "Slot source",
+        "source_slot_label": "Emplacement source",
         "source_group_label": "Groupe source",
         "source_character_name": "Personnage source",
-        "target_slot_label": "Slot cible",
+        "target_slot_label": "Emplacement cible",
         "target_group_label": "Groupe cible",
         "target_character_name": "Personnage cible",
         "character_name": "Personnage",
@@ -291,7 +291,7 @@
         "checked_in_count": "Nombre de validations",
         "marked_missing_at": "Marqué absent le",
         "restored_destination": "Destination restaurée",
-        "is_bench": "Slot de banc",
+        "is_bench": "Emplacement de banc",
         "field_assignment_updated": "Attribution de champ mise à jour",
         "designation": "Désignation",
         "moved_to_slot_label": "Déplacé vers l’emplacement",
@@ -415,12 +415,12 @@
                     "withdrawn": "Candidature d'activité retirée"
                 },
                 "roster": {
-                    "assigned": "Slot de roster attribué",
+                    "assigned": "Emplacement de roster attribué",
                     "updated": "Attribution de roster mise à jour",
-                    "reassigned": "Slot de roster réattribué",
+                    "reassigned": "Emplacement de roster réattribué",
                     "replaced": "Attribution de roster remplacée",
                     "swapped": "Positions du roster déplacées",
-                    "returned_to_queue": "Slot de roster renvoyé à la file",
+                    "returned_to_queue": "Emplacement de roster renvoyé à la file",
                     "manual_removed": "Assignation manuelle retirée du roster",
                     "host_marked": "Emplacement du roster marqué comme hôte",
                     "host_cleared": "Désignation d’hôte du roster retirée",
@@ -428,12 +428,12 @@
                     "raid_leader_cleared": "Désignation de raid leader du roster retirée"
                 },
                 "attendance": {
-                    "checked_in": "Slot de roster validé",
-                    "marked_late": "Slot de roster marqué en retard",
+                    "checked_in": "Emplacement de roster validé",
+                    "marked_late": "Emplacement de roster marqué en retard",
                     "check_in_reverted": "Validation du roster annulée",
                     "group_checked_in": "Groupe du roster validé",
-                    "marked_missing": "Slot de roster marqué absent",
-                    "missing_reverted": "Absence du slot de roster annulée"
+                    "marked_missing": "Emplacement de roster marqué absent",
+                    "missing_reverted": "Absence du emplacement de roster annulée"
                 }
             },
             "invite": {

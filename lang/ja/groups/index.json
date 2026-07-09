@@ -39,14 +39,14 @@
         "membership_applications": "リクエスト",
         "application_form": "リクエストフォーム",
         "audit_log": "監査ログ",
-        "discovery_settings": "Discovery 設定",
+        "discovery_settings": "ディスカバリー設定",
         "discord_integration": "Discord",
         "settings": "設定"
     },
     "table": {
         "columns": {
             "group": "グループ",
-            "upcoming_runs": "今後のRuns",
+            "upcoming_runs": "今後のラン",
             "last_activity": "最終活動"
         },
         "no_description": "まだ説明はありません。",
@@ -82,7 +82,7 @@
             "recruiting_method_label": "募集方法",
             "recruiting_method_placeholder": "募集方法を選択",
             "tags_placeholder": "追加タグで検索",
-            "tags_help": "Late Night や Blind Prog など、任意の自由タグに使えます。",
+            "tags_help": "深夜帯 や 初見攻略 など、任意の自由タグに使えます。",
             "recruiting_methods": {
                 "open": "オープン",
                 "invite_only": "招待",
@@ -162,7 +162,7 @@
             "recent_runs_hint": "このグループが最近開催した内容の概要です。",
             "no_recent_runs": "完了済みまたはアーカイブ済みのランはまだありません。",
             "completed_runs": "完了したラン",
-            "total_runs": "総Run数",
+            "total_runs": "総ラン数",
             "runs_per_week": "ラン / 週",
             "average_turnout": "平均参加数",
             "progress": "進行度",
@@ -175,7 +175,7 @@
     },
     "create_modal": {
         "title": "グループを作成",
-        "subtitle": "Runs の管理を始める前に、グループの基本情報、プレゼンス、発見用の詳細、活動時間帯を整えましょう。",
+        "subtitle": "ラン の管理を始める前に、グループの基本情報、プレゼンス、発見用の詳細、活動時間帯を整えましょう。",
         "open_button": "グループを作成",
         "progress": "ステップ {current} / {total}",
         "steps": {
@@ -187,12 +187,12 @@
         },
         "slug_preview": "グループスラッグ: {slug}",
         "slug_fallback": "yourslug",
-        "slug_warning": "グループ作成後、slug は変更できません。",
+        "slug_warning": "グループ作成後、スラッグは変更できません。",
         "validation": {
             "required": "{field} は必須です。",
             "max_characters": "{field} は {max} 文字以内で入力してください。",
-            "slug_letters_only": "Slug には小文字の英字のみ使用できます。",
-            "slug_reserved": "この slug は予約済みです。別のものを選んでください。",
+            "slug_letters_only": "スラッグ には小文字の英字のみ使用できます。",
+            "slug_reserved": "このスラッグは予約済みです。別のものを選んでください。",
             "invalid_option": "{field} の有効な値を選択してください。",
             "invalid_url": "有効な URL を入力してください。",
             "invalid_discord_invite": "有効な Discord 招待リンクを入力してください。",
@@ -204,7 +204,7 @@
         "sections": {
             "identity": {
                 "title": "グループ情報",
-                "subtitle": "グループ名、slug、データセンターを選択してください。"
+                "subtitle": "グループ名、スラッグ、データセンターを選択してください。"
             },
             "presence": {
                 "title": "コミュニティ情報",
@@ -228,7 +228,7 @@
                 "placeholder": "Forked Tower Enjoyers"
             },
             "slug": {
-                "label": "Slug",
+                "label": "スラッグ",
                 "placeholder": "ftel",
                 "help": "小文字英字のみ、最大8文字。"
             },
@@ -304,12 +304,12 @@
             },
             "tags": {
                 "label": "追加タグ",
-                "placeholder": "Late Night や Blind Prog のようなタグを追加または作成",
+                "placeholder": "深夜帯 や 初見攻略 のようなタグを追加または作成",
                 "help": "任意。最大 {max} 個まで、雰囲気やニッチな特徴を表す自由タグを使えます。",
                 "suggestions": {
-                    "late_night": "Late Night",
+                    "late_night": "深夜帯",
                     "lgbtq_friendly": "LGBTQ+歓迎",
-                    "blind_prog": "Blind Prog",
+                    "blind_prog": "初見攻略",
                     "alt_friendly": "サブキャラ歓迎",
                     "achievement_hunting": "実績集め",
                     "weekend_raids": "週末レイド"

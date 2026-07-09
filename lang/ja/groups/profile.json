@@ -4,9 +4,9 @@
         "no_description": "このグループにはまだ公開説明がありません。"
     },
     "badges": {
-        "open": "Open group",
-        "invite_only": "Invite only",
-        "application": "Application based"
+        "open": "オープングループ",
+        "invite_only": "招待制",
+        "application": "応募制"
     },
     "actions": {
         "back": "戻る",
@@ -18,12 +18,12 @@
     },
     "snapshot": {
         "members": "メンバー",
-        "active_runs": "進行中のRuns",
+        "active_runs": "進行中のラン",
         "staff": "スタッフ"
     },
     "activity": {
         "current_title": "グループ活動",
-        "current_subtitle": "このグループが準備中、募集中、または進行中の公開Runsです。",
+        "current_subtitle": "このグループが準備中、募集中、または進行中の公開ランです。",
         "recent_title": "最近の更新",
         "recent_subtitle": "このグループの最新の公開アクティビティです。",
         "count": "{count} 件表示",
@@ -32,8 +32,8 @@
         "updated": "{time}に更新",
         "unknown_update": "更新時刻は不明です",
         "just_now": "たった今",
-        "empty_current_title": "現在アクティブな公開Runsはありません",
-        "empty_current_description": "このグループが公開Runsを予定すると、主催者やロスター情報と一緒にここへ表示されます。",
+        "empty_current_title": "現在アクティブな公開ランはありません",
+        "empty_current_description": "このグループが公開ランを予定すると、主催者やロスター情報と一緒にここへ表示されます。",
         "empty_recent": "公開アクティビティの更新はまだありません。"
     },
     "staff": {
@@ -46,14 +46,14 @@
     "access": {
         "title": "グループアクセス",
         "subtitle": "このグループの見つけ方と参加方法です。",
-        "open_title": "Open group",
-        "open_description": "Anyone with a FullParty account can join this group.",
-        "invite_only_title": "Invite only",
-        "invite_only_description": "New members need an invite from the group staff.",
-        "application_title": "Application based",
-        "application_description": "New members apply for staff review. Invite links can still add members directly.",
+        "open_title": "オープングループ",
+        "open_description": "FullPartyアカウントがあれば誰でもこのグループに参加できます。",
+        "invite_only_title": "招待制",
+        "invite_only_description": "新しいメンバーはグループスタッフからの招待が必要です。",
+        "application_title": "応募制",
+        "application_description": "新しいメンバーはスタッフの審査に応募します。招待リンクからは引き続き直接メンバーを追加できます。",
         "static_title": "固定ロスター",
-        "static_description": "This group uses a fixed roster style.",
+        "static_description": "このグループは固定ロスター方式を使用します。",
         "visible_title": "検索に表示",
         "visible_description": "このグループは公開ディスカバリーや検索に表示されます。",
         "hidden_title": "検索に非表示",

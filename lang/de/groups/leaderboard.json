@@ -51,7 +51,7 @@
         "formula_hint": "Score = (dokumentierte Erfolge + Auto-Erfolge x 0.5 + Prior) / (abgeschlossene gehostete Runs + 10). Hosts mit nur einem Run werden ausgeblendet.",
         "raw_success": "Roher Erfolg {rate}",
         "documented": "{count} dokumentiert",
-        "auto": "{count} auto",
+        "auto": "{count} automatisch",
         "breakdown": "{documented} dokumentiert / {auto} auto / {failed} verfehlt"
     },
     "empty": {

@@ -9,15 +9,15 @@
         "leave_group": "Gruppe verlassen"
     },
     "leave_group_modal": {
-        "title": "Leave {name}?",
+        "title": "{name} verlassen?",
         "description": "You will lose member access to this group until you join again or receive a new invite.",
-        "warning": "Any group-specific access, moderation privileges, and member-only dashboard actions will no longer be available after you leave.",
+        "warning": "Gruppenspezifischer Zugriff, Moderatorrechte und Mitgliederaktionen im Dashboard stehen dir nach dem Verlassen nicht mehr zur Verfügung.",
         "confirm": "Gruppe verlassen"
     },
     "labels": {
         "just_now": "gerade eben",
         "not_available": "Nicht verfügbar",
-        "no_recent_activity": "No recent activity yet",
+        "no_recent_activity": "Noch keine aktuelle Aktivitaet",
         "no_member_joins": "No member joins recorded"
     },
     "hero": {
@@ -65,11 +65,11 @@
     },
     "content": {
         "title": "What This Group Runs",
-        "subtitle": "See the kinds of content this group keeps coming back to, along with their history for each one.",
+        "subtitle": "Sieh dir an, zu welchen Inhalten diese Gruppe immer wieder zurückkehrt, zusammen mit ihrer Historie pro Inhalt.",
         "total_runs": "{count} visible runs",
         "visible_runs": "Visible Runs",
-        "visible_runs_hint": "This reflects the run history visible to the current viewer, including the group's status mix.",
-        "library": "Activity Types",
+        "visible_runs_hint": "Dies spiegelt die für den aktuellen Betrachter sichtbare Run-Historie wider, einschließlich der Statusverteilung der Gruppe.",
+        "library": "Aktivitaetstypen",
         "library_hint": "Grouped by the kinds of content this group has actually been running.",
         "completed": "Completed: {count}",
         "active": "Active: {count}",
@@ -92,7 +92,7 @@
         "public": "Öffentlich",
         "private": "Nur Mitglieder",
         "ran": "Ran {time}",
-        "view_overview": "View Overview",
+        "view_overview": "Uebersicht ansehen",
         "open_board": "Open Board",
         "empty_title": "No completed runs yet."
     },
@@ -109,11 +109,11 @@
         "score": "{configured}/{total} configured",
         "coverage": "Coverage",
         "configured": "Configured",
-        "missing": "Missing",
-        "join_mode": "Join Mode",
+        "missing": "Fehlt",
+        "join_mode": "Beitrittsart",
         "join_mode_open": "Gruppe öffnen",
         "join_mode_invite_only": "Nur mit Einladung",
-        "join_mode_application": "Application Based",
+        "join_mode_application": "Bewerbungsbasiert",
         "discovery": "Entdeckung",
         "discovery_visible": "Auffindbar",
         "discovery_hidden": "Versteckt",

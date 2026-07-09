@@ -15,11 +15,11 @@
             "description": "People can join whenever. Community open groups also get a permanent slug invite."
         },
         "invite_only": {
-            "label": "Invite Only",
+            "label": "Nur Einladung",
             "description": "People can only join through generated invite links."
         },
         "application": {
-            "label": "Application Based",
+            "label": "Bewerbungsbasiert",
             "description": "People apply for review. Generated invite links can still add members directly."
         }
     },
@@ -50,21 +50,21 @@
         "recent_activity": "Recent Activity",
         "region": "Region",
         "group_type": "Gruppentyp",
-        "join_mode": "Join Mode",
+        "join_mode": "Beitrittsart",
         "timezone": "Timezone",
         "active_days": "Aktive Tage",
         "active_hours": "Active Hours"
     },
     "states": {
         "open_group": "Gruppe öffnen",
-        "invite_only_group": "Invite Only",
-        "application_group": "Application Based",
+        "invite_only_group": "Nur Einladung",
+        "application_group": "Bewerbungsbasiert",
         "visible_in_discovery": "In der Entdeckung sichtbar",
         "hidden_from_discovery": "Hidden from Discovery",
         "not_shared": "Not shared",
         "no_description_short": "This group has not added a description yet.",
-        "no_description_long": "This group has not added a description yet. Use this space to clarify what you run, who it is for, and how people should approach joining.",
-        "no_recent_activity": "No recent activity yet"
+        "no_description_long": "Diese Gruppe hat noch keine Beschreibung hinzugefügt. Nutze diesen Bereich, um klarzumachen, was ihr lauft, für wen es gedacht ist und wie Leute beitreten sollten.",
+        "no_recent_activity": "Noch keine aktuelle Aktivitaet"
     },
     "validation": {
         "active_time_pair_required": "Aktive Start- und Endzeiten müssen gemeinsam angegeben werden.",

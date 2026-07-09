@@ -172,12 +172,12 @@
             "body": "{activity} was scheduled for {group}."
         },
         "member_promoted": {
-            "title": "Role updated",
-            "body": "Your role in {group} was updated to {role}."
+            "title": "ロールを更新しました",
+            "body": "{group}でのあなたのロールが{role}に更新されました。"
         },
         "member_demoted": {
-            "title": "Role updated",
-            "body": "Your role in {group} was updated to {role}."
+            "title": "ロールを更新しました",
+            "body": "{group}でのあなたのロールが{role}に更新されました。"
         },
         "ownership_transferred_to_you": {
             "title": "グループ所有権を移譲",

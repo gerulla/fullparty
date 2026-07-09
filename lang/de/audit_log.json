@@ -300,7 +300,7 @@
         "provider": "Anbieter",
         "provider_user_id": "Anbieter-Benutzer-ID",
         "membership_application_id": "Anfrage",
-        "applicant_user_id": "Applicant",
+        "applicant_user_id": "Bewerber",
         "applicant_name": "Applicant Name",
         "field_count": "Field Count",
         "previous_field_count": "Previous Field Count",

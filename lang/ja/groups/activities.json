@@ -1,7 +1,7 @@
 {
     "title": "ラン",
-    "subtitle": "{group}'s upcoming schedule and monthly calendar at a glance.",
-    "header_badge": "{count} upcoming",
+    "subtitle": "{group}の今後の予定と月間カレンダーをひと目で確認できます。",
+    "header_badge": "今後 {count}件",
     "back": "ランに戻る",
     "statuses": {
         "draft": "下書き",
@@ -40,31 +40,31 @@
     },
     "upcoming": {
         "title": "今後のRuns",
-        "subtitle": "A detailed view of what's coming up next for the group.",
-        "count": "{count} scheduled",
-        "empty": "No upcoming runs are scheduled yet."
+        "subtitle": "グループで次に予定されているRunの詳細です。",
+        "count": "予定 {count}件",
+        "empty": "今後のRunはまだ予定されていません。"
     },
     "selected_day": {
-        "title": "Selected Day",
-        "subtitle": "Runs scheduled for {date}.",
+        "title": "選択した日",
+        "subtitle": "{date}に予定されているRunです。",
         "mobile_title": "{date}のRuns",
         "mobile_count": "この日は{count}件のRunがあります。",
-        "count": "{count} on this day",
-        "empty": "No runs are scheduled for this day."
+        "count": "この日は{count}件",
+        "empty": "この日に予定されているRunはありません。"
     },
     "calendar": {
-        "title": "Monthly Calendar",
-        "subtitle": "A month view of the group's run schedule.",
-        "month_count": "{count} this month",
+        "title": "月間カレンダー",
+        "subtitle": "グループのRun予定を月表示で確認できます。",
+        "month_count": "今月{count}件",
         "previous": "前へ",
         "next": "次へ",
-        "day_count": "{count} items",
-        "more": "+{count} more",
+        "day_count": "{count}件",
+        "more": "+{count}件追加",
         "member_count": "メンバー {assigned}/{total}",
         "context_menu": {
-            "create_run_18": "Create Run at 18 ST",
-            "create_run_20": "Create Run at 20 ST",
-            "create_run_22": "Create Run at 22 ST"
+            "create_run_18": "18 STにRunを作成",
+            "create_run_20": "20 STにRunを作成",
+            "create_run_22": "22 STにRunを作成"
         }
     },
     "mobile_calendar": {
@@ -78,212 +78,212 @@
         "copy_discord_timestamp_success_description": "Runの開始時刻をDiscordに貼り付けられます。",
         "copy_discord_timestamp_error_title": "タイムスタンプをコピーできません",
         "copy_discord_timestamp_error_description": "Runの時刻をもう一度コピーしてください。",
-        "copy_run_link": "Copy Link to Run",
-        "copy_run_link_success_title": "Run link copied",
-        "copy_run_link_success_description": "The run overview link is ready to share.",
-        "copy_run_link_error_title": "Unable to copy run link",
-        "copy_run_link_error_description": "Please try copying the run link again.",
-        "copy_application_link": "Copy Link to Application",
-        "copy_application_link_success_title": "Application link copied",
-        "copy_application_link_success_description": "The application link is ready to share.",
-        "copy_application_link_error_title": "Unable to copy application link",
-        "copy_application_link_error_description": "Please try copying the application link again.",
+        "copy_run_link": "Runリンクをコピー",
+        "copy_run_link_success_title": "Runリンクをコピーしました",
+        "copy_run_link_success_description": "Run概要リンクを共有できます。",
+        "copy_run_link_error_title": "Runリンクをコピーできません",
+        "copy_run_link_error_description": "もう一度Runリンクのコピーを試してください。",
+        "copy_application_link": "申請リンクをコピー",
+        "copy_application_link_success_title": "申請リンクをコピーしました",
+        "copy_application_link_success_description": "申請リンクを共有できます。",
+        "copy_application_link_error_title": "申請リンクをコピーできません",
+        "copy_application_link_error_description": "もう一度申請リンクのコピーを試してください。",
         "open_management": "管理画面を開く",
         "open_overview": "概要を開く",
         "edit_run": "Edit Run",
-        "export_excel": "Export Excel",
-        "copy_info": "Copy Info",
-        "copy_info_success_title": "Run summary copied",
-        "copy_info_success_description": "A formatted run summary is ready to paste.",
-        "copy_info_error_title": "Unable to copy run summary",
-        "copy_info_error_description": "Please try copying the run summary again.",
+        "export_excel": "Excelをエクスポート",
+        "copy_info": "情報をコピー",
+        "copy_info_success_title": "Run概要をコピーしました",
+        "copy_info_success_description": "貼り付け用のRun概要を作成しました。",
+        "copy_info_error_title": "Run概要をコピーできません",
+        "copy_info_error_description": "もう一度Run概要のコピーを試してください。",
         "summary_labels": {
             "title": "タイトル",
             "type": "種類",
             "status": "ステータス",
             "date": "日付",
-            "time": "Time",
-            "duration": "Duration",
-            "host": "Host",
+            "time": "時間",
+            "duration": "所要時間",
+            "host": "ホスト",
             "datacenter": "データセンター",
-            "slots": "Slots",
+            "slots": "スロット",
             "applications": "応募"
         }
     },
     "legend": {
-        "title": "Status Legend"
+        "title": "ステータス凡例"
     },
     "cards": {
         "unknown_type": "不明なアクティビティ種別",
         "unscheduled": "TBD",
         "no_time": "時間未設定",
-        "no_relative_time": "Schedule pending",
-        "no_organizer": "Organizer not set",
-        "manage": "Manage run",
-        "slots": "{count} slots",
-        "applications": "{count} applications",
-        "milestones": "{count} milestones"
+        "no_relative_time": "スケジュール未設定",
+        "no_organizer": "主催者未設定",
+        "manage": "Runを管理",
+        "slots": "{count}スロット",
+        "applications": "申請 {count}件",
+        "milestones": "{count}マイルストーン"
     },
     "management": {
-        "title": "Run Management",
-        "subtitle": "Manage the live details for this {type} run.",
-        "placeholder": "This is the entry point for slot assignment, applications, and progress updates.",
+        "title": "Run管理",
+        "subtitle": "この{type} Runの現在の詳細を管理します。",
+        "placeholder": "スロット割り当て、申請、進行更新の入口です。",
         "coming_soon": "The full activity management interface comes next. This page is now the dedicated destination for roster assignment and activity administration.",
-        "summary_title": "Run Summary",
+        "summary_title": "Run概要",
         "summary_subtitle": "A quick read on the basics before the full management tools land.",
         "edit": "Edit Run",
-        "schedule_activity": "Schedule Run",
-        "schedule_activity_confirm": "Schedule this run? It will become visible on calendars, and users may be able to apply depending on the run settings.",
+        "schedule_activity": "Runを予定に追加",
+        "schedule_activity_confirm": "このRunを予定に追加しますか？カレンダーに表示され、設定によってはユーザーが申請できるようになります。",
         "schedule_activity_modal": {
-            "title": "Schedule Run",
-            "body": "Scheduling this run makes it part of the group's live schedule. It can appear on calendars and, depending on the run's access and application settings, users may be able to find it and apply.",
-            "confirm": "Yes, Schedule Run"
+            "title": "Runを予定に追加",
+            "body": "このRunを予定に追加すると、グループの公開スケジュールに含まれます。カレンダーに表示され、アクセス設定や申請設定によってはユーザーが見つけて申請できるようになります。",
+            "confirm": "はい、Runを予定に追加"
         },
-        "complete_activity": "Complete Run",
-        "publish_roster": "Publish Roster",
-        "publish_roster_confirm": "Publish this roster? Assigned applicants will be notified, and the roster becomes the committed lineup for the run.",
+        "complete_activity": "Runを完了",
+        "publish_roster": "ロスターを公開",
+        "publish_roster_confirm": "このロスターを公開しますか？割り当てられた申請者に通知され、このRunの確定メンバーになります。",
         "publish_roster_modal": {
-            "title": "Publish Roster",
+            "title": "ロスターを公開",
             "warning_title": "Publishing notifies assigned applicants",
-            "body": "Once published, roster placements are treated as official. You can still make moderator changes afterward, but applicants may receive placement notifications.",
-            "confirm": "Yes, Publish Roster"
+            "body": "公開後、ロスター配置は正式なものとして扱われます。その後もモデレーターは変更できますが、申請者に配置通知が送られる場合があります。",
+            "confirm": "はい、ロスターを公開"
         },
-        "delete_activity": "Delete Run",
+        "delete_activity": "Runを削除",
         "delete_activity_modal": {
-            "title": "Delete Run",
+            "title": "Runを削除",
             "body": "Deleting this run removes it entirely before roster publish. This cannot be undone.",
-            "confirm": "Yes, Delete Run"
+            "confirm": "はい、Runを削除"
         },
-        "cancel_activity": "Cancel Run",
-        "cancel_activity_confirm": "Cancel this run? This archives it, disables further edits, and stops new applications.",
+        "cancel_activity": "Runをキャンセル",
+        "cancel_activity_confirm": "このRunをキャンセルしますか？アーカイブされ、以後の編集と新規申請が停止されます。",
         "cancel_activity_modal": {
-            "title": "ARE YOU SURE",
-            "body": "Cancelling this run archives it immediately. Moderators will no longer be able to edit it, and applicants will no longer be able to apply.",
-            "reason_label": "Optional cancellation reason",
-            "reason_description": "If you add a reason here, cancelled applicants will be able to see it on their application page.",
-            "reason_placeholder": "Share any context applicants should know.",
-            "confirm": "Yes, Cancel Run"
+            "title": "本当によろしいですか",
+            "body": "このRunはすぐにアーカイブされます。モデレーターは編集できなくなり、申請者も申請できなくなります。",
+            "reason_label": "任意のキャンセル理由",
+            "reason_description": "ここに理由を入力すると、キャンセルされた申請者が申請ページで確認できます。",
+            "reason_placeholder": "申請者に伝えるべき補足があれば入力してください。",
+            "confirm": "はい、Runをキャンセル"
         },
         "messages": {
-            "check_in_plugin_tooltip": "Prepared for the in-game plugin",
-            "load_failed": "Unable to load run details.",
-            "retry": "Retry",
-            "complete_failed": "Unable to complete this run.",
-            "swap_failed": "Unable to swap roster slots.",
-            "prepare_move_failed": "Unable to prepare this roster move.",
-            "load_slot_assignment_failed": "Unable to load slot assignment details.",
-            "load_manual_assignment_failed": "Unable to load group member assignment options.",
-            "return_to_queue_failed": "Unable to return this slot to the queue.",
-            "slot_unassign_failed": "Unable to update this slot assignment.",
-            "undo_check_in_failed": "Unable to undo check-in for this slot.",
-            "check_in_failed": "Unable to check in this slot.",
-            "mark_late_failed": "Unable to mark this slot as late.",
-            "check_in_group_failed": "Unable to check in this group.",
-            "mark_missing_failed": "Unable to mark this slot as missing.",
+            "check_in_plugin_tooltip": "ゲーム内プラグイン用に準備済み",
+            "load_failed": "Run詳細を読み込めませんでした。",
+            "retry": "再試行",
+            "complete_failed": "このRunを完了できません。",
+            "swap_failed": "ロスタースロットを入れ替えできません。",
+            "prepare_move_failed": "ロスター移動を準備できません。",
+            "load_slot_assignment_failed": "スロット割り当て詳細を読み込めません。",
+            "load_manual_assignment_failed": "グループメンバーの割り当て候補を読み込めません。",
+            "return_to_queue_failed": "このスロットをキューへ戻せません。",
+            "slot_unassign_failed": "このスロット割り当てを更新できません。",
+            "undo_check_in_failed": "このスロットのチェックインを取り消せません。",
+            "check_in_failed": "このスロットをチェックインできません。",
+            "mark_late_failed": "このスロットを遅刻としてマークできません。",
+            "check_in_group_failed": "このグループをチェックインできません。",
+            "mark_missing_failed": "このスロットを欠席としてマークできません。",
             "mark_designation_failed": "このスロット指定を更新できませんでした。",
             "slot_changed": "編集中にこのスロットが変更されました。ページを更新してもう一度お試しください。",
             "warning_title": "警告",
-            "undo_missing_failed": "Unable to undo this missing slot.",
-            "assign_failed": "Unable to assign this application to the selected slot.",
+            "undo_missing_failed": "この欠席マークを取り消せません。",
+            "assign_failed": "この申請を選択したスロットへ割り当てできません。",
             "application_cancelled_assignment": "この申請はキャンセルされたため、キューから削除されました。",
             "application_no_longer_pending_assignment": "この申請は保留中ではなくなったため、キューから削除されました。",
             "missing_application_cancelled": "このプレイヤーは参加登録をキャンセルしたため、欠席エントリーを削除しました。",
-            "manual_assign_failed": "Unable to assign this group member to the selected slot.",
-            "missing_title": "Missing",
-            "undo_missing": "Undo missing",
-            "unknown_character": "Unknown character",
-            "unknown_world": "Unknown world",
-            "unknown_slot": "Roster slot"
+            "manual_assign_failed": "このグループメンバーを選択したスロットへ割り当てできません。",
+            "missing_title": "未設定",
+            "undo_missing": "欠席を取り消す",
+            "unknown_character": "不明なキャラクター",
+            "unknown_world": "不明なワールド",
+            "unknown_slot": "ロスタースロット"
         },
         "cancelled_alert": {
-            "title": "This run has been cancelled",
-            "description": "This run is archived and no longer accepting applications or moderator changes."
+            "title": "このRunはキャンセルされました",
+            "description": "このRunはアーカイブ済みで、申請やモデレーター変更は受け付けていません。"
         },
         "manual_assignment": {
-            "title": "Manual Assignment",
-            "member_character": "Group Member Character",
-            "select_character": "Select a group member character",
-            "select_character_warning": "Choose a group member character to continue.",
+            "title": "手動割り当て",
+            "member_character": "グループメンバーのキャラクター",
+            "select_character": "グループメンバーのキャラクターを選択",
+            "select_character_warning": "続行するにはグループメンバーのキャラクターを選択してください。",
             "incompatible_fields": "The selected character does not have compatible options for the slot fields on this slot.",
-            "editing_assignment_title": "Editing manual assignment",
-            "editing_assignment_body": "This slot was manually assigned, so you can update its slot field values here. Returning it to the queue stays disabled.",
-            "confirm": "Assign to Slot"
+            "editing_assignment_title": "手動割り当てを編集中",
+            "editing_assignment_body": "このスロットは手動割り当てのため、ここでスロット項目の値を更新できます。キューへ戻す操作は無効のままです。",
+            "confirm": "スロットに割り当て"
         },
         "complete_activity_modal": {
-            "title": "Complete Run",
-            "description": "Record the final run outcome before this run is archived.",
+            "title": "Runを完了",
+            "description": "このRunをアーカイブする前に最終結果を記録します。",
             "progress": "ステップ {current} / {total}",
-            "warning_title": "Completed runs become immutable",
-            "warning_body": "Once completed, this run becomes archival-only. Moderators will no longer be able to edit the roster, applications, or activity details.",
+            "warning_title": "完了したRunは変更できなくなります",
+            "warning_body": "完了後、このRunはアーカイブ専用になります。モデレーターはロスター、申請、アクティビティ詳細を編集できなくなります。",
             "warning_points": {
                 "immutable": "The run will be locked and treated as archival/overview-only.",
                 "progress": "The final stored progression result becomes the source of truth for this run."
             },
-            "no_milestones": "This activity type has no progress milestones configured, so this completion will only archive the run.",
-            "method_label": "Progress entry method",
+            "no_milestones": "このアクティビティタイプには進行マイルストーンが設定されていないため、完了時はRunのアーカイブのみ行われます。",
+            "method_label": "進行記録方法",
             "method_help": "Choose whether to paste an FF Logs report for autofill or enter the normalized result manually.",
             "fflogs_link": "FF Logs Link",
-            "fflogs_link_placeholder": "Paste the FF Logs report or fight link",
+            "fflogs_link_placeholder": "FF Logsレポートまたは戦闘リンクを貼り付け",
             "fflogs_step_help": "Paste the FF Logs report link for this run. The next step will process it and prefill the progression result for review.",
-            "fflogs_step_hint": "You want the report or fight link that contains the run you are completing, not just the character rankings page.",
+            "fflogs_step_hint": "必要なのはキャラクターランキングページではなく、完了するRunを含むレポートまたは戦闘リンクです。",
             "fflogs_preview_success": "FF Logs report processed",
             "fflogs_preview_error": "Unable to process this FF Logs report right now.",
-            "furthest_progress": "Furthest Point Reached",
-            "furthest_progress_placeholder": "Select the actual furthest point reached",
-            "milestones": "Progress Milestones",
+            "furthest_progress": "到達した最遠ポイント",
+            "furthest_progress_placeholder": "実際に到達した最遠ポイントを選択",
+            "milestones": "進行マイルストーン",
             "milestones_hint": "Enter the normalized final result that should be stored for this run.",
             "milestones_autofilled_hint": "Review the autofilled result and adjust anything that needs correction.",
             "manual_step_help": "Enter the final normalized progression result for this run.",
             "empty_progress_warning_title": "未入力の進捗項目があります",
             "empty_progress_warning_body": "空のまま進める場合は、もう一度「続行」をクリックしてください。",
             "kills": "討伐数",
-            "best_progress_percent": "Best Progress %",
+            "best_progress_percent": "最高進行度 %",
             "errors": {
                 "kills_integer": "Killsは整数で入力してください。",
                 "percent_numeric": "進捗は特殊記号を使わずに0から100の数値で入力してください。",
                 "percent_range": "進捗は0から100の範囲で入力してください。"
             },
             "notes": "メモ",
-            "notes_placeholder": "Optional notes about the result or evidence.",
-            "confirm_title": "Final Confirmation",
+            "notes_placeholder": "結果や証拠に関する任意メモ。",
+            "confirm_title": "最終確認",
             "confirm_body": "Double check this progression result before completing the activity.",
-            "none_selected": "None selected",
-            "confirm": "Complete Run",
+            "none_selected": "未選択",
+            "confirm": "Runを完了",
             "methods": {
                 "fflogs": "FF Logs",
-                "manual": "Manual",
+                "manual": "手動",
                 "fflogs_help": "Paste a report link and let the system autofill the milestone progression.",
                 "manual_help": "Enter the final progression result directly from the run outcome."
             },
             "steps": {
                 "warning": "警告",
-                "method": "Method",
+                "method": "方法",
                 "fflogs_link": "FF Logs Link",
                 "fflogs_review": "Review Autofill",
-                "manual": "Manual Progress",
+                "manual": "手動進行入力",
                 "confirm": "Confirmation"
             }
         },
-        "view_overview": "View Overview",
+        "view_overview": "概要を見る",
         "type": "アクティビティ種別",
         "starts_at": "開始日時",
         "organizer": "主催者",
-        "slots": "Slots",
+        "slots": "スロット",
         "applications": "応募",
-        "milestones": "Milestones",
+        "milestones": "マイルストーン",
         "overview": {
             "group": "グループ",
-            "applicants": "Applicants",
-            "assigned": "{assigned}/{total} Assigned",
-            "pending_applicants": "{count} pending",
+            "applicants": "申請者",
+            "assigned": "{assigned}/{total} 割り当て済み",
+            "pending_applicants": "保留 {count}件",
             "duration": "{count}時間",
             "no_duration": "所要時間未設定",
-            "check_in": "Start Check-In",
-            "go_to_application": "Go To Application",
-            "application_link_copied": "Application link copied.",
-            "export": "Export",
-            "export_csv": "Export Excel",
-            "generated_at": "Generated",
+            "check_in": "チェックイン開始",
+            "go_to_application": "申請へ移動",
+            "application_link_copied": "申請リンクをコピーしました。",
+            "export": "エクスポート",
+            "export_csv": "Excelをエクスポート",
+            "generated_at": "生成日時",
             "roster_summary": {
                 "eyebrow": "Composition Summary",
                 "requirements_count": "{count} requirements",
@@ -296,47 +296,47 @@
                 }
             },
             "progression": {
-                "title": "Recorded Progression",
+                "title": "記録済み進行度",
                 "subtitle": "The final progression result stored for this completed run.",
-                "completed_at": "Completed At",
-                "source": "Recorded Via",
-                "furthest_point": "Furthest Point",
-                "best_progress": "Best Progress",
-                "evidence": "Evidence",
-                "view_fflogs": "View FF Logs Report",
-                "notes": "Progress Notes",
-                "milestones": "Milestones",
+                "completed_at": "完了日時",
+                "source": "記録方法",
+                "furthest_point": "最遠ポイント",
+                "best_progress": "最高進行度",
+                "evidence": "証拠",
+                "view_fflogs": "FF Logsレポートを見る",
+                "notes": "進行メモ",
+                "milestones": "マイルストーン",
                 "not_recorded": "未記録"
             }
         },
         "roster": {
-            "title": "Roster Assignments",
-            "subtitle": "Parties and slots are generated from the activity layout and ready to be filled.",
-            "slots_count": "{count} slots",
+            "title": "ロスター割り当て",
+            "subtitle": "パーティとスロットはアクティビティレイアウトから生成され、割り当て可能です。",
+            "slots_count": "{count}スロット",
             "assigned": "割り当て済み",
-            "checked_in": "Checked in",
-            "late": "Late",
+            "checked_in": "チェックイン済み",
+            "late": "遅刻",
             "open": "オープン",
             "bench": "ベンチ",
-            "slot_placeholder": "Click to assign",
+            "slot_placeholder": "クリックして割り当て",
             "filled_placeholder": "Assigned character details and controls will live here next.",
-            "filled_slot": "Filled Slot",
-            "empty_slot": "Empty Slot",
-            "composition_preset": "Composition preset",
+            "filled_slot": "割り当て済みスロット",
+            "empty_slot": "空きスロット",
+            "composition_preset": "構成プリセット",
             "composition_update_failed": "Could not update the party composition preset.",
-            "apply_composition_to_all": "Apply To All",
+            "apply_composition_to_all": "すべてに適用",
             "apply_composition_to_all_failed": "Could not apply the composition hints to the other parties.",
-            "composition_custom": "Custom",
-            "composition_custom_title": "Custom Slot Hint",
+            "composition_custom": "カスタム",
+            "composition_custom_title": "カスタムスロットヒント",
             "composition_custom_description": "Choose the specific jobs this empty slot should advertise.",
-            "composition_custom_save": "Save Hint",
+            "composition_custom_save": "ヒントを保存",
             "composition_custom_no_options": "No job options are available.",
             "composition_hint_update_failed": "Could not update this slot composition hint.",
-            "check_in_all": "Check In All",
-            "check_in_action": "Check-in",
-            "mark_late_action": "Mark late",
+            "check_in_all": "全員チェックイン",
+            "check_in_action": "チェックイン",
+            "mark_late_action": "遅刻にする",
             "mark_missing_action": "欠席 / 不在としてマーク",
-            "remove_from_slot_action": "Remove from slot",
+            "remove_from_slot_action": "スロットから外す",
             "return_to_queue_action": "キューに戻す",
             "move_to_bench_action": "ベンチへ移動",
             "change_assignment_action": "割り当てを変更",
@@ -347,7 +347,7 @@
             "unmark_host_action": "ホスト指定を解除",
             "mark_raid_leader_action": "レイドリーダーに指定",
             "unmark_raid_leader_action": "レイドリーダー指定を解除",
-            "undo_check_in": "Undo Checkin",
+            "undo_check_in": "チェックインを取り消す",
             "unmark_late_action": "遅刻を解除",
             "host_badge": "ホスト",
             "raid_leader_badge": "レイドリーダー",
@@ -363,7 +363,7 @@
                 "dps": "DPS"
             },
             "list_headers": {
-                "party": "Party",
+                "party": "パーティ",
                 "slot": "枠",
                 "details": "詳細",
                 "status": "ステータス"
@@ -373,13 +373,13 @@
                 "slot": "枠",
                 "status": "ステータス",
                 "character": "キャラクター",
-                "world": "World",
+                "world": "ワールド",
                 "datacenter": "データセンター"
             },
             "empty": "No roster slots were generated for this activity."
         },
         "queue": {
-            "title": "Applicant Queue",
+            "title": "申請キュー",
             "new_application_notice_one": "新しい応募が{count}件届きました",
             "new_application_notice_many": "新しい応募が{count}件届きました",
             "application_edited_notice": "{name} が応募内容を編集しました",
@@ -388,7 +388,7 @@
             "dismiss_queue_event_notice": "キュー通知を閉じる",
             "search_placeholder": "Search applicants...",
             "filters": "フィルター",
-            "filters_with_count": "Filters ({count})",
+            "filters_with_count": "フィルター（{count}）",
             "filter_any": "Any match",
             "filter_any_milestone": "Any milestone reached",
             "milestones_reached": "Milestones Reached",
@@ -405,7 +405,7 @@
             "assignment_replace_character": "{character} はこのスロットで置き換えられます。",
             "no_selected_character": "この応募には選択済みキャラクターがないため、ロスターに割り当てられません。",
             "incompatible_slot_answers": "この応募には対象スロット項目と互換性のある回答がありません。",
-            "approve": "Approve",
+            "approve": "承認",
             "decline": "辞退",
             "decline_footer_hint": "Declining removes this application from the pending queue and cannot be undone.",
             "decline_success_title": "応募が辞退されました",
@@ -414,22 +414,22 @@
             "decline_error_description": "This application could not be declined right now.",
             "can_play": "Can Play",
             "empty": "No pending applicants right now.",
-            "placeholder": "Applicant details, playable jobs, and notes will be expanded here next.",
+            "placeholder": "申請者の詳細、プレイ可能なジョブ、メモは今後ここに表示されます。",
             "decline_modal": {
-                "title": "Decline Application",
+                "title": "申請を却下",
                 "description": "Remove this application from the pending review queue.",
                 "warning_title": "This cannot be undone",
-                "warning_description": "Once an application is declined, moderators cannot return it to pending review from the dashboard.",
+                "warning_description": "申請を却下すると、モデレーターはダッシュボードから審査待ちへ戻せません。",
                 "reason_label": "Optional reason",
-                "reason_description": "If you add a reason here, the applicant will be able to see it on their application page.",
+                "reason_description": "ここに理由を入力すると、申請者が自分の申請ページで確認できます。",
                 "reason_placeholder": "Share any context the applicant should know.",
-                "confirm": "Decline Application"
+                "confirm": "申請を却下"
             },
             "modal": {
-                "applicant": "Applicant",
+                "applicant": "申請者",
                 "account": "アカウント",
                 "submitted": "Submitted",
-                "world": "World",
+                "world": "ワールド",
                 "datacenter": "データセンター",
                 "occult_level": "Occult Level",
                 "phantom_mastery": "Phantom Mastery",
@@ -454,7 +454,7 @@
                 "fflogs_unavailable_guest": "FF Logs progress is only available once this application is linked to a verified FullParty character.",
                 "fflogs_encounters": "Encounters",
                 "fflogs_total_kills": "Total Kills",
-                "fflogs_best_progress": "Best Progress",
+                "fflogs_best_progress": "最高進行度",
                 "user_stats": "User History",
                 "most_played_class": "Most Played Class",
                 "most_played_phantom_job": "Most Played Phantom Job",
@@ -480,7 +480,7 @@
         },
         "controls": {
             "view": "View",
-            "party": "Party",
+            "party": "パーティ",
             "role": "ロール",
             "list": "List",
             "applications_toggle": "Applications: {count}",
@@ -493,7 +493,7 @@
         "subtitle": "{group} shared this {type} run.",
         "description": "This is the attendee-facing overview for the run and its application flow.",
         "cancelled_alert": {
-            "title": "This run has been cancelled",
+            "title": "このRunはキャンセルされました",
             "description": "This run is archived and no longer accepting applications."
         },
         "open_application": "Apply Here",
@@ -503,7 +503,7 @@
         "summary_title": "Quick Summary",
         "summary_subtitle": "The key details before the application tools land here.",
         "applications_title": "応募",
-        "applications_ready": "Application submission will live from this page. For now, this direct link is the right access path.",
+        "applications_ready": "申請送信は今後このページから行えるようになります。現時点では、この直接リンクが正しいアクセス方法です。",
         "applications_login": "You will need to log in before applying once the application flow is added here.",
         "meta": {
             "roster": "Roster",
@@ -515,16 +515,16 @@
         "details": {
             "description": "説明",
             "target_prog_point": "目標Progポイント",
-            "guest_applications": "Guest Applications",
+            "guest_applications": "ゲスト申請",
             "pending_applications": "応募",
             "no_description": "No description provided.",
-            "no_target_prog_point": "No target prog point selected",
-            "no_min_item_level": "No minimum"
+            "no_target_prog_point": "目標Progポイント未選択",
+            "no_min_item_level": "最低なし"
         },
         "board": {
             "title": "Roster Board",
             "subtitle": "Parties are laid out side by side so members can scan the current lineup quickly.",
-            "party_label": "Party",
+            "party_label": "パーティ",
             "party_count": "{count} parties",
             "filled_count": "{count} filled",
             "open_count": "{count} open",
@@ -533,7 +533,7 @@
             "assigned_member": "Assigned member",
             "no_slot": "No slot in this row",
             "bench_title": "Bench",
-            "bench_subtitle": "Overflow, standby, and reserve positions stay visible here.",
+            "bench_subtitle": "補欠、待機、予備枠はここに表示されます。",
             "bench_count": "{count} bench slots"
         },
         "self_signup": {
@@ -567,13 +567,13 @@
     },
     "application": {
         "title": "応募",
-        "subtitle": "Apply to join {group}'s {type} run.",
-        "subtitle_existing": "Update your application for {group}'s {type} run.",
-        "back": "Back to Run Overview",
+        "subtitle": "{group}の{type} Runに申請します。",
+        "subtitle_existing": "{group}の{type} Runへの申請を更新します。",
+        "back": "Run概要に戻る",
         "run_info_title": "Run Info",
         "run_info_subtitle": "A quick reminder of the run details while you apply.",
-        "summary_schema": "Application Questions",
-        "summary_schema_hint": "This run type's question schema will be rendered here next.",
+        "summary_schema": "申請質問",
+        "summary_schema_hint": "このRunタイプの質問項目は今後ここに表示されます。",
         "summary_notes": "Host Notes",
         "class_picker": {
             "empty": "Select classes",
@@ -622,13 +622,13 @@
             "guest_result_select": "選択",
             "guest_result_selected": "Selected",
             "guest_no_results_title": "No matching characters found",
-            "guest_no_results_description": "Double check the spelling and world, then try the search again.",
+            "guest_no_results_description": "名前とワールドの表記を確認して、もう一度検索してください。",
             "answers_title": "Dynamic Questions",
             "answers_description": "The form will render {count} activity-type question fields here.",
             "notes_title": "Extra Notes",
             "notes_description": "A freeform notes area will live here for any extra context the applicant wants to share.",
             "notes_field": "メモ",
-            "notes_placeholder": "Anything else the moderators should know?",
+            "notes_placeholder": "モデレーターに伝えておきたいことはありますか？",
             "remember_defaults_label": "このアクティビティ種別の入力内容を記憶する",
             "remember_defaults_description": "次回このアクティビティ種別で新しい応募を始めるとき、同じキャラクター、回答、メモを自動入力します。",
             "cancel": "キャンセル",
@@ -649,11 +649,11 @@
         },
         "confirmation": {
             "submitted_title": "応募が送信されました",
-            "submitted_description": "Your application for {group}'s {type} run is in and ready for moderator review.",
+            "submitted_description": "{group}の{type} Runへの申請が送信され、モデレーターの確認待ちになりました。",
             "updated_title": "応募内容が更新されました",
             "updated_description": "Your latest changes are saved and ready for moderator review.",
             "status_title": "Application status",
-            "status_description": "Here is the current status of your application for {group}'s {type} run.",
+            "status_description": "{group}の{type} Runへの申請状況です。",
             "run_info_subtitle": "Here is the final summary of what you sent.",
             "character": "キャラクター",
             "status": "Submission Status",
@@ -666,11 +666,11 @@
                 "withdrawn": "取り下げ"
             },
             "guest_cta_title": "FullParty account gives you the full experience",
-            "guest_cta_description": "Create an account if you want proper notifications, run history, and easier access when signing up for future runs.",
+            "guest_cta_description": "通知、Run履歴、今後の申請をもっと簡単に使うにはアカウントを作成してください。",
             "guest_link_title": "Save this application link",
             "guest_link_description": "Copy this link if you want to come back later to check your application or edit it while it is still pending review.",
             "copy_link": "Copy Application Link",
-            "copy_link_success_title": "Application link copied",
+            "copy_link_success_title": "申請リンクをコピーしました",
             "copy_link_success_description": "You can save or share this link to revisit your guest application later.",
             "copy_link_error_title": "Unable to copy link",
             "copy_link_error_description": "Please copy the address from your browser and keep it somewhere safe.",
@@ -682,18 +682,18 @@
             "notes_title": "メモ",
             "notes_description": "Your extra notes are included below.",
             "no_notes": "No extra notes were included.",
-            "back_to_overview": "Back to Run Overview",
+            "back_to_overview": "Run概要に戻る",
             "edit_application": "Edit Application"
         }
     },
     "create": {
-        "cta": "Create Run",
-        "title": "Create Run",
-        "subtitle": "Set up a new run for your group.",
-        "back": "Back to Runs",
+        "cta": "Runを作成",
+        "title": "Runを作成",
+        "subtitle": "グループ用の新しいRunを設定します。",
+        "back": "Runに戻る",
         "placeholder": "The dedicated activity creation flow will live here.",
-        "submit": "Create Run",
-        "no_types_title": "No activity types available",
+        "submit": "Runを作成",
+        "no_types_title": "利用できるアクティビティタイプがありません",
         "no_types_description": "Create and publish an activity type from the admin area before creating activities for groups.",
         "validation": {
             "starts_at_not_past": "過去の日時にRunを予定することはできません。"
@@ -701,54 +701,54 @@
         "steps": {
             "schedule": {
                 "title": "スケジュール",
-                "description": "When are we dropping?"
+                "description": "いつ出発しますか？"
             },
             "activity": {
                 "title": "アクティビティ",
-                "description": "What content are we running?"
+                "description": "どのコンテンツを走りますか？"
             },
             "requirements": {
-                "title": "Requirements",
-                "description": "Who and what is needed?"
+                "title": "条件",
+                "description": "誰が、何が必要ですか？"
             },
             "review": {
-                "title": "Review",
-                "description": "Confirm and publish"
+                "title": "確認",
+                "description": "確認して公開"
             }
         },
         "navigation": {
             "back": "戻る",
             "next": "次へ",
-            "review": "Review Run"
+            "review": "Runを確認"
         },
         "roles": {
             "owner": "オーナー",
             "moderator": "モデレーター"
         },
         "form": {
-            "title": "Activity Setup",
-            "subtitle": "Pick the activity type, basic schedule details, and who is organizing it."
+            "title": "アクティビティ設定",
+            "subtitle": "アクティビティタイプ、基本的な日程、主催者を選びます。"
         },
         "sections": {
             "basics": {
-                "title": "Basics",
-                "subtitle": "Choose the activity, organizer, and the main setup details."
+                "title": "基本",
+                "subtitle": "アクティビティ、主催者、基本設定を選びます。"
             },
             "schedule": {
                 "title": "スケジュール",
                 "subtitle": "Set the start time in FF14 Server Time and how long the activity will run."
             },
             "run_details": {
-                "title": "Run Details",
+                "title": "Run詳細",
                 "subtitle": "Tune the discovery metadata people use to find the right run."
             },
             "access": {
-                "title": "Access",
+                "title": "アクセス",
                 "subtitle": "Decide who can see the activity and how people join it."
             },
             "notes": {
                 "title": "メモ",
-                "subtitle": "Add any extra context for the roster, applicants, or attendees."
+                "subtitle": "ロスター、申請者、参加者向けの追加情報を入力します。"
             }
         },
         "fields": {
@@ -758,73 +758,73 @@
             },
             "activity_type": {
                 "label": "アクティビティ種別",
-                "placeholder": "Select an activity type"
+                "placeholder": "アクティビティタイプを選択"
             },
             "organizer": {
                 "label": "主催キャラクター",
-                "placeholder": "Select an organizer character",
-                "no_user": "User not set"
+                "placeholder": "主催キャラクターを選択",
+                "no_user": "ユーザー未設定"
             },
             "title": {
-                "label": "Custom Title",
+                "label": "カスタムタイトル",
                 "placeholder": "Optional custom title for this activity"
             },
             "duration": {
                 "label": "時間数",
                 "placeholder": "Custom duration in hours",
                 "preset": "{count} Hour",
-                "custom": "Custom",
-                "select_placeholder": "Select a duration"
+                "custom": "カスタム",
+                "select_placeholder": "所要時間を選択"
             },
             "datacenter": {
                 "label": "データセンター",
                 "placeholder": "データセンターを選択"
             },
             "intensity": {
-                "label": "Run Intensity",
-                "placeholder": "Select an intensity"
+                "label": "Runの温度感",
+                "placeholder": "温度感を選択"
             },
             "run_style": {
-                "label": "Run Style",
-                "placeholder": "Select a run style"
+                "label": "Runスタイル",
+                "placeholder": "Runスタイルを選択"
             },
             "min_item_level": {
-                "enabled_label": "Require Minimum Item Level",
+                "enabled_label": "最低アイテムレベルを要求",
                 "enabled_help": "Turn this off when item level should not matter for this run.",
-                "label": "Minimum Item Level",
-                "placeholder": "No minimum"
+                "label": "最低アイテムレベル",
+                "placeholder": "最低なし"
             },
             "beginner_friendly": {
-                "label": "Beginner Friendly",
+                "label": "初心者歓迎",
                 "help": "Mark this run as welcoming to first timers or learners."
             },
             "prog_point": {
                 "label": "目標Progポイント",
-                "placeholder": "Select the intended prog point"
+                "placeholder": "予定しているProgポイントを選択"
             },
             "status": {
-                "label": "Initial Status",
-                "placeholder": "Select a status"
+                "label": "初期ステータス",
+                "placeholder": "ステータスを選択"
             },
             "notes": {
                 "label": "メモ",
                 "placeholder": "Optional notes for the roster and applicants"
             },
             "start_date": {
-                "label": "Start Date"
+                "label": "開始日"
             },
             "start_time": {
-                "label": "Start Time",
-                "hour_placeholder": "Hour",
-                "minute_placeholder": "Minute"
+                "label": "開始時刻",
+                "hour_placeholder": "時",
+                "minute_placeholder": "分"
             },
             "starts_at": {
                 "label": "開始日時",
-                "server_time_hint": "All activity times are entered in FF14 Server Time (UTC+0)."
+                "server_time_hint": "すべてのアクティビティ時刻はFF14サーバー時間（UTC+0）で入力します。"
             },
             "is_public": {
-                "label": "Public Activity",
-                "help": "Public activities are visible based on the group's visibility rules."
+                "label": "公開アクティビティ",
+                "help": "公開アクティビティはグループの表示ルールに従って表示されます。"
             },
             "visibility": {
                 "label": "表示範囲",
@@ -846,48 +846,48 @@
             }
         },
         "summary": {
-            "title": "Draft Summary",
+            "title": "下書き概要",
             "subtitle": "A quick preview of what this activity currently looks like.",
             "activity": "アクティビティ",
-            "slots": "Slots",
+            "slots": "スロット",
             "status": "ステータス",
             "organizer": "主催者",
             "starts_at": "開始日時",
             "starts_at_st": "FF14 ST",
-            "starts_at_local": "Your Local ({timezone})",
-            "duration": "Duration",
+            "starts_at_local": "あなたのローカル時間（{timezone}）",
+            "duration": "所要時間",
             "duration_value": "{count}h",
             "visibility": "表示設定",
             "visibility_public": "公開",
             "visibility_private": "メンバーのみ",
             "datacenter": "データセンター",
-            "run_style": "Run Style",
-            "intensity": "Intensity",
-            "difficulty": "Difficulty",
-            "min_item_level": "Minimum ILVL",
-            "min_item_level_disabled": "No minimum",
-            "beginner_friendly": "Beginner Friendly",
-            "assignment": "Signup Mode",
-            "assignment_application": "Applications required",
-            "assignment_self_assign": "Self assignment",
-            "guest_applications": "Guest Applications",
-            "guest_applications_enabled": "Allowed",
-            "guest_applications_disabled": "Account required",
-            "guest_applications_not_applicable": "Not used when applications are off",
+            "run_style": "Runスタイル",
+            "intensity": "温度感",
+            "difficulty": "難易度",
+            "min_item_level": "最低ILVL",
+            "min_item_level_disabled": "最低なし",
+            "beginner_friendly": "初心者歓迎",
+            "assignment": "参加方式",
+            "assignment_application": "申請必須",
+            "assignment_self_assign": "自己割り当て",
+            "guest_applications": "ゲスト申請",
+            "guest_applications_enabled": "許可",
+            "guest_applications_disabled": "アカウント必須",
+            "guest_applications_not_applicable": "申請がオフの場合は使用されません",
             "target_prog_point": "目標Progポイント",
             "notes": "メモ",
-            "no_type": "No activity type selected",
-            "no_organizer": "Organizer not selected",
-            "no_date": "Date not set",
-            "no_target_prog_point": "No target prog point selected",
-            "no_notes": "No extra notes yet.",
-            "help": "This is just the scaffold for now. Next we can shape the exact create flow, defaults, and previews however you want."
+            "no_type": "アクティビティタイプ未選択",
+            "no_organizer": "主催者未選択",
+            "no_date": "日付未設定",
+            "no_target_prog_point": "目標Progポイント未選択",
+            "no_notes": "追加メモはまだありません。",
+            "help": "これは現時点での下書きです。次に作成フロー、初期値、プレビューを好みに合わせて整えられます。"
         }
     },
     "edit": {
         "title": "Edit Run",
         "subtitle": "Update the run details moderators are allowed to change.",
-        "back": "Back to Run Management",
+        "back": "Run管理に戻る",
         "submit": "変更を保存",
         "form": {
             "title": "Edit Run",
@@ -895,7 +895,7 @@
         },
         "sections": {
             "basics": {
-                "subtitle": "Adjust the organizer, title, status, and target prog point."
+                "subtitle": "主催者、タイトル、ステータス、目標進行ポイントを調整します。"
             },
             "access": {
                 "subtitle": "Update whether this run should accept guest applicants."

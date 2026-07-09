@@ -1,10 +1,10 @@
 {
     "title": "システム通知",
-    "subtitle": "Send site-wide maintenance notices and update announcements, and review the latest sent history.",
+    "subtitle": "サイト全体のメンテナンス告知やアップデート通知を送信し、最近の送信履歴を確認します。",
     "admin_access": "管理者権限",
     "banner": {
         "title": "System Banner",
-        "description": "Show an ongoing site-wide banner above the topbar for outages, degraded service, or other active updates that should stay visible.",
+        "description": "障害、サービス低下、その他常に見えるべき重要なお知らせをトップバー上部に表示します。",
         "live_title": "Banner is currently live",
         "live_description": "Saving this form updates the active site-wide banner immediately.",
         "empty_title": "No active banner",
@@ -22,7 +22,7 @@
         },
         "placeholders": {
             "title": "Service issue affecting roster updates...",
-            "message": "Let people know what is happening, what is affected, and where to look for updates.",
+            "message": "何が起きているか、何に影響があるか、どこで更新を確認できるかを伝えましょう。",
             "action_label": "View status",
             "action_url": "https://status.fullparty.gg/"
         }
@@ -47,9 +47,9 @@
     },
     "announcement": {
         "title": "Optional Update Announcement",
-        "description": "Use this for feature updates, project news, and other lower-priority product communication.",
+        "description": "機能更新、プロジェクトのお知らせ、その他優先度の低いプロダクト告知に使います。",
         "notice_title": "Optional delivery",
-        "notice_description": "These notices respect the user's system-notices preference, but still use in-site and off-site channels when enabled.",
+        "notice_description": "これらのお知らせはユーザーのシステム通知設定を尊重しますが、有効な場合はサイト内・外部通知チャンネルも使用します。",
         "send": "Send Update Announcement"
     },
     "history": {

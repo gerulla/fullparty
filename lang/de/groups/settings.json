@@ -9,7 +9,7 @@
         "visibility_summary": {
             "default_name": "Diese Gruppe",
             "open_visible": "{name} can be joined by anyone and can appear in discovery.",
-            "open_hidden": "{name} can be joined by anyone with the permanent slug invite, but will stay out of discovery.",
+            "open_hidden": "{name} kann von jedem mit der permanenten Slug-Einladung betreten werden, bleibt aber aus der Suche ausgeblendet.",
             "invite_only_visible": "{name} requires a generated invite link and can appear in discovery.",
             "invite_only_hidden": "{name} requires a generated invite link and will stay out of discovery.",
             "application_visible": "{name} will use applications for new members and can appear in discovery. Invite links can still add members directly.",
@@ -45,7 +45,7 @@
                 "placeholder": "Wähle ein Datenzentrum"
             },
             "join_mode": {
-                "label": "Join Mode",
+                "label": "Beitrittsart",
                 "placeholder": "Select a join mode",
                 "help": "Open is community-only. Invite-only and application-based groups can still use generated invite links."
             },

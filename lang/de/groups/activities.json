@@ -1,7 +1,7 @@
 {
     "title": "Runs",
-    "subtitle": "{group}'s upcoming schedule and monthly calendar at a glance.",
-    "header_badge": "{count} upcoming",
+    "subtitle": "{group}s kommende Termine und Monatskalender auf einen Blick.",
+    "header_badge": "{count} kommende",
     "back": "Zurück zu Runs",
     "statuses": {
         "draft": "Entwurf",
@@ -40,31 +40,31 @@
     },
     "upcoming": {
         "title": "Bevorstehende Runs",
-        "subtitle": "A detailed view of what's coming up next for the group.",
-        "count": "{count} scheduled",
-        "empty": "No upcoming runs are scheduled yet."
+        "subtitle": "Eine detaillierte Ansicht dessen, was als Nächstes für die Gruppe ansteht.",
+        "count": "{count} geplant",
+        "empty": "Es sind noch keine kommenden Runs geplant."
     },
     "selected_day": {
-        "title": "Selected Day",
-        "subtitle": "Runs scheduled for {date}.",
+        "title": "Ausgewaehlter Tag",
+        "subtitle": "Runs geplant fuer {date}.",
         "mobile_title": "Runs am {date}",
         "mobile_count": "An diesem Tag gibt es {count} Runs.",
-        "count": "{count} on this day",
-        "empty": "No runs are scheduled for this day."
+        "count": "{count} an diesem Tag",
+        "empty": "Fuer diesen Tag sind keine Runs geplant."
     },
     "calendar": {
-        "title": "Monthly Calendar",
-        "subtitle": "A month view of the group's run schedule.",
-        "month_count": "{count} this month",
+        "title": "Monatskalender",
+        "subtitle": "Eine Monatsansicht des Run-Plans der Gruppe.",
+        "month_count": "{count} diesen Monat",
         "previous": "Vorherige",
         "next": "Nächste",
-        "day_count": "{count} items",
-        "more": "+{count} more",
+        "day_count": "{count} Eintraege",
+        "more": "+{count} weitere",
         "member_count": "Mitglieder {assigned}/{total}",
         "context_menu": {
-            "create_run_18": "Create Run at 18 ST",
-            "create_run_20": "Create Run at 20 ST",
-            "create_run_22": "Create Run at 22 ST"
+            "create_run_18": "Run um 18 ST erstellen",
+            "create_run_20": "Run um 20 ST erstellen",
+            "create_run_22": "Run um 22 ST erstellen"
         }
     },
     "mobile_calendar": {
@@ -78,32 +78,32 @@
         "copy_discord_timestamp_success_description": "Die Startzeit des Runs kann nun in Discord eingefuegt werden.",
         "copy_discord_timestamp_error_title": "Zeitstempel konnte nicht kopiert werden",
         "copy_discord_timestamp_error_description": "Bitte versuche erneut, die Run-Zeit zu kopieren.",
-        "copy_run_link": "Copy Link to Run",
-        "copy_run_link_success_title": "Run link copied",
-        "copy_run_link_success_description": "The run overview link is ready to share.",
-        "copy_run_link_error_title": "Unable to copy run link",
-        "copy_run_link_error_description": "Please try copying the run link again.",
-        "copy_application_link": "Copy Link to Application",
+        "copy_run_link": "Link zum Run kopieren",
+        "copy_run_link_success_title": "Run-Link kopiert",
+        "copy_run_link_success_description": "Der Link zur Run-Uebersicht kann geteilt werden.",
+        "copy_run_link_error_title": "Run-Link konnte nicht kopiert werden",
+        "copy_run_link_error_description": "Bitte versuche erneut, den Run-Link zu kopieren.",
+        "copy_application_link": "Link zur Bewerbung kopieren",
         "copy_application_link_success_title": "Bewerbungslink kopiert",
-        "copy_application_link_success_description": "The application link is ready to share.",
-        "copy_application_link_error_title": "Unable to copy application link",
-        "copy_application_link_error_description": "Please try copying the application link again.",
+        "copy_application_link_success_description": "Der Bewerbungslink kann geteilt werden.",
+        "copy_application_link_error_title": "Bewerbungslink konnte nicht kopiert werden",
+        "copy_application_link_error_description": "Bitte versuche erneut, den Bewerbungslink zu kopieren.",
         "open_management": "Management oeffnen",
         "open_overview": "Uebersicht oeffnen",
         "edit_run": "Edit Run",
-        "export_excel": "Export Excel",
-        "copy_info": "Copy Info",
-        "copy_info_success_title": "Run summary copied",
-        "copy_info_success_description": "A formatted run summary is ready to paste.",
-        "copy_info_error_title": "Unable to copy run summary",
-        "copy_info_error_description": "Please try copying the run summary again.",
+        "export_excel": "Excel exportieren",
+        "copy_info": "Info kopieren",
+        "copy_info_success_title": "Run-Zusammenfassung kopiert",
+        "copy_info_success_description": "Eine formatierte Run-Zusammenfassung ist bereit zum Einfuegen.",
+        "copy_info_error_title": "Run-Zusammenfassung konnte nicht kopiert werden",
+        "copy_info_error_description": "Bitte versuche erneut, die Run-Zusammenfassung zu kopieren.",
         "summary_labels": {
             "title": "Titel",
             "type": "Typ",
             "status": "Status",
             "date": "Datum",
-            "time": "Time",
-            "duration": "Duration",
+            "time": "Zeit",
+            "duration": "Dauer",
             "host": "Host",
             "datacenter": "Datenzentrum",
             "slots": "Slots",
@@ -111,179 +111,179 @@
         }
     },
     "legend": {
-        "title": "Status Legend"
+        "title": "Statuslegende"
     },
     "cards": {
         "unknown_type": "Unbekannter Aktivitätstyp",
         "unscheduled": "TBD",
         "no_time": "Zeit nicht festgelegt",
-        "no_relative_time": "Schedule pending",
-        "no_organizer": "Organizer not set",
-        "manage": "Manage run",
-        "slots": "{count} slots",
-        "applications": "{count} applications",
-        "milestones": "{count} milestones"
+        "no_relative_time": "Zeitplan offen",
+        "no_organizer": "Organisator nicht gesetzt",
+        "manage": "Run verwalten",
+        "slots": "{count} Slots",
+        "applications": "{count} Bewerbungen",
+        "milestones": "{count} Meilensteine"
     },
     "management": {
-        "title": "Run Management",
-        "subtitle": "Manage the live details for this {type} run.",
-        "placeholder": "This is the entry point for slot assignment, applications, and progress updates.",
+        "title": "Run-Verwaltung",
+        "subtitle": "Verwalte die aktuellen Details fuer diesen {type}-Run.",
+        "placeholder": "Dies ist der Einstiegspunkt für Slot-Zuweisungen, Bewerbungen und Fortschritts-Updates.",
         "coming_soon": "The full activity management interface comes next. This page is now the dedicated destination for roster assignment and activity administration.",
-        "summary_title": "Run Summary",
+        "summary_title": "Run-Zusammenfassung",
         "summary_subtitle": "A quick read on the basics before the full management tools land.",
         "edit": "Edit Run",
-        "schedule_activity": "Schedule Run",
-        "schedule_activity_confirm": "Schedule this run? It will become visible on calendars, and users may be able to apply depending on the run settings.",
+        "schedule_activity": "Run planen",
+        "schedule_activity_confirm": "Diesen Run planen? Er wird in Kalendern sichtbar und Nutzer können sich je nach Run-Einstellungen bewerben.",
         "schedule_activity_modal": {
-            "title": "Schedule Run",
-            "body": "Scheduling this run makes it part of the group's live schedule. It can appear on calendars and, depending on the run's access and application settings, users may be able to find it and apply.",
-            "confirm": "Yes, Schedule Run"
+            "title": "Run planen",
+            "body": "Wenn du diesen Run planst, wird er Teil des aktiven Gruppenplans. Er kann in Kalendern erscheinen und je nach Zugriff und Bewerbungseinstellungen gefunden und beworben werden.",
+            "confirm": "Ja, Run planen"
         },
-        "complete_activity": "Complete Run",
-        "publish_roster": "Publish Roster",
-        "publish_roster_confirm": "Publish this roster? Assigned applicants will be notified, and the roster becomes the committed lineup for the run.",
+        "complete_activity": "Run abschliessen",
+        "publish_roster": "Roster veroeffentlichen",
+        "publish_roster_confirm": "Dieses Roster veröffentlichen? Zugewiesene Bewerber werden benachrichtigt und das Roster wird zur verbindlichen Aufstellung für den Run.",
         "publish_roster_modal": {
-            "title": "Publish Roster",
+            "title": "Roster veroeffentlichen",
             "warning_title": "Publishing notifies assigned applicants",
-            "body": "Once published, roster placements are treated as official. You can still make moderator changes afterward, but applicants may receive placement notifications.",
-            "confirm": "Yes, Publish Roster"
+            "body": "Nach der Veröffentlichung gelten Roster-Platzierungen als offiziell. Moderatoränderungen sind danach weiterhin möglich, Bewerber können jedoch Platzierungsbenachrichtigungen erhalten.",
+            "confirm": "Ja, Roster veröffentlichen"
         },
-        "delete_activity": "Delete Run",
+        "delete_activity": "Run loeschen",
         "delete_activity_modal": {
-            "title": "Delete Run",
+            "title": "Run loeschen",
             "body": "Deleting this run removes it entirely before roster publish. This cannot be undone.",
-            "confirm": "Yes, Delete Run"
+            "confirm": "Ja, Run löschen"
         },
-        "cancel_activity": "Cancel Run",
-        "cancel_activity_confirm": "Cancel this run? This archives it, disables further edits, and stops new applications.",
+        "cancel_activity": "Run absagen",
+        "cancel_activity_confirm": "Diesen Run absagen? Er wird archiviert, weitere Bearbeitungen werden deaktiviert und neue Bewerbungen gestoppt.",
         "cancel_activity_modal": {
-            "title": "ARE YOU SURE",
-            "body": "Cancelling this run archives it immediately. Moderators will no longer be able to edit it, and applicants will no longer be able to apply.",
-            "reason_label": "Optional cancellation reason",
-            "reason_description": "If you add a reason here, cancelled applicants will be able to see it on their application page.",
-            "reason_placeholder": "Share any context applicants should know.",
-            "confirm": "Yes, Cancel Run"
+            "title": "BIST DU SICHER",
+            "body": "Das Absagen archiviert diesen Run sofort. Moderatoren können ihn nicht mehr bearbeiten und Bewerber können sich nicht mehr anmelden.",
+            "reason_label": "Optionaler Absagegrund",
+            "reason_description": "Wenn du hier einen Grund angibst, können abgesagte Bewerber ihn auf ihrer Bewerbungsseite sehen.",
+            "reason_placeholder": "Teile Kontext, den Bewerber wissen sollten.",
+            "confirm": "Ja, Run absagen"
         },
         "messages": {
-            "check_in_plugin_tooltip": "Prepared for the in-game plugin",
-            "load_failed": "Unable to load run details.",
-            "retry": "Retry",
-            "complete_failed": "Unable to complete this run.",
-            "swap_failed": "Unable to swap roster slots.",
-            "prepare_move_failed": "Unable to prepare this roster move.",
-            "load_slot_assignment_failed": "Unable to load slot assignment details.",
-            "load_manual_assignment_failed": "Unable to load group member assignment options.",
-            "return_to_queue_failed": "Unable to return this slot to the queue.",
-            "slot_unassign_failed": "Unable to update this slot assignment.",
-            "undo_check_in_failed": "Unable to undo check-in for this slot.",
-            "check_in_failed": "Unable to check in this slot.",
-            "mark_late_failed": "Unable to mark this slot as late.",
-            "check_in_group_failed": "Unable to check in this group.",
-            "mark_missing_failed": "Unable to mark this slot as missing.",
+            "check_in_plugin_tooltip": "Fuer das Ingame-Plugin vorbereitet",
+            "load_failed": "Run-Details konnten nicht geladen werden.",
+            "retry": "Erneut versuchen",
+            "complete_failed": "Dieser Run konnte nicht abgeschlossen werden.",
+            "swap_failed": "Roster-Slots konnten nicht getauscht werden.",
+            "prepare_move_failed": "Roster-Verschiebung konnte nicht vorbereitet werden.",
+            "load_slot_assignment_failed": "Slot-Zuweisungsdetails konnten nicht geladen werden.",
+            "load_manual_assignment_failed": "Zuweisungsoptionen fuer Gruppenmitglieder konnten nicht geladen werden.",
+            "return_to_queue_failed": "Dieser Slot konnte nicht in die Warteschlange zurueckgegeben werden.",
+            "slot_unassign_failed": "Diese Slot-Zuweisung konnte nicht aktualisiert werden.",
+            "undo_check_in_failed": "Check-in fuer diesen Slot konnte nicht rueckgaengig gemacht werden.",
+            "check_in_failed": "Dieser Slot konnte nicht eingecheckt werden.",
+            "mark_late_failed": "Dieser Slot konnte nicht als verspaetet markiert werden.",
+            "check_in_group_failed": "Diese Gruppe konnte nicht eingecheckt werden.",
+            "mark_missing_failed": "Dieser Slot konnte nicht als fehlend markiert werden.",
             "mark_designation_failed": "Diese Slot-Kennzeichnung konnte nicht aktualisiert werden.",
             "slot_changed": "Dieser Slot wurde während deiner Bearbeitung geändert. Aktualisiere die Seite und versuche es erneut.",
             "warning_title": "Warnung",
-            "undo_missing_failed": "Unable to undo this missing slot.",
-            "assign_failed": "Unable to assign this application to the selected slot.",
+            "undo_missing_failed": "Fehlend-Markierung konnte nicht rueckgaengig gemacht werden.",
+            "assign_failed": "Diese Bewerbung konnte dem ausgewaehlten Slot nicht zugewiesen werden.",
             "application_cancelled_assignment": "Diese Bewerbung wurde abgebrochen und aus der Warteschlange entfernt.",
             "application_no_longer_pending_assignment": "Diese Bewerbung ist nicht mehr ausstehend und wurde aus der Warteschlange entfernt.",
             "missing_application_cancelled": "Dieser Spieler hat seine Anmeldung abgebrochen, daher wurde der Fehlend-Eintrag entfernt.",
-            "manual_assign_failed": "Unable to assign this group member to the selected slot.",
-            "missing_title": "Missing",
-            "undo_missing": "Undo missing",
+            "manual_assign_failed": "Dieses Gruppenmitglied konnte dem ausgewaehlten Slot nicht zugewiesen werden.",
+            "missing_title": "Fehlt",
+            "undo_missing": "Fehlend rueckgaengig",
             "unknown_character": "Unbekannter Charakter",
-            "unknown_world": "Unknown world",
-            "unknown_slot": "Roster slot"
+            "unknown_world": "Unbekannte Welt",
+            "unknown_slot": "Roster-Slot"
         },
         "cancelled_alert": {
-            "title": "This run has been cancelled",
-            "description": "This run is archived and no longer accepting applications or moderator changes."
+            "title": "Dieser Run wurde abgesagt",
+            "description": "Dieser Run ist archiviert und akzeptiert keine Bewerbungen oder Moderatoraenderungen mehr."
         },
         "manual_assignment": {
-            "title": "Manual Assignment",
-            "member_character": "Group Member Character",
-            "select_character": "Select a group member character",
-            "select_character_warning": "Choose a group member character to continue.",
+            "title": "Manuelle Zuweisung",
+            "member_character": "Charakter eines Gruppenmitglieds",
+            "select_character": "Charakter eines Gruppenmitglieds auswaehlen",
+            "select_character_warning": "Waehle einen Charakter eines Gruppenmitglieds, um fortzufahren.",
             "incompatible_fields": "The selected character does not have compatible options for the slot fields on this slot.",
-            "editing_assignment_title": "Editing manual assignment",
-            "editing_assignment_body": "This slot was manually assigned, so you can update its slot field values here. Returning it to the queue stays disabled.",
-            "confirm": "Assign to Slot"
+            "editing_assignment_title": "Manuelle Zuweisung bearbeiten",
+            "editing_assignment_body": "Dieser Slot wurde manuell zugewiesen, daher kannst du seine Slot-Feldwerte hier bearbeiten. Die Rückgabe in die Warteschlange bleibt deaktiviert.",
+            "confirm": "Slot zuweisen"
         },
         "complete_activity_modal": {
-            "title": "Complete Run",
-            "description": "Record the final run outcome before this run is archived.",
+            "title": "Run abschliessen",
+            "description": "Erfasse das endgueltige Run-Ergebnis, bevor der Run archiviert wird.",
             "progress": "Schritt {current} von {total}",
-            "warning_title": "Completed runs become immutable",
-            "warning_body": "Once completed, this run becomes archival-only. Moderators will no longer be able to edit the roster, applications, or activity details.",
+            "warning_title": "Abgeschlossene Runs werden unveraenderbar",
+            "warning_body": "Nach dem Abschluss wird dieser Run nur noch archiviert angezeigt. Moderatoren können Roster, Bewerbungen oder Aktivitätsdetails nicht mehr bearbeiten.",
             "warning_points": {
                 "immutable": "The run will be locked and treated as archival/overview-only.",
                 "progress": "The final stored progression result becomes the source of truth for this run."
             },
-            "no_milestones": "This activity type has no progress milestones configured, so this completion will only archive the run.",
-            "method_label": "Progress entry method",
+            "no_milestones": "Für diesen Aktivitätstyp sind keine Fortschrittsmeilensteine konfiguriert, daher archiviert dieser Abschluss nur den Run.",
+            "method_label": "Methode fuer Fortschrittserfassung",
             "method_help": "Choose whether to paste an FF Logs report for autofill or enter the normalized result manually.",
             "fflogs_link": "FF Logs Link",
-            "fflogs_link_placeholder": "Paste the FF Logs report or fight link",
+            "fflogs_link_placeholder": "FF-Logs-Bericht oder Kampflink einfuegen",
             "fflogs_step_help": "Paste the FF Logs report link for this run. The next step will process it and prefill the progression result for review.",
-            "fflogs_step_hint": "You want the report or fight link that contains the run you are completing, not just the character rankings page.",
+            "fflogs_step_hint": "Du brauchst den Bericht oder Kampflink, der den abzuschließenden Run enthält, nicht nur die Charakter-Ranglistenseite.",
             "fflogs_preview_success": "FF Logs report processed",
             "fflogs_preview_error": "Unable to process this FF Logs report right now.",
-            "furthest_progress": "Furthest Point Reached",
-            "furthest_progress_placeholder": "Select the actual furthest point reached",
-            "milestones": "Progress Milestones",
+            "furthest_progress": "Weitester erreichter Punkt",
+            "furthest_progress_placeholder": "Tatsaechlich weitesten erreichten Punkt auswaehlen",
+            "milestones": "Fortschrittsmeilensteine",
             "milestones_hint": "Enter the normalized final result that should be stored for this run.",
             "milestones_autofilled_hint": "Review the autofilled result and adjust anything that needs correction.",
             "manual_step_help": "Enter the final normalized progression result for this run.",
             "empty_progress_warning_title": "Einige Fortschrittsfelder sind leer",
             "empty_progress_warning_body": "Wenn du sie leer lassen möchtest, klicke erneut auf Weiter.",
             "kills": "Kills",
-            "best_progress_percent": "Best Progress %",
+            "best_progress_percent": "Bester Fortschritt %",
             "errors": {
                 "kills_integer": "Gib Kills als ganze Zahl ein.",
                 "percent_numeric": "Gib Fortschritt als Zahl von 0 bis 100 ein, ohne Sonderzeichen.",
                 "percent_range": "Fortschritt muss zwischen 0 und 100 liegen."
             },
             "notes": "Notizen",
-            "notes_placeholder": "Optional notes about the result or evidence.",
-            "confirm_title": "Final Confirmation",
+            "notes_placeholder": "Optionale Notizen zum Ergebnis oder Nachweis.",
+            "confirm_title": "Endgueltige Bestaetigung",
             "confirm_body": "Double check this progression result before completing the activity.",
-            "none_selected": "None selected",
-            "confirm": "Complete Run",
+            "none_selected": "Nichts ausgewaehlt",
+            "confirm": "Run abschliessen",
             "methods": {
                 "fflogs": "FF Logs",
-                "manual": "Manual",
+                "manual": "Manuell",
                 "fflogs_help": "Paste a report link and let the system autofill the milestone progression.",
                 "manual_help": "Enter the final progression result directly from the run outcome."
             },
             "steps": {
                 "warning": "Warnung",
-                "method": "Method",
+                "method": "Methode",
                 "fflogs_link": "FF Logs Link",
                 "fflogs_review": "Review Autofill",
-                "manual": "Manual Progress",
+                "manual": "Manueller Fortschritt",
                 "confirm": "Confirmation"
             }
         },
-        "view_overview": "View Overview",
+        "view_overview": "Uebersicht ansehen",
         "type": "Aktivitätstyp",
         "starts_at": "Beginnt am",
         "organizer": "Organisator",
         "slots": "Slots",
         "applications": "Bewerbungen",
-        "milestones": "Milestones",
+        "milestones": "Meilensteine",
         "overview": {
             "group": "Gruppe",
-            "applicants": "Applicants",
-            "assigned": "{assigned}/{total} Assigned",
-            "pending_applicants": "{count} pending",
+            "applicants": "Bewerber",
+            "assigned": "{assigned}/{total} zugewiesen",
+            "pending_applicants": "{count} ausstehend",
             "duration": "{count} Stunden",
             "no_duration": "Dauer nicht festgelegt",
-            "check_in": "Start Check-In",
-            "go_to_application": "Go To Application",
-            "application_link_copied": "Application link copied.",
-            "export": "Export",
-            "export_csv": "Export Excel",
-            "generated_at": "Generated",
+            "check_in": "Check-in starten",
+            "go_to_application": "Zur Bewerbung",
+            "application_link_copied": "Bewerbungslink kopiert.",
+            "export": "Exportieren",
+            "export_csv": "Excel exportieren",
+            "generated_at": "Erzeugt",
             "roster_summary": {
                 "eyebrow": "Kompositionsuebersicht",
                 "requirements_count": "{count} Anforderungen",
@@ -296,47 +296,47 @@
                 }
             },
             "progression": {
-                "title": "Recorded Progression",
+                "title": "Erfasster Fortschritt",
                 "subtitle": "The final progression result stored for this completed run.",
-                "completed_at": "Completed At",
-                "source": "Recorded Via",
-                "furthest_point": "Furthest Point",
-                "best_progress": "Best Progress",
-                "evidence": "Evidence",
-                "view_fflogs": "View FF Logs Report",
-                "notes": "Progress Notes",
-                "milestones": "Milestones",
+                "completed_at": "Abgeschlossen am",
+                "source": "Erfasst ueber",
+                "furthest_point": "Weitester Punkt",
+                "best_progress": "Bester Fortschritt",
+                "evidence": "Nachweis",
+                "view_fflogs": "FF-Logs-Bericht ansehen",
+                "notes": "Fortschrittsnotizen",
+                "milestones": "Meilensteine",
                 "not_recorded": "Nicht erfasst"
             }
         },
         "roster": {
-            "title": "Roster Assignments",
-            "subtitle": "Parties and slots are generated from the activity layout and ready to be filled.",
-            "slots_count": "{count} slots",
+            "title": "Roster-Zuweisungen",
+            "subtitle": "Partys und Slots werden aus dem Aktivitaetslayout erzeugt und koennen gefuellt werden.",
+            "slots_count": "{count} Slots",
             "assigned": "Eingeteilt",
-            "checked_in": "Checked in",
-            "late": "Late",
+            "checked_in": "Eingecheckt",
+            "late": "Verspaetet",
             "open": "Offen",
             "bench": "Ersatzbank",
-            "slot_placeholder": "Click to assign",
+            "slot_placeholder": "Zum Zuweisen klicken",
             "filled_placeholder": "Assigned character details and controls will live here next.",
-            "filled_slot": "Filled Slot",
-            "empty_slot": "Empty Slot",
-            "composition_preset": "Composition preset",
+            "filled_slot": "Gefuellter Slot",
+            "empty_slot": "Leerer Slot",
+            "composition_preset": "Zusammenstellungsvorlage",
             "composition_update_failed": "Could not update the party composition preset.",
-            "apply_composition_to_all": "Apply To All",
+            "apply_composition_to_all": "Auf alle anwenden",
             "apply_composition_to_all_failed": "Could not apply the composition hints to the other parties.",
-            "composition_custom": "Custom",
-            "composition_custom_title": "Custom Slot Hint",
+            "composition_custom": "Benutzerdefiniert",
+            "composition_custom_title": "Eigener Slot-Hinweis",
             "composition_custom_description": "Choose the specific jobs this empty slot should advertise.",
-            "composition_custom_save": "Save Hint",
+            "composition_custom_save": "Hinweis speichern",
             "composition_custom_no_options": "No job options are available.",
             "composition_hint_update_failed": "Could not update this slot composition hint.",
-            "check_in_all": "Check In All",
-            "check_in_action": "Check-in",
-            "mark_late_action": "Mark late",
+            "check_in_all": "Alle einchecken",
+            "check_in_action": "Einchecken",
+            "mark_late_action": "Als verspaetet markieren",
             "mark_missing_action": "Als fehlend / abwesend markieren",
-            "remove_from_slot_action": "Remove from slot",
+            "remove_from_slot_action": "Aus Slot entfernen",
             "return_to_queue_action": "Zurück in die Warteschlange",
             "move_to_bench_action": "Auf die Ersatzbank verschieben",
             "change_assignment_action": "Zuweisung ändern",
@@ -347,7 +347,7 @@
             "unmark_host_action": "Host-Markierung entfernen",
             "mark_raid_leader_action": "Als Raid-Leitung markieren",
             "unmark_raid_leader_action": "Raid-Leitungs-Markierung entfernen",
-            "undo_check_in": "Undo Checkin",
+            "undo_check_in": "Check-in rueckgaengig",
             "unmark_late_action": "Verspätung entfernen",
             "host_badge": "Host",
             "raid_leader_badge": "Raid-Leitung",
@@ -373,13 +373,13 @@
                 "slot": "Slot",
                 "status": "Status",
                 "character": "Charakter",
-                "world": "World",
+                "world": "Welt",
                 "datacenter": "Datenzentrum"
             },
             "empty": "No roster slots were generated for this activity."
         },
         "queue": {
-            "title": "Applicant Queue",
+            "title": "Bewerberwarteschlange",
             "new_application_notice_one": "{count} neue Bewerbung erhalten",
             "new_application_notice_many": "{count} neue Bewerbungen erhalten",
             "application_edited_notice": "{name} hat die Bewerbung bearbeitet",
@@ -388,7 +388,7 @@
             "dismiss_queue_event_notice": "Hinweis schließen",
             "search_placeholder": "Search applicants...",
             "filters": "Filter",
-            "filters_with_count": "Filters ({count})",
+            "filters_with_count": "Filter ({count})",
             "filter_any": "Any match",
             "filter_any_milestone": "Any milestone reached",
             "milestones_reached": "Milestones Reached",
@@ -405,7 +405,7 @@
             "assignment_replace_character": "{character} wird in diesem Slot ersetzt.",
             "no_selected_character": "Diese Bewerbung hat keinen ausgewählten Charakter und kann daher nicht dem Roster zugewiesen werden.",
             "incompatible_slot_answers": "Diese Bewerbung enthält keine passenden Antworten für die Zielfeld-Werte des Slots.",
-            "approve": "Approve",
+            "approve": "Genehmigen",
             "decline": "Ablehnen",
             "decline_footer_hint": "Declining removes this application from the pending queue and cannot be undone.",
             "decline_success_title": "Bewerbung abgelehnt",
@@ -414,22 +414,22 @@
             "decline_error_description": "This application could not be declined right now.",
             "can_play": "Can Play",
             "empty": "No pending applicants right now.",
-            "placeholder": "Applicant details, playable jobs, and notes will be expanded here next.",
+            "placeholder": "Bewerberdetails, spielbare Jobs und Notizen werden hier als Nächstes erweitert.",
             "decline_modal": {
-                "title": "Decline Application",
+                "title": "Bewerbung ablehnen",
                 "description": "Remove this application from the pending review queue.",
                 "warning_title": "This cannot be undone",
-                "warning_description": "Once an application is declined, moderators cannot return it to pending review from the dashboard.",
+                "warning_description": "Sobald eine Bewerbung abgelehnt wurde, können Moderatoren sie nicht über das Dashboard in die Prüfung zurücksetzen.",
                 "reason_label": "Optional reason",
-                "reason_description": "If you add a reason here, the applicant will be able to see it on their application page.",
+                "reason_description": "Wenn du hier einen Grund angibst, kann der Bewerber ihn auf seiner Bewerbungsseite sehen.",
                 "reason_placeholder": "Share any context the applicant should know.",
-                "confirm": "Decline Application"
+                "confirm": "Bewerbung ablehnen"
             },
             "modal": {
-                "applicant": "Applicant",
+                "applicant": "Bewerber",
                 "account": "Konto",
                 "submitted": "Gesendet",
-                "world": "World",
+                "world": "Welt",
                 "datacenter": "Datenzentrum",
                 "occult_level": "Occult Level",
                 "phantom_mastery": "Phantom Mastery",
@@ -454,7 +454,7 @@
                 "fflogs_unavailable_guest": "FF Logs progress is only available once this application is linked to a verified FullParty character.",
                 "fflogs_encounters": "Encounters",
                 "fflogs_total_kills": "Total Kills",
-                "fflogs_best_progress": "Best Progress",
+                "fflogs_best_progress": "Bester Fortschritt",
                 "user_stats": "User History",
                 "most_played_class": "Most Played Class",
                 "most_played_phantom_job": "Most Played Phantom Job",
@@ -493,7 +493,7 @@
         "subtitle": "{group} shared this {type} run.",
         "description": "This is the attendee-facing overview for the run and its application flow.",
         "cancelled_alert": {
-            "title": "This run has been cancelled",
+            "title": "Dieser Run wurde abgesagt",
             "description": "This run is archived and no longer accepting applications."
         },
         "open_application": "Apply Here",
@@ -503,7 +503,7 @@
         "summary_title": "Quick Summary",
         "summary_subtitle": "The key details before the application tools land here.",
         "applications_title": "Bewerbungen",
-        "applications_ready": "Application submission will live from this page. For now, this direct link is the right access path.",
+        "applications_ready": "Bewerbungen werden später direkt über diese Seite möglich sein. Bis dahin ist dieser Direktlink der richtige Zugriffspfad.",
         "applications_login": "You will need to log in before applying once the application flow is added here.",
         "meta": {
             "roster": "Roster",
@@ -515,11 +515,11 @@
         "details": {
             "description": "Beschreibung",
             "target_prog_point": "Ziel-Prog-Punkt",
-            "guest_applications": "Guest Applications",
+            "guest_applications": "Gastbewerbungen",
             "pending_applications": "Bewerbungen",
             "no_description": "No description provided.",
-            "no_target_prog_point": "No target prog point selected",
-            "no_min_item_level": "No minimum"
+            "no_target_prog_point": "Kein Ziel-Prog-Punkt ausgewaehlt",
+            "no_min_item_level": "Kein Minimum"
         },
         "board": {
             "title": "Roster Board",
@@ -533,7 +533,7 @@
             "assigned_member": "Assigned member",
             "no_slot": "No slot in this row",
             "bench_title": "Bench",
-            "bench_subtitle": "Overflow, standby, and reserve positions stay visible here.",
+            "bench_subtitle": "Überlauf-, Bereitschafts- und Reserveplätze bleiben hier sichtbar.",
             "bench_count": "{count} bench slots"
         },
         "self_signup": {
@@ -567,13 +567,13 @@
     },
     "application": {
         "title": "Bewerbung",
-        "subtitle": "Apply to join {group}'s {type} run.",
-        "subtitle_existing": "Update your application for {group}'s {type} run.",
+        "subtitle": "Bewirb dich für {group}s {type}-Run.",
+        "subtitle_existing": "Aktualisiere deine Bewerbung für {group}s {type}-Run.",
         "back": "Zurueck zur Run-Uebersicht",
         "run_info_title": "Run Info",
         "run_info_subtitle": "A quick reminder of the run details while you apply.",
-        "summary_schema": "Application Questions",
-        "summary_schema_hint": "This run type's question schema will be rendered here next.",
+        "summary_schema": "Bewerbungsfragen",
+        "summary_schema_hint": "Das Fragenschema dieses Run-Typs wird hier als Nächstes gerendert.",
         "summary_notes": "Host Notes",
         "class_picker": {
             "empty": "Select classes",
@@ -622,13 +622,13 @@
             "guest_result_select": "Auswahl",
             "guest_result_selected": "Selected",
             "guest_no_results_title": "No matching characters found",
-            "guest_no_results_description": "Double check the spelling and world, then try the search again.",
+            "guest_no_results_description": "Prüfe Schreibweise und Welt und versuche die Suche erneut.",
             "answers_title": "Dynamic Questions",
             "answers_description": "The form will render {count} activity-type question fields here.",
             "notes_title": "Extra Notes",
             "notes_description": "A freeform notes area will live here for any extra context the applicant wants to share.",
             "notes_field": "Notizen",
-            "notes_placeholder": "Anything else the moderators should know?",
+            "notes_placeholder": "Gibt es sonst noch etwas, das die Moderatoren wissen sollten?",
             "remember_defaults_label": "Meine Auswahl fuer diesen Aktivitaetstyp merken",
             "remember_defaults_description": "Beim naechsten Start einer neuen Bewerbung fuer diesen Aktivitaetstyp werden derselbe Charakter, dieselben Antworten und dieselben Notizen vorausgefuellt.",
             "cancel": "Abbrechen",
@@ -687,13 +687,13 @@
         }
     },
     "create": {
-        "cta": "Create Run",
-        "title": "Create Run",
-        "subtitle": "Set up a new run for your group.",
-        "back": "Back to Runs",
+        "cta": "Run erstellen",
+        "title": "Run erstellen",
+        "subtitle": "Richte einen neuen Run fuer deine Gruppe ein.",
+        "back": "Zurueck zu Runs",
         "placeholder": "The dedicated activity creation flow will live here.",
-        "submit": "Create Run",
-        "no_types_title": "No activity types available",
+        "submit": "Run erstellen",
+        "no_types_title": "Keine Aktivitaetstypen verfuegbar",
         "no_types_description": "Create and publish an activity type from the admin area before creating activities for groups.",
         "validation": {
             "starts_at_not_past": "Runs koennen nicht in der Vergangenheit geplant werden."
@@ -701,54 +701,54 @@
         "steps": {
             "schedule": {
                 "title": "Zeitplan",
-                "description": "When are we dropping?"
+                "description": "Wann geht es los?"
             },
             "activity": {
                 "title": "Aktivität",
-                "description": "What content are we running?"
+                "description": "Welchen Inhalt laufen wir?"
             },
             "requirements": {
-                "title": "Requirements",
-                "description": "Who and what is needed?"
+                "title": "Anforderungen",
+                "description": "Wer und was wird gebraucht?"
             },
             "review": {
-                "title": "Review",
-                "description": "Confirm and publish"
+                "title": "Pruefen",
+                "description": "Bestaetigen und veroeffentlichen"
             }
         },
         "navigation": {
             "back": "Zurück",
             "next": "Nächste",
-            "review": "Review Run"
+            "review": "Run pruefen"
         },
         "roles": {
             "owner": "Besitzer",
             "moderator": "Moderator"
         },
         "form": {
-            "title": "Activity Setup",
-            "subtitle": "Pick the activity type, basic schedule details, and who is organizing it."
+            "title": "Aktivitaet einrichten",
+            "subtitle": "Wähle Aktivitätstyp, grundlegende Terminangaben und die organisierende Person."
         },
         "sections": {
             "basics": {
-                "title": "Basics",
-                "subtitle": "Choose the activity, organizer, and the main setup details."
+                "title": "Grundlagen",
+                "subtitle": "Wähle Aktivität, Organisator und die wichtigsten Einstellungen."
             },
             "schedule": {
                 "title": "Zeitplan",
                 "subtitle": "Set the start time in FF14 Server Time and how long the activity will run."
             },
             "run_details": {
-                "title": "Run Details",
+                "title": "Run-Details",
                 "subtitle": "Tune the discovery metadata people use to find the right run."
             },
             "access": {
-                "title": "Access",
+                "title": "Zugriff",
                 "subtitle": "Decide who can see the activity and how people join it."
             },
             "notes": {
                 "title": "Notizen",
-                "subtitle": "Add any extra context for the roster, applicants, or attendees."
+                "subtitle": "Füge zusätzlichen Kontext für Roster, Bewerber oder Teilnehmende hinzu."
             }
         },
         "fields": {
@@ -758,73 +758,73 @@
             },
             "activity_type": {
                 "label": "Aktivitätstyp",
-                "placeholder": "Select an activity type"
+                "placeholder": "Aktivitaetstyp auswaehlen"
             },
             "organizer": {
                 "label": "Organisator-Charakter",
-                "placeholder": "Select an organizer character",
-                "no_user": "User not set"
+                "placeholder": "Organisator-Charakter auswaehlen",
+                "no_user": "Nutzer nicht gesetzt"
             },
             "title": {
-                "label": "Custom Title",
-                "placeholder": "Optional custom title for this activity"
+                "label": "Eigener Titel",
+                "placeholder": "Optionaler eigener Titel fuer diese Aktivitaet"
             },
             "duration": {
                 "label": "Dauer (Stunden)",
-                "placeholder": "Custom duration in hours",
-                "preset": "{count} Hour",
-                "custom": "Custom",
-                "select_placeholder": "Select a duration"
+                "placeholder": "Eigene Dauer in Stunden",
+                "preset": "{count} Stunde",
+                "custom": "Benutzerdefiniert",
+                "select_placeholder": "Dauer auswaehlen"
             },
             "datacenter": {
                 "label": "Datenzentrum",
                 "placeholder": "Wähle ein Datenzentrum"
             },
             "intensity": {
-                "label": "Run Intensity",
-                "placeholder": "Select an intensity"
+                "label": "Run-Intensitaet",
+                "placeholder": "Intensitaet auswaehlen"
             },
             "run_style": {
-                "label": "Run Style",
-                "placeholder": "Select a run style"
+                "label": "Run-Stil",
+                "placeholder": "Run-Stil auswaehlen"
             },
             "min_item_level": {
-                "enabled_label": "Require Minimum Item Level",
+                "enabled_label": "Mindest-Itemlevel verlangen",
                 "enabled_help": "Turn this off when item level should not matter for this run.",
-                "label": "Minimum Item Level",
-                "placeholder": "No minimum"
+                "label": "Mindest-Itemlevel",
+                "placeholder": "Kein Minimum"
             },
             "beginner_friendly": {
-                "label": "Beginner Friendly",
+                "label": "Einsteigerfreundlich",
                 "help": "Mark this run as welcoming to first timers or learners."
             },
             "prog_point": {
                 "label": "Ziel-Prog-Punkt",
-                "placeholder": "Select the intended prog point"
+                "placeholder": "Geplanten Prog-Punkt auswaehlen"
             },
             "status": {
-                "label": "Initial Status",
-                "placeholder": "Select a status"
+                "label": "Anfangsstatus",
+                "placeholder": "Status auswaehlen"
             },
             "notes": {
                 "label": "Notizen",
                 "placeholder": "Optional notes for the roster and applicants"
             },
             "start_date": {
-                "label": "Start Date"
+                "label": "Startdatum"
             },
             "start_time": {
-                "label": "Start Time",
-                "hour_placeholder": "Hour",
+                "label": "Startzeit",
+                "hour_placeholder": "Stunde",
                 "minute_placeholder": "Minute"
             },
             "starts_at": {
                 "label": "Beginnt am",
-                "server_time_hint": "All activity times are entered in FF14 Server Time (UTC+0)."
+                "server_time_hint": "Alle Aktivitätszeiten werden in FF14-Serverzeit (UTC+0) eingegeben."
             },
             "is_public": {
-                "label": "Public Activity",
-                "help": "Public activities are visible based on the group's visibility rules."
+                "label": "Oeffentliche Aktivitaet",
+                "help": "Öffentliche Aktivitäten sind gemäß den Sichtbarkeitsregeln der Gruppe sichtbar."
             },
             "visibility": {
                 "label": "Sichtbarkeit",
@@ -846,7 +846,7 @@
             }
         },
         "summary": {
-            "title": "Draft Summary",
+            "title": "Entwurfsuebersicht",
             "subtitle": "A quick preview of what this activity currently looks like.",
             "activity": "Aktivität",
             "slots": "Slots",
@@ -854,40 +854,40 @@
             "organizer": "Organisator",
             "starts_at": "Beginnt am",
             "starts_at_st": "FF14 ST",
-            "starts_at_local": "Your Local ({timezone})",
-            "duration": "Duration",
+            "starts_at_local": "Deine Lokalzeit ({timezone})",
+            "duration": "Dauer",
             "duration_value": "{count}h",
             "visibility": "Sichtbarkeit",
             "visibility_public": "Öffentlich",
             "visibility_private": "Nur Mitglieder",
             "datacenter": "Datenzentrum",
-            "run_style": "Run Style",
-            "intensity": "Intensity",
-            "difficulty": "Difficulty",
-            "min_item_level": "Minimum ILVL",
-            "min_item_level_disabled": "No minimum",
-            "beginner_friendly": "Beginner Friendly",
-            "assignment": "Signup Mode",
-            "assignment_application": "Applications required",
-            "assignment_self_assign": "Self assignment",
-            "guest_applications": "Guest Applications",
-            "guest_applications_enabled": "Allowed",
-            "guest_applications_disabled": "Account required",
-            "guest_applications_not_applicable": "Not used when applications are off",
+            "run_style": "Run-Stil",
+            "intensity": "Intensitaet",
+            "difficulty": "Schwierigkeit",
+            "min_item_level": "Mindest-ILVL",
+            "min_item_level_disabled": "Kein Minimum",
+            "beginner_friendly": "Einsteigerfreundlich",
+            "assignment": "Anmeldemodus",
+            "assignment_application": "Bewerbungen erforderlich",
+            "assignment_self_assign": "Selbsteintragung",
+            "guest_applications": "Gastbewerbungen",
+            "guest_applications_enabled": "Erlaubt",
+            "guest_applications_disabled": "Account erforderlich",
+            "guest_applications_not_applicable": "Nicht genutzt, wenn Bewerbungen deaktiviert sind",
             "target_prog_point": "Ziel-Prog-Punkt",
             "notes": "Notizen",
-            "no_type": "No activity type selected",
-            "no_organizer": "Organizer not selected",
-            "no_date": "Date not set",
-            "no_target_prog_point": "No target prog point selected",
-            "no_notes": "No extra notes yet.",
-            "help": "This is just the scaffold for now. Next we can shape the exact create flow, defaults, and previews however you want."
+            "no_type": "Kein Aktivitaetstyp ausgewaehlt",
+            "no_organizer": "Organisator nicht ausgewaehlt",
+            "no_date": "Datum nicht gesetzt",
+            "no_target_prog_point": "Kein Ziel-Prog-Punkt ausgewaehlt",
+            "no_notes": "Noch keine zusaetzlichen Notizen.",
+            "help": "Das ist vorerst nur das Grundgerüst. Als Nächstes können wir Ablauf, Standardwerte und Vorschau genau passend formen."
         }
     },
     "edit": {
         "title": "Edit Run",
         "subtitle": "Update the run details moderators are allowed to change.",
-        "back": "Back to Run Management",
+        "back": "Zurueck zur Run-Verwaltung",
         "submit": "Änderungen speichern",
         "form": {
             "title": "Edit Run",
@@ -895,7 +895,7 @@
         },
         "sections": {
             "basics": {
-                "subtitle": "Adjust the organizer, title, status, and target prog point."
+                "subtitle": "Passe Organisator, Titel, Status und Ziel-Fortschrittspunkt an."
             },
             "access": {
                 "subtitle": "Update whether this run should accept guest applicants."

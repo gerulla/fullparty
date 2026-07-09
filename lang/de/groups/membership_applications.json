@@ -30,7 +30,7 @@
     },
     "review": {
         "title": "Anfragen",
-        "subtitle": "Review, approve, or decline people waiting to join this group.",
+        "subtitle": "Prüfe, genehmige oder lehne Personen ab, die dieser Gruppe beitreten möchten.",
         "pending_title": "Offene Anfragen",
         "pending_subtitle": "{count} waiting for review",
         "reviewed_title": "Geprüfte Anfragen",
@@ -45,7 +45,7 @@
         "reviewed_at": "Geprüft {date}",
         "reviewed_by": "Reviewed by {user}",
         "actions": {
-            "approve": "Approve",
+            "approve": "Genehmigen",
             "decline": "Ablehnen",
             "cancel": "Abbrechen"
         },
@@ -87,20 +87,20 @@
     "form": {
         "title": "Anfrageformular",
         "subtitle": "Erstelle die Fragen, die Leute vor dem Beitritt beantworten.",
-        "inactive_title": "This form is ready, but the group is not application based",
+        "inactive_title": "Dieses Formular ist bereit, aber die Gruppe basiert nicht auf Bewerbungen.",
         "inactive_description": "Switch the group join mode to Application Based when you want this form to appear to applicants.",
         "question_count": "{count} of {max} questions",
         "new_question": "New question",
         "new_option": "New option",
         "question_title": "Question {number}",
-        "question_hint": "Name, describe, and configure this application field.",
+        "question_hint": "Benenne, beschreibe und konfiguriere dieses Bewerbungsfeld.",
         "actions": {
             "add_question": "Add Question",
             "save": "Save Form",
             "move_up": "Move question up",
             "move_down": "Move question down",
             "remove_question": "Remove question",
-            "add_option": "Add Option",
+            "add_option": "Option hinzufuegen",
             "remove_option": "Remove option"
         },
         "field_types": {
@@ -124,7 +124,7 @@
                 "label": "Input Type"
             },
             "required": {
-                "label": "Required",
+                "label": "Erforderlich",
                 "help": "Applicants must provide an answer. A toggle can be on or off."
             }
         },

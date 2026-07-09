@@ -9,7 +9,7 @@
         "visibility_summary": {
             "default_name": "このグループ",
             "open_visible": "{name} can be joined by anyone and can appear in discovery.",
-            "open_hidden": "{name} can be joined by anyone with the permanent slug invite, but will stay out of discovery.",
+            "open_hidden": "{name}は恒久スラッグ招待を持つ人なら参加できますが、検索には表示されません。",
             "invite_only_visible": "{name} requires a generated invite link and can appear in discovery.",
             "invite_only_hidden": "{name} requires a generated invite link and will stay out of discovery.",
             "application_visible": "{name} will use applications for new members and can appear in discovery. Invite links can still add members directly.",
@@ -45,7 +45,7 @@
                 "placeholder": "データセンターを選択"
             },
             "join_mode": {
-                "label": "Join Mode",
+                "label": "参加方式",
                 "placeholder": "Select a join mode",
                 "help": "Open is community-only. Invite-only and application-based groups can still use generated invite links."
             },

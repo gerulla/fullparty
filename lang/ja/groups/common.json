@@ -15,11 +15,11 @@
             "description": "People can join whenever. Community open groups also get a permanent slug invite."
         },
         "invite_only": {
-            "label": "Invite Only",
+            "label": "招待制",
             "description": "People can only join through generated invite links."
         },
         "application": {
-            "label": "Application Based",
+            "label": "申請制",
             "description": "People apply for review. Generated invite links can still add members directly."
         }
     },
@@ -50,21 +50,21 @@
         "recent_activity": "Recent Activity",
         "region": "Region",
         "group_type": "グループタイプ",
-        "join_mode": "Join Mode",
+        "join_mode": "参加方式",
         "timezone": "Timezone",
         "active_days": "主な活動曜日",
         "active_hours": "Active Hours"
     },
     "states": {
         "open_group": "グループを開く",
-        "invite_only_group": "Invite Only",
-        "application_group": "Application Based",
+        "invite_only_group": "招待制",
+        "application_group": "申請制",
         "visible_in_discovery": "検索に表示する",
         "hidden_from_discovery": "Hidden from Discovery",
         "not_shared": "Not shared",
         "no_description_short": "This group has not added a description yet.",
-        "no_description_long": "This group has not added a description yet. Use this space to clarify what you run, who it is for, and how people should approach joining.",
-        "no_recent_activity": "No recent activity yet"
+        "no_description_long": "このグループにはまだ説明がありません。何を走るのか、誰向けなのか、参加希望者がどうすればよいのかをここで伝えましょう。",
+        "no_recent_activity": "最近のアクティビティはありません"
     },
     "validation": {
         "active_time_pair_required": "活動開始時刻と終了時刻は両方とも指定してください。",

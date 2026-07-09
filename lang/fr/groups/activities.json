@@ -364,13 +364,13 @@
             },
             "list_headers": {
                 "party": "Party",
-                "slot": "Slot",
+                "slot": "Emplacement",
                 "details": "Détails",
                 "status": "Statut"
             },
             "csv_headers": {
                 "group": "Groupe",
-                "slot": "Slot",
+                "slot": "Emplacement",
                 "status": "Statut",
                 "character": "Personnage",
                 "world": "Monde",

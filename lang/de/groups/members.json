@@ -131,7 +131,7 @@
     "ban_modal": {
         "title": "{name} bannen?",
         "subtitle": "Dadurch wird das ausgewählte Mitglied aus {group} entfernt und kann nicht erneut beitreten.",
-        "warning": "Banned users can still view discoverable groups, but they will not be able to join through open access or invite links.",
+        "warning": "Gesperrte Nutzer können auffindbare Gruppen weiterhin sehen, aber nicht über offenen Zugriff oder Einladungslinks beitreten.",
         "reason": {
             "label": "Grund",
             "help": "Optional. Füge eine Notiz hinzu, warum dieser Bann verhängt wurde.",

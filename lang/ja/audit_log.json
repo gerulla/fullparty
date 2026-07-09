@@ -300,7 +300,7 @@
         "provider": "プロバイダー",
         "provider_user_id": "プロバイダーユーザーID",
         "membership_application_id": "リクエスト",
-        "applicant_user_id": "Applicant",
+        "applicant_user_id": "申請者",
         "applicant_name": "Applicant Name",
         "field_count": "Field Count",
         "previous_field_count": "Previous Field Count",

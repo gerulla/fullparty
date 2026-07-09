@@ -118,7 +118,7 @@
             }
         },
         "performance": {
-            "encounter": "Cloud of Darkness (Chaotic)",
+            "encounter": "暗闇の雲（Chaotic）",
             "difficulty": "零式",
             "date": "2026年5月18日",
             "best_parse": "ベスト解析",
@@ -282,7 +282,7 @@
             }
         }
     },
-    "subtitle": "Your personal base for runs, groups, alerts, and account readiness.",
+    "subtitle": "Run、グループ、通知、アカウント準備状況をまとめたあなたのホームです。",
     "actions": {
         "characters": "マイキャラクター",
         "applications": "My Applications",
@@ -300,7 +300,7 @@
         "verified_email": "Email verified",
         "email_needs_attention": "Email needs attention",
         "ready_badge": "Ready to join runs",
-        "with_character": "This page is your home surface: what is coming up, what needs attention, and where to jump back into content the fastest.",
+        "with_character": "ここは、次の予定、確認が必要なこと、すばやく戻れる場所をまとめたホーム画面です。",
         "without_character": "This page becomes much more useful once you connect a primary character and start joining groups or applying to runs.",
         "no_connected_accounts": "No connected accounts yet"
     },
@@ -320,7 +320,7 @@
         "visible": "表示",
         "hidden": "非表示",
         "none_yet": "None yet",
-        "group_presence_value": "{owned} owned · {moderated} moderated · {member} member",
+        "group_presence_value": "所有 {owned} · モデレート {moderated} · メンバー {member}",
         "details": {
             "email": "メールアドレス",
             "primary_character": "メインキャラクター",
@@ -332,10 +332,10 @@
     },
     "setup": {
         "title": "Readiness",
-        "subtitle": "The small things that make groups, rosters, and applications work better.",
+        "subtitle": "グループ、ロスター、申請をより使いやすくするための小さな設定です。",
         "coverage": "Coverage",
         "complete": "Ready",
-        "incomplete": "Missing",
+        "incomplete": "未設定",
         "items": {
             "primary_character": "メインキャラクター",
             "verified_characters": "Verified Characters",
@@ -347,10 +347,10 @@
     },
     "groups": {
         "title": "あなたのグループ",
-        "subtitle": "The communities where you already have a place, role, or dashboard to check.",
+        "subtitle": "すでに参加、役割、またはダッシュボードへのアクセスがあるコミュニティです。",
         "count": "{count} total",
         "empty_title": "グループはまだありません。",
-        "empty_description": "Once you start joining or creating groups, your quick links will live here.",
+        "empty_description": "グループに参加または作成すると、クイックリンクがここに表示されます。",
         "sections": {
             "owned": "Owned",
             "moderated": "Moderated",
@@ -365,19 +365,19 @@
         "more_title": "Also In Motion",
         "no_description": "No additional notes were provided for this run.",
         "empty_title": "Nothing is lined up right now.",
-        "empty_description": "Once you start applying to runs or getting placed onto rosters, this becomes your fastest way back into the action."
+        "empty_description": "Runへの申請やロスター配置が始まると、ここからすばやく戻れます。"
     },
     "alerts": {
         "title": "Latest Alerts",
-        "subtitle": "Recent updates, reminders, and system notices that may need your attention.",
+        "subtitle": "確認が必要かもしれない最新の更新、リマインダー、システム通知です。",
         "empty_title": "Your inbox is quiet.",
-        "empty_description": "New reminders, roster updates, and notices will show up here."
+        "empty_description": "新しいリマインダー、ロスター更新、お知らせがここに表示されます。"
     },
     "activity": {
         "title": "Application Activity",
-        "subtitle": "Your latest signups, approvals, and older run entries in one place.",
+        "subtitle": "最近の申請、承認、過去のRun記録をまとめて確認できます。",
         "submitted": "Submitted {time}",
         "empty_title": "No application history yet.",
-        "empty_description": "Once you begin signing up for content, your recent activity will appear here."
+        "empty_description": "コンテンツへの申請を始めると、最近のアクティビティがここに表示されます。"
     }
 }

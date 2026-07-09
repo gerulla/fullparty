@@ -5,8 +5,8 @@
   "search_placeholder": "Rechercher des positions de raid...",
   "sort_order": "Ordre de tri : {order}",
   "status": {
-    "active": "Active",
-    "inactive": "Inactive"
+    "active": "Actif",
+    "inactive": "Inactif"
   },
   "empty": {
     "title": "Aucune position de raid trouvée",
@@ -51,7 +51,7 @@
       "label": "Ordre de tri"
     },
     "is_active": {
-      "label": "Active"
+      "label": "Actif"
     }
   }
 }

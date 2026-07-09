@@ -9,15 +9,15 @@
         "leave_group": "グループを退出"
     },
     "leave_group_modal": {
-        "title": "Leave {name}?",
+        "title": "{name}を脱退しますか？",
         "description": "You will lose member access to this group until you join again or receive a new invite.",
-        "warning": "Any group-specific access, moderation privileges, and member-only dashboard actions will no longer be available after you leave.",
+        "warning": "脱退すると、グループ固有のアクセス権、モデレーター権限、メンバー専用のダッシュボード操作は使えなくなります。",
         "confirm": "グループを退出"
     },
     "labels": {
         "just_now": "たった今",
         "not_available": "利用不可",
-        "no_recent_activity": "No recent activity yet",
+        "no_recent_activity": "最近のアクティビティはありません",
         "no_member_joins": "No member joins recorded"
     },
     "hero": {
@@ -65,11 +65,11 @@
     },
     "content": {
         "title": "What This Group Runs",
-        "subtitle": "See the kinds of content this group keeps coming back to, along with their history for each one.",
+        "subtitle": "このグループがよく走るコンテンツと、それぞれの履歴を確認できます。",
         "total_runs": "{count} visible runs",
         "visible_runs": "Visible Runs",
-        "visible_runs_hint": "This reflects the run history visible to the current viewer, including the group's status mix.",
-        "library": "Activity Types",
+        "visible_runs_hint": "現在の閲覧者に見えるRun履歴と、グループ内のステータス内訳を反映しています。",
+        "library": "アクティビティタイプ",
         "library_hint": "Grouped by the kinds of content this group has actually been running.",
         "completed": "Completed: {count}",
         "active": "Active: {count}",
@@ -92,7 +92,7 @@
         "public": "公開",
         "private": "メンバーのみ",
         "ran": "Ran {time}",
-        "view_overview": "View Overview",
+        "view_overview": "概要を見る",
         "open_board": "Open Board",
         "empty_title": "No completed runs yet."
     },
@@ -109,11 +109,11 @@
         "score": "{configured}/{total} configured",
         "coverage": "Coverage",
         "configured": "Configured",
-        "missing": "Missing",
-        "join_mode": "Join Mode",
+        "missing": "未設定",
+        "join_mode": "参加方式",
         "join_mode_open": "グループを開く",
         "join_mode_invite_only": "招待のみ",
-        "join_mode_application": "Application Based",
+        "join_mode_application": "申請制",
         "discovery": "発見設定",
         "discovery_visible": "検索に表示",
         "discovery_hidden": "非表示",

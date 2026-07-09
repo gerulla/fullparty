@@ -30,7 +30,7 @@
     },
     "review": {
         "title": "リクエスト",
-        "subtitle": "Review, approve, or decline people waiting to join this group.",
+        "subtitle": "このグループへの参加待ちの人を確認し、承認または却下します。",
         "pending_title": "保留中のリクエスト",
         "pending_subtitle": "{count} waiting for review",
         "reviewed_title": "確認済みリクエスト",
@@ -45,7 +45,7 @@
         "reviewed_at": "確認 {date}",
         "reviewed_by": "Reviewed by {user}",
         "actions": {
-            "approve": "Approve",
+            "approve": "承認",
             "decline": "辞退",
             "cancel": "キャンセル"
         },
@@ -87,20 +87,20 @@
     "form": {
         "title": "リクエストフォーム",
         "subtitle": "参加前に回答してもらう質問を作成します。",
-        "inactive_title": "This form is ready, but the group is not application based",
+        "inactive_title": "このフォームは準備済みですが、グループは申請制ではありません。",
         "inactive_description": "Switch the group join mode to Application Based when you want this form to appear to applicants.",
         "question_count": "{count} of {max} questions",
         "new_question": "New question",
         "new_option": "New option",
         "question_title": "Question {number}",
-        "question_hint": "Name, describe, and configure this application field.",
+        "question_hint": "この申請項目の名前、説明、設定を行います。",
         "actions": {
             "add_question": "Add Question",
             "save": "Save Form",
             "move_up": "Move question up",
             "move_down": "Move question down",
             "remove_question": "Remove question",
-            "add_option": "Add Option",
+            "add_option": "選択肢を追加",
             "remove_option": "Remove option"
         },
         "field_types": {
@@ -124,7 +124,7 @@
                 "label": "Input Type"
             },
             "required": {
-                "label": "Required",
+                "label": "必須",
                 "help": "Applicants must provide an answer. A toggle can be on or off."
             }
         },

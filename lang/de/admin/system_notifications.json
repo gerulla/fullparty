@@ -1,10 +1,10 @@
 {
     "title": "Systembenachrichtigungen",
-    "subtitle": "Send site-wide maintenance notices and update announcements, and review the latest sent history.",
+    "subtitle": "Sende seitenweite Wartungshinweise und Update-Ankündigungen und prüfe den Verlauf der zuletzt gesendeten Meldungen.",
     "admin_access": "Admin-Zugriff",
     "banner": {
         "title": "System Banner",
-        "description": "Show an ongoing site-wide banner above the topbar for outages, degraded service, or other active updates that should stay visible.",
+        "description": "Zeigt ein dauerhaftes seitenweites Banner über der Topbar für Ausfälle, eingeschränkten Betrieb oder andere aktive Hinweise, die sichtbar bleiben sollen.",
         "live_title": "Banner is currently live",
         "live_description": "Saving this form updates the active site-wide banner immediately.",
         "empty_title": "No active banner",
@@ -22,7 +22,7 @@
         },
         "placeholders": {
             "title": "Service issue affecting roster updates...",
-            "message": "Let people know what is happening, what is affected, and where to look for updates.",
+            "message": "Sag den Leuten, was passiert, was betroffen ist und wo sie weitere Updates finden.",
             "action_label": "View status",
             "action_url": "https://status.fullparty.gg/"
         }
@@ -47,9 +47,9 @@
     },
     "announcement": {
         "title": "Optional Update Announcement",
-        "description": "Use this for feature updates, project news, and other lower-priority product communication.",
+        "description": "Nutze dies für Feature-Updates, Projektnachrichten und andere Produktmeldungen mit niedrigerer Priorität.",
         "notice_title": "Optional delivery",
-        "notice_description": "These notices respect the user's system-notices preference, but still use in-site and off-site channels when enabled.",
+        "notice_description": "Diese Hinweise beachten die Systemhinweis-Einstellung der Nutzer, verwenden aber weiterhin In-Site- und Off-Site-Kanäle, wenn sie aktiviert sind.",
         "send": "Send Update Announcement"
     },
     "history": {

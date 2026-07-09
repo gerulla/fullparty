@@ -177,6 +177,16 @@
             "cannoneer": "Phantom-Grenadier",
             "gladiator": "Phantom-Gladiator",
             "freelancer": "Phantom-Freiberufler"
+        },
+        "raid_positions": {
+            "mt": "Main Tank",
+            "ot": "Off Tank",
+            "h1": "Heiler 1",
+            "h2": "Heiler 2",
+            "m1": "DPS 1 / Nahkampf 1",
+            "m2": "DPS 2 / Nahkampf 2",
+            "r1": "DPS 3 / Physischer Fernkampf",
+            "r2": "DPS 4 / Magischer Fernkampf"
         }
     },
     "card": {

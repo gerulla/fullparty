@@ -14,6 +14,7 @@ import { activityTextLimits } from "@/utils/activityTextLimits";
 import { createDateTimeFormatter } from "@/utils/dateTimeFormat";
 import { formatRelativeTime } from "@/utils/formatRelativeTime";
 import { useMinuteTicker } from "@/composables/useMinuteTicker";
+import { translateCharacterClassName, translatePhantomJobName, translateRaidPositionName } from "@/utils/characterJobTranslations";
 
 const CHARACTER_REFRESH_COOLDOWN_MS = 5 * 60 * 1000;
 
@@ -89,6 +90,22 @@ const answerBadgeColor = (source: string | null, value: string) => {
 	}
 
 	return 'neutral';
+};
+
+const answerValueLabel = (source: string | null, questionKey: string, value: string): string => {
+	if (source === 'character_classes') {
+		return translateCharacterClassName(t, { name: value }, value);
+	}
+
+	if (source === 'phantom_jobs') {
+		return translatePhantomJobName(t, { name: value }, value);
+	}
+
+	if (source === 'raid_positions' || questionKey.toLowerCase().includes('position')) {
+		return translateRaidPositionName(t, { name: value }, value);
+	}
+
+	return value;
 };
 
 const applicantCharacter = computed(() => {
@@ -167,7 +184,7 @@ const detailedAnswers = computed(() => (props.application?.answers ?? [])
 		key: answer.question_key,
 		label: localizedText(answer.question_label, answer.question_key),
 		source: answer.source,
-		displayValues: answer.display_values,
+		displayValues: answer.display_values.map((value) => answerValueLabel(answer.source, answer.question_key, value)),
 	})));
 
 const classAnswer = computed(() => props.application?.answers.find((answer) => answer.source === 'character_classes') ?? null);
@@ -177,8 +194,14 @@ const positionAnswer = computed(() => props.application?.answers.find((answer) =
 	&& answer.question_key.toLowerCase().includes('position')
 )) ?? null);
 const playableRoles = computed(() => classAnswer.value?.role_values ?? []);
-const classDisplayItems = computed(() => classAnswer.value?.display_items ?? []);
-const phantomDisplayItems = computed(() => phantomAnswer.value?.display_items ?? []);
+const classDisplayItems = computed(() => (classAnswer.value?.display_items ?? []).map((item) => ({
+	...item,
+	label: translateCharacterClassName(t, { name: item.label }, item.label),
+})));
+const phantomDisplayItems = computed(() => (phantomAnswer.value?.display_items ?? []).map((item) => ({
+	...item,
+	label: translatePhantomJobName(t, { name: item.label }, item.label),
+})));
 const shouldShowOccultLevel = computed(() => phantomAnswer.value !== null && props.application?.selected_character?.occult_level !== null && props.application?.selected_character?.occult_level !== undefined);
 const shouldShowPhantomMastery = computed(() => phantomAnswer.value !== null && props.application?.selected_character?.phantom_mastery !== null && props.application?.selected_character?.phantom_mastery !== undefined);
 const selectedCharacterLastCheckedAt = computed(() => props.application?.selected_character?.lodestone_last_checked_at ?? null);
@@ -557,7 +580,7 @@ watch(isOpen, (open) => {
 									:key="value"
 									color="warning"
 									variant="outline"
-									:label="value"
+									:label="answerValueLabel(positionAnswer.source, positionAnswer.question_key, value)"
 								/>
 							</div>
 						</div>

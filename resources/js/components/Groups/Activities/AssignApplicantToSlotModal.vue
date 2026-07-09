@@ -6,6 +6,7 @@ import { localizedValue } from "@/utils/localizedValue";
 import type { LocalizedText } from "@/Types/Common";
 import type { QueueApplication, QueueFilterField } from "@/Types/ActivityQueue";
 import type { ActivitySlot } from "@/Types/ActivityRoster";
+import { translateCharacterClassName, translatePhantomJobName, translateRaidPositionName } from "@/utils/characterJobTranslations";
 
 const props = defineProps<{
 	open: boolean
@@ -49,6 +50,27 @@ const localizedText = (value: LocalizedText, fallback: string) => (
 	localizedValue(value, locale.value, fallbackLocale.value) || fallback
 );
 
+const optionLabel = (field: QueueFilterField, option: QueueFilterField["options"][number]) => {
+	const fallback = localizedText(option.label, option.key);
+
+	if (field.source === 'character_classes') {
+		return translateCharacterClassName(t, {
+			shorthand: option.meta?.shorthand ?? null,
+			name: fallback,
+		}, fallback);
+	}
+
+	if (field.source === 'phantom_jobs') {
+		return translatePhantomJobName(t, { name: fallback }, fallback);
+	}
+
+	if (field.source === 'raid_positions' || field.application_key.toLowerCase().includes('position')) {
+		return translateRaidPositionName(t, { key: option.key, name: fallback }, fallback);
+	}
+
+	return fallback;
+};
+
 const targetFieldDefinitions = computed(() => {
 	if (!props.slot) {
 		return [];
@@ -84,7 +106,7 @@ const compatibleOptionsByField = computed(() => {
 
 		map[field.key] = compatibleOptions
 			.map((option) => ({
-				label: localizedText(option.label, option.key),
+				label: optionLabel(field, option),
 				value: option.key,
 				isFavorite: submittedValueSet.has(option.key) && preferredOptionKeys.has(option.key),
 			}));

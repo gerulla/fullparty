@@ -11,6 +11,7 @@ import { getActivityStatusMeta } from "@/utils/activityStatusMeta";
 import { createDateTimeFormatter } from "@/utils/dateTimeFormat";
 import { formatRelativeTime } from "@/utils/formatRelativeTime";
 import { useMinuteTicker } from "@/composables/useMinuteTicker";
+import { translateCharacterClassName, translatePhantomJobName, translateRaidPositionName } from "@/utils/characterJobTranslations";
 
 const props = defineProps<{
 	group: {
@@ -274,10 +275,30 @@ function formatAnswerValue(question: ApplicationQuestion, value: unknown): { val
 function optionLabel(question: ApplicationQuestion, optionKey: string): string
 {
 	const option = question.options.find((entry) => entry.key === optionKey);
-
-	return option
+	const fallback = option
 		? localizedValue(option.label, locale.value, fallbackLocale.value) || option.key
 		: optionKey;
+
+	if (!option) {
+		return fallback;
+	}
+
+	if (question.source === "character_classes") {
+		return translateCharacterClassName(t, {
+			shorthand: option.meta?.shorthand ?? null,
+			name: fallback,
+		}, fallback);
+	}
+
+	if (question.source === "phantom_jobs") {
+		return translatePhantomJobName(t, { name: fallback }, fallback);
+	}
+
+	if (question.source === "raid_positions" || question.key.includes("raid_position")) {
+		return translateRaidPositionName(t, { key: option.key, name: fallback }, fallback);
+	}
+
+	return fallback;
 }
 
 const goBack = () => {

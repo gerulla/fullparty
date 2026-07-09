@@ -4,6 +4,7 @@ import { computed, ref } from "vue";
 import { useI18n } from "vue-i18n";
 import type { ApplicationQuestionOption } from "@/Types/ActivityApplications";
 import { localizedValue } from "@/utils/localizedValue";
+import { translatePhantomJobName } from "@/utils/characterJobTranslations";
 
 const props = defineProps<{
 	label: string
@@ -75,7 +76,12 @@ const optionIconUrl = (option: ApplicationQuestionOption) => option.meta?.transp
 	|| option.meta?.sprite_url
 	|| null;
 
-const optionLabel = (option: ApplicationQuestionOption) => localizedValue(option.label, locale.value, fallbackLocale.value) || option.key;
+const rawOptionLabel = (option: ApplicationQuestionOption) => localizedValue(option.label, locale.value, fallbackLocale.value) || option.key;
+const optionLabel = (option: ApplicationQuestionOption) => translatePhantomJobName(
+	t,
+	{ name: rawOptionLabel(option) },
+	rawOptionLabel(option),
+);
 
 const toggleOption = (optionKey: string) => {
 	if (props.disabled) {

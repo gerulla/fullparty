@@ -177,6 +177,16 @@
       "cannoneer": "Phantom Cannoneer",
       "gladiator": "Phantom Gladiator",
       "freelancer": "Phantom Freelancer"
+    },
+    "raid_positions": {
+      "mt": "Main Tank",
+      "ot": "Off Tank",
+      "h1": "Healer 1",
+      "h2": "Healer 2",
+      "m1": "DPS 1 / Melee 1",
+      "m2": "DPS 2 / Melee 2",
+      "r1": "DPS 3 / Physical Ranged",
+      "r2": "DPS 4 / Magical Ranged"
     }
   },
   "card": {

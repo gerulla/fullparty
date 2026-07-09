@@ -4,6 +4,7 @@ import { computed, ref } from "vue";
 import { useI18n } from "vue-i18n";
 import { usePage } from "@inertiajs/vue3";
 import { localizedValue } from "@/utils/localizedValue";
+import { translateCharacterClassName } from "@/utils/characterJobTranslations";
 
 const props = defineProps<{
 	label: string
@@ -60,6 +61,15 @@ const selectedKeys = computed<string[]>({
 });
 
 const selectedItems = computed(() => props.options.filter((option) => selectedKeys.value.includes(option.key)));
+const rawOptionLabel = (option: ApplicationQuestionOption) => localizedValue(option.label, locale.value, fallbackLocale.value) || option.key;
+const optionLabel = (option: ApplicationQuestionOption) => translateCharacterClassName(
+	t,
+	{
+		shorthand: option.meta?.shorthand ?? null,
+		name: rawOptionLabel(option),
+	},
+	rawOptionLabel(option),
+);
 const favoriteOptions = computed(() => {
 	const favoriteKeys = new Set(props.favoriteOptionKeys ?? []);
 
@@ -83,7 +93,7 @@ const summaryLabel = computed(() => {
 	}
 
 	if (!props.multiple && selectedItems.value[0]) {
-		return localizedValue(selectedItems.value[0].label, locale.value, fallbackLocale.value) || selectedItems.value[0].key;
+		return optionLabel(selectedItems.value[0]);
 	}
 
 	return t('groups.activities.application.class_picker.selected_count', { count: selectedItems.value.length });
@@ -194,7 +204,7 @@ const isSelected = (optionKey: string) => selectedKeys.value.includes(optionKey)
 				:key="item.key"
 				color="neutral"
 				variant="soft"
-				:label="localizedValue(item.label, locale, fallbackLocale) || item.key"
+				:label="optionLabel(item)"
 			/>
 		</div>
 	</UFormField>
@@ -243,14 +253,14 @@ const isSelected = (optionKey: string) => selectedKeys.value.includes(optionKey)
 								<img
 									v-if="option.meta?.icon_url"
 									:src="option.meta.icon_url"
-									:alt="localizedValue(option.label, locale, fallbackLocale) || option.key"
+									:alt="optionLabel(option)"
 									class="size-10 rounded-sm"
 								/>
 								<div
 									v-else
 									class="flex size-10 items-center justify-center rounded-sm bg-muted text-xs font-semibold text-toned"
 								>
-									{{ option.meta?.shorthand || localizedValue(option.label, locale, fallbackLocale)?.slice(0, 2) || option.key.slice(0, 2) }}
+									{{ option.meta?.shorthand || optionLabel(option).slice(0, 2) || option.key.slice(0, 2) }}
 								</div>
 							</button>
 						</div>
@@ -281,14 +291,14 @@ const isSelected = (optionKey: string) => selectedKeys.value.includes(optionKey)
 								<img
 									v-if="option.meta?.icon_url"
 									:src="option.meta.icon_url"
-									:alt="localizedValue(option.label, locale, fallbackLocale) || option.key"
+									:alt="optionLabel(option)"
 									class="size-10 rounded-sm"
 								/>
 								<div
 									v-else
 									class="flex size-10 items-center justify-center rounded-sm bg-muted text-xs font-semibold text-toned"
 								>
-									{{ option.meta?.shorthand || localizedValue(option.label, locale, fallbackLocale)?.slice(0, 2) || option.key.slice(0, 2) }}
+									{{ option.meta?.shorthand || optionLabel(option).slice(0, 2) || option.key.slice(0, 2) }}
 								</div>
 							</button>
 						</div>

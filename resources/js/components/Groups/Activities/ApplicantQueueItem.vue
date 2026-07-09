@@ -8,6 +8,7 @@ import MemberNotesButton from "@/components/Shared/Notes/MemberNotesButton.vue";
 import type { LocalizedText } from "@/Types/Common";
 import type { QueueApplication } from "@/Types/ActivityQueue";
 import { createDateTimeFormatter } from "@/utils/dateTimeFormat";
+import { translatePhantomJobName, translateRaidPositionName } from "@/utils/characterJobTranslations";
 
 const props = defineProps<{
 	application: QueueApplication
@@ -45,6 +46,18 @@ const answerBadgeColor = (source: string | null, value: string) => {
 	}
 
 	return 'neutral';
+};
+
+const answerValueLabel = (source: string | null, questionKey: string, value: string): string => {
+	if (source === 'phantom_jobs') {
+		return translatePhantomJobName(t, { name: value }, value);
+	}
+
+	if (source === 'raid_positions' || questionKey.toLowerCase().includes('position')) {
+		return translateRaidPositionName(t, { name: value }, value);
+	}
+
+	return value;
 };
 
 const applicantCharacter = computed(() => (
@@ -116,7 +129,9 @@ const summaryAnswers = computed(() => props.application.answers
 		key: answer.question_key,
 		label: localizedText(answer.question_label, answer.question_key),
 		source: answer.source,
-		displayValues: answer.display_values.slice(0, 4),
+		displayValues: answer.display_values
+			.slice(0, 4)
+			.map((value) => answerValueLabel(answer.source, answer.question_key, value)),
 		remainingCount: Math.max(0, answer.display_values.length - 4),
 	})));
 

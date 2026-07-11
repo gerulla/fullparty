@@ -18,6 +18,7 @@ use App\Http\Controllers\GoogleAuthController;
 use App\Http\Controllers\GroupActivityApplicantQueueController;
 use App\Http\Controllers\GroupActivityApplicationController;
 use App\Http\Controllers\GroupActivityApplicationDeclineController;
+use App\Http\Controllers\GroupActivityCalendarController;
 use App\Http\Controllers\GroupActivityCompletionController;
 use App\Http\Controllers\GroupActivityController;
 use App\Http\Controllers\GroupActivityFflogsCompletionPreviewController;
@@ -213,6 +214,10 @@ Route::prefix('{locale?}')
             ->where('secretKey', '[A-Za-z0-9]{40}')
             ->middleware(['throttle:guest.application', 'throttle:external.lookup'])
             ->name('groups.activities.application.search-characters');
+
+        Route::get('/groups/{group:slug}/activities/{activity}/calendar.ics/{secretKey?}', GroupActivityCalendarController::class)
+            ->where('secretKey', '[A-Za-z0-9]{40}')
+            ->name('groups.activities.calendar');
 
         // Public activity overview, with optional secret key for private activities.
         Route::get('/groups/{group:slug}/activities/{activity}/{secretKey?}', [GroupActivityController::class, 'overview'])

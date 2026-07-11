@@ -7,6 +7,7 @@ import SeoHead from "@/components/Shared/SeoHead.vue";
 import PageHeader from "@/components/PageHeader.vue";
 import ActivityAttendeeRosterBoard from "@/components/Groups/Activities/ActivityAttendeeRosterBoard.vue";
 import ActivityCompletionSummaryPanel from "@/components/Groups/Activities/ActivityCompletionSummaryPanel.vue";
+import AddToCalendarMenu from "@/components/Groups/Activities/AddToCalendarMenu.vue";
 import ActivityOverviewInfoPanel from "@/components/Groups/Activities/ActivityOverviewInfoPanel.vue";
 import ActivityRosterSummaryPanel from "@/components/Groups/Activities/ActivityRosterSummaryPanel.vue";
 import { localizedValue } from "@/utils/localizedValue";
@@ -174,6 +175,8 @@ const applicationRouteParameters = computed(() => ({
 	activity: props.activity.id,
 	secretKey: props.secretKey || undefined,
 }));
+const overviewUrl = computed(() => route("groups.activities.overview", applicationRouteParameters.value));
+const calendarUrl = computed(() => route("groups.activities.calendar", applicationRouteParameters.value));
 
 const goBack = () => {
 	router.get(route("groups.dashboard.activities.index", {
@@ -251,6 +254,18 @@ const goToManagementPage = () => {
 					variant="subtle"
 					icon="i-lucide-user-plus"
 					:label="t('groups.activities.overview.details.guest_applications')"
+				/>
+				<AddToCalendarMenu
+					:title="activityTitle"
+					:group-name="group.name"
+					:starts-at="activity.starts_at"
+					:duration-hours="activity.duration_hours"
+					:status="activity.status"
+					:overview-url="overviewUrl"
+					:ics-url="calendarUrl"
+					:enabled="group.features.calendar_sync_enabled"
+					:notes="activity.notes"
+					:progress-point="targetProgPointLabel"
 				/>
 				<UButton
 					v-if="showApplicationButton"

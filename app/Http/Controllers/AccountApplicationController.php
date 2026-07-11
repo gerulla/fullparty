@@ -215,7 +215,7 @@ class AccountApplicationController extends Controller
         return ActivityApplication::query()
             ->select('activity_applications.*')
             ->with([
-                'activity.group',
+                'activity.group.features',
                 'activity.activityTypeVersion',
                 'selectedCharacter',
             ])
@@ -295,6 +295,7 @@ class AccountApplicationController extends Controller
             'group' => [
                 'name' => $activity?->group?->name,
                 'slug' => $activity?->group?->slug,
+                'calendar_sync_enabled' => $activity?->group?->featureEnabled('calendar_sync_enabled') ?? false,
             ],
             'activity' => [
                 'id' => $activity?->id,

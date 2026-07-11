@@ -80,8 +80,8 @@
                 "description": "グループ内の参加ランキングを表示します。"
             },
             "calendar_sync_enabled": {
-                "label": "カレンダー同期",
-                "description": "カレンダーへの書き出しや購読機能に備えます。"
+                "label": "カレンダー書き出し",
+                "description": "メンバーがグループの開催予定を個人のカレンダーに追加できるようにします。"
             },
             "resource_hub_enabled": {
                 "label": "リソースハブ",

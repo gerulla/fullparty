@@ -6,6 +6,7 @@ import { route } from "ziggy-js";
 import { useI18n } from "vue-i18n";
 import { useToast } from "@nuxt/ui/composables";
 import SeoHead from "@/components/Shared/SeoHead.vue";
+import AddToCalendarMenu from "@/components/Groups/Activities/AddToCalendarMenu.vue";
 import { localizedValue } from "@/utils/localizedValue";
 import { getActivityStatusMeta } from "@/utils/activityStatusMeta";
 import { createDateTimeFormatter } from "@/utils/dateTimeFormat";
@@ -19,6 +20,9 @@ const props = defineProps<{
 		name: string
 		slug: string
 		is_public: boolean
+		features: {
+			calendar_sync_enabled: boolean
+		}
 	}
 	activity: {
 		id: number
@@ -33,6 +37,8 @@ const props = defineProps<{
 		status: string
 		starts_at: string | null
 		duration_hours: number | null
+		target_prog_point_key: string | null
+		target_prog_point_label: Record<string, string | null | undefined> | null
 		organized_by: {
 			id: number
 			name: string
@@ -72,6 +78,18 @@ const activityTypeName = computed(() => {
 });
 
 const activityTitle = computed(() => props.activity.title || activityTypeName.value);
+const targetProgPointLabel = computed(() => (
+	localizedValue(props.activity.target_prog_point_label, locale.value, fallbackLocale.value)
+	|| props.activity.target_prog_point_key
+	|| null
+));
+const activityRouteParameters = computed(() => ({
+	group: props.group.slug,
+	activity: props.activity.id,
+	secretKey: props.secretKey || undefined,
+}));
+const overviewUrl = computed(() => route("groups.activities.overview", activityRouteParameters.value));
+const calendarUrl = computed(() => route("groups.activities.calendar", activityRouteParameters.value));
 const statusMeta = computed(() => getActivityStatusMeta(props.activity.status));
 const seoDescription = computed(() => t("meta.seo.activities.application_status_description", {
 	title: activityTitle.value,
@@ -664,7 +682,7 @@ const copyStatusLink = async () => {
 						</div>
 					</div>
 
-					<div class="flex items-center gap-3 border-t border-default pt-2">
+					<div class="flex flex-wrap items-center gap-3 border-t border-default pt-2">
 						<UButton
 							type="button"
 							color="neutral"
@@ -672,6 +690,20 @@ const copyStatusLink = async () => {
 							size="lg"
 							:label="t('groups.activities.application.confirmation.back_to_overview')"
 							@click="goBack"
+						/>
+						<AddToCalendarMenu
+							v-if="confirmation.view === 'confirmation' && confirmation.mode === 'submitted'"
+							:title="activityTitle"
+							:group-name="group.name"
+							:starts-at="activity.starts_at"
+							:duration-hours="activity.duration_hours"
+							:status="activity.status"
+							:overview-url="overviewUrl"
+							:ics-url="calendarUrl"
+							:enabled="group.features.calendar_sync_enabled"
+							:notes="activity.notes"
+							:progress-point="targetProgPointLabel"
+							size="lg"
 						/>
 						<UButton
 							v-if="confirmation.can_edit"

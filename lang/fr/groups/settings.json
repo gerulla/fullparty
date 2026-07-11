@@ -80,8 +80,8 @@
                 "description": "Affichez les classements de participation du groupe."
             },
             "calendar_sync_enabled": {
-                "label": "Synchronisation calendrier",
-                "description": "Préparez le groupe aux exports et abonnements de calendrier."
+                "label": "Export de calendrier",
+                "description": "Permet aux membres d'ajouter les runs du groupe à leur calendrier personnel."
             },
             "resource_hub_enabled": {
                 "label": "Hub de ressources",

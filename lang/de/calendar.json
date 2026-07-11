@@ -1,0 +1,10 @@
+{
+    "add": "Zum Kalender hinzufügen",
+    "google": "Google Kalender",
+    "outlook": "Outlook-Kalender",
+    "apple_other": "Apple Kalender / Andere (.ics)",
+    "group": "Gruppe",
+    "progress_point": "Fortschrittspunkt",
+    "view_run": "Run anzeigen",
+    "run_fallback": "FullParty-Run"
+}

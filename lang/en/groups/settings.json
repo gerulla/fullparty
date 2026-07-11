@@ -80,8 +80,8 @@
                 "description": "Show participation rankings for the group."
             },
             "calendar_sync_enabled": {
-                "label": "Calendar Sync",
-                "description": "Prepare the group for calendar export and subscription tools."
+                "label": "Calendar Export",
+                "description": "Allow members to add group runs to their personal calendars."
             },
             "resource_hub_enabled": {
                 "label": "Resource Hub",

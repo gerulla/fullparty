@@ -119,6 +119,7 @@ export type AccountApplication = {
 	group: {
 		name: string | null
 		slug: string | null
+		calendar_sync_enabled: boolean
 	}
 	activity: {
 		id: number | null

@@ -80,8 +80,8 @@
                 "description": "Zeige Teilnahme-Ranglisten für die Gruppe."
             },
             "calendar_sync_enabled": {
-                "label": "Kalendersynchronisierung",
-                "description": "Bereite die Gruppe auf Kalenderexporte und abonnierbare Kalender vor."
+                "label": "Kalenderexport",
+                "description": "Erlaube Mitgliedern, Gruppen-Runs zu ihrem persönlichen Kalender hinzuzufügen."
             },
             "resource_hub_enabled": {
                 "label": "Ressourcen-Hub",

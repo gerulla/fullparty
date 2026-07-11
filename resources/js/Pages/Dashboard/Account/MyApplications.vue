@@ -8,6 +8,7 @@ import { useI18n } from "vue-i18n";
 import { useToast } from "@nuxt/ui/composables";
 import PageHeader from "@/components/PageHeader.vue";
 import AddToCalendarMenu from "@/components/Groups/Activities/AddToCalendarMenu.vue";
+import PartyFinderInfoPanel from "@/components/Groups/Activities/PartyFinderInfoPanel.vue";
 import { localizedValue } from "@/utils/localizedValue";
 import { getActivityStatusMeta } from "@/utils/activityStatusMeta";
 import { createDateTimeFormatter } from "@/utils/dateTimeFormat";
@@ -525,6 +526,11 @@ const withdrawApplication = () => {
 							</div>
 						</div>
 
+						<PartyFinderInfoPanel
+							v-if="featuredApplication.activity.party_finder_info"
+							:info="featuredApplication.activity.party_finder_info"
+						/>
+
 						<div v-if="notesPreview(featuredApplication.notes)" class="rounded-sm border border-default bg-default/70 px-4 py-3">
 							<p class="text-xs uppercase tracking-wide text-muted">{{ t('applications.notes') }}</p>
 							<p class="mt-3 break-words [overflow-wrap:anywhere] whitespace-pre-wrap text-sm text-toned">
@@ -673,6 +679,11 @@ const withdrawApplication = () => {
 									</div>
 								</div>
 							</div>
+
+							<PartyFinderInfoPanel
+								v-if="application.activity.party_finder_info"
+								:info="application.activity.party_finder_info"
+							/>
 						</div>
 					</UCard>
 				</div>

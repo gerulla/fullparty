@@ -14,6 +14,10 @@ return [
             'title' => 'ランが開始しました',
             'body' => ':activity が開始しました。',
         ],
+        'party_finder_published' => [
+            'title' => 'パーティ募集情報が公開されました',
+            'body' => ':world の :character がパーティ募集を開始しました。パスワード：:password',
+        ],
         'completed' => [
             'title' => 'ランが完了しました',
             'body' => ':activity は完了しました。',

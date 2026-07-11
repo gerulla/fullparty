@@ -24,6 +24,7 @@ import ApplicantQueueDetailsModal from "@/components/Groups/Activities/Applicant
 import AssignApplicantToSlotModal from "@/components/Groups/Activities/AssignApplicantToSlotModal.vue";
 import ManualAssignCharacterToSlotModal from "@/components/Groups/Activities/ManualAssignCharacterToSlotModal.vue";
 import CompleteActivityModal from "@/components/Groups/Activities/CompleteActivityModal.vue";
+import PartyFinderInfoModal from "@/components/Groups/Activities/PartyFinderInfoModal.vue";
 import ConfirmationModal from "@/components/Shared/Modals/ConfirmationModal.vue";
 import { activityTextLimits } from "@/utils/activityTextLimits";
 import { createDateTimeFormatter } from "@/utils/dateTimeFormat";
@@ -63,6 +64,9 @@ const isPublishingRoster = ref(false);
 const isDeleteConfirmOpen = ref(false);
 const isDeletingActivity = ref(false);
 const isCancelConfirmOpen = ref(false);
+const isPartyFinderInfoModalOpen = ref(false);
+const isPublishingPartyFinderInfo = ref(false);
+const partyFinderInfoErrors = ref<Record<string, string[]>>({});
 const pendingMissingUndoIds = ref<number[]>([]);
 const completionErrors = ref<Record<string, string[]>>({});
 const assignmentModalVisible = ref(false);
@@ -149,6 +153,50 @@ const lockManualAssignmentCharacter = computed(() => Boolean(
 	&& manualAssignmentModalSlot.value.assignment_source === 'manual',
 ));
 const managementChannelName = computed(() => `groups.${props.group.id}.activities.${props.activity.id}.management`);
+
+const openPartyFinderInfoModal = () => {
+	partyFinderInfoErrors.value = {};
+	isPartyFinderInfoModalOpen.value = true;
+};
+
+const publishPartyFinderInfo = async (payload: { character_name: string, world: string, password: string }) => {
+	if (!currentActivity.value || isPublishingPartyFinderInfo.value) {
+		return;
+	}
+
+	isPublishingPartyFinderInfo.value = true;
+	partyFinderInfoErrors.value = {};
+
+	try {
+		const response = await axios.post(route('groups.dashboard.activities.party-finder-info.store', {
+			group: props.group.slug,
+			activity: currentActivity.value.id,
+		}), payload);
+
+		currentActivity.value = {
+			...currentActivity.value,
+			party_finder_info: response.data?.data ?? null,
+		};
+		isPartyFinderInfoModalOpen.value = false;
+		toast.add({
+			title: t('party_finder.publish.success_title'),
+			description: t('party_finder.publish.success_description'),
+			color: 'success',
+			icon: 'i-lucide-send',
+		});
+	} catch (error: any) {
+		partyFinderInfoErrors.value = error?.response?.data?.errors ?? {};
+
+		toast.add({
+			title: t('party_finder.publish.error_title'),
+			description: error?.response?.data?.message ?? t('party_finder.publish.error_description'),
+			color: 'error',
+			icon: 'i-lucide-circle-alert',
+		});
+	} finally {
+		isPublishingPartyFinderInfo.value = false;
+	}
+};
 
 const findSlotById = (slotId: number | null | undefined) => (
 	slotId === null || slotId === undefined || !currentActivity.value
@@ -1353,7 +1401,13 @@ const undoMissingAssignment = async (assignmentId: number) => {
 	}
 };
 
-const handleAssignApplicantToSlot = async (payload: { applicationId: number, slotId: number, fieldValues: Record<string, string | string[]>, sourceSlotId?: number | null }) => {
+const handleAssignApplicantToSlot = async (payload: {
+	applicationId: number
+	slotId: number
+	fieldValues: Record<string, string | string[]>
+	ignoreApplicationChoices?: boolean
+	sourceSlotId?: number | null
+}) => {
 	if (!currentActivity.value || isActivityArchived.value || isSlotAssignmentPending.value) {
 		return;
 	}
@@ -1378,6 +1432,7 @@ const handleAssignApplicantToSlot = async (payload: { applicationId: number, slo
 		}), {
 			application_id: payload.applicationId,
 			field_values: payload.fieldValues,
+			ignore_application_choices: payload.ignoreApplicationChoices ?? false,
 			source_slot_id: sourceSlotId,
 			expected_slot_state_token: targetSlot.state_token,
 			expected_source_slot_state_token: sourceSlot?.state_token ?? null,
@@ -1606,6 +1661,7 @@ onBeforeUnmount(() => {
 				:roster-summary-presets="currentActivity.roster_summary_presets"
 				:slots="currentActivity.slots"
 				:completed-progression="completedProgression"
+				:can-publish-party-finder-info="!isActivityArchived"
 				@edit="goToEditPage"
 				@view-overview="goToOverviewPage"
 				@go-to-application="goToApplicationPage"
@@ -1618,6 +1674,7 @@ onBeforeUnmount(() => {
 				@cancel="cancelActivity"
 				@update-roster-view="rosterView = $event"
 				@toggle-applicant-queue="showApplicantQueue = !showApplicantQueue"
+				@publish-party-finder-info="openPartyFinderInfoModal"
 			/>
 
 			<section
@@ -1927,6 +1984,14 @@ onBeforeUnmount(() => {
 				</div>
 			</template>
 		</UModal>
+
+		<PartyFinderInfoModal
+			v-model:open="isPartyFinderInfoModalOpen"
+			:info="currentActivity?.party_finder_info ?? null"
+			:pending="isPublishingPartyFinderInfo"
+			:errors="partyFinderInfoErrors"
+			@submit="publishPartyFinderInfo"
+		/>
 
 		<ConfirmationModal
 			v-model:open="isDeleteConfirmOpen"

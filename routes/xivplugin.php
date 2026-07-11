@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\XivPluginBroadcastAuthController;
+use App\Http\Controllers\Api\XivPluginCharacterController;
 use App\Http\Controllers\Api\XivPluginGroupController;
 use App\Http\Controllers\Api\XivPluginGroupRunController;
 use App\Http\Controllers\Api\XivPluginRealtimeController;
@@ -19,6 +20,9 @@ Route::prefix('xivplugin')
     ->group(function () {
         Route::get('/me', [XivPluginUserController::class, 'show'])
             ->name('me');
+
+        Route::get('/characters', [XivPluginCharacterController::class, 'index'])
+            ->name('characters.index');
 
         Route::get('/realtime', [XivPluginRealtimeController::class, 'show'])
             ->name('realtime.show');

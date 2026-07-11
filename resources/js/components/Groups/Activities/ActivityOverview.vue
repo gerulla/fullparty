@@ -67,6 +67,7 @@ const props = defineProps<{
 	}>
 	slots: ActivitySlot[]
 	completedProgression: ActivityCompletionSummary | null
+	canPublishPartyFinderInfo: boolean
 }>();
 
 const emit = defineEmits<{
@@ -82,6 +83,7 @@ const emit = defineEmits<{
 	cancel: []
 	updateRosterView: [value: 'party' | 'role' | 'list']
 	toggleApplicantQueue: []
+	publishPartyFinderInfo: []
 }>();
 
 const { t, locale } = useI18n();
@@ -223,18 +225,15 @@ const rosterViewOptions = computed(() => ([
 				</div>
 
 				<div class="flex flex-wrap items-center gap-2 md:justify-end">
-					<UTooltip :text="t('groups.activities.management.messages.check_in_plugin_tooltip')">
-						<span class="inline-flex">
-							<UButton
-								color="neutral"
-								variant="outline"
-								class="bg-background shadow-sm"
-								icon="i-lucide-user-round-check"
-								:label="t('groups.activities.management.overview.check_in')"
-								disabled
-							/>
-						</span>
-					</UTooltip>
+					<UButton
+						color="neutral"
+						variant="outline"
+						class="bg-background shadow-sm"
+						icon="i-lucide-send"
+						:label="t('party_finder.publish.button')"
+						:disabled="!canPublishPartyFinderInfo"
+						@click="emit('publishPartyFinderInfo')"
+					/>
 					<div
 						v-if="needsApplication"
 						class="inline-flex items-stretch"

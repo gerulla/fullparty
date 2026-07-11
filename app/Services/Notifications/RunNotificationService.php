@@ -4,6 +4,7 @@ namespace App\Services\Notifications;
 
 use App\Models\Activity;
 use App\Models\ActivityApplication;
+use App\Models\ActivityPartyFinderInfo;
 use App\Models\ActivitySlot;
 use App\Models\Group;
 use App\Models\IntegrationClient;
@@ -81,6 +82,34 @@ class RunNotificationService
         );
 
         $this->sendDiscordGuildRunCompleted($activity);
+    }
+
+    public function notifyPartyFinderPublished(
+        Activity $activity,
+        ActivityPartyFinderInfo $partyFinderInfo,
+        mixed $actor,
+    ): void {
+        $this->sendRunNotification(
+            activity: $activity,
+            recipients: $this->placedRunRecipients($activity),
+            type: 'runs.party_finder_published',
+            titleKey: 'notifications.runs.party_finder_published.title',
+            bodyKey: 'notifications.runs.party_finder_published.body',
+            actor: $actor,
+            messageParams: [
+                'character' => $partyFinderInfo->character_name,
+                'world' => $partyFinderInfo->world,
+                'password' => $partyFinderInfo->password,
+            ],
+            payload: [
+                'party_finder' => [
+                    'character_name' => $partyFinderInfo->character_name,
+                    'world' => $partyFinderInfo->world,
+                    'password' => $partyFinderInfo->password,
+                    'published_at' => $partyFinderInfo->published_at?->toIso8601String(),
+                ],
+            ],
+        );
     }
 
     /**
@@ -203,9 +232,7 @@ class RunNotificationService
                 'status' => $activity->status,
                 'starts_at' => $activity->starts_at?->toIso8601String(),
             ], $payload),
-            topic: str_starts_with($type, 'runs.starting_')
-                ? NotificationTopic::RUNS_REMINDERS
-                : NotificationTopic::RUNS_LIFECYCLE,
+            topic: NotificationTopic::forType($type, NotificationCategory::RUNS_AND_REMINDERS),
             groupId: $activity->group?->id,
         );
     }

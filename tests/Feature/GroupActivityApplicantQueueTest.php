@@ -260,7 +260,25 @@ it('includes selected character preferred class and phantom job ids in applicant
 
     expect($queueItem)->not->toBeNull()
         ->and($queueItem['selected_character']['preferred_character_class_ids'])->toBe([(string) $characterClass->id])
-        ->and($queueItem['selected_character']['preferred_phantom_job_ids'])->toBe([(string) $phantomJob->id]);
+        ->and($queueItem['selected_character']['preferred_phantom_job_ids'])->toBe([(string) $phantomJob->id])
+        ->and($queueItem['selected_character']['available_character_classes'])->toContain(
+            ['id' => (string) $characterClass->id, 'level' => 100],
+            ['id' => (string) $otherClass->id, 'level' => 100],
+        )
+        ->and($queueItem['selected_character']['available_phantom_jobs'])->toContain(
+            [
+                'id' => (string) $phantomJob->id,
+                'current_level' => 20,
+                'max_level' => 20,
+                'is_maxed' => true,
+            ],
+            [
+                'id' => (string) $otherPhantomJob->id,
+                'current_level' => 20,
+                'max_level' => 20,
+                'is_maxed' => true,
+            ],
+        );
 });
 
 it('forbids non moderators from loading the applicant queue payload', function () {

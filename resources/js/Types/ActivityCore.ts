@@ -133,6 +133,12 @@ export type AccountApplication = {
 		type_name: LocalizedText
 		target_prog_point_key: string | null
 		target_prog_point_label: LocalizedText | null
+		party_finder_info: {
+			character_name: string
+			world: string
+			password: string
+			published_at: string | null
+		} | null
 	}
 	character: {
 		name: string | null

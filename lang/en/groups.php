@@ -7,6 +7,7 @@ return [
                 'application_cancelled_assignment' => 'This application was cancelled and has been removed from the queue.',
                 'application_no_longer_pending_assignment' => 'This application is no longer pending and has been removed from the queue.',
                 'missing_application_cancelled' => 'This player cancelled their registration, so the missing entry was removed.',
+                'party_finder_archived' => 'Party Finder info cannot be published for a completed or cancelled run.',
             ],
         ],
     ],

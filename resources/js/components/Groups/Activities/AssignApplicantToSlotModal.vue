@@ -19,13 +19,19 @@ const props = defineProps<{
 
 const emit = defineEmits<{
 	'update:open': [value: boolean]
-	confirm: [payload: { applicationId: number, slotId: number, fieldValues: Record<string, string | string[]> }]
+	confirm: [payload: {
+		applicationId: number
+		slotId: number
+		fieldValues: Record<string, string | string[]>
+		ignoreApplicationChoices: boolean
+	}]
 }>();
 
 const { t, locale } = useI18n();
 const page = usePage();
 const fallbackLocale = computed(() => String(page.props.locale?.fallback ?? 'en'));
 const selections = ref<Record<string, string | string[]>>({});
+const ignoreApplicationChoices = ref(false);
 const ANY_OPTION_KEY = 'any';
 
 type CompatibleOption = {
@@ -100,16 +106,47 @@ const compatibleOptionsByField = computed(() => {
 					: [],
 		);
 		const selectedAnyOption = rawValues.includes(ANY_OPTION_KEY);
-		const compatibleOptions = selectedAnyOption
-			? field.options.filter((option) => option.key !== ANY_OPTION_KEY)
-			: field.options.filter((option) => rawValues.includes(option.key));
+		const availableClassLevels = new Map(
+			(props.application?.selected_character?.available_character_classes ?? [])
+				.map((entry) => [entry.id, entry.level]),
+		);
+		const availablePhantomJobs = new Map(
+			(props.application?.selected_character?.available_phantom_jobs ?? [])
+				.map((entry) => [entry.id, entry]),
+		);
+		const ignoresChoicesForField = ignoreApplicationChoices.value
+			&& (field.source === 'character_classes' || field.source === 'phantom_jobs');
+		const compatibleOptions = ignoresChoicesForField
+			? field.options.filter((option) => field.source === 'character_classes'
+				? availableClassLevels.has(option.key)
+				: availablePhantomJobs.has(option.key))
+			: selectedAnyOption
+				? field.options.filter((option) => option.key !== ANY_OPTION_KEY)
+				: field.options.filter((option) => rawValues.includes(option.key));
 
 		map[field.key] = compatibleOptions
-			.map((option) => ({
-				label: optionLabel(field, option),
-				value: option.key,
-				isFavorite: submittedValueSet.has(option.key) && preferredOptionKeys.has(option.key),
-			}));
+			.map((option) => {
+				let label = optionLabel(field, option);
+
+				if (ignoresChoicesForField && field.source === 'character_classes') {
+					label = `${label} - ${t('groups.activities.management.queue.character_level', {
+						level: availableClassLevels.get(option.key),
+					})}`;
+				}
+
+				if (ignoresChoicesForField && field.source === 'phantom_jobs') {
+					const progress = availablePhantomJobs.get(option.key);
+					label = `${label} - ${progress?.is_maxed
+						? t('groups.activities.management.queue.phantom_job_mastered')
+						: t('groups.activities.management.queue.phantom_job_level', { level: progress?.current_level })}`;
+				}
+
+				return {
+					label,
+					value: option.key,
+					isFavorite: submittedValueSet.has(option.key) && preferredOptionKeys.has(option.key),
+				};
+			});
 	}
 
 	return map;
@@ -183,7 +220,7 @@ const normalizeCurrentSlotValue = (
 };
 
 watch(
-	() => [props.open, props.slot?.id, props.application?.id] as const,
+	() => [props.open, props.slot?.id, props.application?.id, ignoreApplicationChoices.value] as const,
 	() => {
 		if (!props.open) {
 			return;
@@ -223,6 +260,15 @@ watch(
 	{ immediate: true },
 );
 
+watch(
+	() => props.open,
+	(open) => {
+		if (open) {
+			ignoreApplicationChoices.value = false;
+		}
+	},
+);
+
 const updateFieldSelection = (fieldKey: string, value: string | string[] | undefined) => {
 	selections.value = {
 		...selections.value,
@@ -239,6 +285,7 @@ const submit = () => {
 		applicationId: props.application.id,
 		slotId: props.slot.id,
 		fieldValues: selections.value,
+		ignoreApplicationChoices: ignoreApplicationChoices.value,
 	});
 };
 </script>
@@ -252,6 +299,24 @@ const submit = () => {
 	>
 		<template #body>
 			<div class="space-y-5">
+				<div class="flex items-center justify-between gap-4 border-b border-default pb-4">
+					<div class="min-w-0">
+						<p class="font-medium text-toned">
+							{{ t('groups.activities.management.queue.ignore_application_choices') }}
+						</p>
+					</div>
+					<USwitch v-model="ignoreApplicationChoices" />
+				</div>
+
+				<UAlert
+					v-if="ignoreApplicationChoices"
+					color="warning"
+					variant="soft"
+					icon="i-lucide-triangle-alert"
+					:title="t('groups.activities.management.queue.ignore_application_choices_warning_title')"
+					:description="t('groups.activities.management.queue.ignore_application_choices_warning')"
+				/>
+
 				<div class="grid gap-4 md:grid-cols-2">
 					<div class="border border-default bg-default/60 p-4">
 						<p class="text-xs uppercase tracking-[0.12em] text-muted">

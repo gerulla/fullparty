@@ -71,6 +71,16 @@ export type QueueApplication = {
 		phantom_mastery: number | null
 		preferred_character_class_ids: string[]
 		preferred_phantom_job_ids: string[]
+		available_character_classes: Array<{
+			id: string
+			level: number
+		}>
+		available_phantom_jobs: Array<{
+			id: string
+			current_level: number
+			max_level: number
+			is_maxed: boolean
+		}>
 	} | null
 	status: string
 	notes: string | null

@@ -157,6 +157,10 @@
       "title": "Run starting now",
       "body": "{activity} is starting now."
     },
+    "party_finder_published": {
+      "title": "Party Finder info available",
+      "body": "{character} on {world} has opened the Party Finder. Password: {password}"
+    },
     "completed": {
       "title": "Run complete",
       "body": "{activity} is now complete."

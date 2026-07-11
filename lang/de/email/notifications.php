@@ -14,6 +14,10 @@ return [
             'title' => 'Run startet jetzt',
             'body' => ':activity startet jetzt.',
         ],
+        'party_finder_published' => [
+            'title' => 'Party-Finder-Info verfügbar',
+            'body' => ':character auf :world hat den Party Finder geöffnet. Passwort: :password',
+        ],
         'completed' => [
             'title' => 'Run abgeschlossen',
             'body' => ':activity ist jetzt abgeschlossen.',

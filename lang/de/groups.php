@@ -7,6 +7,7 @@ return [
                 'application_cancelled_assignment' => 'Diese Bewerbung wurde abgebrochen und aus der Warteschlange entfernt.',
                 'application_no_longer_pending_assignment' => 'Diese Bewerbung ist nicht mehr ausstehend und wurde aus der Warteschlange entfernt.',
                 'missing_application_cancelled' => 'Dieser Spieler hat seine Anmeldung abgebrochen, daher wurde der Fehlend-Eintrag entfernt.',
+                'party_finder_archived' => 'Für einen abgeschlossenen oder abgesagten Run können keine Party-Finder-Infos veröffentlicht werden.',
             ],
         ],
     ],

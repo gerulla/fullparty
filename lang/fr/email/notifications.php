@@ -14,6 +14,10 @@ return [
             'title' => 'Run lancé maintenant',
             'body' => ':activity commence maintenant.',
         ],
+        'party_finder_published' => [
+            'title' => 'Informations de l’outil de mission disponibles',
+            'body' => ':character sur :world a ouvert l’outil de mission. Mot de passe : :password',
+        ],
         'completed' => [
             'title' => 'Run terminé',
             'body' => ':activity est maintenant terminé.',

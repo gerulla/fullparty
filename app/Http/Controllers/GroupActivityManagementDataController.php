@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\ActivityPartyFinderInfoResource;
 use App\Models\Activity;
 use App\Models\ActivityApplication;
 use App\Models\ActivitySlotAssignment;
@@ -41,6 +42,7 @@ class GroupActivityManagementDataController extends Controller
             'slots.compositionHints.characterClass',
             'slots.fieldValues',
             'progressMilestones',
+            'partyFinderInfo',
             'applications',
             'slotAssignments.character',
             'slotAssignments.application',
@@ -90,6 +92,9 @@ class GroupActivityManagementDataController extends Controller
                 'progress_link_url' => $activity->progress_link_url,
                 'progress_notes' => $activity->progress_notes,
                 'completed_at' => $activity->completed_at?->toIso8601String(),
+                'party_finder_info' => $activity->partyFinderInfo
+                    ? ActivityPartyFinderInfoResource::make($activity->partyFinderInfo)->resolve()
+                    : null,
                 'organized_by' => $activity->organizer ? [
                     'id' => $activity->organizer->id,
                     'name' => $activity->organizer->name,

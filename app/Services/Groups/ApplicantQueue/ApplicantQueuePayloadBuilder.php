@@ -147,6 +147,24 @@ class ApplicantQueuePayloadBuilder
                     ->map(fn ($id) => (string) $id)
                     ->values()
                     ->all(),
+                'available_character_classes' => $selectedCharacter->classes
+                    ->filter(fn ($characterClass) => (int) ($characterClass->pivot?->level ?? 0) > 0)
+                    ->map(fn ($characterClass) => [
+                        'id' => (string) $characterClass->id,
+                        'level' => (int) $characterClass->pivot->level,
+                    ])
+                    ->values()
+                    ->all(),
+                'available_phantom_jobs' => $selectedCharacter->phantomJobs
+                    ->filter(fn ($phantomJob) => (int) ($phantomJob->pivot?->current_level ?? 0) > 0)
+                    ->map(fn ($phantomJob) => [
+                        'id' => (string) $phantomJob->id,
+                        'current_level' => (int) $phantomJob->pivot->current_level,
+                        'max_level' => (int) $phantomJob->max_level,
+                        'is_maxed' => (int) $phantomJob->pivot->current_level >= (int) $phantomJob->max_level,
+                    ])
+                    ->values()
+                    ->all(),
             ] : null,
             'status' => $application->status,
             'notes' => $application->notes,

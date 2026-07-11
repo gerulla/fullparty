@@ -7,6 +7,7 @@ return [
                 'application_cancelled_assignment' => 'Cette candidature a été annulée et retirée de la file.',
                 'application_no_longer_pending_assignment' => 'Cette candidature n\'est plus en attente et a été retirée de la file.',
                 'missing_application_cancelled' => 'Ce joueur a annulé son inscription, l\'entrée manquante a donc été retirée.',
+                'party_finder_archived' => 'Les informations de l\'outil de mission ne peuvent pas être publiées pour un run terminé ou annulé.',
             ],
         ],
     ],

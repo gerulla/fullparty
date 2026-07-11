@@ -1,0 +1,21 @@
+{
+    "publish": {
+        "button": "募集情報を送信",
+        "title": "パーティ募集情報を送信",
+        "description": "現在のパーティ募集情報を、この開催に配置されている全員へ共有します。",
+        "action": "募集情報を送信",
+        "success_title": "パーティ募集情報を送信しました",
+        "success_description": "参加者へ通知しました。",
+        "error_title": "パーティ募集情報を送信できませんでした",
+        "error_description": "入力内容を確認して、もう一度お試しください。"
+    },
+    "fields": {
+        "character_name": "キャラクター名",
+        "world": "ワールド",
+        "password": "パスワード",
+        "password_description": "参加者がパーティ募集に参加するために使用するパスワードです。"
+    },
+    "display": {
+        "title": "パーティ募集情報"
+    }
+}

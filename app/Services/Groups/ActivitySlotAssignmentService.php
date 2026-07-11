@@ -34,6 +34,7 @@ class ActivitySlotAssignmentService
         array $fieldDefinitions,
         int $assignedByUserId,
         ?ActivitySlot $sourceSlot = null,
+        bool $ignoreApplicationChoices = false,
     ): void {
         $targetSlot->loadMissing('fieldValues');
 
@@ -83,6 +84,7 @@ class ActivitySlotAssignmentService
             $isSourceBench,
             $targetHadDifferentOccupant,
             $displacedApplication,
+            $ignoreApplicationChoices,
         ) {
             $activity = $targetSlot->activity;
             $targetDesignationState = $this->designationState($targetSlot);
@@ -107,7 +109,14 @@ class ActivitySlotAssignmentService
             if ($isTargetBench) {
                 $this->clearSlotFieldValues($targetSlot);
             } else {
-                $this->applySlotFieldSelections($targetSlot, $fieldSelections, $fieldDefinitions, $applicationAnswers->all());
+                $this->applySlotFieldSelections(
+                    $targetSlot,
+                    $fieldSelections,
+                    $fieldDefinitions,
+                    $applicationAnswers->all(),
+                    $application->selectedCharacter,
+                    $ignoreApplicationChoices,
+                );
             }
 
             $application->update([
@@ -189,6 +198,7 @@ class ActivitySlotAssignmentService
             'source_group_label' => $sourceSlot ? ($sourceSlot->group_label['en'] ?? $sourceSlot->group_key) : null,
             'displaced_character_name' => $targetPreviousCharacterName,
             'field_assignment_updated' => $event === 'updated',
+            'application_choices_ignored' => $ignoreApplicationChoices,
         ];
 
         $this->activityAuditService->logRosterEvent(
@@ -521,6 +531,8 @@ class ActivitySlotAssignmentService
         array $fieldSelections,
         array $fieldDefinitions,
         array $applicationAnswers,
+        ?Character $character,
+        bool $ignoreApplicationChoices,
     ): void {
         foreach ($slot->fieldValues as $fieldValue) {
             $definition = $fieldDefinitions[$fieldValue->field_key] ?? null;
@@ -541,7 +553,11 @@ class ActivitySlotAssignmentService
 
             $applicationKey = (string) ($definition['application_key'] ?? '');
             $applicationAnswer = $applicationKey !== '' ? ($applicationAnswers[$applicationKey] ?? null) : null;
-            $allowedOptionKeys = $this->allowedOptionKeysForApplicationAnswer($definition, $applicationAnswer?->value);
+            $choicesIgnoredForField = $ignoreApplicationChoices
+                && in_array($definition['source'] ?? null, ['character_classes', 'phantom_jobs'], true);
+            $allowedOptionKeys = $choicesIgnoredForField
+                ? $this->allowedOptionKeysWhenIgnoringApplicationChoices($definition, $applicationAnswer?->value, $character)
+                : $this->allowedOptionKeysForApplicationAnswer($definition, $applicationAnswer?->value);
             $normalizedSelection = $this->normalizeSelection($selectedValue);
 
             if (count($normalizedSelection) === 0) {
@@ -553,7 +569,9 @@ class ActivitySlotAssignmentService
             foreach ($normalizedSelection as $selection) {
                 if (! in_array($selection, $allowedOptionKeys, true)) {
                     throw ValidationException::withMessages([
-                        "field_values.{$fieldValue->field_key}" => 'Selected slot values must come from the application.',
+                        "field_values.{$fieldValue->field_key}" => $choicesIgnoredForField
+                            ? 'Selected class and phantom job values must be available to the character.'
+                            : 'Selected slot values must come from the application.',
                     ]);
                 }
             }
@@ -565,6 +583,45 @@ class ActivitySlotAssignmentService
                 ),
             ]);
         }
+    }
+
+    /**
+     * @param  array<string, mixed>  $definition
+     * @return array<int, string>
+     */
+    private function allowedOptionKeysWhenIgnoringApplicationChoices(
+        array $definition,
+        mixed $applicationAnswer,
+        ?Character $character,
+    ): array {
+        if (! $character) {
+            return [];
+        }
+
+        $availableOptionKeys = match ($definition['source'] ?? null) {
+            'character_classes' => $character->classes
+                ->filter(fn ($characterClass) => (int) ($characterClass->pivot?->level ?? 0) > 0)
+                ->pluck('id'),
+            'phantom_jobs' => $character->phantomJobs
+                ->filter(fn ($phantomJob) => (int) ($phantomJob->pivot?->current_level ?? 0) > 0)
+                ->pluck('id'),
+            default => null,
+        };
+
+        if ($availableOptionKeys === null) {
+            return $this->allowedOptionKeysForApplicationAnswer($definition, $applicationAnswer);
+        }
+
+        $definedOptionKeys = collect($definition['options'] ?? [])
+            ->map(fn (array $option) => (string) ($option['key'] ?? $option['value'] ?? ''))
+            ->filter()
+            ->all();
+
+        return $availableOptionKeys
+            ->map(fn ($id) => (string) $id)
+            ->filter(fn (string $id) => in_array($id, $definedOptionKeys, true))
+            ->values()
+            ->all();
     }
 
     /**

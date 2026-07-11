@@ -24,6 +24,7 @@ use App\Http\Controllers\GroupActivityController;
 use App\Http\Controllers\GroupActivityFflogsCompletionPreviewController;
 use App\Http\Controllers\GroupActivityFflogsController;
 use App\Http\Controllers\GroupActivityManagementDataController;
+use App\Http\Controllers\GroupActivityPartyFinderInfoController;
 use App\Http\Controllers\GroupActivityManualSlotAssignmentOptionsController;
 use App\Http\Controllers\GroupActivityRosterExportController;
 use App\Http\Controllers\GroupActivitySelfAssignmentController;
@@ -465,6 +466,7 @@ Route::prefix('{locale?}')
 
                 // Full dashboard payloads, exports, and read-only queue details.
                 Route::get('/activities/{activity}/management-data', [GroupActivityManagementDataController::class, 'show'])->name('groups.dashboard.activities.management-data');
+                Route::post('/activities/{activity}/party-finder-info', [GroupActivityPartyFinderInfoController::class, 'store'])->name('groups.dashboard.activities.party-finder-info.store');
                 Route::get('/activities/{activity}/export-roster', [GroupActivityRosterExportController::class, 'show'])->name('groups.dashboard.activities.export-roster');
                 Route::get('/activities/{activity}/applicant-queue', [GroupActivityApplicantQueueController::class, 'show'])->name('groups.dashboard.activities.applicant-queue');
                 Route::get('/activities/{activity}/applicant-queue/applications/{application}', [GroupActivityApplicantQueueController::class, 'showApplication'])->name('groups.dashboard.activities.applicant-queue.application');

@@ -1,0 +1,21 @@
+{
+    "publish": {
+        "button": "PF-Info senden",
+        "title": "Party-Finder-Info senden",
+        "description": "Teile den aktiven Party-Finder-Eintrag mit allen Personen, die für diesen Run eingeplant sind.",
+        "action": "PF-Info senden",
+        "success_title": "Party-Finder-Info gesendet",
+        "success_description": "Die Teilnehmer des Runs wurden benachrichtigt.",
+        "error_title": "Party-Finder-Info konnte nicht gesendet werden",
+        "error_description": "Überprüfe die Angaben und versuche es erneut."
+    },
+    "fields": {
+        "character_name": "Charaktername",
+        "world": "Welt",
+        "password": "Passwort",
+        "password_description": "Das Passwort, mit dem Teilnehmer dem Party-Finder-Eintrag beitreten."
+    },
+    "display": {
+        "title": "Party-Finder-Info"
+    }
+}

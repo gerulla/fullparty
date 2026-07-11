@@ -18,11 +18,13 @@ use App\Http\Controllers\GoogleAuthController;
 use App\Http\Controllers\GroupActivityApplicantQueueController;
 use App\Http\Controllers\GroupActivityApplicationController;
 use App\Http\Controllers\GroupActivityApplicationDeclineController;
+use App\Http\Controllers\GroupActivityCalendarController;
 use App\Http\Controllers\GroupActivityCompletionController;
 use App\Http\Controllers\GroupActivityController;
 use App\Http\Controllers\GroupActivityFflogsCompletionPreviewController;
 use App\Http\Controllers\GroupActivityFflogsController;
 use App\Http\Controllers\GroupActivityManagementDataController;
+use App\Http\Controllers\GroupActivityPartyFinderInfoController;
 use App\Http\Controllers\GroupActivityManualSlotAssignmentOptionsController;
 use App\Http\Controllers\GroupActivityRosterExportController;
 use App\Http\Controllers\GroupActivitySelfAssignmentController;
@@ -36,6 +38,7 @@ use App\Http\Controllers\GroupActivitySlotMissingController;
 use App\Http\Controllers\GroupActivitySlotSwapController;
 use App\Http\Controllers\GroupActivitySlotUnassignmentController;
 use App\Http\Controllers\GroupAuditLogController;
+use App\Http\Controllers\GroupAvailabilityController;
 use App\Http\Controllers\GroupController;
 use App\Http\Controllers\GroupDashboardController;
 use App\Http\Controllers\GroupDiscordIntegrationController;
@@ -212,6 +215,10 @@ Route::prefix('{locale?}')
             ->where('secretKey', '[A-Za-z0-9]{40}')
             ->middleware(['throttle:guest.application', 'throttle:external.lookup'])
             ->name('groups.activities.application.search-characters');
+
+        Route::get('/groups/{group:slug}/activities/{activity}/calendar.ics/{secretKey?}', GroupActivityCalendarController::class)
+            ->where('secretKey', '[A-Za-z0-9]{40}')
+            ->name('groups.activities.calendar');
 
         // Public activity overview, with optional secret key for private activities.
         Route::get('/groups/{group:slug}/activities/{activity}/{secretKey?}', [GroupActivityController::class, 'overview'])
@@ -408,9 +415,15 @@ Route::prefix('{locale?}')
                 // Group dashboard landing and non-activity sections.
                 Route::get('/', [GroupDashboardController::class, 'show'])->name('groups.dashboard');
                 Route::get('/members', [GroupMemberController::class, 'index'])->name('groups.dashboard.members');
+                Route::get('/members/{user}/activity-summary', [GroupMemberController::class, 'activitySummary'])->name('groups.dashboard.members.activity-summary');
+                Route::get('/availability', GroupAvailabilityController::class)->name('groups.dashboard.availability');
+                Route::get('/availability/selection', [GroupAvailabilityController::class, 'selection'])->name('groups.dashboard.availability.selection');
+                Route::put('/availability/settings', [GroupAvailabilityController::class, 'updateSettings'])->name('groups.dashboard.availability.settings.update');
+                Route::put('/availability/schedule', [GroupAvailabilityController::class, 'updateSchedule'])->name('groups.dashboard.availability.schedule.update');
                 Route::get('/statistics', GroupStatisticsController::class)->name('groups.dashboard.statistics');
                 Route::post('/statistics/refresh', [GroupStatisticsController::class, 'refresh'])->name('groups.dashboard.statistics.refresh');
                 Route::get('/leaderboard', GroupLeaderboardController::class)->name('groups.dashboard.leaderboard');
+                Route::get('/leaderboard/ranking', [GroupLeaderboardController::class, 'ranking'])->name('groups.dashboard.leaderboard.ranking');
                 Route::post('/leaderboard/refresh', [GroupLeaderboardController::class, 'refresh'])->name('groups.dashboard.leaderboard.refresh');
                 Route::get('/legacy-leaderboard', GroupLegacyLeaderboardController::class)->name('groups.dashboard.legacy-leaderboard');
                 Route::get('/membership-applications', [GroupMembershipApplicationReviewController::class, 'index'])->name('groups.dashboard.membership-applications.index');
@@ -453,6 +466,7 @@ Route::prefix('{locale?}')
 
                 // Full dashboard payloads, exports, and read-only queue details.
                 Route::get('/activities/{activity}/management-data', [GroupActivityManagementDataController::class, 'show'])->name('groups.dashboard.activities.management-data');
+                Route::post('/activities/{activity}/party-finder-info', [GroupActivityPartyFinderInfoController::class, 'store'])->name('groups.dashboard.activities.party-finder-info.store');
                 Route::get('/activities/{activity}/export-roster', [GroupActivityRosterExportController::class, 'show'])->name('groups.dashboard.activities.export-roster');
                 Route::get('/activities/{activity}/applicant-queue', [GroupActivityApplicantQueueController::class, 'show'])->name('groups.dashboard.activities.applicant-queue');
                 Route::get('/activities/{activity}/applicant-queue/applications/{application}', [GroupActivityApplicantQueueController::class, 'showApplication'])->name('groups.dashboard.activities.applicant-queue.application');

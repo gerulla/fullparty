@@ -92,6 +92,7 @@ trait InteractsWithGroupActivityAttendees
             'name' => $group->name,
             'slug' => $group->slug,
             'is_visible' => $group->is_visible,
+            'features' => $group->featureSettings(),
         ];
     }
 

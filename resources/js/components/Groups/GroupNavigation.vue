@@ -19,6 +19,11 @@ const props = defineProps<{
 			can_review_membership_applications?: boolean
 			can_manage_membership_application_form?: boolean
 		}
+		features?: {
+			availability_scheduler_enabled?: boolean
+			statistics_enabled?: boolean
+			leaderboard_enabled?: boolean
+		}
 	}
 }>()
 
@@ -48,6 +53,8 @@ const legacyLeaderboardHref = computed(() => route('groups.dashboard.legacy-lead
 const legacyLeaderboardPath = computed(() => routePath('groups.dashboard.legacy-leaderboard'))
 const membersHref = computed(() => route('groups.dashboard.members', props.group.slug))
 const membersPath = computed(() => routePath('groups.dashboard.members'))
+const availabilityHref = computed(() => route('groups.dashboard.availability', props.group.slug))
+const availabilityPath = computed(() => routePath('groups.dashboard.availability'))
 const membershipApplicationsHref = computed(() => route('groups.dashboard.membership-applications.index', props.group.slug))
 const membershipApplicationsPath = computed(() => routePath('groups.dashboard.membership-applications.index'))
 const membershipApplicationFormPath = computed(() => routePath('groups.dashboard.membership-application-form.edit'))
@@ -60,7 +67,10 @@ const settingsPath = computed(() => routePath('groups.dashboard.settings'))
 const discordIntegrationHref = computed(() => route('groups.dashboard.discord-integration', props.group.slug))
 const discordIntegrationPath = computed(() => routePath('groups.dashboard.discord-integration'))
 const isPublicActivityRoute = computed(() => page.url.startsWith(publicActivitiesPath.value))
-const showsLegacyLeaderboard = computed(() => props.group.slug === 'ftel')
+const showsStatistics = computed(() => props.group.features?.statistics_enabled ?? true)
+const showsLeaderboard = computed(() => props.group.features?.leaderboard_enabled ?? true)
+const showsAvailability = computed(() => props.group.features?.availability_scheduler_enabled ?? false)
+const showsLegacyLeaderboard = computed(() => props.group.slug === 'ftel' && showsLeaderboard.value)
 const canUpdateGroupSettings = computed(() => Boolean(
 	props.group.permissions?.can_update_group_settings
 	|| props.group.permissions?.can_manage_discovery
@@ -82,18 +92,18 @@ const desktopLinkItem = (item: NavigationMenuItem & { to: string }): NavigationM
 })
 
 const dataMenuItems = computed<NavigationMenuItem[]>(() => [
-	desktopLinkItem({
+	...(showsStatistics.value ? [desktopLinkItem({
 		label: t('groups.index.navigation.statistics'),
 		icon: 'i-lucide-chart-no-axes-combined',
 		to: statisticsHref.value,
 		active: isRouteActive(statisticsPath.value),
-	}),
-	desktopLinkItem({
+	})] : []),
+	...(showsLeaderboard.value ? [desktopLinkItem({
 		label: t('groups.index.navigation.leaderboard'),
 		icon: 'i-lucide-trophy',
 		to: leaderboardHref.value,
 		active: isRouteActive(leaderboardPath.value),
-	}),
+	})] : []),
 	...(showsLegacyLeaderboard.value ? [desktopLinkItem({
 		label: t('groups.index.navigation.legacy_leaderboard'),
 		icon: 'i-lucide-archive',
@@ -151,17 +161,23 @@ const desktopLeftItems = computed<NavigationMenuItem[]>(() => [
 		to: activitiesHref.value,
 		active: isRouteActive(activitiesPath.value) || isPublicActivityRoute.value,
 	}),
-	{
+	...(dataMenuItems.value.length > 0 ? [{
 		label: t('groups.index.navigation.data'),
 		icon: 'i-lucide-chart-no-axes-combined',
 		active: dataMenuItems.value.some((item) => item.active),
 		children: dataMenuItems.value,
-	},
+	}] : []),
 	...(props.group.permissions?.can_view_members ? [desktopLinkItem({
 		label: t('groups.index.navigation.members'),
 		icon: 'i-lucide-users',
 		to: membersHref.value,
 		active: isRouteActive(membersPath.value),
+	})] : []),
+	...(showsAvailability.value ? [desktopLinkItem({
+		label: t('groups.index.navigation.availability'),
+		icon: 'i-lucide-calendar-clock',
+		to: availabilityHref.value,
+		active: isRouteActive(availabilityPath.value),
 	})] : []),
 ])
 
@@ -199,18 +215,24 @@ const desktopNavigationUi = {
 const settingsActive = computed(() => isRouteActive(settingsPath.value))
 
 const infoMenuItems = computed(() => [
-	{
+	...(showsAvailability.value ? [{
+		label: t('groups.index.navigation.availability'),
+		icon: 'i-lucide-calendar-clock',
+		href: availabilityHref.value,
+		active: isRouteActive(availabilityPath.value),
+	}] : []),
+	...(showsStatistics.value ? [{
 		label: t('groups.index.navigation.statistics'),
 		icon: 'i-lucide-chart-no-axes-combined',
 		href: statisticsHref.value,
 		active: isRouteActive(statisticsPath.value),
-	},
-	{
+	}] : []),
+	...(showsLeaderboard.value ? [{
 		label: t('groups.index.navigation.leaderboard'),
 		icon: 'i-lucide-trophy',
 		href: leaderboardHref.value,
 		active: isRouteActive(leaderboardPath.value),
-	},
+	}] : []),
 	...(showsLegacyLeaderboard.value ? [{
 		label: t('groups.index.navigation.legacy_leaderboard'),
 		icon: 'i-lucide-archive',
@@ -285,21 +307,22 @@ const memberMobileItems = computed(() => [
 		href: dashboardHref.value,
 		active: page.url === dashboardPath.value,
 	},
-	showsLegacyLeaderboard.value ? {
+	...(showsAvailability.value || showsLegacyLeaderboard.value ? [{
 		label: t('groups.index.navigation.info'),
 		icon: 'i-lucide-info',
 		href: null,
 		menu: "info" as const,
 		active: activeMobileMenu.value === "info"
-			|| isRouteActive(statisticsPath.value)
-			|| isRouteActive(leaderboardPath.value)
+			|| (showsAvailability.value && isRouteActive(availabilityPath.value))
+			|| (showsStatistics.value && isRouteActive(statisticsPath.value))
+			|| (showsLeaderboard.value && isRouteActive(leaderboardPath.value))
 			|| isRouteActive(legacyLeaderboardPath.value),
-	} : {
+	}] : showsLeaderboard.value ? [{
 		label: t('groups.index.navigation.leaderboard'),
 		icon: 'i-lucide-trophy',
 		href: leaderboardHref.value,
 		active: isRouteActive(leaderboardPath.value),
-	},
+	}] : []),
 	{
 		label: t('groups.index.navigation.activities'),
 		icon: 'i-lucide-swords',
@@ -313,12 +336,17 @@ const memberMobileItems = computed(() => [
 		href: membersHref.value,
 		active: isRouteActive(membersPath.value),
 	},
-	{
+	...(showsAvailability.value ? [{
+		label: t('groups.index.navigation.availability'),
+		icon: 'i-lucide-calendar-clock',
+		href: availabilityHref.value,
+		active: isRouteActive(availabilityPath.value),
+	}] : showsStatistics.value ? [{
 		label: t('groups.index.navigation.statistics'),
 		icon: 'i-lucide-chart-no-axes-combined',
 		href: statisticsHref.value,
 		active: isRouteActive(statisticsPath.value),
-	},
+	}] : []),
 ])
 
 const managerMobileItems = computed(() => [
@@ -328,17 +356,18 @@ const managerMobileItems = computed(() => [
 		href: dashboardHref.value,
 		active: page.url === dashboardPath.value,
 	},
-	{
+	...(infoMenuItems.value.length > 0 ? [{
 		label: t('groups.index.navigation.info'),
 		icon: 'i-lucide-info',
 		href: null,
 		menu: "info" as const,
 		active: activeMobileMenu.value === "info"
-			|| isRouteActive(statisticsPath.value)
-			|| isRouteActive(leaderboardPath.value)
-			|| isRouteActive(legacyLeaderboardPath.value)
+			|| (showsAvailability.value && isRouteActive(availabilityPath.value))
+			|| (showsStatistics.value && isRouteActive(statisticsPath.value))
+			|| (showsLeaderboard.value && isRouteActive(leaderboardPath.value))
+			|| (showsLegacyLeaderboard.value && isRouteActive(legacyLeaderboardPath.value))
 			|| isRouteActive(auditLogPath.value),
-	},
+	}] : []),
 	{
 		label: t('groups.index.navigation.activities'),
 		icon: 'i-lucide-swords',

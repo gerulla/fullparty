@@ -116,11 +116,11 @@
                 "deleted": "がレイドポジションを削除しました。"
             },
             "activity_type": {
-                "created": "がActivity Typeを作成しました。",
-                "cloned": "がActivity Typeを複製しました。",
-                "updated": "がActivity Typeを更新しました。",
-                "published": "がActivity Typeを公開しました。",
-                "archived": "がActivity Typeをアーカイブしました。"
+                "created": "がアクティビティタイプを作成しました。",
+                "cloned": "がアクティビティタイプを複製しました。",
+                "updated": "がアクティビティタイプを更新しました。",
+                "published": "がアクティビティタイプを公開しました。",
+                "archived": "がアクティビティタイプをアーカイブしました。"
             },
             "system_notification": {
                 "maintenance_sent": "必須のメンテナンス通知を送信しました。",
@@ -208,8 +208,8 @@
                     }
                 },
                 "removed": "がメンバーをグループから削除しました。",
-                "banned": "がメンバーをグループからBANしました。",
-                "unbanned": "がメンバーのBANを解除しました。"
+                "banned": "がメンバーをグループから参加禁止にしました。",
+                "unbanned": "がメンバーの参加禁止を解除しました。"
             },
             "ownership": {
                 "transferred": "がグループの所有権を移譲しました。"
@@ -222,8 +222,8 @@
                 "promoted": "が昇格しました",
                 "demoted": "が降格しました",
                 "removed": "を削除しました",
-                "banned": "をBANしました",
-                "unbanned": "のBANを解除しました",
+                "banned": "を参加禁止にしました",
+                "unbanned": "の参加禁止を解除しました",
                 "joined_via_invite": "が招待を承認しました:"
             }
         }
@@ -256,7 +256,7 @@
         "addendum_excerpt": "補足抜粋",
         "is_shared_with_groups": "他グループと共有",
         "membership_status": "メンバーシップ状態",
-        "ban_reason": "BAN理由",
+        "ban_reason": "参加禁止理由",
         "owner_user_id": "オーナー",
         "previous_role": "以前のロール",
         "invite_id": "招待ID",
@@ -264,7 +264,7 @@
         "max_uses": "最大使用回数",
         "expires_at": "有効期限",
         "uses": "使用回数",
-        "slug": "Slug",
+        "slug": "スラッグ",
         "activity_title": "アクティビティ",
         "activity_type_slug": "アクティビティ種別",
         "slot_label": "枠",
@@ -284,7 +284,7 @@
         "duration_hours": "時間数",
         "needs_application": "応募必須",
         "allow_guest_applications": "ゲスト応募を許可",
-        "target_prog_point_key": "目標Progポイント",
+        "target_prog_point_key": "目標攻略ポイント",
         "organized_by_user_id": "主催者",
         "organized_by_character_id": "主催キャラクター",
         "checked_in_at": "チェックイン日時",
@@ -300,10 +300,10 @@
         "provider": "プロバイダー",
         "provider_user_id": "プロバイダーユーザーID",
         "membership_application_id": "リクエスト",
-        "applicant_user_id": "Applicant",
-        "applicant_name": "Applicant Name",
-        "field_count": "Field Count",
-        "previous_field_count": "Previous Field Count",
+        "applicant_user_id": "申請者",
+        "applicant_name": "応募者名",
+        "field_count": "項目数",
+        "previous_field_count": "以前の項目数",
         "login_method": "ログイン方法",
         "registration_method": "登録方法",
         "remember": "ログイン状態を保持",
@@ -366,11 +366,11 @@
                 "deleted": "レイドポジションを削除"
             },
             "activity_type": {
-                "created": "Activity Typeを作成",
-                "cloned": "Activity Typeを複製",
-                "updated": "Activity Typeを更新",
-                "published": "Activity Typeを公開",
-                "archived": "Activity Typeをアーカイブ"
+                "created": "アクティビティタイプを作成",
+                "cloned": "アクティビティタイプを複製",
+                "updated": "アクティビティタイプを更新",
+                "published": "アクティビティタイプを公開",
+                "archived": "アクティビティタイプをアーカイブ"
             },
             "system_notification": {
                 "maintenance_sent": "メンテナンス通知を送信",
@@ -457,8 +457,8 @@
                     }
                 },
                 "removed": "メンバーをグループから削除",
-                "banned": "メンバーをグループからBAN",
-                "unbanned": "メンバーのBANを解除"
+                "banned": "メンバーをグループから参加禁止",
+                "unbanned": "メンバーの参加禁止を解除"
             },
             "ownership": {
                 "transferred": "グループ所有権を移譲"

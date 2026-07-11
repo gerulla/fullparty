@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { router } from "@inertiajs/vue3";
-import { computed, onBeforeUnmount, onMounted, ref } from "vue";
+import axios from "axios";
+import { computed, onBeforeUnmount, onMounted, reactive, ref, watch } from "vue";
 import { useI18n } from "vue-i18n";
 import { route } from "ziggy-js";
 import PageHeader from "@/components/PageHeader.vue";
@@ -10,6 +11,7 @@ import type {
 	GroupLeaderboardGroup,
 	GroupLeaderboardHostSuccessEntry,
 	GroupLeaderboardPayload,
+	GroupLeaderboardPeriod,
 } from "@/Types/GroupLeaderboard";
 import { createDateTimeFormatter } from "@/utils/dateTimeFormat";
 
@@ -19,9 +21,36 @@ const props = defineProps<{
 	leaderboard_cache: GroupLeaderboardCacheMeta
 }>();
 
+type LeaderboardLimit = '10' | '100' | 'all';
+
 const { t, locale } = useI18n();
 const nowMs = ref(Date.now());
 const isRefreshing = ref(false);
+const overallPeriod = ref<GroupLeaderboardPeriod>('all_time');
+const raidLeaderPeriod = ref<GroupLeaderboardPeriod>('all_time');
+const hostPeriod = ref<GroupLeaderboardPeriod>('all_time');
+const overallLimit = ref<LeaderboardLimit>('10');
+const raidLeaderLimit = ref<LeaderboardLimit>('10');
+const hostLimit = ref<LeaderboardLimit>('10');
+const overallRanking = ref<GroupLeaderboardCountEntry[]>(props.leaderboard.rankings.overall);
+const raidLeaderRanking = ref<GroupLeaderboardCountEntry[]>(props.leaderboard.rankings.raid_leaders);
+const hostRanking = ref<GroupLeaderboardCountEntry[]>(props.leaderboard.rankings.hosts);
+const rankingCache = new Map<string, GroupLeaderboardCountEntry[]>([
+	['overall:all_time:10', overallRanking.value],
+	['raid_leaders:all_time:10', raidLeaderRanking.value],
+	['hosts:all_time:10', hostRanking.value],
+]);
+const rankingRequestIds = {
+	overall: 0,
+	raid_leaders: 0,
+	hosts: 0,
+};
+const rankingLoading = reactive({
+	overall: false,
+	raid_leaders: false,
+	hosts: false,
+});
+const skeletonRows = Array.from({ length: 10 }, (_, index) => index);
 let cooldownTimer: number | undefined;
 
 const numberFormatter = computed(() => new Intl.NumberFormat(locale.value));
@@ -67,6 +96,76 @@ const characterWorld = (entry: GroupLeaderboardCountEntry | GroupLeaderboardHost
 
 const topParticipant = computed(() => props.leaderboard.rankings.overall[0] ?? null);
 const topHostSuccess = computed(() => props.leaderboard.rankings.host_success[0] ?? null);
+const periodTabs = computed(() => [
+	{ label: t('groups.leaderboard.periods.all_time'), value: 'all_time' },
+	{ label: t('groups.leaderboard.periods.past_6_months'), value: 'past_6_months' },
+	{ label: t('groups.leaderboard.periods.past_30_days'), value: 'past_30_days' },
+]);
+const limitTabs = computed(() => [
+	{ label: t('groups.leaderboard.limits.top_10'), value: '10' },
+	{ label: t('groups.leaderboard.limits.top_100'), value: '100' },
+	{ label: t('groups.leaderboard.limits.all'), value: 'all' },
+]);
+const loadRanking = async (
+	category: keyof typeof rankingRequestIds,
+	period: GroupLeaderboardPeriod,
+	limit: LeaderboardLimit,
+	apply: (entries: GroupLeaderboardCountEntry[]) => void,
+) => {
+	const key = `${category}:${period}:${limit}`;
+	const cached = rankingCache.get(key);
+	const requestId = ++rankingRequestIds[category];
+
+	if (cached) {
+		rankingLoading[category] = false;
+		apply(cached);
+		return;
+	}
+
+	rankingLoading[category] = true;
+	let entries: GroupLeaderboardCountEntry[];
+
+	try {
+		const response = await axios.get(route('groups.dashboard.leaderboard.ranking', props.group.slug), {
+			params: { category, period, limit },
+		});
+		entries = response.data.data as GroupLeaderboardCountEntry[];
+	} catch {
+		if (requestId === rankingRequestIds[category]) {
+			rankingLoading[category] = false;
+		}
+
+		return;
+	}
+
+	if (requestId !== rankingRequestIds[category]) {
+		return;
+	}
+
+	rankingCache.set(key, entries);
+	apply(entries);
+	rankingLoading[category] = false;
+};
+
+watch([overallPeriod, overallLimit], ([period, limit]) => {
+	void loadRanking('overall', period, limit, entries => { overallRanking.value = entries; });
+});
+watch([raidLeaderPeriod, raidLeaderLimit], ([period, limit]) => {
+	void loadRanking('raid_leaders', period, limit, entries => { raidLeaderRanking.value = entries; });
+});
+watch([hostPeriod, hostLimit], ([period, limit]) => {
+	void loadRanking('hosts', period, limit, entries => { hostRanking.value = entries; });
+});
+watch(() => props.leaderboard.generated_at, () => {
+	rankingCache.clear();
+	rankingCache.set('overall:all_time:10', props.leaderboard.rankings.overall);
+	rankingCache.set('raid_leaders:all_time:10', props.leaderboard.rankings.raid_leaders);
+	rankingCache.set('hosts:all_time:10', props.leaderboard.rankings.hosts);
+
+	void loadRanking('overall', overallPeriod.value, overallLimit.value, entries => { overallRanking.value = entries; });
+	void loadRanking('raid_leaders', raidLeaderPeriod.value, raidLeaderLimit.value, entries => { raidLeaderRanking.value = entries; });
+	void loadRanking('hosts', hostPeriod.value, hostLimit.value, entries => { hostRanking.value = entries; });
+});
 const summaryCards = computed(() => [
 	{
 		key: "participations",
@@ -357,18 +456,58 @@ onBeforeUnmount(() => {
 				<UCard class="dark:bg-elevated/25" :ui="{ body: 'p-0 sm:p-0' }">
 					<template #header>
 						<div>
-							<p class="font-semibold text-md">
-								{{ t("groups.leaderboard.boards.overall.title") }}
-							</p>
-							<p class="text-sm text-muted">
-								{{ t("groups.leaderboard.boards.overall.subtitle") }}
-							</p>
+							<div class="flex flex-wrap items-start justify-between gap-3">
+								<div>
+									<p class="font-semibold text-md">
+										{{ t("groups.leaderboard.boards.overall.title") }}
+									</p>
+									<p class="text-sm text-muted">
+										{{ t("groups.leaderboard.boards.overall.subtitle") }}
+									</p>
+								</div>
+								<UTabs
+									v-model="overallLimit"
+									:items="limitTabs"
+									:content="false"
+									variant="pill"
+									size="xs"
+									class="shrink-0"
+								/>
+							</div>
+							<UTabs
+								v-model="overallPeriod"
+								:items="periodTabs"
+								:content="false"
+								variant="link"
+								size="sm"
+								class="mt-3 w-full"
+							/>
 						</div>
 					</template>
 
-					<div v-if="leaderboard.rankings.overall.length > 0" class="divide-y divide-default">
+					<div v-if="rankingLoading.overall" class="divide-y divide-default">
 						<div
-							v-for="entry in leaderboard.rankings.overall"
+							v-for="row in skeletonRows"
+							:key="row"
+							class="grid grid-cols-[2.5rem_minmax(0,1fr)_4rem] items-center gap-3 px-4 py-3"
+						>
+							<USkeleton class="h-6 w-8" />
+							<div class="flex items-center gap-3">
+								<USkeleton class="size-9 shrink-0" />
+								<div class="w-full space-y-2">
+									<USkeleton class="h-4 w-36 max-w-full" />
+									<USkeleton class="h-3 w-24 max-w-full" />
+								</div>
+							</div>
+							<USkeleton class="h-7 w-14" />
+						</div>
+					</div>
+					<div
+						v-else-if="overallRanking.length > 0"
+						class="max-h-[38rem] divide-y divide-default overflow-y-auto overscroll-contain [scrollbar-gutter:stable]"
+					>
+						<div
+							v-for="entry in overallRanking"
 							:key="entry.character.id ?? entry.character.name"
 							class="grid grid-cols-[2.5rem_minmax(0,1fr)_auto] items-center gap-3 px-4 py-3"
 						>
@@ -412,18 +551,55 @@ onBeforeUnmount(() => {
 				<UCard class="dark:bg-elevated/25" :ui="{ body: 'p-0 sm:p-0' }">
 					<template #header>
 						<div>
-							<p class="font-semibold text-md">
-								{{ t("groups.leaderboard.boards.raid_leaders.title") }}
-							</p>
-							<p class="text-sm text-muted">
-								{{ t("groups.leaderboard.boards.raid_leaders.subtitle") }}
-							</p>
+							<div class="flex flex-wrap items-start justify-between gap-3">
+								<div>
+									<p class="font-semibold text-md">
+										{{ t("groups.leaderboard.boards.raid_leaders.title") }}
+									</p>
+									<p class="text-sm text-muted">
+										{{ t("groups.leaderboard.boards.raid_leaders.subtitle") }}
+									</p>
+								</div>
+								<UTabs
+									v-model="raidLeaderLimit"
+									:items="limitTabs"
+									:content="false"
+									variant="pill"
+									size="xs"
+									class="shrink-0"
+								/>
+							</div>
+							<UTabs
+								v-model="raidLeaderPeriod"
+								:items="periodTabs"
+								:content="false"
+								variant="link"
+								size="sm"
+								class="mt-3 w-full"
+							/>
 						</div>
 					</template>
 
-					<div v-if="leaderboard.rankings.raid_leaders.length > 0" class="divide-y divide-default">
+					<div v-if="rankingLoading.raid_leaders" class="divide-y divide-default">
 						<div
-							v-for="entry in leaderboard.rankings.raid_leaders"
+							v-for="row in skeletonRows"
+							:key="row"
+							class="grid grid-cols-[2.5rem_minmax(0,1fr)_4rem] items-center gap-3 px-4 py-3"
+						>
+							<USkeleton class="h-6 w-8" />
+							<div class="space-y-2">
+								<USkeleton class="h-4 w-36 max-w-full" />
+								<USkeleton class="h-3 w-24 max-w-full" />
+							</div>
+							<USkeleton class="h-7 w-14" />
+						</div>
+					</div>
+					<div
+						v-else-if="raidLeaderRanking.length > 0"
+						class="max-h-[38rem] divide-y divide-default overflow-y-auto overscroll-contain [scrollbar-gutter:stable]"
+					>
+						<div
+							v-for="entry in raidLeaderRanking"
 							:key="entry.character.id ?? entry.character.name"
 							class="grid grid-cols-[2.5rem_minmax(0,1fr)_auto] items-center gap-3 px-4 py-3"
 						>
@@ -456,18 +632,55 @@ onBeforeUnmount(() => {
 				<UCard class="dark:bg-elevated/25" :ui="{ body: 'p-0 sm:p-0' }">
 					<template #header>
 						<div>
-							<p class="font-semibold text-md">
-								{{ t("groups.leaderboard.boards.hosts.title") }}
-							</p>
-							<p class="text-sm text-muted">
-								{{ t("groups.leaderboard.boards.hosts.subtitle") }}
-							</p>
+							<div class="flex flex-wrap items-start justify-between gap-3">
+								<div>
+									<p class="font-semibold text-md">
+										{{ t("groups.leaderboard.boards.hosts.title") }}
+									</p>
+									<p class="text-sm text-muted">
+										{{ t("groups.leaderboard.boards.hosts.subtitle") }}
+									</p>
+								</div>
+								<UTabs
+									v-model="hostLimit"
+									:items="limitTabs"
+									:content="false"
+									variant="pill"
+									size="xs"
+									class="shrink-0"
+								/>
+							</div>
+							<UTabs
+								v-model="hostPeriod"
+								:items="periodTabs"
+								:content="false"
+								variant="link"
+								size="sm"
+								class="mt-3 w-full"
+							/>
 						</div>
 					</template>
 
-					<div v-if="leaderboard.rankings.hosts.length > 0" class="divide-y divide-default">
+					<div v-if="rankingLoading.hosts" class="divide-y divide-default">
 						<div
-							v-for="entry in leaderboard.rankings.hosts"
+							v-for="row in skeletonRows"
+							:key="row"
+							class="grid grid-cols-[2.5rem_minmax(0,1fr)_4rem] items-center gap-3 px-4 py-3"
+						>
+							<USkeleton class="h-6 w-8" />
+							<div class="space-y-2">
+								<USkeleton class="h-4 w-36 max-w-full" />
+								<USkeleton class="h-3 w-24 max-w-full" />
+							</div>
+							<USkeleton class="h-7 w-14" />
+						</div>
+					</div>
+					<div
+						v-else-if="hostRanking.length > 0"
+						class="max-h-[38rem] divide-y divide-default overflow-y-auto overscroll-contain [scrollbar-gutter:stable]"
+					>
+						<div
+							v-for="entry in hostRanking"
 							:key="entry.character.id ?? entry.character.name"
 							class="grid grid-cols-[2.5rem_minmax(0,1fr)_auto] items-center gap-3 px-4 py-3"
 						>

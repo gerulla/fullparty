@@ -34,7 +34,7 @@ class CharacterFieldValue extends Model
      */
     public function fieldDefinition(): BelongsTo
     {
-        return $this->belongsTo(CharacterFieldDefinition::class);
+        return $this->belongsTo(CharacterFieldDefinition::class, 'character_field_definition_id');
     }
 
     /**
@@ -42,7 +42,7 @@ class CharacterFieldValue extends Model
      */
     public function getCastedValue(): mixed
     {
-        if (!$this->fieldDefinition) {
+        if (! $this->fieldDefinition) {
             return $this->value;
         }
 

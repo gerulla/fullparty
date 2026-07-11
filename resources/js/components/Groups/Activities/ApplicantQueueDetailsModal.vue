@@ -14,6 +14,7 @@ import { activityTextLimits } from "@/utils/activityTextLimits";
 import { createDateTimeFormatter } from "@/utils/dateTimeFormat";
 import { formatRelativeTime } from "@/utils/formatRelativeTime";
 import { useMinuteTicker } from "@/composables/useMinuteTicker";
+import { translateCharacterClassName, translatePhantomJobName, translateRaidPositionName } from "@/utils/characterJobTranslations";
 
 const CHARACTER_REFRESH_COOLDOWN_MS = 5 * 60 * 1000;
 
@@ -91,6 +92,22 @@ const answerBadgeColor = (source: string | null, value: string) => {
 	return 'neutral';
 };
 
+const answerValueLabel = (source: string | null, questionKey: string, value: string): string => {
+	if (source === 'character_classes') {
+		return translateCharacterClassName(t, { name: value }, value);
+	}
+
+	if (source === 'phantom_jobs') {
+		return translatePhantomJobName(t, { name: value }, value);
+	}
+
+	if (source === 'raid_positions' || questionKey.toLowerCase().includes('position')) {
+		return translateRaidPositionName(t, { name: value }, value);
+	}
+
+	return value;
+};
+
 const applicantCharacter = computed(() => {
 	if (!props.application) {
 		return null;
@@ -147,6 +164,20 @@ const submittedAtLabel = computed(() => {
 	}).format(new Date(props.application.submitted_at));
 });
 
+const editedAtLabel = computed(() => {
+	if (!props.application?.edited_at) {
+		return null;
+	}
+
+	return createDateTimeFormatter(locale.value, {
+		year: 'numeric',
+		month: '2-digit',
+		day: '2-digit',
+		hour: '2-digit',
+		minute: '2-digit',
+	}).format(new Date(props.application.edited_at));
+});
+
 const detailedAnswers = computed(() => (props.application?.answers ?? [])
 	.filter((answer) => {
 		if (answer.display_values.length === 0) {
@@ -167,7 +198,7 @@ const detailedAnswers = computed(() => (props.application?.answers ?? [])
 		key: answer.question_key,
 		label: localizedText(answer.question_label, answer.question_key),
 		source: answer.source,
-		displayValues: answer.display_values,
+		displayValues: answer.display_values.map((value) => answerValueLabel(answer.source, answer.question_key, value)),
 	})));
 
 const classAnswer = computed(() => props.application?.answers.find((answer) => answer.source === 'character_classes') ?? null);
@@ -177,8 +208,14 @@ const positionAnswer = computed(() => props.application?.answers.find((answer) =
 	&& answer.question_key.toLowerCase().includes('position')
 )) ?? null);
 const playableRoles = computed(() => classAnswer.value?.role_values ?? []);
-const classDisplayItems = computed(() => classAnswer.value?.display_items ?? []);
-const phantomDisplayItems = computed(() => phantomAnswer.value?.display_items ?? []);
+const classDisplayItems = computed(() => (classAnswer.value?.display_items ?? []).map((item) => ({
+	...item,
+	label: translateCharacterClassName(t, { name: item.label }, item.label),
+})));
+const phantomDisplayItems = computed(() => (phantomAnswer.value?.display_items ?? []).map((item) => ({
+	...item,
+	label: translatePhantomJobName(t, { name: item.label }, item.label),
+})));
 const shouldShowOccultLevel = computed(() => phantomAnswer.value !== null && props.application?.selected_character?.occult_level !== null && props.application?.selected_character?.occult_level !== undefined);
 const shouldShowPhantomMastery = computed(() => phantomAnswer.value !== null && props.application?.selected_character?.phantom_mastery !== null && props.application?.selected_character?.phantom_mastery !== undefined);
 const selectedCharacterLastCheckedAt = computed(() => props.application?.selected_character?.lodestone_last_checked_at ?? null);
@@ -427,11 +464,15 @@ watch(isOpen, (open) => {
 								</span>
 							</div>
 
-							<div class="flex items-start justify-between gap-4">
-								<span class="text-muted">{{ t('groups.activities.management.queue.modal.submitted') }}</span>
-								<span class="text-right font-medium text-toned">
-									{{ submittedAtLabel }}
-								</span>
+							<div class="space-y-2">
+								<div class="flex items-start justify-between gap-4">
+									<span class="text-muted">{{ t('groups.activities.management.queue.modal.submitted') }}</span>
+									<span class="text-right font-medium text-toned">{{ submittedAtLabel }}</span>
+								</div>
+								<div v-if="editedAtLabel" class="flex items-start justify-between gap-4">
+									<span class="text-muted">{{ t('groups.activities.management.queue.modal.edited') }}</span>
+									<span class="text-right font-medium text-toned">{{ editedAtLabel }}</span>
+								</div>
 							</div>
 
 							<div class="flex items-start justify-between gap-4">
@@ -557,7 +598,7 @@ watch(isOpen, (open) => {
 									:key="value"
 									color="warning"
 									variant="outline"
-									:label="value"
+									:label="answerValueLabel(positionAnswer.source, positionAnswer.question_key, value)"
 								/>
 							</div>
 						</div>

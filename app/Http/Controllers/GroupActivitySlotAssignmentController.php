@@ -43,6 +43,7 @@ class GroupActivitySlotAssignmentController extends Controller
         $validated = $request->validate([
             'application_id' => ['sometimes', 'nullable', 'integer', 'required_without:character_id'],
             'character_id' => ['sometimes', 'nullable', 'integer', 'required_without:application_id'],
+            'ignore_application_choices' => ['sometimes', 'boolean'],
             'field_values' => ['sometimes', 'array'],
             'source_slot_id' => ['sometimes', 'nullable', 'integer'],
             'expected_slot_state_token' => ['required', 'string'],
@@ -107,7 +108,7 @@ class GroupActivitySlotAssignmentController extends Controller
         } else {
             /** @var ActivityApplication|null $application */
             $application = $activity->applications()
-                ->with(['answers', 'selectedCharacter'])
+                ->with(['answers', 'selectedCharacter.classes', 'selectedCharacter.phantomJobs'])
                 ->find((int) $validated['application_id']);
 
             if (! $application) {
@@ -134,6 +135,7 @@ class GroupActivitySlotAssignmentController extends Controller
                 $applicationFieldDefinitions,
                 (int) $request->user()->id,
                 $sourceSlot,
+                (bool) ($validated['ignore_application_choices'] ?? false),
             );
 
             if ($wasPendingQueueApplication) {
@@ -163,6 +165,7 @@ class GroupActivitySlotAssignmentController extends Controller
                 ->first();
 
             if ($displacedApplication) {
+                $displacedApplication->loadMissing(['selectedCharacter.classes']);
                 $restoredQueueApplication = $queuePayloadBuilder->serializeApplicationForModerator(
                     $displacedApplication,
                     $activity->activityTypeVersion,

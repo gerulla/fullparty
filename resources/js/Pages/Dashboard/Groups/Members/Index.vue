@@ -40,9 +40,11 @@ const memberModeration = useGroupMemberModeration({
 		<div class="mt-4">
 			<div class="flex flex-col gap-6">
 				<GroupMembersTable
+					:group-slug="group.slug"
 					:members="members"
 					:banned-members="bannedMembers"
 					:can-view-bans="group.permissions.can_view_bans"
+					:can-view-activity-summary="group.permissions.can_view_member_activity_summary"
 					:notes="memberNotes"
 					:moderation="memberModeration"
 				/>

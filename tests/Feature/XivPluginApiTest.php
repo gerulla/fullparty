@@ -8,6 +8,8 @@ use App\Models\ActivityApplication;
 use App\Models\ActivitySlotAssignment;
 use App\Models\Character;
 use App\Models\CharacterClass;
+use App\Models\CharacterFieldDefinition;
+use App\Models\CharacterFieldValue;
 use App\Models\Group;
 use App\Models\GroupMembership;
 use App\Models\OccultProgress;
@@ -21,6 +23,118 @@ uses(RefreshDatabase::class);
 
 beforeEach(function () {
     mock_test_passport_resource_server();
+});
+
+it('returns all characters owned by the authenticated user with their full profile data', function () {
+    $user = User::factory()->create();
+    $otherUser = User::factory()->create();
+
+    Character::factory()->create([
+        'user_id' => $otherUser->id,
+        'name' => 'Someone Else',
+    ]);
+
+    Character::factory()->unverified()->create([
+        'user_id' => $user->id,
+        'name' => 'Pending Character',
+        'token' => 'PRIVATE1',
+    ]);
+
+    $character = Character::factory()->primary()->create([
+        'user_id' => $user->id,
+        'name' => 'Giki Chomusuke',
+        'world' => 'Lich',
+        'datacenter' => 'Light',
+        'avatar_url' => '/characters/giki.webp',
+        'lodestone_refreshed_at' => now()->subMinute(),
+        'token' => 'PRIVATE2',
+    ]);
+
+    $characterClass = CharacterClass::query()->create([
+        'name' => 'Astrologian',
+        'shorthand' => 'AST',
+        'role' => 'healer',
+        'icon_url' => '/character-classes/astrologian.webp',
+        'flaticon_url' => '/character-classes/astrologian-flat.webp',
+    ]);
+    $character->classes()->attach($characterClass->id, [
+        'level' => 100,
+        'is_preferred' => true,
+    ]);
+
+    $phantomJob = PhantomJob::query()->create([
+        'name' => 'Geomancer',
+        'max_level' => 6,
+        'icon_url' => '/phantom-jobs/geomancer.webp',
+        'black_icon_url' => '/phantom-jobs/geomancer-black.webp',
+        'transparent_icon_url' => '/phantom-jobs/geomancer-transparent.webp',
+        'sprite_url' => '/phantom-jobs/geomancer-sprite.webp',
+    ]);
+    $character->phantomJobs()->attach($phantomJob->id, [
+        'current_level' => 6,
+        'is_preferred' => true,
+    ]);
+
+    $fieldDefinition = CharacterFieldDefinition::query()->create([
+        'name' => 'Profile note',
+        'slug' => 'profile_note',
+        'type' => 'text',
+        'group' => 'profile',
+        'source_type' => 'user',
+        'is_editable' => true,
+        'is_visible' => true,
+        'is_active' => true,
+    ]);
+    CharacterFieldValue::query()->create([
+        'character_id' => $character->id,
+        'character_field_definition_id' => $fieldDefinition->id,
+        'value' => 'Ready to raid',
+    ]);
+
+    OccultProgress::query()->create([
+        'character_id' => $character->id,
+        'knowledge_level' => 20,
+        'demon_tablet_kills' => 10,
+        'demon_tablet_progress' => 100,
+        'dead_stars_kills' => 5,
+        'dead_stars_progress' => 100,
+        'marble_dragon_kills' => 2,
+        'marble_dragon_progress' => 100,
+        'magitaur_kills' => 1,
+        'magitaur_progress' => 100,
+    ]);
+
+    Passport::actingAs($user, ['xivplugin:read']);
+
+    $response = $this->getJson(route('api.xivplugin.characters.index'))
+        ->assertOk()
+        ->assertJsonCount(2, 'data')
+        ->assertJsonPath('data.0.name', 'Giki Chomusuke')
+        ->assertJsonPath('data.0.is_primary', true)
+        ->assertJsonPath('data.0.avatar_url', asset('characters/giki.webp'))
+        ->assertJsonPath('data.0.is_verified', true)
+        ->assertJsonPath('data.0.fields.0.key', 'profile_note')
+        ->assertJsonPath('data.0.fields.0.value', 'Ready to raid')
+        ->assertJsonPath('data.0.classes.0.name', 'Astrologian')
+        ->assertJsonPath('data.0.classes.0.icon_url', asset('character-classes/astrologian.webp'))
+        ->assertJsonPath('data.0.classes.0.flat_icon_url', asset('character-classes/astrologian-flat.webp'))
+        ->assertJsonPath('data.0.classes.0.level', 100)
+        ->assertJsonPath('data.0.classes.0.is_preferred', true)
+        ->assertJsonPath('data.0.occult.knowledge_level', 20)
+        ->assertJsonPath('data.0.occult.blood_progress.clears', 1)
+        ->assertJsonPath('data.0.occult.phantom_jobs.0.name', 'Geomancer')
+        ->assertJsonPath('data.0.occult.phantom_jobs.0.icon_url', asset('phantom-jobs/geomancer.webp'))
+        ->assertJsonPath('data.0.occult.phantom_jobs.0.current_level', 6)
+        ->assertJsonPath('data.0.occult.phantom_jobs.0.is_maxed', true)
+        ->assertJsonPath('data.1.name', 'Pending Character')
+        ->assertJsonPath('data.1.is_verified', false);
+
+    $response->assertJsonMissing(['name' => 'Someone Else']);
+
+    expect(json_encode($response->json(), JSON_THROW_ON_ERROR))
+        ->not->toContain('PRIVATE1')
+        ->not->toContain('PRIVATE2')
+        ->not->toContain('expires_at');
 });
 
 it('returns the authenticated users groups with their group rank', function () {

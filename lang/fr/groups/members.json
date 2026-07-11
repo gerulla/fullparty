@@ -14,6 +14,20 @@
         "not_available": "Non disponible",
         "empty": "Aucun membre à afficher pour le moment."
     },
+    "activity_summary": {
+        "toggle": "Activité",
+        "last_group_run": "Dernier run avec ce groupe",
+        "last_run": "Dernier run",
+        "date": "Date",
+        "time": "Heure",
+        "unknown_activity": "Activité inconnue",
+        "not_recorded": "Non renseigné",
+        "empty_group": "Aucun run terminé avec ce groupe pour le moment.",
+        "empty_any": "Aucun run terminé trouvé pour le moment.",
+        "load_error": "L'activité n'a pas pu être chargée.",
+        "load_error_hint": "Réessayez dans un instant.",
+        "retry": "Réessayer"
+    },
     "bans": {
         "title": "Membres bannis",
         "subtitle": "Consultez les utilisateurs empêchés de rejoindre à nouveau ce groupe.",

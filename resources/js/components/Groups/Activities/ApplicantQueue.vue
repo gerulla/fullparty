@@ -12,6 +12,7 @@ import ApplicantQueueDetailsModal from "@/components/Groups/Activities/Applicant
 import { getRosterSlotDragData, isRosterSlotDrag } from "@/components/Groups/Activities/rosterDragData";
 import MembersNotesModal from "@/components/Shared/Notes/MembersNotesModal.vue";
 import { useMemberNotes } from "@/composables/useMemberNotes";
+import { translateCharacterClassName, translatePhantomJobName, translateRaidPositionName } from "@/utils/characterJobTranslations";
 import type { LocalizedText } from "@/Types/Common";
 import type {
 	QueueApplication,
@@ -91,11 +92,32 @@ const localizedText = (value: LocalizedText, fallback: string) => (
 	localizedValue(value, locale.value, fallbackLocale.value) || fallback
 );
 
+const slotFieldOptionLabel = (field: QueueFilterField, option: QueueFilterField["options"][number]) => {
+	const fallback = localizedText(option.label, option.key);
+
+	if (field.source === 'character_classes') {
+		return translateCharacterClassName(t, {
+			shorthand: option.meta?.shorthand ?? null,
+			name: fallback,
+		}, fallback);
+	}
+
+	if (field.source === 'phantom_jobs') {
+		return translatePhantomJobName(t, { name: fallback }, fallback);
+	}
+
+	if (field.source === 'raid_positions' || field.application_key.toLowerCase().includes('position')) {
+		return translateRaidPositionName(t, { key: option.key, name: fallback }, fallback);
+	}
+
+	return fallback;
+};
+
 const slotFieldFilterItems = computed(() => queueFilters.value.slot_fields.map((field) => ({
 	...field,
 	labelText: localizedText(field.label, field.key),
 	items: (field.filter_options?.length ? field.filter_options : field.options).map((option) => ({
-		label: localizedText(option.label, option.key),
+		label: slotFieldOptionLabel(field, option),
 		value: option.key,
 	})),
 })));

@@ -21,7 +21,7 @@
             "raiders": "Adopté par les raiders",
             "communities": "Idéal pour les grandes communautés"
         },
-        "separator": "Tout ce qu'il faut pour organiser du contenu high-end"
+        "separator": "Tout ce qu'il faut pour organiser du contenu haut niveau"
     },
     "features": {
         "items": {
@@ -31,7 +31,7 @@
             },
             "rosters": {
                 "title": "Construction de roster",
-                "description": "Assignez les joueurs acceptés à des slots clairs, remplaçants, hosts et raid leads pour chaque run."
+                "description": "Assignez les joueurs acceptés à des emplacements clairs, remplaçants, hôtes et chefs de raid pour chaque run."
             },
             "groups": {
                 "title": "Gestion de groupe",
@@ -39,7 +39,7 @@
             },
             "scheduling": {
                 "title": "Planification des runs",
-                "description": "Planifiez du contenu high-end avec dates, prérequis, visibilité, candidatures et options invitées."
+                "description": "Planifiez du contenu haut niveau avec dates, prérequis, visibilité, candidatures et options invitées."
             }
         }
     },
@@ -59,7 +59,7 @@
             "title": "Pour les leaders de groupe",
             "points": {
                 "recruit": "Étudiez les candidats avec le contexte personnage",
-                "manage": "Construisez rosters, bancs, hosts et raid leads",
+                "manage": "Construisez rosters, bancs, hôtes et chefs de raid",
                 "schedule": "Planifiez des runs publics, réservés aux membres et ouverts aux invités",
                 "communicate": "Gérez membres, rôles et demandes",
                 "ready": "Reliez historique des runs et notifications"

@@ -7,6 +7,7 @@ import { localizedValue } from "@/utils/localizedValue";
 import ApplicationClassSelector from "@/components/Groups/Activities/ApplicationClassSelector.vue";
 import ApplicationPhantomJobSelector from "@/components/Groups/Activities/ApplicationPhantomJobSelector.vue";
 import { activityTextLimits } from "@/utils/activityTextLimits";
+import { translateRaidPositionName } from "@/utils/characterJobTranslations";
 
 const props = defineProps<{
 	question: ApplicationQuestion
@@ -21,18 +22,29 @@ const emit = defineEmits<{
 	'update:modelValue': [value: unknown]
 }>();
 
-const { locale } = useI18n();
+const { t, locale } = useI18n();
 const page = usePage();
 const fallbackLocale = computed(() => String(page.props.locale?.fallback ?? 'en'));
 
 const label = computed(() => localizedValue(props.question.label, locale.value, fallbackLocale.value) || props.question.key);
 const helpText = computed(() => localizedValue(props.question.help_text ?? null, locale.value, fallbackLocale.value) || undefined);
 const showsRequiredIndicator = computed(() => Boolean(props.question.required) && props.question.type !== 'boolean');
+const isRaidPositionQuestion = computed(() => props.question.source === 'raid_positions' || props.question.key.includes('raid_position'));
+
+const optionLabel = (option: ApplicationQuestion["options"][number]) => {
+	const fallback = localizedValue(option.label, locale.value, fallbackLocale.value) || option.key;
+
+	if (isRaidPositionQuestion.value) {
+		return translateRaidPositionName(t, { key: option.key, name: fallback }, fallback);
+	}
+
+	return fallback;
+};
 
 const optionItems = computed(() => props.question.options
 	.filter((option) => option.key !== '')
 	.map((option) => ({
-		label: localizedValue(option.label, locale.value, fallbackLocale.value) || option.key,
+		label: optionLabel(option),
 		value: option.key,
 	})));
 

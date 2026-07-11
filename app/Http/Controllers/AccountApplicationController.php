@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\ActivityPartyFinderInfoResource;
 use App\Models\Activity;
 use App\Models\ActivityApplication;
 use App\Models\ActivitySlotAssignment;
@@ -215,8 +216,9 @@ class AccountApplicationController extends Controller
         return ActivityApplication::query()
             ->select('activity_applications.*')
             ->with([
-                'activity.group',
+                'activity.group.features',
                 'activity.activityTypeVersion',
+                'activity.partyFinderInfo',
                 'selectedCharacter',
             ])
             ->leftJoin('activities', 'activities.id', '=', 'activity_applications.activity_id')
@@ -280,6 +282,11 @@ class AccountApplicationController extends Controller
             : false;
         $assignmentPayload = $this->serializeAssignment($assignment);
         $targetProgPoint = $this->serializeTargetProgPoint($activity);
+        $canViewPartyFinderInfo = $assignmentPayload !== null
+            || in_array($application->status, [
+                ActivityApplication::STATUS_APPROVED,
+                ActivityApplication::STATUS_ON_BENCH,
+            ], true);
 
         return [
             'id' => $application->id,
@@ -295,6 +302,7 @@ class AccountApplicationController extends Controller
             'group' => [
                 'name' => $activity?->group?->name,
                 'slug' => $activity?->group?->slug,
+                'calendar_sync_enabled' => $activity?->group?->featureEnabled('calendar_sync_enabled') ?? false,
             ],
             'activity' => [
                 'id' => $activity?->id,
@@ -307,6 +315,9 @@ class AccountApplicationController extends Controller
                 'type_name' => $activity?->activityTypeVersion?->name,
                 'target_prog_point_key' => $targetProgPoint['key'],
                 'target_prog_point_label' => $targetProgPoint['label'],
+                'party_finder_info' => $canViewPartyFinderInfo && $activity?->partyFinderInfo
+                    ? ActivityPartyFinderInfoResource::make($activity->partyFinderInfo)->resolve()
+                    : null,
             ],
             'character' => [
                 'name' => $character?->name ?? $application->applicant_character_name,
@@ -536,14 +547,16 @@ class AccountApplicationController extends Controller
     {
         $row = ActivityApplication::query()
             ->leftJoin('activities', 'activities.id', '=', 'activity_applications.activity_id')
+            ->leftJoin('activity_party_finder_info', 'activity_party_finder_info.activity_id', '=', 'activities.id')
             ->where('activity_applications.user_id', $user->id)
-            ->selectRaw('COUNT(*) as application_count, MAX(activity_applications.updated_at) as application_updated_at, MAX(activities.updated_at) as activity_updated_at')
+            ->selectRaw('COUNT(*) as application_count, MAX(activity_applications.updated_at) as application_updated_at, MAX(activities.updated_at) as activity_updated_at, MAX(activity_party_finder_info.updated_at) as party_finder_updated_at')
             ->first();
 
         return md5(json_encode([
             'count' => (int) ($row?->application_count ?? 0),
             'application_updated_at' => (string) ($row?->application_updated_at ?? ''),
             'activity_updated_at' => (string) ($row?->activity_updated_at ?? ''),
+            'party_finder_updated_at' => (string) ($row?->party_finder_updated_at ?? ''),
         ], JSON_THROW_ON_ERROR));
     }
 }

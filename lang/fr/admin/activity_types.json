@@ -1,6 +1,6 @@
 {
     "title": "Types d'activité",
-    "subtitle": "Créez et publiez des modèles d'activité réutilisables pour les dispositions de slots, les métadonnées de slots et les formulaires de candidature.",
+    "subtitle": "Créez et publiez des modèles d'activité réutilisables pour les dispositions de emplacements, les métadonnées de emplacements et les formulaires de candidature.",
     "create": "Créer un type d'activité",
     "create_title": "Créer un type d'activité",
     "create_subtitle": "Démarrez un nouveau brouillon de type d'activité et définissez le modèle que les groupes utiliseront.",
@@ -81,12 +81,12 @@
     },
     "layout": {
         "title": "Disposition",
-        "subtitle": "Définissez les groupes de slots que cette activité va générer.",
+        "subtitle": "Définissez les groupes de emplacements que cette activité va générer.",
         "groups_count": "{count} groupes",
-        "total_slots": "{count} slots au total",
+        "total_slots": "{count} emplacements au total",
         "add_group": "Ajouter un groupe",
         "group_title": "Groupe {index}",
-        "group_hint": "Un groupe peut représenter une équipe, une alliance, une escouade ou tout regroupement de slots dont vous avez besoin.",
+        "group_hint": "Un groupe peut représenter une équipe, une alliance, une escouade ou tout regroupement de emplacements dont vous avez besoin.",
         "group_key": "Clé de groupe",
         "group_key_placeholder": "party-1",
         "group_size": "Taille du groupe",
@@ -94,11 +94,11 @@
         "group_label_help": "Ce libellé sera affiché dans l'interface de l'activité.",
         "group_label_placeholder": "Équipe 1",
         "layout_preset": "Disposition d'équipe",
-        "layout_preset_help": "Choisissez la structure d'équipe générée. Les slots sont toujours créés de la même manière en coulisses.",
+        "layout_preset_help": "Choisissez la structure d'équipe générée. Les emplacements sont toujours créés de la même manière en coulisses.",
         "composition_preset": "Indication de composition par défaut",
-        "composition_preset_help": "Choisissez l'indication consultative par slot copiée sur chaque équipe générée.",
+        "composition_preset_help": "Choisissez l'indication consultative par emplacement copiée sur chaque équipe générée.",
         "party_label": "Équipe",
-        "slots_per_party": "{count} slots",
+        "slots_per_party": "{count} emplacements",
         "presets": {
             "light_party_4": "4 joueurs",
             "full_party_8": "8 joueurs",
@@ -119,8 +119,8 @@
         }
     },
     "slot_fields": {
-        "title": "Champs de slot",
-        "subtitle": "Définissez les métadonnées capturées pour chaque slot lorsque les organisateurs assignent des personnages."
+        "title": "Champs de emplacement",
+        "subtitle": "Définissez les métadonnées capturées pour chaque emplacement lorsque les organisateurs assignent des personnages."
     },
     "application": {
         "title": "Questions de candidature",
@@ -224,7 +224,7 @@
         "source": "Source des options",
         "required": "Requis",
         "accepts_any": "Accepter la sélection « N'importe »",
-        "accepts_any_help": "Ajoute un choix visible uniquement dans les candidatures pour les joueurs qui peuvent prendre n'importe quelle option disponible. Les choix de slots ne changent pas.",
+        "accepts_any_help": "Ajoute un choix visible uniquement dans les candidatures pour les joueurs qui peuvent prendre n'importe quelle option disponible. Les choix de emplacements ne changent pas.",
         "any_label": "Libellé localisé de N'importe",
         "any_label_help": "Ce libellé est affiché aux candidats pour le choix flexible N'importe.",
         "any_label_placeholder": "N'importe",
@@ -246,7 +246,7 @@
             "text": "Texte",
             "textarea": "Zone de texte",
             "number": "Nombre",
-            "boolean": "Boolean",
+            "boolean": "Booléen",
             "single_select": "Sélection unique",
             "multi_select": "Sélection multiple",
             "url": "URL"
@@ -265,8 +265,8 @@
         "untitled": "Type d'activité sans titre",
         "no_slug": "Aucun slug pour le moment",
         "groups": "Groupes",
-        "slots": "Slots",
-        "slot_fields": "Champs de slot",
+        "slots": "Emplacements",
+        "slot_fields": "Champs de emplacement",
         "application_questions": "Questions de candidature",
         "roster_summary_presets": "Préréglages de composition",
         "progress_milestones": "Jalons de progression",

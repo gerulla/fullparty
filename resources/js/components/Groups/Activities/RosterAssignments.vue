@@ -29,6 +29,7 @@ const emit = defineEmits<{
 	swapSlots: [payload: { sourceSlotId: number, targetSlotId: number }]
 	assignApplicationToSlot: [payload: { slotId: number, application: QueueApplication }]
 	clickSlot: [slotId: number]
+	viewApplication: [slotId: number]
 	returnSlotToQueue: [slotId: number]
 	moveSlotToBench: [slotId: number]
 	markSlotMissing: [slotId: number]
@@ -219,6 +220,7 @@ const replaceSlotCompositionHints = async (payload: { slotId: number, compositio
 			@paste-cut-slot="emit('pasteCutSlot', $event)"
 			@clear-cut-slot="emit('clearCutSlot')"
 			@click-slot="emit('clickSlot', $event)"
+			@view-application="emit('viewApplication', $event)"
 			@return-slot-to-queue="emit('returnSlotToQueue', $event)"
 			@move-slot-to-bench="emit('moveSlotToBench', $event)"
 			@mark-slot-missing="emit('markSlotMissing', $event)"

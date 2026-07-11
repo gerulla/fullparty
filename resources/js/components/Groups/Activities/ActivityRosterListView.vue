@@ -31,6 +31,7 @@ const emit = defineEmits<{
 	dropSlot: [slotId: number]
 	dropApplication: [payload: { slotId: number, application: QueueApplication }]
 	clickSlot: [slotId: number]
+	viewApplication: [slotId: number]
 	returnSlotToQueue: [slotId: number]
 	moveSlotToBench: [slotId: number]
 	markSlotMissing: [slotId: number]
@@ -185,6 +186,16 @@ const buildSlotContextMenuItems = (slot: ActivitySlot): ContextMenuItem[][] => {
 	}
 
 	return [
+		[
+			...(slot.assignment_application_id !== null
+				? [{
+					label: t('groups.activities.management.roster.view_application_action'),
+					icon: 'i-lucide-file-user',
+					disabled: props.isSwapPending,
+					onSelect: () => emit('viewApplication', slot.id),
+				}]
+				: []),
+		],
 		[
 			{
 				label: slot.attendance_status === 'late'

@@ -62,6 +62,36 @@
             "updated": "Les paramètres du groupe ont été mis à jour."
         }
     },
+    "features": {
+        "title": "Fonctionnalités du groupe",
+        "subtitle": "Choisissez les outils partagés activés pour ce groupe.",
+        "coming_soon": "Bientôt disponible",
+        "items": {
+            "availability_scheduler_enabled": {
+                "label": "Planificateur de disponibilités",
+                "description": "Planifiez autour des disponibilités des membres et des créneaux communs."
+            },
+            "statistics_enabled": {
+                "label": "Statistiques",
+                "description": "Affichez les résumés d'activité et les statistiques de participation du groupe."
+            },
+            "leaderboard_enabled": {
+                "label": "Classement",
+                "description": "Affichez les classements de participation du groupe."
+            },
+            "calendar_sync_enabled": {
+                "label": "Export de calendrier",
+                "description": "Permet aux membres d'ajouter les runs du groupe à leur calendrier personnel."
+            },
+            "resource_hub_enabled": {
+                "label": "Hub de ressources",
+                "description": "Préparez un espace partagé pour les liens, notes et ressources utiles."
+            }
+        },
+        "toasts": {
+            "updated": "Les fonctionnalités du groupe ont été mises à jour."
+        }
+    },
     "discovery": {
         "title": "Paramètres Discovery",
         "subtitle": "Mettez à jour la façon dont votre groupe apparaît dans la discovery et les créneaux où il est généralement actif.",

@@ -81,6 +81,13 @@ class Group extends Model
         'discord_link_token_expires_at' => 'datetime',
     ];
 
+    protected static function booted(): void
+    {
+        static::created(function (Group $group): void {
+            $group->features()->create(GroupFeature::defaults());
+        });
+    }
+
     public function getRouteKeyName(): string
     {
         return 'slug';
@@ -151,6 +158,48 @@ class Group extends Model
     public function featuredGroup(): HasOne
     {
         return $this->hasOne(FeaturedGroup::class);
+    }
+
+    public function features(): HasOne
+    {
+        return $this->hasOne(GroupFeature::class);
+    }
+
+    public function availabilitySettings(): HasOne
+    {
+        return $this->hasOne(GroupAvailabilitySetting::class);
+    }
+
+    public function availabilitySchedules(): HasMany
+    {
+        return $this->hasMany(GroupAvailabilitySchedule::class);
+    }
+
+    /**
+     * @return array<string, bool>
+     */
+    public function featureSettings(): array
+    {
+        $features = $this->relationLoaded('features')
+            ? $this->features
+            : $this->features()->first();
+
+        if (! $features instanceof GroupFeature) {
+            return GroupFeature::defaults();
+        }
+
+        return [
+            'availability_scheduler_enabled' => $features->availability_scheduler_enabled,
+            'statistics_enabled' => $features->statistics_enabled,
+            'leaderboard_enabled' => $features->leaderboard_enabled,
+            'calendar_sync_enabled' => $features->calendar_sync_enabled,
+            'resource_hub_enabled' => $features->resource_hub_enabled,
+        ];
+    }
+
+    public function featureEnabled(string $feature): bool
+    {
+        return (bool) ($this->featureSettings()[$feature] ?? false);
     }
 
     public function scopeVisible($query)

@@ -1,74 +1,74 @@
 {
     "title": "システム通知",
-    "subtitle": "Send site-wide maintenance notices and update announcements, and review the latest sent history.",
+    "subtitle": "サイト全体のメンテナンス告知やアップデート通知を送信し、最近の送信履歴を確認します。",
     "admin_access": "管理者権限",
     "banner": {
-        "title": "System Banner",
-        "description": "Show an ongoing site-wide banner above the topbar for outages, degraded service, or other active updates that should stay visible.",
-        "live_title": "Banner is currently live",
-        "live_description": "Saving this form updates the active site-wide banner immediately.",
-        "empty_title": "No active banner",
-        "empty_description": "Save a banner here when you want a persistent site-wide notice without sending notifications.",
-        "preview": "Live Preview",
-        "preview_empty_title": "Banner title preview",
-        "preview_empty_message": "Banner message preview",
-        "save": "Save Banner",
-        "clear": "Clear Banner",
+        "title": "システムバナー",
+        "description": "障害、サービス低下、その他常に見えるべき重要なお知らせをトップバー上部に表示します。",
+        "live_title": "バナーは現在公開中です",
+        "live_description": "このフォームを保存すると、現在のサイト全体バナーがすぐに更新されます。",
+        "empty_title": "有効なバナーはありません",
+        "empty_description": "通知を送らず、サイト全体に常時表示するお知らせを出したい場合はここでバナーを保存します。",
+        "preview": "ライブプレビュー",
+        "preview_empty_title": "バナータイトルのプレビュー",
+        "preview_empty_message": "バナーメッセージのプレビュー",
+        "save": "バナーを保存",
+        "clear": "バナーをクリア",
         "fields": {
-            "title": "Banner Title",
-            "message": "Banner Message",
-            "action_label": "Action Button Label",
-            "action_url": "Action Button URL"
+            "title": "バナータイトル",
+            "message": "バナーメッセージ",
+            "action_label": "アクションボタンのラベル",
+            "action_url": "アクションボタンURL"
         },
         "placeholders": {
-            "title": "Service issue affecting roster updates...",
-            "message": "Let people know what is happening, what is affected, and where to look for updates.",
-            "action_label": "View status",
+            "title": "ロスター更新に影響するサービス問題...",
+            "message": "何が起きているか、何に影響があるか、どこで更新を確認できるかを伝えましょう。",
+            "action_label": "ステータスを見る",
             "action_url": "https://status.fullparty.gg/"
         }
     },
     "fields": {
         "headline": "見出し",
-        "message": "Message",
+        "message": "メッセージ",
         "scheduled_for": "予定日時",
         "action_url": "アクションURL"
     },
     "placeholders": {
-        "headline": "Write a clear notification title...",
-        "message": "Write the notification body...",
+        "headline": "分かりやすい通知タイトルを入力...",
+        "message": "通知本文を入力...",
         "action_url": "https://status.example.com/maintenance"
     },
     "maintenance": {
-        "title": "Mandatory Maintenance Notice",
-        "description": "Use this for important service-impacting maintenance or urgent site-wide operational notices.",
-        "notice_title": "Mandatory delivery",
-        "notice_description": "These notices ignore the optional system-notices preference and are sent in-site and off-site.",
-        "send": "Send Maintenance Notice"
+        "title": "必須メンテナンス通知",
+        "description": "サービスに影響する重要なメンテナンスや緊急のサイト全体運用通知に使用します。",
+        "notice_title": "必須配信",
+        "notice_description": "これらのお知らせは任意のシステム通知設定を無視し、サイト内外に送信されます。",
+        "send": "メンテナンス通知を送信"
     },
     "announcement": {
-        "title": "Optional Update Announcement",
-        "description": "Use this for feature updates, project news, and other lower-priority product communication.",
-        "notice_title": "Optional delivery",
-        "notice_description": "These notices respect the user's system-notices preference, but still use in-site and off-site channels when enabled.",
-        "send": "Send Update Announcement"
+        "title": "任意の更新お知らせ",
+        "description": "機能更新、プロジェクトのお知らせ、その他優先度の低いプロダクト告知に使います。",
+        "notice_title": "任意の配信",
+        "notice_description": "これらのお知らせはユーザーのシステム通知設定を尊重しますが、有効な場合はサイト内・外部通知チャンネルも使用します。",
+        "send": "更新お知らせを送信"
     },
     "history": {
-        "title": "Recent History",
-        "subtitle": "Showing the latest system notifications sent through FullParty.",
-        "empty": "No system notifications have been sent yet.",
-        "open_link": "Open Link",
-        "sent_by": "Sent by {user}",
-        "reads": "{count} users have opened it",
-        "deliveries": "{count} off-site deliveries",
+        "title": "最近の履歴",
+        "subtitle": "FullPartyから送信された最新のシステム通知を表示しています。",
+        "empty": "システム通知はまだ送信されていません。",
+        "open_link": "リンクを開く",
+        "sent_by": "{user} が送信",
+        "reads": "{count}人のユーザーが開きました",
+        "deliveries": "{count}件の外部配信",
         "badges": {
-            "mandatory": "Mandatory",
-            "optional": "Optional"
+            "mandatory": "必須",
+            "optional": "任意"
         }
     },
     "toasts": {
-        "maintenance_sent": "Maintenance notification sent.",
-        "announcement_sent": "Update announcement sent.",
-        "banner_saved": "System banner saved.",
-        "banner_cleared": "System banner cleared."
+        "maintenance_sent": "メンテナンス通知を送信しました。",
+        "announcement_sent": "更新お知らせを送信しました。",
+        "banner_saved": "システムバナーを保存しました。",
+        "banner_cleared": "システムバナーをクリアしました。"
     }
 }

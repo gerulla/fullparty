@@ -34,7 +34,7 @@
         "description": "最新のインテグレーションヘルス結果を確認できます。"
     },
     "confirm_regenerate_api_token": "このAPIトークンを再生成しますか？現在のトークンはすぐに使えなくなります。",
-    "confirm_regenerate_webhook_secret": "このWebhook署名シークレットを再生成しますか？新しいイベントを検証するにはBot側の更新が必要です。",
+    "confirm_regenerate_webhook_secret": "このWebhook署名シークレットを再生成しますか？新しいイベントを検証するにはボット側の更新が必要です。",
     "regenerate_api_token_modal": {
         "title": "APIトークンを再生成",
         "description": "インテグレーションが再びFullPartyを呼び出すには、新しいAPIトークンが必要です。",
@@ -44,11 +44,11 @@
     "regenerate_webhook_secret_modal": {
         "title": "Webhookシークレットを再生成",
         "description": "インテグレーションがFullPartyのイベントを検証するには、新しいシークレットが必要です。",
-        "warning": "Bot側を更新するまで、新しいシークレットで署名されたイベントが失敗する可能性があります。",
+        "warning": "ボット側を更新するまで、新しいシークレットで署名されたイベントが失敗する可能性があります。",
         "confirm": "シークレットを再生成"
     },
     "types": {
-        "discord_bot": "Discord Bot"
+        "discord_bot": "Discordボット"
     },
     "statuses": {
         "active": "有効",
@@ -83,7 +83,7 @@
     "form": {
         "create_title": "インテグレーションを作成",
         "edit_title": "インテグレーションを編集",
-        "description": "公式Discord Botなど、信頼できるサービスに使います。",
+        "description": "公式Discord ボットなど、信頼できるサービスに使います。",
         "create": "インテグレーションを作成"
     },
     "fields": {
@@ -96,7 +96,7 @@
         "allowed_events": "許可する機能"
     },
     "placeholders": {
-        "name": "FullParty Discord Bot",
+        "name": "FullParty Discord ボット",
         "outbound_events_url": "https://bot.fullparty.gg/events",
         "healthcheck_url": "https://bot.fullparty.gg/health"
     },

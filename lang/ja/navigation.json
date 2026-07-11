@@ -9,7 +9,7 @@
         "applications": "応募",
         "groups": "グループ",
         "my_requests": "自分のリクエスト",
-        "discord_bot": "Discord Bot",
+        "discord_bot": "Discordボット",
         "my_groups": "マイグループ",
         "joined_groups": "参加中のグループ",
         "members": "メンバー",
@@ -21,7 +21,7 @@
         "system_notifications": "システム通知",
         "featured_groups": "注目グループ",
         "integrations": "インテグレーション",
-        "activity_types": "Activity Types",
+        "activity_types": "アクティビティタイプ",
         "system_data": "システムデータ",
         "pulse": "Pulse",
         "notice": {
@@ -63,10 +63,10 @@
         }
     },
     "footer": {
-        "cookies": "Cookies",
+        "cookies": "Cookie",
         "privacy": "プライバシーポリシー",
         "github": "GitHub",
         "discord": "Discord",
-        "copyright": "Copyright {year} FullParty"
+        "copyright": "© {year} FullParty"
     }
 }

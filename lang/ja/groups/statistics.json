@@ -13,7 +13,7 @@
     },
     "metrics": {
         "total_runs": {
-            "label": "総Run数",
+            "label": "総ラン数",
             "description": "参加者あり {count}"
         },
         "total_participants": {
@@ -25,8 +25,8 @@
             "description": "ロスターされた個別キャラクター"
         },
         "average_participants": {
-            "label": "平均参加者 / Raid",
-            "description": "全Runで計算"
+            "label": "平均参加者 / レイド",
+            "description": "全ランで計算"
         },
         "active_players": {
             "label": "アクティブプレイヤー",
@@ -35,20 +35,20 @@
     },
     "participation": {
         "title": "参加トレンド",
-        "subtitle": "過去1か月でRunがあった日の人数。",
+        "subtitle": "過去1か月でランがあった日の人数。",
         "badge": "過去30日",
-        "tooltip": "{date}: {runs} Runで {participants} 人",
+        "tooltip": "{date}: {runs} ランで {participants} 人",
         "empty_title": "最近の参加はありません",
-        "empty_description": "参加者がロスターされたRunが行われるとここに表示されます。"
+        "empty_description": "参加者がロスターされたランが行われるとここに表示されます。"
     },
     "applications": {
         "distribution_title": "応募分布",
-        "distribution_subtitle": "グループのRun全体の現在の応募結果。",
+        "distribution_subtitle": "グループのラン全体の現在の応募結果。",
         "volume_title": "応募数",
         "volume_subtitle": "過去12か月の月別応募数。",
         "total_label": "応募",
         "empty_title": "応募はまだありません",
-        "empty_description": "プレイヤーがRunに応募すると応募状況がここに表示されます。",
+        "empty_description": "プレイヤーがランに応募すると応募状況がここに表示されます。",
         "statuses": {
             "pending": "保留中",
             "approved": "承認",

@@ -1,0 +1,21 @@
+{
+    "publish": {
+        "button": "Send PF Info",
+        "title": "Send Party Finder Info",
+        "description": "Share the active Party Finder listing with everyone placed in this run.",
+        "action": "Send PF Info",
+        "success_title": "Party Finder info sent",
+        "success_description": "The run participants have been notified.",
+        "error_title": "Unable to send Party Finder info",
+        "error_description": "Check the details and try again."
+    },
+    "fields": {
+        "character_name": "Character Name",
+        "world": "World",
+        "password": "Password",
+        "password_description": "The password participants use to join the Party Finder listing."
+    },
+    "display": {
+        "title": "Party Finder Info"
+    }
+}

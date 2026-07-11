@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\ActivityPartyFinderInfoResource;
 use App\Models\Activity;
 use App\Models\ActivityApplication;
 use App\Models\ActivitySlotAssignment;
@@ -37,10 +38,11 @@ class GroupActivityManagementDataController extends Controller
             'activityType',
             'activityTypeVersion',
             'slots.assignedCharacter',
-            'slots.assignments',
+            'slots.assignments.application.answers',
             'slots.compositionHints.characterClass',
             'slots.fieldValues',
             'progressMilestones',
+            'partyFinderInfo',
             'applications',
             'slotAssignments.character',
             'slotAssignments.application',
@@ -49,7 +51,7 @@ class GroupActivityManagementDataController extends Controller
 
         $benchSlotBackfillService->ensureBenchSlots($activity);
         $attendanceService->ensureActiveAssignments($activity);
-        $activity->load(['slots.assignments', 'slots.compositionHints.characterClass', 'slotAssignments.character', 'slotAssignments.application', 'slotAssignments.slot']);
+        $activity->load(['slots.assignments.application.answers', 'slots.compositionHints.characterClass', 'slotAssignments.character', 'slotAssignments.application', 'slotAssignments.slot']);
 
         $mainSlots = $activity->slots->filter(fn ($slot) => ! $slotBench->isBench($slot))->values();
         $benchSlots = $activity->slots->filter(fn ($slot) => $slotBench->isBench($slot))->values();
@@ -90,6 +92,9 @@ class GroupActivityManagementDataController extends Controller
                 'progress_link_url' => $activity->progress_link_url,
                 'progress_notes' => $activity->progress_notes,
                 'completed_at' => $activity->completed_at?->toIso8601String(),
+                'party_finder_info' => $activity->partyFinderInfo
+                    ? ActivityPartyFinderInfoResource::make($activity->partyFinderInfo)->resolve()
+                    : null,
                 'organized_by' => $activity->organizer ? [
                     'id' => $activity->organizer->id,
                     'name' => $activity->organizer->name,

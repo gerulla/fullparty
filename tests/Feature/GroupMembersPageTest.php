@@ -4,8 +4,10 @@ use App\Models\Activity;
 use App\Models\ActivitySlot;
 use App\Models\ActivitySlotAssignment;
 use App\Models\Character;
+use App\Models\CharacterClass;
 use App\Models\Group;
 use App\Models\GroupMembership;
+use App\Models\PhantomJob;
 use App\Models\User;
 use App\Services\Groups\ActivitySlotBench;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -93,9 +95,131 @@ it('shows group-specific completed run participation counts for members', functi
         ->assertOk()
         ->assertInertia(fn (Assert $page) => $page
             ->component('Dashboard/Groups/Members/Index')
+            ->where('group.permissions.can_view_member_activity_summary', true)
             ->where('members.1.name', 'Completed Runner')
             ->where('members.1.participated_run_count', 2)
         );
+});
+
+it('lazy loads member activity summaries with group and overall last runs', function () {
+    $owner = User::factory()->create();
+    $member = User::factory()->create(['name' => 'History Runner']);
+    $group = Group::factory()->create(['owner_id' => $owner->id, 'name' => 'Current Group']);
+    $otherGroup = Group::factory()->create(['name' => 'Visible Group', 'is_visible' => true]);
+
+    GroupMembership::query()->firstOrCreate(
+        ['group_id' => $group->id, 'user_id' => $member->id],
+        ['role' => GroupMembership::ROLE_MEMBER, 'joined_at' => now()->subMonth()]
+    );
+
+    $character = Character::factory()->primary()->create([
+        'user_id' => $member->id,
+        'name' => 'Summary Character',
+        'world' => 'Lich',
+        'datacenter' => 'Light',
+    ]);
+    $characterClass = CharacterClass::query()->create([
+        'name' => 'Astrologian',
+        'shorthand' => 'AST',
+        'role' => 'healer',
+        'icon_url' => '/class-icons/astrologian.webp',
+        'flaticon_url' => '/class-icons/astrologian-flat.webp',
+    ]);
+    $phantomJob = PhantomJob::query()->create([
+        'name' => 'Geomancer',
+        'max_level' => 6,
+        'icon_url' => '/phantom-jobs/geomancer.webp',
+        'transparent_icon_url' => '/phantom-jobs/geomancer-transparent.webp',
+    ]);
+
+    $groupRun = Activity::factory()->complete()->create([
+        'group_id' => $group->id,
+        'title' => 'Current Group Clear',
+        'starts_at' => now()->subDays(3),
+        'completed_at' => now()->subDays(3)->addHours(2),
+    ]);
+    $groupRun->activityTypeVersion->update([
+        'name' => [
+            'en' => 'Forked Tower of Blood',
+            'de' => 'Forked Tower of Blood',
+            'fr' => 'Tour Bifurquee de Sang',
+            'ja' => 'Forked Tower of Blood',
+        ],
+    ]);
+
+    $otherRun = Activity::factory()->complete()->create([
+        'group_id' => $otherGroup->id,
+        'activity_type_id' => $groupRun->activity_type_id,
+        'activity_type_version_id' => $groupRun->activity_type_version_id,
+        'title' => 'Other Group Clear',
+        'starts_at' => now()->subDay(),
+        'completed_at' => now()->subDay()->addHours(2),
+    ]);
+
+    createAssignmentForMemberCount(
+        $groupRun,
+        $character,
+        ActivitySlotAssignment::STATUS_CHECKED_IN,
+        snapshot: [
+            'character_class' => ['id' => $characterClass->id],
+            'phantom_job' => ['id' => $phantomJob->id],
+        ],
+    );
+    createAssignmentForMemberCount(
+        $otherRun,
+        $character,
+        ActivitySlotAssignment::STATUS_CHECKED_IN,
+        snapshot: [
+            'character_class' => ['id' => $characterClass->id],
+        ],
+    );
+
+    $this->actingAs($owner)
+        ->getJson(route('groups.dashboard.members.activity-summary', [$group, $member]))
+        ->assertOk()
+        ->assertJsonPath('data.last_group_run.id', $groupRun->id)
+        ->assertJsonPath('data.last_group_run.title', 'Current Group Clear')
+        ->assertJsonPath('data.last_group_run.activity_type_name', 'Forked Tower of Blood')
+        ->assertJsonPath('data.last_group_run.character.name', 'Summary Character')
+        ->assertJsonPath('data.last_group_run.character_class.shorthand', 'AST')
+        ->assertJsonPath('data.last_group_run.phantom_job.name', 'Geomancer')
+        ->assertJsonPath('data.last_run.id', $otherRun->id)
+        ->assertJsonPath('data.last_run.group.name', 'Visible Group')
+        ->assertJsonPath('data.last_run.character_class.name', 'Astrologian');
+});
+
+it('does not lazy load activity summaries for users outside the group', function () {
+    $owner = User::factory()->create();
+    $outsider = User::factory()->create();
+    $group = Group::factory()->create(['owner_id' => $owner->id]);
+
+    $this->actingAs($owner)
+        ->getJson(route('groups.dashboard.members.activity-summary', [$group, $outsider]))
+        ->assertNotFound();
+});
+
+it('does not allow regular members to lazy load member activity summaries', function () {
+    $owner = User::factory()->create();
+    $member = User::factory()->create();
+    $target = User::factory()->create();
+    $group = Group::factory()->create(['owner_id' => $owner->id]);
+
+    GroupMembership::query()->create([
+        'group_id' => $group->id,
+        'user_id' => $member->id,
+        'role' => GroupMembership::ROLE_MEMBER,
+        'joined_at' => now(),
+    ]);
+    GroupMembership::query()->create([
+        'group_id' => $group->id,
+        'user_id' => $target->id,
+        'role' => GroupMembership::ROLE_MEMBER,
+        'joined_at' => now(),
+    ]);
+
+    $this->actingAs($member)
+        ->getJson(route('groups.dashboard.members.activity-summary', [$group, $target]))
+        ->assertForbidden();
 });
 
 function assignCurrentSlotForMemberCount(Activity $activity, Character $character): void
@@ -116,6 +240,7 @@ function createAssignmentForMemberCount(
     string $attendanceStatus,
     ?Carbon $endedAt = null,
     bool $isBench = false,
+    array $snapshot = [],
 ): ActivitySlotAssignment {
     $slot = $isBench
         ? ActivitySlot::factory()->create([
@@ -134,5 +259,6 @@ function createAssignmentForMemberCount(
         'attendance_status' => $attendanceStatus,
         'assigned_at' => $activity->starts_at ?? now(),
         'ended_at' => $endedAt,
+        'field_values_snapshot' => $snapshot,
     ]);
 }

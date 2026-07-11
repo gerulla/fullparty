@@ -422,7 +422,6 @@ class GroupActivityApplicationController extends Controller
                 'status' => ActivityApplication::STATUS_PENDING,
                 'notes' => $validated['notes'] ?? null,
                 'reviewed_by_user_id' => null,
-                'submitted_at' => now(),
                 'reviewed_at' => null,
                 'review_reason' => null,
             ]);
@@ -535,7 +534,6 @@ class GroupActivityApplicationController extends Controller
                 'status' => ActivityApplication::STATUS_PENDING,
                 'notes' => $validated['notes'] ?? null,
                 'reviewed_by_user_id' => null,
-                'submitted_at' => now(),
                 'reviewed_at' => null,
                 'review_reason' => null,
             ]);

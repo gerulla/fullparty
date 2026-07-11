@@ -145,21 +145,25 @@
     },
     "runs": {
         "cancelled": {
-            "title": "Run cancelled",
-            "body": "{activity} was cancelled.",
+            "title": "Run abgesagt",
+            "body": "{activity} wurde abgesagt.",
             "body_with_reason": "{activity} was cancelled. Grund: {reason}"
         },
         "starting_soon": {
-            "title": "Run starting soon",
-            "body": "{activity} is starting soon."
+            "title": "Run startet bald",
+            "body": "{activity} startet bald."
         },
         "starting_now": {
-            "title": "Run starting now",
-            "body": "{activity} is starting now."
+            "title": "Run startet jetzt",
+            "body": "{activity} startet jetzt."
+        },
+        "party_finder_published": {
+            "title": "Party-Finder-Info verfügbar",
+            "body": "{character} auf {world} hat den Party Finder geöffnet. Passwort: {password}"
         },
         "completed": {
-            "title": "Run complete",
-            "body": "{activity} is now complete."
+            "title": "Run abgeschlossen",
+            "body": "{activity} ist jetzt abgeschlossen."
         }
     },
     "groups": {
@@ -168,36 +172,36 @@
             "body": "{activity} ist für {group} aktuell noch im Entwurf."
         },
         "run_scheduled": {
-            "title": "New run scheduled",
-            "body": "{activity} was scheduled for {group}."
+            "title": "Neuer Run geplant",
+            "body": "{activity} wurde für {group} geplant."
         },
         "member_promoted": {
-            "title": "Role updated",
-            "body": "Your role in {group} was updated to {role}."
+            "title": "Rolle aktualisiert",
+            "body": "Deine Rolle in {group} wurde auf {role} aktualisiert."
         },
         "member_demoted": {
-            "title": "Role updated",
-            "body": "Your role in {group} was updated to {role}."
+            "title": "Rolle aktualisiert",
+            "body": "Deine Rolle in {group} wurde auf {role} aktualisiert."
         },
         "ownership_transferred_to_you": {
             "title": "Gruppenbesitz übertragen",
-            "body": "{group} was transferred to you by {user}."
+            "body": "{group} wurde dir von {user} übertragen."
         },
         "ownership_transferred_from_you": {
             "title": "Gruppenbesitz übertragen",
-            "body": "You transferred ownership of {group} to {user}."
+            "body": "Du hast den Besitz von {group} an {user} übertragen."
         },
         "member_joined": {
-            "title": "Member joined",
-            "body": "{user} joined {group}."
+            "title": "Mitglied beigetreten",
+            "body": "{user} ist {group} beigetreten."
         },
         "member_left": {
-            "title": "Member left",
-            "body": "{user} left {group}."
+            "title": "Mitglied ausgetreten",
+            "body": "{user} hat {group} verlassen."
         },
         "member_banned": {
-            "title": "Removed from group",
-            "body": "You were banned from {group}."
+            "title": "Aus Gruppe entfernt",
+            "body": "Du wurdest aus {group} gebannt."
         },
         "member_upcoming_assignments_cleared": {
             "title": "Bevorstehende Roster-Plätze freigegeben",
@@ -208,7 +212,7 @@
         "maintenance": {
             "title": "{headline}",
             "body": "{message}",
-            "body_with_schedule": "{message}\nScheduled for: {scheduled_for}"
+            "body_with_schedule": "{message}\nGeplant für: {scheduled_for}"
         },
         "announcement": {
             "title": "{headline}",

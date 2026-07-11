@@ -167,6 +167,47 @@ it('returns only pending applications in the applicant queue payload and include
     expect($guestQueueItem['applicant_character']['is_claimed'])->toBeFalse();
 });
 
+it('keeps the original queue position and exposes the application edit time', function () {
+    extract(createApplicantQueueActivity());
+
+    $submittedAt = now()->subHours(2)->startOfSecond();
+    $editedAt = now()->subHour()->startOfSecond();
+    $application = createQueueApplication($activity, $characterClass, [
+        'created_at' => $submittedAt,
+        'updated_at' => $editedAt,
+        'submitted_at' => now(),
+    ]);
+
+    $response = $this->actingAs($owner)->getJson(route('groups.dashboard.activities.applicant-queue', [
+        'group' => $group->slug,
+        'activity' => $activity->id,
+    ]));
+
+    $queueItem = collect($response->json('applications'))->firstWhere('id', $application->id);
+
+    expect($queueItem['submitted_at'])->toBe($submittedAt->toIso8601String())
+        ->and($queueItem['edited_at'])->toBe($editedAt->toIso8601String());
+});
+
+it('does not show an edit time when submission and update are within the same minute', function () {
+    extract(createApplicantQueueActivity());
+
+    $submittedAt = now()->startOfMinute()->addSeconds(5);
+    $application = createQueueApplication($activity, $characterClass, [
+        'created_at' => $submittedAt,
+        'updated_at' => $submittedAt->copy()->addSeconds(20),
+    ]);
+
+    $response = $this->actingAs($owner)->getJson(route('groups.dashboard.activities.applicant-queue', [
+        'group' => $group->slug,
+        'activity' => $activity->id,
+    ]));
+
+    $queueItem = collect($response->json('applications'))->firstWhere('id', $application->id);
+
+    expect($queueItem['edited_at'])->toBeNull();
+});
+
 it('includes selected character preferred class and phantom job ids in applicant queue payloads', function () {
     extract(createApplicantQueueActivity());
 
@@ -219,7 +260,25 @@ it('includes selected character preferred class and phantom job ids in applicant
 
     expect($queueItem)->not->toBeNull()
         ->and($queueItem['selected_character']['preferred_character_class_ids'])->toBe([(string) $characterClass->id])
-        ->and($queueItem['selected_character']['preferred_phantom_job_ids'])->toBe([(string) $phantomJob->id]);
+        ->and($queueItem['selected_character']['preferred_phantom_job_ids'])->toBe([(string) $phantomJob->id])
+        ->and($queueItem['selected_character']['available_character_classes'])->toContain(
+            ['id' => (string) $characterClass->id, 'level' => 100],
+            ['id' => (string) $otherClass->id, 'level' => 100],
+        )
+        ->and($queueItem['selected_character']['available_phantom_jobs'])->toContain(
+            [
+                'id' => (string) $phantomJob->id,
+                'current_level' => 20,
+                'max_level' => 20,
+                'is_maxed' => true,
+            ],
+            [
+                'id' => (string) $otherPhantomJob->id,
+                'current_level' => 20,
+                'max_level' => 20,
+                'is_maxed' => true,
+            ],
+        );
 });
 
 it('forbids non moderators from loading the applicant queue payload', function () {

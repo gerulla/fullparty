@@ -19,7 +19,7 @@
     "snapshot": {
         "members": "Membres",
         "active_runs": "Runs actifs",
-        "staff": "Staff"
+        "staff": "Équipe"
     },
     "activity": {
         "current_title": "Activité du groupe",
@@ -37,11 +37,11 @@
         "empty_recent": "Aucune mise à jour publique n'est encore disponible."
     },
     "staff": {
-        "title": "Staff",
+        "title": "Équipe",
         "subtitle": "Les personnes qui gardent ce groupe organisé.",
-        "unknown": "Membre du staff inconnu",
+        "unknown": "Membre de l'équipe inconnu",
         "joined_unknown": "Date d'arrivée indisponible",
-        "empty": "Aucun membre du staff n'est visible."
+        "empty": "Aucun membre de l'équipe n'est visible."
     },
     "access": {
         "title": "Accès au groupe",
@@ -49,9 +49,9 @@
         "open_title": "Groupe ouvert",
         "open_description": "Toute personne disposant d'un compte FullParty peut rejoindre ce groupe.",
         "invite_only_title": "Sur invitation",
-        "invite_only_description": "Les nouveaux membres ont besoin d'une invitation du staff du groupe.",
+        "invite_only_description": "Les nouveaux membres ont besoin d'une invitation de l'équipe du groupe.",
         "application_title": "Sur candidature",
-        "application_description": "Les nouveaux membres postulent pour examen par le staff. Les liens d'invitation peuvent toujours ajouter des membres directement.",
+        "application_description": "Les nouveaux membres postulent pour examen par l'équipe. Les liens d'invitation peuvent toujours ajouter des membres directement.",
         "static_title": "Composition fixe",
         "static_description": "Ce groupe utilise un style de composition fixe.",
         "visible_title": "Découvrable",

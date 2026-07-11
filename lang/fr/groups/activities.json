@@ -13,7 +13,7 @@
         "cancelled": "Annulés"
     },
     "intensities": {
-        "casual": "Casual",
+        "casual": "Décontracté",
         "midcore": "Midcore",
         "hardcore": "Hardcore"
     },
@@ -24,19 +24,19 @@
         "farm": "Farm",
         "marathon": "Marathon",
         "speedrun": "Speedrun",
-        "practice": "Practice",
-        "blind": "Blind",
+        "practice": "Entraînement",
+        "blind": "À l'aveugle",
         "chaos": "Chaos"
     },
     "difficulties": {
         "normal": "Normal",
-        "extreme": "Extreme",
-        "unreal": "Unreal",
+        "extreme": "Extrême",
+        "unreal": "Irréel",
         "exploration": "Exploration",
         "savage": "Sadique",
         "ultimate": "Fatal",
-        "chaotic": "Chaotic",
-        "criterion": "Criterion"
+        "chaotic": "Chaotique",
+        "criterion": "Critère"
     },
     "upcoming": {
         "title": "Runs à venir",
@@ -106,7 +106,7 @@
             "duration": "Durée",
             "host": "Hôte",
             "datacenter": "Centre de données",
-            "slots": "Slots",
+            "slots": "Emplacements",
             "applications": "Candidatures"
         }
     },
@@ -120,14 +120,14 @@
         "no_relative_time": "Planning à venir",
         "no_organizer": "Organisateur non défini",
         "manage": "Gérer le run",
-        "slots": "{count} slots",
+        "slots": "{count} emplacements",
         "applications": "{count} candidatures",
         "milestones": "{count} étapes"
     },
     "management": {
         "title": "Gestion du run",
         "subtitle": "Gérez les détails en direct de ce run {type}.",
-        "placeholder": "C'est le point de départ pour l'affectation des slots, les candidatures et les mises à jour de progression.",
+        "placeholder": "C'est le point de départ pour l'affectation des emplacements, les candidatures et les mises à jour de progression.",
         "coming_soon": "L'interface complète de gestion d'activité arrive bientôt. Cette page est désormais la destination dédiée à l'affectation de la composition et à l'administration de l'activité.",
         "summary_title": "Récapitulatif du run",
         "summary_subtitle": "Un aperçu rapide de l'essentiel avant l'arrivée des outils de gestion complets.",
@@ -169,31 +169,31 @@
             "load_failed": "Impossible de charger les détails du run.",
             "retry": "Réessayer",
             "complete_failed": "Impossible de terminer ce run.",
-            "swap_failed": "Impossible d'échanger les slots de la composition.",
+            "swap_failed": "Impossible d'échanger les emplacements de la composition.",
             "prepare_move_failed": "Impossible de préparer ce déplacement dans la composition.",
-            "load_slot_assignment_failed": "Impossible de charger les détails d'affectation du slot.",
+            "load_slot_assignment_failed": "Impossible de charger les détails d'affectation du emplacement.",
             "load_manual_assignment_failed": "Impossible de charger les options d'affectation des membres du groupe.",
-            "return_to_queue_failed": "Impossible de remettre ce slot dans la file.",
-            "slot_unassign_failed": "Impossible de mettre à jour l'affectation de ce slot.",
-            "undo_check_in_failed": "Impossible d'annuler le pointage de ce slot.",
-            "check_in_failed": "Impossible de pointer ce slot.",
-            "mark_late_failed": "Impossible de marquer ce slot comme en retard.",
+            "return_to_queue_failed": "Impossible de remettre ce emplacement dans la file.",
+            "slot_unassign_failed": "Impossible de mettre à jour l'affectation de ce emplacement.",
+            "undo_check_in_failed": "Impossible d'annuler le pointage de ce emplacement.",
+            "check_in_failed": "Impossible de pointer ce emplacement.",
+            "mark_late_failed": "Impossible de marquer ce emplacement comme en retard.",
             "check_in_group_failed": "Impossible de pointer ce groupe.",
-            "mark_missing_failed": "Impossible de marquer ce slot comme manquant.",
+            "mark_missing_failed": "Impossible de marquer ce emplacement comme manquant.",
             "mark_designation_failed": "Impossible de mettre à jour cette désignation d’emplacement.",
             "slot_changed": "Cet emplacement a changé pendant votre modification. Actualisez la page puis réessayez.",
             "warning_title": "Avertissement",
-            "undo_missing_failed": "Impossible d'annuler ce slot manquant.",
-            "assign_failed": "Impossible d'assigner cette candidature au slot sélectionné.",
+            "undo_missing_failed": "Impossible d'annuler ce emplacement manquant.",
+            "assign_failed": "Impossible d'assigner cette candidature au emplacement sélectionné.",
             "application_cancelled_assignment": "Cette candidature a été annulée et retirée de la file.",
             "application_no_longer_pending_assignment": "Cette candidature n'est plus en attente et a été retirée de la file.",
             "missing_application_cancelled": "Ce joueur a annulé son inscription, l'entrée manquante a donc été retirée.",
-            "manual_assign_failed": "Impossible d'assigner ce membre du groupe au slot sélectionné.",
+            "manual_assign_failed": "Impossible d'assigner ce membre du groupe au emplacement sélectionné.",
             "missing_title": "Manquant",
             "undo_missing": "Annuler manquant",
             "unknown_character": "Personnage inconnu",
-            "unknown_world": "World inconnu",
-            "unknown_slot": "Slot de composition"
+            "unknown_world": "Monde inconnu",
+            "unknown_slot": "Emplacement de composition"
         },
         "cancelled_alert": {
             "title": "Ce run a été annulé",
@@ -204,10 +204,10 @@
             "member_character": "Personnage du membre du groupe",
             "select_character": "Sélectionnez un personnage de membre du groupe",
             "select_character_warning": "Choisissez un personnage de membre du groupe pour continuer.",
-            "incompatible_fields": "Le personnage sélectionné n'a pas d'options compatibles avec les champs de ce slot.",
+            "incompatible_fields": "Le personnage sélectionné n'a pas d'options compatibles avec les champs de cet emplacement.",
             "editing_assignment_title": "Modification de l'affectation manuelle",
-            "editing_assignment_body": "Ce slot a été assigné manuellement, vous pouvez donc mettre à jour les valeurs de ses champs ici. La remise dans la file reste désactivée.",
-            "confirm": "Assigner au slot"
+            "editing_assignment_body": "Ce emplacement a été assigné manuellement, vous pouvez donc mettre à jour les valeurs de ses champs ici. La remise dans la file reste désactivée.",
+            "confirm": "Assigner au emplacement"
         },
         "complete_activity_modal": {
             "title": "Terminer le run",
@@ -268,7 +268,7 @@
         "type": "Type d'activité",
         "starts_at": "Commence le",
         "organizer": "Organisateur",
-        "slots": "Slots",
+        "slots": "Emplacements",
         "applications": "Candidatures",
         "milestones": "Jalons",
         "overview": {
@@ -311,8 +311,8 @@
         },
         "roster": {
             "title": "Affectations de la composition",
-            "subtitle": "Les parties et les slots sont générés à partir de la disposition de l'activité et prêts à être remplis.",
-            "slots_count": "{count} slots",
+            "subtitle": "Les parties et les emplacements sont générés à partir de la disposition de l'activité et prêts à être remplis.",
+            "slots_count": "{count} emplacements",
             "assigned": "Assigné",
             "checked_in": "Pointé",
             "late": "En retard",
@@ -320,26 +320,27 @@
             "bench": "Remplaçants",
             "slot_placeholder": "Cliquez pour assigner",
             "filled_placeholder": "Les détails du personnage assigné et les commandes apparaîtront ici prochainement.",
-            "filled_slot": "Slot rempli",
-            "empty_slot": "Slot vide",
+            "filled_slot": "Emplacement rempli",
+            "empty_slot": "Emplacement vide",
             "composition_preset": "Préréglage de composition",
             "composition_update_failed": "Impossible de mettre à jour le préréglage de composition de la party.",
             "apply_composition_to_all": "Appliquer à tous",
             "apply_composition_to_all_failed": "Impossible d'appliquer les indications de composition aux autres parties.",
             "composition_custom": "Personnalisé",
-            "composition_custom_title": "Indication de slot personnalisée",
-            "composition_custom_description": "Choisissez les jobs spécifiques que ce slot vide doit afficher.",
+            "composition_custom_title": "Indication de emplacement personnalisée",
+            "composition_custom_description": "Choisissez les jobs spécifiques que ce emplacement vide doit afficher.",
             "composition_custom_save": "Enregistrer l'indication",
             "composition_custom_no_options": "Aucune option de job disponible.",
-            "composition_hint_update_failed": "Impossible de mettre à jour l'indication de composition de ce slot.",
+            "composition_hint_update_failed": "Impossible de mettre à jour l'indication de composition de ce emplacement.",
             "check_in_all": "Pointer tout le monde",
             "check_in_action": "Pointer",
             "mark_late_action": "Marquer en retard",
             "mark_missing_action": "Marquer absent / manquant",
-            "remove_from_slot_action": "Retirer du slot",
+            "remove_from_slot_action": "Retirer du emplacement",
             "return_to_queue_action": "Retourner dans la file",
             "move_to_bench_action": "Déplacer en remplaçant",
             "change_assignment_action": "Modifier l'affectation",
+            "view_application_action": "Voir la candidature",
             "cut_assignment_action": "Couper l'affectation",
             "cancel_cut_assignment_action": "Annuler le déplacement",
             "paste_assignment_action": "Coller l'affectation ici",
@@ -352,6 +353,11 @@
             "host_badge": "Hôte",
             "raid_leader_badge": "Raid leader",
             "self_badge": "Votre personnage",
+            "application_match": {
+                "title": "Préférences de candidature",
+                "matched": "Correspond",
+                "not_matched": "Ne correspond pas"
+            },
             "marker_tooltips": {
                 "party_lead": "Chef de groupe",
                 "host": "Hôte",
@@ -364,19 +370,19 @@
             },
             "list_headers": {
                 "party": "Party",
-                "slot": "Slot",
+                "slot": "Emplacement",
                 "details": "Détails",
                 "status": "Statut"
             },
             "csv_headers": {
                 "group": "Groupe",
-                "slot": "Slot",
+                "slot": "Emplacement",
                 "status": "Statut",
                 "character": "Personnage",
                 "world": "Monde",
                 "datacenter": "Centre de données"
             },
-            "empty": "Aucun slot de composition n'a été généré pour cette activité."
+            "empty": "Aucun emplacement de composition n'a été généré pour cette activité."
         },
         "queue": {
             "title": "File des candidats",
@@ -405,6 +411,12 @@
             "assignment_replace_character": "{character} sera remplacé dans cet emplacement.",
             "no_selected_character": "Cette candidature n'a pas de personnage sélectionné et ne peut donc pas être assignée à la composition.",
             "incompatible_slot_answers": "Cette candidature ne fournit pas de réponses compatibles avec les champs de l'emplacement cible.",
+            "ignore_application_choices": "Ignorer les choix de candidature",
+            "ignore_application_choices_warning_title": "Les choix de candidature seront ignorés",
+            "ignore_application_choices_warning": "Cela peut poser problème, car la personne pourrait être forcée de jouer quelque chose qu'elle n'a pas choisi.",
+            "character_level": "Niv. {level}",
+            "phantom_job_level": "Niv. {level}",
+            "phantom_job_mastered": "Maîtrisé",
             "approve": "Approuver",
             "decline": "Refuser",
             "decline_footer_hint": "Refuser retire cette candidature de la file en attente et cette action est irréversible.",
@@ -428,7 +440,8 @@
             "modal": {
                 "applicant": "Candidat",
                 "account": "Compte",
-                "submitted": "Envoyée",
+                    "submitted": "Envoyée le",
+                    "edited": "Modifiée le",
                 "world": "Monde",
                 "datacenter": "Centre de données",
                 "occult_level": "Niveau occulte",
@@ -507,8 +520,8 @@
         "applications_login": "Vous devrez vous connecter avant de postuler une fois le processus de candidature ajouté ici.",
         "meta": {
             "roster": "Composition",
-            "filled_slots": "{assigned} sur {total} slots principaux remplis",
-            "bench_slots": "{count} slots de remplaçants",
+            "filled_slots": "{assigned} sur {total} emplacements principaux remplis",
+            "bench_slots": "{count} emplacements de remplaçants",
             "pending_applications": "{count} candidatures en attente",
             "no_duration": "Aucune durée définie"
         },
@@ -528,40 +541,40 @@
             "party_count": "{count} parties",
             "filled_count": "{count} remplis",
             "open_count": "{count} ouverts",
-            "open_slot": "Slot ouvert",
+            "open_slot": "Emplacement ouvert",
             "open_slot_hint": "En attente d'une affectation",
             "assigned_member": "Membre assigné",
-            "no_slot": "Aucun slot sur cette ligne",
+            "no_slot": "Aucun emplacement sur cette ligne",
             "bench_title": "Remplaçants",
             "bench_subtitle": "Les positions de surplus, d'attente et de réserve restent visibles ici.",
-            "bench_count": "{count} slots de remplaçants"
+            "bench_count": "{count} emplacements de remplaçants"
         },
         "self_signup": {
             "alerts": {
                 "assigned_title": "Vous êtes déjà inscrit",
-                "assigned_description": "Vous occupez actuellement un slot dans ce run en tant que {character}. Retirez-vous de ce slot avant d'en prendre un autre.",
+                "assigned_description": "Vous occupez actuellement un emplacement dans ce run en tant que {character}. Retirez-vous de ce emplacement avant d'en prendre un autre.",
                 "no_characters_title": "Aucun personnage vérifié disponible",
-                "no_characters_description": "Vérifiez au moins un personnage sur votre compte avant de vous inscrire à un slot."
+                "no_characters_description": "Vérifiez au moins un personnage sur votre compte avant de vous inscrire à un emplacement."
             },
             "actions": {
-                "claim": "Prendre le slot",
+                "claim": "Prendre le emplacement",
                 "remove": "Me retirer",
                 "already_assigned": "Déjà assigné",
                 "no_verified_characters": "Aucun personnage vérifié"
             },
             "messages": {
-                "assign_success": "Vous avez été assigné au slot sélectionné.",
-                "assign_error": "Impossible de vous assigner à ce slot pour le moment.",
-                "remove_success": "Vous avez été retiré de votre slot.",
-                "remove_error": "Impossible de vous retirer de ce slot pour le moment."
+                "assign_success": "Vous avez été assigné au emplacement sélectionné.",
+                "assign_error": "Impossible de vous assigner à ce emplacement pour le moment.",
+                "remove_success": "Vous avez été retiré de votre emplacement.",
+                "remove_error": "Impossible de vous retirer de ce emplacement pour le moment."
             },
             "modal": {
                 "title": "Vous assigner",
                 "character": "Votre personnage",
                 "select_character": "Sélectionnez un de vos personnages vérifiés",
                 "select_character_warning": "Choisissez un de vos personnages vérifiés pour continuer.",
-                "incompatible_fields": "Le personnage sélectionné n'a pas d'options compatibles avec ce slot.",
-                "confirm": "Prendre le slot"
+                "incompatible_fields": "Le personnage sélectionné n'a pas d'options compatibles avec cet emplacement.",
+                "confirm": "Prendre le emplacement"
             }
         }
     },
@@ -608,7 +621,7 @@
             "guest_name_field": "Nom du personnage",
             "guest_name_description": "Saisissez le nom de votre personnage exactement tel qu'il apparaît sur Lodestone.",
             "guest_name_placeholder": "Saisissez le nom de votre personnage",
-            "guest_world_field": "World d'origine",
+            "guest_world_field": "Monde d'origine",
             "guest_world_description": "Choisissez le world auquel appartient votre personnage avant de rechercher.",
             "guest_world_placeholder": "Sélectionnez un world",
             "guest_search_button": "Rechercher sur Lodestone",
@@ -849,7 +862,7 @@
             "title": "Récapitulatif du brouillon",
             "subtitle": "Un aperçu rapide de l'apparence actuelle de cette activité.",
             "activity": "Activité",
-            "slots": "Slots",
+            "slots": "Emplacements",
             "status": "Statut",
             "organizer": "Organisateur",
             "starts_at": "Commence le",

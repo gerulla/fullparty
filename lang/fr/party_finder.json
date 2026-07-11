@@ -1,0 +1,21 @@
+{
+    "publish": {
+        "button": "Envoyer les infos PF",
+        "title": "Envoyer les infos de l'outil de mission",
+        "description": "Partagez l'annonce active avec toutes les personnes placées dans ce run.",
+        "action": "Envoyer les infos PF",
+        "success_title": "Infos PF envoyées",
+        "success_description": "Les participants au run ont été prévenus.",
+        "error_title": "Impossible d'envoyer les infos PF",
+        "error_description": "Vérifiez les informations et réessayez."
+    },
+    "fields": {
+        "character_name": "Nom du personnage",
+        "world": "Monde",
+        "password": "Mot de passe",
+        "password_description": "Le mot de passe permettant aux participants de rejoindre l'annonce de l'outil de mission."
+    },
+    "display": {
+        "title": "Infos de l'outil de mission"
+    }
+}

@@ -6,6 +6,7 @@ import { localizedValue } from "@/utils/localizedValue";
 import type { LocalizedText } from "@/Types/Common";
 import type { QueueApplication, QueueFilterField } from "@/Types/ActivityQueue";
 import type { ActivitySlot } from "@/Types/ActivityRoster";
+import { translateCharacterClassName, translatePhantomJobName, translateRaidPositionName } from "@/utils/characterJobTranslations";
 
 const props = defineProps<{
 	open: boolean
@@ -18,13 +19,19 @@ const props = defineProps<{
 
 const emit = defineEmits<{
 	'update:open': [value: boolean]
-	confirm: [payload: { applicationId: number, slotId: number, fieldValues: Record<string, string | string[]> }]
+	confirm: [payload: {
+		applicationId: number
+		slotId: number
+		fieldValues: Record<string, string | string[]>
+		ignoreApplicationChoices: boolean
+	}]
 }>();
 
 const { t, locale } = useI18n();
 const page = usePage();
 const fallbackLocale = computed(() => String(page.props.locale?.fallback ?? 'en'));
 const selections = ref<Record<string, string | string[]>>({});
+const ignoreApplicationChoices = ref(false);
 const ANY_OPTION_KEY = 'any';
 
 type CompatibleOption = {
@@ -48,6 +55,27 @@ const submitLabel = computed(() => modalMode.value === 'edit'
 const localizedText = (value: LocalizedText, fallback: string) => (
 	localizedValue(value, locale.value, fallbackLocale.value) || fallback
 );
+
+const optionLabel = (field: QueueFilterField, option: QueueFilterField["options"][number]) => {
+	const fallback = localizedText(option.label, option.key);
+
+	if (field.source === 'character_classes') {
+		return translateCharacterClassName(t, {
+			shorthand: option.meta?.shorthand ?? null,
+			name: fallback,
+		}, fallback);
+	}
+
+	if (field.source === 'phantom_jobs') {
+		return translatePhantomJobName(t, { name: fallback }, fallback);
+	}
+
+	if (field.source === 'raid_positions' || field.application_key.toLowerCase().includes('position')) {
+		return translateRaidPositionName(t, { key: option.key, name: fallback }, fallback);
+	}
+
+	return fallback;
+};
 
 const targetFieldDefinitions = computed(() => {
 	if (!props.slot) {
@@ -78,16 +106,47 @@ const compatibleOptionsByField = computed(() => {
 					: [],
 		);
 		const selectedAnyOption = rawValues.includes(ANY_OPTION_KEY);
-		const compatibleOptions = selectedAnyOption
-			? field.options.filter((option) => option.key !== ANY_OPTION_KEY)
-			: field.options.filter((option) => rawValues.includes(option.key));
+		const availableClassLevels = new Map(
+			(props.application?.selected_character?.available_character_classes ?? [])
+				.map((entry) => [entry.id, entry.level]),
+		);
+		const availablePhantomJobs = new Map(
+			(props.application?.selected_character?.available_phantom_jobs ?? [])
+				.map((entry) => [entry.id, entry]),
+		);
+		const ignoresChoicesForField = ignoreApplicationChoices.value
+			&& (field.source === 'character_classes' || field.source === 'phantom_jobs');
+		const compatibleOptions = ignoresChoicesForField
+			? field.options.filter((option) => field.source === 'character_classes'
+				? availableClassLevels.has(option.key)
+				: availablePhantomJobs.has(option.key))
+			: selectedAnyOption
+				? field.options.filter((option) => option.key !== ANY_OPTION_KEY)
+				: field.options.filter((option) => rawValues.includes(option.key));
 
 		map[field.key] = compatibleOptions
-			.map((option) => ({
-				label: localizedText(option.label, option.key),
-				value: option.key,
-				isFavorite: submittedValueSet.has(option.key) && preferredOptionKeys.has(option.key),
-			}));
+			.map((option) => {
+				let label = optionLabel(field, option);
+
+				if (ignoresChoicesForField && field.source === 'character_classes') {
+					label = `${label} - ${t('groups.activities.management.queue.character_level', {
+						level: availableClassLevels.get(option.key),
+					})}`;
+				}
+
+				if (ignoresChoicesForField && field.source === 'phantom_jobs') {
+					const progress = availablePhantomJobs.get(option.key);
+					label = `${label} - ${progress?.is_maxed
+						? t('groups.activities.management.queue.phantom_job_mastered')
+						: t('groups.activities.management.queue.phantom_job_level', { level: progress?.current_level })}`;
+				}
+
+				return {
+					label,
+					value: option.key,
+					isFavorite: submittedValueSet.has(option.key) && preferredOptionKeys.has(option.key),
+				};
+			});
 	}
 
 	return map;
@@ -161,7 +220,7 @@ const normalizeCurrentSlotValue = (
 };
 
 watch(
-	() => [props.open, props.slot?.id, props.application?.id] as const,
+	() => [props.open, props.slot?.id, props.application?.id, ignoreApplicationChoices.value] as const,
 	() => {
 		if (!props.open) {
 			return;
@@ -201,6 +260,15 @@ watch(
 	{ immediate: true },
 );
 
+watch(
+	() => props.open,
+	(open) => {
+		if (open) {
+			ignoreApplicationChoices.value = false;
+		}
+	},
+);
+
 const updateFieldSelection = (fieldKey: string, value: string | string[] | undefined) => {
 	selections.value = {
 		...selections.value,
@@ -217,6 +285,7 @@ const submit = () => {
 		applicationId: props.application.id,
 		slotId: props.slot.id,
 		fieldValues: selections.value,
+		ignoreApplicationChoices: ignoreApplicationChoices.value,
 	});
 };
 </script>
@@ -230,6 +299,24 @@ const submit = () => {
 	>
 		<template #body>
 			<div class="space-y-5">
+				<div class="flex items-center justify-between gap-4 border-b border-default pb-4">
+					<div class="min-w-0">
+						<p class="font-medium text-toned">
+							{{ t('groups.activities.management.queue.ignore_application_choices') }}
+						</p>
+					</div>
+					<USwitch v-model="ignoreApplicationChoices" />
+				</div>
+
+				<UAlert
+					v-if="ignoreApplicationChoices"
+					color="warning"
+					variant="soft"
+					icon="i-lucide-triangle-alert"
+					:title="t('groups.activities.management.queue.ignore_application_choices_warning_title')"
+					:description="t('groups.activities.management.queue.ignore_application_choices_warning')"
+				/>
+
 				<div class="grid gap-4 md:grid-cols-2">
 					<div class="border border-default bg-default/60 p-4">
 						<p class="text-xs uppercase tracking-[0.12em] text-muted">

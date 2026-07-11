@@ -14,6 +14,10 @@ return [
             'title' => 'Run lancé maintenant',
             'body' => ':activity commence maintenant.',
         ],
+        'party_finder_published' => [
+            'title' => 'Informations de l’outil de mission disponibles',
+            'body' => ':character sur :world a ouvert l’outil de mission. Mot de passe : :password',
+        ],
         'completed' => [
             'title' => 'Run terminé',
             'body' => ':activity est maintenant terminé.',
@@ -21,24 +25,24 @@ return [
     ],
     'assignments' => [
         'roster_published_assigned' => [
-            'title' => 'Roster publie',
-            'body' => 'Le roster de :activity a ete publie. Vous etes assigne a :slot en tant que :character.',
+            'title' => 'Roster publié',
+            'body' => 'Le roster de :activity a été publié. Vous êtes assigné à :slot en tant que :character.',
         ],
         'roster_published_bench' => [
-            'title' => 'Roster publie',
-            'body' => 'Le roster de :activity a ete publie. Vous etes sur le banc en tant que :character.',
+            'title' => 'Roster publié',
+            'body' => 'Le roster de :activity a été publié. Vous êtes sur le banc en tant que :character.',
         ],
         'assigned' => [
-            'title' => 'Affectation du roster mise a jour',
-            'body' => 'Vous etes maintenant assigne a :slot pour :activity en tant que :character.',
+            'title' => 'Affectation du roster mise à jour',
+            'body' => 'Vous êtes maintenant assigné à :slot pour :activity en tant que :character.',
         ],
         'on_bench' => [
-            'title' => 'Affectation sur le banc mise a jour',
-            'body' => 'Vous etes maintenant sur le banc pour :activity en tant que :character.',
+            'title' => 'Affectation sur le banc mise à jour',
+            'body' => 'Vous êtes maintenant sur le banc pour :activity en tant que :character.',
         ],
         'returned_to_queue' => [
-            'title' => 'Affectation retournee en revue',
-            'body' => 'Votre candidature pour :activity en tant que :character a ete renvoyee dans la file de revue.',
+            'title' => 'Affectation renvoyée en revue',
+            'body' => 'Votre candidature pour :activity en tant que :character a été renvoyée dans la file de revue.',
         ],
         'designation_assigned' => [
             'title' => 'Rôle de run mis à jour',

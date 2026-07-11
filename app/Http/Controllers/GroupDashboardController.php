@@ -27,6 +27,7 @@ class GroupDashboardController extends Controller
         $group->load([
             'owner.primaryCharacter',
             'memberships.user',
+            'features',
             'activities' => fn ($query) => $query
                 ->with([
                     'organizer',
@@ -146,6 +147,7 @@ class GroupDashboardController extends Controller
                 'current_user_role' => $group->memberships
                     ->firstWhere('user_id', $currentUserId)
                     ?->role,
+                'features' => $group->featureSettings(),
                 'notifications' => [
                     'enabled' => (bool) ($currentMembership?->notifications_enabled ?? true),
                     'preferences' => $currentMembership instanceof GroupMembership

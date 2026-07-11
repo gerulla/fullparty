@@ -4,6 +4,90 @@ export type MemberNoteSeverity = "info" | "warning" | "critical"
 export type GroupType = "community" | "static"
 export type GroupJoinMode = "open" | "invite_only" | "application"
 export type GroupRole = "owner" | "admin" | "moderator" | "member"
+export type GroupFeatureSettings = {
+	availability_scheduler_enabled: boolean
+	statistics_enabled: boolean
+	leaderboard_enabled: boolean
+	calendar_sync_enabled: boolean
+	resource_hub_enabled: boolean
+}
+export type GroupAvailabilityMinimumRole = "member" | "moderator"
+export type GroupAvailabilityOverviewPayload = {
+	starts_at: string
+	ends_at: string
+	member_count: number
+	buckets: Array<{
+		starts_at: string
+		available_count: number
+		tentative_count: number
+	}>
+}
+export type GroupAvailabilitySelectionStatus = "available" | "tentative" | "unavailable"
+export type GroupAvailabilitySelectionPayload = {
+	starts_at: string
+	ends_at: string
+	total_members: number
+	available_count: number
+	tentative_count: number
+	unavailable_count: number
+	highest_overlap: number
+	best_time: GroupAvailabilitySelectionSlot | null
+	potential_overlaps: GroupAvailabilitySelectionSlot[]
+	slots: Array<Omit<GroupAvailabilitySelectionSlot, "unavailable_count">>
+	members: Array<{
+		id: number
+		name: string
+		avatar_url: string | null
+		status: Exclude<GroupAvailabilitySelectionStatus, "unavailable">
+		slots: Array<Exclude<GroupAvailabilitySelectionStatus, "unavailable"> | null>
+	}>
+}
+export type GroupAvailabilitySelectionSlot = {
+	starts_at: string
+	ends_at: string
+	available_count: number
+	tentative_count: number
+	unavailable_count: number
+}
+export type GroupAvailabilitySchedulePayload = {
+	id: number
+	cycle_weeks: 1 | 2 | 4
+	repeats: boolean
+	lock_weekends: boolean
+	on_hiatus: boolean
+	starts_on: string
+	timezone: string
+	windows: Array<{
+		cycle_week: number
+		weekday: number
+		status: "available" | "tentative"
+		starts_at: string
+		ends_at: string
+	}>
+	exceptions: Array<{
+		date: string
+		starts_at: string | null
+		ends_at: string | null
+	}>
+	updated_at: string | null
+}
+export type GroupAvailabilityPageGroup = {
+	id: number
+	name: string
+	slug: string
+	current_user_role: GroupRole
+	features: GroupFeatureSettings
+	permissions: {
+		can_manage_group: boolean
+		can_manage_members: boolean
+		can_manage_discovery: boolean
+		can_manage_activities: boolean
+		can_view_members: boolean
+		can_review_membership_applications: boolean
+		can_manage_membership_application_form: boolean
+		can_use_availability: boolean
+	}
+}
 export type NotificationPreferenceChannel = "in_app" | "email" | "discord"
 export type GroupNotificationPreferences = Record<string, Partial<Record<NotificationPreferenceChannel, boolean | null>>>
 export type MembershipApplicationFieldType = "small_text" | "big_text" | "select" | "toggle"
@@ -136,6 +220,7 @@ export type GroupIndexRecord = {
 		dashboard: string | null
 	}
 	current_user_role: string | null
+	features: GroupFeatureSettings
 	notifications: {
 		enabled: boolean
 		preferences: GroupNotificationPreferences
@@ -420,6 +505,7 @@ export type GroupMemberManagementGroup = {
 	slug: string
 	name: string
 	current_user_role: string
+	features?: GroupFeatureSettings
 	permissions: {
 		can_manage_members: boolean
 		can_update_group_settings?: boolean
@@ -428,6 +514,7 @@ export type GroupMemberManagementGroup = {
 		can_manage_membership_application_form?: boolean
 		can_manage_roles: boolean
 		can_view_bans: boolean
+		can_view_member_activity_summary: boolean
 	}
 }
 
@@ -438,6 +525,51 @@ export type GroupMemberCharacter = {
 	datacenter?: string | null
 	avatar_url: string | null
 	is_primary: boolean
+}
+
+export type GroupMemberActivitySummaryCharacterClass = {
+	id: number | null
+	name: string | null
+	shorthand: string | null
+	role: string | null
+	icon_url: string | null
+	flaticon_url: string | null
+}
+
+export type GroupMemberActivitySummaryPhantomJob = {
+	id: number | null
+	name: string | null
+	icon_url: string | null
+	transparent_icon_url: string | null
+}
+
+export type GroupMemberActivitySummaryRun = {
+	id: number
+	title: string | null
+	activity_type_name: string | null
+	activity_icon_url: string | null
+	starts_at: string | null
+	completed_at: string | null
+	character: {
+		id: number
+		name: string
+		world: string
+		datacenter: string | null
+		avatar_url: string | null
+	}
+	character_class: GroupMemberActivitySummaryCharacterClass | null
+	phantom_job: GroupMemberActivitySummaryPhantomJob | null
+	group: {
+		id: number
+		name: string
+		slug: string
+		is_current_group: boolean
+	} | null
+}
+
+export type GroupMemberActivitySummary = {
+	last_group_run: GroupMemberActivitySummaryRun | null
+	last_run: GroupMemberActivitySummaryRun | null
 }
 
 export type GroupMemberRecord = {

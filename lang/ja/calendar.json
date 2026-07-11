@@ -1,0 +1,10 @@
+{
+    "add": "カレンダーに追加",
+    "google": "Google カレンダー",
+    "outlook": "Outlook カレンダー",
+    "apple_other": "Apple カレンダー / その他（.ics）",
+    "group": "グループ",
+    "progress_point": "進行地点",
+    "view_run": "開催ページを表示",
+    "run_fallback": "FullParty の開催予定"
+}

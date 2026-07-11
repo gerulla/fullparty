@@ -24,6 +24,7 @@ class ActivitySlotSerializer
         private readonly ActivitySlotBench $slotBench,
         private readonly ActivitySlotStateTokenService $slotStateTokenService,
         private readonly ApplicationAnswerPresenter $applicationAnswerPresenter,
+        private readonly ActivitySlotApplicationMatchService $applicationMatchService,
     ) {}
 
     /**
@@ -76,6 +77,7 @@ class ActivitySlotSerializer
                 'datacenter' => $slot->assignedCharacter->datacenter,
             ] : null,
             'application_field_groups' => $this->serializeApplicationFieldGroups($slot, $attendanceAssignment),
+            'application_matches' => $this->applicationMatchService->build($slot, $attendanceAssignment),
             'field_values' => $this->orderedFieldValues($slot)->map(fn ($fieldValue) => [
                 'id' => $fieldValue->id,
                 'field_key' => $fieldValue->field_key,

@@ -34,6 +34,7 @@
         "leaderboard": "Bestenliste",
         "legacy_leaderboard": "Archiv",
         "members": "Mitglieder",
+        "availability": "Verfügbarkeit",
         "moderation": "Moderation",
         "configuration": "Konfiguration",
         "membership_applications": "Anfragen",
@@ -67,8 +68,8 @@
         "subtitle": "Grenze die Auswahl nach Gruppentyp, Erfahrung, Region, Größe und den Entdeckungsdetails ein, die jede Gruppe teilt.",
         "tabs": {
             "all": "Alle Gruppen",
-            "communities": "Communities",
-            "statics": "Statics"
+            "communities": "Communitys",
+            "statics": "Stammgruppen"
         },
         "filters": {
             "search_placeholder": "Nach Gruppenname, Stimmung oder auffälligem Tag suchen",
@@ -273,7 +274,7 @@
                     "progression": "Progression",
                     "clears": "Clears",
                     "reclears": "Reclears",
-                    "farming": "Farming",
+                    "farming": "Farmen",
                     "mount_farming": "Mount-Farming",
                     "maps": "Karten",
                     "casual_roulettes": "Casual-Roulettes"
@@ -285,7 +286,7 @@
                 "help": "Setze Erwartungen daran, wie viel Vorwissen oder Erfahrung Leute mitbringen sollten.",
                 "options": {
                     "beginner_friendly": "Einsteigerfreundlich",
-                    "casual": "Casual",
+                    "casual": "Locker",
                     "midcore": "Midcore",
                     "semi_hardcore": "Semi-Hardcore",
                     "hardcore": "Hardcore",
@@ -309,7 +310,7 @@
                 "suggestions": {
                     "late_night": "Späte Nacht",
                     "lgbtq_friendly": "LGBTQ+ freundlich",
-                    "blind_prog": "Blind Prog",
+                    "blind_prog": "Blinder Prog",
                     "alt_friendly": "Alt-freundlich",
                     "achievement_hunting": "Achievement-Jagd",
                     "weekend_raids": "Wochenend-Raids"

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Exceptions\LodestoneFetchException;
 use App\Exceptions\LodestoneInvalidInputException;
 use App\Exceptions\LodestoneParseException;
+use App\Http\Resources\Groups\ApplicantQueueResource;
 use App\Models\Activity;
 use App\Models\ActivityApplication;
 use App\Models\Group;
@@ -16,7 +17,7 @@ class GroupActivityApplicantQueueController extends Controller
 {
     private const MODERATOR_CHARACTER_REFRESH_COOLDOWN_SECONDS = 300;
 
-    public function show(Group $group, Activity $activity, ApplicantQueuePayloadBuilder $payloadBuilder): JsonResponse
+    public function show(Group $group, Activity $activity, ApplicantQueuePayloadBuilder $payloadBuilder): ApplicantQueueResource
     {
         $this->authorize('manageDashboard', [$activity, $group]);
 
@@ -34,7 +35,7 @@ class GroupActivityApplicantQueueController extends Controller
                 ]),
         ]);
 
-        return response()->json($payloadBuilder->build($activity, auth()->id()));
+        return new ApplicantQueueResource($payloadBuilder->build($activity, auth()->id()));
     }
 
     public function showApplication(
@@ -42,7 +43,7 @@ class GroupActivityApplicantQueueController extends Controller
         Activity $activity,
         ActivityApplication $application,
         ApplicantQueuePayloadBuilder $payloadBuilder,
-    ): JsonResponse {
+    ): ApplicantQueueResource {
         $this->authorize('manageDashboard', [$activity, $group]);
 
         if ((int) $application->activity_id !== (int) $activity->id) {
@@ -58,7 +59,7 @@ class GroupActivityApplicantQueueController extends Controller
             'user',
         ]);
 
-        return response()->json([
+        return new ApplicantQueueResource([
             'application' => $payloadBuilder->serializeApplicationForModerator(
                 $application,
                 $activity->activityTypeVersion,
@@ -74,7 +75,7 @@ class GroupActivityApplicantQueueController extends Controller
         ActivityApplication $application,
         ActivityApplicationCharacterRefreshService $applicationCharacterRefreshService,
         ApplicantQueuePayloadBuilder $payloadBuilder,
-    ): JsonResponse {
+    ): JsonResponse|ApplicantQueueResource {
         $this->authorize('manageDashboard', [$activity, $group]);
 
         if ((int) $application->activity_id !== (int) $activity->id) {
@@ -120,7 +121,7 @@ class GroupActivityApplicantQueueController extends Controller
             'user',
         ]);
 
-        return response()->json([
+        return new ApplicantQueueResource([
             'application' => $payloadBuilder->serializeApplicationForModerator(
                 $application,
                 $activity->activityTypeVersion,

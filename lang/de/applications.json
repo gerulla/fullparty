@@ -58,7 +58,7 @@
   "assignment": {
     "title": "Roster-Details",
     "party": "Party",
-    "slot": "Slot",
+    "slot": "Platz",
     "class": "Klasse",
     "phantom_job": "Phantom-Job",
     "raid_position": "Raid-Position"

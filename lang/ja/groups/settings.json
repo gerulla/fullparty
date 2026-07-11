@@ -8,12 +8,12 @@
         "visibility_summary_label": "公開設定の概要",
         "visibility_summary": {
             "default_name": "このグループ",
-            "open_visible": "{name} can be joined by anyone and can appear in discovery.",
-            "open_hidden": "{name} can be joined by anyone with the permanent slug invite, but will stay out of discovery.",
-            "invite_only_visible": "{name} requires a generated invite link and can appear in discovery.",
-            "invite_only_hidden": "{name} requires a generated invite link and will stay out of discovery.",
-            "application_visible": "{name} will use applications for new members and can appear in discovery. Invite links can still add members directly.",
-            "application_hidden": "{name} will use applications for new members and stay out of discovery. Invite links can still add members directly."
+            "open_visible": "{name} は誰でも参加でき、ディスカバリーに表示できます。",
+            "open_hidden": "{name}は恒久スラッグ招待を持つ人なら参加できますが、検索には表示されません。",
+            "invite_only_visible": "{name} は生成された招待リンクが必要で、ディスカバリーに表示できます。",
+            "invite_only_hidden": "{name} は生成された招待リンクが必要で、検索には表示されません。",
+            "application_visible": "{name} は新規メンバーに応募を使い、検索に表示できます。招待リンクからは引き続き直接メンバーを追加できます。",
+            "application_hidden": "{name} は新規メンバーに応募を使い、検索には表示されません。招待リンクからは引き続き直接メンバーを追加できます。"
         },
         "fields": {
             "name": {
@@ -32,10 +32,10 @@
             "banner_image": {
                 "label": "バナー画像",
                 "placeholder": "横長のバナー画像を選択",
-                "help": "任意。Discovery カードとグループダッシュボード用の新しい横長バナーをアップロードします。",
+                "help": "任意。ディスカバリー カードとグループダッシュボード用の新しい横長バナーをアップロードします。",
                 "preview_alt": "グループバナーのプレビュー",
                 "preview_label": "バナープレビュー",
-                "preview_help": "このプレビューは、グループヘッダーや Discovery カードで使われる横長の切り抜きを示します。"
+                "preview_help": "このプレビューは、グループヘッダーや ディスカバリー カードで使われる横長の切り抜きを示します。"
             },
             "discord_invite_url": {
                 "placeholder": "https://discord.gg/yourserver",
@@ -45,13 +45,13 @@
                 "placeholder": "データセンターを選択"
             },
             "join_mode": {
-                "label": "Join Mode",
-                "placeholder": "Select a join mode",
-                "help": "Open is community-only. Invite-only and application-based groups can still use generated invite links."
+                "label": "参加方式",
+                "placeholder": "参加方法を選択",
+                "help": "オープン参加はコミュニティ専用です。招待制や応募制のグループでも生成済み招待リンクは利用できます。"
             },
             "is_visible": {
                 "label": "検索に表示する",
-                "help": "Visible groups can appear in discovery and search."
+                "help": "表示中のグループは検索やディスカバリーに表示されます。"
             }
         },
         "validation": {
@@ -62,13 +62,43 @@
             "updated": "グループ設定を更新しました。"
         }
     },
+    "features": {
+        "title": "グループ機能",
+        "subtitle": "このグループで有効にする共有ツールを選択します。",
+        "coming_soon": "近日公開",
+        "items": {
+            "availability_scheduler_enabled": {
+                "label": "空き時間スケジューラー",
+                "description": "メンバーの空き時間と共有できる時間帯をもとに予定を立てます。"
+            },
+            "statistics_enabled": {
+                "label": "統計",
+                "description": "グループの活動概要と参加状況の統計を表示します。"
+            },
+            "leaderboard_enabled": {
+                "label": "リーダーボード",
+                "description": "グループ内の参加ランキングを表示します。"
+            },
+            "calendar_sync_enabled": {
+                "label": "カレンダー書き出し",
+                "description": "メンバーがグループの開催予定を個人のカレンダーに追加できるようにします。"
+            },
+            "resource_hub_enabled": {
+                "label": "リソースハブ",
+                "description": "便利なリンク、メモ、資料を共有する場所に備えます。"
+            }
+        },
+        "toasts": {
+            "updated": "グループ機能を更新しました。"
+        }
+    },
     "discovery": {
-        "title": "Discovery 設定",
-        "subtitle": "グループが Discovery でどのように表示されるかと、通常どの時間帯に活動しているかを更新します。",
+        "title": "ディスカバリー設定",
+        "subtitle": "グループが ディスカバリー でどのように表示されるかと、通常どの時間帯に活動しているかを更新します。",
         "active_window_title": "活動時間帯",
         "active_window_subtitle": "タイムゾーン、活動日、普段のプレイ時間を最新の状態にして、グループがいつ活動しているか分かるようにします。",
         "toasts": {
-            "updated": "Discovery 設定を更新しました。"
+            "updated": "ディスカバリー 設定を更新しました。"
         }
     },
     "invites": {
@@ -143,7 +173,7 @@
         "subtitle": "本当に削除する必要がある場合のみ、グループを完全に削除してください。",
         "owner_only_notice": "このグループを削除できるのは現在のオーナーのみです。",
         "warning_title": "この操作は元に戻せません。",
-        "warning_description": "グループを削除すると、設定、招待、メンバーシップ、予定された Runs が完全に削除されます。",
+        "warning_description": "グループを削除すると、設定、招待、メンバーシップ、予定された ラン が完全に削除されます。",
         "delete_button": "グループを削除",
         "confirm_modal": {
             "title": "グループを削除",

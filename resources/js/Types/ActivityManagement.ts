@@ -17,6 +17,13 @@ export type ActivityManagementProgressMilestone = ActivityProgressMilestone & {
 	notes: string | null
 }
 
+export type ActivityPartyFinderInfo = {
+	character_name: string
+	world: string
+	password: string
+	published_at: string | null
+}
+
 export type ActivityCompletionPreviewMilestone = {
 	milestone_key: string
 	kills: number
@@ -71,6 +78,7 @@ export type ActivityDetails = {
 	progress_link_url: string | null
 	progress_notes: string | null
 	completed_at: string | null
+	party_finder_info: ActivityPartyFinderInfo | null
 	organized_by: {
 		id: number
 		name: string

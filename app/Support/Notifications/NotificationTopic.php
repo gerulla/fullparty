@@ -134,6 +134,7 @@ class NotificationTopic
         'runs.starting_now' => self::RUNS_REMINDERS,
         'runs.cancelled' => self::RUNS_LIFECYCLE,
         'runs.completed' => self::RUNS_LIFECYCLE,
+        'runs.party_finder_published' => self::RUNS_REMINDERS,
         'groups.run_draft' => self::GROUP_RUN_POSTS,
         'groups.run_scheduled' => self::GROUP_RUN_POSTS,
         'groups.member_joined' => self::GROUP_MEMBERSHIP,

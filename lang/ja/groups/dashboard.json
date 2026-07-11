@@ -1,45 +1,45 @@
 {
     "actions": {
-        "view_runs": "Runsを見る",
+        "view_runs": "ランを見る",
         "view_members": "メンバーを見る",
-        "open_settings": "Open Settings",
+        "open_settings": "設定を開く",
         "open_discord": "Discordを開く",
-        "mute_notifications": "Mute Notifications",
-        "unmute_notifications": "Unmute Notifications",
+        "mute_notifications": "通知をミュート",
+        "unmute_notifications": "通知ミュートを解除",
         "leave_group": "グループを退出"
     },
     "leave_group_modal": {
-        "title": "Leave {name}?",
-        "description": "You will lose member access to this group until you join again or receive a new invite.",
-        "warning": "Any group-specific access, moderation privileges, and member-only dashboard actions will no longer be available after you leave.",
+        "title": "{name}を脱退しますか？",
+        "description": "再参加するか新しい招待を受け取るまで、このグループのメンバー権限を失います。",
+        "warning": "脱退すると、グループ固有のアクセス権、モデレーター権限、メンバー専用のダッシュボード操作は使えなくなります。",
         "confirm": "グループを退出"
     },
     "labels": {
         "just_now": "たった今",
         "not_available": "利用不可",
-        "no_recent_activity": "No recent activity yet",
-        "no_member_joins": "No member joins recorded"
+        "no_recent_activity": "最近のアクティビティはありません",
+        "no_member_joins": "メンバー参加記録はありません"
     },
     "hero": {
-        "last_activity": "Last Run Activity",
-        "latest_member": "Latest Member Join",
-        "reach": "Reach",
-        "public_runs": "{count} public runs",
-        "guest_friendly_runs": "{count} guest-friendly runs"
+        "last_activity": "直近のラン活動",
+        "latest_member": "最新のメンバー参加",
+        "reach": "公開範囲",
+        "public_runs": "公開ラン {count} 件",
+        "guest_friendly_runs": "ゲスト応募可のラン {count} 件"
     },
     "stats": {
         "members": "メンバー",
-        "members_hint": "{count} leadership seats",
-        "leadership": "Leadership",
-        "leadership_hint": "{count} owner seat",
+        "members_hint": "リーダー枠 {count}",
+        "leadership": "リーダー陣",
+        "leadership_hint": "オーナー枠 {count}",
         "draft_runs": "下書きのラン",
-        "draft_runs_hint": "Not published yet",
-        "active_runs": "進行中のRuns",
-        "active_runs_hint": "{count} scheduled or assigned",
-        "open_applications": "Open Applications",
-        "open_applications_hint": "{count} open to guests",
-        "completed_runs": "Completed Runs",
-        "completed_runs_hint": "{count} cancelled total"
+        "draft_runs_hint": "まだ公開されていません",
+        "active_runs": "進行中のラン",
+        "active_runs_hint": "予定済みまたは割り当て済み {count} 件",
+        "open_applications": "受付中の応募",
+        "open_applications_hint": "ゲスト応募受付中 {count} 件",
+        "completed_runs": "完了済みラン",
+        "completed_runs_hint": "キャンセル合計 {count} 件"
     },
     "upcoming_runs": {
         "title": "近日予定",
@@ -54,30 +54,30 @@
         "view_application": "応募を見る",
         "view_overview": "概要を見る",
         "open_board": "ボードを開く",
-        "empty_title": "予定されている今後のRunsはありません。",
-        "empty_description": "このグループが今後のRunsをカレンダーに追加すると、開始時間順にここへ表示されます。"
+        "empty_title": "予定されている今後のランはありません。",
+        "empty_description": "このグループが今後のランをカレンダーに追加すると、開始時間順にここへ表示されます。"
     },
     "week_overview": {
         "title": "今後7日間",
-        "subtitle": "次の7日間に予定されているRunを確認できます。",
-        "count": "{count}件のRun",
-        "empty": "今後7日間に予定されているRunはありません。"
+        "subtitle": "次の7日間に予定されているランを確認できます。",
+        "count": "{count}件のラン",
+        "empty": "今後7日間に予定されているランはありません。"
     },
     "content": {
-        "title": "What This Group Runs",
-        "subtitle": "See the kinds of content this group keeps coming back to, along with their history for each one.",
-        "total_runs": "{count} visible runs",
-        "visible_runs": "Visible Runs",
-        "visible_runs_hint": "This reflects the run history visible to the current viewer, including the group's status mix.",
-        "library": "Activity Types",
-        "library_hint": "Grouped by the kinds of content this group has actually been running.",
-        "completed": "Completed: {count}",
-        "active": "Active: {count}",
-        "last_run": "Last Run",
-        "next_run": "Next Run",
+        "title": "このグループが遊ぶコンテンツ",
+        "subtitle": "このグループがよく走るコンテンツと、それぞれの履歴を確認できます。",
+        "total_runs": "表示中のラン {count} 件",
+        "visible_runs": "表示中のラン",
+        "visible_runs_hint": "現在の閲覧者に見えるラン履歴と、グループ内のステータス内訳を反映しています。",
+        "library": "アクティビティタイプ",
+        "library_hint": "このグループが実際に遊んでいるコンテンツ種別ごとにまとめています。",
+        "completed": "完了: {count}",
+        "active": "進行中: {count}",
+        "last_run": "直近のラン",
+        "next_run": "次のラン",
         "run_singular": "ラン",
         "run_plural": "回",
-        "empty": "No visible run history yet.",
+        "empty": "表示できるラン履歴はまだありません。",
         "statuses": {
             "draft": "下書き",
             "scheduled": "予定済み",
@@ -87,45 +87,45 @@
         }
     },
     "history_runs": {
-        "title": "Run History",
+        "title": "ラン履歴",
         "count": "{count} 件表示",
         "public": "公開",
         "private": "メンバーのみ",
-        "ran": "Ran {time}",
-        "view_overview": "View Overview",
-        "open_board": "Open Board",
-        "empty_title": "No completed runs yet."
+        "ran": "{time}に実施",
+        "view_overview": "概要を見る",
+        "open_board": "ボードを開く",
+        "empty_title": "完了したランはまだありません。"
     },
     "pipeline": {
-        "title": "Run Pipeline",
-        "total": "{count} total",
-        "active_management": "In Management",
-        "archived": "Archived",
-        "empty": "No run data is available yet."
+        "title": "ラン進行状況",
+        "total": "合計 {count}",
+        "active_management": "管理中",
+        "archived": "アーカイブ済み",
+        "empty": "ランデータはまだありません。"
     },
     "setup": {
-        "title": "Setup Health",
-        "subtitle": "Quick checks for the pieces that make the group feel established and easier to join.",
-        "score": "{configured}/{total} configured",
-        "coverage": "Coverage",
-        "configured": "Configured",
-        "missing": "Missing",
-        "join_mode": "Join Mode",
+        "title": "セットアップ状況",
+        "subtitle": "グループが整っていて参加しやすいかを確認するための簡単なチェックです。",
+        "score": "{configured}/{total} 設定済み",
+        "coverage": "カバー率",
+        "configured": "設定済み",
+        "missing": "未設定",
+        "join_mode": "参加方式",
         "join_mode_open": "グループを開く",
         "join_mode_invite_only": "招待のみ",
-        "join_mode_application": "Application Based",
+        "join_mode_application": "申請制",
         "discovery": "発見設定",
         "discovery_visible": "検索に表示",
         "discovery_hidden": "非表示",
         "items": {
-            "description": "Group Description",
+            "description": "グループ説明",
             "profile_picture": "プロフィール画像",
             "discord": "Discord招待"
         }
     },
     "members": {
-        "title": "Member Snapshot",
-        "subtitle": "A quick read on who is around the table right now.",
-        "empty": "No members are available to preview yet."
+        "title": "メンバー概要",
+        "subtitle": "現在グループにいるメンバーをすばやく確認できます。",
+        "empty": "プレビューできるメンバーはまだいません。"
     }
 }

@@ -14,6 +14,10 @@ return [
             'title' => 'Run startet jetzt',
             'body' => ':activity startet jetzt.',
         ],
+        'party_finder_published' => [
+            'title' => 'Party-Finder-Info verfügbar',
+            'body' => ':character auf :world hat den Party Finder geöffnet. Passwort: :password',
+        ],
         'completed' => [
             'title' => 'Run abgeschlossen',
             'body' => ':activity ist jetzt abgeschlossen.',
@@ -21,24 +25,24 @@ return [
     ],
     'assignments' => [
         'roster_published_assigned' => [
-            'title' => 'Roster veroffentlicht',
-            'body' => 'Das Roster fur :activity wurde veroffentlicht. Du bist als :character auf :slot eingeteilt.',
+            'title' => 'Roster veröffentlicht',
+            'body' => 'Das Roster für :activity wurde veröffentlicht. Du bist als :character auf :slot eingeteilt.',
         ],
         'roster_published_bench' => [
-            'title' => 'Roster veroffentlicht',
-            'body' => 'Das Roster fur :activity wurde veroffentlicht. Du bist mit :character auf der Bank.',
+            'title' => 'Roster veröffentlicht',
+            'body' => 'Das Roster für :activity wurde veröffentlicht. Du bist mit :character auf der Ersatzbank.',
         ],
         'assigned' => [
             'title' => 'Roster-Zuteilung aktualisiert',
-            'body' => 'Du bist jetzt fur :activity als :character auf :slot eingeteilt.',
+            'body' => 'Du bist jetzt für :activity als :character auf :slot eingeteilt.',
         ],
         'on_bench' => [
-            'title' => 'Bank-Zuteilung aktualisiert',
-            'body' => 'Du bist jetzt fur :activity mit :character auf der Bank.',
+            'title' => 'Ersatzbank-Zuteilung aktualisiert',
+            'body' => 'Du bist jetzt für :activity mit :character auf der Ersatzbank.',
         ],
         'returned_to_queue' => [
-            'title' => 'Zuteilung wieder in Prufung',
-            'body' => 'Deine Bewerbung fur :activity als :character wurde zuruck in die Prufung verschoben.',
+            'title' => 'Zuteilung wieder in Prüfung',
+            'body' => 'Deine Bewerbung für :activity als :character wurde zurück in die Prüfung verschoben.',
         ],
         'designation_assigned' => [
             'title' => 'Run-Rolle aktualisiert',

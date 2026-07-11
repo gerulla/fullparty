@@ -7,6 +7,8 @@ import { route } from "ziggy-js";
 import { useI18n } from "vue-i18n";
 import { useToast } from "@nuxt/ui/composables";
 import PageHeader from "@/components/PageHeader.vue";
+import AddToCalendarMenu from "@/components/Groups/Activities/AddToCalendarMenu.vue";
+import PartyFinderInfoPanel from "@/components/Groups/Activities/PartyFinderInfoPanel.vue";
 import { localizedValue } from "@/utils/localizedValue";
 import { getActivityStatusMeta } from "@/utils/activityStatusMeta";
 import { createDateTimeFormatter } from "@/utils/dateTimeFormat";
@@ -288,6 +290,22 @@ const openOverview = (application: AccountApplication) => {
 	}));
 };
 
+const activityRouteParameters = (application: AccountApplication) => ({
+	group: application.group.slug,
+	activity: application.activity.id,
+	secretKey: application.activity.secret_key || undefined,
+});
+
+const overviewUrl = (application: AccountApplication) => route(
+	"groups.activities.overview",
+	activityRouteParameters(application),
+);
+
+const calendarUrl = (application: AccountApplication) => route(
+	"groups.activities.calendar",
+	activityRouteParameters(application),
+);
+
 const confirmWithdrawal = (application: AccountApplication) => {
 	pendingWithdrawal.value = application;
 };
@@ -410,6 +428,18 @@ const withdrawApplication = () => {
 								v-if="canOpenOverview(featuredApplication) || featuredApplication.can_edit || featuredApplication.can_withdraw"
 								class="flex flex-wrap items-center gap-2"
 							>
+								<AddToCalendarMenu
+									:title="applicationTitle(featuredApplication)"
+									:group-name="featuredApplication.group.name || t('applications.unknown_group')"
+									:starts-at="featuredApplication.activity.starts_at"
+									:duration-hours="featuredApplication.activity.duration_hours"
+									:status="featuredApplication.activity.status"
+									:overview-url="overviewUrl(featuredApplication)"
+									:ics-url="calendarUrl(featuredApplication)"
+									:enabled="featuredApplication.group.calendar_sync_enabled"
+									:notes="featuredApplication.notes"
+									:progress-point="targetProgPointLabel(featuredApplication)"
+								/>
 								<UButton
 									v-if="canOpenOverview(featuredApplication)"
 									type="button"
@@ -496,6 +526,11 @@ const withdrawApplication = () => {
 							</div>
 						</div>
 
+						<PartyFinderInfoPanel
+							v-if="featuredApplication.activity.party_finder_info"
+							:info="featuredApplication.activity.party_finder_info"
+						/>
+
 						<div v-if="notesPreview(featuredApplication.notes)" class="rounded-sm border border-default bg-default/70 px-4 py-3">
 							<p class="text-xs uppercase tracking-wide text-muted">{{ t('applications.notes') }}</p>
 							<p class="mt-3 break-words [overflow-wrap:anywhere] whitespace-pre-wrap text-sm text-toned">
@@ -569,6 +604,18 @@ const withdrawApplication = () => {
 									</div>
 								</div>
 								<div class="flex flex-wrap items-center gap-2">
+									<AddToCalendarMenu
+										:title="applicationTitle(application)"
+										:group-name="application.group.name || t('applications.unknown_group')"
+										:starts-at="application.activity.starts_at"
+										:duration-hours="application.activity.duration_hours"
+										:status="application.activity.status"
+										:overview-url="overviewUrl(application)"
+										:ics-url="calendarUrl(application)"
+										:enabled="application.group.calendar_sync_enabled"
+										:notes="application.notes"
+										:progress-point="targetProgPointLabel(application)"
+									/>
 									<UButton
 										v-if="canOpenOverview(application)"
 										type="button"
@@ -632,6 +679,11 @@ const withdrawApplication = () => {
 									</div>
 								</div>
 							</div>
+
+							<PartyFinderInfoPanel
+								v-if="application.activity.party_finder_info"
+								:info="application.activity.party_finder_info"
+							/>
 						</div>
 					</UCard>
 				</div>

@@ -8,6 +8,7 @@ import { useToast } from "@nuxt/ui/composables";
 import SeoHead from "@/components/Shared/SeoHead.vue";
 import PageHeader from "@/components/PageHeader.vue";
 import ActivityCompletionSummaryPanel from "@/components/Groups/Activities/ActivityCompletionSummaryPanel.vue";
+import AddToCalendarMenu from "@/components/Groups/Activities/AddToCalendarMenu.vue";
 import ActivityOverviewInfoPanel from "@/components/Groups/Activities/ActivityOverviewInfoPanel.vue";
 import ActivityRosterSummaryPanel from "@/components/Groups/Activities/ActivityRosterSummaryPanel.vue";
 import ActivitySelfAssignRosterBoard from "@/components/Groups/Activities/ActivitySelfAssignRosterBoard.vue";
@@ -203,6 +204,8 @@ const selfAssignmentRouteParameters = computed(() => ({
 	activity: currentActivity.value.id,
 	secretKey: props.secretKey || undefined,
 }));
+const overviewUrl = computed(() => route("groups.activities.overview", selfAssignmentRouteParameters.value));
+const calendarUrl = computed(() => route("groups.activities.calendar", selfAssignmentRouteParameters.value));
 
 const initialCharacterId = computed(() => props.selfAssignmentCharacters[0]?.id ?? null);
 const assignmentModeLabel = computed(() => t("groups.activities.create.summary.assignment_self_assign"));
@@ -387,6 +390,18 @@ const removeSelfFromSlot = async (slot: ActivitySlot) => {
 					:color="statusMeta.color"
 					:icon="statusMeta.icon"
 					:label="t(`groups.activities.statuses.${currentActivity.status}`)"
+				/>
+				<AddToCalendarMenu
+					:title="activityTitle"
+					:group-name="group.name"
+					:starts-at="currentActivity.starts_at"
+					:duration-hours="currentActivity.duration_hours"
+					:status="currentActivity.status"
+					:overview-url="overviewUrl"
+					:ics-url="calendarUrl"
+					:enabled="group.features.calendar_sync_enabled"
+					:notes="currentActivity.notes"
+					:progress-point="targetProgPointLabel"
 				/>
 				<UButton
 					v-if="permissions.can_manage"

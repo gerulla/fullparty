@@ -61,21 +61,21 @@
                 "activity_types": {
                     "forked_tower": "Forked Tower",
                     "chaotic_alliance": "Chaotic-Allianz",
-                    "savage_raids": "Savage Raids",
+                    "savage_raids": "Epische Raids",
                     "extreme_trials": "Extreme Prüfungen",
-                    "ultimate_raids": "Ultimate Raids",
+                    "ultimate_raids": "Fatale Raids",
                     "criterion": "Kriterium",
                     "unreal": "Unreal",
                     "other": "Andere"
                 },
                 "activity_categories": {
                     "normal": "Normal",
-                    "extreme": "Extreme",
+                    "extreme": "Extrem",
                     "unreal": "Unreal",
                     "exploration": "Erkundung",
-                    "savage": "Savage",
-                    "ultimate": "Ultimate",
-                    "chaotic": "Chaotic",
+                    "savage": "Episch",
+                    "ultimate": "Fatal",
+                    "chaotic": "Chaotisch",
                     "criterion": "Kriterium"
                 },
                 "prog_points": {
@@ -114,7 +114,7 @@
                     "dps": "DPS",
                     "melee": "Nahkampf",
                     "ranged": "Fernkampf",
-                    "caster": "Caster"
+                    "caster": "Magier"
                 },
                 "group_types": {
                     "community": "Community",
@@ -127,7 +127,7 @@
                     "invite_only": "Nur Einladung"
                 },
                 "intensity": {
-                    "casual": "Casual",
+                    "casual": "Locker",
                     "midcore": "Midcore",
                     "hardcore": "Hardcore"
                 },

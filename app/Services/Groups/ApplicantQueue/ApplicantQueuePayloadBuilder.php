@@ -147,10 +147,32 @@ class ApplicantQueuePayloadBuilder
                     ->map(fn ($id) => (string) $id)
                     ->values()
                     ->all(),
+                'available_character_classes' => $selectedCharacter->classes
+                    ->filter(fn ($characterClass) => (int) ($characterClass->pivot?->level ?? 0) > 0)
+                    ->map(fn ($characterClass) => [
+                        'id' => (string) $characterClass->id,
+                        'level' => (int) $characterClass->pivot->level,
+                    ])
+                    ->values()
+                    ->all(),
+                'available_phantom_jobs' => $selectedCharacter->phantomJobs
+                    ->filter(fn ($phantomJob) => (int) ($phantomJob->pivot?->current_level ?? 0) > 0)
+                    ->map(fn ($phantomJob) => [
+                        'id' => (string) $phantomJob->id,
+                        'current_level' => (int) $phantomJob->pivot->current_level,
+                        'max_level' => (int) $phantomJob->max_level,
+                        'is_maxed' => (int) $phantomJob->pivot->current_level >= (int) $phantomJob->max_level,
+                    ])
+                    ->values()
+                    ->all(),
             ] : null,
             'status' => $application->status,
             'notes' => $application->notes,
-            'submitted_at' => $application->submitted_at?->toIso8601String(),
+            'submitted_at' => $application->created_at?->toIso8601String(),
+            'edited_at' => $application->created_at
+                && $application->updated_at?->copy()->startOfMinute()->greaterThan($application->created_at->copy()->startOfMinute())
+                ? $application->updated_at->toIso8601String()
+                : null,
             'reviewed_at' => $application->reviewed_at?->toIso8601String(),
             'review_reason' => $application->review_reason,
             'answers' => $this->orderedAnswers($application->answers, $activityTypeVersion)

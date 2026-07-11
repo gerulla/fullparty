@@ -177,6 +177,16 @@
             "cannoneer": "Artilleur fantôme",
             "gladiator": "Gladiateur fantôme",
             "freelancer": "Freelancer fantôme"
+        },
+        "raid_positions": {
+            "mt": "Tank principal",
+            "ot": "Off-tank",
+            "h1": "Soigneur 1",
+            "h2": "Soigneur 2",
+            "m1": "DPS 1 / Mêlée 1",
+            "m2": "DPS 2 / Mêlée 2",
+            "r1": "DPS 3 / Distance physique",
+            "r2": "DPS 4 / Distance magique"
         }
     },
     "card": {

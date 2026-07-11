@@ -18,7 +18,7 @@
         },
         "total_participants": {
             "label": "Participations totales",
-            "description": "Presences roster en slots principaux"
+            "description": "Presences roster en emplacements principaux"
         },
         "unique_participants": {
             "label": "Participants uniques",
@@ -48,7 +48,7 @@
         "volume_subtitle": "Volume mensuel des candidatures sur les 12 derniers mois.",
         "total_label": "candidatures",
         "empty_title": "Aucune candidature",
-        "empty_description": "L'activite des candidatures apparaitra ici quand des joueurs postuleront aux runs.",
+        "empty_description": "L'activité des candidatures apparaîtra ici quand des joueurs postuleront aux runs.",
         "statuses": {
             "pending": "En attente",
             "approved": "Approuvees",
@@ -63,18 +63,18 @@
     },
     "classes": {
         "title": "Distribution des classes",
-        "subtitle": "Classes de combat les plus jouees depuis les affectations roster.",
-        "trend_title": "Tendance detaillee des classes",
-        "trend_subtitle": "Tendance mensuelle des classes les plus jouees.",
-        "empty_title": "Aucune donnee de classe",
-        "empty_description": "L'utilisation des classes apparait quand les affectations incluent une selection de classe."
+        "subtitle": "Classes de combat les plus jouées depuis les affectations roster.",
+        "trend_title": "Tendance détaillée des classes",
+        "trend_subtitle": "Tendance mensuelle des classes les plus jouées.",
+        "empty_title": "Aucune donnée de classe",
+        "empty_description": "L'utilisation des classes apparaît quand les affectations incluent une sélection de classe."
     },
     "phantom_jobs": {
-        "title": "Distribution des jobs fantomes",
-        "subtitle": "Jobs fantomes les plus joues depuis les affectations roster.",
-        "trend_title": "Tendance detaillee des jobs fantomes",
-        "trend_subtitle": "Tendance mensuelle des jobs fantomes les plus joues.",
-        "empty_title": "Aucune donnee de job fantome",
-        "empty_description": "L'utilisation des jobs fantomes apparait quand les affectations incluent une selection de job fantome."
+        "title": "Distribution des jobs fantômes",
+        "subtitle": "Jobs fantômes les plus joués depuis les affectations roster.",
+        "trend_title": "Tendance détaillée des jobs fantômes",
+        "trend_subtitle": "Tendance mensuelle des jobs fantômes les plus joués.",
+        "empty_title": "Aucune donnée de job fantôme",
+        "empty_description": "L'utilisation des jobs fantômes apparaît quand les affectations incluent une sélection de job fantôme."
     }
 }

@@ -8,6 +8,9 @@ export type PublicGroupSummary = {
 	name: string
 	slug: string
 	is_visible: boolean
+	features: {
+		calendar_sync_enabled: boolean
+	}
 }
 
 export type AttendeeActivityType = {

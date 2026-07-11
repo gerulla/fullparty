@@ -7,6 +7,7 @@ return [
                 'application_cancelled_assignment' => 'この申請はキャンセルされたため、キューから削除されました。',
                 'application_no_longer_pending_assignment' => 'この申請は保留中ではなくなったため、キューから削除されました。',
                 'missing_application_cancelled' => 'このプレイヤーは参加登録をキャンセルしたため、欠席エントリーを削除しました。',
+                'party_finder_archived' => '完了またはキャンセルされた開催にはパーティ募集情報を公開できません。',
             ],
         ],
     ],

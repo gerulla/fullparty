@@ -810,6 +810,76 @@ it('rejects slot field selections that are not present in the application answer
     expect($application->fresh()->status)->toBe(ActivityApplication::STATUS_PENDING);
 });
 
+it('lets moderators ignore class and phantom job application choices when the character has them available', function () {
+    extract(createRosterAssignmentSetup());
+    extract(createApplicantForAssignment($activity, $tankClass, $phantomKnight));
+
+    $character->classes()->attach($healerClass->id, [
+        'level' => 100,
+        'is_preferred' => false,
+    ]);
+    $character->phantomJobs()->attach($phantomBard->id, [
+        'current_level' => 3,
+        'is_preferred' => false,
+    ]);
+
+    $this->actingAs($owner);
+
+    $this->postJson(route('groups.dashboard.activities.slot-assignments.store', [
+        'group' => $group->slug,
+        'activity' => $activity->id,
+        'slot' => $mainSlot->id,
+    ]), [
+        'application_id' => $application->id,
+        'ignore_application_choices' => true,
+        'expected_slot_state_token' => activity_slot_state_token($mainSlot),
+        'field_values' => [
+            'character_class' => (string) $healerClass->id,
+            'phantom_job' => (string) $phantomBard->id,
+        ],
+    ])->assertOk();
+
+    $mainSlot->refresh()->load('fieldValues');
+
+    expect($mainSlot->fieldValues->firstWhere('field_key', 'character_class')?->value)
+        ->toMatchArray(['id' => $healerClass->id, 'name' => 'White Mage'])
+        ->and($mainSlot->fieldValues->firstWhere('field_key', 'phantom_job')?->value)
+        ->toMatchArray(['id' => $phantomBard->id, 'name' => 'Phantom Bard'])
+        ->and(AuditLog::query()->where('action', 'group.activity.roster.assigned')->sole()->metadata['application_choices_ignored'])
+        ->toBeTrue();
+});
+
+it('does not let ignored application choices assign jobs unavailable to the character', function () {
+    extract(createRosterAssignmentSetup());
+    extract(createApplicantForAssignment($activity, $tankClass, $phantomKnight));
+
+    $character->classes()->attach($healerClass->id, [
+        'level' => 0,
+        'is_preferred' => false,
+    ]);
+
+    $this->actingAs($owner);
+
+    $this->postJson(route('groups.dashboard.activities.slot-assignments.store', [
+        'group' => $group->slug,
+        'activity' => $activity->id,
+        'slot' => $mainSlot->id,
+    ]), [
+        'application_id' => $application->id,
+        'ignore_application_choices' => true,
+        'expected_slot_state_token' => activity_slot_state_token($mainSlot),
+        'field_values' => [
+            'character_class' => (string) $healerClass->id,
+            'phantom_job' => (string) $phantomKnight->id,
+        ],
+    ])
+        ->assertStatus(422)
+        ->assertJsonValidationErrors(['field_values.character_class']);
+
+    expect($mainSlot->fresh()->assigned_character_id)->toBeNull()
+        ->and($application->fresh()->status)->toBe(ActivityApplication::STATUS_PENDING);
+});
+
 it('treats an application any option as all concrete static slot options', function () {
     extract(createRosterAssignmentSetup());
     extract(createApplicantForAssignment($activity, $tankClass, $phantomKnight));

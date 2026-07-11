@@ -4,10 +4,13 @@ use App\Http\Requests\GroupDetailsRequest;
 use App\Models\Group;
 use App\Models\GroupMembership;
 use App\Models\User;
+use App\Services\Groups\GroupAvailabilityScheduleService;
 use App\Support\Groups\GroupDiscoveryBadgePalette;
 use App\Support\Input\TextInputSanitizer;
+use Database\Seeders\GroupAvailabilitySeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Inertia\Testing\AssertableInertia as Assert;
 
@@ -212,6 +215,388 @@ it('allows admins to update general group settings but forbids moderators', func
         ->assertForbidden();
 
     expect($group->fresh()->name)->toBe('Admin Updated Group');
+});
+
+it('includes group feature settings when viewing settings', function () {
+    $owner = User::factory()->create();
+    $group = Group::factory()->create([
+        'owner_id' => $owner->id,
+        'group_type' => Group::TYPE_COMMUNITY,
+    ]);
+
+    expect($group->features()->exists())->toBeTrue();
+
+    $this->actingAs($owner)
+        ->get(route('groups.dashboard.settings', $group))
+        ->assertOk()
+        ->assertInertia(fn (Assert $page) => $page
+            ->where('group.features.availability_scheduler_enabled', false)
+            ->where('group.features.statistics_enabled', true)
+            ->where('group.features.leaderboard_enabled', true)
+            ->where('group.features.calendar_sync_enabled', false)
+            ->where('group.features.resource_hub_enabled', false)
+        );
+});
+
+it('allows admins to update group feature settings', function () {
+    $owner = User::factory()->create();
+    $admin = User::factory()->create();
+    $group = Group::factory()->create([
+        'owner_id' => $owner->id,
+        'group_type' => Group::TYPE_COMMUNITY,
+    ]);
+    $group->memberships()->create([
+        'user_id' => $admin->id,
+        'role' => GroupMembership::ROLE_ADMIN,
+        'joined_at' => now(),
+    ]);
+
+    $this->actingAs($admin)
+        ->put(route('groups.dashboard.settings.update', $group), [
+            'name' => $group->name,
+            'description' => $group->description,
+            'discord_invite_url' => $group->discord_invite_url,
+            'datacenter' => $group->datacenter,
+            'join_mode' => $group->join_mode,
+            'is_visible' => $group->is_visible,
+            'features' => [
+                'availability_scheduler_enabled' => true,
+                'statistics_enabled' => false,
+                'leaderboard_enabled' => true,
+                'calendar_sync_enabled' => true,
+                'resource_hub_enabled' => true,
+            ],
+        ])
+        ->assertRedirect();
+
+    $features = $group->fresh()->features;
+
+    expect($features)->not->toBeNull()
+        ->and($features->availability_scheduler_enabled)->toBeTrue()
+        ->and($features->statistics_enabled)->toBeFalse()
+        ->and($features->leaderboard_enabled)->toBeTrue()
+        ->and($features->calendar_sync_enabled)->toBeTrue()
+        ->and($features->resource_hub_enabled)->toBeTrue();
+});
+
+it('uses group feature toggles to gate statistics access', function () {
+    $owner = User::factory()->create();
+    $group = Group::factory()->create([
+        'owner_id' => $owner->id,
+        'group_type' => Group::TYPE_COMMUNITY,
+    ]);
+
+    $this->actingAs($owner)
+        ->get(route('groups.dashboard.statistics', $group))
+        ->assertOk();
+
+    $group->features()->update(['statistics_enabled' => false]);
+
+    $this->actingAs($owner)
+        ->get(route('groups.dashboard.statistics', $group))
+        ->assertNotFound();
+
+    $this->actingAs($owner)
+        ->post(route('groups.dashboard.statistics.refresh', $group))
+        ->assertNotFound();
+});
+
+it('uses group feature toggles to gate leaderboard access', function () {
+    $owner = User::factory()->create();
+    $group = Group::factory()->create([
+        'owner_id' => $owner->id,
+        'group_type' => Group::TYPE_COMMUNITY,
+    ]);
+
+    $this->actingAs($owner)
+        ->get(route('groups.dashboard.leaderboard', $group))
+        ->assertOk();
+
+    $group->features()->update(['leaderboard_enabled' => false]);
+
+    $this->actingAs($owner)
+        ->get(route('groups.dashboard.leaderboard', $group))
+        ->assertNotFound();
+
+    $this->actingAs($owner)
+        ->post(route('groups.dashboard.leaderboard.refresh', $group))
+        ->assertNotFound();
+});
+
+it('uses the availability feature toggle to gate availability access', function () {
+    $owner = User::factory()->create();
+    $group = Group::factory()->create([
+        'owner_id' => $owner->id,
+        'group_type' => Group::TYPE_COMMUNITY,
+    ]);
+
+    $this->actingAs($owner)
+        ->get(route('groups.dashboard.availability', $group))
+        ->assertNotFound();
+
+    $group->features()->update(['availability_scheduler_enabled' => true]);
+
+    $this->actingAs($owner)
+        ->get(route('groups.dashboard.availability', $group))
+        ->assertOk()
+        ->assertInertia(fn (Assert $page) => $page
+            ->component('Dashboard/Groups/Availability')
+            ->where('group.slug', $group->slug)
+            ->where('group.features.availability_scheduler_enabled', true)
+            ->where('availability_settings.minimum_role', 'member')
+            ->where('group.permissions.can_use_availability', true)
+            ->where('schedule', null)
+        );
+});
+
+it('persists availability settings and member schedules', function () {
+    $owner = User::factory()->create();
+    $member = User::factory()->create();
+    $group = Group::factory()->create([
+        'owner_id' => $owner->id,
+        'group_type' => Group::TYPE_COMMUNITY,
+    ]);
+    $group->features()->update(['availability_scheduler_enabled' => true]);
+    $group->memberships()->create([
+        'user_id' => $member->id,
+        'role' => GroupMembership::ROLE_MEMBER,
+        'joined_at' => now(),
+    ]);
+
+    $this->actingAs($member)
+        ->put(route('groups.dashboard.availability.schedule.update', $group), [
+            'cycle_weeks' => 2,
+            'repeats' => true,
+            'lock_weekends' => false,
+            'on_hiatus' => false,
+            'starts_on' => now()->startOfWeek()->toDateString(),
+            'timezone' => 'Europe/London',
+            'windows' => [
+                [
+                    'cycle_week' => 0,
+                    'weekday' => 1,
+                    'status' => 'available',
+                    'starts_at' => '18:00',
+                    'ends_at' => '22:00',
+                ],
+                [
+                    'cycle_week' => 1,
+                    'weekday' => 5,
+                    'status' => 'tentative',
+                    'starts_at' => '22:00',
+                    'ends_at' => '03:00',
+                ],
+            ],
+            'exceptions' => [
+                [
+                    'date' => now()->addWeek()->toDateString(),
+                    'starts_at' => '19:00',
+                    'ends_at' => '21:00',
+                ],
+            ],
+        ])
+        ->assertRedirect();
+
+    $scheduleId = DB::table('group_availability_schedules')
+        ->where('group_id', $group->id)
+        ->where('user_id', $member->id)
+        ->value('id');
+
+    expect($scheduleId)->not->toBeNull();
+
+    $this->assertDatabaseHas('group_availability_schedules', [
+        'id' => $scheduleId,
+        'cycle_weeks' => 2,
+        'repeats' => true,
+        'lock_weekends' => false,
+        'on_hiatus' => false,
+        'timezone' => 'Europe/London',
+    ]);
+    $this->assertDatabaseHas('group_availability_windows', [
+        'schedule_id' => $scheduleId,
+        'cycle_week' => 1,
+        'weekday' => 5,
+        'status' => 'tentative',
+        'starts_minute' => 1320,
+        'ends_minute' => 1620,
+    ]);
+    $this->assertDatabaseHas('group_availability_exceptions', [
+        'schedule_id' => $scheduleId,
+        'starts_minute' => 1140,
+        'ends_minute' => 1260,
+    ]);
+
+    $this->actingAs($member)
+        ->get(route('groups.dashboard.availability', $group))
+        ->assertOk()
+        ->assertInertia(fn (Assert $page) => $page
+            ->where('schedule.cycle_weeks', 2)
+            ->where('schedule.timezone', 'Europe/London')
+            ->has('schedule.windows', 2)
+            ->where('schedule.windows.1.ends_at', '03:00')
+            ->has('schedule.exceptions', 1)
+        );
+
+    $this->actingAs($owner)
+        ->put(route('groups.dashboard.availability.settings.update', $group), [
+            'minimum_role' => 'moderator',
+        ])
+        ->assertRedirect();
+
+    $this->assertDatabaseHas('group_availability_settings', [
+        'group_id' => $group->id,
+        'minimum_role' => 'moderator',
+    ]);
+
+    $this->actingAs($member)
+        ->put(route('groups.dashboard.availability.schedule.update', $group), [
+            'cycle_weeks' => 1,
+            'repeats' => true,
+            'lock_weekends' => true,
+            'on_hiatus' => false,
+            'starts_on' => now()->toDateString(),
+            'timezone' => 'UTC',
+            'windows' => [],
+            'exceptions' => [],
+        ])
+        ->assertForbidden();
+});
+
+it('seeds five days of availability per cycle week for every group member', function () {
+    $owner = User::factory()->create();
+    $member = User::factory()->create();
+    $group = Group::factory()->create([
+        'owner_id' => $owner->id,
+        'group_type' => Group::TYPE_STATIC,
+        'active_timezone' => 'Europe/London',
+    ]);
+    $group->memberships()->create([
+        'user_id' => $member->id,
+        'role' => GroupMembership::ROLE_MEMBER,
+        'joined_at' => now(),
+    ]);
+
+    $this->seed(GroupAvailabilitySeeder::class);
+
+    $schedules = DB::table('group_availability_schedules')
+        ->where('group_id', $group->id)
+        ->get();
+
+    expect($schedules)->toHaveCount(2);
+
+    foreach ($schedules as $schedule) {
+        $windows = DB::table('group_availability_windows')
+            ->where('schedule_id', $schedule->id)
+            ->get();
+
+        expect($windows)->toHaveCount($schedule->cycle_weeks * 5);
+
+        foreach ($windows as $window) {
+            expect($window->starts_minute)->toBeGreaterThanOrEqual(960)
+                ->and($window->ends_minute)->toBeLessThanOrEqual(1440)
+                ->and($window->ends_minute - $window->starts_minute)->toBeGreaterThanOrEqual(180);
+        }
+
+        foreach (range(0, $schedule->cycle_weeks - 1) as $cycleWeek) {
+            expect($windows->where('cycle_week', $cycleWeek)->pluck('weekday')->unique())->toHaveCount(5);
+        }
+    }
+});
+
+it('builds the seven day availability overview from member schedules', function () {
+    $this->travelTo(now()->setDate(2026, 7, 13)->setTime(16, 15));
+
+    $owner = User::factory()->create();
+    $group = Group::factory()->create([
+        'owner_id' => $owner->id,
+        'group_type' => Group::TYPE_STATIC,
+    ]);
+    $group->features()->update(['availability_scheduler_enabled' => true]);
+
+    app(GroupAvailabilityScheduleService::class)->save($group, $owner, [
+        'cycle_weeks' => 1,
+        'repeats' => true,
+        'lock_weekends' => false,
+        'starts_on' => now()->startOfWeek()->toDateString(),
+        'timezone' => config('app.timezone'),
+        'windows' => [
+            [
+                'cycle_week' => 0,
+                'weekday' => now()->isoWeekday(),
+                'status' => 'available',
+                'starts_at' => '16:00',
+                'ends_at' => '20:00',
+            ],
+        ],
+        'exceptions' => [],
+    ]);
+
+    $this->actingAs($owner)
+        ->get(route('groups.dashboard.availability', $group))
+        ->assertOk()
+        ->assertInertia(fn (Assert $page) => $page
+            ->has('overview.buckets', 168)
+            ->where('overview.member_count', 1)
+            ->where('overview.buckets.0.available_count', 1)
+            ->where('overview.buckets.3.available_count', 1)
+            ->where('overview.buckets.4.available_count', 0)
+        );
+
+    $selectionRoute = route('groups.dashboard.availability.selection', [
+        'group' => $group,
+        'starts_at' => now()->startOfHour()->toIso8601String(),
+        'ends_at' => now()->startOfHour()->addHours(5)->toIso8601String(),
+    ]);
+
+    $this->actingAs($owner)
+        ->getJson($selectionRoute)
+        ->assertOk()
+        ->assertJsonPath('data.total_members', 1)
+        ->assertJsonPath('data.available_count', 1)
+        ->assertJsonPath('data.highest_overlap', 1)
+        ->assertJsonCount(10, 'data.slots')
+        ->assertJsonCount(1, 'data.members')
+        ->assertJsonPath('data.members.0.name', $owner->name);
+
+    app(GroupAvailabilityScheduleService::class)->save($group, $owner, [
+        'cycle_weeks' => 1,
+        'repeats' => true,
+        'lock_weekends' => false,
+        'on_hiatus' => true,
+        'starts_on' => now()->startOfWeek()->toDateString(),
+        'timezone' => config('app.timezone'),
+        'windows' => [
+            [
+                'cycle_week' => 0,
+                'weekday' => now()->isoWeekday(),
+                'status' => 'available',
+                'starts_at' => '16:00',
+                'ends_at' => '20:00',
+            ],
+        ],
+        'exceptions' => [],
+    ]);
+
+    $this->actingAs($owner)
+        ->getJson($selectionRoute)
+        ->assertOk()
+        ->assertJsonPath('data.available_count', 0)
+        ->assertJsonCount(0, 'data.members');
+});
+
+it('uses the leaderboard feature toggle to gate the legacy leaderboard', function () {
+    $owner = User::factory()->create();
+    $group = Group::factory()->create([
+        'owner_id' => $owner->id,
+        'slug' => 'ftel',
+        'group_type' => Group::TYPE_COMMUNITY,
+    ]);
+
+    $group->features()->update(['leaderboard_enabled' => false]);
+
+    $this->actingAs($owner)
+        ->get(route('groups.dashboard.legacy-leaderboard', $group))
+        ->assertNotFound();
 });
 
 it('allows owners and admins to view the discovery settings page', function () {

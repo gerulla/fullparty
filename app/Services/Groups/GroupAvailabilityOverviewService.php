@@ -18,7 +18,9 @@ class GroupAvailabilityOverviewService
     public function build(Group $group, CarbonImmutable $now): array
     {
         $startsAt = $now->utc()->startOfHour();
+        $participantUserIds = $group->availabilityParticipantUserIds();
         $schedules = $group->availabilitySchedules()
+            ->whereIn('user_id', $participantUserIds)
             ->with(['windows', 'exceptions'])
             ->get();
 

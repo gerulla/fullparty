@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Support\Collection;
 
 class Group extends Model
 {
@@ -175,31 +176,66 @@ class Group extends Model
         return $this->hasMany(GroupAvailabilitySchedule::class);
     }
 
-    /**
-     * @return array<string, bool>
-     */
+    /** @return array<string, bool|string> */
     public function featureSettings(): array
     {
         $features = $this->relationLoaded('features')
             ? $this->features
             : $this->features()->first();
 
-        if (! $features instanceof GroupFeature) {
-            return GroupFeature::defaults();
-        }
+        $settings = $features instanceof GroupFeature ? [
+            'availability_scheduler_enabled' => (bool) $features->availability_scheduler_enabled,
+            'statistics_enabled' => (bool) $features->statistics_enabled,
+            'leaderboard_enabled' => (bool) $features->leaderboard_enabled,
+            'calendar_sync_enabled' => (bool) $features->calendar_sync_enabled,
+            'resource_hub_enabled' => (bool) $features->resource_hub_enabled,
+        ] : GroupFeature::defaults();
 
         return [
-            'availability_scheduler_enabled' => $features->availability_scheduler_enabled,
-            'statistics_enabled' => $features->statistics_enabled,
-            'leaderboard_enabled' => $features->leaderboard_enabled,
-            'calendar_sync_enabled' => $features->calendar_sync_enabled,
-            'resource_hub_enabled' => $features->resource_hub_enabled,
+            ...$settings,
+            'availability_minimum_role' => $this->availabilityMinimumRole(),
         ];
     }
 
     public function featureEnabled(string $feature): bool
     {
         return (bool) ($this->featureSettings()[$feature] ?? false);
+    }
+
+    public function availabilityMinimumRole(): string
+    {
+        $settings = $this->relationLoaded('availabilitySettings')
+            ? $this->availabilitySettings
+            : $this->availabilitySettings()->first();
+
+        return $settings?->minimum_role ?? GroupAvailabilitySetting::MINIMUM_ROLE_MEMBER;
+    }
+
+    public function canUseAvailability(?int $userId): bool
+    {
+        if (! $this->hasMember($userId)) {
+            return false;
+        }
+
+        return $this->availabilityMinimumRole() === GroupAvailabilitySetting::MINIMUM_ROLE_MEMBER
+            || $this->hasModeratorAccess($userId);
+    }
+
+    /** @return Collection<int, int> */
+    public function availabilityParticipantUserIds(): Collection
+    {
+        return $this->memberships()
+            ->when(
+                $this->availabilityMinimumRole() === GroupAvailabilitySetting::MINIMUM_ROLE_MODERATOR,
+                fn ($query) => $query->whereIn('role', [
+                    GroupMembership::ROLE_OWNER,
+                    GroupMembership::ROLE_ADMIN,
+                    GroupMembership::ROLE_MODERATOR,
+                ]),
+            )
+            ->pluck('user_id')
+            ->map(fn ($userId) => (int) $userId)
+            ->values();
     }
 
     public function scopeVisible($query)

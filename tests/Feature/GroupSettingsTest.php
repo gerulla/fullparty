@@ -462,6 +462,85 @@ it('persists availability settings and member schedules', function () {
         ->assertForbidden();
 });
 
+it('restricts moderator availability pages and summaries to moderators and above', function () {
+    $this->travelTo(now()->setDate(2026, 7, 13)->setTime(16, 15));
+
+    $owner = User::factory()->create();
+    $moderator = User::factory()->create();
+    $member = User::factory()->create();
+    $group = Group::factory()->create([
+        'owner_id' => $owner->id,
+        'group_type' => Group::TYPE_STATIC,
+    ]);
+    $group->features()->update(['availability_scheduler_enabled' => true]);
+    $group->memberships()->createMany([
+        [
+            'user_id' => $moderator->id,
+            'role' => GroupMembership::ROLE_MODERATOR,
+            'joined_at' => now(),
+        ],
+        [
+            'user_id' => $member->id,
+            'role' => GroupMembership::ROLE_MEMBER,
+            'joined_at' => now(),
+        ],
+    ]);
+    $group->availabilitySettings()->create(['minimum_role' => 'moderator']);
+
+    foreach ([$owner, $moderator, $member] as $user) {
+        app(GroupAvailabilityScheduleService::class)->save($group, $user, [
+            'cycle_weeks' => 1,
+            'repeats' => true,
+            'lock_weekends' => false,
+            'on_hiatus' => false,
+            'starts_on' => now()->startOfWeek()->toDateString(),
+            'timezone' => config('app.timezone'),
+            'windows' => [[
+                'cycle_week' => 0,
+                'weekday' => now()->isoWeekday(),
+                'status' => 'available',
+                'starts_at' => '16:00',
+                'ends_at' => '20:00',
+            ]],
+            'exceptions' => [],
+        ]);
+    }
+
+    $selectionRoute = route('groups.dashboard.availability.selection', [
+        'group' => $group,
+        'starts_at' => now()->startOfHour()->toIso8601String(),
+        'ends_at' => now()->startOfHour()->addHours(2)->toIso8601String(),
+    ]);
+
+    $this->actingAs($member)
+        ->get(route('groups.dashboard.availability', $group))
+        ->assertForbidden();
+    $this->actingAs($member)
+        ->getJson($selectionRoute)
+        ->assertForbidden();
+    $this->actingAs($member)
+        ->get(route('groups.dashboard', $group))
+        ->assertOk()
+        ->assertInertia(fn (Assert $page) => $page
+            ->where('group.current_user_role', GroupMembership::ROLE_MEMBER)
+            ->where('group.features.availability_minimum_role', 'moderator')
+        );
+
+    $this->actingAs($moderator)
+        ->get(route('groups.dashboard.availability', $group))
+        ->assertOk()
+        ->assertInertia(fn (Assert $page) => $page
+            ->where('overview.member_count', 2)
+            ->where('overview.buckets.0.available_count', 2)
+        );
+    $this->actingAs($moderator)
+        ->getJson($selectionRoute)
+        ->assertOk()
+        ->assertJsonPath('data.total_members', 2)
+        ->assertJsonPath('data.available_count', 2)
+        ->assertJsonCount(2, 'data.members');
+});
+
 it('seeds five days of availability per cycle week for every group member', function () {
     $owner = User::factory()->create();
     $member = User::factory()->create();

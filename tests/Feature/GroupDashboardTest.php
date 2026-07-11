@@ -729,6 +729,7 @@ it('renders the group leaderboard with participation and host success rankings',
         string $status = Activity::STATUS_COMPLETE,
         bool $isHost = false,
         bool $isRaidLeader = false,
+        int $daysAgo = 1,
     ) use ($group, $type, $version, $owner): Activity {
         $activity = Activity::factory()->create([
             'group_id' => $group->id,
@@ -738,7 +739,7 @@ it('renders the group leaderboard with participation and host success rankings',
             'status' => $status,
             'target_prog_point_key' => $targetProgPoint,
             'furthest_progress_key' => $furthestProgress,
-            'starts_at' => now()->subDays(fake()->numberBetween(1, 20)),
+            'starts_at' => now()->subDays($daysAgo),
         ]);
         $activity->forceFill([
             'target_prog_point_key' => $targetProgPoint,
@@ -755,21 +756,26 @@ it('renders the group leaderboard with participation and host success rankings',
         return $activity;
     };
 
-    $createRun($kevin, 'phase-2', 'clear', isHost: true, isRaidLeader: true);
-    $createRun($kevin, 'clear', 'phase-2', isHost: true);
-    $createRun($kevin, null, null, isHost: true);
+    $createRun($kevin, 'phase-2', 'clear', isHost: true, isRaidLeader: true, daysAgo: 1);
+    $createRun($kevin, 'clear', 'phase-2', isHost: true, daysAgo: 40);
+    $createRun($kevin, null, null, isHost: true, daysAgo: 200);
     $createRun($kevin, 'phase-1', 'phase-2', Activity::STATUS_ASSIGNED, isHost: true);
-    $createRun($alice, null, null, isHost: true, isRaidLeader: true);
-    $createRun($alice, 'phase-1', 'phase-2', isRaidLeader: true);
-    $createRun($mira, 'phase-1', 'phase-1');
+    $createRun($alice, null, null, isHost: true, isRaidLeader: true, daysAgo: 2);
+    $createRun($alice, 'phase-1', 'phase-2', isRaidLeader: true, daysAgo: 50);
+    $createRun($mira, 'phase-1', 'phase-1', daysAgo: 3);
+
+    foreach (range(1, 11) as $index) {
+        $extraCharacter = Character::factory()->primary()->create(['name' => sprintf('Extra Player %02d', $index)]);
+        $createRun($extraCharacter, null, null, daysAgo: 4);
+    }
 
     $this->actingAs($owner)
         ->get(route('groups.dashboard.leaderboard', $group))
         ->assertOk()
         ->assertInertia(fn (Assert $page) => $page
             ->component('Dashboard/Groups/Leaderboard')
-            ->where('leaderboard.summary.total_participations', 6)
-            ->where('leaderboard.summary.ranked_participants', 3)
+            ->where('leaderboard.summary.total_participations', 17)
+            ->where('leaderboard.summary.ranked_participants', 14)
             ->where('leaderboard.summary.raid_leader_participations', 3)
             ->where('leaderboard.summary.host_participations', 4)
             ->where('leaderboard.summary.completed_hosted_runs', 4)
@@ -790,6 +796,28 @@ it('renders the group leaderboard with participation and host success rankings',
             ->where('leaderboard.rankings.host_success.0.weighted_success_rate', 50)
             ->where('leaderboard.rankings.host_success.0.performance_score', 50)
         );
+
+    $this->actingAs($owner)
+        ->getJson(route('groups.dashboard.leaderboard.ranking', [
+            'group' => $group,
+            'category' => 'overall',
+            'period' => 'past_30_days',
+            'limit' => 'all',
+        ]))
+        ->assertOk()
+        ->assertJsonCount(14, 'data')
+        ->assertJsonPath('data.0.character.name', 'Alice Anchor')
+        ->assertJsonPath('data.0.count', 1);
+
+    $this->actingAs($owner)
+        ->getJson(route('groups.dashboard.leaderboard.ranking', [
+            'group' => $group,
+            'category' => 'overall',
+            'period' => 'past_30_days',
+            'limit' => '10',
+        ]))
+        ->assertOk()
+        ->assertJsonCount(10, 'data');
 });
 
 it('caches the group leaderboard and refreshes it with a cooldown', function () {

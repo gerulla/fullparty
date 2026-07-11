@@ -7,12 +7,22 @@
         "raid_leaders": "レイドリーダー参加",
         "hosts": "ホスト参加"
     },
-    "common": {
+  "common": {
         "participations": "参加",
         "runs": "回",
         "complete_runs_only": "完了済みランのみ",
         "no_date": "最近のランなし"
-    },
+  },
+  "periods": {
+    "all_time": "全期間",
+    "past_6_months": "過去6か月",
+    "past_30_days": "過去30日"
+  },
+  "limits": {
+    "top_10": "トップ10",
+    "top_100": "トップ100",
+    "all": "すべて"
+  },
     "cache": {
         "refresh": "リーダーボードを更新",
         "refreshing": "更新中...",

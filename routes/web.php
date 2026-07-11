@@ -412,6 +412,7 @@ Route::prefix('{locale?}')
                 Route::get('/statistics', GroupStatisticsController::class)->name('groups.dashboard.statistics');
                 Route::post('/statistics/refresh', [GroupStatisticsController::class, 'refresh'])->name('groups.dashboard.statistics.refresh');
                 Route::get('/leaderboard', GroupLeaderboardController::class)->name('groups.dashboard.leaderboard');
+                Route::get('/leaderboard/ranking', [GroupLeaderboardController::class, 'ranking'])->name('groups.dashboard.leaderboard.ranking');
                 Route::post('/leaderboard/refresh', [GroupLeaderboardController::class, 'refresh'])->name('groups.dashboard.leaderboard.refresh');
                 Route::get('/legacy-leaderboard', GroupLegacyLeaderboardController::class)->name('groups.dashboard.legacy-leaderboard');
                 Route::get('/membership-applications', [GroupMembershipApplicationReviewController::class, 'index'])->name('groups.dashboard.membership-applications.index');

@@ -75,6 +75,7 @@ export type QueueApplication = {
 	status: string
 	notes: string | null
 	submitted_at: string | null
+	edited_at: string | null
 	reviewed_at: string | null
 	review_reason: string | null
 	user_stats: QueueApplicationUserStats | null

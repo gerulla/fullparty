@@ -340,6 +340,7 @@
             "return_to_queue_action": "Zurück in die Warteschlange",
             "move_to_bench_action": "Auf die Ersatzbank verschieben",
             "change_assignment_action": "Zuweisung ändern",
+            "view_application_action": "Bewerbung ansehen",
             "cut_assignment_action": "Zuweisung ausschneiden",
             "cancel_cut_assignment_action": "Ausschneiden abbrechen",
             "paste_assignment_action": "Zuweisung hier einfügen",
@@ -352,6 +353,11 @@
             "host_badge": "Host",
             "raid_leader_badge": "Raid-Leitung",
             "self_badge": "Dein Charakter",
+            "application_match": {
+                "title": "Bewerbungspräferenzen",
+                "matched": "Passend",
+                "not_matched": "Nicht passend"
+            },
             "marker_tooltips": {
                 "party_lead": "Party-Leitung",
                 "host": "Host",
@@ -428,7 +434,8 @@
             "modal": {
                 "applicant": "Bewerber",
                 "account": "Konto",
-                "submitted": "Gesendet",
+                    "submitted": "Gesendet am",
+                    "edited": "Bearbeitet am",
                 "world": "Welt",
                 "datacenter": "Datenzentrum",
                 "occult_level": "Okkult-Level",

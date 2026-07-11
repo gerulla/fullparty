@@ -35,6 +35,13 @@ export type ActivityApplicationFieldGroup = {
 	}>
 }
 
+export type ActivitySlotApplicationMatch = {
+	key: string
+	label: LocalizedText
+	abbreviation: string
+	matches: boolean
+}
+
 export type ActivitySlotCompositionHint = {
 	id: number
 	type: "role" | "class"
@@ -94,6 +101,7 @@ export type ActivitySlot = {
 		datacenter: string | null
 	} | null
 	application_field_groups: ActivityApplicationFieldGroup[]
+	application_matches: ActivitySlotApplicationMatch[]
 	field_values: ActivitySlotFieldValue[]
 }
 

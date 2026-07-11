@@ -13,13 +13,15 @@ class GroupLegacyLeaderboardController extends Controller
     {
         abort_unless($group->slug === 'ftel', 404);
 
-        $group->loadMissing('memberships');
+        $group->loadMissing(['memberships', 'features']);
 
         $currentUserId = auth()->id();
 
         if (! $group->hasMember($currentUserId)) {
             abort(403);
         }
+
+        abort_unless($group->featureEnabled('leaderboard_enabled'), 404);
 
         return Inertia::render('Dashboard/Groups/LegacyLeaderboard', [
             'group' => $this->serializeNavigationGroup($group, $currentUserId),
@@ -39,6 +41,7 @@ class GroupLegacyLeaderboardController extends Controller
             'current_user_role' => $group->memberships
                 ->firstWhere('user_id', $currentUserId)
                 ?->role,
+            'features' => $group->featureSettings(),
             'permissions' => [
                 'can_manage_group' => $group->isOwnedBy($currentUserId),
                 'can_manage_members' => $group->hasModeratorAccess($currentUserId),

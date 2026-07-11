@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Group;
 use App\Models\GroupMembership;
 use App\Models\ScheduledRun;
+use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
@@ -18,9 +19,10 @@ class GroupRunController extends Controller
         $group->load([
             'memberships',
             'scheduledRuns.organizer',
+            'features',
         ]);
 
-        if (!$group->hasMember(auth()->id())) {
+        if (! $group->hasMember(auth()->id())) {
             abort(403);
         }
 
@@ -32,6 +34,7 @@ class GroupRunController extends Controller
                 'current_user_role' => $group->memberships
                     ->firstWhere('user_id', auth()->id())
                     ?->role,
+                'features' => $group->featureSettings(),
                 'permissions' => [
                     'can_manage_runs' => $group->hasModeratorAccess(auth()->id()),
                 ],
@@ -103,7 +106,7 @@ class GroupRunController extends Controller
     }
 
     /**
-     * @return array<string, array<int, \Illuminate\Contracts\Validation\ValidationRule|string>>
+     * @return array<string, array<int, ValidationRule|string>>
      */
     private function rules(Group $group): array
     {
@@ -128,7 +131,7 @@ class GroupRunController extends Controller
 
     private function authorizeModeratorAccess(Group $group): void
     {
-        if (!$group->hasModeratorAccess(auth()->id())) {
+        if (! $group->hasModeratorAccess(auth()->id())) {
             abort(403);
         }
     }

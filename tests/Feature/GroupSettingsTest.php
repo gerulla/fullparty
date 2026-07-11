@@ -214,6 +214,127 @@ it('allows admins to update general group settings but forbids moderators', func
     expect($group->fresh()->name)->toBe('Admin Updated Group');
 });
 
+it('includes group feature settings when viewing settings', function () {
+    $owner = User::factory()->create();
+    $group = Group::factory()->create([
+        'owner_id' => $owner->id,
+        'group_type' => Group::TYPE_COMMUNITY,
+    ]);
+
+    expect($group->features()->exists())->toBeTrue();
+
+    $this->actingAs($owner)
+        ->get(route('groups.dashboard.settings', $group))
+        ->assertOk()
+        ->assertInertia(fn (Assert $page) => $page
+            ->where('group.features.availability_scheduler_enabled', false)
+            ->where('group.features.statistics_enabled', true)
+            ->where('group.features.leaderboard_enabled', true)
+            ->where('group.features.calendar_sync_enabled', false)
+            ->where('group.features.resource_hub_enabled', false)
+        );
+});
+
+it('allows admins to update group feature settings', function () {
+    $owner = User::factory()->create();
+    $admin = User::factory()->create();
+    $group = Group::factory()->create([
+        'owner_id' => $owner->id,
+        'group_type' => Group::TYPE_COMMUNITY,
+    ]);
+    $group->memberships()->create([
+        'user_id' => $admin->id,
+        'role' => GroupMembership::ROLE_ADMIN,
+        'joined_at' => now(),
+    ]);
+
+    $this->actingAs($admin)
+        ->put(route('groups.dashboard.settings.update', $group), [
+            'name' => $group->name,
+            'description' => $group->description,
+            'discord_invite_url' => $group->discord_invite_url,
+            'datacenter' => $group->datacenter,
+            'join_mode' => $group->join_mode,
+            'is_visible' => $group->is_visible,
+            'features' => [
+                'availability_scheduler_enabled' => true,
+                'statistics_enabled' => false,
+                'leaderboard_enabled' => true,
+                'calendar_sync_enabled' => true,
+                'resource_hub_enabled' => true,
+            ],
+        ])
+        ->assertRedirect();
+
+    $features = $group->fresh()->features;
+
+    expect($features)->not->toBeNull()
+        ->and($features->availability_scheduler_enabled)->toBeTrue()
+        ->and($features->statistics_enabled)->toBeFalse()
+        ->and($features->leaderboard_enabled)->toBeTrue()
+        ->and($features->calendar_sync_enabled)->toBeTrue()
+        ->and($features->resource_hub_enabled)->toBeTrue();
+});
+
+it('uses group feature toggles to gate statistics access', function () {
+    $owner = User::factory()->create();
+    $group = Group::factory()->create([
+        'owner_id' => $owner->id,
+        'group_type' => Group::TYPE_COMMUNITY,
+    ]);
+
+    $this->actingAs($owner)
+        ->get(route('groups.dashboard.statistics', $group))
+        ->assertOk();
+
+    $group->features()->update(['statistics_enabled' => false]);
+
+    $this->actingAs($owner)
+        ->get(route('groups.dashboard.statistics', $group))
+        ->assertNotFound();
+
+    $this->actingAs($owner)
+        ->post(route('groups.dashboard.statistics.refresh', $group))
+        ->assertNotFound();
+});
+
+it('uses group feature toggles to gate leaderboard access', function () {
+    $owner = User::factory()->create();
+    $group = Group::factory()->create([
+        'owner_id' => $owner->id,
+        'group_type' => Group::TYPE_COMMUNITY,
+    ]);
+
+    $this->actingAs($owner)
+        ->get(route('groups.dashboard.leaderboard', $group))
+        ->assertOk();
+
+    $group->features()->update(['leaderboard_enabled' => false]);
+
+    $this->actingAs($owner)
+        ->get(route('groups.dashboard.leaderboard', $group))
+        ->assertNotFound();
+
+    $this->actingAs($owner)
+        ->post(route('groups.dashboard.leaderboard.refresh', $group))
+        ->assertNotFound();
+});
+
+it('uses the leaderboard feature toggle to gate the legacy leaderboard', function () {
+    $owner = User::factory()->create();
+    $group = Group::factory()->create([
+        'owner_id' => $owner->id,
+        'slug' => 'ftel',
+        'group_type' => Group::TYPE_COMMUNITY,
+    ]);
+
+    $group->features()->update(['leaderboard_enabled' => false]);
+
+    $this->actingAs($owner)
+        ->get(route('groups.dashboard.legacy-leaderboard', $group))
+        ->assertNotFound();
+});
+
 it('allows owners and admins to view the discovery settings page', function () {
     $owner = User::factory()->create();
     $admin = User::factory()->create();

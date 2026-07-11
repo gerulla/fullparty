@@ -4,6 +4,13 @@ export type MemberNoteSeverity = "info" | "warning" | "critical"
 export type GroupType = "community" | "static"
 export type GroupJoinMode = "open" | "invite_only" | "application"
 export type GroupRole = "owner" | "admin" | "moderator" | "member"
+export type GroupFeatureSettings = {
+	availability_scheduler_enabled: boolean
+	statistics_enabled: boolean
+	leaderboard_enabled: boolean
+	calendar_sync_enabled: boolean
+	resource_hub_enabled: boolean
+}
 export type NotificationPreferenceChannel = "in_app" | "email" | "discord"
 export type GroupNotificationPreferences = Record<string, Partial<Record<NotificationPreferenceChannel, boolean | null>>>
 export type MembershipApplicationFieldType = "small_text" | "big_text" | "select" | "toggle"
@@ -136,6 +143,7 @@ export type GroupIndexRecord = {
 		dashboard: string | null
 	}
 	current_user_role: string | null
+	features: GroupFeatureSettings
 	notifications: {
 		enabled: boolean
 		preferences: GroupNotificationPreferences
@@ -420,6 +428,7 @@ export type GroupMemberManagementGroup = {
 	slug: string
 	name: string
 	current_user_role: string
+	features?: GroupFeatureSettings
 	permissions: {
 		can_manage_members: boolean
 		can_update_group_settings?: boolean

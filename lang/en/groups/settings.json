@@ -1,11 +1,11 @@
 {
   "title": "Group Settings",
   "subtitle": "Manage your group's general configuration and access-sensitive details.",
-  "general": {
-    "title": "General Settings",
-    "subtitle": "Update the mutable details that define how your group appears and how members join it.",
-    "owner_only_notice": "Only group owners and admins can update these settings. Moderators can review them here.",
-    "visibility_summary_label": "Visibility Summary",
+    "general": {
+        "title": "General Settings",
+        "subtitle": "Update the mutable details that define how your group appears and how members join it.",
+        "owner_only_notice": "Only group owners and admins can update these settings. Moderators can review them here.",
+        "visibility_summary_label": "Visibility Summary",
     "visibility_summary": {
       "default_name": "This group",
       "open_visible": "{name} can be joined by anyone and can appear in discovery.",
@@ -54,15 +54,45 @@
         "help": "Visible groups can appear in discovery and search."
       }
     },
-    "validation": {
-      "image_invalid_format": "Images must be JPG, JPEG, PNG, or WEBP files.",
-      "image_too_large": "Images must be 5 MB or smaller."
+        "validation": {
+            "image_invalid_format": "Images must be JPG, JPEG, PNG, or WEBP files.",
+            "image_too_large": "Images must be 5 MB or smaller."
+        },
+        "toasts": {
+            "updated": "Group settings have been updated."
+        }
     },
-    "toasts": {
-      "updated": "Group settings have been updated."
-    }
-  },
-  "discovery": {
+    "features": {
+        "title": "Group Features",
+        "subtitle": "Choose which shared tools are enabled for this group.",
+        "coming_soon": "Coming Soon",
+        "items": {
+            "availability_scheduler_enabled": {
+                "label": "Availability Scheduler",
+                "description": "Plan around member availability and shared scheduling windows."
+            },
+            "statistics_enabled": {
+                "label": "Statistics",
+                "description": "Show group activity summaries and participation stats."
+            },
+            "leaderboard_enabled": {
+                "label": "Leaderboard",
+                "description": "Show participation rankings for the group."
+            },
+            "calendar_sync_enabled": {
+                "label": "Calendar Sync",
+                "description": "Prepare the group for calendar export and subscription tools."
+            },
+            "resource_hub_enabled": {
+                "label": "Resource Hub",
+                "description": "Prepare a shared space for useful links, notes, and resources."
+            }
+        },
+        "toasts": {
+            "updated": "Group features have been updated."
+        }
+    },
+    "discovery": {
     "title": "Discovery Settings",
     "subtitle": "Update how your group appears in discovery and the windows when your group is usually active.",
     "active_window_title": "Active Window",

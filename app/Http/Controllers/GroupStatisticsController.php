@@ -37,13 +37,15 @@ class GroupStatisticsController extends Controller
 
     public function __invoke(Group $group): Response
     {
-        $group->loadMissing('memberships');
+        $group->loadMissing(['memberships', 'features']);
 
         $currentUserId = auth()->id();
 
         if (! $group->hasMember($currentUserId)) {
             abort(403);
         }
+
+        abort_unless($group->featureEnabled('statistics_enabled'), 404);
 
         $cacheEntry = $this->statisticsCacheEntry($group);
 
@@ -56,13 +58,15 @@ class GroupStatisticsController extends Controller
 
     public function refresh(Group $group): RedirectResponse
     {
-        $group->loadMissing('memberships');
+        $group->loadMissing(['memberships', 'features']);
 
         $currentUserId = auth()->id();
 
         if (! $group->hasMember($currentUserId)) {
             abort(403);
         }
+
+        abort_unless($group->featureEnabled('statistics_enabled'), 404);
 
         if ($this->refreshCooldownSeconds($group) > 0) {
             return redirect()
@@ -648,6 +652,7 @@ class GroupStatisticsController extends Controller
             'current_user_role' => $group->memberships
                 ->firstWhere('user_id', $currentUserId)
                 ?->role,
+            'features' => $group->featureSettings(),
             'permissions' => [
                 'can_manage_group' => $group->isOwnedBy($currentUserId),
                 'can_manage_members' => $group->hasModeratorAccess($currentUserId),

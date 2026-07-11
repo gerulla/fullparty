@@ -13,6 +13,16 @@
     "complete_runs_only": "Complete runs only",
     "no_date": "No recent run"
   },
+  "periods": {
+    "all_time": "All Time",
+    "past_6_months": "Past 6 Months",
+    "past_30_days": "Past 30 Days"
+  },
+  "limits": {
+    "top_10": "Top 10",
+    "top_100": "Top 100",
+    "all": "All"
+  },
   "cache": {
     "refresh": "Refresh Leaderboard",
     "refreshing": "Refreshing...",

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\UpdateGroupDiscoverySettingsRequest;
 use App\Http\Requests\UpdateGroupSettingsRequest;
 use App\Models\Group;
+use App\Models\GroupFeature;
 use App\Models\GroupMembership;
 use App\Services\AuditLogger;
 use App\Services\Groups\MembershipApplicationFormSchemaService;
@@ -35,6 +36,7 @@ class GroupSettingsController extends Controller
             'owner',
             'memberships.user',
             'invites.creator',
+            'features',
         ]);
 
         $this->authorizeModeratorAccess($group);
@@ -60,7 +62,7 @@ class GroupSettingsController extends Controller
 
     public function update(UpdateGroupSettingsRequest $request, Group $group): RedirectResponse
     {
-        $group->loadMissing('memberships', 'invites');
+        $group->loadMissing('memberships', 'invites', 'features');
 
         $this->authorizeAdminAccess($group);
         $validated = $request->validated();
@@ -86,6 +88,7 @@ class GroupSettingsController extends Controller
             'datacenter' => $group->datacenter,
             'join_mode' => $group->join_mode,
             'is_visible' => $group->is_visible,
+            'features' => $this->groupFeatureValues($group->features),
         ];
 
         DB::transaction(function () use ($group, $validated, $profilePictureUrl, $bannerImageUrl) {
@@ -107,7 +110,13 @@ class GroupSettingsController extends Controller
             }
 
             $this->membershipApplicationFormSchemaService->ensureDefaultForm($group);
+
+            if (isset($validated['features']) && is_array($validated['features'])) {
+                $group->features()->updateOrCreate([], $validated['features']);
+            }
         });
+
+        $group->refresh()->load('features');
 
         $updatedValues = [
             'name' => $group->name,
@@ -118,6 +127,7 @@ class GroupSettingsController extends Controller
             'datacenter' => $group->datacenter,
             'join_mode' => $group->join_mode,
             'is_visible' => $group->is_visible,
+            'features' => $this->groupFeatureValues($group->features),
         ];
 
         $changedFields = collect($updatedValues)
@@ -273,6 +283,7 @@ class GroupSettingsController extends Controller
             'active_days' => $group->active_days ?? [],
             'active_start_time' => $group->active_start_time,
             'active_end_time' => $group->active_end_time,
+            'features' => $this->groupFeatureValues($group->features),
             'badge_meta' => $this->groupDiscoveryBadgePalette->badgeMetaForGroup($group),
             'owner' => [
                 'id' => $group->owner?->id,
@@ -343,6 +354,24 @@ class GroupSettingsController extends Controller
             'active_days' => $group->active_days ?? [],
             'active_start_time' => $group->active_start_time,
             'active_end_time' => $group->active_end_time,
+        ];
+    }
+
+    /**
+     * @return array<string, bool>
+     */
+    private function groupFeatureValues(?GroupFeature $features): array
+    {
+        if ($features === null) {
+            return GroupFeature::defaults();
+        }
+
+        return [
+            'availability_scheduler_enabled' => $features->availability_scheduler_enabled,
+            'statistics_enabled' => $features->statistics_enabled,
+            'leaderboard_enabled' => $features->leaderboard_enabled,
+            'calendar_sync_enabled' => $features->calendar_sync_enabled,
+            'resource_hub_enabled' => $features->resource_hub_enabled,
         ];
     }
 }

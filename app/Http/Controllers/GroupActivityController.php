@@ -1016,6 +1016,7 @@ class GroupActivityController extends Controller
             'current_user_role' => $group->memberships
                 ->firstWhere('user_id', $currentUserId)
                 ?->role,
+            'features' => $group->featureSettings(),
             'permissions' => [
                 'can_manage_group' => $group->isOwnedBy($currentUserId),
                 'can_manage_members' => $canModerateGroup,

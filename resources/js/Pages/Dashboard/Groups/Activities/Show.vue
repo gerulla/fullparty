@@ -20,6 +20,7 @@ import { useToast } from "@nuxt/ui/composables";
 import ActivityOverview from "@/components/Groups/Activities/ActivityOverview.vue";
 import RosterAssignments from "@/components/Groups/Activities/RosterAssignments.vue";
 import ApplicantQueue from "@/components/Groups/Activities/ApplicantQueue.vue";
+import ApplicantQueueDetailsModal from "@/components/Groups/Activities/ApplicantQueueDetailsModal.vue";
 import AssignApplicantToSlotModal from "@/components/Groups/Activities/AssignApplicantToSlotModal.vue";
 import ManualAssignCharacterToSlotModal from "@/components/Groups/Activities/ManualAssignCharacterToSlotModal.vue";
 import CompleteActivityModal from "@/components/Groups/Activities/CompleteActivityModal.vue";
@@ -69,6 +70,8 @@ const assignmentModalApplication = ref<QueueApplication | null>(null);
 const assignmentModalSlotId = ref<number | null>(null);
 const assignmentModalSourceSlotId = ref<number | null>(null);
 const assignmentModalMode = ref<'assign' | 'edit'>('assign');
+const applicationDetailsModalOpen = ref(false);
+const applicationDetailsApplication = ref<QueueApplication | null>(null);
 const manualAssignmentModalOpen = ref(false);
 const manualAssignmentSlotId = ref<number | null>(null);
 const manualAssignmentSourceSlotId = ref<number | null>(null);
@@ -766,6 +769,29 @@ const fetchSlotAssignmentContext = async (slotId: number) => {
 	}));
 
 	return response.data?.application ?? null;
+};
+
+const openSlotApplicationDetails = async (slotId: number) => {
+	if (!currentActivity.value || isSlotAssignmentPending.value || isSlotSwapPending.value) {
+		return;
+	}
+
+	try {
+		applicationDetailsApplication.value = await fetchSlotAssignmentContext(slotId);
+		applicationDetailsModalOpen.value = applicationDetailsApplication.value !== null;
+	} catch (error) {
+		console.error(error);
+		toast.add({
+			title: t('general.error'),
+			description: t('groups.activities.management.messages.load_slot_assignment_failed'),
+			color: 'error',
+			icon: 'i-lucide-octagon-alert',
+		});
+	}
+};
+
+const handleApplicationDetailsRefreshed = (application: QueueApplication) => {
+	applicationDetailsApplication.value = application;
 };
 
 const fetchManualAssignmentOptions = async (slotId: number, sourceSlotId?: number | null) => {
@@ -1678,6 +1704,7 @@ onBeforeUnmount(() => {
 					@clear-cut-slot="clearCutSlot"
 					@assign-application-to-slot="openAssignmentModal"
 					@click-slot="openSlotEditModal"
+					@view-application="openSlotApplicationDetails"
 					@return-slot-to-queue="returnSlotToQueue"
 					@move-slot-to-bench="moveSlotToBench"
 					@mark-slot-missing="markSlotMissing"
@@ -1803,6 +1830,15 @@ onBeforeUnmount(() => {
 			:mode="assignmentModalMode"
 			:is-submitting="isSlotAssignmentPending"
 			@confirm="handleAssignApplicantToSlot"
+		/>
+
+		<ApplicantQueueDetailsModal
+			v-model:open="applicationDetailsModalOpen"
+			:group-slug="group.slug"
+			:activity-id="activity.id"
+			:fflogs-zone-id="currentActivity?.fflogs_zone_id ?? null"
+			:application="applicationDetailsApplication"
+			@refreshed="handleApplicationDetailsRefreshed"
 		/>
 
 		<ManualAssignCharacterToSlotModal

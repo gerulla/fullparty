@@ -150,7 +150,11 @@ class ApplicantQueuePayloadBuilder
             ] : null,
             'status' => $application->status,
             'notes' => $application->notes,
-            'submitted_at' => $application->submitted_at?->toIso8601String(),
+            'submitted_at' => $application->created_at?->toIso8601String(),
+            'edited_at' => $application->created_at
+                && $application->updated_at?->copy()->startOfMinute()->greaterThan($application->created_at->copy()->startOfMinute())
+                ? $application->updated_at->toIso8601String()
+                : null,
             'reviewed_at' => $application->reviewed_at?->toIso8601String(),
             'review_reason' => $application->review_reason,
             'answers' => $this->orderedAnswers($application->answers, $activityTypeVersion)

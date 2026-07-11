@@ -37,7 +37,7 @@ class GroupActivityManagementDataController extends Controller
             'activityType',
             'activityTypeVersion',
             'slots.assignedCharacter',
-            'slots.assignments',
+            'slots.assignments.application.answers',
             'slots.compositionHints.characterClass',
             'slots.fieldValues',
             'progressMilestones',
@@ -49,7 +49,7 @@ class GroupActivityManagementDataController extends Controller
 
         $benchSlotBackfillService->ensureBenchSlots($activity);
         $attendanceService->ensureActiveAssignments($activity);
-        $activity->load(['slots.assignments', 'slots.compositionHints.characterClass', 'slotAssignments.character', 'slotAssignments.application', 'slotAssignments.slot']);
+        $activity->load(['slots.assignments.application.answers', 'slots.compositionHints.characterClass', 'slotAssignments.character', 'slotAssignments.application', 'slotAssignments.slot']);
 
         $mainSlots = $activity->slots->filter(fn ($slot) => ! $slotBench->isBench($slot))->values();
         $benchSlots = $activity->slots->filter(fn ($slot) => $slotBench->isBench($slot))->values();

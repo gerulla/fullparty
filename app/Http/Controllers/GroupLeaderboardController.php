@@ -10,7 +10,9 @@ use App\Services\Groups\ActivitySlotBench;
 use App\Services\Groups\GroupCompletedParticipationService;
 use Carbon\CarbonImmutable;
 use Carbon\CarbonInterface;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Cache;
 use Inertia\Inertia;
@@ -20,7 +22,7 @@ class GroupLeaderboardController extends Controller
 {
     private const CACHE_TTL_SECONDS = 86_400;
 
-    private const CACHE_VERSION = 2;
+    private const CACHE_VERSION = 5;
 
     private const REFRESH_COOLDOWN_SECONDS = 300;
 
@@ -38,13 +40,15 @@ class GroupLeaderboardController extends Controller
 
     public function __invoke(Group $group): Response
     {
-        $group->loadMissing('memberships');
+        $group->loadMissing(['memberships', 'features']);
 
         $currentUserId = auth()->id();
 
         if (! $group->hasMember($currentUserId)) {
             abort(403);
         }
+
+        abort_unless($group->featureEnabled('leaderboard_enabled'), 404);
 
         $cacheEntry = $this->leaderboardCacheEntry($group);
 
@@ -57,13 +61,15 @@ class GroupLeaderboardController extends Controller
 
     public function refresh(Group $group): RedirectResponse
     {
-        $group->loadMissing('memberships');
+        $group->loadMissing(['memberships', 'features']);
 
         $currentUserId = auth()->id();
 
         if (! $group->hasMember($currentUserId)) {
             abort(403);
         }
+
+        abort_unless($group->featureEnabled('leaderboard_enabled'), 404);
 
         if ($this->refreshCooldownSeconds($group) > 0) {
             return redirect()
@@ -83,6 +89,44 @@ class GroupLeaderboardController extends Controller
         return redirect()
             ->route('groups.dashboard.leaderboard', $group)
             ->with('success', 'group_leaderboard_refreshed');
+    }
+
+    public function ranking(Request $request, Group $group): JsonResponse
+    {
+        $group->loadMissing(['memberships', 'features']);
+
+        if (! $group->hasMember(auth()->id())) {
+            abort(403);
+        }
+
+        abort_unless($group->featureEnabled('leaderboard_enabled'), 404);
+
+        $validated = $request->validate([
+            'category' => ['required', 'in:overall,raid_leaders,hosts'],
+            'period' => ['required', 'in:all_time,past_6_months,past_30_days'],
+            'limit' => ['required', 'in:10,100,all'],
+        ]);
+        $cacheEntry = $this->leaderboardCacheEntry($group);
+        $cacheKey = $this->rankingCacheKey(
+            $group,
+            $cacheEntry['cached_at'],
+            $validated['category'],
+            $validated['period'],
+            $validated['limit'],
+        );
+
+        $ranking = Cache::remember(
+            $cacheKey,
+            $this->cacheExpiresAt(),
+            fn (): array => $this->buildCountRanking(
+                $group,
+                $validated['category'],
+                $validated['period'],
+                $validated['limit'],
+            ),
+        );
+
+        return response()->json(['data' => $ranking]);
     }
 
     /**
@@ -171,6 +215,24 @@ class GroupLeaderboardController extends Controller
         return sprintf('groups:%d:leaderboard-refresh-cooldown:v%d', $group->id, self::CACHE_VERSION);
     }
 
+    private function rankingCacheKey(
+        Group $group,
+        string $generation,
+        string $category,
+        string $period,
+        string $limit,
+    ): string {
+        return sprintf(
+            'groups:%d:leaderboard:v%d:ranking:%s:%s:%s:%s',
+            $group->id,
+            self::CACHE_VERSION,
+            sha1($generation),
+            $category,
+            $period,
+            $limit,
+        );
+    }
+
     private function cacheExpiresAt(): CarbonImmutable
     {
         return CarbonImmutable::now()->addSeconds(self::CACHE_TTL_SECONDS);
@@ -201,6 +263,35 @@ class GroupLeaderboardController extends Controller
                 'host_success' => $this->hostSuccessRanking($hostRecords),
             ],
         ];
+    }
+
+    /** @return array<int, array<string, mixed>> */
+    private function buildCountRanking(Group $group, string $category, string $period, string $limit): array
+    {
+        $records = match ($category) {
+            'overall' => $this->completedParticipationService->records($group),
+            'raid_leaders' => $this->designatedSlotRecords($group, 'is_raid_leader'),
+            'hosts' => $this->designatedSlotRecords($group, 'is_host'),
+        };
+
+        $records = match ($period) {
+            'past_6_months' => $this->recordsSince($records, CarbonImmutable::now()->subMonths(6)),
+            'past_30_days' => $this->recordsSince($records, CarbonImmutable::now()->subDays(30)),
+            default => $records,
+        };
+
+        return $this->countRanking($records, $limit === 'all' ? null : (int) $limit);
+    }
+
+    /**
+     * @param  Collection<int, array<string, mixed>>  $records
+     */
+    private function recordsSince(Collection $records, CarbonImmutable $cutoff): Collection
+    {
+        return $records
+            ->filter(fn (array $record): bool => ($record['activity_date'] ?? null) instanceof CarbonInterface
+                && $record['activity_date']->greaterThanOrEqualTo($cutoff))
+            ->values();
     }
 
     /**
@@ -249,9 +340,9 @@ class GroupLeaderboardController extends Controller
      * @param  Collection<int, array<string, mixed>>  $records
      * @return array<int, array<string, mixed>>
      */
-    private function countRanking(Collection $records): array
+    private function countRanking(Collection $records, ?int $limit = 10): array
     {
-        return $records
+        $ranking = $records
             ->groupBy('character_id')
             ->map(function (Collection $characterRecords) {
                 $latestActivityDate = $characterRecords
@@ -267,8 +358,13 @@ class GroupLeaderboardController extends Controller
                 ];
             })
             ->sort(fn (array $left, array $right) => $this->compareCountEntries($left, $right))
-            ->values()
-            ->take(10)
+            ->values();
+
+        if ($limit !== null) {
+            $ranking = $ranking->take($limit);
+        }
+
+        return $ranking
             ->map(fn (array $entry, int $index) => array_merge(['rank' => $index + 1], $entry))
             ->all();
     }
@@ -501,6 +597,7 @@ class GroupLeaderboardController extends Controller
             'current_user_role' => $group->memberships
                 ->firstWhere('user_id', $currentUserId)
                 ?->role,
+            'features' => $group->featureSettings(),
             'permissions' => [
                 'can_manage_group' => $group->isOwnedBy($currentUserId),
                 'can_manage_members' => $group->hasModeratorAccess($currentUserId),

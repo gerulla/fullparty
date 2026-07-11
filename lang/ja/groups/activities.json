@@ -340,6 +340,7 @@
             "return_to_queue_action": "キューに戻す",
             "move_to_bench_action": "ベンチへ移動",
             "change_assignment_action": "割り当てを変更",
+            "view_application_action": "応募を見る",
             "cut_assignment_action": "割り当てを切り取り",
             "cancel_cut_assignment_action": "切り取りをキャンセル",
             "paste_assignment_action": "ここに割り当てを貼り付け",
@@ -352,6 +353,11 @@
             "host_badge": "ホスト",
             "raid_leader_badge": "レイドリーダー",
             "self_badge": "自分のキャラクター",
+            "application_match": {
+                "title": "応募時の希望",
+                "matched": "一致",
+                "not_matched": "不一致"
+            },
             "marker_tooltips": {
                 "party_lead": "パーティリード",
                 "host": "ホスト",
@@ -428,7 +434,8 @@
             "modal": {
                 "applicant": "申請者",
                 "account": "アカウント",
-                "submitted": "送信済み",
+                    "submitted": "送信日時",
+                    "edited": "編集日時",
                 "world": "ワールド",
                 "datacenter": "データセンター",
                 "occult_level": "知識レベル",

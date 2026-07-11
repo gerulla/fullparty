@@ -167,6 +167,47 @@ it('returns only pending applications in the applicant queue payload and include
     expect($guestQueueItem['applicant_character']['is_claimed'])->toBeFalse();
 });
 
+it('keeps the original queue position and exposes the application edit time', function () {
+    extract(createApplicantQueueActivity());
+
+    $submittedAt = now()->subHours(2)->startOfSecond();
+    $editedAt = now()->subHour()->startOfSecond();
+    $application = createQueueApplication($activity, $characterClass, [
+        'created_at' => $submittedAt,
+        'updated_at' => $editedAt,
+        'submitted_at' => now(),
+    ]);
+
+    $response = $this->actingAs($owner)->getJson(route('groups.dashboard.activities.applicant-queue', [
+        'group' => $group->slug,
+        'activity' => $activity->id,
+    ]));
+
+    $queueItem = collect($response->json('applications'))->firstWhere('id', $application->id);
+
+    expect($queueItem['submitted_at'])->toBe($submittedAt->toIso8601String())
+        ->and($queueItem['edited_at'])->toBe($editedAt->toIso8601String());
+});
+
+it('does not show an edit time when submission and update are within the same minute', function () {
+    extract(createApplicantQueueActivity());
+
+    $submittedAt = now()->startOfMinute()->addSeconds(5);
+    $application = createQueueApplication($activity, $characterClass, [
+        'created_at' => $submittedAt,
+        'updated_at' => $submittedAt->copy()->addSeconds(20),
+    ]);
+
+    $response = $this->actingAs($owner)->getJson(route('groups.dashboard.activities.applicant-queue', [
+        'group' => $group->slug,
+        'activity' => $activity->id,
+    ]));
+
+    $queueItem = collect($response->json('applications'))->firstWhere('id', $application->id);
+
+    expect($queueItem['edited_at'])->toBeNull();
+});
+
 it('includes selected character preferred class and phantom job ids in applicant queue payloads', function () {
     extract(createApplicantQueueActivity());
 

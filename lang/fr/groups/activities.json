@@ -340,6 +340,7 @@
             "return_to_queue_action": "Retourner dans la file",
             "move_to_bench_action": "Déplacer en remplaçant",
             "change_assignment_action": "Modifier l'affectation",
+            "view_application_action": "Voir la candidature",
             "cut_assignment_action": "Couper l'affectation",
             "cancel_cut_assignment_action": "Annuler le déplacement",
             "paste_assignment_action": "Coller l'affectation ici",
@@ -352,6 +353,11 @@
             "host_badge": "Hôte",
             "raid_leader_badge": "Raid leader",
             "self_badge": "Votre personnage",
+            "application_match": {
+                "title": "Préférences de candidature",
+                "matched": "Correspond",
+                "not_matched": "Ne correspond pas"
+            },
             "marker_tooltips": {
                 "party_lead": "Chef de groupe",
                 "host": "Hôte",
@@ -428,7 +434,8 @@
             "modal": {
                 "applicant": "Candidat",
                 "account": "Compte",
-                "submitted": "Envoyée",
+                    "submitted": "Envoyée le",
+                    "edited": "Modifiée le",
                 "world": "Monde",
                 "datacenter": "Centre de données",
                 "occult_level": "Niveau occulte",

@@ -108,6 +108,20 @@ const submittedAtLabel = computed(() => {
 	}).format(new Date(props.application.submitted_at));
 });
 
+const editedAtLabel = computed(() => {
+	if (!props.application.edited_at) {
+		return null;
+	}
+
+	return createDateTimeFormatter(locale.value, {
+		year: 'numeric',
+		month: '2-digit',
+		day: '2-digit',
+		hour: '2-digit',
+		minute: '2-digit',
+	}).format(new Date(props.application.edited_at));
+});
+
 const summaryAnswers = computed(() => props.application.answers
 	.filter((answer) => {
 		if (answer.display_values.length === 0) {
@@ -221,8 +235,13 @@ const handleDragStart = (event: DragEvent) => {
 			</div>
 		</div>
 
-		<p class="mt-3 text-xs text-muted">
-			{{ submittedAtLabel }}
+		<p class="mt-3 flex flex-wrap items-center gap-1.5 text-xs text-muted">
+			<span>{{ submittedAtLabel }}</span>
+			<span v-if="editedAtLabel" class="inline-flex items-center gap-1">
+				<span aria-hidden="true">•</span>
+				<UIcon name="i-lucide-edit" class="size-3.5" />
+				<span>{{ editedAtLabel }}</span>
+			</span>
 		</p>
 
 		<!-- Preview-only role summary for fast queue scanning -->

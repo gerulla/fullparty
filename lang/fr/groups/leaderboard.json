@@ -7,12 +7,22 @@
         "raid_leaders": "Runs en raid leader",
         "hosts": "Runs en tant qu'hôte"
     },
-    "common": {
+  "common": {
         "participations": "participations",
         "runs": "runs",
         "complete_runs_only": "Runs terminés uniquement",
         "no_date": "Aucun run récent"
-    },
+  },
+  "periods": {
+    "all_time": "Depuis toujours",
+    "past_6_months": "6 derniers mois",
+    "past_30_days": "30 derniers jours"
+  },
+  "limits": {
+    "top_10": "Top 10",
+    "top_100": "Top 100",
+    "all": "Tous"
+  },
     "cache": {
         "refresh": "Actualiser le classement",
         "refreshing": "Actualisation...",

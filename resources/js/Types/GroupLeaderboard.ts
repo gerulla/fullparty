@@ -29,6 +29,8 @@ export type GroupLeaderboardCountEntry = {
 	latest_activity_at: string | null
 }
 
+export type GroupLeaderboardPeriod = "all_time" | "past_6_months" | "past_30_days"
+
 export type GroupLeaderboardHostSuccessEntry = {
 	rank: number
 	character: GroupLeaderboardCharacter

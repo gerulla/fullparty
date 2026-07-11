@@ -14,6 +14,7 @@ class GroupAuditLogController extends Controller
         $group->load([
             'owner',
             'memberships.user',
+            'features',
         ]);
 
         $this->authorizeModeratorAccess($group);
@@ -43,6 +44,7 @@ class GroupAuditLogController extends Controller
                 'current_user_role' => $group->memberships
                     ->firstWhere('user_id', auth()->id())
                     ?->role,
+                'features' => $group->featureSettings(),
                 'permissions' => [
                     'can_manage_group' => $group->isOwnedBy(auth()->id()),
                     'can_manage_members' => $group->hasModeratorAccess(auth()->id()),

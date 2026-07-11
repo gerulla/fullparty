@@ -164,6 +164,20 @@ const submittedAtLabel = computed(() => {
 	}).format(new Date(props.application.submitted_at));
 });
 
+const editedAtLabel = computed(() => {
+	if (!props.application?.edited_at) {
+		return null;
+	}
+
+	return createDateTimeFormatter(locale.value, {
+		year: 'numeric',
+		month: '2-digit',
+		day: '2-digit',
+		hour: '2-digit',
+		minute: '2-digit',
+	}).format(new Date(props.application.edited_at));
+});
+
 const detailedAnswers = computed(() => (props.application?.answers ?? [])
 	.filter((answer) => {
 		if (answer.display_values.length === 0) {
@@ -450,11 +464,15 @@ watch(isOpen, (open) => {
 								</span>
 							</div>
 
-							<div class="flex items-start justify-between gap-4">
-								<span class="text-muted">{{ t('groups.activities.management.queue.modal.submitted') }}</span>
-								<span class="text-right font-medium text-toned">
-									{{ submittedAtLabel }}
-								</span>
+							<div class="space-y-2">
+								<div class="flex items-start justify-between gap-4">
+									<span class="text-muted">{{ t('groups.activities.management.queue.modal.submitted') }}</span>
+									<span class="text-right font-medium text-toned">{{ submittedAtLabel }}</span>
+								</div>
+								<div v-if="editedAtLabel" class="flex items-start justify-between gap-4">
+									<span class="text-muted">{{ t('groups.activities.management.queue.modal.edited') }}</span>
+									<span class="text-right font-medium text-toned">{{ editedAtLabel }}</span>
+								</div>
 							</div>
 
 							<div class="flex items-start justify-between gap-4">

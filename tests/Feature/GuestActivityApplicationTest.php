@@ -1133,9 +1133,11 @@ it('loads the guest application form for editing from its access token', functio
 
 it('allows guests to update their application from the access token route', function () {
     $activity = createGuestApplicationActivity();
+    $originalSubmittedAt = now()->subDay()->startOfSecond();
 
     $application = ActivityApplication::factory()->guest()->create([
         'activity_id' => $activity->id,
+        'submitted_at' => $originalSubmittedAt,
         'applicant_lodestone_id' => '47431834',
         'applicant_character_name' => 'Warrior Light',
         'applicant_world' => 'Twintania',
@@ -1175,6 +1177,7 @@ it('allows guests to update their application from the access token route', func
         ->and($application->applicant_avatar_url)->toBe('https://example.com/updated-avatar.png')
         ->and($application->notes)->toBe('Updated notes.')
         ->and($application->status)->toBe(ActivityApplication::STATUS_PENDING)
+        ->and($application->submitted_at?->equalTo($originalSubmittedAt))->toBeTrue()
         ->and($application->selectedCharacter?->user_id)->toBeNull()
         ->and($application->selectedCharacter?->world)->toBe('Lich')
         ->and($application->answers->sole()->value)->toBe('Reached clear.');
@@ -1512,6 +1515,7 @@ it('allows authenticated users to edit approved applications when they are not a
     $character = Character::factory()->primary()->create([
         'user_id' => $user->id,
     ]);
+    $originalSubmittedAt = now()->subDay()->startOfSecond();
 
     $application = ActivityApplication::factory()->approved($activity->group->owner)->create([
         'activity_id' => $activity->id,
@@ -1521,6 +1525,7 @@ it('allows authenticated users to edit approved applications when they are not a
         'applicant_character_name' => $character->name,
         'applicant_world' => $character->world,
         'applicant_datacenter' => $character->datacenter,
+        'submitted_at' => $originalSubmittedAt,
     ]);
 
     $this->actingAs($user);
@@ -1554,6 +1559,7 @@ it('allows authenticated users to edit approved applications when they are not a
     ]));
 
     expect($application->fresh()->status)->toBe(ActivityApplication::STATUS_PENDING)
+        ->and($application->fresh()->submitted_at?->equalTo($originalSubmittedAt))->toBeTrue()
         ->and($application->fresh()->answers()->where('question_key', 'experience')->value('value'))->toBe('Approved application updated.');
 });
 

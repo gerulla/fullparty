@@ -340,6 +340,7 @@
             "return_to_queue_action": "Return to queue",
             "move_to_bench_action": "Move to bench",
             "change_assignment_action": "Change assignment",
+            "view_application_action": "View Application",
             "cut_assignment_action": "Cut assignment",
             "cancel_cut_assignment_action": "Cancel cut",
             "paste_assignment_action": "Paste assignment here",
@@ -352,6 +353,11 @@
             "host_badge": "Host",
             "raid_leader_badge": "Raid Leader",
             "self_badge": "Your Character",
+            "application_match": {
+                "title": "Application Preferences",
+                "matched": "Matched",
+                "not_matched": "Not matched"
+            },
             "marker_tooltips": {
                 "party_lead": "Party Lead",
                 "host": "Host",
@@ -428,7 +434,8 @@
                 "modal": {
                     "applicant": "Applicant",
                     "account": "Account",
-                    "submitted": "Submitted",
+                    "submitted": "Submitted At",
+                    "edited": "Edited At",
                     "world": "World",
                     "datacenter": "Datacenter",
                     "occult_level": "Occult Level",

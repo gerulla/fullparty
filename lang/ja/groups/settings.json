@@ -62,6 +62,36 @@
             "updated": "グループ設定を更新しました。"
         }
     },
+    "features": {
+        "title": "グループ機能",
+        "subtitle": "このグループで有効にする共有ツールを選択します。",
+        "coming_soon": "近日公開",
+        "items": {
+            "availability_scheduler_enabled": {
+                "label": "空き時間スケジューラー",
+                "description": "メンバーの空き時間と共有できる時間帯をもとに予定を立てます。"
+            },
+            "statistics_enabled": {
+                "label": "統計",
+                "description": "グループの活動概要と参加状況の統計を表示します。"
+            },
+            "leaderboard_enabled": {
+                "label": "リーダーボード",
+                "description": "グループ内の参加ランキングを表示します。"
+            },
+            "calendar_sync_enabled": {
+                "label": "カレンダー同期",
+                "description": "カレンダーへの書き出しや購読機能に備えます。"
+            },
+            "resource_hub_enabled": {
+                "label": "リソースハブ",
+                "description": "便利なリンク、メモ、資料を共有する場所に備えます。"
+            }
+        },
+        "toasts": {
+            "updated": "グループ機能を更新しました。"
+        }
+    },
     "discovery": {
         "title": "ディスカバリー設定",
         "subtitle": "グループが ディスカバリー でどのように表示されるかと、通常どの時間帯に活動しているかを更新します。",

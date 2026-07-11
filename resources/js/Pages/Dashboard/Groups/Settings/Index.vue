@@ -2,6 +2,7 @@
 import AccessBadge from "@/components/Groups/AccessBadge.vue";
 import PageHeader from "@/components/PageHeader.vue";
 import GroupGeneralSettings from "@/components/Groups/GroupGeneralSettings.vue";
+import GroupFeatureSettings from "@/components/Groups/GroupFeatureSettings.vue";
 import GroupInviteSettings from "@/components/Groups/GroupInviteSettings.vue";
 import GroupOwnershipSettings from "@/components/Groups/GroupOwnershipSettings.vue";
 import GroupDangerZoneSettings from "@/components/Groups/GroupDangerZoneSettings.vue";
@@ -30,6 +31,7 @@ const { t } = useI18n();
 			<GroupGeneralSettings :group="group" />
 			<div class="flex h-full w-full flex-col gap-6">
 				<GroupInviteSettings v-if="group.permissions.can_manage_invites" :group="group" />
+				<GroupFeatureSettings :group="group" />
 				<GroupOwnershipSettings :group="group" />
 				<GroupDangerZoneSettings :group="group" />
 			</div>

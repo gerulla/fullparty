@@ -7,12 +7,22 @@
         "raid_leaders": "Raid-Leader-Runs",
         "hosts": "Geleitete Runs"
     },
-    "common": {
+  "common": {
         "participations": "Teilnahmen",
         "runs": "Runs",
         "complete_runs_only": "Nur abgeschlossene Runs",
         "no_date": "Kein aktueller Run"
-    },
+  },
+  "periods": {
+    "all_time": "Gesamt",
+    "past_6_months": "Letzte 6 Monate",
+    "past_30_days": "Letzte 30 Tage"
+  },
+  "limits": {
+    "top_10": "Top 10",
+    "top_100": "Top 100",
+    "all": "Alle"
+  },
     "cache": {
         "refresh": "Bestenliste aktualisieren",
         "refreshing": "Aktualisiere...",

@@ -7,6 +7,7 @@ import { localizedValue } from "@/utils/localizedValue";
 import { getQueueApplicationDragData, isQueueApplicationDrag, setRosterSlotDragData } from "@/components/Groups/Activities/rosterDragData";
 import ActivitySlotCompositionHintContextMenu from "@/components/Groups/Activities/ActivitySlotCompositionHintContextMenu.vue";
 import ActivitySlotCompositionHintBadge from "@/components/Groups/Activities/ActivitySlotCompositionHintBadge.vue";
+import ActivitySlotApplicationMatches from "@/components/Groups/Activities/ActivitySlotApplicationMatches.vue";
 import type { LocalizedText } from "@/Types/Common";
 import type { QueueApplication } from "@/Types/ActivityQueue";
 import type { ActivitySlot, ActivitySlotCompositionHintInput } from "@/Types/ActivityRoster";
@@ -43,6 +44,7 @@ const emit = defineEmits<{
 	dropSlot: [slotId: number]
 	dropApplication: [payload: { slotId: number, application: QueueApplication }]
 	clickSlot: [slotId: number]
+	viewApplication: [slotId: number]
 	returnSlotToQueue: [slotId: number]
 	moveSlotToBench: [slotId: number]
 	markSlotMissing: [slotId: number]
@@ -271,6 +273,16 @@ const emptySlotContextMenuItems = computed<ContextMenuItem[][]>(() => (
 		: []
 ));
 const contextMenuItems = computed<ContextMenuItem[][]>(() => [
+	[
+		...(props.slot.assignment_application_id !== null
+			? [{
+				label: t('groups.activities.management.roster.view_application_action'),
+				icon: 'i-lucide-file-user',
+				disabled: props.isSwapPending,
+				onSelect: () => emit('viewApplication', props.slot.id),
+			}]
+			: []),
+	],
 	[
 		{
 			label: props.slot.attendance_status === 'late'
@@ -560,6 +572,7 @@ const handleClick = () => {
 						<p class="text-xs uppercase tracking-wide text-primary">
 							<span class="roster-slot-card-label-full">{{ slotLabel }}</span>
 							<span class="roster-slot-card-label-compact hidden">{{ compactSlotLabel }}</span>
+							<ActivitySlotApplicationMatches :matches="slot.application_matches" />
 						</p>
 						<p v-if="!assignedCharacter" class="font-medium text-toned">
 							{{ t('groups.activities.management.roster.empty_slot') }}
@@ -740,6 +753,7 @@ const handleClick = () => {
 						<p class="text-xs uppercase tracking-wide text-primary">
 							<span class="roster-slot-card-label-full">{{ slotLabel }}</span>
 							<span class="roster-slot-card-label-compact hidden">{{ compactSlotLabel }}</span>
+							<ActivitySlotApplicationMatches :matches="slot.application_matches" />
 						</p>
 						<p v-if="!assignedCharacter" class="font-medium text-toned">
 							{{ t('groups.activities.management.roster.empty_slot') }}

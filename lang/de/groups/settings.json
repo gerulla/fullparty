@@ -62,6 +62,36 @@
             "updated": "Gruppeneinstellungen wurden aktualisiert."
         }
     },
+    "features": {
+        "title": "Gruppenfunktionen",
+        "subtitle": "Wähle aus, welche gemeinsamen Werkzeuge für diese Gruppe aktiviert sind.",
+        "coming_soon": "Demnächst verfügbar",
+        "items": {
+            "availability_scheduler_enabled": {
+                "label": "Verfügbarkeitsplaner",
+                "description": "Plane anhand der Verfügbarkeiten deiner Mitglieder und gemeinsamer Zeitfenster."
+            },
+            "statistics_enabled": {
+                "label": "Statistiken",
+                "description": "Zeige Aktivitätsübersichten und Teilnahmestatistiken der Gruppe."
+            },
+            "leaderboard_enabled": {
+                "label": "Bestenliste",
+                "description": "Zeige Teilnahme-Ranglisten für die Gruppe."
+            },
+            "calendar_sync_enabled": {
+                "label": "Kalendersynchronisierung",
+                "description": "Bereite die Gruppe auf Kalenderexporte und abonnierbare Kalender vor."
+            },
+            "resource_hub_enabled": {
+                "label": "Ressourcen-Hub",
+                "description": "Bereite einen gemeinsamen Bereich für Links, Notizen und Ressourcen vor."
+            }
+        },
+        "toasts": {
+            "updated": "Gruppenfunktionen wurden aktualisiert."
+        }
+    },
     "discovery": {
         "title": "Discovery-Einstellungen",
         "subtitle": "Aktualisiere, wie deine Gruppe in der Discovery erscheint und wann sie normalerweise aktiv ist.",

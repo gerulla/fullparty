@@ -89,12 +89,12 @@ const items = computed(() => [[
 	},
 	{
 		label: t("calendar.outlook"),
-		icon: "logos:microsoft-outlook",
+		icon: "mdi:microsoft-outlook",
 		onSelect: () => openExternal(outlookUrl.value),
 	},
 	{
 		label: t("calendar.apple_other"),
-		icon: "i-lucide-calendar-down",
+		icon: "mdi:apple",
 		onSelect: () => window.location.assign(props.icsUrl),
 	},
 ]])

@@ -1,0 +1,130 @@
+{
+  "title": "Availability",
+  "subtitle": "View and coordinate your group members' availability.",
+  "schedule": {
+    "button": "My Schedule",
+    "title": "My Availability Schedule",
+    "cadence": {
+      "weekly": "Weekly",
+      "biweekly": "Bi-weekly",
+      "monthly": "Monthly"
+    },
+    "cadence_hint": "Set the times you are usually available during this schedule.",
+    "starts_on": "Starts on",
+    "repeatable": "Repeat schedule",
+    "repeat_pattern": {
+      "weekly": "Repeats every week starting on",
+      "biweekly": "Repeats every 2 weeks starting on",
+      "monthly": "Repeats every 4 weeks starting on"
+    },
+    "one_time": "One-time schedule starting on",
+    "weeks": {
+      "week": "Week",
+      "week_a": "Week A",
+      "week_b": "Week B",
+      "numbered": "Week {number}"
+    },
+    "days": {
+      "monday": "Monday",
+      "tuesday": "Tuesday",
+      "wednesday": "Wednesday",
+      "thursday": "Thursday",
+      "friday": "Friday",
+      "saturday": "Saturday",
+      "sunday": "Sunday"
+    },
+    "days_short": {
+      "monday": "Mon",
+      "tuesday": "Tue",
+      "wednesday": "Wed",
+      "thursday": "Thu",
+      "friday": "Fri",
+      "saturday": "Sat",
+      "sunday": "Sun"
+    },
+    "days_available": "{count} days available",
+    "to": "to",
+    "unavailable": "Unavailable",
+    "add_block": "Add time block",
+    "select_day": "Day",
+    "add": "Add",
+    "remove_block": "Remove time block",
+    "block_type": "Availability type",
+    "paste": "Paste",
+    "summary_title": "Summary",
+    "controls_title": "Controls",
+    "legend_title": "Legend",
+    "copy_weeks": "Copy Week A to the other weeks",
+    "copy_weeks_hint": "Use the same availability throughout the cycle",
+    "lock_weekends": "Lock weekends",
+    "lock_weekends_hint": "Keep Saturday and Sunday unavailable",
+    "on_hiatus": "On hiatus",
+    "on_hiatus_hint": "Stay unavailable until you turn this off",
+    "timezone": "Timezone",
+    "timezone_hint": "Times are saved in this timezone",
+    "timezone_search": "Search timezones",
+    "add_exception": "Add exception",
+    "add_exception_hint": "Set date-specific availability changes",
+    "exceptions_title": "Exceptions",
+    "specific_hours": "Specific hours",
+    "remove_exception": "Remove exception",
+    "visibility_hint": "Your availability is visible to all members or to moderators and above, depending on the group's settings.",
+    "legend": {
+      "available": "Available",
+      "tentative": "Tentative",
+      "unavailable": "Unavailable"
+    },
+    "summary": "Weeks in cycle: {weeks} · Available days: {days}",
+    "save": "Save Schedule",
+    "saved": "Availability schedule saved",
+    "save_error": "Could not save your availability schedule"
+  },
+  "overview": {
+    "title": "Weekly overview",
+    "subtitle": "Based on {count} submitted schedules for the next seven days.",
+    "peak": "Peak: {count} available",
+    "bucket": "Available: {available} · Tentative: {tentative}",
+    "fewer": "Fewer people",
+    "more": "More people",
+    "selected": "Selected range"
+  },
+  "selection": {
+    "title": "Selected time",
+    "starts_at": "Starts",
+    "ends_at": "Ends",
+    "duration_hours_minutes": "{hours}h {minutes}m",
+    "duration_hours": "{count}h",
+    "duration_minutes": "{count}m",
+    "people": "{count} people",
+    "people_short": "people",
+    "load_error": "Could not load availability for this time.",
+    "no_members": "No members are available for the entire selected time.",
+    "summary_title": "Selected time summary",
+    "total_available": "Total available",
+    "highest_overlap": "Highest overlap",
+    "best_time": "Best time",
+    "best_overlap": "Most availability",
+    "distribution": "Availability distribution",
+    "potential_times": "Potential overlapping times",
+    "best": "Best",
+    "can_attend": "People who can attend",
+    "status": { "available": "Available", "tentative": "Tentative" }
+  },
+  "configuration": {
+    "button": "Configure",
+    "title": "Availability Feature Configuration",
+    "saved": "Availability settings saved",
+    "access": {
+      "label": "Who can use this feature?",
+      "description": "Choose the minimum group role required to submit and manage availability.",
+      "members": "Members and up",
+      "moderators": "Moderators and up"
+    }
+  },
+  "validation": {
+    "cycle_week": "The selected week is outside this schedule's cycle.",
+    "end_time": "The end time must be different from the start time.",
+    "overlap": "Availability blocks on the same day cannot overlap.",
+    "selection_too_long": "The selected time cannot be longer than seven days."
+  }
+}

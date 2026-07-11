@@ -28,6 +28,7 @@ class DevelopmentSeeder extends Seeder
             UserSeeder::class,
             ProductionSeeder::class,
             GroupSeeder::class,
+            GroupAvailabilitySeeder::class,
             ActivitySeeder::class,
         ]);
     }

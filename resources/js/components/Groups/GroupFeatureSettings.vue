@@ -42,7 +42,7 @@ const form = useForm({
 });
 
 const featureToggleRows = [
-	{ key: "availability_scheduler_enabled", icon: "i-lucide-calendar-clock", implemented: false },
+	{ key: "availability_scheduler_enabled", icon: "i-lucide-calendar-clock", implemented: true },
 	{ key: "statistics_enabled", icon: "i-lucide-chart-no-axes-column-increasing", implemented: true },
 	{ key: "leaderboard_enabled", icon: "i-lucide-trophy", implemented: true },
 	{ key: "calendar_sync_enabled", icon: "i-lucide-calendar-sync", implemented: false },

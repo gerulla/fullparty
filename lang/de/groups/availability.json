@@ -1,0 +1,130 @@
+{
+  "title": "Verfügbarkeit",
+  "subtitle": "Sieh dir die Verfügbarkeit deiner Gruppenmitglieder an und stimme sie ab.",
+  "schedule": {
+    "button": "Mein Zeitplan",
+    "title": "Mein Verfügbarkeitsplan",
+    "cadence": {
+      "weekly": "Wöchentlich",
+      "biweekly": "Zweiwöchentlich",
+      "monthly": "Monatlich"
+    },
+    "cadence_hint": "Lege fest, wann du während dieses Zeitplans normalerweise verfügbar bist.",
+    "starts_on": "Beginnt am",
+    "repeatable": "Zeitplan wiederholen",
+    "repeat_pattern": {
+      "weekly": "Wiederholt sich jede Woche ab",
+      "biweekly": "Wiederholt sich alle 2 Wochen ab",
+      "monthly": "Wiederholt sich alle 4 Wochen ab"
+    },
+    "one_time": "Einmaliger Zeitplan ab",
+    "weeks": {
+      "week": "Woche",
+      "week_a": "Woche A",
+      "week_b": "Woche B",
+      "numbered": "Woche {number}"
+    },
+    "days": {
+      "monday": "Montag",
+      "tuesday": "Dienstag",
+      "wednesday": "Mittwoch",
+      "thursday": "Donnerstag",
+      "friday": "Freitag",
+      "saturday": "Samstag",
+      "sunday": "Sonntag"
+    },
+    "days_short": {
+      "monday": "Mo",
+      "tuesday": "Di",
+      "wednesday": "Mi",
+      "thursday": "Do",
+      "friday": "Fr",
+      "saturday": "Sa",
+      "sunday": "So"
+    },
+    "days_available": "An {count} Tagen verfügbar",
+    "to": "bis",
+    "unavailable": "Nicht verfügbar",
+    "add_block": "Zeitblock hinzufügen",
+    "select_day": "Tag",
+    "add": "Hinzufügen",
+    "remove_block": "Zeitblock entfernen",
+    "block_type": "Verfügbarkeitstyp",
+    "paste": "Einfügen",
+    "summary_title": "Zusammenfassung",
+    "controls_title": "Steuerung",
+    "legend_title": "Legende",
+    "copy_weeks": "Woche A in die anderen Wochen kopieren",
+    "copy_weeks_hint": "Im gesamten Zyklus dieselbe Verfügbarkeit verwenden",
+    "lock_weekends": "Wochenenden sperren",
+    "lock_weekends_hint": "Samstag und Sonntag nicht verfügbar halten",
+    "on_hiatus": "In Pause",
+    "on_hiatus_hint": "Du bleibst nicht verfügbar, bis du dies wieder ausschaltest",
+    "timezone": "Zeitzone",
+    "timezone_hint": "Zeiten werden in dieser Zeitzone gespeichert",
+    "timezone_search": "Zeitzonen durchsuchen",
+    "add_exception": "Ausnahme hinzufügen",
+    "add_exception_hint": "Datumsbezogene Änderungen der Verfügbarkeit festlegen",
+    "exceptions_title": "Ausnahmen",
+    "specific_hours": "Bestimmte Uhrzeiten",
+    "remove_exception": "Ausnahme entfernen",
+    "visibility_hint": "Deine Verfügbarkeit ist je nach Gruppeneinstellung für alle Mitglieder oder nur für Moderatoren und höhere Rollen sichtbar.",
+    "legend": {
+      "available": "Verfügbar",
+      "tentative": "Vorläufig",
+      "unavailable": "Nicht verfügbar"
+    },
+    "summary": "Wochen im Zyklus: {weeks} · Verfügbare Tage: {days}",
+    "save": "Zeitplan speichern",
+    "saved": "Verfügbarkeitsplan gespeichert",
+    "save_error": "Dein Verfügbarkeitsplan konnte nicht gespeichert werden"
+  },
+  "overview": {
+    "title": "Wochenübersicht",
+    "subtitle": "Basierend auf {count} eingereichten Zeitplänen für die nächsten sieben Tage.",
+    "peak": "Spitze: {count} verfügbar",
+    "bucket": "Verfügbar: {available} · Unter Vorbehalt: {tentative}",
+    "fewer": "Weniger Personen",
+    "more": "Mehr Personen",
+    "selected": "Ausgewählter Zeitraum"
+  },
+  "selection": {
+    "title": "Ausgewählte Zeit",
+    "starts_at": "Beginn",
+    "ends_at": "Ende",
+    "duration_hours_minutes": "{hours} Std. {minutes} Min.",
+    "duration_hours": "{count} Std.",
+    "duration_minutes": "{count} Min.",
+    "people": "{count} Personen",
+    "people_short": "Personen",
+    "load_error": "Die Verfügbarkeit für diesen Zeitraum konnte nicht geladen werden.",
+    "no_members": "Für den gesamten ausgewählten Zeitraum sind keine Mitglieder verfügbar.",
+    "summary_title": "Zusammenfassung der ausgewählten Zeit",
+    "total_available": "Insgesamt verfügbar",
+    "highest_overlap": "Höchste Überschneidung",
+    "best_time": "Beste Zeit",
+    "best_overlap": "Meiste Verfügbarkeit",
+    "distribution": "Verfügbarkeitsverteilung",
+    "potential_times": "Mögliche gemeinsame Zeiten",
+    "best": "Beste",
+    "can_attend": "Personen, die teilnehmen können",
+    "status": { "available": "Verfügbar", "tentative": "Unter Vorbehalt" }
+  },
+  "configuration": {
+    "button": "Konfigurieren",
+    "title": "Konfiguration der Verfügbarkeitsfunktion",
+    "saved": "Verfügbarkeitseinstellungen gespeichert",
+    "access": {
+      "label": "Wer kann diese Funktion verwenden?",
+      "description": "Wähle die niedrigste Gruppenrolle, die Verfügbarkeiten eintragen und verwalten darf.",
+      "members": "Mitglieder und höher",
+      "moderators": "Moderatoren und höher"
+    }
+  },
+  "validation": {
+    "cycle_week": "Die ausgewählte Woche liegt außerhalb des Zeitplanzyklus.",
+    "end_time": "Die Endzeit muss sich von der Startzeit unterscheiden.",
+    "overlap": "Verfügbarkeitsblöcke am selben Tag dürfen sich nicht überschneiden.",
+    "selection_too_long": "Der ausgewählte Zeitraum darf nicht länger als sieben Tage sein."
+  }
+}

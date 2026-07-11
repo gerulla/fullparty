@@ -36,6 +36,7 @@ use App\Http\Controllers\GroupActivitySlotMissingController;
 use App\Http\Controllers\GroupActivitySlotSwapController;
 use App\Http\Controllers\GroupActivitySlotUnassignmentController;
 use App\Http\Controllers\GroupAuditLogController;
+use App\Http\Controllers\GroupAvailabilityController;
 use App\Http\Controllers\GroupController;
 use App\Http\Controllers\GroupDashboardController;
 use App\Http\Controllers\GroupDiscordIntegrationController;
@@ -409,6 +410,10 @@ Route::prefix('{locale?}')
                 Route::get('/', [GroupDashboardController::class, 'show'])->name('groups.dashboard');
                 Route::get('/members', [GroupMemberController::class, 'index'])->name('groups.dashboard.members');
                 Route::get('/members/{user}/activity-summary', [GroupMemberController::class, 'activitySummary'])->name('groups.dashboard.members.activity-summary');
+                Route::get('/availability', GroupAvailabilityController::class)->name('groups.dashboard.availability');
+                Route::get('/availability/selection', [GroupAvailabilityController::class, 'selection'])->name('groups.dashboard.availability.selection');
+                Route::put('/availability/settings', [GroupAvailabilityController::class, 'updateSettings'])->name('groups.dashboard.availability.settings.update');
+                Route::put('/availability/schedule', [GroupAvailabilityController::class, 'updateSchedule'])->name('groups.dashboard.availability.schedule.update');
                 Route::get('/statistics', GroupStatisticsController::class)->name('groups.dashboard.statistics');
                 Route::post('/statistics/refresh', [GroupStatisticsController::class, 'refresh'])->name('groups.dashboard.statistics.refresh');
                 Route::get('/leaderboard', GroupLeaderboardController::class)->name('groups.dashboard.leaderboard');

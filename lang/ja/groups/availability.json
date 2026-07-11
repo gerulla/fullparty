@@ -1,0 +1,130 @@
+{
+  "title": "参加可能時間",
+  "subtitle": "グループメンバーの参加可能時間を確認し、調整できます。",
+  "schedule": {
+    "button": "自分の予定",
+    "title": "自分の参加可能時間",
+    "cadence": {
+      "weekly": "毎週",
+      "biweekly": "隔週",
+      "monthly": "毎月"
+    },
+    "cadence_hint": "この予定で通常参加できる時間を設定します。",
+    "starts_on": "開始日",
+    "repeatable": "予定を繰り返す",
+    "repeat_pattern": {
+      "weekly": "次の日から毎週繰り返す",
+      "biweekly": "次の日から2週間ごとに繰り返す",
+      "monthly": "次の日から4週間ごとに繰り返す"
+    },
+    "one_time": "次の日からの1回限りの予定",
+    "weeks": {
+      "week": "週",
+      "week_a": "A週",
+      "week_b": "B週",
+      "numbered": "第{number}週"
+    },
+    "days": {
+      "monday": "月曜日",
+      "tuesday": "火曜日",
+      "wednesday": "水曜日",
+      "thursday": "木曜日",
+      "friday": "金曜日",
+      "saturday": "土曜日",
+      "sunday": "日曜日"
+    },
+    "days_short": {
+      "monday": "月",
+      "tuesday": "火",
+      "wednesday": "水",
+      "thursday": "木",
+      "friday": "金",
+      "saturday": "土",
+      "sunday": "日"
+    },
+    "days_available": "{count}日参加可能",
+    "to": "から",
+    "unavailable": "参加不可",
+    "add_block": "時間帯を追加",
+    "select_day": "曜日",
+    "add": "追加",
+    "remove_block": "時間帯を削除",
+    "block_type": "参加可否の種類",
+    "paste": "貼り付け",
+    "summary_title": "概要",
+    "controls_title": "操作",
+    "legend_title": "凡例",
+    "copy_weeks": "A週を他の週にコピー",
+    "copy_weeks_hint": "周期全体で同じ参加可能時間を使用します",
+    "lock_weekends": "週末をロック",
+    "lock_weekends_hint": "土曜日と日曜日を参加不可にします",
+    "on_hiatus": "休止中",
+    "on_hiatus_hint": "オフにするまで参加不可として表示されます",
+    "timezone": "タイムゾーン",
+    "timezone_hint": "時刻はこのタイムゾーンで保存されます",
+    "timezone_search": "タイムゾーンを検索",
+    "add_exception": "例外を追加",
+    "add_exception_hint": "日付ごとの参加可能時間の変更を設定します",
+    "exceptions_title": "例外",
+    "specific_hours": "時間を指定",
+    "remove_exception": "例外を削除",
+    "visibility_hint": "グループ設定に応じて、参加可能時間はすべてのメンバー、またはモデレーター以上のロールに表示されます。",
+    "legend": {
+      "available": "参加可能",
+      "tentative": "仮予定",
+      "unavailable": "参加不可"
+    },
+    "summary": "周期内の週数：{weeks} · 参加可能日数：{days}",
+    "save": "予定を保存",
+    "saved": "参加可能時間を保存しました",
+    "save_error": "参加可能時間を保存できませんでした"
+  },
+  "overview": {
+    "title": "週間概要",
+    "subtitle": "提出済みの{count}件の予定をもとに、今後7日間を表示しています。",
+    "peak": "ピーク：{count}人参加可能",
+    "bucket": "参加可能：{available}人 · 仮予定：{tentative}人",
+    "fewer": "少ない",
+    "more": "多い",
+    "selected": "選択範囲"
+  },
+  "selection": {
+    "title": "選択した時間",
+    "starts_at": "開始",
+    "ends_at": "終了",
+    "duration_hours_minutes": "{hours}時間{minutes}分",
+    "duration_hours": "{count}時間",
+    "duration_minutes": "{count}分",
+    "people": "{count}人",
+    "people_short": "人",
+    "load_error": "この時間帯の参加可能状況を読み込めませんでした。",
+    "no_members": "選択した時間帯の全体に参加できるメンバーはいません。",
+    "summary_title": "選択した時間の概要",
+    "total_available": "参加可能人数",
+    "highest_overlap": "最大重複人数",
+    "best_time": "最適な時間",
+    "best_overlap": "参加可能人数が最多",
+    "distribution": "参加可能状況の分布",
+    "potential_times": "候補となる共通時間",
+    "best": "最適",
+    "can_attend": "参加可能なメンバー",
+    "status": { "available": "参加可能", "tentative": "仮予定" }
+  },
+  "configuration": {
+    "button": "設定",
+    "title": "参加可能時間機能の設定",
+    "saved": "参加可能時間の設定を保存しました",
+    "access": {
+      "label": "この機能を利用できるメンバー",
+      "description": "参加可能時間を登録・管理するために必要な最低グループロールを選択します。",
+      "members": "メンバー以上",
+      "moderators": "モデレーター以上"
+    }
+  },
+  "validation": {
+    "cycle_week": "選択した週はこの予定の周期外です。",
+    "end_time": "終了時刻は開始時刻と異なる時刻にしてください。",
+    "overlap": "同じ日の参加可能時間を重複させることはできません。",
+    "selection_too_long": "選択できる期間は7日以内です。"
+  }
+}

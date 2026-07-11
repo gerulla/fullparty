@@ -128,6 +128,11 @@ class User extends Authenticatable implements MustVerifyEmail, OAuthenticatable
         return $this->hasMany(GroupMembership::class);
     }
 
+    public function groupAvailabilitySchedules(): HasMany
+    {
+        return $this->hasMany(GroupAvailabilitySchedule::class);
+    }
+
     public function receivedGroupNotes(): HasMany
     {
         return $this->hasMany(GroupUserNote::class);

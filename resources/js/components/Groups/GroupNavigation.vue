@@ -20,6 +20,7 @@ const props = defineProps<{
 			can_manage_membership_application_form?: boolean
 		}
 		features?: {
+			availability_scheduler_enabled?: boolean
 			statistics_enabled?: boolean
 			leaderboard_enabled?: boolean
 		}
@@ -52,6 +53,8 @@ const legacyLeaderboardHref = computed(() => route('groups.dashboard.legacy-lead
 const legacyLeaderboardPath = computed(() => routePath('groups.dashboard.legacy-leaderboard'))
 const membersHref = computed(() => route('groups.dashboard.members', props.group.slug))
 const membersPath = computed(() => routePath('groups.dashboard.members'))
+const availabilityHref = computed(() => route('groups.dashboard.availability', props.group.slug))
+const availabilityPath = computed(() => routePath('groups.dashboard.availability'))
 const membershipApplicationsHref = computed(() => route('groups.dashboard.membership-applications.index', props.group.slug))
 const membershipApplicationsPath = computed(() => routePath('groups.dashboard.membership-applications.index'))
 const membershipApplicationFormPath = computed(() => routePath('groups.dashboard.membership-application-form.edit'))
@@ -66,6 +69,7 @@ const discordIntegrationPath = computed(() => routePath('groups.dashboard.discor
 const isPublicActivityRoute = computed(() => page.url.startsWith(publicActivitiesPath.value))
 const showsStatistics = computed(() => props.group.features?.statistics_enabled ?? true)
 const showsLeaderboard = computed(() => props.group.features?.leaderboard_enabled ?? true)
+const showsAvailability = computed(() => props.group.features?.availability_scheduler_enabled ?? false)
 const showsLegacyLeaderboard = computed(() => props.group.slug === 'ftel' && showsLeaderboard.value)
 const canUpdateGroupSettings = computed(() => Boolean(
 	props.group.permissions?.can_update_group_settings
@@ -169,6 +173,12 @@ const desktopLeftItems = computed<NavigationMenuItem[]>(() => [
 		to: membersHref.value,
 		active: isRouteActive(membersPath.value),
 	})] : []),
+	...(showsAvailability.value ? [desktopLinkItem({
+		label: t('groups.index.navigation.availability'),
+		icon: 'i-lucide-calendar-clock',
+		to: availabilityHref.value,
+		active: isRouteActive(availabilityPath.value),
+	})] : []),
 ])
 
 const desktopRightItems = computed<NavigationMenuItem[]>(() => [
@@ -205,6 +215,12 @@ const desktopNavigationUi = {
 const settingsActive = computed(() => isRouteActive(settingsPath.value))
 
 const infoMenuItems = computed(() => [
+	...(showsAvailability.value ? [{
+		label: t('groups.index.navigation.availability'),
+		icon: 'i-lucide-calendar-clock',
+		href: availabilityHref.value,
+		active: isRouteActive(availabilityPath.value),
+	}] : []),
 	...(showsStatistics.value ? [{
 		label: t('groups.index.navigation.statistics'),
 		icon: 'i-lucide-chart-no-axes-combined',
@@ -291,12 +307,13 @@ const memberMobileItems = computed(() => [
 		href: dashboardHref.value,
 		active: page.url === dashboardPath.value,
 	},
-	...(showsLegacyLeaderboard.value ? [{
+	...(showsAvailability.value || showsLegacyLeaderboard.value ? [{
 		label: t('groups.index.navigation.info'),
 		icon: 'i-lucide-info',
 		href: null,
 		menu: "info" as const,
 		active: activeMobileMenu.value === "info"
+			|| (showsAvailability.value && isRouteActive(availabilityPath.value))
 			|| (showsStatistics.value && isRouteActive(statisticsPath.value))
 			|| (showsLeaderboard.value && isRouteActive(leaderboardPath.value))
 			|| isRouteActive(legacyLeaderboardPath.value),
@@ -319,7 +336,12 @@ const memberMobileItems = computed(() => [
 		href: membersHref.value,
 		active: isRouteActive(membersPath.value),
 	},
-	...(showsStatistics.value ? [{
+	...(showsAvailability.value ? [{
+		label: t('groups.index.navigation.availability'),
+		icon: 'i-lucide-calendar-clock',
+		href: availabilityHref.value,
+		active: isRouteActive(availabilityPath.value),
+	}] : showsStatistics.value ? [{
 		label: t('groups.index.navigation.statistics'),
 		icon: 'i-lucide-chart-no-axes-combined',
 		href: statisticsHref.value,
@@ -340,6 +362,7 @@ const managerMobileItems = computed(() => [
 		href: null,
 		menu: "info" as const,
 		active: activeMobileMenu.value === "info"
+			|| (showsAvailability.value && isRouteActive(availabilityPath.value))
 			|| (showsStatistics.value && isRouteActive(statisticsPath.value))
 			|| (showsLeaderboard.value && isRouteActive(leaderboardPath.value))
 			|| (showsLegacyLeaderboard.value && isRouteActive(legacyLeaderboardPath.value))

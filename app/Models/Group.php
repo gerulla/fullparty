@@ -165,6 +165,16 @@ class Group extends Model
         return $this->hasOne(GroupFeature::class);
     }
 
+    public function availabilitySettings(): HasOne
+    {
+        return $this->hasOne(GroupAvailabilitySetting::class);
+    }
+
+    public function availabilitySchedules(): HasMany
+    {
+        return $this->hasMany(GroupAvailabilitySchedule::class);
+    }
+
     /**
      * @return array<string, bool>
      */

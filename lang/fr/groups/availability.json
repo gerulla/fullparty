@@ -1,0 +1,130 @@
+{
+  "title": "Disponibilités",
+  "subtitle": "Consultez et coordonnez les disponibilités des membres de votre groupe.",
+  "schedule": {
+    "button": "Mon planning",
+    "title": "Mon planning de disponibilités",
+    "cadence": {
+      "weekly": "Hebdomadaire",
+      "biweekly": "Toutes les deux semaines",
+      "monthly": "Mensuel"
+    },
+    "cadence_hint": "Indiquez les horaires auxquels vous êtes habituellement disponible pour ce planning.",
+    "starts_on": "Commence le",
+    "repeatable": "Répéter le planning",
+    "repeat_pattern": {
+      "weekly": "Se répète chaque semaine à partir du",
+      "biweekly": "Se répète toutes les 2 semaines à partir du",
+      "monthly": "Se répète toutes les 4 semaines à partir du"
+    },
+    "one_time": "Planning unique à partir du",
+    "weeks": {
+      "week": "Semaine",
+      "week_a": "Semaine A",
+      "week_b": "Semaine B",
+      "numbered": "Semaine {number}"
+    },
+    "days": {
+      "monday": "Lundi",
+      "tuesday": "Mardi",
+      "wednesday": "Mercredi",
+      "thursday": "Jeudi",
+      "friday": "Vendredi",
+      "saturday": "Samedi",
+      "sunday": "Dimanche"
+    },
+    "days_short": {
+      "monday": "Lun",
+      "tuesday": "Mar",
+      "wednesday": "Mer",
+      "thursday": "Jeu",
+      "friday": "Ven",
+      "saturday": "Sam",
+      "sunday": "Dim"
+    },
+    "days_available": "Disponible {count} jours",
+    "to": "à",
+    "unavailable": "Indisponible",
+    "add_block": "Ajouter une plage horaire",
+    "select_day": "Jour",
+    "add": "Ajouter",
+    "remove_block": "Supprimer la plage horaire",
+    "block_type": "Type de disponibilité",
+    "paste": "Coller",
+    "summary_title": "Résumé",
+    "controls_title": "Commandes",
+    "legend_title": "Légende",
+    "copy_weeks": "Copier la semaine A vers les autres semaines",
+    "copy_weeks_hint": "Utiliser les mêmes disponibilités pendant tout le cycle",
+    "lock_weekends": "Verrouiller les week-ends",
+    "lock_weekends_hint": "Garder le samedi et le dimanche indisponibles",
+    "on_hiatus": "En pause",
+    "on_hiatus_hint": "Vous resterez indisponible jusqu'à ce que vous désactiviez cette option",
+    "timezone": "Fuseau horaire",
+    "timezone_hint": "Les horaires sont enregistrés dans ce fuseau horaire",
+    "timezone_search": "Rechercher un fuseau horaire",
+    "add_exception": "Ajouter une exception",
+    "add_exception_hint": "Définir des disponibilités spécifiques à une date",
+    "exceptions_title": "Exceptions",
+    "specific_hours": "Heures précises",
+    "remove_exception": "Supprimer l'exception",
+    "visibility_hint": "Selon les paramètres du groupe, vos disponibilités sont visibles par tous les membres ou uniquement par les modérateurs et les rôles supérieurs.",
+    "legend": {
+      "available": "Disponible",
+      "tentative": "Provisoire",
+      "unavailable": "Indisponible"
+    },
+    "summary": "Semaines du cycle : {weeks} · Jours disponibles : {days}",
+    "save": "Enregistrer le planning",
+    "saved": "Planning de disponibilités enregistré",
+    "save_error": "Impossible d'enregistrer votre planning de disponibilités"
+  },
+  "overview": {
+    "title": "Aperçu de la semaine",
+    "subtitle": "Basé sur {count} plannings partagés pour les sept prochains jours.",
+    "peak": "Pic : {count} disponibles",
+    "bucket": "Disponibles : {available} · Provisoires : {tentative}",
+    "fewer": "Moins de personnes",
+    "more": "Plus de personnes",
+    "selected": "Plage sélectionnée"
+  },
+  "selection": {
+    "title": "Horaire sélectionné",
+    "starts_at": "Début",
+    "ends_at": "Fin",
+    "duration_hours_minutes": "{hours} h {minutes} min",
+    "duration_hours": "{count} h",
+    "duration_minutes": "{count} min",
+    "people": "{count} personnes",
+    "people_short": "personnes",
+    "load_error": "Impossible de charger les disponibilités pour cet horaire.",
+    "no_members": "Aucun membre n'est disponible pendant toute la plage sélectionnée.",
+    "summary_title": "Résumé de l'horaire sélectionné",
+    "total_available": "Total disponible",
+    "highest_overlap": "Meilleur chevauchement",
+    "best_time": "Meilleur horaire",
+    "best_overlap": "Disponibilité maximale",
+    "distribution": "Répartition des disponibilités",
+    "potential_times": "Horaires communs possibles",
+    "best": "Meilleur",
+    "can_attend": "Personnes pouvant participer",
+    "status": { "available": "Disponible", "tentative": "Provisoire" }
+  },
+  "configuration": {
+    "button": "Configurer",
+    "title": "Configuration de la fonctionnalité de disponibilités",
+    "saved": "Paramètres de disponibilités enregistrés",
+    "access": {
+      "label": "Qui peut utiliser cette fonctionnalité ?",
+      "description": "Choisissez le rôle minimum requis pour renseigner et gérer les disponibilités.",
+      "members": "Membres et rôles supérieurs",
+      "moderators": "Modérateurs et rôles supérieurs"
+    }
+  },
+  "validation": {
+    "cycle_week": "La semaine sélectionnée ne fait pas partie du cycle de ce planning.",
+    "end_time": "L'heure de fin doit être différente de l'heure de début.",
+    "overlap": "Les plages de disponibilité d'une même journée ne peuvent pas se chevaucher.",
+    "selection_too_long": "La plage sélectionnée ne peut pas dépasser sept jours."
+  }
+}

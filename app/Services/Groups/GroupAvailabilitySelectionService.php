@@ -71,7 +71,10 @@ class GroupAvailabilitySelectionService
                     CarbonImmutable::parse($slot['ends_at']),
                 ) / 2));
 
-                return $this->availabilityResolver->statusAt($schedule, $midpoint);
+                return $this->availabilityResolver->statusAt(
+                    $schedule,
+                    $midpoint->setTimezone($schedule->timezone),
+                );
             })->all();
 
             foreach ($statuses as $index => $status) {

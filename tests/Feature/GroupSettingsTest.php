@@ -663,6 +663,46 @@ it('builds the seven day availability overview from member schedules', function 
         ->assertJsonCount(0, 'data.members');
 });
 
+it('evaluates selected availability ranges in each member schedule timezone', function () {
+    $owner = User::factory()->create();
+    $group = Group::factory()->create([
+        'owner_id' => $owner->id,
+        'group_type' => Group::TYPE_STATIC,
+    ]);
+    $group->features()->update(['availability_scheduler_enabled' => true]);
+
+    app(GroupAvailabilityScheduleService::class)->save($group, $owner, [
+        'cycle_weeks' => 1,
+        'repeats' => true,
+        'lock_weekends' => false,
+        'on_hiatus' => false,
+        'starts_on' => '2026-07-13',
+        'timezone' => 'Europe/Paris',
+        'windows' => [
+            [
+                'cycle_week' => 0,
+                'weekday' => 1,
+                'status' => 'available',
+                'starts_at' => '18:00',
+                'ends_at' => '20:00',
+            ],
+        ],
+        'exceptions' => [],
+    ]);
+
+    $this->actingAs($owner)
+        ->getJson(route('groups.dashboard.availability.selection', [
+            'group' => $group,
+            'starts_at' => '2026-07-13T16:00:00+00:00',
+            'ends_at' => '2026-07-13T17:00:00+00:00',
+        ]))
+        ->assertOk()
+        ->assertJsonPath('data.total_members', 1)
+        ->assertJsonPath('data.available_count', 1)
+        ->assertJsonPath('data.highest_overlap', 1)
+        ->assertJsonPath('data.members.0.name', $owner->name);
+});
+
 it('uses the leaderboard feature toggle to gate the legacy leaderboard', function () {
     $owner = User::factory()->create();
     $group = Group::factory()->create([

@@ -32,6 +32,7 @@ class XivPluginRunPartySnapshotController extends Controller
             'members.*.w' => ['sometimes', 'nullable', 'string', 'max:80'],
             'members.*.cj' => ['required', 'string', 'max:8', 'exists:character_classes,shorthand'],
             'members.*.pj' => ['sometimes', 'nullable', 'string', 'max:80', 'exists:phantom_jobs,name'],
+            'members.*.r' => ['sometimes', 'nullable', 'integer', 'min:0', 'max:99'],
         ]);
 
         $user = $request->user();
@@ -101,6 +102,10 @@ class XivPluginRunPartySnapshotController extends Controller
 
                 if (filled($member['pj'] ?? null)) {
                     $payload['pj'] = (string) $member['pj'];
+                }
+
+                if (filled($member['r'] ?? null)) {
+                    $payload['r'] = (int) $member['r'];
                 }
 
                 return $payload;

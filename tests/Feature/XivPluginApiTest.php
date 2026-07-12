@@ -405,6 +405,7 @@ it('lets party leads publish compact plugin party snapshots', function () {
                 'w' => 'Lich',
                 'cj' => 'ast',
                 'pj' => 'geomancer',
+                'r' => 3,
             ],
             [
                 'p' => 2,
@@ -423,6 +424,7 @@ it('lets party leads publish compact plugin party snapshots', function () {
         ->assertJsonMissingPath('data.members.0.n')
         ->assertJsonPath('data.members.0.cj', 'AST')
         ->assertJsonPath('data.members.0.pj', 'Geomancer')
+        ->assertJsonPath('data.members.0.r', 3)
         ->assertJsonPath('data.members.1.n', 'Unmatched Character')
         ->assertJsonPath('data.members.1.w', 'Phoenix');
 
@@ -434,6 +436,7 @@ it('lets party leads publish compact plugin party snapshots', function () {
             && $event->snapshot['members'][0]['cid'] === $leaderCharacter->id
             && $event->snapshot['members'][0]['cj'] === 'AST'
             && $event->snapshot['members'][0]['pj'] === 'Geomancer'
+            && $event->snapshot['members'][0]['r'] === 3
             && ! array_key_exists('n', $event->snapshot['members'][0]);
     });
 });

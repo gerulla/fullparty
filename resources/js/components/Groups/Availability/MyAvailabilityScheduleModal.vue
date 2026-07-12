@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, ref } from "vue";
+import { computed, onBeforeUnmount, ref } from "vue";
 import { useI18n } from "vue-i18n";
 import { getLocalTimeZone, parseDate, today } from "@internationalized/date";
 import type { DateValue } from "@internationalized/date";
@@ -59,6 +59,26 @@ const dayKeys: DayKey[] = [
 ];
 const timeTicks = [0, 6, 12, 18, 24];
 const statusKeys: AvailabilityStatus[] = ["available", "tentative"];
+const dragDraft = ref<{
+	weekIndex: number
+	day: DayKey
+	anchorMinute: number
+	currentMinute: number
+} | null>(null);
+const hoverTime = ref<{
+	weekIndex: number
+	day: DayKey
+	minute: number
+	x: number
+} | null>(null);
+const resizingBlock = ref<{
+	weekIndex: number
+	day: DayKey
+	blockId: number
+	edge: "start" | "end"
+	originalStart: number
+	originalEnd: number
+} | null>(null);
 
 const makeBlock = (startsAt: string, endsAt: string, status: AvailabilityStatus): TimeBlock => ({
 	id: nextBlockId++,
@@ -162,6 +182,14 @@ const parseTime = (time: string) => {
 	return Math.min(24 * 60, Math.max(0, (hours * 60) + minutes));
 };
 
+const formatMinute = (minute: number) => {
+	const normalizedMinute = minute >= 1440 ? 0 : Math.max(0, minute);
+
+	return `${String(Math.floor(normalizedMinute / 60)).padStart(2, "0")}:${String(normalizedMinute % 60).padStart(2, "0")}`;
+};
+
+const quantizeMinute = (minute: number) => Math.min(1440, Math.max(0, Math.round(minute / 15) * 15));
+
 const formatTimeTick = (hour: number) => {
 	if (hour === 0 || hour === 24) return "12 AM";
 	if (hour === 12) return "12 PM";
@@ -177,6 +205,45 @@ const blockStyle = (block: TimeBlock) => {
 		width: `${((Math.min(1440, end) - start) / 1440) * 100}%`,
 	};
 };
+
+const blockEndMinute = (block: TimeBlock) => (block.ends_at === "00:00" ? 1440 : parseTime(block.ends_at));
+
+const hoverTimeStyle = computed(() => {
+	if (!hoverTime.value) {
+		return {};
+	}
+
+	return {
+		left: `${hoverTime.value.x}px`,
+	};
+});
+
+const dragRange = computed(() => {
+	const draft = dragDraft.value;
+
+	if (!draft) {
+		return null;
+	}
+
+	const start = Math.min(draft.anchorMinute, draft.currentMinute);
+	const end = Math.max(draft.anchorMinute, draft.currentMinute);
+
+	return {
+		start,
+		end: Math.max(start + 15, end),
+	};
+});
+
+const dragPreviewStyle = computed(() => {
+	if (!dragRange.value) {
+		return {};
+	}
+
+	return {
+		left: `${(dragRange.value.start / 1440) * 100}%`,
+		width: `${((Math.min(1440, dragRange.value.end) - dragRange.value.start) / 1440) * 100}%`,
+	};
+});
 
 const blockTone = (status: AvailabilityStatus) => ({
 	available: "border-success/70 bg-success/45 hover:bg-success/60",
@@ -338,6 +405,247 @@ const removeBlock = (schedule: DaySchedule, blockId: number) => {
 	}
 };
 
+const minuteFromPointer = (event: PointerEvent, target: HTMLElement) => {
+	const rect = target.getBoundingClientRect();
+	const ratio = Math.min(1, Math.max(0, (event.clientX - rect.left) / rect.width));
+
+	return quantizeMinute(ratio * 1440);
+};
+
+const isWeekendLocked = (day: DayKey) => lockWeekends.value && (day === "saturday" || day === "sunday");
+
+const overlapsExistingBlock = (
+	schedule: DaySchedule,
+	startMinute: number,
+	endMinute: number,
+	ignoredBlockId: number | null = null,
+) => schedule.blocks.some((block) => {
+	if (block.id === ignoredBlockId) {
+		return false;
+	}
+
+	const blockStart = parseTime(block.starts_at);
+	const blockEnd = blockEndMinute(block);
+
+	return startMinute < blockEnd && endMinute > blockStart;
+});
+
+const capDragMinuteBeforeOverlap = (schedule: DaySchedule, anchorMinute: number, desiredMinute: number) => {
+	if (desiredMinute === anchorMinute) {
+		return desiredMinute;
+	}
+
+	if (desiredMinute > anchorMinute) {
+		const nextBlockStart = schedule.blocks
+			.map(block => parseTime(block.starts_at))
+			.filter(start => start >= anchorMinute)
+			.sort((left, right) => left - right)[0];
+
+		return nextBlockStart === undefined
+			? desiredMinute
+			: Math.min(desiredMinute, nextBlockStart);
+	}
+
+	const previousBlockEnd = schedule.blocks
+		.map(blockEndMinute)
+		.filter(end => end <= anchorMinute)
+		.sort((left, right) => right - left)[0];
+
+	return previousBlockEnd === undefined
+		? desiredMinute
+		: Math.max(desiredMinute, previousBlockEnd);
+};
+
+const capResizeMinuteBeforeOverlap = (
+	schedule: DaySchedule,
+	block: TimeBlock,
+	edge: "start" | "end",
+	desiredMinute: number,
+) => {
+	if (edge === "start") {
+		const blockEnd = blockEndMinute(block);
+		const previousBlockEnd = schedule.blocks
+			.filter(candidate => candidate.id !== block.id)
+			.map(blockEndMinute)
+			.filter(end => end <= blockEnd)
+			.sort((left, right) => right - left)[0];
+
+		return Math.max(desiredMinute, previousBlockEnd ?? 0);
+	}
+
+	const blockStart = parseTime(block.starts_at);
+	const nextBlockStart = schedule.blocks
+		.filter(candidate => candidate.id !== block.id)
+		.map(candidate => parseTime(candidate.starts_at))
+		.filter(start => start >= blockStart)
+		.sort((left, right) => left - right)[0];
+
+	return Math.min(desiredMinute, nextBlockStart ?? 1440);
+};
+
+const updateHoverTime = (weekIndex: number, day: DayKey, event: PointerEvent) => {
+	const target = event.currentTarget as HTMLElement;
+	const minute = minuteFromPointer(event, target);
+	const rect = target.getBoundingClientRect();
+
+	hoverTime.value = {
+		weekIndex,
+		day,
+		minute,
+		x: Math.min(rect.width, Math.max(0, event.clientX - rect.left)),
+	};
+};
+
+const clearHoverTime = () => {
+	if (!dragDraft.value && !resizingBlock.value) {
+		hoverTime.value = null;
+	}
+};
+
+const beginBlockDrag = (weekIndex: number, day: DayKey, event: PointerEvent) => {
+	if (event.button !== 0 || isWeekendLocked(day) || resizingBlock.value) {
+		return;
+	}
+
+	const target = event.currentTarget as HTMLElement;
+	const minute = minuteFromPointer(event, target);
+
+	event.preventDefault();
+	target.setPointerCapture(event.pointerId);
+	dragDraft.value = {
+		weekIndex,
+		day,
+		anchorMinute: minute,
+		currentMinute: minute,
+	};
+};
+
+const moveBlockDrag = (event: PointerEvent) => {
+	const draft = dragDraft.value;
+
+	if (!draft) {
+		return;
+	}
+
+	const schedule = draftWeeks.value[draft.weekIndex]?.[draft.day];
+	const desiredMinute = minuteFromPointer(event, event.currentTarget as HTMLElement);
+
+	dragDraft.value.currentMinute = schedule
+		? capDragMinuteBeforeOverlap(schedule, draft.anchorMinute, desiredMinute)
+		: desiredMinute;
+};
+
+const moveTimelinePointer = (weekIndex: number, day: DayKey, event: PointerEvent) => {
+	updateHoverTime(weekIndex, day, event);
+	moveBlockDrag(event);
+	resizeBlock(event);
+};
+
+const finishBlockDrag = () => {
+	const draft = dragDraft.value;
+	const range = dragRange.value;
+
+	dragDraft.value = null;
+
+	if (!draft || !range) {
+		return;
+	}
+
+	const schedule = draftWeeks.value[draft.weekIndex]?.[draft.day];
+
+	if (!schedule) {
+		return;
+	}
+
+	if (Math.abs(draft.anchorMinute - draft.currentMinute) < 15 || range.start >= 1440) {
+		return;
+	}
+
+	const end = Math.min(1440, Math.max(range.start + 30, range.end));
+
+	if (overlapsExistingBlock(schedule, range.start, end)) {
+		return;
+	}
+
+	schedule.enabled = true;
+	schedule.blocks.push(makeBlock(formatMinute(range.start), formatMinute(end), "available"));
+};
+
+const cancelBlockDrag = () => {
+	dragDraft.value = null;
+};
+
+const beginBlockResize = (
+	weekIndex: number,
+	day: DayKey,
+	block: TimeBlock,
+	edge: "start" | "end",
+	event: PointerEvent,
+) => {
+	if (event.button !== 0) {
+		return;
+	}
+
+	event.preventDefault();
+	event.stopPropagation();
+	(event.currentTarget as HTMLElement).setPointerCapture(event.pointerId);
+	resizingBlock.value = {
+		weekIndex,
+		day,
+		blockId: block.id,
+		edge,
+		originalStart: parseTime(block.starts_at),
+		originalEnd: blockEndMinute(block),
+	};
+};
+
+const resizeBlock = (event: PointerEvent) => {
+	const resize = resizingBlock.value;
+
+	if (!resize) {
+		return;
+	}
+
+	const schedule = draftWeeks.value[resize.weekIndex]?.[resize.day];
+	const block = schedule?.blocks.find(candidate => candidate.id === resize.blockId);
+
+	if (!schedule || !block) {
+		return;
+	}
+
+	const minute = capResizeMinuteBeforeOverlap(
+		schedule,
+		block,
+		resize.edge,
+		minuteFromPointer(event, event.currentTarget as HTMLElement),
+	);
+	const start = resize.edge === "start"
+		? Math.min(minute, resize.originalEnd - 15)
+		: resize.originalStart;
+	const end = resize.edge === "end"
+		? Math.max(minute, resize.originalStart + 15)
+		: resize.originalEnd;
+	const normalizedStart = Math.max(0, Math.min(1425, start));
+	const normalizedEnd = Math.min(1440, Math.max(normalizedStart + 15, end));
+
+	if (overlapsExistingBlock(schedule, normalizedStart, normalizedEnd, block.id)) {
+		return;
+	}
+
+	block.starts_at = formatMinute(normalizedStart);
+	block.ends_at = formatMinute(normalizedEnd);
+};
+
+const finishBlockResize = () => {
+	resizingBlock.value = null;
+};
+
+const cancelTimelineInteraction = () => {
+	cancelBlockDrag();
+	finishBlockResize();
+	hoverTime.value = null;
+};
+
 const copyFirstWeek = () => {
 	for (let index = 1; index < visibleWeekCount.value; index++) {
 		draftWeeks.value[index] = cloneWeeks([draftWeeks.value[0]], true)[0];
@@ -379,6 +687,8 @@ const addException = (value: DateValue | undefined) => {
 const removeException = (exceptionId: number) => {
 	draftExceptions.value = draftExceptions.value.filter(exception => exception.id !== exceptionId);
 };
+
+onBeforeUnmount(cancelTimelineInteraction);
 </script>
 
 <template>
@@ -500,7 +810,15 @@ const removeException = (exceptionId: number) => {
 										</span>
 									</div>
 
-									<div class="relative h-7 border border-default bg-muted/10">
+									<div
+										class="relative h-7 touch-pan-y border border-default bg-muted/10"
+										:class="isWeekendLocked(day) ? 'cursor-not-allowed opacity-60' : 'cursor-crosshair'"
+										@pointerdown="beginBlockDrag(weekIndex, day, $event)"
+										@pointermove="moveTimelinePointer(weekIndex, day, $event)"
+										@pointerup="finishBlockDrag(); finishBlockResize()"
+										@pointercancel="cancelTimelineInteraction"
+										@pointerleave="clearHoverTime"
+									>
 										<span
 											v-for="tick in timeTicks.slice(1, -1)"
 											:key="tick"
@@ -508,15 +826,39 @@ const removeException = (exceptionId: number) => {
 											:style="{ left: `${(tick / 24) * 100}%` }"
 										/>
 
+										<span
+											v-if="dragDraft?.weekIndex === weekIndex && dragDraft.day === day"
+											class="pointer-events-none absolute inset-y-1 z-20 min-w-1 border border-brand-300/80 bg-brand-500/30"
+											:style="dragPreviewStyle"
+										/>
+
+										<span
+											v-if="hoverTime?.weekIndex === weekIndex && hoverTime.day === day"
+											class="pointer-events-none absolute -top-8 z-30 -translate-x-1/2 border border-brand-400/50 bg-neutral-950 px-2 py-1 text-[10px] font-semibold text-highlighted shadow-lg"
+											:style="hoverTimeStyle"
+										>
+											{{ formatMinute(hoverTime.minute) }}
+										</span>
+
 										<template v-if="week[day].enabled">
 											<UPopover v-for="block in week[day].blocks" :key="block.id">
 												<button
 													type="button"
-													class="absolute inset-y-1 z-10 min-w-1 border transition-colors"
+													class="group absolute inset-y-1 z-10 min-w-2 border transition-colors"
 													:class="blockTone(block.status)"
 													:style="blockStyle(block)"
 													:title="`${block.starts_at} – ${block.ends_at}`"
-												/>
+													@pointerdown.stop
+												>
+													<span
+														class="absolute inset-y-0 left-0 w-2 cursor-ew-resize border-r border-white/30 bg-white/10 opacity-0 transition-opacity group-hover:opacity-100"
+														@pointerdown="beginBlockResize(weekIndex, day, block, 'start', $event)"
+													/>
+													<span
+														class="absolute inset-y-0 right-0 w-2 cursor-ew-resize border-l border-white/30 bg-white/10 opacity-0 transition-opacity group-hover:opacity-100"
+														@pointerdown="beginBlockResize(weekIndex, day, block, 'end', $event)"
+													/>
+												</button>
 
 												<template #content>
 													<div class="w-64 space-y-3 p-3">

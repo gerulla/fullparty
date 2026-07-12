@@ -35,8 +35,13 @@ class GroupAvailabilitySelectionService
     /** @return array<string, mixed> */
     private function buildUncached(Group $group, CarbonImmutable $startsAt, CarbonImmutable $endsAt): array
     {
-        $memberships = $group->memberships()->with('user')->get();
+        $participantUserIds = $group->availabilityParticipantUserIds();
+        $memberships = $group->memberships()
+            ->whereIn('user_id', $participantUserIds)
+            ->with('user')
+            ->get();
         $schedules = $group->availabilitySchedules()
+            ->whereIn('user_id', $participantUserIds)
             ->with(['windows', 'exceptions'])
             ->get()
             ->keyBy('user_id');

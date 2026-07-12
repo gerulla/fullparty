@@ -17,6 +17,7 @@ use App\Support\Audit\AuditScope;
 use App\Support\Audit\AuditSeverity;
 use Carbon\CarbonImmutable;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Cache;
 use Inertia\Inertia;
 use Inertia\Response;
 
@@ -41,15 +42,13 @@ class GroupAvailabilityController extends Controller
 
         abort_unless($group->featureEnabled('availability_scheduler_enabled'), 404);
 
-        $minimumRole = $group->availabilitySettings?->minimum_role
-            ?? GroupAvailabilitySetting::MINIMUM_ROLE_MEMBER;
-        $canUseAvailability = $this->canUseAvailability($group, $currentUserId, $minimumRole);
-        $schedule = $canUseAvailability
-            ? $group->availabilitySchedules()
-                ->where('user_id', $currentUserId)
-                ->with(['windows', 'exceptions'])
-                ->first()
-            : null;
+        $minimumRole = $group->availabilityMinimumRole();
+        abort_unless($group->canUseAvailability($currentUserId), 403);
+
+        $schedule = $group->availabilitySchedules()
+            ->where('user_id', $currentUserId)
+            ->with(['windows', 'exceptions'])
+            ->first();
 
         return Inertia::render('Dashboard/Groups/Availability', [
             'group' => [
@@ -68,7 +67,7 @@ class GroupAvailabilityController extends Controller
                     'can_view_members' => true,
                     'can_review_membership_applications' => $group->usesMembershipApplications() && $group->hasModeratorAccess($currentUserId),
                     'can_manage_membership_application_form' => $group->usesMembershipApplications() && $group->hasAdminAccess($currentUserId),
-                    'can_use_availability' => $canUseAvailability,
+                    'can_use_availability' => true,
                 ],
             ],
             'availability_settings' => [
@@ -77,9 +76,7 @@ class GroupAvailabilityController extends Controller
             'schedule' => $schedule
                 ? GroupAvailabilityScheduleResource::make($schedule)->resolve()
                 : null,
-            'overview' => $canUseAvailability
-                ? $this->overviewService->build($group, CarbonImmutable::now())
-                : null,
+            'overview' => $this->overviewService->build($group, CarbonImmutable::now()),
         ]);
     }
 
@@ -100,6 +97,9 @@ class GroupAvailabilityController extends Controller
         $group->availabilitySettings()->updateOrCreate([], [
             'minimum_role' => $minimumRole,
         ]);
+
+        $versionKey = "group_availability_version:{$group->id}";
+        Cache::forever($versionKey, ((int) Cache::get($versionKey, 0)) + 1);
 
         if ($originalRole !== $minimumRole) {
             $this->auditLogger->log(
@@ -133,10 +133,7 @@ class GroupAvailabilityController extends Controller
 
         abort_unless($group->featureEnabled('availability_scheduler_enabled'), 404);
 
-        $minimumRole = $group->availabilitySettings?->minimum_role
-            ?? GroupAvailabilitySetting::MINIMUM_ROLE_MEMBER;
-
-        if (! $this->canUseAvailability($group, auth()->id(), $minimumRole)) {
+        if (! $group->canUseAvailability(auth()->id())) {
             abort(403);
         }
 
@@ -153,25 +150,12 @@ class GroupAvailabilityController extends Controller
 
         abort_unless($group->featureEnabled('availability_scheduler_enabled'), 404);
 
-        $minimumRole = $group->availabilitySettings?->minimum_role
-            ?? GroupAvailabilitySetting::MINIMUM_ROLE_MEMBER;
-
-        if (! $this->canUseAvailability($group, auth()->id(), $minimumRole)) {
+        if (! $group->canUseAvailability(auth()->id())) {
             abort(403);
         }
 
         $this->scheduleService->save($group, $request->user(), $request->validated());
 
         return redirect()->back();
-    }
-
-    private function canUseAvailability(Group $group, ?int $userId, string $minimumRole): bool
-    {
-        if (! $group->hasMember($userId)) {
-            return false;
-        }
-
-        return $minimumRole === GroupAvailabilitySetting::MINIMUM_ROLE_MEMBER
-            || $group->hasModeratorAccess($userId);
     }
 }

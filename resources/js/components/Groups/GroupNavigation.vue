@@ -9,6 +9,7 @@ const props = defineProps<{
 	group: {
 		slug: string
 		name?: string
+		current_user_role?: 'owner' | 'admin' | 'moderator' | 'member' | null
 		permissions?: {
 			can_manage_group?: boolean
 			can_update_group_settings?: boolean
@@ -21,6 +22,7 @@ const props = defineProps<{
 		}
 		features?: {
 			availability_scheduler_enabled?: boolean
+			availability_minimum_role?: 'member' | 'moderator'
 			statistics_enabled?: boolean
 			leaderboard_enabled?: boolean
 		}
@@ -69,7 +71,15 @@ const discordIntegrationPath = computed(() => routePath('groups.dashboard.discor
 const isPublicActivityRoute = computed(() => page.url.startsWith(publicActivitiesPath.value))
 const showsStatistics = computed(() => props.group.features?.statistics_enabled ?? true)
 const showsLeaderboard = computed(() => props.group.features?.leaderboard_enabled ?? true)
-const showsAvailability = computed(() => props.group.features?.availability_scheduler_enabled ?? false)
+const canUseAvailability = computed(() => (
+	props.group.features?.availability_minimum_role !== 'moderator'
+	|| ['owner', 'admin', 'moderator'].includes(props.group.current_user_role ?? '')
+	|| Boolean(props.group.permissions?.can_manage_members)
+))
+const showsAvailability = computed(() => (
+	(props.group.features?.availability_scheduler_enabled ?? false)
+	&& canUseAvailability.value
+))
 const showsLegacyLeaderboard = computed(() => props.group.slug === 'ftel' && showsLeaderboard.value)
 const canUpdateGroupSettings = computed(() => Boolean(
 	props.group.permissions?.can_update_group_settings

@@ -6,6 +6,7 @@ export type GroupJoinMode = "open" | "invite_only" | "application"
 export type GroupRole = "owner" | "admin" | "moderator" | "member"
 export type GroupFeatureSettings = {
 	availability_scheduler_enabled: boolean
+	availability_minimum_role?: GroupAvailabilityMinimumRole
 	statistics_enabled: boolean
 	leaderboard_enabled: boolean
 	calendar_sync_enabled: boolean

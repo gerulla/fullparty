@@ -1,0 +1,313 @@
+{
+  "en": {
+    "title": "Lost Banish III",
+    "description": "Deals unaspected damage with a potency of 200 to target and all enemies nearby it.\nAdditional Effect: Increases damage undead enemies take by 25%\nDuration: 60s",
+    "effects": [
+      "Deals unaspected damage with a potency of 200 to target and all enemies nearby it.",
+      "Additional Effect: Increases damage undead enemies take by 25%",
+      "Duration: 60s"
+    ],
+    "classification": "lost_action",
+    "cache": {
+      "item_id": 2,
+      "type_id": 1,
+      "type": "action",
+      "max_uses": 99,
+      "has_unlimited_uses": false,
+      "weight": 3,
+      "order": 2,
+      "category": {
+        "id": 6,
+        "name": "Detrimental"
+      }
+    },
+    "action": {
+      "id": 20702,
+      "icon_id": 64658,
+      "icon_file": "icon.png",
+      "cast_time_seconds": 2.5,
+      "recast_time_seconds": 2.5,
+      "range_yalms": 25,
+      "effect_range_yalms": 12,
+      "max_charges": 0,
+      "cooldown_group": 58,
+      "additional_cooldown_group": 0,
+      "primary_cost": {
+        "type_id": 20,
+        "value": 1
+      },
+      "secondary_cost": {
+        "type_id": 0,
+        "value": 0
+      },
+      "aspect_id": 7,
+      "category": {
+        "id": 2,
+        "name": "Spell"
+      },
+      "class_job_category": {
+        "id": 172,
+        "name": "WHM BLM SMN SCH AST RDM SGE PCT",
+        "allowed_jobs": [
+          "WHM",
+          "BLM",
+          "SMN",
+          "SCH",
+          "AST",
+          "RDM",
+          "SGE",
+          "PCT"
+        ]
+      },
+      "targeting": {
+        "self": false,
+        "party": false,
+        "alliance": false,
+        "hostile": true,
+        "ally": false,
+        "own_pet": false,
+        "party_pet": false,
+        "dead_target_behavior": 0,
+        "is_area": false,
+        "requires_line_of_sight": true,
+        "requires_facing_target": true
+      },
+      "status_gain_self": null,
+      "proc_status": null
+    }
+  },
+  "de": {
+    "title": "Verschollenes Verbannga",
+    "description": "Du führst eine elementneutrale magische Attacke auf das Ziel und die Gegner in seiner Nähe aus.\nAttacke-Wert: 200\nZusatzeffekt: Erhöht den erlittenen Schaden untoter Gegner um 25\u00A0%.\nDauer: 60 Sekunden",
+    "effects": [
+      "Du führst eine elementneutrale magische Attacke auf das Ziel und die Gegner in seiner Nähe aus.",
+      "Attacke-Wert: 200",
+      "Zusatzeffekt: Erhöht den erlittenen Schaden untoter Gegner um 25\u00A0%.",
+      "Dauer: 60 Sekunden"
+    ],
+    "classification": "lost_action",
+    "cache": {
+      "item_id": 2,
+      "type_id": 1,
+      "type": "action",
+      "max_uses": 99,
+      "has_unlimited_uses": false,
+      "weight": 3,
+      "order": 2,
+      "category": {
+        "id": 6,
+        "name": "Saboteur"
+      }
+    },
+    "action": {
+      "id": 20702,
+      "icon_id": 64658,
+      "icon_file": "icon.png",
+      "cast_time_seconds": 2.5,
+      "recast_time_seconds": 2.5,
+      "range_yalms": 25,
+      "effect_range_yalms": 12,
+      "max_charges": 0,
+      "cooldown_group": 58,
+      "additional_cooldown_group": 0,
+      "primary_cost": {
+        "type_id": 20,
+        "value": 1
+      },
+      "secondary_cost": {
+        "type_id": 0,
+        "value": 0
+      },
+      "aspect_id": 7,
+      "category": {
+        "id": 2,
+        "name": "Zauber"
+      },
+      "class_job_category": {
+        "id": 172,
+        "name": "WMA SMA BSW GLT AST RMA WEI PKT",
+        "allowed_jobs": [
+          "WHM",
+          "BLM",
+          "SMN",
+          "SCH",
+          "AST",
+          "RDM",
+          "SGE",
+          "PCT"
+        ]
+      },
+      "targeting": {
+        "self": false,
+        "party": false,
+        "alliance": false,
+        "hostile": true,
+        "ally": false,
+        "own_pet": false,
+        "party_pet": false,
+        "dead_target_behavior": 0,
+        "is_area": false,
+        "requires_line_of_sight": true,
+        "requires_facing_target": true
+      },
+      "status_gain_self": null,
+      "proc_status": null
+    }
+  },
+  "fr": {
+    "title": "Méga Bannissement oublié",
+    "description": "Inflige des dégâts magiques neutres à la cible et aux ennemis autour.\nPuissance\u00A0: 200\nEffet additionnel\u00A0: dégâts augmentés de 25% sur les morts-vivants.\nDurée\u00A0: 60s",
+    "effects": [
+      "Inflige des dégâts magiques neutres à la cible et aux ennemis autour.",
+      "Puissance\u00A0: 200",
+      "Effet additionnel\u00A0: dégâts augmentés de 25% sur les morts-vivants.",
+      "Durée\u00A0: 60s"
+    ],
+    "classification": "lost_action",
+    "cache": {
+      "item_id": 2,
+      "type_id": 1,
+      "type": "action",
+      "max_uses": 99,
+      "has_unlimited_uses": false,
+      "weight": 3,
+      "order": 2,
+      "category": {
+        "id": 6,
+        "name": "Sapeur"
+      }
+    },
+    "action": {
+      "id": 20702,
+      "icon_id": 64658,
+      "icon_file": "icon.png",
+      "cast_time_seconds": 2.5,
+      "recast_time_seconds": 2.5,
+      "range_yalms": 25,
+      "effect_range_yalms": 12,
+      "max_charges": 0,
+      "cooldown_group": 58,
+      "additional_cooldown_group": 0,
+      "primary_cost": {
+        "type_id": 20,
+        "value": 1
+      },
+      "secondary_cost": {
+        "type_id": 0,
+        "value": 0
+      },
+      "aspect_id": 7,
+      "category": {
+        "id": 2,
+        "name": "Sort"
+      },
+      "class_job_category": {
+        "id": 172,
+        "name": "MBL MNO INV ÉRU AST MRG SAG PIC",
+        "allowed_jobs": [
+          "WHM",
+          "BLM",
+          "SMN",
+          "SCH",
+          "AST",
+          "RDM",
+          "SGE",
+          "PCT"
+        ]
+      },
+      "targeting": {
+        "self": false,
+        "party": false,
+        "alliance": false,
+        "hostile": true,
+        "ally": false,
+        "own_pet": false,
+        "party_pet": false,
+        "dead_target_behavior": 0,
+        "is_area": false,
+        "requires_line_of_sight": true,
+        "requires_facing_target": true
+      },
+      "status_gain_self": null,
+      "proc_status": null
+    }
+  },
+  "ja": {
+    "title": "ロスト・バニシュガ",
+    "description": "対象とその周囲の敵に無属性範囲魔法攻撃。\u3000威力：200\nアンデッド系モンスターに対して追加効果を与える。\n追加効果：被ダメージを25％上昇させる\n効果時間：60秒",
+    "effects": [
+      "対象とその周囲の敵に無属性範囲魔法攻撃。\u3000威力：200",
+      "アンデッド系モンスターに対して追加効果を与える。",
+      "追加効果：被ダメージを25％上昇させる",
+      "効果時間：60秒"
+    ],
+    "classification": "lost_action",
+    "cache": {
+      "item_id": 2,
+      "type_id": 1,
+      "type": "action",
+      "max_uses": 99,
+      "has_unlimited_uses": false,
+      "weight": 3,
+      "order": 2,
+      "category": {
+        "id": 6,
+        "name": "アクション：デバッファー"
+      }
+    },
+    "action": {
+      "id": 20702,
+      "icon_id": 64658,
+      "icon_file": "icon.png",
+      "cast_time_seconds": 2.5,
+      "recast_time_seconds": 2.5,
+      "range_yalms": 25,
+      "effect_range_yalms": 12,
+      "max_charges": 0,
+      "cooldown_group": 58,
+      "additional_cooldown_group": 0,
+      "primary_cost": {
+        "type_id": 20,
+        "value": 1
+      },
+      "secondary_cost": {
+        "type_id": 0,
+        "value": 0
+      },
+      "aspect_id": 7,
+      "category": {
+        "id": 2,
+        "name": "魔法"
+      },
+      "class_job_category": {
+        "id": 172,
+        "name": "白魔道士 黒魔道士 召喚士 学者 占星術師 赤魔道士 賢者 ピクトマンサー",
+        "allowed_jobs": [
+          "WHM",
+          "BLM",
+          "SMN",
+          "SCH",
+          "AST",
+          "RDM",
+          "SGE",
+          "PCT"
+        ]
+      },
+      "targeting": {
+        "self": false,
+        "party": false,
+        "alliance": false,
+        "hostile": true,
+        "ally": false,
+        "own_pet": false,
+        "party_pet": false,
+        "dead_target_behavior": 0,
+        "is_area": false,
+        "requires_line_of_sight": true,
+        "requires_facing_target": true
+      },
+      "status_gain_self": null,
+      "proc_status": null
+    }
+  }
+}

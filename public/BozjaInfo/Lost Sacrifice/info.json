@@ -1,0 +1,369 @@
+{
+  "en": {
+    "title": "Lost Sacrifice",
+    "description": "Restores all of a KO'd target's HP.\nCannot be executed if currently afflicted with Sacrifice.\nAdditional Effect: Inflicts Sacrifice on self\nSacrifice Effect: When effect expires, you will be KO'd\nDuration: 10s",
+    "effects": [
+      "Restores all of a KO'd target's HP.",
+      "Cannot be executed if currently afflicted with Sacrifice.",
+      "Additional Effect: Inflicts Sacrifice on self",
+      "Sacrifice Effect: When effect expires, you will be KO'd",
+      "Duration: 10s"
+    ],
+    "classification": "lost_action",
+    "cache": {
+      "item_id": 72,
+      "type_id": 1,
+      "type": "action",
+      "max_uses": 1,
+      "has_unlimited_uses": false,
+      "weight": 19,
+      "order": 72,
+      "category": {
+        "id": 3,
+        "name": "Restorative"
+      }
+    },
+    "action": {
+      "id": 22345,
+      "icon_id": 64734,
+      "icon_file": "icon.png",
+      "cast_time_seconds": 3,
+      "recast_time_seconds": 2.5,
+      "range_yalms": 30,
+      "effect_range_yalms": 0,
+      "max_charges": 0,
+      "cooldown_group": 58,
+      "additional_cooldown_group": 0,
+      "primary_cost": {
+        "type_id": 20,
+        "value": 1
+      },
+      "secondary_cost": {
+        "type_id": 46,
+        "value": 1743
+      },
+      "aspect_id": 7,
+      "category": {
+        "id": 2,
+        "name": "Spell"
+      },
+      "class_job_category": {
+        "id": 169,
+        "name": "PLD MNK WAR DRG BRD WHM BLM SMN SCH NIN MCH DRK AST SAM RDM GNB DNC RPR SGE VPR PCT",
+        "allowed_jobs": [
+          "PLD",
+          "MNK",
+          "WAR",
+          "DRG",
+          "BRD",
+          "WHM",
+          "BLM",
+          "SMN",
+          "SCH",
+          "NIN",
+          "MCH",
+          "DRK",
+          "AST",
+          "SAM",
+          "RDM",
+          "GNB",
+          "DNC",
+          "RPR",
+          "SGE",
+          "VPR",
+          "PCT"
+        ]
+      },
+      "targeting": {
+        "self": false,
+        "party": true,
+        "alliance": true,
+        "hostile": false,
+        "ally": true,
+        "own_pet": false,
+        "party_pet": false,
+        "dead_target_behavior": 1,
+        "is_area": false,
+        "requires_line_of_sight": true,
+        "requires_facing_target": false
+      },
+      "status_gain_self": null,
+      "proc_status": null
+    }
+  },
+  "de": {
+    "title": "Verschollene Aufopferung",
+    "description": "Du regenerierst alle LP des Ziels und belebst es wieder.\nZusatzeffekt: Du erhältst den Status Aufopferung.\nDauer: 10 Sekunden\nEffekt von Aufopferung: Kampfunfähigkeit nach Ablauf der Effektdauer.\nBedingung: Aufopferung nicht aktiv",
+    "effects": [
+      "Du regenerierst alle LP des Ziels und belebst es wieder.",
+      "Zusatzeffekt: Du erhältst den Status Aufopferung.",
+      "Dauer: 10 Sekunden",
+      "Effekt von Aufopferung: Kampfunfähigkeit nach Ablauf der Effektdauer.",
+      "Bedingung: Aufopferung nicht aktiv"
+    ],
+    "classification": "lost_action",
+    "cache": {
+      "item_id": 72,
+      "type_id": 1,
+      "type": "action",
+      "max_uses": 1,
+      "has_unlimited_uses": false,
+      "weight": 19,
+      "order": 72,
+      "category": {
+        "id": 3,
+        "name": "Heiler"
+      }
+    },
+    "action": {
+      "id": 22345,
+      "icon_id": 64734,
+      "icon_file": "icon.png",
+      "cast_time_seconds": 3,
+      "recast_time_seconds": 2.5,
+      "range_yalms": 30,
+      "effect_range_yalms": 0,
+      "max_charges": 0,
+      "cooldown_group": 58,
+      "additional_cooldown_group": 0,
+      "primary_cost": {
+        "type_id": 20,
+        "value": 1
+      },
+      "secondary_cost": {
+        "type_id": 46,
+        "value": 1743
+      },
+      "aspect_id": 7,
+      "category": {
+        "id": 2,
+        "name": "Zauber"
+      },
+      "class_job_category": {
+        "id": 169,
+        "name": "PLD MÖN KRG DRG BRD WMA SMA BSW GLT NIN MCH DKR AST SAM RMA REV TÄN SNT WEI VPR PKT",
+        "allowed_jobs": [
+          "PLD",
+          "MNK",
+          "WAR",
+          "DRG",
+          "BRD",
+          "WHM",
+          "BLM",
+          "SMN",
+          "SCH",
+          "NIN",
+          "MCH",
+          "DRK",
+          "AST",
+          "SAM",
+          "RDM",
+          "GNB",
+          "DNC",
+          "RPR",
+          "SGE",
+          "VPR",
+          "PCT"
+        ]
+      },
+      "targeting": {
+        "self": false,
+        "party": true,
+        "alliance": true,
+        "hostile": false,
+        "ally": true,
+        "own_pet": false,
+        "party_pet": false,
+        "dead_target_behavior": 1,
+        "is_area": false,
+        "requires_line_of_sight": true,
+        "requires_facing_target": false
+      },
+      "status_gain_self": null,
+      "proc_status": null
+    }
+  },
+  "fr": {
+    "title": "Sacrifice oublié",
+    "description": "Ressuscite la cible et restaure l'intégralité de ses PV.\nEffet additionnel\u00A0: vous inflige l'effet Sacrifice.\nDurée\u00A0: 10s\nSacrifice\u00A0: mort certaine lorsque le compteur atteint zéro.\nCondition\u00A0: ne pas être déjà victime de l'effet Sacrifice.",
+    "effects": [
+      "Ressuscite la cible et restaure l'intégralité de ses PV.",
+      "Effet additionnel\u00A0: vous inflige l'effet Sacrifice.",
+      "Durée\u00A0: 10s",
+      "Sacrifice\u00A0: mort certaine lorsque le compteur atteint zéro.",
+      "Condition\u00A0: ne pas être déjà victime de l'effet Sacrifice."
+    ],
+    "classification": "lost_action",
+    "cache": {
+      "item_id": 72,
+      "type_id": 1,
+      "type": "action",
+      "max_uses": 1,
+      "has_unlimited_uses": false,
+      "weight": 19,
+      "order": 72,
+      "category": {
+        "id": 3,
+        "name": "Soigneur"
+      }
+    },
+    "action": {
+      "id": 22345,
+      "icon_id": 64734,
+      "icon_file": "icon.png",
+      "cast_time_seconds": 3,
+      "recast_time_seconds": 2.5,
+      "range_yalms": 30,
+      "effect_range_yalms": 0,
+      "max_charges": 0,
+      "cooldown_group": 58,
+      "additional_cooldown_group": 0,
+      "primary_cost": {
+        "type_id": 20,
+        "value": 1
+      },
+      "secondary_cost": {
+        "type_id": 46,
+        "value": 1743
+      },
+      "aspect_id": 7,
+      "category": {
+        "id": 2,
+        "name": "Sort"
+      },
+      "class_job_category": {
+        "id": 169,
+        "name": "PLD MOI GUE DRG BRD MBL MNO INV ÉRU NIN MCH CHN AST SAM MRG PSB DNS FCH SAG VPR PIC",
+        "allowed_jobs": [
+          "PLD",
+          "MNK",
+          "WAR",
+          "DRG",
+          "BRD",
+          "WHM",
+          "BLM",
+          "SMN",
+          "SCH",
+          "NIN",
+          "MCH",
+          "DRK",
+          "AST",
+          "SAM",
+          "RDM",
+          "GNB",
+          "DNC",
+          "RPR",
+          "SGE",
+          "VPR",
+          "PCT"
+        ]
+      },
+      "targeting": {
+        "self": false,
+        "party": true,
+        "alliance": true,
+        "hostile": false,
+        "ally": true,
+        "own_pet": false,
+        "party_pet": false,
+        "dead_target_behavior": 1,
+        "is_area": false,
+        "requires_line_of_sight": true,
+        "requires_facing_target": false
+      },
+      "status_gain_self": null,
+      "proc_status": null
+    }
+  },
+  "ja": {
+    "title": "ロスト・サクリファイス",
+    "description": "対象のＨＰを全回復し、さらに蘇生する。\n追加効果：自身に「サクリファイス」を付与する\u3000効果時間：10秒 \nサクリファイス効果：効果時間が経過すると戦闘不能になる。\n発動条件：「サクリファイス」非効果中",
+    "effects": [
+      "対象のＨＰを全回復し、さらに蘇生する。",
+      "追加効果：自身に「サクリファイス」を付与する\u3000効果時間：10秒",
+      "サクリファイス効果：効果時間が経過すると戦闘不能になる。",
+      "発動条件：「サクリファイス」非効果中"
+    ],
+    "classification": "lost_action",
+    "cache": {
+      "item_id": 72,
+      "type_id": 1,
+      "type": "action",
+      "max_uses": 1,
+      "has_unlimited_uses": false,
+      "weight": 19,
+      "order": 72,
+      "category": {
+        "id": 3,
+        "name": "アクション：ヒーラー"
+      }
+    },
+    "action": {
+      "id": 22345,
+      "icon_id": 64734,
+      "icon_file": "icon.png",
+      "cast_time_seconds": 3,
+      "recast_time_seconds": 2.5,
+      "range_yalms": 30,
+      "effect_range_yalms": 0,
+      "max_charges": 0,
+      "cooldown_group": 58,
+      "additional_cooldown_group": 0,
+      "primary_cost": {
+        "type_id": 20,
+        "value": 1
+      },
+      "secondary_cost": {
+        "type_id": 46,
+        "value": 1743
+      },
+      "aspect_id": 7,
+      "category": {
+        "id": 2,
+        "name": "魔法"
+      },
+      "class_job_category": {
+        "id": 169,
+        "name": "ナイト モンク 戦士 竜騎士 吟遊詩人 白魔道士 黒魔道士 召喚士 学者 忍者 機工士 暗黒騎士 占星術師 侍 赤魔道士 ガンブレイカー 踊り子 リーパー 賢者 ヴァイパー ピクトマンサー",
+        "allowed_jobs": [
+          "PLD",
+          "MNK",
+          "WAR",
+          "DRG",
+          "BRD",
+          "WHM",
+          "BLM",
+          "SMN",
+          "SCH",
+          "NIN",
+          "MCH",
+          "DRK",
+          "AST",
+          "SAM",
+          "RDM",
+          "GNB",
+          "DNC",
+          "RPR",
+          "SGE",
+          "VPR",
+          "PCT"
+        ]
+      },
+      "targeting": {
+        "self": false,
+        "party": true,
+        "alliance": true,
+        "hostile": false,
+        "ally": true,
+        "own_pet": false,
+        "party_pet": false,
+        "dead_target_behavior": 1,
+        "is_area": false,
+        "requires_line_of_sight": true,
+        "requires_facing_target": false
+      },
+      "status_gain_self": null,
+      "proc_status": null
+    }
+  }
+}

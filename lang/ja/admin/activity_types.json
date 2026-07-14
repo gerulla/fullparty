@@ -252,10 +252,16 @@
             "url": "URL"
         },
         "option_sources": {
-            "character_classes": "キャラクタークラス",
-            "phantom_jobs": "ファントムジョブ",
-            "raid_positions": "レイドポジション",
-            "static_options": "固定選択肢"
+              "character_classes": "キャラクタークラス",
+              "phantom_jobs": "ファントムジョブ",
+              "raid_positions": "レイドポジション",
+              "bozja_banners": "ボズヤの戦旗",
+              "bozja_essences": "ボズヤの秘薬",
+              "bozja_deep_essences": "ボズヤの霊薬",
+              "bozja_pure_essences": "ボズヤの仙薬",
+              "bozja_lost_actions": "ボズヤのロストアクション",
+              "bozja_lost_items": "ボズヤのロストアイテム",
+              "static_options": "固定選択肢"
         }
     },
     "summary": {

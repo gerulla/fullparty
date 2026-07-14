@@ -1,6 +1,9 @@
 <script setup lang="ts">
 import PageHeader from "@/components/PageHeader.vue";
 import RaidPositions from "@/components/Admin/RaidPositions.vue";
+import BozjaData from "@/components/Admin/BozjaData.vue";
+import type { BozjaItemRecord } from "@/Types/Bozja";
+import { ref } from "vue";
 import { useI18n } from "vue-i18n";
 
 type RaidPositionRecord = {
@@ -14,9 +17,15 @@ type RaidPositionRecord = {
 
 defineProps<{
 	raidPositions: RaidPositionRecord[]
+	bozjaItems: BozjaItemRecord[]
 }>();
 
 const { t } = useI18n();
+const selectedSection = ref('raid_positions');
+const sectionTabs = [
+	{ label: t('admin.system_data.sections.raid_positions'), value: 'raid_positions', icon: 'i-lucide-map-pin' },
+	{ label: t('admin.system_data.sections.bozja_data'), value: 'bozja_data', icon: 'i-lucide-package-open' },
+];
 </script>
 
 <template>
@@ -34,7 +43,9 @@ const { t } = useI18n();
 		</PageHeader>
 
 		<div class="mt-6">
-			<RaidPositions :raid-positions="raidPositions" />
+			<UTabs v-model="selectedSection" :items="sectionTabs" :content="false" variant="link" class="mb-5 w-full" />
+			<RaidPositions v-if="selectedSection === 'raid_positions'" :raid-positions="raidPositions" />
+			<BozjaData v-else :bozja-items="bozjaItems" />
 		</div>
 	</div>
 </template>

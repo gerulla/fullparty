@@ -1,0 +1,63 @@
+{
+  "section_title": "Bozja Data",
+  "section_description": "Reusable Bozja actions, essences, banners, and items for activity setup.",
+  "section_badge": "{count} items",
+  "search_placeholder": "Search Bozja data...",
+  "tabs": { "all": "All ({count})" },
+  "categories": {
+    "banners": "Banners",
+    "essences": "Essences",
+    "deep_essences": "Deep Essences",
+    "pure_essences": "Pure Essences",
+    "lost_actions": "Lost Actions",
+    "lost_items": "Lost Items"
+  },
+  "table": {
+    "item": "Item",
+    "classification": "Classification",
+    "weight": "Cache Weight",
+    "status": "Status"
+  },
+  "status": { "active": "Active", "inactive": "Inactive" },
+  "actions": { "create": "Create Bozja Item" },
+  "empty": {
+    "title": "No Bozja data found",
+    "description": "Import the tracked Bozja data or create an item manually."
+  },
+  "toasts": {
+    "created": "Bozja item created successfully",
+    "updated": "Bozja item updated successfully",
+    "deleted": "Bozja item deleted successfully"
+  },
+  "create_modal": {
+    "title": "Create Bozja Item",
+    "description": "Add reusable Bozja data for activity types."
+  },
+  "edit_modal": {
+    "title": "Edit Bozja Item",
+    "description": "Update this Bozja system data entry."
+  },
+  "delete_modal": {
+    "title": "Delete {name}?",
+    "description": "This removes the item from Bozja system data.",
+    "confirm": "Delete item"
+  },
+  "fields": {
+    "key": "Stored Key",
+    "category": "Dataset",
+    "name": "Name",
+    "name_description": "The English name is required. Add the supported translations where available.",
+    "description": "Description",
+    "classification": "Source Classification",
+    "cache_weight": "Cache Weight",
+    "sort_order": "Sort Order",
+    "icon": "Icon",
+    "icon_description": "Upload a replacement only when the existing icon needs to change.",
+    "icon_placeholder": "Choose an image",
+    "is_active": "Active"
+  },
+  "source_payload": {
+    "title": "Imported source retained",
+    "description": "The original JSON is stored for future Bozja features without loading it into this page."
+  }
+}

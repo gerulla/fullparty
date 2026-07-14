@@ -1,0 +1,364 @@
+{
+  "en": {
+    "title": "Lost Death",
+    "description": "KOs target. The less the target's HP, the greater the chance of success.\nSpirit of the Ordained Effect: Chance of success is increased\nThis action does not share a recast timer with any other actions. Furthermore, the recast timer cannot be affected by other actions.",
+    "effects": [
+      "KOs target. The less the target's HP, the greater the chance of success.",
+      "Spirit of the Ordained Effect: Chance of success is increased",
+      "This action does not share a recast timer with any other actions. Furthermore, the recast timer cannot be affected by other actions."
+    ],
+    "classification": "lost_action",
+    "cache": {
+      "item_id": 19,
+      "type_id": 1,
+      "type": "action",
+      "max_uses": 10,
+      "has_unlimited_uses": false,
+      "weight": 6,
+      "order": 19,
+      "category": {
+        "id": 1,
+        "name": "Offensive"
+      }
+    },
+    "action": {
+      "id": 20719,
+      "icon_id": 64675,
+      "icon_file": "icon.png",
+      "cast_time_seconds": 5,
+      "recast_time_seconds": 60,
+      "range_yalms": 30,
+      "effect_range_yalms": 0,
+      "max_charges": 0,
+      "cooldown_group": 81,
+      "additional_cooldown_group": 0,
+      "primary_cost": {
+        "type_id": 20,
+        "value": 1
+      },
+      "secondary_cost": {
+        "type_id": 0,
+        "value": 0
+      },
+      "aspect_id": 7,
+      "category": {
+        "id": 2,
+        "name": "Spell"
+      },
+      "class_job_category": {
+        "id": 169,
+        "name": "PLD MNK WAR DRG BRD WHM BLM SMN SCH NIN MCH DRK AST SAM RDM GNB DNC RPR SGE VPR PCT",
+        "allowed_jobs": [
+          "PLD",
+          "MNK",
+          "WAR",
+          "DRG",
+          "BRD",
+          "WHM",
+          "BLM",
+          "SMN",
+          "SCH",
+          "NIN",
+          "MCH",
+          "DRK",
+          "AST",
+          "SAM",
+          "RDM",
+          "GNB",
+          "DNC",
+          "RPR",
+          "SGE",
+          "VPR",
+          "PCT"
+        ]
+      },
+      "targeting": {
+        "self": false,
+        "party": false,
+        "alliance": false,
+        "hostile": true,
+        "ally": false,
+        "own_pet": false,
+        "party_pet": false,
+        "dead_target_behavior": 0,
+        "is_area": false,
+        "requires_line_of_sight": true,
+        "requires_facing_target": true
+      },
+      "status_gain_self": null,
+      "proc_status": null
+    }
+  },
+  "de": {
+    "title": "Verschollener Tod",
+    "description": "Du machst das Ziel kampfunfähig. Je niedriger die LP des Ziels, desto größer die Erfolgschance.\nZusatzeffekt bei Trank des Priesters: Erfolgschance erhöht.\nEigener Reaktivierungs-Timer, der nicht durch andere Reaktivierungs-Timer beeinflusst wird.",
+    "effects": [
+      "Du machst das Ziel kampfunfähig. Je niedriger die LP des Ziels, desto größer die Erfolgschance.",
+      "Zusatzeffekt bei Trank des Priesters: Erfolgschance erhöht.",
+      "Eigener Reaktivierungs-Timer, der nicht durch andere Reaktivierungs-Timer beeinflusst wird."
+    ],
+    "classification": "lost_action",
+    "cache": {
+      "item_id": 19,
+      "type_id": 1,
+      "type": "action",
+      "max_uses": 10,
+      "has_unlimited_uses": false,
+      "weight": 6,
+      "order": 19,
+      "category": {
+        "id": 1,
+        "name": "Angreifer"
+      }
+    },
+    "action": {
+      "id": 20719,
+      "icon_id": 64675,
+      "icon_file": "icon.png",
+      "cast_time_seconds": 5,
+      "recast_time_seconds": 60,
+      "range_yalms": 30,
+      "effect_range_yalms": 0,
+      "max_charges": 0,
+      "cooldown_group": 81,
+      "additional_cooldown_group": 0,
+      "primary_cost": {
+        "type_id": 20,
+        "value": 1
+      },
+      "secondary_cost": {
+        "type_id": 0,
+        "value": 0
+      },
+      "aspect_id": 7,
+      "category": {
+        "id": 2,
+        "name": "Zauber"
+      },
+      "class_job_category": {
+        "id": 169,
+        "name": "PLD MÖN KRG DRG BRD WMA SMA BSW GLT NIN MCH DKR AST SAM RMA REV TÄN SNT WEI VPR PKT",
+        "allowed_jobs": [
+          "PLD",
+          "MNK",
+          "WAR",
+          "DRG",
+          "BRD",
+          "WHM",
+          "BLM",
+          "SMN",
+          "SCH",
+          "NIN",
+          "MCH",
+          "DRK",
+          "AST",
+          "SAM",
+          "RDM",
+          "GNB",
+          "DNC",
+          "RPR",
+          "SGE",
+          "VPR",
+          "PCT"
+        ]
+      },
+      "targeting": {
+        "self": false,
+        "party": false,
+        "alliance": false,
+        "hostile": true,
+        "ally": false,
+        "own_pet": false,
+        "party_pet": false,
+        "dead_target_behavior": 0,
+        "is_area": false,
+        "requires_line_of_sight": true,
+        "requires_facing_target": true
+      },
+      "status_gain_self": null,
+      "proc_status": null
+    }
+  },
+  "fr": {
+    "title": "Mort oubliée",
+    "description": "Tente d'achever instantanément la cible.\nMoins elle a de PV, plus les chances de succès sont élevées.\nEffet additionnel avec un breuvage de prêtre\u00A0: augmente les chances de succès.\nCe sort a un temps de recharge indépendant qui n'est pas affecté par ceux des techniques d'armes et des autres sorts.",
+    "effects": [
+      "Tente d'achever instantanément la cible.",
+      "Moins elle a de PV, plus les chances de succès sont élevées.",
+      "Effet additionnel avec un breuvage de prêtre\u00A0: augmente les chances de succès.",
+      "Ce sort a un temps de recharge indépendant qui n'est pas affecté par ceux des techniques d'armes et des autres sorts."
+    ],
+    "classification": "lost_action",
+    "cache": {
+      "item_id": 19,
+      "type_id": 1,
+      "type": "action",
+      "max_uses": 10,
+      "has_unlimited_uses": false,
+      "weight": 6,
+      "order": 19,
+      "category": {
+        "id": 1,
+        "name": "Attaquant"
+      }
+    },
+    "action": {
+      "id": 20719,
+      "icon_id": 64675,
+      "icon_file": "icon.png",
+      "cast_time_seconds": 5,
+      "recast_time_seconds": 60,
+      "range_yalms": 30,
+      "effect_range_yalms": 0,
+      "max_charges": 0,
+      "cooldown_group": 81,
+      "additional_cooldown_group": 0,
+      "primary_cost": {
+        "type_id": 20,
+        "value": 1
+      },
+      "secondary_cost": {
+        "type_id": 0,
+        "value": 0
+      },
+      "aspect_id": 7,
+      "category": {
+        "id": 2,
+        "name": "Sort"
+      },
+      "class_job_category": {
+        "id": 169,
+        "name": "PLD MOI GUE DRG BRD MBL MNO INV ÉRU NIN MCH CHN AST SAM MRG PSB DNS FCH SAG VPR PIC",
+        "allowed_jobs": [
+          "PLD",
+          "MNK",
+          "WAR",
+          "DRG",
+          "BRD",
+          "WHM",
+          "BLM",
+          "SMN",
+          "SCH",
+          "NIN",
+          "MCH",
+          "DRK",
+          "AST",
+          "SAM",
+          "RDM",
+          "GNB",
+          "DNC",
+          "RPR",
+          "SGE",
+          "VPR",
+          "PCT"
+        ]
+      },
+      "targeting": {
+        "self": false,
+        "party": false,
+        "alliance": false,
+        "hostile": true,
+        "ally": false,
+        "own_pet": false,
+        "party_pet": false,
+        "dead_target_behavior": 0,
+        "is_area": false,
+        "requires_line_of_sight": true,
+        "requires_facing_target": true
+      },
+      "status_gain_self": null,
+      "proc_status": null
+    }
+  },
+  "ja": {
+    "title": "ロスト・デス",
+    "description": "対象を戦闘不能にする。\n対象のＨＰが少ないほど成功率が上昇する。\nこの魔法は固有のリキャストタイマーを持ち、他のウェポンスキルや魔法のリキャストタイマーの影響を受けない。\n司祭の薬時追加効果：成功率がさらに上昇する。",
+    "effects": [
+      "対象を戦闘不能にする。",
+      "対象のＨＰが少ないほど成功率が上昇する。",
+      "この魔法は固有のリキャストタイマーを持ち、他のウェポンスキルや魔法のリキャストタイマーの影響を受けない。",
+      "司祭の薬時追加効果：成功率がさらに上昇する。"
+    ],
+    "classification": "lost_action",
+    "cache": {
+      "item_id": 19,
+      "type_id": 1,
+      "type": "action",
+      "max_uses": 10,
+      "has_unlimited_uses": false,
+      "weight": 6,
+      "order": 19,
+      "category": {
+        "id": 1,
+        "name": "アクション：アタッカー"
+      }
+    },
+    "action": {
+      "id": 20719,
+      "icon_id": 64675,
+      "icon_file": "icon.png",
+      "cast_time_seconds": 5,
+      "recast_time_seconds": 60,
+      "range_yalms": 30,
+      "effect_range_yalms": 0,
+      "max_charges": 0,
+      "cooldown_group": 81,
+      "additional_cooldown_group": 0,
+      "primary_cost": {
+        "type_id": 20,
+        "value": 1
+      },
+      "secondary_cost": {
+        "type_id": 0,
+        "value": 0
+      },
+      "aspect_id": 7,
+      "category": {
+        "id": 2,
+        "name": "魔法"
+      },
+      "class_job_category": {
+        "id": 169,
+        "name": "ナイト モンク 戦士 竜騎士 吟遊詩人 白魔道士 黒魔道士 召喚士 学者 忍者 機工士 暗黒騎士 占星術師 侍 赤魔道士 ガンブレイカー 踊り子 リーパー 賢者 ヴァイパー ピクトマンサー",
+        "allowed_jobs": [
+          "PLD",
+          "MNK",
+          "WAR",
+          "DRG",
+          "BRD",
+          "WHM",
+          "BLM",
+          "SMN",
+          "SCH",
+          "NIN",
+          "MCH",
+          "DRK",
+          "AST",
+          "SAM",
+          "RDM",
+          "GNB",
+          "DNC",
+          "RPR",
+          "SGE",
+          "VPR",
+          "PCT"
+        ]
+      },
+      "targeting": {
+        "self": false,
+        "party": false,
+        "alliance": false,
+        "hostile": true,
+        "ally": false,
+        "own_pet": false,
+        "party_pet": false,
+        "dead_target_behavior": 0,
+        "is_area": false,
+        "requires_line_of_sight": true,
+        "requires_facing_target": true
+      },
+      "status_gain_self": null,
+      "proc_status": null
+    }
+  }
+}

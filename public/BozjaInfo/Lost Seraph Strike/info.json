@@ -1,0 +1,311 @@
+{
+  "en": {
+    "title": "Lost Seraph Strike",
+    "description": "Consumes MP to deliver a jumping attack that deals unaspected damage with a potency of 500.\nAdditional Effect: Reduces target's accuracy by 10%.\nDuration: 15s\nAdditional Effect: Grants Cleric Stance to self.\nCleric Stance Bonus: Reduces healing potency by 60% while increasing damage dealt by 60%.\nDuration: 15s\nCannot be executed while bound.",
+    "effects": [
+      "Consumes MP to deliver a jumping attack that deals unaspected damage with a potency of 500.",
+      "Additional Effect: Reduces target's accuracy by 10%.",
+      "Duration: 15s",
+      "Additional Effect: Grants Cleric Stance to self.",
+      "Cleric Stance Bonus: Reduces healing potency by 60% while increasing damage dealt by 60%.",
+      "Duration: 15s",
+      "Cannot be executed while bound."
+    ],
+    "classification": "lost_action",
+    "cache": {
+      "item_id": 81,
+      "type_id": 1,
+      "type": "action",
+      "max_uses": null,
+      "has_unlimited_uses": true,
+      "weight": 8,
+      "order": 81,
+      "category": {
+        "id": 6,
+        "name": "Detrimental"
+      }
+    },
+    "action": {
+      "id": 22354,
+      "icon_id": 64737,
+      "icon_file": "icon.png",
+      "cast_time_seconds": 0,
+      "recast_time_seconds": 60,
+      "range_yalms": 20,
+      "effect_range_yalms": 10,
+      "max_charges": 0,
+      "cooldown_group": 81,
+      "additional_cooldown_group": 0,
+      "primary_cost": {
+        "type_id": 3,
+        "value": 50
+      },
+      "secondary_cost": {
+        "type_id": 0,
+        "value": 0
+      },
+      "aspect_id": 7,
+      "category": {
+        "id": 4,
+        "name": "Ability"
+      },
+      "class_job_category": {
+        "id": 165,
+        "name": "WHM SCH AST SGE",
+        "allowed_jobs": [
+          "WHM",
+          "SCH",
+          "AST",
+          "SGE"
+        ]
+      },
+      "targeting": {
+        "self": false,
+        "party": false,
+        "alliance": false,
+        "hostile": true,
+        "ally": false,
+        "own_pet": false,
+        "party_pet": false,
+        "dead_target_behavior": 0,
+        "is_area": false,
+        "requires_line_of_sight": true,
+        "requires_facing_target": true
+      },
+      "status_gain_self": null,
+      "proc_status": null
+    }
+  },
+  "de": {
+    "title": "Verschollener Seraphenschlag",
+    "description": "Du führst eine magische Sprung-Attacke auf das Ziel und umstehende Gegner aus.\nAttacke-Wert: 500\nZusatzeffekt: Präzision der Ziele um 10\u00A0% verringert\nDauer: 15 Sekunden\nZusatzeffekt: Bußprediger\nEffekt von Bußprediger: Wirkung eigener Heilung ist um 60\u00A0% verringert, eigener erteilter Schaden dafür um 60\u00A0% erhöht.\nKann nicht während Fessel ausgeführt werden.",
+    "effects": [
+      "Du führst eine magische Sprung-Attacke auf das Ziel und umstehende Gegner aus.",
+      "Attacke-Wert: 500",
+      "Zusatzeffekt: Präzision der Ziele um 10\u00A0% verringert",
+      "Dauer: 15 Sekunden",
+      "Zusatzeffekt: Bußprediger",
+      "Effekt von Bußprediger: Wirkung eigener Heilung ist um 60\u00A0% verringert, eigener erteilter Schaden dafür um 60\u00A0% erhöht.",
+      "Kann nicht während Fessel ausgeführt werden."
+    ],
+    "classification": "lost_action",
+    "cache": {
+      "item_id": 81,
+      "type_id": 1,
+      "type": "action",
+      "max_uses": null,
+      "has_unlimited_uses": true,
+      "weight": 8,
+      "order": 81,
+      "category": {
+        "id": 6,
+        "name": "Saboteur"
+      }
+    },
+    "action": {
+      "id": 22354,
+      "icon_id": 64737,
+      "icon_file": "icon.png",
+      "cast_time_seconds": 0,
+      "recast_time_seconds": 60,
+      "range_yalms": 20,
+      "effect_range_yalms": 10,
+      "max_charges": 0,
+      "cooldown_group": 81,
+      "additional_cooldown_group": 0,
+      "primary_cost": {
+        "type_id": 3,
+        "value": 50
+      },
+      "secondary_cost": {
+        "type_id": 0,
+        "value": 0
+      },
+      "aspect_id": 7,
+      "category": {
+        "id": 4,
+        "name": "Talent"
+      },
+      "class_job_category": {
+        "id": 165,
+        "name": "WMA GLT AST WEI",
+        "allowed_jobs": [
+          "WHM",
+          "SCH",
+          "AST",
+          "SGE"
+        ]
+      },
+      "targeting": {
+        "self": false,
+        "party": false,
+        "alliance": false,
+        "hostile": true,
+        "ally": false,
+        "own_pet": false,
+        "party_pet": false,
+        "dead_target_behavior": 0,
+        "is_area": false,
+        "requires_line_of_sight": true,
+        "requires_facing_target": true
+      },
+      "status_gain_self": null,
+      "proc_status": null
+    }
+  },
+  "fr": {
+    "title": "Frappe séraphine oubliée",
+    "description": "Saute sur la cible et porte une attaque magique sur elle et les ennemis alentour.\nPuissance\u00A0: 500\nEffet additionnel\u00A0: réduit de 10% la précision de la cible.\nDurée\u00A0: 15s\nEffet additionnel\u00A0: vous octroie Prestance du prêtre.\nPrestance du prêtre\u00A0: réduit de 60% la puissance des effets curatifs que vous prodiguez et augmente de 60% les dégâts que vous infligez.\nDurée\u00A0: 15s\nNe peut pas être utilisé sous l'effet Entrave.",
+    "effects": [
+      "Saute sur la cible et porte une attaque magique sur elle et les ennemis alentour.",
+      "Puissance\u00A0: 500",
+      "Effet additionnel\u00A0: réduit de 10% la précision de la cible.",
+      "Durée\u00A0: 15s",
+      "Effet additionnel\u00A0: vous octroie Prestance du prêtre.",
+      "Prestance du prêtre\u00A0: réduit de 60% la puissance des effets curatifs que vous prodiguez et augmente de 60% les dégâts que vous infligez.",
+      "Durée\u00A0: 15s",
+      "Ne peut pas être utilisé sous l'effet Entrave."
+    ],
+    "classification": "lost_action",
+    "cache": {
+      "item_id": 81,
+      "type_id": 1,
+      "type": "action",
+      "max_uses": null,
+      "has_unlimited_uses": true,
+      "weight": 8,
+      "order": 81,
+      "category": {
+        "id": 6,
+        "name": "Sapeur"
+      }
+    },
+    "action": {
+      "id": 22354,
+      "icon_id": 64737,
+      "icon_file": "icon.png",
+      "cast_time_seconds": 0,
+      "recast_time_seconds": 60,
+      "range_yalms": 20,
+      "effect_range_yalms": 10,
+      "max_charges": 0,
+      "cooldown_group": 81,
+      "additional_cooldown_group": 0,
+      "primary_cost": {
+        "type_id": 3,
+        "value": 50
+      },
+      "secondary_cost": {
+        "type_id": 0,
+        "value": 0
+      },
+      "aspect_id": 7,
+      "category": {
+        "id": 4,
+        "name": "Aptitude"
+      },
+      "class_job_category": {
+        "id": 165,
+        "name": "MBL ÉRU AST SAG",
+        "allowed_jobs": [
+          "WHM",
+          "SCH",
+          "AST",
+          "SGE"
+        ]
+      },
+      "targeting": {
+        "self": false,
+        "party": false,
+        "alliance": false,
+        "hostile": true,
+        "ally": false,
+        "own_pet": false,
+        "party_pet": false,
+        "dead_target_behavior": 0,
+        "is_area": false,
+        "requires_line_of_sight": true,
+        "requires_facing_target": true
+      },
+      "status_gain_self": null,
+      "proc_status": null
+    }
+  },
+  "ja": {
+    "title": "ロスト・セラフストライク",
+    "description": "ＭＰを消費し、対象に飛び掛かりつつ対象を中心に魔法攻撃。\u3000威力：500\nバインド中は実行不可。\n追加効果：対象の命中率を10％減少させる。\n効果時間：15秒\n追加効果：自身に「クルセードスタンス」を付与する。\nクルセードスタンス効果：自身からのＨＰ回復効果を60％減少させる代わりに、自身の与ダメージを60％上昇させる。\n効果時間：15秒",
+    "effects": [
+      "ＭＰを消費し、対象に飛び掛かりつつ対象を中心に魔法攻撃。\u3000威力：500",
+      "バインド中は実行不可。",
+      "追加効果：対象の命中率を10％減少させる。",
+      "効果時間：15秒",
+      "追加効果：自身に「クルセードスタンス」を付与する。",
+      "クルセードスタンス効果：自身からのＨＰ回復効果を60％減少させる代わりに、自身の与ダメージを60％上昇させる。",
+      "効果時間：15秒"
+    ],
+    "classification": "lost_action",
+    "cache": {
+      "item_id": 81,
+      "type_id": 1,
+      "type": "action",
+      "max_uses": null,
+      "has_unlimited_uses": true,
+      "weight": 8,
+      "order": 81,
+      "category": {
+        "id": 6,
+        "name": "アクション：デバッファー"
+      }
+    },
+    "action": {
+      "id": 22354,
+      "icon_id": 64737,
+      "icon_file": "icon.png",
+      "cast_time_seconds": 0,
+      "recast_time_seconds": 60,
+      "range_yalms": 20,
+      "effect_range_yalms": 10,
+      "max_charges": 0,
+      "cooldown_group": 81,
+      "additional_cooldown_group": 0,
+      "primary_cost": {
+        "type_id": 3,
+        "value": 50
+      },
+      "secondary_cost": {
+        "type_id": 0,
+        "value": 0
+      },
+      "aspect_id": 7,
+      "category": {
+        "id": 4,
+        "name": "アビリティ"
+      },
+      "class_job_category": {
+        "id": 165,
+        "name": "白魔道士 学者 占星術師 賢者",
+        "allowed_jobs": [
+          "WHM",
+          "SCH",
+          "AST",
+          "SGE"
+        ]
+      },
+      "targeting": {
+        "self": false,
+        "party": false,
+        "alliance": false,
+        "hostile": true,
+        "ally": false,
+        "own_pet": false,
+        "party_pet": false,
+        "dead_target_behavior": 0,
+        "is_area": false,
+        "requires_line_of_sight": true,
+        "requires_facing_target": true
+      },
+      "status_gain_self": null,
+      "proc_status": null
+    }
+  }
+}

@@ -1,0 +1,293 @@
+{
+  "en": {
+    "title": "Deep Essence of the Aetherweaver",
+    "description": "Increases damage dealt by 96%.\nEffect ends upon reuse.\nCannot be used with other Essence or Deep Essence actions.",
+    "effects": [
+      "Increases damage dealt by 96%.",
+      "Effect ends upon reuse.",
+      "Cannot be used with other Essence or Deep Essence actions."
+    ],
+    "classification": "deep_essence",
+    "cache": {
+      "item_id": 56,
+      "type_id": 2,
+      "type": "item",
+      "max_uses": 1,
+      "has_unlimited_uses": false,
+      "weight": 6,
+      "order": 56,
+      "category": {
+        "id": 7,
+        "name": "Item-related"
+      }
+    },
+    "action": {
+      "id": 20756,
+      "icon_id": 64712,
+      "icon_file": "icon.png",
+      "cast_time_seconds": 0,
+      "recast_time_seconds": 0,
+      "range_yalms": 0,
+      "effect_range_yalms": 0,
+      "max_charges": 0,
+      "cooldown_group": 0,
+      "additional_cooldown_group": 0,
+      "primary_cost": {
+        "type_id": 0,
+        "value": 0
+      },
+      "secondary_cost": {
+        "type_id": 0,
+        "value": 0
+      },
+      "aspect_id": 0,
+      "category": {
+        "id": 5,
+        "name": "Item"
+      },
+      "class_job_category": {
+        "id": 165,
+        "name": "WHM SCH AST SGE",
+        "allowed_jobs": [
+          "WHM",
+          "SCH",
+          "AST",
+          "SGE"
+        ]
+      },
+      "targeting": {
+        "self": true,
+        "party": false,
+        "alliance": false,
+        "hostile": false,
+        "ally": false,
+        "own_pet": false,
+        "party_pet": false,
+        "dead_target_behavior": 0,
+        "is_area": false,
+        "requires_line_of_sight": true,
+        "requires_facing_target": true
+      },
+      "status_gain_self": null,
+      "proc_status": null
+    }
+  },
+  "de": {
+    "title": "Wundertrank des Veteranen",
+    "description": "Du erhöhst deinen ausgeteilten Schaden um 96\u00A0%.\nKann nicht zusammen mit anderen Zaubertränken, Wundertränken oder ähnlichen Tränken eingesetzt werden.\nEffekt endet bei erneuter Ausführung.",
+    "effects": [
+      "Du erhöhst deinen ausgeteilten Schaden um 96\u00A0%.",
+      "Kann nicht zusammen mit anderen Zaubertränken, Wundertränken oder ähnlichen Tränken eingesetzt werden.",
+      "Effekt endet bei erneuter Ausführung."
+    ],
+    "classification": "lost_item",
+    "cache": {
+      "item_id": 56,
+      "type_id": 2,
+      "type": "item",
+      "max_uses": 1,
+      "has_unlimited_uses": false,
+      "weight": 6,
+      "order": 56,
+      "category": {
+        "id": 7,
+        "name": "Gegenstände"
+      }
+    },
+    "action": {
+      "id": 20756,
+      "icon_id": 64712,
+      "icon_file": "icon.png",
+      "cast_time_seconds": 0,
+      "recast_time_seconds": 0,
+      "range_yalms": 0,
+      "effect_range_yalms": 0,
+      "max_charges": 0,
+      "cooldown_group": 0,
+      "additional_cooldown_group": 0,
+      "primary_cost": {
+        "type_id": 0,
+        "value": 0
+      },
+      "secondary_cost": {
+        "type_id": 0,
+        "value": 0
+      },
+      "aspect_id": 0,
+      "category": {
+        "id": 5,
+        "name": "Gegenstand"
+      },
+      "class_job_category": {
+        "id": 165,
+        "name": "WMA GLT AST WEI",
+        "allowed_jobs": [
+          "WHM",
+          "SCH",
+          "AST",
+          "SGE"
+        ]
+      },
+      "targeting": {
+        "self": true,
+        "party": false,
+        "alliance": false,
+        "hostile": false,
+        "ally": false,
+        "own_pet": false,
+        "party_pet": false,
+        "dead_target_behavior": 0,
+        "is_area": false,
+        "requires_line_of_sight": true,
+        "requires_facing_target": true
+      },
+      "status_gain_self": null,
+      "proc_status": null
+    }
+  },
+  "fr": {
+    "title": "Breuvage miraculeux de prêtre guerrier",
+    "description": "Augmente de 96% vos dégâts infligés.\nNe peut pas être utilisé en même temps qu'une autre action de type Breuvage.",
+    "effects": [
+      "Augmente de 96% vos dégâts infligés.",
+      "Ne peut pas être utilisé en même temps qu'une autre action de type Breuvage."
+    ],
+    "classification": "lost_item",
+    "cache": {
+      "item_id": 56,
+      "type_id": 2,
+      "type": "item",
+      "max_uses": 1,
+      "has_unlimited_uses": false,
+      "weight": 6,
+      "order": 56,
+      "category": {
+        "id": 7,
+        "name": "Objets"
+      }
+    },
+    "action": {
+      "id": 20756,
+      "icon_id": 64712,
+      "icon_file": "icon.png",
+      "cast_time_seconds": 0,
+      "recast_time_seconds": 0,
+      "range_yalms": 0,
+      "effect_range_yalms": 0,
+      "max_charges": 0,
+      "cooldown_group": 0,
+      "additional_cooldown_group": 0,
+      "primary_cost": {
+        "type_id": 0,
+        "value": 0
+      },
+      "secondary_cost": {
+        "type_id": 0,
+        "value": 0
+      },
+      "aspect_id": 0,
+      "category": {
+        "id": 5,
+        "name": "Objet"
+      },
+      "class_job_category": {
+        "id": 165,
+        "name": "MBL ÉRU AST SAG",
+        "allowed_jobs": [
+          "WHM",
+          "SCH",
+          "AST",
+          "SGE"
+        ]
+      },
+      "targeting": {
+        "self": true,
+        "party": false,
+        "alliance": false,
+        "hostile": false,
+        "ally": false,
+        "own_pet": false,
+        "party_pet": false,
+        "dead_target_behavior": 0,
+        "is_area": false,
+        "requires_line_of_sight": true,
+        "requires_facing_target": true
+      },
+      "status_gain_self": null,
+      "proc_status": null
+    }
+  },
+  "ja": {
+    "title": "術士の霊薬",
+    "description": "英雄の記憶を継承し、自身の与ダメージを96％上昇させる。\n他の「秘薬」「霊薬」系薬品とは同時に使えない。\n効果時間：永続",
+    "effects": [
+      "英雄の記憶を継承し、自身の与ダメージを96％上昇させる。",
+      "他の「秘薬」「霊薬」系薬品とは同時に使えない。",
+      "効果時間：永続"
+    ],
+    "classification": "lost_item",
+    "cache": {
+      "item_id": 56,
+      "type_id": 2,
+      "type": "item",
+      "max_uses": 1,
+      "has_unlimited_uses": false,
+      "weight": 6,
+      "order": 56,
+      "category": {
+        "id": 7,
+        "name": "アイテム"
+      }
+    },
+    "action": {
+      "id": 20756,
+      "icon_id": 64712,
+      "icon_file": "icon.png",
+      "cast_time_seconds": 0,
+      "recast_time_seconds": 0,
+      "range_yalms": 0,
+      "effect_range_yalms": 0,
+      "max_charges": 0,
+      "cooldown_group": 0,
+      "additional_cooldown_group": 0,
+      "primary_cost": {
+        "type_id": 0,
+        "value": 0
+      },
+      "secondary_cost": {
+        "type_id": 0,
+        "value": 0
+      },
+      "aspect_id": 0,
+      "category": {
+        "id": 5,
+        "name": "アイテム"
+      },
+      "class_job_category": {
+        "id": 165,
+        "name": "白魔道士 学者 占星術師 賢者",
+        "allowed_jobs": [
+          "WHM",
+          "SCH",
+          "AST",
+          "SGE"
+        ]
+      },
+      "targeting": {
+        "self": true,
+        "party": false,
+        "alliance": false,
+        "hostile": false,
+        "ally": false,
+        "own_pet": false,
+        "party_pet": false,
+        "dead_target_behavior": 0,
+        "is_area": false,
+        "requires_line_of_sight": true,
+        "requires_facing_target": true
+      },
+      "status_gain_self": null,
+      "proc_status": null
+    }
+  }
+}

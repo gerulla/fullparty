@@ -1,0 +1,63 @@
+{
+  "section_title": "Bozja-Daten",
+  "section_description": "Wiederverwendbare Bozja-Aktionen, Essenzen, Banner und Gegenstände für Aktivitätstypen.",
+  "section_badge": "{count} Einträge",
+  "search_placeholder": "Bozja-Daten durchsuchen...",
+  "tabs": { "all": "Alle ({count})" },
+  "categories": {
+    "banners": "Banner",
+    "essences": "Essenzen",
+    "deep_essences": "Tiefe Essenzen",
+    "pure_essences": "Reine Essenzen",
+    "lost_actions": "Verschollene Kommandos",
+    "lost_items": "Verschollene Gegenstände"
+  },
+  "table": {
+    "item": "Eintrag",
+    "classification": "Klassifizierung",
+    "weight": "Gewicht im Holster",
+    "status": "Status"
+  },
+  "status": { "active": "Aktiv", "inactive": "Inaktiv" },
+  "actions": { "create": "Bozja-Eintrag erstellen" },
+  "empty": {
+    "title": "Keine Bozja-Daten gefunden",
+    "description": "Importiere die hinterlegten Bozja-Daten oder erstelle einen Eintrag manuell."
+  },
+  "toasts": {
+    "created": "Bozja-Eintrag erfolgreich erstellt",
+    "updated": "Bozja-Eintrag erfolgreich aktualisiert",
+    "deleted": "Bozja-Eintrag erfolgreich gelöscht"
+  },
+  "create_modal": {
+    "title": "Bozja-Eintrag erstellen",
+    "description": "Füge wiederverwendbare Bozja-Daten für Aktivitätstypen hinzu."
+  },
+  "edit_modal": {
+    "title": "Bozja-Eintrag bearbeiten",
+    "description": "Aktualisiere diesen Eintrag in den Bozja-Systemdaten."
+  },
+  "delete_modal": {
+    "title": "{name} löschen?",
+    "description": "Dadurch wird der Eintrag aus den Bozja-Systemdaten entfernt.",
+    "confirm": "Eintrag löschen"
+  },
+  "fields": {
+    "key": "Gespeicherter Schlüssel",
+    "category": "Datensatz",
+    "name": "Name",
+    "name_description": "Der englische Name ist erforderlich. Ergänze vorhandene Übersetzungen für die unterstützten Sprachen.",
+    "description": "Beschreibung",
+    "classification": "Quellklassifizierung",
+    "cache_weight": "Gewicht im Holster",
+    "sort_order": "Sortierung",
+    "icon": "Icon",
+    "icon_description": "Lade nur dann einen Ersatz hoch, wenn das vorhandene Icon geändert werden soll.",
+    "icon_placeholder": "Bild auswählen",
+    "is_active": "Aktiv"
+  },
+  "source_payload": {
+    "title": "Importierte Quelldaten gespeichert",
+    "description": "Die ursprünglichen JSON-Daten werden für zukünftige Bozja-Funktionen gespeichert, ohne sie auf dieser Seite zu laden."
+  }
+}

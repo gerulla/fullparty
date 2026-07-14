@@ -1,5 +1,9 @@
 {
   "title": "System Data",
   "subtitle": "Manage reusable system-level data used across FullParty.",
-  "admin_only": "Admin only"
+  "admin_only": "Admin only",
+  "sections": {
+    "raid_positions": "Raid Positions",
+    "bozja_data": "Bozja Data"
+  }
 }

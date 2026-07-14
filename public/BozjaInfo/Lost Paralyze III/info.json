@@ -1,0 +1,325 @@
+{
+  "en": {
+    "title": "Lost Paralyze III",
+    "description": "Afflicts target and all nearby enemies with Paralysis.\nDuration: 60s",
+    "effects": [
+      "Afflicts target and all nearby enemies with Paralysis.",
+      "Duration: 60s"
+    ],
+    "classification": "lost_action",
+    "cache": {
+      "item_id": 1,
+      "type_id": 1,
+      "type": "action",
+      "max_uses": 99,
+      "has_unlimited_uses": false,
+      "weight": 3,
+      "order": 1,
+      "category": {
+        "id": 6,
+        "name": "Detrimental"
+      }
+    },
+    "action": {
+      "id": 20701,
+      "icon_id": 64657,
+      "icon_file": "icon.png",
+      "cast_time_seconds": 2.5,
+      "recast_time_seconds": 2.5,
+      "range_yalms": 30,
+      "effect_range_yalms": 6,
+      "max_charges": 0,
+      "cooldown_group": 58,
+      "additional_cooldown_group": 0,
+      "primary_cost": {
+        "type_id": 20,
+        "value": 1
+      },
+      "secondary_cost": {
+        "type_id": 0,
+        "value": 0
+      },
+      "aspect_id": 7,
+      "category": {
+        "id": 2,
+        "name": "Spell"
+      },
+      "class_job_category": {
+        "id": 174,
+        "name": "PLD MNK WAR DRG BRD NIN MCH DRK SAM GNB DNC RPR VPR",
+        "allowed_jobs": [
+          "PLD",
+          "MNK",
+          "WAR",
+          "DRG",
+          "BRD",
+          "NIN",
+          "MCH",
+          "DRK",
+          "SAM",
+          "GNB",
+          "DNC",
+          "RPR",
+          "VPR"
+        ]
+      },
+      "targeting": {
+        "self": false,
+        "party": false,
+        "alliance": false,
+        "hostile": true,
+        "ally": false,
+        "own_pet": false,
+        "party_pet": false,
+        "dead_target_behavior": 0,
+        "is_area": false,
+        "requires_line_of_sight": true,
+        "requires_facing_target": true
+      },
+      "status_gain_self": null,
+      "proc_status": null
+    }
+  },
+  "de": {
+    "title": "Verschollenes Paralyga",
+    "description": "Du fügst dem Ziel und den Gegnern in seiner Nähe Paralyse zu.\nDauer: 60 Sekunden",
+    "effects": [
+      "Du fügst dem Ziel und den Gegnern in seiner Nähe Paralyse zu.",
+      "Dauer: 60 Sekunden"
+    ],
+    "classification": "lost_action",
+    "cache": {
+      "item_id": 1,
+      "type_id": 1,
+      "type": "action",
+      "max_uses": 99,
+      "has_unlimited_uses": false,
+      "weight": 3,
+      "order": 1,
+      "category": {
+        "id": 6,
+        "name": "Saboteur"
+      }
+    },
+    "action": {
+      "id": 20701,
+      "icon_id": 64657,
+      "icon_file": "icon.png",
+      "cast_time_seconds": 2.5,
+      "recast_time_seconds": 2.5,
+      "range_yalms": 30,
+      "effect_range_yalms": 6,
+      "max_charges": 0,
+      "cooldown_group": 58,
+      "additional_cooldown_group": 0,
+      "primary_cost": {
+        "type_id": 20,
+        "value": 1
+      },
+      "secondary_cost": {
+        "type_id": 0,
+        "value": 0
+      },
+      "aspect_id": 7,
+      "category": {
+        "id": 2,
+        "name": "Zauber"
+      },
+      "class_job_category": {
+        "id": 174,
+        "name": "PLD MÖN KRG DRG BRD NIN MCH DKR SAM REV TÄN SNT VPR",
+        "allowed_jobs": [
+          "PLD",
+          "MNK",
+          "WAR",
+          "DRG",
+          "BRD",
+          "NIN",
+          "MCH",
+          "DRK",
+          "SAM",
+          "GNB",
+          "DNC",
+          "RPR",
+          "VPR"
+        ]
+      },
+      "targeting": {
+        "self": false,
+        "party": false,
+        "alliance": false,
+        "hostile": true,
+        "ally": false,
+        "own_pet": false,
+        "party_pet": false,
+        "dead_target_behavior": 0,
+        "is_area": false,
+        "requires_line_of_sight": true,
+        "requires_facing_target": true
+      },
+      "status_gain_self": null,
+      "proc_status": null
+    }
+  },
+  "fr": {
+    "title": "Méga Paralysie oubliée",
+    "description": "Inflige Paralysie à la cible et aux ennemis autour.\nDurée\u00A0: 60s",
+    "effects": [
+      "Inflige Paralysie à la cible et aux ennemis autour.",
+      "Durée\u00A0: 60s"
+    ],
+    "classification": "lost_action",
+    "cache": {
+      "item_id": 1,
+      "type_id": 1,
+      "type": "action",
+      "max_uses": 99,
+      "has_unlimited_uses": false,
+      "weight": 3,
+      "order": 1,
+      "category": {
+        "id": 6,
+        "name": "Sapeur"
+      }
+    },
+    "action": {
+      "id": 20701,
+      "icon_id": 64657,
+      "icon_file": "icon.png",
+      "cast_time_seconds": 2.5,
+      "recast_time_seconds": 2.5,
+      "range_yalms": 30,
+      "effect_range_yalms": 6,
+      "max_charges": 0,
+      "cooldown_group": 58,
+      "additional_cooldown_group": 0,
+      "primary_cost": {
+        "type_id": 20,
+        "value": 1
+      },
+      "secondary_cost": {
+        "type_id": 0,
+        "value": 0
+      },
+      "aspect_id": 7,
+      "category": {
+        "id": 2,
+        "name": "Sort"
+      },
+      "class_job_category": {
+        "id": 174,
+        "name": "PLD MOI GUE DRG BRD NIN MCH CHN SAM PSB DNS FCH VPR",
+        "allowed_jobs": [
+          "PLD",
+          "MNK",
+          "WAR",
+          "DRG",
+          "BRD",
+          "NIN",
+          "MCH",
+          "DRK",
+          "SAM",
+          "GNB",
+          "DNC",
+          "RPR",
+          "VPR"
+        ]
+      },
+      "targeting": {
+        "self": false,
+        "party": false,
+        "alliance": false,
+        "hostile": true,
+        "ally": false,
+        "own_pet": false,
+        "party_pet": false,
+        "dead_target_behavior": 0,
+        "is_area": false,
+        "requires_line_of_sight": true,
+        "requires_facing_target": true
+      },
+      "status_gain_self": null,
+      "proc_status": null
+    }
+  },
+  "ja": {
+    "title": "ロスト・パライガ",
+    "description": "対象とその周囲の敵に麻痺を付与する。\u3000効果時間：60秒",
+    "effects": [
+      "対象とその周囲の敵に麻痺を付与する。\u3000効果時間：60秒"
+    ],
+    "classification": "lost_action",
+    "cache": {
+      "item_id": 1,
+      "type_id": 1,
+      "type": "action",
+      "max_uses": 99,
+      "has_unlimited_uses": false,
+      "weight": 3,
+      "order": 1,
+      "category": {
+        "id": 6,
+        "name": "アクション：デバッファー"
+      }
+    },
+    "action": {
+      "id": 20701,
+      "icon_id": 64657,
+      "icon_file": "icon.png",
+      "cast_time_seconds": 2.5,
+      "recast_time_seconds": 2.5,
+      "range_yalms": 30,
+      "effect_range_yalms": 6,
+      "max_charges": 0,
+      "cooldown_group": 58,
+      "additional_cooldown_group": 0,
+      "primary_cost": {
+        "type_id": 20,
+        "value": 1
+      },
+      "secondary_cost": {
+        "type_id": 0,
+        "value": 0
+      },
+      "aspect_id": 7,
+      "category": {
+        "id": 2,
+        "name": "魔法"
+      },
+      "class_job_category": {
+        "id": 174,
+        "name": "ナイト モンク 戦士 竜騎士 吟遊詩人 忍者 機工士 暗黒騎士 侍 ガンブレイカー 踊り子 リーパー ヴァイパー",
+        "allowed_jobs": [
+          "PLD",
+          "MNK",
+          "WAR",
+          "DRG",
+          "BRD",
+          "NIN",
+          "MCH",
+          "DRK",
+          "SAM",
+          "GNB",
+          "DNC",
+          "RPR",
+          "VPR"
+        ]
+      },
+      "targeting": {
+        "self": false,
+        "party": false,
+        "alliance": false,
+        "hostile": true,
+        "ally": false,
+        "own_pet": false,
+        "party_pet": false,
+        "dead_target_behavior": 0,
+        "is_area": false,
+        "requires_line_of_sight": true,
+        "requires_facing_target": true
+      },
+      "status_gain_self": null,
+      "proc_status": null
+    }
+  }
+}

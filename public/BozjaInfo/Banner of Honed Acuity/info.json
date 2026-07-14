@@ -1,0 +1,384 @@
+{
+  "en": {
+    "title": "Banner of Honed Acuity",
+    "description": "Storm the field under the Banner of Honed Acuity, gaining additional stacks each time an attack is evaded, up to a maximum of 3.\nBanner of Honed Acuity Effect: Increases damage taken by 10% per stack\nDuration: 120s\nAt maximum stacks, take up the Banner of Transcendent Finesse.\nBanner of Transcendent Finesse Effect: Increases critical hit rate by 30% and reduces weaponskill cast time and recast time, spell cast time and recast time, and auto-attack delay by 20%\nDuration: 180s\nCan only be executed while in combat.\nEffect cannot be stacked with other Banner actions.",
+    "effects": [
+      "Storm the field under the Banner of Honed Acuity, gaining additional stacks each time an attack is evaded, up to a maximum of 3.",
+      "Banner of Honed Acuity Effect: Increases damage taken by 10% per stack",
+      "Duration: 120s",
+      "At maximum stacks, take up the Banner of Transcendent Finesse.",
+      "Banner of Transcendent Finesse Effect: Increases critical hit rate by 30% and reduces weaponskill cast time and recast time, spell cast time and recast time, and auto-attack delay by 20%",
+      "Duration: 180s",
+      "Can only be executed while in combat.",
+      "Effect cannot be stacked with other Banner actions."
+    ],
+    "classification": "banner",
+    "cache": {
+      "item_id": 25,
+      "type_id": 1,
+      "type": "action",
+      "max_uses": 10,
+      "has_unlimited_uses": false,
+      "weight": 6,
+      "order": 25,
+      "category": {
+        "id": 1,
+        "name": "Offensive"
+      }
+    },
+    "action": {
+      "id": 20725,
+      "icon_id": 64681,
+      "icon_file": "icon.png",
+      "cast_time_seconds": 0,
+      "recast_time_seconds": 180,
+      "range_yalms": 0,
+      "effect_range_yalms": 0,
+      "max_charges": 0,
+      "cooldown_group": 81,
+      "additional_cooldown_group": 0,
+      "primary_cost": {
+        "type_id": 20,
+        "value": 1
+      },
+      "secondary_cost": {
+        "type_id": 42,
+        "value": 0
+      },
+      "aspect_id": 0,
+      "category": {
+        "id": 4,
+        "name": "Ability"
+      },
+      "class_job_category": {
+        "id": 169,
+        "name": "PLD MNK WAR DRG BRD WHM BLM SMN SCH NIN MCH DRK AST SAM RDM GNB DNC RPR SGE VPR PCT",
+        "allowed_jobs": [
+          "PLD",
+          "MNK",
+          "WAR",
+          "DRG",
+          "BRD",
+          "WHM",
+          "BLM",
+          "SMN",
+          "SCH",
+          "NIN",
+          "MCH",
+          "DRK",
+          "AST",
+          "SAM",
+          "RDM",
+          "GNB",
+          "DNC",
+          "RPR",
+          "SGE",
+          "VPR",
+          "PCT"
+        ]
+      },
+      "targeting": {
+        "self": true,
+        "party": false,
+        "alliance": false,
+        "hostile": false,
+        "ally": false,
+        "own_pet": false,
+        "party_pet": false,
+        "dead_target_behavior": 0,
+        "is_area": false,
+        "requires_line_of_sight": true,
+        "requires_facing_target": true
+      },
+      "status_gain_self": null,
+      "proc_status": null
+    }
+  },
+  "de": {
+    "title": "Gemüt der Empfindsamkeit",
+    "description": "Du erhältst Gemüt der Empfindsamkeit und einen Stapel mit jedem Mal, mit dem du ausweichst. Jeder Stapel erhöht deinen erlittenen Schaden um 10\u00A0%.\nMaximalstapelzahl: 3\nDauer: 120 Sekunden\nStatus ändert sich zu Gemüt der Vehemenz, sobald die Maximalstapelzahl erreicht ist.\nEffekt von Gemüt der Vehemenz: Intervalle zwischen Auto-Attacken und (Re-)Aktivierungszeiten von Waffenfertigkeiten und Magie sind um 20\u00A0% verkürzt, direkte Trefferrate ist um 30\u00A0% erhöht.\nDauer: 180 Sekunden\nKann nicht zusammen mit anderen Gemüt-Kommandos eingesetzt werden.\nNur im Kampf wirksam.",
+    "effects": [
+      "Du erhältst Gemüt der Empfindsamkeit und einen Stapel mit jedem Mal, mit dem du ausweichst. Jeder Stapel erhöht deinen erlittenen Schaden um 10\u00A0%.",
+      "Maximalstapelzahl: 3",
+      "Dauer: 120 Sekunden",
+      "Status ändert sich zu Gemüt der Vehemenz, sobald die Maximalstapelzahl erreicht ist.",
+      "Effekt von Gemüt der Vehemenz: Intervalle zwischen Auto-Attacken und (Re-)Aktivierungszeiten von Waffenfertigkeiten und Magie sind um 20\u00A0% verkürzt, direkte Trefferrate ist um 30\u00A0% erhöht.",
+      "Dauer: 180 Sekunden",
+      "Kann nicht zusammen mit anderen Gemüt-Kommandos eingesetzt werden.",
+      "Nur im Kampf wirksam."
+    ],
+    "classification": "lost_action",
+    "cache": {
+      "item_id": 25,
+      "type_id": 1,
+      "type": "action",
+      "max_uses": 10,
+      "has_unlimited_uses": false,
+      "weight": 6,
+      "order": 25,
+      "category": {
+        "id": 1,
+        "name": "Angreifer"
+      }
+    },
+    "action": {
+      "id": 20725,
+      "icon_id": 64681,
+      "icon_file": "icon.png",
+      "cast_time_seconds": 0,
+      "recast_time_seconds": 180,
+      "range_yalms": 0,
+      "effect_range_yalms": 0,
+      "max_charges": 0,
+      "cooldown_group": 81,
+      "additional_cooldown_group": 0,
+      "primary_cost": {
+        "type_id": 20,
+        "value": 1
+      },
+      "secondary_cost": {
+        "type_id": 42,
+        "value": 0
+      },
+      "aspect_id": 0,
+      "category": {
+        "id": 4,
+        "name": "Talent"
+      },
+      "class_job_category": {
+        "id": 169,
+        "name": "PLD MÖN KRG DRG BRD WMA SMA BSW GLT NIN MCH DKR AST SAM RMA REV TÄN SNT WEI VPR PKT",
+        "allowed_jobs": [
+          "PLD",
+          "MNK",
+          "WAR",
+          "DRG",
+          "BRD",
+          "WHM",
+          "BLM",
+          "SMN",
+          "SCH",
+          "NIN",
+          "MCH",
+          "DRK",
+          "AST",
+          "SAM",
+          "RDM",
+          "GNB",
+          "DNC",
+          "RPR",
+          "SGE",
+          "VPR",
+          "PCT"
+        ]
+      },
+      "targeting": {
+        "self": true,
+        "party": false,
+        "alliance": false,
+        "hostile": false,
+        "ally": false,
+        "own_pet": false,
+        "party_pet": false,
+        "dead_target_behavior": 0,
+        "is_area": false,
+        "requires_line_of_sight": true,
+        "requires_facing_target": true
+      },
+      "status_gain_self": null,
+      "proc_status": null
+    }
+  },
+  "fr": {
+    "title": "Seuil de la perception",
+    "description": "Octroie un degré de Seuil de la perception au lancement et à chaque fois que vous esquivez une attaque.\nNe peut pas être utilisé en même temps qu'une autre action de type Seuil.\nSeuil de la perception\u00A0: augmente les dégâts subis de 10% par degré (maximum 3).\nDurée\u00A0: 120s\nCondition\u00A0: en combat.\nAu degré maximal, Seuil de la perception devient Seuil de la célérité.\nSeuil de célérité\u00A0: augmente de 30% vos chances de coups nets, et réduit de 20% le délai des attaques automatiques et les temps de lancement et de recharge des techniques d'arme et des sorts de magie.\nDurée\u00A0: 180s",
+    "effects": [
+      "Octroie un degré de Seuil de la perception au lancement et à chaque fois que vous esquivez une attaque.",
+      "Ne peut pas être utilisé en même temps qu'une autre action de type Seuil.",
+      "Seuil de la perception\u00A0: augmente les dégâts subis de 10% par degré (maximum 3).",
+      "Durée\u00A0: 120s",
+      "Condition\u00A0: en combat.",
+      "Au degré maximal, Seuil de la perception devient Seuil de la célérité.",
+      "Seuil de célérité\u00A0: augmente de 30% vos chances de coups nets, et réduit de 20% le délai des attaques automatiques et les temps de lancement et de recharge des techniques d'arme et des sorts de magie.",
+      "Durée\u00A0: 180s"
+    ],
+    "classification": "lost_action",
+    "cache": {
+      "item_id": 25,
+      "type_id": 1,
+      "type": "action",
+      "max_uses": 10,
+      "has_unlimited_uses": false,
+      "weight": 6,
+      "order": 25,
+      "category": {
+        "id": 1,
+        "name": "Attaquant"
+      }
+    },
+    "action": {
+      "id": 20725,
+      "icon_id": 64681,
+      "icon_file": "icon.png",
+      "cast_time_seconds": 0,
+      "recast_time_seconds": 180,
+      "range_yalms": 0,
+      "effect_range_yalms": 0,
+      "max_charges": 0,
+      "cooldown_group": 81,
+      "additional_cooldown_group": 0,
+      "primary_cost": {
+        "type_id": 20,
+        "value": 1
+      },
+      "secondary_cost": {
+        "type_id": 42,
+        "value": 0
+      },
+      "aspect_id": 0,
+      "category": {
+        "id": 4,
+        "name": "Aptitude"
+      },
+      "class_job_category": {
+        "id": 169,
+        "name": "PLD MOI GUE DRG BRD MBL MNO INV ÉRU NIN MCH CHN AST SAM MRG PSB DNS FCH SAG VPR PIC",
+        "allowed_jobs": [
+          "PLD",
+          "MNK",
+          "WAR",
+          "DRG",
+          "BRD",
+          "WHM",
+          "BLM",
+          "SMN",
+          "SCH",
+          "NIN",
+          "MCH",
+          "DRK",
+          "AST",
+          "SAM",
+          "RDM",
+          "GNB",
+          "DNC",
+          "RPR",
+          "SGE",
+          "VPR",
+          "PCT"
+        ]
+      },
+      "targeting": {
+        "self": true,
+        "party": false,
+        "alliance": false,
+        "hostile": false,
+        "ally": false,
+        "own_pet": false,
+        "party_pet": false,
+        "dead_target_behavior": 0,
+        "is_area": false,
+        "requires_line_of_sight": true,
+        "requires_facing_target": true
+      },
+      "status_gain_self": null,
+      "proc_status": null
+    }
+  },
+  "ja": {
+    "title": "鋭敏の境地",
+    "description": "自身に「鋭敏の境地」を付与する。\n一定時間、攻撃を回避する度に「鋭敏の境地」のスタックを上昇させる。\n他の「境地」系アクションとは同時に使えない。\n鋭敏の境地効果：受けるダメージを1スタックにつき10％上昇させる。\n効果時間：120秒\n最大スタック数：3\n発動条件：自身が戦闘状態\n最大スタックになると「鋭敏の境地」が「神速の境地」に変化する。\n神速の境地効果：自身のダイレクトヒット発動率を30％上昇させ、オートアタックの攻撃間隔と、ウェポンスキルおよび魔法のキャストタイムとリキャストタイムを20％短縮させる。\n効果時間：180秒",
+    "effects": [
+      "自身に「鋭敏の境地」を付与する。",
+      "一定時間、攻撃を回避する度に「鋭敏の境地」のスタックを上昇させる。",
+      "他の「境地」系アクションとは同時に使えない。",
+      "鋭敏の境地効果：受けるダメージを1スタックにつき10％上昇させる。",
+      "効果時間：120秒",
+      "最大スタック数：3",
+      "発動条件：自身が戦闘状態",
+      "最大スタックになると「鋭敏の境地」が「神速の境地」に変化する。",
+      "神速の境地効果：自身のダイレクトヒット発動率を30％上昇させ、オートアタックの攻撃間隔と、ウェポンスキルおよび魔法のキャストタイムとリキャストタイムを20％短縮させる。",
+      "効果時間：180秒"
+    ],
+    "classification": "lost_action",
+    "cache": {
+      "item_id": 25,
+      "type_id": 1,
+      "type": "action",
+      "max_uses": 10,
+      "has_unlimited_uses": false,
+      "weight": 6,
+      "order": 25,
+      "category": {
+        "id": 1,
+        "name": "アクション：アタッカー"
+      }
+    },
+    "action": {
+      "id": 20725,
+      "icon_id": 64681,
+      "icon_file": "icon.png",
+      "cast_time_seconds": 0,
+      "recast_time_seconds": 180,
+      "range_yalms": 0,
+      "effect_range_yalms": 0,
+      "max_charges": 0,
+      "cooldown_group": 81,
+      "additional_cooldown_group": 0,
+      "primary_cost": {
+        "type_id": 20,
+        "value": 1
+      },
+      "secondary_cost": {
+        "type_id": 42,
+        "value": 0
+      },
+      "aspect_id": 0,
+      "category": {
+        "id": 4,
+        "name": "アビリティ"
+      },
+      "class_job_category": {
+        "id": 169,
+        "name": "ナイト モンク 戦士 竜騎士 吟遊詩人 白魔道士 黒魔道士 召喚士 学者 忍者 機工士 暗黒騎士 占星術師 侍 赤魔道士 ガンブレイカー 踊り子 リーパー 賢者 ヴァイパー ピクトマンサー",
+        "allowed_jobs": [
+          "PLD",
+          "MNK",
+          "WAR",
+          "DRG",
+          "BRD",
+          "WHM",
+          "BLM",
+          "SMN",
+          "SCH",
+          "NIN",
+          "MCH",
+          "DRK",
+          "AST",
+          "SAM",
+          "RDM",
+          "GNB",
+          "DNC",
+          "RPR",
+          "SGE",
+          "VPR",
+          "PCT"
+        ]
+      },
+      "targeting": {
+        "self": true,
+        "party": false,
+        "alliance": false,
+        "hostile": false,
+        "ally": false,
+        "own_pet": false,
+        "party_pet": false,
+        "dead_target_behavior": 0,
+        "is_area": false,
+        "requires_line_of_sight": true,
+        "requires_facing_target": true
+      },
+      "status_gain_self": null,
+      "proc_status": null
+    }
+  }
+}

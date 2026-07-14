@@ -1,0 +1,354 @@
+{
+  "en": {
+    "title": "Lost Font of Skill",
+    "description": "Resets the recast timer for most actions and role actions.",
+    "effects": [
+      "Resets the recast timer for most actions and role actions."
+    ],
+    "classification": "lost_action",
+    "cache": {
+      "item_id": 16,
+      "type_id": 1,
+      "type": "action",
+      "max_uses": 5,
+      "has_unlimited_uses": false,
+      "weight": 20,
+      "order": 16,
+      "category": {
+        "id": 5,
+        "name": "Tactical"
+      }
+    },
+    "action": {
+      "id": 20716,
+      "icon_id": 64672,
+      "icon_file": "icon.png",
+      "cast_time_seconds": 0,
+      "recast_time_seconds": 300,
+      "range_yalms": 0,
+      "effect_range_yalms": 0,
+      "max_charges": 0,
+      "cooldown_group": 81,
+      "additional_cooldown_group": 0,
+      "primary_cost": {
+        "type_id": 20,
+        "value": 1
+      },
+      "secondary_cost": {
+        "type_id": 0,
+        "value": 0
+      },
+      "aspect_id": 0,
+      "category": {
+        "id": 4,
+        "name": "Ability"
+      },
+      "class_job_category": {
+        "id": 169,
+        "name": "PLD MNK WAR DRG BRD WHM BLM SMN SCH NIN MCH DRK AST SAM RDM GNB DNC RPR SGE VPR PCT",
+        "allowed_jobs": [
+          "PLD",
+          "MNK",
+          "WAR",
+          "DRG",
+          "BRD",
+          "WHM",
+          "BLM",
+          "SMN",
+          "SCH",
+          "NIN",
+          "MCH",
+          "DRK",
+          "AST",
+          "SAM",
+          "RDM",
+          "GNB",
+          "DNC",
+          "RPR",
+          "SGE",
+          "VPR",
+          "PCT"
+        ]
+      },
+      "targeting": {
+        "self": true,
+        "party": false,
+        "alliance": false,
+        "hostile": false,
+        "ally": false,
+        "own_pet": false,
+        "party_pet": false,
+        "dead_target_behavior": 0,
+        "is_area": false,
+        "requires_line_of_sight": true,
+        "requires_facing_target": true
+      },
+      "status_gain_self": null,
+      "proc_status": null
+    }
+  },
+  "de": {
+    "title": "Verschollene Technikfontäne",
+    "description": "Du setzt die Reaktivierungs-Timer für alle Klassen-, Job- und Rollenkommandos zurück (bestimmte Kommandos ausgenommen).",
+    "effects": [
+      "Du setzt die Reaktivierungs-Timer für alle Klassen-, Job- und Rollenkommandos zurück (bestimmte Kommandos ausgenommen)."
+    ],
+    "classification": "lost_action",
+    "cache": {
+      "item_id": 16,
+      "type_id": 1,
+      "type": "action",
+      "max_uses": 5,
+      "has_unlimited_uses": false,
+      "weight": 20,
+      "order": 16,
+      "category": {
+        "id": 5,
+        "name": "Späher"
+      }
+    },
+    "action": {
+      "id": 20716,
+      "icon_id": 64672,
+      "icon_file": "icon.png",
+      "cast_time_seconds": 0,
+      "recast_time_seconds": 300,
+      "range_yalms": 0,
+      "effect_range_yalms": 0,
+      "max_charges": 0,
+      "cooldown_group": 81,
+      "additional_cooldown_group": 0,
+      "primary_cost": {
+        "type_id": 20,
+        "value": 1
+      },
+      "secondary_cost": {
+        "type_id": 0,
+        "value": 0
+      },
+      "aspect_id": 0,
+      "category": {
+        "id": 4,
+        "name": "Talent"
+      },
+      "class_job_category": {
+        "id": 169,
+        "name": "PLD MÖN KRG DRG BRD WMA SMA BSW GLT NIN MCH DKR AST SAM RMA REV TÄN SNT WEI VPR PKT",
+        "allowed_jobs": [
+          "PLD",
+          "MNK",
+          "WAR",
+          "DRG",
+          "BRD",
+          "WHM",
+          "BLM",
+          "SMN",
+          "SCH",
+          "NIN",
+          "MCH",
+          "DRK",
+          "AST",
+          "SAM",
+          "RDM",
+          "GNB",
+          "DNC",
+          "RPR",
+          "SGE",
+          "VPR",
+          "PCT"
+        ]
+      },
+      "targeting": {
+        "self": true,
+        "party": false,
+        "alliance": false,
+        "hostile": false,
+        "ally": false,
+        "own_pet": false,
+        "party_pet": false,
+        "dead_target_behavior": 0,
+        "is_area": false,
+        "requires_line_of_sight": true,
+        "requires_facing_target": true
+      },
+      "status_gain_self": null,
+      "proc_status": null
+    }
+  },
+  "fr": {
+    "title": "Fontaine de technique oubliée",
+    "description": "Réinitialise les temps de recharges de la plupart des actions de classe, de job et de rôle.",
+    "effects": [
+      "Réinitialise les temps de recharges de la plupart des actions de classe, de job et de rôle."
+    ],
+    "classification": "lost_action",
+    "cache": {
+      "item_id": 16,
+      "type_id": 1,
+      "type": "action",
+      "max_uses": 5,
+      "has_unlimited_uses": false,
+      "weight": 20,
+      "order": 16,
+      "category": {
+        "id": 5,
+        "name": "Éclaireur"
+      }
+    },
+    "action": {
+      "id": 20716,
+      "icon_id": 64672,
+      "icon_file": "icon.png",
+      "cast_time_seconds": 0,
+      "recast_time_seconds": 300,
+      "range_yalms": 0,
+      "effect_range_yalms": 0,
+      "max_charges": 0,
+      "cooldown_group": 81,
+      "additional_cooldown_group": 0,
+      "primary_cost": {
+        "type_id": 20,
+        "value": 1
+      },
+      "secondary_cost": {
+        "type_id": 0,
+        "value": 0
+      },
+      "aspect_id": 0,
+      "category": {
+        "id": 4,
+        "name": "Aptitude"
+      },
+      "class_job_category": {
+        "id": 169,
+        "name": "PLD MOI GUE DRG BRD MBL MNO INV ÉRU NIN MCH CHN AST SAM MRG PSB DNS FCH SAG VPR PIC",
+        "allowed_jobs": [
+          "PLD",
+          "MNK",
+          "WAR",
+          "DRG",
+          "BRD",
+          "WHM",
+          "BLM",
+          "SMN",
+          "SCH",
+          "NIN",
+          "MCH",
+          "DRK",
+          "AST",
+          "SAM",
+          "RDM",
+          "GNB",
+          "DNC",
+          "RPR",
+          "SGE",
+          "VPR",
+          "PCT"
+        ]
+      },
+      "targeting": {
+        "self": true,
+        "party": false,
+        "alliance": false,
+        "hostile": false,
+        "ally": false,
+        "own_pet": false,
+        "party_pet": false,
+        "dead_target_behavior": 0,
+        "is_area": false,
+        "requires_line_of_sight": true,
+        "requires_facing_target": true
+      },
+      "status_gain_self": null,
+      "proc_status": null
+    }
+  },
+  "ja": {
+    "title": "ロスト・スキルフォント",
+    "description": "一部を除くすべてのクラス・ジョブアクションおよびロールアクションのリキャストタイムをリセットする。",
+    "effects": [
+      "一部を除くすべてのクラス・ジョブアクションおよびロールアクションのリキャストタイムをリセットする。"
+    ],
+    "classification": "lost_action",
+    "cache": {
+      "item_id": 16,
+      "type_id": 1,
+      "type": "action",
+      "max_uses": 5,
+      "has_unlimited_uses": false,
+      "weight": 20,
+      "order": 16,
+      "category": {
+        "id": 5,
+        "name": "アクション：スカウト"
+      }
+    },
+    "action": {
+      "id": 20716,
+      "icon_id": 64672,
+      "icon_file": "icon.png",
+      "cast_time_seconds": 0,
+      "recast_time_seconds": 300,
+      "range_yalms": 0,
+      "effect_range_yalms": 0,
+      "max_charges": 0,
+      "cooldown_group": 81,
+      "additional_cooldown_group": 0,
+      "primary_cost": {
+        "type_id": 20,
+        "value": 1
+      },
+      "secondary_cost": {
+        "type_id": 0,
+        "value": 0
+      },
+      "aspect_id": 0,
+      "category": {
+        "id": 4,
+        "name": "アビリティ"
+      },
+      "class_job_category": {
+        "id": 169,
+        "name": "ナイト モンク 戦士 竜騎士 吟遊詩人 白魔道士 黒魔道士 召喚士 学者 忍者 機工士 暗黒騎士 占星術師 侍 赤魔道士 ガンブレイカー 踊り子 リーパー 賢者 ヴァイパー ピクトマンサー",
+        "allowed_jobs": [
+          "PLD",
+          "MNK",
+          "WAR",
+          "DRG",
+          "BRD",
+          "WHM",
+          "BLM",
+          "SMN",
+          "SCH",
+          "NIN",
+          "MCH",
+          "DRK",
+          "AST",
+          "SAM",
+          "RDM",
+          "GNB",
+          "DNC",
+          "RPR",
+          "SGE",
+          "VPR",
+          "PCT"
+        ]
+      },
+      "targeting": {
+        "self": true,
+        "party": false,
+        "alliance": false,
+        "hostile": false,
+        "ally": false,
+        "own_pet": false,
+        "party_pet": false,
+        "dead_target_behavior": 0,
+        "is_area": false,
+        "requires_line_of_sight": true,
+        "requires_facing_target": true
+      },
+      "status_gain_self": null,
+      "proc_status": null
+    }
+  }
+}

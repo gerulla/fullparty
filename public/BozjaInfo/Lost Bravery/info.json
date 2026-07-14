@@ -1,0 +1,358 @@
+{
+  "en": {
+    "title": "Lost Bravery",
+    "description": "Increases damage dealt by an ally or self by 5%.\nDuration: 600s",
+    "effects": [
+      "Increases damage dealt by an ally or self by 5%.",
+      "Duration: 600s"
+    ],
+    "classification": "lost_action",
+    "cache": {
+      "item_id": 13,
+      "type_id": 1,
+      "type": "action",
+      "max_uses": 99,
+      "has_unlimited_uses": false,
+      "weight": 8,
+      "order": 13,
+      "category": {
+        "id": 4,
+        "name": "Beneficial"
+      }
+    },
+    "action": {
+      "id": 20713,
+      "icon_id": 64669,
+      "icon_file": "icon.png",
+      "cast_time_seconds": 2.5,
+      "recast_time_seconds": 2.5,
+      "range_yalms": 30,
+      "effect_range_yalms": 0,
+      "max_charges": 0,
+      "cooldown_group": 58,
+      "additional_cooldown_group": 0,
+      "primary_cost": {
+        "type_id": 20,
+        "value": 1
+      },
+      "secondary_cost": {
+        "type_id": 0,
+        "value": 0
+      },
+      "aspect_id": 7,
+      "category": {
+        "id": 2,
+        "name": "Spell"
+      },
+      "class_job_category": {
+        "id": 169,
+        "name": "PLD MNK WAR DRG BRD WHM BLM SMN SCH NIN MCH DRK AST SAM RDM GNB DNC RPR SGE VPR PCT",
+        "allowed_jobs": [
+          "PLD",
+          "MNK",
+          "WAR",
+          "DRG",
+          "BRD",
+          "WHM",
+          "BLM",
+          "SMN",
+          "SCH",
+          "NIN",
+          "MCH",
+          "DRK",
+          "AST",
+          "SAM",
+          "RDM",
+          "GNB",
+          "DNC",
+          "RPR",
+          "SGE",
+          "VPR",
+          "PCT"
+        ]
+      },
+      "targeting": {
+        "self": true,
+        "party": true,
+        "alliance": true,
+        "hostile": false,
+        "ally": true,
+        "own_pet": false,
+        "party_pet": false,
+        "dead_target_behavior": 0,
+        "is_area": false,
+        "requires_line_of_sight": true,
+        "requires_facing_target": false
+      },
+      "status_gain_self": null,
+      "proc_status": null
+    }
+  },
+  "de": {
+    "title": "Verschollene Courage",
+    "description": "Du erhöhst den ausgeteilten Schaden von dir oder einem Verbündeten um 5\u00A0%.\nDauer: 600 Sekunden",
+    "effects": [
+      "Du erhöhst den ausgeteilten Schaden von dir oder einem Verbündeten um 5\u00A0%.",
+      "Dauer: 600 Sekunden"
+    ],
+    "classification": "lost_action",
+    "cache": {
+      "item_id": 13,
+      "type_id": 1,
+      "type": "action",
+      "max_uses": 99,
+      "has_unlimited_uses": false,
+      "weight": 8,
+      "order": 13,
+      "category": {
+        "id": 4,
+        "name": "Unterstützer"
+      }
+    },
+    "action": {
+      "id": 20713,
+      "icon_id": 64669,
+      "icon_file": "icon.png",
+      "cast_time_seconds": 2.5,
+      "recast_time_seconds": 2.5,
+      "range_yalms": 30,
+      "effect_range_yalms": 0,
+      "max_charges": 0,
+      "cooldown_group": 58,
+      "additional_cooldown_group": 0,
+      "primary_cost": {
+        "type_id": 20,
+        "value": 1
+      },
+      "secondary_cost": {
+        "type_id": 0,
+        "value": 0
+      },
+      "aspect_id": 7,
+      "category": {
+        "id": 2,
+        "name": "Zauber"
+      },
+      "class_job_category": {
+        "id": 169,
+        "name": "PLD MÖN KRG DRG BRD WMA SMA BSW GLT NIN MCH DKR AST SAM RMA REV TÄN SNT WEI VPR PKT",
+        "allowed_jobs": [
+          "PLD",
+          "MNK",
+          "WAR",
+          "DRG",
+          "BRD",
+          "WHM",
+          "BLM",
+          "SMN",
+          "SCH",
+          "NIN",
+          "MCH",
+          "DRK",
+          "AST",
+          "SAM",
+          "RDM",
+          "GNB",
+          "DNC",
+          "RPR",
+          "SGE",
+          "VPR",
+          "PCT"
+        ]
+      },
+      "targeting": {
+        "self": true,
+        "party": true,
+        "alliance": true,
+        "hostile": false,
+        "ally": true,
+        "own_pet": false,
+        "party_pet": false,
+        "dead_target_behavior": 0,
+        "is_area": false,
+        "requires_line_of_sight": true,
+        "requires_facing_target": false
+      },
+      "status_gain_self": null,
+      "proc_status": null
+    }
+  },
+  "fr": {
+    "title": "Bravoure oubliée",
+    "description": "Augmente de 5% les dégâts infligés par vous ou par l'allié ciblé.\nDurée\u00A0: 600s",
+    "effects": [
+      "Augmente de 5% les dégâts infligés par vous ou par l'allié ciblé.",
+      "Durée\u00A0: 600s"
+    ],
+    "classification": "lost_action",
+    "cache": {
+      "item_id": 13,
+      "type_id": 1,
+      "type": "action",
+      "max_uses": 99,
+      "has_unlimited_uses": false,
+      "weight": 8,
+      "order": 13,
+      "category": {
+        "id": 4,
+        "name": "Auxiliaire"
+      }
+    },
+    "action": {
+      "id": 20713,
+      "icon_id": 64669,
+      "icon_file": "icon.png",
+      "cast_time_seconds": 2.5,
+      "recast_time_seconds": 2.5,
+      "range_yalms": 30,
+      "effect_range_yalms": 0,
+      "max_charges": 0,
+      "cooldown_group": 58,
+      "additional_cooldown_group": 0,
+      "primary_cost": {
+        "type_id": 20,
+        "value": 1
+      },
+      "secondary_cost": {
+        "type_id": 0,
+        "value": 0
+      },
+      "aspect_id": 7,
+      "category": {
+        "id": 2,
+        "name": "Sort"
+      },
+      "class_job_category": {
+        "id": 169,
+        "name": "PLD MOI GUE DRG BRD MBL MNO INV ÉRU NIN MCH CHN AST SAM MRG PSB DNS FCH SAG VPR PIC",
+        "allowed_jobs": [
+          "PLD",
+          "MNK",
+          "WAR",
+          "DRG",
+          "BRD",
+          "WHM",
+          "BLM",
+          "SMN",
+          "SCH",
+          "NIN",
+          "MCH",
+          "DRK",
+          "AST",
+          "SAM",
+          "RDM",
+          "GNB",
+          "DNC",
+          "RPR",
+          "SGE",
+          "VPR",
+          "PCT"
+        ]
+      },
+      "targeting": {
+        "self": true,
+        "party": true,
+        "alliance": true,
+        "hostile": false,
+        "ally": true,
+        "own_pet": false,
+        "party_pet": false,
+        "dead_target_behavior": 0,
+        "is_area": false,
+        "requires_line_of_sight": true,
+        "requires_facing_target": false
+      },
+      "status_gain_self": null,
+      "proc_status": null
+    }
+  },
+  "ja": {
+    "title": "ロスト・ブレイブ",
+    "description": "自身または味方ひとりを対象として、与ダメージを5％上昇させる。\n効果時間：600秒",
+    "effects": [
+      "自身または味方ひとりを対象として、与ダメージを5％上昇させる。",
+      "効果時間：600秒"
+    ],
+    "classification": "lost_action",
+    "cache": {
+      "item_id": 13,
+      "type_id": 1,
+      "type": "action",
+      "max_uses": 99,
+      "has_unlimited_uses": false,
+      "weight": 8,
+      "order": 13,
+      "category": {
+        "id": 4,
+        "name": "アクション：バッファー"
+      }
+    },
+    "action": {
+      "id": 20713,
+      "icon_id": 64669,
+      "icon_file": "icon.png",
+      "cast_time_seconds": 2.5,
+      "recast_time_seconds": 2.5,
+      "range_yalms": 30,
+      "effect_range_yalms": 0,
+      "max_charges": 0,
+      "cooldown_group": 58,
+      "additional_cooldown_group": 0,
+      "primary_cost": {
+        "type_id": 20,
+        "value": 1
+      },
+      "secondary_cost": {
+        "type_id": 0,
+        "value": 0
+      },
+      "aspect_id": 7,
+      "category": {
+        "id": 2,
+        "name": "魔法"
+      },
+      "class_job_category": {
+        "id": 169,
+        "name": "ナイト モンク 戦士 竜騎士 吟遊詩人 白魔道士 黒魔道士 召喚士 学者 忍者 機工士 暗黒騎士 占星術師 侍 赤魔道士 ガンブレイカー 踊り子 リーパー 賢者 ヴァイパー ピクトマンサー",
+        "allowed_jobs": [
+          "PLD",
+          "MNK",
+          "WAR",
+          "DRG",
+          "BRD",
+          "WHM",
+          "BLM",
+          "SMN",
+          "SCH",
+          "NIN",
+          "MCH",
+          "DRK",
+          "AST",
+          "SAM",
+          "RDM",
+          "GNB",
+          "DNC",
+          "RPR",
+          "SGE",
+          "VPR",
+          "PCT"
+        ]
+      },
+      "targeting": {
+        "self": true,
+        "party": true,
+        "alliance": true,
+        "hostile": false,
+        "ally": true,
+        "own_pet": false,
+        "party_pet": false,
+        "dead_target_behavior": 0,
+        "is_area": false,
+        "requires_line_of_sight": true,
+        "requires_facing_target": false
+      },
+      "status_gain_self": null,
+      "proc_status": null
+    }
+  }
+}

@@ -1,0 +1,341 @@
+{
+  "en": {
+    "title": "Lost Cure",
+    "description": "Restores target's HP.\nCure Potency: 15,000",
+    "effects": [
+      "Restores target's HP.",
+      "Cure Potency: 15,000"
+    ],
+    "classification": "lost_action",
+    "cache": {
+      "item_id": 26,
+      "type_id": 1,
+      "type": "action",
+      "max_uses": null,
+      "has_unlimited_uses": true,
+      "weight": 2,
+      "order": 26,
+      "category": {
+        "id": 3,
+        "name": "Restorative"
+      }
+    },
+    "action": {
+      "id": 20726,
+      "icon_id": 64682,
+      "icon_file": "icon.png",
+      "cast_time_seconds": 2,
+      "recast_time_seconds": 2.5,
+      "range_yalms": 30,
+      "effect_range_yalms": 0,
+      "max_charges": 0,
+      "cooldown_group": 58,
+      "additional_cooldown_group": 0,
+      "primary_cost": {
+        "type_id": 0,
+        "value": 0
+      },
+      "secondary_cost": {
+        "type_id": 0,
+        "value": 0
+      },
+      "aspect_id": 7,
+      "category": {
+        "id": 2,
+        "name": "Spell"
+      },
+      "class_job_category": {
+        "id": 167,
+        "name": "PLD MNK WAR DRG BRD BLM SMN NIN MCH DRK SAM RDM GNB DNC RPR VPR PCT",
+        "allowed_jobs": [
+          "PLD",
+          "MNK",
+          "WAR",
+          "DRG",
+          "BRD",
+          "BLM",
+          "SMN",
+          "NIN",
+          "MCH",
+          "DRK",
+          "SAM",
+          "RDM",
+          "GNB",
+          "DNC",
+          "RPR",
+          "VPR",
+          "PCT"
+        ]
+      },
+      "targeting": {
+        "self": true,
+        "party": true,
+        "alliance": true,
+        "hostile": false,
+        "ally": true,
+        "own_pet": false,
+        "party_pet": false,
+        "dead_target_behavior": 0,
+        "is_area": false,
+        "requires_line_of_sight": true,
+        "requires_facing_target": false
+      },
+      "status_gain_self": null,
+      "proc_status": null
+    }
+  },
+  "de": {
+    "title": "Verschollene Vita",
+    "description": "Du regenerierst LP des Ziels.\nHeilpotenzial: 15.000",
+    "effects": [
+      "Du regenerierst LP des Ziels.",
+      "Heilpotenzial: 15.000"
+    ],
+    "classification": "lost_action",
+    "cache": {
+      "item_id": 26,
+      "type_id": 1,
+      "type": "action",
+      "max_uses": null,
+      "has_unlimited_uses": true,
+      "weight": 2,
+      "order": 26,
+      "category": {
+        "id": 3,
+        "name": "Heiler"
+      }
+    },
+    "action": {
+      "id": 20726,
+      "icon_id": 64682,
+      "icon_file": "icon.png",
+      "cast_time_seconds": 2,
+      "recast_time_seconds": 2.5,
+      "range_yalms": 30,
+      "effect_range_yalms": 0,
+      "max_charges": 0,
+      "cooldown_group": 58,
+      "additional_cooldown_group": 0,
+      "primary_cost": {
+        "type_id": 0,
+        "value": 0
+      },
+      "secondary_cost": {
+        "type_id": 0,
+        "value": 0
+      },
+      "aspect_id": 7,
+      "category": {
+        "id": 2,
+        "name": "Zauber"
+      },
+      "class_job_category": {
+        "id": 167,
+        "name": "PLD MÖN KRG DRG BRD SMA BSW NIN MCH DKR SAM RMA REV TÄN SNT VPR PKT",
+        "allowed_jobs": [
+          "PLD",
+          "MNK",
+          "WAR",
+          "DRG",
+          "BRD",
+          "BLM",
+          "SMN",
+          "NIN",
+          "MCH",
+          "DRK",
+          "SAM",
+          "RDM",
+          "GNB",
+          "DNC",
+          "RPR",
+          "VPR",
+          "PCT"
+        ]
+      },
+      "targeting": {
+        "self": true,
+        "party": true,
+        "alliance": true,
+        "hostile": false,
+        "ally": true,
+        "own_pet": false,
+        "party_pet": false,
+        "dead_target_behavior": 0,
+        "is_area": false,
+        "requires_line_of_sight": true,
+        "requires_facing_target": false
+      },
+      "status_gain_self": null,
+      "proc_status": null
+    }
+  },
+  "fr": {
+    "title": "Soin oublié",
+    "description": "Restaure les PV de la cible.\nPuissance\u00A0: 15 000",
+    "effects": [
+      "Restaure les PV de la cible.",
+      "Puissance\u00A0: 15 000"
+    ],
+    "classification": "lost_action",
+    "cache": {
+      "item_id": 26,
+      "type_id": 1,
+      "type": "action",
+      "max_uses": null,
+      "has_unlimited_uses": true,
+      "weight": 2,
+      "order": 26,
+      "category": {
+        "id": 3,
+        "name": "Soigneur"
+      }
+    },
+    "action": {
+      "id": 20726,
+      "icon_id": 64682,
+      "icon_file": "icon.png",
+      "cast_time_seconds": 2,
+      "recast_time_seconds": 2.5,
+      "range_yalms": 30,
+      "effect_range_yalms": 0,
+      "max_charges": 0,
+      "cooldown_group": 58,
+      "additional_cooldown_group": 0,
+      "primary_cost": {
+        "type_id": 0,
+        "value": 0
+      },
+      "secondary_cost": {
+        "type_id": 0,
+        "value": 0
+      },
+      "aspect_id": 7,
+      "category": {
+        "id": 2,
+        "name": "Sort"
+      },
+      "class_job_category": {
+        "id": 167,
+        "name": "PLD MOI GUE DRG BRD MNO INV NIN MCH CHN SAM MRG PSB DNS FCH VPR PIC",
+        "allowed_jobs": [
+          "PLD",
+          "MNK",
+          "WAR",
+          "DRG",
+          "BRD",
+          "BLM",
+          "SMN",
+          "NIN",
+          "MCH",
+          "DRK",
+          "SAM",
+          "RDM",
+          "GNB",
+          "DNC",
+          "RPR",
+          "VPR",
+          "PCT"
+        ]
+      },
+      "targeting": {
+        "self": true,
+        "party": true,
+        "alliance": true,
+        "hostile": false,
+        "ally": true,
+        "own_pet": false,
+        "party_pet": false,
+        "dead_target_behavior": 0,
+        "is_area": false,
+        "requires_line_of_sight": true,
+        "requires_facing_target": false
+      },
+      "status_gain_self": null,
+      "proc_status": null
+    }
+  },
+  "ja": {
+    "title": "ロスト・ケアル",
+    "description": "対象のＨＰを回復する。\u3000回復力：15000",
+    "effects": [
+      "対象のＨＰを回復する。\u3000回復力：15000"
+    ],
+    "classification": "lost_action",
+    "cache": {
+      "item_id": 26,
+      "type_id": 1,
+      "type": "action",
+      "max_uses": null,
+      "has_unlimited_uses": true,
+      "weight": 2,
+      "order": 26,
+      "category": {
+        "id": 3,
+        "name": "アクション：ヒーラー"
+      }
+    },
+    "action": {
+      "id": 20726,
+      "icon_id": 64682,
+      "icon_file": "icon.png",
+      "cast_time_seconds": 2,
+      "recast_time_seconds": 2.5,
+      "range_yalms": 30,
+      "effect_range_yalms": 0,
+      "max_charges": 0,
+      "cooldown_group": 58,
+      "additional_cooldown_group": 0,
+      "primary_cost": {
+        "type_id": 0,
+        "value": 0
+      },
+      "secondary_cost": {
+        "type_id": 0,
+        "value": 0
+      },
+      "aspect_id": 7,
+      "category": {
+        "id": 2,
+        "name": "魔法"
+      },
+      "class_job_category": {
+        "id": 167,
+        "name": "ナイト モンク 戦士 竜騎士 吟遊詩人 黒魔道士 召喚士 忍者 機工士 暗黒騎士 侍 赤魔道士 ガンブレイカー 踊り子 リーパー ヴァイパー ピクトマンサー",
+        "allowed_jobs": [
+          "PLD",
+          "MNK",
+          "WAR",
+          "DRG",
+          "BRD",
+          "BLM",
+          "SMN",
+          "NIN",
+          "MCH",
+          "DRK",
+          "SAM",
+          "RDM",
+          "GNB",
+          "DNC",
+          "RPR",
+          "VPR",
+          "PCT"
+        ]
+      },
+      "targeting": {
+        "self": true,
+        "party": true,
+        "alliance": true,
+        "hostile": false,
+        "ally": true,
+        "own_pet": false,
+        "party_pet": false,
+        "dead_target_behavior": 0,
+        "is_area": false,
+        "requires_line_of_sight": true,
+        "requires_facing_target": false
+      },
+      "status_gain_self": null,
+      "proc_status": null
+    }
+  }
+}

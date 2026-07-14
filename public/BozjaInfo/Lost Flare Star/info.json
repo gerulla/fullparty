@@ -1,0 +1,303 @@
+{
+  "en": {
+    "title": "Lost Flare Star",
+    "description": "Consumes MP to deal unaspected damage with a potency of 300 to all nearby enemies.\nAdditional Effect: Unaspected damage over time\nPotency: 350\nDuration: 60s\nThe damage over time effect of Lost Flare Star can only be applied once per target at any given time. This effect cannot be stacked by multiple players.",
+    "effects": [
+      "Consumes MP to deal unaspected damage with a potency of 300 to all nearby enemies.",
+      "Additional Effect: Unaspected damage over time",
+      "Potency: 350",
+      "Duration: 60s",
+      "The damage over time effect of Lost Flare Star can only be applied once per target at any given time. This effect cannot be stacked by multiple players."
+    ],
+    "classification": "lost_action",
+    "cache": {
+      "item_id": 79,
+      "type_id": 1,
+      "type": "action",
+      "max_uses": null,
+      "has_unlimited_uses": true,
+      "weight": 20,
+      "order": 79,
+      "category": {
+        "id": 1,
+        "name": "Offensive"
+      }
+    },
+    "action": {
+      "id": 22352,
+      "icon_id": 64735,
+      "icon_file": "icon.png",
+      "cast_time_seconds": 0,
+      "recast_time_seconds": 5,
+      "range_yalms": 0,
+      "effect_range_yalms": 10,
+      "max_charges": 0,
+      "cooldown_group": 58,
+      "additional_cooldown_group": 0,
+      "primary_cost": {
+        "type_id": 3,
+        "value": 90
+      },
+      "secondary_cost": {
+        "type_id": 0,
+        "value": 0
+      },
+      "aspect_id": 7,
+      "category": {
+        "id": 2,
+        "name": "Spell"
+      },
+      "class_job_category": {
+        "id": 175,
+        "name": "BLM SMN RDM PCT",
+        "allowed_jobs": [
+          "BLM",
+          "SMN",
+          "RDM",
+          "PCT"
+        ]
+      },
+      "targeting": {
+        "self": true,
+        "party": false,
+        "alliance": false,
+        "hostile": false,
+        "ally": false,
+        "own_pet": false,
+        "party_pet": false,
+        "dead_target_behavior": 0,
+        "is_area": false,
+        "requires_line_of_sight": true,
+        "requires_facing_target": true
+      },
+      "status_gain_self": null,
+      "proc_status": null
+    }
+  },
+  "de": {
+    "title": "Verschollener Flare-Stern",
+    "description": "Du verbrauchst MP, um eine elementneutrale magische Attacke auf umstehende Gegner auszuführen.\nAttacke-Wert: 300\nZusatzeffekt: Schaden über Zeit\nAttacke-Wert: 350\nDauer: 60 Sekunden\nGegner nehmen nur Schaden von jeweils einem Verschollenen Flare-Stern.",
+    "effects": [
+      "Du verbrauchst MP, um eine elementneutrale magische Attacke auf umstehende Gegner auszuführen.",
+      "Attacke-Wert: 300",
+      "Zusatzeffekt: Schaden über Zeit",
+      "Attacke-Wert: 350",
+      "Dauer: 60 Sekunden",
+      "Gegner nehmen nur Schaden von jeweils einem Verschollenen Flare-Stern."
+    ],
+    "classification": "lost_action",
+    "cache": {
+      "item_id": 79,
+      "type_id": 1,
+      "type": "action",
+      "max_uses": null,
+      "has_unlimited_uses": true,
+      "weight": 20,
+      "order": 79,
+      "category": {
+        "id": 1,
+        "name": "Angreifer"
+      }
+    },
+    "action": {
+      "id": 22352,
+      "icon_id": 64735,
+      "icon_file": "icon.png",
+      "cast_time_seconds": 0,
+      "recast_time_seconds": 5,
+      "range_yalms": 0,
+      "effect_range_yalms": 10,
+      "max_charges": 0,
+      "cooldown_group": 58,
+      "additional_cooldown_group": 0,
+      "primary_cost": {
+        "type_id": 3,
+        "value": 90
+      },
+      "secondary_cost": {
+        "type_id": 0,
+        "value": 0
+      },
+      "aspect_id": 7,
+      "category": {
+        "id": 2,
+        "name": "Zauber"
+      },
+      "class_job_category": {
+        "id": 175,
+        "name": "SMA BSW RMA PKT",
+        "allowed_jobs": [
+          "BLM",
+          "SMN",
+          "RDM",
+          "PCT"
+        ]
+      },
+      "targeting": {
+        "self": true,
+        "party": false,
+        "alliance": false,
+        "hostile": false,
+        "ally": false,
+        "own_pet": false,
+        "party_pet": false,
+        "dead_target_behavior": 0,
+        "is_area": false,
+        "requires_line_of_sight": true,
+        "requires_facing_target": true
+      },
+      "status_gain_self": null,
+      "proc_status": null
+    }
+  },
+  "fr": {
+    "title": "Astre flamboyant oublié",
+    "description": "Inflige des dégâts magiques neutres autour de vous.\nPuissance\u00A0: 300\nEffet additionnel\u00A0: dégâts périodiques neutres.\nPuissance\u00A0: 350 Durée\u00A0: 60s\nCet effet ne peut pas être cumulé plusieurs fois sur une même cible.",
+    "effects": [
+      "Inflige des dégâts magiques neutres autour de vous.",
+      "Puissance\u00A0: 300",
+      "Effet additionnel\u00A0: dégâts périodiques neutres.",
+      "Puissance\u00A0: 350 Durée\u00A0: 60s",
+      "Cet effet ne peut pas être cumulé plusieurs fois sur une même cible."
+    ],
+    "classification": "lost_action",
+    "cache": {
+      "item_id": 79,
+      "type_id": 1,
+      "type": "action",
+      "max_uses": null,
+      "has_unlimited_uses": true,
+      "weight": 20,
+      "order": 79,
+      "category": {
+        "id": 1,
+        "name": "Attaquant"
+      }
+    },
+    "action": {
+      "id": 22352,
+      "icon_id": 64735,
+      "icon_file": "icon.png",
+      "cast_time_seconds": 0,
+      "recast_time_seconds": 5,
+      "range_yalms": 0,
+      "effect_range_yalms": 10,
+      "max_charges": 0,
+      "cooldown_group": 58,
+      "additional_cooldown_group": 0,
+      "primary_cost": {
+        "type_id": 3,
+        "value": 90
+      },
+      "secondary_cost": {
+        "type_id": 0,
+        "value": 0
+      },
+      "aspect_id": 7,
+      "category": {
+        "id": 2,
+        "name": "Sort"
+      },
+      "class_job_category": {
+        "id": 175,
+        "name": "MNO INV MRG PIC",
+        "allowed_jobs": [
+          "BLM",
+          "SMN",
+          "RDM",
+          "PCT"
+        ]
+      },
+      "targeting": {
+        "self": true,
+        "party": false,
+        "alliance": false,
+        "hostile": false,
+        "ally": false,
+        "own_pet": false,
+        "party_pet": false,
+        "dead_target_behavior": 0,
+        "is_area": false,
+        "requires_line_of_sight": true,
+        "requires_facing_target": true
+      },
+      "status_gain_self": null,
+      "proc_status": null
+    }
+  },
+  "ja": {
+    "title": "ロスト・フレアスター",
+    "description": "ＭＰを消費し、自身の周囲の敵に無属性範囲魔法攻撃。\n威力：300\n追加効果：対象に無属性の継続ダメージを付与する\n威力：350\u3000効果時間：60秒\nロスト・フレアスターによる継続ダメージ効果は、同時に1つのみしか付与されない。",
+    "effects": [
+      "ＭＰを消費し、自身の周囲の敵に無属性範囲魔法攻撃。",
+      "威力：300",
+      "追加効果：対象に無属性の継続ダメージを付与する",
+      "威力：350\u3000効果時間：60秒",
+      "ロスト・フレアスターによる継続ダメージ効果は、同時に1つのみしか付与されない。"
+    ],
+    "classification": "lost_action",
+    "cache": {
+      "item_id": 79,
+      "type_id": 1,
+      "type": "action",
+      "max_uses": null,
+      "has_unlimited_uses": true,
+      "weight": 20,
+      "order": 79,
+      "category": {
+        "id": 1,
+        "name": "アクション：アタッカー"
+      }
+    },
+    "action": {
+      "id": 22352,
+      "icon_id": 64735,
+      "icon_file": "icon.png",
+      "cast_time_seconds": 0,
+      "recast_time_seconds": 5,
+      "range_yalms": 0,
+      "effect_range_yalms": 10,
+      "max_charges": 0,
+      "cooldown_group": 58,
+      "additional_cooldown_group": 0,
+      "primary_cost": {
+        "type_id": 3,
+        "value": 90
+      },
+      "secondary_cost": {
+        "type_id": 0,
+        "value": 0
+      },
+      "aspect_id": 7,
+      "category": {
+        "id": 2,
+        "name": "魔法"
+      },
+      "class_job_category": {
+        "id": 175,
+        "name": "黒魔道士 召喚士 赤魔道士 ピクトマンサー",
+        "allowed_jobs": [
+          "BLM",
+          "SMN",
+          "RDM",
+          "PCT"
+        ]
+      },
+      "targeting": {
+        "self": true,
+        "party": false,
+        "alliance": false,
+        "hostile": false,
+        "ally": false,
+        "own_pet": false,
+        "party_pet": false,
+        "dead_target_behavior": 0,
+        "is_area": false,
+        "requires_line_of_sight": true,
+        "requires_facing_target": true
+      },
+      "status_gain_self": null,
+      "proc_status": null
+    }
+  }
+}

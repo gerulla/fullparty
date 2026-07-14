@@ -1,0 +1,63 @@
+{
+  "section_title": "ボズヤデータ",
+  "section_description": "コンテンツタイプで再利用できるボズヤのアクション、仙薬、旗、アイテムを管理します。",
+  "section_badge": "{count}件",
+  "search_placeholder": "ボズヤデータを検索...",
+  "tabs": { "all": "すべて（{count}）" },
+  "categories": {
+    "banners": "戦旗",
+    "essences": "秘薬",
+    "deep_essences": "霊薬",
+    "pure_essences": "仙薬",
+    "lost_actions": "ロストアクション",
+    "lost_items": "ロストアイテム"
+  },
+  "table": {
+    "item": "項目",
+    "classification": "分類",
+    "weight": "ホルダー占有数",
+    "status": "ステータス"
+  },
+  "status": { "active": "有効", "inactive": "無効" },
+  "actions": { "create": "ボズヤ項目を作成" },
+  "empty": {
+    "title": "ボズヤデータがありません",
+    "description": "用意されたボズヤデータをインポートするか、項目を手動で作成してください。"
+  },
+  "toasts": {
+    "created": "ボズヤ項目を作成しました",
+    "updated": "ボズヤ項目を更新しました",
+    "deleted": "ボズヤ項目を削除しました"
+  },
+  "create_modal": {
+    "title": "ボズヤ項目を作成",
+    "description": "コンテンツタイプで再利用するボズヤデータを追加します。"
+  },
+  "edit_modal": {
+    "title": "ボズヤ項目を編集",
+    "description": "このボズヤシステムデータを更新します。"
+  },
+  "delete_modal": {
+    "title": "{name}を削除しますか？",
+    "description": "この項目はボズヤシステムデータから削除されます。",
+    "confirm": "項目を削除"
+  },
+  "fields": {
+    "key": "保存キー",
+    "category": "データセット",
+    "name": "名前",
+    "name_description": "英語名は必須です。利用できる対応言語の翻訳も追加してください。",
+    "description": "説明",
+    "classification": "ソース分類",
+    "cache_weight": "ホルダー占有数",
+    "sort_order": "表示順",
+    "icon": "アイコン",
+    "icon_description": "既存のアイコンを変更する場合のみ、代わりの画像をアップロードしてください。",
+    "icon_placeholder": "画像を選択",
+    "is_active": "有効"
+  },
+  "source_payload": {
+    "title": "インポート元データを保持しています",
+    "description": "元のJSONは今後のボズヤ機能向けに保存され、このページには読み込まれません。"
+  }
+}

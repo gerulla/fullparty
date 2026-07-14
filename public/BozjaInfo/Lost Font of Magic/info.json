@@ -1,0 +1,322 @@
+{
+  "en": {
+    "title": "Lost Font of Magic",
+    "description": "Increases damage dealt by 70%, draining MP while in use.\nDuration: 30s\nSpirit of the Veteran Effect: Grants Spell Shield to self\nSpell Shield Effect: Reduces magic damage taken by 50%\nDuration: 15s\nCan only be executed while in combat.",
+    "effects": [
+      "Increases damage dealt by 70%, draining MP while in use.",
+      "Duration: 30s",
+      "Spirit of the Veteran Effect: Grants Spell Shield to self",
+      "Spell Shield Effect: Reduces magic damage taken by 50%",
+      "Duration: 15s",
+      "Can only be executed while in combat."
+    ],
+    "classification": "lost_action",
+    "cache": {
+      "item_id": 15,
+      "type_id": 1,
+      "type": "action",
+      "max_uses": 10,
+      "has_unlimited_uses": false,
+      "weight": 25,
+      "order": 15,
+      "category": {
+        "id": 1,
+        "name": "Offensive"
+      }
+    },
+    "action": {
+      "id": 20715,
+      "icon_id": 64671,
+      "icon_file": "icon.png",
+      "cast_time_seconds": 0,
+      "recast_time_seconds": 120,
+      "range_yalms": 0,
+      "effect_range_yalms": 0,
+      "max_charges": 0,
+      "cooldown_group": 81,
+      "additional_cooldown_group": 0,
+      "primary_cost": {
+        "type_id": 20,
+        "value": 1
+      },
+      "secondary_cost": {
+        "type_id": 42,
+        "value": 0
+      },
+      "aspect_id": 0,
+      "category": {
+        "id": 4,
+        "name": "Ability"
+      },
+      "class_job_category": {
+        "id": 172,
+        "name": "WHM BLM SMN SCH AST RDM SGE PCT",
+        "allowed_jobs": [
+          "WHM",
+          "BLM",
+          "SMN",
+          "SCH",
+          "AST",
+          "RDM",
+          "SGE",
+          "PCT"
+        ]
+      },
+      "targeting": {
+        "self": true,
+        "party": false,
+        "alliance": false,
+        "hostile": false,
+        "ally": false,
+        "own_pet": false,
+        "party_pet": false,
+        "dead_target_behavior": 0,
+        "is_area": false,
+        "requires_line_of_sight": true,
+        "requires_facing_target": true
+      },
+      "status_gain_self": null,
+      "proc_status": null
+    }
+  },
+  "de": {
+    "title": "Verschollene Magiefontäne",
+    "description": "Du erhöhst deinen ausgeteilten Schaden um 70\u00A0%, verbrauchst dabei aber stetig MP. Der Effekt endet, sobald deine MP auf 0 fallen.\nDauer: 30 Sekunden\nZusatzeffekt bei Trank des Kampfmagiers: Gewährt Magischer Schild, der den erlittenen Magieschaden um 50\u00A0% verringert.\nDauer: 15 Sekunden\nNur im Kampf wirksam.",
+    "effects": [
+      "Du erhöhst deinen ausgeteilten Schaden um 70\u00A0%, verbrauchst dabei aber stetig MP. Der Effekt endet, sobald deine MP auf 0 fallen.",
+      "Dauer: 30 Sekunden",
+      "Zusatzeffekt bei Trank des Kampfmagiers: Gewährt Magischer Schild, der den erlittenen Magieschaden um 50\u00A0% verringert.",
+      "Dauer: 15 Sekunden",
+      "Nur im Kampf wirksam."
+    ],
+    "classification": "lost_action",
+    "cache": {
+      "item_id": 15,
+      "type_id": 1,
+      "type": "action",
+      "max_uses": 10,
+      "has_unlimited_uses": false,
+      "weight": 25,
+      "order": 15,
+      "category": {
+        "id": 1,
+        "name": "Angreifer"
+      }
+    },
+    "action": {
+      "id": 20715,
+      "icon_id": 64671,
+      "icon_file": "icon.png",
+      "cast_time_seconds": 0,
+      "recast_time_seconds": 120,
+      "range_yalms": 0,
+      "effect_range_yalms": 0,
+      "max_charges": 0,
+      "cooldown_group": 81,
+      "additional_cooldown_group": 0,
+      "primary_cost": {
+        "type_id": 20,
+        "value": 1
+      },
+      "secondary_cost": {
+        "type_id": 42,
+        "value": 0
+      },
+      "aspect_id": 0,
+      "category": {
+        "id": 4,
+        "name": "Talent"
+      },
+      "class_job_category": {
+        "id": 172,
+        "name": "WMA SMA BSW GLT AST RMA WEI PKT",
+        "allowed_jobs": [
+          "WHM",
+          "BLM",
+          "SMN",
+          "SCH",
+          "AST",
+          "RDM",
+          "SGE",
+          "PCT"
+        ]
+      },
+      "targeting": {
+        "self": true,
+        "party": false,
+        "alliance": false,
+        "hostile": false,
+        "ally": false,
+        "own_pet": false,
+        "party_pet": false,
+        "dead_target_behavior": 0,
+        "is_area": false,
+        "requires_line_of_sight": true,
+        "requires_facing_target": true
+      },
+      "status_gain_self": null,
+      "proc_status": null
+    }
+  },
+  "fr": {
+    "title": "Fontaine de magie oubliée",
+    "description": "Augmente de 70% vos dégâts infligés.\nDes PM sont consommés périodiquement et l'effet prend fin s'ils tombent à 0.\nDurée\u00A0: 30s\nCondition\u00A0: en combat.\nEffet additionnel avec un breuvage de mage guerrier\u00A0: vous octroie Protection magique.\nProtection magique\u00A0: réduit de 50% les dégâts magiques subis.\nDurée\u00A0: 15s",
+    "effects": [
+      "Augmente de 70% vos dégâts infligés.",
+      "Des PM sont consommés périodiquement et l'effet prend fin s'ils tombent à 0.",
+      "Durée\u00A0: 30s",
+      "Condition\u00A0: en combat.",
+      "Effet additionnel avec un breuvage de mage guerrier\u00A0: vous octroie Protection magique.",
+      "Protection magique\u00A0: réduit de 50% les dégâts magiques subis.",
+      "Durée\u00A0: 15s"
+    ],
+    "classification": "lost_action",
+    "cache": {
+      "item_id": 15,
+      "type_id": 1,
+      "type": "action",
+      "max_uses": 10,
+      "has_unlimited_uses": false,
+      "weight": 25,
+      "order": 15,
+      "category": {
+        "id": 1,
+        "name": "Attaquant"
+      }
+    },
+    "action": {
+      "id": 20715,
+      "icon_id": 64671,
+      "icon_file": "icon.png",
+      "cast_time_seconds": 0,
+      "recast_time_seconds": 120,
+      "range_yalms": 0,
+      "effect_range_yalms": 0,
+      "max_charges": 0,
+      "cooldown_group": 81,
+      "additional_cooldown_group": 0,
+      "primary_cost": {
+        "type_id": 20,
+        "value": 1
+      },
+      "secondary_cost": {
+        "type_id": 42,
+        "value": 0
+      },
+      "aspect_id": 0,
+      "category": {
+        "id": 4,
+        "name": "Aptitude"
+      },
+      "class_job_category": {
+        "id": 172,
+        "name": "MBL MNO INV ÉRU AST MRG SAG PIC",
+        "allowed_jobs": [
+          "WHM",
+          "BLM",
+          "SMN",
+          "SCH",
+          "AST",
+          "RDM",
+          "SGE",
+          "PCT"
+        ]
+      },
+      "targeting": {
+        "self": true,
+        "party": false,
+        "alliance": false,
+        "hostile": false,
+        "ally": false,
+        "own_pet": false,
+        "party_pet": false,
+        "dead_target_behavior": 0,
+        "is_area": false,
+        "requires_line_of_sight": true,
+        "requires_facing_target": true
+      },
+      "status_gain_self": null,
+      "proc_status": null
+    }
+  },
+  "ja": {
+    "title": "ロスト・マジックフォント",
+    "description": "一定時間、自身の与ダメージを70％上昇させる。\n効果時間中はＭＰを消費し続け、ＭＰが0になると効果が切れる。\u3000効果時間：30秒\n発動条件：自身が戦闘状態\n魔戦士の薬時追加効果：自身に「マジックシールド」を付与する。\nマジックシールド効果：受ける魔法ダメージを50％軽減させる。\n効果時間：15秒",
+    "effects": [
+      "一定時間、自身の与ダメージを70％上昇させる。",
+      "効果時間中はＭＰを消費し続け、ＭＰが0になると効果が切れる。\u3000効果時間：30秒",
+      "発動条件：自身が戦闘状態",
+      "魔戦士の薬時追加効果：自身に「マジックシールド」を付与する。",
+      "マジックシールド効果：受ける魔法ダメージを50％軽減させる。",
+      "効果時間：15秒"
+    ],
+    "classification": "lost_action",
+    "cache": {
+      "item_id": 15,
+      "type_id": 1,
+      "type": "action",
+      "max_uses": 10,
+      "has_unlimited_uses": false,
+      "weight": 25,
+      "order": 15,
+      "category": {
+        "id": 1,
+        "name": "アクション：アタッカー"
+      }
+    },
+    "action": {
+      "id": 20715,
+      "icon_id": 64671,
+      "icon_file": "icon.png",
+      "cast_time_seconds": 0,
+      "recast_time_seconds": 120,
+      "range_yalms": 0,
+      "effect_range_yalms": 0,
+      "max_charges": 0,
+      "cooldown_group": 81,
+      "additional_cooldown_group": 0,
+      "primary_cost": {
+        "type_id": 20,
+        "value": 1
+      },
+      "secondary_cost": {
+        "type_id": 42,
+        "value": 0
+      },
+      "aspect_id": 0,
+      "category": {
+        "id": 4,
+        "name": "アビリティ"
+      },
+      "class_job_category": {
+        "id": 172,
+        "name": "白魔道士 黒魔道士 召喚士 学者 占星術師 赤魔道士 賢者 ピクトマンサー",
+        "allowed_jobs": [
+          "WHM",
+          "BLM",
+          "SMN",
+          "SCH",
+          "AST",
+          "RDM",
+          "SGE",
+          "PCT"
+        ]
+      },
+      "targeting": {
+        "self": true,
+        "party": false,
+        "alliance": false,
+        "hostile": false,
+        "ally": false,
+        "own_pet": false,
+        "party_pet": false,
+        "dead_target_behavior": 0,
+        "is_area": false,
+        "requires_line_of_sight": true,
+        "requires_facing_target": true
+      },
+      "status_gain_self": null,
+      "proc_status": null
+    }
+  }
+}

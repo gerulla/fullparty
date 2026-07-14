@@ -1,0 +1,289 @@
+{
+  "en": {
+    "title": "Lost Aethershield",
+    "description": "Reduces damage taken by self and nearby party members by 30%.\nDuration: 15s",
+    "effects": [
+      "Reduces damage taken by self and nearby party members by 30%.",
+      "Duration: 15s"
+    ],
+    "classification": "lost_action",
+    "cache": {
+      "item_id": 82,
+      "type_id": 1,
+      "type": "action",
+      "max_uses": 15,
+      "has_unlimited_uses": false,
+      "weight": 8,
+      "order": 82,
+      "category": {
+        "id": 4,
+        "name": "Beneficial"
+      }
+    },
+    "action": {
+      "id": 22355,
+      "icon_id": 64738,
+      "icon_file": "icon.png",
+      "cast_time_seconds": 0,
+      "recast_time_seconds": 60,
+      "range_yalms": 0,
+      "effect_range_yalms": 15,
+      "max_charges": 0,
+      "cooldown_group": 81,
+      "additional_cooldown_group": 0,
+      "primary_cost": {
+        "type_id": 20,
+        "value": 1
+      },
+      "secondary_cost": {
+        "type_id": 0,
+        "value": 0
+      },
+      "aspect_id": 0,
+      "category": {
+        "id": 4,
+        "name": "Ability"
+      },
+      "class_job_category": {
+        "id": 166,
+        "name": "PLD WAR DRK GNB",
+        "allowed_jobs": [
+          "PLD",
+          "WAR",
+          "DRK",
+          "GNB"
+        ]
+      },
+      "targeting": {
+        "self": true,
+        "party": false,
+        "alliance": false,
+        "hostile": false,
+        "ally": false,
+        "own_pet": false,
+        "party_pet": false,
+        "dead_target_behavior": 0,
+        "is_area": false,
+        "requires_line_of_sight": true,
+        "requires_facing_target": true
+      },
+      "status_gain_self": null,
+      "proc_status": null
+    }
+  },
+  "de": {
+    "title": "Verschollener Ätherschild",
+    "description": "Du verringerst den erlittenen Schaden von dir und den umstehenden Gruppenmitgliedern um 30\u00A0%.\nDauer: 15 Sekunden",
+    "effects": [
+      "Du verringerst den erlittenen Schaden von dir und den umstehenden Gruppenmitgliedern um 30\u00A0%.",
+      "Dauer: 15 Sekunden"
+    ],
+    "classification": "lost_action",
+    "cache": {
+      "item_id": 82,
+      "type_id": 1,
+      "type": "action",
+      "max_uses": 15,
+      "has_unlimited_uses": false,
+      "weight": 8,
+      "order": 82,
+      "category": {
+        "id": 4,
+        "name": "Unterstützer"
+      }
+    },
+    "action": {
+      "id": 22355,
+      "icon_id": 64738,
+      "icon_file": "icon.png",
+      "cast_time_seconds": 0,
+      "recast_time_seconds": 60,
+      "range_yalms": 0,
+      "effect_range_yalms": 15,
+      "max_charges": 0,
+      "cooldown_group": 81,
+      "additional_cooldown_group": 0,
+      "primary_cost": {
+        "type_id": 20,
+        "value": 1
+      },
+      "secondary_cost": {
+        "type_id": 0,
+        "value": 0
+      },
+      "aspect_id": 0,
+      "category": {
+        "id": 4,
+        "name": "Talent"
+      },
+      "class_job_category": {
+        "id": 166,
+        "name": "PLD KRG DKR REV",
+        "allowed_jobs": [
+          "PLD",
+          "WAR",
+          "DRK",
+          "GNB"
+        ]
+      },
+      "targeting": {
+        "self": true,
+        "party": false,
+        "alliance": false,
+        "hostile": false,
+        "ally": false,
+        "own_pet": false,
+        "party_pet": false,
+        "dead_target_behavior": 0,
+        "is_area": false,
+        "requires_line_of_sight": true,
+        "requires_facing_target": true
+      },
+      "status_gain_self": null,
+      "proc_status": null
+    }
+  },
+  "fr": {
+    "title": "Égide d'éther oubliée",
+    "description": "Réduit de 30% les dégâts reçus par vous et les équipiers alentour.\nDurée\u00A0: 15s",
+    "effects": [
+      "Réduit de 30% les dégâts reçus par vous et les équipiers alentour.",
+      "Durée\u00A0: 15s"
+    ],
+    "classification": "lost_action",
+    "cache": {
+      "item_id": 82,
+      "type_id": 1,
+      "type": "action",
+      "max_uses": 15,
+      "has_unlimited_uses": false,
+      "weight": 8,
+      "order": 82,
+      "category": {
+        "id": 4,
+        "name": "Auxiliaire"
+      }
+    },
+    "action": {
+      "id": 22355,
+      "icon_id": 64738,
+      "icon_file": "icon.png",
+      "cast_time_seconds": 0,
+      "recast_time_seconds": 60,
+      "range_yalms": 0,
+      "effect_range_yalms": 15,
+      "max_charges": 0,
+      "cooldown_group": 81,
+      "additional_cooldown_group": 0,
+      "primary_cost": {
+        "type_id": 20,
+        "value": 1
+      },
+      "secondary_cost": {
+        "type_id": 0,
+        "value": 0
+      },
+      "aspect_id": 0,
+      "category": {
+        "id": 4,
+        "name": "Aptitude"
+      },
+      "class_job_category": {
+        "id": 166,
+        "name": "PLD GUE CHN PSB",
+        "allowed_jobs": [
+          "PLD",
+          "WAR",
+          "DRK",
+          "GNB"
+        ]
+      },
+      "targeting": {
+        "self": true,
+        "party": false,
+        "alliance": false,
+        "hostile": false,
+        "ally": false,
+        "own_pet": false,
+        "party_pet": false,
+        "dead_target_behavior": 0,
+        "is_area": false,
+        "requires_line_of_sight": true,
+        "requires_facing_target": true
+      },
+      "status_gain_self": null,
+      "proc_status": null
+    }
+  },
+  "ja": {
+    "title": "ロスト・エーテルシールド",
+    "description": "一定時間、自身と周囲のパーティメンバーの被ダメージを30％軽減させる。\u3000効果時間：15秒",
+    "effects": [
+      "一定時間、自身と周囲のパーティメンバーの被ダメージを30％軽減させる。\u3000効果時間：15秒"
+    ],
+    "classification": "lost_action",
+    "cache": {
+      "item_id": 82,
+      "type_id": 1,
+      "type": "action",
+      "max_uses": 15,
+      "has_unlimited_uses": false,
+      "weight": 8,
+      "order": 82,
+      "category": {
+        "id": 4,
+        "name": "アクション：バッファー"
+      }
+    },
+    "action": {
+      "id": 22355,
+      "icon_id": 64738,
+      "icon_file": "icon.png",
+      "cast_time_seconds": 0,
+      "recast_time_seconds": 60,
+      "range_yalms": 0,
+      "effect_range_yalms": 15,
+      "max_charges": 0,
+      "cooldown_group": 81,
+      "additional_cooldown_group": 0,
+      "primary_cost": {
+        "type_id": 20,
+        "value": 1
+      },
+      "secondary_cost": {
+        "type_id": 0,
+        "value": 0
+      },
+      "aspect_id": 0,
+      "category": {
+        "id": 4,
+        "name": "アビリティ"
+      },
+      "class_job_category": {
+        "id": 166,
+        "name": "ナイト 戦士 暗黒騎士 ガンブレイカー",
+        "allowed_jobs": [
+          "PLD",
+          "WAR",
+          "DRK",
+          "GNB"
+        ]
+      },
+      "targeting": {
+        "self": true,
+        "party": false,
+        "alliance": false,
+        "hostile": false,
+        "ally": false,
+        "own_pet": false,
+        "party_pet": false,
+        "dead_target_behavior": 0,
+        "is_area": false,
+        "requires_line_of_sight": true,
+        "requires_facing_target": true
+      },
+      "status_gain_self": null,
+      "proc_status": null
+    }
+  }
+}

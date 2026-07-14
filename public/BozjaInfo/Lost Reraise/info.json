@@ -1,0 +1,362 @@
+{
+  "en": {
+    "title": "Lost Reraise",
+    "description": "Grants the effect of Reraise to self or target player.\nReraise Effect: Grants an 80% chance of automatic revival upon KO\nDuration: 180m",
+    "effects": [
+      "Grants the effect of Reraise to self or target player.",
+      "Reraise Effect: Grants an 80% chance of automatic revival upon KO",
+      "Duration: 180m"
+    ],
+    "classification": "lost_action",
+    "cache": {
+      "item_id": 89,
+      "type_id": 1,
+      "type": "action",
+      "max_uses": 2,
+      "has_unlimited_uses": false,
+      "weight": 12,
+      "order": 89,
+      "category": {
+        "id": 3,
+        "name": "Restorative"
+      }
+    },
+    "action": {
+      "id": 23912,
+      "icon_id": 64745,
+      "icon_file": "icon.png",
+      "cast_time_seconds": 2.5,
+      "recast_time_seconds": 2.5,
+      "range_yalms": 30,
+      "effect_range_yalms": 0,
+      "max_charges": 0,
+      "cooldown_group": 58,
+      "additional_cooldown_group": 0,
+      "primary_cost": {
+        "type_id": 20,
+        "value": 1
+      },
+      "secondary_cost": {
+        "type_id": 0,
+        "value": 0
+      },
+      "aspect_id": 7,
+      "category": {
+        "id": 2,
+        "name": "Spell"
+      },
+      "class_job_category": {
+        "id": 169,
+        "name": "PLD MNK WAR DRG BRD WHM BLM SMN SCH NIN MCH DRK AST SAM RDM GNB DNC RPR SGE VPR PCT",
+        "allowed_jobs": [
+          "PLD",
+          "MNK",
+          "WAR",
+          "DRG",
+          "BRD",
+          "WHM",
+          "BLM",
+          "SMN",
+          "SCH",
+          "NIN",
+          "MCH",
+          "DRK",
+          "AST",
+          "SAM",
+          "RDM",
+          "GNB",
+          "DNC",
+          "RPR",
+          "SGE",
+          "VPR",
+          "PCT"
+        ]
+      },
+      "targeting": {
+        "self": true,
+        "party": true,
+        "alliance": true,
+        "hostile": false,
+        "ally": true,
+        "own_pet": false,
+        "party_pet": false,
+        "dead_target_behavior": 0,
+        "is_area": false,
+        "requires_line_of_sight": true,
+        "requires_facing_target": false
+      },
+      "status_gain_self": null,
+      "proc_status": null
+    }
+  },
+  "de": {
+    "title": "Verschollene Rückkehr aus dem Jenseits",
+    "description": "Du gewährst dir oder dem befreundeten Ziel Rückkehr aus dem Jenseits.\nEffekt von Rückkehr aus dem Jenseits: Bei Kampfunfähigkeit 80\u00A0% Wahrscheinlichkeit auf automatische Wiederbelebung.\nDauer: 180 Minuten",
+    "effects": [
+      "Du gewährst dir oder dem befreundeten Ziel Rückkehr aus dem Jenseits.",
+      "Effekt von Rückkehr aus dem Jenseits: Bei Kampfunfähigkeit 80\u00A0% Wahrscheinlichkeit auf automatische Wiederbelebung.",
+      "Dauer: 180 Minuten"
+    ],
+    "classification": "lost_action",
+    "cache": {
+      "item_id": 89,
+      "type_id": 1,
+      "type": "action",
+      "max_uses": 2,
+      "has_unlimited_uses": false,
+      "weight": 12,
+      "order": 89,
+      "category": {
+        "id": 3,
+        "name": "Heiler"
+      }
+    },
+    "action": {
+      "id": 23912,
+      "icon_id": 64745,
+      "icon_file": "icon.png",
+      "cast_time_seconds": 2.5,
+      "recast_time_seconds": 2.5,
+      "range_yalms": 30,
+      "effect_range_yalms": 0,
+      "max_charges": 0,
+      "cooldown_group": 58,
+      "additional_cooldown_group": 0,
+      "primary_cost": {
+        "type_id": 20,
+        "value": 1
+      },
+      "secondary_cost": {
+        "type_id": 0,
+        "value": 0
+      },
+      "aspect_id": 7,
+      "category": {
+        "id": 2,
+        "name": "Zauber"
+      },
+      "class_job_category": {
+        "id": 169,
+        "name": "PLD MÖN KRG DRG BRD WMA SMA BSW GLT NIN MCH DKR AST SAM RMA REV TÄN SNT WEI VPR PKT",
+        "allowed_jobs": [
+          "PLD",
+          "MNK",
+          "WAR",
+          "DRG",
+          "BRD",
+          "WHM",
+          "BLM",
+          "SMN",
+          "SCH",
+          "NIN",
+          "MCH",
+          "DRK",
+          "AST",
+          "SAM",
+          "RDM",
+          "GNB",
+          "DNC",
+          "RPR",
+          "SGE",
+          "VPR",
+          "PCT"
+        ]
+      },
+      "targeting": {
+        "self": true,
+        "party": true,
+        "alliance": true,
+        "hostile": false,
+        "ally": true,
+        "own_pet": false,
+        "party_pet": false,
+        "dead_target_behavior": 0,
+        "is_area": false,
+        "requires_line_of_sight": true,
+        "requires_facing_target": false
+      },
+      "status_gain_self": null,
+      "proc_status": null
+    }
+  },
+  "fr": {
+    "title": "Auréole oubliée",
+    "description": "Octroie Auréole à vous ou au joueur ciblé.\nAuréole\u00A0: offre 80% de chances de ressusciter automatiquement en cas de K.O.\nDurée\u00A0: 180m",
+    "effects": [
+      "Octroie Auréole à vous ou au joueur ciblé.",
+      "Auréole\u00A0: offre 80% de chances de ressusciter automatiquement en cas de K.O.",
+      "Durée\u00A0: 180m"
+    ],
+    "classification": "lost_action",
+    "cache": {
+      "item_id": 89,
+      "type_id": 1,
+      "type": "action",
+      "max_uses": 2,
+      "has_unlimited_uses": false,
+      "weight": 12,
+      "order": 89,
+      "category": {
+        "id": 3,
+        "name": "Soigneur"
+      }
+    },
+    "action": {
+      "id": 23912,
+      "icon_id": 64745,
+      "icon_file": "icon.png",
+      "cast_time_seconds": 2.5,
+      "recast_time_seconds": 2.5,
+      "range_yalms": 30,
+      "effect_range_yalms": 0,
+      "max_charges": 0,
+      "cooldown_group": 58,
+      "additional_cooldown_group": 0,
+      "primary_cost": {
+        "type_id": 20,
+        "value": 1
+      },
+      "secondary_cost": {
+        "type_id": 0,
+        "value": 0
+      },
+      "aspect_id": 7,
+      "category": {
+        "id": 2,
+        "name": "Sort"
+      },
+      "class_job_category": {
+        "id": 169,
+        "name": "PLD MOI GUE DRG BRD MBL MNO INV ÉRU NIN MCH CHN AST SAM MRG PSB DNS FCH SAG VPR PIC",
+        "allowed_jobs": [
+          "PLD",
+          "MNK",
+          "WAR",
+          "DRG",
+          "BRD",
+          "WHM",
+          "BLM",
+          "SMN",
+          "SCH",
+          "NIN",
+          "MCH",
+          "DRK",
+          "AST",
+          "SAM",
+          "RDM",
+          "GNB",
+          "DNC",
+          "RPR",
+          "SGE",
+          "VPR",
+          "PCT"
+        ]
+      },
+      "targeting": {
+        "self": true,
+        "party": true,
+        "alliance": true,
+        "hostile": false,
+        "ally": true,
+        "own_pet": false,
+        "party_pet": false,
+        "dead_target_behavior": 0,
+        "is_area": false,
+        "requires_line_of_sight": true,
+        "requires_facing_target": false
+      },
+      "status_gain_self": null,
+      "proc_status": null
+    }
+  },
+  "ja": {
+    "title": "ロスト・リレイズ",
+    "description": "自身またはプレイヤーひとりを対象として、「リレイズ」を付与する。\nリレイズ効果：効果時間中に戦闘不能になると80％の確率で自動的に蘇生する。\n効果時間：180分",
+    "effects": [
+      "自身またはプレイヤーひとりを対象として、「リレイズ」を付与する。",
+      "リレイズ効果：効果時間中に戦闘不能になると80％の確率で自動的に蘇生する。",
+      "効果時間：180分"
+    ],
+    "classification": "lost_action",
+    "cache": {
+      "item_id": 89,
+      "type_id": 1,
+      "type": "action",
+      "max_uses": 2,
+      "has_unlimited_uses": false,
+      "weight": 12,
+      "order": 89,
+      "category": {
+        "id": 3,
+        "name": "アクション：ヒーラー"
+      }
+    },
+    "action": {
+      "id": 23912,
+      "icon_id": 64745,
+      "icon_file": "icon.png",
+      "cast_time_seconds": 2.5,
+      "recast_time_seconds": 2.5,
+      "range_yalms": 30,
+      "effect_range_yalms": 0,
+      "max_charges": 0,
+      "cooldown_group": 58,
+      "additional_cooldown_group": 0,
+      "primary_cost": {
+        "type_id": 20,
+        "value": 1
+      },
+      "secondary_cost": {
+        "type_id": 0,
+        "value": 0
+      },
+      "aspect_id": 7,
+      "category": {
+        "id": 2,
+        "name": "魔法"
+      },
+      "class_job_category": {
+        "id": 169,
+        "name": "ナイト モンク 戦士 竜騎士 吟遊詩人 白魔道士 黒魔道士 召喚士 学者 忍者 機工士 暗黒騎士 占星術師 侍 赤魔道士 ガンブレイカー 踊り子 リーパー 賢者 ヴァイパー ピクトマンサー",
+        "allowed_jobs": [
+          "PLD",
+          "MNK",
+          "WAR",
+          "DRG",
+          "BRD",
+          "WHM",
+          "BLM",
+          "SMN",
+          "SCH",
+          "NIN",
+          "MCH",
+          "DRK",
+          "AST",
+          "SAM",
+          "RDM",
+          "GNB",
+          "DNC",
+          "RPR",
+          "SGE",
+          "VPR",
+          "PCT"
+        ]
+      },
+      "targeting": {
+        "self": true,
+        "party": true,
+        "alliance": true,
+        "hostile": false,
+        "ally": true,
+        "own_pet": false,
+        "party_pet": false,
+        "dead_target_behavior": 0,
+        "is_area": false,
+        "requires_line_of_sight": true,
+        "requires_facing_target": false
+      },
+      "status_gain_self": null,
+      "proc_status": null
+    }
+  }
+}

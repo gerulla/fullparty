@@ -1,0 +1,331 @@
+{
+  "en": {
+    "title": "Lost Slash",
+    "description": "Delivers an attack with a potency of 800 to all enemies in a cone before you. When critical damage is dealt, potency is tripled.\nThis action does not share a recast timer with any other actions. Furthermore, the recast timer cannot be affected by other actions.",
+    "effects": [
+      "Delivers an attack with a potency of 800 to all enemies in a cone before you. When critical damage is dealt, potency is tripled.",
+      "This action does not share a recast timer with any other actions. Furthermore, the recast timer cannot be affected by other actions."
+    ],
+    "classification": "lost_action",
+    "cache": {
+      "item_id": 18,
+      "type_id": 1,
+      "type": "action",
+      "max_uses": 10,
+      "has_unlimited_uses": false,
+      "weight": 10,
+      "order": 18,
+      "category": {
+        "id": 1,
+        "name": "Offensive"
+      }
+    },
+    "action": {
+      "id": 20718,
+      "icon_id": 64674,
+      "icon_file": "icon.png",
+      "cast_time_seconds": 0,
+      "recast_time_seconds": 90,
+      "range_yalms": 8,
+      "effect_range_yalms": 8,
+      "max_charges": 0,
+      "cooldown_group": 81,
+      "additional_cooldown_group": 0,
+      "primary_cost": {
+        "type_id": 20,
+        "value": 1
+      },
+      "secondary_cost": {
+        "type_id": 0,
+        "value": 0
+      },
+      "aspect_id": 7,
+      "category": {
+        "id": 3,
+        "name": "Weaponskill"
+      },
+      "class_job_category": {
+        "id": 174,
+        "name": "PLD MNK WAR DRG BRD NIN MCH DRK SAM GNB DNC RPR VPR",
+        "allowed_jobs": [
+          "PLD",
+          "MNK",
+          "WAR",
+          "DRG",
+          "BRD",
+          "NIN",
+          "MCH",
+          "DRK",
+          "SAM",
+          "GNB",
+          "DNC",
+          "RPR",
+          "VPR"
+        ]
+      },
+      "targeting": {
+        "self": false,
+        "party": false,
+        "alliance": false,
+        "hostile": true,
+        "ally": false,
+        "own_pet": false,
+        "party_pet": false,
+        "dead_target_behavior": 0,
+        "is_area": false,
+        "requires_line_of_sight": true,
+        "requires_facing_target": true
+      },
+      "status_gain_self": null,
+      "proc_status": null
+    }
+  },
+  "de": {
+    "title": "Verschollener Schlitzer",
+    "description": "Du führst eine physische Attacke auf die fächerförmig vor dir stehenden Gegner aus.\nAttacke-Wert: 800\nZusatzeffekt: Kritische Treffer verursachen dreifachen Schaden.\nEigener Reaktivierungs-Timer, der nicht durch andere Reaktivierungs-Timer beeinflusst wird.",
+    "effects": [
+      "Du führst eine physische Attacke auf die fächerförmig vor dir stehenden Gegner aus.",
+      "Attacke-Wert: 800",
+      "Zusatzeffekt: Kritische Treffer verursachen dreifachen Schaden.",
+      "Eigener Reaktivierungs-Timer, der nicht durch andere Reaktivierungs-Timer beeinflusst wird."
+    ],
+    "classification": "lost_action",
+    "cache": {
+      "item_id": 18,
+      "type_id": 1,
+      "type": "action",
+      "max_uses": 10,
+      "has_unlimited_uses": false,
+      "weight": 10,
+      "order": 18,
+      "category": {
+        "id": 1,
+        "name": "Angreifer"
+      }
+    },
+    "action": {
+      "id": 20718,
+      "icon_id": 64674,
+      "icon_file": "icon.png",
+      "cast_time_seconds": 0,
+      "recast_time_seconds": 90,
+      "range_yalms": 8,
+      "effect_range_yalms": 8,
+      "max_charges": 0,
+      "cooldown_group": 81,
+      "additional_cooldown_group": 0,
+      "primary_cost": {
+        "type_id": 20,
+        "value": 1
+      },
+      "secondary_cost": {
+        "type_id": 0,
+        "value": 0
+      },
+      "aspect_id": 7,
+      "category": {
+        "id": 3,
+        "name": "Waffenfertigkeit"
+      },
+      "class_job_category": {
+        "id": 174,
+        "name": "PLD MÖN KRG DRG BRD NIN MCH DKR SAM REV TÄN SNT VPR",
+        "allowed_jobs": [
+          "PLD",
+          "MNK",
+          "WAR",
+          "DRG",
+          "BRD",
+          "NIN",
+          "MCH",
+          "DRK",
+          "SAM",
+          "GNB",
+          "DNC",
+          "RPR",
+          "VPR"
+        ]
+      },
+      "targeting": {
+        "self": false,
+        "party": false,
+        "alliance": false,
+        "hostile": true,
+        "ally": false,
+        "own_pet": false,
+        "party_pet": false,
+        "dead_target_behavior": 0,
+        "is_area": false,
+        "requires_line_of_sight": true,
+        "requires_facing_target": true
+      },
+      "status_gain_self": null,
+      "proc_status": null
+    }
+  },
+  "fr": {
+    "title": "Taillade oubliée",
+    "description": "Effectue une attaque physique dans une zone en éventail vers la cible.\nPuissance\u00A0: 800\nLes coups critiques de cette attaque infligent 3 fois plus de dégâts que les coups critiques normaux.\nCette technique d'arme a un temps de recharge indépendant qui n'est pas affecté par ceux des sorts et des autres techniques d'armes.",
+    "effects": [
+      "Effectue une attaque physique dans une zone en éventail vers la cible.",
+      "Puissance\u00A0: 800",
+      "Les coups critiques de cette attaque infligent 3 fois plus de dégâts que les coups critiques normaux.",
+      "Cette technique d'arme a un temps de recharge indépendant qui n'est pas affecté par ceux des sorts et des autres techniques d'armes."
+    ],
+    "classification": "lost_action",
+    "cache": {
+      "item_id": 18,
+      "type_id": 1,
+      "type": "action",
+      "max_uses": 10,
+      "has_unlimited_uses": false,
+      "weight": 10,
+      "order": 18,
+      "category": {
+        "id": 1,
+        "name": "Attaquant"
+      }
+    },
+    "action": {
+      "id": 20718,
+      "icon_id": 64674,
+      "icon_file": "icon.png",
+      "cast_time_seconds": 0,
+      "recast_time_seconds": 90,
+      "range_yalms": 8,
+      "effect_range_yalms": 8,
+      "max_charges": 0,
+      "cooldown_group": 81,
+      "additional_cooldown_group": 0,
+      "primary_cost": {
+        "type_id": 20,
+        "value": 1
+      },
+      "secondary_cost": {
+        "type_id": 0,
+        "value": 0
+      },
+      "aspect_id": 7,
+      "category": {
+        "id": 3,
+        "name": "Technique d'arme"
+      },
+      "class_job_category": {
+        "id": 174,
+        "name": "PLD MOI GUE DRG BRD NIN MCH CHN SAM PSB DNS FCH VPR",
+        "allowed_jobs": [
+          "PLD",
+          "MNK",
+          "WAR",
+          "DRG",
+          "BRD",
+          "NIN",
+          "MCH",
+          "DRK",
+          "SAM",
+          "GNB",
+          "DNC",
+          "RPR",
+          "VPR"
+        ]
+      },
+      "targeting": {
+        "self": false,
+        "party": false,
+        "alliance": false,
+        "hostile": true,
+        "ally": false,
+        "own_pet": false,
+        "party_pet": false,
+        "dead_target_behavior": 0,
+        "is_area": false,
+        "requires_line_of_sight": true,
+        "requires_facing_target": true
+      },
+      "status_gain_self": null,
+      "proc_status": null
+    }
+  },
+  "ja": {
+    "title": "ロスト・スラッシュ",
+    "description": "対象に向かって前方扇範囲物理攻撃。\u3000威力：800\n追加効果（クリティカル時）：クリティカルヒットのダメージが300％になる。\nこのウェポンスキルは固有のリキャストタイマーを持ち、他のウェポンスキルや魔法のリキャストタイマーの影響を受けない。",
+    "effects": [
+      "対象に向かって前方扇範囲物理攻撃。\u3000威力：800",
+      "追加効果（クリティカル時）：クリティカルヒットのダメージが300％になる。",
+      "このウェポンスキルは固有のリキャストタイマーを持ち、他のウェポンスキルや魔法のリキャストタイマーの影響を受けない。"
+    ],
+    "classification": "lost_action",
+    "cache": {
+      "item_id": 18,
+      "type_id": 1,
+      "type": "action",
+      "max_uses": 10,
+      "has_unlimited_uses": false,
+      "weight": 10,
+      "order": 18,
+      "category": {
+        "id": 1,
+        "name": "アクション：アタッカー"
+      }
+    },
+    "action": {
+      "id": 20718,
+      "icon_id": 64674,
+      "icon_file": "icon.png",
+      "cast_time_seconds": 0,
+      "recast_time_seconds": 90,
+      "range_yalms": 8,
+      "effect_range_yalms": 8,
+      "max_charges": 0,
+      "cooldown_group": 81,
+      "additional_cooldown_group": 0,
+      "primary_cost": {
+        "type_id": 20,
+        "value": 1
+      },
+      "secondary_cost": {
+        "type_id": 0,
+        "value": 0
+      },
+      "aspect_id": 7,
+      "category": {
+        "id": 3,
+        "name": "ウェポンスキル"
+      },
+      "class_job_category": {
+        "id": 174,
+        "name": "ナイト モンク 戦士 竜騎士 吟遊詩人 忍者 機工士 暗黒騎士 侍 ガンブレイカー 踊り子 リーパー ヴァイパー",
+        "allowed_jobs": [
+          "PLD",
+          "MNK",
+          "WAR",
+          "DRG",
+          "BRD",
+          "NIN",
+          "MCH",
+          "DRK",
+          "SAM",
+          "GNB",
+          "DNC",
+          "RPR",
+          "VPR"
+        ]
+      },
+      "targeting": {
+        "self": false,
+        "party": false,
+        "alliance": false,
+        "hostile": true,
+        "ally": false,
+        "own_pet": false,
+        "party_pet": false,
+        "dead_target_behavior": 0,
+        "is_area": false,
+        "requires_line_of_sight": true,
+        "requires_facing_target": true
+      },
+      "status_gain_self": null,
+      "proc_status": null
+    }
+  }
+}

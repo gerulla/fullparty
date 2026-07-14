@@ -115,6 +115,11 @@
                 "updated": "a mis à jour une position de raid.",
                 "deleted": "a supprimé une position de raid."
             },
+            "bozja_item": {
+                "created": "a créé un élément de Bozja.",
+                "updated": "a mis à jour un élément de Bozja.",
+                "deleted": "a supprimé un élément de Bozja."
+            },
             "activity_type": {
                 "created": "a créé un Activity Type.",
                 "cloned": "a cloné un Activity Type.",
@@ -364,6 +369,11 @@
                 "created": "Position de raid créée",
                 "updated": "Position de raid mise à jour",
                 "deleted": "Position de raid supprimée"
+            },
+            "bozja_item": {
+                "created": "Élément de Bozja créé",
+                "updated": "Élément de Bozja mis à jour",
+                "deleted": "Élément de Bozja supprimé"
             },
             "activity_type": {
                 "created": "Activity Type créé",

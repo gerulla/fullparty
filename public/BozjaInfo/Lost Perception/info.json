@@ -1,0 +1,362 @@
+{
+  "en": {
+    "title": "Lost Perception",
+    "description": "Detect traps within a radius of 15 yalms.\nIf there are no traps within 15 yalms, alerts you to the presence of traps with a radius of 36 yalms.\n※This action can only be used in Delubrum Reginae.",
+    "effects": [
+      "Detect traps within a radius of 15 yalms.",
+      "If there are no traps within 15 yalms, alerts you to the presence of traps with a radius of 36 yalms.",
+      "※This action can only be used in Delubrum Reginae."
+    ],
+    "classification": "lost_action",
+    "cache": {
+      "item_id": 71,
+      "type_id": 1,
+      "type": "action",
+      "max_uses": 99,
+      "has_unlimited_uses": false,
+      "weight": 4,
+      "order": 71,
+      "category": {
+        "id": 5,
+        "name": "Tactical"
+      }
+    },
+    "action": {
+      "id": 22344,
+      "icon_id": 64733,
+      "icon_file": "icon.png",
+      "cast_time_seconds": 0,
+      "recast_time_seconds": 1.5,
+      "range_yalms": 0,
+      "effect_range_yalms": 15,
+      "max_charges": 0,
+      "cooldown_group": 81,
+      "additional_cooldown_group": 0,
+      "primary_cost": {
+        "type_id": 20,
+        "value": 1
+      },
+      "secondary_cost": {
+        "type_id": 111,
+        "value": 0
+      },
+      "aspect_id": 0,
+      "category": {
+        "id": 4,
+        "name": "Ability"
+      },
+      "class_job_category": {
+        "id": 169,
+        "name": "PLD MNK WAR DRG BRD WHM BLM SMN SCH NIN MCH DRK AST SAM RDM GNB DNC RPR SGE VPR PCT",
+        "allowed_jobs": [
+          "PLD",
+          "MNK",
+          "WAR",
+          "DRG",
+          "BRD",
+          "WHM",
+          "BLM",
+          "SMN",
+          "SCH",
+          "NIN",
+          "MCH",
+          "DRK",
+          "AST",
+          "SAM",
+          "RDM",
+          "GNB",
+          "DNC",
+          "RPR",
+          "SGE",
+          "VPR",
+          "PCT"
+        ]
+      },
+      "targeting": {
+        "self": true,
+        "party": false,
+        "alliance": false,
+        "hostile": false,
+        "ally": false,
+        "own_pet": false,
+        "party_pet": false,
+        "dead_target_behavior": 0,
+        "is_area": false,
+        "requires_line_of_sight": false,
+        "requires_facing_target": true
+      },
+      "status_gain_self": null,
+      "proc_status": null
+    }
+  },
+  "de": {
+    "title": "Verschollene Tigeraugen",
+    "description": "Du deckst im Umkreis von 15 Yalmen alle Fallen auf.\nWenn sich keine Fallen im Umkreis von 15 Yalmen befinden, wird der Suchkreis auf 36 Yalme erweitert und dir wird gewahr, ob sich dort noch Fallen befinden.\n※ Kann nur im Delubrum Reginae angewendet werden.",
+    "effects": [
+      "Du deckst im Umkreis von 15 Yalmen alle Fallen auf.",
+      "Wenn sich keine Fallen im Umkreis von 15 Yalmen befinden, wird der Suchkreis auf 36 Yalme erweitert und dir wird gewahr, ob sich dort noch Fallen befinden.",
+      "※ Kann nur im Delubrum Reginae angewendet werden."
+    ],
+    "classification": "lost_action",
+    "cache": {
+      "item_id": 71,
+      "type_id": 1,
+      "type": "action",
+      "max_uses": 99,
+      "has_unlimited_uses": false,
+      "weight": 4,
+      "order": 71,
+      "category": {
+        "id": 5,
+        "name": "Späher"
+      }
+    },
+    "action": {
+      "id": 22344,
+      "icon_id": 64733,
+      "icon_file": "icon.png",
+      "cast_time_seconds": 0,
+      "recast_time_seconds": 1.5,
+      "range_yalms": 0,
+      "effect_range_yalms": 15,
+      "max_charges": 0,
+      "cooldown_group": 81,
+      "additional_cooldown_group": 0,
+      "primary_cost": {
+        "type_id": 20,
+        "value": 1
+      },
+      "secondary_cost": {
+        "type_id": 111,
+        "value": 0
+      },
+      "aspect_id": 0,
+      "category": {
+        "id": 4,
+        "name": "Talent"
+      },
+      "class_job_category": {
+        "id": 169,
+        "name": "PLD MÖN KRG DRG BRD WMA SMA BSW GLT NIN MCH DKR AST SAM RMA REV TÄN SNT WEI VPR PKT",
+        "allowed_jobs": [
+          "PLD",
+          "MNK",
+          "WAR",
+          "DRG",
+          "BRD",
+          "WHM",
+          "BLM",
+          "SMN",
+          "SCH",
+          "NIN",
+          "MCH",
+          "DRK",
+          "AST",
+          "SAM",
+          "RDM",
+          "GNB",
+          "DNC",
+          "RPR",
+          "SGE",
+          "VPR",
+          "PCT"
+        ]
+      },
+      "targeting": {
+        "self": true,
+        "party": false,
+        "alliance": false,
+        "hostile": false,
+        "ally": false,
+        "own_pet": false,
+        "party_pet": false,
+        "dead_target_behavior": 0,
+        "is_area": false,
+        "requires_line_of_sight": false,
+        "requires_facing_target": true
+      },
+      "status_gain_self": null,
+      "proc_status": null
+    }
+  },
+  "fr": {
+    "title": "Vision radar oubliée",
+    "description": "Révèle les pièges cachés dans un rayon de 15 yalms.\nSi aucun piège n'est détecté dans un rayon de 15 yalms, vous indique la présence ou non de pièges dans un rayon de 36 yalms.\n\n* Fonctionne uniquement dans Delubrum Reginae.",
+    "effects": [
+      "Révèle les pièges cachés dans un rayon de 15 yalms.",
+      "Si aucun piège n'est détecté dans un rayon de 15 yalms, vous indique la présence ou non de pièges dans un rayon de 36 yalms.",
+      "* Fonctionne uniquement dans Delubrum Reginae."
+    ],
+    "classification": "lost_action",
+    "cache": {
+      "item_id": 71,
+      "type_id": 1,
+      "type": "action",
+      "max_uses": 99,
+      "has_unlimited_uses": false,
+      "weight": 4,
+      "order": 71,
+      "category": {
+        "id": 5,
+        "name": "Éclaireur"
+      }
+    },
+    "action": {
+      "id": 22344,
+      "icon_id": 64733,
+      "icon_file": "icon.png",
+      "cast_time_seconds": 0,
+      "recast_time_seconds": 1.5,
+      "range_yalms": 0,
+      "effect_range_yalms": 15,
+      "max_charges": 0,
+      "cooldown_group": 81,
+      "additional_cooldown_group": 0,
+      "primary_cost": {
+        "type_id": 20,
+        "value": 1
+      },
+      "secondary_cost": {
+        "type_id": 111,
+        "value": 0
+      },
+      "aspect_id": 0,
+      "category": {
+        "id": 4,
+        "name": "Aptitude"
+      },
+      "class_job_category": {
+        "id": 169,
+        "name": "PLD MOI GUE DRG BRD MBL MNO INV ÉRU NIN MCH CHN AST SAM MRG PSB DNS FCH SAG VPR PIC",
+        "allowed_jobs": [
+          "PLD",
+          "MNK",
+          "WAR",
+          "DRG",
+          "BRD",
+          "WHM",
+          "BLM",
+          "SMN",
+          "SCH",
+          "NIN",
+          "MCH",
+          "DRK",
+          "AST",
+          "SAM",
+          "RDM",
+          "GNB",
+          "DNC",
+          "RPR",
+          "SGE",
+          "VPR",
+          "PCT"
+        ]
+      },
+      "targeting": {
+        "self": true,
+        "party": false,
+        "alliance": false,
+        "hostile": false,
+        "ally": false,
+        "own_pet": false,
+        "party_pet": false,
+        "dead_target_behavior": 0,
+        "is_area": false,
+        "requires_line_of_sight": false,
+        "requires_facing_target": true
+      },
+      "status_gain_self": null,
+      "proc_status": null
+    }
+  },
+  "ja": {
+    "title": "ロスト・サイトラ",
+    "description": "自身の周囲15mに隠された罠を発見する。\n周囲15mに罠が無かった場合、周囲36m以内に罠が存在するかどうかを知ることができる。\n※このアクションは、グンヒルド・ディルーブラム攻略中のみ使用可能。",
+    "effects": [
+      "自身の周囲15mに隠された罠を発見する。",
+      "周囲15mに罠が無かった場合、周囲36m以内に罠が存在するかどうかを知ることができる。",
+      "※このアクションは、グンヒルド・ディルーブラム攻略中のみ使用可能。"
+    ],
+    "classification": "lost_action",
+    "cache": {
+      "item_id": 71,
+      "type_id": 1,
+      "type": "action",
+      "max_uses": 99,
+      "has_unlimited_uses": false,
+      "weight": 4,
+      "order": 71,
+      "category": {
+        "id": 5,
+        "name": "アクション：スカウト"
+      }
+    },
+    "action": {
+      "id": 22344,
+      "icon_id": 64733,
+      "icon_file": "icon.png",
+      "cast_time_seconds": 0,
+      "recast_time_seconds": 1.5,
+      "range_yalms": 0,
+      "effect_range_yalms": 15,
+      "max_charges": 0,
+      "cooldown_group": 81,
+      "additional_cooldown_group": 0,
+      "primary_cost": {
+        "type_id": 20,
+        "value": 1
+      },
+      "secondary_cost": {
+        "type_id": 111,
+        "value": 0
+      },
+      "aspect_id": 0,
+      "category": {
+        "id": 4,
+        "name": "アビリティ"
+      },
+      "class_job_category": {
+        "id": 169,
+        "name": "ナイト モンク 戦士 竜騎士 吟遊詩人 白魔道士 黒魔道士 召喚士 学者 忍者 機工士 暗黒騎士 占星術師 侍 赤魔道士 ガンブレイカー 踊り子 リーパー 賢者 ヴァイパー ピクトマンサー",
+        "allowed_jobs": [
+          "PLD",
+          "MNK",
+          "WAR",
+          "DRG",
+          "BRD",
+          "WHM",
+          "BLM",
+          "SMN",
+          "SCH",
+          "NIN",
+          "MCH",
+          "DRK",
+          "AST",
+          "SAM",
+          "RDM",
+          "GNB",
+          "DNC",
+          "RPR",
+          "SGE",
+          "VPR",
+          "PCT"
+        ]
+      },
+      "targeting": {
+        "self": true,
+        "party": false,
+        "alliance": false,
+        "hostile": false,
+        "ally": false,
+        "own_pet": false,
+        "party_pet": false,
+        "dead_target_behavior": 0,
+        "is_area": false,
+        "requires_line_of_sight": false,
+        "requires_facing_target": true
+      },
+      "status_gain_self": null,
+      "proc_status": null
+    }
+  }
+}

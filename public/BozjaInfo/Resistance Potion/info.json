@@ -1,0 +1,365 @@
+{
+  "en": {
+    "title": "Resistance Potion",
+    "description": "Gradually restores HP.\nCure Potency: 1,600\nDuration: 40s\nShares a recast timer with Dynamis Dice and Resistance Elixir.",
+    "effects": [
+      "Gradually restores HP.",
+      "Cure Potency: 1,600",
+      "Duration: 40s",
+      "Shares a recast timer with Dynamis Dice and Resistance Elixir."
+    ],
+    "classification": "lost_item",
+    "cache": {
+      "item_id": 40,
+      "type_id": 2,
+      "type": "item",
+      "max_uses": 1,
+      "has_unlimited_uses": false,
+      "weight": 1,
+      "order": 40,
+      "category": {
+        "id": 7,
+        "name": "Item-related"
+      }
+    },
+    "action": {
+      "id": 20740,
+      "icon_id": 64696,
+      "icon_file": "icon.png",
+      "cast_time_seconds": 0,
+      "recast_time_seconds": 40,
+      "range_yalms": 0,
+      "effect_range_yalms": 0,
+      "max_charges": 0,
+      "cooldown_group": 59,
+      "additional_cooldown_group": 0,
+      "primary_cost": {
+        "type_id": 0,
+        "value": 0
+      },
+      "secondary_cost": {
+        "type_id": 0,
+        "value": 0
+      },
+      "aspect_id": 0,
+      "category": {
+        "id": 5,
+        "name": "Item"
+      },
+      "class_job_category": {
+        "id": 169,
+        "name": "PLD MNK WAR DRG BRD WHM BLM SMN SCH NIN MCH DRK AST SAM RDM GNB DNC RPR SGE VPR PCT",
+        "allowed_jobs": [
+          "PLD",
+          "MNK",
+          "WAR",
+          "DRG",
+          "BRD",
+          "WHM",
+          "BLM",
+          "SMN",
+          "SCH",
+          "NIN",
+          "MCH",
+          "DRK",
+          "AST",
+          "SAM",
+          "RDM",
+          "GNB",
+          "DNC",
+          "RPR",
+          "SGE",
+          "VPR",
+          "PCT"
+        ]
+      },
+      "targeting": {
+        "self": true,
+        "party": false,
+        "alliance": false,
+        "hostile": false,
+        "ally": false,
+        "own_pet": false,
+        "party_pet": false,
+        "dead_target_behavior": 0,
+        "is_area": false,
+        "requires_line_of_sight": true,
+        "requires_facing_target": true
+      },
+      "status_gain_self": null,
+      "proc_status": null
+    }
+  },
+  "de": {
+    "title": "Heiltrank des Widerstands",
+    "description": "Du regenerierst stetig eigene LP.\nHeilpotenzial: 1.600\nDauer: 40 Sekunden\nGemeinsamer Reaktivierungs-Timer mit Würfel des Schicksals und Elixier des Widerstands",
+    "effects": [
+      "Du regenerierst stetig eigene LP.",
+      "Heilpotenzial: 1.600",
+      "Dauer: 40 Sekunden",
+      "Gemeinsamer Reaktivierungs-Timer mit Würfel des Schicksals und Elixier des Widerstands"
+    ],
+    "classification": "lost_item",
+    "cache": {
+      "item_id": 40,
+      "type_id": 2,
+      "type": "item",
+      "max_uses": 1,
+      "has_unlimited_uses": false,
+      "weight": 1,
+      "order": 40,
+      "category": {
+        "id": 7,
+        "name": "Gegenstände"
+      }
+    },
+    "action": {
+      "id": 20740,
+      "icon_id": 64696,
+      "icon_file": "icon.png",
+      "cast_time_seconds": 0,
+      "recast_time_seconds": 40,
+      "range_yalms": 0,
+      "effect_range_yalms": 0,
+      "max_charges": 0,
+      "cooldown_group": 59,
+      "additional_cooldown_group": 0,
+      "primary_cost": {
+        "type_id": 0,
+        "value": 0
+      },
+      "secondary_cost": {
+        "type_id": 0,
+        "value": 0
+      },
+      "aspect_id": 0,
+      "category": {
+        "id": 5,
+        "name": "Gegenstand"
+      },
+      "class_job_category": {
+        "id": 169,
+        "name": "PLD MÖN KRG DRG BRD WMA SMA BSW GLT NIN MCH DKR AST SAM RMA REV TÄN SNT WEI VPR PKT",
+        "allowed_jobs": [
+          "PLD",
+          "MNK",
+          "WAR",
+          "DRG",
+          "BRD",
+          "WHM",
+          "BLM",
+          "SMN",
+          "SCH",
+          "NIN",
+          "MCH",
+          "DRK",
+          "AST",
+          "SAM",
+          "RDM",
+          "GNB",
+          "DNC",
+          "RPR",
+          "SGE",
+          "VPR",
+          "PCT"
+        ]
+      },
+      "targeting": {
+        "self": true,
+        "party": false,
+        "alliance": false,
+        "hostile": false,
+        "ally": false,
+        "own_pet": false,
+        "party_pet": false,
+        "dead_target_behavior": 0,
+        "is_area": false,
+        "requires_line_of_sight": true,
+        "requires_facing_target": true
+      },
+      "status_gain_self": null,
+      "proc_status": null
+    }
+  },
+  "fr": {
+    "title": "Potion de la résistance",
+    "description": "Restaure périodiquement vos PV.\nPuissance\u00A0: 1600\nDurée\u00A0: 40s\nPartage le même temps de recharge que Dé du destin et Élixir de la résistance.",
+    "effects": [
+      "Restaure périodiquement vos PV.",
+      "Puissance\u00A0: 1600",
+      "Durée\u00A0: 40s",
+      "Partage le même temps de recharge que Dé du destin et Élixir de la résistance."
+    ],
+    "classification": "lost_item",
+    "cache": {
+      "item_id": 40,
+      "type_id": 2,
+      "type": "item",
+      "max_uses": 1,
+      "has_unlimited_uses": false,
+      "weight": 1,
+      "order": 40,
+      "category": {
+        "id": 7,
+        "name": "Objets"
+      }
+    },
+    "action": {
+      "id": 20740,
+      "icon_id": 64696,
+      "icon_file": "icon.png",
+      "cast_time_seconds": 0,
+      "recast_time_seconds": 40,
+      "range_yalms": 0,
+      "effect_range_yalms": 0,
+      "max_charges": 0,
+      "cooldown_group": 59,
+      "additional_cooldown_group": 0,
+      "primary_cost": {
+        "type_id": 0,
+        "value": 0
+      },
+      "secondary_cost": {
+        "type_id": 0,
+        "value": 0
+      },
+      "aspect_id": 0,
+      "category": {
+        "id": 5,
+        "name": "Objet"
+      },
+      "class_job_category": {
+        "id": 169,
+        "name": "PLD MOI GUE DRG BRD MBL MNO INV ÉRU NIN MCH CHN AST SAM MRG PSB DNS FCH SAG VPR PIC",
+        "allowed_jobs": [
+          "PLD",
+          "MNK",
+          "WAR",
+          "DRG",
+          "BRD",
+          "WHM",
+          "BLM",
+          "SMN",
+          "SCH",
+          "NIN",
+          "MCH",
+          "DRK",
+          "AST",
+          "SAM",
+          "RDM",
+          "GNB",
+          "DNC",
+          "RPR",
+          "SGE",
+          "VPR",
+          "PCT"
+        ]
+      },
+      "targeting": {
+        "self": true,
+        "party": false,
+        "alliance": false,
+        "hostile": false,
+        "ally": false,
+        "own_pet": false,
+        "party_pet": false,
+        "dead_target_behavior": 0,
+        "is_area": false,
+        "requires_line_of_sight": true,
+        "requires_facing_target": true
+      },
+      "status_gain_self": null,
+      "proc_status": null
+    }
+  },
+  "ja": {
+    "title": "レジスタンスポーション",
+    "description": "自身のＨＰを継続回復する。\n回復力：1600\u3000効果時間：40秒\nリキャストタイマーを「運命のダイス」「レジスタンスエリクサー」と共有する。",
+    "effects": [
+      "自身のＨＰを継続回復する。",
+      "回復力：1600\u3000効果時間：40秒",
+      "リキャストタイマーを「運命のダイス」「レジスタンスエリクサー」と共有する。"
+    ],
+    "classification": "lost_item",
+    "cache": {
+      "item_id": 40,
+      "type_id": 2,
+      "type": "item",
+      "max_uses": 1,
+      "has_unlimited_uses": false,
+      "weight": 1,
+      "order": 40,
+      "category": {
+        "id": 7,
+        "name": "アイテム"
+      }
+    },
+    "action": {
+      "id": 20740,
+      "icon_id": 64696,
+      "icon_file": "icon.png",
+      "cast_time_seconds": 0,
+      "recast_time_seconds": 40,
+      "range_yalms": 0,
+      "effect_range_yalms": 0,
+      "max_charges": 0,
+      "cooldown_group": 59,
+      "additional_cooldown_group": 0,
+      "primary_cost": {
+        "type_id": 0,
+        "value": 0
+      },
+      "secondary_cost": {
+        "type_id": 0,
+        "value": 0
+      },
+      "aspect_id": 0,
+      "category": {
+        "id": 5,
+        "name": "アイテム"
+      },
+      "class_job_category": {
+        "id": 169,
+        "name": "ナイト モンク 戦士 竜騎士 吟遊詩人 白魔道士 黒魔道士 召喚士 学者 忍者 機工士 暗黒騎士 占星術師 侍 赤魔道士 ガンブレイカー 踊り子 リーパー 賢者 ヴァイパー ピクトマンサー",
+        "allowed_jobs": [
+          "PLD",
+          "MNK",
+          "WAR",
+          "DRG",
+          "BRD",
+          "WHM",
+          "BLM",
+          "SMN",
+          "SCH",
+          "NIN",
+          "MCH",
+          "DRK",
+          "AST",
+          "SAM",
+          "RDM",
+          "GNB",
+          "DNC",
+          "RPR",
+          "SGE",
+          "VPR",
+          "PCT"
+        ]
+      },
+      "targeting": {
+        "self": true,
+        "party": false,
+        "alliance": false,
+        "hostile": false,
+        "ally": false,
+        "own_pet": false,
+        "party_pet": false,
+        "dead_target_behavior": 0,
+        "is_area": false,
+        "requires_line_of_sight": true,
+        "requires_facing_target": true
+      },
+      "status_gain_self": null,
+      "proc_status": null
+    }
+  }
+}

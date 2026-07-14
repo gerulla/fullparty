@@ -1,0 +1,330 @@
+{
+  "en": {
+    "title": "Lost Chainspell",
+    "description": "Temporarily eliminates cast time for all spells.\nDuration: 30s\nAdditional Effect: Magic Burst\nMagic Burst Effect: Increases spell damage by 45% while increasing MP cost\nDuration: 30s\nSpirit of the Ordained Effect: Raises Magic Burst spell damage increase to 100% and nullifies additional MP cost\nSpirit of the Watcher Effect: Lost Chainspell duration is extended to 90s\nCan only be executed while in combat.",
+    "effects": [
+      "Temporarily eliminates cast time for all spells.",
+      "Duration: 30s",
+      "Additional Effect: Magic Burst",
+      "Magic Burst Effect: Increases spell damage by 45% while increasing MP cost",
+      "Duration: 30s",
+      "Spirit of the Ordained Effect: Raises Magic Burst spell damage increase to 100% and nullifies additional MP cost",
+      "Spirit of the Watcher Effect: Lost Chainspell duration is extended to 90s",
+      "Can only be executed while in combat."
+    ],
+    "classification": "lost_action",
+    "cache": {
+      "item_id": 90,
+      "type_id": 1,
+      "type": "action",
+      "max_uses": 20,
+      "has_unlimited_uses": false,
+      "weight": 20,
+      "order": 90,
+      "category": {
+        "id": 1,
+        "name": "Offensive"
+      }
+    },
+    "action": {
+      "id": 23913,
+      "icon_id": 64746,
+      "icon_file": "icon.png",
+      "cast_time_seconds": 0,
+      "recast_time_seconds": 90,
+      "range_yalms": 0,
+      "effect_range_yalms": 0,
+      "max_charges": 0,
+      "cooldown_group": 81,
+      "additional_cooldown_group": 0,
+      "primary_cost": {
+        "type_id": 20,
+        "value": 1
+      },
+      "secondary_cost": {
+        "type_id": 42,
+        "value": 0
+      },
+      "aspect_id": 0,
+      "category": {
+        "id": 4,
+        "name": "Ability"
+      },
+      "class_job_category": {
+        "id": 172,
+        "name": "WHM BLM SMN SCH AST RDM SGE PCT",
+        "allowed_jobs": [
+          "WHM",
+          "BLM",
+          "SMN",
+          "SCH",
+          "AST",
+          "RDM",
+          "SGE",
+          "PCT"
+        ]
+      },
+      "targeting": {
+        "self": true,
+        "party": false,
+        "alliance": false,
+        "hostile": false,
+        "ally": false,
+        "own_pet": false,
+        "party_pet": false,
+        "dead_target_behavior": 0,
+        "is_area": false,
+        "requires_line_of_sight": true,
+        "requires_facing_target": true
+      },
+      "status_gain_self": null,
+      "proc_status": null
+    }
+  },
+  "de": {
+    "title": "Verschollene Zauberkette",
+    "description": "Du kannst Zauber sofort wirken.\nDauer: 30 Sekunden\nBedingung: Im Kampf\nZusatzeffekt: Gewährt dir Magieexplosion.\nEffekt von Magieexplosion: Du erhöhst den Schaden magischer Attacken im Austausch für erhöhten MP-Verbrauch um 45\u00A0%.\nDauer: 30 Sekunden\nZusatzeffekt bei Trank des Priesters: Zusätzlicher MP-Verbrauch wird auf 0 gesenkt und der ausgeteilte Schaden um 100\u00A0% erhöht.\nZusatzeffekt bei Trank des Spähers: Dauer von Verschollene Zauberkette wird auf 90 Sekunden erhöht.",
+    "effects": [
+      "Du kannst Zauber sofort wirken.",
+      "Dauer: 30 Sekunden",
+      "Bedingung: Im Kampf",
+      "Zusatzeffekt: Gewährt dir Magieexplosion.",
+      "Effekt von Magieexplosion: Du erhöhst den Schaden magischer Attacken im Austausch für erhöhten MP-Verbrauch um 45\u00A0%.",
+      "Dauer: 30 Sekunden",
+      "Zusatzeffekt bei Trank des Priesters: Zusätzlicher MP-Verbrauch wird auf 0 gesenkt und der ausgeteilte Schaden um 100\u00A0% erhöht.",
+      "Zusatzeffekt bei Trank des Spähers: Dauer von Verschollene Zauberkette wird auf 90 Sekunden erhöht."
+    ],
+    "classification": "lost_action",
+    "cache": {
+      "item_id": 90,
+      "type_id": 1,
+      "type": "action",
+      "max_uses": 20,
+      "has_unlimited_uses": false,
+      "weight": 20,
+      "order": 90,
+      "category": {
+        "id": 1,
+        "name": "Angreifer"
+      }
+    },
+    "action": {
+      "id": 23913,
+      "icon_id": 64746,
+      "icon_file": "icon.png",
+      "cast_time_seconds": 0,
+      "recast_time_seconds": 90,
+      "range_yalms": 0,
+      "effect_range_yalms": 0,
+      "max_charges": 0,
+      "cooldown_group": 81,
+      "additional_cooldown_group": 0,
+      "primary_cost": {
+        "type_id": 20,
+        "value": 1
+      },
+      "secondary_cost": {
+        "type_id": 42,
+        "value": 0
+      },
+      "aspect_id": 0,
+      "category": {
+        "id": 4,
+        "name": "Talent"
+      },
+      "class_job_category": {
+        "id": 172,
+        "name": "WMA SMA BSW GLT AST RMA WEI PKT",
+        "allowed_jobs": [
+          "WHM",
+          "BLM",
+          "SMN",
+          "SCH",
+          "AST",
+          "RDM",
+          "SGE",
+          "PCT"
+        ]
+      },
+      "targeting": {
+        "self": true,
+        "party": false,
+        "alliance": false,
+        "hostile": false,
+        "ally": false,
+        "own_pet": false,
+        "party_pet": false,
+        "dead_target_behavior": 0,
+        "is_area": false,
+        "requires_line_of_sight": true,
+        "requires_facing_target": true
+      },
+      "status_gain_self": null,
+      "proc_status": null
+    }
+  },
+  "fr": {
+    "title": "Avalanche de sorts oubliée",
+    "description": "Rend instantané le lancement des sorts.\nDurée\u00A0: 30s\nDurée avec un breuvage d'éclaireur\u00A0: 90s\nCondition\u00A0: en combat.\nEffet additionnel\u00A0: octroie Explosion magique.\nExplosion magique\u00A0: augmente les dégâts des sorts de 45% et les PM consommés par les actions.\nDurée\u00A0: 30s\nEffet additionnel avec un breuvage de prêtre\u00A0: durant Explosion magique, la consommation de PM n'est plus augmentée, et l'augmentation des dégâts des sorts passe à 100%.",
+    "effects": [
+      "Rend instantané le lancement des sorts.",
+      "Durée\u00A0: 30s",
+      "Durée avec un breuvage d'éclaireur\u00A0: 90s",
+      "Condition\u00A0: en combat.",
+      "Effet additionnel\u00A0: octroie Explosion magique.",
+      "Explosion magique\u00A0: augmente les dégâts des sorts de 45% et les PM consommés par les actions.",
+      "Durée\u00A0: 30s",
+      "Effet additionnel avec un breuvage de prêtre\u00A0: durant Explosion magique, la consommation de PM n'est plus augmentée, et l'augmentation des dégâts des sorts passe à 100%."
+    ],
+    "classification": "lost_action",
+    "cache": {
+      "item_id": 90,
+      "type_id": 1,
+      "type": "action",
+      "max_uses": 20,
+      "has_unlimited_uses": false,
+      "weight": 20,
+      "order": 90,
+      "category": {
+        "id": 1,
+        "name": "Attaquant"
+      }
+    },
+    "action": {
+      "id": 23913,
+      "icon_id": 64746,
+      "icon_file": "icon.png",
+      "cast_time_seconds": 0,
+      "recast_time_seconds": 90,
+      "range_yalms": 0,
+      "effect_range_yalms": 0,
+      "max_charges": 0,
+      "cooldown_group": 81,
+      "additional_cooldown_group": 0,
+      "primary_cost": {
+        "type_id": 20,
+        "value": 1
+      },
+      "secondary_cost": {
+        "type_id": 42,
+        "value": 0
+      },
+      "aspect_id": 0,
+      "category": {
+        "id": 4,
+        "name": "Aptitude"
+      },
+      "class_job_category": {
+        "id": 172,
+        "name": "MBL MNO INV ÉRU AST MRG SAG PIC",
+        "allowed_jobs": [
+          "WHM",
+          "BLM",
+          "SMN",
+          "SCH",
+          "AST",
+          "RDM",
+          "SGE",
+          "PCT"
+        ]
+      },
+      "targeting": {
+        "self": true,
+        "party": false,
+        "alliance": false,
+        "hostile": false,
+        "ally": false,
+        "own_pet": false,
+        "party_pet": false,
+        "dead_target_behavior": 0,
+        "is_area": false,
+        "requires_line_of_sight": true,
+        "requires_facing_target": true
+      },
+      "status_gain_self": null,
+      "proc_status": null
+    }
+  },
+  "ja": {
+    "title": "ロスト・チェインスペル",
+    "description": "一定時間、魔法を詠唱時間無しで使用することができる。\n効果時間：30秒\n発動条件：自身が戦闘状態\n追加効果：自身に「マジックバースト」を付与する\nマジックバースト効果：自身のＭＰ消費を増加させる代わりに、魔法カテゴリアクションによるダメージを45％上昇させる。\n効果時間：30秒\n司祭の薬時追加効果：「マジックバースト」のMP消費増加効果が0になり、かつダメージ上昇効果が100％になる。\n斥候の薬時追加効果：「ロスト・チェインスペル」の効果時間が90秒になる。",
+    "effects": [
+      "一定時間、魔法を詠唱時間無しで使用することができる。",
+      "効果時間：30秒",
+      "発動条件：自身が戦闘状態",
+      "追加効果：自身に「マジックバースト」を付与する",
+      "マジックバースト効果：自身のＭＰ消費を増加させる代わりに、魔法カテゴリアクションによるダメージを45％上昇させる。",
+      "効果時間：30秒",
+      "司祭の薬時追加効果：「マジックバースト」のMP消費増加効果が0になり、かつダメージ上昇効果が100％になる。",
+      "斥候の薬時追加効果：「ロスト・チェインスペル」の効果時間が90秒になる。"
+    ],
+    "classification": "lost_action",
+    "cache": {
+      "item_id": 90,
+      "type_id": 1,
+      "type": "action",
+      "max_uses": 20,
+      "has_unlimited_uses": false,
+      "weight": 20,
+      "order": 90,
+      "category": {
+        "id": 1,
+        "name": "アクション：アタッカー"
+      }
+    },
+    "action": {
+      "id": 23913,
+      "icon_id": 64746,
+      "icon_file": "icon.png",
+      "cast_time_seconds": 0,
+      "recast_time_seconds": 90,
+      "range_yalms": 0,
+      "effect_range_yalms": 0,
+      "max_charges": 0,
+      "cooldown_group": 81,
+      "additional_cooldown_group": 0,
+      "primary_cost": {
+        "type_id": 20,
+        "value": 1
+      },
+      "secondary_cost": {
+        "type_id": 42,
+        "value": 0
+      },
+      "aspect_id": 0,
+      "category": {
+        "id": 4,
+        "name": "アビリティ"
+      },
+      "class_job_category": {
+        "id": 172,
+        "name": "白魔道士 黒魔道士 召喚士 学者 占星術師 赤魔道士 賢者 ピクトマンサー",
+        "allowed_jobs": [
+          "WHM",
+          "BLM",
+          "SMN",
+          "SCH",
+          "AST",
+          "RDM",
+          "SGE",
+          "PCT"
+        ]
+      },
+      "targeting": {
+        "self": true,
+        "party": false,
+        "alliance": false,
+        "hostile": false,
+        "ally": false,
+        "own_pet": false,
+        "party_pet": false,
+        "dead_target_behavior": 0,
+        "is_area": false,
+        "requires_line_of_sight": true,
+        "requires_facing_target": true
+      },
+      "status_gain_self": null,
+      "proc_status": null
+    }
+  }
+}

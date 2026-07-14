@@ -1,0 +1,343 @@
+{
+  "en": {
+    "title": "Lost Assassination",
+    "description": "Delivers a close-quarter attack with a potency of 350. Chance of instant KO when attacking from the rear, which increases the lower the target's HP.\nSpirit of the Beast Effect: Grants the effect of Lost Font of Power to self\nLost Font of Power Effect: Increases damage dealt by 30% and critical hit rate by 40%\nDuration: 18s\nThis action does not share a recast timer with any other actions. Furthermore, the recast timer cannot be affected by other actions.",
+    "effects": [
+      "Delivers a close-quarter attack with a potency of 350. Chance of instant KO when attacking from the rear, which increases the lower the target's HP.",
+      "Spirit of the Beast Effect: Grants the effect of Lost Font of Power to self",
+      "Lost Font of Power Effect: Increases damage dealt by 30% and critical hit rate by 40%",
+      "Duration: 18s",
+      "This action does not share a recast timer with any other actions. Furthermore, the recast timer cannot be affected by other actions."
+    ],
+    "classification": "lost_action",
+    "cache": {
+      "item_id": 91,
+      "type_id": 1,
+      "type": "action",
+      "max_uses": 99,
+      "has_unlimited_uses": false,
+      "weight": 8,
+      "order": 91,
+      "category": {
+        "id": 1,
+        "name": "Offensive"
+      }
+    },
+    "action": {
+      "id": 23914,
+      "icon_id": 64747,
+      "icon_file": "icon.png",
+      "cast_time_seconds": 0,
+      "recast_time_seconds": 15,
+      "range_yalms": 3,
+      "effect_range_yalms": 0,
+      "max_charges": 0,
+      "cooldown_group": 81,
+      "additional_cooldown_group": 0,
+      "primary_cost": {
+        "type_id": 20,
+        "value": 1
+      },
+      "secondary_cost": {
+        "type_id": 0,
+        "value": 0
+      },
+      "aspect_id": 7,
+      "category": {
+        "id": 3,
+        "name": "Weaponskill"
+      },
+      "class_job_category": {
+        "id": 174,
+        "name": "PLD MNK WAR DRG BRD NIN MCH DRK SAM GNB DNC RPR VPR",
+        "allowed_jobs": [
+          "PLD",
+          "MNK",
+          "WAR",
+          "DRG",
+          "BRD",
+          "NIN",
+          "MCH",
+          "DRK",
+          "SAM",
+          "GNB",
+          "DNC",
+          "RPR",
+          "VPR"
+        ]
+      },
+      "targeting": {
+        "self": false,
+        "party": false,
+        "alliance": false,
+        "hostile": true,
+        "ally": false,
+        "own_pet": false,
+        "party_pet": false,
+        "dead_target_behavior": 0,
+        "is_area": false,
+        "requires_line_of_sight": true,
+        "requires_facing_target": true
+      },
+      "status_gain_self": null,
+      "proc_status": null
+    }
+  },
+  "de": {
+    "title": "Verschollener Meuchelmord",
+    "description": "Du führst eine physische Nahkampfattacke aus.\nAttacke-Wert: 350\nVon hinten:  Ziel kann kampfunfähig werden. Je weniger LP das Ziel hat, desto größer ist die Wahrscheinlichkeit.\nZusatzeffekt bei Trank der Wolfsleute: Gewährt dir Verschollene Machtfontäne.\nEffekt von Verschollene Machtfontäne: Du erhöhst deinen ausgeteilten Schaden um 30\u00A0% und deine kritische Trefferrate um 40\u00A0%.\nDauer: 18 Sekunden\nEigener Reaktivierungs-Timer, der nicht durch andere Reaktivierungs-Timer beeinflusst wird.",
+    "effects": [
+      "Du führst eine physische Nahkampfattacke aus.",
+      "Attacke-Wert: 350",
+      "Von hinten:  Ziel kann kampfunfähig werden. Je weniger LP das Ziel hat, desto größer ist die Wahrscheinlichkeit.",
+      "Zusatzeffekt bei Trank der Wolfsleute: Gewährt dir Verschollene Machtfontäne.",
+      "Effekt von Verschollene Machtfontäne: Du erhöhst deinen ausgeteilten Schaden um 30\u00A0% und deine kritische Trefferrate um 40\u00A0%.",
+      "Dauer: 18 Sekunden",
+      "Eigener Reaktivierungs-Timer, der nicht durch andere Reaktivierungs-Timer beeinflusst wird."
+    ],
+    "classification": "lost_action",
+    "cache": {
+      "item_id": 91,
+      "type_id": 1,
+      "type": "action",
+      "max_uses": 99,
+      "has_unlimited_uses": false,
+      "weight": 8,
+      "order": 91,
+      "category": {
+        "id": 1,
+        "name": "Angreifer"
+      }
+    },
+    "action": {
+      "id": 23914,
+      "icon_id": 64747,
+      "icon_file": "icon.png",
+      "cast_time_seconds": 0,
+      "recast_time_seconds": 15,
+      "range_yalms": 3,
+      "effect_range_yalms": 0,
+      "max_charges": 0,
+      "cooldown_group": 81,
+      "additional_cooldown_group": 0,
+      "primary_cost": {
+        "type_id": 20,
+        "value": 1
+      },
+      "secondary_cost": {
+        "type_id": 0,
+        "value": 0
+      },
+      "aspect_id": 7,
+      "category": {
+        "id": 3,
+        "name": "Waffenfertigkeit"
+      },
+      "class_job_category": {
+        "id": 174,
+        "name": "PLD MÖN KRG DRG BRD NIN MCH DKR SAM REV TÄN SNT VPR",
+        "allowed_jobs": [
+          "PLD",
+          "MNK",
+          "WAR",
+          "DRG",
+          "BRD",
+          "NIN",
+          "MCH",
+          "DRK",
+          "SAM",
+          "GNB",
+          "DNC",
+          "RPR",
+          "VPR"
+        ]
+      },
+      "targeting": {
+        "self": false,
+        "party": false,
+        "alliance": false,
+        "hostile": true,
+        "ally": false,
+        "own_pet": false,
+        "party_pet": false,
+        "dead_target_behavior": 0,
+        "is_area": false,
+        "requires_line_of_sight": true,
+        "requires_facing_target": true
+      },
+      "status_gain_self": null,
+      "proc_status": null
+    }
+  },
+  "fr": {
+    "title": "Assassinat oublié",
+    "description": "Effectue une attaque physique de corps-à-corps sur la cible.\nPuissance\u00A0: 350\nEffet additionnel par derrière\u00A0: tente d'achever instantanément la cible. Moins elle a de PV, plus les chances de succès sont élevées.\nEffet additionnel avec un breuvage d'homme-loup\u00A0: vous octroie Fontaine de puissance oubliée.\nFontaine de puissance oubliée\u00A0: augmente de 30% vos dégâts infligés et de 40% vos chances de critiques.\nDurée\u00A0: 18s\nCette technique d'arme a un temps de recharge indépendant qui n'est pas affecté par ceux des sorts et des autres techniques d'armes.",
+    "effects": [
+      "Effectue une attaque physique de corps-à-corps sur la cible.",
+      "Puissance\u00A0: 350",
+      "Effet additionnel par derrière\u00A0: tente d'achever instantanément la cible. Moins elle a de PV, plus les chances de succès sont élevées.",
+      "Effet additionnel avec un breuvage d'homme-loup\u00A0: vous octroie Fontaine de puissance oubliée.",
+      "Fontaine de puissance oubliée\u00A0: augmente de 30% vos dégâts infligés et de 40% vos chances de critiques.",
+      "Durée\u00A0: 18s",
+      "Cette technique d'arme a un temps de recharge indépendant qui n'est pas affecté par ceux des sorts et des autres techniques d'armes."
+    ],
+    "classification": "lost_action",
+    "cache": {
+      "item_id": 91,
+      "type_id": 1,
+      "type": "action",
+      "max_uses": 99,
+      "has_unlimited_uses": false,
+      "weight": 8,
+      "order": 91,
+      "category": {
+        "id": 1,
+        "name": "Attaquant"
+      }
+    },
+    "action": {
+      "id": 23914,
+      "icon_id": 64747,
+      "icon_file": "icon.png",
+      "cast_time_seconds": 0,
+      "recast_time_seconds": 15,
+      "range_yalms": 3,
+      "effect_range_yalms": 0,
+      "max_charges": 0,
+      "cooldown_group": 81,
+      "additional_cooldown_group": 0,
+      "primary_cost": {
+        "type_id": 20,
+        "value": 1
+      },
+      "secondary_cost": {
+        "type_id": 0,
+        "value": 0
+      },
+      "aspect_id": 7,
+      "category": {
+        "id": 3,
+        "name": "Technique d'arme"
+      },
+      "class_job_category": {
+        "id": 174,
+        "name": "PLD MOI GUE DRG BRD NIN MCH CHN SAM PSB DNS FCH VPR",
+        "allowed_jobs": [
+          "PLD",
+          "MNK",
+          "WAR",
+          "DRG",
+          "BRD",
+          "NIN",
+          "MCH",
+          "DRK",
+          "SAM",
+          "GNB",
+          "DNC",
+          "RPR",
+          "VPR"
+        ]
+      },
+      "targeting": {
+        "self": false,
+        "party": false,
+        "alliance": false,
+        "hostile": true,
+        "ally": false,
+        "own_pet": false,
+        "party_pet": false,
+        "dead_target_behavior": 0,
+        "is_area": false,
+        "requires_line_of_sight": true,
+        "requires_facing_target": true
+      },
+      "status_gain_self": null,
+      "proc_status": null
+    }
+  },
+  "ja": {
+    "title": "ロスト・アサシネイト",
+    "description": "対象に近接物理攻撃。\u3000威力：350\n背面攻撃時追加効果：対象を一定確率で戦闘不能にする。対象のＨＰが少ないほど成功率が上昇する。\n人狼の薬時追加効果：自身に「ロスト・パワーフォント」を付与する。\nロスト・パワーフォント効果：自身の与ダメージを30％上昇させ、かつクリティカル発動率を40％上昇させる。\n効果時間：18秒\nこのウェポンスキルは固有のリキャストタイマーを持ち、他のウェポンスキルや魔法のリキャストタイマーの影響を受けない。",
+    "effects": [
+      "対象に近接物理攻撃。\u3000威力：350",
+      "背面攻撃時追加効果：対象を一定確率で戦闘不能にする。対象のＨＰが少ないほど成功率が上昇する。",
+      "人狼の薬時追加効果：自身に「ロスト・パワーフォント」を付与する。",
+      "ロスト・パワーフォント効果：自身の与ダメージを30％上昇させ、かつクリティカル発動率を40％上昇させる。",
+      "効果時間：18秒",
+      "このウェポンスキルは固有のリキャストタイマーを持ち、他のウェポンスキルや魔法のリキャストタイマーの影響を受けない。"
+    ],
+    "classification": "lost_action",
+    "cache": {
+      "item_id": 91,
+      "type_id": 1,
+      "type": "action",
+      "max_uses": 99,
+      "has_unlimited_uses": false,
+      "weight": 8,
+      "order": 91,
+      "category": {
+        "id": 1,
+        "name": "アクション：アタッカー"
+      }
+    },
+    "action": {
+      "id": 23914,
+      "icon_id": 64747,
+      "icon_file": "icon.png",
+      "cast_time_seconds": 0,
+      "recast_time_seconds": 15,
+      "range_yalms": 3,
+      "effect_range_yalms": 0,
+      "max_charges": 0,
+      "cooldown_group": 81,
+      "additional_cooldown_group": 0,
+      "primary_cost": {
+        "type_id": 20,
+        "value": 1
+      },
+      "secondary_cost": {
+        "type_id": 0,
+        "value": 0
+      },
+      "aspect_id": 7,
+      "category": {
+        "id": 3,
+        "name": "ウェポンスキル"
+      },
+      "class_job_category": {
+        "id": 174,
+        "name": "ナイト モンク 戦士 竜騎士 吟遊詩人 忍者 機工士 暗黒騎士 侍 ガンブレイカー 踊り子 リーパー ヴァイパー",
+        "allowed_jobs": [
+          "PLD",
+          "MNK",
+          "WAR",
+          "DRG",
+          "BRD",
+          "NIN",
+          "MCH",
+          "DRK",
+          "SAM",
+          "GNB",
+          "DNC",
+          "RPR",
+          "VPR"
+        ]
+      },
+      "targeting": {
+        "self": false,
+        "party": false,
+        "alliance": false,
+        "hostile": true,
+        "ally": false,
+        "own_pet": false,
+        "party_pet": false,
+        "dead_target_behavior": 0,
+        "is_area": false,
+        "requires_line_of_sight": true,
+        "requires_facing_target": true
+      },
+      "status_gain_self": null,
+      "proc_status": null
+    }
+  }
+}

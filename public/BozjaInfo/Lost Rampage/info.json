@@ -1,0 +1,337 @@
+{
+  "en": {
+    "title": "Lost Rampage",
+    "description": "Delivers an attack with a potency of 300 to all nearby enemies.\nAdditional Effect: Interrupts all nearby enemies\nAdditional Effect: Increases damage taken by enemies with Physical Aversion by 10%\nDuration: 60s",
+    "effects": [
+      "Delivers an attack with a potency of 300 to all nearby enemies.",
+      "Additional Effect: Interrupts all nearby enemies",
+      "Additional Effect: Increases damage taken by enemies with Physical Aversion by 10%",
+      "Duration: 60s"
+    ],
+    "classification": "lost_action",
+    "cache": {
+      "item_id": 87,
+      "type_id": 1,
+      "type": "action",
+      "max_uses": 99,
+      "has_unlimited_uses": false,
+      "weight": 5,
+      "order": 87,
+      "category": {
+        "id": 6,
+        "name": "Detrimental"
+      }
+    },
+    "action": {
+      "id": 23910,
+      "icon_id": 64743,
+      "icon_file": "icon.png",
+      "cast_time_seconds": 0,
+      "recast_time_seconds": 2.5,
+      "range_yalms": 0,
+      "effect_range_yalms": 10,
+      "max_charges": 0,
+      "cooldown_group": 58,
+      "additional_cooldown_group": 0,
+      "primary_cost": {
+        "type_id": 20,
+        "value": 1
+      },
+      "secondary_cost": {
+        "type_id": 0,
+        "value": 0
+      },
+      "aspect_id": 7,
+      "category": {
+        "id": 3,
+        "name": "Weaponskill"
+      },
+      "class_job_category": {
+        "id": 174,
+        "name": "PLD MNK WAR DRG BRD NIN MCH DRK SAM GNB DNC RPR VPR",
+        "allowed_jobs": [
+          "PLD",
+          "MNK",
+          "WAR",
+          "DRG",
+          "BRD",
+          "NIN",
+          "MCH",
+          "DRK",
+          "SAM",
+          "GNB",
+          "DNC",
+          "RPR",
+          "VPR"
+        ]
+      },
+      "targeting": {
+        "self": true,
+        "party": false,
+        "alliance": false,
+        "hostile": false,
+        "ally": false,
+        "own_pet": false,
+        "party_pet": false,
+        "dead_target_behavior": 0,
+        "is_area": false,
+        "requires_line_of_sight": true,
+        "requires_facing_target": false
+      },
+      "status_gain_self": null,
+      "proc_status": null
+    }
+  },
+  "de": {
+    "title": "Verschollener Amok",
+    "description": "Du führst eine physische Attacke auf alle umstehenden Gegner aus.\nAttacke-Wert: 300\nZusatzeffekt: Unterbricht Kommandos der Ziele.\nZusatzeffekt: Wenn das Ziel unter Physische Schwachstelle leidet, erhöht sich der erlittene Schaden des Ziels um 10\u00A0%.\nDauer: 60 Sekunden",
+    "effects": [
+      "Du führst eine physische Attacke auf alle umstehenden Gegner aus.",
+      "Attacke-Wert: 300",
+      "Zusatzeffekt: Unterbricht Kommandos der Ziele.",
+      "Zusatzeffekt: Wenn das Ziel unter Physische Schwachstelle leidet, erhöht sich der erlittene Schaden des Ziels um 10\u00A0%.",
+      "Dauer: 60 Sekunden"
+    ],
+    "classification": "lost_action",
+    "cache": {
+      "item_id": 87,
+      "type_id": 1,
+      "type": "action",
+      "max_uses": 99,
+      "has_unlimited_uses": false,
+      "weight": 5,
+      "order": 87,
+      "category": {
+        "id": 6,
+        "name": "Saboteur"
+      }
+    },
+    "action": {
+      "id": 23910,
+      "icon_id": 64743,
+      "icon_file": "icon.png",
+      "cast_time_seconds": 0,
+      "recast_time_seconds": 2.5,
+      "range_yalms": 0,
+      "effect_range_yalms": 10,
+      "max_charges": 0,
+      "cooldown_group": 58,
+      "additional_cooldown_group": 0,
+      "primary_cost": {
+        "type_id": 20,
+        "value": 1
+      },
+      "secondary_cost": {
+        "type_id": 0,
+        "value": 0
+      },
+      "aspect_id": 7,
+      "category": {
+        "id": 3,
+        "name": "Waffenfertigkeit"
+      },
+      "class_job_category": {
+        "id": 174,
+        "name": "PLD MÖN KRG DRG BRD NIN MCH DKR SAM REV TÄN SNT VPR",
+        "allowed_jobs": [
+          "PLD",
+          "MNK",
+          "WAR",
+          "DRG",
+          "BRD",
+          "NIN",
+          "MCH",
+          "DRK",
+          "SAM",
+          "GNB",
+          "DNC",
+          "RPR",
+          "VPR"
+        ]
+      },
+      "targeting": {
+        "self": true,
+        "party": false,
+        "alliance": false,
+        "hostile": false,
+        "ally": false,
+        "own_pet": false,
+        "party_pet": false,
+        "dead_target_behavior": 0,
+        "is_area": false,
+        "requires_line_of_sight": true,
+        "requires_facing_target": false
+      },
+      "status_gain_self": null,
+      "proc_status": null
+    }
+  },
+  "fr": {
+    "title": "Ravage oublié",
+    "description": "Effectue une attaque physique sur les ennemis alentour.\nPuissance\u00A0: 300\nEffet additionnel\u00A0: interrompt le lancement d'une action par la cible.\nEffet additionnel\u00A0: augmente de 10% les dégâts subis par les ennemis atteints de Faiblesse physique.\nDurée\u00A0: 60s",
+    "effects": [
+      "Effectue une attaque physique sur les ennemis alentour.",
+      "Puissance\u00A0: 300",
+      "Effet additionnel\u00A0: interrompt le lancement d'une action par la cible.",
+      "Effet additionnel\u00A0: augmente de 10% les dégâts subis par les ennemis atteints de Faiblesse physique.",
+      "Durée\u00A0: 60s"
+    ],
+    "classification": "lost_action",
+    "cache": {
+      "item_id": 87,
+      "type_id": 1,
+      "type": "action",
+      "max_uses": 99,
+      "has_unlimited_uses": false,
+      "weight": 5,
+      "order": 87,
+      "category": {
+        "id": 6,
+        "name": "Sapeur"
+      }
+    },
+    "action": {
+      "id": 23910,
+      "icon_id": 64743,
+      "icon_file": "icon.png",
+      "cast_time_seconds": 0,
+      "recast_time_seconds": 2.5,
+      "range_yalms": 0,
+      "effect_range_yalms": 10,
+      "max_charges": 0,
+      "cooldown_group": 58,
+      "additional_cooldown_group": 0,
+      "primary_cost": {
+        "type_id": 20,
+        "value": 1
+      },
+      "secondary_cost": {
+        "type_id": 0,
+        "value": 0
+      },
+      "aspect_id": 7,
+      "category": {
+        "id": 3,
+        "name": "Technique d'arme"
+      },
+      "class_job_category": {
+        "id": 174,
+        "name": "PLD MOI GUE DRG BRD NIN MCH CHN SAM PSB DNS FCH VPR",
+        "allowed_jobs": [
+          "PLD",
+          "MNK",
+          "WAR",
+          "DRG",
+          "BRD",
+          "NIN",
+          "MCH",
+          "DRK",
+          "SAM",
+          "GNB",
+          "DNC",
+          "RPR",
+          "VPR"
+        ]
+      },
+      "targeting": {
+        "self": true,
+        "party": false,
+        "alliance": false,
+        "hostile": false,
+        "ally": false,
+        "own_pet": false,
+        "party_pet": false,
+        "dead_target_behavior": 0,
+        "is_area": false,
+        "requires_line_of_sight": true,
+        "requires_facing_target": false
+      },
+      "status_gain_self": null,
+      "proc_status": null
+    }
+  },
+  "ja": {
+    "title": "ロスト・ランページ",
+    "description": "自身の周囲の敵に範囲物理攻撃。\u3000威力：300\n追加効果：対象のアクション詠唱を中断させる。\n「物理に弱い」敵に対して追加効果を与える。\n追加効果：被ダメージを10％上昇させる\n効果時間：60秒",
+    "effects": [
+      "自身の周囲の敵に範囲物理攻撃。\u3000威力：300",
+      "追加効果：対象のアクション詠唱を中断させる。",
+      "「物理に弱い」敵に対して追加効果を与える。",
+      "追加効果：被ダメージを10％上昇させる",
+      "効果時間：60秒"
+    ],
+    "classification": "lost_action",
+    "cache": {
+      "item_id": 87,
+      "type_id": 1,
+      "type": "action",
+      "max_uses": 99,
+      "has_unlimited_uses": false,
+      "weight": 5,
+      "order": 87,
+      "category": {
+        "id": 6,
+        "name": "アクション：デバッファー"
+      }
+    },
+    "action": {
+      "id": 23910,
+      "icon_id": 64743,
+      "icon_file": "icon.png",
+      "cast_time_seconds": 0,
+      "recast_time_seconds": 2.5,
+      "range_yalms": 0,
+      "effect_range_yalms": 10,
+      "max_charges": 0,
+      "cooldown_group": 58,
+      "additional_cooldown_group": 0,
+      "primary_cost": {
+        "type_id": 20,
+        "value": 1
+      },
+      "secondary_cost": {
+        "type_id": 0,
+        "value": 0
+      },
+      "aspect_id": 7,
+      "category": {
+        "id": 3,
+        "name": "ウェポンスキル"
+      },
+      "class_job_category": {
+        "id": 174,
+        "name": "ナイト モンク 戦士 竜騎士 吟遊詩人 忍者 機工士 暗黒騎士 侍 ガンブレイカー 踊り子 リーパー ヴァイパー",
+        "allowed_jobs": [
+          "PLD",
+          "MNK",
+          "WAR",
+          "DRG",
+          "BRD",
+          "NIN",
+          "MCH",
+          "DRK",
+          "SAM",
+          "GNB",
+          "DNC",
+          "RPR",
+          "VPR"
+        ]
+      },
+      "targeting": {
+        "self": true,
+        "party": false,
+        "alliance": false,
+        "hostile": false,
+        "ally": false,
+        "own_pet": false,
+        "party_pet": false,
+        "dead_target_behavior": 0,
+        "is_area": false,
+        "requires_line_of_sight": true,
+        "requires_facing_target": false
+      },
+      "status_gain_self": null,
+      "proc_status": null
+    }
+  }
+}

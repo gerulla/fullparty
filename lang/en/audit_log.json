@@ -115,6 +115,11 @@
         "updated": "updated a raid position.",
         "deleted": "deleted a raid position."
       },
+      "bozja_item": {
+        "created": "created a Bozja item.",
+        "updated": "updated a Bozja item.",
+        "deleted": "deleted a Bozja item."
+      },
       "activity_type": {
         "created": "created an activity type.",
         "cloned": "cloned an activity type.",
@@ -364,6 +369,11 @@
         "created": "Raid position created",
         "updated": "Raid position updated",
         "deleted": "Raid position deleted"
+      },
+      "bozja_item": {
+        "created": "Bozja item created",
+        "updated": "Bozja item updated",
+        "deleted": "Bozja item deleted"
       },
       "activity_type": {
         "created": "Activity type created",

@@ -455,7 +455,6 @@ const removeSelfFromSlot = async (slot: ActivitySlot) => {
 				:intensity-label="intensityLabel"
 				:minimum-item-level-label="minimumItemLevelLabel"
 				:beginner-friendly-label="beginnerFriendlyLabel"
-				:description="currentActivity.description"
 				:notes="currentActivity.notes"
 				:target-prog-point-label="targetProgPointLabel"
 				detail-mode="self_assignment"

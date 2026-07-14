@@ -1,0 +1,301 @@
+{
+  "en": {
+    "title": "Pure Essence of the Divine",
+    "description": "Increases defense by 25%, damage dealt by 35%, and maximum HP by 100%.\nEffect ends upon reuse.\nCannot be used with other Essence, Deep Essence, or Pure Essence actions.\nIt is said that Pure Essences may grant unexpected effects...\n※This action can only be used in Delubrum Reginae.",
+    "effects": [
+      "Increases defense by 25%, damage dealt by 35%, and maximum HP by 100%.",
+      "Effect ends upon reuse.",
+      "Cannot be used with other Essence, Deep Essence, or Pure Essence actions.",
+      "It is said that Pure Essences may grant unexpected effects...",
+      "※This action can only be used in Delubrum Reginae."
+    ],
+    "classification": "pure_essence",
+    "cache": {
+      "item_id": 78,
+      "type_id": 2,
+      "type": "item",
+      "max_uses": 1,
+      "has_unlimited_uses": false,
+      "weight": 12,
+      "order": 78,
+      "category": {
+        "id": 7,
+        "name": "Item-related"
+      }
+    },
+    "action": {
+      "id": 22351,
+      "icon_id": 64732,
+      "icon_file": "icon.png",
+      "cast_time_seconds": 0,
+      "recast_time_seconds": 0,
+      "range_yalms": 0,
+      "effect_range_yalms": 0,
+      "max_charges": 0,
+      "cooldown_group": 0,
+      "additional_cooldown_group": 0,
+      "primary_cost": {
+        "type_id": 0,
+        "value": 0
+      },
+      "secondary_cost": {
+        "type_id": 111,
+        "value": 0
+      },
+      "aspect_id": 0,
+      "category": {
+        "id": 5,
+        "name": "Item"
+      },
+      "class_job_category": {
+        "id": 165,
+        "name": "WHM SCH AST SGE",
+        "allowed_jobs": [
+          "WHM",
+          "SCH",
+          "AST",
+          "SGE"
+        ]
+      },
+      "targeting": {
+        "self": true,
+        "party": false,
+        "alliance": false,
+        "hostile": false,
+        "ally": false,
+        "own_pet": false,
+        "party_pet": false,
+        "dead_target_behavior": 0,
+        "is_area": false,
+        "requires_line_of_sight": true,
+        "requires_facing_target": true
+      },
+      "status_gain_self": null,
+      "proc_status": null
+    }
+  },
+  "de": {
+    "title": "Maxtrank des Heiligen",
+    "description": "Du erhöhst deine Verteidigung um 25\u00A0%, deinen ausgeteilten Schaden um 35\u00A0% und deine maximalen LP um 100\u00A0%.\nDen Legenden nach verbirgt dieser Trank einen geheimen Effekt.\nKann nicht zusammen mit anderen Zaubertränken, Wundertränken oder ähnlichen Tränken eingesetzt werden.\nEffekt endet bei erneuter Ausführung.\n※ Kann nur im Delubrum Reginae angewendet werden.",
+    "effects": [
+      "Du erhöhst deine Verteidigung um 25\u00A0%, deinen ausgeteilten Schaden um 35\u00A0% und deine maximalen LP um 100\u00A0%.",
+      "Den Legenden nach verbirgt dieser Trank einen geheimen Effekt.",
+      "Kann nicht zusammen mit anderen Zaubertränken, Wundertränken oder ähnlichen Tränken eingesetzt werden.",
+      "Effekt endet bei erneuter Ausführung.",
+      "※ Kann nur im Delubrum Reginae angewendet werden."
+    ],
+    "classification": "lost_item",
+    "cache": {
+      "item_id": 78,
+      "type_id": 2,
+      "type": "item",
+      "max_uses": 1,
+      "has_unlimited_uses": false,
+      "weight": 12,
+      "order": 78,
+      "category": {
+        "id": 7,
+        "name": "Gegenstände"
+      }
+    },
+    "action": {
+      "id": 22351,
+      "icon_id": 64732,
+      "icon_file": "icon.png",
+      "cast_time_seconds": 0,
+      "recast_time_seconds": 0,
+      "range_yalms": 0,
+      "effect_range_yalms": 0,
+      "max_charges": 0,
+      "cooldown_group": 0,
+      "additional_cooldown_group": 0,
+      "primary_cost": {
+        "type_id": 0,
+        "value": 0
+      },
+      "secondary_cost": {
+        "type_id": 111,
+        "value": 0
+      },
+      "aspect_id": 0,
+      "category": {
+        "id": 5,
+        "name": "Gegenstand"
+      },
+      "class_job_category": {
+        "id": 165,
+        "name": "WMA GLT AST WEI",
+        "allowed_jobs": [
+          "WHM",
+          "SCH",
+          "AST",
+          "SGE"
+        ]
+      },
+      "targeting": {
+        "self": true,
+        "party": false,
+        "alliance": false,
+        "hostile": false,
+        "ally": false,
+        "own_pet": false,
+        "party_pet": false,
+        "dead_target_behavior": 0,
+        "is_area": false,
+        "requires_line_of_sight": true,
+        "requires_facing_target": true
+      },
+      "status_gain_self": null,
+      "proc_status": null
+    }
+  },
+  "fr": {
+    "title": "Breuvage érémitique de saint",
+    "description": "Augmente de 25% votre défense, de 35% vos dégâts infligés et de 100% vos PV maximums.\nNe peut pas être utilisé en même temps qu'une autre action de type Breuvage.\nOn dit que les breuvages érémitiques auraient des propriétés cachées...\n\n* Fonctionne uniquement dans Delubrum Reginae.",
+    "effects": [
+      "Augmente de 25% votre défense, de 35% vos dégâts infligés et de 100% vos PV maximums.",
+      "Ne peut pas être utilisé en même temps qu'une autre action de type Breuvage.",
+      "On dit que les breuvages érémitiques auraient des propriétés cachées...",
+      "* Fonctionne uniquement dans Delubrum Reginae."
+    ],
+    "classification": "lost_item",
+    "cache": {
+      "item_id": 78,
+      "type_id": 2,
+      "type": "item",
+      "max_uses": 1,
+      "has_unlimited_uses": false,
+      "weight": 12,
+      "order": 78,
+      "category": {
+        "id": 7,
+        "name": "Objets"
+      }
+    },
+    "action": {
+      "id": 22351,
+      "icon_id": 64732,
+      "icon_file": "icon.png",
+      "cast_time_seconds": 0,
+      "recast_time_seconds": 0,
+      "range_yalms": 0,
+      "effect_range_yalms": 0,
+      "max_charges": 0,
+      "cooldown_group": 0,
+      "additional_cooldown_group": 0,
+      "primary_cost": {
+        "type_id": 0,
+        "value": 0
+      },
+      "secondary_cost": {
+        "type_id": 111,
+        "value": 0
+      },
+      "aspect_id": 0,
+      "category": {
+        "id": 5,
+        "name": "Objet"
+      },
+      "class_job_category": {
+        "id": 165,
+        "name": "MBL ÉRU AST SAG",
+        "allowed_jobs": [
+          "WHM",
+          "SCH",
+          "AST",
+          "SGE"
+        ]
+      },
+      "targeting": {
+        "self": true,
+        "party": false,
+        "alliance": false,
+        "hostile": false,
+        "ally": false,
+        "own_pet": false,
+        "party_pet": false,
+        "dead_target_behavior": 0,
+        "is_area": false,
+        "requires_line_of_sight": true,
+        "requires_facing_target": true
+      },
+      "status_gain_self": null,
+      "proc_status": null
+    }
+  },
+  "ja": {
+    "title": "聖人の仙薬",
+    "description": "英雄の記憶を継承し、自身の防御力を25％、与ダメージを35％上昇、かつ最大ＨＰを100％上昇させる。\n他の「秘薬」「霊薬」「仙薬」系薬品とは同時に使えない。\n効果時間：永続\n仙薬には隠された効果があると言われている。\n※このアイテムは、グンヒルド・ディルーブラム攻略中のみ使用可能。",
+    "effects": [
+      "英雄の記憶を継承し、自身の防御力を25％、与ダメージを35％上昇、かつ最大ＨＰを100％上昇させる。",
+      "他の「秘薬」「霊薬」「仙薬」系薬品とは同時に使えない。",
+      "効果時間：永続",
+      "仙薬には隠された効果があると言われている。",
+      "※このアイテムは、グンヒルド・ディルーブラム攻略中のみ使用可能。"
+    ],
+    "classification": "lost_item",
+    "cache": {
+      "item_id": 78,
+      "type_id": 2,
+      "type": "item",
+      "max_uses": 1,
+      "has_unlimited_uses": false,
+      "weight": 12,
+      "order": 78,
+      "category": {
+        "id": 7,
+        "name": "アイテム"
+      }
+    },
+    "action": {
+      "id": 22351,
+      "icon_id": 64732,
+      "icon_file": "icon.png",
+      "cast_time_seconds": 0,
+      "recast_time_seconds": 0,
+      "range_yalms": 0,
+      "effect_range_yalms": 0,
+      "max_charges": 0,
+      "cooldown_group": 0,
+      "additional_cooldown_group": 0,
+      "primary_cost": {
+        "type_id": 0,
+        "value": 0
+      },
+      "secondary_cost": {
+        "type_id": 111,
+        "value": 0
+      },
+      "aspect_id": 0,
+      "category": {
+        "id": 5,
+        "name": "アイテム"
+      },
+      "class_job_category": {
+        "id": 165,
+        "name": "白魔道士 学者 占星術師 賢者",
+        "allowed_jobs": [
+          "WHM",
+          "SCH",
+          "AST",
+          "SGE"
+        ]
+      },
+      "targeting": {
+        "self": true,
+        "party": false,
+        "alliance": false,
+        "hostile": false,
+        "ally": false,
+        "own_pet": false,
+        "party_pet": false,
+        "dead_target_behavior": 0,
+        "is_area": false,
+        "requires_line_of_sight": true,
+        "requires_facing_target": true
+      },
+      "status_gain_self": null,
+      "proc_status": null
+    }
+  }
+}

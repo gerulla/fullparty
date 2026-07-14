@@ -1,0 +1,358 @@
+{
+  "en": {
+    "title": "Resistance Elixir",
+    "description": "Restores own HP and MP to maximum.\nShares a recast timer with Resistance Potion and Dynamis Dice.",
+    "effects": [
+      "Restores own HP and MP to maximum.",
+      "Shares a recast timer with Resistance Potion and Dynamis Dice."
+    ],
+    "classification": "lost_item",
+    "cache": {
+      "item_id": 99,
+      "type_id": 2,
+      "type": "item",
+      "max_uses": 1,
+      "has_unlimited_uses": false,
+      "weight": 4,
+      "order": 99,
+      "category": {
+        "id": 7,
+        "name": "Item-related"
+      }
+    },
+    "action": {
+      "id": 23922,
+      "icon_id": 64755,
+      "icon_file": "icon.png",
+      "cast_time_seconds": 0,
+      "recast_time_seconds": 90,
+      "range_yalms": 0,
+      "effect_range_yalms": 0,
+      "max_charges": 0,
+      "cooldown_group": 59,
+      "additional_cooldown_group": 0,
+      "primary_cost": {
+        "type_id": 0,
+        "value": 0
+      },
+      "secondary_cost": {
+        "type_id": 0,
+        "value": 0
+      },
+      "aspect_id": 0,
+      "category": {
+        "id": 5,
+        "name": "Item"
+      },
+      "class_job_category": {
+        "id": 169,
+        "name": "PLD MNK WAR DRG BRD WHM BLM SMN SCH NIN MCH DRK AST SAM RDM GNB DNC RPR SGE VPR PCT",
+        "allowed_jobs": [
+          "PLD",
+          "MNK",
+          "WAR",
+          "DRG",
+          "BRD",
+          "WHM",
+          "BLM",
+          "SMN",
+          "SCH",
+          "NIN",
+          "MCH",
+          "DRK",
+          "AST",
+          "SAM",
+          "RDM",
+          "GNB",
+          "DNC",
+          "RPR",
+          "SGE",
+          "VPR",
+          "PCT"
+        ]
+      },
+      "targeting": {
+        "self": true,
+        "party": false,
+        "alliance": false,
+        "hostile": false,
+        "ally": false,
+        "own_pet": false,
+        "party_pet": false,
+        "dead_target_behavior": 0,
+        "is_area": false,
+        "requires_line_of_sight": true,
+        "requires_facing_target": true
+      },
+      "status_gain_self": null,
+      "proc_status": null
+    }
+  },
+  "de": {
+    "title": "Elixier des Widerstands",
+    "description": "Du stellst alle eigenen LP und MP wieder her.\nGemeinsamer Reaktivierungs-Timer mit Tränkesammlung des Widerstands und Würfel des Schicksals",
+    "effects": [
+      "Du stellst alle eigenen LP und MP wieder her.",
+      "Gemeinsamer Reaktivierungs-Timer mit Tränkesammlung des Widerstands und Würfel des Schicksals"
+    ],
+    "classification": "lost_item",
+    "cache": {
+      "item_id": 99,
+      "type_id": 2,
+      "type": "item",
+      "max_uses": 1,
+      "has_unlimited_uses": false,
+      "weight": 4,
+      "order": 99,
+      "category": {
+        "id": 7,
+        "name": "Gegenstände"
+      }
+    },
+    "action": {
+      "id": 23922,
+      "icon_id": 64755,
+      "icon_file": "icon.png",
+      "cast_time_seconds": 0,
+      "recast_time_seconds": 90,
+      "range_yalms": 0,
+      "effect_range_yalms": 0,
+      "max_charges": 0,
+      "cooldown_group": 59,
+      "additional_cooldown_group": 0,
+      "primary_cost": {
+        "type_id": 0,
+        "value": 0
+      },
+      "secondary_cost": {
+        "type_id": 0,
+        "value": 0
+      },
+      "aspect_id": 0,
+      "category": {
+        "id": 5,
+        "name": "Gegenstand"
+      },
+      "class_job_category": {
+        "id": 169,
+        "name": "PLD MÖN KRG DRG BRD WMA SMA BSW GLT NIN MCH DKR AST SAM RMA REV TÄN SNT WEI VPR PKT",
+        "allowed_jobs": [
+          "PLD",
+          "MNK",
+          "WAR",
+          "DRG",
+          "BRD",
+          "WHM",
+          "BLM",
+          "SMN",
+          "SCH",
+          "NIN",
+          "MCH",
+          "DRK",
+          "AST",
+          "SAM",
+          "RDM",
+          "GNB",
+          "DNC",
+          "RPR",
+          "SGE",
+          "VPR",
+          "PCT"
+        ]
+      },
+      "targeting": {
+        "self": true,
+        "party": false,
+        "alliance": false,
+        "hostile": false,
+        "ally": false,
+        "own_pet": false,
+        "party_pet": false,
+        "dead_target_behavior": 0,
+        "is_area": false,
+        "requires_line_of_sight": true,
+        "requires_facing_target": true
+      },
+      "status_gain_self": null,
+      "proc_status": null
+    }
+  },
+  "fr": {
+    "title": "Élixir de la résistance",
+    "description": "Restaure l'intégralité de vos PV et de vos PM.\nPartage le même temps de recharge que Potion de la résistance et Dé du destin.",
+    "effects": [
+      "Restaure l'intégralité de vos PV et de vos PM.",
+      "Partage le même temps de recharge que Potion de la résistance et Dé du destin."
+    ],
+    "classification": "lost_item",
+    "cache": {
+      "item_id": 99,
+      "type_id": 2,
+      "type": "item",
+      "max_uses": 1,
+      "has_unlimited_uses": false,
+      "weight": 4,
+      "order": 99,
+      "category": {
+        "id": 7,
+        "name": "Objets"
+      }
+    },
+    "action": {
+      "id": 23922,
+      "icon_id": 64755,
+      "icon_file": "icon.png",
+      "cast_time_seconds": 0,
+      "recast_time_seconds": 90,
+      "range_yalms": 0,
+      "effect_range_yalms": 0,
+      "max_charges": 0,
+      "cooldown_group": 59,
+      "additional_cooldown_group": 0,
+      "primary_cost": {
+        "type_id": 0,
+        "value": 0
+      },
+      "secondary_cost": {
+        "type_id": 0,
+        "value": 0
+      },
+      "aspect_id": 0,
+      "category": {
+        "id": 5,
+        "name": "Objet"
+      },
+      "class_job_category": {
+        "id": 169,
+        "name": "PLD MOI GUE DRG BRD MBL MNO INV ÉRU NIN MCH CHN AST SAM MRG PSB DNS FCH SAG VPR PIC",
+        "allowed_jobs": [
+          "PLD",
+          "MNK",
+          "WAR",
+          "DRG",
+          "BRD",
+          "WHM",
+          "BLM",
+          "SMN",
+          "SCH",
+          "NIN",
+          "MCH",
+          "DRK",
+          "AST",
+          "SAM",
+          "RDM",
+          "GNB",
+          "DNC",
+          "RPR",
+          "SGE",
+          "VPR",
+          "PCT"
+        ]
+      },
+      "targeting": {
+        "self": true,
+        "party": false,
+        "alliance": false,
+        "hostile": false,
+        "ally": false,
+        "own_pet": false,
+        "party_pet": false,
+        "dead_target_behavior": 0,
+        "is_area": false,
+        "requires_line_of_sight": true,
+        "requires_facing_target": true
+      },
+      "status_gain_self": null,
+      "proc_status": null
+    }
+  },
+  "ja": {
+    "title": "レジスタンスエリクサー",
+    "description": "自身のＨＰとＭＰを全回復する。\nリキャストタイマーを「レジスタンスポーション」「運命のダイス」と共有する。",
+    "effects": [
+      "自身のＨＰとＭＰを全回復する。",
+      "リキャストタイマーを「レジスタンスポーション」「運命のダイス」と共有する。"
+    ],
+    "classification": "lost_item",
+    "cache": {
+      "item_id": 99,
+      "type_id": 2,
+      "type": "item",
+      "max_uses": 1,
+      "has_unlimited_uses": false,
+      "weight": 4,
+      "order": 99,
+      "category": {
+        "id": 7,
+        "name": "アイテム"
+      }
+    },
+    "action": {
+      "id": 23922,
+      "icon_id": 64755,
+      "icon_file": "icon.png",
+      "cast_time_seconds": 0,
+      "recast_time_seconds": 90,
+      "range_yalms": 0,
+      "effect_range_yalms": 0,
+      "max_charges": 0,
+      "cooldown_group": 59,
+      "additional_cooldown_group": 0,
+      "primary_cost": {
+        "type_id": 0,
+        "value": 0
+      },
+      "secondary_cost": {
+        "type_id": 0,
+        "value": 0
+      },
+      "aspect_id": 0,
+      "category": {
+        "id": 5,
+        "name": "アイテム"
+      },
+      "class_job_category": {
+        "id": 169,
+        "name": "ナイト モンク 戦士 竜騎士 吟遊詩人 白魔道士 黒魔道士 召喚士 学者 忍者 機工士 暗黒騎士 占星術師 侍 赤魔道士 ガンブレイカー 踊り子 リーパー 賢者 ヴァイパー ピクトマンサー",
+        "allowed_jobs": [
+          "PLD",
+          "MNK",
+          "WAR",
+          "DRG",
+          "BRD",
+          "WHM",
+          "BLM",
+          "SMN",
+          "SCH",
+          "NIN",
+          "MCH",
+          "DRK",
+          "AST",
+          "SAM",
+          "RDM",
+          "GNB",
+          "DNC",
+          "RPR",
+          "SGE",
+          "VPR",
+          "PCT"
+        ]
+      },
+      "targeting": {
+        "self": true,
+        "party": false,
+        "alliance": false,
+        "hostile": false,
+        "ally": false,
+        "own_pet": false,
+        "party_pet": false,
+        "dead_target_behavior": 0,
+        "is_area": false,
+        "requires_line_of_sight": true,
+        "requires_facing_target": true
+      },
+      "status_gain_self": null,
+      "proc_status": null
+    }
+  }
+}

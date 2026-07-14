@@ -1,0 +1,311 @@
+{
+  "en": {
+    "title": "Lost Blood Rage",
+    "description": "Increases damage dealt by 15% and reduces damage taken by 5% per stack. Stacks increase with each use of a dash attack while effect is active, to a maximum of 4.\nDuration: 18s\nMaximum stacks grant the effect of Blood Rush.\nBlood Rush Effect: Increases damage dealt by 60%, shortens recast times of abilities by 75%, and gradually restores HP and MP. Recast time reduction does not apply to charged actions.\nDuration: 30s\nCan only be executed while in combat.",
+    "effects": [
+      "Increases damage dealt by 15% and reduces damage taken by 5% per stack. Stacks increase with each use of a dash attack while effect is active, to a maximum of 4.",
+      "Duration: 18s",
+      "Maximum stacks grant the effect of Blood Rush.",
+      "Blood Rush Effect: Increases damage dealt by 60%, shortens recast times of abilities by 75%, and gradually restores HP and MP. Recast time reduction does not apply to charged actions.",
+      "Duration: 30s",
+      "Can only be executed while in combat."
+    ],
+    "classification": "lost_action",
+    "cache": {
+      "item_id": 98,
+      "type_id": 1,
+      "type": "action",
+      "max_uses": 10,
+      "has_unlimited_uses": false,
+      "weight": 25,
+      "order": 98,
+      "category": {
+        "id": 2,
+        "name": "Defensive"
+      }
+    },
+    "action": {
+      "id": 23921,
+      "icon_id": 64754,
+      "icon_file": "icon.png",
+      "cast_time_seconds": 0,
+      "recast_time_seconds": 180,
+      "range_yalms": 0,
+      "effect_range_yalms": 0,
+      "max_charges": 0,
+      "cooldown_group": 81,
+      "additional_cooldown_group": 0,
+      "primary_cost": {
+        "type_id": 20,
+        "value": 1
+      },
+      "secondary_cost": {
+        "type_id": 42,
+        "value": 0
+      },
+      "aspect_id": 0,
+      "category": {
+        "id": 4,
+        "name": "Ability"
+      },
+      "class_job_category": {
+        "id": 166,
+        "name": "PLD WAR DRK GNB",
+        "allowed_jobs": [
+          "PLD",
+          "WAR",
+          "DRK",
+          "GNB"
+        ]
+      },
+      "targeting": {
+        "self": true,
+        "party": false,
+        "alliance": false,
+        "hostile": false,
+        "ally": false,
+        "own_pet": false,
+        "party_pet": false,
+        "dead_target_behavior": 0,
+        "is_area": false,
+        "requires_line_of_sight": true,
+        "requires_facing_target": true
+      },
+      "status_gain_self": null,
+      "proc_status": null
+    }
+  },
+  "de": {
+    "title": "Verschollener Blutzorn",
+    "description": "Du gewährst dir Verschollener Blutzorn.\nEffekt von Verschollener Blutzorn: Jeder Stapel erhöht deinen ausgeteilten Schaden um 5\u00A0% und verringert deinen erlittenen Schaden um 5\u00A0%. Jedes Ausführen von Attacken mit Vorwärtsbewegung fügt 1 Stapel hinzu und setzt die Dauer zurück.\nDauer: 18 Sekunden\nNur im Kampf wirksam.\nMaximalstapelzahl: 4\nStatus ändert sich zu Erwachtes Blut, sobald die Maximalstapelzahl erreicht ist.\nEffekt von Erwachtes Blut: Erhöht deinen ausgeteilten Schaden um 60\u00A0%, stellt schrittweise LP und MP wieder her und verkürzt die Reaktivierungszeit von während der Wirkung ausgelösten Talenten um 75\u00A0%. Kommandos mit Aufladungen sind davon ausgenommen.\nDauer: 30 Sekunden",
+    "effects": [
+      "Du gewährst dir Verschollener Blutzorn.",
+      "Effekt von Verschollener Blutzorn: Jeder Stapel erhöht deinen ausgeteilten Schaden um 5\u00A0% und verringert deinen erlittenen Schaden um 5\u00A0%. Jedes Ausführen von Attacken mit Vorwärtsbewegung fügt 1 Stapel hinzu und setzt die Dauer zurück.",
+      "Dauer: 18 Sekunden",
+      "Nur im Kampf wirksam.",
+      "Maximalstapelzahl: 4",
+      "Status ändert sich zu Erwachtes Blut, sobald die Maximalstapelzahl erreicht ist.",
+      "Effekt von Erwachtes Blut: Erhöht deinen ausgeteilten Schaden um 60\u00A0%, stellt schrittweise LP und MP wieder her und verkürzt die Reaktivierungszeit von während der Wirkung ausgelösten Talenten um 75\u00A0%. Kommandos mit Aufladungen sind davon ausgenommen.",
+      "Dauer: 30 Sekunden"
+    ],
+    "classification": "lost_action",
+    "cache": {
+      "item_id": 98,
+      "type_id": 1,
+      "type": "action",
+      "max_uses": 10,
+      "has_unlimited_uses": false,
+      "weight": 25,
+      "order": 98,
+      "category": {
+        "id": 2,
+        "name": "Verteidiger"
+      }
+    },
+    "action": {
+      "id": 23921,
+      "icon_id": 64754,
+      "icon_file": "icon.png",
+      "cast_time_seconds": 0,
+      "recast_time_seconds": 180,
+      "range_yalms": 0,
+      "effect_range_yalms": 0,
+      "max_charges": 0,
+      "cooldown_group": 81,
+      "additional_cooldown_group": 0,
+      "primary_cost": {
+        "type_id": 20,
+        "value": 1
+      },
+      "secondary_cost": {
+        "type_id": 42,
+        "value": 0
+      },
+      "aspect_id": 0,
+      "category": {
+        "id": 4,
+        "name": "Talent"
+      },
+      "class_job_category": {
+        "id": 166,
+        "name": "PLD KRG DKR REV",
+        "allowed_jobs": [
+          "PLD",
+          "WAR",
+          "DRK",
+          "GNB"
+        ]
+      },
+      "targeting": {
+        "self": true,
+        "party": false,
+        "alliance": false,
+        "hostile": false,
+        "ally": false,
+        "own_pet": false,
+        "party_pet": false,
+        "dead_target_behavior": 0,
+        "is_area": false,
+        "requires_line_of_sight": true,
+        "requires_facing_target": true
+      },
+      "status_gain_self": null,
+      "proc_status": null
+    }
+  },
+  "fr": {
+    "title": "Rage sanguinaire oubliée",
+    "description": "Vous octroie Rage sanguinaire oubliée.\nRage sanguinaire oubliée\u00A0: augmente les dégâts infligés de 15% et réduit les dégâts subis de 5% par degré. L'effet augmente d'un degré à chaque action de déplacement exécutée pendant sa durée (maximum 4).\nDurée\u00A0: 18s\nCondition\u00A0: en combat.\nAu degré maximal, Rage sanguinaire oubliée devient Éveil du sang.\nÉveil du sang\u00A0: augmente de 60% les dégâts infligés, restaure périodiquement les PV ainsi que les PM, et réduit de 75% les temps de recharge des aptitudes pendant la durée de l'effet. (La réduction du temps de recharge ne s'applique pas aux actions à charges.)\nDurée\u00A0: 30s",
+    "effects": [
+      "Vous octroie Rage sanguinaire oubliée.",
+      "Rage sanguinaire oubliée\u00A0: augmente les dégâts infligés de 15% et réduit les dégâts subis de 5% par degré. L'effet augmente d'un degré à chaque action de déplacement exécutée pendant sa durée (maximum 4).",
+      "Durée\u00A0: 18s",
+      "Condition\u00A0: en combat.",
+      "Au degré maximal, Rage sanguinaire oubliée devient Éveil du sang.",
+      "Éveil du sang\u00A0: augmente de 60% les dégâts infligés, restaure périodiquement les PV ainsi que les PM, et réduit de 75% les temps de recharge des aptitudes pendant la durée de l'effet. (La réduction du temps de recharge ne s'applique pas aux actions à charges.)",
+      "Durée\u00A0: 30s"
+    ],
+    "classification": "lost_action",
+    "cache": {
+      "item_id": 98,
+      "type_id": 1,
+      "type": "action",
+      "max_uses": 10,
+      "has_unlimited_uses": false,
+      "weight": 25,
+      "order": 98,
+      "category": {
+        "id": 2,
+        "name": "Défenseur"
+      }
+    },
+    "action": {
+      "id": 23921,
+      "icon_id": 64754,
+      "icon_file": "icon.png",
+      "cast_time_seconds": 0,
+      "recast_time_seconds": 180,
+      "range_yalms": 0,
+      "effect_range_yalms": 0,
+      "max_charges": 0,
+      "cooldown_group": 81,
+      "additional_cooldown_group": 0,
+      "primary_cost": {
+        "type_id": 20,
+        "value": 1
+      },
+      "secondary_cost": {
+        "type_id": 42,
+        "value": 0
+      },
+      "aspect_id": 0,
+      "category": {
+        "id": 4,
+        "name": "Aptitude"
+      },
+      "class_job_category": {
+        "id": 166,
+        "name": "PLD GUE CHN PSB",
+        "allowed_jobs": [
+          "PLD",
+          "WAR",
+          "DRK",
+          "GNB"
+        ]
+      },
+      "targeting": {
+        "self": true,
+        "party": false,
+        "alliance": false,
+        "hostile": false,
+        "ally": false,
+        "own_pet": false,
+        "party_pet": false,
+        "dead_target_behavior": 0,
+        "is_area": false,
+        "requires_line_of_sight": true,
+        "requires_facing_target": true
+      },
+      "status_gain_self": null,
+      "proc_status": null
+    }
+  },
+  "ja": {
+    "title": "ロスト・ブラッドレイジ",
+    "description": "自身に「ロスト・ブラッドレイジ」を付与する。\nロスト・ブラッドレイジ効果：1スタックにつき、自身の与ダメージを15％上昇させ、かつ受けるダメージを5％軽減させる。効果時間中「突進移動系アクション」を使用するたびにスタック数を増加し、効果時間をリセットする。\n効果時間：18秒\n発動条件：自身が戦闘状態\n最大スタック数：4\n最大スタックになると「ロスト・ブラッドレイジ」が「血の覚醒」に変化する。\n血の覚醒効果：自身の与ダメージを60％上昇させ、かつＨＰとＭＰを継続回復させ、効果時間中に実行するアビリティのリキャストタイムを75％短縮する。リキャストタイムの短縮効果は、チャージアクションには適用されない。\n効果時間：30秒",
+    "effects": [
+      "自身に「ロスト・ブラッドレイジ」を付与する。",
+      "ロスト・ブラッドレイジ効果：1スタックにつき、自身の与ダメージを15％上昇させ、かつ受けるダメージを5％軽減させる。効果時間中「突進移動系アクション」を使用するたびにスタック数を増加し、効果時間をリセットする。",
+      "効果時間：18秒",
+      "発動条件：自身が戦闘状態",
+      "最大スタック数：4",
+      "最大スタックになると「ロスト・ブラッドレイジ」が「血の覚醒」に変化する。",
+      "血の覚醒効果：自身の与ダメージを60％上昇させ、かつＨＰとＭＰを継続回復させ、効果時間中に実行するアビリティのリキャストタイムを75％短縮する。リキャストタイムの短縮効果は、チャージアクションには適用されない。",
+      "効果時間：30秒"
+    ],
+    "classification": "lost_action",
+    "cache": {
+      "item_id": 98,
+      "type_id": 1,
+      "type": "action",
+      "max_uses": 10,
+      "has_unlimited_uses": false,
+      "weight": 25,
+      "order": 98,
+      "category": {
+        "id": 2,
+        "name": "アクション：ディフェンダー"
+      }
+    },
+    "action": {
+      "id": 23921,
+      "icon_id": 64754,
+      "icon_file": "icon.png",
+      "cast_time_seconds": 0,
+      "recast_time_seconds": 180,
+      "range_yalms": 0,
+      "effect_range_yalms": 0,
+      "max_charges": 0,
+      "cooldown_group": 81,
+      "additional_cooldown_group": 0,
+      "primary_cost": {
+        "type_id": 20,
+        "value": 1
+      },
+      "secondary_cost": {
+        "type_id": 42,
+        "value": 0
+      },
+      "aspect_id": 0,
+      "category": {
+        "id": 4,
+        "name": "アビリティ"
+      },
+      "class_job_category": {
+        "id": 166,
+        "name": "ナイト 戦士 暗黒騎士 ガンブレイカー",
+        "allowed_jobs": [
+          "PLD",
+          "WAR",
+          "DRK",
+          "GNB"
+        ]
+      },
+      "targeting": {
+        "self": true,
+        "party": false,
+        "alliance": false,
+        "hostile": false,
+        "ally": false,
+        "own_pet": false,
+        "party_pet": false,
+        "dead_target_behavior": 0,
+        "is_area": false,
+        "requires_line_of_sight": true,
+        "requires_facing_target": true
+      },
+      "status_gain_self": null,
+      "proc_status": null
+    }
+  }
+}

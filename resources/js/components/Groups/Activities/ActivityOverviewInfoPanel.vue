@@ -25,7 +25,6 @@ defineProps<{
 	intensityLabel: string
 	minimumItemLevelLabel: string
 	beginnerFriendlyLabel: string
-	description: string | null
 	notes: string | null
 	targetProgPointLabel: string
 	detailMode: "application" | "self_assignment"
@@ -175,15 +174,6 @@ const detailsOpen = ref(false);
 				</div>
 
 				<div class="grid gap-px border-t border-default md:grid-cols-2 xl:grid-cols-5">
-					<div class="bg-background px-4 py-4">
-						<p class="text-xs uppercase tracking-[0.22em] text-muted">
-							{{ t("groups.activities.overview.details.description") }}
-						</p>
-						<p class="mt-2 break-words [overflow-wrap:anywhere] whitespace-pre-wrap text-sm text-toned">
-							{{ description || t("groups.activities.overview.details.no_description") }}
-						</p>
-					</div>
-
 					<div class="bg-background px-4 py-4">
 						<p class="text-xs uppercase tracking-[0.22em] text-muted">
 							{{ t("groups.activities.create.summary.notes") }}

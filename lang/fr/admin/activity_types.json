@@ -252,10 +252,16 @@
             "url": "URL"
         },
         "option_sources": {
-            "character_classes": "Classes de personnage",
-            "phantom_jobs": "Jobs fantômes",
-            "raid_positions": "Positions de raid",
-            "static_options": "Options statiques"
+              "character_classes": "Classes de personnage",
+              "phantom_jobs": "Jobs fantômes",
+              "raid_positions": "Positions de raid",
+              "bozja_banners": "Bannières de Bozja",
+              "bozja_essences": "Essences de Bozja",
+              "bozja_deep_essences": "Essences profondes de Bozja",
+              "bozja_pure_essences": "Essences pures de Bozja",
+              "bozja_lost_actions": "Actions oubliées de Bozja",
+              "bozja_lost_items": "Objets oubliés de Bozja",
+              "static_options": "Options statiques"
         }
     },
     "summary": {

@@ -1,0 +1,357 @@
+{
+  "en": {
+    "title": "Lost Manawall",
+    "description": "Temporarily applies Heavy to self, while reducing damage taken by 90% and nullifying most knockback and draw-in effects.\nDuration: 6s",
+    "effects": [
+      "Temporarily applies Heavy to self, while reducing damage taken by 90% and nullifying most knockback and draw-in effects.",
+      "Duration: 6s"
+    ],
+    "classification": "lost_action",
+    "cache": {
+      "item_id": 3,
+      "type_id": 1,
+      "type": "action",
+      "max_uses": 2,
+      "has_unlimited_uses": false,
+      "weight": 16,
+      "order": 3,
+      "category": {
+        "id": 2,
+        "name": "Defensive"
+      }
+    },
+    "action": {
+      "id": 20703,
+      "icon_id": 64659,
+      "icon_file": "icon.png",
+      "cast_time_seconds": 0,
+      "recast_time_seconds": 360,
+      "range_yalms": 0,
+      "effect_range_yalms": 0,
+      "max_charges": 0,
+      "cooldown_group": 81,
+      "additional_cooldown_group": 0,
+      "primary_cost": {
+        "type_id": 20,
+        "value": 1
+      },
+      "secondary_cost": {
+        "type_id": 0,
+        "value": 0
+      },
+      "aspect_id": 0,
+      "category": {
+        "id": 4,
+        "name": "Ability"
+      },
+      "class_job_category": {
+        "id": 169,
+        "name": "PLD MNK WAR DRG BRD WHM BLM SMN SCH NIN MCH DRK AST SAM RDM GNB DNC RPR SGE VPR PCT",
+        "allowed_jobs": [
+          "PLD",
+          "MNK",
+          "WAR",
+          "DRG",
+          "BRD",
+          "WHM",
+          "BLM",
+          "SMN",
+          "SCH",
+          "NIN",
+          "MCH",
+          "DRK",
+          "AST",
+          "SAM",
+          "RDM",
+          "GNB",
+          "DNC",
+          "RPR",
+          "SGE",
+          "VPR",
+          "PCT"
+        ]
+      },
+      "targeting": {
+        "self": true,
+        "party": false,
+        "alliance": false,
+        "hostile": false,
+        "ally": false,
+        "own_pet": false,
+        "party_pet": false,
+        "dead_target_behavior": 0,
+        "is_area": false,
+        "requires_line_of_sight": true,
+        "requires_facing_target": true
+      },
+      "status_gain_self": null,
+      "proc_status": null
+    }
+  },
+  "de": {
+    "title": "Verschollene Mana-Wand",
+    "description": "Du fügst dir selbst Gewicht zu und erleidest dafür 90\u00A0% weniger Schaden. Zusätzlich werden bestimmte Rückstoß- und Heranzieheffekte verhindert.\nDauer: 6 Sekunden",
+    "effects": [
+      "Du fügst dir selbst Gewicht zu und erleidest dafür 90\u00A0% weniger Schaden. Zusätzlich werden bestimmte Rückstoß- und Heranzieheffekte verhindert.",
+      "Dauer: 6 Sekunden"
+    ],
+    "classification": "lost_action",
+    "cache": {
+      "item_id": 3,
+      "type_id": 1,
+      "type": "action",
+      "max_uses": 2,
+      "has_unlimited_uses": false,
+      "weight": 16,
+      "order": 3,
+      "category": {
+        "id": 2,
+        "name": "Verteidiger"
+      }
+    },
+    "action": {
+      "id": 20703,
+      "icon_id": 64659,
+      "icon_file": "icon.png",
+      "cast_time_seconds": 0,
+      "recast_time_seconds": 360,
+      "range_yalms": 0,
+      "effect_range_yalms": 0,
+      "max_charges": 0,
+      "cooldown_group": 81,
+      "additional_cooldown_group": 0,
+      "primary_cost": {
+        "type_id": 20,
+        "value": 1
+      },
+      "secondary_cost": {
+        "type_id": 0,
+        "value": 0
+      },
+      "aspect_id": 0,
+      "category": {
+        "id": 4,
+        "name": "Talent"
+      },
+      "class_job_category": {
+        "id": 169,
+        "name": "PLD MÖN KRG DRG BRD WMA SMA BSW GLT NIN MCH DKR AST SAM RMA REV TÄN SNT WEI VPR PKT",
+        "allowed_jobs": [
+          "PLD",
+          "MNK",
+          "WAR",
+          "DRG",
+          "BRD",
+          "WHM",
+          "BLM",
+          "SMN",
+          "SCH",
+          "NIN",
+          "MCH",
+          "DRK",
+          "AST",
+          "SAM",
+          "RDM",
+          "GNB",
+          "DNC",
+          "RPR",
+          "SGE",
+          "VPR",
+          "PCT"
+        ]
+      },
+      "targeting": {
+        "self": true,
+        "party": false,
+        "alliance": false,
+        "hostile": false,
+        "ally": false,
+        "own_pet": false,
+        "party_pet": false,
+        "dead_target_behavior": 0,
+        "is_area": false,
+        "requires_line_of_sight": true,
+        "requires_facing_target": true
+      },
+      "status_gain_self": null,
+      "proc_status": null
+    }
+  },
+  "fr": {
+    "title": "Mur de mana oublié",
+    "description": "Vous inflige Pesanteur, mais réduit de 90% les dégâts reçus et vous immunise contre la plupart des projections et des attractions.\nDurée\u00A0: 6s",
+    "effects": [
+      "Vous inflige Pesanteur, mais réduit de 90% les dégâts reçus et vous immunise contre la plupart des projections et des attractions.",
+      "Durée\u00A0: 6s"
+    ],
+    "classification": "lost_action",
+    "cache": {
+      "item_id": 3,
+      "type_id": 1,
+      "type": "action",
+      "max_uses": 2,
+      "has_unlimited_uses": false,
+      "weight": 16,
+      "order": 3,
+      "category": {
+        "id": 2,
+        "name": "Défenseur"
+      }
+    },
+    "action": {
+      "id": 20703,
+      "icon_id": 64659,
+      "icon_file": "icon.png",
+      "cast_time_seconds": 0,
+      "recast_time_seconds": 360,
+      "range_yalms": 0,
+      "effect_range_yalms": 0,
+      "max_charges": 0,
+      "cooldown_group": 81,
+      "additional_cooldown_group": 0,
+      "primary_cost": {
+        "type_id": 20,
+        "value": 1
+      },
+      "secondary_cost": {
+        "type_id": 0,
+        "value": 0
+      },
+      "aspect_id": 0,
+      "category": {
+        "id": 4,
+        "name": "Aptitude"
+      },
+      "class_job_category": {
+        "id": 169,
+        "name": "PLD MOI GUE DRG BRD MBL MNO INV ÉRU NIN MCH CHN AST SAM MRG PSB DNS FCH SAG VPR PIC",
+        "allowed_jobs": [
+          "PLD",
+          "MNK",
+          "WAR",
+          "DRG",
+          "BRD",
+          "WHM",
+          "BLM",
+          "SMN",
+          "SCH",
+          "NIN",
+          "MCH",
+          "DRK",
+          "AST",
+          "SAM",
+          "RDM",
+          "GNB",
+          "DNC",
+          "RPR",
+          "SGE",
+          "VPR",
+          "PCT"
+        ]
+      },
+      "targeting": {
+        "self": true,
+        "party": false,
+        "alliance": false,
+        "hostile": false,
+        "ally": false,
+        "own_pet": false,
+        "party_pet": false,
+        "dead_target_behavior": 0,
+        "is_area": false,
+        "requires_line_of_sight": true,
+        "requires_facing_target": true
+      },
+      "status_gain_self": null,
+      "proc_status": null
+    }
+  },
+  "ja": {
+    "title": "ロスト・ウォール",
+    "description": "一定時間、自身にヘヴィを付与する代わりに被ダメージを90％軽減させ、かつ一部を除くすべてのノックバックと引き寄せを無効化する。効果時間：6秒",
+    "effects": [
+      "一定時間、自身にヘヴィを付与する代わりに被ダメージを90％軽減させ、かつ一部を除くすべてのノックバックと引き寄せを無効化する。効果時間：6秒"
+    ],
+    "classification": "lost_action",
+    "cache": {
+      "item_id": 3,
+      "type_id": 1,
+      "type": "action",
+      "max_uses": 2,
+      "has_unlimited_uses": false,
+      "weight": 16,
+      "order": 3,
+      "category": {
+        "id": 2,
+        "name": "アクション：ディフェンダー"
+      }
+    },
+    "action": {
+      "id": 20703,
+      "icon_id": 64659,
+      "icon_file": "icon.png",
+      "cast_time_seconds": 0,
+      "recast_time_seconds": 360,
+      "range_yalms": 0,
+      "effect_range_yalms": 0,
+      "max_charges": 0,
+      "cooldown_group": 81,
+      "additional_cooldown_group": 0,
+      "primary_cost": {
+        "type_id": 20,
+        "value": 1
+      },
+      "secondary_cost": {
+        "type_id": 0,
+        "value": 0
+      },
+      "aspect_id": 0,
+      "category": {
+        "id": 4,
+        "name": "アビリティ"
+      },
+      "class_job_category": {
+        "id": 169,
+        "name": "ナイト モンク 戦士 竜騎士 吟遊詩人 白魔道士 黒魔道士 召喚士 学者 忍者 機工士 暗黒騎士 占星術師 侍 赤魔道士 ガンブレイカー 踊り子 リーパー 賢者 ヴァイパー ピクトマンサー",
+        "allowed_jobs": [
+          "PLD",
+          "MNK",
+          "WAR",
+          "DRG",
+          "BRD",
+          "WHM",
+          "BLM",
+          "SMN",
+          "SCH",
+          "NIN",
+          "MCH",
+          "DRK",
+          "AST",
+          "SAM",
+          "RDM",
+          "GNB",
+          "DNC",
+          "RPR",
+          "SGE",
+          "VPR",
+          "PCT"
+        ]
+      },
+      "targeting": {
+        "self": true,
+        "party": false,
+        "alliance": false,
+        "hostile": false,
+        "ally": false,
+        "own_pet": false,
+        "party_pet": false,
+        "dead_target_behavior": 0,
+        "is_area": false,
+        "requires_line_of_sight": true,
+        "requires_facing_target": true
+      },
+      "status_gain_self": null,
+      "proc_status": null
+    }
+  }
+}

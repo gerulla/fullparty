@@ -1,0 +1,330 @@
+{
+  "en": {
+    "title": "Essence of the Beast",
+    "description": "Increases defense by 50% and maximum HP by 45%.\nAdditional Effect: Absorb a portion of damage dealt as HP\nEffect ends upon reuse.\nCannot be used with other Essence or Deep Essence actions.",
+    "effects": [
+      "Increases defense by 50% and maximum HP by 45%.",
+      "Additional Effect: Absorb a portion of damage dealt as HP",
+      "Effect ends upon reuse.",
+      "Cannot be used with other Essence or Deep Essence actions."
+    ],
+    "classification": "essence",
+    "cache": {
+      "item_id": 54,
+      "type_id": 2,
+      "type": "item",
+      "max_uses": 1,
+      "has_unlimited_uses": false,
+      "weight": 6,
+      "order": 54,
+      "category": {
+        "id": 7,
+        "name": "Item-related"
+      }
+    },
+    "action": {
+      "id": 20754,
+      "icon_id": 64710,
+      "icon_file": "icon.png",
+      "cast_time_seconds": 0,
+      "recast_time_seconds": 0,
+      "range_yalms": 0,
+      "effect_range_yalms": 0,
+      "max_charges": 0,
+      "cooldown_group": 0,
+      "additional_cooldown_group": 0,
+      "primary_cost": {
+        "type_id": 0,
+        "value": 0
+      },
+      "secondary_cost": {
+        "type_id": 0,
+        "value": 0
+      },
+      "aspect_id": 0,
+      "category": {
+        "id": 5,
+        "name": "Item"
+      },
+      "class_job_category": {
+        "id": 163,
+        "name": "MNK DRG BRD BLM SMN NIN MCH SAM RDM DNC RPR VPR PCT",
+        "allowed_jobs": [
+          "MNK",
+          "DRG",
+          "BRD",
+          "BLM",
+          "SMN",
+          "NIN",
+          "MCH",
+          "SAM",
+          "RDM",
+          "DNC",
+          "RPR",
+          "VPR",
+          "PCT"
+        ]
+      },
+      "targeting": {
+        "self": true,
+        "party": false,
+        "alliance": false,
+        "hostile": false,
+        "ally": false,
+        "own_pet": false,
+        "party_pet": false,
+        "dead_target_behavior": 0,
+        "is_area": false,
+        "requires_line_of_sight": true,
+        "requires_facing_target": true
+      },
+      "status_gain_self": null,
+      "proc_status": null
+    }
+  },
+  "de": {
+    "title": "Zaubertrank der Wolfsleute",
+    "description": "Du erhöhst deine Verteidigung um 50\u00A0% und deine maximalen LP um 45\u00A0%. Außerdem absorbierst du einen Teil des ausgeteilten Schadens als eigene LP.\nKann nicht zusammen mit anderen Zaubertränken, Wundertränken oder ähnlichen Tränken eingesetzt werden.\nEffekt endet bei erneuter Ausführung.",
+    "effects": [
+      "Du erhöhst deine Verteidigung um 50\u00A0% und deine maximalen LP um 45\u00A0%. Außerdem absorbierst du einen Teil des ausgeteilten Schadens als eigene LP.",
+      "Kann nicht zusammen mit anderen Zaubertränken, Wundertränken oder ähnlichen Tränken eingesetzt werden.",
+      "Effekt endet bei erneuter Ausführung."
+    ],
+    "classification": "lost_item",
+    "cache": {
+      "item_id": 54,
+      "type_id": 2,
+      "type": "item",
+      "max_uses": 1,
+      "has_unlimited_uses": false,
+      "weight": 6,
+      "order": 54,
+      "category": {
+        "id": 7,
+        "name": "Gegenstände"
+      }
+    },
+    "action": {
+      "id": 20754,
+      "icon_id": 64710,
+      "icon_file": "icon.png",
+      "cast_time_seconds": 0,
+      "recast_time_seconds": 0,
+      "range_yalms": 0,
+      "effect_range_yalms": 0,
+      "max_charges": 0,
+      "cooldown_group": 0,
+      "additional_cooldown_group": 0,
+      "primary_cost": {
+        "type_id": 0,
+        "value": 0
+      },
+      "secondary_cost": {
+        "type_id": 0,
+        "value": 0
+      },
+      "aspect_id": 0,
+      "category": {
+        "id": 5,
+        "name": "Gegenstand"
+      },
+      "class_job_category": {
+        "id": 163,
+        "name": "MÖN DRG BRD SMA BSW NIN MCH SAM RMA TÄN SNT VPR PKT",
+        "allowed_jobs": [
+          "MNK",
+          "DRG",
+          "BRD",
+          "BLM",
+          "SMN",
+          "NIN",
+          "MCH",
+          "SAM",
+          "RDM",
+          "DNC",
+          "RPR",
+          "VPR",
+          "PCT"
+        ]
+      },
+      "targeting": {
+        "self": true,
+        "party": false,
+        "alliance": false,
+        "hostile": false,
+        "ally": false,
+        "own_pet": false,
+        "party_pet": false,
+        "dead_target_behavior": 0,
+        "is_area": false,
+        "requires_line_of_sight": true,
+        "requires_facing_target": true
+      },
+      "status_gain_self": null,
+      "proc_status": null
+    }
+  },
+  "fr": {
+    "title": "Breuvage magique d'homme-loup",
+    "description": "Augmente de 50% votre défense, de 45% vos PV maximums et convertit une partie de vos dégâts infligés en PV.\nNe peut pas être utilisé en même temps qu'une autre action de type Breuvage.",
+    "effects": [
+      "Augmente de 50% votre défense, de 45% vos PV maximums et convertit une partie de vos dégâts infligés en PV.",
+      "Ne peut pas être utilisé en même temps qu'une autre action de type Breuvage."
+    ],
+    "classification": "lost_item",
+    "cache": {
+      "item_id": 54,
+      "type_id": 2,
+      "type": "item",
+      "max_uses": 1,
+      "has_unlimited_uses": false,
+      "weight": 6,
+      "order": 54,
+      "category": {
+        "id": 7,
+        "name": "Objets"
+      }
+    },
+    "action": {
+      "id": 20754,
+      "icon_id": 64710,
+      "icon_file": "icon.png",
+      "cast_time_seconds": 0,
+      "recast_time_seconds": 0,
+      "range_yalms": 0,
+      "effect_range_yalms": 0,
+      "max_charges": 0,
+      "cooldown_group": 0,
+      "additional_cooldown_group": 0,
+      "primary_cost": {
+        "type_id": 0,
+        "value": 0
+      },
+      "secondary_cost": {
+        "type_id": 0,
+        "value": 0
+      },
+      "aspect_id": 0,
+      "category": {
+        "id": 5,
+        "name": "Objet"
+      },
+      "class_job_category": {
+        "id": 163,
+        "name": "MOI DRG BRD MNO INV NIN MCH SAM MRG DNS FCH VPR PIC",
+        "allowed_jobs": [
+          "MNK",
+          "DRG",
+          "BRD",
+          "BLM",
+          "SMN",
+          "NIN",
+          "MCH",
+          "SAM",
+          "RDM",
+          "DNC",
+          "RPR",
+          "VPR",
+          "PCT"
+        ]
+      },
+      "targeting": {
+        "self": true,
+        "party": false,
+        "alliance": false,
+        "hostile": false,
+        "ally": false,
+        "own_pet": false,
+        "party_pet": false,
+        "dead_target_behavior": 0,
+        "is_area": false,
+        "requires_line_of_sight": true,
+        "requires_facing_target": true
+      },
+      "status_gain_self": null,
+      "proc_status": null
+    }
+  },
+  "ja": {
+    "title": "人狼の秘薬",
+    "description": "英雄の記憶を継承し、自身の防御力を50％、最大ＨＰを45％上昇させ、かつ自身の攻撃に、与えたダメージの一部をＨＰとして吸収する効果を付与する。\n他の「秘薬」「霊薬」系薬品とは同時に使えない。\n効果時間：永続",
+    "effects": [
+      "英雄の記憶を継承し、自身の防御力を50％、最大ＨＰを45％上昇させ、かつ自身の攻撃に、与えたダメージの一部をＨＰとして吸収する効果を付与する。",
+      "他の「秘薬」「霊薬」系薬品とは同時に使えない。",
+      "効果時間：永続"
+    ],
+    "classification": "lost_item",
+    "cache": {
+      "item_id": 54,
+      "type_id": 2,
+      "type": "item",
+      "max_uses": 1,
+      "has_unlimited_uses": false,
+      "weight": 6,
+      "order": 54,
+      "category": {
+        "id": 7,
+        "name": "アイテム"
+      }
+    },
+    "action": {
+      "id": 20754,
+      "icon_id": 64710,
+      "icon_file": "icon.png",
+      "cast_time_seconds": 0,
+      "recast_time_seconds": 0,
+      "range_yalms": 0,
+      "effect_range_yalms": 0,
+      "max_charges": 0,
+      "cooldown_group": 0,
+      "additional_cooldown_group": 0,
+      "primary_cost": {
+        "type_id": 0,
+        "value": 0
+      },
+      "secondary_cost": {
+        "type_id": 0,
+        "value": 0
+      },
+      "aspect_id": 0,
+      "category": {
+        "id": 5,
+        "name": "アイテム"
+      },
+      "class_job_category": {
+        "id": 163,
+        "name": "モンク 竜騎士 吟遊詩人 黒魔道士 召喚士 忍者 機工士 侍 赤魔道士 踊り子 リーパー ヴァイパー ピクトマンサー",
+        "allowed_jobs": [
+          "MNK",
+          "DRG",
+          "BRD",
+          "BLM",
+          "SMN",
+          "NIN",
+          "MCH",
+          "SAM",
+          "RDM",
+          "DNC",
+          "RPR",
+          "VPR",
+          "PCT"
+        ]
+      },
+      "targeting": {
+        "self": true,
+        "party": false,
+        "alliance": false,
+        "hostile": false,
+        "ally": false,
+        "own_pet": false,
+        "party_pet": false,
+        "dead_target_behavior": 0,
+        "is_area": false,
+        "requires_line_of_sight": true,
+        "requires_facing_target": true
+      },
+      "status_gain_self": null,
+      "proc_status": null
+    }
+  }
+}

@@ -115,6 +115,11 @@
                 "updated": "hat eine Raid-Position aktualisiert.",
                 "deleted": "hat eine Raid-Position gelöscht."
             },
+            "bozja_item": {
+                "created": "hat einen Bozja-Eintrag erstellt.",
+                "updated": "hat einen Bozja-Eintrag aktualisiert.",
+                "deleted": "hat einen Bozja-Eintrag gelöscht."
+            },
             "activity_type": {
                 "created": "hat einen Activity Type erstellt.",
                 "cloned": "hat einen Activity Type geklont.",
@@ -364,6 +369,11 @@
                 "created": "Raid-Position erstellt",
                 "updated": "Raid-Position aktualisiert",
                 "deleted": "Raid-Position gelöscht"
+            },
+            "bozja_item": {
+                "created": "Bozja-Eintrag erstellt",
+                "updated": "Bozja-Eintrag aktualisiert",
+                "deleted": "Bozja-Eintrag gelöscht"
             },
             "activity_type": {
                 "created": "Activity Type erstellt",

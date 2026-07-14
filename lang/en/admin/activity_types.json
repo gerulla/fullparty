@@ -252,10 +252,16 @@
       "url": "URL"
     },
     "option_sources": {
-      "character_classes": "Character Classes",
-      "phantom_jobs": "Phantom Jobs",
-      "raid_positions": "Raid Positions",
-      "static_options": "Static Options"
+        "character_classes": "Character Classes",
+        "phantom_jobs": "Phantom Jobs",
+        "raid_positions": "Raid Positions",
+        "bozja_banners": "Bozja Banners",
+        "bozja_essences": "Bozja Essences",
+        "bozja_deep_essences": "Bozja Deep Essences",
+        "bozja_pure_essences": "Bozja Pure Essences",
+        "bozja_lost_actions": "Bozja Lost Actions",
+        "bozja_lost_items": "Bozja Lost Items",
+        "static_options": "Static Options"
     }
   },
   "summary": {

@@ -92,6 +92,40 @@ class ManagedImageStorage
         }
     }
 
+    public function storeLocalImageAsWebp(string $absolutePath, string $storagePath): string
+    {
+        $binary = is_file($absolutePath) ? file_get_contents($absolutePath) : false;
+
+        if ($binary === false) {
+            throw ValidationException::withMessages([
+                'image' => 'Unable to read the local image.',
+            ]);
+        }
+
+        $source = $this->decodeImage($binary, 'image');
+        $sourceWidth = imagesx($source);
+        $sourceHeight = imagesy($source);
+        [$targetWidth, $targetHeight] = $this->constrainedDimensions($sourceWidth, $sourceHeight);
+        $canvas = $this->createResampledCanvas(
+            source: $source,
+            sourceX: 0,
+            sourceY: 0,
+            sourceWidth: $sourceWidth,
+            sourceHeight: $sourceHeight,
+            targetWidth: $targetWidth,
+            targetHeight: $targetHeight,
+            preserveTransparency: true,
+            field: 'image',
+        );
+
+        imagedestroy($source);
+
+        Storage::disk('public')->put($storagePath, $this->encodeWebp($canvas, 'image'));
+        imagedestroy($canvas);
+
+        return Storage::disk('public')->url($storagePath);
+    }
+
     public function copyManagedImage(?string $url, string $directory): ?string
     {
         if (blank($url)) {
@@ -226,12 +260,6 @@ class ManagedImageStorage
 
     private function decodeUploadedImage(UploadedFile $file, string $field): \GdImage
     {
-        if (! function_exists('imagecreatefromstring') || ! function_exists('imagewebp')) {
-            throw ValidationException::withMessages([
-                $field => 'Image processing is not available on this server.',
-            ]);
-        }
-
         $binary = file_get_contents($file->getRealPath());
 
         if ($binary === false) {
@@ -240,11 +268,24 @@ class ManagedImageStorage
             ]);
         }
 
+        $source = $this->decodeImage($binary, $field);
+
+        return $this->normalizeImageOrientation($source, $file);
+    }
+
+    private function decodeImage(string $binary, string $field): \GdImage
+    {
+        if (! function_exists('imagecreatefromstring') || ! function_exists('imagewebp')) {
+            throw ValidationException::withMessages([
+                $field => 'Image processing is not available on this server.',
+            ]);
+        }
+
         $source = @imagecreatefromstring($binary);
 
         if (! $source) {
             throw ValidationException::withMessages([
-                $field => 'The uploaded file must be a valid image.',
+                $field => 'The file must be a valid image.',
             ]);
         }
 
@@ -255,7 +296,7 @@ class ManagedImageStorage
         imagealphablending($source, false);
         imagesavealpha($source, true);
 
-        return $this->normalizeImageOrientation($source, $file);
+        return $source;
     }
 
     private function normalizeImageOrientation(\GdImage $source, UploadedFile $file): \GdImage

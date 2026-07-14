@@ -1,0 +1,364 @@
+{
+  "en": {
+    "title": "Banner of Firm Resolve",
+    "description": "Storm the field under the Banner of Firm Resolve, gaining additional stacks each time damage is taken, up to a maximum of 5.\nBanner of Firm Resolve Effect: Reduces damage dealt by 15% per stack\nDuration: 30s\nAt maximum stacks, take up the Banner of Unyielding Defense.\nBanner of Unyielding Defense Effect: Reduces damage taken by 30%\nDuration: 180s\nEffect cannot be stacked with other Banner actions.",
+    "effects": [
+      "Storm the field under the Banner of Firm Resolve, gaining additional stacks each time damage is taken, up to a maximum of 5.",
+      "Banner of Firm Resolve Effect: Reduces damage dealt by 15% per stack",
+      "Duration: 30s",
+      "At maximum stacks, take up the Banner of Unyielding Defense.",
+      "Banner of Unyielding Defense Effect: Reduces damage taken by 30%",
+      "Duration: 180s",
+      "Effect cannot be stacked with other Banner actions."
+    ],
+    "classification": "banner",
+    "cache": {
+      "item_id": 23,
+      "type_id": 1,
+      "type": "action",
+      "max_uses": 10,
+      "has_unlimited_uses": false,
+      "weight": 6,
+      "order": 23,
+      "category": {
+        "id": 2,
+        "name": "Defensive"
+      }
+    },
+    "action": {
+      "id": 20723,
+      "icon_id": 64679,
+      "icon_file": "icon.png",
+      "cast_time_seconds": 0,
+      "recast_time_seconds": 180,
+      "range_yalms": 0,
+      "effect_range_yalms": 0,
+      "max_charges": 0,
+      "cooldown_group": 81,
+      "additional_cooldown_group": 0,
+      "primary_cost": {
+        "type_id": 20,
+        "value": 1
+      },
+      "secondary_cost": {
+        "type_id": 0,
+        "value": 0
+      },
+      "aspect_id": 0,
+      "category": {
+        "id": 4,
+        "name": "Ability"
+      },
+      "class_job_category": {
+        "id": 164,
+        "name": "MNK DRG BRD WHM BLM SMN SCH NIN MCH AST SAM RDM DNC RPR SGE VPR PCT",
+        "allowed_jobs": [
+          "MNK",
+          "DRG",
+          "BRD",
+          "WHM",
+          "BLM",
+          "SMN",
+          "SCH",
+          "NIN",
+          "MCH",
+          "AST",
+          "SAM",
+          "RDM",
+          "DNC",
+          "RPR",
+          "SGE",
+          "VPR",
+          "PCT"
+        ]
+      },
+      "targeting": {
+        "self": true,
+        "party": false,
+        "alliance": false,
+        "hostile": false,
+        "ally": false,
+        "own_pet": false,
+        "party_pet": false,
+        "dead_target_behavior": 0,
+        "is_area": false,
+        "requires_line_of_sight": true,
+        "requires_facing_target": true
+      },
+      "status_gain_self": null,
+      "proc_status": null
+    }
+  },
+  "de": {
+    "title": "Gemüt der Folgsamkeit",
+    "description": "Du erhältst Gemüt der Folgsamkeit und einen Stapel mit jedem Mal, mit dem du Schaden nimmst. Jeder Stapel verringert deinen ausgeteilten Schaden um 15\u00A0%.\nMaximalstapelzahl: 5\nDauer: 30 Sekunden\nStatus ändert sich zu Gemüt der Standhaftigkeit, sobald die Maximalstapelzahl erreicht ist.\nEffekt von Gemüt der Standhaftigkeit: Erlittener Schaden um 30\u00A0% verringert.\nDauer: 180 Sekunden\nKann nicht zusammen mit anderen Gemüt-Kommandos eingesetzt werden.",
+    "effects": [
+      "Du erhältst Gemüt der Folgsamkeit und einen Stapel mit jedem Mal, mit dem du Schaden nimmst. Jeder Stapel verringert deinen ausgeteilten Schaden um 15\u00A0%.",
+      "Maximalstapelzahl: 5",
+      "Dauer: 30 Sekunden",
+      "Status ändert sich zu Gemüt der Standhaftigkeit, sobald die Maximalstapelzahl erreicht ist.",
+      "Effekt von Gemüt der Standhaftigkeit: Erlittener Schaden um 30\u00A0% verringert.",
+      "Dauer: 180 Sekunden",
+      "Kann nicht zusammen mit anderen Gemüt-Kommandos eingesetzt werden."
+    ],
+    "classification": "lost_action",
+    "cache": {
+      "item_id": 23,
+      "type_id": 1,
+      "type": "action",
+      "max_uses": 10,
+      "has_unlimited_uses": false,
+      "weight": 6,
+      "order": 23,
+      "category": {
+        "id": 2,
+        "name": "Verteidiger"
+      }
+    },
+    "action": {
+      "id": 20723,
+      "icon_id": 64679,
+      "icon_file": "icon.png",
+      "cast_time_seconds": 0,
+      "recast_time_seconds": 180,
+      "range_yalms": 0,
+      "effect_range_yalms": 0,
+      "max_charges": 0,
+      "cooldown_group": 81,
+      "additional_cooldown_group": 0,
+      "primary_cost": {
+        "type_id": 20,
+        "value": 1
+      },
+      "secondary_cost": {
+        "type_id": 0,
+        "value": 0
+      },
+      "aspect_id": 0,
+      "category": {
+        "id": 4,
+        "name": "Talent"
+      },
+      "class_job_category": {
+        "id": 164,
+        "name": "MÖN DRG BRD WMA SMA BSW GLT NIN MCH AST SAM RMA TÄN SNT WEI VPR PKT",
+        "allowed_jobs": [
+          "MNK",
+          "DRG",
+          "BRD",
+          "WHM",
+          "BLM",
+          "SMN",
+          "SCH",
+          "NIN",
+          "MCH",
+          "AST",
+          "SAM",
+          "RDM",
+          "DNC",
+          "RPR",
+          "SGE",
+          "VPR",
+          "PCT"
+        ]
+      },
+      "targeting": {
+        "self": true,
+        "party": false,
+        "alliance": false,
+        "hostile": false,
+        "ally": false,
+        "own_pet": false,
+        "party_pet": false,
+        "dead_target_behavior": 0,
+        "is_area": false,
+        "requires_line_of_sight": true,
+        "requires_facing_target": true
+      },
+      "status_gain_self": null,
+      "proc_status": null
+    }
+  },
+  "fr": {
+    "title": "Seuil de la préservation",
+    "description": "Octroie un degré de Seuil de la préservation au lancement et à chaque fois que vous subissez des dégâts.\nNe peut pas être utilisé en même temps qu'une autre action de type Seuil.\nSeuil de la préservation\u00A0: réduit les dégâts infligés de 15% par degré (maximum 5).\nDurée\u00A0: 30s\nAu degré maximal, Seuil de la préservation devient Seuil de l'indestructibilité.\nSeuil de l'indestructibilité\u00A0: réduit les dégâts subis de 30%.\nDurée\u00A0: 180s",
+    "effects": [
+      "Octroie un degré de Seuil de la préservation au lancement et à chaque fois que vous subissez des dégâts.",
+      "Ne peut pas être utilisé en même temps qu'une autre action de type Seuil.",
+      "Seuil de la préservation\u00A0: réduit les dégâts infligés de 15% par degré (maximum 5).",
+      "Durée\u00A0: 30s",
+      "Au degré maximal, Seuil de la préservation devient Seuil de l'indestructibilité.",
+      "Seuil de l'indestructibilité\u00A0: réduit les dégâts subis de 30%.",
+      "Durée\u00A0: 180s"
+    ],
+    "classification": "lost_action",
+    "cache": {
+      "item_id": 23,
+      "type_id": 1,
+      "type": "action",
+      "max_uses": 10,
+      "has_unlimited_uses": false,
+      "weight": 6,
+      "order": 23,
+      "category": {
+        "id": 2,
+        "name": "Défenseur"
+      }
+    },
+    "action": {
+      "id": 20723,
+      "icon_id": 64679,
+      "icon_file": "icon.png",
+      "cast_time_seconds": 0,
+      "recast_time_seconds": 180,
+      "range_yalms": 0,
+      "effect_range_yalms": 0,
+      "max_charges": 0,
+      "cooldown_group": 81,
+      "additional_cooldown_group": 0,
+      "primary_cost": {
+        "type_id": 20,
+        "value": 1
+      },
+      "secondary_cost": {
+        "type_id": 0,
+        "value": 0
+      },
+      "aspect_id": 0,
+      "category": {
+        "id": 4,
+        "name": "Aptitude"
+      },
+      "class_job_category": {
+        "id": 164,
+        "name": "MOI DRG BRD MBL MNO INV ÉRU NIN MCH AST SAM MRG DNS FCH SAG VPR PIC",
+        "allowed_jobs": [
+          "MNK",
+          "DRG",
+          "BRD",
+          "WHM",
+          "BLM",
+          "SMN",
+          "SCH",
+          "NIN",
+          "MCH",
+          "AST",
+          "SAM",
+          "RDM",
+          "DNC",
+          "RPR",
+          "SGE",
+          "VPR",
+          "PCT"
+        ]
+      },
+      "targeting": {
+        "self": true,
+        "party": false,
+        "alliance": false,
+        "hostile": false,
+        "ally": false,
+        "own_pet": false,
+        "party_pet": false,
+        "dead_target_behavior": 0,
+        "is_area": false,
+        "requires_line_of_sight": true,
+        "requires_facing_target": true
+      },
+      "status_gain_self": null,
+      "proc_status": null
+    }
+  },
+  "ja": {
+    "title": "堅守の境地",
+    "description": "自身に「堅守の境地」を付与する。\n一定時間、ダメージを受ける度に「堅守の境地」のスタックを上昇させる。\n他の「境地」系アクションとは同時に使えない。\n堅守の境地効果：与ダメージを1スタックにつき15％減少させる。\n効果時間：30秒\n最大スタック数：5\n最大スタックになると「堅守の境地」が「鉄壁の境地」に変化する。\n鉄壁の境地効果：受けるダメージを30％軽減させる。\n効果時間：180秒",
+    "effects": [
+      "自身に「堅守の境地」を付与する。",
+      "一定時間、ダメージを受ける度に「堅守の境地」のスタックを上昇させる。",
+      "他の「境地」系アクションとは同時に使えない。",
+      "堅守の境地効果：与ダメージを1スタックにつき15％減少させる。",
+      "効果時間：30秒",
+      "最大スタック数：5",
+      "最大スタックになると「堅守の境地」が「鉄壁の境地」に変化する。",
+      "鉄壁の境地効果：受けるダメージを30％軽減させる。",
+      "効果時間：180秒"
+    ],
+    "classification": "lost_action",
+    "cache": {
+      "item_id": 23,
+      "type_id": 1,
+      "type": "action",
+      "max_uses": 10,
+      "has_unlimited_uses": false,
+      "weight": 6,
+      "order": 23,
+      "category": {
+        "id": 2,
+        "name": "アクション：ディフェンダー"
+      }
+    },
+    "action": {
+      "id": 20723,
+      "icon_id": 64679,
+      "icon_file": "icon.png",
+      "cast_time_seconds": 0,
+      "recast_time_seconds": 180,
+      "range_yalms": 0,
+      "effect_range_yalms": 0,
+      "max_charges": 0,
+      "cooldown_group": 81,
+      "additional_cooldown_group": 0,
+      "primary_cost": {
+        "type_id": 20,
+        "value": 1
+      },
+      "secondary_cost": {
+        "type_id": 0,
+        "value": 0
+      },
+      "aspect_id": 0,
+      "category": {
+        "id": 4,
+        "name": "アビリティ"
+      },
+      "class_job_category": {
+        "id": 164,
+        "name": "モンク 竜騎士 吟遊詩人 白魔道士 黒魔道士 召喚士 学者 忍者 機工士 占星術師 侍 赤魔道士 踊り子 リーパー 賢者 ヴァイパー ピクトマンサー",
+        "allowed_jobs": [
+          "MNK",
+          "DRG",
+          "BRD",
+          "WHM",
+          "BLM",
+          "SMN",
+          "SCH",
+          "NIN",
+          "MCH",
+          "AST",
+          "SAM",
+          "RDM",
+          "DNC",
+          "RPR",
+          "SGE",
+          "VPR",
+          "PCT"
+        ]
+      },
+      "targeting": {
+        "self": true,
+        "party": false,
+        "alliance": false,
+        "hostile": false,
+        "ally": false,
+        "own_pet": false,
+        "party_pet": false,
+        "dead_target_behavior": 0,
+        "is_area": false,
+        "requires_line_of_sight": true,
+        "requires_facing_target": true
+      },
+      "status_gain_self": null,
+      "proc_status": null
+    }
+  }
+}

@@ -1,0 +1,344 @@
+{
+  "en": {
+    "title": "Lost Incense",
+    "description": "Gesture threateningly, placing yourself at the top of a target's enmity list. \nAdditional Effect: Enmity generation is increased and damage taken is reduced by 20%\nDuration: 20s",
+    "effects": [
+      "Gesture threateningly, placing yourself at the top of a target's enmity list.",
+      "Additional Effect: Enmity generation is increased and damage taken is reduced by 20%",
+      "Duration: 20s"
+    ],
+    "classification": "lost_action",
+    "cache": {
+      "item_id": 31,
+      "type_id": 1,
+      "type": "action",
+      "max_uses": null,
+      "has_unlimited_uses": true,
+      "weight": 2,
+      "order": 31,
+      "category": {
+        "id": 2,
+        "name": "Defensive"
+      }
+    },
+    "action": {
+      "id": 20731,
+      "icon_id": 64687,
+      "icon_file": "icon.png",
+      "cast_time_seconds": 0,
+      "recast_time_seconds": 20,
+      "range_yalms": 25,
+      "effect_range_yalms": 0,
+      "max_charges": 0,
+      "cooldown_group": 81,
+      "additional_cooldown_group": 0,
+      "primary_cost": {
+        "type_id": 0,
+        "value": 0
+      },
+      "secondary_cost": {
+        "type_id": 0,
+        "value": 0
+      },
+      "aspect_id": 0,
+      "category": {
+        "id": 4,
+        "name": "Ability"
+      },
+      "class_job_category": {
+        "id": 164,
+        "name": "MNK DRG BRD WHM BLM SMN SCH NIN MCH AST SAM RDM DNC RPR SGE VPR PCT",
+        "allowed_jobs": [
+          "MNK",
+          "DRG",
+          "BRD",
+          "WHM",
+          "BLM",
+          "SMN",
+          "SCH",
+          "NIN",
+          "MCH",
+          "AST",
+          "SAM",
+          "RDM",
+          "DNC",
+          "RPR",
+          "SGE",
+          "VPR",
+          "PCT"
+        ]
+      },
+      "targeting": {
+        "self": false,
+        "party": false,
+        "alliance": false,
+        "hostile": true,
+        "ally": false,
+        "own_pet": false,
+        "party_pet": false,
+        "dead_target_behavior": 0,
+        "is_area": false,
+        "requires_line_of_sight": true,
+        "requires_facing_target": true
+      },
+      "status_gain_self": null,
+      "proc_status": null
+    }
+  },
+  "de": {
+    "title": "Verschollener Hohn",
+    "description": "Du setzt dich an die erste Stelle der Feindseligkeitsliste des Gegners und erhöhst die Feindseligkeit noch weiter. Außerdem verringerst du deinen erlittenen Schaden um 20\u00A0%.\nDauer: 20 Sekunden",
+    "effects": [
+      "Du setzt dich an die erste Stelle der Feindseligkeitsliste des Gegners und erhöhst die Feindseligkeit noch weiter. Außerdem verringerst du deinen erlittenen Schaden um 20\u00A0%.",
+      "Dauer: 20 Sekunden"
+    ],
+    "classification": "lost_action",
+    "cache": {
+      "item_id": 31,
+      "type_id": 1,
+      "type": "action",
+      "max_uses": null,
+      "has_unlimited_uses": true,
+      "weight": 2,
+      "order": 31,
+      "category": {
+        "id": 2,
+        "name": "Verteidiger"
+      }
+    },
+    "action": {
+      "id": 20731,
+      "icon_id": 64687,
+      "icon_file": "icon.png",
+      "cast_time_seconds": 0,
+      "recast_time_seconds": 20,
+      "range_yalms": 25,
+      "effect_range_yalms": 0,
+      "max_charges": 0,
+      "cooldown_group": 81,
+      "additional_cooldown_group": 0,
+      "primary_cost": {
+        "type_id": 0,
+        "value": 0
+      },
+      "secondary_cost": {
+        "type_id": 0,
+        "value": 0
+      },
+      "aspect_id": 0,
+      "category": {
+        "id": 4,
+        "name": "Talent"
+      },
+      "class_job_category": {
+        "id": 164,
+        "name": "MÖN DRG BRD WMA SMA BSW GLT NIN MCH AST SAM RMA TÄN SNT WEI VPR PKT",
+        "allowed_jobs": [
+          "MNK",
+          "DRG",
+          "BRD",
+          "WHM",
+          "BLM",
+          "SMN",
+          "SCH",
+          "NIN",
+          "MCH",
+          "AST",
+          "SAM",
+          "RDM",
+          "DNC",
+          "RPR",
+          "SGE",
+          "VPR",
+          "PCT"
+        ]
+      },
+      "targeting": {
+        "self": false,
+        "party": false,
+        "alliance": false,
+        "hostile": true,
+        "ally": false,
+        "own_pet": false,
+        "party_pet": false,
+        "dead_target_behavior": 0,
+        "is_area": false,
+        "requires_line_of_sight": true,
+        "requires_facing_target": true
+      },
+      "status_gain_self": null,
+      "proc_status": null
+    }
+  },
+  "fr": {
+    "title": "Incitation oubliée",
+    "description": "Provoque la cible et vous place en tête de sa liste d'inimitié. Augmente aussi l'inimitié générée et réduit de 20% vos dégâts subis.\nDurée\u00A0: 20s",
+    "effects": [
+      "Provoque la cible et vous place en tête de sa liste d'inimitié. Augmente aussi l'inimitié générée et réduit de 20% vos dégâts subis.",
+      "Durée\u00A0: 20s"
+    ],
+    "classification": "lost_action",
+    "cache": {
+      "item_id": 31,
+      "type_id": 1,
+      "type": "action",
+      "max_uses": null,
+      "has_unlimited_uses": true,
+      "weight": 2,
+      "order": 31,
+      "category": {
+        "id": 2,
+        "name": "Défenseur"
+      }
+    },
+    "action": {
+      "id": 20731,
+      "icon_id": 64687,
+      "icon_file": "icon.png",
+      "cast_time_seconds": 0,
+      "recast_time_seconds": 20,
+      "range_yalms": 25,
+      "effect_range_yalms": 0,
+      "max_charges": 0,
+      "cooldown_group": 81,
+      "additional_cooldown_group": 0,
+      "primary_cost": {
+        "type_id": 0,
+        "value": 0
+      },
+      "secondary_cost": {
+        "type_id": 0,
+        "value": 0
+      },
+      "aspect_id": 0,
+      "category": {
+        "id": 4,
+        "name": "Aptitude"
+      },
+      "class_job_category": {
+        "id": 164,
+        "name": "MOI DRG BRD MBL MNO INV ÉRU NIN MCH AST SAM MRG DNS FCH SAG VPR PIC",
+        "allowed_jobs": [
+          "MNK",
+          "DRG",
+          "BRD",
+          "WHM",
+          "BLM",
+          "SMN",
+          "SCH",
+          "NIN",
+          "MCH",
+          "AST",
+          "SAM",
+          "RDM",
+          "DNC",
+          "RPR",
+          "SGE",
+          "VPR",
+          "PCT"
+        ]
+      },
+      "targeting": {
+        "self": false,
+        "party": false,
+        "alliance": false,
+        "hostile": true,
+        "ally": false,
+        "own_pet": false,
+        "party_pet": false,
+        "dead_target_behavior": 0,
+        "is_area": false,
+        "requires_line_of_sight": true,
+        "requires_facing_target": true
+      },
+      "status_gain_self": null,
+      "proc_status": null
+    }
+  },
+  "ja": {
+    "title": "ロスト・エンミティ",
+    "description": "対象を挑発し、自身への敵視を最高位にし、自身への敵視を上昇させる。\n一定時間自身への敵視を上昇し、かつ自身の被ダメージを20％軽減させる。\n効果時間：20秒",
+    "effects": [
+      "対象を挑発し、自身への敵視を最高位にし、自身への敵視を上昇させる。",
+      "一定時間自身への敵視を上昇し、かつ自身の被ダメージを20％軽減させる。",
+      "効果時間：20秒"
+    ],
+    "classification": "lost_action",
+    "cache": {
+      "item_id": 31,
+      "type_id": 1,
+      "type": "action",
+      "max_uses": null,
+      "has_unlimited_uses": true,
+      "weight": 2,
+      "order": 31,
+      "category": {
+        "id": 2,
+        "name": "アクション：ディフェンダー"
+      }
+    },
+    "action": {
+      "id": 20731,
+      "icon_id": 64687,
+      "icon_file": "icon.png",
+      "cast_time_seconds": 0,
+      "recast_time_seconds": 20,
+      "range_yalms": 25,
+      "effect_range_yalms": 0,
+      "max_charges": 0,
+      "cooldown_group": 81,
+      "additional_cooldown_group": 0,
+      "primary_cost": {
+        "type_id": 0,
+        "value": 0
+      },
+      "secondary_cost": {
+        "type_id": 0,
+        "value": 0
+      },
+      "aspect_id": 0,
+      "category": {
+        "id": 4,
+        "name": "アビリティ"
+      },
+      "class_job_category": {
+        "id": 164,
+        "name": "モンク 竜騎士 吟遊詩人 白魔道士 黒魔道士 召喚士 学者 忍者 機工士 占星術師 侍 赤魔道士 踊り子 リーパー 賢者 ヴァイパー ピクトマンサー",
+        "allowed_jobs": [
+          "MNK",
+          "DRG",
+          "BRD",
+          "WHM",
+          "BLM",
+          "SMN",
+          "SCH",
+          "NIN",
+          "MCH",
+          "AST",
+          "SAM",
+          "RDM",
+          "DNC",
+          "RPR",
+          "SGE",
+          "VPR",
+          "PCT"
+        ]
+      },
+      "targeting": {
+        "self": false,
+        "party": false,
+        "alliance": false,
+        "hostile": true,
+        "ally": false,
+        "own_pet": false,
+        "party_pet": false,
+        "dead_target_behavior": 0,
+        "is_area": false,
+        "requires_line_of_sight": true,
+        "requires_facing_target": true
+      },
+      "status_gain_self": null,
+      "proc_status": null
+    }
+  }
+}

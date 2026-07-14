@@ -1,0 +1,352 @@
+{
+  "en": {
+    "title": "Lost Cure II",
+    "description": "Restores target's HP.\nCure Potency: 21,700\nSpirit of the Savior Effect: Regen\nCure Potency: 6,000\nDuration: 21s",
+    "effects": [
+      "Restores target's HP.",
+      "Cure Potency: 21,700",
+      "Spirit of the Savior Effect: Regen",
+      "Cure Potency: 6,000",
+      "Duration: 21s"
+    ],
+    "classification": "lost_action",
+    "cache": {
+      "item_id": 27,
+      "type_id": 1,
+      "type": "action",
+      "max_uses": 50,
+      "has_unlimited_uses": false,
+      "weight": 5,
+      "order": 27,
+      "category": {
+        "id": 3,
+        "name": "Restorative"
+      }
+    },
+    "action": {
+      "id": 20727,
+      "icon_id": 64683,
+      "icon_file": "icon.png",
+      "cast_time_seconds": 0,
+      "recast_time_seconds": 5,
+      "range_yalms": 30,
+      "effect_range_yalms": 0,
+      "max_charges": 0,
+      "cooldown_group": 81,
+      "additional_cooldown_group": 0,
+      "primary_cost": {
+        "type_id": 20,
+        "value": 1
+      },
+      "secondary_cost": {
+        "type_id": 0,
+        "value": 0
+      },
+      "aspect_id": 0,
+      "category": {
+        "id": 4,
+        "name": "Ability"
+      },
+      "class_job_category": {
+        "id": 167,
+        "name": "PLD MNK WAR DRG BRD BLM SMN NIN MCH DRK SAM RDM GNB DNC RPR VPR PCT",
+        "allowed_jobs": [
+          "PLD",
+          "MNK",
+          "WAR",
+          "DRG",
+          "BRD",
+          "BLM",
+          "SMN",
+          "NIN",
+          "MCH",
+          "DRK",
+          "SAM",
+          "RDM",
+          "GNB",
+          "DNC",
+          "RPR",
+          "VPR",
+          "PCT"
+        ]
+      },
+      "targeting": {
+        "self": true,
+        "party": true,
+        "alliance": true,
+        "hostile": false,
+        "ally": true,
+        "own_pet": false,
+        "party_pet": false,
+        "dead_target_behavior": 0,
+        "is_area": false,
+        "requires_line_of_sight": true,
+        "requires_facing_target": false
+      },
+      "status_gain_self": null,
+      "proc_status": null
+    }
+  },
+  "de": {
+    "title": "Verschollene Vitra",
+    "description": "Du regenerierst LP des Ziels.\nHeilpotenzial: 21.700\nZusatzeffekt bei Trank des Heilers: Regeneriert stetig LP des Ziels.\nHeilpotenzial: 6.000\nDauer: 21 Sekunden",
+    "effects": [
+      "Du regenerierst LP des Ziels.",
+      "Heilpotenzial: 21.700",
+      "Zusatzeffekt bei Trank des Heilers: Regeneriert stetig LP des Ziels.",
+      "Heilpotenzial: 6.000",
+      "Dauer: 21 Sekunden"
+    ],
+    "classification": "lost_action",
+    "cache": {
+      "item_id": 27,
+      "type_id": 1,
+      "type": "action",
+      "max_uses": 50,
+      "has_unlimited_uses": false,
+      "weight": 5,
+      "order": 27,
+      "category": {
+        "id": 3,
+        "name": "Heiler"
+      }
+    },
+    "action": {
+      "id": 20727,
+      "icon_id": 64683,
+      "icon_file": "icon.png",
+      "cast_time_seconds": 0,
+      "recast_time_seconds": 5,
+      "range_yalms": 30,
+      "effect_range_yalms": 0,
+      "max_charges": 0,
+      "cooldown_group": 81,
+      "additional_cooldown_group": 0,
+      "primary_cost": {
+        "type_id": 20,
+        "value": 1
+      },
+      "secondary_cost": {
+        "type_id": 0,
+        "value": 0
+      },
+      "aspect_id": 0,
+      "category": {
+        "id": 4,
+        "name": "Talent"
+      },
+      "class_job_category": {
+        "id": 167,
+        "name": "PLD MÖN KRG DRG BRD SMA BSW NIN MCH DKR SAM RMA REV TÄN SNT VPR PKT",
+        "allowed_jobs": [
+          "PLD",
+          "MNK",
+          "WAR",
+          "DRG",
+          "BRD",
+          "BLM",
+          "SMN",
+          "NIN",
+          "MCH",
+          "DRK",
+          "SAM",
+          "RDM",
+          "GNB",
+          "DNC",
+          "RPR",
+          "VPR",
+          "PCT"
+        ]
+      },
+      "targeting": {
+        "self": true,
+        "party": true,
+        "alliance": true,
+        "hostile": false,
+        "ally": true,
+        "own_pet": false,
+        "party_pet": false,
+        "dead_target_behavior": 0,
+        "is_area": false,
+        "requires_line_of_sight": true,
+        "requires_facing_target": false
+      },
+      "status_gain_self": null,
+      "proc_status": null
+    }
+  },
+  "fr": {
+    "title": "Extra Soin oublié",
+    "description": "Restaure les PV de la cible.\nPuissance\u00A0: 21 700\nEffet additionnel avec un breuvage de vivificateur\u00A0: restaure périodiquement les PV de la cible.\nPuissance\u00A0: 6000\nDurée\u00A0: 21s",
+    "effects": [
+      "Restaure les PV de la cible.",
+      "Puissance\u00A0: 21 700",
+      "Effet additionnel avec un breuvage de vivificateur\u00A0: restaure périodiquement les PV de la cible.",
+      "Puissance\u00A0: 6000",
+      "Durée\u00A0: 21s"
+    ],
+    "classification": "lost_action",
+    "cache": {
+      "item_id": 27,
+      "type_id": 1,
+      "type": "action",
+      "max_uses": 50,
+      "has_unlimited_uses": false,
+      "weight": 5,
+      "order": 27,
+      "category": {
+        "id": 3,
+        "name": "Soigneur"
+      }
+    },
+    "action": {
+      "id": 20727,
+      "icon_id": 64683,
+      "icon_file": "icon.png",
+      "cast_time_seconds": 0,
+      "recast_time_seconds": 5,
+      "range_yalms": 30,
+      "effect_range_yalms": 0,
+      "max_charges": 0,
+      "cooldown_group": 81,
+      "additional_cooldown_group": 0,
+      "primary_cost": {
+        "type_id": 20,
+        "value": 1
+      },
+      "secondary_cost": {
+        "type_id": 0,
+        "value": 0
+      },
+      "aspect_id": 0,
+      "category": {
+        "id": 4,
+        "name": "Aptitude"
+      },
+      "class_job_category": {
+        "id": 167,
+        "name": "PLD MOI GUE DRG BRD MNO INV NIN MCH CHN SAM MRG PSB DNS FCH VPR PIC",
+        "allowed_jobs": [
+          "PLD",
+          "MNK",
+          "WAR",
+          "DRG",
+          "BRD",
+          "BLM",
+          "SMN",
+          "NIN",
+          "MCH",
+          "DRK",
+          "SAM",
+          "RDM",
+          "GNB",
+          "DNC",
+          "RPR",
+          "VPR",
+          "PCT"
+        ]
+      },
+      "targeting": {
+        "self": true,
+        "party": true,
+        "alliance": true,
+        "hostile": false,
+        "ally": true,
+        "own_pet": false,
+        "party_pet": false,
+        "dead_target_behavior": 0,
+        "is_area": false,
+        "requires_line_of_sight": true,
+        "requires_facing_target": false
+      },
+      "status_gain_self": null,
+      "proc_status": null
+    }
+  },
+  "ja": {
+    "title": "ロスト・ケアルラ",
+    "description": "対象のＨＰを回復する。\u3000回復力：21700 \n治癒者の薬時追加効果：対象のＨＰを継続回復する\n回復力：6000\u3000効果時間：21秒",
+    "effects": [
+      "対象のＨＰを回復する。\u3000回復力：21700",
+      "治癒者の薬時追加効果：対象のＨＰを継続回復する",
+      "回復力：6000\u3000効果時間：21秒"
+    ],
+    "classification": "lost_action",
+    "cache": {
+      "item_id": 27,
+      "type_id": 1,
+      "type": "action",
+      "max_uses": 50,
+      "has_unlimited_uses": false,
+      "weight": 5,
+      "order": 27,
+      "category": {
+        "id": 3,
+        "name": "アクション：ヒーラー"
+      }
+    },
+    "action": {
+      "id": 20727,
+      "icon_id": 64683,
+      "icon_file": "icon.png",
+      "cast_time_seconds": 0,
+      "recast_time_seconds": 5,
+      "range_yalms": 30,
+      "effect_range_yalms": 0,
+      "max_charges": 0,
+      "cooldown_group": 81,
+      "additional_cooldown_group": 0,
+      "primary_cost": {
+        "type_id": 20,
+        "value": 1
+      },
+      "secondary_cost": {
+        "type_id": 0,
+        "value": 0
+      },
+      "aspect_id": 0,
+      "category": {
+        "id": 4,
+        "name": "アビリティ"
+      },
+      "class_job_category": {
+        "id": 167,
+        "name": "ナイト モンク 戦士 竜騎士 吟遊詩人 黒魔道士 召喚士 忍者 機工士 暗黒騎士 侍 赤魔道士 ガンブレイカー 踊り子 リーパー ヴァイパー ピクトマンサー",
+        "allowed_jobs": [
+          "PLD",
+          "MNK",
+          "WAR",
+          "DRG",
+          "BRD",
+          "BLM",
+          "SMN",
+          "NIN",
+          "MCH",
+          "DRK",
+          "SAM",
+          "RDM",
+          "GNB",
+          "DNC",
+          "RPR",
+          "VPR",
+          "PCT"
+        ]
+      },
+      "targeting": {
+        "self": true,
+        "party": true,
+        "alliance": true,
+        "hostile": false,
+        "ally": true,
+        "own_pet": false,
+        "party_pet": false,
+        "dead_target_behavior": 0,
+        "is_area": false,
+        "requires_line_of_sight": true,
+        "requires_facing_target": false
+      },
+      "status_gain_self": null,
+      "proc_status": null
+    }
+  }
+}

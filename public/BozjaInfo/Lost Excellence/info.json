@@ -1,0 +1,343 @@
+{
+  "en": {
+    "title": "Lost Excellence",
+    "description": "Instantly cures Weakness and temporarily nullifies most attacks, while increasing damage dealt by 65%. Memorable will be applied when effect ends.\nDuration: 10s\nMemorable Effect: Increases damage dealt by 65% while decreasing damage taken by 10%\nDuration: 50s\nCan only be executed while in combat.",
+    "effects": [
+      "Instantly cures Weakness and temporarily nullifies most attacks, while increasing damage dealt by 65%. Memorable will be applied when effect ends.",
+      "Duration: 10s",
+      "Memorable Effect: Increases damage dealt by 65% while decreasing damage taken by 10%",
+      "Duration: 50s",
+      "Can only be executed while in combat."
+    ],
+    "classification": "lost_action",
+    "cache": {
+      "item_id": 96,
+      "type_id": 1,
+      "type": "action",
+      "max_uses": 5,
+      "has_unlimited_uses": false,
+      "weight": 25,
+      "order": 96,
+      "category": {
+        "id": 2,
+        "name": "Defensive"
+      }
+    },
+    "action": {
+      "id": 23919,
+      "icon_id": 64752,
+      "icon_file": "icon.png",
+      "cast_time_seconds": 0,
+      "recast_time_seconds": 300,
+      "range_yalms": 0,
+      "effect_range_yalms": 0,
+      "max_charges": 0,
+      "cooldown_group": 81,
+      "additional_cooldown_group": 0,
+      "primary_cost": {
+        "type_id": 20,
+        "value": 1
+      },
+      "secondary_cost": {
+        "type_id": 42,
+        "value": 0
+      },
+      "aspect_id": 0,
+      "category": {
+        "id": 4,
+        "name": "Ability"
+      },
+      "class_job_category": {
+        "id": 163,
+        "name": "MNK DRG BRD BLM SMN NIN MCH SAM RDM DNC RPR VPR PCT",
+        "allowed_jobs": [
+          "MNK",
+          "DRG",
+          "BRD",
+          "BLM",
+          "SMN",
+          "NIN",
+          "MCH",
+          "SAM",
+          "RDM",
+          "DNC",
+          "RPR",
+          "VPR",
+          "PCT"
+        ]
+      },
+      "targeting": {
+        "self": true,
+        "party": false,
+        "alliance": false,
+        "hostile": false,
+        "ally": false,
+        "own_pet": false,
+        "party_pet": false,
+        "dead_target_behavior": 0,
+        "is_area": false,
+        "requires_line_of_sight": true,
+        "requires_facing_target": true
+      },
+      "status_gain_self": null,
+      "proc_status": null
+    }
+  },
+  "de": {
+    "title": "Verschollene Exzellenz",
+    "description": "Du entfernst Schwäche, machst dich gegen fast alle Attacken unverwundbar und erhöhst deinen ausgeteilten Schaden um 65\u00A0%.\nDauer: 10 Sekunden\nBedingung: im Kampf\nNach Ende: Verleiht Segen des Helden.\nEffekt von Segen des Helden: Erhöht deinen ausgeteilten Schaden um 65\u00A0% und verringert deinen erlittenen Schaden um 10\u00A0%.\nDauer: 50 Sekunden",
+    "effects": [
+      "Du entfernst Schwäche, machst dich gegen fast alle Attacken unverwundbar und erhöhst deinen ausgeteilten Schaden um 65\u00A0%.",
+      "Dauer: 10 Sekunden",
+      "Bedingung: im Kampf",
+      "Nach Ende: Verleiht Segen des Helden.",
+      "Effekt von Segen des Helden: Erhöht deinen ausgeteilten Schaden um 65\u00A0% und verringert deinen erlittenen Schaden um 10\u00A0%.",
+      "Dauer: 50 Sekunden"
+    ],
+    "classification": "lost_action",
+    "cache": {
+      "item_id": 96,
+      "type_id": 1,
+      "type": "action",
+      "max_uses": 5,
+      "has_unlimited_uses": false,
+      "weight": 25,
+      "order": 96,
+      "category": {
+        "id": 2,
+        "name": "Verteidiger"
+      }
+    },
+    "action": {
+      "id": 23919,
+      "icon_id": 64752,
+      "icon_file": "icon.png",
+      "cast_time_seconds": 0,
+      "recast_time_seconds": 300,
+      "range_yalms": 0,
+      "effect_range_yalms": 0,
+      "max_charges": 0,
+      "cooldown_group": 81,
+      "additional_cooldown_group": 0,
+      "primary_cost": {
+        "type_id": 20,
+        "value": 1
+      },
+      "secondary_cost": {
+        "type_id": 42,
+        "value": 0
+      },
+      "aspect_id": 0,
+      "category": {
+        "id": 4,
+        "name": "Talent"
+      },
+      "class_job_category": {
+        "id": 163,
+        "name": "MÖN DRG BRD SMA BSW NIN MCH SAM RMA TÄN SNT VPR PKT",
+        "allowed_jobs": [
+          "MNK",
+          "DRG",
+          "BRD",
+          "BLM",
+          "SMN",
+          "NIN",
+          "MCH",
+          "SAM",
+          "RDM",
+          "DNC",
+          "RPR",
+          "VPR",
+          "PCT"
+        ]
+      },
+      "targeting": {
+        "self": true,
+        "party": false,
+        "alliance": false,
+        "hostile": false,
+        "ally": false,
+        "own_pet": false,
+        "party_pet": false,
+        "dead_target_behavior": 0,
+        "is_area": false,
+        "requires_line_of_sight": true,
+        "requires_facing_target": true
+      },
+      "status_gain_self": null,
+      "proc_status": null
+    }
+  },
+  "fr": {
+    "title": "Excellence oubliée",
+    "description": "Guérit de l'altération d'état Affaiblissement, annule les dégâts de la plupart des attaques contre soi et augmente de 65% les dégâts infligés.\n* Ne permet pas de guérir l'altération d'état Mourant.\nDurée\u00A0: 10s\nCondition\u00A0: en combat.\nOctroie Vaillance héroïque lorsque l'effet s'est écoulé.\nVaillance héroïque\u00A0: augmente de 65% les dégâts infligés et réduit de 10% les dégâts subis.\nDurée\u00A0: 50s",
+    "effects": [
+      "Guérit de l'altération d'état Affaiblissement, annule les dégâts de la plupart des attaques contre soi et augmente de 65% les dégâts infligés.",
+      "* Ne permet pas de guérir l'altération d'état Mourant.",
+      "Durée\u00A0: 10s",
+      "Condition\u00A0: en combat.",
+      "Octroie Vaillance héroïque lorsque l'effet s'est écoulé.",
+      "Vaillance héroïque\u00A0: augmente de 65% les dégâts infligés et réduit de 10% les dégâts subis.",
+      "Durée\u00A0: 50s"
+    ],
+    "classification": "lost_action",
+    "cache": {
+      "item_id": 96,
+      "type_id": 1,
+      "type": "action",
+      "max_uses": 5,
+      "has_unlimited_uses": false,
+      "weight": 25,
+      "order": 96,
+      "category": {
+        "id": 2,
+        "name": "Défenseur"
+      }
+    },
+    "action": {
+      "id": 23919,
+      "icon_id": 64752,
+      "icon_file": "icon.png",
+      "cast_time_seconds": 0,
+      "recast_time_seconds": 300,
+      "range_yalms": 0,
+      "effect_range_yalms": 0,
+      "max_charges": 0,
+      "cooldown_group": 81,
+      "additional_cooldown_group": 0,
+      "primary_cost": {
+        "type_id": 20,
+        "value": 1
+      },
+      "secondary_cost": {
+        "type_id": 42,
+        "value": 0
+      },
+      "aspect_id": 0,
+      "category": {
+        "id": 4,
+        "name": "Aptitude"
+      },
+      "class_job_category": {
+        "id": 163,
+        "name": "MOI DRG BRD MNO INV NIN MCH SAM MRG DNS FCH VPR PIC",
+        "allowed_jobs": [
+          "MNK",
+          "DRG",
+          "BRD",
+          "BLM",
+          "SMN",
+          "NIN",
+          "MCH",
+          "SAM",
+          "RDM",
+          "DNC",
+          "RPR",
+          "VPR",
+          "PCT"
+        ]
+      },
+      "targeting": {
+        "self": true,
+        "party": false,
+        "alliance": false,
+        "hostile": false,
+        "ally": false,
+        "own_pet": false,
+        "party_pet": false,
+        "dead_target_behavior": 0,
+        "is_area": false,
+        "requires_line_of_sight": true,
+        "requires_facing_target": true
+      },
+      "status_gain_self": null,
+      "proc_status": null
+    }
+  },
+  "ja": {
+    "title": "ロスト・エクセレンス",
+    "description": "使用時に「衰弱」を除去し、一定時間、自身への一部を除くすべてのダメージを無効化し、かつ自身の与ダメージを65％上昇させる。\n※「衰弱［強］」は除去できない。\n効果時間：10秒\n発動条件：自身が戦闘状態\n効果時間が終了すると、自身に「英傑」を付与する。\n英傑効果：自身の与ダメージを65％上昇させ、かつ受けるダメージを10％軽減させる。\n効果時間：50秒",
+    "effects": [
+      "使用時に「衰弱」を除去し、一定時間、自身への一部を除くすべてのダメージを無効化し、かつ自身の与ダメージを65％上昇させる。",
+      "※「衰弱［強］」は除去できない。",
+      "効果時間：10秒",
+      "発動条件：自身が戦闘状態",
+      "効果時間が終了すると、自身に「英傑」を付与する。",
+      "英傑効果：自身の与ダメージを65％上昇させ、かつ受けるダメージを10％軽減させる。",
+      "効果時間：50秒"
+    ],
+    "classification": "lost_action",
+    "cache": {
+      "item_id": 96,
+      "type_id": 1,
+      "type": "action",
+      "max_uses": 5,
+      "has_unlimited_uses": false,
+      "weight": 25,
+      "order": 96,
+      "category": {
+        "id": 2,
+        "name": "アクション：ディフェンダー"
+      }
+    },
+    "action": {
+      "id": 23919,
+      "icon_id": 64752,
+      "icon_file": "icon.png",
+      "cast_time_seconds": 0,
+      "recast_time_seconds": 300,
+      "range_yalms": 0,
+      "effect_range_yalms": 0,
+      "max_charges": 0,
+      "cooldown_group": 81,
+      "additional_cooldown_group": 0,
+      "primary_cost": {
+        "type_id": 20,
+        "value": 1
+      },
+      "secondary_cost": {
+        "type_id": 42,
+        "value": 0
+      },
+      "aspect_id": 0,
+      "category": {
+        "id": 4,
+        "name": "アビリティ"
+      },
+      "class_job_category": {
+        "id": 163,
+        "name": "モンク 竜騎士 吟遊詩人 黒魔道士 召喚士 忍者 機工士 侍 赤魔道士 踊り子 リーパー ヴァイパー ピクトマンサー",
+        "allowed_jobs": [
+          "MNK",
+          "DRG",
+          "BRD",
+          "BLM",
+          "SMN",
+          "NIN",
+          "MCH",
+          "SAM",
+          "RDM",
+          "DNC",
+          "RPR",
+          "VPR",
+          "PCT"
+        ]
+      },
+      "targeting": {
+        "self": true,
+        "party": false,
+        "alliance": false,
+        "hostile": false,
+        "ally": false,
+        "own_pet": false,
+        "party_pet": false,
+        "dead_target_behavior": 0,
+        "is_area": false,
+        "requires_line_of_sight": true,
+        "requires_facing_target": true
+      },
+      "status_gain_self": null,
+      "proc_status": null
+    }
+  }
+}

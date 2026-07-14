@@ -1,0 +1,370 @@
+{
+  "en": {
+    "title": "Lost Focus",
+    "description": "Grants a stack of Boost, up to a maximum of 16.\nBoost Bonus: Increases potency of next weaponskill by 15% per stack\nDuration: 30s\nEffect ends upon using another lost action.\nShares a recast timer with all other weaponskills and spells.",
+    "effects": [
+      "Grants a stack of Boost, up to a maximum of 16.",
+      "Boost Bonus: Increases potency of next weaponskill by 15% per stack",
+      "Duration: 30s",
+      "Effect ends upon using another lost action.",
+      "Shares a recast timer with all other weaponskills and spells."
+    ],
+    "classification": "lost_action",
+    "cache": {
+      "item_id": 14,
+      "type_id": 1,
+      "type": "action",
+      "max_uses": 32,
+      "has_unlimited_uses": false,
+      "weight": 6,
+      "order": 14,
+      "category": {
+        "id": 1,
+        "name": "Offensive"
+      }
+    },
+    "action": {
+      "id": 20714,
+      "icon_id": 64670,
+      "icon_file": "icon.png",
+      "cast_time_seconds": 0,
+      "recast_time_seconds": 2.5,
+      "range_yalms": 0,
+      "effect_range_yalms": 0,
+      "max_charges": 0,
+      "cooldown_group": 58,
+      "additional_cooldown_group": 0,
+      "primary_cost": {
+        "type_id": 20,
+        "value": 1
+      },
+      "secondary_cost": {
+        "type_id": 0,
+        "value": 0
+      },
+      "aspect_id": 0,
+      "category": {
+        "id": 4,
+        "name": "Ability"
+      },
+      "class_job_category": {
+        "id": 169,
+        "name": "PLD MNK WAR DRG BRD WHM BLM SMN SCH NIN MCH DRK AST SAM RDM GNB DNC RPR SGE VPR PCT",
+        "allowed_jobs": [
+          "PLD",
+          "MNK",
+          "WAR",
+          "DRG",
+          "BRD",
+          "WHM",
+          "BLM",
+          "SMN",
+          "SCH",
+          "NIN",
+          "MCH",
+          "DRK",
+          "AST",
+          "SAM",
+          "RDM",
+          "GNB",
+          "DNC",
+          "RPR",
+          "SGE",
+          "VPR",
+          "PCT"
+        ]
+      },
+      "targeting": {
+        "self": true,
+        "party": false,
+        "alliance": false,
+        "hostile": false,
+        "ally": false,
+        "own_pet": false,
+        "party_pet": false,
+        "dead_target_behavior": 0,
+        "is_area": false,
+        "requires_line_of_sight": true,
+        "requires_facing_target": true
+      },
+      "status_gain_self": null,
+      "proc_status": null
+    }
+  },
+  "de": {
+    "title": "Verschollene Ladung",
+    "description": "Du erhältst Starksammeln.\nEffekt von Starksammeln: Erhöht den Attacke-Wert der nächsten Waffenfertigkeit pro Stapel um 15\u00A0%.\nDer Effekt endet, wenn ein anderes Verschollenes Kommando übernommen wird.\nMaximalstapelzahl: 16\nDauer: 30 Sekunden\nGemeinsamer Reaktivierungs-Timer mit allen anderen Waffenfertigkeiten und Magie",
+    "effects": [
+      "Du erhältst Starksammeln.",
+      "Effekt von Starksammeln: Erhöht den Attacke-Wert der nächsten Waffenfertigkeit pro Stapel um 15\u00A0%.",
+      "Der Effekt endet, wenn ein anderes Verschollenes Kommando übernommen wird.",
+      "Maximalstapelzahl: 16",
+      "Dauer: 30 Sekunden",
+      "Gemeinsamer Reaktivierungs-Timer mit allen anderen Waffenfertigkeiten und Magie"
+    ],
+    "classification": "lost_action",
+    "cache": {
+      "item_id": 14,
+      "type_id": 1,
+      "type": "action",
+      "max_uses": 32,
+      "has_unlimited_uses": false,
+      "weight": 6,
+      "order": 14,
+      "category": {
+        "id": 1,
+        "name": "Angreifer"
+      }
+    },
+    "action": {
+      "id": 20714,
+      "icon_id": 64670,
+      "icon_file": "icon.png",
+      "cast_time_seconds": 0,
+      "recast_time_seconds": 2.5,
+      "range_yalms": 0,
+      "effect_range_yalms": 0,
+      "max_charges": 0,
+      "cooldown_group": 58,
+      "additional_cooldown_group": 0,
+      "primary_cost": {
+        "type_id": 20,
+        "value": 1
+      },
+      "secondary_cost": {
+        "type_id": 0,
+        "value": 0
+      },
+      "aspect_id": 0,
+      "category": {
+        "id": 4,
+        "name": "Talent"
+      },
+      "class_job_category": {
+        "id": 169,
+        "name": "PLD MÖN KRG DRG BRD WMA SMA BSW GLT NIN MCH DKR AST SAM RMA REV TÄN SNT WEI VPR PKT",
+        "allowed_jobs": [
+          "PLD",
+          "MNK",
+          "WAR",
+          "DRG",
+          "BRD",
+          "WHM",
+          "BLM",
+          "SMN",
+          "SCH",
+          "NIN",
+          "MCH",
+          "DRK",
+          "AST",
+          "SAM",
+          "RDM",
+          "GNB",
+          "DNC",
+          "RPR",
+          "SGE",
+          "VPR",
+          "PCT"
+        ]
+      },
+      "targeting": {
+        "self": true,
+        "party": false,
+        "alliance": false,
+        "hostile": false,
+        "ally": false,
+        "own_pet": false,
+        "party_pet": false,
+        "dead_target_behavior": 0,
+        "is_area": false,
+        "requires_line_of_sight": true,
+        "requires_facing_target": true
+      },
+      "status_gain_self": null,
+      "proc_status": null
+    }
+  },
+  "fr": {
+    "title": "Focalisation oubliée",
+    "description": "Vous octroie Accumulation.\nAccumulation\u00A0: augmente de 15% la puissance de votre prochaine technique d'arme. Cumulable jusqu'au 16e degré. L'effet prend fin lorsqu'une autre action oubliée est utilisée.\nDurée\u00A0: 30s\nPartage le même temps de recharge que les sorts et les techniques d'arme.",
+    "effects": [
+      "Vous octroie Accumulation.",
+      "Accumulation\u00A0: augmente de 15% la puissance de votre prochaine technique d'arme. Cumulable jusqu'au 16e degré. L'effet prend fin lorsqu'une autre action oubliée est utilisée.",
+      "Durée\u00A0: 30s",
+      "Partage le même temps de recharge que les sorts et les techniques d'arme."
+    ],
+    "classification": "lost_action",
+    "cache": {
+      "item_id": 14,
+      "type_id": 1,
+      "type": "action",
+      "max_uses": 32,
+      "has_unlimited_uses": false,
+      "weight": 6,
+      "order": 14,
+      "category": {
+        "id": 1,
+        "name": "Attaquant"
+      }
+    },
+    "action": {
+      "id": 20714,
+      "icon_id": 64670,
+      "icon_file": "icon.png",
+      "cast_time_seconds": 0,
+      "recast_time_seconds": 2.5,
+      "range_yalms": 0,
+      "effect_range_yalms": 0,
+      "max_charges": 0,
+      "cooldown_group": 58,
+      "additional_cooldown_group": 0,
+      "primary_cost": {
+        "type_id": 20,
+        "value": 1
+      },
+      "secondary_cost": {
+        "type_id": 0,
+        "value": 0
+      },
+      "aspect_id": 0,
+      "category": {
+        "id": 4,
+        "name": "Aptitude"
+      },
+      "class_job_category": {
+        "id": 169,
+        "name": "PLD MOI GUE DRG BRD MBL MNO INV ÉRU NIN MCH CHN AST SAM MRG PSB DNS FCH SAG VPR PIC",
+        "allowed_jobs": [
+          "PLD",
+          "MNK",
+          "WAR",
+          "DRG",
+          "BRD",
+          "WHM",
+          "BLM",
+          "SMN",
+          "SCH",
+          "NIN",
+          "MCH",
+          "DRK",
+          "AST",
+          "SAM",
+          "RDM",
+          "GNB",
+          "DNC",
+          "RPR",
+          "SGE",
+          "VPR",
+          "PCT"
+        ]
+      },
+      "targeting": {
+        "self": true,
+        "party": false,
+        "alliance": false,
+        "hostile": false,
+        "ally": false,
+        "own_pet": false,
+        "party_pet": false,
+        "dead_target_behavior": 0,
+        "is_area": false,
+        "requires_line_of_sight": true,
+        "requires_facing_target": true
+      },
+      "status_gain_self": null,
+      "proc_status": null
+    }
+  },
+  "ja": {
+    "title": "ロスト・チャージ",
+    "description": "自身に「力溜め」を付与する。\n力溜め効果：効果中に実行する1回のウェポンスキルの威力を1スタックにつき15％上昇させる。別のロストアクションを継承すると効果が切れる。\n最大スタック数：16\n効果時間：30秒\nリキャストタイマーをウェポンスキルおよび魔法と共有する。",
+    "effects": [
+      "自身に「力溜め」を付与する。",
+      "力溜め効果：効果中に実行する1回のウェポンスキルの威力を1スタックにつき15％上昇させる。別のロストアクションを継承すると効果が切れる。",
+      "最大スタック数：16",
+      "効果時間：30秒",
+      "リキャストタイマーをウェポンスキルおよび魔法と共有する。"
+    ],
+    "classification": "lost_action",
+    "cache": {
+      "item_id": 14,
+      "type_id": 1,
+      "type": "action",
+      "max_uses": 32,
+      "has_unlimited_uses": false,
+      "weight": 6,
+      "order": 14,
+      "category": {
+        "id": 1,
+        "name": "アクション：アタッカー"
+      }
+    },
+    "action": {
+      "id": 20714,
+      "icon_id": 64670,
+      "icon_file": "icon.png",
+      "cast_time_seconds": 0,
+      "recast_time_seconds": 2.5,
+      "range_yalms": 0,
+      "effect_range_yalms": 0,
+      "max_charges": 0,
+      "cooldown_group": 58,
+      "additional_cooldown_group": 0,
+      "primary_cost": {
+        "type_id": 20,
+        "value": 1
+      },
+      "secondary_cost": {
+        "type_id": 0,
+        "value": 0
+      },
+      "aspect_id": 0,
+      "category": {
+        "id": 4,
+        "name": "アビリティ"
+      },
+      "class_job_category": {
+        "id": 169,
+        "name": "ナイト モンク 戦士 竜騎士 吟遊詩人 白魔道士 黒魔道士 召喚士 学者 忍者 機工士 暗黒騎士 占星術師 侍 赤魔道士 ガンブレイカー 踊り子 リーパー 賢者 ヴァイパー ピクトマンサー",
+        "allowed_jobs": [
+          "PLD",
+          "MNK",
+          "WAR",
+          "DRG",
+          "BRD",
+          "WHM",
+          "BLM",
+          "SMN",
+          "SCH",
+          "NIN",
+          "MCH",
+          "DRK",
+          "AST",
+          "SAM",
+          "RDM",
+          "GNB",
+          "DNC",
+          "RPR",
+          "SGE",
+          "VPR",
+          "PCT"
+        ]
+      },
+      "targeting": {
+        "self": true,
+        "party": false,
+        "alliance": false,
+        "hostile": false,
+        "ally": false,
+        "own_pet": false,
+        "party_pet": false,
+        "dead_target_behavior": 0,
+        "is_area": false,
+        "requires_line_of_sight": true,
+        "requires_facing_target": true
+      },
+      "status_gain_self": null,
+      "proc_status": null
+    }
+  }
+}

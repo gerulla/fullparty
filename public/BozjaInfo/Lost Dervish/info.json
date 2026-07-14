@@ -1,0 +1,286 @@
+{
+  "en": {
+    "title": "Lost Dervish",
+    "description": "Increases critical hit rate of self and nearby party members by 10%, increases damage dealt by 7%, and reduces weaponskill cast time and recast time, spell cast time and recast time, and auto-attack delay by 1%.\nDuration: 60s",
+    "effects": [
+      "Increases critical hit rate of self and nearby party members by 10%, increases damage dealt by 7%, and reduces weaponskill cast time and recast time, spell cast time and recast time, and auto-attack delay by 1%.",
+      "Duration: 60s"
+    ],
+    "classification": "lost_action",
+    "cache": {
+      "item_id": 83,
+      "type_id": 1,
+      "type": "action",
+      "max_uses": 15,
+      "has_unlimited_uses": false,
+      "weight": 8,
+      "order": 83,
+      "category": {
+        "id": 4,
+        "name": "Beneficial"
+      }
+    },
+    "action": {
+      "id": 22356,
+      "icon_id": 64739,
+      "icon_file": "icon.png",
+      "cast_time_seconds": 0,
+      "recast_time_seconds": 90,
+      "range_yalms": 0,
+      "effect_range_yalms": 15,
+      "max_charges": 0,
+      "cooldown_group": 81,
+      "additional_cooldown_group": 0,
+      "primary_cost": {
+        "type_id": 20,
+        "value": 1
+      },
+      "secondary_cost": {
+        "type_id": 0,
+        "value": 0
+      },
+      "aspect_id": 0,
+      "category": {
+        "id": 4,
+        "name": "Ability"
+      },
+      "class_job_category": {
+        "id": 171,
+        "name": "BRD MCH DNC",
+        "allowed_jobs": [
+          "BRD",
+          "MCH",
+          "DNC"
+        ]
+      },
+      "targeting": {
+        "self": true,
+        "party": false,
+        "alliance": false,
+        "hostile": false,
+        "ally": false,
+        "own_pet": false,
+        "party_pet": false,
+        "dead_target_behavior": 0,
+        "is_area": false,
+        "requires_line_of_sight": true,
+        "requires_facing_target": true
+      },
+      "status_gain_self": null,
+      "proc_status": null
+    }
+  },
+  "de": {
+    "title": "Verschollener Rapidus",
+    "description": "Du erhöhst die kritische Trefferrate von dir und umstehenden Gruppenmitgliedern um 10\u00A0%, den ausgeteilten Schaden um 7\u00A0% und verkürzt die Intervalle zwischen Auto-Attacken und die (Re-)Aktivierungszeiten von Waffenfertigkeiten und Magie um 1\u00A0%.\nDauer: 60 Sekunden",
+    "effects": [
+      "Du erhöhst die kritische Trefferrate von dir und umstehenden Gruppenmitgliedern um 10\u00A0%, den ausgeteilten Schaden um 7\u00A0% und verkürzt die Intervalle zwischen Auto-Attacken und die (Re-)Aktivierungszeiten von Waffenfertigkeiten und Magie um 1\u00A0%.",
+      "Dauer: 60 Sekunden"
+    ],
+    "classification": "lost_action",
+    "cache": {
+      "item_id": 83,
+      "type_id": 1,
+      "type": "action",
+      "max_uses": 15,
+      "has_unlimited_uses": false,
+      "weight": 8,
+      "order": 83,
+      "category": {
+        "id": 4,
+        "name": "Unterstützer"
+      }
+    },
+    "action": {
+      "id": 22356,
+      "icon_id": 64739,
+      "icon_file": "icon.png",
+      "cast_time_seconds": 0,
+      "recast_time_seconds": 90,
+      "range_yalms": 0,
+      "effect_range_yalms": 15,
+      "max_charges": 0,
+      "cooldown_group": 81,
+      "additional_cooldown_group": 0,
+      "primary_cost": {
+        "type_id": 20,
+        "value": 1
+      },
+      "secondary_cost": {
+        "type_id": 0,
+        "value": 0
+      },
+      "aspect_id": 0,
+      "category": {
+        "id": 4,
+        "name": "Talent"
+      },
+      "class_job_category": {
+        "id": 171,
+        "name": "BRD MCH TÄN",
+        "allowed_jobs": [
+          "BRD",
+          "MCH",
+          "DNC"
+        ]
+      },
+      "targeting": {
+        "self": true,
+        "party": false,
+        "alliance": false,
+        "hostile": false,
+        "ally": false,
+        "own_pet": false,
+        "party_pet": false,
+        "dead_target_behavior": 0,
+        "is_area": false,
+        "requires_line_of_sight": true,
+        "requires_facing_target": true
+      },
+      "status_gain_self": null,
+      "proc_status": null
+    }
+  },
+  "fr": {
+    "title": "Célérité extrême oubliée",
+    "description": "Augmente de 10% les chances de critiques, de 7% les dégâts infligés et réduit de 1% le délai des attaques automatiques et les temps de lancement et de recharge des techniques d'arme et des sorts de magie, pour vous et les équipiers alentour.\nDurée\u00A0: 60s",
+    "effects": [
+      "Augmente de 10% les chances de critiques, de 7% les dégâts infligés et réduit de 1% le délai des attaques automatiques et les temps de lancement et de recharge des techniques d'arme et des sorts de magie, pour vous et les équipiers alentour.",
+      "Durée\u00A0: 60s"
+    ],
+    "classification": "lost_action",
+    "cache": {
+      "item_id": 83,
+      "type_id": 1,
+      "type": "action",
+      "max_uses": 15,
+      "has_unlimited_uses": false,
+      "weight": 8,
+      "order": 83,
+      "category": {
+        "id": 4,
+        "name": "Auxiliaire"
+      }
+    },
+    "action": {
+      "id": 22356,
+      "icon_id": 64739,
+      "icon_file": "icon.png",
+      "cast_time_seconds": 0,
+      "recast_time_seconds": 90,
+      "range_yalms": 0,
+      "effect_range_yalms": 15,
+      "max_charges": 0,
+      "cooldown_group": 81,
+      "additional_cooldown_group": 0,
+      "primary_cost": {
+        "type_id": 20,
+        "value": 1
+      },
+      "secondary_cost": {
+        "type_id": 0,
+        "value": 0
+      },
+      "aspect_id": 0,
+      "category": {
+        "id": 4,
+        "name": "Aptitude"
+      },
+      "class_job_category": {
+        "id": 171,
+        "name": "BRD MCH DNS",
+        "allowed_jobs": [
+          "BRD",
+          "MCH",
+          "DNC"
+        ]
+      },
+      "targeting": {
+        "self": true,
+        "party": false,
+        "alliance": false,
+        "hostile": false,
+        "ally": false,
+        "own_pet": false,
+        "party_pet": false,
+        "dead_target_behavior": 0,
+        "is_area": false,
+        "requires_line_of_sight": true,
+        "requires_facing_target": true
+      },
+      "status_gain_self": null,
+      "proc_status": null
+    }
+  },
+  "ja": {
+    "title": "ロスト・スピードスター",
+    "description": "一定時間、自身と周囲のパーティメンバーのクリティカル発動率を10％、与ダメージを7％上昇、かつオートアタックの攻撃間隔と、ウェポンスキルおよび魔法のキャストタイムとリキャストタイムを1％短縮させる。\n効果時間：60秒",
+    "effects": [
+      "一定時間、自身と周囲のパーティメンバーのクリティカル発動率を10％、与ダメージを7％上昇、かつオートアタックの攻撃間隔と、ウェポンスキルおよび魔法のキャストタイムとリキャストタイムを1％短縮させる。",
+      "効果時間：60秒"
+    ],
+    "classification": "lost_action",
+    "cache": {
+      "item_id": 83,
+      "type_id": 1,
+      "type": "action",
+      "max_uses": 15,
+      "has_unlimited_uses": false,
+      "weight": 8,
+      "order": 83,
+      "category": {
+        "id": 4,
+        "name": "アクション：バッファー"
+      }
+    },
+    "action": {
+      "id": 22356,
+      "icon_id": 64739,
+      "icon_file": "icon.png",
+      "cast_time_seconds": 0,
+      "recast_time_seconds": 90,
+      "range_yalms": 0,
+      "effect_range_yalms": 15,
+      "max_charges": 0,
+      "cooldown_group": 81,
+      "additional_cooldown_group": 0,
+      "primary_cost": {
+        "type_id": 20,
+        "value": 1
+      },
+      "secondary_cost": {
+        "type_id": 0,
+        "value": 0
+      },
+      "aspect_id": 0,
+      "category": {
+        "id": 4,
+        "name": "アビリティ"
+      },
+      "class_job_category": {
+        "id": 171,
+        "name": "吟遊詩人 機工士 踊り子",
+        "allowed_jobs": [
+          "BRD",
+          "MCH",
+          "DNC"
+        ]
+      },
+      "targeting": {
+        "self": true,
+        "party": false,
+        "alliance": false,
+        "hostile": false,
+        "ally": false,
+        "own_pet": false,
+        "party_pet": false,
+        "dead_target_behavior": 0,
+        "is_area": false,
+        "requires_line_of_sight": true,
+        "requires_facing_target": true
+      },
+      "status_gain_self": null,
+      "proc_status": null
+    }
+  }
+}

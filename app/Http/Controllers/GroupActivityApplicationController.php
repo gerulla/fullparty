@@ -7,6 +7,7 @@ use App\Models\Activity;
 use App\Models\ActivityApplication;
 use App\Models\ActivityApplicationAnswer;
 use App\Models\ActivityTypeVersion;
+use App\Models\BozjaItem;
 use App\Models\Character;
 use App\Models\CharacterClass;
 use App\Models\Group;
@@ -734,17 +735,19 @@ class GroupActivityApplicationController extends Controller
                 ])
                 ->values()
                 ->all(),
-            default => collect($question['options'] ?? [])
-                ->map(fn (array $option) => [
-                    'key' => (string) ($option['key'] ?? $option['value'] ?? ''),
-                    'label' => is_array($option['label'] ?? null)
-                        ? $option['label']
-                        : ['en' => (string) ($option['key'] ?? $option['value'] ?? '')],
-                    'meta' => is_array($option['meta'] ?? null) ? $option['meta'] : null,
-                ])
-                ->filter(fn (array $option) => $option['key'] !== '')
-                ->values()
-                ->all(),
+            default => BozjaItem::supportsSource($question['source'] ?? null)
+                ? BozjaItem::schemaOptions((string) $question['source'])
+                : collect($question['options'] ?? [])
+                    ->map(fn (array $option) => [
+                        'key' => (string) ($option['key'] ?? $option['value'] ?? ''),
+                        'label' => is_array($option['label'] ?? null)
+                            ? $option['label']
+                            : ['en' => (string) ($option['key'] ?? $option['value'] ?? '')],
+                        'meta' => is_array($option['meta'] ?? null) ? $option['meta'] : null,
+                    ])
+                    ->filter(fn (array $option) => $option['key'] !== '')
+                    ->values()
+                    ->all(),
         };
 
         return $this->appendAnyOption($question, $options);

@@ -46,6 +46,7 @@ const optionItems = computed(() => props.question.options
 	.map((option) => ({
 		label: optionLabel(option),
 		value: option.key,
+		avatar: option.meta?.icon_url ? { src: option.meta.icon_url, alt: optionLabel(option) } : undefined,
 	})));
 
 const isClassSelector = computed(() => props.question.source === 'character_classes'

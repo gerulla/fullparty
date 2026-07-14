@@ -306,7 +306,6 @@ const goToManagementPage = () => {
 				:intensity-label="intensityLabel"
 				:minimum-item-level-label="minimumItemLevelLabel"
 				:beginner-friendly-label="beginnerFriendlyLabel"
-				:description="activity.description"
 				:notes="activity.notes"
 				:target-prog-point-label="targetProgPointLabel"
 				detail-mode="application"

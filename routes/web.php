@@ -58,6 +58,7 @@ use App\Http\Controllers\IntegrationClientController;
 use App\Http\Controllers\LocaleController;
 use App\Http\Controllers\PhantomJobController;
 use App\Http\Controllers\RaidPositionController;
+use App\Http\Controllers\BozjaItemController;
 use App\Http\Controllers\RunDiscoveryController;
 use App\Http\Controllers\SettingsController;
 use App\Http\Controllers\SettingsLinkedSessionController;
@@ -670,6 +671,9 @@ Route::prefix('{locale?}')
                 Route::post('/raid-positions', [RaidPositionController::class, 'store'])->name('admin.raid-positions.store');
                 Route::put('/raid-positions/{raidPosition}', [RaidPositionController::class, 'update'])->name('admin.raid-positions.update');
                 Route::delete('/raid-positions/{raidPosition}', [RaidPositionController::class, 'destroy'])->name('admin.raid-positions.destroy');
+                Route::post('/bozja-items', [BozjaItemController::class, 'store'])->name('admin.bozja-items.store');
+                Route::put('/bozja-items/{bozjaItem}', [BozjaItemController::class, 'update'])->name('admin.bozja-items.update');
+                Route::delete('/bozja-items/{bozjaItem}', [BozjaItemController::class, 'destroy'])->name('admin.bozja-items.destroy');
             });
         });
     });

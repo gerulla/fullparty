@@ -1,0 +1,63 @@
+{
+  "section_title": "Données de Bozja",
+  "section_description": "Actions, essences, bannières et objets de Bozja réutilisables dans les types d'activité.",
+  "section_badge": "{count} éléments",
+  "search_placeholder": "Rechercher dans les données de Bozja...",
+  "tabs": { "all": "Tout ({count})" },
+  "categories": {
+    "banners": "Bannières",
+    "essences": "Essences",
+    "deep_essences": "Essences profondes",
+    "pure_essences": "Essences pures",
+    "lost_actions": "Actions oubliées",
+    "lost_items": "Objets oubliés"
+  },
+  "table": {
+    "item": "Élément",
+    "classification": "Classification",
+    "weight": "Poids dans le cache",
+    "status": "Statut"
+  },
+  "status": { "active": "Actif", "inactive": "Inactif" },
+  "actions": { "create": "Créer un élément de Bozja" },
+  "empty": {
+    "title": "Aucune donnée de Bozja trouvée",
+    "description": "Importez les données de Bozja suivies ou créez un élément manuellement."
+  },
+  "toasts": {
+    "created": "Élément de Bozja créé avec succès",
+    "updated": "Élément de Bozja mis à jour avec succès",
+    "deleted": "Élément de Bozja supprimé avec succès"
+  },
+  "create_modal": {
+    "title": "Créer un élément de Bozja",
+    "description": "Ajoutez des données de Bozja réutilisables dans les types d'activité."
+  },
+  "edit_modal": {
+    "title": "Modifier l'élément de Bozja",
+    "description": "Mettez à jour cette entrée des données système de Bozja."
+  },
+  "delete_modal": {
+    "title": "Supprimer {name} ?",
+    "description": "Cette action retire l'élément des données système de Bozja.",
+    "confirm": "Supprimer l'élément"
+  },
+  "fields": {
+    "key": "Clé enregistrée",
+    "category": "Jeu de données",
+    "name": "Nom",
+    "name_description": "Le nom anglais est obligatoire. Ajoutez les traductions disponibles pour les langues prises en charge.",
+    "description": "Description",
+    "classification": "Classification source",
+    "cache_weight": "Poids dans le cache",
+    "sort_order": "Ordre de tri",
+    "icon": "Icône",
+    "icon_description": "Importez un remplacement uniquement si l'icône existante doit être modifiée.",
+    "icon_placeholder": "Choisir une image",
+    "is_active": "Actif"
+  },
+  "source_payload": {
+    "title": "Données source importées conservées",
+    "description": "Le JSON d'origine est conservé pour les futures fonctions de Bozja sans être chargé sur cette page."
+  }
+}

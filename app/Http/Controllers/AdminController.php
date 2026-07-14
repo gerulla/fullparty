@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\ActivityType;
 use App\Models\AuditLog;
+use App\Models\BozjaItem;
 use App\Models\Character;
 use App\Models\CharacterClass;
 use App\Models\CharacterFieldDefinition;
@@ -131,6 +132,35 @@ class AdminController extends Controller
                 ->orderBy('sort_order')
                 ->orderBy('name')
                 ->get(),
+            'bozjaItems' => BozjaItem::query()
+                ->ordered()
+                ->select([
+                    'id',
+                    'key',
+                    'category',
+                    'name',
+                    'description',
+                    'classification',
+                    'cache_weight',
+                    'icon_url',
+                    'sort_order',
+                    'is_active',
+                ])
+                ->selectRaw('source_payload IS NOT NULL as has_source_payload')
+                ->get()
+                ->map(fn (BozjaItem $item) => [
+                    'id' => $item->id,
+                    'key' => $item->key,
+                    'category' => $item->category,
+                    'name' => $item->name,
+                    'description' => $item->description,
+                    'classification' => $item->classification,
+                    'cache_weight' => $item->cache_weight,
+                    'icon_url' => $item->icon_url,
+                    'sort_order' => $item->sort_order,
+                    'is_active' => $item->is_active,
+                    'has_source_payload' => (bool) $item->getAttribute('has_source_payload'),
+                ]),
         ]);
     }
 

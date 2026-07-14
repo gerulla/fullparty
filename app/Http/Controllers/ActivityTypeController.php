@@ -12,6 +12,7 @@ use App\Services\ManagedImageStorage;
 use App\Support\ActivityCompositionPresets;
 use App\Support\Audit\AuditScope;
 use App\Support\Audit\AuditSeverity;
+use App\Support\Bozja\BozjaItemCategory;
 use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\RedirectResponse;
@@ -1026,7 +1027,15 @@ class ActivityTypeController extends Controller
             }
 
             $fieldType = (string) ($field['type'] ?? '');
+            $source = $field['source'] ?? null;
             $acceptsAny = (bool) ($field['accepts_any'] ?? false);
+
+            if (in_array($fieldType, ['single_select', 'multi_select'], true)
+                && ! in_array($source, $this->supportedOptionSources(), true)) {
+                throw ValidationException::withMessages([
+                    "$attribute.$index.source" => 'Select fields require a supported option source.',
+                ]);
+            }
 
             if ($acceptsAny) {
                 if (! $supportsAnySelection || ! in_array($fieldType, ['single_select', 'multi_select'], true)) {
@@ -1103,12 +1112,7 @@ class ActivityTypeController extends Controller
                 'multi_select',
                 'url',
             ],
-            'supportedOptionSources' => [
-                'character_classes',
-                'phantom_jobs',
-                'raid_positions',
-                'static_options',
-            ],
+            'supportedOptionSources' => $this->supportedOptionSources(),
             'rosterSummarySources' => [
                 'character_classes',
                 'phantom_jobs',
@@ -1153,6 +1157,20 @@ class ActivityTypeController extends Controller
                     ->values()
                     ->all(),
             ],
+        ];
+    }
+
+    /**
+     * @return array<int, string>
+     */
+    private function supportedOptionSources(): array
+    {
+        return [
+            'character_classes',
+            'phantom_jobs',
+            'raid_positions',
+            ...array_keys(BozjaItemCategory::sourceCategoryMap()),
+            'static_options',
         ];
     }
 

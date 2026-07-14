@@ -1,0 +1,297 @@
+{
+  "en": {
+    "title": "Pure Essence of the Fiendhunter",
+    "description": "Increases defense by 60%, damage dealt by 50%, and maximum HP by 81%.\nEffect ends upon reuse.\nCannot be used with other Essence, Deep Essence, or Pure Essence actions.\nIt is said that Pure Essences may grant unexpected effects...\n※This action can only be used in Delubrum Reginae.",
+    "effects": [
+      "Increases defense by 60%, damage dealt by 50%, and maximum HP by 81%.",
+      "Effect ends upon reuse.",
+      "Cannot be used with other Essence, Deep Essence, or Pure Essence actions.",
+      "It is said that Pure Essences may grant unexpected effects...",
+      "※This action can only be used in Delubrum Reginae."
+    ],
+    "classification": "pure_essence",
+    "cache": {
+      "item_id": 76,
+      "type_id": 2,
+      "type": "item",
+      "max_uses": 1,
+      "has_unlimited_uses": false,
+      "weight": 12,
+      "order": 76,
+      "category": {
+        "id": 7,
+        "name": "Item-related"
+      }
+    },
+    "action": {
+      "id": 22349,
+      "icon_id": 64730,
+      "icon_file": "icon.png",
+      "cast_time_seconds": 0,
+      "recast_time_seconds": 0,
+      "range_yalms": 0,
+      "effect_range_yalms": 0,
+      "max_charges": 0,
+      "cooldown_group": 0,
+      "additional_cooldown_group": 0,
+      "primary_cost": {
+        "type_id": 0,
+        "value": 0
+      },
+      "secondary_cost": {
+        "type_id": 111,
+        "value": 0
+      },
+      "aspect_id": 0,
+      "category": {
+        "id": 5,
+        "name": "Item"
+      },
+      "class_job_category": {
+        "id": 171,
+        "name": "BRD MCH DNC",
+        "allowed_jobs": [
+          "BRD",
+          "MCH",
+          "DNC"
+        ]
+      },
+      "targeting": {
+        "self": true,
+        "party": false,
+        "alliance": false,
+        "hostile": false,
+        "ally": false,
+        "own_pet": false,
+        "party_pet": false,
+        "dead_target_behavior": 0,
+        "is_area": false,
+        "requires_line_of_sight": true,
+        "requires_facing_target": true
+      },
+      "status_gain_self": null,
+      "proc_status": null
+    }
+  },
+  "de": {
+    "title": "Maxtrank des Bogengeweihten",
+    "description": "Du erhöhst deine Verteidigung um 60\u00A0%, deinen ausgeteilten Schaden um 50\u00A0% und deine maximalen LP um 81\u00A0%.\nDen Legenden nach verbirgt dieser Trank einen geheimen Effekt.\nKann nicht zusammen mit anderen Zaubertränken, Wundertränken oder ähnlichen Tränken eingesetzt werden.\nEffekt endet bei erneuter Ausführung.\n※ Kann nur im Delubrum Reginae angewendet werden.",
+    "effects": [
+      "Du erhöhst deine Verteidigung um 60\u00A0%, deinen ausgeteilten Schaden um 50\u00A0% und deine maximalen LP um 81\u00A0%.",
+      "Den Legenden nach verbirgt dieser Trank einen geheimen Effekt.",
+      "Kann nicht zusammen mit anderen Zaubertränken, Wundertränken oder ähnlichen Tränken eingesetzt werden.",
+      "Effekt endet bei erneuter Ausführung.",
+      "※ Kann nur im Delubrum Reginae angewendet werden."
+    ],
+    "classification": "lost_item",
+    "cache": {
+      "item_id": 76,
+      "type_id": 2,
+      "type": "item",
+      "max_uses": 1,
+      "has_unlimited_uses": false,
+      "weight": 12,
+      "order": 76,
+      "category": {
+        "id": 7,
+        "name": "Gegenstände"
+      }
+    },
+    "action": {
+      "id": 22349,
+      "icon_id": 64730,
+      "icon_file": "icon.png",
+      "cast_time_seconds": 0,
+      "recast_time_seconds": 0,
+      "range_yalms": 0,
+      "effect_range_yalms": 0,
+      "max_charges": 0,
+      "cooldown_group": 0,
+      "additional_cooldown_group": 0,
+      "primary_cost": {
+        "type_id": 0,
+        "value": 0
+      },
+      "secondary_cost": {
+        "type_id": 111,
+        "value": 0
+      },
+      "aspect_id": 0,
+      "category": {
+        "id": 5,
+        "name": "Gegenstand"
+      },
+      "class_job_category": {
+        "id": 171,
+        "name": "BRD MCH TÄN",
+        "allowed_jobs": [
+          "BRD",
+          "MCH",
+          "DNC"
+        ]
+      },
+      "targeting": {
+        "self": true,
+        "party": false,
+        "alliance": false,
+        "hostile": false,
+        "ally": false,
+        "own_pet": false,
+        "party_pet": false,
+        "dead_target_behavior": 0,
+        "is_area": false,
+        "requires_line_of_sight": true,
+        "requires_facing_target": true
+      },
+      "status_gain_self": null,
+      "proc_status": null
+    }
+  },
+  "fr": {
+    "title": "Breuvage érémitique d'archer émérite",
+    "description": "Augmente de 60% votre défense, de 50% vos dégâts infligés et de 81% vos PV maximums.\nNe peut pas être utilisé en même temps qu'une autre action de type Breuvage.\nOn dit que les breuvages érémitiques auraient des propriétés cachées...\n\n* Fonctionne uniquement dans Delubrum Reginae.",
+    "effects": [
+      "Augmente de 60% votre défense, de 50% vos dégâts infligés et de 81% vos PV maximums.",
+      "Ne peut pas être utilisé en même temps qu'une autre action de type Breuvage.",
+      "On dit que les breuvages érémitiques auraient des propriétés cachées...",
+      "* Fonctionne uniquement dans Delubrum Reginae."
+    ],
+    "classification": "lost_item",
+    "cache": {
+      "item_id": 76,
+      "type_id": 2,
+      "type": "item",
+      "max_uses": 1,
+      "has_unlimited_uses": false,
+      "weight": 12,
+      "order": 76,
+      "category": {
+        "id": 7,
+        "name": "Objets"
+      }
+    },
+    "action": {
+      "id": 22349,
+      "icon_id": 64730,
+      "icon_file": "icon.png",
+      "cast_time_seconds": 0,
+      "recast_time_seconds": 0,
+      "range_yalms": 0,
+      "effect_range_yalms": 0,
+      "max_charges": 0,
+      "cooldown_group": 0,
+      "additional_cooldown_group": 0,
+      "primary_cost": {
+        "type_id": 0,
+        "value": 0
+      },
+      "secondary_cost": {
+        "type_id": 111,
+        "value": 0
+      },
+      "aspect_id": 0,
+      "category": {
+        "id": 5,
+        "name": "Objet"
+      },
+      "class_job_category": {
+        "id": 171,
+        "name": "BRD MCH DNS",
+        "allowed_jobs": [
+          "BRD",
+          "MCH",
+          "DNC"
+        ]
+      },
+      "targeting": {
+        "self": true,
+        "party": false,
+        "alliance": false,
+        "hostile": false,
+        "ally": false,
+        "own_pet": false,
+        "party_pet": false,
+        "dead_target_behavior": 0,
+        "is_area": false,
+        "requires_line_of_sight": true,
+        "requires_facing_target": true
+      },
+      "status_gain_self": null,
+      "proc_status": null
+    }
+  },
+  "ja": {
+    "title": "弓聖の仙薬",
+    "description": "英雄の記憶を継承し、自身の防御力を60％、与ダメージを50％上昇、かつ最大ＨＰを81％上昇させる。\n他の「秘薬」「霊薬」「仙薬」系薬品とは同時に使えない。\n効果時間：永続\n仙薬には隠された効果があると言われている。\n※このアイテムは、グンヒルド・ディルーブラム攻略中のみ使用可能。",
+    "effects": [
+      "英雄の記憶を継承し、自身の防御力を60％、与ダメージを50％上昇、かつ最大ＨＰを81％上昇させる。",
+      "他の「秘薬」「霊薬」「仙薬」系薬品とは同時に使えない。",
+      "効果時間：永続",
+      "仙薬には隠された効果があると言われている。",
+      "※このアイテムは、グンヒルド・ディルーブラム攻略中のみ使用可能。"
+    ],
+    "classification": "lost_item",
+    "cache": {
+      "item_id": 76,
+      "type_id": 2,
+      "type": "item",
+      "max_uses": 1,
+      "has_unlimited_uses": false,
+      "weight": 12,
+      "order": 76,
+      "category": {
+        "id": 7,
+        "name": "アイテム"
+      }
+    },
+    "action": {
+      "id": 22349,
+      "icon_id": 64730,
+      "icon_file": "icon.png",
+      "cast_time_seconds": 0,
+      "recast_time_seconds": 0,
+      "range_yalms": 0,
+      "effect_range_yalms": 0,
+      "max_charges": 0,
+      "cooldown_group": 0,
+      "additional_cooldown_group": 0,
+      "primary_cost": {
+        "type_id": 0,
+        "value": 0
+      },
+      "secondary_cost": {
+        "type_id": 111,
+        "value": 0
+      },
+      "aspect_id": 0,
+      "category": {
+        "id": 5,
+        "name": "アイテム"
+      },
+      "class_job_category": {
+        "id": 171,
+        "name": "吟遊詩人 機工士 踊り子",
+        "allowed_jobs": [
+          "BRD",
+          "MCH",
+          "DNC"
+        ]
+      },
+      "targeting": {
+        "self": true,
+        "party": false,
+        "alliance": false,
+        "hostile": false,
+        "ally": false,
+        "own_pet": false,
+        "party_pet": false,
+        "dead_target_behavior": 0,
+        "is_area": false,
+        "requires_line_of_sight": true,
+        "requires_facing_target": true
+      },
+      "status_gain_self": null,
+      "proc_status": null
+    }
+  }
+}

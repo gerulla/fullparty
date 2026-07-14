@@ -1,0 +1,394 @@
+{
+  "en": {
+    "title": "Lost Stealth",
+    "description": "Blend in with your surroundings, making it impossible for most enemies to detect you, but reducing movement speed by 25%. Has no effect on certain enemies with special sight.\nCannot be executed while in combat.\nEffect ends upon use of any action other than Sprint, or upon reuse.",
+    "effects": [
+      "Blend in with your surroundings, making it impossible for most enemies to detect you, but reducing movement speed by 25%. Has no effect on certain enemies with special sight.",
+      "Cannot be executed while in combat.",
+      "Effect ends upon use of any action other than Sprint, or upon reuse."
+    ],
+    "classification": "lost_action",
+    "cache": {
+      "item_id": 5,
+      "type_id": 1,
+      "type": "action",
+      "max_uses": 99,
+      "has_unlimited_uses": false,
+      "weight": 2,
+      "order": 5,
+      "category": {
+        "id": 5,
+        "name": "Tactical"
+      }
+    },
+    "action": {
+      "id": 20705,
+      "icon_id": 64661,
+      "icon_file": "icon.png",
+      "cast_time_seconds": 0,
+      "recast_time_seconds": 15,
+      "range_yalms": 0,
+      "effect_range_yalms": 0,
+      "max_charges": 0,
+      "cooldown_group": 81,
+      "additional_cooldown_group": 0,
+      "primary_cost": {
+        "type_id": 20,
+        "value": 1
+      },
+      "secondary_cost": {
+        "type_id": 38,
+        "value": 0
+      },
+      "aspect_id": 0,
+      "category": {
+        "id": 4,
+        "name": "Ability"
+      },
+      "class_job_category": {
+        "id": 173,
+        "name": "PLD MNK WAR DRG BRD WHM BLM SMN SCH MCH DRK AST SAM RDM GNB DNC RPR SGE VPR PCT",
+        "allowed_jobs": [
+          "PLD",
+          "MNK",
+          "WAR",
+          "DRG",
+          "BRD",
+          "WHM",
+          "BLM",
+          "SMN",
+          "SCH",
+          "MCH",
+          "DRK",
+          "AST",
+          "SAM",
+          "RDM",
+          "GNB",
+          "DNC",
+          "RPR",
+          "SGE",
+          "VPR",
+          "PCT"
+        ]
+      },
+      "targeting": {
+        "self": true,
+        "party": false,
+        "alliance": false,
+        "hostile": false,
+        "ally": false,
+        "own_pet": false,
+        "party_pet": false,
+        "dead_target_behavior": 0,
+        "is_area": false,
+        "requires_line_of_sight": true,
+        "requires_facing_target": true
+      },
+      "status_gain_self": {
+        "id": 2336,
+        "title": "Lost Stealth",
+        "description": "Unable to be detected. Movement speed is severely reduced.",
+        "icon_id": 216679,
+        "max_stacks": 0,
+        "can_dispel": false,
+        "is_permanent": true
+      },
+      "proc_status": null
+    }
+  },
+  "de": {
+    "title": "Verschollene Coeurl-Pfoten",
+    "description": "Du verbirgst dich vor den Blicken der meisten Gegner, verlangsamst aber deine Bewegungsgeschwindigkeit um 25\u00A0%.\nEinige Gegner können dich sehen.\nBedingung: nach Ausführung nicht im Kampf.\nEffekt endet bei erneuter Ausführung oder nächstem Kommando mit Ausnahme von Sprint.",
+    "effects": [
+      "Du verbirgst dich vor den Blicken der meisten Gegner, verlangsamst aber deine Bewegungsgeschwindigkeit um 25\u00A0%.",
+      "Einige Gegner können dich sehen.",
+      "Bedingung: nach Ausführung nicht im Kampf.",
+      "Effekt endet bei erneuter Ausführung oder nächstem Kommando mit Ausnahme von Sprint."
+    ],
+    "classification": "lost_action",
+    "cache": {
+      "item_id": 5,
+      "type_id": 1,
+      "type": "action",
+      "max_uses": 99,
+      "has_unlimited_uses": false,
+      "weight": 2,
+      "order": 5,
+      "category": {
+        "id": 5,
+        "name": "Späher"
+      }
+    },
+    "action": {
+      "id": 20705,
+      "icon_id": 64661,
+      "icon_file": "icon.png",
+      "cast_time_seconds": 0,
+      "recast_time_seconds": 15,
+      "range_yalms": 0,
+      "effect_range_yalms": 0,
+      "max_charges": 0,
+      "cooldown_group": 81,
+      "additional_cooldown_group": 0,
+      "primary_cost": {
+        "type_id": 20,
+        "value": 1
+      },
+      "secondary_cost": {
+        "type_id": 38,
+        "value": 0
+      },
+      "aspect_id": 0,
+      "category": {
+        "id": 4,
+        "name": "Talent"
+      },
+      "class_job_category": {
+        "id": 173,
+        "name": "PLD MÖN KRG DRG BRD WMA SMA BSW GLT MCH DKR AST SAM RMA REV TÄN SNT WEI VPR PKT",
+        "allowed_jobs": [
+          "PLD",
+          "MNK",
+          "WAR",
+          "DRG",
+          "BRD",
+          "WHM",
+          "BLM",
+          "SMN",
+          "SCH",
+          "MCH",
+          "DRK",
+          "AST",
+          "SAM",
+          "RDM",
+          "GNB",
+          "DNC",
+          "RPR",
+          "SGE",
+          "VPR",
+          "PCT"
+        ]
+      },
+      "targeting": {
+        "self": true,
+        "party": false,
+        "alliance": false,
+        "hostile": false,
+        "ally": false,
+        "own_pet": false,
+        "party_pet": false,
+        "dead_target_behavior": 0,
+        "is_area": false,
+        "requires_line_of_sight": true,
+        "requires_facing_target": true
+      },
+      "status_gain_self": {
+        "id": 2336,
+        "title": "Verschollene Coeurl-Pfoten",
+        "description": "Kann nicht gesehen werden, aber Bewegungsgeschwindigkeit ist verringert.",
+        "icon_id": 216679,
+        "max_stacks": 0,
+        "can_dispel": false,
+        "is_permanent": true
+      },
+      "proc_status": null
+    }
+  },
+  "fr": {
+    "title": "Furtivité oubliée",
+    "description": "Réduit de 25% votre vitesse de déplacement et dissimule votre présence à la plupart des ennemis.\nL'effet prend fin en relançant l'action ou lors de l'utilisation d'une autre à part Sprint.\nCondition\u00A0: hors combat.",
+    "effects": [
+      "Réduit de 25% votre vitesse de déplacement et dissimule votre présence à la plupart des ennemis.",
+      "L'effet prend fin en relançant l'action ou lors de l'utilisation d'une autre à part Sprint.",
+      "Condition\u00A0: hors combat."
+    ],
+    "classification": "lost_action",
+    "cache": {
+      "item_id": 5,
+      "type_id": 1,
+      "type": "action",
+      "max_uses": 99,
+      "has_unlimited_uses": false,
+      "weight": 2,
+      "order": 5,
+      "category": {
+        "id": 5,
+        "name": "Éclaireur"
+      }
+    },
+    "action": {
+      "id": 20705,
+      "icon_id": 64661,
+      "icon_file": "icon.png",
+      "cast_time_seconds": 0,
+      "recast_time_seconds": 15,
+      "range_yalms": 0,
+      "effect_range_yalms": 0,
+      "max_charges": 0,
+      "cooldown_group": 81,
+      "additional_cooldown_group": 0,
+      "primary_cost": {
+        "type_id": 20,
+        "value": 1
+      },
+      "secondary_cost": {
+        "type_id": 38,
+        "value": 0
+      },
+      "aspect_id": 0,
+      "category": {
+        "id": 4,
+        "name": "Aptitude"
+      },
+      "class_job_category": {
+        "id": 173,
+        "name": "PLD MOI GUE DRG BRD MBL MNO INV ÉRU MCH CHN AST SAM MRG PSB DNS FCH SAG VPR PIC",
+        "allowed_jobs": [
+          "PLD",
+          "MNK",
+          "WAR",
+          "DRG",
+          "BRD",
+          "WHM",
+          "BLM",
+          "SMN",
+          "SCH",
+          "MCH",
+          "DRK",
+          "AST",
+          "SAM",
+          "RDM",
+          "GNB",
+          "DNC",
+          "RPR",
+          "SGE",
+          "VPR",
+          "PCT"
+        ]
+      },
+      "targeting": {
+        "self": true,
+        "party": false,
+        "alliance": false,
+        "hostile": false,
+        "ally": false,
+        "own_pet": false,
+        "party_pet": false,
+        "dead_target_behavior": 0,
+        "is_area": false,
+        "requires_line_of_sight": true,
+        "requires_facing_target": true
+      },
+      "status_gain_self": {
+        "id": 2336,
+        "title": "Furtivité oubliée",
+        "description": "Invisible à la plupart des ennemis, mais la vitesse de déplacement est réduite.",
+        "icon_id": 216679,
+        "max_stacks": 0,
+        "can_dispel": false,
+        "is_permanent": true
+      },
+      "proc_status": null
+    }
+  },
+  "ja": {
+    "title": "ロスト・ステルス",
+    "description": "自身の姿を隠し、ほとんどの敵から感知されない状態になる。\nさらに移動速度が25％低下する。\n一部のモンスターからは感知される。\nスプリント以外のアクションを実行するか再使用で解除する。\n効果時間：永続\n発動条件：自身が非戦闘状態",
+    "effects": [
+      "自身の姿を隠し、ほとんどの敵から感知されない状態になる。",
+      "さらに移動速度が25％低下する。",
+      "一部のモンスターからは感知される。",
+      "スプリント以外のアクションを実行するか再使用で解除する。",
+      "効果時間：永続",
+      "発動条件：自身が非戦闘状態"
+    ],
+    "classification": "lost_action",
+    "cache": {
+      "item_id": 5,
+      "type_id": 1,
+      "type": "action",
+      "max_uses": 99,
+      "has_unlimited_uses": false,
+      "weight": 2,
+      "order": 5,
+      "category": {
+        "id": 5,
+        "name": "アクション：スカウト"
+      }
+    },
+    "action": {
+      "id": 20705,
+      "icon_id": 64661,
+      "icon_file": "icon.png",
+      "cast_time_seconds": 0,
+      "recast_time_seconds": 15,
+      "range_yalms": 0,
+      "effect_range_yalms": 0,
+      "max_charges": 0,
+      "cooldown_group": 81,
+      "additional_cooldown_group": 0,
+      "primary_cost": {
+        "type_id": 20,
+        "value": 1
+      },
+      "secondary_cost": {
+        "type_id": 38,
+        "value": 0
+      },
+      "aspect_id": 0,
+      "category": {
+        "id": 4,
+        "name": "アビリティ"
+      },
+      "class_job_category": {
+        "id": 173,
+        "name": "ナイト モンク 戦士 竜騎士 吟遊詩人 白魔道士 黒魔道士 召喚士 学者 機工士 暗黒騎士 占星術師 侍 赤魔道士 ガンブレイカー 踊り子 リーパー 賢者 ヴァイパー ピクトマンサー",
+        "allowed_jobs": [
+          "PLD",
+          "MNK",
+          "WAR",
+          "DRG",
+          "BRD",
+          "WHM",
+          "BLM",
+          "SMN",
+          "SCH",
+          "MCH",
+          "DRK",
+          "AST",
+          "SAM",
+          "RDM",
+          "GNB",
+          "DNC",
+          "RPR",
+          "SGE",
+          "VPR",
+          "PCT"
+        ]
+      },
+      "targeting": {
+        "self": true,
+        "party": false,
+        "alliance": false,
+        "hostile": false,
+        "ally": false,
+        "own_pet": false,
+        "party_pet": false,
+        "dead_target_behavior": 0,
+        "is_area": false,
+        "requires_line_of_sight": true,
+        "requires_facing_target": true
+      },
+      "status_gain_self": {
+        "id": 2336,
+        "title": "ロスト・ステルス",
+        "description": "身を隠している状態。移動速度が低下した状態。",
+        "icon_id": 216679,
+        "max_stacks": 0,
+        "can_dispel": false,
+        "is_permanent": true
+      },
+      "proc_status": null
+    }
+  }
+}

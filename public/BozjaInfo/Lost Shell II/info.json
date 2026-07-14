@@ -1,0 +1,358 @@
+{
+  "en": {
+    "title": "Lost Shell II",
+    "description": "Applies a barrier to self or target player reducing magic damage taken by 15%.\nDuration: 30m",
+    "effects": [
+      "Applies a barrier to self or target player reducing magic damage taken by 15%.",
+      "Duration: 30m"
+    ],
+    "classification": "lost_action",
+    "cache": {
+      "item_id": 93,
+      "type_id": 1,
+      "type": "action",
+      "max_uses": null,
+      "has_unlimited_uses": true,
+      "weight": 3,
+      "order": 93,
+      "category": {
+        "id": 4,
+        "name": "Beneficial"
+      }
+    },
+    "action": {
+      "id": 23916,
+      "icon_id": 64749,
+      "icon_file": "icon.png",
+      "cast_time_seconds": 2.5,
+      "recast_time_seconds": 2.5,
+      "range_yalms": 30,
+      "effect_range_yalms": 0,
+      "max_charges": 0,
+      "cooldown_group": 58,
+      "additional_cooldown_group": 0,
+      "primary_cost": {
+        "type_id": 0,
+        "value": 0
+      },
+      "secondary_cost": {
+        "type_id": 0,
+        "value": 0
+      },
+      "aspect_id": 7,
+      "category": {
+        "id": 2,
+        "name": "Spell"
+      },
+      "class_job_category": {
+        "id": 169,
+        "name": "PLD MNK WAR DRG BRD WHM BLM SMN SCH NIN MCH DRK AST SAM RDM GNB DNC RPR SGE VPR PCT",
+        "allowed_jobs": [
+          "PLD",
+          "MNK",
+          "WAR",
+          "DRG",
+          "BRD",
+          "WHM",
+          "BLM",
+          "SMN",
+          "SCH",
+          "NIN",
+          "MCH",
+          "DRK",
+          "AST",
+          "SAM",
+          "RDM",
+          "GNB",
+          "DNC",
+          "RPR",
+          "SGE",
+          "VPR",
+          "PCT"
+        ]
+      },
+      "targeting": {
+        "self": true,
+        "party": true,
+        "alliance": true,
+        "hostile": false,
+        "ally": true,
+        "own_pet": false,
+        "party_pet": false,
+        "dead_target_behavior": 0,
+        "is_area": false,
+        "requires_line_of_sight": true,
+        "requires_facing_target": false
+      },
+      "status_gain_self": null,
+      "proc_status": null
+    }
+  },
+  "de": {
+    "title": "Verschollenes Vallum II",
+    "description": "Du errichtest einen Schild um dich oder das Ziel, der erlittenen magischen Schaden um 15\u00A0% verringert.\nDauer: 30 Minuten",
+    "effects": [
+      "Du errichtest einen Schild um dich oder das Ziel, der erlittenen magischen Schaden um 15\u00A0% verringert.",
+      "Dauer: 30 Minuten"
+    ],
+    "classification": "lost_action",
+    "cache": {
+      "item_id": 93,
+      "type_id": 1,
+      "type": "action",
+      "max_uses": null,
+      "has_unlimited_uses": true,
+      "weight": 3,
+      "order": 93,
+      "category": {
+        "id": 4,
+        "name": "Unterstützer"
+      }
+    },
+    "action": {
+      "id": 23916,
+      "icon_id": 64749,
+      "icon_file": "icon.png",
+      "cast_time_seconds": 2.5,
+      "recast_time_seconds": 2.5,
+      "range_yalms": 30,
+      "effect_range_yalms": 0,
+      "max_charges": 0,
+      "cooldown_group": 58,
+      "additional_cooldown_group": 0,
+      "primary_cost": {
+        "type_id": 0,
+        "value": 0
+      },
+      "secondary_cost": {
+        "type_id": 0,
+        "value": 0
+      },
+      "aspect_id": 7,
+      "category": {
+        "id": 2,
+        "name": "Zauber"
+      },
+      "class_job_category": {
+        "id": 169,
+        "name": "PLD MÖN KRG DRG BRD WMA SMA BSW GLT NIN MCH DKR AST SAM RMA REV TÄN SNT WEI VPR PKT",
+        "allowed_jobs": [
+          "PLD",
+          "MNK",
+          "WAR",
+          "DRG",
+          "BRD",
+          "WHM",
+          "BLM",
+          "SMN",
+          "SCH",
+          "NIN",
+          "MCH",
+          "DRK",
+          "AST",
+          "SAM",
+          "RDM",
+          "GNB",
+          "DNC",
+          "RPR",
+          "SGE",
+          "VPR",
+          "PCT"
+        ]
+      },
+      "targeting": {
+        "self": true,
+        "party": true,
+        "alliance": true,
+        "hostile": false,
+        "ally": true,
+        "own_pet": false,
+        "party_pet": false,
+        "dead_target_behavior": 0,
+        "is_area": false,
+        "requires_line_of_sight": true,
+        "requires_facing_target": false
+      },
+      "status_gain_self": null,
+      "proc_status": null
+    }
+  },
+  "fr": {
+    "title": "Barrière II oubliée",
+    "description": "Réduit de 15% les dégâts magiques subis par vous ou le joueur ciblé.\nDurée\u00A0: 30m",
+    "effects": [
+      "Réduit de 15% les dégâts magiques subis par vous ou le joueur ciblé.",
+      "Durée\u00A0: 30m"
+    ],
+    "classification": "lost_action",
+    "cache": {
+      "item_id": 93,
+      "type_id": 1,
+      "type": "action",
+      "max_uses": null,
+      "has_unlimited_uses": true,
+      "weight": 3,
+      "order": 93,
+      "category": {
+        "id": 4,
+        "name": "Auxiliaire"
+      }
+    },
+    "action": {
+      "id": 23916,
+      "icon_id": 64749,
+      "icon_file": "icon.png",
+      "cast_time_seconds": 2.5,
+      "recast_time_seconds": 2.5,
+      "range_yalms": 30,
+      "effect_range_yalms": 0,
+      "max_charges": 0,
+      "cooldown_group": 58,
+      "additional_cooldown_group": 0,
+      "primary_cost": {
+        "type_id": 0,
+        "value": 0
+      },
+      "secondary_cost": {
+        "type_id": 0,
+        "value": 0
+      },
+      "aspect_id": 7,
+      "category": {
+        "id": 2,
+        "name": "Sort"
+      },
+      "class_job_category": {
+        "id": 169,
+        "name": "PLD MOI GUE DRG BRD MBL MNO INV ÉRU NIN MCH CHN AST SAM MRG PSB DNS FCH SAG VPR PIC",
+        "allowed_jobs": [
+          "PLD",
+          "MNK",
+          "WAR",
+          "DRG",
+          "BRD",
+          "WHM",
+          "BLM",
+          "SMN",
+          "SCH",
+          "NIN",
+          "MCH",
+          "DRK",
+          "AST",
+          "SAM",
+          "RDM",
+          "GNB",
+          "DNC",
+          "RPR",
+          "SGE",
+          "VPR",
+          "PCT"
+        ]
+      },
+      "targeting": {
+        "self": true,
+        "party": true,
+        "alliance": true,
+        "hostile": false,
+        "ally": true,
+        "own_pet": false,
+        "party_pet": false,
+        "dead_target_behavior": 0,
+        "is_area": false,
+        "requires_line_of_sight": true,
+        "requires_facing_target": false
+      },
+      "status_gain_self": null,
+      "proc_status": null
+    }
+  },
+  "ja": {
+    "title": "ロスト・シェルII",
+    "description": "自身またはプレイヤーひとりを対象として、被魔法ダメージを15％軽減するシールドを付与する。\n効果時間：30分",
+    "effects": [
+      "自身またはプレイヤーひとりを対象として、被魔法ダメージを15％軽減するシールドを付与する。",
+      "効果時間：30分"
+    ],
+    "classification": "lost_action",
+    "cache": {
+      "item_id": 93,
+      "type_id": 1,
+      "type": "action",
+      "max_uses": null,
+      "has_unlimited_uses": true,
+      "weight": 3,
+      "order": 93,
+      "category": {
+        "id": 4,
+        "name": "アクション：バッファー"
+      }
+    },
+    "action": {
+      "id": 23916,
+      "icon_id": 64749,
+      "icon_file": "icon.png",
+      "cast_time_seconds": 2.5,
+      "recast_time_seconds": 2.5,
+      "range_yalms": 30,
+      "effect_range_yalms": 0,
+      "max_charges": 0,
+      "cooldown_group": 58,
+      "additional_cooldown_group": 0,
+      "primary_cost": {
+        "type_id": 0,
+        "value": 0
+      },
+      "secondary_cost": {
+        "type_id": 0,
+        "value": 0
+      },
+      "aspect_id": 7,
+      "category": {
+        "id": 2,
+        "name": "魔法"
+      },
+      "class_job_category": {
+        "id": 169,
+        "name": "ナイト モンク 戦士 竜騎士 吟遊詩人 白魔道士 黒魔道士 召喚士 学者 忍者 機工士 暗黒騎士 占星術師 侍 赤魔道士 ガンブレイカー 踊り子 リーパー 賢者 ヴァイパー ピクトマンサー",
+        "allowed_jobs": [
+          "PLD",
+          "MNK",
+          "WAR",
+          "DRG",
+          "BRD",
+          "WHM",
+          "BLM",
+          "SMN",
+          "SCH",
+          "NIN",
+          "MCH",
+          "DRK",
+          "AST",
+          "SAM",
+          "RDM",
+          "GNB",
+          "DNC",
+          "RPR",
+          "SGE",
+          "VPR",
+          "PCT"
+        ]
+      },
+      "targeting": {
+        "self": true,
+        "party": true,
+        "alliance": true,
+        "hostile": false,
+        "ally": true,
+        "own_pet": false,
+        "party_pet": false,
+        "dead_target_behavior": 0,
+        "is_area": false,
+        "requires_line_of_sight": true,
+        "requires_facing_target": false
+      },
+      "status_gain_self": null,
+      "proc_status": null
+    }
+  }
+}

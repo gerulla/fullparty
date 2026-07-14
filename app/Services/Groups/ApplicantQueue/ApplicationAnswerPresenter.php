@@ -3,6 +3,7 @@
 namespace App\Services\Groups\ApplicantQueue;
 
 use App\Models\ActivityTypeVersion;
+use App\Models\BozjaItem;
 use App\Models\CharacterClass;
 use App\Models\PhantomJob;
 use App\Models\RaidPosition;
@@ -95,6 +96,24 @@ class ApplicationAnswerPresenter
                 ->map(fn ($entry) => (string) $entry === self::ANY_OPTION_KEY && $anyLabel !== null
                     ? $anyLabel
                     : $labels[(string) $entry] ?? null)
+                ->filter();
+        }
+
+        if (BozjaItem::supportsSource($source)) {
+            $items = BozjaItem::query()
+                ->forSource((string) $source)
+                ->whereIn('id', $values->reject(fn ($entry) => (string) $entry === self::ANY_OPTION_KEY)->map(fn ($entry) => (int) $entry)->all())
+                ->get()
+                ->keyBy('id');
+
+            return $values
+                ->map(function ($entry) use ($items, $anyLabel) {
+                    if ((string) $entry === self::ANY_OPTION_KEY && $anyLabel !== null) {
+                        return $anyLabel;
+                    }
+
+                    return $items->get((int) $entry)?->localizedName();
+                })
                 ->filter();
         }
 
@@ -268,6 +287,41 @@ class ApplicationAnswerPresenter
                     return [
                         'label' => $raidPosition->name,
                         'icon_url' => $raidPosition->icon_url,
+                    ];
+                })
+                ->filter()
+                ->values();
+        }
+
+        if (BozjaItem::supportsSource($source)) {
+            $items = BozjaItem::query()
+                ->forSource((string) $source)
+                ->whereIn('id', $values->reject(fn ($entry) => (string) $entry === self::ANY_OPTION_KEY)->map(fn ($entry) => (int) $entry)->all())
+                ->get()
+                ->keyBy('id');
+
+            return $values
+                ->map(function ($entry) use ($items, $anyLabel) {
+                    if ((string) $entry === self::ANY_OPTION_KEY && $anyLabel !== null) {
+                        return [
+                            'label' => $anyLabel,
+                            'icon_url' => null,
+                            'is_any' => true,
+                        ];
+                    }
+
+                    /** @var BozjaItem|null $item */
+                    $item = $items->get((int) $entry);
+
+                    if (! $item) {
+                        return null;
+                    }
+
+                    return [
+                        'label' => $item->localizedName(),
+                        'icon_url' => $item->icon_url,
+                        'classification' => $item->classification,
+                        'cache_weight' => $item->cache_weight,
                     ];
                 })
                 ->filter()

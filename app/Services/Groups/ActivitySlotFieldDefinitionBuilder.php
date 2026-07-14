@@ -3,6 +3,7 @@
 namespace App\Services\Groups;
 
 use App\Models\ActivityTypeVersion;
+use App\Models\BozjaItem;
 use App\Models\CharacterClass;
 use App\Models\PhantomJob;
 use App\Models\RaidPosition;
@@ -141,7 +142,9 @@ class ActivitySlotFieldDefinitionBuilder
                 ->filter(fn (array $option) => $option['key'] !== '')
                 ->values()
                 ->all(),
-            default => [],
+            default => BozjaItem::supportsSource($field['source'] ?? null)
+                ? BozjaItem::schemaOptions((string) $field['source'])
+                : [],
         };
 
         return $includeAnySelection

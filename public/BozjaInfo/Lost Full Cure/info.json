@@ -1,0 +1,320 @@
+{
+  "en": {
+    "title": "Lost Full Cure",
+    "description": "Fully restores HP and MP while granting Auto-potion and Auto-ether to self and nearby party members.\nAuto-potion Effect: Restores HP automatically when HP falls below 50%\nDuration: 600s\nWhen triggered, there is a 50% chance the effect will end.\nAuto-ether Effect: Restores MP automatically when MP falls below 20%\nDuration: 600s\nWhen triggered, there is a 50% chance the effect will end.\nSpirit of the Breathtaker Effect: Chance for Auto-potion and Auto-ether effect to end is reduced to 10%",
+    "effects": [
+      "Fully restores HP and MP while granting Auto-potion and Auto-ether to self and nearby party members.",
+      "Auto-potion Effect: Restores HP automatically when HP falls below 50%",
+      "Duration: 600s",
+      "When triggered, there is a 50% chance the effect will end.",
+      "Auto-ether Effect: Restores MP automatically when MP falls below 20%",
+      "Duration: 600s",
+      "When triggered, there is a 50% chance the effect will end.",
+      "Spirit of the Breathtaker Effect: Chance for Auto-potion and Auto-ether effect to end is reduced to 10%"
+    ],
+    "classification": "lost_action",
+    "cache": {
+      "item_id": 97,
+      "type_id": 1,
+      "type": "action",
+      "max_uses": 10,
+      "has_unlimited_uses": false,
+      "weight": 15,
+      "order": 97,
+      "category": {
+        "id": 3,
+        "name": "Restorative"
+      }
+    },
+    "action": {
+      "id": 23920,
+      "icon_id": 64753,
+      "icon_file": "icon.png",
+      "cast_time_seconds": 0,
+      "recast_time_seconds": 180,
+      "range_yalms": 0,
+      "effect_range_yalms": 15,
+      "max_charges": 0,
+      "cooldown_group": 81,
+      "additional_cooldown_group": 0,
+      "primary_cost": {
+        "type_id": 20,
+        "value": 1
+      },
+      "secondary_cost": {
+        "type_id": 0,
+        "value": 0
+      },
+      "aspect_id": 7,
+      "category": {
+        "id": 4,
+        "name": "Ability"
+      },
+      "class_job_category": {
+        "id": 165,
+        "name": "WHM SCH AST SGE",
+        "allowed_jobs": [
+          "WHM",
+          "SCH",
+          "AST",
+          "SGE"
+        ]
+      },
+      "targeting": {
+        "self": true,
+        "party": false,
+        "alliance": false,
+        "hostile": false,
+        "ally": false,
+        "own_pet": false,
+        "party_pet": false,
+        "dead_target_behavior": 0,
+        "is_area": false,
+        "requires_line_of_sight": true,
+        "requires_facing_target": false
+      },
+      "status_gain_self": null,
+      "proc_status": null
+    }
+  },
+  "de": {
+    "title": "Verschollene Erneuerung",
+    "description": "Du stellst alle LP und MP von dir und umstehenden Gruppenmitgliedern wieder her.\nZusatzeffekt: Verleiht dir und nahestehenden Gruppenmitgliedern Auto-Heiltrank und Auto-Äther.\nEffekt von Auto-Heiltrank: Du regenerierst automatisch LP, sobald sie unter 50\u00A0% sinken.\nDauer: 600 Sekunden\nSobald der Effekt ausgelöst wurde, endet der Status mit einer Wahrscheinlichkeit von 50\u00A0%.\nZusatzeffekt bei Trank des Diebes: Der Status endet nur mit einer Wahrscheinlichkeit von 10\u00A0%.\nEffekt von Auto-Äther: Du regenerierst automatisch MP, sobald sie unter 20\u00A0% sinken.\nDauer: 600 Sekunden\nSobald der Effekt ausgelöst wurde, endet der Status mit einer Wahrscheinlichkeit von 50\u00A0%.\nZusatzeffekt bei Trank des Diebes: Der Status endet nur mit einer Wahrscheinlichkeit von 10\u00A0%.",
+    "effects": [
+      "Du stellst alle LP und MP von dir und umstehenden Gruppenmitgliedern wieder her.",
+      "Zusatzeffekt: Verleiht dir und nahestehenden Gruppenmitgliedern Auto-Heiltrank und Auto-Äther.",
+      "Effekt von Auto-Heiltrank: Du regenerierst automatisch LP, sobald sie unter 50\u00A0% sinken.",
+      "Dauer: 600 Sekunden",
+      "Sobald der Effekt ausgelöst wurde, endet der Status mit einer Wahrscheinlichkeit von 50\u00A0%.",
+      "Zusatzeffekt bei Trank des Diebes: Der Status endet nur mit einer Wahrscheinlichkeit von 10\u00A0%.",
+      "Effekt von Auto-Äther: Du regenerierst automatisch MP, sobald sie unter 20\u00A0% sinken.",
+      "Dauer: 600 Sekunden",
+      "Sobald der Effekt ausgelöst wurde, endet der Status mit einer Wahrscheinlichkeit von 50\u00A0%.",
+      "Zusatzeffekt bei Trank des Diebes: Der Status endet nur mit einer Wahrscheinlichkeit von 10\u00A0%."
+    ],
+    "classification": "lost_action",
+    "cache": {
+      "item_id": 97,
+      "type_id": 1,
+      "type": "action",
+      "max_uses": 10,
+      "has_unlimited_uses": false,
+      "weight": 15,
+      "order": 97,
+      "category": {
+        "id": 3,
+        "name": "Heiler"
+      }
+    },
+    "action": {
+      "id": 23920,
+      "icon_id": 64753,
+      "icon_file": "icon.png",
+      "cast_time_seconds": 0,
+      "recast_time_seconds": 180,
+      "range_yalms": 0,
+      "effect_range_yalms": 15,
+      "max_charges": 0,
+      "cooldown_group": 81,
+      "additional_cooldown_group": 0,
+      "primary_cost": {
+        "type_id": 20,
+        "value": 1
+      },
+      "secondary_cost": {
+        "type_id": 0,
+        "value": 0
+      },
+      "aspect_id": 7,
+      "category": {
+        "id": 4,
+        "name": "Talent"
+      },
+      "class_job_category": {
+        "id": 165,
+        "name": "WMA GLT AST WEI",
+        "allowed_jobs": [
+          "WHM",
+          "SCH",
+          "AST",
+          "SGE"
+        ]
+      },
+      "targeting": {
+        "self": true,
+        "party": false,
+        "alliance": false,
+        "hostile": false,
+        "ally": false,
+        "own_pet": false,
+        "party_pet": false,
+        "dead_target_behavior": 0,
+        "is_area": false,
+        "requires_line_of_sight": true,
+        "requires_facing_target": false
+      },
+      "status_gain_self": null,
+      "proc_status": null
+    }
+  },
+  "fr": {
+    "title": "Maxi Soin oublié",
+    "description": "Restaure l'intégralité de vos PV et de vos PM ainsi que ceux des équipiers alentour.\nEffet additionnel\u00A0: octroie Auto-potion et Auto-éther à vous et aux équipiers alentours.\nAuto-potion\u00A0: restaure automatiquement vos PV s'ils tombent en dessous de 50%.\nDurée\u00A0: 600s\nCet effet a 50% de chance de prendre fin chaque fois qu'il se déclenche.\nEffet additionnel avec un breuvage de voleur\u00A0: les chances pour l'effet de prendre fin au déclenchement sont réduites à 10%.\nAuto-éther\u00A0: restaure automatiquement vos PM s'ils tombent en dessous de 20%.\nDurée\u00A0: 600s\nCet effet a 50% de chance de prendre fin chaque fois qu'il se déclenche.\nEffet additionnel avec un breuvage de voleur\u00A0: les chances pour l'effet de prendre fin au déclenchement sont réduites à 10%.",
+    "effects": [
+      "Restaure l'intégralité de vos PV et de vos PM ainsi que ceux des équipiers alentour.",
+      "Effet additionnel\u00A0: octroie Auto-potion et Auto-éther à vous et aux équipiers alentours.",
+      "Auto-potion\u00A0: restaure automatiquement vos PV s'ils tombent en dessous de 50%.",
+      "Durée\u00A0: 600s",
+      "Cet effet a 50% de chance de prendre fin chaque fois qu'il se déclenche.",
+      "Effet additionnel avec un breuvage de voleur\u00A0: les chances pour l'effet de prendre fin au déclenchement sont réduites à 10%.",
+      "Auto-éther\u00A0: restaure automatiquement vos PM s'ils tombent en dessous de 20%.",
+      "Durée\u00A0: 600s",
+      "Cet effet a 50% de chance de prendre fin chaque fois qu'il se déclenche.",
+      "Effet additionnel avec un breuvage de voleur\u00A0: les chances pour l'effet de prendre fin au déclenchement sont réduites à 10%."
+    ],
+    "classification": "lost_action",
+    "cache": {
+      "item_id": 97,
+      "type_id": 1,
+      "type": "action",
+      "max_uses": 10,
+      "has_unlimited_uses": false,
+      "weight": 15,
+      "order": 97,
+      "category": {
+        "id": 3,
+        "name": "Soigneur"
+      }
+    },
+    "action": {
+      "id": 23920,
+      "icon_id": 64753,
+      "icon_file": "icon.png",
+      "cast_time_seconds": 0,
+      "recast_time_seconds": 180,
+      "range_yalms": 0,
+      "effect_range_yalms": 15,
+      "max_charges": 0,
+      "cooldown_group": 81,
+      "additional_cooldown_group": 0,
+      "primary_cost": {
+        "type_id": 20,
+        "value": 1
+      },
+      "secondary_cost": {
+        "type_id": 0,
+        "value": 0
+      },
+      "aspect_id": 7,
+      "category": {
+        "id": 4,
+        "name": "Aptitude"
+      },
+      "class_job_category": {
+        "id": 165,
+        "name": "MBL ÉRU AST SAG",
+        "allowed_jobs": [
+          "WHM",
+          "SCH",
+          "AST",
+          "SGE"
+        ]
+      },
+      "targeting": {
+        "self": true,
+        "party": false,
+        "alliance": false,
+        "hostile": false,
+        "ally": false,
+        "own_pet": false,
+        "party_pet": false,
+        "dead_target_behavior": 0,
+        "is_area": false,
+        "requires_line_of_sight": true,
+        "requires_facing_target": false
+      },
+      "status_gain_self": null,
+      "proc_status": null
+    }
+  },
+  "ja": {
+    "title": "ロスト・フルケア",
+    "description": "自身と周囲のパーティメンバーのＨＰとＭＰを全回復する。\n追加効果：自身と周囲のパーティメンバーに、「オートポーション」および「オートエーテル」を付与する\nオートポーション効果：効果時間中にＨＰが50％以下になると自動的に回復する。\n効果時間：600秒\n回復効果が発動すると50％の確率で効果が切れる。\n盗賊の薬時追加効果：回復効果発動時の消滅確率が10％になる。\nオートエーテル効果：効果時間中にＭＰが20％以下になると自動的に回復する。\n効果時間：600秒\n回復効果が発動すると50％の確率で効果が切れる。\n盗賊の薬時追加効果：回復効果発動時の消滅確率が10％になる。",
+    "effects": [
+      "自身と周囲のパーティメンバーのＨＰとＭＰを全回復する。",
+      "追加効果：自身と周囲のパーティメンバーに、「オートポーション」および「オートエーテル」を付与する",
+      "オートポーション効果：効果時間中にＨＰが50％以下になると自動的に回復する。",
+      "効果時間：600秒",
+      "回復効果が発動すると50％の確率で効果が切れる。",
+      "盗賊の薬時追加効果：回復効果発動時の消滅確率が10％になる。",
+      "オートエーテル効果：効果時間中にＭＰが20％以下になると自動的に回復する。",
+      "効果時間：600秒",
+      "回復効果が発動すると50％の確率で効果が切れる。",
+      "盗賊の薬時追加効果：回復効果発動時の消滅確率が10％になる。"
+    ],
+    "classification": "lost_action",
+    "cache": {
+      "item_id": 97,
+      "type_id": 1,
+      "type": "action",
+      "max_uses": 10,
+      "has_unlimited_uses": false,
+      "weight": 15,
+      "order": 97,
+      "category": {
+        "id": 3,
+        "name": "アクション：ヒーラー"
+      }
+    },
+    "action": {
+      "id": 23920,
+      "icon_id": 64753,
+      "icon_file": "icon.png",
+      "cast_time_seconds": 0,
+      "recast_time_seconds": 180,
+      "range_yalms": 0,
+      "effect_range_yalms": 15,
+      "max_charges": 0,
+      "cooldown_group": 81,
+      "additional_cooldown_group": 0,
+      "primary_cost": {
+        "type_id": 20,
+        "value": 1
+      },
+      "secondary_cost": {
+        "type_id": 0,
+        "value": 0
+      },
+      "aspect_id": 7,
+      "category": {
+        "id": 4,
+        "name": "アビリティ"
+      },
+      "class_job_category": {
+        "id": 165,
+        "name": "白魔道士 学者 占星術師 賢者",
+        "allowed_jobs": [
+          "WHM",
+          "SCH",
+          "AST",
+          "SGE"
+        ]
+      },
+      "targeting": {
+        "self": true,
+        "party": false,
+        "alliance": false,
+        "hostile": false,
+        "ally": false,
+        "own_pet": false,
+        "party_pet": false,
+        "dead_target_behavior": 0,
+        "is_area": false,
+        "requires_line_of_sight": true,
+        "requires_facing_target": false
+      },
+      "status_gain_self": null,
+      "proc_status": null
+    }
+  }
+}

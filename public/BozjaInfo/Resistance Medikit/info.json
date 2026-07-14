@@ -1,0 +1,368 @@
+{
+  "en": {
+    "title": "Resistance Medikit",
+    "description": "Removes a single detrimental effect from self. When not suffering from detrimental effects, creates a barrier that protects against most status ailments. The barrier is removed after curing the next status ailment suffered.\nEffect cannot be stacked with similar barrier actions.\nDuration: 30m\nShares a recast timer with Resistance Potion Kit and Resistance Ether Kit.",
+    "effects": [
+      "Removes a single detrimental effect from self. When not suffering from detrimental effects, creates a barrier that protects against most status ailments. The barrier is removed after curing the next status ailment suffered.",
+      "Effect cannot be stacked with similar barrier actions.",
+      "Duration: 30m",
+      "Shares a recast timer with Resistance Potion Kit and Resistance Ether Kit."
+    ],
+    "classification": "lost_item",
+    "cache": {
+      "item_id": 39,
+      "type_id": 2,
+      "type": "item",
+      "max_uses": 1,
+      "has_unlimited_uses": false,
+      "weight": 3,
+      "order": 39,
+      "category": {
+        "id": 7,
+        "name": "Item-related"
+      }
+    },
+    "action": {
+      "id": 20739,
+      "icon_id": 64695,
+      "icon_file": "icon.png",
+      "cast_time_seconds": 0,
+      "recast_time_seconds": 45,
+      "range_yalms": 0,
+      "effect_range_yalms": 0,
+      "max_charges": 0,
+      "cooldown_group": 60,
+      "additional_cooldown_group": 0,
+      "primary_cost": {
+        "type_id": 0,
+        "value": 0
+      },
+      "secondary_cost": {
+        "type_id": 0,
+        "value": 0
+      },
+      "aspect_id": 0,
+      "category": {
+        "id": 5,
+        "name": "Item"
+      },
+      "class_job_category": {
+        "id": 169,
+        "name": "PLD MNK WAR DRG BRD WHM BLM SMN SCH NIN MCH DRK AST SAM RDM GNB DNC RPR SGE VPR PCT",
+        "allowed_jobs": [
+          "PLD",
+          "MNK",
+          "WAR",
+          "DRG",
+          "BRD",
+          "WHM",
+          "BLM",
+          "SMN",
+          "SCH",
+          "NIN",
+          "MCH",
+          "DRK",
+          "AST",
+          "SAM",
+          "RDM",
+          "GNB",
+          "DNC",
+          "RPR",
+          "SGE",
+          "VPR",
+          "PCT"
+        ]
+      },
+      "targeting": {
+        "self": true,
+        "party": false,
+        "alliance": false,
+        "hostile": false,
+        "ally": false,
+        "own_pet": false,
+        "party_pet": false,
+        "dead_target_behavior": 0,
+        "is_area": false,
+        "requires_line_of_sight": true,
+        "requires_facing_target": true
+      },
+      "status_gain_self": null,
+      "proc_status": null
+    }
+  },
+  "de": {
+    "title": "Kräutersammlung des Widerstands",
+    "description": "Ein negativer Statuseffekt wird entfernt.\nWenn dieser Effekt nicht ausgelöst werden kann, errichtest du eine Barriere um dich, die den nächsten negativen Status abwehrt.\nDauer: 30 Minuten\nKann nicht zugleich mit ähnlichen Barriereeffekten aktiv sein.\nGemeinsamer Reaktivierungs-Timer mit Tränkesammlung des Widerstands und Äthersammlung des Widerstands",
+    "effects": [
+      "Ein negativer Statuseffekt wird entfernt.",
+      "Wenn dieser Effekt nicht ausgelöst werden kann, errichtest du eine Barriere um dich, die den nächsten negativen Status abwehrt.",
+      "Dauer: 30 Minuten",
+      "Kann nicht zugleich mit ähnlichen Barriereeffekten aktiv sein.",
+      "Gemeinsamer Reaktivierungs-Timer mit Tränkesammlung des Widerstands und Äthersammlung des Widerstands"
+    ],
+    "classification": "lost_item",
+    "cache": {
+      "item_id": 39,
+      "type_id": 2,
+      "type": "item",
+      "max_uses": 1,
+      "has_unlimited_uses": false,
+      "weight": 3,
+      "order": 39,
+      "category": {
+        "id": 7,
+        "name": "Gegenstände"
+      }
+    },
+    "action": {
+      "id": 20739,
+      "icon_id": 64695,
+      "icon_file": "icon.png",
+      "cast_time_seconds": 0,
+      "recast_time_seconds": 45,
+      "range_yalms": 0,
+      "effect_range_yalms": 0,
+      "max_charges": 0,
+      "cooldown_group": 60,
+      "additional_cooldown_group": 0,
+      "primary_cost": {
+        "type_id": 0,
+        "value": 0
+      },
+      "secondary_cost": {
+        "type_id": 0,
+        "value": 0
+      },
+      "aspect_id": 0,
+      "category": {
+        "id": 5,
+        "name": "Gegenstand"
+      },
+      "class_job_category": {
+        "id": 169,
+        "name": "PLD MÖN KRG DRG BRD WMA SMA BSW GLT NIN MCH DKR AST SAM RMA REV TÄN SNT WEI VPR PKT",
+        "allowed_jobs": [
+          "PLD",
+          "MNK",
+          "WAR",
+          "DRG",
+          "BRD",
+          "WHM",
+          "BLM",
+          "SMN",
+          "SCH",
+          "NIN",
+          "MCH",
+          "DRK",
+          "AST",
+          "SAM",
+          "RDM",
+          "GNB",
+          "DNC",
+          "RPR",
+          "SGE",
+          "VPR",
+          "PCT"
+        ]
+      },
+      "targeting": {
+        "self": true,
+        "party": false,
+        "alliance": false,
+        "hostile": false,
+        "ally": false,
+        "own_pet": false,
+        "party_pet": false,
+        "dead_target_behavior": 0,
+        "is_area": false,
+        "requires_line_of_sight": true,
+        "requires_facing_target": true
+      },
+      "status_gain_self": null,
+      "proc_status": null
+    }
+  },
+  "fr": {
+    "title": "Kit médical de la résistance",
+    "description": "Vous soigne d'une altération d'état si vous en subissiez une, sinon, vous protège contre la prochaine qui devrait vous toucher. Ne fonctionne pas sur certaines altérations d'état.\nNe peut être cumulé avec des effets du même type.\nDurée\u00A0: 30m\nPartage le même temps de recharge que Kit de potion de la résistance et Kit d'éther de la résistance.",
+    "effects": [
+      "Vous soigne d'une altération d'état si vous en subissiez une, sinon, vous protège contre la prochaine qui devrait vous toucher. Ne fonctionne pas sur certaines altérations d'état.",
+      "Ne peut être cumulé avec des effets du même type.",
+      "Durée\u00A0: 30m",
+      "Partage le même temps de recharge que Kit de potion de la résistance et Kit d'éther de la résistance."
+    ],
+    "classification": "lost_item",
+    "cache": {
+      "item_id": 39,
+      "type_id": 2,
+      "type": "item",
+      "max_uses": 1,
+      "has_unlimited_uses": false,
+      "weight": 3,
+      "order": 39,
+      "category": {
+        "id": 7,
+        "name": "Objets"
+      }
+    },
+    "action": {
+      "id": 20739,
+      "icon_id": 64695,
+      "icon_file": "icon.png",
+      "cast_time_seconds": 0,
+      "recast_time_seconds": 45,
+      "range_yalms": 0,
+      "effect_range_yalms": 0,
+      "max_charges": 0,
+      "cooldown_group": 60,
+      "additional_cooldown_group": 0,
+      "primary_cost": {
+        "type_id": 0,
+        "value": 0
+      },
+      "secondary_cost": {
+        "type_id": 0,
+        "value": 0
+      },
+      "aspect_id": 0,
+      "category": {
+        "id": 5,
+        "name": "Objet"
+      },
+      "class_job_category": {
+        "id": 169,
+        "name": "PLD MOI GUE DRG BRD MBL MNO INV ÉRU NIN MCH CHN AST SAM MRG PSB DNS FCH SAG VPR PIC",
+        "allowed_jobs": [
+          "PLD",
+          "MNK",
+          "WAR",
+          "DRG",
+          "BRD",
+          "WHM",
+          "BLM",
+          "SMN",
+          "SCH",
+          "NIN",
+          "MCH",
+          "DRK",
+          "AST",
+          "SAM",
+          "RDM",
+          "GNB",
+          "DNC",
+          "RPR",
+          "SGE",
+          "VPR",
+          "PCT"
+        ]
+      },
+      "targeting": {
+        "self": true,
+        "party": false,
+        "alliance": false,
+        "hostile": false,
+        "ally": false,
+        "own_pet": false,
+        "party_pet": false,
+        "dead_target_behavior": 0,
+        "is_area": false,
+        "requires_line_of_sight": true,
+        "requires_facing_target": true
+      },
+      "status_gain_self": null,
+      "proc_status": null
+    }
+  },
+  "ja": {
+    "title": "レジスタンスレメディキット",
+    "description": "自身にかかった一部の弱体効果を1つ解除する。\nこの効果が発動しなかった場合、一部の弱体効果を1つ防ぐバリアを張る。\n同種のバリア効果とは同時に付与されない。\n効果時間：30分\nリキャストタイマーを「レジスタンスポーションキット」「レジスタンスエーテルキット」と共有する。",
+    "effects": [
+      "自身にかかった一部の弱体効果を1つ解除する。",
+      "この効果が発動しなかった場合、一部の弱体効果を1つ防ぐバリアを張る。",
+      "同種のバリア効果とは同時に付与されない。",
+      "効果時間：30分",
+      "リキャストタイマーを「レジスタンスポーションキット」「レジスタンスエーテルキット」と共有する。"
+    ],
+    "classification": "lost_item",
+    "cache": {
+      "item_id": 39,
+      "type_id": 2,
+      "type": "item",
+      "max_uses": 1,
+      "has_unlimited_uses": false,
+      "weight": 3,
+      "order": 39,
+      "category": {
+        "id": 7,
+        "name": "アイテム"
+      }
+    },
+    "action": {
+      "id": 20739,
+      "icon_id": 64695,
+      "icon_file": "icon.png",
+      "cast_time_seconds": 0,
+      "recast_time_seconds": 45,
+      "range_yalms": 0,
+      "effect_range_yalms": 0,
+      "max_charges": 0,
+      "cooldown_group": 60,
+      "additional_cooldown_group": 0,
+      "primary_cost": {
+        "type_id": 0,
+        "value": 0
+      },
+      "secondary_cost": {
+        "type_id": 0,
+        "value": 0
+      },
+      "aspect_id": 0,
+      "category": {
+        "id": 5,
+        "name": "アイテム"
+      },
+      "class_job_category": {
+        "id": 169,
+        "name": "ナイト モンク 戦士 竜騎士 吟遊詩人 白魔道士 黒魔道士 召喚士 学者 忍者 機工士 暗黒騎士 占星術師 侍 赤魔道士 ガンブレイカー 踊り子 リーパー 賢者 ヴァイパー ピクトマンサー",
+        "allowed_jobs": [
+          "PLD",
+          "MNK",
+          "WAR",
+          "DRG",
+          "BRD",
+          "WHM",
+          "BLM",
+          "SMN",
+          "SCH",
+          "NIN",
+          "MCH",
+          "DRK",
+          "AST",
+          "SAM",
+          "RDM",
+          "GNB",
+          "DNC",
+          "RPR",
+          "SGE",
+          "VPR",
+          "PCT"
+        ]
+      },
+      "targeting": {
+        "self": true,
+        "party": false,
+        "alliance": false,
+        "hostile": false,
+        "ally": false,
+        "own_pet": false,
+        "party_pet": false,
+        "dead_target_behavior": 0,
+        "is_area": false,
+        "requires_line_of_sight": true,
+        "requires_facing_target": true
+      },
+      "status_gain_self": null,
+      "proc_status": null
+    }
+  }
+}

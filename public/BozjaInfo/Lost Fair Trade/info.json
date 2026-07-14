@@ -1,0 +1,366 @@
+{
+  "en": {
+    "title": "Lost Fair Trade",
+    "description": "Through sheer force of will, restore a random technique of the lost to physical form and throw it at a single target, dealing damage with a potency of 50.\nPotency increases up to 1,000 based on the weight of the lost action.\nThe lost action thrown will be lost upon execution.\nThis action does not share a recast timer with any other actions. Furthermore, the recast timer cannot be affected by other actions.",
+    "effects": [
+      "Through sheer force of will, restore a random technique of the lost to physical form and throw it at a single target, dealing damage with a potency of 50.",
+      "Potency increases up to 1,000 based on the weight of the lost action.",
+      "The lost action thrown will be lost upon execution.",
+      "This action does not share a recast timer with any other actions. Furthermore, the recast timer cannot be affected by other actions."
+    ],
+    "classification": "lost_action",
+    "cache": {
+      "item_id": 32,
+      "type_id": 1,
+      "type": "action",
+      "max_uses": 99,
+      "has_unlimited_uses": false,
+      "weight": 2,
+      "order": 32,
+      "category": {
+        "id": 1,
+        "name": "Offensive"
+      }
+    },
+    "action": {
+      "id": 20732,
+      "icon_id": 64688,
+      "icon_file": "icon.png",
+      "cast_time_seconds": 0,
+      "recast_time_seconds": 4,
+      "range_yalms": 25,
+      "effect_range_yalms": 0,
+      "max_charges": 0,
+      "cooldown_group": 81,
+      "additional_cooldown_group": 0,
+      "primary_cost": {
+        "type_id": 20,
+        "value": 1
+      },
+      "secondary_cost": {
+        "type_id": 0,
+        "value": 0
+      },
+      "aspect_id": 7,
+      "category": {
+        "id": 3,
+        "name": "Weaponskill"
+      },
+      "class_job_category": {
+        "id": 169,
+        "name": "PLD MNK WAR DRG BRD WHM BLM SMN SCH NIN MCH DRK AST SAM RDM GNB DNC RPR SGE VPR PCT",
+        "allowed_jobs": [
+          "PLD",
+          "MNK",
+          "WAR",
+          "DRG",
+          "BRD",
+          "WHM",
+          "BLM",
+          "SMN",
+          "SCH",
+          "NIN",
+          "MCH",
+          "DRK",
+          "AST",
+          "SAM",
+          "RDM",
+          "GNB",
+          "DNC",
+          "RPR",
+          "SGE",
+          "VPR",
+          "PCT"
+        ]
+      },
+      "targeting": {
+        "self": false,
+        "party": false,
+        "alliance": false,
+        "hostile": true,
+        "ally": false,
+        "own_pet": false,
+        "party_pet": false,
+        "dead_target_behavior": 0,
+        "is_area": false,
+        "requires_line_of_sight": true,
+        "requires_facing_target": true
+      },
+      "status_gain_self": null,
+      "proc_status": null
+    }
+  },
+  "de": {
+    "title": "Verschollener Handel",
+    "description": "Du wirfst ein zufälliges Verschollenes Kommando in deinem Besitz weg und führst eine physische Attacke auf ein Einzelziel aus. Das weggeworfene Verschollene Kommando geht dabei verloren.\nAttacke-Wert: 50 bis 1.000\nAttacke-Wert steigt, je größer das weggeworfene Verschollene Kommando ist.\nEigener Reaktivierungs-Timer, der nicht durch andere Reaktivierungs-Timer beeinflusst wird.",
+    "effects": [
+      "Du wirfst ein zufälliges Verschollenes Kommando in deinem Besitz weg und führst eine physische Attacke auf ein Einzelziel aus. Das weggeworfene Verschollene Kommando geht dabei verloren.",
+      "Attacke-Wert: 50 bis 1.000",
+      "Attacke-Wert steigt, je größer das weggeworfene Verschollene Kommando ist.",
+      "Eigener Reaktivierungs-Timer, der nicht durch andere Reaktivierungs-Timer beeinflusst wird."
+    ],
+    "classification": "lost_action",
+    "cache": {
+      "item_id": 32,
+      "type_id": 1,
+      "type": "action",
+      "max_uses": 99,
+      "has_unlimited_uses": false,
+      "weight": 2,
+      "order": 32,
+      "category": {
+        "id": 1,
+        "name": "Angreifer"
+      }
+    },
+    "action": {
+      "id": 20732,
+      "icon_id": 64688,
+      "icon_file": "icon.png",
+      "cast_time_seconds": 0,
+      "recast_time_seconds": 4,
+      "range_yalms": 25,
+      "effect_range_yalms": 0,
+      "max_charges": 0,
+      "cooldown_group": 81,
+      "additional_cooldown_group": 0,
+      "primary_cost": {
+        "type_id": 20,
+        "value": 1
+      },
+      "secondary_cost": {
+        "type_id": 0,
+        "value": 0
+      },
+      "aspect_id": 7,
+      "category": {
+        "id": 3,
+        "name": "Waffenfertigkeit"
+      },
+      "class_job_category": {
+        "id": 169,
+        "name": "PLD MÖN KRG DRG BRD WMA SMA BSW GLT NIN MCH DKR AST SAM RMA REV TÄN SNT WEI VPR PKT",
+        "allowed_jobs": [
+          "PLD",
+          "MNK",
+          "WAR",
+          "DRG",
+          "BRD",
+          "WHM",
+          "BLM",
+          "SMN",
+          "SCH",
+          "NIN",
+          "MCH",
+          "DRK",
+          "AST",
+          "SAM",
+          "RDM",
+          "GNB",
+          "DNC",
+          "RPR",
+          "SGE",
+          "VPR",
+          "PCT"
+        ]
+      },
+      "targeting": {
+        "self": false,
+        "party": false,
+        "alliance": false,
+        "hostile": true,
+        "ally": false,
+        "own_pet": false,
+        "party_pet": false,
+        "dead_target_behavior": 0,
+        "is_area": false,
+        "requires_line_of_sight": true,
+        "requires_facing_target": true
+      },
+      "status_gain_self": null,
+      "proc_status": null
+    }
+  },
+  "fr": {
+    "title": "Échange équitable oublié",
+    "description": "Vous jetez l'un des cristaux de votre mémento, sacrifiant ainsi une de vos actions oubliées pour infliger des dégâts physiques à une cible unique.\nPuissance\u00A0: de 50 à 1000\nPlus le cristal contenant l'action oubliée est gros, plus les dégâts infligés sont importants.\nCette technique d'arme a un temps de recharge indépendant qui n'est pas affecté par ceux des sorts et des autres techniques d'armes.",
+    "effects": [
+      "Vous jetez l'un des cristaux de votre mémento, sacrifiant ainsi une de vos actions oubliées pour infliger des dégâts physiques à une cible unique.",
+      "Puissance\u00A0: de 50 à 1000",
+      "Plus le cristal contenant l'action oubliée est gros, plus les dégâts infligés sont importants.",
+      "Cette technique d'arme a un temps de recharge indépendant qui n'est pas affecté par ceux des sorts et des autres techniques d'armes."
+    ],
+    "classification": "lost_action",
+    "cache": {
+      "item_id": 32,
+      "type_id": 1,
+      "type": "action",
+      "max_uses": 99,
+      "has_unlimited_uses": false,
+      "weight": 2,
+      "order": 32,
+      "category": {
+        "id": 1,
+        "name": "Attaquant"
+      }
+    },
+    "action": {
+      "id": 20732,
+      "icon_id": 64688,
+      "icon_file": "icon.png",
+      "cast_time_seconds": 0,
+      "recast_time_seconds": 4,
+      "range_yalms": 25,
+      "effect_range_yalms": 0,
+      "max_charges": 0,
+      "cooldown_group": 81,
+      "additional_cooldown_group": 0,
+      "primary_cost": {
+        "type_id": 20,
+        "value": 1
+      },
+      "secondary_cost": {
+        "type_id": 0,
+        "value": 0
+      },
+      "aspect_id": 7,
+      "category": {
+        "id": 3,
+        "name": "Technique d'arme"
+      },
+      "class_job_category": {
+        "id": 169,
+        "name": "PLD MOI GUE DRG BRD MBL MNO INV ÉRU NIN MCH CHN AST SAM MRG PSB DNS FCH SAG VPR PIC",
+        "allowed_jobs": [
+          "PLD",
+          "MNK",
+          "WAR",
+          "DRG",
+          "BRD",
+          "WHM",
+          "BLM",
+          "SMN",
+          "SCH",
+          "NIN",
+          "MCH",
+          "DRK",
+          "AST",
+          "SAM",
+          "RDM",
+          "GNB",
+          "DNC",
+          "RPR",
+          "SGE",
+          "VPR",
+          "PCT"
+        ]
+      },
+      "targeting": {
+        "self": false,
+        "party": false,
+        "alliance": false,
+        "hostile": true,
+        "ally": false,
+        "own_pet": false,
+        "party_pet": false,
+        "dead_target_behavior": 0,
+        "is_area": false,
+        "requires_line_of_sight": true,
+        "requires_facing_target": true
+      },
+      "status_gain_self": null,
+      "proc_status": null
+    }
+  },
+  "ja": {
+    "title": "ロスト・フェアトレード",
+    "description": "所持しているランダムなロストアクションを1つ投げて対象に単体物理攻撃。\u3000威力：50～1000\n投げたロストアクションは失われる。\n投げたロストアクションのサイズが大きいほど威力が上昇する。\nこのウェポンスキルは固有のリキャストタイマーを持ち、他のウェポンスキルや魔法のリキャストタイマーの影響を受けない。",
+    "effects": [
+      "所持しているランダムなロストアクションを1つ投げて対象に単体物理攻撃。\u3000威力：50～1000",
+      "投げたロストアクションは失われる。",
+      "投げたロストアクションのサイズが大きいほど威力が上昇する。",
+      "このウェポンスキルは固有のリキャストタイマーを持ち、他のウェポンスキルや魔法のリキャストタイマーの影響を受けない。"
+    ],
+    "classification": "lost_action",
+    "cache": {
+      "item_id": 32,
+      "type_id": 1,
+      "type": "action",
+      "max_uses": 99,
+      "has_unlimited_uses": false,
+      "weight": 2,
+      "order": 32,
+      "category": {
+        "id": 1,
+        "name": "アクション：アタッカー"
+      }
+    },
+    "action": {
+      "id": 20732,
+      "icon_id": 64688,
+      "icon_file": "icon.png",
+      "cast_time_seconds": 0,
+      "recast_time_seconds": 4,
+      "range_yalms": 25,
+      "effect_range_yalms": 0,
+      "max_charges": 0,
+      "cooldown_group": 81,
+      "additional_cooldown_group": 0,
+      "primary_cost": {
+        "type_id": 20,
+        "value": 1
+      },
+      "secondary_cost": {
+        "type_id": 0,
+        "value": 0
+      },
+      "aspect_id": 7,
+      "category": {
+        "id": 3,
+        "name": "ウェポンスキル"
+      },
+      "class_job_category": {
+        "id": 169,
+        "name": "ナイト モンク 戦士 竜騎士 吟遊詩人 白魔道士 黒魔道士 召喚士 学者 忍者 機工士 暗黒騎士 占星術師 侍 赤魔道士 ガンブレイカー 踊り子 リーパー 賢者 ヴァイパー ピクトマンサー",
+        "allowed_jobs": [
+          "PLD",
+          "MNK",
+          "WAR",
+          "DRG",
+          "BRD",
+          "WHM",
+          "BLM",
+          "SMN",
+          "SCH",
+          "NIN",
+          "MCH",
+          "DRK",
+          "AST",
+          "SAM",
+          "RDM",
+          "GNB",
+          "DNC",
+          "RPR",
+          "SGE",
+          "VPR",
+          "PCT"
+        ]
+      },
+      "targeting": {
+        "self": false,
+        "party": false,
+        "alliance": false,
+        "hostile": true,
+        "ally": false,
+        "own_pet": false,
+        "party_pet": false,
+        "dead_target_behavior": 0,
+        "is_area": false,
+        "requires_line_of_sight": true,
+        "requires_facing_target": true
+      },
+      "status_gain_self": null,
+      "proc_status": null
+    }
+  }
+}

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Concerns;
 
+use App\Models\BozjaItem;
 use App\Models\CharacterClass;
 use App\Models\PhantomJob;
 use App\Models\RaidPosition;
@@ -147,6 +148,34 @@ trait InteractsWithActivitySlotFieldDisplay
                 ->all();
         }
 
+        if (BozjaItem::supportsSource($source)) {
+            $itemIds = collect($values)
+                ->map(fn ($entry) => (int) (is_array($entry) ? ($entry['id'] ?? $entry['key'] ?? 0) : $entry))
+                ->filter(fn (int $id) => $id > 0)
+                ->values();
+            $items = BozjaItem::query()
+                ->forSource((string) $source)
+                ->whereIn('id', $itemIds->all())
+                ->get()
+                ->keyBy('id');
+
+            return $itemIds
+                ->map(function (int $itemId) use ($items) {
+                    /** @var BozjaItem|null $item */
+                    $item = $items->get($itemId);
+
+                    return $item ? [
+                        'label' => $item->localizedName(),
+                        'icon_url' => $item->icon_url,
+                        'classification' => $item->classification,
+                        'cache_weight' => $item->cache_weight,
+                    ] : null;
+                })
+                ->filter()
+                ->values()
+                ->all();
+        }
+
         return [];
     }
 
@@ -268,6 +297,21 @@ trait InteractsWithActivitySlotFieldDisplay
             return [
                 'key' => $value['key'] ?? null,
                 'label' => $value['label'] ?? null,
+            ];
+        }
+
+        if (BozjaItem::supportsSource($fieldValue->source)) {
+            $itemId = (int) ($value['id'] ?? $value['key'] ?? 0);
+            $item = $itemId > 0
+                ? BozjaItem::query()->find($itemId)
+                : null;
+
+            return [
+                'key' => $value['key'] ?? null,
+                'label' => $item?->name ?? ($value['label'] ?? null),
+                'icon_url' => $item?->icon_url,
+                'classification' => $item?->classification,
+                'cache_weight' => $item?->cache_weight,
             ];
         }
 

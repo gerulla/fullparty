@@ -1,0 +1,345 @@
+{
+  "en": {
+    "title": "Lost Font of Power",
+    "description": "Increases damage dealt by 30% and critical hit rate by 40%.\nDuration: 30s\nSpirit of the Irregular Effect: Damage bonus effect is increased to 40%\nSpirit of the Platebearer Effect: Grants Solid Shield to self\nSolid Shield Effect: Reduces physical damage taken by 50%\nDuration: 15s\nCan only be executed while in combat.",
+    "effects": [
+      "Increases damage dealt by 30% and critical hit rate by 40%.",
+      "Duration: 30s",
+      "Spirit of the Irregular Effect: Damage bonus effect is increased to 40%",
+      "Spirit of the Platebearer Effect: Grants Solid Shield to self",
+      "Solid Shield Effect: Reduces physical damage taken by 50%",
+      "Duration: 15s",
+      "Can only be executed while in combat."
+    ],
+    "classification": "lost_action",
+    "cache": {
+      "item_id": 17,
+      "type_id": 1,
+      "type": "action",
+      "max_uses": 10,
+      "has_unlimited_uses": false,
+      "weight": 25,
+      "order": 17,
+      "category": {
+        "id": 1,
+        "name": "Offensive"
+      }
+    },
+    "action": {
+      "id": 20717,
+      "icon_id": 64673,
+      "icon_file": "icon.png",
+      "cast_time_seconds": 0,
+      "recast_time_seconds": 120,
+      "range_yalms": 0,
+      "effect_range_yalms": 0,
+      "max_charges": 0,
+      "cooldown_group": 81,
+      "additional_cooldown_group": 0,
+      "primary_cost": {
+        "type_id": 20,
+        "value": 1
+      },
+      "secondary_cost": {
+        "type_id": 42,
+        "value": 0
+      },
+      "aspect_id": 0,
+      "category": {
+        "id": 4,
+        "name": "Ability"
+      },
+      "class_job_category": {
+        "id": 174,
+        "name": "PLD MNK WAR DRG BRD NIN MCH DRK SAM GNB DNC RPR VPR",
+        "allowed_jobs": [
+          "PLD",
+          "MNK",
+          "WAR",
+          "DRG",
+          "BRD",
+          "NIN",
+          "MCH",
+          "DRK",
+          "SAM",
+          "GNB",
+          "DNC",
+          "RPR",
+          "VPR"
+        ]
+      },
+      "targeting": {
+        "self": true,
+        "party": false,
+        "alliance": false,
+        "hostile": false,
+        "ally": false,
+        "own_pet": false,
+        "party_pet": false,
+        "dead_target_behavior": 0,
+        "is_area": false,
+        "requires_line_of_sight": true,
+        "requires_facing_target": true
+      },
+      "status_gain_self": null,
+      "proc_status": null
+    }
+  },
+  "de": {
+    "title": "Verschollene Machtfontäne",
+    "description": "Du erhöhst deinen ausgeteilten Schaden um 30\u00A0% und deine kritische Trefferrate um 40\u00A0%.\nDauer: 30 Sekunden\nZusatzeffekt bei Trank des Berserkers: Wirkung der Schadenserhöhung erhöht sich auf 40\u00A0%.\nZusatzeffekt bei Trank des Ritters: Gewährt Physischer Schild, der den erlittenen physischen Schaden um 50\u00A0% verringert.\nDauer: 15 Sekunden\nNur im Kampf wirksam.",
+    "effects": [
+      "Du erhöhst deinen ausgeteilten Schaden um 30\u00A0% und deine kritische Trefferrate um 40\u00A0%.",
+      "Dauer: 30 Sekunden",
+      "Zusatzeffekt bei Trank des Berserkers: Wirkung der Schadenserhöhung erhöht sich auf 40\u00A0%.",
+      "Zusatzeffekt bei Trank des Ritters: Gewährt Physischer Schild, der den erlittenen physischen Schaden um 50\u00A0% verringert.",
+      "Dauer: 15 Sekunden",
+      "Nur im Kampf wirksam."
+    ],
+    "classification": "lost_action",
+    "cache": {
+      "item_id": 17,
+      "type_id": 1,
+      "type": "action",
+      "max_uses": 10,
+      "has_unlimited_uses": false,
+      "weight": 25,
+      "order": 17,
+      "category": {
+        "id": 1,
+        "name": "Angreifer"
+      }
+    },
+    "action": {
+      "id": 20717,
+      "icon_id": 64673,
+      "icon_file": "icon.png",
+      "cast_time_seconds": 0,
+      "recast_time_seconds": 120,
+      "range_yalms": 0,
+      "effect_range_yalms": 0,
+      "max_charges": 0,
+      "cooldown_group": 81,
+      "additional_cooldown_group": 0,
+      "primary_cost": {
+        "type_id": 20,
+        "value": 1
+      },
+      "secondary_cost": {
+        "type_id": 42,
+        "value": 0
+      },
+      "aspect_id": 0,
+      "category": {
+        "id": 4,
+        "name": "Talent"
+      },
+      "class_job_category": {
+        "id": 174,
+        "name": "PLD MÖN KRG DRG BRD NIN MCH DKR SAM REV TÄN SNT VPR",
+        "allowed_jobs": [
+          "PLD",
+          "MNK",
+          "WAR",
+          "DRG",
+          "BRD",
+          "NIN",
+          "MCH",
+          "DRK",
+          "SAM",
+          "GNB",
+          "DNC",
+          "RPR",
+          "VPR"
+        ]
+      },
+      "targeting": {
+        "self": true,
+        "party": false,
+        "alliance": false,
+        "hostile": false,
+        "ally": false,
+        "own_pet": false,
+        "party_pet": false,
+        "dead_target_behavior": 0,
+        "is_area": false,
+        "requires_line_of_sight": true,
+        "requires_facing_target": true
+      },
+      "status_gain_self": null,
+      "proc_status": null
+    }
+  },
+  "fr": {
+    "title": "Fontaine de puissance oubliée",
+    "description": "Augmente de 30% vos dégâts infligés et de 40% vos chances de critiques.\nDurée\u00A0: 30s\nCondition\u00A0: en combat.\nEffet additionnel avec un breuvage de guerrier enragé\u00A0: l'augmentation des dégâts infligés passe à 40%.\nEffet additionnel avec un breuvage de soldat cuirassé\u00A0: vous octroie Protection physique.\nProtection physique\u00A0: réduit de 50% les dégâts physiques subis.\nDurée\u00A0: 15s",
+    "effects": [
+      "Augmente de 30% vos dégâts infligés et de 40% vos chances de critiques.",
+      "Durée\u00A0: 30s",
+      "Condition\u00A0: en combat.",
+      "Effet additionnel avec un breuvage de guerrier enragé\u00A0: l'augmentation des dégâts infligés passe à 40%.",
+      "Effet additionnel avec un breuvage de soldat cuirassé\u00A0: vous octroie Protection physique.",
+      "Protection physique\u00A0: réduit de 50% les dégâts physiques subis.",
+      "Durée\u00A0: 15s"
+    ],
+    "classification": "lost_action",
+    "cache": {
+      "item_id": 17,
+      "type_id": 1,
+      "type": "action",
+      "max_uses": 10,
+      "has_unlimited_uses": false,
+      "weight": 25,
+      "order": 17,
+      "category": {
+        "id": 1,
+        "name": "Attaquant"
+      }
+    },
+    "action": {
+      "id": 20717,
+      "icon_id": 64673,
+      "icon_file": "icon.png",
+      "cast_time_seconds": 0,
+      "recast_time_seconds": 120,
+      "range_yalms": 0,
+      "effect_range_yalms": 0,
+      "max_charges": 0,
+      "cooldown_group": 81,
+      "additional_cooldown_group": 0,
+      "primary_cost": {
+        "type_id": 20,
+        "value": 1
+      },
+      "secondary_cost": {
+        "type_id": 42,
+        "value": 0
+      },
+      "aspect_id": 0,
+      "category": {
+        "id": 4,
+        "name": "Aptitude"
+      },
+      "class_job_category": {
+        "id": 174,
+        "name": "PLD MOI GUE DRG BRD NIN MCH CHN SAM PSB DNS FCH VPR",
+        "allowed_jobs": [
+          "PLD",
+          "MNK",
+          "WAR",
+          "DRG",
+          "BRD",
+          "NIN",
+          "MCH",
+          "DRK",
+          "SAM",
+          "GNB",
+          "DNC",
+          "RPR",
+          "VPR"
+        ]
+      },
+      "targeting": {
+        "self": true,
+        "party": false,
+        "alliance": false,
+        "hostile": false,
+        "ally": false,
+        "own_pet": false,
+        "party_pet": false,
+        "dead_target_behavior": 0,
+        "is_area": false,
+        "requires_line_of_sight": true,
+        "requires_facing_target": true
+      },
+      "status_gain_self": null,
+      "proc_status": null
+    }
+  },
+  "ja": {
+    "title": "ロスト・パワーフォント",
+    "description": "一定時間、自身の与ダメージを30％上昇させ、かつクリティカル発動率を40％上昇させる。\n効果時間：30秒\n発動条件：自身が戦闘状態\n狂戦士の薬時追加効果：与ダメージの効果量が40％になる。\n重騎兵の薬時追加効果：自身に「フィジカルシールド」を付与する。\nフィジカルシールド効果：受ける物理ダメージを50％軽減させる。\n効果時間：15秒",
+    "effects": [
+      "一定時間、自身の与ダメージを30％上昇させ、かつクリティカル発動率を40％上昇させる。",
+      "効果時間：30秒",
+      "発動条件：自身が戦闘状態",
+      "狂戦士の薬時追加効果：与ダメージの効果量が40％になる。",
+      "重騎兵の薬時追加効果：自身に「フィジカルシールド」を付与する。",
+      "フィジカルシールド効果：受ける物理ダメージを50％軽減させる。",
+      "効果時間：15秒"
+    ],
+    "classification": "lost_action",
+    "cache": {
+      "item_id": 17,
+      "type_id": 1,
+      "type": "action",
+      "max_uses": 10,
+      "has_unlimited_uses": false,
+      "weight": 25,
+      "order": 17,
+      "category": {
+        "id": 1,
+        "name": "アクション：アタッカー"
+      }
+    },
+    "action": {
+      "id": 20717,
+      "icon_id": 64673,
+      "icon_file": "icon.png",
+      "cast_time_seconds": 0,
+      "recast_time_seconds": 120,
+      "range_yalms": 0,
+      "effect_range_yalms": 0,
+      "max_charges": 0,
+      "cooldown_group": 81,
+      "additional_cooldown_group": 0,
+      "primary_cost": {
+        "type_id": 20,
+        "value": 1
+      },
+      "secondary_cost": {
+        "type_id": 42,
+        "value": 0
+      },
+      "aspect_id": 0,
+      "category": {
+        "id": 4,
+        "name": "アビリティ"
+      },
+      "class_job_category": {
+        "id": 174,
+        "name": "ナイト モンク 戦士 竜騎士 吟遊詩人 忍者 機工士 暗黒騎士 侍 ガンブレイカー 踊り子 リーパー ヴァイパー",
+        "allowed_jobs": [
+          "PLD",
+          "MNK",
+          "WAR",
+          "DRG",
+          "BRD",
+          "NIN",
+          "MCH",
+          "DRK",
+          "SAM",
+          "GNB",
+          "DNC",
+          "RPR",
+          "VPR"
+        ]
+      },
+      "targeting": {
+        "self": true,
+        "party": false,
+        "alliance": false,
+        "hostile": false,
+        "ally": false,
+        "own_pet": false,
+        "party_pet": false,
+        "dead_target_behavior": 0,
+        "is_area": false,
+        "requires_line_of_sight": true,
+        "requires_facing_target": true
+      },
+      "status_gain_self": null,
+      "proc_status": null
+    }
+  }
+}

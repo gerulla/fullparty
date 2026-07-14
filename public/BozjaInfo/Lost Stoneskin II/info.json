@@ -1,0 +1,359 @@
+{
+  "en": {
+    "title": "Lost Stoneskin II",
+    "description": "Creates a barrier around self and all party members near you that absorbs damage totaling 10% of maximum HP.\nDuration: 30s",
+    "effects": [
+      "Creates a barrier around self and all party members near you that absorbs damage totaling 10% of maximum HP.",
+      "Duration: 30s"
+    ],
+    "classification": "lost_action",
+    "cache": {
+      "item_id": 85,
+      "type_id": 1,
+      "type": "action",
+      "max_uses": 99,
+      "has_unlimited_uses": false,
+      "weight": 5,
+      "order": 85,
+      "category": {
+        "id": 4,
+        "name": "Beneficial"
+      }
+    },
+    "action": {
+      "id": 23908,
+      "icon_id": 64741,
+      "icon_file": "icon.png",
+      "cast_time_seconds": 3,
+      "recast_time_seconds": 2.5,
+      "range_yalms": 0,
+      "effect_range_yalms": 15,
+      "max_charges": 0,
+      "cooldown_group": 58,
+      "additional_cooldown_group": 0,
+      "primary_cost": {
+        "type_id": 20,
+        "value": 1
+      },
+      "secondary_cost": {
+        "type_id": 0,
+        "value": 0
+      },
+      "aspect_id": 4,
+      "category": {
+        "id": 2,
+        "name": "Spell"
+      },
+      "class_job_category": {
+        "id": 169,
+        "name": "PLD MNK WAR DRG BRD WHM BLM SMN SCH NIN MCH DRK AST SAM RDM GNB DNC RPR SGE VPR PCT",
+        "allowed_jobs": [
+          "PLD",
+          "MNK",
+          "WAR",
+          "DRG",
+          "BRD",
+          "WHM",
+          "BLM",
+          "SMN",
+          "SCH",
+          "NIN",
+          "MCH",
+          "DRK",
+          "AST",
+          "SAM",
+          "RDM",
+          "GNB",
+          "DNC",
+          "RPR",
+          "SGE",
+          "VPR",
+          "PCT"
+        ]
+      },
+      "targeting": {
+        "self": true,
+        "party": false,
+        "alliance": false,
+        "hostile": false,
+        "ally": false,
+        "own_pet": false,
+        "party_pet": false,
+        "dead_target_behavior": 0,
+        "is_area": false,
+        "requires_line_of_sight": true,
+        "requires_facing_target": false
+      },
+      "status_gain_self": null,
+      "proc_status": null
+    }
+  },
+  "de": {
+    "title": "Verschollene Steinrahaut",
+    "description": "Du errichtest eine Barriere um dich und umstehende Gruppenmitglieder, die Schaden in der Höhe von 10\u00A0% der Maximal-LP des Ziels absorbiert.\nDauer: 30 Sekunden",
+    "effects": [
+      "Du errichtest eine Barriere um dich und umstehende Gruppenmitglieder, die Schaden in der Höhe von 10\u00A0% der Maximal-LP des Ziels absorbiert.",
+      "Dauer: 30 Sekunden"
+    ],
+    "classification": "lost_action",
+    "cache": {
+      "item_id": 85,
+      "type_id": 1,
+      "type": "action",
+      "max_uses": 99,
+      "has_unlimited_uses": false,
+      "weight": 5,
+      "order": 85,
+      "category": {
+        "id": 4,
+        "name": "Unterstützer"
+      }
+    },
+    "action": {
+      "id": 23908,
+      "icon_id": 64741,
+      "icon_file": "icon.png",
+      "cast_time_seconds": 3,
+      "recast_time_seconds": 2.5,
+      "range_yalms": 0,
+      "effect_range_yalms": 15,
+      "max_charges": 0,
+      "cooldown_group": 58,
+      "additional_cooldown_group": 0,
+      "primary_cost": {
+        "type_id": 20,
+        "value": 1
+      },
+      "secondary_cost": {
+        "type_id": 0,
+        "value": 0
+      },
+      "aspect_id": 4,
+      "category": {
+        "id": 2,
+        "name": "Zauber"
+      },
+      "class_job_category": {
+        "id": 169,
+        "name": "PLD MÖN KRG DRG BRD WMA SMA BSW GLT NIN MCH DKR AST SAM RMA REV TÄN SNT WEI VPR PKT",
+        "allowed_jobs": [
+          "PLD",
+          "MNK",
+          "WAR",
+          "DRG",
+          "BRD",
+          "WHM",
+          "BLM",
+          "SMN",
+          "SCH",
+          "NIN",
+          "MCH",
+          "DRK",
+          "AST",
+          "SAM",
+          "RDM",
+          "GNB",
+          "DNC",
+          "RPR",
+          "SGE",
+          "VPR",
+          "PCT"
+        ]
+      },
+      "targeting": {
+        "self": true,
+        "party": false,
+        "alliance": false,
+        "hostile": false,
+        "ally": false,
+        "own_pet": false,
+        "party_pet": false,
+        "dead_target_behavior": 0,
+        "is_area": false,
+        "requires_line_of_sight": true,
+        "requires_facing_target": false
+      },
+      "status_gain_self": null,
+      "proc_status": null
+    }
+  },
+  "fr": {
+    "title": "Extra Cuirasse oubliée",
+    "description": "Crée une barrière sur vous et les équipiers alentour, absorbant les dégâts subis pour un total de 10% des PV maximums.\nDurée\u00A0: 30s",
+    "effects": [
+      "Crée une barrière sur vous et les équipiers alentour, absorbant les dégâts subis pour un total de 10% des PV maximums.",
+      "Durée\u00A0: 30s"
+    ],
+    "classification": "lost_action",
+    "cache": {
+      "item_id": 85,
+      "type_id": 1,
+      "type": "action",
+      "max_uses": 99,
+      "has_unlimited_uses": false,
+      "weight": 5,
+      "order": 85,
+      "category": {
+        "id": 4,
+        "name": "Auxiliaire"
+      }
+    },
+    "action": {
+      "id": 23908,
+      "icon_id": 64741,
+      "icon_file": "icon.png",
+      "cast_time_seconds": 3,
+      "recast_time_seconds": 2.5,
+      "range_yalms": 0,
+      "effect_range_yalms": 15,
+      "max_charges": 0,
+      "cooldown_group": 58,
+      "additional_cooldown_group": 0,
+      "primary_cost": {
+        "type_id": 20,
+        "value": 1
+      },
+      "secondary_cost": {
+        "type_id": 0,
+        "value": 0
+      },
+      "aspect_id": 4,
+      "category": {
+        "id": 2,
+        "name": "Sort"
+      },
+      "class_job_category": {
+        "id": 169,
+        "name": "PLD MOI GUE DRG BRD MBL MNO INV ÉRU NIN MCH CHN AST SAM MRG PSB DNS FCH SAG VPR PIC",
+        "allowed_jobs": [
+          "PLD",
+          "MNK",
+          "WAR",
+          "DRG",
+          "BRD",
+          "WHM",
+          "BLM",
+          "SMN",
+          "SCH",
+          "NIN",
+          "MCH",
+          "DRK",
+          "AST",
+          "SAM",
+          "RDM",
+          "GNB",
+          "DNC",
+          "RPR",
+          "SGE",
+          "VPR",
+          "PCT"
+        ]
+      },
+      "targeting": {
+        "self": true,
+        "party": false,
+        "alliance": false,
+        "hostile": false,
+        "ally": false,
+        "own_pet": false,
+        "party_pet": false,
+        "dead_target_behavior": 0,
+        "is_area": false,
+        "requires_line_of_sight": true,
+        "requires_facing_target": false
+      },
+      "status_gain_self": null,
+      "proc_status": null
+    }
+  },
+  "ja": {
+    "title": "ロスト・ストンラスキン",
+    "description": "自身と周囲のパーティメンバーに、一定量のダメージを防ぐバリアを張る。\nこのバリアは対象の最大ＨＰの10％分のダメージを軽減する。\n効果時間：30秒",
+    "effects": [
+      "自身と周囲のパーティメンバーに、一定量のダメージを防ぐバリアを張る。",
+      "このバリアは対象の最大ＨＰの10％分のダメージを軽減する。",
+      "効果時間：30秒"
+    ],
+    "classification": "lost_action",
+    "cache": {
+      "item_id": 85,
+      "type_id": 1,
+      "type": "action",
+      "max_uses": 99,
+      "has_unlimited_uses": false,
+      "weight": 5,
+      "order": 85,
+      "category": {
+        "id": 4,
+        "name": "アクション：バッファー"
+      }
+    },
+    "action": {
+      "id": 23908,
+      "icon_id": 64741,
+      "icon_file": "icon.png",
+      "cast_time_seconds": 3,
+      "recast_time_seconds": 2.5,
+      "range_yalms": 0,
+      "effect_range_yalms": 15,
+      "max_charges": 0,
+      "cooldown_group": 58,
+      "additional_cooldown_group": 0,
+      "primary_cost": {
+        "type_id": 20,
+        "value": 1
+      },
+      "secondary_cost": {
+        "type_id": 0,
+        "value": 0
+      },
+      "aspect_id": 4,
+      "category": {
+        "id": 2,
+        "name": "魔法"
+      },
+      "class_job_category": {
+        "id": 169,
+        "name": "ナイト モンク 戦士 竜騎士 吟遊詩人 白魔道士 黒魔道士 召喚士 学者 忍者 機工士 暗黒騎士 占星術師 侍 赤魔道士 ガンブレイカー 踊り子 リーパー 賢者 ヴァイパー ピクトマンサー",
+        "allowed_jobs": [
+          "PLD",
+          "MNK",
+          "WAR",
+          "DRG",
+          "BRD",
+          "WHM",
+          "BLM",
+          "SMN",
+          "SCH",
+          "NIN",
+          "MCH",
+          "DRK",
+          "AST",
+          "SAM",
+          "RDM",
+          "GNB",
+          "DNC",
+          "RPR",
+          "SGE",
+          "VPR",
+          "PCT"
+        ]
+      },
+      "targeting": {
+        "self": true,
+        "party": false,
+        "alliance": false,
+        "hostile": false,
+        "ally": false,
+        "own_pet": false,
+        "party_pet": false,
+        "dead_target_behavior": 0,
+        "is_area": false,
+        "requires_line_of_sight": true,
+        "requires_facing_target": false
+      },
+      "status_gain_self": null,
+      "proc_status": null
+    }
+  }
+}

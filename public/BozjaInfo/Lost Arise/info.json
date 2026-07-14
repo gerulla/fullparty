@@ -1,0 +1,306 @@
+{
+  "en": {
+    "title": "Lost Arise",
+    "description": "Restores all of a KO'd target's HP.\nIf the target was weakened at the time of Raise, the weakness effect will be removed.",
+    "effects": [
+      "Restores all of a KO'd target's HP.",
+      "If the target was weakened at the time of Raise, the weakness effect will be removed."
+    ],
+    "classification": "lost_action",
+    "cache": {
+      "item_id": 30,
+      "type_id": 1,
+      "type": "action",
+      "max_uses": 5,
+      "has_unlimited_uses": false,
+      "weight": 6,
+      "order": 30,
+      "category": {
+        "id": 3,
+        "name": "Restorative"
+      }
+    },
+    "action": {
+      "id": 20730,
+      "icon_id": 64686,
+      "icon_file": "icon.png",
+      "cast_time_seconds": 3,
+      "recast_time_seconds": 2.5,
+      "range_yalms": 30,
+      "effect_range_yalms": 0,
+      "max_charges": 0,
+      "cooldown_group": 58,
+      "additional_cooldown_group": 0,
+      "primary_cost": {
+        "type_id": 20,
+        "value": 1
+      },
+      "secondary_cost": {
+        "type_id": 0,
+        "value": 0
+      },
+      "aspect_id": 7,
+      "category": {
+        "id": 2,
+        "name": "Spell"
+      },
+      "class_job_category": {
+        "id": 168,
+        "name": "PLD WAR WHM SCH DRK AST GNB SGE",
+        "allowed_jobs": [
+          "PLD",
+          "WAR",
+          "WHM",
+          "SCH",
+          "DRK",
+          "AST",
+          "GNB",
+          "SGE"
+        ]
+      },
+      "targeting": {
+        "self": false,
+        "party": true,
+        "alliance": true,
+        "hostile": false,
+        "ally": true,
+        "own_pet": false,
+        "party_pet": false,
+        "dead_target_behavior": 1,
+        "is_area": false,
+        "requires_line_of_sight": true,
+        "requires_facing_target": false
+      },
+      "status_gain_self": null,
+      "proc_status": null
+    }
+  },
+  "de": {
+    "title": "Verschollener Erzengel",
+    "description": "Du belebst das Ziel wieder und regenerierst all seine LP.\nSollte das Ziel unter Schwäche gelitten haben, wird dieser Status beim Wiederbeleben aufgehoben.",
+    "effects": [
+      "Du belebst das Ziel wieder und regenerierst all seine LP.",
+      "Sollte das Ziel unter Schwäche gelitten haben, wird dieser Status beim Wiederbeleben aufgehoben."
+    ],
+    "classification": "lost_action",
+    "cache": {
+      "item_id": 30,
+      "type_id": 1,
+      "type": "action",
+      "max_uses": 5,
+      "has_unlimited_uses": false,
+      "weight": 6,
+      "order": 30,
+      "category": {
+        "id": 3,
+        "name": "Heiler"
+      }
+    },
+    "action": {
+      "id": 20730,
+      "icon_id": 64686,
+      "icon_file": "icon.png",
+      "cast_time_seconds": 3,
+      "recast_time_seconds": 2.5,
+      "range_yalms": 30,
+      "effect_range_yalms": 0,
+      "max_charges": 0,
+      "cooldown_group": 58,
+      "additional_cooldown_group": 0,
+      "primary_cost": {
+        "type_id": 20,
+        "value": 1
+      },
+      "secondary_cost": {
+        "type_id": 0,
+        "value": 0
+      },
+      "aspect_id": 7,
+      "category": {
+        "id": 2,
+        "name": "Zauber"
+      },
+      "class_job_category": {
+        "id": 168,
+        "name": "PLD KRG WMA GLT DKR AST REV WEI",
+        "allowed_jobs": [
+          "PLD",
+          "WAR",
+          "WHM",
+          "SCH",
+          "DRK",
+          "AST",
+          "GNB",
+          "SGE"
+        ]
+      },
+      "targeting": {
+        "self": false,
+        "party": true,
+        "alliance": true,
+        "hostile": false,
+        "ally": true,
+        "own_pet": false,
+        "party_pet": false,
+        "dead_target_behavior": 1,
+        "is_area": false,
+        "requires_line_of_sight": true,
+        "requires_facing_target": false
+      },
+      "status_gain_self": null,
+      "proc_status": null
+    }
+  },
+  "fr": {
+    "title": "Maxi-Vie oubliée",
+    "description": "Ressuscite la cible et restaure l'intégralité de ses PV.\nDissipe l'altération d'état Affaiblissement, si la cible en souffrait.",
+    "effects": [
+      "Ressuscite la cible et restaure l'intégralité de ses PV.",
+      "Dissipe l'altération d'état Affaiblissement, si la cible en souffrait."
+    ],
+    "classification": "lost_action",
+    "cache": {
+      "item_id": 30,
+      "type_id": 1,
+      "type": "action",
+      "max_uses": 5,
+      "has_unlimited_uses": false,
+      "weight": 6,
+      "order": 30,
+      "category": {
+        "id": 3,
+        "name": "Soigneur"
+      }
+    },
+    "action": {
+      "id": 20730,
+      "icon_id": 64686,
+      "icon_file": "icon.png",
+      "cast_time_seconds": 3,
+      "recast_time_seconds": 2.5,
+      "range_yalms": 30,
+      "effect_range_yalms": 0,
+      "max_charges": 0,
+      "cooldown_group": 58,
+      "additional_cooldown_group": 0,
+      "primary_cost": {
+        "type_id": 20,
+        "value": 1
+      },
+      "secondary_cost": {
+        "type_id": 0,
+        "value": 0
+      },
+      "aspect_id": 7,
+      "category": {
+        "id": 2,
+        "name": "Sort"
+      },
+      "class_job_category": {
+        "id": 168,
+        "name": "PLD GUE MBL ÉRU CHN AST PSB SAG",
+        "allowed_jobs": [
+          "PLD",
+          "WAR",
+          "WHM",
+          "SCH",
+          "DRK",
+          "AST",
+          "GNB",
+          "SGE"
+        ]
+      },
+      "targeting": {
+        "self": false,
+        "party": true,
+        "alliance": true,
+        "hostile": false,
+        "ally": true,
+        "own_pet": false,
+        "party_pet": false,
+        "dead_target_behavior": 1,
+        "is_area": false,
+        "requires_line_of_sight": true,
+        "requires_facing_target": false
+      },
+      "status_gain_self": null,
+      "proc_status": null
+    }
+  },
+  "ja": {
+    "title": "ロスト・アレイズ",
+    "description": "対象のＨＰを全回復し、さらに蘇生する。\n対象に衰弱効果が付与されていた場合は解除して蘇生する。",
+    "effects": [
+      "対象のＨＰを全回復し、さらに蘇生する。",
+      "対象に衰弱効果が付与されていた場合は解除して蘇生する。"
+    ],
+    "classification": "lost_action",
+    "cache": {
+      "item_id": 30,
+      "type_id": 1,
+      "type": "action",
+      "max_uses": 5,
+      "has_unlimited_uses": false,
+      "weight": 6,
+      "order": 30,
+      "category": {
+        "id": 3,
+        "name": "アクション：ヒーラー"
+      }
+    },
+    "action": {
+      "id": 20730,
+      "icon_id": 64686,
+      "icon_file": "icon.png",
+      "cast_time_seconds": 3,
+      "recast_time_seconds": 2.5,
+      "range_yalms": 30,
+      "effect_range_yalms": 0,
+      "max_charges": 0,
+      "cooldown_group": 58,
+      "additional_cooldown_group": 0,
+      "primary_cost": {
+        "type_id": 20,
+        "value": 1
+      },
+      "secondary_cost": {
+        "type_id": 0,
+        "value": 0
+      },
+      "aspect_id": 7,
+      "category": {
+        "id": 2,
+        "name": "魔法"
+      },
+      "class_job_category": {
+        "id": 168,
+        "name": "ナイト 戦士 白魔道士 学者 暗黒騎士 占星術師 ガンブレイカー 賢者",
+        "allowed_jobs": [
+          "PLD",
+          "WAR",
+          "WHM",
+          "SCH",
+          "DRK",
+          "AST",
+          "GNB",
+          "SGE"
+        ]
+      },
+      "targeting": {
+        "self": false,
+        "party": true,
+        "alliance": true,
+        "hostile": false,
+        "ally": true,
+        "own_pet": false,
+        "party_pet": false,
+        "dead_target_behavior": 1,
+        "is_area": false,
+        "requires_line_of_sight": true,
+        "requires_facing_target": false
+      },
+      "status_gain_self": null,
+      "proc_status": null
+    }
+  }
+}

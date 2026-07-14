@@ -1,0 +1,394 @@
+{
+  "en": {
+    "title": "Lost Impetus",
+    "description": "Quickly dash 10 yalms forward.\nAdditional Effect: Applies Lost Swift to self and nearby party members\nLost Swift Effect: Greatly increases movement speed\nEffect cannot be stacked with other movement speed enhancing abilities.\nDuration: 10s\nSpirit of the Breathtaker Effect: Increases evasion of self and nearby party members by 15%\nDuration: 60s\nSpirit of the Watcher Effect: Grants Rapid Recast to self and nearby party members\nRapid Recast Effect: Shortens recast time for next ability used by 25%\nEffect only applies to certain abilities.\nDuration: 15s\nCannot be executed while bound.",
+    "effects": [
+      "Quickly dash 10 yalms forward.",
+      "Additional Effect: Applies Lost Swift to self and nearby party members",
+      "Lost Swift Effect: Greatly increases movement speed",
+      "Effect cannot be stacked with other movement speed enhancing abilities.",
+      "Duration: 10s",
+      "Spirit of the Breathtaker Effect: Increases evasion of self and nearby party members by 15%",
+      "Duration: 60s",
+      "Spirit of the Watcher Effect: Grants Rapid Recast to self and nearby party members",
+      "Rapid Recast Effect: Shortens recast time for next ability used by 25%",
+      "Effect only applies to certain abilities.",
+      "Duration: 15s",
+      "Cannot be executed while bound."
+    ],
+    "classification": "lost_action",
+    "cache": {
+      "item_id": 95,
+      "type_id": 1,
+      "type": "action",
+      "max_uses": 50,
+      "has_unlimited_uses": false,
+      "weight": 10,
+      "order": 95,
+      "category": {
+        "id": 5,
+        "name": "Tactical"
+      }
+    },
+    "action": {
+      "id": 23918,
+      "icon_id": 64751,
+      "icon_file": "icon.png",
+      "cast_time_seconds": 0,
+      "recast_time_seconds": 30,
+      "range_yalms": 0,
+      "effect_range_yalms": 10,
+      "max_charges": 0,
+      "cooldown_group": 81,
+      "additional_cooldown_group": 0,
+      "primary_cost": {
+        "type_id": 20,
+        "value": 1
+      },
+      "secondary_cost": {
+        "type_id": 0,
+        "value": 0
+      },
+      "aspect_id": 0,
+      "category": {
+        "id": 4,
+        "name": "Ability"
+      },
+      "class_job_category": {
+        "id": 169,
+        "name": "PLD MNK WAR DRG BRD WHM BLM SMN SCH NIN MCH DRK AST SAM RDM GNB DNC RPR SGE VPR PCT",
+        "allowed_jobs": [
+          "PLD",
+          "MNK",
+          "WAR",
+          "DRG",
+          "BRD",
+          "WHM",
+          "BLM",
+          "SMN",
+          "SCH",
+          "NIN",
+          "MCH",
+          "DRK",
+          "AST",
+          "SAM",
+          "RDM",
+          "GNB",
+          "DNC",
+          "RPR",
+          "SGE",
+          "VPR",
+          "PCT"
+        ]
+      },
+      "targeting": {
+        "self": true,
+        "party": false,
+        "alliance": false,
+        "hostile": false,
+        "ally": false,
+        "own_pet": false,
+        "party_pet": false,
+        "dead_target_behavior": 0,
+        "is_area": false,
+        "requires_line_of_sight": true,
+        "requires_facing_target": true
+      },
+      "status_gain_self": null,
+      "proc_status": null
+    }
+  },
+  "de": {
+    "title": "Verschollener Impuls",
+    "description": "Du schnellst 10 Yalme nach vorne.\nZusatzeffekt: Verleiht dir und umstehenden Gruppenmitgliedern Verschollene Eile.\nEffekt von Verschollene Eile: Erhöht deine Bewegungsgeschwindigkeit beträchtlich. Wenn mehrere Effekte die Bewegungsgeschwindigkeit erhöhen, wird nur einer angewendet.\nDauer: 10 Sekunden\nZusatzeffekt bei Trank des Diebes: Erhöht Ausweichrate von dir und umstehenden Gruppenmitgliedern um 15\u00A0%.\nDauer: 60 Sekunden\nZusatzeffekt bei Trank des Spähers: Verleiht dir und umstehenden Gruppenmitgliedern Velocitas.\nEffekt von Velocitas: Die Reaktivierungszeit des nächsten während der Wirkungsdauer gewirkten Talents ist um 25\u00A0% verkürzt.\nDauer: 15 Sekunden\nKann nicht während Fessel ausgeführt werden.",
+    "effects": [
+      "Du schnellst 10 Yalme nach vorne.",
+      "Zusatzeffekt: Verleiht dir und umstehenden Gruppenmitgliedern Verschollene Eile.",
+      "Effekt von Verschollene Eile: Erhöht deine Bewegungsgeschwindigkeit beträchtlich. Wenn mehrere Effekte die Bewegungsgeschwindigkeit erhöhen, wird nur einer angewendet.",
+      "Dauer: 10 Sekunden",
+      "Zusatzeffekt bei Trank des Diebes: Erhöht Ausweichrate von dir und umstehenden Gruppenmitgliedern um 15\u00A0%.",
+      "Dauer: 60 Sekunden",
+      "Zusatzeffekt bei Trank des Spähers: Verleiht dir und umstehenden Gruppenmitgliedern Velocitas.",
+      "Effekt von Velocitas: Die Reaktivierungszeit des nächsten während der Wirkungsdauer gewirkten Talents ist um 25\u00A0% verkürzt.",
+      "Dauer: 15 Sekunden",
+      "Kann nicht während Fessel ausgeführt werden."
+    ],
+    "classification": "lost_action",
+    "cache": {
+      "item_id": 95,
+      "type_id": 1,
+      "type": "action",
+      "max_uses": 50,
+      "has_unlimited_uses": false,
+      "weight": 10,
+      "order": 95,
+      "category": {
+        "id": 5,
+        "name": "Späher"
+      }
+    },
+    "action": {
+      "id": 23918,
+      "icon_id": 64751,
+      "icon_file": "icon.png",
+      "cast_time_seconds": 0,
+      "recast_time_seconds": 30,
+      "range_yalms": 0,
+      "effect_range_yalms": 10,
+      "max_charges": 0,
+      "cooldown_group": 81,
+      "additional_cooldown_group": 0,
+      "primary_cost": {
+        "type_id": 20,
+        "value": 1
+      },
+      "secondary_cost": {
+        "type_id": 0,
+        "value": 0
+      },
+      "aspect_id": 0,
+      "category": {
+        "id": 4,
+        "name": "Talent"
+      },
+      "class_job_category": {
+        "id": 169,
+        "name": "PLD MÖN KRG DRG BRD WMA SMA BSW GLT NIN MCH DKR AST SAM RMA REV TÄN SNT WEI VPR PKT",
+        "allowed_jobs": [
+          "PLD",
+          "MNK",
+          "WAR",
+          "DRG",
+          "BRD",
+          "WHM",
+          "BLM",
+          "SMN",
+          "SCH",
+          "NIN",
+          "MCH",
+          "DRK",
+          "AST",
+          "SAM",
+          "RDM",
+          "GNB",
+          "DNC",
+          "RPR",
+          "SGE",
+          "VPR",
+          "PCT"
+        ]
+      },
+      "targeting": {
+        "self": true,
+        "party": false,
+        "alliance": false,
+        "hostile": false,
+        "ally": false,
+        "own_pet": false,
+        "party_pet": false,
+        "dead_target_behavior": 0,
+        "is_area": false,
+        "requires_line_of_sight": true,
+        "requires_facing_target": true
+      },
+      "status_gain_self": null,
+      "proc_status": null
+    }
+  },
+  "fr": {
+    "title": "Impulsion oubliée",
+    "description": "Permet de se déplacer rapidement de 10 yalms vers l'avant.\nNe peut pas être utilisé sous l'effet Entrave.\nEffet additionnel\u00A0: octroie Vélocité oubliée à vous et aux équipiers alentours.\nVélocité oubliée\u00A0: augmente grandement votre vitesse de déplacement.\nSi vous bénéficiez d'un autre effet d'augmentation de vitesse, seul l'un d'entre eux s'applique.\nDurée\u00A0: 10s\nEffet additionnel avec un breuvage de voleur\u00A0: augmente de 15% les chances d'esquive pour vous et les équipiers alentour.\nDurée\u00A0: 60s\nEffet additionnel avec un breuvage d'éclaireur\u00A0: octroie Recharge rapide à vous et aux équipiers alentour.\nRecharge rapide\u00A0: réduit de 25% le temps de recharge de la prochaine aptitude.\nDurée\u00A0: 15s",
+    "effects": [
+      "Permet de se déplacer rapidement de 10 yalms vers l'avant.",
+      "Ne peut pas être utilisé sous l'effet Entrave.",
+      "Effet additionnel\u00A0: octroie Vélocité oubliée à vous et aux équipiers alentours.",
+      "Vélocité oubliée\u00A0: augmente grandement votre vitesse de déplacement.",
+      "Si vous bénéficiez d'un autre effet d'augmentation de vitesse, seul l'un d'entre eux s'applique.",
+      "Durée\u00A0: 10s",
+      "Effet additionnel avec un breuvage de voleur\u00A0: augmente de 15% les chances d'esquive pour vous et les équipiers alentour.",
+      "Durée\u00A0: 60s",
+      "Effet additionnel avec un breuvage d'éclaireur\u00A0: octroie Recharge rapide à vous et aux équipiers alentour.",
+      "Recharge rapide\u00A0: réduit de 25% le temps de recharge de la prochaine aptitude.",
+      "Durée\u00A0: 15s"
+    ],
+    "classification": "lost_action",
+    "cache": {
+      "item_id": 95,
+      "type_id": 1,
+      "type": "action",
+      "max_uses": 50,
+      "has_unlimited_uses": false,
+      "weight": 10,
+      "order": 95,
+      "category": {
+        "id": 5,
+        "name": "Éclaireur"
+      }
+    },
+    "action": {
+      "id": 23918,
+      "icon_id": 64751,
+      "icon_file": "icon.png",
+      "cast_time_seconds": 0,
+      "recast_time_seconds": 30,
+      "range_yalms": 0,
+      "effect_range_yalms": 10,
+      "max_charges": 0,
+      "cooldown_group": 81,
+      "additional_cooldown_group": 0,
+      "primary_cost": {
+        "type_id": 20,
+        "value": 1
+      },
+      "secondary_cost": {
+        "type_id": 0,
+        "value": 0
+      },
+      "aspect_id": 0,
+      "category": {
+        "id": 4,
+        "name": "Aptitude"
+      },
+      "class_job_category": {
+        "id": 169,
+        "name": "PLD MOI GUE DRG BRD MBL MNO INV ÉRU NIN MCH CHN AST SAM MRG PSB DNS FCH SAG VPR PIC",
+        "allowed_jobs": [
+          "PLD",
+          "MNK",
+          "WAR",
+          "DRG",
+          "BRD",
+          "WHM",
+          "BLM",
+          "SMN",
+          "SCH",
+          "NIN",
+          "MCH",
+          "DRK",
+          "AST",
+          "SAM",
+          "RDM",
+          "GNB",
+          "DNC",
+          "RPR",
+          "SGE",
+          "VPR",
+          "PCT"
+        ]
+      },
+      "targeting": {
+        "self": true,
+        "party": false,
+        "alliance": false,
+        "hostile": false,
+        "ally": false,
+        "own_pet": false,
+        "party_pet": false,
+        "dead_target_behavior": 0,
+        "is_area": false,
+        "requires_line_of_sight": true,
+        "requires_facing_target": true
+      },
+      "status_gain_self": null,
+      "proc_status": null
+    }
+  },
+  "ja": {
+    "title": "ロスト・インペタス",
+    "description": "自身の10m前方に向かって素早く移動する。\nバインド中は実行不可。\n追加効果：自身と周囲のパーティメンバーに、「ロスト・スウィフト」を付与する\nロスト・スウィフト効果：自身の移動速度を大幅に上昇させる。\n他の移動速度上昇効果と同時に付与された場合、どれか1つのみが適用される。\n効果時間：10秒\n盗賊の薬時追加効果：自身と周囲のパーティメンバーの回避率を15％上昇させる\n効果時間：60秒\n斥候の薬時追加効果：自身と周囲のパーティメンバーに、「ファストリキャスト」を付与する\nファストリキャスト効果：効果時間中に実行する1回のアビリティのリキャストタイムを25％短縮する。\n効果時間：15秒",
+    "effects": [
+      "自身の10m前方に向かって素早く移動する。",
+      "バインド中は実行不可。",
+      "追加効果：自身と周囲のパーティメンバーに、「ロスト・スウィフト」を付与する",
+      "ロスト・スウィフト効果：自身の移動速度を大幅に上昇させる。",
+      "他の移動速度上昇効果と同時に付与された場合、どれか1つのみが適用される。",
+      "効果時間：10秒",
+      "盗賊の薬時追加効果：自身と周囲のパーティメンバーの回避率を15％上昇させる",
+      "効果時間：60秒",
+      "斥候の薬時追加効果：自身と周囲のパーティメンバーに、「ファストリキャスト」を付与する",
+      "ファストリキャスト効果：効果時間中に実行する1回のアビリティのリキャストタイムを25％短縮する。",
+      "効果時間：15秒"
+    ],
+    "classification": "lost_action",
+    "cache": {
+      "item_id": 95,
+      "type_id": 1,
+      "type": "action",
+      "max_uses": 50,
+      "has_unlimited_uses": false,
+      "weight": 10,
+      "order": 95,
+      "category": {
+        "id": 5,
+        "name": "アクション：スカウト"
+      }
+    },
+    "action": {
+      "id": 23918,
+      "icon_id": 64751,
+      "icon_file": "icon.png",
+      "cast_time_seconds": 0,
+      "recast_time_seconds": 30,
+      "range_yalms": 0,
+      "effect_range_yalms": 10,
+      "max_charges": 0,
+      "cooldown_group": 81,
+      "additional_cooldown_group": 0,
+      "primary_cost": {
+        "type_id": 20,
+        "value": 1
+      },
+      "secondary_cost": {
+        "type_id": 0,
+        "value": 0
+      },
+      "aspect_id": 0,
+      "category": {
+        "id": 4,
+        "name": "アビリティ"
+      },
+      "class_job_category": {
+        "id": 169,
+        "name": "ナイト モンク 戦士 竜騎士 吟遊詩人 白魔道士 黒魔道士 召喚士 学者 忍者 機工士 暗黒騎士 占星術師 侍 赤魔道士 ガンブレイカー 踊り子 リーパー 賢者 ヴァイパー ピクトマンサー",
+        "allowed_jobs": [
+          "PLD",
+          "MNK",
+          "WAR",
+          "DRG",
+          "BRD",
+          "WHM",
+          "BLM",
+          "SMN",
+          "SCH",
+          "NIN",
+          "MCH",
+          "DRK",
+          "AST",
+          "SAM",
+          "RDM",
+          "GNB",
+          "DNC",
+          "RPR",
+          "SGE",
+          "VPR",
+          "PCT"
+        ]
+      },
+      "targeting": {
+        "self": true,
+        "party": false,
+        "alliance": false,
+        "hostile": false,
+        "ally": false,
+        "own_pet": false,
+        "party_pet": false,
+        "dead_target_behavior": 0,
+        "is_area": false,
+        "requires_line_of_sight": true,
+        "requires_facing_target": true
+      },
+      "status_gain_self": null,
+      "proc_status": null
+    }
+  }
+}

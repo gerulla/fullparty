@@ -1,5 +1,9 @@
 {
   "title": "Données système",
   "subtitle": "Gérez les données système réutilisables dans FullParty.",
-  "admin_only": "Admin uniquement"
+  "admin_only": "Admin uniquement",
+  "sections": {
+    "raid_positions": "Positions de raid",
+    "bozja_data": "Données de Bozja"
+  }
 }

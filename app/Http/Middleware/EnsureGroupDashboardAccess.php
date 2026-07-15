@@ -23,6 +23,17 @@ class EnsureGroupDashboardAccess
             return $next($request);
         }
 
+        if ($request->routeIs([
+            'groups.dashboard',
+            'groups.dashboard.activities.index',
+        ])) {
+            if ($group->allowsPublicDashboardAccess()) {
+                return $next($request);
+            }
+
+            abort(404);
+        }
+
         if ($group->is_visible && $request->isMethodSafe()) {
             return redirect()->route('groups.index');
         }

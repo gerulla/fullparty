@@ -6,6 +6,7 @@ use App\Models\Activity;
 use App\Models\ActivityApplication;
 use App\Models\Group;
 use App\Models\GroupMembership;
+use App\Models\GroupMembershipApplication;
 use App\Models\User;
 use App\Services\Notifications\NotificationPreferenceSettingsService;
 use App\Support\Groups\GroupDiscoveryBadgePalette;
@@ -24,6 +25,8 @@ class GroupDashboardController extends Controller
 
     public function show(Group $group): Response
     {
+        $currentUserId = auth()->id();
+
         $group->load([
             'owner.primaryCharacter',
             'memberships.user',
@@ -34,7 +37,11 @@ class GroupDashboardController extends Controller
                     'organizerCharacter',
                     'applications' => fn ($applicationQuery) => $applicationQuery
                         ->select(['id', 'activity_id', 'user_id', 'status'])
-                        ->where('user_id', auth()->id())
+                        ->when(
+                            $currentUserId !== null,
+                            fn ($query) => $query->where('user_id', $currentUserId),
+                            fn ($query) => $query->whereRaw('1 = 0'),
+                        )
                         ->where('status', '!=', ActivityApplication::STATUS_WITHDRAWN),
                     'activityType',
                     'activityTypeVersion.activityType',
@@ -45,15 +52,21 @@ class GroupDashboardController extends Controller
                 ]),
         ]);
 
-        $currentUserId = auth()->id();
         $isMember = $group->hasMember($currentUserId);
 
-        if (! $isMember) {
-            abort(403);
+        if (! $isMember && ! $group->allowsPublicDashboardAccess()) {
+            abort(404);
         }
 
         $currentMembership = $group->memberships->firstWhere('user_id', $currentUserId);
-        $canManageActivities = $group->hasModeratorAccess($currentUserId);
+        $isBanned = $group->isBanned($currentUserId);
+        $hasPendingMembershipApplication = $currentUserId !== null
+            && ! $isMember
+            && $group->membershipApplications()
+                ->where('user_id', $currentUserId)
+                ->where('status', GroupMembershipApplication::STATUS_PENDING)
+                ->exists();
+        $canManageActivities = $isMember && $group->hasModeratorAccess($currentUserId);
         $now = now();
         $weekStart = $now->copy()->startOfDay();
         $weekEnd = $weekStart->copy()->addDays(6)->endOfDay();
@@ -100,24 +113,14 @@ class GroupDashboardController extends Controller
             ->values();
         $statusCounts = collect(Activity::STATUSES)
             ->mapWithKeys(fn (string $status) => [$status => $activities->where('status', $status)->count()]);
-        $memberRoleBreakdown = [
-            GroupMembership::ROLE_OWNER => $group->memberships
-                ->where('role', GroupMembership::ROLE_OWNER)
-                ->count(),
-            GroupMembership::ROLE_ADMIN => $group->memberships
-                ->where('role', GroupMembership::ROLE_ADMIN)
-                ->count(),
-            GroupMembership::ROLE_MODERATOR => $group->memberships
-                ->where('role', GroupMembership::ROLE_MODERATOR)
-                ->count(),
-            GroupMembership::ROLE_MEMBER => $group->memberships
-                ->where('role', GroupMembership::ROLE_MEMBER)
-                ->count(),
-        ];
+        $memberRoleBreakdown = collect(GroupMembership::ROLES)
+            ->mapWithKeys(fn (string $role) => [
+                $role => $isMember ? $group->memberships->where('role', $role)->count() : 0,
+            ]);
         $lastActivityAt = $activities->first()?->updated_at?->toIso8601String();
-        $latestMemberJoinAt = $group->memberships
-            ->sortByDesc('joined_at')
-            ->first()?->joined_at?->toIso8601String();
+        $latestMemberJoinAt = $isMember
+            ? $group->memberships->sortByDesc('joined_at')->first()?->joined_at?->toIso8601String()
+            : null;
 
         return Inertia::render('Dashboard/Groups/CommunityDashboard', [
             'group' => [
@@ -149,22 +152,34 @@ class GroupDashboardController extends Controller
                     ?->role,
                 'features' => $group->featureSettings(),
                 'notifications' => [
-                    'enabled' => (bool) ($currentMembership?->notifications_enabled ?? true),
+                    'enabled' => $currentMembership instanceof GroupMembership
+                        ? (bool) ($currentMembership->notifications_enabled ?? true)
+                        : false,
                     'preferences' => $currentMembership instanceof GroupMembership
                         ? $this->notificationPreferenceSettingsService->serializeGroupPreferences($currentMembership->user, $group->id)
                         : [],
+                ],
+                'membership_application' => [
+                    'pending' => $hasPendingMembershipApplication,
                 ],
                 'permissions' => [
                     'can_manage_group' => $group->isOwnedBy($currentUserId),
                     'can_manage_members' => $canManageActivities,
                     'can_manage_discovery' => $group->hasAdminAccess($currentUserId),
                     'can_manage_activities' => $canManageActivities,
-                    'can_view_members' => true,
+                    'can_view_members' => $isMember,
                     'can_review_membership_applications' => $group->usesMembershipApplications() && $group->hasModeratorAccess($currentUserId),
                     'can_manage_membership_application_form' => $group->usesMembershipApplications() && $group->hasAdminAccess($currentUserId),
                     'can_leave' => $currentMembership instanceof GroupMembership
                         && ! $group->isOwnedBy($currentUserId),
                     'can_toggle_notifications' => $currentMembership instanceof GroupMembership,
+                    'can_join' => ! $isBanned
+                        && ! $isMember
+                        && $group->allowsOpenJoin(),
+                    'can_apply' => ! $isBanned
+                        && ! $isMember
+                        && ! $hasPendingMembershipApplication
+                        && $group->usesMembershipApplications(),
                 ],
                 'stats' => [
                     'member_count' => $group->memberships->count(),
@@ -199,19 +214,21 @@ class GroupDashboardController extends Controller
                     'moderator' => $memberRoleBreakdown[GroupMembership::ROLE_MODERATOR],
                     'member' => $memberRoleBreakdown[GroupMembership::ROLE_MEMBER],
                 ],
-                'members_preview' => $group->memberships
-                    ->sortBy(function (GroupMembership $membership) {
-                        return array_search($membership->role, GroupMembership::ROLES, true);
-                    })
-                    ->take(6)
-                    ->values()
-                    ->map(fn (GroupMembership $membership) => [
-                        'id' => $membership->user->id,
-                        'name' => $membership->user->name,
-                        'avatar_url' => $membership->user->avatar_url,
-                        'role' => $membership->role,
-                        'joined_at' => $membership->joined_at?->toIso8601String(),
-                    ]),
+                'members_preview' => $isMember
+                    ? $group->memberships
+                        ->sortBy(function (GroupMembership $membership) {
+                            return array_search($membership->role, GroupMembership::ROLES, true);
+                        })
+                        ->take(6)
+                        ->values()
+                        ->map(fn (GroupMembership $membership) => [
+                            'id' => $membership->user->id,
+                            'name' => $membership->user->name,
+                            'avatar_url' => $membership->user->avatar_url,
+                            'role' => $membership->role,
+                            'joined_at' => $membership->joined_at?->toIso8601String(),
+                        ])
+                    : collect(),
                 'activity_status_breakdown' => collect(Activity::STATUSES)
                     ->map(fn (string $status) => [
                         'status' => $status,

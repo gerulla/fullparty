@@ -110,7 +110,7 @@ class ActivityRosterSpreadsheetExportService
             'bench_slots' => $benchSlots,
             'has_phantom_jobs' => $hasPhantomJobs,
             'requirements' => $this->buildRequirementsSummary(
-                $this->summaryPresetBuilder->build($activity->activityTypeVersion)[0]['requirements'] ?? []
+                $this->summaryPresetBuilder->buildForActivity($activity)[0]['requirements'] ?? []
             ),
             'class_options' => CharacterClass::query()
                 ->orderBy('role')

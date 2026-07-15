@@ -10,6 +10,11 @@ const props = defineProps<{
 
 const { t } = useI18n();
 const groupTypeLabel = computed(() => t(`groups.common.group_types.${props.group.group_type}`));
+const showsMembershipAction = computed(() => Boolean(
+	props.group.permissions.can_join
+	|| props.group.permissions.can_apply
+	|| props.group.membership_application.pending,
+));
 const titleStyle = computed(() => {
 	const length = Array.from(props.group.name.trim()).length;
 	const excessLength = Math.max(0, length - 18);
@@ -39,7 +44,7 @@ const titleStyle = computed(() => {
 		<div class="absolute inset-0 bg-gradient-to-r from-neutral-950 via-neutral-950/72 to-neutral-950/18" />
 		<div class="absolute inset-0 bg-gradient-to-t from-neutral-950 via-transparent to-neutral-950/18" />
 
-		<div class="relative flex h-full items-start justify-between gap-6 p-4 sm:p-6 lg:p-8">
+		<div class="relative flex h-full flex-col items-start justify-between gap-4 p-4 sm:p-6 lg:flex-row lg:gap-6 lg:p-8">
 			<div class="max-w-3xl pb-4 sm:pb-5 lg:pb-6">
 				<p class="text-[11px] uppercase tracking-[0.22em] text-brand-200/80">
 					{{ groupTypeLabel }}
@@ -52,7 +57,10 @@ const titleStyle = computed(() => {
 				</h1>
 			</div>
 
-			<div class="hidden w-full max-w-md shrink-0 pb-4 lg:block">
+			<div
+				class="w-full max-w-md shrink-0 self-end pb-4"
+				:class="showsMembershipAction ? 'block' : 'hidden lg:block'"
+			>
 				<GroupDashboardActionButtons :group="group" />
 			</div>
 		</div>

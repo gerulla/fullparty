@@ -35,6 +35,9 @@
         "legacy_leaderboard": "Archiv",
         "members": "Mitglieder",
         "availability": "Verfügbarkeit",
+        "content": "Inhalte",
+        "delubrum_reginae_savage": "Delubrum Reginae (episch)",
+        "forked_tower_blood": "Forked Tower des Blutes",
         "moderation": "Moderation",
         "configuration": "Konfiguration",
         "membership_applications": "Anfragen",
@@ -43,6 +46,345 @@
         "discovery_settings": "Discovery-Einstellungen",
         "discord_integration": "Discord",
         "settings": "Einstellungen"
+    },
+    "content": {
+        "delubrum_reginae_savage": {
+            "title": "Delubrum Reginae (episch)",
+            "subtitle": "Plant und verwaltet die Delubrum-Reginae-Inhalte (episch) eurer Gruppe.",
+            "holsters": {
+                "title": "Holster",
+                "create": "Neuen Holster erstellen",
+                "editor": "Holster-Editor",
+                "new_title": "Neuer Holster",
+                "untitled": "Unbenannter Holster",
+                "item_count": "{count} Gegenstände",
+                "count": "{count} Holster",
+                "available_summary": "{total} Holster verfügbar. {active} Holster aktiv.",
+                "summary": "Holster-Übersicht",
+                "locales": "Sprachen",
+                "manage_locales": "Sprachen verwalten",
+                "sections": "Bereiche",
+                "section_details": "Name, Rolle, Hinweise und Sprachen",
+                "section_guide": "Anweisungen und Markdown",
+                "section_contents": "Ausgewählte Gegenstände ({count})",
+                "tip_title": "Tipp",
+                "tip_description": "Haltet eure Anleitung klar und knapp, damit sie im Spiel leichter nutzbar ist.",
+                "library": "Bozja-Gegenstandsbibliothek",
+                "library_empty": "Keine passenden Bozja-Gegenstände gefunden.",
+                "library_count": "{shown} von {total} Gegenständen angezeigt",
+                "search_placeholder": "Holster durchsuchen...",
+                "filters": {
+                    "all": "Alle",
+                    "active": "Aktiv",
+                    "inactive": "Inaktiv"
+                },
+                "active": "Aktiv",
+                "inactive": "Inaktiv",
+                "back_to_list": "Zurück zu den Holstern",
+                "role_unset": "Keine Rolle festgelegt",
+                "make_default": "Als Standard festlegen",
+                "default_updated": "Standard-Holster aktualisiert",
+                "default_update_failed": "Das Standard-Holster konnte nicht aktualisiert werden.",
+                "no_description": "Keine Beschreibung vorhanden.",
+                "actions": "Kommandos",
+                "more_actions": "+ {count} weitere",
+                "no_actions": "Keine Kommandos hinzugefügt.",
+                "open_editor": "Editor öffnen",
+                "deleted": "Holster gelöscht",
+                "delete_failed": "Das Holster konnte nicht gelöscht werden.",
+                "delete_modal": {
+                    "title": "{name} löschen?",
+                    "description": "Dadurch werden das Holster und alle gespeicherten Inhalte entfernt.",
+                    "warning": "Diese Aktion kann nicht rückgängig gemacht werden."
+                },
+                "status_updated": "Holster-Status aktualisiert",
+                "status_update_failed": "Der Holster-Status konnte nicht aktualisiert werden.",
+                "empty_title": "Noch keine Holster",
+                "empty_description": "Erstellt einen Holster, um eine Zusammenstellung zu planen.",
+                "no_selection": "Wählt einen Holster aus oder erstellt einen neuen.",
+                "saved": "Holster gespeichert",
+                "save_failed": "Der Holster konnte nicht gespeichert werden.",
+                "metadata": {
+                    "title": "Details",
+                    "description": "Benennt den Holster und fügt Hinweise für eure Gruppe hinzu.",
+                    "name": "Name",
+                    "role": "Rolle",
+                    "max_capacity": "Maximale Kapazität",
+                    "guide": "Anleitung",
+                    "guide_description": "Optionale Anleitung im Markdown-Format zur Verwendung dieses Holsters.",
+                    "expand_guide": "Anleitung erweitern",
+                    "shrink_guide": "Anleitung verkleinern"
+                },
+                "contents": {
+                    "title": "Inhalt",
+                    "description": "Durchsucht die Bozja-Gegenstände und fügt alles hinzu, was eure Gruppe benötigt.",
+                    "search": "Bozja-Gegenstände durchsuchen",
+                    "item": "Gegenstand",
+                    "quantity": "Anzahl",
+                    "weight_label": "Gewicht",
+                    "weight": "Gewicht {weight}",
+                    "empty": "Sucht oben nach einem Gegenstand, um diesen Holster zu füllen."
+                },
+                "capacity": {
+                    "title": "Kapazität",
+                    "remaining": "{count} Kapazität verbleibend"
+                }
+            }
+        },
+        "forked_tower_blood": {
+            "title": "Forked Tower des Blutes",
+            "subtitle": "Plant und verwaltet die Inhalte für Forked Tower des Blutes eurer Gruppe.",
+            "compositions": {
+                "title": "Kompositionen",
+                "create": "Neue Komposition",
+                "loading": "Kompositionen werden geladen...",
+                "load_failed": "Die Kompositionen konnten nicht geladen werden.",
+                "saved": "Komposition gespeichert",
+                "save_failed": "Die Komposition konnte nicht gespeichert werden.",
+                "deleted": "Komposition gelöscht",
+                "delete_failed": "Die Komposition konnte nicht gelöscht werden.",
+                "status_update_failed": "Der Kompositionsstatus konnte nicht aktualisiert werden.",
+                "reorder_failed": "Die Reihenfolge der Kompositionen konnte nicht gespeichert werden.",
+                "search_placeholder": "Kompositionen suchen...",
+                "filters": {
+                    "all": "Alle",
+                    "active": "Aktiv",
+                    "inactive": "Inaktiv"
+                },
+                "active": "Aktiv",
+                "inactive": "Inaktiv",
+                "default": "Standard",
+                "updated": "Aktualisiert {time}",
+                "count": "{count} Kompositionen",
+                "reorder_hint": "Zum Sortieren ziehen",
+                "empty_title": "Keine Kompositionen gefunden",
+                "empty_description": "Passt die Suche an oder erstellt eine neue Komposition.",
+                "editor": {
+                    "title": "Kompositionseditor",
+                    "new_title": "Neue Komposition",
+                    "untitled": "Unbenannte Komposition",
+                    "no_selection": "Wählt eine Komposition aus oder erstellt eine neue.",
+                    "tabs": {
+                        "metadata": "Metadaten / Info",
+                        "rules": "Regeln",
+                        "summary": "Zusammenfassung"
+                    },
+                    "basics_title": "Grundlagen",
+                    "basics_description": "Benennt den Leitfaden und entscheidet, ob er für die Gruppe aktiv sein soll.",
+                    "default_enabled": "Wird zuerst verwendet",
+                    "default_disabled": "Nicht Standard",
+                    "rules_title": "Regeln",
+                    "rules_description": "Erstellt die Phantom-Job-Regeln, die diese Komposition anzeigen soll.",
+                    "add_rule": "Regel hinzufügen",
+                    "new_rule_label": "Neue Regel",
+                    "new_rule_summary": "Mindestens 1 ausgewählter Phantom-Job über alle Plätze.",
+                    "copy_label": "{label} Kopie",
+                    "drag_rule": "Regel ziehen",
+                    "expand_rule": "Regel ausklappen",
+                    "collapse_rule": "Regel einklappen",
+                    "duplicate_rule": "Regel duplizieren",
+                    "remove_rule": "Regel entfernen",
+                    "rule_number": "Regel {number}",
+                    "no_rules_title": "Noch keine Regeln",
+                    "no_rules_description": "Fügt eine Regel hinzu, um diesen Kompositionsleitfaden zu formen.",
+                    "summary_eyebrow": "Kompositionszusammenfassung",
+                    "summary_title": "Zusammenfassung",
+                    "summary_description": "Prüft Phantom-Job-Anforderungen gruppiert nach Gruppenabdeckung.",
+                    "summary": {
+                        "rules": "Regeln",
+                        "status": "Status",
+                        "default": "Standard",
+                        "requirements_count": "{count} Anforderungen"
+                    },
+                    "states_title": "Leitfadenstatus",
+                    "states_description": "Diese Status wird der Leitfaden später gegen einen Kader anzeigen.",
+                    "fields": {
+                        "name": "Name",
+                        "name_placeholder": "Ausgewogen (Standard)",
+                        "description": "Beschreibung",
+                        "description_placeholder": "Kurzer Hinweis für Moderatoren, wann diese Komposition genutzt wird.",
+                        "active": "Aktiv",
+                        "default": "Standard",
+                        "rule_label": "Regellabel",
+                        "rule_type": "Regeltyp",
+                        "target_job": "Phantom-Job",
+                        "severity": "Priorität",
+                        "scope": "Geltungsbereich",
+                        "comparison": "Vergleich",
+                        "target_count": "Zielanzahl",
+                        "summary": "Zusammenfassung"
+                    },
+                    "job_picker": {
+                        "description": "Wählt den Phantom-Job, den diese Regel prüft.",
+                        "search_placeholder": "Phantom-Jobs suchen...",
+                        "max_level": "Max. Stufe {level}",
+                        "no_results": "Keine Phantom-Jobs gefunden"
+                    },
+                    "rule_details": {
+                        "title": "Regeldetails"
+                    },
+                    "rule_types": {
+                        "single_job_count": "Einzelner Job",
+                        "duplicate_limit": "Duplikatlimit"
+                    },
+                    "severities": {
+                        "required": "Erforderlich",
+                        "recommended": "Empfohlen",
+                        "optional": "Optional"
+                    },
+                    "comparisons": {
+                        "at_least": "Mindestens",
+                        "exactly": "Genau",
+                        "at_most": "Höchstens"
+                    },
+                    "parties": {
+                        "all": "Alle",
+                        "party": "Gruppe {party}"
+                    },
+                    "scopes": {
+                        "anywhere": {
+                            "title": "Überall",
+                            "description": "Auf den gesamten Kompositionsbereich anwenden"
+                        },
+                        "one_side": {
+                            "title": "Eine Seite (ABC / DEF)",
+                            "description": "Auf eine ausgewählte Seite anwenden"
+                        },
+                        "specific_party": {
+                            "title": "Bestimmte Gruppe",
+                            "description": "Auf eine ausgewählte Gruppe anwenden"
+                        },
+                        "either_party": {
+                            "title": "Eine von mehreren Gruppen",
+                            "description": "Der Job soll in einer der ausgewählten Gruppen vorhanden sein"
+                        },
+                        "all_parties": {
+                            "title": "Alle Gruppen",
+                            "description": "Der Job soll in jeder ausgewählten Gruppe vorhanden sein"
+                        }
+                    },
+                    "scope_builder": {
+                        "title": "Geltungsbereich-Builder",
+                        "description": "Wählt aus, wo diese Regel suchen soll.",
+                        "no_party_needed": "Dieser Bereich prüft den gesamten Kader, daher ist keine Gruppenauswahl nötig."
+                    },
+                    "scope_display": {
+                        "anywhere": {
+                            "title": "Beide Seiten",
+                            "description": "Sucht den Job auf einer der beiden Seiten."
+                        },
+                        "one_side": {
+                            "title": "Eine Seite ({parties})",
+                            "description": "Sucht den Job auf der ausgewählten Seite."
+                        },
+                        "specific_party": {
+                            "title": "Bestimmte Gruppe ({parties})",
+                            "description": "Sucht den Job in der ausgewählten Gruppe."
+                        },
+                        "either_party": {
+                            "title": "Eine Gruppe ({parties})",
+                            "description": "Sucht den Job in einer der ausgewählten Gruppen."
+                        },
+                        "all_parties": {
+                            "title": "Alle Gruppen ({parties})",
+                            "description": "Sucht den Job in jeder ausgewählten Gruppe."
+                        }
+                    },
+                    "scope_plain": {
+                        "anywhere": "Diese Regel zählt {job} im gesamten Kader. Sie ist erfüllt, wenn der Kader insgesamt {comparison} {count} hat.",
+                        "one_side": "Diese Regel prüft nur die ausgewählte Seite: {parties}. Sie ist erfüllt, wenn diese Seite {comparison} {count} {job} hat.",
+                        "specific_party": "Diese Regel prüft nur {parties}. Sie ist erfüllt, wenn diese Gruppe {comparison} {count} {job} hat.",
+                        "either_party": "Diese Regel prüft jede ausgewählte Gruppe einzeln: {parties}. Sie ist erfüllt, wenn eine dieser Gruppen {comparison} {count} {job} hat.",
+                        "all_parties": "Diese Regel prüft jede ausgewählte Gruppe einzeln: {parties}. Jede ausgewählte Gruppe muss {comparison} {count} {job} haben."
+                    },
+                    "unknown_job": "Unbekannter Phantom-Job",
+                    "states": {
+                        "met": "Regel erfüllt",
+                        "unmet": "Regel nicht erfüllt",
+                        "partial": "Teilweise",
+                        "overfilled": "Überfüllt"
+                    }
+                },
+                "samples": {
+                    "even_balance": {
+                        "name": "Ausgewogen (Standard)",
+                        "description": "Ein ausgewogener Startleitfaden für zwei gespiegelte Seiten."
+                    },
+                    "physical_ranged": {
+                        "name": "Fokus auf physische Fernkämpfer",
+                        "description": "Setzt auf Fernkampf-Nutzen und behält Grundabdeckung bei."
+                    },
+                    "caster_preferred": {
+                        "name": "Magier bevorzugt",
+                        "description": "Hält Magier-Unterstützung in Gruppenprüfungen sichtbar."
+                    },
+                    "high_mobility": {
+                        "name": "Hohe Mobilität",
+                        "description": "Ein leichterer Leitfaden für bewegungsintensive Aufgaben."
+                    },
+                    "ultimate_control": {
+                        "name": "Maximale Kontrolle",
+                        "description": "Begrenzt doppelte Nutzenjobs für klarere Abdeckung."
+                    },
+                    "learning_party": {
+                        "name": "Lerntruppe (flexibel)",
+                        "description": "Weichere Vorschläge für Gruppen, die die Route noch lernen."
+                    },
+                    "savage_progression": {
+                        "name": "Savage-Fortschritt",
+                        "description": "Ein strengerer Leitfaden für Fortschrittsabende."
+                    },
+                    "updated": {
+                        "two_minutes": "vor 2 Min.",
+                        "one_hour": "vor 1 Std.",
+                        "three_hours": "vor 3 Std.",
+                        "five_hours": "vor 5 Std.",
+                        "one_day": "vor 1 T.",
+                        "two_days": "vor 2 T.",
+                        "three_days": "vor 3 T.",
+                        "just_now": "gerade eben"
+                    },
+                    "rules": {
+                        "side_bard": {
+                            "label": "Barden-Abdeckung Seite 1",
+                            "summary": "Mindestens 1 Phantom-Barde auf Seite 1."
+                        },
+                        "side_ranger": {
+                            "label": "Waldläufer-Abdeckung Seite 2",
+                            "summary": "Mindestens 1 Phantom-Waldläufer auf Seite 2."
+                        },
+                        "utility_package": {
+                            "label": "Kern-Nutzen",
+                            "summary": "Barde, Waldläufer und Zeitmagier sollten vorhanden sein."
+                        },
+                        "ranged_core": {
+                            "label": "Fernkampf-Nutzenkern",
+                            "summary": "Mindestens 4 Jobs aus dem Fernkampf-Nutzen-Set."
+                        },
+                        "caster_support": {
+                            "label": "Magier-Unterstützung",
+                            "summary": "Mindestens 1 Magier-Unterstützungsjob in jeder Gruppe."
+                        },
+                        "mobility": {
+                            "label": "Mobilitätsoption",
+                            "summary": "Mindestens 1 mobilitätsorientierte Option im Kader."
+                        },
+                        "duplicate_limit": {
+                            "label": "Duplikatgrenze",
+                            "summary": "Nicht mehr als 3 Kopien desselben Nutzenjobs."
+                        },
+                        "learning": {
+                            "label": "Lern-Flex",
+                            "summary": "Mindestens 2 flexible Unterstützungsoptionen über alle Plätze."
+                        },
+                        "prog_core": {
+                            "label": "Fortschrittskern",
+                            "summary": "Mindestens 8 Jobs aus dem Fortschrittskernpaket."
+                        }
+                    }
+                }
+            }
+        }
     },
     "table": {
         "columns": {

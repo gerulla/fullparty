@@ -6,6 +6,7 @@ use App\Support\Bozja\BozjaItemCategory;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class BozjaItem extends Model
 {
@@ -70,6 +71,13 @@ class BozjaItem extends Model
         $locale ??= app()->getLocale();
 
         return (string) ($names[$locale] ?? $names['en'] ?? reset($names) ?: $this->key);
+    }
+
+    public function holsters(): BelongsToMany
+    {
+        return $this->belongsToMany(BozjaHolster::class, 'bozja_holster_items')
+            ->withPivot('quantity')
+            ->withTimestamps();
     }
 
     /**

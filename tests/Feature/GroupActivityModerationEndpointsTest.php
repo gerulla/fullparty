@@ -12,6 +12,7 @@ use App\Models\CharacterClass;
 use App\Models\Group;
 use App\Models\NotificationDelivery;
 use App\Models\NotificationEvent;
+use App\Models\PhantomComposition;
 use App\Models\PhantomJob;
 use App\Models\User;
 use App\Models\UserNotification;
@@ -303,6 +304,34 @@ it('includes roster summary presets with resolved items and scope labels in mana
         ],
     ]));
 
+    $activityType->update([
+        'slug' => 'forked-tower',
+    ]);
+
+    $composition = PhantomComposition::query()->create([
+        'group_id' => $group->id,
+        'content_key' => PhantomComposition::CONTENT_FORKED_TOWER_BLOOD,
+        'name' => 'Group Recommended',
+        'description' => 'Group-managed Forked Tower guide.',
+        'is_default' => true,
+        'is_active' => true,
+        'sort_order' => 0,
+        'rules' => [
+            [
+                'type' => PhantomComposition::RULE_SINGLE_JOB_COUNT,
+                'label' => 'Phantom Bard',
+                'severity' => PhantomComposition::SEVERITY_REQUIRED,
+                'comparison' => PhantomComposition::COMPARISON_AT_LEAST,
+                'target_count' => 1,
+                'scope' => [
+                    'type' => PhantomComposition::SCOPE_SLOT_GROUP_SET,
+                    'group_keys' => ['party-a', 'party-b'],
+                ],
+                'phantom_job_id' => $phantomJob->id,
+            ],
+        ],
+    ]);
+
     $this->actingAs($owner);
 
     $this->getJson(route('groups.dashboard.activities.management-data', [
@@ -312,11 +341,15 @@ it('includes roster summary presets with resolved items and scope labels in mana
         ->assertOk()
         ->assertJsonPath('activity.roster_summary_presets.0.key', 'recommended')
         ->assertJsonPath('activity.roster_summary_presets.0.label.en', 'Recommended Composition')
-        ->assertJsonPath('activity.roster_summary_presets.0.requirements.0.item.label.en', 'Phantom Bard')
-        ->assertJsonPath('activity.roster_summary_presets.0.requirements.0.scope_groups.0.label.en', 'Party A')
-        ->assertJsonPath('activity.roster_summary_presets.0.requirements.0.scope_groups.1.label.en', 'Party B')
-        ->assertJsonPath('activity.roster_summary_presets.0.requirements.1.item.label.en', 'Scholar')
-        ->assertJsonPath('activity.roster_summary_presets.0.requirements.1.scope_type', 'all_slots');
+        ->assertJsonCount(1, 'activity.roster_summary_presets.0.requirements')
+        ->assertJsonPath('activity.roster_summary_presets.0.requirements.0.item.label.en', 'Scholar')
+        ->assertJsonPath('activity.roster_summary_presets.0.requirements.0.scope_type', 'all_slots')
+        ->assertJsonPath('activity.roster_summary_presets.1.key', "phantom-composition-{$composition->id}")
+        ->assertJsonPath('activity.roster_summary_presets.1.label.en', 'Group Recommended')
+        ->assertJsonPath('activity.roster_summary_presets.1.requirements.0.item.label.en', 'Phantom Bard')
+        ->assertJsonPath('activity.roster_summary_presets.1.requirements.0.scope_groups.0.label.en', 'Party A')
+        ->assertJsonPath('activity.roster_summary_presets.1.requirements.0.scope_groups.1.label.en', 'Party B')
+        ->assertJsonPath('activity.roster_summary_presets.1.requirements.0.severity', PhantomComposition::SEVERITY_REQUIRED);
 });
 
 it('returns a completion preview for supported ff logs completion requests', function () {

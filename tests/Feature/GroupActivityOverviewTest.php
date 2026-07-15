@@ -8,6 +8,7 @@ use App\Models\ActivityTypeVersion;
 use App\Models\Character;
 use App\Models\CharacterClass;
 use App\Models\Group;
+use App\Models\PhantomComposition;
 use App\Models\PhantomJob;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -254,6 +255,128 @@ it('renders serialized roster slots on the attendee overview page', function () 
             ->where('activity.slots.4.application_field_groups.1.items.0.label', 'Phantom Samurai')
             ->where('activity.slots.4.application_field_groups.1.items.1.label', 'Phantom Bard')
         );
+});
+
+it('uses group phantom compositions on Forked Tower attendee overviews', function () {
+    $owner = User::factory()->create();
+    $group = Group::factory()->open()->create([
+        'owner_id' => $owner->id,
+    ]);
+
+    $type = ActivityType::factory()->create([
+        'created_by_user_id' => $owner->id,
+        'slug' => 'forked-tower',
+    ]);
+
+    $phantomJob = PhantomJob::query()->create([
+        'name' => 'Phantom Bard',
+        'max_level' => 20,
+    ]);
+
+    $characterClass = CharacterClass::query()->create([
+        'name' => 'Scholar',
+        'shorthand' => 'SCH',
+        'role' => 'healer',
+    ]);
+
+    $version = ActivityTypeVersion::factory()->create([
+        'activity_type_id' => $type->id,
+        'published_by_user_id' => $owner->id,
+        'layout_schema' => [
+            'groups' => [
+                [
+                    'key' => 'party-a',
+                    'label' => ['en' => 'Party A'],
+                    'size' => 1,
+                ],
+                [
+                    'key' => 'party-b',
+                    'label' => ['en' => 'Party B'],
+                    'size' => 1,
+                ],
+            ],
+        ],
+        'roster_summary_presets' => [
+            [
+                'key' => 'legacy',
+                'label' => ['en' => 'Legacy Summary'],
+                'description' => ['en' => 'Old activity-type summary.'],
+                'requirements' => [
+                    [
+                        'source' => 'phantom_jobs',
+                        'source_id' => $phantomJob->id,
+                        'comparison' => 'at_least',
+                        'target_count' => 1,
+                        'scope_type' => 'slot_group_set',
+                        'scope_group_keys' => ['party-a', 'party-b'],
+                    ],
+                    [
+                        'source' => 'character_classes',
+                        'source_id' => $characterClass->id,
+                        'comparison' => 'exactly',
+                        'target_count' => 1,
+                        'scope_type' => 'all_slots',
+                        'scope_group_keys' => [],
+                    ],
+                ],
+            ],
+        ],
+    ]);
+
+    $type->update([
+        'current_published_version_id' => $version->id,
+    ]);
+
+    $composition = PhantomComposition::query()->create([
+        'group_id' => $group->id,
+        'content_key' => PhantomComposition::CONTENT_FORKED_TOWER_BLOOD,
+        'name' => 'Group Minimal',
+        'description' => 'Group-managed phantom summary.',
+        'is_default' => true,
+        'is_active' => true,
+        'sort_order' => 0,
+        'rules' => [
+            [
+                'type' => PhantomComposition::RULE_SINGLE_JOB_COUNT,
+                'label' => 'Phantom Bard',
+                'severity' => PhantomComposition::SEVERITY_REQUIRED,
+                'comparison' => PhantomComposition::COMPARISON_AT_LEAST,
+                'target_count' => 1,
+                'scope' => [
+                    'type' => PhantomComposition::SCOPE_EACH_SLOT_GROUP_SET,
+                    'group_sets' => [
+                        ['party-a'],
+                        ['party-b'],
+                    ],
+                ],
+                'phantom_job_id' => $phantomJob->id,
+            ],
+        ],
+    ]);
+
+    $activity = Activity::factory()->create([
+        'group_id' => $group->id,
+        'activity_type_id' => $type->id,
+        'activity_type_version_id' => $version->id,
+        'organized_by_user_id' => $owner->id,
+        'status' => Activity::STATUS_UPCOMING,
+        'is_public' => true,
+    ]);
+
+    $this->get(route('groups.activities.overview', [
+        'group' => $group->slug,
+        'activity' => $activity->id,
+    ]))
+        ->assertOk()
+        ->assertInertia(fn (Assert $page) => $page
+            ->component('Groups/Activities/Overview')
+            ->where('activity.roster_summary_presets.0.key', 'legacy')
+            ->where('activity.roster_summary_presets.0.requirements.0.item.label.en', 'Scholar')
+            ->where('activity.roster_summary_presets.1.key', "phantom-composition-{$composition->id}")
+            ->where('activity.roster_summary_presets.1.label.en', 'Group Minimal')
+            ->where('activity.roster_summary_presets.1.requirements.0.item.label.en', 'Phantom Bard')
+            ->where('activity.roster_summary_presets.1.requirements.0.scope_type', 'slot_group')
+            ->where('activity.roster_summary_presets.1.requirements.1.scope_groups.0.label.en', 'Party B'));
 });
 
 it('exposes the cancellation reason on the attendee overview payload', function () {

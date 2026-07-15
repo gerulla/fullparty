@@ -1168,6 +1168,7 @@ class ActivityTypeController extends Controller
         return [
             'character_classes',
             'phantom_jobs',
+            'bozja_holsters',
             'raid_positions',
             ...array_keys(BozjaItemCategory::sourceCategoryMap()),
             'static_options',

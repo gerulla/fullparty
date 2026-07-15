@@ -176,6 +176,11 @@ class Group extends Model
         return $this->hasMany(GroupAvailabilitySchedule::class);
     }
 
+    public function bozjaHolsters(): HasMany
+    {
+        return $this->hasMany(BozjaHolster::class);
+    }
+
     /** @return array<string, bool|string> */
     public function featureSettings(): array
     {
@@ -324,6 +329,12 @@ class Group extends Model
     public function usesMembershipApplications(): bool
     {
         return $this->join_mode === self::JOIN_MODE_APPLICATION;
+    }
+
+    public function allowsPublicDashboardAccess(): bool
+    {
+        return $this->is_visible
+            && ($this->allowsOpenJoin() || $this->usesMembershipApplications());
     }
 
     public function hasPermanentInvite(): bool

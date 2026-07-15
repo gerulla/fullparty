@@ -62,7 +62,7 @@ class GroupActivitySlotAssignmentController extends Controller
             }
         }
 
-        $fieldDefinitions = collect($fieldDefinitionBuilder->build($activity->activityTypeVersion))
+        $fieldDefinitions = collect($fieldDefinitionBuilder->build($activity->activityTypeVersion, $group->id))
             ->keyBy(fn (array $definition) => (string) $definition['key'])
             ->all();
 

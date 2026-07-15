@@ -7,6 +7,7 @@ use App\Models\Activity;
 use App\Models\ActivityApplication;
 use App\Models\ActivityApplicationAnswer;
 use App\Models\ActivityTypeVersion;
+use App\Models\BozjaHolster;
 use App\Models\BozjaItem;
 use App\Models\Character;
 use App\Models\CharacterClass;
@@ -147,7 +148,7 @@ class GroupActivityApplicationController extends Controller
         return Inertia::render('Groups/Activities/ApplicationConfirmation', [
             'group' => $this->serializePublicGroup($group),
             'activity' => $this->serializeAttendeeActivity($activity),
-            'applicationSchema' => $this->serializeApplicationSchema($activity->activityTypeVersion),
+            'applicationSchema' => $this->serializeApplicationSchema($activity->activityTypeVersion, $group->id),
             'application' => $this->serializeExistingApplication($application),
             'secretKey' => null,
             'guestAccessToken' => null,
@@ -186,7 +187,7 @@ class GroupActivityApplicationController extends Controller
         return Inertia::render('Groups/Activities/ApplicationConfirmation', [
             'group' => $this->serializePublicGroup($group),
             'activity' => $this->serializeAttendeeActivity($activity),
-            'applicationSchema' => $this->serializeApplicationSchema($activity->activityTypeVersion),
+            'applicationSchema' => $this->serializeApplicationSchema($activity->activityTypeVersion, $group->id),
             'application' => $this->serializeExistingApplication($application),
             'secretKey' => null,
             'guestAccessToken' => $accessToken,
@@ -625,7 +626,7 @@ class GroupActivityApplicationController extends Controller
         return Inertia::render('Groups/Activities/Application', [
             'group' => $this->serializePublicGroup($group),
             'activity' => $this->serializeAttendeeActivity($activity),
-            'applicationSchema' => $this->serializeApplicationSchema($activity->activityTypeVersion),
+            'applicationSchema' => $this->serializeApplicationSchema($activity->activityTypeVersion, $group->id),
             'application' => $this->serializeExistingApplication($application),
             'rememberedApplicationDefaults' => $this->serializeRememberedApplicationDefaults(
                 userId: $request->user()?->id,
@@ -667,7 +668,7 @@ class GroupActivityApplicationController extends Controller
     /**
      * @return array<int, array<string, mixed>>
      */
-    private function serializeApplicationSchema(?ActivityTypeVersion $activityTypeVersion): array
+    private function serializeApplicationSchema(?ActivityTypeVersion $activityTypeVersion, int $groupId): array
     {
         return collect($activityTypeVersion?->application_schema ?? [])
             ->map(fn (array $question) => [
@@ -679,7 +680,7 @@ class GroupActivityApplicationController extends Controller
                 'help_text' => is_array($question['help_text'] ?? null) ? $question['help_text'] : null,
                 'accepts_any' => (bool) ($question['accepts_any'] ?? false),
                 'any_label' => is_array($question['any_label'] ?? null) ? $question['any_label'] : null,
-                'options' => $this->resolveQuestionOptions($question),
+                'options' => $this->resolveQuestionOptions($question, $groupId),
             ])
             ->filter(fn (array $question) => $question['key'] !== '')
             ->values()
@@ -690,7 +691,7 @@ class GroupActivityApplicationController extends Controller
      * @param  array<string, mixed>  $question
      * @return array<int, array<string, mixed>>
      */
-    private function resolveQuestionOptions(array $question): array
+    private function resolveQuestionOptions(array $question, ?int $groupId = null): array
     {
         $options = match ($question['source'] ?? null) {
             'character_classes' => CharacterClass::query()
@@ -721,6 +722,9 @@ class GroupActivityApplicationController extends Controller
                 ])
                 ->values()
                 ->all(),
+            'bozja_holsters' => $groupId === null
+                ? []
+                : BozjaHolster::schemaOptionsForGroup($groupId),
             'raid_positions' => RaidPosition::query()
                 ->where('is_active', true)
                 ->orderBy('sort_order')
@@ -872,6 +876,7 @@ class GroupActivityApplicationController extends Controller
         $answers = $this->filterRememberedApplicationAnswers(
             $defaults->answers ?? [],
             $activityTypeVersion,
+            $activity->group_id,
         );
 
         if ($selectedCharacterId === null && $notes === null && $answers === []) {
@@ -1006,6 +1011,7 @@ class GroupActivityApplicationController extends Controller
         );
         $validated['answers'] = $this->sanitizeApplicationAnswers($validated['answers']);
         $this->validateApplicationAnswerLengths($validated['answers']);
+        $this->validateHolsterApplicationAnswers($validated['answers'], $activity);
 
         $requiredQuestionKeys = collect($activity->activityTypeVersion?->application_schema ?? [])
             ->filter(fn ($question) => is_array($question) && filled($question['key'] ?? null) && (bool) ($question['required'] ?? false))
@@ -1202,8 +1208,11 @@ class GroupActivityApplicationController extends Controller
      * @param  array<string, mixed>  $answers
      * @return array<string, mixed>
      */
-    private function filterRememberedApplicationAnswers(array $answers, ?ActivityTypeVersion $activityTypeVersion): array
-    {
+    private function filterRememberedApplicationAnswers(
+        array $answers,
+        ?ActivityTypeVersion $activityTypeVersion,
+        int $groupId,
+    ): array {
         $questionDefinitions = collect($activityTypeVersion?->application_schema ?? [])
             ->filter(fn ($question) => is_array($question) && filled($question['key'] ?? null))
             ->mapWithKeys(fn (array $question) => [(string) $question['key'] => $question]);
@@ -1218,6 +1227,7 @@ class GroupActivityApplicationController extends Controller
             $value = $this->filterRememberedApplicationAnswerValue(
                 value: $answers[$questionKey],
                 question: $question,
+                groupId: $groupId,
             );
 
             if ($value === null) {
@@ -1259,15 +1269,52 @@ class GroupActivityApplicationController extends Controller
     }
 
     /**
+     * @param  array<int, array<string, mixed>>  $answers
+     */
+    private function validateHolsterApplicationAnswers(array $answers, Activity $activity): void
+    {
+        $questions = collect($activity->activityTypeVersion?->application_schema ?? [])
+            ->filter(fn ($question) => is_array($question) && ($question['source'] ?? null) === 'bozja_holsters')
+            ->keyBy(fn (array $question) => (string) ($question['key'] ?? ''));
+
+        foreach ($answers as $answer) {
+            if (($answer['source'] ?? null) !== 'bozja_holsters') {
+                continue;
+            }
+
+            $questionKey = (string) ($answer['question_key'] ?? '');
+            $question = $questions->get($questionKey);
+
+            if (! is_array($question)) {
+                continue;
+            }
+
+            $allowedKeys = collect($this->resolveQuestionOptions($question, $activity->group_id))
+                ->pluck('key')
+                ->map(fn ($key) => (string) $key)
+                ->all();
+            $selectedKeys = collect(is_array($answer['value'] ?? null) ? $answer['value'] : [$answer['value'] ?? null])
+                ->filter(fn ($value) => is_scalar($value) && filled((string) $value))
+                ->map(fn ($value) => (string) $value);
+
+            if ($selectedKeys->contains(fn (string $key) => ! in_array($key, $allowedKeys, true))) {
+                throw ValidationException::withMessages([
+                    "answers.{$questionKey}" => 'The selected holster is not available for this group.',
+                ]);
+            }
+        }
+    }
+
+    /**
      * @param  array<string, mixed>  $question
      */
-    private function filterRememberedApplicationAnswerValue(mixed $value, array $question): mixed
+    private function filterRememberedApplicationAnswerValue(mixed $value, array $question, int $groupId): mixed
     {
         $questionType = (string) ($question['type'] ?? 'text');
 
         return match ($questionType) {
-            'single_select' => $this->filterRememberedSingleSelectAnswerValue($value, $question),
-            'multi_select' => $this->filterRememberedMultiSelectAnswerValue($value, $question),
+            'single_select' => $this->filterRememberedSingleSelectAnswerValue($value, $question, $groupId),
+            'multi_select' => $this->filterRememberedMultiSelectAnswerValue($value, $question, $groupId),
             'boolean' => $this->filterRememberedBooleanAnswerValue($value),
             'number' => $this->filterRememberedNumberAnswerValue($value),
             'textarea', 'text', 'url' => $this->filterRememberedTextAnswerValue($value, $questionType),
@@ -1278,14 +1325,14 @@ class GroupActivityApplicationController extends Controller
     /**
      * @param  array<string, mixed>  $question
      */
-    private function filterRememberedSingleSelectAnswerValue(mixed $value, array $question): ?string
+    private function filterRememberedSingleSelectAnswerValue(mixed $value, array $question, int $groupId): ?string
     {
         if (! is_scalar($value) || blank((string) $value)) {
             return null;
         }
 
         $normalized = (string) $value;
-        $allowedKeys = collect($this->resolveQuestionOptions($question))
+        $allowedKeys = collect($this->resolveQuestionOptions($question, $groupId))
             ->pluck('key')
             ->map(fn ($key) => (string) $key)
             ->all();
@@ -1297,13 +1344,13 @@ class GroupActivityApplicationController extends Controller
      * @param  array<string, mixed>  $question
      * @return array<int, string>|null
      */
-    private function filterRememberedMultiSelectAnswerValue(mixed $value, array $question): ?array
+    private function filterRememberedMultiSelectAnswerValue(mixed $value, array $question, int $groupId): ?array
     {
         if (! is_array($value)) {
             return null;
         }
 
-        $allowedKeys = collect($this->resolveQuestionOptions($question))
+        $allowedKeys = collect($this->resolveQuestionOptions($question, $groupId))
             ->pluck('key')
             ->map(fn ($key) => (string) $key)
             ->all();

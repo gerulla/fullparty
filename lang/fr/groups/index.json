@@ -35,6 +35,9 @@
         "legacy_leaderboard": "Archives",
         "members": "Membres",
         "availability": "Disponibilités",
+        "content": "Contenu",
+        "delubrum_reginae_savage": "Delubrum Reginae (sadique)",
+        "forked_tower_blood": "Tour fourchue de la force",
         "moderation": "Modération",
         "configuration": "Configuration",
         "membership_applications": "Demandes",
@@ -43,6 +46,345 @@
         "discovery_settings": "Paramètres Discovery",
         "discord_integration": "Discord",
         "settings": "Paramètres"
+    },
+    "content": {
+        "delubrum_reginae_savage": {
+            "title": "Delubrum Reginae (sadique)",
+            "subtitle": "Planifiez et gérez le contenu Delubrum Reginae (sadique) de votre groupe.",
+            "holsters": {
+                "title": "Holsters",
+                "create": "Créer un nouveau holster",
+                "editor": "Éditeur de holster",
+                "new_title": "Nouveau holster",
+                "untitled": "Holster sans nom",
+                "item_count": "{count} objets",
+                "count": "{count} holsters",
+                "available_summary": "{total} holsters disponibles. {active} holsters actifs.",
+                "summary": "Résumé du holster",
+                "locales": "Langues",
+                "manage_locales": "Gérer les langues",
+                "sections": "Sections",
+                "section_details": "Nom, rôle, notes et langues",
+                "section_guide": "Instructions et Markdown",
+                "section_contents": "Objets sélectionnés ({count})",
+                "tip_title": "Conseil",
+                "tip_description": "Gardez votre guide clair et concis afin qu'il soit plus facile à utiliser en jeu.",
+                "library": "Bibliothèque d'objets de Bozja",
+                "library_empty": "Aucun objet de Bozja correspondant.",
+                "library_count": "{shown} objets affichés sur {total}",
+                "search_placeholder": "Rechercher des holsters...",
+                "filters": {
+                    "all": "Tous",
+                    "active": "Actifs",
+                    "inactive": "Inactifs"
+                },
+                "active": "Actif",
+                "inactive": "Inactif",
+                "back_to_list": "Retour aux holsters",
+                "role_unset": "Rôle non défini",
+                "make_default": "Définir par défaut",
+                "default_updated": "Holster par défaut mis à jour",
+                "default_update_failed": "Le holster par défaut n'a pas pu être mis à jour.",
+                "no_description": "Aucune description fournie.",
+                "actions": "Actions",
+                "more_actions": "+ {count} autres",
+                "no_actions": "Aucune action ajoutée.",
+                "open_editor": "Ouvrir l'éditeur",
+                "deleted": "Holster supprimé",
+                "delete_failed": "Le holster n'a pas pu être supprimé.",
+                "delete_modal": {
+                    "title": "Supprimer {name} ?",
+                    "description": "Cette action supprime le holster et tout son contenu enregistré.",
+                    "warning": "Cette action est irréversible."
+                },
+                "status_updated": "Statut du holster mis à jour",
+                "status_update_failed": "Le statut du holster n'a pas pu être mis à jour.",
+                "empty_title": "Aucun holster",
+                "empty_description": "Créez un holster pour commencer à préparer une composition.",
+                "no_selection": "Sélectionnez un holster ou créez-en un nouveau.",
+                "saved": "Holster enregistré",
+                "save_failed": "Le holster n'a pas pu être enregistré.",
+                "metadata": {
+                    "title": "Détails",
+                    "description": "Nommez le holster et ajoutez les notes utiles à votre groupe.",
+                    "name": "Nom",
+                    "role": "Rôle",
+                    "max_capacity": "Capacité maximale",
+                    "guide": "Guide",
+                    "guide_description": "Instructions facultatives au format Markdown pour utiliser ce holster.",
+                    "expand_guide": "Agrandir le guide",
+                    "shrink_guide": "Réduire le guide"
+                },
+                "contents": {
+                    "title": "Contenu",
+                    "description": "Recherchez dans la liste des objets de Bozja et ajoutez ceux dont votre groupe a besoin.",
+                    "search": "Rechercher des objets de Bozja",
+                    "item": "Objet",
+                    "quantity": "Quantité",
+                    "weight_label": "Poids",
+                    "weight": "Poids {weight}",
+                    "empty": "Recherchez un objet ci-dessus pour commencer à remplir ce holster."
+                },
+                "capacity": {
+                    "title": "Capacité",
+                    "remaining": "{count} de capacité restante"
+                }
+            }
+        },
+        "forked_tower_blood": {
+            "title": "Tour fourchue de la force",
+            "subtitle": "Planifiez et gérez le contenu Tour fourchue de la force de votre groupe.",
+            "compositions": {
+                "title": "Compositions",
+                "create": "Nouvelle composition",
+                "loading": "Chargement des compositions...",
+                "load_failed": "Les compositions n'ont pas pu être chargées.",
+                "saved": "Composition enregistrée",
+                "save_failed": "La composition n'a pas pu être enregistrée.",
+                "deleted": "Composition supprimée",
+                "delete_failed": "La composition n'a pas pu être supprimée.",
+                "status_update_failed": "Le statut de la composition n'a pas pu être mis à jour.",
+                "reorder_failed": "L'ordre des compositions n'a pas pu être enregistré.",
+                "search_placeholder": "Rechercher des compositions...",
+                "filters": {
+                    "all": "Toutes",
+                    "active": "Actives",
+                    "inactive": "Inactives"
+                },
+                "active": "Active",
+                "inactive": "Inactive",
+                "default": "Par défaut",
+                "updated": "Mis à jour {time}",
+                "count": "{count} compositions",
+                "reorder_hint": "Glisser pour réordonner",
+                "empty_title": "Aucune composition trouvée",
+                "empty_description": "Ajustez la recherche ou créez une nouvelle composition.",
+                "editor": {
+                    "title": "Éditeur de composition",
+                    "new_title": "Nouvelle composition",
+                    "untitled": "Composition sans nom",
+                    "no_selection": "Sélectionnez une composition ou créez-en une nouvelle.",
+                    "tabs": {
+                        "metadata": "Métadonnées / Infos",
+                        "rules": "Règles",
+                        "summary": "Résumé"
+                    },
+                    "basics_title": "Base",
+                    "basics_description": "Nommez le guide et choisissez s'il doit être actif pour le groupe.",
+                    "default_enabled": "Utilisée en premier",
+                    "default_disabled": "Pas par défaut",
+                    "rules_title": "Règles",
+                    "rules_description": "Construisez les règles de jobs fantômes que cette composition doit afficher.",
+                    "add_rule": "Ajouter une règle",
+                    "new_rule_label": "Nouvelle règle",
+                    "new_rule_summary": "Au moins 1 job fantôme sélectionné sur tous les emplacements.",
+                    "copy_label": "Copie de {label}",
+                    "drag_rule": "Déplacer la règle",
+                    "expand_rule": "Déplier la règle",
+                    "collapse_rule": "Replier la règle",
+                    "duplicate_rule": "Dupliquer la règle",
+                    "remove_rule": "Supprimer la règle",
+                    "rule_number": "Règle {number}",
+                    "no_rules_title": "Aucune règle",
+                    "no_rules_description": "Ajoutez une règle pour commencer à définir ce guide de composition.",
+                    "summary_eyebrow": "Résumé de composition",
+                    "summary_title": "Résumé",
+                    "summary_description": "Vérifiez les exigences de jobs fantômes groupées par couverture d'équipe.",
+                    "summary": {
+                        "rules": "Règles",
+                        "status": "Statut",
+                        "default": "Par défaut",
+                        "requirements_count": "{count} exigences"
+                    },
+                    "states_title": "États du guide",
+                    "states_description": "Ces états seront affichés par le guide par rapport à une roster.",
+                    "fields": {
+                        "name": "Nom",
+                        "name_placeholder": "Équilibre (standard)",
+                        "description": "Description",
+                        "description_placeholder": "Note courte pour les modérateurs sur l'utilisation de cette composition.",
+                        "active": "Active",
+                        "default": "Par défaut",
+                        "rule_label": "Libellé de règle",
+                        "rule_type": "Type de règle",
+                        "target_job": "Job fantôme",
+                        "severity": "Priorité",
+                        "scope": "Portée",
+                        "comparison": "Comparaison",
+                        "target_count": "Nombre cible",
+                        "summary": "Résumé"
+                    },
+                    "job_picker": {
+                        "description": "Choisissez le job fantôme surveillé par cette règle.",
+                        "search_placeholder": "Rechercher des jobs fantômes...",
+                        "max_level": "Niveau max {level}",
+                        "no_results": "Aucun job fantôme trouvé"
+                    },
+                    "rule_details": {
+                        "title": "Détails de règle"
+                    },
+                    "rule_types": {
+                        "single_job_count": "Nombre d'un job",
+                        "duplicate_limit": "Limite de doublons"
+                    },
+                    "severities": {
+                        "required": "Requis",
+                        "recommended": "Recommandé",
+                        "optional": "Optionnel"
+                    },
+                    "comparisons": {
+                        "at_least": "Au moins",
+                        "exactly": "Exactement",
+                        "at_most": "Au plus"
+                    },
+                    "parties": {
+                        "all": "Toutes",
+                        "party": "Équipe {party}"
+                    },
+                    "scopes": {
+                        "anywhere": {
+                            "title": "N'importe où",
+                            "description": "Appliquer à toute la composition"
+                        },
+                        "one_side": {
+                            "title": "Un côté (ABC / DEF)",
+                            "description": "Appliquer à un côté sélectionné"
+                        },
+                        "specific_party": {
+                            "title": "Équipe précise",
+                            "description": "Appliquer à une équipe sélectionnée"
+                        },
+                        "either_party": {
+                            "title": "Une des équipes",
+                            "description": "Avoir le job dans une équipe sélectionnée"
+                        },
+                        "all_parties": {
+                            "title": "Toutes les équipes",
+                            "description": "Avoir le job dans chaque équipe sélectionnée"
+                        }
+                    },
+                    "scope_builder": {
+                        "title": "Constructeur de portée",
+                        "description": "Choisissez où cette règle doit chercher.",
+                        "no_party_needed": "Cette portée vérifie toute la roster, aucune sélection d'équipe n'est nécessaire."
+                    },
+                    "scope_display": {
+                        "anywhere": {
+                            "title": "L'un des côtés",
+                            "description": "Recherche le job sur l'un des côtés."
+                        },
+                        "one_side": {
+                            "title": "Un côté ({parties})",
+                            "description": "Recherche le job sur le côté sélectionné."
+                        },
+                        "specific_party": {
+                            "title": "Équipe précise ({parties})",
+                            "description": "Recherche le job dans l'équipe sélectionnée."
+                        },
+                        "either_party": {
+                            "title": "Une équipe ({parties})",
+                            "description": "Recherche le job dans une des équipes sélectionnées."
+                        },
+                        "all_parties": {
+                            "title": "Toutes les équipes ({parties})",
+                            "description": "Recherche le job dans chaque équipe sélectionnée."
+                        }
+                    },
+                    "scope_plain": {
+                        "anywhere": "Cette règle compte {job} sur toute la roster. Elle est remplie quand la roster a {comparison} {count} au total.",
+                        "one_side": "Cette règle vérifie uniquement le côté sélectionné : {parties}. Elle est remplie quand ce côté a {comparison} {count} {job}.",
+                        "specific_party": "Cette règle vérifie uniquement {parties}. Elle est remplie quand cette équipe a {comparison} {count} {job}.",
+                        "either_party": "Cette règle vérifie chaque équipe sélectionnée séparément : {parties}. Elle est remplie quand au moins une de ces équipes a {comparison} {count} {job}.",
+                        "all_parties": "Cette règle vérifie chaque équipe sélectionnée séparément : {parties}. Chaque équipe sélectionnée doit avoir {comparison} {count} {job}."
+                    },
+                    "unknown_job": "Job fantôme inconnu",
+                    "states": {
+                        "met": "Règle remplie",
+                        "unmet": "Règle non remplie",
+                        "partial": "Partiel",
+                        "overfilled": "Trop rempli"
+                    }
+                },
+                "samples": {
+                    "even_balance": {
+                        "name": "Équilibre (standard)",
+                        "description": "Un guide de départ équilibré pour deux côtés miroirs."
+                    },
+                    "physical_ranged": {
+                        "name": "Priorité distance physique",
+                        "description": "Favorise l'utilité à distance tout en gardant la couverture de base."
+                    },
+                    "caster_preferred": {
+                        "name": "Mages préférés",
+                        "description": "Garde le soutien magique visible dans les vérifications d'équipe."
+                    },
+                    "high_mobility": {
+                        "name": "Haute mobilité",
+                        "description": "Un guide plus léger pour les assignations avec beaucoup de déplacement."
+                    },
+                    "ultimate_control": {
+                        "name": "Contrôle maximal",
+                        "description": "Limite les doublons de jobs utilitaires pour une meilleure couverture."
+                    },
+                    "learning_party": {
+                        "name": "Groupe d'apprentissage (flexible)",
+                        "description": "Suggestions plus souples pour les groupes qui apprennent encore le trajet."
+                    },
+                    "savage_progression": {
+                        "name": "Progression sadique",
+                        "description": "Un guide plus strict pour les soirées de progression."
+                    },
+                    "updated": {
+                        "two_minutes": "il y a 2 min",
+                        "one_hour": "il y a 1 h",
+                        "three_hours": "il y a 3 h",
+                        "five_hours": "il y a 5 h",
+                        "one_day": "il y a 1 j",
+                        "two_days": "il y a 2 j",
+                        "three_days": "il y a 3 j",
+                        "just_now": "à l'instant"
+                    },
+                    "rules": {
+                        "side_bard": {
+                            "label": "Couverture barde côté 1",
+                            "summary": "Au moins 1 barde fantôme côté 1."
+                        },
+                        "side_ranger": {
+                            "label": "Couverture rôdeur côté 2",
+                            "summary": "Au moins 1 rôdeur fantôme côté 2."
+                        },
+                        "utility_package": {
+                            "label": "Utilitaire central",
+                            "summary": "Barde, rôdeur et mage du temps devraient être présents."
+                        },
+                        "ranged_core": {
+                            "label": "Noyau utilitaire à distance",
+                            "summary": "Au moins 4 jobs de l'ensemble utilitaire à distance."
+                        },
+                        "caster_support": {
+                            "label": "Soutien magique",
+                            "summary": "Au moins 1 job de soutien magique dans chaque équipe."
+                        },
+                        "mobility": {
+                            "label": "Option de mobilité",
+                            "summary": "Au moins 1 option axée mobilité dans la roster."
+                        },
+                        "duplicate_limit": {
+                            "label": "Limite de doublons",
+                            "summary": "Pas plus de 3 copies du même job utilitaire."
+                        },
+                        "learning": {
+                            "label": "Flex apprentissage",
+                            "summary": "Au moins 2 choix de soutien flexibles sur tous les emplacements."
+                        },
+                        "prog_core": {
+                            "label": "Noyau progression",
+                            "summary": "Au moins 8 jobs du paquet de progression central."
+                        }
+                    }
+                }
+            }
+        }
     },
     "table": {
         "columns": {

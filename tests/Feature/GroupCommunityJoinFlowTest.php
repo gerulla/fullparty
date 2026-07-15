@@ -144,6 +144,28 @@ it('renders server-side embed meta for group invite links', function () {
     expect(substr_count($response->getContent(), '<meta property="og:image"'))->toBe(1);
 });
 
+it('returns users to an invitation after signing in', function () {
+    $owner = User::factory()->create();
+    $user = User::factory()->create(['password' => bcrypt('password')]);
+    $group = Group::factory()->create(['owner_id' => $owner->id]);
+    $invite = GroupInvite::query()->create([
+        'group_id' => $group->id,
+        'created_by' => $owner->id,
+        'token' => 'returnhere',
+        'is_system' => false,
+    ]);
+    $inviteUrl = route('groups.invites.show', $invite->token);
+
+    $this->get(route('login', ['invite' => $invite->token]))
+        ->assertOk()
+        ->assertSessionHas('url.intended', $inviteUrl);
+
+    $this->post(route('login.store'), [
+        'login' => $user->email,
+        'password' => 'password',
+    ])->assertRedirect($inviteUrl);
+});
+
 it('allows generated invites for application-based groups without creating a permanent slug invite', function (string $groupType) {
     $owner = User::factory()->create();
     $group = Group::factory()->applicationBased()->create([

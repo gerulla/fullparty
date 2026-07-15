@@ -3,6 +3,7 @@
 namespace App\Services\Groups\ApplicantQueue;
 
 use App\Models\ActivityTypeVersion;
+use App\Models\BozjaHolster;
 use App\Models\BozjaItem;
 use App\Models\CharacterClass;
 use App\Models\PhantomJob;
@@ -84,6 +85,19 @@ class ApplicationAnswerPresenter
                 ->map(fn ($entry) => (string) $entry === self::ANY_OPTION_KEY && $anyLabel !== null
                     ? $anyLabel
                     : $labels[(int) $entry] ?? null)
+                ->filter();
+        }
+
+        if ($source === 'bozja_holsters') {
+            $holsters = BozjaHolster::query()
+                ->whereIn('id', $values->reject(fn ($entry) => (string) $entry === self::ANY_OPTION_KEY)->map(fn ($entry) => (int) $entry)->all())
+                ->get()
+                ->keyBy('id');
+
+            return $values
+                ->map(fn ($entry) => (string) $entry === self::ANY_OPTION_KEY && $anyLabel !== null
+                    ? $anyLabel
+                    : $holsters->get((int) $entry)?->localizedName())
                 ->filter();
         }
 
@@ -256,6 +270,33 @@ class ApplicationAnswerPresenter
                         'icon_url' => $phantomJob->icon_url,
                         'transparent_icon_url' => $phantomJob->transparent_icon_url,
                     ];
+                })
+                ->filter()
+                ->values();
+        }
+
+        if ($source === 'bozja_holsters') {
+            $holsters = BozjaHolster::query()
+                ->whereIn('id', $values->reject(fn ($entry) => (string) $entry === self::ANY_OPTION_KEY)->map(fn ($entry) => (int) $entry)->all())
+                ->get()
+                ->keyBy('id');
+
+            return $values
+                ->map(function ($entry) use ($holsters, $anyLabel) {
+                    if ((string) $entry === self::ANY_OPTION_KEY && $anyLabel !== null) {
+                        return [
+                            'label' => $anyLabel,
+                            'is_any' => true,
+                        ];
+                    }
+
+                    /** @var BozjaHolster|null $holster */
+                    $holster = $holsters->get((int) $entry);
+
+                    return $holster ? [
+                        'label' => $holster->localizedName(),
+                        'max_capacity' => $holster->max_capacity,
+                    ] : null;
                 })
                 ->filter()
                 ->values();

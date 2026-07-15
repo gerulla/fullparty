@@ -125,9 +125,9 @@ class GroupActivityManagementDataController extends Controller
                     ->filter(fn (array $progPoint) => $progPoint['key'] !== '')
                     ->values()
                     ->all(),
-                'roster_summary_presets' => $rosterSummaryPresetBuilder->build($activity->activityTypeVersion),
+                'roster_summary_presets' => $rosterSummaryPresetBuilder->buildForActivity($activity),
                 'can_use_fflogs_completion' => $completionService->supportsFflogsCompletion($activity->activityTypeVersion),
-                'slot_field_definitions' => $fieldDefinitionBuilder->build($activity->activityTypeVersion),
+                'slot_field_definitions' => $fieldDefinitionBuilder->build($activity->activityTypeVersion, $group->id),
                 'composition_class_options' => CharacterClass::query()
                     ->orderBy('role')
                     ->orderBy('name')

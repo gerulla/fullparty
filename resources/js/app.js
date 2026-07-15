@@ -3,9 +3,24 @@ import { createApp, h } from 'vue'
 import { createInertiaApp } from '@inertiajs/vue3'
 import DefaultLayout from './Layouts/DefaultLayout.vue';
 import ui from '@nuxt/ui/vue-plugin'
+import { config as configureMarkdownEditor, XSSPlugin } from 'md-editor-v3'
+import 'md-editor-v3/lib/style.css'
 import { ZiggyVue } from 'ziggy-js';
 import { createI18n } from 'vue-i18n'
 import { messages, availableLocales, getDefaultLocale } from './lang'
+
+configureMarkdownEditor({
+    markdownItPlugins(plugins) {
+        return [
+            ...plugins,
+            {
+                type: 'xss',
+                plugin: XSSPlugin,
+                options: {},
+            },
+        ]
+    },
+})
 
 const i18n = createI18n({
     legacy: false,

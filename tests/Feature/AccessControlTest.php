@@ -81,19 +81,58 @@ function createAccessControlActivity(array $groupOverrides = [], array $activity
     return compact('owner', 'group', 'activity');
 }
 
-it('redirects non members away from visible group dashboards', function () {
+it('allows guests and non members to view visible open-join group dashboards', function () {
     extract(createAccessControlActivity());
 
-    $outsider = User::factory()->create();
+    $this->get(route('groups.dashboard', $group))
+        ->assertOk()
+        ->assertInertia(fn (Assert $page) => $page
+            ->component('Dashboard/Groups/CommunityDashboard')
+            ->where('group.current_user_role', null)
+            ->where('group.permissions.can_view_members', false)
+            ->where('group.permissions.can_manage_activities', false)
+            ->where('group.permissions.can_join', true)
+            ->where('group.permissions.can_apply', false)
+            ->where('group.notifications.enabled', false)
+            ->has('group.members_preview', 0));
 
-    $this->actingAs($outsider);
+    $this->actingAs(User::factory()->create())
+        ->get(route('groups.dashboard', $group))
+        ->assertOk();
+});
 
-    $response = $this->get(route('groups.dashboard', [
-        'group' => $group->slug,
+it('allows guests to view visible application-based dashboards and exposes the apply action', function () {
+    extract(createAccessControlActivity([
+        'join_mode' => Group::JOIN_MODE_APPLICATION,
+        'is_visible' => true,
     ]));
 
-    $response->assertRedirect(route('groups.index'));
+    $this->get(route('groups.dashboard', $group))
+        ->assertOk()
+        ->assertInertia(fn (Assert $page) => $page
+            ->where('group.current_user_role', null)
+            ->where('group.membership_application.pending', false)
+            ->where('group.permissions.can_join', false)
+            ->where('group.permissions.can_apply', true));
+
+    $this->get(route('groups.dashboard.activities.index', $group))->assertOk();
 });
+
+it('keeps invite-only and hidden group dashboard read pages private', function (array $groupOverrides) {
+    extract(createAccessControlActivity($groupOverrides));
+
+    $this->get(route('groups.dashboard', $group))->assertNotFound();
+    $this->get(route('groups.dashboard.activities.index', $group))->assertNotFound();
+})->with([
+    'visible invite-only group' => [[
+        'join_mode' => Group::JOIN_MODE_INVITE_ONLY,
+        'is_visible' => true,
+    ]],
+    'hidden open-join group' => [[
+        'join_mode' => Group::JOIN_MODE_OPEN,
+        'is_visible' => false,
+    ]],
+]);
 
 it('returns not found for non member writes to dashboard endpoints', function () {
     extract(createAccessControlActivity());

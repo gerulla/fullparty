@@ -386,6 +386,9 @@ export type GroupDashboardGroup = {
 		enabled: boolean
 		preferences: GroupNotificationPreferences
 	}
+	membership_application: {
+		pending: boolean
+	}
 	permissions: {
 		can_manage_group: boolean
 		can_update_group_settings?: boolean
@@ -397,6 +400,8 @@ export type GroupDashboardGroup = {
 		can_manage_membership_application_form: boolean
 		can_leave: boolean
 		can_toggle_notifications: boolean
+		can_join: boolean
+		can_apply: boolean
 	}
 	stats: {
 		member_count: number

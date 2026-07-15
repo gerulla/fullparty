@@ -540,15 +540,59 @@ it('hides draft activities from non moderators on the dashboard runs page', func
             ->has('activities', 2));
 });
 
-it('redirects non members away from the dashboard runs page', function () {
-    $viewer = User::factory()->create();
+it('shows guests discoverable runs including member-only application runs', function () {
+    $owner = User::factory()->create();
     $group = Group::factory()->open()->create([
-        'owner_id' => User::factory()->create()->id,
+        'owner_id' => $owner->id,
+    ]);
+    $activityType = createCrudActivityType($owner);
+
+    $publicRun = Activity::factory()->create([
+        'group_id' => $group->id,
+        'activity_type_id' => $activityType->id,
+        'activity_type_version_id' => $activityType->current_published_version_id,
+        'organized_by_user_id' => $owner->id,
+        'status' => Activity::STATUS_SCHEDULED,
+        'title' => 'Public applications',
+        'is_public' => true,
+        'updated_at' => now()->subMinutes(10),
+    ]);
+    $membersOnlyRun = Activity::factory()->create([
+        'group_id' => $group->id,
+        'activity_type_id' => $activityType->id,
+        'activity_type_version_id' => $activityType->current_published_version_id,
+        'organized_by_user_id' => $owner->id,
+        'status' => Activity::STATUS_SCHEDULED,
+        'title' => 'Members only applications',
+        'is_public' => false,
+        'updated_at' => now(),
+    ]);
+    Activity::factory()->create([
+        'group_id' => $group->id,
+        'activity_type_id' => $activityType->id,
+        'activity_type_version_id' => $activityType->current_published_version_id,
+        'organized_by_user_id' => $owner->id,
+        'status' => Activity::STATUS_DRAFT,
+        'is_public' => true,
+    ]);
+    ActivityApplication::factory()->guest()->create([
+        'activity_id' => $publicRun->id,
     ]);
 
-    $this->actingAs($viewer)
-        ->get(route('groups.dashboard.activities.index', $group))
-        ->assertRedirect(route('groups.index'));
+    $this->get(route('groups.dashboard.activities.index', $group))
+        ->assertOk()
+        ->assertInertia(fn (Assert $page) => $page
+            ->component('Dashboard/Groups/Activities/Index')
+            ->where('group.current_user_role', null)
+            ->where('group.permissions.can_view_members', false)
+            ->where('group.permissions.can_manage_activities', false)
+            ->has('activities', 2)
+            ->where('activities.0.id', $membersOnlyRun->id)
+            ->where('activities.0.is_public', false)
+            ->where('activities.0.has_existing_application', false)
+            ->where('activities.1.id', $publicRun->id)
+            ->where('activities.1.is_public', true)
+            ->where('activities.1.has_existing_application', false));
 });
 
 it('rejects organizer characters that do not belong to the organizer user', function () {

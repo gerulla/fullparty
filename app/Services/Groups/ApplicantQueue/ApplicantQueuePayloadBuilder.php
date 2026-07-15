@@ -43,7 +43,7 @@ class ApplicantQueuePayloadBuilder
             'fflogs_zone_id' => $activity->activityTypeVersion?->fflogs_zone_id,
             'pending_application_count' => $activity->applications->count(),
             'queue_filters' => [
-                'slot_fields' => $this->serializeQueueSlotFields($activity->activityTypeVersion),
+                'slot_fields' => $this->serializeQueueSlotFields($activity->activityTypeVersion, $activity->group_id),
                 'milestones' => $this->serializeQueueMilestones($activity->activityTypeVersion),
             ],
             'applications' => $activity->applications
@@ -213,9 +213,9 @@ class ApplicantQueuePayloadBuilder
     /**
      * @return array<int, array<string, mixed>>
      */
-    private function serializeQueueSlotFields(?ActivityTypeVersion $activityTypeVersion): array
+    private function serializeQueueSlotFields(?ActivityTypeVersion $activityTypeVersion, int $groupId): array
     {
-        return collect($this->slotFieldDefinitionBuilder->build($activityTypeVersion))
+        return collect($this->slotFieldDefinitionBuilder->build($activityTypeVersion, $groupId))
             ->filter(fn (array $field) => $field['key'] !== '' && $field['application_key'] !== '' && count($field['options']) > 0)
             ->values()
             ->all();

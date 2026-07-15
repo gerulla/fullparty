@@ -12,10 +12,7 @@ use Illuminate\Support\Str;
 class ActivitySlotApplicationMatchService
 {
     /** @var array<int, array<int, array<string, mixed>>> */
-    private array $fieldDefinitionsByVersionId = [];
-
-    /** @var array<int, ActivityTypeVersion|null> */
-    private array $activityTypeVersionByActivityId = [];
+    private array $fieldDefinitionsByActivityId = [];
 
     public function __construct(
         private readonly ActivitySlotFieldDefinitionBuilder $fieldDefinitionBuilder,
@@ -89,25 +86,24 @@ class ActivitySlotApplicationMatchService
      */
     private function fieldDefinitions(ActivitySlot $slot): array
     {
-        $activityTypeVersion = $slot->relationLoaded('activity')
-            && $slot->activity?->relationLoaded('activityTypeVersion')
-            ? $slot->activity->activityTypeVersion
+        $activity = $slot->relationLoaded('activity')
+            ? $slot->activity
             : null;
 
-        if (! $activityTypeVersion instanceof ActivityTypeVersion) {
-            $activityTypeVersion = $this->activityTypeVersionByActivityId[$slot->activity_id]
-                ??= Activity::query()
-                    ->with('activityTypeVersion')
-                    ->find($slot->activity_id)
-                    ?->activityTypeVersion;
+        if (! $activity instanceof Activity) {
+            $activity = Activity::query()
+                ->with('activityTypeVersion')
+                ->find($slot->activity_id);
         }
+
+        $activityTypeVersion = $activity?->activityTypeVersion;
 
         if (! $activityTypeVersion instanceof ActivityTypeVersion) {
             return [];
         }
 
-        return $this->fieldDefinitionsByVersionId[$activityTypeVersion->id]
-            ??= $this->fieldDefinitionBuilder->build($activityTypeVersion);
+        return $this->fieldDefinitionsByActivityId[$slot->activity_id]
+            ??= $this->fieldDefinitionBuilder->build($activityTypeVersion, $activity->group_id);
     }
 
     /**
@@ -130,6 +126,7 @@ class ActivitySlotApplicationMatchService
         return match ($source) {
             'character_classes' => 'C',
             'phantom_jobs' => 'PJ',
+            'bozja_holsters' => 'H',
             'raid_positions' => 'RP',
             default => Str::of((string) ($answer->question_label['en'] ?? $answer->question_key))
                 ->split('/\s+/')

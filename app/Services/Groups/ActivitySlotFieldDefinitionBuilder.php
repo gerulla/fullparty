@@ -3,6 +3,7 @@
 namespace App\Services\Groups;
 
 use App\Models\ActivityTypeVersion;
+use App\Models\BozjaHolster;
 use App\Models\BozjaItem;
 use App\Models\CharacterClass;
 use App\Models\PhantomJob;
@@ -16,10 +17,10 @@ class ActivitySlotFieldDefinitionBuilder
     /**
      * @return array<int, array<string, mixed>>
      */
-    public function build(?ActivityTypeVersion $activityTypeVersion): array
+    public function build(?ActivityTypeVersion $activityTypeVersion, ?int $groupId = null): array
     {
         return collect($activityTypeVersion?->slot_schema ?? [])
-            ->map(function (array $field) use ($activityTypeVersion) {
+            ->map(function (array $field) use ($activityTypeVersion, $groupId) {
                 $applicationQuestion = $this->resolveApplicationQuestion($field, $activityTypeVersion);
 
                 return [
@@ -30,9 +31,9 @@ class ActivitySlotFieldDefinitionBuilder
                         : ['en' => (string) ($field['key'] ?? '')],
                     'type' => (string) ($field['type'] ?? 'text'),
                     'source' => $field['source'] ?? null,
-                    'options' => $this->resolveOptions($field),
+                    'options' => $this->resolveOptions($field, groupId: $groupId),
                     'filter_options' => is_array($applicationQuestion)
-                        ? $this->resolveOptions($applicationQuestion, includeAnySelection: true)
+                        ? $this->resolveOptions($applicationQuestion, includeAnySelection: true, groupId: $groupId)
                         : [],
                 ];
             })
@@ -84,7 +85,7 @@ class ActivitySlotFieldDefinitionBuilder
     /**
      * @return array<int, array<string, mixed>>
      */
-    private function resolveOptions(array $field, bool $includeAnySelection = false): array
+    private function resolveOptions(array $field, bool $includeAnySelection = false, ?int $groupId = null): array
     {
         $options = match ($field['source'] ?? null) {
             'character_classes' => CharacterClass::query()
@@ -117,6 +118,9 @@ class ActivitySlotFieldDefinitionBuilder
                 ])
                 ->values()
                 ->all(),
+            'bozja_holsters' => $groupId === null
+                ? []
+                : BozjaHolster::schemaOptionsForGroup($groupId),
             'raid_positions' => RaidPosition::query()
                 ->where('is_active', true)
                 ->orderBy('sort_order')

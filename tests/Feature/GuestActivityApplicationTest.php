@@ -8,6 +8,7 @@ use App\Models\ActivityApplicationAnswer;
 use App\Models\ActivitySlot;
 use App\Models\ActivityType;
 use App\Models\ActivityTypeVersion;
+use App\Models\BozjaHolster;
 use App\Models\Character;
 use App\Models\CharacterClass;
 use App\Models\Group;
@@ -526,6 +527,49 @@ it('resolves shared raid position choices for application questions', function (
             ->where('applicationSchema.0.options.1.key', 'ot')
             ->where('applicationSchema.0.options.2.key', 'any')
             ->where('applicationSchema.0.options.2.label.en', 'Put Me Anywhere Coach')
+        );
+});
+
+it('only offers active holsters belonging to the activity group', function () {
+    $activity = createGuestApplicationActivity([
+        'allow_guest_applications' => false,
+    ]);
+    $availableHolster = BozjaHolster::query()->create([
+        'group_id' => $activity->group_id,
+        'name' => ['en' => 'Progression Holster'],
+        'is_active' => true,
+    ]);
+    BozjaHolster::query()->create([
+        'group_id' => $activity->group_id,
+        'name' => ['en' => 'Retired Holster'],
+        'is_active' => false,
+    ]);
+    BozjaHolster::query()->create([
+        'group_id' => Group::factory()->create()->id,
+        'name' => ['en' => 'Another Group Holster'],
+        'is_active' => true,
+    ]);
+    $activity->activityTypeVersion->update([
+        'application_schema' => [[
+            'key' => 'preferred_holster',
+            'label' => ['en' => 'Preferred Holster'],
+            'type' => 'single_select',
+            'source' => 'bozja_holsters',
+        ]],
+    ]);
+    $user = User::factory()->create();
+    Character::factory()->primary()->create(['user_id' => $user->id]);
+
+    $this->actingAs($user)
+        ->get(route('groups.activities.application', [
+            'group' => $activity->group->slug,
+            'activity' => $activity->id,
+        ]))
+        ->assertOk()
+        ->assertInertia(fn (Assert $page) => $page
+            ->has('applicationSchema.0.options', 1)
+            ->where('applicationSchema.0.options.0.key', (string) $availableHolster->id)
+            ->where('applicationSchema.0.options.0.label.en', 'Progression Holster')
         );
 });
 

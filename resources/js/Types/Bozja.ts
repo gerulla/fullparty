@@ -13,3 +13,28 @@ export type BozjaItemRecord = {
 	is_active: boolean
 	has_source_payload: boolean
 }
+
+export type BozjaHolsterSummary = {
+	id: number
+	name: LocalizedStringRecord | null
+	display_name: string | null
+	role: 'tank' | 'healer' | 'melee dps' | 'physical ranged dps' | 'magic ranged dps' | null
+	capacity_used: number
+	max_capacity: number
+	notes: string | null
+	guide: string | null
+	is_active: boolean
+	is_default: boolean
+	items: BozjaHolsterItem[]
+}
+
+export type BozjaItemOption = Pick<
+	BozjaItemRecord,
+	'id' | 'key' | 'category' | 'name' | 'description' | 'classification' | 'cache_weight' | 'icon_url'
+> & {
+	display_name: string
+}
+
+export type BozjaHolsterItem = BozjaItemOption & {
+	quantity: number
+}

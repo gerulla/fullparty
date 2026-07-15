@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Concerns;
 
+use App\Models\BozjaHolster;
 use App\Models\BozjaItem;
 use App\Models\CharacterClass;
 use App\Models\PhantomJob;
@@ -107,6 +108,31 @@ trait InteractsWithActivitySlotFieldDisplay
                         'transparent_icon_url' => $phantomJob->transparent_icon_url,
                         'sprite_url' => $phantomJob->sprite_url,
                     ];
+                })
+                ->filter()
+                ->values()
+                ->all();
+        }
+
+        if ($source === 'bozja_holsters') {
+            $holsterIds = collect($values)
+                ->map(fn ($entry) => (int) (is_array($entry) ? ($entry['id'] ?? $entry['key'] ?? 0) : $entry))
+                ->filter(fn (int $id) => $id > 0)
+                ->values();
+            $holsters = BozjaHolster::query()
+                ->whereIn('id', $holsterIds->all())
+                ->get()
+                ->keyBy('id');
+
+            return $holsterIds
+                ->map(function (int $holsterId) use ($holsters) {
+                    /** @var BozjaHolster|null $holster */
+                    $holster = $holsters->get($holsterId);
+
+                    return $holster ? [
+                        'label' => $holster->localizedName(),
+                        'max_capacity' => $holster->max_capacity,
+                    ] : null;
                 })
                 ->filter()
                 ->values()
@@ -290,6 +316,19 @@ trait InteractsWithActivitySlotFieldDisplay
                 'black_icon_url' => $phantomJob?->black_icon_url,
                 'transparent_icon_url' => $phantomJob?->transparent_icon_url,
                 'sprite_url' => $phantomJob?->sprite_url,
+            ];
+        }
+
+        if ($fieldValue->source === 'bozja_holsters') {
+            $holsterId = (int) ($value['id'] ?? $value['key'] ?? 0);
+            $holster = $holsterId > 0
+                ? BozjaHolster::query()->find($holsterId)
+                : null;
+
+            return [
+                'key' => $value['key'] ?? null,
+                'label' => $holster?->name ?? ($value['label'] ?? null),
+                'max_capacity' => $holster?->max_capacity,
             ];
         }
 

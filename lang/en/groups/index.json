@@ -35,6 +35,9 @@
     "legacy_leaderboard": "Legacy",
     "members": "Members",
     "availability": "Availability",
+    "content": "Content",
+    "delubrum_reginae_savage": "Delubrum Reginae (Savage)",
+    "forked_tower_blood": "Forked Tower: Blood",
     "moderation": "Moderation",
     "configuration": "Configuration",
     "membership_applications": "Requests",
@@ -43,6 +46,345 @@
     "discovery_settings": "Discovery Settings",
     "discord_integration": "Discord",
     "settings": "Settings"
+  },
+  "content": {
+    "delubrum_reginae_savage": {
+      "title": "Delubrum Reginae (Savage)",
+      "subtitle": "Plan and manage your group's Delubrum Reginae (Savage) content.",
+      "holsters": {
+        "title": "Holsters",
+        "create": "Create New Holster",
+        "editor": "Holster Editor",
+        "new_title": "New Holster",
+        "untitled": "Untitled Holster",
+        "item_count": "{count} items",
+        "count": "{count} holsters",
+        "available_summary": "{total} holsters available. {active} holsters active.",
+        "summary": "Holster Summary",
+        "locales": "Locales",
+        "manage_locales": "Manage Locales",
+        "sections": "Sections",
+        "section_details": "Name, role, notes and locales",
+        "section_guide": "Instructions and Markdown",
+        "section_contents": "Selected items ({count})",
+        "tip_title": "Tip",
+        "tip_description": "Keep your guide clear and concise so it is easier to use in-game.",
+        "library": "Bozja Item Library",
+        "library_empty": "No matching Bozja items found.",
+        "library_count": "Showing {shown} of {total} items",
+        "search_placeholder": "Search holsters...",
+        "filters": {
+          "all": "All",
+          "active": "Active",
+          "inactive": "Inactive"
+        },
+        "active": "Active",
+        "inactive": "Inactive",
+        "back_to_list": "Back to Holsters",
+        "role_unset": "Role not set",
+        "make_default": "Make Default",
+        "default_updated": "Default holster updated",
+        "default_update_failed": "The default holster could not be updated.",
+        "no_description": "No description provided.",
+        "actions": "Actions",
+        "more_actions": "+ {count} other",
+        "no_actions": "No actions added.",
+        "open_editor": "Open Editor",
+        "deleted": "Holster deleted",
+        "delete_failed": "The holster could not be deleted.",
+        "delete_modal": {
+          "title": "Delete {name}?",
+          "description": "This removes the holster and all of its saved contents.",
+          "warning": "This action cannot be undone."
+        },
+        "status_updated": "Holster status updated",
+        "status_update_failed": "The holster status could not be updated.",
+        "empty_title": "No holsters yet",
+        "empty_description": "Create a holster to start planning a loadout.",
+        "no_selection": "Select a holster or create a new one.",
+        "saved": "Holster saved",
+        "save_failed": "The holster could not be saved.",
+        "metadata": {
+          "title": "Details",
+          "description": "Name the holster and add any notes your group needs.",
+          "name": "Name",
+          "role": "Role",
+          "max_capacity": "Maximum Capacity",
+          "guide": "Guide",
+          "guide_description": "Optional Markdown-formatted guidance for using this holster.",
+          "expand_guide": "Expand Guide",
+          "shrink_guide": "Shrink Guide"
+        },
+        "contents": {
+          "title": "Contents",
+          "description": "Search the Bozja item library and add each item your group needs.",
+          "search": "Search Bozja items",
+          "item": "Item",
+          "quantity": "Quantity",
+          "weight_label": "Weight",
+          "weight": "Weight {weight}",
+          "empty": "Search for an item above to start filling this holster."
+        },
+        "capacity": {
+          "title": "Capacity",
+          "remaining": "{count} capacity remaining"
+        }
+      }
+    },
+    "forked_tower_blood": {
+      "title": "Forked Tower: Blood",
+      "subtitle": "Plan and manage your group's Forked Tower: Blood content.",
+      "compositions": {
+        "title": "Compositions",
+        "create": "New Composition",
+        "loading": "Loading compositions...",
+        "load_failed": "The compositions could not be loaded.",
+        "saved": "Composition saved",
+        "save_failed": "The composition could not be saved.",
+        "deleted": "Composition deleted",
+        "delete_failed": "The composition could not be deleted.",
+        "status_update_failed": "The composition status could not be updated.",
+        "reorder_failed": "The composition order could not be saved.",
+        "search_placeholder": "Search compositions...",
+        "filters": {
+          "all": "All",
+          "active": "Active",
+          "inactive": "Inactive"
+        },
+        "active": "Active",
+        "inactive": "Inactive",
+        "default": "Default",
+        "updated": "Updated {time}",
+        "count": "{count} compositions",
+        "reorder_hint": "Drag to reorder",
+        "empty_title": "No compositions found",
+        "empty_description": "Adjust the search or create a new composition.",
+        "editor": {
+          "title": "Composition Editor",
+          "new_title": "New Composition",
+          "untitled": "Untitled Composition",
+          "no_selection": "Select a composition or create a new one.",
+          "tabs": {
+            "metadata": "Metadata / Info",
+            "rules": "Rules",
+            "summary": "Summary"
+          },
+          "basics_title": "Basics",
+          "basics_description": "Name the guide and decide whether it should be active for the group.",
+          "default_enabled": "Used first",
+          "default_disabled": "Not default",
+          "rules_title": "Rules",
+          "rules_description": "Build the Phantom Job guide rules this composition should display.",
+          "add_rule": "Add Rule",
+          "new_rule_label": "New Rule",
+          "new_rule_summary": "At least 1 selected Phantom Job across all slots.",
+          "copy_label": "{label} Copy",
+          "drag_rule": "Drag rule",
+          "expand_rule": "Expand rule",
+          "collapse_rule": "Collapse rule",
+          "duplicate_rule": "Duplicate rule",
+          "remove_rule": "Remove rule",
+          "rule_number": "Rule {number}",
+          "no_rules_title": "No rules yet",
+          "no_rules_description": "Add a rule to start shaping this composition guide.",
+          "summary_eyebrow": "Composition Summary",
+          "summary_title": "Summary",
+          "summary_description": "Review Phantom Job requirements grouped by party coverage.",
+          "summary": {
+            "rules": "Rules",
+            "status": "Status",
+            "default": "Default",
+            "requirements_count": "{count} requirements"
+          },
+          "states_title": "Guide States",
+          "states_description": "These are the states this guide will eventually display against a roster.",
+          "fields": {
+            "name": "Name",
+            "name_placeholder": "Even Balance (Standard)",
+            "description": "Description",
+            "description_placeholder": "Short note for moderators about when to use this composition.",
+            "active": "Active",
+            "default": "Default",
+            "rule_label": "Rule Label",
+            "rule_type": "Rule Type",
+            "target_job": "Phantom Job",
+            "severity": "Severity",
+            "scope": "Scope",
+            "comparison": "Comparison",
+            "target_count": "Target Count",
+            "summary": "Summary"
+          },
+          "job_picker": {
+            "description": "Pick the Phantom Job this rule watches.",
+            "search_placeholder": "Search phantom jobs...",
+            "max_level": "Max level {level}",
+            "no_results": "No phantom jobs found"
+          },
+          "rule_details": {
+            "title": "Rule Details"
+          },
+          "rule_types": {
+            "single_job_count": "Single Job Count",
+            "duplicate_limit": "Duplicate Limit"
+          },
+          "severities": {
+            "required": "Required",
+            "recommended": "Recommended",
+            "optional": "Optional"
+          },
+          "comparisons": {
+            "at_least": "At least",
+            "exactly": "Exactly",
+            "at_most": "At most"
+          },
+          "parties": {
+            "all": "All",
+            "party": "Party {party}"
+          },
+          "scopes": {
+            "anywhere": {
+              "title": "Anywhere",
+              "description": "Apply to the entire composition scope"
+            },
+            "one_side": {
+              "title": "One Side (ABC / DEF)",
+              "description": "Apply to one selected side"
+            },
+            "specific_party": {
+              "title": "Specific Party",
+              "description": "Apply to one selected party"
+            },
+            "either_party": {
+              "title": "Either Party",
+              "description": "Have the job in any selected party"
+            },
+            "all_parties": {
+              "title": "All Parties",
+              "description": "Have the job in every selected party"
+            }
+          },
+          "scope_builder": {
+            "title": "Scope Builder",
+            "description": "Choose where this rule should look.",
+            "no_party_needed": "This scope checks the whole roster, so no party selection is needed."
+          },
+          "scope_display": {
+            "anywhere": {
+              "title": "Either Side",
+              "description": "Looking for the job in either side."
+            },
+            "one_side": {
+              "title": "One Side ({parties})",
+              "description": "Looking for the job on the selected side."
+            },
+            "specific_party": {
+              "title": "Specific Party ({parties})",
+              "description": "Looking for the job in the selected party."
+            },
+            "either_party": {
+              "title": "Either Party ({parties})",
+              "description": "Looking for the job in any selected party."
+            },
+            "all_parties": {
+              "title": "All Parties ({parties})",
+              "description": "Looking for the job in every selected party."
+            }
+          },
+          "scope_plain": {
+            "anywhere": "This rule counts {job} across the full roster. It is satisfied when the roster has {comparison} {count} total.",
+            "one_side": "This rule only checks the selected side: {parties}. It is satisfied when that side has {comparison} {count} {job}.",
+            "specific_party": "This rule only checks {parties}. It is satisfied when that party has {comparison} {count} {job}.",
+            "either_party": "This rule checks each selected party separately: {parties}. It is satisfied when any one of those parties has {comparison} {count} {job}.",
+            "all_parties": "This rule checks every selected party separately: {parties}. Each selected party must have {comparison} {count} {job}."
+          },
+          "unknown_job": "Unknown Phantom Job",
+          "states": {
+            "met": "Rule Met",
+            "unmet": "Rule Not Met",
+            "partial": "Partial",
+            "overfilled": "Over-filled"
+          }
+        },
+        "samples": {
+          "even_balance": {
+            "name": "Even Balance (Standard)",
+            "description": "A balanced starter guide for two mirrored sides."
+          },
+          "physical_ranged": {
+            "name": "Physical Ranged Focus",
+            "description": "Leans into ranged utility while keeping basic coverage."
+          },
+          "caster_preferred": {
+            "name": "Caster Preferred",
+            "description": "Keeps caster support visible across party checks."
+          },
+          "high_mobility": {
+            "name": "High Mobility",
+            "description": "A lighter guide for movement-heavy assignments."
+          },
+          "ultimate_control": {
+            "name": "Ultimate Control",
+            "description": "Caps duplicate utility jobs for tighter coverage."
+          },
+          "learning_party": {
+            "name": "Learning Party (Flexible)",
+            "description": "Softer suggestions for groups still learning the route."
+          },
+          "savage_progression": {
+            "name": "Savage Progression",
+            "description": "A stricter guide for progression nights."
+          },
+          "updated": {
+            "two_minutes": "2m ago",
+            "one_hour": "1h ago",
+            "three_hours": "3h ago",
+            "five_hours": "5h ago",
+            "one_day": "1d ago",
+            "two_days": "2d ago",
+            "three_days": "3d ago",
+            "just_now": "just now"
+          },
+          "rules": {
+            "side_bard": {
+              "label": "Side 1 Bard Coverage",
+              "summary": "At least 1 Phantom Bard on Side 1."
+            },
+            "side_ranger": {
+              "label": "Side 2 Ranger Coverage",
+              "summary": "At least 1 Phantom Ranger on Side 2."
+            },
+            "utility_package": {
+              "label": "Core Utility",
+              "summary": "Bard, Ranger, and Time Mage coverage should be present."
+            },
+            "ranged_core": {
+              "label": "Ranged Utility Core",
+              "summary": "At least 4 jobs from the ranged utility set."
+            },
+            "caster_support": {
+              "label": "Caster Support",
+              "summary": "At least 1 caster support job in each party."
+            },
+            "mobility": {
+              "label": "Mobility Option",
+              "summary": "At least 1 mobility-focused option across the roster."
+            },
+            "duplicate_limit": {
+              "label": "Duplicate Cap",
+              "summary": "No more than 3 copies of the same utility job."
+            },
+            "learning": {
+              "label": "Learning Flex",
+              "summary": "At least 2 flexible support picks across all slots."
+            },
+            "prog_core": {
+              "label": "Progression Core",
+              "summary": "At least 8 jobs from the progression core package."
+            }
+          }
+        }
+      }
+    }
   },
   "table": {
     "columns": {

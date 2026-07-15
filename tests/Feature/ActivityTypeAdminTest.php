@@ -248,6 +248,7 @@ it('paginates and searches the admin activity type index', function () {
             ->where('activityTypes.meta.per_page', 12)
             ->where('activityTypes.meta.total', 14)
             ->where('filters.search', '')
+            ->where('schemaReference.supportedOptionSources.2', 'bozja_holsters')
         );
 
     $this->actingAs($admin)

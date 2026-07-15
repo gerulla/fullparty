@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import type { GroupDashboardGroup } from "@/Types/Groups";
-import { router } from "@inertiajs/vue3";
+import { router, usePage } from "@inertiajs/vue3";
 import { route } from "ziggy-js";
-import { ref } from "vue";
+import { computed, ref } from "vue";
 import { useI18n } from "vue-i18n";
 // @ts-ignore
 import { useConfirmationModal } from "@/composables/useConfirmationModal";
@@ -14,8 +14,26 @@ const props = defineProps<{
 }>();
 
 const { t } = useI18n();
+const page = usePage();
 const confirmationModal = useConfirmationModal();
 const notificationPreferencesOpen = ref(false);
+const membershipActionPending = ref(false);
+
+const isAuthenticated = computed(() => Boolean(page.props.auth?.user));
+const showMembershipAction = computed(() => Boolean(
+	props.group.permissions.can_join
+	|| props.group.permissions.can_apply
+	|| props.group.membership_application.pending,
+));
+const membershipActionLabel = computed(() => {
+	if (props.group.membership_application.pending) {
+		return t("groups.index.discovery.detail.actions.application_pending");
+	}
+
+	return props.group.permissions.can_apply
+		? t("groups.index.discovery.detail.actions.apply")
+		: t("groups.index.discovery.detail.actions.join");
+});
 
 const notificationActionLabel = () => t("groups.notifications.preferences.title");
 
@@ -37,6 +55,36 @@ const openNotificationPreferences = () => {
 	}
 
 	notificationPreferencesOpen.value = true;
+};
+
+const joinOrApply = () => {
+	if (membershipActionPending.value || props.group.membership_application.pending) {
+		return;
+	}
+
+	membershipActionPending.value = true;
+
+	if (props.group.permissions.can_apply) {
+		router.get(route("groups.membership-applications.create", props.group.slug), {}, {
+			onFinish: () => membershipActionPending.value = false,
+		});
+
+		return;
+	}
+
+	if (!isAuthenticated.value) {
+		router.get(route("login", { invite: props.group.slug }), {}, {
+			onFinish: () => membershipActionPending.value = false,
+		});
+
+		return;
+	}
+
+	router.post(route("groups.join", props.group.slug), {
+		redirect_to: "dashboard",
+	}, {
+		onFinish: () => membershipActionPending.value = false,
+	});
 };
 
 const leaveGroup = async () => {
@@ -84,7 +132,18 @@ const openDiscordInvite = () => {
 
 <template>
 	<div class="w-full max-w-md ">
-		<div class="flex flex-row justify-end items-center gap-4">
+		<div class="flex flex-row flex-wrap justify-end items-center gap-4">
+			<UButton
+				v-if="showMembershipAction"
+				:color="group.membership_application.pending ? 'neutral' : 'primary'"
+				:variant="group.membership_application.pending ? 'outline' : 'solid'"
+				:icon="group.permissions.can_apply || group.membership_application.pending ? 'i-lucide-file-check-2' : 'i-lucide-user-plus'"
+				:label="membershipActionLabel"
+				:loading="membershipActionPending"
+				:disabled="group.membership_application.pending"
+				class="justify-center"
+				@click="joinOrApply"
+			/>
 			<UButton
 				v-if="group.permissions.can_view_members"
 				color="neutral"

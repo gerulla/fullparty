@@ -1,7 +1,9 @@
 <?php
 
 use App\Models\ActivityTypeVersion;
+use App\Models\BozjaHolster;
 use App\Models\BozjaItem;
+use App\Models\Group;
 use App\Models\User;
 use App\Services\Groups\ActivitySlotFieldDefinitionBuilder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -162,4 +164,33 @@ it('resolves active Bozja datasets as activity schema options', function () {
         ->and($fields[0]['options'][0]['label']['ja'])->toBe('テストの秘薬')
         ->and($fields[0]['options'][0]['meta']['icon_url'])->toBe('/bozja/test.webp')
         ->and($fields[0]['options'][0]['meta']['cache_weight'])->toBe(3);
+});
+
+it('resolves group holsters as activity slot options', function () {
+    $group = Group::factory()->create();
+    $holster = BozjaHolster::query()->create([
+        'group_id' => $group->id,
+        'name' => ['en' => 'Support Holster', 'ja' => 'サポートホルスター'],
+        'is_active' => true,
+    ]);
+    BozjaHolster::query()->create([
+        'group_id' => $group->id,
+        'name' => ['en' => 'Inactive Holster'],
+        'is_active' => false,
+    ]);
+    $version = new ActivityTypeVersion([
+        'slot_schema' => [[
+            'key' => 'holster',
+            'type' => 'single_select',
+            'source' => 'bozja_holsters',
+            'label' => ['en' => 'Holster'],
+        ]],
+        'application_schema' => [],
+    ]);
+
+    $fields = app(ActivitySlotFieldDefinitionBuilder::class)->build($version, $group->id);
+
+    expect($fields[0]['options'])->toHaveCount(1)
+        ->and($fields[0]['options'][0]['key'])->toBe((string) $holster->id)
+        ->and($fields[0]['options'][0]['label']['ja'])->toBe('サポートホルスター');
 });

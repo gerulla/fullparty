@@ -6,6 +6,7 @@ use App\Http\Controllers\ActivityTypeController;
 use App\Http\Controllers\AdminCharacterController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\BozjaItemController;
 use App\Http\Controllers\CharacterClassController;
 use App\Http\Controllers\CharacterController;
 use App\Http\Controllers\DashboardController;
@@ -24,8 +25,8 @@ use App\Http\Controllers\GroupActivityController;
 use App\Http\Controllers\GroupActivityFflogsCompletionPreviewController;
 use App\Http\Controllers\GroupActivityFflogsController;
 use App\Http\Controllers\GroupActivityManagementDataController;
-use App\Http\Controllers\GroupActivityPartyFinderInfoController;
 use App\Http\Controllers\GroupActivityManualSlotAssignmentOptionsController;
+use App\Http\Controllers\GroupActivityPartyFinderInfoController;
 use App\Http\Controllers\GroupActivityRosterExportController;
 use App\Http\Controllers\GroupActivitySelfAssignmentController;
 use App\Http\Controllers\GroupActivitySlotAssignmentContextController;
@@ -39,6 +40,8 @@ use App\Http\Controllers\GroupActivitySlotSwapController;
 use App\Http\Controllers\GroupActivitySlotUnassignmentController;
 use App\Http\Controllers\GroupAuditLogController;
 use App\Http\Controllers\GroupAvailabilityController;
+use App\Http\Controllers\GroupBozjaHolsterController;
+use App\Http\Controllers\GroupContentController;
 use App\Http\Controllers\GroupController;
 use App\Http\Controllers\GroupDashboardController;
 use App\Http\Controllers\GroupDiscordIntegrationController;
@@ -52,13 +55,13 @@ use App\Http\Controllers\GroupMembershipApplicationFormController;
 use App\Http\Controllers\GroupMembershipApplicationReviewController;
 use App\Http\Controllers\GroupMembershipController;
 use App\Http\Controllers\GroupMembershipRequestController;
+use App\Http\Controllers\GroupPhantomCompositionController;
 use App\Http\Controllers\GroupSettingsController;
 use App\Http\Controllers\GroupStatisticsController;
 use App\Http\Controllers\IntegrationClientController;
 use App\Http\Controllers\LocaleController;
 use App\Http\Controllers\PhantomJobController;
 use App\Http\Controllers\RaidPositionController;
-use App\Http\Controllers\BozjaItemController;
 use App\Http\Controllers\RunDiscoveryController;
 use App\Http\Controllers\SettingsController;
 use App\Http\Controllers\SettingsLinkedSessionController;
@@ -71,6 +74,7 @@ use App\Http\Controllers\XIVAuthController;
 use App\Http\Controllers\XivPluginDeviceAuthorizationController;
 use App\Http\Controllers\XivPluginDeviceController;
 use App\Http\Middleware\ApplyLocale;
+use App\Models\GroupInvite;
 use App\Services\Landing\LandingPageDataService;
 use App\Support\Seo\ServerMeta;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
@@ -226,6 +230,12 @@ Route::prefix('{locale?}')
             ->where('secretKey', '[A-Za-z0-9]{40}')
             ->name('groups.activities.overview');
 
+        // Public, read-only group dashboard pages for visible open-join groups.
+        Route::prefix('groups/{group:slug}/dashboard')->middleware('group.dashboard.access')->group(function () {
+            Route::get('/', [GroupDashboardController::class, 'show'])->name('groups.dashboard');
+            Route::get('/activities', [GroupActivityController::class, 'index'])->name('groups.dashboard.activities.index');
+        });
+
         // Group invite landing pages.
         Route::get('/invite/{token}', [GroupInviteController::class, 'show'])
             ->middleware('throttle:invite')
@@ -240,7 +250,16 @@ Route::prefix('{locale?}')
         Route::prefix('auth')->group(function () {
             // Guest entry: login and registration.
             Route::middleware('guest')->group(function () {
-                Route::get('/login', function () {
+                Route::get('/login', function (Request $request) {
+                    $inviteToken = $request->query('invite');
+
+                    if (is_string($inviteToken) && GroupInvite::query()->where('token', $inviteToken)->exists()) {
+                        $request->session()->put(
+                            'url.intended',
+                            route('groups.invites.show', ['token' => $inviteToken]),
+                        );
+                    }
+
                     return Inertia::render('auth/Login');
                 })->name('login');
 
@@ -414,8 +433,20 @@ Route::prefix('{locale?}')
 
             Route::prefix('groups/{group:slug}/dashboard')->middleware('group.dashboard.access')->group(function () {
                 // Group dashboard landing and non-activity sections.
-                Route::get('/', [GroupDashboardController::class, 'show'])->name('groups.dashboard');
                 Route::get('/members', [GroupMemberController::class, 'index'])->name('groups.dashboard.members');
+                Route::get('/content/delubrum-reginae-savage', [GroupContentController::class, 'delubrumReginaeSavage'])->name('groups.dashboard.content.delubrum-reginae-savage');
+                Route::post('/content/delubrum-reginae-savage/holsters', [GroupBozjaHolsterController::class, 'store'])->name('groups.dashboard.content.delubrum-reginae-savage.holsters.store');
+                Route::put('/content/delubrum-reginae-savage/holsters/{bozjaHolster}', [GroupBozjaHolsterController::class, 'update'])->name('groups.dashboard.content.delubrum-reginae-savage.holsters.update');
+                Route::patch('/content/delubrum-reginae-savage/holsters/{bozjaHolster}/status', [GroupBozjaHolsterController::class, 'updateStatus'])->name('groups.dashboard.content.delubrum-reginae-savage.holsters.status.update');
+                Route::patch('/content/delubrum-reginae-savage/holsters/{bozjaHolster}/default', [GroupBozjaHolsterController::class, 'makeDefault'])->name('groups.dashboard.content.delubrum-reginae-savage.holsters.default.update');
+                Route::delete('/content/delubrum-reginae-savage/holsters/{bozjaHolster}', [GroupBozjaHolsterController::class, 'destroy'])->name('groups.dashboard.content.delubrum-reginae-savage.holsters.destroy');
+                Route::get('/content/forked-tower-blood', [GroupContentController::class, 'forkedTowerBlood'])->name('groups.dashboard.content.forked-tower-blood');
+                Route::get('/content/forked-tower-blood/phantom-compositions', [GroupPhantomCompositionController::class, 'index'])->name('groups.dashboard.content.forked-tower-blood.phantom-compositions.index');
+                Route::post('/content/forked-tower-blood/phantom-compositions', [GroupPhantomCompositionController::class, 'store'])->name('groups.dashboard.content.forked-tower-blood.phantom-compositions.store');
+                Route::put('/content/forked-tower-blood/phantom-compositions/reorder', [GroupPhantomCompositionController::class, 'reorder'])->name('groups.dashboard.content.forked-tower-blood.phantom-compositions.reorder');
+                Route::get('/content/forked-tower-blood/phantom-compositions/{phantomComposition}', [GroupPhantomCompositionController::class, 'show'])->name('groups.dashboard.content.forked-tower-blood.phantom-compositions.show');
+                Route::put('/content/forked-tower-blood/phantom-compositions/{phantomComposition}', [GroupPhantomCompositionController::class, 'update'])->name('groups.dashboard.content.forked-tower-blood.phantom-compositions.update');
+                Route::delete('/content/forked-tower-blood/phantom-compositions/{phantomComposition}', [GroupPhantomCompositionController::class, 'destroy'])->name('groups.dashboard.content.forked-tower-blood.phantom-compositions.destroy');
                 Route::get('/members/{user}/activity-summary', [GroupMemberController::class, 'activitySummary'])->name('groups.dashboard.members.activity-summary');
                 Route::get('/availability', GroupAvailabilityController::class)->name('groups.dashboard.availability');
                 Route::get('/availability/selection', [GroupAvailabilityController::class, 'selection'])->name('groups.dashboard.availability.selection');
@@ -451,7 +482,6 @@ Route::prefix('{locale?}')
                 |
                 */
 
-                Route::get('/activities', [GroupActivityController::class, 'index'])->name('groups.dashboard.activities.index');
                 Route::get('/activities/create', [GroupActivityController::class, 'create'])->name('groups.dashboard.activities.create');
                 Route::post('/activities', [GroupActivityController::class, 'store'])->name('groups.dashboard.activities.store');
                 Route::get('/activities/{activity}', [GroupActivityController::class, 'show'])->name('groups.dashboard.activities.show');

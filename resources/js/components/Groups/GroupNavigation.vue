@@ -57,6 +57,10 @@ const membersHref = computed(() => route('groups.dashboard.members', props.group
 const membersPath = computed(() => routePath('groups.dashboard.members'))
 const availabilityHref = computed(() => route('groups.dashboard.availability', props.group.slug))
 const availabilityPath = computed(() => routePath('groups.dashboard.availability'))
+const delubrumReginaeSavageHref = computed(() => route('groups.dashboard.content.delubrum-reginae-savage', props.group.slug))
+const delubrumReginaeSavagePath = computed(() => routePath('groups.dashboard.content.delubrum-reginae-savage'))
+const forkedTowerBloodHref = computed(() => route('groups.dashboard.content.forked-tower-blood', props.group.slug))
+const forkedTowerBloodPath = computed(() => routePath('groups.dashboard.content.forked-tower-blood'))
 const membershipApplicationsHref = computed(() => route('groups.dashboard.membership-applications.index', props.group.slug))
 const membershipApplicationsPath = computed(() => routePath('groups.dashboard.membership-applications.index'))
 const membershipApplicationFormPath = computed(() => routePath('groups.dashboard.membership-application-form.edit'))
@@ -69,6 +73,10 @@ const settingsPath = computed(() => routePath('groups.dashboard.settings'))
 const discordIntegrationHref = computed(() => route('groups.dashboard.discord-integration', props.group.slug))
 const discordIntegrationPath = computed(() => routePath('groups.dashboard.discord-integration'))
 const isPublicActivityRoute = computed(() => page.url.startsWith(publicActivitiesPath.value))
+const isGroupMember = computed(() => Boolean(
+	props.group.current_user_role
+	|| props.group.permissions?.can_view_members,
+))
 const showsStatistics = computed(() => props.group.features?.statistics_enabled ?? true)
 const showsLeaderboard = computed(() => props.group.features?.leaderboard_enabled ?? true)
 const canUseAvailability = computed(() => (
@@ -77,6 +85,8 @@ const canUseAvailability = computed(() => (
 	|| Boolean(props.group.permissions?.can_manage_members)
 ))
 const showsAvailability = computed(() => (
+	isGroupMember.value
+	&&
 	(props.group.features?.availability_scheduler_enabled ?? false)
 	&& canUseAvailability.value
 ))
@@ -158,6 +168,21 @@ const desktopConfigurationMenuItems = computed<NavigationMenuItem[]>(() => [
 	})] : []),
 ])
 
+const desktopContentMenuItems = computed<NavigationMenuItem[]>(() => [
+	desktopLinkItem({
+		label: t('groups.index.navigation.delubrum_reginae_savage'),
+		icon: 'i-lucide-castle',
+		to: delubrumReginaeSavageHref.value,
+		active: isRouteActive(delubrumReginaeSavagePath.value),
+	}),
+	desktopLinkItem({
+		label: t('groups.index.navigation.forked_tower_blood'),
+		icon: 'i-lucide-droplets',
+		to: forkedTowerBloodHref.value,
+		active: isRouteActive(forkedTowerBloodPath.value),
+	}),
+])
+
 const desktopLeftItems = computed<NavigationMenuItem[]>(() => [
 	desktopLinkItem({
 		label: t('groups.index.navigation.general'),
@@ -171,7 +196,7 @@ const desktopLeftItems = computed<NavigationMenuItem[]>(() => [
 		to: activitiesHref.value,
 		active: isRouteActive(activitiesPath.value) || isPublicActivityRoute.value,
 	}),
-	...(dataMenuItems.value.length > 0 ? [{
+	...(isGroupMember.value && dataMenuItems.value.length > 0 ? [{
 		label: t('groups.index.navigation.data'),
 		icon: 'i-lucide-chart-no-axes-combined',
 		active: dataMenuItems.value.some((item) => item.active),
@@ -192,6 +217,12 @@ const desktopLeftItems = computed<NavigationMenuItem[]>(() => [
 ])
 
 const desktopRightItems = computed<NavigationMenuItem[]>(() => [
+	...(props.group.permissions?.can_manage_members ? [{
+		label: t('groups.index.navigation.content'),
+		icon: 'i-lucide-book-open-text',
+		active: desktopContentMenuItems.value.some((item) => item.active),
+		children: desktopContentMenuItems.value,
+	}] : []),
 	...(desktopModerationMenuItems.value.length > 0 ? [{
 		label: t('groups.index.navigation.moderation'),
 		icon: 'i-lucide-shield-check',
@@ -359,6 +390,21 @@ const memberMobileItems = computed(() => [
 	}] : []),
 ])
 
+const guestMobileItems = computed(() => [
+	{
+		label: t('groups.index.navigation.home'),
+		icon: 'i-lucide-house',
+		href: dashboardHref.value,
+		active: page.url === dashboardPath.value,
+	},
+	{
+		label: t('groups.index.navigation.activities'),
+		icon: 'i-lucide-swords',
+		href: activitiesHref.value,
+		active: isRouteActive(activitiesPath.value) || isPublicActivityRoute.value,
+	},
+])
+
 const managerMobileItems = computed(() => [
 	{
 		label: t('groups.index.navigation.home'),
@@ -405,7 +451,13 @@ const managerMobileItems = computed(() => [
 	},
 ])
 
-const mobileItems = computed(() => isManagementUser.value ? managerMobileItems.value : memberMobileItems.value)
+const mobileItems = computed(() => {
+	if (!isGroupMember.value) {
+		return guestMobileItems.value
+	}
+
+	return isManagementUser.value ? managerMobileItems.value : memberMobileItems.value
+})
 </script>
 
 <template>
@@ -479,7 +531,10 @@ const mobileItems = computed(() => isManagementUser.value ? managerMobileItems.v
 			</div>
 		</Transition>
 
-		<div class="mx-auto grid max-w-md grid-cols-5 items-end gap-1">
+		<div
+			class="mx-auto grid max-w-md items-end gap-1"
+			:class="mobileItems.length === 2 ? 'grid-cols-2' : 'grid-cols-5'"
+		>
 			<template
 				v-for="item in mobileItems"
 				:key="`${item.label}-${item.href ?? 'button'}`"

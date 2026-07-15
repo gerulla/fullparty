@@ -9,6 +9,7 @@ const props = defineProps<{
 	multiline?: boolean
 	rows?: number
 	placeholderPrefix?: string
+	allLocalesLabel?: string
 }>();
 
 const emit = defineEmits<{
@@ -33,6 +34,12 @@ const updateLocale = (locale: string, value: string) => {
 		[locale]: value,
 	});
 };
+
+const openLocales = () => {
+	isModalOpen.value = true;
+};
+
+defineExpose({ openLocales });
 </script>
 
 <template>
@@ -62,8 +69,8 @@ const updateLocale = (locale: string, value: string) => {
 					color="neutral"
 					variant="soft"
 					icon="i-lucide-languages"
-					label="All locales"
-					@click="isModalOpen = true"
+					:label="allLocalesLabel ?? 'All locales'"
+					@click="openLocales"
 				/>
 			</div>
 

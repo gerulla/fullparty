@@ -35,6 +35,9 @@
         "legacy_leaderboard": "アーカイブ",
         "members": "メンバー",
         "availability": "参加可能時間",
+        "content": "コンテンツ",
+        "delubrum_reginae_savage": "グンヒルド・ディルーブラム零式",
+        "forked_tower_blood": "フォークタワー・血",
         "moderation": "モデレーション",
         "configuration": "構成",
         "membership_applications": "リクエスト",
@@ -43,6 +46,345 @@
         "discovery_settings": "ディスカバリー設定",
         "discord_integration": "Discord",
         "settings": "設定"
+    },
+    "content": {
+        "delubrum_reginae_savage": {
+            "title": "グンヒルド・ディルーブラム零式",
+            "subtitle": "グループのグンヒルド・ディルーブラム零式コンテンツを計画・管理します。",
+            "holsters": {
+                "title": "ホルスター",
+                "create": "新しいホルスターを作成",
+                "editor": "ホルスター編集",
+                "new_title": "新しいホルスター",
+                "untitled": "名称未設定のホルスター",
+                "item_count": "{count}個のアイテム",
+                "count": "{count}件のホルスター",
+                "available_summary": "{total}個のホルスターが利用可能。{active}個が有効です。",
+                "summary": "ホルスター概要",
+                "locales": "言語",
+                "manage_locales": "言語を管理",
+                "sections": "セクション",
+                "section_details": "名前、ロール、メモ、言語",
+                "section_guide": "説明とMarkdown",
+                "section_contents": "選択中のアイテム（{count}）",
+                "tip_title": "ヒント",
+                "tip_description": "ゲーム内で使いやすいよう、ガイドは明確で簡潔にまとめましょう。",
+                "library": "ボズヤアイテムライブラリ",
+                "library_empty": "該当するボズヤアイテムはありません。",
+                "library_count": "{total}件中{shown}件を表示",
+                "search_placeholder": "ホルスターを検索...",
+                "filters": {
+                    "all": "すべて",
+                    "active": "有効",
+                    "inactive": "無効"
+                },
+                "active": "有効",
+                "inactive": "無効",
+                "back_to_list": "ホルスター一覧に戻る",
+                "role_unset": "ロール未設定",
+                "make_default": "デフォルトに設定",
+                "default_updated": "デフォルトホルスターを更新しました",
+                "default_update_failed": "デフォルトホルスターを更新できませんでした。",
+                "no_description": "説明はありません。",
+                "actions": "アクション",
+                "more_actions": "他{count}件",
+                "no_actions": "アクションは追加されていません。",
+                "open_editor": "エディターを開く",
+                "deleted": "ホルスターを削除しました",
+                "delete_failed": "ホルスターを削除できませんでした。",
+                "delete_modal": {
+                    "title": "{name}を削除しますか？",
+                    "description": "ホルスターと保存されているすべての内容を削除します。",
+                    "warning": "この操作は取り消せません。"
+                },
+                "status_updated": "ホルスターの状態を更新しました",
+                "status_update_failed": "ホルスターの状態を更新できませんでした。",
+                "empty_title": "ホルスターはまだありません",
+                "empty_description": "ホルスターを作成して構成の計画を始めましょう。",
+                "no_selection": "ホルスターを選択するか、新しく作成してください。",
+                "saved": "ホルスターを保存しました",
+                "save_failed": "ホルスターを保存できませんでした。",
+                "metadata": {
+                    "title": "詳細",
+                    "description": "ホルスターに名前を付け、グループ向けのメモを追加します。",
+                    "name": "名前",
+                    "role": "ロール",
+                    "max_capacity": "最大容量",
+                    "guide": "ガイド",
+                    "guide_description": "このホルスターの使い方をMarkdown形式で任意に記載できます。",
+                    "expand_guide": "ガイドを拡大",
+                    "shrink_guide": "ガイドを縮小"
+                },
+                "contents": {
+                    "title": "内容",
+                    "description": "ボズヤアイテムを検索し、グループに必要なものを追加します。",
+                    "search": "ボズヤアイテムを検索",
+                    "item": "アイテム",
+                    "quantity": "数量",
+                    "weight_label": "重量",
+                    "weight": "重量 {weight}",
+                    "empty": "上の検索欄からアイテムを追加してください。"
+                },
+                "capacity": {
+                    "title": "容量",
+                    "remaining": "残り容量 {count}"
+                }
+            }
+        },
+        "forked_tower_blood": {
+            "title": "フォークタワー・血",
+            "subtitle": "グループのフォークタワー・血コンテンツを計画・管理します。",
+            "compositions": {
+                "title": "構成",
+                "create": "新しい構成",
+                "loading": "構成を読み込んでいます...",
+                "load_failed": "構成を読み込めませんでした。",
+                "saved": "構成を保存しました",
+                "save_failed": "構成を保存できませんでした。",
+                "deleted": "構成を削除しました",
+                "delete_failed": "構成を削除できませんでした。",
+                "status_update_failed": "構成の状態を更新できませんでした。",
+                "reorder_failed": "構成の並び順を保存できませんでした。",
+                "search_placeholder": "構成を検索...",
+                "filters": {
+                    "all": "すべて",
+                    "active": "有効",
+                    "inactive": "無効"
+                },
+                "active": "有効",
+                "inactive": "無効",
+                "default": "デフォルト",
+                "updated": "{time}更新",
+                "count": "{count}件の構成",
+                "reorder_hint": "ドラッグで並べ替え",
+                "empty_title": "構成が見つかりません",
+                "empty_description": "検索条件を変更するか、新しい構成を作成してください。",
+                "editor": {
+                    "title": "構成エディター",
+                    "new_title": "新しい構成",
+                    "untitled": "名称未設定の構成",
+                    "no_selection": "構成を選択するか、新しく作成してください。",
+                    "tabs": {
+                        "metadata": "メタデータ / 情報",
+                        "rules": "ルール",
+                        "summary": "概要"
+                    },
+                    "basics_title": "基本",
+                    "basics_description": "ガイド名を設定し、グループで有効にするかを選びます。",
+                    "default_enabled": "最初に使用",
+                    "default_disabled": "デフォルトではない",
+                    "rules_title": "ルール",
+                    "rules_description": "この構成で表示するファントムジョブのガイドルールを作成します。",
+                    "add_rule": "ルールを追加",
+                    "new_rule_label": "新しいルール",
+                    "new_rule_summary": "全スロットで選択したファントムジョブが1人以上。",
+                    "copy_label": "{label}のコピー",
+                    "drag_rule": "ルールをドラッグ",
+                    "expand_rule": "ルールを展開",
+                    "collapse_rule": "ルールを折りたたむ",
+                    "duplicate_rule": "ルールを複製",
+                    "remove_rule": "ルールを削除",
+                    "rule_number": "ルール {number}",
+                    "no_rules_title": "ルールはまだありません",
+                    "no_rules_description": "ルールを追加して構成ガイドを作成します。",
+                    "summary_eyebrow": "構成概要",
+                    "summary_title": "概要",
+                    "summary_description": "パーティ範囲ごとにファントムジョブ要件を確認します。",
+                    "summary": {
+                        "rules": "ルール",
+                        "status": "状態",
+                        "default": "デフォルト",
+                        "requirements_count": "{count}件の要件"
+                    },
+                    "states_title": "ガイド状態",
+                    "states_description": "将来的にロスターに対して表示される状態です。",
+                    "fields": {
+                        "name": "名前",
+                        "name_placeholder": "バランス型（標準）",
+                        "description": "説明",
+                        "description_placeholder": "この構成を使う場面をモデレーター向けに短く記入します。",
+                        "active": "有効",
+                        "default": "デフォルト",
+                        "rule_label": "ルール名",
+                        "rule_type": "ルール種別",
+                        "target_job": "ファントムジョブ",
+                        "severity": "重要度",
+                        "scope": "範囲",
+                        "comparison": "比較",
+                        "target_count": "目標数",
+                        "summary": "概要"
+                    },
+                    "job_picker": {
+                        "description": "このルールで確認するファントムジョブを選びます。",
+                        "search_placeholder": "ファントムジョブを検索...",
+                        "max_level": "最大レベル {level}",
+                        "no_results": "ファントムジョブが見つかりません"
+                    },
+                    "rule_details": {
+                        "title": "ルール詳細"
+                    },
+                    "rule_types": {
+                        "single_job_count": "単一ジョブ数",
+                        "duplicate_limit": "重複上限"
+                    },
+                    "severities": {
+                        "required": "必須",
+                        "recommended": "推奨",
+                        "optional": "任意"
+                    },
+                    "comparisons": {
+                        "at_least": "最低",
+                        "exactly": "ちょうど",
+                        "at_most": "最大"
+                    },
+                    "parties": {
+                        "all": "すべて",
+                        "party": "パーティ{party}"
+                    },
+                    "scopes": {
+                        "anywhere": {
+                            "title": "どこでも",
+                            "description": "構成全体に適用します"
+                        },
+                        "one_side": {
+                            "title": "片側（ABC / DEF）",
+                            "description": "選択した片側に適用します"
+                        },
+                        "specific_party": {
+                            "title": "指定パーティ",
+                            "description": "選択した1パーティに適用します"
+                        },
+                        "either_party": {
+                            "title": "いずれかのパーティ",
+                            "description": "選択したパーティのいずれかにジョブがいるか確認します"
+                        },
+                        "all_parties": {
+                            "title": "すべてのパーティ",
+                            "description": "選択した各パーティにジョブがいるか確認します"
+                        }
+                    },
+                    "scope_builder": {
+                        "title": "範囲ビルダー",
+                        "description": "このルールが確認する範囲を選びます。",
+                        "no_party_needed": "この範囲はロスター全体を確認するため、パーティ選択は不要です。"
+                    },
+                    "scope_display": {
+                        "anywhere": {
+                            "title": "どちらのサイドでも",
+                            "description": "どちらかのサイドにジョブがいるか確認します。"
+                        },
+                        "one_side": {
+                            "title": "片側（{parties}）",
+                            "description": "選択したサイドにジョブがいるか確認します。"
+                        },
+                        "specific_party": {
+                            "title": "指定パーティ（{parties}）",
+                            "description": "選択したパーティにジョブがいるか確認します。"
+                        },
+                        "either_party": {
+                            "title": "いずれかのパーティ（{parties}）",
+                            "description": "選択したパーティのいずれかにジョブがいるか確認します。"
+                        },
+                        "all_parties": {
+                            "title": "すべてのパーティ（{parties}）",
+                            "description": "選択した各パーティにジョブがいるか確認します。"
+                        }
+                    },
+                    "scope_plain": {
+                        "anywhere": "このルールはロスター全体で{job}を数えます。合計が「{comparison} {count}」なら達成です。",
+                        "one_side": "このルールは選択したサイド（{parties}）だけを確認します。そのサイドに{job}が「{comparison} {count}」いれば達成です。",
+                        "specific_party": "このルールは{parties}だけを確認します。そのパーティに{job}が「{comparison} {count}」いれば達成です。",
+                        "either_party": "このルールは選択した各パーティ（{parties}）を個別に確認します。いずれか1つのパーティに{job}が「{comparison} {count}」いれば達成です。",
+                        "all_parties": "このルールは選択した各パーティ（{parties}）を個別に確認します。選択したすべてのパーティに{job}が「{comparison} {count}」必要です。"
+                    },
+                    "unknown_job": "不明なファントムジョブ",
+                    "states": {
+                        "met": "ルール達成",
+                        "unmet": "未達成",
+                        "partial": "一部達成",
+                        "overfilled": "過剰"
+                    }
+                },
+                "samples": {
+                    "even_balance": {
+                        "name": "バランス型（標準）",
+                        "description": "左右のサイドを同じように見る基本ガイドです。"
+                    },
+                    "physical_ranged": {
+                        "name": "物理レンジ重視",
+                        "description": "基本カバーを保ちながらレンジ系の支援を重視します。"
+                    },
+                    "caster_preferred": {
+                        "name": "キャスター優先",
+                        "description": "各パーティ確認でキャスター支援を見やすくします。"
+                    },
+                    "high_mobility": {
+                        "name": "高機動",
+                        "description": "移動が多い担当向けの軽めのガイドです。"
+                    },
+                    "ultimate_control": {
+                        "name": "最大コントロール",
+                        "description": "支援ジョブの重複を抑えてカバーを整えます。"
+                    },
+                    "learning_party": {
+                        "name": "練習パーティ（柔軟）",
+                        "description": "ルート練習中のグループ向けの緩めの提案です。"
+                    },
+                    "savage_progression": {
+                        "name": "零式進行",
+                        "description": "進行日向けのやや厳しめのガイドです。"
+                    },
+                    "updated": {
+                        "two_minutes": "2分前",
+                        "one_hour": "1時間前",
+                        "three_hours": "3時間前",
+                        "five_hours": "5時間前",
+                        "one_day": "1日前",
+                        "two_days": "2日前",
+                        "three_days": "3日前",
+                        "just_now": "たった今"
+                    },
+                    "rules": {
+                        "side_bard": {
+                            "label": "サイド1のバード枠",
+                            "summary": "サイド1にファントム・バードが1人以上。"
+                        },
+                        "side_ranger": {
+                            "label": "サイド2のレンジャー枠",
+                            "summary": "サイド2にファントム・レンジャーが1人以上。"
+                        },
+                        "utility_package": {
+                            "label": "基本支援",
+                            "summary": "バード、レンジャー、タイムメイジのカバーを揃えます。"
+                        },
+                        "ranged_core": {
+                            "label": "レンジ支援コア",
+                            "summary": "レンジ支援セットから4ジョブ以上。"
+                        },
+                        "caster_support": {
+                            "label": "キャスター支援",
+                            "summary": "各パーティにキャスター支援ジョブが1人以上。"
+                        },
+                        "mobility": {
+                            "label": "機動力枠",
+                            "summary": "ロスター全体に機動力重視の選択肢が1つ以上。"
+                        },
+                        "duplicate_limit": {
+                            "label": "重複上限",
+                            "summary": "同じ支援ジョブは3人まで。"
+                        },
+                        "learning": {
+                            "label": "練習用フレックス",
+                            "summary": "全スロットで柔軟な支援枠が2つ以上。"
+                        },
+                        "prog_core": {
+                            "label": "進行コア",
+                            "summary": "進行用コアパッケージから8ジョブ以上。"
+                        }
+                    }
+                }
+            }
+        }
     },
     "table": {
         "columns": {

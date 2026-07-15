@@ -97,14 +97,14 @@ class GroupActivityController extends Controller
             'activity' => $this->serializeAttendeeActivity(
                 $activity,
                 $slotSerializer,
-                $rosterSummaryPresetBuilder->build($activity->activityTypeVersion),
+                $rosterSummaryPresetBuilder->buildForActivity($activity),
             ),
             'secretKey' => null,
             'permissions' => $permissions,
         ];
 
         if (! $activity->needs_application) {
-            $props['slotFieldDefinitions'] = $fieldDefinitionBuilder->build($activity->activityTypeVersion);
+            $props['slotFieldDefinitions'] = $fieldDefinitionBuilder->build($activity->activityTypeVersion, $group->id);
             $props['selfAssignmentCharacters'] = $request->user()
                 ? $this->selfAssignmentCharactersForUser($request->user()->id)
                 : [];
@@ -190,11 +190,11 @@ class GroupActivityController extends Controller
         $currentUserId = auth()->id();
         $isMember = $group->hasMember($currentUserId);
 
-        if (! $isMember) {
-            abort(403);
+        if (! $isMember && ! $group->allowsPublicDashboardAccess()) {
+            abort(404);
         }
 
-        $canManageActivities = $group->hasModeratorAccess($currentUserId);
+        $canManageActivities = $isMember && $group->hasModeratorAccess($currentUserId);
         $visibleActivities = $canManageActivities
             ? $group->activities
             : $group->activities
@@ -255,8 +255,13 @@ class GroupActivityController extends Controller
                         ->whereIn('status', ActivityApplication::ACTIVE_STATUSES)
                         ->count(),
                     'has_existing_application' => $activity->applications
-                        ->where('user_id', $currentUserId)
-                        ->where('status', '!=', ActivityApplication::STATUS_WITHDRAWN)
+                        ->when(
+                            $currentUserId !== null,
+                            fn ($applications) => $applications
+                                ->where('user_id', $currentUserId)
+                                ->where('status', '!=', ActivityApplication::STATUS_WITHDRAWN),
+                            fn ($applications) => $applications->take(0),
+                        )
                         ->isNotEmpty(),
                     'progress_milestone_count' => $activity->progressMilestones->count(),
                     'created_at' => $activity->created_at?->toIso8601String(),

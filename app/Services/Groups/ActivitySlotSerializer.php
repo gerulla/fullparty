@@ -168,6 +168,7 @@ class ActivitySlotSerializer
         return match ($fieldValue->source) {
             'character_classes' => 10,
             'phantom_jobs' => 20,
+            'bozja_holsters' => 30,
             default => 100,
         };
     }

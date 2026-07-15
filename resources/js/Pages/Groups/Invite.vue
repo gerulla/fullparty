@@ -5,7 +5,7 @@ import { Link, router, usePage } from "@inertiajs/vue3";
 import AuthLayout from "@/Layouts/AuthLayout.vue";
 import { route } from "ziggy-js";
 import { useI18n } from "vue-i18n";
-import type { GroupJoinMode, GroupType } from "@/Types/Groups";
+import type { GroupType } from "@/Types/Groups";
 
 const props = defineProps<{
 	invite: {
@@ -24,7 +24,6 @@ const props = defineProps<{
 		datacenter: string
 		is_visible: boolean
 		group_type: GroupType
-		join_mode: GroupJoinMode
 		slug: string
 		member_count: number
 		owner: {
@@ -46,7 +45,6 @@ const page = usePage();
 const isAuthenticated = computed(() => Boolean(page.props.auth?.user));
 const isAccepting = computed(() => router.processing);
 const declineHref = computed(() => isAuthenticated.value ? route('groups.index') : '/');
-const joinModeLabel = computed(() => t(`groups.common.join_modes.${props.group.join_mode}.label`));
 
 const acceptInvite = () => {
 	if (!isAuthenticated.value || !props.invite.can_accept || props.group.current_user_is_member) {
@@ -106,7 +104,7 @@ const acceptInvite = () => {
 					:title="t('groups.invite.states.expired')"
 				/>
 
-				<div class="grid gap-3 sm:grid-cols-3">
+				<div class="grid gap-3 sm:grid-cols-2">
 					<div class="invite-info-block">
 						<p class="invite-info-label">{{ t('general.members') }}</p>
 						<p class="invite-info-value">{{ group.member_count }}</p>
@@ -115,11 +113,6 @@ const acceptInvite = () => {
 					<div class="invite-info-block">
 						<p class="invite-info-label">{{ t('general.datacenter') }}</p>
 						<p class="invite-info-value">{{ group.datacenter }}</p>
-					</div>
-
-					<div class="invite-info-block">
-						<p class="invite-info-label">{{ t('groups.common.labels.join_mode') }}</p>
-						<p class="invite-info-value">{{ joinModeLabel }}</p>
 					</div>
 				</div>
 
@@ -141,7 +134,7 @@ const acceptInvite = () => {
 
 					<Link
 						v-else-if="!isAuthenticated && invite.can_accept"
-						:href="route('login')"
+						:href="route('login', { invite: invite.token })"
 						class="invite-action-link invite-action-link-primary"
 					>
 						<UIcon name="i-lucide-log-in" class="h-4 w-4" />

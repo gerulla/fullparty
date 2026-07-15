@@ -51,7 +51,6 @@ class GroupInviteController extends Controller
                 'is_visible' => $group->is_visible,
                 'slug' => $group->slug,
                 'group_type' => $group->group_type,
-                'join_mode' => $group->join_mode,
                 'member_count' => $group->memberships->count(),
                 'owner' => [
                     'id' => $group->owner?->id,

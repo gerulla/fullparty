@@ -3,6 +3,10 @@ import type { MemberNoteSummary } from "@/Types/Groups"
 
 export type QueueApplicationAnswerDisplayItem = {
 	label: string
+	prepop_id?: number
+	refill_id?: number
+	prepop_label?: string
+	refill_label?: string
 	role?: string | null
 	icon_url?: string | null
 	flat_icon_url?: string | null
@@ -115,6 +119,8 @@ export type QueueFilterField = {
 			transparent_icon_url?: string | null
 			role?: string | null
 			shorthand?: string | null
+			holster_type?: 'prepop' | 'refill' | null
+			parent_holster_id?: number | string | null
 		} | null
 	}>
 	filter_options?: Array<{
@@ -126,6 +132,8 @@ export type QueueFilterField = {
 			transparent_icon_url?: string | null
 			role?: string | null
 			shorthand?: string | null
+			holster_type?: 'prepop' | 'refill' | null
+			parent_holster_id?: number | string | null
 		} | null
 	}>
 }

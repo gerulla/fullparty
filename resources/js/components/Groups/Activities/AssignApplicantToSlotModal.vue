@@ -6,6 +6,8 @@ import { localizedValue } from "@/utils/localizedValue";
 import type { LocalizedText } from "@/Types/Common";
 import type { QueueApplication, QueueFilterField } from "@/Types/ActivityQueue";
 import type { ActivitySlot } from "@/Types/ActivityRoster";
+import type { ActivitySlotFieldSelection, HolsterPairValue } from '@/Types/ActivityHolsters'
+import HolsterPairSelector from '@/components/Groups/Activities/HolsterPairSelector.vue'
 import { translateCharacterClassName, translatePhantomJobName, translateRaidPositionName } from "@/utils/characterJobTranslations";
 
 const props = defineProps<{
@@ -22,7 +24,7 @@ const emit = defineEmits<{
 	confirm: [payload: {
 		applicationId: number
 		slotId: number
-		fieldValues: Record<string, string | string[]>
+		fieldValues: Record<string, ActivitySlotFieldSelection>
 		ignoreApplicationChoices: boolean
 	}]
 }>();
@@ -30,7 +32,7 @@ const emit = defineEmits<{
 const { t, locale } = useI18n();
 const page = usePage();
 const fallbackLocale = computed(() => String(page.props.locale?.fallback ?? 'en'));
-const selections = ref<Record<string, string | string[]>>({});
+const selections = ref<Record<string, ActivitySlotFieldSelection>>({});
 const ignoreApplicationChoices = ref(false);
 const ANY_OPTION_KEY = 'any';
 
@@ -39,6 +41,7 @@ type CompatibleOption = {
 	value: string
 	isFavorite: boolean
 }
+type AvailablePhantomJob = NonNullable<QueueApplication['selected_character']>['available_phantom_jobs'][number]
 
 const isOpen = computed({
 	get: () => props.open,
@@ -77,6 +80,66 @@ const optionLabel = (field: QueueFilterField, option: QueueFilterField["options"
 	return fallback;
 };
 
+const isRaidPositionField = (field: QueueFilterField) => (
+	field.source === 'raid_positions'
+	|| (field.source === 'static_options' && field.application_key.toLowerCase().includes('position'))
+);
+const isHolsterPairField = (field: QueueFilterField) => field.source === 'bozja_holsters'
+	&& field.type === 'holster_pair';
+
+const normalizeHolsterPair = (value: unknown): HolsterPairValue | null => {
+	if (!value || typeof value !== 'object' || Array.isArray(value)) {
+		return null;
+	}
+
+	const pair = value as Record<string, unknown>;
+	const prepopId = pair.prepop_id == null ? '' : String(pair.prepop_id);
+	const refillId = pair.refill_id == null ? '' : String(pair.refill_id);
+
+	return prepopId && refillId ? { prepop_id: prepopId, refill_id: refillId } : null;
+};
+
+const holsterPairKey = (pair: HolsterPairValue) => `${pair.prepop_id}:${pair.refill_id}`;
+
+const compatibleHolsterPairs = (field: QueueFilterField): HolsterPairValue[] => {
+	const answer = props.application?.answers.find(entry => entry.question_key === field.application_key);
+	const prepopIds = new Set(field.options
+		.filter(option => option.meta?.holster_type === 'prepop')
+		.map(option => option.key));
+	const refillParents = new Map(field.options
+		.filter(option => option.meta?.holster_type === 'refill')
+		.map(option => [option.key, String(option.meta?.parent_holster_id ?? '')]));
+
+	return (Array.isArray(answer?.raw_value) ? answer.raw_value : [])
+		.map(normalizeHolsterPair)
+		.filter((pair): pair is HolsterPairValue => Boolean(pair
+			&& prepopIds.has(pair.prepop_id)
+			&& refillParents.get(pair.refill_id) === pair.prepop_id));
+};
+
+const canIgnoreChoicesForField = (field: QueueFilterField) => (
+	field.source === 'character_classes'
+	|| field.source === 'phantom_jobs'
+	|| isRaidPositionField(field)
+);
+
+const optionAllowedWhenIgnoringChoices = (
+	field: QueueFilterField,
+	option: QueueFilterField["options"][number],
+	availableClassLevels: Map<string, number>,
+	availablePhantomJobs: Map<string, AvailablePhantomJob>,
+) => {
+	if (field.source === 'character_classes') {
+		return availableClassLevels.has(option.key);
+	}
+
+	if (field.source === 'phantom_jobs') {
+		return availablePhantomJobs.has(option.key);
+	}
+
+	return option.key !== ANY_OPTION_KEY;
+};
+
 const targetFieldDefinitions = computed(() => {
 	if (!props.slot) {
 		return [];
@@ -91,6 +154,11 @@ const compatibleOptionsByField = computed(() => {
 	const map: Record<string, CompatibleOption[]> = {};
 
 	for (const field of targetFieldDefinitions.value) {
+		if (isHolsterPairField(field)) {
+			map[field.key] = [];
+			continue;
+		}
+
 		const answer = props.application?.answers.find((entry) => entry.question_key === field.application_key);
 		const rawValues = Array.isArray(answer?.raw_value)
 			? answer.raw_value.map((value) => String(value))
@@ -114,12 +182,9 @@ const compatibleOptionsByField = computed(() => {
 			(props.application?.selected_character?.available_phantom_jobs ?? [])
 				.map((entry) => [entry.id, entry]),
 		);
-		const ignoresChoicesForField = ignoreApplicationChoices.value
-			&& (field.source === 'character_classes' || field.source === 'phantom_jobs');
+		const ignoresChoicesForField = ignoreApplicationChoices.value && canIgnoreChoicesForField(field);
 		const compatibleOptions = ignoresChoicesForField
-			? field.options.filter((option) => field.source === 'character_classes'
-				? availableClassLevels.has(option.key)
-				: availablePhantomJobs.has(option.key))
+			? field.options.filter(option => optionAllowedWhenIgnoringChoices(field, option, availableClassLevels, availablePhantomJobs))
 			: selectedAnyOption
 				? field.options.filter((option) => option.key !== ANY_OPTION_KEY)
 				: field.options.filter((option) => rawValues.includes(option.key));
@@ -153,6 +218,10 @@ const compatibleOptionsByField = computed(() => {
 });
 
 const hasCompatibleOptions = computed(() => targetFieldDefinitions.value.every((field) => {
+	if (isHolsterPairField(field)) {
+		return compatibleHolsterPairs(field).length > 0;
+	}
+
 	return (compatibleOptionsByField.value[field.key] ?? []).length > 0;
 }));
 
@@ -163,6 +232,10 @@ const canSubmit = computed(() => {
 
 	return targetFieldDefinitions.value.every((field) => {
 		const selectedValue = selections.value[field.key];
+
+		if (isHolsterPairField(field)) {
+			return normalizeHolsterPair(selectedValue) !== null;
+		}
 
 		if (Array.isArray(selectedValue)) {
 			return selectedValue.length > 0;
@@ -231,9 +304,26 @@ watch(
 			return;
 		}
 
-		const defaults: Record<string, string | string[]> = {};
+		const defaults: Record<string, ActivitySlotFieldSelection> = {};
 
 		for (const field of targetFieldDefinitions.value) {
+			if (isHolsterPairField(field)) {
+				const compatiblePairs = compatibleHolsterPairs(field);
+				if (compatiblePairs.length === 0) {
+					continue;
+				}
+
+				const compatiblePairKeys = new Set(compatiblePairs.map(holsterPairKey));
+				const currentPair = normalizeHolsterPair(
+					props.slot.field_values.find(fieldValue => fieldValue.field_key === field.key)?.value,
+				);
+
+				defaults[field.key] = currentPair && compatiblePairKeys.has(holsterPairKey(currentPair))
+					? currentPair
+					: compatiblePairs[0]!;
+				continue;
+			}
+
 			const compatibleOptions = compatibleOptionsByField.value[field.key] ?? [];
 
 			if (compatibleOptions.length === 0) {
@@ -269,7 +359,7 @@ watch(
 	},
 );
 
-const updateFieldSelection = (fieldKey: string, value: string | string[] | undefined) => {
+const updateFieldSelection = (fieldKey: string, value: ActivitySlotFieldSelection | undefined) => {
 	selections.value = {
 		...selections.value,
 		[fieldKey]: value ?? '',
@@ -375,7 +465,15 @@ const submit = () => {
 						:key="field.key"
 						:label="localizedText(field.label, field.key)"
 					>
+						<HolsterPairSelector
+							v-if="isHolsterPairField(field)"
+							:model-value="selections[field.key]"
+							:options="field.options"
+							:allowed-pairs="compatibleHolsterPairs(field)"
+							@update:model-value="(value) => updateFieldSelection(field.key, value)"
+						/>
 						<USelectMenu
+							v-else
 							:model-value="selections[field.key]"
 							:multiple="field.type === 'multi_select'"
 							size="lg"

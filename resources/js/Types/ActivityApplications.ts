@@ -9,6 +9,8 @@ export type ApplicationQuestionOption = {
 		sprite_url?: string | null
 		role?: string | null
 		shorthand?: string | null
+		holster_type?: 'prepop' | 'refill' | null
+		parent_holster_id?: number | string | null
 	} | null
 }
 

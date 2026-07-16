@@ -15,6 +15,8 @@ class BozjaHolsterResource extends JsonResource
             'name' => $this->name,
             'display_name' => $this->localizedName(),
             'role' => $this->role,
+            'type' => $this->type,
+            'parent_holster_id' => $this->parent_holster_id,
             'max_capacity' => $this->max_capacity,
             'capacity_used' => $this->capacity_used,
             'notes' => $this->notes,

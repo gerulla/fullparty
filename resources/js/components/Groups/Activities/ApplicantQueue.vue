@@ -113,14 +113,16 @@ const slotFieldOptionLabel = (field: QueueFilterField, option: QueueFilterField[
 	return fallback;
 };
 
-const slotFieldFilterItems = computed(() => queueFilters.value.slot_fields.map((field) => ({
-	...field,
-	labelText: localizedText(field.label, field.key),
-	items: (field.filter_options?.length ? field.filter_options : field.options).map((option) => ({
-		label: slotFieldOptionLabel(field, option),
-		value: option.key,
-	})),
-})));
+const slotFieldFilterItems = computed(() => queueFilters.value.slot_fields
+	.filter((field) => field.type !== 'holster_pair')
+	.map((field) => ({
+		...field,
+		labelText: localizedText(field.label, field.key),
+		items: (field.filter_options?.length ? field.filter_options : field.options).map((option) => ({
+			label: slotFieldOptionLabel(field, option),
+			value: option.key,
+		})),
+	})));
 
 const milestoneFilterItems = computed(() => queueFilters.value.milestones.map((milestone) => ({
 	label: localizedText(milestone.label, milestone.key),

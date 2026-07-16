@@ -498,8 +498,8 @@ class ActivityTypeController extends Controller
             );
         }
 
-        $this->validateSchemaFields($slotSchema, 'draft_slot_schema');
-        $this->validateSchemaFields($applicationSchema, 'draft_application_schema', supportsAnySelection: true);
+        $this->validateSchemaFields($slotSchema, 'draft_slot_schema', schemaKind: 'slot');
+        $this->validateSchemaFields($applicationSchema, 'draft_application_schema', supportsAnySelection: true, schemaKind: 'application');
         $layoutGroupKeys = collect($layoutSchema['groups'])
             ->pluck('key')
             ->filter(fn (mixed $key) => filled($key))
@@ -985,8 +985,12 @@ class ActivityTypeController extends Controller
         }
     }
 
-    private function validateSchemaFields(mixed $fields, string $attribute, bool $supportsAnySelection = false): void
-    {
+    private function validateSchemaFields(
+        mixed $fields,
+        string $attribute,
+        bool $supportsAnySelection = false,
+        string $schemaKind = 'slot',
+    ): void {
         if (! is_array($fields)) {
             throw ValidationException::withMessages([
                 $attribute => 'Schema fields must be an array.',
@@ -1013,6 +1017,8 @@ class ActivityTypeController extends Controller
                 'boolean',
                 'single_select',
                 'multi_select',
+                'holster_pair',
+                'holster_pair_list',
                 'url',
             ], true)) {
                 throw ValidationException::withMessages([
@@ -1029,6 +1035,14 @@ class ActivityTypeController extends Controller
             $fieldType = (string) ($field['type'] ?? '');
             $source = $field['source'] ?? null;
             $acceptsAny = (bool) ($field['accepts_any'] ?? false);
+
+            if (($fieldType === 'holster_pair' && $schemaKind !== 'slot')
+                || ($fieldType === 'holster_pair_list' && $schemaKind !== 'application')
+                || (in_array($fieldType, ['holster_pair', 'holster_pair_list'], true) && $source !== 'bozja_holsters')) {
+                throw ValidationException::withMessages([
+                    "$attribute.$index.type" => 'Holster pair fields must use the Bozja holster source in the correct schema.',
+                ]);
+            }
 
             if (in_array($fieldType, ['single_select', 'multi_select'], true)
                 && ! in_array($source, $this->supportedOptionSources(), true)) {
@@ -1110,6 +1124,8 @@ class ActivityTypeController extends Controller
                 'boolean',
                 'single_select',
                 'multi_select',
+                'holster_pair',
+                'holster_pair_list',
                 'url',
             ],
             'supportedOptionSources' => $this->supportedOptionSources(),

@@ -604,6 +604,14 @@
             "empty": "Select phantom jobs",
             "selected_count": "{count} selected"
         },
+        "holsters": {
+            "prepop": "Prepop Holster",
+            "prepop_placeholder": "Select a Prepop holster",
+            "refill": "Refill Holster",
+            "refill_placeholder": "Select a Refill holster",
+            "add_pair": "Add Holster Pair",
+            "remove_pair": "Remove holster pair"
+        },
         "quick_select": {
             "title": "Quick selectors",
             "all": "All",

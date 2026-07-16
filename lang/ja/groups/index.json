@@ -88,6 +88,8 @@
                 "no_description": "説明はありません。",
                 "actions": "アクション",
                 "more_actions": "他{count}件",
+                "show_refills": "補充を表示",
+                "hide_refills": "補充を非表示",
                 "no_actions": "アクションは追加されていません。",
                 "open_editor": "エディターを開く",
                 "deleted": "ホルスターを削除しました",
@@ -103,12 +105,19 @@
                 "empty_description": "ホルスターを作成して構成の計画を始めましょう。",
                 "no_selection": "ホルスターを選択するか、新しく作成してください。",
                 "saved": "ホルスターを保存しました",
-                "save_failed": "ホルスターを保存できませんでした。",
-                "metadata": {
+        "save_failed": "ホルスターを保存できませんでした。",
+        "types": {
+          "prepop": "事前準備",
+          "refill": "補充"
+        },
+        "metadata": {
                     "title": "詳細",
                     "description": "ホルスターに名前を付け、グループ向けのメモを追加します。",
                     "name": "名前",
                     "role": "ロール",
+                    "type": "ホルスタータイプ",
+                    "parent_holster": "関連する事前準備ホルスター",
+                    "parent_holster_placeholder": "補充元の事前準備を選択",
                     "max_capacity": "最大容量",
                     "guide": "ガイド",
                     "guide_description": "このホルスターの使い方をMarkdown形式で任意に記載できます。",

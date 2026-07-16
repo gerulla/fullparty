@@ -56,6 +56,10 @@ class ApplicationAnswerPresenter
      */
     private function resolveDisplayValues(?string $source, mixed $value, ?array $questionDefinition): Collection
     {
+        if ($source === 'bozja_holsters' && $this->isHolsterPairListValue($value)) {
+            return $this->resolveHolsterPairDisplayItems($value)->pluck('label');
+        }
+
         $values = is_array($value) ? collect($value)->values() : collect([$value])->filter(fn ($entry) => ! blank($entry));
 
         if ($values->isEmpty()) {
@@ -197,6 +201,10 @@ class ApplicationAnswerPresenter
      */
     private function resolveDisplayItems(?string $source, mixed $value, ?array $questionDefinition): Collection
     {
+        if ($source === 'bozja_holsters' && $this->isHolsterPairListValue($value)) {
+            return $this->resolveHolsterPairDisplayItems($value);
+        }
+
         $values = is_array($value) ? collect($value)->values() : collect([$value])->filter(fn ($entry) => ! blank($entry));
 
         if ($values->isEmpty()) {
@@ -370,6 +378,61 @@ class ApplicationAnswerPresenter
         }
 
         return collect();
+    }
+
+    private function isHolsterPairListValue(mixed $value): bool
+    {
+        return is_array($value)
+            && array_is_list($value)
+            && ($value === [] || collect($value)->every(fn (mixed $pair): bool => is_array($pair)
+                && ! array_is_list($pair)
+                && filled($pair['prepop_id'] ?? null)
+                && filled($pair['refill_id'] ?? null)));
+    }
+
+    /**
+     * @param  array<int, array<string, mixed>>  $pairs
+     * @return Collection<int, array<string, mixed>>
+     */
+    private function resolveHolsterPairDisplayItems(array $pairs): Collection
+    {
+        $holsterIds = collect($pairs)
+            ->flatMap(fn (array $pair): array => [
+                (int) ($pair['prepop_id'] ?? 0),
+                (int) ($pair['refill_id'] ?? 0),
+            ])
+            ->filter(fn (int $id): bool => $id > 0)
+            ->unique()
+            ->values();
+        $holsters = BozjaHolster::query()
+            ->whereIn('id', $holsterIds->all())
+            ->get()
+            ->keyBy('id');
+
+        return collect($pairs)
+            ->map(function (array $pair) use ($holsters): ?array {
+                /** @var BozjaHolster|null $prepop */
+                $prepop = $holsters->get((int) ($pair['prepop_id'] ?? 0));
+                /** @var BozjaHolster|null $refill */
+                $refill = $holsters->get((int) ($pair['refill_id'] ?? 0));
+
+                if (! $prepop || ! $refill) {
+                    return null;
+                }
+
+                $prepopLabel = $prepop->localizedName();
+                $refillLabel = $refill->localizedName();
+
+                return [
+                    'label' => $prepopLabel.' + '.$refillLabel,
+                    'prepop_label' => $prepopLabel,
+                    'refill_label' => $refillLabel,
+                    'prepop_id' => $prepop->id,
+                    'refill_id' => $refill->id,
+                ];
+            })
+            ->filter()
+            ->values();
     }
 
     /**

@@ -573,6 +573,113 @@ it('only offers active holsters belonging to the activity group', function () {
         );
 });
 
+it('stores valid prepop and refill pairs in application answers', function () {
+    $activity = createGuestApplicationActivity([
+        'allow_guest_applications' => false,
+    ]);
+    $prepop = BozjaHolster::query()->create([
+        'group_id' => $activity->group_id,
+        'name' => ['en' => 'Caster Prepop'],
+        'type' => BozjaHolster::TYPE_PREPOP,
+        'is_active' => true,
+    ]);
+    $refill = BozjaHolster::query()->create([
+        'group_id' => $activity->group_id,
+        'name' => ['en' => 'Caster Refill'],
+        'type' => BozjaHolster::TYPE_REFILL,
+        'parent_holster_id' => $prepop->id,
+        'is_active' => true,
+    ]);
+    $activity->activityTypeVersion->update([
+        'application_schema' => [[
+            'key' => 'holster_loadouts',
+            'label' => ['en' => 'Holster Loadouts'],
+            'type' => 'holster_pair_list',
+            'source' => 'bozja_holsters',
+            'required' => true,
+        ]],
+    ]);
+    $user = User::factory()->create();
+    $character = Character::factory()->primary()->create(['user_id' => $user->id]);
+
+    $this->actingAs($user)
+        ->post(route('groups.activities.application.store', [
+            'group' => $activity->group->slug,
+            'activity' => $activity->id,
+        ]), [
+            'selected_character_id' => $character->id,
+            'answers' => [
+                'holster_loadouts' => [[
+                    'prepop_id' => (string) $prepop->id,
+                    'refill_id' => (string) $refill->id,
+                ]],
+            ],
+        ])
+        ->assertRedirect();
+
+    expect(ActivityApplicationAnswer::query()->sole()->value)->toBe([[
+        'prepop_id' => $prepop->id,
+        'refill_id' => $refill->id,
+    ]]);
+});
+
+it('rejects a refill that does not belong to the selected prepop', function () {
+    $activity = createGuestApplicationActivity([
+        'allow_guest_applications' => false,
+    ]);
+    $prepop = BozjaHolster::query()->create([
+        'group_id' => $activity->group_id,
+        'name' => ['en' => 'Caster Prepop'],
+        'type' => BozjaHolster::TYPE_PREPOP,
+        'is_active' => true,
+    ]);
+    $otherPrepop = BozjaHolster::query()->create([
+        'group_id' => $activity->group_id,
+        'name' => ['en' => 'Tank Prepop'],
+        'type' => BozjaHolster::TYPE_PREPOP,
+        'is_active' => true,
+    ]);
+    $refill = BozjaHolster::query()->create([
+        'group_id' => $activity->group_id,
+        'name' => ['en' => 'Tank Refill'],
+        'type' => BozjaHolster::TYPE_REFILL,
+        'parent_holster_id' => $otherPrepop->id,
+        'is_active' => true,
+    ]);
+    $activity->activityTypeVersion->update([
+        'application_schema' => [[
+            'key' => 'holster_loadouts',
+            'label' => ['en' => 'Holster Loadouts'],
+            'type' => 'holster_pair_list',
+            'source' => 'bozja_holsters',
+            'required' => true,
+        ]],
+    ]);
+    $user = User::factory()->create();
+    $character = Character::factory()->primary()->create(['user_id' => $user->id]);
+
+    $this->actingAs($user)
+        ->from(route('groups.activities.application', [
+            'group' => $activity->group->slug,
+            'activity' => $activity->id,
+        ]))
+        ->post(route('groups.activities.application.store', [
+            'group' => $activity->group->slug,
+            'activity' => $activity->id,
+        ]), [
+            'selected_character_id' => $character->id,
+            'answers' => [
+                'holster_loadouts' => [[
+                    'prepop_id' => $prepop->id,
+                    'refill_id' => $refill->id,
+                ]],
+            ],
+        ])
+        ->assertSessionHasErrors('answers.holster_loadouts');
+
+    expect(ActivityApplication::query()->count())->toBe(0);
+});
+
 it('stores remembered application defaults for authenticated users on create by default', function () {
     $activity = createGuestApplicationActivity([
         'allow_guest_applications' => false,

@@ -249,6 +249,8 @@
             "boolean": "真偽値",
             "single_select": "単一選択",
             "multi_select": "複数選択",
+            "holster_pair": "ホルスターペア",
+            "holster_pair_list": "ホルスターペア一覧",
             "url": "URL"
         },
         "option_sources": {

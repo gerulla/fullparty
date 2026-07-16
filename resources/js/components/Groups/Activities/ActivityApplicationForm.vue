@@ -58,7 +58,7 @@ const form = useForm({
 		question.key,
 		props.application?.answers?.[question.key]
 			?? rememberedDefaults.value?.answers?.[question.key]
-			?? (question.type === 'multi_select' ? [] : question.type === 'boolean' ? false : ''),
+			?? (question.type === 'multi_select' || question.type === 'holster_pair_list' ? [] : question.type === 'boolean' ? false : ''),
 	])),
 	remember_application_defaults: showRememberChoicesOption.value,
 });

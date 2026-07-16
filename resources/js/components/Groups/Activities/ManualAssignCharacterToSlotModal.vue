@@ -6,6 +6,8 @@ import { localizedValue } from "@/utils/localizedValue";
 import type { LocalizedText } from "@/Types/Common";
 import type { ManualAssignmentCharacter, QueueFilterField } from "@/Types/ActivityQueue";
 import type { ActivitySlot } from "@/Types/ActivityRoster";
+import type { ActivitySlotFieldSelection, HolsterPairValue } from "@/Types/ActivityHolsters";
+import HolsterPairSelector from "@/components/Groups/Activities/HolsterPairSelector.vue";
 
 const props = defineProps<{
 	open: boolean
@@ -19,14 +21,14 @@ const props = defineProps<{
 
 const emit = defineEmits<{
 	"update:open": [value: boolean]
-	confirm: [payload: { characterId: number, slotId: number, fieldValues: Record<string, string | string[]>, sourceSlotId?: number | null }]
+	confirm: [payload: { characterId: number, slotId: number, fieldValues: Record<string, ActivitySlotFieldSelection>, sourceSlotId?: number | null }]
 }>()
 
 const { t, locale } = useI18n()
 const page = usePage()
 const fallbackLocale = computed(() => String(page.props.locale?.fallback ?? "en"))
 const selectedCharacterId = ref<number | null>(null)
-const selections = ref<Record<string, string | string[]>>({})
+const selections = ref<Record<string, ActivitySlotFieldSelection>>({})
 
 const isOpen = computed({
 	get: () => props.open,
@@ -61,6 +63,10 @@ const compatibleOptionsByField = computed(() => {
 	const map: Record<string, Array<{ label: string, value: string }>> = {}
 
 	for (const field of targetFieldDefinitions.value) {
+		if (field.type === "holster_pair") {
+			continue
+		}
+
 		map[field.key] = field.options.map((option) => ({
 			label: localizedTextValue(option.label, option.key),
 			value: option.key,
@@ -70,8 +76,24 @@ const compatibleOptionsByField = computed(() => {
 	return map
 })
 
+const firstAvailableHolsterPair = (field: QueueFilterField): HolsterPairValue | null => {
+	const prepop = field.options.find((option) => option.meta?.holster_type === "prepop"
+		&& field.options.some((refill) => refill.meta?.holster_type === "refill"
+			&& String(refill.meta.parent_holster_id ?? "") === option.key))
+	const refill = prepop
+		? field.options.find((option) => option.meta?.holster_type === "refill"
+			&& String(option.meta.parent_holster_id ?? "") === prepop.key)
+		: null
+
+	return prepop && refill
+		? { prepop_id: prepop.key, refill_id: refill.key }
+		: null
+}
+
 const hasCompatibleOptions = computed(() => targetFieldDefinitions.value.every((field) => (
-	(compatibleOptionsByField.value[field.key] ?? []).length > 0
+	field.type === "holster_pair"
+		? firstAvailableHolsterPair(field) !== null
+		: (compatibleOptionsByField.value[field.key] ?? []).length > 0
 )))
 
 const canSubmit = computed(() => {
@@ -81,6 +103,11 @@ const canSubmit = computed(() => {
 
 	return targetFieldDefinitions.value.every((field) => {
 		const selectedValue = selections.value[field.key]
+		if (field.type === "holster_pair") {
+			const pair = selectedValue as HolsterPairValue | undefined
+
+			return Boolean(pair?.prepop_id && pair?.refill_id)
+		}
 
 		if (Array.isArray(selectedValue)) {
 			return selectedValue.length > 0
@@ -160,9 +187,24 @@ watch(
 			return
 		}
 
-		const defaults: Record<string, string | string[]> = {}
+		const defaults: Record<string, ActivitySlotFieldSelection> = {}
 
 		for (const field of targetFieldDefinitions.value) {
+			if (field.type === "holster_pair") {
+				const currentValue = props.slot.field_values.find((fieldValue) => fieldValue.field_key === field.key)?.value
+				const pair = currentValue && typeof currentValue === "object" && !Array.isArray(currentValue)
+					? currentValue as Record<string, unknown>
+					: null
+				const currentPair = {
+					prepop_id: pair?.prepop_id == null ? "" : String(pair.prepop_id),
+					refill_id: pair?.refill_id == null ? "" : String(pair.refill_id),
+				}
+				defaults[field.key] = currentPair.prepop_id && currentPair.refill_id
+					? currentPair
+					: firstAvailableHolsterPair(field) ?? currentPair
+				continue
+			}
+
 			const compatibleOptions = compatibleOptionsByField.value[field.key] ?? []
 
 			if (compatibleOptions.length === 0) {
@@ -189,7 +231,7 @@ watch(
 	{ immediate: true },
 )
 
-const updateFieldSelection = (fieldKey: string, value: string | string[] | undefined) => {
+const updateFieldSelection = (fieldKey: string, value: ActivitySlotFieldSelection | undefined) => {
 	selections.value = {
 		...selections.value,
 		[fieldKey]: value ?? "",
@@ -298,7 +340,14 @@ const submit = () => {
 						:key="field.key"
 						:label="localizedTextValue(field.label, field.key)"
 					>
+						<HolsterPairSelector
+							v-if="field.type === 'holster_pair'"
+							:model-value="selections[field.key]"
+							:options="field.options"
+							@update:model-value="(value) => updateFieldSelection(field.key, value)"
+						/>
 						<USelectMenu
+							v-else
 							:model-value="selections[field.key]"
 							:multiple="field.type === 'multi_select'"
 							size="lg"

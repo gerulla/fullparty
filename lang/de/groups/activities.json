@@ -604,6 +604,14 @@
             "empty": "Phantom Jobs auswahlen",
             "selected_count": "{count} ausgewahlt"
         },
+        "holsters": {
+            "prepop": "Prepop-Holster",
+            "prepop_placeholder": "Prepop-Holster auswählen",
+            "refill": "Nachfüll-Holster",
+            "refill_placeholder": "Nachfüll-Holster auswählen",
+            "add_pair": "Holster-Paar hinzufügen",
+            "remove_pair": "Holster-Paar entfernen"
+        },
         "quick_select": {
             "title": "Schnellauswahl",
             "all": "Alle",

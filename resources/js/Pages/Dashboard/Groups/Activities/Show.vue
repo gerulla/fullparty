@@ -2,6 +2,7 @@
 import axios from "axios";
 import type { ActivityDetails, ActivityManagementPatch, SlotDesignation } from "@/Types/ActivityManagement";
 import type { ManualAssignmentCharacter, QueueApplication } from "@/Types/ActivityQueue";
+import type { ActivitySlotFieldSelection } from "@/Types/ActivityHolsters";
 import { computed, onBeforeUnmount, onMounted, ref } from "vue";
 import { useI18n } from "vue-i18n";
 import { router, useForm, usePage } from "@inertiajs/vue3";
@@ -1404,7 +1405,7 @@ const undoMissingAssignment = async (assignmentId: number) => {
 const handleAssignApplicantToSlot = async (payload: {
 	applicationId: number
 	slotId: number
-	fieldValues: Record<string, string | string[]>
+	fieldValues: Record<string, ActivitySlotFieldSelection>
 	ignoreApplicationChoices?: boolean
 	sourceSlotId?: number | null
 }) => {
@@ -1514,7 +1515,7 @@ const handleAssignApplicantToSlot = async (payload: {
 	}
 };
 
-const handleAssignCharacterToSlot = async (payload: { characterId: number, slotId: number, fieldValues: Record<string, string | string[]>, sourceSlotId?: number | null }) => {
+const handleAssignCharacterToSlot = async (payload: { characterId: number, slotId: number, fieldValues: Record<string, ActivitySlotFieldSelection>, sourceSlotId?: number | null }) => {
 	if (!currentActivity.value || isActivityArchived.value || isSlotAssignmentPending.value) {
 		return;
 	}

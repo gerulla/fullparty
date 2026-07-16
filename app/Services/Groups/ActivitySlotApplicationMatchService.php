@@ -16,6 +16,7 @@ class ActivitySlotApplicationMatchService
 
     public function __construct(
         private readonly ActivitySlotFieldDefinitionBuilder $fieldDefinitionBuilder,
+        private readonly BozjaHolsterPairService $bozjaHolsterPairService,
     ) {}
 
     /**
@@ -40,6 +41,26 @@ class ActivitySlotApplicationMatchService
 
                 if (! $answer instanceof ActivityApplicationAnswer || ! $fieldValue) {
                     return null;
+                }
+
+                if (($definition['source'] ?? null) === 'bozja_holsters' && ($definition['type'] ?? null) === 'holster_pair') {
+                    $applicationPairs = $this->bozjaHolsterPairService->normalizePairs($answer->value);
+                    $slotPair = $this->bozjaHolsterPairService->normalizePair($fieldValue->value);
+
+                    if ($applicationPairs === [] || $slotPair === null) {
+                        return null;
+                    }
+
+                    $usedQuestionKeys->push($answer->question_key);
+
+                    return $this->matchPayload(
+                        answer: $answer,
+                        abbreviation: $this->abbreviation($answer, 'bozja_holsters'),
+                        matches: collect($applicationPairs)->contains(
+                            fn (array $pair): bool => $this->bozjaHolsterPairService->pairKey($pair)
+                                === $this->bozjaHolsterPairService->pairKey($slotPair),
+                        ),
+                    );
                 }
 
                 $answerValues = $this->normalizeValues($answer->value);

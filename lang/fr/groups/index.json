@@ -88,6 +88,8 @@
                 "no_description": "Aucune description fournie.",
                 "actions": "Actions",
                 "more_actions": "+ {count} autres",
+                "show_refills": "Afficher les réapprovisionnements",
+                "hide_refills": "Masquer les réapprovisionnements",
                 "no_actions": "Aucune action ajoutée.",
                 "open_editor": "Ouvrir l'éditeur",
                 "deleted": "Holster supprimé",
@@ -103,12 +105,19 @@
                 "empty_description": "Créez un holster pour commencer à préparer une composition.",
                 "no_selection": "Sélectionnez un holster ou créez-en un nouveau.",
                 "saved": "Holster enregistré",
-                "save_failed": "Le holster n'a pas pu être enregistré.",
-                "metadata": {
+        "save_failed": "Le holster n’a pas pu être enregistré.",
+        "types": {
+          "prepop": "Préparation",
+          "refill": "Réapprovisionnement"
+        },
+        "metadata": {
                     "title": "Détails",
                     "description": "Nommez le holster et ajoutez les notes utiles à votre groupe.",
                     "name": "Nom",
                     "role": "Rôle",
+                    "type": "Type de holster",
+                    "parent_holster": "Préparation associée",
+                    "parent_holster_placeholder": "Sélectionnez la préparation à réapprovisionner",
                     "max_capacity": "Capacité maximale",
                     "guide": "Guide",
                     "guide_description": "Instructions facultatives au format Markdown pour utiliser ce holster.",

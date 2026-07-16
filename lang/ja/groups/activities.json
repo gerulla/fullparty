@@ -604,6 +604,14 @@
             "empty": "ファントムジョブを選択",
             "selected_count": "{count}件選択中"
         },
+        "holsters": {
+            "prepop": "プリポップホルスター",
+            "prepop_placeholder": "プリポップホルスターを選択",
+            "refill": "補充ホルスター",
+            "refill_placeholder": "補充ホルスターを選択",
+            "add_pair": "ホルスターペアを追加",
+            "remove_pair": "ホルスターペアを削除"
+        },
         "quick_select": {
             "title": "クイック選択",
             "all": "すべて",

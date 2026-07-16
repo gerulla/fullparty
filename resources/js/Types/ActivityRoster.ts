@@ -19,6 +19,10 @@ export type ActivitySlotFieldValue = {
 		sprite_url?: string | null
 		key?: string | null
 		label?: LocalizedText | string | null
+		prepop_id?: number | null
+		refill_id?: number | null
+		prepop_label?: string | null
+		refill_label?: string | null
 	} | null
 }
 

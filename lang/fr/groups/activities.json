@@ -604,6 +604,14 @@
             "empty": "Sélectionner des phantom jobs",
             "selected_count": "{count} sélectionnés"
         },
+        "holsters": {
+            "prepop": "Holster prépop",
+            "prepop_placeholder": "Sélectionner un holster prépop",
+            "refill": "Holster de réapprovisionnement",
+            "refill_placeholder": "Sélectionner un holster de réapprovisionnement",
+            "add_pair": "Ajouter une paire de holsters",
+            "remove_pair": "Retirer la paire de holsters"
+        },
         "quick_select": {
             "title": "Sélection rapide",
             "all": "Tous",

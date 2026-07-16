@@ -11,6 +11,7 @@ import { route } from 'ziggy-js'
 const props = defineProps<{
 	groupSlug: string
 	holster: BozjaHolsterSummary | null
+	holsters: BozjaHolsterSummary[]
 	bozjaItems: BozjaItemOption[]
 	isCreating: boolean
 }>()
@@ -53,6 +54,8 @@ const contentsSection = ref<HTMLElement | null>(null)
 const draft = reactive({
 	name: {} as Record<string, string>,
 	role: null as BozjaHolsterSummary['role'],
+	type: 'prepop' as BozjaHolsterSummary['type'],
+	parent_holster_id: null as number | null,
 	max_capacity: 99,
 	notes: '',
 	guide: '',
@@ -67,6 +70,8 @@ const resetDraft = () => {
 		normalizeLocalizedName(props.holster?.name?.[locale]),
 	]))
 	draft.role = props.holster?.role ?? null
+	draft.type = props.holster?.type ?? 'prepop'
+	draft.parent_holster_id = props.holster?.parent_holster_id ?? null
 	draft.max_capacity = props.holster?.max_capacity ?? 99
 	draft.notes = props.holster?.notes ?? ''
 	draft.guide = props.holster?.guide ?? ''
@@ -92,6 +97,17 @@ const roleOptions = computed(() => [
 	{ label: t('general.roles.physical_ranged_dps'), value: 'physical ranged dps' },
 	{ label: t('general.roles.magic_ranged_dps'), value: 'magic ranged dps' },
 ])
+const typeOptions = computed(() => [
+	{ label: t('groups.index.content.delubrum_reginae_savage.holsters.types.prepop'), value: 'prepop' },
+	{ label: t('groups.index.content.delubrum_reginae_savage.holsters.types.refill'), value: 'refill' },
+])
+const parentHolsterOptions = computed(() => props.holsters
+	.filter(holster => holster.type === 'prepop' && holster.id !== props.holster?.id)
+	.map(holster => ({
+		label: holster.display_name
+			?? t('groups.index.content.delubrum_reginae_savage.holsters.untitled'),
+		value: holster.id,
+	})))
 const roleIcons: Record<string, string> = {
 	tank: '/role-icons/tank.png',
 	healer: '/role-icons/healer.png',
@@ -133,7 +149,10 @@ const capacityRingStyle = computed(() => ({
 	background: `conic-gradient(var(--color-brand-400) 0 ${capacityPercentage.value}%, var(--ui-bg-accented) ${capacityPercentage.value}% 100%)`,
 }))
 const detailsComplete = computed(() => Boolean(
-	Object.values(draft.name).some(value => normalizeLocalizedName(value).trim()) && draft.role,
+	Object.values(draft.name).some(value => normalizeLocalizedName(value).trim())
+	&& draft.role
+	&& draft.type
+	&& (draft.type !== 'refill' || draft.parent_holster_id),
 ))
 const selectedItemIds = computed(() => new Set(draft.items.map(item => item.id)))
 const filteredItems = computed(() => {
@@ -192,6 +211,12 @@ const scrollToSection = (section: HTMLElement | null) => {
 
 const firstError = computed(() => Object.values(errors.value)[0] ?? '')
 
+watch(() => draft.type, type => {
+	if (type !== 'refill') {
+		draft.parent_holster_id = null
+	}
+})
+
 const save = async () => {
 	if (saving.value || capacityExceeded.value) {
 		return
@@ -203,6 +228,8 @@ const save = async () => {
 	const payload = {
 		name: draft.name,
 		role: draft.role,
+		type: draft.type,
+		parent_holster_id: draft.type === 'refill' ? draft.parent_holster_id : null,
 		notes: draft.notes || null,
 		guide: draft.guide || null,
 		items: draft.items.map(item => ({ id: item.id, quantity: item.quantity })),
@@ -382,16 +409,36 @@ const save = async () => {
 						</header>
 						<div class="grid items-start gap-5 p-4 md:grid-cols-2">
 							<div class="space-y-5">
-								<LocalizedTextFields
-									v-model="draft.name"
-									:locales="locales"
-									:label="t('groups.index.content.delubrum_reginae_savage.holsters.metadata.name')"
-									:all-locales-label="t('groups.index.content.delubrum_reginae_savage.holsters.manage_locales')"
-									class="holster-localized-fields"
-								/>
-								<UFormField :label="t('groups.index.content.delubrum_reginae_savage.holsters.metadata.role')" :error="errors.role">
-									<USelect v-model="draft.role" :items="roleOptions" value-key="value" class="w-full" />
-								</UFormField>
+								<div class="grid items-start gap-4 sm:grid-cols-[minmax(0,1fr)_10rem]">
+									<LocalizedTextFields
+										v-model="draft.name"
+										:locales="locales"
+										:label="t('groups.index.content.delubrum_reginae_savage.holsters.metadata.name')"
+										:all-locales-label="t('groups.index.content.delubrum_reginae_savage.holsters.manage_locales')"
+										class="holster-localized-fields"
+									/>
+									<UFormField class="self-end" :label="t('groups.index.content.delubrum_reginae_savage.holsters.metadata.role')" :error="errors.role">
+										<USelect v-model="draft.role" :items="roleOptions" value-key="value" class="w-full" />
+									</UFormField>
+								</div>
+								<div class="grid items-start gap-4" :class="draft.type === 'refill' ? 'sm:grid-cols-2' : ''">
+									<UFormField :label="t('groups.index.content.delubrum_reginae_savage.holsters.metadata.type')" :error="errors.type">
+										<USelect v-model="draft.type" :items="typeOptions" value-key="value" class="w-full" />
+									</UFormField>
+									<UFormField
+										v-if="draft.type === 'refill'"
+										:label="t('groups.index.content.delubrum_reginae_savage.holsters.metadata.parent_holster')"
+										:error="errors.parent_holster_id"
+									>
+										<USelect
+											v-model="draft.parent_holster_id"
+											:items="parentHolsterOptions"
+											value-key="value"
+											:placeholder="t('groups.index.content.delubrum_reginae_savage.holsters.metadata.parent_holster_placeholder')"
+											class="w-full"
+										/>
+									</UFormField>
+								</div>
 							</div>
 							<UFormField :label="t('general.notes')" :error="errors.notes">
 								<UTextarea v-model="draft.notes" :rows="7" class="w-full" />

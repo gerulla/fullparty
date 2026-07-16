@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use InvalidArgumentException;
 
 class BozjaHolster extends Model
@@ -16,6 +17,15 @@ class BozjaHolster extends Model
     public const DEFAULT_MAX_CAPACITY = 99;
 
     public const MAX_CAPACITY = 99;
+
+    public const TYPE_PREPOP = 'prepop';
+
+    public const TYPE_REFILL = 'refill';
+
+    public const TYPES = [
+        self::TYPE_PREPOP,
+        self::TYPE_REFILL,
+    ];
 
     public const ROLES = [
         'tank',
@@ -29,6 +39,8 @@ class BozjaHolster extends Model
         'group_id',
         'name',
         'role',
+        'type',
+        'parent_holster_id',
         'max_capacity',
         'notes',
         'guide',
@@ -38,12 +50,14 @@ class BozjaHolster extends Model
 
     protected $attributes = [
         'max_capacity' => self::DEFAULT_MAX_CAPACITY,
+        'type' => self::TYPE_PREPOP,
         'is_active' => true,
         'is_default' => false,
     ];
 
     protected $casts = [
         'name' => 'array',
+        'parent_holster_id' => 'integer',
         'max_capacity' => 'integer',
         'is_active' => 'boolean',
         'is_default' => 'boolean',
@@ -59,6 +73,16 @@ class BozjaHolster extends Model
         return $this->belongsToMany(BozjaItem::class, 'bozja_holster_items')
             ->withPivot('quantity')
             ->withTimestamps();
+    }
+
+    public function parentHolster(): BelongsTo
+    {
+        return $this->belongsTo(self::class, 'parent_holster_id');
+    }
+
+    public function refillHolsters(): HasMany
+    {
+        return $this->hasMany(self::class, 'parent_holster_id');
     }
 
     protected function maxCapacity(): Attribute
@@ -91,6 +115,12 @@ class BozjaHolster extends Model
         return self::query()
             ->where('group_id', $groupId)
             ->where('is_active', true)
+            ->where(function ($query) {
+                $query->where('type', self::TYPE_PREPOP)
+                    ->orWhereHas('parentHolster', fn ($parentQuery) => $parentQuery
+                        ->where('is_active', true)
+                        ->where('type', self::TYPE_PREPOP));
+            })
             ->orderByDesc('is_default')
             ->orderBy('id')
             ->get()
@@ -98,7 +128,11 @@ class BozjaHolster extends Model
                 'key' => (string) $holster->id,
                 'label' => array_filter($holster->name ?? [], fn ($name) => filled($name))
                     ?: ['en' => "Holster #{$holster->id}"],
-                'meta' => null,
+                'meta' => [
+                    'holster_type' => $holster->type,
+                    'parent_holster_id' => $holster->parent_holster_id,
+                    'role' => $holster->role,
+                ],
             ])
             ->values()
             ->all();

@@ -27,6 +27,9 @@ class BozjaHolsterRequest extends FormRequest
     /** @return array<string, mixed> */
     public function rules(): array
     {
+        $group = $this->route('group');
+        $groupId = $group instanceof Group ? $group->id : null;
+
         return [
             'name' => ['nullable', 'array'],
             'name.en' => ['nullable', 'string', 'max:255'],
@@ -34,6 +37,16 @@ class BozjaHolsterRequest extends FormRequest
             'name.fr' => ['nullable', 'string', 'max:255'],
             'name.ja' => ['nullable', 'string', 'max:255'],
             'role' => ['required', 'string', Rule::in(BozjaHolster::ROLES)],
+            'type' => ['required', 'string', Rule::in(BozjaHolster::TYPES)],
+            'parent_holster_id' => [
+                Rule::requiredIf(fn () => $this->input('type') === BozjaHolster::TYPE_REFILL),
+                Rule::prohibitedIf(fn () => $this->input('type') !== BozjaHolster::TYPE_REFILL),
+                'nullable',
+                'integer',
+                Rule::exists('bozja_holsters', 'id')->where(fn ($query) => $query
+                    ->where('group_id', $groupId)
+                    ->where('type', BozjaHolster::TYPE_PREPOP)),
+            ],
             'max_capacity' => ['prohibited'],
             'notes' => ['nullable', 'string', 'max:5000'],
             'guide' => ['nullable', 'string', 'max:50000'],
@@ -53,6 +66,18 @@ class BozjaHolsterRequest extends FormRequest
         $validator->after(function (Validator $validator): void {
             $items = $this->input('items', []);
             $holster = $this->route('bozjaHolster');
+
+            if ($holster instanceof BozjaHolster) {
+                if ((int) $this->input('parent_holster_id') === (int) $holster->id) {
+                    $validator->errors()->add('parent_holster_id', 'A holster cannot refill itself.');
+                }
+
+                if ($this->input('type') !== BozjaHolster::TYPE_PREPOP
+                    && $holster->refillHolsters()->exists()) {
+                    $validator->errors()->add('type', 'A prepop holster with refills cannot be changed to a refill.');
+                }
+            }
+
             $maxCapacity = $holster instanceof BozjaHolster
                 ? $holster->max_capacity
                 : BozjaHolster::DEFAULT_MAX_CAPACITY;

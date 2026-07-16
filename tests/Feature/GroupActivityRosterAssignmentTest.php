@@ -7,10 +7,12 @@ use App\Models\ActivitySlotAssignment;
 use App\Models\ActivityType;
 use App\Models\ActivityTypeVersion;
 use App\Models\AuditLog;
+use App\Models\BozjaHolster;
 use App\Models\Character;
 use App\Models\CharacterClass;
 use App\Models\Group;
 use App\Models\PhantomJob;
+use App\Models\RaidPosition;
 use App\Models\User;
 use App\Support\ActivityCompositionPresets;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -880,6 +882,86 @@ it('does not let ignored application choices assign jobs unavailable to the char
         ->and($application->fresh()->status)->toBe(ActivityApplication::STATUS_PENDING);
 });
 
+it('lets moderators ignore raid position application choices when assigning from applications', function () {
+    extract(createRosterAssignmentSetup());
+    extract(createApplicantForAssignment($activity, $tankClass, $phantomKnight));
+
+    RaidPosition::query()->create([
+        'key' => 'mt',
+        'name' => 'Main Tank',
+        'sort_order' => 1,
+        'is_active' => true,
+    ]);
+    RaidPosition::query()->create([
+        'key' => 'ot',
+        'name' => 'Off Tank',
+        'sort_order' => 2,
+        'is_active' => true,
+    ]);
+
+    $version = ActivityTypeVersion::query()->findOrFail($activity->activity_type_version_id);
+    $version->update([
+        'slot_schema' => [
+            ...$version->slot_schema,
+            [
+                'key' => 'raid_position',
+                'label' => ['en' => 'Raid Position'],
+                'type' => 'single_select',
+                'source' => 'raid_positions',
+            ],
+        ],
+        'application_schema' => [
+            ...$version->application_schema,
+            [
+                'key' => 'preferred_raid_positions',
+                'label' => ['en' => 'Preferred Raid Positions'],
+                'type' => 'multi_select',
+                'source' => 'raid_positions',
+            ],
+        ],
+    ]);
+
+    $mainSlot->fieldValues()->create([
+        'field_key' => 'raid_position',
+        'field_label' => ['en' => 'Raid Position'],
+        'field_type' => 'single_select',
+        'source' => 'raid_positions',
+        'value' => null,
+    ]);
+    $application->answers()->create([
+        'question_key' => 'preferred_raid_positions',
+        'question_label' => ['en' => 'Preferred Raid Positions'],
+        'question_type' => 'multi_select',
+        'source' => 'raid_positions',
+        'value' => ['mt'],
+    ]);
+
+    $this->actingAs($owner);
+
+    $this->postJson(route('groups.dashboard.activities.slot-assignments.store', [
+        'group' => $group->slug,
+        'activity' => $activity->id,
+        'slot' => $mainSlot->id,
+    ]), [
+        'application_id' => $application->id,
+        'ignore_application_choices' => true,
+        'expected_slot_state_token' => activity_slot_state_token($mainSlot->fresh(['fieldValues', 'assignments'])),
+        'field_values' => [
+            'character_class' => (string) $tankClass->id,
+            'phantom_job' => (string) $phantomKnight->id,
+            'raid_position' => 'ot',
+        ],
+    ])->assertOk();
+
+    $mainSlot->refresh()->load('fieldValues');
+
+    expect($mainSlot->fieldValues->firstWhere('field_key', 'raid_position')?->value)
+        ->toMatchArray([
+            'key' => 'ot',
+            'label' => ['en' => 'Off Tank'],
+        ]);
+});
+
 it('treats an application any option as all concrete static slot options', function () {
     extract(createRosterAssignmentSetup());
     extract(createApplicantForAssignment($activity, $tankClass, $phantomKnight));
@@ -1745,4 +1827,121 @@ it('rejects filled roster and bench swaps while allowing empty-target moves with
         ->and($benchApplicant['application']->fresh()->status)->toBe(ActivityApplication::STATUS_APPROVED)
         ->and($secondBenchApplicant['application']->fresh()->status)->toBe(ActivityApplication::STATUS_ON_BENCH)
         ->and($assignedCharacterIds)->toHaveCount(count(array_unique($assignedCharacterIds)));
+});
+
+it('assigns one of the exact holster pairs submitted with an application', function () {
+    extract(createRosterAssignmentSetup());
+
+    $prepop = BozjaHolster::query()->create([
+        'group_id' => $group->id,
+        'name' => ['en' => 'Caster Prepop'],
+        'type' => BozjaHolster::TYPE_PREPOP,
+        'is_active' => true,
+    ]);
+    $refill = BozjaHolster::query()->create([
+        'group_id' => $group->id,
+        'name' => ['en' => 'Caster Refill'],
+        'type' => BozjaHolster::TYPE_REFILL,
+        'parent_holster_id' => $prepop->id,
+        'is_active' => true,
+    ]);
+    $unsubmittedRefill = BozjaHolster::query()->create([
+        'group_id' => $group->id,
+        'name' => ['en' => 'Alternate Caster Refill'],
+        'type' => BozjaHolster::TYPE_REFILL,
+        'parent_holster_id' => $prepop->id,
+        'is_active' => true,
+    ]);
+    $version = ActivityTypeVersion::query()->findOrFail($activity->activity_type_version_id);
+    $version->update([
+        'slot_schema' => [
+            ...$version->slot_schema,
+            [
+                'key' => 'holster_loadouts',
+                'label' => ['en' => 'Holster Loadout'],
+                'type' => 'holster_pair',
+                'source' => 'bozja_holsters',
+            ],
+        ],
+        'application_schema' => [
+            ...$version->application_schema,
+            [
+                'key' => 'holster_loadouts',
+                'label' => ['en' => 'Holster Loadouts'],
+                'type' => 'holster_pair_list',
+                'source' => 'bozja_holsters',
+                'required' => true,
+            ],
+        ],
+    ]);
+    $mainSlot->fieldValues()->create([
+        'field_key' => 'holster_loadouts',
+        'field_label' => ['en' => 'Holster Loadout'],
+        'field_type' => 'holster_pair',
+        'source' => 'bozja_holsters',
+        'value' => null,
+    ]);
+    extract(createApplicantForAssignment($activity, $tankClass, $phantomKnight));
+    $application->answers()->updateOrCreate([
+        'question_key' => 'holster_loadouts',
+    ], [
+        'question_label' => ['en' => 'Holster Loadouts'],
+        'question_type' => 'holster_pair_list',
+        'source' => 'bozja_holsters',
+        'value' => [[
+            'prepop_id' => $prepop->id,
+            'refill_id' => $refill->id,
+        ]],
+    ]);
+
+    $assignmentRoute = route('groups.dashboard.activities.slot-assignments.store', [
+        'group' => $group->slug,
+        'activity' => $activity->id,
+        'slot' => $mainSlot->id,
+    ]);
+
+    $this->actingAs($owner)
+        ->postJson($assignmentRoute, [
+            'application_id' => $application->id,
+            'expected_slot_state_token' => activity_slot_state_token($mainSlot->fresh(['fieldValues', 'assignments'])),
+            'field_values' => [
+                'character_class' => (string) $tankClass->id,
+                'phantom_job' => (string) $phantomKnight->id,
+                'holster_loadouts' => [
+                    'prepop_id' => (string) $prepop->id,
+                    'refill_id' => (string) $unsubmittedRefill->id,
+                ],
+            ],
+        ])
+        ->assertStatus(422)
+        ->assertJsonValidationErrors('field_values.holster_loadouts');
+
+    $this->actingAs($owner)
+        ->postJson($assignmentRoute, [
+            'application_id' => $application->id,
+            'expected_slot_state_token' => activity_slot_state_token($mainSlot->fresh(['fieldValues', 'assignments'])),
+            'field_values' => [
+                'character_class' => (string) $tankClass->id,
+                'phantom_job' => (string) $phantomKnight->id,
+                'holster_loadouts' => [
+                    'prepop_id' => (string) $prepop->id,
+                    'refill_id' => (string) $refill->id,
+                ],
+            ],
+        ])
+        ->assertOk()
+        ->assertJsonPath('slot.application_matches.2.abbreviation', 'H')
+        ->assertJsonPath('slot.application_matches.2.matches', true);
+
+    $storedPair = $mainSlot->fresh('fieldValues')
+        ?->fieldValues
+        ->firstWhere('field_key', 'holster_loadouts')
+        ?->value;
+
+    expect($storedPair)->toMatchArray([
+        'prepop_id' => $prepop->id,
+        'refill_id' => $refill->id,
+        'prepop_label' => ['en' => 'Caster Prepop'],
+        'refill_label' => ['en' => 'Caster Refill'],
+    ]);
 });

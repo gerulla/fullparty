@@ -20,6 +20,7 @@ import { buildActivityCompletionSummary } from "@/utils/buildActivityCompletionS
 import type { ActivityOverviewPermissions, AttendeeActivity, PublicGroupSummary } from "@/Types/ActivityAttendee";
 import type { ActivitySlot } from "@/Types/ActivityRoster";
 import type { ManualAssignmentCharacter, QueueFilterField } from "@/Types/ActivityQueue";
+import type { ActivitySlotFieldSelection } from "@/Types/ActivityHolsters";
 import { createDateTimeFormatter } from "@/utils/dateTimeFormat";
 import { formatRelativeTime } from "@/utils/formatRelativeTime";
 import { useMinuteTicker } from "@/composables/useMinuteTicker";
@@ -260,7 +261,7 @@ const closeSelfAssignModal = () => {
 	selfAssignSlot.value = null;
 };
 
-const confirmSelfAssign = async (payload: { characterId: number, slotId: number, fieldValues: Record<string, string | string[]> }) => {
+const confirmSelfAssign = async (payload: { characterId: number, slotId: number, fieldValues: Record<string, ActivitySlotFieldSelection> }) => {
 	if (!selfAssignSlot.value || isSelfAssignmentPending.value) {
 		return;
 	}

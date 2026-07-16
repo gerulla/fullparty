@@ -249,6 +249,8 @@
             "boolean": "Booléen",
             "single_select": "Sélection unique",
             "multi_select": "Sélection multiple",
+            "holster_pair": "Paire de holsters",
+            "holster_pair_list": "Liste de paires de holsters",
             "url": "URL"
         },
         "option_sources": {

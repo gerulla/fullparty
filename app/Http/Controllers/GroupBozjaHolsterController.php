@@ -9,6 +9,7 @@ use App\Models\Group;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Validation\ValidationException;
 use Symfony\Component\HttpFoundation\Response;
 
 class GroupBozjaHolsterController extends Controller
@@ -74,6 +75,12 @@ class GroupBozjaHolsterController extends Controller
     {
         $this->assertCanManageHolsters($group);
         $this->assertBelongsToGroup($group, $bozjaHolster);
+
+        if ($bozjaHolster->refillHolsters()->exists()) {
+            throw ValidationException::withMessages([
+                'holster' => 'Delete or reassign this holster\'s refills before deleting it.',
+            ]);
+        }
 
         $bozjaHolster->delete();
 

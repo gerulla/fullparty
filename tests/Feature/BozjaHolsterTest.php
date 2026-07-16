@@ -38,6 +38,7 @@ it('stores localized holsters with quantified Bozja items', function () {
     $holster->load('items');
 
     expect($holster->max_capacity)->toBe(BozjaHolster::DEFAULT_MAX_CAPACITY)
+        ->and($holster->type)->toBe(BozjaHolster::TYPE_PREPOP)
         ->and($holster->localizedName('ja'))->toBe('グンヒルド構成')
         ->and($holster->capacity_used)->toBe(23)
         ->and($holster->items)->toHaveCount(2)

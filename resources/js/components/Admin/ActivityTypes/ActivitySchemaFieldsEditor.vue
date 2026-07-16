@@ -22,10 +22,22 @@ const emit = defineEmits<{
 
 const { t } = useI18n();
 
-const fieldTypeOptions = computed(() => props.supportedFieldTypes.map((type) => ({
-	label: t(`admin.activity_types.schema.field_types.${type}`),
-	value: type,
-})));
+const fieldTypeOptions = computed(() => props.supportedFieldTypes
+	.filter((type) => {
+		if (type === 'holster_pair') {
+			return props.fieldKind === 'slot'
+		}
+
+		if (type === 'holster_pair_list') {
+			return props.fieldKind === 'application'
+		}
+
+		return true
+	})
+	.map((type) => ({
+		label: t(`admin.activity_types.schema.field_types.${type}`),
+		value: type,
+	})));
 
 const optionSourceOptions = computed(() => props.supportedOptionSources.map((source) => ({
 	label: t(`admin.activity_types.schema.option_sources.${source}`),
@@ -63,6 +75,16 @@ const updateField = (index: number, updates: Partial<ActivityTypeSchemaField>) =
 };
 
 const updateFieldType = (index: number, type: string) => {
+	if (type === 'holster_pair' || type === 'holster_pair_list') {
+		updateField(index, {
+			type,
+			source: 'bozja_holsters',
+			accepts_any: false,
+		});
+
+		return;
+	}
+
 	updateField(index, isSelectionType(type)
 		? { type }
 		: { type, accepts_any: false });
@@ -183,6 +205,7 @@ const updateFieldLabel = (index: number, label: Record<string, string>) => {
 								:items="optionSourceOptions"
 								value-key="value"
 								class="w-full"
+								:disabled="field.type === 'holster_pair' || field.type === 'holster_pair_list'"
 								@update:model-value="(value) => updateField(index, { source: value })"
 							/>
 						</UFormField>

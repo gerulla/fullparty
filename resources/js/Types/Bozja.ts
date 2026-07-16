@@ -14,11 +14,15 @@ export type BozjaItemRecord = {
 	has_source_payload: boolean
 }
 
+export type BozjaHolsterType = 'prepop' | 'refill'
+
 export type BozjaHolsterSummary = {
 	id: number
 	name: LocalizedStringRecord | null
 	display_name: string | null
 	role: 'tank' | 'healer' | 'melee dps' | 'physical ranged dps' | 'magic ranged dps' | null
+	type: BozjaHolsterType
+	parent_holster_id: number | null
 	capacity_used: number
 	max_capacity: number
 	notes: string | null

@@ -88,6 +88,8 @@
         "no_description": "No description provided.",
         "actions": "Actions",
         "more_actions": "+ {count} other",
+        "show_refills": "Show Refills",
+        "hide_refills": "Hide Refills",
         "no_actions": "No actions added.",
         "open_editor": "Open Editor",
         "deleted": "Holster deleted",
@@ -104,11 +106,18 @@
         "no_selection": "Select a holster or create a new one.",
         "saved": "Holster saved",
         "save_failed": "The holster could not be saved.",
+        "types": {
+          "prepop": "Prepop",
+          "refill": "Refill"
+        },
         "metadata": {
           "title": "Details",
           "description": "Name the holster and add any notes your group needs.",
           "name": "Name",
           "role": "Role",
+          "type": "Holster Type",
+          "parent_holster": "Prepop Holster",
+          "parent_holster_placeholder": "Select the prepop this refills",
           "max_capacity": "Maximum Capacity",
           "guide": "Guide",
           "guide_description": "Optional Markdown-formatted guidance for using this holster.",

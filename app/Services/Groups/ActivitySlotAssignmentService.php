@@ -21,6 +21,7 @@ class ActivitySlotAssignmentService
         private readonly ActivitySlotDesignationService $slotDesignationService,
         private readonly GroupActivityAuditService $activityAuditService,
         private readonly AssignmentNotificationService $assignmentNotificationService,
+        private readonly BozjaHolsterPairService $bozjaHolsterPairService,
     ) {}
 
     /**
@@ -490,6 +491,18 @@ class ActivitySlotAssignmentService
                 ]);
             }
 
+            if ($this->isHolsterPairField($definition)) {
+                $fieldValue->update([
+                    'value' => $this->resolveHolsterPairStoredValue(
+                        $definition,
+                        $selectedValue,
+                        "field_values.{$fieldValue->field_key}",
+                    ),
+                ]);
+
+                continue;
+            }
+
             $normalizedSelection = $this->normalizeSelection($selectedValue);
 
             if (count($normalizedSelection) === 0) {
@@ -553,8 +566,28 @@ class ActivitySlotAssignmentService
 
             $applicationKey = (string) ($definition['application_key'] ?? '');
             $applicationAnswer = $applicationKey !== '' ? ($applicationAnswers[$applicationKey] ?? null) : null;
-            $choicesIgnoredForField = $ignoreApplicationChoices
-                && in_array($definition['source'] ?? null, ['character_classes', 'phantom_jobs'], true);
+
+            if ($this->isHolsterPairField($definition)) {
+                $pair = $this->resolveHolsterPairStoredValue(
+                    $definition,
+                    $selectedValue,
+                    "field_values.{$fieldValue->field_key}",
+                );
+                $submittedPairKeys = collect($this->bozjaHolsterPairService->normalizePairs($applicationAnswer?->value))
+                    ->map(fn (array $submittedPair) => $this->bozjaHolsterPairService->pairKey($submittedPair));
+
+                if (! $submittedPairKeys->contains($this->bozjaHolsterPairService->pairKey($pair))) {
+                    throw ValidationException::withMessages([
+                        "field_values.{$fieldValue->field_key}" => 'Selected holster pairs must come from the application.',
+                    ]);
+                }
+
+                $fieldValue->update(['value' => $pair]);
+
+                continue;
+            }
+
+            $choicesIgnoredForField = $ignoreApplicationChoices && $this->canIgnoreApplicationChoicesForField($definition);
             $allowedOptionKeys = $choicesIgnoredForField
                 ? $this->allowedOptionKeysWhenIgnoringApplicationChoices($definition, $applicationAnswer?->value, $character)
                 : $this->allowedOptionKeysForApplicationAnswer($definition, $applicationAnswer?->value);
@@ -570,7 +603,7 @@ class ActivitySlotAssignmentService
                 if (! in_array($selection, $allowedOptionKeys, true)) {
                     throw ValidationException::withMessages([
                         "field_values.{$fieldValue->field_key}" => $choicesIgnoredForField
-                            ? 'Selected class and phantom job values must be available to the character.'
+                            ? $this->ignoredApplicationChoicesValidationMessage($definition)
                             : 'Selected slot values must come from the application.',
                     ]);
                 }
@@ -587,6 +620,73 @@ class ActivitySlotAssignmentService
 
     /**
      * @param  array<string, mixed>  $definition
+     */
+    private function canIgnoreApplicationChoicesForField(array $definition): bool
+    {
+        return in_array($definition['source'] ?? null, ['character_classes', 'phantom_jobs', 'raid_positions'], true)
+            || $this->isStaticRaidPositionField($definition);
+    }
+
+    /**
+     * @param  array<string, mixed>  $definition
+     */
+    private function isHolsterPairField(array $definition): bool
+    {
+        return ($definition['source'] ?? null) === 'bozja_holsters'
+            && ($definition['type'] ?? null) === 'holster_pair';
+    }
+
+    /**
+     * @param  array<string, mixed>  $definition
+     * @return array{prepop_id: int, refill_id: int, prepop_label: mixed, refill_label: mixed}
+     */
+    private function resolveHolsterPairStoredValue(array $definition, mixed $selection, string $attribute): array
+    {
+        $pair = $this->bozjaHolsterPairService->normalizePair($selection);
+
+        if ($pair === null) {
+            throw ValidationException::withMessages([
+                $attribute => 'Select both a Prepop and Refill holster.',
+            ]);
+        }
+
+        $options = collect($definition['options'] ?? [])->keyBy(
+            fn (array $option) => (string) ($option['key'] ?? ''),
+        );
+        $prepop = $options->get((string) $pair['prepop_id']);
+        $refill = $options->get((string) $pair['refill_id']);
+
+        if (! is_array($prepop)
+            || ! is_array($refill)
+            || ($prepop['meta']['holster_type'] ?? null) !== 'prepop'
+            || ($refill['meta']['holster_type'] ?? null) !== 'refill'
+            || (int) ($refill['meta']['parent_holster_id'] ?? 0) !== $pair['prepop_id']) {
+            throw ValidationException::withMessages([
+                $attribute => 'Select a valid Prepop and Refill holster pair.',
+            ]);
+        }
+
+        return [
+            ...$pair,
+            'prepop_label' => $prepop['label'] ?? null,
+            'refill_label' => $refill['label'] ?? null,
+        ];
+    }
+
+    /**
+     * @param  array<string, mixed>  $definition
+     */
+    private function ignoredApplicationChoicesValidationMessage(array $definition): string
+    {
+        if ($this->isRaidPositionField($definition)) {
+            return 'Selected raid position values must be valid options for this field.';
+        }
+
+        return 'Selected class and phantom job values must be available to the character.';
+    }
+
+    /**
+     * @param  array<string, mixed>  $definition
      * @return array<int, string>
      */
     private function allowedOptionKeysWhenIgnoringApplicationChoices(
@@ -594,6 +694,10 @@ class ActivitySlotAssignmentService
         mixed $applicationAnswer,
         ?Character $character,
     ): array {
+        if ($this->isRaidPositionField($definition)) {
+            return $this->definedOptionKeys($definition);
+        }
+
         if (! $character) {
             return [];
         }
@@ -612,14 +716,48 @@ class ActivitySlotAssignmentService
             return $this->allowedOptionKeysForApplicationAnswer($definition, $applicationAnswer);
         }
 
-        $definedOptionKeys = collect($definition['options'] ?? [])
-            ->map(fn (array $option) => (string) ($option['key'] ?? $option['value'] ?? ''))
-            ->filter()
-            ->all();
+        $definedOptionKeys = $this->definedOptionKeys($definition);
 
         return $availableOptionKeys
             ->map(fn ($id) => (string) $id)
             ->filter(fn (string $id) => in_array($id, $definedOptionKeys, true))
+            ->values()
+            ->all();
+    }
+
+    /**
+     * @param  array<string, mixed>  $definition
+     */
+    private function isRaidPositionField(array $definition): bool
+    {
+        return ($definition['source'] ?? null) === 'raid_positions'
+            || $this->isStaticRaidPositionField($definition);
+    }
+
+    /**
+     * @param  array<string, mixed>  $definition
+     */
+    private function isStaticRaidPositionField(array $definition): bool
+    {
+        if (($definition['source'] ?? null) !== 'static_options') {
+            return false;
+        }
+
+        $key = strtolower((string) ($definition['key'] ?? ''));
+        $applicationKey = strtolower((string) ($definition['application_key'] ?? ''));
+
+        return str_contains($key, 'position') || str_contains($applicationKey, 'position');
+    }
+
+    /**
+     * @param  array<string, mixed>  $definition
+     * @return array<int, string>
+     */
+    private function definedOptionKeys(array $definition): array
+    {
+        return collect($definition['options'] ?? [])
+            ->map(fn (array $option) => (string) ($option['key'] ?? $option['value'] ?? ''))
+            ->filter(fn (string $key) => $key !== '' && $key !== self::ANY_OPTION_KEY)
             ->values()
             ->all();
     }

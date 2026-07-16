@@ -88,6 +88,8 @@
                 "no_description": "Keine Beschreibung vorhanden.",
                 "actions": "Kommandos",
                 "more_actions": "+ {count} weitere",
+                "show_refills": "Nachfüllungen anzeigen",
+                "hide_refills": "Nachfüllungen ausblenden",
                 "no_actions": "Keine Kommandos hinzugefügt.",
                 "open_editor": "Editor öffnen",
                 "deleted": "Holster gelöscht",
@@ -103,12 +105,19 @@
                 "empty_description": "Erstellt einen Holster, um eine Zusammenstellung zu planen.",
                 "no_selection": "Wählt einen Holster aus oder erstellt einen neuen.",
                 "saved": "Holster gespeichert",
-                "save_failed": "Der Holster konnte nicht gespeichert werden.",
-                "metadata": {
+        "save_failed": "Der Holster konnte nicht gespeichert werden.",
+        "types": {
+          "prepop": "Vorbestückung",
+          "refill": "Nachfüllen"
+        },
+        "metadata": {
                     "title": "Details",
                     "description": "Benennt den Holster und fügt Hinweise für eure Gruppe hinzu.",
                     "name": "Name",
                     "role": "Rolle",
+                    "type": "Holster-Typ",
+                    "parent_holster": "Zugehörige Vorbestückung",
+                    "parent_holster_placeholder": "Vorbestückung zum Nachfüllen auswählen",
                     "max_capacity": "Maximale Kapazität",
                     "guide": "Anleitung",
                     "guide_description": "Optionale Anleitung im Markdown-Format zur Verwendung dieses Holsters.",

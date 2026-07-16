@@ -19,6 +19,7 @@ use App\Services\Groups\ActivityApplicationCharacterRefreshService;
 use App\Services\Groups\ActivityApplicationWithdrawalService;
 use App\Services\Groups\ActivityManagementRealtimeService;
 use App\Services\Groups\ActivitySlotBench;
+use App\Services\Groups\BozjaHolsterPairService;
 use App\Services\Groups\GroupActivityAuditService;
 use App\Services\Lodestone\LodestoneCharacterSearchService;
 use App\Services\Notifications\ApplicationNotificationService;
@@ -51,6 +52,7 @@ class GroupActivityApplicationController extends Controller
         private readonly ActivityApplicationWithdrawalService $applicationWithdrawalService,
         private readonly ActivityApplicationCharacterRefreshService $applicationCharacterRefreshService,
         private readonly ActivityManagementRealtimeService $activityManagementRealtimeService,
+        private readonly BozjaHolsterPairService $bozjaHolsterPairService,
     ) {}
 
     public function show(Request $request, Group $group, Activity $activity, ?string $secretKey = null): Response
@@ -1011,7 +1013,7 @@ class GroupActivityApplicationController extends Controller
         );
         $validated['answers'] = $this->sanitizeApplicationAnswers($validated['answers']);
         $this->validateApplicationAnswerLengths($validated['answers']);
-        $this->validateHolsterApplicationAnswers($validated['answers'], $activity);
+        $validated['answers'] = $this->validateHolsterApplicationAnswers($validated['answers'], $activity);
 
         $requiredQuestionKeys = collect($activity->activityTypeVersion?->application_schema ?? [])
             ->filter(fn ($question) => is_array($question) && filled($question['key'] ?? null) && (bool) ($question['required'] ?? false))
@@ -1270,14 +1272,15 @@ class GroupActivityApplicationController extends Controller
 
     /**
      * @param  array<int, array<string, mixed>>  $answers
+     * @return array<int, array<string, mixed>>
      */
-    private function validateHolsterApplicationAnswers(array $answers, Activity $activity): void
+    private function validateHolsterApplicationAnswers(array $answers, Activity $activity): array
     {
         $questions = collect($activity->activityTypeVersion?->application_schema ?? [])
             ->filter(fn ($question) => is_array($question) && ($question['source'] ?? null) === 'bozja_holsters')
             ->keyBy(fn (array $question) => (string) ($question['key'] ?? ''));
 
-        foreach ($answers as $answer) {
+        foreach ($answers as $index => $answer) {
             if (($answer['source'] ?? null) !== 'bozja_holsters') {
                 continue;
             }
@@ -1286,6 +1289,16 @@ class GroupActivityApplicationController extends Controller
             $question = $questions->get($questionKey);
 
             if (! is_array($question)) {
+                continue;
+            }
+
+            if (($question['type'] ?? null) === 'holster_pair_list') {
+                $answers[$index]['value'] = $this->bozjaHolsterPairService->validateApplicationPairs(
+                    value: $answer['value'] ?? null,
+                    groupId: (int) $activity->group_id,
+                    attribute: "answers.{$questionKey}",
+                );
+
                 continue;
             }
 
@@ -1303,6 +1316,8 @@ class GroupActivityApplicationController extends Controller
                 ]);
             }
         }
+
+        return $answers;
     }
 
     /**
@@ -1315,6 +1330,7 @@ class GroupActivityApplicationController extends Controller
         return match ($questionType) {
             'single_select' => $this->filterRememberedSingleSelectAnswerValue($value, $question, $groupId),
             'multi_select' => $this->filterRememberedMultiSelectAnswerValue($value, $question, $groupId),
+            'holster_pair_list' => $this->bozjaHolsterPairService->filterRememberedPairs($value, $groupId),
             'boolean' => $this->filterRememberedBooleanAnswerValue($value),
             'number' => $this->filterRememberedNumberAnswerValue($value),
             'textarea', 'text', 'url' => $this->filterRememberedTextAnswerValue($value, $questionType),

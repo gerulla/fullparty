@@ -6,6 +6,7 @@ import { usePage } from "@inertiajs/vue3";
 import { localizedValue } from "@/utils/localizedValue";
 import ApplicationClassSelector from "@/components/Groups/Activities/ApplicationClassSelector.vue";
 import ApplicationPhantomJobSelector from "@/components/Groups/Activities/ApplicationPhantomJobSelector.vue";
+import HolsterPairSelector from '@/components/Groups/Activities/HolsterPairSelector.vue'
 import { activityTextLimits } from "@/utils/activityTextLimits";
 import { translateRaidPositionName } from "@/utils/characterJobTranslations";
 
@@ -54,6 +55,8 @@ const isClassSelector = computed(() => props.question.source === 'character_clas
 const isPhantomJobSelector = computed(() => props.question.source === 'phantom_jobs'
 	&& (props.question.type === 'single_select' || props.question.type === 'multi_select'));
 const isIconSelector = computed(() => isClassSelector.value || isPhantomJobSelector.value);
+const isHolsterPairSelector = computed(() => props.question.source === 'bozja_holsters'
+	&& props.question.type === 'holster_pair_list');
 
 const singleSelectValue = computed({
 	get: () => typeof props.modelValue === 'string' ? props.modelValue : undefined,
@@ -101,7 +104,23 @@ const booleanValue = computed({
 
 <template>
 	<UFormField
-		v-if="!isIconSelector"
+		v-if="isHolsterPairSelector"
+		:label="label"
+		:description="helpText"
+		:error="error"
+		:required="showsRequiredIndicator"
+	>
+		<HolsterPairSelector
+			:model-value="modelValue"
+			:options="question.options"
+			multiple
+			:disabled="disabled"
+			@update:model-value="emit('update:modelValue', $event)"
+		/>
+	</UFormField>
+
+	<UFormField
+		v-else-if="!isIconSelector"
 		:label="label"
 		:description="helpText"
 		:error="error"

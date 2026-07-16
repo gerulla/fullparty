@@ -49,6 +49,8 @@ it('allows moderators to open Delubrum Reginae content', function () {
             ->where('holsters.0.id', $holster->id)
             ->where('holsters.0.display_name', 'Progression Holster')
             ->where('holsters.0.name.en', 'Progression Holster')
+            ->where('holsters.0.type', BozjaHolster::TYPE_PREPOP)
+            ->where('holsters.0.parent_holster_id', null)
             ->has('bozja_items', 1)
             ->where('bozja_items.0.id', $item->id)
             ->where('bozja_items.0.display_name', 'Lost Cure')
@@ -76,6 +78,7 @@ it('allows moderators to create and update group holsters', function () {
         ->postJson(route('groups.dashboard.content.delubrum-reginae-savage.holsters.store', $group), [
             'name' => ['en' => 'Custom Capacity'],
             'role' => 'healer',
+            'type' => BozjaHolster::TYPE_PREPOP,
             'max_capacity' => 50,
             'items' => [],
         ])
@@ -86,6 +89,7 @@ it('allows moderators to create and update group holsters', function () {
         ->postJson(route('groups.dashboard.content.delubrum-reginae-savage.holsters.store', $group), [
             'name' => ['en' => 'Progression'],
             'role' => 'healer',
+            'type' => BozjaHolster::TYPE_PREPOP,
             'notes' => 'Bring these actions.',
             'guide' => '## Opener',
             'items' => [
@@ -95,6 +99,8 @@ it('allows moderators to create and update group holsters', function () {
         ->assertCreated()
         ->assertJsonPath('data.display_name', 'Progression')
         ->assertJsonPath('data.role', 'healer')
+        ->assertJsonPath('data.type', BozjaHolster::TYPE_PREPOP)
+        ->assertJsonPath('data.parent_holster_id', null)
         ->assertJsonPath('data.is_default', false)
         ->assertJsonPath('data.is_active', true)
         ->assertJsonPath('data.max_capacity', 99)
@@ -110,6 +116,7 @@ it('allows moderators to create and update group holsters', function () {
         ]), [
             'name' => ['en' => 'Revised Progression'],
             'role' => 'tank',
+            'type' => BozjaHolster::TYPE_PREPOP,
             'notes' => null,
             'guide' => null,
             'items' => [
@@ -201,6 +208,7 @@ it('rejects holster contents that exceed maximum capacity', function () {
         ->postJson(route('groups.dashboard.content.delubrum-reginae-savage.holsters.store', $group), [
             'name' => ['en' => 'Too Heavy'],
             'role' => 'tank',
+            'type' => BozjaHolster::TYPE_PREPOP,
             'items' => [
                 ['id' => $item->id, 'quantity' => 17],
             ],
@@ -211,6 +219,85 @@ it('rejects holster contents that exceed maximum capacity', function () {
     $this->assertDatabaseMissing('bozja_holsters', [
         'group_id' => $group->id,
     ]);
+});
+
+it('requires refills to belong to a prepop holster in the same group', function () {
+    $owner = User::factory()->create();
+    $group = Group::factory()->create(['owner_id' => $owner->id]);
+    $otherGroup = Group::factory()->create();
+    $prepop = BozjaHolster::query()->create([
+        'group_id' => $group->id,
+        'name' => ['en' => 'Main Prepop'],
+        'role' => 'healer',
+        'type' => BozjaHolster::TYPE_PREPOP,
+    ]);
+    $otherPrepop = BozjaHolster::query()->create([
+        'group_id' => $otherGroup->id,
+        'name' => ['en' => 'Other Group Prepop'],
+        'role' => 'healer',
+        'type' => BozjaHolster::TYPE_PREPOP,
+    ]);
+    $alternatePrepop = BozjaHolster::query()->create([
+        'group_id' => $group->id,
+        'name' => ['en' => 'Alternate Prepop'],
+        'role' => 'tank',
+        'type' => BozjaHolster::TYPE_PREPOP,
+    ]);
+
+    $this->actingAs($owner)
+        ->postJson(route('groups.dashboard.content.delubrum-reginae-savage.holsters.store', $group), [
+            'name' => ['en' => 'Missing Parent'],
+            'role' => 'healer',
+            'type' => BozjaHolster::TYPE_REFILL,
+            'items' => [],
+        ])
+        ->assertUnprocessable()
+        ->assertJsonValidationErrors('parent_holster_id');
+
+    $this->actingAs($owner)
+        ->postJson(route('groups.dashboard.content.delubrum-reginae-savage.holsters.store', $group), [
+            'name' => ['en' => 'Wrong Parent'],
+            'role' => 'healer',
+            'type' => BozjaHolster::TYPE_REFILL,
+            'parent_holster_id' => $otherPrepop->id,
+            'items' => [],
+        ])
+        ->assertUnprocessable()
+        ->assertJsonValidationErrors('parent_holster_id');
+
+    $this->actingAs($owner)
+        ->postJson(route('groups.dashboard.content.delubrum-reginae-savage.holsters.store', $group), [
+            'name' => ['en' => 'Valid Refill'],
+            'role' => 'healer',
+            'type' => BozjaHolster::TYPE_REFILL,
+            'parent_holster_id' => $prepop->id,
+            'items' => [],
+        ])
+        ->assertCreated()
+        ->assertJsonPath('data.type', BozjaHolster::TYPE_REFILL)
+        ->assertJsonPath('data.parent_holster_id', $prepop->id);
+
+    $this->actingAs($owner)
+        ->putJson(route('groups.dashboard.content.delubrum-reginae-savage.holsters.update', [
+            'group' => $group,
+            'bozjaHolster' => $prepop,
+        ]), [
+            'name' => ['en' => 'Main Prepop'],
+            'role' => 'healer',
+            'type' => BozjaHolster::TYPE_REFILL,
+            'parent_holster_id' => $alternatePrepop->id,
+            'items' => [],
+        ])
+        ->assertUnprocessable()
+        ->assertJsonValidationErrors('type');
+
+    $this->actingAs($owner)
+        ->deleteJson(route('groups.dashboard.content.delubrum-reginae-savage.holsters.destroy', [
+            'group' => $group,
+            'bozjaHolster' => $prepop,
+        ]))
+        ->assertUnprocessable()
+        ->assertJsonValidationErrors('holster');
 });
 
 it('allows moderators to open Forked Tower Blood content', function () {

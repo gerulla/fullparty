@@ -221,6 +221,7 @@ const deleteHolster = async (holster: BozjaHolsterSummary) => {
 				:key="isCreating ? 'new' : selectedHolsterId ?? 'empty'"
 				:group-slug="group.slug"
 				:holster="selectedHolster"
+				:holsters="holsterRecords"
 				:bozja-items="bozja_items"
 				:is-creating="isCreating"
 				@saved="holsterSaved"

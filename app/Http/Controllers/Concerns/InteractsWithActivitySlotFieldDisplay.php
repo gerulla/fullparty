@@ -33,6 +33,10 @@ trait InteractsWithActivitySlotFieldDisplay
      */
     private function resolveSelectionDisplayItems(?string $source, mixed $value): array
     {
+        if ($source === 'bozja_holsters' && $this->isHolsterPairValue($value)) {
+            return $this->resolveHolsterPairDisplayItems($value);
+        }
+
         $values = $this->normalizeSelectableValues($value);
 
         if ($values === []) {
@@ -320,6 +324,19 @@ trait InteractsWithActivitySlotFieldDisplay
         }
 
         if ($fieldValue->source === 'bozja_holsters') {
+            if ($this->isHolsterPairValue($value)) {
+                $items = $this->resolveHolsterPairDisplayItems($value);
+                $item = $items[0] ?? null;
+
+                return $item ? [
+                    'prepop_id' => (int) $value['prepop_id'],
+                    'refill_id' => (int) $value['refill_id'],
+                    'prepop_label' => $item['prepop_label'],
+                    'refill_label' => $item['refill_label'],
+                    'label' => $item['label'],
+                ] : null;
+            }
+
             $holsterId = (int) ($value['id'] ?? $value['key'] ?? 0);
             $holster = $holsterId > 0
                 ? BozjaHolster::query()->find($holsterId)
@@ -355,5 +372,65 @@ trait InteractsWithActivitySlotFieldDisplay
         }
 
         return null;
+    }
+
+    private function isHolsterPairValue(mixed $value): bool
+    {
+        return is_array($value)
+            && ! array_is_list($value)
+            && filled($value['prepop_id'] ?? null)
+            && filled($value['refill_id'] ?? null);
+    }
+
+    /**
+     * @param  array<string, mixed>  $value
+     * @return array<int, array<string, mixed>>
+     */
+    private function resolveHolsterPairDisplayItems(array $value): array
+    {
+        $prepopId = (int) ($value['prepop_id'] ?? 0);
+        $refillId = (int) ($value['refill_id'] ?? 0);
+
+        if ($prepopId <= 0 || $refillId <= 0) {
+            return [];
+        }
+
+        $holsters = BozjaHolster::query()
+            ->whereIn('id', [$prepopId, $refillId])
+            ->get()
+            ->keyBy('id');
+        /** @var BozjaHolster|null $prepop */
+        $prepop = $holsters->get($prepopId);
+        /** @var BozjaHolster|null $refill */
+        $refill = $holsters->get($refillId);
+
+        $storedLabel = static function (mixed $label): ?string {
+            if (is_string($label) && filled($label)) {
+                return $label;
+            }
+
+            if (! is_array($label)) {
+                return null;
+            }
+
+            return collect([
+                $label[app()->getLocale()] ?? null,
+                $label[config('app.fallback_locale', 'en')] ?? null,
+                $label['en'] ?? null,
+                ...array_values($label),
+            ])->first(fn (mixed $entry): bool => is_string($entry) && filled($entry));
+        };
+        $prepopLabel = $prepop?->localizedName() ?? $storedLabel($value['prepop_label'] ?? null);
+        $refillLabel = $refill?->localizedName() ?? $storedLabel($value['refill_label'] ?? null);
+
+        if (! $prepopLabel || ! $refillLabel) {
+            return [];
+        }
+
+        return [[
+            'label' => $prepopLabel.' + '.$refillLabel,
+            'prepop_label' => $prepopLabel,
+            'refill_label' => $refillLabel,
+        ]];
     }
 }

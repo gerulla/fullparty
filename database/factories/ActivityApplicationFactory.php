@@ -4,6 +4,7 @@ namespace Database\Factories;
 
 use App\Models\Activity;
 use App\Models\ActivityApplication;
+use App\Models\BozjaHolster;
 use App\Models\Character;
 use App\Models\CharacterClass;
 use App\Models\GroupMembership;
@@ -46,11 +47,11 @@ class ActivityApplicationFactory extends Factory
     {
         return $this
             ->afterMaking(function (ActivityApplication $application): void {
-                if ($application->user_id && !$application->selected_character_id) {
+                if ($application->user_id && ! $application->selected_character_id) {
                     $application->selected_character_id = $this->resolveSelectedCharacterId($application->user_id);
                 }
 
-                if ($application->selected_character_id && !$application->applicant_lodestone_id) {
+                if ($application->selected_character_id && ! $application->applicant_lodestone_id) {
                     $selectedCharacter = Character::query()->find($application->selected_character_id);
 
                     if ($selectedCharacter) {
@@ -68,16 +69,16 @@ class ActivityApplicationFactory extends Factory
                     $application->review_reason = null;
                 }
 
-                if ($application->user_id === null && !$application->guest_access_token) {
+                if ($application->user_id === null && ! $application->guest_access_token) {
                     $application->guest_access_token = ActivityApplication::generateGuestAccessToken();
                 }
 
-                if ($application->user_id === null && $application->applicant_lodestone_id && !$application->selected_character_id) {
+                if ($application->user_id === null && $application->applicant_lodestone_id && ! $application->selected_character_id) {
                     $guestCharacter = Character::query()
                         ->where('lodestone_id', $application->applicant_lodestone_id)
                         ->first();
 
-                    if (!$guestCharacter || !$guestCharacter->verified_at) {
+                    if (! $guestCharacter || ! $guestCharacter->verified_at) {
                         $guestCharacter ??= Character::factory()->provisional()->create([
                             'name' => $application->applicant_character_name,
                             'world' => $application->applicant_world,
@@ -159,7 +160,7 @@ class ActivityApplicationFactory extends Factory
             ->orderByDesc('is_primary')
             ->first();
 
-        if (!$character) {
+        if (! $character) {
             $character = Character::factory()
                 ->primary()
                 ->create(['user_id' => $userId]);
@@ -170,7 +171,7 @@ class ActivityApplicationFactory extends Factory
 
     private function ensureCharacterLoadout(?Character $character): void
     {
-        if (!$character) {
+        if (! $character) {
             return;
         }
 
@@ -223,7 +224,7 @@ class ActivityApplicationFactory extends Factory
         $selectedCharacter = $application->selectedCharacter;
 
         $schema->each(function (array $question) use ($application, $selectedCharacter): void {
-            $value = $this->generateAnswerValue($question, $selectedCharacter);
+            $value = $this->generateAnswerValue($question, $selectedCharacter, $application->activity->group_id);
 
             if ($value === null) {
                 return;
@@ -239,13 +240,13 @@ class ActivityApplicationFactory extends Factory
         });
     }
 
-    private function generateAnswerValue(array $question, ?Character $selectedCharacter): mixed
+    private function generateAnswerValue(array $question, ?Character $selectedCharacter, int $groupId): mixed
     {
         $source = $question['source'] ?? null;
         $type = (string) ($question['type'] ?? 'text');
         $required = (bool) ($question['required'] ?? false);
 
-        if (!$required && fake()->boolean(15)) {
+        if (! $required && fake()->boolean(15)) {
             return null;
         }
 
@@ -275,6 +276,25 @@ class ActivityApplicationFactory extends Factory
             }
 
             return $phantomJobIds->random();
+        }
+
+        if ($source === 'bozja_holsters' && $type === 'holster_pair_list') {
+            $prepop = BozjaHolster::query()
+                ->where('group_id', $groupId)
+                ->where('type', BozjaHolster::TYPE_PREPOP)
+                ->where('is_active', true)
+                ->whereHas('refillHolsters', fn ($query) => $query->where('is_active', true))
+                ->inRandomOrder()
+                ->first();
+            $refill = $prepop?->refillHolsters()
+                ->where('is_active', true)
+                ->inRandomOrder()
+                ->first();
+
+            return $prepop && $refill ? [[
+                'prepop_id' => $prepop->id,
+                'refill_id' => $refill->id,
+            ]] : [];
         }
 
         if ($source === 'static_options') {

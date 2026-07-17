@@ -22,6 +22,7 @@ class ActivitySlotSerializer
 
     public function __construct(
         private readonly ActivitySlotBench $slotBench,
+        private readonly ActivitySlotKind $slotKind,
         private readonly ActivitySlotStateTokenService $slotStateTokenService,
         private readonly ApplicationAnswerPresenter $applicationAnswerPresenter,
         private readonly ActivitySlotApplicationMatchService $applicationMatchService,
@@ -36,13 +37,17 @@ class ActivitySlotSerializer
 
         return [
             'id' => $slot->id,
+            'slot_kind' => $this->serializedSlotKind($slot),
             'group_key' => $slot->group_key,
             'group_label' => $slot->group_label,
+            'filled_group_key' => $slot->filled_group_key,
+            'filled_group_label' => $slot->filled_group_label,
             'slot_key' => $slot->slot_key,
-            'slot_label' => $slot->slot_label,
+            'slot_label' => $this->serializedSlotLabel($slot),
             'position_in_group' => $slot->position_in_group,
             'sort_order' => $slot->sort_order,
             'is_bench' => $this->slotBench->isBench($slot),
+            'is_fill_in' => $this->slotKind->isFillIn($slot),
             'is_host' => (bool) $slot->is_host,
             'is_raid_leader' => (bool) $slot->is_raid_leader,
             'assigned_character_id' => $slot->assigned_character_id,
@@ -171,6 +176,79 @@ class ActivitySlotSerializer
             'bozja_holsters' => 30,
             default => 100,
         };
+    }
+
+    private function serializedSlotKind(ActivitySlot $slot): string
+    {
+        if ($this->slotBench->isBench($slot)) {
+            return ActivitySlot::SLOT_KIND_BENCH;
+        }
+
+        if ($this->slotKind->isFillIn($slot)) {
+            return ActivitySlot::SLOT_KIND_FILL_IN;
+        }
+
+        return ActivitySlot::SLOT_KIND_ROSTER;
+    }
+
+    /**
+     * @return array<string, string>
+     */
+    private function serializedSlotLabel(ActivitySlot $slot): array
+    {
+        if (! $this->slotKind->isFillIn($slot)) {
+            return is_array($slot->slot_label) ? $slot->slot_label : ['en' => (string) $slot->slot_key];
+        }
+
+        $baseLabel = $this->fillInBaseLabel($slot);
+        $filledGroupLabel = is_array($slot->filled_group_label) ? $slot->filled_group_label : [];
+
+        if ($filledGroupLabel === []) {
+            return $baseLabel;
+        }
+
+        $locales = array_values(array_unique([
+            'en',
+            'de',
+            'fr',
+            'ja',
+            ...array_keys($baseLabel),
+            ...array_keys($filledGroupLabel),
+        ]));
+
+        return collect($locales)
+            ->mapWithKeys(function (string $locale) use ($baseLabel, $filledGroupLabel, $slot): array {
+                $base = $this->localizedSlotLabel($baseLabel, $locale, (string) $slot->slot_key);
+                $party = $this->localizedSlotLabel($filledGroupLabel, $locale, '');
+
+                return [$locale => trim($base.' '.$party)];
+            })
+            ->all();
+    }
+
+    /**
+     * @return array<string, string>
+     */
+    private function fillInBaseLabel(ActivitySlot $slot): array
+    {
+        $position = max(1, (int) $slot->position_in_group);
+
+        return [
+            'en' => sprintf('Fill in %d', $position),
+            'de' => sprintf('Fill in %d', $position),
+            'fr' => sprintf('Fill in %d', $position),
+            'ja' => sprintf('Fill in %d', $position),
+        ];
+    }
+
+    /**
+     * @param  array<string, mixed>  $label
+     */
+    private function localizedSlotLabel(array $label, string $locale, string $fallback): string
+    {
+        $value = $label[$locale] ?? $label['en'] ?? reset($label) ?: $fallback;
+
+        return is_scalar($value) ? (string) $value : $fallback;
     }
 
     /**

@@ -73,6 +73,10 @@ const leftQuestionRank = (question: ApplicationQuestion): number => {
 		return 1;
 	}
 
+	if (question.source === 'bozja_holsters') {
+		return 2;
+	}
+
 	return -1;
 };
 const isLeftQuestion = (question: ApplicationQuestion): boolean => leftQuestionRank(question) !== -1;

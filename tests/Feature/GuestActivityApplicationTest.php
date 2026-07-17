@@ -9,6 +9,7 @@ use App\Models\ActivitySlot;
 use App\Models\ActivityType;
 use App\Models\ActivityTypeVersion;
 use App\Models\BozjaHolster;
+use App\Models\BozjaItem;
 use App\Models\Character;
 use App\Models\CharacterClass;
 use App\Models\Group;
@@ -539,6 +540,15 @@ it('only offers active holsters belonging to the activity group', function () {
         'name' => ['en' => 'Progression Holster'],
         'is_active' => true,
     ]);
+    $holsterItem = BozjaItem::query()->create([
+        'key' => 'lost-cure-test',
+        'category' => 'lost_actions',
+        'name' => ['en' => 'Lost Cure Test'],
+        'classification' => 'lost_action',
+        'cache_weight' => 2,
+        'icon_url' => '/storage/bozja/lost-cure-test.webp',
+    ]);
+    $availableHolster->items()->attach($holsterItem->id, ['quantity' => 3]);
     BozjaHolster::query()->create([
         'group_id' => $activity->group_id,
         'name' => ['en' => 'Retired Holster'],
@@ -570,6 +580,9 @@ it('only offers active holsters belonging to the activity group', function () {
             ->has('applicationSchema.0.options', 1)
             ->where('applicationSchema.0.options.0.key', (string) $availableHolster->id)
             ->where('applicationSchema.0.options.0.label.en', 'Progression Holster')
+            ->where('applicationSchema.0.options.0.meta.items.0.label.en', 'Lost Cure Test')
+            ->where('applicationSchema.0.options.0.meta.items.0.icon_url', '/storage/bozja/lost-cure-test.webp')
+            ->where('applicationSchema.0.options.0.meta.items.0.quantity', 3)
         );
 });
 

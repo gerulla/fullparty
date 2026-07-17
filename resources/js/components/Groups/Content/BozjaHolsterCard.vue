@@ -15,6 +15,7 @@ const props = withDefaults(defineProps<{
 
 const emit = defineEmits<{
 	edit: [holsterId: number]
+	duplicate: [holster: BozjaHolsterSummary]
 	toggleActive: [payload: { holsterId: number, isActive: boolean }]
 	makeDefault: [holsterId: number]
 	delete: [holster: BozjaHolsterSummary]
@@ -155,6 +156,15 @@ const roleLabel = computed(() => props.holster.role
 					: t('groups.index.content.delubrum_reginae_savage.holsters.show_refills')"
 				class="col-span-2 justify-center"
 				@click="emit('toggleRefills')"
+			/>
+			<UButton
+				color="neutral"
+				variant="soft"
+				icon="i-lucide-copy"
+				:label="t('groups.index.content.delubrum_reginae_savage.holsters.duplicate')"
+				class="col-span-2 justify-center"
+				:disabled="updating"
+				@click="emit('duplicate', holster)"
 			/>
 			<UButton
 				color="neutral"

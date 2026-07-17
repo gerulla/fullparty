@@ -5,6 +5,7 @@ import { route } from "ziggy-js";
 import { useToast } from "@nuxt/ui/composables";
 import { useI18n } from "vue-i18n";
 import ActivitySlotCompositionCustomModal from "@/components/Groups/Activities/ActivitySlotCompositionCustomModal.vue";
+import ActivityFillInSlotsSection from "@/components/Groups/Activities/ActivityFillInSlotsSection.vue";
 import ActivityRosterPartyView from "@/components/Groups/Activities/ActivityRosterPartyView.vue";
 import ActivityRosterRoleView from "@/components/Groups/Activities/ActivityRosterRoleView.vue";
 import ActivityRosterListView from "@/components/Groups/Activities/ActivityRosterListView.vue";
@@ -20,6 +21,7 @@ const props = defineProps<{
 	canReturnToQueue?: boolean
 	canMarkMissing?: boolean
 	canCheckIn?: boolean
+	isFillInPending?: boolean
 	groupSlug: string
 	activityId: number
 	compositionClassOptions: ActivityCompositionClassOption[]
@@ -38,6 +40,7 @@ const emit = defineEmits<{
 	markSlotHost: [slotId: number]
 	markSlotRaidLeader: [slotId: number]
 	checkInGroup: [groupKey: string]
+	createFillInSlot: []
 	slotsUpdated: [slots: ActivitySlot[]]
 	cutSlot: [slotId: number]
 	pasteCutSlot: [slotId: number]
@@ -53,6 +56,15 @@ const compositionHintModalOpen = ref(false);
 const compositionHintSlotId = ref<number | null>(null);
 const firstAvailableBenchSlotId = computed(() => (
 	props.slots.find((slot) => slot.is_bench && slot.assigned_character_id === null)?.id ?? null
+));
+const fillInSlots = computed(() => props.slots.filter((slot) => slot.is_fill_in));
+const currentViewSlots = computed(() => (
+	props.view === 'list'
+		? props.slots.filter((slot) => !slot.is_fill_in)
+		: props.slots
+));
+const canShowListFillIns = computed(() => (
+	props.view === 'list' && (fillInSlots.value.length > 0 || Boolean(props.canReturnToQueue))
 ));
 const cutSlotIsBench = computed(() => (
 	props.cutSlotId === null || props.cutSlotId === undefined
@@ -102,7 +114,7 @@ const canMoveBetweenSlots = (sourceSlotId: number, targetSlotId: number) => {
 	return Boolean(
 		sourceSlot
 		&& targetSlot
-		&& !(sourceSlot.assigned_character_id && targetSlot.assigned_character_id && sourceSlot.is_bench !== targetSlot.is_bench),
+		&& !(sourceSlot.assigned_character_id && targetSlot.assigned_character_id && sourceSlot.slot_kind !== targetSlot.slot_kind),
 	);
 };
 
@@ -195,10 +207,48 @@ const replaceSlotCompositionHints = async (payload: { slotId: number, compositio
 			{{ t('groups.activities.management.roster.title') }}
 		</h2>
 
+		<ActivityFillInSlotsSection
+			v-if="canShowListFillIns"
+			:slots="fillInSlots"
+			:dragged-slot-id="draggedSlotId"
+			:drop-target-slot-id="dropTargetSlotId"
+			:is-swap-pending="isSwapPending || isCompositionHintPending"
+			:is-creating="isFillInPending"
+			:can-create="canReturnToQueue"
+			:pending-swap-slot-ids="pendingSwapSlotIds"
+			:cut-slot-id="cutSlotId"
+			:cut-slot-is-bench="cutSlotIsBench"
+			:can-return-to-queue="canReturnToQueue"
+			:can-move-to-bench="firstAvailableBenchSlotId !== null"
+			:can-mark-missing="canMarkMissing"
+			:can-check-in="canCheckIn"
+			@create-fill-in-slot="emit('createFillInSlot')"
+			@drag-start="handleDragStart"
+			@drag-end="handleDragEnd"
+			@drag-enter="handleDragEnter"
+			@drag-leave="handleDragLeave"
+			@drop-slot="handleDropSlot"
+			@drop-application="emit('assignApplicationToSlot', $event)"
+			@cut-slot="emit('cutSlot', $event)"
+			@paste-cut-slot="emit('pasteCutSlot', $event)"
+			@clear-cut-slot="emit('clearCutSlot')"
+			@click-slot="emit('clickSlot', $event)"
+			@view-application="emit('viewApplication', $event)"
+			@return-slot-to-queue="emit('returnSlotToQueue', $event)"
+			@move-slot-to-bench="emit('moveSlotToBench', $event)"
+			@mark-slot-missing="emit('markSlotMissing', $event)"
+			@check-in-slot="emit('checkInSlot', $event)"
+			@mark-slot-late="emit('markSlotLate', $event)"
+			@mark-slot-host="emit('markSlotHost', $event)"
+			@mark-slot-raid-leader="emit('markSlotRaidLeader', $event)"
+			@replace-composition-hints="replaceSlotCompositionHints"
+			@customize-composition-hints="openCompositionHintModal"
+		/>
+
 		<component
-			v-if="slots.length > 0"
+			v-if="currentViewSlots.length > 0"
 			:is="currentViewComponent"
-			:slots="slots"
+			:slots="currentViewSlots"
 			:dragged-slot-id="draggedSlotId"
 			:drop-target-slot-id="dropTargetSlotId"
 			:is-swap-pending="isSwapPending || isCompositionHintPending"
@@ -209,6 +259,8 @@ const replaceSlotCompositionHints = async (payload: { slotId: number, compositio
 			:can-move-to-bench="firstAvailableBenchSlotId !== null"
 			:can-mark-missing="canMarkMissing"
 			:can-check-in="canCheckIn"
+			:fill-in-slots="fillInSlots"
+			:is-creating-fill-in="isFillInPending"
 			v-bind="currentViewProps"
 			@drag-start="handleDragStart"
 			@drag-end="handleDragEnd"
@@ -229,6 +281,7 @@ const replaceSlotCompositionHints = async (payload: { slotId: number, compositio
 			@mark-slot-host="emit('markSlotHost', $event)"
 			@mark-slot-raid-leader="emit('markSlotRaidLeader', $event)"
 			@check-in-group="emit('checkInGroup', $event)"
+			@create-fill-in-slot="emit('createFillInSlot')"
 			@slots-updated="emit('slotsUpdated', $event)"
 			@replace-composition-hints="replaceSlotCompositionHints"
 			@customize-composition-hints="openCompositionHintModal"

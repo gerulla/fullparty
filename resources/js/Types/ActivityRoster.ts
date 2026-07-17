@@ -77,15 +77,24 @@ export type ActivityCompositionClassOption = {
 	flaticon_url: string | null
 }
 
+export type ActivityFillInPartyOption = {
+	key: string
+	label: LocalizedText
+}
+
 export type ActivitySlot = {
 	id: number
+	slot_kind: "roster" | "bench" | "fill_in"
 	group_key: string
 	group_label: LocalizedText
+	filled_group_key: string | null
+	filled_group_label: LocalizedText | null
 	slot_key: string
 	slot_label: LocalizedText
 	position_in_group: number
 	sort_order: number
 	is_bench: boolean
+	is_fill_in: boolean
 	is_host: boolean
 	is_raid_leader: boolean
 	assigned_character_id: number | null

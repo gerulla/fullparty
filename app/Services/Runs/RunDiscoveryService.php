@@ -10,6 +10,7 @@ use App\Models\ActivityType;
 use App\Models\CharacterClass;
 use App\Models\Group;
 use App\Models\User;
+use App\Services\Groups\ActivitySlotKind;
 use Carbon\CarbonImmutable;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Pagination\LengthAwarePaginator;
@@ -21,6 +22,7 @@ final class RunDiscoveryService
 
     public function __construct(
         private readonly GeneratedRunImageService $generatedRunImageService,
+        private readonly ActivitySlotKind $slotKind,
     ) {}
 
     private const SUPPORTED_LOCALES = ['en', 'de', 'fr', 'ja'];
@@ -213,6 +215,7 @@ final class RunDiscoveryService
             'slots' => fn ($query) => $query->select([
                 'id',
                 'activity_id',
+                'slot_kind',
                 'group_key',
                 'assigned_character_id',
             ]),
@@ -286,7 +289,7 @@ final class RunDiscoveryService
     private function openMainSlotCount(Activity $activity): int
     {
         return $activity->slots
-            ->filter(fn (ActivitySlot $slot) => $slot->group_key !== 'bench' && $slot->assigned_character_id === null)
+            ->filter(fn (ActivitySlot $slot) => $this->slotKind->isMainRoster($slot) && $slot->assigned_character_id === null)
             ->count();
     }
 
@@ -574,7 +577,7 @@ final class RunDiscoveryService
     private function mainSlots(Activity $activity): Collection
     {
         return $activity->slots
-            ->filter(fn (ActivitySlot $slot) => $slot->group_key !== 'bench');
+            ->filter(fn (ActivitySlot $slot) => $this->slotKind->isMainRoster($slot));
     }
 
     private function canUserAccessOverviewWithoutSecret(Activity $activity, int $userId): bool
@@ -622,9 +625,9 @@ final class RunDiscoveryService
     {
         $group = $activity->group;
         $openMainSlots = $activity->slots
-            ->filter(fn (ActivitySlot $slot) => $slot->group_key !== 'bench' && $slot->assigned_character_id === null);
+            ->filter(fn (ActivitySlot $slot) => $this->slotKind->isMainRoster($slot) && $slot->assigned_character_id === null);
         $mainSlots = $activity->slots
-            ->filter(fn (ActivitySlot $slot) => $slot->group_key !== 'bench');
+            ->filter(fn (ActivitySlot $slot) => $this->slotKind->isMainRoster($slot));
         $filledMainSlots = $mainSlots
             ->filter(fn (ActivitySlot $slot) => $slot->assigned_character_id !== null);
         $canManage = $group?->hasModeratorAccess($user->id) ?? false;
@@ -916,7 +919,7 @@ final class RunDiscoveryService
         }
 
         $openSlots = $activity->slots
-            ->filter(fn (ActivitySlot $slot) => $slot->group_key !== 'bench' && $slot->assigned_character_id === null);
+            ->filter(fn (ActivitySlot $slot) => $this->slotKind->isMainRoster($slot) && $slot->assigned_character_id === null);
 
         if ($openSlots->isEmpty()) {
             return false;

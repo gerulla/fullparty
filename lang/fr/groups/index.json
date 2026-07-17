@@ -92,6 +92,9 @@
                 "hide_refills": "Masquer les réapprovisionnements",
                 "no_actions": "Aucune action ajoutée.",
                 "open_editor": "Ouvrir l'éditeur",
+                "duplicate": "Dupliquer",
+                "duplicated": "Holster dupliqué",
+                "duplicate_failed": "Le holster n'a pas pu être dupliqué.",
                 "deleted": "Holster supprimé",
                 "delete_failed": "Le holster n'a pas pu être supprimé.",
                 "delete_modal": {

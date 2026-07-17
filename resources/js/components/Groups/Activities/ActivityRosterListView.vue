@@ -21,6 +21,8 @@ const props = defineProps<{
 	canMoveToBench?: boolean
 	canMarkMissing?: boolean
 	canCheckIn?: boolean
+	fillInSlots?: ActivitySlot[]
+	isCreatingFillIn?: boolean
 }>();
 
 const emit = defineEmits<{
@@ -39,6 +41,7 @@ const emit = defineEmits<{
 	markSlotLate: [slotId: number]
 	markSlotHost: [slotId: number]
 	markSlotRaidLeader: [slotId: number]
+	createFillInSlot: []
 	cutSlot: [slotId: number]
 	pasteCutSlot: [slotId: number]
 	clearCutSlot: []
@@ -227,7 +230,7 @@ const buildSlotContextMenuItems = (slot: ActivitySlot): ContextMenuItem[][] => {
 					: t('groups.activities.management.roster.mark_host_action'),
 				icon: 'i-lucide-badge-check',
 				color: 'info',
-				disabled: slot.is_bench || props.isSwapPending,
+				disabled: slot.is_bench || slot.is_fill_in || props.isSwapPending,
 				onSelect: () => emit('markSlotHost', slot.id),
 			},
 			{
@@ -236,7 +239,7 @@ const buildSlotContextMenuItems = (slot: ActivitySlot): ContextMenuItem[][] => {
 					: t('groups.activities.management.roster.mark_raid_leader_action'),
 				icon: 'i-lucide-crown',
 				color: 'warning',
-				disabled: slot.is_bench || props.isSwapPending,
+				disabled: slot.is_bench || slot.is_fill_in || props.isSwapPending,
 				onSelect: () => emit('markSlotRaidLeader', slot.id),
 			},
 		],
@@ -244,7 +247,7 @@ const buildSlotContextMenuItems = (slot: ActivitySlot): ContextMenuItem[][] => {
 			{
 				label: t('groups.activities.management.roster.move_to_bench_action'),
 				icon: 'i-lucide-arrow-down-to-line',
-				disabled: slot.is_bench || !props.canMoveToBench || props.isSwapPending,
+				disabled: slot.is_bench || slot.is_fill_in || !props.canMoveToBench || props.isSwapPending,
 				onSelect: () => emit('moveSlotToBench', slot.id),
 			},
 			{

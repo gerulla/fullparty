@@ -69,8 +69,9 @@ final class LandingPageDataService
                 'group' => fn ($query) => $query->select(['id', 'name', 'slug', 'datacenter', 'is_visible']),
                 'activityTypeVersion' => fn ($query) => $query->select(['id', 'name', 'difficulty']),
                 'slots' => fn ($query) => $query
-                    ->select(['id', 'activity_id', 'group_key', 'assigned_character_id', 'sort_order'])
+                    ->select(['id', 'activity_id', 'slot_kind', 'group_key', 'assigned_character_id', 'sort_order'])
                     ->where('group_key', '!=', ActivitySlotBench::GROUP_KEY)
+                    ->where('slot_kind', '!=', ActivitySlot::SLOT_KIND_FILL_IN)
                     ->orderBy('sort_order')
                     ->orderBy('id'),
                 'slots.assignedCharacter' => fn ($query) => $query->select(['id', 'name', 'avatar_url']),

@@ -531,6 +531,7 @@ const handleDrop = async (event: DragEvent) => {
 		window.dispatchEvent(new CustomEvent('fullparty:activity-slot-returned-to-queue', {
 			detail: {
 				slot: response.data?.slot ?? null,
+				removedSlotIds: response.data?.removed_slot_ids ?? [],
 				pendingApplicationCount: response.data?.pending_application_count,
 			},
 		}));
@@ -648,7 +649,7 @@ const visibleApplications = computed(() => {
 
 <template>
 	<aside
-		class="flex w-full max-h-[calc(100vh-2rem)] flex-col border border-default bg-muted transition duration-200 dark:bg-elevated/50 xl:max-w-96"
+		class="flex w-full max-h-[calc(100vh-2rem)] flex-col border border-default bg-muted transition duration-200 dark:bg-elevated/50 xl:max-h-[calc(100dvh-11rem)] xl:max-w-96"
 		:class="isQueueDropActive ? 'border-white shadow-[0_0_0_2px_rgba(255,255,255,0.95),0_0_0_10px_rgba(255,255,255,0.12)]' : ''"
 		@dragover="handleDragOver"
 		@dragleave="handleDragLeave"

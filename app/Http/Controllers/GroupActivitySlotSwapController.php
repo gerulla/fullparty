@@ -10,6 +10,7 @@ use App\Services\Groups\ActivityManagementRealtimeService;
 use App\Services\Groups\ActivitySlotAttendanceService;
 use App\Services\Groups\ActivitySlotBench;
 use App\Services\Groups\ActivitySlotDesignationService;
+use App\Services\Groups\ActivitySlotKind;
 use App\Services\Groups\ActivitySlotSerializer;
 use App\Services\Groups\ActivitySlotStateTokenService;
 use App\Services\Groups\GroupActivityAuditService;
@@ -26,6 +27,7 @@ class GroupActivitySlotSwapController extends Controller
         Group $group,
         Activity $activity,
         ActivitySlotBench $slotBench,
+        ActivitySlotKind $slotKind,
         GroupActivityAuditService $activityAuditService,
         ActivitySlotAttendanceService $attendanceService,
         ActivitySlotDesignationService $slotDesignationService,
@@ -76,6 +78,8 @@ class GroupActivitySlotSwapController extends Controller
 
         $sourceIsBench = $slotBench->isBench($sourceSlot);
         $targetIsBench = $slotBench->isBench($targetSlot);
+        $sourceCanCarryDesignation = $slotKind->isMainRoster($sourceSlot);
+        $targetCanCarryDesignation = $slotKind->isMainRoster($targetSlot);
         $sourceCharacterName = $sourceSlot->assignedCharacter?->name;
         $targetCharacterName = $targetSlot->assignedCharacter?->name;
         $involvedCharacterIds = array_values(array_filter([
@@ -95,7 +99,7 @@ class GroupActivitySlotSwapController extends Controller
             ]);
         }
 
-        DB::transaction(function () use ($sourceSlot, $targetSlot, $sourceIsBench, $targetIsBench, $attendanceService) {
+        DB::transaction(function () use ($sourceSlot, $targetSlot, $sourceIsBench, $targetIsBench, $sourceCanCarryDesignation, $targetCanCarryDesignation, $attendanceService) {
             $sourceAssignment = [
                 'assigned_character_id' => $sourceSlot->assigned_character_id,
                 'assigned_by_user_id' => $sourceSlot->assigned_by_user_id,
@@ -123,18 +127,18 @@ class GroupActivitySlotSwapController extends Controller
             $sourceSlot->update($targetAssignment);
             $targetSlot->update($sourceAssignment);
             $sourceSlot->update([
-                'is_host' => $targetAssignment['assigned_character_id'] !== null && ! $sourceIsBench
+                'is_host' => $targetAssignment['assigned_character_id'] !== null && $sourceCanCarryDesignation
                     ? $targetDesignationState['is_host']
                     : false,
-                'is_raid_leader' => $targetAssignment['assigned_character_id'] !== null && ! $sourceIsBench
+                'is_raid_leader' => $targetAssignment['assigned_character_id'] !== null && $sourceCanCarryDesignation
                     ? $targetDesignationState['is_raid_leader']
                     : false,
             ]);
             $targetSlot->update([
-                'is_host' => $sourceAssignment['assigned_character_id'] !== null && ! $targetIsBench
+                'is_host' => $sourceAssignment['assigned_character_id'] !== null && $targetCanCarryDesignation
                     ? $sourceDesignationState['is_host']
                     : false,
-                'is_raid_leader' => $sourceAssignment['assigned_character_id'] !== null && ! $targetIsBench
+                'is_raid_leader' => $sourceAssignment['assigned_character_id'] !== null && $targetCanCarryDesignation
                     ? $sourceDesignationState['is_raid_leader']
                     : false,
             ]);

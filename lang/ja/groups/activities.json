@@ -171,6 +171,8 @@
             "complete_failed": "このランを完了できません。",
             "swap_failed": "ロスタースロットを入れ替えできません。",
             "prepare_move_failed": "ロスター移動を準備できません。",
+            "fill_in_create_failed": "補充スロットを追加できません。",
+            "fill_in_party_update_failed": "補充先パーティを更新できません。",
             "load_slot_assignment_failed": "スロット割り当て詳細を読み込めません。",
             "load_manual_assignment_failed": "グループメンバーの割り当て候補を読み込めません。",
             "return_to_queue_failed": "このスロットをキューへ戻せません。",
@@ -318,6 +320,12 @@
             "late": "遅刻",
             "open": "オープン",
             "bench": "ベンチ",
+            "fill_ins": {
+                "title": "補充メンバー",
+                "add": "補充を追加",
+                "filled_party": "補充先パーティ",
+                "no_party": "パーティ未選択"
+            },
             "slot_placeholder": "クリックして割り当て",
             "filled_placeholder": "割り当て済みキャラクターの詳細と操作は今後ここに表示されます。",
             "filled_slot": "割り当て済みスロット",
@@ -610,7 +618,14 @@
             "refill": "補充ホルスター",
             "refill_placeholder": "補充ホルスターを選択",
             "add_pair": "ホルスターペアを追加",
-            "remove_pair": "ホルスターペアを削除"
+            "remove_pair": "ホルスターペアを削除",
+            "selector_title": "ホルスターを選択",
+            "search_placeholder": "ホルスターを検索...",
+            "contains": "内容",
+            "items_count": "{count}個のアイテム",
+            "select_action": "このホルスターを選択",
+            "no_results": "検索条件に一致するホルスターはありません。",
+            "no_items": "このホルスターにはアイテムがありません。"
         },
         "quick_select": {
             "title": "クイック選択",

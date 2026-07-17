@@ -92,6 +92,9 @@
                 "hide_refills": "補充を非表示",
                 "no_actions": "アクションは追加されていません。",
                 "open_editor": "エディターを開く",
+                "duplicate": "複製",
+                "duplicated": "ホルスターを複製しました",
+                "duplicate_failed": "ホルスターを複製できませんでした。",
                 "deleted": "ホルスターを削除しました",
                 "delete_failed": "ホルスターを削除できませんでした。",
                 "delete_modal": {

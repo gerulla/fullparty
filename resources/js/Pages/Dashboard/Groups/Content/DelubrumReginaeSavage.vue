@@ -139,6 +139,41 @@ const makeDefaultHolster = async (holsterId: number) => {
 	}
 }
 
+const duplicateHolster = async (holster: BozjaHolsterSummary) => {
+	if (updatingHolsterIds.value.includes(holster.id)) {
+		return
+	}
+
+	setUpdating(holster.id, true)
+
+	try {
+		const response = await axios.post(route(
+			'groups.dashboard.content.delubrum-reginae-savage.holsters.clone',
+			{ group: props.group.slug, bozjaHolster: holster.id },
+		))
+		const clone = response.data.data as BozjaHolsterSummary
+
+		holsterRecords.value = [clone, ...holsterRecords.value]
+		selectedHolsterId.value = clone.id
+		isCreating.value = false
+
+		toast.add({
+			title: t('groups.index.content.delubrum_reginae_savage.holsters.duplicated'),
+			color: 'success',
+			icon: 'i-lucide-copy-check',
+		})
+	} catch {
+		toast.add({
+			title: t('general.error'),
+			description: t('groups.index.content.delubrum_reginae_savage.holsters.duplicate_failed'),
+			color: 'error',
+			icon: 'i-lucide-circle-alert',
+		})
+	} finally {
+		setUpdating(holster.id, false)
+	}
+}
+
 const deleteHolster = async (holster: BozjaHolsterSummary) => {
 	await confirmationModal.open({
 		title: t('groups.index.content.delubrum_reginae_savage.holsters.delete_modal.title', {
@@ -211,6 +246,7 @@ const deleteHolster = async (holster: BozjaHolsterSummary) => {
 				:holsters="holsterRecords"
 				:updating-holster-ids="updatingHolsterIds"
 				@edit="editHolster"
+				@duplicate="duplicateHolster"
 				@toggle-active="toggleHolsterActive"
 				@make-default="makeDefaultHolster"
 				@delete="deleteHolster"

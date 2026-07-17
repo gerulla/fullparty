@@ -3,6 +3,7 @@
 namespace App\Services\Groups;
 
 use App\Models\Activity;
+use App\Models\ActivitySlot;
 
 class ActivityBenchSlotBackfillService
 {
@@ -31,6 +32,7 @@ class ActivityBenchSlotBackfillService
 
         for ($position = $existingBenchSlots->count() + 1; $position <= $benchSize; $position++) {
             $activity->slots()->create([
+                'slot_kind' => ActivitySlot::SLOT_KIND_BENCH,
                 'group_key' => ActivitySlotBench::GROUP_KEY,
                 'group_label' => ['en' => 'Bench'],
                 'slot_key' => sprintf('%s-slot-%d', ActivitySlotBench::GROUP_KEY, $position),

@@ -40,6 +40,7 @@ const activeRoleHints = computed<RoleHintKey[]>(() => (
 const canEditHints = computed(() => (
 	!props.disabled
 	&& !props.slot.is_bench
+	&& !props.slot.is_fill_in
 	&& props.slot.assigned_character_id === null
 ));
 const hasExtraItems = computed(() => props.extraItems.some((group) => group.length > 0));
@@ -47,6 +48,7 @@ const isMenuDisabled = computed(() => !canEditHints.value && !hasExtraItems.valu
 const isHintActionDisabled = computed(() => (
 	props.disabled
 	|| props.slot.is_bench
+	|| props.slot.is_fill_in
 	|| props.slot.assigned_character_id !== null
 ));
 
@@ -77,7 +79,7 @@ const openCustomPicker = () => {
 };
 
 const contextMenuItems = computed<ContextMenuItem[][]>(() => [
-	...(props.slot.is_bench
+	...(props.slot.is_bench || props.slot.is_fill_in
 		? []
 		: [
 			roleOptions.map((role) => ({

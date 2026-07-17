@@ -7,6 +7,7 @@ use App\Models\ActivityApplication;
 use App\Models\ActivitySlot;
 use App\Models\ActivitySlotAssignment;
 use App\Models\Group;
+use App\Services\Groups\ActivityFillInSlotService;
 use App\Services\Groups\ActivityManagementRealtimeService;
 use App\Services\Groups\ActivitySlotAttendanceService;
 use App\Services\Groups\ActivitySlotDesignationService;
@@ -28,6 +29,7 @@ class GroupActivitySlotUnassignmentController extends Controller
         Activity $activity,
         ActivitySlot $slot,
         GroupActivityAuditService $activityAuditService,
+        ActivityFillInSlotService $fillInSlotService,
         ActivitySlotSerializer $slotSerializer,
         ActivitySlotAttendanceService $attendanceService,
         ActivitySlotStateTokenService $slotStateTokenService,
@@ -60,6 +62,7 @@ class GroupActivitySlotUnassignmentController extends Controller
 
         $slot->load(['activity', 'assignedCharacter', 'fieldValues', 'assignments']);
         $slotStateTokenService->assertMatches($slot, $validated['expected_slot_state_token']);
+        $isFillInSlot = $slot->slot_kind === ActivitySlot::SLOT_KIND_FILL_IN;
 
         $activeAssignment = ActivitySlotAssignment::query()
             ->where('activity_id', $activity->id)
@@ -116,15 +119,30 @@ class GroupActivitySlotUnassignmentController extends Controller
             $pendingApplicationCount = $activity->applications()
                 ->where('status', ActivityApplication::STATUS_PENDING)
                 ->count();
-            $serializedSlot = $slotSerializer->serialize($slot);
+            $serializedSlot = $isFillInSlot ? null : $slotSerializer->serialize($slot);
+            $removedSlotIds = $isFillInSlot ? [(int) $slot->id] : [];
 
-            $activityManagementRealtimeService->broadcastPatch($activity, [
-                'updated_slots' => [$serializedSlot],
+            if ($isFillInSlot) {
+                $fillInSlotService->delete($activity, $slot);
+            }
+
+            $patch = [
                 'pending_application_count' => $pendingApplicationCount,
-            ]);
+            ];
+
+            if ($serializedSlot) {
+                $patch['updated_slots'] = [$serializedSlot];
+            }
+
+            if ($removedSlotIds !== []) {
+                $patch['removed_slot_ids'] = $removedSlotIds;
+            }
+
+            $activityManagementRealtimeService->broadcastPatch($activity, $patch);
 
             return response()->json([
                 'slot' => $serializedSlot,
+                'removed_slot_ids' => $removedSlotIds,
                 'application' => null,
                 'pending_application_count' => $pendingApplicationCount,
             ]);
@@ -206,16 +224,32 @@ class GroupActivitySlotUnassignmentController extends Controller
             $activity->group,
             (int) auth()->id(),
         );
+        $serializedSlot = $isFillInSlot ? null : $slotSerializer->serialize($slot);
+        $removedSlotIds = $isFillInSlot ? [(int) $slot->id] : [];
 
-        $activityManagementRealtimeService->broadcastPatch($activity, [
-            'updated_slots' => [$slotSerializer->serialize($slot)],
+        if ($isFillInSlot) {
+            $fillInSlotService->delete($activity, $slot);
+        }
+
+        $patch = [
             'pending_application_count' => $pendingApplicationCount,
             'queue_application_sync_ids' => [(int) $application->id],
             'queue_application_remove_ids' => [],
-        ]);
+        ];
+
+        if ($serializedSlot) {
+            $patch['updated_slots'] = [$serializedSlot];
+        }
+
+        if ($removedSlotIds !== []) {
+            $patch['removed_slot_ids'] = $removedSlotIds;
+        }
+
+        $activityManagementRealtimeService->broadcastPatch($activity, $patch);
 
         return response()->json([
-            'slot' => $slotSerializer->serialize($slot),
+            'slot' => $serializedSlot,
+            'removed_slot_ids' => $removedSlotIds,
             'application' => $serializedApplication,
             'pending_application_count' => $pendingApplicationCount,
         ]);

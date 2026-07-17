@@ -31,7 +31,7 @@ const mainSlotGroups = computed<SlotGroup[]>(() => {
 	const groups = new Map<string, SlotGroup>();
 
 	for (const slot of [...props.slots]
-		.filter((currentSlot) => !currentSlot.is_bench)
+		.filter((currentSlot) => !currentSlot.is_bench && !currentSlot.is_fill_in)
 		.sort((left, right) => left.sort_order - right.sort_order)) {
 		const existingGroup = groups.get(slot.group_key);
 

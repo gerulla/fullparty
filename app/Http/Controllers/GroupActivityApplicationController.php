@@ -6,6 +6,7 @@ use App\Http\Controllers\Concerns\InteractsWithGroupActivityAttendees;
 use App\Models\Activity;
 use App\Models\ActivityApplication;
 use App\Models\ActivityApplicationAnswer;
+use App\Models\ActivitySlot;
 use App\Models\ActivityTypeVersion;
 use App\Models\BozjaHolster;
 use App\Models\BozjaItem;
@@ -64,10 +65,13 @@ class GroupActivityApplicationController extends Controller
             'applications.answers',
         ]));
         $activity->loadCount([
-            'slots',
+            'slots' => fn ($query) => $query->where('slot_kind', '!=', ActivitySlot::SLOT_KIND_FILL_IN),
             'applications as pending_application_count' => fn ($query) => $query->where('status', ActivityApplication::STATUS_PENDING),
         ]);
-        $activity->setAttribute('assigned_slot_count', $activity->slots()->whereNotNull('assigned_character_id')->count());
+        $activity->setAttribute('assigned_slot_count', $activity->slots()
+            ->where('slot_kind', '!=', ActivitySlot::SLOT_KIND_FILL_IN)
+            ->whereNotNull('assigned_character_id')
+            ->count());
 
         $existingApplication = $request->user()
             ? $activity->applications
@@ -93,10 +97,13 @@ class GroupActivityApplicationController extends Controller
             'applications.answers',
         ]));
         $activity->loadCount([
-            'slots',
+            'slots' => fn ($query) => $query->where('slot_kind', '!=', ActivitySlot::SLOT_KIND_FILL_IN),
             'applications as pending_application_count' => fn ($query) => $query->where('status', ActivityApplication::STATUS_PENDING),
         ]);
-        $activity->setAttribute('assigned_slot_count', $activity->slots()->whereNotNull('assigned_character_id')->count());
+        $activity->setAttribute('assigned_slot_count', $activity->slots()
+            ->where('slot_kind', '!=', ActivitySlot::SLOT_KIND_FILL_IN)
+            ->whereNotNull('assigned_character_id')
+            ->count());
 
         $application = $this->findGuestApplicationByAccessToken($activity, $accessToken);
 
@@ -130,10 +137,13 @@ class GroupActivityApplicationController extends Controller
 
         $activity->load($this->attendeeActivityRelations());
         $activity->loadCount([
-            'slots',
+            'slots' => fn ($query) => $query->where('slot_kind', '!=', ActivitySlot::SLOT_KIND_FILL_IN),
             'applications as pending_application_count' => fn ($query) => $query->where('status', ActivityApplication::STATUS_PENDING),
         ]);
-        $activity->setAttribute('assigned_slot_count', $activity->slots()->whereNotNull('assigned_character_id')->count());
+        $activity->setAttribute('assigned_slot_count', $activity->slots()
+            ->where('slot_kind', '!=', ActivitySlot::SLOT_KIND_FILL_IN)
+            ->whereNotNull('assigned_character_id')
+            ->count());
 
         $application = $activity->applications()
             ->with('answers')
@@ -174,10 +184,13 @@ class GroupActivityApplicationController extends Controller
 
         $activity->load($this->attendeeActivityRelations());
         $activity->loadCount([
-            'slots',
+            'slots' => fn ($query) => $query->where('slot_kind', '!=', ActivitySlot::SLOT_KIND_FILL_IN),
             'applications as pending_application_count' => fn ($query) => $query->where('status', ActivityApplication::STATUS_PENDING),
         ]);
-        $activity->setAttribute('assigned_slot_count', $activity->slots()->whereNotNull('assigned_character_id')->count());
+        $activity->setAttribute('assigned_slot_count', $activity->slots()
+            ->where('slot_kind', '!=', ActivitySlot::SLOT_KIND_FILL_IN)
+            ->whereNotNull('assigned_character_id')
+            ->count());
 
         $application = $activity->applications()
             ->with('answers')

@@ -11,6 +11,7 @@ const props = defineProps<{
 
 const emit = defineEmits<{
 	edit: [holsterId: number]
+	duplicate: [holster: BozjaHolsterSummary]
 	toggleActive: [payload: { holsterId: number, isActive: boolean }]
 	makeDefault: [holsterId: number]
 	delete: [holster: BozjaHolsterSummary]
@@ -54,6 +55,17 @@ const toggleRefills = (prepopId: number) => {
 		? expandedPrepopIds.value.filter(id => id !== prepopId)
 		: [...expandedPrepopIds.value, prepopId]
 }
+
+const refillTrayClass = (prepopId: number) => {
+	const refillCount = refillsFor(prepopId).length
+
+	return [
+		'relative isolate grid min-w-0 grid-cols-1 gap-4',
+		refillCount >= 2 ? 'sm:col-span-2 sm:grid-cols-2' : '',
+		refillCount >= 3 ? 'lg:col-span-3 lg:grid-cols-3' : '',
+		refillCount >= 4 ? 'xl:col-span-4 xl:grid-cols-4' : '',
+	]
+}
 </script>
 
 <template>
@@ -83,38 +95,43 @@ const toggleRefills = (prepopId: number) => {
 		</div>
 
 		<div v-if="filteredHolsters.length" class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-			<div
+			<template
 				v-for="holster in filteredHolsters"
 				:key="holster.id"
-				:class="isExpanded(holster.id)
-					? 'col-span-full border border-default bg-accented/35 p-3 shadow-inner'
-					: 'min-w-0'"
 			>
-				<div :class="isExpanded(holster.id) ? 'grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4' : 'h-full'">
-					<BozjaHolsterCard
-						:holster="holster"
-						:updating="updatingHolsterIds.includes(holster.id)"
-						:refill-count="refillsFor(holster.id).length"
-						:refills-expanded="isExpanded(holster.id)"
-						@edit="emit('edit', $event)"
-						@toggle-active="emit('toggleActive', $event)"
-						@make-default="emit('makeDefault', $event)"
-						@delete="emit('delete', $event)"
-						@toggle-refills="toggleRefills(holster.id)"
-					/>
+				<BozjaHolsterCard
+					class="min-w-0"
+					:holster="holster"
+					:updating="updatingHolsterIds.includes(holster.id)"
+					:refill-count="refillsFor(holster.id).length"
+					:refills-expanded="isExpanded(holster.id)"
+					@edit="emit('edit', $event)"
+					@duplicate="emit('duplicate', $event)"
+					@toggle-active="emit('toggleActive', $event)"
+					@make-default="emit('makeDefault', $event)"
+					@delete="emit('delete', $event)"
+					@toggle-refills="toggleRefills(holster.id)"
+				/>
 
+				<div
+					v-if="isExpanded(holster.id)"
+					:class="refillTrayClass(holster.id)"
+				>
+					<div class="pointer-events-none absolute inset-y-0 -left-4 right-0 -z-10 border border-default bg-accented/55 shadow-inner" />
 					<BozjaHolsterCard
-						v-for="refill in isExpanded(holster.id) ? refillsFor(holster.id) : []"
+						v-for="refill in refillsFor(holster.id)"
 						:key="refill.id"
+						class="min-w-0"
 						:holster="refill"
 						:updating="updatingHolsterIds.includes(refill.id)"
 						@edit="emit('edit', $event)"
+						@duplicate="emit('duplicate', $event)"
 						@toggle-active="emit('toggleActive', $event)"
 						@make-default="emit('makeDefault', $event)"
 						@delete="emit('delete', $event)"
 					/>
 				</div>
-			</div>
+			</template>
 		</div>
 
 		<div v-else class="border border-dashed border-default px-4 py-12 text-center">

@@ -17,6 +17,7 @@ use App\Services\Groups\ActivityCancellationService;
 use App\Services\Groups\ActivityRosterSummaryPresetBuilder;
 use App\Services\Groups\ActivitySlotBench;
 use App\Services\Groups\ActivitySlotFieldDefinitionBuilder;
+use App\Services\Groups\ActivitySlotKind;
 use App\Services\Groups\ActivitySlotSerializer;
 use App\Services\Groups\GroupActivityAuditService;
 use App\Services\Notifications\AssignmentNotificationService;
@@ -70,8 +71,10 @@ class GroupActivityController extends Controller
             'slots.fieldValues',
         ]));
         $activity->loadCount([
-            'slots',
-            'slots as assigned_slot_count' => fn ($query) => $query->whereNotNull('assigned_character_id'),
+            'slots' => fn ($query) => $query->where('slot_kind', '!=', ActivitySlot::SLOT_KIND_FILL_IN),
+            'slots as assigned_slot_count' => fn ($query) => $query
+                ->where('slot_kind', '!=', ActivitySlot::SLOT_KIND_FILL_IN)
+                ->whereNotNull('assigned_character_id'),
             'applications as pending_application_count' => fn ($query) => $query->where('status', ActivityApplication::STATUS_PENDING),
         ]);
 
@@ -174,7 +177,7 @@ class GroupActivityController extends Controller
         ]);
     }
 
-    public function index(Group $group): Response
+    public function index(Group $group, ActivitySlotKind $slotKind): Response
     {
         $group->load([
             'memberships',
@@ -245,11 +248,10 @@ class GroupActivityController extends Controller
                         'avatar_url' => $activity->organizerCharacter->avatar_url,
                     ] : null,
                     'slot_count' => $activity->slots
-                        ->where('group_key', '!=', ActivitySlotBench::GROUP_KEY)
+                        ->filter(fn (ActivitySlot $slot): bool => $slotKind->isMainRoster($slot))
                         ->count(),
                     'assigned_slot_count' => $activity->slots
-                        ->where('group_key', '!=', ActivitySlotBench::GROUP_KEY)
-                        ->whereNotNull('assigned_character_id')
+                        ->filter(fn (ActivitySlot $slot): bool => $slotKind->isMainRoster($slot) && $slot->assigned_character_id !== null)
                         ->count(),
                     'application_count' => $activity->applications
                         ->whereIn('status', ActivityApplication::ACTIVE_STATUSES)
@@ -825,6 +827,7 @@ class GroupActivityController extends Controller
 
             for ($position = 1; $position <= $size; $position++) {
                 $slot = $activity->slots()->create([
+                    'slot_kind' => ActivitySlot::SLOT_KIND_ROSTER,
                     'group_key' => $groupKey,
                     'group_label' => $groupLabel,
                     'slot_key' => sprintf('%s-slot-%d', $groupKey, $position),
@@ -851,6 +854,7 @@ class GroupActivityController extends Controller
 
         for ($position = 1; $position <= $benchSize; $position++) {
             $activity->slots()->create([
+                'slot_kind' => ActivitySlot::SLOT_KIND_BENCH,
                 'group_key' => ActivitySlotBench::GROUP_KEY,
                 'group_label' => ['en' => 'Bench'],
                 'slot_key' => sprintf('%s-slot-%d', ActivitySlotBench::GROUP_KEY, $position),

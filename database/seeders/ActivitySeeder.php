@@ -6,6 +6,7 @@ require_once __DIR__.'/SeederFaker.php';
 
 use App\Models\Activity;
 use App\Models\ActivityApplication;
+use App\Models\ActivitySlot;
 use App\Models\ActivityType;
 use App\Models\Character;
 use App\Models\CharacterClass;
@@ -883,6 +884,7 @@ class ActivitySeeder extends Seeder
 
             for ($position = 1; $position <= $size; $position++) {
                 $slotDefinitions[] = [
+                    'slot_kind' => ActivitySlot::SLOT_KIND_ROSTER,
                     'group_key' => $groupKey,
                     'group_label' => $groupLabel,
                     'slot_key' => sprintf('%s-slot-%d', $groupKey, $position),

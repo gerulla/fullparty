@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Activity;
 use App\Models\ActivityApplication;
+use App\Models\ActivitySlot;
 use App\Models\Group;
 use App\Models\GroupMembership;
 use App\Models\GroupMembershipApplication;
@@ -47,7 +48,7 @@ class GroupDashboardController extends Controller
                     'activityTypeVersion.activityType',
                 ])
                 ->withCount([
-                    'slots',
+                    'slots' => fn ($query) => $query->where('slot_kind', '!=', ActivitySlot::SLOT_KIND_FILL_IN),
                     'applications' => fn ($query) => $query->whereIn('status', ActivityApplication::ACTIVE_STATUSES),
                 ]),
         ]);

@@ -3,6 +3,7 @@ import axios from "axios";
 import type { ActivityDetails, ActivityManagementPatch, SlotDesignation } from "@/Types/ActivityManagement";
 import type { ManualAssignmentCharacter, QueueApplication } from "@/Types/ActivityQueue";
 import type { ActivitySlotFieldSelection } from "@/Types/ActivityHolsters";
+import type { ActivityFillInPartyOption, ActivitySlot } from "@/Types/ActivityRoster";
 import { computed, onBeforeUnmount, onMounted, ref } from "vue";
 import { useI18n } from "vue-i18n";
 import { router, useForm, usePage } from "@inertiajs/vue3";
@@ -55,6 +56,7 @@ const isLoading = ref(true);
 const isSlotSwapPending = ref(false);
 const pendingSwapSlotIds = ref<number[]>([]);
 const isSlotAssignmentPending = ref(false);
+const isFillInPending = ref(false);
 const cutSlotId = ref<number | null>(null);
 const isCompleteModalOpen = ref(false);
 const isCompletingActivity = ref(false);
@@ -114,7 +116,23 @@ const canDeleteActivity = computed(() => Boolean(currentActivity.value && canDel
 const canCancelActivity = computed(() => Boolean(currentActivity.value && canCancelActivityStatus(currentActivity.value.status)));
 const organizerName = computed(() => currentActivity.value?.organized_by_character?.name || null);
 const organizerAvatarUrl = computed(() => currentActivity.value?.organized_by_character?.avatar_url || null);
-const assignedCount = computed(() => currentActivity.value?.slots.filter((slot) => !slot.is_bench && slot.assigned_character_id !== null).length ?? 0);
+const assignedCount = computed(() => currentActivity.value?.slots.filter((slot) => !slot.is_bench && !slot.is_fill_in && slot.assigned_character_id !== null).length ?? 0);
+const fillInPartyOptions = computed<ActivityFillInPartyOption[]>(() => {
+	const groups = new Map<string, ActivityFillInPartyOption>();
+
+	for (const slot of [...(currentActivity.value?.slots ?? [])].sort((left, right) => left.sort_order - right.sort_order)) {
+		if (slot.is_bench || slot.is_fill_in || groups.has(slot.group_key)) {
+			continue;
+		}
+
+		groups.set(slot.group_key, {
+			key: slot.group_key,
+			label: slot.group_label,
+		});
+	}
+
+	return Array.from(groups.values());
+});
 const pendingApplicationCount = computed(() => currentActivity.value?.pending_application_count ?? 0);
 const missingAssignments = computed(() => currentActivity.value?.missing_assignments ?? []);
 const completedProgression = computed(() => buildActivityCompletionSummary({
@@ -559,6 +577,12 @@ const applyManagementPatch = (patch: ActivityManagementPatch) => {
 	}
 
 	const updatedSlotsById = new Map((patch.updated_slots ?? []).map((slot) => [slot.id, slot]));
+	const removedSlotIds = new Set(patch.removed_slot_ids ?? []);
+
+	for (const removedSlotId of removedSlotIds) {
+		updatedSlotsById.delete(removedSlotId);
+	}
+
 	const updatedCompositionHintsBySlotId = new Map((patch.updated_slot_composition_hints ?? []).map((slotHints) => [slotHints.slot_id, slotHints.composition_hints]));
 	const upsertMissingAssignmentsById = new Map((patch.upsert_missing_assignments ?? []).map((assignment) => [assignment.id, assignment]));
 	const removeMissingAssignmentIds = new Set(patch.remove_missing_assignment_ids ?? []);
@@ -572,22 +596,28 @@ const applyManagementPatch = (patch: ActivityManagementPatch) => {
 		}
 	}
 
-	activityData.value = {
-		...currentActivity.value,
-		pending_application_count: patch.pending_application_count ?? currentActivity.value.pending_application_count,
-		slots: updatedSlotsById.size > 0 || updatedCompositionHintsBySlotId.size > 0
-			? currentActivity.value.slots.map((slot) => {
+	const nextSlots = updatedSlotsById.size > 0 || removedSlotIds.size > 0 || updatedCompositionHintsBySlotId.size > 0
+		? [
+			...currentActivity.value.slots.filter((slot) => !removedSlotIds.has(slot.id)).map((slot) => {
 				const updatedSlot = updatedSlotsById.get(slot.id);
 
 				if (updatedSlot) {
+					updatedSlotsById.delete(slot.id);
 					return updatedSlot;
 				}
 
 				const compositionHints = updatedCompositionHintsBySlotId.get(slot.id);
 
 				return compositionHints ? { ...slot, composition_hints: compositionHints } : slot;
-			})
-			: currentActivity.value.slots,
+			}),
+			...updatedSlotsById.values(),
+		].sort((left, right) => left.sort_order - right.sort_order)
+		: currentActivity.value.slots;
+
+	activityData.value = {
+		...currentActivity.value,
+		pending_application_count: patch.pending_application_count ?? currentActivity.value.pending_application_count,
+		slots: nextSlots,
 		missing_assignments: nextMissingAssignments,
 	};
 
@@ -603,6 +633,43 @@ const applyManagementPatch = (patch: ActivityManagementPatch) => {
 			withdrawnApplicationNames: patch.queue_withdrawn_application_names ?? [],
 		},
 	);
+};
+
+const createFillInSlot = async () => {
+	if (!currentActivity.value || isActivityArchived.value || isFillInPending.value || isSlotSwapPending.value || isSlotAssignmentPending.value) {
+		return;
+	}
+
+	isFillInPending.value = true;
+
+	try {
+		const response = await axios.post(route("groups.dashboard.activities.fill-ins.store", {
+			group: props.group.slug,
+			activity: props.activity.id,
+		}));
+
+		const updatedSlots = Array.isArray(response.data?.slots) ? response.data.slots as ActivitySlot[] : [];
+		const createdSlot = response.data?.slot as ActivitySlot | null | undefined;
+
+		if (updatedSlots.length > 0) {
+			applyManagementPatch({ updated_slots: updatedSlots });
+		}
+
+		if (createdSlot) {
+			await openManualAssignmentModalForSlot(createdSlot.id);
+		}
+	} catch (error: any) {
+		toast.add({
+			title: t("general.error"),
+			description: firstValidationErrorMessage(error)
+				?? error?.response?.data?.message
+				?? t("groups.activities.management.messages.fill_in_create_failed"),
+			color: "error",
+			icon: "i-lucide-octagon-alert",
+		});
+	} finally {
+		isFillInPending.value = false;
+	}
 };
 
 const subscribeToManagementChannel = () => {
@@ -667,7 +734,12 @@ const handleSlotSwap = async (payload: { sourceSlotId: number, targetSlotId: num
 		return false;
 	}
 
-	if (sourceSlot.is_bench !== targetSlot.is_bench && targetSlot.assigned_character_id) {
+	if (targetSlot.is_fill_in && sourceSlot.assigned_character_id && !targetSlot.assigned_character_id) {
+		await openAssignmentModalFromSlot(targetSlot.id, sourceSlot.id);
+		return false;
+	}
+
+	if (sourceSlot.slot_kind !== targetSlot.slot_kind && targetSlot.assigned_character_id) {
 		return false;
 	}
 
@@ -973,12 +1045,14 @@ const openSlotEditModal = async (slotId: number) => {
 const handleSlotReturnedToQueue = (event: Event) => {
 	const customEvent = event as CustomEvent<{
 		slot?: ActivitySlot | null
+		removedSlotIds?: number[]
 		pendingApplicationCount?: number
 	}>;
 	const updatedSlot = customEvent.detail?.slot;
+	const removedSlotIds = new Set(customEvent.detail?.removedSlotIds ?? []);
 	const pendingApplicationCount = customEvent.detail?.pendingApplicationCount;
 
-	if (!currentActivity.value || !updatedSlot) {
+	if (!currentActivity.value || (!updatedSlot && removedSlotIds.size === 0)) {
 		return;
 	}
 
@@ -987,7 +1061,9 @@ const handleSlotReturnedToQueue = (event: Event) => {
 		pending_application_count: typeof pendingApplicationCount === 'number'
 			? pendingApplicationCount
 			: currentActivity.value.pending_application_count,
-		slots: currentActivity.value.slots.map((slot) => slot.id === updatedSlot.id ? updatedSlot : slot),
+		slots: currentActivity.value.slots
+			.filter((slot) => !removedSlotIds.has(slot.id))
+			.map((slot) => updatedSlot && slot.id === updatedSlot.id ? updatedSlot : slot),
 	};
 };
 
@@ -1033,14 +1109,17 @@ const returnSlotToQueue = async (slotId: number) => {
 		const updatedSlot = response.data?.slot ?? null;
 		const restoredApplication = response.data?.application ?? null;
 		const pendingApplicationCount = response.data?.pending_application_count;
+		const removedSlotIds = new Set<number>(response.data?.removed_slot_ids ?? []);
 
-		if (updatedSlot) {
+		if (updatedSlot || removedSlotIds.size > 0) {
 			activityData.value = {
 				...currentActivity.value,
 				pending_application_count: typeof pendingApplicationCount === 'number'
 					? pendingApplicationCount
-					: currentActivity.value.pending_application_count + 1,
-				slots: currentActivity.value.slots.map((slot) => slot.id === updatedSlot.id ? updatedSlot : slot),
+					: currentActivity.value.pending_application_count + (restoredApplication ? 1 : 0),
+				slots: currentActivity.value.slots
+					.filter((slot) => !removedSlotIds.has(slot.id))
+					.map((slot) => updatedSlot && slot.id === updatedSlot.id ? updatedSlot : slot),
 			};
 		}
 
@@ -1078,7 +1157,7 @@ const moveSlotToBench = async (slotId: number) => {
 	const sourceSlot = currentActivity.value.slots.find((slot) => slot.id === slotId);
 	const targetBenchSlot = currentActivity.value.slots.find((slot) => slot.is_bench && slot.assigned_character_id === null);
 
-	if (!sourceSlot || sourceSlot.is_bench || !targetBenchSlot) {
+	if (!sourceSlot || sourceSlot.is_bench || sourceSlot.is_fill_in || !targetBenchSlot) {
 		return;
 	}
 
@@ -1191,7 +1270,7 @@ const updateSlotDesignation = async (slotId: number, designation: SlotDesignatio
 
 	const slot = currentActivity.value.slots.find((entry) => entry.id === slotId);
 
-	if (!slot || !slot.assigned_character_id || slot.is_bench) {
+	if (!slot || !slot.assigned_character_id || slot.is_bench || slot.is_fill_in) {
 		return;
 	}
 
@@ -1407,6 +1486,7 @@ const handleAssignApplicantToSlot = async (payload: {
 	slotId: number
 	fieldValues: Record<string, ActivitySlotFieldSelection>
 	ignoreApplicationChoices?: boolean
+	filledGroupKey?: string | null
 	sourceSlotId?: number | null
 }) => {
 	if (!currentActivity.value || isActivityArchived.value || isSlotAssignmentPending.value) {
@@ -1426,6 +1506,10 @@ const handleAssignApplicantToSlot = async (payload: {
 			return;
 		}
 
+		const filledGroupKeyPayload = targetSlot.is_fill_in
+			? { filled_group_key: payload.filledGroupKey ?? null }
+			: {};
+
 		const response = await axios.post(route('groups.dashboard.activities.slot-assignments.store', {
 			group: props.group.slug,
 			activity: props.activity.id,
@@ -1434,6 +1518,7 @@ const handleAssignApplicantToSlot = async (payload: {
 			application_id: payload.applicationId,
 			field_values: payload.fieldValues,
 			ignore_application_choices: payload.ignoreApplicationChoices ?? false,
+			...filledGroupKeyPayload,
 			source_slot_id: sourceSlotId,
 			expected_slot_state_token: targetSlot.state_token,
 			expected_source_slot_state_token: sourceSlot?.state_token ?? null,
@@ -1515,7 +1600,7 @@ const handleAssignApplicantToSlot = async (payload: {
 	}
 };
 
-const handleAssignCharacterToSlot = async (payload: { characterId: number, slotId: number, fieldValues: Record<string, ActivitySlotFieldSelection>, sourceSlotId?: number | null }) => {
+const handleAssignCharacterToSlot = async (payload: { characterId: number, slotId: number, fieldValues: Record<string, ActivitySlotFieldSelection>, filledGroupKey?: string | null, sourceSlotId?: number | null }) => {
 	if (!currentActivity.value || isActivityArchived.value || isSlotAssignmentPending.value) {
 		return;
 	}
@@ -1533,6 +1618,10 @@ const handleAssignCharacterToSlot = async (payload: { characterId: number, slotI
 			return;
 		}
 
+		const filledGroupKeyPayload = targetSlot.is_fill_in
+			? { filled_group_key: payload.filledGroupKey ?? null }
+			: {};
+
 		const response = await axios.post(route('groups.dashboard.activities.slot-assignments.store', {
 			group: props.group.slug,
 			activity: props.activity.id,
@@ -1540,6 +1629,7 @@ const handleAssignCharacterToSlot = async (payload: { characterId: number, slotI
 		}), {
 			character_id: payload.characterId,
 			field_values: payload.fieldValues,
+			...filledGroupKeyPayload,
 			source_slot_id: sourceSlotId,
 			expected_slot_state_token: targetSlot.state_token,
 			expected_source_slot_state_token: sourceSlot?.state_token ?? null,
@@ -1751,6 +1841,7 @@ onBeforeUnmount(() => {
 					:activity-id="activity.id"
 					:composition-class-options="currentActivity.composition_class_options"
 					:is-swap-pending="isSlotSwapPending || isSlotAssignmentPending"
+					:is-fill-in-pending="isFillInPending"
 					:pending-swap-slot-ids="pendingSwapSlotIds"
 					:cut-slot-id="cutSlotId"
 					:can-return-to-queue="!isActivityArchived"
@@ -1771,6 +1862,7 @@ onBeforeUnmount(() => {
 					@mark-slot-host="markSlotHost"
 					@mark-slot-raid-leader="markSlotRaidLeader"
 					@check-in-group="checkInGroup"
+					@create-fill-in-slot="createFillInSlot"
 					@slots-updated="applyManagementPatch({ updated_slots: $event })"
 				/>
 
@@ -1885,6 +1977,7 @@ onBeforeUnmount(() => {
 			:slot="assignmentModalSlot"
 			:application="assignmentModalApplication"
 			:slot-field-definitions="currentActivity?.slot_field_definitions ?? []"
+			:fill-in-party-options="fillInPartyOptions"
 			:mode="assignmentModalMode"
 			:is-submitting="isSlotAssignmentPending"
 			@confirm="handleAssignApplicantToSlot"
@@ -1904,6 +1997,7 @@ onBeforeUnmount(() => {
 			:slot="manualAssignmentModalSlot"
 			:characters="manualAssignmentCharacters"
 			:slot-field-definitions="currentActivity?.slot_field_definitions ?? []"
+			:fill-in-party-options="fillInPartyOptions"
 			:is-submitting="isSlotAssignmentPending"
 			:initial-character-id="manualAssignmentInitialCharacterId"
 			:lock-character="lockManualAssignmentCharacter"

@@ -12,7 +12,7 @@ use Illuminate\Validation\ValidationException;
 class ActivitySlotDesignationService
 {
     public function __construct(
-        private readonly ActivitySlotBench $slotBench,
+        private readonly ActivitySlotKind $slotKind,
         private readonly GroupActivityAuditService $activityAuditService,
         private readonly AssignmentNotificationService $assignmentNotificationService,
     ) {}
@@ -27,21 +27,21 @@ class ActivitySlotDesignationService
     ): array {
         $activity = $slot->activity;
 
-        if (!$activity instanceof Activity) {
+        if (! $activity instanceof Activity) {
             throw ValidationException::withMessages([
                 'slot' => 'The selected slot is not attached to an activity.',
             ]);
         }
 
-        if (!$slot->assigned_character_id) {
+        if (! $slot->assigned_character_id) {
             throw ValidationException::withMessages([
                 'slot' => 'Only assigned roster slots can be marked with run designations.',
             ]);
         }
 
-        if ($this->slotBench->isBench($slot)) {
+        if (! $this->slotKind->isMainRoster($slot)) {
             throw ValidationException::withMessages([
-                'slot' => 'Bench slots cannot be marked as host or raid leader.',
+                'slot' => 'Only main roster slots can be marked as host or raid leader.',
             ]);
         }
 
@@ -53,13 +53,13 @@ class ActivitySlotDesignationService
         $actor = User::query()->find($actorUserId);
 
         /** @var array{updated_slots: array<int, ActivitySlot>, notifications: array<int, array{slot: ActivitySlot, designation: string, assigned: bool}>} $result */
-        $result = DB::transaction(function () use ($activity, $slot, $column, $designation, $oppositeColumn, $oppositeDesignation, $actorUserId, $actor) {
+        $result = DB::transaction(function () use ($slot, $column, $designation, $oppositeColumn, $oppositeDesignation, $actorUserId, $actor) {
             $targetSlot = ActivitySlot::query()
                 ->with(['activity.group', 'assignedCharacter', 'fieldValues', 'assignments'])
                 ->lockForUpdate()
                 ->findOrFail($slot->id);
 
-            $shouldAssignDesignation = !(bool) $targetSlot->{$column};
+            $shouldAssignDesignation = ! (bool) $targetSlot->{$column};
 
             $updatedSlots = [];
             $pendingNotifications = [];
@@ -126,7 +126,7 @@ class ActivitySlotDesignationService
             $slotForNotification = $notification['slot'];
             $character = $slotForNotification->assignedCharacter;
 
-            if (!$character) {
+            if (! $character) {
                 continue;
             }
 
@@ -156,7 +156,7 @@ class ActivitySlotDesignationService
 
             if (
                 $slot->assigned_character_id !== null
-                && !$this->slotBench->isBench($slot)
+                && $this->slotKind->isMainRoster($slot)
             ) {
                 continue;
             }
@@ -177,7 +177,7 @@ class ActivitySlotDesignationService
 
             $updatedSlot = $slot->fresh(['activity.group', 'assignedCharacter', 'fieldValues', 'assignments']);
 
-            if (!$updatedSlot) {
+            if (! $updatedSlot) {
                 continue;
             }
 

@@ -7,6 +7,7 @@ use App\Models\ActivityApplication;
 use App\Models\ActivitySlot;
 use App\Models\Character;
 use App\Models\Group;
+use App\Services\Groups\ActivityFillInSlotService;
 use App\Services\Groups\ActivityManagementRealtimeService;
 use App\Services\Groups\ActivitySlotAssignmentService;
 use App\Services\Groups\ActivitySlotFieldDefinitionBuilder;
@@ -15,6 +16,7 @@ use App\Services\Groups\ActivitySlotStateTokenService;
 use App\Services\Groups\ApplicantQueue\ApplicantQueuePayloadBuilder;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Validation\ValidationException;
 
 class GroupActivitySlotAssignmentController extends Controller
 {
@@ -25,6 +27,7 @@ class GroupActivitySlotAssignmentController extends Controller
         ActivitySlot $slot,
         ActivitySlotFieldDefinitionBuilder $fieldDefinitionBuilder,
         ActivitySlotAssignmentService $slotAssignmentService,
+        ActivityFillInSlotService $fillInSlotService,
         ActivitySlotSerializer $slotSerializer,
         ActivitySlotStateTokenService $slotStateTokenService,
         ApplicantQueuePayloadBuilder $queuePayloadBuilder,
@@ -44,6 +47,7 @@ class GroupActivitySlotAssignmentController extends Controller
             'application_id' => ['sometimes', 'nullable', 'integer', 'required_without:character_id'],
             'character_id' => ['sometimes', 'nullable', 'integer', 'required_without:application_id'],
             'ignore_application_choices' => ['sometimes', 'boolean'],
+            'filled_group_key' => ['sometimes', 'nullable', 'string', 'max:255'],
             'field_values' => ['sometimes', 'array'],
             'source_slot_id' => ['sometimes', 'nullable', 'integer'],
             'expected_slot_state_token' => ['required', 'string'],
@@ -71,6 +75,16 @@ class GroupActivitySlotAssignmentController extends Controller
 
         if ($sourceSlot) {
             $slotStateTokenService->assertMatches($sourceSlot, $validated['expected_source_slot_state_token'] ?? null);
+        }
+
+        if ($slot->slot_kind === ActivitySlot::SLOT_KIND_FILL_IN && blank($validated['filled_group_key'] ?? null)) {
+            throw ValidationException::withMessages([
+                'filled_group_key' => 'Choose the party this fill-in covered.',
+            ]);
+        }
+
+        if ($slot->slot_kind === ActivitySlot::SLOT_KIND_FILL_IN) {
+            $fillInSlotService->assertFilledGroupExists($activity, (string) $validated['filled_group_key']);
         }
 
         $targetPreviousCharacterId = $slot->assigned_character_id;
@@ -141,6 +155,14 @@ class GroupActivitySlotAssignmentController extends Controller
             if ($wasPendingQueueApplication) {
                 $removedQueueApplicationIds[] = (int) $application->id;
             }
+        }
+
+        if ($slot->slot_kind === ActivitySlot::SLOT_KIND_FILL_IN) {
+            $slot = $fillInSlotService->updateFilledGroup(
+                $activity,
+                $slot,
+                $validated['filled_group_key'] ?? null,
+            );
         }
 
         $slot->load(['assignedCharacter', 'fieldValues', 'assignments']);

@@ -171,6 +171,8 @@
             "complete_failed": "Dieser Run konnte nicht abgeschlossen werden.",
             "swap_failed": "Roster-Slots konnten nicht getauscht werden.",
             "prepare_move_failed": "Roster-Verschiebung konnte nicht vorbereitet werden.",
+            "fill_in_create_failed": "Der Fill-in-Slot konnte nicht hinzugefügt werden.",
+            "fill_in_party_update_failed": "Die Fill-in-Party konnte nicht aktualisiert werden.",
             "load_slot_assignment_failed": "Slot-Zuweisungsdetails konnten nicht geladen werden.",
             "load_manual_assignment_failed": "Zuweisungsoptionen für Gruppenmitglieder konnten nicht geladen werden.",
             "return_to_queue_failed": "Dieser Slot konnte nicht in die Warteschlange zurückgegeben werden.",
@@ -318,6 +320,12 @@
             "late": "Verspaetet",
             "open": "Offen",
             "bench": "Ersatzbank",
+            "fill_ins": {
+                "title": "Fill-ins",
+                "add": "Fill-in hinzufügen",
+                "filled_party": "Eingesprungene Party",
+                "no_party": "Keine Party ausgewählt"
+            },
             "slot_placeholder": "Zum Zuweisen klicken",
             "filled_placeholder": "Details und Aktionen für zugewiesene Charaktere werden hier als Nächstes angezeigt.",
             "filled_slot": "Gefüllter Slot",
@@ -610,7 +618,14 @@
             "refill": "Nachfüll-Holster",
             "refill_placeholder": "Nachfüll-Holster auswählen",
             "add_pair": "Holster-Paar hinzufügen",
-            "remove_pair": "Holster-Paar entfernen"
+            "remove_pair": "Holster-Paar entfernen",
+            "selector_title": "Holster auswählen",
+            "search_placeholder": "Holster durchsuchen...",
+            "contains": "Enthält",
+            "items_count": "{count} Gegenstände",
+            "select_action": "Holster auswählen",
+            "no_results": "Keine Holster entsprechen deiner Suche.",
+            "no_items": "Dieses Holster enthält keine Gegenstände."
         },
         "quick_select": {
             "title": "Schnellauswahl",

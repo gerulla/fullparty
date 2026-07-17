@@ -13,6 +13,10 @@ use Illuminate\Validation\ValidationException;
 
 class ActivityPartyCompositionHintService
 {
+    public function __construct(
+        private readonly ActivitySlotKind $slotKind,
+    ) {}
+
     /**
      * @return Collection<int, ActivitySlot>
      */
@@ -20,9 +24,10 @@ class ActivityPartyCompositionHintService
     {
         $slots = $activity->slots()
             ->where('group_key', $groupKey)
-            ->where('group_key', '!=', ActivitySlotBench::GROUP_KEY)
             ->orderBy('sort_order')
-            ->get();
+            ->get()
+            ->filter(fn (ActivitySlot $slot): bool => $this->slotKind->isMainRoster($slot))
+            ->values();
 
         if ($slots->isEmpty()) {
             throw ValidationException::withMessages([
@@ -43,10 +48,10 @@ class ActivityPartyCompositionHintService
     public function copyCompositionHintsToCompatibleGroups(Activity $activity, string $sourceGroupKey): Collection
     {
         $slotGroups = $activity->slots()
-            ->where('group_key', '!=', ActivitySlotBench::GROUP_KEY)
             ->with('compositionHints')
             ->orderBy('sort_order')
             ->get()
+            ->filter(fn (ActivitySlot $slot): bool => $this->slotKind->isMainRoster($slot))
             ->groupBy('group_key');
 
         $sourceSlots = $slotGroups->get($sourceGroupKey, collect())->values();
@@ -105,9 +110,9 @@ class ActivityPartyCompositionHintService
             abort(404);
         }
 
-        if ($slot->group_key === ActivitySlotBench::GROUP_KEY) {
+        if (! $this->slotKind->isMainRoster($slot)) {
             throw ValidationException::withMessages([
-                'slot' => 'Bench slots cannot have composition hints.',
+                'slot' => 'Only main roster slots can have composition hints.',
             ]);
         }
 

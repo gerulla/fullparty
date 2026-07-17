@@ -22,6 +22,7 @@ class ActivitySlotFactory extends Factory
     {
         return [
             'activity_id' => Activity::factory(),
+            'slot_kind' => ActivitySlot::SLOT_KIND_ROSTER,
             'group_key' => 'party-a',
             'group_label' => ['en' => 'Party A'],
             'slot_key' => 'party-a-slot-1',

@@ -146,7 +146,7 @@ const designationMarkers = computed(() => {
 	return markers;
 });
 const emptyHintToneClass = computed(() => (
-	!props.slot.is_bench && !assignedCharacter.value ? emptyCompositionSlotToneClass(props.slot) : null
+	!props.slot.is_bench && !props.slot.is_fill_in && !assignedCharacter.value ? emptyCompositionSlotToneClass(props.slot) : null
 ));
 const roleToneClass = computed(() => {
 	if (props.slot.is_bench) {
@@ -314,7 +314,7 @@ const contextMenuItems = computed<ContextMenuItem[][]>(() => [
 						: t('groups.activities.management.roster.mark_host_action'),
 					icon: 'i-lucide-badge-check',
 					color: 'info',
-					disabled: props.slot.is_bench || props.isSwapPending,
+					disabled: props.slot.is_bench || props.slot.is_fill_in || props.isSwapPending,
 					onSelect: () => emit('markSlotHost', props.slot.id),
 				},
 				{
@@ -323,7 +323,7 @@ const contextMenuItems = computed<ContextMenuItem[][]>(() => [
 						: t('groups.activities.management.roster.mark_raid_leader_action'),
 					icon: 'i-lucide-crown',
 					color: 'warning',
-					disabled: props.slot.is_bench || props.isSwapPending,
+					disabled: props.slot.is_bench || props.slot.is_fill_in || props.isSwapPending,
 					onSelect: () => emit('markSlotRaidLeader', props.slot.id),
 				},
 			],
@@ -331,7 +331,7 @@ const contextMenuItems = computed<ContextMenuItem[][]>(() => [
 		{
 			label: t('groups.activities.management.roster.move_to_bench_action'),
 			icon: 'i-lucide-arrow-down-to-line',
-			disabled: props.slot.is_bench || !props.canMoveToBench || props.isSwapPending,
+			disabled: props.slot.is_bench || props.slot.is_fill_in || !props.canMoveToBench || props.isSwapPending,
 			onSelect: () => emit('moveSlotToBench', props.slot.id),
 		},
 		{
@@ -586,7 +586,7 @@ const handleClick = () => {
 						:label="statusBadge.label"
 					/>
 					<ActivitySlotCompositionHintBadge
-						v-else-if="!slot.is_bench"
+						v-else-if="!slot.is_bench && !slot.is_fill_in"
 						:slot="slot"
 					/>
 				</div>
@@ -767,7 +767,7 @@ const handleClick = () => {
 						:label="statusBadge.label"
 					/>
 					<ActivitySlotCompositionHintBadge
-						v-else-if="!slot.is_bench"
+						v-else-if="!slot.is_bench && !slot.is_fill_in"
 						:slot="slot"
 					/>
 				</div>

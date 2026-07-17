@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { computed } from "vue";
 import { useI18n } from "vue-i18n";
+import ActivityFillInSlotsSection from "@/components/Groups/Activities/ActivityFillInSlotsSection.vue";
 import ActivityRosterSlotCard from "@/components/Groups/Activities/ActivityRosterSlotCard.vue";
 import type { QueueApplication } from "@/Types/ActivityQueue";
 import type { ActivitySlot, ActivitySlotCompositionHintInput } from "@/Types/ActivityRoster";
@@ -18,6 +19,8 @@ const props = defineProps<{
 	canMoveToBench?: boolean
 	canMarkMissing?: boolean
 	canCheckIn?: boolean
+	fillInSlots?: ActivitySlot[]
+	isCreatingFillIn?: boolean
 }>();
 
 const emit = defineEmits<{
@@ -36,6 +39,7 @@ const emit = defineEmits<{
 	markSlotLate: [slotId: number]
 	markSlotHost: [slotId: number]
 	markSlotRaidLeader: [slotId: number]
+	createFillInSlot: []
 	cutSlot: [slotId: number]
 	pasteCutSlot: [slotId: number]
 	clearCutSlot: []
@@ -98,11 +102,13 @@ const roleGroups = computed(() => {
 		healer: [] as ActivitySlot[],
 		dps: [] as ActivitySlot[],
 	};
-	const benchSlots: ActivitySlot[] = [];
 
 	for (const slot of [...props.slots].sort((left, right) => left.sort_order - right.sort_order)) {
 		if (slot.is_bench) {
-			benchSlots.push(slot);
+			continue;
+		}
+
+		if (slot.is_fill_in) {
 			continue;
 		}
 
@@ -118,18 +124,23 @@ const roleGroups = computed(() => {
 		}))
 		.filter((group) => group.slots.length > 0);
 
-	return benchSlots.length > 0
-		? [
-			...rosterGroups,
-			{
-				key: 'bench',
-				label: t('groups.activities.management.roster.bench'),
-				icon: 'i-lucide-armchair',
-				slots: benchSlots,
-			},
-		]
-		: rosterGroups;
+	return rosterGroups;
 });
+const benchGroup = computed(() => {
+	const benchSlots = [...props.slots]
+		.filter((slot) => slot.is_bench)
+		.sort((left, right) => left.sort_order - right.sort_order);
+
+	return benchSlots.length > 0
+		? {
+			key: 'bench',
+			label: t('groups.activities.management.roster.bench'),
+			icon: 'i-lucide-armchair',
+			slots: benchSlots,
+		}
+		: null;
+});
+const canShowFillIns = computed(() => (props.fillInSlots?.length ?? 0) > 0 || Boolean(props.canReturnToQueue));
 </script>
 
 <template>
@@ -164,6 +175,110 @@ const roleGroups = computed(() => {
 			<div class="grid grid-cols-1 gap-3 px-5 py-5 transition-all duration-300 ease-in-out md:grid-cols-2 xl:grid-cols-4">
 				<ActivityRosterSlotCard
 					v-for="slot in group.slots"
+					:key="slot.id"
+					:slot="slot"
+					:dragged-slot-id="draggedSlotId"
+					:drop-target-slot-id="dropTargetSlotId"
+					:is-swap-pending="isSwapPending"
+					:is-pending-swap="pendingSwapSlotIds?.includes(slot.id)"
+					:cut-slot-id="cutSlotId"
+					:cut-slot-is-bench="cutSlotIsBench"
+					:can-return-to-queue="canReturnToQueue"
+					:can-move-to-bench="canMoveToBench"
+					:can-mark-missing="canMarkMissing"
+					:can-check-in="canCheckIn"
+					@drag-start="emit('dragStart', $event)"
+					@drag-end="emit('dragEnd')"
+					@drag-enter="emit('dragEnter', $event)"
+					@drag-leave="emit('dragLeave', $event)"
+					@drop-slot="emit('dropSlot', $event)"
+					@drop-application="emit('dropApplication', $event)"
+					@cut-slot="emit('cutSlot', $event)"
+					@paste-cut-slot="emit('pasteCutSlot', $event)"
+					@clear-cut-slot="emit('clearCutSlot')"
+					@click-slot="emit('clickSlot', $event)"
+					@view-application="emit('viewApplication', $event)"
+					@return-slot-to-queue="emit('returnSlotToQueue', $event)"
+					@move-slot-to-bench="emit('moveSlotToBench', $event)"
+					@mark-slot-missing="emit('markSlotMissing', $event)"
+					@check-in-slot="emit('checkInSlot', $event)"
+					@mark-slot-late="emit('markSlotLate', $event)"
+					@mark-slot-host="emit('markSlotHost', $event)"
+					@mark-slot-raid-leader="emit('markSlotRaidLeader', $event)"
+					@replace-composition-hints="emit('replaceCompositionHints', $event)"
+					@customize-composition-hints="emit('customizeCompositionHints', $event)"
+				/>
+			</div>
+		</section>
+
+		<ActivityFillInSlotsSection
+			v-if="canShowFillIns"
+			:slots="fillInSlots ?? []"
+			:dragged-slot-id="draggedSlotId"
+			:drop-target-slot-id="dropTargetSlotId"
+			:is-swap-pending="isSwapPending"
+			:is-creating="isCreatingFillIn"
+			:can-create="canReturnToQueue"
+			:pending-swap-slot-ids="pendingSwapSlotIds"
+			:cut-slot-id="cutSlotId"
+			:cut-slot-is-bench="cutSlotIsBench"
+			:can-return-to-queue="canReturnToQueue"
+			:can-move-to-bench="canMoveToBench"
+			:can-mark-missing="canMarkMissing"
+			:can-check-in="canCheckIn"
+			@create-fill-in-slot="emit('createFillInSlot')"
+			@drag-start="emit('dragStart', $event)"
+			@drag-end="emit('dragEnd')"
+			@drag-enter="emit('dragEnter', $event)"
+			@drag-leave="emit('dragLeave', $event)"
+			@drop-slot="emit('dropSlot', $event)"
+			@drop-application="emit('dropApplication', $event)"
+			@cut-slot="emit('cutSlot', $event)"
+			@paste-cut-slot="emit('pasteCutSlot', $event)"
+			@clear-cut-slot="emit('clearCutSlot')"
+			@click-slot="emit('clickSlot', $event)"
+			@view-application="emit('viewApplication', $event)"
+			@return-slot-to-queue="emit('returnSlotToQueue', $event)"
+			@move-slot-to-bench="emit('moveSlotToBench', $event)"
+			@mark-slot-missing="emit('markSlotMissing', $event)"
+			@check-in-slot="emit('checkInSlot', $event)"
+			@mark-slot-late="emit('markSlotLate', $event)"
+			@mark-slot-host="emit('markSlotHost', $event)"
+			@mark-slot-raid-leader="emit('markSlotRaidLeader', $event)"
+			@replace-composition-hints="emit('replaceCompositionHints', $event)"
+			@customize-composition-hints="emit('customizeCompositionHints', $event)"
+		/>
+
+		<section
+			v-if="benchGroup"
+			:key="benchGroup.key"
+			class="border border-default bg-muted shadow-sm transition-all duration-300 ease-in-out dark:bg-elevated/50"
+		>
+			<header class="border-b border-default px-5 py-4">
+				<div class="flex items-center justify-between gap-3">
+					<div class="flex items-center gap-3">
+						<div class="flex h-9 w-9 items-center justify-center rounded-sm bg-primary text-inverted">
+							<UIcon :name="benchGroup.icon" class="size-4" />
+						</div>
+
+						<div class="flex items-center gap-3">
+							<h3 class="font-semibold text-lg text-toned">
+								{{ benchGroup.label }}
+							</h3>
+
+							<UBadge
+								color="neutral"
+								variant="outline"
+								:label="`${benchGroup.slots.filter((slot) => slot.assigned_character_id !== null).length}/${benchGroup.slots.length}`"
+							/>
+						</div>
+					</div>
+				</div>
+			</header>
+
+			<div class="grid grid-cols-1 gap-3 px-5 py-5 transition-all duration-300 ease-in-out md:grid-cols-2 xl:grid-cols-4">
+				<ActivityRosterSlotCard
+					v-for="slot in benchGroup.slots"
 					:key="slot.id"
 					:slot="slot"
 					:dragged-slot-id="draggedSlotId"

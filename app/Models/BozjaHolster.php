@@ -121,6 +121,9 @@ class BozjaHolster extends Model
                         ->where('is_active', true)
                         ->where('type', self::TYPE_PREPOP));
             })
+            ->with(['items' => fn ($query) => $query
+                ->orderBy('bozja_items.sort_order')
+                ->orderBy('bozja_items.key')])
             ->orderByDesc('is_default')
             ->orderBy('id')
             ->get()
@@ -132,6 +135,15 @@ class BozjaHolster extends Model
                     'holster_type' => $holster->type,
                     'parent_holster_id' => $holster->parent_holster_id,
                     'role' => $holster->role,
+                    'items' => $holster->items
+                        ->map(fn (BozjaItem $item) => [
+                            'key' => (string) $item->id,
+                            'label' => $item->name,
+                            'icon_url' => $item->icon_url,
+                            'quantity' => (int) $item->pivot->quantity,
+                        ])
+                        ->values()
+                        ->all(),
                 ],
             ])
             ->values()

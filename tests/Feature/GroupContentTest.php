@@ -193,6 +193,67 @@ it('allows moderators to create and update group holsters', function () {
     ]);
 });
 
+it('allows moderators to duplicate group holsters with their contents', function () {
+    $owner = User::factory()->create();
+    $moderator = User::factory()->create();
+    $group = Group::factory()->create(['owner_id' => $owner->id]);
+    $group->memberships()->create([
+        'user_id' => $moderator->id,
+        'role' => GroupMembership::ROLE_MODERATOR,
+        'joined_at' => now(),
+    ]);
+    $item = BozjaItem::query()->create([
+        'key' => 'duplicate-test-action',
+        'category' => 'lost_actions',
+        'name' => ['en' => 'Duplicate Test Action'],
+        'classification' => 'lost_action',
+        'cache_weight' => 5,
+    ]);
+    $holster = BozjaHolster::query()->create([
+        'group_id' => $group->id,
+        'name' => ['en' => 'Progression', 'de' => 'Fortschritt'],
+        'role' => 'tank',
+        'type' => BozjaHolster::TYPE_PREPOP,
+        'notes' => 'Bring this exact kit.',
+        'guide' => '## Clone me',
+        'is_active' => false,
+        'is_default' => true,
+    ]);
+    $holster->items()->attach($item->id, ['quantity' => 3]);
+
+    $response = $this->actingAs($moderator)
+        ->postJson(route('groups.dashboard.content.delubrum-reginae-savage.holsters.clone', [
+            'group' => $group,
+            'bozjaHolster' => $holster,
+        ]))
+        ->assertCreated()
+        ->assertJsonPath('data.name.en', 'Progression Copy')
+        ->assertJsonPath('data.name.de', 'Fortschritt Copy')
+        ->assertJsonPath('data.role', 'tank')
+        ->assertJsonPath('data.type', BozjaHolster::TYPE_PREPOP)
+        ->assertJsonPath('data.notes', 'Bring this exact kit.')
+        ->assertJsonPath('data.guide', '## Clone me')
+        ->assertJsonPath('data.is_active', false)
+        ->assertJsonPath('data.is_default', false)
+        ->assertJsonPath('data.capacity_used', 15)
+        ->assertJsonPath('data.items.0.quantity', 3);
+
+    $cloneId = $response->json('data.id');
+
+    expect($cloneId)->not->toBe($holster->id);
+
+    $this->assertDatabaseHas('bozja_holsters', [
+        'id' => $cloneId,
+        'group_id' => $group->id,
+        'is_default' => false,
+    ]);
+    $this->assertDatabaseHas('bozja_holster_items', [
+        'bozja_holster_id' => $cloneId,
+        'bozja_item_id' => $item->id,
+        'quantity' => 3,
+    ]);
+});
+
 it('rejects holster contents that exceed maximum capacity', function () {
     $owner = User::factory()->create();
     $group = Group::factory()->create(['owner_id' => $owner->id]);

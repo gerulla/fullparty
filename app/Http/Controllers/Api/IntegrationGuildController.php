@@ -9,6 +9,7 @@ use App\Models\ActivitySlot;
 use App\Models\DiscordGuildIntegration;
 use App\Models\Group;
 use App\Models\User;
+use App\Services\Groups\ActivitySlotKind;
 use App\Support\Activities\ActivityDisplayName;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -18,6 +19,10 @@ use Illuminate\Validation\ValidationException;
 class IntegrationGuildController extends Controller
 {
     private const PAYLOAD_INVALID_ERROR = 'discord_guild_link_payload_invalid';
+
+    public function __construct(
+        private readonly ActivitySlotKind $slotKind,
+    ) {}
 
     public function link(Request $request): JsonResponse
     {
@@ -110,9 +115,11 @@ class IntegrationGuildController extends Controller
             ->withCount([
                 'slots as assigned_slot_count' => fn ($query) => $query
                     ->where('group_key', '!=', 'bench')
+                    ->where('slot_kind', '!=', ActivitySlot::SLOT_KIND_FILL_IN)
                     ->whereNotNull('assigned_character_id'),
                 'slots as total_slot_count' => fn ($query) => $query
-                    ->where('group_key', '!=', 'bench'),
+                    ->where('group_key', '!=', 'bench')
+                    ->where('slot_kind', '!=', ActivitySlot::SLOT_KIND_FILL_IN),
                 'applications as total_applicant_count' => fn ($query) => $query
                     ->whereIn('status', ActivityApplication::ACTIVE_STATUSES),
             ])
@@ -399,12 +406,12 @@ class IntegrationGuildController extends Controller
         }
 
         $activity->loadMissing([
-            'slots:id,activity_id,group_key,assigned_character_id',
+            'slots:id,activity_id,slot_kind,group_key,assigned_character_id',
             'applications:id,activity_id,status',
         ]);
 
         $mainSlots = $activity->slots
-            ->filter(fn (ActivitySlot $slot): bool => $slot->group_key !== 'bench');
+            ->filter(fn (ActivitySlot $slot): bool => $this->slotKind->isMainRoster($slot));
 
         return [
             'assigned_slots' => $mainSlots
@@ -501,6 +508,7 @@ class IntegrationGuildController extends Controller
                 'slot_key' => $slot->slot_key,
                 'slot_label' => $slot->slot_label,
                 'is_bench' => $slot->group_key === 'bench',
+                'is_fill_in' => $this->slotKind->isFillIn($slot),
                 'is_host' => (bool) $slot->is_host,
                 'is_raid_leader' => (bool) $slot->is_raid_leader,
                 'attendance_status' => $slot->attendance_status ?? null,

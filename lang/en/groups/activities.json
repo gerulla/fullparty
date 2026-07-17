@@ -171,6 +171,8 @@
             "complete_failed": "Unable to complete this run.",
             "swap_failed": "Unable to swap roster slots.",
             "prepare_move_failed": "Unable to prepare this roster move.",
+            "fill_in_create_failed": "Unable to add a fill-in slot.",
+            "fill_in_party_update_failed": "Unable to update the fill-in party.",
             "load_slot_assignment_failed": "Unable to load slot assignment details.",
             "load_manual_assignment_failed": "Unable to load group member assignment options.",
             "return_to_queue_failed": "Unable to return this slot to the queue.",
@@ -318,6 +320,12 @@
             "late": "Late",
             "open": "Open",
             "bench": "Bench",
+            "fill_ins": {
+                "title": "Fill-ins",
+                "add": "Add fill-in",
+                "filled_party": "Filled Party",
+                "no_party": "No party selected"
+            },
             "slot_placeholder": "Click to assign",
             "filled_placeholder": "Assigned character details and controls will live here next.",
             "filled_slot": "Filled Slot",
@@ -610,7 +618,14 @@
             "refill": "Refill Holster",
             "refill_placeholder": "Select a Refill holster",
             "add_pair": "Add Holster Pair",
-            "remove_pair": "Remove holster pair"
+            "remove_pair": "Remove holster pair",
+            "selector_title": "Select a Holster",
+            "search_placeholder": "Search holsters...",
+            "contains": "Contains",
+            "items_count": "{count} items",
+            "select_action": "Select Holster",
+            "no_results": "No holsters match your search.",
+            "no_items": "This holster has no items."
         },
         "quick_select": {
             "title": "Quick selectors",

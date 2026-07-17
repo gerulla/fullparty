@@ -14,6 +14,7 @@ use App\Services\Groups\ActivityRosterSummaryPresetBuilder;
 use App\Services\Groups\ActivitySlotAttendanceService;
 use App\Services\Groups\ActivitySlotBench;
 use App\Services\Groups\ActivitySlotFieldDefinitionBuilder;
+use App\Services\Groups\ActivitySlotKind;
 use App\Services\Groups\ActivitySlotSerializer;
 use Illuminate\Http\JsonResponse;
 
@@ -29,6 +30,7 @@ class GroupActivityManagementDataController extends Controller
         ActivitySlotFieldDefinitionBuilder $fieldDefinitionBuilder,
         ActivityRosterSummaryPresetBuilder $rosterSummaryPresetBuilder,
         ActivitySlotBench $slotBench,
+        ActivitySlotKind $slotKind,
     ): JsonResponse {
         $this->authorize('manageDashboard', [$activity, $group]);
 
@@ -53,8 +55,9 @@ class GroupActivityManagementDataController extends Controller
         $attendanceService->ensureActiveAssignments($activity);
         $activity->load(['slots.assignments.application.answers', 'slots.compositionHints.characterClass', 'slotAssignments.character', 'slotAssignments.application', 'slotAssignments.slot']);
 
-        $mainSlots = $activity->slots->filter(fn ($slot) => ! $slotBench->isBench($slot))->values();
+        $mainSlots = $activity->slots->filter(fn ($slot) => $slotKind->isMainRoster($slot))->values();
         $benchSlots = $activity->slots->filter(fn ($slot) => $slotBench->isBench($slot))->values();
+        $fillInSlots = $activity->slots->filter(fn ($slot) => $slotKind->isFillIn($slot))->values();
 
         return response()->json([
             'activity' => [
@@ -108,6 +111,7 @@ class GroupActivityManagementDataController extends Controller
                 ] : null,
                 'slot_count' => $mainSlots->count(),
                 'bench_slot_count' => $benchSlots->count(),
+                'fill_in_slot_count' => $fillInSlots->count(),
                 'application_count' => $activity->applications
                     ->whereIn('status', ActivityApplication::ACTIVE_STATUSES)
                     ->count(),

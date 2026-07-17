@@ -17,6 +17,7 @@ class ActivitySlotAssignmentService
 
     public function __construct(
         private readonly ActivitySlotBench $slotBench,
+        private readonly ActivitySlotKind $slotKind,
         private readonly ActivitySlotAttendanceService $attendanceService,
         private readonly ActivitySlotDesignationService $slotDesignationService,
         private readonly GroupActivityAuditService $activityAuditService,
@@ -66,6 +67,7 @@ class ActivitySlotAssignmentService
         $applicationAnswers = $application->answers->keyBy('question_key');
         $isTargetBench = $this->slotBench->isBench($targetSlot);
         $isSourceBench = $sourceSlot ? $this->slotBench->isBench($sourceSlot) : false;
+        $targetCanCarryDesignation = $this->slotKind->isMainRoster($targetSlot);
         $targetPreviousCharacterId = $targetSlot->assigned_character_id;
         $targetPreviousCharacterName = $targetSlot->assignedCharacter?->name;
         $targetHadDifferentOccupant = $targetPreviousCharacterId !== null
@@ -83,6 +85,7 @@ class ActivitySlotAssignmentService
             $applicationAnswers,
             $isTargetBench,
             $isSourceBench,
+            $targetCanCarryDesignation,
             $targetHadDifferentOccupant,
             $displacedApplication,
             $ignoreApplicationChoices,
@@ -104,7 +107,7 @@ class ActivitySlotAssignmentService
             $this->applyDesignationState(
                 $targetSlot,
                 $sourceSlot ? $sourceDesignationState : $this->emptyDesignationState(),
-                ! $isTargetBench,
+                $targetCanCarryDesignation,
             );
 
             if ($isTargetBench) {
@@ -167,7 +170,7 @@ class ActivitySlotAssignmentService
                     $this->clearSlotFieldValues($sourceSlot);
                 }
             } elseif ($displacedApplication && (int) $displacedApplication->id !== (int) $application->id) {
-                $this->applyDesignationState($targetSlot, $this->emptyDesignationState(), ! $isTargetBench);
+                $this->applyDesignationState($targetSlot, $this->emptyDesignationState(), $targetCanCarryDesignation);
                 $displacedApplication->update([
                     'status' => ActivityApplication::STATUS_PENDING,
                     'reviewed_by_user_id' => null,
@@ -332,6 +335,7 @@ class ActivitySlotAssignmentService
         $targetPreviousCharacterId = $targetSlot->assigned_character_id;
         $originalTargetFieldValueSnapshot = $this->attendanceService->buildFieldValueSnapshot($targetSlot);
         $isTargetBench = $this->slotBench->isBench($targetSlot);
+        $targetCanCarryDesignation = $this->slotKind->isMainRoster($targetSlot);
 
         DB::transaction(function () use (
             $targetSlot,
@@ -341,6 +345,7 @@ class ActivitySlotAssignmentService
             $fieldDefinitions,
             $assignedByUserId,
             $isTargetBench,
+            $targetCanCarryDesignation,
             $activity,
         ) {
             $targetDesignationState = $this->designationState($targetSlot);
@@ -353,7 +358,7 @@ class ActivitySlotAssignmentService
             $this->applyDesignationState(
                 $targetSlot,
                 $sourceSlot ? $sourceDesignationState : $targetDesignationState,
-                ! $isTargetBench,
+                $targetCanCarryDesignation,
             );
 
             if ($isTargetBench) {

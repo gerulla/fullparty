@@ -26,7 +26,7 @@ const presetOptions = computed(() => props.presets.map((preset) => ({
 	value: preset.key,
 })));
 
-const assignedRosterSlots = computed(() => props.slots.filter((slot) => !slot.is_bench && slot.assigned_character_id !== null));
+const assignedRosterSlots = computed(() => props.slots.filter((slot) => !slot.is_bench && !slot.is_fill_in && slot.assigned_character_id !== null));
 
 const selectedPreset = computed(() => (
 	props.presets.find((preset) => preset.key === selectedPresetKey.value)

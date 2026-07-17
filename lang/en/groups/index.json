@@ -92,6 +92,9 @@
         "hide_refills": "Hide Refills",
         "no_actions": "No actions added.",
         "open_editor": "Open Editor",
+        "duplicate": "Duplicate",
+        "duplicated": "Holster duplicated",
+        "duplicate_failed": "The holster could not be duplicated.",
         "deleted": "Holster deleted",
         "delete_failed": "The holster could not be deleted.",
         "delete_modal": {

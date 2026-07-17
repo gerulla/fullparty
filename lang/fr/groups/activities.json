@@ -171,6 +171,8 @@
             "complete_failed": "Impossible de terminer ce run.",
             "swap_failed": "Impossible d'échanger les emplacements de la composition.",
             "prepare_move_failed": "Impossible de préparer ce déplacement dans la composition.",
+            "fill_in_create_failed": "Impossible d'ajouter un emplacement de renfort.",
+            "fill_in_party_update_failed": "Impossible de mettre à jour la party de renfort.",
             "load_slot_assignment_failed": "Impossible de charger les détails d'affectation du emplacement.",
             "load_manual_assignment_failed": "Impossible de charger les options d'affectation des membres du groupe.",
             "return_to_queue_failed": "Impossible de remettre ce emplacement dans la file.",
@@ -318,6 +320,12 @@
             "late": "En retard",
             "open": "Ouvert",
             "bench": "Remplaçants",
+            "fill_ins": {
+                "title": "Renforts",
+                "add": "Ajouter un renfort",
+                "filled_party": "Party remplacée",
+                "no_party": "Aucune party sélectionnée"
+            },
             "slot_placeholder": "Cliquez pour assigner",
             "filled_placeholder": "Les détails du personnage assigné et les commandes apparaîtront ici prochainement.",
             "filled_slot": "Emplacement rempli",
@@ -610,7 +618,14 @@
             "refill": "Holster de réapprovisionnement",
             "refill_placeholder": "Sélectionner un holster de réapprovisionnement",
             "add_pair": "Ajouter une paire de holsters",
-            "remove_pair": "Retirer la paire de holsters"
+            "remove_pair": "Retirer la paire de holsters",
+            "selector_title": "Choisir un holster",
+            "search_placeholder": "Rechercher des holsters...",
+            "contains": "Contenu",
+            "items_count": "{count} objets",
+            "select_action": "Choisir ce holster",
+            "no_results": "Aucun holster ne correspond à votre recherche.",
+            "no_items": "Ce holster ne contient aucun objet."
         },
         "quick_select": {
             "title": "Sélection rapide",

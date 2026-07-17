@@ -24,6 +24,7 @@ use App\Http\Controllers\GroupActivityCompletionController;
 use App\Http\Controllers\GroupActivityController;
 use App\Http\Controllers\GroupActivityFflogsCompletionPreviewController;
 use App\Http\Controllers\GroupActivityFflogsController;
+use App\Http\Controllers\GroupActivityFillInSlotController;
 use App\Http\Controllers\GroupActivityManagementDataController;
 use App\Http\Controllers\GroupActivityManualSlotAssignmentOptionsController;
 use App\Http\Controllers\GroupActivityPartyFinderInfoController;
@@ -436,6 +437,7 @@ Route::prefix('{locale?}')
                 Route::get('/members', [GroupMemberController::class, 'index'])->name('groups.dashboard.members');
                 Route::get('/content/delubrum-reginae-savage', [GroupContentController::class, 'delubrumReginaeSavage'])->name('groups.dashboard.content.delubrum-reginae-savage');
                 Route::post('/content/delubrum-reginae-savage/holsters', [GroupBozjaHolsterController::class, 'store'])->name('groups.dashboard.content.delubrum-reginae-savage.holsters.store');
+                Route::post('/content/delubrum-reginae-savage/holsters/{bozjaHolster}/clone', [GroupBozjaHolsterController::class, 'duplicate'])->name('groups.dashboard.content.delubrum-reginae-savage.holsters.clone');
                 Route::put('/content/delubrum-reginae-savage/holsters/{bozjaHolster}', [GroupBozjaHolsterController::class, 'update'])->name('groups.dashboard.content.delubrum-reginae-savage.holsters.update');
                 Route::patch('/content/delubrum-reginae-savage/holsters/{bozjaHolster}/status', [GroupBozjaHolsterController::class, 'updateStatus'])->name('groups.dashboard.content.delubrum-reginae-savage.holsters.status.update');
                 Route::patch('/content/delubrum-reginae-savage/holsters/{bozjaHolster}/default', [GroupBozjaHolsterController::class, 'makeDefault'])->name('groups.dashboard.content.delubrum-reginae-savage.holsters.default.update');
@@ -534,6 +536,8 @@ Route::prefix('{locale?}')
 
                 // Roster assignment and queue state changes.
                 Route::post('/activities/{activity}/slot-swaps', [GroupActivitySlotSwapController::class, 'store'])->name('groups.dashboard.activities.slot-swaps.store');
+                Route::post('/activities/{activity}/fill-ins', [GroupActivityFillInSlotController::class, 'store'])->name('groups.dashboard.activities.fill-ins.store');
+                Route::patch('/activities/{activity}/fill-ins/{slot}', [GroupActivityFillInSlotController::class, 'update'])->name('groups.dashboard.activities.fill-ins.update');
                 Route::post('/activities/{activity}/slots/{slot}/assign-application', [GroupActivitySlotAssignmentController::class, 'store'])->name('groups.dashboard.activities.slot-assignments.store');
                 Route::post('/activities/{activity}/slots/{slot}/return-to-queue', [GroupActivitySlotUnassignmentController::class, 'store'])->name('groups.dashboard.activities.slot-unassignments.store');
                 Route::post('/activities/{activity}/applications/{application}/decline', [GroupActivityApplicationDeclineController::class, 'store'])->name('groups.dashboard.activities.application-declines.store');

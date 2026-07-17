@@ -2,8 +2,7 @@
 import type { HolsterPairOption, HolsterPairValue } from '@/Types/ActivityHolsters'
 import { computed } from 'vue'
 import { useI18n } from 'vue-i18n'
-import { usePage } from '@inertiajs/vue3'
-import { localizedValue } from '@/utils/localizedValue'
+import HolsterSelectMenu from '@/components/Groups/Activities/HolsterSelectMenu.vue'
 
 const props = defineProps<{
 	modelValue: unknown
@@ -17,9 +16,7 @@ const emit = defineEmits<{
 	'update:modelValue': [value: HolsterPairValue | HolsterPairValue[]]
 }>()
 
-const { t, locale } = useI18n()
-const page = usePage()
-const fallbackLocale = computed(() => String(page.props.locale?.fallback ?? 'en'))
+const { t } = useI18n()
 const emptyPair = (): HolsterPairValue => ({ prepop_id: '', refill_id: '' })
 
 const normalizePair = (value: unknown): HolsterPairValue | null => {
@@ -48,11 +45,6 @@ const selectedPairs = computed(() => {
 })
 
 const rows = computed(() => selectedPairs.value.length > 0 ? selectedPairs.value : [emptyPair()])
-const optionLabel = (option: HolsterPairOption) => localizedValue(
-	option.label,
-	locale.value,
-	fallbackLocale.value,
-) || option.key
 const allowedPairKeys = computed(() => props.allowedPairs
 	? new Set(props.allowedPairs.map(pair => `${pair.prepop_id}:${pair.refill_id}`))
 	: null)
@@ -60,14 +52,12 @@ const prepopOptions = computed(() => props.options
 	.filter(option => option.meta?.holster_type === 'prepop'
 		&& props.options.some(refill => refill.meta?.holster_type === 'refill'
 			&& String(refill.meta.parent_holster_id ?? '') === option.key
-			&& (!allowedPairKeys.value || allowedPairKeys.value.has(`${option.key}:${refill.key}`))))
-	.map(option => ({ label: optionLabel(option), value: option.key })))
+			&& (!allowedPairKeys.value || allowedPairKeys.value.has(`${option.key}:${refill.key}`)))))
 
 const refillOptions = (prepopId: string) => props.options
 	.filter(option => option.meta?.holster_type === 'refill'
 		&& String(option.meta.parent_holster_id ?? '') === prepopId
 		&& (!allowedPairKeys.value || allowedPairKeys.value.has(`${prepopId}:${option.key}`)))
-	.map(option => ({ label: optionLabel(option), value: option.key }))
 
 const emitPairs = (pairs: HolsterPairValue[]) => {
 	emit('update:modelValue', props.multiple ? pairs : (pairs[0] ?? emptyPair()))
@@ -96,13 +86,9 @@ const removePair = (index: number) => emitPairs(rows.value.filter((_, pairIndex)
 			class="grid gap-3 border-b border-default pb-3 last:border-b-0 last:pb-0 sm:grid-cols-[minmax(0,1fr)_minmax(0,1fr)_auto]"
 		>
 			<UFormField :label="t('groups.activities.application.holsters.prepop')">
-				<USelectMenu
+				<HolsterSelectMenu
 					:model-value="pair.prepop_id || undefined"
-					:items="prepopOptions"
-					value-key="value"
-					size="lg"
-					search-input
-					class="w-full"
+					:options="prepopOptions"
 					:disabled="disabled"
 					:placeholder="t('groups.activities.application.holsters.prepop_placeholder')"
 					@update:model-value="updatePair(index, 'prepop_id', $event)"
@@ -110,13 +96,9 @@ const removePair = (index: number) => emitPairs(rows.value.filter((_, pairIndex)
 			</UFormField>
 
 			<UFormField :label="t('groups.activities.application.holsters.refill')">
-				<USelectMenu
+				<HolsterSelectMenu
 					:model-value="pair.refill_id || undefined"
-					:items="refillOptions(pair.prepop_id)"
-					value-key="value"
-					size="lg"
-					search-input
-					class="w-full"
+					:options="refillOptions(pair.prepop_id)"
 					:disabled="disabled || !pair.prepop_id"
 					:placeholder="t('groups.activities.application.holsters.refill_placeholder')"
 					@update:model-value="updatePair(index, 'refill_id', $event)"

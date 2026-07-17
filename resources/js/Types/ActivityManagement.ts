@@ -92,6 +92,7 @@ export type ActivityDetails = {
 	} | null
 	slot_count: number
 	bench_slot_count: number
+	fill_in_slot_count: number
 	application_count: number
 	pending_application_count: number
 	progress_milestone_count: number
@@ -109,6 +110,7 @@ export type ActivityManagementPatch = {
 	type?: "reload"
 	reason?: string
 	updated_slots?: ActivitySlot[]
+	removed_slot_ids?: number[]
 	updated_slot_composition_hints?: Array<{
 		slot_id: number
 		composition_hints: ActivitySlotCompositionHint[]

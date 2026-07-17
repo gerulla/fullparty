@@ -219,6 +219,7 @@ class ActivityFactory extends Factory
 
             for ($position = 1; $position <= $size; $position++) {
                 $slot = $activity->slots()->create([
+                    'slot_kind' => ActivitySlot::SLOT_KIND_ROSTER,
                     'group_key' => $groupKey,
                     'group_label' => $groupLabel,
                     'slot_key' => sprintf('%s-slot-%d', $groupKey, $position),

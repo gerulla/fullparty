@@ -40,6 +40,34 @@ class GroupBozjaHolsterController extends Controller
         return (new BozjaHolsterResource($bozjaHolster->refresh()->load('items')))->response();
     }
 
+    public function duplicate(Group $group, BozjaHolster $bozjaHolster): JsonResponse
+    {
+        $this->assertCanManageHolsters($group);
+        $this->assertBelongsToGroup($group, $bozjaHolster);
+
+        $bozjaHolster->loadMissing('items');
+
+        $clone = DB::transaction(function () use ($bozjaHolster): BozjaHolster {
+            $clone = $bozjaHolster->replicate([
+                'is_default',
+            ]);
+
+            $clone->name = $this->cloneLocalizedName($bozjaHolster->name);
+            $clone->is_default = false;
+            $clone->save();
+
+            $clone->items()->sync($bozjaHolster->items->mapWithKeys(fn ($item) => [
+                (int) $item->id => ['quantity' => (int) $item->pivot->quantity],
+            ]));
+
+            return $clone;
+        });
+
+        return (new BozjaHolsterResource($clone->load('items')))
+            ->response()
+            ->setStatusCode(Response::HTTP_CREATED);
+    }
+
     public function updateStatus(Request $request, Group $group, BozjaHolster $bozjaHolster): JsonResponse
     {
         $this->assertCanManageHolsters($group);
@@ -93,6 +121,23 @@ class GroupBozjaHolsterController extends Controller
         $holster->items()->sync(collect($items)->mapWithKeys(fn (array $item) => [
             (int) $item['id'] => ['quantity' => (int) $item['quantity']],
         ]));
+    }
+
+    /**
+     * @param  array<string, mixed>|null  $name
+     * @return array<string, string>
+     */
+    private function cloneLocalizedName(?array $name): array
+    {
+        $localizedName = collect($name ?? ['en' => 'Untitled Holster'])
+            ->map(fn (mixed $value) => filled($value) ? sprintf('%s Copy', (string) $value) : '')
+            ->all();
+
+        if (blank($localizedName['en'] ?? null)) {
+            $localizedName['en'] = 'Untitled Holster Copy';
+        }
+
+        return $localizedName;
     }
 
     private function assertBelongsToGroup(Group $group, BozjaHolster $holster): void

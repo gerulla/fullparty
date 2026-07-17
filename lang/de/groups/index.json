@@ -92,6 +92,9 @@
                 "hide_refills": "Nachfüllungen ausblenden",
                 "no_actions": "Keine Kommandos hinzugefügt.",
                 "open_editor": "Editor öffnen",
+                "duplicate": "Duplizieren",
+                "duplicated": "Holster dupliziert",
+                "duplicate_failed": "Das Holster konnte nicht dupliziert werden.",
                 "deleted": "Holster gelöscht",
                 "delete_failed": "Das Holster konnte nicht gelöscht werden.",
                 "delete_modal": {

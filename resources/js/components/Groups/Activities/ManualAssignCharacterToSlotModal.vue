@@ -5,7 +5,7 @@ import { usePage } from "@inertiajs/vue3";
 import { localizedValue } from "@/utils/localizedValue";
 import type { LocalizedText } from "@/Types/Common";
 import type { ManualAssignmentCharacter, QueueFilterField } from "@/Types/ActivityQueue";
-import type { ActivitySlot } from "@/Types/ActivityRoster";
+import type { ActivityFillInPartyOption, ActivitySlot } from "@/Types/ActivityRoster";
 import type { ActivitySlotFieldSelection, HolsterPairValue } from "@/Types/ActivityHolsters";
 import HolsterPairSelector from "@/components/Groups/Activities/HolsterPairSelector.vue";
 
@@ -14,6 +14,7 @@ const props = defineProps<{
 	slot: ActivitySlot | null
 	characters: ManualAssignmentCharacter[]
 	slotFieldDefinitions: QueueFilterField[]
+	fillInPartyOptions: ActivityFillInPartyOption[]
 	isSubmitting?: boolean
 	initialCharacterId?: number | null
 	lockCharacter?: boolean
@@ -21,7 +22,7 @@ const props = defineProps<{
 
 const emit = defineEmits<{
 	"update:open": [value: boolean]
-	confirm: [payload: { characterId: number, slotId: number, fieldValues: Record<string, ActivitySlotFieldSelection>, sourceSlotId?: number | null }]
+	confirm: [payload: { characterId: number, slotId: number, fieldValues: Record<string, ActivitySlotFieldSelection>, filledGroupKey?: string | null, sourceSlotId?: number | null }]
 }>()
 
 const { t, locale } = useI18n()
@@ -29,6 +30,7 @@ const page = usePage()
 const fallbackLocale = computed(() => String(page.props.locale?.fallback ?? "en"))
 const selectedCharacterId = ref<number | null>(null)
 const selections = ref<Record<string, ActivitySlotFieldSelection>>({})
+const selectedFilledGroupKey = ref<string | null>(null)
 
 const isOpen = computed({
 	get: () => props.open,
@@ -38,6 +40,13 @@ const isOpen = computed({
 const localizedTextValue = (value: LocalizedText, fallback: string) => (
 	localizedValue(value, locale.value, fallbackLocale.value) || fallback
 )
+
+const isFillInSlot = computed(() => Boolean(props.slot?.is_fill_in))
+const fillInPartyItems = computed(() => props.fillInPartyOptions.map((option) => ({
+	label: localizedTextValue(option.label, option.key),
+	value: option.key,
+})))
+const hasFilledPartySelection = computed(() => !isFillInSlot.value || Boolean(selectedFilledGroupKey.value))
 
 const selectedCharacter = computed(() => (
 	props.characters.find((character) => character.id === selectedCharacterId.value) ?? null
@@ -97,7 +106,7 @@ const hasCompatibleOptions = computed(() => targetFieldDefinitions.value.every((
 )))
 
 const canSubmit = computed(() => {
-	if (!props.slot || !selectedCharacter.value || !hasCompatibleOptions.value) {
+	if (!props.slot || !selectedCharacter.value || !hasCompatibleOptions.value || !hasFilledPartySelection.value) {
 		return false
 	}
 
@@ -176,6 +185,19 @@ watch(
 )
 
 watch(
+	() => [props.open, props.slot?.id, props.fillInPartyOptions.length] as const,
+	() => {
+		if (!props.open || !props.slot?.is_fill_in) {
+			selectedFilledGroupKey.value = null
+			return
+		}
+
+		selectedFilledGroupKey.value = props.slot.filled_group_key ?? props.fillInPartyOptions[0]?.key ?? null
+	},
+	{ immediate: true },
+)
+
+watch(
 	() => [props.open, selectedCharacterId.value, props.slot?.id] as const,
 	() => {
 		if (!props.open) {
@@ -247,6 +269,12 @@ const updateSelectedCharacter = (value: string | number | null | undefined) => {
 	selectedCharacterId.value = typeof value === "number" ? value : Number(value)
 }
 
+const updateSelectedFilledGroupKey = (value: string | number | null | undefined) => {
+	selectedFilledGroupKey.value = value === null || value === undefined || value === ""
+		? null
+		: String(value)
+}
+
 const submit = () => {
 	if (!props.slot || !selectedCharacter.value || !canSubmit.value) {
 		return
@@ -256,6 +284,7 @@ const submit = () => {
 		characterId: selectedCharacter.value.id,
 		slotId: props.slot.id,
 		fieldValues: selections.value,
+		filledGroupKey: isFillInSlot.value ? selectedFilledGroupKey.value : null,
 	})
 }
 </script>
@@ -307,6 +336,22 @@ const submit = () => {
 						:disabled="lockCharacter"
 						:placeholder="t('groups.activities.management.manual_assignment.select_character')"
 						@update:model-value="updateSelectedCharacter"
+					/>
+				</UFormField>
+
+				<UFormField
+					v-if="isFillInSlot"
+					:label="t('groups.activities.management.roster.fill_ins.filled_party')"
+				>
+					<USelectMenu
+						:model-value="selectedFilledGroupKey ?? ''"
+						:items="fillInPartyItems"
+						value-key="value"
+						label-key="label"
+						size="lg"
+						class="w-full"
+						:disabled="isSubmitting"
+						@update:model-value="updateSelectedFilledGroupKey"
 					/>
 				</UFormField>
 

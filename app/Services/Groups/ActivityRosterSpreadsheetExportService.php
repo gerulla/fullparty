@@ -20,6 +20,7 @@ class ActivityRosterSpreadsheetExportService
 
     public function __construct(
         private readonly ActivitySlotBench $slotBench,
+        private readonly ActivitySlotKind $slotKind,
         private readonly ActivityRosterSummaryPresetBuilder $summaryPresetBuilder,
     ) {}
 
@@ -55,7 +56,7 @@ class ActivityRosterSpreadsheetExportService
 
         $sortedSlots = $activity->slots->sortBy('sort_order')->values();
         $mainGroups = $sortedSlots
-            ->reject(fn (ActivitySlot $slot) => $this->slotBench->isBench($slot))
+            ->filter(fn (ActivitySlot $slot) => $this->slotKind->isMainRoster($slot))
             ->groupBy(fn (ActivitySlot $slot) => $slot->group_key)
             ->map(fn (Collection $slots, string $groupKey) => $this->buildGroup($groupKey, $slots->values()))
             ->values();

@@ -8,8 +8,12 @@ class ActivitySlotBench
 {
     public const GROUP_KEY = 'bench';
 
+    public function __construct(
+        private readonly ActivitySlotKind $slotKind,
+    ) {}
+
     public function isBench(ActivitySlot $slot): bool
     {
-        return $slot->group_key === self::GROUP_KEY;
+        return $this->slotKind->isBench($slot);
     }
 }

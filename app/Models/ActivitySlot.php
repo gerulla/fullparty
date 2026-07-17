@@ -11,6 +11,12 @@ class ActivitySlot extends Model
 {
     use HasFactory;
 
+    public const SLOT_KIND_ROSTER = 'roster';
+
+    public const SLOT_KIND_BENCH = 'bench';
+
+    public const SLOT_KIND_FILL_IN = 'fill_in';
+
     public const DESIGNATION_HOST = 'host';
 
     public const DESIGNATION_RAID_LEADER = 'raid_leader';
@@ -22,8 +28,11 @@ class ActivitySlot extends Model
 
     protected $fillable = [
         'activity_id',
+        'slot_kind',
         'group_key',
         'group_label',
+        'filled_group_key',
+        'filled_group_label',
         'slot_key',
         'slot_label',
         'position_in_group',
@@ -36,6 +45,7 @@ class ActivitySlot extends Model
 
     protected $casts = [
         'group_label' => 'array',
+        'filled_group_label' => 'array',
         'slot_label' => 'array',
         'is_host' => 'boolean',
         'is_raid_leader' => 'boolean',

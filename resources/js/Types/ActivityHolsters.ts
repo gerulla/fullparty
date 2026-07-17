@@ -7,6 +7,13 @@ export type HolsterPairValue = {
 
 export type ActivitySlotFieldSelection = string | string[] | HolsterPairValue
 
+export type HolsterContentItem = {
+	key: string
+	label: LocalizedText
+	icon_url?: string | null
+	quantity: number
+}
+
 export type HolsterPairOption = {
 	key: string
 	label: LocalizedText
@@ -14,5 +21,6 @@ export type HolsterPairOption = {
 		holster_type?: 'prepop' | 'refill' | null
 		parent_holster_id?: number | string | null
 		role?: string | null
+		items?: HolsterContentItem[]
 	} | null
 }

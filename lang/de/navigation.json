@@ -15,6 +15,8 @@
         "members": "Mitglieder",
         "schedule": "Zeitplan",
         "audit": "Audit-Log",
+        "tools": "Werkzeuge",
+        "raid_planner": "RaidPlanner",
         "admin": "Admin",
         "character_definitions": "Charakterdaten",
         "admin_audit_log": "Audit-Log",

@@ -98,7 +98,7 @@ const canSelfAssign = computed(() => (
 	props.permissions.can_self_assign
 	&& !isArchivedActivityStatus(currentActivity.value.status)
 ));
-const mainSlots = computed(() => currentActivity.value.slots.filter((slot) => !slot.is_bench));
+const mainSlots = computed(() => currentActivity.value.slots.filter((slot) => !slot.is_bench && !slot.is_fill_in));
 const benchSlots = computed(() => currentActivity.value.slots.filter((slot) => slot.is_bench));
 const assignedMainSlotCount = computed(() => mainSlots.value.filter((slot) => slot.assigned_character_id !== null).length);
 const viewerAssignedSlot = computed(() => currentActivity.value.slots.find((slot) => (

@@ -89,6 +89,7 @@ class GroupActivitySlotAssignmentController extends Controller
 
         $targetPreviousCharacterId = $slot->assigned_character_id;
         $removedQueueApplicationIds = [];
+        $removedSlotIds = [];
         $restoredQueueApplication = null;
         $queueApplicationSyncIds = [];
 
@@ -165,6 +166,20 @@ class GroupActivitySlotAssignmentController extends Controller
             );
         }
 
+        if (
+            $sourceSlot
+            && (int) $sourceSlot->id !== (int) $slot->id
+            && $sourceSlot->slot_kind === ActivitySlot::SLOT_KIND_FILL_IN
+        ) {
+            $sourceSlot->refresh();
+
+            if ($sourceSlot->assigned_character_id === null) {
+                $removedSlotIds[] = (int) $sourceSlot->id;
+                $fillInSlotService->delete($activity, $sourceSlot);
+                $sourceSlot = null;
+            }
+        }
+
         $slot->load(['assignedCharacter', 'fieldValues', 'assignments']);
         $updatedSlots = [$slotSerializer->serialize($slot)];
 
@@ -204,6 +219,7 @@ class GroupActivitySlotAssignmentController extends Controller
 
         $activityManagementRealtimeService->broadcastPatch($activity, [
             'updated_slots' => $updatedSlots,
+            'removed_slot_ids' => array_values(array_unique($removedSlotIds)),
             'pending_application_count' => $pendingApplicationCount,
             'queue_application_sync_ids' => array_values(array_unique($queueApplicationSyncIds)),
             'queue_application_remove_ids' => array_values(array_unique($removedQueueApplicationIds)),
@@ -212,6 +228,7 @@ class GroupActivitySlotAssignmentController extends Controller
         return response()->json([
             'slot' => $slotSerializer->serialize($slot),
             'slots' => $updatedSlots,
+            'removed_slot_ids' => array_values(array_unique($removedSlotIds)),
             'pending_application_count' => $pendingApplicationCount,
             'queue_application_remove_ids' => array_values(array_unique($removedQueueApplicationIds)),
             'restored_queue_application' => $restoredQueueApplication,
@@ -227,6 +244,11 @@ class GroupActivitySlotAssignmentController extends Controller
             || (
                 $application->status === ActivityApplication::STATUS_APPROVED
                 && (int) $application->selected_character_id === (int) $slot->assigned_character_id
+            )
+            || (
+                $application->status === ActivityApplication::STATUS_APPROVED
+                && $sourceSlot !== null
+                && (int) $application->selected_character_id === (int) $sourceSlot->assigned_character_id
             )
             || (
                 $application->status === ActivityApplication::STATUS_ON_BENCH

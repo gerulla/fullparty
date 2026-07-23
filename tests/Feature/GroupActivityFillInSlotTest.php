@@ -87,6 +87,19 @@ function createFillInSlotThroughEndpoint(object $testCase, User $owner, Group $g
         ->firstOrFail();
 }
 
+function createFillInBenchSlot(Activity $activity): ActivitySlot
+{
+    return $activity->slots()->create([
+        'slot_kind' => ActivitySlot::SLOT_KIND_BENCH,
+        'group_key' => 'bench',
+        'group_label' => ['en' => 'Bench'],
+        'slot_key' => sprintf('bench-slot-%d', ((int) $activity->slots()->where('slot_kind', ActivitySlot::SLOT_KIND_BENCH)->count()) + 1),
+        'slot_label' => ['en' => 'Bench 1'],
+        'position_in_group' => ((int) $activity->slots()->where('slot_kind', ActivitySlot::SLOT_KIND_BENCH)->max('position_in_group')) + 1,
+        'sort_order' => ((int) $activity->slots()->max('sort_order')) + 1,
+    ]);
+}
+
 function createFillInGroupMemberCharacter(Group $group): array
 {
     $user = User::factory()->create();
@@ -249,6 +262,140 @@ it('assigns an existing application to a fill-in slot', function () {
 
     expect($fillInSlot->refresh()->assigned_character_id)->toBe($character->id)
         ->and($fillInSlot->filled_group_key)->toBe('party-b')
+        ->and($application->refresh()->status)->toBe(ActivityApplication::STATUS_APPROVED);
+
+    $this->assertDatabaseHas('activity_slot_assignments', [
+        'activity_id' => $activity->id,
+        'activity_slot_id' => $fillInSlot->id,
+        'character_id' => $character->id,
+        'application_id' => $application->id,
+        'attendance_status' => ActivitySlotAssignment::STATUS_ASSIGNED,
+    ]);
+});
+
+it('moves application fill-in assignments to bench and removes the source fill-in slot', function () {
+    Event::fake([ActivityManagementUpdated::class]);
+    extract(createFillInActivitySetup());
+    $fillInSlot = createFillInSlotThroughEndpoint($this, $owner, $group, $activity);
+    $benchSlot = createFillInBenchSlot($activity);
+    $applicant = User::factory()->create();
+    $character = Character::factory()->primary()->create([
+        'user_id' => $applicant->id,
+    ]);
+    $application = ActivityApplication::factory()->create([
+        'activity_id' => $activity->id,
+        'user_id' => $applicant->id,
+        'selected_character_id' => $character->id,
+        'status' => ActivityApplication::STATUS_PENDING,
+    ]);
+
+    $this->actingAs($owner)
+        ->postJson(route('groups.dashboard.activities.slot-assignments.store', [
+            'group' => $group->slug,
+            'activity' => $activity->id,
+            'slot' => $fillInSlot->id,
+        ]), [
+            'application_id' => $application->id,
+            'filled_group_key' => 'party-b',
+            'field_values' => [],
+            'expected_slot_state_token' => activity_slot_state_token($fillInSlot),
+        ])
+        ->assertOk();
+
+    $assignedFillInSlot = $fillInSlot->fresh(['activity.slotAssignments', 'assignedCharacter', 'fieldValues', 'assignments']);
+
+    $this->actingAs($owner)
+        ->postJson(route('groups.dashboard.activities.slot-assignments.store', [
+            'group' => $group->slug,
+            'activity' => $activity->id,
+            'slot' => $benchSlot->id,
+        ]), [
+            'application_id' => $application->id,
+            'field_values' => [],
+            'source_slot_id' => $fillInSlot->id,
+            'expected_slot_state_token' => activity_slot_state_token($benchSlot),
+            'expected_source_slot_state_token' => activity_slot_state_token($assignedFillInSlot),
+        ])
+        ->assertOk()
+        ->assertJsonPath('slot.id', $benchSlot->id)
+        ->assertJsonPath('slot.is_bench', true)
+        ->assertJsonPath('slot.assigned_character_id', $character->id)
+        ->assertJsonPath('removed_slot_ids.0', $fillInSlot->id);
+
+    expect($benchSlot->refresh()->assigned_character_id)->toBe($character->id)
+        ->and($application->refresh()->status)->toBe(ActivityApplication::STATUS_ON_BENCH);
+
+    $this->assertDatabaseMissing('activity_slots', [
+        'id' => $fillInSlot->id,
+    ]);
+
+    $this->assertDatabaseHas('activity_slot_assignments', [
+        'activity_id' => $activity->id,
+        'activity_slot_id' => $benchSlot->id,
+        'character_id' => $character->id,
+        'application_id' => $application->id,
+        'attendance_status' => ActivitySlotAssignment::STATUS_ASSIGNED,
+    ]);
+
+    Event::assertDispatched(
+        ActivityManagementUpdated::class,
+        fn (ActivityManagementUpdated $event): bool => in_array($fillInSlot->id, $event->patch['removed_slot_ids'] ?? [], true)
+    );
+});
+
+it('moves benched application assignments into fill-in slots', function () {
+    Event::fake([ActivityManagementUpdated::class]);
+    extract(createFillInActivitySetup());
+    $benchSlot = createFillInBenchSlot($activity);
+    $applicant = User::factory()->create();
+    $character = Character::factory()->primary()->create([
+        'user_id' => $applicant->id,
+    ]);
+    $application = ActivityApplication::factory()->create([
+        'activity_id' => $activity->id,
+        'user_id' => $applicant->id,
+        'selected_character_id' => $character->id,
+        'status' => ActivityApplication::STATUS_PENDING,
+    ]);
+
+    $this->actingAs($owner)
+        ->postJson(route('groups.dashboard.activities.slot-assignments.store', [
+            'group' => $group->slug,
+            'activity' => $activity->id,
+            'slot' => $benchSlot->id,
+        ]), [
+            'application_id' => $application->id,
+            'field_values' => [],
+            'expected_slot_state_token' => activity_slot_state_token($benchSlot),
+        ])
+        ->assertOk();
+
+    $assignedBenchSlot = $benchSlot->fresh(['activity.slotAssignments', 'assignedCharacter', 'fieldValues', 'assignments']);
+    $fillInSlot = createFillInSlotThroughEndpoint($this, $owner, $group, $activity);
+
+    $this->actingAs($owner)
+        ->postJson(route('groups.dashboard.activities.slot-assignments.store', [
+            'group' => $group->slug,
+            'activity' => $activity->id,
+            'slot' => $fillInSlot->id,
+        ]), [
+            'application_id' => $application->id,
+            'filled_group_key' => 'party-a',
+            'field_values' => [],
+            'source_slot_id' => $benchSlot->id,
+            'expected_slot_state_token' => activity_slot_state_token($fillInSlot),
+            'expected_source_slot_state_token' => activity_slot_state_token($assignedBenchSlot),
+        ])
+        ->assertOk()
+        ->assertJsonPath('slot.id', $fillInSlot->id)
+        ->assertJsonPath('slot.is_fill_in', true)
+        ->assertJsonPath('slot.assigned_character_id', $character->id)
+        ->assertJsonPath('slot.filled_group_key', 'party-a')
+        ->assertJsonPath('removed_slot_ids', []);
+
+    expect($fillInSlot->refresh()->assigned_character_id)->toBe($character->id)
+        ->and($fillInSlot->filled_group_key)->toBe('party-a')
+        ->and($benchSlot->refresh()->assigned_character_id)->toBeNull()
         ->and($application->refresh()->status)->toBe(ActivityApplication::STATUS_APPROVED);
 
     $this->assertDatabaseHas('activity_slot_assignments', [

@@ -9,6 +9,14 @@ return [
                 'missing_application_cancelled' => 'Ce joueur a annulé son inscription, l\'entrée manquante a donc été retirée.',
                 'party_finder_archived' => 'Les informations de l\'outil de mission ne peuvent pas être publiées pour un run terminé ou annulé.',
             ],
+            'queue' => [
+                'modal' => [
+                    'character_refresh_failed' => 'Les données du personnage n\'ont pas pu être actualisées pour le moment.',
+                    'character_refresh_not_found' => 'Ce personnage est introuvable sur Lodestone.',
+                    'character_refresh_unavailable' => 'Cette candidature n\'a aucun personnage à actualiser.',
+                    'character_refresh_cooldown' => 'Ce personnage a été vérifié récemment. Réessayez dans quelques minutes.',
+                ],
+            ],
         ],
     ],
     'membership_applications' => [

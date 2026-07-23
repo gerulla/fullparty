@@ -18,8 +18,11 @@ use App\Models\RaidPosition;
 use App\Models\UserActivityApplicationDefault;
 use App\Services\Groups\ActivityApplicationCharacterRefreshService;
 use App\Services\Groups\ActivityApplicationWithdrawalService;
+use App\Services\Groups\ActivityFillInSlotService;
 use App\Services\Groups\ActivityManagementRealtimeService;
-use App\Services\Groups\ActivitySlotBench;
+use App\Services\Groups\ActivitySlotAttendanceService;
+use App\Services\Groups\ActivitySlotDesignationService;
+use App\Services\Groups\ActivitySlotSerializer;
 use App\Services\Groups\BozjaHolsterPairService;
 use App\Services\Groups\GroupActivityAuditService;
 use App\Services\Lodestone\LodestoneCharacterSearchService;
@@ -54,6 +57,10 @@ class GroupActivityApplicationController extends Controller
         private readonly ActivityApplicationCharacterRefreshService $applicationCharacterRefreshService,
         private readonly ActivityManagementRealtimeService $activityManagementRealtimeService,
         private readonly BozjaHolsterPairService $bozjaHolsterPairService,
+        private readonly ActivityFillInSlotService $fillInSlotService,
+        private readonly ActivitySlotAttendanceService $slotAttendanceService,
+        private readonly ActivitySlotDesignationService $slotDesignationService,
+        private readonly ActivitySlotSerializer $slotSerializer,
     ) {}
 
     public function show(Request $request, Group $group, Activity $activity, ?string $secretKey = null): Response
@@ -425,10 +432,17 @@ class GroupActivityApplicationController extends Controller
         }
 
         if (isset($validated['selected_character_id'])) {
-            $this->ensureSelectedCharacterIsNotAlreadyAssigned($activity, (int) $validated['selected_character_id']);
+            $this->ensureSelectedCharacterIsNotAlreadyAssigned($activity, (int) $validated['selected_character_id'], $application);
         }
 
-        $applicationId = DB::transaction(function () use ($application, $validated) {
+        $releasedAssignment = [
+            'slot' => null,
+            'removed_slot_ids' => [],
+        ];
+
+        $applicationId = DB::transaction(function () use ($activity, $application, $validated, $user, &$releasedAssignment) {
+            $releasedAssignment = $this->releaseAssignedApplicationSlotForReview($activity, $application, $user);
+
             $application->update([
                 'selected_character_id' => $validated['selected_character_id'] ?? null,
                 'applicant_lodestone_id' => $validated['applicant']['lodestone_id'],
@@ -456,7 +470,12 @@ class GroupActivityApplicationController extends Controller
             $application->fresh(['activity.group', 'selectedCharacter', 'user']),
             $user,
         );
-        $this->broadcastApplicantQueueChanged($activity, $application->fresh(['selectedCharacter', 'user']));
+        $this->broadcastApplicantQueueChanged(
+            activity: $activity,
+            application: $application->fresh(['selectedCharacter', 'user']),
+            updatedSlot: $releasedAssignment['slot'],
+            removedSlotIds: $releasedAssignment['removed_slot_ids'],
+        );
 
         $request->session()->put($this->confirmationSessionKey($activity->id), [
             'application_id' => $applicationId,
@@ -471,6 +490,8 @@ class GroupActivityApplicationController extends Controller
         Activity $activity,
         ?ActivityApplication $application = null,
         int $newApplicationCount = 0,
+        ?array $updatedSlot = null,
+        array $removedSlotIds = [],
     ): void {
         $pendingApplicationCount = $activity->applications()
             ->where('status', ActivityApplication::STATUS_PENDING)
@@ -479,7 +500,7 @@ class GroupActivityApplicationController extends Controller
             ? [$this->applicationDisplayName($application)]
             : [];
 
-        $this->activityManagementRealtimeService->broadcastPatch($activity, [
+        $patch = [
             'pending_application_count' => $pendingApplicationCount,
             'queue_invalidate' => true,
             'queue_change_reason' => $newApplicationCount > 0 ? 'application_created' : 'application_updated',
@@ -488,7 +509,17 @@ class GroupActivityApplicationController extends Controller
                 ? [(int) $application->id]
                 : [],
             'queue_updated_application_names' => $updatedApplicationNames,
-        ]);
+        ];
+
+        if ($updatedSlot) {
+            $patch['updated_slots'] = [$updatedSlot];
+        }
+
+        if ($removedSlotIds !== []) {
+            $patch['removed_slot_ids'] = array_values(array_unique($removedSlotIds));
+        }
+
+        $this->activityManagementRealtimeService->broadcastPatch($activity, $patch);
     }
 
     private function applicationDisplayName(ActivityApplication $application): string
@@ -538,7 +569,13 @@ class GroupActivityApplicationController extends Controller
             abort(422, 'An application already exists for this character.');
         }
 
-        DB::transaction(function () use ($application, $validated) {
+        $releasedAssignment = [
+            'slot' => null,
+            'removed_slot_ids' => [],
+        ];
+
+        DB::transaction(function () use ($activity, $application, $validated, &$releasedAssignment) {
+            $releasedAssignment = $this->releaseAssignedApplicationSlotForReview($activity, $application);
             $selectedCharacter = $this->resolveGuestApplicantCharacter($validated['applicant']);
 
             $application->update([
@@ -564,7 +601,12 @@ class GroupActivityApplicationController extends Controller
             $application->fresh(['activity.group', 'selectedCharacter', 'user']),
             null,
         );
-        $this->broadcastApplicantQueueChanged($activity, $application->fresh(['selectedCharacter', 'user']));
+        $this->broadcastApplicantQueueChanged(
+            activity: $activity,
+            application: $application->fresh(['selectedCharacter', 'user']),
+            updatedSlot: $releasedAssignment['slot'],
+            removedSlotIds: $releasedAssignment['removed_slot_ids'],
+        );
 
         return redirect()->route('groups.activities.application.status', [
             ...$this->activityAttendeeRouteParameters($group, $activity, $secretKey),
@@ -1149,27 +1191,73 @@ class GroupActivityApplicationController extends Controller
     private function applicationIsEditable(Activity $activity, ActivityApplication $application): bool
     {
         return $activity->acceptsApplications()
-            && in_array($application->status, ActivityApplication::ACTIVE_STATUSES, true)
-            && ! $this->applicationIsAssignedToRoster($activity, $application);
+            && in_array($application->status, ActivityApplication::ACTIVE_STATUSES, true);
     }
 
-    private function applicationIsAssignedToRoster(Activity $activity, ActivityApplication $application): bool
-    {
-        if (! $application->selected_character_id) {
-            return false;
+    /**
+     * @return array{slot: array<string, mixed>|null, removed_slot_ids: array<int, int>}
+     */
+    private function releaseAssignedApplicationSlotForReview(
+        Activity $activity,
+        ActivityApplication $application,
+        mixed $actor = null,
+    ): array {
+        $slot = $this->assignedSlotForApplication($activity, $application, lockForUpdate: true);
+
+        if (! $slot) {
+            return [
+                'slot' => null,
+                'removed_slot_ids' => [],
+            ];
         }
 
-        return $activity->slots()
-            ->where('assigned_character_id', $application->selected_character_id)
-            ->where('group_key', '!=', ActivitySlotBench::GROUP_KEY)
-            ->exists();
+        $isFillInSlot = $slot->slot_kind === ActivitySlot::SLOT_KIND_FILL_IN;
+        $characterId = (int) $slot->assigned_character_id;
+
+        $slot->update([
+            'assigned_character_id' => null,
+            'assigned_by_user_id' => null,
+        ]);
+
+        foreach ($slot->fieldValues as $fieldValue) {
+            $fieldValue->update([
+                'value' => null,
+            ]);
+        }
+
+        $this->slotAttendanceService->endActiveAssignment($activity, $characterId);
+        $this->slotDesignationService->clearInvalidDesignations([$slot], $actor);
+
+        if ($isFillInSlot) {
+            $removedSlotIds = [(int) $slot->id];
+            $this->fillInSlotService->delete($activity, $slot);
+
+            return [
+                'slot' => null,
+                'removed_slot_ids' => $removedSlotIds,
+            ];
+        }
+
+        $slot->load(['assignedCharacter', 'fieldValues', 'assignments']);
+
+        return [
+            'slot' => $this->slotSerializer->serialize($slot),
+            'removed_slot_ids' => [],
+        ];
     }
 
-    private function ensureSelectedCharacterIsNotAlreadyAssigned(Activity $activity, int $characterId): void
-    {
+    private function ensureSelectedCharacterIsNotAlreadyAssigned(
+        Activity $activity,
+        int $characterId,
+        ?ActivityApplication $application = null,
+    ): void {
+        $assignedSlot = $application
+            ? $this->assignedSlotForApplication($activity, $application)
+            : null;
+
         $assignedSlotExists = $activity->slots()
             ->where('assigned_character_id', $characterId)
-            ->where('group_key', '!=', ActivitySlotBench::GROUP_KEY)
+            ->when($assignedSlot, fn ($query) => $query->where('id', '!=', $assignedSlot->id))
             ->exists();
 
         if (! $assignedSlotExists) {
@@ -1179,6 +1267,29 @@ class GroupActivityApplicationController extends Controller
         throw ValidationException::withMessages([
             'selected_character_id' => 'This character is already assigned to this run.',
         ]);
+    }
+
+    private function assignedSlotForApplication(
+        Activity $activity,
+        ActivityApplication $application,
+        bool $lockForUpdate = false,
+    ): ?ActivitySlot {
+        if (! $application->selected_character_id) {
+            return null;
+        }
+
+        if (! in_array($application->status, [
+            ActivityApplication::STATUS_APPROVED,
+            ActivityApplication::STATUS_ON_BENCH,
+        ], true)) {
+            return null;
+        }
+
+        return $activity->slots()
+            ->with(['assignedCharacter', 'fieldValues', 'assignments'])
+            ->where('assigned_character_id', $application->selected_character_id)
+            ->when($lockForUpdate, fn ($query) => $query->lockForUpdate())
+            ->first();
     }
 
     private function ensureActivityAcceptsApplications(Activity $activity): void

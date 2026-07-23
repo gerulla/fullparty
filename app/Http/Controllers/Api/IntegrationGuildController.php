@@ -505,6 +505,7 @@ class IntegrationGuildController extends Controller
                 'id' => $slot->id,
                 'group_key' => $slot->group_key,
                 'group_label' => $slot->group_label,
+                // TODO (2026-07-18): Expose filled party metadata for fill-in slots.
                 'slot_key' => $slot->slot_key,
                 'slot_label' => $slot->slot_label,
                 'is_bench' => $slot->group_key === 'bench',

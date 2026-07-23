@@ -9,6 +9,14 @@ return [
                 'missing_application_cancelled' => 'Dieser Spieler hat seine Anmeldung abgebrochen, daher wurde der Fehlend-Eintrag entfernt.',
                 'party_finder_archived' => 'Für einen abgeschlossenen oder abgesagten Run können keine Party-Finder-Infos veröffentlicht werden.',
             ],
+            'queue' => [
+                'modal' => [
+                    'character_refresh_failed' => 'Charakterdaten konnten gerade nicht aktualisiert werden.',
+                    'character_refresh_not_found' => 'Dieser Charakter wurde auf Lodestone nicht gefunden.',
+                    'character_refresh_unavailable' => 'Diese Bewerbung hat keinen Charakter, der aktualisiert werden kann.',
+                    'character_refresh_cooldown' => 'Dieser Charakter wurde kürzlich geprüft. Versuche es in ein paar Minuten erneut.',
+                ],
+            ],
         ],
     ],
     'membership_applications' => [

@@ -7,6 +7,7 @@ use App\Models\ActivityApplicationAnswer;
 use App\Models\ActivitySlot;
 use App\Models\ActivitySlotAssignment;
 use App\Models\ActivityTypeVersion;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
 
 class ActivitySlotApplicationMatchService
@@ -90,11 +91,15 @@ class ActivitySlotApplicationMatchService
             $answerValues = $this->normalizePartyValues($partyMatch->value);
 
             if ($answerValues !== []) {
+                $slotPartyMatches = $this->isBenchSlot($slot)
+                    ? $this->applicationAllowsBench($application->answers)
+                    : in_array('any', $answerValues, true)
+                        || array_intersect($answerValues, $this->slotPartyValues($slot)) !== [];
+
                 $matches->prepend($this->matchPayload(
                     answer: $partyMatch,
                     abbreviation: 'P',
-                    matches: in_array('any', $answerValues, true)
-                        || array_intersect($answerValues, $this->slotPartyValues($slot)) !== [],
+                    matches: $slotPartyMatches,
                 ));
             }
         }
@@ -183,6 +188,26 @@ class ActivitySlotApplicationMatchService
             ->unique()
             ->values()
             ->all();
+    }
+
+    private function applicationAllowsBench(Collection $answers): bool
+    {
+        return $answers
+            ->filter(fn (ActivityApplicationAnswer $answer): bool => Str::contains(Str::lower($answer->question_key), ['standby', 'bench']))
+            ->contains(fn (ActivityApplicationAnswer $answer): bool => $this->truthyAnswer($answer->value));
+    }
+
+    private function truthyAnswer(mixed $value): bool
+    {
+        return collect(is_array($value) ? $value : [$value])
+            ->flatten()
+            ->contains(fn (mixed $entry): bool => in_array(Str::lower(trim((string) $entry)), ['1', 'true', 'yes', 'on'], true));
+    }
+
+    private function isBenchSlot(ActivitySlot $slot): bool
+    {
+        return $slot->slot_kind === ActivitySlot::SLOT_KIND_BENCH
+            || $slot->group_key === ActivitySlotBench::GROUP_KEY;
     }
 
     /**

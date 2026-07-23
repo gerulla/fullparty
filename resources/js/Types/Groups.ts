@@ -576,6 +576,7 @@ export type GroupMemberActivitySummaryRun = {
 export type GroupMemberActivitySummary = {
 	last_group_run: GroupMemberActivitySummaryRun | null
 	last_run: GroupMemberActivitySummaryRun | null
+	recent_runs: GroupMemberActivitySummaryRun[]
 }
 
 export type GroupMemberRecord = {

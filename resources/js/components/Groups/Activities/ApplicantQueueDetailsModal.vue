@@ -624,8 +624,12 @@ watch(isOpen, (open) => {
 										:key="`${answer.key}-${value}`"
 										:color="answerBadgeColor(answer.source, value)"
 										variant="soft"
-										:label="value"
-									/>
+										class="max-w-full whitespace-normal text-left leading-snug"
+									>
+										<span class="min-w-0 break-words [overflow-wrap:anywhere]">
+											{{ value }}
+										</span>
+									</UBadge>
 								</div>
 							</div>
 						</div>

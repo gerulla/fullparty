@@ -5,6 +5,7 @@ use App\Events\XivPluginRunCommandIssued;
 use App\Events\XivPluginRunPartySnapshotUpdated;
 use App\Models\Activity;
 use App\Models\ActivityApplication;
+use App\Models\ActivitySlot;
 use App\Models\ActivitySlotAssignment;
 use App\Models\Character;
 use App\Models\CharacterClass;
@@ -805,6 +806,9 @@ it('returns run details with roster data and moderator access metadata', functio
     ]);
 
     $slot->update([
+        'slot_kind' => ActivitySlot::SLOT_KIND_FILL_IN,
+        'filled_group_key' => 'party-b',
+        'filled_group_label' => ['en' => 'Party B'],
         'assigned_character_id' => $assignedCharacter->id,
         'assigned_by_user_id' => $moderator->id,
         'is_host' => true,
@@ -857,6 +861,11 @@ it('returns run details with roster data and moderator access metadata', functio
         ->assertJsonPath('data.can_moderate', true)
         ->assertJsonPath('data.duration_minutes', 150)
         ->assertJsonPath('data.application_count', 1)
+        ->assertJsonPath('data.roster.slots.0.slot_kind', ActivitySlot::SLOT_KIND_FILL_IN)
+        ->assertJsonPath('data.roster.slots.0.is_fill_in', true)
+        ->assertJsonPath('data.roster.slots.0.is_bench', false)
+        ->assertJsonPath('data.roster.slots.0.filled_group_key', 'party-b')
+        ->assertJsonPath('data.roster.slots.0.filled_group_label.en', 'Party B')
         ->assertJsonPath('data.roster.slots.0.assigned_character.name', 'Giki Chomusuke')
         ->assertJsonPath('data.roster.slots.0.assigned_character.user.name', 'Roster User')
         ->assertJsonPath('data.roster.slots.0.assignment.application_id', null)

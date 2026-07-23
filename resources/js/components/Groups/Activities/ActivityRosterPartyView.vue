@@ -21,6 +21,7 @@ const props = defineProps<{
 	cutSlotIsBench?: boolean | null
 	canReturnToQueue?: boolean
 	canMoveToBench?: boolean
+	canMoveToFillIn?: boolean
 	canMarkMissing?: boolean
 	canCheckIn?: boolean
 	fillInSlots?: ActivitySlot[]
@@ -40,6 +41,7 @@ const emit = defineEmits<{
 	viewApplication: [slotId: number]
 	returnSlotToQueue: [slotId: number]
 	moveSlotToBench: [slotId: number]
+	moveSlotToFillIn: [slotId: number]
 	markSlotMissing: [slotId: number]
 	checkInSlot: [slotId: number]
 	markSlotLate: [slotId: number]
@@ -181,6 +183,7 @@ const hasRosterSections = computed(() => slotGroups.value.length > 0 || canShowF
 					:cut-slot-is-bench="cutSlotIsBench"
 					:can-return-to-queue="canReturnToQueue"
 					:can-move-to-bench="canMoveToBench"
+					:can-move-to-fill-in="canMoveToFillIn"
 					:can-mark-missing="canMarkMissing"
 					:can-check-in="canCheckIn"
 					@drag-start="emit('dragStart', $event)"
@@ -196,6 +199,7 @@ const hasRosterSections = computed(() => slotGroups.value.length > 0 || canShowF
 					@view-application="emit('viewApplication', $event)"
 					@return-slot-to-queue="emit('returnSlotToQueue', $event)"
 					@move-slot-to-bench="emit('moveSlotToBench', $event)"
+					@move-slot-to-fill-in="emit('moveSlotToFillIn', $event)"
 					@mark-slot-missing="emit('markSlotMissing', $event)"
 					@check-in-slot="emit('checkInSlot', $event)"
 					@mark-slot-late="emit('markSlotLate', $event)"
@@ -220,6 +224,7 @@ const hasRosterSections = computed(() => slotGroups.value.length > 0 || canShowF
 			:cut-slot-is-bench="cutSlotIsBench"
 			:can-return-to-queue="canReturnToQueue"
 			:can-move-to-bench="canMoveToBench"
+			:can-move-to-fill-in="canMoveToFillIn"
 			:can-mark-missing="canMarkMissing"
 			:can-check-in="canCheckIn"
 			@create-fill-in-slot="emit('createFillInSlot')"
@@ -236,6 +241,7 @@ const hasRosterSections = computed(() => slotGroups.value.length > 0 || canShowF
 			@view-application="emit('viewApplication', $event)"
 			@return-slot-to-queue="emit('returnSlotToQueue', $event)"
 			@move-slot-to-bench="emit('moveSlotToBench', $event)"
+			@move-slot-to-fill-in="emit('moveSlotToFillIn', $event)"
 			@mark-slot-missing="emit('markSlotMissing', $event)"
 			@check-in-slot="emit('checkInSlot', $event)"
 			@mark-slot-late="emit('markSlotLate', $event)"
@@ -285,6 +291,7 @@ const hasRosterSections = computed(() => slotGroups.value.length > 0 || canShowF
 					:cut-slot-is-bench="cutSlotIsBench"
 					:can-return-to-queue="canReturnToQueue"
 					:can-move-to-bench="canMoveToBench"
+					:can-move-to-fill-in="canMoveToFillIn"
 					:can-mark-missing="canMarkMissing"
 					:can-check-in="canCheckIn"
 					@drag-start="emit('dragStart', $event)"
@@ -300,6 +307,7 @@ const hasRosterSections = computed(() => slotGroups.value.length > 0 || canShowF
 					@view-application="emit('viewApplication', $event)"
 					@return-slot-to-queue="emit('returnSlotToQueue', $event)"
 					@move-slot-to-bench="emit('moveSlotToBench', $event)"
+					@move-slot-to-fill-in="emit('moveSlotToFillIn', $event)"
 					@mark-slot-missing="emit('markSlotMissing', $event)"
 					@check-in-slot="emit('checkInSlot', $event)"
 					@mark-slot-late="emit('markSlotLate', $event)"

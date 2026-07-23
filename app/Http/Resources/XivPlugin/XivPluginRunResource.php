@@ -85,12 +85,17 @@ class XivPluginRunResource extends JsonResource
 
         return [
             'id' => $slot->id,
+            'slot_kind' => $slot->slot_kind,
             'group_key' => $slot->group_key,
             'group_label' => $slot->group_label ?? [],
+            'filled_group_key' => $slot->filled_group_key,
+            'filled_group_label' => $slot->filled_group_label ?? [],
             'slot_key' => $slot->slot_key,
             'slot_label' => $slot->slot_label ?? [],
             'position_in_group' => $slot->position_in_group,
             'sort_order' => $slot->sort_order,
+            'is_bench' => $slot->slot_kind === ActivitySlot::SLOT_KIND_BENCH,
+            'is_fill_in' => $slot->slot_kind === ActivitySlot::SLOT_KIND_FILL_IN,
             'is_host' => $slot->is_host,
             'is_raid_leader' => $slot->is_raid_leader,
             'assigned_character' => $this->character($slot->assignedCharacter),

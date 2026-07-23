@@ -2,11 +2,13 @@
 
 use App\Models\Activity;
 use App\Models\ActivityApplication;
+use App\Models\ActivitySlot;
 use App\Models\ActivitySlotAssignment;
 use App\Models\ActivityType;
 use App\Models\ActivityTypeVersion;
 use App\Models\CharacterClass;
 use App\Models\PhantomJob;
+use App\Services\Groups\ActivitySlotBench;
 use App\Services\Groups\ActivitySlotSerializer;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
@@ -189,4 +191,97 @@ it('serializes dynamic application matches for assigned roster slots', function 
 
     expect(collect($matches)->pluck('abbreviation')->all())->toBe(['P', 'C', 'PJ'])
         ->and(collect($matches)->pluck('matches')->all())->toBe([true, true, false]);
+});
+
+it('treats bench placement as a party match when the application allows standby', function () {
+    $activityType = ActivityType::factory()->create();
+    $activityTypeVersion = ActivityTypeVersion::factory()->create([
+        'activity_type_id' => $activityType->id,
+        'layout_schema' => [
+            'groups' => [[
+                'key' => 'party-a',
+                'label' => ['en' => 'Party A'],
+                'size' => 1,
+            ]],
+        ],
+        'slot_schema' => [],
+        'application_schema' => [
+            [
+                'key' => 'preferred_party',
+                'label' => ['en' => 'Preferred Party'],
+                'type' => 'multi_select',
+                'source' => 'static_options',
+                'options' => [
+                    ['key' => 'party-a', 'label' => ['en' => 'Party A']],
+                    ['key' => 'party-b', 'label' => ['en' => 'Party B']],
+                ],
+            ],
+            [
+                'key' => 'can_be_on_standby',
+                'label' => ['en' => 'Can be on standby?'],
+                'type' => 'checkbox',
+            ],
+        ],
+    ]);
+    $activityType->update(['current_published_version_id' => $activityTypeVersion->id]);
+
+    $activity = Activity::factory()->create([
+        'activity_type_id' => $activityType->id,
+        'activity_type_version_id' => $activityTypeVersion->id,
+    ]);
+    $application = ActivityApplication::factory()->approved()->create([
+        'activity_id' => $activity->id,
+    ]);
+    $application->answers()->delete();
+    $application->answers()->createMany([
+        [
+            'question_key' => 'preferred_party',
+            'question_label' => ['en' => 'Preferred Party'],
+            'question_type' => 'multi_select',
+            'source' => 'static_options',
+            'value' => ['party-a'],
+        ],
+        [
+            'question_key' => 'can_be_on_standby',
+            'question_label' => ['en' => 'Can be on standby?'],
+            'question_type' => 'checkbox',
+            'source' => null,
+            'value' => true,
+        ],
+    ]);
+
+    $benchSlot = $activity->slots()->create([
+        'slot_kind' => ActivitySlot::SLOT_KIND_BENCH,
+        'group_key' => ActivitySlotBench::GROUP_KEY,
+        'group_label' => ['en' => 'Bench'],
+        'slot_key' => 'bench-slot-1',
+        'slot_label' => ['en' => 'Bench 1'],
+        'position_in_group' => 1,
+        'sort_order' => 99,
+        'assigned_character_id' => $application->selected_character_id,
+    ]);
+    ActivitySlotAssignment::query()->create([
+        'activity_id' => $activity->id,
+        'group_id' => $activity->group_id,
+        'activity_slot_id' => $benchSlot->id,
+        'character_id' => $application->selected_character_id,
+        'application_id' => $application->id,
+        'assignment_source' => ActivitySlotAssignment::SOURCE_APPLICATION,
+        'attendance_status' => ActivitySlotAssignment::STATUS_ASSIGNED,
+        'assigned_at' => now(),
+    ]);
+
+    $benchSlot->load([
+        'activity.activityTypeVersion',
+        'assignedCharacter',
+        'compositionHints',
+        'fieldValues',
+        'assignments.application.answers',
+    ]);
+
+    $partyMatch = collect(app(ActivitySlotSerializer::class)->serialize($benchSlot)['application_matches'])
+        ->firstWhere('abbreviation', 'P');
+
+    expect($partyMatch)->not->toBeNull()
+        ->and($partyMatch['matches'])->toBeTrue();
 });

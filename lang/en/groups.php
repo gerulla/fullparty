@@ -9,6 +9,14 @@ return [
                 'missing_application_cancelled' => 'This player cancelled their registration, so the missing entry was removed.',
                 'party_finder_archived' => 'Party Finder info cannot be published for a completed or cancelled run.',
             ],
+            'queue' => [
+                'modal' => [
+                    'character_refresh_failed' => 'Character data could not be refreshed right now.',
+                    'character_refresh_not_found' => 'This character could not be found on Lodestone.',
+                    'character_refresh_unavailable' => 'This application does not have a character that can be refreshed.',
+                    'character_refresh_cooldown' => 'This character was checked recently. Try again in a few minutes.',
+                ],
+            ],
         ],
     ],
     'membership_applications' => [

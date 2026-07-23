@@ -75,7 +75,7 @@ const showApplicationButton = computed(() => (
 	&& (props.permissions.can_apply || props.permissions.can_apply_as_guest)
 	&& !isArchivedActivityStatus(props.activity.status)
 ));
-const mainSlots = computed(() => props.activity.slots.filter((slot) => !slot.is_bench));
+const mainSlots = computed(() => props.activity.slots.filter((slot) => !slot.is_bench && !slot.is_fill_in));
 const benchSlots = computed(() => props.activity.slots.filter((slot) => slot.is_bench));
 const assignedMainSlotCount = computed(() => mainSlots.value.filter((slot) => slot.assigned_character_id !== null).length);
 

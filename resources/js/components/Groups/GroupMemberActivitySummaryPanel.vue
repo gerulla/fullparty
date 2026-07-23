@@ -6,6 +6,8 @@ import { useTimeDisplayMode } from "@/composables/useTimeDisplayMode";
 import { translateCharacterClassName, translatePhantomJobName } from "@/utils/characterJobTranslations";
 import { createDateTimeFormatter } from "@/utils/dateTimeFormat";
 
+const millisecondsPerDay = 24 * 60 * 60 * 1000;
+
 const props = defineProps<{
 	summary: GroupMemberActivitySummary | null
 	loading: boolean
@@ -19,26 +21,16 @@ const emit = defineEmits<{
 const { locale, t } = useI18n();
 const { withDisplayTimeZone } = useTimeDisplayMode();
 
-const sections = computed(() => [
-	{
-		key: "last_group_run",
-		title: t("groups.members.activity_summary.last_group_run"),
-		empty: t("groups.members.activity_summary.empty_group"),
-		run: props.summary?.last_group_run ?? null,
-	},
-	{
-		key: "last_run",
-		title: t("groups.members.activity_summary.last_run"),
-		empty: t("groups.members.activity_summary.empty_any"),
-		run: props.summary?.last_run ?? null,
-	},
-]);
+const recentRuns = computed(() => props.summary?.recent_runs ?? []);
+const recentRunCountLabel = computed(() => t("groups.members.activity_summary.recent_runs_count", {
+	count: recentRuns.value.length,
+}));
 
 const runDisplayName = (run: GroupMemberActivitySummaryRun) => (
 	run.title || run.activity_type_name || t("groups.members.activity_summary.unknown_activity")
 );
 
-const dateSource = (run: GroupMemberActivitySummaryRun) => run.starts_at ?? run.completed_at;
+const dateSource = (run: GroupMemberActivitySummaryRun) => run.completed_at ?? run.starts_at;
 
 const formatDate = (value: string | null) => {
 	if (!value) {
@@ -75,6 +67,36 @@ const formatTime = (value: string | null) => {
 	})).format(date);
 };
 
+const daysAgo = (value: string | null) => {
+	if (!value) {
+		return null;
+	}
+
+	const date = new Date(value);
+
+	if (Number.isNaN(date.getTime())) {
+		return null;
+	}
+
+	const today = new Date();
+	const todayDay = Date.UTC(today.getFullYear(), today.getMonth(), today.getDate());
+	const runDay = Date.UTC(date.getFullYear(), date.getMonth(), date.getDate());
+
+	return Math.max(0, Math.floor((todayDay - runDay) / millisecondsPerDay));
+};
+
+const formatDaysAgo = (value: string | null) => {
+	const days = daysAgo(value);
+
+	if (days === null) {
+		return t("groups.members.roster.not_available");
+	}
+
+	return days === 1
+		? t("groups.members.activity_summary.day_ago")
+		: t("groups.members.activity_summary.days_ago", { count: days });
+};
+
 const characterWorld = (run: GroupMemberActivitySummaryRun) => [
 	run.character.world,
 	run.character.datacenter,
@@ -98,28 +120,17 @@ const phantomJobIconUrl = (run: GroupMemberActivitySummaryRun) => (
 </script>
 
 <template>
-	<div class="border-t border-default bg-muted/5 p-4">
-		<div v-if="loading" class="space-y-4">
-			<div v-for="item in 2" :key="item" class="space-y-4 border border-primary/30 bg-primary/5 p-4">
-				<div class="flex items-center gap-3">
-					<USkeleton class="h-8 w-8" />
-					<USkeleton class="h-4 w-56" />
+	<div class="space-y-4">
+		<div v-if="loading" class="space-y-3">
+			<div v-for="item in 6" :key="item" class="grid gap-3 border border-primary/25 bg-primary/5 p-3 sm:grid-cols-[3.5rem_minmax(0,1fr)_7rem] sm:items-center">
+				<USkeleton class="h-14 w-14" />
+				<div class="space-y-2">
+					<USkeleton class="h-4 w-2/3" />
+					<USkeleton class="h-3 w-1/2" />
+					<USkeleton class="h-px w-full" />
+					<USkeleton class="h-6 w-4/5" />
 				</div>
-				<div class="grid gap-4 lg:grid-cols-[6rem_minmax(0,1fr)]">
-					<USkeleton class="h-24 w-24" />
-					<div class="space-y-3">
-						<USkeleton class="h-6 w-2/3" />
-						<USkeleton class="h-4 w-80 max-w-full" />
-						<USkeleton class="h-px w-full" />
-						<div class="flex gap-3">
-							<USkeleton class="h-12 w-12" />
-							<div class="flex-1 space-y-2">
-								<USkeleton class="h-4 w-48" />
-								<USkeleton class="h-3 w-36" />
-							</div>
-						</div>
-					</div>
-				</div>
+				<USkeleton class="h-7 w-24 sm:justify-self-end" />
 			</div>
 		</div>
 
@@ -137,125 +148,126 @@ const phantomJobIconUrl = (run: GroupMemberActivitySummaryRun) => (
 			/>
 		</div>
 
-		<div v-else class="space-y-4">
-			<section
-				v-for="section in sections"
-				:key="section.key"
-				class="border border-primary/40 bg-primary/5 p-4 shadow-sm shadow-primary/5"
+		<div v-else-if="recentRuns.length === 0" class="flex min-h-48 items-center justify-center border border-dashed border-default bg-muted/10 px-4 py-8 text-center">
+			<p class="text-sm text-muted">{{ t("groups.members.activity_summary.empty_recent") }}</p>
+		</div>
+
+		<div v-else class="space-y-3">
+			<div class="flex flex-col gap-2 border border-default bg-muted/10 px-3 py-2 sm:flex-row sm:items-center sm:justify-between">
+				<div class="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.14em] text-muted">
+					<UIcon name="i-lucide-history" class="size-4 text-primary" />
+					{{ t("groups.members.activity_summary.recent_runs") }}
+				</div>
+				<UBadge color="neutral" variant="subtle" :label="recentRunCountLabel" />
+			</div>
+
+			<div
+				v-for="run in recentRuns"
+				:key="run.id"
+				class="grid gap-3 border border-primary/35 bg-primary/5 p-3 shadow-sm shadow-primary/5 transition hover:border-primary/55 hover:bg-primary/10 sm:grid-cols-[3.5rem_minmax(0,1fr)_minmax(7rem,auto)] sm:items-start"
 			>
-				<div class="flex items-center gap-3">
-					<div class="flex h-8 w-8 shrink-0 items-center justify-center border border-primary/35 bg-primary/15">
-						<UIcon name="i-lucide-history" class="size-4 text-primary" />
-					</div>
-					<p class="text-xs font-semibold uppercase tracking-[0.16em] text-muted">
-						{{ section.title }}
-					</p>
+				<div v-if="run.activity_icon_url" class="h-14 w-14 shrink-0 overflow-hidden border border-default bg-muted/30">
+					<img
+						:src="run.activity_icon_url"
+						:alt="`${runDisplayName(run)} icon`"
+						class="h-full w-full object-cover"
+						loading="lazy"
+					>
+				</div>
+				<div v-else class="flex h-14 w-14 shrink-0 items-center justify-center border border-default bg-muted/20">
+					<UIcon name="i-lucide-swords" class="size-5 text-muted" />
 				</div>
 
-				<div v-if="section.run" class="mt-4 grid gap-4 lg:grid-cols-[6rem_minmax(0,1fr)_auto] lg:items-center">
-					<div v-if="section.run.activity_icon_url" class="h-20 w-20 shrink-0 overflow-hidden border border-default bg-muted/30 lg:h-24 lg:w-24">
-						<img
-							:src="section.run.activity_icon_url"
-							:alt="`${runDisplayName(section.run)} icon`"
-							class="h-full w-full object-cover"
-							loading="lazy"
-						>
-					</div>
-					<div v-else class="flex h-20 w-20 shrink-0 items-center justify-center border border-default bg-muted/20 lg:h-24 lg:w-24">
-						<UIcon name="i-lucide-swords" class="size-7 text-muted" />
+				<div class="min-w-0 space-y-2">
+					<div class="min-w-0">
+						<p class="break-words text-sm font-semibold leading-tight text-toned [overflow-wrap:anywhere] sm:text-base">
+							{{ runDisplayName(run) }}
+						</p>
+						<p v-if="run.activity_type_name" class="mt-0.5 text-xs text-muted">
+							{{ run.activity_type_name }}
+						</p>
 					</div>
 
-					<div class="min-w-0 space-y-3">
-						<div class="min-w-0">
-							<p class="break-words text-lg font-semibold leading-tight text-toned [overflow-wrap:anywhere]">
-								{{ runDisplayName(section.run) }}
-							</p>
-							<p v-if="section.run.activity_type_name" class="mt-1 text-sm text-muted">
-								{{ section.run.activity_type_name }}
-							</p>
-						</div>
+					<div class="flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-muted">
+						<span class="inline-flex items-center gap-1.5">
+							<UIcon name="i-lucide-calendar-days" class="size-3.5" />
+							{{ formatDate(dateSource(run)) }}
+						</span>
+						<span class="inline-flex items-center gap-1.5">
+							<UIcon name="i-lucide-clock" class="size-3.5" />
+							{{ formatTime(dateSource(run)) }}
+						</span>
+					</div>
 
-						<div class="flex flex-wrap items-center gap-x-4 gap-y-2 text-sm text-muted">
-							<span class="inline-flex items-center gap-1.5">
-								<UIcon name="i-lucide-calendar-days" class="size-4" />
-								{{ formatDate(dateSource(section.run)) }}
-							</span>
-							<span class="inline-flex items-center gap-1.5">
-								<UIcon name="i-lucide-clock" class="size-4" />
-								{{ formatTime(dateSource(section.run)) }}
-							</span>
-						</div>
+					<div class="border-t border-default"></div>
 
-						<div class="border-t border-default"></div>
-
-						<div class="flex min-w-0 flex-col gap-4 xl:flex-row xl:items-center">
-							<div class="flex min-w-0 items-center gap-3 xl:min-w-64">
-								<div v-if="section.run.character.avatar_url" class="h-10 w-10 shrink-0 overflow-hidden border border-default bg-muted/30">
-									<img
-										:src="section.run.character.avatar_url"
-										:alt="`${section.run.character.name} avatar`"
-										class="h-full w-full object-cover"
-										loading="lazy"
-									>
-								</div>
-								<div v-else class="flex h-10 w-10 shrink-0 items-center justify-center border border-default bg-primary/10 text-sm font-semibold text-toned">
-									{{ section.run.character.name.slice(0, 2).toUpperCase() }}
-								</div>
-
-								<div class="min-w-0">
-									<p class="truncate font-medium text-toned">{{ section.run.character.name }}</p>
-									<p class="truncate text-sm text-muted">{{ characterWorld(section.run) }}</p>
-								</div>
-							</div>
-
-							<div class="hidden h-10 border-l border-default xl:block"></div>
-
-							<div class="flex flex-wrap gap-2">
-								<span class="inline-flex items-center gap-1.5 border border-default bg-muted/10 px-3 py-1.5 text-sm font-medium text-toned">
-									<img
-										v-if="classIconUrl(section.run)"
-										:src="classIconUrl(section.run) || undefined"
-										:alt="characterClassLabel(section.run)"
-										class="size-5 object-contain"
-										loading="lazy"
-									>
-									<UIcon v-else name="i-lucide-circle-help" class="size-5" />
-									{{ characterClassLabel(section.run) }}
-								</span>
-
-								<span
-									v-if="phantomJobLabel(section.run)"
-									class="inline-flex items-center gap-1.5 border border-default bg-muted/10 px-3 py-1.5 text-sm font-medium text-toned"
+					<div class="flex min-w-0 flex-col gap-2 xl:flex-row xl:items-center">
+						<div class="flex min-w-0 items-center gap-2 xl:min-w-56">
+							<div v-if="run.character.avatar_url" class="h-8 w-8 shrink-0 overflow-hidden border border-default bg-muted/30">
+								<img
+									:src="run.character.avatar_url"
+									:alt="`${run.character.name} avatar`"
+									class="h-full w-full object-cover"
+									loading="lazy"
 								>
-									<img
-										v-if="phantomJobIconUrl(section.run)"
-										:src="phantomJobIconUrl(section.run) || undefined"
-										:alt="phantomJobLabel(section.run) || ''"
-										class="size-5 object-contain"
-										loading="lazy"
-									>
-									<UIcon v-else name="i-lucide-sparkles" class="size-5" />
-									{{ phantomJobLabel(section.run) }}
-								</span>
+							</div>
+							<div v-else class="flex h-8 w-8 shrink-0 items-center justify-center border border-default bg-primary/10 text-xs font-semibold text-toned">
+								{{ run.character.name.slice(0, 2).toUpperCase() }}
+							</div>
+
+							<div class="min-w-0">
+								<p class="truncate text-sm font-medium text-toned">{{ run.character.name }}</p>
+								<p class="truncate text-xs text-muted">{{ characterWorld(run) }}</p>
 							</div>
 						</div>
-					</div>
 
-					<div v-if="section.run.group" class="lg:self-start">
-						<UBadge
-							color="neutral"
-							variant="outline"
-							size="lg"
-							icon="i-lucide-users"
-							:label="section.run.group.name"
-						/>
+						<div class="hidden h-8 border-l border-default xl:block"></div>
+
+						<div class="flex flex-wrap gap-1.5">
+							<span class="inline-flex items-center gap-1.5 border border-default bg-muted/10 px-2 py-1 text-xs font-medium text-toned">
+								<img
+									v-if="classIconUrl(run)"
+									:src="classIconUrl(run) || undefined"
+									:alt="characterClassLabel(run)"
+									class="size-4 object-contain"
+									loading="lazy"
+								>
+								<UIcon v-else name="i-lucide-circle-help" class="size-4" />
+								{{ characterClassLabel(run) }}
+							</span>
+
+							<span
+								v-if="phantomJobLabel(run)"
+								class="inline-flex items-center gap-1.5 border border-default bg-muted/10 px-2 py-1 text-xs font-medium text-toned"
+							>
+								<img
+									v-if="phantomJobIconUrl(run)"
+									:src="phantomJobIconUrl(run) || undefined"
+									:alt="phantomJobLabel(run) || ''"
+									class="size-4 object-contain"
+									loading="lazy"
+								>
+								<UIcon v-else name="i-lucide-sparkles" class="size-4" />
+								{{ phantomJobLabel(run) }}
+							</span>
+						</div>
 					</div>
 				</div>
 
-				<div v-else class="mt-5 flex min-h-28 items-center justify-center border border-dashed border-default bg-muted/10 px-4 py-6 text-center">
-					<p class="text-sm text-muted">{{ section.empty }}</p>
+				<div class="flex items-center justify-between gap-2 sm:flex-col sm:items-end sm:text-right">
+					<p class="whitespace-nowrap text-sm font-semibold text-primary">
+						{{ formatDaysAgo(dateSource(run)) }}
+					</p>
+					<UBadge
+						v-if="run.group"
+						color="neutral"
+						variant="outline"
+						size="sm"
+						icon="i-lucide-users"
+						:label="run.group.name"
+					/>
 				</div>
-			</section>
+			</div>
 		</div>
 	</div>
 </template>

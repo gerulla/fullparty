@@ -1524,18 +1524,19 @@ it('allows guests to edit pending applications after the roster is published whe
     expect($application->fresh()->answers()->where('question_key', 'experience')->value('value'))->toBe('Updated after publish.');
 });
 
-it('does not allow guests to edit applications assigned to the main roster', function () {
+it('returns guest main roster assignments to the queue when the application is edited', function () {
     $activity = createGuestApplicationActivity([
         'status' => Activity::STATUS_ASSIGNED,
     ]);
 
     $application = ActivityApplication::factory()->guest()->create([
         'activity_id' => $activity->id,
-        'status' => ActivityApplication::STATUS_PENDING,
+        'status' => ActivityApplication::STATUS_APPROVED,
     ]);
     $application->load('selectedCharacter');
 
-    $activity->slots()->firstOrFail()->update([
+    $slot = $activity->slots()->firstOrFail();
+    $slot->update([
         'assigned_character_id' => $application->selectedCharacter->id,
         'assigned_by_user_id' => $activity->group->owner_id,
     ]);
@@ -1546,11 +1547,7 @@ it('does not allow guests to edit applications assigned to the main roster', fun
         'accessToken' => $application->guest_access_token,
     ]));
 
-    $editResponse->assertRedirect(route('groups.activities.application.status', [
-        'group' => $activity->group->slug,
-        'activity' => $activity->id,
-        'accessToken' => $application->guest_access_token,
-    ]));
+    $editResponse->assertOk();
 
     $updateResponse = $this->put(route('groups.activities.application.update-guest', [
         'group' => $activity->group->slug,
@@ -1565,14 +1562,22 @@ it('does not allow guests to edit applications assigned to the main roster', fun
             'avatar_url' => $application->applicant_avatar_url,
         ],
         'answers' => [
-            'experience' => 'Should not save.',
+            'experience' => 'Needs re-review.',
         ],
     ]);
 
-    $updateResponse->assertForbidden();
+    $updateResponse->assertRedirect(route('groups.activities.application.status', [
+        'group' => $activity->group->slug,
+        'activity' => $activity->id,
+        'accessToken' => $application->guest_access_token,
+    ]));
+
+    expect($application->fresh()->status)->toBe(ActivityApplication::STATUS_PENDING)
+        ->and($application->fresh()->answers()->where('question_key', 'experience')->value('value'))->toBe('Needs re-review.')
+        ->and($slot->fresh()->assigned_character_id)->toBeNull();
 });
 
-it('allows guests to edit applications assigned to the bench', function () {
+it('returns guest bench assignments to the queue when the application is edited', function () {
     $activity = createGuestApplicationActivity([
         'status' => Activity::STATUS_ASSIGNED,
     ]);
@@ -1583,8 +1588,9 @@ it('allows guests to edit applications assigned to the bench', function () {
     ]);
     $application->load('selectedCharacter');
 
-    ActivitySlot::factory()->create([
+    $slot = ActivitySlot::factory()->create([
         'activity_id' => $activity->id,
+        'slot_kind' => ActivitySlot::SLOT_KIND_BENCH,
         'group_key' => ActivitySlotBench::GROUP_KEY,
         'group_label' => ['en' => 'Bench'],
         'slot_key' => 'bench-slot-1',
@@ -1626,7 +1632,64 @@ it('allows guests to edit applications assigned to the bench', function () {
         'accessToken' => $application->guest_access_token,
     ]));
 
-    expect($application->fresh()->answers()->where('question_key', 'experience')->value('value'))->toBe('Bench edit still allowed.');
+    expect($application->fresh()->status)->toBe(ActivityApplication::STATUS_PENDING)
+        ->and($application->fresh()->answers()->where('question_key', 'experience')->value('value'))->toBe('Bench edit still allowed.')
+        ->and($slot->fresh()->assigned_character_id)->toBeNull();
+});
+
+it('returns guest fill-in assignments to the queue and removes the fill-in slot when the application is edited', function () {
+    $activity = createGuestApplicationActivity([
+        'status' => Activity::STATUS_ASSIGNED,
+    ]);
+
+    $application = ActivityApplication::factory()->guest()->create([
+        'activity_id' => $activity->id,
+        'status' => ActivityApplication::STATUS_APPROVED,
+    ]);
+    $application->load('selectedCharacter');
+
+    $slot = ActivitySlot::factory()->create([
+        'activity_id' => $activity->id,
+        'slot_kind' => ActivitySlot::SLOT_KIND_FILL_IN,
+        'group_key' => 'fill-ins',
+        'group_label' => ['en' => 'Fill-ins'],
+        'slot_key' => 'fill-in-slot-1',
+        'slot_label' => ['en' => 'Fill in 1'],
+        'position_in_group' => 1,
+        'sort_order' => 999,
+        'assigned_character_id' => $application->selectedCharacter->id,
+        'assigned_by_user_id' => $activity->group->owner_id,
+    ]);
+
+    $updateResponse = $this->put(route('groups.activities.application.update-guest', [
+        'group' => $activity->group->slug,
+        'activity' => $activity->id,
+        'accessToken' => $application->guest_access_token,
+    ]), [
+        'guest_applicant' => [
+            'lodestone_id' => $application->applicant_lodestone_id,
+            'name' => $application->applicant_character_name,
+            'world' => $application->applicant_world,
+            'datacenter' => $application->applicant_datacenter,
+            'avatar_url' => $application->applicant_avatar_url,
+        ],
+        'answers' => [
+            'experience' => 'Fill-in edit needs review.',
+        ],
+    ]);
+
+    $updateResponse->assertRedirect(route('groups.activities.application.status', [
+        'group' => $activity->group->slug,
+        'activity' => $activity->id,
+        'accessToken' => $application->guest_access_token,
+    ]));
+
+    expect($application->fresh()->status)->toBe(ActivityApplication::STATUS_PENDING)
+        ->and($application->fresh()->answers()->where('question_key', 'experience')->value('value'))->toBe('Fill-in edit needs review.');
+
+    $this->assertDatabaseMissing('activity_slots', [
+        'id' => $slot->id,
+    ]);
 });
 
 it('allows authenticated users to update applications after the roster is published when they are not assigned to the main roster', function () {
@@ -1727,7 +1790,7 @@ it('allows authenticated users to edit approved applications when they are not a
         ->and($application->fresh()->answers()->where('question_key', 'experience')->value('value'))->toBe('Approved application updated.');
 });
 
-it('does not allow authenticated users to update applications assigned to the main roster', function () {
+it('returns authenticated main roster assignments to the queue when the application is edited', function () {
     $activity = createGuestApplicationActivity([
         'status' => Activity::STATUS_ASSIGNED,
         'allow_guest_applications' => false,
@@ -1737,7 +1800,7 @@ it('does not allow authenticated users to update applications assigned to the ma
         'user_id' => $user->id,
     ]);
 
-    ActivityApplication::factory()->create([
+    $application = ActivityApplication::factory()->create([
         'activity_id' => $activity->id,
         'user_id' => $user->id,
         'selected_character_id' => $character->id,
@@ -1745,10 +1808,11 @@ it('does not allow authenticated users to update applications assigned to the ma
         'applicant_character_name' => $character->name,
         'applicant_world' => $character->world,
         'applicant_datacenter' => $character->datacenter,
-        'status' => ActivityApplication::STATUS_PENDING,
+        'status' => ActivityApplication::STATUS_APPROVED,
     ]);
 
-    $activity->slots()->firstOrFail()->update([
+    $slot = $activity->slots()->firstOrFail();
+    $slot->update([
         'assigned_character_id' => $character->id,
         'assigned_by_user_id' => $activity->group->owner_id,
     ]);
@@ -1761,14 +1825,21 @@ it('does not allow authenticated users to update applications assigned to the ma
     ]), [
         'selected_character_id' => $character->id,
         'answers' => [
-            'experience' => 'Should not save.',
+            'experience' => 'Needs re-review.',
         ],
     ]);
 
-    $response->assertForbidden();
+    $response->assertRedirect(route('groups.activities.application.confirmation', [
+        'group' => $activity->group->slug,
+        'activity' => $activity->id,
+    ]));
+
+    expect($application->fresh()->status)->toBe(ActivityApplication::STATUS_PENDING)
+        ->and($application->fresh()->answers()->where('question_key', 'experience')->value('value'))->toBe('Needs re-review.')
+        ->and($slot->fresh()->assigned_character_id)->toBeNull();
 });
 
-it('allows authenticated users to update applications assigned to the bench', function () {
+it('returns authenticated bench assignments to the queue when the application is edited', function () {
     $activity = createGuestApplicationActivity([
         'status' => Activity::STATUS_ASSIGNED,
         'allow_guest_applications' => false,
@@ -1789,8 +1860,9 @@ it('allows authenticated users to update applications assigned to the bench', fu
         'status' => ActivityApplication::STATUS_ON_BENCH,
     ]);
 
-    ActivitySlot::factory()->create([
+    $slot = ActivitySlot::factory()->create([
         'activity_id' => $activity->id,
+        'slot_kind' => ActivitySlot::SLOT_KIND_BENCH,
         'group_key' => ActivitySlotBench::GROUP_KEY,
         'group_label' => ['en' => 'Bench'],
         'slot_key' => 'bench-slot-1',
@@ -1818,7 +1890,68 @@ it('allows authenticated users to update applications assigned to the bench', fu
         'activity' => $activity->id,
     ]));
 
-    expect($application->fresh()->answers()->where('question_key', 'experience')->value('value'))->toBe('Bench edit still allowed.');
+    expect($application->fresh()->status)->toBe(ActivityApplication::STATUS_PENDING)
+        ->and($application->fresh()->answers()->where('question_key', 'experience')->value('value'))->toBe('Bench edit still allowed.')
+        ->and($slot->fresh()->assigned_character_id)->toBeNull();
+});
+
+it('returns authenticated fill-in assignments to the queue and removes the fill-in slot when the application is edited', function () {
+    $activity = createGuestApplicationActivity([
+        'status' => Activity::STATUS_ASSIGNED,
+        'allow_guest_applications' => false,
+    ]);
+    $user = User::factory()->create();
+    $character = Character::factory()->primary()->create([
+        'user_id' => $user->id,
+    ]);
+
+    $application = ActivityApplication::factory()->create([
+        'activity_id' => $activity->id,
+        'user_id' => $user->id,
+        'selected_character_id' => $character->id,
+        'applicant_lodestone_id' => $character->lodestone_id,
+        'applicant_character_name' => $character->name,
+        'applicant_world' => $character->world,
+        'applicant_datacenter' => $character->datacenter,
+        'status' => ActivityApplication::STATUS_APPROVED,
+    ]);
+
+    $slot = ActivitySlot::factory()->create([
+        'activity_id' => $activity->id,
+        'slot_kind' => ActivitySlot::SLOT_KIND_FILL_IN,
+        'group_key' => 'fill-ins',
+        'group_label' => ['en' => 'Fill-ins'],
+        'slot_key' => 'fill-in-slot-1',
+        'slot_label' => ['en' => 'Fill in 1'],
+        'position_in_group' => 1,
+        'sort_order' => 999,
+        'assigned_character_id' => $character->id,
+        'assigned_by_user_id' => $activity->group->owner_id,
+    ]);
+
+    $this->actingAs($user);
+
+    $response = $this->put(route('groups.activities.application.update', [
+        'group' => $activity->group->slug,
+        'activity' => $activity->id,
+    ]), [
+        'selected_character_id' => $character->id,
+        'answers' => [
+            'experience' => 'Fill-in edit needs review.',
+        ],
+    ]);
+
+    $response->assertRedirect(route('groups.activities.application.confirmation', [
+        'group' => $activity->group->slug,
+        'activity' => $activity->id,
+    ]));
+
+    expect($application->fresh()->status)->toBe(ActivityApplication::STATUS_PENDING)
+        ->and($application->fresh()->answers()->where('question_key', 'experience')->value('value'))->toBe('Fill-in edit needs review.');
+
+    $this->assertDatabaseMissing('activity_slots', [
+        'id' => $slot->id,
+    ]);
 });
 
 it('does not allow authenticated users to apply with a character already assigned to the run', function () {

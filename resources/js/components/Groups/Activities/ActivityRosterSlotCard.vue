@@ -32,6 +32,7 @@ const props = defineProps<{
 	cutSlotIsBench?: boolean | null
 	canReturnToQueue?: boolean
 	canMoveToBench?: boolean
+	canMoveToFillIn?: boolean
 	canMarkMissing?: boolean
 	canCheckIn?: boolean
 }>();
@@ -47,6 +48,7 @@ const emit = defineEmits<{
 	viewApplication: [slotId: number]
 	returnSlotToQueue: [slotId: number]
 	moveSlotToBench: [slotId: number]
+	moveSlotToFillIn: [slotId: number]
 	markSlotMissing: [slotId: number]
 	checkInSlot: [slotId: number]
 	markSlotLate: [slotId: number]
@@ -300,38 +302,48 @@ const contextMenuItems = computed<ContextMenuItem[][]>(() => [
 			disabled: props.slot.is_bench || !props.canCheckIn || props.isSwapPending || props.slot.attendance_status === 'late',
 			onSelect: () => emit('markSlotLate', props.slot.id),
 		},
+		{
+			label: t('groups.activities.management.roster.mark_missing_action'),
+			icon: 'i-lucide-user-x',
+			disabled: !props.canMarkMissing || props.isSwapPending,
+			onSelect: () => emit('markSlotMissing', props.slot.id),
+		},
+	],
+	[
+		{
+			label: props.slot.is_host
+				? t('groups.activities.management.roster.unmark_host_action')
+				: t('groups.activities.management.roster.mark_host_action'),
+			icon: 'i-lucide-badge-check',
+			color: 'info',
+			disabled: props.slot.is_bench || props.slot.is_fill_in || props.isSwapPending,
+			onSelect: () => emit('markSlotHost', props.slot.id),
+		},
+		{
+			label: props.slot.is_raid_leader
+				? t('groups.activities.management.roster.unmark_raid_leader_action')
+				: t('groups.activities.management.roster.mark_raid_leader_action'),
+			icon: 'i-lucide-crown',
+			color: 'warning',
+			disabled: props.slot.is_bench || props.slot.is_fill_in || props.isSwapPending,
+			onSelect: () => emit('markSlotRaidLeader', props.slot.id),
+		},
+	],
+	[
+		...(props.slot.is_bench
+			? [
 				{
-					label: t('groups.activities.management.roster.mark_missing_action'),
-					icon: 'i-lucide-user-x',
-					disabled: !props.canMarkMissing || props.isSwapPending,
-					onSelect: () => emit('markSlotMissing', props.slot.id),
+					label: t('groups.activities.management.roster.move_to_fill_in_action'),
+					icon: 'i-lucide-user-plus',
+					disabled: !props.canMoveToFillIn || props.isSwapPending,
+					onSelect: () => emit('moveSlotToFillIn', props.slot.id),
 				},
-			],
-			[
-				{
-					label: props.slot.is_host
-						? t('groups.activities.management.roster.unmark_host_action')
-						: t('groups.activities.management.roster.mark_host_action'),
-					icon: 'i-lucide-badge-check',
-					color: 'info',
-					disabled: props.slot.is_bench || props.slot.is_fill_in || props.isSwapPending,
-					onSelect: () => emit('markSlotHost', props.slot.id),
-				},
-				{
-					label: props.slot.is_raid_leader
-						? t('groups.activities.management.roster.unmark_raid_leader_action')
-						: t('groups.activities.management.roster.mark_raid_leader_action'),
-					icon: 'i-lucide-crown',
-					color: 'warning',
-					disabled: props.slot.is_bench || props.slot.is_fill_in || props.isSwapPending,
-					onSelect: () => emit('markSlotRaidLeader', props.slot.id),
-				},
-			],
-			[
+			]
+			: []),
 		{
 			label: t('groups.activities.management.roster.move_to_bench_action'),
 			icon: 'i-lucide-arrow-down-to-line',
-			disabled: props.slot.is_bench || props.slot.is_fill_in || !props.canMoveToBench || props.isSwapPending,
+			disabled: props.slot.is_bench || !props.canMoveToBench || props.isSwapPending,
 			onSelect: () => emit('moveSlotToBench', props.slot.id),
 		},
 		{

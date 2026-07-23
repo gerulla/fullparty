@@ -91,6 +91,12 @@ use Inertia\Inertia;
 
 Route::pattern('locale', implode('|', ApplyLocale::SUPPORTED_LOCALES));
 
+$appHost = parse_url((string) config('app.url'), PHP_URL_HOST) ?: 'fullparty.test';
+
+Route::domain('plan.'.$appHost)
+    ->get('/', fn () => view('planner'))
+    ->name('planner.index');
+
 Route::get('/sitemap.xml', SitemapController::class)->name('sitemap');
 
 $redirectToLocalizedPath = function (Request $request, string $path = '') {

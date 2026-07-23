@@ -19,6 +19,7 @@ const props = defineProps<{
 	cutSlotIsBench?: boolean | null
 	canReturnToQueue?: boolean
 	canMoveToBench?: boolean
+	canMoveToFillIn?: boolean
 	canMarkMissing?: boolean
 	canCheckIn?: boolean
 	fillInSlots?: ActivitySlot[]
@@ -36,6 +37,7 @@ const emit = defineEmits<{
 	viewApplication: [slotId: number]
 	returnSlotToQueue: [slotId: number]
 	moveSlotToBench: [slotId: number]
+	moveSlotToFillIn: [slotId: number]
 	markSlotMissing: [slotId: number]
 	checkInSlot: [slotId: number]
 	markSlotLate: [slotId: number]
@@ -244,10 +246,18 @@ const buildSlotContextMenuItems = (slot: ActivitySlot): ContextMenuItem[][] => {
 			},
 		],
 		[
+			...(slot.is_bench
+				? [{
+					label: t('groups.activities.management.roster.move_to_fill_in_action'),
+					icon: 'i-lucide-user-plus',
+					disabled: !props.canMoveToFillIn || props.isSwapPending,
+					onSelect: () => emit('moveSlotToFillIn', slot.id),
+				}]
+				: []),
 			{
 				label: t('groups.activities.management.roster.move_to_bench_action'),
 				icon: 'i-lucide-arrow-down-to-line',
-				disabled: slot.is_bench || slot.is_fill_in || !props.canMoveToBench || props.isSwapPending,
+				disabled: slot.is_bench || !props.canMoveToBench || props.isSwapPending,
 				onSelect: () => emit('moveSlotToBench', slot.id),
 			},
 			{

@@ -10,11 +10,12 @@ use App\Models\CharacterClass;
 use App\Models\Group;
 use App\Models\PhantomJob;
 use App\Models\User;
+use Illuminate\Support\Collection;
 
 final class GroupMemberActivitySummaryService
 {
     /**
-     * @return array{last_group_run: array<string, mixed>|null, last_run: array<string, mixed>|null}
+     * @return array{last_group_run: array<string, mixed>|null, last_run: array<string, mixed>|null, recent_runs: array<int, array<string, mixed>>}
      */
     public function forMember(Group $group, User $user): array
     {
@@ -23,83 +24,60 @@ final class GroupMemberActivitySummaryService
             ->map(fn ($id) => (int) $id)
             ->all();
 
+        $recentRuns = $this->recentParticipations($characterIds, $group->id, $group, 30);
+        $latestGroupRun = $recentRuns[0] ?? null;
+
         return [
-            'last_group_run' => $this->latestParticipation($characterIds, $group->id, $group),
-            'last_run' => $this->latestParticipation($characterIds, null, $group),
+            'last_group_run' => $latestGroupRun,
+            'last_run' => $latestGroupRun,
+            'recent_runs' => $recentRuns,
         ];
     }
 
     /**
      * @param  array<int, int>  $characterIds
-     * @return array<string, mixed>|null
+     * @return array<int, array<string, mixed>>
      */
-    private function latestParticipation(array $characterIds, ?int $groupId, Group $contextGroup): ?array
+    private function recentParticipations(array $characterIds, ?int $groupId, Group $contextGroup, int $limit): array
     {
         if ($characterIds === []) {
-            return null;
+            return [];
         }
 
-        $assignment = $this->latestAssignmentParticipation($characterIds, $groupId);
-        $slot = $this->latestCurrentSlotParticipation($characterIds, $groupId);
-
-        $candidate = collect([
-            $assignment ? [
-                'type' => 'assignment',
-                'record' => $assignment,
-                'timestamp' => $this->activityTimestamp($assignment->activity),
-                'source_priority' => 0,
-            ] : null,
-            $slot ? [
-                'type' => 'slot',
-                'record' => $slot,
-                'timestamp' => $this->activityTimestamp($slot->activity),
-                'source_priority' => 1,
-            ] : null,
-        ])
+        return $this->participationRecords($characterIds, $groupId)
+            ->groupBy('activity_id')
+            ->map(fn (Collection $records) => $records
+                ->sort(fn (array $left, array $right) => $this->compareParticipationRecords($left, $right))
+                ->first())
             ->filter()
-            ->sort(function (array $left, array $right) {
-                $timestampComparison = $right['timestamp'] <=> $left['timestamp'];
-
-                return $timestampComparison !== 0
-                    ? $timestampComparison
-                    : $right['source_priority'] <=> $left['source_priority'];
-            })
-            ->first();
-
-        if (! $candidate) {
-            return null;
-        }
-
-        if ($candidate['type'] === 'slot') {
-            /** @var ActivitySlot $slot */
-            $slot = $candidate['record'];
-
-            return $this->serializeRun(
-                $slot->activity,
-                $slot->assignedCharacter,
-                $this->slotFieldValueSnapshot($slot),
+            ->sort(fn (array $left, array $right) => $this->compareParticipationRecords($left, $right))
+            ->take($limit)
+            ->map(fn (array $record) => $this->serializeRun(
+                $record['activity'],
+                $record['character'],
+                $record['snapshot'],
                 $contextGroup,
-            );
-        }
-
-        /** @var ActivitySlotAssignment $assignment */
-        $assignment = $candidate['record'];
-        $snapshot = is_array($assignment->field_values_snapshot)
-            ? $assignment->field_values_snapshot
-            : $this->slotFieldValueSnapshot($assignment->slot);
-
-        return $this->serializeRun(
-            $assignment->activity,
-            $assignment->character,
-            $snapshot,
-            $contextGroup,
-        );
+            ))
+            ->filter()
+            ->values()
+            ->all();
     }
 
     /**
      * @param  array<int, int>  $characterIds
+     * @return Collection<int, array{activity_id: int, activity: Activity|null, character: Character|null, snapshot: array<string, mixed>, timestamp: int, source_priority: int, record_id: int}>
      */
-    private function latestAssignmentParticipation(array $characterIds, ?int $groupId): ?ActivitySlotAssignment
+    private function participationRecords(array $characterIds, ?int $groupId): Collection
+    {
+        return $this->assignmentParticipationRecords($characterIds, $groupId)
+            ->merge($this->currentSlotParticipationRecords($characterIds, $groupId));
+    }
+
+    /**
+     * @param  array<int, int>  $characterIds
+     * @return Collection<int, array{activity_id: int, activity: Activity|null, character: Character|null, snapshot: array<string, mixed>, timestamp: int, source_priority: int, record_id: int}>
+     */
+    private function assignmentParticipationRecords(array $characterIds, ?int $groupId): Collection
     {
         return ActivitySlotAssignment::query()
             ->select('activity_slot_assignments.*')
@@ -128,13 +106,30 @@ final class GroupMemberActivitySummaryService
             ->orderByDesc('activities.starts_at')
             ->orderByDesc('activity_slot_assignments.assigned_at')
             ->orderByDesc('activity_slot_assignments.id')
-            ->first();
+            ->get()
+            ->toBase()
+            ->map(function (ActivitySlotAssignment $assignment) {
+                $snapshot = is_array($assignment->field_values_snapshot)
+                    ? $assignment->field_values_snapshot
+                    : $this->slotFieldValueSnapshot($assignment->slot);
+
+                return [
+                    'activity_id' => (int) $assignment->activity_id,
+                    'activity' => $assignment->activity,
+                    'character' => $assignment->character,
+                    'snapshot' => $snapshot,
+                    'timestamp' => $this->activityTimestamp($assignment->activity),
+                    'source_priority' => 0,
+                    'record_id' => (int) $assignment->id,
+                ];
+            });
     }
 
     /**
      * @param  array<int, int>  $characterIds
+     * @return Collection<int, array{activity_id: int, activity: Activity|null, character: Character|null, snapshot: array<string, mixed>, timestamp: int, source_priority: int, record_id: int}>
      */
-    private function latestCurrentSlotParticipation(array $characterIds, ?int $groupId): ?ActivitySlot
+    private function currentSlotParticipationRecords(array $characterIds, ?int $groupId): Collection
     {
         return ActivitySlot::query()
             ->select('activity_slots.*')
@@ -157,7 +152,38 @@ final class GroupMemberActivitySummaryService
             ->orderByDesc('activities.starts_at')
             ->orderByDesc('activity_slots.updated_at')
             ->orderByDesc('activity_slots.id')
-            ->first();
+            ->get()
+            ->toBase()
+            ->map(fn (ActivitySlot $slot) => [
+                'activity_id' => (int) $slot->activity_id,
+                'activity' => $slot->activity,
+                'character' => $slot->assignedCharacter,
+                'snapshot' => $this->slotFieldValueSnapshot($slot),
+                'timestamp' => $this->activityTimestamp($slot->activity),
+                'source_priority' => 1,
+                'record_id' => (int) $slot->id,
+            ]);
+    }
+
+    /**
+     * @param  array{timestamp: int, source_priority: int, record_id: int}  $left
+     * @param  array{timestamp: int, source_priority: int, record_id: int}  $right
+     */
+    private function compareParticipationRecords(array $left, array $right): int
+    {
+        $timestampComparison = $right['timestamp'] <=> $left['timestamp'];
+
+        if ($timestampComparison !== 0) {
+            return $timestampComparison;
+        }
+
+        $priorityComparison = $right['source_priority'] <=> $left['source_priority'];
+
+        if ($priorityComparison !== 0) {
+            return $priorityComparison;
+        }
+
+        return $right['record_id'] <=> $left['record_id'];
     }
 
     private function activityTimestamp(?Activity $activity): int

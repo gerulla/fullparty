@@ -45,6 +45,10 @@ const groups = computed(() => [
 	{ label: t('navigation.sidebar.my_requests'), href: localizedRoute('groups.requests.index'), icon: 'i-lucide-inbox', activePatterns: ['groups.requests.*'] },
 ])
 
+const tools = computed(() => [
+	{ label: t('navigation.sidebar.raid_planner'), href: route('planner.index'), icon: 'i-lucide-map' },
+])
+
 const admin = computed(() => [
 	{ label: t('navigation.sidebar.character_definitions'), href: localizedRoute('admin.character-data'), icon: 'i-lucide-user-pen', activePatterns: ['admin.character-data'] },
 	{ label: t('navigation.sidebar.admin_audit_log'), href: localizedRoute('admin.audit-log'), icon: 'i-lucide-scroll-text', activePatterns: ['admin.audit-log'] },
@@ -277,6 +281,21 @@ const isGroupQuickLinkSectionActive = (section) => {
 				</div>
 
 				<template v-if="isAdmin">
+					<h1 v-if="!collapsed" class="sidebar-separator">{{ t('navigation.sidebar.tools') }}</h1>
+					<USeparator v-else class="sidebar-line-separator" />
+
+					<a
+						v-for="item in tools"
+						:key="item.href"
+						:href="item.href"
+						class="sidebar-link link-default"
+						:class="collapsed ? 'w-full justify-center' : ''"
+						@click="closeSidebarMenu"
+					>
+						<UIcon :name="item.icon" :class="!collapsed ? 'sidebar-link-icon' : 'sidebar-link-icon-large'" />
+						<span v-if="!collapsed">{{ item.label }}</span>
+					</a>
+
 					<h1 v-if="!collapsed" class="sidebar-separator">{{t('navigation.sidebar.admin')}}</h1>
 					<USeparator v-else class="sidebar-line-separator" />
 

@@ -635,7 +635,7 @@ const applyManagementPatch = (patch: ActivityManagementPatch) => {
 	);
 };
 
-const createFillInSlot = async () => {
+const createFillInSlot = async (sourceSlotId: number | null = null) => {
 	if (!currentActivity.value || isActivityArchived.value || isFillInPending.value || isSlotSwapPending.value || isSlotAssignmentPending.value) {
 		return;
 	}
@@ -655,7 +655,9 @@ const createFillInSlot = async () => {
 			applyManagementPatch({ updated_slots: updatedSlots });
 		}
 
-		if (createdSlot) {
+		if (createdSlot && sourceSlotId !== null) {
+			await openAssignmentModalFromSlot(createdSlot.id, sourceSlotId);
+		} else if (createdSlot) {
 			await openManualAssignmentModalForSlot(createdSlot.id);
 		}
 	} catch (error: any) {
@@ -731,6 +733,16 @@ const handleSlotSwap = async (payload: { sourceSlotId: number, targetSlotId: num
 	const targetSlot = currentActivity.value.slots.find((slot) => slot.id === payload.targetSlotId);
 
 	if (!sourceSlot || !targetSlot) {
+		return false;
+	}
+
+	if (sourceSlot.is_fill_in && targetSlot.is_bench && !targetSlot.assigned_character_id) {
+		await moveSlotToBench(sourceSlot.id, targetSlot.id);
+		return false;
+	}
+
+	if (sourceSlot.is_fill_in && !targetSlot.is_fill_in && !targetSlot.assigned_character_id) {
+		await openAssignmentModalFromSlot(targetSlot.id, sourceSlot.id);
 		return false;
 	}
 
@@ -1149,15 +1161,17 @@ const returnSlotToQueue = async (slotId: number) => {
 	}
 };
 
-const moveSlotToBench = async (slotId: number) => {
+const moveSlotToBench = async (slotId: number, targetBenchSlotId: number | null = null) => {
 	if (!currentActivity.value || isActivityArchived.value || isSlotAssignmentPending.value || isSlotSwapPending.value) {
 		return;
 	}
 
 	const sourceSlot = currentActivity.value.slots.find((slot) => slot.id === slotId);
-	const targetBenchSlot = currentActivity.value.slots.find((slot) => slot.is_bench && slot.assigned_character_id === null);
+	const targetBenchSlot = targetBenchSlotId === null
+		? currentActivity.value.slots.find((slot) => slot.is_bench && slot.assigned_character_id === null)
+		: currentActivity.value.slots.find((slot) => slot.id === targetBenchSlotId && slot.is_bench && slot.assigned_character_id === null);
 
-	if (!sourceSlot || sourceSlot.is_bench || sourceSlot.is_fill_in || !targetBenchSlot) {
+	if (!sourceSlot || sourceSlot.is_bench || !targetBenchSlot) {
 		return;
 	}
 
@@ -1184,6 +1198,20 @@ const moveSlotToBench = async (slotId: number) => {
 		fieldValues: {},
 		sourceSlotId: sourceSlot.id,
 	});
+};
+
+const moveSlotToFillIn = async (slotId: number) => {
+	if (!currentActivity.value || isActivityArchived.value || isFillInPending.value || isSlotAssignmentPending.value || isSlotSwapPending.value) {
+		return;
+	}
+
+	const sourceSlot = currentActivity.value.slots.find((slot) => slot.id === slotId);
+
+	if (!sourceSlot || !sourceSlot.is_bench || !sourceSlot.assigned_character_id) {
+		return;
+	}
+
+	await createFillInSlot(sourceSlot.id);
 };
 
 const checkInSlot = async (slotId: number) => {
@@ -1525,11 +1553,12 @@ const handleAssignApplicantToSlot = async (payload: {
 		});
 
 		const updatedSlots = response.data?.slots ?? [];
+		const removedSlotIds = new Set(numericIdsFromResponse(response.data?.removed_slot_ids));
 		const pendingApplicationCount = response.data?.pending_application_count;
 		const removedQueueApplicationIds = response.data?.queue_application_remove_ids ?? [];
 		const restoredQueueApplication = response.data?.restored_queue_application ?? null;
 
-		if (updatedSlots.length > 0) {
+		if (updatedSlots.length > 0 || removedSlotIds.size > 0) {
 			const updatedSlotsById = new Map(updatedSlots.map((slot: ActivitySlot) => [slot.id, slot]));
 
 			activityData.value = {
@@ -1537,7 +1566,9 @@ const handleAssignApplicantToSlot = async (payload: {
 				pending_application_count: typeof pendingApplicationCount === 'number'
 					? pendingApplicationCount
 					: currentActivity.value.pending_application_count,
-				slots: currentActivity.value.slots.map((slot) => updatedSlotsById.get(slot.id) ?? slot),
+				slots: currentActivity.value.slots
+					.filter((slot) => !removedSlotIds.has(slot.id))
+					.map((slot) => updatedSlotsById.get(slot.id) ?? slot),
 			};
 		}
 
@@ -1636,9 +1667,10 @@ const handleAssignCharacterToSlot = async (payload: { characterId: number, slotI
 		});
 
 		const updatedSlots = response.data?.slots ?? [];
+		const removedSlotIds = new Set(numericIdsFromResponse(response.data?.removed_slot_ids));
 		const pendingApplicationCount = response.data?.pending_application_count;
 
-		if (updatedSlots.length > 0) {
+		if (updatedSlots.length > 0 || removedSlotIds.size > 0) {
 			const updatedSlotsById = new Map(updatedSlots.map((slot: ActivitySlot) => [slot.id, slot]));
 
 			activityData.value = {
@@ -1646,7 +1678,9 @@ const handleAssignCharacterToSlot = async (payload: { characterId: number, slotI
 				pending_application_count: typeof pendingApplicationCount === 'number'
 					? pendingApplicationCount
 					: currentActivity.value.pending_application_count,
-				slots: currentActivity.value.slots.map((slot) => updatedSlotsById.get(slot.id) ?? slot),
+				slots: currentActivity.value.slots
+					.filter((slot) => !removedSlotIds.has(slot.id))
+					.map((slot) => updatedSlotsById.get(slot.id) ?? slot),
 			};
 		}
 
@@ -1856,6 +1890,7 @@ onBeforeUnmount(() => {
 					@view-application="openSlotApplicationDetails"
 					@return-slot-to-queue="returnSlotToQueue"
 					@move-slot-to-bench="moveSlotToBench"
+					@move-slot-to-fill-in="moveSlotToFillIn"
 					@mark-slot-missing="markSlotMissing"
 					@check-in-slot="checkInSlot"
 					@mark-slot-late="markSlotLate"

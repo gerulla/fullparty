@@ -101,7 +101,7 @@ it('shows group-specific completed run participation counts for members', functi
         );
 });
 
-it('lazy loads member activity summaries with group and overall last runs', function () {
+it('lazy loads member activity summaries scoped to the current group', function () {
     $owner = User::factory()->create();
     $member = User::factory()->create(['name' => 'History Runner']);
     $group = Group::factory()->create(['owner_id' => $owner->id, 'name' => 'Current Group']);
@@ -155,6 +155,14 @@ it('lazy loads member activity summaries with group and overall last runs', func
         'starts_at' => now()->subDay(),
         'completed_at' => now()->subDay()->addHours(2),
     ]);
+    $currentSlotRun = Activity::factory()->complete()->create([
+        'group_id' => $group->id,
+        'activity_type_id' => $groupRun->activity_type_id,
+        'activity_type_version_id' => $groupRun->activity_type_version_id,
+        'title' => 'Current Slot Clear',
+        'starts_at' => now()->subDays(5),
+        'completed_at' => now()->subDays(5)->addHours(2),
+    ]);
 
     createAssignmentForMemberCount(
         $groupRun,
@@ -173,8 +181,9 @@ it('lazy loads member activity summaries with group and overall last runs', func
             'character_class' => ['id' => $characterClass->id],
         ],
     );
+    assignCurrentSlotForMemberCount($currentSlotRun, $character);
 
-    $this->actingAs($owner)
+    $response = $this->actingAs($owner)
         ->getJson(route('groups.dashboard.members.activity-summary', [$group, $member]))
         ->assertOk()
         ->assertJsonPath('data.last_group_run.id', $groupRun->id)
@@ -183,9 +192,55 @@ it('lazy loads member activity summaries with group and overall last runs', func
         ->assertJsonPath('data.last_group_run.character.name', 'Summary Character')
         ->assertJsonPath('data.last_group_run.character_class.shorthand', 'AST')
         ->assertJsonPath('data.last_group_run.phantom_job.name', 'Geomancer')
-        ->assertJsonPath('data.last_run.id', $otherRun->id)
-        ->assertJsonPath('data.last_run.group.name', 'Visible Group')
-        ->assertJsonPath('data.last_run.character_class.name', 'Astrologian');
+        ->assertJsonPath('data.last_run.id', $groupRun->id)
+        ->assertJsonPath('data.last_run.group.name', 'Current Group')
+        ->assertJsonCount(2, 'data.recent_runs')
+        ->assertJsonPath('data.recent_runs.0.id', $groupRun->id)
+        ->assertJsonPath('data.recent_runs.1.id', $currentSlotRun->id)
+        ->assertJsonPath('data.last_run.character_class.shorthand', 'AST');
+
+    expect(collect($response->json('data.recent_runs'))->pluck('id')->all())
+        ->toBe([$groupRun->id, $currentSlotRun->id])
+        ->not->toContain($otherRun->id);
+});
+
+it('limits member activity summaries to the thirty latest runs', function () {
+    $owner = User::factory()->create();
+    $member = User::factory()->create(['name' => 'Busy Runner']);
+    $group = Group::factory()->create(['owner_id' => $owner->id]);
+
+    GroupMembership::query()->firstOrCreate(
+        ['group_id' => $group->id, 'user_id' => $member->id],
+        ['role' => GroupMembership::ROLE_MEMBER, 'joined_at' => now()->subMonth()]
+    );
+
+    $character = Character::factory()->primary()->create([
+        'user_id' => $member->id,
+        'name' => 'Busy Character',
+    ]);
+
+    $runs = collect(range(1, 31))
+        ->map(function (int $daysAgo) use ($group, $character) {
+            $activity = Activity::factory()->complete()->create([
+                'group_id' => $group->id,
+                'starts_at' => now()->subDays($daysAgo),
+                'completed_at' => now()->subDays($daysAgo)->addHours(2),
+            ]);
+
+            createAssignmentForMemberCount($activity, $character, ActivitySlotAssignment::STATUS_CHECKED_IN);
+
+            return $activity;
+        });
+
+    $response = $this->actingAs($owner)
+        ->getJson(route('groups.dashboard.members.activity-summary', [$group, $member]))
+        ->assertOk()
+        ->assertJsonCount(30, 'data.recent_runs')
+        ->assertJsonPath('data.last_group_run.id', $runs->first()->id)
+        ->assertJsonPath('data.last_run.id', $runs->first()->id);
+
+    expect(collect($response->json('data.recent_runs'))->pluck('id')->all())
+        ->not->toContain($runs->last()->id);
 });
 
 it('does not lazy load activity summaries for users outside the group', function () {

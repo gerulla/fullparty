@@ -71,7 +71,8 @@ const viewMode = ref<ViewMode>("list");
 const showBannedMembers = ref(false);
 const visibleCount = ref(pageSize);
 const loadMoreSentinel = ref<HTMLElement | null>(null);
-const openActivityMemberIds = ref<number[]>([]);
+const activitySummaryModalOpen = ref(false);
+const activitySummaryModalMember = ref<GroupMemberRecord | null>(null);
 const memberActivitySummaries = ref<Record<number, MemberActivitySummaryState>>({});
 let observer: IntersectionObserver | null = null;
 
@@ -352,8 +353,6 @@ const setActivitySummaryState = (memberId: number, state: MemberActivitySummaryS
 	};
 };
 
-const isActivitySummaryOpen = (memberId: number) => openActivityMemberIds.value.includes(memberId);
-
 const loadActivitySummary = async (member: GroupMemberRecord, force = false) => {
 	const currentState = activitySummaryState(member.id);
 
@@ -389,23 +388,39 @@ const loadActivitySummary = async (member: GroupMemberRecord, force = false) => 
 	}
 };
 
-const setActivitySummaryOpen = (member: GroupMemberRecord, open: boolean) => {
-	openActivityMemberIds.value = open
-		? [...new Set([...openActivityMemberIds.value, member.id])]
-		: openActivityMemberIds.value.filter((id) => id !== member.id);
-
-	if (open) {
-		void loadActivitySummary(member);
-	}
-};
-
-const toggleActivitySummary = (member: GroupMemberRecord) => {
-	setActivitySummaryOpen(member, !isActivitySummaryOpen(member.id));
-};
-
 const retryActivitySummary = (member: GroupMemberRecord) => {
 	void loadActivitySummary(member, true);
 };
+
+const openActivitySummaryModal = (member: GroupMemberRecord) => {
+	activitySummaryModalMember.value = member;
+	activitySummaryModalOpen.value = true;
+	void loadActivitySummary(member);
+};
+
+const selectedActivitySummaryState = computed(() => activitySummaryModalMember.value
+	? activitySummaryState(activitySummaryModalMember.value.id)
+	: defaultActivitySummaryState());
+
+const activitySummaryModalTitle = computed(() => t("groups.members.activity_summary.modal_title", {
+	name: activitySummaryModalMember.value?.name ?? t("groups.members.bans.unknown_member"),
+}));
+
+const activitySummaryModalDescription = computed(() => t("groups.members.activity_summary.modal_description"));
+
+const retrySelectedActivitySummary = () => {
+	if (!activitySummaryModalMember.value) {
+		return;
+	}
+
+	retryActivitySummary(activitySummaryModalMember.value);
+};
+
+watch(activitySummaryModalOpen, (open) => {
+	if (!open) {
+		activitySummaryModalMember.value = null;
+	}
+});
 </script>
 
 <template>
@@ -587,17 +602,6 @@ const retryActivitySummary = (member: GroupMemberRecord) => {
 							</div>
 						</div>
 
-						<UButton
-							v-if="card.kind === 'active' && props.canViewActivitySummary"
-							class="shrink-0 sm:hidden"
-							color="neutral"
-							variant="ghost"
-							:icon="isActivitySummaryOpen(card.member.id) ? 'i-lucide-chevron-up' : 'i-lucide-chevron-down'"
-							size="sm"
-							:aria-label="t('groups.members.activity_summary.toggle')"
-							@click="toggleActivitySummary(card.member)"
-						/>
-
 						<div
 							v-if="canShowCardActions(card)"
 							class="hidden w-56 shrink-0 grid-cols-3 gap-1 sm:grid sm:w-64 md:w-72 lg:w-80 xl:gap-2"
@@ -607,11 +611,11 @@ const retryActivitySummary = (member: GroupMemberRecord) => {
 										v-if="props.canViewActivitySummary"
 										class="min-h-8 justify-center px-2 sm:min-h-9 xl:min-h-10 xl:px-3"
 										color="neutral"
-										:variant="isActivitySummaryOpen(card.member.id) ? 'subtle' : 'outline'"
+										variant="outline"
 										icon="i-lucide-activity"
 										size="sm"
 										:label="t('groups.members.activity_summary.toggle')"
-										@click="toggleActivitySummary(card.member)"
+										@click="openActivitySummaryModal(card.member)"
 									/>
 									<MemberNotesButton
 										class="min-h-8 justify-center px-2 sm:min-h-9 xl:min-h-10 xl:px-3"
@@ -695,120 +699,73 @@ const retryActivitySummary = (member: GroupMemberRecord) => {
 					</div>
 
 					<div
-						v-if="card.kind === 'active' && props.canViewActivitySummary && isActivitySummaryOpen(card.member.id)"
-						class="space-y-3 border-t border-default p-3 sm:hidden"
+						v-if="card.kind === 'active' && canShowActiveActions(card.member)"
+						class="grid grid-cols-2 gap-2 border-t border-default p-3 sm:hidden"
 					>
-						<div v-if="card.characters.length > 0" class="flex flex-wrap gap-2">
-							<div
-								v-for="character in card.characters"
-								:key="character.id"
-								class="inline-flex min-w-0 max-w-full flex-1 items-center gap-2 border border-default bg-muted/15 px-2 py-2"
-								:title="`${character.name} - ${character.world}`"
-							>
-								<div v-if="character.avatar_url" class="h-8 w-8 shrink-0 overflow-hidden border border-default bg-muted/30">
-									<img
-										:src="character.avatar_url"
-										:alt="`${character.name} avatar`"
-										class="h-full w-full object-cover"
-										loading="lazy"
-									>
-								</div>
-								<div v-else class="flex h-8 w-8 shrink-0 items-center justify-center border border-default bg-primary/10 text-xs font-semibold text-toned">
-									{{ initialsForName(character.name) }}
-								</div>
-
-								<div class="min-w-0 flex-1">
-									<p class="truncate text-sm font-semibold text-toned">{{ character.name }}</p>
-									<p class="truncate text-xs leading-tight text-muted">{{ characterSubtitle(character) }}</p>
-								</div>
-
-								<UIcon
-									v-if="character.is_primary"
-									name="i-lucide-star"
-									class="size-4 shrink-0 text-warning"
-								/>
-							</div>
-						</div>
-
-						<div v-else class="border border-dashed border-default bg-muted/10 px-3 py-2 text-sm text-muted">
-							{{ t('groups.members.roster.no_characters') }}
-						</div>
-
-						<div class="grid grid-cols-2 gap-2">
-							<UButton
-								v-if="props.canViewActivitySummary"
-								class="min-h-10 justify-center"
-								color="neutral"
-								variant="subtle"
-								icon="i-lucide-activity"
-								size="sm"
-								:label="t('groups.members.activity_summary.toggle')"
-								@click="toggleActivitySummary(card.member)"
-							/>
-							<MemberNotesButton
-								class="min-h-10 justify-center"
-								:user-id="card.member.id"
-								:note-summary="card.member.note_summary"
-								color="info"
-								variant="outline"
-								size="sm"
-								@open="props.notes.openMemberNotes"
-							/>
-							<UButton
-								v-if="card.member.permissions.can_promote"
-								class="min-h-10 justify-center"
-								color="primary"
-								variant="outline"
-								icon="i-lucide-arrow-up"
-								size="sm"
-								:label="t('groups.members.actions.promote')"
-								:loading="props.moderation.updateRoleForm.processing && props.moderation.memberPendingRoleUpdateId === card.member.id"
-								@click="props.moderation.updateMemberRole(card.member, nextPromotedRole(card.member.role))"
-							/>
-							<UButton
-								v-if="card.member.permissions.can_demote"
-								class="min-h-10 justify-center"
-								color="neutral"
-								variant="outline"
-								icon="i-lucide-arrow-down"
-								size="sm"
-								:label="t('groups.members.actions.demote')"
-								:loading="props.moderation.updateRoleForm.processing && props.moderation.memberPendingRoleUpdateId === card.member.id"
-								@click="props.moderation.updateMemberRole(card.member, nextDemotedRole(card.member.role))"
-							/>
-							<UButton
-								v-if="card.member.permissions.can_kick"
-								class="min-h-10 justify-center"
-								color="error"
-								variant="outline"
-								icon="i-lucide-user-round-x"
-								size="sm"
-								:label="t('groups.members.actions.kick')"
-								:loading="props.moderation.removeForm.processing && props.moderation.memberPendingRemovalId === card.member.id"
-								@click="props.moderation.openKickConfirmation(card.member)"
-							/>
-							<UButton
-								v-if="card.member.permissions.can_ban"
-								class="min-h-10 justify-center"
-								color="error"
-								variant="outline"
-								icon="i-lucide-ban"
-								size="sm"
-								:label="t('groups.members.actions.ban')"
-								:loading="props.moderation.banForm.processing && props.moderation.memberPendingBanId === card.member.id"
-								@click="props.moderation.openBanConfirmation(card.member)"
-							/>
-						</div>
+						<UButton
+							v-if="props.canViewActivitySummary"
+							class="min-h-10 justify-center"
+							color="neutral"
+							variant="subtle"
+							icon="i-lucide-activity"
+							size="sm"
+							:label="t('groups.members.activity_summary.toggle')"
+							@click="openActivitySummaryModal(card.member)"
+						/>
+						<MemberNotesButton
+							class="min-h-10 justify-center"
+							:user-id="card.member.id"
+							:note-summary="card.member.note_summary"
+							color="info"
+							variant="outline"
+							size="sm"
+							@open="props.notes.openMemberNotes"
+						/>
+						<UButton
+							v-if="card.member.permissions.can_promote"
+							class="min-h-10 justify-center"
+							color="primary"
+							variant="outline"
+							icon="i-lucide-arrow-up"
+							size="sm"
+							:label="t('groups.members.actions.promote')"
+							:loading="props.moderation.updateRoleForm.processing && props.moderation.memberPendingRoleUpdateId === card.member.id"
+							@click="props.moderation.updateMemberRole(card.member, nextPromotedRole(card.member.role))"
+						/>
+						<UButton
+							v-if="card.member.permissions.can_demote"
+							class="min-h-10 justify-center"
+							color="neutral"
+							variant="outline"
+							icon="i-lucide-arrow-down"
+							size="sm"
+							:label="t('groups.members.actions.demote')"
+							:loading="props.moderation.updateRoleForm.processing && props.moderation.memberPendingRoleUpdateId === card.member.id"
+							@click="props.moderation.updateMemberRole(card.member, nextDemotedRole(card.member.role))"
+						/>
+						<UButton
+							v-if="card.member.permissions.can_kick"
+							class="min-h-10 justify-center"
+							color="error"
+							variant="outline"
+							icon="i-lucide-user-round-x"
+							size="sm"
+							:label="t('groups.members.actions.kick')"
+							:loading="props.moderation.removeForm.processing && props.moderation.memberPendingRemovalId === card.member.id"
+							@click="props.moderation.openKickConfirmation(card.member)"
+						/>
+						<UButton
+							v-if="card.member.permissions.can_ban"
+							class="min-h-10 justify-center"
+							color="error"
+							variant="outline"
+							icon="i-lucide-ban"
+							size="sm"
+							:label="t('groups.members.actions.ban')"
+							:loading="props.moderation.banForm.processing && props.moderation.memberPendingBanId === card.member.id"
+							@click="props.moderation.openBanConfirmation(card.member)"
+						/>
 					</div>
-
-					<GroupMemberActivitySummaryPanel
-						v-if="card.kind === 'active' && props.canViewActivitySummary && isActivitySummaryOpen(card.member.id)"
-						class="w-full basis-full"
-						:summary="activitySummaryState(card.member.id).data"
-						:loading="activitySummaryState(card.member.id).loading"
-						:error="activitySummaryState(card.member.id).error"
-						@retry="retryActivitySummary(card.member)"
-					/>
 
 					<div
 						v-if="card.kind === 'banned' && canShowBannedActions(card.member)"
@@ -957,10 +914,10 @@ const retryActivitySummary = (member: GroupMemberRecord) => {
 											v-if="props.canViewActivitySummary"
 											color="neutral"
 											variant="ghost"
-											:icon="isActivitySummaryOpen(card.member.id) ? 'i-lucide-chevron-up' : 'i-lucide-chevron-down'"
+											icon="i-lucide-activity"
 											size="sm"
 											:label="t('groups.members.activity_summary.toggle')"
-											@click="toggleActivitySummary(card.member)"
+											@click="openActivitySummaryModal(card.member)"
 										/>
 										<MemberNotesButton
 											:user-id="card.member.id"
@@ -1018,10 +975,10 @@ const retryActivitySummary = (member: GroupMemberRecord) => {
 									<UButton
 										color="neutral"
 										variant="ghost"
-										:icon="isActivitySummaryOpen(card.member.id) ? 'i-lucide-chevron-up' : 'i-lucide-chevron-down'"
+										icon="i-lucide-activity"
 										size="sm"
 										:label="t('groups.members.activity_summary.toggle')"
-										@click="toggleActivitySummary(card.member)"
+										@click="openActivitySummaryModal(card.member)"
 									/>
 								</div>
 							</template>
@@ -1051,14 +1008,6 @@ const retryActivitySummary = (member: GroupMemberRecord) => {
 							</template>
 						</div>
 
-						<GroupMemberActivitySummaryPanel
-							v-if="card.kind === 'active' && props.canViewActivitySummary && isActivitySummaryOpen(card.member.id)"
-							class="-mx-4 mt-4"
-							:summary="activitySummaryState(card.member.id).data"
-							:loading="activitySummaryState(card.member.id).loading"
-							:error="activitySummaryState(card.member.id).error"
-							@retry="retryActivitySummary(card.member)"
-						/>
 					</div>
 				</div>
 			</div>
@@ -1074,4 +1023,20 @@ const retryActivitySummary = (member: GroupMemberRecord) => {
 			</div>
 		</div>
 	</UCard>
+
+	<UModal
+		v-model:open="activitySummaryModalOpen"
+		:title="activitySummaryModalTitle"
+		:description="activitySummaryModalDescription"
+		:ui="{ content: 'sm:max-w-5xl' }"
+	>
+		<template #body>
+			<GroupMemberActivitySummaryPanel
+				:summary="selectedActivitySummaryState.data"
+				:loading="selectedActivitySummaryState.loading"
+				:error="selectedActivitySummaryState.error"
+				@retry="retrySelectedActivitySummary"
+			/>
+		</template>
+	</UModal>
 </template>

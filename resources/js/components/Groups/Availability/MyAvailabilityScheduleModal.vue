@@ -45,6 +45,7 @@ const addBlockPopoverOpen = ref<boolean[]>(Array.from({ length: 4 }, () => false
 const exceptionCalendarOpen = ref(false);
 const exceptionDate = ref<DateValue | undefined>(undefined);
 const minimumExceptionDate = today(getLocalTimeZone());
+const copiedDaySchedule = ref<DaySchedule | null>(null);
 let nextBlockId = 1;
 let nextExceptionId = 1;
 
@@ -104,6 +105,14 @@ const cloneWeeks = (weeks: WeekSchedule[], renewIds = false): WeekSchedule[] => 
 		},
 	]),
 ) as WeekSchedule);
+
+const cloneDaySchedule = (schedule: DaySchedule, renewIds = false): DaySchedule => ({
+	enabled: schedule.enabled,
+	blocks: schedule.blocks.map(block => ({
+		...block,
+		id: renewIds ? nextBlockId++ : block.id,
+	})),
+});
 
 const hydrateWeeks = (): WeekSchedule[] => {
 	const weeks = Array.from({ length: 4 }, makeWeek);
@@ -310,6 +319,7 @@ const open = () => {
 	draftWeeks.value = cloneWeeks(savedWeeks.value);
 	draftExceptions.value = savedExceptions.value.map(exception => ({ ...exception }));
 	exceptionDate.value = undefined;
+	copiedDaySchedule.value = null;
 	isOpen.value = true;
 };
 
@@ -395,6 +405,28 @@ const addBlock = (schedule: DaySchedule) => {
 const addBlockToWeek = (week: WeekSchedule, weekIndex: number) => {
 	addBlock(week[addBlockDays.value[weekIndex]]);
 	addBlockPopoverOpen.value[weekIndex] = false;
+};
+
+const copyDay = (schedule: DaySchedule) => {
+	copiedDaySchedule.value = cloneDaySchedule(schedule);
+	toast.add({
+		title: t("groups.availability.schedule.copy_day_success"),
+		color: "success",
+		icon: "i-lucide-copy-check",
+	});
+};
+
+const pasteDay = (week: WeekSchedule, day: DayKey) => {
+	if (!copiedDaySchedule.value || isWeekendLocked(day)) {
+		return;
+	}
+
+	week[day] = cloneDaySchedule(copiedDaySchedule.value, true);
+	toast.add({
+		title: t("groups.availability.schedule.paste_day_success"),
+		color: "success",
+		icon: "i-lucide-clipboard-check",
+	});
 };
 
 const removeBlock = (schedule: DaySchedule, blockId: number) => {
@@ -780,7 +812,7 @@ onBeforeUnmount(cancelTimelineInteraction);
 								/>
 							</header>
 
-							<div class="grid grid-cols-[4.5rem_minmax(0,1fr)] px-3 pt-3 text-[10px] text-muted">
+							<div class="grid grid-cols-[6.75rem_minmax(0,1fr)] px-3 pt-3 text-[10px] text-muted">
 								<span />
 								<div class="flex justify-between px-0.5">
 									<span v-for="tick in timeTicks" :key="tick">{{ formatTimeTick(tick) }}</span>
@@ -791,7 +823,7 @@ onBeforeUnmount(cancelTimelineInteraction);
 								<div
 									v-for="day in dayKeys"
 									:key="day"
-									class="grid grid-cols-[4.5rem_minmax(0,1fr)] items-center gap-2 py-1"
+									class="grid grid-cols-[6.75rem_minmax(0,1fr)] items-center gap-2 py-1"
 								>
 									<div class="flex min-w-0 items-center gap-2">
 										<UIcon
@@ -808,6 +840,29 @@ onBeforeUnmount(cancelTimelineInteraction);
 										<span class="truncate text-xs font-medium" :class="week[day].enabled ? 'text-toned' : 'text-muted'">
 											{{ t(`groups.availability.schedule.days_short.${day}`) }}
 										</span>
+										<div class="ml-auto flex items-center gap-0.5">
+											<UButton
+												color="neutral"
+												variant="ghost"
+												icon="i-lucide-copy"
+												size="xs"
+												:title="t('groups.availability.schedule.copy_day')"
+												:aria-label="t('groups.availability.schedule.copy_day')"
+												class="size-5 p-0"
+												@click="copyDay(week[day])"
+											/>
+											<UButton
+												color="neutral"
+												variant="ghost"
+												icon="i-lucide-clipboard"
+												size="xs"
+												:title="t('groups.availability.schedule.paste_day')"
+												:aria-label="t('groups.availability.schedule.paste_day')"
+												:disabled="!copiedDaySchedule || isWeekendLocked(day)"
+												class="size-5 p-0"
+												@click="pasteDay(week, day)"
+											/>
+										</div>
 									</div>
 
 									<div

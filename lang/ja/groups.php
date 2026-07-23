@@ -9,6 +9,14 @@ return [
                 'missing_application_cancelled' => 'このプレイヤーは参加登録をキャンセルしたため、欠席エントリーを削除しました。',
                 'party_finder_archived' => '完了またはキャンセルされた開催にはパーティ募集情報を公開できません。',
             ],
+            'queue' => [
+                'modal' => [
+                    'character_refresh_failed' => '現在、キャラクターデータを更新できません。',
+                    'character_refresh_not_found' => 'このキャラクターはLodestoneで見つかりませんでした。',
+                    'character_refresh_unavailable' => 'この申請には更新できるキャラクターがありません。',
+                    'character_refresh_cooldown' => 'このキャラクターは最近確認されています。数分後にもう一度お試しください。',
+                ],
+            ],
         ],
     ],
     'membership_applications' => [

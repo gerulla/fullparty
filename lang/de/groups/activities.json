@@ -347,6 +347,7 @@
             "remove_from_slot_action": "Aus Slot entfernen",
             "return_to_queue_action": "Zurück in die Warteschlange",
             "move_to_bench_action": "Auf die Ersatzbank verschieben",
+            "move_to_fill_in_action": "Zu Fill-in verschieben",
             "change_assignment_action": "Zuweisung ändern",
             "view_application_action": "Bewerbung ansehen",
             "cut_assignment_action": "Zuweisung ausschneiden",

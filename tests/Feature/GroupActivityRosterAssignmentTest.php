@@ -1945,3 +1945,101 @@ it('assigns one of the exact holster pairs submitted with an application', funct
         'refill_label' => ['en' => 'Caster Refill'],
     ]);
 });
+
+it('lets moderators ignore holster application choices when assigning from applications', function () {
+    extract(createRosterAssignmentSetup());
+
+    $prepop = BozjaHolster::query()->create([
+        'group_id' => $group->id,
+        'name' => ['en' => 'Tank Prepop'],
+        'type' => BozjaHolster::TYPE_PREPOP,
+        'is_active' => true,
+    ]);
+    $submittedRefill = BozjaHolster::query()->create([
+        'group_id' => $group->id,
+        'name' => ['en' => 'Submitted Tank Refill'],
+        'type' => BozjaHolster::TYPE_REFILL,
+        'parent_holster_id' => $prepop->id,
+        'is_active' => true,
+    ]);
+    $alternateRefill = BozjaHolster::query()->create([
+        'group_id' => $group->id,
+        'name' => ['en' => 'Alternate Tank Refill'],
+        'type' => BozjaHolster::TYPE_REFILL,
+        'parent_holster_id' => $prepop->id,
+        'is_active' => true,
+    ]);
+    $version = ActivityTypeVersion::query()->findOrFail($activity->activity_type_version_id);
+    $version->update([
+        'slot_schema' => [
+            ...$version->slot_schema,
+            [
+                'key' => 'holster_loadouts',
+                'label' => ['en' => 'Holster Loadout'],
+                'type' => 'holster_pair',
+                'source' => 'bozja_holsters',
+            ],
+        ],
+        'application_schema' => [
+            ...$version->application_schema,
+            [
+                'key' => 'holster_loadouts',
+                'label' => ['en' => 'Holster Loadouts'],
+                'type' => 'holster_pair_list',
+                'source' => 'bozja_holsters',
+                'required' => true,
+            ],
+        ],
+    ]);
+    $mainSlot->fieldValues()->create([
+        'field_key' => 'holster_loadouts',
+        'field_label' => ['en' => 'Holster Loadout'],
+        'field_type' => 'holster_pair',
+        'source' => 'bozja_holsters',
+        'value' => null,
+    ]);
+    extract(createApplicantForAssignment($activity, $tankClass, $phantomKnight));
+    $application->answers()->updateOrCreate([
+        'question_key' => 'holster_loadouts',
+    ], [
+        'question_label' => ['en' => 'Holster Loadouts'],
+        'question_type' => 'holster_pair_list',
+        'source' => 'bozja_holsters',
+        'value' => [[
+            'prepop_id' => $prepop->id,
+            'refill_id' => $submittedRefill->id,
+        ]],
+    ]);
+
+    $this->actingAs($owner)
+        ->postJson(route('groups.dashboard.activities.slot-assignments.store', [
+            'group' => $group->slug,
+            'activity' => $activity->id,
+            'slot' => $mainSlot->id,
+        ]), [
+            'application_id' => $application->id,
+            'expected_slot_state_token' => activity_slot_state_token($mainSlot->fresh(['fieldValues', 'assignments'])),
+            'ignore_application_choices' => true,
+            'field_values' => [
+                'character_class' => (string) $tankClass->id,
+                'phantom_job' => (string) $phantomKnight->id,
+                'holster_loadouts' => [
+                    'prepop_id' => (string) $prepop->id,
+                    'refill_id' => (string) $alternateRefill->id,
+                ],
+            ],
+        ])
+        ->assertOk();
+
+    $storedPair = $mainSlot->fresh('fieldValues')
+        ?->fieldValues
+        ->firstWhere('field_key', 'holster_loadouts')
+        ?->value;
+
+    expect($storedPair)->toMatchArray([
+        'prepop_id' => $prepop->id,
+        'refill_id' => $alternateRefill->id,
+        'prepop_label' => ['en' => 'Tank Prepop'],
+        'refill_label' => ['en' => 'Alternate Tank Refill'],
+    ]);
+});

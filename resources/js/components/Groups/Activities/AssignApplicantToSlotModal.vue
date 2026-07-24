@@ -111,7 +111,26 @@ const normalizeHolsterPair = (value: unknown): HolsterPairValue | null => {
 
 const holsterPairKey = (pair: HolsterPairValue) => `${pair.prepop_id}:${pair.refill_id}`;
 
+const allValidHolsterPairs = (field: QueueFilterField): HolsterPairValue[] => {
+	const prepopIds = new Set(field.options
+		.filter(option => option.meta?.holster_type === 'prepop')
+		.map(option => option.key));
+
+	return field.options
+		.filter(option => option.meta?.holster_type === 'refill')
+		.map((option): HolsterPairValue => ({
+			prepop_id: String(option.meta?.parent_holster_id ?? ''),
+			refill_id: option.key,
+		}))
+		.filter(pair => pair.prepop_id !== ''
+			&& prepopIds.has(pair.prepop_id));
+};
+
 const compatibleHolsterPairs = (field: QueueFilterField): HolsterPairValue[] => {
+	if (ignoreApplicationChoices.value) {
+		return allValidHolsterPairs(field);
+	}
+
 	const answer = props.application?.answers.find(entry => entry.question_key === field.application_key);
 	const prepopIds = new Set(field.options
 		.filter(option => option.meta?.holster_type === 'prepop')
@@ -131,6 +150,7 @@ const canIgnoreChoicesForField = (field: QueueFilterField) => (
 	field.source === 'character_classes'
 	|| field.source === 'phantom_jobs'
 	|| isRaidPositionField(field)
+	|| isHolsterPairField(field)
 );
 
 const optionAllowedWhenIgnoringChoices = (

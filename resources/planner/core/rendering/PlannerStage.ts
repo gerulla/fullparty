@@ -1,0 +1,2 @@
+export const PLANNER_STAGE_WIDTH = 1280
+export const PLANNER_STAGE_HEIGHT = 720

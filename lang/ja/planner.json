@@ -1,0 +1,87 @@
+{
+  "title": "プランナー",
+  "navigation": {
+    "file": "ファイル",
+    "new_plan": "新しいプラン",
+    "open_plan": "プランを開く",
+    "edit": "編集",
+    "undo": "元に戻す",
+    "redo": "やり直す",
+    "preview": "プレビュー"
+  },
+  "account": {
+    "back_to_fullparty": "FullPartyへ戻る"
+  },
+  "editor": {
+    "canvas_label": "RaidPlanエディターのキャンバス",
+    "resize": {
+      "left": "ツールパネルのサイズを変更",
+      "right": "インスペクターパネルのサイズを変更",
+      "timeline": "タイムラインのサイズを変更"
+    },
+    "tools": {
+      "title": "ツール",
+      "select": "選択",
+      "player": "プレイヤー",
+      "boss": "ボス",
+      "mechanic": "ギミック",
+      "shape": "図形",
+      "text": "テキスト",
+      "library": "ライブラリ",
+      "arena": "アリーナ",
+      "markers": "マーカー"
+    },
+    "toolbar": {
+      "grid": "グリッド",
+      "snap": "スナップ",
+      "play": "再生",
+      "fit": "全体表示",
+      "fill": "領域を埋める",
+      "untitled_plan": "無題のRaidPlan",
+      "edit_plan": "RaidPlanの詳細を編集",
+      "save": "保存"
+    },
+    "inspector": {
+      "title": "インスペクター",
+      "layers": "レイヤー",
+      "empty": "編集する要素を選択してください。",
+      "arena": "アリーナ",
+      "boss": "ボス",
+      "players": "プレイヤー",
+      "mechanics": "ギミック"
+    },
+    "plan": {
+      "name": "名前",
+      "description": "説明",
+      "description_placeholder": "このRaidPlanの説明を入力...",
+      "fight": "コンテンツ",
+      "fight_placeholder": "FullPartyのコンテンツを選択",
+      "clear_fight": "コンテンツを解除",
+      "visibility": "公開範囲",
+      "visibility_unlisted": "限定公開",
+      "visibility_public": "公開",
+      "visibility_unlisted_description": "閲覧リンクを知っている人だけが開けます。公開検索には表示されません。",
+      "visibility_public_description": "誰でも閲覧でき、公開検索に表示される場合があります。",
+      "author": "作成者",
+      "anonymous_author": "匿名",
+      "links": "共有リンク",
+      "view_link": "閲覧リンク",
+      "edit_link": "編集リンク",
+      "links_after_save": "このRaidPlanを保存すると閲覧リンクと編集リンクが作成されます。",
+      "copy_link": "リンクをコピー",
+      "link_copied": "リンクをコピーしました",
+      "saved": "RaidPlanを保存しました"
+    },
+    "timeline": {
+      "title": "タイムライン",
+      "mechanic": "ギミック 1",
+      "add_mechanic": "ギミックを追加",
+      "boss": "ボス",
+      "players": "プレイヤー",
+      "cast": "詠唱",
+      "resolve": "発動",
+      "movement": "移動",
+      "spread": "散開"
+    }
+  }
+}

@@ -1,0 +1,87 @@
+{
+  "title": "Planificateur",
+  "navigation": {
+    "file": "Fichier",
+    "new_plan": "Nouveau plan",
+    "open_plan": "Ouvrir un plan",
+    "edit": "Modifier",
+    "undo": "Annuler",
+    "redo": "Rétablir",
+    "preview": "Aperçu"
+  },
+  "account": {
+    "back_to_fullparty": "Retour à FullParty"
+  },
+  "editor": {
+    "canvas_label": "Zone de travail de l'éditeur RaidPlan",
+    "resize": {
+      "left": "Redimensionner le panneau d'outils",
+      "right": "Redimensionner le panneau d'inspection",
+      "timeline": "Redimensionner la chronologie"
+    },
+    "tools": {
+      "title": "Outils",
+      "select": "Sélection",
+      "player": "Joueur",
+      "boss": "Boss",
+      "mechanic": "Mécanique",
+      "shape": "Forme",
+      "text": "Texte",
+      "library": "Bibliothèque",
+      "arena": "Arène",
+      "markers": "Marqueurs"
+    },
+    "toolbar": {
+      "grid": "Grille",
+      "snap": "Magnétisme",
+      "play": "Lecture",
+      "fit": "Ajuster",
+      "fill": "Remplir",
+      "untitled_plan": "RaidPlan sans titre",
+      "edit_plan": "Modifier les détails du RaidPlan",
+      "save": "Enregistrer"
+    },
+    "inspector": {
+      "title": "Inspecteur",
+      "layers": "Calques",
+      "empty": "Sélectionnez un élément pour le modifier.",
+      "arena": "Arène",
+      "boss": "Boss",
+      "players": "Joueurs",
+      "mechanics": "Mécaniques"
+    },
+    "plan": {
+      "name": "Nom",
+      "description": "Description",
+      "description_placeholder": "Décrivez ce RaidPlan...",
+      "fight": "Combat",
+      "fight_placeholder": "Sélectionner une activité FullParty",
+      "clear_fight": "Retirer le combat",
+      "visibility": "Visibilité",
+      "visibility_unlisted": "Non répertorié",
+      "visibility_public": "Public",
+      "visibility_unlisted_description": "Toute personne disposant du lien de consultation peut l’ouvrir, mais il n’apparaîtra pas dans la recherche publique.",
+      "visibility_public_description": "Tout le monde peut le consulter et il peut apparaître dans la recherche publique.",
+      "author": "Auteur",
+      "anonymous_author": "Anonyme",
+      "links": "Liens de partage",
+      "view_link": "Lien de consultation",
+      "edit_link": "Lien de modification",
+      "links_after_save": "Les liens de consultation et de modification sont créés lors de l’enregistrement de ce RaidPlan.",
+      "copy_link": "Copier le lien",
+      "link_copied": "Lien copié",
+      "saved": "RaidPlan enregistré"
+    },
+    "timeline": {
+      "title": "Chronologie",
+      "mechanic": "Mécanique 1",
+      "add_mechanic": "Ajouter une mécanique",
+      "boss": "Boss",
+      "players": "Joueurs",
+      "cast": "Incantation",
+      "resolve": "Résolution",
+      "movement": "Déplacement",
+      "spread": "Dispersion"
+    }
+  }
+}

@@ -1,0 +1,87 @@
+{
+  "title": "Planer",
+  "navigation": {
+    "file": "Datei",
+    "new_plan": "Neuer Plan",
+    "open_plan": "Plan öffnen",
+    "edit": "Bearbeiten",
+    "undo": "Rückgängig",
+    "redo": "Wiederholen",
+    "preview": "Vorschau"
+  },
+  "account": {
+    "back_to_fullparty": "Zurück zu FullParty"
+  },
+  "editor": {
+    "canvas_label": "Zeichenfläche des RaidPlan-Editors",
+    "resize": {
+      "left": "Werkzeugleiste skalieren",
+      "right": "Eigenschaftenleiste skalieren",
+      "timeline": "Zeitleiste skalieren"
+    },
+    "tools": {
+      "title": "Werkzeuge",
+      "select": "Auswahl",
+      "player": "Spieler",
+      "boss": "Boss",
+      "mechanic": "Mechanik",
+      "shape": "Form",
+      "text": "Text",
+      "library": "Bibliothek",
+      "arena": "Arena",
+      "markers": "Markierungen"
+    },
+    "toolbar": {
+      "grid": "Raster",
+      "snap": "Einrasten",
+      "play": "Abspielen",
+      "fit": "Einpassen",
+      "fill": "Ausfüllen",
+      "untitled_plan": "Unbenannter RaidPlan",
+      "edit_plan": "RaidPlan-Details bearbeiten",
+      "save": "Speichern"
+    },
+    "inspector": {
+      "title": "Eigenschaften",
+      "layers": "Ebenen",
+      "empty": "Wähle ein Element aus, um es zu bearbeiten.",
+      "arena": "Arena",
+      "boss": "Boss",
+      "players": "Spieler",
+      "mechanics": "Mechaniken"
+    },
+    "plan": {
+      "name": "Name",
+      "description": "Beschreibung",
+      "description_placeholder": "Beschreibe diesen RaidPlan...",
+      "fight": "Kampf",
+      "fight_placeholder": "FullParty-Aktivität auswählen",
+      "clear_fight": "Kampf entfernen",
+      "visibility": "Sichtbarkeit",
+      "visibility_unlisted": "Nicht gelistet",
+      "visibility_public": "Öffentlich",
+      "visibility_unlisted_description": "Jeder mit dem Ansichtslink kann ihn öffnen, er erscheint jedoch nicht in der öffentlichen Suche.",
+      "visibility_public_description": "Jeder kann ihn ansehen und er kann in der öffentlichen Suche erscheinen.",
+      "author": "Autor",
+      "anonymous_author": "Anonym",
+      "links": "Freigabelinks",
+      "view_link": "Ansichtslink",
+      "edit_link": "Bearbeitungslink",
+      "links_after_save": "Ansichts- und Bearbeitungslink werden beim Speichern dieses RaidPlans erstellt.",
+      "copy_link": "Link kopieren",
+      "link_copied": "Link kopiert",
+      "saved": "RaidPlan gespeichert"
+    },
+    "timeline": {
+      "title": "Zeitleiste",
+      "mechanic": "Mechanik 1",
+      "add_mechanic": "Mechanik hinzufügen",
+      "boss": "Boss",
+      "players": "Spieler",
+      "cast": "Zauber",
+      "resolve": "Auflösung",
+      "movement": "Bewegung",
+      "spread": "Verteilen"
+    }
+  }
+}

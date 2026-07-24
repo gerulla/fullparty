@@ -35,6 +35,7 @@ declare module 'vue' {
     UDashboardToolbar: typeof import('./node_modules/@nuxt/ui/dist/runtime/components/DashboardToolbar.vue')['default']
     UDropdownMenu: typeof import('./node_modules/@nuxt/ui/dist/runtime/components/DropdownMenu.vue')['default']
     UFormField: typeof import('./node_modules/@nuxt/ui/dist/runtime/components/FormField.vue')['default']
+    UHeader: typeof import('./node_modules/@nuxt/ui/dist/runtime/components/Header.vue')['default']
     UIcon: typeof import('./node_modules/@nuxt/ui/dist/runtime/vue/components/Icon.vue')['default']
     UInput: typeof import('./node_modules/@nuxt/ui/dist/runtime/components/Input.vue')['default']
     UInputMenu: typeof import('./node_modules/@nuxt/ui/dist/runtime/components/InputMenu.vue')['default']

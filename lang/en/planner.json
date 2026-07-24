@@ -1,0 +1,87 @@
+{
+  "title": "Planner",
+  "navigation": {
+    "file": "File",
+    "new_plan": "New Plan",
+    "open_plan": "Open Plan",
+    "edit": "Edit",
+    "undo": "Undo",
+    "redo": "Redo",
+    "preview": "Preview"
+  },
+  "account": {
+    "back_to_fullparty": "Back to FullParty"
+  },
+  "editor": {
+    "canvas_label": "RaidPlan editor canvas",
+    "resize": {
+      "left": "Resize tool panel",
+      "right": "Resize inspector panel",
+      "timeline": "Resize timeline"
+    },
+    "tools": {
+      "title": "Tools",
+      "select": "Select",
+      "player": "Player",
+      "boss": "Boss",
+      "mechanic": "Mechanic",
+      "shape": "Shape",
+      "text": "Text",
+      "library": "Library",
+      "arena": "Arena",
+      "markers": "Markers"
+    },
+    "toolbar": {
+      "grid": "Grid",
+      "snap": "Snap",
+      "play": "Play",
+      "fit": "Fit",
+      "fill": "Fill",
+      "untitled_plan": "Untitled RaidPlan",
+      "edit_plan": "Edit RaidPlan details",
+      "save": "Save"
+    },
+    "inspector": {
+      "title": "Inspector",
+      "layers": "Layers",
+      "empty": "Select an element to edit it.",
+      "arena": "Arena",
+      "boss": "Boss",
+      "players": "Players",
+      "mechanics": "Mechanics"
+    },
+    "plan": {
+      "name": "Name",
+      "description": "Description",
+      "description_placeholder": "Describe this RaidPlan...",
+      "fight": "Fight",
+      "fight_placeholder": "Select a FullParty activity",
+      "clear_fight": "Clear fight",
+      "visibility": "Visibility",
+      "visibility_unlisted": "Unlisted",
+      "visibility_public": "Public",
+      "visibility_unlisted_description": "Anyone with the view link can open it, but it will not appear in public browsing.",
+      "visibility_public_description": "Anyone can view it, and it may appear in public browsing.",
+      "author": "Author",
+      "anonymous_author": "Anonymous",
+      "links": "Share links",
+      "view_link": "View link",
+      "edit_link": "Edit link",
+      "links_after_save": "View and edit links are created when this RaidPlan is saved.",
+      "copy_link": "Copy link",
+      "link_copied": "Link copied",
+      "saved": "RaidPlan saved"
+    },
+    "timeline": {
+      "title": "Timeline",
+      "mechanic": "Mechanic 1",
+      "add_mechanic": "Add Mechanic",
+      "boss": "Boss",
+      "players": "Players",
+      "cast": "Cast",
+      "resolve": "Resolve",
+      "movement": "Movement",
+      "spread": "Spread"
+    }
+  }
+}

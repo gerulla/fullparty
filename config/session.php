@@ -2,6 +2,18 @@
 
 use Illuminate\Support\Str;
 
+$appHost = parse_url((string) env('APP_URL', ''), PHP_URL_HOST);
+$configuredDomain = env('SESSION_DOMAIN');
+$sharedDomain = is_string($configuredDomain) && trim($configuredDomain) !== ''
+    ? $configuredDomain
+    : (
+        is_string($appHost)
+        && str_contains($appHost, '.')
+        && filter_var($appHost, FILTER_VALIDATE_IP) === false
+            ? $appHost
+            : null
+    );
+
 return [
 
     /*
@@ -129,7 +141,7 @@ return [
 
     'cookie' => env(
         'SESSION_COOKIE',
-        Str::slug((string) env('APP_NAME', 'laravel')).'-session'
+        Str::slug((string) env('APP_NAME', 'laravel')).'-shared-session'
     ),
 
     /*
@@ -151,12 +163,12 @@ return [
     |--------------------------------------------------------------------------
     |
     | This value determines the domain and subdomains the session cookie is
-    | available to. By default, the cookie will be available to the root
-    | domain without subdomains. Typically, this shouldn't be changed.
+    | available to. When no explicit domain is configured, FullParty derives
+    | it from APP_URL so authentication is shared with first-party subdomains.
     |
     */
 
-    'domain' => env('SESSION_DOMAIN'),
+    'domain' => $sharedDomain,
 
     /*
     |--------------------------------------------------------------------------

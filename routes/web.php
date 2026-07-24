@@ -62,6 +62,9 @@ use App\Http\Controllers\GroupStatisticsController;
 use App\Http\Controllers\IntegrationClientController;
 use App\Http\Controllers\LocaleController;
 use App\Http\Controllers\PhantomJobController;
+use App\Http\Controllers\Planner\PlannerController;
+use App\Http\Controllers\Planner\RaidPlanController;
+use App\Http\Controllers\Planner\RaidPlanPageController;
 use App\Http\Controllers\RaidPositionController;
 use App\Http\Controllers\RunDiscoveryController;
 use App\Http\Controllers\SettingsController;
@@ -94,8 +97,23 @@ Route::pattern('locale', implode('|', ApplyLocale::SUPPORTED_LOCALES));
 $appHost = parse_url((string) config('app.url'), PHP_URL_HOST) ?: 'fullparty.test';
 
 Route::domain('plan.'.$appHost)
-    ->get('/', fn () => view('planner'))
-    ->name('planner.index');
+    ->name('planner.')
+    ->group(function () {
+        Route::get('/', PlannerController::class)->name('index');
+        Route::post('/raid-plans', [RaidPlanController::class, 'store'])
+            ->middleware('throttle:20,1')
+            ->name('raid-plans.store');
+        Route::get('/view/{token}', [RaidPlanPageController::class, 'view'])
+            ->where('token', '[A-Za-z0-9]{48}')
+            ->name('view');
+        Route::get('/edit/{token}', [RaidPlanPageController::class, 'edit'])
+            ->where('token', '[A-Za-z0-9]{48}')
+            ->name('edit');
+        Route::patch('/edit/{token}', [RaidPlanController::class, 'update'])
+            ->middleware('throttle:60,1')
+            ->where('token', '[A-Za-z0-9]{48}')
+            ->name('raid-plans.update');
+    });
 
 Route::get('/sitemap.xml', SitemapController::class)->name('sitemap');
 

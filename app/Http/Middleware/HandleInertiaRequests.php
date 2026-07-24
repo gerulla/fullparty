@@ -43,6 +43,11 @@ class HandleInertiaRequests extends Middleware
         return parent::version($request);
     }
 
+    public function rootView(Request $request): string
+    {
+        return $request->routeIs('planner.*') ? 'planner' : parent::rootView($request);
+    }
+
     /**
      * Define the props that are shared by default.
      *
@@ -52,6 +57,33 @@ class HandleInertiaRequests extends Middleware
      */
     public function share(Request $request): array
     {
+        if ($request->routeIs('planner.*')) {
+            return array_merge(parent::share($request), [
+                'auth' => [
+                    'user' => fn () => $request->user()
+                        ? $this->serializePlannerUser($request->user())
+                        : null,
+                ],
+                'locale' => [
+                    'current' => fn () => app()->getLocale(),
+                    'fallback' => fn () => config('app.fallback_locale'),
+                    'available' => fn () => ApplyLocale::SUPPORTED_LOCALES,
+                ],
+                'planner' => [
+                    'csrf_token' => fn () => csrf_token(),
+                    'routes' => fn () => collect([
+                        'dashboard',
+                        'settings',
+                        'logout',
+                        'login',
+                        'register',
+                    ])->mapWithKeys(fn (string $routeName) => [
+                        $routeName => rtrim((string) config('app.url'), '/').route($routeName, absolute: false),
+                    ])->all(),
+                ],
+            ]);
+        }
+
         return array_merge(parent::share($request), [
             'flash' => [
                 'success' => fn () => $request->session()->get('success'),
@@ -147,6 +179,25 @@ class HandleInertiaRequests extends Middleware
                 'href' => route('groups.dashboard', $group, false),
             ])
             ->all();
+    }
+
+    /**
+     * @return array<string, mixed>
+     */
+    private function serializePlannerUser(User $user): array
+    {
+        $user->loadMissing('primaryCharacter');
+
+        return [
+            'id' => $user->id,
+            'name' => $user->name,
+            'avatar_url' => $user->avatar_url,
+            'primary_character' => $user->primaryCharacter ? [
+                'id' => $user->primaryCharacter->id,
+                'name' => $user->primaryCharacter->name,
+                'avatar_url' => $user->primaryCharacter->avatar_url,
+            ] : null,
+        ];
     }
 
     /**

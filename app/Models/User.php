@@ -133,6 +133,11 @@ class User extends Authenticatable implements MustVerifyEmail, OAuthenticatable
         return $this->hasMany(GroupAvailabilitySchedule::class);
     }
 
+    public function raidPlans(): HasMany
+    {
+        return $this->hasMany(RaidPlan::class, 'author_id');
+    }
+
     public function receivedGroupNotes(): HasMany
     {
         return $this->hasMany(GroupUserNote::class);

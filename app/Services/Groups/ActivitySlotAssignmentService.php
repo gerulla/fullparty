@@ -8,6 +8,7 @@ use App\Models\ActivitySlot;
 use App\Models\ActivitySlotAssignment;
 use App\Models\Character;
 use App\Services\Notifications\AssignmentNotificationService;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\ValidationException;
 
@@ -578,10 +579,10 @@ class ActivitySlotAssignmentService
                     $selectedValue,
                     "field_values.{$fieldValue->field_key}",
                 );
-                $submittedPairKeys = collect($this->bozjaHolsterPairService->normalizePairs($applicationAnswer?->value))
-                    ->map(fn (array $submittedPair) => $this->bozjaHolsterPairService->pairKey($submittedPair));
+                $choicesIgnoredForField = $ignoreApplicationChoices && $this->canIgnoreApplicationChoicesForField($definition);
 
-                if (! $submittedPairKeys->contains($this->bozjaHolsterPairService->pairKey($pair))) {
+                if (! $choicesIgnoredForField && ! $this->submittedHolsterPairKeys($applicationAnswer?->value)
+                    ->contains($this->bozjaHolsterPairService->pairKey($pair))) {
                     throw ValidationException::withMessages([
                         "field_values.{$fieldValue->field_key}" => 'Selected holster pairs must come from the application.',
                     ]);
@@ -629,7 +630,14 @@ class ActivitySlotAssignmentService
     private function canIgnoreApplicationChoicesForField(array $definition): bool
     {
         return in_array($definition['source'] ?? null, ['character_classes', 'phantom_jobs', 'raid_positions'], true)
+            || $this->isHolsterPairField($definition)
             || $this->isStaticRaidPositionField($definition);
+    }
+
+    private function submittedHolsterPairKeys(mixed $value): Collection
+    {
+        return collect($this->bozjaHolsterPairService->normalizePairs($value))
+            ->map(fn (array $submittedPair) => $this->bozjaHolsterPairService->pairKey($submittedPair));
     }
 
     /**

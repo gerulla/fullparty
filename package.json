@@ -34,6 +34,7 @@
         "embla-carousel-vue": "^8.6.0",
         "lucide-vue-next": "^0.577.0",
         "md-editor-v3": "^6.5.3",
+        "pixi.js": "^8.19.0",
         "reka-ui": "^2.9.2",
         "tailwind-merge": "^3.5.0",
         "vaul-vue": "^0.4.1",

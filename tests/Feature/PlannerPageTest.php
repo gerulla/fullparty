@@ -26,11 +26,15 @@ it('renders the public planner shell with main site authentication routes', func
     $combinedCookieHeaders = strtolower(
         implode('; ', $response->headers->all('set-cookie'))
     );
+    preg_match_all('/(?:^|;\s*)domain=([^;]+)/', $combinedCookieHeaders, $domainMatches);
+    $cookieDomains = collect($domainMatches[1] ?? [])
+        ->map(fn (string $domain) => ltrim($domain, '.'))
+        ->all();
 
     expect($sessionDomain)->toBe($appHost)
         ->and('plan.'.$appHost)->toEndWith($sessionDomain)
         ->and(config('session.cookie'))->toBe('fullparty-shared-session')
-        ->and($combinedCookieHeaders)->toContain('domain=.'.$sessionDomain);
+        ->and($cookieDomains)->toContain($sessionDomain);
 });
 
 it('shares the signed-in user and main site account routes with the planner', function () {

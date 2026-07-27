@@ -22,7 +22,7 @@ it('renders the public planner shell with main site authentication routes', func
             ->where('planner.routes.register', main_site_route('register')));
 
     $appHost = parse_url((string) config('app.url'), PHP_URL_HOST);
-    $sessionDomain = ltrim((string) config('session.domain'), '.');
+    $sessionDomain = (string) config('session.domain');
     $combinedCookieHeaders = strtolower(
         implode('; ', $response->headers->all('set-cookie'))
     );

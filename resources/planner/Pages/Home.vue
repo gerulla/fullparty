@@ -22,7 +22,7 @@ const props = defineProps<{
 	<Head :title="t('planner.title')" />
 
 	<UApp>
-		<div class="min-h-screen bg-default text-highlighted">
+		<div class="planner-theme min-h-screen bg-default text-highlighted">
 			<PlannerHeader />
 			<main class="min-h-0">
 				<PlannerEditorShell

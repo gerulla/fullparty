@@ -5,10 +5,12 @@ import type { PlannerZoom } from '../../composables/usePlannerCanvasViewport'
 
 const { t } = useI18n()
 const zoom = defineModel<PlannerZoom>('zoom', { default: 'fit' })
+const autoSave = defineModel<boolean>('autoSave', { default: false })
 const props = defineProps<{
 	planName: string
 	canEdit: boolean
 	saving: boolean
+	showAutoSave: boolean
 }>()
 const emit = defineEmits<{
 	editPlan: []
@@ -30,7 +32,7 @@ const zoomOptions = computed(() => [
 </script>
 
 <template>
-	<div class="grid grid-cols-[1fr_auto_1fr] items-center border-b border-default bg-elevated px-3">
+	<div class="grid grid-cols-[1fr_auto_1fr] items-center border-b border-default bg-muted px-3">
 		<div class="flex items-center gap-1">
 			<UTooltip :text="t('planner.navigation.undo')">
 				<UButton icon="i-lucide-undo-2" color="neutral" variant="ghost" disabled />
@@ -87,6 +89,12 @@ const zoomOptions = computed(() => [
 				:disabled="!props.canEdit"
 				:loading="props.saving"
 				@click="emit('save')"
+			/>
+			<USwitch
+				v-if="props.showAutoSave"
+				v-model="autoSave"
+				:label="t('planner.editor.toolbar.autosave')"
+				:disabled="!props.canEdit"
 			/>
 		</div>
 	</div>

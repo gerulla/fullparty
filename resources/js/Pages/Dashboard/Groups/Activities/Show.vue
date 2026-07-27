@@ -27,6 +27,7 @@ import AssignApplicantToSlotModal from "@/components/Groups/Activities/AssignApp
 import ManualAssignCharacterToSlotModal from "@/components/Groups/Activities/ManualAssignCharacterToSlotModal.vue";
 import CompleteActivityModal from "@/components/Groups/Activities/CompleteActivityModal.vue";
 import PartyFinderInfoModal from "@/components/Groups/Activities/PartyFinderInfoModal.vue";
+import DuplicateActivityModal from "@/components/Groups/Activities/DuplicateActivityModal.vue";
 import ConfirmationModal from "@/components/Shared/Modals/ConfirmationModal.vue";
 import { activityTextLimits } from "@/utils/activityTextLimits";
 import { createDateTimeFormatter } from "@/utils/dateTimeFormat";
@@ -68,6 +69,7 @@ const isDeleteConfirmOpen = ref(false);
 const isDeletingActivity = ref(false);
 const isCancelConfirmOpen = ref(false);
 const isPartyFinderInfoModalOpen = ref(false);
+const isDuplicateModalOpen = ref(false);
 const isPublishingPartyFinderInfo = ref(false);
 const partyFinderInfoErrors = ref<Record<string, string[]>>({});
 const pendingMissingUndoIds = ref<number[]>([]);
@@ -88,6 +90,13 @@ const activityData = ref<ActivityDetails | null>(null);
 const subscribedManagementChannelName = ref<string | null>(null);
 const cancelForm = useForm({
 	reason: '',
+});
+const duplicateForm = useForm({
+	title: '',
+	starts_at: '',
+	status: 'draft' as 'draft' | 'scheduled',
+	copy_bench: true,
+	copy_fill_ins: false,
 });
 
 const currentActivity = computed(() => activityData.value);
@@ -117,6 +126,8 @@ const canCancelActivity = computed(() => Boolean(currentActivity.value && canCan
 const organizerName = computed(() => currentActivity.value?.organized_by_character?.name || null);
 const organizerAvatarUrl = computed(() => currentActivity.value?.organized_by_character?.avatar_url || null);
 const assignedCount = computed(() => currentActivity.value?.slots.filter((slot) => !slot.is_bench && !slot.is_fill_in && slot.assigned_character_id !== null).length ?? 0);
+const assignedBenchCount = computed(() => currentActivity.value?.slots.filter((slot) => slot.is_bench && slot.assigned_character_id !== null).length ?? 0);
+const assignedFillInCount = computed(() => currentActivity.value?.slots.filter((slot) => slot.is_fill_in && slot.assigned_character_id !== null).length ?? 0);
 const fillInPartyOptions = computed<ActivityFillInPartyOption[]>(() => {
 	const groups = new Map<string, ActivityFillInPartyOption>();
 
@@ -176,6 +187,45 @@ const managementChannelName = computed(() => `groups.${props.group.id}.activitie
 const openPartyFinderInfoModal = () => {
 	partyFinderInfoErrors.value = {};
 	isPartyFinderInfoModalOpen.value = true;
+};
+
+const openDuplicateModal = () => {
+	duplicateForm.clearErrors();
+	isDuplicateModalOpen.value = true;
+};
+
+const duplicateActivity = (payload: {
+	title: string
+	starts_at: string
+	status: 'draft' | 'scheduled'
+	copy_bench: boolean
+	copy_fill_ins: boolean
+}) => {
+	if (!currentActivity.value || duplicateForm.processing) {
+		return;
+	}
+
+	duplicateForm.title = payload.title;
+	duplicateForm.starts_at = payload.starts_at;
+	duplicateForm.status = payload.status;
+	duplicateForm.copy_bench = payload.copy_bench;
+	duplicateForm.copy_fill_ins = payload.copy_fill_ins;
+
+	duplicateForm.post(route('groups.dashboard.activities.duplicate', {
+		group: props.group.slug,
+		activity: currentActivity.value.id,
+	}), {
+		preserveScroll: false,
+		onSuccess: () => {
+			isDuplicateModalOpen.value = false;
+			toast.add({
+				title: t('groups.activities.management.duplicate.success_title'),
+				description: t('groups.activities.management.duplicate.success_description'),
+				color: 'success',
+				icon: 'i-lucide-copy-check',
+			});
+		},
+	});
 };
 
 const publishPartyFinderInfo = async (payload: { character_name: string, world: string, password: string }) => {
@@ -1788,6 +1838,7 @@ onBeforeUnmount(() => {
 				:completed-progression="completedProgression"
 				:can-publish-party-finder-info="!isActivityArchived"
 				@edit="goToEditPage"
+				@duplicate="openDuplicateModal"
 				@view-overview="goToOverviewPage"
 				@go-to-application="goToApplicationPage"
 				@copy-application-link="copyApplicationLink"
@@ -2121,6 +2172,19 @@ onBeforeUnmount(() => {
 			:pending="isPublishingPartyFinderInfo"
 			:errors="partyFinderInfoErrors"
 			@submit="publishPartyFinderInfo"
+		/>
+
+		<DuplicateActivityModal
+			v-if="currentActivity"
+			v-model:open="isDuplicateModalOpen"
+			:source-title="activityTitle"
+			:source-starts-at="currentActivity.starts_at"
+			:main-assignment-count="assignedCount"
+			:bench-assignment-count="assignedBenchCount"
+			:fill-in-assignment-count="assignedFillInCount"
+			:pending="duplicateForm.processing"
+			:errors="duplicateForm.errors"
+			@submit="duplicateActivity"
 		/>
 
 		<ConfirmationModal

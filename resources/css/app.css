@@ -102,11 +102,37 @@
         --ui-border-accented: #5a5163;
         --ui-border-inverted: #ffffff;
     }
+
+    .planner-theme {
+        --planner-surface-0: #0b090d;
+        --planner-surface-1: #121015;
+        --planner-surface-2: #1c1820;
+        --planner-surface-3: #25202a;
+        --planner-surface-4: #302a35;
+        --planner-surface-5: #413949;
+        --ui-bg: var(--planner-surface-0);
+        --ui-bg-muted: var(--planner-surface-1);
+        --ui-bg-elevated: var(--planner-surface-2);
+        --ui-bg-accented: var(--planner-surface-3);
+    }
 }
 
 @layer base {
     button:not(:disabled),
     [role="button"]:not([aria-disabled="true"]) {
         cursor: pointer;
+    }
+
+    .planner-theme input:not([type="checkbox"]):not([type="radio"]):not([type="range"]):not([type="color"]),
+    .planner-theme textarea,
+    .planner-theme select,
+    .planner-theme button[role="combobox"],
+    .planner-theme button[aria-haspopup="listbox"] {
+        background-color: var(--planner-surface-2) !important;
+    }
+
+    .planner-theme button[role="combobox"]:hover:not(:disabled),
+    .planner-theme button[aria-haspopup="listbox"]:hover:not(:disabled) {
+        background-color: var(--planner-surface-3) !important;
     }
 }

@@ -7,7 +7,7 @@ export class PlannerRenderer {
 	private disposed = false
 
 	public constructor(
-		private readonly scene: PlannerScene,
+		private scene: PlannerScene,
 		private readonly accessibleLabel: string,
 	) {}
 
@@ -30,17 +30,46 @@ export class PlannerRenderer {
 		}
 
 		this.application = application
-		application.stage.addChild(this.scene.build())
-		application.renderer.render(application.stage)
+		this.renderScene()
 		application.canvas.className = 'block size-full'
 		application.canvas.setAttribute('aria-label', this.accessibleLabel)
 		application.canvas.setAttribute('role', 'img')
 		host.replaceChildren(application.canvas)
 	}
 
+	public updateScene(scene: PlannerScene): void {
+		const previousScene = this.scene
+
+		this.scene = scene
+		this.renderScene()
+		previousScene.destroy?.()
+	}
+
+	public render(): void {
+		if (!this.application) {
+			return
+		}
+
+		this.application.renderer.render(this.application.stage)
+	}
+
 	public destroy(): void {
 		this.disposed = true
+		this.scene.destroy?.()
 		this.application?.destroy(true, { children: true })
 		this.application = null
+	}
+
+	private renderScene(): void {
+		if (!this.application) {
+			return
+		}
+
+		for (const child of this.application.stage.removeChildren()) {
+			child.destroy({ children: true })
+		}
+
+		this.application.stage.addChild(this.scene.build())
+		this.render()
 	}
 }

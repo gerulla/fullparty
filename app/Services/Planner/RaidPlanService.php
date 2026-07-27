@@ -11,12 +11,17 @@ use Illuminate\Support\Str;
 
 class RaidPlanService
 {
+    public function __construct(
+        private readonly RaidPlanMechanicService $mechanicService,
+    ) {}
+
     /**
      * @param  array{
      *     name: string,
      *     description?: string|null,
      *     fight_id?: int|null,
-     *     visibility?: string
+     *     visibility?: string,
+     *     mechanics?: array<int, array<string, mixed>>
      * }  $attributes
      */
     public function create(?User $author, array $attributes): RaidPlan
@@ -34,7 +39,11 @@ class RaidPlanService
                 $this->createAccessLink($raidPlan, $permission);
             }
 
-            return $raidPlan->load(['author', 'fight.currentPublishedVersion', 'accessLinks']);
+            if (array_key_exists('mechanics', $attributes)) {
+                $this->mechanicService->sync($raidPlan, $attributes['mechanics']);
+            }
+
+            return $this->loadEditorRelations($raidPlan);
         });
     }
 
@@ -43,19 +52,26 @@ class RaidPlanService
      *     name: string,
      *     description?: string|null,
      *     fight_id?: int|null,
-     *     visibility?: string
+     *     visibility?: string,
+     *     mechanics?: array<int, array<string, mixed>>
      * }  $attributes
      */
     public function update(RaidPlan $raidPlan, array $attributes): RaidPlan
     {
-        $raidPlan->update([
-            'activity_type_id' => $attributes['fight_id'] ?? null,
-            'name' => $attributes['name'],
-            'description' => $attributes['description'] ?? null,
-            'visibility' => $attributes['visibility'] ?? RaidPlan::VISIBILITY_UNLISTED,
-        ]);
+        return DB::transaction(function () use ($raidPlan, $attributes): RaidPlan {
+            $raidPlan->update([
+                'activity_type_id' => $attributes['fight_id'] ?? null,
+                'name' => $attributes['name'],
+                'description' => $attributes['description'] ?? null,
+                'visibility' => $attributes['visibility'] ?? RaidPlan::VISIBILITY_UNLISTED,
+            ]);
 
-        return $raidPlan->load(['author', 'fight.currentPublishedVersion', 'accessLinks']);
+            if (array_key_exists('mechanics', $attributes)) {
+                $this->mechanicService->sync($raidPlan, $attributes['mechanics']);
+            }
+
+            return $this->loadEditorRelations($raidPlan);
+        });
     }
 
     public function resolveByToken(string $token, string $permission): RaidPlan
@@ -67,6 +83,7 @@ class RaidPlanService
                 'raidPlan.author',
                 'raidPlan.fight.currentPublishedVersion',
                 'raidPlan.accessLinks',
+                'raidPlan.rootMechanics.children',
             ])
             ->first();
 
@@ -94,5 +111,15 @@ class RaidPlanService
     private function hashToken(string $token): string
     {
         return hash('sha256', $token);
+    }
+
+    private function loadEditorRelations(RaidPlan $raidPlan): RaidPlan
+    {
+        return $raidPlan->load([
+            'author',
+            'fight.currentPublishedVersion',
+            'accessLinks',
+            'rootMechanics.children',
+        ]);
     }
 }

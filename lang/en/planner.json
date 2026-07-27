@@ -29,7 +29,8 @@
       "text": "Text",
       "library": "Library",
       "arena": "Arena",
-      "markers": "Markers"
+      "markers": "Markers",
+      "marker": "Marker {marker}"
     },
     "toolbar": {
       "grid": "Grid",
@@ -39,7 +40,8 @@
       "fill": "Fill",
       "untitled_plan": "Untitled RaidPlan",
       "edit_plan": "Edit RaidPlan details",
-      "save": "Save"
+      "save": "Save",
+      "autosave": "AutoSave"
     },
     "inspector": {
       "title": "Inspector",
@@ -47,8 +49,71 @@
       "empty": "Select an element to edit it.",
       "arena": "Arena",
       "boss": "Boss",
+      "marker": "Marker {marker}",
       "players": "Players",
-      "mechanics": "Mechanics"
+      "mechanics": "Mechanics",
+      "no_layers": "This mechanic has no layers yet."
+    },
+    "mechanic": {
+      "settings": "Mechanic Settings",
+      "name": "Name",
+      "type": "Type",
+      "type_fixed": "Fixed",
+      "type_random": "Random",
+      "add_arena_components": "Add Arena Components",
+      "arena_map": "Arena Map / Background",
+      "marker_layout": "Marker Layout",
+      "marker_layout_type": "Layout",
+      "marker_layout_standard": "Standard",
+      "marker_layout_standard_flipped": "Standard (Flipped)",
+      "marker_layout_diamond": "Diamond Markers",
+      "marker_layout_square": "Square Markers",
+      "marker_layout_waymark_studio": "Waymark Studio Preset",
+      "marker_layout_preset": "Waymark Studio preset",
+      "marker_layout_preset_description": "Paste an exported Waymark Studio preset. Active X/Z coordinates are converted relative to the arena center.",
+      "marker_layout_preset_placeholder": "Paste Waymark Studio JSON...",
+      "marker_layout_preset_invalid": "Enter a valid Waymark Studio preset with at least one active marker.",
+      "marker_layout_distance": "Distance from center",
+      "search_components": "Search components...",
+      "no_components": "No matching components.",
+      "remove_component_title": "Remove component?",
+      "remove_component_description": "Remove this arena component from the mechanic?",
+      "remove_component": "Remove component",
+      "image": "Image",
+      "image_description": "JPG, PNG, or WebP up to 5 MB.",
+      "save_before_upload": "Save the RaidPlan before uploading an image.",
+      "upload_image": "Upload Image",
+      "replace_image": "Replace Image",
+      "arena_map_preview": "Arena map preview",
+      "offset_x": "X Offset",
+      "offset_y": "Y Offset",
+      "rotation": "Rotation",
+      "display_mode": "Display Mode",
+      "display_fit": "Fit",
+      "display_fill": "Fill",
+      "display_crop": "Crop",
+      "crop_left": "Crop Left (%)",
+      "crop_right": "Crop Right (%)",
+      "crop_top": "Crop Top (%)",
+      "crop_bottom": "Crop Bottom (%)",
+      "image_uploaded": "Arena map uploaded",
+      "image_upload_failed": "Arena map could not be uploaded"
+    },
+    "boss_element": {
+      "settings": "Boss Settings",
+      "hitbox": "Hitbox",
+      "with_positionals": "Positionals",
+      "without_positionals": "No Positionals",
+      "scale": "Scale",
+      "rotation": "Rotation",
+      "color": "Color"
+    },
+    "marker_element": {
+      "settings": "Marker",
+      "drag_hint": "Drag the marker on the canvas to position it."
+    },
+    "elements": {
+      "remove": "Remove"
     },
     "plan": {
       "name": "Name",
@@ -70,12 +135,42 @@
       "links_after_save": "View and edit links are created when this RaidPlan is saved.",
       "copy_link": "Copy link",
       "link_copied": "Link copied",
-      "saved": "RaidPlan saved"
+      "saved": "RaidPlan saved",
+      "save_failed": "RaidPlan could not be saved"
     },
     "timeline": {
       "title": "Timeline",
       "mechanic": "Mechanic 1",
       "add_mechanic": "Add Mechanic",
+      "add_fixed_mechanic": "Add Fixed Mechanic",
+      "add_random_set": "Add Random Set",
+      "add_variant": "Add Random Variant",
+      "choose_mechanic": "Choose mechanic",
+      "back_to_timeline": "Back to Timeline",
+      "no_mechanic": "No Mechanic",
+      "fixed": "Fixed",
+      "random_set": "Random",
+      "mechanic_number": "Mechanic {number}",
+      "random_mechanic": "Mechanic 2 Random Set",
+      "random_mechanic_number": "Random Mechanic {number}",
+      "random_variant_number": "Random Variant {number}",
+      "move_left": "Move mechanic left",
+      "move_right": "Move mechanic right",
+      "move_up": "Move variant up",
+      "move_down": "Move variant down",
+      "make_random": "Make Random",
+      "make_fixed": "Make Fixed",
+      "remove": "Remove",
+      "make_fixed_confirmation": {
+        "title": "Make this mechanic fixed?",
+        "description": "This will convert the random set into a fixed mechanic.",
+        "warning": "All random variants and their timeline data will be removed."
+      },
+      "remove_confirmation": {
+        "title": "Remove mechanic?",
+        "description": "Remove “{mechanic}” from this RaidPlan?",
+        "warning": "This mechanic and all of its random variants will be permanently removed when the RaidPlan is saved."
+      },
       "boss": "Boss",
       "players": "Players",
       "cast": "Cast",

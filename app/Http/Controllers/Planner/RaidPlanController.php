@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Planner;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Planner\RaidPlanRequest;
+use App\Http\Resources\Planner\RaidPlanResource;
 use App\Models\RaidPlanAccessLink;
 use App\Services\Planner\RaidPlanService;
 use Illuminate\Http\RedirectResponse;
@@ -28,14 +29,23 @@ class RaidPlanController extends Controller
         ]);
     }
 
-    public function update(RaidPlanRequest $request, string $token): RedirectResponse
-    {
+    public function update(
+        RaidPlanRequest $request,
+        string $token
+    ): RedirectResponse|RaidPlanResource {
         $raidPlan = $this->raidPlanService->resolveByToken(
             $token,
             RaidPlanAccessLink::PERMISSION_EDIT,
         );
 
-        $this->raidPlanService->update($raidPlan, $request->validated());
+        $raidPlan = $this->raidPlanService->update(
+            $raidPlan,
+            $request->validated(),
+        );
+
+        if ($request->expectsJson()) {
+            return new RaidPlanResource($raidPlan, true);
+        }
 
         return redirect()->route('planner.edit', ['token' => $token]);
     }

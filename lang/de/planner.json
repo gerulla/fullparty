@@ -29,7 +29,8 @@
       "text": "Text",
       "library": "Bibliothek",
       "arena": "Arena",
-      "markers": "Markierungen"
+      "markers": "Markierungen",
+      "marker": "Markierung {marker}"
     },
     "toolbar": {
       "grid": "Raster",
@@ -39,7 +40,8 @@
       "fill": "Ausfüllen",
       "untitled_plan": "Unbenannter RaidPlan",
       "edit_plan": "RaidPlan-Details bearbeiten",
-      "save": "Speichern"
+      "save": "Speichern",
+      "autosave": "Automatisch speichern"
     },
     "inspector": {
       "title": "Eigenschaften",
@@ -47,8 +49,71 @@
       "empty": "Wähle ein Element aus, um es zu bearbeiten.",
       "arena": "Arena",
       "boss": "Boss",
+      "marker": "Markierung {marker}",
       "players": "Spieler",
-      "mechanics": "Mechaniken"
+      "mechanics": "Mechaniken",
+      "no_layers": "Diese Mechanik hat noch keine Ebenen."
+    },
+    "mechanic": {
+      "settings": "Mechanik-Einstellungen",
+      "name": "Name",
+      "type": "Typ",
+      "type_fixed": "Fest",
+      "type_random": "Zufällig",
+      "add_arena_components": "Arena-Komponenten hinzufügen",
+      "arena_map": "Arena-Karte / Hintergrund",
+      "marker_layout": "Markierungsanordnung",
+      "marker_layout_type": "Anordnung",
+      "marker_layout_standard": "Standard",
+      "marker_layout_standard_flipped": "Standard (gespiegelt)",
+      "marker_layout_diamond": "Rauten-Markierungen",
+      "marker_layout_square": "Quadrat-Markierungen",
+      "marker_layout_waymark_studio": "Waymark-Studio-Vorlage",
+      "marker_layout_preset": "Waymark-Studio-Vorlage",
+      "marker_layout_preset_description": "Füge eine exportierte Waymark-Studio-Vorlage ein. Aktive X-/Z-Koordinaten werden relativ zur Arenamitte umgerechnet.",
+      "marker_layout_preset_placeholder": "Waymark-Studio-JSON einfügen...",
+      "marker_layout_preset_invalid": "Gib eine gültige Waymark-Studio-Vorlage mit mindestens einer aktiven Markierung ein.",
+      "marker_layout_distance": "Abstand zur Mitte",
+      "search_components": "Komponenten suchen...",
+      "no_components": "Keine passenden Komponenten.",
+      "remove_component_title": "Komponente entfernen?",
+      "remove_component_description": "Diese Arena-Komponente aus der Mechanik entfernen?",
+      "remove_component": "Komponente entfernen",
+      "image": "Bild",
+      "image_description": "JPG, PNG oder WebP bis zu 5 MB.",
+      "save_before_upload": "Speichere den RaidPlan, bevor du ein Bild hochlädst.",
+      "upload_image": "Bild hochladen",
+      "replace_image": "Bild ersetzen",
+      "arena_map_preview": "Vorschau der Arena-Karte",
+      "offset_x": "X-Versatz",
+      "offset_y": "Y-Versatz",
+      "rotation": "Drehung",
+      "display_mode": "Anzeigemodus",
+      "display_fit": "Einpassen",
+      "display_fill": "Ausfüllen",
+      "display_crop": "Zuschneiden",
+      "crop_left": "Links zuschneiden (%)",
+      "crop_right": "Rechts zuschneiden (%)",
+      "crop_top": "Oben zuschneiden (%)",
+      "crop_bottom": "Unten zuschneiden (%)",
+      "image_uploaded": "Arena-Karte hochgeladen",
+      "image_upload_failed": "Arena-Karte konnte nicht hochgeladen werden"
+    },
+    "boss_element": {
+      "settings": "Boss-Einstellungen",
+      "hitbox": "Trefferfläche",
+      "with_positionals": "Mit Positionsanforderungen",
+      "without_positionals": "Ohne Positionsanforderungen",
+      "scale": "Skalierung",
+      "rotation": "Drehung",
+      "color": "Farbe"
+    },
+    "marker_element": {
+      "settings": "Markierung",
+      "drag_hint": "Ziehe die Markierung auf der Zeichenfläche an die gewünschte Position."
+    },
+    "elements": {
+      "remove": "Entfernen"
     },
     "plan": {
       "name": "Name",
@@ -70,12 +135,42 @@
       "links_after_save": "Ansichts- und Bearbeitungslink werden beim Speichern dieses RaidPlans erstellt.",
       "copy_link": "Link kopieren",
       "link_copied": "Link kopiert",
-      "saved": "RaidPlan gespeichert"
+      "saved": "RaidPlan gespeichert",
+      "save_failed": "RaidPlan konnte nicht gespeichert werden"
     },
     "timeline": {
       "title": "Zeitleiste",
       "mechanic": "Mechanik 1",
       "add_mechanic": "Mechanik hinzufügen",
+      "add_fixed_mechanic": "Feste Mechanik hinzufügen",
+      "add_random_set": "Zufallsgruppe hinzufügen",
+      "add_variant": "Zufallsvariante hinzufügen",
+      "choose_mechanic": "Mechanik auswählen",
+      "back_to_timeline": "Zurück zur Zeitleiste",
+      "no_mechanic": "Keine Mechanik",
+      "fixed": "Fest",
+      "random_set": "Zufällig",
+      "mechanic_number": "Mechanik {number}",
+      "random_mechanic": "Mechanik 2 Zufallsgruppe",
+      "random_mechanic_number": "Zufallsmechanik {number}",
+      "random_variant_number": "Zufallsvariante {number}",
+      "move_left": "Mechanik nach links verschieben",
+      "move_right": "Mechanik nach rechts verschieben",
+      "move_up": "Variante nach oben verschieben",
+      "move_down": "Variante nach unten verschieben",
+      "make_random": "Zufällig machen",
+      "make_fixed": "Fest machen",
+      "remove": "Entfernen",
+      "make_fixed_confirmation": {
+        "title": "Diese Mechanik fest machen?",
+        "description": "Dadurch wird die Zufallsgruppe in eine feste Mechanik umgewandelt.",
+        "warning": "Alle Zufallsvarianten und ihre Zeitleistendaten werden entfernt."
+      },
+      "remove_confirmation": {
+        "title": "Mechanik entfernen?",
+        "description": "„{mechanic}“ aus diesem RaidPlan entfernen?",
+        "warning": "Diese Mechanik und alle ihre Zufallsvarianten werden beim Speichern des RaidPlans dauerhaft entfernt."
+      },
       "boss": "Boss",
       "players": "Spieler",
       "cast": "Zauber",

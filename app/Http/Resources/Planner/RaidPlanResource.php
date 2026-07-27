@@ -38,11 +38,22 @@ class RaidPlanResource extends JsonResource
             'is_owned_by_current_user' => $raidPlan->author_id !== null
                 && $raidPlan->author_id === $request->user()?->id,
             'can_edit' => $this->canEdit,
+            'mechanics' => RaidPlanMechanicResource::collection(
+                $raidPlan->rootMechanics
+            )->resolve($request),
             'links' => [
                 'view' => route('planner.view', ['token' => $viewToken]),
                 'edit' => $this->when(
                     $this->canEdit,
                     fn () => route('planner.edit', [
+                        'token' => $raidPlan->accessToken(
+                            RaidPlanAccessLink::PERMISSION_EDIT,
+                        ),
+                    ])
+                ),
+                'asset_upload' => $this->when(
+                    $this->canEdit,
+                    fn () => route('planner.raid-plans.images.store', [
                         'token' => $raidPlan->accessToken(
                             RaidPlanAccessLink::PERMISSION_EDIT,
                         ),

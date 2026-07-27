@@ -94,6 +94,7 @@ function submitLogout() {
 	<UHeader
 		:title="`FullParty ${t('planner.title')}`"
 		:to="plannerRoutes.dashboard"
+		class="bg-muted"
 	>
 		<template #title>
 			<span class="flex min-w-0 items-center gap-3">
@@ -104,7 +105,7 @@ function submitLogout() {
 					color="primary"
 					variant="subtle"
 					size="xl"
-					class="shrink-0"
+					class="shrink-0 sm:-translate-y-1.5"
 				/>
 			</span>
 		</template>

@@ -29,7 +29,8 @@
       "text": "テキスト",
       "library": "ライブラリ",
       "arena": "アリーナ",
-      "markers": "マーカー"
+      "markers": "マーカー",
+      "marker": "マーカー {marker}"
     },
     "toolbar": {
       "grid": "グリッド",
@@ -39,7 +40,8 @@
       "fill": "領域を埋める",
       "untitled_plan": "無題のRaidPlan",
       "edit_plan": "RaidPlanの詳細を編集",
-      "save": "保存"
+      "save": "保存",
+      "autosave": "自動保存"
     },
     "inspector": {
       "title": "インスペクター",
@@ -47,8 +49,71 @@
       "empty": "編集する要素を選択してください。",
       "arena": "アリーナ",
       "boss": "ボス",
+      "marker": "マーカー {marker}",
       "players": "プレイヤー",
-      "mechanics": "ギミック"
+      "mechanics": "ギミック",
+      "no_layers": "このギミックにはまだレイヤーがありません。"
+    },
+    "mechanic": {
+      "settings": "ギミック設定",
+      "name": "名前",
+      "type": "タイプ",
+      "type_fixed": "固定",
+      "type_random": "ランダム",
+      "add_arena_components": "アリーナコンポーネントを追加",
+      "arena_map": "アリーナマップ / 背景",
+      "marker_layout": "マーカーレイアウト",
+      "marker_layout_type": "レイアウト",
+      "marker_layout_standard": "標準",
+      "marker_layout_standard_flipped": "標準（反転）",
+      "marker_layout_diamond": "ひし形マーカー",
+      "marker_layout_square": "正方形マーカー",
+      "marker_layout_waymark_studio": "Waymark Studioプリセット",
+      "marker_layout_preset": "Waymark Studioプリセット",
+      "marker_layout_preset_description": "Waymark Studioからエクスポートしたプリセットを貼り付けます。有効なX/Z座標はアリーナ中心を基準に変換されます。",
+      "marker_layout_preset_placeholder": "Waymark StudioのJSONを貼り付け...",
+      "marker_layout_preset_invalid": "有効なマーカーを1つ以上含むWaymark Studioプリセットを入力してください。",
+      "marker_layout_distance": "中心からの距離",
+      "search_components": "コンポーネントを検索...",
+      "no_components": "一致するコンポーネントがありません。",
+      "remove_component_title": "コンポーネントを削除しますか？",
+      "remove_component_description": "このアリーナコンポーネントをギミックから削除しますか？",
+      "remove_component": "コンポーネントを削除",
+      "image": "画像",
+      "image_description": "5 MBまでのJPG、PNG、WebP。",
+      "save_before_upload": "画像をアップロードする前にRaidPlanを保存してください。",
+      "upload_image": "画像をアップロード",
+      "replace_image": "画像を置き換える",
+      "arena_map_preview": "アリーナマップのプレビュー",
+      "offset_x": "Xオフセット",
+      "offset_y": "Yオフセット",
+      "rotation": "回転",
+      "display_mode": "表示方法",
+      "display_fit": "全体を収める",
+      "display_fill": "画面を埋める",
+      "display_crop": "切り抜く",
+      "crop_left": "左を切り抜く（%）",
+      "crop_right": "右を切り抜く（%）",
+      "crop_top": "上を切り抜く（%）",
+      "crop_bottom": "下を切り抜く（%）",
+      "image_uploaded": "アリーナマップをアップロードしました",
+      "image_upload_failed": "アリーナマップをアップロードできませんでした"
+    },
+    "boss_element": {
+      "settings": "ボス設定",
+      "hitbox": "当たり判定",
+      "with_positionals": "方向指定あり",
+      "without_positionals": "方向指定なし",
+      "scale": "拡大率",
+      "rotation": "回転",
+      "color": "色"
+    },
+    "marker_element": {
+      "settings": "マーカー",
+      "drag_hint": "キャンバス上でマーカーをドラッグして配置できます。"
+    },
+    "elements": {
+      "remove": "削除"
     },
     "plan": {
       "name": "名前",
@@ -70,12 +135,42 @@
       "links_after_save": "このRaidPlanを保存すると閲覧リンクと編集リンクが作成されます。",
       "copy_link": "リンクをコピー",
       "link_copied": "リンクをコピーしました",
-      "saved": "RaidPlanを保存しました"
+      "saved": "RaidPlanを保存しました",
+      "save_failed": "RaidPlanを保存できませんでした"
     },
     "timeline": {
       "title": "タイムライン",
       "mechanic": "ギミック 1",
       "add_mechanic": "ギミックを追加",
+      "add_fixed_mechanic": "固定ギミックを追加",
+      "add_random_set": "ランダムセットを追加",
+      "add_variant": "ランダムパターンを追加",
+      "choose_mechanic": "ギミックを選択",
+      "back_to_timeline": "タイムラインに戻る",
+      "no_mechanic": "ギミックなし",
+      "fixed": "固定",
+      "random_set": "ランダム",
+      "mechanic_number": "ギミック {number}",
+      "random_mechanic": "ギミック 2 ランダムセット",
+      "random_mechanic_number": "ランダムギミック {number}",
+      "random_variant_number": "ランダムパターン {number}",
+      "move_left": "ギミックを左へ移動",
+      "move_right": "ギミックを右へ移動",
+      "move_up": "パターンを上へ移動",
+      "move_down": "パターンを下へ移動",
+      "make_random": "ランダムにする",
+      "make_fixed": "固定にする",
+      "remove": "削除",
+      "make_fixed_confirmation": {
+        "title": "このギミックを固定にしますか？",
+        "description": "ランダムセットを固定ギミックへ変換します。",
+        "warning": "すべてのランダムパターンとタイムラインデータが削除されます。"
+      },
+      "remove_confirmation": {
+        "title": "ギミックを削除しますか？",
+        "description": "このRaidPlanから「{mechanic}」を削除しますか？",
+        "warning": "RaidPlanを保存すると、このギミックとすべてのランダムパターンが完全に削除されます。"
+      },
       "boss": "ボス",
       "players": "プレイヤー",
       "cast": "詠唱",

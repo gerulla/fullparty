@@ -29,7 +29,8 @@
       "text": "Texte",
       "library": "Bibliothèque",
       "arena": "Arène",
-      "markers": "Marqueurs"
+      "markers": "Marqueurs",
+      "marker": "Marqueur {marker}"
     },
     "toolbar": {
       "grid": "Grille",
@@ -39,7 +40,8 @@
       "fill": "Remplir",
       "untitled_plan": "RaidPlan sans titre",
       "edit_plan": "Modifier les détails du RaidPlan",
-      "save": "Enregistrer"
+      "save": "Enregistrer",
+      "autosave": "Enregistrement automatique"
     },
     "inspector": {
       "title": "Inspecteur",
@@ -47,8 +49,71 @@
       "empty": "Sélectionnez un élément pour le modifier.",
       "arena": "Arène",
       "boss": "Boss",
+      "marker": "Marqueur {marker}",
       "players": "Joueurs",
-      "mechanics": "Mécaniques"
+      "mechanics": "Mécaniques",
+      "no_layers": "Cette mécanique ne contient encore aucun calque."
+    },
+    "mechanic": {
+      "settings": "Paramètres de la mécanique",
+      "name": "Nom",
+      "type": "Type",
+      "type_fixed": "Fixe",
+      "type_random": "Aléatoire",
+      "add_arena_components": "Ajouter des composants d'arène",
+      "arena_map": "Carte d'arène / arrière-plan",
+      "marker_layout": "Disposition des marqueurs",
+      "marker_layout_type": "Disposition",
+      "marker_layout_standard": "Standard",
+      "marker_layout_standard_flipped": "Standard (inversé)",
+      "marker_layout_diamond": "Marqueurs en losange",
+      "marker_layout_square": "Marqueurs en carré",
+      "marker_layout_waymark_studio": "Préréglage Waymark Studio",
+      "marker_layout_preset": "Préréglage Waymark Studio",
+      "marker_layout_preset_description": "Collez un préréglage exporté depuis Waymark Studio. Les coordonnées X/Z actives sont converties par rapport au centre de l'arène.",
+      "marker_layout_preset_placeholder": "Collez le JSON Waymark Studio...",
+      "marker_layout_preset_invalid": "Saisissez un préréglage Waymark Studio valide contenant au moins un marqueur actif.",
+      "marker_layout_distance": "Distance du centre",
+      "search_components": "Rechercher des composants...",
+      "no_components": "Aucun composant correspondant.",
+      "remove_component_title": "Supprimer le composant ?",
+      "remove_component_description": "Supprimer ce composant d'arène de la mécanique ?",
+      "remove_component": "Supprimer le composant",
+      "image": "Image",
+      "image_description": "JPG, PNG ou WebP jusqu'à 5 Mo.",
+      "save_before_upload": "Enregistrez le RaidPlan avant d'importer une image.",
+      "upload_image": "Importer une image",
+      "replace_image": "Remplacer l'image",
+      "arena_map_preview": "Aperçu de la carte d'arène",
+      "offset_x": "Décalage X",
+      "offset_y": "Décalage Y",
+      "rotation": "Rotation",
+      "display_mode": "Mode d’affichage",
+      "display_fit": "Ajuster",
+      "display_fill": "Remplir",
+      "display_crop": "Recadrer",
+      "crop_left": "Recadrer à gauche (%)",
+      "crop_right": "Recadrer à droite (%)",
+      "crop_top": "Recadrer en haut (%)",
+      "crop_bottom": "Recadrer en bas (%)",
+      "image_uploaded": "Carte d'arène importée",
+      "image_upload_failed": "Impossible d'importer la carte d'arène"
+    },
+    "boss_element": {
+      "settings": "Paramètres du boss",
+      "hitbox": "Zone de collision",
+      "with_positionals": "Avec positionnels",
+      "without_positionals": "Sans positionnels",
+      "scale": "Échelle",
+      "rotation": "Rotation",
+      "color": "Couleur"
+    },
+    "marker_element": {
+      "settings": "Marqueur",
+      "drag_hint": "Faites glisser le marqueur sur la zone de travail pour le positionner."
+    },
+    "elements": {
+      "remove": "Supprimer"
     },
     "plan": {
       "name": "Nom",
@@ -70,12 +135,42 @@
       "links_after_save": "Les liens de consultation et de modification sont créés lors de l’enregistrement de ce RaidPlan.",
       "copy_link": "Copier le lien",
       "link_copied": "Lien copié",
-      "saved": "RaidPlan enregistré"
+      "saved": "RaidPlan enregistré",
+      "save_failed": "Le RaidPlan n’a pas pu être enregistré"
     },
     "timeline": {
       "title": "Chronologie",
       "mechanic": "Mécanique 1",
       "add_mechanic": "Ajouter une mécanique",
+      "add_fixed_mechanic": "Ajouter une mécanique fixe",
+      "add_random_set": "Ajouter un ensemble aléatoire",
+      "add_variant": "Ajouter une variante aléatoire",
+      "choose_mechanic": "Choisir une mécanique",
+      "back_to_timeline": "Retour à la chronologie",
+      "no_mechanic": "Aucune mécanique",
+      "fixed": "Fixe",
+      "random_set": "Aléatoire",
+      "mechanic_number": "Mécanique {number}",
+      "random_mechanic": "Mécanique 2 aléatoire",
+      "random_mechanic_number": "Mécanique aléatoire {number}",
+      "random_variant_number": "Variante aléatoire {number}",
+      "move_left": "Déplacer la mécanique vers la gauche",
+      "move_right": "Déplacer la mécanique vers la droite",
+      "move_up": "Déplacer la variante vers le haut",
+      "move_down": "Déplacer la variante vers le bas",
+      "make_random": "Rendre aléatoire",
+      "make_fixed": "Rendre fixe",
+      "remove": "Supprimer",
+      "make_fixed_confirmation": {
+        "title": "Rendre cette mécanique fixe ?",
+        "description": "L’ensemble aléatoire sera converti en mécanique fixe.",
+        "warning": "Toutes les variantes aléatoires et leurs données de chronologie seront supprimées."
+      },
+      "remove_confirmation": {
+        "title": "Supprimer la mécanique ?",
+        "description": "Supprimer « {mechanic} » de ce RaidPlan ?",
+        "warning": "Cette mécanique et toutes ses variantes aléatoires seront définitivement supprimées lors de l’enregistrement du RaidPlan."
+      },
       "boss": "Boss",
       "players": "Joueurs",
       "cast": "Incantation",

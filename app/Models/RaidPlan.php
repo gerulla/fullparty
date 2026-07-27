@@ -46,6 +46,19 @@ class RaidPlan extends Model
         return $this->hasMany(RaidPlanAccessLink::class);
     }
 
+    public function mechanics(): HasMany
+    {
+        return $this->hasMany(RaidPlanMechanic::class);
+    }
+
+    public function rootMechanics(): HasMany
+    {
+        return $this->mechanics()
+            ->whereNull('parent_id')
+            ->orderBy('sort_order')
+            ->orderBy('id');
+    }
+
     public function fight(): BelongsTo
     {
         return $this->belongsTo(ActivityType::class, 'activity_type_id');

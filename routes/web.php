@@ -22,6 +22,7 @@ use App\Http\Controllers\GroupActivityApplicationDeclineController;
 use App\Http\Controllers\GroupActivityCalendarController;
 use App\Http\Controllers\GroupActivityCompletionController;
 use App\Http\Controllers\GroupActivityController;
+use App\Http\Controllers\GroupActivityDuplicationController;
 use App\Http\Controllers\GroupActivityFflogsCompletionPreviewController;
 use App\Http\Controllers\GroupActivityFflogsController;
 use App\Http\Controllers\GroupActivityFillInSlotController;
@@ -64,6 +65,7 @@ use App\Http\Controllers\LocaleController;
 use App\Http\Controllers\PhantomJobController;
 use App\Http\Controllers\Planner\PlannerController;
 use App\Http\Controllers\Planner\RaidPlanController;
+use App\Http\Controllers\Planner\RaidPlanImageController;
 use App\Http\Controllers\Planner\RaidPlanPageController;
 use App\Http\Controllers\RaidPositionController;
 use App\Http\Controllers\RunDiscoveryController;
@@ -113,6 +115,10 @@ Route::domain('plan.'.$appHost)
             ->middleware('throttle:60,1')
             ->where('token', '[A-Za-z0-9]{48}')
             ->name('raid-plans.update');
+        Route::post('/edit/{token}/assets/images', RaidPlanImageController::class)
+            ->middleware('throttle:20,1')
+            ->where('token', '[A-Za-z0-9]{48}')
+            ->name('raid-plans.images.store');
     });
 
 Route::get('/sitemap.xml', SitemapController::class)->name('sitemap');
@@ -587,6 +593,7 @@ Route::prefix('{locale?}')
                 */
 
                 Route::post('/activities/{activity}/schedule', [GroupActivityController::class, 'schedule'])->name('groups.dashboard.activities.schedule');
+                Route::post('/activities/{activity}/duplicate', [GroupActivityDuplicationController::class, 'store'])->name('groups.dashboard.activities.duplicate');
                 Route::post('/activities/{activity}/publish-roster', [GroupActivityController::class, 'publishRoster'])->name('groups.dashboard.activities.publish-roster');
                 Route::post('/activities/{activity}/complete', [GroupActivityCompletionController::class, 'store'])->name('groups.dashboard.activities.complete');
                 Route::post('/activities/{activity}/cancel', [GroupActivityController::class, 'cancel'])->name('groups.dashboard.activities.cancel');

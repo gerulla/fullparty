@@ -79,6 +79,7 @@ const emit = defineEmits<{
 	schedule: []
 	complete: []
 	publishRoster: []
+	duplicate: []
 	delete: []
 	cancel: []
 	updateRosterView: [value: 'party' | 'role' | 'list']
@@ -179,6 +180,14 @@ const rosterViewOptions = computed(() => ([
 				</div>
 
 				<div class="flex flex-wrap items-center gap-2 md:justify-end">
+					<UButton
+						color="neutral"
+						variant="outline"
+						class="bg-background shadow-sm"
+						icon="i-lucide-copy-plus"
+						:label="t('groups.activities.management.duplicate_run')"
+						@click="emit('duplicate')"
+					/>
 					<UButton
 						v-if="canEdit"
 						color="neutral"

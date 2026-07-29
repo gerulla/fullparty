@@ -176,7 +176,15 @@
             "oracle": "Devin fantôme",
             "cannoneer": "Artilleur fantôme",
             "gladiator": "Gladiateur fantôme",
-            "freelancer": "Freelancer fantôme"
+            "freelancer": "Freelancer fantôme",
+            "ninja": "Ninja fantôme",
+            "white_mage": "Mage blanc fantôme",
+            "black_mage": "Mage noir fantôme",
+            "dragoon": "Chevalier dragon fantôme",
+            "summoner": "Invocateur fantôme",
+            "blue_mage": "Mage bleu fantôme",
+            "red_mage": "Mage rouge fantôme",
+            "necromancer": "Nécromancien fantôme"
         },
         "raid_positions": {
             "mt": "Tank principal",

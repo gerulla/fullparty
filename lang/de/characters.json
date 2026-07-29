@@ -176,7 +176,15 @@
             "oracle": "Phantom-Seher",
             "cannoneer": "Phantom-Grenadier",
             "gladiator": "Phantom-Gladiator",
-            "freelancer": "Phantom-Freiberufler"
+            "freelancer": "Phantom-Freiberufler",
+            "ninja": "Phantom-Ninja",
+            "white_mage": "Phantom-Weißmagier",
+            "black_mage": "Phantom-Schwarzmagier",
+            "dragoon": "Phantom-Dragoon",
+            "summoner": "Phantom-Beschwörer",
+            "blue_mage": "Phantom-Blaumagier",
+            "red_mage": "Phantom-Rotmagier",
+            "necromancer": "Phantom-Nekromant"
         },
         "raid_positions": {
             "mt": "Main Tank",

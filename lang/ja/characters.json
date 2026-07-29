@@ -176,7 +176,15 @@
             "oracle": "ファントム予言士",
             "cannoneer": "ファントム砲撃士",
             "gladiator": "ファントム剣術士",
-            "freelancer": "ファントムすっぴん"
+            "freelancer": "ファントムすっぴん",
+            "ninja": "ファントム忍者",
+            "white_mage": "ファントム白魔道士",
+            "black_mage": "ファントム黒魔道士",
+            "dragoon": "ファントム竜騎士",
+            "summoner": "ファントム召喚士",
+            "blue_mage": "ファントム青魔道士",
+            "red_mage": "ファントム赤魔道士",
+            "necromancer": "ファントムネクロマンサー"
         },
         "raid_positions": {
             "mt": "MT（メインタンク）",

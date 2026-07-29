@@ -1,0 +1,42 @@
+{
+  "name": "Phantom Summoner",
+  "patch": "7.55",
+  "mkd_support_job_row_id": 20,
+  "status_id": 5332,
+  "status_icon_id": 216891,
+  "assets": {
+    "transparent": {
+      "file": "transparent.png",
+      "source": "ui/uld/MKDSupportJobIcon_hr1.tex",
+      "crop": {
+        "x": 0,
+        "y": 224,
+        "width": 56,
+        "height": 56
+      }
+    },
+    "blue": {
+      "file": "blue.png",
+      "source": "ui/icon/216000/216891_hr1.tex",
+      "width": 48,
+      "height": 64
+    },
+    "sprite": {
+      "file": "sprite.png",
+      "source": "ui/uld/MKDSupportJob_hr1.tex",
+      "crop": {
+        "x": 0,
+        "y": 232,
+        "width": 80,
+        "height": 116
+      }
+    },
+    "black": {
+      "file": "black.png",
+      "width": 56,
+      "height": 56,
+      "generated": true,
+      "source": "The exact transparent symbol composited over the shared 56x56 frame reconstructed from the existing Phantom Job black-icon set."
+    }
+  }
+}

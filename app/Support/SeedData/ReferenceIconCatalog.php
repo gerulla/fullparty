@@ -107,6 +107,10 @@ final class ReferenceIconCatalog
         }
 
         foreach (self::phantomJobs() as $phantomJob) {
+            if (! Str::startsWith($phantomJob['icon_source_url'], ['http://', 'https://'])) {
+                continue;
+            }
+
             $downloads[] = [
                 'label' => sprintf('Phantom job %s icon', $phantomJob['name']),
                 'source_url' => $phantomJob['icon_source_url'],
@@ -452,11 +456,75 @@ final class ReferenceIconCatalog
         ],
         [
             'name' => 'Phantom Freelancer',
-            'max_level' => 16,
+            'max_level' => 24,
             'icon_source_url' => 'https://ffxiv.gamerescape.com/w/images/thumb/0/09/Phantom_Freelancer_Icon_2.png/24px-Phantom_Freelancer_Icon_2.png',
             'black_icon_source_url' => 'https://ffxiv.gamerescape.com/w/images/2/23/Phantom_Freelancer_Icon.png',
             'sprite_source_url' => 'https://lds-img.finalfantasyxiv.com/h/X/zanwwu69-0p23AHZWlg5_Jhzc8.png',
             'transparent_icon_source_url' => 'https://lds-img.finalfantasyxiv.com/h/Z/BPP6fZ59aZG1vWV0FN_-DNtK9c.png',
+        ],
+        [
+            'name' => 'Phantom Ninja',
+            'max_level' => 6,
+            'icon_source_url' => '/newjobs/phantom-ninja/blue.png',
+            'black_icon_source_url' => '/newjobs/phantom-ninja/black.png',
+            'sprite_source_url' => '/newjobs/phantom-ninja/sprite.png',
+            'transparent_icon_source_url' => '/newjobs/phantom-ninja/transparent.png',
+        ],
+        [
+            'name' => 'Phantom White Mage',
+            'max_level' => 5,
+            'icon_source_url' => '/newjobs/phantom-white-mage/blue.png',
+            'black_icon_source_url' => '/newjobs/phantom-white-mage/black.png',
+            'sprite_source_url' => '/newjobs/phantom-white-mage/sprite.png',
+            'transparent_icon_source_url' => '/newjobs/phantom-white-mage/transparent.png',
+        ],
+        [
+            'name' => 'Phantom Black Mage',
+            'max_level' => 5,
+            'icon_source_url' => '/newjobs/phantom-black-mage/blue.png',
+            'black_icon_source_url' => '/newjobs/phantom-black-mage/black.png',
+            'sprite_source_url' => '/newjobs/phantom-black-mage/sprite.png',
+            'transparent_icon_source_url' => '/newjobs/phantom-black-mage/transparent.png',
+        ],
+        [
+            'name' => 'Phantom Dragoon',
+            'max_level' => 4,
+            'icon_source_url' => '/newjobs/phantom-dragoon/blue.png',
+            'black_icon_source_url' => '/newjobs/phantom-dragoon/black.png',
+            'sprite_source_url' => '/newjobs/phantom-dragoon/sprite.png',
+            'transparent_icon_source_url' => '/newjobs/phantom-dragoon/transparent.png',
+        ],
+        [
+            'name' => 'Phantom Summoner',
+            'max_level' => 5,
+            'icon_source_url' => '/newjobs/phantom-summoner/blue.png',
+            'black_icon_source_url' => '/newjobs/phantom-summoner/black.png',
+            'sprite_source_url' => '/newjobs/phantom-summoner/sprite.png',
+            'transparent_icon_source_url' => '/newjobs/phantom-summoner/transparent.png',
+        ],
+        [
+            'name' => 'Phantom Blue Mage',
+            'max_level' => 3,
+            'icon_source_url' => '/newjobs/phantom-blue-mage/blue.png',
+            'black_icon_source_url' => '/newjobs/phantom-blue-mage/black.png',
+            'sprite_source_url' => '/newjobs/phantom-blue-mage/sprite.png',
+            'transparent_icon_source_url' => '/newjobs/phantom-blue-mage/transparent.png',
+        ],
+        [
+            'name' => 'Phantom Red Mage',
+            'max_level' => 6,
+            'icon_source_url' => '/newjobs/phantom-red-mage/blue.png',
+            'black_icon_source_url' => '/newjobs/phantom-red-mage/black.png',
+            'sprite_source_url' => '/newjobs/phantom-red-mage/sprite.png',
+            'transparent_icon_source_url' => '/newjobs/phantom-red-mage/transparent.png',
+        ],
+        [
+            'name' => 'Phantom Necromancer',
+            'max_level' => 5,
+            'icon_source_url' => '/newjobs/phantom-necromancer/blue.png',
+            'black_icon_source_url' => '/newjobs/phantom-necromancer/black.png',
+            'sprite_source_url' => '/newjobs/phantom-necromancer/sprite.png',
+            'transparent_icon_source_url' => '/newjobs/phantom-necromancer/transparent.png',
         ],
     ];
 }

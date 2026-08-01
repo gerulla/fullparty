@@ -26,6 +26,14 @@ class OccultProgress extends Model
         'marble_dragon_progress',
         'magitaur_kills',
         'magitaur_progress',
+        'two_headed_aevis_kills',
+        'two_headed_aevis_progress',
+        'sword_dancer_kills',
+        'sword_dancer_progress',
+        'necrophobia_kills',
+        'necrophobia_progress',
+        'index_kills',
+        'index_progress',
     ];
 
     protected $casts = [
@@ -38,6 +46,14 @@ class OccultProgress extends Model
         'marble_dragon_progress' => 'integer',
         'magitaur_kills' => 'integer',
         'magitaur_progress' => 'integer',
+        'two_headed_aevis_kills' => 'integer',
+        'two_headed_aevis_progress' => 'integer',
+        'sword_dancer_kills' => 'integer',
+        'sword_dancer_progress' => 'integer',
+        'necrophobia_kills' => 'integer',
+        'necrophobia_progress' => 'integer',
+        'index_kills' => 'integer',
+        'index_progress' => 'integer',
     ];
 
     public function character(): BelongsTo
@@ -75,6 +91,36 @@ class OccultProgress extends Model
                     'key' => 'magitaur',
                     'kills' => $this->magitaur_kills,
                     'progress' => $this->magitaur_progress,
+                ],
+            ],
+        ];
+    }
+
+    public function forkedTowerMagicProgress(): array
+    {
+        return [
+            'clears' => $this->index_kills,
+            'data_source' => self::DATA_SOURCE_FFLOGS,
+            'bosses' => [
+                [
+                    'key' => 'two_headed_aevis',
+                    'kills' => $this->two_headed_aevis_kills,
+                    'progress' => $this->two_headed_aevis_progress,
+                ],
+                [
+                    'key' => 'sword_dancer',
+                    'kills' => $this->sword_dancer_kills,
+                    'progress' => $this->sword_dancer_progress,
+                ],
+                [
+                    'key' => 'necrophobia',
+                    'kills' => $this->necrophobia_kills,
+                    'progress' => $this->necrophobia_progress,
+                ],
+                [
+                    'key' => 'index',
+                    'kills' => $this->index_kills,
+                    'progress' => $this->index_progress,
                 ],
             ],
         ];

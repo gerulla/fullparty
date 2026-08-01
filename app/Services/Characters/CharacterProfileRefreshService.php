@@ -10,6 +10,7 @@ use App\Models\CharacterClass;
 use App\Models\OccultProgress;
 use App\Models\PhantomJob;
 use App\Services\FFLogs\ForkedTowerBloodProgressFetcher;
+use App\Services\FFLogs\ForkedTowerMagicProgressFetcher;
 use App\Services\Lodestone\ForkedTowerBloodAchievementProgressFetcher;
 use App\Services\Lodestone\LodestoneScraper;
 use Carbon\CarbonInterface;
@@ -21,6 +22,7 @@ class CharacterProfileRefreshService
     public function __construct(
         private readonly LodestoneScraper $scraper,
         private readonly ForkedTowerBloodProgressFetcher $forkedTowerBloodProgressFetcher,
+        private readonly ForkedTowerMagicProgressFetcher $forkedTowerMagicProgressFetcher,
         private readonly ForkedTowerBloodAchievementProgressFetcher $forkedTowerBloodAchievementProgressFetcher,
     ) {}
 
@@ -45,8 +47,10 @@ class CharacterProfileRefreshService
 
         $forkedTowerBloodProgressResult = $this->fetchForkedTowerBloodProgress($character, $ignoreCache);
         $forkedTowerBloodProgress = $forkedTowerBloodProgressResult['progress'];
+        $forkedTowerMagicProgressResult = $this->fetchForkedTowerMagicProgress($character, $ignoreCache);
+        $forkedTowerMagicProgress = $forkedTowerMagicProgressResult['progress'];
 
-        DB::transaction(function () use ($character, $data, $forkedTowerBloodProgress, $refreshedAt): void {
+        DB::transaction(function () use ($character, $data, $forkedTowerBloodProgress, $forkedTowerMagicProgress, $refreshedAt): void {
             $character->update([
                 'name' => $data->name,
                 'world' => $data->world,
@@ -57,11 +61,11 @@ class CharacterProfileRefreshService
 
             $this->syncCharacterClassLevels($character, $data->extraData);
             $this->syncPhantomJobLevels($character, $data->extraData);
-            $this->syncOccultProgress($character, $data->extraData, $forkedTowerBloodProgress);
+            $this->syncOccultProgress($character, $data->extraData, $forkedTowerBloodProgress, $forkedTowerMagicProgress);
         });
 
         return [
-            'fflogs_error' => $forkedTowerBloodProgressResult['error'],
+            'fflogs_error' => $forkedTowerBloodProgressResult['error'] ?? $forkedTowerMagicProgressResult['error'],
         ];
     }
 
@@ -191,6 +195,44 @@ class CharacterProfileRefreshService
     }
 
     /**
+     * @return array{progress: array<string, mixed>|null, error: array<string, mixed>|null}
+     */
+    private function fetchForkedTowerMagicProgress(Character $character, bool $ignoreCache): array
+    {
+        try {
+            return [
+                'progress' => $this->forkedTowerMagicProgressFetcher->fetchForCharacter(
+                    $character,
+                    ignoreCache: $ignoreCache,
+                ),
+                'error' => null,
+            ];
+        } catch (\Throwable $exception) {
+            Log::warning('Unable to refresh Forked Tower: Magic (Extreme) FF Logs progress during character refresh.', [
+                'character_id' => $character->id,
+                'lodestone_id' => $character->lodestone_id,
+                'zone_id' => config('services.ff_logs.forked_tower_magic_zone_id'),
+                'exception' => $exception->getMessage(),
+            ]);
+
+            return [
+                'progress' => null,
+                'error' => [
+                    'source' => 'fflogs',
+                    'type' => $exception::class,
+                    'message' => $exception->getMessage(),
+                    'character_id' => $character->id,
+                    'lodestone_id' => $character->lodestone_id,
+                    'name' => $character->name,
+                    'world' => $character->world,
+                    'datacenter' => $character->datacenter,
+                    'zone_id' => config('services.ff_logs.forked_tower_magic_zone_id'),
+                ],
+            ];
+        }
+    }
+
+    /**
      * @param  array<string, mixed>  $progress
      * @return array<string, mixed>
      */
@@ -267,24 +309,43 @@ class CharacterProfileRefreshService
         $character->phantomJobs()->sync($syncPayload);
     }
 
-    private function syncOccultProgress(Character $character, array $extraData, array $forkedTowerBloodProgress): void
-    {
-        $bosses = collect($forkedTowerBloodProgress['bosses'] ?? [])->keyBy('key');
+    private function syncOccultProgress(
+        Character $character,
+        array $extraData,
+        array $forkedTowerBloodProgress,
+        ?array $forkedTowerMagicProgress,
+    ): void {
+        $bloodBosses = collect($forkedTowerBloodProgress['bosses'] ?? [])->keyBy('key');
+        $values = [
+            'data_source' => (string) ($forkedTowerBloodProgress['data_source'] ?? OccultProgress::DATA_SOURCE_FFLOGS),
+            'knowledge_level' => (int) ($extraData['progression.occult.knowledge_level'] ?? 0),
+            'demon_tablet_kills' => (int) ($bloodBosses->get('demon_tablet')['kills'] ?? 0),
+            'demon_tablet_progress' => (int) ($bloodBosses->get('demon_tablet')['progress'] ?? 0),
+            'dead_stars_kills' => (int) ($bloodBosses->get('dead_stars')['kills'] ?? 0),
+            'dead_stars_progress' => (int) ($bloodBosses->get('dead_stars')['progress'] ?? 0),
+            'marble_dragon_kills' => (int) ($bloodBosses->get('marble_dragon')['kills'] ?? 0),
+            'marble_dragon_progress' => (int) ($bloodBosses->get('marble_dragon')['progress'] ?? 0),
+            'magitaur_kills' => (int) ($bloodBosses->get('magitaur')['kills'] ?? 0),
+            'magitaur_progress' => (int) ($bloodBosses->get('magitaur')['progress'] ?? 0),
+        ];
+
+        if ($forkedTowerMagicProgress !== null) {
+            $magicBosses = collect($forkedTowerMagicProgress['bosses'] ?? [])->keyBy('key');
+            $values = array_merge($values, [
+                'two_headed_aevis_kills' => (int) ($magicBosses->get('two_headed_aevis')['kills'] ?? 0),
+                'two_headed_aevis_progress' => (int) ($magicBosses->get('two_headed_aevis')['progress'] ?? 0),
+                'sword_dancer_kills' => (int) ($magicBosses->get('sword_dancer')['kills'] ?? 0),
+                'sword_dancer_progress' => (int) ($magicBosses->get('sword_dancer')['progress'] ?? 0),
+                'necrophobia_kills' => (int) ($magicBosses->get('necrophobia')['kills'] ?? 0),
+                'necrophobia_progress' => (int) ($magicBosses->get('necrophobia')['progress'] ?? 0),
+                'index_kills' => (int) ($magicBosses->get('index')['kills'] ?? 0),
+                'index_progress' => (int) ($magicBosses->get('index')['progress'] ?? 0),
+            ]);
+        }
 
         $character->occultProgress()->updateOrCreate(
             ['character_id' => $character->id],
-            [
-                'data_source' => (string) ($forkedTowerBloodProgress['data_source'] ?? OccultProgress::DATA_SOURCE_FFLOGS),
-                'knowledge_level' => (int) ($extraData['progression.occult.knowledge_level'] ?? 0),
-                'demon_tablet_kills' => (int) ($bosses->get('demon_tablet')['kills'] ?? 0),
-                'demon_tablet_progress' => (int) ($bosses->get('demon_tablet')['progress'] ?? 0),
-                'dead_stars_kills' => (int) ($bosses->get('dead_stars')['kills'] ?? 0),
-                'dead_stars_progress' => (int) ($bosses->get('dead_stars')['progress'] ?? 0),
-                'marble_dragon_kills' => (int) ($bosses->get('marble_dragon')['kills'] ?? 0),
-                'marble_dragon_progress' => (int) ($bosses->get('marble_dragon')['progress'] ?? 0),
-                'magitaur_kills' => (int) ($bosses->get('magitaur')['kills'] ?? 0),
-                'magitaur_progress' => (int) ($bosses->get('magitaur')['progress'] ?? 0),
-            ]
+            $values,
         );
     }
 

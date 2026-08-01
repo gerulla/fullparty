@@ -215,7 +215,7 @@
             "classes": "クラス",
             "occult": "オカルト",
             "forked_tower_blood": "フォークタワー・血",
-            "forked_tower_magic": "フォークタワー・魔法"
+            "forked_tower_magic": "フォークタワー・魔法（エクストリーム）"
         },
         "forked_tower": {
             "clear_count": "クリア回数",
@@ -230,6 +230,10 @@
                 "dead_stars": "デッドスターズ",
                 "marble_dragon": "マーブルドラゴン",
                 "magitaur": "マギタウル",
+                "two_headed_aevis": "ツーヘッド・エイビス",
+                "sword_dancer": "ソードダンサー",
+                "necrophobia": "ネクロフォビア",
+                "index": "インデックス",
                 "tba": "未定"
             }
         }

@@ -264,7 +264,7 @@ const removeCharacter = () => {
 
 					<div class="grid gap-6 xl:grid-cols-2">
 						<ForkedTowerBloodProgress :progress="character.occult.blood_progress" />
-						<ForkedTowerMagicProgress />
+						<ForkedTowerMagicProgress :progress="character.occult.magic_progress" />
 					</div>
 				</div>
 			</template>

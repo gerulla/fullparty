@@ -7,12 +7,31 @@ use App\Models\User;
 use App\Models\UserNotification;
 use App\Services\Characters\CharacterProfileRefreshService;
 use App\Services\FFLogs\ForkedTowerBloodProgressFetcher;
+use App\Services\FFLogs\ForkedTowerMagicProgressFetcher;
 use App\Services\Lodestone\ForkedTowerBloodAchievementProgressFetcher;
 use App\Services\Lodestone\LodestoneScraper;
 use App\Support\Notifications\NotificationCategory;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 uses(RefreshDatabase::class);
+
+beforeEach(function () {
+    $magicProgressFetcher = Mockery::mock(ForkedTowerMagicProgressFetcher::class);
+    $magicProgressFetcher
+        ->shouldReceive('fetchForCharacter')
+        ->zeroOrMoreTimes()
+        ->andReturn([
+            'clears' => 0,
+            'bosses' => [
+                ['key' => 'two_headed_aevis', 'kills' => 0, 'progress' => 0],
+                ['key' => 'sword_dancer', 'kills' => 0, 'progress' => 0],
+                ['key' => 'necrophobia', 'kills' => 0, 'progress' => 0],
+                ['key' => 'index', 'kills' => 0, 'progress' => 0],
+            ],
+        ]);
+
+    app()->instance(ForkedTowerMagicProgressFetcher::class, $magicProgressFetcher);
+});
 
 function characterRefreshEmptyLodestoneAchievementProgress(): array
 {
@@ -182,8 +201,23 @@ it('falls back to lodestone achievements when ff logs has no forked tower progre
             ],
         ]);
 
+    $magicProgressFetcher = Mockery::mock(ForkedTowerMagicProgressFetcher::class);
+    $magicProgressFetcher
+        ->shouldReceive('fetchForCharacter')
+        ->once()
+        ->andReturn([
+            'clears' => 3,
+            'bosses' => [
+                ['key' => 'two_headed_aevis', 'kills' => 8, 'progress' => 100],
+                ['key' => 'sword_dancer', 'kills' => 6, 'progress' => 100],
+                ['key' => 'necrophobia', 'kills' => 4, 'progress' => 100],
+                ['key' => 'index', 'kills' => 3, 'progress' => 100],
+            ],
+        ]);
+
     app()->instance(LodestoneScraper::class, $lodestoneScraper);
     app()->instance(ForkedTowerBloodProgressFetcher::class, $ffLogsFetcher);
+    app()->instance(ForkedTowerMagicProgressFetcher::class, $magicProgressFetcher);
     app()->instance(ForkedTowerBloodAchievementProgressFetcher::class, $lodestoneAchievementFetcher);
 
     $response = $this->post(route('characters.refresh', $character));
@@ -201,7 +235,12 @@ it('falls back to lodestone achievements when ff logs has no forked tower progre
         ->and($progress->demon_tablet_kills)->toBe(50)
         ->and($progress->demon_tablet_progress)->toBe(100)
         ->and($progress->magitaur_kills)->toBe(50)
-        ->and($progress->magitaur_progress)->toBe(100);
+        ->and($progress->magitaur_progress)->toBe(100)
+        ->and($progress->two_headed_aevis_kills)->toBe(8)
+        ->and($progress->sword_dancer_kills)->toBe(6)
+        ->and($progress->necrophobia_kills)->toBe(4)
+        ->and($progress->index_kills)->toBe(3)
+        ->and($progress->index_progress)->toBe(100);
 });
 
 it('skips profile refreshes while the lodestone cooldown is active', function () {

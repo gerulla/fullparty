@@ -89,10 +89,18 @@
     "copy_token": "Copy Token",
     "save_settings": "Save Settings",
     "add_override": "Add Override",
-    "refresh_snapshot": "Refresh"
+    "refresh_snapshot": "Refresh",
+    "unlink": "Unlink Server"
+  },
+  "unlink_modal": {
+    "title": "Unlink Discord server",
+    "description": "Unlink {guild} from this group?",
+    "warning": "The bot will remain installed in Discord. FullParty will remove this group's association while retaining the server's saved bot settings for a future relink.",
+    "confirm": "Unlink Server"
   },
   "toasts": {
     "token_copied": "Link token copied.",
-    "settings_saved": "Discord bot settings saved."
+    "settings_saved": "Discord bot settings saved.",
+    "unlinked": "Discord server unlinked from this group."
   }
 }

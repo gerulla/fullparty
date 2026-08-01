@@ -10,7 +10,10 @@ use App\Models\PhantomJob;
 
 class ActivityRosterSummaryPresetBuilder
 {
-    private const FORKED_TOWER_ACTIVITY_TYPE_SLUG = 'forked-tower';
+    private const FORKED_TOWER_ACTIVITY_TYPE_SLUGS = [
+        'forked-tower',
+        'forked-tower-magic',
+    ];
 
     /**
      * @return array<int, array<string, mixed>>
@@ -131,7 +134,7 @@ class ActivityRosterSummaryPresetBuilder
 
     private function usesGroupPhantomCompositions(Activity $activity): bool
     {
-        return $activity->activityType?->slug === self::FORKED_TOWER_ACTIVITY_TYPE_SLUG;
+        return in_array($activity->activityType?->slug, self::FORKED_TOWER_ACTIVITY_TYPE_SLUGS, true);
     }
 
     /**
@@ -142,7 +145,7 @@ class ActivityRosterSummaryPresetBuilder
     {
         return PhantomComposition::query()
             ->where('group_id', $activity->group_id)
-            ->where('content_key', PhantomComposition::CONTENT_FORKED_TOWER_BLOOD)
+            ->where('content_key', PhantomComposition::CONTENT_FORKED_TOWER)
             ->where('is_active', true)
             ->orderByDesc('is_default')
             ->orderBy('sort_order')

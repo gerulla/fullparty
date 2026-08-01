@@ -89,10 +89,18 @@
         "copy_token": "Token kopieren",
         "save_settings": "Einstellungen speichern",
         "add_override": "Override hinzufügen",
-        "refresh_snapshot": "Aktualisieren"
+        "refresh_snapshot": "Aktualisieren",
+        "unlink": "Server trennen"
+    },
+    "unlink_modal": {
+        "title": "Discord-Server trennen",
+        "description": "{guild} von dieser Gruppe trennen?",
+        "warning": "Der Bot bleibt auf Discord installiert. FullParty entfernt die Verknüpfung dieser Gruppe, behält aber die gespeicherten Bot-Einstellungen des Servers für eine spätere Neuverknüpfung.",
+        "confirm": "Server trennen"
     },
     "toasts": {
         "token_copied": "Link-Token kopiert.",
-        "settings_saved": "Discord-Bot-Einstellungen gespeichert."
+        "settings_saved": "Discord-Bot-Einstellungen gespeichert.",
+        "unlinked": "Discord-Server von dieser Gruppe getrennt."
     }
 }

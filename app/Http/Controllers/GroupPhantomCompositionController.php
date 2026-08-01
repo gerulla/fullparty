@@ -19,7 +19,7 @@ class GroupPhantomCompositionController extends Controller
 
         $compositions = PhantomComposition::query()
             ->where('group_id', $group->id)
-            ->where('content_key', PhantomComposition::CONTENT_FORKED_TOWER_BLOOD)
+            ->where('content_key', PhantomComposition::CONTENT_FORKED_TOWER)
             ->orderBy('sort_order')
             ->orderBy('name')
             ->orderBy('id')
@@ -46,7 +46,7 @@ class GroupPhantomCompositionController extends Controller
             return PhantomComposition::query()->create([
                 ...$data,
                 'group_id' => $group->id,
-                'content_key' => PhantomComposition::CONTENT_FORKED_TOWER_BLOOD,
+                'content_key' => PhantomComposition::CONTENT_FORKED_TOWER,
             ]);
         });
 
@@ -111,7 +111,7 @@ class GroupPhantomCompositionController extends Controller
         $compositionIds = array_map('intval', $validated['composition_ids']);
         $compositionCount = PhantomComposition::query()
             ->where('group_id', $group->id)
-            ->where('content_key', PhantomComposition::CONTENT_FORKED_TOWER_BLOOD)
+            ->where('content_key', PhantomComposition::CONTENT_FORKED_TOWER)
             ->whereIn('id', $compositionIds)
             ->count();
 
@@ -131,7 +131,7 @@ class GroupPhantomCompositionController extends Controller
 
         $compositions = PhantomComposition::query()
             ->where('group_id', $group->id)
-            ->where('content_key', PhantomComposition::CONTENT_FORKED_TOWER_BLOOD)
+            ->where('content_key', PhantomComposition::CONTENT_FORKED_TOWER)
             ->orderBy('sort_order')
             ->orderBy('name')
             ->orderBy('id')
@@ -156,7 +156,7 @@ class GroupPhantomCompositionController extends Controller
     private function assertCompositionBelongsToGroup(Group $group, PhantomComposition $composition): void
     {
         abort_unless((int) $composition->group_id === (int) $group->id, 404);
-        abort_unless($composition->content_key === PhantomComposition::CONTENT_FORKED_TOWER_BLOOD, 404);
+        abort_unless($composition->content_key === PhantomComposition::CONTENT_FORKED_TOWER, 404);
     }
 
     /**
@@ -180,7 +180,7 @@ class GroupPhantomCompositionController extends Controller
     {
         PhantomComposition::query()
             ->where('group_id', $group->id)
-            ->where('content_key', PhantomComposition::CONTENT_FORKED_TOWER_BLOOD)
+            ->where('content_key', PhantomComposition::CONTENT_FORKED_TOWER)
             ->when($except, fn ($query) => $query->whereKeyNot($except->id))
             ->update(['is_default' => false]);
     }
@@ -210,7 +210,7 @@ class GroupPhantomCompositionController extends Controller
      */
     private function metadata(): array
     {
-        $contentKey = PhantomComposition::CONTENT_FORKED_TOWER_BLOOD;
+        $contentKey = PhantomComposition::CONTENT_FORKED_TOWER;
 
         return [
             'content_key' => $contentKey,

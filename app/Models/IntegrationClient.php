@@ -50,6 +50,8 @@ class IntegrationClient extends Model
 
     public const EVENT_DISCORD_GUILD_SETTINGS_UPDATED = 'discord.guild.settings_updated';
 
+    public const EVENT_DISCORD_GUILD_DISCONNECTED = 'discord.guild.disconnected';
+
     protected $fillable = [
         'created_by_user_id',
         'name',

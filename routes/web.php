@@ -5,6 +5,7 @@ use App\Http\Controllers\AccountNotificationController;
 use App\Http\Controllers\ActivityTypeController;
 use App\Http\Controllers\AdminCharacterController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\AdminDiscordGuildIntegrationController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BozjaItemController;
 use App\Http\Controllers\CharacterClassController;
@@ -503,6 +504,7 @@ Route::prefix('{locale?}')
                 Route::get('/discord-integration', [GroupDiscordIntegrationController::class, 'show'])->name('groups.dashboard.discord-integration');
                 Route::post('/discord-integration/link-token', [GroupDiscordIntegrationController::class, 'generateToken'])->name('groups.dashboard.discord-integration.link-token');
                 Route::put('/discord-integration/settings', [GroupDiscordIntegrationController::class, 'updateSettings'])->name('groups.dashboard.discord-integration.settings.update');
+                Route::delete('/discord-integration', [GroupDiscordIntegrationController::class, 'destroy'])->name('groups.dashboard.discord-integration.destroy');
 
                 /*
                 |--------------------------------------------------------------------------
@@ -700,6 +702,10 @@ Route::prefix('{locale?}')
                 Route::post('/integrations/{integrationClient}/api-token', [IntegrationClientController::class, 'regenerateApiToken'])->name('admin.integrations.api-token.regenerate');
                 Route::post('/integrations/{integrationClient}/webhook-secret', [IntegrationClientController::class, 'regenerateWebhookSecret'])->name('admin.integrations.webhook-secret.regenerate');
                 Route::post('/integrations/{integrationClient}/healthcheck', [IntegrationClientController::class, 'runHealthcheck'])->name('admin.integrations.healthcheck.run');
+
+                // Discord guild links.
+                Route::get('/discord-guild-links', [AdminDiscordGuildIntegrationController::class, 'index'])->name('admin.discord-guild-links.index');
+                Route::delete('/discord-guild-links/{discordGuildIntegration}', [AdminDiscordGuildIntegrationController::class, 'destroy'])->name('admin.discord-guild-links.destroy');
 
                 // Activity type administration.
                 Route::get('/activity-types', [ActivityTypeController::class, 'index'])->name('admin.activity-types.index');

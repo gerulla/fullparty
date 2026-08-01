@@ -89,10 +89,18 @@
         "copy_token": "トークンをコピー",
         "save_settings": "設定を保存",
         "add_override": "上書きを追加",
-        "refresh_snapshot": "更新"
+        "refresh_snapshot": "更新",
+        "unlink": "サーバー連携を解除"
+    },
+    "unlink_modal": {
+        "title": "Discord サーバーとの連携を解除",
+        "description": "{guild} とこのグループの連携を解除しますか？",
+        "warning": "Bot は Discord に導入されたままです。FullParty はこのグループとの関連付けを解除しますが、再連携に備えてサーバーの Bot 設定は保持します。",
+        "confirm": "サーバー連携を解除"
     },
     "toasts": {
         "token_copied": "リンクトークンをコピーしました。",
-        "settings_saved": "Discord ボット設定を保存しました。"
+        "settings_saved": "Discord ボット設定を保存しました。",
+        "unlinked": "Discord サーバーとこのグループの連携を解除しました。"
     }
 }

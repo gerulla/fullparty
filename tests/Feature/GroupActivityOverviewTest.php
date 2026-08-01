@@ -257,7 +257,7 @@ it('renders serialized roster slots on the attendee overview page', function () 
         );
 });
 
-it('uses group phantom compositions on Forked Tower attendee overviews', function () {
+it('uses shared group phantom compositions on Forked Tower attendee overviews', function (string $activityTypeSlug) {
     $owner = User::factory()->create();
     $group = Group::factory()->open()->create([
         'owner_id' => $owner->id,
@@ -265,7 +265,7 @@ it('uses group phantom compositions on Forked Tower attendee overviews', functio
 
     $type = ActivityType::factory()->create([
         'created_by_user_id' => $owner->id,
-        'slug' => 'forked-tower',
+        'slug' => $activityTypeSlug,
     ]);
 
     $phantomJob = PhantomJob::query()->create([
@@ -377,7 +377,10 @@ it('uses group phantom compositions on Forked Tower attendee overviews', functio
             ->where('activity.roster_summary_presets.1.requirements.0.item.label.en', 'Phantom Bard')
             ->where('activity.roster_summary_presets.1.requirements.0.scope_type', 'slot_group')
             ->where('activity.roster_summary_presets.1.requirements.1.scope_groups.0.label.en', 'Party B'));
-});
+})->with([
+    'Blood' => 'forked-tower',
+    'Magic' => 'forked-tower-magic',
+]);
 
 it('exposes the cancellation reason on the attendee overview payload', function () {
     $owner = User::factory()->create();

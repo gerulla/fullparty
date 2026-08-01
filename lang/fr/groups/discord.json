@@ -89,10 +89,18 @@
         "copy_token": "Copier le jeton",
         "save_settings": "Enregistrer les paramètres",
         "add_override": "Ajouter un remplacement",
-        "refresh_snapshot": "Actualiser"
+        "refresh_snapshot": "Actualiser",
+        "unlink": "Dissocier le serveur"
+    },
+    "unlink_modal": {
+        "title": "Dissocier le serveur Discord",
+        "description": "Dissocier {guild} de ce groupe ?",
+        "warning": "Le bot restera installé sur Discord. FullParty supprimera l'association à ce groupe tout en conservant les paramètres du bot pour une future reconnexion.",
+        "confirm": "Dissocier le serveur"
     },
     "toasts": {
         "token_copied": "Jeton de liaison copié.",
-        "settings_saved": "Paramètres du bot Discord enregistrés."
+        "settings_saved": "Paramètres du bot Discord enregistrés.",
+        "unlinked": "Le serveur Discord a été dissocié de ce groupe."
     }
 }

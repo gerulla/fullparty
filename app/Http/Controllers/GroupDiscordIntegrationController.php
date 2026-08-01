@@ -7,6 +7,7 @@ use App\Models\DiscordGuildIntegration;
 use App\Models\DiscordUserIntegration;
 use App\Models\Group;
 use App\Models\IntegrationClient;
+use App\Services\Integrations\DiscordGuildLinkService;
 use App\Services\Integrations\IntegrationWebhookDispatcher;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -126,6 +127,21 @@ class GroupDiscordIntegrationController extends Controller
         );
 
         return back()->with('success', 'discord_guild_settings_updated');
+    }
+
+    public function destroy(Request $request, Group $group, DiscordGuildLinkService $discordGuildLinkService): RedirectResponse
+    {
+        $this->authorizeOwner($group);
+        $group->loadMissing('activeDiscordGuildIntegration');
+
+        if ($group->activeDiscordGuildIntegration) {
+            $discordGuildLinkService->unlink(
+                integration: $group->activeDiscordGuildIntegration,
+                actor: $request->user(),
+            );
+        }
+
+        return back()->with('success', 'discord_guild_unlinked');
     }
 
     /**

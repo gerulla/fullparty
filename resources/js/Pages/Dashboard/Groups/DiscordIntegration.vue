@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import AccessBadge from "@/components/Groups/AccessBadge.vue";
 import PageHeader from "@/components/PageHeader.vue";
+import { useConfirmationModal } from "@/composables/useConfirmationModal";
 import { router, useForm, usePage } from "@inertiajs/vue3";
 import { useToast } from "@nuxt/ui/composables";
 import { computed, ref, watch } from "vue";
@@ -159,6 +160,7 @@ const props = defineProps<{
 const { t } = useI18n();
 const page = usePage();
 const toast = useToast();
+const confirmationModal = useConfirmationModal();
 const linkToken = ref<LinkToken | null>(null);
 const generatingToken = ref(false);
 const refreshingSnapshot = ref(false);
@@ -509,6 +511,40 @@ const refreshSnapshot = () => {
 		only: ["snapshot"],
 		onFinish: () => {
 			refreshingSnapshot.value = false;
+		},
+	});
+};
+const unlinkGuild = async () => {
+	if (!props.integration) {
+		return;
+	}
+
+	await confirmationModal.open({
+		title: t("groups.discord.unlink_modal.title"),
+		description: t("groups.discord.unlink_modal.description", {
+			guild: props.integration.name ?? props.integration.discord_guild_id,
+		}),
+		warningText: t("groups.discord.unlink_modal.warning"),
+		severity: "error",
+		confirmLabel: t("groups.discord.unlink_modal.confirm"),
+		confirmIcon: "i-lucide-unplug",
+		onConfirm: async ({ patch }) => {
+			patch({ confirmLoading: true });
+
+			return await new Promise<boolean>((resolve) => {
+				router.delete(route("groups.dashboard.discord-integration.destroy", props.group.slug), {
+					onSuccess: () => {
+						toast.add({
+							title: t("groups.discord.toasts.unlinked"),
+							color: "success",
+							icon: "i-lucide-unplug",
+						});
+						resolve(true);
+					},
+					onError: () => resolve(false),
+					onFinish: () => patch({ confirmLoading: false }),
+				});
+			});
 		},
 	});
 };
@@ -1115,6 +1151,14 @@ watch(
 							<p class="truncate text-muted">{{ integration.discord_guild_id }}</p>
 						</div>
 					</div>
+					<UButton
+						class="w-full justify-center"
+						color="error"
+						variant="soft"
+						icon="i-lucide-unplug"
+						:label="t('groups.discord.actions.unlink')"
+						@click="unlinkGuild"
+					/>
 				</div>
 			</UCard>
 

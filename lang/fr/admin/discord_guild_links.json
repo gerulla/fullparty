@@ -1,0 +1,25 @@
+{
+  "title": "Serveurs Discord liés",
+  "subtitle": "Consultez et gérez les serveurs Discord liés aux groupes FullParty.",
+  "admin_only": "Administrateurs uniquement",
+  "summary": "{count} groupes liés",
+  "search_placeholder": "Rechercher un groupe ou un serveur Discord...",
+  "unknown_guild": "Serveur Discord",
+  "unknown_date": "Inconnu",
+  "installed": "Bot installé : {date}",
+  "linked": "Groupe lié : {date}",
+  "empty_title": "Aucun serveur Discord lié",
+  "empty_description": "Aucune liaison active entre un groupe et un serveur ne correspond à cette recherche.",
+  "actions": {
+    "force_unlink": "Forcer la dissociation"
+  },
+  "unlink_modal": {
+    "title": "Forcer la dissociation du serveur Discord",
+    "description": "Dissocier {guild} de {group} ?",
+    "warning": "Le bot restera installé sur Discord. FullParty supprimera l'association au groupe tout en conservant les paramètres du bot pour une future reconnexion.",
+    "confirm": "Forcer la dissociation"
+  },
+  "toasts": {
+    "unlinked": "Le serveur Discord a été dissocié du groupe."
+  }
+}

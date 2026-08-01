@@ -148,6 +148,10 @@
             "deleted": "hat die Gruppe gelöscht.",
             "followed": "hat der Gruppe gefolgt.",
             "unfollowed": "hat der Gruppe nicht mehr gefolgt.",
+            "discord_guild": {
+                "unlinked": "hat den Discord-Server der Gruppe getrennt.",
+                "force_unlinked": "hat den Discord-Server der Gruppe zwangsweise getrennt."
+            },
             "notifications": {
                 "enabled": "hat Gruppenbenachrichtigungen aktiviert.",
                 "muted": "hat Gruppenbenachrichtigungen stummgeschaltet."

@@ -37,7 +37,7 @@
     "availability": "Availability",
     "content": "Content",
     "delubrum_reginae_savage": "Delubrum Reginae (Savage)",
-    "forked_tower_blood": "Forked Tower: Blood",
+    "forked_tower_blood": "Forked Tower",
     "moderation": "Moderation",
     "configuration": "Configuration",
     "membership_applications": "Requests",
@@ -144,8 +144,8 @@
       }
     },
     "forked_tower_blood": {
-      "title": "Forked Tower: Blood",
-      "subtitle": "Plan and manage your group's Forked Tower: Blood content.",
+      "title": "Forked Tower",
+      "subtitle": "Plan and manage your group's Forked Tower content.",
       "compositions": {
         "title": "Compositions",
         "create": "New Composition",

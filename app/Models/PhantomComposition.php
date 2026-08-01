@@ -7,7 +7,10 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class PhantomComposition extends Model
 {
-    public const CONTENT_FORKED_TOWER_BLOOD = 'forked_tower_blood';
+    // Keep the legacy stored value so Blood and Magic share existing compositions.
+    public const CONTENT_FORKED_TOWER = 'forked_tower_blood';
+
+    public const CONTENT_FORKED_TOWER_BLOOD = self::CONTENT_FORKED_TOWER;
 
     public const RULE_SINGLE_JOB_COUNT = 'single_job_count';
 
@@ -85,7 +88,7 @@ class PhantomComposition extends Model
     public static function contentKeys(): array
     {
         return [
-            self::CONTENT_FORKED_TOWER_BLOOD,
+            self::CONTENT_FORKED_TOWER,
         ];
     }
 
@@ -161,7 +164,7 @@ class PhantomComposition extends Model
      */
     public static function slotGroupsForContent(string $contentKey): array
     {
-        if ($contentKey !== self::CONTENT_FORKED_TOWER_BLOOD) {
+        if ($contentKey !== self::CONTENT_FORKED_TOWER) {
             return [];
         }
 
@@ -184,7 +187,7 @@ class PhantomComposition extends Model
      */
     public static function defaultGroupSetsForContent(string $contentKey): array
     {
-        if ($contentKey !== self::CONTENT_FORKED_TOWER_BLOOD) {
+        if ($contentKey !== self::CONTENT_FORKED_TOWER) {
             return [];
         }
 

@@ -1,0 +1,25 @@
+{
+  "title": "連携済み Discord サーバー",
+  "subtitle": "FullParty グループに連携されている Discord サーバーを確認・管理します。",
+  "admin_only": "管理者のみ",
+  "summary": "{count}件のグループが連携中",
+  "search_placeholder": "グループまたは Discord サーバーを検索...",
+  "unknown_guild": "Discord サーバー",
+  "unknown_date": "不明",
+  "installed": "Bot の導入日時: {date}",
+  "linked": "グループの連携日時: {date}",
+  "empty_title": "連携済み Discord サーバーはありません",
+  "empty_description": "検索条件に一致する有効なグループとサーバーの連携はありません。",
+  "actions": {
+    "force_unlink": "強制解除"
+  },
+  "unlink_modal": {
+    "title": "Discord サーバーとの連携を強制解除",
+    "description": "{guild} と {group} の連携を解除しますか？",
+    "warning": "Bot は Discord に導入されたままです。FullParty はグループとの関連付けを解除しますが、再連携に備えてサーバーの Bot 設定は保持します。",
+    "confirm": "強制解除"
+  },
+  "toasts": {
+    "unlinked": "Discord サーバーとグループの連携を解除しました。"
+  }
+}

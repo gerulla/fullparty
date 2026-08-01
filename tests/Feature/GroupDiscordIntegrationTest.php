@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\ActivityType;
+use App\Models\AuditLog;
 use App\Models\DiscordGuildIntegration;
 use App\Models\DiscordUserIntegration;
 use App\Models\Group;
@@ -61,6 +62,69 @@ it('lets group owners generate a short lived discord link token', function () {
 
     expect($group->fresh()->discord_link_token_hash)->toBe(hash('sha256', $token))
         ->and($group->fresh()->discord_link_token_expires_at)->not->toBeNull();
+});
+
+it('lets only the group owner unlink the active Discord server', function () {
+    Http::fake([
+        'https://bot.fullparty.test/events' => Http::response([], 204),
+    ]);
+    IntegrationClient::factory()->create([
+        'outbound_events_url' => 'https://bot.fullparty.test/events',
+        'webhook_signing_secret' => 'disconnect-secret',
+        'allowed_events' => [
+            IntegrationClient::EVENT_DISCORD_GUILD_SETTINGS_UPDATED,
+        ],
+    ]);
+
+    $owner = User::factory()->create();
+    $otherUser = User::factory()->create();
+    $group = Group::factory()->create([
+        'owner_id' => $owner->id,
+        'discord_link_token_hash' => hash('sha256', 'PENDING-TOKEN'),
+        'discord_link_token_expires_at' => now()->addMinutes(10),
+    ]);
+    $integration = DiscordGuildIntegration::query()->create([
+        'group_id' => $group->id,
+        'discord_guild_id' => '123456789012345678',
+        'name' => 'Linked Guild',
+        'guild_installed_at' => now(),
+    ]);
+    $cacheKey = "discord-guild-membership-coverage:v3:{$integration->id}";
+    Cache::put($cacheKey, ['stats_available' => true], now()->addDay());
+
+    $this->actingAs($otherUser)
+        ->delete(route('groups.dashboard.discord-integration.destroy', $group))
+        ->assertNotFound();
+
+    expect($integration->fresh()->group_id)->toBe($group->id);
+
+    $this->actingAs($owner)
+        ->delete(route('groups.dashboard.discord-integration.destroy', $group))
+        ->assertRedirect()
+        ->assertSessionHas('success', 'discord_guild_unlinked');
+
+    expect($integration->fresh()->group_id)->toBeNull()
+        ->and($integration->fresh()->removed_at)->toBeNull()
+        ->and($group->fresh()->discord_link_token_hash)->toBeNull()
+        ->and($group->fresh()->discord_link_token_expires_at)->toBeNull()
+        ->and(Cache::has($cacheKey))->toBeFalse()
+        ->and(AuditLog::query()->where('action', 'group.discord_guild.unlinked')->exists())->toBeTrue();
+
+    Http::assertSent(function (HttpRequest $request) use ($group): bool {
+        $body = $request->body();
+        $timestamp = $request->header('X-FullParty-Timestamp')[0] ?? null;
+        $payload = json_decode($body, true);
+
+        expect($payload['event'])->toBe(IntegrationClient::EVENT_DISCORD_GUILD_DISCONNECTED)
+            ->and($payload['data']['discord_guild_id'])->toBe('123456789012345678')
+            ->and($payload['data']['group_id'])->toBe($group->id)
+            ->and($payload['data']['group_slug'])->toBe($group->slug)
+            ->and($payload['data']['disconnected_at'])->toBeString();
+
+        return is_string($timestamp)
+            && ($request->header('X-FullParty-Event')[0] ?? null) === IntegrationClient::EVENT_DISCORD_GUILD_DISCONNECTED
+            && ($request->header('X-FullParty-Signature')[0] ?? null) === 'sha256='.hash_hmac('sha256', $timestamp.'.'.$body, 'disconnect-secret');
+    });
 });
 
 it('loads a discord guild snapshot for linked group settings', function () {

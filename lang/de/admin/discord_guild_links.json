@@ -1,0 +1,25 @@
+{
+  "title": "Verknüpfte Discord-Server",
+  "subtitle": "Überprüfe und verwalte Discord-Server, die mit FullParty-Gruppen verknüpft sind.",
+  "admin_only": "Nur für Admins",
+  "summary": "{count} verknüpfte Gruppen",
+  "search_placeholder": "Gruppen oder Discord-Server suchen...",
+  "unknown_guild": "Discord-Server",
+  "unknown_date": "Unbekannt",
+  "installed": "Bot installiert: {date}",
+  "linked": "Gruppe verknüpft: {date}",
+  "empty_title": "Keine verknüpften Discord-Server",
+  "empty_description": "Keine aktiven Gruppen-Server-Verknüpfungen entsprechen dieser Suche.",
+  "actions": {
+    "force_unlink": "Verknüpfung erzwingen"
+  },
+  "unlink_modal": {
+    "title": "Discord-Server zwangsweise trennen",
+    "description": "{guild} von {group} trennen?",
+    "warning": "Der Bot bleibt auf Discord installiert. FullParty entfernt die Gruppenverknüpfung, behält aber die gespeicherten Bot-Einstellungen des Servers für eine spätere Neuverknüpfung.",
+    "confirm": "Verknüpfung trennen"
+  },
+  "toasts": {
+    "unlinked": "Discord-Server von der Gruppe getrennt."
+  }
+}

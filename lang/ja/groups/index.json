@@ -37,7 +37,7 @@
         "availability": "参加可能時間",
         "content": "コンテンツ",
         "delubrum_reginae_savage": "グンヒルド・ディルーブラム零式",
-        "forked_tower_blood": "フォークタワー・血",
+        "forked_tower_blood": "フォークタワー",
         "moderation": "モデレーション",
         "configuration": "構成",
         "membership_applications": "リクエスト",
@@ -144,8 +144,8 @@
             }
         },
         "forked_tower_blood": {
-            "title": "フォークタワー・血",
-            "subtitle": "グループのフォークタワー・血コンテンツを計画・管理します。",
+            "title": "フォークタワー",
+            "subtitle": "グループのフォークタワーコンテンツを計画・管理します。",
             "compositions": {
                 "title": "構成",
                 "create": "新しい構成",

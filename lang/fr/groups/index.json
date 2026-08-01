@@ -37,7 +37,7 @@
         "availability": "Disponibilités",
         "content": "Contenu",
         "delubrum_reginae_savage": "Delubrum Reginae (sadique)",
-        "forked_tower_blood": "Tour fourchue de la force",
+        "forked_tower_blood": "Tour fourchue",
         "moderation": "Modération",
         "configuration": "Configuration",
         "membership_applications": "Demandes",
@@ -144,8 +144,8 @@
             }
         },
         "forked_tower_blood": {
-            "title": "Tour fourchue de la force",
-            "subtitle": "Planifiez et gérez le contenu Tour fourchue de la force de votre groupe.",
+            "title": "Tour fourchue",
+            "subtitle": "Planifiez et gérez le contenu de la Tour fourchue de votre groupe.",
             "compositions": {
                 "title": "Compositions",
                 "create": "Nouvelle composition",

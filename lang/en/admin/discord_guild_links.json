@@ -1,0 +1,25 @@
+{
+  "title": "Linked Discord Servers",
+  "subtitle": "Review and manage Discord servers linked to FullParty groups.",
+  "admin_only": "Admin only",
+  "summary": "{count} linked groups",
+  "search_placeholder": "Search groups or Discord servers...",
+  "unknown_guild": "Discord server",
+  "unknown_date": "Unknown",
+  "installed": "Bot installed: {date}",
+  "linked": "Group linked: {date}",
+  "empty_title": "No linked Discord servers",
+  "empty_description": "No active group-to-server links match this search.",
+  "actions": {
+    "force_unlink": "Force Unlink"
+  },
+  "unlink_modal": {
+    "title": "Force unlink Discord server",
+    "description": "Unlink {guild} from {group}?",
+    "warning": "The bot will remain installed in Discord. FullParty will remove the group association while retaining the server's saved bot settings for a future relink.",
+    "confirm": "Force Unlink"
+  },
+  "toasts": {
+    "unlinked": "Discord server unlinked from the group."
+  }
+}

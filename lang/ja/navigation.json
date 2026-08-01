@@ -23,6 +23,7 @@
         "system_notifications": "システム通知",
         "featured_groups": "注目グループ",
         "integrations": "インテグレーション",
+        "discord_guild_links": "連携済み Discord サーバー",
         "activity_types": "アクティビティタイプ",
         "system_data": "システムデータ",
         "pulse": "Pulse",

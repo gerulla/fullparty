@@ -2,37 +2,24 @@
 import { computed } from "vue";
 import { useI18n } from "vue-i18n";
 
+const props = defineProps({
+	progress: {
+		type: Object,
+		required: true,
+	},
+});
+
 const { t } = useI18n();
 
-const placeholderProgress = computed(() => ({
-	clears: 0,
-	bosses: [
-		{
-			key: 'demon_tablet',
-			label: t('characters.card.forked_tower.bosses.tba'),
-			progress: 0,
-			kills: 0,
-		},
-		{
-			key: 'dead_stars',
-			label: t('characters.card.forked_tower.bosses.tba'),
-			progress: 0,
-			kills: 0,
-		},
-		{
-			key: 'marble_dragon',
-			label: t('characters.card.forked_tower.bosses.tba'),
-			progress: 0,
-			kills: 0,
-		},
-		{
-			key: 'magitaur',
-			label: t('characters.card.forked_tower.bosses.tba'),
-			progress: 0,
-			kills: 0,
-		},
-	]
+const displayProgress = computed(() => ({
+	clears: props.progress?.clears ?? 0,
+	bosses: (props.progress?.bosses ?? []).map((boss) => ({
+		...boss,
+		label: t(`characters.card.forked_tower.bosses.${boss.key}`),
+	})),
 }));
+
+const hasClearProof = computed(() => Number(displayProgress.value.clears) > 0);
 </script>
 
 <template>
@@ -44,10 +31,19 @@ const placeholderProgress = computed(() => ({
 			</h3>
 		</div>
 
-		<div class="flex items-center justify-between rounded-sm border border-default bg-muted/20 px-3 py-2">
-			<p class="text-sm font-semibold">{{ t('characters.card.forked_tower.clear_count') }}</p>
+		<div class="flex items-center justify-between gap-3 rounded-sm border border-default bg-muted/20 px-3 py-2">
+			<div class="flex min-w-0 flex-wrap items-center gap-2">
+				<p class="text-sm font-semibold">{{ t('characters.card.forked_tower.clear_count') }}</p>
+				<UBadge
+					v-if="hasClearProof"
+					:label="t('characters.card.forked_tower.verified_with_fflogs')"
+					color="neutral"
+					variant="subtle"
+					size="sm"
+				/>
+			</div>
 			<UBadge
-				:label="t('characters.card.forked_tower.clears', { count: placeholderProgress.clears })"
+				:label="t('characters.card.forked_tower.clears', { count: displayProgress.clears })"
 				color="primary"
 				variant="subtle"
 				size="md"
@@ -56,7 +52,7 @@ const placeholderProgress = computed(() => ({
 
 		<div class="grid gap-2 sm:grid-cols-2 xl:grid-cols-4">
 			<div
-				v-for="boss in placeholderProgress.bosses"
+				v-for="boss in displayProgress.bosses"
 				:key="boss.key"
 				class="space-y-2 rounded-sm border border-default bg-muted/20 px-3 py-3"
 			>
@@ -71,7 +67,7 @@ const placeholderProgress = computed(() => ({
 				</div>
 
 				<UProgress
-					v-model="boss.progress"
+					:model-value="boss.progress"
 					:max="100"
 					:ui="{ base: 'rounded-none', indicator: 'rounded-none' }"
 				/>

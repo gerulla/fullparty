@@ -11,12 +11,31 @@ use App\Models\NotificationEvent;
 use App\Models\User;
 use App\Models\UserNotification;
 use App\Services\FFLogs\ForkedTowerBloodProgressFetcher;
+use App\Services\FFLogs\ForkedTowerMagicProgressFetcher;
 use App\Services\Lodestone\ForkedTowerBloodAchievementProgressFetcher;
 use App\Services\Lodestone\LodestoneScraper;
 use App\Support\Notifications\NotificationCategory;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 uses(RefreshDatabase::class);
+
+beforeEach(function () {
+    $magicProgressFetcher = Mockery::mock(ForkedTowerMagicProgressFetcher::class);
+    $magicProgressFetcher
+        ->shouldReceive('fetchForCharacter')
+        ->zeroOrMoreTimes()
+        ->andReturn([
+            'clears' => 0,
+            'bosses' => [
+                ['key' => 'two_headed_aevis', 'kills' => 0, 'progress' => 0],
+                ['key' => 'sword_dancer', 'kills' => 0, 'progress' => 0],
+                ['key' => 'necrophobia', 'kills' => 0, 'progress' => 0],
+                ['key' => 'index', 'kills' => 0, 'progress' => 0],
+            ],
+        ]);
+
+    app()->instance(ForkedTowerMagicProgressFetcher::class, $magicProgressFetcher);
+});
 
 function characterClaimEmptyLodestoneAchievementProgress(): array
 {

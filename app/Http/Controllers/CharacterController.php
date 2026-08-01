@@ -592,6 +592,7 @@ class CharacterController extends Controller
             'occult' => [
                 'knowledge_level' => $character->occultProgress?->knowledge_level ?? 0,
                 'blood_progress' => $character->occultProgress?->forkedTowerBloodProgress() ?? $this->emptyForkedTowerBloodProgress(),
+                'magic_progress' => $character->occultProgress?->forkedTowerMagicProgress() ?? $this->emptyForkedTowerMagicProgress(),
                 'phantom_jobs' => $phantomJobs->map(function (PhantomJob $phantomJob) use ($phantomJobProgress) {
                     $progress = $phantomJobProgress->get($phantomJob->id);
                     $currentLevel = $progress?->pivot?->current_level ?? 0;
@@ -641,6 +642,20 @@ class CharacterController extends Controller
                 ['key' => 'dead_stars', 'kills' => 0, 'progress' => 0],
                 ['key' => 'marble_dragon', 'kills' => 0, 'progress' => 0],
                 ['key' => 'magitaur', 'kills' => 0, 'progress' => 0],
+            ],
+        ];
+    }
+
+    private function emptyForkedTowerMagicProgress(): array
+    {
+        return [
+            'clears' => 0,
+            'data_source' => OccultProgress::DATA_SOURCE_FFLOGS,
+            'bosses' => [
+                ['key' => 'two_headed_aevis', 'kills' => 0, 'progress' => 0],
+                ['key' => 'sword_dancer', 'kills' => 0, 'progress' => 0],
+                ['key' => 'necrophobia', 'kills' => 0, 'progress' => 0],
+                ['key' => 'index', 'kills' => 0, 'progress' => 0],
             ],
         ];
     }

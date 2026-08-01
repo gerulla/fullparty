@@ -215,7 +215,7 @@
             "classes": "Classes",
             "occult": "Occulte",
             "forked_tower_blood": "Tour fourchue de la force",
-            "forked_tower_magic": "Tour fourchue de la magie"
+            "forked_tower_magic": "Tour fourchue de la magie (extrême)"
         },
         "forked_tower": {
             "clear_count": "Nombre de victoires",
@@ -230,6 +230,10 @@
                 "dead_stars": "Étoiles mortes",
                 "marble_dragon": "Dragon de marbre",
                 "magitaur": "Magitaure",
+                "two_headed_aevis": "Two-headed Aevis",
+                "sword_dancer": "Sword Dancer",
+                "necrophobia": "Necrophobia",
+                "index": "Index",
                 "tba": "À venir"
             }
         }

@@ -215,7 +215,7 @@
             "classes": "Klassen",
             "occult": "Okkult",
             "forked_tower_blood": "Forked Tower des Blutes",
-            "forked_tower_magic": "Forked Tower der Magie"
+            "forked_tower_magic": "Forked Tower der Magie (Extrem)"
         },
         "forked_tower": {
             "clear_count": "Abschlussanzahl",
@@ -230,6 +230,10 @@
                 "dead_stars": "Tote Sterne",
                 "marble_dragon": "Marmordrache",
                 "magitaur": "Magitaur",
+                "two_headed_aevis": "Two-headed Aevis",
+                "sword_dancer": "Sword Dancer",
+                "necrophobia": "Necrophobia",
+                "index": "Index",
                 "tba": "Noch offen"
             }
         }

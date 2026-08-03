@@ -205,6 +205,8 @@ class ActivitySlotAttendanceService
             $slot->update([
                 'assigned_character_id' => null,
                 'assigned_by_user_id' => null,
+                'application_review_required_application_id' => null,
+                'application_review_required_at' => null,
             ]);
 
             foreach ($slot->fieldValues as $fieldValue) {
@@ -395,6 +397,8 @@ class ActivitySlotAttendanceService
             $targetSlot->update([
                 'assigned_character_id' => $assignment->character_id,
                 'assigned_by_user_id' => $userId,
+                'application_review_required_application_id' => null,
+                'application_review_required_at' => null,
             ]);
 
             if ($slotBench->isBench($targetSlot)) {

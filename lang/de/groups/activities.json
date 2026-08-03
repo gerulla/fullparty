@@ -197,6 +197,7 @@
             "load_slot_assignment_failed": "Slot-Zuweisungsdetails konnten nicht geladen werden.",
             "load_manual_assignment_failed": "Zuweisungsoptionen für Gruppenmitglieder konnten nicht geladen werden.",
             "return_to_queue_failed": "Dieser Slot konnte nicht in die Warteschlange zurückgegeben werden.",
+            "clear_application_warning_failed": "Diese Bewerbungswarnung konnte nicht entfernt werden.",
             "slot_unassign_failed": "Diese Slot-Zuweisung konnte nicht aktualisiert werden.",
             "undo_check_in_failed": "Check-in für diesen Slot konnte nicht rückgängig gemacht werden.",
             "check_in_failed": "Dieser Slot konnte nicht eingecheckt werden.",
@@ -367,6 +368,7 @@
             "mark_missing_action": "Als fehlend / abwesend markieren",
             "remove_from_slot_action": "Aus Slot entfernen",
             "return_to_queue_action": "Zurück in die Warteschlange",
+            "clear_application_warning_action": "Warnung entfernen",
             "move_to_bench_action": "Auf die Ersatzbank verschieben",
             "move_to_fill_in_action": "Zu Fill-in verschieben",
             "change_assignment_action": "Zuweisung ändern",
@@ -383,6 +385,7 @@
             "host_badge": "Host",
             "raid_leader_badge": "Raid-Leitung",
             "self_badge": "Dein Charakter",
+            "application_review_required_badge": "Bewerbung bearbeitet; Prüfung nötig",
             "application_match": {
                 "title": "Bewerbungspräferenzen",
                 "matched": "Passend",

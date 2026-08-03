@@ -103,10 +103,14 @@ class GroupActivitySlotSwapController extends Controller
             $sourceAssignment = [
                 'assigned_character_id' => $sourceSlot->assigned_character_id,
                 'assigned_by_user_id' => $sourceSlot->assigned_by_user_id,
+                'application_review_required_application_id' => $sourceSlot->application_review_required_application_id,
+                'application_review_required_at' => $sourceSlot->application_review_required_at,
             ];
             $targetAssignment = [
                 'assigned_character_id' => $targetSlot->assigned_character_id,
                 'assigned_by_user_id' => $targetSlot->assigned_by_user_id,
+                'application_review_required_application_id' => $targetSlot->application_review_required_application_id,
+                'application_review_required_at' => $targetSlot->application_review_required_at,
             ];
             $sourceDesignationState = [
                 'is_host' => (bool) $sourceSlot->is_host,

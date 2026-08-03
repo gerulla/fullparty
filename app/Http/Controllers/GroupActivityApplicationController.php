@@ -17,12 +17,9 @@ use App\Models\PhantomJob;
 use App\Models\RaidPosition;
 use App\Models\UserActivityApplicationDefault;
 use App\Services\Groups\ActivityApplicationCharacterRefreshService;
+use App\Services\Groups\ActivityApplicationReviewSlotStateService;
 use App\Services\Groups\ActivityApplicationWithdrawalService;
-use App\Services\Groups\ActivityFillInSlotService;
 use App\Services\Groups\ActivityManagementRealtimeService;
-use App\Services\Groups\ActivitySlotAttendanceService;
-use App\Services\Groups\ActivitySlotDesignationService;
-use App\Services\Groups\ActivitySlotSerializer;
 use App\Services\Groups\BozjaHolsterPairService;
 use App\Services\Groups\GroupActivityAuditService;
 use App\Services\Lodestone\LodestoneCharacterSearchService;
@@ -55,12 +52,9 @@ class GroupActivityApplicationController extends Controller
         private readonly TextInputSanitizer $textInputSanitizer,
         private readonly ActivityApplicationWithdrawalService $applicationWithdrawalService,
         private readonly ActivityApplicationCharacterRefreshService $applicationCharacterRefreshService,
+        private readonly ActivityApplicationReviewSlotStateService $applicationReviewSlotStateService,
         private readonly ActivityManagementRealtimeService $activityManagementRealtimeService,
         private readonly BozjaHolsterPairService $bozjaHolsterPairService,
-        private readonly ActivityFillInSlotService $fillInSlotService,
-        private readonly ActivitySlotAttendanceService $slotAttendanceService,
-        private readonly ActivitySlotDesignationService $slotDesignationService,
-        private readonly ActivitySlotSerializer $slotSerializer,
     ) {}
 
     public function show(Request $request, Group $group, Activity $activity, ?string $secretKey = null): Response
@@ -435,13 +429,10 @@ class GroupActivityApplicationController extends Controller
             $this->ensureSelectedCharacterIsNotAlreadyAssigned($activity, (int) $validated['selected_character_id'], $application);
         }
 
-        $releasedAssignment = [
-            'slot' => null,
-            'removed_slot_ids' => [],
-        ];
+        $updatedSlots = [];
 
-        $applicationId = DB::transaction(function () use ($activity, $application, $validated, $user, &$releasedAssignment) {
-            $releasedAssignment = $this->releaseAssignedApplicationSlotForReview($activity, $application, $user);
+        $applicationId = DB::transaction(function () use ($activity, $application, $validated, &$updatedSlots) {
+            $updatedSlotIds = $this->applicationReviewSlotStateService->markAssignedSlotsForReview($activity, $application);
 
             $application->update([
                 'selected_character_id' => $validated['selected_character_id'] ?? null,
@@ -458,6 +449,7 @@ class GroupActivityApplicationController extends Controller
             ]);
 
             $this->syncApplicationAnswers($application, $validated['answers'] ?? []);
+            $updatedSlots = $this->applicationReviewSlotStateService->serializeSlotsByIds($activity, $updatedSlotIds);
             $application->loadMissing(['activity.group', 'selectedCharacter', 'user']);
             $this->activityAuditService->logApplicationUpdated($application, auth()->user());
 
@@ -473,8 +465,7 @@ class GroupActivityApplicationController extends Controller
         $this->broadcastApplicantQueueChanged(
             activity: $activity,
             application: $application->fresh(['selectedCharacter', 'user']),
-            updatedSlot: $releasedAssignment['slot'],
-            removedSlotIds: $releasedAssignment['removed_slot_ids'],
+            updatedSlots: $updatedSlots,
         );
 
         $request->session()->put($this->confirmationSessionKey($activity->id), [
@@ -490,7 +481,7 @@ class GroupActivityApplicationController extends Controller
         Activity $activity,
         ?ActivityApplication $application = null,
         int $newApplicationCount = 0,
-        ?array $updatedSlot = null,
+        array $updatedSlots = [],
         array $removedSlotIds = [],
     ): void {
         $pendingApplicationCount = $activity->applications()
@@ -511,8 +502,8 @@ class GroupActivityApplicationController extends Controller
             'queue_updated_application_names' => $updatedApplicationNames,
         ];
 
-        if ($updatedSlot) {
-            $patch['updated_slots'] = [$updatedSlot];
+        if ($updatedSlots !== []) {
+            $patch['updated_slots'] = $updatedSlots;
         }
 
         if ($removedSlotIds !== []) {
@@ -569,13 +560,10 @@ class GroupActivityApplicationController extends Controller
             abort(422, 'An application already exists for this character.');
         }
 
-        $releasedAssignment = [
-            'slot' => null,
-            'removed_slot_ids' => [],
-        ];
+        $updatedSlots = [];
 
-        DB::transaction(function () use ($activity, $application, $validated, &$releasedAssignment) {
-            $releasedAssignment = $this->releaseAssignedApplicationSlotForReview($activity, $application);
+        DB::transaction(function () use ($activity, $application, $validated, &$updatedSlots) {
+            $updatedSlotIds = $this->applicationReviewSlotStateService->markAssignedSlotsForReview($activity, $application);
             $selectedCharacter = $this->resolveGuestApplicantCharacter($validated['applicant']);
 
             $application->update([
@@ -593,6 +581,7 @@ class GroupActivityApplicationController extends Controller
             ]);
 
             $this->syncApplicationAnswers($application, $validated['answers'] ?? []);
+            $updatedSlots = $this->applicationReviewSlotStateService->serializeSlotsByIds($activity, $updatedSlotIds);
             $application->loadMissing(['activity.group', 'selectedCharacter', 'user']);
             $this->activityAuditService->logApplicationUpdated($application, null);
         });
@@ -604,8 +593,7 @@ class GroupActivityApplicationController extends Controller
         $this->broadcastApplicantQueueChanged(
             activity: $activity,
             application: $application->fresh(['selectedCharacter', 'user']),
-            updatedSlot: $releasedAssignment['slot'],
-            removedSlotIds: $releasedAssignment['removed_slot_ids'],
+            updatedSlots: $updatedSlots,
         );
 
         return redirect()->route('groups.activities.application.status', [
@@ -1192,58 +1180,6 @@ class GroupActivityApplicationController extends Controller
     {
         return $activity->acceptsApplications()
             && in_array($application->status, ActivityApplication::ACTIVE_STATUSES, true);
-    }
-
-    /**
-     * @return array{slot: array<string, mixed>|null, removed_slot_ids: array<int, int>}
-     */
-    private function releaseAssignedApplicationSlotForReview(
-        Activity $activity,
-        ActivityApplication $application,
-        mixed $actor = null,
-    ): array {
-        $slot = $this->assignedSlotForApplication($activity, $application, lockForUpdate: true);
-
-        if (! $slot) {
-            return [
-                'slot' => null,
-                'removed_slot_ids' => [],
-            ];
-        }
-
-        $isFillInSlot = $slot->slot_kind === ActivitySlot::SLOT_KIND_FILL_IN;
-        $characterId = (int) $slot->assigned_character_id;
-
-        $slot->update([
-            'assigned_character_id' => null,
-            'assigned_by_user_id' => null,
-        ]);
-
-        foreach ($slot->fieldValues as $fieldValue) {
-            $fieldValue->update([
-                'value' => null,
-            ]);
-        }
-
-        $this->slotAttendanceService->endActiveAssignment($activity, $characterId);
-        $this->slotDesignationService->clearInvalidDesignations([$slot], $actor);
-
-        if ($isFillInSlot) {
-            $removedSlotIds = [(int) $slot->id];
-            $this->fillInSlotService->delete($activity, $slot);
-
-            return [
-                'slot' => null,
-                'removed_slot_ids' => $removedSlotIds,
-            ];
-        }
-
-        $slot->load(['assignedCharacter', 'fieldValues', 'assignments']);
-
-        return [
-            'slot' => $this->slotSerializer->serialize($slot),
-            'removed_slot_ids' => [],
-        ];
     }
 
     private function ensureSelectedCharacterIsNotAlreadyAssigned(

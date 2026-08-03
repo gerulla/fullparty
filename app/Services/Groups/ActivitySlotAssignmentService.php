@@ -104,6 +104,8 @@ class ActivitySlotAssignmentService
             $targetSlot->update([
                 'assigned_character_id' => $application->selected_character_id,
                 'assigned_by_user_id' => $assignedByUserId,
+                'application_review_required_application_id' => null,
+                'application_review_required_at' => null,
             ]);
             $this->applyDesignationState(
                 $targetSlot,
@@ -144,6 +146,8 @@ class ActivitySlotAssignmentService
                     $sourceSlot->update([
                         'assigned_character_id' => $displacedApplication->selected_character_id,
                         'assigned_by_user_id' => $assignedByUserId,
+                        'application_review_required_application_id' => null,
+                        'application_review_required_at' => null,
                     ]);
                     $this->applyDesignationState($sourceSlot, $targetDesignationState, false);
                     $this->clearSlotFieldValues($sourceSlot);
@@ -166,6 +170,8 @@ class ActivitySlotAssignmentService
                     $sourceSlot->update([
                         'assigned_character_id' => null,
                         'assigned_by_user_id' => null,
+                        'application_review_required_application_id' => null,
+                        'application_review_required_at' => null,
                     ]);
                     $this->applyDesignationState($sourceSlot, $this->emptyDesignationState(), false);
                     $this->clearSlotFieldValues($sourceSlot);
@@ -355,6 +361,8 @@ class ActivitySlotAssignmentService
             $targetSlot->update([
                 'assigned_character_id' => $character->id,
                 'assigned_by_user_id' => $assignedByUserId,
+                'application_review_required_application_id' => null,
+                'application_review_required_at' => null,
             ]);
             $this->applyDesignationState(
                 $targetSlot,
@@ -380,6 +388,8 @@ class ActivitySlotAssignmentService
                 $sourceSlot->update([
                     'assigned_character_id' => null,
                     'assigned_by_user_id' => null,
+                    'application_review_required_application_id' => null,
+                    'application_review_required_at' => null,
                 ]);
                 $this->applyDesignationState($sourceSlot, $this->emptyDesignationState(), false);
                 $this->clearSlotFieldValues($sourceSlot);

@@ -1524,7 +1524,7 @@ it('allows guests to edit pending applications after the roster is published whe
     expect($application->fresh()->answers()->where('question_key', 'experience')->value('value'))->toBe('Updated after publish.');
 });
 
-it('returns guest main roster assignments to the queue when the application is edited', function () {
+it('marks guest main roster assignments as needing review when the application is edited', function () {
     $activity = createGuestApplicationActivity([
         'status' => Activity::STATUS_ASSIGNED,
     ]);
@@ -1574,10 +1574,12 @@ it('returns guest main roster assignments to the queue when the application is e
 
     expect($application->fresh()->status)->toBe(ActivityApplication::STATUS_PENDING)
         ->and($application->fresh()->answers()->where('question_key', 'experience')->value('value'))->toBe('Needs re-review.')
-        ->and($slot->fresh()->assigned_character_id)->toBeNull();
+        ->and($slot->fresh()->assigned_character_id)->toBe($application->selectedCharacter->id)
+        ->and($slot->fresh()->application_review_required_application_id)->toBe($application->id)
+        ->and($slot->fresh()->application_review_required_at)->not->toBeNull();
 });
 
-it('returns guest bench assignments to the queue when the application is edited', function () {
+it('marks guest bench assignments as needing review when the application is edited', function () {
     $activity = createGuestApplicationActivity([
         'status' => Activity::STATUS_ASSIGNED,
     ]);
@@ -1634,10 +1636,12 @@ it('returns guest bench assignments to the queue when the application is edited'
 
     expect($application->fresh()->status)->toBe(ActivityApplication::STATUS_PENDING)
         ->and($application->fresh()->answers()->where('question_key', 'experience')->value('value'))->toBe('Bench edit still allowed.')
-        ->and($slot->fresh()->assigned_character_id)->toBeNull();
+        ->and($slot->fresh()->assigned_character_id)->toBe($application->selectedCharacter->id)
+        ->and($slot->fresh()->application_review_required_application_id)->toBe($application->id)
+        ->and($slot->fresh()->application_review_required_at)->not->toBeNull();
 });
 
-it('returns guest fill-in assignments to the queue and removes the fill-in slot when the application is edited', function () {
+it('marks guest fill-in assignments as needing review when the application is edited', function () {
     $activity = createGuestApplicationActivity([
         'status' => Activity::STATUS_ASSIGNED,
     ]);
@@ -1685,11 +1689,10 @@ it('returns guest fill-in assignments to the queue and removes the fill-in slot 
     ]));
 
     expect($application->fresh()->status)->toBe(ActivityApplication::STATUS_PENDING)
-        ->and($application->fresh()->answers()->where('question_key', 'experience')->value('value'))->toBe('Fill-in edit needs review.');
-
-    $this->assertDatabaseMissing('activity_slots', [
-        'id' => $slot->id,
-    ]);
+        ->and($application->fresh()->answers()->where('question_key', 'experience')->value('value'))->toBe('Fill-in edit needs review.')
+        ->and($slot->fresh()->assigned_character_id)->toBe($application->selectedCharacter->id)
+        ->and($slot->fresh()->application_review_required_application_id)->toBe($application->id)
+        ->and($slot->fresh()->application_review_required_at)->not->toBeNull();
 });
 
 it('allows authenticated users to update applications after the roster is published when they are not assigned to the main roster', function () {
@@ -1790,7 +1793,7 @@ it('allows authenticated users to edit approved applications when they are not a
         ->and($application->fresh()->answers()->where('question_key', 'experience')->value('value'))->toBe('Approved application updated.');
 });
 
-it('returns authenticated main roster assignments to the queue when the application is edited', function () {
+it('marks authenticated main roster assignments as needing review when the application is edited', function () {
     $activity = createGuestApplicationActivity([
         'status' => Activity::STATUS_ASSIGNED,
         'allow_guest_applications' => false,
@@ -1836,10 +1839,12 @@ it('returns authenticated main roster assignments to the queue when the applicat
 
     expect($application->fresh()->status)->toBe(ActivityApplication::STATUS_PENDING)
         ->and($application->fresh()->answers()->where('question_key', 'experience')->value('value'))->toBe('Needs re-review.')
-        ->and($slot->fresh()->assigned_character_id)->toBeNull();
+        ->and($slot->fresh()->assigned_character_id)->toBe($character->id)
+        ->and($slot->fresh()->application_review_required_application_id)->toBe($application->id)
+        ->and($slot->fresh()->application_review_required_at)->not->toBeNull();
 });
 
-it('returns authenticated bench assignments to the queue when the application is edited', function () {
+it('marks authenticated bench assignments as needing review when the application is edited', function () {
     $activity = createGuestApplicationActivity([
         'status' => Activity::STATUS_ASSIGNED,
         'allow_guest_applications' => false,
@@ -1892,10 +1897,12 @@ it('returns authenticated bench assignments to the queue when the application is
 
     expect($application->fresh()->status)->toBe(ActivityApplication::STATUS_PENDING)
         ->and($application->fresh()->answers()->where('question_key', 'experience')->value('value'))->toBe('Bench edit still allowed.')
-        ->and($slot->fresh()->assigned_character_id)->toBeNull();
+        ->and($slot->fresh()->assigned_character_id)->toBe($character->id)
+        ->and($slot->fresh()->application_review_required_application_id)->toBe($application->id)
+        ->and($slot->fresh()->application_review_required_at)->not->toBeNull();
 });
 
-it('returns authenticated fill-in assignments to the queue and removes the fill-in slot when the application is edited', function () {
+it('marks authenticated fill-in assignments as needing review when the application is edited', function () {
     $activity = createGuestApplicationActivity([
         'status' => Activity::STATUS_ASSIGNED,
         'allow_guest_applications' => false,
@@ -1947,11 +1954,10 @@ it('returns authenticated fill-in assignments to the queue and removes the fill-
     ]));
 
     expect($application->fresh()->status)->toBe(ActivityApplication::STATUS_PENDING)
-        ->and($application->fresh()->answers()->where('question_key', 'experience')->value('value'))->toBe('Fill-in edit needs review.');
-
-    $this->assertDatabaseMissing('activity_slots', [
-        'id' => $slot->id,
-    ]);
+        ->and($application->fresh()->answers()->where('question_key', 'experience')->value('value'))->toBe('Fill-in edit needs review.')
+        ->and($slot->fresh()->assigned_character_id)->toBe($character->id)
+        ->and($slot->fresh()->application_review_required_application_id)->toBe($application->id)
+        ->and($slot->fresh()->application_review_required_at)->not->toBeNull();
 });
 
 it('does not allow authenticated users to apply with a character already assigned to the run', function () {

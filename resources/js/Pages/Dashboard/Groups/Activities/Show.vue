@@ -960,6 +960,10 @@ const openSlotApplicationDetails = async (slotId: number) => {
 	}
 
 	try {
+		if (findSlotById(slotId)?.application_review_required) {
+			await clearApplicationWarning(slotId);
+		}
+
 		applicationDetailsApplication.value = await fetchSlotAssignmentContext(slotId);
 		applicationDetailsModalOpen.value = applicationDetailsApplication.value !== null;
 	} catch (error) {
@@ -1202,6 +1206,63 @@ const returnSlotToQueue = async (slotId: number) => {
 		toast.add({
 			title: t('general.error'),
 			description: t('groups.activities.management.messages.slot_unassign_failed'),
+			color: 'error',
+			icon: 'i-lucide-octagon-alert',
+		});
+	} finally {
+		isSlotAssignmentPending.value = false;
+		pendingSwapSlotIds.value = [];
+	}
+};
+
+const clearApplicationWarning = async (slotId: number) => {
+	if (!currentActivity.value || isActivityArchived.value || isSlotAssignmentPending.value || isSlotSwapPending.value) {
+		return;
+	}
+
+	const slot = findSlotById(slotId);
+
+	if (!slot || !slot.application_review_required) {
+		return;
+	}
+
+	isSlotAssignmentPending.value = true;
+	pendingSwapSlotIds.value = [slotId];
+
+	try {
+		const response = await axios.post(route('groups.dashboard.activities.slot-application-review-warnings.clear', {
+			group: props.group.slug,
+			activity: props.activity.id,
+			slot: slotId,
+		}), {
+			expected_slot_state_token: slot.state_token,
+		});
+
+		const updatedSlot = response.data?.slot ?? null;
+		const pendingApplicationCount = response.data?.pending_application_count;
+		const removedQueueApplicationIds = numericIdsFromResponse(response.data?.queue_application_remove_ids);
+
+		if (updatedSlot) {
+			activityData.value = {
+				...currentActivity.value,
+				pending_application_count: typeof pendingApplicationCount === 'number'
+					? pendingApplicationCount
+					: currentActivity.value.pending_application_count,
+				slots: currentActivity.value.slots.map((slot) => slot.id === updatedSlot.id ? updatedSlot : slot),
+			};
+		}
+
+		dispatchQueueSyncEvent([], removedQueueApplicationIds);
+	} catch (error: any) {
+		console.error(error);
+
+		if (await handleSlotStateConflict(error)) {
+			return;
+		}
+
+		toast.add({
+			title: t('general.error'),
+			description: error?.response?.data?.message ?? t('groups.activities.management.messages.clear_application_warning_failed'),
 			color: 'error',
 			icon: 'i-lucide-octagon-alert',
 		});
@@ -1940,6 +2001,7 @@ onBeforeUnmount(() => {
 					@click-slot="openSlotEditModal"
 					@view-application="openSlotApplicationDetails"
 					@return-slot-to-queue="returnSlotToQueue"
+					@clear-application-warning="clearApplicationWarning"
 					@move-slot-to-bench="moveSlotToBench"
 					@move-slot-to-fill-in="moveSlotToFillIn"
 					@mark-slot-missing="markSlotMissing"

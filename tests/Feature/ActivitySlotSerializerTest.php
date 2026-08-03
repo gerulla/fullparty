@@ -67,6 +67,27 @@ it('serializes slot field values in activity type schema order', function () {
         ->toBe(['character_class', 'phantom_job']);
 });
 
+it('serializes application review warning state for stale assigned slots', function () {
+    $activity = Activity::factory()->create();
+    $application = ActivityApplication::factory()->approved()->create([
+        'activity_id' => $activity->id,
+    ]);
+    $slot = $activity->slots()->firstOrFail();
+    $slot->update([
+        'assigned_character_id' => $application->selected_character_id,
+        'application_review_required_application_id' => $application->id,
+        'application_review_required_at' => now(),
+    ]);
+
+    $slot->load(['activity.activityTypeVersion', 'assignedCharacter', 'compositionHints', 'fieldValues', 'assignments']);
+
+    $serializedSlot = app(ActivitySlotSerializer::class)->serialize($slot);
+
+    expect($serializedSlot['application_review_required'])->toBeTrue()
+        ->and($serializedSlot['application_review_required_application_id'])->toBe($application->id)
+        ->and($serializedSlot['application_review_required_at'])->not->toBeNull();
+});
+
 it('serializes dynamic application matches for assigned roster slots', function () {
     $characterClass = CharacterClass::query()->create([
         'name' => 'Astrologian',

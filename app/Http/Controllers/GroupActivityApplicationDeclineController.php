@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Activity;
 use App\Models\ActivityApplication;
 use App\Models\Group;
+use App\Services\Groups\ActivityApplicationReviewSlotStateService;
 use App\Services\Groups\ActivityManagementRealtimeService;
 use App\Services\Groups\ApplicantQueue\ApplicantQueuePayloadBuilder;
 use App\Services\Groups\GroupActivityAuditService;
@@ -24,6 +25,7 @@ class GroupActivityApplicationDeclineController extends Controller
         ActivityApplication $application,
         RequestTextInputSanitizer $requestTextInputSanitizer,
         GroupActivityAuditService $activityAuditService,
+        ActivityApplicationReviewSlotStateService $applicationReviewSlotStateService,
         ApplicantQueuePayloadBuilder $queuePayloadBuilder,
         ApplicationNotificationService $applicationNotificationService,
         ActivityManagementRealtimeService $activityManagementRealtimeService,
@@ -52,7 +54,26 @@ class GroupActivityApplicationDeclineController extends Controller
             'reason' => ['sometimes', 'nullable', 'string', 'max:'.ActivityApplication::REVIEW_REASON_MAX_LENGTH],
         ]);
 
-        DB::transaction(function () use ($application, $validated, $request, $activityAuditService): void {
+        $releasedAssignments = [
+            'updated_slots' => [],
+            'removed_slot_ids' => [],
+        ];
+
+        DB::transaction(function () use (
+            $activity,
+            $application,
+            $validated,
+            $request,
+            $activityAuditService,
+            $applicationReviewSlotStateService,
+            &$releasedAssignments,
+        ): void {
+            $releasedAssignments = $applicationReviewSlotStateService->releaseFlaggedAssignmentsForApplication(
+                $activity,
+                $application,
+                $request->user(),
+            );
+
             $application->update([
                 'status' => ActivityApplication::STATUS_DECLINED,
                 'guest_access_token' => null,
@@ -82,15 +103,26 @@ class GroupActivityApplicationDeclineController extends Controller
             ->where('status', ActivityApplication::STATUS_PENDING)
             ->count();
 
-        $activityManagementRealtimeService->broadcastPatch($activity, [
+        $patch = [
             'pending_application_count' => $pendingApplicationCount,
             'queue_application_sync_ids' => [],
             'queue_application_remove_ids' => [(int) $application->id],
-        ]);
+        ];
+
+        if ($releasedAssignments['updated_slots'] !== []) {
+            $patch['updated_slots'] = $releasedAssignments['updated_slots'];
+        }
+
+        if ($releasedAssignments['removed_slot_ids'] !== []) {
+            $patch['removed_slot_ids'] = $releasedAssignments['removed_slot_ids'];
+        }
+
+        $activityManagementRealtimeService->broadcastPatch($activity, $patch);
 
         return response()->json([
             'application' => $serializedApplication,
             'pending_application_count' => $pendingApplicationCount,
+            'removed_slot_ids' => $releasedAssignments['removed_slot_ids'],
         ]);
     }
 }

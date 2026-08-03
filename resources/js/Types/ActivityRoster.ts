@@ -98,6 +98,9 @@ export type ActivitySlot = {
 	is_host: boolean
 	is_raid_leader: boolean
 	assigned_character_id: number | null
+	application_review_required: boolean
+	application_review_required_at: string | null
+	application_review_required_application_id: number | null
 	assignment_source: "application" | "manual" | null
 	assignment_application_id: number | null
 	can_return_to_queue: boolean

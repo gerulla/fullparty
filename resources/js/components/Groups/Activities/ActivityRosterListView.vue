@@ -36,6 +36,7 @@ const emit = defineEmits<{
 	clickSlot: [slotId: number]
 	viewApplication: [slotId: number]
 	returnSlotToQueue: [slotId: number]
+	clearApplicationWarning: [slotId: number]
 	moveSlotToBench: [slotId: number]
 	moveSlotToFillIn: [slotId: number]
 	markSlotMissing: [slotId: number]
@@ -198,6 +199,15 @@ const buildSlotContextMenuItems = (slot: ActivitySlot): ContextMenuItem[][] => {
 					icon: 'i-lucide-file-user',
 					disabled: props.isSwapPending,
 					onSelect: () => emit('viewApplication', slot.id),
+				}]
+				: []),
+			...(slot.application_review_required
+				? [{
+					label: t('groups.activities.management.roster.clear_application_warning_action'),
+					icon: 'i-lucide-triangle-alert',
+					color: 'warning' as const,
+					disabled: !props.canReturnToQueue || props.isSwapPending,
+					onSelect: () => emit('clearApplicationWarning', slot.id),
 				}]
 				: []),
 		],

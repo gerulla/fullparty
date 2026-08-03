@@ -47,6 +47,7 @@ const emit = defineEmits<{
 	clickSlot: [slotId: number]
 	viewApplication: [slotId: number]
 	returnSlotToQueue: [slotId: number]
+	clearApplicationWarning: [slotId: number]
 	moveSlotToBench: [slotId: number]
 	moveSlotToFillIn: [slotId: number]
 	markSlotMissing: [slotId: number]
@@ -90,6 +91,7 @@ const isViewerAssignedCharacter = computed(() => (
 	&& viewerUserId.value !== null
 	&& assignedCharacter.value.user_id === viewerUserId.value
 ));
+const needsApplicationReview = computed(() => props.slot.application_review_required && assignedCharacter.value !== null);
 const isLate = computed(() => props.slot.attendance_status === 'late');
 const isCheckedIn = computed(() => (
 	props.slot.attendance_status === 'checked_in'
@@ -134,7 +136,16 @@ const designationMarkers = computed(() => {
 		});
 	}
 
-	if (isViewerAssignedCharacter.value) {
+	if (needsApplicationReview.value) {
+		markers.push({
+			key: 'application-review-required',
+			label: t('groups.activities.management.roster.application_review_required_badge'),
+			icon: 'i-lucide-triangle-alert',
+			wrapperClass: '-right-2 -top-2 bg-amber-400 text-amber-950 ring-amber-200/80',
+			iconClass: 'text-amber-400 drop-shadow-[0_4px_10px_rgba(251,191,36,0.85)]',
+			rotationClass: 'rotate-35',
+		});
+	} else if (isViewerAssignedCharacter.value) {
 		markers.push({
 			key: 'self',
 			label: t('groups.activities.management.roster.self_badge'),
@@ -159,6 +170,10 @@ const roleToneClass = computed(() => {
 
 	if (!assignedCharacter.value) {
 		return emptyHintToneClass.value ?? 'border-dashed border-default bg-elevated hover:border-primary';
+	}
+
+	if (needsApplicationReview.value) {
+		return 'border-amber-400/80 bg-amber-400/10 hover:border-amber-300 shadow-[inset_0_1px_0_rgba(251,191,36,0.18)]';
 	}
 
 	if (roleField.value === 'tank') {
@@ -282,6 +297,15 @@ const contextMenuItems = computed<ContextMenuItem[][]>(() => [
 				icon: 'i-lucide-file-user',
 				disabled: props.isSwapPending,
 				onSelect: () => emit('viewApplication', props.slot.id),
+			}]
+			: []),
+		...(props.slot.application_review_required
+			? [{
+				label: t('groups.activities.management.roster.clear_application_warning_action'),
+				icon: 'i-lucide-triangle-alert',
+				color: 'warning' as const,
+				disabled: !props.canReturnToQueue || props.isSwapPending,
+				onSelect: () => emit('clearApplicationWarning', props.slot.id),
 			}]
 			: []),
 	],

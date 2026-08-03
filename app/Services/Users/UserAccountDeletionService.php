@@ -62,6 +62,8 @@ class UserAccountDeletionService
 
             $upcomingAssignmentNotifications = $this->clearUpcomingRunState($user, $deletedUserName);
 
+            $this->releaseCharacters($user);
+
             DB::table('group_bans')
                 ->where('user_id', $user->id)
                 ->delete();
@@ -172,6 +174,19 @@ class UserAccountDeletionService
                 'reviewed_by_user_id' => null,
                 'reviewed_at' => now(),
                 'review_reason' => null,
+            ]);
+    }
+
+    private function releaseCharacters(User $user): void
+    {
+        Character::query()
+            ->where('user_id', $user->id)
+            ->update([
+                'user_id' => null,
+                'is_primary' => false,
+                'verified_at' => null,
+                'token' => null,
+                'expires_at' => null,
             ]);
     }
 

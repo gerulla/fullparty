@@ -33,6 +33,7 @@ const emit = defineEmits<{
 	clickSlot: [slotId: number]
 	viewApplication: [slotId: number]
 	returnSlotToQueue: [slotId: number]
+	clearApplicationWarning: [slotId: number]
 	moveSlotToBench: [slotId: number]
 	moveSlotToFillIn: [slotId: number]
 	markSlotMissing: [slotId: number]
@@ -108,6 +109,7 @@ const assignedCount = computed(() => props.slots.filter((slot) => slot.assigned_
 					@click-slot="emit('clickSlot', $event)"
 					@view-application="emit('viewApplication', $event)"
 					@return-slot-to-queue="emit('returnSlotToQueue', $event)"
+					@clear-application-warning="emit('clearApplicationWarning', $event)"
 					@move-slot-to-bench="emit('moveSlotToBench', $event)"
 					@move-slot-to-fill-in="emit('moveSlotToFillIn', $event)"
 					@mark-slot-missing="emit('markSlotMissing', $event)"

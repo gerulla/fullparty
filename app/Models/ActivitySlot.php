@@ -39,6 +39,8 @@ class ActivitySlot extends Model
         'sort_order',
         'assigned_character_id',
         'assigned_by_user_id',
+        'application_review_required_application_id',
+        'application_review_required_at',
         'is_host',
         'is_raid_leader',
     ];
@@ -46,6 +48,7 @@ class ActivitySlot extends Model
     protected $casts = [
         'group_label' => 'array',
         'filled_group_label' => 'array',
+        'application_review_required_at' => 'datetime',
         'slot_label' => 'array',
         'is_host' => 'boolean',
         'is_raid_leader' => 'boolean',
@@ -70,6 +73,11 @@ class ActivitySlot extends Model
     public function assignedBy(): BelongsTo
     {
         return $this->belongsTo(User::class, 'assigned_by_user_id');
+    }
+
+    public function applicationReviewRequiredFor(): BelongsTo
+    {
+        return $this->belongsTo(ActivityApplication::class, 'application_review_required_application_id');
     }
 
     public function fieldValues(): HasMany

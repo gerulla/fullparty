@@ -83,6 +83,8 @@ class GroupActivitySlotUnassignmentController extends Controller
                 $slot->update([
                     'assigned_character_id' => null,
                     'assigned_by_user_id' => null,
+                    'application_review_required_application_id' => null,
+                    'application_review_required_at' => null,
                 ]);
 
                 foreach ($slot->fieldValues as $fieldValue) {
@@ -149,15 +151,25 @@ class GroupActivitySlotUnassignmentController extends Controller
         }
 
         /** @var ActivityApplication|null $application */
-        $application = $activity->applications()
-            ->with(['answers', 'selectedCharacter.occultProgress', 'selectedCharacter.phantomJobs', 'user'])
-            ->where('selected_character_id', $slot->assigned_character_id)
-            ->whereIn('status', [
-                ActivityApplication::STATUS_APPROVED,
-                ActivityApplication::STATUS_ON_BENCH,
-            ])
-            ->latest('reviewed_at')
-            ->first();
+        $application = $activeAssignment?->application_id
+            ? $activity->applications()
+                ->with(['answers', 'selectedCharacter.occultProgress', 'selectedCharacter.phantomJobs', 'user'])
+                ->whereKey($activeAssignment->application_id)
+                ->whereIn('status', [
+                    ActivityApplication::STATUS_PENDING,
+                    ActivityApplication::STATUS_APPROVED,
+                    ActivityApplication::STATUS_ON_BENCH,
+                ])
+                ->first()
+            : $activity->applications()
+                ->with(['answers', 'selectedCharacter.occultProgress', 'selectedCharacter.phantomJobs', 'user'])
+                ->where('selected_character_id', $slot->assigned_character_id)
+                ->whereIn('status', [
+                    ActivityApplication::STATUS_APPROVED,
+                    ActivityApplication::STATUS_ON_BENCH,
+                ])
+                ->latest('reviewed_at')
+                ->first();
 
         if (! $application) {
             throw ValidationException::withMessages([
@@ -165,12 +177,15 @@ class GroupActivitySlotUnassignmentController extends Controller
             ]);
         }
 
+        $slotCharacterId = (int) $slot->assigned_character_id;
         $slotCharacterName = $slot->assignedCharacter?->name ?? $application->selectedCharacter?->name;
 
-        DB::transaction(function () use ($slot, $application, $activity, $attendanceService) {
+        DB::transaction(function () use ($slot, $application, $activity, $attendanceService, $slotCharacterId) {
             $slot->update([
                 'assigned_character_id' => null,
                 'assigned_by_user_id' => null,
+                'application_review_required_application_id' => null,
+                'application_review_required_at' => null,
             ]);
 
             foreach ($slot->fieldValues as $fieldValue) {
@@ -186,12 +201,7 @@ class GroupActivitySlotUnassignmentController extends Controller
                 'review_reason' => null,
             ]);
 
-            if ($application->selected_character_id) {
-                $attendanceService->endActiveAssignment(
-                    $activity,
-                    (int) $application->selected_character_id,
-                );
-            }
+            $attendanceService->endActiveAssignment($activity, $slotCharacterId);
         });
 
         $slotDesignationService->clearInvalidDesignations([$slot], auth()->user());

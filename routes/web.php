@@ -32,6 +32,7 @@ use App\Http\Controllers\GroupActivityManualSlotAssignmentOptionsController;
 use App\Http\Controllers\GroupActivityPartyFinderInfoController;
 use App\Http\Controllers\GroupActivityRosterExportController;
 use App\Http\Controllers\GroupActivitySelfAssignmentController;
+use App\Http\Controllers\GroupActivitySlotApplicationReviewWarningController;
 use App\Http\Controllers\GroupActivitySlotAssignmentContextController;
 use App\Http\Controllers\GroupActivitySlotAssignmentController;
 use App\Http\Controllers\GroupActivitySlotCheckInController;
@@ -571,6 +572,7 @@ Route::prefix('{locale?}')
                 Route::post('/activities/{activity}/fill-ins', [GroupActivityFillInSlotController::class, 'store'])->name('groups.dashboard.activities.fill-ins.store');
                 Route::patch('/activities/{activity}/fill-ins/{slot}', [GroupActivityFillInSlotController::class, 'update'])->name('groups.dashboard.activities.fill-ins.update');
                 Route::post('/activities/{activity}/slots/{slot}/assign-application', [GroupActivitySlotAssignmentController::class, 'store'])->name('groups.dashboard.activities.slot-assignments.store');
+                Route::post('/activities/{activity}/slots/{slot}/application-review-warning/clear', [GroupActivitySlotApplicationReviewWarningController::class, 'store'])->name('groups.dashboard.activities.slot-application-review-warnings.clear');
                 Route::post('/activities/{activity}/slots/{slot}/return-to-queue', [GroupActivitySlotUnassignmentController::class, 'store'])->name('groups.dashboard.activities.slot-unassignments.store');
                 Route::post('/activities/{activity}/applications/{application}/decline', [GroupActivityApplicationDeclineController::class, 'store'])->name('groups.dashboard.activities.application-declines.store');
 

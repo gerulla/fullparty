@@ -10,7 +10,7 @@ class ActivitySlotStateTokenService
 {
     public function resolveActiveAssignment(ActivitySlot $slot): ?ActivitySlotAssignment
     {
-        if (!$slot->assigned_character_id) {
+        if (! $slot->assigned_character_id) {
             return null;
         }
 
@@ -50,6 +50,10 @@ class ActivitySlotStateTokenService
         $payload = [
             'slot_id' => (int) $slot->id,
             'assigned_character_id' => $slot->assigned_character_id !== null ? (int) $slot->assigned_character_id : null,
+            'application_review_required_application_id' => $slot->application_review_required_application_id !== null
+                ? (int) $slot->application_review_required_application_id
+                : null,
+            'application_review_required_at' => $slot->application_review_required_at?->toIso8601String(),
             'is_host' => (bool) $slot->is_host,
             'is_raid_leader' => (bool) $slot->is_raid_leader,
             'field_values' => $slot->fieldValues
@@ -72,11 +76,11 @@ class ActivitySlotStateTokenService
 
     public function assertMatches(ActivitySlot $slot, ?string $expectedToken): void
     {
-        if (!is_string($expectedToken) || $expectedToken === '') {
+        if (! is_string($expectedToken) || $expectedToken === '') {
             throw new ConflictHttpException('This slot changed while you were editing it. Refresh and try again.');
         }
 
-        if (!hash_equals($this->generate($slot), $expectedToken)) {
+        if (! hash_equals($this->generate($slot), $expectedToken)) {
             throw new ConflictHttpException('This slot changed while you were editing it. Refresh and try again.');
         }
     }

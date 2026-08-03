@@ -44,6 +44,8 @@ class ActivityApplicationWithdrawalService
                 $assignedSlot->update([
                     'assigned_character_id' => null,
                     'assigned_by_user_id' => null,
+                    'application_review_required_application_id' => null,
+                    'application_review_required_at' => null,
                 ]);
 
                 foreach ($assignedSlot->fieldValues as $fieldValue) {

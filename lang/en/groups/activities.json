@@ -197,6 +197,7 @@
             "load_slot_assignment_failed": "Unable to load slot assignment details.",
             "load_manual_assignment_failed": "Unable to load group member assignment options.",
             "return_to_queue_failed": "Unable to return this slot to the queue.",
+            "clear_application_warning_failed": "Unable to clear this application warning.",
             "slot_unassign_failed": "Unable to update this slot assignment.",
             "undo_check_in_failed": "Unable to undo check-in for this slot.",
             "check_in_failed": "Unable to check in this slot.",
@@ -367,6 +368,7 @@
             "mark_missing_action": "Mark as missing / absent",
             "remove_from_slot_action": "Remove from slot",
             "return_to_queue_action": "Return to queue",
+            "clear_application_warning_action": "Clear Warning",
             "move_to_bench_action": "Move to bench",
             "move_to_fill_in_action": "Move to fill-in",
             "change_assignment_action": "Change assignment",
@@ -383,6 +385,7 @@
             "host_badge": "Host",
             "raid_leader_badge": "Raid Leader",
             "self_badge": "Your Character",
+            "application_review_required_badge": "Application edited; review needed",
             "application_match": {
                 "title": "Application Preferences",
                 "matched": "Matched",

@@ -89,8 +89,13 @@ it('anonymizes the account while preserving history-bearing records', function (
         ->and($user->email_notifications)->toBeFalse()
         ->and($user->discord_notifications)->toBeFalse();
 
-    expect($character->user_id)->toBe($user->id)
+    expect($character->user_id)->toBeNull()
+        ->and($character->is_primary)->toBeFalsy()
+        ->and($character->verified_at)->toBeNull()
+        ->and($character->token)->toBeNull()
+        ->and($character->expires_at)->toBeNull()
         ->and($application->user_id)->toBe($user->id)
+        ->and($application->selected_character_id)->toBe($character->id)
         ->and($application->status)->toBe(ActivityApplication::STATUS_WITHDRAWN);
 
     expect($group->memberships()->where('user_id', $user->id)->exists())->toBeFalse()

@@ -208,6 +208,8 @@ class GroupActivitySelfAssignmentController extends Controller
             $slot->update([
                 'assigned_character_id' => null,
                 'assigned_by_user_id' => null,
+                'application_review_required_application_id' => null,
+                'application_review_required_at' => null,
             ]);
 
             foreach ($slot->fieldValues as $fieldValue) {

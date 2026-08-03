@@ -7,6 +7,7 @@ use App\Models\ActivityApplication;
 use App\Models\ActivitySlot;
 use App\Models\Character;
 use App\Models\Group;
+use App\Services\Groups\ActivityApplicationReviewSlotStateService;
 use App\Services\Groups\ActivityFillInSlotService;
 use App\Services\Groups\ActivityManagementRealtimeService;
 use App\Services\Groups\ActivitySlotAssignmentService;
@@ -27,6 +28,7 @@ class GroupActivitySlotAssignmentController extends Controller
         ActivitySlot $slot,
         ActivitySlotFieldDefinitionBuilder $fieldDefinitionBuilder,
         ActivitySlotAssignmentService $slotAssignmentService,
+        ActivityApplicationReviewSlotStateService $applicationReviewSlotStateService,
         ActivityFillInSlotService $fillInSlotService,
         ActivitySlotSerializer $slotSerializer,
         ActivitySlotStateTokenService $slotStateTokenService,
@@ -92,6 +94,10 @@ class GroupActivitySlotAssignmentController extends Controller
         $removedSlotIds = [];
         $restoredQueueApplication = null;
         $queueApplicationSyncIds = [];
+        $applicationReviewCleanup = [
+            'updated_slots' => [],
+            'removed_slot_ids' => [],
+        ];
 
         if (! empty($validated['character_id'])) {
             $groupMemberUserIds = $group->memberships()
@@ -156,6 +162,16 @@ class GroupActivitySlotAssignmentController extends Controller
             if ($wasPendingQueueApplication) {
                 $removedQueueApplicationIds[] = (int) $application->id;
             }
+
+            $applicationReviewCleanup = $applicationReviewSlotStateService->releaseFlaggedAssignmentsForApplication(
+                $activity,
+                $application,
+                $request->user(),
+                array_values(array_filter([
+                    (int) $slot->id,
+                    $sourceSlot ? (int) $sourceSlot->id : null,
+                ])),
+            );
         }
 
         if ($slot->slot_kind === ActivitySlot::SLOT_KIND_FILL_IN) {
@@ -164,6 +180,13 @@ class GroupActivitySlotAssignmentController extends Controller
                 $slot,
                 $validated['filled_group_key'] ?? null,
             );
+        }
+
+        if ($applicationReviewCleanup['removed_slot_ids'] !== []) {
+            $removedSlotIds = [
+                ...$removedSlotIds,
+                ...$applicationReviewCleanup['removed_slot_ids'],
+            ];
         }
 
         if (
@@ -186,6 +209,13 @@ class GroupActivitySlotAssignmentController extends Controller
         if ($sourceSlot) {
             $sourceSlot->load(['assignedCharacter', 'fieldValues', 'assignments']);
             $updatedSlots[] = $slotSerializer->serialize($sourceSlot);
+        }
+
+        if ($applicationReviewCleanup['updated_slots'] !== []) {
+            $updatedSlots = [
+                ...$updatedSlots,
+                ...$applicationReviewCleanup['updated_slots'],
+            ];
         }
 
         if (

@@ -1,0 +1,29 @@
+{
+  "title": "Shortcuts",
+  "subtitle": "Customize the shortcuts used by your group's management tools.",
+  "quick_create": {
+    "title": "Calendar Quick Create",
+    "description": "Choose the times shown when a moderator right-clicks a day in the run calendar.",
+    "timezone_note": "ST shortcuts always use server time. LT shortcuts use the local timezone of the moderator opening the menu.",
+    "time": "Time",
+    "time_mode": "Time Mode",
+    "server": "ST",
+    "server_description": "Server Time (UTC)",
+    "local": "LT",
+    "local_description": "Moderator's local time",
+    "add": "Add Shortcut",
+    "remove": "Remove shortcut",
+    "move_up": "Move shortcut up",
+    "move_down": "Move shortcut down",
+    "limit": "You can configure up to {count} shortcuts.",
+    "save": "Save Shortcuts",
+    "saved": "Shortcuts saved.",
+    "save_failed": "The shortcuts could not be saved."
+  },
+  "context_menu": {
+    "create_run_at": "Create run at {time} {mode}"
+  },
+  "validation": {
+    "duplicate": "Each shortcut must use a unique time and time mode."
+  }
+}

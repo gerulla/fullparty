@@ -270,7 +270,17 @@ class GroupActivitySlotAssignmentController extends Controller
         ActivitySlot $slot,
         ?ActivitySlot $sourceSlot,
     ): bool {
+        $isFlaggedAssignmentReview = in_array($application->status, [
+            ActivityApplication::STATUS_APPROVED,
+            ActivityApplication::STATUS_ON_BENCH,
+        ], true) && (
+            (int) $slot->application_review_required_application_id === (int) $application->id
+            || ($sourceSlot !== null
+                && (int) $sourceSlot->application_review_required_application_id === (int) $application->id)
+        );
+
         return $application->status === ActivityApplication::STATUS_PENDING
+            || $isFlaggedAssignmentReview
             || (
                 $application->status === ActivityApplication::STATUS_APPROVED
                 && (int) $application->selected_character_id === (int) $slot->assigned_character_id

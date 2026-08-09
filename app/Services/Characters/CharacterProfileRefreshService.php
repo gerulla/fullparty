@@ -12,6 +12,7 @@ use App\Models\PhantomJob;
 use App\Services\FFLogs\ForkedTowerBloodProgressFetcher;
 use App\Services\FFLogs\ForkedTowerMagicProgressFetcher;
 use App\Services\Lodestone\ForkedTowerBloodAchievementProgressFetcher;
+use App\Services\Lodestone\ForkedTowerMagicAchievementProgressFetcher;
 use App\Services\Lodestone\LodestoneScraper;
 use Carbon\CarbonInterface;
 use Illuminate\Support\Facades\DB;
@@ -24,6 +25,7 @@ class CharacterProfileRefreshService
         private readonly ForkedTowerBloodProgressFetcher $forkedTowerBloodProgressFetcher,
         private readonly ForkedTowerMagicProgressFetcher $forkedTowerMagicProgressFetcher,
         private readonly ForkedTowerBloodAchievementProgressFetcher $forkedTowerBloodAchievementProgressFetcher,
+        private readonly ForkedTowerMagicAchievementProgressFetcher $forkedTowerMagicAchievementProgressFetcher,
     ) {}
 
     /**
@@ -200,11 +202,32 @@ class CharacterProfileRefreshService
     private function fetchForkedTowerMagicProgress(Character $character, bool $ignoreCache): array
     {
         try {
-            return [
-                'progress' => $this->forkedTowerMagicProgressFetcher->fetchForCharacter(
+            $progress = $this->withForkedTowerDataSource(
+                $this->forkedTowerMagicProgressFetcher->fetchForCharacter(
                     $character,
                     ignoreCache: $ignoreCache,
                 ),
+                OccultProgress::DATA_SOURCE_FFLOGS,
+            );
+
+            if ($this->hasForkedTowerProgress($progress)) {
+                return [
+                    'progress' => $progress,
+                    'error' => null,
+                ];
+            }
+
+            $lodestoneAchievementProgress = $this->fetchForkedTowerMagicAchievementProgress($character, $ignoreCache);
+
+            if ($this->hasForkedTowerProgress($lodestoneAchievementProgress)) {
+                return [
+                    'progress' => $lodestoneAchievementProgress,
+                    'error' => null,
+                ];
+            }
+
+            return [
+                'progress' => $progress,
                 'error' => null,
             ];
         } catch (\Throwable $exception) {
@@ -215,20 +238,55 @@ class CharacterProfileRefreshService
                 'exception' => $exception->getMessage(),
             ]);
 
+            $fflogsError = [
+                'source' => 'fflogs',
+                'type' => $exception::class,
+                'message' => $exception->getMessage(),
+                'character_id' => $character->id,
+                'lodestone_id' => $character->lodestone_id,
+                'name' => $character->name,
+                'world' => $character->world,
+                'datacenter' => $character->datacenter,
+                'zone_id' => config('services.ff_logs.forked_tower_magic_zone_id'),
+            ];
+
+            $lodestoneAchievementProgress = $this->fetchForkedTowerMagicAchievementProgress($character, $ignoreCache);
+
+            if ($this->hasForkedTowerProgress($lodestoneAchievementProgress)) {
+                return [
+                    'progress' => $lodestoneAchievementProgress,
+                    'error' => $fflogsError,
+                ];
+            }
+
             return [
                 'progress' => null,
-                'error' => [
-                    'source' => 'fflogs',
-                    'type' => $exception::class,
-                    'message' => $exception->getMessage(),
-                    'character_id' => $character->id,
-                    'lodestone_id' => $character->lodestone_id,
-                    'name' => $character->name,
-                    'world' => $character->world,
-                    'datacenter' => $character->datacenter,
-                    'zone_id' => config('services.ff_logs.forked_tower_magic_zone_id'),
-                ],
+                'error' => $fflogsError,
             ];
+        }
+    }
+
+    /**
+     * @return array<string, mixed>
+     */
+    private function fetchForkedTowerMagicAchievementProgress(Character $character, bool $ignoreCache): array
+    {
+        try {
+            return $this->forkedTowerMagicAchievementProgressFetcher->fetchForCharacter(
+                $character,
+                ignoreCache: $ignoreCache,
+            );
+        } catch (\Throwable $exception) {
+            Log::warning('Unable to refresh Forked Tower: Magic (Extreme) Lodestone achievement progress during character refresh.', [
+                'character_id' => $character->id,
+                'lodestone_id' => $character->lodestone_id,
+                'exception' => $exception->getMessage(),
+            ]);
+
+            return $this->withForkedTowerDataSource(
+                $this->emptyForkedTowerMagicProgress(),
+                OccultProgress::DATA_SOURCE_LODESTONE_ACHIEVEMENT,
+            );
         }
     }
 
@@ -332,6 +390,7 @@ class CharacterProfileRefreshService
         if ($forkedTowerMagicProgress !== null) {
             $magicBosses = collect($forkedTowerMagicProgress['bosses'] ?? [])->keyBy('key');
             $values = array_merge($values, [
+                'forked_tower_magic_data_source' => (string) ($forkedTowerMagicProgress['data_source'] ?? OccultProgress::DATA_SOURCE_FFLOGS),
                 'two_headed_aevis_kills' => (int) ($magicBosses->get('two_headed_aevis')['kills'] ?? 0),
                 'two_headed_aevis_progress' => (int) ($magicBosses->get('two_headed_aevis')['progress'] ?? 0),
                 'sword_dancer_kills' => (int) ($magicBosses->get('sword_dancer')['kills'] ?? 0),
@@ -359,6 +418,20 @@ class CharacterProfileRefreshService
                 ['key' => 'dead_stars', 'kills' => 0, 'progress' => 0],
                 ['key' => 'marble_dragon', 'kills' => 0, 'progress' => 0],
                 ['key' => 'magitaur', 'kills' => 0, 'progress' => 0],
+            ],
+        ];
+    }
+
+    private function emptyForkedTowerMagicProgress(): array
+    {
+        return [
+            'clears' => 0,
+            'data_source' => OccultProgress::DATA_SOURCE_FFLOGS,
+            'bosses' => [
+                ['key' => 'two_headed_aevis', 'kills' => 0, 'progress' => 0],
+                ['key' => 'sword_dancer', 'kills' => 0, 'progress' => 0],
+                ['key' => 'necrophobia', 'kills' => 0, 'progress' => 0],
+                ['key' => 'index', 'kills' => 0, 'progress' => 0],
             ],
         ];
     }

@@ -2,6 +2,7 @@
 
 namespace App\Services\Groups;
 
+use App\Http\Resources\ActivityManagementWarningResource;
 use App\Models\Activity;
 use App\Models\ActivityApplication;
 use App\Models\ActivitySlot;
@@ -18,6 +19,7 @@ class ActivityApplicationWithdrawalService
         private readonly ApplicationNotificationService $applicationNotificationService,
         private readonly ActivitySlotSerializer $slotSerializer,
         private readonly ActivityManagementRealtimeService $activityManagementRealtimeService,
+        private readonly ActivityManagementWarningService $managementWarningService,
     ) {}
 
     /**
@@ -37,10 +39,17 @@ class ActivityApplicationWithdrawalService
 
         $assignedSlot = $this->findAssignedSlot($application);
         $previousStatus = $application->status;
-        $characterId = $application->selected_character_id ? (int) $application->selected_character_id : null;
+        $characterId = $assignedSlot?->assigned_character_id
+            ? (int) $assignedSlot->assigned_character_id
+            : ($application->selected_character_id ? (int) $application->selected_character_id : null);
+        $managementWarning = null;
 
-        DB::transaction(function () use ($application, $assignedSlot, $activity, $characterId): void {
+        DB::transaction(function () use ($application, $assignedSlot, $activity, $characterId, &$managementWarning): void {
             if ($assignedSlot) {
+                if ($assignedSlot->is_raid_leader) {
+                    $managementWarning = $this->managementWarningService->createRaidLeaderWithdrawal($application, $assignedSlot);
+                }
+
                 $assignedSlot->update([
                     'assigned_character_id' => null,
                     'assigned_by_user_id' => null,
@@ -107,6 +116,12 @@ class ActivityApplicationWithdrawalService
             $patch['updated_slots'] = [$serializedSlot];
         }
 
+        if ($managementWarning) {
+            $patch['upsert_management_warnings'] = [
+                ActivityManagementWarningResource::make($managementWarning)->resolve(),
+            ];
+        }
+
         $this->activityManagementRealtimeService->broadcastPatch($activity, $patch);
 
         return [
@@ -137,8 +152,18 @@ class ActivityApplicationWithdrawalService
 
     private function findAssignedSlot(ActivityApplication $application): ?ActivitySlot
     {
-        if (! $application->selected_character_id || ! $application->activity) {
+        if (! $application->activity) {
             return null;
+        }
+
+        $flaggedSlot = $application->activity
+            ->slots()
+            ->with(['assignedCharacter', 'fieldValues', 'assignments'])
+            ->where('application_review_required_application_id', $application->id)
+            ->first();
+
+        if ($flaggedSlot || ! $application->selected_character_id) {
+            return $flaggedSlot;
         }
 
         return $application->activity

@@ -89,6 +89,17 @@ class ActivitySlotAttendanceService
             return;
         }
 
+        if ($applicationId !== null) {
+            ActivitySlotAssignment::query()
+                ->where('activity_id', $activity->id)
+                ->where('application_id', $applicationId)
+                ->where('character_id', '!=', $characterId)
+                ->whereNull('ended_at')
+                ->update([
+                    'ended_at' => now(),
+                ]);
+        }
+
         $assignment = ActivitySlotAssignment::query()
             ->where('activity_id', $activity->id)
             ->where('character_id', $characterId)

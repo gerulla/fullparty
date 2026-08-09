@@ -38,6 +38,7 @@ class ActivityApplicationFactory extends Factory
             'notes' => fake()->boolean(50) ? fake()->sentence() : null,
             'reviewed_by_user_id' => null,
             'submitted_at' => now(),
+            'edited_at' => null,
             'reviewed_at' => null,
             'review_reason' => null,
         ];

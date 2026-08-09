@@ -9,6 +9,7 @@ use App\Services\Characters\CharacterProfileRefreshService;
 use App\Services\FFLogs\ForkedTowerBloodProgressFetcher;
 use App\Services\FFLogs\ForkedTowerMagicProgressFetcher;
 use App\Services\Lodestone\ForkedTowerBloodAchievementProgressFetcher;
+use App\Services\Lodestone\ForkedTowerMagicAchievementProgressFetcher;
 use App\Services\Lodestone\LodestoneScraper;
 use App\Support\Notifications\NotificationCategory;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -31,7 +32,28 @@ beforeEach(function () {
         ]);
 
     app()->instance(ForkedTowerMagicProgressFetcher::class, $magicProgressFetcher);
+    $magicAchievementFetcher = Mockery::mock(ForkedTowerMagicAchievementProgressFetcher::class);
+    $magicAchievementFetcher
+        ->shouldReceive('fetchForCharacter')
+        ->zeroOrMoreTimes()
+        ->andReturn(characterRefreshEmptyMagicLodestoneAchievementProgress());
+
+    app()->instance(ForkedTowerMagicAchievementProgressFetcher::class, $magicAchievementFetcher);
 });
+
+function characterRefreshEmptyMagicLodestoneAchievementProgress(): array
+{
+    return [
+        'clears' => 0,
+        'data_source' => 'lodestone_achievement',
+        'bosses' => [
+            ['key' => 'two_headed_aevis', 'kills' => 0, 'progress' => 0],
+            ['key' => 'sword_dancer', 'kills' => 0, 'progress' => 0],
+            ['key' => 'necrophobia', 'kills' => 0, 'progress' => 0],
+            ['key' => 'index', 'kills' => 0, 'progress' => 0],
+        ],
+    ];
+}
 
 function characterRefreshEmptyLodestoneAchievementProgress(): array
 {
@@ -241,6 +263,108 @@ it('falls back to lodestone achievements when ff logs has no forked tower progre
         ->and($progress->necrophobia_kills)->toBe(4)
         ->and($progress->index_kills)->toBe(3)
         ->and($progress->index_progress)->toBe(100);
+});
+
+it('falls back to lodestone achievements when ff logs has no forked tower magic progress', function () {
+    $user = User::factory()->create();
+    $character = Character::factory()->for($user)->create([
+        'name' => 'Old Name',
+        'world' => 'Lich',
+        'datacenter' => 'Light',
+        'lodestone_id' => '47431834',
+    ]);
+
+    $this->actingAs($user);
+
+    $lodestoneScraper = Mockery::mock(LodestoneScraper::class);
+    $lodestoneScraper
+        ->shouldReceive('scrape')
+        ->once()
+        ->with('47431834', true, true)
+        ->andReturn(new LodestoneCharacterData(
+            lodestoneId: '47431834',
+            profileUrl: 'https://na.finalfantasyxiv.com/lodestone/character/47431834/',
+            classJobUrl: 'https://na.finalfantasyxiv.com/lodestone/character/47431834/class_job/',
+            name: 'Giki Chomusuke',
+            world: 'Lich',
+            dataCenter: 'Light',
+            avatarUrl: 'https://example.com/avatar.png',
+            bio: '',
+            extraData: [
+                'progression.occult.knowledge_level' => 20,
+            ],
+        ));
+
+    $ffLogsFetcher = Mockery::mock(ForkedTowerBloodProgressFetcher::class);
+    $ffLogsFetcher
+        ->shouldReceive('fetchForCharacter')
+        ->once()
+        ->andReturn([
+            'clears' => 2,
+            'bosses' => [
+                ['key' => 'demon_tablet', 'kills' => 2, 'progress' => 100],
+                ['key' => 'dead_stars', 'kills' => 2, 'progress' => 100],
+                ['key' => 'marble_dragon', 'kills' => 2, 'progress' => 100],
+                ['key' => 'magitaur', 'kills' => 2, 'progress' => 100],
+            ],
+        ]);
+
+    $lodestoneAchievementFetcher = Mockery::mock(ForkedTowerBloodAchievementProgressFetcher::class);
+    $lodestoneAchievementFetcher->shouldNotReceive('fetchForCharacter');
+
+    $magicProgressFetcher = Mockery::mock(ForkedTowerMagicProgressFetcher::class);
+    $magicProgressFetcher
+        ->shouldReceive('fetchForCharacter')
+        ->once()
+        ->andReturn([
+            'clears' => 0,
+            'bosses' => [
+                ['key' => 'two_headed_aevis', 'kills' => 0, 'progress' => 0],
+                ['key' => 'sword_dancer', 'kills' => 0, 'progress' => 0],
+                ['key' => 'necrophobia', 'kills' => 0, 'progress' => 0],
+                ['key' => 'index', 'kills' => 0, 'progress' => 0],
+            ],
+        ]);
+
+    $magicAchievementFetcher = Mockery::mock(ForkedTowerMagicAchievementProgressFetcher::class);
+    $magicAchievementFetcher
+        ->shouldReceive('fetchForCharacter')
+        ->once()
+        ->withArgs(fn (Character $refreshedCharacter, bool $ignoreCache) => $refreshedCharacter->is($character)
+            && $ignoreCache)
+        ->andReturn([
+            'clears' => 5,
+            'data_source' => 'lodestone_achievement',
+            'bosses' => [
+                ['key' => 'two_headed_aevis', 'kills' => 5, 'progress' => 100],
+                ['key' => 'sword_dancer', 'kills' => 5, 'progress' => 100],
+                ['key' => 'necrophobia', 'kills' => 5, 'progress' => 100],
+                ['key' => 'index', 'kills' => 5, 'progress' => 100],
+            ],
+        ]);
+
+    app()->instance(LodestoneScraper::class, $lodestoneScraper);
+    app()->instance(ForkedTowerBloodProgressFetcher::class, $ffLogsFetcher);
+    app()->instance(ForkedTowerBloodAchievementProgressFetcher::class, $lodestoneAchievementFetcher);
+    app()->instance(ForkedTowerMagicProgressFetcher::class, $magicProgressFetcher);
+    app()->instance(ForkedTowerMagicAchievementProgressFetcher::class, $magicAchievementFetcher);
+
+    $response = $this->post(route('characters.refresh', $character));
+
+    $response
+        ->assertRedirect()
+        ->assertSessionHas('success', 'character_data_refreshed')
+        ->assertSessionMissing('errors');
+
+    $progress = $character->fresh()->occultProgress;
+
+    expect($progress)->not->toBeNull()
+        ->and($progress->data_source)->toBe('fflogs')
+        ->and($progress->forked_tower_magic_data_source)->toBe('lodestone_achievement')
+        ->and($progress->magitaur_kills)->toBe(2)
+        ->and($progress->index_kills)->toBe(5)
+        ->and($progress->index_progress)->toBe(100)
+        ->and($progress->forkedTowerMagicProgress()['data_source'])->toBe('lodestone_achievement');
 });
 
 it('skips profile refreshes while the lodestone cooldown is active', function () {

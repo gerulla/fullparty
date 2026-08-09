@@ -1,10 +1,11 @@
 <script setup lang="ts">
-import type { SettingsLinkedSession, SettingsUser } from "@/Types/Settings";
+import type { SettingsHomepageGroup, SettingsLinkedSession, SettingsUser } from "@/Types/Settings";
 import {useI18n} from "vue-i18n";
 import PageHeader from "@/components/PageHeader.vue";
 import AccountSettings from "@/components/Settings/AccountSettings.vue";
 import ActiveLinkedSessions from "@/components/Settings/ActiveLinkedSessions.vue";
 import ConnectedAccounts from "@/components/Settings/ConnectedAccounts.vue";
+import HomepagePreference from "@/components/Settings/HomepagePreference.vue";
 import Notifications from "@/components/Settings/Notifications.vue";
 import PrivacySecurity from "@/components/Settings/PrivacySecurity.vue";
 import {usePage} from "@inertiajs/vue3";
@@ -15,6 +16,7 @@ const { t } = useI18n();
 
 const props = defineProps<{
 	activeLinkedSessions: SettingsLinkedSession[]
+	homepageGroups: SettingsHomepageGroup[]
 }>()
 
 const page = usePage()
@@ -146,6 +148,7 @@ watch(
 				<AccountSettings :user="user" />
 				<ConnectedAccounts :user="user" />
 			</div>
+			<HomepagePreference :user="user" :groups="props.homepageGroups" />
 			<ActiveLinkedSessions :sessions="props.activeLinkedSessions" />
 			<Notifications :user="user" />
 			<PrivacySecurity :user="user" />

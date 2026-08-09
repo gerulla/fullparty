@@ -14,6 +14,7 @@ import type { ActivityCompositionClassOption, ActivitySlot, ActivitySlotComposit
 
 const props = defineProps<{
 	view: 'party' | 'role' | 'list'
+	numberedSecondaryParties: boolean
 	slots: ActivitySlot[]
 	isSwapPending?: boolean
 	pendingSwapSlotIds?: number[]
@@ -254,6 +255,7 @@ const replaceSlotCompositionHints = async (payload: { slotId: number, compositio
 			v-if="currentViewSlots.length > 0"
 			:is="currentViewComponent"
 			:slots="currentViewSlots"
+			:numbered-secondary-parties="numberedSecondaryParties"
 			:dragged-slot-id="draggedSlotId"
 			:drop-target-slot-id="dropTargetSlotId"
 			:is-swap-pending="isSwapPending || isCompositionHintPending"

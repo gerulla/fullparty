@@ -63,12 +63,14 @@ class ActivityApplication extends Model
         'notes',
         'reviewed_by_user_id',
         'submitted_at',
+        'edited_at',
         'reviewed_at',
         'review_reason',
     ];
 
     protected $casts = [
         'submitted_at' => 'datetime',
+        'edited_at' => 'datetime',
         'reviewed_at' => 'datetime',
     ];
 

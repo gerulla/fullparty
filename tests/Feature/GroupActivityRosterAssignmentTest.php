@@ -257,9 +257,76 @@ it('assigns a pending application to a roster slot and creates an active assignm
         ->and($auditLog->metadata['application_status'])->toBe(ActivityApplication::STATUS_APPROVED);
 });
 
-it('clears application review warnings when a moderator rechecks an assigned application', function () {
+it('preserves application roster designations when editing and moving the same character', function (string $designationColumn) {
     extract(createRosterAssignmentSetup());
     extract(createApplicantForAssignment($activity, $tankClass, $phantomKnight));
+
+    $secondMainSlot = $activity->slots()->create([
+        'group_key' => $mainSlot->group_key,
+        'group_label' => $mainSlot->group_label,
+        'slot_key' => 'party-a-slot-2',
+        'slot_label' => ['en' => 'Party A Slot 2'],
+        'position_in_group' => 2,
+        'sort_order' => 2,
+    ]);
+
+    $this->actingAs($owner);
+
+    $assignmentPayload = [
+        'application_id' => $application->id,
+        'field_values' => [
+            'character_class' => (string) $tankClass->id,
+            'phantom_job' => (string) $phantomKnight->id,
+        ],
+    ];
+
+    $this->postJson(route('groups.dashboard.activities.slot-assignments.store', [
+        'group' => $group->slug,
+        'activity' => $activity->id,
+        'slot' => $mainSlot->id,
+    ]), [
+        ...$assignmentPayload,
+        'expected_slot_state_token' => activity_slot_state_token($mainSlot),
+    ])->assertOk();
+
+    $mainSlot->update([$designationColumn => true]);
+
+    $this->postJson(route('groups.dashboard.activities.slot-assignments.store', [
+        'group' => $group->slug,
+        'activity' => $activity->id,
+        'slot' => $mainSlot->id,
+    ]), [
+        ...$assignmentPayload,
+        'expected_slot_state_token' => activity_slot_state_token($mainSlot->fresh(['fieldValues', 'assignments'])),
+    ])->assertOk();
+
+    expect((bool) $mainSlot->fresh()->{$designationColumn})->toBeTrue();
+
+    $this->postJson(route('groups.dashboard.activities.slot-assignments.store', [
+        'group' => $group->slug,
+        'activity' => $activity->id,
+        'slot' => $secondMainSlot->id,
+    ]), [
+        'application_id' => $application->id,
+        'source_slot_id' => $mainSlot->id,
+        'expected_slot_state_token' => activity_slot_state_token($secondMainSlot),
+        'expected_source_slot_state_token' => activity_slot_state_token($mainSlot->fresh(['fieldValues', 'assignments'])),
+        'field_values' => [],
+    ])->assertOk();
+
+    expect((bool) $mainSlot->fresh()->{$designationColumn})->toBeFalse()
+        ->and((bool) $secondMainSlot->fresh()->{$designationColumn})->toBeTrue()
+        ->and($secondMainSlot->fresh()->assigned_character_id)->toBe($character->id);
+})->with([
+    'host' => ['is_host'],
+    'raid leader' => ['is_raid_leader'],
+]);
+
+it('clears application review warnings when a moderator rechecks an assigned application', function () {
+    extract(createRosterAssignmentSetup());
+    extract(createApplicantForAssignment($activity, $tankClass, $phantomKnight, [
+        'status' => ActivityApplication::STATUS_APPROVED,
+    ]));
 
     $mainSlot->update([
         'assigned_character_id' => $character->id,
@@ -308,7 +375,9 @@ it('clears application review warnings when a moderator rechecks an assigned app
 
 it('lets moderators clear application review warnings without changing the assigned slot', function () {
     extract(createRosterAssignmentSetup());
-    extract(createApplicantForAssignment($activity, $tankClass, $phantomKnight));
+    extract(createApplicantForAssignment($activity, $tankClass, $phantomKnight, [
+        'status' => ActivityApplication::STATUS_APPROVED,
+    ]));
 
     $mainSlot->update([
         'assigned_character_id' => $character->id,
@@ -346,7 +415,7 @@ it('lets moderators clear application review warnings without changing the assig
         ->assertJsonPath('slot.assigned_character_id', $character->id)
         ->assertJsonPath('slot.application_review_required', false)
         ->assertJsonPath('application_status', ActivityApplication::STATUS_APPROVED)
-        ->assertJsonPath('queue_application_remove_ids.0', $application->id);
+        ->assertJsonPath('queue_application_remove_ids', []);
 
     expect($mainSlot->fresh()->assigned_character_id)->toBe($character->id)
         ->and($mainSlot->fresh()->application_review_required_application_id)->toBeNull()
@@ -359,13 +428,15 @@ it('lets moderators clear application review warnings without changing the assig
         ActivityManagementUpdated::class,
         fn (ActivityManagementUpdated $event): bool => $event->patch['updated_slots'][0]['id'] === $mainSlot->id
             && $event->patch['updated_slots'][0]['application_review_required'] === false
-            && $event->patch['queue_application_remove_ids'] === [$application->id],
+            && $event->patch['queue_application_remove_ids'] === [],
     );
 });
 
 it('returns edited bench applications to bench status when clearing the warning', function () {
     extract(createRosterAssignmentSetup());
-    extract(createApplicantForAssignment($activity, $tankClass, $phantomKnight));
+    extract(createApplicantForAssignment($activity, $tankClass, $phantomKnight, [
+        'status' => ActivityApplication::STATUS_ON_BENCH,
+    ]));
 
     $benchSlot->update([
         'assigned_character_id' => $character->id,
@@ -407,7 +478,9 @@ it('returns edited bench applications to bench status when clearing the warning'
 
 it('does not clear application review warnings when the edited application changed character', function () {
     extract(createRosterAssignmentSetup());
-    extract(createApplicantForAssignment($activity, $tankClass, $phantomKnight));
+    extract(createApplicantForAssignment($activity, $tankClass, $phantomKnight, [
+        'status' => ActivityApplication::STATUS_APPROVED,
+    ]));
 
     $replacementCharacter = Character::factory()->primary()->create([
         'user_id' => $user->id,
@@ -436,12 +509,86 @@ it('does not clear application review warnings when the edited application chang
 
     expect($mainSlot->fresh()->assigned_character_id)->toBe($character->id)
         ->and($mainSlot->fresh()->application_review_required_application_id)->toBe($application->id)
-        ->and($application->fresh()->status)->toBe(ActivityApplication::STATUS_PENDING);
+        ->and($application->fresh()->status)->toBe(ActivityApplication::STATUS_APPROVED);
+});
+
+it('reassigns a reviewed application after the applicant changes character', function () {
+    extract(createRosterAssignmentSetup());
+    extract(createApplicantForAssignment($activity, $tankClass, $phantomKnight, [
+        'status' => ActivityApplication::STATUS_APPROVED,
+    ]));
+
+    $replacementCharacter = Character::factory()->primary()->create([
+        'user_id' => $user->id,
+    ]);
+    $replacementCharacter->classes()->attach($tankClass->id, [
+        'level' => 100,
+        'is_preferred' => true,
+    ]);
+    $replacementCharacter->phantomJobs()->attach($phantomKnight->id, [
+        'current_level' => $phantomKnight->max_level,
+        'is_preferred' => true,
+    ]);
+
+    $mainSlot->update([
+        'assigned_character_id' => $character->id,
+        'assigned_by_user_id' => $owner->id,
+        'application_review_required_application_id' => $application->id,
+        'application_review_required_at' => now(),
+    ]);
+
+    $originalAssignment = ActivitySlotAssignment::query()->create([
+        'activity_id' => $activity->id,
+        'group_id' => $group->id,
+        'activity_slot_id' => $mainSlot->id,
+        'character_id' => $character->id,
+        'application_id' => $application->id,
+        'assignment_source' => ActivitySlotAssignment::SOURCE_APPLICATION,
+        'attendance_status' => ActivitySlotAssignment::STATUS_ASSIGNED,
+        'assigned_at' => now(),
+        'assigned_by_user_id' => $owner->id,
+    ]);
+
+    $application->update([
+        'selected_character_id' => $replacementCharacter->id,
+    ]);
+
+    $response = $this->actingAs($owner)->postJson(route('groups.dashboard.activities.slot-assignments.store', [
+        'group' => $group->slug,
+        'activity' => $activity->id,
+        'slot' => $mainSlot->id,
+    ]), [
+        'application_id' => $application->id,
+        'expected_slot_state_token' => activity_slot_state_token($mainSlot->fresh(['fieldValues', 'assignments'])),
+        'field_values' => [
+            'character_class' => (string) $tankClass->id,
+            'phantom_job' => (string) $phantomKnight->id,
+        ],
+    ]);
+
+    $response
+        ->assertOk()
+        ->assertJsonPath('slot.assigned_character_id', $replacementCharacter->id)
+        ->assertJsonPath('slot.application_review_required', false)
+        ->assertJsonPath('pending_application_count', 0)
+        ->assertJsonPath('queue_application_remove_ids', []);
+
+    expect($mainSlot->fresh()->assigned_character_id)->toBe($replacementCharacter->id)
+        ->and($application->fresh()->status)->toBe(ActivityApplication::STATUS_APPROVED)
+        ->and($originalAssignment->fresh()->ended_at)->not->toBeNull()
+        ->and(ActivitySlotAssignment::query()
+            ->where('activity_id', $activity->id)
+            ->where('application_id', $application->id)
+            ->where('character_id', $replacementCharacter->id)
+            ->whereNull('ended_at')
+            ->exists())->toBeTrue();
 });
 
 it('releases flagged assigned slots when a moderator declines an edited application', function () {
     extract(createRosterAssignmentSetup());
-    extract(createApplicantForAssignment($activity, $tankClass, $phantomKnight));
+    extract(createApplicantForAssignment($activity, $tankClass, $phantomKnight, [
+        'status' => ActivityApplication::STATUS_APPROVED,
+    ]));
 
     $mainSlot->update([
         'assigned_character_id' => $character->id,

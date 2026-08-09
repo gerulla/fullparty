@@ -59,11 +59,17 @@ class GroupActivitySlotApplicationReviewWarningController extends Controller
             ->whereKey($slot->application_review_required_application_id)
             ->first();
 
-        if (! $application || $application->status !== ActivityApplication::STATUS_PENDING) {
+        if (! $application || ! in_array($application->status, [
+            ActivityApplication::STATUS_PENDING,
+            ActivityApplication::STATUS_APPROVED,
+            ActivityApplication::STATUS_ON_BENCH,
+        ], true)) {
             throw ValidationException::withMessages([
                 'slot' => 'This application warning can no longer be cleared.',
             ]);
         }
+
+        $wasPending = $application->status === ActivityApplication::STATUS_PENDING;
 
         if ((int) $application->selected_character_id !== (int) $slot->assigned_character_id) {
             throw ValidationException::withMessages([
@@ -105,7 +111,7 @@ class GroupActivitySlotApplicationReviewWarningController extends Controller
         $pendingApplicationCount = $activity->applications()
             ->where('status', ActivityApplication::STATUS_PENDING)
             ->count();
-        $removedQueueApplicationIds = [(int) $application->id];
+        $removedQueueApplicationIds = $wasPending ? [(int) $application->id] : [];
 
         $activityManagementRealtimeService->broadcastPatch($activity, [
             'updated_slots' => [$serializedSlot],

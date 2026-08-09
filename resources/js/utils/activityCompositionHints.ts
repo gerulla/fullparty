@@ -57,6 +57,12 @@ export const compositionPresets: CompositionPreset[] = [
 		roles: ["tank", "tank", "healer", "dps", "dps", "dps", "dps", "dps"],
 	},
 	{
+		key: "thhddddd",
+		shorthand: "THHDDDDD",
+		partySize: 8,
+		roles: ["tank", "healer", "healer", "dps", "dps", "dps", "dps", "dps"],
+	},
+	{
 		key: "thdddddd",
 		shorthand: "THDDDDDD",
 		partySize: 8,

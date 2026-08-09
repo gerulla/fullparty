@@ -2,6 +2,7 @@
 
 use App\Models\Activity;
 use App\Models\ActivityApplication;
+use App\Models\ActivityManagementWarning;
 use App\Models\ActivitySlotAssignment;
 use App\Models\ActivityType;
 use App\Models\ActivityTypeVersion;
@@ -155,7 +156,75 @@ it('allows users to withdraw approved applications and removes them from the ros
     $response->assertRedirect(route('account.applications'));
 
     expect($application->fresh()->status)->toBe(ActivityApplication::STATUS_WITHDRAWN)
-        ->and($slot->fresh()->assigned_character_id)->toBeNull();
+        ->and($slot->fresh()->assigned_character_id)->toBeNull()
+        ->and(ActivityManagementWarning::query()->doesntExist())->toBeTrue();
+});
+
+it('warns moderators when an assigned Party Lead withdraws', function () {
+    $activity = createAccountApplicationsActivity();
+    $owner = $activity->group->owner;
+    $user = User::factory()->create();
+    $character = Character::factory()->primary()->create([
+        'user_id' => $user->id,
+        'name' => 'Departing Lead',
+    ]);
+
+    $application = ActivityApplication::factory()->approved()->create([
+        'activity_id' => $activity->id,
+        'user_id' => $user->id,
+        'selected_character_id' => $character->id,
+    ]);
+
+    $slot = $activity->slots()->firstOrFail();
+    $slot->update([
+        'assigned_character_id' => $character->id,
+        'assigned_by_user_id' => $owner->id,
+        'is_raid_leader' => true,
+    ]);
+
+    $this->actingAs($user)
+        ->delete(route('account.applications.destroy', [
+            'application' => $application->id,
+        ]))
+        ->assertRedirect(route('account.applications'));
+
+    $warning = ActivityManagementWarning::query()->sole();
+
+    expect($warning->activity_id)->toBe($activity->id)
+        ->and($warning->type)->toBe(ActivityManagementWarning::TYPE_RAID_LEADER_WITHDRAWN)
+        ->and($warning->severity)->toBe(ActivityManagementWarning::SEVERITY_ERROR)
+        ->and($warning->payload['character_name'])->toBe('Departing Lead')
+        ->and($warning->payload['slot_id'])->toBe($slot->id)
+        ->and($warning->dismissed_at)->toBeNull();
+
+    $this->actingAs($owner)
+        ->getJson(route('groups.dashboard.activities.management-data', [
+            'group' => $activity->group->slug,
+            'activity' => $activity->id,
+        ]))
+        ->assertOk()
+        ->assertJsonPath('activity.management_warnings.0.id', $warning->id)
+        ->assertJsonPath('activity.management_warnings.0.type', ActivityManagementWarning::TYPE_RAID_LEADER_WITHDRAWN)
+        ->assertJsonPath('activity.management_warnings.0.payload.character_name', 'Departing Lead');
+
+    $this->actingAs($owner)
+        ->deleteJson(route('groups.dashboard.activities.management-warnings.destroy', [
+            'group' => $activity->group->slug,
+            'activity' => $activity->id,
+            'managementWarning' => $warning->id,
+        ]))
+        ->assertOk()
+        ->assertJsonPath('data.id', $warning->id);
+
+    expect($warning->fresh()->dismissed_by_user_id)->toBe($owner->id)
+        ->and($warning->fresh()->dismissed_at)->not->toBeNull();
+
+    $this->getJson(route('groups.dashboard.activities.management-data', [
+        'group' => $activity->group->slug,
+        'activity' => $activity->id,
+    ]))
+        ->assertOk()
+        ->assertJsonPath('activity.management_warnings', []);
 });
 
 it('does not allow users to withdraw declined applications', function () {

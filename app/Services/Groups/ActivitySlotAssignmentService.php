@@ -47,7 +47,11 @@ class ActivitySlotAssignmentService
             ]);
         }
 
-        if ($sourceSlot && (int) $sourceSlot->assigned_character_id !== (int) $application->selected_character_id) {
+        if (
+            $sourceSlot
+            && (int) $sourceSlot->assigned_character_id !== (int) $application->selected_character_id
+            && (int) $sourceSlot->application_review_required_application_id !== (int) $application->id
+        ) {
             throw ValidationException::withMessages([
                 'source_slot_id' => 'The source slot does not match the selected application character.',
             ]);
@@ -71,6 +75,8 @@ class ActivitySlotAssignmentService
         $targetCanCarryDesignation = $this->slotKind->isMainRoster($targetSlot);
         $targetPreviousCharacterId = $targetSlot->assigned_character_id;
         $targetPreviousCharacterName = $targetSlot->assignedCharacter?->name;
+        $targetKeepsCurrentAssignee = $targetPreviousCharacterId !== null
+            && (int) $targetPreviousCharacterId === (int) $application->selected_character_id;
         $targetHadDifferentOccupant = $targetPreviousCharacterId !== null
             && (int) $targetPreviousCharacterId !== (int) $application->selected_character_id;
         $displacedApplication = $this->findApplicationForAssignedCharacter($targetSlot);
@@ -87,6 +93,7 @@ class ActivitySlotAssignmentService
             $isTargetBench,
             $isSourceBench,
             $targetCanCarryDesignation,
+            $targetKeepsCurrentAssignee,
             $targetHadDifferentOccupant,
             $displacedApplication,
             $ignoreApplicationChoices,
@@ -109,7 +116,9 @@ class ActivitySlotAssignmentService
             ]);
             $this->applyDesignationState(
                 $targetSlot,
-                $sourceSlot ? $sourceDesignationState : $this->emptyDesignationState(),
+                $sourceSlot
+                    ? $sourceDesignationState
+                    : ($targetKeepsCurrentAssignee ? $targetDesignationState : $this->emptyDesignationState()),
                 $targetCanCarryDesignation,
             );
 

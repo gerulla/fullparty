@@ -1,0 +1,52 @@
+{
+  "title": "FFLogs Playground",
+  "subtitle": "Manually send GraphQL requests to FF Logs and inspect the raw response.",
+  "admin_only": "Admin only",
+  "request": {
+    "title": "Request",
+    "description": "Paste a raw GraphQL query, or a JSON payload with query, variables, and operationName.",
+    "field_label": "FF Logs request",
+    "placeholder": "Paste a GraphQL query or JSON payload...",
+    "send": "Send request",
+    "preset_label": "Preset"
+  },
+  "response": {
+    "title": "Response",
+    "description": "The playground shows the raw backend result, including failed FF Logs responses.",
+    "empty": "Run a request to see the FF Logs response here.",
+    "empty_status": "No response",
+    "failed_status": "Request failed",
+    "http_status": "HTTP {status}",
+    "viewer_label": "JSON viewer",
+    "collapse_all": "Collapse all",
+    "expand_all": "Expand all",
+    "array_summary": "{count} items",
+    "object_summary": "{count} fields"
+  },
+  "validation": {
+    "empty": "The FF Logs request cannot be empty.",
+    "invalid": "The FF Logs request must be text.",
+    "too_large": "Keep the request under 50,000 characters.",
+    "json_object": "JSON requests must be an object containing a query field.",
+    "query_required": "JSON requests must include a non-empty query field.",
+    "variables_invalid": "The variables field must be a JSON object or null.",
+    "operation_name_invalid": "The operationName field must be a string or null."
+  },
+  "errors": {
+    "request_failed": "The FF Logs request could not be completed."
+  },
+  "presets": {
+    "activity_report_progress": {
+      "label": "Run fight stats",
+      "description": "Matches the completion preview query used for an FF Logs report."
+    },
+    "character_zone_rankings": {
+      "label": "Character zone rankings",
+      "description": "Matches the applicant progress lookup by character name, world, region, and zone."
+    },
+    "report_structure": {
+      "label": "Report structure",
+      "description": "Matches the debug query used to inspect encounter IDs, phase fields, and fight timings."
+    }
+  }
+}

@@ -42,9 +42,17 @@ class GroupActivityApplicationDeclineController extends Controller
             ]);
         }
 
-        if ($application->status !== ActivityApplication::STATUS_PENDING) {
+        $wasPending = $application->status === ActivityApplication::STATUS_PENDING;
+        $hasReviewWarning = in_array($application->status, [
+            ActivityApplication::STATUS_APPROVED,
+            ActivityApplication::STATUS_ON_BENCH,
+        ], true) && $activity->slots()
+            ->where('application_review_required_application_id', $application->id)
+            ->exists();
+
+        if (! $wasPending && ! $hasReviewWarning) {
             throw ValidationException::withMessages([
-                'application' => 'Only pending applications can be declined.',
+                'application' => 'Only pending applications or applications awaiting roster review can be declined.',
             ]);
         }
 
@@ -106,7 +114,7 @@ class GroupActivityApplicationDeclineController extends Controller
         $patch = [
             'pending_application_count' => $pendingApplicationCount,
             'queue_application_sync_ids' => [],
-            'queue_application_remove_ids' => [(int) $application->id],
+            'queue_application_remove_ids' => $wasPending ? [(int) $application->id] : [],
         ];
 
         if ($releasedAssignments['updated_slots'] !== []) {

@@ -1,0 +1,52 @@
+{
+  "title": "FFLogs Playground",
+  "subtitle": "Sende GraphQL-Anfragen manuell an FF Logs und pruefe die rohe Antwort.",
+  "admin_only": "Nur Admins",
+  "request": {
+    "title": "Anfrage",
+    "description": "Fuege eine rohe GraphQL-Anfrage oder ein JSON-Payload mit query, variables und operationName ein.",
+    "field_label": "FF Logs Anfrage",
+    "placeholder": "GraphQL-Anfrage oder JSON-Payload einfuegen...",
+    "send": "Anfrage senden",
+    "preset_label": "Preset"
+  },
+  "response": {
+    "title": "Antwort",
+    "description": "Der Playground zeigt das rohe Backend-Ergebnis, auch fehlgeschlagene FF Logs Antworten.",
+    "empty": "Sende eine Anfrage, um hier die FF Logs Antwort zu sehen.",
+    "empty_status": "Keine Antwort",
+    "failed_status": "Anfrage fehlgeschlagen",
+    "http_status": "HTTP {status}",
+    "viewer_label": "JSON-Ansicht",
+    "collapse_all": "Alle einklappen",
+    "expand_all": "Alle ausklappen",
+    "array_summary": "{count} Eintraege",
+    "object_summary": "{count} Felder"
+  },
+  "validation": {
+    "empty": "Die FF Logs Anfrage darf nicht leer sein.",
+    "invalid": "Die FF Logs Anfrage muss Text sein.",
+    "too_large": "Die Anfrage muss unter 50.000 Zeichen bleiben.",
+    "json_object": "JSON-Anfragen muessen ein Objekt mit einem query-Feld sein.",
+    "query_required": "JSON-Anfragen muessen ein nicht leeres query-Feld enthalten.",
+    "variables_invalid": "Das variables-Feld muss ein JSON-Objekt oder null sein.",
+    "operation_name_invalid": "Das operationName-Feld muss ein String oder null sein."
+  },
+  "errors": {
+    "request_failed": "Die FF Logs Anfrage konnte nicht abgeschlossen werden."
+  },
+  "presets": {
+    "activity_report_progress": {
+      "label": "Run-Kampfstatistiken",
+      "description": "Entspricht der Completion-Preview-Abfrage fuer einen FF Logs Report."
+    },
+    "character_zone_rankings": {
+      "label": "Charakter-Zonenrankings",
+      "description": "Entspricht dem Bewerbungsfortschritt nach Charaktername, Welt, Region und Zone."
+    },
+    "report_structure": {
+      "label": "Report-Struktur",
+      "description": "Entspricht der Debug-Abfrage fuer Encounter-IDs, Phasenfelder und Kampfzeiten."
+    }
+  }
+}

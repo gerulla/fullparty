@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Concerns\InteractsWithGroupActivityAttendees;
+use App\Http\Resources\GroupQuickCreateShortcutResource;
 use App\Models\Activity;
 use App\Models\ActivityApplication;
 use App\Models\ActivitySlot;
@@ -188,6 +189,7 @@ class GroupActivityController extends Controller
             'activities.slots',
             'activities.applications',
             'activities.progressMilestones',
+            'quickCreateShortcuts',
         ]);
 
         $currentUserId = auth()->id();
@@ -206,6 +208,9 @@ class GroupActivityController extends Controller
         return Inertia::render('Dashboard/Groups/Activities/Index', [
             'group' => $this->buildDashboardGroupPayload($group, $canManageActivities),
             'activityTypes' => $this->availableActivityTypesForForm(false),
+            'quickCreateShortcuts' => GroupQuickCreateShortcutResource::collection(
+                $group->resolvedQuickCreateShortcuts(),
+            )->resolve(),
             'activities' => $visibleActivities
                 ->sortByDesc('updated_at')
                 ->values()

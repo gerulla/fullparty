@@ -33,6 +33,7 @@ use Laravel\Passport\HasApiTokens;
     'discord_link_token_hash',
     'discord_link_token_expires_at',
     'time_display_mode',
+    'homepage_group_id',
     'notification_preferences_reviewed_at',
     'account_completion_celebrated_at',
 ])]

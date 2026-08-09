@@ -150,6 +150,10 @@
             "placeholder_subtitle": "Passe die Filter an, um die Suche zu erweitern.",
             "placeholder_item": {
                 "open_slots": "Freie Slots",
+                "host_group": "Gastgebergruppe",
+                "group_discord": "Im Discord dieser Gruppe nachfragen",
+                "view_group": "Gruppe ansehen",
+                "unknown_group": "Unbekannte Gruppe",
                 "description": "Blind Prog bis zum Clear. Konstanz vor Tempo.",
                 "description_alt": "Einsteigerfreundlich und sozial, aber trotzdem mit Clear-Ziel.",
                 "description_third": "Fokussierter Prog mit ruhigem Tempo und kleinem Kernteam.",

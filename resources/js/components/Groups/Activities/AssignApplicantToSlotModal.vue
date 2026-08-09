@@ -3,6 +3,7 @@ import { computed, ref, watch } from "vue";
 import { useI18n } from "vue-i18n";
 import { usePage } from "@inertiajs/vue3";
 import { localizedValue } from "@/utils/localizedValue";
+import { displayActivityPartyLabel, displayActivitySlotLabel } from "@/utils/activityPartyLabels";
 import type { LocalizedText } from "@/Types/Common";
 import type { QueueApplication, QueueFilterField } from "@/Types/ActivityQueue";
 import type { ActivityFillInPartyOption, ActivitySlot } from "@/Types/ActivityRoster";
@@ -16,6 +17,7 @@ const props = defineProps<{
 	application: QueueApplication | null
 	slotFieldDefinitions: QueueFilterField[]
 	fillInPartyOptions: ActivityFillInPartyOption[]
+	numberedSecondaryParties: boolean
 	mode?: 'assign' | 'edit'
 	isSubmitting?: boolean
 }>();
@@ -63,8 +65,30 @@ const localizedText = (value: LocalizedText, fallback: string) => (
 	localizedValue(value, locale.value, fallbackLocale.value) || fallback
 );
 
+const displayedSlotGroupLabel = computed(() => props.slot
+	? displayActivityPartyLabel(
+		props.slot.group_key,
+		localizedText(props.slot.group_label, props.slot.group_key),
+		props.numberedSecondaryParties,
+		t("groups.activities.overview.board.party_label"),
+	)
+	: "—");
+const displayedSlotLabel = computed(() => props.slot
+	? displayActivitySlotLabel(
+		props.slot.group_key,
+		props.slot.position_in_group,
+		localizedText(props.slot.slot_label, props.slot.slot_key),
+		props.numberedSecondaryParties,
+		t("groups.activities.overview.board.party_label"),
+	)
+	: "—");
 const fillInPartyItems = computed(() => props.fillInPartyOptions.map((option) => ({
-	label: localizedText(option.label, option.key),
+	label: displayActivityPartyLabel(
+		option.key,
+		localizedText(option.label, option.key),
+		props.numberedSecondaryParties,
+		t("groups.activities.overview.board.party_label"),
+	),
 	value: option.key,
 })));
 const hasFilledPartySelection = computed(() => !isFillInSlot.value || Boolean(selectedFilledGroupKey.value));
@@ -434,7 +458,7 @@ const submit = () => {
 	<UModal
 		v-model:open="isOpen"
 		:title="modalTitle"
-		:description="slot ? localizedText(slot.slot_label, slot.slot_key) : undefined"
+		:description="slot ? displayedSlotLabel : undefined"
 		:ui="{ content: 'sm:max-w-2xl', body: 'max-h-[calc(100dvh-12rem)] overflow-y-auto' }"
 	>
 		<template #body>
@@ -475,10 +499,10 @@ const submit = () => {
 							{{ t('groups.activities.management.roster.title') }}
 						</p>
 						<p class="mt-2 font-medium text-toned">
-							{{ slot ? localizedText(slot.group_label, slot.group_key) : '—' }}
+							{{ displayedSlotGroupLabel }}
 						</p>
 						<p class="text-sm text-muted">
-							{{ slot ? localizedText(slot.slot_label, slot.slot_key) : '—' }}
+							{{ displayedSlotLabel }}
 						</p>
 					</div>
 				</div>

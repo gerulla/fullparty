@@ -24,6 +24,25 @@ export type ActivityPartyFinderInfo = {
 	published_at: string | null
 }
 
+export type ActivityManagementWarning = {
+	id: number
+	type: "raid_leader_withdrawn" | string
+	severity: "warning" | "error"
+	payload: {
+		application_id?: number | null
+		user_id?: number | null
+		character_id?: number | null
+		character_name?: string | null
+		slot_id?: number | null
+		slot_key?: string | null
+		slot_label?: LocalizedText | null
+		group_key?: string | null
+		group_label?: LocalizedText | null
+	}
+	occurred_at: string | null
+	dismissed_at: string | null
+}
+
 export type ActivityCompletionPreviewMilestone = {
 	milestone_key: string
 	kills: number
@@ -95,6 +114,7 @@ export type ActivityDetails = {
 	fill_in_slot_count: number
 	application_count: number
 	pending_application_count: number
+	management_warnings: ActivityManagementWarning[]
 	progress_milestone_count: number
 	can_use_fflogs_completion: boolean
 	prog_points: ActivityProgressPoint[]
@@ -124,6 +144,8 @@ export type ActivityManagementPatch = {
 	queue_withdrawn_application_names?: string[]
 	queue_application_sync_ids?: number[]
 	queue_application_remove_ids?: number[]
+	upsert_management_warnings?: ActivityManagementWarning[]
+	remove_management_warning_ids?: number[]
 	upsert_missing_assignments?: ActivityDetails["missing_assignments"]
 	remove_missing_assignment_ids?: number[]
 }

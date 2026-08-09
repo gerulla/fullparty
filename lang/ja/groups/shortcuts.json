@@ -1,0 +1,29 @@
+{
+  "title": "ショートカット",
+  "subtitle": "グループ管理ツールで使用するショートカットを設定します。",
+  "quick_create": {
+    "title": "カレンダーからクイック作成",
+    "description": "モデレーターがRunカレンダーの日付を右クリックしたときに表示する時刻を設定します。",
+    "timezone_note": "STショートカットは常にサーバー時間を使用します。LTショートカットはメニューを開いたモデレーターのローカルタイムゾーンを使用します。",
+    "time": "時刻",
+    "time_mode": "時間モード",
+    "server": "ST",
+    "server_description": "サーバー時間（UTC）",
+    "local": "LT",
+    "local_description": "モデレーターのローカル時間",
+    "add": "ショートカットを追加",
+    "remove": "ショートカットを削除",
+    "move_up": "ショートカットを上へ移動",
+    "move_down": "ショートカットを下へ移動",
+    "limit": "最大{count}件のショートカットを設定できます。",
+    "save": "ショートカットを保存",
+    "saved": "ショートカットを保存しました。",
+    "save_failed": "ショートカットを保存できませんでした。"
+  },
+  "context_menu": {
+    "create_run_at": "{time} {mode}にRunを作成"
+  },
+  "validation": {
+    "duplicate": "各ショートカットには異なる時刻と時間モードを設定してください。"
+  }
+}

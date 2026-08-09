@@ -150,6 +150,10 @@
       "placeholder_subtitle": "Try adjusting the filters to widen the search.",
       "placeholder_item": {
         "open_slots": "Open Slots",
+        "host_group": "Host Group",
+        "group_discord": "Ask in this group's Discord",
+        "view_group": "View Group",
+        "unknown_group": "Unknown Group",
         "description": "Blind prog to clear. Consistency over speed.",
         "description_alt": "Fresh-friendly and social, but still here to get the clear.",
         "description_third": "Focused prog with a steady pace and a small core.",

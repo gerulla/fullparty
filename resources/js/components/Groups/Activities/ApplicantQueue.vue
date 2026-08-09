@@ -728,7 +728,7 @@ const visibleApplications = computed(() => {
 				class="mb-4 rounded-sm border border-dashed border-default px-3 py-2 text-xs uppercase tracking-[0.12em] text-muted"
 				:class="isQueueDropActive ? 'border-white text-toned bg-white/5' : ''"
 			>
-				Drop a roster slot here to move it back to the applicant queue
+				{{ t('groups.activities.management.queue.drop_roster_slot_hint') }}
 			</div>
 
 			<div class="flex flex-col gap-3">

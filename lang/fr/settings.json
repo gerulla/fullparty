@@ -18,6 +18,15 @@
         "profile_picture_too_large": "Les photos de profil doivent faire 5 Mo ou moins.",
         "update_profile_picture": "Mettre à jour la photo de profil"
     },
+    "homepage": {
+        "title": "Remplacer la page d’accueil",
+        "label": "Choisissez la destination de l’accueil",
+        "description": "Choisissez où le bouton Accueil de la barre latérale vous mène. Si vous quittez le groupe sélectionné, votre page de profil sera de nouveau utilisée.",
+        "destination": "Page d’accueil",
+        "profile_page": "Page de profil",
+        "saved": "La page d’accueil a été mise à jour.",
+        "save_failed": "Impossible de mettre à jour votre page d’accueil. Veuillez réessayer."
+    },
     "connect": "Connecter",
     "unlink": "Dissocier",
     "connected": "Connecté",

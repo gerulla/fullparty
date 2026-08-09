@@ -72,53 +72,43 @@ watch(selectedSort, (sort) => {
 						:key="`run-discovery-skeleton-${index}`"
 						class="overflow-hidden border border-white/10 bg-neutral-950/72 shadow-[0_20px_40px_rgba(0,0,0,0.2)]"
 					>
-						<div class="grid gap-4 xl:grid-cols-[7rem_minmax(0,1.6fr)_11rem_10rem_11rem] xl:items-center">
-							<div class="border border-white/8 bg-neutral-900/70">
-								<USkeleton class="h-38 w-34 rounded-none" />
-							</div>
+						<div class="grid grid-cols-1 2xl:min-h-56 2xl:grid-cols-[8.5rem_minmax(0,1fr)_16rem_13rem] 2xl:items-stretch">
+							<USkeleton class="hidden size-full min-h-56 rounded-none 2xl:block" />
 
-							<div class="min-w-0 space-y-3 py-4 xl:pr-2">
-								<div class="space-y-3">
-									<USkeleton class="h-6 w-3/5 rounded-none" />
-									<USkeleton class="h-4 w-2/5 rounded-none" />
-								</div>
-
+							<div class="order-2 space-y-4 p-4 sm:p-5 2xl:order-none">
+								<USkeleton class="h-6 w-3/5 rounded-none" />
 								<div class="space-y-2">
 									<USkeleton class="h-4 w-full rounded-none" />
 									<USkeleton class="h-4 w-4/5 rounded-none" />
 								</div>
-
-								<div class="flex flex-wrap gap-2">
+								<div class="flex gap-2">
 									<USkeleton class="h-6 w-20 rounded-none" />
 									<USkeleton class="h-6 w-24 rounded-none" />
-									<USkeleton class="h-6 w-16 rounded-none" />
 								</div>
 							</div>
 
-							<div class="space-y-3 border-t border-white/8 pt-3 xl:border-l xl:border-t-0 xl:pl-5 xl:pt-0">
-								<USkeleton class="h-5 w-16 rounded-none" />
-								<USkeleton class="h-8 w-24 rounded-none" />
-								<USkeleton class="h-4 w-14 rounded-none" />
-								<USkeleton class="h-5 w-20 rounded-none" />
-								<USkeleton class="h-4 w-16 rounded-none" />
-							</div>
-
-							<div class="border-t border-white/8 pt-3 xl:border-l xl:border-t-0 xl:pl-5 xl:pt-0">
-								<div class="space-y-3 p-3">
-									<USkeleton class="h-4 w-20 rounded-none" />
-									<USkeleton class="h-5 w-full rounded-none" />
-									<USkeleton class="h-5 w-full rounded-none" />
-									<USkeleton class="h-5 w-full rounded-none" />
-								</div>
-							</div>
-
-							<div class="border-t border-white/8 pt-3 xl:border-l xl:border-t-0 xl:pl-5 xl:pt-0">
-								<div class="flex h-full flex-col justify-between gap-4">
-									<USkeleton class="mx-auto h-5 w-24 rounded-none" />
-									<div class="space-y-2 pr-4">
-										<USkeleton class="h-10 w-full rounded-none" />
-										<USkeleton class="h-10 w-full rounded-none" />
+							<div class="order-1 border-b border-white/8 p-4 sm:p-5 2xl:order-none 2xl:flex 2xl:flex-col 2xl:justify-center 2xl:border-b-0 2xl:border-l">
+								<USkeleton class="mb-3 h-3 w-20 rounded-none" />
+								<div class="flex items-center gap-4">
+									<USkeleton class="size-12 shrink-0 rounded-full 2xl:size-20" />
+									<div class="min-w-0 flex-1 space-y-2">
+										<USkeleton class="h-5 w-full rounded-none" />
+										<USkeleton class="h-4 w-24 rounded-none" />
 									</div>
+								</div>
+								<USkeleton class="mt-5 hidden h-4 w-40 rounded-none 2xl:block" />
+							</div>
+
+							<div class="order-3 space-y-4 border-t border-white/8 p-4 sm:p-5 2xl:order-none 2xl:border-l 2xl:border-t-0">
+								<div class="space-y-2">
+									<USkeleton class="h-4 w-20 rounded-none" />
+									<USkeleton class="h-8 w-24 rounded-none" />
+									<USkeleton class="h-3 w-14 rounded-none" />
+								</div>
+								<USkeleton class="h-4 w-28 rounded-none" />
+								<div class="grid grid-cols-2 gap-2 2xl:grid-cols-1">
+									<USkeleton class="h-9 w-full rounded-none" />
+									<USkeleton class="h-9 w-full rounded-none" />
 								</div>
 							</div>
 						</div>

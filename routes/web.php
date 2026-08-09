@@ -6,6 +6,7 @@ use App\Http\Controllers\ActivityTypeController;
 use App\Http\Controllers\AdminCharacterController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AdminDiscordGuildIntegrationController;
+use App\Http\Controllers\AdminFflogsPlaygroundController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BozjaItemController;
 use App\Http\Controllers\CharacterClassController;
@@ -28,6 +29,7 @@ use App\Http\Controllers\GroupActivityFflogsCompletionPreviewController;
 use App\Http\Controllers\GroupActivityFflogsController;
 use App\Http\Controllers\GroupActivityFillInSlotController;
 use App\Http\Controllers\GroupActivityManagementDataController;
+use App\Http\Controllers\GroupActivityManagementWarningController;
 use App\Http\Controllers\GroupActivityManualSlotAssignmentOptionsController;
 use App\Http\Controllers\GroupActivityPartyFinderInfoController;
 use App\Http\Controllers\GroupActivityRosterExportController;
@@ -61,6 +63,7 @@ use App\Http\Controllers\GroupMembershipController;
 use App\Http\Controllers\GroupMembershipRequestController;
 use App\Http\Controllers\GroupPhantomCompositionController;
 use App\Http\Controllers\GroupSettingsController;
+use App\Http\Controllers\GroupShortcutController;
 use App\Http\Controllers\GroupStatisticsController;
 use App\Http\Controllers\IntegrationClientController;
 use App\Http\Controllers\LocaleController;
@@ -502,6 +505,8 @@ Route::prefix('{locale?}')
                 Route::put('/discovery-settings', [GroupSettingsController::class, 'updateDiscovery'])->name('groups.dashboard.discovery-settings.update');
                 Route::get('/settings', [GroupSettingsController::class, 'show'])->name('groups.dashboard.settings');
                 Route::put('/settings', [GroupSettingsController::class, 'update'])->name('groups.dashboard.settings.update');
+                Route::get('/shortcuts', [GroupShortcutController::class, 'index'])->name('groups.dashboard.shortcuts.index');
+                Route::put('/shortcuts', [GroupShortcutController::class, 'update'])->name('groups.dashboard.shortcuts.update');
                 Route::get('/discord-integration', [GroupDiscordIntegrationController::class, 'show'])->name('groups.dashboard.discord-integration');
                 Route::post('/discord-integration/link-token', [GroupDiscordIntegrationController::class, 'generateToken'])->name('groups.dashboard.discord-integration.link-token');
                 Route::put('/discord-integration/settings', [GroupDiscordIntegrationController::class, 'updateSettings'])->name('groups.dashboard.discord-integration.settings.update');
@@ -532,6 +537,7 @@ Route::prefix('{locale?}')
 
                 // Full dashboard payloads, exports, and read-only queue details.
                 Route::get('/activities/{activity}/management-data', [GroupActivityManagementDataController::class, 'show'])->name('groups.dashboard.activities.management-data');
+                Route::delete('/activities/{activity}/management-warnings/{managementWarning}', [GroupActivityManagementWarningController::class, 'destroy'])->name('groups.dashboard.activities.management-warnings.destroy');
                 Route::post('/activities/{activity}/party-finder-info', [GroupActivityPartyFinderInfoController::class, 'store'])->name('groups.dashboard.activities.party-finder-info.store');
                 Route::get('/activities/{activity}/export-roster', [GroupActivityRosterExportController::class, 'show'])->name('groups.dashboard.activities.export-roster');
                 Route::get('/activities/{activity}/applicant-queue', [GroupActivityApplicantQueueController::class, 'show'])->name('groups.dashboard.activities.applicant-queue');
@@ -577,6 +583,7 @@ Route::prefix('{locale?}')
                 Route::post('/activities/{activity}/applications/{application}/decline', [GroupActivityApplicationDeclineController::class, 'store'])->name('groups.dashboard.activities.application-declines.store');
 
                 // Designation and attendance.
+                Route::post('/activities/{activity}/raid-leaders/mark-group-staff', [GroupActivitySlotDesignationController::class, 'markGroupStaffRaidLeaders'])->name('groups.dashboard.activities.raid-leaders.mark-group-staff');
                 Route::post('/activities/{activity}/slots/{slot}/designation', [GroupActivitySlotDesignationController::class, 'store'])->name('groups.dashboard.activities.slot-designations.store');
                 Route::post('/activities/{activity}/slots/{slot}/composition-hints', [GroupActivitySlotCompositionHintController::class, 'update'])->name('groups.dashboard.activities.slot-composition-hints.update');
                 Route::post('/activities/{activity}/slot-groups/composition-preset', [GroupActivitySlotGroupCompositionPresetController::class, 'store'])->name('groups.dashboard.activities.slot-group-composition-presets.store');
@@ -615,6 +622,7 @@ Route::prefix('{locale?}')
             Route::post('/settings/password', [UserController::class, 'changePassword'])->name('settings.password');
             Route::post('/settings/notifications', [UserController::class, 'changeNotificationSettings'])->name('settings.notifications');
             Route::patch('/settings/time-display', [UserController::class, 'changeTimeDisplayPreference'])->name('settings.time-display');
+            Route::patch('/settings/homepage', [UserController::class, 'changeHomepagePreference'])->name('settings.homepage');
             Route::post('/settings/discord-integration/link-token', [UserController::class, 'generateDiscordLinkToken'])->name('settings.discord-integration.link-token');
             Route::delete('/settings/discord-integration', [UserController::class, 'disconnectDiscordIntegration'])->name('settings.discord-integration.destroy');
             Route::delete('/settings/linked-sessions/{token}', [SettingsLinkedSessionController::class, 'destroy'])->name('settings.linked-sessions.destroy');
@@ -683,6 +691,8 @@ Route::prefix('{locale?}')
                 Route::get('/character-data', [AdminController::class, 'characterData'])->name('admin.character-data');
                 Route::get('/audit-log', [AdminController::class, 'auditLog'])->name('admin.audit-log');
                 Route::get('/system-data', [AdminController::class, 'systemData'])->name('admin.system-data');
+                Route::get('/fflogs-playground', [AdminFflogsPlaygroundController::class, 'index'])->name('admin.fflogs-playground.index');
+                Route::post('/fflogs-playground/execute', [AdminFflogsPlaygroundController::class, 'execute'])->name('admin.fflogs-playground.execute');
 
                 // System-wide notifications and temporary banners.
                 Route::get('/system-notifications', [SystemNotificationController::class, 'index'])->name('admin.system-notifications.index');

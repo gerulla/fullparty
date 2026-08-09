@@ -18,27 +18,38 @@ const emit = defineEmits<{
 const { t, locale } = useI18n();
 const { withDisplayTimeZone } = useTimeDisplayMode();
 
-const roleSlotIconUrls: Record<string, string> = {
-	tank: "/role-icons/tank.png",
-	healer: "/role-icons/healer.png",
-	dps: "/role-icons/dps.png",
-};
-
 const contentName = computed(() => props.item.activity_type_name);
 const showContentName = computed(() => contentName.value !== "");
 const targetProgPointLabel = computed(() => props.item.target_prog_point_label || props.item.target_prog_point_key);
-
 const descriptionLabel = computed(() => props.item.description || t("groups.activities.overview.details.no_description"));
+const groupName = computed(() => props.item.group_name || t("runs.discovery.results.placeholder_item.unknown_group"));
+const groupInitials = computed(() => groupName.value
+	.split(/\s+/)
+	.filter(Boolean)
+	.slice(0, 2)
+	.map((part) => part.charAt(0))
+	.join("")
+	.toUpperCase());
+const groupLocationLabel = computed(() => {
+	const datacenter = props.item.datacenter;
+	const world = props.item.world;
+
+	if (datacenter && world && world !== datacenter) {
+		return `${datacenter} (${world})`;
+	}
+
+	return datacenter || world || null;
+});
 
 const tagLabels = computed(() => {
 	const tags: string[] = [];
 
 	if (props.item.run_style) {
-		tags.push(t(`runs.discovery.filters.options.run_styles.${props.item.run_style}`));
+		tags.push(t("runs.discovery.filters.options.run_styles." + props.item.run_style));
 	}
 
 	if (props.item.intensity) {
-		tags.push(t(`runs.discovery.filters.options.intensity.${props.item.intensity}`));
+		tags.push(t("runs.discovery.filters.options.intensity." + props.item.intensity));
 	}
 
 	if (props.item.beginner_friendly) {
@@ -120,8 +131,6 @@ const timezoneLabel = computed(() => {
 });
 
 const memberCountLabel = computed(() => `${props.item.filled_slots} / ${props.item.total_slots}`);
-const organizerName = computed(() => props.item.organizer?.name || t("groups.activities.cards.no_organizer"));
-const organizerAvatarUrl = computed(() => props.item.organizer?.avatar_url ?? null);
 
 const goToViewDetails = () => {
 	router.get(props.item.links.view);
@@ -146,6 +155,14 @@ const goToGroup = () => {
 	}));
 };
 
+const openDiscordInvite = () => {
+	if (!props.item.group_discord_invite_url || typeof window === "undefined") {
+		return;
+	}
+
+	window.open(props.item.group_discord_invite_url, "_blank", "noopener,noreferrer");
+};
+
 const toggleSaved = () => {
 	emit("toggleSaved", props.item);
 };
@@ -158,13 +175,13 @@ const toggleSaved = () => {
 	>
 		<div
 			v-if="item.has_existing_application"
-			class="pointer-events-none absolute -left-2 -top-2 z-20 flex h-8 w-8 items-center justify-center"
+			class="pointer-events-none absolute -left-2 -top-2 z-30 flex size-8 items-center justify-center"
 			:aria-label="t('runs.discovery.results.placeholder_item.actions.view_application')"
 			:title="t('runs.discovery.results.placeholder_item.actions.view_application')"
 		>
 			<UIcon
 				name="i-lucide-pin"
-				class="h-8 w-8 -rotate-35 text-brand-400 drop-shadow-[0_4px_10px_rgba(168,85,247,0.85)]"
+				class="size-8 -rotate-35 text-brand-400 drop-shadow-[0_4px_10px_rgba(168,85,247,0.85)]"
 			/>
 		</div>
 
@@ -172,36 +189,36 @@ const toggleSaved = () => {
 			v-if="item.image_url"
 			:src="item.image_url"
 			:alt="item.title"
-			class="absolute inset-0 h-full w-full object-cover xl:hidden"
+			class="absolute inset-0 size-full object-cover 2xl:hidden"
 		>
 		<div
 			v-else
-			class="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(123,97,153,0.34),transparent_46%),radial-gradient(circle_at_center_right,rgba(84,136,184,0.28),transparent_38%),linear-gradient(180deg,#201c24_0%,#151217_100%)] xl:hidden"
+			class="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(123,97,153,0.34),transparent_46%),radial-gradient(circle_at_center_right,rgba(84,136,184,0.28),transparent_38%),linear-gradient(180deg,#201c24_0%,#151217_100%)] 2xl:hidden"
 		/>
-		<div class="absolute inset-0 bg-linear-to-b from-neutral-950/58 via-neutral-950/74 to-neutral-950/94 xl:hidden" />
+		<div class="absolute inset-0 bg-linear-to-b from-neutral-950/62 via-neutral-950/78 to-neutral-950/96 2xl:hidden" />
 
-		<div class="relative z-10 grid grid-cols-2 gap-3 p-4 sm:grid-cols-[minmax(0,1.5fr)_minmax(8rem,0.85fr)_minmax(8rem,0.85fr)] sm:items-center sm:gap-4 sm:p-5 xl:grid-cols-[7rem_minmax(0,1.6fr)_11rem_10rem_11rem] xl:items-stretch xl:p-0">
-			<div class="relative hidden h-full border border-white/8 bg-neutral-900/70 xl:block">
+		<div class="relative z-10 grid grid-cols-1 2xl:min-h-56 2xl:grid-cols-[8.5rem_minmax(0,1fr)_16rem_13rem] 2xl:items-stretch">
+			<div class="relative hidden min-h-56 overflow-hidden border-r border-white/8 bg-neutral-900/70 2xl:block">
 				<img
 					v-if="item.image_url"
 					:src="item.image_url"
 					:alt="item.title"
-					class="h-full min-h-38 w-34 object-cover"
+					class="absolute inset-0 size-full object-cover"
 				>
 				<div
 					v-else
-					class="h-full min-h-38 w-34 bg-[radial-gradient(circle_at_top_left,rgba(123,97,153,0.34),transparent_46%),radial-gradient(circle_at_center_right,rgba(84,136,184,0.28),transparent_38%),linear-gradient(180deg,#201c24_0%,#151217_100%)]"
+					class="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(123,97,153,0.34),transparent_46%),radial-gradient(circle_at_center_right,rgba(84,136,184,0.28),transparent_38%),linear-gradient(180deg,#201c24_0%,#151217_100%)]"
 				/>
-				<div v-if="showContentName" class="pointer-events-none absolute inset-x-0 bottom-0 p-2 bg-neutral-950/70">
-					<p class="block text-center font-semibold uppercase text-xs">{{ contentName }}</p>
+				<div v-if="showContentName" class="pointer-events-none absolute inset-x-0 bottom-0 bg-neutral-950/82 p-2">
+					<p class="text-center text-xs font-semibold uppercase">{{ contentName }}</p>
 				</div>
 			</div>
 
-			<div class="col-span-2 min-w-0 space-y-3 sm:col-span-1 xl:py-4 xl:pr-2">
+			<div class="order-2 min-w-0 space-y-3 bg-neutral-950/42 p-3 2xl:order-none 2xl:space-y-4 2xl:bg-transparent 2xl:p-5">
 				<div class="flex items-start justify-between gap-3">
 					<div class="min-w-0 space-y-2">
 						<div class="flex flex-wrap items-center gap-2">
-							<h3 class="text-xl font-semibold leading-tight text-white">
+							<h3 class="text-base font-semibold leading-tight text-white 2xl:text-xl">
 								{{ item.title }}
 							</h3>
 							<UBadge
@@ -212,21 +229,12 @@ const toggleSaved = () => {
 								size="md"
 							/>
 						</div>
-
-						<div class="flex flex-wrap items-center gap-x-3 gap-y-2 text-sm text-white/70">
-							<button
-								v-if="item.group_name && item.group_slug"
-								type="button"
-								class="flex max-w-96 min-w-0 cursor-pointer items-center gap-2 text-left transition-colors hover:text-white"
-								@click="goToGroup"
-							>
-								<UIcon name="i-lucide-users" class="size-4 shrink-0 text-white/50" />
-								<span class="truncate">{{ item.group_name }}</span>
-							</button>
-							<div v-else-if="item.group_name" class="flex max-w-96 min-w-0 items-center gap-2">
-								<UIcon name="i-lucide-users" class="size-4 shrink-0 text-white/50" />
-								<span class="truncate">{{ item.group_name }}</span>
-							</div>
+						<div v-if="showContentName" class="flex items-center gap-1.5 text-xs text-white/62 2xl:hidden">
+							<UIcon
+								name="i-lucide-swords"
+								class="size-3.5 shrink-0 text-white/46"
+							/>
+							<span class="truncate">{{ contentName }}</span>
 						</div>
 					</div>
 
@@ -245,7 +253,7 @@ const toggleSaved = () => {
 					/>
 				</div>
 
-				<p class="max-w-2xl text-sm leading-6 text-white/68">
+				<p class="max-w-3xl text-sm leading-5 text-white/70 2xl:leading-6">
 					{{ descriptionLabel }}
 				</p>
 
@@ -261,106 +269,128 @@ const toggleSaved = () => {
 				</div>
 			</div>
 
-			<div class="col-span-1 space-y-3 border-t border-white/10 pt-3 sm:border-l sm:border-t-0 sm:pl-5 xl:border-white/8 xl:pt-0">
-				<div class="flex items-start gap-3">
-					<UIcon name="i-lucide-calendar-days" class="mt-0.5 size-4 text-white/46" />
+			<section class="order-1 flex flex-col items-stretch justify-center border-b border-white/10 bg-neutral-950/94 px-3 py-3 2xl:order-none 2xl:border-b-0 2xl:border-l 2xl:bg-neutral-900/38 2xl:px-5 2xl:py-6">
+				<p class="mb-3 hidden text-xs font-semibold uppercase tracking-[0.18em] text-brand-300 2xl:block">
+					{{ t("runs.discovery.results.placeholder_item.host_group") }}
+				</p>
+
+				<div class="flex items-center justify-between gap-3">
+					<button
+						type="button"
+						class="flex min-w-0 items-center gap-3 text-left 2xl:gap-4"
+						:class="item.group_slug ? 'cursor-pointer hover:text-brand-200' : 'cursor-default'"
+						:disabled="!item.group_slug"
+						@click="goToGroup"
+					>
+						<UAvatar
+							:src="item.group_profile_picture_url || undefined"
+							:alt="groupName"
+							:text="groupInitials"
+							size="lg"
+							class="size-10 shrink-0 ring-1 ring-brand-400/55 2xl:size-20"
+						/>
+						<span class="min-w-0">
+							<span class="mb-0.5 block text-[9px] font-semibold uppercase tracking-[0.18em] text-brand-300 2xl:hidden">
+								{{ t("runs.discovery.results.placeholder_item.host_group") }}
+							</span>
+							<span class="block line-clamp-2 text-sm font-semibold leading-4 text-white 2xl:text-lg 2xl:leading-6">
+								{{ groupName }}
+							</span>
+							<span v-if="groupLocationLabel" class="mt-0.5 block truncate text-[11px] text-white/58 2xl:mt-1 2xl:text-sm">
+								{{ groupLocationLabel }}
+							</span>
+						</span>
+					</button>
+
+					<UTooltip
+						v-if="item.group_discord_invite_url"
+						:text="t('runs.discovery.results.placeholder_item.group_discord')"
+						class="2xl:hidden"
+					>
+						<UButton
+							color="neutral"
+							variant="ghost"
+							icon="ic:baseline-discord"
+							:aria-label="t('runs.discovery.results.placeholder_item.group_discord')"
+							class="shrink-0 rounded-none text-brand-400"
+							@click="openDiscordInvite"
+						/>
+					</UTooltip>
+				</div>
+
+				<button
+					v-if="item.group_discord_invite_url"
+					type="button"
+					class="mt-5 hidden items-center gap-2 self-start text-left text-sm text-white/62 transition-colors hover:text-white 2xl:flex"
+					@click="openDiscordInvite"
+				>
+					<UIcon name="ic:baseline-discord" class="size-5 text-brand-400" />
+					<span>{{ t("runs.discovery.results.placeholder_item.group_discord") }}</span>
+				</button>
+				<button
+					v-else-if="item.group_slug"
+					type="button"
+					class="mt-5 hidden items-center gap-2 self-start text-left text-sm text-white/62 transition-colors hover:text-white 2xl:flex"
+					@click="goToGroup"
+				>
+					<UIcon name="i-lucide-users" class="size-5 text-brand-400" />
+					<span>{{ t("runs.discovery.results.placeholder_item.view_group") }}</span>
+				</button>
+			</section>
+			<section class="order-3 grid grid-cols-[minmax(0,1fr)_auto_minmax(7.25rem,1.15fr)] items-end gap-3 border-t border-white/10 bg-neutral-950/88 p-3 md:grid-cols-[minmax(0,1fr)_minmax(0,0.75fr)_minmax(0,1fr)] md:gap-5 md:px-5 2xl:order-none 2xl:flex 2xl:flex-col 2xl:items-stretch 2xl:gap-4 2xl:border-l 2xl:border-t-0 2xl:bg-neutral-950/58 2xl:p-5">
+				<div class="flex items-start gap-2 2xl:gap-3">
+					<UIcon name="i-lucide-calendar-days" class="mt-0.5 size-3.5 shrink-0 text-white/46 2xl:size-4" />
 					<div class="space-y-1">
-						<p class="text-sm font-medium text-white">
+						<p class="text-xs font-medium text-white 2xl:text-sm">
 							{{ scheduleLabel }}
 						</p>
 						<p class="text-2xl font-semibold leading-none text-white">
 							{{ timeLabel }}
 						</p>
-						<p class="text-sm uppercase tracking-[0.18em] text-white/46">
+						<p class="text-[10px] uppercase tracking-[0.16em] text-white/46 2xl:text-xs">
 							{{ timezoneLabel }}
 						</p>
 					</div>
 				</div>
 
-				<div class="flex items-start gap-3 text-white/70 xl:hidden">
-					<UAvatar
-						v-if="organizerAvatarUrl"
-						:src="organizerAvatarUrl"
-						:alt="organizerName"
-						size="xs"
-						class="mt-0.5 shrink-0"
+				<div class="flex items-start gap-1.5 self-center text-sm text-white md:justify-self-center 2xl:w-full 2xl:items-center 2xl:gap-2 2xl:self-auto 2xl:justify-self-auto">
+					<UIcon name="i-lucide-users" class="mt-0.5 size-3.5 shrink-0 text-white/46 2xl:mt-0 2xl:size-4" />
+					<span class="flex flex-col font-semibold leading-4 2xl:hidden">
+						<span>{{ memberCountLabel }}</span>
+						<span class="font-normal text-white/62">{{ t("general.members") }}</span>
+					</span>
+					<span class="hidden font-semibold 2xl:inline">{{ memberCountLabel }} {{ t("general.members") }}</span>
+				</div>
+
+				<div
+					class="flex min-w-0 flex-col gap-1.5 sm:w-full sm:max-w-36 sm:justify-self-end 2xl:max-w-none 2xl:justify-self-auto 2xl:gap-2"
+				>
+					<UButton
+						v-if="item.links.apply"
+						color="primary"
+						class="min-h-9 w-full justify-center rounded-none"
+						:label="item.has_existing_application
+							? t('runs.discovery.results.placeholder_item.actions.view_application')
+							: t('runs.discovery.results.placeholder_item.actions.apply_now')"
+						@click="goToApply"
 					/>
-					<UIcon v-else name="i-lucide-user-round" class="mt-0.5 size-4 shrink-0 text-white/46" />
-					<div class="min-w-0 space-y-1">
-						<p class="text-xs font-semibold uppercase tracking-[0.16em] text-white/46">
-							{{ t("groups.activities.context_menu.summary_labels.host") }}
-						</p>
-						<p class="truncate text-sm font-medium text-white sm:text-base">
-							{{ organizerName }}
-						</p>
-					</div>
+					<UButton
+						color="neutral"
+						variant="link"
+						trailing-icon="i-lucide-arrow-right"
+						class="w-full justify-end rounded-none px-0 py-0 text-xs text-white/72 2xl:hidden"
+						:label="t('runs.discovery.results.placeholder_item.actions.view_details')"
+						@click="goToViewDetails"
+					/>
+					<UButton
+						:color="item.links.apply ? 'neutral' : 'primary'"
+						:variant="item.links.apply ? 'outline' : 'solid'"
+						class="hidden w-full justify-center rounded-none 2xl:flex"
+						:label="t('runs.discovery.results.placeholder_item.actions.view_details')"
+						@click="goToViewDetails"
+					/>
 				</div>
-
-				<div class="hidden items-start gap-3 text-white/70 xl:flex">
-					<UIcon name="i-lucide-globe" class="mt-0.5 size-4 text-white/46" />
-					<div class="space-y-1">
-						<p class="text-base font-medium text-white">
-							{{ item.datacenter || "—" }}
-						</p>
-						<p v-if="item.world" class="text-sm">
-							{{ item.world }}
-						</p>
-					</div>
-				</div>
-			</div>
-
-			<div class="hidden border-t border-white/10 pt-3 xl:block xl:border-l xl:border-t-0 xl:border-white/8 xl:pt-0 xl:pl-5">
-				<div class=" p-3">
-					<p class="mb-3 text-xs font-semibold uppercase tracking-[0.16em] text-white/48">
-						{{ t("runs.discovery.results.placeholder_item.open_slots") }}
-					</p>
-
-					<div class="grid gap-3">
-						<div
-							v-for="roleSlot in item.role_slots"
-							:key="roleSlot.key"
-							class="grid grid-cols-[1.25rem_1fr_auto] items-center gap-2"
-						>
-							<img
-								:src="roleSlotIconUrls[roleSlot.key]"
-								:alt="roleSlot.key"
-								class="size-5 object-contain"
-							>
-							<div class="h-px bg-white/10" />
-							<span class="text-sm font-medium text-white/78">{{ roleSlot.count > 0 ? roleSlot.count : "—" }}</span>
-						</div>
-					</div>
-				</div>
-			</div>
-
-			<div class="col-span-1 border-t border-white/10 pt-3 sm:border-l sm:border-t-0 sm:pl-5 xl:border-white/8 xl:pt-0">
-				<div class="flex h-full flex-col justify-between gap-4">
-					<div class="flex items-center justify-center">
-						<p class="text-md font-semibold text-white">
-							{{ memberCountLabel }} {{ t("general.members") }}
-						</p>
-					</div>
-
-					<div class="space-y-2 xl:pr-4">
-						<UButton
-							color="primary"
-							class="w-full justify-center rounded-none"
-							:label="t('runs.discovery.results.placeholder_item.actions.view_details')"
-							@click="goToViewDetails"
-						/>
-						<UButton
-							v-if="item.links.apply"
-							color="neutral"
-							variant="outline"
-							class="w-full justify-center rounded-none border-brand-400/45 text-white hover:bg-brand-500/10"
-							:label="item.has_existing_application
-								? t('runs.discovery.results.placeholder_item.actions.view_application')
-								: t('runs.discovery.results.placeholder_item.actions.apply_now')"
-							@click="goToApply"
-						/>
-					</div>
-				</div>
-			</div>
+			</section>
 		</div>
 	</article>
 </template>

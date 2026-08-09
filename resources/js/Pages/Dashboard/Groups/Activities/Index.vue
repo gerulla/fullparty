@@ -7,7 +7,7 @@ import PageHeader from "@/components/PageHeader.vue";
 import ActivityUpcomingList from "@/components/Groups/Activities/ActivityUpcomingList.vue";
 import ActivityMonthCalendar from "@/components/Groups/Activities/ActivityMonthCalendar.vue";
 import ActivityResponsiveAgendaCalendar from "@/components/Groups/Activities/ActivityResponsiveAgendaCalendar.vue";
-import type { ActivityIndexItem } from "@/Types/ActivityCore";
+import type { ActivityIndexItem, GroupQuickCreateShortcut } from "@/Types/ActivityCore";
 import { isArchivedActivityStatus } from "@/utils/activityLifecycle";
 
 const props = defineProps<{
@@ -21,6 +21,7 @@ const props = defineProps<{
 		}
 	}
 	activities: ActivityIndexItem[]
+	quickCreateShortcuts: GroupQuickCreateShortcut[]
 }>();
 
 const { t } = useI18n();
@@ -121,6 +122,7 @@ const upcomingCount = computed(() => {
 				:activities="activities"
 				:selected-date-key="selectedDateKey"
 				:can-manage-activities="group.permissions.can_manage_activities"
+				:quick-create-shortcuts="quickCreateShortcuts"
 				@update-selected-date-key="selectedDateKey = $event"
 			/>
 		</div>

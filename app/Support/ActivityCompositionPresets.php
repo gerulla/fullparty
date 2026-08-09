@@ -47,6 +47,7 @@ final class ActivityCompositionPresets
     private const FULL_PARTY_COMPOSITIONS = [
         'tthhdddd' => 'TTHHDDDD',
         'tthddddd' => 'TTHDDDDD',
+        'thhddddd' => 'THHDDDDD',
         'thdddddd' => 'THDDDDDD',
         'hhdddddd' => 'HHDDDDDD',
         'ttdddddd' => 'TTDDDDDD',

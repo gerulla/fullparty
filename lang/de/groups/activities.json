@@ -133,6 +133,7 @@
         "summary_subtitle": "Ein kurzer Blick auf die Grundlagen, bevor die vollständigen Verwaltungstools fertig sind.",
         "edit": "Run bearbeiten",
         "duplicate_run": "Run duplizieren",
+        "mark_raid_leaders": "Raidleiter markieren",
         "duplicate": {
             "title": "Run duplizieren",
             "description": "Erstelle einen neuen Run mit derselben Konfiguration und demselben Roster.",
@@ -205,6 +206,9 @@
             "check_in_group_failed": "Diese Gruppe konnte nicht eingecheckt werden.",
             "mark_missing_failed": "Dieser Slot konnte nicht als fehlend markiert werden.",
             "mark_designation_failed": "Diese Slot-Kennzeichnung konnte nicht aktualisiert werden.",
+            "mark_raid_leaders_failed": "Gruppenleitung konnte nicht als Raidleitung markiert werden.",
+            "raid_leaders_marked": "Raidleitung wurde aktualisiert.",
+            "no_raid_leaders_to_mark": "Keine berechtigten Rosterplätze mussten aktualisiert werden.",
             "slot_changed": "Dieser Slot wurde während deiner Bearbeitung geändert. Aktualisiere die Seite und versuche es erneut.",
             "warning_title": "Warnung",
             "undo_missing_failed": "Fehlend-Markierung konnte nicht rückgängig gemacht werden.",
@@ -417,6 +421,23 @@
             },
             "empty": "Für diese Aktivität wurden keine Roster-Slots erzeugt."
         },
+        "management_warnings": {
+            "title": "Roster-Warnungen",
+            "description": "Wichtige Roster-Änderungen, die von der Moderation geprüft werden müssen.",
+            "dismiss": "Schließen",
+            "dismissed": "Roster-Warnung geschlossen.",
+            "dismiss_failed": "Die Roster-Warnung konnte nicht geschlossen werden.",
+            "unknown_character": "Ein Bewerber",
+            "unknown_slot": "dem zugewiesenen Slot",
+            "raid_leader_withdrawn": {
+                "title": "Party-Leitung hat zurückgezogen",
+                "description": "{name} hat die Bewerbung für {slot} zurückgezogen, obwohl die Person als Party-Leitung eingeteilt war. Prüfe das Roster und bestimme eine neue Leitung."
+            },
+            "unknown": {
+                "title": "Roster muss geprüft werden",
+                "description": "Eine wichtige Roster-Änderung muss geprüft werden."
+            }
+        },
         "queue": {
             "title": "Bewerberwarteschlange",
             "new_application_notice_one": "{count} neue Bewerbung erhalten",
@@ -425,6 +446,7 @@
             "application_withdrawn_notice": "{name} hat die Bewerbung zurückgezogen",
             "dismiss_new_application_notice": "Hinweis zu neuen Bewerbungen schließen",
             "dismiss_queue_event_notice": "Hinweis schließen",
+            "drop_roster_slot_hint": "Roster-Slot hier ablegen, um ihn zurück in die Bewerberwarteschlange zu verschieben",
             "search_placeholder": "Bewerber suchen...",
             "filters": "Filter",
             "filters_with_count": "Filter ({count})",
@@ -571,6 +593,8 @@
             "title": "Roster-Board",
             "subtitle": "Partys werden nebeneinander angezeigt, damit Mitglieder die aktuelle Aufstellung schnell erfassen können.",
             "party_label": "Party",
+            "role_highlights": "Rollenhervorhebung",
+            "party_label_mode": "ABC/123",
             "party_count": "{count} Partys",
             "filled_count": "{count} gefüllt",
             "open_count": "{count} offen",

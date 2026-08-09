@@ -31,9 +31,9 @@ class CharacterZoneProgressFetcher
         'materia' => 'OC',
     ];
 
-    public function fetchEncounterProgressForCharacter(Character $character, int $zoneId): array
+    public function fetchEncounterProgressForCharacter(Character $character, int $zoneId, ?int $difficulty = null): array
     {
-        $zoneRankings = $this->fetchRawZoneRankingsForCharacter($character, $zoneId);
+        $zoneRankings = $this->fetchRawZoneRankingsForCharacter($character, $zoneId, difficulty: $difficulty);
         $encounters = $this->extractEncounterRankings($zoneRankings)
             ->map(fn (array $ranking) => [
                 'name' => $this->extractRankingBossName($ranking) ?? 'Unknown Encounter',
@@ -61,8 +61,16 @@ class CharacterZoneProgressFetcher
         ?string $datacenter,
         ?string $lodestoneId,
         int $zoneId,
+        ?int $difficulty = null,
     ): array {
-        $zoneRankings = $this->fetchRawZoneRankingsForIdentity($name, $world, $datacenter, $lodestoneId, $zoneId);
+        $zoneRankings = $this->fetchRawZoneRankingsForIdentity(
+            $name,
+            $world,
+            $datacenter,
+            $lodestoneId,
+            $zoneId,
+            $difficulty,
+        );
         $encounters = $this->extractEncounterRankings($zoneRankings)
             ->map(fn (array $ranking) => [
                 'name' => $this->extractRankingBossName($ranking) ?? 'Unknown Encounter',
@@ -84,20 +92,22 @@ class CharacterZoneProgressFetcher
         ];
     }
 
-    public function fetchRawZoneRankingsForCharacter(Character $character, int $zoneId, bool $ignoreCache = false): array
-    {
-        if ($zoneId <= 0) {
-            throw new RuntimeException('FF Logs zone ID must be a positive integer.');
-        }
+    public function fetchRawZoneRankingsForCharacter(
+        Character $character,
+        int $zoneId,
+        bool $ignoreCache = false,
+        ?int $difficulty = null,
+    ): array {
+        $this->validateZoneRankingQuery($zoneId, $difficulty);
 
         if ($ignoreCache) {
-            return $this->refreshRawZoneRankingsForCharacter($character, $zoneId);
+            return $this->refreshRawZoneRankingsForCharacter($character, $zoneId, $difficulty);
         }
 
         return Cache::remember(
-            $this->zoneProgressCacheKey($character, $zoneId),
+            $this->zoneProgressCacheKey($character, $zoneId, $difficulty),
             now()->addHours(self::ZONE_PROGRESS_CACHE_TTL_HOURS),
-            fn () => $this->queryRawZoneRankingsForCharacter($character, $zoneId)
+            fn () => $this->queryRawZoneRankingsForCharacter($character, $zoneId, $difficulty)
         );
     }
 
@@ -107,10 +117,9 @@ class CharacterZoneProgressFetcher
         ?string $datacenter,
         ?string $lodestoneId,
         int $zoneId,
+        ?int $difficulty = null,
     ): array {
-        if ($zoneId <= 0) {
-            throw new RuntimeException('FF Logs zone ID must be a positive integer.');
-        }
+        $this->validateZoneRankingQuery($zoneId, $difficulty);
 
         $normalizedName = trim($name);
         $normalizedWorld = trim($world);
@@ -120,14 +129,22 @@ class CharacterZoneProgressFetcher
         }
 
         return Cache::remember(
-            $this->zoneProgressIdentityCacheKey($normalizedName, $normalizedWorld, $datacenter, $lodestoneId, $zoneId),
+            $this->zoneProgressIdentityCacheKey(
+                $normalizedName,
+                $normalizedWorld,
+                $datacenter,
+                $lodestoneId,
+                $zoneId,
+                $difficulty,
+            ),
             now()->addHours(self::ZONE_PROGRESS_CACHE_TTL_HOURS),
-            function () use ($normalizedName, $normalizedWorld, $datacenter, $zoneId) {
+            function () use ($normalizedName, $normalizedWorld, $datacenter, $zoneId, $difficulty) {
                 $response = $this->queryCharacterZoneRankings(
                     name: $normalizedName,
                     serverSlug: $this->resolveServerSlug($normalizedWorld),
                     serverRegion: $this->resolveServerRegion($datacenter),
                     zoneId: $zoneId,
+                    difficulty: $difficulty,
                 );
 
                 return $this->extractZoneRankingsForIdentity($normalizedName, $normalizedWorld, $datacenter, $response);
@@ -140,10 +157,9 @@ class CharacterZoneProgressFetcher
         string $serverSlug,
         string $serverRegion,
         int $zoneId,
+        ?int $difficulty = null,
     ): array {
-        if ($zoneId <= 0) {
-            throw new RuntimeException('FF Logs zone ID must be a positive integer.');
-        }
+        $this->validateZoneRankingQuery($zoneId, $difficulty);
 
         $normalizedName = trim($name);
         $normalizedServerSlug = trim($serverSlug);
@@ -158,17 +174,18 @@ class CharacterZoneProgressFetcher
             serverSlug: $this->resolveServerSlug($normalizedServerSlug),
             serverRegion: $normalizedServerRegion,
             zoneId: $zoneId,
+            difficulty: $difficulty,
         );
 
         return $this->extractZoneRankingsForIdentity($normalizedName, $normalizedServerSlug, $normalizedServerRegion, $response);
     }
 
-    private function refreshRawZoneRankingsForCharacter(Character $character, int $zoneId): array
+    private function refreshRawZoneRankingsForCharacter(Character $character, int $zoneId, ?int $difficulty): array
     {
-        $zoneRankings = $this->queryRawZoneRankingsForCharacter($character, $zoneId);
+        $zoneRankings = $this->queryRawZoneRankingsForCharacter($character, $zoneId, $difficulty);
 
         Cache::put(
-            $this->zoneProgressCacheKey($character, $zoneId),
+            $this->zoneProgressCacheKey($character, $zoneId, $difficulty),
             $zoneRankings,
             now()->addHours(self::ZONE_PROGRESS_CACHE_TTL_HOURS),
         );
@@ -176,21 +193,27 @@ class CharacterZoneProgressFetcher
         return $zoneRankings;
     }
 
-    private function queryRawZoneRankingsForCharacter(Character $character, int $zoneId): array
+    private function queryRawZoneRankingsForCharacter(Character $character, int $zoneId, ?int $difficulty): array
     {
         $response = $this->queryCharacterZoneRankings(
             name: $character->name,
             serverSlug: $this->resolveServerSlug($character->world),
             serverRegion: $this->resolveServerRegion($character->datacenter),
             zoneId: $zoneId,
+            difficulty: $difficulty,
         );
 
         return $this->extractZoneRankings($character, $response);
     }
 
-    private function queryCharacterZoneRankings(string $name, string $serverSlug, string $serverRegion, int $zoneId): array
-    {
-        $query = <<<'GRAPHQL'
+    private function queryCharacterZoneRankings(
+        string $name,
+        string $serverSlug,
+        string $serverRegion,
+        int $zoneId,
+        ?int $difficulty,
+    ): array {
+        $query = $difficulty === null ? <<<'GRAPHQL'
 query CharacterZoneRankings(
   $name: String!,
   $serverSlug: String!,
@@ -203,18 +226,39 @@ query CharacterZoneRankings(
     }
   }
 }
+GRAPHQL
+            : <<<'GRAPHQL'
+query CharacterZoneRankings(
+  $name: String!,
+  $serverSlug: String!,
+  $serverRegion: String!,
+  $zoneId: Int!,
+  $difficulty: Int!
+) {
+  characterData {
+    character(name: $name, serverSlug: $serverSlug, serverRegion: $serverRegion) {
+      zoneRankings(zoneID: $zoneId, difficulty: $difficulty)
+    }
+  }
+}
 GRAPHQL;
+
+        $variables = [
+            'name' => $name,
+            'serverSlug' => $serverSlug,
+            'serverRegion' => $serverRegion,
+            'zoneId' => $zoneId,
+        ];
+
+        if ($difficulty !== null) {
+            $variables['difficulty'] = $difficulty;
+        }
 
         $response = Http::withToken($this->getAccessToken())
             ->acceptJson()
             ->post(config('services.ff_logs.graphql_url'), [
                 'query' => $query,
-                'variables' => [
-                    'name' => $name,
-                    'serverSlug' => $serverSlug,
-                    'serverRegion' => $serverRegion,
-                    'zoneId' => $zoneId,
-                ],
+                'variables' => $variables,
             ])
             ->throw()
             ->json();
@@ -351,6 +395,17 @@ GRAPHQL;
         return 0;
     }
 
+    private function validateZoneRankingQuery(int $zoneId, ?int $difficulty): void
+    {
+        if ($zoneId <= 0) {
+            throw new RuntimeException('FF Logs zone ID must be a positive integer.');
+        }
+
+        if ($difficulty !== null && $difficulty <= 0) {
+            throw new RuntimeException('FF Logs difficulty must be a positive integer.');
+        }
+    }
+
     private function getAccessToken(): string
     {
         $cachedToken = Cache::get(self::TOKEN_CACHE_KEY);
@@ -406,15 +461,16 @@ GRAPHQL;
         throw new RuntimeException("Unable to resolve FF Logs server region for datacenter [{$datacenter}].");
     }
 
-    private function zoneProgressCacheKey(Character $character, int $zoneId): string
+    private function zoneProgressCacheKey(Character $character, int $zoneId, ?int $difficulty): string
     {
         return sprintf(
-            'fflogs:zone-progress:character:%s:%s:%s:%s:zone:%d',
+            'fflogs:zone-progress:character:%s:%s:%s:%s:zone:%d:difficulty:%s',
             $character->lodestone_id ?: 'unknown',
             Str::slug($character->name),
             Str::slug((string) $character->world),
             Str::slug((string) $character->datacenter),
             $zoneId,
+            $this->difficultyCacheSegment($difficulty),
         );
     }
 
@@ -424,14 +480,21 @@ GRAPHQL;
         ?string $datacenter,
         ?string $lodestoneId,
         int $zoneId,
+        ?int $difficulty,
     ): string {
         return sprintf(
-            'fflogs:zone-progress:identity:%s:%s:%s:%s:zone:%d',
+            'fflogs:zone-progress:identity:%s:%s:%s:%s:zone:%d:difficulty:%s',
             $lodestoneId ?: 'unknown',
             Str::slug($name),
             Str::slug($world),
             Str::slug((string) $datacenter),
             $zoneId,
+            $this->difficultyCacheSegment($difficulty),
         );
+    }
+
+    private function difficultyCacheSegment(?int $difficulty): string
+    {
+        return $difficulty === null ? 'default' : (string) $difficulty;
     }
 }

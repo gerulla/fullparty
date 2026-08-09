@@ -1,0 +1,29 @@
+{
+  "title": "Schnellaktionen",
+  "subtitle": "Passe die Schnellaktionen für die Verwaltungswerkzeuge deiner Gruppe an.",
+  "quick_create": {
+    "title": "Schnellerstellung im Kalender",
+    "description": "Lege die Zeiten fest, die angezeigt werden, wenn ein Moderator im Run-Kalender mit der rechten Maustaste auf einen Tag klickt.",
+    "timezone_note": "ST-Schnellaktionen verwenden immer Serverzeit. LT-Schnellaktionen verwenden die lokale Zeitzone des Moderators, der das Menü öffnet.",
+    "time": "Zeit",
+    "time_mode": "Zeitmodus",
+    "server": "ST",
+    "server_description": "Serverzeit (UTC)",
+    "local": "LT",
+    "local_description": "Lokale Zeit des Moderators",
+    "add": "Schnellaktion hinzufügen",
+    "remove": "Schnellaktion entfernen",
+    "move_up": "Schnellaktion nach oben verschieben",
+    "move_down": "Schnellaktion nach unten verschieben",
+    "limit": "Du kannst bis zu {count} Schnellaktionen konfigurieren.",
+    "save": "Schnellaktionen speichern",
+    "saved": "Schnellaktionen gespeichert.",
+    "save_failed": "Die Schnellaktionen konnten nicht gespeichert werden."
+  },
+  "context_menu": {
+    "create_run_at": "Run um {time} {mode} erstellen"
+  },
+  "validation": {
+    "duplicate": "Jede Schnellaktion muss eine eindeutige Zeit und einen eindeutigen Zeitmodus verwenden."
+  }
+}

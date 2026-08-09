@@ -18,6 +18,15 @@
     "profile_picture_too_large": "Profile pictures must be 5 MB or smaller.",
     "update_profile_picture": "Update Profile Picture"
   },
+  "homepage": {
+    "title": "Override Homepage",
+    "label": "Choose your Home destination",
+    "description": "Choose where the Home button in the sidebar takes you. If you leave the selected group, it returns to your profile page.",
+    "destination": "Homepage",
+    "profile_page": "Profile Page",
+    "saved": "Homepage updated successfully.",
+    "save_failed": "We could not update your homepage. Please try again."
+  },
   "connect": "Connect",
   "unlink": "Unlink",
   "connected": "Connected",

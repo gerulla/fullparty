@@ -1,5 +1,11 @@
 import type { LocalizedText } from "@/Types/Common"
 
+export type GroupQuickCreateShortcut = {
+	id: number | null
+	time: string
+	time_mode: "server" | "local"
+	sort_order: number
+}
 export type ActivityStatus = "draft" | "scheduled" | "assigned" | "upcoming" | "ongoing" | "complete" | "cancelled"
 
 export type ActivityIntensity = "casual" | "midcore" | "hardcore"

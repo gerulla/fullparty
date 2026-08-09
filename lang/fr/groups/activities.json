@@ -133,6 +133,7 @@
         "summary_subtitle": "Un aperçu rapide de l'essentiel avant l'arrivée des outils de gestion complets.",
         "edit": "Modifier le run",
         "duplicate_run": "Dupliquer le run",
+        "mark_raid_leaders": "Marquer les chefs de raid",
         "duplicate": {
             "title": "Dupliquer le run",
             "description": "Créez un nouveau run avec la même configuration et la même composition.",
@@ -205,6 +206,9 @@
             "check_in_group_failed": "Impossible de pointer ce groupe.",
             "mark_missing_failed": "Impossible de marquer ce emplacement comme manquant.",
             "mark_designation_failed": "Impossible de mettre à jour cette désignation d’emplacement.",
+            "mark_raid_leaders_failed": "Impossible de désigner l’équipe du groupe comme chefs de raid.",
+            "raid_leaders_marked": "Les chefs de raid ont été mis à jour.",
+            "no_raid_leaders_to_mark": "Aucun emplacement éligible n’avait besoin d’être mis à jour.",
             "slot_changed": "Cet emplacement a changé pendant votre modification. Actualisez la page puis réessayez.",
             "warning_title": "Avertissement",
             "undo_missing_failed": "Impossible d'annuler ce emplacement manquant.",
@@ -417,6 +421,23 @@
             },
             "empty": "Aucun emplacement de composition n'a été généré pour cette activité."
         },
+        "management_warnings": {
+            "title": "Avertissements de composition",
+            "description": "Modifications importantes de la composition nécessitant l'attention de la modération.",
+            "dismiss": "Fermer",
+            "dismissed": "Avertissement de composition fermé.",
+            "dismiss_failed": "Impossible de fermer l'avertissement de composition.",
+            "unknown_character": "Un candidat",
+            "unknown_slot": "son emplacement assigné",
+            "raid_leader_withdrawn": {
+                "title": "Un chef de groupe s'est retiré",
+                "description": "{name} s'est retiré de {slot} alors qu'il était assigné comme chef de groupe. Vérifiez la composition et désignez un remplaçant."
+            },
+            "unknown": {
+                "title": "Composition à vérifier",
+                "description": "Une modification importante de la composition doit être vérifiée."
+            }
+        },
         "queue": {
             "title": "File des candidats",
             "new_application_notice_one": "{count} nouvelle candidature reçue",
@@ -425,6 +446,7 @@
             "application_withdrawn_notice": "{name} a retiré sa candidature",
             "dismiss_new_application_notice": "Fermer l'avis de nouvelle candidature",
             "dismiss_queue_event_notice": "Fermer l'avis de la file",
+            "drop_roster_slot_hint": "Déposez un emplacement de composition ici pour le remettre dans la file des candidats",
             "search_placeholder": "Rechercher des candidats...",
             "filters": "Filtres",
             "filters_with_count": "Filtres ({count})",
@@ -571,6 +593,8 @@
             "title": "Tableau de composition",
             "subtitle": "Les parties sont présentées côte à côte pour que les membres puissent parcourir rapidement l'alignement actuel.",
             "party_label": "Party",
+            "role_highlights": "Couleurs par rôle",
+            "party_label_mode": "ABC/123",
             "party_count": "{count} parties",
             "filled_count": "{count} remplis",
             "open_count": "{count} ouverts",

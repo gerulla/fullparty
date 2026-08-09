@@ -176,6 +176,26 @@ class Group extends Model
         return $this->hasMany(GroupAvailabilitySchedule::class);
     }
 
+    public function quickCreateShortcuts(): HasMany
+    {
+        return $this->hasMany(GroupQuickCreateShortcut::class)->orderBy('sort_order');
+    }
+
+    /** @return Collection<int, GroupQuickCreateShortcut> */
+    public function resolvedQuickCreateShortcuts(): Collection
+    {
+        $shortcuts = $this->relationLoaded('quickCreateShortcuts')
+            ? $this->quickCreateShortcuts
+            : $this->quickCreateShortcuts()->get();
+
+        if ($shortcuts->isNotEmpty()) {
+            return $shortcuts;
+        }
+
+        return collect(GroupQuickCreateShortcut::defaults())
+            ->map(fn (array $attributes): GroupQuickCreateShortcut => new GroupQuickCreateShortcut($attributes));
+    }
+
     public function bozjaHolsters(): HasMany
     {
         return $this->hasMany(BozjaHolster::class);

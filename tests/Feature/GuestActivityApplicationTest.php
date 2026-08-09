@@ -1293,6 +1293,8 @@ it('loads the guest application form for editing from its access token', functio
             ->where('permissions.can_apply_as_guest', true)
             ->where('application.applicant_character.name', 'Warrior Light')
             ->where('application.answers.experience', 'Cleared to enrage.'));
+
+    expect($application->fresh()->edited_at)->toBeNull();
 });
 
 it('allows guests to update their application from the access token route', function () {
@@ -1342,6 +1344,7 @@ it('allows guests to update their application from the access token route', func
         ->and($application->notes)->toBe('Updated notes.')
         ->and($application->status)->toBe(ActivityApplication::STATUS_PENDING)
         ->and($application->submitted_at?->equalTo($originalSubmittedAt))->toBeTrue()
+        ->and($application->edited_at)->not->toBeNull()
         ->and($application->selectedCharacter?->user_id)->toBeNull()
         ->and($application->selectedCharacter?->world)->toBe('Lich')
         ->and($application->answers->sole()->value)->toBe('Reached clear.');
@@ -1409,7 +1412,7 @@ it('allows guests to edit approved applications when they are not assigned to th
         'accessToken' => $application->guest_access_token,
     ]));
 
-    expect($application->fresh()->status)->toBe(ActivityApplication::STATUS_PENDING);
+    expect($application->fresh()->status)->toBe(ActivityApplication::STATUS_APPROVED);
 });
 
 it('broadcasts pending guest application withdrawals to the roster queue', function () {
@@ -1572,7 +1575,7 @@ it('marks guest main roster assignments as needing review when the application i
         'accessToken' => $application->guest_access_token,
     ]));
 
-    expect($application->fresh()->status)->toBe(ActivityApplication::STATUS_PENDING)
+    expect($application->fresh()->status)->toBe(ActivityApplication::STATUS_APPROVED)
         ->and($application->fresh()->answers()->where('question_key', 'experience')->value('value'))->toBe('Needs re-review.')
         ->and($slot->fresh()->assigned_character_id)->toBe($application->selectedCharacter->id)
         ->and($slot->fresh()->application_review_required_application_id)->toBe($application->id)
@@ -1634,7 +1637,7 @@ it('marks guest bench assignments as needing review when the application is edit
         'accessToken' => $application->guest_access_token,
     ]));
 
-    expect($application->fresh()->status)->toBe(ActivityApplication::STATUS_PENDING)
+    expect($application->fresh()->status)->toBe(ActivityApplication::STATUS_ON_BENCH)
         ->and($application->fresh()->answers()->where('question_key', 'experience')->value('value'))->toBe('Bench edit still allowed.')
         ->and($slot->fresh()->assigned_character_id)->toBe($application->selectedCharacter->id)
         ->and($slot->fresh()->application_review_required_application_id)->toBe($application->id)
@@ -1688,7 +1691,7 @@ it('marks guest fill-in assignments as needing review when the application is ed
         'accessToken' => $application->guest_access_token,
     ]));
 
-    expect($application->fresh()->status)->toBe(ActivityApplication::STATUS_PENDING)
+    expect($application->fresh()->status)->toBe(ActivityApplication::STATUS_APPROVED)
         ->and($application->fresh()->answers()->where('question_key', 'experience')->value('value'))->toBe('Fill-in edit needs review.')
         ->and($slot->fresh()->assigned_character_id)->toBe($application->selectedCharacter->id)
         ->and($slot->fresh()->application_review_required_application_id)->toBe($application->id)
@@ -1733,7 +1736,8 @@ it('allows authenticated users to update applications after the roster is publis
         'activity' => $activity->id,
     ]));
 
-    expect($application->fresh()->answers()->where('question_key', 'experience')->value('value'))->toBe('Updated after publish.');
+    expect($application->fresh()->answers()->where('question_key', 'experience')->value('value'))->toBe('Updated after publish.')
+        ->and($application->fresh()->edited_at)->not->toBeNull();
 });
 
 it('allows authenticated users to edit approved applications when they are not assigned to the main roster', function () {
@@ -1788,7 +1792,7 @@ it('allows authenticated users to edit approved applications when they are not a
         'activity' => $activity->id,
     ]));
 
-    expect($application->fresh()->status)->toBe(ActivityApplication::STATUS_PENDING)
+    expect($application->fresh()->status)->toBe(ActivityApplication::STATUS_APPROVED)
         ->and($application->fresh()->submitted_at?->equalTo($originalSubmittedAt))->toBeTrue()
         ->and($application->fresh()->answers()->where('question_key', 'experience')->value('value'))->toBe('Approved application updated.');
 });
@@ -1837,7 +1841,7 @@ it('marks authenticated main roster assignments as needing review when the appli
         'activity' => $activity->id,
     ]));
 
-    expect($application->fresh()->status)->toBe(ActivityApplication::STATUS_PENDING)
+    expect($application->fresh()->status)->toBe(ActivityApplication::STATUS_APPROVED)
         ->and($application->fresh()->answers()->where('question_key', 'experience')->value('value'))->toBe('Needs re-review.')
         ->and($slot->fresh()->assigned_character_id)->toBe($character->id)
         ->and($slot->fresh()->application_review_required_application_id)->toBe($application->id)
@@ -1895,7 +1899,7 @@ it('marks authenticated bench assignments as needing review when the application
         'activity' => $activity->id,
     ]));
 
-    expect($application->fresh()->status)->toBe(ActivityApplication::STATUS_PENDING)
+    expect($application->fresh()->status)->toBe(ActivityApplication::STATUS_ON_BENCH)
         ->and($application->fresh()->answers()->where('question_key', 'experience')->value('value'))->toBe('Bench edit still allowed.')
         ->and($slot->fresh()->assigned_character_id)->toBe($character->id)
         ->and($slot->fresh()->application_review_required_application_id)->toBe($application->id)
@@ -1953,7 +1957,7 @@ it('marks authenticated fill-in assignments as needing review when the applicati
         'activity' => $activity->id,
     ]));
 
-    expect($application->fresh()->status)->toBe(ActivityApplication::STATUS_PENDING)
+    expect($application->fresh()->status)->toBe(ActivityApplication::STATUS_APPROVED)
         ->and($application->fresh()->answers()->where('question_key', 'experience')->value('value'))->toBe('Fill-in edit needs review.')
         ->and($slot->fresh()->assigned_character_id)->toBe($character->id)
         ->and($slot->fresh()->application_review_required_application_id)->toBe($application->id)

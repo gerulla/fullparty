@@ -3,6 +3,7 @@ import { computed } from "vue";
 import { useI18n } from "vue-i18n";
 import { usePage } from "@inertiajs/vue3";
 import { localizedValue } from "@/utils/localizedValue";
+import { displayActivityPartyLabel } from "@/utils/activityPartyLabels";
 import ActivityFillInSlotsSection from "@/components/Groups/Activities/ActivityFillInSlotsSection.vue";
 import ActivityPartyCompositionApplyAllButton from "@/components/Groups/Activities/ActivityPartyCompositionApplyAllButton.vue";
 import ActivityPartyCompositionPresetSelect from "@/components/Groups/Activities/ActivityPartyCompositionPresetSelect.vue";
@@ -13,6 +14,7 @@ import type { ActivitySlot, ActivitySlotCompositionHintInput } from "@/Types/Act
 
 const props = defineProps<{
 	slots: ActivitySlot[]
+	numberedSecondaryParties: boolean
 	draggedSlotId?: number | null
 	dropTargetSlotId?: number | null
 	isSwapPending?: boolean
@@ -85,7 +87,12 @@ const slotGroups = computed(() => {
 
 		groups.set(slot.group_key, {
 			key: slot.group_key,
-			label: localizedText(slot.group_label, slot.group_key),
+			label: displayActivityPartyLabel(
+				slot.group_key,
+				localizedText(slot.group_label, slot.group_key),
+				props.numberedSecondaryParties,
+				t("groups.activities.overview.board.party_label"),
+			),
 			slots: [slot],
 		});
 	}
@@ -176,6 +183,7 @@ const hasRosterSections = computed(() => slotGroups.value.length > 0 || canShowF
 					v-for="slot in group.slots"
 					:key="slot.id"
 					:slot="slot"
+					:numbered-secondary-parties="numberedSecondaryParties"
 					:dragged-slot-id="draggedSlotId"
 					:drop-target-slot-id="dropTargetSlotId"
 					:is-swap-pending="isSwapPending"
@@ -286,6 +294,7 @@ const hasRosterSections = computed(() => slotGroups.value.length > 0 || canShowF
 					v-for="slot in benchGroup.slots"
 					:key="slot.id"
 					:slot="slot"
+					:numbered-secondary-parties="numberedSecondaryParties"
 					:dragged-slot-id="draggedSlotId"
 					:drop-target-slot-id="dropTargetSlotId"
 					:is-swap-pending="isSwapPending"

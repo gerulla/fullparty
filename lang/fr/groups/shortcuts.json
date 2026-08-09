@@ -1,0 +1,29 @@
+{
+  "title": "Raccourcis",
+  "subtitle": "Personnalisez les raccourcis utilisés par les outils de gestion de votre groupe.",
+  "quick_create": {
+    "title": "Création rapide depuis le calendrier",
+    "description": "Choisissez les horaires affichés lorsqu'un modérateur fait un clic droit sur un jour du calendrier des sorties.",
+    "timezone_note": "Les raccourcis ST utilisent toujours l'heure du serveur. Les raccourcis LT utilisent le fuseau horaire local du modérateur qui ouvre le menu.",
+    "time": "Heure",
+    "time_mode": "Mode horaire",
+    "server": "ST",
+    "server_description": "Heure du serveur (UTC)",
+    "local": "LT",
+    "local_description": "Heure locale du modérateur",
+    "add": "Ajouter un raccourci",
+    "remove": "Supprimer le raccourci",
+    "move_up": "Déplacer le raccourci vers le haut",
+    "move_down": "Déplacer le raccourci vers le bas",
+    "limit": "Vous pouvez configurer jusqu'à {count} raccourcis.",
+    "save": "Enregistrer les raccourcis",
+    "saved": "Raccourcis enregistrés.",
+    "save_failed": "Les raccourcis n'ont pas pu être enregistrés."
+  },
+  "context_menu": {
+    "create_run_at": "Créer une sortie à {time} {mode}"
+  },
+  "validation": {
+    "duplicate": "Chaque raccourci doit utiliser une heure et un mode horaire uniques."
+  }
+}

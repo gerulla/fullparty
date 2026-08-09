@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { ContextMenuItem } from "@nuxt/ui";
-import type { ActivityCalendarDay, ActivityIndexItem } from "@/Types/ActivityCore";
+import type { ActivityCalendarDay, ActivityIndexItem, GroupQuickCreateShortcut } from "@/Types/ActivityCore";
 import { computed } from "vue";
 import { useI18n } from "vue-i18n";
 import { router, usePage } from "@inertiajs/vue3";
@@ -10,12 +10,14 @@ import { localizedValue } from "@/utils/localizedValue";
 import { getActivityStatusBorderClass } from "@/utils/activityStatusMeta";
 import { createDateTimeFormatter } from "@/utils/dateTimeFormat";
 import { useTimeDisplayMode } from "@/composables/useTimeDisplayMode";
+import { quickCreateTimeModeLabel, resolveQuickCreateStartsAt } from "@/utils/groupQuickCreateShortcuts";
 
 const props = defineProps<{
 	groupSlug: string
 	day: ActivityCalendarDay
 	isSelected?: boolean
 	canManageActivities?: boolean
+	quickCreateShortcuts: GroupQuickCreateShortcut[]
 	opensUpward?: boolean
 }>();
 
@@ -67,36 +69,27 @@ const selectDay = () => {
 	emit('select', props.day.key);
 };
 
-const openCreateRunPage = (time: string) => {
+const openCreateRunPage = (shortcut: GroupQuickCreateShortcut) => {
 	if (!props.canManageActivities) {
 		return;
 	}
 
 	router.get(route("groups.dashboard.activities.create", {
 		group: props.groupSlug,
-		starts_at: `${props.day.key}T${time}`,
+		starts_at: resolveQuickCreateStartsAt(props.day.key, shortcut),
 	}));
 };
 
 const dayContextMenuItems = computed<ContextMenuItem[][]>(() => (
 	props.canManageActivities
-		? [[
-			{
-				label: t("groups.activities.calendar.context_menu.create_run_18"),
-				icon: "i-lucide-plus",
-				onSelect: () => openCreateRunPage("18:00"),
-			},
-			{
-				label: t("groups.activities.calendar.context_menu.create_run_20"),
-				icon: "i-lucide-plus",
-				onSelect: () => openCreateRunPage("20:00"),
-			},
-			{
-				label: t("groups.activities.calendar.context_menu.create_run_22"),
-				icon: "i-lucide-plus",
-				onSelect: () => openCreateRunPage("22:00"),
-			},
-		]]
+		? [props.quickCreateShortcuts.map((shortcut) => ({
+			label: t("groups.shortcuts.context_menu.create_run_at", {
+				time: shortcut.time,
+				mode: quickCreateTimeModeLabel(shortcut),
+			}),
+			icon: "i-lucide-calendar-plus",
+			onSelect: () => openCreateRunPage(shortcut),
+		}))]
 		: []
 ));
 </script>

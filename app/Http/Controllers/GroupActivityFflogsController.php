@@ -7,6 +7,7 @@ use App\Models\ActivityApplication;
 use App\Models\Character;
 use App\Models\Group;
 use App\Services\FFLogs\CharacterZoneProgressFetcher;
+use App\Support\FFLogsDifficulty;
 use Illuminate\Http\JsonResponse;
 
 class GroupActivityFflogsController extends Controller
@@ -25,10 +26,12 @@ class GroupActivityFflogsController extends Controller
             ]);
         }
 
+        $difficulty = FFLogsDifficulty::forActivityTypeVersion($activity->activityTypeVersion);
+
         return response()->json([
             'progress' => [
                 'title' => 'FF Logs Progress',
-                ...$fetcher->fetchEncounterProgressForCharacter($character, $zoneId),
+                ...$fetcher->fetchEncounterProgressForCharacter($character, $zoneId, $difficulty),
             ],
         ]);
     }
@@ -55,11 +58,13 @@ class GroupActivityFflogsController extends Controller
             ]);
         }
 
+        $difficulty = FFLogsDifficulty::forActivityTypeVersion($activity->activityTypeVersion);
+
         if ($application->user_id !== null && $application->selectedCharacter) {
             return response()->json([
                 'progress' => [
                     'title' => 'FF Logs Progress',
-                    ...$fetcher->fetchEncounterProgressForCharacter($application->selectedCharacter, $zoneId),
+                    ...$fetcher->fetchEncounterProgressForCharacter($application->selectedCharacter, $zoneId, $difficulty),
                 ],
             ]);
         }
@@ -83,6 +88,7 @@ class GroupActivityFflogsController extends Controller
                     $application->applicant_datacenter,
                     $application->applicant_lodestone_id,
                     $zoneId,
+                    $difficulty,
                 ),
             ],
         ]);

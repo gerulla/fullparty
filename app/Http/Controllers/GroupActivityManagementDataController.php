@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\ActivityManagementWarningResource;
 use App\Http\Resources\ActivityPartyFinderInfoResource;
 use App\Models\Activity;
 use App\Models\ActivityApplication;
@@ -118,6 +119,9 @@ class GroupActivityManagementDataController extends Controller
                 'pending_application_count' => $activity->applications
                     ->where('status', ActivityApplication::STATUS_PENDING)
                     ->count(),
+                'management_warnings' => ActivityManagementWarningResource::collection(
+                    $activity->managementWarnings()->active()->get(),
+                )->resolve(),
                 'progress_milestone_count' => $activity->progressMilestones->count(),
                 'prog_points' => collect($activity->activityTypeVersion?->prog_points ?? [])
                     ->map(fn (array $progPoint) => [

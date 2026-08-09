@@ -150,6 +150,10 @@
             "placeholder_subtitle": "フィルターを調整して検索範囲を広げてください。",
             "placeholder_item": {
                 "open_slots": "空き枠",
+                "host_group": "主催グループ",
+                "group_discord": "このグループのDiscordで質問する",
+                "view_group": "グループを見る",
+                "unknown_group": "不明なグループ",
                 "description": "クリアを目指す予習なし攻略。速さより安定重視。",
                 "description_alt": "初参加歓迎で交流しやすく、それでもクリアを目指します。",
                 "description_third": "少人数コアで着実に進める集中攻略。",

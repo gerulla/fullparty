@@ -9,6 +9,7 @@ import { primaryCompositionHintRole } from "@/utils/activityCompositionHints";
 
 const props = defineProps<{
 	slots: ActivitySlot[]
+	numberedSecondaryParties: boolean
 	draggedSlotId?: number | null
 	dropTargetSlotId?: number | null
 	isSwapPending?: boolean
@@ -180,6 +181,7 @@ const canShowFillIns = computed(() => (props.fillInSlots?.length ?? 0) > 0 || Bo
 					v-for="slot in group.slots"
 					:key="slot.id"
 					:slot="slot"
+					:numbered-secondary-parties="numberedSecondaryParties"
 					:dragged-slot-id="draggedSlotId"
 					:drop-target-slot-id="dropTargetSlotId"
 					:is-swap-pending="isSwapPending"
@@ -290,6 +292,7 @@ const canShowFillIns = computed(() => (props.fillInSlots?.length ?? 0) > 0 || Bo
 					v-for="slot in benchGroup.slots"
 					:key="slot.id"
 					:slot="slot"
+					:numbered-secondary-parties="numberedSecondaryParties"
 					:dragged-slot-id="draggedSlotId"
 					:drop-target-slot-id="dropTargetSlotId"
 					:is-swap-pending="isSwapPending"

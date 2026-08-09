@@ -374,6 +374,25 @@ class UserController extends Controller
         ]);
     }
 
+    public function changeHomepagePreference(Request $request): JsonResponse
+    {
+        $validated = $request->validate([
+            'homepage_group_id' => [
+                'nullable',
+                'integer',
+                Rule::exists('group_memberships', 'group_id')
+                    ->where('user_id', $request->user()->id),
+            ],
+        ]);
+
+        $request->user()->update($validated);
+
+        return response()->json([
+            'success' => true,
+            'homepage_group_id' => $request->user()->homepage_group_id,
+        ]);
+    }
+
     public function changePassword(ChangePasswordRequest $request): RedirectResponse
     {
         $user = $request->user();

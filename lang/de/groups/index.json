@@ -45,6 +45,7 @@
         "audit_log": "Audit-Log",
         "discovery_settings": "Discovery-Einstellungen",
         "discord_integration": "Discord",
+        "shortcuts": "Schnellaktionen",
         "settings": "Einstellungen"
     },
     "content": {

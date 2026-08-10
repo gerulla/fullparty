@@ -228,6 +228,11 @@ class Activity extends Model
         return $this->hasMany(ActivityApplication::class);
     }
 
+    public function managementWarnings(): HasMany
+    {
+        return $this->hasMany(ActivityManagementWarning::class)->latest('occurred_at');
+    }
+
     public function partyFinderInfo(): HasOne
     {
         return $this->hasOne(ActivityPartyFinderInfo::class);

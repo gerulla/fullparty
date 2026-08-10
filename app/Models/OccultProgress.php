@@ -17,6 +17,7 @@ class OccultProgress extends Model
     protected $fillable = [
         'character_id',
         'data_source',
+        'forked_tower_magic_data_source',
         'knowledge_level',
         'demon_tablet_kills',
         'demon_tablet_progress',
@@ -100,7 +101,7 @@ class OccultProgress extends Model
     {
         return [
             'clears' => $this->index_kills,
-            'data_source' => self::DATA_SOURCE_FFLOGS,
+            'data_source' => $this->forked_tower_magic_data_source ?? self::DATA_SOURCE_FFLOGS,
             'bosses' => [
                 [
                     'key' => 'two_headed_aevis',

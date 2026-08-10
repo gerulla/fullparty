@@ -54,6 +54,8 @@ class GroupDashboardController extends Controller
         ]);
 
         $isMember = $group->hasMember($currentUserId);
+        $isInMyRuns = $currentUserId !== null
+            && auth()->user()->runListGroups()->whereKey($group->id)->exists();
 
         if (! $isMember && ! $group->allowsPublicDashboardAccess()) {
             abort(404);
@@ -148,6 +150,7 @@ class GroupDashboardController extends Controller
                 'active_end_time' => $group->active_end_time,
                 'badge_meta' => $this->groupDiscoveryBadgePalette->badgeMetaForGroup($group),
                 'owner' => $this->serializeGroupUserIdentity($group->owner),
+                'is_in_my_runs' => $isInMyRuns,
                 'current_user_role' => $group->memberships
                     ->firstWhere('user_id', $currentUserId)
                     ?->role,

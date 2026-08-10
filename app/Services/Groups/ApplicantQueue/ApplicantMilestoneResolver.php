@@ -6,6 +6,7 @@ use App\Models\ActivityTypeVersion;
 use App\Models\Character;
 use App\Models\OccultProgress;
 use App\Services\FFLogs\CharacterZoneProgressFetcher;
+use App\Support\FFLogsDifficulty;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Log;
 
@@ -79,6 +80,7 @@ class ApplicantMilestoneResolver
             $character,
             (int) ($activityTypeVersion->fflogs_zone_id ?? 0),
             $encounterId,
+            FFLogsDifficulty::forActivityTypeVersion($activityTypeVersion),
         );
 
         return [
@@ -129,7 +131,7 @@ class ApplicantMilestoneResolver
     /**
      * @return array{kills:int, progress_percent:int}
      */
-    private function resolveFflogsMilestoneProgress(Character $character, int $zoneId, int $encounterId): array
+    private function resolveFflogsMilestoneProgress(Character $character, int $zoneId, int $encounterId, ?int $difficulty): array
     {
         if ($zoneId <= 0 || $encounterId <= 0) {
             return [
@@ -138,7 +140,7 @@ class ApplicantMilestoneResolver
             ];
         }
 
-        $rankings = $this->fetchEncounterRankings($character, $zoneId);
+        $rankings = $this->fetchEncounterRankings($character, $zoneId, $difficulty);
         $match = $rankings->first(function (array $ranking) use ($encounterId) {
             return (int) data_get($ranking, 'encounter.id', 0) === $encounterId;
         });
@@ -159,9 +161,9 @@ class ApplicantMilestoneResolver
     /**
      * @return Collection<int, array<string, mixed>>
      */
-    private function fetchEncounterRankings(Character $character, int $zoneId): Collection
+    private function fetchEncounterRankings(Character $character, int $zoneId, ?int $difficulty): Collection
     {
-        $cacheKey = sprintf('%d:%d', $zoneId, $character->id);
+        $cacheKey = sprintf('%d:%d:%s', $zoneId, $character->id, $difficulty ?? 'default');
 
         if (array_key_exists($cacheKey, $this->encounterRankingsCache)) {
             return $this->encounterRankingsCache[$cacheKey];
@@ -169,12 +171,13 @@ class ApplicantMilestoneResolver
 
         try {
             $rawZoneRankings = $this->zoneProgressFetcher
-                ->fetchRawZoneRankingsForCharacter($character, $zoneId);
+                ->fetchRawZoneRankingsForCharacter($character, $zoneId, difficulty: $difficulty);
         } catch (\Throwable $exception) {
             Log::warning('Unable to load applicant FF Logs milestone data.', [
                 'character_id' => $character->id,
                 'lodestone_id' => $character->lodestone_id,
                 'zone_id' => $zoneId,
+                'difficulty' => $difficulty,
                 'exception' => $exception->getMessage(),
             ]);
 

@@ -138,9 +138,14 @@ const severityOptions = computed(() => [
 const partyIds: PhantomCompositionPartyId[] = ['A', 'B', 'C', 'D', 'E', 'F']
 const sideOneParties: PhantomCompositionPartyId[] = ['A', 'B', 'C']
 const sideTwoParties: PhantomCompositionPartyId[] = ['D', 'E', 'F']
+const partyDisplayIds: Partial<Record<PhantomCompositionPartyId, string>> = {
+	D: 'D/1',
+	E: 'E/2',
+	F: 'F/3',
+}
 
 const partyOptions = computed(() => partyIds.map(id => ({
-	label: t('groups.index.content.forked_tower_blood.compositions.editor.parties.party', { party: id }),
+	label: t('groups.index.content.forked_tower_blood.compositions.editor.parties.party', { party: partyDisplayIds[id] ?? id }),
 	value: id,
 })))
 
@@ -159,7 +164,7 @@ const scopeModeOptions = computed(() => [
 		value: 'one_side' as const,
 		icon: 'i-lucide-git-compare',
 		layout: 'wide' as const,
-		tokens: ['ABC', 'DEF'],
+		tokens: ['ABC', 'D/1 E/2 F/3'],
 	},
 	{
 		label: t('groups.index.content.forked_tower_blood.compositions.editor.scopes.specific_party.title'),
@@ -175,7 +180,7 @@ const scopeModeOptions = computed(() => [
 		value: 'either_party' as const,
 		icon: 'i-lucide-list-filter',
 		layout: 'normal' as const,
-		tokens: ['A', 'D', 'F'],
+		tokens: ['A', 'D/1', 'F/3'],
 	},
 	{
 		label: t('groups.index.content.forked_tower_blood.compositions.editor.scopes.all_parties.title'),
@@ -183,7 +188,7 @@ const scopeModeOptions = computed(() => [
 		value: 'all_parties' as const,
 		icon: 'i-lucide-list-checks',
 		layout: 'normal' as const,
-		tokens: ['A', 'D', 'F'],
+		tokens: ['A', 'D/1', 'F/3'],
 	},
 ])
 

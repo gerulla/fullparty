@@ -167,6 +167,8 @@ final class RunDiscoveryService
                 'owner_id',
                 'name',
                 'slug',
+                'profile_picture_url',
+                'discord_invite_url',
                 'datacenter',
                 'is_visible',
                 'group_type',
@@ -657,6 +659,8 @@ final class RunDiscoveryService
             'group_name' => $group?->name,
             'group_slug' => $group?->slug,
             'group_type' => $group?->group_type,
+            'group_profile_picture_url' => $group?->profile_picture_url,
+            'group_discord_invite_url' => $group?->discord_invite_url,
             'organizer' => $activity->organizerCharacter ? [
                 'name' => $activity->organizerCharacter->name,
                 'avatar_url' => $activity->organizerCharacter->avatar_url,

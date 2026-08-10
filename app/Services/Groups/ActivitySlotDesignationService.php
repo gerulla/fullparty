@@ -4,6 +4,8 @@ namespace App\Services\Groups;
 
 use App\Models\Activity;
 use App\Models\ActivitySlot;
+use App\Models\Group;
+use App\Models\GroupMembership;
 use App\Models\User;
 use App\Services\Notifications\AssignmentNotificationService;
 use Illuminate\Support\Facades\DB;
@@ -16,6 +18,53 @@ class ActivitySlotDesignationService
         private readonly GroupActivityAuditService $activityAuditService,
         private readonly AssignmentNotificationService $assignmentNotificationService,
     ) {}
+
+    /**
+     * @return array<int, ActivitySlot>
+     */
+    public function markGroupStaffAsRaidLeaders(
+        Activity $activity,
+        Group $group,
+        int $actorUserId,
+    ): array {
+        $eligibleUserIds = GroupMembership::query()
+            ->where('group_id', $group->id)
+            ->whereIn('role', [
+                GroupMembership::ROLE_ADMIN,
+                GroupMembership::ROLE_MODERATOR,
+            ])
+            ->pluck('user_id')
+            ->push($group->owner_id)
+            ->filter()
+            ->unique()
+            ->values();
+
+        if ($eligibleUserIds->isEmpty()) {
+            return [];
+        }
+
+        $slots = ActivitySlot::query()
+            ->with(['activity.group', 'assignedCharacter', 'fieldValues', 'assignments'])
+            ->where('activity_id', $activity->id)
+            ->whereNotNull('assigned_character_id')
+            ->where('is_raid_leader', false)
+            ->whereHas('assignedCharacter', fn ($query) => $query->whereIn('user_id', $eligibleUserIds))
+            ->get();
+
+        $updatedSlots = [];
+
+        foreach ($slots as $slot) {
+            if (! $this->slotKind->isMainRoster($slot)) {
+                continue;
+            }
+
+            foreach ($this->toggleDesignation($slot, ActivitySlot::DESIGNATION_RAID_LEADER, $actorUserId) as $updatedSlot) {
+                $updatedSlots[$updatedSlot->id] = $updatedSlot;
+            }
+        }
+
+        return array_values($updatedSlots);
+    }
 
     /**
      * @return array<int, ActivitySlot>

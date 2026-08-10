@@ -24,6 +24,11 @@ export type SettingsLinkedSession = {
 	refresh_expires_at: string | null
 }
 
+export type SettingsHomepageGroup = {
+	id: number
+	name: string
+}
+
 export type SettingsUser = {
 	name: string
 	email: string
@@ -40,6 +45,7 @@ export type SettingsUser = {
 	discord_notifications: boolean
 	notification_preferences: Record<string, Partial<Record<"in_app" | "email" | "discord", boolean>>>
 	time_display_mode: "local" | "server"
+	homepage_group_id: number | null
 	discord_link_token_expires_at: string | null
 	notification_preferences_reviewed_at: string | null
 	discord_user_integration: SettingsDiscordUserIntegration | null

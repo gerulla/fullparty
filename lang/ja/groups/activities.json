@@ -133,6 +133,7 @@
         "summary_subtitle": "完全な管理ツールが入る前に、基本情報をすばやく確認できます。",
         "edit": "ランを編集",
         "duplicate_run": "ランを複製",
+        "mark_raid_leaders": "レイドリーダーに設定",
         "duplicate": {
             "title": "ランを複製",
             "description": "同じ設定とロスターで新しいランを作成します。",
@@ -205,6 +206,9 @@
             "check_in_group_failed": "このグループをチェックインできません。",
             "mark_missing_failed": "このスロットを欠席としてマークできません。",
             "mark_designation_failed": "このスロット指定を更新できませんでした。",
+            "mark_raid_leaders_failed": "グループ運営メンバーをレイドリーダーに設定できませんでした。",
+            "raid_leaders_marked": "レイドリーダーを更新しました。",
+            "no_raid_leaders_to_mark": "更新が必要な対象スロットはありませんでした。",
             "slot_changed": "編集中にこのスロットが変更されました。ページを更新してもう一度お試しください。",
             "warning_title": "警告",
             "undo_missing_failed": "この欠席マークを取り消せません。",
@@ -417,6 +421,23 @@
             },
             "empty": "このアクティビティにはロスタースロットが生成されていません。"
         },
+        "management_warnings": {
+            "title": "ロスター警告",
+            "description": "モデレーターの確認が必要な重要なロスター変更です。",
+            "dismiss": "閉じる",
+            "dismissed": "ロスター警告を閉じました。",
+            "dismiss_failed": "ロスター警告を閉じられませんでした。",
+            "unknown_character": "応募者",
+            "unknown_slot": "割り当て済みスロット",
+            "raid_leader_withdrawn": {
+                "title": "パーティリーダーが応募を取り下げました",
+                "description": "パーティリーダーとして割り当てられていた{name}が{slot}から応募を取り下げました。ロスターを確認し、代わりのリーダーを指定してください。"
+            },
+            "unknown": {
+                "title": "ロスターの確認が必要です",
+                "description": "重要なロスター変更を確認してください。"
+            }
+        },
         "queue": {
             "title": "申請キュー",
             "new_application_notice_one": "新しい応募が{count}件届きました",
@@ -425,6 +446,7 @@
             "application_withdrawn_notice": "{name} が応募を取り下げました",
             "dismiss_new_application_notice": "新しい応募の通知を閉じる",
             "dismiss_queue_event_notice": "キュー通知を閉じる",
+            "drop_roster_slot_hint": "ロスタースロットをここにドロップして申請キューに戻します",
             "search_placeholder": "応募者を検索...",
             "filters": "フィルター",
             "filters_with_count": "フィルター（{count}）",
@@ -571,6 +593,8 @@
             "title": "ロスターボード",
             "subtitle": "メンバーが現在の編成をすばやく確認できるよう、パーティを横並びで表示します。",
             "party_label": "パーティ",
+            "role_highlights": "ロール別カラー",
+            "party_label_mode": "ABC/123",
             "party_count": "パーティ {count}",
             "filled_count": "埋まっている枠 {count}",
             "open_count": "空き枠 {count}",

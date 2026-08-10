@@ -4,6 +4,8 @@ import { router, usePage } from "@inertiajs/vue3";
 import { route } from "ziggy-js";
 import { useI18n } from "vue-i18n";
 import ActivityContextMenu from "@/components/Groups/Activities/ActivityContextMenu.vue";
+import ActivityDiscoveryResultItem from "@/components/Groups/Activities/ActivityDiscoveryResultItem.vue";
+import ActivityHostGroupBadge from "@/components/Groups/Activities/ActivityHostGroupBadge.vue";
 import type { ActivityCalendarDay, ActivityIndexItem } from "@/Types/ActivityCore";
 import {
 	buildMonthCalendarDays,
@@ -21,9 +23,11 @@ import { localizedValue } from "@/utils/localizedValue";
 import { useTimeDisplayMode } from "@/composables/useTimeDisplayMode";
 
 const props = defineProps<{
-	groupSlug: string
+	groupSlug?: string
 	activities: ActivityIndexItem[]
 	canManageActivities?: boolean
+	showGroupBadge?: boolean
+	discoveryStyle?: boolean
 }>();
 
 const { t, locale } = useI18n();
@@ -120,6 +124,8 @@ const activityMemberCount = (activity: ActivityIndexItem) => t("groups.activitie
 	assigned: activity.assigned_slot_count,
 	total: activity.slot_count,
 });
+const activityGroupSlug = (activity: ActivityIndexItem) => activity.group?.slug ?? props.groupSlug ?? '';
+const canManageActivity = (activity: ActivityIndexItem) => activity.group?.can_manage_activities ?? Boolean(props.canManageActivities);
 
 const selectDay = (day: ActivityCalendarDay) => {
 	selectedDateKey.value = day.key;
@@ -172,6 +178,10 @@ const toggleCollapsedMode = () => {
 };
 
 const goToCreatePage = () => {
+	if (!props.groupSlug) {
+		return;
+	}
+
 	router.get(route('groups.dashboard.activities.create', {
 		group: props.groupSlug,
 	}));
@@ -179,14 +189,14 @@ const goToCreatePage = () => {
 
 const goToActivity = (activity: ActivityIndexItem) => {
 	router.get(route('groups.activities.overview', {
-		group: props.groupSlug,
+		group: activityGroupSlug(activity),
 		activity: activity.id,
 	}));
 };
 
 const goToManagement = (activity: ActivityIndexItem) => {
 	router.get(route('groups.dashboard.activities.show', {
-		group: props.groupSlug,
+		group: activityGroupSlug(activity),
 		activity: activity.id,
 	}));
 };
@@ -307,7 +317,7 @@ const goToManagement = (activity: ActivityIndexItem) => {
 			</div>
 
 			<UButton
-				v-if="canManageActivities"
+				v-if="canManageActivities && groupSlug"
 				class="shrink-0"
 				color="neutral"
 				icon="i-lucide-plus"
@@ -318,11 +328,19 @@ const goToManagement = (activity: ActivityIndexItem) => {
 		</div>
 
 		<div v-if="selectedDateActivities.length > 0" class="flex flex-col gap-3">
-			<ActivityContextMenu
+			<template v-if="discoveryStyle">
+				<ActivityDiscoveryResultItem
+					v-for="activity in selectedDateActivities"
+					:key="activity.id"
+					:activity="activity"
+				/>
+			</template>
+			<template v-else>
+				<ActivityContextMenu
 				v-for="activity in selectedDateActivities"
 				:key="activity.id"
-				:group-slug="groupSlug"
-				:can-manage-activities="Boolean(canManageActivities)"
+				:group-slug="activityGroupSlug(activity)"
+				:can-manage-activities="canManageActivity(activity)"
 				:activity="activity"
 			>
 				<article
@@ -371,6 +389,11 @@ const goToManagement = (activity: ActivityIndexItem) => {
 						<p class="mt-1 truncate text-xs text-muted">
 							{{ activityTypeName(activity) }}
 						</p>
+						<ActivityHostGroupBadge
+							v-if="showGroupBadge"
+							class="mt-1"
+							:group="activity.group"
+						/>
 						<p class="mt-1 text-xs text-muted">
 							{{ activityMemberCount(activity) }}
 						</p>
@@ -384,7 +407,7 @@ const goToManagement = (activity: ActivityIndexItem) => {
 							variant="subtle"
 						/>
 						<UButton
-							v-if="canManageActivities"
+							v-if="canManageActivity(activity)"
 							color="neutral"
 							variant="ghost"
 							icon="i-lucide-settings"
@@ -395,7 +418,8 @@ const goToManagement = (activity: ActivityIndexItem) => {
 						/>
 					</div>
 				</article>
-			</ActivityContextMenu>
+				</ActivityContextMenu>
+			</template>
 		</div>
 
 		<div v-else class="border border-dashed border-white/12 bg-white/[0.025] px-4 py-10 text-center text-sm text-muted">

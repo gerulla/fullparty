@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Group;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
@@ -31,6 +32,16 @@ class SettingsController extends Controller
 
         return Inertia::render('Dashboard/Settings/Index', [
             'activeLinkedSessions' => $this->activeLinkedSessions($user),
+            'homepageGroups' => Group::query()
+                ->whereHas('memberships', fn ($query) => $query->where('user_id', $user->id))
+                ->orderBy('name')
+                ->get(['id', 'name'])
+                ->map(fn (Group $group) => [
+                    'id' => $group->id,
+                    'name' => $group->name,
+                ])
+                ->values()
+                ->all(),
         ]);
     }
 

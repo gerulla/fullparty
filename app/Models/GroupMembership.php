@@ -10,6 +10,16 @@ class GroupMembership extends Model
 {
     use HasFactory;
 
+    protected static function booted(): void
+    {
+        static::deleted(function (GroupMembership $membership): void {
+            User::query()
+                ->whereKey($membership->user_id)
+                ->where('homepage_group_id', $membership->group_id)
+                ->update(['homepage_group_id' => null]);
+        });
+    }
+
     public const ROLE_OWNER = 'owner';
 
     public const ROLE_ADMIN = 'admin';

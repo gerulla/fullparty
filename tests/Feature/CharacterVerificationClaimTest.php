@@ -13,6 +13,7 @@ use App\Models\UserNotification;
 use App\Services\FFLogs\ForkedTowerBloodProgressFetcher;
 use App\Services\FFLogs\ForkedTowerMagicProgressFetcher;
 use App\Services\Lodestone\ForkedTowerBloodAchievementProgressFetcher;
+use App\Services\Lodestone\ForkedTowerMagicAchievementProgressFetcher;
 use App\Services\Lodestone\LodestoneScraper;
 use App\Support\Notifications\NotificationCategory;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -35,7 +36,28 @@ beforeEach(function () {
         ]);
 
     app()->instance(ForkedTowerMagicProgressFetcher::class, $magicProgressFetcher);
+    $magicAchievementFetcher = Mockery::mock(ForkedTowerMagicAchievementProgressFetcher::class);
+    $magicAchievementFetcher
+        ->shouldReceive('fetchForCharacter')
+        ->zeroOrMoreTimes()
+        ->andReturn(characterClaimEmptyMagicLodestoneAchievementProgress());
+
+    app()->instance(ForkedTowerMagicAchievementProgressFetcher::class, $magicAchievementFetcher);
 });
+
+function characterClaimEmptyMagicLodestoneAchievementProgress(): array
+{
+    return [
+        'clears' => 0,
+        'data_source' => 'lodestone_achievement',
+        'bosses' => [
+            ['key' => 'two_headed_aevis', 'kills' => 0, 'progress' => 0],
+            ['key' => 'sword_dancer', 'kills' => 0, 'progress' => 0],
+            ['key' => 'necrophobia', 'kills' => 0, 'progress' => 0],
+            ['key' => 'index', 'kills' => 0, 'progress' => 0],
+        ],
+    ];
+}
 
 function characterClaimEmptyLodestoneAchievementProgress(): array
 {

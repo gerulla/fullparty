@@ -10,6 +10,7 @@ use App\Models\AuditLog;
 use App\Models\Character;
 use App\Models\CharacterClass;
 use App\Models\Group;
+use App\Models\GroupMembership;
 use App\Models\NotificationDelivery;
 use App\Models\NotificationEvent;
 use App\Models\PhantomComposition;
@@ -18,6 +19,7 @@ use App\Models\User;
 use App\Models\UserNotification;
 use App\Services\FFLogs\ActivityReportProgressFetcher;
 use App\Services\FFLogs\CharacterZoneProgressFetcher;
+use App\Support\FFLogsDifficulty;
 use App\Support\Input\TextInputSanitizer;
 use App\Support\Notifications\NotificationChannel;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -155,6 +157,8 @@ it('returns management data with missing assignments and backfilled active assig
 });
 
 it('returns guest application ff logs progress using the applicant identity snapshot', function () {
+    config()->set('services.ff_logs.forked_tower_magic_zone_id', 77);
+
     extract(createModerationEndpointSetup());
 
     $application = ActivityApplication::factory()->guest()->create([
@@ -169,7 +173,7 @@ it('returns guest application ff logs progress using the applicant identity snap
     $fetcher
         ->shouldReceive('fetchEncounterProgressForIdentity')
         ->once()
-        ->with('Guest Raider', 'Twintania', 'Light', '47431834', 77)
+        ->with('Guest Raider', 'Twintania', 'Light', '47431834', 77, FFLogsDifficulty::FORKED_TOWER_MAGIC_EXTREME)
         ->andReturn([
             'total_kills' => 3,
             'bosses' => [
@@ -525,6 +529,129 @@ it('does not allow moderators to decline applications that are no longer pending
         ->assertJsonValidationErrors(['application']);
 
     expect($application->fresh()->status)->toBe(ActivityApplication::STATUS_APPROVED);
+});
+
+it('marks assigned group owners, admins, and moderators as raid leaders without toggling existing designations', function () {
+    Queue::fake();
+
+    extract(createModerationEndpointSetup([], [
+        'status' => Activity::STATUS_ASSIGNED,
+    ]));
+
+    $admin = User::factory()->create();
+    $moderator = User::factory()->create();
+    $member = User::factory()->create();
+
+    $group->memberships()->createMany([
+        [
+            'user_id' => $admin->id,
+            'role' => GroupMembership::ROLE_ADMIN,
+            'joined_at' => now(),
+        ],
+        [
+            'user_id' => $moderator->id,
+            'role' => GroupMembership::ROLE_MODERATOR,
+            'joined_at' => now(),
+        ],
+        [
+            'user_id' => $member->id,
+            'role' => GroupMembership::ROLE_MEMBER,
+            'joined_at' => now(),
+        ],
+    ]);
+
+    $ownerCharacter = Character::query()->where('user_id', $owner->id)->firstOrFail();
+    $adminCharacter = Character::factory()->primary()->create([
+        'user_id' => $admin->id,
+        'lodestone_id' => '40000101',
+    ]);
+    $moderatorCharacter = Character::factory()->primary()->create([
+        'user_id' => $moderator->id,
+        'lodestone_id' => '40000102',
+    ]);
+    $memberCharacter = Character::factory()->primary()->create([
+        'user_id' => $member->id,
+        'lodestone_id' => '40000103',
+    ]);
+
+    $adminSlot = $activity->slots()->create([
+        'group_key' => 'party-a',
+        'group_label' => ['en' => 'Party A'],
+        'slot_key' => 'party-a-slot-2',
+        'slot_label' => ['en' => 'Party A 2'],
+        'position_in_group' => 2,
+        'sort_order' => 2,
+        'assigned_character_id' => $adminCharacter->id,
+        'assigned_by_user_id' => $owner->id,
+        'is_raid_leader' => true,
+    ]);
+    $moderatorSlot = $activity->slots()->create([
+        'group_key' => 'party-a',
+        'group_label' => ['en' => 'Party A'],
+        'slot_key' => 'party-a-slot-3',
+        'slot_label' => ['en' => 'Party A 3'],
+        'position_in_group' => 3,
+        'sort_order' => 3,
+        'assigned_character_id' => $moderatorCharacter->id,
+        'assigned_by_user_id' => $owner->id,
+    ]);
+    $memberSlot = $activity->slots()->create([
+        'group_key' => 'party-a',
+        'group_label' => ['en' => 'Party A'],
+        'slot_key' => 'party-a-slot-4',
+        'slot_label' => ['en' => 'Party A 4'],
+        'position_in_group' => 4,
+        'sort_order' => 4,
+        'assigned_character_id' => $memberCharacter->id,
+        'assigned_by_user_id' => $owner->id,
+    ]);
+
+    $slot->update([
+        'assigned_character_id' => $ownerCharacter->id,
+        'assigned_by_user_id' => $owner->id,
+        'is_host' => true,
+    ]);
+
+    Event::fake([ActivityManagementUpdated::class]);
+
+    $this->actingAs($owner);
+
+    $response = $this->postJson(route('groups.dashboard.activities.raid-leaders.mark-group-staff', [
+        'group' => $group->slug,
+        'activity' => $activity->id,
+    ]));
+
+    $response
+        ->assertOk()
+        ->assertJsonPath('marked_count', 2)
+        ->assertJsonCount(2, 'slots');
+
+    expect($slot->fresh()->is_host)->toBeFalse()
+        ->and($slot->fresh()->is_raid_leader)->toBeTrue()
+        ->and($adminSlot->fresh()->is_raid_leader)->toBeTrue()
+        ->and($moderatorSlot->fresh()->is_raid_leader)->toBeTrue()
+        ->and($memberSlot->fresh()->is_raid_leader)->toBeFalse()
+        ->and(AuditLog::query()->where('action', 'group.activity.roster.raid_leader_marked')->count())->toBe(2);
+
+    Event::assertDispatched(ActivityManagementUpdated::class, function (ActivityManagementUpdated $event) use ($activity, $group, $slot, $moderatorSlot) {
+        $updatedSlotIds = collect($event->patch['updated_slots'] ?? [])->pluck('id')->sort()->values()->all();
+        $expectedSlotIds = collect([$slot->id, $moderatorSlot->id])->sort()->values()->all();
+
+        return $event->activityId === $activity->id
+            && $event->groupId === $group->id
+            && $updatedSlotIds === $expectedSlotIds;
+    });
+
+    $this->postJson(route('groups.dashboard.activities.raid-leaders.mark-group-staff', [
+        'group' => $group->slug,
+        'activity' => $activity->id,
+    ]))
+        ->assertOk()
+        ->assertJsonPath('marked_count', 0)
+        ->assertJsonCount(0, 'slots');
+
+    expect(AuditLog::query()->where('action', 'group.activity.roster.raid_leader_marked')->count())->toBe(2);
+    Event::assertDispatchedTimes(ActivityManagementUpdated::class, 1);
 });
 
 it('allows multiple host designations on published slots with audit, notifications, and live sync', function () {

@@ -33,6 +33,7 @@ use Laravel\Passport\HasApiTokens;
     'discord_link_token_hash',
     'discord_link_token_expires_at',
     'time_display_mode',
+    'homepage_group_id',
     'notification_preferences_reviewed_at',
     'account_completion_celebrated_at',
 ])]
@@ -152,6 +153,12 @@ class User extends Authenticatable implements MustVerifyEmail, OAuthenticatable
     {
         return $this->belongsToMany(Group::class, 'group_memberships')
             ->withPivot(['role', 'joined_at'])
+            ->withTimestamps();
+    }
+
+    public function runListGroups(): BelongsToMany
+    {
+        return $this->belongsToMany(Group::class, 'user_run_list_groups')
             ->withTimestamps();
     }
 

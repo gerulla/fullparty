@@ -4,6 +4,7 @@ import { computed } from "vue";
 import { useI18n } from "vue-i18n";
 import { usePage } from "@inertiajs/vue3";
 import { localizedValue } from "@/utils/localizedValue";
+import { displayActivityPartyLabel, displayActivitySlotLabel } from "@/utils/activityPartyLabels";
 import { getQueueApplicationDragData, isQueueApplicationDrag, setRosterSlotDragData } from "@/components/Groups/Activities/rosterDragData";
 import type { LocalizedText } from "@/Types/Common";
 import type { QueueApplication } from "@/Types/ActivityQueue";
@@ -11,6 +12,7 @@ import type { ActivitySlot } from "@/Types/ActivityRoster";
 
 const props = defineProps<{
 	slots: ActivitySlot[]
+	numberedSecondaryParties: boolean
 	draggedSlotId?: number | null
 	dropTargetSlotId?: number | null
 	isSwapPending?: boolean
@@ -298,8 +300,19 @@ const rows = computed(() => [...props.slots]
 	.map((slot) => ({
 		id: slot.id,
 		slot,
-		groupLabel: localizedText(slot.group_label, slot.group_key),
-		slotLabel: localizedText(slot.slot_label, slot.slot_key),
+		groupLabel: displayActivityPartyLabel(
+			slot.group_key,
+			localizedText(slot.group_label, slot.group_key),
+			props.numberedSecondaryParties,
+			t("groups.activities.overview.board.party_label"),
+		),
+		slotLabel: displayActivitySlotLabel(
+			slot.group_key,
+			slot.position_in_group,
+			localizedText(slot.slot_label, slot.slot_key),
+			props.numberedSecondaryParties,
+			t("groups.activities.overview.board.party_label"),
+		),
 		statusLabel: slot.assigned_character_id
 			? (slot.attendance_status === 'checked_in'
 				? t('groups.activities.management.roster.checked_in')

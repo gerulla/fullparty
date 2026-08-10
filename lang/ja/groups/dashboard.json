@@ -6,7 +6,17 @@
         "open_discord": "Discordを開く",
         "mute_notifications": "通知をミュート",
         "unmute_notifications": "通知ミュートを解除",
-        "leave_group": "グループを退出"
+        "leave_group": "グループを退出",
+        "add_to_my_runs": "マイランに追加",
+        "remove_from_my_runs": "マイランから削除"
+    },
+    "my_runs_feedback": {
+      "added_title": "マイランに追加しました",
+      "added_description": "{name}のカレンダーがマイランに表示されるようになりました。",
+      "removed_title": "マイランから削除しました",
+      "removed_description": "{name}のカレンダーはマイランに表示されなくなりました。",
+      "error_title": "マイランを更新できませんでした",
+      "error_description": "もう一度お試しください。"
     },
     "leave_group_modal": {
         "title": "{name}を脱退しますか？",

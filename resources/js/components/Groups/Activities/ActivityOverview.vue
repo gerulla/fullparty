@@ -21,6 +21,7 @@ const props = defineProps<{
 	canDelete: boolean
 	canCancel: boolean
 	rosterView: 'party' | 'role' | 'list'
+	numberedSecondaryParties: boolean
 	showApplicantQueue: boolean
 	groupName: string
 	activityTypeName: string
@@ -68,6 +69,8 @@ const props = defineProps<{
 	slots: ActivitySlot[]
 	completedProgression: ActivityCompletionSummary | null
 	canPublishPartyFinderInfo: boolean
+	canMarkRaidLeaders: boolean
+	isMarkingRaidLeaders: boolean
 }>();
 
 const emit = defineEmits<{
@@ -83,8 +86,10 @@ const emit = defineEmits<{
 	delete: []
 	cancel: []
 	updateRosterView: [value: 'party' | 'role' | 'list']
+	updateNumberedSecondaryParties: [value: boolean]
 	toggleApplicantQueue: []
 	publishPartyFinderInfo: []
+	markRaidLeaders: []
 }>();
 
 const { t, locale } = useI18n();
@@ -243,6 +248,16 @@ const rosterViewOptions = computed(() => ([
 						:disabled="!canPublishPartyFinderInfo"
 						@click="emit('publishPartyFinderInfo')"
 					/>
+					<UButton
+						color="neutral"
+						variant="outline"
+						class="bg-background shadow-sm"
+						icon="i-lucide-crown"
+						:label="t('groups.activities.management.mark_raid_leaders')"
+						:disabled="!canMarkRaidLeaders"
+						:loading="isMarkingRaidLeaders"
+						@click="emit('markRaidLeaders')"
+					/>
 					<div
 						v-if="needsApplication"
 						class="inline-flex items-stretch"
@@ -386,6 +401,15 @@ const rosterViewOptions = computed(() => ([
 						</div>
 					</div>
 
+					<label class="inline-flex cursor-pointer items-center gap-2 text-xs font-medium text-muted">
+						<span>{{ t('groups.activities.overview.board.party_label_mode') }}</span>
+						<USwitch
+							:model-value="numberedSecondaryParties"
+							size="sm"
+							@update:model-value="emit('updateNumberedSecondaryParties', $event)"
+						/>
+					</label>
+
 					<UButton
 						v-if="hasApplicantQueue"
 						color="neutral"
@@ -403,6 +427,7 @@ const rosterViewOptions = computed(() => ([
 					v-if="rosterSummaryPresets.length > 0"
 					:presets="rosterSummaryPresets"
 					:slots="slots"
+					:numbered-secondary-parties="numberedSecondaryParties"
 				/>
 			</div>
 		</div>

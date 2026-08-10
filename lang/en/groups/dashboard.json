@@ -6,7 +6,17 @@
     "open_discord": "Open Discord",
     "mute_notifications": "Mute Notifications",
     "unmute_notifications": "Unmute Notifications",
-    "leave_group": "Leave Group"
+    "leave_group": "Leave Group",
+    "add_to_my_runs": "Add to My Runs",
+    "remove_from_my_runs": "Remove from My Runs"
+  },
+  "my_runs_feedback": {
+    "added_title": "Added to My Runs",
+    "added_description": "{name}'s calendar now appears in My Runs.",
+    "removed_title": "Removed from My Runs",
+    "removed_description": "{name}'s calendar no longer appears in My Runs.",
+    "error_title": "My Runs could not be updated",
+    "error_description": "Please try that change again."
   },
   "leave_group_modal": {
     "title": "Leave {name}?",

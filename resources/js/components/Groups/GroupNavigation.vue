@@ -70,6 +70,8 @@ const discoverySettingsHref = computed(() => route('groups.dashboard.discovery-s
 const discoverySettingsPath = computed(() => routePath('groups.dashboard.discovery-settings'))
 const settingsHref = computed(() => route('groups.dashboard.settings', props.group.slug))
 const settingsPath = computed(() => routePath('groups.dashboard.settings'))
+const shortcutsHref = computed(() => route('groups.dashboard.shortcuts.index', props.group.slug))
+const shortcutsPath = computed(() => routePath('groups.dashboard.shortcuts.index'))
 const discordIntegrationHref = computed(() => route('groups.dashboard.discord-integration', props.group.slug))
 const discordIntegrationPath = computed(() => routePath('groups.dashboard.discord-integration'))
 const isPublicActivityRoute = computed(() => page.url.startsWith(publicActivitiesPath.value))
@@ -161,6 +163,11 @@ const desktopConfigurationMenuItems = computed<NavigationMenuItem[]>(() => [
 		active: isRouteActive(discordIntegrationPath.value),
 	})] : []),
 	...(canUpdateGroupSettings.value ? [desktopLinkItem({
+		label: t('groups.index.navigation.shortcuts'),
+		icon: 'i-lucide-mouse-pointer-click',
+		to: shortcutsHref.value,
+		active: isRouteActive(shortcutsPath.value),
+	}), desktopLinkItem({
 		label: t('groups.index.navigation.settings'),
 		icon: 'i-lucide-settings-2',
 		to: settingsHref.value,
@@ -313,6 +320,12 @@ const moderationMenuItems = computed(() => [
 		href: membersHref.value,
 		active: isRouteActive(membersPath.value),
 	}] : []),
+	...(canUpdateGroupSettings.value ? [{
+		label: t('groups.index.navigation.shortcuts'),
+		icon: 'i-lucide-mouse-pointer-click',
+		href: shortcutsHref.value,
+		active: isRouteActive(shortcutsPath.value),
+	}] : []),
 	...(props.group.permissions?.can_manage_group ? [{
 		label: t('groups.index.navigation.discord_integration'),
 		icon: 'ic:baseline-discord',
@@ -441,7 +454,8 @@ const managerMobileItems = computed(() => [
 			|| isRouteActive(membershipApplicationFormPath.value)
 			|| isRouteActive(membershipApplicationsPath.value)
 			|| isRouteActive(membersPath.value)
-			|| isRouteActive(discordIntegrationPath.value),
+			|| isRouteActive(discordIntegrationPath.value)
+			|| isRouteActive(shortcutsPath.value),
 	},
 	{
 		label: t('groups.index.navigation.settings'),

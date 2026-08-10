@@ -133,6 +133,7 @@
         "summary_subtitle": "A quick read on the basics before the full management tools land.",
         "edit": "Edit Run",
         "duplicate_run": "Duplicate Run",
+        "mark_raid_leaders": "Mark Raid Leaders",
         "duplicate": {
             "title": "Duplicate Run",
             "description": "Create a new run with the same setup and roster.",
@@ -205,6 +206,9 @@
             "check_in_group_failed": "Unable to check in this group.",
             "mark_missing_failed": "Unable to mark this slot as missing.",
             "mark_designation_failed": "Unable to update this slot designation.",
+            "mark_raid_leaders_failed": "Unable to mark group staff as raid leaders.",
+            "raid_leaders_marked": "Raid leaders updated.",
+            "no_raid_leaders_to_mark": "No eligible roster slots needed updating.",
             "slot_changed": "This slot changed while you were editing it. Refresh and try again.",
             "warning_title": "Warning",
             "undo_missing_failed": "Unable to undo this missing slot.",
@@ -417,7 +421,24 @@
             },
             "empty": "No roster slots were generated for this activity."
         },
-            "queue": {
+        "management_warnings": {
+            "title": "Roster warnings",
+            "description": "Important roster changes that need moderator attention.",
+            "dismiss": "Dismiss",
+            "dismissed": "Roster warning dismissed.",
+            "dismiss_failed": "Could not dismiss the roster warning.",
+            "unknown_character": "An applicant",
+            "unknown_slot": "their assigned slot",
+            "raid_leader_withdrawn": {
+                "title": "Party Lead withdrew",
+                "description": "{name} withdrew from {slot} after being assigned as a Party Lead. Review the roster and assign a replacement lead."
+            },
+            "unknown": {
+                "title": "Roster attention required",
+                "description": "An important roster change needs review."
+            }
+        },
+        "queue": {
             "title": "Applicant Queue",
             "new_application_notice_one": "{count} new application received",
             "new_application_notice_many": "{count} new applications received",
@@ -425,6 +446,7 @@
             "application_withdrawn_notice": "{name} has withdrawn",
             "dismiss_new_application_notice": "Dismiss new application notice",
             "dismiss_queue_event_notice": "Dismiss queue notice",
+            "drop_roster_slot_hint": "Drop a roster slot here to move it back to the applicant queue",
             "search_placeholder": "Search applicants...",
             "filters": "Filters",
             "filters_with_count": "Filters ({count})",
@@ -571,6 +593,8 @@
             "title": "Roster Board",
             "subtitle": "Parties are laid out side by side so members can scan the current lineup quickly.",
             "party_label": "Party",
+            "role_highlights": "Role Highlights",
+            "party_label_mode": "ABC/123",
             "party_count": "{count} parties",
             "filled_count": "{count} filled",
             "open_count": "{count} open",

@@ -3,6 +3,7 @@
 use App\Models\Character;
 use App\Services\FFLogs\CharacterZoneProgressFetcher;
 use App\Services\FFLogs\ForkedTowerMagicProgressFetcher;
+use App\Support\FFLogsDifficulty;
 
 it('maps the forked tower magic extreme encounters from ff logs zone 77', function () {
     config()->set('services.ff_logs.forked_tower_magic_zone_id', 77);
@@ -12,7 +13,7 @@ it('maps the forked tower magic extreme encounters from ff logs zone 77', functi
     $zoneProgressFetcher
         ->shouldReceive('fetchRawZoneRankingsForCharacter')
         ->once()
-        ->with($character, 77, true)
+        ->with($character, 77, true, FFLogsDifficulty::FORKED_TOWER_MAGIC_EXTREME)
         ->andReturn([
             'rankings' => [
                 ['encounter' => ['id' => 2075, 'name' => 'Two-headed Aevis'], 'totalKills' => 9],

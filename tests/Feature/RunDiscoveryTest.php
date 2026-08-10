@@ -98,6 +98,8 @@ it('returns matching discoverable run ids for the filter payload', function () {
         ->create([
             'datacenter' => 'Light',
             'group_type' => Group::TYPE_COMMUNITY,
+            'profile_picture_url' => '/storage/groups/moon-raiders.webp',
+            'discord_invite_url' => 'https://discord.gg/moon-raiders',
             'preferred_languages' => ['en'],
             'voice_expectation' => 'preferred',
         ]);
@@ -174,6 +176,8 @@ it('returns matching discoverable run ids for the filter payload', function () {
         ->assertJsonPath('items.0.description', 'Bring mitigation notes and be ready for enrage cleanup.')
         ->assertJsonPath('items.0.group_name', $matchingGroup->name)
         ->assertJsonPath('items.0.group_slug', $matchingGroup->slug)
+        ->assertJsonPath('items.0.group_profile_picture_url', '/storage/groups/moon-raiders.webp')
+        ->assertJsonPath('items.0.group_discord_invite_url', 'https://discord.gg/moon-raiders')
         ->assertJsonPath('items.0.can_apply', true);
 
     $responseImageUrl = $this->actingAs($viewer)

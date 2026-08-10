@@ -3,6 +3,7 @@ import { computed, nextTick, onMounted, ref, watch } from "vue";
 import { useI18n } from "vue-i18n";
 import { usePage } from "@inertiajs/vue3";
 import { localizedValue } from "@/utils/localizedValue";
+import { displayActivityPartyLabel } from "@/utils/activityPartyLabels";
 import ActivityAttendeeRosterSlot from "@/components/Groups/Activities/ActivityAttendeeRosterSlot.vue";
 import type { ActivitySlot } from "@/Types/ActivityRoster";
 import type { LocalizedText } from "@/Types/Common";
@@ -16,6 +17,8 @@ const page = usePage();
 const fallbackLocale = computed(() => String(page.props.locale?.fallback ?? "en"));
 const scrollContainer = ref<HTMLElement | null>(null);
 const groupElementRefs = new Map<string, HTMLElement>();
+const roleHighlightsEnabled = ref(false);
+const numberedSecondaryPartiesEnabled = ref(false);
 
 type SlotGroup = {
 	key: string
@@ -88,6 +91,15 @@ const boardGridStyle = computed(() => ({
 	gridTemplateColumns: `repeat(${Math.max(mainSlotGroups.value.length, 1)}, minmax(13rem, 24rem))`,
 	minWidth: `calc(${Math.max(mainSlotGroups.value.length, 1)} * 13rem + ${Math.max(mainSlotGroups.value.length - 1, 0)} * 0.25rem)`,
 }));
+
+const displayedGroupLabel = (group: SlotGroup): string => {
+	return displayActivityPartyLabel(
+		group.key,
+		group.label,
+		numberedSecondaryPartiesEnabled.value,
+		t("groups.activities.overview.board.party_label"),
+	);
+};
 
 const scrollByDirection = (direction: "left" | "right") => {
 	if (!scrollContainer.value) {
@@ -169,6 +181,18 @@ watch(
 					variant="outline"
 					:label="t('groups.activities.overview.board.open_count', { count: openMainSlotCount })"
 				/>
+
+				<div class="hidden h-5 w-px bg-default sm:block"></div>
+
+				<label class="inline-flex cursor-pointer items-center gap-2 text-xs font-medium text-muted">
+					<span>{{ t("groups.activities.overview.board.role_highlights") }}</span>
+					<USwitch v-model="roleHighlightsEnabled" size="sm" />
+				</label>
+
+				<label class="inline-flex cursor-pointer items-center gap-2 text-xs font-medium text-muted">
+					<span>{{ t("groups.activities.overview.board.party_label_mode") }}</span>
+					<USwitch v-model="numberedSecondaryPartiesEnabled" size="sm" />
+				</label>
 			</div>
 		</div>
 
@@ -206,7 +230,7 @@ watch(
 								<div class="flex items-center justify-between gap-2">
 									<div class="min-w-0">
 										<p class="text-[10px] uppercase tracking-[0.22em] text-muted">{{ t("groups.activities.overview.board.party_label") }}</p>
-										<h3 class="font-semibold text-sm text-toned break-words [overflow-wrap:anywhere]">{{ group.label }}</h3>
+										<h3 class="font-semibold text-sm text-toned break-words [overflow-wrap:anywhere]">{{ displayedGroupLabel(group) }}</h3>
 									</div>
 
 									<UBadge
@@ -222,6 +246,7 @@ watch(
 								v-for="slot in group.slots"
 								:key="slot.id"
 								:slot="slot"
+								:role-highlights="roleHighlightsEnabled"
 							/>
 						</div>
 					</div>
@@ -238,7 +263,7 @@ watch(
 						<div class="flex items-center justify-between gap-2">
 							<div class="min-w-0">
 								<p class="text-[10px] uppercase tracking-[0.22em] text-muted">{{ t("groups.activities.overview.board.party_label") }}</p>
-								<h3 class="font-semibold text-sm text-toned break-words [overflow-wrap:anywhere]">{{ group.label }}</h3>
+								<h3 class="font-semibold text-sm text-toned break-words [overflow-wrap:anywhere]">{{ displayedGroupLabel(group) }}</h3>
 							</div>
 
 							<UBadge
@@ -258,6 +283,7 @@ watch(
 							<ActivityAttendeeRosterSlot
 								v-if="group.slots[rowIndex - 1]"
 								:slot="group.slots[rowIndex - 1]"
+								:role-highlights="roleHighlightsEnabled"
 							/>
 
 							<div
@@ -292,6 +318,7 @@ watch(
 					v-for="slot in benchSlots"
 					:key="slot.id"
 					:slot="slot"
+					:role-highlights="roleHighlightsEnabled"
 				/>
 			</div>
 		</div>

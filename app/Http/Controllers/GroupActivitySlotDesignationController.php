@@ -14,6 +14,43 @@ use Illuminate\Http\Request;
 
 class GroupActivitySlotDesignationController extends Controller
 {
+    public function markGroupStaffRaidLeaders(
+        Request $request,
+        Group $group,
+        Activity $activity,
+        ActivitySlotDesignationService $slotDesignationService,
+        ActivitySlotSerializer $slotSerializer,
+        ActivityManagementRealtimeService $activityManagementRealtimeService,
+    ): JsonResponse {
+        $this->authorize('manageDashboard', [$activity, $group]);
+
+        if ($activity->isArchived()) {
+            abort(403);
+        }
+
+        $updatedSlots = $slotDesignationService->markGroupStaffAsRaidLeaders(
+            $activity,
+            $group,
+            (int) $request->user()->id,
+        );
+
+        $serializedSlots = array_map(
+            fn (ActivitySlot $updatedSlot) => $slotSerializer->serialize($updatedSlot),
+            $updatedSlots,
+        );
+
+        if ($serializedSlots !== []) {
+            $activityManagementRealtimeService->broadcastPatch($activity, [
+                'updated_slots' => $serializedSlots,
+            ]);
+        }
+
+        return response()->json([
+            'marked_count' => count($serializedSlots),
+            'slots' => $serializedSlots,
+        ]);
+    }
+
     public function store(
         Request $request,
         Group $group,

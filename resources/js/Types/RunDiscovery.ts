@@ -89,6 +89,8 @@ export type RunDiscoveryResultItemData = {
 	target_prog_point_label: string | null
 	group_name: string | null
 	group_slug: string | null
+	group_profile_picture_url: string | null
+	group_discord_invite_url: string | null
 	group_type: string | null
 	organizer: {
 		name: string | null

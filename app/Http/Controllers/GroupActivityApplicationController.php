@@ -441,11 +441,8 @@ class GroupActivityApplicationController extends Controller
                 'applicant_world' => $validated['applicant']['world'],
                 'applicant_datacenter' => $validated['applicant']['datacenter'],
                 'applicant_avatar_url' => $validated['applicant']['avatar_url'],
-                'status' => ActivityApplication::STATUS_PENDING,
                 'notes' => $validated['notes'] ?? null,
-                'reviewed_by_user_id' => null,
-                'reviewed_at' => null,
-                'review_reason' => null,
+                'edited_at' => now(),
             ]);
 
             $this->syncApplicationAnswers($application, $validated['answers'] ?? []);
@@ -490,10 +487,12 @@ class GroupActivityApplicationController extends Controller
         $updatedApplicationNames = $newApplicationCount === 0 && $application
             ? [$this->applicationDisplayName($application)]
             : [];
+        $queueNeedsRefresh = $newApplicationCount > 0
+            || $application?->status === ActivityApplication::STATUS_PENDING;
 
         $patch = [
             'pending_application_count' => $pendingApplicationCount,
-            'queue_invalidate' => true,
+            'queue_invalidate' => $queueNeedsRefresh,
             'queue_change_reason' => $newApplicationCount > 0 ? 'application_created' : 'application_updated',
             'queue_new_application_count' => $newApplicationCount,
             'queue_new_application_ids' => $newApplicationCount > 0 && $application
@@ -573,11 +572,8 @@ class GroupActivityApplicationController extends Controller
                 'applicant_world' => $validated['applicant']['world'],
                 'applicant_datacenter' => $validated['applicant']['datacenter'],
                 'applicant_avatar_url' => $validated['applicant']['avatar_url'],
-                'status' => ActivityApplication::STATUS_PENDING,
                 'notes' => $validated['notes'] ?? null,
-                'reviewed_by_user_id' => null,
-                'reviewed_at' => null,
-                'review_reason' => null,
+                'edited_at' => now(),
             ]);
 
             $this->syncApplicationAnswers($application, $validated['answers'] ?? []);

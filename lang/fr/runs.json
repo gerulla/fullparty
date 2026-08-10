@@ -150,6 +150,10 @@
             "placeholder_subtitle": "Essayez d'ajuster les filtres pour élargir la recherche.",
             "placeholder_item": {
                 "open_slots": "Places ouvertes",
+                "host_group": "Groupe hôte",
+                "group_discord": "Demander sur le Discord de ce groupe",
+                "view_group": "Voir le groupe",
+                "unknown_group": "Groupe inconnu",
                 "description": "Prog à l'aveugle jusqu'au clear. La régularité avant la vitesse.",
                 "description_alt": "Accessible aux nouveaux, social, mais toujours orienté clear.",
                 "description_third": "Prog concentrée avec un rythme stable et un petit noyau.",

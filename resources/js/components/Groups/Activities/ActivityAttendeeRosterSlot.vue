@@ -18,6 +18,7 @@ type SlotMarker = {
 
 const props = defineProps<{
 	slot: ActivitySlot
+	roleHighlights: boolean
 }>();
 
 const { t, locale } = useI18n();
@@ -92,6 +93,20 @@ const attendanceBadge = computed(() => {
 });
 
 const slotToneClass = computed(() => {
+	if (props.roleHighlights) {
+		if (roleField.value === "melee dps") {
+			return "border-rose-400/70 bg-rose-400/10";
+		}
+
+		if (roleField.value === "physical ranged dps") {
+			return "border-yellow-400/70 bg-yellow-400/10";
+		}
+
+		if (roleField.value === "magic ranged dps") {
+			return "border-violet-400/70 bg-violet-400/10";
+		}
+	}
+
 	if (roleField.value === "tank") {
 		return "border-blue-500/70 bg-blue-500/10";
 	}

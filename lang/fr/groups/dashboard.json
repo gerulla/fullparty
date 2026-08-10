@@ -6,7 +6,17 @@
         "open_discord": "Ouvrir Discord",
         "mute_notifications": "Couper les notifications",
         "unmute_notifications": "Réactiver les notifications",
-        "leave_group": "Quitter le groupe"
+        "leave_group": "Quitter le groupe",
+        "add_to_my_runs": "Ajouter à mes runs",
+        "remove_from_my_runs": "Retirer de mes runs"
+    },
+    "my_runs_feedback": {
+      "added_title": "Ajouté à Mes runs",
+      "added_description": "Le calendrier de {name} apparaît maintenant dans Mes runs.",
+      "removed_title": "Retiré de Mes runs",
+      "removed_description": "Le calendrier de {name} ne figure plus dans Mes runs.",
+      "error_title": "Impossible de mettre à jour Mes runs",
+      "error_description": "Veuillez réessayer."
     },
     "leave_group_modal": {
         "title": "Quitter {name} ?",

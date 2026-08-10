@@ -4,6 +4,7 @@ import { computed, ref } from "vue";
 import { useI18n } from "vue-i18n";
 import { usePage } from "@inertiajs/vue3";
 import { localizedValue } from "@/utils/localizedValue";
+import { displayActivitySlotLabel } from "@/utils/activityPartyLabels";
 import { getQueueApplicationDragData, isQueueApplicationDrag, setRosterSlotDragData } from "@/components/Groups/Activities/rosterDragData";
 import ActivitySlotCompositionHintContextMenu from "@/components/Groups/Activities/ActivitySlotCompositionHintContextMenu.vue";
 import ActivitySlotCompositionHintBadge from "@/components/Groups/Activities/ActivitySlotCompositionHintBadge.vue";
@@ -24,6 +25,7 @@ type SlotMarker = {
 
 const props = defineProps<{
 	slot: ActivitySlot
+	numberedSecondaryParties?: boolean
 	draggedSlotId?: number | null
 	dropTargetSlotId?: number | null
 	isSwapPending?: boolean
@@ -72,7 +74,13 @@ const localizedText = (value: LocalizedText, fallback: string) => (
 	localizedValue(value, locale.value, fallbackLocale.value) || fallback
 );
 
-const slotLabel = computed(() => localizedText(props.slot.slot_label, props.slot.slot_key));
+const slotLabel = computed(() => displayActivitySlotLabel(
+	props.slot.group_key,
+	props.slot.position_in_group,
+	localizedText(props.slot.slot_label, props.slot.slot_key),
+	Boolean(props.numberedSecondaryParties),
+	t("groups.activities.overview.board.party_label"),
+));
 const compactSlotLabel = computed(() => {
 	const parts = slotLabel.value.trim().split(/\s+/);
 

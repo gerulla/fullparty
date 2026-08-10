@@ -3,6 +3,7 @@
 namespace App\Services\FFLogs;
 
 use App\Models\Character;
+use App\Support\FFLogsDifficulty;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
 use RuntimeException;
@@ -43,6 +44,7 @@ class ForkedTowerMagicProgressFetcher
                 $character,
                 $this->forkedTowerMagicZoneId(),
                 $ignoreCache,
+                FFLogsDifficulty::FORKED_TOWER_MAGIC_EXTREME,
             )
         );
     }

@@ -2,7 +2,7 @@
 import { computed, ref } from "vue";
 import { useI18n } from "vue-i18n";
 import ActivityCalendarDayCell from "@/components/Groups/Activities/ActivityCalendarDayCell.vue";
-import type { ActivityIndexItem } from "@/Types/ActivityCore";
+import type { ActivityIndexItem, GroupQuickCreateShortcut } from "@/Types/ActivityCore";
 import {
 	buildMonthCalendarDays,
 	createMonthStart,
@@ -13,10 +13,12 @@ import { createDateTimeFormatter } from "@/utils/dateTimeFormat";
 import { useTimeDisplayMode } from "@/composables/useTimeDisplayMode";
 
 const props = defineProps<{
-	groupSlug: string
+	groupSlug?: string
 	activities: ActivityIndexItem[]
 	selectedDateKey?: string | null
 	canManageActivities?: boolean
+	quickCreateShortcuts: GroupQuickCreateShortcut[]
+	showGroupBadge?: boolean
 }>();
 
 const emit = defineEmits<{
@@ -135,6 +137,8 @@ const selectDay = (dayKey: string) => {
 					:day="day"
 					:is-selected="selectedDateKey === day.key"
 					:can-manage-activities="canManageActivities"
+					:quick-create-shortcuts="quickCreateShortcuts"
+					:show-group-badge="showGroupBadge"
 					:opens-upward="index >= 35"
 					@select="selectDay"
 				/>

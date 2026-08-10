@@ -1,7 +1,9 @@
 <script setup lang="ts">
 import type { LocalizedText } from "@/Types/Common";
 import type { ActivityRosterSummaryPreset, ActivityRosterSummaryRequirementRow, ActivitySlot } from "@/Types/ActivityRoster";
+import { translateCharacterClassName, translatePhantomJobName } from "@/utils/characterJobTranslations";
 import { localizedValue } from "@/utils/localizedValue";
+import { displayActivityPartyLabel } from "@/utils/activityPartyLabels";
 import { computed, ref, watch } from "vue";
 import { usePage } from "@inertiajs/vue3";
 import { useI18n } from "vue-i18n";
@@ -9,6 +11,7 @@ import { useI18n } from "vue-i18n";
 const props = defineProps<{
 	presets: ActivityRosterSummaryPreset[]
 	slots: ActivitySlot[]
+	numberedSecondaryParties?: boolean
 }>();
 
 const { t, locale } = useI18n();
@@ -19,6 +22,15 @@ const open = ref(false);
 
 const localizedText = (value: LocalizedText, fallback: string) => (
 	localizedValue(value, locale.value, fallbackLocale.value) || fallback
+);
+
+const displayedScopeGroupLabel = (group: ActivityRosterSummaryPreset["requirements"][number]["scope_groups"][number]) => (
+	displayActivityPartyLabel(
+		group.key,
+		localizedText(group.label, group.key),
+		Boolean(props.numberedSecondaryParties),
+		t("groups.activities.overview.board.party_label"),
+	)
 );
 
 const presetOptions = computed(() => props.presets.map((preset) => ({
@@ -41,6 +53,23 @@ const selectedPresetDescription = computed(() => {
 
 	return localizedText(selectedPreset.value.description, "");
 });
+
+const requirementItemLabel = (requirement: ActivityRosterSummaryPreset["requirements"][number]): string => {
+	const fallback = localizedText(requirement.item.label, String(requirement.source_id));
+
+	if (requirement.source === "phantom_jobs") {
+		return translatePhantomJobName(t, { name: fallback }, fallback);
+	}
+
+	if (requirement.source === "character_classes") {
+		return translateCharacterClassName(t, {
+			name: fallback,
+			shorthand: requirement.item.meta?.shorthand ?? null,
+		}, fallback);
+	}
+
+	return fallback;
+};
 
 const requirementRows = computed(() => {
 	if (!selectedPreset.value) {
@@ -70,7 +99,7 @@ const requirementRows = computed(() => {
 		return {
 			key: `${selectedPreset.value?.key}-${requirement.source}-${requirement.source_id}-${requirement.scope_type}-${requirement.scope_group_keys.join("|")}`,
 			scopeKey: `${requirement.scope_type}:${requirement.scope_group_keys.join("|")}`,
-			itemLabel: localizedText(requirement.item.label, String(requirement.source_id)),
+			itemLabel: requirementItemLabel(requirement),
 			itemIconUrl: requirement.item.meta?.transparent_icon_url
 				|| requirement.item.meta?.flaticon_url
 				|| requirement.item.meta?.icon_url
@@ -131,12 +160,12 @@ function formatScopeLabel(requirement: ActivityRosterSummaryPreset["requirements
 		const group = requirement.scope_groups[0];
 
 		return group
-			? localizedText(group.label, group.key)
+			? displayedScopeGroupLabel(group)
 			: t("groups.activities.management.overview.roster_summary.scope_unknown");
 	}
 
 	const labels = requirement.scope_groups
-		.map((group) => localizedText(group.label, group.key))
+		.map((group) => displayedScopeGroupLabel(group))
 		.filter((label) => label.length > 0);
 
 	return labels.length > 0

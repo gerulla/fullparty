@@ -18,6 +18,15 @@
         "profile_picture_too_large": "プロフィール画像は5 MB以下にしてください。",
         "update_profile_picture": "プロフィール画像を更新"
     },
+    "homepage": {
+        "title": "ホーム画面の変更",
+        "label": "ホームの移動先を選択",
+        "description": "サイドバーのホームボタンから移動するページを選べます。選択したグループを脱退した場合は、プロフィールページに戻ります。",
+        "destination": "ホームページ",
+        "profile_page": "プロフィールページ",
+        "saved": "ホームページを更新しました。",
+        "save_failed": "ホームページを更新できませんでした。もう一度お試しください。"
+    },
     "connect": "連携",
     "unlink": "連携解除",
     "connected": "連携済み",

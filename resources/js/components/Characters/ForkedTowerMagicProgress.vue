@@ -11,8 +11,11 @@ const props = defineProps({
 
 const { t } = useI18n();
 
+const isLodestoneVerified = computed(() => props.progress?.data_source === 'lodestone_achievement');
+
 const displayProgress = computed(() => ({
 	clears: props.progress?.clears ?? 0,
+	data_source: props.progress?.data_source ?? 'fflogs',
 	bosses: (props.progress?.bosses ?? []).map((boss) => ({
 		...boss,
 		label: t(`characters.card.forked_tower.bosses.${boss.key}`),
@@ -20,6 +23,23 @@ const displayProgress = computed(() => ({
 }));
 
 const hasClearProof = computed(() => Number(displayProgress.value.clears) > 0);
+const sourceBadgeLabel = computed(() => (
+	isLodestoneVerified.value
+		? t('characters.card.forked_tower.verified_with_lodestone')
+		: t('characters.card.forked_tower.verified_with_fflogs')
+));
+
+const clearCountLabel = computed(() => (
+	isLodestoneVerified.value && displayProgress.value.clears > 0
+		? t('characters.card.forked_tower.clears_at_least', { count: displayProgress.value.clears })
+		: t('characters.card.forked_tower.clears', { count: displayProgress.value.clears })
+));
+
+const bossKillLabel = (kills) => (
+	isLodestoneVerified.value && Number(kills) > 0
+		? t('characters.card.forked_tower.kills_at_least', { count: kills })
+		: kills
+);
 </script>
 
 <template>
@@ -36,14 +56,14 @@ const hasClearProof = computed(() => Number(displayProgress.value.clears) > 0);
 				<p class="text-sm font-semibold">{{ t('characters.card.forked_tower.clear_count') }}</p>
 				<UBadge
 					v-if="hasClearProof"
-					:label="t('characters.card.forked_tower.verified_with_fflogs')"
-					color="neutral"
+					:label="sourceBadgeLabel"
+					:color="isLodestoneVerified ? 'primary' : 'neutral'"
 					variant="subtle"
 					size="sm"
 				/>
 			</div>
 			<UBadge
-				:label="t('characters.card.forked_tower.clears', { count: displayProgress.clears })"
+				:label="clearCountLabel"
 				color="primary"
 				variant="subtle"
 				size="md"
@@ -74,7 +94,7 @@ const hasClearProof = computed(() => Number(displayProgress.value.clears) > 0);
 
 				<div class="flex items-center justify-between text-sm text-muted">
 					<span>{{ t('characters.card.forked_tower.kills') }}</span>
-					<span class="text-base font-semibold text-toned">{{ boss.kills }}</span>
+					<span class="text-base font-semibold text-toned">{{ bossKillLabel(boss.kills) }}</span>
 				</div>
 			</div>
 		</div>

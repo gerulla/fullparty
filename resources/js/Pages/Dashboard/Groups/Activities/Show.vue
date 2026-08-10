@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import axios from "axios";
-import type { ActivityDetails, ActivityManagementPatch, SlotDesignation } from "@/Types/ActivityManagement";
+import type { ActivityDetails, ActivityManagementPatch, ActivityManagementWarning, SlotDesignation } from "@/Types/ActivityManagement";
 import type { ManualAssignmentCharacter, QueueApplication } from "@/Types/ActivityQueue";
 import type { ActivitySlotFieldSelection } from "@/Types/ActivityHolsters";
 import type { ActivityFillInPartyOption, ActivitySlot } from "@/Types/ActivityRoster";
@@ -20,6 +20,7 @@ import { buildActivityCompletionSummary } from "@/utils/buildActivityCompletionS
 import { route } from "ziggy-js";
 import { useToast } from "@nuxt/ui/composables";
 import ActivityOverview from "@/components/Groups/Activities/ActivityOverview.vue";
+import ActivityManagementWarningsPanel from "@/components/Groups/Activities/ActivityManagementWarningsPanel.vue";
 import RosterAssignments from "@/components/Groups/Activities/RosterAssignments.vue";
 import ApplicantQueue from "@/components/Groups/Activities/ApplicantQueue.vue";
 import ApplicantQueueDetailsModal from "@/components/Groups/Activities/ApplicantQueueDetailsModal.vue";
@@ -52,6 +53,7 @@ const page = usePage();
 const toast = useToast();
 const fallbackLocale = computed(() => String(page.props.locale?.fallback ?? 'en'));
 const rosterView = ref<'party' | 'role' | 'list'>('party');
+const numberedSecondaryParties = ref(false);
 const showApplicantQueue = ref(true);
 const isLoading = ref(true);
 const isSlotSwapPending = ref(false);
@@ -71,8 +73,10 @@ const isCancelConfirmOpen = ref(false);
 const isPartyFinderInfoModalOpen = ref(false);
 const isDuplicateModalOpen = ref(false);
 const isPublishingPartyFinderInfo = ref(false);
+const isMarkingRaidLeaders = ref(false);
 const partyFinderInfoErrors = ref<Record<string, string[]>>({});
 const pendingMissingUndoIds = ref<number[]>([]);
+const dismissingManagementWarningIds = ref<number[]>([]);
 const completionErrors = ref<Record<string, string[]>>({});
 const assignmentModalVisible = ref(false);
 const assignmentModalApplication = ref<QueueApplication | null>(null);
@@ -145,6 +149,7 @@ const fillInPartyOptions = computed<ActivityFillInPartyOption[]>(() => {
 	return Array.from(groups.values());
 });
 const pendingApplicationCount = computed(() => currentActivity.value?.pending_application_count ?? 0);
+const managementWarnings = computed(() => currentActivity.value?.management_warnings ?? []);
 const missingAssignments = computed(() => currentActivity.value?.missing_assignments ?? []);
 const completedProgression = computed(() => buildActivityCompletionSummary({
 	activity: currentActivity.value,
@@ -554,6 +559,41 @@ const fetchManagementData = async () => {
 	}
 };
 
+const dismissManagementWarning = async (warning: ActivityManagementWarning) => {
+	if (!currentActivity.value || dismissingManagementWarningIds.value.includes(warning.id)) {
+		return;
+	}
+
+	dismissingManagementWarningIds.value = [...dismissingManagementWarningIds.value, warning.id];
+
+	try {
+		await axios.delete(route('groups.dashboard.activities.management-warnings.destroy', {
+			group: props.group.slug,
+			activity: currentActivity.value.id,
+			managementWarning: warning.id,
+		}));
+
+		applyManagementPatch({
+			remove_management_warning_ids: [warning.id],
+		});
+
+		toast.add({
+			title: t('groups.activities.management.management_warnings.dismissed'),
+			color: 'success',
+			icon: 'i-lucide-check',
+		});
+	} catch (error: any) {
+		toast.add({
+			title: t('groups.activities.management.management_warnings.dismiss_failed'),
+			description: error?.response?.data?.message,
+			color: 'error',
+			icon: 'i-lucide-triangle-alert',
+		});
+	} finally {
+		dismissingManagementWarningIds.value = dismissingManagementWarningIds.value.filter(id => id !== warning.id);
+	}
+};
+
 const dispatchQueueSyncEvent = (
 	syncApplicationIds: number[] = [],
 	removeApplicationIds: number[] = [],
@@ -627,6 +667,16 @@ const applyManagementPatch = (patch: ActivityManagementPatch) => {
 	}
 
 	const updatedSlotsById = new Map((patch.updated_slots ?? []).map((slot) => [slot.id, slot]));
+	const managementWarningsById = new Map(currentActivity.value.management_warnings.map((warning) => [warning.id, warning]));
+
+	for (const warning of patch.upsert_management_warnings ?? []) {
+		managementWarningsById.set(warning.id, warning);
+	}
+
+	for (const warningId of patch.remove_management_warning_ids ?? []) {
+		managementWarningsById.delete(warningId);
+	}
+
 	const removedSlotIds = new Set(patch.removed_slot_ids ?? []);
 
 	for (const removedSlotId of removedSlotIds) {
@@ -667,6 +717,8 @@ const applyManagementPatch = (patch: ActivityManagementPatch) => {
 	activityData.value = {
 		...currentActivity.value,
 		pending_application_count: patch.pending_application_count ?? currentActivity.value.pending_application_count,
+		management_warnings: Array.from(managementWarningsById.values())
+			.sort((left, right) => (right.occurred_at ?? '').localeCompare(left.occurred_at ?? '')),
 		slots: nextSlots,
 		missing_assignments: nextMissingAssignments,
 	};
@@ -1341,6 +1393,51 @@ const markSlotRaidLeader = async (slotId: number) => {
 	await updateSlotDesignation(slotId, 'raid_leader');
 };
 
+const markGroupStaffRaidLeaders = async () => {
+	if (!currentActivity.value || isActivityArchived.value || isSlotAssignmentPending.value || isSlotSwapPending.value) {
+		return;
+	}
+
+	isMarkingRaidLeaders.value = true;
+	isSlotAssignmentPending.value = true;
+
+	try {
+		const response = await axios.post(route('groups.dashboard.activities.raid-leaders.mark-group-staff', {
+			group: props.group.slug,
+			activity: props.activity.id,
+		}));
+
+		const updatedSlots = Array.isArray(response.data?.slots) ? response.data.slots as ActivitySlot[] : [];
+
+		if (updatedSlots.length > 0 && currentActivity.value) {
+			const updatedSlotsById = new Map(updatedSlots.map((updatedSlot) => [updatedSlot.id, updatedSlot]));
+
+			activityData.value = {
+				...currentActivity.value,
+				slots: currentActivity.value.slots.map((slot) => updatedSlotsById.get(slot.id) ?? slot),
+			};
+		}
+
+		toast.add({
+			title: t(updatedSlots.length > 0
+				? 'groups.activities.management.messages.raid_leaders_marked'
+				: 'groups.activities.management.messages.no_raid_leaders_to_mark'),
+			color: updatedSlots.length > 0 ? 'success' : 'neutral',
+			icon: updatedSlots.length > 0 ? 'i-lucide-crown' : 'i-lucide-info',
+		});
+	} catch (error: any) {
+		toast.add({
+			title: t('groups.activities.management.messages.warning_title'),
+			description: error?.response?.data?.message ?? t('groups.activities.management.messages.mark_raid_leaders_failed'),
+			color: 'error',
+			icon: 'i-lucide-octagon-alert',
+		});
+	} finally {
+		isMarkingRaidLeaders.value = false;
+		isSlotAssignmentPending.value = false;
+	}
+};
+
 const updateSlotAttendance = async (slotId: number, mode: 'check_in' | 'late') => {
 	if (!currentActivity.value || isActivityArchived.value || isSlotAssignmentPending.value || isSlotSwapPending.value) {
 		return;
@@ -1880,6 +1977,7 @@ onBeforeUnmount(() => {
 				:can-delete="canDeleteActivity"
 				:can-cancel="canCancelActivity"
 				:roster-view="rosterView"
+				:numbered-secondary-parties="numberedSecondaryParties"
 				:show-applicant-queue="showApplicantQueue"
 				:group-name="group.name"
 				:activity-type-name="activityTypeName"
@@ -1898,6 +1996,8 @@ onBeforeUnmount(() => {
 				:slots="currentActivity.slots"
 				:completed-progression="completedProgression"
 				:can-publish-party-finder-info="!isActivityArchived"
+				:can-mark-raid-leaders="!isActivityArchived"
+				:is-marking-raid-leaders="isMarkingRaidLeaders"
 				@edit="goToEditPage"
 				@duplicate="openDuplicateModal"
 				@view-overview="goToOverviewPage"
@@ -1910,8 +2010,10 @@ onBeforeUnmount(() => {
 				@delete="deleteActivity"
 				@cancel="cancelActivity"
 				@update-roster-view="rosterView = $event"
+				@update-numbered-secondary-parties="numberedSecondaryParties = $event"
 				@toggle-applicant-queue="showApplicantQueue = !showApplicantQueue"
 				@publish-party-finder-info="openPartyFinderInfoModal"
+				@mark-raid-leaders="markGroupStaffRaidLeaders"
 			/>
 
 			<section
@@ -1974,6 +2076,14 @@ onBeforeUnmount(() => {
 			</UAlert>
 		</div>
 
+		<ActivityManagementWarningsPanel
+			v-if="currentActivity && managementWarnings.length > 0"
+			class="mt-4"
+			:warnings="managementWarnings"
+			:dismissing-warning-ids="dismissingManagementWarningIds"
+			@dismiss="dismissManagementWarning"
+		/>
+
 		<div
 			class="mt-6 flex flex-col gap-y-6 xl:flex-row xl:items-start"
 			:class="showApplicantQueue && hasApplicantQueue ? 'xl:gap-x-6' : 'xl:gap-x-0'"
@@ -1982,6 +2092,7 @@ onBeforeUnmount(() => {
 				<RosterAssignments
 					v-if="currentActivity"
 					:view="rosterView"
+					:numbered-secondary-parties="numberedSecondaryParties"
 					:slots="currentActivity.slots"
 					:group-slug="group.slug"
 					:activity-id="activity.id"
@@ -2126,6 +2237,7 @@ onBeforeUnmount(() => {
 			:application="assignmentModalApplication"
 			:slot-field-definitions="currentActivity?.slot_field_definitions ?? []"
 			:fill-in-party-options="fillInPartyOptions"
+			:numbered-secondary-parties="numberedSecondaryParties"
 			:mode="assignmentModalMode"
 			:is-submitting="isSlotAssignmentPending"
 			@confirm="handleAssignApplicantToSlot"
@@ -2146,6 +2258,7 @@ onBeforeUnmount(() => {
 			:characters="manualAssignmentCharacters"
 			:slot-field-definitions="currentActivity?.slot_field_definitions ?? []"
 			:fill-in-party-options="fillInPartyOptions"
+			:numbered-secondary-parties="numberedSecondaryParties"
 			:is-submitting="isSlotAssignmentPending"
 			:initial-character-id="manualAssignmentInitialCharacterId"
 			:lock-character="lockManualAssignmentCharacter"

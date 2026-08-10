@@ -18,6 +18,15 @@
         "profile_picture_too_large": "Profilbilder dürfen höchstens 5 MB groß sein.",
         "update_profile_picture": "Profilbild aktualisieren"
     },
+    "homepage": {
+        "title": "Startseite überschreiben",
+        "label": "Wähle dein Ziel für „Home“",
+        "description": "Lege fest, wohin dich die Home-Schaltfläche in der Seitenleiste führt. Wenn du die ausgewählte Gruppe verlässt, wird wieder deine Profilseite verwendet.",
+        "destination": "Startseite",
+        "profile_page": "Profilseite",
+        "saved": "Startseite wurde aktualisiert.",
+        "save_failed": "Deine Startseite konnte nicht aktualisiert werden. Bitte versuche es erneut."
+    },
     "connect": "Verbinden",
     "unlink": "Trennen",
     "connected": "Verbunden",

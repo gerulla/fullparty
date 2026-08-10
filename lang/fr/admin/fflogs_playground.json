@@ -1,0 +1,52 @@
+{
+  "title": "FFLogs Playground",
+  "subtitle": "Envoyez manuellement des requetes GraphQL a FF Logs et inspectez la reponse brute.",
+  "admin_only": "Admins uniquement",
+  "request": {
+    "title": "Requete",
+    "description": "Collez une requete GraphQL brute, ou une charge JSON avec query, variables et operationName.",
+    "field_label": "Requete FF Logs",
+    "placeholder": "Collez une requete GraphQL ou une charge JSON...",
+    "send": "Envoyer la requete",
+    "preset_label": "Preset"
+  },
+  "response": {
+    "title": "Reponse",
+    "description": "Le playground affiche le resultat backend brut, y compris les reponses FF Logs en echec.",
+    "empty": "Lancez une requete pour voir la reponse FF Logs ici.",
+    "empty_status": "Aucune reponse",
+    "failed_status": "Requete en echec",
+    "http_status": "HTTP {status}",
+    "viewer_label": "Vue JSON",
+    "collapse_all": "Tout replier",
+    "expand_all": "Tout deplier",
+    "array_summary": "{count} elements",
+    "object_summary": "{count} champs"
+  },
+  "validation": {
+    "empty": "La requete FF Logs ne peut pas etre vide.",
+    "invalid": "La requete FF Logs doit etre du texte.",
+    "too_large": "La requete doit rester sous 50 000 caracteres.",
+    "json_object": "Les requetes JSON doivent etre un objet contenant un champ query.",
+    "query_required": "Les requetes JSON doivent inclure un champ query non vide.",
+    "variables_invalid": "Le champ variables doit etre un objet JSON ou null.",
+    "operation_name_invalid": "Le champ operationName doit etre une chaine ou null."
+  },
+  "errors": {
+    "request_failed": "La requete FF Logs n'a pas pu aboutir."
+  },
+  "presets": {
+    "activity_report_progress": {
+      "label": "Stats de combats du run",
+      "description": "Correspond a la requete de preview de completion pour un report FF Logs."
+    },
+    "character_zone_rankings": {
+      "label": "Classements de zone du personnage",
+      "description": "Correspond a la recherche de progression par nom de personnage, monde, region et zone."
+    },
+    "report_structure": {
+      "label": "Structure du report",
+      "description": "Correspond a la requete de debug pour inspecter les encounter IDs, les phases et les timings."
+    }
+  }
+}

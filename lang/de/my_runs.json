@@ -1,0 +1,11 @@
+{
+  "title": "Meine Runs",
+  "subtitle": "Behalte die Kalender deiner ausgewählten Gruppen gemeinsam an einem Ort im Blick.",
+  "groups_count": "{count} Gruppen",
+  "upcoming_count": "{count} bevorstehende Runs",
+  "empty": {
+    "title": "Noch keine Gruppen hinzugefügt",
+    "description": "Öffne ein Gruppen-Dashboard und wähle Zu meinen Runs hinzufügen, um den Kalender hier anzuzeigen.",
+    "browse": "Gruppen durchsuchen"
+  }
+}

@@ -1,0 +1,52 @@
+{
+  "title": "FFLogs Playground",
+  "subtitle": "FF Logs に GraphQL リクエストを手動送信し、生のレスポンスを確認します。",
+  "admin_only": "管理者専用",
+  "request": {
+    "title": "リクエスト",
+    "description": "GraphQL クエリ、または query、variables、operationName を含む JSON ペイロードを貼り付けてください。",
+    "field_label": "FF Logs リクエスト",
+    "placeholder": "GraphQL クエリまたは JSON ペイロードを貼り付け...",
+    "send": "リクエスト送信",
+    "preset_label": "プリセット"
+  },
+  "response": {
+    "title": "レスポンス",
+    "description": "失敗した FF Logs レスポンスも含め、バックエンドの生の結果を表示します。",
+    "empty": "リクエストを実行すると、ここに FF Logs のレスポンスが表示されます。",
+    "empty_status": "レスポンスなし",
+    "failed_status": "リクエスト失敗",
+    "http_status": "HTTP {status}",
+    "viewer_label": "JSON ビューア",
+    "collapse_all": "すべて折りたたむ",
+    "expand_all": "すべて展開",
+    "array_summary": "{count} 件",
+    "object_summary": "{count} フィールド"
+  },
+  "validation": {
+    "empty": "FF Logs リクエストは空にできません。",
+    "invalid": "FF Logs リクエストはテキストで入力してください。",
+    "too_large": "リクエストは 50,000 文字以内にしてください。",
+    "json_object": "JSON リクエストは query フィールドを含むオブジェクトにしてください。",
+    "query_required": "JSON リクエストには空でない query フィールドが必要です。",
+    "variables_invalid": "variables フィールドは JSON オブジェクトまたは null にしてください。",
+    "operation_name_invalid": "operationName フィールドは文字列または null にしてください。"
+  },
+  "errors": {
+    "request_failed": "FF Logs リクエストを完了できませんでした。"
+  },
+  "presets": {
+    "activity_report_progress": {
+      "label": "Run 戦闘 stats",
+      "description": "FF Logs レポートの completion preview で使うクエリです。"
+    },
+    "character_zone_rankings": {
+      "label": "キャラクター zone rankings",
+      "description": "キャラクター名、ワールド、リージョン、zone で進捗を取得する applicant lookup です。"
+    },
+    "report_structure": {
+      "label": "Report structure",
+      "description": "encounter ID、phase フィールド、fight timing を確認する debug 用クエリです。"
+    }
+  }
+}

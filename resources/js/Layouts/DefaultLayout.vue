@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import CSidebar from "@/components/Navigation/CSidebar.vue";
 import CTopbar from "@/components/Navigation/CTopbar.vue";
+import ViewportBreakpointIndicator from "@/components/Navigation/ViewportBreakpointIndicator.vue";
 import DashboardFooter from "@/components/DashboardFooter.vue";
 import GroupNavigation from "@/components/Groups/GroupNavigation.vue";
 import SystemBanner from "@/components/SystemBanner.vue";
@@ -14,6 +15,7 @@ const page = usePage()
 const toast = useToast()
 const { t } = useI18n()
 const { currentUiLocale } = usePersistentLocale();
+const showBreakpointIndicator = import.meta.env.DEV;
 
 const currentGroup = computed(() => page.props.group ?? null)
 const systemBanner = computed(() => page.props.system_banner ?? null)
@@ -105,6 +107,7 @@ defineProps({
 				</UDashboardPanel>
 			</UDashboardGroup>
 			<WelcomeOnboardingModal />
+			<ViewportBreakpointIndicator v-if="showBreakpointIndicator" />
 		</div>
 	</UApp>
 </template>

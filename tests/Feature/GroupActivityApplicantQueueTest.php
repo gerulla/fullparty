@@ -174,7 +174,8 @@ it('keeps the original queue position and exposes the application edit time', fu
     $editedAt = now()->subHour()->startOfSecond();
     $application = createQueueApplication($activity, $characterClass, [
         'created_at' => $submittedAt,
-        'updated_at' => $editedAt,
+        'updated_at' => now(),
+        'edited_at' => $editedAt,
         'submitted_at' => now(),
     ]);
 
@@ -189,13 +190,14 @@ it('keeps the original queue position and exposes the application edit time', fu
         ->and($queueItem['edited_at'])->toBe($editedAt->toIso8601String());
 });
 
-it('does not show an edit time when submission and update are within the same minute', function () {
+it('does not treat the generic application update timestamp as an applicant edit', function () {
     extract(createApplicantQueueActivity());
 
-    $submittedAt = now()->startOfMinute()->addSeconds(5);
+    $submittedAt = now()->subHour()->startOfSecond();
     $application = createQueueApplication($activity, $characterClass, [
         'created_at' => $submittedAt,
-        'updated_at' => $submittedAt->copy()->addSeconds(20),
+        'updated_at' => now(),
+        'edited_at' => null,
     ]);
 
     $response = $this->actingAs($owner)->getJson(route('groups.dashboard.activities.applicant-queue', [

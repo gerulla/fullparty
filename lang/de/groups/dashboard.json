@@ -6,7 +6,17 @@
         "open_discord": "Discord öffnen",
         "mute_notifications": "Benachrichtigungen stummschalten",
         "unmute_notifications": "Benachrichtigungen aktivieren",
-        "leave_group": "Gruppe verlassen"
+        "leave_group": "Gruppe verlassen",
+        "add_to_my_runs": "Zu meinen Runs hinzufügen",
+        "remove_from_my_runs": "Aus meinen Runs entfernen"
+    },
+    "my_runs_feedback": {
+      "added_title": "Zu deinen Runs hinzugefügt",
+      "added_description": "Der Kalender von {name} wird jetzt unter „Meine Runs“ angezeigt.",
+      "removed_title": "Aus deinen Runs entfernt",
+      "removed_description": "Der Kalender von {name} wird nicht mehr unter „Meine Runs“ angezeigt.",
+      "error_title": "Meine Runs konnten nicht aktualisiert werden",
+      "error_description": "Bitte versuche die Änderung erneut."
     },
     "leave_group_modal": {
         "title": "{name} verlassen?",

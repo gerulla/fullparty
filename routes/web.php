@@ -62,11 +62,13 @@ use App\Http\Controllers\GroupMembershipApplicationReviewController;
 use App\Http\Controllers\GroupMembershipController;
 use App\Http\Controllers\GroupMembershipRequestController;
 use App\Http\Controllers\GroupPhantomCompositionController;
+use App\Http\Controllers\GroupRunListController;
 use App\Http\Controllers\GroupSettingsController;
 use App\Http\Controllers\GroupShortcutController;
 use App\Http\Controllers\GroupStatisticsController;
 use App\Http\Controllers\IntegrationClientController;
 use App\Http\Controllers\LocaleController;
+use App\Http\Controllers\MyRunsController;
 use App\Http\Controllers\PhantomJobController;
 use App\Http\Controllers\Planner\PlannerController;
 use App\Http\Controllers\Planner\RaidPlanController;
@@ -637,9 +639,12 @@ Route::prefix('{locale?}')
             */
 
             Route::get('/account/characters', [CharacterController::class, 'list'])->name('account.characters');
+            Route::get('/account/runs', MyRunsController::class)->name('account.runs.index');
             Route::get('/account/applications', [AccountApplicationController::class, 'index'])->name('account.applications');
             Route::get('/account/applications/history', [AccountApplicationController::class, 'history'])->name('account.applications.history');
             Route::delete('/account/applications/{application}', [AccountApplicationController::class, 'destroy'])->name('account.applications.destroy');
+            Route::post('/groups/{group:slug}/run-list', [GroupRunListController::class, 'store'])->name('groups.run-list.store');
+            Route::delete('/groups/{group:slug}/run-list', [GroupRunListController::class, 'destroy'])->name('groups.run-list.destroy');
 
             /*
             |--------------------------------------------------------------------------

@@ -6,10 +6,13 @@ import { useI18n } from "vue-i18n";
 import { createDateTimeFormatter } from "@/utils/dateTimeFormat";
 import { useTimeDisplayMode } from "@/composables/useTimeDisplayMode";
 
-const props = defineProps<{
+const props = withDefaults(defineProps<{
 	item: RunDiscoveryResultItemData
 	savePending?: boolean
-}>();
+	showSave?: boolean
+}>(), {
+	showSave: true,
+});
 
 const emit = defineEmits<{
 	toggleSaved: [item: RunDiscoveryResultItemData]
@@ -170,7 +173,7 @@ const toggleSaved = () => {
 
 <template>
 	<article
-		class="relative isolate overflow-visible border border-white/10 bg-neutral-950/72 shadow-[0_20px_40px_rgba(0,0,0,0.2)]"
+		class="@container relative isolate overflow-visible border border-white/10 bg-neutral-950/72 shadow-[0_20px_40px_rgba(0,0,0,0.2)]"
 		:class="props.item.has_existing_application ? 'border-r-4 border-r-brand-400' : ''"
 	>
 		<div
@@ -189,16 +192,16 @@ const toggleSaved = () => {
 			v-if="item.image_url"
 			:src="item.image_url"
 			:alt="item.title"
-			class="absolute inset-0 size-full object-cover 2xl:hidden"
+			class="absolute inset-0 size-full object-cover @6xl:hidden"
 		>
 		<div
 			v-else
-			class="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(123,97,153,0.34),transparent_46%),radial-gradient(circle_at_center_right,rgba(84,136,184,0.28),transparent_38%),linear-gradient(180deg,#201c24_0%,#151217_100%)] 2xl:hidden"
+			class="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(123,97,153,0.34),transparent_46%),radial-gradient(circle_at_center_right,rgba(84,136,184,0.28),transparent_38%),linear-gradient(180deg,#201c24_0%,#151217_100%)] @6xl:hidden"
 		/>
-		<div class="absolute inset-0 bg-linear-to-b from-neutral-950/62 via-neutral-950/78 to-neutral-950/96 2xl:hidden" />
+		<div class="absolute inset-0 bg-linear-to-b from-neutral-950/62 via-neutral-950/78 to-neutral-950/96 @6xl:hidden" />
 
-		<div class="relative z-10 grid grid-cols-1 2xl:min-h-56 2xl:grid-cols-[8.5rem_minmax(0,1fr)_16rem_13rem] 2xl:items-stretch">
-			<div class="relative hidden min-h-56 overflow-hidden border-r border-white/8 bg-neutral-900/70 2xl:block">
+		<div class="relative z-10 grid grid-cols-1 @6xl:min-h-56 @6xl:grid-cols-[8.5rem_minmax(0,1fr)_16rem_13rem] @6xl:items-stretch">
+			<div class="relative hidden min-h-56 overflow-hidden border-r border-white/8 bg-neutral-900/70 @6xl:block">
 				<img
 					v-if="item.image_url"
 					:src="item.image_url"
@@ -214,11 +217,11 @@ const toggleSaved = () => {
 				</div>
 			</div>
 
-			<div class="order-2 min-w-0 space-y-3 bg-neutral-950/42 p-3 2xl:order-none 2xl:space-y-4 2xl:bg-transparent 2xl:p-5">
+			<div class="order-2 min-w-0 space-y-3 bg-neutral-950/42 p-3 @6xl:order-none @6xl:space-y-4 @6xl:bg-transparent @6xl:p-5">
 				<div class="flex items-start justify-between gap-3">
 					<div class="min-w-0 space-y-2">
 						<div class="flex flex-wrap items-center gap-2">
-							<h3 class="text-base font-semibold leading-tight text-white 2xl:text-xl">
+							<h3 class="text-base font-semibold leading-tight text-white @6xl:text-xl">
 								{{ item.title }}
 							</h3>
 							<UBadge
@@ -229,7 +232,7 @@ const toggleSaved = () => {
 								size="md"
 							/>
 						</div>
-						<div v-if="showContentName" class="flex items-center gap-1.5 text-xs text-white/62 2xl:hidden">
+						<div v-if="showContentName" class="flex items-center gap-1.5 text-xs text-white/62 @6xl:hidden">
 							<UIcon
 								name="i-lucide-swords"
 								class="size-3.5 shrink-0 text-white/46"
@@ -239,6 +242,7 @@ const toggleSaved = () => {
 					</div>
 
 					<UButton
+						v-if="showSave"
 						color="neutral"
 						variant="ghost"
 						:icon="item.is_saved ? 'material-symbols:bookmark' : 'material-symbols:bookmark-outline'"
@@ -253,7 +257,7 @@ const toggleSaved = () => {
 					/>
 				</div>
 
-				<p class="max-w-3xl text-sm leading-5 text-white/70 2xl:leading-6">
+				<p class="max-w-3xl text-sm leading-5 text-white/70 @6xl:leading-6">
 					{{ descriptionLabel }}
 				</p>
 
@@ -269,15 +273,15 @@ const toggleSaved = () => {
 				</div>
 			</div>
 
-			<section class="order-1 flex flex-col items-stretch justify-center border-b border-white/10 bg-neutral-950/94 px-3 py-3 2xl:order-none 2xl:border-b-0 2xl:border-l 2xl:bg-neutral-900/38 2xl:px-5 2xl:py-6">
-				<p class="mb-3 hidden text-xs font-semibold uppercase tracking-[0.18em] text-brand-300 2xl:block">
+			<section class="order-1 flex flex-col items-stretch justify-center border-b border-white/10 bg-neutral-950/94 px-3 py-3 @6xl:order-none @6xl:border-b-0 @6xl:border-l @6xl:bg-neutral-900/38 @6xl:px-5 @6xl:py-6">
+				<p class="mb-3 hidden text-xs font-semibold uppercase tracking-[0.18em] text-brand-300 @6xl:block">
 					{{ t("runs.discovery.results.placeholder_item.host_group") }}
 				</p>
 
 				<div class="flex items-center justify-between gap-3">
 					<button
 						type="button"
-						class="flex min-w-0 items-center gap-3 text-left 2xl:gap-4"
+						class="flex min-w-0 items-center gap-3 text-left @6xl:gap-4"
 						:class="item.group_slug ? 'cursor-pointer hover:text-brand-200' : 'cursor-default'"
 						:disabled="!item.group_slug"
 						@click="goToGroup"
@@ -287,16 +291,16 @@ const toggleSaved = () => {
 							:alt="groupName"
 							:text="groupInitials"
 							size="lg"
-							class="size-10 shrink-0 ring-1 ring-brand-400/55 2xl:size-20"
+							class="size-10 shrink-0 ring-1 ring-brand-400/55 @6xl:size-20"
 						/>
 						<span class="min-w-0">
-							<span class="mb-0.5 block text-[9px] font-semibold uppercase tracking-[0.18em] text-brand-300 2xl:hidden">
+							<span class="mb-0.5 block text-[9px] font-semibold uppercase tracking-[0.18em] text-brand-300 @6xl:hidden">
 								{{ t("runs.discovery.results.placeholder_item.host_group") }}
 							</span>
-							<span class="block line-clamp-2 text-sm font-semibold leading-4 text-white 2xl:text-lg 2xl:leading-6">
+							<span class="block line-clamp-2 text-sm font-semibold leading-4 text-white @6xl:text-lg @6xl:leading-6">
 								{{ groupName }}
 							</span>
-							<span v-if="groupLocationLabel" class="mt-0.5 block truncate text-[11px] text-white/58 2xl:mt-1 2xl:text-sm">
+							<span v-if="groupLocationLabel" class="mt-0.5 block truncate text-[11px] text-white/58 @6xl:mt-1 @6xl:text-sm">
 								{{ groupLocationLabel }}
 							</span>
 						</span>
@@ -305,7 +309,7 @@ const toggleSaved = () => {
 					<UTooltip
 						v-if="item.group_discord_invite_url"
 						:text="t('runs.discovery.results.placeholder_item.group_discord')"
-						class="2xl:hidden"
+						class="@6xl:hidden"
 					>
 						<UButton
 							color="neutral"
@@ -321,7 +325,7 @@ const toggleSaved = () => {
 				<button
 					v-if="item.group_discord_invite_url"
 					type="button"
-					class="mt-5 hidden items-center gap-2 self-start text-left text-sm text-white/62 transition-colors hover:text-white 2xl:flex"
+					class="mt-5 hidden items-center gap-2 self-start text-left text-sm text-white/62 transition-colors hover:text-white @6xl:flex"
 					@click="openDiscordInvite"
 				>
 					<UIcon name="ic:baseline-discord" class="size-5 text-brand-400" />
@@ -330,40 +334,40 @@ const toggleSaved = () => {
 				<button
 					v-else-if="item.group_slug"
 					type="button"
-					class="mt-5 hidden items-center gap-2 self-start text-left text-sm text-white/62 transition-colors hover:text-white 2xl:flex"
+					class="mt-5 hidden items-center gap-2 self-start text-left text-sm text-white/62 transition-colors hover:text-white @6xl:flex"
 					@click="goToGroup"
 				>
 					<UIcon name="i-lucide-users" class="size-5 text-brand-400" />
 					<span>{{ t("runs.discovery.results.placeholder_item.view_group") }}</span>
 				</button>
 			</section>
-			<section class="order-3 grid grid-cols-[minmax(0,1fr)_auto_minmax(7.25rem,1.15fr)] items-end gap-3 border-t border-white/10 bg-neutral-950/88 p-3 md:grid-cols-[minmax(0,1fr)_minmax(0,0.75fr)_minmax(0,1fr)] md:gap-5 md:px-5 2xl:order-none 2xl:flex 2xl:flex-col 2xl:items-stretch 2xl:gap-4 2xl:border-l 2xl:border-t-0 2xl:bg-neutral-950/58 2xl:p-5">
-				<div class="flex items-start gap-2 2xl:gap-3">
-					<UIcon name="i-lucide-calendar-days" class="mt-0.5 size-3.5 shrink-0 text-white/46 2xl:size-4" />
+			<section class="order-3 grid grid-cols-[minmax(0,1fr)_auto_minmax(7.25rem,1.15fr)] items-end gap-3 border-t border-white/10 bg-neutral-950/88 p-3 md:grid-cols-[minmax(0,1fr)_minmax(0,0.75fr)_minmax(0,1fr)] md:gap-5 md:px-5 @6xl:order-none @6xl:flex @6xl:flex-col @6xl:items-stretch @6xl:gap-4 @6xl:border-l @6xl:border-t-0 @6xl:bg-neutral-950/58 @6xl:p-5">
+				<div class="flex items-start gap-2 @6xl:gap-3">
+					<UIcon name="i-lucide-calendar-days" class="mt-0.5 size-3.5 shrink-0 text-white/46 @6xl:size-4" />
 					<div class="space-y-1">
-						<p class="text-xs font-medium text-white 2xl:text-sm">
+						<p class="text-xs font-medium text-white @6xl:text-sm">
 							{{ scheduleLabel }}
 						</p>
 						<p class="text-2xl font-semibold leading-none text-white">
 							{{ timeLabel }}
 						</p>
-						<p class="text-[10px] uppercase tracking-[0.16em] text-white/46 2xl:text-xs">
+						<p class="text-[10px] uppercase tracking-[0.16em] text-white/46 @6xl:text-xs">
 							{{ timezoneLabel }}
 						</p>
 					</div>
 				</div>
 
-				<div class="flex items-start gap-1.5 self-center text-sm text-white md:justify-self-center 2xl:w-full 2xl:items-center 2xl:gap-2 2xl:self-auto 2xl:justify-self-auto">
-					<UIcon name="i-lucide-users" class="mt-0.5 size-3.5 shrink-0 text-white/46 2xl:mt-0 2xl:size-4" />
-					<span class="flex flex-col font-semibold leading-4 2xl:hidden">
+				<div class="flex items-start gap-1.5 self-center text-sm text-white md:justify-self-center @6xl:w-full @6xl:items-center @6xl:gap-2 @6xl:self-auto @6xl:justify-self-auto">
+					<UIcon name="i-lucide-users" class="mt-0.5 size-3.5 shrink-0 text-white/46 @6xl:mt-0 @6xl:size-4" />
+					<span class="flex flex-col font-semibold leading-4 @6xl:hidden">
 						<span>{{ memberCountLabel }}</span>
 						<span class="font-normal text-white/62">{{ t("general.members") }}</span>
 					</span>
-					<span class="hidden font-semibold 2xl:inline">{{ memberCountLabel }} {{ t("general.members") }}</span>
+					<span class="hidden font-semibold @6xl:inline">{{ memberCountLabel }} {{ t("general.members") }}</span>
 				</div>
 
 				<div
-					class="flex min-w-0 flex-col gap-1.5 sm:w-full sm:max-w-36 sm:justify-self-end 2xl:max-w-none 2xl:justify-self-auto 2xl:gap-2"
+					class="flex min-w-0 flex-col gap-1.5 sm:w-full sm:max-w-36 sm:justify-self-end @6xl:max-w-none @6xl:justify-self-auto @6xl:gap-2"
 				>
 					<UButton
 						v-if="item.links.apply"
@@ -378,14 +382,14 @@ const toggleSaved = () => {
 						color="neutral"
 						variant="link"
 						trailing-icon="i-lucide-arrow-right"
-						class="w-full justify-end rounded-none px-0 py-0 text-xs text-white/72 2xl:hidden"
+						class="w-full justify-end rounded-none px-0 py-0 text-xs text-white/72 @6xl:hidden"
 						:label="t('runs.discovery.results.placeholder_item.actions.view_details')"
 						@click="goToViewDetails"
 					/>
 					<UButton
 						:color="item.links.apply ? 'neutral' : 'primary'"
 						:variant="item.links.apply ? 'outline' : 'solid'"
-						class="hidden w-full justify-center rounded-none 2xl:flex"
+						class="hidden w-full justify-center rounded-none @6xl:flex"
 						:label="t('runs.discovery.results.placeholder_item.actions.view_details')"
 						@click="goToViewDetails"
 					/>

@@ -13,11 +13,12 @@ import { createDateTimeFormatter } from "@/utils/dateTimeFormat";
 import { useTimeDisplayMode } from "@/composables/useTimeDisplayMode";
 
 const props = defineProps<{
-	groupSlug: string
+	groupSlug?: string
 	activities: ActivityIndexItem[]
 	selectedDateKey?: string | null
 	canManageActivities?: boolean
 	quickCreateShortcuts: GroupQuickCreateShortcut[]
+	showGroupBadge?: boolean
 }>();
 
 const emit = defineEmits<{
@@ -137,6 +138,7 @@ const selectDay = (dayKey: string) => {
 					:is-selected="selectedDateKey === day.key"
 					:can-manage-activities="canManageActivities"
 					:quick-create-shortcuts="quickCreateShortcuts"
+					:show-group-badge="showGroupBadge"
 					:opens-upward="index >= 35"
 					@select="selectDay"
 				/>

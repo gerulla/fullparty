@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { computed } from "vue";
 import { useI18n } from "vue-i18n";
+import ActivityDiscoveryResultItem from "@/components/Groups/Activities/ActivityDiscoveryResultItem.vue";
 import ActivityUpcomingListItem from "@/components/Groups/Activities/ActivityUpcomingListItem.vue";
 import type { ActivityIndexItem } from "@/Types/ActivityCore";
 import { isArchivedActivityStatus } from "@/utils/activityLifecycle";
@@ -10,10 +11,12 @@ import { useTimeDisplayMode } from "@/composables/useTimeDisplayMode";
 import { toDisplayDateKey } from "@/utils/activityCalendar";
 
 const props = defineProps<{
-	groupSlug: string
-	canManageActivities: boolean
+	groupSlug?: string
+	canManageActivities?: boolean
 	activities: ActivityIndexItem[]
 	selectedDateKey?: string | null
+	showGroupBadge?: boolean
+	discoveryStyle?: boolean
 }>();
 
 const { t, locale } = useI18n();
@@ -107,13 +110,23 @@ const statusLegendItems = computed(() => [
 		</template>
 
 		<div v-if="visibleActivities.length > 0" class="flex max-h-[calc(100vh-16rem)] flex-col gap-3 overflow-y-auto pt-2 pr-1 pl-2">
-			<ActivityUpcomingListItem
-				v-for="activity in visibleActivities"
-				:key="activity.id"
-				:group-slug="groupSlug"
-				:can-manage-activities="canManageActivities"
-				:activity="activity"
-			/>
+			<template v-if="discoveryStyle">
+				<ActivityDiscoveryResultItem
+					v-for="activity in visibleActivities"
+					:key="activity.id"
+					:activity="activity"
+				/>
+			</template>
+			<template v-else>
+				<ActivityUpcomingListItem
+					v-for="activity in visibleActivities"
+					:key="activity.id"
+					:group-slug="groupSlug"
+					:can-manage-activities="Boolean(canManageActivities)"
+					:activity="activity"
+					:show-group-badge="showGroupBadge"
+				/>
+			</template>
 		</div>
 
 		<div v-else class="rounded-sm border border-dashed border-default bg-muted/10 px-4 py-10 text-center text-sm text-muted">

@@ -1,0 +1,11 @@
+{
+  "title": "Mes runs",
+  "subtitle": "Retrouvez les calendriers des groupes sélectionnés au même endroit.",
+  "groups_count": "{count} groupes",
+  "upcoming_count": "{count} runs à venir",
+  "empty": {
+    "title": "Aucun groupe ajouté",
+    "description": "Ouvrez le tableau de bord d'un groupe et choisissez Ajouter à mes runs pour afficher son calendrier ici.",
+    "browse": "Parcourir les groupes"
+  }
+}

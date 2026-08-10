@@ -1,0 +1,11 @@
+{
+  "title": "My Runs",
+  "subtitle": "Keep the calendars from your chosen groups together in one place.",
+  "groups_count": "{count} groups",
+  "upcoming_count": "{count} upcoming runs",
+  "empty": {
+    "title": "No groups added yet",
+    "description": "Open a group dashboard and choose Add to My Runs to include its calendar here.",
+    "browse": "Browse Groups"
+  }
+}

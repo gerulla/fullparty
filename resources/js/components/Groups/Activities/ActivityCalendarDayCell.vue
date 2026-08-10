@@ -6,6 +6,7 @@ import { useI18n } from "vue-i18n";
 import { router, usePage } from "@inertiajs/vue3";
 import { route } from "ziggy-js";
 import ActivityContextMenu from "@/components/Groups/Activities/ActivityContextMenu.vue";
+import ActivityHostGroupBadge from "@/components/Groups/Activities/ActivityHostGroupBadge.vue";
 import { localizedValue } from "@/utils/localizedValue";
 import { getActivityStatusBorderClass } from "@/utils/activityStatusMeta";
 import { createDateTimeFormatter } from "@/utils/dateTimeFormat";
@@ -13,12 +14,13 @@ import { useTimeDisplayMode } from "@/composables/useTimeDisplayMode";
 import { quickCreateTimeModeLabel, resolveQuickCreateStartsAt } from "@/utils/groupQuickCreateShortcuts";
 
 const props = defineProps<{
-	groupSlug: string
+	groupSlug?: string
 	day: ActivityCalendarDay
 	isSelected?: boolean
 	canManageActivities?: boolean
 	quickCreateShortcuts: GroupQuickCreateShortcut[]
 	opensUpward?: boolean
+	showGroupBadge?: boolean
 }>();
 
 const emit = defineEmits<{
@@ -64,13 +66,15 @@ const activityTime = (activity: ActivityIndexItem) => {
 };
 
 const activityStatusBorderClass = (activity: ActivityIndexItem) => getActivityStatusBorderClass(activity.status);
+const activityGroupSlug = (activity: ActivityIndexItem) => activity.group?.slug ?? props.groupSlug ?? '';
+const canManageActivity = (activity: ActivityIndexItem) => activity.group?.can_manage_activities ?? Boolean(props.canManageActivities);
 
 const selectDay = () => {
 	emit('select', props.day.key);
 };
 
 const openCreateRunPage = (shortcut: GroupQuickCreateShortcut) => {
-	if (!props.canManageActivities) {
+	if (!props.canManageActivities || !props.groupSlug) {
 		return;
 	}
 
@@ -128,8 +132,8 @@ const dayContextMenuItems = computed<ContextMenuItem[][]>(() => (
 				<ActivityContextMenu
 					v-for="activity in visibleActivities"
 					:key="activity.id"
-					:group-slug="groupSlug"
-					:can-manage-activities="Boolean(canManageActivities)"
+					:group-slug="activityGroupSlug(activity)"
+					:can-manage-activities="canManageActivity(activity)"
 					:activity="activity"
 				>
 					<div
@@ -174,6 +178,11 @@ const dayContextMenuItems = computed<ContextMenuItem[][]>(() => (
 								color="neutral"
 								variant="soft"
 								size="md"
+							/>
+							<ActivityHostGroupBadge
+								v-if="showGroupBadge"
+								class="mt-2"
+								:group="activity.group"
 							/>
 						</div>
 					</div>

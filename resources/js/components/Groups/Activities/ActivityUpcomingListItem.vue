@@ -4,6 +4,7 @@ import { useI18n } from "vue-i18n";
 import { router, usePage } from "@inertiajs/vue3";
 import { route } from "ziggy-js";
 import ActivityContextMenu from "@/components/Groups/Activities/ActivityContextMenu.vue";
+import ActivityHostGroupBadge from "@/components/Groups/Activities/ActivityHostGroupBadge.vue";
 import { localizedValue } from "@/utils/localizedValue";
 import type { ActivityIndexItem } from "@/Types/ActivityCore";
 import { getActivityStatusMeta } from "@/utils/activityStatusMeta";
@@ -11,9 +12,10 @@ import { createDateTimeFormatter, createRelativeTimeFormatter } from "@/utils/da
 import { useTimeDisplayMode } from "@/composables/useTimeDisplayMode";
 
 const props = defineProps<{
-	groupSlug: string
+	groupSlug?: string
 	canManageActivities: boolean
 	activity: ActivityIndexItem
+	showGroupBadge?: boolean
 }>();
 
 const { t, locale } = useI18n();
@@ -94,11 +96,13 @@ const relativeLabel = computed(() => {
 });
 
 const statusMeta = computed(() => getActivityStatusMeta(props.activity.status));
+const resolvedGroupSlug = computed(() => props.activity.group?.slug ?? props.groupSlug ?? '');
+const canManageActivity = computed(() => props.activity.group?.can_manage_activities ?? props.canManageActivities);
 
 const goToManagementPage = () => {
-	if (!props.canManageActivities) {
+	if (!canManageActivity.value) {
 		router.get(route('groups.activities.overview', {
-			group: props.groupSlug,
+			group: resolvedGroupSlug.value,
 			activity: props.activity.id,
 		}));
 
@@ -106,7 +110,7 @@ const goToManagementPage = () => {
 	}
 
 	router.get(route('groups.dashboard.activities.show', {
-		group: props.groupSlug,
+		group: resolvedGroupSlug.value,
 		activity: props.activity.id,
 	}));
 };
@@ -114,8 +118,8 @@ const goToManagementPage = () => {
 
 <template>
 	<ActivityContextMenu
-		:group-slug="groupSlug"
-		:can-manage-activities="canManageActivities"
+		:group-slug="resolvedGroupSlug"
+		:can-manage-activities="canManageActivity"
 		:activity="activity"
 	>
 		<div
@@ -176,6 +180,11 @@ const goToManagementPage = () => {
 								<p class="mt-1 break-words [overflow-wrap:anywhere] text-sm text-muted">
 									{{ activityTypeName }}
 								</p>
+								<ActivityHostGroupBadge
+									v-if="showGroupBadge"
+									class="mt-2"
+									:group="activity.group"
+								/>
 							</div>
 
 							<div class="flex w-full flex-col gap-2 text-sm xl:items-end">

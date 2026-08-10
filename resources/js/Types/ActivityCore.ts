@@ -28,6 +28,16 @@ export type ActivityProgressPoint = {
 
 export interface ActivityIndexItem {
 	id: number
+	group?: {
+		id: number
+		name: string
+		slug: string
+		profile_picture_url: string | null
+		discord_invite_url: string | null
+		group_type: string | null
+		voice_expectation: string | null
+		can_manage_activities: boolean
+	}
 	activity_type: {
 		id: number | null
 		slug: string | null
@@ -42,10 +52,19 @@ export interface ActivityIndexItem {
 	duration_hours: number | null
 	target_prog_point_key: string | null
 	target_prog_point_label: LocalizedText | null
+	notes: string | null
+	allow_guest_applications: boolean
 	organized_by: {
 		id: number
 		name: string
 		avatar_url: string | null
+	} | null
+	organized_by_character: {
+		id: number
+		user_id: number
+		name: string
+		avatar_url: string | null
+		world: string | null
 	} | null
 	datacenter: string | null
 	intensity: ActivityIntensity | string | null
@@ -56,6 +75,10 @@ export interface ActivityIndexItem {
 	assigned_slot_count: number
 	application_count: number
 	has_existing_application: boolean
+	links: {
+		view: string
+		apply: string | null
+	}
 	is_public: boolean
 	needs_application?: boolean
 	secret_key: string | null

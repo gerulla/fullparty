@@ -15,10 +15,10 @@ use App\Models\CharacterClass;
 use App\Models\Group;
 use App\Models\GroupMembership;
 use App\Services\Groups\ActivityCancellationService;
+use App\Services\Groups\ActivityIndexItemSerializer;
 use App\Services\Groups\ActivityRosterSummaryPresetBuilder;
 use App\Services\Groups\ActivitySlotBench;
 use App\Services\Groups\ActivitySlotFieldDefinitionBuilder;
-use App\Services\Groups\ActivitySlotKind;
 use App\Services\Groups\ActivitySlotSerializer;
 use App\Services\Groups\GroupActivityAuditService;
 use App\Services\Notifications\AssignmentNotificationService;
@@ -178,10 +178,11 @@ class GroupActivityController extends Controller
         ]);
     }
 
-    public function index(Group $group, ActivitySlotKind $slotKind): Response
+    public function index(Group $group, ActivityIndexItemSerializer $serializer): Response
     {
         $group->load([
             'memberships',
+            'activities.group',
             'activities.organizer',
             'activities.organizerCharacter',
             'activities.activityType',
@@ -214,66 +215,11 @@ class GroupActivityController extends Controller
             'activities' => $visibleActivities
                 ->sortByDesc('updated_at')
                 ->values()
-                ->map(fn (Activity $activity) => [
-                    'id' => $activity->id,
-                    'activity_type' => [
-                        'id' => $activity->activityType?->id,
-                        'slug' => $activity->activityType?->slug,
-                        'draft_name' => $activity->activityType?->draft_name,
-                    ],
-                    'activity_type_version_id' => $activity->activity_type_version_id,
-                    'title' => $activity->title,
-                    'status' => $activity->status,
-                    'starts_at' => $activity->starts_at?->toIso8601String(),
-                    'duration_hours' => $activity->duration_hours,
-                    'small_image_url' => $activity->activityTypeVersion?->small_image_url,
-                    'banner_image_url' => $activity->activityTypeVersion?->banner_image_url,
-                    'target_prog_point_key' => $activity->target_prog_point_key,
-                    'target_prog_point_label' => $this->resolveTargetProgPointLabel($activity),
-                    'notes' => $activity->notes,
-                    'furthest_progress_key' => $activity->furthest_progress_key,
-                    'datacenter' => $activity->datacenter,
-                    'intensity' => $activity->intensity,
-                    'min_item_level' => $activity->min_item_level,
-                    'beginner_friendly' => $activity->beginner_friendly,
-                    'run_style' => $activity->run_style,
-                    'is_public' => $activity->is_public,
-                    'secret_key' => null,
-                    'needs_application' => $activity->needs_application,
-                    'allow_guest_applications' => $activity->allow_guest_applications,
-                    'organized_by' => $activity->organizer ? [
-                        'id' => $activity->organizer->id,
-                        'name' => $activity->organizer->name,
-                        'avatar_url' => $activity->organizer->avatar_url,
-                    ] : null,
-                    'organized_by_character' => $activity->organizerCharacter ? [
-                        'id' => $activity->organizerCharacter->id,
-                        'user_id' => $activity->organizerCharacter->user_id,
-                        'name' => $activity->organizerCharacter->name,
-                        'avatar_url' => $activity->organizerCharacter->avatar_url,
-                    ] : null,
-                    'slot_count' => $activity->slots
-                        ->filter(fn (ActivitySlot $slot): bool => $slotKind->isMainRoster($slot))
-                        ->count(),
-                    'assigned_slot_count' => $activity->slots
-                        ->filter(fn (ActivitySlot $slot): bool => $slotKind->isMainRoster($slot) && $slot->assigned_character_id !== null)
-                        ->count(),
-                    'application_count' => $activity->applications
-                        ->whereIn('status', ActivityApplication::ACTIVE_STATUSES)
-                        ->count(),
-                    'has_existing_application' => $activity->applications
-                        ->when(
-                            $currentUserId !== null,
-                            fn ($applications) => $applications
-                                ->where('user_id', $currentUserId)
-                                ->where('status', '!=', ActivityApplication::STATUS_WITHDRAWN),
-                            fn ($applications) => $applications->take(0),
-                        )
-                        ->isNotEmpty(),
-                    'progress_milestone_count' => $activity->progressMilestones->count(),
-                    'created_at' => $activity->created_at?->toIso8601String(),
-                    'updated_at' => $activity->updated_at?->toIso8601String(),
-                ]),
+                ->map(fn (Activity $activity): array => $serializer->serialize(
+                    $activity,
+                    $currentUserId,
+                    $canManageActivities,
+                )),
         ]);
     }
 
@@ -686,20 +632,6 @@ class GroupActivityController extends Controller
         $validated['organized_by_user_id'] = $organizerUserId;
 
         return $validated;
-    }
-
-    private function resolveTargetProgPointLabel(Activity $activity): ?array
-    {
-        if (blank($activity->target_prog_point_key)) {
-            return null;
-        }
-
-        $progPoint = collect($activity->activityTypeVersion?->prog_points ?? [])
-            ->firstWhere('key', $activity->target_prog_point_key);
-
-        $label = is_array($progPoint) ? ($progPoint['label'] ?? null) : null;
-
-        return is_array($label) ? $label : null;
     }
 
     /**

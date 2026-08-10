@@ -1,5 +1,7 @@
 <script setup lang="ts">
 import type { GroupDashboardGroup } from "@/Types/Groups";
+import axios from "axios";
+import { useToast } from "@nuxt/ui/composables";
 import { router, usePage } from "@inertiajs/vue3";
 import { route } from "ziggy-js";
 import { computed, ref } from "vue";
@@ -16,8 +18,11 @@ const props = defineProps<{
 const { t } = useI18n();
 const page = usePage();
 const confirmationModal = useConfirmationModal();
+const toast = useToast();
 const notificationPreferencesOpen = ref(false);
 const membershipActionPending = ref(false);
+const runListActionPending = ref(false);
+const isInMyRuns = ref(Boolean(props.group.is_in_my_runs));
 
 const isAuthenticated = computed(() => Boolean(page.props.auth?.user));
 const showMembershipAction = computed(() => Boolean(
@@ -36,6 +41,9 @@ const membershipActionLabel = computed(() => {
 });
 
 const notificationActionLabel = () => t("groups.notifications.preferences.title");
+const runListActionLabel = computed(() => t(isInMyRuns.value
+	? "groups.dashboard.actions.remove_from_my_runs"
+	: "groups.dashboard.actions.add_to_my_runs"));
 
 const openRuns = () => {
 	router.get(route("groups.dashboard.activities.index", props.group.slug));
@@ -45,6 +53,38 @@ const openMembers = () => {
 	router.get(route("groups.dashboard.members", props.group.slug));
 };
 
+const toggleMyRuns = async () => {
+	if (runListActionPending.value) {
+		return;
+	}
+
+	runListActionPending.value = true;
+
+	try {
+		const response = isInMyRuns.value
+			? await axios.delete(route("groups.run-list.destroy", props.group.slug))
+			: await axios.post(route("groups.run-list.store", props.group.slug));
+
+		isInMyRuns.value = Boolean(response.data.is_in_my_runs);
+		toast.add({
+			title: t(isInMyRuns.value
+				? "groups.dashboard.my_runs_feedback.added_title"
+				: "groups.dashboard.my_runs_feedback.removed_title"),
+			description: t(isInMyRuns.value
+				? "groups.dashboard.my_runs_feedback.added_description"
+				: "groups.dashboard.my_runs_feedback.removed_description", { name: props.group.name }),
+			color: "success",
+		});
+	} catch {
+		toast.add({
+			title: t("groups.dashboard.my_runs_feedback.error_title"),
+			description: t("groups.dashboard.my_runs_feedback.error_description"),
+			color: "error",
+		});
+	} finally {
+		runListActionPending.value = false;
+	}
+};
 const openSettings = () => {
 	router.get(route("groups.dashboard.settings", props.group.slug));
 };
@@ -158,6 +198,16 @@ const openDiscordInvite = () => {
 				:label="t('groups.dashboard.actions.view_runs')"
 				class="justify-center"
 				@click="openRuns"
+			/>
+			<UButton
+				v-if="isAuthenticated"
+				:color="isInMyRuns ? 'primary' : 'neutral'"
+				:variant="isInMyRuns ? 'soft' : 'solid'"
+				:icon="isInMyRuns ? 'i-lucide-calendar-minus' : 'i-lucide-calendar-plus'"
+				:label="runListActionLabel"
+				:loading="runListActionPending"
+				class="justify-center"
+				@click="toggleMyRuns"
 			/>
 			<UButton
 				v-if="group.discord_invite_url"

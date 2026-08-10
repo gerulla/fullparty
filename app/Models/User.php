@@ -156,6 +156,12 @@ class User extends Authenticatable implements MustVerifyEmail, OAuthenticatable
             ->withTimestamps();
     }
 
+    public function runListGroups(): BelongsToMany
+    {
+        return $this->belongsToMany(Group::class, 'user_run_list_groups')
+            ->withTimestamps();
+    }
+
     public function moderatedGroups(): BelongsToMany
     {
         return $this->groups()->wherePivotIn('role', [

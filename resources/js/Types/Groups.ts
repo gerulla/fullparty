@@ -381,6 +381,7 @@ export type GroupDashboardGroup = {
 		name: string | null
 		avatar_url: string | null
 	}
+	is_in_my_runs: boolean
 	current_user_role: string | null
 	notifications: {
 		enabled: boolean

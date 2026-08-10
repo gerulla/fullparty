@@ -44,6 +44,7 @@ const top = computed(() => [
 
 const runs = computed(() => [
 	authLink(localizedRoute('dashboard.runs.index'), 'i-lucide-search', t('navigation.sidebar.find_runs'), ['dashboard.runs.*']),
+	authLink(localizedRoute('account.runs.index'), 'i-lucide-calendar-days', t('navigation.sidebar.my_runs'), ['account.runs.*']),
 	authLink(localizedRoute('account.applications'), 'i-lucide-file-text', t('navigation.sidebar.applications'), ['account.applications*']),
 ])
 

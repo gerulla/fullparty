@@ -68,6 +68,7 @@ const admin = computed(() => [
 	{ label: t('navigation.sidebar.featured_groups'), href: localizedRoute('admin.featured-groups.index'), icon: 'i-lucide-sparkles', activePatterns: ['admin.featured-groups.*'] },
 	{ label: t('navigation.sidebar.integrations'), href: localizedRoute('admin.integrations.index'), icon: 'i-lucide-plug-zap', activePatterns: ['admin.integrations.*'] },
 	{ label: t('navigation.sidebar.discord_guild_links'), href: localizedRoute('admin.discord-guild-links.index'), icon: 'i-lucide-server-cog', activePatterns: ['admin.discord-guild-links.*'] },
+	{ label: t('navigation.sidebar.quotas'), href: localizedRoute('admin.quotas.index'), icon: 'i-lucide-gauge', activePatterns: ['admin.quotas.*'] },
 	{ label: t('navigation.sidebar.fflogs_playground'), href: localizedRoute('admin.fflogs-playground.index'), icon: 'i-lucide-square-terminal', activePatterns: ['admin.fflogs-playground.*'] },
 	{ label: t('navigation.sidebar.activity_types'), href: localizedRoute('admin.activity-types.index'), icon: 'i-lucide-file-pen', activePatterns: ['admin.activity-types.*'] },
 	{ label: t('navigation.sidebar.system_data'), href: localizedRoute('admin.system-data'), icon: 'i-lucide-database', activePatterns: ['admin.system-data'] },

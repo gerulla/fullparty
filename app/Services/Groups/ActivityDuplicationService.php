@@ -2,17 +2,20 @@
 
 namespace App\Services\Groups;
 
+use App\DTOs\QuotaCheck;
 use App\Models\Activity;
 use App\Models\ActivitySlot;
 use App\Models\User;
+use App\Services\Quotas\QuotaService;
+use App\Support\Quotas\QuotaKey;
 use Carbon\CarbonImmutable;
-use Illuminate\Support\Facades\DB;
 
 class ActivityDuplicationService
 {
     public function __construct(
         private readonly ActivitySlotAttendanceService $attendanceService,
         private readonly GroupActivityAuditService $activityAuditService,
+        private readonly QuotaService $quotaService,
     ) {}
 
     public function duplicate(
@@ -25,13 +28,19 @@ class ActivityDuplicationService
         bool $copyFillIns,
     ): Activity {
         $source->load([
+            'group',
             'activityType',
             'activityTypeVersion',
             'slots.fieldValues',
             'slots.compositionHints',
         ]);
 
-        return DB::transaction(function () use (
+        $quotaChecks = [
+            new QuotaCheck(QuotaKey::FUTURE_RUNS, $source->group),
+            new QuotaCheck(QuotaKey::RUNS_PER_DAY, $source->group, ['starts_at' => $startsAt]),
+        ];
+
+        return $this->quotaService->run($quotaChecks, function () use (
             $source,
             $actor,
             $title,

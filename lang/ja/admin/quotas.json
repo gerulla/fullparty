@@ -1,0 +1,43 @@
+{
+  "title": "アカウント上限",
+  "subtitle": "アカウント全体の保護を解除せず、対象と上限を限定して例外を設定します。",
+  "admin_only": "管理者限定",
+  "default_limit": "既定値 {limit}",
+  "search_subjects": "ユーザーまたはグループを検索...",
+  "saved": "アカウント上限を保存しました",
+  "deleted": "アカウント上限を削除しました",
+  "reason_placeholder": "この例外が必要な理由を入力してください。",
+  "overrides_title": "有効な例外",
+  "overrides_description": "例外は選択した対象と上限だけに適用されます。",
+  "usage": "使用数",
+  "expiry": "有効期限",
+  "no_expiry": "期限なし",
+  "unlimited": "無制限",
+  "contextual": "状況別",
+  "empty_title": "上限の例外はありません",
+  "empty_description": "すべてのアカウントとグループに既定値が適用されています。",
+  "scopes": { "user": "ユーザー", "group": "グループ" },
+  "mode": {
+    "observe_title": "監視モード",
+    "observe_description": "上限超過は計算・記録されますが、リクエストは拒否されません。本番環境の利用状況を確認してから QUOTA_MODE=enforce を設定してください。",
+    "enforce_title": "制限を適用中",
+    "enforce_description": "有効な上限を超えるリクエストはサーバーによって拒否されます。"
+  },
+  "form": { "create_title": "例外を追加", "edit_title": "例外を編集" },
+  "fields": {
+    "scope": "適用対象",
+    "subject": "ユーザーまたはグループ",
+    "quota": "上限の種類",
+    "limit": "個別上限",
+    "unlimited": "無制限",
+    "starts_at": "開始日時",
+    "expires_at": "終了日時",
+    "reason": "理由"
+  },
+  "delete_modal": {
+    "title": "上限の例外を削除しますか？",
+    "description": "{subject}には直ちに既定の上限が適用されます。",
+    "warning": "現在の使用数が既定値を超えている場合、新しい操作が拒否されることがあります。",
+    "confirm": "例外を削除"
+  }
+}

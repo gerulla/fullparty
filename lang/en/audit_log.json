@@ -134,6 +134,11 @@
       "system_banner": {
         "updated": "updated the site-wide system banner.",
         "cleared": "cleared the site-wide system banner."
+      },
+      "quota_override": {
+        "created": "created an account limit override.",
+        "updated": "updated an account limit override.",
+        "deleted": "removed an account limit override."
       }
     },
     "character": {
@@ -393,6 +398,11 @@
       "system_banner": {
         "updated": "System banner updated",
         "cleared": "System banner cleared"
+      },
+      "quota_override": {
+        "created": "Account limit override created",
+        "updated": "Account limit override updated",
+        "deleted": "Account limit override removed"
       }
     },
     "character": {

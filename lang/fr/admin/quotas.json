@@ -1,0 +1,43 @@
+{
+  "title": "Limites des comptes",
+  "subtitle": "Consultez les limites de la plateforme et accordez des exceptions ciblées sans désactiver la protection d’un compte entier.",
+  "admin_only": "Administrateurs uniquement",
+  "default_limit": "par défaut {limit}",
+  "search_subjects": "Rechercher des utilisateurs ou des groupes...",
+  "saved": "Limite du compte enregistrée",
+  "deleted": "Limite du compte supprimée",
+  "reason_placeholder": "Pourquoi cette exception est-elle nécessaire ?",
+  "overrides_title": "Exceptions actives",
+  "overrides_description": "Les exceptions s’appliquent uniquement à la ressource et à la limite sélectionnées.",
+  "usage": "Utilisation",
+  "expiry": "Expiration",
+  "no_expiry": "Sans expiration",
+  "unlimited": "Illimité",
+  "contextual": "Selon le contexte",
+  "empty_title": "Aucune exception de limite",
+  "empty_description": "Tous les comptes et groupes utilisent actuellement les valeurs par défaut.",
+  "scopes": { "user": "Utilisateur", "group": "Groupe" },
+  "mode": {
+    "observe_title": "Mode d’observation",
+    "observe_description": "Les limites sont calculées et journalisées, mais les requêtes ne sont pas bloquées. Définissez QUOTA_MODE=enforce après avoir étudié l’utilisation en production.",
+    "enforce_title": "Application activée",
+    "enforce_description": "Les requêtes dépassant une limite effective sont bloquées par le serveur."
+  },
+  "form": { "create_title": "Ajouter une exception", "edit_title": "Modifier l’exception" },
+  "fields": {
+    "scope": "S’applique à",
+    "subject": "Utilisateur ou groupe",
+    "quota": "Limite",
+    "limit": "Limite personnalisée",
+    "unlimited": "Illimité",
+    "starts_at": "Début",
+    "expires_at": "Expiration",
+    "reason": "Motif"
+  },
+  "delete_modal": {
+    "title": "Supprimer l’exception ?",
+    "description": "{subject} retrouvera immédiatement la limite par défaut.",
+    "warning": "De nouvelles actions pourront être bloquées si l’utilisation actuelle dépasse déjà la limite par défaut.",
+    "confirm": "Supprimer l’exception"
+  }
+}

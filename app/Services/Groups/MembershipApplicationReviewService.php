@@ -2,15 +2,17 @@
 
 namespace App\Services\Groups;
 
+use App\DTOs\QuotaCheck;
 use App\Models\Group;
 use App\Models\GroupMembership;
 use App\Models\GroupMembershipApplication;
 use App\Models\User;
 use App\Services\AuditLogger;
 use App\Services\Notifications\GroupUpdateNotificationService;
+use App\Services\Quotas\QuotaService;
 use App\Support\Audit\AuditScope;
 use App\Support\Audit\AuditSeverity;
-use Illuminate\Support\Facades\DB;
+use App\Support\Quotas\QuotaKey;
 use Illuminate\Validation\ValidationException;
 
 final class MembershipApplicationReviewService
@@ -18,6 +20,7 @@ final class MembershipApplicationReviewService
     public function __construct(
         private readonly AuditLogger $auditLogger,
         private readonly GroupUpdateNotificationService $groupUpdateNotificationService,
+        private readonly QuotaService $quotaService,
     ) {}
 
     public function approve(Group $group, GroupMembershipApplication $application, User $reviewer): GroupMembershipApplication
@@ -31,22 +34,28 @@ final class MembershipApplicationReviewService
             ]);
         }
 
-        DB::transaction(function () use ($group, $application, $reviewer): void {
-            $group->memberships()->firstOrCreate(
-                ['user_id' => $application->user_id],
-                [
-                    'role' => GroupMembership::ROLE_MEMBER,
-                    'joined_at' => now(),
-                ],
-            );
+        $applicant = User::query()->findOrFail($application->user_id);
 
-            $application->update([
-                'status' => GroupMembershipApplication::STATUS_APPROVED,
-                'reviewed_by_user_id' => $reviewer->id,
-                'reviewed_at' => now(),
-                'review_reason' => null,
-            ]);
-        });
+        $this->quotaService->runIf([
+            new QuotaCheck(QuotaKey::GROUPS_JOINED, $applicant),
+        ], fn (): bool => ! $group->memberships()
+            ->where('user_id', $applicant->id)
+            ->exists(), function () use ($group, $application, $reviewer, $applicant): void {
+                $group->memberships()->firstOrCreate(
+                    ['user_id' => $applicant->id],
+                    [
+                        'role' => GroupMembership::ROLE_MEMBER,
+                        'joined_at' => now(),
+                    ],
+                );
+
+                $application->update([
+                    'status' => GroupMembershipApplication::STATUS_APPROVED,
+                    'reviewed_by_user_id' => $reviewer->id,
+                    'reviewed_at' => now(),
+                    'review_reason' => null,
+                ]);
+            });
 
         $application->refresh();
 

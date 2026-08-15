@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\DTOs\QuotaCheck;
 use App\Exceptions\LodestoneFetchException;
 use App\Exceptions\LodestoneInvalidInputException;
 use App\Exceptions\LodestoneParseException;
@@ -20,8 +21,10 @@ use App\Services\Characters\XIVAuthCharacterSyncService;
 use App\Services\Lodestone\LodestoneInputNormalizer;
 use App\Services\Lodestone\LodestoneScraper;
 use App\Services\Notifications\AccountCharacterNotificationService;
+use App\Services\Quotas\QuotaService;
 use App\Support\Audit\AuditScope;
 use App\Support\Audit\AuditSeverity;
+use App\Support\Quotas\QuotaKey;
 use Carbon\Carbon;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
@@ -42,6 +45,7 @@ class CharacterController extends Controller
         private readonly AuditLogger $auditLogger,
         private readonly CharacterProfileRefreshService $characterProfileRefreshService,
         private readonly AccountCharacterNotificationService $accountCharacterNotificationService,
+        private readonly QuotaService $quotaService,
     ) {}
 
     private function generateVerificationToken(): string
@@ -91,12 +95,38 @@ class CharacterController extends Controller
                 ]);
             }
 
-            if ($character->user_id === null) {
-                $character->user_id = auth()->id();
-            }
+            $lockedCharacter = null;
+            $character = $this->quotaService->runIf([
+                new QuotaCheck(QuotaKey::CHARACTERS_TOTAL, $request->user()),
+            ], function () use (&$lockedCharacter, $character): bool {
+                $lockedCharacter = Character::query()
+                    ->whereKey($character->id)
+                    ->lockForUpdate()
+                    ->firstOrFail();
 
-            $this->renewVerificationTokenIfNeeded($character);
-            $character->save();
+                return $lockedCharacter->user_id === null;
+            }, function () use (&$lockedCharacter, $request): ?Character {
+                if (
+                    $lockedCharacter->user_id !== null
+                    && (int) $lockedCharacter->user_id !== (int) $request->user()->id
+                ) {
+                    return null;
+                }
+
+                $lockedCharacter->user_id ??= $request->user()->id;
+                $this->renewVerificationTokenIfNeeded($lockedCharacter);
+                $lockedCharacter->save();
+
+                return $lockedCharacter;
+            });
+
+            if (! $character instanceof Character) {
+                return Redirect::back()->with('flash_data', [
+                    'manual_character_lookup' => [
+                        'taken' => true,
+                    ],
+                ]);
+            }
 
             return Redirect::back()->with('flash_data', [
                 'manual_character_lookup' => [
@@ -118,8 +148,10 @@ class CharacterController extends Controller
         try {
             $data = $scraper->scrapeProfile($validated['lodestone_id']);
             $token = $this->generateVerificationToken();
-            $character = Character::create([
-                'user_id' => auth()->id(),
+            $character = $this->quotaService->run([
+                new QuotaCheck(QuotaKey::CHARACTERS_TOTAL, $request->user()),
+            ], fn (): Character => Character::query()->create([
+                'user_id' => $request->user()->id,
                 'name' => $data->name,
                 'world' => $data->world,
                 'datacenter' => $data->dataCenter,
@@ -127,7 +159,7 @@ class CharacterController extends Controller
                 'avatar_url' => $data->avatarUrl,
                 'token' => $token,
                 'expires_at' => Carbon::now()->addDay(),
-            ]);
+            ]));
 
             return Redirect::back()->with('flash_data', [
                 'manual_character_lookup' => [

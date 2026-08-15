@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\DTOs\QuotaCheck;
 use App\Http\Requests\StoreGroupRequest;
 use App\Models\Activity;
 use App\Models\ActivitySlotAssignment;
@@ -16,10 +17,12 @@ use App\Services\Groups\GeneratedGroupImageService;
 use App\Services\Groups\MembershipApplicationFormSchemaService;
 use App\Services\ManagedImageStorage;
 use App\Services\Notifications\NotificationPreferenceSettingsService;
+use App\Services\Quotas\QuotaService;
 use App\Support\Audit\AuditScope;
 use App\Support\Audit\AuditSeverity;
 use App\Support\Groups\GroupDiscoveryBadgePalette;
 use App\Support\Input\RequestTextInputSanitizer;
+use App\Support\Quotas\QuotaKey;
 use App\Support\Seo\ServerMeta;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -27,7 +30,6 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\LengthAwarePaginator;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\Rule;
 use Inertia\Inertia;
 use Inertia\Response;
@@ -48,6 +50,7 @@ class GroupController extends Controller
         private readonly FeaturedGroupService $featuredGroupService,
         private readonly NotificationPreferenceSettingsService $notificationPreferenceSettingsService,
         private readonly ServerMeta $serverMeta,
+        private readonly QuotaService $quotaService,
     ) {}
 
     public function index(Request $request): Response
@@ -182,6 +185,17 @@ class GroupController extends Controller
     public function store(StoreGroupRequest $request): RedirectResponse
     {
         $validated = $request->validated();
+        $quotaChecks = [
+            new QuotaCheck(QuotaKey::GROUPS_OWNED, $request->user()),
+            new QuotaCheck(QuotaKey::GROUPS_JOINED, $request->user()),
+        ];
+
+        if ($this->quotaService->isEnforced()) {
+            foreach ($quotaChecks as $quotaCheck) {
+                $this->quotaService->assert($quotaCheck);
+            }
+        }
+
         $uploadedProfilePictureUrl = $this->managedImageStorage->uploadImageIfPresent(
             $request->file('profile_picture'),
             self::IMAGE_DIRECTORY,
@@ -192,7 +206,7 @@ class GroupController extends Controller
             self::IMAGE_DIRECTORY,
         );
 
-        $group = DB::transaction(function () use ($validated, $uploadedProfilePictureUrl, $uploadedBannerImageUrl) {
+        $group = $this->quotaService->run($quotaChecks, function () use ($validated, $uploadedProfilePictureUrl, $uploadedBannerImageUrl) {
             $group = Group::create([
                 'owner_id' => auth()->id(),
                 'name' => $validated['name'],

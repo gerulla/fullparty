@@ -7,6 +7,7 @@ use App\Http\Controllers\AdminCharacterController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AdminDiscordGuildIntegrationController;
 use App\Http\Controllers\AdminFflogsPlaygroundController;
+use App\Http\Controllers\AdminQuotaController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BozjaItemController;
 use App\Http\Controllers\CharacterClassController;
@@ -222,7 +223,7 @@ Route::prefix('{locale?}')
 
         Route::post('/groups/{group:slug}/activities/{activity}/application/{secretKey?}', [GroupActivityApplicationController::class, 'store'])
             ->where('secretKey', '[A-Za-z0-9]{40}')
-            ->middleware('throttle:guest.application')
+            ->middleware(['throttle:guest.application', 'throttle:application.submit'])
             ->name('groups.activities.application.store');
 
         Route::get('/groups/{group:slug}/activities/{activity}/application-edit/{accessToken}/{secretKey?}', [GroupActivityApplicationController::class, 'editGuest'])
@@ -409,7 +410,9 @@ Route::prefix('{locale?}')
             Route::get('/groups/featured', [GroupController::class, 'featured'])->name('groups.featured');
             Route::get('/groups/{group:slug}/details', [GroupController::class, 'details'])->name('groups.details');
             Route::get('/group-search-results', [GroupController::class, 'search'])->name('groups.search');
-            Route::post('/groups', [GroupController::class, 'store'])->name('groups.store');
+            Route::post('/groups', [GroupController::class, 'store'])
+                ->middleware('throttle:group.create')
+                ->name('groups.store');
             Route::delete('/groups/{group:slug}', [GroupController::class, 'destroy'])->name('groups.destroy');
 
             // Signed-in user application updates.
@@ -431,9 +434,13 @@ Route::prefix('{locale?}')
             |--------------------------------------------------------------------------
             */
 
-            Route::post('/groups/{group:slug}/join', [GroupMembershipController::class, 'join'])->name('groups.join');
+            Route::post('/groups/{group:slug}/join', [GroupMembershipController::class, 'join'])
+                ->middleware('throttle:membership.write')
+                ->name('groups.join');
             Route::get('/groups/{group:slug}/membership-application', [GroupMembershipApplicationController::class, 'create'])->name('groups.membership-applications.create');
-            Route::post('/groups/{group:slug}/membership-application', [GroupMembershipApplicationController::class, 'store'])->name('groups.membership-applications.store');
+            Route::post('/groups/{group:slug}/membership-application', [GroupMembershipApplicationController::class, 'store'])
+                ->middleware('throttle:membership.write')
+                ->name('groups.membership-applications.store');
             Route::put('/groups/{group:slug}/membership-application', [GroupMembershipApplicationController::class, 'update'])->name('groups.membership-applications.update');
             Route::post('/groups/{group:slug}/leave', [GroupMembershipController::class, 'leave'])->name('groups.leave');
             Route::patch('/groups/{group:slug}/notifications', [GroupMembershipController::class, 'updateNotifications'])->name('groups.notifications.update');
@@ -445,18 +452,24 @@ Route::prefix('{locale?}')
 
             // Shared member notes used across member management surfaces.
             Route::get('/groups/{group:slug}/members/{user}/notes', [GroupMemberNoteController::class, 'show'])->name('groups.members.notes.show');
-            Route::post('/groups/{group:slug}/members/{user}/notes', [GroupMemberNoteController::class, 'store'])->name('groups.members.notes.store');
+            Route::post('/groups/{group:slug}/members/{user}/notes', [GroupMemberNoteController::class, 'store'])
+                ->middleware('throttle:group.content.write')
+                ->name('groups.members.notes.store');
             Route::put('/groups/{group:slug}/member-notes/{note}', [GroupMemberNoteController::class, 'update'])->name('groups.members.notes.update');
             Route::delete('/groups/{group:slug}/member-notes/{note}', [GroupMemberNoteController::class, 'destroy'])->name('groups.members.notes.destroy');
-            Route::post('/groups/{group:slug}/member-notes/{note}/addenda', [GroupMemberNoteController::class, 'storeAddendum'])->name('groups.members.notes.addenda.store');
+            Route::post('/groups/{group:slug}/member-notes/{note}/addenda', [GroupMemberNoteController::class, 'storeAddendum'])
+                ->middleware('throttle:group.content.write')
+                ->name('groups.members.notes.addenda.store');
             Route::put('/groups/{group:slug}/member-note-addenda/{addendum}', [GroupMemberNoteController::class, 'updateAddendum'])->name('groups.members.notes.addenda.update');
             Route::delete('/groups/{group:slug}/member-note-addenda/{addendum}', [GroupMemberNoteController::class, 'destroyAddendum'])->name('groups.members.notes.addenda.destroy');
 
             // Invite management and acceptance.
-            Route::post('/groups/{group:slug}/invites', [GroupInviteController::class, 'store'])->name('groups.invites.store');
+            Route::post('/groups/{group:slug}/invites', [GroupInviteController::class, 'store'])
+                ->middleware('throttle:group.content.write')
+                ->name('groups.invites.store');
             Route::delete('/groups/{group:slug}/invites/{invite}', [GroupInviteController::class, 'destroy'])->name('groups.invites.destroy');
             Route::post('/invite/{token}/accept', [GroupInviteController::class, 'accept'])
-                ->middleware('throttle:invite')
+                ->middleware(['throttle:invite', 'throttle:membership.write'])
                 ->name('groups.invites.accept');
 
             /*
@@ -473,15 +486,15 @@ Route::prefix('{locale?}')
                 // Group dashboard landing and non-activity sections.
                 Route::get('/members', [GroupMemberController::class, 'index'])->name('groups.dashboard.members');
                 Route::get('/content/delubrum-reginae-savage', [GroupContentController::class, 'delubrumReginaeSavage'])->name('groups.dashboard.content.delubrum-reginae-savage');
-                Route::post('/content/delubrum-reginae-savage/holsters', [GroupBozjaHolsterController::class, 'store'])->name('groups.dashboard.content.delubrum-reginae-savage.holsters.store');
-                Route::post('/content/delubrum-reginae-savage/holsters/{bozjaHolster}/clone', [GroupBozjaHolsterController::class, 'duplicate'])->name('groups.dashboard.content.delubrum-reginae-savage.holsters.clone');
+                Route::post('/content/delubrum-reginae-savage/holsters', [GroupBozjaHolsterController::class, 'store'])->middleware('throttle:group.content.write')->name('groups.dashboard.content.delubrum-reginae-savage.holsters.store');
+                Route::post('/content/delubrum-reginae-savage/holsters/{bozjaHolster}/clone', [GroupBozjaHolsterController::class, 'duplicate'])->middleware('throttle:group.content.write')->name('groups.dashboard.content.delubrum-reginae-savage.holsters.clone');
                 Route::put('/content/delubrum-reginae-savage/holsters/{bozjaHolster}', [GroupBozjaHolsterController::class, 'update'])->name('groups.dashboard.content.delubrum-reginae-savage.holsters.update');
                 Route::patch('/content/delubrum-reginae-savage/holsters/{bozjaHolster}/status', [GroupBozjaHolsterController::class, 'updateStatus'])->name('groups.dashboard.content.delubrum-reginae-savage.holsters.status.update');
                 Route::patch('/content/delubrum-reginae-savage/holsters/{bozjaHolster}/default', [GroupBozjaHolsterController::class, 'makeDefault'])->name('groups.dashboard.content.delubrum-reginae-savage.holsters.default.update');
                 Route::delete('/content/delubrum-reginae-savage/holsters/{bozjaHolster}', [GroupBozjaHolsterController::class, 'destroy'])->name('groups.dashboard.content.delubrum-reginae-savage.holsters.destroy');
                 Route::get('/content/forked-tower-blood', [GroupContentController::class, 'forkedTowerBlood'])->name('groups.dashboard.content.forked-tower-blood');
                 Route::get('/content/forked-tower-blood/phantom-compositions', [GroupPhantomCompositionController::class, 'index'])->name('groups.dashboard.content.forked-tower-blood.phantom-compositions.index');
-                Route::post('/content/forked-tower-blood/phantom-compositions', [GroupPhantomCompositionController::class, 'store'])->name('groups.dashboard.content.forked-tower-blood.phantom-compositions.store');
+                Route::post('/content/forked-tower-blood/phantom-compositions', [GroupPhantomCompositionController::class, 'store'])->middleware('throttle:group.content.write')->name('groups.dashboard.content.forked-tower-blood.phantom-compositions.store');
                 Route::put('/content/forked-tower-blood/phantom-compositions/reorder', [GroupPhantomCompositionController::class, 'reorder'])->name('groups.dashboard.content.forked-tower-blood.phantom-compositions.reorder');
                 Route::get('/content/forked-tower-blood/phantom-compositions/{phantomComposition}', [GroupPhantomCompositionController::class, 'show'])->name('groups.dashboard.content.forked-tower-blood.phantom-compositions.show');
                 Route::put('/content/forked-tower-blood/phantom-compositions/{phantomComposition}', [GroupPhantomCompositionController::class, 'update'])->name('groups.dashboard.content.forked-tower-blood.phantom-compositions.update');
@@ -525,7 +538,9 @@ Route::prefix('{locale?}')
                 */
 
                 Route::get('/activities/create', [GroupActivityController::class, 'create'])->name('groups.dashboard.activities.create');
-                Route::post('/activities', [GroupActivityController::class, 'store'])->name('groups.dashboard.activities.store');
+                Route::post('/activities', [GroupActivityController::class, 'store'])
+                    ->middleware('throttle:run.create')
+                    ->name('groups.dashboard.activities.store');
                 Route::get('/activities/{activity}', [GroupActivityController::class, 'show'])->name('groups.dashboard.activities.show');
                 Route::get('/activities/{activity}/edit', [GroupActivityController::class, 'edit'])->name('groups.dashboard.activities.edit');
                 Route::put('/activities/{activity}', [GroupActivityController::class, 'update'])->name('groups.dashboard.activities.update');
@@ -606,7 +621,9 @@ Route::prefix('{locale?}')
                 */
 
                 Route::post('/activities/{activity}/schedule', [GroupActivityController::class, 'schedule'])->name('groups.dashboard.activities.schedule');
-                Route::post('/activities/{activity}/duplicate', [GroupActivityDuplicationController::class, 'store'])->name('groups.dashboard.activities.duplicate');
+                Route::post('/activities/{activity}/duplicate', [GroupActivityDuplicationController::class, 'store'])
+                    ->middleware('throttle:run.create')
+                    ->name('groups.dashboard.activities.duplicate');
                 Route::post('/activities/{activity}/publish-roster', [GroupActivityController::class, 'publishRoster'])->name('groups.dashboard.activities.publish-roster');
                 Route::post('/activities/{activity}/complete', [GroupActivityCompletionController::class, 'store'])->name('groups.dashboard.activities.complete');
                 Route::post('/activities/{activity}/cancel', [GroupActivityController::class, 'cancel'])->name('groups.dashboard.activities.cancel');
@@ -723,6 +740,13 @@ Route::prefix('{locale?}')
                 // Discord guild links.
                 Route::get('/discord-guild-links', [AdminDiscordGuildIntegrationController::class, 'index'])->name('admin.discord-guild-links.index');
                 Route::delete('/discord-guild-links/{discordGuildIntegration}', [AdminDiscordGuildIntegrationController::class, 'destroy'])->name('admin.discord-guild-links.destroy');
+
+                // Account and group quota overrides.
+                Route::get('/quotas', [AdminQuotaController::class, 'index'])->name('admin.quotas.index');
+                Route::get('/quotas/subjects', [AdminQuotaController::class, 'subjects'])->name('admin.quotas.subjects');
+                Route::post('/quotas', [AdminQuotaController::class, 'store'])->middleware('throttle:admin.write')->name('admin.quotas.store');
+                Route::put('/quotas/{quotaOverride}', [AdminQuotaController::class, 'update'])->middleware('throttle:admin.write')->name('admin.quotas.update');
+                Route::delete('/quotas/{quotaOverride}', [AdminQuotaController::class, 'destroy'])->middleware('throttle:admin.write')->name('admin.quotas.destroy');
 
                 // Activity type administration.
                 Route::get('/activity-types', [ActivityTypeController::class, 'index'])->name('admin.activity-types.index');

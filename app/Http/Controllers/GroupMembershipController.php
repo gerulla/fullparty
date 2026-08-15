@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\DTOs\QuotaCheck;
 use App\Models\Group;
 use App\Models\GroupMembership;
 use App\Models\ScheduledRun;
@@ -9,9 +10,11 @@ use App\Models\User;
 use App\Services\AuditLogger;
 use App\Services\Notifications\GroupUpdateNotificationService;
 use App\Services\Notifications\NotificationPreferenceSettingsService;
+use App\Services\Quotas\QuotaService;
 use App\Support\Audit\AuditScope;
 use App\Support\Audit\AuditSeverity;
 use App\Support\Input\RequestTextInputSanitizer;
+use App\Support\Quotas\QuotaKey;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -24,6 +27,7 @@ class GroupMembershipController extends Controller
         private readonly GroupUpdateNotificationService $groupUpdateNotificationService,
         private readonly NotificationPreferenceSettingsService $notificationPreferenceSettingsService,
         private readonly RequestTextInputSanitizer $requestTextInputSanitizer,
+        private readonly QuotaService $quotaService,
     ) {}
 
     public function join(Group $group): RedirectResponse
@@ -46,13 +50,18 @@ class GroupMembershipController extends Controller
             ]);
         }
 
-        $membership = $group->memberships()->firstOrCreate(
-            ['user_id' => auth()->id()],
-            [
-                'role' => GroupMembership::ROLE_MEMBER,
-                'joined_at' => now(),
-            ]
-        );
+        $user = auth()->user();
+        $membership = $this->quotaService->runIf([
+            new QuotaCheck(QuotaKey::GROUPS_JOINED, $user),
+        ], fn (): bool => ! $group->memberships()
+            ->where('user_id', $user->id)
+            ->exists(), fn (): GroupMembership => $group->memberships()->firstOrCreate(
+                ['user_id' => $user->id],
+                [
+                    'role' => GroupMembership::ROLE_MEMBER,
+                    'joined_at' => now(),
+                ],
+            ));
 
         if ($membership->wasRecentlyCreated) {
             $this->auditLogger->log(
@@ -420,7 +429,11 @@ class GroupMembershipController extends Controller
 
         $previousOwnerId = $group->owner_id;
 
-        DB::transaction(function () use ($group, $newOwnerMembership) {
+        $newOwner = $newOwnerMembership->user()->firstOrFail();
+
+        $this->quotaService->run([
+            new QuotaCheck(QuotaKey::GROUPS_OWNED, $newOwner),
+        ], function () use ($group, $newOwnerMembership) {
             $group->memberships()
                 ->where('role', GroupMembership::ROLE_OWNER)
                 ->update(['role' => GroupMembership::ROLE_ADMIN]);

@@ -4,6 +4,8 @@ namespace App\Providers;
 
 use App\Http\Controllers\XivPluginDeviceAuthorizationController;
 use App\Models\Activity;
+use App\Models\Group;
+use App\Models\IntegrationClient;
 use App\Models\User;
 use App\Policies\GroupActivityPolicy;
 use App\Support\Passport\XivPluginAuthorizationServerFactory;
@@ -147,6 +149,62 @@ class AppServiceProvider extends ServiceProvider
 
             return Limit::perMinute(30)->by($actor);
         });
+
+        RateLimiter::for('group.create', fn (Request $request) => [
+            Limit::perHour(2)->by('hour:user:'.$request->user()->id),
+            Limit::perDay(5)->by('day:user:'.$request->user()->id),
+        ]);
+
+        RateLimiter::for('run.create', function (Request $request) {
+            $group = $request->route('group');
+            $groupId = $group instanceof Group ? $group->id : $group;
+
+            return [
+                Limit::perHour(30)->by('user:'.$request->user()->id),
+                Limit::perHour(40)->by('group:'.$groupId),
+            ];
+        });
+
+        RateLimiter::for('application.submit', function (Request $request) {
+            $actor = $request->user()
+                ? 'user:'.$request->user()->id
+                : 'ip:'.$request->ip();
+
+            return [
+                Limit::perMinute(5)->by('minute:'.$actor),
+                Limit::perDay(50)->by('day:'.$actor),
+            ];
+        });
+
+        RateLimiter::for('membership.write', fn (Request $request) => [
+            Limit::perMinute(10)->by('minute:user:'.$request->user()->id),
+            Limit::perHour(30)->by('hour:user:'.$request->user()->id),
+        ]);
+
+        RateLimiter::for('group.content.write', function (Request $request) {
+            $group = $request->route('group');
+            $groupId = $group instanceof Group ? $group->id : $group;
+
+            return [
+                Limit::perMinute(20)->by('user:'.$request->user()->id),
+                Limit::perHour(100)->by('group:'.$groupId),
+            ];
+        });
+
+        RateLimiter::for('integration.api', function (Request $request) {
+            $client = $request->attributes->get('integration_client');
+            $key = $client instanceof IntegrationClient
+                ? 'client:'.$client->id
+                : 'ip:'.$request->ip();
+
+            return Limit::perMinute(180)->by($key);
+        });
+
+        RateLimiter::for('xivplugin.api', fn (Request $request) => Limit::perMinute(180)
+            ->by('user:'.$request->user()->id));
+
+        RateLimiter::for('admin.write', fn (Request $request) => Limit::perMinute(30)
+            ->by('user:'.$request->user()->id));
 
         Event::listen(function (SocialiteWasCalled $event) {
             $event->extendSocialite('discord', Provider::class);

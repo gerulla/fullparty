@@ -1,0 +1,43 @@
+{
+  "title": "Kontolimits",
+  "subtitle": "Prüfe Plattformlimits und erteile gezielte Ausnahmen, ohne den Schutz für ein gesamtes Konto zu deaktivieren.",
+  "admin_only": "Nur Admins",
+  "default_limit": "Standard {limit}",
+  "search_subjects": "Benutzer oder Gruppen suchen...",
+  "saved": "Kontolimit gespeichert",
+  "deleted": "Kontolimit entfernt",
+  "reason_placeholder": "Warum wird diese Ausnahme benötigt?",
+  "overrides_title": "Aktive Ausnahmen",
+  "overrides_description": "Ausnahmen gelten nur für die ausgewählte Ressource und das ausgewählte Limit.",
+  "usage": "Nutzung",
+  "expiry": "Läuft ab",
+  "no_expiry": "Kein Ablaufdatum",
+  "unlimited": "Unbegrenzt",
+  "contextual": "Kontextabhängig",
+  "empty_title": "Keine Limit-Ausnahmen",
+  "empty_description": "Alle Konten und Gruppen verwenden derzeit die Plattformstandards.",
+  "scopes": { "user": "Benutzer", "group": "Gruppe" },
+  "mode": {
+    "observe_title": "Beobachtungsmodus",
+    "observe_description": "Limits werden berechnet und protokolliert, Anfragen aber nicht blockiert. Setze nach der Prüfung der Produktionsnutzung QUOTA_MODE=enforce.",
+    "enforce_title": "Durchsetzung aktiviert",
+    "enforce_description": "Anfragen, die ein wirksames Limit überschreiten, werden vom Server blockiert."
+  },
+  "form": { "create_title": "Ausnahme hinzufügen", "edit_title": "Ausnahme bearbeiten" },
+  "fields": {
+    "scope": "Gilt für",
+    "subject": "Benutzer oder Gruppe",
+    "quota": "Limit",
+    "limit": "Benutzerdefiniertes Limit",
+    "unlimited": "Unbegrenzt",
+    "starts_at": "Beginnt am",
+    "expires_at": "Läuft ab am",
+    "reason": "Grund"
+  },
+  "delete_modal": {
+    "title": "Limit-Ausnahme entfernen?",
+    "description": "Für {subject} gilt sofort wieder der Plattformstandard.",
+    "warning": "Neue Aktionen können blockiert werden, wenn die aktuelle Nutzung bereits über dem Standardlimit liegt.",
+    "confirm": "Ausnahme entfernen"
+  }
+}

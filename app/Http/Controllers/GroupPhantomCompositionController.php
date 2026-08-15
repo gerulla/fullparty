@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\DTOs\QuotaCheck;
 use App\Http\Requests\PhantomCompositionRequest;
 use App\Models\Group;
 use App\Models\PhantomComposition;
+use App\Services\Quotas\QuotaService;
+use App\Support\Quotas\QuotaKey;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -13,6 +16,8 @@ use Symfony\Component\HttpFoundation\Response;
 
 class GroupPhantomCompositionController extends Controller
 {
+    public function __construct(private readonly QuotaService $quotaService) {}
+
     public function index(Group $group): JsonResponse
     {
         $this->assertCanManagePhantomCompositions($group);
@@ -36,7 +41,9 @@ class GroupPhantomCompositionController extends Controller
 
     public function store(PhantomCompositionRequest $request, Group $group): JsonResponse
     {
-        $composition = DB::transaction(function () use ($request, $group): PhantomComposition {
+        $composition = $this->quotaService->run([
+            new QuotaCheck(QuotaKey::PHANTOM_COMPOSITIONS_TOTAL, $group),
+        ], function () use ($request, $group): PhantomComposition {
             $data = $this->validatedPayload($request);
 
             if ($data['is_default']) {

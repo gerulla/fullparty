@@ -134,6 +134,11 @@
             "system_banner": {
                 "updated": "a mis à jour la bannière système du site.",
                 "cleared": "a supprimé la bannière système du site."
+            },
+            "quota_override": {
+                "created": "a créé une exception de limite de compte.",
+                "updated": "a modifié une exception de limite de compte.",
+                "deleted": "a supprimé une exception de limite de compte."
             }
         },
         "character": {
@@ -393,6 +398,11 @@
             "system_banner": {
                 "updated": "Bannière système mise à jour",
                 "cleared": "Bannière système supprimée"
+            },
+            "quota_override": {
+                "created": "Exception de limite de compte créée",
+                "updated": "Exception de limite de compte modifiée",
+                "deleted": "Exception de limite de compte supprimée"
             }
         },
         "character": {

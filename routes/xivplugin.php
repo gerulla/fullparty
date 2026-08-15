@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::prefix('xivplugin')
     ->as('api.xivplugin.')
-    ->middleware(['auth:api', 'scope:xivplugin:read'])
+    ->middleware(['auth:api', 'scope:xivplugin:read', 'throttle:xivplugin.api'])
     ->group(function () {
         Route::get('/me', [XivPluginUserController::class, 'show'])
             ->name('me');

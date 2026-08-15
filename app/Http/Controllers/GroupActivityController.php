@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\DTOs\QuotaCheck;
 use App\Http\Controllers\Concerns\InteractsWithGroupActivityAttendees;
 use App\Http\Resources\GroupQuickCreateShortcutResource;
 use App\Models\Activity;
@@ -23,15 +24,16 @@ use App\Services\Groups\ActivitySlotSerializer;
 use App\Services\Groups\GroupActivityAuditService;
 use App\Services\Notifications\AssignmentNotificationService;
 use App\Services\Notifications\GroupUpdateNotificationService;
+use App\Services\Quotas\QuotaService;
 use App\Support\ActivityCompositionPresets;
 use App\Support\Input\RequestTextInputSanitizer;
+use App\Support\Quotas\QuotaKey;
 use App\Support\Seo\ServerMeta;
 use Carbon\CarbonImmutable;
 use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\Rule;
 use Illuminate\Validation\ValidationException;
 use Inertia\Inertia;
@@ -47,6 +49,7 @@ class GroupActivityController extends Controller
         private readonly GroupUpdateNotificationService $groupUpdateNotificationService,
         private readonly RequestTextInputSanitizer $requestTextInputSanitizer,
         private readonly ServerMeta $serverMeta,
+        private readonly QuotaService $quotaService,
     ) {}
 
     public function overview(
@@ -247,7 +250,14 @@ class GroupActivityController extends Controller
 
         $isPublic = $validated['is_public'] ?? true;
 
-        $activity = DB::transaction(function () use ($group, $activityType, $activityTypeVersion, $validated, $isPublic) {
+        $quotaChecks = [
+            new QuotaCheck(QuotaKey::FUTURE_RUNS, $group),
+            new QuotaCheck(QuotaKey::RUNS_PER_DAY, $group, [
+                'starts_at' => $validated['starts_at'] ?? null,
+            ]),
+        ];
+
+        $activity = $this->quotaService->run($quotaChecks, function () use ($group, $activityType, $activityTypeVersion, $validated, $isPublic) {
             $activity = $group->activities()->create([
                 'activity_type_id' => $activityType->id,
                 'activity_type_version_id' => $activityTypeVersion->id,
@@ -343,31 +353,48 @@ class GroupActivityController extends Controller
         ]);
         $nextIsPublic = $validated['is_public'] ?? $activity->is_public;
 
-        $activity->update([
-            'organized_by_user_id' => $validated['organized_by_user_id'] ?? $activity->organized_by_user_id,
-            'organized_by_character_id' => array_key_exists('organized_by_character_id', $validated)
-                ? $validated['organized_by_character_id']
-                : $activity->organized_by_character_id,
-            'title' => $validated['title'] ?? $activity->title,
-            'description' => $validated['description'] ?? $activity->description,
-            'notes' => $validated['notes'] ?? $activity->notes,
-            'starts_at' => $validated['starts_at'] ?? $activity->starts_at,
-            'duration_hours' => $validated['duration_hours'] ?? $activity->duration_hours,
-            'datacenter' => $validated['datacenter'] ?? $activity->datacenter,
-            'intensity' => $validated['intensity'] ?? $activity->intensity,
-            'min_item_level' => array_key_exists('min_item_level', $validated)
-                ? $validated['min_item_level']
-                : $activity->min_item_level,
-            'beginner_friendly' => $validated['beginner_friendly'] ?? $activity->beginner_friendly,
-            'run_style' => $validated['run_style'] ?? $activity->run_style,
-            'target_prog_point_key' => array_key_exists('target_prog_point_key', $validated)
-                ? $validated['target_prog_point_key']
-                : $activity->target_prog_point_key,
-            'is_public' => $nextIsPublic,
-            'needs_application' => $validated['needs_application'] ?? $activity->needs_application,
-            'allow_guest_applications' => $nextIsPublic && ($validated['allow_guest_applications'] ?? $activity->allow_guest_applications),
-            'secret_key' => null,
-        ]);
+        $nextStartsAt = $validated['starts_at'] ?? $activity->starts_at;
+        $updateActivity = function () use ($activity, $validated, $nextIsPublic, $nextStartsAt): void {
+            $activity->update([
+                'organized_by_user_id' => $validated['organized_by_user_id'] ?? $activity->organized_by_user_id,
+                'organized_by_character_id' => array_key_exists('organized_by_character_id', $validated)
+                    ? $validated['organized_by_character_id']
+                    : $activity->organized_by_character_id,
+                'title' => $validated['title'] ?? $activity->title,
+                'description' => $validated['description'] ?? $activity->description,
+                'notes' => $validated['notes'] ?? $activity->notes,
+                'starts_at' => $nextStartsAt,
+                'duration_hours' => $validated['duration_hours'] ?? $activity->duration_hours,
+                'datacenter' => $validated['datacenter'] ?? $activity->datacenter,
+                'intensity' => $validated['intensity'] ?? $activity->intensity,
+                'min_item_level' => array_key_exists('min_item_level', $validated)
+                    ? $validated['min_item_level']
+                    : $activity->min_item_level,
+                'beginner_friendly' => $validated['beginner_friendly'] ?? $activity->beginner_friendly,
+                'run_style' => $validated['run_style'] ?? $activity->run_style,
+                'target_prog_point_key' => array_key_exists('target_prog_point_key', $validated)
+                    ? $validated['target_prog_point_key']
+                    : $activity->target_prog_point_key,
+                'is_public' => $nextIsPublic,
+                'needs_application' => $validated['needs_application'] ?? $activity->needs_application,
+                'allow_guest_applications' => $nextIsPublic && ($validated['allow_guest_applications'] ?? $activity->allow_guest_applications),
+                'secret_key' => null,
+            ]);
+        };
+
+        $scheduledDayChanged = $this->quotaService->runDay($group, $activity->starts_at)
+            !== $this->quotaService->runDay($group, $nextStartsAt);
+
+        if ($scheduledDayChanged && $nextStartsAt !== null) {
+            $this->quotaService->run([
+                new QuotaCheck(QuotaKey::RUNS_PER_DAY, $group, [
+                    'starts_at' => $nextStartsAt,
+                    'exclude_activity_id' => $activity->id,
+                ]),
+            ], $updateActivity);
+        } else {
+            $updateActivity();
+        }
 
         $changes = [];
 

@@ -1,0 +1,43 @@
+{
+  "title": "Account Limits",
+  "subtitle": "Review platform limits and grant focused exceptions without disabling protection for an entire account.",
+  "admin_only": "Admin only",
+  "default_limit": "default {limit}",
+  "search_subjects": "Search users or groups...",
+  "saved": "Account limit saved",
+  "deleted": "Account limit removed",
+  "reason_placeholder": "Why is this exception needed?",
+  "overrides_title": "Active overrides",
+  "overrides_description": "Overrides are applied only to the selected resource and quota.",
+  "usage": "Usage",
+  "expiry": "Expires",
+  "no_expiry": "No expiry",
+  "unlimited": "Unlimited",
+  "contextual": "Contextual",
+  "empty_title": "No quota overrides",
+  "empty_description": "All accounts and groups currently use the platform defaults.",
+  "scopes": { "user": "User", "group": "Group" },
+  "mode": {
+    "observe_title": "Observation mode",
+    "observe_description": "Limits are calculated and logged, but requests are not blocked. Set QUOTA_MODE=enforce after reviewing production usage.",
+    "enforce_title": "Enforcement enabled",
+    "enforce_description": "Requests that exceed an effective quota are blocked by the server."
+  },
+  "form": { "create_title": "Add an override", "edit_title": "Edit override" },
+  "fields": {
+    "scope": "Applies to",
+    "subject": "User or group",
+    "quota": "Limit",
+    "limit": "Custom limit",
+    "unlimited": "Unlimited",
+    "starts_at": "Starts at",
+    "expires_at": "Expires at",
+    "reason": "Reason"
+  },
+  "delete_modal": {
+    "title": "Remove quota override?",
+    "description": "{subject} will immediately return to the platform default.",
+    "warning": "New actions may be blocked if current usage is already above the default limit.",
+    "confirm": "Remove override"
+  }
+}

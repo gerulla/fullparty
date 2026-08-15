@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\DTOs\QuotaCheck;
 use App\Http\Controllers\Concerns\InteractsWithGroupActivityAttendees;
 use App\Models\Activity;
 use App\Models\ActivityApplication;
@@ -24,8 +25,10 @@ use App\Services\Groups\BozjaHolsterPairService;
 use App\Services\Groups\GroupActivityAuditService;
 use App\Services\Lodestone\LodestoneCharacterSearchService;
 use App\Services\Notifications\ApplicationNotificationService;
+use App\Services\Quotas\QuotaService;
 use App\Support\Input\RequestTextInputSanitizer;
 use App\Support\Input\TextInputSanitizer;
+use App\Support\Quotas\QuotaKey;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -55,6 +58,7 @@ class GroupActivityApplicationController extends Controller
         private readonly ActivityApplicationReviewSlotStateService $applicationReviewSlotStateService,
         private readonly ActivityManagementRealtimeService $activityManagementRealtimeService,
         private readonly BozjaHolsterPairService $bozjaHolsterPairService,
+        private readonly QuotaService $quotaService,
     ) {}
 
     public function show(Request $request, Group $group, Activity $activity, ?string $secretKey = null): Response
@@ -302,7 +306,7 @@ class GroupActivityApplicationController extends Controller
             $this->ensureSelectedCharacterIsNotAlreadyAssigned($activity, (int) $validated['selected_character_id']);
         }
 
-        $application = DB::transaction(function () use ($activity, $user, $validated) {
+        $operation = function () use ($activity, $user, $validated) {
             $selectedCharacterId = $user
                 ? ($validated['selected_character_id'] ?? null)
                 : $this->resolveGuestApplicantCharacter($validated['applicant'])->id;
@@ -340,7 +344,13 @@ class GroupActivityApplicationController extends Controller
             $this->activityAuditService->logApplicationSubmitted($application, $user);
 
             return $application;
-        });
+        };
+
+        $application = $user
+            ? $this->quotaService->run([
+                new QuotaCheck(QuotaKey::ACTIVE_APPLICATIONS, $user),
+            ], $operation)
+            : DB::transaction($operation);
 
         if ($user) {
             $this->refreshApplicationCharacterForApplicant($application);

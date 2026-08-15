@@ -2,15 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use App\DTOs\QuotaCheck;
 use App\Models\Group;
 use App\Models\GroupUserNote;
 use App\Models\GroupUserNoteAddendum;
 use App\Models\User;
 use App\Services\AuditLogger;
 use App\Services\Groups\GroupUserNoteVisibilityService;
+use App\Services\Quotas\QuotaService;
 use App\Support\Audit\AuditScope;
 use App\Support\Audit\AuditSeverity;
 use App\Support\Input\RequestTextInputSanitizer;
+use App\Support\Quotas\QuotaKey;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -22,6 +25,7 @@ class GroupMemberNoteController extends Controller
     public function __construct(
         private readonly AuditLogger $auditLogger,
         private readonly RequestTextInputSanitizer $requestTextInputSanitizer,
+        private readonly QuotaService $quotaService,
     ) {}
 
     public function show(Group $group, User $user, GroupUserNoteVisibilityService $noteVisibilityService): JsonResponse
@@ -91,13 +95,19 @@ class GroupMemberNoteController extends Controller
             'is_shared_with_groups' => ['nullable', 'boolean'],
         ]);
 
-        $note = $group->userNotes()->create([
+        $note = $this->quotaService->run([
+            new QuotaCheck(
+                QuotaKey::MEMBER_NOTES_PER_MEMBER,
+                $group,
+                ['user_id' => $user->id],
+            ),
+        ], fn (): GroupUserNote => $group->userNotes()->create([
             'user_id' => $user->id,
             'author_user_id' => auth()->id(),
             'severity' => $validated['severity'],
             'body' => $validated['body'],
             'is_shared_with_groups' => (bool) ($validated['is_shared_with_groups'] ?? false),
-        ]);
+        ]));
 
         $this->auditLogger->log(
             action: 'group.member.note.created',
@@ -218,10 +228,16 @@ class GroupMemberNoteController extends Controller
             'body' => ['required', 'string', 'max:'.GroupUserNote::ADDENDUM_MAX_LENGTH],
         ]);
 
-        $addendum = $note->addenda()->create([
+        $addendum = $this->quotaService->run([
+            new QuotaCheck(
+                QuotaKey::MEMBER_NOTE_ADDENDA_PER_NOTE,
+                $group,
+                ['note_id' => $note->id],
+            ),
+        ], fn (): GroupUserNoteAddendum => $note->addenda()->create([
             'author_user_id' => auth()->id(),
             'body' => $validated['body'],
-        ]);
+        ]));
 
         $this->auditLogger->log(
             action: 'group.member.note.addendum.created',

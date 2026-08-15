@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\DTOs\QuotaCheck;
 use App\Http\Requests\BozjaHolsterRequest;
 use App\Http\Resources\BozjaHolsterResource;
 use App\Models\BozjaHolster;
 use App\Models\Group;
+use App\Services\Quotas\QuotaService;
+use App\Support\Quotas\QuotaKey;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -14,9 +17,13 @@ use Symfony\Component\HttpFoundation\Response;
 
 class GroupBozjaHolsterController extends Controller
 {
+    public function __construct(private readonly QuotaService $quotaService) {}
+
     public function store(BozjaHolsterRequest $request, Group $group): JsonResponse
     {
-        $holster = DB::transaction(function () use ($request, $group): BozjaHolster {
+        $holster = $this->quotaService->run([
+            new QuotaCheck(QuotaKey::HOLSTERS_TOTAL, $group),
+        ], function () use ($request, $group): BozjaHolster {
             $holster = $group->bozjaHolsters()->create($request->safe()->except('items'));
             $this->syncItems($holster, $request->validated('items'));
 
@@ -47,7 +54,9 @@ class GroupBozjaHolsterController extends Controller
 
         $bozjaHolster->loadMissing('items');
 
-        $clone = DB::transaction(function () use ($bozjaHolster): BozjaHolster {
+        $clone = $this->quotaService->run([
+            new QuotaCheck(QuotaKey::HOLSTERS_TOTAL, $group),
+        ], function () use ($bozjaHolster): BozjaHolster {
             $clone = $bozjaHolster->replicate([
                 'is_default',
             ]);

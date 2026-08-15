@@ -2,17 +2,19 @@
 
 namespace App\Http\Controllers;
 
+use App\DTOs\QuotaCheck;
 use App\Models\Group;
 use App\Models\GroupInvite;
 use App\Models\GroupMembership;
 use App\Services\AuditLogger;
 use App\Services\Notifications\GroupUpdateNotificationService;
+use App\Services\Quotas\QuotaService;
 use App\Support\Audit\AuditScope;
 use App\Support\Audit\AuditSeverity;
+use App\Support\Quotas\QuotaKey;
 use App\Support\Seo\ServerMeta;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use Inertia\Inertia;
 use Inertia\Response;
 
@@ -22,6 +24,7 @@ class GroupInviteController extends Controller
         private readonly AuditLogger $auditLogger,
         private readonly GroupUpdateNotificationService $groupUpdateNotificationService,
         private readonly ServerMeta $serverMeta,
+        private readonly QuotaService $quotaService,
     ) {}
 
     public function show(string $token): Response
@@ -103,13 +106,15 @@ class GroupInviteController extends Controller
             'expires_at' => ['nullable', 'date', 'after:now'],
         ]);
 
-        $invite = $group->invites()->create([
+        $invite = $this->quotaService->run([
+            new QuotaCheck(QuotaKey::ACTIVE_INVITES, $group),
+        ], fn (): GroupInvite => $group->invites()->create([
             'created_by' => auth()->id(),
             'token' => GroupInvite::generateUniqueToken(),
             'max_uses' => $validated['max_uses'] ?? null,
             'expires_at' => $validated['expires_at'] ?? null,
             'is_system' => false,
-        ]);
+        ]));
 
         $this->auditLogger->log(
             action: 'group.invite.created',
@@ -131,59 +136,73 @@ class GroupInviteController extends Controller
 
     public function accept(string $token): RedirectResponse
     {
-        $result = DB::transaction(function () use ($token) {
-            $invite = GroupInvite::query()
-                ->where('token', $token)
-                ->lockForUpdate()
-                ->firstOrFail();
+        $user = auth()->user();
+        $inviteGroupId = GroupInvite::query()
+            ->where('token', $token)
+            ->value('group_id');
 
-            $invite->load('group');
+        if ($inviteGroupId === null) {
+            abort(404);
+        }
 
-            if ($invite->group->isBanned(auth()->id())) {
-                return [
-                    'accepted' => false,
-                    'banned' => true,
-                    'group' => $invite->group,
-                ];
-            }
+        $result = $this->quotaService->runIf([
+            new QuotaCheck(QuotaKey::GROUPS_JOINED, $user),
+        ], fn (): bool => ! GroupMembership::query()
+            ->where('group_id', $inviteGroupId)
+            ->where('user_id', $user->id)
+            ->exists(), function () use ($token, $user) {
+                $invite = GroupInvite::query()
+                    ->where('token', $token)
+                    ->lockForUpdate()
+                    ->firstOrFail();
 
-            if (! $this->canAcceptInvite($invite)) {
-                return [
-                    'accepted' => false,
-                    'banned' => false,
-                    'group' => null,
-                ];
-            }
+                $invite->load('group');
 
-            $existingMembership = $invite->group->memberships()
-                ->where('user_id', auth()->id())
-                ->first();
+                if ($invite->group->isBanned($user->id)) {
+                    return [
+                        'accepted' => false,
+                        'banned' => true,
+                        'group' => $invite->group,
+                    ];
+                }
 
-            if ($existingMembership) {
+                if (! $this->canAcceptInvite($invite)) {
+                    return [
+                        'accepted' => false,
+                        'banned' => false,
+                        'group' => null,
+                    ];
+                }
+
+                $existingMembership = $invite->group->memberships()
+                    ->where('user_id', $user->id)
+                    ->first();
+
+                if ($existingMembership) {
+                    return [
+                        'accepted' => true,
+                        'banned' => false,
+                        'group' => $invite->group,
+                        'joined' => false,
+                    ];
+                }
+
+                $invite->group->memberships()->create([
+                    'user_id' => $user->id,
+                    'role' => GroupMembership::ROLE_MEMBER,
+                    'joined_at' => now(),
+                ]);
+
+                $invite->increment('uses');
+
                 return [
                     'accepted' => true,
                     'banned' => false,
                     'group' => $invite->group,
-                    'joined' => false,
+                    'invite' => $invite,
+                    'joined' => true,
                 ];
-            }
-
-            $invite->group->memberships()->create([
-                'user_id' => auth()->id(),
-                'role' => GroupMembership::ROLE_MEMBER,
-                'joined_at' => now(),
-            ]);
-
-            $invite->increment('uses');
-
-            return [
-                'accepted' => true,
-                'banned' => false,
-                'group' => $invite->group,
-                'invite' => $invite,
-                'joined' => true,
-            ];
-        });
+            });
 
         if (! $result['accepted']) {
             if ($result['banned']) {

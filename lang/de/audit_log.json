@@ -134,6 +134,11 @@
             "system_banner": {
                 "updated": "hat das systemweite Banner aktualisiert.",
                 "cleared": "hat das systemweite Banner entfernt."
+            },
+            "quota_override": {
+                "created": "hat eine Kontolimit-Ausnahme erstellt.",
+                "updated": "hat eine Kontolimit-Ausnahme aktualisiert.",
+                "deleted": "hat eine Kontolimit-Ausnahme entfernt."
             }
         },
         "character": {
@@ -393,6 +398,11 @@
             "system_banner": {
                 "updated": "Systemweites Banner aktualisiert",
                 "cleared": "Systemweites Banner entfernt"
+            },
+            "quota_override": {
+                "created": "Kontolimit-Ausnahme erstellt",
+                "updated": "Kontolimit-Ausnahme aktualisiert",
+                "deleted": "Kontolimit-Ausnahme entfernt"
             }
         },
         "character": {

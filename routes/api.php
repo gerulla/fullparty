@@ -8,19 +8,19 @@ use Illuminate\Support\Facades\Route;
 
 Route::prefix('integrations')
     ->group(function () {
-        Route::middleware('integration.client:'.IntegrationClient::SCOPE_USERS_READ)
+        Route::middleware(['integration.client:'.IntegrationClient::SCOPE_USERS_READ, 'throttle:integration.api'])
             ->post('/discord-users/primary-characters', [IntegrationUserController::class, 'primaryCharacters'])
             ->name('api.integrations.discord-users.primary-characters.index');
 
-        Route::middleware('integration.client:'.IntegrationClient::SCOPE_USERS_WRITE)
+        Route::middleware(['integration.client:'.IntegrationClient::SCOPE_USERS_WRITE, 'throttle:integration.api'])
             ->post('/discord-users/link', [IntegrationUserController::class, 'link'])
             ->name('api.integrations.discord-users.link');
 
-        Route::middleware('integration.client:'.IntegrationClient::SCOPE_GUILDS_WRITE)
+        Route::middleware(['integration.client:'.IntegrationClient::SCOPE_GUILDS_WRITE, 'throttle:integration.api'])
             ->post('/discord-guilds/link', [IntegrationGuildController::class, 'link'])
             ->name('api.integrations.discord-guilds.link');
 
-        Route::middleware('integration.client:'.IntegrationClient::SCOPE_RUNS_READ)
+        Route::middleware(['integration.client:'.IntegrationClient::SCOPE_RUNS_READ, 'throttle:integration.api'])
             ->group(function () {
                 Route::get('/discord-guilds/{discordGuildId}/upcoming-runs', [IntegrationGuildController::class, 'upcomingRuns'])
                     ->whereNumber('discordGuildId')

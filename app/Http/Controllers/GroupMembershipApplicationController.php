@@ -2,12 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\DTOs\QuotaCheck;
 use App\Models\Group;
 use App\Models\GroupMembershipApplication;
 use App\Services\AuditLogger;
 use App\Services\Groups\MembershipApplicationFormSchemaService;
+use App\Services\Quotas\QuotaService;
 use App\Support\Audit\AuditScope;
 use App\Support\Audit\AuditSeverity;
+use App\Support\Quotas\QuotaKey;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
@@ -18,6 +21,7 @@ class GroupMembershipApplicationController extends Controller
     public function __construct(
         private readonly MembershipApplicationFormSchemaService $schemaService,
         private readonly AuditLogger $auditLogger,
+        private readonly QuotaService $quotaService,
     ) {}
 
     public function create(Request $request, Group $group): Response|RedirectResponse
@@ -69,13 +73,15 @@ class GroupMembershipApplicationController extends Controller
             $group->membership_application_schema ?? $this->schemaService->defaultSchema(),
         );
 
-        $application = $group->membershipApplications()->create([
+        $application = $this->quotaService->run([
+            new QuotaCheck(QuotaKey::PENDING_MEMBERSHIP_APPLICATIONS, $user),
+        ], fn (): GroupMembershipApplication => $group->membershipApplications()->create([
             'user_id' => $user->id,
             'status' => GroupMembershipApplication::STATUS_PENDING,
             'answers' => $answers,
             'form_snapshot' => $group->membership_application_schema ?? $this->schemaService->defaultSchema(),
             'submitted_at' => now(),
-        ]);
+        ]));
 
         $this->auditLogger->log(
             action: 'group.membership_application.submitted',

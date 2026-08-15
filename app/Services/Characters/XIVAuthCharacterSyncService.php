@@ -2,14 +2,17 @@
 
 namespace App\Services\Characters;
 
+use App\DTOs\QuotaCheck;
 use App\Models\ActivityApplication;
 use App\Models\Character;
 use App\Models\User;
 use App\Services\AuditLogger;
 use App\Services\Notifications\AccountCharacterNotificationService;
+use App\Services\Quotas\QuotaService;
 use App\Support\Audit\AuditScope;
 use App\Support\Audit\AuditSeverity;
 use App\Support\Input\TextInputSanitizer;
+use App\Support\Quotas\QuotaKey;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
@@ -21,6 +24,7 @@ final class XIVAuthCharacterSyncService
         private readonly CharacterProfileRefreshService $characterProfileRefreshService,
         private readonly AccountCharacterNotificationService $accountCharacterNotificationService,
         private readonly TextInputSanitizer $textInputSanitizer,
+        private readonly QuotaService $quotaService,
     ) {}
 
     /**
@@ -99,7 +103,7 @@ final class XIVAuthCharacterSyncService
         bool $refreshAfterSync,
         bool $notifyExistingVerified,
     ): array {
-        $sync = DB::transaction(function () use ($user, $payload): array {
+        $operation = function () use ($user, $payload): array {
             $character = Character::query()
                 ->where('lodestone_id', $payload['lodestone_id'])
                 ->lockForUpdate()
@@ -176,7 +180,19 @@ final class XIVAuthCharacterSyncService
                 'updated' => ! $created,
                 'should_announce' => $created || ! $wasVerified,
             ];
-        });
+        };
+
+        $existingCharacter = Character::query()
+            ->where('lodestone_id', $payload['lodestone_id'])
+            ->first();
+        $needsCapacity = ! $existingCharacter instanceof Character
+            || $existingCharacter->user_id === null;
+
+        $sync = $needsCapacity
+            ? $this->quotaService->run([
+                new QuotaCheck(QuotaKey::CHARACTERS_TOTAL, $user),
+            ], $operation)
+            : DB::transaction($operation);
 
         $character = $sync['character'];
 

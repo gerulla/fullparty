@@ -134,6 +134,11 @@
             "system_banner": {
                 "updated": "サイト全体のシステムバナーを更新しました。",
                 "cleared": "サイト全体のシステムバナーを解除しました。"
+            },
+            "quota_override": {
+                "created": "アカウント上限の例外を作成しました。",
+                "updated": "アカウント上限の例外を更新しました。",
+                "deleted": "アカウント上限の例外を削除しました。"
             }
         },
         "character": {
@@ -393,6 +398,11 @@
             "system_banner": {
                 "updated": "システムバナーを更新",
                 "cleared": "システムバナーを解除"
+            },
+            "quota_override": {
+                "created": "アカウント上限の例外を作成",
+                "updated": "アカウント上限の例外を更新",
+                "deleted": "アカウント上限の例外を削除"
             }
         },
         "character": {

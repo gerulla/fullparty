@@ -193,6 +193,37 @@ it('allows moderators to create and update group holsters', function () {
     ]);
 });
 
+it('sanitizes holster markdown guides before storing them', function () {
+    $owner = User::factory()->create();
+    $moderator = User::factory()->create();
+    $group = Group::factory()->create(['owner_id' => $owner->id]);
+
+    $group->memberships()->create([
+        'user_id' => $moderator->id,
+        'role' => GroupMembership::ROLE_MODERATOR,
+        'joined_at' => now(),
+    ]);
+
+    $guide = "## Usage\r\n\n<script>alert('x')</script>\n[bad](javascript:alert(1))\n![bad](data:text/html,<svg onload=alert(1)>)";
+    $expected = "## Usage\n\n&lt;script&gt;alert('x')&lt;/script&gt;\n[bad](#blocked-alert(1))\n![bad](#blocked-text/html,&lt;svg onload=alert(1)&gt;)";
+
+    $response = $this->actingAs($moderator)
+        ->postJson(route('groups.dashboard.content.delubrum-reginae-savage.holsters.store', $group), [
+            'name' => ['en' => 'Sanitized Guide'],
+            'role' => 'healer',
+            'type' => BozjaHolster::TYPE_PREPOP,
+            'guide' => $guide,
+            'items' => [],
+        ])
+        ->assertCreated()
+        ->assertJsonPath('data.guide', $expected);
+
+    $this->assertDatabaseHas('bozja_holsters', [
+        'id' => $response->json('data.id'),
+        'guide' => $expected,
+    ]);
+});
+
 it('allows moderators to duplicate group holsters with their contents', function () {
     $owner = User::factory()->create();
     $moderator = User::factory()->create();

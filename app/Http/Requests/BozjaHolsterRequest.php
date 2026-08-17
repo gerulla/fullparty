@@ -5,6 +5,7 @@ namespace App\Http\Requests;
 use App\Models\BozjaHolster;
 use App\Models\BozjaItem;
 use App\Models\Group;
+use App\Support\Input\TextInputSanitizer;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 use Illuminate\Validation\Validator;
@@ -22,6 +23,15 @@ class BozjaHolsterRequest extends FormRequest
         $group->loadMissing('memberships');
 
         return $group->hasModeratorAccess($this->user()?->id);
+    }
+
+    protected function prepareForValidation(): void
+    {
+        if (is_string($this->input('guide'))) {
+            $this->merge([
+                'guide' => app(TextInputSanitizer::class)->sanitizeMarkdown($this->input('guide')),
+            ]);
+        }
     }
 
     /** @return array<string, mixed> */

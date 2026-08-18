@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 9,
+  "name": "Lenteur",
+  "description": "La vitesse des attaques automatiques est réduite, et les temps de lancement et de recharge des sorts et des techniques d'arme sont allongés.",
+  "effects": [
+    "La vitesse des attaques automatiques est réduite, et les temps de lancement et de recharge des sorts et des techniques d'arme sont allongés."
+  ],
+  "classification": "debuff",
+  "icon": {
+    "id": 215009,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 2,
+  "target_type": 0,
+  "can_dispel": true,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 50,
+  "parameter": {
+    "effect": 0,
+    "modifier": 15
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 18310,
+      "name": "Tour de cavalier blanc",
+      "description": "Effectue une attaque magique neutre en ligne droite sur les ennemis devant vous.\nPuissance : 200\nSi l'ennemi subit Entrave, dissipe cet effet et inflige plus de dégâts.\nPuissance avec Entrave : 400\nLa puissance est réduite de 50% au-delà du premier ennemi touché.\nEffet additionnel : inflige Lenteur 20%.\nDurée : 20s",
+      "description_macro": "Effectue une attaque magique neutre en ligne droite sur les ennemis devant vous.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> 200<br>Si l'ennemi subit <colortype(500)><edgecolortype(501)>Entrave<edgecolortype(0)><colortype(0)>, dissipe cet effet et inflige plus de dégâts.<br><colortype(506)><edgecolortype(507)>Puissance avec Entrave<nbsp>:<edgecolortype(0)><colortype(0)> 400<br>La puissance est réduite de 50% au-delà du premier ennemi touché.<br><colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> inflige Lenteur 20%.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 20s",
+      "unlock_level": 1,
+      "relations": [
+        "applied_by_description"
+      ],
+      "roles": [
+        "Magical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 36,
+          "name": "Mage Bleu",
+          "abbreviation": "MBU",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

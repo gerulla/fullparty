@@ -1,0 +1,28 @@
+{
+  "kind": "trait",
+  "id": 479,
+  "name": "Meister des Ruins IV",
+  "description": "Erhöht den Attacke-Wert von Ruinga, Rubin-Ritus, Topas-Ritus und Smaragd-Ritus.\nAttacke-Wert von Ruinga: 310\nAttacke-Wert von Rubin-Ritus: 510\nAttacke-Wert von Topas-Ritus: 330\nAttacke-Wert von Smaragd-Ritus: 230",
+  "description_macro": "Erhöht den Attacke-Wert von <colortype(502)><edgecolortype(503)>Ruinga<edgecolortype(0)><colortype(0)>, <colortype(502)><edgecolortype(503)>Rubin-Ritus<edgecolortype(0)><colortype(0)>, <colortype(502)><edgecolortype(503)>Topas-Ritus<edgecolortype(0)><colortype(0)> und <colortype(502)><edgecolortype(503)>Smaragd-Ritus<edgecolortype(0)><colortype(0)>.<br>Attacke-Wert von <colortype(502)><edgecolortype(503)>Ruinga<edgecolortype(0)><colortype(0)>: 310<br>Attacke-Wert von <colortype(502)><edgecolortype(503)>Rubin-Ritus<edgecolortype(0)><colortype(0)>: 510<br>Attacke-Wert von <colortype(502)><edgecolortype(503)>Topas-Ritus<edgecolortype(0)><colortype(0)>: 330<br>Attacke-Wert von <colortype(502)><edgecolortype(503)>Smaragd-Ritus<edgecolortype(0)><colortype(0)>: 230",
+  "effects": [
+    "Erhöht den Attacke-Wert von Ruinga, Rubin-Ritus, Topas-Ritus und Smaragd-Ritus.",
+    "Attacke-Wert von Ruinga: 310",
+    "Attacke-Wert von Rubin-Ritus: 510",
+    "Attacke-Wert von Topas-Ritus: 330",
+    "Attacke-Wert von Smaragd-Ritus: 230"
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 27,
+    "name": "Beschwörer",
+    "abbreviation": "BSW"
+  },
+  "unlock_level": 84,
+  "value": 0,
+  "icon": {
+    "id": 5689,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 28,
+  "source_class_job_id": 27
+}

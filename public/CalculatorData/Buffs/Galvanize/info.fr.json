@@ -1,0 +1,92 @@
+{
+  "kind": "combat_status",
+  "id": 297,
+  "name": "Réconfort",
+  "description": "Insensible à un certain montant de dégâts.",
+  "effects": [
+    "Insensible à un certain montant de dégâts."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 212801,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 30,
+  "parameter": {
+    "effect": 0,
+    "modifier": 100
+  },
+  "class_job_category_id": 29,
+  "source_abilities": [
+    {
+      "id": 185,
+      "name": "Traité du réconfort",
+      "description": "Restaure les PV de la cible.\nPuissance : 300\nEffet additionnel : octroie Réconfort, une barrière annulant un montant de dégâts égal à 180% des PV restaurés. Octroie Exhortation, une deuxième barrière identique, si le sort est critique.\nDurée : 30s\nNe peut être cumulé avec certaines barrières des sages.",
+      "description_macro": "Restaure les PV de la cible.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> 300<br><colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> octroie <colortype(500)><edgecolortype(501)>Réconfort<edgecolortype(0)><colortype(0)>, une barrière annulant un montant de dégâts égal à <if([gnum68==28],<if([gnum72>=85],180,125)>,125)>% des PV restaurés. Octroie <colortype(500)><edgecolortype(501)>Exhortation<edgecolortype(0)><colortype(0)>, une deuxième barrière identique, si le sort est critique.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 30s<br>Ne peut être cumulé avec certaines barrières des sages.",
+      "unlock_level": 30,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Healer"
+      ],
+      "jobs": [
+        {
+          "id": 28,
+          "name": "Érudit",
+          "abbreviation": "ÉRU",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 3585,
+      "name": "Stratagème du déploiement",
+      "description": "Octroie votre effet Réconfort dont vous ou la cible bénéficiez aux équipiers autour.\nDurée : temps restant de l'effet initial.",
+      "description_macro": "Octroie votre effet <colortype(500)><edgecolortype(501)>Réconfort<edgecolortype(0)><colortype(0)> dont vous ou la cible bénéficiez aux équipiers autour.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> temps restant de l'effet initial.",
+      "unlock_level": 56,
+      "relations": [
+        "extended_by_description"
+      ],
+      "roles": [
+        "Healer"
+      ],
+      "jobs": [
+        {
+          "id": 28,
+          "name": "Érudit",
+          "abbreviation": "ÉRU",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 37015,
+      "name": "Manifestation",
+      "description": "Restaure les PV de la cible.\nPuissance : 360\nEffet additionnel : octroie Réconfort, une barrière annulant un montant de dégâts égal à 180% des PV restaurés. Octroie Exhortation, une deuxième barrière identique, si le sort est critique.\nDurée : 30s\nCondition : Séraphisme.\nNe peut être cumulé avec certaines barrières des sages.\n\n* Cette action ne peut pas être ajoutée aux barres de raccourcis.\nRemplace Traité du réconfort lorsque les conditions sont réunies.",
+      "description_macro": "Restaure les PV de la cible.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> 360<br><colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> octroie <colortype(500)><edgecolortype(501)>Réconfort<edgecolortype(0)><colortype(0)>, une barrière annulant un montant de dégâts égal à 180% des PV restaurés. Octroie <colortype(500)><edgecolortype(501)>Exhortation<edgecolortype(0)><colortype(0)>, une deuxième barrière identique, si le sort est critique.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 30s<br><colortype(506)><edgecolortype(507)>Condition<nbsp>:<edgecolortype(0)><colortype(0)> <colortype(500)><edgecolortype(501)>Séraphisme<edgecolortype(0)><colortype(0)>.<br>Ne peut être cumulé avec certaines barrières des sages.<br><br><colortype(504)><edgecolortype(505)>* Cette action ne peut pas être ajoutée aux barres de raccourcis.<br>Remplace <colortype(500)><edgecolortype(501)>Traité du réconfort<edgecolortype(0)><colortype(0)> lorsque les conditions sont réunies.<edgecolortype(0)><colortype(0)>",
+      "unlock_level": 100,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Healer"
+      ],
+      "jobs": [
+        {
+          "id": 28,
+          "name": "Érudit",
+          "abbreviation": "ÉRU",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

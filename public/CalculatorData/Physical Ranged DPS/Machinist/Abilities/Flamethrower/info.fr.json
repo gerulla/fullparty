@@ -1,0 +1,89 @@
+{
+  "kind": "ability",
+  "id": 7418,
+  "name": "Lance-flammes",
+  "description": "Effectue une série d'attaques dans une zone en éventail devant vous.\nLes ennemis dans la zone subissent des dégâts toutes les secondes.\nPuissance : 120 Durée : 10s\nL'effet prend fin si vous effectuez une action, un déplacement ou une rotation.\nInterrompt vos attaques automatiques.\nCette aptitude a un temps de recharge indépendant, et partage aussi celui des techniques d'arme.",
+  "description_macro": "Effectue une série d'attaques dans une zone en éventail devant vous.<br>Les ennemis dans la zone subissent des dégâts toutes les secondes.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> 120 <colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 10s<br>L'effet prend fin si vous effectuez une action, un déplacement ou une rotation.<br>Interrompt vos attaques automatiques.<br>Cette aptitude a un temps de recharge indépendant, et partage aussi celui des techniques d'arme.",
+  "effects": [
+    "Effectue une série d'attaques dans une zone en éventail devant vous.",
+    "Les ennemis dans la zone subissent des dégâts toutes les secondes.",
+    "Puissance : 120 Durée : 10s",
+    "L'effet prend fin si vous effectuez une action, un déplacement ou une rotation.",
+    "Interrompt vos attaques automatiques.",
+    "Cette aptitude a un temps de recharge indépendant, et partage aussi celui des techniques d'arme."
+  ],
+  "role": "Physical Ranged DPS",
+  "job": {
+    "id": 31,
+    "name": "Machiniste",
+    "abbreviation": "MCH"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 70,
+  "icon": {
+    "id": 3038,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 4,
+    "name": "Aptitude"
+  },
+  "attack_type": {
+    "id": 4294967295,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 60,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 13,
+    "additional_cooldown_group": 58,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 0,
+      "value": 0
+    },
+    "secondary": {
+      "type_id": 0,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": 0,
+    "effect_yalms": 12,
+    "cast_type": 1
+  },
+  "targeting": {
+    "self": true,
+    "party": false,
+    "alliance": false,
+    "hostile": false,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 1,
+    "behavior_type": 0,
+    "class_job_category_id": 96,
+    "source_class_job_id": 31,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

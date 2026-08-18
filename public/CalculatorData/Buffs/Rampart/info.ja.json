@@ -1,0 +1,68 @@
+{
+  "kind": "combat_status",
+  "id": 71,
+  "name": "ランパート",
+  "description": "受けるダメージの一部が軽減される状態。",
+  "effects": [
+    "受けるダメージの一部が軽減される状態。"
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 210152,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": -10
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 7531,
+      "name": "ランパート",
+      "description": "一定時間、自身の被ダメージを20％軽減させる。\nさらに、自身が受けるＨＰ回復効果を15％上昇させる。\n効果時間：20秒",
+      "description_macro": "一定時間、自身の被ダメージを20％軽減させる。<br><if([gnum72>=94],<if([gnum68==1],さらに、自身が受けるＨＰ回復効果を15％上昇させる。<br>,<if([gnum68==19],さらに、自身が受けるＨＰ回復効果を15％上昇させる。<br>,<if([gnum68==3],さらに、自身が受けるＨＰ回復効果を15％上昇させる。<br>,<if([gnum68==21],さらに、自身が受けるＨＰ回復効果を15％上昇させる。<br>,<if([gnum68==32],さらに、自身が受けるＨＰ回復効果を15％上昇させる。<br>,<if([gnum68==37],さらに、自身が受けるＨＰ回復効果を15％上昇させる。<br>,)>)>)>)>)>)>,)><colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>20秒",
+      "unlock_level": 8,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Tank"
+      ],
+      "jobs": [
+        {
+          "id": 19,
+          "name": "ナイト",
+          "abbreviation": "PLD",
+          "is_phantom": false
+        },
+        {
+          "id": 21,
+          "name": "戦士",
+          "abbreviation": "WAR",
+          "is_phantom": false
+        },
+        {
+          "id": 32,
+          "name": "暗黒騎士",
+          "abbreviation": "DRK",
+          "is_phantom": false
+        },
+        {
+          "id": 37,
+          "name": "ガンブレイカー",
+          "abbreviation": "GNB",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

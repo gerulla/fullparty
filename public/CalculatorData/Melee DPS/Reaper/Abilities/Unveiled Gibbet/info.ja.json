@@ -1,0 +1,93 @@
+{
+  "kind": "ability",
+  "id": 24390,
+  "name": "ジビトゥクロウ",
+  "description": "アヴァターを呼び出し、対象に物理攻撃を実行させる。\n威力：440\n追加効果：自身に「妖異の鎌」を付与する。\n効果時間：30秒\n既に「妖異の鎌」が付与されている場合、そのスタック数に関わらず1スタックになる。\n「処刑人」とは同時に付与されない。\n発動条件：「ジビトゥ効果アップ」効果中かつ「ソウルゲージ」50\nリキャストタイマーを「グラトニー」以外のアヴァターを呼び出すアクションと共有する。\n\n※このアクションはホットバーに登録することはできない。\n\u3000ジビトゥ効果アップの効果中はストークスウェーズがジビトゥクロウに変化する。",
+  "description_macro": "アヴァターを呼び出し、対象に物理攻撃を実行させる。<br><colortype(504)><edgecolortype(505)>威力：<edgecolortype(0)><colortype(0)><if([gnum68==39],<if([gnum72>=94],440,400)>,400)><br><colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)>自身に<colortype(500)><edgecolortype(501)>「妖異の鎌」<edgecolortype(0)><colortype(0)>を付与する。<br><colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>30秒<br>既に<colortype(500)><edgecolortype(501)>「妖異の鎌」<edgecolortype(0)><colortype(0)>が付与されている場合、そのスタック数に関わらず1スタックになる。<br><if([gnum68==39],<if([gnum72>=96],<colortype(500)><edgecolortype(501)>「処刑人」<edgecolortype(0)><colortype(0)>とは同時に付与されない。<br>,)>,)><colortype(504)><edgecolortype(505)>発動条件：<edgecolortype(0)><colortype(0)><colortype(500)><edgecolortype(501)>「ジビトゥ効果アップ」<edgecolortype(0)><colortype(0)>効果中かつ<colortype(500)><edgecolortype(501)>「ソウルゲージ」<edgecolortype(0)><colortype(0)>50<br>リキャストタイマーを<colortype(500)><edgecolortype(501)>「グラトニー」<edgecolortype(0)><colortype(0)>以外のアヴァターを呼び出すアクションと共有する。<br><br><colortype(506)><edgecolortype(507)>※このアクションはホットバーに登録することはできない。<br>\u3000ジビトゥ効果アップの効果中はストークスウェーズがジビトゥクロウに変化する。<edgecolortype(0)><colortype(0)>",
+  "effects": [
+    "アヴァターを呼び出し、対象に物理攻撃を実行させる。",
+    "威力：440",
+    "追加効果：自身に「妖異の鎌」を付与する。",
+    "効果時間：30秒",
+    "既に「妖異の鎌」が付与されている場合、そのスタック数に関わらず1スタックになる。",
+    "「処刑人」とは同時に付与されない。",
+    "発動条件：「ジビトゥ効果アップ」効果中かつ「ソウルゲージ」50",
+    "リキャストタイマーを「グラトニー」以外のアヴァターを呼び出すアクションと共有する。",
+    "※このアクションはホットバーに登録することはできない。",
+    "ジビトゥ効果アップの効果中はストークスウェーズがジビトゥクロウに変化する。"
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 39,
+    "name": "リーパー",
+    "abbreviation": "RPR"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 70,
+  "icon": {
+    "id": 3618,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 4,
+    "name": "アビリティ"
+  },
+  "attack_type": {
+    "id": 1,
+    "name": "斬"
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 1,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 1,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 64,
+      "value": 50
+    },
+    "secondary": {
+      "type_id": 113,
+      "value": 2588
+    }
+  },
+  "range": {
+    "target_yalms": -1,
+    "effect_yalms": 0,
+    "cast_type": 1
+  },
+  "targeting": {
+    "self": false,
+    "party": false,
+    "alliance": false,
+    "hostile": true,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 7,
+    "behavior_type": 0,
+    "class_job_category_id": 180,
+    "source_class_job_id": 0,
+    "is_role_action": false,
+    "is_player_action": false,
+    "is_derived_action": true,
+    "equivalence_group": 0
+  }
+}

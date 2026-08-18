@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 532,
+  "name": "Uncoiled Fangs",
+  "description": "Allows the execution of Uncoiled Twinfang or Uncoiled Twinblood after successfully landing Uncoiled Fury.",
+  "description_macro": "Allows the execution of <colortype(500)><edgecolortype(501)>Uncoiled Twinfang<edgecolortype(0)><colortype(0)> or <colortype(500)><edgecolortype(501)>Uncoiled Twinblood<edgecolortype(0)><colortype(0)> after successfully landing <colortype(500)><edgecolortype(501)>Uncoiled Fury<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Allows the execution of Uncoiled Twinfang or Uncoiled Twinblood after successfully landing Uncoiled Fury."
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 41,
+    "name": "Viper",
+    "abbreviation": "VPR"
+  },
+  "unlock_level": 92,
+  "value": 0,
+  "icon": {
+    "id": 6510,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 196,
+  "source_class_job_id": 41
+}

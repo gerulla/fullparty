@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 1319,
+  "name": "Higanbana",
+  "description": "Erleidet schrittweise Schaden. Erhaltene Heileffekte sind verringert.",
+  "effects": [
+    "Erleidet schrittweise Schaden. Erhaltene Heileffekte sind verringert."
+  ],
+  "classification": "debuff",
+  "icon": {
+    "id": 213304,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 2,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": true,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 10
+  },
+  "class_job_category_id": 111,
+  "source_abilities": [
+    {
+      "id": 7489,
+      "name": "Higanbana",
+      "description": "Du führst eine physische Attacke aus.\nAttacke-Wert: 200\nZusatzeffekt: Schaden über Zeit\nAttacke-Wert: 50\nDauer: 60 Sekunden\nZusatzeffekt: Gewährt dir Meditationsebene.\nMaximalstapelzahl: 3\nBedingung: 1 Symbol ist aktiv.\nBei erfüllter Bedingung ändert sich Iaijutsu zu diesem Kommando.\nKann nicht im Kommandomenü angelegt werden.",
+      "description_macro": "Du führst eine physische Attacke aus.<br>Attacke-Wert: 200<br>Zusatzeffekt: Schaden über Zeit<br>Attacke-Wert: <if([gnum68==34],<if([gnum72>=94],50,45)>,45)><br>Dauer: 60 Sekunden<br><if([gnum68==34],<if([gnum72>=80],Zusatzeffekt: Gewährt dir <colortype(506)><edgecolortype(507)>Meditationsebene<edgecolortype(0)><colortype(0)>.<br>Ma<->xi<->mal<->sta<->pel<->zahl: 3<br>,)>,)>Bedingung: 1 Symbol ist aktiv.<br>Bei erfüllter Bedingung ändert sich <colortype(502)><edgecolortype(503)>Iaijutsu<edgecolortype(0)><colortype(0)> zu diesem Kommando.<br>Kann nicht im Kommandomenü angelegt werden.",
+      "unlock_level": 30,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 34,
+          "name": "Samurai",
+          "abbreviation": "SAM",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

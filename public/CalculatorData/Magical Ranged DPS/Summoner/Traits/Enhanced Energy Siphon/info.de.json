@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 475,
+  "name": "Verbesserter Energiesiphon",
+  "description": "Energieentzug und Energiesiphon gewähren nun Rand des Ruins.",
+  "description_macro": "<colortype(502)><edgecolortype(503)>Energieentzug<edgecolortype(0)><colortype(0)> und <colortype(502)><edgecolortype(503)>Energiesiphon<edgecolortype(0)><colortype(0)> gewähren nun <colortype(506)><edgecolortype(507)>Rand des Ruins<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Energieentzug und Energiesiphon gewähren nun Rand des Ruins."
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 27,
+    "name": "Beschwörer",
+    "abbreviation": "BSW"
+  },
+  "unlock_level": 62,
+  "value": 0,
+  "icon": {
+    "id": 5691,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 28,
+  "source_class_job_id": 27
+}

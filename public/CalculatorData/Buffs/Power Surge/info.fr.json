@@ -1,0 +1,92 @@
+{
+  "kind": "combat_status",
+  "id": 2720,
+  "name": "Souffle de puissance",
+  "description": "Les dégâts infligés sont augmentés.",
+  "effects": [
+    "Les dégâts infligés sont augmentés."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 210303,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 10
+  },
+  "class_job_category_id": 23,
+  "source_abilities": [
+    {
+      "id": 87,
+      "name": "Éventration",
+      "description": "Effectue une attaque physique sur la cible.\nPuissance : 140\nCombo : Percée véritable ou Percée Raiden\nPuissance du combo : 250\nBonus du combo : vous octroie Souffle de puissance.\nDurée : 30s\nSouffle de puissance : augmente de 10% vos dégâts infligés.",
+      "description_macro": "Effectue une attaque physique sur la cible.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> <if([gnum68==22],<if([gnum72>=76],140,100)>,100)><br><colortype(506)><edgecolortype(507)>Combo<nbsp>:<edgecolortype(0)><colortype(0)> <if([gnum68==22],<if([gnum72>=76],Percée véritable ou Percée Raiden,Percée véritable)>,Percée véritable)><br><colortype(506)><edgecolortype(507)>Puissance du combo<nbsp>:<edgecolortype(0)><colortype(0)> <if([gnum68==22],<if([gnum72>=76],250,210)>,210)><br><colortype(506)><edgecolortype(507)>Bonus du combo<nbsp>:<edgecolortype(0)><colortype(0)> vous octroie <colortype(500)><edgecolortype(501)>Souffle de puissance<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 30s<br><colortype(506)><edgecolortype(507)>Souffle de puissance<nbsp>:<edgecolortype(0)><colortype(0)> augmente de 10% vos dégâts infligés.",
+      "unlock_level": 18,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 22,
+          "name": "Chevalier Dragon",
+          "abbreviation": "DRG",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 7397,
+      "name": "Percée sonique",
+      "description": "Effectue une attaque physique en ligne droite sur les ennemis devant vous.\nPuissance : 100\nCombo : Pointe du destin ou Fureur du dragon\nPuissance du combo : 120\nBonus du combo : vous octroie Souffle de puissance.\nDurée : 30s\nSouffle de puissance : augmente de 10% vos dégâts infligés.",
+      "description_macro": "Effectue une attaque physique en ligne droite sur les ennemis devant vous.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> 100<br><colortype(506)><edgecolortype(507)>Combo<nbsp>:<edgecolortype(0)><colortype(0)> <if([gnum68==22],<if([gnum72>=82],Pointe du destin ou Fureur du dragon,Pointe du destin)>,Pointe du destin)><br><colortype(506)><edgecolortype(507)>Puissance du combo<nbsp>:<edgecolortype(0)><colortype(0)> 120<br><colortype(506)><edgecolortype(507)>Bonus du combo<nbsp>:<edgecolortype(0)><colortype(0)> vous octroie <colortype(500)><edgecolortype(501)>Souffle de puissance<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 30s<br><colortype(506)><edgecolortype(507)>Souffle de puissance<nbsp>:<edgecolortype(0)><colortype(0)> augmente de 10% vos dégâts infligés.",
+      "unlock_level": 62,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 22,
+          "name": "Chevalier Dragon",
+          "abbreviation": "DRG",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 36955,
+      "name": "Vrille explosive",
+      "description": "Effectue une attaque physique sur la cible.\nPuissance : 140\nCombo : Percée véritable ou Percée Raiden\nPuissance du combo : 280\nBonus du combo : vous octroie Souffle de puissance.\nDurée : 30s\nSouffle de puissance : augmente de 10% vos dégâts infligés.",
+      "description_macro": "Effectue une attaque physique sur la cible.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> 140<br><colortype(506)><edgecolortype(507)>Combo<nbsp>:<edgecolortype(0)><colortype(0)> Percée véritable ou Percée Raiden<br><colortype(506)><edgecolortype(507)>Puissance du combo<nbsp>:<edgecolortype(0)><colortype(0)> 280<br><colortype(506)><edgecolortype(507)>Bonus du combo<nbsp>:<edgecolortype(0)><colortype(0)> vous octroie <colortype(500)><edgecolortype(501)>Souffle de puissance<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 30s<br><colortype(506)><edgecolortype(507)>Souffle de puissance<nbsp>:<edgecolortype(0)><colortype(0)> augmente de 10% vos dégâts infligés.",
+      "unlock_level": 96,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 22,
+          "name": "Chevalier Dragon",
+          "abbreviation": "DRG",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 32,
+  "name": "Verbessertes Feuer",
+  "description": "Mit 40 % Wahrscheinlichkeit wird das nächste Feuga sofort und ohne MP-Verbrauch gewirkt.",
+  "description_macro": "Mit 40 % Wahr<->schein<->lich<->keit wird das nächste <colortype(502)><edgecolortype(503)>Feuga<edgecolortype(0)><colortype(0)> sofort und ohne MP-Verbrauch gewirkt.",
+  "effects": [
+    "Mit 40 % Wahrscheinlichkeit wird das nächste Feuga sofort und ohne MP-Verbrauch gewirkt."
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 25,
+    "name": "Schwarzmagier",
+    "abbreviation": "SMA"
+  },
+  "unlock_level": 42,
+  "value": 0,
+  "icon": {
+    "id": 5352,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 55,
+  "source_class_job_id": 7
+}

@@ -1,0 +1,25 @@
+{
+  "kind": "trait",
+  "id": 414,
+  "name": "Maîtrise de la magie divine II",
+  "description": "Ajoute un effet de restauration de PV à Esprit saint, Cercle sacré et Confiteor.\nPuissance : 400",
+  "description_macro": "Ajoute un effet de restauration de PV à <colortype(500)><edgecolortype(501)>Esprit saint<edgecolortype(0)><colortype(0)>, <colortype(500)><edgecolortype(501)>Cercle sacré<edgecolortype(0)><colortype(0)> et <colortype(500)><edgecolortype(501)>Confiteor<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> 400",
+  "effects": [
+    "Ajoute un effet de restauration de PV à Esprit saint, Cercle sacré et Confiteor.",
+    "Puissance : 400"
+  ],
+  "role": "Tank",
+  "job": {
+    "id": 19,
+    "name": "Paladin",
+    "abbreviation": "PLD"
+  },
+  "unlock_level": 84,
+  "value": 0,
+  "icon": {
+    "id": 5220,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 20,
+  "source_class_job_id": 19
+}

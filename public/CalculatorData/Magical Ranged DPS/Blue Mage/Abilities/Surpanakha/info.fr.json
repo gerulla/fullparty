@@ -1,0 +1,90 @@
+{
+  "kind": "ability",
+  "id": 18323,
+  "name": "Surpanakha",
+  "description": "Effectue une attaque magique de terre dans une zone en éventail devant vous.\nPuissance : 200\nLa puissance est réduite de 50% au-delà du premier ennemi touché.\nMaximum de charges : 4\nEffet additionnel : octroie Surpanakha renforcée qui augmente la puissance de Surpanakha de 50%. Cumulable jusqu'au 3e degré.\nDurée : 3s\nL'effet prend fin si vous effectuez une action autre que Surpanakha.",
+  "description_macro": "Effectue une attaque magique de terre dans une zone en éventail devant vous.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> 200<br>La puissance est réduite de 50% au-delà du premier ennemi touché.<br><colortype(506)><edgecolortype(507)>Maximum de charges<nbsp>:<edgecolortype(0)><colortype(0)> 4<br><colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> octroie <colortype(500)><edgecolortype(501)>Surpanakha renforcée<edgecolortype(0)><colortype(0)> qui augmente la puissance de Surpanakha de 50%. Cumulable jusqu'au 3e degré.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 3s<br>L'effet prend fin si vous effectuez une action autre que Surpanakha.",
+  "effects": [
+    "Effectue une attaque magique de terre dans une zone en éventail devant vous.",
+    "Puissance : 200",
+    "La puissance est réduite de 50% au-delà du premier ennemi touché.",
+    "Maximum de charges : 4",
+    "Effet additionnel : octroie Surpanakha renforcée qui augmente la puissance de Surpanakha de 50%. Cumulable jusqu'au 3e degré.",
+    "Durée : 3s",
+    "L'effet prend fin si vous effectuez une action autre que Surpanakha."
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 36,
+    "name": "Mage Bleu",
+    "abbreviation": "MBU"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 1,
+  "icon": {
+    "id": 3328,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 4,
+    "name": "Aptitude"
+  },
+  "attack_type": {
+    "id": 5,
+    "name": "magie"
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 30,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 14,
+    "additional_cooldown_group": 71,
+    "max_charges": 4
+  },
+  "costs": {
+    "primary": {
+      "type_id": 3,
+      "value": 2
+    },
+    "secondary": {
+      "type_id": 0,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": 0,
+    "effect_yalms": 16,
+    "cast_type": 3
+  },
+  "targeting": {
+    "self": true,
+    "party": false,
+    "alliance": false,
+    "hostile": false,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": false
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 4,
+    "behavior_type": 0,
+    "class_job_category_id": 129,
+    "source_class_job_id": 36,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

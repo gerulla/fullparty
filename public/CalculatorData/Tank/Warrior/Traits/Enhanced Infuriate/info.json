@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 157,
+  "name": "Enhanced Infuriate",
+  "description": "Reduces Infuriate recast time by 5 seconds upon landing Fell Cleave or Decimate on most targets.",
+  "description_macro": "Reduces <colortype(500)><edgecolortype(501)>Infuriate<edgecolortype(0)><colortype(0)> recast time by 5 seconds upon landing <colortype(500)><edgecolortype(501)>Fell Cleave<edgecolortype(0)><colortype(0)> or <colortype(500)><edgecolortype(501)>Decimate<edgecolortype(0)><colortype(0)> on most targets.",
+  "effects": [
+    "Reduces Infuriate recast time by 5 seconds upon landing Fell Cleave or Decimate on most targets."
+  ],
+  "role": "Tank",
+  "job": {
+    "id": 21,
+    "name": "Warrior",
+    "abbreviation": "WAR"
+  },
+  "unlock_level": 66,
+  "value": 0,
+  "icon": {
+    "id": 5259,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 22,
+  "source_class_job_id": 21
+}

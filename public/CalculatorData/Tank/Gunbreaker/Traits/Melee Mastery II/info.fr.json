@@ -1,0 +1,36 @@
+{
+  "kind": "trait",
+  "id": 667,
+  "name": "Actions améliorées II",
+  "description": "Augmente la puissance de certaines actions.\n\nPuissance de Tranchant acéré : 300\nPuissance d'Impact brutal : 240\nPuissance de Salve tranchante : 240\nPuissance de Frappe explosive : 420\nPuissance de Croc pugnace : 440\nPuissance de Griffe sauvage : 500\nPuissance de Serre vicieuse : 560\nPuissance d'Arrachage de la jugulaire : 220\nPuissance de Lacération de l'abdomen : 260\nPuissance de Perforation des yeux : 300\nPuissance de Zone de destruction : 800\nPuissance de Hypervitesse : 180",
+  "description_macro": "Augmente la puissance de certaines actions.<br><br><colortype(506)><edgecolortype(507)>Puissance de Tranchant acéré<nbsp>:<edgecolortype(0)><colortype(0)> 300<br><colortype(506)><edgecolortype(507)>Puissance d'Impact brutal<nbsp>:<edgecolortype(0)><colortype(0)> 240<br><colortype(506)><edgecolortype(507)>Puissance de Salve tranchante<nbsp>:<edgecolortype(0)><colortype(0)> 240<br><colortype(506)><edgecolortype(507)>Puissance de Frappe explosive<nbsp>:<edgecolortype(0)><colortype(0)> 420<br><colortype(506)><edgecolortype(507)>Puissance de Croc pugnace<nbsp>:<edgecolortype(0)><colortype(0)> 440<br><colortype(506)><edgecolortype(507)>Puissance de Griffe sauvage<nbsp>:<edgecolortype(0)><colortype(0)> 500<br><colortype(506)><edgecolortype(507)>Puissance de Serre vicieuse<nbsp>:<edgecolortype(0)><colortype(0)> 560<br><colortype(506)><edgecolortype(507)>Puissance d'Arrachage de la jugulaire<nbsp>:<edgecolortype(0)><colortype(0)> 220<br><colortype(506)><edgecolortype(507)>Puissance de Lacération de l'abdomen<nbsp>:<edgecolortype(0)><colortype(0)> 260<br><colortype(506)><edgecolortype(507)>Puissance de Perforation des yeux<nbsp>:<edgecolortype(0)><colortype(0)> 300<br><colortype(506)><edgecolortype(507)>Puissance de Zone de destruction<nbsp>:<edgecolortype(0)><colortype(0)> 800<br><colortype(506)><edgecolortype(507)>Puissance de Hypervitesse<nbsp>:<edgecolortype(0)><colortype(0)> 180",
+  "effects": [
+    "Augmente la puissance de certaines actions.",
+    "Puissance de Tranchant acéré : 300",
+    "Puissance d'Impact brutal : 240",
+    "Puissance de Salve tranchante : 240",
+    "Puissance de Frappe explosive : 420",
+    "Puissance de Croc pugnace : 440",
+    "Puissance de Griffe sauvage : 500",
+    "Puissance de Serre vicieuse : 560",
+    "Puissance d'Arrachage de la jugulaire : 220",
+    "Puissance de Lacération de l'abdomen : 260",
+    "Puissance de Perforation des yeux : 300",
+    "Puissance de Zone de destruction : 800",
+    "Puissance de Hypervitesse : 180"
+  ],
+  "role": "Tank",
+  "job": {
+    "id": 37,
+    "name": "Pistosabreur",
+    "abbreviation": "PSB"
+  },
+  "unlock_level": 94,
+  "value": 0,
+  "icon": {
+    "id": 6802,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 149,
+  "source_class_job_id": 37
+}

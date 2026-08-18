@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 1844,
+  "name": "Blutige Krallen",
+  "description": "Augenstecher kann ausgeführt werden.",
+  "effects": [
+    "Augenstecher kann ausgeführt werden."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 213613,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 149,
+  "source_abilities": [
+    {
+      "id": 16150,
+      "name": "Tückische Kralle",
+      "description": "Du führst eine physische Attacke aus.\nAttacke-Wert: 560\nKombo-Bedingung: Wilde Klauen\nZusatzeffekt: Blutige Krallen\nDauer: 10 Sekunden\nDie Kombo muss korrekt ausgeführt werden\\Bei erfüllter Bedingung ändert sich Wilde Klauen zu diesem Kommando.\nKann nicht im Kommandomenü angelegt werden.",
+      "description_macro": "Du führst eine physische Attacke aus.<br>Attacke-Wert: <if([gnum68==37],<if([gnum72>=94],560,490)>,490)><br>Kombo-Bedingung: <colortype(502)><edgecolortype(503)>Wilde Klauen<edgecolortype(0)><colortype(0)><br><if([gnum68==37],<if([gnum72>=70],Zusatzeffekt: <colortype(506)><edgecolortype(507)>Blutige Krallen<edgecolortype(0)><colortype(0)><br>Dauer: 10 Sekunden<br>Die Kombo muss korrekt ausgeführt werden\\, um den Zusatzeffekt zu erhalten.<br>Effekt endet bei Ausführung einer Waf<->fen<->fer<->tig<->keit.<br>,)>,)>Bei erfüllter Bedingung ändert sich <colortype(502)><edgecolortype(503)>Wilde Klauen<edgecolortype(0)><colortype(0)> zu diesem Kommando.<br>Kann nicht im Kommandomenü angelegt werden.",
+      "unlock_level": 60,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Tank"
+      ],
+      "jobs": [
+        {
+          "id": 37,
+          "name": "Revolverklinge",
+          "abbreviation": "REV",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 633,
+  "name": "Meister des Aspektierten Helios",
+  "description": "Verbessert Aspektierter Helios zu Helios in Konjunktion.",
+  "description_macro": "Verbessert <colortype(502)><edgecolortype(503)>Aspektierter Helios<edgecolortype(0)><colortype(0)> zu <colortype(502)><edgecolortype(503)>Helios in Konjunktion<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Verbessert Aspektierter Helios zu Helios in Konjunktion."
+  ],
+  "role": "Healer",
+  "job": {
+    "id": 33,
+    "name": "Astrologe",
+    "abbreviation": "AST"
+  },
+  "unlock_level": 96,
+  "value": 0,
+  "icon": {
+    "id": 6122,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 99,
+  "source_class_job_id": 33
+}

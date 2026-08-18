@@ -1,0 +1,26 @@
+{
+  "kind": "trait",
+  "id": 277,
+  "name": "Iaijutsu amélioré",
+  "description": "Réduit à 1,3s le temps de lancement d'Iaijutsu.\nPermet également de recevoir Tsubamegaeshi préparé lorsque vous utilisez une technique d'Iaijutsu, à l'exception de Higanbana.\nDurée : 30s",
+  "description_macro": "Réduit à 1,3s le temps de lancement d'<colortype(500)><edgecolortype(501)>Iaijutsu<edgecolortype(0)><colortype(0)>.<br>Permet également de recevoir <colortype(500)><edgecolortype(501)>Tsubamegaeshi préparé<edgecolortype(0)><colortype(0)> lorsque vous utilisez une technique d'<colortype(500)><edgecolortype(501)>Iaijutsu<edgecolortype(0)><colortype(0)>, à l'exception de <colortype(500)><edgecolortype(501)>Higanbana<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 30s",
+  "effects": [
+    "Réduit à 1,3s le temps de lancement d'Iaijutsu.",
+    "Permet également de recevoir Tsubamegaeshi préparé lorsque vous utilisez une technique d'Iaijutsu, à l'exception de Higanbana.",
+    "Durée : 30s"
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 34,
+    "name": "Samouraï",
+    "abbreviation": "SAM"
+  },
+  "unlock_level": 74,
+  "value": 0,
+  "icon": {
+    "id": 6153,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 111,
+  "source_class_job_id": 34
+}

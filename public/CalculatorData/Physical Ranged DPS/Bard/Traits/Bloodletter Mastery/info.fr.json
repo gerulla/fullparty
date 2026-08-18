@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 599,
+  "name": "Maîtrise d'Hémorragie",
+  "description": "Remplace Hémorragie par Tir crève-cœur.",
+  "description_macro": "Remplace <colortype(500)><edgecolortype(501)>Hémorragie<edgecolortype(0)><colortype(0)> par <colortype(500)><edgecolortype(501)>Tir crève-cœur<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Remplace Hémorragie par Tir crève-cœur."
+  ],
+  "role": "Physical Ranged DPS",
+  "job": {
+    "id": 23,
+    "name": "Barde",
+    "abbreviation": "BRD"
+  },
+  "unlock_level": 92,
+  "value": 0,
+  "icon": {
+    "id": 5323,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 24,
+  "source_class_job_id": 23
+}

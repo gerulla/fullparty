@@ -1,0 +1,71 @@
+{
+  "kind": "combat_status",
+  "id": 2845,
+  "name": "Schnelle Harpe",
+  "description": "Die nächste Harpe kann sofort gewirkt werden und bei ihrer Ausführung wird die Reaktivierungszeit von Höllischer Auftritt und Höllischer Abgang verkürzt.",
+  "effects": [
+    "Die nächste Harpe kann sofort gewirkt werden und bei ihrer Ausführung wird die Reaktivierungszeit von Höllischer Auftritt und Höllischer Abgang verkürzt."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 212939,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 180,
+  "source_abilities": [
+    {
+      "id": 24401,
+      "name": "Höllischer Auftritt",
+      "description": "Du schnellst 15 Yalme nach vorne.\nZusatzeffekt: Gewährt dir Schnelle Harpe.\nDauer: 10 Sekunden\nEffekt von Schnelle Harpe: Die nächste Harpe kann sofort gewirkt werden und bei ihrer Ausführung wird die Reaktivierungszeit von Höllischer Auftritt und Höllischer Abgang um 5 Sekunden verkürzt.\nZusatzeffekt: Erzeugt am ursprünglichen Standort ein Höllentor und aktiviert den Status Rückkehr möglich.\nDauer: 10 Sekunden\nKann nicht während Fessel ausgeführt werden.\nGemeinsamer Reaktivierungs-Timer mit Höllischer Abgang",
+      "description_macro": "Du schnellst 15 Yalme nach vorne.<br>Zusatzeffekt: Gewährt dir <colortype(506)><edgecolortype(507)>Schnelle Harpe<edgecolortype(0)><colortype(0)>.<br>Dauer: 10 Sekunden<br>Effekt von <colortype(506)><edgecolortype(507)>Schnelle Harpe<edgecolortype(0)><colortype(0)>: Die nächste <colortype(502)><edgecolortype(503)>Harpe<edgecolortype(0)><colortype(0)> kann sofort gewirkt werden und bei ihrer Ausführung wird die Re<->ak<->ti<->vie<->rungs<->zeit von <colortype(502)><edgecolortype(503)>Höllischer Auftritt<edgecolortype(0)><colortype(0)> und <colortype(502)><edgecolortype(503)>Höllischer Abgang<edgecolortype(0)><colortype(0)> um 5 Sekunden verkürzt.<br><if([gnum68==39],<if([gnum72>=74],Zusatzeffekt: Erzeugt am ursprünglichen Standort ein <colortype(506)><edgecolortype(507)>Höllentor<edgecolortype(0)><colortype(0)> und aktiviert den Status <colortype(506)><edgecolortype(507)>Rückkehr möglich<edgecolortype(0)><colortype(0)>.<br>Dauer: 10 Sekunden<br>,)>,)>Kann nicht während <colortype(500)><edgecolortype(501)>Fessel<edgecolortype(0)><colortype(0)> ausgeführt werden.<br>Gemeinsamer Reaktivierungs-Timer mit <colortype(502)><edgecolortype(503)>Höllischer Abgang<edgecolortype(0)><colortype(0)>",
+      "unlock_level": 20,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 39,
+          "name": "Schnitter",
+          "abbreviation": "SNT",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 24402,
+      "name": "Höllischer Abgang",
+      "description": "Du schnellst 15 Yalme nach hinten.\nZusatzeffekt: Gewährt dir Schnelle Harpe.\nDauer: 10 Sekunden\nEffekt von Schnelle Harpe: Die nächste Harpe kann sofort gewirkt werden und bei ihrer Ausführung wird die Reaktivierungszeit von Höllischer Auftritt und Höllischer Abgang um 5 Sekunden verkürzt.\nZusatzeffekt: Erzeugt am ursprünglichen Standort ein Höllentor und aktiviert den Status Rückkehr möglich.\nDauer: 10 Sekunden\nKann nicht während Fessel ausgeführt werden.\nGemeinsamer Reaktivierungs-Timer mit Höllischer Auftritt",
+      "description_macro": "Du schnellst 15 Yalme nach hinten.<br>Zusatzeffekt: Gewährt dir <colortype(506)><edgecolortype(507)>Schnelle Harpe<edgecolortype(0)><colortype(0)>.<br>Dauer: 10 Sekunden<br>Effekt von <colortype(506)><edgecolortype(507)>Schnelle Harpe<edgecolortype(0)><colortype(0)>: Die nächste <colortype(502)><edgecolortype(503)>Harpe<edgecolortype(0)><colortype(0)> kann sofort gewirkt werden und bei ihrer Ausführung wird die Re<->ak<->ti<->vie<->rungs<->zeit von <colortype(502)><edgecolortype(503)>Höllischer Auftritt<edgecolortype(0)><colortype(0)> und <colortype(502)><edgecolortype(503)>Höllischer Abgang<edgecolortype(0)><colortype(0)> um 5 Sekunden verkürzt.<br><if([gnum68==39],<if([gnum72>=74],Zusatzeffekt: Erzeugt am ursprünglichen Standort ein <colortype(506)><edgecolortype(507)>Höllentor<edgecolortype(0)><colortype(0)> und aktiviert den Status <colortype(506)><edgecolortype(507)>Rückkehr möglich<edgecolortype(0)><colortype(0)>.<br>Dauer: 10 Sekunden<br>,)>,)>Kann nicht während <colortype(500)><edgecolortype(501)>Fessel<edgecolortype(0)><colortype(0)> ausgeführt werden.<br>Gemeinsamer Reaktivierungs-Timer mit <colortype(502)><edgecolortype(503)>Höllischer Auftritt<edgecolortype(0)><colortype(0)>",
+      "unlock_level": 20,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 39,
+          "name": "Schnitter",
+          "abbreviation": "SNT",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

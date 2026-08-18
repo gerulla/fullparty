@@ -1,0 +1,98 @@
+{
+  "kind": "ability",
+  "id": 34688,
+  "name": "レインボードリップ",
+  "description": "対象に向かって前方直線範囲無属性魔法攻撃。\u3000威力：1000\n2体目以降の対象への威力は85％減少する。\n追加効果：自身に「ホワイトペイント」を付与する。\n最大スタック数：5\n自身に「レインボードリップ効果アップ」が付与されているとリキャストタイムが短縮され、さらに詠唱時間無しで唱えられる。\nこの魔法は固有のリキャストタイマーを持ち、実行すると他のウェポンスキルと魔法にこのアクションと同じリキャストタイムが発生する。",
+  "description_macro": "対象に向かって前方直線範囲無属性魔法攻撃。\u3000<colortype(504)><edgecolortype(505)>威力：<edgecolortype(0)><colortype(0)>1000<br>2体目以降の対象への威力は85％減少する。<br><colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)>自身に<colortype(500)><edgecolortype(501)>「ホワイトペイント」<edgecolortype(0)><colortype(0)>を付与する。<br><colortype(504)><edgecolortype(505)>最大スタック数：<edgecolortype(0)><colortype(0)>5<br>自身に<colortype(500)><edgecolortype(501)>「レインボードリップ効果アップ」<edgecolortype(0)><colortype(0)>が付与されているとリキャストタイムが短縮され、さらに詠唱時間無しで唱えられる。<br>この魔法は固有のリキャストタイマーを持ち、実行すると他のウェポンスキルと魔法にこのアクションと同じリキャストタイムが発生する。",
+  "effects": [
+    "対象に向かって前方直線範囲無属性魔法攻撃。\u3000威力：1000",
+    "2体目以降の対象への威力は85％減少する。",
+    "追加効果：自身に「ホワイトペイント」を付与する。",
+    "最大スタック数：5",
+    "自身に「レインボードリップ効果アップ」が付与されているとリキャストタイムが短縮され、さらに詠唱時間無しで唱えられる。",
+    "この魔法は固有のリキャストタイマーを持ち、実行すると他のウェポンスキルと魔法にこのアクションと同じリキャストタイムが発生する。"
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 42,
+    "name": "ピクトマンサー",
+    "abbreviation": "PCT"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 92,
+  "icon": {
+    "id": 3838,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 2,
+    "name": "魔法"
+  },
+  "attack_type": {
+    "id": 5,
+    "name": "魔法"
+  },
+  "timing": {
+    "cast_seconds": 4,
+    "recast_seconds": 6,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 58,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 0,
+      "value": 0
+    },
+    "secondary": {
+      "type_id": 0,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": 25,
+    "effect_yalms": 25,
+    "cast_type": 4
+  },
+  "targeting": {
+    "self": false,
+    "party": false,
+    "alliance": false,
+    "hostile": true,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": {
+      "id": 144,
+      "status": {
+        "id": 3679,
+        "name": "レインボードリップ効果アップ",
+        "description": "次に実行するレインボードリップのリキャストタイムが短縮され、さらに詠唱時間無しで唱えられる状態。",
+        "icon_id": 213805,
+        "max_stacks": 0
+      }
+    }
+  },
+  "metadata": {
+    "aspect_id": 7,
+    "behavior_type": 0,
+    "class_job_category_id": 197,
+    "source_class_job_id": 42,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

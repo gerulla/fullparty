@@ -1,0 +1,22 @@
+{
+  "kind": "trait",
+  "id": 11,
+  "name": "Verbessertes Bombardieren",
+  "description": "Gewährt eine Chance von 5 % auf den sofortigen Tod fast aller Gegner.",
+  "description_macro": "Gewährt eine Chance von 5<nbsp>% auf den sofortigen Tod fast aller Gegner.",
+  "effects": [
+    "Gewährt eine Chance von 5 % auf den sofortigen Tod fast aller Gegner."
+  ],
+  "role": "Phantom Jobs",
+  "job": {
+    "id": 9,
+    "name": "Phantom-Grenadier",
+    "abbreviation": "Ph-Grenadier"
+  },
+  "is_phantom_trait": true,
+  "unlock_level": 5,
+  "icon": {
+    "id": 82211,
+    "file": "icon.png"
+  }
+}

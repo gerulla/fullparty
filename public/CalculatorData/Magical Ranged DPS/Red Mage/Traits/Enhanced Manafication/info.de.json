@@ -1,0 +1,26 @@
+{
+  "kind": "trait",
+  "id": 622,
+  "name": "Verbesserte Manafizierung",
+  "description": "Erfolgreiche Ausführung von Manafizierung gewährt dir Kristallglanz-bereit.\nDauer: 30 Sekunden\nIst Kristallglanz-bereit aktiv, ändert sich Manafizierung zu Kristallglanz.",
+  "description_macro": "Erfolgreiche Ausführung von <colortype(502)><edgecolortype(503)>Manafizierung<edgecolortype(0)><colortype(0)> gewährt dir <colortype(506)><edgecolortype(507)>Kristallglanz-bereit<edgecolortype(0)><colortype(0)>.<br>Dauer: 30 Sekunden<br>Ist <colortype(506)><edgecolortype(507)>Kristallglanz-bereit<edgecolortype(0)><colortype(0)> aktiv, ändert sich <colortype(502)><edgecolortype(503)>Manafizierung<edgecolortype(0)><colortype(0)> zu <colortype(502)><edgecolortype(503)>Kristallglanz<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Erfolgreiche Ausführung von Manafizierung gewährt dir Kristallglanz-bereit.",
+    "Dauer: 30 Sekunden",
+    "Ist Kristallglanz-bereit aktiv, ändert sich Manafizierung zu Kristallglanz."
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 35,
+    "name": "Rotmagier",
+    "abbreviation": "RMA"
+  },
+  "unlock_level": 100,
+  "value": 0,
+  "icon": {
+    "id": 6216,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 112,
+  "source_class_job_id": 35
+}

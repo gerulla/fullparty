@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 3900,
+  "name": "ダムネーション［被］",
+  "description": "連続してＨＰが回復している状態。",
+  "effects": [
+    "連続してＨＰが回復している状態。"
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 212570,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": true,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 5,
+  "parameter": {
+    "effect": 0,
+    "modifier": 10
+  },
+  "class_job_category_id": 22,
+  "source_abilities": [
+    {
+      "id": 36923,
+      "name": "ダムネーション",
+      "description": "一定時間、自身の被ダメージを40％軽減させ、かつ自身が物理攻撃を受けた場合に、反撃ダメージを与える。\n威力：55\u3000効果時間：15秒\n追加効果：ダメージを受けるか、ダメージを受けることなく効果時間が経過すると、自身に「ダムネーション［被］」を付与する。\nダムネーション［被］効果：自身のＨＰを継続回復する。\n回復力：300\u3000効果時間：15秒",
+      "description_macro": "一定時間、自身の被ダメージを40％軽減させ、かつ自身が物理攻撃を受けた場合に、反撃ダメージを与える。<br><colortype(504)><edgecolortype(505)>威力：<edgecolortype(0)><colortype(0)>55\u3000<colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>15秒<br><colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)>ダメージを受けるか、ダメージを受けることなく効果時間が経過すると、自身に<colortype(500)><edgecolortype(501)>「ダムネーション［被］」<edgecolortype(0)><colortype(0)>を付与する。<br><colortype(504)><edgecolortype(505)>ダムネーション［被］効果：<edgecolortype(0)><colortype(0)>自身のＨＰを継続回復する。<br><colortype(504)><edgecolortype(505)>回復力：<edgecolortype(0)><colortype(0)>300\u3000<colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>15秒",
+      "unlock_level": 92,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Tank"
+      ],
+      "jobs": [
+        {
+          "id": 21,
+          "name": "戦士",
+          "abbreviation": "WAR",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 259,
+  "name": "Maîtrise de Zone de danger",
+  "description": "Remplace Zone de danger par Zone de destruction.",
+  "description_macro": "Remplace <colortype(500)><edgecolortype(501)>Zone de danger<edgecolortype(0)><colortype(0)> par <colortype(500)><edgecolortype(501)>Zone de destruction<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Remplace Zone de danger par Zone de destruction."
+  ],
+  "role": "Tank",
+  "job": {
+    "id": 37,
+    "name": "Pistosabreur",
+    "abbreviation": "PSB"
+  },
+  "unlock_level": 80,
+  "value": 0,
+  "icon": {
+    "id": 6303,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 149,
+  "source_class_job_id": 37
+}

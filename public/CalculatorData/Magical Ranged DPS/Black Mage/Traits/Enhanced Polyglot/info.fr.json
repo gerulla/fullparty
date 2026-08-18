@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 297,
+  "name": "Polyglotte amélioré",
+  "description": "Augmente le degré maximal de Polyglotte à 2.",
+  "description_macro": "Augmente le degré maximal de <colortype(500)><edgecolortype(501)>Polyglotte<edgecolortype(0)><colortype(0)> à 2.",
+  "effects": [
+    "Augmente le degré maximal de Polyglotte à 2."
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 25,
+    "name": "Mage Noir",
+    "abbreviation": "MNO"
+  },
+  "unlock_level": 80,
+  "value": 0,
+  "icon": {
+    "id": 5363,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 26,
+  "source_class_job_id": 25
+}

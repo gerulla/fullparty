@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 259,
+  "name": "Danger Zone Mastery",
+  "description": "Upgrades Danger Zone to Blasting Zone.",
+  "description_macro": "Upgrades <colortype(500)><edgecolortype(501)>Danger Zone<edgecolortype(0)><colortype(0)> to <colortype(500)><edgecolortype(501)>Blasting Zone<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Upgrades Danger Zone to Blasting Zone."
+  ],
+  "role": "Tank",
+  "job": {
+    "id": 37,
+    "name": "Gunbreaker",
+    "abbreviation": "GNB"
+  },
+  "unlock_level": 80,
+  "value": 0,
+  "icon": {
+    "id": 6303,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 149,
+  "source_class_job_id": 37
+}

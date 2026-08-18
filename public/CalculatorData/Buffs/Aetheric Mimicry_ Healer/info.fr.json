@@ -1,0 +1,114 @@
+{
+  "kind": "combat_status",
+  "id": 2126,
+  "name": "Éther de soigneur",
+  "description": "L'éther d'un soigneur est imité.",
+  "effects": [
+    "L'éther d'un soigneur est imité."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 213529,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": true,
+  "is_permanent": true,
+  "inflicted_by_actor": true,
+  "party_list_priority": 101,
+  "parameter": {
+    "effect": 0,
+    "modifier": 30
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 18322,
+      "name": "Imitation éthéréenne",
+      "description": "Aligne son propre éther sur celui de sa cible. Selon la classe de celle-ci, vous octroie un des états suivants et ses effets respectifs : \nÉther de protecteur : augmente votre défense ainsi que la puissance de certains sorts de magie bleue.\nÉther de combattant : augmente de 20% vos chances de coups critiques et de coups nets ainsi que la puissance de certains sorts de magie bleue.\nÉther de soigneur : augmente de 20% la puissance des effets curatifs que vous prodiguez ainsi que la puissance de certains sorts de magie bleue.\nL'effet prend fin en relançant l'action.",
+      "description_macro": "Aligne son propre éther sur celui de sa cible. Selon la classe de celle-ci, vous octroie un des états suivants et ses effets respectifs<nbsp>: <br><colortype(500)><edgecolortype(501)>Éther de protecteur<edgecolortype(0)><colortype(0)><nbsp>: augmente votre défense ainsi que la puissance de certains sorts de magie bleue.<br><colortype(500)><edgecolortype(501)>Éther de combattant<edgecolortype(0)><colortype(0)><nbsp>: augmente de 20% vos chances de coups critiques et de coups nets ainsi que la puissance de certains sorts de magie bleue.<br><colortype(500)><edgecolortype(501)>Éther de soigneur<edgecolortype(0)><colortype(0)><nbsp>: augmente de 20% la puissance des effets curatifs que vous prodiguez ainsi que la puissance de certains sorts de magie bleue.<br>L'effet prend fin en relançant l'action.",
+      "unlock_level": 1,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Magical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 36,
+          "name": "Mage Bleu",
+          "abbreviation": "MBU",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 19238,
+      "name": "Imitation éthéréenne",
+      "description": "Aligne son propre éther sur celui de sa cible. Selon la classe de celle-ci, vous octroie un des états suivants et ses effets respectifs : \nÉther de protecteur : augmente votre défense ainsi que la puissance de certains sorts de magie bleue.\nÉther de combattant : augmente de 20% vos chances de coups critiques et de coups nets ainsi que la puissance de certains sorts de magie bleue.\nÉther de soigneur : augmente de 20% la puissance des effets curatifs que vous prodiguez ainsi que la puissance de certains sorts de magie bleue.\nL'effet prend fin en relançant l'action.",
+      "description_macro": "Aligne son propre éther sur celui de sa cible. Selon la classe de celle-ci, vous octroie un des états suivants et ses effets respectifs<nbsp>: <br><colortype(500)><edgecolortype(501)>Éther de protecteur<edgecolortype(0)><colortype(0)><nbsp>: augmente votre défense ainsi que la puissance de certains sorts de magie bleue.<br><colortype(500)><edgecolortype(501)>Éther de combattant<edgecolortype(0)><colortype(0)><nbsp>: augmente de 20% vos chances de coups critiques et de coups nets ainsi que la puissance de certains sorts de magie bleue.<br><colortype(500)><edgecolortype(501)>Éther de soigneur<edgecolortype(0)><colortype(0)><nbsp>: augmente de 20% la puissance des effets curatifs que vous prodiguez ainsi que la puissance de certains sorts de magie bleue.<br>L'effet prend fin en relançant l'action.",
+      "unlock_level": 1,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Magical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 36,
+          "name": "Mage Bleu",
+          "abbreviation": "MBU",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 19239,
+      "name": "Imitation éthéréenne",
+      "description": "Aligne son propre éther sur celui de sa cible. Selon la classe de celle-ci, vous octroie un des états suivants et ses effets respectifs : \nÉther de protecteur : augmente votre défense ainsi que la puissance de certains sorts de magie bleue.\nÉther de combattant : augmente de 20% vos chances de coups critiques et de coups nets ainsi que la puissance de certains sorts de magie bleue.\nÉther de soigneur : augmente de 20% la puissance des effets curatifs que vous prodiguez ainsi que la puissance de certains sorts de magie bleue.\nL'effet prend fin en relançant l'action.",
+      "description_macro": "Aligne son propre éther sur celui de sa cible. Selon la classe de celle-ci, vous octroie un des états suivants et ses effets respectifs<nbsp>: <br><colortype(500)><edgecolortype(501)>Éther de protecteur<edgecolortype(0)><colortype(0)><nbsp>: augmente votre défense ainsi que la puissance de certains sorts de magie bleue.<br><colortype(500)><edgecolortype(501)>Éther de combattant<edgecolortype(0)><colortype(0)><nbsp>: augmente de 20% vos chances de coups critiques et de coups nets ainsi que la puissance de certains sorts de magie bleue.<br><colortype(500)><edgecolortype(501)>Éther de soigneur<edgecolortype(0)><colortype(0)><nbsp>: augmente de 20% la puissance des effets curatifs que vous prodiguez ainsi que la puissance de certains sorts de magie bleue.<br>L'effet prend fin en relançant l'action.",
+      "unlock_level": 1,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Magical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 36,
+          "name": "Mage Bleu",
+          "abbreviation": "MBU",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 19240,
+      "name": "Imitation éthéréenne",
+      "description": "Aligne son propre éther sur celui de sa cible. Selon la classe de celle-ci, vous octroie un des états suivants et ses effets respectifs : \nÉther de protecteur : augmente votre défense ainsi que la puissance de certains sorts de magie bleue.\nÉther de combattant : augmente de 20% vos chances de coups critiques et de coups nets ainsi que la puissance de certains sorts de magie bleue.\nÉther de soigneur : augmente de 20% la puissance des effets curatifs que vous prodiguez ainsi que la puissance de certains sorts de magie bleue.\nL'effet prend fin en relançant l'action.",
+      "description_macro": "Aligne son propre éther sur celui de sa cible. Selon la classe de celle-ci, vous octroie un des états suivants et ses effets respectifs<nbsp>: <br><colortype(500)><edgecolortype(501)>Éther de protecteur<edgecolortype(0)><colortype(0)><nbsp>: augmente votre défense ainsi que la puissance de certains sorts de magie bleue.<br><colortype(500)><edgecolortype(501)>Éther de combattant<edgecolortype(0)><colortype(0)><nbsp>: augmente de 20% vos chances de coups critiques et de coups nets ainsi que la puissance de certains sorts de magie bleue.<br><colortype(500)><edgecolortype(501)>Éther de soigneur<edgecolortype(0)><colortype(0)><nbsp>: augmente de 20% la puissance des effets curatifs que vous prodiguez ainsi que la puissance de certains sorts de magie bleue.<br>L'effet prend fin en relançant l'action.",
+      "unlock_level": 1,
+      "relations": [
+        "direct_gain_self",
+        "granted_by_description"
+      ],
+      "roles": [
+        "Magical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 36,
+          "name": "Mage Bleu",
+          "abbreviation": "MBU",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

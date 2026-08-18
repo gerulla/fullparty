@@ -1,0 +1,86 @@
+{
+  "kind": "ability",
+  "id": 16008,
+  "name": "Fächertanz II",
+  "description": "Du führst eine physische Attacke gegen alle umstehenden Gegner aus. \nAttacke-Wert: 100\nZusatzeffekt: 50 % Wahrscheinlichkeit\\Plume Burlesque-Kosten: 1",
+  "description_macro": "Du führst eine physische Attacke gegen alle umstehenden Gegner aus. <br>Attacke-Wert: 100<br><if([gnum68==38],<if([gnum72>=66],Zusatzeffekt: 50 % Wahr<->schein<->lich<->keit\\, sich selbst den Status <colortype(506)><edgecolortype(507)>Fächertanz III<edgecolortype(0)><colortype(0)> zu verleihen.<br>Dauer: 30 Sekunden<br>,)>,)><colortype(506)><edgecolortype(507)>Plume Burlesque<edgecolortype(0)><colortype(0)>-Kosten: 1",
+  "effects": [
+    "Du führst eine physische Attacke gegen alle umstehenden Gegner aus.",
+    "Attacke-Wert: 100",
+    "Zusatzeffekt: 50 % Wahrscheinlichkeit\\Plume Burlesque-Kosten: 1"
+  ],
+  "role": "Physical Ranged DPS",
+  "job": {
+    "id": 38,
+    "name": "Tänzer",
+    "abbreviation": "TÄN"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 50,
+  "icon": {
+    "id": 3466,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 4,
+    "name": "Talent"
+  },
+  "attack_type": {
+    "id": 4294967295,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 1,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 3,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 53,
+      "value": 1
+    },
+    "secondary": {
+      "type_id": 91,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": 0,
+    "effect_yalms": 5,
+    "cast_type": 2
+  },
+  "targeting": {
+    "self": true,
+    "party": false,
+    "alliance": false,
+    "hostile": false,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 7,
+    "behavior_type": 0,
+    "class_job_category_id": 150,
+    "source_class_job_id": 38,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

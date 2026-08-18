@@ -1,0 +1,80 @@
+{
+  "kind": "combat_status",
+  "id": 1195,
+  "name": "Zermürben",
+  "description": "Ausgeteilter physischer Schaden und Magieschaden sind verringert.",
+  "effects": [
+    "Ausgeteilter physischer Schaden und Magieschaden sind verringert."
+  ],
+  "classification": "debuff",
+  "icon": {
+    "id": 213904,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 2,
+  "target_type": 0,
+  "can_dispel": true,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 50,
+  "parameter": {
+    "effect": 0,
+    "modifier": -10
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 7549,
+      "name": "Zermürben",
+      "description": "Du verringerst den ausgeteilten physischen Schaden um 10 % und den ausgeteilten magischen Schaden um 5 %.\nDauer: 15 Sekunden",
+      "description_macro": "Du verringerst den ausgeteilten physischen Schaden um 10<nbsp>% und den ausgeteilten magischen Schaden um 5<nbsp>%.<br>Dauer: <if([gnum72>=98],<if([gnum68==2],15,<if([gnum68==20],15,<if([gnum68==4],15,<if([gnum68==22],15,<if([gnum68==29],15,<if([gnum68==30],15,<if([gnum68==34],15,<if([gnum68==39],15,<if([gnum68==41],15,10)>)>)>)>)>)>)>)>)>,10)> Sekunden",
+      "unlock_level": 22,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 20,
+          "name": "Mönch",
+          "abbreviation": "MÖN",
+          "is_phantom": false
+        },
+        {
+          "id": 22,
+          "name": "Dragoon",
+          "abbreviation": "DRG",
+          "is_phantom": false
+        },
+        {
+          "id": 30,
+          "name": "Ninja",
+          "abbreviation": "NIN",
+          "is_phantom": false
+        },
+        {
+          "id": 34,
+          "name": "Samurai",
+          "abbreviation": "SAM",
+          "is_phantom": false
+        },
+        {
+          "id": 39,
+          "name": "Schnitter",
+          "abbreviation": "SNT",
+          "is_phantom": false
+        },
+        {
+          "id": 41,
+          "name": "Viper",
+          "abbreviation": "VPR",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

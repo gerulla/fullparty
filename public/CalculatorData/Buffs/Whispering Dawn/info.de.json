@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 315,
+  "name": "Erhebendes Flüstern",
+  "description": "Regeneriert schrittweise LP.",
+  "effects": [
+    "Regeneriert schrittweise LP."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 212826,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 5,
+  "parameter": {
+    "effect": 0,
+    "modifier": 10
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 16537,
+      "name": "Erhebendes Flüstern",
+      "description": "Du lässt deine Fee Erhebendes Flüstern ausführen.\nKommando wird als Hauch der Seraphim ausgeführt\\\nRegeneriert schrittweise eigene LP und die von umstehenden Gruppenmitgliedern.\nHeilpotenzial: 80\nDauer: 21 Sekunden\nBedingung: Fee oder Seraph ist bereits gerufen.",
+      "description_macro": "Du lässt deine Fee <colortype(502)><edgecolortype(503)>Erhebendes Flüstern<edgecolortype(0)><colortype(0)> ausführen.<if([gnum68==28],<if([gnum72>=80],<br>Kommando wird als <colortype(502)><edgecolortype(503)>Hauch der Seraphim<edgecolortype(0)><colortype(0)> ausgeführt\\, wenn Seraph anwesend ist.,)>,)><br>Regeneriert schrittweise eigene LP und die von umstehenden Grup<->pen<->mit<->gliedern.<br>Heilpotenzial: 80<br>Dauer: 21 Sekunden<br>Bedingung: <if([gnum68==28],<if([gnum72>=80],Fee oder Seraph,Fee)>,Fee)> ist bereits gerufen.",
+      "unlock_level": 20,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Healer"
+      ],
+      "jobs": [
+        {
+          "id": 28,
+          "name": "Gelehrter",
+          "abbreviation": "GLT",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

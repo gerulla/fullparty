@@ -1,0 +1,86 @@
+{
+  "kind": "ability",
+  "id": 16532,
+  "name": "ディア",
+  "description": "対象に無属性魔法攻撃。\u3000威力：85\n追加効果：対象に無属性の継続ダメージを付与する。\n威力：85\u3000効果時間：30秒",
+  "description_macro": "対象に無属性魔法攻撃。\u3000<colortype(504)><edgecolortype(505)>威力：<edgecolortype(0)><colortype(0)><if([gnum68==24],<if([gnum72>=94],85,65)>,65)><br><colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)>対象に無属性の継続ダメージを付与する。<br><colortype(504)><edgecolortype(505)>威力：<edgecolortype(0)><colortype(0)><if([gnum68==24],<if([gnum72>=94],85,65)>,65)>\u3000<colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>30秒",
+  "effects": [
+    "対象に無属性魔法攻撃。\u3000威力：85",
+    "追加効果：対象に無属性の継続ダメージを付与する。",
+    "威力：85\u3000効果時間：30秒"
+  ],
+  "role": "Healer",
+  "job": {
+    "id": 24,
+    "name": "白魔道士",
+    "abbreviation": "WHM"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 72,
+  "icon": {
+    "id": 2641,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 2,
+    "name": "魔法"
+  },
+  "attack_type": {
+    "id": 5,
+    "name": "魔法"
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 2.5,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 58,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 3,
+      "value": 4
+    },
+    "secondary": {
+      "type_id": 62,
+      "value": 307
+    }
+  },
+  "range": {
+    "target_yalms": 25,
+    "effect_yalms": 0,
+    "cast_type": 1
+  },
+  "targeting": {
+    "self": false,
+    "party": false,
+    "alliance": false,
+    "hostile": true,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": false
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 7,
+    "behavior_type": 0,
+    "class_job_category_id": 25,
+    "source_class_job_id": 24,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

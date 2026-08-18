@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 3831,
+  "name": "Blade of Honor Ready",
+  "description": "Able to execute Blade of Honor.",
+  "effects": [
+    "Able to execute Blade of Honor."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 213052,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 20,
+  "source_abilities": [
+    {
+      "id": 25750,
+      "name": "Blade of Valor",
+      "description": "Deals unaspected damage to target and all enemies nearby it with a potency of 500 for the first enemy, and 60% less for all remaining enemies.\nRequiescat Potency: 1\\\nCombo Action: Blade of Truth\nAdditional Effect: Restores own HP\nCure Potency: 400\nAdditional Effect: Grants Blade of Honor Ready\nDuration: 30s\n\n※This action cannot be assigned to a hotbar.\n※Blade of Truth changes to Blade of Valor when requirements for execution are met.",
+      "description_macro": "Deals unaspected damage to target and all enemies nearby it with a potency of <if([gnum68==19],<if([gnum72>=94],500,420)>,420)> for the first enemy, and 60% less for all remaining enemies.<br><colortype(504)><edgecolortype(505)>Requiescat Potency: <edgecolortype(0)><colortype(0)><if([gnum68==19],<if([gnum72>=94],1\\,000,920)>,920)><br><colortype(504)><edgecolortype(505)>Combo Action: <edgecolortype(0)><colortype(0)><colortype(500)><edgecolortype(501)>Blade of Truth<edgecolortype(0)><colortype(0)><br><colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>Restores own HP<br><colortype(504)><edgecolortype(505)>Cure Potency: <edgecolortype(0)><colortype(0)>400<if([gnum68==19],<if([gnum72>=100],<br><colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>Grants <colortype(506)><edgecolortype(507)>Blade of Honor Ready<edgecolortype(0)><colortype(0)><br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>30s<br>,)>,)><br>※This action cannot be assigned to a hotbar.<br>※<colortype(500)><edgecolortype(501)>Blade of Truth<edgecolortype(0)><colortype(0)> changes to <colortype(500)><edgecolortype(501)>Blade of Valor<edgecolortype(0)><colortype(0)> when requirements for execution are met.",
+      "unlock_level": 90,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Tank"
+      ],
+      "jobs": [
+        {
+          "id": 19,
+          "name": "Paladin",
+          "abbreviation": "PLD",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 494,
+  "name": "展開戦術効果アップ",
+  "description": "展開戦術のリキャストタイムを90秒に短縮させる。",
+  "description_macro": "展開戦術のリキャストタイムを90秒に短縮させる。",
+  "effects": [
+    "展開戦術のリキャストタイムを90秒に短縮させる。"
+  ],
+  "role": "Healer",
+  "job": {
+    "id": 28,
+    "name": "学者",
+    "abbreviation": "SCH"
+  },
+  "unlock_level": 88,
+  "value": -300,
+  "icon": {
+    "id": 5706,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 29,
+  "source_class_job_id": 28
+}

@@ -1,0 +1,86 @@
+{
+  "kind": "ability",
+  "id": 46590,
+  "name": "Magic Shell",
+  "description": "Creates a barrier around self or target party member that absorbs damage equivalent to 20% of the caster's maximum HP.\nDuration: 60s\nWhen the barrier is completely absorbed or expires, grants Honed Spellblade to the caster.",
+  "description_macro": "Creates a barrier around self or target party member that absorbs damage equivalent to 20% of the caster's maximum HP.<br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>60s<br>When the barrier is completely absorbed or expires, grants <colortype(506)><edgecolortype(507)>Honed Spellblade<edgecolortype(0)><colortype(0)> to the caster.<if([gnum108>=2],<br><colortype(504)><edgecolortype(505)>Honed Spellblade Effect: <edgecolortype(0)><colortype(0)>Increases damage dealt by next Spellblade<br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>30s,)>",
+  "effects": [
+    "Creates a barrier around self or target party member that absorbs damage equivalent to 20% of the caster's maximum HP.",
+    "Duration: 60s",
+    "When the barrier is completely absorbed or expires, grants Honed Spellblade to the caster."
+  ],
+  "role": "Phantom Jobs",
+  "job": {
+    "id": 13,
+    "name": "Phantom Mystic Knight",
+    "abbreviation": "Ph. Mystic Knight"
+  },
+  "is_phantom_action": true,
+  "unlock_level": 2,
+  "icon": {
+    "id": 64575,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 4,
+    "name": "Ability"
+  },
+  "attack_type": {
+    "id": 0,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 60,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 86,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 0,
+      "value": 0
+    },
+    "secondary": {
+      "type_id": 0,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": 30,
+    "effect_yalms": 0,
+    "cast_type": 1
+  },
+  "targeting": {
+    "self": true,
+    "party": true,
+    "alliance": false,
+    "hostile": false,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 0,
+    "behavior_type": 0,
+    "class_job_category_id": 142,
+    "source_class_job_id": 4294967295,
+    "is_role_action": false,
+    "is_player_action": false,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

@@ -1,0 +1,51 @@
+{
+  "kind": "combat_status",
+  "id": 742,
+  "name": "Blutwaffe",
+  "description": "Absorbiert MP bei Treffern mit Waffenfertigkeiten oder Zaubern.\nZusatzeffekt bei Schwarzblut II: Füllt den Blutbalken bei Treffern mit Waffenfertigkeiten oder Zaubern.",
+  "effects": [
+    "Absorbiert MP bei Treffern mit Waffenfertigkeiten oder Zaubern.",
+    "Zusatzeffekt bei Schwarzblut II: Füllt den Blutbalken bei Treffern mit Waffenfertigkeiten oder Zaubern."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 217926,
+    "file": "icon.png"
+  },
+  "max_stacks": 5,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 27,
+    "modifier": 25
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 3625,
+      "name": "Blutwaffe",
+      "description": "Du erhältst 3 Stapel Blutwaffe.\nDauer: 15 Sekunden\nEffekt von Blutwaffe: Regeneriert bei einem erfolgreichen Treffer deiner Waffenfertigkeiten oder Zauber MP.\nAußerdem füllt sich der Blutbalken um 10.\nBei Attacken auf mehrere Ziele ist der Effekt nur einmalig wirksam.",
+      "description_macro": "Du erhältst 3 Stapel <colortype(506)><edgecolortype(507)>Blutwaffe<edgecolortype(0)><colortype(0)>.<br>Dauer: 15 Sekunden<br>Effekt von <colortype(506)><edgecolortype(507)>Blutwaffe<edgecolortype(0)><colortype(0)>: Regeneriert bei einem erfolgreichen Treffer deiner Waf<->fen<->fer<->tig<->kei<->ten oder Zauber MP.<br><if([gnum72>=66],<if([gnum68==32],Außerdem füllt sich der Blutbalken um 10.<br>,)>,)>Bei Attacken auf mehrere Ziele ist der Effekt nur einmalig wirksam.",
+      "unlock_level": 35,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Tank"
+      ],
+      "jobs": [
+        {
+          "id": 32,
+          "name": "Dunkelritter",
+          "abbreviation": "DKR",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

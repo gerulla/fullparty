@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 636,
+  "name": "ソーテリア効果アップ",
+  "description": "ソーテリアのリキャストタイムを60秒に短縮する。",
+  "description_macro": "ソーテリアのリキャストタイムを60秒に短縮する。",
+  "effects": [
+    "ソーテリアのリキャストタイムを60秒に短縮する。"
+  ],
+  "role": "Healer",
+  "job": {
+    "id": 40,
+    "name": "賢者",
+    "abbreviation": "SGE"
+  },
+  "unlock_level": 94,
+  "value": -300,
+  "icon": {
+    "id": 6461,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 181,
+  "source_class_job_id": 40
+}

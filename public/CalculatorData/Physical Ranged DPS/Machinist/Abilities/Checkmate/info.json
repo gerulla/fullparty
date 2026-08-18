@@ -1,0 +1,85 @@
+{
+  "kind": "ability",
+  "id": 36980,
+  "name": "Checkmate",
+  "description": "Delivers an attack to target and all enemies nearby it with a potency of 180 for the first enemy, and 30% less for all remaining enemies.\nMaximum Charges: 3",
+  "description_macro": "Delivers an attack to target and all enemies nearby it with a potency of 180 for the first enemy, and 30% less for all remaining enemies.<br><colortype(504)><edgecolortype(505)>Maximum Charges: <edgecolortype(0)><colortype(0)>3",
+  "effects": [
+    "Delivers an attack to target and all enemies nearby it with a potency of 180 for the first enemy, and 30% less for all remaining enemies.",
+    "Maximum Charges: 3"
+  ],
+  "role": "Physical Ranged DPS",
+  "job": {
+    "id": 31,
+    "name": "Machinist",
+    "abbreviation": "MCH"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 92,
+  "icon": {
+    "id": 3508,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 4,
+    "name": "Ability"
+  },
+  "attack_type": {
+    "id": 4294967295,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 30,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 16,
+    "additional_cooldown_group": 72,
+    "max_charges": 3
+  },
+  "costs": {
+    "primary": {
+      "type_id": 0,
+      "value": 0
+    },
+    "secondary": {
+      "type_id": 62,
+      "value": 604
+    }
+  },
+  "range": {
+    "target_yalms": -1,
+    "effect_yalms": 5,
+    "cast_type": 2
+  },
+  "targeting": {
+    "self": false,
+    "party": false,
+    "alliance": false,
+    "hostile": true,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 7,
+    "behavior_type": 0,
+    "class_job_category_id": 96,
+    "source_class_job_id": 31,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

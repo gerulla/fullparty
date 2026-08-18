@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 4105,
+  "name": "Picto Pompon",
+  "description": "Imagi Pompon peut être lancé.",
+  "effects": [
+    "Imagi Pompon peut être lancé."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 214701,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": true,
+  "is_permanent": true,
+  "inflicted_by_actor": true,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 197,
+  "source_abilities": [
+    {
+      "id": 34664,
+      "name": "Picto Pompon",
+      "description": "Peint une esquisse de Pompon.\nPeut être lancé instantanément si vous êtes hors combat.\nCondition : aucune esquisse peinte sur la toile Animal.\nCe sort a un temps de recharge indépendant qui ne peut pas être modifié par des effets ou des pièces d'équipement, et qui est appliqué aux autres sorts ou techniques d'arme après utilisation.\n\n* Cette action ne peut pas être ajoutée aux barres de raccourcis.\nRemplace Picto Animal lorsque les conditions sont réunies.",
+      "description_macro": "Peint une esquisse de <colortype(500)><edgecolortype(501)>Pompon<edgecolortype(0)><colortype(0)>.<br>Peut être lancé instantanément si vous êtes hors combat.<br><colortype(506)><edgecolortype(507)>Condition<nbsp>:<edgecolortype(0)><colortype(0)> aucune esquisse peinte sur la toile Animal.<br>Ce sort a un temps de recharge indépendant qui ne peut pas être modifié par des effets ou des pièces d'équipement, et qui est appliqué aux autres sorts ou techniques d'arme après utilisation.<br><br><colortype(504)><edgecolortype(505)>* Cette action ne peut pas être ajoutée aux barres de raccourcis.<br>Remplace <colortype(500)><edgecolortype(501)>Picto Animal<edgecolortype(0)><colortype(0)> lorsque les conditions sont réunies.<edgecolortype(0)><colortype(0)>",
+      "unlock_level": 30,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Magical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 42,
+          "name": "Pictomancien",
+          "abbreviation": "PIC",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

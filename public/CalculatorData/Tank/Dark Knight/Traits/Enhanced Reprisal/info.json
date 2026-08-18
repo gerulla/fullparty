@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 640,
+  "name": "Enhanced Reprisal",
+  "description": "Extends the duration of Reprisal to 15 seconds.",
+  "description_macro": "Extends the duration of <colortype(506)><edgecolortype(507)>Reprisal<edgecolortype(0)><colortype(0)> to 15 seconds.",
+  "effects": [
+    "Extends the duration of Reprisal to 15 seconds."
+  ],
+  "role": "Tank",
+  "job": {
+    "id": 32,
+    "name": "Dark Knight",
+    "abbreviation": "DRK"
+  },
+  "unlock_level": 98,
+  "value": 0,
+  "icon": {
+    "id": 6805,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 113,
+  "source_class_job_id": 0
+}

@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 2721,
+  "name": "Klinge der Tapferkeit",
+  "description": "Erleidet schrittweise Schaden.",
+  "effects": [
+    "Erleidet schrittweise Schaden."
+  ],
+  "classification": "debuff",
+  "icon": {
+    "id": 212518,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 2,
+  "target_type": 0,
+  "can_dispel": true,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 10,
+  "parameter": {
+    "effect": 0,
+    "modifier": 10
+  },
+  "class_job_category_id": 20,
+  "source_abilities": [
+    {
+      "id": 25750,
+      "name": "Klinge der Tapferkeit",
+      "description": "Du führst eine elementneutrale magische Attacke auf das Ziel und die Gegner in seiner Nähe aus.\nAttacke-Wert: 500\nAttacke-Wert bei Requiescat: 1.000\nAttacke-Wert verringert sich ab dem zweiten Gegner um 60 %.\nKombo-Bedingung: Klinge der Redlichkeit\nZusatzeffekt: Regeneriert eigene LP.\nHeilpotenzial: 400\nZusatzeffekt: Gewährt dir Ehrenhaftigkeit.\nDauer: 30 Sekunden\nBei erfüllter Bedingung ändert sich Klinge der Redlichkeit zu diesem Kommando.\nKann nicht im Kommandomenü angelegt werden.",
+      "description_macro": "Du führst eine elementneutrale magische Attacke auf das Ziel und die Gegner in seiner Nähe aus.<br>Attacke-Wert: <if([gnum68==19],<if([gnum72>=94],500,420)>,420)><br>Attacke-Wert bei <colortype(506)><edgecolortype(507)>Requiescat<edgecolortype(0)><colortype(0)>: <if([gnum68==19],<if([gnum72>=94],1.000,920)>,920)><br>Attacke-Wert verringert sich ab dem zweiten Gegner um 60<nbsp>%.<br>Kombo-Bedingung: <colortype(502)><edgecolortype(503)>Klinge der Redlichkeit<edgecolortype(0)><colortype(0)><br>Zusatzeffekt: Regeneriert eigene LP.<br>Heilpotenzial: 400<br><if([gnum68==19],<if([gnum72>=100],Zusatzeffekt: Gewährt dir <colortype(506)><edgecolortype(507)>Ehrenhaftigkeit<edgecolortype(0)><colortype(0)>.<br>Dauer: 30 Sekunden<br>,)>,)>Bei erfüllter Bedingung ändert sich <colortype(502)><edgecolortype(503)>Klinge der Redlichkeit<edgecolortype(0)><colortype(0)> zu diesem Kommando.<br>Kann nicht im Kommandomenü angelegt werden.",
+      "unlock_level": 90,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Tank"
+      ],
+      "jobs": [
+        {
+          "id": 19,
+          "name": "Paladin",
+          "abbreviation": "PLD",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

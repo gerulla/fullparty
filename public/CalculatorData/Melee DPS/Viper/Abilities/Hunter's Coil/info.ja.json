@@ -1,0 +1,95 @@
+{
+  "kind": "ability",
+  "id": 34621,
+  "name": "弐の蛇【猛襲】",
+  "description": "対象に物理攻撃。\u3000威力：630\n側面攻撃時威力：680\n追加効果：自身に「猛襲」を付与する。\n効果時間：40秒\n猛襲効果：自身の与ダメージを10％上昇させる。\n追加効果：自身に「双鋭牙【連撃】」を付与する。\n効果時間：30秒\n双鋭牙【連撃】効果：双牙連撃の威力を50上昇させる。\n追加効果：「霊力ゲージ」を5上昇させる。\nこのアクションを命中させると双牙連術が双牙連撃に、双牙乱術が双牙乱撃にそれぞれ変化し、それらのアクションを2回実行できるようになる。\n発動条件：壱の蛇【強砕】または弐の蛇【疾速】実行後\nこのウェポンスキルは固有のリキャストタイマーを持つ。",
+  "description_macro": "対象に物理攻撃。\u3000<colortype(504)><edgecolortype(505)>威力：<edgecolortype(0)><colortype(0)>630<br><colortype(504)><edgecolortype(505)>側面攻撃時威力：<edgecolortype(0)><colortype(0)>680<br><colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)>自身に<colortype(500)><edgecolortype(501)>「猛襲」<edgecolortype(0)><colortype(0)>を付与する。<br><colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>40秒<br><colortype(504)><edgecolortype(505)>猛襲効果：<edgecolortype(0)><colortype(0)>自身の与ダメージを10％上昇させる。<br><if([gnum68==41],<if([gnum72>=75],<colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)>自身に<colortype(500)><edgecolortype(501)>「双鋭牙【連撃】」<edgecolortype(0)><colortype(0)>を付与する。<br><colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>30秒<br><colortype(504)><edgecolortype(505)>双鋭牙【連撃】効果：<edgecolortype(0)><colortype(0)>双牙連撃の威力を50上昇させる。<br>,)>,)><if([gnum68==41],<if([gnum72>=90],<colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)><colortype(500)><edgecolortype(501)>「霊力ゲージ」<edgecolortype(0)><colortype(0)>を5上昇させる。<br>,)>,)><if([gnum68==41],<if([gnum72>=75],このアクションを命中させると双牙連術が双牙連撃に、双牙乱術が双牙乱撃にそれぞれ変化し、それらのアクションを2回実行できるようになる。<br>,)>,)><colortype(504)><edgecolortype(505)>発動条件：<edgecolortype(0)><colortype(0)>壱の蛇【強砕】または弐の蛇【疾速】実行後<br>このウェポンスキルは固有のリキャストタイマーを持つ。",
+  "effects": [
+    "対象に物理攻撃。\u3000威力：630",
+    "側面攻撃時威力：680",
+    "追加効果：自身に「猛襲」を付与する。",
+    "効果時間：40秒",
+    "猛襲効果：自身の与ダメージを10％上昇させる。",
+    "追加効果：自身に「双鋭牙【連撃】」を付与する。",
+    "効果時間：30秒",
+    "双鋭牙【連撃】効果：双牙連撃の威力を50上昇させる。",
+    "追加効果：「霊力ゲージ」を5上昇させる。",
+    "このアクションを命中させると双牙連術が双牙連撃に、双牙乱術が双牙乱撃にそれぞれ変化し、それらのアクションを2回実行できるようになる。",
+    "発動条件：壱の蛇【強砕】または弐の蛇【疾速】実行後",
+    "このウェポンスキルは固有のリキャストタイマーを持つ。"
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 41,
+    "name": "ヴァイパー",
+    "abbreviation": "VPR"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 65,
+  "icon": {
+    "id": 3716,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 3,
+    "name": "ウェポンスキル"
+  },
+  "attack_type": {
+    "id": 4294967295,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 3,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 58,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 0,
+      "value": 0
+    },
+    "secondary": {
+      "type_id": 145,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": -1,
+    "effect_yalms": 0,
+    "cast_type": 1
+  },
+  "targeting": {
+    "self": false,
+    "party": false,
+    "alliance": false,
+    "hostile": true,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": 34620,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 7,
+    "behavior_type": 0,
+    "class_job_category_id": 196,
+    "source_class_job_id": 41,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

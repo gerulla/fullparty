@@ -1,0 +1,87 @@
+{
+  "kind": "ability",
+  "id": 35347,
+  "name": "Imagi Animal",
+  "description": "Matérialise une esquisse de type Animal.\nSi une esquisse est peinte sur la toile Animal, cette action devient automatiquement l'une des quatre actions suivantes : Imagi Pompon\\.\nMaximum de charges : 3\nCondition : esquisse peinte avec Picto Animal.",
+  "description_macro": "Matérialise une esquisse de type <colortype(500)><edgecolortype(501)>Animal<edgecolortype(0)><colortype(0)>.<br>Si une esquisse est peinte sur la toile Animal, cette action devient au<->to<->ma<->ti<->que<->ment l'une des <if([gnum68==42],<if([gnum72>=96],quatre actions suivantes<nbsp>: Imagi Pompon\\, Imagi Ailes\\, Imagi Griffes\\, Imagi Crocs,deux actions suivantes<nbsp>: Imagi Pompon\\, Imagi Ailes)>,deux actions suivantes<nbsp>: Imagi Pompon\\, Imagi Ailes)>.<br><colortype(506)><edgecolortype(507)>Maximum de charges<nbsp>:<edgecolortype(0)><colortype(0)> <if([gnum68==42],<if([gnum72>=96],3,2)>,2)><br><colortype(506)><edgecolortype(507)>Condition<nbsp>:<edgecolortype(0)><colortype(0)> esquisse peinte avec Picto Animal.",
+  "effects": [
+    "Matérialise une esquisse de type Animal.",
+    "Si une esquisse est peinte sur la toile Animal, cette action devient automatiquement l'une des quatre actions suivantes : Imagi Pompon\\.",
+    "Maximum de charges : 3",
+    "Condition : esquisse peinte avec Picto Animal."
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 42,
+    "name": "Pictomancien",
+    "abbreviation": "PIC"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 30,
+  "icon": {
+    "id": 3842,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 4,
+    "name": "Aptitude"
+  },
+  "attack_type": {
+    "id": 0,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 40,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 19,
+    "additional_cooldown_group": 71,
+    "max_charges": 2
+  },
+  "costs": {
+    "primary": {
+      "type_id": 0,
+      "value": 0
+    },
+    "secondary": {
+      "type_id": 73,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": 0,
+    "effect_yalms": 0,
+    "cast_type": 1
+  },
+  "targeting": {
+    "self": true,
+    "party": false,
+    "alliance": false,
+    "hostile": false,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 0,
+    "behavior_type": 0,
+    "class_job_category_id": 197,
+    "source_class_job_id": 42,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

@@ -1,0 +1,134 @@
+{
+  "kind": "combat_status",
+  "id": 2698,
+  "name": "Tillana préparé",
+  "description": "Tillana peut être lancé.",
+  "effects": [
+    "Tillana peut être lancé."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 213722,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 150,
+  "source_abilities": [
+    {
+      "id": 16004,
+      "name": "Final technique",
+      "description": "Effectue une attaque physique sur les ennemis dans un rayon de 15 yalms.\nLa puissance de cette action dépend du nombre de pas de danse correctement enchaînés et sa puissance est réduite de 60% au-delà du premier ennemi touché.\nPuissance sans pas : 350\nPuissance après 1 pas : 540\nPuissance après 2 pas : 720\nPuissance après 3 pas : 900\nPuissance après 4 pas : 1300\nEffet additionnel : octroie Fascination et Final technique à vous et aux équipiers dans un rayon de 30 yalms, si au moins un pas de danse a été réussi.\nFinal technique : augmente les dégâts infligés. La puissance de l'effet dépend du nombre de pas de danse correctement enchaînés.\nAugmentation après 1 pas : 1%\nAugmentation après 2 pas : 2%\nAugmentation après 3 pas : 3%\nAugmentation après 4 pas : 5%\nDurée : 20s\nEffet additionnel : vous octroie Tillana préparé.\nDurée : 30s\nEffet additionnel : vous octroie Danse de l'aurore préparée.\nDurée : 30s\nCondition : en train de danser.\nCette technique d'arme a un temps de recharge indépendant qui est appliqué aux autres techniques d'arme ou sorts après utilisation.\n\n* Cette action ne peut pas être ajoutée aux barres de raccourcis.\nRemplace Pas technique lorsque les conditions sont réunies.",
+      "description_macro": "Effectue une attaque physique sur les ennemis dans un rayon de 15 yalms.<br>La puissance de cette action dépend du nombre de pas de danse cor<->rec<->te<->ment enchaînés et sa puissance est réduite de 60% au-delà du premier ennemi touché.<br><colortype(506)><edgecolortype(507)>Puissance sans pas<nbsp>:<edgecolortype(0)><colortype(0)> 350<br><colortype(506)><edgecolortype(507)>Puissance après 1 pas<nbsp>:<edgecolortype(0)><colortype(0)> 540<br><colortype(506)><edgecolortype(507)>Puissance après 2 pas<nbsp>:<edgecolortype(0)><colortype(0)> 720<br><colortype(506)><edgecolortype(507)>Puissance après 3 pas<nbsp>:<edgecolortype(0)><colortype(0)> 900<br><colortype(506)><edgecolortype(507)>Puissance après 4 pas<nbsp>:<edgecolortype(0)><colortype(0)> <if([gnum68==38],<if([gnum72>=94],1300,1200)>,1200)><br><colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> octroie <if([gnum68==38],<if([gnum72>=76],<colortype(500)><edgecolortype(501)>Fascination<edgecolortype(0)><colortype(0)> et <colortype(500)><edgecolortype(501)>Final technique<edgecolortype(0)><colortype(0)>,<colortype(500)><edgecolortype(501)>Final technique<edgecolortype(0)><colortype(0)>)>,<colortype(500)><edgecolortype(501)>Final technique<edgecolortype(0)><colortype(0)>)> à vous et aux équipiers dans un rayon de 30 yalms, si au moins un pas de danse a été réussi.<br><colortype(506)><edgecolortype(507)>Final technique<nbsp>:<edgecolortype(0)><colortype(0)> augmente les dégâts infligés. La puissance de l'effet dépend du nombre de pas de danse cor<->rec<->te<->ment enchaînés.<br><colortype(506)><edgecolortype(507)>Augmentation après 1 pas<nbsp>:<edgecolortype(0)><colortype(0)> 1%<br><colortype(506)><edgecolortype(507)>Augmentation après 2 pas<nbsp>:<edgecolortype(0)><colortype(0)> 2%<br><colortype(506)><edgecolortype(507)>Augmentation après 3 pas<nbsp>:<edgecolortype(0)><colortype(0)> 3%<br><colortype(506)><edgecolortype(507)>Augmentation après 4 pas<nbsp>:<edgecolortype(0)><colortype(0)> 5%<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 20s<br><if([gnum68==38],<if([gnum72>=82],<colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> vous octroie <colortype(500)><edgecolortype(501)>Tillana préparé<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 30s<br>,)>,)><if([gnum68==38],<if([gnum72>=100],<colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> vous octroie <colortype(500)><edgecolortype(501)>Danse de l'aurore préparée<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 30s<br>,)>,)><colortype(506)><edgecolortype(507)>Condition<nbsp>:<edgecolortype(0)><colortype(0)> en train de danser.<br>Cette technique d'arme a un temps de recharge indépendant qui est appliqué aux autres techniques d'arme ou sorts après utilisation.<br><br><colortype(504)><edgecolortype(505)>* Cette action ne peut pas être ajoutée aux barres de raccourcis.<br>Remplace <colortype(500)><edgecolortype(501)>Pas technique<edgecolortype(0)><colortype(0)> lorsque les conditions sont réunies.<edgecolortype(0)><colortype(0)>",
+      "unlock_level": 70,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Physical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 38,
+          "name": "Danseur",
+          "abbreviation": "DNS",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 16193,
+      "name": "Final technique simple",
+      "description": "Effectue une attaque physique sur les ennemis dans un rayon de 15 yalms.\nLa puissance de cette action dépend du nombre de pas de danse correctement enchaînés et sa puissance est réduite de 60% au-delà du premier ennemi touché.\nPuissance sans pas : 350\nPuissance après 1 pas : 540\nPuissance après 2 pas : 720\nPuissance après 3 pas : 900\nPuissance après 4 pas : 1300\nEffet additionnel : octroie Fascination et Final technique à vous et aux équipiers dans un rayon de 30 yalms, si au moins un pas de danse a été réussi.\nFinal technique : augmente les dégâts infligés. La puissance de l'effet dépend du nombre de pas de danse correctement enchaînés.\nAugmentation après 1 pas : 1%\nAugmentation après 2 pas : 2%\nAugmentation après 3 pas : 3%\nAugmentation après 4 pas : 5%\nDurée : 20s\nEffet additionnel : vous octroie Tillana préparé.\nDurée : 30s\nEffet additionnel : vous octroie Danse de l'aurore préparée.\nDurée : 30s\nCondition : en train de danser.\nCette technique d'arme a un temps de recharge indépendant qui est appliqué aux autres techniques d'arme ou sorts après utilisation.\n\n* Cette action ne peut pas être ajoutée aux barres de raccourcis.\nRemplace Pas technique lorsque les conditions sont réunies.",
+      "description_macro": "Effectue une attaque physique sur les ennemis dans un rayon de 15 yalms.<br>La puissance de cette action dépend du nombre de pas de danse cor<->rec<->te<->ment enchaînés et sa puissance est réduite de 60% au-delà du premier ennemi touché.<br><colortype(506)><edgecolortype(507)>Puissance sans pas<nbsp>:<edgecolortype(0)><colortype(0)> 350<br><colortype(506)><edgecolortype(507)>Puissance après 1 pas<nbsp>:<edgecolortype(0)><colortype(0)> 540<br><colortype(506)><edgecolortype(507)>Puissance après 2 pas<nbsp>:<edgecolortype(0)><colortype(0)> 720<br><colortype(506)><edgecolortype(507)>Puissance après 3 pas<nbsp>:<edgecolortype(0)><colortype(0)> 900<br><colortype(506)><edgecolortype(507)>Puissance après 4 pas<nbsp>:<edgecolortype(0)><colortype(0)> <if([gnum68==38],<if([gnum72>=94],1300,1200)>,1200)><br><colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> octroie <if([gnum68==38],<if([gnum72>=76],<colortype(500)><edgecolortype(501)>Fascination<edgecolortype(0)><colortype(0)> et <colortype(500)><edgecolortype(501)>Final technique<edgecolortype(0)><colortype(0)>,<colortype(500)><edgecolortype(501)>Final technique<edgecolortype(0)><colortype(0)>)>,<colortype(500)><edgecolortype(501)>Final technique<edgecolortype(0)><colortype(0)>)> à vous et aux équipiers dans un rayon de 30 yalms, si au moins un pas de danse a été réussi.<br><colortype(506)><edgecolortype(507)>Final technique<nbsp>:<edgecolortype(0)><colortype(0)> augmente les dégâts infligés. La puissance de l'effet dépend du nombre de pas de danse cor<->rec<->te<->ment enchaînés.<br><colortype(506)><edgecolortype(507)>Augmentation après 1 pas<nbsp>:<edgecolortype(0)><colortype(0)> 1%<br><colortype(506)><edgecolortype(507)>Augmentation après 2 pas<nbsp>:<edgecolortype(0)><colortype(0)> 2%<br><colortype(506)><edgecolortype(507)>Augmentation après 3 pas<nbsp>:<edgecolortype(0)><colortype(0)> 3%<br><colortype(506)><edgecolortype(507)>Augmentation après 4 pas<nbsp>:<edgecolortype(0)><colortype(0)> 5%<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 20s<br><if([gnum68==38],<if([gnum72>=82],<colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> vous octroie <colortype(500)><edgecolortype(501)>Tillana préparé<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 30s<br>,)>,)><if([gnum68==38],<if([gnum72>=100],<colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> vous octroie <colortype(500)><edgecolortype(501)>Danse de l'aurore préparée<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 30s<br>,)>,)><colortype(506)><edgecolortype(507)>Condition<nbsp>:<edgecolortype(0)><colortype(0)> en train de danser.<br>Cette technique d'arme a un temps de recharge indépendant qui est appliqué aux autres techniques d'arme ou sorts après utilisation.<br><br><colortype(504)><edgecolortype(505)>* Cette action ne peut pas être ajoutée aux barres de raccourcis.<br>Remplace <colortype(500)><edgecolortype(501)>Pas technique<edgecolortype(0)><colortype(0)> lorsque les conditions sont réunies.<edgecolortype(0)><colortype(0)>",
+      "unlock_level": 70,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Physical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 38,
+          "name": "Danseur",
+          "abbreviation": "DNS",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 16194,
+      "name": "Final technique doublé",
+      "description": "Effectue une attaque physique sur les ennemis dans un rayon de 15 yalms.\nLa puissance de cette action dépend du nombre de pas de danse correctement enchaînés et sa puissance est réduite de 60% au-delà du premier ennemi touché.\nPuissance sans pas : 350\nPuissance après 1 pas : 540\nPuissance après 2 pas : 720\nPuissance après 3 pas : 900\nPuissance après 4 pas : 1300\nEffet additionnel : octroie Fascination et Final technique à vous et aux équipiers dans un rayon de 30 yalms, si au moins un pas de danse a été réussi.\nFinal technique : augmente les dégâts infligés. La puissance de l'effet dépend du nombre de pas de danse correctement enchaînés.\nAugmentation après 1 pas : 1%\nAugmentation après 2 pas : 2%\nAugmentation après 3 pas : 3%\nAugmentation après 4 pas : 5%\nDurée : 20s\nEffet additionnel : vous octroie Tillana préparé.\nDurée : 30s\nEffet additionnel : vous octroie Danse de l'aurore préparée.\nDurée : 30s\nCondition : en train de danser.\nCette technique d'arme a un temps de recharge indépendant qui est appliqué aux autres techniques d'arme ou sorts après utilisation.\n\n* Cette action ne peut pas être ajoutée aux barres de raccourcis.\nRemplace Pas technique lorsque les conditions sont réunies.",
+      "description_macro": "Effectue une attaque physique sur les ennemis dans un rayon de 15 yalms.<br>La puissance de cette action dépend du nombre de pas de danse cor<->rec<->te<->ment enchaînés et sa puissance est réduite de 60% au-delà du premier ennemi touché.<br><colortype(506)><edgecolortype(507)>Puissance sans pas<nbsp>:<edgecolortype(0)><colortype(0)> 350<br><colortype(506)><edgecolortype(507)>Puissance après 1 pas<nbsp>:<edgecolortype(0)><colortype(0)> 540<br><colortype(506)><edgecolortype(507)>Puissance après 2 pas<nbsp>:<edgecolortype(0)><colortype(0)> 720<br><colortype(506)><edgecolortype(507)>Puissance après 3 pas<nbsp>:<edgecolortype(0)><colortype(0)> 900<br><colortype(506)><edgecolortype(507)>Puissance après 4 pas<nbsp>:<edgecolortype(0)><colortype(0)> <if([gnum68==38],<if([gnum72>=94],1300,1200)>,1200)><br><colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> octroie <if([gnum68==38],<if([gnum72>=76],<colortype(500)><edgecolortype(501)>Fascination<edgecolortype(0)><colortype(0)> et <colortype(500)><edgecolortype(501)>Final technique<edgecolortype(0)><colortype(0)>,<colortype(500)><edgecolortype(501)>Final technique<edgecolortype(0)><colortype(0)>)>,<colortype(500)><edgecolortype(501)>Final technique<edgecolortype(0)><colortype(0)>)> à vous et aux équipiers dans un rayon de 30 yalms, si au moins un pas de danse a été réussi.<br><colortype(506)><edgecolortype(507)>Final technique<nbsp>:<edgecolortype(0)><colortype(0)> augmente les dégâts infligés. La puissance de l'effet dépend du nombre de pas de danse cor<->rec<->te<->ment enchaînés.<br><colortype(506)><edgecolortype(507)>Augmentation après 1 pas<nbsp>:<edgecolortype(0)><colortype(0)> 1%<br><colortype(506)><edgecolortype(507)>Augmentation après 2 pas<nbsp>:<edgecolortype(0)><colortype(0)> 2%<br><colortype(506)><edgecolortype(507)>Augmentation après 3 pas<nbsp>:<edgecolortype(0)><colortype(0)> 3%<br><colortype(506)><edgecolortype(507)>Augmentation après 4 pas<nbsp>:<edgecolortype(0)><colortype(0)> 5%<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 20s<br><if([gnum68==38],<if([gnum72>=82],<colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> vous octroie <colortype(500)><edgecolortype(501)>Tillana préparé<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 30s<br>,)>,)><if([gnum68==38],<if([gnum72>=100],<colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> vous octroie <colortype(500)><edgecolortype(501)>Danse de l'aurore préparée<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 30s<br>,)>,)><colortype(506)><edgecolortype(507)>Condition<nbsp>:<edgecolortype(0)><colortype(0)> en train de danser.<br>Cette technique d'arme a un temps de recharge indépendant qui est appliqué aux autres techniques d'arme ou sorts après utilisation.<br><br><colortype(504)><edgecolortype(505)>* Cette action ne peut pas être ajoutée aux barres de raccourcis.<br>Remplace <colortype(500)><edgecolortype(501)>Pas technique<edgecolortype(0)><colortype(0)> lorsque les conditions sont réunies.<edgecolortype(0)><colortype(0)>",
+      "unlock_level": 70,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Physical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 38,
+          "name": "Danseur",
+          "abbreviation": "DNS",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 16195,
+      "name": "Final technique triplé",
+      "description": "Effectue une attaque physique sur les ennemis dans un rayon de 15 yalms.\nLa puissance de cette action dépend du nombre de pas de danse correctement enchaînés et sa puissance est réduite de 60% au-delà du premier ennemi touché.\nPuissance sans pas : 350\nPuissance après 1 pas : 540\nPuissance après 2 pas : 720\nPuissance après 3 pas : 900\nPuissance après 4 pas : 1300\nEffet additionnel : octroie Fascination et Final technique à vous et aux équipiers dans un rayon de 30 yalms, si au moins un pas de danse a été réussi.\nFinal technique : augmente les dégâts infligés. La puissance de l'effet dépend du nombre de pas de danse correctement enchaînés.\nAugmentation après 1 pas : 1%\nAugmentation après 2 pas : 2%\nAugmentation après 3 pas : 3%\nAugmentation après 4 pas : 5%\nDurée : 20s\nEffet additionnel : vous octroie Tillana préparé.\nDurée : 30s\nEffet additionnel : vous octroie Danse de l'aurore préparée.\nDurée : 30s\nCondition : en train de danser.\nCette technique d'arme a un temps de recharge indépendant qui est appliqué aux autres techniques d'arme ou sorts après utilisation.\n\n* Cette action ne peut pas être ajoutée aux barres de raccourcis.\nRemplace Pas technique lorsque les conditions sont réunies.",
+      "description_macro": "Effectue une attaque physique sur les ennemis dans un rayon de 15 yalms.<br>La puissance de cette action dépend du nombre de pas de danse cor<->rec<->te<->ment enchaînés et sa puissance est réduite de 60% au-delà du premier ennemi touché.<br><colortype(506)><edgecolortype(507)>Puissance sans pas<nbsp>:<edgecolortype(0)><colortype(0)> 350<br><colortype(506)><edgecolortype(507)>Puissance après 1 pas<nbsp>:<edgecolortype(0)><colortype(0)> 540<br><colortype(506)><edgecolortype(507)>Puissance après 2 pas<nbsp>:<edgecolortype(0)><colortype(0)> 720<br><colortype(506)><edgecolortype(507)>Puissance après 3 pas<nbsp>:<edgecolortype(0)><colortype(0)> 900<br><colortype(506)><edgecolortype(507)>Puissance après 4 pas<nbsp>:<edgecolortype(0)><colortype(0)> <if([gnum68==38],<if([gnum72>=94],1300,1200)>,1200)><br><colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> octroie <if([gnum68==38],<if([gnum72>=76],<colortype(500)><edgecolortype(501)>Fascination<edgecolortype(0)><colortype(0)> et <colortype(500)><edgecolortype(501)>Final technique<edgecolortype(0)><colortype(0)>,<colortype(500)><edgecolortype(501)>Final technique<edgecolortype(0)><colortype(0)>)>,<colortype(500)><edgecolortype(501)>Final technique<edgecolortype(0)><colortype(0)>)> à vous et aux équipiers dans un rayon de 30 yalms, si au moins un pas de danse a été réussi.<br><colortype(506)><edgecolortype(507)>Final technique<nbsp>:<edgecolortype(0)><colortype(0)> augmente les dégâts infligés. La puissance de l'effet dépend du nombre de pas de danse cor<->rec<->te<->ment enchaînés.<br><colortype(506)><edgecolortype(507)>Augmentation après 1 pas<nbsp>:<edgecolortype(0)><colortype(0)> 1%<br><colortype(506)><edgecolortype(507)>Augmentation après 2 pas<nbsp>:<edgecolortype(0)><colortype(0)> 2%<br><colortype(506)><edgecolortype(507)>Augmentation après 3 pas<nbsp>:<edgecolortype(0)><colortype(0)> 3%<br><colortype(506)><edgecolortype(507)>Augmentation après 4 pas<nbsp>:<edgecolortype(0)><colortype(0)> 5%<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 20s<br><if([gnum68==38],<if([gnum72>=82],<colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> vous octroie <colortype(500)><edgecolortype(501)>Tillana préparé<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 30s<br>,)>,)><if([gnum68==38],<if([gnum72>=100],<colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> vous octroie <colortype(500)><edgecolortype(501)>Danse de l'aurore préparée<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 30s<br>,)>,)><colortype(506)><edgecolortype(507)>Condition<nbsp>:<edgecolortype(0)><colortype(0)> en train de danser.<br>Cette technique d'arme a un temps de recharge indépendant qui est appliqué aux autres techniques d'arme ou sorts après utilisation.<br><br><colortype(504)><edgecolortype(505)>* Cette action ne peut pas être ajoutée aux barres de raccourcis.<br>Remplace <colortype(500)><edgecolortype(501)>Pas technique<edgecolortype(0)><colortype(0)> lorsque les conditions sont réunies.<edgecolortype(0)><colortype(0)>",
+      "unlock_level": 70,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Physical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 38,
+          "name": "Danseur",
+          "abbreviation": "DNS",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 16196,
+      "name": "Final technique quadruplé",
+      "description": "Effectue une attaque physique sur les ennemis dans un rayon de 15 yalms.\nLa puissance de cette action dépend du nombre de pas de danse correctement enchaînés et sa puissance est réduite de 60% au-delà du premier ennemi touché.\nPuissance sans pas : 350\nPuissance après 1 pas : 540\nPuissance après 2 pas : 720\nPuissance après 3 pas : 900\nPuissance après 4 pas : 1300\nEffet additionnel : octroie Fascination et Final technique à vous et aux équipiers dans un rayon de 30 yalms, si au moins un pas de danse a été réussi.\nFinal technique : augmente les dégâts infligés. La puissance de l'effet dépend du nombre de pas de danse correctement enchaînés.\nAugmentation après 1 pas : 1%\nAugmentation après 2 pas : 2%\nAugmentation après 3 pas : 3%\nAugmentation après 4 pas : 5%\nDurée : 20s\nEffet additionnel : vous octroie Tillana préparé.\nDurée : 30s\nEffet additionnel : vous octroie Danse de l'aurore préparée.\nDurée : 30s\nCondition : en train de danser.\nCette technique d'arme a un temps de recharge indépendant qui est appliqué aux autres techniques d'arme ou sorts après utilisation.\n\n* Cette action ne peut pas être ajoutée aux barres de raccourcis.\nRemplace Pas technique lorsque les conditions sont réunies.",
+      "description_macro": "Effectue une attaque physique sur les ennemis dans un rayon de 15 yalms.<br>La puissance de cette action dépend du nombre de pas de danse cor<->rec<->te<->ment enchaînés et sa puissance est réduite de 60% au-delà du premier ennemi touché.<br><colortype(506)><edgecolortype(507)>Puissance sans pas<nbsp>:<edgecolortype(0)><colortype(0)> 350<br><colortype(506)><edgecolortype(507)>Puissance après 1 pas<nbsp>:<edgecolortype(0)><colortype(0)> 540<br><colortype(506)><edgecolortype(507)>Puissance après 2 pas<nbsp>:<edgecolortype(0)><colortype(0)> 720<br><colortype(506)><edgecolortype(507)>Puissance après 3 pas<nbsp>:<edgecolortype(0)><colortype(0)> 900<br><colortype(506)><edgecolortype(507)>Puissance après 4 pas<nbsp>:<edgecolortype(0)><colortype(0)> <if([gnum68==38],<if([gnum72>=94],1300,1200)>,1200)><br><colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> octroie <if([gnum68==38],<if([gnum72>=76],<colortype(500)><edgecolortype(501)>Fascination<edgecolortype(0)><colortype(0)> et <colortype(500)><edgecolortype(501)>Final technique<edgecolortype(0)><colortype(0)>,<colortype(500)><edgecolortype(501)>Final technique<edgecolortype(0)><colortype(0)>)>,<colortype(500)><edgecolortype(501)>Final technique<edgecolortype(0)><colortype(0)>)> à vous et aux équipiers dans un rayon de 30 yalms, si au moins un pas de danse a été réussi.<br><colortype(506)><edgecolortype(507)>Final technique<nbsp>:<edgecolortype(0)><colortype(0)> augmente les dégâts infligés. La puissance de l'effet dépend du nombre de pas de danse cor<->rec<->te<->ment enchaînés.<br><colortype(506)><edgecolortype(507)>Augmentation après 1 pas<nbsp>:<edgecolortype(0)><colortype(0)> 1%<br><colortype(506)><edgecolortype(507)>Augmentation après 2 pas<nbsp>:<edgecolortype(0)><colortype(0)> 2%<br><colortype(506)><edgecolortype(507)>Augmentation après 3 pas<nbsp>:<edgecolortype(0)><colortype(0)> 3%<br><colortype(506)><edgecolortype(507)>Augmentation après 4 pas<nbsp>:<edgecolortype(0)><colortype(0)> 5%<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 20s<br><if([gnum68==38],<if([gnum72>=82],<colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> vous octroie <colortype(500)><edgecolortype(501)>Tillana préparé<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 30s<br>,)>,)><if([gnum68==38],<if([gnum72>=100],<colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> vous octroie <colortype(500)><edgecolortype(501)>Danse de l'aurore préparée<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 30s<br>,)>,)><colortype(506)><edgecolortype(507)>Condition<nbsp>:<edgecolortype(0)><colortype(0)> en train de danser.<br>Cette technique d'arme a un temps de recharge indépendant qui est appliqué aux autres techniques d'arme ou sorts après utilisation.<br><br><colortype(504)><edgecolortype(505)>* Cette action ne peut pas être ajoutée aux barres de raccourcis.<br>Remplace <colortype(500)><edgecolortype(501)>Pas technique<edgecolortype(0)><colortype(0)> lorsque les conditions sont réunies.<edgecolortype(0)><colortype(0)>",
+      "unlock_level": 70,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Physical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 38,
+          "name": "Danseur",
+          "abbreviation": "DNS",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

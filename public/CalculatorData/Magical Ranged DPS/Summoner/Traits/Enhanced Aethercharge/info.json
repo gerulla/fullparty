@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 466,
+  "name": "Enhanced Aethercharge",
+  "description": "Grants Ruby Arcanum and Topaz Arcanum upon executing Aethercharge.",
+  "description_macro": "Grants <colortype(506)><edgecolortype(507)>Ruby Arcanum<edgecolortype(0)><colortype(0)> and <colortype(506)><edgecolortype(507)>Topaz Arcanum<edgecolortype(0)><colortype(0)> upon executing <colortype(500)><edgecolortype(501)>Aethercharge<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Grants Ruby Arcanum and Topaz Arcanum upon executing Aethercharge."
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 27,
+    "name": "Summoner",
+    "abbreviation": "SMN"
+  },
+  "unlock_level": 15,
+  "value": 0,
+  "icon": {
+    "id": 5396,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 69,
+  "source_class_job_id": 26
+}

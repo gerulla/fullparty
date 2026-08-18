@@ -1,0 +1,93 @@
+{
+  "kind": "ability",
+  "id": 25830,
+  "name": "Rekindle",
+  "description": "Restores own or target party member's HP.\nCure Potency: 400\nAdditional Effect: Grants Rekindle to target\nDuration: 30s\nRekindle Effect: Healing over time when HP falls below 75% or upon effect duration expiration\nCure Potency: 200\nDuration: 15s\nCan only be executed while in Firebird Trance.\n\n※This action cannot be assigned to a hotbar.\n※Astral Flow changes to Rekindle when requirements for execution are met.",
+  "description_macro": "Restores own or target party member's HP.<br><colortype(504)><edgecolortype(505)>Cure Potency: <edgecolortype(0)><colortype(0)>400<br><colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>Grants <colortype(506)><edgecolortype(507)>Rekindle<edgecolortype(0)><colortype(0)> to target<br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>30s<br><colortype(504)><edgecolortype(505)>Rekindle Effect: <edgecolortype(0)><colortype(0)>Healing over time when HP falls below 75% or upon effect duration expiration<br><colortype(504)><edgecolortype(505)>Cure Potency: <edgecolortype(0)><colortype(0)>200<br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>15s<br>Can only be executed while in <colortype(506)><edgecolortype(507)>Firebird Trance<edgecolortype(0)><colortype(0)>.<br><br>※This action cannot be assigned to a hotbar.<br>※<colortype(500)><edgecolortype(501)>Astral Flow<edgecolortype(0)><colortype(0)> changes to <colortype(500)><edgecolortype(501)>Rekindle<edgecolortype(0)><colortype(0)> when requirements for execution are met.",
+  "effects": [
+    "Restores own or target party member's HP.",
+    "Cure Potency: 400",
+    "Additional Effect: Grants Rekindle to target",
+    "Duration: 30s",
+    "Rekindle Effect: Healing over time when HP falls below 75% or upon effect duration expiration",
+    "Cure Potency: 200",
+    "Duration: 15s",
+    "Can only be executed while in Firebird Trance.",
+    "※This action cannot be assigned to a hotbar.",
+    "※Astral Flow changes to Rekindle when requirements for execution are met."
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 27,
+    "name": "Summoner",
+    "abbreviation": "SMN"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 80,
+  "icon": {
+    "id": 2764,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 4,
+    "name": "Ability"
+  },
+  "attack_type": {
+    "id": 0,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 20,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 5,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 0,
+      "value": 0
+    },
+    "secondary": {
+      "type_id": 93,
+      "value": 1
+    }
+  },
+  "range": {
+    "target_yalms": 30,
+    "effect_yalms": 0,
+    "cast_type": 1
+  },
+  "targeting": {
+    "self": true,
+    "party": true,
+    "alliance": false,
+    "hostile": false,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": false
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": false
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 0,
+    "behavior_type": 0,
+    "class_job_category_id": 28,
+    "source_class_job_id": 0,
+    "is_role_action": false,
+    "is_player_action": false,
+    "is_derived_action": true,
+    "equivalence_group": 0
+  }
+}

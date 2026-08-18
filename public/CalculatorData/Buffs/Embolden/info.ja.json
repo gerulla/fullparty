@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 1239,
+  "name": "エンボルデン",
+  "description": "魔法ダメージが上昇した状態。",
+  "effects": [
+    "魔法ダメージが上昇した状態。"
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 213409,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 10
+  },
+  "class_job_category_id": 112,
+  "source_abilities": [
+    {
+      "id": 7520,
+      "name": "エンボルデン",
+      "description": "一定時間、自身の与魔法ダメージを10％上昇させる。\n効果時間：20秒\n追加効果：周囲のパーティメンバーの与ダメージを5％上昇させる。\u3000効果時間：20秒\n追加効果：自身に「ブライヤー・クロゼ実行可」を付与する。\n効果時間：30秒",
+      "description_macro": "一定時間、自身の与魔法ダメージを10％上昇させる。<br><colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>20秒<br><colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)>周囲のパーティメンバーの与ダメージを5％上昇させる。\u3000<colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>20秒<if([gnum68==35],<if([gnum72>=92],<br><colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)>自身に<colortype(500)><edgecolortype(501)>「ブライヤー・クロゼ実行可」<edgecolortype(0)><colortype(0)>を付与する。<br><colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>30秒,)>,)>",
+      "unlock_level": 58,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Magical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 35,
+          "name": "赤魔道士",
+          "abbreviation": "RDM",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

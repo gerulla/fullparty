@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 415,
+  "name": "スピリッツウィズインマスタリー",
+  "description": "スピリッツウィズインがエクスピアシオンに変化する。",
+  "description_macro": "スピリッツウィズインがエクスピアシオンに変化する。",
+  "effects": [
+    "スピリッツウィズインがエクスピアシオンに変化する。"
+  ],
+  "role": "Tank",
+  "job": {
+    "id": 19,
+    "name": "ナイト",
+    "abbreviation": "PLD"
+  },
+  "unlock_level": 86,
+  "value": 0,
+  "icon": {
+    "id": 5221,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 20,
+  "source_class_job_id": 19
+}

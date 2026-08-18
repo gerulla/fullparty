@@ -1,0 +1,71 @@
+{
+  "kind": "combat_status",
+  "id": 2709,
+  "name": "Liturgy of the Bell",
+  "description": "Triggers a healing effect upon taking damage, when duration expires, or upon executing Liturgy of the Bell a second time.",
+  "effects": [
+    "Triggers a healing effect upon taking damage, when duration expires, or upon executing Liturgy of the Bell a second time."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 218373,
+    "file": "icon.png"
+  },
+  "max_stacks": 5,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": true,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 27,
+    "modifier": 0
+  },
+  "class_job_category_id": 25,
+  "source_abilities": [
+    {
+      "id": 25862,
+      "name": "Liturgy of the Bell",
+      "description": "Places a healing blossom at the designated location and grants 5 stacks of Liturgy of the Bell to self.\nDuration: 20s\nTaking damage will expend 1 stack of Liturgy of the Bell to heal self and all party members within a radius of 20 yalms.\nCure Potency: 400\nThe effect of this action can only be triggered once per second.\nAny remaining stacks of Liturgy of the Bell will trigger an additional healing effect when time expires or upon executing this action a second time.\nCure Potency: 200 for every remaining stack of Liturgy of the Bell\nThis action does not share a recast timer with any other actions.",
+      "description_macro": "Places a healing blossom at the designated location and grants 5 stacks of <colortype(506)><edgecolortype(507)>Liturgy of the Bell<edgecolortype(0)><colortype(0)> to self.<br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>20s<br>Taking damage will expend 1 stack of <colortype(506)><edgecolortype(507)>Liturgy of the Bell<edgecolortype(0)><colortype(0)> to heal self and all party members within a radius of 20 yalms.<br><colortype(504)><edgecolortype(505)>Cure Potency: <edgecolortype(0)><colortype(0)>400<br>The effect of this action can only be triggered once per second.<br>Any remaining stacks of <colortype(506)><edgecolortype(507)>Liturgy of the Bell<edgecolortype(0)><colortype(0)> will trigger an additional healing effect when time expires or upon executing this action a second time.<br><colortype(504)><edgecolortype(505)>Cure Potency: <edgecolortype(0)><colortype(0)>200 for every remaining stack of <colortype(506)><edgecolortype(507)>Liturgy of the Bell<edgecolortype(0)><colortype(0)><br>This action does not share a recast timer with any other actions.",
+      "unlock_level": 90,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Healer"
+      ],
+      "jobs": [
+        {
+          "id": 24,
+          "name": "White Mage",
+          "abbreviation": "WHM",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 28509,
+      "name": "Liturgy of the Bell",
+      "description": "Places a healing blossom at the designated location and grants 5 stacks of Liturgy of the Bell to self.\nDuration: 20s\nTaking damage will expend 1 stack of Liturgy of the Bell to heal self and all party members within a radius of 20 yalms.\nCure Potency: 400\nThe effect of this action can only be triggered once per second.\nAny remaining stacks of Liturgy of the Bell will trigger an additional healing effect when time expires or upon executing this action a second time.\nCure Potency: 200 for every remaining stack of Liturgy of the Bell\nThis action does not share a recast timer with any other actions.",
+      "description_macro": "Places a healing blossom at the designated location and grants 5 stacks of <colortype(506)><edgecolortype(507)>Liturgy of the Bell<edgecolortype(0)><colortype(0)> to self.<br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>20s<br>Taking damage will expend 1 stack of <colortype(506)><edgecolortype(507)>Liturgy of the Bell<edgecolortype(0)><colortype(0)> to heal self and all party members within a radius of 20 yalms.<br><colortype(504)><edgecolortype(505)>Cure Potency: <edgecolortype(0)><colortype(0)>400<br>The effect of this action can only be triggered once per second.<br>Any remaining stacks of <colortype(506)><edgecolortype(507)>Liturgy of the Bell<edgecolortype(0)><colortype(0)> will trigger an additional healing effect when time expires or upon executing this action a second time.<br><colortype(504)><edgecolortype(505)>Cure Potency: <edgecolortype(0)><colortype(0)>200 for every remaining stack of <colortype(506)><edgecolortype(507)>Liturgy of the Bell<edgecolortype(0)><colortype(0)><br>This action does not share a recast timer with any other actions.",
+      "unlock_level": 90,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Healer"
+      ],
+      "jobs": [
+        {
+          "id": 24,
+          "name": "White Mage",
+          "abbreviation": "WHM",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

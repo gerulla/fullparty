@@ -1,0 +1,99 @@
+{
+  "kind": "ability",
+  "id": 36918,
+  "name": "ゲベート",
+  "description": "対象に物理攻撃。\u3000威力：500\n追加効果：自身のＭＰを回復する。\n追加効果：自身に「グラブカッマー実行可」を付与する。\n効果時間：30秒\n発動条件：「ゲベート実行可」効果中\n\n※このアクションはホットバーに登録することはできない。\n\u3000発動条件を満たすとロイエがゲベートに変化する。",
+  "description_macro": "対象に物理攻撃。\u3000<colortype(504)><edgecolortype(505)>威力：<edgecolortype(0)><colortype(0)><if([gnum68==19],<if([gnum72>=94],500,<if([gnum68==19],<if([gnum72>=84],420,380)>,380)>)>,<if([gnum68==19],<if([gnum72>=84],420,380)>,380)>)><br><colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)>自身のＭＰを回復する。<br><colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)>自身に<colortype(500)><edgecolortype(501)>「グラブカッマー実行可」<edgecolortype(0)><colortype(0)>を付与する。<br><colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>30秒<br><colortype(504)><edgecolortype(505)>発動条件：<edgecolortype(0)><colortype(0)><colortype(500)><edgecolortype(501)>「ゲベート実行可」<edgecolortype(0)><colortype(0)>効果中<br><br><colortype(506)><edgecolortype(507)>※このアクションはホットバーに登録することはできない。<br>\u3000発動条件を満たすとロイエがゲベートに変化する。<edgecolortype(0)><colortype(0)>",
+  "effects": [
+    "対象に物理攻撃。\u3000威力：500",
+    "追加効果：自身のＭＰを回復する。",
+    "追加効果：自身に「グラブカッマー実行可」を付与する。",
+    "効果時間：30秒",
+    "発動条件：「ゲベート実行可」効果中",
+    "※このアクションはホットバーに登録することはできない。",
+    "発動条件を満たすとロイエがゲベートに変化する。"
+  ],
+  "role": "Tank",
+  "job": {
+    "id": 19,
+    "name": "ナイト",
+    "abbreviation": "PLD"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 76,
+  "icon": {
+    "id": 2522,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 3,
+    "name": "ウェポンスキル"
+  },
+  "attack_type": {
+    "id": 4294967295,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 2.5,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 58,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 0,
+      "value": 0
+    },
+    "secondary": {
+      "type_id": 32,
+      "value": 3827
+    }
+  },
+  "range": {
+    "target_yalms": -1,
+    "effect_yalms": 0,
+    "cast_type": 1
+  },
+  "targeting": {
+    "self": false,
+    "party": false,
+    "alliance": false,
+    "hostile": true,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": {
+      "id": 149,
+      "status": {
+        "id": 3827,
+        "name": "ゲベート実行可",
+        "description": "ゲベートを実行できる状態。",
+        "icon_id": 212523,
+        "max_stacks": 0
+      }
+    }
+  },
+  "metadata": {
+    "aspect_id": 7,
+    "behavior_type": 0,
+    "class_job_category_id": 20,
+    "source_class_job_id": 0,
+    "is_role_action": false,
+    "is_player_action": false,
+    "is_derived_action": true,
+    "equivalence_group": 0
+  }
+}

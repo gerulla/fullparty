@@ -1,0 +1,28 @@
+{
+  "kind": "trait",
+  "id": 673,
+  "name": "アクション威力アップ",
+  "description": "特定のアクションの威力を上昇させる。\n\nコンバガの継続ダメージの威力：70\nフォールマレフィクの威力：270\nグラビラの威力：140\nマクロコスモスの威力：270",
+  "description_macro": "特定のアクションの威力を上昇させる。<br><br><colortype(504)><edgecolortype(505)>コンバガの継続ダメージの威力：<edgecolortype(0)><colortype(0)>70<br><colortype(504)><edgecolortype(505)>フォールマレフィクの威力：<edgecolortype(0)><colortype(0)>270<br><colortype(504)><edgecolortype(505)>グラビラの威力：<edgecolortype(0)><colortype(0)>140<br><colortype(504)><edgecolortype(505)>マクロコスモスの威力：<edgecolortype(0)><colortype(0)>270",
+  "effects": [
+    "特定のアクションの威力を上昇させる。",
+    "コンバガの継続ダメージの威力：70",
+    "フォールマレフィクの威力：270",
+    "グラビラの威力：140",
+    "マクロコスモスの威力：270"
+  ],
+  "role": "Healer",
+  "job": {
+    "id": 33,
+    "name": "占星術師",
+    "abbreviation": "AST"
+  },
+  "unlock_level": 94,
+  "value": 0,
+  "icon": {
+    "id": 6831,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 99,
+  "source_class_job_id": 33
+}

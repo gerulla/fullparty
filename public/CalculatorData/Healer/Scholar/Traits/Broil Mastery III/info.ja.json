@@ -1,0 +1,25 @@
+{
+  "kind": "trait",
+  "id": 312,
+  "name": "炎法マスタリーIII",
+  "description": "魔炎法が死炎法に変化する。\nさらに、ルインラの威力を200に上昇させる。",
+  "description_macro": "魔炎法が死炎法に変化する。<br>さらに、ルインラの威力を200に上昇させる。",
+  "effects": [
+    "魔炎法が死炎法に変化する。",
+    "さらに、ルインラの威力を200に上昇させる。"
+  ],
+  "role": "Healer",
+  "job": {
+    "id": 28,
+    "name": "学者",
+    "abbreviation": "SCH"
+  },
+  "unlock_level": 72,
+  "value": 0,
+  "icon": {
+    "id": 5702,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 29,
+  "source_class_job_id": 28
+}

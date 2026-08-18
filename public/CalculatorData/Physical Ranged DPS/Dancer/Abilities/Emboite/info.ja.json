@@ -1,0 +1,89 @@
+{
+  "kind": "ability",
+  "id": 15999,
+  "name": "薔薇のアンボワテ",
+  "description": "ステップアクション「薔薇のアンボワテ」を実行する。\nダンスシンボルに表示された順番通りにステップアクションの実行に成功すると、フィニッシュアクションの効果が上昇する。\n発動条件：ダンスモード中\nこのウェポンスキルは固有のリキャストタイマーを持ち、実行すると他のウェポンスキルと魔法にこのアクションと同じリキャストタイムが発生する。\n\n※このアクションはホットバーに登録することはできない。\n\u3000発動条件を満たすとカスケードとウィンドミルが薔薇のアンボワテに変化する。",
+  "description_macro": "ステップアクション<colortype(500)><edgecolortype(501)>「薔薇のアンボワテ」<edgecolortype(0)><colortype(0)>を実行する。<br>ダンスシンボルに表示された順番通りにステップアクションの実行に成功すると、フィニッシュアクションの効果が上昇する。<br><colortype(504)><edgecolortype(505)>発動条件：<edgecolortype(0)><colortype(0)>ダンスモード中<br>このウェポンスキルは固有のリキャストタイマーを持ち、実行すると他のウェポンスキルと魔法にこのアクションと同じリキャストタイムが発生する。<br><br><colortype(506)><edgecolortype(507)>※このアクションはホットバーに登録することはできない。<br>\u3000発動条件を満たすとカスケードとウィンドミルが薔薇のアンボワテに変化する。<edgecolortype(0)><colortype(0)>",
+  "effects": [
+    "ステップアクション「薔薇のアンボワテ」を実行する。",
+    "ダンスシンボルに表示された順番通りにステップアクションの実行に成功すると、フィニッシュアクションの効果が上昇する。",
+    "発動条件：ダンスモード中",
+    "このウェポンスキルは固有のリキャストタイマーを持ち、実行すると他のウェポンスキルと魔法にこのアクションと同じリキャストタイムが発生する。",
+    "※このアクションはホットバーに登録することはできない。",
+    "発動条件を満たすとカスケードとウィンドミルが薔薇のアンボワテに変化する。"
+  ],
+  "role": "Physical Ranged DPS",
+  "job": {
+    "id": 38,
+    "name": "踊り子",
+    "abbreviation": "DNC"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 15,
+  "icon": {
+    "id": 3455,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 3,
+    "name": "ウェポンスキル"
+  },
+  "attack_type": {
+    "id": 0,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 1.5,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 58,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 0,
+      "value": 0
+    },
+    "secondary": {
+      "type_id": 90,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": 0,
+    "effect_yalms": 0,
+    "cast_type": 1
+  },
+  "targeting": {
+    "self": true,
+    "party": false,
+    "alliance": false,
+    "hostile": false,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 0,
+    "behavior_type": 0,
+    "class_job_category_id": 150,
+    "source_class_job_id": 0,
+    "is_role_action": false,
+    "is_player_action": false,
+    "is_derived_action": true,
+    "equivalence_group": 0
+  }
+}

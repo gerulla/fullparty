@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 637,
+  "name": "Meister der Eukratischen Prognose",
+  "description": "Verbessert Eukratische Prognose zu Eukratische Prognose II.",
+  "description_macro": "Verbessert <colortype(502)><edgecolortype(503)>Eukratische Prognose<edgecolortype(0)><colortype(0)> zu <colortype(502)><edgecolortype(503)>Eukratische Prognose II<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Verbessert Eukratische Prognose zu Eukratische Prognose II."
+  ],
+  "role": "Healer",
+  "job": {
+    "id": 40,
+    "name": "Weiser",
+    "abbreviation": "WEI"
+  },
+  "unlock_level": 96,
+  "value": 0,
+  "icon": {
+    "id": 6460,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 181,
+  "source_class_job_id": 40
+}

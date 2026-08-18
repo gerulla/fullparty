@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 208,
+  "name": "Kenki-Meister II",
+  "description": "Füllt den Kenki-Balken durch erfolgreich ausgeführte Waffenfertigkeiten außer Iaijutsu noch schneller.",
+  "description_macro": "Füllt den Kenki-Balken durch erfolgreich ausgeführte Waf<->fen<->fer<->tig<->kei<->ten außer <colortype(500)><edgecolortype(501)>Iaijutsu<edgecolortype(0)><colortype(0)> noch schneller.",
+  "effects": [
+    "Füllt den Kenki-Balken durch erfolgreich ausgeführte Waffenfertigkeiten außer Iaijutsu noch schneller."
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 34,
+    "name": "Samurai",
+    "abbreviation": "SAM"
+  },
+  "unlock_level": 62,
+  "value": 5,
+  "icon": {
+    "id": 6151,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 111,
+  "source_class_job_id": 34
+}

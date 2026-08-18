@@ -1,0 +1,22 @@
+{
+  "kind": "trait",
+  "id": 10,
+  "name": "Passe-partout",
+  "description": "Permet d'ouvrir toutes les portes verrouillées dans un donjon.",
+  "description_macro": "Permet d'ouvrir toutes les portes verrouillées dans un donjon.",
+  "effects": [
+    "Permet d'ouvrir toutes les portes verrouillées dans un donjon."
+  ],
+  "role": "Phantom Jobs",
+  "job": {
+    "id": 12,
+    "name": "Voleur fantôme",
+    "abbreviation": "Voleur fant."
+  },
+  "is_phantom_trait": true,
+  "unlock_level": 6,
+  "icon": {
+    "id": 82212,
+    "file": "icon.png"
+  }
+}

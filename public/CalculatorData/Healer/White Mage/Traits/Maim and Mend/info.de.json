@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 23,
+  "name": "Verbesserte Kommandos",
+  "description": "Erhöht den Basisschaden und das Regenerationspotenzial von Kommandos außer Auto-Attacke um 10 %.",
+  "description_macro": "Erhöht den Basisschaden und das Regenerationspotenzial von Kommandos außer Auto-Attacke um 10 %.",
+  "effects": [
+    "Erhöht den Basisschaden und das Regenerationspotenzial von Kommandos außer Auto-Attacke um 10 %."
+  ],
+  "role": "Healer",
+  "job": {
+    "id": 24,
+    "name": "Weißmagier",
+    "abbreviation": "WMA"
+  },
+  "unlock_level": 20,
+  "value": 10,
+  "icon": {
+    "id": 5185,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 53,
+  "source_class_job_id": 6
+}

@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 617,
+  "name": "ミアズマバーストマスタリー",
+  "description": "ミアズマバーストがミアズマノヴァに変化する。",
+  "description_macro": "ミアズマバーストがミアズマノヴァに変化する。",
+  "effects": [
+    "ミアズマバーストがミアズマノヴァに変化する。"
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 27,
+    "name": "召喚士",
+    "abbreviation": "SMN"
+  },
+  "unlock_level": 92,
+  "value": 0,
+  "icon": {
+    "id": 5398,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 28,
+  "source_class_job_id": 27
+}

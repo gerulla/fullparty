@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 217,
+  "name": "Maîtrise de Ruine",
+  "description": "Remplace Ruine par Extra Ruine.",
+  "description_macro": "Remplace <colortype(500)><edgecolortype(501)>Ruine<edgecolortype(0)><colortype(0)> par <colortype(500)><edgecolortype(501)>Extra Ruine<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Remplace Ruine par Extra Ruine."
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 27,
+    "name": "Invocateur",
+    "abbreviation": "INV"
+  },
+  "unlock_level": 30,
+  "value": 0,
+  "icon": {
+    "id": 5395,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 69,
+  "source_class_job_id": 26
+}

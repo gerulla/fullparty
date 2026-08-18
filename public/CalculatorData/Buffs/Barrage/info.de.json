@@ -1,0 +1,51 @@
+{
+  "kind": "combat_status",
+  "id": 128,
+  "name": "Sperrfeuer",
+  "description": "können ausgeführt werden, wobei  dreimal Schaden anrichtet. Kann  ausgeführt werden, steigt sein Attacke-Wert bei Ausführung.",
+  "effects": [
+    "können ausgeführt werden, wobei  dreimal Schaden anrichtet. Kann  ausgeführt werden, steigt sein Attacke-Wert bei Ausführung."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 210356,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 1
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 107,
+      "name": "Sperrfeuer",
+      "description": "Du gewährst dir Sperrfeuer.\nDauer: 10 Sekunden\nEffekt von Sperrfeuer: Glänzender Pfeil oder Schattenbiss können ausgeführt werden, wobei Glänzender Pfeil dreimal Schaden anrichtet. Kann Schattenbiss ausgeführt werden, steigt sein Attacke-Wert bei Ausführung außerdem auf 300.\nZusatzeffekt: Resonanzpfeilbereit\nDauer: 30 Sekunden",
+      "description_macro": "Du gewährst dir <colortype(506)><edgecolortype(507)>Sperrfeuer<edgecolortype(0)><colortype(0)>.<br>Dauer: 10 Sekunden<br>Effekt von <colortype(506)><edgecolortype(507)>Sperrfeuer<edgecolortype(0)><colortype(0)>: <if([gnum68==23],<if([gnum72>=70],<colortype(502)><edgecolortype(503)>Glänzender Pfeil<edgecolortype(0)><colortype(0)>,<colortype(502)><edgecolortype(503)>Direkter Schuss<edgecolortype(0)><colortype(0)>)>,<colortype(502)><edgecolortype(503)>Direkter Schuss<edgecolortype(0)><colortype(0)>)> <if([gnum68==23],<if([gnum72>=72],oder <colortype(502)><edgecolortype(503)>Schattenbiss<edgecolortype(0)><colortype(0)>,<if([gnum72>=25],<if([gnum68==5],oder <colortype(502)><edgecolortype(503)>Sternenhagel<edgecolortype(0)><colortype(0)>,<if([gnum68==23],oder <colortype(502)><edgecolortype(503)>Sternenhagel<edgecolortype(0)><colortype(0)>,)>)>,)>)>,<if([gnum72>=25],<if([gnum68==5],oder <colortype(502)><edgecolortype(503)>Sternenhagel<edgecolortype(0)><colortype(0)>,<if([gnum68==23],oder <colortype(502)><edgecolortype(503)>Sternenhagel<edgecolortype(0)><colortype(0)>,)>)>,)>)> können ausgeführt werden, wobei <if([gnum68==23],<if([gnum72>=70],<colortype(502)><edgecolortype(503)>Glänzender Pfeil<edgecolortype(0)><colortype(0)>,<colortype(502)><edgecolortype(503)>Direkter Schuss<edgecolortype(0)><colortype(0)>)>,<colortype(502)><edgecolortype(503)>Direkter Schuss<edgecolortype(0)><colortype(0)>)> dreimal Schaden anrichtet. Kann <if([gnum68==23],<if([gnum72>=72],<colortype(502)><edgecolortype(503)>Schattenbiss<edgecolortype(0)><colortype(0)>,<if([gnum72>=25],<if([gnum68==5],<colortype(502)><edgecolortype(503)>Sternenhagel<edgecolortype(0)><colortype(0)>,<if([gnum68==23],<colortype(502)><edgecolortype(503)>Sternenhagel<edgecolortype(0)><colortype(0)>,)>)>,)>)>,<if([gnum72>=25],<if([gnum68==5],<colortype(502)><edgecolortype(503)>Sternenhagel<edgecolortype(0)><colortype(0)>,<if([gnum68==23],<colortype(502)><edgecolortype(503)>Sternenhagel<edgecolortype(0)><colortype(0)>,)>)>,)>)> ausgeführt werden, steigt sein Attacke-Wert bei Ausführung außerdem auf <if([gnum68==23],<if([gnum72>=72],300,220)>,220)>.<if([gnum68==23],<if([gnum72>=96],<br>Zusatzeffekt: <colortype(506)><edgecolortype(507)>Resonanzpfeilbereit<edgecolortype(0)><colortype(0)><br>Dauer: 30 Sekunden,)>,)>",
+      "unlock_level": 38,
+      "relations": [
+        "granted_by_description",
+        "same_name"
+      ],
+      "roles": [
+        "Physical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 23,
+          "name": "Barde",
+          "abbreviation": "BRD",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

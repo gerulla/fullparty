@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 3849,
+  "name": "毒盛の術",
+  "description": "受けるダメージが増加する状態。",
+  "effects": [
+    "受けるダメージが増加する状態。"
+  ],
+  "classification": "debuff",
+  "icon": {
+    "id": 212920,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 2,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 50,
+  "parameter": {
+    "effect": 0,
+    "modifier": 10
+  },
+  "class_job_category_id": 92,
+  "source_abilities": [
+    {
+      "id": 36957,
+      "name": "毒盛の術",
+      "description": "対象に向かって前方扇範囲物理攻撃。\u3000威力：400\n追加効果：対象の受けるダメージを5％上昇させる。\n効果時間：20秒\n追加効果：このアクションを命中させてから敵を倒すと、より多くのアイテムを獲得できることがある。\n追加効果：「忍気」を40上昇させる。\n追加効果：自身に「秘技実行可」を付与する。\n効果時間：30秒",
+      "description_macro": "対象に向かって前方扇範囲物理攻撃。\u3000<colortype(504)><edgecolortype(505)>威力：<edgecolortype(0)><colortype(0)>400<br><colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)>対象の受けるダメージを5％上昇させる。<br><colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>20秒<br><colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)>このアクションを命中させてから敵を倒すと、より多くのアイテムを獲得できることがある。<br><colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)><colortype(500)><edgecolortype(501)>「忍気」<edgecolortype(0)><colortype(0)>を40上昇させる。<if([gnum68==30],<if([gnum72>=96],<br><colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)>自身に<colortype(500)><edgecolortype(501)>「秘技実行可」<edgecolortype(0)><colortype(0)>を付与する。<br><colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>30秒,)>,)>",
+      "unlock_level": 66,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 30,
+          "name": "忍者",
+          "abbreviation": "NIN",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 2497,
+  "name": "Cataracte divine",
+  "description": "Le sort de magie bleue Cataracte divine peut être utilisé.",
+  "effects": [
+    "Le sort de magie bleue Cataracte divine peut être utilisé."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 213536,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": true,
+  "inflicted_by_actor": true,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 23273,
+      "name": "Barrière mystique",
+      "description": "Déploie une barrière mystique qui réduit de 20% vos dégâts subis.\nDurée : 10s\nEffet additionnel : si vous subissez des dégâts d'un montant supérieur à 30% de vos PV maximums, vous octroie Cataracte divine.\nCataracte divine : l'action Barrière mystique devient Cataracte divine.\nLa barrière mystique se dissipe si vous effectuez une action, un déplacement ou une rotation.\nDans ce cas, l'effet additionnel Cataracte divine prendra également fin.\nInterrompt vos attaques automatiques.\nCe sort a un temps de recharge indépendant partagé avec Rose de la destruction et Générateur rubis.\n\nCataracte divine\nEffectue une attaque magique d'eau sur les ennemis alentour.\nPuissance : 500\nPuissance avec Éther de protecteur : 1000\nLa puissance est réduite de 50% au-delà du premier ennemi touché.\nCondition : Cataracte divine.",
+      "description_macro": "Déploie une barrière mystique qui réduit de 20% vos dégâts subis.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 10s<br><colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> si vous subissez des dégâts d'un montant supérieur à 30% de vos PV maximums, vous octroie <colortype(500)><edgecolortype(501)>Cataracte divine<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Cataracte divine<nbsp>:<edgecolortype(0)><colortype(0)> l'action <colortype(500)><edgecolortype(501)>Barrière mystique<edgecolortype(0)><colortype(0)> devient <colortype(500)><edgecolortype(501)>Cataracte divine<edgecolortype(0)><colortype(0)>.<br>La barrière mystique se dissipe si vous effectuez une action, un déplacement ou une rotation.<br>Dans ce cas, l'effet additionnel <colortype(500)><edgecolortype(501)>Cataracte divine<edgecolortype(0)><colortype(0)> prendra également fin.<br>Interrompt vos attaques automatiques.<br>Ce sort a un temps de recharge indépendant partagé avec <colortype(500)><edgecolortype(501)>Rose de la destruction<edgecolortype(0)><colortype(0)> et <colortype(500)><edgecolortype(501)>Générateur rubis<edgecolortype(0)><colortype(0)>.<br><br><colortype(500)><edgecolortype(501)>Cataracte divine<edgecolortype(0)><colortype(0)><br>Effectue une attaque magique d'eau sur les ennemis alentour.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> 500<br><colortype(506)><edgecolortype(507)>Puissance avec Éther de protecteur<nbsp>:<edgecolortype(0)><colortype(0)> 1000<br>La puissance est réduite de 50% au-delà du premier ennemi touché.<br><colortype(506)><edgecolortype(507)>Condition<nbsp>:<edgecolortype(0)><colortype(0)> <colortype(500)><edgecolortype(501)>Cataracte divine<edgecolortype(0)><colortype(0)>.",
+      "unlock_level": 1,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Magical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 36,
+          "name": "Mage Bleu",
+          "abbreviation": "MBU",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

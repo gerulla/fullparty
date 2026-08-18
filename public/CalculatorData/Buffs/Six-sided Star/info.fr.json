@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 2514,
+  "name": "Étoile à six branches",
+  "description": "La vitesse de déplacement est augmentée.",
+  "effects": [
+    "La vitesse de déplacement est augmentée."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 212536,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 18,
+    "modifier": 0
+  },
+  "class_job_category_id": 21,
+  "source_abilities": [
+    {
+      "id": 16476,
+      "name": "Étoile à six branches",
+      "description": "Effectue une attaque physique sur la cible.\nPuissance : 780\nUn bonus de puissance de 80 est attribué pour chaque chakra ouvert.\nEffet additionnel : augmente votre vitesse de déplacement.\nDurée : 5s\nConsomme tous les chakras ouverts.\nCette technique ne permet pas d'ouvrir des chakras supplémentaires, même en cas de coup critique.\nCette technique d'arme a un temps de recharge indépendant qui est appliqué aux autres techniques d'arme ou sorts après utilisation.",
+      "description_macro": "Effectue une attaque physique sur la cible.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> <if([gnum68==20],<if([gnum72>=94],780,710)>,710)><br>Un bonus de puissance de 80 est attribué pour chaque chakra ouvert.<br><colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> augmente votre vitesse de déplacement.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 5s<br>Consomme tous les chakras ouverts.<br>Cette technique ne permet pas d'ouvrir des chakras sup<->plé<->men<->tai<->res, même en cas de coup critique.<br>Cette technique d'arme a un temps de recharge indépendant qui est appliqué aux autres techniques d'arme ou sorts après utilisation.",
+      "unlock_level": 80,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 20,
+          "name": "Moine",
+          "abbreviation": "MOI",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

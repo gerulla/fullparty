@@ -1,0 +1,25 @@
+{
+  "kind": "trait",
+  "id": 258,
+  "name": "Enhanced Brutal Shell",
+  "description": "Grants the effect of Brutal Shell after successfully completing a combo with Brutal Shell.\nDuration: 30s",
+  "description_macro": "Grants the effect of <colortype(506)><edgecolortype(507)>Brutal Shell<edgecolortype(0)><colortype(0)> after successfully completing a combo with <colortype(500)><edgecolortype(501)>Brutal Shell<edgecolortype(0)><colortype(0)>.<br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>30s",
+  "effects": [
+    "Grants the effect of Brutal Shell after successfully completing a combo with Brutal Shell.",
+    "Duration: 30s"
+  ],
+  "role": "Tank",
+  "job": {
+    "id": 37,
+    "name": "Gunbreaker",
+    "abbreviation": "GNB"
+  },
+  "unlock_level": 52,
+  "value": 0,
+  "icon": {
+    "id": 6302,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 149,
+  "source_class_job_id": 37
+}

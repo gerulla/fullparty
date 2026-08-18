@@ -1,0 +1,51 @@
+{
+  "kind": "combat_status",
+  "id": 4274,
+  "name": "Phantom-Genesung",
+  "description": "Bei Ablauf wird ein Heileffekt im Umkreis ausgelöst.",
+  "effects": [
+    "Bei Ablauf wird ein Heileffekt im Umkreis ausgelöst."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 229930,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": true,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 41643,
+      "name": "Phantom-Genesung",
+      "description": "Du gewährst dir oder einem Gruppenmitglied Phantom-Genesung. Bei Ende des Effekts werden die LP des Ziels und umstehender Gruppenmitglieder im Umkreis von 30y regeneriert.\nDauer: 20 Sekunden\nHeilpotenzial: 90.000",
+      "description_macro": "Du gewährst dir oder einem Grup<->pen<->mit<->glied <colortype(506)><edgecolortype(507)>Phantom-Genesung<edgecolortype(0)><colortype(0)>. Bei Ende des Effekts werden die LP des Ziels und umstehender Grup<->pen<->mit<->glieder im Umkreis von 30y regeneriert.<br>Dauer: 20 Sekunden<br>Heilpotenzial: 90.000",
+      "unlock_level": 0,
+      "relations": [
+        "granted_by_description",
+        "same_name"
+      ],
+      "roles": [
+        "Phantom Jobs"
+      ],
+      "jobs": [
+        {
+          "id": 11,
+          "name": "Phantom Phantom-Seher",
+          "abbreviation": "Ph-Seher",
+          "is_phantom": true
+        }
+      ]
+    }
+  ]
+}

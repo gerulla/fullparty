@@ -1,0 +1,99 @@
+{
+  "kind": "ability",
+  "id": 36982,
+  "name": "Rafale de métal",
+  "description": "Effectue une attaque physique sur la cible et les ennemis autour.\nPuissance : 900\nLa puissance est réduite de 25% au-delà du premier ennemi touché.\nCette attaque inflige nécessairement un coup net et critique.\nLes dégâts infligés sont augmentés lorsque vous bénéficiez d'un effet augmentant les chances de coups nets et critiques.\nCondition : Rafale de métal préparée.\nCette action n'est pas affectée par l'effet de Réassemblage.",
+  "description_macro": "Effectue une attaque physique sur la cible et les ennemis autour.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> 900<br>La puissance est réduite de 25% au-delà du premier ennemi touché.<br>Cette attaque inflige nécessairement un coup net et critique.<br>Les dégâts infligés sont augmentés lorsque vous bénéficiez d'un effet augmentant les chances de coups nets et critiques.<br><colortype(506)><edgecolortype(507)>Condition<nbsp>:<edgecolortype(0)><colortype(0)> <colortype(500)><edgecolortype(501)>Rafale de métal préparée<edgecolortype(0)><colortype(0)>.<br>Cette action n'est pas affectée par l'effet de <colortype(500)><edgecolortype(501)>Réassemblage<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Effectue une attaque physique sur la cible et les ennemis autour.",
+    "Puissance : 900",
+    "La puissance est réduite de 25% au-delà du premier ennemi touché.",
+    "Cette attaque inflige nécessairement un coup net et critique.",
+    "Les dégâts infligés sont augmentés lorsque vous bénéficiez d'un effet augmentant les chances de coups nets et critiques.",
+    "Condition : Rafale de métal préparée.",
+    "Cette action n'est pas affectée par l'effet de Réassemblage."
+  ],
+  "role": "Physical Ranged DPS",
+  "job": {
+    "id": 31,
+    "name": "Machiniste",
+    "abbreviation": "MCH"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 100,
+  "icon": {
+    "id": 3049,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 3,
+    "name": "Technique d'arme"
+  },
+  "attack_type": {
+    "id": 4294967295,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 2.5,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 58,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 10,
+      "value": 3866
+    },
+    "secondary": {
+      "type_id": 32,
+      "value": 3866
+    }
+  },
+  "range": {
+    "target_yalms": -1,
+    "effect_yalms": 5,
+    "cast_type": 2
+  },
+  "targeting": {
+    "self": false,
+    "party": false,
+    "alliance": false,
+    "hostile": true,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": {
+      "id": 173,
+      "status": {
+        "id": 3866,
+        "name": "Rafale de métal préparée",
+        "description": "Rafale de métal peut être lancée.",
+        "icon_id": 213024,
+        "max_stacks": 0
+      }
+    }
+  },
+  "metadata": {
+    "aspect_id": 7,
+    "behavior_type": 0,
+    "class_job_category_id": 96,
+    "source_class_job_id": 31,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

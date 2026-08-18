@@ -1,0 +1,32 @@
+{
+  "kind": "trait",
+  "id": 653,
+  "name": "アクション威力アップ",
+  "description": "特定のアクションの威力を上昇させる。\n\n竜牙竜爪の威力：140\n竜尾大車輪の威力：140\n雲蒸竜変の威力：460\n竜眼雷電の威力：320\nスターダイバーの威力：840\nヘヴンスラストの威力：160\n桜華繚乱の威力：140\n天竜点睛の威力：440",
+  "description_macro": "特定のアクションの威力を上昇させる。<br><br><colortype(504)><edgecolortype(505)>竜牙竜爪の威力：<edgecolortype(0)><colortype(0)>140<br><colortype(504)><edgecolortype(505)>竜尾大車輪の威力：<edgecolortype(0)><colortype(0)>140<br><colortype(504)><edgecolortype(505)>雲蒸竜変の威力：<edgecolortype(0)><colortype(0)>460<br><colortype(504)><edgecolortype(505)>竜眼雷電の威力：<edgecolortype(0)><colortype(0)>320<br><colortype(504)><edgecolortype(505)>スターダイバーの威力：<edgecolortype(0)><colortype(0)>840<br><colortype(504)><edgecolortype(505)>ヘヴンスラストの威力：<edgecolortype(0)><colortype(0)>160<br><colortype(504)><edgecolortype(505)>桜華繚乱の威力：<edgecolortype(0)><colortype(0)>140<br><colortype(504)><edgecolortype(505)>天竜点睛の威力：<edgecolortype(0)><colortype(0)>440",
+  "effects": [
+    "特定のアクションの威力を上昇させる。",
+    "竜牙竜爪の威力：140",
+    "竜尾大車輪の威力：140",
+    "雲蒸竜変の威力：460",
+    "竜眼雷電の威力：320",
+    "スターダイバーの威力：840",
+    "ヘヴンスラストの威力：160",
+    "桜華繚乱の威力：140",
+    "天竜点睛の威力：440"
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 22,
+    "name": "竜騎士",
+    "abbreviation": "DRG"
+  },
+  "unlock_level": 94,
+  "value": 0,
+  "icon": {
+    "id": 6806,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 23,
+  "source_class_job_id": 22
+}

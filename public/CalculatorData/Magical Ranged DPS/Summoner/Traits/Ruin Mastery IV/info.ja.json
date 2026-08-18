@@ -1,0 +1,28 @@
+{
+  "kind": "trait",
+  "id": 479,
+  "name": "ルインマスタリーIV",
+  "description": "ルインガ、ルビー・リチュアル、トパーズ・リチュアル、エメラルド・リチュアルの威力を上昇させる。\n\nルインガの威力：310\nルビー・リチュアルの威力：510\nトパーズ・リチュアルの威力：330\nエメラルド・リチュアルの威力：230",
+  "description_macro": "ルインガ、ルビー・リチュアル、トパーズ・リチュアル、エメラルド・リチュアルの威力を上昇させる。<br><br><colortype(504)><edgecolortype(505)>ルインガの威力：<edgecolortype(0)><colortype(0)>310<br><colortype(504)><edgecolortype(505)>ルビー・リチュアルの威力：<edgecolortype(0)><colortype(0)>510<br><colortype(504)><edgecolortype(505)>トパーズ・リチュアルの威力：<edgecolortype(0)><colortype(0)>330<br><colortype(504)><edgecolortype(505)>エメラルド・リチュアルの威力：<edgecolortype(0)><colortype(0)>230",
+  "effects": [
+    "ルインガ、ルビー・リチュアル、トパーズ・リチュアル、エメラルド・リチュアルの威力を上昇させる。",
+    "ルインガの威力：310",
+    "ルビー・リチュアルの威力：510",
+    "トパーズ・リチュアルの威力：330",
+    "エメラルド・リチュアルの威力：230"
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 27,
+    "name": "召喚士",
+    "abbreviation": "SMN"
+  },
+  "unlock_level": 84,
+  "value": 0,
+  "icon": {
+    "id": 5689,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 28,
+  "source_class_job_id": 27
+}

@@ -1,0 +1,51 @@
+{
+  "kind": "combat_status",
+  "id": 4277,
+  "name": "けいかい",
+  "description": "周囲を警戒している状態。戦闘状態に入ると自身に先手必勝状態を付与する。",
+  "effects": [
+    "周囲を警戒している状態。戦闘状態に入ると自身に先手必勝状態を付与する。"
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 229932,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": true,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 41647,
+      "name": "けいかい",
+      "description": "自身に「けいかい」を付与する。\n効果時間：20秒\n発動条件：自身が非戦闘状態\n「けいかい」の効果時間中に戦闘状態になると、「先手必勝」に変化する。\n「先手必勝」の効果時間中は、クリティカル発動率を60％上昇させる。\n効果時間：20秒",
+      "description_macro": "自身に<colortype(500)><edgecolortype(501)>「けいかい」<edgecolortype(0)><colortype(0)>を付与する。<br><colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>20秒<br><colortype(504)><edgecolortype(505)>発動条件：<edgecolortype(0)><colortype(0)>自身が非戦闘状態<br><colortype(500)><edgecolortype(501)>「けいかい」<edgecolortype(0)><colortype(0)>の効果時間中に戦闘状態になると、<colortype(500)><edgecolortype(501)>「先手必勝」<edgecolortype(0)><colortype(0)>に変化する。<br><colortype(500)><edgecolortype(501)>「先手必勝」<edgecolortype(0)><colortype(0)>の効果時間中は、クリティカル発動率を60％上昇させる。<br><colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>20秒",
+      "unlock_level": 0,
+      "relations": [
+        "granted_by_description",
+        "same_name"
+      ],
+      "roles": [
+        "Phantom Jobs"
+      ],
+      "jobs": [
+        {
+          "id": 12,
+          "name": "Phantom サポートシーフ",
+          "abbreviation": "Ph. Thief",
+          "is_phantom": true
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,71 @@
+{
+  "kind": "combat_status",
+  "id": 1820,
+  "name": "扇の舞い【急】実行可",
+  "description": "扇の舞い【急】を実行できる状態。",
+  "effects": [
+    "扇の舞い【急】を実行できる状態。"
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 213707,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 150,
+  "source_abilities": [
+    {
+      "id": 16007,
+      "name": "扇の舞い【序】",
+      "description": "対象に物理攻撃。\u3000威力：180\n追加効果（発動確率50％）：自身に「扇の舞い【急】実行可」を付与する\u3000効果時間：30秒\n発動条件：「幻扇」",
+      "description_macro": "対象に物理攻撃。\u3000<colortype(504)><edgecolortype(505)>威力：<edgecolortype(0)><colortype(0)><if([gnum68==38],<if([gnum72>=94],180,150)>,150)><br><if([gnum68==38],<if([gnum72>=66],<colortype(504)><edgecolortype(505)>追加効果（発動確率50％）：<edgecolortype(0)><colortype(0)>自身に<colortype(500)><edgecolortype(501)>「扇の舞い【急】実行可」<edgecolortype(0)><colortype(0)>を付与する\u3000<colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>30秒<br>,)>,)><colortype(504)><edgecolortype(505)>発動条件：<edgecolortype(0)><colortype(0)><colortype(500)><edgecolortype(501)>「幻扇」<edgecolortype(0)><colortype(0)>",
+      "unlock_level": 30,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Physical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 38,
+          "name": "踊り子",
+          "abbreviation": "DNC",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 16008,
+      "name": "扇の舞い【破】",
+      "description": "自身の周囲の敵に範囲物理攻撃。\u3000威力：100\n追加効果（発動確率50％）：自身に「扇の舞い【急】実行可」を付与する\u3000効果時間：30秒\n発動条件：「幻扇」",
+      "description_macro": "自身の周囲の敵に範囲物理攻撃。\u3000<colortype(504)><edgecolortype(505)>威力：<edgecolortype(0)><colortype(0)>100<br><if([gnum68==38],<if([gnum72>=66],<colortype(504)><edgecolortype(505)>追加効果（発動確率50％）：<edgecolortype(0)><colortype(0)>自身に<colortype(500)><edgecolortype(501)>「扇の舞い【急】実行可」<edgecolortype(0)><colortype(0)>を付与する\u3000<colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>30秒<br>,)>,)><colortype(504)><edgecolortype(505)>発動条件：<edgecolortype(0)><colortype(0)><colortype(500)><edgecolortype(501)>「幻扇」<edgecolortype(0)><colortype(0)>",
+      "unlock_level": 50,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Physical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 38,
+          "name": "踊り子",
+          "abbreviation": "DNC",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 866,
+  "name": "時神のピーアン",
+  "description": "次に受ける1回の状態異常効果を防ぐ状態。",
+  "effects": [
+    "次に受ける1回の状態異常効果を防ぐ状態。"
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 212611,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 24,
+  "source_abilities": [
+    {
+      "id": 3561,
+      "name": "時神のピーアン",
+      "description": "自身またはパーティメンバーひとりを対象とする。\n対象にかかった一部の弱体効果を1つ解除する。\nこの効果が発動しなかった場合、対象が次に受ける一部の弱体効果を1つ防ぐバリアを張る。\u3000効果時間：30秒",
+      "description_macro": "自身またはパーティメンバーひとりを対象とする。<br>対象にかかった一部の弱体効果を1つ解除する。<br>この効果が発動しなかった場合、対象が次に受ける一部の弱体効果を1つ防ぐバリアを張る。\u3000<colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>30秒",
+      "unlock_level": 35,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Physical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 23,
+          "name": "吟遊詩人",
+          "abbreviation": "BRD",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

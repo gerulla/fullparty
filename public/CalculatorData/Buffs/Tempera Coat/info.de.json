@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 3686,
+  "name": "Tempera-Schicht",
+  "description": "Erlittener Schaden ist um einen bestimmten Betrag verringert.",
+  "effects": [
+    "Erlittener Schaden ist um einen bestimmten Betrag verringert."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 213809,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 30,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 197,
+  "source_abilities": [
+    {
+      "id": 34685,
+      "name": "Tempera-Schicht",
+      "description": "Du errichtest eine Barriere um dich, die Schaden entsprechend 20 % deiner Maximal-LP absorbiert.\nDauer: 10 Sekunden\nFalls die Barriere den vollen Schaden absorbiert, verkürzt du die Reaktivierungszeit dieses Kommandos um 60 Sekunden.",
+      "description_macro": "Du errichtest eine Barriere um dich, die Schaden entsprechend 20<nbsp>% deiner Maximal-LP absorbiert.<br>Dauer: 10 Sekunden<br>Falls die Barriere den vollen Schaden absorbiert, verkürzt du die Re<->ak<->ti<->vie<->rungs<->zeit dieses Kommandos um 60 Sekunden.",
+      "unlock_level": 10,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Magical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 42,
+          "name": "Piktomant",
+          "abbreviation": "PKT",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

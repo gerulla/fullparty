@@ -1,0 +1,96 @@
+{
+  "kind": "ability",
+  "id": 41636,
+  "name": "Prédiction",
+  "description": "Vous octroie l'un des effets suivants :\nPrédiction : jugement divin\nPrédiction : purification\nPrédiction : bénédiction\nPrédiction : météorites\n\nLes actions suivantes peuvent être utilisées pendant la durée de l'effet correspondant :\nJugement divin : effectue une attaque magique sur les ennemis alentour et restaure vos PV ainsi que ceux des équipiers alentour.\nPurification : effectue une attaque magique sur les ennemis alentour et arrête le temps.\nBénédiction : restaure vos PV ainsi que ceux des équipiers alentour et restaure périodiquement les PV.\nMétéorites : effectue une attaque magique sur vous et les ennemis alentour.\nUne fois la durée d'un effet terminée, il est remplacé par un autre. Si aucune des prédictions n'est réalisée, vous inflige l'effet Prédiction fallacieuse.\nPrédiction fallacieuse : vous inflige des dégâts périodiques.\nPuissance : 50 000 Durée : 30s",
+  "description_macro": "Vous octroie l'un des effets suivants<nbsp>:<br><colortype(500)><edgecolortype(501)>Prédiction<nbsp>: jugement divin<br>Prédiction<nbsp>: purification<br>Prédiction<nbsp>: bénédiction<br>Prédiction<nbsp>: météorites<br><edgecolortype(0)><colortype(0)><br>Les actions suivantes peuvent être utilisées pendant la durée de l'effet correspondant<nbsp>:<br><colortype(506)><edgecolortype(507)>Jugement divin<nbsp>:<edgecolortype(0)><colortype(0)> effectue une attaque magique sur les ennemis alentour et restaure vos PV ainsi que ceux des équipiers alentour.<br><colortype(506)><edgecolortype(507)>Purification<nbsp>:<edgecolortype(0)><colortype(0)> effectue une attaque magique sur les ennemis alentour et arrête le temps.<br><colortype(506)><edgecolortype(507)>Bénédiction<nbsp>:<edgecolortype(0)><colortype(0)> restaure vos PV ainsi que ceux des équipiers alentour et restaure périodiquement les PV.<br><colortype(506)><edgecolortype(507)>Météorites<nbsp>:<edgecolortype(0)><colortype(0)> effectue une attaque magique sur vous et les ennemis alentour.<br>Une fois la durée d'un effet terminée, il est remplacé par un autre. Si aucune des prédictions n'est réalisée, vous inflige l'effet <colortype(500)><edgecolortype(501)>Prédiction fallacieuse<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Prédiction fallacieuse<nbsp>:<edgecolortype(0)><colortype(0)> vous inflige des dégâts périodiques.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> 50 000 <colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 30s",
+  "effects": [
+    "Vous octroie l'un des effets suivants :",
+    "Prédiction : jugement divin",
+    "Prédiction : purification",
+    "Prédiction : bénédiction",
+    "Prédiction : météorites",
+    "Les actions suivantes peuvent être utilisées pendant la durée de l'effet correspondant :",
+    "Jugement divin : effectue une attaque magique sur les ennemis alentour et restaure vos PV ainsi que ceux des équipiers alentour.",
+    "Purification : effectue une attaque magique sur les ennemis alentour et arrête le temps.",
+    "Bénédiction : restaure vos PV ainsi que ceux des équipiers alentour et restaure périodiquement les PV.",
+    "Météorites : effectue une attaque magique sur vous et les ennemis alentour.",
+    "Une fois la durée d'un effet terminée, il est remplacé par un autre. Si aucune des prédictions n'est réalisée, vous inflige l'effet Prédiction fallacieuse.",
+    "Prédiction fallacieuse : vous inflige des dégâts périodiques.",
+    "Puissance : 50 000 Durée : 30s"
+  ],
+  "role": "Phantom Jobs",
+  "job": {
+    "id": 11,
+    "name": "Devin fantôme",
+    "abbreviation": "Devin fant."
+  },
+  "is_phantom_action": true,
+  "unlock_level": 1,
+  "icon": {
+    "id": 64558,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 2,
+    "name": "Sort"
+  },
+  "attack_type": {
+    "id": 0,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 60,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 83,
+    "additional_cooldown_group": 58,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 0,
+      "value": 0
+    },
+    "secondary": {
+      "type_id": 0,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": 0,
+    "effect_yalms": 0,
+    "cast_type": 1
+  },
+  "targeting": {
+    "self": true,
+    "party": false,
+    "alliance": false,
+    "hostile": false,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 0,
+    "behavior_type": 0,
+    "class_job_category_id": 142,
+    "source_class_job_id": 4294967295,
+    "is_role_action": false,
+    "is_player_action": false,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

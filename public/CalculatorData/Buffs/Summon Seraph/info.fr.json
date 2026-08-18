@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 3095,
+  "name": "Invocation Séraphin",
+  "description": "Séraphin est invoqué.",
+  "effects": [
+    "Séraphin est invoqué."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 214905,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": true,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 29,
+  "source_abilities": [
+    {
+      "id": 16545,
+      "name": "Invocation Séraphin",
+      "description": "Renvoie votre fée et invoque Séraphin.\nDurée de l'invocation : 22s\nEn mode Défendre, Séraphin lance Voile séraphique sur les équipiers blessés.\nVotre fée réapparaît à la fin de l'effet.",
+      "description_macro": "Renvoie votre fée et invoque Séraphin.<br><colortype(506)><edgecolortype(507)>Durée de l'invocation<nbsp>:<edgecolortype(0)><colortype(0)> 22s<br>En mode <colortype(500)><edgecolortype(501)>Défendre<edgecolortype(0)><colortype(0)>, Séraphin lance <colortype(500)><edgecolortype(501)>Voile séraphique<edgecolortype(0)><colortype(0)> sur les équipiers blessés.<br>Votre fée réapparaît à la fin de l'effet.",
+      "unlock_level": 80,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Healer"
+      ],
+      "jobs": [
+        {
+          "id": 28,
+          "name": "Érudit",
+          "abbreviation": "ÉRU",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

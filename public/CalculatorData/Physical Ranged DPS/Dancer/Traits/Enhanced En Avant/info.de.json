@@ -1,0 +1,25 @@
+{
+  "kind": "trait",
+  "id": 254,
+  "name": "Verbesserter En Avant",
+  "description": "Erlaubt es dir, En Avant aufzuladen.\nMaximale Aufladungen: 2",
+  "description_macro": "Erlaubt es dir, <colortype(502)><edgecolortype(503)>En Avant<edgecolortype(0)><colortype(0)> aufzuladen.<br>Maximale Aufladungen: 2",
+  "effects": [
+    "Erlaubt es dir, En Avant aufzuladen.",
+    "Maximale Aufladungen: 2"
+  ],
+  "role": "Physical Ranged DPS",
+  "job": {
+    "id": 38,
+    "name": "Tänzer",
+    "abbreviation": "TÄN"
+  },
+  "unlock_level": 68,
+  "value": 2,
+  "icon": {
+    "id": 6354,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 150,
+  "source_class_job_id": 38
+}

@@ -1,0 +1,90 @@
+{
+  "kind": "ability",
+  "id": 34664,
+  "name": "ピクトポンポン",
+  "description": "「ポンポン」の絵素を描く。\n自身が非戦闘状態であれば詠唱時間無しで詠唱することができる。\n発動条件：アニマルキャンバスに絵素が描かれていない\nこの魔法は固有のリキャストタイマーを持ち、装備やステータスなどによって変化しない。\nまた、実行すると他のウェポンスキルと魔法にこのアクションと同じリキャストタイムが発生する。\n\n※このアクションはホットバーに登録することはできない。\n\u3000発動条件を満たすとピクトアニマルがピクトポンポンに変化する。",
+  "description_macro": "<colortype(500)><edgecolortype(501)>「ポンポン」<edgecolortype(0)><colortype(0)>の絵素を描く。<br>自身が非戦闘状態であれば詠唱時間無しで詠唱することができる。<br><colortype(504)><edgecolortype(505)>発動条件：<edgecolortype(0)><colortype(0)>アニマルキャンバスに絵素が描かれていない<br>この魔法は固有のリキャストタイマーを持ち、装備やステータスなどによって変化しない。<br>また、実行すると他のウェポンスキルと魔法にこのアクションと同じリキャストタイムが発生する。<br><br><colortype(506)><edgecolortype(507)>※このアクションはホットバーに登録することはできない。<br>\u3000発動条件を満たすとピクトアニマルがピクトポンポンに変化する。<edgecolortype(0)><colortype(0)>",
+  "effects": [
+    "「ポンポン」の絵素を描く。",
+    "自身が非戦闘状態であれば詠唱時間無しで詠唱することができる。",
+    "発動条件：アニマルキャンバスに絵素が描かれていない",
+    "この魔法は固有のリキャストタイマーを持ち、装備やステータスなどによって変化しない。",
+    "また、実行すると他のウェポンスキルと魔法にこのアクションと同じリキャストタイムが発生する。",
+    "※このアクションはホットバーに登録することはできない。",
+    "発動条件を満たすとピクトアニマルがピクトポンポンに変化する。"
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 42,
+    "name": "ピクトマンサー",
+    "abbreviation": "PCT"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 30,
+  "icon": {
+    "id": 3815,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 2,
+    "name": "魔法"
+  },
+  "attack_type": {
+    "id": 0,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 3,
+    "recast_seconds": 4,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 58,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 0,
+      "value": 0
+    },
+    "secondary": {
+      "type_id": 137,
+      "value": 1
+    }
+  },
+  "range": {
+    "target_yalms": 0,
+    "effect_yalms": 0,
+    "cast_type": 1
+  },
+  "targeting": {
+    "self": true,
+    "party": false,
+    "alliance": false,
+    "hostile": false,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 0,
+    "behavior_type": 0,
+    "class_job_category_id": 197,
+    "source_class_job_id": 0,
+    "is_role_action": false,
+    "is_player_action": false,
+    "is_derived_action": true,
+    "equivalence_group": 0
+  }
+}

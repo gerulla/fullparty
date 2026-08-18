@@ -1,0 +1,102 @@
+{
+  "kind": "ability",
+  "id": 24383,
+  "name": "Galgen",
+  "description": "Du führst eine physische Attacke aus.\nAttacke-Wert: 500\nBei Hängen: 560\nVon hinten: 560\nBei Hängen und von hinten: 620\nZusatzeffekt: Gewährt dir Richten.\nDauer: 60 Sekunden\nWährend Richten ändert sich Knochengarbe zu Richtergriff.\nZusatzeffekt: Schleierbalken füllt sich um 10.\nBedingung: Nichtssense aktiv",
+  "description_macro": "Du führst eine physische Attacke aus.<br>Attacke-Wert: <if([gnum68==39],<if([gnum72>=94],500,400)>,400)><br>Bei <colortype(506)><edgecolortype(507)>Hängen<edgecolortype(0)><colortype(0)>: <if([gnum68==39],<if([gnum72>=94],560,460)>,460)><br>Von hinten: <if([gnum68==39],<if([gnum72>=94],560,460)>,460)><br>Bei <colortype(506)><edgecolortype(507)>Hängen<edgecolortype(0)><colortype(0)> und von hinten: <if([gnum68==39],<if([gnum72>=94],620,520)>,520)><br>Zusatzeffekt: Gewährt dir <colortype(506)><edgecolortype(507)>Richten<edgecolortype(0)><colortype(0)>.<br>Dauer: 60 Sekunden<br>Während <colortype(506)><edgecolortype(507)>Richten<edgecolortype(0)><colortype(0)> ändert sich <colortype(502)><edgecolortype(503)>Knochengarbe<edgecolortype(0)><colortype(0)> zu <colortype(502)><edgecolortype(503)>Richtergriff<edgecolortype(0)><colortype(0)>.<br><if([gnum68==39],<if([gnum72>=80],Zusatzeffekt: Schleierbalken füllt sich um 10.<br>,)>,)>Bedingung: <colortype(506)><edgecolortype(507)>Nichtssense<edgecolortype(0)><colortype(0)> aktiv",
+  "effects": [
+    "Du führst eine physische Attacke aus.",
+    "Attacke-Wert: 500",
+    "Bei Hängen: 560",
+    "Von hinten: 560",
+    "Bei Hängen und von hinten: 620",
+    "Zusatzeffekt: Gewährt dir Richten.",
+    "Dauer: 60 Sekunden",
+    "Während Richten ändert sich Knochengarbe zu Richtergriff.",
+    "Zusatzeffekt: Schleierbalken füllt sich um 10.",
+    "Bedingung: Nichtssense aktiv"
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 39,
+    "name": "Schnitter",
+    "abbreviation": "SNT"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 70,
+  "icon": {
+    "id": 3611,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 3,
+    "name": "Waffenfertigkeit"
+  },
+  "attack_type": {
+    "id": 1,
+    "name": "斬"
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 2.5,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 58,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 10,
+      "value": 2587
+    },
+    "secondary": {
+      "type_id": 113,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": -1,
+    "effect_yalms": 0,
+    "cast_type": 1
+  },
+  "targeting": {
+    "self": false,
+    "party": false,
+    "alliance": false,
+    "hostile": true,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": {
+      "id": 75,
+      "status": {
+        "id": 2589,
+        "name": "Hängen",
+        "description": "Nächster Galgen hat einen erhöhten Attacke-Wert.",
+        "icon_id": 212928,
+        "max_stacks": 0
+      }
+    }
+  },
+  "metadata": {
+    "aspect_id": 7,
+    "behavior_type": 0,
+    "class_job_category_id": 180,
+    "source_class_job_id": 39,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

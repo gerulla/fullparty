@@ -1,0 +1,25 @@
+{
+  "kind": "trait",
+  "id": 493,
+  "name": "Enhanced Healing Magic",
+  "description": "Increases the healing potency of Physick to 450, Embrace to 180, and Seraphic Veil to 180.\nIncreases the barrier potency of Adloquium to 180% the amount healed and Succor to 160% the amount healed.",
+  "description_macro": "Increases the healing potency of <colortype(500)><edgecolortype(501)>Physick<edgecolortype(0)><colortype(0)> to 450, <colortype(500)><edgecolortype(501)>Embrace<edgecolortype(0)><colortype(0)> to 180, and <colortype(500)><edgecolortype(501)>Seraphic Veil<edgecolortype(0)><colortype(0)> to 180.<br>Increases the barrier potency of <colortype(500)><edgecolortype(501)>Adloquium<edgecolortype(0)><colortype(0)> to 180% the amount healed and <colortype(500)><edgecolortype(501)>Succor<edgecolortype(0)><colortype(0)> to 160% the amount healed.",
+  "effects": [
+    "Increases the healing potency of Physick to 450, Embrace to 180, and Seraphic Veil to 180.",
+    "Increases the barrier potency of Adloquium to 180% the amount healed and Succor to 160% the amount healed."
+  ],
+  "role": "Healer",
+  "job": {
+    "id": 28,
+    "name": "Scholar",
+    "abbreviation": "SCH"
+  },
+  "unlock_level": 85,
+  "value": 0,
+  "icon": {
+    "id": 6826,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 29,
+  "source_class_job_id": 28
+}

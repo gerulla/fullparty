@@ -1,0 +1,102 @@
+{
+  "kind": "ability",
+  "id": 34619,
+  "name": "Bloodied Maw",
+  "description": "Delivers an attack with a potency of 180 to all nearby enemies.\nPotencies are increased by 40 while under the effect of Grimskin's Venom.\nAdditional Effect: Grants Grimhunter's Venom\nGrimhunter's Venom Effect: Increases potency of Jagged Maw by 40\nDuration: 60s\nEffect cannot be stacked with other viper venom effects.\nAdditional Effect: Increases Serpent Offerings Gauge by 10\nCan only be executed after successfully landing Hunter's Bite or Swiftskin's Bite.\n\n※This action cannot be assigned to a hotbar.\n※Swiftskin's Bite changes to Bloodied Maw when requirements for execution are met.",
+  "description_macro": "Delivers an attack with a potency of 180 to all nearby enemies.<br>Potencies are increased by 40 while under the effect of <colortype(506)><edgecolortype(507)>Grimskin's Venom<edgecolortype(0)><colortype(0)>.<br><colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>Grants <colortype(506)><edgecolortype(507)>Grimhunter's Venom<edgecolortype(0)><colortype(0)><br><colortype(504)><edgecolortype(505)>Grimhunter's Venom Effect: <edgecolortype(0)><colortype(0)>Increases potency of <colortype(500)><edgecolortype(501)>Jagged Maw<edgecolortype(0)><colortype(0)> by 40<br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>60s<br>Effect cannot be stacked with other viper venom effects.<br><if([gnum68==41],<if([gnum72>=90],<colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>Increases <colortype(500)><edgecolortype(501)>Serpent Offerings Gauge<edgecolortype(0)><colortype(0)> by 10<br>,)>,)>Can only be executed after successfully landing <colortype(500)><edgecolortype(501)>Hunter's Bite<edgecolortype(0)><colortype(0)> or <colortype(500)><edgecolortype(501)>Swiftskin's Bite<edgecolortype(0)><colortype(0)>.<br><br>※This action cannot be assigned to a hotbar.<br>※<colortype(500)><edgecolortype(501)>Swiftskin's Bite<edgecolortype(0)><colortype(0)> changes to <colortype(500)><edgecolortype(501)>Bloodied Maw<edgecolortype(0)><colortype(0)> when requirements for execution are met.",
+  "effects": [
+    "Delivers an attack with a potency of 180 to all nearby enemies.",
+    "Potencies are increased by 40 while under the effect of Grimskin's Venom.",
+    "Additional Effect: Grants Grimhunter's Venom",
+    "Grimhunter's Venom Effect: Increases potency of Jagged Maw by 40",
+    "Duration: 60s",
+    "Effect cannot be stacked with other viper venom effects.",
+    "Additional Effect: Increases Serpent Offerings Gauge by 10",
+    "Can only be executed after successfully landing Hunter's Bite or Swiftskin's Bite.",
+    "※This action cannot be assigned to a hotbar.",
+    "※Swiftskin's Bite changes to Bloodied Maw when requirements for execution are met."
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 41,
+    "name": "Viper",
+    "abbreviation": "VPR"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 50,
+  "icon": {
+    "id": 3714,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 3,
+    "name": "Weaponskill"
+  },
+  "attack_type": {
+    "id": 4294967295,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 2.5,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 58,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 0,
+      "value": 0
+    },
+    "secondary": {
+      "type_id": 136,
+      "value": 6
+    }
+  },
+  "range": {
+    "target_yalms": 0,
+    "effect_yalms": 5,
+    "cast_type": 2
+  },
+  "targeting": {
+    "self": true,
+    "party": false,
+    "alliance": false,
+    "hostile": false,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": 34616,
+    "preserves_combo": false
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": {
+      "id": 121,
+      "status": {
+        "id": 3650,
+        "name": "Grimskin's Venom",
+        "description": "Potency of Bloodied Maw is increased.",
+        "icon_id": 213756,
+        "max_stacks": 0
+      }
+    }
+  },
+  "metadata": {
+    "aspect_id": 7,
+    "behavior_type": 0,
+    "class_job_category_id": 196,
+    "source_class_job_id": 0,
+    "is_role_action": false,
+    "is_player_action": false,
+    "is_derived_action": true,
+    "equivalence_group": 0
+  }
+}

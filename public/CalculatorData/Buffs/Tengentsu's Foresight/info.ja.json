@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 3854,
+  "name": "天眼通：生",
+  "description": "受けるダメージの一部が軽減され、かつ連続してＨＰが回復している状態。",
+  "effects": [
+    "受けるダメージの一部が軽減され、かつ連続してＨＰが回復している状態。"
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 213317,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 39,
+    "modifier": 10
+  },
+  "class_job_category_id": 111,
+  "source_abilities": [
+    {
+      "id": 36962,
+      "name": "天眼通",
+      "description": "効果時間中に受ける1回の攻撃のダメージを10％軽減する。\n効果時間：4秒\n追加効果：天眼通に成功すると「剣気」が10上昇し、さらに「天眼通：生」に変化する。\u3000効果時間：9秒\n天眼通：生効果：自身の被ダメージを10％軽減する。\nさらに、自身のＨＰを継続回復する。\u3000回復力：200",
+      "description_macro": "効果時間中に受ける1回の攻撃のダメージを10％軽減する。<br><colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>4秒<br><colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)>天眼通に成功すると<colortype(500)><edgecolortype(501)>「剣気」<edgecolortype(0)><colortype(0)>が10上昇し、さらに<colortype(500)><edgecolortype(501)>「天眼通：生」<edgecolortype(0)><colortype(0)>に変化する。\u3000<colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>9秒<br><colortype(504)><edgecolortype(505)>天眼通：生効果：<edgecolortype(0)><colortype(0)>自身の被ダメージを10％軽減する。<br>さらに、自身のＨＰを継続回復する。\u3000<colortype(504)><edgecolortype(505)>回復力：<edgecolortype(0)><colortype(0)>200",
+      "unlock_level": 82,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 34,
+          "name": "侍",
+          "abbreviation": "SAM",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

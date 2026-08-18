@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 1895,
+  "name": "Biolysis",
+  "description": "Sustaining damage over time.",
+  "effects": [
+    "Sustaining damage over time."
+  ],
+  "classification": "debuff",
+  "icon": {
+    "id": 212812,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 2,
+  "target_type": 0,
+  "can_dispel": true,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 10,
+  "parameter": {
+    "effect": 0,
+    "modifier": 5
+  },
+  "class_job_category_id": 29,
+  "source_abilities": [
+    {
+      "id": 16540,
+      "name": "Biolysis",
+      "description": "Deals unaspected damage over time.\nPotency: 85\nDuration: 30s",
+      "description_macro": "Deals unaspected damage over time.<br><colortype(504)><edgecolortype(505)>Potency: <edgecolortype(0)><colortype(0)><if([gnum68==28],<if([gnum72>=94],85,70)>,70)><br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>30s",
+      "unlock_level": 72,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Healer"
+      ],
+      "jobs": [
+        {
+          "id": 28,
+          "name": "Scholar",
+          "abbreviation": "SCH",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

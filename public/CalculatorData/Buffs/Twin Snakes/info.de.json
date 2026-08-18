@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 101,
+  "name": "Doppelviper",
+  "description": "Ausgeteilter Schaden ist erhöht.",
+  "effects": [
+    "Ausgeteilter Schaden ist erhöht."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 210216,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 5
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 61,
+      "name": "Doppelviper",
+      "description": "Du führst eine physische Attacke aus.\nAttacke-Wert: 420\nBedingung: Raptor-Form aktiv\nZusatzeffekt: Gewährt dir Rechtschaffene Raptor-Faust.\nEffekt von Rechtschaffene Raptor-Faust: Attacke-Wert von Drachenkieferschlag ist um 200 erhöht.\nZusatzeffekt: Du wechselst in die Coeurl-Form.\nDauer: 30 Sekunden",
+      "description_macro": "Du führst eine physische Attacke aus.<br>Attacke-Wert: <if([gnum68==20],<if([gnum72>=94],420,<if([gnum68==20],<if([gnum72>=84],380,340)>,340)>)>,<if([gnum68==20],<if([gnum72>=84],380,340)>,340)>)><br>Bedingung: <colortype(506)><edgecolortype(507)>Raptor-Form<edgecolortype(0)><colortype(0)> aktiv<br>Zusatzeffekt: Gewährt dir <colortype(506)><edgecolortype(507)>Rechtschaffene Raptor-Faust<edgecolortype(0)><colortype(0)>.<br>Effekt von <colortype(506)><edgecolortype(507)>Rechtschaffene Raptor-Faust<edgecolortype(0)><colortype(0)>: Attacke-Wert von <if([gnum68==20],<if([gnum72>=92],<colortype(502)><edgecolortype(503)>Drachenkieferschlag<edgecolortype(0)><colortype(0)>,<colortype(502)><edgecolortype(503)>Wahrer Schlag<edgecolortype(0)><colortype(0)>)>,<colortype(502)><edgecolortype(503)>Wahrer Schlag<edgecolortype(0)><colortype(0)>)> ist um 200 erhöht.<br>Zusatzeffekt: Du wechselst in die <colortype(506)><edgecolortype(507)>Coeurl-Form<edgecolortype(0)><colortype(0)>.<br>Dauer: 30 Sekunden",
+      "unlock_level": 18,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 20,
+          "name": "Mönch",
+          "abbreviation": "MÖN",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

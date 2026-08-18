@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 3893,
+  "name": "Auge des Orakels",
+  "description": "Orakel kann ausgeführt werden.",
+  "effects": [
+    "Orakel kann ausgeführt werden."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 213264,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 99,
+  "source_abilities": [
+    {
+      "id": 16552,
+      "name": "Weissagung",
+      "description": "Du erhöhst den ausgeteilten Schaden von dir und umstehenden Gruppenmitgliedern um 6 %\nDauer: 20 Sekunden\nZusatzeffekt: Gewährt dir Auge des Orakels.\nDauer: 30 Sekunden",
+      "description_macro": "Du erhöhst den ausgeteilten Schaden von dir und umstehenden Grup<->pen<->mit<->gliedern um 6<nbsp>%<br>Dauer: 20 Sekunden<if([gnum68==33],<if([gnum72>=92],<br>Zusatzeffekt: Gewährt dir <colortype(506)><edgecolortype(507)>Auge des Orakels<edgecolortype(0)><colortype(0)>.<br>Dauer: 30 Sekunden,)>,)>",
+      "unlock_level": 50,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Healer"
+      ],
+      "jobs": [
+        {
+          "id": 33,
+          "name": "Astrologe",
+          "abbreviation": "AST",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

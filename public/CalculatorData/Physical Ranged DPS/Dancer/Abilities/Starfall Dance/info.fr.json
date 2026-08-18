@@ -1,0 +1,98 @@
+{
+  "kind": "ability",
+  "id": 25792,
+  "name": "Danse de la pluie étoilée",
+  "description": "Effectue une attaque physique en ligne droite sur les ennemis devant vous.\nPuissance : 600\nLa puissance est réduite de 75% au-delà du premier ennemi touché.\nCette attaque inflige nécessairement un coup net et critique.\nLes dégâts infligés sont augmentés lorsque vous bénéficiez d'un effet augmentant les chances de coups nets et critiques.\nCondition : Danse de la pluie étoilée préparée.",
+  "description_macro": "Effectue une attaque physique en ligne droite sur les ennemis devant vous.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> 600<br>La puissance est réduite de 75% au-delà du premier ennemi touché.<br>Cette attaque inflige nécessairement un coup net et critique.<br>Les dégâts infligés sont augmentés lorsque vous bénéficiez d'un effet augmentant les chances de coups nets et critiques.<br><colortype(506)><edgecolortype(507)>Condition<nbsp>:<edgecolortype(0)><colortype(0)> <colortype(500)><edgecolortype(501)>Danse de la pluie étoilée préparée<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Effectue une attaque physique en ligne droite sur les ennemis devant vous.",
+    "Puissance : 600",
+    "La puissance est réduite de 75% au-delà du premier ennemi touché.",
+    "Cette attaque inflige nécessairement un coup net et critique.",
+    "Les dégâts infligés sont augmentés lorsque vous bénéficiez d'un effet augmentant les chances de coups nets et critiques.",
+    "Condition : Danse de la pluie étoilée préparée."
+  ],
+  "role": "Physical Ranged DPS",
+  "job": {
+    "id": 38,
+    "name": "Danseur",
+    "abbreviation": "DNS"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 90,
+  "icon": {
+    "id": 3482,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 3,
+    "name": "Technique d'arme"
+  },
+  "attack_type": {
+    "id": 4294967295,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 2.5,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 58,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 10,
+      "value": 2700
+    },
+    "secondary": {
+      "type_id": 91,
+      "value": 2700
+    }
+  },
+  "range": {
+    "target_yalms": 25,
+    "effect_yalms": 25,
+    "cast_type": 4
+  },
+  "targeting": {
+    "self": false,
+    "party": false,
+    "alliance": false,
+    "hostile": true,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": {
+      "id": 67,
+      "status": {
+        "id": 2700,
+        "name": "Danse de la pluie étoilée préparée",
+        "description": "Danse de la pluie étoilée peut être lancée.",
+        "icon_id": 213724,
+        "max_stacks": 0
+      }
+    }
+  },
+  "metadata": {
+    "aspect_id": 7,
+    "behavior_type": 0,
+    "class_job_category_id": 150,
+    "source_class_job_id": 38,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

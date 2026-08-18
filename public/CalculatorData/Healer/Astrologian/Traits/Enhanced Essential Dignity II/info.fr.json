@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 634,
+  "name": "Dignité essentielle améliorée II",
+  "description": "Augmente à 3 le maximum de charges de Dignité essentielle.",
+  "description_macro": "Augmente à 3 le maximum de charges de <colortype(500)><edgecolortype(501)>Dignité essentielle<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Augmente à 3 le maximum de charges de Dignité essentielle."
+  ],
+  "role": "Healer",
+  "job": {
+    "id": 33,
+    "name": "Astromancien",
+    "abbreviation": "AST"
+  },
+  "unlock_level": 98,
+  "value": 3,
+  "icon": {
+    "id": 6124,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 99,
+  "source_class_job_id": 33
+}

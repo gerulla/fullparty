@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 613,
+  "name": "Thunder Mastery III",
+  "description": "Upgrades Thunder III to High Thunder and Thunder IV to High Thunder II.",
+  "description_macro": "Upgrades <colortype(500)><edgecolortype(501)>Thunder III<edgecolortype(0)><colortype(0)> to <colortype(500)><edgecolortype(501)>High Thunder<edgecolortype(0)><colortype(0)> and <colortype(500)><edgecolortype(501)>Thunder IV<edgecolortype(0)><colortype(0)> to <colortype(500)><edgecolortype(501)>High Thunder II<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Upgrades Thunder III to High Thunder and Thunder IV to High Thunder II."
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 25,
+    "name": "Black Mage",
+    "abbreviation": "BLM"
+  },
+  "unlock_level": 92,
+  "value": 0,
+  "icon": {
+    "id": 5651,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 26,
+  "source_class_job_id": 25
+}

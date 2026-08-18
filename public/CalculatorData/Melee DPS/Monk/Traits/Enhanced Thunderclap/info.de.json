@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 431,
+  "name": "Verbesserter Donnersprung",
+  "description": "Donnersprung kann bis zu dreimal aufgeladen werden.",
+  "description_macro": "<colortype(502)><edgecolortype(503)>Donnersprung<edgecolortype(0)><colortype(0)> kann bis zu dreimal aufgeladen werden.",
+  "effects": [
+    "Donnersprung kann bis zu dreimal aufgeladen werden."
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 20,
+    "name": "Mönch",
+    "abbreviation": "MÖN"
+  },
+  "unlock_level": 84,
+  "value": 3,
+  "icon": {
+    "id": 5244,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 21,
+  "source_class_job_id": 20
+}

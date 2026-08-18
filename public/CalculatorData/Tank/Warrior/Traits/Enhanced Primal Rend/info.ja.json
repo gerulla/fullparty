@@ -1,0 +1,26 @@
+{
+  "kind": "trait",
+  "id": 569,
+  "name": "プライマルレンド効果アップ",
+  "description": "自身に「ルイネーター実行可」が付与される。\n効果時間：20秒\n発動条件：プライマルレンド実行時",
+  "description_macro": "自身に<colortype(500)><edgecolortype(501)>「ルイネーター実行可」<edgecolortype(0)><colortype(0)>が付与される。<br><colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>20秒<br><colortype(504)><edgecolortype(505)>発動条件：<edgecolortype(0)><colortype(0)>プライマルレンド実行時",
+  "effects": [
+    "自身に「ルイネーター実行可」が付与される。",
+    "効果時間：20秒",
+    "発動条件：プライマルレンド実行時"
+  ],
+  "role": "Tank",
+  "job": {
+    "id": 21,
+    "name": "戦士",
+    "abbreviation": "WAR"
+  },
+  "unlock_level": 100,
+  "value": 0,
+  "icon": {
+    "id": 5273,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 22,
+  "source_class_job_id": 21
+}

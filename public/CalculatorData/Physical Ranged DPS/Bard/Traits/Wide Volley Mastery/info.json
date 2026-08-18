@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 598,
+  "name": "Wide Volley Mastery",
+  "description": "Upgrades Wide Volley to Shadowbite.",
+  "description_macro": "Upgrades <colortype(500)><edgecolortype(501)>Wide Volley<edgecolortype(0)><colortype(0)> to <colortype(500)><edgecolortype(501)>Shadowbite<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Upgrades Wide Volley to Shadowbite."
+  ],
+  "role": "Physical Ranged DPS",
+  "job": {
+    "id": 23,
+    "name": "Bard",
+    "abbreviation": "BRD"
+  },
+  "unlock_level": 72,
+  "value": 0,
+  "icon": {
+    "id": 5322,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 24,
+  "source_class_job_id": 23
+}

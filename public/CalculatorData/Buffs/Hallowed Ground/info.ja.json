@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 1302,
+  "name": "インビンシブル",
+  "description": "一部を除くすべてのダメージを無効化する状態。",
+  "effects": [
+    "一部を除くすべてのダメージを無効化する状態。"
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 212504,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": true,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 20,
+  "source_abilities": [
+    {
+      "id": 30,
+      "name": "インビンシブル",
+      "description": "一定時間、自身への一部を除くすべてのダメージを無効化する。\n効果時間：10秒",
+      "description_macro": "一定時間、自身への一部を除くすべてのダメージを無効化する。<br><colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>10秒",
+      "unlock_level": 50,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Tank"
+      ],
+      "jobs": [
+        {
+          "id": 19,
+          "name": "ナイト",
+          "abbreviation": "PLD",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

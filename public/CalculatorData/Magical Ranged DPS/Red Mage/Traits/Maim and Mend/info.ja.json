@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 200,
+  "name": "アクションダメージ・回復量アップ",
+  "description": "自身のオートアタックを除くアクションによる、ダメージと回復量をベース値の1.1倍にする。",
+  "description_macro": "自身のオートアタックを除くアクションによる、ダメージと回復量をベース値の1.1倍にする。",
+  "effects": [
+    "自身のオートアタックを除くアクションによる、ダメージと回復量をベース値の1.1倍にする。"
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 35,
+    "name": "赤魔道士",
+    "abbreviation": "RDM"
+  },
+  "unlock_level": 20,
+  "value": 10,
+  "icon": {
+    "id": 5185,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 112,
+  "source_class_job_id": 35
+}

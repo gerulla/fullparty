@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 652,
+  "name": "Enchanted Blade Mastery",
+  "description": "Increases the potency of Enchanted Riposte to 340, Verfire to 380, Verstone to 380, Enchanted Zwerchhau to 190, Fleche to 480, Enchanted Redoublement to 190, Contre Sixte to 420, Verflare to 650, Verholy to 650, Enchanted Reprise to 420, Scorch to 750, Veraero III to 440, Verthunder III to 440, and Resolution to 850.",
+  "description_macro": "Increases the potency of <colortype(500)><edgecolortype(501)>Enchanted Riposte<edgecolortype(0)><colortype(0)> to 340, <colortype(500)><edgecolortype(501)>Verfire<edgecolortype(0)><colortype(0)> to 380, <colortype(500)><edgecolortype(501)>Verstone<edgecolortype(0)><colortype(0)> to 380, <colortype(500)><edgecolortype(501)>Enchanted Zwerchhau<edgecolortype(0)><colortype(0)> to 190, <colortype(500)><edgecolortype(501)>Fleche<edgecolortype(0)><colortype(0)> to 480, <colortype(500)><edgecolortype(501)>Enchanted Redoublement<edgecolortype(0)><colortype(0)> to 190, <colortype(500)><edgecolortype(501)>Contre Sixte<edgecolortype(0)><colortype(0)> to 420, <colortype(500)><edgecolortype(501)>Verflare<edgecolortype(0)><colortype(0)> to 650, <colortype(500)><edgecolortype(501)>Verholy<edgecolortype(0)><colortype(0)> to 650, <colortype(500)><edgecolortype(501)>Enchanted Reprise<edgecolortype(0)><colortype(0)> to 420, <colortype(500)><edgecolortype(501)>Scorch<edgecolortype(0)><colortype(0)> to 750, <colortype(500)><edgecolortype(501)>Veraero III<edgecolortype(0)><colortype(0)> to 440, <colortype(500)><edgecolortype(501)>Verthunder III<edgecolortype(0)><colortype(0)> to 440, and <colortype(500)><edgecolortype(501)>Resolution<edgecolortype(0)><colortype(0)> to 850.",
+  "effects": [
+    "Increases the potency of Enchanted Riposte to 340, Verfire to 380, Verstone to 380, Enchanted Zwerchhau to 190, Fleche to 480, Enchanted Redoublement to 190, Contre Sixte to 420, Verflare to 650, Verholy to 650, Enchanted Reprise to 420, Scorch to 750, Veraero III to 440, Verthunder III to 440, and Resolution to 850."
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 35,
+    "name": "Red Mage",
+    "abbreviation": "RDM"
+  },
+  "unlock_level": 94,
+  "value": 0,
+  "icon": {
+    "id": 6831,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 112,
+  "source_class_job_id": 35
+}

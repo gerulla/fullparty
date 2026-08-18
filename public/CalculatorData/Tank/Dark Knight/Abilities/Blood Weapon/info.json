@@ -1,0 +1,86 @@
+{
+  "kind": "ability",
+  "id": 3625,
+  "name": "Blood Weapon",
+  "description": "Grants 3 stacks of Blood Weapon, each stack increasing Blood Gauge by 10 and restoring MP upon landing weaponskills or spells.\nDuration: 15s\nEffect does not stack when hitting multiple targets with a single attack.",
+  "description_macro": "Grants 3 stacks of <colortype(506)><edgecolortype(507)>Blood Weapon<edgecolortype(0)><colortype(0)>, each stack <if([gnum72>=66],<if([gnum68==32],increasing <colortype(500)><edgecolortype(501)>Blood Gauge<edgecolortype(0)><colortype(0)> by 10 and restoring MP,restoring MP)>,restoring MP)> upon landing weaponskills or spells.<br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>15s<br>Effect does not stack when hitting multiple targets with a single attack.",
+  "effects": [
+    "Grants 3 stacks of Blood Weapon, each stack increasing Blood Gauge by 10 and restoring MP upon landing weaponskills or spells.",
+    "Duration: 15s",
+    "Effect does not stack when hitting multiple targets with a single attack."
+  ],
+  "role": "Tank",
+  "job": {
+    "id": 32,
+    "name": "Dark Knight",
+    "abbreviation": "DRK"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 35,
+  "icon": {
+    "id": 3071,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 4,
+    "name": "Ability"
+  },
+  "attack_type": {
+    "id": 0,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 60,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 11,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 0,
+      "value": 0
+    },
+    "secondary": {
+      "type_id": 63,
+      "value": 570
+    }
+  },
+  "range": {
+    "target_yalms": 0,
+    "effect_yalms": 0,
+    "cast_type": 1
+  },
+  "targeting": {
+    "self": true,
+    "party": false,
+    "alliance": false,
+    "hostile": false,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 0,
+    "behavior_type": 0,
+    "class_job_category_id": 98,
+    "source_class_job_id": 32,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

@@ -1,0 +1,71 @@
+{
+  "kind": "combat_status",
+  "id": 3019,
+  "name": "Confiteor Ready",
+  "description": "Able to execute Confiteor.",
+  "effects": [
+    "Able to execute Confiteor."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 212520,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 20,
+  "source_abilities": [
+    {
+      "id": 7383,
+      "name": "Requiescat",
+      "description": "Deals unaspected damage with a potency of 320.\nAdditional Effect: Grants 4 stacks of Requiescat\nRequiescat Effect: Increases the potency of Holy Spirit\\ and spells will require no cast time\nAdditional Effect: Grants Confiteor Ready\nDuration: 30s",
+      "description_macro": "Deals unaspected damage with a potency of 320.<br><colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>Grants 4 stacks of <colortype(506)><edgecolortype(507)>Requiescat<edgecolortype(0)><colortype(0)><br><colortype(504)><edgecolortype(505)>Requiescat Effect: <edgecolortype(0)><colortype(0)>Increases the potency of <if([gnum68==19],<if([gnum72>=90],<colortype(500)><edgecolortype(501)>Holy Spirit<edgecolortype(0)><colortype(0)>\\,  <colortype(500)><edgecolortype(501)>Holy Circle<edgecolortype(0)><colortype(0)>\\, and all <colortype(500)><edgecolortype(501)>Confiteor<edgecolortype(0)><colortype(0)> combo actions\\,,<if([gnum68==19],<if([gnum72>=80],<colortype(500)><edgecolortype(501)>Holy Spirit<edgecolortype(0)><colortype(0)>\\,  <colortype(500)><edgecolortype(501)>Holy Circle<edgecolortype(0)><colortype(0)>\\, and <colortype(500)><edgecolortype(501)>Confiteor<edgecolortype(0)><colortype(0)>\\,,<if([gnum68==19],<if([gnum72>=72],<colortype(500)><edgecolortype(501)>Holy Spirit<edgecolortype(0)><colortype(0)> and <colortype(500)><edgecolortype(501)>Holy Circle<edgecolortype(0)><colortype(0)>\\,,<colortype(500)><edgecolortype(501)>Holy Spirit<edgecolortype(0)><colortype(0)>)>,<colortype(500)><edgecolortype(501)>Holy Spirit<edgecolortype(0)><colortype(0)>)>)>,<if([gnum68==19],<if([gnum72>=72],<colortype(500)><edgecolortype(501)>Holy Spirit<edgecolortype(0)><colortype(0)> and <colortype(500)><edgecolortype(501)>Holy Circle<edgecolortype(0)><colortype(0)>\\,,<colortype(500)><edgecolortype(501)>Holy Spirit<edgecolortype(0)><colortype(0)>)>,<colortype(500)><edgecolortype(501)>Holy Spirit<edgecolortype(0)><colortype(0)>)>)>)>,<if([gnum68==19],<if([gnum72>=80],<colortype(500)><edgecolortype(501)>Holy Spirit<edgecolortype(0)><colortype(0)>\\,  <colortype(500)><edgecolortype(501)>Holy Circle<edgecolortype(0)><colortype(0)>\\, and <colortype(500)><edgecolortype(501)>Confiteor<edgecolortype(0)><colortype(0)>\\,,<if([gnum68==19],<if([gnum72>=72],<colortype(500)><edgecolortype(501)>Holy Spirit<edgecolortype(0)><colortype(0)> and <colortype(500)><edgecolortype(501)>Holy Circle<edgecolortype(0)><colortype(0)>\\,,<colortype(500)><edgecolortype(501)>Holy Spirit<edgecolortype(0)><colortype(0)>)>,<colortype(500)><edgecolortype(501)>Holy Spirit<edgecolortype(0)><colortype(0)>)>)>,<if([gnum68==19],<if([gnum72>=72],<colortype(500)><edgecolortype(501)>Holy Spirit<edgecolortype(0)><colortype(0)> and <colortype(500)><edgecolortype(501)>Holy Circle<edgecolortype(0)><colortype(0)>\\,,<colortype(500)><edgecolortype(501)>Holy Spirit<edgecolortype(0)><colortype(0)>)>,<colortype(500)><edgecolortype(501)>Holy Spirit<edgecolortype(0)><colortype(0)>)>)>)> and spells will require no cast time<if([gnum68==19],<if([gnum72>=80],<br><colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>Grants <colortype(506)><edgecolortype(507)>Confiteor Ready<edgecolortype(0)><colortype(0)><br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>30s,)>,)>",
+      "unlock_level": 68,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Tank"
+      ],
+      "jobs": [
+        {
+          "id": 19,
+          "name": "Paladin",
+          "abbreviation": "PLD",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 36921,
+      "name": "Imperator",
+      "description": "Deals unaspected damage to target and all enemies nearby it with a potency of 580 for the first enemy, and 60% less for all remaining enemies.\nAdditional Effect: Grants 4 stacks of Requiescat\nDuration: 30s\nRequiescat Effect: Increases the potency of Holy Spirit, Holy Circle, and all Confiteor combo actions, and spells will require no cast time\nAdditional Effect: Grants Confiteor Ready\nDuration: 30s",
+      "description_macro": "Deals unaspected damage to target and all enemies nearby it with a potency of 580 for the first enemy, and 60% less for all remaining enemies.<br><colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>Grants 4 stacks of <colortype(506)><edgecolortype(507)>Requiescat<edgecolortype(0)><colortype(0)><br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>30s<br><colortype(504)><edgecolortype(505)>Requiescat Effect: <edgecolortype(0)><colortype(0)>Increases the potency of <colortype(500)><edgecolortype(501)>Holy Spirit<edgecolortype(0)><colortype(0)>, <colortype(500)><edgecolortype(501)>Holy Circle<edgecolortype(0)><colortype(0)>, and all <colortype(500)><edgecolortype(501)>Confiteor<edgecolortype(0)><colortype(0)> combo actions, and spells will require no cast time<br><colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>Grants <colortype(506)><edgecolortype(507)>Confiteor Ready<edgecolortype(0)><colortype(0)><br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>30s",
+      "unlock_level": 96,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Tank"
+      ],
+      "jobs": [
+        {
+          "id": 19,
+          "name": "Paladin",
+          "abbreviation": "PLD",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

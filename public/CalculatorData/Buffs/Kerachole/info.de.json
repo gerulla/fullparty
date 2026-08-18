@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 2618,
+  "name": "Kerachole",
+  "description": "Erlittener Schaden ist verringert.",
+  "effects": [
+    "Erlittener Schaden ist verringert."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 212964,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": -10
+  },
+  "class_job_category_id": 181,
+  "source_abilities": [
+    {
+      "id": 24298,
+      "name": "Kerachole",
+      "description": "Du verringerst den erlittenen Schaden von dir und den umstehenden Gruppenmitgliedern um 10 %.\nDauer: 15 Sekunden\nKann nicht zugleich mit Taurochole aktiv sein.\nZusatzeffekt: Regeneriert stetig LP der Ziele.\nHeilpotenzial: 100\nDauer: 15 Sekunden\nZusatzeffekt: Regeneriert 7 % der eigenen Maximal-MP.\nHumor-Kosten: 1",
+      "description_macro": "Du verringerst den erlittenen Schaden von dir und den umstehenden Grup<->pen<->mit<->gliedern um 10<nbsp>%.<br>Dauer: 15 Sekunden<br>Kann nicht zugleich mit <colortype(500)><edgecolortype(501)>Taurochole<edgecolortype(0)><colortype(0)> aktiv sein.<br><if([gnum68==40],<if([gnum72>=78],Zusatzeffekt: Regeneriert stetig LP der Ziele.<br>Heilpotenzial: 100<br>Dauer: 15 Sekunden<br>,)>,)>Zusatzeffekt: Regeneriert 7<nbsp>% der eigenen Maximal-MP.<br><colortype(506)><edgecolortype(507)>Humor<edgecolortype(0)><colortype(0)>-Kosten: 1",
+      "unlock_level": 50,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Healer"
+      ],
+      "jobs": [
+        {
+          "id": 40,
+          "name": "Weiser",
+          "abbreviation": "WEI",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

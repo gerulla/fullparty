@@ -1,0 +1,85 @@
+{
+  "kind": "ability",
+  "id": 25763,
+  "name": "Howling Fist",
+  "description": "Delivers an attack with a potency of 100 to all enemies in a straight line before you.\nCan only be executed while in combat and under the effect of five Chakra. Five chakra close upon execution.",
+  "description_macro": "Delivers an attack with a potency of 100 to all enemies in a straight line before you.<br>Can only be executed while in combat and under the effect of five <colortype(506)><edgecolortype(507)>Chakra<edgecolortype(0)><colortype(0)>. Five chakra close upon execution.",
+  "effects": [
+    "Delivers an attack with a potency of 100 to all enemies in a straight line before you.",
+    "Can only be executed while in combat and under the effect of five Chakra. Five chakra close upon execution."
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 20,
+    "name": "Monk",
+    "abbreviation": "MNK"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 40,
+  "icon": {
+    "id": 207,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 4,
+    "name": "Ability"
+  },
+  "attack_type": {
+    "id": 4294967295,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 1,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 3,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 28,
+      "value": 5
+    },
+    "secondary": {
+      "type_id": 122,
+      "value": 429
+    }
+  },
+  "range": {
+    "target_yalms": 10,
+    "effect_yalms": 10,
+    "cast_type": 4
+  },
+  "targeting": {
+    "self": false,
+    "party": false,
+    "alliance": false,
+    "hostile": true,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 7,
+    "behavior_type": 0,
+    "class_job_category_id": 21,
+    "source_class_job_id": 20,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

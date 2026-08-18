@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 474,
+  "name": "Aethercharge Mastery",
+  "description": "Upgrades Aethercharge to Dreadwyrm Trance.",
+  "description_macro": "Upgrades <colortype(500)><edgecolortype(501)>Aethercharge<edgecolortype(0)><colortype(0)> to <colortype(500)><edgecolortype(501)>Dreadwyrm Trance<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Upgrades Aethercharge to Dreadwyrm Trance."
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 27,
+    "name": "Summoner",
+    "abbreviation": "SMN"
+  },
+  "unlock_level": 58,
+  "value": 0,
+  "icon": {
+    "id": 5690,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 28,
+  "source_class_job_id": 27
+}

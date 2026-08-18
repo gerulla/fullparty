@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 3643,
+  "name": "Flamme mortelle",
+  "description": "Des dégâts périodiques de feu sont subis. L'effet perdure tant que la cible n'a pas été totalement consumée.",
+  "effects": [
+    "Des dégâts périodiques de feu sont subis. L'effet perdure tant que la cible n'a pas été totalement consumée."
+  ],
+  "classification": "debuff",
+  "icon": {
+    "id": 213551,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 2,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": true,
+  "inflicted_by_actor": true,
+  "party_list_priority": 10,
+  "parameter": {
+    "effect": 0,
+    "modifier": 10
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 34579,
+      "name": "Flamme mortelle",
+      "description": "Inflige des dégâts périodiques de feu à la cible.\nPuissance : 40\nNe peut être cumulé.\nSans effet si la cible est hors combat. De la même façon, l'effet de Flamme mortelle prend fin immédiatement si la cible quitte le combat.",
+      "description_macro": "Inflige des dégâts périodiques de feu à la cible.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> 40<br>Ne peut être cumulé.<br>Sans effet si la cible est hors combat. De la même façon, l'effet de <colortype(500)><edgecolortype(501)>Flamme mortelle<edgecolortype(0)><colortype(0)> prend fin im<->mé<->dia<->te<->ment si la cible quitte le combat.",
+      "unlock_level": 1,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Magical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 36,
+          "name": "Mage Bleu",
+          "abbreviation": "MBU",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

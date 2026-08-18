@@ -1,0 +1,27 @@
+{
+  "kind": "trait",
+  "id": 506,
+  "name": "Verbesserter Schwertkampf",
+  "description": "Erhöht den Attacke-Wert folgender Kommandos:\nAttacke-Wert von Harter Schlitzer: 180\nAttacke-Wert von Osmose: 120\nAttacke-Wert von Seelenfresser: 140",
+  "description_macro": "Erhöht den Attacke-Wert folgender Kommandos:<br>Attacke-Wert von <colortype(502)><edgecolortype(503)>Harter Schlitzer<edgecolortype(0)><colortype(0)>: 180<br>Attacke-Wert von <colortype(502)><edgecolortype(503)>Osmose<edgecolortype(0)><colortype(0)>: 120<br>Attacke-Wert von <colortype(502)><edgecolortype(503)>Seelenfresser<edgecolortype(0)><colortype(0)>: 140",
+  "effects": [
+    "Erhöht den Attacke-Wert folgender Kommandos:",
+    "Attacke-Wert von Harter Schlitzer: 180",
+    "Attacke-Wert von Osmose: 120",
+    "Attacke-Wert von Seelenfresser: 140"
+  ],
+  "role": "Tank",
+  "job": {
+    "id": 32,
+    "name": "Dunkelritter",
+    "abbreviation": "DKR"
+  },
+  "unlock_level": 84,
+  "value": 0,
+  "icon": {
+    "id": 6801,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 98,
+  "source_class_job_id": 32
+}

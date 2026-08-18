@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 1821,
+  "name": "Final classique",
+  "description": "Les dégâts infligés sont augmentés.",
+  "effects": [
+    "Les dégâts infligés sont augmentés."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 213708,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 1,
+  "parameter": {
+    "effect": 0,
+    "modifier": 10
+  },
+  "class_job_category_id": 150,
+  "source_abilities": [
+    {
+      "id": 36984,
+      "name": "Mouvement final",
+      "description": "Effectue une attaque physique sur les ennemis alentour.\nPuissance : 850\nLa puissance est réduite de 60% au-delà du premier ennemi touché.\nEffet additionnel : octroie Fascination et Final classique à vous et à l'équipier bénéficiant de votre Position rapprochée.\nDurée : 60s\nFinal classique : augmente les dégâts infligés de 5%.\nEffet additionnel : vous octroie Ultime danse préparée.\nDurée : 30s\nCondition : Mouvement final préparé.\nCette technique d'arme a un temps de recharge indépendant qui est appliqué aux autres techniques d'arme ou sorts après utilisation.\nPartage le même temps de recharge que Pas classique.\n\n* Cette action ne peut pas être ajoutée aux barres de raccourcis.\nRemplace Pas classique lorsque les conditions sont réunies.",
+      "description_macro": "Effectue une attaque physique sur les ennemis alentour.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> 850<br>La puissance est réduite de 60% au-delà du premier ennemi touché.<br><colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> octroie <colortype(500)><edgecolortype(501)>Fascination<edgecolortype(0)><colortype(0)> et <colortype(500)><edgecolortype(501)>Final classique<edgecolortype(0)><colortype(0)> à vous et à l'équipier bénéficiant de votre <colortype(500)><edgecolortype(501)>Position rapprochée<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 60s<br><colortype(506)><edgecolortype(507)>Final classique<nbsp>:<edgecolortype(0)><colortype(0)> augmente les dégâts infligés de 5%.<br><colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> vous octroie <colortype(500)><edgecolortype(501)>Ultime danse préparée<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 30s<br><colortype(506)><edgecolortype(507)>Condition<nbsp>:<edgecolortype(0)><colortype(0)> <colortype(500)><edgecolortype(501)>Mouvement final préparé<edgecolortype(0)><colortype(0)>.<br>Cette technique d'arme a un temps de recharge indépendant qui est appliqué aux autres techniques d'arme ou sorts après utilisation.<br>Partage le même temps de recharge que <colortype(500)><edgecolortype(501)>Pas classique<edgecolortype(0)><colortype(0)>.<br><br><colortype(504)><edgecolortype(505)>* Cette action ne peut pas être ajoutée aux barres de raccourcis.<br>Remplace <colortype(500)><edgecolortype(501)>Pas classique<edgecolortype(0)><colortype(0)> lorsque les conditions sont réunies.<edgecolortype(0)><colortype(0)>",
+      "unlock_level": 96,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Physical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 38,
+          "name": "Danseur",
+          "abbreviation": "DNS",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

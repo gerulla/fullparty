@@ -1,0 +1,51 @@
+{
+  "kind": "combat_status",
+  "id": 86,
+  "name": "Berserk",
+  "description": "Les techniques d'arme infligent des coups nets et critiques.\nSous un effet augmentant les chances de coups nets et critiques, les dégâts infligés sont augmentés.",
+  "effects": [
+    "Les techniques d'arme infligent des coups nets et critiques.",
+    "Sous un effet augmentant les chances de coups nets et critiques, les dégâts infligés sont augmentés."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 217217,
+    "file": "icon.png"
+  },
+  "max_stacks": 3,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 27,
+    "modifier": 0
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 38,
+      "name": "Berserk",
+      "description": "Vous octroie 3 degrés de Berserk.\nDurée : 15s\nBerserk : vos techniques d'arme infligent des coups nets et critiques.\nLes dégâts infligés sont augmentés lorsque vous bénéficiez d'un effet augmentant les chances de coups nets et critiques.\nEffet additionnel : allonge la durée d'effet de Vent de tempête de 10s \\(maximum 60s\\).",
+      "description_macro": "Vous octroie 3 degrés de <colortype(500)><edgecolortype(501)>Berserk<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 15s<br><colortype(506)><edgecolortype(507)>Berserk<nbsp>:<edgecolortype(0)><colortype(0)> vos techniques d'arme infligent des coups nets et critiques.<br>Les dégâts infligés sont augmentés lorsque vous bénéficiez d'un effet augmentant les chances de coups nets et critiques.<if([gnum72>=40],<if([gnum68==3],<br><colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> allonge la durée d'effet de <colortype(500)><edgecolortype(501)>Vent de tempête<edgecolortype(0)><colortype(0)> de 10s \\(maximum 60s\\).,<if([gnum68==21],<br><colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> allonge la durée d'effet de <colortype(500)><edgecolortype(501)>Vent de tempête<edgecolortype(0)><colortype(0)> de 10s \\(maximum 60s\\).,)>)>,)>",
+      "unlock_level": 6,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Tank"
+      ],
+      "jobs": [
+        {
+          "id": 21,
+          "name": "Guerrier",
+          "abbreviation": "GUE",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

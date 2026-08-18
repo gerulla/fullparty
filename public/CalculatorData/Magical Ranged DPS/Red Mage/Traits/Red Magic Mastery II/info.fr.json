@@ -1,0 +1,25 @@
+{
+  "kind": "trait",
+  "id": 483,
+  "name": "Maîtrise de la magie rouge II",
+  "description": "Remplace VerFoudre par Méga VerFoudre et VerVent par Méga VerVent.\nÀ trois cristaux, Méga VerFoudre et Méga VerVent deviennent respectivement VerBrasier et VerMiracle.",
+  "description_macro": "Remplace <colortype(500)><edgecolortype(501)>VerFoudre<edgecolortype(0)><colortype(0)> par <colortype(500)><edgecolortype(501)>Méga VerFoudre<edgecolortype(0)><colortype(0)> et <colortype(500)><edgecolortype(501)>VerVent<edgecolortype(0)><colortype(0)> par <colortype(500)><edgecolortype(501)>Méga VerVent<edgecolortype(0)><colortype(0)>.<br>À trois cristaux, <colortype(500)><edgecolortype(501)>Méga VerFoudre<edgecolortype(0)><colortype(0)> et <colortype(500)><edgecolortype(501)>Méga VerVent<edgecolortype(0)><colortype(0)> deviennent respectivement <colortype(500)><edgecolortype(501)>VerBrasier<edgecolortype(0)><colortype(0)> et <colortype(500)><edgecolortype(501)>VerMiracle<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Remplace VerFoudre par Méga VerFoudre et VerVent par Méga VerVent.",
+    "À trois cristaux, Méga VerFoudre et Méga VerVent deviennent respectivement VerBrasier et VerMiracle."
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 35,
+    "name": "Mage Rouge",
+    "abbreviation": "MRG"
+  },
+  "unlock_level": 82,
+  "value": 0,
+  "icon": {
+    "id": 6209,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 112,
+  "source_class_job_id": 35
+}

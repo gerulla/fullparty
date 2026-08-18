@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 287,
+  "name": "Soul Voice",
+  "description": "Increases Soul Voice Gauge by 5 each time Repertoire is granted.",
+  "description_macro": "Increases <colortype(500)><edgecolortype(501)>Soul Voice Gauge<edgecolortype(0)><colortype(0)> by 5 each time <colortype(506)><edgecolortype(507)>Repertoire<edgecolortype(0)><colortype(0)> is granted.",
+  "effects": [
+    "Increases Soul Voice Gauge by 5 each time Repertoire is granted."
+  ],
+  "role": "Physical Ranged DPS",
+  "job": {
+    "id": 23,
+    "name": "Bard",
+    "abbreviation": "BRD"
+  },
+  "unlock_level": 80,
+  "value": 0,
+  "icon": {
+    "id": 5315,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 24,
+  "source_class_job_id": 23
+}

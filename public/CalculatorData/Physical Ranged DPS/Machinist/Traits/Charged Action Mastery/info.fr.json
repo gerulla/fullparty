@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 292,
+  "name": "Actions à charges améliorées",
+  "description": "Augmente à 3 le nombre maximum de charges de Décharge Gauss et de Ricochet.",
+  "description_macro": "Augmente à 3 le nombre maximum de charges de <colortype(500)><edgecolortype(501)>Décharge Gauss<edgecolortype(0)><colortype(0)> et de <colortype(500)><edgecolortype(501)>Ricochet<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Augmente à 3 le nombre maximum de charges de Décharge Gauss et de Ricochet."
+  ],
+  "role": "Physical Ranged DPS",
+  "job": {
+    "id": 31,
+    "name": "Machiniste",
+    "abbreviation": "MCH"
+  },
+  "unlock_level": 74,
+  "value": 3,
+  "icon": {
+    "id": 6013,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 96,
+  "source_class_job_id": 31
+}

@@ -1,0 +1,69 @@
+{
+  "kind": "combat_status",
+  "id": 1863,
+  "name": "Feu des dragons",
+  "description": "",
+  "effects": [],
+  "classification": "buff",
+  "icon": {
+    "id": 212585,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 23,
+  "source_abilities": [
+    {
+      "id": 16477,
+      "name": "Tourment du Coerthas",
+      "description": "Effectue une attaque physique en ligne droite sur les ennemis devant vous.\nPuissance : 100\nCombo : Percée sonique\nPuissance du combo : 150\nBonus du combo : vous octroie Feu des dragons.\nDurée : 30s",
+      "description_macro": "Effectue une attaque physique en ligne droite sur les ennemis devant vous.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> 100<br><colortype(506)><edgecolortype(507)>Combo<nbsp>:<edgecolortype(0)><colortype(0)> Percée sonique<br><colortype(506)><edgecolortype(507)>Puissance du combo<nbsp>:<edgecolortype(0)><colortype(0)> 150<if([gnum68==22],<if([gnum72>=82],<br><colortype(506)><edgecolortype(507)>Bonus du combo<nbsp>:<edgecolortype(0)><colortype(0)> vous octroie <colortype(500)><edgecolortype(501)>Feu des dragons<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 30s,)>,)>",
+      "unlock_level": 72,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 22,
+          "name": "Chevalier Dragon",
+          "abbreviation": "DRG",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 36952,
+      "name": "Fléau du dragon",
+      "description": "Effectue une attaque physique sur la cible.\nPuissance : 460\nCombo : Percée tournante ou Croc-et-griffe\nBonus du combo : vous octroie Feu des dragons.\nDurée : 30s\nCondition : après avoir entamé un combo avec Percée tournante ou Croc-et-griffe.\n\n* Cette action ne peut pas être ajoutée aux barres de raccourcis.\nRemplace Percée tournante ou Croc-et-griffe lorsque les conditions sont réunies.",
+      "description_macro": "Effectue une attaque physique sur la cible.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> <if([gnum68==22],<if([gnum72>=94],460,<if([gnum68==22],<if([gnum72>=86],400,380)>,380)>)>,<if([gnum68==22],<if([gnum72>=86],400,380)>,380)>)><br><colortype(506)><edgecolortype(507)>Combo<nbsp>:<edgecolortype(0)><colortype(0)> Percée tournante ou Croc-et-griffe<br><if([gnum68==22],<if([gnum72>=76],<colortype(506)><edgecolortype(507)>Bonus du combo<nbsp>:<edgecolortype(0)><colortype(0)> vous octroie <colortype(500)><edgecolortype(501)>Feu des dragons<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 30s<br>,)>,)><colortype(506)><edgecolortype(507)>Condition<nbsp>:<edgecolortype(0)><colortype(0)> après avoir entamé un combo avec <colortype(500)><edgecolortype(501)>Percée tournante<edgecolortype(0)><colortype(0)> ou <colortype(500)><edgecolortype(501)>Croc-et-griffe<edgecolortype(0)><colortype(0)>.<br><br><colortype(504)><edgecolortype(505)>* Cette action ne peut pas être ajoutée aux barres de raccourcis.<br>Remplace <colortype(500)><edgecolortype(501)>Percée tournante<edgecolortype(0)><colortype(0)> ou <colortype(500)><edgecolortype(501)>Croc-et-griffe<edgecolortype(0)><colortype(0)> lorsque les conditions sont réunies.<edgecolortype(0)><colortype(0)>",
+      "unlock_level": 64,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 22,
+          "name": "Chevalier Dragon",
+          "abbreviation": "DRG",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

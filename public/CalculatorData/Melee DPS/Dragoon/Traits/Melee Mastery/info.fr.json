@@ -1,0 +1,32 @@
+{
+  "kind": "trait",
+  "id": 653,
+  "name": "Actions améliorées",
+  "description": "Augmente la puissance de certaines actions.\n\nPuissance de Croc-et-griffe : 140\nPuissance de Percée tournante : 140\nPuissance de Fléau du dragon : 460\nPuissance de Percée Raiden : 320\nPuissance de Plongeon céleste : 840\nPuissance de Percée céleste : 160\nPuissance de Floraison chaotique : 140\nPuissance de Percée des dragons anciens : 440",
+  "description_macro": "Augmente la puissance de certaines actions.<br><br><colortype(506)><edgecolortype(507)>Puissance de Croc-et-griffe<nbsp>:<edgecolortype(0)><colortype(0)> 140<br><colortype(506)><edgecolortype(507)>Puissance de Percée tournante<nbsp>:<edgecolortype(0)><colortype(0)> 140<br><colortype(506)><edgecolortype(507)>Puissance de Fléau du dragon<nbsp>:<edgecolortype(0)><colortype(0)> 460<br><colortype(506)><edgecolortype(507)>Puissance de Percée Raiden<nbsp>:<edgecolortype(0)><colortype(0)> 320<br><colortype(506)><edgecolortype(507)>Puissance de Plongeon céleste<nbsp>:<edgecolortype(0)><colortype(0)> 840<br><colortype(506)><edgecolortype(507)>Puissance de Percée céleste<nbsp>:<edgecolortype(0)><colortype(0)> 160<br><colortype(506)><edgecolortype(507)>Puissance de Floraison chaotique<nbsp>:<edgecolortype(0)><colortype(0)> 140<br><colortype(506)><edgecolortype(507)>Puissance de Percée des dragons anciens<nbsp>:<edgecolortype(0)><colortype(0)> 440",
+  "effects": [
+    "Augmente la puissance de certaines actions.",
+    "Puissance de Croc-et-griffe : 140",
+    "Puissance de Percée tournante : 140",
+    "Puissance de Fléau du dragon : 460",
+    "Puissance de Percée Raiden : 320",
+    "Puissance de Plongeon céleste : 840",
+    "Puissance de Percée céleste : 160",
+    "Puissance de Floraison chaotique : 140",
+    "Puissance de Percée des dragons anciens : 440"
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 22,
+    "name": "Chevalier Dragon",
+    "abbreviation": "DRG"
+  },
+  "unlock_level": 94,
+  "value": 0,
+  "icon": {
+    "id": 6806,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 23,
+  "source_class_job_id": 22
+}

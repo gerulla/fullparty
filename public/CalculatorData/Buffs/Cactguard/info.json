@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 2119,
+  "name": "Cactguard",
+  "description": "Damage taken is reduced.",
+  "effects": [
+    "Damage taken is reduced."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 213522,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": -15
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 18315,
+      "name": "Cactguard",
+      "description": "Reduces target party member's damage taken by 5%.\nDuration: 6s\nIncreases damage reduction to 15% when you are under the effect of Aetheric Mimicry: Tank.",
+      "description_macro": "Reduces target party member's damage taken by 5%.<br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>6s<br>Increases damage reduction to 15% when you are under the effect of <colortype(506)><edgecolortype(507)>Aetheric Mimicry: Tank<edgecolortype(0)><colortype(0)>.",
+      "unlock_level": 1,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Magical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 36,
+          "name": "Blue Mage",
+          "abbreviation": "BLU",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,86 @@
+{
+  "kind": "ability",
+  "id": 147,
+  "name": "Extra Feu",
+  "description": "Effectue une attaque magique de feu sur la cible et les ennemis autour.\nPuissance : 80\nEffet additionnel : dissipe Glace ombrale si actif et vous octroie Feu astral au plus haut degré.",
+  "description_macro": "Effectue une attaque magique de feu sur la cible et les ennemis autour.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> 80<br><colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> <if([gnum72>=35],<if([gnum68==7],dissipe <colortype(500)><edgecolortype(501)>Glace ombrale<edgecolortype(0)><colortype(0)> si actif et vous octroie <colortype(500)><edgecolortype(501)>Feu astral<edgecolortype(0)><colortype(0)> au plus haut degré.,<if([gnum68==25],dissipe <colortype(500)><edgecolortype(501)>Glace ombrale<edgecolortype(0)><colortype(0)> si actif et vous octroie <colortype(500)><edgecolortype(501)>Feu astral<edgecolortype(0)><colortype(0)> au plus haut degré.,dissipe <colortype(500)><edgecolortype(501)>Glace ombrale<edgecolortype(0)><colortype(0)> si actif. Sinon\\, vous octroie <colortype(500)><edgecolortype(501)>Feu astral<edgecolortype(0)><colortype(0)>.)>)>,dissipe <colortype(500)><edgecolortype(501)>Glace ombrale<edgecolortype(0)><colortype(0)> si actif. Sinon\\, vous octroie <colortype(500)><edgecolortype(501)>Feu astral<edgecolortype(0)><colortype(0)>.)>",
+  "effects": [
+    "Effectue une attaque magique de feu sur la cible et les ennemis autour.",
+    "Puissance : 80",
+    "Effet additionnel : dissipe Glace ombrale si actif et vous octroie Feu astral au plus haut degré."
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 25,
+    "name": "Mage Noir",
+    "abbreviation": "MNO"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 18,
+  "icon": {
+    "id": 452,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 2,
+    "name": "Sort"
+  },
+  "attack_type": {
+    "id": 5,
+    "name": "magie"
+  },
+  "timing": {
+    "cast_seconds": 3,
+    "recast_seconds": 2.5,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 58,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 3,
+      "value": 15
+    },
+    "secondary": {
+      "type_id": 63,
+      "value": 462
+    }
+  },
+  "range": {
+    "target_yalms": 25,
+    "effect_yalms": 5,
+    "cast_type": 2
+  },
+  "targeting": {
+    "self": false,
+    "party": false,
+    "alliance": false,
+    "hostile": true,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": false
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 1,
+    "behavior_type": 0,
+    "class_job_category_id": 55,
+    "source_class_job_id": 7,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

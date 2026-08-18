@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 3866,
+  "name": "Rafale de métal préparée",
+  "description": "Rafale de métal peut être lancée.",
+  "effects": [
+    "Rafale de métal peut être lancée."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 213024,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 96,
+  "source_abilities": [
+    {
+      "id": 7414,
+      "name": "Stabilisateur de canon",
+      "description": "Vous octroie Hypercharge préparée.\nDurée : 30s\nEffet additionnel : vous octroie Rafale de métal préparée.\nDurée : 30s\nCondition : en combat.",
+      "description_macro": "Vous octroie <colortype(500)><edgecolortype(501)>Hypercharge préparée<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 30s<br><if([gnum68==31],<if([gnum72>=100],<colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> vous octroie <colortype(500)><edgecolortype(501)>Rafale de métal préparée<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 30s<br>,)>,)><colortype(506)><edgecolortype(507)>Condition<nbsp>:<edgecolortype(0)><colortype(0)> en combat.",
+      "unlock_level": 66,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Physical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 31,
+          "name": "Machiniste",
+          "abbreviation": "MCH",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

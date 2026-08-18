@@ -1,0 +1,89 @@
+{
+  "kind": "ability",
+  "id": 46592,
+  "name": "Holy Spellblade",
+  "description": "Delivers an attack with a potency of 300.\nPotency increases to 500 when used against undead enemies.\nHoned Spellblade Potency: 400\nSpellblade potency increases to 600 when used against undead enemies.\nPotency scales with item level.\nShares a recast timer with Sundering Spellblade.",
+  "description_macro": "Delivers an attack with a potency of 300.<br>Potency increases to 500 when used against undead enemies.<br><colortype(504)><edgecolortype(505)>Honed Spellblade Potency: <edgecolortype(0)><colortype(0)>400<br>Spellblade potency increases to 600 when used against undead enemies.<br>Potency scales with item level.<br>Shares a recast timer with <colortype(500)><edgecolortype(501)>Sundering Spellblade<edgecolortype(0)><colortype(0)><if([gnum108>=4], and <colortype(500)><edgecolortype(501)>Blazing Spellblade<edgecolortype(0)><colortype(0)>,)>.",
+  "effects": [
+    "Delivers an attack with a potency of 300.",
+    "Potency increases to 500 when used against undead enemies.",
+    "Honed Spellblade Potency: 400",
+    "Spellblade potency increases to 600 when used against undead enemies.",
+    "Potency scales with item level.",
+    "Shares a recast timer with Sundering Spellblade."
+  ],
+  "role": "Phantom Jobs",
+  "job": {
+    "id": 13,
+    "name": "Phantom Mystic Knight",
+    "abbreviation": "Ph. Mystic Knight"
+  },
+  "is_phantom_action": true,
+  "unlock_level": 3,
+  "icon": {
+    "id": 64577,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 3,
+    "name": "Weaponskill"
+  },
+  "attack_type": {
+    "id": 1,
+    "name": "斬"
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 30,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 83,
+    "additional_cooldown_group": 58,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 0,
+      "value": 0
+    },
+    "secondary": {
+      "type_id": 0,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": 5,
+    "effect_yalms": 0,
+    "cast_type": 1
+  },
+  "targeting": {
+    "self": false,
+    "party": false,
+    "alliance": false,
+    "hostile": true,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 7,
+    "behavior_type": 0,
+    "class_job_category_id": 142,
+    "source_class_job_id": 4294967295,
+    "is_role_action": false,
+    "is_player_action": false,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

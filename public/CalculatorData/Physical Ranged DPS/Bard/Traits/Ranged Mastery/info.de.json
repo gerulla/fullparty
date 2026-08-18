@@ -1,0 +1,29 @@
+{
+  "kind": "trait",
+  "id": 668,
+  "name": "Verbesserte Zielsicherheit",
+  "description": "Erhöht den Attacke-Wert folgender Kommandos:\nAttacke-Wert von Empyreischer Pfeil: 260\nAttacke-Wert von Seitenschneider: 400\nAttacke-Wert von Glänzender Pfeil: 280\nAttacke-Wert von Berstender Schuss: 220\nAttacke-Wert von Apex-Pfeil: 140 bis 700",
+  "description_macro": "Erhöht den Attacke-Wert folgender Kommandos:<br>Attacke-Wert von <colortype(502)><edgecolortype(503)>Empyreischer Pfeil<edgecolortype(0)><colortype(0)>: 260<br>Attacke-Wert von <colortype(502)><edgecolortype(503)>Seitenschneider<edgecolortype(0)><colortype(0)>: 400<br>Attacke-Wert von <colortype(502)><edgecolortype(503)>Glänzender Pfeil<edgecolortype(0)><colortype(0)>: 280<br>Attacke-Wert von <colortype(502)><edgecolortype(503)>Berstender Schuss<edgecolortype(0)><colortype(0)>: 220<br>Attacke-Wert von <colortype(502)><edgecolortype(503)>Apex-Pfeil<edgecolortype(0)><colortype(0)>: 140 bis 700",
+  "effects": [
+    "Erhöht den Attacke-Wert folgender Kommandos:",
+    "Attacke-Wert von Empyreischer Pfeil: 260",
+    "Attacke-Wert von Seitenschneider: 400",
+    "Attacke-Wert von Glänzender Pfeil: 280",
+    "Attacke-Wert von Berstender Schuss: 220",
+    "Attacke-Wert von Apex-Pfeil: 140 bis 700"
+  ],
+  "role": "Physical Ranged DPS",
+  "job": {
+    "id": 23,
+    "name": "Barde",
+    "abbreviation": "BRD"
+  },
+  "unlock_level": 94,
+  "value": 0,
+  "icon": {
+    "id": 6806,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 24,
+  "source_class_job_id": 23
+}

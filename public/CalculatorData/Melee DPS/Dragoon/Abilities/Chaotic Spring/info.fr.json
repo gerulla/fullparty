@@ -1,0 +1,91 @@
+{
+  "kind": "ability",
+  "id": 25772,
+  "name": "Floraison chaotique",
+  "description": "Effectue une attaque physique sur la cible.\nPuissance : 140\nPuissance par derrière : 180\nCombo : Vrille explosive\nPuissance du combo : 300\nPuissance du combo par derrière : 340\nBonus du combo : dégâts périodiques.\nPuissance : 45 Durée : 24s",
+  "description_macro": "Effectue une attaque physique sur la cible.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> <if([gnum68==22],<if([gnum72>=94],140,100)>,100)><br><colortype(506)><edgecolortype(507)>Puissance par derrière<nbsp>:<edgecolortype(0)><colortype(0)> <if([gnum68==22],<if([gnum72>=94],180,140)>,140)><br><colortype(506)><edgecolortype(507)>Combo<nbsp>:<edgecolortype(0)><colortype(0)> <edgecolortype(0)><colortype(0)><if([gnum68==22],<if([gnum72>=96],Vrille explosive,Éventration)>,Éventration)><br><colortype(506)><edgecolortype(507)>Puissance du combo<nbsp>:<edgecolortype(0)><colortype(0)> <if([gnum68==22],<if([gnum72>=94],300,260)>,260)><br><colortype(506)><edgecolortype(507)>Puissance du combo par derrière<nbsp>:<edgecolortype(0)><colortype(0)> <if([gnum68==22],<if([gnum72>=94],340,300)>,300)><br><colortype(506)><edgecolortype(507)>Bonus du combo<nbsp>:<edgecolortype(0)><colortype(0)> dégâts périodiques.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> 45 <colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 24s",
+  "effects": [
+    "Effectue une attaque physique sur la cible.",
+    "Puissance : 140",
+    "Puissance par derrière : 180",
+    "Combo : Vrille explosive",
+    "Puissance du combo : 300",
+    "Puissance du combo par derrière : 340",
+    "Bonus du combo : dégâts périodiques.",
+    "Puissance : 45 Durée : 24s"
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 22,
+    "name": "Chevalier Dragon",
+    "abbreviation": "DRG"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 86,
+  "icon": {
+    "id": 2596,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 3,
+    "name": "Technique d'arme"
+  },
+  "attack_type": {
+    "id": 4294967295,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 2.5,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 58,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 0,
+      "value": 0
+    },
+    "secondary": {
+      "type_id": 0,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": -1,
+    "effect_yalms": 0,
+    "cast_type": 1
+  },
+  "targeting": {
+    "self": false,
+    "party": false,
+    "alliance": false,
+    "hostile": true,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": 87,
+    "preserves_combo": false
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 7,
+    "behavior_type": 0,
+    "class_job_category_id": 23,
+    "source_class_job_id": 22,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

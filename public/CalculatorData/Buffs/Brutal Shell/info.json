@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 1898,
+  "name": "Brutal Shell",
+  "description": "A highly effective defensive maneuver is nullifying damage.",
+  "effects": [
+    "A highly effective defensive maneuver is nullifying damage."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 213614,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 30,
+  "parameter": {
+    "effect": 0,
+    "modifier": 100
+  },
+  "class_job_category_id": 149,
+  "source_abilities": [
+    {
+      "id": 16139,
+      "name": "Brutal Shell",
+      "description": "Delivers an attack with a potency of 240.\nCombo Action: Keen Edge\nCombo Potency: 380\nCombo Bonus: Restores own HP\nCure Potency: 200\nCombo Bonus: Creates a barrier which nullifies damage equaling HP restored\nDuration: 30s",
+      "description_macro": "Delivers an attack with a potency of <if([gnum68==37],<if([gnum72>=94],240,<if([gnum68==37],<if([gnum72>=84],160,100)>,100)>)>,<if([gnum68==37],<if([gnum72>=84],160,100)>,100)>)>.<br><colortype(504)><edgecolortype(505)>Combo Action: <edgecolortype(0)><colortype(0)><colortype(500)><edgecolortype(501)>Keen Edge<edgecolortype(0)><colortype(0)><br><colortype(504)><edgecolortype(505)>Combo Potency: <edgecolortype(0)><colortype(0)><if([gnum68==37],<if([gnum72>=94],380,<if([gnum68==37],<if([gnum72>=84],300,240)>,240)>)>,<if([gnum68==37],<if([gnum72>=84],300,240)>,240)>)><br><colortype(504)><edgecolortype(505)>Combo Bonus: <edgecolortype(0)><colortype(0)>Restores own HP<br><colortype(504)><edgecolortype(505)>Cure Potency: <edgecolortype(0)><colortype(0)>200<if([gnum68==37],<if([gnum72>=52],<br><colortype(504)><edgecolortype(505)>Combo Bonus: <edgecolortype(0)><colortype(0)>Creates a barrier which nullifies damage equaling HP restored<br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>30s,)>,)>",
+      "unlock_level": 4,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Tank"
+      ],
+      "jobs": [
+        {
+          "id": 37,
+          "name": "Gunbreaker",
+          "abbreviation": "GNB",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

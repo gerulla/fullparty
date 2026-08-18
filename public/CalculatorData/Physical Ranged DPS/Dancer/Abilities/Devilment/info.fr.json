@@ -1,0 +1,88 @@
+{
+  "kind": "ability",
+  "id": 16011,
+  "name": "Tango endiablé",
+  "description": "Augmente de 20% vos chances de coups critiques et de coups nets.\nDurée : 20s\nEffet additionnel : votre Partenaire de position rapprochée bénéficie du même bonus.\nEffet additionnel : vous octroie Danse de la pluie étoilée préparée.\nDurée : 20s",
+  "description_macro": "Augmente de 20% vos chances de coups critiques et de coups nets.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 20s<br><colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> votre <colortype(500)><edgecolortype(501)>Partenaire de position rapprochée<edgecolortype(0)><colortype(0)> bénéficie du même bonus.<if([gnum68==38],<if([gnum72>=90],<br><colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> vous octroie <colortype(500)><edgecolortype(501)>Danse de la pluie étoilée préparée<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 20s,)>,)>",
+  "effects": [
+    "Augmente de 20% vos chances de coups critiques et de coups nets.",
+    "Durée : 20s",
+    "Effet additionnel : votre Partenaire de position rapprochée bénéficie du même bonus.",
+    "Effet additionnel : vous octroie Danse de la pluie étoilée préparée.",
+    "Durée : 20s"
+  ],
+  "role": "Physical Ranged DPS",
+  "job": {
+    "id": 38,
+    "name": "Danseur",
+    "abbreviation": "DNS"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 62,
+  "icon": {
+    "id": 3471,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 4,
+    "name": "Aptitude"
+  },
+  "attack_type": {
+    "id": 0,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 120,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 21,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 0,
+      "value": 0
+    },
+    "secondary": {
+      "type_id": 91,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": 0,
+    "effect_yalms": 0,
+    "cast_type": 1
+  },
+  "targeting": {
+    "self": true,
+    "party": false,
+    "alliance": false,
+    "hostile": false,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 0,
+    "behavior_type": 0,
+    "class_job_category_id": 150,
+    "source_class_job_id": 38,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

@@ -1,0 +1,71 @@
+{
+  "kind": "combat_status",
+  "id": 2694,
+  "name": "非対称投擲",
+  "description": "ファウンテンフォールまたはブラッドシャワーを実行できる状態。",
+  "effects": [
+    "ファウンテンフォールまたはブラッドシャワーを実行できる状態。"
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 213719,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 150,
+  "source_abilities": [
+    {
+      "id": 15990,
+      "name": "ファウンテン",
+      "description": "対象に物理攻撃。\u3000威力：120\nコンボ条件：カスケード\u3000コンボ時威力：280\nコンボボーナス（発動確率50％）：自身に「非対称投擲」を付与する\u3000効果時間：30秒\nダンスモード中は「小鳥のアントルシャ」に変化する。",
+      "description_macro": "対象に物理攻撃。\u3000<colortype(504)><edgecolortype(505)>威力：<edgecolortype(0)><colortype(0)><if([gnum68==38],<if([gnum72>=94],120,100)>,100)><br><colortype(504)><edgecolortype(505)>コンボ条件：<edgecolortype(0)><colortype(0)>カスケード\u3000<colortype(504)><edgecolortype(505)>コンボ時<colortype(504)><edgecolortype(505)>威力：<edgecolortype(0)><colortype(0)><edgecolortype(0)><colortype(0)><if([gnum68==38],<if([gnum72>=94],280,260)>,260)><br><if([gnum68==38],<if([gnum72>=40],<colortype(504)><edgecolortype(505)>コンボボーナス（発動確率50％）：<edgecolortype(0)><colortype(0)>自身に<colortype(500)><edgecolortype(501)>「非対称投擲」<edgecolortype(0)><colortype(0)>を付与する\u3000<colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>30秒<br>,)>,)>ダンスモード中は<colortype(500)><edgecolortype(501)>「小鳥のアントルシャ」<edgecolortype(0)><colortype(0)>に変化する。",
+      "unlock_level": 2,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Physical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 38,
+          "name": "踊り子",
+          "abbreviation": "DNC",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 15994,
+      "name": "ブレードシャワー",
+      "description": "自身の周囲の敵に範囲物理攻撃。\u3000威力：100\nコンボ条件：ウィンドミル\u3000コンボ時威力：160\nコンボボーナス（発動確率50％）：自身に「非対称投擲」を付与する\u3000効果時間：30秒\nダンスモード中は「小鳥のアントルシャ」に変化する。",
+      "description_macro": "自身の周囲の敵に範囲物理攻撃。\u3000<colortype(504)><edgecolortype(505)>威力：<edgecolortype(0)><colortype(0)>100<br><colortype(504)><edgecolortype(505)>コンボ条件：<edgecolortype(0)><colortype(0)>ウィンドミル\u3000<colortype(504)><edgecolortype(505)>コンボ時威力：<edgecolortype(0)><colortype(0)>160<br><if([gnum68==38],<if([gnum72>=45],<colortype(504)><edgecolortype(505)>コンボボーナス（発動確率50％）：<edgecolortype(0)><colortype(0)>自身に<colortype(500)><edgecolortype(501)>「非対称投擲」<edgecolortype(0)><colortype(0)>を付与する\u3000<colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>30秒<br>,)>,)>ダンスモード中は<colortype(500)><edgecolortype(501)>「小鳥のアントルシャ」<edgecolortype(0)><colortype(0)>に変化する。",
+      "unlock_level": 25,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Physical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 38,
+          "name": "踊り子",
+          "abbreviation": "DNC",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

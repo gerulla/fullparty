@@ -1,0 +1,92 @@
+{
+  "kind": "ability",
+  "id": 36921,
+  "name": "Imperator",
+  "description": "Du führst eine elementneutrale magische Attacke auf das Ziel und die Gegner in seiner Nähe aus.\nAttacke-Wert: 580\nAttacke-Wert verringert sich ab dem zweiten Gegner um 60 ％\nZusatzeffekt: Du verleihst dir 4 Stapel Requiescat.\nDauer: 30 Sekunden\nEffekt von Requiescat: Zauber können sofort gewirkt werden.\nDarüber hinaus erhöht sich der Attacke-Wert von Heiliger Geist, Heiliger Kreis, sowie von Confiteor und dessen Kombo-Kommandos.\nZusatzeffekt: Gewährt dir Confiteor.\nDauer: 30 Sekunden",
+  "description_macro": "Du führst eine elementneutrale magische Attacke auf das Ziel und die Gegner in seiner Nähe aus.<br>Attacke-Wert: 580<br>Attacke-Wert verringert sich ab dem zweiten Gegner um 60<nbsp>％<br>Zusatzeffekt: Du verleihst dir 4 Stapel <colortype(506)><edgecolortype(507)>Requiescat<edgecolortype(0)><colortype(0)>.<br>Dauer: 30 Sekunden<br>Effekt von <colortype(506)><edgecolortype(507)>Requiescat<edgecolortype(0)><colortype(0)>: Zauber können sofort gewirkt werden.<br>Darüber hinaus erhöht sich der Attacke-Wert von <colortype(502)><edgecolortype(503)>Heiliger Geist<edgecolortype(0)><colortype(0)>, <colortype(502)><edgecolortype(503)>Heiliger Kreis<edgecolortype(0)><colortype(0)>, sowie von <colortype(502)><edgecolortype(503)>Confiteor<edgecolortype(0)><colortype(0)> und dessen Kombo-Kommandos.<br>Zusatzeffekt: Gewährt dir <colortype(506)><edgecolortype(507)>Confiteor<edgecolortype(0)><colortype(0)>.<br>Dauer: 30 Sekunden",
+  "effects": [
+    "Du führst eine elementneutrale magische Attacke auf das Ziel und die Gegner in seiner Nähe aus.",
+    "Attacke-Wert: 580",
+    "Attacke-Wert verringert sich ab dem zweiten Gegner um 60 ％",
+    "Zusatzeffekt: Du verleihst dir 4 Stapel Requiescat.",
+    "Dauer: 30 Sekunden",
+    "Effekt von Requiescat: Zauber können sofort gewirkt werden.",
+    "Darüber hinaus erhöht sich der Attacke-Wert von Heiliger Geist, Heiliger Kreis, sowie von Confiteor und dessen Kombo-Kommandos.",
+    "Zusatzeffekt: Gewährt dir Confiteor.",
+    "Dauer: 30 Sekunden"
+  ],
+  "role": "Tank",
+  "job": {
+    "id": 19,
+    "name": "Paladin",
+    "abbreviation": "PLD"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 96,
+  "icon": {
+    "id": 2955,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 4,
+    "name": "Talent"
+  },
+  "attack_type": {
+    "id": 5,
+    "name": "魔法"
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 60,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 12,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 0,
+      "value": 0
+    },
+    "secondary": {
+      "type_id": 62,
+      "value": 565
+    }
+  },
+  "range": {
+    "target_yalms": 25,
+    "effect_yalms": 5,
+    "cast_type": 2
+  },
+  "targeting": {
+    "self": false,
+    "party": false,
+    "alliance": false,
+    "hostile": true,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 7,
+    "behavior_type": 0,
+    "class_job_category_id": 20,
+    "source_class_job_id": 19,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

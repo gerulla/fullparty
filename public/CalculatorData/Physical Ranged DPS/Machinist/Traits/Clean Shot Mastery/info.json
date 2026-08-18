@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 290,
+  "name": "Clean Shot Mastery",
+  "description": "Upgrades Clean Shot to Heated Clean Shot.",
+  "description_macro": "Upgrades <colortype(500)><edgecolortype(501)>Clean Shot<edgecolortype(0)><colortype(0)> to <colortype(500)><edgecolortype(501)>Heated Clean Shot<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Upgrades Clean Shot to Heated Clean Shot."
+  ],
+  "role": "Physical Ranged DPS",
+  "job": {
+    "id": 31,
+    "name": "Machinist",
+    "abbreviation": "MCH"
+  },
+  "unlock_level": 64,
+  "value": 0,
+  "icon": {
+    "id": 6012,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 96,
+  "source_class_job_id": 31
+}

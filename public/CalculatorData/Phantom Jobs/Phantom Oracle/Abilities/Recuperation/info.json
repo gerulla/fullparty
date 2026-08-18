@@ -1,0 +1,89 @@
+{
+  "kind": "ability",
+  "id": 41641,
+  "name": "Recuperation",
+  "description": "Grants Recuperation to self or target party member.\nDuration: 20s\nWhen effect expires, removes a single detrimental effect from target and all nearby party members.\nRecuperation changes to Fortified Recuperation if effect is not triggered.\nFortified Recuperation Effect: Removes a detrimental effect from target and nearby party members if afflicted with a detrimental effect\nDuration: 3s",
+  "description_macro": "Grants <colortype(506)><edgecolortype(507)>Recuperation<edgecolortype(0)><colortype(0)> to self or target party member.<br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>20s<br>When effect expires, removes a single detrimental effect from target and all nearby party members.<br><colortype(506)><edgecolortype(507)>Recuperation<edgecolortype(0)><colortype(0)> changes to <colortype(506)><edgecolortype(507)>Fortified Recuperation<edgecolortype(0)><colortype(0)> if effect is not triggered.<br><colortype(504)><edgecolortype(505)>Fortified Recuperation Effect: <edgecolortype(0)><colortype(0)>Removes a detrimental effect from target and nearby party members if afflicted with a detrimental effect<br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>3s<if([gnum108>=3],<br>Shares a recast timer with <colortype(500)><edgecolortype(501)>Phantom Doom<edgecolortype(0)><colortype(0)>.,)>",
+  "effects": [
+    "Grants Recuperation to self or target party member.",
+    "Duration: 20s",
+    "When effect expires, removes a single detrimental effect from target and all nearby party members.",
+    "Recuperation changes to Fortified Recuperation if effect is not triggered.",
+    "Fortified Recuperation Effect: Removes a detrimental effect from target and nearby party members if afflicted with a detrimental effect",
+    "Duration: 3s"
+  ],
+  "role": "Phantom Jobs",
+  "job": {
+    "id": 11,
+    "name": "Phantom Oracle",
+    "abbreviation": "Ph. Oracle"
+  },
+  "is_phantom_action": true,
+  "unlock_level": 2,
+  "icon": {
+    "id": 64563,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 4,
+    "name": "Ability"
+  },
+  "attack_type": {
+    "id": 0,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 30,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 85,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 0,
+      "value": 0
+    },
+    "secondary": {
+      "type_id": 0,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": 30,
+    "effect_yalms": 0,
+    "cast_type": 1
+  },
+  "targeting": {
+    "self": true,
+    "party": true,
+    "alliance": false,
+    "hostile": false,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": false
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 0,
+    "behavior_type": 0,
+    "class_job_category_id": 142,
+    "source_class_job_id": 4294967295,
+    "is_role_action": false,
+    "is_player_action": false,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

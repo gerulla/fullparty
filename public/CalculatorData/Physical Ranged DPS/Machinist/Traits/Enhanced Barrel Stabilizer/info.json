@@ -1,0 +1,25 @@
+{
+  "kind": "trait",
+  "id": 608,
+  "name": "Enhanced Barrel Stabilizer",
+  "description": "Grants Full Metal Machinist upon executing Barrel Stabilizer.\nDuration: 30s",
+  "description_macro": "Grants <colortype(506)><edgecolortype(507)>Full Metal Machinist<edgecolortype(0)><colortype(0)> upon executing <colortype(500)><edgecolortype(501)>Barrel Stabilizer<edgecolortype(0)><colortype(0)>.<br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>30s",
+  "effects": [
+    "Grants Full Metal Machinist upon executing Barrel Stabilizer.",
+    "Duration: 30s"
+  ],
+  "role": "Physical Ranged DPS",
+  "job": {
+    "id": 31,
+    "name": "Machinist",
+    "abbreviation": "MCH"
+  },
+  "unlock_level": 100,
+  "value": 0,
+  "icon": {
+    "id": 6026,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 96,
+  "source_class_job_id": 31
+}

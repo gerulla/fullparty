@@ -1,0 +1,38 @@
+{
+  "kind": "trait",
+  "id": 664,
+  "name": "アクション威力アップ",
+  "description": "特定のアクションの威力を上昇させる。\n\nルインガの威力：400\nアストラルインパルスの威力：500\nルインジャの威力：520\nルビー・リチュアルの威力：620\nトパーズ・リチュアルの威力：340\nエメラルド・リチュアルの威力：280\n霊泉の炎の威力：580\nクリムゾンストライクの威力：560\nクリムゾンサイクロンの威力：560\nマウンテンバスターの威力：160\nスリップストリームの威力：520\n地獄の火炎の威力：800\n大地の怒りの威力：800\nエリアルブラストの威力：800",
+  "description_macro": "特定のアクションの威力を上昇させる。<br><br><colortype(504)><edgecolortype(505)>ルインガの威力：<edgecolortype(0)><colortype(0)>400<br><colortype(504)><edgecolortype(505)>アストラルインパルスの威力：<edgecolortype(0)><colortype(0)>500<br><colortype(504)><edgecolortype(505)>ルインジャの威力：<edgecolortype(0)><colortype(0)>520<br><colortype(504)><edgecolortype(505)>ルビー・リチュアルの威力：<edgecolortype(0)><colortype(0)>620<br><colortype(504)><edgecolortype(505)>トパーズ・リチュアルの威力：<edgecolortype(0)><colortype(0)>340<br><colortype(504)><edgecolortype(505)>エメラルド・リチュアルの威力：<edgecolortype(0)><colortype(0)>280<br><colortype(504)><edgecolortype(505)>霊泉の炎の威力：<edgecolortype(0)><colortype(0)>580<br><colortype(504)><edgecolortype(505)>クリムゾンストライクの威力：<edgecolortype(0)><colortype(0)>560<br><colortype(504)><edgecolortype(505)>クリムゾンサイクロンの威力：<edgecolortype(0)><colortype(0)>560<br><colortype(504)><edgecolortype(505)>マウンテンバスターの威力：<edgecolortype(0)><colortype(0)>160<br><colortype(504)><edgecolortype(505)>スリップストリームの威力：<edgecolortype(0)><colortype(0)>520<br><colortype(504)><edgecolortype(505)>地獄の火炎の威力：<edgecolortype(0)><colortype(0)>800<br><colortype(504)><edgecolortype(505)>大地の怒りの威力：<edgecolortype(0)><colortype(0)>800<br><colortype(504)><edgecolortype(505)>エリアルブラストの威力：<edgecolortype(0)><colortype(0)>800",
+  "effects": [
+    "特定のアクションの威力を上昇させる。",
+    "ルインガの威力：400",
+    "アストラルインパルスの威力：500",
+    "ルインジャの威力：520",
+    "ルビー・リチュアルの威力：620",
+    "トパーズ・リチュアルの威力：340",
+    "エメラルド・リチュアルの威力：280",
+    "霊泉の炎の威力：580",
+    "クリムゾンストライクの威力：560",
+    "クリムゾンサイクロンの威力：560",
+    "マウンテンバスターの威力：160",
+    "スリップストリームの威力：520",
+    "地獄の火炎の威力：800",
+    "大地の怒りの威力：800",
+    "エリアルブラストの威力：800"
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 27,
+    "name": "召喚士",
+    "abbreviation": "SMN"
+  },
+  "unlock_level": 94,
+  "value": 0,
+  "icon": {
+    "id": 6831,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 28,
+  "source_class_job_id": 27
+}

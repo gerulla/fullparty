@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 525,
+  "name": "Verbesserte Kiefer",
+  "description": "Nach erfolgreicher Ausführung von Hungernde Kiefer oder Schlingende Kiefer kannst du Scharfe Peitsche ausführen.",
+  "description_macro": "Nach erfolgreicher Ausführung von <colortype(502)><edgecolortype(503)>Hungernde Kiefer<edgecolortype(0)><colortype(0)> oder <colortype(502)><edgecolortype(503)>Schlingende Kiefer<edgecolortype(0)><colortype(0)> kannst du <colortype(502)><edgecolortype(503)>Scharfe Peitsche<edgecolortype(0)><colortype(0)> ausführen.",
+  "effects": [
+    "Nach erfolgreicher Ausführung von Hungernde Kiefer oder Schlingende Kiefer kannst du Scharfe Peitsche ausführen."
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 41,
+    "name": "Viper",
+    "abbreviation": "VPR"
+  },
+  "unlock_level": 60,
+  "value": 0,
+  "icon": {
+    "id": 6502,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 196,
+  "source_class_job_id": 41
+}

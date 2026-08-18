@@ -1,0 +1,114 @@
+{
+  "kind": "combat_status",
+  "id": 2125,
+  "name": "Äther-Mimikry: Angreifer",
+  "description": "Äther eines Angreifers imitiert.",
+  "effects": [
+    "Äther eines Angreifers imitiert."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 213528,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": true,
+  "is_permanent": true,
+  "inflicted_by_actor": true,
+  "party_list_priority": 101,
+  "parameter": {
+    "effect": 0,
+    "modifier": 10
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 18322,
+      "name": "Äther-Mimikry",
+      "description": "Du imitierst die ätherische Zusammensetzung eines Ziels und gewährst dir, je nach der Rolle des Originals, Äther-Mimikry: Verteidiger, Äther-Mimikry: Angreifer oder Äther-Mimikry: Heiler.\nEffekt von Äther-Mimikry: Verteidiger: Deine Verteidigung und die Wirkung bestimmter blaumagischer Effekte sind erhöht.\nEffekt von Äther-Mimikry: Angreifer: Deine Rate kritischer und direkter Treffer ist um 20 % erhöht. Außerdem ist die Wirkung bestimmter blaumagischer Effekte erhöht.\nEffekt von Äther-Mimikry: Heiler: Die Wirkung deiner heilenden Effekte ist um 20 % erhöht. Außerdem ist die Wirkung bestimmter blaumagischer Effekte erhöht.\nEffekt endet bei erneuter Ausführung.",
+      "description_macro": "Du imitierst die ätherische Zusammensetzung eines Ziels und gewährst dir, je nach der Rolle des Originals, <colortype(506)><edgecolortype(507)>Äther-Mimikry: Verteidiger<edgecolortype(0)><colortype(0)>, <colortype(506)><edgecolortype(507)>Äther-Mimikry: Angreifer<edgecolortype(0)><colortype(0)> oder <colortype(506)><edgecolortype(507)>Äther-Mimikry: Heiler<edgecolortype(0)><colortype(0)>.<br>Effekt von <colortype(506)><edgecolortype(507)>Äther-Mimikry: Verteidiger<edgecolortype(0)><colortype(0)>: Deine Verteidigung und die Wirkung bestimmter blaumagischer Effekte sind erhöht.<br>Effekt von <colortype(506)><edgecolortype(507)>Äther-Mimikry: Angreifer<edgecolortype(0)><colortype(0)>: Deine Rate kritischer und direkter Treffer ist um 20<nbsp>% erhöht. Außerdem ist die Wirkung bestimmter blaumagischer Effekte erhöht.<br>Effekt von <colortype(506)><edgecolortype(507)>Äther-Mimikry: Heiler<edgecolortype(0)><colortype(0)>: Die Wirkung deiner heilenden Effekte ist um 20<nbsp>% erhöht. Außerdem ist die Wirkung bestimmter blaumagischer Effekte erhöht.<br>Effekt endet bei erneuter Ausführung.",
+      "unlock_level": 1,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Magical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 36,
+          "name": "Blaumagier",
+          "abbreviation": "BMA",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 19238,
+      "name": "Äther-Mimikry",
+      "description": "Du imitierst die ätherische Zusammensetzung eines Ziels und gewährst dir, je nach der Rolle des Originals, Äther-Mimikry: Verteidiger, Äther-Mimikry: Angreifer oder Äther-Mimikry: Heiler.\nEffekt von Äther-Mimikry: Verteidiger: Deine Verteidigung und die Wirkung bestimmter blaumagischer Effekte sind erhöht.\nEffekt von Äther-Mimikry: Angreifer: Deine Rate kritischer und direkter Treffer ist um 20 % erhöht. Außerdem ist die Wirkung bestimmter blaumagischer Effekte erhöht.\nEffekt von Äther-Mimikry: Heiler: Die Wirkung deiner Heilmagie ist um 20 % erhöht. Außerdem ist die Wirkung bestimmter blaumagischer Effekte erhöht.\nEffekt endet bei erneuter Ausführung.",
+      "description_macro": "Du imitierst die ätherische Zusammensetzung eines Ziels und gewährst dir, je nach der Rolle des Originals, <colortype(506)><edgecolortype(507)>Äther-Mimikry: Verteidiger<edgecolortype(0)><colortype(0)>, <colortype(506)><edgecolortype(507)>Äther-Mimikry: Angreifer<edgecolortype(0)><colortype(0)> oder <colortype(506)><edgecolortype(507)>Äther-Mimikry: Heiler<edgecolortype(0)><colortype(0)>.<br>Effekt von <colortype(506)><edgecolortype(507)>Äther-Mimikry: Verteidiger<edgecolortype(0)><colortype(0)>: Deine Verteidigung und die Wirkung bestimmter blaumagischer Effekte sind erhöht.<br>Effekt von <colortype(506)><edgecolortype(507)>Äther-Mimikry: Angreifer<edgecolortype(0)><colortype(0)>: Deine Rate kritischer und direkter Treffer ist um 20<nbsp>% erhöht. Außerdem ist die Wirkung bestimmter blaumagischer Effekte erhöht.<br>Effekt von <colortype(506)><edgecolortype(507)>Äther-Mimikry: Heiler<edgecolortype(0)><colortype(0)>: Die Wirkung deiner Heilmagie ist um 20<nbsp>% erhöht. Außerdem ist die Wirkung bestimmter blaumagischer Effekte erhöht.<br>Effekt endet bei erneuter Ausführung.",
+      "unlock_level": 1,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Magical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 36,
+          "name": "Blaumagier",
+          "abbreviation": "BMA",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 19239,
+      "name": "Äther-Mimikry",
+      "description": "Du imitierst die ätherische Zusammensetzung eines Ziels und gewährst dir, je nach der Rolle des Originals, Äther-Mimikry: Verteidiger, Äther-Mimikry: Angreifer oder Äther-Mimikry: Heiler.\nEffekt von Äther-Mimikry: Verteidiger: Deine Verteidigung und die Wirkung bestimmter blaumagischer Effekte sind erhöht.\nEffekt von Äther-Mimikry: Angreifer: Deine Rate kritischer und direkter Treffer ist um 20 % erhöht. Außerdem ist die Wirkung bestimmter blaumagischer Effekte erhöht.\nEffekt von Äther-Mimikry: Heiler: Die Wirkung deiner Heilmagie ist um 20 % erhöht. Außerdem ist die Wirkung bestimmter blaumagischer Effekte erhöht.\nEffekt endet bei erneuter Ausführung.",
+      "description_macro": "Du imitierst die ätherische Zusammensetzung eines Ziels und gewährst dir, je nach der Rolle des Originals, <colortype(506)><edgecolortype(507)>Äther-Mimikry: Verteidiger<edgecolortype(0)><colortype(0)>, <colortype(506)><edgecolortype(507)>Äther-Mimikry: Angreifer<edgecolortype(0)><colortype(0)> oder <colortype(506)><edgecolortype(507)>Äther-Mimikry: Heiler<edgecolortype(0)><colortype(0)>.<br>Effekt von <colortype(506)><edgecolortype(507)>Äther-Mimikry: Verteidiger<edgecolortype(0)><colortype(0)>: Deine Verteidigung und die Wirkung bestimmter blaumagischer Effekte sind erhöht.<br>Effekt von <colortype(506)><edgecolortype(507)>Äther-Mimikry: Angreifer<edgecolortype(0)><colortype(0)>: Deine Rate kritischer und direkter Treffer ist um 20<nbsp>% erhöht. Außerdem ist die Wirkung bestimmter blaumagischer Effekte erhöht.<br>Effekt von <colortype(506)><edgecolortype(507)>Äther-Mimikry: Heiler<edgecolortype(0)><colortype(0)>: Die Wirkung deiner Heilmagie ist um 20<nbsp>% erhöht. Außerdem ist die Wirkung bestimmter blaumagischer Effekte erhöht.<br>Effekt endet bei erneuter Ausführung.",
+      "unlock_level": 1,
+      "relations": [
+        "direct_gain_self",
+        "granted_by_description"
+      ],
+      "roles": [
+        "Magical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 36,
+          "name": "Blaumagier",
+          "abbreviation": "BMA",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 19240,
+      "name": "Äther-Mimikry",
+      "description": "Du imitierst die ätherische Zusammensetzung eines Ziels und gewährst dir, je nach der Rolle des Originals, Äther-Mimikry: Verteidiger, Äther-Mimikry: Angreifer oder Äther-Mimikry: Heiler.\nEffekt von Äther-Mimikry: Verteidiger: Deine Verteidigung und die Wirkung bestimmter blaumagischer Effekte sind erhöht.\nEffekt von Äther-Mimikry: Angreifer: Deine Rate kritischer und direkter Treffer ist um 20 % erhöht. Außerdem ist die Wirkung bestimmter blaumagischer Effekte erhöht.\nEffekt von Äther-Mimikry: Heiler: Die Wirkung deiner Heilmagie ist um 20 % erhöht. Außerdem ist die Wirkung bestimmter blaumagischer Effekte erhöht.\nEffekt endet bei erneuter Ausführung.",
+      "description_macro": "Du imitierst die ätherische Zusammensetzung eines Ziels und gewährst dir, je nach der Rolle des Originals, <colortype(506)><edgecolortype(507)>Äther-Mimikry: Verteidiger<edgecolortype(0)><colortype(0)>, <colortype(506)><edgecolortype(507)>Äther-Mimikry: Angreifer<edgecolortype(0)><colortype(0)> oder <colortype(506)><edgecolortype(507)>Äther-Mimikry: Heiler<edgecolortype(0)><colortype(0)>.<br>Effekt von <colortype(506)><edgecolortype(507)>Äther-Mimikry: Verteidiger<edgecolortype(0)><colortype(0)>: Deine Verteidigung und die Wirkung bestimmter blaumagischer Effekte sind erhöht.<br>Effekt von <colortype(506)><edgecolortype(507)>Äther-Mimikry: Angreifer<edgecolortype(0)><colortype(0)>: Deine Rate kritischer und direkter Treffer ist um 20<nbsp>% erhöht. Außerdem ist die Wirkung bestimmter blaumagischer Effekte erhöht.<br>Effekt von <colortype(506)><edgecolortype(507)>Äther-Mimikry: Heiler<edgecolortype(0)><colortype(0)>: Die Wirkung deiner Heilmagie ist um 20<nbsp>% erhöht. Außerdem ist die Wirkung bestimmter blaumagischer Effekte erhöht.<br>Effekt endet bei erneuter Ausführung.",
+      "unlock_level": 1,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Magical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 36,
+          "name": "Blaumagier",
+          "abbreviation": "BMA",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

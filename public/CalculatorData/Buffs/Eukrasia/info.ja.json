@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 2606,
+  "name": "エウクラシア",
+  "description": "自身の一部のアクションを変化させている状態。",
+  "effects": [
+    "自身の一部のアクションを変化させている状態。"
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 212953,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": true,
+  "inflicted_by_actor": true,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 181,
+  "source_abilities": [
+    {
+      "id": 24290,
+      "name": "エウクラシア",
+      "description": "自身を強化して特定の魔法を変化させる。\u3000効果時間：永続\n「ドシスIII」が「エウクラシア・ドシスIII」に変化する。\n「ディスクラシアII」が「エウクラシア・ディスクラシア」に変化する。\n「ディアグノシス」が「エウクラシア・ディアグノシス」に変化する。\n「プログノシス」が「エウクラシア・プログノシスII」に変化する。\n変化した魔法を実行すると効果が解除される。\nこの魔法は固有のリキャストタイマーを持ち、実行すると他のウェポンスキルと魔法にこのアクションと同じリキャストタイムが発生する。",
+      "description_macro": "自身を強化して特定の魔法を変化させる。\u3000<colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>永続<br><if([gnum68==40],<if([gnum72>=82],<colortype(500)><edgecolortype(501)>「ドシスIII」<edgecolortype(0)><colortype(0)>が<colortype(500)><edgecolortype(501)>「エウクラシア・ドシスIII」<edgecolortype(0)><colortype(0)>に変化する。,<if([gnum68==40],<if([gnum72>=72],<colortype(500)><edgecolortype(501)>「ドシスII」<edgecolortype(0)><colortype(0)>が<colortype(500)><edgecolortype(501)>「エウクラシア・ドシスII」<edgecolortype(0)><colortype(0)>に変化する。,<colortype(500)><edgecolortype(501)>「ドシス」<edgecolortype(0)><colortype(0)>が<colortype(500)><edgecolortype(501)>「エウクラシア・ドシス」<edgecolortype(0)><colortype(0)>に変化する。)>,<colortype(500)><edgecolortype(501)>「ドシス」<edgecolortype(0)><colortype(0)>が<colortype(500)><edgecolortype(501)>「エウクラシア・ドシス」<edgecolortype(0)><colortype(0)>に変化する。)>)>,<if([gnum68==40],<if([gnum72>=72],<colortype(500)><edgecolortype(501)>「ドシスII」<edgecolortype(0)><colortype(0)>が<colortype(500)><edgecolortype(501)>「エウクラシア・ドシスII」<edgecolortype(0)><colortype(0)>に変化する。,<colortype(500)><edgecolortype(501)>「ドシス」<edgecolortype(0)><colortype(0)>が<colortype(500)><edgecolortype(501)>「エウクラシア・ドシス」<edgecolortype(0)><colortype(0)>に変化する。)>,<colortype(500)><edgecolortype(501)>「ドシス」<edgecolortype(0)><colortype(0)>が<colortype(500)><edgecolortype(501)>「エウクラシア・ドシス」<edgecolortype(0)><colortype(0)>に変化する。)>)><br><if([gnum68==40],<if([gnum72>=82],<colortype(500)><edgecolortype(501)>「ディスクラシアII」<edgecolortype(0)><colortype(0)>が<colortype(500)><edgecolortype(501)>「エウクラシア・ディスクラシア」<edgecolortype(0)><colortype(0)>に変化する。<br>,)>,)><colortype(500)><edgecolortype(501)>「ディアグノシス」<edgecolortype(0)><colortype(0)>が<colortype(500)><edgecolortype(501)>「エウクラシア・ディアグノシス」<edgecolortype(0)><colortype(0)>に変化する。<br><colortype(500)><edgecolortype(501)>「プログノシス」<edgecolortype(0)><colortype(0)>が<colortype(500)><edgecolortype(501)>「エウクラシア・プログノシス<if([gnum68==40],<if([gnum72>=96],II,)>,)>」<edgecolortype(0)><colortype(0)>に変化する。<br>変化した魔法を実行すると効果が解除される。<br>この魔法は固有のリキャストタイマーを持ち、実行すると他のウェポンスキルと魔法にこのアクションと同じリキャストタイムが発生する。",
+      "unlock_level": 30,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Healer"
+      ],
+      "jobs": [
+        {
+          "id": 40,
+          "name": "賢者",
+          "abbreviation": "SGE",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

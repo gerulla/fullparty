@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 174,
+  "name": "Énochien amélioré",
+  "description": "Permet de recevoir Polyglotte lorsque l'effet Énochien a été maintenu pendant 30s. Par ailleurs, augmente l'effet Énochien à 10%.",
+  "description_macro": "Permet de recevoir <colortype(500)><edgecolortype(501)>Polyglotte<edgecolortype(0)><colortype(0)> lorsque l'effet <colortype(500)><edgecolortype(501)>Énochien<edgecolortype(0)><colortype(0)> a été maintenu pendant 30s. Par ailleurs, augmente l'effet <colortype(500)><edgecolortype(501)>Énochien<edgecolortype(0)><colortype(0)> à 10%.",
+  "effects": [
+    "Permet de recevoir Polyglotte lorsque l'effet Énochien a été maintenu pendant 30s. Par ailleurs, augmente l'effet Énochien à 10%."
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 25,
+    "name": "Mage Noir",
+    "abbreviation": "MNO"
+  },
+  "unlock_level": 70,
+  "value": 5,
+  "icon": {
+    "id": 5360,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 26,
+  "source_class_job_id": 25
+}

@@ -1,0 +1,32 @@
+{
+  "kind": "trait",
+  "id": 380,
+  "name": "Actions améliorées",
+  "description": "Augmente la puissance de certaines actions.\n\nPuissance de Tranchage : 300\nPuissance de Tranchage blafard : 140\nPuissance d'Ombre de la mort : 300\nPuissance de Harpé : 300\nPuissance de Faux tournoyante : 140\nPuissance de Tranchage infernal : 140\nPuissance de Tourbillion de la mort : 100\nPuissance de Faux cauchemardesque : 120",
+  "description_macro": "Augmente la puissance de certaines actions.<br><br><colortype(506)><edgecolortype(507)>Puissance de Tranchage<nbsp>:<edgecolortype(0)><colortype(0)> 300<br><colortype(506)><edgecolortype(507)>Puissance de Tranchage blafard<nbsp>:<edgecolortype(0)><colortype(0)> 140<br><colortype(506)><edgecolortype(507)>Puissance d'Ombre de la mort<nbsp>:<edgecolortype(0)><colortype(0)> 300<br><colortype(506)><edgecolortype(507)>Puissance de Harpé<nbsp>:<edgecolortype(0)><colortype(0)> 300<br><colortype(506)><edgecolortype(507)>Puissance de Faux tournoyante<nbsp>:<edgecolortype(0)><colortype(0)> 140<br><colortype(506)><edgecolortype(507)>Puissance de Tranchage infernal<nbsp>:<edgecolortype(0)><colortype(0)> 140<br><colortype(506)><edgecolortype(507)>Puissance de Tourbillion de la mort<nbsp>:<edgecolortype(0)><colortype(0)> 100<br><colortype(506)><edgecolortype(507)>Puissance de Faux cauchemardesque<nbsp>:<edgecolortype(0)><colortype(0)> 120",
+  "effects": [
+    "Augmente la puissance de certaines actions.",
+    "Puissance de Tranchage : 300",
+    "Puissance de Tranchage blafard : 140",
+    "Puissance d'Ombre de la mort : 300",
+    "Puissance de Harpé : 300",
+    "Puissance de Faux tournoyante : 140",
+    "Puissance de Tranchage infernal : 140",
+    "Puissance de Tourbillion de la mort : 100",
+    "Puissance de Faux cauchemardesque : 120"
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 39,
+    "name": "Faucheur",
+    "abbreviation": "FCH"
+  },
+  "unlock_level": 60,
+  "value": 0,
+  "icon": {
+    "id": 6801,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 180,
+  "source_class_job_id": 39
+}

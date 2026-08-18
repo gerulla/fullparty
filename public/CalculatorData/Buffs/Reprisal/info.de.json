@@ -1,0 +1,68 @@
+{
+  "kind": "combat_status",
+  "id": 753,
+  "name": "Reflexion",
+  "description": "Ausgeteilter Schaden ist verringert.",
+  "effects": [
+    "Ausgeteilter Schaden ist verringert."
+  ],
+  "classification": "debuff",
+  "icon": {
+    "id": 213103,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 2,
+  "target_type": 0,
+  "can_dispel": true,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 50,
+  "parameter": {
+    "effect": 0,
+    "modifier": -10
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 7535,
+      "name": "Reflexion",
+      "description": "Du verringerst den ausgeteilten Schaden der umstehenden Gegner um 10 %.\nDauer: 15 Sekunden",
+      "description_macro": "Du verringerst den ausgeteilten Schaden der umstehenden Gegner um 10<nbsp>%.<br>Dauer: <if([gnum72>=98],<if([gnum68==1],15,<if([gnum68==19],15,<if([gnum68==3],15,<if([gnum68==21],15,<if([gnum68==32],15,<if([gnum68==37],15,10)>)>)>)>)>)>,10)> Sekunden",
+      "unlock_level": 22,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Tank"
+      ],
+      "jobs": [
+        {
+          "id": 19,
+          "name": "Paladin",
+          "abbreviation": "PLD",
+          "is_phantom": false
+        },
+        {
+          "id": 21,
+          "name": "Krieger",
+          "abbreviation": "KRG",
+          "is_phantom": false
+        },
+        {
+          "id": 32,
+          "name": "Dunkelritter",
+          "abbreviation": "DKR",
+          "is_phantom": false
+        },
+        {
+          "id": 37,
+          "name": "Revolverklinge",
+          "abbreviation": "REV",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

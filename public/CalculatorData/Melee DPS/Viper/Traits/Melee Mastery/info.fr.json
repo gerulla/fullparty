@@ -1,0 +1,28 @@
+{
+  "kind": "trait",
+  "id": 674,
+  "name": "Actions améliorées",
+  "description": "Augmente la puissance de certaines actions.\n\nCrochets d'acier : 200\nCrochets mortels : 200\nPonction prédatrice : 300\nPonction véloce : 300",
+  "description_macro": "Augmente la puissance de certaines actions.<br><br><colortype(506)><edgecolortype(507)>Crochets d'acier<nbsp>:<edgecolortype(0)><colortype(0)> 200<br><colortype(506)><edgecolortype(507)>Crochets mortels<nbsp>:<edgecolortype(0)><colortype(0)> 200<br><colortype(506)><edgecolortype(507)>Ponction prédatrice<nbsp>:<edgecolortype(0)><colortype(0)> 300<br><colortype(506)><edgecolortype(507)>Ponction véloce<nbsp>:<edgecolortype(0)><colortype(0)> 300",
+  "effects": [
+    "Augmente la puissance de certaines actions.",
+    "Crochets d'acier : 200",
+    "Crochets mortels : 200",
+    "Ponction prédatrice : 300",
+    "Ponction véloce : 300"
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 41,
+    "name": "Rôdeur Vipère",
+    "abbreviation": "VPR"
+  },
+  "unlock_level": 74,
+  "value": 0,
+  "icon": {
+    "id": 6801,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 196,
+  "source_class_job_id": 41
+}

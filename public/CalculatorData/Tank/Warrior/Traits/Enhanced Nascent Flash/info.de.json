@@ -1,0 +1,29 @@
+{
+  "kind": "trait",
+  "id": 419,
+  "name": "Verbessertes Urflackern",
+  "description": "Verlängert die Wirkungsdauer von Urflackern und Urglimmen auf 8 Sekunden und fügt Urglimmen die folgenden Effekte hinzu:\nZusatzeffekt: Blutgeruch\nDauer: 4 Sekunden\nEffekt von Blutgeruch: Verringert erlittenen Schaden um 10 %.\nZusatzeffekt: Gewährt dir Jagdtrieb und errichtet eine Barriere um dich, die Schaden entsprechend einem Heilpotenzial von 400 absorbiert.\nDauer: 20 Sekunden",
+  "description_macro": "Verlängert die Wirkungsdauer von <colortype(506)><edgecolortype(507)>Urflackern<edgecolortype(0)><colortype(0)> und <colortype(506)><edgecolortype(507)>Urglimmen<edgecolortype(0)><colortype(0)> auf 8 Sekunden und fügt <colortype(506)><edgecolortype(507)>Urglimmen<edgecolortype(0)><colortype(0)> die folgenden Effekte hinzu:<br>Zusatzeffekt: <colortype(506)><edgecolortype(507)>Blutgeruch<edgecolortype(0)><colortype(0)><br>Dauer: 4 Sekunden<br>Effekt von <colortype(506)><edgecolortype(507)>Blutgeruch<edgecolortype(0)><colortype(0)>: Verringert erlittenen Schaden um 10<nbsp>%.<br>Zusatzeffekt: Gewährt dir <colortype(506)><edgecolortype(507)>Jagdtrieb<edgecolortype(0)><colortype(0)> und errichtet eine Barriere um dich, die Schaden entsprechend einem Heilpotenzial von 400 absorbiert.<br>Dauer: 20 Sekunden",
+  "effects": [
+    "Verlängert die Wirkungsdauer von Urflackern und Urglimmen auf 8 Sekunden und fügt Urglimmen die folgenden Effekte hinzu:",
+    "Zusatzeffekt: Blutgeruch",
+    "Dauer: 4 Sekunden",
+    "Effekt von Blutgeruch: Verringert erlittenen Schaden um 10 %.",
+    "Zusatzeffekt: Gewährt dir Jagdtrieb und errichtet eine Barriere um dich, die Schaden entsprechend einem Heilpotenzial von 400 absorbiert.",
+    "Dauer: 20 Sekunden"
+  ],
+  "role": "Tank",
+  "job": {
+    "id": 21,
+    "name": "Krieger",
+    "abbreviation": "KRG"
+  },
+  "unlock_level": 82,
+  "value": 0,
+  "icon": {
+    "id": 5268,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 22,
+  "source_class_job_id": 21
+}

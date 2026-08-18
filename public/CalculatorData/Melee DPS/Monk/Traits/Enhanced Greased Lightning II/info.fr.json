@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 366,
+  "name": "Vitesse de l'éclair améliorée II",
+  "description": "Réduit de 15% le délai des attaques automatiques et les temps de lancement et de recharge des techniques d'arme et des sorts.",
+  "description_macro": "Réduit de 15% le délai des attaques automatiques et les temps de lancement et de recharge des techniques d'arme et des sorts.",
+  "effects": [
+    "Réduit de 15% le délai des attaques automatiques et les temps de lancement et de recharge des techniques d'arme et des sorts."
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 20,
+    "name": "Moine",
+    "abbreviation": "MOI"
+  },
+  "unlock_level": 40,
+  "value": 0,
+  "icon": {
+    "id": 5231,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 21,
+  "source_class_job_id": 20
+}

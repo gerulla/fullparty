@@ -1,0 +1,91 @@
+{
+  "kind": "ability",
+  "id": 34672,
+  "name": "Kratzende Muse",
+  "description": "Du materialisierst deine piktomantische Klaue und führst eine elementneutrale magische Attacke auf das Ziel und die Gegner in seiner Nähe aus.\nAttacke-Wert: 800\nAttacke-Wert verringert sich ab dem zweiten Gegner um 70 %.\nZusatzeffekt: Malt das Element der Pikto-Klaue auf die Kreaturen-Leinwand.\nMaximale Aufladungen: 3\nBedingung: Gemalte Klaue\nBei erfüllter Bedingung ändert sich Lebende Muse zu diesem Kommando.\nKann nicht im Kommandomenü angelegt werden.",
+  "description_macro": "Du materialisierst deine piktomantische <colortype(506)><edgecolortype(507)>Klaue<edgecolortype(0)><colortype(0)> und führst eine elementneutrale magische Attacke auf das Ziel und die Gegner in seiner Nähe aus.<br>Attacke-Wert: 800<br>Attacke-Wert verringert sich ab dem zweiten Gegner um 70<nbsp>%.<br>Zusatzeffekt: Malt das Element der <colortype(506)><edgecolortype(507)>Pikto-Klaue<edgecolortype(0)><colortype(0)> auf die <colortype(506)><edgecolortype(507)>Kreaturen-Leinwand<edgecolortype(0)><colortype(0)>.<br>Maximale Aufladungen: 3<br>Bedingung: Gemalte <colortype(506)><edgecolortype(507)>Klaue<edgecolortype(0)><colortype(0)><br>Bei erfüllter Bedingung ändert sich <colortype(502)><edgecolortype(503)>Lebende Muse<edgecolortype(0)><colortype(0)> zu diesem Kommando.<br>Kann nicht im Kommandomenü angelegt werden.",
+  "effects": [
+    "Du materialisierst deine piktomantische Klaue und führst eine elementneutrale magische Attacke auf das Ziel und die Gegner in seiner Nähe aus.",
+    "Attacke-Wert: 800",
+    "Attacke-Wert verringert sich ab dem zweiten Gegner um 70 %.",
+    "Zusatzeffekt: Malt das Element der Pikto-Klaue auf die Kreaturen-Leinwand.",
+    "Maximale Aufladungen: 3",
+    "Bedingung: Gemalte Klaue",
+    "Bei erfüllter Bedingung ändert sich Lebende Muse zu diesem Kommando.",
+    "Kann nicht im Kommandomenü angelegt werden."
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 42,
+    "name": "Piktomant",
+    "abbreviation": "PKT"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 96,
+  "icon": {
+    "id": 3823,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 4,
+    "name": "Talent"
+  },
+  "attack_type": {
+    "id": 5,
+    "name": "魔法"
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 40,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 19,
+    "additional_cooldown_group": 71,
+    "max_charges": 2
+  },
+  "costs": {
+    "primary": {
+      "type_id": 94,
+      "value": 4
+    },
+    "secondary": {
+      "type_id": 0,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": 25,
+    "effect_yalms": 5,
+    "cast_type": 2
+  },
+  "targeting": {
+    "self": false,
+    "party": false,
+    "alliance": false,
+    "hostile": true,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 7,
+    "behavior_type": 0,
+    "class_job_category_id": 197,
+    "source_class_job_id": 0,
+    "is_role_action": false,
+    "is_player_action": false,
+    "is_derived_action": true,
+    "equivalence_group": 0
+  }
+}

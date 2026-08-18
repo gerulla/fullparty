@@ -1,0 +1,94 @@
+{
+  "kind": "ability",
+  "id": 16493,
+  "name": "Bunshin",
+  "description": "Vous octroie 5 degrés de Bunshin.\nDurée : 30s\nÀ chaque fois que vous utilisez une technique d'arme, votre ombre apparaît pour asséner un coup à votre cible et vous perdez un degré de Bunshin.\nLa puissance est fixe et varie selon le type de technique d'arme :\nAttaque de mêlée : 160\nAttaque à distance : 160\nAttaque de zone : 80\nLes attaques de votre ombre ne génèrent aucun bonus de combo, mais votre Jauge de Ninki augmente de 5 chaque fois qu'une de ses attaques touche.\nEffet additionnel : vous octroie Kamaitachi fantôme préparé.\nDurée : 45s\nCoût Jauge de Ninki : 50",
+  "description_macro": "Vous octroie 5 degrés de <colortype(500)><edgecolortype(501)>Bunshin<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 30s<br>À chaque fois que vous utilisez une technique d'arme, votre ombre apparaît pour asséner un coup à votre cible et vous perdez un degré de <colortype(500)><edgecolortype(501)>Bunshin<edgecolortype(0)><colortype(0)>.<br>La puissance est fixe et varie selon le type de technique d'arme<nbsp>:<br>Attaque de mêlée<nbsp>: 160<br>Attaque à distance<nbsp>: 160<br>Attaque de zone<nbsp>: 80<br>Les attaques de votre ombre ne génèrent aucun bonus de combo, mais votre <colortype(502)><edgecolortype(503)>Jauge de Ninki<edgecolortype(0)><colortype(0)> augmente de 5 chaque fois qu'une de ses attaques touche.<br><if([gnum68==30],<if([gnum72>=82],<colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> vous octroie <colortype(500)><edgecolortype(501)>Kamaitachi fantôme préparé<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 45s<br>,)>,)><colortype(506)><edgecolortype(507)>Coût Jauge de Ninki<nbsp>:<edgecolortype(0)><colortype(0)> 50",
+  "effects": [
+    "Vous octroie 5 degrés de Bunshin.",
+    "Durée : 30s",
+    "À chaque fois que vous utilisez une technique d'arme, votre ombre apparaît pour asséner un coup à votre cible et vous perdez un degré de Bunshin.",
+    "La puissance est fixe et varie selon le type de technique d'arme :",
+    "Attaque de mêlée : 160",
+    "Attaque à distance : 160",
+    "Attaque de zone : 80",
+    "Les attaques de votre ombre ne génèrent aucun bonus de combo, mais votre Jauge de Ninki augmente de 5 chaque fois qu'une de ses attaques touche.",
+    "Effet additionnel : vous octroie Kamaitachi fantôme préparé.",
+    "Durée : 45s",
+    "Coût Jauge de Ninki : 50"
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 30,
+    "name": "Ninja",
+    "abbreviation": "NIN"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 80,
+  "icon": {
+    "id": 2927,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 4,
+    "name": "Aptitude"
+  },
+  "attack_type": {
+    "id": 0,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 90,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 15,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 27,
+      "value": 50
+    },
+    "secondary": {
+      "type_id": 0,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": 0,
+    "effect_yalms": 0,
+    "cast_type": 1
+  },
+  "targeting": {
+    "self": true,
+    "party": false,
+    "alliance": false,
+    "hostile": false,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 0,
+    "behavior_type": 0,
+    "class_job_category_id": 92,
+    "source_class_job_id": 30,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

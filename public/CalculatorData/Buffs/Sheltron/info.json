@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 1856,
+  "name": "Sheltron",
+  "description": "Damage taken is reduced.",
+  "effects": [
+    "Damage taken is reduced."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 212510,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": -10
+  },
+  "class_job_category_id": 20,
+  "source_abilities": [
+    {
+      "id": 3542,
+      "name": "Sheltron",
+      "description": "Reduces damage taken by 15%.\nDuration: 6s\nOath Gauge Cost: 50",
+      "description_macro": "Reduces damage taken by 15%.<br><colortype(504)><edgecolortype(505)>Duration:<edgecolortype(0)><colortype(0)> <if([gnum68==19],<if([gnum72>=74],6,4)>,4)>s<br><colortype(504)><edgecolortype(505)>Oath Gauge Cost:<edgecolortype(0)><colortype(0)> 50",
+      "unlock_level": 35,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Tank"
+      ],
+      "jobs": [
+        {
+          "id": 19,
+          "name": "Paladin",
+          "abbreviation": "PLD",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

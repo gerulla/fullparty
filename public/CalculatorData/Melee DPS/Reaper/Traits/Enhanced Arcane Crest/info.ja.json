@@ -1,0 +1,27 @@
+{
+  "kind": "trait",
+  "id": 385,
+  "name": "アルケインクレスト効果アップ",
+  "description": "自身と周囲15m以内のパーティメンバーに「活性のクレスト」を付与する。\n活性のクレスト効果：対象のＨＰを継続回復する。\n回復力：50\u3000効果時間：15秒\n発動条件：自身に付与された「守護のクレスト」がダメージを完全に吸収して消滅したとき。",
+  "description_macro": "自身と周囲15m以内のパーティメンバーに<colortype(500)><edgecolortype(501)>「活性のクレスト」<edgecolortype(0)><colortype(0)>を付与する。<br><colortype(504)><edgecolortype(505)>活性のクレスト効果：<edgecolortype(0)><colortype(0)>対象のＨＰを継続回復する。<br><colortype(504)><edgecolortype(505)>回復力：<edgecolortype(0)><colortype(0)>50\u3000<colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>15秒<br><colortype(504)><edgecolortype(505)>発動条件：<edgecolortype(0)><colortype(0)>自身に付与された<colortype(500)><edgecolortype(501)>「守護のクレスト」<edgecolortype(0)><colortype(0)>がダメージを完全に吸収して消滅したとき。",
+  "effects": [
+    "自身と周囲15m以内のパーティメンバーに「活性のクレスト」を付与する。",
+    "活性のクレスト効果：対象のＨＰを継続回復する。",
+    "回復力：50\u3000効果時間：15秒",
+    "発動条件：自身に付与された「守護のクレスト」がダメージを完全に吸収して消滅したとき。"
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 39,
+    "name": "リーパー",
+    "abbreviation": "RPR"
+  },
+  "unlock_level": 84,
+  "value": 0,
+  "icon": {
+    "id": 6407,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 180,
+  "source_class_job_id": 39
+}

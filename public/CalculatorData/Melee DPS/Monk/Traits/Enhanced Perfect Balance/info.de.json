@@ -1,0 +1,28 @@
+{
+  "kind": "trait",
+  "id": 433,
+  "name": "Verbesserte Improvisation",
+  "description": "Bei Ausführung einer Waffenfertigkeit, die die Opo-Opo-Form, die Coeurl-Form oder die Raptor-Form gewährt, öffnest du ein entsprechendes Chakra.\nFür Opo-Opo-Form: Chakra des Coeurls\nFür Raptor-Form: Chakra des Opo-Opos\nFür Coeurl-Form: Chakra des Raptors\nBedingung: Improvisation aktiv",
+  "description_macro": "Bei Ausführung einer Waf<->fen<->fer<->tig<->keit, die die <colortype(506)><edgecolortype(507)>Opo-Opo-Form<edgecolortype(0)><colortype(0)>, die <colortype(506)><edgecolortype(507)>Coeurl-Form<edgecolortype(0)><colortype(0)> oder die <colortype(506)><edgecolortype(507)>Raptor-Form<edgecolortype(0)><colortype(0)> gewährt, öffnest du ein entsprechendes Chakra.<br>Für Opo-Opo-Form: <colortype(506)><edgecolortype(507)>Chakra des Coeurls<edgecolortype(0)><colortype(0)><br>Für Raptor-Form: <colortype(506)><edgecolortype(507)>Chakra des Opo-Opos<edgecolortype(0)><colortype(0)><br>Für Coeurl-Form: <colortype(506)><edgecolortype(507)>Chakra des Raptors<edgecolortype(0)><colortype(0)><br>Bedingung: <colortype(506)><edgecolortype(507)>Improvisation<edgecolortype(0)><colortype(0)> aktiv",
+  "effects": [
+    "Bei Ausführung einer Waffenfertigkeit, die die Opo-Opo-Form, die Coeurl-Form oder die Raptor-Form gewährt, öffnest du ein entsprechendes Chakra.",
+    "Für Opo-Opo-Form: Chakra des Coeurls",
+    "Für Raptor-Form: Chakra des Opo-Opos",
+    "Für Coeurl-Form: Chakra des Raptors",
+    "Bedingung: Improvisation aktiv"
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 20,
+    "name": "Mönch",
+    "abbreviation": "MÖN"
+  },
+  "unlock_level": 60,
+  "value": 0,
+  "icon": {
+    "id": 5246,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 21,
+  "source_class_job_id": 20
+}

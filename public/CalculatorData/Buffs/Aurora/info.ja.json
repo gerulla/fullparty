@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 1835,
+  "name": "オーロラ",
+  "description": "連続してＨＰが回復している状態。",
+  "effects": [
+    "連続してＨＰが回復している状態。"
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 213605,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 5,
+  "parameter": {
+    "effect": 0,
+    "modifier": 10
+  },
+  "class_job_category_id": 149,
+  "source_abilities": [
+    {
+      "id": 16151,
+      "name": "オーロラ",
+      "description": "対象のＨＰを継続回復する。\u3000回復力：300\u3000効果時間：18秒\n最大チャージ数：2",
+      "description_macro": "対象のＨＰを継続回復する。\u3000<colortype(504)><edgecolortype(505)>回復力：<edgecolortype(0)><colortype(0)>300\u3000<colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>18秒<if([gnum68==37],<if([gnum72>=84],<br><colortype(504)><edgecolortype(505)>最大チャージ数：<edgecolortype(0)><colortype(0)>2,)>,)>",
+      "unlock_level": 45,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Tank"
+      ],
+      "jobs": [
+        {
+          "id": 37,
+          "name": "ガンブレイカー",
+          "abbreviation": "GNB",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

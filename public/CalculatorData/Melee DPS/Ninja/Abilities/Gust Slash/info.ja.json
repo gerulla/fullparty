@@ -1,0 +1,86 @@
+{
+  "kind": "ability",
+  "id": 2242,
+  "name": "風断ち",
+  "description": "対象に物理攻撃。\u3000威力：240\nコンボ条件：双刃旋\u3000コンボ時威力：400\nコンボボーナス：「忍気」を5上昇させる。",
+  "description_macro": "対象に物理攻撃。\u3000<colortype(504)><edgecolortype(505)>威力：<edgecolortype(0)><colortype(0)><if([gnum68==30],<if([gnum72>=94],240,<if([gnum68==30],<if([gnum72>=84],160,<if([gnum68==30],<if([gnum72>=74],120,100)>,100)>)>,<if([gnum68==30],<if([gnum72>=74],120,100)>,100)>)>)>,<if([gnum68==30],<if([gnum72>=84],160,<if([gnum68==30],<if([gnum72>=74],120,100)>,100)>)>,<if([gnum68==30],<if([gnum72>=74],120,100)>,100)>)>)><br><colortype(504)><edgecolortype(505)>コンボ条件：<edgecolortype(0)><colortype(0)>双刃旋\u3000<colortype(504)><edgecolortype(505)>コンボ時威力：<edgecolortype(0)><colortype(0)><if([gnum68==30],<if([gnum72>=94],400,<if([gnum68==30],<if([gnum72>=84],320,<if([gnum68==30],<if([gnum72>=74],280,260)>,260)>)>,<if([gnum68==30],<if([gnum72>=74],280,260)>,260)>)>)>,<if([gnum68==30],<if([gnum72>=84],320,<if([gnum68==30],<if([gnum72>=74],280,260)>,260)>)>,<if([gnum68==30],<if([gnum72>=74],280,260)>,260)>)>)><if([gnum68==30],<if([gnum72>=62],<br><colortype(504)><edgecolortype(505)>コンボボーナス：<edgecolortype(0)><colortype(0)><colortype(500)><edgecolortype(501)>「忍気」<edgecolortype(0)><colortype(0)>を5上昇させる。,)>,)>",
+  "effects": [
+    "対象に物理攻撃。\u3000威力：240",
+    "コンボ条件：双刃旋\u3000コンボ時威力：400",
+    "コンボボーナス：「忍気」を5上昇させる。"
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 30,
+    "name": "忍者",
+    "abbreviation": "NIN"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 4,
+  "icon": {
+    "id": 602,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 3,
+    "name": "ウェポンスキル"
+  },
+  "attack_type": {
+    "id": 4294967295,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 2.5,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 58,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 0,
+      "value": 0
+    },
+    "secondary": {
+      "type_id": 0,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": -1,
+    "effect_yalms": 0,
+    "cast_type": 1
+  },
+  "targeting": {
+    "self": false,
+    "party": false,
+    "alliance": false,
+    "hostile": true,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": 2240,
+    "preserves_combo": false
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 7,
+    "behavior_type": 0,
+    "class_job_category_id": 93,
+    "source_class_job_id": 29,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

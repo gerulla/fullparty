@@ -1,0 +1,71 @@
+{
+  "kind": "combat_status",
+  "id": 173,
+  "name": "Astral Fire",
+  "description": "Aetherial balance of mind and spirit is leaning astrally. Fire-aspected spells require more MP, but do more damage. Ice-aspected spells require less MP, but do less damage. MP regeneration has stopped.",
+  "effects": [
+    "Aetherial balance of mind and spirit is leaning astrally. Fire-aspected spells require more MP, but do more damage. Ice-aspected spells require less MP, but do less damage. MP regeneration has stopped."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 210463,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": true,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 141,
+      "name": "Fire",
+      "description": "Deals fire damage with a potency of 180.\nAdditional Effect: Grants Astral Fire or removes Umbral Ice\nAdditional Effect: 40% chance to grant Firestarter\nFirestarter Effect: Next Fire III will cost no MP and have no cast time",
+      "description_macro": "Deals fire damage with a potency of 180.<br><colortype(504)><edgecolortype(505)>Additional Effect:<edgecolortype(0)><colortype(0)> Grants <colortype(506)><edgecolortype(507)>Astral Fire<edgecolortype(0)><colortype(0)> or removes <colortype(506)><edgecolortype(507)>Umbral Ice<edgecolortype(0)><colortype(0)><br><if([gnum72>=42],<if([gnum68==7],<colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>40% chance to grant <colortype(506)><edgecolortype(507)>Firestarter<edgecolortype(0)><colortype(0)><br><colortype(504)><edgecolortype(505)>Firestarter Effect: <edgecolortype(0)><colortype(0)>Next <colortype(500)><edgecolortype(501)>Fire III<edgecolortype(0)><colortype(0)> will cost no MP and have no cast time,<if([gnum68==25],<colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>40% chance to grant <colortype(506)><edgecolortype(507)>Firestarter<edgecolortype(0)><colortype(0)><br><colortype(504)><edgecolortype(505)>Firestarter Effect: <edgecolortype(0)><colortype(0)>Next <colortype(500)><edgecolortype(501)>Fire III<edgecolortype(0)><colortype(0)> will cost no MP and have no cast time,)>)>,)>",
+      "unlock_level": 2,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Magical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 25,
+          "name": "Black Mage",
+          "abbreviation": "BLM",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 147,
+      "name": "Fire II",
+      "description": "Deals fire damage with a potency of 80 to target and all enemies nearby it.\nAdditional Effect: Grants Astral Fire III and removes Umbral Ice",
+      "description_macro": "Deals fire damage with a potency of 80 to target and all enemies nearby it.<br><colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)><if([gnum72>=35],<if([gnum68==7],Grants <colortype(506)><edgecolortype(507)>Astral Fire III<edgecolortype(0)><colortype(0)> and removes <colortype(506)><edgecolortype(507)>Umbral Ice<edgecolortype(0)><colortype(0)>,<if([gnum68==25],Grants <colortype(506)><edgecolortype(507)>Astral Fire III<edgecolortype(0)><colortype(0)> and removes <colortype(506)><edgecolortype(507)>Umbral Ice<edgecolortype(0)><colortype(0)>,Grants <colortype(506)><edgecolortype(507)>Astral Fire<edgecolortype(0)><colortype(0)> or removes <colortype(506)><edgecolortype(507)>Umbral Ice<edgecolortype(0)><colortype(0)>)>)>,Grants <colortype(506)><edgecolortype(507)>Astral Fire<edgecolortype(0)><colortype(0)> or removes <colortype(506)><edgecolortype(507)>Umbral Ice<edgecolortype(0)><colortype(0)>)>",
+      "unlock_level": 18,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Magical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 25,
+          "name": "Black Mage",
+          "abbreviation": "BLM",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

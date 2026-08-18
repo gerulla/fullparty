@@ -1,0 +1,51 @@
+{
+  "kind": "combat_status",
+  "id": 4277,
+  "name": "Vigilance",
+  "description": "Agression sera octroyé lors de l'entrée en combat.",
+  "effects": [
+    "Agression sera octroyé lors de l'entrée en combat."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 229932,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": true,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 41647,
+      "name": "Vigilance",
+      "description": "Vous octroie Vigilance.\nDurée : 20s\nCondition : hors combat.\nLorsque vous entrez en combat, Vigilance devient Agression.\nDurée : 20s\nAgression : augmente de 60% les chances de critiques.",
+      "description_macro": "Vous octroie <colortype(500)><edgecolortype(501)>Vigilance<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 20s<br><colortype(506)><edgecolortype(507)>Condition<nbsp>:<edgecolortype(0)><colortype(0)> hors combat.<br>Lorsque vous entrez en combat, <colortype(500)><edgecolortype(501)>Vigilance<edgecolortype(0)><colortype(0)> devient <colortype(500)><edgecolortype(501)>Agression<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 20s<br><colortype(506)><edgecolortype(507)>Agression<nbsp>:<edgecolortype(0)><colortype(0)> augmente de 60% les chances de critiques.",
+      "unlock_level": 0,
+      "relations": [
+        "granted_by_description",
+        "same_name"
+      ],
+      "roles": [
+        "Phantom Jobs"
+      ],
+      "jobs": [
+        {
+          "id": 12,
+          "name": "Phantom Voleur fantôme",
+          "abbreviation": "Voleur fant.",
+          "is_phantom": true
+        }
+      ]
+    }
+  ]
+}

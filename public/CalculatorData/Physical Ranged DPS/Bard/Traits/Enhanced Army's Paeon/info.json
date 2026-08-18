@@ -1,0 +1,32 @@
+{
+  "kind": "trait",
+  "id": 286,
+  "name": "Enhanced Army's Paeon",
+  "description": "While under the effect of Army's Paeon with at least one stack of Repertoire, singing Mage's Ballad or the Wanderer's Minuet will grant Army's Muse, reducing weaponskill cast time and recast time, spell cast time and recast time, and auto-attack delay.\nDuration: 10s\nAllowing the effect of Army's Paeon and accumulated stacks of Repertoire to expire without singing Mage's Ballad or the Wanderer's Minuet will grant Army's Ethos. \nDuration: 30s\nWhile under the effect of Army's Ethos, singing Mage's Ballad or the Wanderer's Minuet will grant Army's Muse. Both Army's Ethos and Army's Muse require stacks of Repertoire, the number of which will determine the potency of the latter.\n1 Repertoire:  1%\n2 Repertoire:  2%\n3 Repertoire:  4%\n4 Repertoire:  12%",
+  "description_macro": "While under the effect of <colortype(506)><edgecolortype(507)>Army's Paeon<edgecolortype(0)><colortype(0)> with at least one stack of <colortype(506)><edgecolortype(507)>Repertoire<edgecolortype(0)><colortype(0)>, singing <colortype(506)><edgecolortype(507)>Mage's Ballad<edgecolortype(0)><colortype(0)> or the <colortype(506)><edgecolortype(507)>Wanderer's Minuet<edgecolortype(0)><colortype(0)> will grant <colortype(506)><edgecolortype(507)>Army's Muse<edgecolortype(0)><colortype(0)>, reducing weaponskill cast time and recast time, spell cast time and recast time, and auto-attack delay.<br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>10s<br>Allowing the effect of <colortype(506)><edgecolortype(507)>Army's Paeon<edgecolortype(0)><colortype(0)> and accumulated stacks of <colortype(506)><edgecolortype(507)>Repertoire<edgecolortype(0)><colortype(0)> to expire without singing <colortype(506)><edgecolortype(507)>Mage's Ballad<edgecolortype(0)><colortype(0)> or the <colortype(506)><edgecolortype(507)>Wanderer's Minuet<edgecolortype(0)><colortype(0)> will grant <colortype(506)><edgecolortype(507)>Army's Ethos<edgecolortype(0)><colortype(0)>. <br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>30s<br>While under the effect of <colortype(506)><edgecolortype(507)>Army's Ethos<edgecolortype(0)><colortype(0)>, singing <colortype(506)><edgecolortype(507)>Mage's Ballad<edgecolortype(0)><colortype(0)> or the <colortype(506)><edgecolortype(507)>Wanderer's Minuet<edgecolortype(0)><colortype(0)> will grant <colortype(506)><edgecolortype(507)>Army's Muse<edgecolortype(0)><colortype(0)>. Both <colortype(506)><edgecolortype(507)>Army's Ethos<edgecolortype(0)><colortype(0)> and <colortype(506)><edgecolortype(507)>Army's Muse<edgecolortype(0)><colortype(0)> require stacks of <colortype(506)><edgecolortype(507)>Repertoire<edgecolortype(0)><colortype(0)>, the number of which will determine the potency of the latter.<br><colortype(504)><edgecolortype(505)>1 Repertoire: <edgecolortype(0)><colortype(0)> 1%<br><colortype(504)><edgecolortype(505)>2 Repertoire: <edgecolortype(0)><colortype(0)> 2%<br><colortype(504)><edgecolortype(505)>3 Repertoire: <edgecolortype(0)><colortype(0)> 4%<br><colortype(504)><edgecolortype(505)>4 Repertoire: <edgecolortype(0)><colortype(0)> 12%",
+  "effects": [
+    "While under the effect of Army's Paeon with at least one stack of Repertoire, singing Mage's Ballad or the Wanderer's Minuet will grant Army's Muse, reducing weaponskill cast time and recast time, spell cast time and recast time, and auto-attack delay.",
+    "Duration: 10s",
+    "Allowing the effect of Army's Paeon and accumulated stacks of Repertoire to expire without singing Mage's Ballad or the Wanderer's Minuet will grant Army's Ethos.",
+    "Duration: 30s",
+    "While under the effect of Army's Ethos, singing Mage's Ballad or the Wanderer's Minuet will grant Army's Muse. Both Army's Ethos and Army's Muse require stacks of Repertoire, the number of which will determine the potency of the latter.",
+    "1 Repertoire:  1%",
+    "2 Repertoire:  2%",
+    "3 Repertoire:  4%",
+    "4 Repertoire:  12%"
+  ],
+  "role": "Physical Ranged DPS",
+  "job": {
+    "id": 23,
+    "name": "Bard",
+    "abbreviation": "BRD"
+  },
+  "unlock_level": 78,
+  "value": 0,
+  "icon": {
+    "id": 5314,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 24,
+  "source_class_job_id": 23
+}

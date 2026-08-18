@@ -1,0 +1,90 @@
+{
+  "kind": "ability",
+  "id": 25862,
+  "name": "Tintinnabule",
+  "description": "Place un tintinnabule à l'endroit ciblé et vous octroie 5 degrés de Tintinnabule.\nDurée : 20s\nChaque fois que vous recevez des dégâts, un degré est consommé, et le tintinnabule vous soigne vous ainsi que tous vos équipiers dans un rayon de 20 yalms.\nPuissance : 400\nPas plus d'un degré ne peut être consommé par seconde.\nLorsque le tintinnabule disparaît ou qu'il est relancé une seconde fois, il consomme tous les degrés restants et vous soigne, ainsi que les équipiers alentour.\nPuissance : 200 par degré restant.",
+  "description_macro": "Place un tintinnabule à l'endroit ciblé et vous octroie 5 degrés de <colortype(500)><edgecolortype(501)>Tintinnabule<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 20s<br>Chaque fois que vous recevez des dégâts, un degré est consommé, et le tintinnabule vous soigne vous ainsi que tous vos équipiers dans un rayon de 20 yalms.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> 400<br>Pas plus d'un degré ne peut être consommé par seconde.<br>Lorsque le tintinnabule disparaît ou qu'il est relancé une seconde fois, il consomme tous les degrés restants et vous soigne, ainsi que les équipiers alentour.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> 200 par degré restant.",
+  "effects": [
+    "Place un tintinnabule à l'endroit ciblé et vous octroie 5 degrés de Tintinnabule.",
+    "Durée : 20s",
+    "Chaque fois que vous recevez des dégâts, un degré est consommé, et le tintinnabule vous soigne vous ainsi que tous vos équipiers dans un rayon de 20 yalms.",
+    "Puissance : 400",
+    "Pas plus d'un degré ne peut être consommé par seconde.",
+    "Lorsque le tintinnabule disparaît ou qu'il est relancé une seconde fois, il consomme tous les degrés restants et vous soigne, ainsi que les équipiers alentour.",
+    "Puissance : 200 par degré restant."
+  ],
+  "role": "Healer",
+  "job": {
+    "id": 24,
+    "name": "Mage Blanc",
+    "abbreviation": "MBL"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 90,
+  "icon": {
+    "id": 2649,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 4,
+    "name": "Aptitude"
+  },
+  "attack_type": {
+    "id": 0,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 180,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 23,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 0,
+      "value": 0
+    },
+    "secondary": {
+      "type_id": 0,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": 30,
+    "effect_yalms": 1,
+    "cast_type": 7
+  },
+  "targeting": {
+    "self": false,
+    "party": false,
+    "alliance": false,
+    "hostile": false,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": true,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 0,
+    "behavior_type": 0,
+    "class_job_category_id": 25,
+    "source_class_job_id": 24,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

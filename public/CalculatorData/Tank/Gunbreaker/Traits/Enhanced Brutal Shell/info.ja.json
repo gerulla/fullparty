@@ -1,0 +1,26 @@
+{
+  "kind": "trait",
+  "id": 258,
+  "name": "ブルータルシェル効果アップ",
+  "description": "自身に一定量のダメージを防ぐバリア「ブルータルシェル」が付与される。\n効果時間：30秒\n発動条件：ブルータルシェルのコンボ成功時",
+  "description_macro": "自身に一定量のダメージを防ぐバリア<colortype(500)><edgecolortype(501)>「ブルータルシェル」<edgecolortype(0)><colortype(0)>が付与される。<br><colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>30秒<br><colortype(504)><edgecolortype(505)>発動条件：<edgecolortype(0)><colortype(0)>ブルータルシェルのコンボ成功時",
+  "effects": [
+    "自身に一定量のダメージを防ぐバリア「ブルータルシェル」が付与される。",
+    "効果時間：30秒",
+    "発動条件：ブルータルシェルのコンボ成功時"
+  ],
+  "role": "Tank",
+  "job": {
+    "id": 37,
+    "name": "ガンブレイカー",
+    "abbreviation": "GNB"
+  },
+  "unlock_level": 52,
+  "value": 0,
+  "icon": {
+    "id": 6302,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 149,
+  "source_class_job_id": 37
+}

@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 3205,
+  "name": "Plentiful Harvest",
+  "description": "Limit gauge is gradually filling.",
+  "effects": [
+    "Limit gauge is gradually filling."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 214956,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": true,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 100
+  },
+  "class_job_category_id": 180,
+  "source_abilities": [
+    {
+      "id": 24385,
+      "name": "Plentiful Harvest",
+      "description": "Delivers an attack to all enemies in a straight line before you with a potency of 720 for the first enemy, and 20% less for all remaining enemies.\nImmortal Sacrifice Cost: 1 stack\nPotency increases up to 1,000 as stacks of Immortal Sacrifice exceed minimum cost.\nAdditional Effect: Grants Ideal Host\nDuration: 30s\nAdditional Effect: Grants Perfectio Occulta\nPerfectio Occulta Effect: Grants Perfectio Parata upon executing Communio\nDuration: 30s\nCannot be executed while under the effect of Bloodsown Circle.\nConsumes all stacks of Immortal Sacrifice upon execution.",
+      "description_macro": "Delivers an attack to all enemies in a straight line before you with a potency of 720 for the first enemy, and 20% less for all remaining enemies.<br><colortype(504)><edgecolortype(505)>Immortal Sacrifice Cost: <edgecolortype(0)><colortype(0)>1 stack<br>Potency increases up to 1,000 as stacks of <colortype(506)><edgecolortype(507)>Immortal Sacrifice<edgecolortype(0)><colortype(0)> exceed minimum cost.<br><colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>Grants <colortype(506)><edgecolortype(507)>Ideal Host<edgecolortype(0)><colortype(0)><br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>30s<br><if([gnum68==39],<if([gnum72>=100],<colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>Grants <colortype(506)><edgecolortype(507)>Perfectio Occulta<edgecolortype(0)><colortype(0)><br><colortype(504)><edgecolortype(505)>Perfectio Occulta Effect: <edgecolortype(0)><colortype(0)>Grants <colortype(506)><edgecolortype(507)>Perfectio Parata<edgecolortype(0)><colortype(0)> upon executing <colortype(500)><edgecolortype(501)>Communio<edgecolortype(0)><colortype(0)><br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>30s<br>,)>,)>Cannot be executed while under the effect of <colortype(506)><edgecolortype(507)>Bloodsown Circle<edgecolortype(0)><colortype(0)>.<br>Consumes all stacks of <colortype(506)><edgecolortype(507)>Immortal Sacrifice<edgecolortype(0)><colortype(0)> upon execution.",
+      "unlock_level": 88,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 39,
+          "name": "Reaper",
+          "abbreviation": "RPR",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

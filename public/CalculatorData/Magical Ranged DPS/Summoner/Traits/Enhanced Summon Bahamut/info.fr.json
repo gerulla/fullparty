@@ -1,0 +1,25 @@
+{
+  "kind": "trait",
+  "id": 502,
+  "name": "Invocation Bahamut améliorée",
+  "description": "Remplace Invocation Bahamut par Invocation Phénix.\nCondition : après que l'invocation de Demi-Bahamut a pris fin.",
+  "description_macro": "Remplace <colortype(500)><edgecolortype(501)>Invocation Bahamut<edgecolortype(0)><colortype(0)> par <colortype(500)><edgecolortype(501)>Invocation Phénix<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Condition<nbsp>:<edgecolortype(0)><colortype(0)> après que l'invocation de Demi-Bahamut a pris fin.",
+  "effects": [
+    "Remplace Invocation Bahamut par Invocation Phénix.",
+    "Condition : après que l'invocation de Demi-Bahamut a pris fin."
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 27,
+    "name": "Invocateur",
+    "abbreviation": "INV"
+  },
+  "unlock_level": 80,
+  "value": 0,
+  "icon": {
+    "id": 5696,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 28,
+  "source_class_job_id": 27
+}

@@ -1,0 +1,25 @@
+{
+  "kind": "trait",
+  "id": 426,
+  "name": "Verbesserte Triggerfolge",
+  "description": "Erfolgreiche Ausführung von Explosiver Stoß gewährt dir Knallender Stoß, wodurch sich Triggerfolge zu Überschall ändert.\nDauer: 10 Sekunden",
+  "description_macro": "Erfolgreiche Ausführung von <colortype(502)><edgecolortype(503)>Explosiver Stoß<edgecolortype(0)><colortype(0)> gewährt dir <colortype(506)><edgecolortype(507)>Knallender Stoß<edgecolortype(0)><colortype(0)>, wodurch sich <colortype(502)><edgecolortype(503)>Triggerfolge<edgecolortype(0)><colortype(0)> zu <colortype(502)><edgecolortype(503)>Überschall<edgecolortype(0)><colortype(0)> ändert.<br>Dauer: 10 Sekunden",
+  "effects": [
+    "Erfolgreiche Ausführung von Explosiver Stoß gewährt dir Knallender Stoß, wodurch sich Triggerfolge zu Überschall ändert.",
+    "Dauer: 10 Sekunden"
+  ],
+  "role": "Tank",
+  "job": {
+    "id": 37,
+    "name": "Revolverklinge",
+    "abbreviation": "REV"
+  },
+  "unlock_level": 86,
+  "value": 0,
+  "icon": {
+    "id": 6306,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 149,
+  "source_class_job_id": 37
+}

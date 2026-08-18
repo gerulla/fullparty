@@ -1,0 +1,71 @@
+{
+  "kind": "combat_status",
+  "id": 2724,
+  "name": "Ifrits Gunst",
+  "description": "Zinnober-Zyklon kann ausgeführt werden.",
+  "effects": [
+    "Zinnober-Zyklon kann ausgeführt werden."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 212696,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": true,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 28,
+  "source_abilities": [
+    {
+      "id": 25805,
+      "name": "Ifrit-Beschwörung",
+      "description": "Du rufst dein Ifrit-Egi an deine Seite und lässt es Inferno ausführen, was es zum Ziel schnellen und eine feuerbasierte magische Attacke auf alle Gegner in einem Fächer von 5y ausführen lässt.\nAttacke-Wert: 600\nAttacke-Wert verringert sich ab dem zweiten Gegner um 50 %.\nZusatzeffekt: 2 Stapel Feueräther\nDauer: 30 Sekunden\nEffekt von Feueräther: Juwelenschein und Edelglanz werden feuerbasiert.\nZusatzeffekt: Ifrits Gunst\nDieser Effekt wird aufgehoben\\Bedingung: Rubin-Arkanum aktiv und Karfunkel bereits gerufen.\nDein Karfunkel verschwindet während der Beschwörung von Ifrit, kehrt danach aber an deine Seite zurück.",
+      "description_macro": "Du rufst dein Ifrit-Egi an deine Seite und lässt es <if([gnum68==27],<if([gnum72>=50],<colortype(502)><edgecolortype(503)>Inferno<edgecolortype(0)><colortype(0)>,<colortype(502)><edgecolortype(503)>Brennender Schlag<edgecolortype(0)><colortype(0)>)>,<colortype(502)><edgecolortype(503)>Brennender Schlag<edgecolortype(0)><colortype(0)>)> ausführen, was <if([gnum68==27],<if([gnum72>=50],es zum Ziel schnellen und eine feuerbasierte magische Attacke auf alle Gegner in einem Fächer von 5y ausführen lässt.<br>Attacke-Wert: 600<br>Attacke-Wert verringert sich ab dem zweiten Gegner um 50<nbsp>%.<br>,es zum Ziel schnellen lässt und ihm feuerbasierten magischen Schaden zufügt.<br>Attacke-Wert: 500<br>)>,es zum Ziel schnellen lässt und ihm feuerbasierten magischen Schaden zufügt.<br>Attacke-Wert: 500<br>)>Zusatzeffekt: 2 Stapel <colortype(506)><edgecolortype(507)>Feueräther<edgecolortype(0)><colortype(0)><br>Dauer: 30 Sekunden<br>Effekt von <colortype(506)><edgecolortype(507)>Feueräther<edgecolortype(0)><colortype(0)>: <colortype(502)><edgecolortype(503)>Juwelenschein<edgecolortype(0)><colortype(0)> und <colortype(502)><edgecolortype(503)>Edelglanz<edgecolortype(0)><colortype(0)> werden feuerbasiert.<br><if([gnum68==27],<if([gnum72>=86],Zusatzeffekt: <colortype(506)><edgecolortype(507)>Ifrits Gunst<edgecolortype(0)><colortype(0)><br>Dieser Effekt wird aufgehoben\\, sobald du ein anderes <colortype(500)><edgecolortype(501)>Beschwörungs<edgecolortype(0)><colortype(0)>-Kommando ausführst.<br>,)>,)>Bedingung: <colortype(506)><edgecolortype(507)>Rubin-Arkanum<edgecolortype(0)><colortype(0)> aktiv und Karfunkel bereits gerufen.<br>Dein Karfunkel verschwindet während der Beschwörung von Ifrit, kehrt danach aber an deine Seite zurück.",
+      "unlock_level": 30,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Magical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 27,
+          "name": "Beschwörer",
+          "abbreviation": "BSW",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 25838,
+      "name": "Rubin-Ifrit-Beschwörung",
+      "description": "Du rufst Rubin-Ifrit an deine Seite und lässt ihn Inferno ausführen, was dem Ziel und allen ihn umstehenden Gegnern innerhalb von 5y feuerbasierten magischen Schaden zufügt.\nAttacke-Wert: 800\nAttacke-Wert verringert sich ab dem zweiten Gegner um 50 %.\nZusatzeffekt: 2 Stapel Feueräther\nDauer: 30 Sekunden\nEffekt von Feueräther: Juwelenschein und Edelglanz werden feuerbasiert.\nZusatzeffekt: Gewährt dir Ifrits Gunst.\nDieser Effekt wird aufgehoben\\Bedingung: Rubin-Arkanum aktiv und Karfunkel bereits gerufen.\nDein Karfunkel verschwindet während der Beschwörung von Rubin-Ifrit, kehrt danach aber an deine Seite zurück.",
+      "description_macro": "Du rufst Rubin-Ifrit an deine Seite und lässt ihn <colortype(502)><edgecolortype(503)>Inferno<edgecolortype(0)><colortype(0)> ausführen, was dem Ziel und allen ihn umstehenden Gegnern innerhalb von 5y feuerbasierten magischen Schaden zufügt.<br>Attacke-Wert: <if([gnum68==27],<if([gnum72>=94],800,750)>,750)><br>Attacke-Wert verringert sich ab dem zweiten Gegner um 50<nbsp>%.<br>Zusatzeffekt: 2 Stapel <colortype(506)><edgecolortype(507)>Feueräther<edgecolortype(0)><colortype(0)><br>Dauer: 30 Sekunden<br>Effekt von <colortype(506)><edgecolortype(507)>Feueräther<edgecolortype(0)><colortype(0)>: <colortype(502)><edgecolortype(503)>Juwelenschein<edgecolortype(0)><colortype(0)> und <colortype(502)><edgecolortype(503)>Edelglanz<edgecolortype(0)><colortype(0)> werden feuerbasiert.<br><if([gnum68==27],<if([gnum72>=86],Zusatzeffekt: Gewährt dir <colortype(506)><edgecolortype(507)>Ifrits Gunst<edgecolortype(0)><colortype(0)>.<br>Dieser Effekt wird aufgehoben\\, sobald du ein anderes <colortype(500)><edgecolortype(501)>Beschwörungs<edgecolortype(0)><colortype(0)>-Kommando ausführst.<br>,)>,)>Bedingung: <colortype(506)><edgecolortype(507)>Rubin-Arkanum<edgecolortype(0)><colortype(0)> aktiv und Karfunkel bereits gerufen.<br>Dein Karfunkel verschwindet während der Beschwörung von Rubin-Ifrit, kehrt danach aber an deine Seite zurück.",
+      "unlock_level": 90,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Magical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 27,
+          "name": "Beschwörer",
+          "abbreviation": "BSW",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

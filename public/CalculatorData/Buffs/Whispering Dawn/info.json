@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 315,
+  "name": "Whispering Dawn",
+  "description": "Regenerating HP over time.",
+  "effects": [
+    "Regenerating HP over time."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 212826,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 5,
+  "parameter": {
+    "effect": 0,
+    "modifier": 10
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 16537,
+      "name": "Whispering Dawn",
+      "description": "Orders faerie to execute Whispering Dawn.If Seraph is summoned\\\nWhispering Dawn/Angel's Whisper Effect: Gradually restores the HP of all nearby party members\nCure Potency: 80\nDuration: 21s",
+      "description_macro": "Orders faerie to execute <colortype(500)><edgecolortype(501)>Whispering Dawn<edgecolortype(0)><colortype(0)>.<if([gnum68==28],<if([gnum72>=80], If <colortype(506)><edgecolortype(507)>Seraph<edgecolortype(0)><colortype(0)> is summoned\\, orders her to execute <colortype(500)><edgecolortype(501)>Angel's Whisper<edgecolortype(0)><colortype(0)>.,)>,)><br><colortype(504)><edgecolortype(505)>Whispering Dawn<if([gnum68==28],<if([gnum72>=80],/Angel's Whisper,)>,)> Effect: <edgecolortype(0)><colortype(0)>Gradually restores the HP of all nearby party members<br><colortype(504)><edgecolortype(505)>Cure Potency: <edgecolortype(0)><colortype(0)>80<br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>21s",
+      "unlock_level": 20,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Healer"
+      ],
+      "jobs": [
+        {
+          "id": 28,
+          "name": "Scholar",
+          "abbreviation": "SCH",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

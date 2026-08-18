@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 3851,
+  "name": "天理人道実行可",
+  "description": "天理人道を実行できる状態。",
+  "effects": [
+    "天理人道を実行できる状態。"
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 212922,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 92,
+  "source_abilities": [
+    {
+      "id": 7403,
+      "name": "天地人",
+      "description": "一定時間、「天の印」「地の印」「人の印」が忍術アクションに変化する。\n忍術アクションを実行するたびに別の忍術アクションに変化し、最大3種類の忍術を実行することができる。\u3000効果時間：6秒\n効果時間中は忍術以外のアクションを実行できない。\n追加効果：自身に「天理人道実行可」を付与する。\n効果時間：30秒\n発動条件：「活殺自在」非効果中",
+      "description_macro": "一定時間、<colortype(500)><edgecolortype(501)>「天の印」「地の印」「人の印」<edgecolortype(0)><colortype(0)>が忍術アクションに変化する。<br>忍術アクションを実行するたびに別の忍術アクションに変化し、最大3種類の忍術を実行することができる。\u3000<colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>6秒<br>効果時間中は忍術以外のアクションを実行できない。<br><if([gnum68==30],<if([gnum72>=100],<colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)>自身に<colortype(500)><edgecolortype(501)>「天理人道実行可」<edgecolortype(0)><colortype(0)>を付与する。<br><colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>30秒<br>,)>,)><colortype(504)><edgecolortype(505)>発動条件：<edgecolortype(0)><colortype(0)><colortype(500)><edgecolortype(501)>「活殺自在」<edgecolortype(0)><colortype(0)>非効果中",
+      "unlock_level": 70,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 30,
+          "name": "忍者",
+          "abbreviation": "NIN",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

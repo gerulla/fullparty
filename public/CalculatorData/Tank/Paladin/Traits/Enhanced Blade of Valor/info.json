@@ -1,0 +1,26 @@
+{
+  "kind": "trait",
+  "id": 566,
+  "name": "Enhanced Blade of Valor",
+  "description": "Grants the effect of Blade of Honor Ready upon landing Blade of Valor.\nDuration: 30s\nImperator changes to Blade of Honor while under the effect of Blade of Honor Ready.",
+  "description_macro": "Grants the effect of <colortype(506)><edgecolortype(507)>Blade of Honor Ready<edgecolortype(0)><colortype(0)> upon landing <colortype(500)><edgecolortype(501)>Blade of Valor<edgecolortype(0)><colortype(0)>.<br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>30s<br><colortype(500)><edgecolortype(501)>Imperator<edgecolortype(0)><colortype(0)> changes to <colortype(500)><edgecolortype(501)>Blade of Honor<edgecolortype(0)><colortype(0)> while under the effect of <colortype(506)><edgecolortype(507)>Blade of Honor Ready<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Grants the effect of Blade of Honor Ready upon landing Blade of Valor.",
+    "Duration: 30s",
+    "Imperator changes to Blade of Honor while under the effect of Blade of Honor Ready."
+  ],
+  "role": "Tank",
+  "job": {
+    "id": 19,
+    "name": "Paladin",
+    "abbreviation": "PLD"
+  },
+  "unlock_level": 100,
+  "value": 0,
+  "icon": {
+    "id": 5224,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 20,
+  "source_class_job_id": 19
+}

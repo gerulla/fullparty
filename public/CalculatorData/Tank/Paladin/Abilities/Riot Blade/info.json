@@ -1,0 +1,87 @@
+{
+  "kind": "ability",
+  "id": 15,
+  "name": "Riot Blade",
+  "description": "Delivers an attack with a potency of 170.\nCombo Action: Fast Blade\nCombo Potency: 330\nCombo Bonus: Restores MP",
+  "description_macro": "Delivers an attack with a potency of <if([gnum68==19],<if([gnum72>=94],170,<if([gnum68==19],<if([gnum72>=84],140,100)>,100)>)>,<if([gnum68==19],<if([gnum72>=84],140,100)>,100)>)>.<br><colortype(504)><edgecolortype(505)>Combo Action:<edgecolortype(0)><colortype(0)> <colortype(500)><edgecolortype(501)>Fast Blade<edgecolortype(0)><colortype(0)><br><colortype(504)><edgecolortype(505)>Combo Potency:<edgecolortype(0)><colortype(0)> <if([gnum68==19],<if([gnum72>=94],330,<if([gnum68==19],<if([gnum72>=84],300,260)>,260)>)>,<if([gnum68==19],<if([gnum72>=84],300,260)>,260)>)><if([gnum68==19],<if([gnum72>=58],<br><colortype(504)><edgecolortype(505)>Combo Bonus:<edgecolortype(0)><colortype(0)> Restores MP,)>,)>",
+  "effects": [
+    "Delivers an attack with a potency of 170.",
+    "Combo Action: Fast Blade",
+    "Combo Potency: 330",
+    "Combo Bonus: Restores MP"
+  ],
+  "role": "Tank",
+  "job": {
+    "id": 19,
+    "name": "Paladin",
+    "abbreviation": "PLD"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 4,
+  "icon": {
+    "id": 156,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 3,
+    "name": "Weaponskill"
+  },
+  "attack_type": {
+    "id": 4294967295,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 2.5,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 58,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 0,
+      "value": 0
+    },
+    "secondary": {
+      "type_id": 0,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": -1,
+    "effect_yalms": 0,
+    "cast_type": 1
+  },
+  "targeting": {
+    "self": false,
+    "party": false,
+    "alliance": false,
+    "hostile": true,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": 9,
+    "preserves_combo": false
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 7,
+    "behavior_type": 0,
+    "class_job_category_id": 38,
+    "source_class_job_id": 1,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

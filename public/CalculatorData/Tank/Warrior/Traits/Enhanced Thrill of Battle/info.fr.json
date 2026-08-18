@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 269,
+  "name": "Frisson de la bataille amélioré",
+  "description": "Octroie à Frisson de la bataille un effet augmentant de 20% les effets curatifs que vous recevez.",
+  "description_macro": "Octroie à <colortype(500)><edgecolortype(501)>Frisson de la bataille<edgecolortype(0)><colortype(0)> un effet augmentant de 20% les effets curatifs que vous recevez.",
+  "effects": [
+    "Octroie à Frisson de la bataille un effet augmentant de 20% les effets curatifs que vous recevez."
+  ],
+  "role": "Tank",
+  "job": {
+    "id": 21,
+    "name": "Guerrier",
+    "abbreviation": "GUE"
+  },
+  "unlock_level": 78,
+  "value": 0,
+  "icon": {
+    "id": 5258,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 22,
+  "source_class_job_id": 21
+}

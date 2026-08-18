@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 287,
+  "name": "Voix de l'âme",
+  "description": "Permet à votre Jauge de voix de l'âme de se remplir de 5 lorsque Inspiration poétique vous est octroyée.",
+  "description_macro": "Permet à votre <colortype(502)><edgecolortype(503)>Jauge de voix de l'âme<edgecolortype(0)><colortype(0)> de se remplir de 5 lorsque <colortype(500)><edgecolortype(501)>Inspiration poétique<edgecolortype(0)><colortype(0)> vous est octroyée.",
+  "effects": [
+    "Permet à votre Jauge de voix de l'âme de se remplir de 5 lorsque Inspiration poétique vous est octroyée."
+  ],
+  "role": "Physical Ranged DPS",
+  "job": {
+    "id": 23,
+    "name": "Barde",
+    "abbreviation": "BRD"
+  },
+  "unlock_level": 80,
+  "value": 0,
+  "icon": {
+    "id": 5315,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 24,
+  "source_class_job_id": 23
+}

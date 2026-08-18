@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 3003,
+  "name": "Holos",
+  "description": "Erlittener Schaden ist verringert.",
+  "effects": [
+    "Erlittener Schaden ist verringert."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 212971,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": -10
+  },
+  "class_job_category_id": 181,
+  "source_abilities": [
+    {
+      "id": 24310,
+      "name": "Holos",
+      "description": "Du regenerierst eigene LP und die von umstehenden Gruppenmitgliedern.\nHeilpotenzial: 300\nZusatzeffekt: Errichtet eine Barriere um die Ziele, die Schaden in der Höhe von 100 % der Heilwirkung absorbiert.\nDauer: 30 Sekunden\nZusatzeffekt: Erlittener Schaden von dir und umstehenden Gruppenmitgliedern ist um 10 % verringert.\nDauer: 20 Sekunden",
+      "description_macro": "Du regenerierst eigene LP und die von umstehenden Grup<->pen<->mit<->gliedern.<br>Heilpotenzial: 300<br>Zusatzeffekt: Errichtet eine Barriere um die Ziele, die Schaden in der Höhe von 100<nbsp>% der Heilwirkung absorbiert.<br>Dauer: 30 Sekunden<br>Zusatzeffekt: Erlittener Schaden von dir und umstehenden Grup<->pen<->mit<->gliedern ist um 10<nbsp>% verringert.<br>Dauer: 20 Sekunden",
+      "unlock_level": 76,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Healer"
+      ],
+      "jobs": [
+        {
+          "id": 40,
+          "name": "Weiser",
+          "abbreviation": "WEI",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

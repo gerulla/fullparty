@@ -1,0 +1,27 @@
+{
+  "kind": "trait",
+  "id": 596,
+  "name": "Verbesserte Völlerei",
+  "description": "Erfolgreiche Ausführung von Völlerei gewährt dir zwei Stapel Henkerssense, wodurch sich Richtpfahl, Galgen und Guillotine zu Henkerspfahl, Henkersgalgen und Henkersguillotine ändern.\nKann nicht zugleich mit Nichtssense aktiv sein.\nDer Effekt endet bei Ausführung einer Waffenfertigkeit oder eines Zaubers.\nDauer: 30 Sekunden",
+  "description_macro": "Erfolgreiche Ausführung von <colortype(502)><edgecolortype(503)>Völlerei<edgecolortype(0)><colortype(0)> gewährt dir zwei Stapel <colortype(506)><edgecolortype(507)>Henkerssense<edgecolortype(0)><colortype(0)>, wodurch sich <colortype(502)><edgecolortype(503)>Richtpfahl<edgecolortype(0)><colortype(0)>, <colortype(502)><edgecolortype(503)>Galgen<edgecolortype(0)><colortype(0)> und <colortype(502)><edgecolortype(503)>Guillotine<edgecolortype(0)><colortype(0)> zu <colortype(502)><edgecolortype(503)>Henkerspfahl<edgecolortype(0)><colortype(0)>, <colortype(502)><edgecolortype(503)>Henkersgalgen<edgecolortype(0)><colortype(0)> und <colortype(502)><edgecolortype(503)>Henkersguillotine<edgecolortype(0)><colortype(0)> ändern.<br>Kann nicht zugleich mit <colortype(500)><edgecolortype(501)>Nichtssense<edgecolortype(0)><colortype(0)> aktiv sein.<br>Der Effekt endet bei Ausführung einer Waf<->fen<->fer<->tig<->keit oder eines Zaubers.<br>Dauer: 30 Sekunden",
+  "effects": [
+    "Erfolgreiche Ausführung von Völlerei gewährt dir zwei Stapel Henkerssense, wodurch sich Richtpfahl, Galgen und Guillotine zu Henkerspfahl, Henkersgalgen und Henkersguillotine ändern.",
+    "Kann nicht zugleich mit Nichtssense aktiv sein.",
+    "Der Effekt endet bei Ausführung einer Waffenfertigkeit oder eines Zaubers.",
+    "Dauer: 30 Sekunden"
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 39,
+    "name": "Schnitter",
+    "abbreviation": "SNT"
+  },
+  "unlock_level": 96,
+  "value": 0,
+  "icon": {
+    "id": 6413,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 180,
+  "source_class_job_id": 39
+}

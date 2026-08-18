@@ -1,0 +1,95 @@
+{
+  "kind": "ability",
+  "id": 7399,
+  "name": "Piqué mirage",
+  "description": "Effectue une attaque physique sur la cible.\nPuissance : 380\nCondition : Piqué mirage préparé (Effet obtenu après avoir utilisé Saut ou Grand saut).",
+  "description_macro": "Effectue une attaque physique sur la cible.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> 380<br><colortype(506)><edgecolortype(507)>Condition<nbsp>:<edgecolortype(0)><colortype(0)> <colortype(500)><edgecolortype(501)>Piqué mirage préparé<edgecolortype(0)><colortype(0)> (Effet obtenu après avoir utilisé <if([gnum68==22],<if([gnum72>=74],Saut ou Grand saut,Saut)>,Saut)>).",
+  "effects": [
+    "Effectue une attaque physique sur la cible.",
+    "Puissance : 380",
+    "Condition : Piqué mirage préparé (Effet obtenu après avoir utilisé Saut ou Grand saut)."
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 22,
+    "name": "Chevalier Dragon",
+    "abbreviation": "DRG"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 68,
+  "icon": {
+    "id": 2588,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 4,
+    "name": "Aptitude"
+  },
+  "attack_type": {
+    "id": 4294967295,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 1,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 1,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 0,
+      "value": 0
+    },
+    "secondary": {
+      "type_id": 32,
+      "value": 1243
+    }
+  },
+  "range": {
+    "target_yalms": 20,
+    "effect_yalms": 0,
+    "cast_type": 1
+  },
+  "targeting": {
+    "self": false,
+    "party": false,
+    "alliance": false,
+    "hostile": true,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": {
+      "id": 13,
+      "status": {
+        "id": 1243,
+        "name": "Piqué mirage préparé",
+        "description": "Piqué mirage peut être utilisé.",
+        "icon_id": 212583,
+        "max_stacks": 0
+      }
+    }
+  },
+  "metadata": {
+    "aspect_id": 7,
+    "behavior_type": 0,
+    "class_job_category_id": 23,
+    "source_class_job_id": 22,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

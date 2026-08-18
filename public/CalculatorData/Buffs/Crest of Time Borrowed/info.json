@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 2596,
+  "name": "Crest of Time Borrowed",
+  "description": "A magicked barrier is nullifying damage.",
+  "effects": [
+    "A magicked barrier is nullifying damage."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 212934,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 30,
+  "parameter": {
+    "effect": 0,
+    "modifier": 100
+  },
+  "class_job_category_id": 180,
+  "source_abilities": [
+    {
+      "id": 24404,
+      "name": "Arcane Crest",
+      "description": "Grants Crest of Time Borrowed to self, creating a barrier that nullifies damage totaling up to 10% of maximum HP.\nDuration: 5s\nGrants Crest of Time Returned to self and nearby party members within a radius of 15 yalms when barrier is completely absorbed.\nCrest of Time Returned Effect: Gradually restores HP\nCure Potency: 50\nDuration: 15s",
+      "description_macro": "Grants <colortype(506)><edgecolortype(507)>Crest of Time Borrowed<edgecolortype(0)><colortype(0)> to self, creating a barrier that nullifies damage totaling up to 10% of maximum HP.<br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>5s<if([gnum68==39],<if([gnum72>=84],<br>Grants <colortype(506)><edgecolortype(507)>Crest of Time Returned<edgecolortype(0)><colortype(0)> to self and nearby party members within a radius of 15 yalms when barrier is completely absorbed.<br><colortype(504)><edgecolortype(505)>Crest of Time Returned Effect: <edgecolortype(0)><colortype(0)>Gradually restores HP<br><colortype(504)><edgecolortype(505)>Cure Potency: <edgecolortype(0)><colortype(0)>50<br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>15s,)>,)>",
+      "unlock_level": 40,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 39,
+          "name": "Reaper",
+          "abbreviation": "RPR",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "kind": "trait",
+  "id": 632,
+  "name": "Verbesserte Weissagung",
+  "description": "Erfolgreiche Ausführung von Weissagung gewährt Auge des Orakels.\nDauer: 30 Sekunden",
+  "description_macro": "Erfolgreiche Ausführung von <colortype(502)><edgecolortype(503)>Weissagung<edgecolortype(0)><colortype(0)> gewährt <colortype(506)><edgecolortype(507)>Auge des Orakels<edgecolortype(0)><colortype(0)>.<br>Dauer: 30 Sekunden",
+  "effects": [
+    "Erfolgreiche Ausführung von Weissagung gewährt Auge des Orakels.",
+    "Dauer: 30 Sekunden"
+  ],
+  "role": "Healer",
+  "job": {
+    "id": 33,
+    "name": "Astrologe",
+    "abbreviation": "AST"
+  },
+  "unlock_level": 92,
+  "value": 0,
+  "icon": {
+    "id": 6121,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 99,
+  "source_class_job_id": 33
+}

@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 74,
+  "name": "Sentinel",
+  "description": "Damage taken is reduced.",
+  "effects": [
+    "Damage taken is reduced."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 210151,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": -20
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 17,
+      "name": "Sentinel",
+      "description": "Reduces damage taken by 30%.\nDuration: 15s",
+      "description_macro": "Reduces damage taken by 30%.<br><colortype(504)><edgecolortype(505)>Duration:<edgecolortype(0)><colortype(0)> 15s",
+      "unlock_level": 38,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Tank"
+      ],
+      "jobs": [
+        {
+          "id": 19,
+          "name": "Paladin",
+          "abbreviation": "PLD",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

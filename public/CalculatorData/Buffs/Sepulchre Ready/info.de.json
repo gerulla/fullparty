@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 3828,
+  "name": "Heilige Grabstätte",
+  "description": "Heilige Grabstätte kann ausgeführt werden.",
+  "effects": [
+    "Heilige Grabstätte kann ausgeführt werden."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 212524,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 20,
+  "source_abilities": [
+    {
+      "id": 36918,
+      "name": "Anflehung",
+      "description": "Du führst eine physische Attacke aus.\nAttacke-Wert: 500\nZusatzeffekt: MP werden regeneriert.\nZusatzeffekt: Gewährt dir Heilige Grabstätte.\nDauer: 30 Sekunden\nBedingung: Gnadenerfüllt aktiv\nBei erfüllter Bedingung ändert sich Absolution zu diesem Kommando.\nKann nicht im Kommandomenü angelegt werden.",
+      "description_macro": "Du führst eine physische Attacke aus.<br>Attacke-Wert: <if([gnum68==19],<if([gnum72>=94],500,<if([gnum68==19],<if([gnum72>=84],420,380)>,380)>)>,<if([gnum68==19],<if([gnum72>=84],420,380)>,380)>)><br>Zusatzeffekt: MP werden regeneriert.<br>Zusatzeffekt: Gewährt dir <colortype(506)><edgecolortype(507)>Heilige Grabstätte<edgecolortype(0)><colortype(0)>.<br>Dauer: 30 Sekunden<br>Bedingung: <colortype(506)><edgecolortype(507)>Gnadenerfüllt<edgecolortype(0)><colortype(0)> aktiv<br>Bei erfüllter Bedingung ändert sich <colortype(502)><edgecolortype(503)>Absolution<edgecolortype(0)><colortype(0)> zu diesem Kommando.<br>Kann nicht im Kommandomenü angelegt werden.",
+      "unlock_level": 76,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Tank"
+      ],
+      "jobs": [
+        {
+          "id": 19,
+          "name": "Paladin",
+          "abbreviation": "PLD",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

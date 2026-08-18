@@ -1,0 +1,91 @@
+{
+  "kind": "ability",
+  "id": 46593,
+  "name": "Blazing Spellblade",
+  "description": "Delivers an attack with a potency of 200.\nHoned Spellblade Potency: 300\nPotency scales with item level.\nAdditional Effect: Increases target's damage taken by 5%\nDuration: 70s\nAdditional Effect: Increases damage dealt by 5%\nDuration: 70s\nShares a recast timer with Sundering Spellblade and Holy Spellblade.",
+  "description_macro": "Delivers an attack with a potency of 200.<br><colortype(504)><edgecolortype(505)>Honed Spellblade Potency: <edgecolortype(0)><colortype(0)>300<br>Potency scales with item level.<br><colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>Increases target's damage taken by 5%<br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>70s<br><colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>Increases damage dealt by 5%<br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>70s<br>Shares a recast timer with <colortype(500)><edgecolortype(501)>Sundering Spellblade<edgecolortype(0)><colortype(0)> and <colortype(500)><edgecolortype(501)>Holy Spellblade<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Delivers an attack with a potency of 200.",
+    "Honed Spellblade Potency: 300",
+    "Potency scales with item level.",
+    "Additional Effect: Increases target's damage taken by 5%",
+    "Duration: 70s",
+    "Additional Effect: Increases damage dealt by 5%",
+    "Duration: 70s",
+    "Shares a recast timer with Sundering Spellblade and Holy Spellblade."
+  ],
+  "role": "Phantom Jobs",
+  "job": {
+    "id": 13,
+    "name": "Phantom Mystic Knight",
+    "abbreviation": "Ph. Mystic Knight"
+  },
+  "is_phantom_action": true,
+  "unlock_level": 4,
+  "icon": {
+    "id": 64578,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 3,
+    "name": "Weaponskill"
+  },
+  "attack_type": {
+    "id": 1,
+    "name": "斬"
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 30,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 83,
+    "additional_cooldown_group": 58,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 0,
+      "value": 0
+    },
+    "secondary": {
+      "type_id": 0,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": 5,
+    "effect_yalms": 0,
+    "cast_type": 1
+  },
+  "targeting": {
+    "self": false,
+    "party": false,
+    "alliance": false,
+    "hostile": true,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 7,
+    "behavior_type": 0,
+    "class_job_category_id": 142,
+    "source_class_job_id": 4294967295,
+    "is_role_action": false,
+    "is_player_action": false,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

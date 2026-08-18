@@ -1,0 +1,33 @@
+{
+  "kind": "trait",
+  "id": 459,
+  "name": "Elementare Meisterschaft III",
+  "description": "Feura gewährt die Maximalstapelzahl von Lichtfeuer und Eisra gewährt die Maximalstapelzahl von Schatteneis.\nAußerdem erhöht sich die Maximalstapelzahl von sowohl Lichtfeuer als auch Schatteneis auf 3. Bei aktiver Maximalstapelzahl werden folgende Effekte gewährt:\nEffekt bei 3 Stapeln Lichtfeuer:\nAttacke-Werte von feuerbasierten Zaubern sind um 80 ％ erhöht.\nAttacke-Werte von eisbasierten Zaubern sind um 30 ％ verringert.\nDie Ausführungszeit von eisbasierten Zaubern ist halbiert.\nEffekt bei 3 Stapeln Schatteneis:\nDie Ausführung eines eisbasierten Zaubers regeneriert 10.000 MP.\nAttacke-Werte von feuerbasierten Zaubern sind um 30 ％ verringert.\nDie Ausführungszeit von feuerbasierten Zaubern ist halbiert.",
+  "description_macro": "<colortype(502)><edgecolortype(503)>Feura<edgecolortype(0)><colortype(0)> gewährt die Ma<->xi<->mal<->sta<->pel<->zahl von <colortype(506)><edgecolortype(507)>Lichtfeuer<edgecolortype(0)><colortype(0)> und <colortype(502)><edgecolortype(503)>Eisra<edgecolortype(0)><colortype(0)> gewährt die Ma<->xi<->mal<->sta<->pel<->zahl von <colortype(506)><edgecolortype(507)>Schatteneis<edgecolortype(0)><colortype(0)>.<br>Außerdem erhöht sich die Ma<->xi<->mal<->sta<->pel<->zahl von sowohl <colortype(506)><edgecolortype(507)>Lichtfeuer<edgecolortype(0)><colortype(0)> als auch <colortype(506)><edgecolortype(507)>Schatteneis<edgecolortype(0)><colortype(0)> auf 3. Bei aktiver Ma<->xi<->mal<->sta<->pel<->zahl werden folgende Effekte gewährt:<br>Effekt bei 3 Stapeln <colortype(506)><edgecolortype(507)>Lichtfeuer<edgecolortype(0)><colortype(0)>:<br>Attacke-Werte von feuerbasierten Zaubern sind um 80<nbsp>％ erhöht.<br>Attacke-Werte von eisbasierten Zaubern sind um 30<nbsp>％ verringert.<br>Die Ausführungszeit von eisbasierten Zaubern ist halbiert.<br>Effekt bei 3 Stapeln <colortype(506)><edgecolortype(507)>Schatteneis<edgecolortype(0)><colortype(0)>:<br>Die Ausführung eines eisbasierten Zaubers regeneriert 10.000 MP.<br>Attacke-Werte von feuerbasierten Zaubern sind um 30<nbsp>％ verringert.<br>Die Ausführungszeit von feuerbasierten Zaubern ist halbiert.",
+  "effects": [
+    "Feura gewährt die Maximalstapelzahl von Lichtfeuer und Eisra gewährt die Maximalstapelzahl von Schatteneis.",
+    "Außerdem erhöht sich die Maximalstapelzahl von sowohl Lichtfeuer als auch Schatteneis auf 3. Bei aktiver Maximalstapelzahl werden folgende Effekte gewährt:",
+    "Effekt bei 3 Stapeln Lichtfeuer:",
+    "Attacke-Werte von feuerbasierten Zaubern sind um 80 ％ erhöht.",
+    "Attacke-Werte von eisbasierten Zaubern sind um 30 ％ verringert.",
+    "Die Ausführungszeit von eisbasierten Zaubern ist halbiert.",
+    "Effekt bei 3 Stapeln Schatteneis:",
+    "Die Ausführung eines eisbasierten Zaubers regeneriert 10.000 MP.",
+    "Attacke-Werte von feuerbasierten Zaubern sind um 30 ％ verringert.",
+    "Die Ausführungszeit von feuerbasierten Zaubern ist halbiert."
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 25,
+    "name": "Schwarzmagier",
+    "abbreviation": "SMA"
+  },
+  "unlock_level": 35,
+  "value": 0,
+  "icon": {
+    "id": 5367,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 55,
+  "source_class_job_id": 7
+}

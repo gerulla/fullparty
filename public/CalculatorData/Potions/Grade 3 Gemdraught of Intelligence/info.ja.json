@@ -1,0 +1,68 @@
+{
+  "kind": "combat_potion",
+  "id": 45998,
+  "name": "知力の宝薬G3",
+  "description": "知力を高める薬。持続時間に優れる\n効果時間 0:30",
+  "description_macro": "知力を高める薬。持続時間に優れる<br>効果時間 0:30",
+  "effects": [
+    "知力を高める薬。持続時間に優れる",
+    "効果時間 0:30"
+  ],
+  "icon": {
+    "id": 20706,
+    "file": "icon.png"
+  },
+  "item_level": 740,
+  "can_be_high_quality": true,
+  "stack_size": 999,
+  "rarity": 1,
+  "category": {
+    "id": 44,
+    "name": "薬品"
+  },
+  "use": {
+    "item_action_id": 2726,
+    "action_id": 846,
+    "usable_in_battle": true,
+    "minimum_level": 0,
+    "duration_seconds": 30,
+    "effect_row_id": 689,
+    "raw_data": [
+      49,
+      689,
+      30,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "raw_data_high_quality": [
+      49,
+      689,
+      30,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ]
+  },
+  "stats": [
+    {
+      "id": 4,
+      "name": "INT",
+      "is_percentage": true,
+      "normal": {
+        "value": 8,
+        "cap": 368
+      },
+      "high_quality": {
+        "value": 10,
+        "cap": 461
+      }
+    }
+  ]
+}

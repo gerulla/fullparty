@@ -1,0 +1,93 @@
+{
+  "kind": "ability",
+  "id": 16464,
+  "name": "Urflackern",
+  "description": "Du erhältst Urflackern und das anvisierte Gruppenmitglied Urglimmen.\nDauer: 8 Sekunden\nEffekt von Urflackern: Jede deiner erfolgreich ausgeführten Waffenfertigkeiten regeneriert deine LP.\nHeilpotenzial: 400\nEffekt von Urglimmen: Regeneration von 100 % der durch Urflackern regenerierten LP und Reduktion des erlittenen Schadens um 10 %.\nZusatzeffekt: Blutgeruch\nDauer: 4 Sekunden\nEffekt von Blutgeruch: Verringert erlittenen Schaden um 10 %.\nZusatzeffekt: Gewährt dir Jagdtrieb und errichtet eine Barriere um dich\\Nicht auf sich selbst anwendbar.\nGemeinsamer Reaktivierungs-Timer mit Urimpuls",
+  "description_macro": "Du erhältst <colortype(506)><edgecolortype(507)>Urflackern<edgecolortype(0)><colortype(0)> und das anvisierte Grup<->pen<->mit<->glied <colortype(506)><edgecolortype(507)>Urglimmen<edgecolortype(0)><colortype(0)>.<br>Dauer: <if([gnum68==21],<if([gnum72>=82],8,6)>,6)> Sekunden<br>Effekt von <colortype(506)><edgecolortype(507)>Urflackern<edgecolortype(0)><colortype(0)>: Jede deiner erfolgreich ausgeführten Waf<->fen<->fer<->tig<->kei<->ten regeneriert deine LP.<br>Heilpotenzial: 400<br>Effekt von <colortype(506)><edgecolortype(507)>Urglimmen<edgecolortype(0)><colortype(0)>: Regeneration von 100<nbsp>% der durch <colortype(506)><edgecolortype(507)>Urflackern<edgecolortype(0)><colortype(0)> regenerierten LP und Reduktion des erlittenen Schadens um 10<nbsp>%.<br><if([gnum68==21],<if([gnum72>=82],Zusatzeffekt: <colortype(506)><edgecolortype(507)>Blutgeruch<edgecolortype(0)><colortype(0)><br>Dauer: 4 Sekunden<br>Effekt von <colortype(506)><edgecolortype(507)>Blutgeruch<edgecolortype(0)><colortype(0)>: Verringert erlittenen Schaden um 10<nbsp>%.<br>Zusatzeffekt: Gewährt dir <colortype(506)><edgecolortype(507)>Jagdtrieb<edgecolortype(0)><colortype(0)> und errichtet eine Barriere um dich\\, die Schaden entsprechend einem Heilpotenzial von 400 absorbiert.<br>Dauer: 20 Sekunden<br>,)>,)>Nicht auf sich selbst anwendbar.<br>Gemeinsamer Reaktivierungs-Timer mit <if([gnum68==21],<if([gnum72>=82],<colortype(502)><edgecolortype(503)>Urimpuls<edgecolortype(0)><colortype(0)>,<colortype(502)><edgecolortype(503)>Urinstinkt<edgecolortype(0)><colortype(0)>)>,<colortype(502)><edgecolortype(503)>Urinstinkt<edgecolortype(0)><colortype(0)>)>",
+  "effects": [
+    "Du erhältst Urflackern und das anvisierte Gruppenmitglied Urglimmen.",
+    "Dauer: 8 Sekunden",
+    "Effekt von Urflackern: Jede deiner erfolgreich ausgeführten Waffenfertigkeiten regeneriert deine LP.",
+    "Heilpotenzial: 400",
+    "Effekt von Urglimmen: Regeneration von 100 % der durch Urflackern regenerierten LP und Reduktion des erlittenen Schadens um 10 %.",
+    "Zusatzeffekt: Blutgeruch",
+    "Dauer: 4 Sekunden",
+    "Effekt von Blutgeruch: Verringert erlittenen Schaden um 10 %.",
+    "Zusatzeffekt: Gewährt dir Jagdtrieb und errichtet eine Barriere um dich\\Nicht auf sich selbst anwendbar.",
+    "Gemeinsamer Reaktivierungs-Timer mit Urimpuls"
+  ],
+  "role": "Tank",
+  "job": {
+    "id": 21,
+    "name": "Krieger",
+    "abbreviation": "KRG"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 76,
+  "icon": {
+    "id": 2567,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 4,
+    "name": "Talent"
+  },
+  "attack_type": {
+    "id": 0,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 25,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 7,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 0,
+      "value": 0
+    },
+    "secondary": {
+      "type_id": 0,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": 30,
+    "effect_yalms": 0,
+    "cast_type": 1
+  },
+  "targeting": {
+    "self": false,
+    "party": true,
+    "alliance": false,
+    "hostile": false,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": false
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 0,
+    "behavior_type": 0,
+    "class_job_category_id": 22,
+    "source_class_job_id": 21,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

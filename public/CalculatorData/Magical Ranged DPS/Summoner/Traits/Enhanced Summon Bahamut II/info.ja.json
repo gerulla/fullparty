@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 619,
+  "name": "サモン・バハムート効果アップII",
+  "description": "ソルバハムートと、デミ・バハムートおよびデミ・フェニックスを交互に顕現させることができるようになる。",
+  "description_macro": "ソルバハムートと、デミ・バハムートおよびデミ・フェニックスを交互に顕現させることができるようになる。",
+  "effects": [
+    "ソルバハムートと、デミ・バハムートおよびデミ・フェニックスを交互に顕現させることができるようになる。"
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 27,
+    "name": "召喚士",
+    "abbreviation": "SMN"
+  },
+  "unlock_level": 100,
+  "value": 0,
+  "icon": {
+    "id": 5698,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 28,
+  "source_class_job_id": 27
+}

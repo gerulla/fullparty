@@ -1,0 +1,27 @@
+{
+  "kind": "trait",
+  "id": 440,
+  "name": "命水効果アップ",
+  "description": "自身に「命水」を付与する。\n命水効果：次に実行する六道輪廻の威力を500に上昇させる。\n効果時間：30秒\n発動条件：命水実行時",
+  "description_macro": "自身に<colortype(500)><edgecolortype(501)>「命水」<edgecolortype(0)><colortype(0)>を付与する。<br><colortype(504)><edgecolortype(505)>命水効果：<edgecolortype(0)><colortype(0)>次に実行する六道輪廻の威力を500に上昇させる。<br><colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>30秒<br><colortype(504)><edgecolortype(505)>発動条件：<edgecolortype(0)><colortype(0)>命水実行時",
+  "effects": [
+    "自身に「命水」を付与する。",
+    "命水効果：次に実行する六道輪廻の威力を500に上昇させる。",
+    "効果時間：30秒",
+    "発動条件：命水実行時"
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 30,
+    "name": "忍者",
+    "abbreviation": "NIN"
+  },
+  "unlock_level": 88,
+  "value": 0,
+  "icon": {
+    "id": 5418,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 92,
+  "source_class_job_id": 30
+}

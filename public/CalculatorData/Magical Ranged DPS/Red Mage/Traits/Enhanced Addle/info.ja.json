@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 643,
+  "name": "アドル効果アップ",
+  "description": "アドルの効果時間を15秒に延長する。",
+  "description_macro": "アドルの効果時間を15秒に延長する。",
+  "effects": [
+    "アドルの効果時間を15秒に延長する。"
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 35,
+    "name": "赤魔道士",
+    "abbreviation": "RDM"
+  },
+  "unlock_level": 98,
+  "value": 0,
+  "icon": {
+    "id": 6827,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 198,
+  "source_class_job_id": 0
+}

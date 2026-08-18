@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 637,
+  "name": "Maîtrise de Prognosis eucrasique",
+  "description": "Remplace Prognosis eucrasique par Prognosis eucrasique II.",
+  "description_macro": "Remplace <colortype(500)><edgecolortype(501)>Prognosis eucrasique<edgecolortype(0)><colortype(0)> par <colortype(500)><edgecolortype(501)>Prognosis eucrasique II<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Remplace Prognosis eucrasique par Prognosis eucrasique II."
+  ],
+  "role": "Healer",
+  "job": {
+    "id": 40,
+    "name": "Sage",
+    "abbreviation": "SAG"
+  },
+  "unlock_level": 96,
+  "value": 0,
+  "icon": {
+    "id": 6460,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 181,
+  "source_class_job_id": 40
+}

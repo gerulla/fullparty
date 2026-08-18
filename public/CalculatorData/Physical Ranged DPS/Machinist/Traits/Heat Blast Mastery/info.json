@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 603,
+  "name": "Heat Blast Mastery",
+  "description": "Upgrades Heat Blast to Blazing Shot.",
+  "description_macro": "Upgrades <colortype(500)><edgecolortype(501)>Heat Blast<edgecolortype(0)><colortype(0)> to <colortype(500)><edgecolortype(501)>Blazing Shot<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Upgrades Heat Blast to Blazing Shot."
+  ],
+  "role": "Physical Ranged DPS",
+  "job": {
+    "id": 31,
+    "name": "Machinist",
+    "abbreviation": "MCH"
+  },
+  "unlock_level": 68,
+  "value": 0,
+  "icon": {
+    "id": 6021,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 96,
+  "source_class_job_id": 31
+}

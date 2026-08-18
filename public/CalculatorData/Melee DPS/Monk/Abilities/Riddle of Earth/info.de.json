@@ -1,0 +1,91 @@
+{
+  "kind": "ability",
+  "id": 7394,
+  "name": "Steinernes Enigma",
+  "description": "Du verringerst deinen erlittenen Schaden um 20 %.\nDauer: 10 Sekunden\nZusatzeffekt: Erleidest du während der Wirkungsdauer Schaden, wird Steinerne Klarheit gewährt.\nEffekt von Steinerne Klarheit: Regeneriert stetig eigene LP.\nHeilpotenzial: 100\nDauer: 15 Sekunden\nZusatzeffekt: Gewährt dir Geerdet.\nDauer: 30 Sekunden",
+  "description_macro": "Du verringerst deinen erlittenen Schaden um 20<nbsp>%.<br>Dauer: 10 Sekunden<br>Zusatzeffekt: Erleidest du während der Wirkungsdauer Schaden, wird <colortype(506)><edgecolortype(507)>Steinerne Klarheit<edgecolortype(0)><colortype(0)> gewährt.<br>Effekt von <colortype(506)><edgecolortype(507)>Steinerne Klarheit<edgecolortype(0)><colortype(0)>: Regeneriert stetig eigene LP.<br>Heilpotenzial: 100<br>Dauer: 15 Sekunden<br>Zusatzeffekt: Gewährt dir <colortype(506)><edgecolortype(507)>Geerdet<edgecolortype(0)><colortype(0)>.<br>Dauer: 30 Sekunden",
+  "effects": [
+    "Du verringerst deinen erlittenen Schaden um 20 %.",
+    "Dauer: 10 Sekunden",
+    "Zusatzeffekt: Erleidest du während der Wirkungsdauer Schaden, wird Steinerne Klarheit gewährt.",
+    "Effekt von Steinerne Klarheit: Regeneriert stetig eigene LP.",
+    "Heilpotenzial: 100",
+    "Dauer: 15 Sekunden",
+    "Zusatzeffekt: Gewährt dir Geerdet.",
+    "Dauer: 30 Sekunden"
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 20,
+    "name": "Mönch",
+    "abbreviation": "MÖN"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 64,
+  "icon": {
+    "id": 2537,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 4,
+    "name": "Talent"
+  },
+  "attack_type": {
+    "id": 0,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 120,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 21,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 0,
+      "value": 0
+    },
+    "secondary": {
+      "type_id": 0,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": 0,
+    "effect_yalms": 0,
+    "cast_type": 1
+  },
+  "targeting": {
+    "self": true,
+    "party": false,
+    "alliance": false,
+    "hostile": false,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 0,
+    "behavior_type": 0,
+    "class_job_category_id": 21,
+    "source_class_job_id": 20,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

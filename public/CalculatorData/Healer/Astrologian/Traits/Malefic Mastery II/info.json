@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 188,
+  "name": "Malefic Mastery II",
+  "description": "Upgrades Malefic II to Malefic III.",
+  "description_macro": "Upgrades <colortype(500)><edgecolortype(501)>Malefic II<edgecolortype(0)><colortype(0)> to <colortype(500)><edgecolortype(501)>Malefic III<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Upgrades Malefic II to Malefic III."
+  ],
+  "role": "Healer",
+  "job": {
+    "id": 33,
+    "name": "Astrologian",
+    "abbreviation": "AST"
+  },
+  "unlock_level": 64,
+  "value": 0,
+  "icon": {
+    "id": 6111,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 99,
+  "source_class_job_id": 33
+}

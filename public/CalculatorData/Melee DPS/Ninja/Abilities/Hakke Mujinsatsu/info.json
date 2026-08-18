@@ -1,0 +1,87 @@
+{
+  "kind": "ability",
+  "id": 16488,
+  "name": "Hakke Mujinsatsu",
+  "description": "Delivers an attack with a potency of 100 to all nearby enemies.\nCombo Action: Death Blossom\nCombo Potency: 120\nCombo Bonus: Increases Ninki Gauge by 5",
+  "description_macro": "Delivers an attack with a potency of 100 to all nearby enemies.<br><colortype(504)><edgecolortype(505)>Combo Action: <edgecolortype(0)><colortype(0)><colortype(500)><edgecolortype(501)>Death Blossom<edgecolortype(0)><colortype(0)><br><colortype(504)><edgecolortype(505)>Combo Potency: <edgecolortype(0)><colortype(0)>120<if([gnum68==30],<if([gnum72>=62],<br><colortype(504)><edgecolortype(505)>Combo Bonus: <edgecolortype(0)><colortype(0)>Increases <colortype(500)><edgecolortype(501)>Ninki Gauge<edgecolortype(0)><colortype(0)> by 5,)>,)>",
+  "effects": [
+    "Delivers an attack with a potency of 100 to all nearby enemies.",
+    "Combo Action: Death Blossom",
+    "Combo Potency: 120",
+    "Combo Bonus: Increases Ninki Gauge by 5"
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 30,
+    "name": "Ninja",
+    "abbreviation": "NIN"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 52,
+  "icon": {
+    "id": 2923,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 3,
+    "name": "Weaponskill"
+  },
+  "attack_type": {
+    "id": 4294967295,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 2.5,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 58,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 0,
+      "value": 0
+    },
+    "secondary": {
+      "type_id": 0,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": 0,
+    "effect_yalms": 5,
+    "cast_type": 2
+  },
+  "targeting": {
+    "self": true,
+    "party": false,
+    "alliance": false,
+    "hostile": false,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": 2254,
+    "preserves_combo": false
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 7,
+    "behavior_type": 0,
+    "class_job_category_id": 92,
+    "source_class_job_id": 30,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 2678,
+  "name": "Intuition fougueuse",
+  "description": "Absorbe des PV lorsque des techniques d'arme touchent et réduit les dégâts subits.",
+  "effects": [
+    "Absorbe des PV lorsque des techniques d'arme touchent et réduit les dégâts subits."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 212562,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": -10
+  },
+  "class_job_category_id": 22,
+  "source_abilities": [
+    {
+      "id": 25751,
+      "name": "Intuition fougueuse",
+      "description": "Réduit de 10% vos dégâts subis.\nDurée : 8s\nEffet additionnel : absorbe des PV quand vous infligez des dégâts avec une technique d'arme.\nPuissance : 400\nEffet additionnel : vous octroie Barrage au sang.\nDurée : 4s\nBarrage au sang : réduit de 10% les dégâts subis.\nEffet additionnel : vous octroie Digue au sang, une barrière annulant un certain montant de dégâts.\nPuissance : 400 Durée : 20s\nPartage le même temps de recharge que Exaltation naissante.",
+      "description_macro": "Réduit de 10% vos dégâts subis.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 8s<br><colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> absorbe des PV quand vous infligez des dégâts avec une technique d'arme.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> 400<br><colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> vous octroie <colortype(500)><edgecolortype(501)>Barrage au sang<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 4s<br><colortype(506)><edgecolortype(507)>Barrage au sang<nbsp>:<edgecolortype(0)><colortype(0)> réduit de 10% les dégâts subis.<br><colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> vous octroie <colortype(500)><edgecolortype(501)>Digue au sang<edgecolortype(0)><colortype(0)>, une barrière annulant un certain montant de dégâts.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> 400 <colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 20s<br>Partage le même temps de recharge que <colortype(500)><edgecolortype(501)>Exaltation naissante<edgecolortype(0)><colortype(0)>.",
+      "unlock_level": 82,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Tank"
+      ],
+      "jobs": [
+        {
+          "id": 21,
+          "name": "Guerrier",
+          "abbreviation": "GUE",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

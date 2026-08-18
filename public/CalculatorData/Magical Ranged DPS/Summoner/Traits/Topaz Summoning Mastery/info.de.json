@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 469,
+  "name": "Meister der Topas-Beschwörung",
+  "description": "Verbessert Topas-Beschwörung zu Titan-Beschwörung.",
+  "description_macro": "Verbessert <colortype(502)><edgecolortype(503)>Topas-Beschwörung<edgecolortype(0)><colortype(0)> zu <colortype(502)><edgecolortype(503)>Titan-Beschwörung<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Verbessert Topas-Beschwörung zu Titan-Beschwörung."
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 27,
+    "name": "Beschwörer",
+    "abbreviation": "BSW"
+  },
+  "unlock_level": 35,
+  "value": 0,
+  "icon": {
+    "id": 5683,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 28,
+  "source_class_job_id": 27
+}

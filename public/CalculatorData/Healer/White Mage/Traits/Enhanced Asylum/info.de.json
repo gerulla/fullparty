@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 310,
+  "name": "Verbessertes Refugium",
+  "description": "Fügt Refugium einen Effekt hinzu, der Heilmagie auf umstehende Gruppenmitglieder um 10 % erhöht.",
+  "description_macro": "Fügt <colortype(502)><edgecolortype(503)>Refugium<edgecolortype(0)><colortype(0)> einen Effekt hinzu, der Heilmagie auf umstehende Grup<->pen<->mit<->glieder um 10<nbsp>% erhöht.",
+  "effects": [
+    "Fügt Refugium einen Effekt hinzu, der Heilmagie auf umstehende Gruppenmitglieder um 10 % erhöht."
+  ],
+  "role": "Healer",
+  "job": {
+    "id": 24,
+    "name": "Weißmagier",
+    "abbreviation": "WMA"
+  },
+  "unlock_level": 78,
+  "value": 0,
+  "icon": {
+    "id": 5342,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 25,
+  "source_class_job_id": 24
+}

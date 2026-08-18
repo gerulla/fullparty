@@ -1,0 +1,86 @@
+{
+  "kind": "ability",
+  "id": 2262,
+  "name": "Shukuchi",
+  "description": "Du bewegst dich blitzschnell an den anvisierten Ort.\nMaximale Aufladungen: 2\nKann nicht während Fessel ausgeführt werden.",
+  "description_macro": "Du bewegst dich blitzschnell an den anvisierten Ort.<br><if([gnum68==30],<if([gnum72>=74],Maximale Aufladungen: 2<br>,)>,)>Kann nicht während <colortype(500)><edgecolortype(501)>Fessel<edgecolortype(0)><colortype(0)> ausgeführt werden.",
+  "effects": [
+    "Du bewegst dich blitzschnell an den anvisierten Ort.",
+    "Maximale Aufladungen: 2",
+    "Kann nicht während Fessel ausgeführt werden."
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 30,
+    "name": "Ninja",
+    "abbreviation": "NIN"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 40,
+  "icon": {
+    "id": 2905,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 4,
+    "name": "Talent"
+  },
+  "attack_type": {
+    "id": 0,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 60,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 16,
+    "additional_cooldown_group": 71,
+    "max_charges": 1
+  },
+  "costs": {
+    "primary": {
+      "type_id": 0,
+      "value": 0
+    },
+    "secondary": {
+      "type_id": 0,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": 20,
+    "effect_yalms": 1,
+    "cast_type": 7
+  },
+  "targeting": {
+    "self": false,
+    "party": false,
+    "alliance": false,
+    "hostile": false,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": true,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 0,
+    "behavior_type": 1,
+    "class_job_category_id": 92,
+    "source_class_job_id": 30,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

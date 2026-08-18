@@ -1,0 +1,80 @@
+{
+  "kind": "combat_status",
+  "id": 84,
+  "name": "Bain de sang",
+  "description": "Une partie des dégâts infligés par la prochaine attaque sera transformée en PV.",
+  "effects": [
+    "Une partie des dégâts infligés par la prochaine attaque sera transformée en PV."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 213913,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 25
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 7542,
+      "name": "Bain de sang",
+      "description": "Convertit une partie des dégâts infligés par vos attaques physiques en PV.\nDurée : 20s",
+      "description_macro": "Convertit une partie des dégâts infligés par vos attaques physiques en PV.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 20s",
+      "unlock_level": 12,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 20,
+          "name": "Moine",
+          "abbreviation": "MOI",
+          "is_phantom": false
+        },
+        {
+          "id": 22,
+          "name": "Chevalier Dragon",
+          "abbreviation": "DRG",
+          "is_phantom": false
+        },
+        {
+          "id": 30,
+          "name": "Ninja",
+          "abbreviation": "NIN",
+          "is_phantom": false
+        },
+        {
+          "id": 34,
+          "name": "Samouraï",
+          "abbreviation": "SAM",
+          "is_phantom": false
+        },
+        {
+          "id": 39,
+          "name": "Faucheur",
+          "abbreviation": "FCH",
+          "is_phantom": false
+        },
+        {
+          "id": 41,
+          "name": "Rôdeur Vipère",
+          "abbreviation": "VPR",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

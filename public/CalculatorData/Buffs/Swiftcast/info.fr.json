@@ -1,0 +1,99 @@
+{
+  "kind": "combat_status",
+  "id": 1987,
+  "name": "Magie prompte",
+  "description": "Le prochain sort est instantané.",
+  "effects": [
+    "Le prochain sort est instantané."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 210454,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": true,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 124,
+  "source_abilities": [
+    {
+      "id": 7561,
+      "name": "Magie prompte",
+      "description": "Permet à votre prochain sort d'être instantané.\nDurée : 10s",
+      "description_macro": "Permet à votre prochain sort d'être instantané.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 10s",
+      "unlock_level": 18,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Healer",
+        "Magical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 24,
+          "name": "Mage Blanc",
+          "abbreviation": "MBL",
+          "is_phantom": false
+        },
+        {
+          "id": 28,
+          "name": "Érudit",
+          "abbreviation": "ÉRU",
+          "is_phantom": false
+        },
+        {
+          "id": 33,
+          "name": "Astromancien",
+          "abbreviation": "AST",
+          "is_phantom": false
+        },
+        {
+          "id": 40,
+          "name": "Sage",
+          "abbreviation": "SAG",
+          "is_phantom": false
+        },
+        {
+          "id": 25,
+          "name": "Mage Noir",
+          "abbreviation": "MNO",
+          "is_phantom": false
+        },
+        {
+          "id": 27,
+          "name": "Invocateur",
+          "abbreviation": "INV",
+          "is_phantom": false
+        },
+        {
+          "id": 35,
+          "name": "Mage Rouge",
+          "abbreviation": "MRG",
+          "is_phantom": false
+        },
+        {
+          "id": 42,
+          "name": "Pictomancien",
+          "abbreviation": "PIC",
+          "is_phantom": false
+        },
+        {
+          "id": 36,
+          "name": "Mage Bleu",
+          "abbreviation": "MBU",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

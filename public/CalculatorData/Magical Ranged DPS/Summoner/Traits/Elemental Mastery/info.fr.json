@@ -1,0 +1,27 @@
+{
+  "kind": "trait",
+  "id": 503,
+  "name": "Maîtrise des éléments",
+  "description": "Remplace Flux astral par un sort plus puissant en fonction de la dernière action lancée.\nAprès Invocation Ifrit : devient Cyclone écarlate.\nAprès Rite de topaze ou Cataclysme de topaze : devient Casse-montagnes.\nAprès Invocation Garuda : devient Sillage.",
+  "description_macro": "Remplace <colortype(500)><edgecolortype(501)>Flux astral<edgecolortype(0)><colortype(0)> par un sort plus puissant en fonction de la dernière action lancée.<br><colortype(506)><edgecolortype(507)>Après Invocation Ifrit<nbsp>:<edgecolortype(0)><colortype(0)> devient <colortype(500)><edgecolortype(501)>Cyclone écarlate<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Après Rite de topaze ou Cataclysme de topaze<nbsp>:<edgecolortype(0)><colortype(0)> devient <colortype(500)><edgecolortype(501)>Casse-montagnes<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Après Invocation Garuda<nbsp>:<edgecolortype(0)><colortype(0)> devient <colortype(500)><edgecolortype(501)>Sillage<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Remplace Flux astral par un sort plus puissant en fonction de la dernière action lancée.",
+    "Après Invocation Ifrit : devient Cyclone écarlate.",
+    "Après Rite de topaze ou Cataclysme de topaze : devient Casse-montagnes.",
+    "Après Invocation Garuda : devient Sillage."
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 27,
+    "name": "Invocateur",
+    "abbreviation": "INV"
+  },
+  "unlock_level": 86,
+  "value": 0,
+  "icon": {
+    "id": 5697,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 28,
+  "source_class_job_id": 27
+}

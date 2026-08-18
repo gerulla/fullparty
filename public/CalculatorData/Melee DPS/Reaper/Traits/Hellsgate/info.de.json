@@ -1,0 +1,26 @@
+{
+  "kind": "trait",
+  "id": 382,
+  "name": "Verbessertes Höllentor",
+  "description": "Erschafft ein Höllentor am ursprünglichen Standort, an dem du Höllischer Auftritt und Höllischer Abgang ausgeführt hast.\nDauer: 10 Sekunden\nNach ihrer Ausführung verwandeln sich Höllischer Auftritt und Höllischer Abgang jeweils in Rückkehr.",
+  "description_macro": "Erschafft ein <colortype(506)><edgecolortype(507)>Höllentor<edgecolortype(0)><colortype(0)> am ursprünglichen Standort, an dem du <colortype(502)><edgecolortype(503)>Höllischer Auftritt<edgecolortype(0)><colortype(0)> und <colortype(502)><edgecolortype(503)>Höllischer Abgang<edgecolortype(0)><colortype(0)> ausgeführt hast.<br>Dauer: 10 Sekunden<br>Nach ihrer Ausführung verwandeln sich <colortype(502)><edgecolortype(503)>Höllischer Auftritt<edgecolortype(0)><colortype(0)> und <colortype(502)><edgecolortype(503)>Höllischer Abgang<edgecolortype(0)><colortype(0)> jeweils in <colortype(502)><edgecolortype(503)>Rückkehr<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Erschafft ein Höllentor am ursprünglichen Standort, an dem du Höllischer Auftritt und Höllischer Abgang ausgeführt hast.",
+    "Dauer: 10 Sekunden",
+    "Nach ihrer Ausführung verwandeln sich Höllischer Auftritt und Höllischer Abgang jeweils in Rückkehr."
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 39,
+    "name": "Schnitter",
+    "abbreviation": "SNT"
+  },
+  "unlock_level": 74,
+  "value": 0,
+  "icon": {
+    "id": 6404,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 180,
+  "source_class_job_id": 39
+}

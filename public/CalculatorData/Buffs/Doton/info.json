@@ -1,0 +1,71 @@
+{
+  "kind": "combat_status",
+  "id": 3187,
+  "name": "Doton",
+  "description": "Foul magicks corrupt the ground, dealing earth damage to any who tread upon it.",
+  "effects": [
+    "Foul magicks corrupt the ground, dealing earth damage to any who tread upon it."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 212904,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": true,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 92,
+  "source_abilities": [
+    {
+      "id": 2270,
+      "name": "Doton",
+      "description": "Creates a patch of corrupted earth, dealing damage with a potency of 80 to any enemies who enter.\nDuration: 18s\nAdditional Effect: Heavy +40%\nMudra Combination: Ten→Jin→Chi or Jin→Ten→Chi\nTriggers the cooldown of weaponskills, mudra, and Ninjutsu upon execution.\n\n※This action cannot be assigned to a hotbar.\n※Ninjutsu changes to Doton when requirements for execution are met.",
+      "description_macro": "Creates a patch of corrupted earth, dealing damage with a potency of 80 to any enemies who enter.<br><colortype(504)><edgecolortype(505)>Duration:<edgecolortype(0)><colortype(0)> 18s<br><colortype(504)><edgecolortype(505)>Additional Effect:<edgecolortype(0)><colortype(0)> <colortype(506)><edgecolortype(507)>Heavy<edgecolortype(0)><colortype(0)> +40%<br><colortype(504)><edgecolortype(505)>Mudra Combination:<edgecolortype(0)><colortype(0)> <colortype(500)><edgecolortype(501)>Ten<edgecolortype(0)><colortype(0)>→<colortype(500)><edgecolortype(501)>Jin<edgecolortype(0)><colortype(0)>→<colortype(500)><edgecolortype(501)>Chi<edgecolortype(0)><colortype(0)> or <colortype(500)><edgecolortype(501)>Jin<edgecolortype(0)><colortype(0)>→<colortype(500)><edgecolortype(501)>Ten<edgecolortype(0)><colortype(0)>→<colortype(500)><edgecolortype(501)>Chi<edgecolortype(0)><colortype(0)><br>Triggers the cooldown of weaponskills, mudra, and <colortype(500)><edgecolortype(501)>Ninjutsu<edgecolortype(0)><colortype(0)> upon execution.<br><br>※This action cannot be assigned to a hotbar.<br>※<colortype(500)><edgecolortype(501)>Ninjutsu<edgecolortype(0)><colortype(0)> changes to <colortype(500)><edgecolortype(501)>Doton<edgecolortype(0)><colortype(0)> when requirements for execution are met.",
+      "unlock_level": 45,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 30,
+          "name": "Ninja",
+          "abbreviation": "NIN",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 18880,
+      "name": "Doton",
+      "description": "Creates a patch of corrupted earth, dealing damage with a potency of 80 to any enemies who enter.\nDuration: 18s\nAdditional Effect: Heavy +40%\nMudra Combination: Ten→Jin→Chi or Jin→Ten→Chi\nTriggers the cooldown of weaponskills, mudra, and Ninjutsu upon execution.\n\n※This action cannot be assigned to a hotbar.\n※Ninjutsu changes to Doton when requirements for execution are met.",
+      "description_macro": "Creates a patch of corrupted earth, dealing damage with a potency of 80 to any enemies who enter.<br><colortype(504)><edgecolortype(505)>Duration:<edgecolortype(0)><colortype(0)> 18s<br><colortype(504)><edgecolortype(505)>Additional Effect:<edgecolortype(0)><colortype(0)> <colortype(506)><edgecolortype(507)>Heavy<edgecolortype(0)><colortype(0)> +40%<br><colortype(504)><edgecolortype(505)>Mudra Combination:<edgecolortype(0)><colortype(0)> <colortype(500)><edgecolortype(501)>Ten<edgecolortype(0)><colortype(0)>→<colortype(500)><edgecolortype(501)>Jin<edgecolortype(0)><colortype(0)>→<colortype(500)><edgecolortype(501)>Chi<edgecolortype(0)><colortype(0)> or <colortype(500)><edgecolortype(501)>Jin<edgecolortype(0)><colortype(0)>→<colortype(500)><edgecolortype(501)>Ten<edgecolortype(0)><colortype(0)>→<colortype(500)><edgecolortype(501)>Chi<edgecolortype(0)><colortype(0)><br>Triggers the cooldown of weaponskills, mudra, and <colortype(500)><edgecolortype(501)>Ninjutsu<edgecolortype(0)><colortype(0)> upon execution.<br><br>※This action cannot be assigned to a hotbar.<br>※<colortype(500)><edgecolortype(501)>Ninjutsu<edgecolortype(0)><colortype(0)> changes to <colortype(500)><edgecolortype(501)>Doton<edgecolortype(0)><colortype(0)> when requirements for execution are met.",
+      "unlock_level": 45,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 30,
+          "name": "Ninja",
+          "abbreviation": "NIN",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

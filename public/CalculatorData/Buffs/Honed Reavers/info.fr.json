@@ -1,0 +1,71 @@
+{
+  "kind": "combat_status",
+  "id": 3772,
+  "name": "Lacération mortelle",
+  "description": "La puissance de Crochets mortels et de Mâchoire mortelle est augmentée.",
+  "effects": [
+    "La puissance de Crochets mortels et de Mâchoire mortelle est augmentée."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 213758,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 10,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 196,
+  "source_abilities": [
+    {
+      "id": 34606,
+      "name": "Crochets d'acier",
+      "description": "Effectue une attaque physique sur la cible.\nPuissance : 200\nPuissance avec Lacération d'acier : 300\nEffet additionnel : vous octroie Lacération mortelle.\nDurée : 60s\nLacération mortelle : augmente la puissance de Crochets mortels de 100 et de Mâchoire mortelle de 20.\nNe peut être cumulé avec l'effet Lacération d'acier.",
+      "description_macro": "Effectue une attaque physique sur la cible.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> <if([gnum68==41],<if([gnum72>=74],200,180)>,180)><br><colortype(506)><edgecolortype(507)>Puissance avec Lacération d'acier<nbsp>:<edgecolortype(0)><colortype(0)> <if([gnum68==41],<if([gnum72>=74],300,280)>,280)><br><colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> vous octroie <colortype(500)><edgecolortype(501)>Lacération mortelle<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 60s<br><colortype(506)><edgecolortype(507)>Lacération mortelle<nbsp>:<edgecolortype(0)><colortype(0)> augmente la puissance de Crochets mortels de 100 et de Mâchoire mortelle de 20.<br>Ne peut être cumulé avec l'effet <colortype(500)><edgecolortype(501)>Lacération d'acier<edgecolortype(0)><colortype(0)>.",
+      "unlock_level": 1,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 41,
+          "name": "Rôdeur Vipère",
+          "abbreviation": "VPR",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 34614,
+      "name": "Mâchoire d'acier",
+      "description": "Effectue une attaque physique sur les ennemis alentour.\nPuissance : 120\nPuissance avec Lacération d'acier : 140\nEffet additionnel : vous octroie Lacération mortelle.\nDurée : 60s\nLacération mortelle : augmente la puissance de Crochets mortels de 100 et de Mâchoire mortelle de 20.\nNe peut être cumulé avec l'effet Lacération d'acier.",
+      "description_macro": "Effectue une attaque physique sur les ennemis alentour.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> 120<br><colortype(506)><edgecolortype(507)>Puissance avec Lacération d'acier<nbsp>:<edgecolortype(0)><colortype(0)> 140<br><colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> vous octroie <colortype(500)><edgecolortype(501)>Lacération mortelle<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 60s<br><colortype(506)><edgecolortype(507)>Lacération mortelle<nbsp>:<edgecolortype(0)><colortype(0)> augmente la puissance de Crochets mortels de 100 et de Mâchoire mortelle de 20.<br>Ne peut être cumulé avec l'effet <colortype(500)><edgecolortype(501)>Lacération d'acier<edgecolortype(0)><colortype(0)>.",
+      "unlock_level": 25,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 41,
+          "name": "Rôdeur Vipère",
+          "abbreviation": "VPR",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

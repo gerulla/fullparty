@@ -1,0 +1,25 @@
+{
+  "kind": "trait",
+  "id": 17,
+  "name": "Kreszentes Erlernen III",
+  "description": "Erlaubt es, Kreszenter Weißer Wind zu erlernen.\nEffekt von Kreszenter Weißer Wind: Du regenerierst eigene LP und die von umstehenden Gruppenmitgliedern um die Höhe deiner aktuellen LP.\nErlaubt darüber hinaus, Kreszentes Windga zu erlernen, wenn Kreszentes Windra bereits erlernt wurde.\nEffekt von Kreszentes Windga: Du führst eine windbasierte magische Attacke auf das Ziel und die Gegner in seiner Nähe aus.",
+  "description_macro": "Erlaubt es, <colortype(502)><edgecolortype(503)>Kreszenter Weißer Wind<edgecolortype(0)><colortype(0)> zu erlernen.<br>Effekt von <colortype(502)><edgecolortype(503)>Kreszenter Weißer Wind<edgecolortype(0)><colortype(0)>: Du regenerierst eigene LP und die von umstehenden Grup<->pen<->mit<->gliedern um die Höhe deiner aktuellen LP.<br>Erlaubt darüber hinaus, <colortype(502)><edgecolortype(503)>Kreszentes Windga<edgecolortype(0)><colortype(0)> zu erlernen, wenn <colortype(502)><edgecolortype(503)>Kreszentes Windra<edgecolortype(0)><colortype(0)> bereits erlernt wurde.<br>Effekt von <colortype(502)><edgecolortype(503)>Kreszentes Windga<edgecolortype(0)><colortype(0)>: Du führst eine windbasierte magische Attacke auf das Ziel und die Gegner in seiner Nähe aus.",
+  "effects": [
+    "Erlaubt es, Kreszenter Weißer Wind zu erlernen.",
+    "Effekt von Kreszenter Weißer Wind: Du regenerierst eigene LP und die von umstehenden Gruppenmitgliedern um die Höhe deiner aktuellen LP.",
+    "Erlaubt darüber hinaus, Kreszentes Windga zu erlernen, wenn Kreszentes Windra bereits erlernt wurde.",
+    "Effekt von Kreszentes Windga: Du führst eine windbasierte magische Attacke auf das Ziel und die Gegner in seiner Nähe aus."
+  ],
+  "role": "Phantom Jobs",
+  "job": {
+    "id": 21,
+    "name": "Phantom-Blaumagier",
+    "abbreviation": "Ph-Blaumagier"
+  },
+  "is_phantom_trait": true,
+  "unlock_level": 3,
+  "icon": {
+    "id": 82217,
+    "file": "icon.png"
+  }
+}

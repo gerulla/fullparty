@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 422,
+  "name": "Verbesserter Zerfall",
+  "description": "Bei erfolgreicher Ausführung von Zerfall wird die Reaktivierungszeit von Schattenschritt um 5 Sekunden verkürzt.",
+  "description_macro": "Bei erfolgreicher Ausführung von <colortype(502)><edgecolortype(503)>Zerfall<edgecolortype(0)><colortype(0)> wird die Re<->ak<->ti<->vie<->rungs<->zeit von <colortype(502)><edgecolortype(503)>Schattenschritt<edgecolortype(0)><colortype(0)> um 5 Sekunden verkürzt.",
+  "effects": [
+    "Bei erfolgreicher Ausführung von Zerfall wird die Reaktivierungszeit von Schattenschritt um 5 Sekunden verkürzt."
+  ],
+  "role": "Tank",
+  "job": {
+    "id": 32,
+    "name": "Dunkelritter",
+    "abbreviation": "DKR"
+  },
+  "unlock_level": 84,
+  "value": 0,
+  "icon": {
+    "id": 6064,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 98,
+  "source_class_job_id": 32
+}

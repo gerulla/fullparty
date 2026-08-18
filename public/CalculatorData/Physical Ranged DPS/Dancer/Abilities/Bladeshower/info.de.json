@@ -1,0 +1,90 @@
+{
+  "kind": "ability",
+  "id": 15994,
+  "name": "Klingenflut",
+  "description": "Du führst eine physische Attacke auf alle umstehenden Gegner aus.\nAttacke-Wert: 100\nKombo-Bedingung: Windmühle\nAttacke-Wert: 160\nBonus: 50 % Wahrscheinlichkeit auf Asynchroner Wurf\nDauer: 30 Sekunden\nKommando ändert sich während des Tanzes zu Entrechat der Schwalbe.",
+  "description_macro": "Du führst eine physische Attacke auf alle umstehenden Gegner aus.<br>Attacke-Wert: 100<br>Kombo-Bedingung: <colortype(502)><edgecolortype(503)>Windmühle<edgecolortype(0)><colortype(0)><br>Attacke-Wert: 160<br><if([gnum68==38],<if([gnum72>=45],Bonus: 50 % Wahr<->schein<->lich<->keit auf <colortype(506)><edgecolortype(507)>Asynchroner Wurf<edgecolortype(0)><colortype(0)><br>Dauer: 30 Sekunden<br>,)>,)>Kommando ändert sich während des Tanzes zu <colortype(502)><edgecolortype(503)>Entrechat der Schwalbe<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Du führst eine physische Attacke auf alle umstehenden Gegner aus.",
+    "Attacke-Wert: 100",
+    "Kombo-Bedingung: Windmühle",
+    "Attacke-Wert: 160",
+    "Bonus: 50 % Wahrscheinlichkeit auf Asynchroner Wurf",
+    "Dauer: 30 Sekunden",
+    "Kommando ändert sich während des Tanzes zu Entrechat der Schwalbe."
+  ],
+  "role": "Physical Ranged DPS",
+  "job": {
+    "id": 38,
+    "name": "Tänzer",
+    "abbreviation": "TÄN"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 25,
+  "icon": {
+    "id": 3461,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 3,
+    "name": "Waffenfertigkeit"
+  },
+  "attack_type": {
+    "id": 4294967295,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 2.5,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 58,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 0,
+      "value": 0
+    },
+    "secondary": {
+      "type_id": 91,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": 0,
+    "effect_yalms": 5,
+    "cast_type": 2
+  },
+  "targeting": {
+    "self": true,
+    "party": false,
+    "alliance": false,
+    "hostile": false,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": 15993,
+    "preserves_combo": false
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 7,
+    "behavior_type": 0,
+    "class_job_category_id": 150,
+    "source_class_job_id": 38,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "kind": "trait",
+  "id": 267,
+  "name": "Saat des Chaos",
+  "description": "Gewährt dir Saat des Chaos, wenn du Schlachtruf ausführst. Ist dein Urkraftbalken um min. 50 gefüllt und Saat des Chaos aktiv, wird Dezimieren zu Chaosklinge und Niedermähen zu Inneres Chaos, sobald erlernt.\nDauer: 30 Sekunden",
+  "description_macro": "Gewährt dir <colortype(506)><edgecolortype(507)>Saat des Chaos<edgecolortype(0)><colortype(0)>, wenn du <colortype(502)><edgecolortype(503)>Schlachtruf<edgecolortype(0)><colortype(0)> ausführst. Ist dein Urkraftbalken um min. 50 gefüllt und <colortype(506)><edgecolortype(507)>Saat des Chaos<edgecolortype(0)><colortype(0)> aktiv, wird <colortype(502)><edgecolortype(503)>Dezimieren<edgecolortype(0)><colortype(0)> zu <colortype(502)><edgecolortype(503)>Chaosklinge<edgecolortype(0)><colortype(0)> und <colortype(502)><edgecolortype(503)>Niedermähen<edgecolortype(0)><colortype(0)> zu <colortype(502)><edgecolortype(503)>Inneres Chaos<edgecolortype(0)><colortype(0)>, sobald erlernt.<br>Dauer: 30 Sekunden",
+  "effects": [
+    "Gewährt dir Saat des Chaos, wenn du Schlachtruf ausführst. Ist dein Urkraftbalken um min. 50 gefüllt und Saat des Chaos aktiv, wird Dezimieren zu Chaosklinge und Niedermähen zu Inneres Chaos, sobald erlernt.",
+    "Dauer: 30 Sekunden"
+  ],
+  "role": "Tank",
+  "job": {
+    "id": 21,
+    "name": "Krieger",
+    "abbreviation": "KRG"
+  },
+  "unlock_level": 72,
+  "value": 0,
+  "icon": {
+    "id": 5264,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 22,
+  "source_class_job_id": 21
+}

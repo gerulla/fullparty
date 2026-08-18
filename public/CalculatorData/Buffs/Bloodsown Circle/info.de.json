@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 2601,
+  "name": "Kreis des Opfers",
+  "description": "Gewährt dem Verursacher des Status am Ende des Effekts Totenopfer.",
+  "effects": [
+    "Gewährt dem Verursacher des Status am Ende des Effekts Totenopfer."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 212938,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": true,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 180,
+  "source_abilities": [
+    {
+      "id": 24405,
+      "name": "Arkaner Kreis",
+      "description": "Du erhöhst den ausgeteilten Schaden von dir und umstehenden Gruppenmitgliedern um 3 %.\nDauer: 20 Sekunden\nZusatzeffekt: Gewährt dir und umstehenden Gruppenmitgliedern Kreis des Blutes.\nDauer: 5 Sekunden\nEffekt von Kreis des Blutes: Bei erfolgreichem Treffer mit einer Waffenfertigkeit\\",
+      "description_macro": "Du erhöhst den ausgeteilten Schaden von dir und umstehenden Grup<->pen<->mit<->gliedern um 3<nbsp>%.<br>Dauer: 20 Sekunden<if([gnum68==39],<if([gnum72>=88],<br>Zusatzeffekt: Gewährt dir und umstehenden Grup<->pen<->mit<->gliedern <colortype(506)><edgecolortype(507)>Kreis des Blutes<edgecolortype(0)><colortype(0)>.<br>Dauer: 5 Sekunden<br>Effekt von <colortype(506)><edgecolortype(507)>Kreis des Blutes<edgecolortype(0)><colortype(0)>: Bei erfolgreichem Treffer mit einer Waf<->fen<->fer<->tig<->keit\\, einem Zauber oder einem Talent wird dem Verursacher des Status <colortype(506)><edgecolortype(507)>Totenopfer<edgecolortype(0)><colortype(0)> gewährt.<br>Ma<->xi<->mal<->sta<->pel<->zahl: 8<br>Dauer: 30 Sekunden<br>Zusatzeffekt: Gewährt dir <colortype(506)><edgecolortype(507)>Opfergeist<edgecolortype(0)><colortype(0)>.<br>Dauer: 6 Sekunden<br>Effekt von <colortype(506)><edgecolortype(507)>Opfergeist<edgecolortype(0)><colortype(0)>: Kann von Zielen mit aktivem <colortype(506)><edgecolortype(507)>Kreis des Blutes<edgecolortype(0)><colortype(0)> Stapel von <colortype(506)><edgecolortype(507)>Totenopfer<edgecolortype(0)><colortype(0)> erhalten.,)>,)>",
+      "unlock_level": 72,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 39,
+          "name": "Schnitter",
+          "abbreviation": "SNT",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

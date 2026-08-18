@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 3878,
+  "name": "Prefulgence Ready",
+  "description": "Able to cast Prefulgence.",
+  "effects": [
+    "Able to cast Prefulgence."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 213413,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 112,
+  "source_abilities": [
+    {
+      "id": 7521,
+      "name": "Manafication",
+      "description": "Temporarily increases the ranges of Enchanted Riposte, Enchanted Zwerchhau, and Enchanted Redoublement to 25 yalms.\nDuration: 30s\nAdditional Effect: Grants 3 stacks of Magicked Swordplay, each stack allowing the use of Enchanted Riposte, Enchanted Zwerchhau, Enchanted Redoublement, Enchanted Moulinet, Enchanted Moulinet Deux, or Enchanted Moulinet Trois without cost\nDuration: 30s\nAdditional Effect: Grants Prefulgence Ready\nDuration: 30s\nAll combos are canceled upon execution of Manafication.\nCan only be executed while in combat.",
+      "description_macro": "Temporarily increases the ranges of <colortype(500)><edgecolortype(501)>Enchanted Riposte<edgecolortype(0)><colortype(0)>, <colortype(500)><edgecolortype(501)>Enchanted Zwerchhau<edgecolortype(0)><colortype(0)>, and <colortype(500)><edgecolortype(501)>Enchanted Redoublement<edgecolortype(0)><colortype(0)> to 25 yalms.<br><colortype(504)><edgecolortype(505)>Duration:<edgecolortype(0)><colortype(0)> 30s<br><colortype(504)><edgecolortype(505)>Additional Effect:<edgecolortype(0)><colortype(0)> Grants 3 stacks of <colortype(506)><edgecolortype(507)>Magicked Swordplay<edgecolortype(0)><colortype(0)>, each stack allowing the use of <colortype(500)><edgecolortype(501)>Enchanted Riposte<edgecolortype(0)><colortype(0)>, <colortype(500)><edgecolortype(501)>Enchanted Zwerchhau<edgecolortype(0)><colortype(0)>, <colortype(500)><edgecolortype(501)>Enchanted Redoublement<edgecolortype(0)><colortype(0)>, <colortype(500)><edgecolortype(501)>Enchanted Moulinet<edgecolortype(0)><colortype(0)>, <colortype(500)><edgecolortype(501)>Enchanted Moulinet Deux<edgecolortype(0)><colortype(0)>, or <colortype(500)><edgecolortype(501)>Enchanted Moulinet Trois<edgecolortype(0)><colortype(0)> without cost<br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>30s<br><if([gnum68==35],<if([gnum72>=100],<colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>Grants <colortype(506)><edgecolortype(507)>Prefulgence Ready<edgecolortype(0)><colortype(0)><br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>30s<br>,)>,)>All combos are canceled upon execution of <colortype(500)><edgecolortype(501)>Manafication<edgecolortype(0)><colortype(0)>.<br>Can only be executed while in combat.",
+      "unlock_level": 60,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Magical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 35,
+          "name": "Red Mage",
+          "abbreviation": "RDM",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

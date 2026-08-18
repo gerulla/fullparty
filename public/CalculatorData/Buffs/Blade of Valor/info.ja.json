@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 2721,
+  "name": "ブレード・オブ・ヴァラー",
+  "description": "ＨＰが徐々に失われる状態。",
+  "effects": [
+    "ＨＰが徐々に失われる状態。"
+  ],
+  "classification": "debuff",
+  "icon": {
+    "id": 212518,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 2,
+  "target_type": 0,
+  "can_dispel": true,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 10,
+  "parameter": {
+    "effect": 0,
+    "modifier": 10
+  },
+  "class_job_category_id": 20,
+  "source_abilities": [
+    {
+      "id": 25750,
+      "name": "ブレード・オブ・ヴァラー",
+      "description": "対象とその周囲の敵に無属性範囲魔法攻撃。\u3000威力：500\nレクイエスカット時威力：1000\n2体目以降の対象への威力は60％減少する。\nコンボ条件：ブレード・オブ・トゥルース\n追加効果：自身のＨＰを回復する。\u3000回復力：400\n追加効果：自身に「ブレード・オブ・オナー実行可」を付与する。\n効果時間：30秒\n\n※このアクションはホットバーに登録することはできない。\n\u3000発動条件を満たすとブレード・オブ・トゥルースがブレード・オブ・ヴァラーに変化する。",
+      "description_macro": "対象とその周囲の敵に無属性範囲魔法攻撃。\u3000<colortype(504)><edgecolortype(505)>威力：<edgecolortype(0)><colortype(0)><if([gnum68==19],<if([gnum72>=94],500,420)>,420)><br><colortype(504)><edgecolortype(505)>レクイエスカット時威力：<edgecolortype(0)><colortype(0)><if([gnum68==19],<if([gnum72>=94],1000,920)>,920)><br>2体目以降の対象への威力は60％減少する。<br><colortype(504)><edgecolortype(505)>コンボ条件：<edgecolortype(0)><colortype(0)>ブレード・オブ・トゥルース<br><colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)>自身のＨＰを回復する。\u3000<colortype(504)><edgecolortype(505)>回復力：<edgecolortype(0)><colortype(0)>400<br><if([gnum68==19],<if([gnum72>=100],<colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)>自身に<colortype(500)><edgecolortype(501)>「ブレード・オブ・オナー実行可」<edgecolortype(0)><colortype(0)>を付与する。<br><colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>30秒<br>,)>,)><br><colortype(506)><edgecolortype(507)>※このアクションはホットバーに登録することはできない。<br>\u3000発動条件を満たすとブレード・オブ・トゥルースがブレード・オブ・ヴァラーに変化する。<edgecolortype(0)><colortype(0)>",
+      "unlock_level": 90,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Tank"
+      ],
+      "jobs": [
+        {
+          "id": 19,
+          "name": "ナイト",
+          "abbreviation": "PLD",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

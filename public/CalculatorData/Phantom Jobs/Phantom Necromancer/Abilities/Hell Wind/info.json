@@ -1,0 +1,96 @@
+{
+  "kind": "ability",
+  "id": 49099,
+  "name": "Hell Wind",
+  "description": "Deals wind damage with a potency of 300 to all enemies in a straight line.\nPotency increases to 390 when used against targets weak to wind.\nDrain Touch Potency: 400\nPotency increases to 520 when used against targets weak to wind.\nPotency scales with item level.\nConsumes 10% of maximum HP when executed.\nAdditional Effect: 10% chance to Petrify target when under the effect of Drain Touch\nPetrify Effect: Incapacitated upon taking damage\nDuration: 10s\nAdditional Effect: Afflicts yourself with Doom\nDuration: 10s\nEffect is dispelled when HP is restored to full.\nShares a recast timer with Deep Freeze.",
+  "description_macro": "Deals wind damage with a potency of 300 to all enemies in a straight line.<br>Potency increases to 390 when used against targets weak to wind.<br><colortype(504)><edgecolortype(505)>Drain Touch Potency: <edgecolortype(0)><colortype(0)>400<br>Potency increases to 520 when used against targets weak to wind.<br>Potency scales with item level.<br>Consumes 10% of maximum HP when executed.<br><colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>10% chance to <colortype(506)><edgecolortype(507)>Petrify<edgecolortype(0)><colortype(0)> target when under the effect of <colortype(506)><edgecolortype(507)>Drain Touch<edgecolortype(0)><colortype(0)><br><colortype(504)><edgecolortype(505)>Petrify Effect: <edgecolortype(0)><colortype(0)>Incapacitated upon taking damage<br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>10s<br><colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>Afflicts yourself with <colortype(506)><edgecolortype(507)>Doom<edgecolortype(0)><colortype(0)><br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>10s<br>Effect is dispelled when HP is restored to full.<br>Shares a recast timer with <colortype(500)><edgecolortype(501)>Deep Freeze<edgecolortype(0)><colortype(0)><if([gnum108>=4], and <colortype(500)><edgecolortype(501)>Chaos Drive<edgecolortype(0)><colortype(0)>,)>.",
+  "effects": [
+    "Deals wind damage with a potency of 300 to all enemies in a straight line.",
+    "Potency increases to 390 when used against targets weak to wind.",
+    "Drain Touch Potency: 400",
+    "Potency increases to 520 when used against targets weak to wind.",
+    "Potency scales with item level.",
+    "Consumes 10% of maximum HP when executed.",
+    "Additional Effect: 10% chance to Petrify target when under the effect of Drain Touch",
+    "Petrify Effect: Incapacitated upon taking damage",
+    "Duration: 10s",
+    "Additional Effect: Afflicts yourself with Doom",
+    "Duration: 10s",
+    "Effect is dispelled when HP is restored to full.",
+    "Shares a recast timer with Deep Freeze."
+  ],
+  "role": "Phantom Jobs",
+  "job": {
+    "id": 23,
+    "name": "Phantom Necromancer",
+    "abbreviation": "Ph. Necromancer"
+  },
+  "is_phantom_action": true,
+  "unlock_level": 3,
+  "icon": {
+    "id": 64531,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 2,
+    "name": "Spell"
+  },
+  "attack_type": {
+    "id": 5,
+    "name": "魔法"
+  },
+  "timing": {
+    "cast_seconds": 1.5,
+    "recast_seconds": 40,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 84,
+    "additional_cooldown_group": 58,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 1,
+      "value": 10
+    },
+    "secondary": {
+      "type_id": 0,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": 30,
+    "effect_yalms": 30,
+    "cast_type": 4
+  },
+  "targeting": {
+    "self": false,
+    "party": false,
+    "alliance": false,
+    "hostile": true,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 3,
+    "behavior_type": 0,
+    "class_job_category_id": 142,
+    "source_class_job_id": 4294967295,
+    "is_role_action": false,
+    "is_player_action": false,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

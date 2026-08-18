@@ -1,0 +1,27 @@
+{
+  "kind": "trait",
+  "id": 372,
+  "name": "Eid der Weisen II",
+  "description": "Erhöht den Attacke-Wert folgender Kommandos:\nAttacke-Wert von Dosis: 300\nAttacke-Wert von Phlegma: 400\nAttacke-Wert von Eukratische Dosis: 40",
+  "description_macro": "Erhöht den Attacke-Wert folgender Kommandos:<br>Attacke-Wert von <colortype(502)><edgecolortype(503)>Dosis<edgecolortype(0)><colortype(0)>: 300<br>Attacke-Wert von <colortype(502)><edgecolortype(503)>Phlegma<edgecolortype(0)><colortype(0)>: 400<br>Attacke-Wert von <colortype(502)><edgecolortype(503)>Eukratische Dosis<edgecolortype(0)><colortype(0)>: 40",
+  "effects": [
+    "Erhöht den Attacke-Wert folgender Kommandos:",
+    "Attacke-Wert von Dosis: 300",
+    "Attacke-Wert von Phlegma: 400",
+    "Attacke-Wert von Eukratische Dosis: 40"
+  ],
+  "role": "Healer",
+  "job": {
+    "id": 40,
+    "name": "Weiser",
+    "abbreviation": "WEI"
+  },
+  "unlock_level": 64,
+  "value": 0,
+  "icon": {
+    "id": 6453,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 181,
+  "source_class_job_id": 40
+}

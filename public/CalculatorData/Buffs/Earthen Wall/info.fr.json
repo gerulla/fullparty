@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 5320,
+  "name": "Muraille",
+  "description": "Insensible à un certain montant de dégâts.",
+  "effects": [
+    "Insensible à un certain montant de dégâts."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 229981,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 100
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 49082,
+      "name": "Muraille",
+      "description": "Crée sur vous et les équipiers alentour une barrière absorbant un certain montant de dégâts.\nPuissance : 40 000 Durée : 10s\nL'équipement et les effets n'ont aucune influence sur les temps de lancement et de recharge de ce sort.",
+      "description_macro": "Crée sur vous et les équipiers alentour une barrière absorbant un certain montant de dégâts.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> 40 000 <colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 10s<br>L'équipement et les effets n'ont aucune influence sur les temps de lancement et de recharge de ce sort.",
+      "unlock_level": 0,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Phantom Jobs"
+      ],
+      "jobs": [
+        {
+          "id": 20,
+          "name": "Phantom Invocateur fantôme",
+          "abbreviation": "Invocateur fant.",
+          "is_phantom": true
+        }
+      ]
+    }
+  ]
+}

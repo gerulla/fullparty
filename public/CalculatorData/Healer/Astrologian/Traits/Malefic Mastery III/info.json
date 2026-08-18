@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 315,
+  "name": "Malefic Mastery III",
+  "description": "Upgrades Malefic III to Malefic IV.",
+  "description_macro": "Upgrades <colortype(500)><edgecolortype(501)>Malefic III<edgecolortype(0)><colortype(0)> to <colortype(500)><edgecolortype(501)>Malefic IV<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Upgrades Malefic III to Malefic IV."
+  ],
+  "role": "Healer",
+  "job": {
+    "id": 33,
+    "name": "Astrologian",
+    "abbreviation": "AST"
+  },
+  "unlock_level": 72,
+  "value": 0,
+  "icon": {
+    "id": 6113,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 99,
+  "source_class_job_id": 33
+}

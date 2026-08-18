@@ -1,0 +1,124 @@
+{
+  "kind": "combat_status",
+  "id": 1209,
+  "name": "Portée de bras",
+  "description": "Certaines projections et attractions sont sans effet. La prochaine attaque physique subie infligera Lenteur à l'assaillant.",
+  "effects": [
+    "Certaines projections et attractions sont sans effet. La prochaine attaque physique subie infligera Lenteur à l'assaillant."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 213915,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 30,
+  "parameter": {
+    "effect": 0,
+    "modifier": 3139
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 7548,
+      "name": "Portée de bras",
+      "description": "Crée sur vous une barrière annulant la plupart des projections et attractions.\nDurée : 6s\nEffet additionnel : inflige Lenteur 20% à l'assaillant à chaque attaque physique portée contre vous.\nDurée : 15s",
+      "description_macro": "Crée sur vous une barrière annulant la plupart des projections et attractions.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 6s<br><colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> inflige Lenteur 20% à l'assaillant à chaque attaque physique portée contre vous.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 15s",
+      "unlock_level": 32,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Tank",
+        "Melee DPS",
+        "Physical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 19,
+          "name": "Paladin",
+          "abbreviation": "PLD",
+          "is_phantom": false
+        },
+        {
+          "id": 21,
+          "name": "Guerrier",
+          "abbreviation": "GUE",
+          "is_phantom": false
+        },
+        {
+          "id": 32,
+          "name": "Chevalier Noir",
+          "abbreviation": "CHN",
+          "is_phantom": false
+        },
+        {
+          "id": 37,
+          "name": "Pistosabreur",
+          "abbreviation": "PSB",
+          "is_phantom": false
+        },
+        {
+          "id": 20,
+          "name": "Moine",
+          "abbreviation": "MOI",
+          "is_phantom": false
+        },
+        {
+          "id": 22,
+          "name": "Chevalier Dragon",
+          "abbreviation": "DRG",
+          "is_phantom": false
+        },
+        {
+          "id": 30,
+          "name": "Ninja",
+          "abbreviation": "NIN",
+          "is_phantom": false
+        },
+        {
+          "id": 34,
+          "name": "Samouraï",
+          "abbreviation": "SAM",
+          "is_phantom": false
+        },
+        {
+          "id": 39,
+          "name": "Faucheur",
+          "abbreviation": "FCH",
+          "is_phantom": false
+        },
+        {
+          "id": 41,
+          "name": "Rôdeur Vipère",
+          "abbreviation": "VPR",
+          "is_phantom": false
+        },
+        {
+          "id": 23,
+          "name": "Barde",
+          "abbreviation": "BRD",
+          "is_phantom": false
+        },
+        {
+          "id": 31,
+          "name": "Machiniste",
+          "abbreviation": "MCH",
+          "is_phantom": false
+        },
+        {
+          "id": 38,
+          "name": "Danseur",
+          "abbreviation": "DNS",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

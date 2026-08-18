@@ -124,6 +124,19 @@ const applicationDistributionSegments = computed(() => props.statistics.applicat
 	value: item.count,
 	percent: item.percent,
 })));
+const dailyApplicationItems = computed(() => props.statistics.applications.daily_submissions.map((day) => ({
+	key: day.date,
+	label: createDateTimeFormatter(locale.value, {
+		weekday: "short",
+		month: "short",
+		day: "numeric",
+	}).format(new Date(day.date)),
+	value: day.count,
+	secondaryLabel: t("groups.statistics.applications.daily_tooltip", {
+		date: formatDay(day.date),
+		count: day.count,
+	}),
+})));
 const applicationVolumeSegments = computed(() => props.statistics.applications.distribution.map((item) => ({
 	key: item.key,
 	label: applicationStatusLabel(item.key),
@@ -284,6 +297,32 @@ onBeforeUnmount(() => {
 					/>
 				</UCard>
 			</div>
+
+			<UCard class="dark:bg-elevated/25" :ui="{ body: 'p-4 sm:p-4' }">
+				<template #header>
+					<div class="flex items-start justify-between gap-4">
+						<div>
+							<p class="font-semibold text-md">
+								{{ t("groups.statistics.applications.daily_title") }}
+							</p>
+							<p class="text-sm text-muted">
+								{{ t("groups.statistics.applications.daily_subtitle") }}
+							</p>
+						</div>
+						<UBadge
+							color="neutral"
+							variant="subtle"
+							:label="t('groups.statistics.applications.daily_badge')"
+						/>
+					</div>
+				</template>
+
+				<GroupStatisticsBarChart
+					:items="dailyApplicationItems"
+					:empty-title="t('groups.statistics.applications.daily_empty_title')"
+					:empty-description="t('groups.statistics.applications.daily_empty_description')"
+				/>
+			</UCard>
 
 			<UCard class="dark:bg-elevated/25" :ui="{ body: 'p-4 sm:p-4' }">
 				<template #header>

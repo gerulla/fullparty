@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 505,
+  "name": "Melee Mastery",
+  "description": "Increases the potency of Heavy Swing to 200, Maim to 150, Storm's Path to 160, and Storm's Eye to 160.",
+  "description_macro": "Increases the potency of <colortype(500)><edgecolortype(501)>Heavy Swing<edgecolortype(0)><colortype(0)> to 200, <colortype(500)><edgecolortype(501)>Maim<edgecolortype(0)><colortype(0)> to 150, <colortype(500)><edgecolortype(501)>Storm's Path<edgecolortype(0)><colortype(0)> to 160, and <colortype(500)><edgecolortype(501)>Storm's Eye<edgecolortype(0)><colortype(0)> to 160.",
+  "effects": [
+    "Increases the potency of Heavy Swing to 200, Maim to 150, Storm's Path to 160, and Storm's Eye to 160."
+  ],
+  "role": "Tank",
+  "job": {
+    "id": 21,
+    "name": "Warrior",
+    "abbreviation": "WAR"
+  },
+  "unlock_level": 84,
+  "value": 0,
+  "icon": {
+    "id": 6801,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 22,
+  "source_class_job_id": 21
+}

@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 3254,
+  "name": "Trick Attack",
+  "description": "Damage taken from the ninja who applied this effect is increased.",
+  "effects": [
+    "Damage taken from the ninja who applied this effect is increased."
+  ],
+  "classification": "debuff",
+  "icon": {
+    "id": 212918,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 2,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 10
+  },
+  "class_job_category_id": 93,
+  "source_abilities": [
+    {
+      "id": 2258,
+      "name": "Trick Attack",
+      "description": "Delivers an attack with a potency of 300.\n400 when executed from a target's rear.\nAdditional Effect: Increases damage you deal target by 10%\nDuration: 15s\nCan only be executed while under the effect of Hidden.",
+      "description_macro": "Delivers an attack with a potency of 300.<br>400 when executed from a target's rear.<br><colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>Increases damage you deal target by 10%<br><colortype(504)><edgecolortype(505)>Duration:<edgecolortype(0)><colortype(0)> 15s<br>Can only be executed while under the effect of <colortype(506)><edgecolortype(507)>Hidden<edgecolortype(0)><colortype(0)>.",
+      "unlock_level": 18,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 30,
+          "name": "Ninja",
+          "abbreviation": "NIN",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

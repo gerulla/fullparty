@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 512,
+  "name": "爆裂脚マスタリー",
+  "description": "爆裂脚が鳳凰の舞に変化する。",
+  "description_macro": "爆裂脚が鳳凰の舞に変化する。",
+  "effects": [
+    "爆裂脚が鳳凰の舞に変化する。"
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 20,
+    "name": "モンク",
+    "abbreviation": "MNK"
+  },
+  "unlock_level": 86,
+  "value": 0,
+  "icon": {
+    "id": 5248,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 21,
+  "source_class_job_id": 20
+}

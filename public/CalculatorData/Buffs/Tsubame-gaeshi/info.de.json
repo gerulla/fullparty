@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 4216,
+  "name": "Tsubamegaeshi",
+  "description": "Tsubamegaeshi kann ausgeführt werden.",
+  "effects": [
+    "Tsubamegaeshi kann ausgeführt werden."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 213315,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 111,
+  "source_abilities": [
+    {
+      "id": 16483,
+      "name": "Tsubamegaeshi",
+      "description": "Du löst das zuvor ausgeführte Iaijutsu erneut aus, ausgenommen Higanbana.\nBedingung: Tsubamegaeshi aktiv",
+      "description_macro": "Du löst das zuvor ausgeführte Iaijutsu erneut aus, ausgenommen <colortype(500)><edgecolortype(501)>Higanbana<edgecolortype(0)><colortype(0)>.<br>Bedingung: <colortype(506)><edgecolortype(507)>Tsubamegaeshi<edgecolortype(0)><colortype(0)> aktiv",
+      "unlock_level": 74,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 34,
+          "name": "Samurai",
+          "abbreviation": "SAM",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

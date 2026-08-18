@@ -1,0 +1,22 @@
+{
+  "kind": "trait",
+  "id": 5,
+  "name": "Coups de pied améliorés II",
+  "description": "Augmente l'effet de Coups de pied à 9%.",
+  "description_macro": "Augmente l'effet de <colortype(500)><edgecolortype(501)>Coups de pied<edgecolortype(0)><colortype(0)> à 9%.",
+  "effects": [
+    "Augmente l'effet de Coups de pied à 9%."
+  ],
+  "role": "Phantom Jobs",
+  "job": {
+    "id": 3,
+    "name": "Moine fantôme",
+    "abbreviation": "Moine fant."
+  },
+  "is_phantom_trait": true,
+  "unlock_level": 6,
+  "icon": {
+    "id": 82205,
+    "file": "icon.png"
+  }
+}

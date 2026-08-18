@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 2685,
+  "name": "Katharsis des Korunds",
+  "description": "LP werden regeneriert, wenn sie auf bzw. unter einen bestimmten Betrag fallen oder die Wirkungsdauer endet.",
+  "effects": [
+    "LP werden regeneriert, wenn sie auf bzw. unter einen bestimmten Betrag fallen oder die Wirkungsdauer endet."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 213617,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 60,
+  "parameter": {
+    "effect": 0,
+    "modifier": 100
+  },
+  "class_job_category_id": 149,
+  "source_abilities": [
+    {
+      "id": 25758,
+      "name": "Herz des Korunds",
+      "description": "Du verringerst deinen erlittenen Schaden oder den eines Gruppenmitglieds um 15 %.\nDauer: 8 Sekunden\nZusatzeffekt: Wirkst du diese Aktion auf ein Gruppenmitglied, während du unter dem Effekt von Brutaler Einschlag stehst, wird dieser Status geteilt.\nDauer: 30 Sekunden\nZusatzeffekt: Gewährt dir Klarheit des Korunds.\nDauer: 4 Sekunden\nEffekt von Klarheit des Korunds: Verringert erlittenen Schaden um 15 %.\nZusatzeffekt: Gewährt dir Katharsis des Korunds.\nDauer: 20 Sekunden\nEffekt von Katharsis des Korunds: Sobald die LP auf bzw. unter 50 % sinken oder die Wirkungsdauer endet, werden LP regeneriert.\nHeilpotenzial: 900",
+      "description_macro": "Du verringerst deinen erlittenen Schaden oder den eines Grup<->pen<->mit<->glieds um 15<nbsp>%.<br>Dauer: 8 Sekunden<br>Zusatzeffekt: Wirkst du diese Aktion auf ein Grup<->pen<->mit<->glied, während du unter dem Effekt von <colortype(506)><edgecolortype(507)>Brutaler Einschlag<edgecolortype(0)><colortype(0)> stehst, wird dieser Status geteilt.<br>Dauer: 30 Sekunden<br>Zusatzeffekt: Gewährt dir <colortype(506)><edgecolortype(507)>Klarheit des Korunds<edgecolortype(0)><colortype(0)>.<br>Dauer: 4 Sekunden<br>Effekt von <colortype(506)><edgecolortype(507)>Klarheit des Korunds<edgecolortype(0)><colortype(0)>: Verringert erlittenen Schaden um 15<nbsp>%.<br>Zusatzeffekt: Gewährt dir <colortype(506)><edgecolortype(507)>Katharsis des Korunds<edgecolortype(0)><colortype(0)>.<br>Dauer: 20 Sekunden<br>Effekt von <colortype(506)><edgecolortype(507)>Katharsis des Korunds<edgecolortype(0)><colortype(0)>: Sobald die LP auf bzw. unter 50<nbsp>% sinken oder die Wirkungsdauer endet, werden LP regeneriert.<br>Heilpotenzial: 900",
+      "unlock_level": 82,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Tank"
+      ],
+      "jobs": [
+        {
+          "id": 37,
+          "name": "Revolverklinge",
+          "abbreviation": "REV",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

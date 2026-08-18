@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 3687,
+  "name": "Tempera grassa",
+  "description": "Insensible à un certain montant de dégâts.",
+  "effects": [
+    "Insensible à un certain montant de dégâts."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 213810,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 30,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 197,
+  "source_abilities": [
+    {
+      "id": 34686,
+      "name": "Tempera grassa",
+      "description": "Met fin à votre Enduit a tempera et vous octroie ainsi qu'aux équipiers alentour une barrière absorbant les dégâts pour un total de 10% de vos PV maximums respectifs.\nDurée : 10s\nCondition : Enduit a tempera.\nLe temps de recharge de ce sort est réduit de 30s quand votre barrière a absorbé son montant de dégâts.",
+      "description_macro": "Met fin à votre <colortype(500)><edgecolortype(501)>Enduit a tempera<edgecolortype(0)><colortype(0)> et vous octroie ainsi qu'aux équipiers alentour une barrière absorbant les dégâts pour un total de 10% de vos PV maximums respectifs.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 10s<br><colortype(506)><edgecolortype(507)>Condition<nbsp>:<edgecolortype(0)><colortype(0)> <colortype(500)><edgecolortype(501)>Enduit a tempera<edgecolortype(0)><colortype(0)>.<br>Le temps de recharge de ce sort est réduit de 30s quand votre barrière a absorbé son montant de dégâts.",
+      "unlock_level": 88,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Magical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 42,
+          "name": "Pictomancien",
+          "abbreviation": "PIC",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

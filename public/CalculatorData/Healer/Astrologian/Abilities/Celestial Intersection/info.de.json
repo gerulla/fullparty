@@ -1,0 +1,88 @@
+{
+  "kind": "ability",
+  "id": 16556,
+  "name": "Kongruenz",
+  "description": "Du regenerierst bei dir oder bei einem Gruppenmitglied LP.\nHeilpotenzial: 200\nZusatzeffekt: Errichtet eine Barriere um das Ziel, die Schaden in der Höhe von 200 % der Heilwirkung absorbiert.\nDauer: 30 Sekunden\nMaximale Aufladungen: 2",
+  "description_macro": "Du regenerierst bei dir oder bei einem Grup<->pen<->mit<->glied LP.<br>Heilpotenzial: 200<br>Zusatzeffekt: Errichtet eine Barriere um das Ziel, die Schaden in der Höhe von 200<nbsp>% der Heilwirkung absorbiert.<br>Dauer: 30 Sekunden<if([gnum68==33],<if([gnum72>=88],<br>Maximale Aufladungen: 2,)>,)>",
+  "effects": [
+    "Du regenerierst bei dir oder bei einem Gruppenmitglied LP.",
+    "Heilpotenzial: 200",
+    "Zusatzeffekt: Errichtet eine Barriere um das Ziel, die Schaden in der Höhe von 200 % der Heilwirkung absorbiert.",
+    "Dauer: 30 Sekunden",
+    "Maximale Aufladungen: 2"
+  ],
+  "role": "Healer",
+  "job": {
+    "id": 33,
+    "name": "Astrologe",
+    "abbreviation": "AST"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 74,
+  "icon": {
+    "id": 3556,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 4,
+    "name": "Talent"
+  },
+  "attack_type": {
+    "id": 0,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 30,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 10,
+    "additional_cooldown_group": 73,
+    "max_charges": 1
+  },
+  "costs": {
+    "primary": {
+      "type_id": 0,
+      "value": 0
+    },
+    "secondary": {
+      "type_id": 0,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": 30,
+    "effect_yalms": 0,
+    "cast_type": 1
+  },
+  "targeting": {
+    "self": true,
+    "party": true,
+    "alliance": false,
+    "hostile": false,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": false
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": false
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 0,
+    "behavior_type": 0,
+    "class_job_category_id": 99,
+    "source_class_job_id": 33,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

@@ -1,0 +1,89 @@
+{
+  "kind": "ability",
+  "id": 41642,
+  "name": "しのせんこく",
+  "description": "対象に確率で「しのせんこく」を付与する。\n効果時間：8秒～60秒\n効果時間が経過すると、対象は戦闘不能になる。\nリキャストタイマーを「ちゆのせんこく」と共有する。\n対象が非戦闘状態の場合は効果無し。\nまた、対象の戦闘状態が解除されると付与されている「しのせんこく」は解除される。",
+  "description_macro": "対象に確率で<colortype(500)><edgecolortype(501)>「しのせんこく」<edgecolortype(0)><colortype(0)>を付与する。<br><colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>8秒～60秒<br>効果時間が経過すると、対象は戦闘不能になる。<br>リキャストタイマーを<colortype(500)><edgecolortype(501)>「ちゆのせんこく」<edgecolortype(0)><colortype(0)>と共有する。<br>対象が非戦闘状態の場合は効果無し。<br>また、対象の戦闘状態が解除されると付与されている<colortype(500)><edgecolortype(501)>「しのせんこく」<edgecolortype(0)><colortype(0)>は解除される。",
+  "effects": [
+    "対象に確率で「しのせんこく」を付与する。",
+    "効果時間：8秒～60秒",
+    "効果時間が経過すると、対象は戦闘不能になる。",
+    "リキャストタイマーを「ちゆのせんこく」と共有する。",
+    "対象が非戦闘状態の場合は効果無し。",
+    "また、対象の戦闘状態が解除されると付与されている「しのせんこく」は解除される。"
+  ],
+  "role": "Phantom Jobs",
+  "job": {
+    "id": 11,
+    "name": "サポート予言士",
+    "abbreviation": "Ph. Oracle"
+  },
+  "is_phantom_action": true,
+  "unlock_level": 3,
+  "icon": {
+    "id": 64564,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 4,
+    "name": "アビリティ"
+  },
+  "attack_type": {
+    "id": 0,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 30,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 85,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 0,
+      "value": 0
+    },
+    "secondary": {
+      "type_id": 0,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": 30,
+    "effect_yalms": 0,
+    "cast_type": 1
+  },
+  "targeting": {
+    "self": false,
+    "party": false,
+    "alliance": false,
+    "hostile": true,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 0,
+    "behavior_type": 0,
+    "class_job_category_id": 142,
+    "source_class_job_id": 4294967295,
+    "is_role_action": false,
+    "is_player_action": false,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

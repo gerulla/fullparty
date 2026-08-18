@@ -1,0 +1,51 @@
+{
+  "kind": "combat_status",
+  "id": 4258,
+  "name": "Flottement",
+  "description": "Le corps flotte à quelques ilms du sol, défiant la loi de la gravité.",
+  "effects": [
+    "Le corps flotte à quelques ilms du sol, défiant la loi de la gravité."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 215037,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 12,
+    "modifier": 0
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 41620,
+      "name": "Flottement",
+      "description": "Octroie à vous ou à l'équipier ciblé l'effet Flottement.\nDurée : 60s\nFlottement : permet d'annuler certaines mécaniques spéciales.\nPartage le même temps de recharge que les techniques d'arme et les sorts.",
+      "description_macro": "Octroie à vous ou à l'équipier ciblé l'effet <colortype(500)><edgecolortype(501)>Flottement<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 60s<br><colortype(506)><edgecolortype(507)>Flottement<nbsp>:<edgecolortype(0)><colortype(0)> permet d'annuler certaines mécaniques spéciales.<br>Partage le même temps de recharge que les techniques d'arme et les sorts.",
+      "unlock_level": 0,
+      "relations": [
+        "granted_by_description",
+        "same_name"
+      ],
+      "roles": [
+        "Phantom Jobs"
+      ],
+      "jobs": [
+        {
+          "id": 7,
+          "name": "Phantom Géomancien fantôme",
+          "abbreviation": "Géomancien fant.",
+          "is_phantom": true
+        }
+      ]
+    }
+  ]
+}

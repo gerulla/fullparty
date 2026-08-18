@@ -1,0 +1,25 @@
+{
+  "kind": "trait",
+  "id": 373,
+  "name": "Croc de vipère",
+  "description": "Vous octroie un Croc de vipère lorsque la barrière de Prognosis eucrasique sur vous-même ou Diagnosis eucrasique a absorbé son montant de dégâts.\nVous pouvez en cumuler jusqu'à un maximum de trois.",
+  "description_macro": "Vous octroie un <colortype(500)><edgecolortype(501)>Croc de vipère<edgecolortype(0)><colortype(0)> lorsque la barrière de <colortype(500)><edgecolortype(501)>Prognosis eucrasique<edgecolortype(0)><colortype(0)> sur vous-même ou <colortype(500)><edgecolortype(501)>Diagnosis eucrasique<edgecolortype(0)><colortype(0)> a absorbé son montant de dégâts.<br>Vous pouvez en cumuler jusqu'à un maximum de trois.",
+  "effects": [
+    "Vous octroie un Croc de vipère lorsque la barrière de Prognosis eucrasique sur vous-même ou Diagnosis eucrasique a absorbé son montant de dégâts.",
+    "Vous pouvez en cumuler jusqu'à un maximum de trois."
+  ],
+  "role": "Healer",
+  "job": {
+    "id": 40,
+    "name": "Sage",
+    "abbreviation": "SAG"
+  },
+  "unlock_level": 66,
+  "value": 0,
+  "icon": {
+    "id": 6454,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 181,
+  "source_class_job_id": 40
+}

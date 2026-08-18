@@ -1,0 +1,100 @@
+{
+  "kind": "ability",
+  "id": 36925,
+  "name": "Dévastateur",
+  "description": "Effectue une attaque physique sur la cible et les ennemis autour.\nPuissance : 800\nLa puissance est réduite de 50% au-delà du premier ennemi touché.\nCette attaque inflige nécessairement un coup net et critique.\nLes dégâts infligés sont augmentés lorsque vous bénéficiez d'un effet augmentant les chances de coups nets et critiques.\nCondition : Dévastateur préparé.\n\n* Cette action ne peut pas être ajoutée aux barres de raccourcis.\nRemplace Griffade primitive lorsque les conditions sont réunies.",
+  "description_macro": "Effectue une attaque physique sur la cible et les ennemis autour.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> 800<br>La puissance est réduite de 50% au-delà du premier ennemi touché.<br>Cette attaque inflige nécessairement un coup net et critique.<br>Les dégâts infligés sont augmentés lorsque vous bénéficiez d'un effet augmentant les chances de coups nets et critiques.<br><colortype(506)><edgecolortype(507)>Condition<nbsp>:<edgecolortype(0)><colortype(0)> <colortype(500)><edgecolortype(501)>Dévastateur préparé<edgecolortype(0)><colortype(0)>.<br><br><colortype(504)><edgecolortype(505)>* Cette action ne peut pas être ajoutée aux barres de raccourcis.<br>Remplace <colortype(500)><edgecolortype(501)>Griffade primitive<edgecolortype(0)><colortype(0)> lorsque les conditions sont réunies.<edgecolortype(0)><colortype(0)>",
+  "effects": [
+    "Effectue une attaque physique sur la cible et les ennemis autour.",
+    "Puissance : 800",
+    "La puissance est réduite de 50% au-delà du premier ennemi touché.",
+    "Cette attaque inflige nécessairement un coup net et critique.",
+    "Les dégâts infligés sont augmentés lorsque vous bénéficiez d'un effet augmentant les chances de coups nets et critiques.",
+    "Condition : Dévastateur préparé.",
+    "* Cette action ne peut pas être ajoutée aux barres de raccourcis.",
+    "Remplace Griffade primitive lorsque les conditions sont réunies."
+  ],
+  "role": "Tank",
+  "job": {
+    "id": 21,
+    "name": "Guerrier",
+    "abbreviation": "GUE"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 100,
+  "icon": {
+    "id": 2050,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 3,
+    "name": "Technique d'arme"
+  },
+  "attack_type": {
+    "id": 4294967295,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 2.5,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 58,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 10,
+      "value": 3834
+    },
+    "secondary": {
+      "type_id": 32,
+      "value": 3834
+    }
+  },
+  "range": {
+    "target_yalms": -1,
+    "effect_yalms": 5,
+    "cast_type": 2
+  },
+  "targeting": {
+    "self": false,
+    "party": false,
+    "alliance": false,
+    "hostile": true,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": {
+      "id": 153,
+      "status": {
+        "id": 3834,
+        "name": "Dévastateur préparé",
+        "description": "Dévastateur peut être lancé.",
+        "icon_id": 212569,
+        "max_stacks": 0
+      }
+    }
+  },
+  "metadata": {
+    "aspect_id": 7,
+    "behavior_type": 0,
+    "class_job_category_id": 22,
+    "source_class_job_id": 0,
+    "is_role_action": false,
+    "is_player_action": false,
+    "is_derived_action": true,
+    "equivalence_group": 0
+  }
+}

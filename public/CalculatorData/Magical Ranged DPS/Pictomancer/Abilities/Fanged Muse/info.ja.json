@@ -1,0 +1,91 @@
+{
+  "kind": "ability",
+  "id": 34673,
+  "name": "イマジンファング",
+  "description": "「ファング」の絵素を具現化し、対象とその周囲の敵に無属性範囲魔法攻撃。\u3000威力：800\n2体目以降の対象への威力は70％減少する。\n追加効果：自身に「ピクトファング」のアニマルシンボルを付与する。\n「ピクトポンポン」「ピクトウィング」「ピクトクロー」「ピクトファング」が揃うと全てのアニマルシンボルが消滅し、「マディーンシンボル」が付与される。\n最大チャージ数：3\n発動条件：アニマルキャンバスに「ファング」の絵素が描かれている\n\n※このアクションはホットバーに登録することはできない。\n\u3000発動条件を満たすとイマジンアニマルがイマジンファングに変化する。",
+  "description_macro": "<colortype(500)><edgecolortype(501)>「ファング」<edgecolortype(0)><colortype(0)>の絵素を具現化し、対象とその周囲の敵に無属性範囲魔法攻撃。\u3000<colortype(504)><edgecolortype(505)>威力：<edgecolortype(0)><colortype(0)>800<br>2体目以降の対象への威力は70％減少する。<br><colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)>自身に<colortype(500)><edgecolortype(501)>「ピクトファング」<edgecolortype(0)><colortype(0)>のアニマルシンボルを付与する。<br><colortype(500)><edgecolortype(501)>「ピクトポンポン」「ピクトウィング」「ピクトクロー」「ピクトファング」<edgecolortype(0)><colortype(0)>が揃うと全てのアニマルシンボルが消滅し、<colortype(500)><edgecolortype(501)>「マディーンシンボル」<edgecolortype(0)><colortype(0)>が付与される。<br><colortype(504)><edgecolortype(505)>最大チャージ数：<edgecolortype(0)><colortype(0)>3<br><colortype(504)><edgecolortype(505)>発動条件：<edgecolortype(0)><colortype(0)>アニマルキャンバスに<colortype(500)><edgecolortype(501)>「ファング」<edgecolortype(0)><colortype(0)>の絵素が描かれている<br><br><colortype(506)><edgecolortype(507)>※このアクションはホットバーに登録することはできない。<br>\u3000発動条件を満たすとイマジンアニマルがイマジンファングに変化する。<edgecolortype(0)><colortype(0)>",
+  "effects": [
+    "「ファング」の絵素を具現化し、対象とその周囲の敵に無属性範囲魔法攻撃。\u3000威力：800",
+    "2体目以降の対象への威力は70％減少する。",
+    "追加効果：自身に「ピクトファング」のアニマルシンボルを付与する。",
+    "「ピクトポンポン」「ピクトウィング」「ピクトクロー」「ピクトファング」が揃うと全てのアニマルシンボルが消滅し、「マディーンシンボル」が付与される。",
+    "最大チャージ数：3",
+    "発動条件：アニマルキャンバスに「ファング」の絵素が描かれている",
+    "※このアクションはホットバーに登録することはできない。",
+    "発動条件を満たすとイマジンアニマルがイマジンファングに変化する。"
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 42,
+    "name": "ピクトマンサー",
+    "abbreviation": "PCT"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 96,
+  "icon": {
+    "id": 3824,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 4,
+    "name": "アビリティ"
+  },
+  "attack_type": {
+    "id": 5,
+    "name": "魔法"
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 40,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 19,
+    "additional_cooldown_group": 71,
+    "max_charges": 2
+  },
+  "costs": {
+    "primary": {
+      "type_id": 94,
+      "value": 8
+    },
+    "secondary": {
+      "type_id": 0,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": 25,
+    "effect_yalms": 5,
+    "cast_type": 2
+  },
+  "targeting": {
+    "self": false,
+    "party": false,
+    "alliance": false,
+    "hostile": true,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 7,
+    "behavior_type": 0,
+    "class_job_category_id": 197,
+    "source_class_job_id": 0,
+    "is_role_action": false,
+    "is_player_action": false,
+    "is_derived_action": true,
+    "equivalence_group": 0
+  }
+}

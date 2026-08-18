@@ -1,0 +1,85 @@
+{
+  "kind": "ability",
+  "id": 18317,
+  "name": "天使のささやき",
+  "description": "対象を衰弱状態で蘇生する。\nこの魔法は固有のリキャストタイマーを持つ。",
+  "description_macro": "対象を衰弱状態で蘇生する。<br>この魔法は固有のリキャストタイマーを持つ。",
+  "effects": [
+    "対象を衰弱状態で蘇生する。",
+    "この魔法は固有のリキャストタイマーを持つ。"
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 36,
+    "name": "青魔道士",
+    "abbreviation": "BLU"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 1,
+  "icon": {
+    "id": 3322,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 2,
+    "name": "魔法"
+  },
+  "attack_type": {
+    "id": 5,
+    "name": "魔法"
+  },
+  "timing": {
+    "cast_seconds": 10,
+    "recast_seconds": 300,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 25,
+    "additional_cooldown_group": 58,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 3,
+      "value": 10
+    },
+    "secondary": {
+      "type_id": 0,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": 25,
+    "effect_yalms": 0,
+    "cast_type": 1
+  },
+  "targeting": {
+    "self": false,
+    "party": true,
+    "alliance": true,
+    "hostile": false,
+    "ally": true,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 1,
+    "requires_line_of_sight": true,
+    "requires_facing_target": false
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": false
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 7,
+    "behavior_type": 0,
+    "class_job_category_id": 129,
+    "source_class_job_id": 36,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

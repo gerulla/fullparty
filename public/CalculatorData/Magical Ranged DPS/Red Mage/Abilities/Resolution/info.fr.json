@@ -1,0 +1,90 @@
+{
+  "kind": "ability",
+  "id": 25858,
+  "name": "Résolution",
+  "description": "Effectue une attaque magique neutre en ligne droite vers la cible.\nPuissance : 850\nLa puissance est réduite de 55% au-delà du premier ennemi touché.\nEffet additionnel : remplit la Mana noire et la Mana blanche de 4.\nCondition : après Calcination.\n\n* Cette action ne peut pas être ajoutée aux barres de raccourcis.\nRemplace Calcination lorsque les conditions sont réunies.",
+  "description_macro": "Effectue une attaque magique neutre en ligne droite vers la cible.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> <if([gnum68==35],<if([gnum72>=94],850,750)>,750)><br>La puissance est réduite de 55% au-delà du premier ennemi touché.<br><colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> remplit la <colortype(502)><edgecolortype(503)>Mana noire<edgecolortype(0)><colortype(0)> et la <colortype(502)><edgecolortype(503)>Mana blanche<edgecolortype(0)><colortype(0)> de 4.<br><colortype(506)><edgecolortype(507)>Condition<nbsp>:<edgecolortype(0)><colortype(0)> après <colortype(500)><edgecolortype(501)>Calcination<edgecolortype(0)><colortype(0)>.<br><br><colortype(504)><edgecolortype(505)>* Cette action ne peut pas être ajoutée aux barres de raccourcis.<br>Remplace <colortype(500)><edgecolortype(501)>Calcination<edgecolortype(0)><colortype(0)> lorsque les conditions sont réunies.<edgecolortype(0)><colortype(0)>",
+  "effects": [
+    "Effectue une attaque magique neutre en ligne droite vers la cible.",
+    "Puissance : 850",
+    "La puissance est réduite de 55% au-delà du premier ennemi touché.",
+    "Effet additionnel : remplit la Mana noire et la Mana blanche de 4.",
+    "Condition : après Calcination.",
+    "* Cette action ne peut pas être ajoutée aux barres de raccourcis.",
+    "Remplace Calcination lorsque les conditions sont réunies."
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 35,
+    "name": "Mage Rouge",
+    "abbreviation": "MRG"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 90,
+  "icon": {
+    "id": 3238,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 2,
+    "name": "Sort"
+  },
+  "attack_type": {
+    "id": 5,
+    "name": "magie"
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 2.5,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 58,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 3,
+      "value": 4
+    },
+    "secondary": {
+      "type_id": 58,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": 25,
+    "effect_yalms": 25,
+    "cast_type": 4
+  },
+  "targeting": {
+    "self": false,
+    "party": false,
+    "alliance": false,
+    "hostile": true,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": 16530,
+    "preserves_combo": false
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 7,
+    "behavior_type": 0,
+    "class_job_category_id": 112,
+    "source_class_job_id": 0,
+    "is_role_action": false,
+    "is_player_action": false,
+    "is_derived_action": true,
+    "equivalence_group": 0
+  }
+}

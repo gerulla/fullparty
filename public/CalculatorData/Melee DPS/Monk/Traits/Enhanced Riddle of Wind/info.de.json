@@ -1,0 +1,25 @@
+{
+  "kind": "trait",
+  "id": 578,
+  "name": "Verbessertes Stürmendes Enigma",
+  "description": "Erfolgreiche Ausführung von Stürmendes Enigma gewährt dir Himmelbrecher.\nDauer: 15 Sekunden",
+  "description_macro": "Erfolgreiche Ausführung von <colortype(502)><edgecolortype(503)>Stürmendes Enigma<edgecolortype(0)><colortype(0)> gewährt dir <colortype(506)><edgecolortype(507)>Himmelbrecher<edgecolortype(0)><colortype(0)>.<br>Dauer: 15 Sekunden",
+  "effects": [
+    "Erfolgreiche Ausführung von Stürmendes Enigma gewährt dir Himmelbrecher.",
+    "Dauer: 15 Sekunden"
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 20,
+    "name": "Mönch",
+    "abbreviation": "MÖN"
+  },
+  "unlock_level": 96,
+  "value": 0,
+  "icon": {
+    "id": 5526,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 21,
+  "source_class_job_id": 20
+}

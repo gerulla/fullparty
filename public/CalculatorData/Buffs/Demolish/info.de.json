@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 1309,
+  "name": "Demolieren",
+  "description": "Erleidet schrittweise Schaden und erhöhten Schaden vom Verursacher des Status.",
+  "effects": [
+    "Erleidet schrittweise Schaden und erhöhten Schaden vom Verursacher des Status."
+  ],
+  "classification": "debuff",
+  "icon": {
+    "id": 210218,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 2,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": true,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 10
+  },
+  "class_job_category_id": 21,
+  "source_abilities": [
+    {
+      "id": 66,
+      "name": "Demolieren",
+      "description": "Du führst eine physische Attacke aus.\nAttacke-Wert: 360\nVon hinten: 420\nZusatzeffekt: Gewährt dir zwei Stapel Rechtschaffene Coeurl-Faust.\nEffekt von Rechtschaffene Coeurl-Faust: Attacke-Wert von Tigerpeitschenhieb ist um 150 erhöht.\nBedingung: Coeurl-Form aktiv\nZusatzeffekt: Du wechselst in die Opo-Opo-Form.\nDauer: 30 Sekunden",
+      "description_macro": "Du führst eine physische Attacke aus.<br>Attacke-Wert: <if([gnum68==20],<if([gnum72>=94],360,<if([gnum68==20],<if([gnum72>=84],320,280)>,280)>)>,<if([gnum68==20],<if([gnum72>=84],320,280)>,280)>)><br>Von hinten: <if([gnum68==20],<if([gnum72>=94],420,<if([gnum68==20],<if([gnum72>=84],380,340)>,340)>)>,<if([gnum68==20],<if([gnum72>=84],380,340)>,340)>)><br>Zusatzeffekt: Gewährt dir zwei Stapel <colortype(506)><edgecolortype(507)>Rechtschaffene Coeurl-Faust<edgecolortype(0)><colortype(0)>.<br>Effekt von <colortype(506)><edgecolortype(507)>Rechtschaffene Coeurl-Faust<edgecolortype(0)><colortype(0)>: Attacke-Wert von <if([gnum68==20],<if([gnum72>=92],<colortype(502)><edgecolortype(503)>Tigerpeitschenhieb<edgecolortype(0)><colortype(0)>,<colortype(502)><edgecolortype(503)>Peitschenhieb<edgecolortype(0)><colortype(0)>)>,<colortype(502)><edgecolortype(503)>Peitschenhieb<edgecolortype(0)><colortype(0)>)> ist um 150 erhöht.<br>Bedingung: <colortype(506)><edgecolortype(507)>Coeurl-Form<edgecolortype(0)><colortype(0)> aktiv<br>Zusatzeffekt: Du wechselst in die <colortype(506)><edgecolortype(507)>Opo-Opo-Form.<edgecolortype(0)><colortype(0)><br>Dauer: 30 Sekunden",
+      "unlock_level": 30,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 20,
+          "name": "Mönch",
+          "abbreviation": "MÖN",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,91 @@
+{
+  "kind": "ability",
+  "id": 34660,
+  "name": "イエローストンラ",
+  "description": "対象とその周囲の敵に土属性範囲魔法攻撃。\u3000威力：380\n追加効果：自身に「色魔法3実行可」を付与する。\n効果時間：30秒\n発動条件：「色魔法2実行可」および「サブトラクティブパレット」効果中\n実行時にインスタレーションが付与されていて、かつイマジンスカイの空間アート内にいる場合は、インスタレーションを1スタック消費する。\nこの魔法は固有のリキャストタイマーを持ち、実行すると他のウェポンスキルと魔法にこのアクションと同じリキャストタイムが発生する。\n\n※このアクションはホットバーに登録することはできない。\n\u3000発動条件を満たすとシアンブリザラがイエローストンラに変化する。",
+  "description_macro": "対象とその周囲の敵に土属性範囲魔法攻撃。\u3000<colortype(504)><edgecolortype(505)>威力：<edgecolortype(0)><colortype(0)><if([gnum68==42],<if([gnum72>=94],380,<if([gnum68==42],<if([gnum72>=74],350,290)>,290)>)>,<if([gnum68==42],<if([gnum72>=74],350,290)>,290)>)><br><colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)>自身に<colortype(500)><edgecolortype(501)>「色魔法3実行可」<edgecolortype(0)><colortype(0)>を付与する。<br><colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>30秒<br><colortype(504)><edgecolortype(505)>発動条件：<edgecolortype(0)><colortype(0)><colortype(500)><edgecolortype(501)>「色魔法2実行可」<edgecolortype(0)><colortype(0)>および<colortype(500)><edgecolortype(501)>「サブトラクティブパレット」<edgecolortype(0)><colortype(0)>効果中<br><if([gnum68==42],<if([gnum72>=82],実行時にインスタレーションが付与されていて、かつイマジンスカイの空間アート内にいる場合は、インスタレーションを1スタック消費する。<br>,)>,)>この魔法は固有のリキャストタイマーを持ち、実行すると他のウェポンスキルと魔法にこのアクションと同じリキャストタイムが発生する。<br><br><colortype(506)><edgecolortype(507)>※このアクションはホットバーに登録することはできない。<br>\u3000発動条件を満たすとシアンブリザラがイエローストンラに変化する。<edgecolortype(0)><colortype(0)>",
+  "effects": [
+    "対象とその周囲の敵に土属性範囲魔法攻撃。\u3000威力：380",
+    "追加効果：自身に「色魔法3実行可」を付与する。",
+    "効果時間：30秒",
+    "発動条件：「色魔法2実行可」および「サブトラクティブパレット」効果中",
+    "実行時にインスタレーションが付与されていて、かつイマジンスカイの空間アート内にいる場合は、インスタレーションを1スタック消費する。",
+    "この魔法は固有のリキャストタイマーを持ち、実行すると他のウェポンスキルと魔法にこのアクションと同じリキャストタイムが発生する。",
+    "※このアクションはホットバーに登録することはできない。",
+    "発動条件を満たすとシアンブリザラがイエローストンラに変化する。"
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 42,
+    "name": "ピクトマンサー",
+    "abbreviation": "PCT"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 60,
+  "icon": {
+    "id": 3811,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 2,
+    "name": "魔法"
+  },
+  "attack_type": {
+    "id": 5,
+    "name": "魔法"
+  },
+  "timing": {
+    "cast_seconds": 2.3,
+    "recast_seconds": 3.3,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 58,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 96,
+      "value": 4
+    },
+    "secondary": {
+      "type_id": 0,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": 25,
+    "effect_yalms": 5,
+    "cast_type": 2
+  },
+  "targeting": {
+    "self": false,
+    "party": false,
+    "alliance": false,
+    "hostile": true,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 4,
+    "behavior_type": 0,
+    "class_job_category_id": 197,
+    "source_class_job_id": 0,
+    "is_role_action": false,
+    "is_player_action": false,
+    "is_derived_action": true,
+    "equivalence_group": 0
+  }
+}

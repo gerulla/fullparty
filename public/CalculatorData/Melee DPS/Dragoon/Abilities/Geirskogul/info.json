@@ -1,0 +1,89 @@
+{
+  "kind": "ability",
+  "id": 3555,
+  "name": "Geirskogul",
+  "description": "Delivers an attack to all enemies in a straight line before you with a potency of 280 for the first enemy, and 50% less for all remaining enemies.\nAdditional Effect: Grants Life of the Dragon\nLife of the Dragon Effect: Increases damage dealt by 15%\nDuration: 20s\nAdditional Effect: Grants Nastrond Ready\nDuration: 20s",
+  "description_macro": "Delivers an attack to all enemies in a straight line before you with a potency of <if([gnum68==22],<if([gnum72>=90],280,200)>,200)> for the first enemy, and 50% less for all remaining enemies.<br><if([gnum72>=70],<if([gnum68==22],<colortype(504)><edgecolortype(505)>Additional Effect:<edgecolortype(0)><colortype(0)> Grants <colortype(506)><edgecolortype(507)>Life of the Dragon<edgecolortype(0)><colortype(0)><br><colortype(504)><edgecolortype(505)>Life of the Dragon Effect: <edgecolortype(0)><colortype(0)>Increases damage dealt by 15%<br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>20s<br><colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>Grants <colortype(506)><edgecolortype(507)>Nastrond Ready<edgecolortype(0)><colortype(0)><br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>20s,<colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>Grants <colortype(506)><edgecolortype(507)>Blood of the Dragon<edgecolortype(0)><colortype(0)><br><colortype(504)><edgecolortype(505)>Blood of the Dragon Effect: <edgecolortype(0)><colortype(0)>Increases damage dealt by 10%<br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>20s)>,<colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>Grants <colortype(506)><edgecolortype(507)>Blood of the Dragon<edgecolortype(0)><colortype(0)><br><colortype(504)><edgecolortype(505)>Blood of the Dragon Effect: <edgecolortype(0)><colortype(0)>Increases damage dealt by 10%<br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>20s)>",
+  "effects": [
+    "Delivers an attack to all enemies in a straight line before you with a potency of 280 for the first enemy, and 50% less for all remaining enemies.",
+    "Additional Effect: Grants Life of the Dragon",
+    "Life of the Dragon Effect: Increases damage dealt by 15%",
+    "Duration: 20s",
+    "Additional Effect: Grants Nastrond Ready",
+    "Duration: 20s"
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 22,
+    "name": "Dragoon",
+    "abbreviation": "DRG"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 60,
+  "icon": {
+    "id": 2583,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 4,
+    "name": "Ability"
+  },
+  "attack_type": {
+    "id": 4294967295,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 60,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 11,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 0,
+      "value": 0
+    },
+    "secondary": {
+      "type_id": 0,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": 15,
+    "effect_yalms": 15,
+    "cast_type": 4
+  },
+  "targeting": {
+    "self": false,
+    "party": false,
+    "alliance": false,
+    "hostile": true,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 7,
+    "behavior_type": 0,
+    "class_job_category_id": 23,
+    "source_class_job_id": 22,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

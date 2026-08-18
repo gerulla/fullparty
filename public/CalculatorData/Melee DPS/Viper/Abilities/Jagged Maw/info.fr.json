@@ -1,0 +1,103 @@
+{
+  "kind": "ability",
+  "id": 34618,
+  "name": "Déchiquetage vorace",
+  "description": "Effectue une attaque physique sur les ennemis alentour.\nPuissance : 180\nSi vous êtes sous l'effet de Déchiqueteur vorace, augmente la puissance de 40.\nEffet additionnel : vous octroie Déchiqueteur sanglant.\nDurée : 60s\nDéchiqueteur sanglant : augmente de 40 la puissance de Déchiquetage sanglant.\nNe peut être cumulé avec Saigneur du flanc, Déchireur du flanc, Saigneur de l'échine, Déchireur de l'échine ou Déchiqueteur vorace.\nEffet additionnel : remplit la Jauge ophidienne de 10.\nCondition : après avoir utilisé Morsure prédatrice ou Morsure véloce avec succès.\n\n* Cette action ne peut pas être ajoutée aux barres de raccourcis.\nRemplace Morsure prédatrice lorsque les conditions sont réunies.",
+  "description_macro": "Effectue une attaque physique sur les ennemis alentour.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> 180<br>Si vous êtes sous l'effet de <colortype(500)><edgecolortype(501)>Déchiqueteur vorace<edgecolortype(0)><colortype(0)>, augmente la puissance de 40.<br><colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> vous octroie <colortype(500)><edgecolortype(501)>Déchiqueteur sanglant<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 60s<br><colortype(506)><edgecolortype(507)>Déchiqueteur sanglant<nbsp>:<edgecolortype(0)><colortype(0)> augmente de 40 la puissance de Déchiquetage sanglant.<br>Ne peut être cumulé avec <colortype(500)><edgecolortype(501)>Saigneur du flanc<edgecolortype(0)><colortype(0)>, <colortype(500)><edgecolortype(501)>Déchireur du flanc<edgecolortype(0)><colortype(0)>, <colortype(500)><edgecolortype(501)>Saigneur de l'échine<edgecolortype(0)><colortype(0)>, <colortype(500)><edgecolortype(501)>Déchireur de l'échine<edgecolortype(0)><colortype(0)> ou <colortype(500)><edgecolortype(501)>Déchiqueteur vorace<edgecolortype(0)><colortype(0)>.<br><if([gnum68==41],<if([gnum72>=90],<colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> remplit la <colortype(502)><edgecolortype(503)>Jauge ophidienne<edgecolortype(0)><colortype(0)> de 10.<br>,)>,)><colortype(506)><edgecolortype(507)>Condition<nbsp>:<edgecolortype(0)><colortype(0)> après avoir utilisé <colortype(500)><edgecolortype(501)>Morsure prédatrice<edgecolortype(0)><colortype(0)> ou <colortype(500)><edgecolortype(501)>Morsure véloce<edgecolortype(0)><colortype(0)> avec succès.<br><br><colortype(504)><edgecolortype(505)>* Cette action ne peut pas être ajoutée aux barres de raccourcis.<br>Remplace <colortype(500)><edgecolortype(501)>Morsure prédatrice<edgecolortype(0)><colortype(0)> lorsque les conditions sont réunies.<edgecolortype(0)><colortype(0)>",
+  "effects": [
+    "Effectue une attaque physique sur les ennemis alentour.",
+    "Puissance : 180",
+    "Si vous êtes sous l'effet de Déchiqueteur vorace, augmente la puissance de 40.",
+    "Effet additionnel : vous octroie Déchiqueteur sanglant.",
+    "Durée : 60s",
+    "Déchiqueteur sanglant : augmente de 40 la puissance de Déchiquetage sanglant.",
+    "Ne peut être cumulé avec Saigneur du flanc, Déchireur du flanc, Saigneur de l'échine, Déchireur de l'échine ou Déchiqueteur vorace.",
+    "Effet additionnel : remplit la Jauge ophidienne de 10.",
+    "Condition : après avoir utilisé Morsure prédatrice ou Morsure véloce avec succès.",
+    "* Cette action ne peut pas être ajoutée aux barres de raccourcis.",
+    "Remplace Morsure prédatrice lorsque les conditions sont réunies."
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 41,
+    "name": "Rôdeur Vipère",
+    "abbreviation": "VPR"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 50,
+  "icon": {
+    "id": 3713,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 3,
+    "name": "Technique d'arme"
+  },
+  "attack_type": {
+    "id": 4294967295,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 2.5,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 58,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 0,
+      "value": 0
+    },
+    "secondary": {
+      "type_id": 136,
+      "value": 6
+    }
+  },
+  "range": {
+    "target_yalms": 0,
+    "effect_yalms": 5,
+    "cast_type": 2
+  },
+  "targeting": {
+    "self": true,
+    "party": false,
+    "alliance": false,
+    "hostile": false,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": 34616,
+    "preserves_combo": false
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": {
+      "id": 120,
+      "status": {
+        "id": 3649,
+        "name": "Déchiqueteur vorace",
+        "description": "La puissance de Déchiquetage vorace est augmentée.",
+        "icon_id": 213755,
+        "max_stacks": 0
+      }
+    }
+  },
+  "metadata": {
+    "aspect_id": 7,
+    "behavior_type": 0,
+    "class_job_category_id": 196,
+    "source_class_job_id": 0,
+    "is_role_action": false,
+    "is_player_action": false,
+    "is_derived_action": true,
+    "equivalence_group": 0
+  }
+}

@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 4790,
+  "name": "Blazing Spellblade",
+  "description": "Damage dealt is increased.",
+  "effects": [
+    "Damage dealt is increased."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 229965,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": true,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 5
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 46593,
+      "name": "Blazing Spellblade",
+      "description": "Delivers an attack with a potency of 200.\nHoned Spellblade Potency: 300\nPotency scales with item level.\nAdditional Effect: Increases target's damage taken by 5%\nDuration: 70s\nAdditional Effect: Increases damage dealt by 5%\nDuration: 70s\nShares a recast timer with Sundering Spellblade and Holy Spellblade.",
+      "description_macro": "Delivers an attack with a potency of 200.<br><colortype(504)><edgecolortype(505)>Honed Spellblade Potency: <edgecolortype(0)><colortype(0)>300<br>Potency scales with item level.<br><colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>Increases target's damage taken by 5%<br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>70s<br><colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>Increases damage dealt by 5%<br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>70s<br>Shares a recast timer with <colortype(500)><edgecolortype(501)>Sundering Spellblade<edgecolortype(0)><colortype(0)> and <colortype(500)><edgecolortype(501)>Holy Spellblade<edgecolortype(0)><colortype(0)>.",
+      "unlock_level": 0,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Phantom Jobs"
+      ],
+      "jobs": [
+        {
+          "id": 13,
+          "name": "Phantom Mystic Knight",
+          "abbreviation": "Ph. Mystic Knight",
+          "is_phantom": true
+        }
+      ]
+    }
+  ]
+}

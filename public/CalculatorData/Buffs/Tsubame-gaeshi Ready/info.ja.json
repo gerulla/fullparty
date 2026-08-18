@@ -1,0 +1,113 @@
+{
+  "kind": "combat_status",
+  "id": 3852,
+  "name": "燕返し実行可",
+  "description": "燕返しを実行できる状態。",
+  "effects": [
+    "燕返しを実行できる状態。"
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 213315,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 111,
+  "source_abilities": [
+    {
+      "id": 7487,
+      "name": "乱れ雪月花",
+      "description": "対象に物理攻撃。\u3000威力：680\nこのアクションは必ずクリティカルヒットする。\nクリティカルヒットの発動率を上昇させる効果を受けている場合は与ダメージが上昇する。\n追加効果：自身に「燕返し実行可」を付与する。\n効果時間：30秒\n追加効果：自身に「剣圧」を付与する。\n最大スタック数：3\u3000効果時間：永続\n発動条件：自身に「閃」が3種類付与されている\n\n※このアクションはホットバーに登録することはできない。\n\u3000発動条件を満たすと居合術が乱れ雪月花に変化する。",
+      "description_macro": "対象に物理攻撃。\u3000<colortype(504)><edgecolortype(505)>威力：<edgecolortype(0)><colortype(0)><if([gnum68==34],<if([gnum72>=94],680,620)>,620)><br>このアクションは必ずクリティカルヒットする。<br>クリティカルヒットの発動率を上昇させる効果を受けている場合は与ダメージが上昇する。<br><if([gnum68==34],<if([gnum72>=74],<colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)>自身に<colortype(500)><edgecolortype(501)>「燕返し実行可」<edgecolortype(0)><colortype(0)>を付与する。<br><colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>30秒<br>,)>,)><if([gnum68==34],<if([gnum72>=80],<colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)>自身に<colortype(500)><edgecolortype(501)>「剣圧」<edgecolortype(0)><colortype(0)>を付与する。<br><colortype(504)><edgecolortype(505)>最大スタック数：<edgecolortype(0)><colortype(0)>3\u3000<colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>永続<br>,)>,)><colortype(504)><edgecolortype(505)>発動条件：<edgecolortype(0)><colortype(0)>自身に<colortype(500)><edgecolortype(501)>「閃」<edgecolortype(0)><colortype(0)>が3種類付与されている<br><br><colortype(506)><edgecolortype(507)>※このアクションはホットバーに登録することはできない。<br>\u3000発動条件を満たすと居合術が乱れ雪月花に変化する。<edgecolortype(0)><colortype(0)>",
+      "unlock_level": 50,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 34,
+          "name": "侍",
+          "abbreviation": "SAM",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 7488,
+      "name": "天下五剣",
+      "description": "自身の周囲の敵に範囲物理攻撃。\u3000威力：300\n追加効果：自身に「燕返し実行可」を付与する。\n効果時間：30秒\n追加効果：自身に「剣圧」を付与する。\n最大スタック数：3\u3000効果時間：永続\n発動条件：自身に「閃」が2種類付与されている\n\n※このアクションはホットバーに登録することはできない。\n\u3000発動条件を満たすと居合術が天下五剣に変化する。",
+      "description_macro": "自身の周囲の敵に範囲物理攻撃。\u3000<colortype(504)><edgecolortype(505)>威力：<edgecolortype(0)><colortype(0)>300<br><if([gnum68==34],<if([gnum72>=74],<colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)>自身に<colortype(500)><edgecolortype(501)>「燕返し実行可」<edgecolortype(0)><colortype(0)>を付与する。<br><colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>30秒<br>,)>,)><if([gnum68==34],<if([gnum72>=80],<colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)>自身に<colortype(500)><edgecolortype(501)>「剣圧」<edgecolortype(0)><colortype(0)>を付与する。<br><colortype(504)><edgecolortype(505)>最大スタック数：<edgecolortype(0)><colortype(0)>3\u3000<colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>永続<br>,)>,)><colortype(504)><edgecolortype(505)>発動条件：<edgecolortype(0)><colortype(0)>自身に<colortype(500)><edgecolortype(501)>「閃」<edgecolortype(0)><colortype(0)>が2種類付与されている<br><br><colortype(506)><edgecolortype(507)>※このアクションはホットバーに登録することはできない。<br>\u3000発動条件を満たすと居合術が天下五剣に変化する。<edgecolortype(0)><colortype(0)>",
+      "unlock_level": 40,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 34,
+          "name": "侍",
+          "abbreviation": "SAM",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 36965,
+      "name": "天道五剣",
+      "description": "自身の周囲の敵に範囲物理攻撃。\u3000威力：410\n追加効果：自身に「燕返し実行可」を付与する。\n効果時間：30秒\n追加効果：自身に「剣圧」を付与する。\n最大スタック数：3\u3000効果時間：永続\n発動条件：「天道」効果中かつ自身に「閃」が2種類付与されている\n\n※このアクションはホットバーに登録することはできない。\n\u3000発動条件を満たすと居合術が天道五剣に変化する。",
+      "description_macro": "自身の周囲の敵に範囲物理攻撃。\u3000<colortype(504)><edgecolortype(505)>威力：<edgecolortype(0)><colortype(0)>410<br><colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)>自身に<colortype(500)><edgecolortype(501)>「燕返し実行可」<edgecolortype(0)><colortype(0)>を付与する。<br><colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>30秒<br><colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)>自身に<colortype(500)><edgecolortype(501)>「剣圧」<edgecolortype(0)><colortype(0)>を付与する。<br><colortype(504)><edgecolortype(505)>最大スタック数：<edgecolortype(0)><colortype(0)>3\u3000<colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>永続<br><colortype(504)><edgecolortype(505)>発動条件：<edgecolortype(0)><colortype(0)><colortype(500)><edgecolortype(501)>「天道」<edgecolortype(0)><colortype(0)>効果中かつ自身に<colortype(500)><edgecolortype(501)>「閃」<edgecolortype(0)><colortype(0)>が2種類付与されている<br><br><colortype(506)><edgecolortype(507)>※このアクションはホットバーに登録することはできない。<br>\u3000発動条件を満たすと居合術が天道五剣に変化する。<edgecolortype(0)><colortype(0)>",
+      "unlock_level": 100,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 34,
+          "name": "侍",
+          "abbreviation": "SAM",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 36966,
+      "name": "天道雪月花",
+      "description": "対象に物理攻撃。\u3000威力：1100\nこのアクションは必ずクリティカルヒットする。\nクリティカルヒットの発動率を上昇させる効果を受けている場合は与ダメージが上昇する。\n追加効果：自身に「燕返し実行可」を付与する。\n効果時間：30秒\n追加効果：自身に「剣圧」を付与する。\n最大スタック数：3\u3000効果時間：永続\n発動条件：「天道」効果中かつ自身に「閃」が3種類付与されている\n\n※このアクションはホットバーに登録することはできない。\n\u3000発動条件を満たすと居合術が天道雪月花に変化する。",
+      "description_macro": "対象に物理攻撃。\u3000<colortype(504)><edgecolortype(505)>威力：<edgecolortype(0)><colortype(0)>1100<br>このアクションは必ずクリティカルヒットする。<br>クリティカルヒットの発動率を上昇させる効果を受けている場合は与ダメージが上昇する。<br><colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)>自身に<colortype(500)><edgecolortype(501)>「燕返し実行可」<edgecolortype(0)><colortype(0)>を付与する。<br><colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>30秒<br><colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)>自身に<colortype(500)><edgecolortype(501)>「剣圧」<edgecolortype(0)><colortype(0)>を付与する。<br><colortype(504)><edgecolortype(505)>最大スタック数：<edgecolortype(0)><colortype(0)>3\u3000<colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>永続<br><colortype(504)><edgecolortype(505)>発動条件：<edgecolortype(0)><colortype(0)><colortype(500)><edgecolortype(501)>「天道」<edgecolortype(0)><colortype(0)>効果中かつ自身に<colortype(500)><edgecolortype(501)>「閃」<edgecolortype(0)><colortype(0)>が3種類付与されている<br><br><colortype(506)><edgecolortype(507)>※このアクションはホットバーに登録することはできない。<br>\u3000発動条件を満たすと居合術が天道雪月花に変化する。<edgecolortype(0)><colortype(0)>",
+      "unlock_level": 100,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 34,
+          "name": "侍",
+          "abbreviation": "SAM",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

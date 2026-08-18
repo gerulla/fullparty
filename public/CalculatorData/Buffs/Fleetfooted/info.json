@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 4239,
+  "name": "Fleetfooted",
+  "description": "Movement speed is increased.",
+  "effects": [
+    "Movement speed is increased."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 229954,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 18,
+    "modifier": 0
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 41597,
+      "name": "Counterstance",
+      "description": "Increases parry rate by 100%.\nDuration: 60s\nAdditional Effect: Grants Fleetfooted to self and nearby party members when executed within proximity of a knowledge crystal\nFleetfooted Effect: Increases movement speed\nDuration: 30m",
+      "description_macro": "Increases parry rate by 100%.<br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>60s<br><colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>Grants <colortype(506)><edgecolortype(507)>Fleetfooted<edgecolortype(0)><colortype(0)> to self and nearby party members when executed within proximity of a knowledge crystal<br><colortype(504)><edgecolortype(505)>Fleetfooted Effect: <edgecolortype(0)><colortype(0)>Increases movement speed<br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>30m",
+      "unlock_level": 0,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Phantom Jobs"
+      ],
+      "jobs": [
+        {
+          "id": 3,
+          "name": "Phantom Monk",
+          "abbreviation": "Ph. Monk",
+          "is_phantom": true
+        }
+      ]
+    }
+  ]
+}

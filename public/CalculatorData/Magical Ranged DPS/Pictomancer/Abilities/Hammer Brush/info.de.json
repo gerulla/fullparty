@@ -1,0 +1,100 @@
+{
+  "kind": "ability",
+  "id": 34679,
+  "name": "Hammerpinsel",
+  "description": "Du führst eine elementneutrale magische Attacke auf das Ziel und die Gegner in seiner Nähe aus, die direkt und kritisch trifft.\nAttacke-Wert: 580\nAttacke-Wert verringert sich ab dem zweiten Gegner um 70 %.\nIst ein Effekt aktiv, der deine Rate kritischer oder direkter Treffer steigert, erhöht sich auch der Attacke-Wert.\nKombo-Bedingung: Hammerstempel\nBedingung: Hammer und Pinsel aktiv\nBei erfüllter Bedingung ändert sich Hammerstempel zu diesem Kommando.\nKann nicht im Kommandomenü angelegt werden.",
+  "description_macro": "Du führst eine elementneutrale magische Attacke auf das Ziel und die Gegner in seiner Nähe aus, die direkt und kritisch trifft.<br>Attacke-Wert: <if([gnum68==42],<if([gnum72>=94],580,560)>,560)><br>Attacke-Wert verringert sich ab dem zweiten Gegner um 70<nbsp>%.<br>Ist ein Effekt aktiv, der deine Rate kritischer oder direkter Treffer steigert, erhöht sich auch der Attacke-Wert.<br>Kombo-Bedingung: <colortype(502)><edgecolortype(503)>Hammerstempel<edgecolortype(0)><colortype(0)><br>Bedingung: <colortype(506)><edgecolortype(507)>Hammer und Pinsel<edgecolortype(0)><colortype(0)> aktiv<br>Bei erfüllter Bedingung ändert sich <colortype(502)><edgecolortype(503)>Hammerstempel<edgecolortype(0)><colortype(0)> zu diesem Kommando.<br>Kann nicht im Kommandomenü angelegt werden.",
+  "effects": [
+    "Du führst eine elementneutrale magische Attacke auf das Ziel und die Gegner in seiner Nähe aus, die direkt und kritisch trifft.",
+    "Attacke-Wert: 580",
+    "Attacke-Wert verringert sich ab dem zweiten Gegner um 70 %.",
+    "Ist ein Effekt aktiv, der deine Rate kritischer oder direkter Treffer steigert, erhöht sich auch der Attacke-Wert.",
+    "Kombo-Bedingung: Hammerstempel",
+    "Bedingung: Hammer und Pinsel aktiv",
+    "Bei erfüllter Bedingung ändert sich Hammerstempel zu diesem Kommando.",
+    "Kann nicht im Kommandomenü angelegt werden."
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 42,
+    "name": "Piktomant",
+    "abbreviation": "PKT"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 86,
+  "icon": {
+    "id": 3830,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 2,
+    "name": "Zauber"
+  },
+  "attack_type": {
+    "id": 5,
+    "name": "魔法"
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 2.5,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 58,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 0,
+      "value": 0
+    },
+    "secondary": {
+      "type_id": 139,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": 25,
+    "effect_yalms": 5,
+    "cast_type": 2
+  },
+  "targeting": {
+    "self": false,
+    "party": false,
+    "alliance": false,
+    "hostile": true,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": 34678,
+    "preserves_combo": false
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": {
+      "id": 142,
+      "status": {
+        "id": 3680,
+        "name": "Hammer und Pinsel",
+        "description": "Die Hammer-Kombo kann ausgeführt werden.",
+        "icon_id": 218677,
+        "max_stacks": 3
+      }
+    }
+  },
+  "metadata": {
+    "aspect_id": 7,
+    "behavior_type": 0,
+    "class_job_category_id": 197,
+    "source_class_job_id": 0,
+    "is_role_action": false,
+    "is_player_action": false,
+    "is_derived_action": true,
+    "equivalence_group": 0
+  }
+}

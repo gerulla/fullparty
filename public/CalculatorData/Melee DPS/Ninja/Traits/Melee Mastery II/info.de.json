@@ -1,0 +1,27 @@
+{
+  "kind": "trait",
+  "id": 522,
+  "name": "Verbessertes Ninjutsu II",
+  "description": "Erhöht den Attacke-Wert folgender Kommandos:\nAttacke-Wert von Wirbelklinge: 220\nAttacke-Wert von Windschlitzer: 160\nAttacke-Wert von Wurfmesser: 200",
+  "description_macro": "Erhöht den Attacke-Wert folgender Kommandos:<br>Attacke-Wert von <colortype(502)><edgecolortype(503)>Wirbelklinge<edgecolortype(0)><colortype(0)>: 220<br>Attacke-Wert von <colortype(502)><edgecolortype(503)>Windschlitzer<edgecolortype(0)><colortype(0)>: 160<br>Attacke-Wert von <colortype(502)><edgecolortype(503)>Wurfmesser<edgecolortype(0)><colortype(0)>: 200",
+  "effects": [
+    "Erhöht den Attacke-Wert folgender Kommandos:",
+    "Attacke-Wert von Wirbelklinge: 220",
+    "Attacke-Wert von Windschlitzer: 160",
+    "Attacke-Wert von Wurfmesser: 200"
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 30,
+    "name": "Ninja",
+    "abbreviation": "NIN"
+  },
+  "unlock_level": 84,
+  "value": 0,
+  "icon": {
+    "id": 6802,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 92,
+  "source_class_job_id": 30
+}

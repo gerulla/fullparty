@@ -1,0 +1,29 @@
+{
+  "kind": "trait",
+  "id": 660,
+  "name": "Verbesserter Faustkampf II",
+  "description": "Erhöht den Attacke-Wert folgender Kommandos:\nAttacke-Wert von Doppelviper: 420\nAttacke-Wert von Demolieren: 360\nAttacke-Wert von Drachentritt: 320\nAttacke-Wert von Sechsstern-Tritt: 780\nAttacke-Wert von Phantomstoß: 1.500",
+  "description_macro": "Erhöht den Attacke-Wert folgender Kommandos:<br>Attacke-Wert von <colortype(502)><edgecolortype(503)>Doppelviper<edgecolortype(0)><colortype(0)>: 420<br>Attacke-Wert von <colortype(502)><edgecolortype(503)>Demolieren<edgecolortype(0)><colortype(0)>: 360<br>Attacke-Wert von <colortype(502)><edgecolortype(503)>Drachentritt<edgecolortype(0)><colortype(0)>: 320<br>Attacke-Wert von <colortype(502)><edgecolortype(503)>Sechsstern-Tritt<edgecolortype(0)><colortype(0)>: 780<br>Attacke-Wert von <colortype(502)><edgecolortype(503)>Phantomstoß<edgecolortype(0)><colortype(0)>: 1.500",
+  "effects": [
+    "Erhöht den Attacke-Wert folgender Kommandos:",
+    "Attacke-Wert von Doppelviper: 420",
+    "Attacke-Wert von Demolieren: 360",
+    "Attacke-Wert von Drachentritt: 320",
+    "Attacke-Wert von Sechsstern-Tritt: 780",
+    "Attacke-Wert von Phantomstoß: 1.500"
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 20,
+    "name": "Mönch",
+    "abbreviation": "MÖN"
+  },
+  "unlock_level": 94,
+  "value": 0,
+  "icon": {
+    "id": 6802,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 21,
+  "source_class_job_id": 20
+}

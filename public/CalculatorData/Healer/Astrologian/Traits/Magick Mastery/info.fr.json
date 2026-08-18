@@ -1,0 +1,28 @@
+{
+  "kind": "trait",
+  "id": 673,
+  "name": "Actions améliorées",
+  "description": "Augmente la puissance de certaines actions.\n\nPuissance de Conjonction supérieure III : 70\nPuissance de Malfaisance en chute : 270\nPuissance d'Extra Gravité : 140\nPuissance de Macrocosme : 270",
+  "description_macro": "Augmente la puissance de certaines actions.<br><br><colortype(506)><edgecolortype(507)>Puissance de Conjonction supérieure III<nbsp>:<edgecolortype(0)><colortype(0)> 70<br><colortype(506)><edgecolortype(507)>Puissance de Malfaisance en chute<nbsp>:<edgecolortype(0)><colortype(0)> 270<br><colortype(506)><edgecolortype(507)>Puissance d'Extra Gravité<nbsp>:<edgecolortype(0)><colortype(0)> 140<br><colortype(506)><edgecolortype(507)>Puissance de Macrocosme<nbsp>:<edgecolortype(0)><colortype(0)> 270",
+  "effects": [
+    "Augmente la puissance de certaines actions.",
+    "Puissance de Conjonction supérieure III : 70",
+    "Puissance de Malfaisance en chute : 270",
+    "Puissance d'Extra Gravité : 140",
+    "Puissance de Macrocosme : 270"
+  ],
+  "role": "Healer",
+  "job": {
+    "id": 33,
+    "name": "Astromancien",
+    "abbreviation": "AST"
+  },
+  "unlock_level": 94,
+  "value": 0,
+  "icon": {
+    "id": 6831,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 99,
+  "source_class_job_id": 33
+}

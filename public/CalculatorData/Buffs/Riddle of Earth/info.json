@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 1179,
+  "name": "Riddle of Earth",
+  "description": "Contemplating the riddle of earth. Damage taken is reduced.",
+  "effects": [
+    "Contemplating the riddle of earth. Damage taken is reduced."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 212527,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": -20
+  },
+  "class_job_category_id": 21,
+  "source_abilities": [
+    {
+      "id": 7394,
+      "name": "Riddle of Earth",
+      "description": "Reduces damage taken by 20%.\nDuration: 10s\nAdditional Effect: Grants Earth's Resolve upon taking damage\nEarth's Resolve Effect: Gradually restores HP\nCure Potency: 100\nDuration: 15s\nAdditional Effect: Grants Earth's Rumination\nDuration: 30s",
+      "description_macro": "Reduces damage taken by 20%.<br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>10s<br><colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>Grants <colortype(506)><edgecolortype(507)>Earth's Resolve<edgecolortype(0)><colortype(0)> upon taking damage<br><colortype(504)><edgecolortype(505)>Earth's Resolve Effect: <edgecolortype(0)><colortype(0)>Gradually restores HP<br><colortype(504)><edgecolortype(505)>Cure Potency: <edgecolortype(0)><colortype(0)>100<br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>15s<br><colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>Grants <colortype(506)><edgecolortype(507)>Earth's Rumination<edgecolortype(0)><colortype(0)><br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>30s",
+      "unlock_level": 64,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 20,
+          "name": "Monk",
+          "abbreviation": "MNK",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

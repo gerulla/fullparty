@@ -1,0 +1,113 @@
+{
+  "kind": "combat_status",
+  "id": 487,
+  "name": "氷結",
+  "description": "身体が凍り付き、行動できなくなった状態。ＨＰが徐々に失われる。",
+  "effects": [
+    "身体が凍り付き、行動できなくなった状態。ＨＰが徐々に失われる。"
+  ],
+  "classification": "debuff",
+  "icon": {
+    "id": 217621,
+    "file": "icon.png"
+  },
+  "max_stacks": 16,
+  "status_category_id": 2,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 100,
+  "parameter": {
+    "effect": 0,
+    "modifier": 50
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 11419,
+      "name": "氷結の咆哮",
+      "description": "自身の周囲の敵に氷属性範囲魔法攻撃。\u3000威力：220\n2体目以降の対象への威力は50％減少する。\n追加効果：対象を氷結させる\u3000効果時間：12秒",
+      "description_macro": "自身の周囲の敵に氷属性範囲魔法攻撃。\u3000<colortype(504)><edgecolortype(505)>威力：<edgecolortype(0)><colortype(0)>220<br>2体目以降の対象への威力は50％減少する。<br><colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)>対象を氷結させる\u3000<colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>12秒",
+      "unlock_level": 1,
+      "relations": [
+        "applied_by_description"
+      ],
+      "roles": [
+        "Magical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 36,
+          "name": "青魔道士",
+          "abbreviation": "BLU",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 23267,
+      "name": "冷たい霧",
+      "description": "自身に「冷たい霧」を付与する。\u3000効果時間：5秒\n効果時間中に敵から攻撃を受けると「氷霧」に変化する。\n氷霧効果：アクション「冷たい霧」が「氷霧」に変化する。\n効果時間：15秒\nこの魔法は固有のリキャストタイマーを持つ。\n\n【氷霧】\n対象に氷属性魔法攻撃。\u3000威力：400\n追加効果：対象を氷結させる\u3000効果時間：10秒\n発動条件：「氷霧」効果中",
+      "description_macro": "自身に<colortype(500)><edgecolortype(501)>「冷たい霧」<edgecolortype(0)><colortype(0)>を付与する。\u3000<colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>5秒<br>効果時間中に敵から攻撃を受けると<colortype(500)><edgecolortype(501)>「氷霧」<edgecolortype(0)><colortype(0)>に変化する。<br><colortype(504)><edgecolortype(505)>氷霧効果：<edgecolortype(0)><colortype(0)>アクション<colortype(500)><edgecolortype(501)>「冷たい霧」<edgecolortype(0)><colortype(0)>が<colortype(500)><edgecolortype(501)>「氷霧」<edgecolortype(0)><colortype(0)>に変化する。<br><colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>15秒<br>この魔法は固有のリキャストタイマーを持つ。<br><br><colortype(500)><edgecolortype(501)>【氷霧】<edgecolortype(0)><colortype(0)><br>対象に氷属性魔法攻撃。\u3000<colortype(504)><edgecolortype(505)>威力：<edgecolortype(0)><colortype(0)>400<br><colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)>対象を氷結させる\u3000<colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>10秒<br><colortype(504)><edgecolortype(505)>発動条件：<edgecolortype(0)><colortype(0)><colortype(500)><edgecolortype(501)>「氷霧」<edgecolortype(0)><colortype(0)>効果中",
+      "unlock_level": 1,
+      "relations": [
+        "applied_by_description"
+      ],
+      "roles": [
+        "Magical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 36,
+          "name": "青魔道士",
+          "abbreviation": "BLU",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 23268,
+      "name": "氷霧",
+      "description": "対象に氷属性魔法攻撃。\u3000威力：400\n追加効果：対象を氷結させる\u3000効果時間：10秒\n発動条件：「氷霧」効果中",
+      "description_macro": "対象に氷属性魔法攻撃。\u3000<colortype(504)><edgecolortype(505)>威力：<edgecolortype(0)><colortype(0)>400<br><colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)>対象を氷結させる\u3000<colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>10秒<br><colortype(504)><edgecolortype(505)>発動条件：<edgecolortype(0)><colortype(0)><colortype(500)><edgecolortype(501)>「氷霧」<edgecolortype(0)><colortype(0)>効果中",
+      "unlock_level": 1,
+      "relations": [
+        "applied_by_description"
+      ],
+      "roles": [
+        "Magical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 36,
+          "name": "青魔道士",
+          "abbreviation": "BLU",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 49098,
+      "name": "ディープフリーズ",
+      "description": "対象に向かって前方直線氷属性範囲魔法攻撃。\n威力：300（アイテムレベル依存威力）\n追加効果：対象の弱点属性が氷属性だった場合、威力が上昇する。\n弱点属性時威力：390（アイテムレベル依存威力）\n実行時に最大ＨＰの10％分を消費する。\nドレインタッチ時威力：400（アイテムレベル依存威力）\n弱点属性かつドレインタッチ時威力：520（アイテムレベル依存威力）\nドレインタッチ時追加効果：対象の時間を停止する。\n効果時間：4秒\nドレインタッチ時追加効果：自身に「死の宣告」を付与する。\n効果時間：10秒\nこの死の宣告はＨＰが全回復すると解除される。",
+      "description_macro": "対象に向かって前方直線氷属性範囲魔法攻撃。<br><colortype(504)><edgecolortype(505)>威力：<edgecolortype(0)><colortype(0)>300（アイテムレベル依存威力）<br><colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)>対象の弱点属性が氷属性だった場合、威力が上昇する。<br><colortype(504)><edgecolortype(505)>弱点属性時威力：<edgecolortype(0)><colortype(0)>390（アイテムレベル依存威力）<br>実行時に最大ＨＰの10％分を消費する。<br><colortype(504)><edgecolortype(505)>ドレインタッチ時威力：<edgecolortype(0)><colortype(0)>400（アイテムレベル依存威力）<br><colortype(504)><edgecolortype(505)>弱点属性かつドレインタッチ時威力：<edgecolortype(0)><colortype(0)>520（アイテムレベル依存威力）<br><colortype(504)><edgecolortype(505)>ドレインタッチ時追加効果：<edgecolortype(0)><colortype(0)>対象の時間を停止する。<br><colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>4秒<br><colortype(504)><edgecolortype(505)>ドレインタッチ時追加効果：<edgecolortype(0)><colortype(0)>自身に<colortype(500)><edgecolortype(501)>「死の宣告」<edgecolortype(0)><colortype(0)>を付与する。<br><colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>10秒<br>この死の宣告はＨＰが全回復すると解除される。<if([gnum108>=3],<br>リキャストタイマーを<colortype(500)><edgecolortype(501)>「ヘルウィンド」<edgecolortype(0)><colortype(0)><if([gnum108>=4],<colortype(500)><edgecolortype(501)>「カオスドライブ」<edgecolortype(0)><colortype(0)>,)>と共有する。,)>",
+      "unlock_level": 0,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Phantom Jobs"
+      ],
+      "jobs": [
+        {
+          "id": 23,
+          "name": "Phantom サポートネクロマンサー",
+          "abbreviation": "Ph. Necromancer",
+          "is_phantom": true
+        }
+      ]
+    }
+  ]
+}

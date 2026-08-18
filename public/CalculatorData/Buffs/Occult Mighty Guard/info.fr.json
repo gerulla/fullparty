@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 5321,
+  "name": "Magi Garde puissante",
+  "description": "Les dégâts subis sont réduits.",
+  "effects": [
+    "Les dégâts subis sont réduits."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 229982,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": -20
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 49088,
+      "name": "Magi Garde puissante",
+      "description": "Réduit de 20% les dégâts reçus par vous et les équipiers alentour.\nDurée : 15s",
+      "description_macro": "Réduit de 20% les dégâts reçus par vous et les équipiers alentour.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 15s",
+      "unlock_level": 0,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Phantom Jobs"
+      ],
+      "jobs": [
+        {
+          "id": 21,
+          "name": "Phantom Mage bleu fantôme",
+          "abbreviation": "Mage bleu fant.",
+          "is_phantom": true
+        }
+      ]
+    }
+  ]
+}

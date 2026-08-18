@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 268,
+  "name": "Mastering the Beast",
+  "description": "Increases Beast Gauge when landing Mythril Tempest in a combo.",
+  "description_macro": "Increases <colortype(500)><edgecolortype(501)>Beast Gauge<edgecolortype(0)><colortype(0)> when landing <colortype(500)><edgecolortype(501)>Mythril Tempest<edgecolortype(0)><colortype(0)> in a combo.",
+  "effects": [
+    "Increases Beast Gauge when landing Mythril Tempest in a combo."
+  ],
+  "role": "Tank",
+  "job": {
+    "id": 21,
+    "name": "Warrior",
+    "abbreviation": "WAR"
+  },
+  "unlock_level": 74,
+  "value": 0,
+  "icon": {
+    "id": 5265,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 22,
+  "source_class_job_id": 21
+}

@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 643,
+  "name": "Embrouillement amélioré",
+  "description": "Allonge à 15s la durée d'Embrouillement.",
+  "description_macro": "Allonge à 15s la durée d'<colortype(500)><edgecolortype(501)>Embrouillement<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Allonge à 15s la durée d'Embrouillement."
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 27,
+    "name": "Invocateur",
+    "abbreviation": "INV"
+  },
+  "unlock_level": 98,
+  "value": 0,
+  "icon": {
+    "id": 6827,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 198,
+  "source_class_job_id": 0
+}

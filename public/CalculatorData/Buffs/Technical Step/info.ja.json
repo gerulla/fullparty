@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 1819,
+  "name": "テクニカルステップ",
+  "description": "ダンスモードに入った状態。ステップアクションと「テクニカルフィニッシュ」「アン・アヴァン」「癒やしのワルツ」「守りのサンバ」、ロールアクション、スプリント、リミットブレイク以外のアクションを実行することができない。",
+  "effects": [
+    "ダンスモードに入った状態。ステップアクションと「テクニカルフィニッシュ」「アン・アヴァン」「癒やしのワルツ」「守りのサンバ」、ロールアクション、スプリント、リミットブレイク以外のアクションを実行することができない。"
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 213706,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": true,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 150,
+  "source_abilities": [
+    {
+      "id": 15998,
+      "name": "テクニカルステップ",
+      "description": "ダンスモードになり、自身に「テクニカルステップ」を付与する。\n効果時間：15秒\n効果中は「テクニカルフィニッシュ」に変化する。\nまた、ステップアクションと「テクニカルフィニッシュ」「アン・アヴァン」「癒やしのワルツ」「守りのサンバ」、ロールアクション、スプリント、リミットブレイク以外を実行することができなくなる。\nこのウェポンスキルは固有のリキャストタイマーを持ち、実行すると他のウェポンスキルと魔法にこのアクションと同じリキャストタイムが発生する。",
+      "description_macro": "ダンスモードになり、自身に<colortype(500)><edgecolortype(501)>「テクニカルステップ」<edgecolortype(0)><colortype(0)>を付与する。<br><colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>15秒<br>効果中は<colortype(500)><edgecolortype(501)>「テクニカルフィニッシュ」<edgecolortype(0)><colortype(0)>に変化する。<br>また、ステップアクションと<colortype(500)><edgecolortype(501)>「テクニカルフィニッシュ」「アン・アヴァン」「癒やしのワルツ」「守りのサンバ」<edgecolortype(0)><colortype(0)>、ロールアクション、スプリント、リミットブレイク以外を実行することができなくなる。<br>このウェポンスキルは固有のリキャストタイマーを持ち、実行すると他のウェポンスキルと魔法にこのアクションと同じリキャストタイムが発生する。",
+      "unlock_level": 70,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Physical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 38,
+          "name": "踊り子",
+          "abbreviation": "DNC",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

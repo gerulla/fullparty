@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 3691,
+  "name": "Invertierung",
+  "description": "Ein Stapel Weiße Pikto-Farbe wurde in Schwarze Pikto-Farbe umgewandelt.",
+  "effects": [
+    "Ein Stapel Weiße Pikto-Farbe wurde in Schwarze Pikto-Farbe umgewandelt."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 213814,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": true,
+  "inflicted_by_actor": true,
+  "party_list_priority": 32,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 197,
+  "source_abilities": [
+    {
+      "id": 34683,
+      "name": "Subtraktive Palette",
+      "description": "Du gewährst dir drei Stapel Subtraktive Palettesowie Invertierung.\nEffekt von Invertierung: 1 Stapel Weiße Pikto-Farbe wird in Schwarze Pikto-Farbe umgewandelt.\nBedingung: Subtraktive Palette nicht aktiv\nPalettenbalken-Kosten: 50",
+      "description_macro": "Du gewährst dir drei Stapel <colortype(506)><edgecolortype(507)>Subtraktive Palette<edgecolortype(0)><colortype(0)><if([gnum68==42],<if([gnum72>=90], sowie <colortype(506)><edgecolortype(507)>Invertierung<edgecolortype(0)><colortype(0)>.<br>Effekt von <colortype(506)><edgecolortype(507)>Invertierung<edgecolortype(0)><colortype(0)>: 1 Stapel <colortype(506)><edgecolortype(507)>Weiße Pikto-Farbe<edgecolortype(0)><colortype(0)> wird in <colortype(506)><edgecolortype(507)>Schwarze Pikto-Farbe<edgecolortype(0)><colortype(0)> umgewandelt,)>,)>.<br>Bedingung: <colortype(500)><edgecolortype(501)>Subtraktive Palette<edgecolortype(0)><colortype(0)> nicht aktiv<br>Palettenbalken-Kosten: 50",
+      "unlock_level": 60,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Magical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 42,
+          "name": "Piktomant",
+          "abbreviation": "PKT",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

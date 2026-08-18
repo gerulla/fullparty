@@ -1,0 +1,25 @@
+{
+  "kind": "trait",
+  "id": 524,
+  "name": "Crochets améliorés",
+  "description": "Permet d'utiliser Cascabelle mortelle.\nCondition : après avoir utilisé Saignée du flanc, Déchirement du flanc, Saignée de l'échine ou Déchirement de l'échine avec succès.",
+  "description_macro": "Permet d'utiliser <colortype(500)><edgecolortype(501)>Cascabelle mortelle<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Condition<nbsp>:<edgecolortype(0)><colortype(0)> après avoir utilisé <colortype(500)><edgecolortype(501)>Saignée du flanc<edgecolortype(0)><colortype(0)>, <colortype(500)><edgecolortype(501)>Déchirement du flanc<edgecolortype(0)><colortype(0)>, <colortype(500)><edgecolortype(501)>Saignée de l'échine<edgecolortype(0)><colortype(0)> ou <colortype(500)><edgecolortype(501)>Déchirement de l'échine<edgecolortype(0)><colortype(0)> avec succès.",
+  "effects": [
+    "Permet d'utiliser Cascabelle mortelle.",
+    "Condition : après avoir utilisé Saignée du flanc, Déchirement du flanc, Saignée de l'échine ou Déchirement de l'échine avec succès."
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 41,
+    "name": "Rôdeur Vipère",
+    "abbreviation": "VPR"
+  },
+  "unlock_level": 55,
+  "value": 0,
+  "icon": {
+    "id": 6501,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 196,
+  "source_class_job_id": 41
+}

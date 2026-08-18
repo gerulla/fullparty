@@ -1,0 +1,51 @@
+{
+  "kind": "combat_status",
+  "id": 1185,
+  "name": "Fraternité combattante",
+  "description": "Les dégâts infligés sont augmentés.",
+  "effects": [
+    "Les dégâts infligés sont augmentés."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 212532,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 1,
+  "parameter": {
+    "effect": 0,
+    "modifier": 10
+  },
+  "class_job_category_id": 21,
+  "source_abilities": [
+    {
+      "id": 7396,
+      "name": "Fraternité",
+      "description": "Vous octroie ainsi qu'aux équipiers alentour les effets Fraternité combattante et Fraternité méditative.\nDurée : 20s\nFraternité combattante : augmente de 5% les dégâts infligés.\nFraternité méditative : un chakra s'ouvre lorsque vous lancez un sort ou utilisez une technique d'arme. 20% de chances d'en ouvrir lorsqu'un équipier bénéficiant de l'effet en fait autant.\nEn outre, augmente votre total cumulable de chakras à 10.",
+      "description_macro": "Vous octroie ainsi qu'aux équipiers alentour les effets <colortype(500)><edgecolortype(501)>Fraternité combattante<edgecolortype(0)><colortype(0)> et <colortype(500)><edgecolortype(501)>Fraternité méditative<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 20s<br><colortype(506)><edgecolortype(507)>Fraternité combattante<nbsp>:<edgecolortype(0)><colortype(0)> augmente de 5% les dégâts infligés.<br><if([gnum68==20],<if([gnum72>=88],<colortype(506)><edgecolortype(507)>Fraternité méditative<nbsp>:<edgecolortype(0)><colortype(0)> un chakra s'ouvre lorsque vous lancez un sort ou utilisez une technique d'arme. 20% de chances d'en ouvrir lorsqu'un équipier bénéficiant de l'effet en fait autant.,<colortype(506)><edgecolortype(507)>Fraternité méditative<nbsp>:<edgecolortype(0)><colortype(0)> 20% de chances qu'un chakra s'ouvre lorsque vous ou un équipier lancez un sort ou utilisez une technique d'arme.)>,<colortype(506)><edgecolortype(507)>Fraternité méditative<nbsp>:<edgecolortype(0)><colortype(0)> 20% de chances qu'un chakra s'ouvre lorsque vous ou un équipier lancez un sort ou utilisez une technique d'arme.)><br>En outre, augmente votre total cumulable de chakras à 10.",
+      "unlock_level": 70,
+      "relations": [
+        "granted_by_description",
+        "same_name"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 20,
+          "name": "Moine",
+          "abbreviation": "MOI",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

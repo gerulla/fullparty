@@ -1,0 +1,103 @@
+{
+  "kind": "ability",
+  "id": 25835,
+  "name": "クリムゾンサイクロン",
+  "description": "対象に急接近して、対象とその周囲の敵に火属性範囲魔法攻撃。\n威力：560\n2体目以降の対象への威力は60％減少する。\n追加効果：自身に「クリムゾンストライク実行可」を付与する。\n効果時間：永続\nこの効果は他のサモン系アクションを実行すると解除される。\n発動条件：「クリムゾンサイクロン実行可」効果中\nバインド中は実行不可。\nこのアクションを実行すると「クリムゾンストライク」に変化する。\n\n※このアクションはホットバーに登録することはできない。\n\u3000発動条件を満たすとアストラルフロウがクリムゾンサイクロンに変化する。",
+  "description_macro": "対象に急接近して、対象とその周囲の敵に火属性範囲魔法攻撃。<br><colortype(504)><edgecolortype(505)>威力：<edgecolortype(0)><colortype(0)><if([gnum68==27],<if([gnum72>=94],560,430)>,430)><br>2体目以降の対象への威力は60％減少する。<br><colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)>自身に<colortype(500)><edgecolortype(501)>「クリムゾンストライク実行可」<edgecolortype(0)><colortype(0)>を付与する。<br><colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>永続<br>この効果は他のサモン系アクションを実行すると解除される。<br><colortype(504)><edgecolortype(505)>発動条件：<edgecolortype(0)><colortype(0)><colortype(500)><edgecolortype(501)>「クリムゾンサイクロン実行可」<edgecolortype(0)><colortype(0)>効果中<br>バインド中は実行不可。<br>このアクションを実行すると<colortype(500)><edgecolortype(501)>「クリムゾンストライク」<edgecolortype(0)><colortype(0)>に変化する。<br><br><colortype(506)><edgecolortype(507)>※このアクションはホットバーに登録することはできない。<br>\u3000発動条件を満たすとアストラルフロウがクリムゾンサイクロンに変化する。<edgecolortype(0)><colortype(0)>",
+  "effects": [
+    "対象に急接近して、対象とその周囲の敵に火属性範囲魔法攻撃。",
+    "威力：560",
+    "2体目以降の対象への威力は60％減少する。",
+    "追加効果：自身に「クリムゾンストライク実行可」を付与する。",
+    "効果時間：永続",
+    "この効果は他のサモン系アクションを実行すると解除される。",
+    "発動条件：「クリムゾンサイクロン実行可」効果中",
+    "バインド中は実行不可。",
+    "このアクションを実行すると「クリムゾンストライク」に変化する。",
+    "※このアクションはホットバーに登録することはできない。",
+    "発動条件を満たすとアストラルフロウがクリムゾンサイクロンに変化する。"
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 27,
+    "name": "召喚士",
+    "abbreviation": "SMN"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 86,
+  "icon": {
+    "id": 2769,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 2,
+    "name": "魔法"
+  },
+  "attack_type": {
+    "id": 5,
+    "name": "魔法"
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 2.5,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 58,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 0,
+      "value": 0
+    },
+    "secondary": {
+      "type_id": 32,
+      "value": 2724
+    }
+  },
+  "range": {
+    "target_yalms": 25,
+    "effect_yalms": 5,
+    "cast_type": 2
+  },
+  "targeting": {
+    "self": false,
+    "party": false,
+    "alliance": false,
+    "hostile": true,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": false
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": {
+      "id": 68,
+      "status": {
+        "id": 2724,
+        "name": "クリムゾンサイクロン実行可",
+        "description": "クリムゾンサイクロンを実行できる状態。",
+        "icon_id": 212696,
+        "max_stacks": 0
+      }
+    }
+  },
+  "metadata": {
+    "aspect_id": 1,
+    "behavior_type": 1,
+    "class_job_category_id": 28,
+    "source_class_job_id": 0,
+    "is_role_action": false,
+    "is_player_action": false,
+    "is_derived_action": true,
+    "equivalence_group": 0
+  }
+}

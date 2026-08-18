@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 475,
+  "name": "Siphon d'énergie amélioré",
+  "description": "Permet à vos actions Aspiration d'énergie et Siphon d'énergie de vous octroyer Giga Ruine préparée.",
+  "description_macro": "Permet à vos actions <colortype(500)><edgecolortype(501)>Aspiration d'énergie<edgecolortype(0)><colortype(0)> et <colortype(500)><edgecolortype(501)>Siphon d'énergie<edgecolortype(0)><colortype(0)> de vous octroyer <colortype(500)><edgecolortype(501)>Giga Ruine préparée<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Permet à vos actions Aspiration d'énergie et Siphon d'énergie de vous octroyer Giga Ruine préparée."
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 27,
+    "name": "Invocateur",
+    "abbreviation": "INV"
+  },
+  "unlock_level": 62,
+  "value": 0,
+  "icon": {
+    "id": 5691,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 28,
+  "source_class_job_id": 27
+}

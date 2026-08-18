@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 451,
+  "name": "Queen's Gambit",
+  "description": "After executing Pile Bunker, the Automaton Queen will also execute Crowned Collider.",
+  "description_macro": "After executing <colortype(500)><edgecolortype(501)>Pile Bunker<edgecolortype(0)><colortype(0)>, the Automaton Queen will also execute <colortype(500)><edgecolortype(501)>Crowned Collider<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "After executing Pile Bunker, the Automaton Queen will also execute Crowned Collider."
+  ],
+  "role": "Physical Ranged DPS",
+  "job": {
+    "id": 31,
+    "name": "Machinist",
+    "abbreviation": "MCH"
+  },
+  "unlock_level": 86,
+  "value": 0,
+  "icon": {
+    "id": 6019,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 96,
+  "source_class_job_id": 31
+}

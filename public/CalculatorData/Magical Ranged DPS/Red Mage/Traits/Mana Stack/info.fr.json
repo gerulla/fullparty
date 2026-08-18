@@ -1,0 +1,25 @@
+{
+  "kind": "trait",
+  "id": 482,
+  "name": "Magilame améliorée",
+  "description": "Permet d'accumuler un Cristal de mana (maximum 3) quand Riposte enchantée, Zwerchhau enchanté, Redoublement enchanté,  Moulinet enchanté, Deuxième moulinet ou Troisième moulinet fait mouche.\nÀ trois cristaux, VerFoudre et Extra VerFoudre deviennent VerBrasier, et si vous possédez VerMiracle, VerVent et Extra VerVent deviennent VerMiracle.",
+  "description_macro": "Permet d'accumuler un <colortype(500)><edgecolortype(501)>Cristal de mana<edgecolortype(0)><colortype(0)> (maximum 3) quand <colortype(500)><edgecolortype(501)>Riposte enchantée<edgecolortype(0)><colortype(0)>, <colortype(500)><edgecolortype(501)>Zwerchhau enchanté<edgecolortype(0)><colortype(0)>, <colortype(500)><edgecolortype(501)>Redoublement enchanté<edgecolortype(0)><colortype(0)>,  <colortype(500)><edgecolortype(501)>Moulinet enchanté<edgecolortype(0)><colortype(0)>, <colortype(500)><edgecolortype(501)>Deuxième moulinet<edgecolortype(0)><colortype(0)> ou <colortype(500)><edgecolortype(501)>Troisième moulinet<edgecolortype(0)><colortype(0)> fait mouche.<br>À trois cristaux, <colortype(500)><edgecolortype(501)>VerFoudre<edgecolortype(0)><colortype(0)> et <colortype(500)><edgecolortype(501)>Extra VerFoudre<edgecolortype(0)><colortype(0)> deviennent <colortype(500)><edgecolortype(501)>VerBrasier<edgecolortype(0)><colortype(0)>, et si vous possédez <colortype(500)><edgecolortype(501)>VerMiracle<edgecolortype(0)><colortype(0)>, <colortype(500)><edgecolortype(501)>VerVent<edgecolortype(0)><colortype(0)> et <colortype(500)><edgecolortype(501)>Extra VerVent<edgecolortype(0)><colortype(0)> deviennent <colortype(500)><edgecolortype(501)>VerMiracle<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Permet d'accumuler un Cristal de mana (maximum 3) quand Riposte enchantée, Zwerchhau enchanté, Redoublement enchanté,  Moulinet enchanté, Deuxième moulinet ou Troisième moulinet fait mouche.",
+    "À trois cristaux, VerFoudre et Extra VerFoudre deviennent VerBrasier, et si vous possédez VerMiracle, VerVent et Extra VerVent deviennent VerMiracle."
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 35,
+    "name": "Mage Rouge",
+    "abbreviation": "MRG"
+  },
+  "unlock_level": 68,
+  "value": 0,
+  "icon": {
+    "id": 6208,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 112,
+  "source_class_job_id": 35
+}

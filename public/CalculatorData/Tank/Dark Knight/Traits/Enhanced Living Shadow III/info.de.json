@@ -1,0 +1,30 @@
+{
+  "kind": "trait",
+  "id": 573,
+  "name": "Verbesserter Schattenschemen III",
+  "description": "Die Ausführung von Schattenschemen gewährt dir nun Lied des Antihelden.\nDauer: 30 Sekunden\nBedingung: Heldenschemen gerufen\nAußerdem ändert sich das Heldenschemen-Kommando Zweischnitt zu Antiheld.\nDas Kommando Antiheld des Heldenschemens führt eine elementneutrale physische Attacke auf alle Gegner in gerader Linie vor sich aus.\nAttacke-Wert: 620\nAttacke-Wert verringert sich ab dem zweiten Gegner um 25 %.",
+  "description_macro": "Die Ausführung von <colortype(502)><edgecolortype(503)>Schattenschemen<edgecolortype(0)><colortype(0)> gewährt dir nun <colortype(506)><edgecolortype(507)>Lied des Antihelden<edgecolortype(0)><colortype(0)>.<br>Dauer: 30 Sekunden<br>Bedingung: Heldenschemen gerufen<br>Außerdem ändert sich das Heldenschemen-Kommando <colortype(502)><edgecolortype(503)>Zweischnitt<edgecolortype(0)><colortype(0)> zu <colortype(502)><edgecolortype(503)>Antiheld<edgecolortype(0)><colortype(0)>.<br>Das Kommando <colortype(502)><edgecolortype(503)>Antiheld<edgecolortype(0)><colortype(0)> des Heldenschemens führt eine elementneutrale physische Attacke auf alle Gegner in gerader Linie vor sich aus.<br>Attacke-Wert: 620<br>Attacke-Wert verringert sich ab dem zweiten Gegner um 25<nbsp>%.",
+  "effects": [
+    "Die Ausführung von Schattenschemen gewährt dir nun Lied des Antihelden.",
+    "Dauer: 30 Sekunden",
+    "Bedingung: Heldenschemen gerufen",
+    "Außerdem ändert sich das Heldenschemen-Kommando Zweischnitt zu Antiheld.",
+    "Das Kommando Antiheld des Heldenschemens führt eine elementneutrale physische Attacke auf alle Gegner in gerader Linie vor sich aus.",
+    "Attacke-Wert: 620",
+    "Attacke-Wert verringert sich ab dem zweiten Gegner um 25 %."
+  ],
+  "role": "Tank",
+  "job": {
+    "id": 32,
+    "name": "Dunkelritter",
+    "abbreviation": "DKR"
+  },
+  "unlock_level": 100,
+  "value": 0,
+  "icon": {
+    "id": 6070,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 98,
+  "source_class_job_id": 32
+}

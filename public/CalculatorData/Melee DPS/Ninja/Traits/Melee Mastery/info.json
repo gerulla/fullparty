@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 516,
+  "name": "Melee Mastery",
+  "description": "Increases the potency of Gust Slash to 120, Aeolian Edge to 140, and Armor Crush to 140.",
+  "description_macro": "Increases the potency of <colortype(500)><edgecolortype(501)>Gust Slash<edgecolortype(0)><colortype(0)> to 120, <colortype(500)><edgecolortype(501)>Aeolian Edge<edgecolortype(0)><colortype(0)> to 140, and <colortype(500)><edgecolortype(501)>Armor Crush<edgecolortype(0)><colortype(0)> to 140.",
+  "effects": [
+    "Increases the potency of Gust Slash to 120, Aeolian Edge to 140, and Armor Crush to 140."
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 30,
+    "name": "Ninja",
+    "abbreviation": "NIN"
+  },
+  "unlock_level": 74,
+  "value": 0,
+  "icon": {
+    "id": 6801,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 92,
+  "source_class_job_id": 30
+}

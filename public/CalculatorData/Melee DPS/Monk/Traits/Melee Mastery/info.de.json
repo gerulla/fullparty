@@ -1,0 +1,31 @@
+{
+  "kind": "trait",
+  "id": 518,
+  "name": "Verbesserter Faustkampf",
+  "description": "Erhöht den Attacke-Wert folgender Kommandos:\nAttacke-Wert von Schlag auf Schlag: 220\nAttacke-Wert von Wahrer Schlag: 300\nAttacke-Wert von Peitschenhieb: 270\nAttacke-Wert von Doppelviper: 380\nAttacke-Wert von Demolieren: 320\nAttacke-Wert von Drachentritt: 280\nAttacke-Wert von Verbotenes Chakra: 400",
+  "description_macro": "Erhöht den Attacke-Wert folgender Kommandos:<br>Attacke-Wert von <colortype(502)><edgecolortype(503)>Schlag auf Schlag<edgecolortype(0)><colortype(0)>: 220<br>Attacke-Wert von <colortype(502)><edgecolortype(503)>Wahrer Schlag<edgecolortype(0)><colortype(0)>: 300<br>Attacke-Wert von <colortype(502)><edgecolortype(503)>Peitschenhieb<edgecolortype(0)><colortype(0)>: 270<br>Attacke-Wert von <colortype(502)><edgecolortype(503)>Doppelviper<edgecolortype(0)><colortype(0)>: 380<br>Attacke-Wert von <colortype(502)><edgecolortype(503)>Demolieren<edgecolortype(0)><colortype(0)>: 320<br>Attacke-Wert von <colortype(502)><edgecolortype(503)>Drachentritt<edgecolortype(0)><colortype(0)>: 280<br>Attacke-Wert von <colortype(502)><edgecolortype(503)>Verbotenes Chakra<edgecolortype(0)><colortype(0)>: 400",
+  "effects": [
+    "Erhöht den Attacke-Wert folgender Kommandos:",
+    "Attacke-Wert von Schlag auf Schlag: 220",
+    "Attacke-Wert von Wahrer Schlag: 300",
+    "Attacke-Wert von Peitschenhieb: 270",
+    "Attacke-Wert von Doppelviper: 380",
+    "Attacke-Wert von Demolieren: 320",
+    "Attacke-Wert von Drachentritt: 280",
+    "Attacke-Wert von Verbotenes Chakra: 400"
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 20,
+    "name": "Mönch",
+    "abbreviation": "MÖN"
+  },
+  "unlock_level": 84,
+  "value": 0,
+  "icon": {
+    "id": 6801,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 21,
+  "source_class_job_id": 20
+}

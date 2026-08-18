@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 880,
+  "name": "Whistle",
+  "description": "Synthesis-related effects granted based on stack size.",
+  "effects": [
+    "Synthesis-related effects granted based on stack size."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 218361,
+    "file": "icon.png"
+  },
+  "max_stacks": 11,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": true,
+  "is_permanent": false,
+  "inflicted_by_actor": true,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 50
+  },
+  "class_job_category_id": 33,
+  "source_abilities": [
+    {
+      "id": 18309,
+      "name": "Whistle",
+      "description": "Increases the potency of the next physical damage spell cast by 80%.\nDuration: 30s\nEffect cannot be stacked with Boost.",
+      "description_macro": "Increases the potency of the next physical damage spell cast by 80%.<br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>30s<br>Effect cannot be stacked with <colortype(506)><edgecolortype(507)>Boost<edgecolortype(0)><colortype(0)>.",
+      "unlock_level": 1,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Magical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 36,
+          "name": "Blue Mage",
+          "abbreviation": "BLU",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

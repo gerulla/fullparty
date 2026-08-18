@@ -1,0 +1,51 @@
+{
+  "kind": "combat_status",
+  "id": 4251,
+  "name": "Battle Bell",
+  "description": "Damage dealt is increased each time damage is taken.",
+  "effects": [
+    "Damage dealt is increased each time damage is taken."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 229914,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 41611,
+      "name": "Battle Bell",
+      "description": "Grants Battle Bell to self or target player.\nBattle Bell Effect: Grants a stack of Battle's Clangor upon taking damage, up to a maximum of 8\nDuration: 60s\nBattle's Clangor Effect: Increases damage dealt by 3%\nDuration: 30s",
+      "description_macro": "Grants <colortype(506)><edgecolortype(507)>Battle Bell<edgecolortype(0)><colortype(0)> to self or target player.<br><colortype(504)><edgecolortype(505)>Battle Bell Effect: <edgecolortype(0)><colortype(0)>Grants a stack of <colortype(506)><edgecolortype(507)>Battle's Clangor<edgecolortype(0)><colortype(0)> upon taking damage, up to a maximum of 8<br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>60s<br><colortype(504)><edgecolortype(505)>Battle's Clangor Effect: <edgecolortype(0)><colortype(0)>Increases damage dealt by <if([gnum108>=5],5％,3%)><br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>30s",
+      "unlock_level": 0,
+      "relations": [
+        "granted_by_description",
+        "same_name"
+      ],
+      "roles": [
+        "Phantom Jobs"
+      ],
+      "jobs": [
+        {
+          "id": 7,
+          "name": "Phantom Geomancer",
+          "abbreviation": "Ph. Geomancer",
+          "is_phantom": true
+        }
+      ]
+    }
+  ]
+}

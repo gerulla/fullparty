@@ -1,0 +1,27 @@
+{
+  "kind": "trait",
+  "id": 523,
+  "name": "Actions améliorées II",
+  "description": "Augmente la puissance de certaines actions.\n\nPuissance de Tranchage : 320\nPuissance de Tranchage blafard : 160\nPuissance de Tranchage infernal : 180",
+  "description_macro": "Augmente la puissance de certaines actions.<br><br><colortype(506)><edgecolortype(507)>Puissance de Tranchage<nbsp>:<edgecolortype(0)><colortype(0)> 320<br><colortype(506)><edgecolortype(507)>Puissance de Tranchage blafard<nbsp>:<edgecolortype(0)><colortype(0)> 160<br><colortype(506)><edgecolortype(507)>Puissance de Tranchage infernal<nbsp>:<edgecolortype(0)><colortype(0)> 180",
+  "effects": [
+    "Augmente la puissance de certaines actions.",
+    "Puissance de Tranchage : 320",
+    "Puissance de Tranchage blafard : 160",
+    "Puissance de Tranchage infernal : 180"
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 39,
+    "name": "Faucheur",
+    "abbreviation": "FCH"
+  },
+  "unlock_level": 84,
+  "value": 0,
+  "icon": {
+    "id": 6802,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 180,
+  "source_class_job_id": 39
+}

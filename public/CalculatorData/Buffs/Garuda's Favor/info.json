@@ -1,0 +1,71 @@
+{
+  "kind": "combat_status",
+  "id": 2725,
+  "name": "Garuda's Favor",
+  "description": "Able to execute Slipstream.",
+  "effects": [
+    "Able to execute Slipstream."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 212697,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": true,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 28,
+  "source_abilities": [
+    {
+      "id": 25807,
+      "name": "Summon Garuda",
+      "description": "Summons Garuda-Egi and orders it to execute Aerial Blast.\nAerial Blast Effect: Deals wind damage to target and all enemies within 5 yalms with a potency of 600 for the first enemy\\\nAdditional Effect: Grants 4 stacks of Wind Attunement\nWind Attunement Effect: Gemshine and Precious Brilliance become wind-aspected\nDuration: 30s\nAdditional Effect: Grants Garuda's Favor\nEffect of Garuda's Favor ends upon execution of certain summoner actions.\nCan only be executed while under the effect of Emerald Arcanum and Carbuncle is summoned.\nCurrent pet will leave the battlefield while Garuda-Egi is present, and return once gone.",
+      "description_macro": "Summons Garuda-Egi and orders it to execute <if([gnum68==27],<if([gnum72>=50],<colortype(500)><edgecolortype(501)>Aerial Blast<edgecolortype(0)><colortype(0)>,<colortype(500)><edgecolortype(501)>Aerial Slash<edgecolortype(0)><colortype(0)>)>,<colortype(500)><edgecolortype(501)>Aerial Slash<edgecolortype(0)><colortype(0)>)>.<br><if([gnum68==27],<if([gnum72>=50],<colortype(504)><edgecolortype(505)>Aerial Blast Effect: <edgecolortype(0)><colortype(0)>Deals wind damage to target and all enemies within 5 yalms with a potency of 600 for the first enemy\\, and 50% less for all remaining enemies,<colortype(504)><edgecolortype(505)>Aerial Slash Effect: <edgecolortype(0)><colortype(0)>Deals wind damage with a potency of 100 to target and all enemies nearby it)>,<colortype(504)><edgecolortype(505)>Aerial Slash Effect: <edgecolortype(0)><colortype(0)>Deals wind damage with a potency of 100 to target and all enemies nearby it)><br><colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>Grants 4 stacks of <colortype(506)><edgecolortype(507)>Wind Attunement<edgecolortype(0)><colortype(0)><br><colortype(504)><edgecolortype(505)>Wind Attunement Effect: <edgecolortype(0)><colortype(0)><colortype(500)><edgecolortype(501)>Gemshine<edgecolortype(0)><colortype(0)> and <colortype(500)><edgecolortype(501)>Precious Brilliance<edgecolortype(0)><colortype(0)> become wind-aspected<br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>30s<br><if([gnum68==27],<if([gnum72>=86],<colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>Grants <colortype(506)><edgecolortype(507)>Garuda's Favor<edgecolortype(0)><colortype(0)><br>Effect of <colortype(506)><edgecolortype(507)>Garuda's Favor<edgecolortype(0)><colortype(0)> ends upon execution of certain summoner actions.<br>,)>,)>Can only be executed while under the effect of <colortype(506)><edgecolortype(507)>Emerald Arcanum<edgecolortype(0)><colortype(0)> and Carbuncle is summoned.<br>Current pet will leave the battlefield while Garuda-Egi is present, and return once gone.",
+      "unlock_level": 45,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Magical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 27,
+          "name": "Summoner",
+          "abbreviation": "SMN",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 25840,
+      "name": "Summon Garuda II",
+      "description": "Summons Emerald Garuda and orders it to execute Aerial Blast.\nAerial Blast Effect: Deals wind damage to target and all enemies within 5 yalms with a potency of 800 for the first enemy, and 50% less for all remaining enemies\nAdditional Effect: Grants 4 stacks of Wind Attunement\nDuration: 30s\nWind Attunement Effect: Gemshine and Precious Brilliance become wind-aspected\nAdditional Effect: Grants Garuda's Favor\nEffect of Garuda's Favor ends upon execution of certain summoner actions.\nCan only be executed while under the effect of Emerald Arcanum and Carbuncle is summoned.\nCurrent pet will leave the battlefield while Emerald Garuda is present, and return once gone.",
+      "description_macro": "Summons Emerald Garuda and orders it to execute <colortype(500)><edgecolortype(501)>Aerial Blast<edgecolortype(0)><colortype(0)>.<br><colortype(504)><edgecolortype(505)>Aerial Blast Effect: <edgecolortype(0)><colortype(0)>Deals wind damage to target and all enemies within 5 yalms with a potency of <if([gnum68==27],<if([gnum72>=94],800,750)>,750)> for the first enemy, and 50% less for all remaining enemies<br><colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>Grants 4 stacks of <colortype(506)><edgecolortype(507)>Wind Attunement<edgecolortype(0)><colortype(0)><br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>30s<br><colortype(504)><edgecolortype(505)>Wind Attunement Effect: <edgecolortype(0)><colortype(0)><colortype(500)><edgecolortype(501)>Gemshine<edgecolortype(0)><colortype(0)> and <colortype(500)><edgecolortype(501)>Precious Brilliance<edgecolortype(0)><colortype(0)> become wind-aspected<br><colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>Grants <colortype(506)><edgecolortype(507)>Garuda's Favor<edgecolortype(0)><colortype(0)><br>Effect of <colortype(506)><edgecolortype(507)>Garuda's Favor<edgecolortype(0)><colortype(0)> ends upon execution of certain summoner actions.<br>Can only be executed while under the effect of <colortype(506)><edgecolortype(507)>Emerald Arcanum<edgecolortype(0)><colortype(0)> and Carbuncle is summoned.<br>Current pet will leave the battlefield while Emerald Garuda is present, and return once gone.",
+      "unlock_level": 90,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Magical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 27,
+          "name": "Summoner",
+          "abbreviation": "SMN",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 660,
+  "name": "Melee Mastery II",
+  "description": "Increases the potency of Twin Snakes to 420, Demolish to 360, Dragon Kick to 320, Six-sided Star to 780, and Phantom Rush to 1,500.",
+  "description_macro": "Increases the potency of <colortype(500)><edgecolortype(501)>Twin Snakes<edgecolortype(0)><colortype(0)> to 420, <colortype(500)><edgecolortype(501)>Demolish<edgecolortype(0)><colortype(0)> to 360, <colortype(500)><edgecolortype(501)>Dragon Kick<edgecolortype(0)><colortype(0)> to 320, <colortype(500)><edgecolortype(501)>Six-sided Star<edgecolortype(0)><colortype(0)> to 780, and <colortype(500)><edgecolortype(501)>Phantom Rush<edgecolortype(0)><colortype(0)> to 1,500.",
+  "effects": [
+    "Increases the potency of Twin Snakes to 420, Demolish to 360, Dragon Kick to 320, Six-sided Star to 780, and Phantom Rush to 1,500."
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 20,
+    "name": "Monk",
+    "abbreviation": "MNK"
+  },
+  "unlock_level": 94,
+  "value": 0,
+  "icon": {
+    "id": 6802,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 21,
+  "source_class_job_id": 20
+}

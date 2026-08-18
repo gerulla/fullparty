@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 477,
+  "name": "Outburst Mastery",
+  "description": "Upgrades Outburst to Tri-disaster.",
+  "description_macro": "Upgrades <colortype(500)><edgecolortype(501)>Outburst<edgecolortype(0)><colortype(0)> to <colortype(500)><edgecolortype(501)>Tri-disaster<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Upgrades Outburst to Tri-disaster."
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 27,
+    "name": "Summoner",
+    "abbreviation": "SMN"
+  },
+  "unlock_level": 74,
+  "value": 0,
+  "icon": {
+    "id": 5692,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 28,
+  "source_class_job_id": 27
+}

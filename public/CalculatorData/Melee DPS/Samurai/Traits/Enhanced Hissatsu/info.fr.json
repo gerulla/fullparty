@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 591,
+  "name": "Hissatsu amélioré",
+  "description": "Réduit à 60s le temps de recharge de Hissatsu : Guren et Hissatsu : Sen'ei.",
+  "description_macro": "Réduit à 60s le temps de recharge de <colortype(500)><edgecolortype(501)>Hissatsu<nbsp>: Guren<edgecolortype(0)><colortype(0)> et <colortype(500)><edgecolortype(501)>Hissatsu<nbsp>: Sen'ei<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Réduit à 60s le temps de recharge de Hissatsu : Guren et Hissatsu : Sen'ei."
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 34,
+    "name": "Samouraï",
+    "abbreviation": "SAM"
+  },
+  "unlock_level": 94,
+  "value": -600,
+  "icon": {
+    "id": 6161,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 111,
+  "source_class_job_id": 34
+}

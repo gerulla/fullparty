@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 378,
+  "name": "ゾーエ効果アップ",
+  "description": "ゾーエのリキャストタイムを90秒に短縮する。",
+  "description_macro": "ゾーエのリキャストタイムを90秒に短縮する。",
+  "effects": [
+    "ゾーエのリキャストタイムを90秒に短縮する。"
+  ],
+  "role": "Healer",
+  "job": {
+    "id": 40,
+    "name": "賢者",
+    "abbreviation": "SGE"
+  },
+  "unlock_level": 88,
+  "value": -300,
+  "icon": {
+    "id": 6458,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 181,
+  "source_class_job_id": 40
+}

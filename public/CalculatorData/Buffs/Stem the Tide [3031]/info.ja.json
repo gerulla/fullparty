@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 3031,
+  "name": "原初の血煙",
+  "description": "一定量のダメージを軽減する状態。",
+  "effects": [
+    "一定量のダメージを軽減する状態。"
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 212564,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": true,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 100
+  },
+  "class_job_category_id": 22,
+  "source_abilities": [
+    {
+      "id": 25751,
+      "name": "原初の血気",
+      "description": "一定時間、自身の被ダメージを10％軽減させる。\n効果時間：8秒\n追加効果：自身のウェポンスキルによる攻撃が命中すると自身のＨＰを回復する。\u3000回復力：400\n追加効果：自身に「原初の血潮」を付与する。\n効果時間：4秒\n原初の血潮効果：自身の被ダメージを10％軽減する。\n追加効果：自身に一定量のダメージを防ぐバリアである「原初の血煙」を付与する。\nバリア量：回復力400相当\u3000効果時間：20秒\nリキャストタイマーを「原初の猛り」と共有する。",
+      "description_macro": "一定時間、自身の被ダメージを10％軽減させる。<br><colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>8秒<br><colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)>自身のウェポンスキルによる攻撃が命中すると自身のＨＰを回復する。\u3000<colortype(504)><edgecolortype(505)>回復力：<edgecolortype(0)><colortype(0)>400<br><colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)>自身に<colortype(500)><edgecolortype(501)>「原初の血潮」<edgecolortype(0)><colortype(0)>を付与する。<br><colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>4秒<br><colortype(504)><edgecolortype(505)>原初の血潮効果：<edgecolortype(0)><colortype(0)>自身の被ダメージを10％軽減する。<br><colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)>自身に一定量のダメージを防ぐバリアである<colortype(500)><edgecolortype(501)>「原初の血煙」<edgecolortype(0)><colortype(0)>を付与する。<br><colortype(504)><edgecolortype(505)>バリア量：<edgecolortype(0)><colortype(0)>回復力400相当\u3000<colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>20秒<br>リキャストタイマーを<colortype(500)><edgecolortype(501)>「原初の猛り」<edgecolortype(0)><colortype(0)>と共有する。",
+      "unlock_level": 82,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Tank"
+      ],
+      "jobs": [
+        {
+          "id": 21,
+          "name": "戦士",
+          "abbreviation": "WAR",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

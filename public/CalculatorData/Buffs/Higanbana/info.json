@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 1319,
+  "name": "Higanbana",
+  "description": "Open wounds are bleeding, causing damage over time. HP recovery is reduced.",
+  "effects": [
+    "Open wounds are bleeding, causing damage over time. HP recovery is reduced."
+  ],
+  "classification": "debuff",
+  "icon": {
+    "id": 213304,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 2,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": true,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 10
+  },
+  "class_job_category_id": 111,
+  "source_abilities": [
+    {
+      "id": 7489,
+      "name": "Higanbana",
+      "description": "Delivers an attack with a potency of 200.\nAdditional Effect: Damage over time\nPotency: 50\nDuration: 60s\nAdditional Effect: Grants a stack of Meditation\\Can only be executed after accumulating 1 Sen.\n\n※This action cannot be assigned to a hotbar.\n※Iaijutsu changes to Higanbana when requirements for execution are met.",
+      "description_macro": "Delivers an attack with a potency of 200.<br><colortype(504)><edgecolortype(505)>Additional Effect:<edgecolortype(0)><colortype(0)> Damage over time<br><colortype(504)><edgecolortype(505)>Potency: <edgecolortype(0)><colortype(0)><if([gnum68==34],<if([gnum72>=94],50,45)>,45)><br><colortype(504)><edgecolortype(505)>Duration:<edgecolortype(0)><colortype(0)> 60s<br><if([gnum68==34],<if([gnum72>=80],<colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>Grants a stack of <colortype(506)><edgecolortype(507)>Meditation<edgecolortype(0)><colortype(0)>\\, up to a maximum of 3<br>,)>,)>Can only be executed after accumulating 1 <colortype(506)><edgecolortype(507)>Sen<edgecolortype(0)><colortype(0)>.<br><br>※This action cannot be assigned to a hotbar.<br>※<colortype(500)><edgecolortype(501)>Iaijutsu<edgecolortype(0)><colortype(0)> changes to <colortype(500)><edgecolortype(501)>Higanbana<edgecolortype(0)><colortype(0)> when requirements for execution are met.",
+      "unlock_level": 30,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 34,
+          "name": "Samurai",
+          "abbreviation": "SAM",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

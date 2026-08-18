@@ -1,0 +1,93 @@
+{
+  "kind": "ability",
+  "id": 2271,
+  "name": "Suiton",
+  "description": "Effectue un ninjutsu d'attaque magique d'eau sur la cible.\nPuissance : 580\nEffet additionnel : vous octroie Camouflage shinobi.\nDurée : 20s\nCamouflage shinobi : vous permet d'effectuer une action requérant Dissimulation sans cet effet.\nMudrâ requises :\nTen→Chi→Jin ou Chi→Ten→Jin\nDéclenche le temps de recharge des techniques d'arme, sorts, mudrâ et ninjutsu.\n\n* Cette action ne peut pas être ajoutée aux barres de raccourcis.\nRemplace Ninjutsu lorsque les conditions sont réunies.",
+  "description_macro": "Effectue un ninjutsu d'attaque magique d'eau sur la cible.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> <if([gnum68==30],<if([gnum72>=94],580,500)>,500)><br><colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> vous octroie <colortype(500)><edgecolortype(501)>Camouflage shinobi<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 20s<br><colortype(506)><edgecolortype(507)>Camouflage shinobi<nbsp>:<edgecolortype(0)><colortype(0)> vous permet d'effectuer une action requérant <colortype(500)><edgecolortype(501)>Dissimulation<edgecolortype(0)><colortype(0)> sans cet effet.<br><colortype(506)><edgecolortype(507)>Mudrâ requises<nbsp>:<edgecolortype(0)><colortype(0)><br><colortype(500)><edgecolortype(501)>Ten<edgecolortype(0)><colortype(0)>→<colortype(500)><edgecolortype(501)>Chi<edgecolortype(0)><colortype(0)>→<colortype(500)><edgecolortype(501)>Jin<edgecolortype(0)><colortype(0)> ou <colortype(500)><edgecolortype(501)>Chi<edgecolortype(0)><colortype(0)>→<colortype(500)><edgecolortype(501)>Ten<edgecolortype(0)><colortype(0)>→<colortype(500)><edgecolortype(501)>Jin<edgecolortype(0)><colortype(0)><br>Déclenche le temps de recharge des techniques d'arme, sorts, mudrâ et ninjutsu.<br><br><colortype(504)><edgecolortype(505)>* Cette action ne peut pas être ajoutée aux barres de raccourcis.<br>Remplace <colortype(500)><edgecolortype(501)>Ninjutsu<edgecolortype(0)><colortype(0)> lorsque les conditions sont réunies.<edgecolortype(0)><colortype(0)>",
+  "effects": [
+    "Effectue un ninjutsu d'attaque magique d'eau sur la cible.",
+    "Puissance : 580",
+    "Effet additionnel : vous octroie Camouflage shinobi.",
+    "Durée : 20s",
+    "Camouflage shinobi : vous permet d'effectuer une action requérant Dissimulation sans cet effet.",
+    "Mudrâ requises :",
+    "Ten→Chi→Jin ou Chi→Ten→Jin",
+    "Déclenche le temps de recharge des techniques d'arme, sorts, mudrâ et ninjutsu.",
+    "* Cette action ne peut pas être ajoutée aux barres de raccourcis.",
+    "Remplace Ninjutsu lorsque les conditions sont réunies."
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 30,
+    "name": "Ninja",
+    "abbreviation": "NIN"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 45,
+  "icon": {
+    "id": 2913,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 4,
+    "name": "Aptitude"
+  },
+  "attack_type": {
+    "id": 5,
+    "name": "magie"
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 1.5,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 58,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 10,
+      "value": 496
+    },
+    "secondary": {
+      "type_id": 0,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": 20,
+    "effect_yalms": 0,
+    "cast_type": 1
+  },
+  "targeting": {
+    "self": false,
+    "party": false,
+    "alliance": false,
+    "hostile": true,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 6,
+    "behavior_type": 0,
+    "class_job_category_id": 92,
+    "source_class_job_id": 0,
+    "is_role_action": false,
+    "is_player_action": false,
+    "is_derived_action": true,
+    "equivalence_group": 0
+  }
+}

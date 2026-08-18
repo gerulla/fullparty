@@ -1,0 +1,87 @@
+{
+  "kind": "ability",
+  "id": 24305,
+  "name": "ハイマ",
+  "description": "自身またはパーティメンバーひとりを対象として、回復力300相当のダメージを軽減するバリアを付与し、さらに5スタックの「ハイマの印」を付与する。\u3000効果時間：15秒\nバリアがダメージを完全に吸収して消滅すると、「ハイマの印」を1スタック消費してバリアを付与しなおす。\n効果時間が経過して「ハイマの印」が消滅するときに、対象のＨＰを回復する。\n回復力：150×「ハイマの印」の残スタック数",
+  "description_macro": "自身またはパーティメンバーひとりを対象として、回復力300相当のダメージを軽減するバリアを付与し、さらに5スタックの<colortype(500)><edgecolortype(501)>「ハイマの印」<edgecolortype(0)><colortype(0)>を付与する。\u3000<colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>15秒<br>バリアがダメージを完全に吸収して消滅すると、「ハイマの印」を1スタック消費してバリアを付与しなおす。<br>効果時間が経過して「ハイマの印」が消滅するときに、対象のＨＰを回復する。<br><colortype(504)><edgecolortype(505)>回復力：<edgecolortype(0)><colortype(0)>150×「ハイマの印」の残スタック数",
+  "effects": [
+    "自身またはパーティメンバーひとりを対象として、回復力300相当のダメージを軽減するバリアを付与し、さらに5スタックの「ハイマの印」を付与する。\u3000効果時間：15秒",
+    "バリアがダメージを完全に吸収して消滅すると、「ハイマの印」を1スタック消費してバリアを付与しなおす。",
+    "効果時間が経過して「ハイマの印」が消滅するときに、対象のＨＰを回復する。",
+    "回復力：150×「ハイマの印」の残スタック数"
+  ],
+  "role": "Healer",
+  "job": {
+    "id": 40,
+    "name": "賢者",
+    "abbreviation": "SGE"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 70,
+  "icon": {
+    "id": 3673,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 4,
+    "name": "アビリティ"
+  },
+  "attack_type": {
+    "id": 0,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 120,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 21,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 0,
+      "value": 0
+    },
+    "secondary": {
+      "type_id": 0,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": 30,
+    "effect_yalms": 0,
+    "cast_type": 1
+  },
+  "targeting": {
+    "self": true,
+    "party": true,
+    "alliance": false,
+    "hostile": false,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": false
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": false
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 0,
+    "behavior_type": 0,
+    "class_job_category_id": 181,
+    "source_class_job_id": 40,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 268,
+  "name": "Meister des Inneren Tiers",
+  "description": "Füllt den Urkraftbalken durch erfolgreiches Ausführen einer Kombo mit Mithril-Gewitter.",
+  "description_macro": "Füllt den Urkraftbalken durch erfolgreiches Ausführen einer Kombo mit <colortype(502)><edgecolortype(503)>Mithril-Gewitter<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Füllt den Urkraftbalken durch erfolgreiches Ausführen einer Kombo mit Mithril-Gewitter."
+  ],
+  "role": "Tank",
+  "job": {
+    "id": 21,
+    "name": "Krieger",
+    "abbreviation": "KRG"
+  },
+  "unlock_level": 74,
+  "value": 0,
+  "icon": {
+    "id": 5265,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 22,
+  "source_class_job_id": 21
+}

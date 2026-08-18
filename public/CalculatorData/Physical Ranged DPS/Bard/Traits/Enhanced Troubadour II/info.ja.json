@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 601,
+  "name": "トルバドゥール効果アップII",
+  "description": "トルバドゥールの効果量を15％に上昇させる。",
+  "description_macro": "トルバドゥールの効果量を15％に上昇させる。",
+  "effects": [
+    "トルバドゥールの効果量を15％に上昇させる。"
+  ],
+  "role": "Physical Ranged DPS",
+  "job": {
+    "id": 23,
+    "name": "吟遊詩人",
+    "abbreviation": "BRD"
+  },
+  "unlock_level": 98,
+  "value": 0,
+  "icon": {
+    "id": 5324,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 24,
+  "source_class_job_id": 23
+}

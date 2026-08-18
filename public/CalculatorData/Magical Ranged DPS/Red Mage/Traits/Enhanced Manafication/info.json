@@ -1,0 +1,26 @@
+{
+  "kind": "trait",
+  "id": 622,
+  "name": "Enhanced Manafication",
+  "description": "Grants Prefulgence Ready upon executing Manafication.\nDuration: 30s\nManafication changes to Prefulgence while under the effect of Prefulgence Ready.",
+  "description_macro": "Grants <colortype(506)><edgecolortype(507)>Prefulgence Ready<edgecolortype(0)><colortype(0)> upon executing <colortype(500)><edgecolortype(501)>Manafication<edgecolortype(0)><colortype(0)>.<br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>30s<br><colortype(500)><edgecolortype(501)>Manafication<edgecolortype(0)><colortype(0)> changes to <colortype(500)><edgecolortype(501)>Prefulgence<edgecolortype(0)><colortype(0)> while under the effect of <colortype(506)><edgecolortype(507)>Prefulgence Ready<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Grants Prefulgence Ready upon executing Manafication.",
+    "Duration: 30s",
+    "Manafication changes to Prefulgence while under the effect of Prefulgence Ready."
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 35,
+    "name": "Red Mage",
+    "abbreviation": "RDM"
+  },
+  "unlock_level": 100,
+  "value": 0,
+  "icon": {
+    "id": 6216,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 112,
+  "source_class_job_id": 35
+}

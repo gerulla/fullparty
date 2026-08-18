@@ -1,0 +1,32 @@
+{
+  "kind": "trait",
+  "id": 286,
+  "name": "軍神のパイオン効果アップ",
+  "description": "軍神のパイオンの効果中かつ自身に「詩心」が付与されている状態で、賢人のバラードか旅神のメヌエットを実行すると、自身に「軍神の加護」を付与する。\u3000効果時間：10秒\n軍神の加護効果：オートアタックの攻撃間隔と、ウェポンスキルおよび魔法のキャストタイムとリキャストタイムを短縮させる。\n\nまた、軍神のパイオンの効果中かつ自身に「詩心」が付与されている状態で、賢人のバラードか旅神のメヌエットを実行することなく軍神のパイオンの効果時間が経過した場合、自身に「軍神の契約」を付与する。\u3000効果時間：30秒\n軍神の契約効果：賢人のバラード、軍神のパイオン、旅神のメヌエットを実行すると、自身に「軍神の加護」を付与する。\nどちらの場合も、効果量は「軍神の加護」および「軍神の契約」が付与されたときの「詩心」の数により異なる。\n\n詩心が1つのとき：1％\n詩心が2つのとき：2％\n詩心が3つのとき：4％\n詩心が4つのとき：12％",
+  "description_macro": "軍神のパイオンの効果中かつ自身に<colortype(500)><edgecolortype(501)>「詩心」<edgecolortype(0)><colortype(0)>が付与されている状態で、賢人のバラードか旅神のメヌエットを実行すると、自身に<colortype(500)><edgecolortype(501)>「軍神の加護」<edgecolortype(0)><colortype(0)>を付与する。\u3000<colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>10秒<br><colortype(504)><edgecolortype(505)>軍神の加護効果：<edgecolortype(0)><colortype(0)>オートアタックの攻撃間隔と、ウェポンスキルおよび魔法のキャストタイムとリキャストタイムを短縮させる。<br><br>また、軍神のパイオンの効果中かつ自身に<colortype(500)><edgecolortype(501)>「詩心」<edgecolortype(0)><colortype(0)>が付与されている状態で、賢人のバラードか旅神のメヌエットを実行することなく軍神のパイオンの効果時間が経過した場合、自身に<colortype(500)><edgecolortype(501)>「軍神の契約」<edgecolortype(0)><colortype(0)>を付与する。\u3000<colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>30秒<br><colortype(504)><edgecolortype(505)>軍神の契約効果：<edgecolortype(0)><colortype(0)>賢人のバラード、軍神のパイオン、旅神のメヌエットを実行すると、自身に<colortype(500)><edgecolortype(501)>「軍神の加護」<edgecolortype(0)><colortype(0)>を付与する。<br>どちらの場合も、効果量は<colortype(500)><edgecolortype(501)>「軍神の加護」<edgecolortype(0)><colortype(0)>および<colortype(500)><edgecolortype(501)>「軍神の契約」<edgecolortype(0)><colortype(0)>が付与されたときの<colortype(500)><edgecolortype(501)>「詩心」<edgecolortype(0)><colortype(0)>の数により異なる。<br><br><colortype(504)><edgecolortype(505)>詩心が1つのとき：<edgecolortype(0)><colortype(0)>1％<br><colortype(504)><edgecolortype(505)>詩心が2つのとき：<edgecolortype(0)><colortype(0)>2％<br><colortype(504)><edgecolortype(505)>詩心が3つのとき：<edgecolortype(0)><colortype(0)>4％<br><colortype(504)><edgecolortype(505)>詩心が4つのとき：<edgecolortype(0)><colortype(0)>12％",
+  "effects": [
+    "軍神のパイオンの効果中かつ自身に「詩心」が付与されている状態で、賢人のバラードか旅神のメヌエットを実行すると、自身に「軍神の加護」を付与する。\u3000効果時間：10秒",
+    "軍神の加護効果：オートアタックの攻撃間隔と、ウェポンスキルおよび魔法のキャストタイムとリキャストタイムを短縮させる。",
+    "また、軍神のパイオンの効果中かつ自身に「詩心」が付与されている状態で、賢人のバラードか旅神のメヌエットを実行することなく軍神のパイオンの効果時間が経過した場合、自身に「軍神の契約」を付与する。\u3000効果時間：30秒",
+    "軍神の契約効果：賢人のバラード、軍神のパイオン、旅神のメヌエットを実行すると、自身に「軍神の加護」を付与する。",
+    "どちらの場合も、効果量は「軍神の加護」および「軍神の契約」が付与されたときの「詩心」の数により異なる。",
+    "詩心が1つのとき：1％",
+    "詩心が2つのとき：2％",
+    "詩心が3つのとき：4％",
+    "詩心が4つのとき：12％"
+  ],
+  "role": "Physical Ranged DPS",
+  "job": {
+    "id": 23,
+    "name": "吟遊詩人",
+    "abbreviation": "BRD"
+  },
+  "unlock_level": 78,
+  "value": 0,
+  "icon": {
+    "id": 5314,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 24,
+  "source_class_job_id": 23
+}

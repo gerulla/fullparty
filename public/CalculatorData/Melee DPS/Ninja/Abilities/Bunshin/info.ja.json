@@ -1,0 +1,93 @@
+{
+  "kind": "ability",
+  "id": 16493,
+  "name": "分身の術",
+  "description": "自身に5スタックの「分身の術」を付与する。\u3000効果時間：30秒\n分身の術効果：自身がウェポンスキルを実行すると、分身が出現して追撃を行う。\n分身による攻撃は固有の威力を持つ。\n近接攻撃威力：160\n遠隔攻撃威力：160\n範囲攻撃威力：80\nまた、分身による攻撃ではコンボボーナスが発生しないが、命中すると自身の「忍気」を5上昇させる。\n追加効果：自身に「残影鎌鼬実行可」を付与する。\n効果時間：45秒\n発動条件：「忍気」50",
+  "description_macro": "自身に5スタックの<colortype(500)><edgecolortype(501)>「分身の術」<edgecolortype(0)><colortype(0)>を付与する。\u3000<colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>30秒<br><colortype(504)><edgecolortype(505)>分身の術効果：<edgecolortype(0)><colortype(0)>自身がウェポンスキルを実行すると、分身が出現して追撃を行う。<br>分身による攻撃は固有の威力を持つ。<br><colortype(504)><edgecolortype(505)>近接攻撃威力：<edgecolortype(0)><colortype(0)>160<br><colortype(504)><edgecolortype(505)>遠隔攻撃威力：<edgecolortype(0)><colortype(0)>160<br><colortype(504)><edgecolortype(505)>範囲攻撃威力：<edgecolortype(0)><colortype(0)>80<br>また、分身による攻撃ではコンボボーナスが発生しないが、命中すると自身の<colortype(500)><edgecolortype(501)>「忍気」<edgecolortype(0)><colortype(0)>を5上昇させる。<br><if([gnum68==30],<if([gnum72>=82],<colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)>自身に<colortype(500)><edgecolortype(501)>「残影鎌鼬実行可」<edgecolortype(0)><colortype(0)>を付与する。<br><colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>45秒<br>,)>,)><colortype(504)><edgecolortype(505)>発動条件：<edgecolortype(0)><colortype(0)><colortype(500)><edgecolortype(501)>「忍気」<edgecolortype(0)><colortype(0)>50",
+  "effects": [
+    "自身に5スタックの「分身の術」を付与する。\u3000効果時間：30秒",
+    "分身の術効果：自身がウェポンスキルを実行すると、分身が出現して追撃を行う。",
+    "分身による攻撃は固有の威力を持つ。",
+    "近接攻撃威力：160",
+    "遠隔攻撃威力：160",
+    "範囲攻撃威力：80",
+    "また、分身による攻撃ではコンボボーナスが発生しないが、命中すると自身の「忍気」を5上昇させる。",
+    "追加効果：自身に「残影鎌鼬実行可」を付与する。",
+    "効果時間：45秒",
+    "発動条件：「忍気」50"
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 30,
+    "name": "忍者",
+    "abbreviation": "NIN"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 80,
+  "icon": {
+    "id": 2927,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 4,
+    "name": "アビリティ"
+  },
+  "attack_type": {
+    "id": 0,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 90,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 15,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 27,
+      "value": 50
+    },
+    "secondary": {
+      "type_id": 0,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": 0,
+    "effect_yalms": 0,
+    "cast_type": 1
+  },
+  "targeting": {
+    "self": true,
+    "party": false,
+    "alliance": false,
+    "hostile": false,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 0,
+    "behavior_type": 0,
+    "class_job_category_id": 92,
+    "source_class_job_id": 30,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

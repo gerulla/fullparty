@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 1233,
+  "name": "Meikyo Shisui",
+  "description": "Kombo-Bedingungen sind erfüllt.",
+  "effects": [
+    "Kombo-Bedingungen sind erfüllt."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 219641,
+    "file": "icon.png"
+  },
+  "max_stacks": 3,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 27,
+    "modifier": 0
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 7499,
+      "name": "Meikyo Shisui",
+      "description": "Du kannst drei Kombos ausführen, ohne die Kombo-Bedingungen zu erfüllen. Dabei gewährt Gekko Fugetsu und Kasha Fuka.\nDauer: 20 Sekunden oder bis 3 Waffenfertigkeiten außer Iaijutsuund Ogi Namikiri ausgeführt wurden\nZusatzeffekt: Gewährt dir Tendo.\nDauer: 30 Sekunden\nMaximale Aufladungen: 2",
+      "description_macro": "Du kannst drei Kombos ausführen, ohne die Kombo-Bedingungen zu erfüllen. Dabei gewährt <colortype(502)><edgecolortype(503)>Gekko<edgecolortype(0)><colortype(0)> <colortype(506)><edgecolortype(507)>Fugetsu<edgecolortype(0)><colortype(0)> und <colortype(502)><edgecolortype(503)>Kasha<edgecolortype(0)><colortype(0)> <colortype(506)><edgecolortype(507)>Fuka<edgecolortype(0)><colortype(0)>.<br>Dauer: 20 Sekunden oder bis 3 Waf<->fen<->fer<->tig<->kei<->ten außer <colortype(502)><edgecolortype(503)>Iaijutsu<edgecolortype(0)><colortype(0)><if([gnum68==34],<if([gnum72>=90], und <colortype(502)><edgecolortype(503)>Ogi Namikiri<edgecolortype(0)><colortype(0)>,)>,)> ausgeführt wurden<if([gnum68==34],<if([gnum72>=100],<br>Zusatzeffekt: Gewährt dir <colortype(506)><edgecolortype(507)>Tendo<edgecolortype(0)><colortype(0)>.<br>Dauer: 30 Sekunden,)>,)><if([gnum68==34],<if([gnum72>=76],<br>Maximale Aufladungen: 2,)>,)>",
+      "unlock_level": 50,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 34,
+          "name": "Samurai",
+          "abbreviation": "SAM",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

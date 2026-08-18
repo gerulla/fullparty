@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 1179,
+  "name": "Énigme de la terre",
+  "description": "Les dégâts reçus sont réduits.",
+  "effects": [
+    "Les dégâts reçus sont réduits."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 212527,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": -20
+  },
+  "class_job_category_id": 21,
+  "source_abilities": [
+    {
+      "id": 7394,
+      "name": "Énigme de la terre",
+      "description": "Réduit de 20% vos dégâts subis.\nDurée : 10s\nEffet additionnel : si vous subissez des dégâts pendant la durée de l'effet, vous octroie Détermination de la terre.\nDétermination de la terre : restaure périodiquement vos PV.\nPuissance : 100 Durée : 15s\nEffet additionnel : vous octroie Grondement de la terre.\nDurée : 30s",
+      "description_macro": "Réduit de 20% vos dégâts subis.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 10s<br><colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> si vous subissez des dégâts pendant la durée de l'effet, vous octroie <colortype(500)><edgecolortype(501)>Détermination de la terre<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Détermination de la terre<nbsp>:<edgecolortype(0)><colortype(0)> restaure périodiquement vos PV.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> 100 <colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 15s<br><colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> vous octroie <colortype(500)><edgecolortype(501)>Grondement de la terre<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 30s",
+      "unlock_level": 64,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 20,
+          "name": "Moine",
+          "abbreviation": "MOI",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

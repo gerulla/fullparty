@@ -1,0 +1,32 @@
+{
+  "kind": "trait",
+  "id": 658,
+  "name": "Actions améliorées II",
+  "description": "Augmente la puissance de certaines actions.\n\nPuissance d'Arbalète automatique : 180\nPuissance de Tir scindé chauffé : 220\nPuissance de Foreuse : 660\nPuissance de Tir de balle chauffé : 140\nPuissance de Tir net chauffé : 160\nPuissance de Tir ardent : 240\nPuissance d'Ancre aérienne : 660\nPuissance de Tronçonneuses rotatives : 660",
+  "description_macro": "Augmente la puissance de certaines actions.<br><br><colortype(506)><edgecolortype(507)>Puissance d'Arbalète automatique<nbsp>:<edgecolortype(0)><colortype(0)> 180<br><colortype(506)><edgecolortype(507)>Puissance de Tir scindé chauffé<nbsp>:<edgecolortype(0)><colortype(0)> 220<br><colortype(506)><edgecolortype(507)>Puissance de Foreuse<nbsp>:<edgecolortype(0)><colortype(0)> 660<br><colortype(506)><edgecolortype(507)>Puissance de Tir de balle chauffé<nbsp>:<edgecolortype(0)><colortype(0)> 140<br><colortype(506)><edgecolortype(507)>Puissance de Tir net chauffé<nbsp>:<edgecolortype(0)><colortype(0)> 160<br><colortype(506)><edgecolortype(507)>Puissance de Tir ardent<nbsp>:<edgecolortype(0)><colortype(0)> 240<br><colortype(506)><edgecolortype(507)>Puissance d'Ancre aérienne<nbsp>:<edgecolortype(0)><colortype(0)> 660<br><colortype(506)><edgecolortype(507)>Puissance de Tronçonneuses rotatives<nbsp>:<edgecolortype(0)><colortype(0)> 660",
+  "effects": [
+    "Augmente la puissance de certaines actions.",
+    "Puissance d'Arbalète automatique : 180",
+    "Puissance de Tir scindé chauffé : 220",
+    "Puissance de Foreuse : 660",
+    "Puissance de Tir de balle chauffé : 140",
+    "Puissance de Tir net chauffé : 160",
+    "Puissance de Tir ardent : 240",
+    "Puissance d'Ancre aérienne : 660",
+    "Puissance de Tronçonneuses rotatives : 660"
+  ],
+  "role": "Physical Ranged DPS",
+  "job": {
+    "id": 31,
+    "name": "Machiniste",
+    "abbreviation": "MCH"
+  },
+  "unlock_level": 94,
+  "value": 0,
+  "icon": {
+    "id": 6802,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 96,
+  "source_class_job_id": 31
+}

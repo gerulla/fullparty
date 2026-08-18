@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 1722,
+  "name": "Diamantrücken",
+  "description": "Macht bewegungsunfähig, verringert aber auch erlittenen Schaden.",
+  "effects": [
+    "Macht bewegungsunfähig, verringert aber auch erlittenen Schaden."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 213509,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": true,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 1,
+  "parameter": {
+    "effect": 4,
+    "modifier": -10
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 11424,
+      "name": "Diamantrücken",
+      "description": "Der eigene erlittene Schaden wird um 90 % reduziert, und bestimmte Rückstoß- und Heranzieheffekte werden verhindert.\nDer Magier ist für die Dauer des Effekts bewegungsunfähig und kann keine Kommandos ausführen.\nDauer: 10 Sekunden\nZusatzeffekt: Wenn der Status Ekstatischer Kampf aktiv ist, wird dieser umgehend zu Ermüdung des ekstatischen Kampfes geändert.\nDieser Effekt kann nicht durch den Magier aufgehoben werden.",
+      "description_macro": "Der eigene erlittene Schaden wird um 90<nbsp>% reduziert, und bestimmte Rückstoß- und Heranzieheffekte werden verhindert.<br>Der Magier ist für die Dauer des Effekts be<->we<->gungs<->un<->fäh<->ig und kann keine Kommandos ausführen.<br>Dauer: 10 Sekunden<br>Zusatzeffekt: Wenn der Status <colortype(506)><edgecolortype(507)>Ekstatischer Kampf<edgecolortype(0)><colortype(0)> aktiv ist, wird dieser umgehend zu <colortype(506)><edgecolortype(507)>Ermüdung des ekstatischen Kampfes<edgecolortype(0)><colortype(0)> geändert.<br>Dieser Effekt kann nicht durch den Magier aufgehoben werden.",
+      "unlock_level": 1,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Magical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 36,
+          "name": "Blaumagier",
+          "abbreviation": "BMA",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

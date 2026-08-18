@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 1321,
+  "name": "Kaustischer Biss",
+  "description": "Erleidet schrittweise Schaden.",
+  "effects": [
+    "Erleidet schrittweise Schaden."
+  ],
+  "classification": "debuff",
+  "icon": {
+    "id": 212616,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 2,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": true,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 10
+  },
+  "class_job_category_id": 24,
+  "source_abilities": [
+    {
+      "id": 7406,
+      "name": "Kaustischer Biss",
+      "description": "Du führst eine physische Attacke aus.\nAttacke-Wert: 150\nZusatzeffekt: Giftschaden über Zeit\nAttacke-Wert: 20\nDauer: 45 Sekunden\nZusatzeffekt: 35 % Wahrscheinlichkeit auf Falkenauge\nDauer: 30 Sekunden",
+      "description_macro": "Du führst eine physische Attacke aus.<br>Attacke-Wert: 150<br>Zusatzeffekt: Giftschaden über Zeit<br>Attacke-Wert: 20<br>Dauer: 45 Sekunden<if([gnum68==23],<if([gnum72>=76],<br>Zusatzeffekt: 35 % Wahr<->schein<->lich<->keit auf <colortype(506)><edgecolortype(507)>Falkenauge<edgecolortype(0)><colortype(0)><br>Dauer: 30 Sekunden,)>,)>",
+      "unlock_level": 64,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Physical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 23,
+          "name": "Barde",
+          "abbreviation": "BRD",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 158,
+  "name": "Sang noir",
+  "description": "Permet à votre Jauge de sang de se remplir lorsque vous utilisez certaines actions avec succès.",
+  "description_macro": "Permet à votre <colortype(502)><edgecolortype(503)>Jauge de sang<edgecolortype(0)><colortype(0)> de se remplir lorsque vous utilisez certaines actions avec succès.",
+  "effects": [
+    "Permet à votre Jauge de sang de se remplir lorsque vous utilisez certaines actions avec succès."
+  ],
+  "role": "Tank",
+  "job": {
+    "id": 32,
+    "name": "Chevalier Noir",
+    "abbreviation": "CHN"
+  },
+  "unlock_level": 62,
+  "value": 0,
+  "icon": {
+    "id": 6059,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 98,
+  "source_class_job_id": 32
+}

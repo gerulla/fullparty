@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 2617,
+  "name": "Physis",
+  "description": "Regenerating HP over time.",
+  "effects": [
+    "Regenerating HP over time."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 212963,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 5,
+  "parameter": {
+    "effect": 0,
+    "modifier": 10
+  },
+  "class_job_category_id": 181,
+  "source_abilities": [
+    {
+      "id": 24288,
+      "name": "Physis",
+      "description": "Gradually restores own HP and the HP of all nearby party members.\nCure Potency: 100\nDuration: 15s",
+      "description_macro": "Gradually restores own HP and the HP of all nearby party members.<br><colortype(504)><edgecolortype(505)>Cure Potency: <edgecolortype(0)><colortype(0)>100<br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>15s",
+      "unlock_level": 20,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Healer"
+      ],
+      "jobs": [
+        {
+          "id": 40,
+          "name": "Sage",
+          "abbreviation": "SGE",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

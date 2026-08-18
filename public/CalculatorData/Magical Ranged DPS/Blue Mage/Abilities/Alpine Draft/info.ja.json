@@ -1,0 +1,85 @@
+{
+  "kind": "ability",
+  "id": 18295,
+  "name": "アルペンドラフト",
+  "description": "対象に向かって風属性前方直線範囲魔法攻撃。\u3000威力：220\n2体目以降の対象への威力は50％減少する。",
+  "description_macro": "対象に向かって風属性前方直線範囲魔法攻撃。\u3000<colortype(504)><edgecolortype(505)>威力：<edgecolortype(0)><colortype(0)>220<br>2体目以降の対象への威力は50％減少する。",
+  "effects": [
+    "対象に向かって風属性前方直線範囲魔法攻撃。\u3000威力：220",
+    "2体目以降の対象への威力は50％減少する。"
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 36,
+    "name": "青魔道士",
+    "abbreviation": "BLU"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 1,
+  "icon": {
+    "id": 3300,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 2,
+    "name": "魔法"
+  },
+  "attack_type": {
+    "id": 5,
+    "name": "魔法"
+  },
+  "timing": {
+    "cast_seconds": 2,
+    "recast_seconds": 2.5,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 58,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 3,
+      "value": 2
+    },
+    "secondary": {
+      "type_id": 0,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": 20,
+    "effect_yalms": 20,
+    "cast_type": 4
+  },
+  "targeting": {
+    "self": false,
+    "party": false,
+    "alliance": false,
+    "hostile": true,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": false
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 3,
+    "behavior_type": 0,
+    "class_job_category_id": 129,
+    "source_class_job_id": 36,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

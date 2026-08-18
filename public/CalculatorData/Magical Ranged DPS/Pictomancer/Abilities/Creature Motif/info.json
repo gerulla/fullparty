@@ -1,0 +1,88 @@
+{
+  "kind": "ability",
+  "id": 34689,
+  "name": "Creature Motif",
+  "description": "Paints a creature motif.\nThis action changes when placed on the hotbar in the order of Pom Motif\\ when executed in succession.\nCast immediately when used outside of combat.\nThis action does not share a recast timer with any other actions. Recast timer cannot be affected by status effects or gear attributes.\nUpon execution, the recast timer for this action will be applied to all other weaponskills and magic actions.",
+  "description_macro": "Paints a creature motif.<br>This action changes when placed on the hotbar in the order of <if([gnum68==42],<if([gnum72>=96],<colortype(500)><edgecolortype(501)>Pom Motif<edgecolortype(0)><colortype(0)>\\, <colortype(500)><edgecolortype(501)>Wing Motif<edgecolortype(0)><colortype(0)>\\, <colortype(500)><edgecolortype(501)>Claw Motif<edgecolortype(0)><colortype(0)>\\, and <colortype(500)><edgecolortype(501)>Maw Motif<edgecolortype(0)><colortype(0)>,<colortype(500)><edgecolortype(501)>Pom Motif<edgecolortype(0)><colortype(0)> and <colortype(500)><edgecolortype(501)>Wing Motif<edgecolortype(0)><colortype(0)>)>,<colortype(500)><edgecolortype(501)>Pom Motif<edgecolortype(0)><colortype(0)> and <colortype(500)><edgecolortype(501)>Wing Motif<edgecolortype(0)><colortype(0)>)> when executed in succession.<br>Cast immediately when used outside of combat.<br>This action does not share a recast timer with any other actions. Recast timer cannot be affected by status effects or gear attributes.<br>Upon execution, the recast timer for this action will be applied to all other weaponskills and magic actions.",
+  "effects": [
+    "Paints a creature motif.",
+    "This action changes when placed on the hotbar in the order of Pom Motif\\ when executed in succession.",
+    "Cast immediately when used outside of combat.",
+    "This action does not share a recast timer with any other actions. Recast timer cannot be affected by status effects or gear attributes.",
+    "Upon execution, the recast timer for this action will be applied to all other weaponskills and magic actions."
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 42,
+    "name": "Pictomancer",
+    "abbreviation": "PCT"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 30,
+  "icon": {
+    "id": 3839,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 2,
+    "name": "Spell"
+  },
+  "attack_type": {
+    "id": 0,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 3,
+    "recast_seconds": 4,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 58,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 0,
+      "value": 0
+    },
+    "secondary": {
+      "type_id": 73,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": 0,
+    "effect_yalms": 0,
+    "cast_type": 1
+  },
+  "targeting": {
+    "self": true,
+    "party": false,
+    "alliance": false,
+    "hostile": false,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 0,
+    "behavior_type": 0,
+    "class_job_category_id": 197,
+    "source_class_job_id": 42,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

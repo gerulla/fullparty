@@ -1,0 +1,28 @@
+{
+  "kind": "trait",
+  "id": 163,
+  "name": "Drachengeist",
+  "description": "Der Effekt Drachenherz ändert sich zu Drachengeist.\nEffekt von Drachengeist: Ausgeteilter Schaden ist um 15 % erhöht.\nGewährt weiterhin Zielgerichtet.\nDauer: 20 Sekunden\nBedingung: Geirskogul trifft erfolgreich",
+  "description_macro": "Der Effekt <colortype(506)><edgecolortype(507)>Drachenherz<edgecolortype(0)><colortype(0)> ändert sich zu <colortype(506)><edgecolortype(507)>Drachengeist<edgecolortype(0)><colortype(0)>.<br>Effekt von <colortype(506)><edgecolortype(507)>Drachengeist<edgecolortype(0)><colortype(0)>: Ausgeteilter Schaden ist um 15 % erhöht.<br>Gewährt weiterhin <colortype(506)><edgecolortype(507)>Zielgerichtet<edgecolortype(0)><colortype(0)>.<br>Dauer: 20 Sekunden<br>Bedingung: <colortype(502)><edgecolortype(503)>Geirskogul<edgecolortype(0)><colortype(0)> trifft erfolgreich",
+  "effects": [
+    "Der Effekt Drachenherz ändert sich zu Drachengeist.",
+    "Effekt von Drachengeist: Ausgeteilter Schaden ist um 15 % erhöht.",
+    "Gewährt weiterhin Zielgerichtet.",
+    "Dauer: 20 Sekunden",
+    "Bedingung: Geirskogul trifft erfolgreich"
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 22,
+    "name": "Dragoon",
+    "abbreviation": "DRG"
+  },
+  "unlock_level": 70,
+  "value": 0,
+  "icon": {
+    "id": 5289,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 23,
+  "source_class_job_id": 22
+}

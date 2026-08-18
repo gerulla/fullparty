@@ -1,0 +1,41 @@
+{
+  "kind": "trait",
+  "id": 678,
+  "name": "アクション威力アップIV",
+  "description": "特定のアクションの威力を上昇させる。\n\nレッドファイアの威力：490\nグリーンエアロの威力：530\nブルーウォータの威力：570\nレッドファイラの威力：180\nグリーンエアロラの威力：200\nブルーウォタラの威力：220\nハンマースタンプの威力：560\nシアンブリザドの威力：860\nイエローストーンの威力：900\nマゼンタサンダーの威力：940\nシアンブリザラの威力：360\nイエローストンラの威力：380\nマゼンタサンダラの威力：400\nホワイトホーリーの威力：570\nハンマーブラッシュの威力：580\nハンマーポリッシュの威力：600\nブラックコメットの威力：940",
+  "description_macro": "特定のアクションの威力を上昇させる。<br><br><colortype(504)><edgecolortype(505)>レッドファイアの威力：<edgecolortype(0)><colortype(0)>490<br><colortype(504)><edgecolortype(505)>グリーンエアロの威力：<edgecolortype(0)><colortype(0)>530<br><colortype(504)><edgecolortype(505)>ブルーウォータの威力：<edgecolortype(0)><colortype(0)>570<br><colortype(504)><edgecolortype(505)>レッドファイラの威力：<edgecolortype(0)><colortype(0)>180<br><colortype(504)><edgecolortype(505)>グリーンエアロラの威力：<edgecolortype(0)><colortype(0)>200<br><colortype(504)><edgecolortype(505)>ブルーウォタラの威力：<edgecolortype(0)><colortype(0)>220<br><colortype(504)><edgecolortype(505)>ハンマースタンプの威力：<edgecolortype(0)><colortype(0)>560<br><colortype(504)><edgecolortype(505)>シアンブリザドの威力：<edgecolortype(0)><colortype(0)>860<br><colortype(504)><edgecolortype(505)>イエローストーンの威力：<edgecolortype(0)><colortype(0)>900<br><colortype(504)><edgecolortype(505)>マゼンタサンダーの威力：<edgecolortype(0)><colortype(0)>940<br><colortype(504)><edgecolortype(505)>シアンブリザラの威力：<edgecolortype(0)><colortype(0)>360<br><colortype(504)><edgecolortype(505)>イエローストンラの威力：<edgecolortype(0)><colortype(0)>380<br><colortype(504)><edgecolortype(505)>マゼンタサンダラの威力：<edgecolortype(0)><colortype(0)>400<br><colortype(504)><edgecolortype(505)>ホワイトホーリーの威力：<edgecolortype(0)><colortype(0)>570<br><colortype(504)><edgecolortype(505)>ハンマーブラッシュの威力：<edgecolortype(0)><colortype(0)>580<br><colortype(504)><edgecolortype(505)>ハンマーポリッシュの威力：<edgecolortype(0)><colortype(0)>600<br><colortype(504)><edgecolortype(505)>ブラックコメットの威力：<edgecolortype(0)><colortype(0)>940",
+  "effects": [
+    "特定のアクションの威力を上昇させる。",
+    "レッドファイアの威力：490",
+    "グリーンエアロの威力：530",
+    "ブルーウォータの威力：570",
+    "レッドファイラの威力：180",
+    "グリーンエアロラの威力：200",
+    "ブルーウォタラの威力：220",
+    "ハンマースタンプの威力：560",
+    "シアンブリザドの威力：860",
+    "イエローストーンの威力：900",
+    "マゼンタサンダーの威力：940",
+    "シアンブリザラの威力：360",
+    "イエローストンラの威力：380",
+    "マゼンタサンダラの威力：400",
+    "ホワイトホーリーの威力：570",
+    "ハンマーブラッシュの威力：580",
+    "ハンマーポリッシュの威力：600",
+    "ブラックコメットの威力：940"
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 42,
+    "name": "ピクトマンサー",
+    "abbreviation": "PCT"
+  },
+  "unlock_level": 94,
+  "value": 0,
+  "icon": {
+    "id": 6833,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 197,
+  "source_class_job_id": 42
+}

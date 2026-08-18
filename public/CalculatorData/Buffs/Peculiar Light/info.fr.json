@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 1721,
+  "name": "Lumière sinistre",
+  "description": "Les dégâts magiques reçus sont augmentés.",
+  "effects": [
+    "Les dégâts magiques reçus sont augmentés."
+  ],
+  "classification": "debuff",
+  "icon": {
+    "id": 213508,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 2,
+  "target_type": 0,
+  "can_dispel": true,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 50,
+  "parameter": {
+    "effect": 0,
+    "modifier": 10
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 11421,
+      "name": "Lumière sinistre",
+      "description": "Augmente de 5% les dégâts magiques subis par les ennemis alentour.\nDurée : 15s\nCe sort a un temps de recharge indépendant partagé avec celui de Sans défense et ne peut être modifié par les autres sorts.",
+      "description_macro": "Augmente de 5% les dégâts magiques subis par les ennemis alentour.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 15s<br>Ce sort a un temps de recharge indépendant partagé avec celui de <colortype(500)><edgecolortype(501)>Sans défense<edgecolortype(0)><colortype(0)> et ne peut être modifié par les autres sorts.",
+      "unlock_level": 1,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Magical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 36,
+          "name": "Mage Bleu",
+          "abbreviation": "MBU",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

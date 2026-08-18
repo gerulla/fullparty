@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 570,
+  "name": "ブラッドウェポンマスタリー",
+  "description": "ブラッドウェポンがブラッドデリリアムに変化する。",
+  "description_macro": "ブラッドウェポンがブラッドデリリアムに変化する。",
+  "effects": [
+    "ブラッドウェポンがブラッドデリリアムに変化する。"
+  ],
+  "role": "Tank",
+  "job": {
+    "id": 32,
+    "name": "暗黒騎士",
+    "abbreviation": "DRK"
+  },
+  "unlock_level": 68,
+  "value": 0,
+  "icon": {
+    "id": 6053,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 98,
+  "source_class_job_id": 32
+}

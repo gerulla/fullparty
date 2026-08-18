@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 208,
+  "name": "Maîtrise de Kenki II",
+  "description": "Permet à votre Jauge de Kenki de se remplir davantage lorsque vous utilisez une technique d'arme autre qu'Iaijutsu avec succès.",
+  "description_macro": "Permet à votre <colortype(502)><edgecolortype(503)>Jauge de Kenki<edgecolortype(0)><colortype(0)> de se remplir davantage lorsque vous utilisez une technique d'arme autre qu'<colortype(500)><edgecolortype(501)>Iaijutsu<edgecolortype(0)><colortype(0)> avec succès.",
+  "effects": [
+    "Permet à votre Jauge de Kenki de se remplir davantage lorsque vous utilisez une technique d'arme autre qu'Iaijutsu avec succès."
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 34,
+    "name": "Samouraï",
+    "abbreviation": "SAM"
+  },
+  "unlock_level": 62,
+  "value": 5,
+  "icon": {
+    "id": 6151,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 111,
+  "source_class_job_id": 34
+}

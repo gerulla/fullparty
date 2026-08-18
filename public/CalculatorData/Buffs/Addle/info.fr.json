@@ -1,0 +1,74 @@
+{
+  "kind": "combat_status",
+  "id": 1203,
+  "name": "Embrouillement",
+  "description": "Les dégâts physiques et magiques infligés sont réduits.",
+  "effects": [
+    "Les dégâts physiques et magiques infligés sont réduits."
+  ],
+  "classification": "debuff",
+  "icon": {
+    "id": 213917,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 2,
+  "target_type": 0,
+  "can_dispel": true,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 50,
+  "parameter": {
+    "effect": 0,
+    "modifier": -5
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 7560,
+      "name": "Embrouillement",
+      "description": "Réduit respectivement de 5% et 10% les dégâts physiques et magiques infligés par la cible.\nDurée : 15s",
+      "description_macro": "Réduit respectivement de 5% et 10% les dégâts physiques et magiques infligés par la cible.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> <if([gnum72>=98],<if([gnum68==7],15,<if([gnum68==25],15,<if([gnum68==26],15,<if([gnum68==27],15,<if([gnum68==35],15,<if([gnum68==36],15,<if([gnum68==42],15,10)>)>)>)>)>)>)>,10)>s",
+      "unlock_level": 8,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Magical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 25,
+          "name": "Mage Noir",
+          "abbreviation": "MNO",
+          "is_phantom": false
+        },
+        {
+          "id": 27,
+          "name": "Invocateur",
+          "abbreviation": "INV",
+          "is_phantom": false
+        },
+        {
+          "id": 35,
+          "name": "Mage Rouge",
+          "abbreviation": "MRG",
+          "is_phantom": false
+        },
+        {
+          "id": 42,
+          "name": "Pictomancien",
+          "abbreviation": "PIC",
+          "is_phantom": false
+        },
+        {
+          "id": 36,
+          "name": "Mage Bleu",
+          "abbreviation": "MBU",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

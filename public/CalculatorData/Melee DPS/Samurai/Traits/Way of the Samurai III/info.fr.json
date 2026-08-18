@@ -1,0 +1,36 @@
+{
+  "kind": "trait",
+  "id": 655,
+  "name": "Actions améliorées III",
+  "description": "Augmente la puissance de certaines actions.\n\nPuissance de Jinpû : 140\nPuissance d'Enpi avec Enpi amélioré : 270\nPuissance de Shifû : 140\nPuissance de Gekkô : 160\nPuissance de Higanbana (dégâts périodiques) : 50\nPuissance de Kasha : 160\nPuissance de Yukikaze : 160\nPuissance de Midare Setsugekka : 680\nPuissance de Kaeshi Setsugekka : 680\nPuissance de Shôha : 640\nPuissance d'Ôgi : Namikiri : 1000\nPuissance de Kaeshi Namikiri : 1000",
+  "description_macro": "Augmente la puissance de certaines actions.<br><br><colortype(506)><edgecolortype(507)>Puissance de Jinpû<nbsp>:<edgecolortype(0)><colortype(0)> 140<br><colortype(506)><edgecolortype(507)>Puissance d'Enpi avec Enpi amélioré<nbsp>:<edgecolortype(0)><colortype(0)> 270<br><colortype(506)><edgecolortype(507)>Puissance de Shifû<nbsp>:<edgecolortype(0)><colortype(0)> 140<br><colortype(506)><edgecolortype(507)>Puissance de Gekkô<nbsp>:<edgecolortype(0)><colortype(0)> 160<br><colortype(506)><edgecolortype(507)>Puissance de Higanbana (dégâts périodiques)<nbsp>:<edgecolortype(0)><colortype(0)> 50<br><colortype(506)><edgecolortype(507)>Puissance de Kasha<nbsp>:<edgecolortype(0)><colortype(0)> 160<br><colortype(506)><edgecolortype(507)>Puissance de Yukikaze<nbsp>:<edgecolortype(0)><colortype(0)> 160<br><colortype(506)><edgecolortype(507)>Puissance de Midare Setsugekka<nbsp>:<edgecolortype(0)><colortype(0)> 680<br><colortype(506)><edgecolortype(507)>Puissance de Kaeshi Setsugekka<nbsp>:<edgecolortype(0)><colortype(0)> 680<br><colortype(506)><edgecolortype(507)>Puissance de Shôha<nbsp>:<edgecolortype(0)><colortype(0)> 640<br><colortype(506)><edgecolortype(507)>Puissance d'Ôgi<nbsp>: Namikiri<nbsp>:<edgecolortype(0)><colortype(0)> 1000<br><colortype(506)><edgecolortype(507)>Puissance de Kaeshi Namikiri<nbsp>:<edgecolortype(0)><colortype(0)> 1000",
+  "effects": [
+    "Augmente la puissance de certaines actions.",
+    "Puissance de Jinpû : 140",
+    "Puissance d'Enpi avec Enpi amélioré : 270",
+    "Puissance de Shifû : 140",
+    "Puissance de Gekkô : 160",
+    "Puissance de Higanbana (dégâts périodiques) : 50",
+    "Puissance de Kasha : 160",
+    "Puissance de Yukikaze : 160",
+    "Puissance de Midare Setsugekka : 680",
+    "Puissance de Kaeshi Setsugekka : 680",
+    "Puissance de Shôha : 640",
+    "Puissance d'Ôgi : Namikiri : 1000",
+    "Puissance de Kaeshi Namikiri : 1000"
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 34,
+    "name": "Samouraï",
+    "abbreviation": "SAM"
+  },
+  "unlock_level": 94,
+  "value": 0,
+  "icon": {
+    "id": 6803,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 111,
+  "source_class_job_id": 34
+}

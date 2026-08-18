@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 633,
+  "name": "Maîtrise d'Hélios aspecté",
+  "description": "Remplace Hélios aspecté par Hélios combiné.",
+  "description_macro": "Remplace <colortype(500)><edgecolortype(501)>Hélios aspecté<edgecolortype(0)><colortype(0)> par <colortype(500)><edgecolortype(501)>Hélios combiné<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Remplace Hélios aspecté par Hélios combiné."
+  ],
+  "role": "Healer",
+  "job": {
+    "id": 33,
+    "name": "Astromancien",
+    "abbreviation": "AST"
+  },
+  "unlock_level": 96,
+  "value": 0,
+  "icon": {
+    "id": 6122,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 99,
+  "source_class_job_id": 33
+}

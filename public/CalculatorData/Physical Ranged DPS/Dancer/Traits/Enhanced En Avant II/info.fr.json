@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 256,
+  "name": "En avant amélioré II",
+  "description": "Augmente à 3 le maximum de charges d'En avant.",
+  "description_macro": "Augmente à 3 le maximum de charges d'<colortype(500)><edgecolortype(501)>En avant<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Augmente à 3 le maximum de charges d'En avant."
+  ],
+  "role": "Physical Ranged DPS",
+  "job": {
+    "id": 38,
+    "name": "Danseur",
+    "abbreviation": "DNS"
+  },
+  "unlock_level": 78,
+  "value": 3,
+  "icon": {
+    "id": 6356,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 150,
+  "source_class_job_id": 38
+}

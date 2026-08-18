@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 567,
+  "name": "Vengeance Mastery",
+  "description": "Upgrades Vengeance to Damnation.",
+  "description_macro": "Upgrades <colortype(500)><edgecolortype(501)>Vengeance<edgecolortype(0)><colortype(0)> to <colortype(500)><edgecolortype(501)>Damnation<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Upgrades Vengeance to Damnation."
+  ],
+  "role": "Tank",
+  "job": {
+    "id": 21,
+    "name": "Warrior",
+    "abbreviation": "WAR"
+  },
+  "unlock_level": 92,
+  "value": 0,
+  "icon": {
+    "id": 5271,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 22,
+  "source_class_job_id": 21
+}

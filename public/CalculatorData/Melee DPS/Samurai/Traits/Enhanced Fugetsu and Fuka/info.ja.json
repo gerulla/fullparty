@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 278,
+  "name": "風月・風花効果アップ",
+  "description": "「風月」と「風花」の効果量を13％に上昇する。",
+  "description_macro": "<colortype(500)><edgecolortype(501)>「風月」<edgecolortype(0)><colortype(0)>と<colortype(500)><edgecolortype(501)>「風花」<edgecolortype(0)><colortype(0)>の効果量を13％に上昇する。",
+  "effects": [
+    "「風月」と「風花」の効果量を13％に上昇する。"
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 34,
+    "name": "侍",
+    "abbreviation": "SAM"
+  },
+  "unlock_level": 78,
+  "value": 0,
+  "icon": {
+    "id": 6154,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 111,
+  "source_class_job_id": 34
+}

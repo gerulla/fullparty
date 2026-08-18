@@ -1,0 +1,51 @@
+{
+  "kind": "combat_status",
+  "id": 1719,
+  "name": "Mighty Guard",
+  "description": "Damage taken and dealt are reduced, while enmity is increased.",
+  "effects": [
+    "Damage taken and dealt are reduced, while enmity is increased."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 213506,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": true,
+  "is_permanent": true,
+  "inflicted_by_actor": true,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": -10
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 11417,
+      "name": "Mighty Guard",
+      "description": "Reduces damage taken by 40% while reducing damage dealt by 40%, increasing enmity generation, and preventing casting interruptions via damage taken.\nEffect ends upon reuse.",
+      "description_macro": "Reduces damage taken by 40% while reducing damage dealt by 40%, increasing enmity generation, and preventing casting interruptions via damage taken.<br>Effect ends upon reuse.",
+      "unlock_level": 1,
+      "relations": [
+        "direct_gain_self",
+        "same_name"
+      ],
+      "roles": [
+        "Magical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 36,
+          "name": "Blue Mage",
+          "abbreviation": "BLU",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

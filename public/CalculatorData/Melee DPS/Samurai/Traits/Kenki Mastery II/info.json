@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 208,
+  "name": "Kenki Mastery II",
+  "description": "Increases Kenki Gauge when landing all weaponskills excluding Iaijutsu.",
+  "description_macro": "Increases <colortype(500)><edgecolortype(501)>Kenki Gauge<edgecolortype(0)><colortype(0)> when landing all weaponskills excluding <colortype(500)><edgecolortype(501)>Iaijutsu<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Increases Kenki Gauge when landing all weaponskills excluding Iaijutsu."
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 34,
+    "name": "Samurai",
+    "abbreviation": "SAM"
+  },
+  "unlock_level": 62,
+  "value": 5,
+  "icon": {
+    "id": 6151,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 111,
+  "source_class_job_id": 34
+}

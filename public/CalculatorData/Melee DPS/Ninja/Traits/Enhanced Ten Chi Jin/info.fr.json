@@ -1,0 +1,26 @@
+{
+  "kind": "trait",
+  "id": 588,
+  "name": "Ten Chi Jin amélioré",
+  "description": "Permet de recevoir Tenri Jindô préparé lorsque vous utilisez Ten Chi Jin.\nDurée : 30s\nRemplace Ten Chi Jin par Tenri Jindô pendant la durée de l'effet.",
+  "description_macro": "Permet de recevoir <colortype(500)><edgecolortype(501)>Tenri Jindô préparé<edgecolortype(0)><colortype(0)> lorsque vous utilisez <colortype(500)><edgecolortype(501)>Ten Chi Jin<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 30s<br>Remplace <colortype(500)><edgecolortype(501)>Ten Chi Jin<edgecolortype(0)><colortype(0)> par <colortype(500)><edgecolortype(501)>Tenri Jindô<edgecolortype(0)><colortype(0)> pendant la durée de l'effet.",
+  "effects": [
+    "Permet de recevoir Tenri Jindô préparé lorsque vous utilisez Ten Chi Jin.",
+    "Durée : 30s",
+    "Remplace Ten Chi Jin par Tenri Jindô pendant la durée de l'effet."
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 30,
+    "name": "Ninja",
+    "abbreviation": "NIN"
+  },
+  "unlock_level": 100,
+  "value": 0,
+  "icon": {
+    "id": 5726,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 92,
+  "source_class_job_id": 30
+}

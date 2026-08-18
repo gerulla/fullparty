@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 3034,
+  "name": "Arts ténébreux",
+  "description": "Porteur d'ombre peut être lancé sans consommer de PV.",
+  "effects": [
+    "Porteur d'ombre peut être lancé sans consommer de PV."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 213107,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": true,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 98,
+  "source_abilities": [
+    {
+      "id": 7393,
+      "name": "Nuit noirissime",
+      "description": "Crée une barrière sur vous ou l'équipier ciblé, absorbant les dégâts subis pour un montant égal à 25% des PV maximums de la cible.\nDurée : 7s\nVous octroie Arts ténébreux quand la barrière a absorbé son montant de dégâts.\nArts ténébreux : le prochain Déluge d'ombre ou Tranchant d'ombre ne consomme aucun PM.",
+      "description_macro": "Crée une barrière sur vous ou l'équipier ciblé, absorbant les dégâts subis pour un montant égal à 25% des PV maximums de la cible.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 7s<br>Vous octroie <colortype(500)><edgecolortype(501)>Arts ténébreux<edgecolortype(0)><colortype(0)> quand la barrière a absorbé son montant de dégâts.<br><colortype(506)><edgecolortype(507)>Arts ténébreux<nbsp>:<edgecolortype(0)><colortype(0)> le prochain <if([gnum68==32],<if([gnum72>=74],<colortype(500)><edgecolortype(501)>Déluge d'ombre<edgecolortype(0)><colortype(0)> ou <colortype(500)><edgecolortype(501)>Tranchant d'ombre<edgecolortype(0)><colortype(0)>,<colortype(500)><edgecolortype(501)>Déluge de ténèbres<edgecolortype(0)><colortype(0)> ou <colortype(500)><edgecolortype(501)>Tranchant de ténèbres<edgecolortype(0)><colortype(0)>)>,<colortype(500)><edgecolortype(501)>Déluge de ténèbres<edgecolortype(0)><colortype(0)> ou <colortype(500)><edgecolortype(501)>Tranchant de ténèbres<edgecolortype(0)><colortype(0)>)> ne consomme aucun PM.",
+      "unlock_level": 70,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Tank"
+      ],
+      "jobs": [
+        {
+          "id": 32,
+          "name": "Chevalier Noir",
+          "abbreviation": "CHN",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

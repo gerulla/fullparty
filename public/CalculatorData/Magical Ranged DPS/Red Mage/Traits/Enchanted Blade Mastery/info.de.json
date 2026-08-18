@@ -1,0 +1,38 @@
+{
+  "kind": "trait",
+  "id": 652,
+  "name": "Verbessertes Magiefechten",
+  "description": "Erhöht den Attacke-Wert folgender Kommandos:\nAttacke-Wert von Magische Riposte: 340\nAttacke-Wert von Erzfeuer: 380\nAttacke-Wert von Erzstein: 380\nAttacke-Wert von Magischer Zwerchhau: 190\nAttacke-Wert von Fleche: 480\nAttacke-Wert von Magisches Redoublement: 190\nAttacke-Wert von Contre Sixte: 420\nAttacke-Wert von Erzflare: 650\nAttacke-Wert von Erz-Sanctus: 650\nAttacke-Wert von Magische Reprise: 420\nAttacke-Wert von Versengung: 750\nAttacke-Wert von Erzwindga: 440\nAttacke-Wert von Erzblitzga: 440\nAttacke-Wert von Entschlossenheit: 850",
+  "description_macro": "Erhöht den Attacke-Wert folgender Kommandos:<br>Attacke-Wert von <colortype(502)><edgecolortype(503)>Magische Riposte<edgecolortype(0)><colortype(0)>: 340<br>Attacke-Wert von <colortype(502)><edgecolortype(503)>Erzfeuer<edgecolortype(0)><colortype(0)>: 380<br>Attacke-Wert von <colortype(502)><edgecolortype(503)>Erzstein<edgecolortype(0)><colortype(0)>: 380<br>Attacke-Wert von <colortype(502)><edgecolortype(503)>Magischer Zwerchhau<edgecolortype(0)><colortype(0)>: 190<br>Attacke-Wert von <colortype(502)><edgecolortype(503)>Fleche<edgecolortype(0)><colortype(0)>: 480<br>Attacke-Wert von <colortype(502)><edgecolortype(503)>Magisches Redoublement<edgecolortype(0)><colortype(0)>: 190<br>Attacke-Wert von <colortype(502)><edgecolortype(503)>Contre Sixte<edgecolortype(0)><colortype(0)>: 420<br>Attacke-Wert von <colortype(502)><edgecolortype(503)>Erzflare<edgecolortype(0)><colortype(0)>: 650<br>Attacke-Wert von <colortype(502)><edgecolortype(503)>Erz-Sanctus<edgecolortype(0)><colortype(0)>: 650<br>Attacke-Wert von <colortype(502)><edgecolortype(503)>Magische Reprise<edgecolortype(0)><colortype(0)>: 420<br>Attacke-Wert von <colortype(502)><edgecolortype(503)>Versengung<edgecolortype(0)><colortype(0)>: 750<br>Attacke-Wert von <colortype(502)><edgecolortype(503)>Erzwindga<edgecolortype(0)><colortype(0)>: 440<br>Attacke-Wert von <colortype(502)><edgecolortype(503)>Erzblitzga<edgecolortype(0)><colortype(0)>: 440<br>Attacke-Wert von <colortype(502)><edgecolortype(503)>Ent<->schlos<->sen<->heit<edgecolortype(0)><colortype(0)>: 850",
+  "effects": [
+    "Erhöht den Attacke-Wert folgender Kommandos:",
+    "Attacke-Wert von Magische Riposte: 340",
+    "Attacke-Wert von Erzfeuer: 380",
+    "Attacke-Wert von Erzstein: 380",
+    "Attacke-Wert von Magischer Zwerchhau: 190",
+    "Attacke-Wert von Fleche: 480",
+    "Attacke-Wert von Magisches Redoublement: 190",
+    "Attacke-Wert von Contre Sixte: 420",
+    "Attacke-Wert von Erzflare: 650",
+    "Attacke-Wert von Erz-Sanctus: 650",
+    "Attacke-Wert von Magische Reprise: 420",
+    "Attacke-Wert von Versengung: 750",
+    "Attacke-Wert von Erzwindga: 440",
+    "Attacke-Wert von Erzblitzga: 440",
+    "Attacke-Wert von Entschlossenheit: 850"
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 35,
+    "name": "Rotmagier",
+    "abbreviation": "RMA"
+  },
+  "unlock_level": 94,
+  "value": 0,
+  "icon": {
+    "id": 6831,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 112,
+  "source_class_job_id": 35
+}

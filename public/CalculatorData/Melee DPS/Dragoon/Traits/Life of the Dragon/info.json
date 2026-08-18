@@ -1,0 +1,27 @@
+{
+  "kind": "trait",
+  "id": 163,
+  "name": "Life of the Dragon",
+  "description": "Upgrades Blood of the Dragon to Life of the Dragon.\nLife of the Dragon Effect: Increases damage dealt by 15%\nUpon successfully landing Geirskogul, grants Nastrond Ready.\nDuration: 20s",
+  "description_macro": "Upgrades <colortype(506)><edgecolortype(507)>Blood of the Dragon<edgecolortype(0)><colortype(0)> to <colortype(506)><edgecolortype(507)>Life of the Dragon<edgecolortype(0)><colortype(0)>.<br><colortype(504)><edgecolortype(505)>Life of the Dragon Effect: <edgecolortype(0)><colortype(0)>Increases damage dealt by 15%<br>Upon successfully landing <colortype(500)><edgecolortype(501)>Geirskogul<edgecolortype(0)><colortype(0)>, grants <colortype(506)><edgecolortype(507)>Nastrond Ready<edgecolortype(0)><colortype(0)>.<br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>20s",
+  "effects": [
+    "Upgrades Blood of the Dragon to Life of the Dragon.",
+    "Life of the Dragon Effect: Increases damage dealt by 15%",
+    "Upon successfully landing Geirskogul, grants Nastrond Ready.",
+    "Duration: 20s"
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 22,
+    "name": "Dragoon",
+    "abbreviation": "DRG"
+  },
+  "unlock_level": 70,
+  "value": 0,
+  "icon": {
+    "id": 5289,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 23,
+  "source_class_job_id": 22
+}

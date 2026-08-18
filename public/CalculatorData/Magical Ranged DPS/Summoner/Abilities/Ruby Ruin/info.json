@@ -1,0 +1,87 @@
+{
+  "kind": "ability",
+  "id": 25808,
+  "name": "Ruby Ruin",
+  "description": "Deals fire damage with a potency of 340.\nFire Attunement Cost: 1\nThis action does not share a recast timer with any other actions. Upon execution, the recast timer for this action will be applied to all other weaponskills and magic actions.\n\n※This action cannot be assigned to a hotbar.",
+  "description_macro": "Deals fire damage with a potency of 340.<br><colortype(504)><edgecolortype(505)>Fire Attunement Cost: <edgecolortype(0)><colortype(0)>1<br>This action does not share a recast timer with any other actions. Upon execution, the recast timer for this action will be applied to all other weaponskills and magic actions.<br><br>※This action cannot be assigned to a hotbar.",
+  "effects": [
+    "Deals fire damage with a potency of 340.",
+    "Fire Attunement Cost: 1",
+    "This action does not share a recast timer with any other actions. Upon execution, the recast timer for this action will be applied to all other weaponskills and magic actions.",
+    "※This action cannot be assigned to a hotbar."
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 27,
+    "name": "Summoner",
+    "abbreviation": "SMN"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 6,
+  "icon": {
+    "id": 501,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 2,
+    "name": "Spell"
+  },
+  "attack_type": {
+    "id": 5,
+    "name": "魔法"
+  },
+  "timing": {
+    "cast_seconds": 2.8,
+    "recast_seconds": 3,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 58,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 72,
+      "value": 3
+    },
+    "secondary": {
+      "type_id": 118,
+      "value": 217
+    }
+  },
+  "range": {
+    "target_yalms": 25,
+    "effect_yalms": 0,
+    "cast_type": 1
+  },
+  "targeting": {
+    "self": false,
+    "party": false,
+    "alliance": false,
+    "hostile": true,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": false
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 1,
+    "behavior_type": 0,
+    "class_job_category_id": 69,
+    "source_class_job_id": 0,
+    "is_role_action": false,
+    "is_player_action": false,
+    "is_derived_action": true,
+    "equivalence_group": 0
+  }
+}

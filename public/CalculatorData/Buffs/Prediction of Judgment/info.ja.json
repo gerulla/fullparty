@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 4265,
+  "name": "よげん：せいなるしんぱん",
+  "description": "「せいなるしんぱん」を予言している状態。",
+  "effects": [
+    "「せいなるしんぱん」を予言している状態。"
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 229923,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": true,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 41636,
+      "name": "よげん",
+      "description": "自身に\n「よげん：せいなるしんぱん」\n「よげん：てんちほうかい」\n「よげん：てんのめぐみ」\n「よげん：いんせき」\nのうち、いずれかの予言ステータスを付与する。\n予言ステータスの効果中は、対応する予言アクションが実行可能となる。\nせいなるしんぱん効果：周囲の敵に範囲魔法攻撃を行うと同時に、自身と周囲のパーティメンバーを回復する。\nてんちほうかい効果：周囲の敵に範囲魔法攻撃を行い、さらに時間を停止させる。\nてんのめぐみ効果：自身と周囲のパーティメンバーを回復し、さらにＨＰを継続回復する。\nいんせき効果：自身と周囲の敵に範囲魔法攻撃。\n予言ステータスの効果時間が終了すると、他の予言ステータスに変化し、いずれの予言も成就しないまま一定時間が経過すると、「にせよげん」へと変化する。\n「にせよげん」効果中は、自身に継続ダメージの効果。\n効果量：50000\n効果時間：30秒",
+      "description_macro": "自身に<br><colortype(500)><edgecolortype(501)>「よげん：せいなるしんぱん」<br>「よげん：てんちほうかい」<br>「よげん：てんのめぐみ」<br>「よげん：いんせき」<br><edgecolortype(0)><colortype(0)>のうち、いずれかの予言ステータスを付与する。<br>予言ステータスの効果中は、対応する予言アクションが実行可能となる。<br><colortype(504)><edgecolortype(505)>せいなるしんぱん効果：<edgecolortype(0)><colortype(0)>周囲の敵に範囲魔法攻撃を行うと同時に、自身と周囲のパーティメンバーを回復する。<br><colortype(504)><edgecolortype(505)>てんちほうかい効果：<edgecolortype(0)><colortype(0)>周囲の敵に範囲魔法攻撃を行い、さらに時間を停止させる。<br><colortype(504)><edgecolortype(505)>てんのめぐみ効果：<edgecolortype(0)><colortype(0)>自身と周囲のパーティメンバーを回復し、さらにＨＰを継続回復する。<br><colortype(504)><edgecolortype(505)>いんせき効果：<edgecolortype(0)><colortype(0)>自身と周囲の敵に範囲魔法攻撃。<br>予言ステータスの効果時間が終了すると、他の予言ステータスに変化し、いずれの予言も成就しないまま一定時間が経過すると、<colortype(500)><edgecolortype(501)>「にせよげん」<edgecolortype(0)><colortype(0)>へと変化する。<br><colortype(500)><edgecolortype(501)>「にせよげん」<edgecolortype(0)><colortype(0)>効果中は、自身に継続ダメージの効果。<br><colortype(504)><edgecolortype(505)>効果量：<edgecolortype(0)><colortype(0)>50000<br><colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>30秒",
+      "unlock_level": 0,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Phantom Jobs"
+      ],
+      "jobs": [
+        {
+          "id": 11,
+          "name": "Phantom サポート予言士",
+          "abbreviation": "Ph. Oracle",
+          "is_phantom": true
+        }
+      ]
+    }
+  ]
+}

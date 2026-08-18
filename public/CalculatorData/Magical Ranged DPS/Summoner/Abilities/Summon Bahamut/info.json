@@ -1,0 +1,91 @@
+{
+  "kind": "ability",
+  "id": 7427,
+  "name": "Summon Bahamut",
+  "description": "Enters Dreadwyrm Trance and summons Demi-Bahamut to fight your target.\nDemi-Bahamut will execute Wyrmwave automatically on the targets attacked by you after summoning.\nIncreases enmity in target when Demi-Bahamut is summoned.\nDuration: 15s\nAdditional Effect: Changes Ruin III to Astral Impulse and Tri-disaster to Astral Flare\nAdditional Effect: Grants Ruby Arcanum, Topaz Arcanum, and Emerald Arcanum\nCan only be executed while Carbuncle is summoned.\nThis action does not share a recast timer with any other actions.",
+  "description_macro": "Enters <colortype(506)><edgecolortype(507)>Dreadwyrm Trance<edgecolortype(0)><colortype(0)> and summons Demi-Bahamut to fight your target.<br>Demi-Bahamut will execute <colortype(500)><edgecolortype(501)>Wyrmwave<edgecolortype(0)><colortype(0)> automatically on the targets attacked by you after summoning.<br>Increases enmity in target when Demi-Bahamut is summoned.<br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>15s<br><colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>Changes <colortype(500)><edgecolortype(501)>Ruin III<edgecolortype(0)><colortype(0)> to <colortype(500)><edgecolortype(501)>Astral Impulse<edgecolortype(0)><colortype(0)> and <colortype(500)><edgecolortype(501)><if([gnum68==27],<if([gnum72>=74],Tri-disaster,Outburst)>,Outburst)><edgecolortype(0)><colortype(0)> to <colortype(500)><edgecolortype(501)>Astral Flare<edgecolortype(0)><colortype(0)><br><colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>Grants <colortype(506)><edgecolortype(507)>Ruby Arcanum<edgecolortype(0)><colortype(0)>, <colortype(506)><edgecolortype(507)>Topaz Arcanum<edgecolortype(0)><colortype(0)>, and <colortype(506)><edgecolortype(507)>Emerald Arcanum<edgecolortype(0)><colortype(0)><br>Can only be executed while Carbuncle is summoned.<br>This action does not share a recast timer with any other actions.",
+  "effects": [
+    "Enters Dreadwyrm Trance and summons Demi-Bahamut to fight your target.",
+    "Demi-Bahamut will execute Wyrmwave automatically on the targets attacked by you after summoning.",
+    "Increases enmity in target when Demi-Bahamut is summoned.",
+    "Duration: 15s",
+    "Additional Effect: Changes Ruin III to Astral Impulse and Tri-disaster to Astral Flare",
+    "Additional Effect: Grants Ruby Arcanum, Topaz Arcanum, and Emerald Arcanum",
+    "Can only be executed while Carbuncle is summoned.",
+    "This action does not share a recast timer with any other actions."
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 27,
+    "name": "Summoner",
+    "abbreviation": "SMN"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 70,
+  "icon": {
+    "id": 2691,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 2,
+    "name": "Spell"
+  },
+  "attack_type": {
+    "id": 5,
+    "name": "魔法"
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 60,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 10,
+    "additional_cooldown_group": 58,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 0,
+      "value": 0
+    },
+    "secondary": {
+      "type_id": 66,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": 25,
+    "effect_yalms": 0,
+    "cast_type": 1
+  },
+  "targeting": {
+    "self": false,
+    "party": false,
+    "alliance": false,
+    "hostile": true,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 7,
+    "behavior_type": 0,
+    "class_job_category_id": 28,
+    "source_class_job_id": 27,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

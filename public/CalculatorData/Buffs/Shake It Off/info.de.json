@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 1993,
+  "name": "Abschütteln",
+  "description": "Erlittener Schaden ist um einen bestimmten Betrag verringert.",
+  "effects": [
+    "Erlittener Schaden ist um einen bestimmten Betrag verringert."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 212557,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": true,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 22,
+  "source_abilities": [
+    {
+      "id": 7388,
+      "name": "Abschütteln",
+      "description": "Du errichtest eine Barriere um dich und umstehende Gruppenmitglieder, die Schaden in der Höhe von 15 % der Maximal-LP des Ziels absorbiert.\nFalls Kampfrausch, Verdammnis oder Urimpuls aktiv sind, werden diese Status entfernt und dafür die Wirkung der Barriere für jeden entfernten Status um 2 % erhöht.\nDauer: 30 Sekunden\nZusatzeffekt: Regeneriert stetig LP der Ziele.\nHeilpotenzial: 100\nDauer: 15 Sekunden\nZusatzeffekt: Eigene LP und die von umstehenden Gruppenmitgliedern werden regeneriert.\nHeilpotenzial: 300",
+      "description_macro": "Du errichtest eine Barriere um dich und umstehende Grup<->pen<->mit<->glieder, die Schaden in der Höhe von 15<nbsp>% der Maximal-LP des Ziels absorbiert.<br>Falls <colortype(506)><edgecolortype(507)>Kampfrausch<edgecolortype(0)><colortype(0)>, <if([gnum68==21],<if([gnum72>=92],<colortype(506)><edgecolortype(507)>Verdammnis<edgecolortype(0)><colortype(0)>,<colortype(506)><edgecolortype(507)>Rachsucht<edgecolortype(0)><colortype(0)>)>,<colortype(506)><edgecolortype(507)>Rachsucht<edgecolortype(0)><colortype(0)>)> oder <if([gnum68==21],<if([gnum72>=82],<colortype(506)><edgecolortype(507)>Urimpuls<edgecolortype(0)><colortype(0)>,<colortype(506)><edgecolortype(507)>Urinstinkt<edgecolortype(0)><colortype(0)>)>,<colortype(506)><edgecolortype(507)>Urinstinkt<edgecolortype(0)><colortype(0)>)> aktiv sind, werden diese Status entfernt und dafür die Wirkung der Barriere für jeden entfernten Status um 2<nbsp>% erhöht.<br>Dauer: 30 Sekunden<br>Zusatzeffekt: Regeneriert stetig LP der Ziele.<br>Heilpotenzial: 100<br>Dauer: 15 Sekunden<if([gnum68==21],<if([gnum72>=76],<br>Zusatzeffekt: Eigene LP und die von umstehenden Grup<->pen<->mit<->gliedern werden regeneriert.<br>Heilpotenzial: 300,)>,)>",
+      "unlock_level": 68,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Tank"
+      ],
+      "jobs": [
+        {
+          "id": 21,
+          "name": "Krieger",
+          "abbreviation": "KRG",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

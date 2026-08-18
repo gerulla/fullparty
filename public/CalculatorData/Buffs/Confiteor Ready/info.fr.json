@@ -1,0 +1,71 @@
+{
+  "kind": "combat_status",
+  "id": 3019,
+  "name": "Confiteor préparé",
+  "description": "Confiteor peut être lancé.",
+  "effects": [
+    "Confiteor peut être lancé."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 212520,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 20,
+  "source_abilities": [
+    {
+      "id": 7383,
+      "name": "Requiescat",
+      "description": "Effectue une attaque magique neutre sur la cible.\nPuissance : 320\nVous octroie 4 degrés de Requiescat.\nDurée : 30s\nRequiescat : permet de lancer des sorts instantanément.\nAugmente la puissance d'Esprit saint\\.\nEffet additionnel : vous octroie Confiteor préparé.\nDurée : 30s",
+      "description_macro": "Effectue une attaque magique neutre sur la cible.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> 320<br>Vous octroie 4 degrés de <colortype(500)><edgecolortype(501)>Requiescat<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 30s<br><colortype(506)><edgecolortype(507)>Requiescat<nbsp>:<edgecolortype(0)><colortype(0)> permet de lancer des sorts instantanément.<br><if([gnum68==19],<if([gnum72>=90],Augmente la puissance d'Esprit saint\\, Cercle sacré\\, Confiteor et des actions de combo suivantes,<if([gnum68==19],<if([gnum72>=80],Augmente la puissance d'Esprit saint\\, Cercle sacré et de Confiteor,<if([gnum68==19],<if([gnum72>=72],Augmente la puissance d'Esprit saint et de Cercle sacré,Augmente la puissance d'Esprit saint)>,Augmente la puissance d'Esprit saint)>)>,<if([gnum68==19],<if([gnum72>=72],Augmente la puissance d'Esprit saint et de Cercle sacré,Augmente la puissance d'Esprit saint)>,Augmente la puissance d'Esprit saint)>)>)>,<if([gnum68==19],<if([gnum72>=80],Augmente la puissance d'Esprit saint\\, Cercle sacré et de Confiteor,<if([gnum68==19],<if([gnum72>=72],Augmente la puissance d'Esprit saint et de Cercle sacré,Augmente la puissance d'Esprit saint)>,Augmente la puissance d'Esprit saint)>)>,<if([gnum68==19],<if([gnum72>=72],Augmente la puissance d'Esprit saint et de Cercle sacré,Augmente la puissance d'Esprit saint)>,Augmente la puissance d'Esprit saint)>)>)>.<if([gnum68==19],<if([gnum72>=80],<br><colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> vous octroie <colortype(500)><edgecolortype(501)>Confiteor préparé<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 30s,)>,)>",
+      "unlock_level": 68,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Tank"
+      ],
+      "jobs": [
+        {
+          "id": 19,
+          "name": "Paladin",
+          "abbreviation": "PLD",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 36921,
+      "name": "Imperator",
+      "description": "Effectue une attaque magique neutre sur la cible et les ennemis autour.\nPuissance : 580\nLa puissance est réduite de 60% au-delà du premier ennemi touché.\nEffet additionnel : vous octroie 4 degrés de Requiescat.\nDurée : 30s\nRequiescat : permet de lancer des sorts instantanément.\nEn outre, augmente la puissance d'Esprit saint, Cercle sacré, Confiteor et des actions de combo suivantes.\nEffet additionnel : vous octroie Confiteor préparé.\nDurée : 30s",
+      "description_macro": "Effectue une attaque magique neutre sur la cible et les ennemis autour.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> 580<br>La puissance est réduite de 60% au-delà du premier ennemi touché.<br><colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> vous octroie 4 degrés de <colortype(500)><edgecolortype(501)>Requiescat<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 30s<br><colortype(506)><edgecolortype(507)>Requiescat<nbsp>:<edgecolortype(0)><colortype(0)> permet de lancer des sorts instantanément.<br>En outre, augmente la puissance d'Esprit saint, Cercle sacré, Confiteor et des actions de combo suivantes.<br><colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> vous octroie <colortype(500)><edgecolortype(501)>Confiteor préparé<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 30s",
+      "unlock_level": 96,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Tank"
+      ],
+      "jobs": [
+        {
+          "id": 19,
+          "name": "Paladin",
+          "abbreviation": "PLD",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

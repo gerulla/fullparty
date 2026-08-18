@@ -1,0 +1,29 @@
+{
+  "kind": "trait",
+  "id": 573,
+  "name": "Ombre vivante améliorée III",
+  "description": "Permet de recevoir Sillon de morgue préparé lorsque vous utilisez Ombre vivante.\nDurée : 30s\n\nDe plus, votre estime utilisera Sillon de morgue à la place Tranchage-habillage\n\nEffectue une attaque physique en ligne droite sur les ennemis devant vous.\nPuissance : 620\nLa puissance est réduite de 25% au-delà du premier ennemi touché.",
+  "description_macro": "Permet de recevoir <colortype(500)><edgecolortype(501)>Sillon de morgue préparé<edgecolortype(0)><colortype(0)> lorsque vous utilisez <colortype(500)><edgecolortype(501)>Ombre vivante<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 30s<br><br>De plus, votre estime utilisera <colortype(500)><edgecolortype(501)>Sillon de morgue<edgecolortype(0)><colortype(0)> à la place <colortype(500)><edgecolortype(501)>Tranchage-habillage<edgecolortype(0)><colortype(0)><br><br>Effectue une attaque physique en ligne droite sur les ennemis devant vous.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> 620<br>La puissance est réduite de 25% au-delà du premier ennemi touché.",
+  "effects": [
+    "Permet de recevoir Sillon de morgue préparé lorsque vous utilisez Ombre vivante.",
+    "Durée : 30s",
+    "De plus, votre estime utilisera Sillon de morgue à la place Tranchage-habillage",
+    "Effectue une attaque physique en ligne droite sur les ennemis devant vous.",
+    "Puissance : 620",
+    "La puissance est réduite de 25% au-delà du premier ennemi touché."
+  ],
+  "role": "Tank",
+  "job": {
+    "id": 32,
+    "name": "Chevalier Noir",
+    "abbreviation": "CHN"
+  },
+  "unlock_level": 100,
+  "value": 0,
+  "icon": {
+    "id": 6070,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 98,
+  "source_class_job_id": 32
+}

@@ -1,0 +1,106 @@
+{
+  "kind": "ability",
+  "id": 36984,
+  "name": "Finalschritt",
+  "description": "Du führst eine physische Attacke auf alle umstehenden Gegner aus.\nAttacke-Wert: 850\nAttacke-Wert verringert sich ab dem zweiten Gegner um 60 %.\nGewährt dir und dem von dir bestimmten Gruppenmitglied mit dem Status Auserwählter Tanzpartner die Status Tanzfieber und Einfaches Finale.\nDauer: 60 Sekunden\nSchadensbonus von Einfaches Finale: 5 ％\nZusatzeffekt: Gewährt dir Bühneneuphorie.\nDauer: 30 Sekunden\nBedingung: Finalhaltung aktiv\nEigener Reaktivierungs-Timer\nBei Ausführung wird der Reaktivierungs-Timer dieses Kommandos auf alle anderen Waffenfertigkeiten und Magie angewendet.\nGemeinsamer Reaktivierungs-Timer mit Einfache Choreographie\nBei erfüllter Bedingung ändert sich Einfache Choreographie zu diesem Kommando.\nKann nicht im Kommandomenü angelegt werden.",
+  "description_macro": "Du führst eine physische Attacke auf alle umstehenden Gegner aus.<br>Attacke-Wert: 850<br>Attacke-Wert verringert sich ab dem zweiten Gegner um 60 %.<br>Gewährt dir und dem von dir bestimmten Grup<->pen<->mit<->glied mit dem Status <colortype(506)><edgecolortype(507)>Auserwählter Tanzpartner<edgecolortype(0)><colortype(0)> die Status <colortype(506)><edgecolortype(507)>Tanzfieber<edgecolortype(0)><colortype(0)> und <colortype(506)><edgecolortype(507)>Einfaches Finale<edgecolortype(0)><colortype(0)>.<br>Dauer: 60 Sekunden<br>Schadensbonus von <colortype(506)><edgecolortype(507)>Einfaches Finale<edgecolortype(0)><colortype(0)>: 5 ％<br>Zusatzeffekt: Gewährt dir <colortype(506)><edgecolortype(507)>Bühneneuphorie<edgecolortype(0)><colortype(0)>.<br>Dauer: 30 Sekunden<br>Bedingung: <colortype(506)><edgecolortype(507)>Finalhaltung<edgecolortype(0)><colortype(0)> aktiv<br>Eigener Reaktivierungs-Timer<br>Bei Ausführung wird der Reaktivierungs-Timer dieses Kommandos auf alle anderen Waf<->fen<->fer<->tig<->kei<->ten und Magie angewendet.<br>Gemeinsamer Reaktivierungs-Timer mit <colortype(502)><edgecolortype(503)>Einfache Choreographie<edgecolortype(0)><colortype(0)><br>Bei erfüllter Bedingung ändert sich <colortype(502)><edgecolortype(503)>Einfache Choreographie<edgecolortype(0)><colortype(0)> zu diesem Kommando.<br>Kann nicht im Kommandomenü angelegt werden.",
+  "effects": [
+    "Du führst eine physische Attacke auf alle umstehenden Gegner aus.",
+    "Attacke-Wert: 850",
+    "Attacke-Wert verringert sich ab dem zweiten Gegner um 60 %.",
+    "Gewährt dir und dem von dir bestimmten Gruppenmitglied mit dem Status Auserwählter Tanzpartner die Status Tanzfieber und Einfaches Finale.",
+    "Dauer: 60 Sekunden",
+    "Schadensbonus von Einfaches Finale: 5 ％",
+    "Zusatzeffekt: Gewährt dir Bühneneuphorie.",
+    "Dauer: 30 Sekunden",
+    "Bedingung: Finalhaltung aktiv",
+    "Eigener Reaktivierungs-Timer",
+    "Bei Ausführung wird der Reaktivierungs-Timer dieses Kommandos auf alle anderen Waffenfertigkeiten und Magie angewendet.",
+    "Gemeinsamer Reaktivierungs-Timer mit Einfache Choreographie",
+    "Bei erfüllter Bedingung ändert sich Einfache Choreographie zu diesem Kommando.",
+    "Kann nicht im Kommandomenü angelegt werden."
+  ],
+  "role": "Physical Ranged DPS",
+  "job": {
+    "id": 38,
+    "name": "Tänzer",
+    "abbreviation": "TÄN"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 96,
+  "icon": {
+    "id": 3484,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 3,
+    "name": "Waffenfertigkeit"
+  },
+  "attack_type": {
+    "id": 4294967295,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 30,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 7,
+    "additional_cooldown_group": 58,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 10,
+      "value": 3868
+    },
+    "secondary": {
+      "type_id": 91,
+      "value": 3868
+    }
+  },
+  "range": {
+    "target_yalms": 0,
+    "effect_yalms": 15,
+    "cast_type": 2
+  },
+  "targeting": {
+    "self": true,
+    "party": false,
+    "alliance": false,
+    "hostile": false,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": {
+      "id": 175,
+      "status": {
+        "id": 3868,
+        "name": "Finalhaltung",
+        "description": "Finalschritt kann ausgeführt werden.",
+        "icon_id": 213728,
+        "max_stacks": 0
+      }
+    }
+  },
+  "metadata": {
+    "aspect_id": 7,
+    "behavior_type": 0,
+    "class_job_category_id": 150,
+    "source_class_job_id": 0,
+    "is_role_action": false,
+    "is_player_action": false,
+    "is_derived_action": true,
+    "equivalence_group": 0
+  }
+}

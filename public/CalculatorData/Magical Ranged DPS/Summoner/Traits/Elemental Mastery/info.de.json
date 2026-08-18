@@ -1,0 +1,27 @@
+{
+  "kind": "trait",
+  "id": 503,
+  "name": "Meister der Elemente",
+  "description": "Ändert Lichtstrom bei Ausführung bestimmter Kommandos.\nBei Ifrit-Beschwörung: Zinnober-Zyklon\nBei Topas-Ritus oder Topas-Verderben: Bergsprenger\nBei Garuda-Beschwörung: Wirbelströmung",
+  "description_macro": "Ändert <colortype(502)><edgecolortype(503)>Lichtstrom<edgecolortype(0)><colortype(0)> bei Ausführung bestimmter Kommandos.<br>Bei <colortype(502)><edgecolortype(503)>Ifrit-Beschwörung<edgecolortype(0)><colortype(0)>: <colortype(502)><edgecolortype(503)>Zinnober-Zyklon<edgecolortype(0)><colortype(0)><br>Bei <colortype(502)><edgecolortype(503)>Topas-Ritus<edgecolortype(0)><colortype(0)> oder <colortype(502)><edgecolortype(503)>Topas-Verderben<edgecolortype(0)><colortype(0)>: <colortype(502)><edgecolortype(503)>Bergsprenger<edgecolortype(0)><colortype(0)><br>Bei <colortype(502)><edgecolortype(503)>Garuda-Beschwörung<edgecolortype(0)><colortype(0)>: <colortype(502)><edgecolortype(503)>Wirbelströmung<edgecolortype(0)><colortype(0)>",
+  "effects": [
+    "Ändert Lichtstrom bei Ausführung bestimmter Kommandos.",
+    "Bei Ifrit-Beschwörung: Zinnober-Zyklon",
+    "Bei Topas-Ritus oder Topas-Verderben: Bergsprenger",
+    "Bei Garuda-Beschwörung: Wirbelströmung"
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 27,
+    "name": "Beschwörer",
+    "abbreviation": "BSW"
+  },
+  "unlock_level": 86,
+  "value": 0,
+  "icon": {
+    "id": 5697,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 28,
+  "source_class_job_id": 27
+}

@@ -1,0 +1,25 @@
+{
+  "kind": "trait",
+  "id": 614,
+  "name": "黒魔紋効果アップ",
+  "description": "魔紋再設置が実行できるようになる。\n発動条件：「黒魔紋」効果中",
+  "description_macro": "魔紋再設置が実行できるようになる。<br><colortype(504)><edgecolortype(505)>発動条件：<edgecolortype(0)><colortype(0)><colortype(500)><edgecolortype(501)>「黒魔紋」<edgecolortype(0)><colortype(0)>効果中",
+  "effects": [
+    "魔紋再設置が実行できるようになる。",
+    "発動条件：「黒魔紋」効果中"
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 25,
+    "name": "黒魔道士",
+    "abbreviation": "BLM"
+  },
+  "unlock_level": 96,
+  "value": 0,
+  "icon": {
+    "id": 5652,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 26,
+  "source_class_job_id": 25
+}

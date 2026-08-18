@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 668,
+  "name": "Ranged Mastery",
+  "description": "Increases the potency of Empyreal Arrow to 260, Sidewinder to 400, Refulgent Arrow to 280, Burst Shot to 220, and Apex Arrow to 140 up to 700.",
+  "description_macro": "Increases the potency of <colortype(500)><edgecolortype(501)>Empyreal Arrow<edgecolortype(0)><colortype(0)> to 260, <colortype(500)><edgecolortype(501)>Sidewinder<edgecolortype(0)><colortype(0)> to 400, <colortype(500)><edgecolortype(501)>Refulgent Arrow<edgecolortype(0)><colortype(0)> to 280, <colortype(500)><edgecolortype(501)>Burst Shot<edgecolortype(0)><colortype(0)> to 220, and <colortype(500)><edgecolortype(501)>Apex Arrow<edgecolortype(0)><colortype(0)> to 140 up to 700.",
+  "effects": [
+    "Increases the potency of Empyreal Arrow to 260, Sidewinder to 400, Refulgent Arrow to 280, Burst Shot to 220, and Apex Arrow to 140 up to 700."
+  ],
+  "role": "Physical Ranged DPS",
+  "job": {
+    "id": 23,
+    "name": "Bard",
+    "abbreviation": "BRD"
+  },
+  "unlock_level": 94,
+  "value": 0,
+  "icon": {
+    "id": 6806,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 24,
+  "source_class_job_id": 23
+}

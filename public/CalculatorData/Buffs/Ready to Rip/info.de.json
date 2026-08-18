@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 1842,
+  "name": "Hungernde Fänge",
+  "description": "Kehlreißer kann ausgeführt werden.",
+  "effects": [
+    "Kehlreißer kann ausgeführt werden."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 213611,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 149,
+  "source_abilities": [
+    {
+      "id": 16146,
+      "name": "Schlagfänge",
+      "description": "Du führst eine physische Attacke aus.\nAttacke-Wert: 440\nZusatzeffekt: Hungernde Fänge\nDauer: 10 Sekunden\nEffekt endet bei Ausführung einer Waffenfertigkeit.\nErda-Patronen-Kosten: 1\nMaximale Aufladungen: 2\nEigener Reaktivierungs-Timer",
+      "description_macro": "Du führst eine physische Attacke aus.<br>Attacke-Wert: <if([gnum68==37],<if([gnum72>=94],440,330)>,330)><br><if([gnum68==37],<if([gnum72>=70],Zusatzeffekt: <colortype(506)><edgecolortype(507)>Hungernde Fänge<edgecolortype(0)><colortype(0)><br>Dauer: 10 Sekunden<br>Effekt endet bei Ausführung einer Waf<->fen<->fer<->tig<->keit.<br>,)>,)>Erda-Patronen-Kosten: 1<br>Maximale Aufladungen: 2<br>Eigener Reaktivierungs-Timer",
+      "unlock_level": 60,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Tank"
+      ],
+      "jobs": [
+        {
+          "id": 37,
+          "name": "Revolverklinge",
+          "abbreviation": "REV",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,90 @@
+{
+  "kind": "ability",
+  "id": 25804,
+  "name": "サモン・エメラルド",
+  "description": "カーバンクル・エメラルドを召喚し、「エメラルドの煌き」を実行させる。\n\n対象に風属性魔法攻撃。\u3000威力：400\n追加効果：自身に4スタックの「ウィンドエーテル」を付与する。\n効果時間：30秒\nウィンドエーテル効果：ジェムシャインとジェムブリリアンスが風属性魔法に変化する。\n発動条件：カーバンクルが存在し、自身に「エメラルドの神秘」が付与されている。\nカーバンクルはカーバンクル・エメラルドの顕現時に帰還するが、顕現時間が経過すると再出現する。",
+  "description_macro": "カーバンクル・エメラルドを召喚し、<colortype(500)><edgecolortype(501)>「エメラルドの煌き」<edgecolortype(0)><colortype(0)>を実行させる。<br><br>対象に風属性魔法攻撃。\u3000<colortype(504)><edgecolortype(505)>威力：<edgecolortype(0)><colortype(0)>400<br><colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)>自身に4スタックの<colortype(500)><edgecolortype(501)>「ウィンドエーテル」<edgecolortype(0)><colortype(0)>を付与する。<br><colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>30秒<br><colortype(504)><edgecolortype(505)>ウィンドエーテル効果：<edgecolortype(0)><colortype(0)>ジェムシャインとジェムブリリアンスが風属性魔法に変化する。<br><colortype(504)><edgecolortype(505)>発動条件：<edgecolortype(0)><colortype(0)>カーバンクルが存在し、自身に<colortype(500)><edgecolortype(501)>「エメラルドの神秘」<edgecolortype(0)><colortype(0)>が付与されている。<br>カーバンクルはカーバンクル・エメラルドの顕現時に帰還するが、顕現時間が経過すると再出現する。",
+  "effects": [
+    "カーバンクル・エメラルドを召喚し、「エメラルドの煌き」を実行させる。",
+    "対象に風属性魔法攻撃。\u3000威力：400",
+    "追加効果：自身に4スタックの「ウィンドエーテル」を付与する。",
+    "効果時間：30秒",
+    "ウィンドエーテル効果：ジェムシャインとジェムブリリアンスが風属性魔法に変化する。",
+    "発動条件：カーバンクルが存在し、自身に「エメラルドの神秘」が付与されている。",
+    "カーバンクルはカーバンクル・エメラルドの顕現時に帰還するが、顕現時間が経過すると再出現する。"
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 27,
+    "name": "召喚士",
+    "abbreviation": "SMN"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 22,
+  "icon": {
+    "id": 2754,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 2,
+    "name": "魔法"
+  },
+  "attack_type": {
+    "id": 5,
+    "name": "魔法"
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 2.5,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 58,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 71,
+      "value": 3
+    },
+    "secondary": {
+      "type_id": 116,
+      "value": 470
+    }
+  },
+  "range": {
+    "target_yalms": 25,
+    "effect_yalms": 0,
+    "cast_type": 1
+  },
+  "targeting": {
+    "self": false,
+    "party": false,
+    "alliance": false,
+    "hostile": true,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": false
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 7,
+    "behavior_type": 0,
+    "class_job_category_id": 69,
+    "source_class_job_id": 26,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

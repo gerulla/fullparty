@@ -1,0 +1,101 @@
+{
+  "kind": "ability",
+  "id": 16194,
+  "name": "ダブル・テクニカルフィニッシュ",
+  "description": "自身の周囲15m以内の敵に範囲物理攻撃。\nステップ成功時追加効果：自身と周囲30m以内のパーティメンバーに「テクニカルフィニッシュ」と「エスプリ」を付与する。\n効果時間：20秒\nこのアクションの威力とテクニカルフィニッシュの効果量は、ステップアクションの成功回数により異なる。\n成功回数が0回のとき：威力350\n成功回数が1回のとき：威力540および効果量1％\n成功回数が2回のとき：威力720および効果量2％\n成功回数が3回のとき：威力900および効果量3％\n成功回数が4回のとき：威力1300および効果量5％\n2体目以降の対象への威力は60％減少する。\n追加効果：自身に「ティラナ実行可」を付与する。\n効果時間：30秒\n追加効果：自身に「暁の舞い実行可」を付与する。\n効果時間：30秒\n発動条件：ダンスモード中\nこのウェポンスキルは固有のリキャストタイマーを持ち、実行すると他のウェポンスキルと魔法にこのアクションと同じリキャストタイムが発生する。\n\n※このアクションはホットバーに登録することはできない。\n\u3000発動条件を満たすとテクニカルステップがダブル・テクニカルフィニッシュに変化する。",
+  "description_macro": "自身の周囲15m以内の敵に範囲物理攻撃。<br><if([gnum68==38],<if([gnum72>=76],<colortype(504)><edgecolortype(505)>ステップ成功時追加効果：<edgecolortype(0)><colortype(0)>自身と周囲30m以内のパーティメンバーに<colortype(500)><edgecolortype(501)>「テクニカルフィニッシュ」<edgecolortype(0)><colortype(0)>と<colortype(500)><edgecolortype(501)>「エスプリ」<edgecolortype(0)><colortype(0)>を付与する。<br>,<colortype(504)><edgecolortype(505)>ステップ成功時追加効果：<edgecolortype(0)><colortype(0)>自身と周囲30m以内のパーティメンバーに<colortype(500)><edgecolortype(501)>「テクニカルフィニッシュ」<edgecolortype(0)><colortype(0)>を付与する。<br>)>,<colortype(504)><edgecolortype(505)>ステップ成功時追加効果：<edgecolortype(0)><colortype(0)>自身と周囲30m以内のパーティメンバーに<colortype(500)><edgecolortype(501)>「テクニカルフィニッシュ」<edgecolortype(0)><colortype(0)>を付与する。<br>)><colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>20秒<br>このアクションの威力とテクニカルフィニッシュの効果量は、ステップアクションの成功回数により異なる。<br><colortype(504)><edgecolortype(505)>成功回数が0回のとき：<edgecolortype(0)><colortype(0)>威力350<br><colortype(504)><edgecolortype(505)>成功回数が1回のとき：<edgecolortype(0)><colortype(0)>威力540および効果量1％<br><colortype(504)><edgecolortype(505)>成功回数が2回のとき：<edgecolortype(0)><colortype(0)>威力720および効果量2％<br><colortype(504)><edgecolortype(505)>成功回数が3回のとき：<edgecolortype(0)><colortype(0)>威力900および効果量3％<br><colortype(504)><edgecolortype(505)>成功回数が4回のとき：<edgecolortype(0)><colortype(0)>威力<if([gnum68==38],<if([gnum72>=94],1300,1200)>,1200)>および効果量5％<br>2体目以降の対象への威力は60％減少する。<br><if([gnum68==38],<if([gnum72>=82],<colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)>自身に<colortype(500)><edgecolortype(501)>「ティラナ実行可」<edgecolortype(0)><colortype(0)>を付与する。<br><colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>30秒<br>,)>,)><if([gnum68==38],<if([gnum72>=100],<colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)>自身に<colortype(500)><edgecolortype(501)>「暁の舞い実行可」<edgecolortype(0)><colortype(0)>を付与する。<br><colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>30秒<br>,)>,)><colortype(504)><edgecolortype(505)>発動条件：<edgecolortype(0)><colortype(0)>ダンスモード中<br>このウェポンスキルは固有のリキャストタイマーを持ち、実行すると他のウェポンスキルと魔法にこのアクションと同じリキャストタイムが発生する。<br><br><colortype(506)><edgecolortype(507)>※このアクションはホットバーに登録することはできない。<br>\u3000発動条件を満たすとテクニカルステップがダブル・テクニカルフィニッシュに変化する。<edgecolortype(0)><colortype(0)>",
+  "effects": [
+    "自身の周囲15m以内の敵に範囲物理攻撃。",
+    "ステップ成功時追加効果：自身と周囲30m以内のパーティメンバーに「テクニカルフィニッシュ」と「エスプリ」を付与する。",
+    "効果時間：20秒",
+    "このアクションの威力とテクニカルフィニッシュの効果量は、ステップアクションの成功回数により異なる。",
+    "成功回数が0回のとき：威力350",
+    "成功回数が1回のとき：威力540および効果量1％",
+    "成功回数が2回のとき：威力720および効果量2％",
+    "成功回数が3回のとき：威力900および効果量3％",
+    "成功回数が4回のとき：威力1300および効果量5％",
+    "2体目以降の対象への威力は60％減少する。",
+    "追加効果：自身に「ティラナ実行可」を付与する。",
+    "効果時間：30秒",
+    "追加効果：自身に「暁の舞い実行可」を付与する。",
+    "効果時間：30秒",
+    "発動条件：ダンスモード中",
+    "このウェポンスキルは固有のリキャストタイマーを持ち、実行すると他のウェポンスキルと魔法にこのアクションと同じリキャストタイムが発生する。",
+    "※このアクションはホットバーに登録することはできない。",
+    "発動条件を満たすとテクニカルステップがダブル・テクニカルフィニッシュに変化する。"
+  ],
+  "role": "Physical Ranged DPS",
+  "job": {
+    "id": 38,
+    "name": "踊り子",
+    "abbreviation": "DNC"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 70,
+  "icon": {
+    "id": 3474,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 3,
+    "name": "ウェポンスキル"
+  },
+  "attack_type": {
+    "id": 4294967295,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 2.5,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 58,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 0,
+      "value": 0
+    },
+    "secondary": {
+      "type_id": 90,
+      "value": 6
+    }
+  },
+  "range": {
+    "target_yalms": 0,
+    "effect_yalms": 15,
+    "cast_type": 2
+  },
+  "targeting": {
+    "self": true,
+    "party": false,
+    "alliance": false,
+    "hostile": false,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 7,
+    "behavior_type": 0,
+    "class_job_category_id": 150,
+    "source_class_job_id": 0,
+    "is_role_action": false,
+    "is_player_action": false,
+    "is_derived_action": true,
+    "equivalence_group": 0
+  }
+}

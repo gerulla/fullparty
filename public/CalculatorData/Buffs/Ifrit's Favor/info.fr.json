@@ -1,0 +1,71 @@
+{
+  "kind": "combat_status",
+  "id": 2724,
+  "name": "Cyclone écarlate préparé",
+  "description": "Cyclone écarlate peut être lancé.",
+  "effects": [
+    "Cyclone écarlate peut être lancé."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 212696,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": true,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 28,
+  "source_abilities": [
+    {
+      "id": 25805,
+      "name": "Invocation Ifrit",
+      "description": "Vous invoquez un Ifrit-Egi et lui ordonnez d'exécuter Flammes de l'enfer.\n\nFonce sur la cible et effectue une attaque magique de feu dans une zone en éventail dans sa direction sur 5 yalms.\nPuissance : 600\nLa puissance est réduite de 50% au-delà du premier ennemi touché.\nEffet additionnel : vous octroie 2 degrés de Syntonie de feu.\nDurée : 30s\nSyntonie de feu : l'élément d'Éclat des gemmes et de Resplendissement des gemmes devient le feu.\nEffet additionnel : vous octroie Cyclone écarlate préparé.\nCet effet disparaît si vous utilisez une autre action d'invocation.\nCondition : Arcane rubis et Carbuncle invoqué.\nCarbuncle disparaît lors de l'invocation, mais revient automatiquement une fois qu'elle prend fin.",
+      "description_macro": "Vous invoquez un Ifrit-Egi et lui ordonnez d'exécuter <colortype(500)><edgecolortype(501)><if([gnum68==27],<if([gnum72>=50],Flammes de l'enfer,Frappe ardente)>,Frappe ardente)><edgecolortype(0)><colortype(0)>.<br><br><if([gnum68==27],<if([gnum72>=50],Fonce sur la cible et effectue une attaque magique de feu dans une zone en éventail dans sa direction sur 5 yalms.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> 600<br>La puissance est réduite de 50% au-delà du premier ennemi touché.<br>,Fonce sur la cible et effectue une attaque magique de feu au corps-à-corps.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> 500<br>)>,Fonce sur la cible et effectue une attaque magique de feu au corps-à-corps.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> 500<br>)><colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> vous octroie 2 degrés de <colortype(500)><edgecolortype(501)>Syntonie de feu<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 30s<br><colortype(506)><edgecolortype(507)>Syntonie de feu<nbsp>:<edgecolortype(0)><colortype(0)> l'élément d'<colortype(500)><edgecolortype(501)>Éclat des gemmes<edgecolortype(0)><colortype(0)> et de <colortype(500)><edgecolortype(501)>Resplendissement des gemmes<edgecolortype(0)><colortype(0)> devient le feu.<br><if([gnum68==27],<if([gnum72>=86],<colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> vous octroie <colortype(500)><edgecolortype(501)>Cyclone écarlate préparé<edgecolortype(0)><colortype(0)>.<br>Cet effet disparaît si vous utilisez une autre action d'invocation.<br>,)>,)><colortype(506)><edgecolortype(507)>Condition<nbsp>:<edgecolortype(0)><colortype(0)> <colortype(500)><edgecolortype(501)>Arcane rubis<edgecolortype(0)><colortype(0)> et Carbuncle invoqué.<br>Carbuncle disparaît lors de l'invocation, mais revient au<->to<->ma<->ti<->que<->ment une fois qu'elle prend fin.",
+      "unlock_level": 30,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Magical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 27,
+          "name": "Invocateur",
+          "abbreviation": "INV",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 25838,
+      "name": "Invocation Ifrit II",
+      "description": "Vous invoquez un Ifrit rubis et lui ordonnez d'exécuter Flammes de l'enfer.\n\nEffectue une attaque magique de feu sur la cible et les ennemis autour dans une zone de 5 yalms.\nPuissance : 800\nLa puissance est réduite de 50% au-delà du premier ennemi touché.\nEffet additionnel : vous octroie 2 degrés de Syntonie de feu.\nDurée : 30s\nSyntonie de feu : l'élément d'Éclat des gemmes et de Resplendissement des gemmes devient le feu.\nEffet additionnel : vous octroie Cyclone écarlate préparé.\nCet effet disparaît si vous utilisez une autre action d'invocation.\nCondition : Arcane rubis et Carbuncle invoqué.\nCarbuncle disparaît lors de l'invocation, mais revient automatiquement une fois qu'elle prend fin.",
+      "description_macro": "Vous invoquez un Ifrit rubis et lui ordonnez d'exécuter <colortype(500)><edgecolortype(501)>Flammes de l'enfer<edgecolortype(0)><colortype(0)>.<br><br>Effectue une attaque magique de feu sur la cible et les ennemis autour dans une zone de 5 yalms.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> <if([gnum68==27],<if([gnum72>=94],800,750)>,750)><br>La puissance est réduite de 50% au-delà du premier ennemi touché.<br><colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> vous octroie 2 degrés de <colortype(500)><edgecolortype(501)>Syntonie de feu<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 30s<br><colortype(506)><edgecolortype(507)>Syntonie de feu<nbsp>:<edgecolortype(0)><colortype(0)> l'élément d'<colortype(500)><edgecolortype(501)>Éclat des gemmes<edgecolortype(0)><colortype(0)> et de <colortype(500)><edgecolortype(501)>Resplendissement des gemmes<edgecolortype(0)><colortype(0)> devient le feu.<br><if([gnum68==27],<if([gnum72>=86],<colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> vous octroie <colortype(500)><edgecolortype(501)>Cyclone écarlate préparé<edgecolortype(0)><colortype(0)>.<br>Cet effet disparaît si vous utilisez une autre action d'invocation.<br>,)>,)><colortype(506)><edgecolortype(507)>Condition<nbsp>:<edgecolortype(0)><colortype(0)> <colortype(500)><edgecolortype(501)>Arcane rubis<edgecolortype(0)><colortype(0)> et Carbuncle invoqué.<br>Carbuncle disparaît lors de l'invocation, mais revient au<->to<->ma<->ti<->que<->ment une fois qu'elle prend fin.",
+      "unlock_level": 90,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Magical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 27,
+          "name": "Invocateur",
+          "abbreviation": "INV",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

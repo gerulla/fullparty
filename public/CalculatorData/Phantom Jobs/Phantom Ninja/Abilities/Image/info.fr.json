@@ -1,0 +1,86 @@
+{
+  "kind": "ability",
+  "id": 49066,
+  "name": "Bunshin",
+  "description": "Vous octroie 3 degrés de Bunshin.\nDurée : 30s\nBunshin : annule les dégâts de la plupart des attaques physiques contre vous.",
+  "description_macro": "Vous octroie 3 degrés de <colortype(500)><edgecolortype(501)>Bunshin<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 30s<br><colortype(506)><edgecolortype(507)>Bunshin<nbsp>:<edgecolortype(0)><colortype(0)> annule les dégâts de la plupart des attaques physiques contre vous.",
+  "effects": [
+    "Vous octroie 3 degrés de Bunshin.",
+    "Durée : 30s",
+    "Bunshin : annule les dégâts de la plupart des attaques physiques contre vous."
+  ],
+  "role": "Phantom Jobs",
+  "job": {
+    "id": 16,
+    "name": "Ninja fantôme",
+    "abbreviation": "Ninja fant."
+  },
+  "is_phantom_action": true,
+  "unlock_level": 6,
+  "icon": {
+    "id": 64505,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 4,
+    "name": "Aptitude"
+  },
+  "attack_type": {
+    "id": 0,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 120,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 87,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 0,
+      "value": 0
+    },
+    "secondary": {
+      "type_id": 0,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": 0,
+    "effect_yalms": 0,
+    "cast_type": 1
+  },
+  "targeting": {
+    "self": true,
+    "party": false,
+    "alliance": false,
+    "hostile": false,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 0,
+    "behavior_type": 0,
+    "class_job_category_id": 142,
+    "source_class_job_id": 4294967295,
+    "is_role_action": false,
+    "is_player_action": false,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

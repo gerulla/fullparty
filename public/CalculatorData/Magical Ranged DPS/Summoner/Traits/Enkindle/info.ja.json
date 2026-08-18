@@ -1,0 +1,27 @@
+{
+  "kind": "trait",
+  "id": 471,
+  "name": "エンキンドル",
+  "description": "「サモン・イフリート」「サモン・タイタン」「サモン・ガルーダ」により召喚するエギの実行するアクションが変化する。\nイフリート・エギ：バーニングストライクが地獄の火炎に変化する。\nタイタン・エギ：ロックバスターが大地の怒りに変化する。\nガルーダ・エギ：エリアルスラッシュがエリアルブラストに変化する。",
+  "description_macro": "<colortype(500)><edgecolortype(501)>「サモン・イフリート」「サモン・タイタン」「サモン・ガルーダ」<edgecolortype(0)><colortype(0)>により召喚するエギの実行するアクションが変化する。<br><colortype(504)><edgecolortype(505)>イフリート・エギ：<edgecolortype(0)><colortype(0)>バーニングストライクが地獄の火炎に変化する。<br><colortype(504)><edgecolortype(505)>タイタン・エギ：<edgecolortype(0)><colortype(0)>ロックバスターが大地の怒りに変化する。<br><colortype(504)><edgecolortype(505)>ガルーダ・エギ：<edgecolortype(0)><colortype(0)>エリアルスラッシュがエリアルブラストに変化する。",
+  "effects": [
+    "「サモン・イフリート」「サモン・タイタン」「サモン・ガルーダ」により召喚するエギの実行するアクションが変化する。",
+    "イフリート・エギ：バーニングストライクが地獄の火炎に変化する。",
+    "タイタン・エギ：ロックバスターが大地の怒りに変化する。",
+    "ガルーダ・エギ：エリアルスラッシュがエリアルブラストに変化する。"
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 27,
+    "name": "召喚士",
+    "abbreviation": "SMN"
+  },
+  "unlock_level": 50,
+  "value": 0,
+  "icon": {
+    "id": 5685,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 28,
+  "source_class_job_id": 27
+}

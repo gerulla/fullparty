@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 534,
+  "name": "Maîtrise des esprits",
+  "description": "Permet d'utiliser Premier cycle, Deuxième cycle, Troisième cycle et Quatrième cycle après avoir utilisé respectivement Première ère, Deuxième ère, Troisième ère et Quatrième ère avec succès.",
+  "description_macro": "Permet d'utiliser <colortype(500)><edgecolortype(501)>Premier cycle<edgecolortype(0)><colortype(0)>, <colortype(500)><edgecolortype(501)>Deuxième cycle<edgecolortype(0)><colortype(0)>, <colortype(500)><edgecolortype(501)>Troisième cycle<edgecolortype(0)><colortype(0)> et <colortype(500)><edgecolortype(501)>Quatrième cycle<edgecolortype(0)><colortype(0)> après avoir utilisé respectivement <colortype(500)><edgecolortype(501)>Première ère<edgecolortype(0)><colortype(0)>, <colortype(500)><edgecolortype(501)>Deuxième ère<edgecolortype(0)><colortype(0)>, <colortype(500)><edgecolortype(501)>Troisième ère<edgecolortype(0)><colortype(0)> et <colortype(500)><edgecolortype(501)>Quatrième ère<edgecolortype(0)><colortype(0)> avec succès.",
+  "effects": [
+    "Permet d'utiliser Premier cycle, Deuxième cycle, Troisième cycle et Quatrième cycle après avoir utilisé respectivement Première ère, Deuxième ère, Troisième ère et Quatrième ère avec succès."
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 41,
+    "name": "Rôdeur Vipère",
+    "abbreviation": "VPR"
+  },
+  "unlock_level": 100,
+  "value": 0,
+  "icon": {
+    "id": 6509,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 196,
+  "source_class_job_id": 41
+}

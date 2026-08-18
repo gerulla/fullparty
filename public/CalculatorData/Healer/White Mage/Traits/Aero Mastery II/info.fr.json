@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 307,
+  "name": "Maîtrise de Vent II",
+  "description": "Remplace Extra Vent par Lumen.",
+  "description_macro": "Remplace <colortype(500)><edgecolortype(501)>Extra Vent<edgecolortype(0)><colortype(0)> par <colortype(500)><edgecolortype(501)>Lumen<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Remplace Extra Vent par Lumen."
+  ],
+  "role": "Healer",
+  "job": {
+    "id": 24,
+    "name": "Mage Blanc",
+    "abbreviation": "MBL"
+  },
+  "unlock_level": 72,
+  "value": 0,
+  "icon": {
+    "id": 5339,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 25,
+  "source_class_job_id": 24
+}

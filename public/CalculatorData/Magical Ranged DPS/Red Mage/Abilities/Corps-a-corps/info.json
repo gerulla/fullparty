@@ -1,0 +1,86 @@
+{
+  "kind": "ability",
+  "id": 7506,
+  "name": "Corps-a-corps",
+  "description": "Rushes target and delivers an attack with a potency of 130.\nMaximum Charges: 2\nCannot be executed while bound.",
+  "description_macro": "Rushes target and delivers an attack with a potency of 130.<br><colortype(504)><edgecolortype(505)>Maximum Charges: <edgecolortype(0)><colortype(0)>2<br>Cannot be executed while bound.",
+  "effects": [
+    "Rushes target and delivers an attack with a potency of 130.",
+    "Maximum Charges: 2",
+    "Cannot be executed while bound."
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 35,
+    "name": "Red Mage",
+    "abbreviation": "RDM"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 6,
+  "icon": {
+    "id": 3204,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 4,
+    "name": "Ability"
+  },
+  "attack_type": {
+    "id": 4294967295,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 35,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 11,
+    "additional_cooldown_group": 71,
+    "max_charges": 2
+  },
+  "costs": {
+    "primary": {
+      "type_id": 0,
+      "value": 0
+    },
+    "secondary": {
+      "type_id": 0,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": 25,
+    "effect_yalms": 0,
+    "cast_type": 1
+  },
+  "targeting": {
+    "self": false,
+    "party": false,
+    "alliance": false,
+    "hostile": true,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 7,
+    "behavior_type": 1,
+    "class_job_category_id": 112,
+    "source_class_job_id": 35,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

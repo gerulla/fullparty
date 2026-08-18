@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 2076,
+  "name": "コンフィテオル",
+  "description": "与ダメージと自身からのＨＰ回復効果が低下した状態。",
+  "effects": [
+    "与ダメージと自身からのＨＰ回復効果が低下した状態。"
+  ],
+  "classification": "debuff",
+  "icon": {
+    "id": 214873,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 2,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": true,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": -10
+  },
+  "class_job_category_id": 20,
+  "source_abilities": [
+    {
+      "id": 16459,
+      "name": "コンフィテオル",
+      "description": "対象とその周囲の敵に無属性範囲魔法攻撃。\u3000威力：500\nレクイエスカット時威力：1000\n2体目以降の対象への威力は60％減少する。\n追加効果：自身のＨＰを回復する。\u3000回復力：400\n発動条件：「コンフィテオル実行可」効果中",
+      "description_macro": "対象とその周囲の敵に無属性範囲魔法攻撃。\u3000<colortype(504)><edgecolortype(505)>威力：<edgecolortype(0)><colortype(0)><if([gnum68==19],<if([gnum72>=94],500,420)>,420)><br><colortype(504)><edgecolortype(505)>レクイエスカット時威力：<edgecolortype(0)><colortype(0)><if([gnum68==19],<if([gnum72>=94],1000,920)>,920)><br>2体目以降の対象への威力は60％減少する。<br><if([gnum68==19],<if([gnum72>=84],<colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)>自身のＨＰを回復する。\u3000<colortype(504)><edgecolortype(505)>回復力：<edgecolortype(0)><colortype(0)>400<br>,)>,)><colortype(504)><edgecolortype(505)>発動条件：<edgecolortype(0)><colortype(0)><colortype(500)><edgecolortype(501)>「コンフィテオル実行可」<edgecolortype(0)><colortype(0)>効果中",
+      "unlock_level": 80,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Tank"
+      ],
+      "jobs": [
+        {
+          "id": 19,
+          "name": "ナイト",
+          "abbreviation": "PLD",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 1890,
+  "name": "Horoscope",
+  "description": "Primed to receive the healing effects of Horoscope.",
+  "effects": [
+    "Primed to receive the healing effects of Horoscope."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 213251,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": true,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 1,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 99,
+  "source_abilities": [
+    {
+      "id": 16557,
+      "name": "Horoscope",
+      "description": "Reads your fortune and those of nearby party members, granting them Horoscope.\nDuration: 10s\nEffect upgraded to Horoscope Helios upon receiving the effects of Helios or Helios Conjunction.\nDuration: 30s\nRestores the HP of those under either effect when the cards are read a second time or the effect expires.\nHoroscope Cure Potency: 200\nHoroscope Helios Cure Potency: 400",
+      "description_macro": "Reads your fortune and those of nearby party members, granting them <colortype(506)><edgecolortype(507)>Horoscope<edgecolortype(0)><colortype(0)>.<br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>10s<br>Effect upgraded to <colortype(506)><edgecolortype(507)>Horoscope Helios<edgecolortype(0)><colortype(0)> upon receiving the effects of <colortype(500)><edgecolortype(501)>Helios<edgecolortype(0)><colortype(0)> or <colortype(500)><edgecolortype(501)><if([gnum68==33],<if([gnum72>=96],Helios Conjunction,Aspected Helios)>,Aspected Helios)><edgecolortype(0)><colortype(0)>.<br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>30s<br>Restores the HP of those under either effect when the cards are read a second time or the effect expires.<br><colortype(504)><edgecolortype(505)>Horoscope Cure Potency: <edgecolortype(0)><colortype(0)>200<br><colortype(504)><edgecolortype(505)>Horoscope Helios Cure Potency: <edgecolortype(0)><colortype(0)>400",
+      "unlock_level": 76,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Healer"
+      ],
+      "jobs": [
+        {
+          "id": 33,
+          "name": "Astrologian",
+          "abbreviation": "AST",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

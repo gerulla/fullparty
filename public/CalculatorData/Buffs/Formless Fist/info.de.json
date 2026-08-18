@@ -1,0 +1,218 @@
+{
+  "kind": "combat_status",
+  "id": 2513,
+  "name": "Freie Form",
+  "description": "Alle Kommandos der Opo-Opo-, Raptor- und Coeurl-Form können ausgeführt werden. Ihre Zusatzeffekte werden ebenfalls ausgelöst.",
+  "effects": [
+    "Alle Kommandos der Opo-Opo-, Raptor- und Coeurl-Form können ausgeführt werden. Ihre Zusatzeffekte werden ebenfalls ausgelöst."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 212535,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": true,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 21,
+  "source_abilities": [
+    {
+      "id": 3543,
+      "name": "Tornadotritt",
+      "description": "Du führst eine physische Attacke auf das Ziel und die Gegner in seiner Nähe aus.\nAttacke-Wert: 1.200\nAttacke-Wert verringert sich ab dem zweiten Gegner um 35 %.\nZusatzeffekt: Gewährt dir Freie Form.\nDauer: 30 Sekunden\nEffekt von Freie Form: Du kannst alle Form-Waffenfertigkeiten ausführen, ohne dich in der dementsprechenden Form zu befinden. Jegliche Zusatzeffekte werden dabei ebenfalls ausgelöst.\nBedingung: Sonnennadi und Mondnadi aktiv sowie 3 Tier-Chakren geöffnet\nBei erfüllter Bedingung ändert sich Blitzkünste zu Tornadotritt.\nKann nicht im Kommandomenü angelegt werden.",
+      "description_macro": "Du führst eine physische Attacke auf das Ziel und die Gegner in seiner Nähe aus.<br>Attacke-Wert: 1.200<br>Attacke-Wert verringert sich ab dem zweiten Gegner um 35<nbsp>%.<br>Zusatzeffekt: Gewährt dir <colortype(506)><edgecolortype(507)>Freie Form<edgecolortype(0)><colortype(0)>.<br>Dauer: 30 Sekunden<br>Effekt von <colortype(506)><edgecolortype(507)>Freie Form<edgecolortype(0)><colortype(0)>: Du kannst alle Form-Waf<->fen<->fer<->tig<->kei<->ten ausführen, ohne dich in der dem<->ent<->spre<->chenden Form zu befinden. Jegliche Zusatzeffekte werden dabei ebenfalls ausgelöst.<br>Bedingung: <colortype(506)><edgecolortype(507)>Sonnennadi<edgecolortype(0)><colortype(0)> und <colortype(506)><edgecolortype(507)>Mondnadi<edgecolortype(0)><colortype(0)> aktiv sowie 3 <colortype(506)><edgecolortype(507)>Tier-Chakren<edgecolortype(0)><colortype(0)> geöffnet<br>Bei erfüllter Bedingung ändert sich <colortype(502)><edgecolortype(503)>Blitzkünste<edgecolortype(0)><colortype(0)> zu <colortype(502)><edgecolortype(503)>Tornadotritt<edgecolortype(0)><colortype(0)>.<br>Kann nicht im Kommandomenü angelegt werden.",
+      "unlock_level": 60,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 20,
+          "name": "Mönch",
+          "abbreviation": "MÖN",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 3545,
+      "name": "Elixier-Feld",
+      "description": "Du führst eine physische Attacke auf alle umstehenden Gegner aus.\nAttacke-Wert: 800\nAttacke-Wert verringert sich ab dem zweiten Gegner um 35 %.\nZusatzeffekt: Gewährt dir Mondnadi.\nZusatzeffekt: Gewährt dir Freie Form.\nDauer: 30 Sekunden\nEffekt von Freie Form: Du kannst alle Form-Waffenfertigkeiten ausführen, ohne dich in der dementsprechenden Form zu befinden. Jegliche Zusatzeffekte werden dabei ebenfalls ausgelöst.\nBedingung: 3 gleiche Tier-Chakren geöffnet\nBei erfüllter Bedingung ändert sich Blitzkünste zu Elixier-Feld.\nKann nicht im Kommandomenü angelegt werden.",
+      "description_macro": "Du führst eine physische Attacke auf alle umstehenden Gegner aus.<br>Attacke-Wert: 800<br>Attacke-Wert verringert sich ab dem zweiten Gegner um 35<nbsp>%.<br>Zusatzeffekt: Gewährt dir <colortype(506)><edgecolortype(507)>Mondnadi<edgecolortype(0)><colortype(0)>.<br>Zusatzeffekt: Gewährt dir <colortype(506)><edgecolortype(507)>Freie Form<edgecolortype(0)><colortype(0)>.<br>Dauer: 30 Sekunden<br>Effekt von <colortype(506)><edgecolortype(507)>Freie Form<edgecolortype(0)><colortype(0)>: Du kannst alle Form-Waf<->fen<->fer<->tig<->kei<->ten ausführen, ohne dich in der dem<->ent<->spre<->chenden Form zu befinden. Jegliche Zusatzeffekte werden dabei ebenfalls ausgelöst.<br>Bedingung: 3 gleiche <colortype(506)><edgecolortype(507)>Tier-Chakren<edgecolortype(0)><colortype(0)> geöffnet<br>Bei erfüllter Bedingung ändert sich <colortype(502)><edgecolortype(503)>Blitzkünste<edgecolortype(0)><colortype(0)> zu <colortype(502)><edgecolortype(503)>Elixier-Feld<edgecolortype(0)><colortype(0)>.<br>Kann nicht im Kommandomenü angelegt werden. ",
+      "unlock_level": 60,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 20,
+          "name": "Mönch",
+          "abbreviation": "MÖN",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 4262,
+      "name": "Formwechsel",
+      "description": "Du nimmst eine Freie Form an.\nDauer: 30 Sekunden\nWirkung von Freie Form: Du kannst alle Form-Waffenfertigkeiten ausführen, ohne dich in der dementsprechenden Form zu befinden. Jegliche Zusatzeffekte werden dabei ebenfalls ausgelöst.",
+      "description_macro": "Du nimmst eine <colortype(506)><edgecolortype(507)>Freie Form<edgecolortype(0)><colortype(0)> an.<br>Dauer: 30 Sekunden<br>Wirkung von Freie Form: Du kannst alle Form-Waf<->fen<->fer<->tig<->kei<->ten ausführen, ohne dich in der dem<->ent<->spre<->chenden Form zu befinden. Jegliche Zusatzeffekte werden dabei ebenfalls ausgelöst.",
+      "unlock_level": 52,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 20,
+          "name": "Mönch",
+          "abbreviation": "MÖN",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 25765,
+      "name": "Neuordnung der Himmel",
+      "description": "Du führst eine physische Attacke aus.\nAttacke-Wert: 600\nZusatzeffekt: Gewährt dir Mondnadi.\nIst Mondnadi bereits aktiv, wird Sonnennadi gewährt.\nZusatzeffekt: Gewährt dir Freie Form.\nDauer: 30 Sekunden\nEffekt von Freie Form: Du kannst alle Form-Waffenfertigkeiten ausführen, ohne dich in der dementsprechenden Form zu befinden. Jegliche Zusatzeffekte werden dabei ebenfalls ausgelöst.\nBedingung: 3 Tier-Chakren geöffnet\nBei erfüllter Bedingung ändert sich Blitzkünste zu diesem Kommando.\nKann nicht im Kommandomenü angelegt werden.",
+      "description_macro": "Du führst eine physische Attacke aus.<br>Attacke-Wert: 600<br>Zusatzeffekt: Gewährt dir <colortype(506)><edgecolortype(507)>Mondnadi<edgecolortype(0)><colortype(0)>.<br>Ist <colortype(506)><edgecolortype(507)>Mondnadi<edgecolortype(0)><colortype(0)> bereits aktiv, wird <colortype(506)><edgecolortype(507)>Sonnennadi<edgecolortype(0)><colortype(0)> gewährt.<br>Zusatzeffekt: Gewährt dir <colortype(506)><edgecolortype(507)>Freie Form<edgecolortype(0)><colortype(0)>.<br>Dauer: 30 Sekunden<br>Effekt von <colortype(506)><edgecolortype(507)>Freie Form<edgecolortype(0)><colortype(0)>: Du kannst alle Form-Waf<->fen<->fer<->tig<->kei<->ten ausführen, ohne dich in der dem<->ent<->spre<->chenden Form zu befinden. Jegliche Zusatzeffekte werden dabei ebenfalls ausgelöst.<br>Bedingung: 3 <colortype(506)><edgecolortype(507)>Tier-Chakren<edgecolortype(0)><colortype(0)> geöffnet<br>Bei erfüllter Bedingung ändert sich <colortype(502)><edgecolortype(503)>Blitzkünste<edgecolortype(0)><colortype(0)> zu diesem Kommando.<br>Kann nicht im Kommandomenü angelegt werden.",
+      "unlock_level": 60,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 20,
+          "name": "Mönch",
+          "abbreviation": "MÖN",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 25768,
+      "name": "Phönixtanz",
+      "description": "Du führst eine feuerbasierte physische Attacke auf das Ziel und die Gegner in seiner Nähe aus.\nAttacke-Wert: 900\nAttacke-Wert verringert sich ab dem zweiten Gegner um 35 %.\nZusatzeffekt: Gewährt dir Sonnennadi.\nZusatzeffekt: Gewährt dir Freie Form.\nDauer: 30 Sekunden\nEffekt von Freie Form: Du kannst alle Form-Waffenfertigkeiten ausführen, ohne dich in der dementsprechenden Form zu befinden. Jegliche Zusatzeffekte werden dabei ebenfalls ausgelöst.\nBedindung: 3 verschiedene Tier-Chakren geöffnet\nBei erfüllter Bedingung ändert sich Blitzkünste zu diesem Kommando.\nKann nicht im Kommandomenü angelegt werden.",
+      "description_macro": "Du führst eine feuerbasierte physische Attacke auf das Ziel und die Gegner in seiner Nähe aus.<br>Attacke-Wert: 900<br>Attacke-Wert verringert sich ab dem zweiten Gegner um 35<nbsp>%.<br>Zusatzeffekt: Gewährt dir <colortype(506)><edgecolortype(507)>Sonnennadi<edgecolortype(0)><colortype(0)>.<br>Zusatzeffekt: Gewährt dir <colortype(506)><edgecolortype(507)>Freie Form<edgecolortype(0)><colortype(0)>.<br>Dauer: 30 Sekunden<br>Effekt von <colortype(506)><edgecolortype(507)>Freie Form<edgecolortype(0)><colortype(0)>: Du kannst alle Form-Waf<->fen<->fer<->tig<->kei<->ten ausführen, ohne dich in der dem<->ent<->spre<->chenden Form zu befinden. Jegliche Zusatzeffekte werden dabei ebenfalls ausgelöst.<br>Bedindung: 3 verschiedene <colortype(506)><edgecolortype(507)>Tier-Chakren<edgecolortype(0)><colortype(0)> geöffnet<br>Bei erfüllter Bedingung ändert sich <colortype(502)><edgecolortype(503)>Blitzkünste<edgecolortype(0)><colortype(0)> zu diesem Kommando.<br>Kann nicht im Kommandomenü angelegt werden.",
+      "unlock_level": 86,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 20,
+          "name": "Mönch",
+          "abbreviation": "MÖN",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 25769,
+      "name": "Phantomstoß",
+      "description": "Du führst eine physische Attacke auf das Ziel und die Gegner in seiner Nähe aus.\nAttacke-Wert: 1.500\nAttacke-Wert verringert sich ab dem zweiten Gegner um 35 %.\nZusatzeffekt: Gewährt dir Freie Form.\nDauer: 30 Sekunden\nEffekt von Freie Form: Du kannst alle Form-Waffenfertigkeiten ausführen, ohne dich in der dementsprechenden Form zu befinden. Jegliche Zusatzeffekte werden dabei ebenfalls ausgelöst.\nBedingung: Sonnennadi und Mondnadi aktiv sowie 3 Tier-Chakren geöffnet\nBei erfüllter Bedingung ändert sich Blitzkünste zu diesem Kommando.\nKann nicht im Kommandomenü angelegt werden.",
+      "description_macro": "Du führst eine physische Attacke auf das Ziel und die Gegner in seiner Nähe aus.<br>Attacke-Wert: <if([gnum68==20],<if([gnum72>=94],1.500,1.400)>,1.400)><br>Attacke-Wert verringert sich ab dem zweiten Gegner um 35<nbsp>%.<br>Zusatzeffekt: Gewährt dir <colortype(506)><edgecolortype(507)>Freie Form<edgecolortype(0)><colortype(0)>.<br>Dauer: 30 Sekunden<br>Effekt von <colortype(506)><edgecolortype(507)>Freie Form<edgecolortype(0)><colortype(0)>: Du kannst alle Form-Waf<->fen<->fer<->tig<->kei<->ten ausführen, ohne dich in der dem<->ent<->spre<->chenden Form zu befinden. Jegliche Zusatzeffekte werden dabei ebenfalls ausgelöst.<br>Bedingung: <colortype(506)><edgecolortype(507)>Sonnennadi<edgecolortype(0)><colortype(0)> und <colortype(506)><edgecolortype(507)>Mondnadi<edgecolortype(0)><colortype(0)> aktiv sowie 3 <colortype(506)><edgecolortype(507)>Tier-Chakren<edgecolortype(0)><colortype(0)> geöffnet<br>Bei erfüllter Bedingung ändert sich <colortype(502)><edgecolortype(503)>Blitzkünste<edgecolortype(0)><colortype(0)> zu diesem Kommando.<br>Kann nicht im Kommandomenü angelegt werden.",
+      "unlock_level": 90,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 20,
+          "name": "Mönch",
+          "abbreviation": "MÖN",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 25882,
+      "name": "Zündschlag",
+      "description": "Du führst eine physische Attacke auf alle umstehenden Gegner aus.\nAttacke-Wert: 800\nAttacke-Wert verringert sich ab dem zweiten Gegner um 35 %.\nZusatzeffekt: Gewährt dir Sonnennadi.\nZusatzeffekt: Gewährt dir Freie Form.\nDauer: 30 Sekunden\nEffekt von Freie Form: Du kannst alle Form-Waffenfertigkeiten ausführen, ohne dich in der dementsprechenden Form zu befinden. Jegliche Zusatzeffekte werden dabei ebenfalls ausgelöst.\nBedingung: 3 verschiedene Tier-Chakren geöffnet\nBei erfüllter Bedingung ändert sich Blitzkünste zu diesem Kommando.\nKann nicht im Kommandomenü angelegt werden.",
+      "description_macro": "Du führst eine physische Attacke auf alle umstehenden Gegner aus.<br>Attacke-Wert: 800<br>Attacke-Wert verringert sich ab dem zweiten Gegner um 35<nbsp>%.<br>Zusatzeffekt: Gewährt dir <colortype(506)><edgecolortype(507)>Sonnennadi<edgecolortype(0)><colortype(0)>.<br>Zusatzeffekt: Gewährt dir <colortype(506)><edgecolortype(507)>Freie Form<edgecolortype(0)><colortype(0)>.<br>Dauer: 30 Sekunden<br>Effekt von <colortype(506)><edgecolortype(507)>Freie Form<edgecolortype(0)><colortype(0)>: Du kannst alle Form-Waf<->fen<->fer<->tig<->kei<->ten ausführen, ohne dich in der dem<->ent<->spre<->chenden Form zu befinden. Jegliche Zusatzeffekte werden dabei ebenfalls ausgelöst.<br>Bedingung: 3 verschiedene <colortype(506)><edgecolortype(507)>Tier-Chakren<edgecolortype(0)><colortype(0)> geöffnet<br>Bei erfüllter Bedingung ändert sich <colortype(502)><edgecolortype(503)>Blitzkünste<edgecolortype(0)><colortype(0)> zu diesem Kommando.<br>Kann nicht im Kommandomenü angelegt werden.",
+      "unlock_level": 60,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 20,
+          "name": "Mönch",
+          "abbreviation": "MÖN",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 36948,
+      "name": "Vakuumwelle",
+      "description": "Du führst eine physische Attacke auf alle umstehenden Gegner aus.\nAttacke-Wert: 900\nAttacke-Wert verringert sich ab dem zweiten Gegner um 35 %.\nZusatzeffekt: Gewährt dir Mondnadi.\nZusatzeffekt: Gewährt dir Freie Form.\nDauer: 30 Sekunden\nEffekt von Freie Form: Du kannst alle Form-Waffenfertigkeiten ausführen, ohne dich in der dementsprechenden Form zu befinden. Jegliche Zusatzeffekte werden dabei ebenfalls ausgelöst.\nBedingung: 3 gleiche Tier-Chakren geöffnet\nBei erfüllter Bedingung ändert sich Blitzkünste zu diesem Kommando.\nKann nicht im Kommandomenü angelegt werden.",
+      "description_macro": "Du führst eine physische Attacke auf alle umstehenden Gegner aus.<br>Attacke-Wert: 900<br>Attacke-Wert verringert sich ab dem zweiten Gegner um 35<nbsp>%.<br>Zusatzeffekt: Gewährt dir <colortype(506)><edgecolortype(507)>Mondnadi<edgecolortype(0)><colortype(0)>.<br>Zusatzeffekt: Gewährt dir <colortype(506)><edgecolortype(507)>Freie Form<edgecolortype(0)><colortype(0)>.<br>Dauer: 30 Sekunden<br>Effekt von <colortype(506)><edgecolortype(507)>Freie Form<edgecolortype(0)><colortype(0)>: Du kannst alle Form-Waf<->fen<->fer<->tig<->kei<->ten ausführen, ohne dich in der dem<->ent<->spre<->chenden Form zu befinden. Jegliche Zusatzeffekte werden dabei ebenfalls ausgelöst.<br>Bedingung: 3 gleiche <colortype(506)><edgecolortype(507)>Tier-Chakren<edgecolortype(0)><colortype(0)> geöffnet<br>Bei erfüllter Bedingung ändert sich <colortype(502)><edgecolortype(503)>Blitzkünste<edgecolortype(0)><colortype(0)> zu diesem Kommando.<br>Kann nicht im Kommandomenü angelegt werden.",
+      "unlock_level": 92,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 20,
+          "name": "Mönch",
+          "abbreviation": "MÖN",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 36950,
+      "name": "Himmel und Erde",
+      "description": "Du führst eine physische Attacke auf das Ziel und die Gegner in seiner Nähe aus.\nAttacke-Wert: 1.400\nAttacke-Wert verringert sich ab dem zweiten Gegner um 35 %.\nZusatzeffekt: Gewährt dir Freie Form.\nDauer: 30 Sekunden\nEffekt von Freie Form: Du kannst alle Form-Waffenfertigkeiten ausführen, ohne dich in der dementsprechenden Form zu befinden. Jegliche Zusatzeffekte werden dabei ebenfalls ausgelöst.\nBedingung: Himmel und Erde aktiv",
+      "description_macro": "Du führst eine physische Attacke auf das Ziel und die Gegner in seiner Nähe aus.<br>Attacke-Wert: 1.400<br>Attacke-Wert verringert sich ab dem zweiten Gegner um 35<nbsp>%.<br>Zusatzeffekt: Gewährt dir <colortype(506)><edgecolortype(507)>Freie Form<edgecolortype(0)><colortype(0)>.<br>Dauer: 30 Sekunden<br>Effekt von <colortype(506)><edgecolortype(507)>Freie Form<edgecolortype(0)><colortype(0)>: Du kannst alle Form-Waf<->fen<->fer<->tig<->kei<->ten ausführen, ohne dich in der dem<->ent<->spre<->chenden Form zu befinden. Jegliche Zusatzeffekte werden dabei ebenfalls ausgelöst.<br>Bedingung: <colortype(506)><edgecolortype(507)>Himmel und Erde<edgecolortype(0)><colortype(0)> aktiv",
+      "unlock_level": 100,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 20,
+          "name": "Mönch",
+          "abbreviation": "MÖN",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

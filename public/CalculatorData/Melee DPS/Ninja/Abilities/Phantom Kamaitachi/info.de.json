@@ -1,0 +1,87 @@
+{
+  "kind": "ability",
+  "id": 25774,
+  "name": "Phantom-Kamaitachi",
+  "description": "Dein Doppeltes Ich führt eine windbasierte magische Attacke auf das Ziel und alle ihm umstehenden Gegner innerhalb von 5y aus.\nAttacke-Wert: 700\nZusatzeffekt: Ninki-Balken füllt sich um 10.\nBedingung: durch Doppeltes Ich gewährtes Kamaitachi-bereit aktiv",
+  "description_macro": "Dein Doppeltes Ich führt eine windbasierte magische Attacke auf das Ziel und alle ihm umstehenden Gegner innerhalb von 5y aus.<br>Attacke-Wert: 700<br>Zusatzeffekt: Ninki-Balken füllt sich um 10.<br>Bedingung: durch <colortype(502)><edgecolortype(503)>Doppeltes Ich<edgecolortype(0)><colortype(0)> gewährtes <colortype(506)><edgecolortype(507)>Kamaitachi-bereit<edgecolortype(0)><colortype(0)> aktiv",
+  "effects": [
+    "Dein Doppeltes Ich führt eine windbasierte magische Attacke auf das Ziel und alle ihm umstehenden Gegner innerhalb von 5y aus.",
+    "Attacke-Wert: 700",
+    "Zusatzeffekt: Ninki-Balken füllt sich um 10.",
+    "Bedingung: durch Doppeltes Ich gewährtes Kamaitachi-bereit aktiv"
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 30,
+    "name": "Ninja",
+    "abbreviation": "NIN"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 82,
+  "icon": {
+    "id": 2929,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 3,
+    "name": "Waffenfertigkeit"
+  },
+  "attack_type": {
+    "id": 0,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 2.5,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 58,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 0,
+      "value": 0
+    },
+    "secondary": {
+      "type_id": 32,
+      "value": 2723
+    }
+  },
+  "range": {
+    "target_yalms": 20,
+    "effect_yalms": 0,
+    "cast_type": 1
+  },
+  "targeting": {
+    "self": false,
+    "party": false,
+    "alliance": false,
+    "hostile": true,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 0,
+    "behavior_type": 0,
+    "class_job_category_id": 92,
+    "source_class_job_id": 30,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 2700,
+  "name": "流星の舞い実行可",
+  "description": "流星の舞いを実行できる状態。",
+  "effects": [
+    "流星の舞いを実行できる状態。"
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 213724,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 150,
+  "source_abilities": [
+    {
+      "id": 16011,
+      "name": "攻めのタンゴ",
+      "description": "一定時間、自身のクリティカル発動率とダイレクトヒット発動率を20％上昇させる。\u3000効果時間：20秒\n追加効果：「クローズドポジション［被］」を付与したパーティメンバーにも同様の効果を付与する。\n追加効果：自身に「流星の舞い実行可」を付与する\n効果時間：20秒",
+      "description_macro": "一定時間、自身のクリティカル発動率とダイレクトヒット発動率を20％上昇させる。\u3000<colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>20秒<br><colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)><colortype(500)><edgecolortype(501)>「クローズドポジション［被］」<edgecolortype(0)><colortype(0)>を付与したパーティメンバーにも同様の効果を付与する。<if([gnum68==38],<if([gnum72>=90],<br><colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)>自身に<colortype(500)><edgecolortype(501)>「流星の舞い実行可」<edgecolortype(0)><colortype(0)>を付与する<br><colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>20秒,)>,)>",
+      "unlock_level": 62,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Physical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 38,
+          "name": "踊り子",
+          "abbreviation": "DNC",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

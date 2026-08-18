@@ -1,0 +1,26 @@
+{
+  "kind": "trait",
+  "id": 457,
+  "name": "攻めのタンゴ効果アップ",
+  "description": "自身に「流星の舞い実行可」が付与されるようになる。\n効果時間：20秒\n発動条件：攻めのタンゴ実行時",
+  "description_macro": "自身に<colortype(500)><edgecolortype(501)>「流星の舞い実行可」<edgecolortype(0)><colortype(0)>が付与されるようになる。<br><colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>20秒<br><colortype(504)><edgecolortype(505)>発動条件：<edgecolortype(0)><colortype(0)>攻めのタンゴ実行時",
+  "effects": [
+    "自身に「流星の舞い実行可」が付与されるようになる。",
+    "効果時間：20秒",
+    "発動条件：攻めのタンゴ実行時"
+  ],
+  "role": "Physical Ranged DPS",
+  "job": {
+    "id": 38,
+    "name": "踊り子",
+    "abbreviation": "DNC"
+  },
+  "unlock_level": 90,
+  "value": 0,
+  "icon": {
+    "id": 6361,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 150,
+  "source_class_job_id": 38
+}

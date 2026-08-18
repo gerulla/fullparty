@@ -1,0 +1,89 @@
+{
+  "kind": "ability",
+  "id": 23272,
+  "name": "Angel's Snack",
+  "description": "Restores own HP and the HP of all nearby party members.\nCure Potency: 400\nAdditional Effect: Grants healing over time effect when you are under the effect of Aetheric Mimicry: Healer\nCure Potency: 200\nDuration: 15s\nShares a recast timer with Dragon Force and Matra Magic.",
+  "description_macro": "Restores own HP and the HP of all nearby party members.<br><colortype(504)><edgecolortype(505)>Cure Potency: <edgecolortype(0)><colortype(0)>400<br><colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>Grants healing over time effect when you are under the effect of <colortype(506)><edgecolortype(507)>Aetheric Mimicry: Healer<edgecolortype(0)><colortype(0)><br><colortype(504)><edgecolortype(505)>Cure Potency: <edgecolortype(0)><colortype(0)>200<br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>15s<br>Shares a recast timer with <colortype(500)><edgecolortype(501)>Dragon Force<edgecolortype(0)><colortype(0)> and <colortype(500)><edgecolortype(501)>Matra Magic<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Restores own HP and the HP of all nearby party members.",
+    "Cure Potency: 400",
+    "Additional Effect: Grants healing over time effect when you are under the effect of Aetheric Mimicry: Healer",
+    "Cure Potency: 200",
+    "Duration: 15s",
+    "Shares a recast timer with Dragon Force and Matra Magic."
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 36,
+    "name": "Blue Mage",
+    "abbreviation": "BLU"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 1,
+  "icon": {
+    "id": 3339,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 2,
+    "name": "Spell"
+  },
+  "attack_type": {
+    "id": 5,
+    "name": "魔法"
+  },
+  "timing": {
+    "cast_seconds": 2,
+    "recast_seconds": 120,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 16,
+    "additional_cooldown_group": 58,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 3,
+      "value": 4
+    },
+    "secondary": {
+      "type_id": 0,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": 0,
+    "effect_yalms": 20,
+    "cast_type": 2
+  },
+  "targeting": {
+    "self": true,
+    "party": false,
+    "alliance": false,
+    "hostile": false,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": false
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 7,
+    "behavior_type": 0,
+    "class_job_category_id": 129,
+    "source_class_job_id": 36,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

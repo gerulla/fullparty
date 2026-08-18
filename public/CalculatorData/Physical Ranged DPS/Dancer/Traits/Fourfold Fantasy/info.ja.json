@@ -1,0 +1,26 @@
+{
+  "kind": "trait",
+  "id": 252,
+  "name": "幻扇",
+  "description": "自身に「幻扇」が付与される。\n最大スタック数：4\n発動条件：特定のアクションの命中時",
+  "description_macro": "自身に<colortype(500)><edgecolortype(501)>「幻扇」<edgecolortype(0)><colortype(0)>が付与される。<br><colortype(504)><edgecolortype(505)>最大スタック数：<edgecolortype(0)><colortype(0)>4<br><colortype(504)><edgecolortype(505)>発動条件：<edgecolortype(0)><colortype(0)>特定のアクションの命中時",
+  "effects": [
+    "自身に「幻扇」が付与される。",
+    "最大スタック数：4",
+    "発動条件：特定のアクションの命中時"
+  ],
+  "role": "Physical Ranged DPS",
+  "job": {
+    "id": 38,
+    "name": "踊り子",
+    "abbreviation": "DNC"
+  },
+  "unlock_level": 30,
+  "value": 0,
+  "icon": {
+    "id": 6352,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 150,
+  "source_class_job_id": 38
+}

@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 1954,
+  "name": "Bunshin",
+  "description": "Votre ombre attaque votre cible à chaque fois que vous utilisez une technique d'arme.",
+  "effects": [
+    "Votre ombre attaque votre cible à chaque fois que vous utilisez une technique d'arme."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 219681,
+    "file": "icon.png"
+  },
+  "max_stacks": 5,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 27,
+    "modifier": 0
+  },
+  "class_job_category_id": 92,
+  "source_abilities": [
+    {
+      "id": 16493,
+      "name": "Bunshin",
+      "description": "Vous octroie 5 degrés de Bunshin.\nDurée : 30s\nÀ chaque fois que vous utilisez une technique d'arme, votre ombre apparaît pour asséner un coup à votre cible et vous perdez un degré de Bunshin.\nLa puissance est fixe et varie selon le type de technique d'arme :\nAttaque de mêlée : 160\nAttaque à distance : 160\nAttaque de zone : 80\nLes attaques de votre ombre ne génèrent aucun bonus de combo, mais votre Jauge de Ninki augmente de 5 chaque fois qu'une de ses attaques touche.\nEffet additionnel : vous octroie Kamaitachi fantôme préparé.\nDurée : 45s\nCoût Jauge de Ninki : 50",
+      "description_macro": "Vous octroie 5 degrés de <colortype(500)><edgecolortype(501)>Bunshin<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 30s<br>À chaque fois que vous utilisez une technique d'arme, votre ombre apparaît pour asséner un coup à votre cible et vous perdez un degré de <colortype(500)><edgecolortype(501)>Bunshin<edgecolortype(0)><colortype(0)>.<br>La puissance est fixe et varie selon le type de technique d'arme<nbsp>:<br>Attaque de mêlée<nbsp>: 160<br>Attaque à distance<nbsp>: 160<br>Attaque de zone<nbsp>: 80<br>Les attaques de votre ombre ne génèrent aucun bonus de combo, mais votre <colortype(502)><edgecolortype(503)>Jauge de Ninki<edgecolortype(0)><colortype(0)> augmente de 5 chaque fois qu'une de ses attaques touche.<br><if([gnum68==30],<if([gnum72>=82],<colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> vous octroie <colortype(500)><edgecolortype(501)>Kamaitachi fantôme préparé<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 45s<br>,)>,)><colortype(506)><edgecolortype(507)>Coût Jauge de Ninki<nbsp>:<edgecolortype(0)><colortype(0)> 50",
+      "unlock_level": 80,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 30,
+          "name": "Ninja",
+          "abbreviation": "NIN",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

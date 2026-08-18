@@ -1,0 +1,71 @@
+{
+  "kind": "combat_status",
+  "id": 2725,
+  "name": "Sillage préparé",
+  "description": "Sillage peut être lancé.",
+  "effects": [
+    "Sillage peut être lancé."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 212697,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": true,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 28,
+  "source_abilities": [
+    {
+      "id": 25807,
+      "name": "Invocation Garuda",
+      "description": "Vous invoquez une Garuda-Egi et lui ordonnez d'exécuter Rafale aérienne.\n\nEffectue une attaque magique de vent sur la cible et les ennemis autour dans une zone de 5 yalms.\nPuissance : 600\nLa puissance est réduite de 50% au-delà du premier ennemi touché.\nEffet additionnel : vous octroie 4 degrés de Syntonie de vent.\nDurée : 30s\nSyntonie de vent : l'élément d'Éclat des gemmes et de Resplendissement des gemmes devient le vent.\nEffet additionnel : vous octroie Sillage préparé.\nCet effet disparaît si vous utilisez une autre action d'invocation.\nCondition : Arcane émeraude et Carbuncle invoqué.\nCarbuncle disparaît lors de l'invocation, mais revient automatiquement une fois qu'elle prend fin.",
+      "description_macro": "Vous invoquez une Garuda-Egi et lui ordonnez d'exécuter <colortype(500)><edgecolortype(501)><if([gnum68==27],<if([gnum72>=50],Rafale aérienne,Taillade aérienne)>,Taillade aérienne)><edgecolortype(0)><colortype(0)>.<br><br>Effectue une attaque magique de vent sur la cible et les ennemis autour dans une zone de 5 yalms.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> <if([gnum68==27],<if([gnum72>=50],600,100)>,100)><br><if([gnum68==27],<if([gnum72>=50],La puissance est réduite de 50% au-delà du premier ennemi touché.<br>,)>,)><colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> vous octroie 4 degrés de <colortype(500)><edgecolortype(501)>Syntonie de vent<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 30s<br><colortype(506)><edgecolortype(507)>Syntonie de vent<nbsp>:<edgecolortype(0)><colortype(0)> l'élément d'<colortype(500)><edgecolortype(501)>Éclat des gemmes<edgecolortype(0)><colortype(0)> et de <colortype(500)><edgecolortype(501)>Resplendissement des gemmes<edgecolortype(0)><colortype(0)> devient le vent.<br><if([gnum68==27],<if([gnum72>=86],<colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> vous octroie <colortype(500)><edgecolortype(501)>Sillage préparé<edgecolortype(0)><colortype(0)>.<br>Cet effet disparaît si vous utilisez une autre action d'invocation.<br>,)>,)><colortype(506)><edgecolortype(507)>Condition<nbsp>:<edgecolortype(0)><colortype(0)> <colortype(500)><edgecolortype(501)>Arcane émeraude<edgecolortype(0)><colortype(0)> et Carbuncle invoqué.<br>Carbuncle disparaît lors de l'invocation, mais revient au<->to<->ma<->ti<->que<->ment une fois qu'elle prend fin.",
+      "unlock_level": 45,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Magical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 27,
+          "name": "Invocateur",
+          "abbreviation": "INV",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 25840,
+      "name": "Invocation Garuda II",
+      "description": "Vous invoquez une Garuda émeraude et lui ordonnez d'exécuter Rafale aérienne.\n\nEffectue une attaque magique de vent sur la cible et les ennemis autour dans une zone de 5 yalms.\nPuissance : 800\nLa puissance est réduite de 50% au-delà du premier ennemi touché.\nEffet additionnel : vous octroie 4 degrés de Syntonie de vent.\nDurée : 30s\nSyntonie de vent : l'élément d'Éclat des gemmes et de Resplendissement des gemmes devient le vent.\nEffet additionnel : vous octroie Sillage préparé.\nCet effet disparaît si vous utilisez une autre action d'invocation.\nCondition : Arcane émeraude et Carbuncle invoqué.\nCarbuncle disparaît lors de l'invocation, mais revient automatiquement une fois qu'elle prend fin.",
+      "description_macro": "Vous invoquez une Garuda émeraude et lui ordonnez d'exécuter <colortype(500)><edgecolortype(501)>Rafale aérienne<edgecolortype(0)><colortype(0)>.<br><br>Effectue une attaque magique de vent sur la cible et les ennemis autour dans une zone de 5 yalms.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> <if([gnum68==27],<if([gnum72>=94],800,750)>,750)><br>La puissance est réduite de 50% au-delà du premier ennemi touché.<br><colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> vous octroie 4 degrés de <colortype(500)><edgecolortype(501)>Syntonie de vent<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 30s<br><colortype(506)><edgecolortype(507)>Syntonie de vent<nbsp>:<edgecolortype(0)><colortype(0)> l'élément d'<colortype(500)><edgecolortype(501)>Éclat des gemmes<edgecolortype(0)><colortype(0)> et de <colortype(500)><edgecolortype(501)>Resplendissement des gemmes<edgecolortype(0)><colortype(0)> devient le vent.<br><if([gnum68==27],<if([gnum72>=86],<colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> vous octroie <colortype(500)><edgecolortype(501)>Sillage préparé<edgecolortype(0)><colortype(0)>.<br>Cet effet disparaît si vous utilisez une autre action d'invocation.<br>,)>,)><colortype(506)><edgecolortype(507)>Condition<nbsp>:<edgecolortype(0)><colortype(0)> <colortype(500)><edgecolortype(501)>Arcane émeraude<edgecolortype(0)><colortype(0)> et Carbuncle invoqué.<br>Carbuncle disparaît lors de l'invocation, mais revient au<->to<->ma<->ti<->que<->ment une fois qu'elle prend fin.",
+      "unlock_level": 90,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Magical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 27,
+          "name": "Invocateur",
+          "abbreviation": "INV",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

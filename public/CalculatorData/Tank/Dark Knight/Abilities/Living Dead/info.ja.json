@@ -1,0 +1,92 @@
+{
+  "kind": "ability",
+  "id": 3638,
+  "name": "リビングデッド",
+  "description": "自身に「リビングデッド」を付与する。\u3000効果時間：10秒\n効果時間中に戦闘不能に至るダメージを受けた場合、戦闘不能にはならずにＨＰ1の状態となり「ウォーキングデッド」に変化する。\u3000効果時間：10秒\nウォーキングデッド効果：すべての攻撃に対してＨＰが1より減ることがない状態。\nさらに、自身のウェポンスキルおよび魔法による攻撃が命中すると自身のＨＰを回復する。\u3000回復力：1500\n効果時間中に受けた回復効果が自身の最大ＨＰの100％分に達すると、「デッドリバース」に変化する。\nデッドリバースの効果時間は、変化した時点でのウォーキングデッドの効果時間を引き継ぐ。\n十分な回復効果を受けられなかった場合はデッドリバースに変化せず、効果時間経過時に自身は戦闘不能になる。\nデッドリバース効果：すべての攻撃に対してＨＰが1より減ることがない状態。\nただし、いずれの効果も一部の攻撃には無効化される。",
+  "description_macro": "自身に<colortype(500)><edgecolortype(501)>「リビングデッド」<edgecolortype(0)><colortype(0)>を付与する。\u3000<colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>10秒<br>効果時間中に戦闘不能に至るダメージを受けた場合、戦闘不能にはならずにＨＰ1の状態となり<colortype(500)><edgecolortype(501)>「ウォーキングデッド」<edgecolortype(0)><colortype(0)>に変化する。\u3000<colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>10秒<br><colortype(504)><edgecolortype(505)>ウォーキングデッド効果：<edgecolortype(0)><colortype(0)>すべての攻撃に対してＨＰが1より減ることがない状態。<br>さらに、自身のウェポンスキルおよび魔法による攻撃が命中すると自身のＨＰを回復する。\u3000<colortype(504)><edgecolortype(505)>回復力：<edgecolortype(0)><colortype(0)>1500<br>効果時間中に受けた回復効果が自身の最大ＨＰの100％分に達すると、<colortype(500)><edgecolortype(501)>「デッドリバース」<edgecolortype(0)><colortype(0)>に変化する。<br>デッドリバースの効果時間は、変化した時点でのウォーキングデッドの効果時間を引き継ぐ。<br>十分な回復効果を受けられなかった場合はデッドリバースに変化せず、効果時間経過時に自身は戦闘不能になる。<br><colortype(504)><edgecolortype(505)>デッドリバース効果：<edgecolortype(0)><colortype(0)>すべての攻撃に対してＨＰが1より減ることがない状態。<br>ただし、いずれの効果も一部の攻撃には無効化される。",
+  "effects": [
+    "自身に「リビングデッド」を付与する。\u3000効果時間：10秒",
+    "効果時間中に戦闘不能に至るダメージを受けた場合、戦闘不能にはならずにＨＰ1の状態となり「ウォーキングデッド」に変化する。\u3000効果時間：10秒",
+    "ウォーキングデッド効果：すべての攻撃に対してＨＰが1より減ることがない状態。",
+    "さらに、自身のウェポンスキルおよび魔法による攻撃が命中すると自身のＨＰを回復する。\u3000回復力：1500",
+    "効果時間中に受けた回復効果が自身の最大ＨＰの100％分に達すると、「デッドリバース」に変化する。",
+    "デッドリバースの効果時間は、変化した時点でのウォーキングデッドの効果時間を引き継ぐ。",
+    "十分な回復効果を受けられなかった場合はデッドリバースに変化せず、効果時間経過時に自身は戦闘不能になる。",
+    "デッドリバース効果：すべての攻撃に対してＨＰが1より減ることがない状態。",
+    "ただし、いずれの効果も一部の攻撃には無効化される。"
+  ],
+  "role": "Tank",
+  "job": {
+    "id": 32,
+    "name": "暗黒騎士",
+    "abbreviation": "DRK"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 50,
+  "icon": {
+    "id": 3077,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 4,
+    "name": "アビリティ"
+  },
+  "attack_type": {
+    "id": 0,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 300,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 25,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 0,
+      "value": 0
+    },
+    "secondary": {
+      "type_id": 0,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": 0,
+    "effect_yalms": 0,
+    "cast_type": 1
+  },
+  "targeting": {
+    "self": true,
+    "party": false,
+    "alliance": false,
+    "hostile": false,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 0,
+    "behavior_type": 0,
+    "class_job_category_id": 98,
+    "source_class_job_id": 32,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

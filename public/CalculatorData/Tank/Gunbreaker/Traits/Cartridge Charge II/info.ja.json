@@ -1,0 +1,25 @@
+{
+  "kind": "trait",
+  "id": 427,
+  "name": "ソイルチャージ効果アップ",
+  "description": "「ソイル」の最大スタック数が3に増加し、ブラッドソイルの効果中は最大スタック数が6に増加する。\nさらに、ブラッドソイルの実行時に付与されるソイルが3に増加する。",
+  "description_macro": "<colortype(500)><edgecolortype(501)>「ソイル」<edgecolortype(0)><colortype(0)>の最大スタック数が3に増加し、ブラッドソイルの効果中は最大スタック数が6に増加する。<br>さらに、ブラッドソイルの実行時に付与されるソイルが3に増加する。",
+  "effects": [
+    "「ソイル」の最大スタック数が3に増加し、ブラッドソイルの効果中は最大スタック数が6に増加する。",
+    "さらに、ブラッドソイルの実行時に付与されるソイルが3に増加する。"
+  ],
+  "role": "Tank",
+  "job": {
+    "id": 37,
+    "name": "ガンブレイカー",
+    "abbreviation": "GNB"
+  },
+  "unlock_level": 88,
+  "value": 0,
+  "icon": {
+    "id": 6307,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 149,
+  "source_class_job_id": 37
+}

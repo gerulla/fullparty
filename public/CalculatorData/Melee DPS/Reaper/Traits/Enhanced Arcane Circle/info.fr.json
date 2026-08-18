@@ -1,0 +1,30 @@
+{
+  "kind": "trait",
+  "id": 387,
+  "name": "Cercle arcanique amélioré",
+  "description": "Permet à votre Cercle arcanique d'octroyer Cercle sacrificiel à vous et à vos équipiers alentour.\nDurée : 5s\nCercle sacrificiel : les personnes bénéficiant de l'effet octroient Offrande à la Mort au faucheur qui a posé le cercle quand ils utilisent une technique d'arme ou un sort avec succès. Cumulable jusqu'au 8e degré.\nDurée : 30s\nEffet additionnel : vous octroie Guide du rite sacrificiel.\nDurée : 6s\nGuide du rite sacrificiel : les personnes affectées par votre Cercle sacrificiel peuvent vous octroyer des degrés d'Offrande à la Mort.",
+  "description_macro": "Permet à votre <colortype(500)><edgecolortype(501)>Cercle arcanique<edgecolortype(0)><colortype(0)> d'octroyer <colortype(500)><edgecolortype(501)>Cercle sacrificiel<edgecolortype(0)><colortype(0)> à vous et à vos équipiers alentour.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 5s<br><colortype(506)><edgecolortype(507)>Cercle sacrificiel<nbsp>:<edgecolortype(0)><colortype(0)> les personnes bénéficiant de l'effet octroient <colortype(500)><edgecolortype(501)>Offrande à la Mort<edgecolortype(0)><colortype(0)> au faucheur qui a posé le cercle quand ils utilisent une technique d'arme ou un sort avec succès. Cumulable jusqu'au 8e degré.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 30s<br><colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> vous octroie <colortype(500)><edgecolortype(501)>Guide du rite sacrificiel<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 6s<br><colortype(506)><edgecolortype(507)>Guide du rite sacrificiel<nbsp>:<edgecolortype(0)><colortype(0)> les personnes affectées par votre Cercle sacrificiel peuvent vous octroyer des degrés d'Offrande à la Mort.",
+  "effects": [
+    "Permet à votre Cercle arcanique d'octroyer Cercle sacrificiel à vous et à vos équipiers alentour.",
+    "Durée : 5s",
+    "Cercle sacrificiel : les personnes bénéficiant de l'effet octroient Offrande à la Mort au faucheur qui a posé le cercle quand ils utilisent une technique d'arme ou un sort avec succès. Cumulable jusqu'au 8e degré.",
+    "Durée : 30s",
+    "Effet additionnel : vous octroie Guide du rite sacrificiel.",
+    "Durée : 6s",
+    "Guide du rite sacrificiel : les personnes affectées par votre Cercle sacrificiel peuvent vous octroyer des degrés d'Offrande à la Mort."
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 39,
+    "name": "Faucheur",
+    "abbreviation": "FCH"
+  },
+  "unlock_level": 88,
+  "value": 0,
+  "icon": {
+    "id": 6409,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 180,
+  "source_class_job_id": 39
+}

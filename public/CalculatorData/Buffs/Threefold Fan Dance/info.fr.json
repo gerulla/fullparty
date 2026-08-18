@@ -1,0 +1,71 @@
+{
+  "kind": "combat_status",
+  "id": 1820,
+  "name": "Danse de l'éventail III préparée",
+  "description": "Danse de l'éventail III peut être lancée.",
+  "effects": [
+    "Danse de l'éventail III peut être lancée."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 213707,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 150,
+  "source_abilities": [
+    {
+      "id": 16007,
+      "name": "Danse de l'éventail I",
+      "description": "Effectue une attaque physique sur la cible.\nPuissance : 180\nEffet additionnel : 50% de chances que Danse de l'éventail III préparée vous soit octroyée.\nDurée : 30s\nCondition : consomme une Plume onirique.",
+      "description_macro": "Effectue une attaque physique sur la cible.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> <if([gnum68==38],<if([gnum72>=94],180,150)>,150)><br><if([gnum68==38],<if([gnum72>=66],<colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> 50% de chances que <colortype(500)><edgecolortype(501)>Danse de l'éventail III préparée<edgecolortype(0)><colortype(0)> vous soit octroyée.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 30s<br>,)>,)><colortype(506)><edgecolortype(507)>Condition<nbsp>:<edgecolortype(0)><colortype(0)> consomme une <colortype(500)><edgecolortype(501)>Plume onirique<edgecolortype(0)><colortype(0)>.",
+      "unlock_level": 30,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Physical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 38,
+          "name": "Danseur",
+          "abbreviation": "DNS",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 16008,
+      "name": "Danse de l'éventail II",
+      "description": "Effectue une attaque physique sur les ennemis alentour.\nPuissance : 100\nEffet additionnel : 50% de chances que Danse de l'éventail III préparée vous soit octroyée.\nDurée : 30s\nCondition : consomme une Plume onirique.",
+      "description_macro": "Effectue une attaque physique sur les ennemis alentour.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> 100<br><if([gnum68==38],<if([gnum72>=66],<colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> 50% de chances que <colortype(500)><edgecolortype(501)>Danse de l'éventail III préparée<edgecolortype(0)><colortype(0)> vous soit octroyée.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 30s<br>,)>,)><colortype(506)><edgecolortype(507)>Condition<nbsp>:<edgecolortype(0)><colortype(0)> consomme une <colortype(500)><edgecolortype(501)>Plume onirique<edgecolortype(0)><colortype(0)>.",
+      "unlock_level": 50,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Physical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 38,
+          "name": "Danseur",
+          "abbreviation": "DNS",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

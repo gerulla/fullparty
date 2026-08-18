@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 430,
+  "name": "Maîtrise de Frappe du Destructeur",
+  "description": "Remplace Frappe du Destructeur par Ombre du Destructeur.",
+  "description_macro": "Remplace <colortype(500)><edgecolortype(501)>Frappe du Destructeur<edgecolortype(0)><colortype(0)> par <colortype(500)><edgecolortype(501)>Ombre du Destructeur<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Remplace Frappe du Destructeur par Ombre du Destructeur."
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 20,
+    "name": "Moine",
+    "abbreviation": "MOI"
+  },
+  "unlock_level": 82,
+  "value": 0,
+  "icon": {
+    "id": 5243,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 21,
+  "source_class_job_id": 20
+}

@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 3850,
+  "name": "Higi",
+  "description": "Fortgeschrittene Ninja-Techniken können ausgeführt werden.",
+  "effects": [
+    "Fortgeschrittene Ninja-Techniken können ausgeführt werden."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 212921,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 92,
+  "source_abilities": [
+    {
+      "id": 36957,
+      "name": "Dokumori",
+      "description": "Du führst eine physische Attacke auf die fächerförmig vor dir stehenden Gegner aus.\nAttacke-Wert: 400\nZusatzeffekt: Erhöht den erlittenen Schaden des Ziels um 5 %.\nDauer: 20 Sekunden\nZusatzeffekt: Chance auf zusätzliche Beute beim Sieg über den Gegner durch dieses Kommando.\nZusatzeffekt: Ninki-Balken füllt sich um 40.\nZusatzeffekt: Gewährt dir Higi.\nDauer: 30 Sekunden",
+      "description_macro": "Du führst eine physische Attacke auf die fächerförmig vor dir stehenden Gegner aus.<br>Attacke-Wert: 400<br>Zusatzeffekt: Erhöht den erlittenen Schaden des Ziels um 5<nbsp>%.<br>Dauer: 20 Sekunden<br>Zusatzeffekt: Chance auf zusätzliche Beute beim Sieg über den Gegner durch dieses Kommando.<br>Zusatzeffekt: Ninki-Balken füllt sich um 40.<if([gnum68==30],<if([gnum72>=96],<br>Zusatzeffekt: Gewährt dir <colortype(506)><edgecolortype(507)>Higi<edgecolortype(0)><colortype(0)>.<br>Dauer: 30 Sekunden,)>,)>",
+      "unlock_level": 66,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 30,
+          "name": "Ninja",
+          "abbreviation": "NIN",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

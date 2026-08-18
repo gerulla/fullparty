@@ -1,0 +1,27 @@
+{
+  "kind": "trait",
+  "id": 163,
+  "name": "Vie du dragon",
+  "description": "Remplace l'effet Sang du dragon par Vie du dragon après avoir utilisé Geirskögul avec succès.\nVie du dragon : augmente de 15% vos dégâts infligés.\nEn outre, vous octroie Naströnd préparé.\nDurée : 20s",
+  "description_macro": "Remplace l'effet <colortype(500)><edgecolortype(501)>Sang du dragon<edgecolortype(0)><colortype(0)> par <colortype(500)><edgecolortype(501)>Vie du dragon<edgecolortype(0)><colortype(0)> après avoir utilisé <colortype(500)><edgecolortype(501)>Geirskögul<edgecolortype(0)><colortype(0)> avec succès.<br><colortype(506)><edgecolortype(507)>Vie du dragon<nbsp>:<edgecolortype(0)><colortype(0)> augmente de 15% vos dégâts infligés.<br>En outre, vous octroie <colortype(500)><edgecolortype(501)>Naströnd préparé<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 20s",
+  "effects": [
+    "Remplace l'effet Sang du dragon par Vie du dragon après avoir utilisé Geirskögul avec succès.",
+    "Vie du dragon : augmente de 15% vos dégâts infligés.",
+    "En outre, vous octroie Naströnd préparé.",
+    "Durée : 20s"
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 22,
+    "name": "Chevalier Dragon",
+    "abbreviation": "DRG"
+  },
+  "unlock_level": 70,
+  "value": 0,
+  "icon": {
+    "id": 5289,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 23,
+  "source_class_job_id": 22
+}

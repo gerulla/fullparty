@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 172,
+  "name": "Thunder Mastery II",
+  "description": "Upgrades Thunder II to Thunder IV.",
+  "description_macro": "Upgrades <colortype(500)><edgecolortype(501)>Thunder II<edgecolortype(0)><colortype(0)> to <colortype(500)><edgecolortype(501)>Thunder IV<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Upgrades Thunder II to Thunder IV."
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 25,
+    "name": "Black Mage",
+    "abbreviation": "BLM"
+  },
+  "unlock_level": 64,
+  "value": 0,
+  "icon": {
+    "id": 5358,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 26,
+  "source_class_job_id": 25
+}

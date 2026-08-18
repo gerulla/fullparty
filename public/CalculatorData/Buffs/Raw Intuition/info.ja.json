@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 735,
+  "name": "原初の直感",
+  "description": "自身のウェポンスキルによる攻撃が命中するとＨＰを回復し、かつ受けるダメージの一部が軽減される状態。",
+  "effects": [
+    "自身のウェポンスキルによる攻撃が命中するとＨＰを回復し、かつ受けるダメージの一部が軽減される状態。"
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 212555,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 30,
+  "parameter": {
+    "effect": 0,
+    "modifier": -20
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 3551,
+      "name": "原初の直感",
+      "description": "一定時間、自身の被ダメージを10％軽減させる。\n効果時間：6秒\n追加効果：自身のウェポンスキルによる攻撃が命中すると自身のＨＰを回復する。\u3000回復力：400\nリキャストタイマーを「原初の猛り」と共有する。",
+      "description_macro": "一定時間、自身の被ダメージを10％軽減させる。<br><colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>6秒<br><colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)>自身のウェポンスキルによる攻撃が命中すると自身のＨＰを回復する。\u3000<colortype(504)><edgecolortype(505)>回復力：<edgecolortype(0)><colortype(0)>400<if([gnum68==21],<if([gnum72>=76],<br>リキャストタイマーを<colortype(500)><edgecolortype(501)>「原初の猛り」<edgecolortype(0)><colortype(0)>と共有する。,)>,)>",
+      "unlock_level": 56,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Tank"
+      ],
+      "jobs": [
+        {
+          "id": 21,
+          "name": "戦士",
+          "abbreviation": "WAR",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

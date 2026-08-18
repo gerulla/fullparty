@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 157,
+  "name": "Geistesgegenwart",
+  "description": "Die Intervalle zwischen Auto-Attacken und die Aktivierungs- und Reaktivierungszeiten von Zaubern sind verkürzt.",
+  "effects": [
+    "Die Intervalle zwischen Auto-Attacken und die Aktivierungs- und Reaktivierungszeiten von Zaubern sind verkürzt."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 212627,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": -15
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 136,
+      "name": "Geistesgegenwart",
+      "description": "Du verringerst die Intervalle zwischen Auto-Attacken und (Re-)Aktivierungszeiten von Magie um 20 %.\nDauer: 15 Sekunden\nZusatzeffekt: Gewährt dir 3 Stapel Maximaler Fokus.\nDauer: 30 Sekunden",
+      "description_macro": "Du verringerst die Intervalle zwischen Auto-Attacken und (Re-)Ak<->ti<->vie<->rungs<->zei<->ten von Magie um 20<nbsp>%.<br>Dauer: 15 Sekunden<if([gnum68==24],<if([gnum72>=92],<br>Zusatzeffekt: Gewährt dir 3 Stapel <colortype(506)><edgecolortype(507)>Maximaler Fokus<edgecolortype(0)><colortype(0)>.<br>Dauer: 30 Sekunden,)>,)>",
+      "unlock_level": 30,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Healer"
+      ],
+      "jobs": [
+        {
+          "id": 24,
+          "name": "Weißmagier",
+          "abbreviation": "WMA",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

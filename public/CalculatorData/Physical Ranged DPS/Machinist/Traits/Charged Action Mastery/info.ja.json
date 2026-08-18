@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 292,
+  "name": "チャージアクション効果アップ",
+  "description": "ガウスラウンドとリコシェットの最大チャージ数が3に増加する。",
+  "description_macro": "ガウスラウンドとリコシェットの最大チャージ数が3に増加する。",
+  "effects": [
+    "ガウスラウンドとリコシェットの最大チャージ数が3に増加する。"
+  ],
+  "role": "Physical Ranged DPS",
+  "job": {
+    "id": 31,
+    "name": "機工士",
+    "abbreviation": "MCH"
+  },
+  "unlock_level": 74,
+  "value": 3,
+  "icon": {
+    "id": 6013,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 96,
+  "source_class_job_id": 31
+}

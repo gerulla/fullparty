@@ -1,0 +1,86 @@
+{
+  "kind": "ability",
+  "id": 78,
+  "name": "ボーパルスラスト",
+  "description": "対象に物理攻撃。\u3000威力：130\nコンボ条件：トゥルースラストおよび竜眼雷電\nコンボ時威力：280",
+  "description_macro": "対象に物理攻撃。\u3000<colortype(504)><edgecolortype(505)>威力：<edgecolortype(0)><colortype(0)><if([gnum68==22],<if([gnum72>=76],130,100)>,100)><br><colortype(504)><edgecolortype(505)>コンボ条件：<edgecolortype(0)><colortype(0)><if([gnum68==22],<if([gnum72>=76],トゥルースラストおよび竜眼雷電<br>,トゥルースラスト\u3000)>,トゥルースラスト\u3000)><colortype(504)><edgecolortype(505)>コンボ時威力：<edgecolortype(0)><colortype(0)><edgecolortype(0)><colortype(0)><if([gnum68==22],<if([gnum72>=76],280,250)>,250)>",
+  "effects": [
+    "対象に物理攻撃。\u3000威力：130",
+    "コンボ条件：トゥルースラストおよび竜眼雷電",
+    "コンボ時威力：280"
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 22,
+    "name": "竜騎士",
+    "abbreviation": "DRG"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 4,
+  "icon": {
+    "id": 312,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 3,
+    "name": "ウェポンスキル"
+  },
+  "attack_type": {
+    "id": 4294967295,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 2.5,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 58,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 0,
+      "value": 0
+    },
+    "secondary": {
+      "type_id": 63,
+      "value": 582
+    }
+  },
+  "range": {
+    "target_yalms": -1,
+    "effect_yalms": 0,
+    "cast_type": 1
+  },
+  "targeting": {
+    "self": false,
+    "party": false,
+    "alliance": false,
+    "hostile": true,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": 75,
+    "preserves_combo": false
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 7,
+    "behavior_type": 0,
+    "class_job_category_id": 47,
+    "source_class_job_id": 4,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

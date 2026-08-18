@@ -1,0 +1,26 @@
+{
+  "kind": "trait",
+  "id": 622,
+  "name": "Manafication améliorée",
+  "description": "Permet de recevoir Syncristallisation préparée.\nDurée : 30s\nRemplace Manafication par Syncristallisation pendant la durée de l'effet.",
+  "description_macro": "Permet de recevoir <colortype(500)><edgecolortype(501)>Syncristallisation préparée<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 30s<br>Remplace <colortype(500)><edgecolortype(501)>Manafication<edgecolortype(0)><colortype(0)> par <colortype(500)><edgecolortype(501)>Syncristallisation<edgecolortype(0)><colortype(0)> pendant la durée de l'effet.",
+  "effects": [
+    "Permet de recevoir Syncristallisation préparée.",
+    "Durée : 30s",
+    "Remplace Manafication par Syncristallisation pendant la durée de l'effet."
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 35,
+    "name": "Mage Rouge",
+    "abbreviation": "MRG"
+  },
+  "unlock_level": 100,
+  "value": 0,
+  "icon": {
+    "id": 6216,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 112,
+  "source_class_job_id": 35
+}

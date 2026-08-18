@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 447,
+  "name": "Enhanced Troubadour",
+  "description": "Reduces Troubadour recast time to 90 seconds.",
+  "description_macro": "Reduces <colortype(500)><edgecolortype(501)>Troubadour<edgecolortype(0)><colortype(0)> recast time to 90 seconds.",
+  "effects": [
+    "Reduces Troubadour recast time to 90 seconds."
+  ],
+  "role": "Physical Ranged DPS",
+  "job": {
+    "id": 23,
+    "name": "Bard",
+    "abbreviation": "BRD"
+  },
+  "unlock_level": 88,
+  "value": -300,
+  "icon": {
+    "id": 5319,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 24,
+  "source_class_job_id": 23
+}

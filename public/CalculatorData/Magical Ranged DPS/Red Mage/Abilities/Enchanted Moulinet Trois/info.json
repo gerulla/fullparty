@@ -1,0 +1,90 @@
+{
+  "kind": "ability",
+  "id": 37003,
+  "name": "Enchanted Moulinet Trois",
+  "description": "Deals unaspected damage with a potency of 150 to all enemies in a cone before you.\nCombo Action: Enchanted Moulinet Deux\nAdditional Effect: Grants a Mana Stack\nBalance Gauge Cost: 15 Black Mana\nBalance Gauge Cost: 15 White Mana\n\n※This action cannot be assigned to a hotbar.\n※Enchanted Moulinet Deux changes to Enchanted Moulinet Trois when requirements for execution are met.",
+  "description_macro": "Deals unaspected damage with a potency of 150 to all enemies in a cone before you.<br><colortype(504)><edgecolortype(505)>Combo Action: <edgecolortype(0)><colortype(0)><colortype(500)><edgecolortype(501)>Enchanted Moulinet Deux<edgecolortype(0)><colortype(0)><br><if([gnum68==35],<if([gnum72>=68],<colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>Grants a <colortype(506)><edgecolortype(507)>Mana Stack<edgecolortype(0)><colortype(0)><br>,)>,)><colortype(504)><edgecolortype(505)>Balance Gauge Cost: <edgecolortype(0)><colortype(0)>15 <colortype(506)><edgecolortype(507)>Black Mana<edgecolortype(0)><colortype(0)><br><colortype(504)><edgecolortype(505)>Balance Gauge Cost: <edgecolortype(0)><colortype(0)>15 <colortype(506)><edgecolortype(507)>White Mana<edgecolortype(0)><colortype(0)><br><br>※This action cannot be assigned to a hotbar.<br>※<colortype(500)><edgecolortype(501)>Enchanted Moulinet Deux<edgecolortype(0)><colortype(0)> changes to <colortype(500)><edgecolortype(501)>Enchanted Moulinet Trois<edgecolortype(0)><colortype(0)> when requirements for execution are met.",
+  "effects": [
+    "Deals unaspected damage with a potency of 150 to all enemies in a cone before you.",
+    "Combo Action: Enchanted Moulinet Deux",
+    "Additional Effect: Grants a Mana Stack",
+    "Balance Gauge Cost: 15 Black Mana",
+    "Balance Gauge Cost: 15 White Mana",
+    "※This action cannot be assigned to a hotbar.",
+    "※Enchanted Moulinet Deux changes to Enchanted Moulinet Trois when requirements for execution are met."
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 35,
+    "name": "Red Mage",
+    "abbreviation": "RDM"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 52,
+  "icon": {
+    "id": 3240,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 3,
+    "name": "Weaponskill"
+  },
+  "attack_type": {
+    "id": 5,
+    "name": "魔法"
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 1.5,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 58,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 43,
+      "value": 15
+    },
+    "secondary": {
+      "type_id": 58,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": 8,
+    "effect_yalms": 8,
+    "cast_type": 3
+  },
+  "targeting": {
+    "self": false,
+    "party": false,
+    "alliance": false,
+    "hostile": true,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": 37002,
+    "preserves_combo": false
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 7,
+    "behavior_type": 0,
+    "class_job_category_id": 112,
+    "source_class_job_id": 0,
+    "is_role_action": false,
+    "is_player_action": false,
+    "is_derived_action": true,
+    "equivalence_group": 0
+  }
+}

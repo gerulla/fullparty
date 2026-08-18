@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 3684,
+  "name": "Smudge",
+  "description": "Movement speed is increased.",
+  "effects": [
+    "Movement speed is increased."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 213807,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 18,
+    "modifier": 0
+  },
+  "class_job_category_id": 197,
+  "source_abilities": [
+    {
+      "id": 34684,
+      "name": "Smudge",
+      "description": "Quickly dash 15 yalms forward.\nAdditional Effect: Increases movement speed\nDuration: 5s\nCannot be executed while bound.",
+      "description_macro": "Quickly dash 15 yalms forward.<br><if([gnum68==42],<if([gnum72>=84],<colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>Increases movement speed<br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>5s<br>,)>,)>Cannot be executed while bound.",
+      "unlock_level": 20,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Magical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 42,
+          "name": "Pictomancer",
+          "abbreviation": "PCT",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

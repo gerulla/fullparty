@@ -1,0 +1,90 @@
+{
+  "kind": "ability",
+  "id": 24401,
+  "name": "ヘルズイングレス",
+  "description": "自身の15m前方に向かって素早く移動する。\n追加効果：自身に「ハルパー効果アップ」を付与する。\nハルパー効果アップ効果：次に実行するハルパーを詠唱時間無しで詠唱できる。\nさらに、実行時にヘルズイングレスのリキャストタイムを5秒短縮する。\u3000効果時間：10秒\n追加効果：移動する直前の地点に「ヘルズゲート」を生成し、自身に「リターン実行可」を付与する。\u3000効果時間：10秒\nバインド中は実行不可。\nリキャストタイマーを「ヘルズイーグレス」と共有する。",
+  "description_macro": "自身の15m前方に向かって素早く移動する。<br><colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)>自身に<colortype(500)><edgecolortype(501)>「ハルパー効果アップ」<edgecolortype(0)><colortype(0)>を付与する。<br><colortype(504)><edgecolortype(505)>ハルパー効果アップ効果：<edgecolortype(0)><colortype(0)>次に実行するハルパーを詠唱時間無しで詠唱できる。<br>さらに、実行時にヘルズイングレスのリキャストタイムを5秒短縮する。\u3000<colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>10秒<br><if([gnum68==39],<if([gnum72>=74],<colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)>移動する直前の地点に<colortype(500)><edgecolortype(501)>「ヘルズゲート」<edgecolortype(0)><colortype(0)>を生成し、自身に<colortype(500)><edgecolortype(501)>「リターン実行可」<edgecolortype(0)><colortype(0)>を付与する。\u3000<colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>10秒<br>,)>,)>バインド中は実行不可。<br>リキャストタイマーを<colortype(500)><edgecolortype(501)>「ヘルズイーグレス」<edgecolortype(0)><colortype(0)>と共有する。",
+  "effects": [
+    "自身の15m前方に向かって素早く移動する。",
+    "追加効果：自身に「ハルパー効果アップ」を付与する。",
+    "ハルパー効果アップ効果：次に実行するハルパーを詠唱時間無しで詠唱できる。",
+    "さらに、実行時にヘルズイングレスのリキャストタイムを5秒短縮する。\u3000効果時間：10秒",
+    "追加効果：移動する直前の地点に「ヘルズゲート」を生成し、自身に「リターン実行可」を付与する。\u3000効果時間：10秒",
+    "バインド中は実行不可。",
+    "リキャストタイマーを「ヘルズイーグレス」と共有する。"
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 39,
+    "name": "リーパー",
+    "abbreviation": "RPR"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 20,
+  "icon": {
+    "id": 3629,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 4,
+    "name": "アビリティ"
+  },
+  "attack_type": {
+    "id": 0,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 20,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 5,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 0,
+      "value": 0
+    },
+    "secondary": {
+      "type_id": 0,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": 0,
+    "effect_yalms": 0,
+    "cast_type": 1
+  },
+  "targeting": {
+    "self": true,
+    "party": false,
+    "alliance": false,
+    "hostile": false,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 0,
+    "behavior_type": 50,
+    "class_job_category_id": 180,
+    "source_class_job_id": 39,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

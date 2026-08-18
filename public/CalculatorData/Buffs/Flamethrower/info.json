@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 1205,
+  "name": "Flamethrower",
+  "description": "Emitting a gout of searing flames in a cone before you, dealing damage over time.",
+  "effects": [
+    "Emitting a gout of searing flames in a cone before you, dealing damage over time."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 213017,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": true,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 7418,
+      "name": "Flamethrower",
+      "description": "Delivers damage over time to all enemies in a cone before you.\nPotency: 120\nDuration: 10s\nEffect ends upon using another action or moving (including facing a different direction).\nCancels auto-attack upon execution.\nTriggers the cooldown of weaponskills upon execution. Cannot be executed during the cooldown of weaponskills.",
+      "description_macro": "Delivers damage over time to all enemies in a cone before you.<br><colortype(504)><edgecolortype(505)>Potency: <edgecolortype(0)><colortype(0)>120<br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>10s<br>Effect ends upon using another action or moving (including facing a different direction).<br>Cancels auto-attack upon execution.<br>Triggers the cooldown of weaponskills upon execution. Cannot be executed during the cooldown of weaponskills.",
+      "unlock_level": 70,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Physical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 31,
+          "name": "Machinist",
+          "abbreviation": "MCH",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 1823,
+  "name": "Tanzpartner",
+  "description": "Teilt die Effekte bestimmter Kommandos mit dem ausgewählten Gruppenmitglied.",
+  "effects": [
+    "Teilt die Effekte bestimmter Kommandos mit dem ausgewählten Gruppenmitglied."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 213712,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": true,
+  "is_permanent": true,
+  "inflicted_by_actor": true,
+  "party_list_priority": 100,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 150,
+  "source_abilities": [
+    {
+      "id": 16006,
+      "name": "Tanzpartner",
+      "description": "Gewährt dir den Status Tanzpartner und dem von dir bestimmten Gruppenmitglied den Status Auserwählter Tanzpartner. Damit können die Status Einfaches Finale\\ und der Effekt von Heilender Walzer sowie Todestangomit diesem geteilt werden.\nEffekt endet bei erneuter Ausführung.",
+      "description_macro": "Gewährt dir den Status <colortype(506)><edgecolortype(507)>Tanzpartner<edgecolortype(0)><colortype(0)> und dem von dir bestimmten Grup<->pen<->mit<->glied den Status <colortype(506)><edgecolortype(507)>Auserwählter Tanzpartner<edgecolortype(0)><colortype(0)>. Damit können die Status <colortype(506)><edgecolortype(507)>Einfaches Finale<edgecolortype(0)><colortype(0)><if([gnum68==38],<if([gnum72>=96],\\, <colortype(506)><edgecolortype(507)>Todestango<edgecolortype(0)><colortype(0)> und <colortype(506)><edgecolortype(507)>Finalhaltung<edgecolortype(0)><colortype(0)>, und <colortype(506)><edgecolortype(507)>Todestango<edgecolortype(0)><colortype(0)>)>, und <colortype(506)><edgecolortype(507)>Todestango<edgecolortype(0)><colortype(0)>)> und der Effekt von <colortype(502)><edgecolortype(503)>Heilender Walzer<edgecolortype(0)><colortype(0)> <if([gnum68==38],<if([gnum72>=62],sowie <colortype(502)><edgecolortype(503)>Todestango<edgecolortype(0)><colortype(0)> ,)>,)>mit diesem geteilt werden.<br>Effekt endet bei erneuter Ausführung.",
+      "unlock_level": 60,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Physical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 38,
+          "name": "Tänzer",
+          "abbreviation": "TÄN",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

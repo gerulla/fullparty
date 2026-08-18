@@ -1,0 +1,25 @@
+{
+  "kind": "trait",
+  "id": 502,
+  "name": "サモン・バハムート効果アップ",
+  "description": "サモン・バハムートがサモン・フェニックスに変化する。\n発動条件：デミ・バハムートの帰還後",
+  "description_macro": "サモン・バハムートがサモン・フェニックスに変化する。<br><colortype(504)><edgecolortype(505)>発動条件：<edgecolortype(0)><colortype(0)>デミ・バハムートの帰還後",
+  "effects": [
+    "サモン・バハムートがサモン・フェニックスに変化する。",
+    "発動条件：デミ・バハムートの帰還後"
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 27,
+    "name": "召喚士",
+    "abbreviation": "SMN"
+  },
+  "unlock_level": 80,
+  "value": 0,
+  "icon": {
+    "id": 5696,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 28,
+  "source_class_job_id": 27
+}

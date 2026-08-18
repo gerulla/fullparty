@@ -1,0 +1,27 @@
+{
+  "kind": "trait",
+  "id": 517,
+  "name": "Actions améliorées",
+  "description": "Augmente la puissance de certaines actions.\n\nPuissance de Tir scindé chauffé : 200\nPuissance de Tir de balle chauffé : 120\nPuissance de Tir net chauffé : 120",
+  "description_macro": "Augmente la puissance de certaines actions.<br><br><colortype(506)><edgecolortype(507)>Puissance de Tir scindé chauffé<nbsp>:<edgecolortype(0)><colortype(0)> 200<br><colortype(506)><edgecolortype(507)>Puissance de Tir de balle chauffé<nbsp>:<edgecolortype(0)><colortype(0)> 120<br><colortype(506)><edgecolortype(507)>Puissance de Tir net chauffé<nbsp>:<edgecolortype(0)><colortype(0)> 120",
+  "effects": [
+    "Augmente la puissance de certaines actions.",
+    "Puissance de Tir scindé chauffé : 200",
+    "Puissance de Tir de balle chauffé : 120",
+    "Puissance de Tir net chauffé : 120"
+  ],
+  "role": "Physical Ranged DPS",
+  "job": {
+    "id": 31,
+    "name": "Machiniste",
+    "abbreviation": "MCH"
+  },
+  "unlock_level": 84,
+  "value": 0,
+  "icon": {
+    "id": 6801,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 96,
+  "source_class_job_id": 31
+}

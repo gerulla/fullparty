@@ -1,0 +1,25 @@
+{
+  "kind": "trait",
+  "id": 379,
+  "name": "ソウルゲージ",
+  "description": "「ソウルゲージ」が上昇するようになる。\n発動条件：特定のウェポンスキルおよび魔法の命中時と、自身が付与した「デスデザイン」の効果時間中に対象が倒されたとき。",
+  "description_macro": "<colortype(500)><edgecolortype(501)>「ソウルゲージ」<edgecolortype(0)><colortype(0)>が上昇するようになる。<br><colortype(504)><edgecolortype(505)>発動条件：<edgecolortype(0)><colortype(0)>特定のウェポンスキルおよび魔法の命中時と、自身が付与した<colortype(500)><edgecolortype(501)>「デスデザイン」<edgecolortype(0)><colortype(0)>の効果時間中に対象が倒されたとき。",
+  "effects": [
+    "「ソウルゲージ」が上昇するようになる。",
+    "発動条件：特定のウェポンスキルおよび魔法の命中時と、自身が付与した「デスデザイン」の効果時間中に対象が倒されたとき。"
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 39,
+    "name": "リーパー",
+    "abbreviation": "RPR"
+  },
+  "unlock_level": 50,
+  "value": 0,
+  "icon": {
+    "id": 6401,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 180,
+  "source_class_job_id": 39
+}

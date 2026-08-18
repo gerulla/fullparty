@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 430,
+  "name": "Meister des Zerstörers",
+  "description": "Verbessert Arm des Zerstörers zu Schatten des Zerstörers.",
+  "description_macro": "Verbessert <colortype(502)><edgecolortype(503)>Arm des Zerstörers<edgecolortype(0)><colortype(0)> zu <colortype(502)><edgecolortype(503)>Schatten des Zerstörers<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Verbessert Arm des Zerstörers zu Schatten des Zerstörers."
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 20,
+    "name": "Mönch",
+    "abbreviation": "MÖN"
+  },
+  "unlock_level": 82,
+  "value": 0,
+  "icon": {
+    "id": 5243,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 21,
+  "source_class_job_id": 20
+}

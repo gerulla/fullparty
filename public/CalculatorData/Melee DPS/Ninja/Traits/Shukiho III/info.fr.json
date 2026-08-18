@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 439,
+  "name": "Shûkihô III",
+  "description": "Permet à votre Jauge de Ninki de se remplir de 15 lorsque vous réussissez un combo avec Lame éolienne et Perce-armure.",
+  "description_macro": "Permet à votre <colortype(502)><edgecolortype(503)>Jauge de Ninki<edgecolortype(0)><colortype(0)> de se remplir de 15 lorsque vous réussissez un combo avec <colortype(500)><edgecolortype(501)>Lame éolienne<edgecolortype(0)><colortype(0)> et <colortype(500)><edgecolortype(501)>Perce-armure<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Permet à votre Jauge de Ninki de se remplir de 15 lorsque vous réussissez un combo avec Lame éolienne et Perce-armure."
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 30,
+    "name": "Ninja",
+    "abbreviation": "NIN"
+  },
+  "unlock_level": 84,
+  "value": 0,
+  "icon": {
+    "id": 5417,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 92,
+  "source_class_job_id": 30
+}

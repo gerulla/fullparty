@@ -1,0 +1,99 @@
+{
+  "kind": "ability",
+  "id": 36950,
+  "name": "Réaction du feu",
+  "description": "Effectue une attaque physique sur la cible et les ennemis autour.\nPuissance : 1400\nLa puissance est réduite de 35% au-delà du premier ennemi touché.\nEffet additionnel : vous octroie Poing informe.\nDurée : 30s\nPoing informe : vous permet d'utiliser les techniques d'arme requérant une posture particulière sans être dans cette posture. Les effets additionnels associés seront appliqués.\nCondition : Grondement du feu.",
+  "description_macro": "Effectue une attaque physique sur la cible et les ennemis autour.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> 1400<br>La puissance est réduite de 35% au-delà du premier ennemi touché.<br><colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> vous octroie <colortype(500)><edgecolortype(501)>Poing informe<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 30s<br><colortype(506)><edgecolortype(507)>Poing informe<nbsp>:<edgecolortype(0)><colortype(0)> vous permet d'utiliser les techniques d'arme requérant une posture par<->ti<->cu<->liè<->re sans être dans cette posture. Les effets additionnels associés seront appliqués.<br><colortype(506)><edgecolortype(507)>Condition<nbsp>:<edgecolortype(0)><colortype(0)> <colortype(500)><edgecolortype(501)>Grondement du feu<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Effectue une attaque physique sur la cible et les ennemis autour.",
+    "Puissance : 1400",
+    "La puissance est réduite de 35% au-delà du premier ennemi touché.",
+    "Effet additionnel : vous octroie Poing informe.",
+    "Durée : 30s",
+    "Poing informe : vous permet d'utiliser les techniques d'arme requérant une posture particulière sans être dans cette posture. Les effets additionnels associés seront appliqués.",
+    "Condition : Grondement du feu."
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 20,
+    "name": "Moine",
+    "abbreviation": "MOI"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 100,
+  "icon": {
+    "id": 2987,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 3,
+    "name": "Technique d'arme"
+  },
+  "attack_type": {
+    "id": 4294967295,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 2.5,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 58,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 10,
+      "value": 3843
+    },
+    "secondary": {
+      "type_id": 32,
+      "value": 3843
+    }
+  },
+  "range": {
+    "target_yalms": 20,
+    "effect_yalms": 5,
+    "cast_type": 2
+  },
+  "targeting": {
+    "self": false,
+    "party": false,
+    "alliance": false,
+    "hostile": true,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": false
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": {
+      "id": 160,
+      "status": {
+        "id": 3843,
+        "name": "Grondement du feu",
+        "description": "Réaction du feu peut être lancée.",
+        "icon_id": 212541,
+        "max_stacks": 0
+      }
+    }
+  },
+  "metadata": {
+    "aspect_id": 7,
+    "behavior_type": 0,
+    "class_job_category_id": 21,
+    "source_class_job_id": 20,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

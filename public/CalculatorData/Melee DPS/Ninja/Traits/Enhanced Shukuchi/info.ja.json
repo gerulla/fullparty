@@ -1,0 +1,25 @@
+{
+  "kind": "trait",
+  "id": 166,
+  "name": "縮地効果アップ",
+  "description": "縮地のリキャストタイムをリセットする。\n発動条件：一部を除く敵に対する火遁の術、雷遁の術、氷遁の術の実行時",
+  "description_macro": "縮地のリキャストタイムをリセットする。<br><colortype(504)><edgecolortype(505)>発動条件：<edgecolortype(0)><colortype(0)>一部を除く敵に対する火遁の術、雷遁の術、氷遁の術の実行時",
+  "effects": [
+    "縮地のリキャストタイムをリセットする。",
+    "発動条件：一部を除く敵に対する火遁の術、雷遁の術、氷遁の術の実行時"
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 30,
+    "name": "忍者",
+    "abbreviation": "NIN"
+  },
+  "unlock_level": 64,
+  "value": 0,
+  "icon": {
+    "id": 5412,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 92,
+  "source_class_job_id": 30
+}

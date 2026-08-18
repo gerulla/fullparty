@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 386,
+  "name": "Âme du néant",
+  "description": "Permet d'accumuler des Âmes du néant lorsque vous utilisez Fauchage du néant, Fauchage croisé ou Fauchage sinistre avec succès.",
+  "description_macro": "Permet d'accumuler des <colortype(500)><edgecolortype(501)>Âmes du néant<edgecolortype(0)><colortype(0)> lorsque vous utilisez <colortype(500)><edgecolortype(501)>Fauchage du néant<edgecolortype(0)><colortype(0)>, <colortype(500)><edgecolortype(501)>Fauchage croisé<edgecolortype(0)><colortype(0)> ou <colortype(500)><edgecolortype(501)>Fauchage sinistre<edgecolortype(0)><colortype(0)> avec succès.",
+  "effects": [
+    "Permet d'accumuler des Âmes du néant lorsque vous utilisez Fauchage du néant, Fauchage croisé ou Fauchage sinistre avec succès."
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 39,
+    "name": "Faucheur",
+    "abbreviation": "FCH"
+  },
+  "unlock_level": 86,
+  "value": 0,
+  "icon": {
+    "id": 6408,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 180,
+  "source_class_job_id": 39
+}

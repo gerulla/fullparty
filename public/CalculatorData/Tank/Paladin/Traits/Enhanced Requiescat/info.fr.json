@@ -1,0 +1,25 @@
+{
+  "kind": "trait",
+  "id": 263,
+  "name": "Requiescat amélioré",
+  "description": "Vous octroie Confiteor préparé.\nDurée : 30s",
+  "description_macro": "Vous octroie <colortype(500)><edgecolortype(501)>Confiteor préparé<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 30s",
+  "effects": [
+    "Vous octroie Confiteor préparé.",
+    "Durée : 30s"
+  ],
+  "role": "Tank",
+  "job": {
+    "id": 19,
+    "name": "Paladin",
+    "abbreviation": "PLD"
+  },
+  "unlock_level": 80,
+  "value": 0,
+  "icon": {
+    "id": 5216,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 20,
+  "source_class_job_id": 19
+}

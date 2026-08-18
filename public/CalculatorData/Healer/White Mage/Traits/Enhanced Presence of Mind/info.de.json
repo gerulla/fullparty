@@ -1,0 +1,25 @@
+{
+  "kind": "trait",
+  "id": 623,
+  "name": "Verbesserte Geistesgegenwart",
+  "description": "Erfolgreiche Ausführung von Geistesgegenwart gewährt dir 3 Stapel Maximaler Fokus.\nDauer: 30 Sekunden",
+  "description_macro": "Erfolgreiche Ausführung von <colortype(502)><edgecolortype(503)>Geistesgegenwart<edgecolortype(0)><colortype(0)> gewährt dir 3 Stapel <colortype(506)><edgecolortype(507)>Maximaler Fokus<edgecolortype(0)><colortype(0)>.<br>Dauer: 30 Sekunden",
+  "effects": [
+    "Erfolgreiche Ausführung von Geistesgegenwart gewährt dir 3 Stapel Maximaler Fokus.",
+    "Dauer: 30 Sekunden"
+  ],
+  "role": "Healer",
+  "job": {
+    "id": 24,
+    "name": "Weißmagier",
+    "abbreviation": "WMA"
+  },
+  "unlock_level": 92,
+  "value": 0,
+  "icon": {
+    "id": 5346,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 25,
+  "source_class_job_id": 24
+}

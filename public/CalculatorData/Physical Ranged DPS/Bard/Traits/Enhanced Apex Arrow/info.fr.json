@@ -1,0 +1,26 @@
+{
+  "kind": "trait",
+  "id": 446,
+  "name": "Trait alpha amélioré",
+  "description": "Utiliser Trait alpha avec plus de 80 de Jauge de voix de l'âme vous octroie Flèche explosive préparée.\nRemplace Trait alpha par Flèche explosive pendant la durée de l'effet.\nDurée : 10s",
+  "description_macro": "Utiliser Trait alpha avec plus de 80 de <colortype(502)><edgecolortype(503)>Jauge de voix de l'âme<edgecolortype(0)><colortype(0)> vous octroie <colortype(500)><edgecolortype(501)>Flèche explosive préparée<edgecolortype(0)><colortype(0)>.<br>Remplace <colortype(500)><edgecolortype(501)>Trait alpha<edgecolortype(0)><colortype(0)> par <colortype(500)><edgecolortype(501)>Flèche explosive<edgecolortype(0)><colortype(0)> pendant la durée de l'effet.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 10s",
+  "effects": [
+    "Utiliser Trait alpha avec plus de 80 de Jauge de voix de l'âme vous octroie Flèche explosive préparée.",
+    "Remplace Trait alpha par Flèche explosive pendant la durée de l'effet.",
+    "Durée : 10s"
+  ],
+  "role": "Physical Ranged DPS",
+  "job": {
+    "id": 23,
+    "name": "Barde",
+    "abbreviation": "BRD"
+  },
+  "unlock_level": 86,
+  "value": 0,
+  "icon": {
+    "id": 5318,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 24,
+  "source_class_job_id": 23
+}

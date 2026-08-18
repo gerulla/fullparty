@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 466,
+  "name": "Verbesserte Ätherinfusion",
+  "description": "Ätherinfusion gewährt nun Rubin-Arkanum und Topas-Arkanum.",
+  "description_macro": "<colortype(502)><edgecolortype(503)>Ätherinfusion<edgecolortype(0)><colortype(0)> gewährt nun <colortype(506)><edgecolortype(507)>Rubin-Arkanum<edgecolortype(0)><colortype(0)> und <colortype(506)><edgecolortype(507)>Topas-Arkanum<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Ätherinfusion gewährt nun Rubin-Arkanum und Topas-Arkanum."
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 27,
+    "name": "Beschwörer",
+    "abbreviation": "BSW"
+  },
+  "unlock_level": 15,
+  "value": 0,
+  "icon": {
+    "id": 5396,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 69,
+  "source_class_job_id": 26
+}

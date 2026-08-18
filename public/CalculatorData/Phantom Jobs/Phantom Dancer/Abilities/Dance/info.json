@@ -1,0 +1,88 @@
+{
+  "kind": "ability",
+  "id": 46598,
+  "name": "Dance",
+  "description": "Grants Poised to Sword Dance, Tempted to Tango, Jitterbugged, or Willing to Waltz, allowing the execution of an action depending on the effect granted.\nPhantom Sword Dance Effect: Delivers an attack with high potency\nTempting Tango Effect: Deals unaspected damage and freezes time\nJitterbug Effect: Deals unaspected damage, absorbing a portion of damage dealt as HP, and afflicts target with Paralysis\nMystery Waltz Effect: Deals unaspected damage, afflicts target with Blind, and restores MP",
+  "description_macro": "Grants <colortype(506)><edgecolortype(507)>Poised to Sword Dance<edgecolortype(0)><colortype(0)>, <colortype(506)><edgecolortype(507)>Tempted to Tango<edgecolortype(0)><colortype(0)>, <colortype(506)><edgecolortype(507)>Jitterbugged<edgecolortype(0)><colortype(0)>, or <colortype(506)><edgecolortype(507)>Willing to Waltz<edgecolortype(0)><colortype(0)>, allowing the execution of an action depending on the effect granted.<br><colortype(504)><edgecolortype(505)>Phantom Sword Dance Effect: <edgecolortype(0)><colortype(0)>Delivers an attack with high potency<br><colortype(504)><edgecolortype(505)>Tempting Tango Effect: <edgecolortype(0)><colortype(0)>Deals unaspected damage and freezes time<br><colortype(504)><edgecolortype(505)>Jitterbug Effect: <edgecolortype(0)><colortype(0)>Deals unaspected damage, absorbing a portion of damage dealt as HP, and afflicts target with <colortype(506)><edgecolortype(507)>Paralysis<edgecolortype(0)><colortype(0)><br><colortype(504)><edgecolortype(505)>Mystery Waltz Effect: <edgecolortype(0)><colortype(0)>Deals unaspected damage, afflicts target with <colortype(506)><edgecolortype(507)>Blind<edgecolortype(0)><colortype(0)>, and restores MP",
+  "effects": [
+    "Grants Poised to Sword Dance, Tempted to Tango, Jitterbugged, or Willing to Waltz, allowing the execution of an action depending on the effect granted.",
+    "Phantom Sword Dance Effect: Delivers an attack with high potency",
+    "Tempting Tango Effect: Deals unaspected damage and freezes time",
+    "Jitterbug Effect: Deals unaspected damage, absorbing a portion of damage dealt as HP, and afflicts target with Paralysis",
+    "Mystery Waltz Effect: Deals unaspected damage, afflicts target with Blind, and restores MP"
+  ],
+  "role": "Phantom Jobs",
+  "job": {
+    "id": 15,
+    "name": "Phantom Dancer",
+    "abbreviation": "Ph. Dancer"
+  },
+  "is_phantom_action": true,
+  "unlock_level": 1,
+  "icon": {
+    "id": 64583,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 4,
+    "name": "Ability"
+  },
+  "attack_type": {
+    "id": 0,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 30,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 83,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 0,
+      "value": 0
+    },
+    "secondary": {
+      "type_id": 0,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": 0,
+    "effect_yalms": 0,
+    "cast_type": 1
+  },
+  "targeting": {
+    "self": true,
+    "party": false,
+    "alliance": false,
+    "hostile": false,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": false,
+    "requires_facing_target": false
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 0,
+    "behavior_type": 0,
+    "class_job_category_id": 142,
+    "source_class_job_id": 4294967295,
+    "is_role_action": false,
+    "is_player_action": false,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

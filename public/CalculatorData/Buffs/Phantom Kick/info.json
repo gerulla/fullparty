@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 4237,
+  "name": "Phantom Kick",
+  "description": "Damage dealt is increased.",
+  "effects": [
+    "Damage dealt is increased."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 218167,
+    "file": "icon.png"
+  },
+  "max_stacks": 3,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": true,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 5
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 41595,
+      "name": "Phantom Kick",
+      "description": "Leap towards your target, delivering an attack with a potency of 100 to all enemies in a straight line before you.\nPotency scales with item level.\nAdditional Effect: Grants a stack of Phantom Kick up to a maximum of 3, increasing damage dealt by 5%\nDuration: 40s",
+      "description_macro": "Leap towards your target, delivering an attack with a potency of 100 to all enemies in a straight line before you.<br>Potency scales with item level.<br><colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>Grants a stack of <colortype(506)><edgecolortype(507)>Phantom Kick<edgecolortype(0)><colortype(0)> up to a maximum of 3, increasing damage dealt by <if([gnum108>=6],9%,<if([gnum108>=4],7%,5%)>)><br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>40s",
+      "unlock_level": 0,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Phantom Jobs"
+      ],
+      "jobs": [
+        {
+          "id": 3,
+          "name": "Phantom Monk",
+          "abbreviation": "Ph. Monk",
+          "is_phantom": true
+        }
+      ]
+    }
+  ]
+}

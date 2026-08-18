@@ -1,0 +1,134 @@
+{
+  "kind": "combat_status",
+  "id": 175,
+  "name": "Lichtfeuer III",
+  "description": "Deine Ätherbalance tendiert zum Licht. Feuerbasierte Zauber werden stärker, verbrauchen aber mehr MP. Eisbasierte Zauber werden schwächer, verbrauchen aber weniger MP und haben eine halbierte Ausführungszeit. Allerdings werden keine MP mehr regeneriert.",
+  "effects": [
+    "Deine Ätherbalance tendiert zum Licht. Feuerbasierte Zauber werden stärker, verbrauchen aber mehr MP. Eisbasierte Zauber werden schwächer, verbrauchen aber weniger MP und haben eine halbierte Ausführungszeit. Allerdings werden keine MP mehr regeneriert."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 210465,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": true,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 147,
+      "name": "Feura",
+      "description": "Du fügst dem Ziel und den Gegnern in seiner Nähe feuerbasierten magischen Schaden zu.\nAttacke-Wert: 80\nZusatzeffekt: Entfernt Schatteneis und gewährt dir die Maximalstapelzahl von Lichtfeuer.",
+      "description_macro": "Du fügst dem Ziel und den Gegnern in seiner Nähe feuerbasierten magischen Schaden zu.<br>Attacke-Wert: 80<br>Zusatzeffekt: Entfernt <colortype(506)><edgecolortype(507)>Schatteneis<edgecolortype(0)><colortype(0)> <if([gnum72>=35],<if([gnum68==7],und gewährt dir die Ma<->xi<->mal<->sta<->pel<->zahl von <colortype(506)><edgecolortype(507)>Lichtfeuer<edgecolortype(0)><colortype(0)>.,<if([gnum68==25],und gewährt dir die Ma<->xi<->mal<->sta<->pel<->zahl von <colortype(506)><edgecolortype(507)>Lichtfeuer<edgecolortype(0)><colortype(0)>.,oder\\, falls nicht in diesem Status\\, bewirkt <colortype(506)><edgecolortype(507)>Lichtfeuer<edgecolortype(0)><colortype(0)>.)>)>,oder\\, falls nicht in diesem Status\\, bewirkt <colortype(506)><edgecolortype(507)>Lichtfeuer<edgecolortype(0)><colortype(0)>.)>",
+      "unlock_level": 18,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Magical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 25,
+          "name": "Schwarzmagier",
+          "abbreviation": "SMA",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 152,
+      "name": "Feuga",
+      "description": "Du fügst dem Ziel feuerbasierten magischen Schaden zu.\nAttacke-Wert: 290\nZusatzeffekt: Entfernt Schatteneis und gewährt dir die Maximalstapelzahl von Lichtfeuer.",
+      "description_macro": "Du fügst dem Ziel feuerbasierten magischen Schaden zu.<br>Attacke-Wert: 290<br>Zusatzeffekt: Entfernt <colortype(506)><edgecolortype(507)>Schatteneis<edgecolortype(0)><colortype(0)> und gewährt dir die Ma<->xi<->mal<->sta<->pel<->zahl von <colortype(506)><edgecolortype(507)>Lichtfeuer<edgecolortype(0)><colortype(0)>.",
+      "unlock_level": 35,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Magical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 25,
+          "name": "Schwarzmagier",
+          "abbreviation": "SMA",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 162,
+      "name": "Flare",
+      "description": "Du führst eine feuerbasierte magische Attacke auf das Ziel und die Gegner in seiner Nähe aus.\nAttacke-Wert: 240\nAttacke-Wert verringert sich ab dem zweiten Gegner um 30 %.\nZusatzeffekt: Gewährt dir die Maximalstapelzahl von Lichtfeuer.\nZusatzeffekt: Gewährt dir 3 Stapel Lichtseele.\nDieser Effekt wird gemeinsam mit Lichtfeuer beendet.\nBedingung: Lichtfeuer aktiv",
+      "description_macro": "Du führst eine feuerbasierte magische Attacke auf das Ziel und die Gegner in seiner Nähe aus.<br>Attacke-Wert: 240<br>Attacke-Wert verringert sich ab dem zweiten Gegner um 30<nbsp>%.<br>Zusatzeffekt: Gewährt dir die Ma<->xi<->mal<->sta<->pel<->zahl von <colortype(506)><edgecolortype(507)>Lichtfeuer<edgecolortype(0)><colortype(0)>.<br><if([gnum68==25],<if([gnum72>=100],Zusatzeffekt: Gewährt dir 3 Stapel <colortype(506)><edgecolortype(507)>Lichtseele<edgecolortype(0)><colortype(0)>.<br>Dieser Effekt wird gemeinsam mit <colortype(506)><edgecolortype(507)>Lichtfeuer<edgecolortype(0)><colortype(0)> beendet.<br>,)>,)>Bedingung: <colortype(506)><edgecolortype(507)>Lichtfeuer<edgecolortype(0)><colortype(0)> aktiv",
+      "unlock_level": 50,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Magical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 25,
+          "name": "Schwarzmagier",
+          "abbreviation": "SMA",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 16505,
+      "name": "Verzweiflung",
+      "description": "Du führst eine feuerbasierte magische Attacke aus.\nAttacke-Wert: 350\nZusatzeffekt: Gewährt dir die Maximalstapelzahl von Lichtfeuer.\nBedingung: Lichtfeuer aktiv",
+      "description_macro": "Du führst eine feuerbasierte magische Attacke aus.<br>Attacke-Wert: 350<br>Zusatzeffekt: Gewährt dir die Ma<->xi<->mal<->sta<->pel<->zahl von <colortype(506)><edgecolortype(507)>Lichtfeuer<edgecolortype(0)><colortype(0)>.<br>Bedingung: <colortype(506)><edgecolortype(507)>Lichtfeuer<edgecolortype(0)><colortype(0)> aktiv",
+      "unlock_level": 72,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Magical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 25,
+          "name": "Schwarzmagier",
+          "abbreviation": "SMA",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 25794,
+      "name": "Hohes Feura",
+      "description": "Du führst eine feuerbasierte magische Attacke auf das Ziel und die Gegner in seiner Nähe aus.\nAttacke-Wert: 100\nZusatzeffekt: Entfernt Schatteneis und gewährt dir die Maximalstapelzahl von Lichtfeuer.",
+      "description_macro": "Du führst eine feuerbasierte magische Attacke auf das Ziel und die Gegner in seiner Nähe aus.<br>Attacke-Wert: 100<br>Zusatzeffekt: Entfernt <colortype(506)><edgecolortype(507)>Schatteneis<edgecolortype(0)><colortype(0)> und gewährt dir die Ma<->xi<->mal<->sta<->pel<->zahl von <colortype(506)><edgecolortype(507)>Lichtfeuer<edgecolortype(0)><colortype(0)>.",
+      "unlock_level": 82,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Magical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 25,
+          "name": "Schwarzmagier",
+          "abbreviation": "SMA",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

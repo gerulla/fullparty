@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 604,
+  "name": "Maîtrise des actions à charge",
+  "description": "Remplace Décharge Gauss par Double échec et Ricochet par Échec et mat.",
+  "description_macro": "Remplace <colortype(500)><edgecolortype(501)>Décharge Gauss<edgecolortype(0)><colortype(0)> par <colortype(500)><edgecolortype(501)>Double échec<edgecolortype(0)><colortype(0)> et <colortype(500)><edgecolortype(501)>Ricochet<edgecolortype(0)><colortype(0)> par <colortype(500)><edgecolortype(501)>Échec et mat<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Remplace Décharge Gauss par Double échec et Ricochet par Échec et mat."
+  ],
+  "role": "Physical Ranged DPS",
+  "job": {
+    "id": 31,
+    "name": "Machiniste",
+    "abbreviation": "MCH"
+  },
+  "unlock_level": 92,
+  "value": 0,
+  "icon": {
+    "id": 6022,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 96,
+  "source_class_job_id": 31
+}

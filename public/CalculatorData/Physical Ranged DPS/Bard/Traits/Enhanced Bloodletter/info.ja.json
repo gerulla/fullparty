@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 445,
+  "name": "ブラッドレッター効果アップ",
+  "description": "ブラッドレッターとレイン・オブ・デスの最大チャージ数が3に増加する。",
+  "description_macro": "ブラッドレッターとレイン・オブ・デスの最大チャージ数が3に増加する。",
+  "effects": [
+    "ブラッドレッターとレイン・オブ・デスの最大チャージ数が3に増加する。"
+  ],
+  "role": "Physical Ranged DPS",
+  "job": {
+    "id": 23,
+    "name": "吟遊詩人",
+    "abbreviation": "BRD"
+  },
+  "unlock_level": 84,
+  "value": 3,
+  "icon": {
+    "id": 5317,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 24,
+  "source_class_job_id": 23
+}

@@ -1,0 +1,99 @@
+{
+  "kind": "ability",
+  "id": 36925,
+  "name": "ルイネーター",
+  "description": "対象とその周囲の敵に範囲物理攻撃。\u3000威力：800\n2体目以降の対象への威力は50％減少する。\nこのアクションは必ずクリティカルヒットかつダイレクトヒットする。\nクリティカルヒットやダイレクトヒットの発動率を上昇させる効果を受けている場合は与ダメージが上昇する。\n発動条件：「ルイネーター実行可」効果中\n\n※このアクションはホットバーに登録することはできない。\n\u3000発動条件を満たすとプライマルレンドがルイネーターに変化する。",
+  "description_macro": "対象とその周囲の敵に範囲物理攻撃。\u3000<colortype(504)><edgecolortype(505)>威力：<edgecolortype(0)><colortype(0)>800<br>2体目以降の対象への威力は50％減少する。<br>このアクションは必ずクリティカルヒットかつダイレクトヒットする。<br>クリティカルヒットやダイレクトヒットの発動率を上昇させる効果を受けている場合は与ダメージが上昇する。<br><colortype(504)><edgecolortype(505)>発動条件：<edgecolortype(0)><colortype(0)><colortype(500)><edgecolortype(501)>「ルイネーター実行可」<edgecolortype(0)><colortype(0)>効果中<br><br><colortype(506)><edgecolortype(507)>※このアクションはホットバーに登録することはできない。<br>\u3000発動条件を満たすとプライマルレンドがルイネーターに変化する。<edgecolortype(0)><colortype(0)>",
+  "effects": [
+    "対象とその周囲の敵に範囲物理攻撃。\u3000威力：800",
+    "2体目以降の対象への威力は50％減少する。",
+    "このアクションは必ずクリティカルヒットかつダイレクトヒットする。",
+    "クリティカルヒットやダイレクトヒットの発動率を上昇させる効果を受けている場合は与ダメージが上昇する。",
+    "発動条件：「ルイネーター実行可」効果中",
+    "※このアクションはホットバーに登録することはできない。",
+    "発動条件を満たすとプライマルレンドがルイネーターに変化する。"
+  ],
+  "role": "Tank",
+  "job": {
+    "id": 21,
+    "name": "戦士",
+    "abbreviation": "WAR"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 100,
+  "icon": {
+    "id": 2050,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 3,
+    "name": "ウェポンスキル"
+  },
+  "attack_type": {
+    "id": 4294967295,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 2.5,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 58,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 10,
+      "value": 3834
+    },
+    "secondary": {
+      "type_id": 32,
+      "value": 3834
+    }
+  },
+  "range": {
+    "target_yalms": -1,
+    "effect_yalms": 5,
+    "cast_type": 2
+  },
+  "targeting": {
+    "self": false,
+    "party": false,
+    "alliance": false,
+    "hostile": true,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": {
+      "id": 153,
+      "status": {
+        "id": 3834,
+        "name": "ルイネーター実行可",
+        "description": "ルイネーターを実行できる状態。",
+        "icon_id": 212569,
+        "max_stacks": 0
+      }
+    }
+  },
+  "metadata": {
+    "aspect_id": 7,
+    "behavior_type": 0,
+    "class_job_category_id": 22,
+    "source_class_job_id": 0,
+    "is_role_action": false,
+    "is_player_action": false,
+    "is_derived_action": true,
+    "equivalence_group": 0
+  }
+}

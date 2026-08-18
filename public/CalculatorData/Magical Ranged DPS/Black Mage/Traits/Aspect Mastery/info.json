@@ -1,0 +1,27 @@
+{
+  "kind": "trait",
+  "id": 296,
+  "name": "Aspect Mastery",
+  "description": "Casting of certain fire and ice spells will grant a stack of Astral Fire and Umbral Ice respectively.\nMaximum Stacks: 1\nWhile under the effect of Astral Fire, the potency of Fire spells is increased by 40%, the cost of casting Fire spells is doubled, MP recovery is reduced to 0, and the potency of Ice spells is reduced by 10%.\nWhile under the effect of Umbral Ice, the cost of casting Ice spells is reduced to 0, 2,500 MP is recovered upon landing an Ice spell, and the potency of Fire spells is reduced by 10%.",
+  "description_macro": "Casting of certain fire and ice spells will grant a stack of <colortype(506)><edgecolortype(507)>Astral Fire<edgecolortype(0)><colortype(0)> and <colortype(506)><edgecolortype(507)>Umbral Ice<edgecolortype(0)><colortype(0)> respectively.<br><colortype(504)><edgecolortype(505)>Maximum Stacks: <edgecolortype(0)><colortype(0)>1<br>While under the effect of <colortype(506)><edgecolortype(507)>Astral Fire<edgecolortype(0)><colortype(0)>, the potency of <colortype(500)><edgecolortype(501)>Fire<edgecolortype(0)><colortype(0)> spells is increased by 40%, the cost of casting <colortype(500)><edgecolortype(501)>Fire<edgecolortype(0)><colortype(0)> spells is doubled, MP recovery is reduced to 0, and the potency of <colortype(500)><edgecolortype(501)>Ice<edgecolortype(0)><colortype(0)> spells is reduced by 10%.<br>While under the effect of <colortype(506)><edgecolortype(507)>Umbral Ice<edgecolortype(0)><colortype(0)>, the cost of casting <colortype(500)><edgecolortype(501)>Ice<edgecolortype(0)><colortype(0)> spells is reduced to 0, 2,500 MP is recovered upon landing an <colortype(500)><edgecolortype(501)>Ice<edgecolortype(0)><colortype(0)> spell, and the potency of <colortype(500)><edgecolortype(501)>Fire<edgecolortype(0)><colortype(0)> spells is reduced by 10%.",
+  "effects": [
+    "Casting of certain fire and ice spells will grant a stack of Astral Fire and Umbral Ice respectively.",
+    "Maximum Stacks: 1",
+    "While under the effect of Astral Fire, the potency of Fire spells is increased by 40%, the cost of casting Fire spells is doubled, MP recovery is reduced to 0, and the potency of Ice spells is reduced by 10%.",
+    "While under the effect of Umbral Ice, the cost of casting Ice spells is reduced to 0, 2,500 MP is recovered upon landing an Ice spell, and the potency of Fire spells is reduced by 10%."
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 25,
+    "name": "Black Mage",
+    "abbreviation": "BLM"
+  },
+  "unlock_level": 1,
+  "value": 0,
+  "icon": {
+    "id": 5362,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 55,
+  "source_class_job_id": 7
+}

@@ -1,0 +1,26 @@
+{
+  "kind": "trait",
+  "id": 579,
+  "name": "紅蓮の極意効果アップ",
+  "description": "自身に「乾坤闘気弾実行可」が付与される。\n効果時間：20秒\n発動条件：紅蓮の極意実行時",
+  "description_macro": "自身に<colortype(500)><edgecolortype(501)>「乾坤闘気弾実行可」<edgecolortype(0)><colortype(0)>が付与される。<br><colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>20秒<br><colortype(504)><edgecolortype(505)>発動条件：<edgecolortype(0)><colortype(0)>紅蓮の極意実行時",
+  "effects": [
+    "自身に「乾坤闘気弾実行可」が付与される。",
+    "効果時間：20秒",
+    "発動条件：紅蓮の極意実行時"
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 20,
+    "name": "モンク",
+    "abbreviation": "MNK"
+  },
+  "unlock_level": 100,
+  "value": 0,
+  "icon": {
+    "id": 5527,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 21,
+  "source_class_job_id": 20
+}

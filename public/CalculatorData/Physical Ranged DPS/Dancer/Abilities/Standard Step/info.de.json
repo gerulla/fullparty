@@ -1,0 +1,88 @@
+{
+  "kind": "ability",
+  "id": 15997,
+  "name": "Einfache Choreographie",
+  "description": "Tanzgrundschritt. Du erhältst den Status Einfache Choreographie.\nDauer: 15 Sekunden\nWechselt zu Kommando Einfaches Finale während des Tanzes. Nur Einfaches Finale, En Avant\\Heilender Walzer\\Schildsamba\\Tanzschritte, Sprint, Limitrausch und Rollenkommandos können im Tanz ausgeführt werden.\nEigener Reaktivierungs-Timer\nBei Ausführung wird der Reaktivierungs-Timer dieses Kommandos auf alle anderen Waffenfertigkeiten und Magie angewendet.",
+  "description_macro": "Tanzgrundschritt. Du erhältst den Status <colortype(506)><edgecolortype(507)>Einfache Choreographie<edgecolortype(0)><colortype(0)>.<br>Dauer: 15 Sekunden<br>Wechselt zu Kommando <colortype(502)><edgecolortype(503)>Einfaches Finale<edgecolortype(0)><colortype(0)> während des Tanzes. Nur <colortype(502)><edgecolortype(503)>Einfaches Finale<edgecolortype(0)><colortype(0)>, <if([gnum68==38],<if([gnum72>=50],<colortype(502)><edgecolortype(503)>En Avant<edgecolortype(0)><colortype(0)>\\, ,)>,)><if([gnum68==38],<if([gnum72>=52],<colortype(502)><edgecolortype(503)>Heilender Walzer<edgecolortype(0)><colortype(0)>\\, ,)>,)><if([gnum68==38],<if([gnum72>=56],<colortype(502)><edgecolortype(503)>Schildsamba<edgecolortype(0)><colortype(0)>\\, ,)>,)>Tanzschritte, Sprint, Limitrausch und Rollenkommandos können im Tanz ausgeführt werden.<br>Eigener Reaktivierungs-Timer<br>Bei Ausführung wird der Reaktivierungs-Timer dieses Kommandos auf alle anderen Waf<->fen<->fer<->tig<->kei<->ten und Magie angewendet.",
+  "effects": [
+    "Tanzgrundschritt. Du erhältst den Status Einfache Choreographie.",
+    "Dauer: 15 Sekunden",
+    "Wechselt zu Kommando Einfaches Finale während des Tanzes. Nur Einfaches Finale, En Avant\\Heilender Walzer\\Schildsamba\\Tanzschritte, Sprint, Limitrausch und Rollenkommandos können im Tanz ausgeführt werden.",
+    "Eigener Reaktivierungs-Timer",
+    "Bei Ausführung wird der Reaktivierungs-Timer dieses Kommandos auf alle anderen Waffenfertigkeiten und Magie angewendet."
+  ],
+  "role": "Physical Ranged DPS",
+  "job": {
+    "id": 38,
+    "name": "Tänzer",
+    "abbreviation": "TÄN"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 15,
+  "icon": {
+    "id": 3454,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 3,
+    "name": "Waffenfertigkeit"
+  },
+  "attack_type": {
+    "id": 0,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 30,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 7,
+    "additional_cooldown_group": 58,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 0,
+      "value": 0
+    },
+    "secondary": {
+      "type_id": 91,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": 0,
+    "effect_yalms": 0,
+    "cast_type": 1
+  },
+  "targeting": {
+    "self": true,
+    "party": false,
+    "alliance": false,
+    "hostile": false,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 0,
+    "behavior_type": 0,
+    "class_job_category_id": 150,
+    "source_class_job_id": 38,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

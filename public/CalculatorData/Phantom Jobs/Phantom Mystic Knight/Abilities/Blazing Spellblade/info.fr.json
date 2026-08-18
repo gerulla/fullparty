@@ -1,0 +1,92 @@
+{
+  "kind": "ability",
+  "id": 46593,
+  "name": "Magi Lame Brasier",
+  "description": "Effectue une attaque physique sur la cible.\nPuissance : 200 (varie selon le niveau d'objet)\nEffet additionnel : augmente de 5% les dégâts subis par la cible.\nDurée : 70s\nEffet additionnel : augmente de 5% vos dégâts infligés.\nDurée : 70s\nAvec Magi Lame renforcée, la puissance est augmentée.\nPuissance avec Magi Lame renforcée : 300 (varie selon le niveau d'objet)\nPartage le même temps de recharge que Magi Lame Mégalithe et Magi Lame Miracle.",
+  "description_macro": "Effectue une attaque physique sur la cible.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> 200 (varie selon le niveau d'objet)<br><colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> augmente de 5% les dégâts subis par la cible.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 70s<br><colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> augmente de 5% vos dégâts infligés.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 70s<br>Avec <colortype(500)><edgecolortype(501)>Magi Lame renforcée<edgecolortype(0)><colortype(0)>, la puissance est augmentée.<br><colortype(506)><edgecolortype(507)>Puissance avec Magi Lame renforcée<nbsp>:<edgecolortype(0)><colortype(0)> 300 (varie selon le niveau d'objet)<br>Partage le même temps de recharge que <colortype(500)><edgecolortype(501)>Magi Lame Mégalithe<edgecolortype(0)><colortype(0)> et <colortype(500)><edgecolortype(501)>Magi Lame Miracle<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Effectue une attaque physique sur la cible.",
+    "Puissance : 200 (varie selon le niveau d'objet)",
+    "Effet additionnel : augmente de 5% les dégâts subis par la cible.",
+    "Durée : 70s",
+    "Effet additionnel : augmente de 5% vos dégâts infligés.",
+    "Durée : 70s",
+    "Avec Magi Lame renforcée, la puissance est augmentée.",
+    "Puissance avec Magi Lame renforcée : 300 (varie selon le niveau d'objet)",
+    "Partage le même temps de recharge que Magi Lame Mégalithe et Magi Lame Miracle."
+  ],
+  "role": "Phantom Jobs",
+  "job": {
+    "id": 13,
+    "name": "Chevalier mage fantôme",
+    "abbreviation": "Chevalier mage fant."
+  },
+  "is_phantom_action": true,
+  "unlock_level": 4,
+  "icon": {
+    "id": 64578,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 3,
+    "name": "Technique d'arme"
+  },
+  "attack_type": {
+    "id": 1,
+    "name": "tranchant"
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 30,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 83,
+    "additional_cooldown_group": 58,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 0,
+      "value": 0
+    },
+    "secondary": {
+      "type_id": 0,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": 5,
+    "effect_yalms": 0,
+    "cast_type": 1
+  },
+  "targeting": {
+    "self": false,
+    "party": false,
+    "alliance": false,
+    "hostile": true,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 7,
+    "behavior_type": 0,
+    "class_job_category_id": 142,
+    "source_class_job_id": 4294967295,
+    "is_role_action": false,
+    "is_player_action": false,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

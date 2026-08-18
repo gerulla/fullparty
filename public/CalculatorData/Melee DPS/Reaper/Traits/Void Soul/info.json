@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 386,
+  "name": "Void Soul",
+  "description": "Grants Void Shroud upon landing Void Reaping, Cross Reaping, or Grim Reaping.",
+  "description_macro": "Grants <colortype(506)><edgecolortype(507)>Void Shroud<edgecolortype(0)><colortype(0)> upon landing <colortype(500)><edgecolortype(501)>Void Reaping<edgecolortype(0)><colortype(0)>, <colortype(500)><edgecolortype(501)>Cross Reaping<edgecolortype(0)><colortype(0)>, or <colortype(500)><edgecolortype(501)>Grim Reaping<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Grants Void Shroud upon landing Void Reaping, Cross Reaping, or Grim Reaping."
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 39,
+    "name": "Reaper",
+    "abbreviation": "RPR"
+  },
+  "unlock_level": 86,
+  "value": 0,
+  "icon": {
+    "id": 6408,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 180,
+  "source_class_job_id": 39
+}

@@ -1,0 +1,28 @@
+{
+  "kind": "trait",
+  "id": 505,
+  "name": "Verbesserte Axtkunst",
+  "description": "Erhöht den Attacke-Wert folgender Kommandos:\nAttacke-Wert von Gewaltiger Hieb: 200\nAttacke-Wert von Verstümmelung: 150\nAttacke-Wert von Sturmkeil: 160\nAttacke-Wert von Sturmbrecher: 160",
+  "description_macro": "Erhöht den Attacke-Wert folgender Kommandos:<br>Attacke-Wert von <colortype(502)><edgecolortype(503)>Gewaltiger Hieb<edgecolortype(0)><colortype(0)>: 200<br>Attacke-Wert von <colortype(502)><edgecolortype(503)>Verstümmelung<edgecolortype(0)><colortype(0)>: 150<br>Attacke-Wert von <colortype(502)><edgecolortype(503)>Sturmkeil<edgecolortype(0)><colortype(0)>: 160<br>Attacke-Wert von <colortype(502)><edgecolortype(503)>Sturmbrecher<edgecolortype(0)><colortype(0)>: 160",
+  "effects": [
+    "Erhöht den Attacke-Wert folgender Kommandos:",
+    "Attacke-Wert von Gewaltiger Hieb: 200",
+    "Attacke-Wert von Verstümmelung: 150",
+    "Attacke-Wert von Sturmkeil: 160",
+    "Attacke-Wert von Sturmbrecher: 160"
+  ],
+  "role": "Tank",
+  "job": {
+    "id": 21,
+    "name": "Krieger",
+    "abbreviation": "KRG"
+  },
+  "unlock_level": 84,
+  "value": 0,
+  "icon": {
+    "id": 6801,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 22,
+  "source_class_job_id": 21
+}

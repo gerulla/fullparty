@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 1205,
+  "name": "Flammenwerfer",
+  "description": "Fügt Gegnern im fächerförmigen Bereich vor sich schrittweise Schaden zu.",
+  "effects": [
+    "Fügt Gegnern im fächerförmigen Bereich vor sich schrittweise Schaden zu."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 213017,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": true,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 7418,
+      "name": "Flammenwerfer",
+      "description": "Du fügst den fächerförmig vor dir stehenden Gegnern im Sekundentakt Schaden über Zeit zu.\nAttacke-Wert: 120\nDauer: 10 Sekunden\nUnterbindet Auto-Attacke.\nEffekt endet bei Bewegung, Umdrehen oder Ausführen eines Kommandos.\nReaktivierungs-Timer wie Waffenfertigkeiten",
+      "description_macro": "Du fügst den fächerförmig vor dir stehenden Gegnern im Sekundentakt Schaden über Zeit zu.<br>Attacke-Wert: 120<br>Dauer: 10 Sekunden<br>Unterbindet Auto-Attacke.<br>Effekt endet bei Bewegung, Umdrehen oder Ausführen eines Kommandos.<br>Reaktivierungs-Timer wie Waf<->fen<->fer<->tig<->kei<->ten",
+      "unlock_level": 70,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Physical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 31,
+          "name": "Maschinist",
+          "abbreviation": "MCH",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

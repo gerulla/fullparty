@@ -1,0 +1,90 @@
+{
+  "kind": "ability",
+  "id": 16002,
+  "name": "Pirouette der Krone",
+  "description": "Tanzschritt. Du führst eine Pirouette aus.\nErhöht in Kombination mit anderen Tanzschritten die Wirkung von Einfaches Finale und Komplexes Finale.\nBedingung: Tanzend\nEigener Reaktivierungs-Timer\nBei Ausführung wird der Reaktivierungs-Timer dieses Kommandos auf alle anderen Waffenfertigkeiten und Magie angewendet.\nBei erfüllter Bedingung ändern sich Fallende Fontäne und Blutklingen zu diesem Kommando.\nKann nicht im Kommandomenü angelegt werden.",
+  "description_macro": "Tanzschritt. Du führst eine Pirouette aus.<br>Erhöht in Kombination mit anderen Tanzschritten die Wirkung von <colortype(502)><edgecolortype(503)>Einfaches Finale<edgecolortype(0)><colortype(0)> und <colortype(502)><edgecolortype(503)>Komplexes Finale<edgecolortype(0)><colortype(0)>.<br>Bedingung: Tanzend<br>Eigener Reaktivierungs-Timer<br>Bei Ausführung wird der Reaktivierungs-Timer dieses Kommandos auf alle anderen Waf<->fen<->fer<->tig<->kei<->ten und Magie angewendet.<br>Bei erfüllter Bedingung ändern sich <colortype(502)><edgecolortype(503)>Fallende Fontäne<edgecolortype(0)><colortype(0)> und <colortype(502)><edgecolortype(503)>Blutklingen<edgecolortype(0)><colortype(0)> zu diesem Kommando.<br>Kann nicht im Kommandomenü angelegt werden.",
+  "effects": [
+    "Tanzschritt. Du führst eine Pirouette aus.",
+    "Erhöht in Kombination mit anderen Tanzschritten die Wirkung von Einfaches Finale und Komplexes Finale.",
+    "Bedingung: Tanzend",
+    "Eigener Reaktivierungs-Timer",
+    "Bei Ausführung wird der Reaktivierungs-Timer dieses Kommandos auf alle anderen Waffenfertigkeiten und Magie angewendet.",
+    "Bei erfüllter Bedingung ändern sich Fallende Fontäne und Blutklingen zu diesem Kommando.",
+    "Kann nicht im Kommandomenü angelegt werden."
+  ],
+  "role": "Physical Ranged DPS",
+  "job": {
+    "id": 38,
+    "name": "Tänzer",
+    "abbreviation": "TÄN"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 15,
+  "icon": {
+    "id": 3458,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 3,
+    "name": "Waffenfertigkeit"
+  },
+  "attack_type": {
+    "id": 0,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 1.5,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 58,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 0,
+      "value": 0
+    },
+    "secondary": {
+      "type_id": 90,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": 0,
+    "effect_yalms": 0,
+    "cast_type": 1
+  },
+  "targeting": {
+    "self": true,
+    "party": false,
+    "alliance": false,
+    "hostile": false,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 0,
+    "behavior_type": 0,
+    "class_job_category_id": 150,
+    "source_class_job_id": 0,
+    "is_role_action": false,
+    "is_player_action": false,
+    "is_derived_action": true,
+    "equivalence_group": 0
+  }
+}

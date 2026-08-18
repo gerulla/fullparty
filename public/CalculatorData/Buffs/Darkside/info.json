@@ -1,0 +1,117 @@
+{
+  "kind": "combat_status",
+  "id": 751,
+  "name": "Darkside",
+  "description": "Damage dealt is increased while MP regeneration is stopped.",
+  "effects": [
+    "Damage dealt is increased while MP regeneration is stopped."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 213106,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": true,
+  "is_permanent": true,
+  "inflicted_by_actor": true,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 10
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 16466,
+      "name": "Flood of Darkness",
+      "description": "Deals unaspected damage with a potency of 100 to all enemies in a straight line before you.\nAdditional Effect: Grants Darkside, increasing damage dealt by 10%\nDuration: 30s\nExtends Darkside duration by 30s to a maximum of 60s.\nShares a recast timer with Edge of Darkness.",
+      "description_macro": "Deals unaspected damage with a potency of 100 to all enemies in a straight line before you.<br><colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>Grants <colortype(506)><edgecolortype(507)>Darkside<edgecolortype(0)><colortype(0)>, increasing damage dealt by 10%<br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>30s<br>Extends <colortype(506)><edgecolortype(507)>Darkside<edgecolortype(0)><colortype(0)> duration by 30s to a maximum of 60s.<br>Shares a recast timer with <colortype(500)><edgecolortype(501)>Edge of Darkness<edgecolortype(0)><colortype(0)>.",
+      "unlock_level": 30,
+      "relations": [
+        "extended_by_description",
+        "granted_by_description"
+      ],
+      "roles": [
+        "Tank"
+      ],
+      "jobs": [
+        {
+          "id": 32,
+          "name": "Dark Knight",
+          "abbreviation": "DRK",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 16467,
+      "name": "Edge of Darkness",
+      "description": "Deals unaspected damage with a potency of 300.\nAdditional Effect: Grants Darkside, increasing damage dealt by 10%\nDuration: 30s\nExtends Darkside duration by 30s to a maximum of 60s.\nShares a recast timer with Flood of Darkness.",
+      "description_macro": "Deals unaspected damage with a potency of 300.<br><colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>Grants <colortype(506)><edgecolortype(507)>Darkside<edgecolortype(0)><colortype(0)>, increasing damage dealt by 10%<br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>30s<br>Extends <colortype(506)><edgecolortype(507)>Darkside<edgecolortype(0)><colortype(0)> duration by 30s to a maximum of 60s.<br>Shares a recast timer with <colortype(500)><edgecolortype(501)>Flood of Darkness<edgecolortype(0)><colortype(0)>.",
+      "unlock_level": 40,
+      "relations": [
+        "extended_by_description",
+        "granted_by_description"
+      ],
+      "roles": [
+        "Tank"
+      ],
+      "jobs": [
+        {
+          "id": 32,
+          "name": "Dark Knight",
+          "abbreviation": "DRK",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 16469,
+      "name": "Flood of Shadow",
+      "description": "Deals unaspected damage with a potency of 160 to all enemies in a straight line before you.\nAdditional Effect: Grants Darkside, increasing damage dealt by 10%\nDuration: 30s\nExtends Darkside duration by 30s to a maximum of 60s.\nShares a recast timer with Edge of Shadow.",
+      "description_macro": "Deals unaspected damage with a potency of 160 to all enemies in a straight line before you.<br><colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>Grants <colortype(506)><edgecolortype(507)>Darkside<edgecolortype(0)><colortype(0)>, increasing damage dealt by 10%<br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>30s<br>Extends <colortype(506)><edgecolortype(507)>Darkside<edgecolortype(0)><colortype(0)> duration by 30s to a maximum of 60s.<br>Shares a recast timer with <colortype(500)><edgecolortype(501)>Edge of Shadow<edgecolortype(0)><colortype(0)>.",
+      "unlock_level": 74,
+      "relations": [
+        "extended_by_description",
+        "granted_by_description"
+      ],
+      "roles": [
+        "Tank"
+      ],
+      "jobs": [
+        {
+          "id": 32,
+          "name": "Dark Knight",
+          "abbreviation": "DRK",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 16470,
+      "name": "Edge of Shadow",
+      "description": "Deals unaspected damage with a potency of 460.\nAdditional Effect: Grants Darkside, increasing damage dealt by 10%\nDuration: 30s\nExtends Darkside duration by 30s to a maximum of 60s.\nShares a recast timer with Flood of Shadow.",
+      "description_macro": "Deals unaspected damage with a potency of 460.<br><colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>Grants <colortype(506)><edgecolortype(507)>Darkside<edgecolortype(0)><colortype(0)>, increasing damage dealt by 10%<br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>30s<br>Extends <colortype(506)><edgecolortype(507)>Darkside<edgecolortype(0)><colortype(0)> duration by 30s to a maximum of 60s.<br>Shares a recast timer with <colortype(500)><edgecolortype(501)>Flood of Shadow<edgecolortype(0)><colortype(0)>.",
+      "unlock_level": 74,
+      "relations": [
+        "extended_by_description",
+        "granted_by_description"
+      ],
+      "roles": [
+        "Tank"
+      ],
+      "jobs": [
+        {
+          "id": 32,
+          "name": "Dark Knight",
+          "abbreviation": "DRK",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

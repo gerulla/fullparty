@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 786,
+  "name": "バトルリタニー",
+  "description": "クリティカル発動率が向上した状態。",
+  "effects": [
+    "クリティカル発動率が向上した状態。"
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 212578,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 10
+  },
+  "class_job_category_id": 23,
+  "source_abilities": [
+    {
+      "id": 3557,
+      "name": "バトルリタニー",
+      "description": "一定時間、自身と周囲のパーティメンバーのクリティカル発動率を10％上昇させる。\u3000効果時間：20秒",
+      "description_macro": "一定時間、自身と周囲のパーティメンバーのクリティカル発動率を10％上昇させる。\u3000<colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>20秒",
+      "unlock_level": 52,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 22,
+          "name": "竜騎士",
+          "abbreviation": "DRG",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

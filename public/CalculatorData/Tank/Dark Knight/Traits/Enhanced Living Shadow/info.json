@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 511,
+  "name": "Enhanced Living Shadow",
+  "description": "Increases the potency of attacks dealt by your simulacrum to 420.",
+  "description_macro": "Increases the potency of attacks dealt by your simulacrum to 420.",
+  "effects": [
+    "Increases the potency of attacks dealt by your simulacrum to 420."
+  ],
+  "role": "Tank",
+  "job": {
+    "id": 32,
+    "name": "Dark Knight",
+    "abbreviation": "DRK"
+  },
+  "unlock_level": 88,
+  "value": 0,
+  "icon": {
+    "id": 6065,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 98,
+  "source_class_job_id": 32
+}

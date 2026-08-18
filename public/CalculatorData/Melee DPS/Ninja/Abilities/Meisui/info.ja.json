@@ -1,0 +1,97 @@
+{
+  "kind": "ability",
+  "id": 16489,
+  "name": "命水",
+  "description": "自身に付与されている「忍隠」を消費して「忍気」を50上昇させる。\n追加効果：自身に「命水」を付与する。\n効果時間：30秒\n命水効果：次に実行する是生滅法および六道輪廻の威力を、850および550にそれぞれ上昇させる。\n発動条件：自身が戦闘状態かつ「忍隠」効果中",
+  "description_macro": "自身に付与されている<colortype(500)><edgecolortype(501)>「忍隠」<edgecolortype(0)><colortype(0)>を消費して<colortype(500)><edgecolortype(501)>「忍気」<edgecolortype(0)><colortype(0)>を50上昇させる。<br><if([gnum68==30],<if([gnum72>=88],<colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)>自身に<colortype(500)><edgecolortype(501)>「命水」<edgecolortype(0)><colortype(0)>を付与する。<br><colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>30秒<br><colortype(504)><edgecolortype(505)>命水効果：<edgecolortype(0)><colortype(0)><if([gnum68==30],<if([gnum72>=96],次に実行する是生滅法および六道輪廻の威力を、850および550にそれぞれ上昇させる。<br>,次に実行する六道輪廻の威力を<if([gnum68==30],<if([gnum72>=94],550,500)>,500)>に上昇させる。<br>)>,次に実行する六道輪廻の威力を<if([gnum68==30],<if([gnum72>=94],550,500)>,500)>に上昇させる。<br>)>,)>,)><colortype(504)><edgecolortype(505)>発動条件：<edgecolortype(0)><colortype(0)>自身が戦闘状態かつ<colortype(500)><edgecolortype(501)>「忍隠」<edgecolortype(0)><colortype(0)>効果中",
+  "effects": [
+    "自身に付与されている「忍隠」を消費して「忍気」を50上昇させる。",
+    "追加効果：自身に「命水」を付与する。",
+    "効果時間：30秒",
+    "命水効果：次に実行する是生滅法および六道輪廻の威力を、850および550にそれぞれ上昇させる。",
+    "発動条件：自身が戦闘状態かつ「忍隠」効果中"
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 30,
+    "name": "忍者",
+    "abbreviation": "NIN"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 72,
+  "icon": {
+    "id": 2924,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 4,
+    "name": "アビリティ"
+  },
+  "attack_type": {
+    "id": 0,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 120,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 19,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 10,
+      "value": 3848
+    },
+    "secondary": {
+      "type_id": 42,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": 0,
+    "effect_yalms": 0,
+    "cast_type": 1
+  },
+  "targeting": {
+    "self": true,
+    "party": false,
+    "alliance": false,
+    "hostile": false,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": {
+      "id": 163,
+      "status": {
+        "id": 3848,
+        "name": "忍隠",
+        "description": "隠れていなくても「かくれる」を条件とするアクションを実行できる状態。",
+        "icon_id": 212919,
+        "max_stacks": 0
+      }
+    }
+  },
+  "metadata": {
+    "aspect_id": 0,
+    "behavior_type": 0,
+    "class_job_category_id": 92,
+    "source_class_job_id": 30,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

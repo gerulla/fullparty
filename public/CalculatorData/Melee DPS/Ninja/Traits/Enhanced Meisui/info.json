@@ -1,0 +1,25 @@
+{
+  "kind": "trait",
+  "id": 440,
+  "name": "Enhanced Meisui",
+  "description": "Increases the potency of Bhavacakra to 500 while under the effect of Meisui.\nDuration: 30s",
+  "description_macro": "Increases the potency of <colortype(500)><edgecolortype(501)>Bhavacakra<edgecolortype(0)><colortype(0)> to 500 while under the effect of <colortype(506)><edgecolortype(507)>Meisui<edgecolortype(0)><colortype(0)>.<br><colortype(504)><edgecolortype(505)>Duration:<edgecolortype(0)><colortype(0)> 30s",
+  "effects": [
+    "Increases the potency of Bhavacakra to 500 while under the effect of Meisui.",
+    "Duration: 30s"
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 30,
+    "name": "Ninja",
+    "abbreviation": "NIN"
+  },
+  "unlock_level": 88,
+  "value": 0,
+  "icon": {
+    "id": 5418,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 92,
+  "source_class_job_id": 30
+}

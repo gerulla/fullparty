@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 322,
+  "name": "エノキアン効果アップII",
+  "description": "エノキアンの効果量を15％に上昇させる。",
+  "description_macro": "エノキアンの効果量を15％に上昇させる。",
+  "effects": [
+    "エノキアンの効果量を15％に上昇させる。"
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 25,
+    "name": "黒魔道士",
+    "abbreviation": "BLM"
+  },
+  "unlock_level": 78,
+  "value": 10,
+  "icon": {
+    "id": 5365,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 26,
+  "source_class_job_id": 25
+}

@@ -1,0 +1,27 @@
+{
+  "kind": "trait",
+  "id": 476,
+  "name": "Ruin Mastery III",
+  "description": "Enhances Gemshine according to your current elemental attunement.\nFire Attunement Upgrade: Ruby Rite\nEarth Attunement Upgrade: Topaz Rite\nWind Attunement Upgrade: Emerald Rite",
+  "description_macro": "Enhances <colortype(500)><edgecolortype(501)>Gemshine<edgecolortype(0)><colortype(0)> according to your current elemental attunement.<br><colortype(504)><edgecolortype(505)>Fire Attunement Upgrade: <edgecolortype(0)><colortype(0)><colortype(500)><edgecolortype(501)>Ruby Rite<edgecolortype(0)><colortype(0)><br><colortype(504)><edgecolortype(505)>Earth Attunement Upgrade: <edgecolortype(0)><colortype(0)><colortype(500)><edgecolortype(501)>Topaz Rite<edgecolortype(0)><colortype(0)><br><colortype(504)><edgecolortype(505)>Wind Attunement Upgrade: <edgecolortype(0)><colortype(0)><colortype(500)><edgecolortype(501)>Emerald Rite<edgecolortype(0)><colortype(0)>",
+  "effects": [
+    "Enhances Gemshine according to your current elemental attunement.",
+    "Fire Attunement Upgrade: Ruby Rite",
+    "Earth Attunement Upgrade: Topaz Rite",
+    "Wind Attunement Upgrade: Emerald Rite"
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 27,
+    "name": "Summoner",
+    "abbreviation": "SMN"
+  },
+  "unlock_level": 72,
+  "value": 0,
+  "icon": {
+    "id": 5688,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 28,
+  "source_class_job_id": 27
+}

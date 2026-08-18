@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 110,
+  "name": "Équilibre parfait",
+  "description": "Les 3 postures du pugiliste sont utilisées\u00A0: opo-opo, raptor, coeurl.",
+  "effects": [
+    "Les 3 postures du pugiliste sont utilisées\u00A0: opo-opo, raptor, coeurl."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 217564,
+    "file": "icon.png"
+  },
+  "max_stacks": 3,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": true,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 27,
+    "modifier": 0
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 69,
+      "name": "Équilibre parfait",
+      "description": "Vous octroie 3 degrés d'Équilibre parfait.\nDurée : 20s\nÉquilibre parfait : vous permet d'utiliser les techniques d'arme requérant une posture particulière sans être dans cette posture.\nEffet additionnel : exécuter une action octroyant une posture ouvre aussi un Chakra bestial.\nLes actions octroyant la posture de l'opo-opo ouvrent un Chakra du coeurl.\nLes actions octroyant la posture du raptor ouvrent un Chakra de l'opo-opo.\nLes actions octroyant la posture du coeurl ouvrent un Chakra du raptor.\nMaximum de charges : 2\nCondition : en combat et Chakra bestial non octroyé.",
+      "description_macro": "Vous octroie 3 degrés d'<colortype(500)><edgecolortype(501)>Équilibre parfait<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 20s<br><colortype(506)><edgecolortype(507)>Équilibre parfait<nbsp>:<edgecolortype(0)><colortype(0)> vous permet d'utiliser les techniques d'arme requérant une posture par<->ti<->cu<->liè<->re sans être dans cette posture.<br><if([gnum68==20],<if([gnum72>=60],<colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> exécuter une action octroyant une posture ouvre aussi un <colortype(500)><edgecolortype(501)>Chakra bestial<edgecolortype(0)><colortype(0)>.<br>Les actions octroyant la posture de l'<colortype(500)><edgecolortype(501)>opo-opo<edgecolortype(0)><colortype(0)> ouvrent un <colortype(500)><edgecolortype(501)>Chakra du coeurl<edgecolortype(0)><colortype(0)>.<br>Les actions octroyant la posture du <colortype(500)><edgecolortype(501)>raptor<edgecolortype(0)><colortype(0)> ouvrent un <colortype(500)><edgecolortype(501)>Chakra de l'opo-opo<edgecolortype(0)><colortype(0)>.<br>Les actions octroyant la posture du <colortype(500)><edgecolortype(501)>coeurl<edgecolortype(0)><colortype(0)> ouvrent un <colortype(500)><edgecolortype(501)>Chakra du raptor<edgecolortype(0)><colortype(0)>.<br>,)>,)><colortype(506)><edgecolortype(507)>Maximum de charges<nbsp>:<edgecolortype(0)><colortype(0)> 2<br><colortype(506)><edgecolortype(507)>Condition<nbsp>: <edgecolortype(0)><colortype(0)><if([gnum68==20],<if([gnum72>=60],en combat et <colortype(500)><edgecolortype(501)>Chakra bestial<edgecolortype(0)><colortype(0)> non octroyé.,en combat.)>,en combat.)>",
+      "unlock_level": 50,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 20,
+          "name": "Moine",
+          "abbreviation": "MOI",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

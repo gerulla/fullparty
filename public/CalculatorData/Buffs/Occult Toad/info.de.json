@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 5317,
+  "name": "Kreszenter Frosch",
+  "description": "In einen Frosch verwandelt. Kommandos können nicht ausgeführt werden.",
+  "effects": [
+    "In einen Frosch verwandelt. Kommandos können nicht ausgeführt werden."
+  ],
+  "classification": "debuff",
+  "icon": {
+    "id": 215580,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 2,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 100,
+  "parameter": {
+    "effect": 2,
+    "modifier": -99
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 49075,
+      "name": "Kreszenter Frosch",
+      "description": "Belegt das Ziel mit Kreszenter Frosch.\nDauer: 20 Sekunden\nEffekt von Kreszenter Frosch: Ausgeteilter Schaden ist um 99 % verringert und jegliche Handlungen außer Auto-Attacken sind eingeschränkt.",
+      "description_macro": "Belegt das Ziel mit <colortype(506)><edgecolortype(507)>Kreszenter Frosch<edgecolortype(0)><colortype(0)>.<br>Dauer: 20 Sekunden<br>Effekt von <colortype(506)><edgecolortype(507)>Kreszenter Frosch<edgecolortype(0)><colortype(0)>: Ausgeteilter Schaden ist um 99<nbsp>% verringert und jegliche Handlungen außer Auto-Attacken sind eingeschränkt.",
+      "unlock_level": 0,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Phantom Jobs"
+      ],
+      "jobs": [
+        {
+          "id": 18,
+          "name": "Phantom Phantom-Schwarzmagier",
+          "abbreviation": "Ph-Schwarzmagier",
+          "is_phantom": true
+        }
+      ]
+    }
+  ]
+}

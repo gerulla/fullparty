@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 412,
+  "name": "Sheltron Mastery",
+  "description": "Upgrades Sheltron to Holy Sheltron.",
+  "description_macro": "Upgrades <colortype(500)><edgecolortype(501)>Sheltron<edgecolortype(0)><colortype(0)> to <colortype(500)><edgecolortype(501)>Holy Sheltron<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Upgrades Sheltron to Holy Sheltron."
+  ],
+  "role": "Tank",
+  "job": {
+    "id": 19,
+    "name": "Paladin",
+    "abbreviation": "PLD"
+  },
+  "unlock_level": 82,
+  "value": 0,
+  "icon": {
+    "id": 5218,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 20,
+  "source_class_job_id": 19
+}

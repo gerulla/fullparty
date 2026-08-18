@@ -1,0 +1,85 @@
+{
+  "kind": "ability",
+  "id": 41608,
+  "name": "こうげきのうた",
+  "description": "自身と周囲のパーティメンバーの与ダメージを1％上昇させる。\n効果時間：70秒",
+  "description_macro": "自身と周囲のパーティメンバーの与ダメージを<if([gnum108>=4],4％,<if([gnum108>=3],3％,<if([gnum108>=2],2％,1％)>)>)>上昇させる。<br><colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>70秒<if([gnum108>=4],<br>えいゆうのうたとは同時に付与されない。,)>",
+  "effects": [
+    "自身と周囲のパーティメンバーの与ダメージを1％上昇させる。",
+    "効果時間：70秒"
+  ],
+  "role": "Phantom Jobs",
+  "job": {
+    "id": 6,
+    "name": "サポート吟遊詩人",
+    "abbreviation": "Ph. Bard"
+  },
+  "is_phantom_action": true,
+  "unlock_level": 1,
+  "icon": {
+    "id": 64781,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 4,
+    "name": "アビリティ"
+  },
+  "attack_type": {
+    "id": 0,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 5,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 83,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 0,
+      "value": 0
+    },
+    "secondary": {
+      "type_id": 0,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": 0,
+    "effect_yalms": 30,
+    "cast_type": 2
+  },
+  "targeting": {
+    "self": true,
+    "party": false,
+    "alliance": false,
+    "hostile": false,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 0,
+    "behavior_type": 0,
+    "class_job_category_id": 142,
+    "source_class_job_id": 4294967295,
+    "is_role_action": false,
+    "is_player_action": false,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

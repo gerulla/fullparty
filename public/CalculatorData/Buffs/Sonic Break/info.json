@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 1837,
+  "name": "Sonic Break",
+  "description": "Sustaining damage over time.",
+  "effects": [
+    "Sustaining damage over time."
+  ],
+  "classification": "debuff",
+  "icon": {
+    "id": 213607,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 2,
+  "target_type": 0,
+  "can_dispel": true,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 10,
+  "parameter": {
+    "effect": 0,
+    "modifier": 10
+  },
+  "class_job_category_id": 149,
+  "source_abilities": [
+    {
+      "id": 16153,
+      "name": "Sonic Break",
+      "description": "Delivers an attack with a potency of 340.\nAdditional Effect: Damage over time\nPotency: 120\nDuration: 15s\nCan only be executed when Ready to Break.",
+      "description_macro": "Delivers an attack with a potency of 340.<br><colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>Damage over time<br><colortype(504)><edgecolortype(505)>Potency: <edgecolortype(0)><colortype(0)>120<br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>15s<br>Can only be executed when <colortype(506)><edgecolortype(507)>Ready to Break<edgecolortype(0)><colortype(0)>.",
+      "unlock_level": 54,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Tank"
+      ],
+      "jobs": [
+        {
+          "id": 37,
+          "name": "Gunbreaker",
+          "abbreviation": "GNB",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

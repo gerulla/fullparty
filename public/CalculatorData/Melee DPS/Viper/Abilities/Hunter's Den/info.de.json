@@ -1,0 +1,94 @@
+{
+  "kind": "ability",
+  "id": 34624,
+  "name": "Blutige Otterngrube",
+  "description": "Du führst eine physische Attacke auf alle umstehenden Gegner aus.\nAttacke-Wert: 300\nZusatzeffekt: Gewährt dir Vipernblut.\nDauer: 40 Sekunden\nEffekt von Vipernblut: Eigener ausgeteilter Schaden ist um 10 % erhöht.\nZusatzeffekt: Gewährt dir Fänge der Grube.\nDauer: 30 Sekunden\nEffekt von Fänge der Grube: Erhöht die Attacke-Werte von Nest der Zwillingsfänge um 30.\nZusatzeffekt: Erhöht den Geistbalken um 5.\nTrifft dieses Kommando erfolgreich\\Bedingung: Erfolgreiche Ausführung von Harte Otterngrube oder Flinke Otterngrube.\nEigener Reaktivierungs-Timer",
+  "description_macro": "Du führst eine physische Attacke auf alle umstehenden Gegner aus.<br>Attacke-Wert: 300<br>Zusatzeffekt: Gewährt dir <colortype(506)><edgecolortype(507)>Vipernblut<edgecolortype(0)><colortype(0)>.<br>Dauer: 40 Sekunden<br>Effekt von <colortype(506)><edgecolortype(507)>Vipernblut<edgecolortype(0)><colortype(0)>: Eigener ausgeteilter Schaden ist um 10<nbsp>% erhöht.<br><if([gnum68==41],<if([gnum72>=80],Zusatzeffekt: Gewährt dir <colortype(506)><edgecolortype(507)>Fänge der Grube<edgecolortype(0)><colortype(0)>.<br>Dauer: 30 Sekunden<br>Effekt von <colortype(506)><edgecolortype(507)>Fänge der Grube<edgecolortype(0)><colortype(0)>: Erhöht die Attacke-Werte von <colortype(502)><edgecolortype(503)>Nest der Zwillingsfänge<edgecolortype(0)><colortype(0)> um 30.<br>,)>,)><if([gnum68==41],<if([gnum72>=90],Zusatzeffekt: Erhöht den Geistbalken um 5.<br>,)>,)><if([gnum68==41],<if([gnum72>=80],Trifft dieses Kommando erfolgreich\\, ändert sich <colortype(502)><edgecolortype(503)>Zwillingsfänge<edgecolortype(0)><colortype(0)> zu <colortype(502)><edgecolortype(503)>Nest der Zwillingsfänge<edgecolortype(0)><colortype(0)> und <colortype(502)><edgecolortype(503)>Zwillingsschuppen<edgecolortype(0)><colortype(0)> zu <colortype(502)><edgecolortype(503)>Nest der Zwillingsschuppen<edgecolortype(0)><colortype(0)>\\, dich diese Kommandos zweifach ausführen lassend.<br>,)>,)>Bedingung: Erfolgreiche Ausführung von <colortype(502)><edgecolortype(503)>Harte Otterngrube<edgecolortype(0)><colortype(0)> oder <colortype(502)><edgecolortype(503)>Flinke Otterngrube<edgecolortype(0)><colortype(0)>.<br>Eigener Reaktivierungs-Timer",
+  "effects": [
+    "Du führst eine physische Attacke auf alle umstehenden Gegner aus.",
+    "Attacke-Wert: 300",
+    "Zusatzeffekt: Gewährt dir Vipernblut.",
+    "Dauer: 40 Sekunden",
+    "Effekt von Vipernblut: Eigener ausgeteilter Schaden ist um 10 % erhöht.",
+    "Zusatzeffekt: Gewährt dir Fänge der Grube.",
+    "Dauer: 30 Sekunden",
+    "Effekt von Fänge der Grube: Erhöht die Attacke-Werte von Nest der Zwillingsfänge um 30.",
+    "Zusatzeffekt: Erhöht den Geistbalken um 5.",
+    "Trifft dieses Kommando erfolgreich\\Bedingung: Erfolgreiche Ausführung von Harte Otterngrube oder Flinke Otterngrube.",
+    "Eigener Reaktivierungs-Timer"
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 41,
+    "name": "Viper",
+    "abbreviation": "VPR"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 70,
+  "icon": {
+    "id": 3719,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 3,
+    "name": "Waffenfertigkeit"
+  },
+  "attack_type": {
+    "id": 4294967295,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 3,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 58,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 0,
+      "value": 0
+    },
+    "secondary": {
+      "type_id": 145,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": 0,
+    "effect_yalms": 5,
+    "cast_type": 2
+  },
+  "targeting": {
+    "self": true,
+    "party": false,
+    "alliance": false,
+    "hostile": false,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": 34623,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 7,
+    "behavior_type": 0,
+    "class_job_category_id": 196,
+    "source_class_job_id": 41,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

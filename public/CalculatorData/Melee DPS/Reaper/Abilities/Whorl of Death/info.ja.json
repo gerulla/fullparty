@@ -1,0 +1,90 @@
+{
+  "kind": "ability",
+  "id": 24379,
+  "name": "ワーラル・オブ・デス",
+  "description": "自身の周囲の敵に範囲物理攻撃。\u3000威力：100\n追加効果：対象に「デスデザイン」を付与する。\n効果時間：30秒\nデスデザイン効果：自身から対象に与えるダメージを10％上昇させる。\n効果時間中に対象が倒されると、自身の「ソウルゲージ」が10上昇する。\n既に「デスデザイン」が付与されている場合は、その効果時間を30秒延長する。\n最大60秒まで延長することができる。",
+  "description_macro": "自身の周囲の敵に範囲物理攻撃。\u3000<colortype(504)><edgecolortype(505)>威力：<edgecolortype(0)><colortype(0)><if([gnum68==39],<if([gnum72>=60],100,80)>,80)><br><colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)>対象に<colortype(500)><edgecolortype(501)>「デスデザイン」<edgecolortype(0)><colortype(0)>を付与する。<br><colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>30秒<br><colortype(504)><edgecolortype(505)>デスデザイン効果：<edgecolortype(0)><colortype(0)>自身から対象に与えるダメージを10％上昇させる。<br><if([gnum68==39],<if([gnum72>=50],効果時間中に対象が倒されると、自身の<colortype(500)><edgecolortype(501)>「ソウルゲージ」<edgecolortype(0)><colortype(0)>が10上昇する。<br>,)>,)>既に<colortype(500)><edgecolortype(501)>「デスデザイン」<edgecolortype(0)><colortype(0)>が付与されている場合は、その効果時間を30秒延長する。<br>最大60秒まで延長することができる。",
+  "effects": [
+    "自身の周囲の敵に範囲物理攻撃。\u3000威力：100",
+    "追加効果：対象に「デスデザイン」を付与する。",
+    "効果時間：30秒",
+    "デスデザイン効果：自身から対象に与えるダメージを10％上昇させる。",
+    "効果時間中に対象が倒されると、自身の「ソウルゲージ」が10上昇する。",
+    "既に「デスデザイン」が付与されている場合は、その効果時間を30秒延長する。",
+    "最大60秒まで延長することができる。"
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 39,
+    "name": "リーパー",
+    "abbreviation": "RPR"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 35,
+  "icon": {
+    "id": 3607,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 3,
+    "name": "ウェポンスキル"
+  },
+  "attack_type": {
+    "id": 1,
+    "name": "斬"
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 2.5,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 58,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 0,
+      "value": 0
+    },
+    "secondary": {
+      "type_id": 0,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": 0,
+    "effect_yalms": 5,
+    "cast_type": 2
+  },
+  "targeting": {
+    "self": true,
+    "party": false,
+    "alliance": false,
+    "hostile": false,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 7,
+    "behavior_type": 0,
+    "class_job_category_id": 180,
+    "source_class_job_id": 39,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

@@ -1,0 +1,85 @@
+{
+  "kind": "ability",
+  "id": 7503,
+  "name": "Jolt",
+  "description": "Deals unaspected damage with a potency of 170.\nAdditional Effect: Increases both Black Mana and White Mana by 2",
+  "description_macro": "Deals unaspected damage with a potency of 170.<br><colortype(504)><edgecolortype(505)>Additional Effect:<edgecolortype(0)><colortype(0)> Increases both <colortype(506)><edgecolortype(507)>Black Mana<edgecolortype(0)><colortype(0)> and <colortype(506)><edgecolortype(507)>White Mana<edgecolortype(0)><colortype(0)> by 2",
+  "effects": [
+    "Deals unaspected damage with a potency of 170.",
+    "Additional Effect: Increases both Black Mana and White Mana by 2"
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 35,
+    "name": "Red Mage",
+    "abbreviation": "RDM"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 2,
+  "icon": {
+    "id": 3202,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 2,
+    "name": "Spell"
+  },
+  "attack_type": {
+    "id": 5,
+    "name": "魔法"
+  },
+  "timing": {
+    "cast_seconds": 2,
+    "recast_seconds": 2.5,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 58,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 3,
+      "value": 2
+    },
+    "secondary": {
+      "type_id": 63,
+      "value": 195
+    }
+  },
+  "range": {
+    "target_yalms": 25,
+    "effect_yalms": 0,
+    "cast_type": 1
+  },
+  "targeting": {
+    "self": false,
+    "party": false,
+    "alliance": false,
+    "hostile": true,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": false
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 7,
+    "behavior_type": 0,
+    "class_job_category_id": 112,
+    "source_class_job_id": 35,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

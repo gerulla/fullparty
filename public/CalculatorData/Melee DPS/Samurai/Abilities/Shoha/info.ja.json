@@ -1,0 +1,89 @@
+{
+  "kind": "ability",
+  "id": 16487,
+  "name": "照破",
+  "description": "対象に向かって前方直線範囲物理攻撃。\u3000威力：640\n2体目以降の対象への威力は40％減少する。\n実行時に「剣圧」を全て消費する。\n発動条件：「剣圧」3\n「剣圧」は自身が戦闘状態で「黙想」「居合術」「奥義波切」を実行すると付与される。\n最大スタック数：3\u3000効果時間：永続",
+  "description_macro": "対象に向かって前方直線範囲物理攻撃。\u3000<colortype(504)><edgecolortype(505)>威力：<edgecolortype(0)><colortype(0)><if([gnum68==34],<if([gnum72>=94],640,560)>,560)><br>2体目以降の対象への威力は40％減少する。<br>実行時に<colortype(500)><edgecolortype(501)>「剣圧」<edgecolortype(0)><colortype(0)>を全て消費する。<br><colortype(504)><edgecolortype(505)>発動条件：<edgecolortype(0)><colortype(0)><colortype(500)><edgecolortype(501)>「剣圧」<edgecolortype(0)><colortype(0)>3<br><colortype(500)><edgecolortype(501)>「剣圧」<edgecolortype(0)><colortype(0)>は自身が戦闘状態で<colortype(500)><edgecolortype(501)>「黙想」「居合術」<if([gnum68==34],<if([gnum72>=90],「奥義波切」,)>,)><edgecolortype(0)><colortype(0)>を実行すると付与される。<br><colortype(504)><edgecolortype(505)>最大スタック数：<edgecolortype(0)><colortype(0)>3\u3000<colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>永続",
+  "effects": [
+    "対象に向かって前方直線範囲物理攻撃。\u3000威力：640",
+    "2体目以降の対象への威力は40％減少する。",
+    "実行時に「剣圧」を全て消費する。",
+    "発動条件：「剣圧」3",
+    "「剣圧」は自身が戦闘状態で「黙想」「居合術」「奥義波切」を実行すると付与される。",
+    "最大スタック数：3\u3000効果時間：永続"
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 34,
+    "name": "侍",
+    "abbreviation": "SAM"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 80,
+  "icon": {
+    "id": 3184,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 4,
+    "name": "アビリティ"
+  },
+  "attack_type": {
+    "id": 4294967295,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 15,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 8,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 63,
+      "value": 3
+    },
+    "secondary": {
+      "type_id": 109,
+      "value": 3
+    }
+  },
+  "range": {
+    "target_yalms": 10,
+    "effect_yalms": 10,
+    "cast_type": 4
+  },
+  "targeting": {
+    "self": false,
+    "party": false,
+    "alliance": false,
+    "hostile": true,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 7,
+    "behavior_type": 0,
+    "class_job_category_id": 111,
+    "source_class_job_id": 34,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

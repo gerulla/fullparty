@@ -1,0 +1,87 @@
+{
+  "kind": "ability",
+  "id": 16534,
+  "name": "Afflatus Rapture",
+  "description": "Restores own HP and the HP of all nearby party members.\nCure Potency: 400\nAdditional Effect: Nourishes the Blood Lily\nHealing Gauge Cost: 1 Lily",
+  "description_macro": "Restores own HP and the HP of all nearby party members.<br><colortype(504)><edgecolortype(505)>Cure Potency: <edgecolortype(0)><colortype(0)><if([gnum68==24],<if([gnum72>=85],400,300)>,300)><br><colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>Nourishes the <colortype(506)><edgecolortype(507)>Blood Lily<edgecolortype(0)><colortype(0)><br><colortype(504)><edgecolortype(505)>Healing Gauge Cost: <edgecolortype(0)><colortype(0)>1 <colortype(506)><edgecolortype(507)>Lily<edgecolortype(0)><colortype(0)>",
+  "effects": [
+    "Restores own HP and the HP of all nearby party members.",
+    "Cure Potency: 400",
+    "Additional Effect: Nourishes the Blood Lily",
+    "Healing Gauge Cost: 1 Lily"
+  ],
+  "role": "Healer",
+  "job": {
+    "id": 24,
+    "name": "White Mage",
+    "abbreviation": "WHM"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 76,
+  "icon": {
+    "id": 2643,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 2,
+    "name": "Spell"
+  },
+  "attack_type": {
+    "id": 5,
+    "name": "魔法"
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 2.5,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 58,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 57,
+      "value": 1
+    },
+    "secondary": {
+      "type_id": 0,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": 0,
+    "effect_yalms": 20,
+    "cast_type": 2
+  },
+  "targeting": {
+    "self": true,
+    "party": false,
+    "alliance": false,
+    "hostile": false,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": false
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": false
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 7,
+    "behavior_type": 0,
+    "class_job_category_id": 25,
+    "source_class_job_id": 24,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

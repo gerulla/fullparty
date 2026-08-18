@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 3877,
+  "name": "Noble Aura",
+  "description": "Nobler Impakt kann ausgeführt werden.",
+  "effects": [
+    "Nobler Impakt kann ausgeführt werden."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 213412,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 112,
+  "source_abilities": [
+    {
+      "id": 7518,
+      "name": "Präparation",
+      "description": "Du kannst das nächste Erzblitzga\\ oder Impakt sofort ausführen.\nDauer: 20 Sekunden\nZusatzeffekt: Der Attacke-Wert von Impakt ist um 50 erhöht.\nZusatzeffekt: Erfolgreiche Ausführung von Erzblitzga und Erzwindga gewährt garantiert Erzfeuer-bereit beziehungsweise Erzstein-bereit.\nZusatzeffekt: Gewährt dir Noble Aura.\nDauer: 30 Sekunden\nMaximale Aufladungen: 2",
+      "description_macro": "Du kannst das nächste <if([gnum68==35],<if([gnum72>=82],<colortype(502)><edgecolortype(503)>Erzblitzga<edgecolortype(0)><colortype(0)>\\, <colortype(502)><edgecolortype(503)>Erzwindga<edgecolortype(0)><colortype(0)>,<colortype(502)><edgecolortype(503)>Erzblitz<edgecolortype(0)><colortype(0)>\\, <colortype(502)><edgecolortype(503)>Erzwind<edgecolortype(0)><colortype(0)>)>,<colortype(502)><edgecolortype(503)>Erzblitz<edgecolortype(0)><colortype(0)>\\, <colortype(502)><edgecolortype(503)>Erzwind<edgecolortype(0)><colortype(0)>)> oder <if([gnum68==35],<if([gnum72>=66],<colortype(502)><edgecolortype(503)>Impakt<edgecolortype(0)><colortype(0)>,<colortype(502)><edgecolortype(503)>Zerstreuen<edgecolortype(0)><colortype(0)>)>,<colortype(502)><edgecolortype(503)>Zerstreuen<edgecolortype(0)><colortype(0)>)> sofort ausführen.<br>Dauer: 20 Sekunden<br>Zusatzeffekt: Der Attacke-Wert von <if([gnum68==35],<if([gnum72>=66],<colortype(502)><edgecolortype(503)>Impakt<edgecolortype(0)><colortype(0)>,<colortype(502)><edgecolortype(503)>Zerstreuen<edgecolortype(0)><colortype(0)>)>,<colortype(502)><edgecolortype(503)>Zerstreuen<edgecolortype(0)><colortype(0)>)> ist um 50 erhöht.<br>Zusatzeffekt: Erfolgreiche Ausführung von <if([gnum68==35],<if([gnum72>=82],<colortype(502)><edgecolortype(503)>Erzblitzga<edgecolortype(0)><colortype(0)> und <colortype(502)><edgecolortype(503)>Erzwindga<edgecolortype(0)><colortype(0)>,<colortype(502)><edgecolortype(503)>Erzblitz<edgecolortype(0)><colortype(0)> und <colortype(502)><edgecolortype(503)>Erzwind<edgecolortype(0)><colortype(0)>)>,<colortype(502)><edgecolortype(503)>Erzblitz<edgecolortype(0)><colortype(0)> und <colortype(502)><edgecolortype(503)>Erzwind<edgecolortype(0)><colortype(0)>)> gewährt garantiert <colortype(506)><edgecolortype(507)>Erzfeuer-bereit<edgecolortype(0)><colortype(0)> be<->ziehungs<->weise <colortype(506)><edgecolortype(507)>Erzstein-bereit<edgecolortype(0)><colortype(0)>.<if([gnum68==35],<if([gnum72>=96],<br>Zusatzeffekt: Gewährt dir <colortype(506)><edgecolortype(507)>Noble Aura<edgecolortype(0)><colortype(0)>.<br>Dauer: 30 Sekunden,)>,)><if([gnum68==35],<if([gnum72>=88],<br>Maximale Aufladungen: 2,)>,)>",
+      "unlock_level": 50,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Magical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 35,
+          "name": "Rotmagier",
+          "abbreviation": "RMA",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

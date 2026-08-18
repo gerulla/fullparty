@@ -1,0 +1,89 @@
+{
+  "kind": "ability",
+  "id": 24290,
+  "name": "Eukrasia",
+  "description": "Augments certain offensive and healing magic actions.\nDosis III is upgraded to Eukrasian Dosis III.\nDyskrasia II is upgraded to Eukrasian Dyskrasia.\nDiagnosis is upgraded to Eukrasian Diagnosis.\nPrognosis is upgraded to Eukrasian PrognosisII.\nThis action does not share a recast timer with any other actions. Upon execution, the recast timer for this action will be applied to all other weaponskills and magic actions.",
+  "description_macro": "Augments certain offensive and healing magic actions.<br><if([gnum68==40],<if([gnum72>=82],<colortype(500)><edgecolortype(501)>Dosis III<edgecolortype(0)><colortype(0)> is upgraded to <colortype(500)><edgecolortype(501)>Eukrasian Dosis III<edgecolortype(0)><colortype(0)>,<if([gnum68==40],<if([gnum72>=72],<colortype(500)><edgecolortype(501)>Dosis II<edgecolortype(0)><colortype(0)> is upgraded to <colortype(500)><edgecolortype(501)>Eukrasian Dosis II<edgecolortype(0)><colortype(0)>,<colortype(500)><edgecolortype(501)>Dosis<edgecolortype(0)><colortype(0)> is upgraded to <colortype(500)><edgecolortype(501)>Eukrasian Dosis<edgecolortype(0)><colortype(0)>)>,<colortype(500)><edgecolortype(501)>Dosis<edgecolortype(0)><colortype(0)> is upgraded to <colortype(500)><edgecolortype(501)>Eukrasian Dosis<edgecolortype(0)><colortype(0)>)>)>,<if([gnum68==40],<if([gnum72>=72],<colortype(500)><edgecolortype(501)>Dosis II<edgecolortype(0)><colortype(0)> is upgraded to <colortype(500)><edgecolortype(501)>Eukrasian Dosis II<edgecolortype(0)><colortype(0)>,<colortype(500)><edgecolortype(501)>Dosis<edgecolortype(0)><colortype(0)> is upgraded to <colortype(500)><edgecolortype(501)>Eukrasian Dosis<edgecolortype(0)><colortype(0)>)>,<colortype(500)><edgecolortype(501)>Dosis<edgecolortype(0)><colortype(0)> is upgraded to <colortype(500)><edgecolortype(501)>Eukrasian Dosis<edgecolortype(0)><colortype(0)>)>)>.<br><if([gnum68==40],<if([gnum72>=82],<colortype(500)><edgecolortype(501)>Dyskrasia II<edgecolortype(0)><colortype(0)> is upgraded to <colortype(500)><edgecolortype(501)>Eukrasian Dyskrasia<edgecolortype(0)><colortype(0)>.<br>,)>,)><colortype(500)><edgecolortype(501)>Diagnosis<edgecolortype(0)><colortype(0)> is upgraded to <colortype(500)><edgecolortype(501)>Eukrasian Diagnosis<edgecolortype(0)><colortype(0)>.<br><colortype(500)><edgecolortype(501)>Prognosis<edgecolortype(0)><colortype(0)> is upgraded to <colortype(500)><edgecolortype(501)>Eukrasian Prognosis<if([gnum68==40],<if([gnum72>=96], II,)>,)><edgecolortype(0)><colortype(0)>.<br>This action does not share a recast timer with any other actions. Upon execution, the recast timer for this action will be applied to all other weaponskills and magic actions.",
+  "effects": [
+    "Augments certain offensive and healing magic actions.",
+    "Dosis III is upgraded to Eukrasian Dosis III.",
+    "Dyskrasia II is upgraded to Eukrasian Dyskrasia.",
+    "Diagnosis is upgraded to Eukrasian Diagnosis.",
+    "Prognosis is upgraded to Eukrasian PrognosisII.",
+    "This action does not share a recast timer with any other actions. Upon execution, the recast timer for this action will be applied to all other weaponskills and magic actions."
+  ],
+  "role": "Healer",
+  "job": {
+    "id": 40,
+    "name": "Sage",
+    "abbreviation": "SGE"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 30,
+  "icon": {
+    "id": 3658,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 2,
+    "name": "Spell"
+  },
+  "attack_type": {
+    "id": 0,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 2.5,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 58,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 0,
+      "value": 0
+    },
+    "secondary": {
+      "type_id": 46,
+      "value": 2606
+    }
+  },
+  "range": {
+    "target_yalms": 0,
+    "effect_yalms": 0,
+    "cast_type": 1
+  },
+  "targeting": {
+    "self": true,
+    "party": false,
+    "alliance": false,
+    "hostile": false,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 0,
+    "behavior_type": 0,
+    "class_job_category_id": 181,
+    "source_class_job_id": 40,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

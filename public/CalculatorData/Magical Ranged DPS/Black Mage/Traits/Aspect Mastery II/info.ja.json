@@ -1,0 +1,29 @@
+{
+  "kind": "trait",
+  "id": 458,
+  "name": "極性マスタリーII",
+  "description": "「アストラルファイア」および「アンブラルブリザード」の最大スタック数が2に増加する。\n2スタック付与された場合にはそれぞれ下記の効果が発動する。\n\nアストラルファイア効果：火属性魔法の威力が60％上昇する。\n氷属性魔法の威力が20％減少する。\n\nアンブラルブリザード効果：氷属性魔法の命中時にＭＰが5000回復する。\n火属性魔法の威力が20％減少する。",
+  "description_macro": "<colortype(500)><edgecolortype(501)>「アストラルファイア」<edgecolortype(0)><colortype(0)>および<colortype(500)><edgecolortype(501)>「アンブラルブリザード」<edgecolortype(0)><colortype(0)>の最大スタック数が2に増加する。<br>2スタック付与された場合にはそれぞれ下記の効果が発動する。<br><br><colortype(504)><edgecolortype(505)>アストラルファイア効果：<edgecolortype(0)><colortype(0)>火属性魔法の威力が60％上昇する。<br>氷属性魔法の威力が20％減少する。<br><br><colortype(504)><edgecolortype(505)>アンブラルブリザード効果：<edgecolortype(0)><colortype(0)>氷属性魔法の命中時にＭＰが5000回復する。<br>火属性魔法の威力が20％減少する。",
+  "effects": [
+    "「アストラルファイア」および「アンブラルブリザード」の最大スタック数が2に増加する。",
+    "2スタック付与された場合にはそれぞれ下記の効果が発動する。",
+    "アストラルファイア効果：火属性魔法の威力が60％上昇する。",
+    "氷属性魔法の威力が20％減少する。",
+    "アンブラルブリザード効果：氷属性魔法の命中時にＭＰが5000回復する。",
+    "火属性魔法の威力が20％減少する。"
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 25,
+    "name": "黒魔道士",
+    "abbreviation": "BLM"
+  },
+  "unlock_level": 20,
+  "value": 0,
+  "icon": {
+    "id": 5366,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 55,
+  "source_class_job_id": 7
+}

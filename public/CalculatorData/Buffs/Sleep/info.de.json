@@ -1,0 +1,74 @@
+{
+  "kind": "combat_status",
+  "id": 3,
+  "name": "Schlaf",
+  "description": "Tiefschlaf verhindert das Ausführen jeglicher Kommandos.",
+  "effects": [
+    "Tiefschlaf verhindert das Ausführen jeglicher Kommandos."
+  ],
+  "classification": "debuff",
+  "icon": {
+    "id": 215013,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 2,
+  "target_type": 0,
+  "can_dispel": true,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 100,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 25880,
+      "name": "Schlaf",
+      "description": "Du versetzt das Ziel und die Gegner in seiner Nähe in Schlaf.\nDauer: 30 Sekunden\nUnterbindet Auto-Attacke.",
+      "description_macro": "Du versetzt das Ziel und die Gegner in seiner Nähe in <colortype(506)><edgecolortype(507)>Schlaf<edgecolortype(0)><colortype(0)>.<br>Dauer: 30 Sekunden<br>Unterbindet Auto-Attacke.",
+      "unlock_level": 10,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Magical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 25,
+          "name": "Schwarzmagier",
+          "abbreviation": "SMA",
+          "is_phantom": false
+        },
+        {
+          "id": 27,
+          "name": "Beschwörer",
+          "abbreviation": "BSW",
+          "is_phantom": false
+        },
+        {
+          "id": 35,
+          "name": "Rotmagier",
+          "abbreviation": "RMA",
+          "is_phantom": false
+        },
+        {
+          "id": 42,
+          "name": "Piktomant",
+          "abbreviation": "PKT",
+          "is_phantom": false
+        },
+        {
+          "id": 36,
+          "name": "Blaumagier",
+          "abbreviation": "BMA",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

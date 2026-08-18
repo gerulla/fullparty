@@ -1,0 +1,95 @@
+{
+  "kind": "ability",
+  "id": 7392,
+  "name": "Marée de sang",
+  "description": "Effectue une attaque physique sur la cible.\nPuissance : 600\nCoût Jauge de sang : 50",
+  "description_macro": "Effectue une attaque physique sur la cible.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> <if([gnum68==32],<if([gnum72>=94],600,500)>,500)><br><colortype(506)><edgecolortype(507)>Coût Jauge de sang<nbsp>:<edgecolortype(0)><colortype(0)> 50",
+  "effects": [
+    "Effectue une attaque physique sur la cible.",
+    "Puissance : 600",
+    "Coût Jauge de sang : 50"
+  ],
+  "role": "Tank",
+  "job": {
+    "id": 32,
+    "name": "Chevalier Noir",
+    "abbreviation": "CHN"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 62,
+  "icon": {
+    "id": 3080,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 3,
+    "name": "Technique d'arme"
+  },
+  "attack_type": {
+    "id": 4294967295,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 2.5,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 58,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 25,
+      "value": 50
+    },
+    "secondary": {
+      "type_id": 0,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": -1,
+    "effect_yalms": 0,
+    "cast_type": 1
+  },
+  "targeting": {
+    "self": false,
+    "party": false,
+    "alliance": false,
+    "hostile": true,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": {
+      "id": 54,
+      "status": {
+        "id": 1972,
+        "name": "Delirium de sang",
+        "description": "Les actions Quietus et Marée de sang ne consomment plus de Jauge de sang et restaurent des PM à chaque fois qu'elles touchent.",
+        "icon_id": 217147,
+        "max_stacks": 3
+      }
+    }
+  },
+  "metadata": {
+    "aspect_id": 7,
+    "behavior_type": 0,
+    "class_job_category_id": 98,
+    "source_class_job_id": 32,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

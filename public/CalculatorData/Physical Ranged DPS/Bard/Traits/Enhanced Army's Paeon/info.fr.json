@@ -1,0 +1,34 @@
+{
+  "kind": "trait",
+  "id": 286,
+  "name": "Péan martial amélioré",
+  "description": "Bénédiction martiale vous est octroyée lorsque vous utilisez Ballade du mage ou Menuet du Vagabond, sous les effets de Péan martial et d'Inspiration poétique.\nDurée : 10s\nBénédiction martiale : réduit le délai des attaques automatiques et les temps de lancement et de recharge des techniques d'arme et des sorts de magie.\n\nSi Péan martial prend fin sans que Ballade du mage ou Menuet du Vagabond n'aient été utilisés et que vous bénéficiez d'Inspiration poétique, Pacte martial vous est octroyé.\nDurée : 30s\nPacte martial : vous octroie Bénédiction martiale lorsque vous utilisez Ballade du mage, Péan martial ou Menuet du Vagabond.\n\nLe degré d'Inspiration poétique au moment de l'activation de Bénédiction martiale et de Péan martial détermine la puissance de l'effet.\n1 degré : 1%\n2 degrés : 2%\n3 degrés : 4%\n4 degrés : 12%",
+  "description_macro": "<colortype(500)><edgecolortype(501)>Bénédiction martiale<edgecolortype(0)><colortype(0)> vous est octroyée lorsque vous utilisez <colortype(500)><edgecolortype(501)>Ballade du mage<edgecolortype(0)><colortype(0)> ou <colortype(500)><edgecolortype(501)>Menuet du Vagabond<edgecolortype(0)><colortype(0)>, sous les effets de <colortype(500)><edgecolortype(501)>Péan martial<edgecolortype(0)><colortype(0)> et d'<colortype(500)><edgecolortype(501)>Inspiration poétique<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 10s<br><colortype(506)><edgecolortype(507)>Bénédiction martiale<nbsp>:<edgecolortype(0)><colortype(0)> réduit le délai des attaques automatiques et les temps de lancement et de recharge des techniques d'arme et des sorts de magie.<br><br>Si <colortype(500)><edgecolortype(501)>Péan martial<edgecolortype(0)><colortype(0)> prend fin sans que <colortype(500)><edgecolortype(501)>Ballade du mage<edgecolortype(0)><colortype(0)> ou <colortype(500)><edgecolortype(501)>Menuet du Vagabond<edgecolortype(0)><colortype(0)> n'aient été utilisés et que vous bénéficiez d'<colortype(500)><edgecolortype(501)>Inspiration poétique<edgecolortype(0)><colortype(0)>, <colortype(500)><edgecolortype(501)>Pacte martial<edgecolortype(0)><colortype(0)> vous est octroyé.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 30s<br><colortype(506)><edgecolortype(507)>Pacte martial<nbsp>:<edgecolortype(0)><colortype(0)> vous octroie <colortype(500)><edgecolortype(501)>Bénédiction martiale<edgecolortype(0)><colortype(0)> lorsque vous utilisez <colortype(500)><edgecolortype(501)>Ballade du mage<edgecolortype(0)><colortype(0)>, <colortype(500)><edgecolortype(501)>Péan martial<edgecolortype(0)><colortype(0)> ou <colortype(500)><edgecolortype(501)>Menuet du Vagabond<edgecolortype(0)><colortype(0)>.<br><br>Le degré d'<colortype(500)><edgecolortype(501)>Inspiration poétique<edgecolortype(0)><colortype(0)> au moment de l'activation de <colortype(500)><edgecolortype(501)>Bénédiction martiale<edgecolortype(0)><colortype(0)> et de <colortype(500)><edgecolortype(501)>Péan martial<edgecolortype(0)><colortype(0)> détermine la puissance de l'effet.<br><colortype(506)><edgecolortype(507)>1 degré<nbsp>:<edgecolortype(0)><colortype(0)> 1%<br><colortype(506)><edgecolortype(507)>2 degrés<nbsp>:<edgecolortype(0)><colortype(0)> 2%<br><colortype(506)><edgecolortype(507)>3 degrés<nbsp>:<edgecolortype(0)><colortype(0)> 4%<br><colortype(506)><edgecolortype(507)>4 degrés<nbsp>:<edgecolortype(0)><colortype(0)> 12%",
+  "effects": [
+    "Bénédiction martiale vous est octroyée lorsque vous utilisez Ballade du mage ou Menuet du Vagabond, sous les effets de Péan martial et d'Inspiration poétique.",
+    "Durée : 10s",
+    "Bénédiction martiale : réduit le délai des attaques automatiques et les temps de lancement et de recharge des techniques d'arme et des sorts de magie.",
+    "Si Péan martial prend fin sans que Ballade du mage ou Menuet du Vagabond n'aient été utilisés et que vous bénéficiez d'Inspiration poétique, Pacte martial vous est octroyé.",
+    "Durée : 30s",
+    "Pacte martial : vous octroie Bénédiction martiale lorsque vous utilisez Ballade du mage, Péan martial ou Menuet du Vagabond.",
+    "Le degré d'Inspiration poétique au moment de l'activation de Bénédiction martiale et de Péan martial détermine la puissance de l'effet.",
+    "1 degré : 1%",
+    "2 degrés : 2%",
+    "3 degrés : 4%",
+    "4 degrés : 12%"
+  ],
+  "role": "Physical Ranged DPS",
+  "job": {
+    "id": 23,
+    "name": "Barde",
+    "abbreviation": "BRD"
+  },
+  "unlock_level": 78,
+  "value": 0,
+  "icon": {
+    "id": 5314,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 24,
+  "source_class_job_id": 23
+}

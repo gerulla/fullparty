@@ -1,0 +1,94 @@
+{
+  "kind": "ability",
+  "id": 25758,
+  "name": "Cœur de corindon",
+  "description": "Réduit de 15% vos dégâts subis ou ceux de l'équipier ciblé.\nDurée : 8s\nEffet additionnel : si vous bénéficiez de l'effet Impact brutal et que la cible est un équipier, octroie également cet effet à la cible.\nDurée : 30s\nEffet additionnel : octroie Clarté de corindon à la cible.\nDurée : 4s\nClarté de corindon : réduit de 15% les dégâts subis.\nEffet additionnel : octroie Catharsis de corindon à la cible.\nDurée : 20s\nCatharsis de corindon : restaure les PV s'ils tombent sous 50% ou à la fin de l'effet.\nPuissance : 900",
+  "description_macro": "Réduit de 15% vos dégâts subis ou ceux de l'équipier ciblé.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 8s<br><colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> si vous bénéficiez de l'effet <colortype(500)><edgecolortype(501)>Impact brutal<edgecolortype(0)><colortype(0)> et que la cible est un équipier, octroie également cet effet à la cible.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 30s<br><colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> octroie <colortype(500)><edgecolortype(501)>Clarté de corindon<edgecolortype(0)><colortype(0)> à la cible.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 4s<br><colortype(506)><edgecolortype(507)>Clarté de corindon<nbsp>:<edgecolortype(0)><colortype(0)> réduit de 15% les dégâts subis.<br><colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> octroie <colortype(500)><edgecolortype(501)>Catharsis de corindon<edgecolortype(0)><colortype(0)> à la cible.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 20s<br><colortype(506)><edgecolortype(507)>Catharsis de corindon<nbsp>:<edgecolortype(0)><colortype(0)> restaure les PV s'ils tombent sous 50% ou à la fin de l'effet.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> 900",
+  "effects": [
+    "Réduit de 15% vos dégâts subis ou ceux de l'équipier ciblé.",
+    "Durée : 8s",
+    "Effet additionnel : si vous bénéficiez de l'effet Impact brutal et que la cible est un équipier, octroie également cet effet à la cible.",
+    "Durée : 30s",
+    "Effet additionnel : octroie Clarté de corindon à la cible.",
+    "Durée : 4s",
+    "Clarté de corindon : réduit de 15% les dégâts subis.",
+    "Effet additionnel : octroie Catharsis de corindon à la cible.",
+    "Durée : 20s",
+    "Catharsis de corindon : restaure les PV s'ils tombent sous 50% ou à la fin de l'effet.",
+    "Puissance : 900"
+  ],
+  "role": "Tank",
+  "job": {
+    "id": 37,
+    "name": "Pistosabreur",
+    "abbreviation": "PSB"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 82,
+  "icon": {
+    "id": 3430,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 4,
+    "name": "Aptitude"
+  },
+  "attack_type": {
+    "id": 0,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 25,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 6,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 0,
+      "value": 0
+    },
+    "secondary": {
+      "type_id": 0,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": 30,
+    "effect_yalms": 0,
+    "cast_type": 1
+  },
+  "targeting": {
+    "self": true,
+    "party": true,
+    "alliance": false,
+    "hostile": false,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": false
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 0,
+    "behavior_type": 0,
+    "class_job_category_id": 149,
+    "source_class_job_id": 37,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

@@ -1,0 +1,91 @@
+{
+  "kind": "ability",
+  "id": 3555,
+  "name": "Geirskögul",
+  "description": "Effectue une attaque physique en ligne droite sur les ennemis devant vous.\nPuissance : 280\nLa puissance est réduite de 50% au-delà du premier ennemi touché.\nEffet additionnel : vous octroie Vie du dragon.\nDurée : 20s\nVie du dragon : augmente de 15% vos dégâts infligés.\nEffet additionnel : vous octroie Naströnd préparé.\nDurée : 20s",
+  "description_macro": "Effectue une attaque physique en ligne droite sur les ennemis devant vous.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> <if([gnum68==22],<if([gnum72>=90],280,200)>,200)><br>La puissance est réduite de 50% au-delà du premier ennemi touché.<br><if([gnum72>=70],<if([gnum68==22],<colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> vous octroie <colortype(500)><edgecolortype(501)>Vie du dragon<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 20s<br><colortype(506)><edgecolortype(507)>Vie du dragon<nbsp>:<edgecolortype(0)><colortype(0)> augmente de 15% vos dégâts infligés.<br><colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> vous octroie <colortype(500)><edgecolortype(501)>Naströnd préparé<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 20s,<colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> vous octroie <colortype(500)><edgecolortype(501)>Sang du dragon<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 20s<br><colortype(506)><edgecolortype(507)>Sang du dragon<nbsp>:<edgecolortype(0)><colortype(0)> augmente de 10% vos dégâts infligés.)>,<colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> vous octroie <colortype(500)><edgecolortype(501)>Sang du dragon<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 20s<br><colortype(506)><edgecolortype(507)>Sang du dragon<nbsp>:<edgecolortype(0)><colortype(0)> augmente de 10% vos dégâts infligés.)>",
+  "effects": [
+    "Effectue une attaque physique en ligne droite sur les ennemis devant vous.",
+    "Puissance : 280",
+    "La puissance est réduite de 50% au-delà du premier ennemi touché.",
+    "Effet additionnel : vous octroie Vie du dragon.",
+    "Durée : 20s",
+    "Vie du dragon : augmente de 15% vos dégâts infligés.",
+    "Effet additionnel : vous octroie Naströnd préparé.",
+    "Durée : 20s"
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 22,
+    "name": "Chevalier Dragon",
+    "abbreviation": "DRG"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 60,
+  "icon": {
+    "id": 2583,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 4,
+    "name": "Aptitude"
+  },
+  "attack_type": {
+    "id": 4294967295,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 60,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 11,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 0,
+      "value": 0
+    },
+    "secondary": {
+      "type_id": 0,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": 15,
+    "effect_yalms": 15,
+    "cast_type": 4
+  },
+  "targeting": {
+    "self": false,
+    "party": false,
+    "alliance": false,
+    "hostile": true,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 7,
+    "behavior_type": 0,
+    "class_job_category_id": 23,
+    "source_class_job_id": 22,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

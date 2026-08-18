@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 168,
+  "name": "Barrière de mana",
+  "description": "Une barrière éthérée protège contre les dégâts.",
+  "effects": [
+    "Une barrière éthérée protège contre les dégâts."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 210456,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 100
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 157,
+      "name": "Barrière de mana",
+      "description": "Crée sur vous une barrière annulant les dégâts subis, pour un total de 30% de vos PV maximums.\nDurée : 20s",
+      "description_macro": "Crée sur vous une barrière annulant les dégâts subis, pour un total de 30% de vos PV maximums.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 20s",
+      "unlock_level": 30,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Magical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 25,
+          "name": "Mage Noir",
+          "abbreviation": "MNO",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

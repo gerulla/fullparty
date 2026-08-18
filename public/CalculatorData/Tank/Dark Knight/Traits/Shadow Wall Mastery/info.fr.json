@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 571,
+  "name": "Maîtrise de Mur d'ombre",
+  "description": "Remplace Mur d'ombre par Vigile ténébreux.",
+  "description_macro": "Remplace <colortype(500)><edgecolortype(501)>Mur d'ombre<edgecolortype(0)><colortype(0)> par <colortype(500)><edgecolortype(501)>Vigile ténébreux<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Remplace Mur d'ombre par Vigile ténébreux."
+  ],
+  "role": "Tank",
+  "job": {
+    "id": 32,
+    "name": "Chevalier Noir",
+    "abbreviation": "CHN"
+  },
+  "unlock_level": 92,
+  "value": 0,
+  "icon": {
+    "id": 6068,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 98,
+  "source_class_job_id": 32
+}

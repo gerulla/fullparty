@@ -1,0 +1,85 @@
+{
+  "kind": "ability",
+  "id": 36988,
+  "name": "Réalignement",
+  "description": "Déplace à vos pieds les manalignements que vous avez créés, pendant la durée de leur effet.\nCondition : Manalignements.",
+  "description_macro": "Déplace à vos pieds les manalignements que vous avez créés, pendant la durée de leur effet.<br><colortype(506)><edgecolortype(507)>Condition<nbsp>:<edgecolortype(0)><colortype(0)> <colortype(500)><edgecolortype(501)>Manalignements<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Déplace à vos pieds les manalignements que vous avez créés, pendant la durée de leur effet.",
+    "Condition : Manalignements."
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 25,
+    "name": "Mage Noir",
+    "abbreviation": "MNO"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 96,
+  "icon": {
+    "id": 2150,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 4,
+    "name": "Aptitude"
+  },
+  "attack_type": {
+    "id": 0,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 40,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 9,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 0,
+      "value": 0
+    },
+    "secondary": {
+      "type_id": 32,
+      "value": 737
+    }
+  },
+  "range": {
+    "target_yalms": 0,
+    "effect_yalms": 3,
+    "cast_type": 7
+  },
+  "targeting": {
+    "self": false,
+    "party": false,
+    "alliance": false,
+    "hostile": false,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": true,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 0,
+    "behavior_type": 0,
+    "class_job_category_id": 26,
+    "source_class_job_id": 25,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

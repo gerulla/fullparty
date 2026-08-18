@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 16,
+  "name": "Magi Apprentissage II",
+  "description": "Magi Extra Vent et Magi Garde puissante peuvent être appris.\nMagi Extra Vent : effectue une attaque magique de vent sur la cible.\nMagi Garde puissante : réduit de 20% les dégâts reçus par vous et les équipiers alentour.",
+  "description_macro": "<colortype(500)><edgecolortype(501)>Magi Extra Vent<edgecolortype(0)><colortype(0)> et <colortype(500)><edgecolortype(501)>Magi Garde puissante<edgecolortype(0)><colortype(0)> peuvent être appris.<br><colortype(506)><edgecolortype(507)>Magi Extra Vent<nbsp>:<edgecolortype(0)><colortype(0)> effectue une attaque magique de vent sur la cible.<br><colortype(506)><edgecolortype(507)>Magi Garde puissante<nbsp>:<edgecolortype(0)><colortype(0)> réduit de 20% les dégâts reçus par vous et les équipiers alentour.",
+  "effects": [
+    "Magi Extra Vent et Magi Garde puissante peuvent être appris.",
+    "Magi Extra Vent : effectue une attaque magique de vent sur la cible.",
+    "Magi Garde puissante : réduit de 20% les dégâts reçus par vous et les équipiers alentour."
+  ],
+  "role": "Phantom Jobs",
+  "job": {
+    "id": 21,
+    "name": "Mage bleu fantôme",
+    "abbreviation": "Mage bleu fant."
+  },
+  "is_phantom_trait": true,
+  "unlock_level": 2,
+  "icon": {
+    "id": 82216,
+    "file": "icon.png"
+  }
+}

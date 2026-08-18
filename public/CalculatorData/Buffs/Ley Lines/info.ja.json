@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 737,
+  "name": "黒魔紋",
+  "description": "黒魔紋を生成している状態。",
+  "effects": [
+    "黒魔紋を生成している状態。"
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 212653,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": true,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 3573,
+      "name": "黒魔紋",
+      "description": "自身の足元に黒魔紋を生成する。\n黒魔紋効果：自身のオートアタックの攻撃間隔と、魔法のキャストタイムとリキャストタイムを15％短縮させる。\n効果時間：20秒\n最大チャージ数：2\n発動条件：「黒魔紋」非効果中",
+      "description_macro": "自身の足元に黒魔紋を生成する。<br><colortype(504)><edgecolortype(505)>黒魔紋効果：<edgecolortype(0)><colortype(0)>自身のオートアタックの攻撃間隔と、魔法のキャストタイムとリキャストタイムを15％短縮させる。<br><colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>20秒<br><colortype(504)><edgecolortype(505)>最大チャージ数：<edgecolortype(0)><colortype(0)>2<br><colortype(504)><edgecolortype(505)>発動条件：<edgecolortype(0)><colortype(0)><colortype(500)><edgecolortype(501)>「黒魔紋」<edgecolortype(0)><colortype(0)>非効果中",
+      "unlock_level": 52,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Magical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 25,
+          "name": "黒魔道士",
+          "abbreviation": "BLM",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

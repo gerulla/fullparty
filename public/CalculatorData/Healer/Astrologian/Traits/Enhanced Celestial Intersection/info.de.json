@@ -1,0 +1,25 @@
+{
+  "kind": "trait",
+  "id": 500,
+  "name": "Verbesserte Kongruenz",
+  "description": "Erlaubt es dir, Kongruenz aufzuladen.\nMaximale Aufladungen: 2",
+  "description_macro": "Erlaubt es dir, <colortype(502)><edgecolortype(503)>Kongruenz<edgecolortype(0)><colortype(0)> aufzuladen.<br>Maximale Aufladungen: 2",
+  "effects": [
+    "Erlaubt es dir, Kongruenz aufzuladen.",
+    "Maximale Aufladungen: 2"
+  ],
+  "role": "Healer",
+  "job": {
+    "id": 33,
+    "name": "Astrologe",
+    "abbreviation": "AST"
+  },
+  "unlock_level": 88,
+  "value": 2,
+  "icon": {
+    "id": 6119,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 99,
+  "source_class_job_id": 33
+}

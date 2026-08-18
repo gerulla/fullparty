@@ -1,0 +1,89 @@
+{
+  "kind": "ability",
+  "id": 24401,
+  "name": "Hell's Ingress",
+  "description": "Quickly dash 15 yalms forward.\nAdditional Effect: Grants Enhanced Harpe\nEnhanced Harpe Effect: Next Harpe can be cast immediately and will reduce recast timer of Hell's Ingress by 5s upon execution\nDuration: 10s\nAdditional Effect: Leaves behind a Hellsgate at point of origin\\Cannot be executed while bound.\nShares a recast timer with Hell's Egress.",
+  "description_macro": "Quickly dash 15 yalms forward.<br><colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>Grants <colortype(506)><edgecolortype(507)>Enhanced Harpe<edgecolortype(0)><colortype(0)><br><colortype(504)><edgecolortype(505)>Enhanced Harpe Effect: <edgecolortype(0)><colortype(0)>Next <colortype(500)><edgecolortype(501)>Harpe<edgecolortype(0)><colortype(0)> can be cast immediately and will reduce recast timer of <colortype(500)><edgecolortype(501)>Hell's Ingress<edgecolortype(0)><colortype(0)> by 5s upon execution<br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>10s<br><if([gnum68==39],<if([gnum72>=74],<colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>Leaves behind a <colortype(506)><edgecolortype(507)>Hellsgate<edgecolortype(0)><colortype(0)> at point of origin\\, and grants <colortype(506)><edgecolortype(507)>Threshold<edgecolortype(0)><colortype(0)> to self<br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>10s<br>,)>,)>Cannot be executed while bound.<br>Shares a recast timer with <colortype(500)><edgecolortype(501)>Hell's Egress<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Quickly dash 15 yalms forward.",
+    "Additional Effect: Grants Enhanced Harpe",
+    "Enhanced Harpe Effect: Next Harpe can be cast immediately and will reduce recast timer of Hell's Ingress by 5s upon execution",
+    "Duration: 10s",
+    "Additional Effect: Leaves behind a Hellsgate at point of origin\\Cannot be executed while bound.",
+    "Shares a recast timer with Hell's Egress."
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 39,
+    "name": "Reaper",
+    "abbreviation": "RPR"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 20,
+  "icon": {
+    "id": 3629,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 4,
+    "name": "Ability"
+  },
+  "attack_type": {
+    "id": 0,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 20,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 5,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 0,
+      "value": 0
+    },
+    "secondary": {
+      "type_id": 0,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": 0,
+    "effect_yalms": 0,
+    "cast_type": 1
+  },
+  "targeting": {
+    "self": true,
+    "party": false,
+    "alliance": false,
+    "hostile": false,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 0,
+    "behavior_type": 50,
+    "class_job_category_id": 180,
+    "source_class_job_id": 39,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

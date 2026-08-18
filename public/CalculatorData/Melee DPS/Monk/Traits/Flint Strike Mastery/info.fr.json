@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 512,
+  "name": "Maîtrise de Départ de flammes",
+  "description": "Remplace Départ de flammes par Danse du Phénix.",
+  "description_macro": "Remplace <colortype(500)><edgecolortype(501)>Départ de flammes<edgecolortype(0)><colortype(0)> par <colortype(500)><edgecolortype(501)>Danse du Phénix<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Remplace Départ de flammes par Danse du Phénix."
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 20,
+    "name": "Moine",
+    "abbreviation": "MOI"
+  },
+  "unlock_level": 86,
+  "value": 0,
+  "icon": {
+    "id": 5248,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 21,
+  "source_class_job_id": 20
+}

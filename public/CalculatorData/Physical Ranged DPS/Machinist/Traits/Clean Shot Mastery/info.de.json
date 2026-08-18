@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 290,
+  "name": "Sauberer Schuss-Meisterschaft",
+  "description": "Verbessert Sauberer Schuss zu Sauberer Höllenschuss.",
+  "description_macro": "Verbessert <colortype(502)><edgecolortype(503)>Sauberer Schuss<edgecolortype(0)><colortype(0)> zu <colortype(502)><edgecolortype(503)>Sauberer Höllenschuss<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Verbessert Sauberer Schuss zu Sauberer Höllenschuss."
+  ],
+  "role": "Physical Ranged DPS",
+  "job": {
+    "id": 31,
+    "name": "Maschinist",
+    "abbreviation": "MCH"
+  },
+  "unlock_level": 64,
+  "value": 0,
+  "icon": {
+    "id": 6012,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 96,
+  "source_class_job_id": 31
+}

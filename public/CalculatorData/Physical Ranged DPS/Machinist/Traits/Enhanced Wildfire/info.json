@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 293,
+  "name": "Enhanced Wildfire",
+  "description": "Improves Wildfire's potency increase for landing weaponskills to 240.",
+  "description_macro": "Improves <colortype(500)><edgecolortype(501)>Wildfire<edgecolortype(0)><colortype(0)>'s potency increase for landing weaponskills to 240.",
+  "effects": [
+    "Improves Wildfire's potency increase for landing weaponskills to 240."
+  ],
+  "role": "Physical Ranged DPS",
+  "job": {
+    "id": 31,
+    "name": "Machinist",
+    "abbreviation": "MCH"
+  },
+  "unlock_level": 78,
+  "value": 0,
+  "icon": {
+    "id": 6014,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 96,
+  "source_class_job_id": 31
+}

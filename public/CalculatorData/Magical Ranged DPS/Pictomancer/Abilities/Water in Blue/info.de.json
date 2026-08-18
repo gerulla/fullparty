@@ -1,0 +1,91 @@
+{
+  "kind": "ability",
+  "id": 34652,
+  "name": "Aqua in Blau",
+  "description": "Du führst eine wasserbasierte magische Attacke aus.\nAttacke-Wert: 570\nZusatzeffekt: Palettenbalken füllt sich um 25.\nZusatzeffekt: Gewährt dir Weiße Pikto-Farbe.\nMaximalstapelzahl: 5\nBedingung: Dritte Pikto-Farbe aktiv und Subtraktive Palette nicht aktiv\nFalls Inszenierung aktiv ist und du dich innerhalb des Wirkradius befindest\\Bei erfüllter Bedingung ändert sich Wind in Grün zu diesem Kommando.\nKann nicht im Kommandomenü angelegt werden.",
+  "description_macro": "Du führst eine wasserbasierte magische Attacke aus.<br>Attacke-Wert: <if([gnum68==42],<if([gnum72>=94],570,<if([gnum68==42],<if([gnum72>=84],500,<if([gnum68==42],<if([gnum72>=74],460,<if([gnum68==42],<if([gnum72>=54],390,320)>,320)>)>,<if([gnum68==42],<if([gnum72>=54],390,320)>,320)>)>)>,<if([gnum68==42],<if([gnum72>=74],460,<if([gnum68==42],<if([gnum72>=54],390,320)>,320)>)>,<if([gnum68==42],<if([gnum72>=54],390,320)>,320)>)>)>)>,<if([gnum68==42],<if([gnum72>=84],500,<if([gnum68==42],<if([gnum72>=74],460,<if([gnum68==42],<if([gnum72>=54],390,320)>,320)>)>,<if([gnum68==42],<if([gnum72>=54],390,320)>,320)>)>)>,<if([gnum68==42],<if([gnum72>=74],460,<if([gnum68==42],<if([gnum72>=54],390,320)>,320)>)>,<if([gnum68==42],<if([gnum72>=54],390,320)>,320)>)>)>)><br><if([gnum68==42],<if([gnum72>=60],Zusatzeffekt: Palettenbalken füllt sich um 25.<br>,)>,)><if([gnum68==42],<if([gnum72>=80],Zusatzeffekt: Gewährt dir <colortype(506)><edgecolortype(507)>Weiße Pikto-Farbe<edgecolortype(0)><colortype(0)>.<br>Ma<->xi<->mal<->sta<->pel<->zahl: 5<br>,)>,)>Bedingung: <colortype(506)><edgecolortype(507)>Dritte Pikto-Farbe<edgecolortype(0)><colortype(0)> aktiv und <colortype(500)><edgecolortype(501)>Subtraktive Palette<edgecolortype(0)><colortype(0)> nicht aktiv<br><if([gnum68==42],<if([gnum72>=82],Falls <colortype(506)><edgecolortype(507)>Inszenierung<edgecolortype(0)><colortype(0)> aktiv ist und du dich innerhalb des Wirkradius befindest\\, wird 1 Stapel verbraucht.<br>,)>,)>Bei erfüllter Bedingung ändert sich <colortype(502)><edgecolortype(503)>Wind in Grün<edgecolortype(0)><colortype(0)> zu diesem Kommando.<br>Kann nicht im Kommandomenü angelegt werden.",
+  "effects": [
+    "Du führst eine wasserbasierte magische Attacke aus.",
+    "Attacke-Wert: 570",
+    "Zusatzeffekt: Palettenbalken füllt sich um 25.",
+    "Zusatzeffekt: Gewährt dir Weiße Pikto-Farbe.",
+    "Maximalstapelzahl: 5",
+    "Bedingung: Dritte Pikto-Farbe aktiv und Subtraktive Palette nicht aktiv",
+    "Falls Inszenierung aktiv ist und du dich innerhalb des Wirkradius befindest\\Bei erfüllter Bedingung ändert sich Wind in Grün zu diesem Kommando.",
+    "Kann nicht im Kommandomenü angelegt werden."
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 42,
+    "name": "Piktomant",
+    "abbreviation": "PKT"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 15,
+  "icon": {
+    "id": 3803,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 2,
+    "name": "Zauber"
+  },
+  "attack_type": {
+    "id": 5,
+    "name": "魔法"
+  },
+  "timing": {
+    "cast_seconds": 1.5,
+    "recast_seconds": 2.5,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 58,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 96,
+      "value": 3
+    },
+    "secondary": {
+      "type_id": 0,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": 25,
+    "effect_yalms": 0,
+    "cast_type": 1
+  },
+  "targeting": {
+    "self": false,
+    "party": false,
+    "alliance": false,
+    "hostile": true,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 6,
+    "behavior_type": 0,
+    "class_job_category_id": 197,
+    "source_class_job_id": 0,
+    "is_role_action": false,
+    "is_player_action": false,
+    "is_derived_action": true,
+    "equivalence_group": 0
+  }
+}

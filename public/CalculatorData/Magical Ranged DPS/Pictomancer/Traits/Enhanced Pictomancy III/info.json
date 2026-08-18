@@ -1,0 +1,25 @@
+{
+  "kind": "trait",
+  "id": 543,
+  "name": "Enhanced Pictomancy III",
+  "description": "Grants Rainbow Bright upon consuming all stacks of Hyperphantasia. Stacks may be depleted by casting aetherhue spells.\nDuration: 30s",
+  "description_macro": "Grants <colortype(506)><edgecolortype(507)>Rainbow Bright<edgecolortype(0)><colortype(0)> upon consuming all stacks of <colortype(506)><edgecolortype(507)>Hyperphantasia<edgecolortype(0)><colortype(0)>. Stacks may be depleted by casting aetherhue spells.<br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>30s",
+  "effects": [
+    "Grants Rainbow Bright upon consuming all stacks of Hyperphantasia. Stacks may be depleted by casting aetherhue spells.",
+    "Duration: 30s"
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 42,
+    "name": "Pictomancer",
+    "abbreviation": "PCT"
+  },
+  "unlock_level": 92,
+  "value": 0,
+  "icon": {
+    "id": 6560,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 197,
+  "source_class_job_id": 42
+}

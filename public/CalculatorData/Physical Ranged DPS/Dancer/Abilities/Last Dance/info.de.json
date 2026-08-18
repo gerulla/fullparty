@@ -1,0 +1,96 @@
+{
+  "kind": "ability",
+  "id": 36983,
+  "name": "Letzter Tanz",
+  "description": "Du führst eine physische Attacke auf das Ziel und die Gegner in seiner Nähe aus.\nAttacke-Wert: 540\nAttacke-Wert verringert sich ab dem zweiten Gegner um 60 %.\nBedingung: Bühneneuphorie aktiv",
+  "description_macro": "Du führst eine physische Attacke auf das Ziel und die Gegner in seiner Nähe aus.<br>Attacke-Wert: 540<br>Attacke-Wert verringert sich ab dem zweiten Gegner um 60<nbsp>%.<br>Bedingung: <colortype(506)><edgecolortype(507)>Bühneneuphorie<edgecolortype(0)><colortype(0)> aktiv",
+  "effects": [
+    "Du führst eine physische Attacke auf das Ziel und die Gegner in seiner Nähe aus.",
+    "Attacke-Wert: 540",
+    "Attacke-Wert verringert sich ab dem zweiten Gegner um 60 %.",
+    "Bedingung: Bühneneuphorie aktiv"
+  ],
+  "role": "Physical Ranged DPS",
+  "job": {
+    "id": 38,
+    "name": "Tänzer",
+    "abbreviation": "TÄN"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 92,
+  "icon": {
+    "id": 3483,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 3,
+    "name": "Waffenfertigkeit"
+  },
+  "attack_type": {
+    "id": 4294967295,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 2.5,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 58,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 10,
+      "value": 3867
+    },
+    "secondary": {
+      "type_id": 91,
+      "value": 3867
+    }
+  },
+  "range": {
+    "target_yalms": -1,
+    "effect_yalms": 5,
+    "cast_type": 2
+  },
+  "targeting": {
+    "self": false,
+    "party": false,
+    "alliance": false,
+    "hostile": true,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": {
+      "id": 174,
+      "status": {
+        "id": 3867,
+        "name": "Bühneneuphorie",
+        "description": "Letzter Tanz kann ausgeführt werden.",
+        "icon_id": 213727,
+        "max_stacks": 0
+      }
+    }
+  },
+  "metadata": {
+    "aspect_id": 7,
+    "behavior_type": 0,
+    "class_job_category_id": 150,
+    "source_class_job_id": 38,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

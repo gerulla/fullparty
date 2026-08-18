@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 2216,
+  "name": "The Wanderer's Minuet",
+  "description": "Critical hit rate is increased.",
+  "effects": [
+    "Critical hit rate is increased."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 212610,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": true,
+  "is_permanent": true,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 2
+  },
+  "class_job_category_id": 24,
+  "source_abilities": [
+    {
+      "id": 3559,
+      "name": "the Wanderer's Minuet",
+      "description": "Grants the Wanderer's Minuet to self and all party members within 50 yalms, increasing critical hit rate by 2%.\nDuration: 45s\nAdditional Effect: 80% chance to grant Repertoire\nThis effect can trigger repeatedly while singing the Wanderer's Minuet.\nRepertoire Effect: Allows execution of Pitch Perfect\nCan be stacked up to 3 times.\nAdditional Effect: Grants Wanderer's Coda\nCan only be executed while in combat.",
+      "description_macro": "Grants the <colortype(506)><edgecolortype(507)>Wanderer's Minuet<edgecolortype(0)><colortype(0)> to self and all party members within 50 yalms, increasing critical hit rate by 2%.<br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>45s<br><colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>80% chance to grant <colortype(506)><edgecolortype(507)>Repertoire<edgecolortype(0)><colortype(0)><br>This effect can trigger repeatedly while singing the <colortype(506)><edgecolortype(507)>Wanderer's Minuet<edgecolortype(0)><colortype(0)>.<br><colortype(504)><edgecolortype(505)>Repertoire Effect: <edgecolortype(0)><colortype(0)>Allows execution of <colortype(500)><edgecolortype(501)>Pitch Perfect<edgecolortype(0)><colortype(0)><br>Can be stacked up to 3 times.<br><if([gnum68==23],<if([gnum72>=90],<colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>Grants <colortype(506)><edgecolortype(507)>Wanderer's Coda<edgecolortype(0)><colortype(0)><br>,)>,)>Can only be executed while in combat.",
+      "unlock_level": 52,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Physical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 23,
+          "name": "Bard",
+          "abbreviation": "BRD",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

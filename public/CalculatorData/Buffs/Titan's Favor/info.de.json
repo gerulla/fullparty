@@ -1,0 +1,71 @@
+{
+  "kind": "combat_status",
+  "id": 2853,
+  "name": "Titans Gunst",
+  "description": "Bergsprenger kann ausgeführt werden.",
+  "effects": [
+    "Bergsprenger kann ausgeführt werden."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 212698,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": true,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 28,
+  "source_abilities": [
+    {
+      "id": 25824,
+      "name": "Topas-Ritus",
+      "description": "Du fügst dem Ziel erdbasierten magischen Schaden zu.\nAttacke-Wert: 340\nZusatzeffekt: Titans Gunst\nDieser Status wird aufgehoben\\Ätherkosten: 1 Erdäther\nBei erfüllter Bedingung ändert sich Juwelenschein zu diesem Kommando.\nKann nicht im Kommandomenü angelegt werden.",
+      "description_macro": "Du fügst dem Ziel erdbasierten magischen Schaden zu.<br>Attacke-Wert: <if([gnum68==27],<if([gnum72>=94],340,<if([gnum68==27],<if([gnum72>=84],330,320)>,320)>)>,<if([gnum68==27],<if([gnum72>=84],330,320)>,320)>)><br><if([gnum68==27],<if([gnum72>=86],Zusatzeffekt: <colortype(506)><edgecolortype(507)>Titans Gunst<edgecolortype(0)><colortype(0)><br>Dieser Status wird aufgehoben\\, sobald du ein anderes <colortype(500)><edgecolortype(501)>Beschwörungs<edgecolortype(0)><colortype(0)>-Kommando ausführst.<br>,)>,)>Ätherkosten: 1 <colortype(506)><edgecolortype(507)>Erdäther<edgecolortype(0)><colortype(0)><br>Bei erfüllter Bedingung ändert sich <colortype(502)><edgecolortype(503)>Juwelenschein<edgecolortype(0)><colortype(0)> zu diesem Kommando.<br>Kann nicht im Kommandomenü angelegt werden.",
+      "unlock_level": 72,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Magical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 27,
+          "name": "Beschwörer",
+          "abbreviation": "BSW",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 25833,
+      "name": "Topas-Verderben",
+      "description": "Du fügst dem Ziel und den Gegnern in seiner Nähe erdbasierten magischen Schaden zu.\nAttacke-Wert: 140\nZusatzeffekt: Gewährt dir Titans Gunst.\nDieser Status wird aufgehoben\\Ätherkosten: 1 Erdäther\nBei erfüllter Bedingung ändert sich Edelglanz zu diesem Kommando.\nKann nicht im Kommandomenü angelegt werden.",
+      "description_macro": "Du fügst dem Ziel und den Gegnern in seiner Nähe erdbasierten magischen Schaden zu.<br>Attacke-Wert: 140<br><if([gnum68==27],<if([gnum72>=86],Zusatzeffekt: Gewährt dir <colortype(506)><edgecolortype(507)>Titans Gunst<edgecolortype(0)><colortype(0)>.<br>Dieser Status wird aufgehoben\\, sobald du ein anderes <colortype(500)><edgecolortype(501)>Beschwörungs<edgecolortype(0)><colortype(0)>-Kommando ausführst.<br>,)>,)>Ätherkosten: 1 <colortype(506)><edgecolortype(507)>Erdäther<edgecolortype(0)><colortype(0)><br>Bei erfüllter Bedingung ändert sich <colortype(502)><edgecolortype(503)>Edelglanz<edgecolortype(0)><colortype(0)> zu diesem Kommando.<br>Kann nicht im Kommandomenü angelegt werden.",
+      "unlock_level": 82,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Magical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 27,
+          "name": "Beschwörer",
+          "abbreviation": "BSW",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

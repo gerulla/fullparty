@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 688,
+  "name": "ハイパーチャージ",
+  "description": "タレットのアクションが強化される状態。",
+  "effects": [
+    "タレットのアクションが強化される状態。"
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 213012,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 17209,
+      "name": "ハイパーチャージ",
+      "description": "自身に5スタックの「オーバーヒート」を付与する。\n効果時間：10秒\nオーバーヒート効果：効果時間中に実行する単体対象ウェポンスキルの威力を20上昇させる。\nただし、機工士のジョブアクションにのみ有効。\nまた、ブレイズショットとオートボウガンを実行できる。\n発動条件：「ヒート」50",
+      "description_macro": "自身に5スタックの<colortype(500)><edgecolortype(501)>「オーバーヒート」<edgecolortype(0)><colortype(0)>を付与する。<br><colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>10秒<br><colortype(504)><edgecolortype(505)>オーバーヒート効果：<edgecolortype(0)><colortype(0)>効果時間中に実行する単体対象ウェポンスキルの威力を20上昇させる。<br>ただし、機工士のジョブアクションにのみ有効。<br><if([gnum68==31],<if([gnum72>=35],また、<if([gnum68==31],<if([gnum72>=68],ブレイズショット,ヒートブラスト)>,ヒートブラスト)><if([gnum68==31],<if([gnum72>=52],とオートボウガン,)>,)>を実行できる。<br>,)>,)><colortype(504)><edgecolortype(505)>発動条件：<edgecolortype(0)><colortype(0)><colortype(500)><edgecolortype(501)>「ヒート」<edgecolortype(0)><colortype(0)>50",
+      "unlock_level": 30,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Physical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 31,
+          "name": "機工士",
+          "abbreviation": "MCH",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

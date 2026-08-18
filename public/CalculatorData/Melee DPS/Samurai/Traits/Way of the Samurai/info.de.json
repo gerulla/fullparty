@@ -1,0 +1,27 @@
+{
+  "kind": "trait",
+  "id": 520,
+  "name": "Verbessertes Bushido",
+  "description": "Erhöht den Attacke-Wert folgender Kommandos:\nAttacke-Wert von Hakaze: 200\nAttacke-Wert von Jinpu: 120\nAttacke-Wert von Shifu: 120",
+  "description_macro": "Erhöht den Attacke-Wert folgender Kommandos:<br>Attacke-Wert von <colortype(502)><edgecolortype(503)>Hakaze<edgecolortype(0)><colortype(0)>: 200<br>Attacke-Wert von <colortype(502)><edgecolortype(503)>Jinpu<edgecolortype(0)><colortype(0)>: 120<br>Attacke-Wert von <colortype(502)><edgecolortype(503)>Shifu<edgecolortype(0)><colortype(0)>: 120",
+  "effects": [
+    "Erhöht den Attacke-Wert folgender Kommandos:",
+    "Attacke-Wert von Hakaze: 200",
+    "Attacke-Wert von Jinpu: 120",
+    "Attacke-Wert von Shifu: 120"
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 34,
+    "name": "Samurai",
+    "abbreviation": "SAM"
+  },
+  "unlock_level": 66,
+  "value": 0,
+  "icon": {
+    "id": 6801,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 111,
+  "source_class_job_id": 34
+}

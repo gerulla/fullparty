@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 3834,
+  "name": "ルイネーター実行可",
+  "description": "ルイネーターを実行できる状態。",
+  "effects": [
+    "ルイネーターを実行できる状態。"
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 212569,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 22,
+  "source_abilities": [
+    {
+      "id": 25753,
+      "name": "プライマルレンド",
+      "description": "対象に飛び掛かりつつ、対象とその周囲の敵に範囲物理攻撃。\u3000威力：720\n2体目以降の対象への威力は50％減少する。\nこのアクションは必ずクリティカルヒットかつダイレクトヒットする。\nクリティカルヒットやダイレクトヒットの発動率を上昇させる効果を受けている場合は与ダメージが上昇する。\n追加効果：自身に「ルイネーター実行可」を付与する。\n効果時間：20秒\n発動条件：原初の解放を実行することで付与される「プライマルレンド実行可」効果中\nバインド中は実行不可。",
+      "description_macro": "対象に飛び掛かりつつ、対象とその周囲の敵に範囲物理攻撃。\u3000<colortype(504)><edgecolortype(505)>威力：<edgecolortype(0)><colortype(0)>720<br>2体目以降の対象への威力は50％減少する。<br>このアクションは必ずクリティカルヒットかつダイレクトヒットする。<br>クリティカルヒットやダイレクトヒットの発動率を上昇させる効果を受けている場合は与ダメージが上昇する。<br><if([gnum68==21],<if([gnum72>=100],<colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)>自身に<colortype(500)><edgecolortype(501)>「ルイネーター実行可」<edgecolortype(0)><colortype(0)>を付与する。<br><colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>20秒<br>,)>,)><colortype(504)><edgecolortype(505)>発動条件：<edgecolortype(0)><colortype(0)>原初の解放を実行することで付与される<colortype(500)><edgecolortype(501)>「プライマルレンド実行可」<edgecolortype(0)><colortype(0)>効果中<br>バインド中は実行不可。",
+      "unlock_level": 90,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Tank"
+      ],
+      "jobs": [
+        {
+          "id": 21,
+          "name": "戦士",
+          "abbreviation": "WAR",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 3647,
+  "name": "Saigneur de l'échine",
+  "description": "La puissance de Saignée de l'échine est augmentée.",
+  "effects": [
+    "La puissance de Saignée de l'échine est augmentée."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 213753,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 196,
+  "source_abilities": [
+    {
+      "id": 34610,
+      "name": "Saignée du flanc",
+      "description": "Effectue une attaque physique sur la cible.\nPuissance : 340\nPuissance de côté : 400\nSi vous êtes sous l'effet de Saigneur du flanc, augmente la puissance de 100.\nEffet additionnel : vous octroie Saigneur de l'échine.\nDurée : 60s\nSaigneur de l'échine : augmente de 100 la puissance de Saignée de l'échine.\nNe peut être cumulé avec Saigneur du flanc\\.\nEffet additionnel : remplit la Jauge ophidienne de 10.\nCondition : après avoir utilisé Ponction prédatrice avec succès.\n\n* Cette action ne peut pas être ajoutée aux barres de raccourcis.\nRemplace Ponction prédatrice lorsque les conditions sont réunies.",
+      "description_macro": "Effectue une attaque physique sur la cible.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> <if([gnum68==41],<if([gnum72>=84],340,320)>,320)><br><colortype(506)><edgecolortype(507)>Puissance de côté<nbsp>:<edgecolortype(0)><colortype(0)> <edgecolortype(0)><colortype(0)><if([gnum68==41],<if([gnum72>=84],400,380)>,380)><br>Si vous êtes sous l'effet de <colortype(500)><edgecolortype(501)>Saigneur du flanc<edgecolortype(0)><colortype(0)>, augmente la puissance de 100.<br><colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> vous octroie <colortype(500)><edgecolortype(501)>Saigneur de l'échine<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 60s<br><colortype(506)><edgecolortype(507)>Saigneur de l'échine<nbsp>:<edgecolortype(0)><colortype(0)> augmente de 100 la puissance de Saignée de l'échine.<br>Ne peut être cumulé avec <if([gnum68==41],<if([gnum72>=50],<colortype(500)><edgecolortype(501)>Saigneur du flanc<edgecolortype(0)><colortype(0)>\\, <colortype(500)><edgecolortype(501)>Déchireur du flanc<edgecolortype(0)><colortype(0)>\\, <colortype(500)><edgecolortype(501)>Déchireur de l'échine<edgecolortype(0)><colortype(0)>\\, <colortype(500)><edgecolortype(501)>Déchiqueteur vorace<edgecolortype(0)><colortype(0)> ou <colortype(500)><edgecolortype(501)>Déchiqueteur sanglant<edgecolortype(0)><colortype(0)>,<colortype(500)><edgecolortype(501)>Saigneur du flanc<edgecolortype(0)><colortype(0)>\\, <colortype(500)><edgecolortype(501)>Déchireur du flanc<edgecolortype(0)><colortype(0)> ou <colortype(500)><edgecolortype(501)>Déchireur de l'échine<edgecolortype(0)><colortype(0)>)>,<colortype(500)><edgecolortype(501)>Saigneur du flanc<edgecolortype(0)><colortype(0)>\\, <colortype(500)><edgecolortype(501)>Déchireur du flanc<edgecolortype(0)><colortype(0)> ou <colortype(500)><edgecolortype(501)>Déchireur de l'échine<edgecolortype(0)><colortype(0)>)>.<br><if([gnum68==41],<if([gnum72>=90],<colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> remplit la <colortype(502)><edgecolortype(503)>Jauge ophidienne<edgecolortype(0)><colortype(0)> de 10.<br>,)>,)><colortype(506)><edgecolortype(507)>Condition<nbsp>:<edgecolortype(0)><colortype(0)> après avoir utilisé <colortype(500)><edgecolortype(501)>Ponction prédatrice<edgecolortype(0)><colortype(0)> avec succès.<br><br><colortype(504)><edgecolortype(505)>* Cette action ne peut pas être ajoutée aux barres de raccourcis.<br>Remplace <colortype(500)><edgecolortype(501)>Ponction prédatrice<edgecolortype(0)><colortype(0)> lorsque les conditions sont réunies.<edgecolortype(0)><colortype(0)>",
+      "unlock_level": 30,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 41,
+          "name": "Rôdeur Vipère",
+          "abbreviation": "VPR",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

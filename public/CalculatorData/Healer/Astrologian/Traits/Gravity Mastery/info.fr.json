@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 498,
+  "name": "Maîtrise de Gravité",
+  "description": "Remplace Gravité par Extra Gravité.",
+  "description_macro": "Remplace <colortype(500)><edgecolortype(501)>Gravité<edgecolortype(0)><colortype(0)> par <colortype(500)><edgecolortype(501)>Extra Gravité<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Remplace Gravité par Extra Gravité."
+  ],
+  "role": "Healer",
+  "job": {
+    "id": 33,
+    "name": "Astromancien",
+    "abbreviation": "AST"
+  },
+  "unlock_level": 82,
+  "value": 0,
+  "icon": {
+    "id": 6118,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 99,
+  "source_class_job_id": 33
+}

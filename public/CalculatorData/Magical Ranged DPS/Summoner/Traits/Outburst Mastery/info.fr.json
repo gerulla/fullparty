@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 477,
+  "name": "Maîtrise de Fracas élémentaire",
+  "description": "Remplace Fracas élémentaire par Tri-désastre.",
+  "description_macro": "Remplace <colortype(500)><edgecolortype(501)>Fracas élémentaire<edgecolortype(0)><colortype(0)> par <colortype(500)><edgecolortype(501)>Tri-désastre<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Remplace Fracas élémentaire par Tri-désastre."
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 27,
+    "name": "Invocateur",
+    "abbreviation": "INV"
+  },
+  "unlock_level": 74,
+  "value": 0,
+  "icon": {
+    "id": 5692,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 28,
+  "source_class_job_id": 27
+}

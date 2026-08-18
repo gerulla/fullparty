@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 4240,
+  "name": "Phantom-Zielen",
+  "description": "Kritische Trefferrate und direkte Trefferrate sind erhöht. Attacken, die LP regenerieren, sind davon ausgenommen.",
+  "effects": [
+    "Kritische Trefferrate und direkte Trefferrate sind erhöht. Attacken, die LP regenerieren, sind davon ausgenommen."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 229907,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 10
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 41599,
+      "name": "Phantom-Zielen",
+      "description": "Du erhöhst deine Rate kritischer und direkter Treffer um 15 %.\nAttacken, die LP regenerieren, sind davon ausgenommen.\nDauer: 30 Sekunden",
+      "description_macro": "Du erhöhst deine Rate kritischer und direkter Treffer um <if([gnum108>=5],50<nbsp>％,<if([gnum108>=3],30<nbsp>%,15<nbsp>%)>)>.<if([gnum108>=3], Außerdem treffen all deine Attacken garantiert.,)><br>Attacken, die LP regenerieren, sind davon ausgenommen.<br>Dauer: 30 Sekunden",
+      "unlock_level": 0,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Phantom Jobs"
+      ],
+      "jobs": [
+        {
+          "id": 4,
+          "name": "Phantom Phantom-Jäger",
+          "abbreviation": "Ph-Jäger",
+          "is_phantom": true
+        }
+      ]
+    }
+  ]
+}

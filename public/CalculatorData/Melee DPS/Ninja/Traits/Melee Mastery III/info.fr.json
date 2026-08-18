@@ -1,0 +1,35 @@
+{
+  "kind": "trait",
+  "id": 661,
+  "name": "Actions améliorées III",
+  "description": "Augmente la puissance de certaines actions.\n\nPuissance de Lame tournoyante : 300\nPuissance de Tourbillon tailladant : 240\nPuissance de Lame éolienne : 220\nPuissance de Fûma Shuriken : 500\nPuissance de Raiton : 740\nPuissance de Suiton : 580\nPuissance de Perce-armure : 240\nPuissance de Bhavacakra : 400\nPuissance de Bhavacakra avec Meisui : 550\nPuissance de Griffe de Raijû : 700\nPuissance de Croc de Raijû : 700",
+  "description_macro": "Augmente la puissance de certaines actions.<br><br><colortype(506)><edgecolortype(507)>Puissance de Lame tournoyante<nbsp>:<edgecolortype(0)><colortype(0)> 300<br><colortype(506)><edgecolortype(507)>Puissance de Tourbillon tailladant<nbsp>:<edgecolortype(0)><colortype(0)> 240<br><colortype(506)><edgecolortype(507)>Puissance de Lame éolienne<nbsp>:<edgecolortype(0)><colortype(0)> 220<br><colortype(506)><edgecolortype(507)>Puissance de Fûma Shuriken<nbsp>:<edgecolortype(0)><colortype(0)> 500<br><colortype(506)><edgecolortype(507)>Puissance de Raiton<nbsp>:<edgecolortype(0)><colortype(0)> 740<br><colortype(506)><edgecolortype(507)>Puissance de Suiton<nbsp>:<edgecolortype(0)><colortype(0)> 580<br><colortype(506)><edgecolortype(507)>Puissance de Perce-armure<nbsp>:<edgecolortype(0)><colortype(0)> 240<br><colortype(506)><edgecolortype(507)>Puissance de Bhavacakra<nbsp>:<edgecolortype(0)><colortype(0)> 400<br><colortype(506)><edgecolortype(507)>Puissance de Bhavacakra avec Meisui<nbsp>:<edgecolortype(0)><colortype(0)> 550<br><colortype(506)><edgecolortype(507)>Puissance de Griffe de Raijû<nbsp>:<edgecolortype(0)><colortype(0)> 700<br><colortype(506)><edgecolortype(507)>Puissance de Croc de Raijû<nbsp>:<edgecolortype(0)><colortype(0)> 700",
+  "effects": [
+    "Augmente la puissance de certaines actions.",
+    "Puissance de Lame tournoyante : 300",
+    "Puissance de Tourbillon tailladant : 240",
+    "Puissance de Lame éolienne : 220",
+    "Puissance de Fûma Shuriken : 500",
+    "Puissance de Raiton : 740",
+    "Puissance de Suiton : 580",
+    "Puissance de Perce-armure : 240",
+    "Puissance de Bhavacakra : 400",
+    "Puissance de Bhavacakra avec Meisui : 550",
+    "Puissance de Griffe de Raijû : 700",
+    "Puissance de Croc de Raijû : 700"
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 30,
+    "name": "Ninja",
+    "abbreviation": "NIN"
+  },
+  "unlock_level": 94,
+  "value": 0,
+  "icon": {
+    "id": 6803,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 92,
+  "source_class_job_id": 30
+}

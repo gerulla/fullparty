@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 184,
+  "name": "Meister der Bravade II",
+  "description": "Verbessert Bravade zu Hitzige Bravade und erhöht den Attacke-Wert von Ruinra auf 180.",
+  "description_macro": "Verbessert <colortype(502)><edgecolortype(503)>Bravade<edgecolortype(0)><colortype(0)> zu <colortype(502)><edgecolortype(503)>Hitzige Bravade<edgecolortype(0)><colortype(0)> und erhöht den Attacke-Wert von <colortype(502)><edgecolortype(503)>Ruinra<edgecolortype(0)><colortype(0)> auf 180.",
+  "effects": [
+    "Verbessert Bravade zu Hitzige Bravade und erhöht den Attacke-Wert von Ruinra auf 180."
+  ],
+  "role": "Healer",
+  "job": {
+    "id": 28,
+    "name": "Gelehrter",
+    "abbreviation": "GLT"
+  },
+  "unlock_level": 64,
+  "value": 0,
+  "icon": {
+    "id": 5392,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 29,
+  "source_class_job_id": 28
+}

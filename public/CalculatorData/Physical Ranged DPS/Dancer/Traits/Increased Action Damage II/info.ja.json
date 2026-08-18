@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 253,
+  "name": "アクションダメージアップII",
+  "description": "自身のオートアタックを除くアクションによるダメージをベースダメージの1.2倍にする。",
+  "description_macro": "自身のオートアタックを除くアクションによるダメージをベースダメージの1.2倍にする。",
+  "effects": [
+    "自身のオートアタックを除くアクションによるダメージをベースダメージの1.2倍にする。"
+  ],
+  "role": "Physical Ranged DPS",
+  "job": {
+    "id": 38,
+    "name": "踊り子",
+    "abbreviation": "DNC"
+  },
+  "unlock_level": 60,
+  "value": 20,
+  "icon": {
+    "id": 6353,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 150,
+  "source_class_job_id": 38
+}

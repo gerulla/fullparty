@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 160,
+  "name": "Deep Meditation",
+  "description": "Grants an 80% chance that a chakra will open upon dealing critical damage with a weaponskill.",
+  "description_macro": "Grants an 80% chance that a chakra will open upon dealing critical damage with a weaponskill.",
+  "effects": [
+    "Grants an 80% chance that a chakra will open upon dealing critical damage with a weaponskill."
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 20,
+    "name": "Monk",
+    "abbreviation": "MNK"
+  },
+  "unlock_level": 38,
+  "value": 80,
+  "icon": {
+    "id": 5234,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 21,
+  "source_class_job_id": 20
+}

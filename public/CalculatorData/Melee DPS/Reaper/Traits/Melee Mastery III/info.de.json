@@ -1,0 +1,36 @@
+{
+  "kind": "trait",
+  "id": 657,
+  "name": "Verbesserte Ernte III",
+  "description": "Erhöht den Attacke-Wert folgender Kommandos:\nAttacke-Wert von Schlitzer: 420\nAttacke-Wert von Neulicht-Schlitzer: 260\nAttacke-Wert von Infernalischer Schlitzer: 280\nAttacke-Wert von Seelenschlitzer: 520\nAttacke-Wert von Richtpfahl: 500\nAttacke-Wert von Galgen: 500\nAttacke-Wert von Richtergriff: 440\nAttacke-Wert von Galgengriff: 440\nAttacke-Wert von Nichtsmäher: 580\nAttacke-Wert von Kreuzmäher: 580\nAttacke-Wert von Erntemond: 800\nAttacke-Wert von Lemurenschlitzer: 280",
+  "description_macro": "Erhöht den Attacke-Wert folgender Kommandos:<br>Attacke-Wert von <colortype(502)><edgecolortype(503)>Schlitzer<edgecolortype(0)><colortype(0)>: 420<br>Attacke-Wert von <colortype(502)><edgecolortype(503)>Neulicht-Schlitzer<edgecolortype(0)><colortype(0)>: 260<br>Attacke-Wert von <colortype(502)><edgecolortype(503)>Infernalischer Schlitzer<edgecolortype(0)><colortype(0)>: 280<br>Attacke-Wert von <colortype(502)><edgecolortype(503)>Seelenschlitzer<edgecolortype(0)><colortype(0)>: 520<br>Attacke-Wert von <colortype(502)><edgecolortype(503)>Richtpfahl<edgecolortype(0)><colortype(0)>: 500<br>Attacke-Wert von <colortype(502)><edgecolortype(503)>Galgen<edgecolortype(0)><colortype(0)>: 500<br>Attacke-Wert von <colortype(502)><edgecolortype(503)>Richtergriff<edgecolortype(0)><colortype(0)>: 440<br>Attacke-Wert von <colortype(502)><edgecolortype(503)>Galgengriff<edgecolortype(0)><colortype(0)>: 440<br>Attacke-Wert von <colortype(502)><edgecolortype(503)>Nichtsmäher<edgecolortype(0)><colortype(0)>: 580<br>Attacke-Wert von <colortype(502)><edgecolortype(503)>Kreuzmäher<edgecolortype(0)><colortype(0)>: 580<br>Attacke-Wert von <colortype(502)><edgecolortype(503)>Erntemond<edgecolortype(0)><colortype(0)>: 800<br>Attacke-Wert von <colortype(502)><edgecolortype(503)>Lemurenschlitzer<edgecolortype(0)><colortype(0)>: 280",
+  "effects": [
+    "Erhöht den Attacke-Wert folgender Kommandos:",
+    "Attacke-Wert von Schlitzer: 420",
+    "Attacke-Wert von Neulicht-Schlitzer: 260",
+    "Attacke-Wert von Infernalischer Schlitzer: 280",
+    "Attacke-Wert von Seelenschlitzer: 520",
+    "Attacke-Wert von Richtpfahl: 500",
+    "Attacke-Wert von Galgen: 500",
+    "Attacke-Wert von Richtergriff: 440",
+    "Attacke-Wert von Galgengriff: 440",
+    "Attacke-Wert von Nichtsmäher: 580",
+    "Attacke-Wert von Kreuzmäher: 580",
+    "Attacke-Wert von Erntemond: 800",
+    "Attacke-Wert von Lemurenschlitzer: 280"
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 39,
+    "name": "Schnitter",
+    "abbreviation": "SNT"
+  },
+  "unlock_level": 94,
+  "value": 0,
+  "icon": {
+    "id": 6803,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 180,
+  "source_class_job_id": 39
+}

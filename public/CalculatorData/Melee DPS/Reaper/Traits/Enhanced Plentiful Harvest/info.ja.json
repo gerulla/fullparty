@@ -1,0 +1,28 @@
+{
+  "kind": "trait",
+  "id": 597,
+  "name": "プレンティフルハーベスト効果アップ",
+  "description": "自身に「ペルフェクティオ待機」が付与される。\n効果時間：30秒\nペルフェクティオ待機効果：効果中にコムニオを実行すると「ペルフェクティオ実行可」に変化する。\nペルフェクティオ実行可の効果中にレムール状態になると、ペルフェクティオ実行可が解除される。\n発動条件：プレンティフルハーベスト実行時",
+  "description_macro": "自身に<colortype(500)><edgecolortype(501)>「ペルフェクティオ待機」<edgecolortype(0)><colortype(0)>が付与される。<br><colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>30秒<br><colortype(504)><edgecolortype(505)>ペルフェクティオ待機効果：<edgecolortype(0)><colortype(0)>効果中にコムニオを実行すると<colortype(500)><edgecolortype(501)>「ペルフェクティオ実行可」<edgecolortype(0)><colortype(0)>に変化する。<br>ペルフェクティオ実行可の効果中にレムール状態になると、ペルフェクティオ実行可が解除される。<br><colortype(504)><edgecolortype(505)>発動条件：<edgecolortype(0)><colortype(0)>プレンティフルハーベスト実行時",
+  "effects": [
+    "自身に「ペルフェクティオ待機」が付与される。",
+    "効果時間：30秒",
+    "ペルフェクティオ待機効果：効果中にコムニオを実行すると「ペルフェクティオ実行可」に変化する。",
+    "ペルフェクティオ実行可の効果中にレムール状態になると、ペルフェクティオ実行可が解除される。",
+    "発動条件：プレンティフルハーベスト実行時"
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 39,
+    "name": "リーパー",
+    "abbreviation": "RPR"
+  },
+  "unlock_level": 100,
+  "value": 0,
+  "icon": {
+    "id": 6414,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 180,
+  "source_class_job_id": 39
+}

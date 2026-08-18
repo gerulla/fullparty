@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 613,
+  "name": "Maîtrise de Foudre III",
+  "description": "Remplace Méga Foudre par Foudre majeure et Giga Foudre par Extra Foudre majeure.",
+  "description_macro": "Remplace <colortype(500)><edgecolortype(501)>Méga Foudre<edgecolortype(0)><colortype(0)> par <colortype(500)><edgecolortype(501)>Foudre majeure<edgecolortype(0)><colortype(0)> et <colortype(500)><edgecolortype(501)>Giga Foudre<edgecolortype(0)><colortype(0)> par <colortype(500)><edgecolortype(501)>Extra Foudre majeure<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Remplace Méga Foudre par Foudre majeure et Giga Foudre par Extra Foudre majeure."
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 25,
+    "name": "Mage Noir",
+    "abbreviation": "MNO"
+  },
+  "unlock_level": 92,
+  "value": 0,
+  "icon": {
+    "id": 5651,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 26,
+  "source_class_job_id": 25
+}

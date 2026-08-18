@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 432,
+  "name": "桃園結義効果アップ",
+  "description": "自身に付与される「桃園結義：闘気」による「闘気」の付与確率を100％に上昇させる。",
+  "description_macro": "自身に付与される<colortype(500)><edgecolortype(501)>「桃園結義：闘気」<edgecolortype(0)><colortype(0)>による<colortype(500)><edgecolortype(501)>「闘気」<edgecolortype(0)><colortype(0)>の付与確率を100％に上昇させる。",
+  "effects": [
+    "自身に付与される「桃園結義：闘気」による「闘気」の付与確率を100％に上昇させる。"
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 20,
+    "name": "モンク",
+    "abbreviation": "MNK"
+  },
+  "unlock_level": 88,
+  "value": 0,
+  "icon": {
+    "id": 5245,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 21,
+  "source_class_job_id": 20
+}

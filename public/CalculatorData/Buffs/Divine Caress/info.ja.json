@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 3903,
+  "name": "ディヴァインカレス［バリア］",
+  "description": "一定量のダメージを軽減する状態。",
+  "effects": [
+    "一定量のダメージを軽減する状態。"
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 212641,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": true,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 30,
+  "parameter": {
+    "effect": 0,
+    "modifier": 100
+  },
+  "class_job_category_id": 25,
+  "source_abilities": [
+    {
+      "id": 37011,
+      "name": "ディヴァインカレス",
+      "description": "自身と周囲のパーティメンバーに、一定量のダメージを防ぐバリアを張る。\nバリア量：回復力400相当\u3000効果時間：10秒\n追加効果：バリア効果が終了すると、対象に「ディヴァインカレス［回］」を付与する。\nディヴァインカレス［回］効果：対象のＨＰを継続回復する。\n回復力：200\u3000効果時間：15秒\n発動条件：「ディヴァインカレス実行可」効果中",
+      "description_macro": "自身と周囲のパーティメンバーに、一定量のダメージを防ぐバリアを張る。<br><colortype(504)><edgecolortype(505)>バリア量：<edgecolortype(0)><colortype(0)>回復力400相当\u3000<colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>10秒<br><colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)>バリア効果が終了すると、対象に<colortype(500)><edgecolortype(501)>「ディヴァインカレス［回］」<edgecolortype(0)><colortype(0)>を付与する。<br><colortype(504)><edgecolortype(505)>ディヴァインカレス［回］効果：<edgecolortype(0)><colortype(0)>対象のＨＰを継続回復する。<br><colortype(504)><edgecolortype(505)>回復力：<edgecolortype(0)><colortype(0)>200\u3000<colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>15秒<br><colortype(504)><edgecolortype(505)>発動条件：<edgecolortype(0)><colortype(0)><colortype(500)><edgecolortype(501)>「ディヴァインカレス実行可」<edgecolortype(0)><colortype(0)>効果中",
+      "unlock_level": 100,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Healer"
+      ],
+      "jobs": [
+        {
+          "id": 24,
+          "name": "白魔道士",
+          "abbreviation": "WHM",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

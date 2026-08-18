@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 3258,
+  "name": "ランスチャージ",
+  "description": "一部のウェポンスキルの与ダメージが上昇した状態。",
+  "effects": [
+    "一部のウェポンスキルの与ダメージが上昇した状態。"
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 210304,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": true,
+  "inflicted_by_actor": true,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 85,
+      "name": "ランスチャージ",
+      "description": "一定時間、自身の与ダメージを10％上昇させる。\n効果時間：20秒",
+      "description_macro": "一定時間、自身の与ダメージを10％上昇させる。<br><colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>20秒",
+      "unlock_level": 30,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 22,
+          "name": "竜騎士",
+          "abbreviation": "DRG",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

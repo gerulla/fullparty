@@ -1,0 +1,22 @@
+{
+  "kind": "trait",
+  "id": 2,
+  "name": "Verbessertes Beten",
+  "description": "Erhöht die Heilwirkung von Beten auf 5.000.",
+  "description_macro": "Erhöht die Heilwirkung von <colortype(502)><edgecolortype(503)>Beten<edgecolortype(0)><colortype(0)> auf 5.000.",
+  "effects": [
+    "Erhöht die Heilwirkung von Beten auf 5.000."
+  ],
+  "role": "Phantom Jobs",
+  "job": {
+    "id": 1,
+    "name": "Phantom-Ritter",
+    "abbreviation": "Ph-Ritter"
+  },
+  "is_phantom_trait": true,
+  "unlock_level": 5,
+  "icon": {
+    "id": 82202,
+    "file": "icon.png"
+  }
+}

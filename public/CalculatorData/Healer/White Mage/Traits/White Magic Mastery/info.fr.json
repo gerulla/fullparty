@@ -1,0 +1,28 @@
+{
+  "kind": "trait",
+  "id": 651,
+  "name": "Actions améliorées",
+  "description": "Augmente la puissance de certaines actions.\n\nPuissance de Lumen : 85\nPuissance des dégâts périodiques de Lumen : 85\nPuissance d'Offrande de misère : 1400\nPuissance de Méga Chatoiement : 350",
+  "description_macro": "Augmente la puissance de certaines actions.<br><br><colortype(506)><edgecolortype(507)>Puissance de Lumen<nbsp>:<edgecolortype(0)><colortype(0)> 85<br><colortype(506)><edgecolortype(507)>Puissance des dégâts périodiques de Lumen<nbsp>:<edgecolortype(0)><colortype(0)> 85<br><colortype(506)><edgecolortype(507)>Puissance d'Offrande de misère<nbsp>:<edgecolortype(0)><colortype(0)> 1400<br><colortype(506)><edgecolortype(507)>Puissance de Méga Chatoiement<nbsp>:<edgecolortype(0)><colortype(0)> 350",
+  "effects": [
+    "Augmente la puissance de certaines actions.",
+    "Puissance de Lumen : 85",
+    "Puissance des dégâts périodiques de Lumen : 85",
+    "Puissance d'Offrande de misère : 1400",
+    "Puissance de Méga Chatoiement : 350"
+  ],
+  "role": "Healer",
+  "job": {
+    "id": 24,
+    "name": "Mage Blanc",
+    "abbreviation": "MBL"
+  },
+  "unlock_level": 94,
+  "value": 0,
+  "icon": {
+    "id": 6831,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 25,
+  "source_class_job_id": 24
+}

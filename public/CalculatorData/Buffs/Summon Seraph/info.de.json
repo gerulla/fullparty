@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 3095,
+  "name": "Seraph-Beschwörung",
+  "description": "Der Seraph ist beschworen.",
+  "effects": [
+    "Der Seraph ist beschworen."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 214905,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": true,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 29,
+  "source_abilities": [
+    {
+      "id": 16545,
+      "name": "Seraph-Beschwörung",
+      "description": "Du schickst deine Fee weg und rufst stattdessen deinen Seraph herbei, der in der Haltung Schütz mit Schleier der Seraphim automatisch bei einem Gruppenmitglied LP regeneriert.\nDauer: 22 Sekunden\nDanach kehrt die Fee wieder zu dir zurück.\nBedingung: Fee ist bereits gerufen.",
+      "description_macro": "Du schickst deine Fee weg und rufst stattdessen deinen Seraph herbei, der in der Haltung <colortype(506)><edgecolortype(507)>Schütz<edgecolortype(0)><colortype(0)> mit <colortype(502)><edgecolortype(503)>Schleier der Seraphim<edgecolortype(0)><colortype(0)> automatisch bei einem Grup<->pen<->mit<->glied LP regeneriert.<br>Dauer: 22 Sekunden<br>Danach kehrt die Fee wieder zu dir zurück.<br>Bedingung: Fee ist bereits gerufen.",
+      "unlock_level": 80,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Healer"
+      ],
+      "jobs": [
+        {
+          "id": 28,
+          "name": "Gelehrter",
+          "abbreviation": "GLT",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

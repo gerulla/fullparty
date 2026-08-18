@@ -1,0 +1,113 @@
+{
+  "kind": "combat_status",
+  "id": 487,
+  "name": "Congélation",
+  "description": "Le corps est entièrement gelé. Des dégâts périodiques de glace sont subis.",
+  "effects": [
+    "Le corps est entièrement gelé. Des dégâts périodiques de glace sont subis."
+  ],
+  "classification": "debuff",
+  "icon": {
+    "id": 217621,
+    "file": "icon.png"
+  },
+  "max_stacks": 16,
+  "status_category_id": 2,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 100,
+  "parameter": {
+    "effect": 0,
+    "modifier": 50
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 11419,
+      "name": "Voix du bélier",
+      "description": "Effectue une attaque magique de glace sur les ennemis alentour.\nPuissance : 220\nLa puissance est réduite de 50% au-delà du premier ennemi touché.\nEffet additionnel : inflige l'effet Congélation.\nDurée : 12s",
+      "description_macro": "Effectue une attaque magique de glace sur les ennemis alentour.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> 220<br>La puissance est réduite de 50% au-delà du premier ennemi touché.<br><colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> inflige l'effet Congélation.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 12s",
+      "unlock_level": 1,
+      "relations": [
+        "applied_by_description"
+      ],
+      "roles": [
+        "Magical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 36,
+          "name": "Mage Bleu",
+          "abbreviation": "MBU",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 23267,
+      "name": "Brume glaciale",
+      "description": "Vous octroie Brume glaciale.\nDurée : 5s\nSi vous subissez une attaque ennemie, vous obtenez à la place l'effet Mort blanche.\nMort blanche : l'action Brume glaciale devient Mort blanche.\nDurée : 15s\nCe sort a un temps de recharge indépendant.\n\nMort blanche\nEffectue une attaque magique de glace sur la cible.\nPuissance : 400\nEffet additionnel : inflige Congélation.\nDurée : 10s\nCondition : Mort blanche.",
+      "description_macro": "Vous octroie <colortype(500)><edgecolortype(501)>Brume glaciale<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 5s<br>Si vous subissez une attaque ennemie, vous obtenez à la place l'effet <colortype(500)><edgecolortype(501)>Mort blanche<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Mort blanche<nbsp>:<edgecolortype(0)><colortype(0)> l'action <colortype(500)><edgecolortype(501)>Brume glaciale<edgecolortype(0)><colortype(0)> devient <colortype(500)><edgecolortype(501)>Mort blanche<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 15s<br>Ce sort a un temps de recharge indépendant.<br><br><colortype(500)><edgecolortype(501)>Mort blanche<edgecolortype(0)><colortype(0)><br>Effectue une attaque magique de glace sur la cible.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> 400<br><colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> inflige Congélation.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 10s<br><colortype(506)><edgecolortype(507)>Condition<nbsp>:<edgecolortype(0)><colortype(0)> <colortype(500)><edgecolortype(501)>Mort blanche<edgecolortype(0)><colortype(0)>.",
+      "unlock_level": 1,
+      "relations": [
+        "applied_by_description"
+      ],
+      "roles": [
+        "Magical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 36,
+          "name": "Mage Bleu",
+          "abbreviation": "MBU",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 23268,
+      "name": "Mort blanche",
+      "description": "Effectue une attaque magique de glace sur la cible.\nPuissance : 400\nEffet additionnel : inflige Congélation.\nDurée : 10s\nCondition : Mort blanche.",
+      "description_macro": "Effectue une attaque magique de glace sur la cible.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> 400<br><colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> inflige Congélation.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 10s<br><colortype(506)><edgecolortype(507)>Condition<nbsp>:<edgecolortype(0)><colortype(0)> <colortype(500)><edgecolortype(501)>Mort blanche<edgecolortype(0)><colortype(0)>.",
+      "unlock_level": 1,
+      "relations": [
+        "applied_by_description"
+      ],
+      "roles": [
+        "Magical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 36,
+          "name": "Mage Bleu",
+          "abbreviation": "MBU",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 49098,
+      "name": "Congélation",
+      "description": "Effectue une attaque magique de glace en ligne droite sur les ennemis devant vous.\nPuissance : 300 (varie selon le niveau d'objet)\nPuissance contre les ennemis sensibles à la glace : 390 (varie selon le niveau d'objet)\nConsomme 10% des PV maximums.\nPuissance avec Sangsue : 400 (varie selon le niveau d'objet)\nPuissance avec Sangsue contre les ennemis sensibles à la glace : 520 (varie selon le niveau d'objet)\nEffet additionnel avec Sangsue : arrête le temps pour la cible.\nDurée : 4s\nEffet additionnel avec Sangsue : vous inflige Glas.\nDurée : 10s\nCet effet disparaît si l'intégralité des PV est restaurée.",
+      "description_macro": "Effectue une attaque magique de glace en ligne droite sur les ennemis devant vous.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> 300 (varie selon le niveau d'objet)<br><colortype(506)><edgecolortype(507)>Puissance contre les ennemis sensibles à la glace<nbsp>:<edgecolortype(0)><colortype(0)> 390 (varie selon le niveau d'objet)<br>Consomme 10% des PV maximums.<br><colortype(506)><edgecolortype(507)>Puissance avec Sangsue<nbsp>:<edgecolortype(0)><colortype(0)> 400 (varie selon le niveau d'objet)<br><colortype(506)><edgecolortype(507)>Puissance avec Sangsue contre les ennemis sensibles à la glace<nbsp>:<edgecolortype(0)><colortype(0)> 520 (varie selon le niveau d'objet)<br><colortype(506)><edgecolortype(507)>Effet additionnel avec Sangsue<nbsp>:<edgecolortype(0)><colortype(0)> arrête le temps pour la cible.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 4s<br><colortype(506)><edgecolortype(507)>Effet additionnel avec Sangsue<nbsp>:<edgecolortype(0)><colortype(0)> vous inflige <colortype(500)><edgecolortype(501)>Glas<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 10s<br>Cet effet disparaît si l'intégralité des PV est restaurée.<if([gnum108>=3],<br>Partage le même temps de recharge que <colortype(500)><edgecolortype(501)>Vent infernal<edgecolortype(0)><colortype(0)><if([gnum108>=4], et <colortype(500)><edgecolortype(501)>Onde chaotique<edgecolortype(0)><colortype(0)>,)>.,)>",
+      "unlock_level": 0,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Phantom Jobs"
+      ],
+      "jobs": [
+        {
+          "id": 23,
+          "name": "Phantom Nécromancien fantôme",
+          "abbreviation": "Nécromancien fant.",
+          "is_phantom": true
+        }
+      ]
+    }
+  ]
+}

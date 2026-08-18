@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 529,
+  "name": "Enhanced Slither",
+  "description": "Allows a third charge of Slither.",
+  "description_macro": "Allows a third charge of <colortype(500)><edgecolortype(501)>Slither<edgecolortype(0)><colortype(0)>. ",
+  "effects": [
+    "Allows a third charge of Slither."
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 41,
+    "name": "Viper",
+    "abbreviation": "VPR"
+  },
+  "unlock_level": 84,
+  "value": 3,
+  "icon": {
+    "id": 6506,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 196,
+  "source_class_job_id": 41
+}

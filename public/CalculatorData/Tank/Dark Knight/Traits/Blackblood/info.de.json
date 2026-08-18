@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 158,
+  "name": "Schwarzblut",
+  "description": "Bei bestimmten erfolgreich ausgeführten Kommandos füllt sich der Blutbalken.",
+  "description_macro": "Bei bestimmten erfolgreich ausgeführten Kommandos füllt sich der Blutbalken.",
+  "effects": [
+    "Bei bestimmten erfolgreich ausgeführten Kommandos füllt sich der Blutbalken."
+  ],
+  "role": "Tank",
+  "job": {
+    "id": 32,
+    "name": "Dunkelritter",
+    "abbreviation": "DKR"
+  },
+  "unlock_level": 62,
+  "value": 0,
+  "icon": {
+    "id": 6059,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 98,
+  "source_class_job_id": 32
+}

@@ -1,0 +1,28 @@
+{
+  "kind": "trait",
+  "id": 459,
+  "name": "Maîtrise des polarités III",
+  "description": "Extra Feu et Extra Glace vous octroient respectivement Feu astral et Glace ombrale au degré maximal.\nAugmente à 3 le degré maximal de Feu astral et de Glace ombrale.\nAu degré maximal, octroie les effets additionnels suivants :\nEffet avec Feu astral : augmente la puissance des sorts de feu de 80％, réduit la puissance des sorts de glace de 20％ et divise par deux leur temps de lancement.\nEffet avec Glace ombrale : restaure 10 000 PM quand un sort de glace est utilisé avec succès, réduit la puissance des sorts de feu de 30％ et divise par deux leur temps de lancement.",
+  "description_macro": "<colortype(500)><edgecolortype(501)>Extra Feu<edgecolortype(0)><colortype(0)> et <colortype(500)><edgecolortype(501)>Extra Glace<edgecolortype(0)><colortype(0)> vous octroient respectivement <colortype(500)><edgecolortype(501)>Feu astral<edgecolortype(0)><colortype(0)> et <colortype(500)><edgecolortype(501)>Glace ombrale<edgecolortype(0)><colortype(0)> au degré maximal.<br>Augmente à 3 le degré maximal de <colortype(500)><edgecolortype(501)>Feu astral<edgecolortype(0)><colortype(0)> et de <colortype(500)><edgecolortype(501)>Glace ombrale<edgecolortype(0)><colortype(0)>.<br>Au degré maximal, octroie les effets additionnels suivants<nbsp>:<br><colortype(506)><edgecolortype(507)>Effet avec Feu astral<nbsp>:<edgecolortype(0)><colortype(0)> augmente la puissance des sorts de feu de 80％, réduit la puissance des sorts de glace de 20％ et divise par deux leur temps de lancement.<br><colortype(506)><edgecolortype(507)>Effet avec Glace ombrale<nbsp>:<edgecolortype(0)><colortype(0)> restaure 10 000 PM quand un sort de glace est utilisé avec succès, réduit la puissance des sorts de feu de 30％ et divise par deux leur temps de lancement.",
+  "effects": [
+    "Extra Feu et Extra Glace vous octroient respectivement Feu astral et Glace ombrale au degré maximal.",
+    "Augmente à 3 le degré maximal de Feu astral et de Glace ombrale.",
+    "Au degré maximal, octroie les effets additionnels suivants :",
+    "Effet avec Feu astral : augmente la puissance des sorts de feu de 80％, réduit la puissance des sorts de glace de 20％ et divise par deux leur temps de lancement.",
+    "Effet avec Glace ombrale : restaure 10 000 PM quand un sort de glace est utilisé avec succès, réduit la puissance des sorts de feu de 30％ et divise par deux leur temps de lancement."
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 25,
+    "name": "Mage Noir",
+    "abbreviation": "MNO"
+  },
+  "unlock_level": 35,
+  "value": 0,
+  "icon": {
+    "id": 5367,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 55,
+  "source_class_job_id": 7
+}

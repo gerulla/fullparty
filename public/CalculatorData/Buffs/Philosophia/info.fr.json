@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 3898,
+  "name": "Philosophia",
+  "description": "La puissance de la magie curative est augmentée.",
+  "effects": [
+    "La puissance de la magie curative est augmentée."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 212974,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 50,
+  "parameter": {
+    "effect": 0,
+    "modifier": 30
+  },
+  "class_job_category_id": 181,
+  "source_abilities": [
+    {
+      "id": 37035,
+      "name": "Philosophia",
+      "description": "Augmente de 20% la puissance de vos sorts curatifs.\nDurée : 20s\nEffet additionnel : octroie Eudémonisme à vous et aux équipiers alentour.\nDurée : 20s\nRestaure des PV à la cible qui bénéficie d'Eudémonisme quand vous utilisez avec succès vos sorts de magie.\nPuissance : 150",
+      "description_macro": "Augmente de 20% la puissance de vos sorts curatifs.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 20s<br><colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> octroie <colortype(500)><edgecolortype(501)>Eudémonisme<edgecolortype(0)><colortype(0)> à vous et aux équipiers alentour.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 20s<br>Restaure des PV à la cible qui bénéficie d'Eudémonisme quand vous utilisez avec succès vos sorts de magie.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> 150",
+      "unlock_level": 100,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Healer"
+      ],
+      "jobs": [
+        {
+          "id": 40,
+          "name": "Sage",
+          "abbreviation": "SAG",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

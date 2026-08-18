@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 4236,
+  "name": "Durch Mark und Bein",
+  "description": "Der Attacke-Wert von Todesstoß erhöht sich mit dem erlittenen Schaden.",
+  "effects": [
+    "Der Attacke-Wert von Todesstoß erhöht sich mit dem erlittenen Schaden."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 229905,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": true,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 41592,
+      "name": "Wüten",
+      "description": "Du verlierst kurzzeitig die Kontrolle und führst physische Attacken auf die fächerförmig vor dir stehenden Gegner aus. Außerdem bist du gegen einige negative Statuseffekte sowie gegen Rückstoß- und Heranzieheffekte immun.\nAttacke-Wert: 150 (skaliert mit Gegenstandsstufe)\nDauer: 10 Sekundendesto höher der Attacke-Wert von Todesstoß.",
+      "description_macro": "Du verlierst kurzzeitig die Kontrolle und führst physische Attacken auf die fächerförmig vor dir stehenden Gegner aus. Außerdem bist du gegen einige negative Statuseffekte sowie gegen Rückstoß- und Heranzieheffekte immun.<br>Attacke-Wert: 150 (skaliert mit Gegen<->stands<->stufe)<br>Dauer: 10 Sekunden<if([gnum108>=3],<br>Zusatzeffekt: Gewährt dir <colortype(506)><edgecolortype(507)>Durch Mark und Bein<edgecolortype(0)><colortype(0)>.<br>Dauer: 15 Sekunden<br>Effekt von <colortype(506)><edgecolortype(507)>Durch Mark und Bein<edgecolortype(0)><colortype(0)>: Je mehr Schaden während der Effektdauer erlitten wird\\, desto höher der Attacke-Wert von <colortype(502)><edgecolortype(503)>Todesstoß<edgecolortype(0)><colortype(0)>.,)>",
+      "unlock_level": 0,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Phantom Jobs"
+      ],
+      "jobs": [
+        {
+          "id": 2,
+          "name": "Phantom Phantom-Berserker",
+          "abbreviation": "Ph-Berserker",
+          "is_phantom": true
+        }
+      ]
+    }
+  ]
+}

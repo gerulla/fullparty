@@ -1,0 +1,28 @@
+{
+  "kind": "trait",
+  "id": 669,
+  "name": "Actions améliorées",
+  "description": "Augmente la puissance de certaines actions.\n\nPuissance de Dosis III : 380\nPuissance de Dosis eucrasique III : 90\nPuissance de Toxikon II : 380\nPuissance de Pneuma : 380",
+  "description_macro": "Augmente la puissance de certaines actions.<br><br><colortype(506)><edgecolortype(507)>Puissance de Dosis III<nbsp>:<edgecolortype(0)><colortype(0)> 380<br><colortype(506)><edgecolortype(507)>Puissance de Dosis eucrasique III<nbsp>:<edgecolortype(0)><colortype(0)> 90<br><colortype(506)><edgecolortype(507)>Puissance de Toxikon II<nbsp>:<edgecolortype(0)><colortype(0)> 380<br><colortype(506)><edgecolortype(507)>Puissance de Pneuma<nbsp>:<edgecolortype(0)><colortype(0)> 380",
+  "effects": [
+    "Augmente la puissance de certaines actions.",
+    "Puissance de Dosis III : 380",
+    "Puissance de Dosis eucrasique III : 90",
+    "Puissance de Toxikon II : 380",
+    "Puissance de Pneuma : 380"
+  ],
+  "role": "Healer",
+  "job": {
+    "id": 40,
+    "name": "Sage",
+    "abbreviation": "SAG"
+  },
+  "unlock_level": 94,
+  "value": 0,
+  "icon": {
+    "id": 6831,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 181,
+  "source_class_job_id": 40
+}

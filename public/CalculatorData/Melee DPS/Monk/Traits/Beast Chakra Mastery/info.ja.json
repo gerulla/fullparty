@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 577,
+  "name": "象形拳",
+  "description": "連撃が猿舞連撃に、正拳突きが竜頷正拳撃に、崩拳が虎襲崩拳に、蒼気砲が真空波に変化する。",
+  "description_macro": "連撃が猿舞連撃に、正拳突きが竜頷正拳撃に、崩拳が虎襲崩拳に、蒼気砲が真空波に変化する。",
+  "effects": [
+    "連撃が猿舞連撃に、正拳突きが竜頷正拳撃に、崩拳が虎襲崩拳に、蒼気砲が真空波に変化する。"
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 20,
+    "name": "モンク",
+    "abbreviation": "MNK"
+  },
+  "unlock_level": 92,
+  "value": 0,
+  "icon": {
+    "id": 5249,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 21,
+  "source_class_job_id": 20
+}

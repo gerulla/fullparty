@@ -1,0 +1,25 @@
+{
+  "kind": "trait",
+  "id": 627,
+  "name": "Verbesserte Kritische Strategie",
+  "description": "Erfolgreiche Ausführung von Kritische Strategie gewährt Mit Gift und Galle.\nDauer: 30 Sekunden",
+  "description_macro": "Erfolgreiche Ausführung von <colortype(502)><edgecolortype(503)>Kritische Strategie<edgecolortype(0)><colortype(0)> gewährt <colortype(506)><edgecolortype(507)>Mit Gift und Galle<edgecolortype(0)><colortype(0)>.<br>Dauer: 30 Sekunden",
+  "effects": [
+    "Erfolgreiche Ausführung von Kritische Strategie gewährt Mit Gift und Galle.",
+    "Dauer: 30 Sekunden"
+  ],
+  "role": "Healer",
+  "job": {
+    "id": 28,
+    "name": "Gelehrter",
+    "abbreviation": "GLT"
+  },
+  "unlock_level": 92,
+  "value": 0,
+  "icon": {
+    "id": 5707,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 29,
+  "source_class_job_id": 28
+}

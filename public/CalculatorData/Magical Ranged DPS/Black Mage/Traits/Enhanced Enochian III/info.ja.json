@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 509,
+  "name": "エノキアン効果アップIII",
+  "description": "エノキアンの効果量を22％に上昇させる。",
+  "description_macro": "エノキアンの効果量を22％に上昇させる。",
+  "effects": [
+    "エノキアンの効果量を22％に上昇させる。"
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 25,
+    "name": "黒魔道士",
+    "abbreviation": "BLM"
+  },
+  "unlock_level": 86,
+  "value": 17,
+  "icon": {
+    "id": 5374,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 26,
+  "source_class_job_id": 25
+}

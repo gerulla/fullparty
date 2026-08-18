@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 3906,
+  "name": "Blendendes Raiju",
+  "description": "Erleidet erhöhten Schaden vom Verursacher des Status.",
+  "effects": [
+    "Erleidet erhöhten Schaden vom Verursacher des Status."
+  ],
+  "classification": "debuff",
+  "icon": {
+    "id": 212923,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 2,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 10
+  },
+  "class_job_category_id": 92,
+  "source_abilities": [
+    {
+      "id": 36958,
+      "name": "Blendendes Raiju",
+      "description": "Du führst eine physische Attacke auf das Ziel und die Gegner in seiner Nähe aus.\nAttacke-Wert: 700\nZusatzeffekt: Blendendes Raiju\nDauer: 15 Sekunden\nEffekt von Blendendes Raiju: Eigener erteilter Schaden auf das betroffene Ziel ist um 10 % erhöht.\nBedingung: Versteckt aktiv",
+      "description_macro": "Du führst eine physische Attacke auf das Ziel und die Gegner in seiner Nähe aus.<br>Attacke-Wert: 700<br>Zusatzeffekt: <colortype(506)><edgecolortype(507)>Blendendes Raiju<edgecolortype(0)><colortype(0)><br>Dauer: 15 Sekunden<br>Effekt von <colortype(506)><edgecolortype(507)>Blendendes Raiju<edgecolortype(0)><colortype(0)>: Eigener erteilter Schaden auf das betroffene Ziel ist um 10 % erhöht.<br>Bedingung: <colortype(506)><edgecolortype(507)>Versteckt<edgecolortype(0)><colortype(0)> aktiv",
+      "unlock_level": 92,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 30,
+          "name": "Ninja",
+          "abbreviation": "NIN",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 3888,
+  "name": "Pfeil",
+  "description": "Eigene LP-Regeneration durch Heilmagie ist erhöht.",
+  "effects": [
+    "Eigene LP-Regeneration durch Heilmagie ist erhöht."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 213206,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 1,
+  "parameter": {
+    "effect": 0,
+    "modifier": 10
+  },
+  "class_job_category_id": 99,
+  "source_abilities": [
+    {
+      "id": 37024,
+      "name": "Pfeil",
+      "description": "Du erhöhst alle LP-Regenerationseffekte auf dich oder ein Gruppenmitglied um 10 %.\nDauer: 15 Sekunden\nBei erfüllter Bedingung ändert sich Ausspielen II zu diesem Kommando.\nKann nicht im Kommandomenü angelegt werden.",
+      "description_macro": "Du erhöhst alle LP-Regenerationseffekte auf dich oder ein Grup<->pen<->mit<->glied um 10<nbsp>%.<br>Dauer: 15 Sekunden<br>Bei erfüllter Bedingung ändert sich <colortype(502)><edgecolortype(503)>Ausspielen II<edgecolortype(0)><colortype(0)> zu diesem Kommando.<br>Kann nicht im Kommandomenü angelegt werden.",
+      "unlock_level": 30,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Healer"
+      ],
+      "jobs": [
+        {
+          "id": 33,
+          "name": "Astrologe",
+          "abbreviation": "AST",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

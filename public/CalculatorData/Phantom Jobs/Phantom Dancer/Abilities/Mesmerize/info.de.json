@@ -1,0 +1,90 @@
+{
+  "kind": "ability",
+  "id": 46605,
+  "name": "Betörung",
+  "description": "Du fügst dem Ziel Starke Betörung zu.\nEffekt von Starke Betörung: Ausgeteilter Schaden ist um 40 % verringert.\nDauer: 4 Sekunden\nZusatzeffekt: Fügt dem Ziel Betörung zu.\nEffekt von Betörung: Ausgeteilter Schaden ist um 10 % verringert und erlittener Schaden um 5 % erhöht.\nDauer: 100 Sekunden\nKann nicht zugleich mit Silber des Phantom-Grenadiers aktiv sein.",
+  "description_macro": "Du fügst dem Ziel <colortype(506)><edgecolortype(507)>Starke Betörung<edgecolortype(0)><colortype(0)> zu.<br>Effekt von <colortype(506)><edgecolortype(507)>Starke Betörung<edgecolortype(0)><colortype(0)>: Ausgeteilter Schaden ist um 40<nbsp>% verringert.<br>Dauer: 4 Sekunden<br>Zusatzeffekt: Fügt dem Ziel <colortype(506)><edgecolortype(507)>Betörung<edgecolortype(0)><colortype(0)> zu.<br>Effekt von <colortype(506)><edgecolortype(507)>Betörung<edgecolortype(0)><colortype(0)>: Ausgeteilter Schaden ist um 10<nbsp>% verringert und erlittener Schaden um 5<nbsp>% erhöht.<br>Dauer: 100 Sekunden<br>Kann nicht zugleich mit <colortype(500)><edgecolortype(501)>Silber<edgecolortype(0)><colortype(0)> des Phantom-Grenadiers aktiv sein.",
+  "effects": [
+    "Du fügst dem Ziel Starke Betörung zu.",
+    "Effekt von Starke Betörung: Ausgeteilter Schaden ist um 40 % verringert.",
+    "Dauer: 4 Sekunden",
+    "Zusatzeffekt: Fügt dem Ziel Betörung zu.",
+    "Effekt von Betörung: Ausgeteilter Schaden ist um 10 % verringert und erlittener Schaden um 5 % erhöht.",
+    "Dauer: 100 Sekunden",
+    "Kann nicht zugleich mit Silber des Phantom-Grenadiers aktiv sein."
+  ],
+  "role": "Phantom Jobs",
+  "job": {
+    "id": 15,
+    "name": "Phantom-Tänzer",
+    "abbreviation": "Ph-Tänzer"
+  },
+  "is_phantom_action": true,
+  "unlock_level": 4,
+  "icon": {
+    "id": 64590,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 4,
+    "name": "Talent"
+  },
+  "attack_type": {
+    "id": 0,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 90,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 87,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 0,
+      "value": 0
+    },
+    "secondary": {
+      "type_id": 0,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": 30,
+    "effect_yalms": 0,
+    "cast_type": 1
+  },
+  "targeting": {
+    "self": false,
+    "party": false,
+    "alliance": false,
+    "hostile": true,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 0,
+    "behavior_type": 0,
+    "class_job_category_id": 142,
+    "source_class_job_id": 4294967295,
+    "is_role_action": false,
+    "is_player_action": false,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

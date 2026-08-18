@@ -1,0 +1,86 @@
+{
+  "kind": "ability",
+  "id": 7506,
+  "name": "コル・ア・コル",
+  "description": "対象に急接近して物理攻撃。\u3000威力：130\n最大チャージ数：2\nバインド中は実行不可。",
+  "description_macro": "対象に急接近して物理攻撃。\u3000<colortype(504)><edgecolortype(505)>威力：<edgecolortype(0)><colortype(0)>130<br><colortype(504)><edgecolortype(505)>最大チャージ数：<edgecolortype(0)><colortype(0)>2<br>バインド中は実行不可。",
+  "effects": [
+    "対象に急接近して物理攻撃。\u3000威力：130",
+    "最大チャージ数：2",
+    "バインド中は実行不可。"
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 35,
+    "name": "赤魔道士",
+    "abbreviation": "RDM"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 6,
+  "icon": {
+    "id": 3204,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 4,
+    "name": "アビリティ"
+  },
+  "attack_type": {
+    "id": 4294967295,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 35,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 11,
+    "additional_cooldown_group": 71,
+    "max_charges": 2
+  },
+  "costs": {
+    "primary": {
+      "type_id": 0,
+      "value": 0
+    },
+    "secondary": {
+      "type_id": 0,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": 25,
+    "effect_yalms": 0,
+    "cast_type": 1
+  },
+  "targeting": {
+    "self": false,
+    "party": false,
+    "alliance": false,
+    "hostile": true,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 7,
+    "behavior_type": 1,
+    "class_job_category_id": 112,
+    "source_class_job_id": 35,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

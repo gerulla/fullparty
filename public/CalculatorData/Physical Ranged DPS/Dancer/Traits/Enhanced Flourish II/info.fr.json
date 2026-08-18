@@ -1,0 +1,26 @@
+{
+  "kind": "trait",
+  "id": 610,
+  "name": "Apothéose améliorée II",
+  "description": "Permet de recevoir Mouvement final préparé lorsque vous exécutez Apothéose avec succès.\nDurée : 30s\nRemplace Pas classique par Mouvement final pendant la durée de l'effet.",
+  "description_macro": "Permet de recevoir <colortype(500)><edgecolortype(501)>Mouvement final préparé<edgecolortype(0)><colortype(0)> lorsque vous exécutez <colortype(500)><edgecolortype(501)>Apothéose<edgecolortype(0)><colortype(0)> avec succès.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 30s<br>Remplace <colortype(500)><edgecolortype(501)>Pas classique<edgecolortype(0)><colortype(0)> par <colortype(500)><edgecolortype(501)>Mouvement final<edgecolortype(0)><colortype(0)> pendant la durée de l'effet.",
+  "effects": [
+    "Permet de recevoir Mouvement final préparé lorsque vous exécutez Apothéose avec succès.",
+    "Durée : 30s",
+    "Remplace Pas classique par Mouvement final pendant la durée de l'effet."
+  ],
+  "role": "Physical Ranged DPS",
+  "job": {
+    "id": 38,
+    "name": "Danseur",
+    "abbreviation": "DNS"
+  },
+  "unlock_level": 96,
+  "value": 0,
+  "icon": {
+    "id": 6363,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 150,
+  "source_class_job_id": 38
+}

@@ -1,0 +1,51 @@
+{
+  "kind": "combat_status",
+  "id": 4244,
+  "name": "Liebliche Klänge",
+  "description": "Die erhaltene Phantomroutine beim Besiegen von Feinden ist erhöht.",
+  "effects": [
+    "Die erhaltene Phantomroutine beim Besiegen von Feinden ist erhöht."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 229955,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 10
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 41609,
+      "name": "Liebliche Klänge",
+      "description": "Du hältst für alle Gegner um dich herum die Zeit an.\nDauer: 3 Sekunden\nZusatzeffekt: In der Nähe eines Wissenskristalls gewährst du dir und Gruppenmitgliedern Liebliche Klänge.\nDauer: 30 Minuten\nEffekt von Liebliche Klänge: Die Routine für Phantomjobs ist beim Besiegen von Monstern um 10 % erhöht.",
+      "description_macro": "Du hältst für alle Gegner um dich herum die Zeit an.<br>Dauer: 3 Sekunden<br>Zusatzeffekt: In der Nähe eines Wissenskristalls gewährst du dir und Grup<->pen<->mit<->gliedern <colortype(506)><edgecolortype(507)>Liebliche Klänge<edgecolortype(0)><colortype(0)>.<br>Dauer: 30 Minuten<br>Effekt von <colortype(506)><edgecolortype(507)>Liebliche Klänge<edgecolortype(0)><colortype(0)>: Die Routine für Phantomjobs ist beim Besiegen von Monstern um 10<nbsp>% erhöht.",
+      "unlock_level": 0,
+      "relations": [
+        "granted_by_description",
+        "same_name"
+      ],
+      "roles": [
+        "Phantom Jobs"
+      ],
+      "jobs": [
+        {
+          "id": 6,
+          "name": "Phantom Phantom-Barde",
+          "abbreviation": "Ph-Barde",
+          "is_phantom": true
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 4788,
+  "name": "Magic Shell",
+  "description": "A magicked barrier is nullifying damage.",
+  "effects": [
+    "A magicked barrier is nullifying damage."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 229963,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 100
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 46590,
+      "name": "Magic Shell",
+      "description": "Creates a barrier around self or target party member that absorbs damage equivalent to 20% of the caster's maximum HP.\nDuration: 60s\nWhen the barrier is completely absorbed or expires, grants Honed Spellblade to the caster.",
+      "description_macro": "Creates a barrier around self or target party member that absorbs damage equivalent to 20% of the caster's maximum HP.<br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>60s<br>When the barrier is completely absorbed or expires, grants <colortype(506)><edgecolortype(507)>Honed Spellblade<edgecolortype(0)><colortype(0)> to the caster.<if([gnum108>=2],<br><colortype(504)><edgecolortype(505)>Honed Spellblade Effect: <edgecolortype(0)><colortype(0)>Increases damage dealt by next Spellblade<br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>30s,)>",
+      "unlock_level": 0,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Phantom Jobs"
+      ],
+      "jobs": [
+        {
+          "id": 13,
+          "name": "Phantom Mystic Knight",
+          "abbreviation": "Ph. Mystic Knight",
+          "is_phantom": true
+        }
+      ]
+    }
+  ]
+}

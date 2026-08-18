@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 3644,
+  "name": "アポカリュプシス",
+  "description": "前方直線範囲に対して継続ダメージを発生させている状態。",
+  "effects": [
+    "前方直線範囲に対して継続ダメージを発生させている状態。"
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 213552,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": true,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 34581,
+      "name": "アポカリュプシス",
+      "description": "自身の前方直線範囲に向かって攻撃をし続ける。\n範囲内にいる敵に対して毎秒ダメージを与える。\n威力：140\u3000効果時間：10秒\n効果時間中にアクションの実行や移動・ターンを行うと、アポカリュプシスは即座に解除される。\n実行後にオートアタックを停止する。\nリキャストタイマーを「死すべき定め」と共有する。",
+      "description_macro": "自身の前方直線範囲に向かって攻撃をし続ける。<br>範囲内にいる敵に対して毎秒ダメージを与える。<br><colortype(504)><edgecolortype(505)>威力：<edgecolortype(0)><colortype(0)>140\u3000<colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>10秒<br>効果時間中にアクションの実行や移動・ターンを行うと、アポカリュプシスは即座に解除される。<br>実行後にオートアタックを停止する。<br>リキャストタイマーを<colortype(500)><edgecolortype(501)>「死すべき定め」<edgecolortype(0)><colortype(0)>と共有する。",
+      "unlock_level": 1,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Magical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 36,
+          "name": "青魔道士",
+          "abbreviation": "BLU",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

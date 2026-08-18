@@ -1,0 +1,97 @@
+{
+  "kind": "ability",
+  "id": 36959,
+  "name": "口寄せの術・蝦蟇仙",
+  "description": "対象とその周囲の敵に火属性範囲魔法攻撃。\u3000威力：400\n発動条件：「忍気」50および「秘技実行可」効果中\nリキャストタイマーを「六道輪廻」と共有する。\n\n※このアクションはホットバーに登録することはできない。\n\u3000発動条件を満たすと口寄せの術・大蝦蟇が口寄せの術・蝦蟇仙に変化する。",
+  "description_macro": "対象とその周囲の敵に火属性範囲魔法攻撃。\u3000<colortype(504)><edgecolortype(505)>威力：<edgecolortype(0)><colortype(0)>400<br><colortype(504)><edgecolortype(505)>発動条件：<edgecolortype(0)><colortype(0)><colortype(500)><edgecolortype(501)>「忍気」<edgecolortype(0)><colortype(0)>50および<colortype(500)><edgecolortype(501)>「秘技実行可」<edgecolortype(0)><colortype(0)>効果中<br>リキャストタイマーを<colortype(500)><edgecolortype(501)>「六道輪廻」<edgecolortype(0)><colortype(0)>と共有する。<br><br><colortype(506)><edgecolortype(507)>※このアクションはホットバーに登録することはできない。<br>\u3000発動条件を満たすと口寄せの術・大蝦蟇が口寄せの術・蝦蟇仙に変化する。<edgecolortype(0)><colortype(0)>",
+  "effects": [
+    "対象とその周囲の敵に火属性範囲魔法攻撃。\u3000威力：400",
+    "発動条件：「忍気」50および「秘技実行可」効果中",
+    "リキャストタイマーを「六道輪廻」と共有する。",
+    "※このアクションはホットバーに登録することはできない。",
+    "発動条件を満たすと口寄せの術・大蝦蟇が口寄せの術・蝦蟇仙に変化する。"
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 30,
+    "name": "忍者",
+    "abbreviation": "NIN"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 96,
+  "icon": {
+    "id": 2934,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 4,
+    "name": "アビリティ"
+  },
+  "attack_type": {
+    "id": 5,
+    "name": "魔法"
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 1,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 1,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 27,
+      "value": 50
+    },
+    "secondary": {
+      "type_id": 32,
+      "value": 3850
+    }
+  },
+  "range": {
+    "target_yalms": 25,
+    "effect_yalms": 6,
+    "cast_type": 2
+  },
+  "targeting": {
+    "self": false,
+    "party": false,
+    "alliance": false,
+    "hostile": true,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": {
+      "id": 164,
+      "status": {
+        "id": 3850,
+        "name": "秘技実行可",
+        "description": "秘技を実行できる状態。",
+        "icon_id": 212921,
+        "max_stacks": 0
+      }
+    }
+  },
+  "metadata": {
+    "aspect_id": 1,
+    "behavior_type": 0,
+    "class_job_category_id": 92,
+    "source_class_job_id": 0,
+    "is_role_action": false,
+    "is_player_action": false,
+    "is_derived_action": true,
+    "equivalence_group": 0
+  }
+}

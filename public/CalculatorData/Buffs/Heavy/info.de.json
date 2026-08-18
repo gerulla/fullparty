@@ -1,0 +1,113 @@
+{
+  "kind": "combat_status",
+  "id": 14,
+  "name": "Gewicht",
+  "description": "Bewegungsgeschwindigkeit ist verringert.",
+  "effects": [
+    "Bewegungsgeschwindigkeit ist verringert."
+  ],
+  "classification": "debuff",
+  "icon": {
+    "id": 215002,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 2,
+  "target_type": 0,
+  "can_dispel": true,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 100,
+  "parameter": {
+    "effect": 1,
+    "modifier": 0
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 2270,
+      "name": "Doton",
+      "description": "Du schaffst eine Zone um dich, in der allen Gegnern erdbasierter Schaden zugefügt wird.\nAttacke-Wert: 80\nDauer: 18 Sekunden\nZusatzeffekt: Ziele in der Zone erleiden 40 % Gewicht.\nBedingung: Ninjutsu nach Handgestenfolge Ten→Jin→Chi oder Jin→Ten→Chi\nBei Ausführung wird der Reaktivierungs-Timer von Waffenfertigkeiten, Magie, anderen Mudras und Ninjutsu ausgelöst.\nBei erfüllter Bedingung ändert sich Ninjutsu zu diesem Kommando.\nKann nicht im Kommandomenü angelegt werden.",
+      "description_macro": "Du schaffst eine Zone um dich, in der allen Gegnern erdbasierter Schaden zugefügt wird.<br>Attacke-Wert: 80<br>Dauer: 18 Sekunden<br>Zusatzeffekt: Ziele in der Zone erleiden 40 % <colortype(506)><edgecolortype(507)>Gewicht<edgecolortype(0)><colortype(0)>.<br>Bedingung: <colortype(502)><edgecolortype(503)>Ninjutsu<edgecolortype(0)><colortype(0)> nach Handgestenfolge <colortype(502)><edgecolortype(503)>Ten→Jin→Chi<edgecolortype(0)><colortype(0)> oder <colortype(502)><edgecolortype(503)>Jin→Ten→Chi<edgecolortype(0)><colortype(0)><br>Bei Ausführung wird der Reaktivierungs-Timer von Waf<->fen<->fer<->tig<->kei<->ten, Magie, anderen Mudras und <colortype(502)><edgecolortype(503)>Ninjutsu<edgecolortype(0)><colortype(0)> ausgelöst.<br>Bei erfüllter Bedingung ändert sich <colortype(502)><edgecolortype(503)>Ninjutsu<edgecolortype(0)><colortype(0)> zu diesem Kommando.<br>Kann nicht im Kommandomenü angelegt werden.",
+      "unlock_level": 45,
+      "relations": [
+        "applied_by_description"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 30,
+          "name": "Ninja",
+          "abbreviation": "NIN",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 11384,
+      "name": "4-Tonzen-Gewicht",
+      "description": "Du führst eine elementneutrale physische Attacke auf den anvisierten Bereich aus.\nAttacke-Wert: 200\nAttacke-Wert verringert sich ab dem zweiten Gegner um 50 %.\nZusatzeffekt: 40 % Gewicht\nDauer: 30 Sekunden",
+      "description_macro": "Du führst eine elementneutrale physische Attacke auf den anvisierten Bereich aus.<br>Attacke-Wert: 200<br>Attacke-Wert verringert sich ab dem zweiten Gegner um 50 %.<br>Zusatzeffekt: 40 % <colortype(506)><edgecolortype(507)>Gewicht<edgecolortype(0)><colortype(0)><br>Dauer: 30 Sekunden",
+      "unlock_level": 1,
+      "relations": [
+        "applied_by_description"
+      ],
+      "roles": [
+        "Magical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 36,
+          "name": "Blaumagier",
+          "abbreviation": "BMA",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 18319,
+      "name": "Reflux",
+      "description": "Du fügst dem Ziel blitzbasierten magischen Schaden zu.\nAttacke-Wert: 220\nZusatzeffekt: Ziel erleidet 40 % Gewicht.\nDauer: 10 Sekunden\nGewichtaufhebende Effekte wirkungslos",
+      "description_macro": "Du fügst dem Ziel blitzbasierten magischen Schaden zu.<br>Attacke-Wert: 220<br>Zusatzeffekt: Ziel erleidet 40<nbsp>% <colortype(506)><edgecolortype(507)>Gewicht<edgecolortype(0)><colortype(0)>.<br>Dauer: 10 Sekunden<br>Gewichtaufhebende Effekte wirkungslos",
+      "unlock_level": 1,
+      "relations": [
+        "applied_by_description"
+      ],
+      "roles": [
+        "Magical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 36,
+          "name": "Blaumagier",
+          "abbreviation": "BMA",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 18880,
+      "name": "Doton",
+      "description": "Du schaffst eine Zone um dich, in der allen Gegnern erdbasierter Schaden zugefügt wird.\nAttacke-Wert: 80\nDauer: 18 Sekunden\nZusatzeffekt: Ziele in der Zone erleiden 40 % Gewicht.\nBedingung: Ninjutsu nach Handgestenfolge Ten→Jin→Chi oder Jin→Ten→Chi\nBei Ausführung wird der Reaktivierungs-Timer von Waffenfertigkeiten, Magie, anderen Mudras und Ninjutsu ausgelöst.\nBei erfüllter Bedingung ändert sich Ninjutsu zu diesem Kommando.\nKann nicht im Kommandomenü angelegt werden.",
+      "description_macro": "Du schaffst eine Zone um dich, in der allen Gegnern erdbasierter Schaden zugefügt wird.<br>Attacke-Wert: 80<br>Dauer: 18 Sekunden<br>Zusatzeffekt: Ziele in der Zone erleiden 40 % <colortype(506)><edgecolortype(507)>Gewicht<edgecolortype(0)><colortype(0)>.<br>Bedingung: <colortype(502)><edgecolortype(503)>Ninjutsu<edgecolortype(0)><colortype(0)> nach Handgestenfolge <colortype(502)><edgecolortype(503)>Ten→Jin→Chi<edgecolortype(0)><colortype(0)> oder <colortype(502)><edgecolortype(503)>Jin→Ten→Chi<edgecolortype(0)><colortype(0)><br>Bei Ausführung wird der Reaktivierungs-Timer von Waf<->fen<->fer<->tig<->kei<->ten, Magie, anderen Mudras und <colortype(502)><edgecolortype(503)>Ninjutsu<edgecolortype(0)><colortype(0)> ausgelöst.<br>Bei erfüllter Bedingung ändert sich <colortype(502)><edgecolortype(503)>Ninjutsu<edgecolortype(0)><colortype(0)> zu diesem Kommando.<br>Kann nicht im Kommandomenü angelegt werden.",
+      "unlock_level": 45,
+      "relations": [
+        "applied_by_description"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 30,
+          "name": "Ninja",
+          "abbreviation": "NIN",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

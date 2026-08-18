@@ -1,0 +1,26 @@
+{
+  "kind": "trait",
+  "id": 195,
+  "name": "À-coup amélioré",
+  "description": "Remplace À-coup par Extra À-coup.\nAugmente la puissance de VerFoudre et VerVent à 360.\nAugmente la puissance de VerFeu et VerTerre à 300.",
+  "description_macro": "Remplace <colortype(500)><edgecolortype(501)>À-coup<edgecolortype(0)><colortype(0)> par <colortype(500)><edgecolortype(501)>Extra À-coup<edgecolortype(0)><colortype(0)>.<br>Augmente la puissance de <colortype(500)><edgecolortype(501)>VerFoudre<edgecolortype(0)><colortype(0)> et <colortype(500)><edgecolortype(501)>VerVent<edgecolortype(0)><colortype(0)> à 360.<br>Augmente la puissance de <colortype(500)><edgecolortype(501)>VerFeu<edgecolortype(0)><colortype(0)> et <colortype(500)><edgecolortype(501)>VerTerre<edgecolortype(0)><colortype(0)> à 300.",
+  "effects": [
+    "Remplace À-coup par Extra À-coup.",
+    "Augmente la puissance de VerFoudre et VerVent à 360.",
+    "Augmente la puissance de VerFeu et VerTerre à 300."
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 35,
+    "name": "Mage Rouge",
+    "abbreviation": "MRG"
+  },
+  "unlock_level": 62,
+  "value": 0,
+  "icon": {
+    "id": 6201,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 112,
+  "source_class_job_id": 35
+}

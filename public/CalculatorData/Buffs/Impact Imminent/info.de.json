@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 3882,
+  "name": "Mit Gift und Galle",
+  "description": "Gift und Galle kann ausgeführt werden.",
+  "effects": [
+    "Gift und Galle kann ausgeführt werden."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 212818,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 29,
+  "source_abilities": [
+    {
+      "id": 7436,
+      "name": "Kritische Strategie",
+      "description": "Du erhöhst die Rate, mit der das Ziel kritische Treffer erleidet, um 10 %.\nDauer: 20 Sekunden\nZusatzeffekt: Gewährt dir Mit Gift und Galle.\nDauer: 30 Sekunden",
+      "description_macro": "Du erhöhst die Rate, mit der das Ziel kritische Treffer erleidet, um 10 %.<br>Dauer: 20 Sekunden<if([gnum68==28],<if([gnum72>=92],<br>Zusatzeffekt: Gewährt dir <colortype(506)><edgecolortype(507)>Mit Gift und Galle<edgecolortype(0)><colortype(0)>.<br>Dauer: 30 Sekunden,)>,)>",
+      "unlock_level": 66,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Healer"
+      ],
+      "jobs": [
+        {
+          "id": 28,
+          "name": "Gelehrter",
+          "abbreviation": "GLT",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

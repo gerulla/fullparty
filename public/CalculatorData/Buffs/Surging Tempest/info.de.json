@@ -1,0 +1,115 @@
+{
+  "kind": "combat_status",
+  "id": 2677,
+  "name": "Tosender Sturm",
+  "description": "Ausgeteilter Schaden ist erhöht.",
+  "effects": [
+    "Ausgeteilter Schaden ist erhöht."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 212561,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 70,
+  "parameter": {
+    "effect": 0,
+    "modifier": 5
+  },
+  "class_job_category_id": 22,
+  "source_abilities": [
+    {
+      "id": 38,
+      "name": "Tollwut",
+      "description": "Du gewährst dir drei Stapel von Tollwut.\nDauer: 15 Sekunden\nEffekt von Tollwut: Deine nächste Waffenfertigkeit trifft direkt und kritisch.\nIst ein Effekt aktiv, der deine Rate kritischer oder direkter Treffer steigert, erhöht sich auch der Attacke-Wert.\nZusatzeffekt: Tosender Sturm ist um 10 Sekunden verlängert \\(maximal 60 Sekunden\\).",
+      "description_macro": "Du gewährst dir drei Stapel von <colortype(506)><edgecolortype(507)>Tollwut<edgecolortype(0)><colortype(0)>.<br>Dauer: 15 Sekunden<br>Effekt von <colortype(506)><edgecolortype(507)>Tollwut<edgecolortype(0)><colortype(0)>: Deine nächste Waf<->fen<->fer<->tig<->keit trifft direkt und kritisch.<br>Ist ein Effekt aktiv, der deine Rate kritischer oder direkter Treffer steigert, erhöht sich auch der Attacke-Wert.<if([gnum72>=40],<if([gnum68==3],<br>Zusatzeffekt: <colortype(506)><edgecolortype(507)>Tosender Sturm<edgecolortype(0)><colortype(0)> ist um 10 Sekunden verlängert \\(maximal 60 Sekunden\\).,<if([gnum68==21],<br>Zusatzeffekt: <colortype(506)><edgecolortype(507)>Tosender Sturm<edgecolortype(0)><colortype(0)> ist um 10 Sekunden verlängert \\(maximal 60 Sekunden\\).,)>)>,)>",
+      "unlock_level": 6,
+      "relations": [
+        "extended_by_description"
+      ],
+      "roles": [
+        "Tank"
+      ],
+      "jobs": [
+        {
+          "id": 21,
+          "name": "Krieger",
+          "abbreviation": "KRG",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 45,
+      "name": "Sturmbrecher",
+      "description": "Du führst eine physische Attacke aus.\nAttacke-Wert: 220\nKombo-Bedingung: Verstümmelung\nAttacke-Wert: 500\nBonus: Gewährt dir Tosender Sturm.\nDauer: 30 Sekunden\nEffekt von Tosender Sturm: Ausgeteilter Schaden ist um 10 % erhöht.\nIst dieser Status bereits aktiv, wird er um 30 Sekunden verlängert (max. 60 Sekunden).\nBonus: Urkraftbalken füllt sich um 10.",
+      "description_macro": "Du führst eine physische Attacke aus.<br>Attacke-Wert: <if([gnum68==21],<if([gnum72>=94],220,<if([gnum68==21],<if([gnum72>=84],160,100)>,100)>)>,<if([gnum68==21],<if([gnum72>=84],160,100)>,100)>)><br>Kombo-Bedingung: <colortype(502)><edgecolortype(503)>Verstümmelung<edgecolortype(0)><colortype(0)><br>Attacke-Wert: <if([gnum68==21],<if([gnum72>=94],500,<if([gnum68==21],<if([gnum72>=84],440,380)>,380)>)>,<if([gnum68==21],<if([gnum72>=84],440,380)>,380)>)><br>Bonus: Gewährt dir <colortype(506)><edgecolortype(507)>Tosender Sturm<edgecolortype(0)><colortype(0)>.<br>Dauer: 30 Sekunden<br>Effekt von <colortype(506)><edgecolortype(507)>Tosender Sturm<edgecolortype(0)><colortype(0)>: Ausgeteilter Schaden ist um 10 % erhöht.<br>Ist dieser Status bereits aktiv, wird er um 30 Sekunden verlängert (max. 60 Sekunden).<if([gnum68==21],<if([gnum72>=35],<br>Bonus: Urkraftbalken füllt sich um 10.,)>,)>",
+      "unlock_level": 50,
+      "relations": [
+        "extended_by_description",
+        "granted_by_description"
+      ],
+      "roles": [
+        "Tank"
+      ],
+      "jobs": [
+        {
+          "id": 21,
+          "name": "Krieger",
+          "abbreviation": "KRG",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 7389,
+      "name": "Urbefreiung",
+      "description": "Du gewährst dir drei Stapel Urbefreiung.\nDauer: 15 Sekunden\nEffekt von Urbefreiung: Niedermähen und Dezimieren treffen direkt und kritisch und verringern den Urkraftbalken nicht.\nIst ein Effekt aktiv, der deine Rate kritischer oder direkter Treffer steigert, erhöht sich auch der Attacke-Wert.\nZusatzeffekt: Gewährt dir Urgewalt.\nDauer: 15 Sekunden\nEffekt von Urgewalt: Du bist immun gegen Betäubung, Schlaf, Fessel, Gewicht und fast alle Rückstoß- und Heranzieheffekte.\nZusatzeffekt: Tosender Sturm ist um 10 Sekunden verlängert (maximal 60 Sekunden)\nZusatzeffekt: Gewährt dir Brachiale Gewalt.\nDauer: 30 Sekunden\nZusatzeffekt: Verleiht für jedes erfolgreich ausgeführte Niedermähen oder Dezimieren während der Effektdauer einen von maximal 3 Stapeln Inneres Zittern.\nDauer: 30 Sekunden\nBei 3 Stapeln ändert sich Inneres Zittern zu Inneres Beben und Urbefreiung zu Urbeben.",
+      "description_macro": "Du gewährst dir drei Stapel <colortype(506)><edgecolortype(507)>Urbefreiung<edgecolortype(0)><colortype(0)>.<br>Dauer: 15 Sekunden<br>Effekt von <colortype(506)><edgecolortype(507)>Urbefreiung<edgecolortype(0)><colortype(0)>: <colortype(502)><edgecolortype(503)>Niedermähen<edgecolortype(0)><colortype(0)> und <colortype(502)><edgecolortype(503)>Dezimieren<edgecolortype(0)><colortype(0)> treffen direkt und kritisch und verringern den Urkraftbalken nicht.<br>Ist ein Effekt aktiv, der deine Rate kritischer oder direkter Treffer steigert, erhöht sich auch der Attacke-Wert.<br>Zusatzeffekt: Gewährt dir <colortype(506)><edgecolortype(507)>Urgewalt<edgecolortype(0)><colortype(0)>.<br>Dauer: 15 Sekunden<br>Effekt von <colortype(506)><edgecolortype(507)>Urgewalt<edgecolortype(0)><colortype(0)>: Du bist immun gegen <colortype(506)><edgecolortype(507)>Betäubung<edgecolortype(0)><colortype(0)>, <colortype(506)><edgecolortype(507)>Schlaf<edgecolortype(0)><colortype(0)>, <colortype(506)><edgecolortype(507)>Fessel<edgecolortype(0)><colortype(0)>, <colortype(506)><edgecolortype(507)>Gewicht<edgecolortype(0)><colortype(0)> und fast alle Rückstoß- und Heranzieheffekte.<br>Zusatzeffekt: <colortype(506)><edgecolortype(507)>Tosender Sturm<edgecolortype(0)><colortype(0)> ist um 10 Sekunden verlängert (maximal 60 Sekunden)<if([gnum68==21],<if([gnum72>=90],<br>Zusatzeffekt: Gewährt dir <colortype(506)><edgecolortype(507)>Brachiale Gewalt<edgecolortype(0)><colortype(0)>.<br>Dauer: 30 Sekunden,)>,)><if([gnum68==21],<if([gnum72>=96],<br>Zusatzeffekt: Verleiht für jedes erfolgreich ausgeführte <colortype(502)><edgecolortype(503)>Niedermähen<edgecolortype(0)><colortype(0)> oder <colortype(502)><edgecolortype(503)>Dezimieren<edgecolortype(0)><colortype(0)> während der Effektdauer einen von maximal 3 Stapeln <colortype(506)><edgecolortype(507)>Inneres Zittern<edgecolortype(0)><colortype(0)>.<br>Dauer: 30 Sekunden<br>Bei 3 Stapeln ändert sich <colortype(506)><edgecolortype(507)>Inneres Zittern<edgecolortype(0)><colortype(0)> zu <colortype(506)><edgecolortype(507)>Inneres Beben<edgecolortype(0)><colortype(0)> und <colortype(502)><edgecolortype(503)>Urbefreiung<edgecolortype(0)><colortype(0)> zu <colortype(502)><edgecolortype(503)>Urbeben<edgecolortype(0)><colortype(0)>.,)>,)>",
+      "unlock_level": 70,
+      "relations": [
+        "extended_by_description"
+      ],
+      "roles": [
+        "Tank"
+      ],
+      "jobs": [
+        {
+          "id": 21,
+          "name": "Krieger",
+          "abbreviation": "KRG",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 16462,
+      "name": "Mithril-Gewitter",
+      "description": "Du führst eine physische Attacke auf alle umstehenden Gegner aus.\nAttacke-Wert: 100\nKombo-Bedingung: Kahlrodung\nAttacke-Wert: 140\nZusatzeffekt: Erhöhte Feindseligkeit\nBonus: Gewährt dir Tosender Sturm.\nDauer: 30 Sekunden\nEffekt von Tosender Sturm: Ausgeteilter Schaden ist um 10 % erhöht.\nIst dieser Status bereits aktiv, wird er um 30 Sekunden verlängert (max. 60 Sekunden).\nBonus: Urkraftbalken füllt sich um 20.",
+      "description_macro": "Du führst eine physische Attacke auf alle umstehenden Gegner aus.<br>Attacke-Wert: 100<br>Kombo-Bedingung: <colortype(502)><edgecolortype(503)>Kahlrodung<edgecolortype(0)><colortype(0)><br>Attacke-Wert: 140<br>Zusatzeffekt: Erhöhte Feindseligkeit<br>Bonus: Gewährt dir <colortype(506)><edgecolortype(507)>Tosender Sturm<edgecolortype(0)><colortype(0)>.<br>Dauer: 30 Sekunden<br>Effekt von <colortype(506)><edgecolortype(507)>Tosender Sturm<edgecolortype(0)><colortype(0)>: Ausgeteilter Schaden ist um 10 % erhöht.<br>Ist dieser Status bereits aktiv, wird er um 30 Sekunden verlängert (max. 60 Sekunden).<if([gnum68==21],<if([gnum72>=74],<br>Bonus: Urkraftbalken füllt sich um 20.,)>,)>",
+      "unlock_level": 40,
+      "relations": [
+        "extended_by_description",
+        "granted_by_description"
+      ],
+      "roles": [
+        "Tank"
+      ],
+      "jobs": [
+        {
+          "id": 21,
+          "name": "Krieger",
+          "abbreviation": "KRG",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 640,
+  "name": "リプライザル効果アップ",
+  "description": "リプライザルの効果時間を15秒に延長する。",
+  "description_macro": "リプライザルの効果時間を15秒に延長する。",
+  "effects": [
+    "リプライザルの効果時間を15秒に延長する。"
+  ],
+  "role": "Tank",
+  "job": {
+    "id": 19,
+    "name": "ナイト",
+    "abbreviation": "PLD"
+  },
+  "unlock_level": 98,
+  "value": 0,
+  "icon": {
+    "id": 6805,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 113,
+  "source_class_job_id": 0
+}

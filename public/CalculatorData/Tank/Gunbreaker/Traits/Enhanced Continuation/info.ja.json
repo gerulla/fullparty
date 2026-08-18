@@ -1,0 +1,27 @@
+{
+  "kind": "trait",
+  "id": 426,
+  "name": "コンティニュエーション効果アップ",
+  "description": "自身に「ハイパーヴェロシティ実行可」を付与する。\n効果時間：10秒\n発動条件：バーストストライク実行時\n効果中はコンティニュエーションがハイパーヴェロシティに変化する。",
+  "description_macro": "自身に<colortype(500)><edgecolortype(501)>「ハイパーヴェロシティ実行可」<edgecolortype(0)><colortype(0)>を付与する。<br><colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>10秒<br><colortype(504)><edgecolortype(505)>発動条件：<edgecolortype(0)><colortype(0)>バーストストライク実行時<br>効果中はコンティニュエーションがハイパーヴェロシティに変化する。",
+  "effects": [
+    "自身に「ハイパーヴェロシティ実行可」を付与する。",
+    "効果時間：10秒",
+    "発動条件：バーストストライク実行時",
+    "効果中はコンティニュエーションがハイパーヴェロシティに変化する。"
+  ],
+  "role": "Tank",
+  "job": {
+    "id": 37,
+    "name": "ガンブレイカー",
+    "abbreviation": "GNB"
+  },
+  "unlock_level": 86,
+  "value": 0,
+  "icon": {
+    "id": 6306,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 149,
+  "source_class_job_id": 37
+}

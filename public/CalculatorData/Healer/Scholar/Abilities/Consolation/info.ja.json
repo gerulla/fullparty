@@ -1,0 +1,91 @@
+{
+  "kind": "ability",
+  "id": 16546,
+  "name": "コンソレイション",
+  "description": "召喚しているセラフィムに「コンソレイション」を実行させる。\n\n周囲のパーティメンバーのＨＰを回復する。\n回復力：250\n追加効果：対象に一定量のダメージを防ぐバリアを張る。\nこのバリアは回復量の100％分のダメージを軽減する。\n効果時間：30秒\n最大チャージ数：2\n発動条件：セラフィムが存在する",
+  "description_macro": "召喚しているセラフィムに<colortype(500)><edgecolortype(501)>「コンソレイション」<edgecolortype(0)><colortype(0)>を実行させる。<br><br>周囲のパーティメンバーのＨＰを回復する。<br><colortype(504)><edgecolortype(505)>回復力：<edgecolortype(0)><colortype(0)>250<br><colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)>対象に一定量のダメージを防ぐバリアを張る。<br>このバリアは回復量の100％分のダメージを軽減する。<br><colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>30秒<br><colortype(504)><edgecolortype(505)>最大チャージ数：<edgecolortype(0)><colortype(0)>2<br><colortype(504)><edgecolortype(505)>発動条件：<edgecolortype(0)><colortype(0)>セラフィムが存在する",
+  "effects": [
+    "召喚しているセラフィムに「コンソレイション」を実行させる。",
+    "周囲のパーティメンバーのＨＰを回復する。",
+    "回復力：250",
+    "追加効果：対象に一定量のダメージを防ぐバリアを張る。",
+    "このバリアは回復量の100％分のダメージを軽減する。",
+    "効果時間：30秒",
+    "最大チャージ数：2",
+    "発動条件：セラフィムが存在する"
+  ],
+  "role": "Healer",
+  "job": {
+    "id": 28,
+    "name": "学者",
+    "abbreviation": "SCH"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 80,
+  "icon": {
+    "id": 2851,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 4,
+    "name": "アビリティ"
+  },
+  "attack_type": {
+    "id": 0,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 30,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 11,
+    "additional_cooldown_group": 71,
+    "max_charges": 2
+  },
+  "costs": {
+    "primary": {
+      "type_id": 0,
+      "value": 0
+    },
+    "secondary": {
+      "type_id": 94,
+      "value": 1
+    }
+  },
+  "range": {
+    "target_yalms": 0,
+    "effect_yalms": 0,
+    "cast_type": 1
+  },
+  "targeting": {
+    "self": true,
+    "party": false,
+    "alliance": false,
+    "hostile": false,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": false
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 0,
+    "behavior_type": 0,
+    "class_job_category_id": 29,
+    "source_class_job_id": 28,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

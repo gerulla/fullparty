@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 1837,
+  "name": "Rupture sonique",
+  "description": "Des dégâts périodiques sont subis.",
+  "effects": [
+    "Des dégâts périodiques sont subis."
+  ],
+  "classification": "debuff",
+  "icon": {
+    "id": 213607,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 2,
+  "target_type": 0,
+  "can_dispel": true,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 10,
+  "parameter": {
+    "effect": 0,
+    "modifier": 10
+  },
+  "class_job_category_id": 149,
+  "source_abilities": [
+    {
+      "id": 16153,
+      "name": "Rupture sonique",
+      "description": "Effectue une attaque physique sur la cible.\nPuissance : 340\nEffet additionnel : dégâts périodiques.\nPuissance : 120 Durée : 15s\nCondition : Rupture sonique préparée.",
+      "description_macro": "Effectue une attaque physique sur la cible.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> 340<br><colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> dégâts périodiques.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> 120 <colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 15s<br><colortype(506)><edgecolortype(507)>Condition<nbsp>:<edgecolortype(0)><colortype(0)> <colortype(500)><edgecolortype(501)>Rupture sonique préparée<edgecolortype(0)><colortype(0)>.",
+      "unlock_level": 54,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Tank"
+      ],
+      "jobs": [
+        {
+          "id": 37,
+          "name": "Pistosabreur",
+          "abbreviation": "PSB",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

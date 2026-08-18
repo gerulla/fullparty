@@ -1,0 +1,91 @@
+{
+  "kind": "ability",
+  "id": 16476,
+  "name": "Sechsstern-Tritt",
+  "description": "Du führst eine physische Attacke aus.\nAttacke-Wert: 780\nAttacke-Wert erhöht um 80 für jedes Schatten-Chakra, das aktiv ist.\nZusatzeffekt: Deine Bewegungsgeschwindigkeit wird erhöht.\nDauer: 5 Sekunden\nBei Ausführung wird Schatten-Chakra beendet.\nGewährt auch bei einem kritischen Treffer kein Schatten-Chakra.\nEigener Reaktivierungs-Timer, der nach Ausführung auf alle anderen Waffenfertigkeiten und Zauber angewendet wird.",
+  "description_macro": "Du führst eine physische Attacke aus.<br>Attacke-Wert: <if([gnum68==20],<if([gnum72>=94],780,710)>,710)><br>Attacke-Wert erhöht um 80 für jedes <colortype(506)><edgecolortype(507)>Schatten-Chakra<edgecolortype(0)><colortype(0)>, das aktiv ist.<br>Zusatzeffekt: Deine Be<->we<->gungs<->ge<->schwin<->dig<->keit wird erhöht.<br>Dauer: 5 Sekunden<br>Bei Ausführung wird <colortype(506)><edgecolortype(507)>Schatten-Chakra<edgecolortype(0)><colortype(0)> beendet.<br>Gewährt auch bei einem kritischen Treffer kein <colortype(506)><edgecolortype(507)>Schatten-Chakra<edgecolortype(0)><colortype(0)>.<br>Eigener Reaktivierungs-Timer, der nach Ausführung auf alle anderen Waf<->fen<->fer<->tig<->kei<->ten und Zauber angewendet wird.",
+  "effects": [
+    "Du führst eine physische Attacke aus.",
+    "Attacke-Wert: 780",
+    "Attacke-Wert erhöht um 80 für jedes Schatten-Chakra, das aktiv ist.",
+    "Zusatzeffekt: Deine Bewegungsgeschwindigkeit wird erhöht.",
+    "Dauer: 5 Sekunden",
+    "Bei Ausführung wird Schatten-Chakra beendet.",
+    "Gewährt auch bei einem kritischen Treffer kein Schatten-Chakra.",
+    "Eigener Reaktivierungs-Timer, der nach Ausführung auf alle anderen Waffenfertigkeiten und Zauber angewendet wird."
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 20,
+    "name": "Mönch",
+    "abbreviation": "MÖN"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 80,
+  "icon": {
+    "id": 2547,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 3,
+    "name": "Waffenfertigkeit"
+  },
+  "attack_type": {
+    "id": 4294967295,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 5,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 58,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 99,
+      "value": 0
+    },
+    "secondary": {
+      "type_id": 0,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": -1,
+    "effect_yalms": 0,
+    "cast_type": 1
+  },
+  "targeting": {
+    "self": false,
+    "party": false,
+    "alliance": false,
+    "hostile": true,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": false
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 7,
+    "behavior_type": 0,
+    "class_job_category_id": 21,
+    "source_class_job_id": 20,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

@@ -1,0 +1,89 @@
+{
+  "kind": "ability",
+  "id": 3581,
+  "name": "Dreadwyrm Trance",
+  "description": "Enters Dreadwyrm Trance.\nDuration: 15s\nAdditional Effect: Changes Ruin III to Astral Impulse and Outburst to Astral Flare\nAdditional Effect: Grants Ruby Arcanum, Topaz Arcanum, and Emerald Arcanum\nCan only be executed in combat and while Carbuncle is summoned.\nThis action does not share a recast timer with any other actions.",
+  "description_macro": "Enters <colortype(506)><edgecolortype(507)>Dreadwyrm Trance<edgecolortype(0)><colortype(0)>.<br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>15s<br><colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>Changes <colortype(500)><edgecolortype(501)>Ruin III<edgecolortype(0)><colortype(0)> to <colortype(500)><edgecolortype(501)>Astral Impulse<edgecolortype(0)><colortype(0)> and <colortype(500)><edgecolortype(501)>Outburst<edgecolortype(0)><colortype(0)> to <colortype(500)><edgecolortype(501)>Astral Flare<edgecolortype(0)><colortype(0)><br><colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>Grants <colortype(506)><edgecolortype(507)>Ruby Arcanum<edgecolortype(0)><colortype(0)>, <colortype(506)><edgecolortype(507)>Topaz Arcanum<edgecolortype(0)><colortype(0)>, and <colortype(506)><edgecolortype(507)>Emerald Arcanum<edgecolortype(0)><colortype(0)><br>Can only be executed in combat and while Carbuncle is summoned.<br>This action does not share a recast timer with any other actions.",
+  "effects": [
+    "Enters Dreadwyrm Trance.",
+    "Duration: 15s",
+    "Additional Effect: Changes Ruin III to Astral Impulse and Outburst to Astral Flare",
+    "Additional Effect: Grants Ruby Arcanum, Topaz Arcanum, and Emerald Arcanum",
+    "Can only be executed in combat and while Carbuncle is summoned.",
+    "This action does not share a recast timer with any other actions."
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 27,
+    "name": "Summoner",
+    "abbreviation": "SMN"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 58,
+  "icon": {
+    "id": 2684,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 2,
+    "name": "Spell"
+  },
+  "attack_type": {
+    "id": 5,
+    "name": "魔法"
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 60,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 10,
+    "additional_cooldown_group": 58,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 0,
+      "value": 0
+    },
+    "secondary": {
+      "type_id": 124,
+      "value": 178
+    }
+  },
+  "range": {
+    "target_yalms": 0,
+    "effect_yalms": 0,
+    "cast_type": 1
+  },
+  "targeting": {
+    "self": true,
+    "party": false,
+    "alliance": false,
+    "hostile": false,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 7,
+    "behavior_type": 0,
+    "class_job_category_id": 28,
+    "source_class_job_id": 27,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

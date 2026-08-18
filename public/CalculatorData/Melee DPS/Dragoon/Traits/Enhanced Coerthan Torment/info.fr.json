@@ -1,0 +1,27 @@
+{
+  "kind": "trait",
+  "id": 435,
+  "name": "Tourment du Coerthas amélioré",
+  "description": "Permet de recevoir Feu des dragons lorsque vous exécutez Tourment du Coerthas en combo.\nDurée : 30s\nCet effet disparaît si une technique d'arme de corps-à-corps est utilisée.\nRemplace Pointe du destin par Fureur du dragon pendant cet effet.",
+  "description_macro": "Permet de recevoir <colortype(500)><edgecolortype(501)>Feu des dragons<edgecolortype(0)><colortype(0)> lorsque vous exécutez <colortype(500)><edgecolortype(501)>Tourment du Coerthas<edgecolortype(0)><colortype(0)> en combo.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 30s<br>Cet effet disparaît si une technique d'arme de corps-à-corps est utilisée.<br>Remplace <colortype(500)><edgecolortype(501)>Pointe du destin<edgecolortype(0)><colortype(0)> par <colortype(500)><edgecolortype(501)>Fureur du dragon<edgecolortype(0)><colortype(0)> pendant cet effet.",
+  "effects": [
+    "Permet de recevoir Feu des dragons lorsque vous exécutez Tourment du Coerthas en combo.",
+    "Durée : 30s",
+    "Cet effet disparaît si une technique d'arme de corps-à-corps est utilisée.",
+    "Remplace Pointe du destin par Fureur du dragon pendant cet effet."
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 22,
+    "name": "Chevalier Dragon",
+    "abbreviation": "DRG"
+  },
+  "unlock_level": 82,
+  "value": 0,
+  "icon": {
+    "id": 5290,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 23,
+  "source_class_job_id": 22
+}

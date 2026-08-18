@@ -1,0 +1,27 @@
+{
+  "kind": "trait",
+  "id": 521,
+  "name": "アクション威力アップII",
+  "description": "特定のアクションの威力を上昇させる。\n\n月光の威力：110\n花車の威力：110\n雪風の威力：110",
+  "description_macro": "特定のアクションの威力を上昇させる。<br><br><colortype(504)><edgecolortype(505)>月光の威力：<edgecolortype(0)><colortype(0)>110<br><colortype(504)><edgecolortype(505)>花車の威力：<edgecolortype(0)><colortype(0)>110<br><colortype(504)><edgecolortype(505)>雪風の威力：<edgecolortype(0)><colortype(0)>110",
+  "effects": [
+    "特定のアクションの威力を上昇させる。",
+    "月光の威力：110",
+    "花車の威力：110",
+    "雪風の威力：110"
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 34,
+    "name": "侍",
+    "abbreviation": "SAM"
+  },
+  "unlock_level": 84,
+  "value": 0,
+  "icon": {
+    "id": 6802,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 111,
+  "source_class_job_id": 34
+}

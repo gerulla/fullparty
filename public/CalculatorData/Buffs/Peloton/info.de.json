@@ -1,0 +1,62 @@
+{
+  "kind": "combat_status",
+  "id": 1199,
+  "name": "Peloton",
+  "description": "Bewegungsgeschwindigkeit ist erhöht. Effekt endet bei Eintritt in den Kampf.",
+  "effects": [
+    "Bewegungsgeschwindigkeit ist erhöht. Effekt endet bei Eintritt in den Kampf."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 213908,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 1,
+  "parameter": {
+    "effect": 18,
+    "modifier": 0
+  },
+  "class_job_category_id": 115,
+  "source_abilities": [
+    {
+      "id": 7557,
+      "name": "Peloton",
+      "description": "Du erhöhst deine eigene Bewegungsgeschwindigkeit und die von umstehenden Gruppenmitgliedern. Kann nicht im Kampf eingesetzt werden.\nDauer: 30 Sekunden",
+      "description_macro": "Du erhöhst deine eigene Be<->we<->gungs<->ge<->schwin<->dig<->keit und die von umstehenden Grup<->pen<->mit<->gliedern. Kann nicht im Kampf eingesetzt werden.<br>Dauer: 30 Sekunden",
+      "unlock_level": 20,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Physical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 23,
+          "name": "Barde",
+          "abbreviation": "BRD",
+          "is_phantom": false
+        },
+        {
+          "id": 31,
+          "name": "Maschinist",
+          "abbreviation": "MCH",
+          "is_phantom": false
+        },
+        {
+          "id": 38,
+          "name": "Tänzer",
+          "abbreviation": "TÄN",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

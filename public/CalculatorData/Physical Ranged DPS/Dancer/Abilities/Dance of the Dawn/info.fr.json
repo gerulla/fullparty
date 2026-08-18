@@ -1,0 +1,99 @@
+{
+  "kind": "ability",
+  "id": 36985,
+  "name": "Danse de l'aurore",
+  "description": "Effectue une attaque physique sur la cible et les ennemis autour.\nPuissance : 1000\nLa puissance est réduite de 60% au-delà du premier ennemi touché.\nCoût Jauge de fascination : 50\nCondition : Danse de l'aurore préparée.\n\n* Cette action ne peut pas être ajoutée aux barres de raccourcis.\nRemplace Danse du sabre lorsque les conditions sont réunies.",
+  "description_macro": "Effectue une attaque physique sur la cible et les ennemis autour.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> 1000<br>La puissance est réduite de 60% au-delà du premier ennemi touché.<br><colortype(506)><edgecolortype(507)>Coût Jauge de fascination<nbsp>:<edgecolortype(0)><colortype(0)> 50<br><colortype(506)><edgecolortype(507)>Condition<nbsp>:<edgecolortype(0)><colortype(0)> <colortype(500)><edgecolortype(501)>Danse de l'aurore préparée<edgecolortype(0)><colortype(0)>.<br><br><colortype(504)><edgecolortype(505)>* Cette action ne peut pas être ajoutée aux barres de raccourcis.<br>Remplace <colortype(500)><edgecolortype(501)>Danse du sabre<edgecolortype(0)><colortype(0)> lorsque les conditions sont réunies.<edgecolortype(0)><colortype(0)>",
+  "effects": [
+    "Effectue une attaque physique sur la cible et les ennemis autour.",
+    "Puissance : 1000",
+    "La puissance est réduite de 60% au-delà du premier ennemi touché.",
+    "Coût Jauge de fascination : 50",
+    "Condition : Danse de l'aurore préparée.",
+    "* Cette action ne peut pas être ajoutée aux barres de raccourcis.",
+    "Remplace Danse du sabre lorsque les conditions sont réunies."
+  ],
+  "role": "Physical Ranged DPS",
+  "job": {
+    "id": 38,
+    "name": "Danseur",
+    "abbreviation": "DNS"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 100,
+  "icon": {
+    "id": 3485,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 3,
+    "name": "Technique d'arme"
+  },
+  "attack_type": {
+    "id": 4294967295,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 2.5,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 58,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 54,
+      "value": 50
+    },
+    "secondary": {
+      "type_id": 91,
+      "value": 3869
+    }
+  },
+  "range": {
+    "target_yalms": -1,
+    "effect_yalms": 5,
+    "cast_type": 2
+  },
+  "targeting": {
+    "self": false,
+    "party": false,
+    "alliance": false,
+    "hostile": true,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": {
+      "id": 176,
+      "status": {
+        "id": 3869,
+        "name": "Danse de l'aurore préparée",
+        "description": "Danse de l'aurore peut être lancée.",
+        "icon_id": 213729,
+        "max_stacks": 0
+      }
+    }
+  },
+  "metadata": {
+    "aspect_id": 7,
+    "behavior_type": 0,
+    "class_job_category_id": 150,
+    "source_class_job_id": 0,
+    "is_role_action": false,
+    "is_player_action": false,
+    "is_derived_action": true,
+    "equivalence_group": 0
+  }
+}

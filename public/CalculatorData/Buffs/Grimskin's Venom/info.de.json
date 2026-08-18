@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 3650,
+  "name": "Gieriges Schlingen",
+  "description": "Attacke-Werte von Schlingende Kiefer sind erhöht.",
+  "effects": [
+    "Attacke-Werte von Schlingende Kiefer sind erhöht."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 213756,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 196,
+  "source_abilities": [
+    {
+      "id": 34618,
+      "name": "Hungernde Kiefer",
+      "description": "Du führst eine physische Attacke auf alle umstehenden Gegner aus.\nAttacke-Wert: 180\nIst Nagender Hunger aktiv, ist der Attacke-Wert um 40 erhöht.\nZusatzeffekt: Gewährt dir Gieriges Schlingen.\nDauer: 60 Sekunden\nEffekt von Gieriges Schlingen: Erhöht die Attacke-Werte von Schlingende Kiefer um 40.\nZusatzeffekt: Erhöht den Geistbalken um 10.\nBedingung: Erfolgreiche Ausführung von Blutige Kiefer oder Flinke Kiefer.\nBei erfüllter Bedingung ändert sich Blutige Kiefer zu diesem Kommando.\nKann nicht im Kommandomenü angelegt werden.",
+      "description_macro": "Du führst eine physische Attacke auf alle umstehenden Gegner aus.<br>Attacke-Wert: 180<br>Ist <colortype(506)><edgecolortype(507)>Nagender Hunger<edgecolortype(0)><colortype(0)> aktiv, ist der Attacke-Wert um 40 erhöht.<br>Zusatzeffekt: Gewährt dir <colortype(506)><edgecolortype(507)>Gieriges Schlingen<edgecolortype(0)><colortype(0)>.<br>Dauer: 60 Sekunden<br>Effekt von <colortype(506)><edgecolortype(507)>Gieriges Schlingen<edgecolortype(0)><colortype(0)>: Erhöht die Attacke-Werte von <colortype(502)><edgecolortype(503)>Schlingende Kiefer<edgecolortype(0)><colortype(0)> um 40.<br><if([gnum68==41],<if([gnum72>=90],Zusatzeffekt: Erhöht den Geistbalken um 10.<br>,)>,)>Bedingung: Erfolgreiche Ausführung von <colortype(502)><edgecolortype(503)>Blutige Kiefer<edgecolortype(0)><colortype(0)> oder <colortype(502)><edgecolortype(503)>Flinke Kiefer<edgecolortype(0)><colortype(0)>.<br>Bei erfüllter Bedingung ändert sich <colortype(502)><edgecolortype(503)>Blutige Kiefer<edgecolortype(0)><colortype(0)> zu diesem Kommando.<br>Kann nicht im Kommandomenü angelegt werden.",
+      "unlock_level": 50,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 41,
+          "name": "Viper",
+          "abbreviation": "VPR",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

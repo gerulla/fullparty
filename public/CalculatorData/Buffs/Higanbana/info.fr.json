@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 1319,
+  "name": "Higanbana",
+  "description": "Des dégâts périodiques sont subis et l'effet des sorts curatifs est réduit.",
+  "effects": [
+    "Des dégâts périodiques sont subis et l'effet des sorts curatifs est réduit."
+  ],
+  "classification": "debuff",
+  "icon": {
+    "id": 213304,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 2,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": true,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 10
+  },
+  "class_job_category_id": 111,
+  "source_abilities": [
+    {
+      "id": 7489,
+      "name": "Higanbana",
+      "description": "Effectue une attaque physique sur la cible.\nPuissance : 200\nEffet additionnel : dégâts périodiques.\nPuissance : 50 Durée : 60s\nEffet additionnel : vous octroie Tension de la lame \\(maximum 3\\).\nCondition : 1 effet Sen.\n\n* Cette action ne peut pas être ajoutée aux barres de raccourcis.\nRemplace Iaijutsu lorsque les conditions sont réunies.",
+      "description_macro": "Effectue une attaque physique sur la cible.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> 200<br><colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> dégâts périodiques.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> <if([gnum68==34],<if([gnum72>=94],50,45)>,45)> <colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 60s<br><if([gnum68==34],<if([gnum72>=80],<colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> vous octroie <colortype(500)><edgecolortype(501)>Tension de la lame<edgecolortype(0)><colortype(0)> \\(maximum 3\\).<br>,)>,)><colortype(506)><edgecolortype(507)>Condition<nbsp>:<edgecolortype(0)><colortype(0)> 1 effet <colortype(500)><edgecolortype(501)>Sen<edgecolortype(0)><colortype(0)>.<br><br><colortype(504)><edgecolortype(505)>* Cette action ne peut pas être ajoutée aux barres de raccourcis.<br>Remplace <colortype(500)><edgecolortype(501)>Iaijutsu<edgecolortype(0)><colortype(0)> lorsque les conditions sont réunies.<edgecolortype(0)><colortype(0)>",
+      "unlock_level": 30,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 34,
+          "name": "Samouraï",
+          "abbreviation": "SAM",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

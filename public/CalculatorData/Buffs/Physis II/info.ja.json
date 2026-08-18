@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 2620,
+  "name": "ピュシスII",
+  "description": "連続してＨＰが回復している状態。",
+  "effects": [
+    "連続してＨＰが回復している状態。"
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 212966,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 5,
+  "parameter": {
+    "effect": 0,
+    "modifier": 10
+  },
+  "class_job_category_id": 181,
+  "source_abilities": [
+    {
+      "id": 24302,
+      "name": "ピュシスII",
+      "description": "自身と周囲のパーティメンバーのＨＰを継続回復する。\n回復力：130\u3000効果時間：15秒\n追加効果：対象が受けるＨＰ回復効果を10％上昇させる。\n効果時間：15秒",
+      "description_macro": "自身と周囲のパーティメンバーのＨＰを継続回復する。<br><colortype(504)><edgecolortype(505)>回復力：<edgecolortype(0)><colortype(0)>130\u3000<colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>15秒<br><colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)>対象が受けるＨＰ回復効果を10％上昇させる。<br><colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)><if([gnum68==40],<if([gnum72>=98],15,10)>,10)>秒",
+      "unlock_level": 60,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Healer"
+      ],
+      "jobs": [
+        {
+          "id": 40,
+          "name": "賢者",
+          "abbreviation": "SGE",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

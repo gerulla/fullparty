@@ -1,0 +1,27 @@
+{
+  "kind": "trait",
+  "id": 507,
+  "name": "Actions améliorées",
+  "description": "Augmente la puissance de certaines actions.\n\nPuissance de Tranchant acéré : 200\nPuissance d'Impact brutal : 160\nPuissance de Salve tranchante : 140",
+  "description_macro": "Augmente la puissance de certaines actions.<br><br><colortype(506)><edgecolortype(507)>Puissance de Tranchant acéré<nbsp>:<edgecolortype(0)><colortype(0)> 200<br><colortype(506)><edgecolortype(507)>Puissance d'Impact brutal<nbsp>:<edgecolortype(0)><colortype(0)> 160<br><colortype(506)><edgecolortype(507)>Puissance de Salve tranchante<nbsp>:<edgecolortype(0)><colortype(0)> 140",
+  "effects": [
+    "Augmente la puissance de certaines actions.",
+    "Puissance de Tranchant acéré : 200",
+    "Puissance d'Impact brutal : 160",
+    "Puissance de Salve tranchante : 140"
+  ],
+  "role": "Tank",
+  "job": {
+    "id": 37,
+    "name": "Pistosabreur",
+    "abbreviation": "PSB"
+  },
+  "unlock_level": 84,
+  "value": 0,
+  "icon": {
+    "id": 6801,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 149,
+  "source_class_job_id": 37
+}

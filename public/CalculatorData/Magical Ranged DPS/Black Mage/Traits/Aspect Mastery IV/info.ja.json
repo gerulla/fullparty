@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 462,
+  "name": "極性マスタリーIV",
+  "description": "ファイラがハイファイラに、ブリザラがハイブリザラに変化する。",
+  "description_macro": "ファイラがハイファイラに、ブリザラがハイブリザラに変化する。",
+  "effects": [
+    "ファイラがハイファイラに、ブリザラがハイブリザラに変化する。"
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 25,
+    "name": "黒魔道士",
+    "abbreviation": "BLM"
+  },
+  "unlock_level": 82,
+  "value": 0,
+  "icon": {
+    "id": 5370,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 26,
+  "source_class_job_id": 25
+}

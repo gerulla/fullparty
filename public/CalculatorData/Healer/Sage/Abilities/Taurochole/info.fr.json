@@ -1,0 +1,90 @@
+{
+  "kind": "ability",
+  "id": 24303,
+  "name": "Taurochole",
+  "description": "Restaure vos PV ou ceux de l'équipier ciblé.\nPuissance : 700\nEffet additionnel : réduit de 10% les dégâts subis par la cible.\nDurée : 15s\nNe peut être cumulé avec l'effet Kerachole.\nEffet additionnel : restaure 7% de vos PM maximums.\nCondition : consomme une vésicule de Bile de vipère.",
+  "description_macro": "Restaure vos PV ou ceux de l'équipier ciblé.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> 700<br><colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> réduit de 10% les dégâts subis par la cible.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 15s<br>Ne peut être cumulé avec l'effet <colortype(500)><edgecolortype(501)>Kerachole<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> restaure 7% de vos PM maximums.<br><colortype(506)><edgecolortype(507)>Condition<nbsp>:<edgecolortype(0)><colortype(0)> consomme une vésicule de <colortype(500)><edgecolortype(501)>Bile de vipère<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Restaure vos PV ou ceux de l'équipier ciblé.",
+    "Puissance : 700",
+    "Effet additionnel : réduit de 10% les dégâts subis par la cible.",
+    "Durée : 15s",
+    "Ne peut être cumulé avec l'effet Kerachole.",
+    "Effet additionnel : restaure 7% de vos PM maximums.",
+    "Condition : consomme une vésicule de Bile de vipère."
+  ],
+  "role": "Healer",
+  "job": {
+    "id": 40,
+    "name": "Sage",
+    "abbreviation": "SAG"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 62,
+  "icon": {
+    "id": 3671,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 4,
+    "name": "Aptitude"
+  },
+  "attack_type": {
+    "id": 0,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 45,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 8,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 68,
+      "value": 1
+    },
+    "secondary": {
+      "type_id": 0,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": 30,
+    "effect_yalms": 0,
+    "cast_type": 1
+  },
+  "targeting": {
+    "self": true,
+    "party": true,
+    "alliance": false,
+    "hostile": false,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": false
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 0,
+    "behavior_type": 0,
+    "class_job_category_id": 181,
+    "source_class_job_id": 40,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

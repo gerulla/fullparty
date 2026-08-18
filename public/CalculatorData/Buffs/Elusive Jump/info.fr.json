@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 3209,
+  "name": "Saut insaisissable",
+  "description": "La vitesse de déplacement est augmentée.",
+  "effects": [
+    "La vitesse de déplacement est augmentée."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 214937,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": true,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 18,
+    "modifier": 0
+  },
+  "class_job_category_id": 23,
+  "source_abilities": [
+    {
+      "id": 94,
+      "name": "Saut insaisissable",
+      "description": "Saute 15 yalms en arrière.\nEffet additionnel : vous octroie Griffe perçante améliorée.\nDurée : 15s\nNe peut pas être utilisé sous l'effet Entrave.",
+      "description_macro": "Saute 15 yalms en arrière.<br><colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> vous octroie <colortype(500)><edgecolortype(501)>Griffe perçante améliorée<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 15s<br>Ne peut pas être utilisé sous l'effet Entrave.",
+      "unlock_level": 35,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 22,
+          "name": "Chevalier Dragon",
+          "abbreviation": "DRG",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

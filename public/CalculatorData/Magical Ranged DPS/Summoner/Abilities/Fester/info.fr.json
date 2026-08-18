@@ -1,0 +1,86 @@
+{
+  "kind": "ability",
+  "id": 181,
+  "name": "Suppuration",
+  "description": "Effectue une attaque magique neutre sur la cible.\nPuissance : 340\nCondition : consomme un Flux d'éther.",
+  "description_macro": "Effectue une attaque magique neutre sur la cible.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> 340<br><colortype(506)><edgecolortype(507)>Condition<nbsp>:<edgecolortype(0)><colortype(0)> consomme un <colortype(500)><edgecolortype(501)>Flux d'éther<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Effectue une attaque magique neutre sur la cible.",
+    "Puissance : 340",
+    "Condition : consomme un Flux d'éther."
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 27,
+    "name": "Invocateur",
+    "abbreviation": "INV"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 10,
+  "icon": {
+    "id": 2676,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 4,
+    "name": "Aptitude"
+  },
+  "attack_type": {
+    "id": 5,
+    "name": "magie"
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 1,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 1,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 30,
+      "value": 1
+    },
+    "secondary": {
+      "type_id": 63,
+      "value": 617
+    }
+  },
+  "range": {
+    "target_yalms": 25,
+    "effect_yalms": 0,
+    "cast_type": 1
+  },
+  "targeting": {
+    "self": false,
+    "party": false,
+    "alliance": false,
+    "hostile": true,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 7,
+    "behavior_type": 0,
+    "class_job_category_id": 69,
+    "source_class_job_id": 26,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

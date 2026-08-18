@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 538,
+  "name": "Verbesserte Farben",
+  "description": "Bei erfolgreicher Ausführung von Aqua in Blau, Aquara in Blau, Blitz in Magenta und Blitzra in Magenta wird dir Weiße Pikto-Farbe gewährt.",
+  "description_macro": "Bei erfolgreicher Ausführung von <colortype(502)><edgecolortype(503)>Aqua in Blau<edgecolortype(0)><colortype(0)>, <colortype(502)><edgecolortype(503)>Aquara in Blau<edgecolortype(0)><colortype(0)>, <colortype(502)><edgecolortype(503)>Blitz in Magenta<edgecolortype(0)><colortype(0)> und <colortype(502)><edgecolortype(503)>Blitzra in Magenta<edgecolortype(0)><colortype(0)> wird dir <colortype(506)><edgecolortype(507)>Weiße Pikto-Farbe<edgecolortype(0)><colortype(0)> gewährt.",
+  "effects": [
+    "Bei erfolgreicher Ausführung von Aqua in Blau, Aquara in Blau, Blitz in Magenta und Blitzra in Magenta wird dir Weiße Pikto-Farbe gewährt."
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 42,
+    "name": "Piktomant",
+    "abbreviation": "PKT"
+  },
+  "unlock_level": 80,
+  "value": 0,
+  "icon": {
+    "id": 6552,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 197,
+  "source_class_job_id": 42
+}

@@ -1,0 +1,26 @@
+{
+  "kind": "trait",
+  "id": 426,
+  "name": "Enhanced Continuation",
+  "description": "Become Ready to Blast after executing Burst Strike.\nDuration: 10s\nContinuation changes to Hypervelocity while under the effect of Ready to Blast.",
+  "description_macro": "Become <colortype(506)><edgecolortype(507)>Ready to Blast<edgecolortype(0)><colortype(0)> after executing <colortype(500)><edgecolortype(501)>Burst Strike<edgecolortype(0)><colortype(0)>.<br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>10s<br><colortype(500)><edgecolortype(501)>Continuation<edgecolortype(0)><colortype(0)> changes to <colortype(500)><edgecolortype(501)>Hypervelocity<edgecolortype(0)><colortype(0)> while under the effect of <colortype(506)><edgecolortype(507)>Ready to Blast<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Become Ready to Blast after executing Burst Strike.",
+    "Duration: 10s",
+    "Continuation changes to Hypervelocity while under the effect of Ready to Blast."
+  ],
+  "role": "Tank",
+  "job": {
+    "id": 37,
+    "name": "Gunbreaker",
+    "abbreviation": "GNB"
+  },
+  "unlock_level": 86,
+  "value": 0,
+  "icon": {
+    "id": 6306,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 149,
+  "source_class_job_id": 37
+}

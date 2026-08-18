@@ -1,0 +1,32 @@
+{
+  "kind": "trait",
+  "id": 658,
+  "name": "アクション威力アップII",
+  "description": "特定のアクションの威力を上昇させる。\n\nオートボウガンの威力：180\nヒートスプリットショットの威力：220\nドリルの威力：660\nヒートスラッグショットの威力：140\nヒートクリーンショットの威力：160\nブレイズショットの威力：240\nエアアンカーの威力：660\n回転のこぎりの威力：660",
+  "description_macro": "特定のアクションの威力を上昇させる。<br><br><colortype(504)><edgecolortype(505)>オートボウガンの威力：<edgecolortype(0)><colortype(0)>180<br><colortype(504)><edgecolortype(505)>ヒートスプリットショットの威力：<edgecolortype(0)><colortype(0)>220<br><colortype(504)><edgecolortype(505)>ドリルの威力：<edgecolortype(0)><colortype(0)>660<br><colortype(504)><edgecolortype(505)>ヒートスラッグショットの威力：<edgecolortype(0)><colortype(0)>140<br><colortype(504)><edgecolortype(505)>ヒートクリーンショットの威力：<edgecolortype(0)><colortype(0)>160<br><colortype(504)><edgecolortype(505)>ブレイズショットの威力：<edgecolortype(0)><colortype(0)>240<br><colortype(504)><edgecolortype(505)>エアアンカーの威力：<edgecolortype(0)><colortype(0)>660<br><colortype(504)><edgecolortype(505)>回転のこぎりの威力：<edgecolortype(0)><colortype(0)>660",
+  "effects": [
+    "特定のアクションの威力を上昇させる。",
+    "オートボウガンの威力：180",
+    "ヒートスプリットショットの威力：220",
+    "ドリルの威力：660",
+    "ヒートスラッグショットの威力：140",
+    "ヒートクリーンショットの威力：160",
+    "ブレイズショットの威力：240",
+    "エアアンカーの威力：660",
+    "回転のこぎりの威力：660"
+  ],
+  "role": "Physical Ranged DPS",
+  "job": {
+    "id": 31,
+    "name": "機工士",
+    "abbreviation": "MCH"
+  },
+  "unlock_level": 94,
+  "value": 0,
+  "icon": {
+    "id": 6802,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 96,
+  "source_class_job_id": 31
+}

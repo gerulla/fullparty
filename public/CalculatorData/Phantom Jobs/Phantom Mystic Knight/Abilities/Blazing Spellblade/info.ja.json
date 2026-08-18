@@ -1,0 +1,92 @@
+{
+  "kind": "ability",
+  "id": 46593,
+  "name": "まほうけんフレア",
+  "description": "対象に物理攻撃。\n威力：200（アイテムレベル依存威力）\n追加効果：対象が受けるダメージを5％上昇させる。\n効果時間：70秒\n追加効果：自身の与ダメージを5％上昇させる。\n効果時間：70秒\nまほうけん強化中は性能が強化される。\nまほうけん強化時威力：300（アイテムレベル依存威力）\nリキャストタイマーを「まほうけんブレイク」「まほうけんホーリー」と共有する。",
+  "description_macro": "対象に物理攻撃。<br><colortype(504)><edgecolortype(505)>威力：<edgecolortype(0)><colortype(0)>200（アイテムレベル依存威力）<br><colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)>対象が受けるダメージを5％上昇させる。<br><colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>70秒<br><colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)>自身の与ダメージを5％上昇させる。<br><colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>70秒<br>まほうけん強化中は性能が強化される。<br><colortype(504)><edgecolortype(505)>まほうけん強化時威力：<edgecolortype(0)><colortype(0)>300（アイテムレベル依存威力）<br>リキャストタイマーを<colortype(500)><edgecolortype(501)>「まほうけんブレイク」<edgecolortype(0)><colortype(0)><colortype(500)><edgecolortype(501)>「まほうけんホーリー」<edgecolortype(0)><colortype(0)>と共有する。",
+  "effects": [
+    "対象に物理攻撃。",
+    "威力：200（アイテムレベル依存威力）",
+    "追加効果：対象が受けるダメージを5％上昇させる。",
+    "効果時間：70秒",
+    "追加効果：自身の与ダメージを5％上昇させる。",
+    "効果時間：70秒",
+    "まほうけん強化中は性能が強化される。",
+    "まほうけん強化時威力：300（アイテムレベル依存威力）",
+    "リキャストタイマーを「まほうけんブレイク」「まほうけんホーリー」と共有する。"
+  ],
+  "role": "Phantom Jobs",
+  "job": {
+    "id": 13,
+    "name": "サポート魔法剣士",
+    "abbreviation": "Ph. Mystic Knight"
+  },
+  "is_phantom_action": true,
+  "unlock_level": 4,
+  "icon": {
+    "id": 64578,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 3,
+    "name": "ウェポンスキル"
+  },
+  "attack_type": {
+    "id": 1,
+    "name": "斬"
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 30,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 83,
+    "additional_cooldown_group": 58,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 0,
+      "value": 0
+    },
+    "secondary": {
+      "type_id": 0,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": 5,
+    "effect_yalms": 0,
+    "cast_type": 1
+  },
+  "targeting": {
+    "self": false,
+    "party": false,
+    "alliance": false,
+    "hostile": true,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 7,
+    "behavior_type": 0,
+    "class_job_category_id": 142,
+    "source_class_job_id": 4294967295,
+    "is_role_action": false,
+    "is_player_action": false,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

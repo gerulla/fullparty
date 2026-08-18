@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 1885,
+  "name": "ハルオーネの槍",
+  "description": "与ダメージが上昇した状態。",
+  "effects": [
+    "与ダメージが上昇した状態。"
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 213207,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 1,
+  "parameter": {
+    "effect": 0,
+    "modifier": 10
+  },
+  "class_job_category_id": 99,
+  "source_abilities": [
+    {
+      "id": 37026,
+      "name": "ハルオーネの槍",
+      "description": "自身またはパーティメンバーひとりを対象とする。\n対象の与ダメージを上昇させる。\u3000効果時間：15秒\n効果量は対象が遠隔攻撃を主体とするクラス・ジョブであれば6％、それ以外ならば3％になる。\n\n※このアクションはホットバーに登録することはできない。\n\u3000発動条件を満たすとプレイIがハルオーネの槍に変化する。",
+      "description_macro": "自身またはパーティメンバーひとりを対象とする。<br>対象の与ダメージを上昇させる。\u3000<colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>15秒<br>効果量は対象が遠隔攻撃を主体とするクラス・ジョブであれば6％、それ以外ならば3％になる。<br><br><colortype(506)><edgecolortype(507)>※このアクションはホットバーに登録することはできない。<br>\u3000発動条件を満たすとプレイIがハルオーネの槍に変化する。<edgecolortype(0)><colortype(0)>",
+      "unlock_level": 30,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Healer"
+      ],
+      "jobs": [
+        {
+          "id": 33,
+          "name": "占星術師",
+          "abbreviation": "AST",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 3837,
+  "name": "Sillon de morgue préparé",
+  "description": "Sillon de morgue peut être lancé.",
+  "effects": [
+    "Sillon de morgue peut être lancé."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 213126,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 98,
+  "source_abilities": [
+    {
+      "id": 16472,
+      "name": "Ombre vivante",
+      "description": "Matérialise la part obscure de votre âme pour qu'elle se batte à vos côtés.\nDurée : 22s\nEffet additionnel : vous octroie Sillon de morgue préparé.\nDurée : 30s\nPuissance des coups de l'estime : 420\nLa puissance de Porteur d'ombreet de Sillon de morgue restent fixes.\nPuissance de Porteur d'ombre de l'Estime : 570\nPuissance de Sillon de morgue de l'Estime : 620\nLa puissance est réduite de 25% au-delà du premier ennemi touché.",
+      "description_macro": "Matérialise la part obscure de votre âme pour qu'elle se batte à vos côtés.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 22s<br><if([gnum68==32],<if([gnum72>=100],<colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> vous octroie <colortype(500)><edgecolortype(501)>Sillon de morgue préparé<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 30s<br>,)>,)><colortype(506)><edgecolortype(507)>Puissance des coups de l'estime<nbsp>:<edgecolortype(0)><colortype(0)> <if([gnum68==32],<if([gnum72>=88],420,340)>,340)><if([gnum68==32],<if([gnum72>=90],<br>La puissance de Porteur d'ombre<if([gnum68==32],<if([gnum72>=100], et de Sillon de morgue,)>,)> reste<if([gnum68==32],<if([gnum72>=100],nt,)>,)> fixe<if([gnum68==32],<if([gnum72>=100],s,)>,)>.<br><colortype(506)><edgecolortype(507)>Puissance de Porteur d'ombre de l'Estime<nbsp>:<edgecolortype(0)><colortype(0)> 570<br><if([gnum68==32],<if([gnum72>=100],<colortype(506)><edgecolortype(507)>Puissance de Sillon de morgue de l'Estime<nbsp>:<edgecolortype(0)><colortype(0)> 620<br>,)>,)>La puissance est réduite de 25% au-delà du premier ennemi touché.,)>,)>",
+      "unlock_level": 80,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Tank"
+      ],
+      "jobs": [
+        {
+          "id": 32,
+          "name": "Chevalier Noir",
+          "abbreviation": "CHN",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

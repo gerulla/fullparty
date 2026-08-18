@@ -1,0 +1,26 @@
+{
+  "kind": "trait",
+  "id": 575,
+  "name": "Enhanced Continuation II",
+  "description": "Become Ready to Raze after executing Fated Circle.\nDuration: 10s\nContinuation changes to Fated Brand when Ready to Raze.",
+  "description_macro": "Become <colortype(506)><edgecolortype(507)>Ready to Raze<edgecolortype(0)><colortype(0)> after executing <colortype(500)><edgecolortype(501)>Fated Circle<edgecolortype(0)><colortype(0)>.<br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>10s<br><colortype(500)><edgecolortype(501)>Continuation<edgecolortype(0)><colortype(0)> changes to <colortype(500)><edgecolortype(501)>Fated Brand<edgecolortype(0)><colortype(0)> when <colortype(506)><edgecolortype(507)>Ready to Raze<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Become Ready to Raze after executing Fated Circle.",
+    "Duration: 10s",
+    "Continuation changes to Fated Brand when Ready to Raze."
+  ],
+  "role": "Tank",
+  "job": {
+    "id": 37,
+    "name": "Gunbreaker",
+    "abbreviation": "GNB"
+  },
+  "unlock_level": 96,
+  "value": 0,
+  "icon": {
+    "id": 6309,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 149,
+  "source_class_job_id": 37
+}

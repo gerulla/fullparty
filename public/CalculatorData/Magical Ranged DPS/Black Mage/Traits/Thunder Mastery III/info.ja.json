@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 613,
+  "name": "サンダーマスタリーIII",
+  "description": "サンダガがハイサンダーに、サンダジャがハイサンダラに変化する。",
+  "description_macro": "サンダガがハイサンダーに、サンダジャがハイサンダラに変化する。",
+  "effects": [
+    "サンダガがハイサンダーに、サンダジャがハイサンダラに変化する。"
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 25,
+    "name": "黒魔道士",
+    "abbreviation": "BLM"
+  },
+  "unlock_level": 92,
+  "value": 0,
+  "icon": {
+    "id": 5651,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 26,
+  "source_class_job_id": 25
+}

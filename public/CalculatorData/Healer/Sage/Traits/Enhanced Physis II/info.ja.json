@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 638,
+  "name": "ピュシスII効果アップ",
+  "description": "ピュシスIIの「対象が受けるＨＰ回復効果を10％上昇させる効果」の効果時間を15秒に延長する。",
+  "description_macro": "ピュシスIIの「対象が受けるＨＰ回復効果を10％上昇させる効果」の効果時間を15秒に延長する。",
+  "effects": [
+    "ピュシスIIの「対象が受けるＨＰ回復効果を10％上昇させる効果」の効果時間を15秒に延長する。"
+  ],
+  "role": "Healer",
+  "job": {
+    "id": 40,
+    "name": "賢者",
+    "abbreviation": "SGE"
+  },
+  "unlock_level": 98,
+  "value": 0,
+  "icon": {
+    "id": 6462,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 181,
+  "source_class_job_id": 40
+}

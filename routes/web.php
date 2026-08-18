@@ -10,6 +10,8 @@ use App\Http\Controllers\AdminFflogsPlaygroundController;
 use App\Http\Controllers\AdminQuotaController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BozjaItemController;
+use App\Http\Controllers\Calculator\CalculatorCatalogController;
+use App\Http\Controllers\Calculator\CalculatorController;
 use App\Http\Controllers\CharacterClassController;
 use App\Http\Controllers\CharacterController;
 use App\Http\Controllers\DashboardController;
@@ -127,6 +129,16 @@ Route::domain('plan.'.$appHost)
             ->middleware('throttle:20,1')
             ->where('token', '[A-Za-z0-9]{48}')
             ->name('raid-plans.images.store');
+    });
+
+Route::domain('math.'.$appHost)
+    ->name('calculator.')
+    ->middleware(['auth', 'verified', 'admin'])
+    ->group(function () {
+        Route::get('/', CalculatorController::class)->name('index');
+        Route::get('/catalog', [CalculatorCatalogController::class, 'index'])->name('catalog');
+        Route::get('/actions/{calculatorAction}', [CalculatorCatalogController::class, 'action'])->name('actions.show');
+        Route::get('/traits/{calculatorTrait}', [CalculatorCatalogController::class, 'trait'])->name('traits.show');
     });
 
 Route::get('/sitemap.xml', SitemapController::class)->name('sitemap');

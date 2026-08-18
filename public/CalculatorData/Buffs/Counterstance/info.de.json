@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 4238,
+  "name": "Gegenzug",
+  "description": "Paraderate ist erhöht.",
+  "effects": [
+    "Paraderate ist erhöht."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 229906,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 100
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 41597,
+      "name": "Gegenzug",
+      "description": "Du erhöhst die Wahrscheinlichkeit, gegnerische Attacken zu parieren, um 100 %.\nDauer: 60 Sekunden\nZusatzeffekt: In der Nähe eines Wissenskristalls gewährst du dir und Gruppenmitgliedern Gegenwind.\nDauer: 30 Minuten\nEffekt von Gegenwind: Bewegungsgeschwindigkeit wird erhöht.",
+      "description_macro": "Du erhöhst die Wahr<->schein<->lich<->keit, gegnerische Attacken zu parieren, um 100<nbsp>%.<br>Dauer: 60 Sekunden<br>Zusatzeffekt: In der Nähe eines Wissenskristalls gewährst du dir und Grup<->pen<->mit<->gliedern <colortype(506)><edgecolortype(507)>Gegenwind<edgecolortype(0)><colortype(0)>.<br>Dauer: 30 Minuten<br>Effekt von <colortype(506)><edgecolortype(507)>Gegenwind<edgecolortype(0)><colortype(0)>: Be<->we<->gungs<->ge<->schwin<->dig<->keit wird erhöht.",
+      "unlock_level": 0,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Phantom Jobs"
+      ],
+      "jobs": [
+        {
+          "id": 3,
+          "name": "Phantom Phantom-Mönch",
+          "abbreviation": "Ph-Mönch",
+          "is_phantom": true
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 667,
+  "name": "Melee Mastery II",
+  "description": "Increases the potency of Keen Edge to 300, Brutal Shell to 240, Solid Barrel to 240, Burst Strike to 420, Gnashing Fang to 440, Savage Claw to 500, Wicked Talon to 560, Jugular Rip to 220, Abdomen Tear to 260, Eye Gouge to 300, Blasting Zone to 800, and Hypervelocity to 180.",
+  "description_macro": "Increases the potency of <colortype(500)><edgecolortype(501)>Keen Edge<edgecolortype(0)><colortype(0)> to 300, <colortype(500)><edgecolortype(501)>Brutal Shell<edgecolortype(0)><colortype(0)> to 240, <colortype(500)><edgecolortype(501)>Solid Barrel<edgecolortype(0)><colortype(0)> to 240, <colortype(500)><edgecolortype(501)>Burst Strike<edgecolortype(0)><colortype(0)> to 420, <colortype(500)><edgecolortype(501)>Gnashing Fang<edgecolortype(0)><colortype(0)> to 440, <colortype(500)><edgecolortype(501)>Savage Claw<edgecolortype(0)><colortype(0)> to 500, <colortype(500)><edgecolortype(501)>Wicked Talon<edgecolortype(0)><colortype(0)> to 560, <colortype(500)><edgecolortype(501)>Jugular Rip<edgecolortype(0)><colortype(0)> to 220, <colortype(500)><edgecolortype(501)>Abdomen Tear<edgecolortype(0)><colortype(0)> to 260, <colortype(500)><edgecolortype(501)>Eye Gouge<edgecolortype(0)><colortype(0)> to 300, <colortype(500)><edgecolortype(501)>Blasting Zone<edgecolortype(0)><colortype(0)> to 800, and <colortype(500)><edgecolortype(501)>Hypervelocity<edgecolortype(0)><colortype(0)> to 180.",
+  "effects": [
+    "Increases the potency of Keen Edge to 300, Brutal Shell to 240, Solid Barrel to 240, Burst Strike to 420, Gnashing Fang to 440, Savage Claw to 500, Wicked Talon to 560, Jugular Rip to 220, Abdomen Tear to 260, Eye Gouge to 300, Blasting Zone to 800, and Hypervelocity to 180."
+  ],
+  "role": "Tank",
+  "job": {
+    "id": 37,
+    "name": "Gunbreaker",
+    "abbreviation": "GNB"
+  },
+  "unlock_level": 94,
+  "value": 0,
+  "icon": {
+    "id": 6802,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 149,
+  "source_class_job_id": 37
+}

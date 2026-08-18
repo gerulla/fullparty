@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 638,
+  "name": "Verbessertes Physis II",
+  "description": "Verlängert die Wirkungsdauer des Zusatzeffekts, der die Wirkung von Heileffekten auf Ziele um 10 % erhöht, auf 15 Sekunden.",
+  "description_macro": "Verlängert die Wirkungsdauer des Zusatzeffekts, der die Wirkung von Heileffekten auf Ziele um 10<nbsp>% erhöht, auf 15 Sekunden.",
+  "effects": [
+    "Verlängert die Wirkungsdauer des Zusatzeffekts, der die Wirkung von Heileffekten auf Ziele um 10 % erhöht, auf 15 Sekunden."
+  ],
+  "role": "Healer",
+  "job": {
+    "id": 40,
+    "name": "Weiser",
+    "abbreviation": "WEI"
+  },
+  "unlock_level": 98,
+  "value": 0,
+  "icon": {
+    "id": 6462,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 181,
+  "source_class_job_id": 40
+}

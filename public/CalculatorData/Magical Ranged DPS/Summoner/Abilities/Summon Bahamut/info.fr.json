@@ -1,0 +1,92 @@
+{
+  "kind": "ability",
+  "id": 7427,
+  "name": "Invocation Bahamut",
+  "description": "Vous plongez dans une Transe-Bahamut et invoquez un Demi-Bahamut.\nDurée : 15s\nTant qu'il est présent, votre Demi-Bahamut exécute Onde draconique sur votre cible.\nEffet additionnel : Méga Ruine devient Pulsar astral et Tri-désastre devient Brasier astral.\nEffet additionnel : vous octroie Arcane rubis, Arcane topaze et Arcane émeraude.\nEffet additionnel : augmente l'inimitié de la cible envers vous au lancement.\nCondition : Carbuncle invoqué.\nCarbuncle disparaît lors de l'invocation, mais revient automatiquement une fois qu'elle prend fin.\nCe sort a un temps de recharge indépendant.",
+  "description_macro": "Vous plongez dans une <colortype(500)><edgecolortype(501)>Transe-Bahamut<edgecolortype(0)><colortype(0)> et invoquez un Demi-Bahamut.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 15s<br>Tant qu'il est présent, votre Demi-Bahamut exécute <colortype(500)><edgecolortype(501)>Onde draconique<edgecolortype(0)><colortype(0)> sur votre cible.<br><colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> Méga Ruine devient Pulsar astral et <if([gnum68==27],<if([gnum72>=74],Tri-désastre,Fracas élémentaire)>,Fracas élémentaire)> devient Brasier astral.<br><colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> vous octroie <colortype(500)><edgecolortype(501)>Arcane rubis<edgecolortype(0)><colortype(0)>, <colortype(500)><edgecolortype(501)>Arcane topaze<edgecolortype(0)><colortype(0)> et <colortype(500)><edgecolortype(501)>Arcane émeraude<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> augmente l'inimitié de la cible envers vous au lancement.<br><colortype(506)><edgecolortype(507)>Condition<nbsp>:<edgecolortype(0)><colortype(0)> Carbuncle invoqué.<br>Carbuncle disparaît lors de l'invocation, mais revient au<->to<->ma<->ti<->que<->ment une fois qu'elle prend fin.<br>Ce sort a un temps de recharge indépendant.",
+  "effects": [
+    "Vous plongez dans une Transe-Bahamut et invoquez un Demi-Bahamut.",
+    "Durée : 15s",
+    "Tant qu'il est présent, votre Demi-Bahamut exécute Onde draconique sur votre cible.",
+    "Effet additionnel : Méga Ruine devient Pulsar astral et Tri-désastre devient Brasier astral.",
+    "Effet additionnel : vous octroie Arcane rubis, Arcane topaze et Arcane émeraude.",
+    "Effet additionnel : augmente l'inimitié de la cible envers vous au lancement.",
+    "Condition : Carbuncle invoqué.",
+    "Carbuncle disparaît lors de l'invocation, mais revient automatiquement une fois qu'elle prend fin.",
+    "Ce sort a un temps de recharge indépendant."
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 27,
+    "name": "Invocateur",
+    "abbreviation": "INV"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 70,
+  "icon": {
+    "id": 2691,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 2,
+    "name": "Sort"
+  },
+  "attack_type": {
+    "id": 5,
+    "name": "magie"
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 60,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 10,
+    "additional_cooldown_group": 58,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 0,
+      "value": 0
+    },
+    "secondary": {
+      "type_id": 66,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": 25,
+    "effect_yalms": 0,
+    "cast_type": 1
+  },
+  "targeting": {
+    "self": false,
+    "party": false,
+    "alliance": false,
+    "hostile": true,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 7,
+    "behavior_type": 0,
+    "class_job_category_id": 28,
+    "source_class_job_id": 27,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 3901,
+  "name": "原初の激震実行可",
+  "description": "原初の激震を実行できる状態。",
+  "effects": [
+    "原初の激震を実行できる状態。"
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 212571,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 22,
+  "source_abilities": [
+    {
+      "id": 7389,
+      "name": "原初の解放",
+      "description": "自身に3スタックの「原初の解放」を付与する。\n効果時間：15秒\n原初の解放効果：インナービーストを消費することなくフェルクリーヴとデシメートを実行することができるようになり、さらに必ずクリティカルヒットかつダイレクトヒットする。\nクリティカルヒットやダイレクトヒットの発動率を上昇させる効果を受けている場合は与ダメージが上昇する。\n追加効果：自身に「原初の覚悟」を付与する。\n効果時間：15秒\n原初の覚悟効果：一定時間、スタン、睡眠、バインド、ヘヴィおよび一部を除く全てのノックバックと引き寄せの効果を無効化する。\n追加効果：「戦嵐」の効果時間を10秒延長する。\n最大60秒まで延長することができる。\n追加効果：自身に「プライマルレンド実行可」を付与する。\n効果時間：30秒\n追加効果：効果時間中にフェルクリーヴまたはデシメートを命中させると、自身に「原初の鼓動」が付与される。最大3スタックする。\u3000効果時間：30秒\n原初の鼓動が3スタック付与されると「原初の激震実行可」に変化し、原初の解放が原初の激震に変化する。",
+      "description_macro": "自身に3スタックの<colortype(500)><edgecolortype(501)>「原初の解放」<edgecolortype(0)><colortype(0)>を付与する。<br><colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>15秒<br><colortype(504)><edgecolortype(505)>原初の解放効果：<edgecolortype(0)><colortype(0)>インナービーストを消費することなくフェルクリーヴとデシメートを実行することができるようになり、さらに必ずクリティカルヒットかつダイレクトヒットする。<br>クリティカルヒットやダイレクトヒットの発動率を上昇させる効果を受けている場合は与ダメージが上昇する。<br><colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)>自身に<colortype(500)><edgecolortype(501)>「原初の覚悟」<edgecolortype(0)><colortype(0)>を付与する。<br><colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>15秒<br><colortype(504)><edgecolortype(505)>原初の覚悟効果：<edgecolortype(0)><colortype(0)>一定時間、スタン、睡眠、バインド、ヘヴィおよび一部を除く全てのノックバックと引き寄せの効果を無効化する。<br><colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)><colortype(500)><edgecolortype(501)>「戦嵐」<edgecolortype(0)><colortype(0)>の効果時間を10秒延長する。<br>最大60秒まで延長することができる。<if([gnum68==21],<if([gnum72>=90],<br><colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)>自身に<colortype(500)><edgecolortype(501)>「プライマルレンド実行可」<edgecolortype(0)><colortype(0)>を付与する。<br><colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>30秒,)>,)><if([gnum68==21],<if([gnum72>=96],<br><colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)>効果時間中にフェルクリーヴまたはデシメートを命中させると、自身に<colortype(500)><edgecolortype(501)>「原初の鼓動」<edgecolortype(0)><colortype(0)>が付与される。最大3スタックする。\u3000<colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>30秒<br>原初の鼓動が3スタック付与されると<colortype(500)><edgecolortype(501)>「原初の激震実行可」<edgecolortype(0)><colortype(0)>に変化し、原初の解放が原初の激震に変化する。,)>,)>",
+      "unlock_level": 70,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Tank"
+      ],
+      "jobs": [
+        {
+          "id": 21,
+          "name": "戦士",
+          "abbreviation": "WAR",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

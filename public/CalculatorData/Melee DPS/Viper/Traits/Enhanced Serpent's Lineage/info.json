@@ -1,0 +1,25 @@
+{
+  "kind": "trait",
+  "id": 533,
+  "name": "Enhanced Serpent's Lineage",
+  "description": "Allows the stacking of a fifth Anguine Tribute in the Serpent Offerings Gauge.\nFurthermore, allows the execution of Ouroboros while under the effect of Reawakened.",
+  "description_macro": "Allows the stacking of a fifth <colortype(506)><edgecolortype(507)>Anguine Tribute<edgecolortype(0)><colortype(0)> in the <colortype(500)><edgecolortype(501)>Serpent Offerings Gauge<edgecolortype(0)><colortype(0)>.<br>Furthermore, allows the execution of <colortype(500)><edgecolortype(501)>Ouroboros<edgecolortype(0)><colortype(0)> while under the effect of <colortype(506)><edgecolortype(507)>Reawakened<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Allows the stacking of a fifth Anguine Tribute in the Serpent Offerings Gauge.",
+    "Furthermore, allows the execution of Ouroboros while under the effect of Reawakened."
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 41,
+    "name": "Viper",
+    "abbreviation": "VPR"
+  },
+  "unlock_level": 96,
+  "value": 0,
+  "icon": {
+    "id": 6511,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 196,
+  "source_class_job_id": 41
+}

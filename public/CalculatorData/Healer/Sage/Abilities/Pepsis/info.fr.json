@@ -1,0 +1,86 @@
+{
+  "kind": "ability",
+  "id": 24301,
+  "name": "Pepsis",
+  "description": "Met fin à vos Diagnosis eucrasique et Prognosis eucrasique sur vous et les équipiers alentour et restaure les PV de ceux qui en bénéficiaient.\nPuissance avec Diagnosis eucrasique : 450\nPuissance avec Prognosis eucrasique : 350",
+  "description_macro": "Met fin à vos <colortype(500)><edgecolortype(501)>Diagnosis eucrasique<edgecolortype(0)><colortype(0)> et <colortype(500)><edgecolortype(501)>Prognosis eucrasique<edgecolortype(0)><colortype(0)> sur vous et les équipiers alentour et restaure les PV de ceux qui en bénéficiaient.<br><colortype(506)><edgecolortype(507)>Puissance avec Diagnosis eucrasique<nbsp>:<edgecolortype(0)><colortype(0)> 450<br><colortype(506)><edgecolortype(507)>Puissance avec Prognosis eucrasique<nbsp>:<edgecolortype(0)><colortype(0)> 350",
+  "effects": [
+    "Met fin à vos Diagnosis eucrasique et Prognosis eucrasique sur vous et les équipiers alentour et restaure les PV de ceux qui en bénéficiaient.",
+    "Puissance avec Diagnosis eucrasique : 450",
+    "Puissance avec Prognosis eucrasique : 350"
+  ],
+  "role": "Healer",
+  "job": {
+    "id": 40,
+    "name": "Sage",
+    "abbreviation": "SAG"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 58,
+  "icon": {
+    "id": 3669,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 4,
+    "name": "Aptitude"
+  },
+  "attack_type": {
+    "id": 0,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 30,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 3,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 0,
+      "value": 0
+    },
+    "secondary": {
+      "type_id": 0,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": 0,
+    "effect_yalms": 20,
+    "cast_type": 2
+  },
+  "targeting": {
+    "self": true,
+    "party": false,
+    "alliance": false,
+    "hostile": false,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": false
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 0,
+    "behavior_type": 0,
+    "class_job_category_id": 181,
+    "source_class_job_id": 40,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

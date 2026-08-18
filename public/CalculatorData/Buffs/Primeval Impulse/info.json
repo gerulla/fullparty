@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 3900,
+  "name": "Primeval Impulse",
+  "description": "Regenerating HP over time.",
+  "effects": [
+    "Regenerating HP over time."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 212570,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": true,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 5,
+  "parameter": {
+    "effect": 0,
+    "modifier": 10
+  },
+  "class_job_category_id": 22,
+  "source_abilities": [
+    {
+      "id": 36923,
+      "name": "Damnation",
+      "description": "Reduces damage taken by 40% and delivers an attack with a potency of 55 every time you suffer physical damage.\nDuration: 15s\nAdditional Effect: Grants Primeval Impulse when the effect expires or damage is taken\nPrimeval Impulse Effect: Healing over time\nCure Potency: 300\nDuration: 15s",
+      "description_macro": "Reduces damage taken by 40% and delivers an attack with a potency of 55 every time you suffer physical damage.<br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>15s<br><colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>Grants <colortype(506)><edgecolortype(507)>Primeval Impulse<edgecolortype(0)><colortype(0)> when the effect expires or damage is taken<br><colortype(504)><edgecolortype(505)>Primeval Impulse Effect: <edgecolortype(0)><colortype(0)>Healing over time<br><colortype(504)><edgecolortype(505)>Cure Potency:<edgecolortype(0)><colortype(0)> 300<br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>15s",
+      "unlock_level": 92,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Tank"
+      ],
+      "jobs": [
+        {
+          "id": 21,
+          "name": "Warrior",
+          "abbreviation": "WAR",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 285,
+  "name": "Maîtrise de Tir à l'arc puissant",
+  "description": "Remplace Tir à l'arc puissant par Tir éclatant.",
+  "description_macro": "Remplace <colortype(500)><edgecolortype(501)>Tir à l'arc puissant<edgecolortype(0)><colortype(0)> par <colortype(500)><edgecolortype(501)>Tir éclatant<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Remplace Tir à l'arc puissant par Tir éclatant."
+  ],
+  "role": "Physical Ranged DPS",
+  "job": {
+    "id": 23,
+    "name": "Barde",
+    "abbreviation": "BRD"
+  },
+  "unlock_level": 76,
+  "value": 0,
+  "icon": {
+    "id": 5306,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 24,
+  "source_class_job_id": 23
+}

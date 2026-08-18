@@ -1,0 +1,218 @@
+{
+  "kind": "combat_status",
+  "id": 897,
+  "name": "○削除予定",
+  "description": "連続してＨＰが回復している状態。",
+  "effects": [
+    "連続してＨＰが回復している状態。"
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 212626,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": true,
+  "inflicted_by_actor": true,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 10
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 133,
+      "name": "Resedra",
+      "description": "Du regenerierst eigene LP und die von umstehenden Gruppenmitgliedern.\nHeilpotenzial: 250\nZusatzeffekt: Regeneriert stetig LP des Ziels.\nHeilpotenzial: 150\nDauer: 15 Sekunden",
+      "description_macro": "Du regenerierst eigene LP und die von umstehenden Grup<->pen<->mit<->gliedern.<br>Heilpotenzial: <if([gnum68==24],<if([gnum72>=85],250,200)>,200)><br>Zusatzeffekt: Regeneriert stetig LP des Ziels.<br>Heilpotenzial: <if([gnum68==24],<if([gnum72>=85],150,100)>,100)><br>Dauer: 15 Sekunden",
+      "unlock_level": 50,
+      "relations": [
+        "applied_by_description"
+      ],
+      "roles": [
+        "Healer"
+      ],
+      "jobs": [
+        {
+          "id": 24,
+          "name": "Weißmagier",
+          "abbreviation": "WMA",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 188,
+      "name": "Geweihte Erde",
+      "description": "Du weihst einen bestimmten Bereich, in dem Gruppenmitglieder durch einen Schild 10 % weniger Schaden erleidenund stetig LP regenerieren.\nHeilpotenzial: 100\nDauer: 15 Sekunden\nZusatzeffekt: Feenbalken füllt sich um 10.\nÄtherfluss-Kosten: 1",
+      "description_macro": "Du weihst einen bestimmten Bereich, in dem Grup<->pen<->mit<->glieder durch einen Schild 10 % weniger Schaden erleiden<if([gnum68==28],<if([gnum72>=78], und stetig LP regenerieren,)>,)>.<if([gnum68==28],<if([gnum72>=78],<br>Heilpotenzial: 100,)>,)><br>Dauer: 15 Sekunden<br><if([gnum72>=70],<if([gnum68==28],Zusatzeffekt: Feenbalken füllt sich um 10.<br>,)>,)><colortype(506)><edgecolortype(507)>Ätherfluss<edgecolortype(0)><colortype(0)>-Kosten: 1",
+      "unlock_level": 50,
+      "relations": [
+        "applied_by_description"
+      ],
+      "roles": [
+        "Healer"
+      ],
+      "jobs": [
+        {
+          "id": 28,
+          "name": "Gelehrter",
+          "abbreviation": "GLT",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 3595,
+      "name": "Harmonischer Orbis",
+      "description": "Du regenerierst LP des Ziels.\nHeilpotenzial: 250\nZusatzeffekt: Regeneriert stetig LP des Ziels.\nHeilpotenzial: 250\nDauer: 15 Sekunden",
+      "description_macro": "Du regenerierst LP des Ziels.<br>Heilpotenzial: <if([gnum68==33],<if([gnum72>=85],250,200)>,200)><br>Zusatzeffekt: Regeneriert stetig LP des Ziels.<br>Heilpotenzial: <if([gnum68==33],<if([gnum72>=85],250,200)>,200)><br>Dauer: 15 Sekunden",
+      "unlock_level": 34,
+      "relations": [
+        "applied_by_description"
+      ],
+      "roles": [
+        "Healer"
+      ],
+      "jobs": [
+        {
+          "id": 33,
+          "name": "Astrologe",
+          "abbreviation": "AST",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 3601,
+      "name": "Aspektierter Helios",
+      "description": "Du regenerierst eigene LP und die von umstehenden Gruppenmitgliedern.\nHeilpotenzial: 250\nZusatzeffekt: Regeneriert stetig LP der Ziele.\nHeilpotenzial: 150\nDauer: 15 Sekunden",
+      "description_macro": "Du regenerierst eigene LP und die von umstehenden Grup<->pen<->mit<->gliedern.<br>Heilpotenzial: <if([gnum68==33],<if([gnum72>=85],250,200)>,200)><br>Zusatzeffekt: Regeneriert stetig LP der Ziele.<br>Heilpotenzial: <if([gnum68==33],<if([gnum72>=85],150,100)>,100)><br>Dauer: 15 Sekunden",
+      "unlock_level": 40,
+      "relations": [
+        "applied_by_description"
+      ],
+      "roles": [
+        "Healer"
+      ],
+      "jobs": [
+        {
+          "id": 33,
+          "name": "Astrologe",
+          "abbreviation": "AST",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 16151,
+      "name": "Aurora",
+      "description": "Du regenerierst stetig LP des Ziels.\nHeilpotenzial: 300\nDauer: 18 Sekunden\nMaximale Aufladungen: 2",
+      "description_macro": "Du regenerierst stetig LP des Ziels.<br>Heilpotenzial: 300<br>Dauer: 18 Sekunden<if([gnum68==37],<if([gnum72>=84],<br>Maximale Aufladungen: 2,)>,)>",
+      "unlock_level": 45,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Tank"
+      ],
+      "jobs": [
+        {
+          "id": 37,
+          "name": "Revolverklinge",
+          "abbreviation": "REV",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 16553,
+      "name": "Opposition",
+      "description": "Du regenerierst eigene LP und die von umstehenden Gruppenmitgliedern.\nHeilpotenzial: 200\nZusatzeffekt: Regeneriert stetig LP der Ziele.\nHeilpotenzial: 100\nDauer: 15 Sekunden",
+      "description_macro": "Du regenerierst eigene LP und die von umstehenden Grup<->pen<->mit<->gliedern.<br>Heilpotenzial: 200<br>Zusatzeffekt: Regeneriert stetig LP der Ziele.<br>Heilpotenzial: 100<br>Dauer: 15 Sekunden",
+      "unlock_level": 60,
+      "relations": [
+        "applied_by_description"
+      ],
+      "roles": [
+        "Healer"
+      ],
+      "jobs": [
+        {
+          "id": 33,
+          "name": "Astrologe",
+          "abbreviation": "AST",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 24298,
+      "name": "Kerachole",
+      "description": "Du verringerst den erlittenen Schaden von dir und den umstehenden Gruppenmitgliedern um 10 %.\nDauer: 15 Sekunden\nKann nicht zugleich mit Taurochole aktiv sein.\nZusatzeffekt: Regeneriert stetig LP der Ziele.\nHeilpotenzial: 100\nDauer: 15 Sekunden\nZusatzeffekt: Regeneriert 7 % der eigenen Maximal-MP.\nHumor-Kosten: 1",
+      "description_macro": "Du verringerst den erlittenen Schaden von dir und den umstehenden Grup<->pen<->mit<->gliedern um 10<nbsp>%.<br>Dauer: 15 Sekunden<br>Kann nicht zugleich mit <colortype(500)><edgecolortype(501)>Taurochole<edgecolortype(0)><colortype(0)> aktiv sein.<br><if([gnum68==40],<if([gnum72>=78],Zusatzeffekt: Regeneriert stetig LP der Ziele.<br>Heilpotenzial: 100<br>Dauer: 15 Sekunden<br>,)>,)>Zusatzeffekt: Regeneriert 7<nbsp>% der eigenen Maximal-MP.<br><colortype(506)><edgecolortype(507)>Humor<edgecolortype(0)><colortype(0)>-Kosten: 1",
+      "unlock_level": 50,
+      "relations": [
+        "applied_by_description"
+      ],
+      "roles": [
+        "Healer"
+      ],
+      "jobs": [
+        {
+          "id": 40,
+          "name": "Weiser",
+          "abbreviation": "WEI",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 37030,
+      "name": "Helios in Konjunktion",
+      "description": "Du regenerierst eigene LP und die von umstehenden Gruppenmitgliedern.\nHeilpotenzial: 250\nZusatzeffekt: Regeneriert stetig LP des Ziels.\nHeilpotenzial: 175\nDauer: 15 Sekunden",
+      "description_macro": "Du regenerierst eigene LP und die von umstehenden Grup<->pen<->mit<->gliedern.<br>Heilpotenzial: 250<br>Zusatzeffekt: Regeneriert stetig LP des Ziels.<br>Heilpotenzial: 175<br>Dauer: 15 Sekunden",
+      "unlock_level": 96,
+      "relations": [
+        "applied_by_description"
+      ],
+      "roles": [
+        "Healer"
+      ],
+      "jobs": [
+        {
+          "id": 33,
+          "name": "Astrologe",
+          "abbreviation": "AST",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 41636,
+      "name": "Prophezeien",
+      "description": "Du gewährst dir den Status Prophezeiung: Das Jüngste Gericht, Prophezeiung: Kosmischer Kollaps, Prophezeiung: Segen oder Prophezeiung: Sternenregen. Während eine Prophezeiung aktiv ist, kannst du das entsprechende Prophezeiungskommando ausführen.\nDas Jüngste Gericht: Führt eine magische Attacke auf umstehende Gegner aus und heilt dabei dich selbst und umstehende Gruppenmitglieder.\nKosmischer Kollaps: Führt eine magische Attacke auf umstehende Gegner aus und hält die Zeit an.\nSegen: Heilt dich und umstehende Gruppenmitglieder und gewährt einen stetigen Heileffekt.\nSternenregen: Führt eine magische Attacke auf dich selbst und umstehende Gegner aus.\nWenn der Status der momentanen Prophezeiung endet, ändert er sich zu einer anderen Prophezeiung. Wird nach einer bestimmten Zeit keine Prophezeiung wahr, ändert sich der Status zu Falsche Prophetie.\nWährend Falsche Prophetie aktiv ist, nimmst du stetig Schaden.\nAttacke-Wert: 50.000\nDauer: 30 Sekunden",
+      "description_macro": "Du gewährst dir den Status <colortype(506)><edgecolortype(507)>Prophezeiung: Das Jüngste Gericht<edgecolortype(0)><colortype(0)>, <colortype(506)><edgecolortype(507)>Prophezeiung: Kosmischer Kollaps<edgecolortype(0)><colortype(0)>, <colortype(506)><edgecolortype(507)>Prophezeiung: Segen<edgecolortype(0)><colortype(0)> oder <colortype(506)><edgecolortype(507)>Prophezeiung: Sternenregen<edgecolortype(0)><colortype(0)>. Während eine Prophezeiung aktiv ist, kannst du das entsprechende <colortype(502)><edgecolortype(503)>Prophezeiungskommando<edgecolortype(0)><colortype(0)> ausführen.<br><colortype(502)><edgecolortype(503)>Das Jüngste Gericht<edgecolortype(0)><colortype(0)>: Führt eine magische Attacke auf umstehende Gegner aus und heilt dabei dich selbst und umstehende Grup<->pen<->mit<->glieder.<br><colortype(502)><edgecolortype(503)>Kosmischer Kollaps<edgecolortype(0)><colortype(0)>: Führt eine magische Attacke auf umstehende Gegner aus und hält die Zeit an.<br><colortype(502)><edgecolortype(503)>Segen<edgecolortype(0)><colortype(0)>: Heilt dich und umstehende Grup<->pen<->mit<->glieder und gewährt einen stetigen Heileffekt.<br><colortype(502)><edgecolortype(503)>Sternenregen<edgecolortype(0)><colortype(0)>: Führt eine magische Attacke auf dich selbst und umstehende Gegner aus.<br>Wenn der Status der momentanen Prophezeiung endet, ändert er sich zu einer anderen Prophezeiung. Wird nach einer bestimmten Zeit keine Prophezeiung wahr, ändert sich der Status zu <colortype(506)><edgecolortype(507)>Falsche Prophetie<edgecolortype(0)><colortype(0)>.<br>Während <colortype(506)><edgecolortype(507)>Falsche Prophetie<edgecolortype(0)><colortype(0)> aktiv ist, nimmst du stetig Schaden.<br>Attacke-Wert: 50.000<br>Dauer: 30 Sekunden",
+      "unlock_level": 0,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Phantom Jobs"
+      ],
+      "jobs": [
+        {
+          "id": 11,
+          "name": "Phantom Phantom-Seher",
+          "abbreviation": "Ph-Seher",
+          "is_phantom": true
+        }
+      ]
+    }
+  ]
+}

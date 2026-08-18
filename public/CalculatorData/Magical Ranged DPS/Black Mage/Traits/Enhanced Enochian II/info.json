@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 322,
+  "name": "Enhanced Enochian II",
+  "description": "Improves Enochian's magic damage increase to 15%.",
+  "description_macro": "Improves <colortype(506)><edgecolortype(507)>Enochian<edgecolortype(0)><colortype(0)>'s magic damage increase to 15%.",
+  "effects": [
+    "Improves Enochian's magic damage increase to 15%."
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 25,
+    "name": "Black Mage",
+    "abbreviation": "BLM"
+  },
+  "unlock_level": 78,
+  "value": 10,
+  "icon": {
+    "id": 5365,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 26,
+  "source_class_job_id": 25
+}

@@ -1,0 +1,84 @@
+{
+  "kind": "ability",
+  "id": 49090,
+  "name": "Magi Vent blanc",
+  "description": "Restaure autant de PV qu'il vous en reste à vous et à vos équipiers alentour.",
+  "description_macro": "Restaure autant de PV qu'il vous en reste à vous et à vos équipiers alentour.",
+  "effects": [
+    "Restaure autant de PV qu'il vous en reste à vous et à vos équipiers alentour."
+  ],
+  "role": "Phantom Jobs",
+  "job": {
+    "id": 21,
+    "name": "Mage bleu fantôme",
+    "abbreviation": "Mage bleu fant."
+  },
+  "is_phantom_action": true,
+  "unlock_level": 3,
+  "icon": {
+    "id": 64598,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 2,
+    "name": "Sort"
+  },
+  "attack_type": {
+    "id": 5,
+    "name": "magie"
+  },
+  "timing": {
+    "cast_seconds": 1.5,
+    "recast_seconds": 150,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 87,
+    "additional_cooldown_group": 58,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 0,
+      "value": 0
+    },
+    "secondary": {
+      "type_id": 0,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": 0,
+    "effect_yalms": 15,
+    "cast_type": 2
+  },
+  "targeting": {
+    "self": true,
+    "party": false,
+    "alliance": false,
+    "hostile": false,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 7,
+    "behavior_type": 0,
+    "class_job_category_id": 142,
+    "source_class_job_id": 4294967295,
+    "is_role_action": false,
+    "is_player_action": false,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

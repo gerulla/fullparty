@@ -1,0 +1,68 @@
+{
+  "kind": "combat_status",
+  "id": 71,
+  "name": "Schutzwall",
+  "description": "Erlittener Schaden ist verringert.",
+  "effects": [
+    "Erlittener Schaden ist verringert."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 210152,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": -10
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 7531,
+      "name": "Schutzwall",
+      "description": "Du verringerst erlittenen Schaden um 20 %.\nZusatzeffekt: Heilmagie auf dich ist um 15 % erhöht.\nDauer: 20 Sekunden",
+      "description_macro": "Du verringerst erlittenen Schaden um 20 %.<br><if([gnum72>=94],<if([gnum68==1],Zusatzeffekt: Heilmagie auf dich ist um 15 % erhöht.<br>,<if([gnum68==19],Zusatzeffekt: Heilmagie auf dich ist um 15 % erhöht.<br>,<if([gnum68==3],Zusatzeffekt: Heilmagie auf dich ist um 15 % erhöht.<br>,<if([gnum68==21],Zusatzeffekt: Heilmagie auf dich ist um 15 % erhöht.<br>,<if([gnum68==32],Zusatzeffekt: Heilmagie auf dich ist um 15 % erhöht.<br>,<if([gnum68==37],Zusatzeffekt: Heilmagie auf dich ist um 15 % erhöht.<br>,)>)>)>)>)>)>,)>Dauer: 20 Sekunden",
+      "unlock_level": 8,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Tank"
+      ],
+      "jobs": [
+        {
+          "id": 19,
+          "name": "Paladin",
+          "abbreviation": "PLD",
+          "is_phantom": false
+        },
+        {
+          "id": 21,
+          "name": "Krieger",
+          "abbreviation": "KRG",
+          "is_phantom": false
+        },
+        {
+          "id": 32,
+          "name": "Dunkelritter",
+          "abbreviation": "DKR",
+          "is_phantom": false
+        },
+        {
+          "id": 37,
+          "name": "Revolverklinge",
+          "abbreviation": "REV",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

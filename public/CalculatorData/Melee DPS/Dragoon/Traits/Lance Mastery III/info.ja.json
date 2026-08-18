@@ -1,0 +1,27 @@
+{
+  "kind": "trait",
+  "id": 508,
+  "name": "ランスマスタリーIII",
+  "description": "竜眼雷電および竜眼蒼穹の実行に成功すると、自身に「天竜眼」を付与する。\u3000最大スタック数：2\nさらに、特定のアクションの威力を上昇させる。\n\nゲイルスコグルの威力：280\nナーストレンドの威力：720",
+  "description_macro": "竜眼雷電および竜眼蒼穹の実行に成功すると、自身に<colortype(500)><edgecolortype(501)>「天竜眼」<edgecolortype(0)><colortype(0)>を付与する。\u3000<colortype(504)><edgecolortype(505)>最大スタック数：<edgecolortype(0)><colortype(0)>2<br>さらに、特定のアクションの威力を上昇させる。<br><br><colortype(504)><edgecolortype(505)>ゲイルスコグルの威力：<edgecolortype(0)><colortype(0)>280<br><colortype(504)><edgecolortype(505)>ナーストレンドの威力：<edgecolortype(0)><colortype(0)>720",
+  "effects": [
+    "竜眼雷電および竜眼蒼穹の実行に成功すると、自身に「天竜眼」を付与する。\u3000最大スタック数：2",
+    "さらに、特定のアクションの威力を上昇させる。",
+    "ゲイルスコグルの威力：280",
+    "ナーストレンドの威力：720"
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 22,
+    "name": "竜騎士",
+    "abbreviation": "DRG"
+  },
+  "unlock_level": 90,
+  "value": 0,
+  "icon": {
+    "id": 5292,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 23,
+  "source_class_job_id": 22
+}

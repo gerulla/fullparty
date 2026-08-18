@@ -1,0 +1,71 @@
+{
+  "kind": "combat_status",
+  "id": 165,
+  "name": "Firestarter",
+  "description": "Next Fire III will require no time to cast and cost no MP.",
+  "effects": [
+    "Next Fire III will require no time to cast and cost no MP."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 210460,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": true,
+  "inflicted_by_actor": true,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 141,
+      "name": "Fire",
+      "description": "Deals fire damage with a potency of 180.\nAdditional Effect: Grants Astral Fire or removes Umbral Ice\nAdditional Effect: 40% chance to grant Firestarter\nFirestarter Effect: Next Fire III will cost no MP and have no cast time",
+      "description_macro": "Deals fire damage with a potency of 180.<br><colortype(504)><edgecolortype(505)>Additional Effect:<edgecolortype(0)><colortype(0)> Grants <colortype(506)><edgecolortype(507)>Astral Fire<edgecolortype(0)><colortype(0)> or removes <colortype(506)><edgecolortype(507)>Umbral Ice<edgecolortype(0)><colortype(0)><br><if([gnum72>=42],<if([gnum68==7],<colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>40% chance to grant <colortype(506)><edgecolortype(507)>Firestarter<edgecolortype(0)><colortype(0)><br><colortype(504)><edgecolortype(505)>Firestarter Effect: <edgecolortype(0)><colortype(0)>Next <colortype(500)><edgecolortype(501)>Fire III<edgecolortype(0)><colortype(0)> will cost no MP and have no cast time,<if([gnum68==25],<colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>40% chance to grant <colortype(506)><edgecolortype(507)>Firestarter<edgecolortype(0)><colortype(0)><br><colortype(504)><edgecolortype(505)>Firestarter Effect: <edgecolortype(0)><colortype(0)>Next <colortype(500)><edgecolortype(501)>Fire III<edgecolortype(0)><colortype(0)> will cost no MP and have no cast time,)>)>,)>",
+      "unlock_level": 2,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Magical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 25,
+          "name": "Black Mage",
+          "abbreviation": "BLM",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 25797,
+      "name": "Paradox",
+      "description": "Deals unaspected damage with a potency of 540.\nAstral Fire Bonus: Grants Firestarter\nFirestarter Effect: Next Fire III will require no time to cast and cost no MP\nUmbral Ice Bonus: Requires no MP to cast\nCan only be executed while under the effect of Paradox.\n\n※This action cannot be assigned to a hotbar.\n※Fire and Blizzard change to Paradox when requirements for execution are met.",
+      "description_macro": "Deals unaspected damage with a potency of 540.<br><colortype(504)><edgecolortype(505)>Astral Fire Bonus: <edgecolortype(0)><colortype(0)>Grants <colortype(506)><edgecolortype(507)>Firestarter<edgecolortype(0)><colortype(0)><br><colortype(504)><edgecolortype(505)>Firestarter Effect: <edgecolortype(0)><colortype(0)>Next <colortype(500)><edgecolortype(501)>Fire III<edgecolortype(0)><colortype(0)> will require no time to cast and cost no MP<br><colortype(504)><edgecolortype(505)>Umbral Ice Bonus: <edgecolortype(0)><colortype(0)>Requires no MP to cast<br>Can only be executed while under the effect of <colortype(506)><edgecolortype(507)>Paradox<edgecolortype(0)><colortype(0)>.<br><br>※This action cannot be assigned to a hotbar.<br>※<colortype(500)><edgecolortype(501)>Fire<edgecolortype(0)><colortype(0)> and <colortype(500)><edgecolortype(501)>Blizzard<edgecolortype(0)><colortype(0)> change to <colortype(500)><edgecolortype(501)>Paradox<edgecolortype(0)><colortype(0)> when requirements for execution are met.",
+      "unlock_level": 90,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Magical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 25,
+          "name": "Black Mage",
+          "abbreviation": "BLM",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

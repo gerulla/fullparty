@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 2076,
+  "name": "Confiteor",
+  "description": "Les dégâts infligés et la puissance des effets curatifs prodigués sont réduits.",
+  "effects": [
+    "Les dégâts infligés et la puissance des effets curatifs prodigués sont réduits."
+  ],
+  "classification": "debuff",
+  "icon": {
+    "id": 214873,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 2,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": true,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": -10
+  },
+  "class_job_category_id": 20,
+  "source_abilities": [
+    {
+      "id": 16459,
+      "name": "Confiteor",
+      "description": "Effectue une attaque magique neutre sur la cible et les ennemis autour.\nPuissance : 500\nPuissance avec Requiescat : 1000\nLa puissance est réduite de 60% au-delà du premier ennemi touché.\nEffet additionnel : restaure vos PV.\nPuissance : 400\nCondition : Confiteor préparé.",
+      "description_macro": "Effectue une attaque magique neutre sur la cible et les ennemis autour.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> <if([gnum68==19],<if([gnum72>=94],500,420)>,420)><br><colortype(506)><edgecolortype(507)>Puissance avec Requiescat<nbsp>:<edgecolortype(0)><colortype(0)> <if([gnum68==19],<if([gnum72>=94],1000,920)>,920)><br>La puissance est réduite de 60% au-delà du premier ennemi touché.<br><if([gnum68==19],<if([gnum72>=84],<colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> restaure vos PV.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> 400<br>,)>,)><colortype(506)><edgecolortype(507)>Condition<nbsp>:<edgecolortype(0)><colortype(0)> <colortype(500)><edgecolortype(501)>Confiteor préparé<edgecolortype(0)><colortype(0)>.",
+      "unlock_level": 80,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Tank"
+      ],
+      "jobs": [
+        {
+          "id": 19,
+          "name": "Paladin",
+          "abbreviation": "PLD",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

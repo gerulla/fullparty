@@ -1,0 +1,25 @@
+{
+  "kind": "trait",
+  "id": 245,
+  "name": "闘気充填アップII",
+  "description": "自身に「闘気」が付与される確率が100％に上昇する。\n発動条件：ウェポンスキルのクリティカルヒット時",
+  "description_macro": "自身に<colortype(500)><edgecolortype(501)>「闘気」<edgecolortype(0)><colortype(0)>が付与される確率が100％に上昇する。<br><colortype(504)><edgecolortype(505)>発動条件：<edgecolortype(0)><colortype(0)>ウェポンスキルのクリティカルヒット時",
+  "effects": [
+    "自身に「闘気」が付与される確率が100％に上昇する。",
+    "発動条件：ウェポンスキルのクリティカルヒット時"
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 20,
+    "name": "モンク",
+    "abbreviation": "MNK"
+  },
+  "unlock_level": 74,
+  "value": 100,
+  "icon": {
+    "id": 5238,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 21,
+  "source_class_job_id": 20
+}

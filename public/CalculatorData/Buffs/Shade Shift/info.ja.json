@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 488,
+  "name": "残影",
+  "description": "一定量のダメージを無効化する状態。",
+  "effects": [
+    "一定量のダメージを無効化する状態。"
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 210605,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 50,
+  "parameter": {
+    "effect": 0,
+    "modifier": 100
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 2241,
+      "name": "残影",
+      "description": "自身が受けるダメージを最大ＨＰの20％分まで無効化する。\u3000効果時間：20秒",
+      "description_macro": "自身が受けるダメージを最大ＨＰの20％分まで無効化する。\u3000<colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>20秒",
+      "unlock_level": 2,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 30,
+          "name": "忍者",
+          "abbreviation": "NIN",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

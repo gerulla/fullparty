@@ -1,0 +1,93 @@
+{
+  "kind": "ability",
+  "id": 2267,
+  "name": "Raiton",
+  "description": "Du führst eine blitzbasierte magische Attacke aus.\nAttacke-Wert: 740\nZusatzeffekt: Gewährt dir Raiju.\nMaximalstapelzahl: 3\nDauer: 30 Sekunden\nDer Effekt endet bei Ausführung einer Waffenfertigkeit.\nBedingung: Ninjutsu nach Handgestenfolge Ten→Chi oder Jin→Chi\nBei Ausführung wird der Reaktivierungs-Timer von Waffenfertigkeiten, Magie, anderen Mudras und Ninjutsu ausgelöst.\nBei erfüllter Bedingung ändert sich Ninjutsu zu diesem Kommando.\nKann nicht im Kommandomenü angelegt werden.",
+  "description_macro": "Du führst eine blitzbasierte magische Attacke aus.<br>Attacke-Wert: <if([gnum68==30],<if([gnum72>=94],740,650)>,650)><br><if([gnum68==30],<if([gnum72>=90],Zusatzeffekt: Gewährt dir <colortype(506)><edgecolortype(507)>Raiju<edgecolortype(0)><colortype(0)>.<br>Ma<->xi<->mal<->sta<->pel<->zahl: 3<br>Dauer: 30 Sekunden<br>Der Effekt endet bei Ausführung einer Waf<->fen<->fer<->tig<->keit.<br>,)>,)>Bedingung: <colortype(502)><edgecolortype(503)>Ninjutsu<edgecolortype(0)><colortype(0)> nach Handgestenfolge <colortype(502)><edgecolortype(503)>Ten→Chi<edgecolortype(0)><colortype(0)> oder <colortype(502)><edgecolortype(503)>Jin→Chi<edgecolortype(0)><colortype(0)><br>Bei Ausführung wird der Reaktivierungs-Timer von Waf<->fen<->fer<->tig<->kei<->ten, Magie, anderen Mudras und <colortype(502)><edgecolortype(503)>Ninjutsu<edgecolortype(0)><colortype(0)> ausgelöst.<br>Bei erfüllter Bedingung ändert sich <colortype(502)><edgecolortype(503)>Ninjutsu<edgecolortype(0)><colortype(0)> zu diesem Kommando.<br>Kann nicht im Kommandomenü angelegt werden.",
+  "effects": [
+    "Du führst eine blitzbasierte magische Attacke aus.",
+    "Attacke-Wert: 740",
+    "Zusatzeffekt: Gewährt dir Raiju.",
+    "Maximalstapelzahl: 3",
+    "Dauer: 30 Sekunden",
+    "Der Effekt endet bei Ausführung einer Waffenfertigkeit.",
+    "Bedingung: Ninjutsu nach Handgestenfolge Ten→Chi oder Jin→Chi",
+    "Bei Ausführung wird der Reaktivierungs-Timer von Waffenfertigkeiten, Magie, anderen Mudras und Ninjutsu ausgelöst.",
+    "Bei erfüllter Bedingung ändert sich Ninjutsu zu diesem Kommando.",
+    "Kann nicht im Kommandomenü angelegt werden."
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 30,
+    "name": "Ninja",
+    "abbreviation": "NIN"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 35,
+  "icon": {
+    "id": 2912,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 4,
+    "name": "Talent"
+  },
+  "attack_type": {
+    "id": 5,
+    "name": "魔法"
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 1.5,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 58,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 10,
+      "value": 496
+    },
+    "secondary": {
+      "type_id": 0,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": 20,
+    "effect_yalms": 0,
+    "cast_type": 1
+  },
+  "targeting": {
+    "self": false,
+    "party": false,
+    "alliance": false,
+    "hostile": true,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 5,
+    "behavior_type": 0,
+    "class_job_category_id": 92,
+    "source_class_job_id": 0,
+    "is_role_action": false,
+    "is_player_action": false,
+    "is_derived_action": true,
+    "equivalence_group": 0
+  }
+}

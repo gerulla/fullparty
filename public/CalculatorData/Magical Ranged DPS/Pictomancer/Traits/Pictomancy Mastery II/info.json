@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 676,
+  "name": "Pictomancy Mastery II",
+  "description": "Increases the potency of Fire in Red to 380, Aero in Green to 420, Water in Blue to 460, Fire II in Red to 150, Aero II in Green to 170, Water II in Blue to 190, Hammer Stamp to 500, Blizzard in Cyan to 680, Stone in Yellow to 720, Thunder in Magenta to 760, Blizzard II in Cyan to 330, Stone II in Yellow to 350, and Thunder II in Magenta to 370.",
+  "description_macro": "Increases the potency of <colortype(500)><edgecolortype(501)>Fire in Red<edgecolortype(0)><colortype(0)> to 380, <colortype(500)><edgecolortype(501)>Aero in Green<edgecolortype(0)><colortype(0)> to 420, <colortype(500)><edgecolortype(501)>Water in Blue<edgecolortype(0)><colortype(0)> to 460, <colortype(500)><edgecolortype(501)>Fire II in Red<edgecolortype(0)><colortype(0)> to 150, <colortype(500)><edgecolortype(501)>Aero II in Green<edgecolortype(0)><colortype(0)> to 170, <colortype(500)><edgecolortype(501)>Water II in Blue<edgecolortype(0)><colortype(0)> to 190, <colortype(500)><edgecolortype(501)>Hammer Stamp<edgecolortype(0)><colortype(0)> to 500, <colortype(500)><edgecolortype(501)>Blizzard in Cyan<edgecolortype(0)><colortype(0)> to 680, <colortype(500)><edgecolortype(501)>Stone in Yellow<edgecolortype(0)><colortype(0)> to 720, <colortype(500)><edgecolortype(501)>Thunder in Magenta<edgecolortype(0)><colortype(0)> to 760, <colortype(500)><edgecolortype(501)>Blizzard II in Cyan<edgecolortype(0)><colortype(0)> to 330, <colortype(500)><edgecolortype(501)>Stone II in Yellow<edgecolortype(0)><colortype(0)> to 350, and <colortype(500)><edgecolortype(501)>Thunder II in Magenta<edgecolortype(0)><colortype(0)> to 370.",
+  "effects": [
+    "Increases the potency of Fire in Red to 380, Aero in Green to 420, Water in Blue to 460, Fire II in Red to 150, Aero II in Green to 170, Water II in Blue to 190, Hammer Stamp to 500, Blizzard in Cyan to 680, Stone in Yellow to 720, Thunder in Magenta to 760, Blizzard II in Cyan to 330, Stone II in Yellow to 350, and Thunder II in Magenta to 370."
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 42,
+    "name": "Pictomancer",
+    "abbreviation": "PCT"
+  },
+  "unlock_level": 74,
+  "value": 0,
+  "icon": {
+    "id": 6830,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 197,
+  "source_class_job_id": 42
+}

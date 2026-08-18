@@ -1,0 +1,68 @@
+{
+  "kind": "combat_potion",
+  "id": 44160,
+  "name": "Philtre prodigieux d'intelligence I",
+  "description": "Ce philtre d'effet durable augmente l'intelligence.\nDurée d'effet : 30 secondes",
+  "description_macro": "Ce philtre d'effet durable augmente l'in<->tel<->li<->gence.<br>Durée d'effet<nbsp>: 30 secondes",
+  "effects": [
+    "Ce philtre d'effet durable augmente l'intelligence.",
+    "Durée d'effet : 30 secondes"
+  ],
+  "icon": {
+    "id": 20706,
+    "file": "icon.png"
+  },
+  "item_level": 690,
+  "can_be_high_quality": true,
+  "stack_size": 999,
+  "rarity": 1,
+  "category": {
+    "id": 44,
+    "name": "Médicament"
+  },
+  "use": {
+    "item_action_id": 2404,
+    "action_id": 846,
+    "usable_in_battle": true,
+    "minimum_level": 0,
+    "duration_seconds": 30,
+    "effect_row_id": 647,
+    "raw_data": [
+      49,
+      647,
+      30,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "raw_data_high_quality": [
+      49,
+      647,
+      30,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ]
+  },
+  "stats": [
+    {
+      "id": 4,
+      "name": "Intelligence",
+      "is_percentage": true,
+      "normal": {
+        "value": 8,
+        "cap": 280
+      },
+      "high_quality": {
+        "value": 10,
+        "cap": 351
+      }
+    }
+  ]
+}

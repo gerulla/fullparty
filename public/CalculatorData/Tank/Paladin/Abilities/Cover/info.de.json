@@ -1,0 +1,87 @@
+{
+  "kind": "ability",
+  "id": 27,
+  "name": "Deckung",
+  "description": "Du nimmst allen Schaden auf dich, der ein anderes Gruppenmitglied treffen sollte.\nDauer: 12 Sekunden\nEidbalken-Kosten: 50\nBedingung: Du darfst höchstens 20 Yalme entfernt sein. Bei manchen Attacken nicht wirksam.",
+  "description_macro": "Du nimmst allen Schaden auf dich, der ein anderes Grup<->pen<->mit<->glied treffen sollte.<br>Dauer: 12 Sekunden<br>Eidbalken-Kosten: 50<br>Bedingung: Du darfst höchstens 20 Yalme entfernt sein. Bei manchen Attacken nicht wirksam.",
+  "effects": [
+    "Du nimmst allen Schaden auf dich, der ein anderes Gruppenmitglied treffen sollte.",
+    "Dauer: 12 Sekunden",
+    "Eidbalken-Kosten: 50",
+    "Bedingung: Du darfst höchstens 20 Yalme entfernt sein. Bei manchen Attacken nicht wirksam."
+  ],
+  "role": "Tank",
+  "job": {
+    "id": 19,
+    "name": "Paladin",
+    "abbreviation": "PLD"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 45,
+  "icon": {
+    "id": 2501,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 4,
+    "name": "Talent"
+  },
+  "attack_type": {
+    "id": 0,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 120,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 21,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 41,
+      "value": 50
+    },
+    "secondary": {
+      "type_id": 0,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": 20,
+    "effect_yalms": 0,
+    "cast_type": 1
+  },
+  "targeting": {
+    "self": false,
+    "party": true,
+    "alliance": false,
+    "hostile": false,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": false
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 0,
+    "behavior_type": 0,
+    "class_job_category_id": 20,
+    "source_class_job_id": 19,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

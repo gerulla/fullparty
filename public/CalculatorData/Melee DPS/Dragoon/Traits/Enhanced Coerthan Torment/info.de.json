@@ -1,0 +1,27 @@
+{
+  "kind": "trait",
+  "id": 435,
+  "name": "Verbesserte Coerthische Folter",
+  "description": "Gewährt bei erfolgreicher Ausführung der Coerthische Folter-Kombo Zornesfeuer.\nDauer: 30 Sekunden\nDer Effekt endet bei Ausführung einer Waffenfertigkeit.\nSchicksalsdorn wird während der Wirkungsdauer zu Zornesfeuer.",
+  "description_macro": "Gewährt bei erfolgreicher Ausführung der <colortype(502)><edgecolortype(503)>Coerthische Folter<edgecolortype(0)><colortype(0)>-Kombo <colortype(506)><edgecolortype(507)>Zornesfeuer<edgecolortype(0)><colortype(0)>.<br>Dauer: 30 Sekunden<br>Der Effekt endet bei Ausführung einer Waf<->fen<->fer<->tig<->keit.<br><colortype(502)><edgecolortype(503)>Schicksalsdorn<edgecolortype(0)><colortype(0)> wird während der Wirkungsdauer zu <colortype(502)><edgecolortype(503)>Zornesfeuer<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Gewährt bei erfolgreicher Ausführung der Coerthische Folter-Kombo Zornesfeuer.",
+    "Dauer: 30 Sekunden",
+    "Der Effekt endet bei Ausführung einer Waffenfertigkeit.",
+    "Schicksalsdorn wird während der Wirkungsdauer zu Zornesfeuer."
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 22,
+    "name": "Dragoon",
+    "abbreviation": "DRG"
+  },
+  "unlock_level": 82,
+  "value": 0,
+  "icon": {
+    "id": 5290,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 23,
+  "source_class_job_id": 22
+}

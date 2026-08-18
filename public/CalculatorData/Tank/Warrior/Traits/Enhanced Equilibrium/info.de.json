@@ -1,0 +1,26 @@
+{
+  "kind": "trait",
+  "id": 420,
+  "name": "Verbessertes Äquilibrium",
+  "description": "Äquilibrium erhält einen LP-Regenerationseffekt über Zeit.\nHeilpotenzial: 200\nDauer: 15 Sekunden",
+  "description_macro": "<colortype(502)><edgecolortype(503)>Äquilibrium<edgecolortype(0)><colortype(0)> erhält einen LP-Regenerationseffekt über Zeit.<br>Heilpotenzial: 200<br>Dauer: 15 Sekunden",
+  "effects": [
+    "Äquilibrium erhält einen LP-Regenerationseffekt über Zeit.",
+    "Heilpotenzial: 200",
+    "Dauer: 15 Sekunden"
+  ],
+  "role": "Tank",
+  "job": {
+    "id": 21,
+    "name": "Krieger",
+    "abbreviation": "KRG"
+  },
+  "unlock_level": 84,
+  "value": 0,
+  "icon": {
+    "id": 5269,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 22,
+  "source_class_job_id": 21
+}

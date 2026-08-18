@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 448,
+  "name": "Verbesserte Lieder",
+  "description": "Spielst du die Ballade des Weisen, die Hymne der Krieger oder das Menuett des Wanderers, wird dir die Coda des entsprechenden Liedes gewährt.",
+  "description_macro": "Spielst du die <colortype(502)><edgecolortype(503)>Ballade des Weisen<edgecolortype(0)><colortype(0)>, die <colortype(502)><edgecolortype(503)>Hymne der Krieger<edgecolortype(0)><colortype(0)> oder das <colortype(502)><edgecolortype(503)>Menuett des Wanderers<edgecolortype(0)><colortype(0)>, wird dir die <colortype(506)><edgecolortype(507)>Coda<edgecolortype(0)><colortype(0)> des entsprechenden Liedes gewährt.",
+  "effects": [
+    "Spielst du die Ballade des Weisen, die Hymne der Krieger oder das Menuett des Wanderers, wird dir die Coda des entsprechenden Liedes gewährt."
+  ],
+  "role": "Physical Ranged DPS",
+  "job": {
+    "id": 23,
+    "name": "Barde",
+    "abbreviation": "BRD"
+  },
+  "unlock_level": 90,
+  "value": 0,
+  "icon": {
+    "id": 5320,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 24,
+  "source_class_job_id": 23
+}

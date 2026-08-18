@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 670,
+  "name": "Efficacité des actions augmentée",
+  "description": "Les soins et les dégâts de base des actions sont augmentés de 10%.",
+  "description_macro": "Les soins et les dégâts de base des actions sont augmentés de 10%.",
+  "effects": [
+    "Les soins et les dégâts de base des actions sont augmentés de 10%."
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 42,
+    "name": "Pictomancien",
+    "abbreviation": "PIC"
+  },
+  "unlock_level": 20,
+  "value": 10,
+  "icon": {
+    "id": 5185,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 197,
+  "source_class_job_id": 42
+}

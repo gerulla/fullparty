@@ -1,0 +1,71 @@
+{
+  "kind": "combat_status",
+  "id": 176,
+  "name": "Umbral Ice",
+  "description": "Aetherial balance of mind and spirit is leaning umbrally. Fire-aspected spells require less MP, but do less damage. MP regeneration has quickened.",
+  "effects": [
+    "Aetherial balance of mind and spirit is leaning umbrally. Fire-aspected spells require less MP, but do less damage. MP regeneration has quickened."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 210466,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": true,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 142,
+      "name": "Blizzard",
+      "description": "Deals ice damage with a potency of 180.\nAdditional Effect: Grants Umbral Ice or removes Astral Fire",
+      "description_macro": "Deals ice damage with a potency of 180.<br><colortype(504)><edgecolortype(505)>Additional Effect:<edgecolortype(0)><colortype(0)> Grants <colortype(506)><edgecolortype(507)>Umbral Ice<edgecolortype(0)><colortype(0)> or removes <colortype(506)><edgecolortype(507)>Astral Fire<edgecolortype(0)><colortype(0)>",
+      "unlock_level": 1,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Magical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 25,
+          "name": "Black Mage",
+          "abbreviation": "BLM",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 25793,
+      "name": "Blizzard II",
+      "description": "Deals ice damage with a potency of 80 to target and all enemies nearby it.\nAdditional Effect: Grants Umbral Ice III and removes Astral Fire",
+      "description_macro": "Deals ice damage with a potency of 80 to target and all enemies nearby it.<br><colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)><if([gnum72>=35],<if([gnum68==7],Grants <colortype(506)><edgecolortype(507)>Umbral Ice III<edgecolortype(0)><colortype(0)> and,<if([gnum68==25],Grants <colortype(506)><edgecolortype(507)>Umbral Ice III<edgecolortype(0)><colortype(0)> and,Grants <colortype(506)><edgecolortype(507)>Umbral Ice<edgecolortype(0)><colortype(0)> or)>)>,Grants <colortype(506)><edgecolortype(507)>Umbral Ice<edgecolortype(0)><colortype(0)> or)> removes <colortype(506)><edgecolortype(507)>Astral Fire<edgecolortype(0)><colortype(0)>",
+      "unlock_level": 12,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Magical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 25,
+          "name": "Black Mage",
+          "abbreviation": "BLM",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

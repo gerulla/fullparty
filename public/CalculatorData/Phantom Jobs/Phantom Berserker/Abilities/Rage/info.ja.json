@@ -1,0 +1,87 @@
+{
+  "kind": "ability",
+  "id": 41592,
+  "name": "あばれる",
+  "description": "一定時間、制御不能となり付近の敵に前方扇範囲物理攻撃を行う。\n威力：150（アイテムレベル依存威力）\n効果時間：10秒\nまた、一部の状態異常を無効化し、さらに一部を除くすべてのノックバックと引きよせを無効化する。",
+  "description_macro": "一定時間、制御不能となり付近の敵に前方扇範囲物理攻撃を行う。<br><colortype(504)><edgecolortype(505)>威力：<edgecolortype(0)><colortype(0)>150（アイテムレベル依存威力）<br><colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>10秒<br>また、一部の状態異常を無効化し、さらに一部を除くすべてのノックバックと引きよせを無効化する。<if([gnum108>=3],<br><colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)>自身に<colortype(500)><edgecolortype(501)>「肉斬骨断」<edgecolortype(0)><colortype(0)>を付与する。<br><colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>15秒<br><colortype(504)><edgecolortype(505)>肉斬骨断効果：<edgecolortype(0)><colortype(0)>効果中に受けたダメージが多いほど<colortype(500)><edgecolortype(501)>「いちげき」<edgecolortype(0)><colortype(0)>の威力が上昇する。,)>",
+  "effects": [
+    "一定時間、制御不能となり付近の敵に前方扇範囲物理攻撃を行う。",
+    "威力：150（アイテムレベル依存威力）",
+    "効果時間：10秒",
+    "また、一部の状態異常を無効化し、さらに一部を除くすべてのノックバックと引きよせを無効化する。"
+  ],
+  "role": "Phantom Jobs",
+  "job": {
+    "id": 2,
+    "name": "サポートバーサーカー",
+    "abbreviation": "Ph. Berserker"
+  },
+  "is_phantom_action": true,
+  "unlock_level": 1,
+  "icon": {
+    "id": 64766,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 4,
+    "name": "アビリティ"
+  },
+  "attack_type": {
+    "id": 0,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 60,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 85,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 0,
+      "value": 0
+    },
+    "secondary": {
+      "type_id": 0,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": 0,
+    "effect_yalms": 0,
+    "cast_type": 1
+  },
+  "targeting": {
+    "self": true,
+    "party": false,
+    "alliance": false,
+    "hostile": false,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": false,
+    "requires_facing_target": false
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 0,
+    "behavior_type": 0,
+    "class_job_category_id": 142,
+    "source_class_job_id": 4294967295,
+    "is_role_action": false,
+    "is_player_action": false,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

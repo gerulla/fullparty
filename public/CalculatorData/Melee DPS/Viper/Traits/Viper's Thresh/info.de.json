@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 527,
+  "name": "Verbesserte Otterngrube",
+  "description": "Nach erfolgreicher Ausführung von Blutige Otterngrube oder Flinke Otterngrube kannst du Nest der Zwillingsfänge und Nest der Zwillingsschuppen ausführen.",
+  "description_macro": "Nach erfolgreicher Ausführung von <colortype(502)><edgecolortype(503)>Blutige Otterngrube<edgecolortype(0)><colortype(0)> oder <colortype(502)><edgecolortype(503)>Flinke Otterngrube<edgecolortype(0)><colortype(0)> kannst du <colortype(502)><edgecolortype(503)>Nest der Zwillingsfänge<edgecolortype(0)><colortype(0)> und <colortype(502)><edgecolortype(503)>Nest der Zwillingsschuppen<edgecolortype(0)><colortype(0)> ausführen.",
+  "effects": [
+    "Nach erfolgreicher Ausführung von Blutige Otterngrube oder Flinke Otterngrube kannst du Nest der Zwillingsfänge und Nest der Zwillingsschuppen ausführen."
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 41,
+    "name": "Viper",
+    "abbreviation": "VPR"
+  },
+  "unlock_level": 80,
+  "value": 0,
+  "icon": {
+    "id": 6504,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 196,
+  "source_class_job_id": 41
+}

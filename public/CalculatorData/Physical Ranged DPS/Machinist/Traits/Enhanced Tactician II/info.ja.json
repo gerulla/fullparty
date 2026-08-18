@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 607,
+  "name": "タクティシャン効果アップII",
+  "description": "タクティシャンの効果量を15％に上昇させる。",
+  "description_macro": "タクティシャンの効果量を15％に上昇させる。",
+  "effects": [
+    "タクティシャンの効果量を15％に上昇させる。"
+  ],
+  "role": "Physical Ranged DPS",
+  "job": {
+    "id": 31,
+    "name": "機工士",
+    "abbreviation": "MCH"
+  },
+  "unlock_level": 98,
+  "value": 0,
+  "icon": {
+    "id": 6025,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 96,
+  "source_class_job_id": 31
+}

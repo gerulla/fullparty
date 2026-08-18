@@ -1,0 +1,51 @@
+{
+  "kind": "combat_status",
+  "id": 4274,
+  "name": "いやしのせんこく",
+  "description": "効果時間終了時、周囲に回復効果を発生させる。",
+  "effects": [
+    "効果時間終了時、周囲に回復効果を発生させる。"
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 229930,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": true,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 41643,
+      "name": "いやしのせんこく",
+      "description": "自身かパーティメンバーひとりを対象に、「いやしのせんこく」を付与する。\n効果時間：20秒\n効果時間が経過すると、対象とその周囲30m以内にいるパーティメンバーのＨＰを回復する。\n回復力：90000",
+      "description_macro": "自身かパーティメンバーひとりを対象に、<colortype(500)><edgecolortype(501)>「いやしのせんこく」<edgecolortype(0)><colortype(0)>を付与する。<br><colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>20秒<br>効果時間が経過すると、対象とその周囲30m以内にいるパーティメンバーのＨＰを回復する。<br><colortype(504)><edgecolortype(505)>回復力：<edgecolortype(0)><colortype(0)>90000",
+      "unlock_level": 0,
+      "relations": [
+        "granted_by_description",
+        "same_name"
+      ],
+      "roles": [
+        "Phantom Jobs"
+      ],
+      "jobs": [
+        {
+          "id": 11,
+          "name": "Phantom サポート予言士",
+          "abbreviation": "Ph. Oracle",
+          "is_phantom": true
+        }
+      ]
+    }
+  ]
+}

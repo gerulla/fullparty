@@ -1,0 +1,51 @@
+{
+  "kind": "combat_status",
+  "id": 4274,
+  "name": "Rajeunissement",
+  "description": "À la fin de l'effet, des PV sont récupérés par vous et les équipiers alentour.",
+  "effects": [
+    "À la fin de l'effet, des PV sont récupérés par vous et les équipiers alentour."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 229930,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": true,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 41643,
+      "name": "Rajeunissement",
+      "description": "Octroie à vous ou à l'équipier ciblé Rajeunissement.\nDurée : 20s\nRajeunissement : à la fin de l'effet, restaure les PV de la cible et des équipiers dans un rayon de 30 yalms.\nPuissance : 90 000",
+      "description_macro": "Octroie à vous ou à l'équipier ciblé <colortype(500)><edgecolortype(501)>Rajeunissement<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 20s<br><colortype(506)><edgecolortype(507)>Rajeunissement<nbsp>:<edgecolortype(0)><colortype(0)> à la fin de l'effet, restaure les PV de la cible et des équipiers dans un rayon de 30 yalms.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> 90 000",
+      "unlock_level": 0,
+      "relations": [
+        "granted_by_description",
+        "same_name"
+      ],
+      "roles": [
+        "Phantom Jobs"
+      ],
+      "jobs": [
+        {
+          "id": 11,
+          "name": "Phantom Devin fantôme",
+          "abbreviation": "Devin fant.",
+          "is_phantom": true
+        }
+      ]
+    }
+  ]
+}

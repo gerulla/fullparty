@@ -1,0 +1,92 @@
+{
+  "kind": "ability",
+  "id": 8324,
+  "name": "Détonation stellaire",
+  "description": "Déclenche l'effet de l'étoile terrestre placée au sol.\nAvec Domination terrestre : effectue une attaque magique neutre sur les ennemis dans l'aire d'effet.\nPuissance : 205\nEffet additionnel : restaure vos PV et ceux des équipiers dans l'aire d'effet.\nPuissance : 540\nAvec Domination stellaire : effectue une attaque magique neutre sur les ennemis dans l'aire d'effet.\nPuissance : 310\nEffet additionnel : restaure vos PV et ceux des équipiers dans l'aire d'effet.\nPuissance : 720",
+  "description_macro": "Déclenche l'effet de l'<colortype(500)><edgecolortype(501)>étoile terrestre<edgecolortype(0)><colortype(0)> placée au sol.<br><colortype(506)><edgecolortype(507)>Avec Domination terrestre<nbsp>:<edgecolortype(0)><colortype(0)> effectue une attaque magique neutre sur les ennemis dans l'aire d'effet.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> 205<br><colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> restaure vos PV et ceux des équipiers dans l'aire d'effet.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> 540<br><colortype(506)><edgecolortype(507)>Avec Domination stellaire<nbsp>:<edgecolortype(0)><colortype(0)> effectue une attaque magique neutre sur les ennemis dans l'aire d'effet.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> 310<br><colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> restaure vos PV et ceux des équipiers dans l'aire d'effet.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> 720",
+  "effects": [
+    "Déclenche l'effet de l'étoile terrestre placée au sol.",
+    "Avec Domination terrestre : effectue une attaque magique neutre sur les ennemis dans l'aire d'effet.",
+    "Puissance : 205",
+    "Effet additionnel : restaure vos PV et ceux des équipiers dans l'aire d'effet.",
+    "Puissance : 540",
+    "Avec Domination stellaire : effectue une attaque magique neutre sur les ennemis dans l'aire d'effet.",
+    "Puissance : 310",
+    "Effet additionnel : restaure vos PV et ceux des équipiers dans l'aire d'effet.",
+    "Puissance : 720"
+  ],
+  "role": "Healer",
+  "job": {
+    "id": 33,
+    "name": "Astromancien",
+    "abbreviation": "AST"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 62,
+  "icon": {
+    "id": 3144,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 4,
+    "name": "Aptitude"
+  },
+  "attack_type": {
+    "id": 0,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 3,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 9,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 0,
+      "value": 0
+    },
+    "secondary": {
+      "type_id": 40,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": 0,
+    "effect_yalms": 20,
+    "cast_type": 2
+  },
+  "targeting": {
+    "self": true,
+    "party": false,
+    "alliance": false,
+    "hostile": false,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 0,
+    "behavior_type": 0,
+    "class_job_category_id": 99,
+    "source_class_job_id": 0,
+    "is_role_action": false,
+    "is_player_action": false,
+    "is_derived_action": true,
+    "equivalence_group": 0
+  }
+}

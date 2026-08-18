@@ -1,0 +1,27 @@
+{
+  "kind": "trait",
+  "id": 508,
+  "name": "Maîtrise de la lance III",
+  "description": "Intensifie votre Fougue des dragons anciens lorsque vous utilisez Percée Raiden ou Fureur du dragon (maximum 2).\nEn outre, augmente la puissance des actions suivantes :\nGeirskögul : 280\nNaströnd : 720",
+  "description_macro": "Intensifie votre <colortype(500)><edgecolortype(501)>Fougue des dragons anciens<edgecolortype(0)><colortype(0)> lorsque vous utilisez <colortype(500)><edgecolortype(501)>Percée Raiden<edgecolortype(0)><colortype(0)> ou <colortype(500)><edgecolortype(501)>Fureur du dragon<edgecolortype(0)><colortype(0)> (maximum 2).<br>En outre, augmente la puissance des actions suivantes<nbsp>:<br><colortype(506)><edgecolortype(507)>Geirskögul<nbsp>:<edgecolortype(0)><colortype(0)> 280<br><colortype(506)><edgecolortype(507)>Naströnd<nbsp>:<edgecolortype(0)><colortype(0)> 720",
+  "effects": [
+    "Intensifie votre Fougue des dragons anciens lorsque vous utilisez Percée Raiden ou Fureur du dragon (maximum 2).",
+    "En outre, augmente la puissance des actions suivantes :",
+    "Geirskögul : 280",
+    "Naströnd : 720"
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 22,
+    "name": "Chevalier Dragon",
+    "abbreviation": "DRG"
+  },
+  "unlock_level": 90,
+  "value": 0,
+  "icon": {
+    "id": 5292,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 23,
+  "source_class_job_id": 22
+}

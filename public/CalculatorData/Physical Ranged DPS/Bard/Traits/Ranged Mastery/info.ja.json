@@ -1,0 +1,29 @@
+{
+  "kind": "trait",
+  "id": 668,
+  "name": "アクション威力アップ",
+  "description": "特定のアクションの威力を上昇させる。\n\nエンピリアルアローの威力：260\nサイドワインダーの威力：400\nリフルジェントアローの威力：280\nバーストショットの威力：220\nエイペックスアローの威力：140～700",
+  "description_macro": "特定のアクションの威力を上昇させる。<br><br><colortype(504)><edgecolortype(505)>エンピリアルアローの威力：<edgecolortype(0)><colortype(0)>260<br><colortype(504)><edgecolortype(505)>サイドワインダーの威力：<edgecolortype(0)><colortype(0)>400<br><colortype(504)><edgecolortype(505)>リフルジェントアローの威力：<edgecolortype(0)><colortype(0)>280<br><colortype(504)><edgecolortype(505)>バーストショットの威力：<edgecolortype(0)><colortype(0)>220<br><colortype(504)><edgecolortype(505)>エイペックスアローの威力：<edgecolortype(0)><colortype(0)>140～700",
+  "effects": [
+    "特定のアクションの威力を上昇させる。",
+    "エンピリアルアローの威力：260",
+    "サイドワインダーの威力：400",
+    "リフルジェントアローの威力：280",
+    "バーストショットの威力：220",
+    "エイペックスアローの威力：140～700"
+  ],
+  "role": "Physical Ranged DPS",
+  "job": {
+    "id": 23,
+    "name": "吟遊詩人",
+    "abbreviation": "BRD"
+  },
+  "unlock_level": 94,
+  "value": 0,
+  "icon": {
+    "id": 6806,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 24,
+  "source_class_job_id": 23
+}

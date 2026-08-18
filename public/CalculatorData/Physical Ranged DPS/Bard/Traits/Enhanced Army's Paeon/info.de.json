@@ -1,0 +1,31 @@
+{
+  "kind": "trait",
+  "id": 286,
+  "name": "Verbesserte Hymne der Krieger",
+  "description": "Ist Hymne der Krieger mit mindestens einem Virtuose aktiv, gewährt das Ausführen von Ballade des Weisen oder Menuett des Wanderers den Effekt Gunst des Schlachtensängers. Intervalle zwischen Auto-Attacken und die (Re-)Aktivierungszeiten von Waffenfertigkeiten und Magie sind verkürzt.\nDauer: 10 Sekunden\nWenn Hymne der Krieger ausläuft, ohne dass Ballade des Weisen oder Menuett des Wanderers ausgeführt werden, tritt Beistand des Schlachtensängers in Kraft, sofern mindestens ein Virtuose vorhanden ist.\nDauer: 30 Sekunden\nBei 1 Virtuose: 1 %\nBei 2 Virtuose: 2 %\nBei 3 Virtuose: 4 %\nBei 4 Virtuose: 12 %",
+  "description_macro": "Ist <colortype(506)><edgecolortype(507)>Hymne der Krieger<edgecolortype(0)><colortype(0)> mit mindestens einem Virtuose aktiv, gewährt das Ausführen von <colortype(502)><edgecolortype(503)>Ballade des Weisen<edgecolortype(0)><colortype(0)> oder <colortype(502)><edgecolortype(503)>Menuett des Wanderers<edgecolortype(0)><colortype(0)> den Effekt <colortype(506)><edgecolortype(507)>Gunst des Schlachtensängers<edgecolortype(0)><colortype(0)>. Intervalle zwischen Auto-Attacken und die (Re-)Ak<->ti<->vie<->rungs<->zei<->ten von Waf<->fen<->fer<->tig<->kei<->ten und Magie sind verkürzt.<br>Dauer: 10 Sekunden<br>Wenn <colortype(506)><edgecolortype(507)>Hymne der Krieger<edgecolortype(0)><colortype(0)> ausläuft, ohne dass <colortype(502)><edgecolortype(503)>Ballade des Weisen<edgecolortype(0)><colortype(0)> oder <colortype(502)><edgecolortype(503)>Menuett des Wanderers<edgecolortype(0)><colortype(0)> ausgeführt werden, tritt <colortype(506)><edgecolortype(507)>Beistand des Schlachtensängers<edgecolortype(0)><colortype(0)> in Kraft, sofern mindestens ein Virtuose vorhanden ist.<br>Dauer: 30 Sekunden<br>Bei 1 Virtuose: 1 %<br>Bei 2 Virtuose: 2 %<br>Bei 3 Virtuose: 4 %<br>Bei 4 Virtuose: 12 %",
+  "effects": [
+    "Ist Hymne der Krieger mit mindestens einem Virtuose aktiv, gewährt das Ausführen von Ballade des Weisen oder Menuett des Wanderers den Effekt Gunst des Schlachtensängers. Intervalle zwischen Auto-Attacken und die (Re-)Aktivierungszeiten von Waffenfertigkeiten und Magie sind verkürzt.",
+    "Dauer: 10 Sekunden",
+    "Wenn Hymne der Krieger ausläuft, ohne dass Ballade des Weisen oder Menuett des Wanderers ausgeführt werden, tritt Beistand des Schlachtensängers in Kraft, sofern mindestens ein Virtuose vorhanden ist.",
+    "Dauer: 30 Sekunden",
+    "Bei 1 Virtuose: 1 %",
+    "Bei 2 Virtuose: 2 %",
+    "Bei 3 Virtuose: 4 %",
+    "Bei 4 Virtuose: 12 %"
+  ],
+  "role": "Physical Ranged DPS",
+  "job": {
+    "id": 23,
+    "name": "Barde",
+    "abbreviation": "BRD"
+  },
+  "unlock_level": 78,
+  "value": 0,
+  "icon": {
+    "id": 5314,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 24,
+  "source_class_job_id": 23
+}

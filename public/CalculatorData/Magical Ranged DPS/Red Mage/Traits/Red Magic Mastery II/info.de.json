@@ -1,0 +1,25 @@
+{
+  "kind": "trait",
+  "id": 483,
+  "name": "Meister der Rotmagie II",
+  "description": "Verbessert Erzblitz zu Erzblitzga und Erzwind zu Erzwindga.\nBei 3 Manasplittern ändert sich Erzblitzga zu Erzflare und Erzwindga zu Erz-Sanctus.",
+  "description_macro": "Verbessert <colortype(502)><edgecolortype(503)>Erzblitz<edgecolortype(0)><colortype(0)> zu <colortype(502)><edgecolortype(503)>Erzblitzga<edgecolortype(0)><colortype(0)> und <colortype(502)><edgecolortype(503)>Erzwind<edgecolortype(0)><colortype(0)> zu <colortype(502)><edgecolortype(503)>Erzwindga<edgecolortype(0)><colortype(0)>.<br>Bei 3 <colortype(506)><edgecolortype(507)>Manasplittern<edgecolortype(0)><colortype(0)> ändert sich <colortype(502)><edgecolortype(503)>Erzblitzga<edgecolortype(0)><colortype(0)> zu <colortype(502)><edgecolortype(503)>Erzflare<edgecolortype(0)><colortype(0)> und <colortype(502)><edgecolortype(503)>Erzwindga<edgecolortype(0)><colortype(0)> zu <colortype(502)><edgecolortype(503)>Erz-Sanctus<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Verbessert Erzblitz zu Erzblitzga und Erzwind zu Erzwindga.",
+    "Bei 3 Manasplittern ändert sich Erzblitzga zu Erzflare und Erzwindga zu Erz-Sanctus."
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 35,
+    "name": "Rotmagier",
+    "abbreviation": "RMA"
+  },
+  "unlock_level": 82,
+  "value": 0,
+  "icon": {
+    "id": 6209,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 112,
+  "source_class_job_id": 35
+}

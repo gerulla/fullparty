@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 4105,
+  "name": "Pikto-Bommel",
+  "description": "Muse mit Bommel kann ausgeführt werden.",
+  "effects": [
+    "Muse mit Bommel kann ausgeführt werden."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 214701,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": true,
+  "is_permanent": true,
+  "inflicted_by_actor": true,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 197,
+  "source_abilities": [
+    {
+      "id": 34664,
+      "name": "Pikto-Bommel",
+      "description": "Du malst einen piktomantischen Bommel.\nAußerhalb des Kampfes kann der Zauber sofort gewirkt werden.\nBedingung: Leere Kreaturen-Leinwand\nEigener Reaktivierungs-Timer, der nicht von Statuseffekten oder Ausrüstung beeinflusst wird. Bei Ausführung wird der Reaktivierungs-Timer dieses Kommandos auf alle anderen Waffenfertigkeiten und Magie angewendet.\nBei erfüllter Bedingung ändert sich Pikto-Kreatur zu diesem Kommando.\nKann nicht im Kommandomenü angelegt werden.",
+      "description_macro": "Du malst einen piktomantischen <colortype(506)><edgecolortype(507)>Bommel<edgecolortype(0)><colortype(0)>.<br>Außerhalb des Kampfes kann der Zauber sofort gewirkt werden.<br>Bedingung: Leere <colortype(506)><edgecolortype(507)>Kreaturen-Leinwand<edgecolortype(0)><colortype(0)><br>Eigener Reaktivierungs-Timer, der nicht von Statuseffekten oder Ausrüstung beeinflusst wird. Bei Ausführung wird der Reaktivierungs-Timer dieses Kommandos auf alle anderen Waf<->fen<->fer<->tig<->kei<->ten und Magie angewendet.<br>Bei erfüllter Bedingung ändert sich <colortype(502)><edgecolortype(503)>Pikto-Kreatur<edgecolortype(0)><colortype(0)> zu diesem Kommando.<br>Kann nicht im Kommandomenü angelegt werden.",
+      "unlock_level": 30,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Magical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 42,
+          "name": "Piktomant",
+          "abbreviation": "PKT",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

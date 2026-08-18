@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 1302,
+  "name": "Heiliger Boden",
+  "description": "Immun gegen fast alle Attacken.",
+  "effects": [
+    "Immun gegen fast alle Attacken."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 212504,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": true,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 20,
+  "source_abilities": [
+    {
+      "id": 30,
+      "name": "Heiliger Boden",
+      "description": "Du bist gegen fast alle Attacken unverwundbar.\nDauer: 10 Sekunden",
+      "description_macro": "Du bist gegen fast alle Attacken unverwundbar.<br>Dauer: 10 Sekunden",
+      "unlock_level": 50,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Tank"
+      ],
+      "jobs": [
+        {
+          "id": 19,
+          "name": "Paladin",
+          "abbreviation": "PLD",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,91 @@
+{
+  "kind": "ability",
+  "id": 7521,
+  "name": "Manafication",
+  "description": "Temporarily increases the ranges of Enchanted Riposte, Enchanted Zwerchhau, and Enchanted Redoublement to 25 yalms.\nDuration: 30s\nAdditional Effect: Grants 3 stacks of Magicked Swordplay, each stack allowing the use of Enchanted Riposte, Enchanted Zwerchhau, Enchanted Redoublement, Enchanted Moulinet, Enchanted Moulinet Deux, or Enchanted Moulinet Trois without cost\nDuration: 30s\nAdditional Effect: Grants Prefulgence Ready\nDuration: 30s\nAll combos are canceled upon execution of Manafication.\nCan only be executed while in combat.",
+  "description_macro": "Temporarily increases the ranges of <colortype(500)><edgecolortype(501)>Enchanted Riposte<edgecolortype(0)><colortype(0)>, <colortype(500)><edgecolortype(501)>Enchanted Zwerchhau<edgecolortype(0)><colortype(0)>, and <colortype(500)><edgecolortype(501)>Enchanted Redoublement<edgecolortype(0)><colortype(0)> to 25 yalms.<br><colortype(504)><edgecolortype(505)>Duration:<edgecolortype(0)><colortype(0)> 30s<br><colortype(504)><edgecolortype(505)>Additional Effect:<edgecolortype(0)><colortype(0)> Grants 3 stacks of <colortype(506)><edgecolortype(507)>Magicked Swordplay<edgecolortype(0)><colortype(0)>, each stack allowing the use of <colortype(500)><edgecolortype(501)>Enchanted Riposte<edgecolortype(0)><colortype(0)>, <colortype(500)><edgecolortype(501)>Enchanted Zwerchhau<edgecolortype(0)><colortype(0)>, <colortype(500)><edgecolortype(501)>Enchanted Redoublement<edgecolortype(0)><colortype(0)>, <colortype(500)><edgecolortype(501)>Enchanted Moulinet<edgecolortype(0)><colortype(0)>, <colortype(500)><edgecolortype(501)>Enchanted Moulinet Deux<edgecolortype(0)><colortype(0)>, or <colortype(500)><edgecolortype(501)>Enchanted Moulinet Trois<edgecolortype(0)><colortype(0)> without cost<br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>30s<br><if([gnum68==35],<if([gnum72>=100],<colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>Grants <colortype(506)><edgecolortype(507)>Prefulgence Ready<edgecolortype(0)><colortype(0)><br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>30s<br>,)>,)>All combos are canceled upon execution of <colortype(500)><edgecolortype(501)>Manafication<edgecolortype(0)><colortype(0)>.<br>Can only be executed while in combat.",
+  "effects": [
+    "Temporarily increases the ranges of Enchanted Riposte, Enchanted Zwerchhau, and Enchanted Redoublement to 25 yalms.",
+    "Duration: 30s",
+    "Additional Effect: Grants 3 stacks of Magicked Swordplay, each stack allowing the use of Enchanted Riposte, Enchanted Zwerchhau, Enchanted Redoublement, Enchanted Moulinet, Enchanted Moulinet Deux, or Enchanted Moulinet Trois without cost",
+    "Duration: 30s",
+    "Additional Effect: Grants Prefulgence Ready",
+    "Duration: 30s",
+    "All combos are canceled upon execution of Manafication.",
+    "Can only be executed while in combat."
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 35,
+    "name": "Red Mage",
+    "abbreviation": "RDM"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 60,
+  "icon": {
+    "id": 3219,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 4,
+    "name": "Ability"
+  },
+  "attack_type": {
+    "id": 0,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 110,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 22,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 0,
+      "value": 0
+    },
+    "secondary": {
+      "type_id": 42,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": 0,
+    "effect_yalms": 0,
+    "cast_type": 1
+  },
+  "targeting": {
+    "self": true,
+    "party": false,
+    "alliance": false,
+    "hostile": false,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": false
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 0,
+    "behavior_type": 0,
+    "class_job_category_id": 112,
+    "source_class_job_id": 35,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

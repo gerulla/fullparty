@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 739,
+  "name": "Refugium",
+  "description": "Hält eine Zone aufrecht, in der Gruppenmitglieder geheilt werden.",
+  "effects": [
+    "Hält eine Zone aufrecht, in der Gruppenmitglieder geheilt werden."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 212629,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": true,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 50
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 3569,
+      "name": "Refugium",
+      "description": "Du schaffst eine Zone, in der du selbst und Gruppenmitglieder während der Wirkungsdauer stetig LP regenerieren.\nHeilpotenzial: 100\nDauer: 24 Sekunden\nZusatzeffekt: In der Zone LP-Regenerationseffekte bei dir und Gruppenmitgliedern um 10 % verstärkt",
+      "description_macro": "Du schaffst eine Zone, in der du selbst und Grup<->pen<->mit<->glieder während der Wirkungsdauer stetig LP regenerieren.<br>Heilpotenzial: 100<br>Dauer: 24 Sekunden<if([gnum68==24],<if([gnum72>=78],<br>Zusatzeffekt: In der Zone LP-Regenerationseffekte bei dir und Grup<->pen<->mit<->gliedern um 10<nbsp>% verstärkt,)>,)>",
+      "unlock_level": 52,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Healer"
+      ],
+      "jobs": [
+        {
+          "id": 24,
+          "name": "Weißmagier",
+          "abbreviation": "WMA",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

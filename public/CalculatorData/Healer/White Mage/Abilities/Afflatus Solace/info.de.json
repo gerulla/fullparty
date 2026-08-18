@@ -1,0 +1,87 @@
+{
+  "kind": "ability",
+  "id": 16531,
+  "name": "Afflatus solatii",
+  "description": "Du regenerierst beim Ziel LP.\nHeilpotenzial: 800\nZusatzeffekt: Öffnet die Blutlilie um eine Stufe.\nBedingung: Lilie",
+  "description_macro": "Du regenerierst beim Ziel LP.<br>Heilpotenzial: <if([gnum68==24],<if([gnum72>=85],800,700)>,700)><br><if([gnum68==24],<if([gnum72>=74],Zusatzeffekt: Öffnet die <colortype(506)><edgecolortype(507)>Blutlilie<edgecolortype(0)><colortype(0)> um eine Stufe.<br>,)>,)>Bedingung: <colortype(506)><edgecolortype(507)>Lilie<edgecolortype(0)><colortype(0)>",
+  "effects": [
+    "Du regenerierst beim Ziel LP.",
+    "Heilpotenzial: 800",
+    "Zusatzeffekt: Öffnet die Blutlilie um eine Stufe.",
+    "Bedingung: Lilie"
+  ],
+  "role": "Healer",
+  "job": {
+    "id": 24,
+    "name": "Weißmagier",
+    "abbreviation": "WMA"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 52,
+  "icon": {
+    "id": 2640,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 2,
+    "name": "Zauber"
+  },
+  "attack_type": {
+    "id": 5,
+    "name": "魔法"
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 2.5,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 58,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 57,
+      "value": 1
+    },
+    "secondary": {
+      "type_id": 0,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": 30,
+    "effect_yalms": 0,
+    "cast_type": 1
+  },
+  "targeting": {
+    "self": true,
+    "party": true,
+    "alliance": true,
+    "hostile": false,
+    "ally": true,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": false
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": false
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 7,
+    "behavior_type": 0,
+    "class_job_category_id": 25,
+    "source_class_job_id": 24,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

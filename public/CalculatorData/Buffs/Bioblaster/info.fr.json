@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 1866,
+  "name": "Lance-toxine",
+  "description": "Des dégâts périodiques sont subis.",
+  "effects": [
+    "Des dégâts périodiques sont subis."
+  ],
+  "classification": "debuff",
+  "icon": {
+    "id": 213020,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 2,
+  "target_type": 0,
+  "can_dispel": true,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 10,
+  "parameter": {
+    "effect": 0,
+    "modifier": 10
+  },
+  "class_job_category_id": 96,
+  "source_abilities": [
+    {
+      "id": 16499,
+      "name": "Lance-toxine",
+      "description": "Effectue une attaque physique dans une zone en éventail vers la cible.\nPuissance : 50\nEffet additionnel : dégâts périodiques.\nPuissance : 50 Durée : 15s\nMaximum de charges : 2\nCette technique d'arme a un temps de recharge indépendant partagé avec celui de Foreuse.",
+      "description_macro": "Effectue une attaque physique dans une zone en éventail vers la cible.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> 50<br><colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> dégâts périodiques.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> 50 <colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 15s<br><if([gnum68==31],<if([gnum72>=94],<colortype(506)><edgecolortype(507)>Maximum de charges<nbsp>:<edgecolortype(0)><colortype(0)> 2<br>,)>,)>Cette technique d'arme a un temps de recharge indépendant partagé avec celui de <colortype(500)><edgecolortype(501)>Foreuse<edgecolortype(0)><colortype(0)>.",
+      "unlock_level": 72,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Physical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 31,
+          "name": "Machiniste",
+          "abbreviation": "MCH",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

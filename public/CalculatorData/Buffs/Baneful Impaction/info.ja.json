@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 3883,
+  "name": "埋伏の毒",
+  "description": "ＨＰが徐々に失われる状態。",
+  "effects": [
+    "ＨＰが徐々に失われる状態。"
+  ],
+  "classification": "debuff",
+  "icon": {
+    "id": 212819,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 2,
+  "target_type": 0,
+  "can_dispel": true,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 10,
+  "parameter": {
+    "effect": 0,
+    "modifier": 5
+  },
+  "class_job_category_id": 29,
+  "source_abilities": [
+    {
+      "id": 37012,
+      "name": "埋伏の毒",
+      "description": "対象とその周囲の敵に無属性の継続ダメージを付与する。\n威力：140\u3000効果時間：15秒\n発動条件：「埋伏の毒実行可」効果中",
+      "description_macro": "対象とその周囲の敵に無属性の継続ダメージを付与する。<br><colortype(504)><edgecolortype(505)>威力：<edgecolortype(0)><colortype(0)>140\u3000<colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>15秒<br><colortype(504)><edgecolortype(505)>発動条件：<edgecolortype(0)><colortype(0)><colortype(500)><edgecolortype(501)>「埋伏の毒実行可」<edgecolortype(0)><colortype(0)>効果中",
+      "unlock_level": 92,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Healer"
+      ],
+      "jobs": [
+        {
+          "id": 28,
+          "name": "学者",
+          "abbreviation": "SCH",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

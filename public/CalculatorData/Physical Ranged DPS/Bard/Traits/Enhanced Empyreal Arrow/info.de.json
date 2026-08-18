@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 169,
+  "name": "Verbesserter Empyreischer Pfeil",
+  "description": "Garantiert das Auslösen des Zusatzeffekts von Ballade des Weisen, Hymne der Krieger und Menuett des Wanderers, wenn Empyreischer Pfeil ein Ziel trifft.",
+  "description_macro": "Garantiert das Auslösen des Zusatzeffekts von <colortype(502)><edgecolortype(503)>Ballade des Weisen<edgecolortype(0)><colortype(0)>, <colortype(502)><edgecolortype(503)>Hymne der Krieger<edgecolortype(0)><colortype(0)> und <colortype(502)><edgecolortype(503)>Menuett des Wanderers<edgecolortype(0)><colortype(0)>, wenn <colortype(502)><edgecolortype(503)>Empyreischer Pfeil<edgecolortype(0)><colortype(0)> ein Ziel trifft.",
+  "effects": [
+    "Garantiert das Auslösen des Zusatzeffekts von Ballade des Weisen, Hymne der Krieger und Menuett des Wanderers, wenn Empyreischer Pfeil ein Ziel trifft."
+  ],
+  "role": "Physical Ranged DPS",
+  "job": {
+    "id": 23,
+    "name": "Barde",
+    "abbreviation": "BRD"
+  },
+  "unlock_level": 68,
+  "value": 0,
+  "icon": {
+    "id": 5310,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 24,
+  "source_class_job_id": 23
+}

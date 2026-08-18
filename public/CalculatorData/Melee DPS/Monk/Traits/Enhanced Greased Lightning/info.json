@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 365,
+  "name": "Enhanced Greased Lightning",
+  "description": "Reduces weaponskill cast time and recast time, spell cast time and recast time, and auto-attack delay by 10%.",
+  "description_macro": "Reduces weaponskill cast time and recast time, spell cast time and recast time, and auto-attack delay by 10%.",
+  "effects": [
+    "Reduces weaponskill cast time and recast time, spell cast time and recast time, and auto-attack delay by 10%."
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 20,
+    "name": "Monk",
+    "abbreviation": "MNK"
+  },
+  "unlock_level": 20,
+  "value": 0,
+  "icon": {
+    "id": 5230,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 41,
+  "source_class_job_id": 2
+}

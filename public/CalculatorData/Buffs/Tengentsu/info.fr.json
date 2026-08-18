@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 3853,
+  "name": "Tengentsû",
+  "description": "Les dégâts reçus sont réduits.",
+  "effects": [
+    "Les dégâts reçus sont réduits."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 213316,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": -10
+  },
+  "class_job_category_id": 111,
+  "source_abilities": [
+    {
+      "id": 36962,
+      "name": "Tengentsû",
+      "description": "Réduit de 10% les dégâts de la prochaine attaque subie.\nDurée : 4s\nEffet additionnel : remplit la Jauge de Kenki de 10 si des dégâts sont subis et devient Tengentsû : Sei.\nDurée : 9s\nTengentsû : Sei : réduit de 10% vos dégâts subis et restaure périodiquement vos PV.\nPuissance : 200",
+      "description_macro": "Réduit de 10% les dégâts de la prochaine attaque subie.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 4s<br><colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> remplit la <colortype(502)><edgecolortype(503)>Jauge de Kenki<edgecolortype(0)><colortype(0)> de 10 si des dégâts sont subis et devient <colortype(500)><edgecolortype(501)>Tengentsû<nbsp>: Sei<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 9s<br><colortype(506)><edgecolortype(507)>Tengentsû<nbsp>: Sei<nbsp>:<edgecolortype(0)><colortype(0)> réduit de 10% vos dégâts subis et restaure périodiquement vos PV.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> 200",
+      "unlock_level": 82,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 34,
+          "name": "Samouraï",
+          "abbreviation": "SAM",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

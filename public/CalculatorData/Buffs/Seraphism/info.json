@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 3884,
+  "name": "Seraphism",
+  "description": "Self and nearby party members are regenerating HP over time.",
+  "effects": [
+    "Self and nearby party members are regenerating HP over time."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 212820,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 50,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 29,
+  "source_abilities": [
+    {
+      "id": 37014,
+      "name": "Seraphism",
+      "description": "Gradually restores the HP of self and all party members within a radius of 50 yalms.\nCure Potency: 100\nAdditional Effect: Changes Adloquium to Manifestation and Concitation to Accession\nAdditional Effect: Resets Emergency Tactics recast timer and reduces its recast timer to 1s\nDuration: 20s\nEffect cannot be stacked with Dissipation.\nCan only be executed while a faerie or Seraph is summoned and you are in combat.",
+      "description_macro": "Gradually restores the HP of self and all party members within a radius of 50 yalms.<br><colortype(504)><edgecolortype(505)>Cure Potency:<edgecolortype(0)><colortype(0)> 100<br><colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>Changes <colortype(500)><edgecolortype(501)>Adloquium<edgecolortype(0)><colortype(0)> to <colortype(500)><edgecolortype(501)>Manifestation<edgecolortype(0)><colortype(0)> and <colortype(500)><edgecolortype(501)>Concitation<edgecolortype(0)><colortype(0)> to <colortype(500)><edgecolortype(501)>Accession<edgecolortype(0)><colortype(0)><br><colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>Resets <colortype(500)><edgecolortype(501)>Emergency Tactics<edgecolortype(0)><colortype(0)> recast timer and reduces its recast timer to 1s<br><colortype(504)><edgecolortype(505)>Duration:<edgecolortype(0)><colortype(0)> 20s<br>Effect cannot be stacked with <colortype(506)><edgecolortype(507)>Dissipation<edgecolortype(0)><colortype(0)>.<br>Can only be executed while a faerie or Seraph is summoned and you are in combat.",
+      "unlock_level": 100,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Healer"
+      ],
+      "jobs": [
+        {
+          "id": 28,
+          "name": "Scholar",
+          "abbreviation": "SCH",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 2707,
+  "name": "Magiebarriere",
+  "description": "Erlittener Magieschaden ist verringert und eigene LP-Regeneration durch Heilmagie ist erhöht.",
+  "effects": [
+    "Erlittener Magieschaden ist verringert und eigene LP-Regeneration durch Heilmagie ist erhöht."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 213408,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": -10
+  },
+  "class_job_category_id": 112,
+  "source_abilities": [
+    {
+      "id": 25857,
+      "name": "Magiebarriere",
+      "description": "Du verringerst den eigenen erlittenen magischen Schaden und den der umstehenden Gruppenmitglieder um 10 % und erhöhst erhaltene Heileffekte um 5 %.\nDauer: 10 Sekunden",
+      "description_macro": "Du verringerst den eigenen erlittenen magischen Schaden und den der umstehenden Grup<->pen<->mit<->glieder um 10<nbsp>% und erhöhst erhaltene Heileffekte um 5<nbsp>%.<br>Dauer: 10 Sekunden",
+      "unlock_level": 86,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Magical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 35,
+          "name": "Rotmagier",
+          "abbreviation": "RMA",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 196,
+  "name": "Secret des Lys",
+  "description": "Fait fleurir un Lys (maximum 3) sur votre Canne des soins toutes les 20 secondes lorsque vous êtes en combat.",
+  "description_macro": "Fait fleurir un <colortype(500)><edgecolortype(501)>Lys<edgecolortype(0)><colortype(0)> (maximum 3) sur votre <colortype(502)><edgecolortype(503)>Canne des soins<edgecolortype(0)><colortype(0)> toutes les 20 secondes lorsque vous êtes en combat.",
+  "effects": [
+    "Fait fleurir un Lys (maximum 3) sur votre Canne des soins toutes les 20 secondes lorsque vous êtes en combat."
+  ],
+  "role": "Healer",
+  "job": {
+    "id": 24,
+    "name": "Mage Blanc",
+    "abbreviation": "MBL"
+  },
+  "unlock_level": 52,
+  "value": 0,
+  "icon": {
+    "id": 5335,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 25,
+  "source_class_job_id": 24
+}

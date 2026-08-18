@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 375,
+  "name": "Verbessertes Kerachole",
+  "description": "Fügt Kerachole einen Effekt hinzu, der stetig LP regeneriert.",
+  "description_macro": "Fügt <colortype(502)><edgecolortype(503)>Kerachole<edgecolortype(0)><colortype(0)> einen Effekt hinzu, der stetig LP regeneriert.",
+  "effects": [
+    "Fügt Kerachole einen Effekt hinzu, der stetig LP regeneriert."
+  ],
+  "role": "Healer",
+  "job": {
+    "id": 40,
+    "name": "Weiser",
+    "abbreviation": "WEI"
+  },
+  "unlock_level": 78,
+  "value": 0,
+  "icon": {
+    "id": 6456,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 181,
+  "source_class_job_id": 40
+}

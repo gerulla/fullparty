@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 18,
+  "name": "アクションダメージアップ",
+  "description": "自身のオートアタックを除くアクションによるダメージをベースダメージの1.1倍にする。",
+  "description_macro": "自身のオートアタックを除くアクションによるダメージをベースダメージの1.1倍にする。",
+  "effects": [
+    "自身のオートアタックを除くアクションによるダメージをベースダメージの1.1倍にする。"
+  ],
+  "role": "Physical Ranged DPS",
+  "job": {
+    "id": 23,
+    "name": "吟遊詩人",
+    "abbreviation": "BRD"
+  },
+  "unlock_level": 20,
+  "value": 10,
+  "icon": {
+    "id": 5302,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 50,
+  "source_class_job_id": 5
+}

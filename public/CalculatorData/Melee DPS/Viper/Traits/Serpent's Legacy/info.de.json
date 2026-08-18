@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 534,
+  "name": "Meister des Blutes",
+  "description": "Nach erfolgreicher Ausführung von Erstes Blut, Zweites Blut, Drittes Blut und Viertes Blut kannst du entsprechend Erstes Erbe, Zweites Erbe, Drittes Erbe und Viertes Erbe ausführen.",
+  "description_macro": "Nach erfolgreicher Ausführung von <colortype(502)><edgecolortype(503)>Erstes Blut<edgecolortype(0)><colortype(0)>, <colortype(502)><edgecolortype(503)>Zweites Blut<edgecolortype(0)><colortype(0)>, <colortype(502)><edgecolortype(503)>Drittes Blut<edgecolortype(0)><colortype(0)> und <colortype(502)><edgecolortype(503)>Viertes Blut<edgecolortype(0)><colortype(0)> kannst du entsprechend <colortype(502)><edgecolortype(503)>Erstes Erbe<edgecolortype(0)><colortype(0)>, <colortype(502)><edgecolortype(503)>Zweites Erbe<edgecolortype(0)><colortype(0)>, <colortype(502)><edgecolortype(503)>Drittes Erbe<edgecolortype(0)><colortype(0)> und <colortype(502)><edgecolortype(503)>Viertes Erbe<edgecolortype(0)><colortype(0)> ausführen.",
+  "effects": [
+    "Nach erfolgreicher Ausführung von Erstes Blut, Zweites Blut, Drittes Blut und Viertes Blut kannst du entsprechend Erstes Erbe, Zweites Erbe, Drittes Erbe und Viertes Erbe ausführen."
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 41,
+    "name": "Viper",
+    "abbreviation": "VPR"
+  },
+  "unlock_level": 100,
+  "value": 0,
+  "icon": {
+    "id": 6509,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 196,
+  "source_class_job_id": 41
+}

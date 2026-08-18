@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 1972,
+  "name": "Blutdelirium",
+  "description": "Blutvergießen und Quietus kosten kein Schwarzes Blut und stellen bei erfolgreichem Treffer MP wieder her.",
+  "effects": [
+    "Blutvergießen und Quietus kosten kein Schwarzes Blut und stellen bei erfolgreichem Treffer MP wieder her."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 217147,
+    "file": "icon.png"
+  },
+  "max_stacks": 3,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 27,
+    "modifier": 0
+  },
+  "class_job_category_id": 98,
+  "source_abilities": [
+    {
+      "id": 7390,
+      "name": "Blutdelirium",
+      "description": "Du gewährst dir drei Stapel Blutdelirium sowie drei Stapel Blutwaffe.\nDauer: 15 Sekunden\nEffekt von Blutdelirium: Blutvergießen wird zu Rotes Delirium und Quietus wird zu Blutige Pfählung. Wenn diese Kommandos treffen, regenerierst du MP.\nEffekt von Blutwaffe: Regeneriert bei einem erfolgreichen Treffer deiner Waffenfertigkeiten oder Zauber MP und füllt den Blutbalken um 10.\nBei Attacken auf mehrere Ziele ist der Effekt nur einmalig wirksam.",
+      "description_macro": "Du gewährst dir drei Stapel <colortype(506)><edgecolortype(507)>Blutdelirium<edgecolortype(0)><colortype(0)> sowie drei Stapel <colortype(506)><edgecolortype(507)>Blutwaffe<edgecolortype(0)><colortype(0)>.<br>Dauer: 15 Sekunden<br>Effekt von <colortype(506)><edgecolortype(507)>Blutdelirium<edgecolortype(0)><colortype(0)>: <if([gnum68==32],<if([gnum72>=96],<colortype(502)><edgecolortype(503)>Blutvergießen<edgecolortype(0)><colortype(0)> wird zu <colortype(502)><edgecolortype(503)>Rotes Delirium<edgecolortype(0)><colortype(0)> und <colortype(502)><edgecolortype(503)>Quietus<edgecolortype(0)><colortype(0)> wird zu <colortype(502)><edgecolortype(503)>Blutige Pfählung<edgecolortype(0)><colortype(0)>.,<colortype(502)><edgecolortype(503)>Quietus<edgecolortype(0)><colortype(0)> und <colortype(502)><edgecolortype(503)>Blutvergießen<edgecolortype(0)><colortype(0)> können ohne Blutbalken-Kosten ausgeführt werden.)>,<colortype(502)><edgecolortype(503)>Quietus<edgecolortype(0)><colortype(0)> und <colortype(502)><edgecolortype(503)>Blutvergießen<edgecolortype(0)><colortype(0)> können ohne Blutbalken-Kosten ausgeführt werden.)> Wenn diese Kommandos treffen, regenerierst du MP.<br>Effekt von <colortype(506)><edgecolortype(507)>Blutwaffe<edgecolortype(0)><colortype(0)>: Regeneriert bei einem erfolgreichen Treffer deiner Waf<->fen<->fer<->tig<->kei<->ten oder Zauber MP und füllt den Blutbalken um 10.<br>Bei Attacken auf mehrere Ziele ist der Effekt nur einmalig wirksam.",
+      "unlock_level": 68,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Tank"
+      ],
+      "jobs": [
+        {
+          "id": 32,
+          "name": "Dunkelritter",
+          "abbreviation": "DKR",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

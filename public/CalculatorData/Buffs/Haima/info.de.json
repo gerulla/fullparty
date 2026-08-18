@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 2612,
+  "name": "Haima",
+  "description": "Erlittener Schaden ist um einen bestimmten Betrag verringert.",
+  "effects": [
+    "Erlittener Schaden ist um einen bestimmten Betrag verringert."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 212958,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": true,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 100
+  },
+  "class_job_category_id": 181,
+  "source_abilities": [
+    {
+      "id": 24305,
+      "name": "Haima",
+      "description": "Du errichtest eine Barriere um dich oder einem Gruppenmitglied, die Schaden entsprechend einem Heilpotenzial von 300 absorbiert, und gewährst dir 5 Stapel Haimatinon.\nDauer: 15 Sekunden\nFalls die Barriere den vollen Schaden absorbiert, wird 1 Stapel Haimatinon verbraucht und die Barriere erneuert. Bei Ablauf der Wirkungsdauer werden alle Haimatinon verbraucht und das Ziel geheilt.\nHeilpotenzial: 150 pro übrigem Stapel",
+      "description_macro": "Du errichtest eine Barriere um dich oder einem Grup<->pen<->mit<->glied, die Schaden entsprechend einem Heilpotenzial von 300 absorbiert, und gewährst dir 5 Stapel <colortype(506)><edgecolortype(507)>Haimatinon<edgecolortype(0)><colortype(0)>.<br>Dauer: 15 Sekunden<br>Falls die Barriere den vollen Schaden absorbiert, wird 1 Stapel <colortype(506)><edgecolortype(507)>Haimatinon<edgecolortype(0)><colortype(0)> verbraucht und die Barriere erneuert. Bei Ablauf der Wirkungsdauer werden alle <colortype(506)><edgecolortype(507)>Haimatinon<edgecolortype(0)><colortype(0)> verbraucht und das Ziel geheilt.<br>Heilpotenzial: 150 pro übrigem Stapel",
+      "unlock_level": 70,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Healer"
+      ],
+      "jobs": [
+        {
+          "id": 40,
+          "name": "Weiser",
+          "abbreviation": "WEI",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

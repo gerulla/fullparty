@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 86,
+  "name": "Berserk",
+  "description": "All weaponskill attacks are both critical and direct hits. Damage dealt when under an effect that raises critical hit rate or direct hit rate is increased.",
+  "effects": [
+    "All weaponskill attacks are both critical and direct hits. Damage dealt when under an effect that raises critical hit rate or direct hit rate is increased."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 217217,
+    "file": "icon.png"
+  },
+  "max_stacks": 3,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 27,
+    "modifier": 0
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 38,
+      "name": "Berserk",
+      "description": "Grants 3 stacks of Berserk, each stack guaranteeing weaponskill attacks are critical and direct hits.\nIncreases damage dealt when under an effect that raises critical hit rate or direct hit rate.\nDuration: 15s\nAdditional Effect: Extends Surging Tempest duration by 10s to a maximum of 60s",
+      "description_macro": "Grants 3 stacks of <colortype(506)><edgecolortype(507)>Berserk<edgecolortype(0)><colortype(0)>, each stack guaranteeing weaponskill attacks are critical and direct hits.<br>Increases damage dealt when under an effect that raises critical hit rate or direct hit rate.<br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>15s<if([gnum72>=40],<if([gnum68==3],<br><colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>Extends <colortype(506)><edgecolortype(507)>Surging Tempest<edgecolortype(0)><colortype(0)> duration by 10s to a maximum of 60s,<if([gnum68==21],<br><colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>Extends <colortype(506)><edgecolortype(507)>Surging Tempest<edgecolortype(0)><colortype(0)> duration by 10s to a maximum of 60s,)>)>,)>",
+      "unlock_level": 6,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Tank"
+      ],
+      "jobs": [
+        {
+          "id": 21,
+          "name": "Warrior",
+          "abbreviation": "WAR",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

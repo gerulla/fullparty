@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 846,
+  "name": "シナストリー［被］",
+  "description": "自身にこの効果を付与した占星術師がパーティメンバーに単体回復魔法を実行した際に、追加で回復効果を受けることができる状態。",
+  "effects": [
+    "自身にこの効果を付与した占星術師がパーティメンバーに単体回復魔法を実行した際に、追加で回復効果を受けることができる状態。"
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 213224,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": true,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 100,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 99,
+  "source_abilities": [
+    {
+      "id": 3612,
+      "name": "シナストリー",
+      "description": "パーティメンバーひとりを対象とする。\n自身またはパーティメンバーに単体回復魔法を実行した場合に、シナストリーの対象となったパーティメンバーのＨＰを、その回復量の40％分回復する。\u3000効果時間：20秒",
+      "description_macro": "パーティメンバーひとりを対象とする。<br>自身またはパーティメンバーに単体回復魔法を実行した場合に、シナストリーの対象となったパーティメンバーのＨＰを、その回復量の40％分回復する。\u3000<colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>20秒",
+      "unlock_level": 50,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Healer"
+      ],
+      "jobs": [
+        {
+          "id": 33,
+          "name": "占星術師",
+          "abbreviation": "AST",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

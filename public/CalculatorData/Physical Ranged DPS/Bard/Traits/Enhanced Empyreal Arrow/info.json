@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 169,
+  "name": "Enhanced Empyreal Arrow",
+  "description": "Guarantees the trigger of the additional effects for current Mage's Ballad, Army's Paeon, and the Wanderer's Minuet when Empyreal Arrow hits a target.",
+  "description_macro": "Guarantees the trigger of the additional effects for current <colortype(506)><edgecolortype(507)>Mage's Ballad<edgecolortype(0)><colortype(0)>, <colortype(506)><edgecolortype(507)>Army's Paeon<edgecolortype(0)><colortype(0)>, and the <colortype(506)><edgecolortype(507)>Wanderer's Minuet<edgecolortype(0)><colortype(0)> when <colortype(500)><edgecolortype(501)>Empyreal Arrow<edgecolortype(0)><colortype(0)> hits a target.",
+  "effects": [
+    "Guarantees the trigger of the additional effects for current Mage's Ballad, Army's Paeon, and the Wanderer's Minuet when Empyreal Arrow hits a target."
+  ],
+  "role": "Physical Ranged DPS",
+  "job": {
+    "id": 23,
+    "name": "Bard",
+    "abbreviation": "BRD"
+  },
+  "unlock_level": 68,
+  "value": 0,
+  "icon": {
+    "id": 5310,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 24,
+  "source_class_job_id": 23
+}

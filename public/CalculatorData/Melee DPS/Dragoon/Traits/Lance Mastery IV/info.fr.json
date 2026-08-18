@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 582,
+  "name": "Maîtrise de la lance IV",
+  "description": "Remplace Percée vorpale par Percée barrage et Éventration par Vrille explosive.",
+  "description_macro": "Remplace <colortype(500)><edgecolortype(501)>Percée vorpale<edgecolortype(0)><colortype(0)> par <colortype(500)><edgecolortype(501)>Percée barrage<edgecolortype(0)><colortype(0)> et <colortype(500)><edgecolortype(501)>Éventration<edgecolortype(0)><colortype(0)> par <colortype(500)><edgecolortype(501)>Vrille explosive<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Remplace Percée vorpale par Percée barrage et Éventration par Vrille explosive."
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 22,
+    "name": "Chevalier Dragon",
+    "abbreviation": "DRG"
+  },
+  "unlock_level": 96,
+  "value": 0,
+  "icon": {
+    "id": 5293,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 23,
+  "source_class_job_id": 22
+}

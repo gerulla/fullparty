@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 378,
+  "name": "Verbessertes Zoe",
+  "description": "Verkürzt die Reaktivierungszeit von Zoe auf 90 Sekunden.",
+  "description_macro": "Verkürzt die Re<->ak<->ti<->vie<->rungs<->zeit von <colortype(502)><edgecolortype(503)>Zoe<edgecolortype(0)><colortype(0)> auf 90 Sekunden.",
+  "effects": [
+    "Verkürzt die Reaktivierungszeit von Zoe auf 90 Sekunden."
+  ],
+  "role": "Healer",
+  "job": {
+    "id": 40,
+    "name": "Weiser",
+    "abbreviation": "WEI"
+  },
+  "unlock_level": 88,
+  "value": -300,
+  "icon": {
+    "id": 6458,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 181,
+  "source_class_job_id": 40
+}

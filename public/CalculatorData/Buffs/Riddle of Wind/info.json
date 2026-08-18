@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 2687,
+  "name": "Riddle of Wind",
+  "description": "Auto-attack delay is reduced.",
+  "effects": [
+    "Auto-attack delay is reduced."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 212537,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": -50
+  },
+  "class_job_category_id": 21,
+  "source_abilities": [
+    {
+      "id": 25766,
+      "name": "Riddle of Wind",
+      "description": "Reduces auto-attack delay by 50%.\nDuration: 15s\nAdditional Effect: Grants Wind's Rumination\nDuration: 15s",
+      "description_macro": "Reduces auto-attack delay by 50%.<br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>15s<if([gnum68==20],<if([gnum72>=96],<br><colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>Grants <colortype(506)><edgecolortype(507)>Wind's Rumination<edgecolortype(0)><colortype(0)><br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>15s,)>,)>",
+      "unlock_level": 72,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 20,
+          "name": "Monk",
+          "abbreviation": "MNK",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

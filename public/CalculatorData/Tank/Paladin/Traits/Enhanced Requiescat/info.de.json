@@ -1,0 +1,26 @@
+{
+  "kind": "trait",
+  "id": 263,
+  "name": "Verbessertes Requiescat",
+  "description": "Du gewährst dir den Status Confiteor.\nDauer: 30 Sekunden\nBedingung: Erfolgreiche Ausführung von Requiescat",
+  "description_macro": "Du gewährst dir den Status <colortype(506)><edgecolortype(507)>Confiteor<edgecolortype(0)><colortype(0)>.<br>Dauer: 30 Sekunden<br>Bedingung: Erfolgreiche Ausführung von <colortype(502)><edgecolortype(503)>Requiescat<edgecolortype(0)><colortype(0)>",
+  "effects": [
+    "Du gewährst dir den Status Confiteor.",
+    "Dauer: 30 Sekunden",
+    "Bedingung: Erfolgreiche Ausführung von Requiescat"
+  ],
+  "role": "Tank",
+  "job": {
+    "id": 19,
+    "name": "Paladin",
+    "abbreviation": "PLD"
+  },
+  "unlock_level": 80,
+  "value": 0,
+  "icon": {
+    "id": 5216,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 20,
+  "source_class_job_id": 19
+}

@@ -1,0 +1,33 @@
+{
+  "kind": "trait",
+  "id": 489,
+  "name": "Magie curative améliorée",
+  "description": "Augmente la puissance de certaines actions curatives.\n\nPuissance de Soin : 500\nPuissance de Médica : 400\nPuissance d'Extra Soin : 800\nPuissance de Récup (périodique) : 250\nPuissance de Méga Soin : 600\nPuissance d'Extra Médica : 250\nPuissance d'Extra Médica (périodique) : 150\nPuissance d'Offrande de réconfort : 800\nPuissance d'Offrande de ravissement : 400",
+  "description_macro": "Augmente la puissance de certaines actions curatives.<br><br><colortype(506)><edgecolortype(507)>Puissance de Soin<nbsp>:<edgecolortype(0)><colortype(0)> 500<br><colortype(506)><edgecolortype(507)>Puissance de Médica<nbsp>:<edgecolortype(0)><colortype(0)> 400<br><colortype(506)><edgecolortype(507)>Puissance d'Extra Soin<nbsp>:<edgecolortype(0)><colortype(0)> 800<br><colortype(506)><edgecolortype(507)>Puissance de Récup (périodique)<nbsp>:<edgecolortype(0)><colortype(0)> 250<br><colortype(506)><edgecolortype(507)>Puissance de Méga Soin<nbsp>:<edgecolortype(0)><colortype(0)> 600<br><colortype(506)><edgecolortype(507)>Puissance d'Extra Médica<nbsp>:<edgecolortype(0)><colortype(0)> 250<br><colortype(506)><edgecolortype(507)>Puissance d'Extra Médica (périodique)<nbsp>:<edgecolortype(0)><colortype(0)> 150<br><colortype(506)><edgecolortype(507)>Puissance d'Offrande de réconfort<nbsp>:<edgecolortype(0)><colortype(0)> 800<br><colortype(506)><edgecolortype(507)>Puissance d'Offrande de ravissement<nbsp>:<edgecolortype(0)><colortype(0)> 400",
+  "effects": [
+    "Augmente la puissance de certaines actions curatives.",
+    "Puissance de Soin : 500",
+    "Puissance de Médica : 400",
+    "Puissance d'Extra Soin : 800",
+    "Puissance de Récup (périodique) : 250",
+    "Puissance de Méga Soin : 600",
+    "Puissance d'Extra Médica : 250",
+    "Puissance d'Extra Médica (périodique) : 150",
+    "Puissance d'Offrande de réconfort : 800",
+    "Puissance d'Offrande de ravissement : 400"
+  ],
+  "role": "Healer",
+  "job": {
+    "id": 24,
+    "name": "Mage Blanc",
+    "abbreviation": "MBL"
+  },
+  "unlock_level": 85,
+  "value": 0,
+  "icon": {
+    "id": 6826,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 25,
+  "source_class_job_id": 24
+}

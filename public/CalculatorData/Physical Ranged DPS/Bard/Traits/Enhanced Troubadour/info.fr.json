@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 447,
+  "name": "Troubadour amélioré",
+  "description": "Réduit à 90s le temps de recharge de Troubadour.",
+  "description_macro": "Réduit à 90s le temps de recharge de <colortype(500)><edgecolortype(501)>Troubadour<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Réduit à 90s le temps de recharge de Troubadour."
+  ],
+  "role": "Physical Ranged DPS",
+  "job": {
+    "id": 23,
+    "name": "Barde",
+    "abbreviation": "BRD"
+  },
+  "unlock_level": 88,
+  "value": -300,
+  "icon": {
+    "id": 5319,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 24,
+  "source_class_job_id": 23
+}

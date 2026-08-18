@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 209,
+  "name": "Maîtrise du serment",
+  "description": "Permet à votre Jauge du serment de se remplir de 5 lorsque vous réussissez une attaque automatique.",
+  "description_macro": "Permet à votre <colortype(502)><edgecolortype(503)>Jauge du serment<edgecolortype(0)><colortype(0)> de se remplir de 5 lorsque vous réussissez une attaque automatique.",
+  "effects": [
+    "Permet à votre Jauge du serment de se remplir de 5 lorsque vous réussissez une attaque automatique."
+  ],
+  "role": "Tank",
+  "job": {
+    "id": 19,
+    "name": "Paladin",
+    "abbreviation": "PLD"
+  },
+  "unlock_level": 35,
+  "value": 0,
+  "icon": {
+    "id": 5211,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 20,
+  "source_class_job_id": 19
+}

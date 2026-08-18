@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 582,
+  "name": "Meister der Lanze IV",
+  "description": "Verbessert Vorpalstoß zu Sperrstoß und Drachengriff zu Spiralhieb.",
+  "description_macro": "Verbessert <colortype(502)><edgecolortype(503)>Vorpalstoß<edgecolortype(0)><colortype(0)> zu <colortype(502)><edgecolortype(503)>Sperrstoß<edgecolortype(0)><colortype(0)> und <colortype(502)><edgecolortype(503)>Drachengriff<edgecolortype(0)><colortype(0)> zu <colortype(502)><edgecolortype(503)>Spiralhieb<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Verbessert Vorpalstoß zu Sperrstoß und Drachengriff zu Spiralhieb."
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 22,
+    "name": "Dragoon",
+    "abbreviation": "DRG"
+  },
+  "unlock_level": 96,
+  "value": 0,
+  "icon": {
+    "id": 5293,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 23,
+  "source_class_job_id": 22
+}

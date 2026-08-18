@@ -1,0 +1,90 @@
+{
+  "kind": "ability",
+  "id": 7396,
+  "name": "Bruderschaft",
+  "description": "Du gewährst dir und umstehenden Gruppenmitgliedern Bruderschaft.\nDauer: 20 Sekunden\nEffekt von Bruderschaft: Ausgeteilter Schaden ist um 5 % erhöht.\nDu gewährst dir und umstehenden Gruppenmitgliedern Meditative Bruderschaft.\nDauer: 20 Sekunden\nEffekt von Meditative Bruderschaft: Öffnet ein Schatten-Chakra mit 100 % Wahrscheinlichkeit für dich selbst und 20 % für Gruppenmitglieder\\\nWeiterhin steigt die maximale Stapelanzahl von Schatten-Chakra auf 10.",
+  "description_macro": "Du gewährst dir und umstehenden Grup<->pen<->mit<->gliedern <colortype(506)><edgecolortype(507)>Bruderschaft<edgecolortype(0)><colortype(0)>.<br>Dauer: 20 Sekunden<br>Effekt von <colortype(506)><edgecolortype(507)>Bruderschaft<edgecolortype(0)><colortype(0)>: Ausgeteilter Schaden ist um 5<nbsp>% erhöht.<br>Du gewährst dir und umstehenden Grup<->pen<->mit<->gliedern <colortype(506)><edgecolortype(507)>Meditative Bruderschaft<edgecolortype(0)><colortype(0)>.<br>Dauer: 20 Sekunden<br><if([gnum68==20],<if([gnum72>=88],Effekt von <colortype(506)><edgecolortype(507)>Meditative Bruderschaft<edgecolortype(0)><colortype(0)>: Öffnet ein <colortype(506)><edgecolortype(507)>Schatten-Chakra<edgecolortype(0)><colortype(0)> mit 100<nbsp>% Wahr<->schein<->lich<->keit für dich selbst und 20<nbsp>% für Grup<->pen<->mit<->glieder\\, wenn du oder ein betroffenes Grup<->pen<->mit<->glied einen Treffer mit einer Waf<->fen<->fer<->tig<->keit oder einem Zauber landet.,Öffnet ein <colortype(506)><edgecolortype(507)>Schatten-Chakra<edgecolortype(0)><colortype(0)> mit 20<nbsp>% Wahr<->schein<->lich<->keit\\, wenn du oder ein betroffenes Grup<->pen<->mit<->glied einen Treffer mit einer Waf<->fen<->fer<->tig<->keit oder einem Zauber landet.)>,Öffnet ein <colortype(506)><edgecolortype(507)>Schatten-Chakra<edgecolortype(0)><colortype(0)> mit 20<nbsp>% Wahr<->schein<->lich<->keit\\, wenn du oder ein betroffenes Grup<->pen<->mit<->glied einen Treffer mit einer Waf<->fen<->fer<->tig<->keit oder einem Zauber landet.)><br>Weiterhin steigt die maximale Stapelanzahl von <colortype(506)><edgecolortype(507)>Schatten-Chakra<edgecolortype(0)><colortype(0)> auf 10.",
+  "effects": [
+    "Du gewährst dir und umstehenden Gruppenmitgliedern Bruderschaft.",
+    "Dauer: 20 Sekunden",
+    "Effekt von Bruderschaft: Ausgeteilter Schaden ist um 5 % erhöht.",
+    "Du gewährst dir und umstehenden Gruppenmitgliedern Meditative Bruderschaft.",
+    "Dauer: 20 Sekunden",
+    "Effekt von Meditative Bruderschaft: Öffnet ein Schatten-Chakra mit 100 % Wahrscheinlichkeit für dich selbst und 20 % für Gruppenmitglieder\\",
+    "Weiterhin steigt die maximale Stapelanzahl von Schatten-Chakra auf 10."
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 20,
+    "name": "Mönch",
+    "abbreviation": "MÖN"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 70,
+  "icon": {
+    "id": 2542,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 4,
+    "name": "Talent"
+  },
+  "attack_type": {
+    "id": 0,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 120,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 20,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 0,
+      "value": 0
+    },
+    "secondary": {
+      "type_id": 0,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": 0,
+    "effect_yalms": 30,
+    "cast_type": 2
+  },
+  "targeting": {
+    "self": true,
+    "party": false,
+    "alliance": false,
+    "hostile": false,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 0,
+    "behavior_type": 0,
+    "class_job_category_id": 21,
+    "source_class_job_id": 20,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

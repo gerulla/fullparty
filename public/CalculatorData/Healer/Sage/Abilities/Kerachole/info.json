@@ -1,0 +1,91 @@
+{
+  "kind": "ability",
+  "id": 24298,
+  "name": "Kerachole",
+  "description": "Reduces damage taken by self and nearby party members by 10%.\nDuration: 15s\nEffect cannot be stacked with Taurochole.\nAdditional Effect: Regen\nCure Potency: 100\nDuration: 15s\nAdditional Effect: Restores 7% of maximum MP\nAddersgall Cost: 1",
+  "description_macro": "Reduces damage taken by self and nearby party members by 10%.<br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>15s<br>Effect cannot be stacked with <colortype(506)><edgecolortype(507)>Taurochole<edgecolortype(0)><colortype(0)>.<br><if([gnum68==40],<if([gnum72>=78],<colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)><colortype(506)><edgecolortype(507)>Regen<edgecolortype(0)><colortype(0)><br><colortype(504)><edgecolortype(505)>Cure Potency: <edgecolortype(0)><colortype(0)>100<br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>15s<br>,)>,)><colortype(504)><edgecolortype(505)>Additional Effect:<edgecolortype(0)><colortype(0)> Restores 7% of maximum MP<br><colortype(504)><edgecolortype(505)>Addersgall Cost: <edgecolortype(0)><colortype(0)>1",
+  "effects": [
+    "Reduces damage taken by self and nearby party members by 10%.",
+    "Duration: 15s",
+    "Effect cannot be stacked with Taurochole.",
+    "Additional Effect: Regen",
+    "Cure Potency: 100",
+    "Duration: 15s",
+    "Additional Effect: Restores 7% of maximum MP",
+    "Addersgall Cost: 1"
+  ],
+  "role": "Healer",
+  "job": {
+    "id": 40,
+    "name": "Sage",
+    "abbreviation": "SGE"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 50,
+  "icon": {
+    "id": 3666,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 4,
+    "name": "Ability"
+  },
+  "attack_type": {
+    "id": 0,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 30,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 4,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 68,
+      "value": 1
+    },
+    "secondary": {
+      "type_id": 0,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": 0,
+    "effect_yalms": 30,
+    "cast_type": 2
+  },
+  "targeting": {
+    "self": true,
+    "party": false,
+    "alliance": false,
+    "hostile": false,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 0,
+    "behavior_type": 0,
+    "class_job_category_id": 181,
+    "source_class_job_id": 40,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

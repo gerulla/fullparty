@@ -1,0 +1,95 @@
+{
+  "kind": "ability",
+  "id": 49100,
+  "name": "Chaos Drive",
+  "description": "Deals lightning damage with a potency of 300 to all enemies in a straight line.\nPotency increases to 390 when used against targets weak to lightning.\nDrain Touch Potency: 400\nPotency increases to 520 when used against targets weak to lightning.\nPotency scales with item level.\nConsumes 10% of maximum HP when executed.\nAdditional Effect: Afflicts target with Paralysis when under the effect of Drain Touch\nDuration: 18s\nAdditional Effect: Afflicts yourself with Doom\nDuration: 10s\nEffect is dispelled when HP is restored to full.\nShares a recast timer with Deep Freeze and Hell Wind.",
+  "description_macro": "Deals lightning damage with a potency of 300 to all enemies in a straight line.<br>Potency increases to 390 when used against targets weak to lightning.<br><colortype(504)><edgecolortype(505)>Drain Touch Potency: <edgecolortype(0)><colortype(0)>400<br>Potency increases to 520 when used against targets weak to lightning.<br>Potency scales with item level.<br>Consumes 10% of maximum HP when executed.<br><colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>Afflicts target with <colortype(506)><edgecolortype(507)>Paralysis<edgecolortype(0)><colortype(0)> when under the effect of <colortype(506)><edgecolortype(507)>Drain Touch<edgecolortype(0)><colortype(0)><br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>18s<br><colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>Afflicts yourself with <colortype(506)><edgecolortype(507)>Doom<edgecolortype(0)><colortype(0)><br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>10s<br>Effect is dispelled when HP is restored to full.<br>Shares a recast timer with <colortype(500)><edgecolortype(501)>Deep Freeze<edgecolortype(0)><colortype(0)> and <colortype(500)><edgecolortype(501)>Hell Wind<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Deals lightning damage with a potency of 300 to all enemies in a straight line.",
+    "Potency increases to 390 when used against targets weak to lightning.",
+    "Drain Touch Potency: 400",
+    "Potency increases to 520 when used against targets weak to lightning.",
+    "Potency scales with item level.",
+    "Consumes 10% of maximum HP when executed.",
+    "Additional Effect: Afflicts target with Paralysis when under the effect of Drain Touch",
+    "Duration: 18s",
+    "Additional Effect: Afflicts yourself with Doom",
+    "Duration: 10s",
+    "Effect is dispelled when HP is restored to full.",
+    "Shares a recast timer with Deep Freeze and Hell Wind."
+  ],
+  "role": "Phantom Jobs",
+  "job": {
+    "id": 23,
+    "name": "Phantom Necromancer",
+    "abbreviation": "Ph. Necromancer"
+  },
+  "is_phantom_action": true,
+  "unlock_level": 4,
+  "icon": {
+    "id": 64532,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 2,
+    "name": "Spell"
+  },
+  "attack_type": {
+    "id": 5,
+    "name": "魔法"
+  },
+  "timing": {
+    "cast_seconds": 1.5,
+    "recast_seconds": 40,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 84,
+    "additional_cooldown_group": 58,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 1,
+      "value": 10
+    },
+    "secondary": {
+      "type_id": 0,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": 30,
+    "effect_yalms": 30,
+    "cast_type": 4
+  },
+  "targeting": {
+    "self": false,
+    "party": false,
+    "alliance": false,
+    "hostile": true,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 5,
+    "behavior_type": 0,
+    "class_job_category_id": 142,
+    "source_class_job_id": 4294967295,
+    "is_role_action": false,
+    "is_player_action": false,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

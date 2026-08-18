@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 98,
+  "name": "Drachentritt",
+  "description": "Schlagresistenz ist verringert.",
+  "effects": [
+    "Schlagresistenz ist verringert."
+  ],
+  "classification": "debuff",
+  "icon": {
+    "id": 210215,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 2,
+  "target_type": 0,
+  "can_dispel": true,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 50,
+  "parameter": {
+    "effect": 0,
+    "modifier": -5
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 74,
+      "name": "Drachentritt",
+      "description": "Du führst eine physische Attacke aus.\nAttacke-Wert: 320\nBei Rechtschaffene Faust: Gewährt dir Rechtschaffene Opo-Opo-Faust.\nEffekt von Rechtschaffene Opo-Opo-Faust: Attacke-Wert von Affenprankenhieb ist um 200 erhöht.\nZusatzeffekt: Du wechselst in die Raptor-Form.\nDauer: 30 Sekunden",
+      "description_macro": "Du führst eine physische Attacke aus.<br>Attacke-Wert: <if([gnum68==20],<if([gnum72>=94],320,<if([gnum68==20],<if([gnum72>=84],280,240)>,240)>)>,<if([gnum68==20],<if([gnum72>=84],280,240)>,240)>)><br>Bei <colortype(506)><edgecolortype(507)>Rechtschaffene Faust<edgecolortype(0)><colortype(0)>: Gewährt dir <colortype(506)><edgecolortype(507)>Rechtschaffene Opo-Opo-Faust<edgecolortype(0)><colortype(0)>.<br>Effekt von <colortype(506)><edgecolortype(507)>Rechtschaffene Opo-Opo-Faust<edgecolortype(0)><colortype(0)>: Attacke-Wert von <if([gnum68==20],<if([gnum72>=92],<colortype(502)><edgecolortype(503)>Affenprankenhieb<edgecolortype(0)><colortype(0)>,<colortype(502)><edgecolortype(503)>Schlag auf Schlag<edgecolortype(0)><colortype(0)>)>,<colortype(502)><edgecolortype(503)>Schlag auf Schlag<edgecolortype(0)><colortype(0)>)> ist um 200 erhöht.<br>Zusatzeffekt: Du wechselst in die <colortype(506)><edgecolortype(507)>Raptor-Form<edgecolortype(0)><colortype(0)>.<br>Dauer: 30 Sekunden",
+      "unlock_level": 50,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 20,
+          "name": "Mönch",
+          "abbreviation": "MÖN",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

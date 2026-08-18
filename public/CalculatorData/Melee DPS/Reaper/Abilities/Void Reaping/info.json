@@ -1,0 +1,94 @@
+{
+  "kind": "ability",
+  "id": 24395,
+  "name": "Void Reaping",
+  "description": "Delivers an attack with a potency of 580.\nEnhanced Void Reaping Potency: 640\nAdditional Effect: Grants Enhanced Cross Reaping\nDuration: 30s\nAdditional Effect: Grants Void Shroud\nCan only be executed while under the effect of Enshrouded.\nRecast timer cannot be affected by status effects or gear attributes.\nLemure Shroud Cost: 1\nThis action does not share a recast timer with any other actions. Upon execution, the recast timer for this action will be applied to all other weaponskills and magic actions.\n\n※This action cannot be assigned to a hotbar.\n※Gibbet changes to Void Reaping when requirements for execution are met.",
+  "description_macro": "Delivers an attack with a potency of <if([gnum68==39],<if([gnum72>=94],580,460)>,460)>.<br><colortype(504)><edgecolortype(505)>Enhanced Void Reaping Potency: <edgecolortype(0)><colortype(0)><if([gnum68==39],<if([gnum72>=94],640,520)>,520)><br><colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>Grants <colortype(506)><edgecolortype(507)>Enhanced Cross Reaping<edgecolortype(0)><colortype(0)><br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>30s<br><if([gnum68==39],<if([gnum72>=86],<colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>Grants <colortype(506)><edgecolortype(507)>Void Shroud<edgecolortype(0)><colortype(0)><br>,)>,)>Can only be executed while under the effect of <colortype(506)><edgecolortype(507)>Enshrouded<edgecolortype(0)><colortype(0)>.<br>Recast timer cannot be affected by status effects or gear attributes.<br><colortype(504)><edgecolortype(505)>Lemure Shroud Cost: <edgecolortype(0)><colortype(0)>1<br>This action does not share a recast timer with any other actions. Upon execution, the recast timer for this action will be applied to all other weaponskills and magic actions.<br><br>※This action cannot be assigned to a hotbar.<br>※<colortype(500)><edgecolortype(501)>Gibbet<edgecolortype(0)><colortype(0)> changes to <colortype(500)><edgecolortype(501)>Void Reaping<edgecolortype(0)><colortype(0)> when requirements for execution are met.",
+  "effects": [
+    "Delivers an attack with a potency of 580.",
+    "Enhanced Void Reaping Potency: 640",
+    "Additional Effect: Grants Enhanced Cross Reaping",
+    "Duration: 30s",
+    "Additional Effect: Grants Void Shroud",
+    "Can only be executed while under the effect of Enshrouded.",
+    "Recast timer cannot be affected by status effects or gear attributes.",
+    "Lemure Shroud Cost: 1",
+    "This action does not share a recast timer with any other actions. Upon execution, the recast timer for this action will be applied to all other weaponskills and magic actions.",
+    "※This action cannot be assigned to a hotbar.",
+    "※Gibbet changes to Void Reaping when requirements for execution are met."
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 39,
+    "name": "Reaper",
+    "abbreviation": "RPR"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 80,
+  "icon": {
+    "id": 3623,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 3,
+    "name": "Weaponskill"
+  },
+  "attack_type": {
+    "id": 1,
+    "name": "斬"
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 2.5,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 58,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 66,
+      "value": 1
+    },
+    "secondary": {
+      "type_id": 112,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": -1,
+    "effect_yalms": 0,
+    "cast_type": 1
+  },
+  "targeting": {
+    "self": false,
+    "party": false,
+    "alliance": false,
+    "hostile": true,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 7,
+    "behavior_type": 0,
+    "class_job_category_id": 180,
+    "source_class_job_id": 0,
+    "is_role_action": false,
+    "is_player_action": false,
+    "is_derived_action": true,
+    "equivalence_group": 0
+  }
+}

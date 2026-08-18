@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 3851,
+  "name": "Tenri Jindo",
+  "description": "Tenri Jindo kann ausgeführt werden.",
+  "effects": [
+    "Tenri Jindo kann ausgeführt werden."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 212922,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 92,
+  "source_abilities": [
+    {
+      "id": 7403,
+      "name": "Ten Chi Jin",
+      "description": "Du verwandelst alle Mudras in Ninjutsu-Kommandos. Löst du eines davon aus, verwandeln sich die verbleibenden Mudras in andere Ninjutsu-Kommandos. Der Effekt hält an, bis du alle Mudras einmal ausgeführt hast oder seine Dauer abgelaufen ist.\nDauer: 6 Sekunden\nWährend Ten Chi Jin aktiv ist, können nur Mudras und Ninjutsu-Kommandos ausgeführt werden. Nicht möglich während Kassatsu.\nZusatzeffekt: Gewährt dir Tenri Jindo.\nDauer: 30 Sekunden",
+      "description_macro": "Du verwandelst alle Mudras in <colortype(502)><edgecolortype(503)>Ninjutsu<edgecolortype(0)><colortype(0)>-Kommandos. Löst du eines davon aus, verwandeln sich die verbleibenden Mudras in andere <colortype(502)><edgecolortype(503)>Ninjutsu<edgecolortype(0)><colortype(0)>-Kommandos. Der Effekt hält an, bis du alle Mudras einmal ausgeführt hast oder seine Dauer abgelaufen ist.<br>Dauer: 6 Sekunden<br>Während <colortype(506)><edgecolortype(507)>Ten Chi Jin<edgecolortype(0)><colortype(0)> aktiv ist, können nur Mudras und <colortype(502)><edgecolortype(503)>Ninjutsu<edgecolortype(0)><colortype(0)>-Kommandos ausgeführt werden. Nicht möglich während <colortype(500)><edgecolortype(501)>Kassatsu<edgecolortype(0)><colortype(0)>.<if([gnum68==30],<if([gnum72>=100],<br>Zusatzeffekt: Gewährt dir <colortype(506)><edgecolortype(507)>Tenri Jindo<edgecolortype(0)><colortype(0)>.<br>Dauer: 30 Sekunden,)>,)>",
+      "unlock_level": 70,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 30,
+          "name": "Ninja",
+          "abbreviation": "NIN",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

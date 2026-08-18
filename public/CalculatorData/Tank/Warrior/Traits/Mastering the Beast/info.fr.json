@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 268,
+  "name": "Maîtrise de la Jauge de la bête",
+  "description": "Permet de remplir votre Jauge de la bête lorsque vous utilisez le combo de Tempête de mithril avec succès.",
+  "description_macro": "Permet de remplir votre <colortype(502)><edgecolortype(503)>Jauge de la bête<edgecolortype(0)><colortype(0)> lorsque vous utilisez le combo de <colortype(500)><edgecolortype(501)>Tempête de mithril<edgecolortype(0)><colortype(0)> avec succès.",
+  "effects": [
+    "Permet de remplir votre Jauge de la bête lorsque vous utilisez le combo de Tempête de mithril avec succès."
+  ],
+  "role": "Tank",
+  "job": {
+    "id": 21,
+    "name": "Guerrier",
+    "abbreviation": "GUE"
+  },
+  "unlock_level": 74,
+  "value": 0,
+  "icon": {
+    "id": 5265,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 22,
+  "source_class_job_id": 21
+}

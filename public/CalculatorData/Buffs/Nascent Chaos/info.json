@@ -1,0 +1,51 @@
+{
+  "kind": "combat_status",
+  "id": 1897,
+  "name": "Nascent Chaos",
+  "description": "Accumulating sufficient wrath in the Beast Gauge will upgrade Decimate to Chaotic Cyclone.\nFell Cleave will be upgraded to Inner Chaos once learned.",
+  "effects": [
+    "Accumulating sufficient wrath in the Beast Gauge will upgrade Decimate to Chaotic Cyclone.",
+    "Fell Cleave will be upgraded to Inner Chaos once learned."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 212560,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 22,
+  "source_abilities": [
+    {
+      "id": 52,
+      "name": "Infuriate",
+      "description": "Increases Beast Gauge by 50.\nAdditional Effect: Grants Nascent Chaos\nDuration: 30s\nNascent Chaos Effect: When Beast Gauge is 50 or greater\\Maximum Charges: 2\nCan only be executed while in combat.",
+      "description_macro": "Increases <colortype(500)><edgecolortype(501)>Beast Gauge<edgecolortype(0)><colortype(0)> by 50.<br><if([gnum68==21],<if([gnum72>=72],<colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>Grants <colortype(506)><edgecolortype(507)>Nascent Chaos<edgecolortype(0)><colortype(0)><br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>30s<br><colortype(504)><edgecolortype(505)>Nascent Chaos Effect: <edgecolortype(0)><colortype(0)>When <colortype(500)><edgecolortype(501)>Beast Gauge<edgecolortype(0)><colortype(0)> is 50 or greater\\, changes <colortype(500)><edgecolortype(501)>Decimate<edgecolortype(0)><colortype(0)> to <colortype(500)><edgecolortype(501)>Chaotic Cyclone<edgecolortype(0)><colortype(0)><if([gnum68==21],<if([gnum72>=80], and <colortype(500)><edgecolortype(501)>Fell Cleave<edgecolortype(0)><colortype(0)> to <colortype(500)><edgecolortype(501)>Inner Chaos<edgecolortype(0)><colortype(0)><br>,)>,)>,)>,)><colortype(504)><edgecolortype(505)>Maximum Charges: <edgecolortype(0)><colortype(0)>2<br>Can only be executed while in combat.",
+      "unlock_level": 50,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Tank"
+      ],
+      "jobs": [
+        {
+          "id": 21,
+          "name": "Warrior",
+          "abbreviation": "WAR",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

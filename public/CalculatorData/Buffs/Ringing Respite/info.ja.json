@@ -1,0 +1,51 @@
+{
+  "kind": "combat_status",
+  "id": 4257,
+  "name": "いこいのベル",
+  "description": "攻撃を受けるたびに、自身に回復効果を発生させる状態。",
+  "effects": [
+    "攻撃を受けるたびに、自身に回復効果を発生させる状態。"
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 229920,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 3000
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 41619,
+      "name": "いこいのベル",
+      "description": "対象に「いこいのベル」を付与する。\n「いこいのベル」の効果時間中に付与対象がダメージを受けると、付与対象を回復する。\n効果時間：60秒\u3000回復力：2000",
+      "description_macro": "対象に<colortype(500)><edgecolortype(501)>「いこいのベル」<edgecolortype(0)><colortype(0)>を付与する。<br>「いこいのベル」の効果時間中に付与対象がダメージを受けると、付与対象を回復する。<br><colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>60秒\u3000<colortype(504)><edgecolortype(505)>回復力：<edgecolortype(0)><colortype(0)><if([gnum108>=5],3000,2000)>",
+      "unlock_level": 0,
+      "relations": [
+        "granted_by_description",
+        "same_name"
+      ],
+      "roles": [
+        "Phantom Jobs"
+      ],
+      "jobs": [
+        {
+          "id": 7,
+          "name": "Phantom サポート風水士",
+          "abbreviation": "Ph. Geomancer",
+          "is_phantom": true
+        }
+      ]
+    }
+  ]
+}

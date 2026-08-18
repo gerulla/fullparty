@@ -1,0 +1,26 @@
+{
+  "kind": "trait",
+  "id": 370,
+  "name": "Humor",
+  "description": "Gewährt dir alle 20 Sekunden einen Stapel Humor.\nMaximalstapelzahl: 3\nHumor wird auch außerhalb des Kampfes gewährt.",
+  "description_macro": "Gewährt dir alle 20 Sekunden einen Stapel <colortype(506)><edgecolortype(507)>Humor<edgecolortype(0)><colortype(0)>.<br>Ma<->xi<->mal<->sta<->pel<->zahl: 3<br><colortype(506)><edgecolortype(507)>Humor<edgecolortype(0)><colortype(0)> wird auch außerhalb des Kampfes gewährt.",
+  "effects": [
+    "Gewährt dir alle 20 Sekunden einen Stapel Humor.",
+    "Maximalstapelzahl: 3",
+    "Humor wird auch außerhalb des Kampfes gewährt."
+  ],
+  "role": "Healer",
+  "job": {
+    "id": 40,
+    "name": "Weiser",
+    "abbreviation": "WEI"
+  },
+  "unlock_level": 45,
+  "value": 0,
+  "icon": {
+    "id": 6451,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 181,
+  "source_class_job_id": 40
+}

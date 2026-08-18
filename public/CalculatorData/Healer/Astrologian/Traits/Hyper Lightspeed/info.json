@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 189,
+  "name": "Hyper Lightspeed",
+  "description": "Reduces Lightspeed recast time to 60 seconds.",
+  "description_macro": "Reduces <colortype(500)><edgecolortype(501)>Lightspeed<edgecolortype(0)><colortype(0)> recast time to 60 seconds.",
+  "effects": [
+    "Reduces Lightspeed recast time to 60 seconds."
+  ],
+  "role": "Healer",
+  "job": {
+    "id": 33,
+    "name": "Astrologian",
+    "abbreviation": "AST"
+  },
+  "unlock_level": 68,
+  "value": -300,
+  "icon": {
+    "id": 6101,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 99,
+  "source_class_job_id": 33
+}

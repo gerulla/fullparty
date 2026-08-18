@@ -1,0 +1,27 @@
+{
+  "kind": "trait",
+  "id": 385,
+  "name": "Verbessertes Arkanes Wappen",
+  "description": "Falls die Barriere den vollen Schaden absorbiert, wird dir und Gruppenmitgliedern im Umkreis von 15 Yalmen Vitalisierendes Wappen gewährt.\nEffekt von Vitalisierendes Wappen: Regeneriert stetig LP.\nHeilpotenzial: 50\nDauer: 15 Sekunden",
+  "description_macro": "Falls die Barriere den vollen Schaden absorbiert, wird dir und Grup<->pen<->mit<->gliedern im Umkreis von 15 Yalmen <colortype(506)><edgecolortype(507)>Vitalisierendes Wappen<edgecolortype(0)><colortype(0)> gewährt.<br>Effekt von <colortype(506)><edgecolortype(507)>Vitalisierendes Wappen<edgecolortype(0)><colortype(0)>: Regeneriert stetig LP.<br>Heilpotenzial: 50<br>Dauer: 15 Sekunden",
+  "effects": [
+    "Falls die Barriere den vollen Schaden absorbiert, wird dir und Gruppenmitgliedern im Umkreis von 15 Yalmen Vitalisierendes Wappen gewährt.",
+    "Effekt von Vitalisierendes Wappen: Regeneriert stetig LP.",
+    "Heilpotenzial: 50",
+    "Dauer: 15 Sekunden"
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 39,
+    "name": "Schnitter",
+    "abbreviation": "SNT"
+  },
+  "unlock_level": 84,
+  "value": 0,
+  "icon": {
+    "id": 6407,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 180,
+  "source_class_job_id": 39
+}

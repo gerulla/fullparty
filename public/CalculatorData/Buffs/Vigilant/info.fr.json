@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 3902,
+  "name": "Garde ténébreuse",
+  "description": "Un effet curatif est reçu lorsque les PV tombent en dessous d'un certain montant ou à la fin de l'effet.",
+  "effects": [
+    "Un effet curatif est reçu lorsque les PV tombent en dessous d'un certain montant ou à la fin de l'effet."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 213127,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 60,
+  "parameter": {
+    "effect": 0,
+    "modifier": 100
+  },
+  "class_job_category_id": 98,
+  "source_abilities": [
+    {
+      "id": 36927,
+      "name": "Vigile ténébreux",
+      "description": "Réduit de 40% vos dégâts subis.\nDurée : 15s\nEffet additionnel : vous octroie Garde ténébreuse.\nDurée : 20s\nGarde ténébreuse : restaure les PV s'ils tombent sous 50% ou à la fin de l'effet.\nPuissance : 1200",
+      "description_macro": "Réduit de 40% vos dégâts subis.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 15s<br><colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> vous octroie <colortype(500)><edgecolortype(501)>Garde ténébreuse<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 20s<br><colortype(506)><edgecolortype(507)>Garde ténébreuse<nbsp>:<edgecolortype(0)><colortype(0)> restaure les PV s'ils tombent sous 50% ou à la fin de l'effet.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> 1200",
+      "unlock_level": 92,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Tank"
+      ],
+      "jobs": [
+        {
+          "id": 32,
+          "name": "Chevalier Noir",
+          "abbreviation": "CHN",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,102 @@
+{
+  "kind": "ability",
+  "id": 25789,
+  "name": "Improvisiertes Finale",
+  "description": "Du errichtest eine Barriere um dich und umgebende Gruppenmitglieder, die ein bestimmtes Maß an Schaden absorbiert. Der Barriere-Effekt steigt mit der Intensität deiner Tanzekstase.\nIntensität 0: 5 % der Maximal-LP des Ziels\nIntensität 1: 6 % der Maximal-LP des Ziels\nIntensität 2: 7 % der Maximal-LP des Ziels\nIntensität 3: 8 % der Maximal-LP des Ziels\nIntensität 4: 10 % der Maximal-LP des Ziels\nDauer: 30 Sekunden\nBedingung: Tanzimprovisation aktiv\nBei erfüllter Bedingung ändert sich Tanzimprovisation zu diesem Kommando.\nKann nicht im Kommandomenü angelegt werden.",
+  "description_macro": "Du errichtest eine Barriere um dich und umgebende Grup<->pen<->mit<->glieder, die ein bestimmtes Maß an Schaden absorbiert. Der Barriere-Effekt steigt mit der Intensität deiner <colortype(506)><edgecolortype(507)>Tanzekstase<edgecolortype(0)><colortype(0)>.<br>Intensität 0: 5<nbsp>% der Maximal-LP des Ziels<br>Intensität 1: 6<nbsp>% der Maximal-LP des Ziels<br>Intensität 2: 7<nbsp>% der Maximal-LP des Ziels<br>Intensität 3: 8<nbsp>% der Maximal-LP des Ziels<br>Intensität 4: 10<nbsp>% der Maximal-LP des Ziels<br>Dauer: 30 Sekunden<br>Bedingung: <colortype(506)><edgecolortype(507)>Tanzimprovisation<edgecolortype(0)><colortype(0)> aktiv<br>Bei erfüllter Bedingung ändert sich <colortype(502)><edgecolortype(503)>Tanzimprovisation<edgecolortype(0)><colortype(0)> zu diesem Kommando.<br>Kann nicht im Kommandomenü angelegt werden.",
+  "effects": [
+    "Du errichtest eine Barriere um dich und umgebende Gruppenmitglieder, die ein bestimmtes Maß an Schaden absorbiert. Der Barriere-Effekt steigt mit der Intensität deiner Tanzekstase.",
+    "Intensität 0: 5 % der Maximal-LP des Ziels",
+    "Intensität 1: 6 % der Maximal-LP des Ziels",
+    "Intensität 2: 7 % der Maximal-LP des Ziels",
+    "Intensität 3: 8 % der Maximal-LP des Ziels",
+    "Intensität 4: 10 % der Maximal-LP des Ziels",
+    "Dauer: 30 Sekunden",
+    "Bedingung: Tanzimprovisation aktiv",
+    "Bei erfüllter Bedingung ändert sich Tanzimprovisation zu diesem Kommando.",
+    "Kann nicht im Kommandomenü angelegt werden."
+  ],
+  "role": "Physical Ranged DPS",
+  "job": {
+    "id": 38,
+    "name": "Tänzer",
+    "abbreviation": "TÄN"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 80,
+  "icon": {
+    "id": 3479,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 4,
+    "name": "Talent"
+  },
+  "attack_type": {
+    "id": 0,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 1.5,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 5,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 0,
+      "value": 0
+    },
+    "secondary": {
+      "type_id": 91,
+      "value": 1827
+    }
+  },
+  "range": {
+    "target_yalms": 0,
+    "effect_yalms": 8,
+    "cast_type": 2
+  },
+  "targeting": {
+    "self": true,
+    "party": false,
+    "alliance": false,
+    "hostile": false,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": {
+      "id": 64,
+      "status": {
+        "id": 1827,
+        "name": "Tanzimprovisation",
+        "description": "Deiner Intuition folgend, tanzt du den Kriegstanz.",
+        "icon_id": 213716,
+        "max_stacks": 0
+      }
+    }
+  },
+  "metadata": {
+    "aspect_id": 0,
+    "behavior_type": 0,
+    "class_job_category_id": 150,
+    "source_class_job_id": 0,
+    "is_role_action": false,
+    "is_player_action": false,
+    "is_derived_action": true,
+    "equivalence_group": 0
+  }
+}

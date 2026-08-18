@@ -1,0 +1,68 @@
+{
+  "kind": "combat_status",
+  "id": 71,
+  "name": "Rempart",
+  "description": "Les dégâts reçus sont réduits.",
+  "effects": [
+    "Les dégâts reçus sont réduits."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 210152,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": -10
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 7531,
+      "name": "Rempart",
+      "description": "Réduit de 20% vos dégâts subis.\nAugmente de 15% les effets curatifs sur vous.\nDurée : 20s",
+      "description_macro": "Réduit de 20% vos dégâts subis.<br><if([gnum72>=94],<if([gnum68==1],Augmente de 15% les effets curatifs sur vous.<br>,<if([gnum68==19],Augmente de 15% les effets curatifs sur vous.<br>,<if([gnum68==3],Augmente de 15% les effets curatifs sur vous.<br>,<if([gnum68==21],Augmente de 15% les effets curatifs sur vous.<br>,<if([gnum68==32],Augmente de 15% les effets curatifs sur vous.<br>,<if([gnum68==37],Augmente de 15% les effets curatifs sur vous.<br>,)>)>)>)>)>)>,)><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 20s",
+      "unlock_level": 8,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Tank"
+      ],
+      "jobs": [
+        {
+          "id": 19,
+          "name": "Paladin",
+          "abbreviation": "PLD",
+          "is_phantom": false
+        },
+        {
+          "id": 21,
+          "name": "Guerrier",
+          "abbreviation": "GUE",
+          "is_phantom": false
+        },
+        {
+          "id": 32,
+          "name": "Chevalier Noir",
+          "abbreviation": "CHN",
+          "is_phantom": false
+        },
+        {
+          "id": 37,
+          "name": "Pistosabreur",
+          "abbreviation": "PSB",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

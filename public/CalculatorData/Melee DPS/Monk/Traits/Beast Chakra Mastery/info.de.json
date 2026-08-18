@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 577,
+  "name": "Meister des Tierchakra",
+  "description": "Verbessert Schlag auf Schlag zu Affenprankenhieb, Wahrer Schlag zu Drachenkieferschlag, Peitschenhieb zu Tigerpeitschenhieb und Elixier-Feld zu Vakuumwelle.",
+  "description_macro": "Verbessert <colortype(502)><edgecolortype(503)>Schlag auf Schlag<edgecolortype(0)><colortype(0)> zu <colortype(502)><edgecolortype(503)>Affenprankenhieb<edgecolortype(0)><colortype(0)>, <colortype(502)><edgecolortype(503)>Wahrer Schlag<edgecolortype(0)><colortype(0)> zu <colortype(502)><edgecolortype(503)>Drachenkieferschlag<edgecolortype(0)><colortype(0)>, <colortype(502)><edgecolortype(503)>Peitschenhieb<edgecolortype(0)><colortype(0)> zu <colortype(502)><edgecolortype(503)>Tigerpeitschenhieb<edgecolortype(0)><colortype(0)> und <colortype(502)><edgecolortype(503)>Elixier-Feld<edgecolortype(0)><colortype(0)> zu <colortype(502)><edgecolortype(503)>Vakuumwelle<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Verbessert Schlag auf Schlag zu Affenprankenhieb, Wahrer Schlag zu Drachenkieferschlag, Peitschenhieb zu Tigerpeitschenhieb und Elixier-Feld zu Vakuumwelle."
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 20,
+    "name": "Mönch",
+    "abbreviation": "MÖN"
+  },
+  "unlock_level": 92,
+  "value": 0,
+  "icon": {
+    "id": 5249,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 21,
+  "source_class_job_id": 20
+}

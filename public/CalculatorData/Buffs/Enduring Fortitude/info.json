@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 4233,
+  "name": "Enduring Fortitude",
+  "description": "Damage taken is reduced.",
+  "effects": [
+    "Damage taken is reduced."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 229903,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": -10
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 41589,
+      "name": "Pray",
+      "description": "Gradually restores HP.\nCure Potency: 000\nDuration: 30s\nAdditional Effect: Grants Enduring Fortitude to self and nearby party members when executed within proximity of a knowledge crystal\nEnduring Fortitude Effect: Reduces target's damage taken by 10%\nDuration: 30m",
+      "description_macro": "Gradually restores HP.<br><colortype(504)><edgecolortype(505)>Cure Potency: <edgecolortype(0)><colortype(0)><if([gnum108>=5],5\\,000,3\\,000)><br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>30s<br><colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>Grants <colortype(506)><edgecolortype(507)>Enduring Fortitude<edgecolortype(0)><colortype(0)> to self and nearby party members when executed within proximity of a knowledge crystal<br><colortype(504)><edgecolortype(505)>Enduring Fortitude Effect: <edgecolortype(0)><colortype(0)>Reduces target's damage taken by 10%<br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>30m",
+      "unlock_level": 0,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Phantom Jobs"
+      ],
+      "jobs": [
+        {
+          "id": 1,
+          "name": "Phantom Knight",
+          "abbreviation": "Ph. Knight",
+          "is_phantom": true
+        }
+      ]
+    }
+  ]
+}

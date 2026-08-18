@@ -1,0 +1,88 @@
+{
+  "kind": "ability",
+  "id": 23274,
+  "name": "Cataracte divine",
+  "description": "Effectue une attaque magique d'eau sur les ennemis alentour.\nPuissance : 500\nPuissance avec Éther de protecteur : 1000\nLa puissance est réduite de 50% au-delà du premier ennemi touché.\nCondition : Cataracte divine.",
+  "description_macro": "Effectue une attaque magique d'eau sur les ennemis alentour.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> 500<br><colortype(506)><edgecolortype(507)>Puissance avec Éther de protecteur<nbsp>:<edgecolortype(0)><colortype(0)> 1000<br>La puissance est réduite de 50% au-delà du premier ennemi touché.<br><colortype(506)><edgecolortype(507)>Condition<nbsp>:<edgecolortype(0)><colortype(0)> <colortype(500)><edgecolortype(501)>Cataracte divine<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Effectue une attaque magique d'eau sur les ennemis alentour.",
+    "Puissance : 500",
+    "Puissance avec Éther de protecteur : 1000",
+    "La puissance est réduite de 50% au-delà du premier ennemi touché.",
+    "Condition : Cataracte divine."
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 36,
+    "name": "Mage Bleu",
+    "abbreviation": "MBU"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 1,
+  "icon": {
+    "id": 3341,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 2,
+    "name": "Sort"
+  },
+  "attack_type": {
+    "id": 5,
+    "name": "magie"
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 2.5,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 58,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 0,
+      "value": 0
+    },
+    "secondary": {
+      "type_id": 32,
+      "value": 2497
+    }
+  },
+  "range": {
+    "target_yalms": 0,
+    "effect_yalms": 10,
+    "cast_type": 2
+  },
+  "targeting": {
+    "self": true,
+    "party": false,
+    "alliance": false,
+    "hostile": false,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": false
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 6,
+    "behavior_type": 0,
+    "class_job_category_id": 129,
+    "source_class_job_id": 0,
+    "is_role_action": false,
+    "is_player_action": false,
+    "is_derived_action": true,
+    "equivalence_group": 0
+  }
+}

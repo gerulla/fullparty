@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 4789,
+  "name": "Magieklingen-Verstärkung",
+  "description": "Nächste Magieklinge hat einen erhöhten Attacke-Wert.",
+  "effects": [
+    "Nächste Magieklinge hat einen erhöhten Attacke-Wert."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 229964,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 46590,
+      "name": "Magie-Barriere",
+      "description": "Du errichtest eine Barriere um dich oder das ausgewählte Gruppenmitglied, die ein bestimmtes Maß an Schaden absorbiert (20 % der Maximal-LP des Anwenders).\nDauer: 60 Sekunden\nBei Erlöschen der Barriere erhält der Anwender Magieklingen-Verstärkung.",
+      "description_macro": "Du errichtest eine Barriere um dich oder das ausgewählte Grup<->pen<->mit<->glied, die ein bestimmtes Maß an Schaden absorbiert (20 % der Maximal-LP des Anwenders).<br>Dauer: 60 Sekunden<br>Bei Erlöschen der Barriere erhält der Anwender <colortype(506)><edgecolortype(507)>Magieklingen-Verstärkung<edgecolortype(0)><colortype(0)>.<if([gnum108>=2],<br>Effekt von <colortype(506)><edgecolortype(507)>Magieklingen-Verstärkung<edgecolortype(0)><colortype(0)>: Der Attacke-Wert der nächsten <colortype(502)><edgecolortype(503)>Magieklinge<edgecolortype(0)><colortype(0)> ist erhöht.<br>Dauer: 30 Sekunden,)>",
+      "unlock_level": 0,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Phantom Jobs"
+      ],
+      "jobs": [
+        {
+          "id": 13,
+          "name": "Phantom Phantom-Paladin",
+          "abbreviation": "Ph-Paladin",
+          "is_phantom": true
+        }
+      ]
+    }
+  ]
+}

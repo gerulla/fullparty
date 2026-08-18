@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 2702,
+  "name": "Schimmerschild",
+  "description": "Erlittener Schaden ist um einen bestimmten Betrag verringert.",
+  "effects": [
+    "Erlittener Schaden ist um einen bestimmten Betrag verringert."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 212691,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 30,
+  "parameter": {
+    "effect": 0,
+    "modifier": 100
+  },
+  "class_job_category_id": 28,
+  "source_abilities": [
+    {
+      "id": 25799,
+      "name": "Schimmerschild",
+      "description": "Du lässt dein gerufenes Karfunkel Schimmerschild ausführen und es damit eine Barriere um dich errichten, die Schaden in Höhe von 20 % deiner Maximal-LP absorbiert.\nDauer: 30 Sekunden\nMaximale Aufladungen: 2\nBedingung: Karfunkel ist bereits gerufen.",
+      "description_macro": "Du lässt dein gerufenes Karfunkel <colortype(502)><edgecolortype(503)>Schimmerschild<edgecolortype(0)><colortype(0)> ausführen und es damit eine Barriere um dich errichten, die Schaden in Höhe von 20<nbsp>% deiner Maximal-LP absorbiert.<br>Dauer: 30 Sekunden<br><if([gnum68==27],<if([gnum72>=88],Maximale Aufladungen: 2<br>,)>,)>Bedingung: Karfunkel ist bereits gerufen.",
+      "unlock_level": 2,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Magical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 27,
+          "name": "Beschwörer",
+          "abbreviation": "BSW",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

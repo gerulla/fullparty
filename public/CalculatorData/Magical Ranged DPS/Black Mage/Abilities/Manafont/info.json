@@ -1,0 +1,90 @@
+{
+  "kind": "ability",
+  "id": 158,
+  "name": "Manafont",
+  "description": "Fully restores MP.\nAdditional Effect: Grants Astral Fire III\nAdditional Effect: Grants Thunderhead\nAdditional Effect: Grants 3 Umbral Hearts\nUmbral Heart Bonus: Nullifies Astral Fire's MP cost increase for Fire spells and reduces MP cost for Flare by one-third\nAdditional Effect: Grants Paradox\nCan only be executed while under the effect of Astral Fire.",
+  "description_macro": "Fully restores MP.<br><colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>Grants <colortype(506)><edgecolortype(507)>Astral Fire III<edgecolortype(0)><colortype(0)><br><colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>Grants <colortype(506)><edgecolortype(507)>Thunderhead<edgecolortype(0)><colortype(0)><br><if([gnum68==25],<if([gnum72>=58],<colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>Grants 3 <colortype(506)><edgecolortype(507)>Umbral Hearts<edgecolortype(0)><colortype(0)><br><colortype(504)><edgecolortype(505)>Umbral Heart Bonus: <edgecolortype(0)><colortype(0)>Nullifies <colortype(506)><edgecolortype(507)>Astral Fire<edgecolortype(0)><colortype(0)>'s MP cost increase for <colortype(500)><edgecolortype(501)>Fire<edgecolortype(0)><colortype(0)> spells and reduces MP cost for <colortype(500)><edgecolortype(501)>Flare<edgecolortype(0)><colortype(0)> by one-third<br>,)>,)><if([gnum68==25],<if([gnum72>=90],<colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>Grants <colortype(506)><edgecolortype(507)>Paradox<edgecolortype(0)><colortype(0)><br>,)>,)>Can only be executed while under the effect of <colortype(506)><edgecolortype(507)>Astral Fire<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Fully restores MP.",
+    "Additional Effect: Grants Astral Fire III",
+    "Additional Effect: Grants Thunderhead",
+    "Additional Effect: Grants 3 Umbral Hearts",
+    "Umbral Heart Bonus: Nullifies Astral Fire's MP cost increase for Fire spells and reduces MP cost for Flare by one-third",
+    "Additional Effect: Grants Paradox",
+    "Can only be executed while under the effect of Astral Fire."
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 25,
+    "name": "Black Mage",
+    "abbreviation": "BLM"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 30,
+  "icon": {
+    "id": 2651,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 4,
+    "name": "Ability"
+  },
+  "attack_type": {
+    "id": 0,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 120,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 24,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 0,
+      "value": 0
+    },
+    "secondary": {
+      "type_id": 49,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": 0,
+    "effect_yalms": 0,
+    "cast_type": 1
+  },
+  "targeting": {
+    "self": true,
+    "party": false,
+    "alliance": false,
+    "hostile": false,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 0,
+    "behavior_type": 0,
+    "class_job_category_id": 26,
+    "source_class_job_id": 25,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

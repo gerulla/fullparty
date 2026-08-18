@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 653,
+  "name": "Melee Mastery",
+  "description": "Increases the potency of Fang and Claw to 140, Wheeling Thrust to 140, Drakesbane to 460, Raiden Thrust to 320, Stardiver to 840, Heavens' Thrust to 160, Chaotic Spring to 140, and Wyrmwind Thrust to 440.",
+  "description_macro": "Increases the potency of <colortype(500)><edgecolortype(501)>Fang and Claw<edgecolortype(0)><colortype(0)> to 140, <colortype(500)><edgecolortype(501)>Wheeling Thrust<edgecolortype(0)><colortype(0)> to 140, <colortype(500)><edgecolortype(501)>Drakesbane<edgecolortype(0)><colortype(0)> to 460, <colortype(500)><edgecolortype(501)>Raiden Thrust<edgecolortype(0)><colortype(0)> to 320, <colortype(500)><edgecolortype(501)>Stardiver<edgecolortype(0)><colortype(0)> to 840, <colortype(500)><edgecolortype(501)>Heavens' Thrust<edgecolortype(0)><colortype(0)> to 160, <colortype(500)><edgecolortype(501)>Chaotic Spring<edgecolortype(0)><colortype(0)> to 140, and <colortype(500)><edgecolortype(501)>Wyrmwind Thrust<edgecolortype(0)><colortype(0)> to 440.",
+  "effects": [
+    "Increases the potency of Fang and Claw to 140, Wheeling Thrust to 140, Drakesbane to 460, Raiden Thrust to 320, Stardiver to 840, Heavens' Thrust to 160, Chaotic Spring to 140, and Wyrmwind Thrust to 440."
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 22,
+    "name": "Dragoon",
+    "abbreviation": "DRG"
+  },
+  "unlock_level": 94,
+  "value": 0,
+  "icon": {
+    "id": 6806,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 23,
+  "source_class_job_id": 22
+}

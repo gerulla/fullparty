@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 444,
+  "name": "Maîtrise de Salve fulgurante",
+  "description": "Remplace Salve fulgurante par Morsure de Ladon.",
+  "description_macro": "Remplace <colortype(500)><edgecolortype(501)>Salve fulgurante<edgecolortype(0)><colortype(0)> par <colortype(500)><edgecolortype(501)>Morsure de Ladon<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Remplace Salve fulgurante par Morsure de Ladon."
+  ],
+  "role": "Physical Ranged DPS",
+  "job": {
+    "id": 23,
+    "name": "Barde",
+    "abbreviation": "BRD"
+  },
+  "unlock_level": 82,
+  "value": 0,
+  "icon": {
+    "id": 5316,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 24,
+  "source_class_job_id": 23
+}

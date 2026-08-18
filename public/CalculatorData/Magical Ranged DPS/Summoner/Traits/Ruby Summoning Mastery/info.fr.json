@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 468,
+  "name": "Maîtrise d'Invocation Rubis",
+  "description": "Remplace Invocation Rubis par Invocation Ifrit.",
+  "description_macro": "Remplace <colortype(500)><edgecolortype(501)>Invocation Rubis<edgecolortype(0)><colortype(0)> par <colortype(500)><edgecolortype(501)>Invocation Ifrit<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Remplace Invocation Rubis par Invocation Ifrit."
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 27,
+    "name": "Invocateur",
+    "abbreviation": "INV"
+  },
+  "unlock_level": 30,
+  "value": 0,
+  "icon": {
+    "id": 5682,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 28,
+  "source_class_job_id": 27
+}

@@ -1,0 +1,71 @@
+{
+  "kind": "combat_status",
+  "id": 2673,
+  "name": "Göttliche Gunst",
+  "description": "Nächster Heiliger Geist und Heiliger Kreis haben einen erhöhten Attacke-Wert und können sofort gewirkt werden.",
+  "effects": [
+    "Nächster Heiliger Geist und Heiliger Kreis haben einen erhöhten Attacke-Wert und können sofort gewirkt werden."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 212521,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 20,
+  "source_abilities": [
+    {
+      "id": 3539,
+      "name": "Königsklinge",
+      "description": "Du führst eine physische Attacke aus.\nAttacke-Wert: 200\nKombo-Bedingung: Donnerklinge\nAttacke-Wert: 460\nBonus: Gewährt dir Königliche Erhabenheit.\nDauer: 30 Sekunden\nBonus: Gewährt dir Göttliche Gunst.\nDauer: 30 Sekunden\nEffekt von Göttliche Gunst: Der nächste Heilige Geistoder Heilige Kreis kann sofort gewirkt werden und hat einen erhöhten Attacke-Wert.",
+      "description_macro": "Du führst eine physische Attacke aus.<br>Attacke-Wert: <if([gnum68==19],<if([gnum72>=94],200,<if([gnum68==19],<if([gnum72>=84],140,100)>,100)>)>,<if([gnum68==19],<if([gnum72>=84],140,100)>,100)>)><br>Kombo-Bedingung: <colortype(502)><edgecolortype(503)>Donnerklinge<edgecolortype(0)><colortype(0)><br>Attacke-Wert: <if([gnum68==19],<if([gnum72>=94],460,<if([gnum68==19],<if([gnum72>=84],400,360)>,360)>)>,<if([gnum68==19],<if([gnum72>=84],400,360)>,360)>)><if([gnum68==19],<if([gnum72>=76],<br>Bonus: Gewährt dir <colortype(506)><edgecolortype(507)>Königliche Erhabenheit<edgecolortype(0)><colortype(0)>.<br>Dauer: 30 Sekunden,)>,)><if([gnum68==19],<if([gnum72>=64],<br>Bonus: Gewährt dir <colortype(506)><edgecolortype(507)>Göttliche Gunst<edgecolortype(0)><colortype(0)>.<br>Dauer: 30 Sekunden<br>Effekt von <colortype(506)><edgecolortype(507)>Göttliche Gunst<edgecolortype(0)><colortype(0)>: Der nächste <colortype(502)><edgecolortype(503)>Heilige Geist<edgecolortype(0)><colortype(0)><if([gnum68==19],<if([gnum72>=72], oder <colortype(502)><edgecolortype(503)>Heilige Kreis<edgecolortype(0)><colortype(0)>,)>,)> kann sofort gewirkt werden und hat einen erhöhten Attacke-Wert.,)>,)>",
+      "unlock_level": 60,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Tank"
+      ],
+      "jobs": [
+        {
+          "id": 19,
+          "name": "Paladin",
+          "abbreviation": "PLD",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 16457,
+      "name": "Protuberanz",
+      "description": "Du führst eine physische Attacke auf alle umstehenden Gegner aus.\nAttacke-Wert: 100\nKombo-Bedingung: Eklipse\nAttacke-Wert: 220\nZusatzeffekt: Erhöhte Feindseligkeit\nBonus: MP-Regeneration\nBonus: Gewährt dir Göttliche Gunst.\nDauer: 30 Sekunden\nEffekt von Göttliche Gunst: Der nächste Heilige Geist oder Heilige Kreis kann sofort gewirkt werden und hat einen erhöhten Attacke-Wert.",
+      "description_macro": "Du führst eine physische Attacke auf alle umstehenden Gegner aus.<br>Attacke-Wert: 100<br>Kombo-Bedingung: <colortype(502)><edgecolortype(503)>Eklipse<edgecolortype(0)><colortype(0)><br>Attacke-Wert: 220<br>Zusatzeffekt: Erhöhte Feindseligkeit<if([gnum68==19],<if([gnum72>=72],<br>Bonus: MP-Regeneration<br>Bonus: Gewährt dir <colortype(506)><edgecolortype(507)>Göttliche Gunst<edgecolortype(0)><colortype(0)>.<br>Dauer: 30 Sekunden<br>Effekt von <colortype(506)><edgecolortype(507)>Göttliche Gunst<edgecolortype(0)><colortype(0)>: Der nächste <colortype(502)><edgecolortype(503)>Heilige Geist<edgecolortype(0)><colortype(0)> oder <colortype(502)><edgecolortype(503)>Heilige Kreis<edgecolortype(0)><colortype(0)> kann sofort gewirkt werden und hat einen erhöhten Attacke-Wert.,)>,)>",
+      "unlock_level": 40,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Tank"
+      ],
+      "jobs": [
+        {
+          "id": 19,
+          "name": "Paladin",
+          "abbreviation": "PLD",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

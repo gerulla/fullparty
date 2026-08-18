@@ -1,0 +1,53 @@
+{
+  "kind": "combat_status",
+  "id": 128,
+  "name": "Rafale de coups",
+  "description": "peuvent être .\n infligera 3 fois le montant normal de dégâts en un seul coup.\nLa puissance de  est augmentée.",
+  "effects": [
+    "peuvent être .",
+    "infligera 3 fois le montant normal de dégâts en un seul coup.",
+    "La puissance de  est augmentée."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 210356,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 1
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 107,
+      "name": "Rafale de coups",
+      "description": "Vous octroie Rafale de coups.\nDurée : 10s\nRafale de coups : permet de lancer Flèche rayonnanteet Morsure de l'ombre.\nEn outre, Flèche rayonnante infligera 3 fois le montant normal de dégâts en un seul coup.\nSi Morsure de l'ombre est lancée, sa puissance est augmentée à 300.\nEffet additionnel : vous octroie Flèche résonante préparée.\nDurée : 30s",
+      "description_macro": "Vous octroie <colortype(500)><edgecolortype(501)>Rafale de coups<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 10s<br><colortype(506)><edgecolortype(507)>Rafale de coups<nbsp>:<edgecolortype(0)><colortype(0)> permet de lancer <if([gnum68==23],<if([gnum72>=70],Flèche rayonnante,Tir droit)>,Tir droit)><if([gnum68==23],<if([gnum72>=72], et Morsure de l'ombre, et Rafale impitoyable)>, et Rafale impitoyable)>.<br>En outre, <if([gnum68==23],<if([gnum72>=70],Flèche rayonnante,Tir droit)>,Tir droit)> infligera 3 fois le montant normal de dégâts en un seul coup.<br>Si <if([gnum68==23],<if([gnum72>=72],Morsure de l'ombre,Rafale impitoyable)>,Rafale impitoyable)> est lancée, sa puissance est augmentée à <if([gnum68==23],<if([gnum72>=72],300,220)>,220)>.<if([gnum68==23],<if([gnum72>=96],<br><colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> vous octroie <colortype(500)><edgecolortype(501)>Flèche résonante préparée<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 30s,)>,)>",
+      "unlock_level": 38,
+      "relations": [
+        "granted_by_description",
+        "same_name"
+      ],
+      "roles": [
+        "Physical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 23,
+          "name": "Barde",
+          "abbreviation": "BRD",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

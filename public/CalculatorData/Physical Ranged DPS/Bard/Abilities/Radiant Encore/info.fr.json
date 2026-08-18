@@ -1,0 +1,99 @@
+{
+  "kind": "ability",
+  "id": 36977,
+  "name": "Rappel radieux",
+  "description": "Effectue une attaque physique sur la cible et les ennemis autour.\nLa puissance de l'attaque dépend du nombre de Codas utilisées en amont avec Final radieux.\nPuissance avec 1 Coda : 700\nPuissance avec 2 Codas : 800\nPuissance avec 3 Codas : 1100\nLa puissance est réduite de 50% au-delà du premier ennemi touché.\nCondition : Rappel radieux préparé.",
+  "description_macro": "Effectue une attaque physique sur la cible et les ennemis autour.<br>La puissance de l'attaque dépend du nombre de <colortype(500)><edgecolortype(501)>Codas<edgecolortype(0)><colortype(0)> utilisées en amont avec <colortype(500)><edgecolortype(501)>Final radieux<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Puissance avec 1 Coda<nbsp>:<edgecolortype(0)><colortype(0)> 700<br><colortype(506)><edgecolortype(507)>Puissance avec 2 Codas<nbsp>:<edgecolortype(0)><colortype(0)> 800<br><colortype(506)><edgecolortype(507)>Puissance avec 3 Codas<nbsp>:<edgecolortype(0)><colortype(0)> 1100<br>La puissance est réduite de 50% au-delà du premier ennemi touché.<br><colortype(506)><edgecolortype(507)>Condition<nbsp>:<edgecolortype(0)><colortype(0)> <colortype(500)><edgecolortype(501)>Rappel radieux préparé<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Effectue une attaque physique sur la cible et les ennemis autour.",
+    "La puissance de l'attaque dépend du nombre de Codas utilisées en amont avec Final radieux.",
+    "Puissance avec 1 Coda : 700",
+    "Puissance avec 2 Codas : 800",
+    "Puissance avec 3 Codas : 1100",
+    "La puissance est réduite de 50% au-delà du premier ennemi touché.",
+    "Condition : Rappel radieux préparé."
+  ],
+  "role": "Physical Ranged DPS",
+  "job": {
+    "id": 23,
+    "name": "Barde",
+    "abbreviation": "BRD"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 100,
+  "icon": {
+    "id": 2100,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 3,
+    "name": "Technique d'arme"
+  },
+  "attack_type": {
+    "id": 4294967295,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 2.5,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 58,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 10,
+      "value": 3863
+    },
+    "secondary": {
+      "type_id": 32,
+      "value": 3863
+    }
+  },
+  "range": {
+    "target_yalms": -1,
+    "effect_yalms": 5,
+    "cast_type": 2
+  },
+  "targeting": {
+    "self": false,
+    "party": false,
+    "alliance": false,
+    "hostile": true,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": {
+      "id": 171,
+      "status": {
+        "id": 3863,
+        "name": "Rappel radieux préparé",
+        "description": "Rappel radieux peut être lancé.",
+        "icon_id": 213077,
+        "max_stacks": 0
+      }
+    }
+  },
+  "metadata": {
+    "aspect_id": 7,
+    "behavior_type": 0,
+    "class_job_category_id": 24,
+    "source_class_job_id": 23,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

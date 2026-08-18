@@ -1,0 +1,92 @@
+{
+  "kind": "combat_status",
+  "id": 297,
+  "name": "鼓舞",
+  "description": "一定量のダメージを軽減する状態。",
+  "effects": [
+    "一定量のダメージを軽減する状態。"
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 212801,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 30,
+  "parameter": {
+    "effect": 0,
+    "modifier": 100
+  },
+  "class_job_category_id": 29,
+  "source_abilities": [
+    {
+      "id": 185,
+      "name": "鼓舞激励の策",
+      "description": "対象のＨＰを回復する。\u3000回復力：300\n追加効果：対象に一定量のダメージを防ぐバリアである「鼓舞」を付与する。\n鼓舞効果：回復量の180％分のダメージを軽減する。\n効果時間：30秒\n賢者の一部のバリア効果とは同時に付与されない。\n追加効果（クリティカル時）：対象に一定量のダメージを防ぐバリアである「激励」を付与する。\n激励効果：回復量の180％分のダメージを軽減する。\n効果時間：30秒",
+      "description_macro": "対象のＨＰを回復する。\u3000<colortype(504)><edgecolortype(505)>回復力：<edgecolortype(0)><colortype(0)>300<br><colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)>対象に一定量のダメージを防ぐバリアである<colortype(500)><edgecolortype(501)>「鼓舞」<edgecolortype(0)><colortype(0)>を付与する。<br><colortype(504)><edgecolortype(505)>鼓舞効果：<edgecolortype(0)><colortype(0)>回復量の<if([gnum68==28],<if([gnum72>=85],180,125)>,125)>％分のダメージを軽減する。<br><colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>30秒<br>賢者の一部のバリア効果とは同時に付与されない。<br><colortype(504)><edgecolortype(505)>追加効果（クリティカル時）：<edgecolortype(0)><colortype(0)>対象に一定量のダメージを防ぐバリアである<colortype(500)><edgecolortype(501)>「激励」<edgecolortype(0)><colortype(0)>を付与する。<br><colortype(504)><edgecolortype(505)>激励効果：<edgecolortype(0)><colortype(0)>回復量の<if([gnum68==28],<if([gnum72>=85],180,125)>,125)>％分のダメージを軽減する。<br><colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>30秒",
+      "unlock_level": 30,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Healer"
+      ],
+      "jobs": [
+        {
+          "id": 28,
+          "name": "学者",
+          "abbreviation": "SCH",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 3585,
+      "name": "展開戦術",
+      "description": "自身またはパーティメンバーひとりを対象とする。\n対象に付与した「鼓舞」を対象の周囲のパーティメンバーに拡散させる。\n効果時間：拡散した時点での時間\n自身が対象に鼓舞を付与していない場合は効果無し。",
+      "description_macro": "自身またはパーティメンバーひとりを対象とする。<br>対象に付与した<colortype(500)><edgecolortype(501)>「鼓舞」<edgecolortype(0)><colortype(0)>を対象の周囲のパーティメンバーに拡散させる。<br><colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>拡散した時点での時間<br>自身が対象に鼓舞を付与していない場合は効果無し。",
+      "unlock_level": 56,
+      "relations": [
+        "extended_by_description"
+      ],
+      "roles": [
+        "Healer"
+      ],
+      "jobs": [
+        {
+          "id": 28,
+          "name": "学者",
+          "abbreviation": "SCH",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 37015,
+      "name": "マニフェステーション",
+      "description": "対象のＨＰを回復する。\u3000回復力：360\n追加効果：対象に一定量のダメージを防ぐバリアである「鼓舞」を付与する。\n鼓舞効果：回復量の180％分のダメージを軽減する。\n効果時間：30秒\n賢者の一部のバリア効果とは同時に付与されない。\n追加効果（クリティカル時）：対象に一定量のダメージを防ぐバリアである「激励」を付与する。\n激励効果：回復量の180％分のダメージを軽減する。\n効果時間：30秒\n発動条件：「セラフィズム」効果中\n\n※このアクションはホットバーに登録することはできない。\n\u3000発動条件を満たすと鼓舞激励の策がマニフェステーションに変化する。",
+      "description_macro": "対象のＨＰを回復する。\u3000<colortype(504)><edgecolortype(505)>回復力：<edgecolortype(0)><colortype(0)>360<br><colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)>対象に一定量のダメージを防ぐバリアである<colortype(500)><edgecolortype(501)>「鼓舞」<edgecolortype(0)><colortype(0)>を付与する。<br><colortype(504)><edgecolortype(505)>鼓舞効果：<edgecolortype(0)><colortype(0)>回復量の180％分のダメージを軽減する。<br><colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>30秒<br>賢者の一部のバリア効果とは同時に付与されない。<br><colortype(504)><edgecolortype(505)>追加効果（クリティカル時）：<edgecolortype(0)><colortype(0)>対象に一定量のダメージを防ぐバリアである<colortype(500)><edgecolortype(501)>「激励」<edgecolortype(0)><colortype(0)>を付与する。<br><colortype(504)><edgecolortype(505)>激励効果：<edgecolortype(0)><colortype(0)>回復量の180％分のダメージを軽減する。<br><colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>30秒<br><colortype(504)><edgecolortype(505)>発動条件：<edgecolortype(0)><colortype(0)><colortype(500)><edgecolortype(501)>「セラフィズム」<edgecolortype(0)><colortype(0)>効果中<br><br><colortype(506)><edgecolortype(507)>※このアクションはホットバーに登録することはできない。<br>\u3000発動条件を満たすと鼓舞激励の策がマニフェステーションに変化する。<edgecolortype(0)><colortype(0)>",
+      "unlock_level": 100,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Healer"
+      ],
+      "jobs": [
+        {
+          "id": 28,
+          "name": "学者",
+          "abbreviation": "SCH",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

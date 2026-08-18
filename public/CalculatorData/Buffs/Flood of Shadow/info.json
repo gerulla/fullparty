@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 2170,
+  "name": "Flood of Shadow",
+  "description": "HP recovery via healing actions is reduced.",
+  "effects": [
+    "HP recovery via healing actions is reduced."
+  ],
+  "classification": "debuff",
+  "icon": {
+    "id": 214884,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 2,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": true,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": -20
+  },
+  "class_job_category_id": 98,
+  "source_abilities": [
+    {
+      "id": 16469,
+      "name": "Flood of Shadow",
+      "description": "Deals unaspected damage with a potency of 160 to all enemies in a straight line before you.\nAdditional Effect: Grants Darkside, increasing damage dealt by 10%\nDuration: 30s\nExtends Darkside duration by 30s to a maximum of 60s.\nShares a recast timer with Edge of Shadow.",
+      "description_macro": "Deals unaspected damage with a potency of 160 to all enemies in a straight line before you.<br><colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>Grants <colortype(506)><edgecolortype(507)>Darkside<edgecolortype(0)><colortype(0)>, increasing damage dealt by 10%<br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>30s<br>Extends <colortype(506)><edgecolortype(507)>Darkside<edgecolortype(0)><colortype(0)> duration by 30s to a maximum of 60s.<br>Shares a recast timer with <colortype(500)><edgecolortype(501)>Edge of Shadow<edgecolortype(0)><colortype(0)>.",
+      "unlock_level": 74,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Tank"
+      ],
+      "jobs": [
+        {
+          "id": 32,
+          "name": "Dark Knight",
+          "abbreviation": "DRK",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

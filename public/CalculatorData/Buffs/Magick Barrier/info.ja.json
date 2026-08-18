@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 2707,
+  "name": "バマジク",
+  "description": "受ける魔法ダメージの一部が軽減され、かつ自身に対するＨＰ回復効果を向上させる状態。",
+  "effects": [
+    "受ける魔法ダメージの一部が軽減され、かつ自身に対するＨＰ回復効果を向上させる状態。"
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 213408,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": -10
+  },
+  "class_job_category_id": 112,
+  "source_abilities": [
+    {
+      "id": 25857,
+      "name": "バマジク",
+      "description": "一定時間、自身と周囲のパーティメンバーの被魔法ダメージを10％軽減し、さらに受ける回復効果を5％上昇させる。\n効果時間：10秒",
+      "description_macro": "一定時間、自身と周囲のパーティメンバーの被魔法ダメージを10％軽減し、さらに受ける回復効果を5％上昇させる。<br><colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>10秒",
+      "unlock_level": 86,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Magical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 35,
+          "name": "赤魔道士",
+          "abbreviation": "RDM",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 293,
+  "name": "Verbessertes Wildfeuer",
+  "description": "Jede während Wildfeuer erfolgreich ausgeführte Waffenfertigkeit ist nun einen Attacke-Wert von 240 wert.",
+  "description_macro": "Jede während <colortype(506)><edgecolortype(507)>Wildfeuer<edgecolortype(0)><colortype(0)> erfolgreich ausgeführte Waf<->fen<->fer<->tig<->keit ist nun einen Attacke-Wert von 240 wert.",
+  "effects": [
+    "Jede während Wildfeuer erfolgreich ausgeführte Waffenfertigkeit ist nun einen Attacke-Wert von 240 wert."
+  ],
+  "role": "Physical Ranged DPS",
+  "job": {
+    "id": 31,
+    "name": "Maschinist",
+    "abbreviation": "MCH"
+  },
+  "unlock_level": 78,
+  "value": 0,
+  "icon": {
+    "id": 6014,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 96,
+  "source_class_job_id": 31
+}

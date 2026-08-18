@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 2590,
+  "name": "Enhanced Void Reaping",
+  "description": "Next Void Reaping will deal increased damage.",
+  "effects": [
+    "Next Void Reaping will deal increased damage."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 212929,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 50,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 180,
+  "source_abilities": [
+    {
+      "id": 24396,
+      "name": "Cross Reaping",
+      "description": "Delivers an attack with a potency of 580.\nEnhanced Cross Reaping Potency: 640\nAdditional Effect: Grants Enhanced Void Reaping\nDuration: 30s\nAdditional Effect: Grants Void Shroud\nCan only be executed while under the effect of Lemure Shroud.\nLemure Shroud Cost: 1\nThis action does not share a recast timer with any other actions. Upon execution, the recast timer for this action will be applied to all other weaponskills and magic actions.\n\n※This action cannot be assigned to a hotbar.\n※Gallows changes to Cross Reaping when requirements for execution are met.",
+      "description_macro": "Delivers an attack with a potency of <if([gnum68==39],<if([gnum72>=94],580,460)>,460)>.<br><colortype(504)><edgecolortype(505)>Enhanced Cross Reaping Potency: <edgecolortype(0)><colortype(0)><if([gnum68==39],<if([gnum72>=94],640,520)>,520)><br><colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>Grants <colortype(506)><edgecolortype(507)>Enhanced Void Reaping<edgecolortype(0)><colortype(0)><br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>30s<br><if([gnum68==39],<if([gnum72>=86],<colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>Grants <colortype(506)><edgecolortype(507)>Void Shroud<edgecolortype(0)><colortype(0)><br>,)>,)>Can only be executed while under the effect of <colortype(506)><edgecolortype(507)>Lemure Shroud<edgecolortype(0)><colortype(0)>.<br><colortype(504)><edgecolortype(505)>Lemure Shroud Cost: <edgecolortype(0)><colortype(0)>1<br>This action does not share a recast timer with any other actions. Upon execution, the recast timer for this action will be applied to all other weaponskills and magic actions.<br><br>※This action cannot be assigned to a hotbar.<br>※<colortype(500)><edgecolortype(501)>Gallows<edgecolortype(0)><colortype(0)> changes to <colortype(500)><edgecolortype(501)>Cross Reaping<edgecolortype(0)><colortype(0)> when requirements for execution are met.",
+      "unlock_level": 80,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 39,
+          "name": "Reaper",
+          "abbreviation": "RPR",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

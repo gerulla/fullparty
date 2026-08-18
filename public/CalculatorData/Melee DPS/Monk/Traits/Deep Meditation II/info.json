@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 245,
+  "name": "Deep Meditation II",
+  "description": "Guarantees that a chakra will open upon dealing critical damage with a weaponskill.",
+  "description_macro": "Guarantees that a chakra will open upon dealing critical damage with a weaponskill.",
+  "effects": [
+    "Guarantees that a chakra will open upon dealing critical damage with a weaponskill."
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 20,
+    "name": "Monk",
+    "abbreviation": "MNK"
+  },
+  "unlock_level": 74,
+  "value": 100,
+  "icon": {
+    "id": 5238,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 21,
+  "source_class_job_id": 20
+}

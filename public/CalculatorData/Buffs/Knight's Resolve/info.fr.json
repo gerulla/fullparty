@@ -1,0 +1,71 @@
+{
+  "kind": "combat_status",
+  "id": 2675,
+  "name": "Égide du paladin",
+  "description": "Les dégâts reçus sont réduits.",
+  "effects": [
+    "Les dégâts reçus sont réduits."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 212516,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": -10
+  },
+  "class_job_category_id": 20,
+  "source_abilities": [
+    {
+      "id": 7382,
+      "name": "Intervention",
+      "description": "Réduit de 10% les dégâts subis par l'équipier ciblé.\nDurée : 8s\nEffet additionnel : l'effet est augmenté de 10% si vous bénéficiez de Rempart ou de Garde extrême.\nEffet additionnel : octroie Égide du paladin à la cible.\nDurée : 4s\nÉgide du paladin : réduit de 10% les dégâts subis par la cible.\nEffet additionnel : octroie Bénédiction du paladin à la cible.\nBénédiction du paladin : restaure périodiquement les PV de la cible.\nPuissance : 250 Durée : 12s\nCoût Jauge du serment : 50",
+      "description_macro": "Réduit de 10% les dégâts subis par l'équipier ciblé.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> <if([gnum68==19],<if([gnum72>=82],8,6)>,6)>s<br><colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> l'effet est augmenté de 10% si vous bénéficiez de <colortype(500)><edgecolortype(501)>Rempart<edgecolortype(0)><colortype(0)> ou de <colortype(500)><edgecolortype(501)><if([gnum68==19],<if([gnum72>=92],Garde extrême,Sentinelle)>,Sentinelle)><edgecolortype(0)><colortype(0)>.<br><if([gnum68==19],<if([gnum72>=82],<colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> octroie <colortype(500)><edgecolortype(501)>Égide du paladin<edgecolortype(0)><colortype(0)> à la cible.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 4s<br><colortype(506)><edgecolortype(507)>Égide du paladin<nbsp>:<edgecolortype(0)><colortype(0)> réduit de 10% les dégâts subis par la cible.<br><colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> octroie <colortype(500)><edgecolortype(501)>Bénédiction du paladin<edgecolortype(0)><colortype(0)> à la cible.<br><colortype(506)><edgecolortype(507)>Bénédiction du paladin<nbsp>:<edgecolortype(0)><colortype(0)> restaure périodiquement les PV de la cible.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> 250 <colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 12s<br>,)>,)><colortype(506)><edgecolortype(507)>Coût Jauge du serment<nbsp>:<edgecolortype(0)><colortype(0)> 50",
+      "unlock_level": 62,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Tank"
+      ],
+      "jobs": [
+        {
+          "id": 19,
+          "name": "Paladin",
+          "abbreviation": "PLD",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 25746,
+      "name": "Schiltron sacré",
+      "description": "Réduit de 15% vos dégâts subis.\nDurée : 8s\nEffet additionnel : vous octroie Égide du paladin.\nDurée : 4s\nÉgide du paladin : réduit de 15% les dégâts subis.\nEffet additionnel : vous octroie Bénédiction du paladin.\nDurée : 12s\nBénédiction du paladin : restaure périodiquement les PV.\nPuissance : 250\nCoût Jauge du serment : 50",
+      "description_macro": "Réduit de 15% vos dégâts subis.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 8s<br><colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> vous octroie <colortype(500)><edgecolortype(501)>Égide du paladin<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 4s<br><colortype(506)><edgecolortype(507)>Égide du paladin<nbsp>:<edgecolortype(0)><colortype(0)> réduit de 15% les dégâts subis.<br><colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> vous octroie <colortype(500)><edgecolortype(501)>Bénédiction du paladin<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 12s<br><colortype(506)><edgecolortype(507)>Bénédiction du paladin<nbsp>:<edgecolortype(0)><colortype(0)> restaure périodiquement les PV.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> 250<br><colortype(506)><edgecolortype(507)>Coût Jauge du serment<nbsp>:<edgecolortype(0)><colortype(0)> 50",
+      "unlock_level": 82,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Tank"
+      ],
+      "jobs": [
+        {
+          "id": 19,
+          "name": "Paladin",
+          "abbreviation": "PLD",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

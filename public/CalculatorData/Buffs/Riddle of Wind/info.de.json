@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 2687,
+  "name": "Stürmendes Enigma",
+  "description": "Intervalle zwischen Auto-Attacken sind verkürzt.",
+  "effects": [
+    "Intervalle zwischen Auto-Attacken sind verkürzt."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 212537,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": -50
+  },
+  "class_job_category_id": 21,
+  "source_abilities": [
+    {
+      "id": 25766,
+      "name": "Stürmendes Enigma",
+      "description": "Du verkürzt dein Auto-Attacke-Intervall um 50 %.\nDauer: 15 Sekunden\nZusatzeffekt: Gewährt dir Himmelbrecher.\nDauer: 15 Sekunden",
+      "description_macro": "Du verkürzt dein Auto-Attacke-Intervall um 50<nbsp>%.<br>Dauer: 15 Sekunden<if([gnum68==20],<if([gnum72>=96],<br>Zusatzeffekt: Gewährt dir <colortype(506)><edgecolortype(507)>Himmelbrecher<edgecolortype(0)><colortype(0)>.<br>Dauer: 15 Sekunden,)>,)>",
+      "unlock_level": 72,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 20,
+          "name": "Mönch",
+          "abbreviation": "MÖN",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

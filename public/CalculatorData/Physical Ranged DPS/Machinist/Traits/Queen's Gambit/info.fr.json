@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 451,
+  "name": "Gambit de la Reine",
+  "description": "Après avoir exécuté Marteau piqueur, permet à l'automate Reine d'enchaîner automatiquement sur Collisionneur royal avant de disparaître.",
+  "description_macro": "Après avoir exécuté <colortype(500)><edgecolortype(501)>Marteau piqueur<edgecolortype(0)><colortype(0)>, permet à l'automate Reine d'enchaîner au<->to<->ma<->ti<->que<->ment sur <colortype(500)><edgecolortype(501)>Collisionneur royal<edgecolortype(0)><colortype(0)> avant de disparaître.",
+  "effects": [
+    "Après avoir exécuté Marteau piqueur, permet à l'automate Reine d'enchaîner automatiquement sur Collisionneur royal avant de disparaître."
+  ],
+  "role": "Physical Ranged DPS",
+  "job": {
+    "id": 31,
+    "name": "Machiniste",
+    "abbreviation": "MCH"
+  },
+  "unlock_level": 86,
+  "value": 0,
+  "icon": {
+    "id": 6019,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 96,
+  "source_class_job_id": 31
+}

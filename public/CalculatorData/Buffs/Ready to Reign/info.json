@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 3840,
+  "name": "Ready to Reign",
+  "description": "Able to execute Reign of Beasts.",
+  "effects": [
+    "Able to execute Reign of Beasts."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 213621,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 149,
+  "source_abilities": [
+    {
+      "id": 16164,
+      "name": "Bloodfest",
+      "description": "Draws aetheric energy from target, adding 3 Cartridges to your Powder Gauge, and increasing maximum Cartridges to 6.\nDuration: 30s\nAdditional Effect: Grants Ready to Reign\nDuration: 30s",
+      "description_macro": "Draws aetheric energy from target, adding <if([gnum68==37],<if([gnum72>=88],3,2)>,2)> <colortype(506)><edgecolortype(507)>Cartridges<edgecolortype(0)><colortype(0)> to your <colortype(500)><edgecolortype(501)>Powder Gauge<edgecolortype(0)><colortype(0)>, and increasing maximum <colortype(506)><edgecolortype(507)>Cartridges<edgecolortype(0)><colortype(0)> to <if([gnum68==37],<if([gnum72>=88],6,4)>,4)>.<br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>30s<if([gnum68==37],<if([gnum72>=100],<br><colortype(504)><edgecolortype(505)>Additional Effect:<edgecolortype(0)><colortype(0)> Grants <colortype(506)><edgecolortype(507)>Ready to Reign<edgecolortype(0)><colortype(0)><br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>30s,)>,)>",
+      "unlock_level": 76,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Tank"
+      ],
+      "jobs": [
+        {
+          "id": 37,
+          "name": "Gunbreaker",
+          "abbreviation": "GNB",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

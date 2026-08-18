@@ -3,6 +3,7 @@
 use App\Http\Middleware\ApplyLocale;
 use App\Http\Middleware\AuthenticateIntegrationClient;
 use App\Http\Middleware\EnsureGroupDashboardAccess;
+use App\Http\Middleware\EnsureWebsiteAdminAccess;
 use App\Http\Middleware\HandleInertiaRequests;
 use App\Http\Middleware\SecurityHeaders;
 use Illuminate\Auth\AuthenticationException;
@@ -29,6 +30,7 @@ return Application::configure(basePath: dirname(__DIR__))
         $middleware->trustHosts();
 
         $middleware->alias([
+            'admin' => EnsureWebsiteAdminAccess::class,
             'group.dashboard.access' => EnsureGroupDashboardAccess::class,
             'integration.client' => AuthenticateIntegrationClient::class,
             'scopes' => CheckToken::class,

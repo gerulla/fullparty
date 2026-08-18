@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 461,
+  "name": "Enhanced Foul",
+  "description": "Allows for the immediate casting of Foul.",
+  "description_macro": "Allows for the immediate casting of <colortype(500)><edgecolortype(501)>Foul<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Allows for the immediate casting of Foul."
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 25,
+    "name": "Black Mage",
+    "abbreviation": "BLM"
+  },
+  "unlock_level": 80,
+  "value": 0,
+  "icon": {
+    "id": 5369,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 26,
+  "source_class_job_id": 25
+}

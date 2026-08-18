@@ -1,0 +1,90 @@
+{
+  "kind": "ability",
+  "id": 11407,
+  "name": "Schlussstich",
+  "description": "Du führst eine elementneutrale physische Attacke aus.\nAttacke-Wert: 2.000\nDurch den Zauber wirst du selbst kampfunfähig.\nZusatzeffekt: Schwindender Wille\nDauer: 600 Sekunden\nStatus wird durch Kampfunfähigkeit oder Wiederbeleben nicht aufgehoben.\nKann nicht während Schwindender Wille ausgeführt werden.",
+  "description_macro": "Du führst eine elementneutrale physische Attacke aus.<br>Attacke-Wert: 2.000<br>Durch den Zauber wirst du selbst <colortype(500)><edgecolortype(501)>kampfunfähig<edgecolortype(0)><colortype(0)>.<br>Zusatzeffekt: <colortype(506)><edgecolortype(507)>Schwindender Wille<edgecolortype(0)><colortype(0)><br>Dauer: 600 Sekunden<br>Status wird durch Kampfunfähigkeit oder Wiederbeleben nicht aufgehoben.<br>Kann nicht während <colortype(500)><edgecolortype(501)>Schwindender Wille<edgecolortype(0)><colortype(0)> ausgeführt werden.",
+  "effects": [
+    "Du führst eine elementneutrale physische Attacke aus.",
+    "Attacke-Wert: 2.000",
+    "Durch den Zauber wirst du selbst kampfunfähig.",
+    "Zusatzeffekt: Schwindender Wille",
+    "Dauer: 600 Sekunden",
+    "Status wird durch Kampfunfähigkeit oder Wiederbeleben nicht aufgehoben.",
+    "Kann nicht während Schwindender Wille ausgeführt werden."
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 36,
+    "name": "Blaumagier",
+    "abbreviation": "BMA"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 1,
+  "icon": {
+    "id": 3275,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 2,
+    "name": "Zauber"
+  },
+  "attack_type": {
+    "id": 2,
+    "name": "突"
+  },
+  "timing": {
+    "cast_seconds": 2,
+    "recast_seconds": 2.5,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 58,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 2,
+      "value": 0
+    },
+    "secondary": {
+      "type_id": 46,
+      "value": 2127
+    }
+  },
+  "range": {
+    "target_yalms": 3,
+    "effect_yalms": 0,
+    "cast_type": 1
+  },
+  "targeting": {
+    "self": false,
+    "party": false,
+    "alliance": false,
+    "hostile": true,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": false
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 7,
+    "behavior_type": 0,
+    "class_job_category_id": 129,
+    "source_class_job_id": 36,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

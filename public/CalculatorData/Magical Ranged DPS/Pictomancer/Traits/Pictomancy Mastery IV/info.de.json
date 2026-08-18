@@ -1,0 +1,41 @@
+{
+  "kind": "trait",
+  "id": 678,
+  "name": "Verbesserte Pikto-Farben IV",
+  "description": "Erhöht den Attacke-Wert folgender Kommandos:\nAttacke-Wert von Feuer in Rot: 490\nAttacke-Wert von Wind in Grün: 530\nAttacke-Wert von Aqua in Blau: 570\nAttacke-Wert von Feura in Rot: 180\nAttacke-Wert von Windra in Grün: 200\nAttacke-Wert von Aquara in Blau: 220\nAttacke-Wert von Hammerstempel: 560\nAttacke-Wert von Eis in Cyan: 860\nAttacke-Wert von Stein in Gelb: 900\nAttacke-Wert von Blitz in Magenta: 940\nAttacke-Wert von Eisra in Cyan: 360\nAttacke-Wert von Steinra in Gelb: 380\nAttacke-Wert von Blitzra in Magenta: 400\nAttacke-Wert von Sanctus in Weiß: 570\nAttacke-Wert von Hammerpinsel: 580\nAttacke-Wert von Hammerglanz: 600\nAttacke-Wert von Komet in Schwarz: 940",
+  "description_macro": "Erhöht den Attacke-Wert folgender Kommandos:<br>Attacke-Wert von <colortype(502)><edgecolortype(503)>Feuer in Rot<edgecolortype(0)><colortype(0)>: 490<br>Attacke-Wert von <colortype(502)><edgecolortype(503)>Wind in Grün<edgecolortype(0)><colortype(0)>: 530<br>Attacke-Wert von <colortype(502)><edgecolortype(503)>Aqua in Blau<edgecolortype(0)><colortype(0)>: 570<br>Attacke-Wert von <colortype(502)><edgecolortype(503)>Feura in Rot<edgecolortype(0)><colortype(0)>: 180<br>Attacke-Wert von <colortype(502)><edgecolortype(503)>Windra in Grün<edgecolortype(0)><colortype(0)>: 200<br>Attacke-Wert von <colortype(502)><edgecolortype(503)>Aquara in Blau<edgecolortype(0)><colortype(0)>: 220<br>Attacke-Wert von <colortype(502)><edgecolortype(503)>Hammerstempel<edgecolortype(0)><colortype(0)>: 560<br>Attacke-Wert von <colortype(502)><edgecolortype(503)>Eis in Cyan<edgecolortype(0)><colortype(0)>: 860<br>Attacke-Wert von <colortype(502)><edgecolortype(503)>Stein in Gelb<edgecolortype(0)><colortype(0)>: 900<br>Attacke-Wert von <colortype(502)><edgecolortype(503)>Blitz in Magenta<edgecolortype(0)><colortype(0)>: 940<br>Attacke-Wert von <colortype(502)><edgecolortype(503)>Eisra in Cyan<edgecolortype(0)><colortype(0)>: 360<br>Attacke-Wert von <colortype(502)><edgecolortype(503)>Steinra in Gelb<edgecolortype(0)><colortype(0)>: 380<br>Attacke-Wert von <colortype(502)><edgecolortype(503)>Blitzra in Magenta<edgecolortype(0)><colortype(0)>: 400<br>Attacke-Wert von <colortype(502)><edgecolortype(503)>Sanctus in Weiß<edgecolortype(0)><colortype(0)>: 570<br>Attacke-Wert von <colortype(502)><edgecolortype(503)>Hammerpinsel<edgecolortype(0)><colortype(0)>: 580<br>Attacke-Wert von <colortype(502)><edgecolortype(503)>Hammerglanz<edgecolortype(0)><colortype(0)>: 600<br>Attacke-Wert von <colortype(502)><edgecolortype(503)>Komet in Schwarz<edgecolortype(0)><colortype(0)>: 940",
+  "effects": [
+    "Erhöht den Attacke-Wert folgender Kommandos:",
+    "Attacke-Wert von Feuer in Rot: 490",
+    "Attacke-Wert von Wind in Grün: 530",
+    "Attacke-Wert von Aqua in Blau: 570",
+    "Attacke-Wert von Feura in Rot: 180",
+    "Attacke-Wert von Windra in Grün: 200",
+    "Attacke-Wert von Aquara in Blau: 220",
+    "Attacke-Wert von Hammerstempel: 560",
+    "Attacke-Wert von Eis in Cyan: 860",
+    "Attacke-Wert von Stein in Gelb: 900",
+    "Attacke-Wert von Blitz in Magenta: 940",
+    "Attacke-Wert von Eisra in Cyan: 360",
+    "Attacke-Wert von Steinra in Gelb: 380",
+    "Attacke-Wert von Blitzra in Magenta: 400",
+    "Attacke-Wert von Sanctus in Weiß: 570",
+    "Attacke-Wert von Hammerpinsel: 580",
+    "Attacke-Wert von Hammerglanz: 600",
+    "Attacke-Wert von Komet in Schwarz: 940"
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 42,
+    "name": "Piktomant",
+    "abbreviation": "PKT"
+  },
+  "unlock_level": 94,
+  "value": 0,
+  "icon": {
+    "id": 6833,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 197,
+  "source_class_job_id": 42
+}

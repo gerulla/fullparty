@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 3843,
+  "name": "Grondement du feu",
+  "description": "Réaction du feu peut être lancée.",
+  "effects": [
+    "Réaction du feu peut être lancée."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 212541,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 21,
+  "source_abilities": [
+    {
+      "id": 7395,
+      "name": "Énigme du feu",
+      "description": "Augmente de 15% vos dégâts infligés.\nDurée : 20s\nEffet additionnel : vous octroie Grondement du feu.\nDurée : 20s",
+      "description_macro": "Augmente de 15% vos dégâts infligés.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 20s<if([gnum68==20],<if([gnum72>=100],<br><colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> vous octroie <colortype(500)><edgecolortype(501)>Grondement du feu<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 20s,)>,)>",
+      "unlock_level": 68,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 20,
+          "name": "Moine",
+          "abbreviation": "MOI",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

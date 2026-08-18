@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 367,
+  "name": "疾風迅雷効果アップIII",
+  "description": "自身のオートアタックの攻撃間隔と、ウェポンスキルおよび魔法のキャストタイムとリキャストタイムを20％短縮させる。",
+  "description_macro": "自身のオートアタックの攻撃間隔と、ウェポンスキルおよび魔法のキャストタイムとリキャストタイムを20％短縮させる。",
+  "effects": [
+    "自身のオートアタックの攻撃間隔と、ウェポンスキルおよび魔法のキャストタイムとリキャストタイムを20％短縮させる。"
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 20,
+    "name": "モンク",
+    "abbreviation": "MNK"
+  },
+  "unlock_level": 76,
+  "value": 0,
+  "icon": {
+    "id": 5240,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 21,
+  "source_class_job_id": 20
+}

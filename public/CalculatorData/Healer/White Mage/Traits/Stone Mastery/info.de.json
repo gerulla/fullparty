@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 179,
+  "name": "Steinmeister",
+  "description": "Verbessert Stein zu Steinra.",
+  "description_macro": "Verbessert <colortype(502)><edgecolortype(503)>Stein<edgecolortype(0)><colortype(0)> zu <colortype(502)><edgecolortype(503)>Steinra<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Verbessert Stein zu Steinra."
+  ],
+  "role": "Healer",
+  "job": {
+    "id": 24,
+    "name": "Weißmagier",
+    "abbreviation": "WMA"
+  },
+  "unlock_level": 18,
+  "value": 0,
+  "icon": {
+    "id": 5333,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 53,
+  "source_class_job_id": 6
+}

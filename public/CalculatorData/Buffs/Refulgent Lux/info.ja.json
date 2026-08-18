@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 3874,
+  "name": "ルクス・ソラリス実行可",
+  "description": "ルクス・ソラリスを実行できる状態。",
+  "effects": [
+    "ルクス・ソラリスを実行できる状態。"
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 212751,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 28,
+  "source_abilities": [
+    {
+      "id": 36992,
+      "name": "サモン・ソルバハムート",
+      "description": "敵単体を対象とする。\n自身が「トランス・ソルバハムート」状態になり、さらにソルバハムートを顕現させる。\u3000顕現時間：15秒\nソルバハムートは召喚士の攻撃対象に「光芒」による攻撃を行う。\n追加効果：自身に「ルクス・ソラリス実行可」を付与する。\n効果時間：30秒\n追加効果：ルインガがアンブラルインパルスに変化し、トライディザスターがアンブラルフレアに変化する。\n追加効果：自身に「ルビーの神秘」「トパーズの神秘」「エメラルドの神秘」を付与する。\nこのアクションを実行すると、対象から自身への敵視を上昇させる。\n発動条件：カーバンクルが存在する\nカーバンクルはソルバハムートの顕現時に帰還するが、顕現時間が経過すると再出現する。\nこの魔法は固有のリキャストタイマーを持つ。\n\n※このアクションはホットバーに登録することはできない。\n\u3000発動条件を満たすとサモン・バハムートがサモン・ソルバハムートに変化する。",
+      "description_macro": "敵単体を対象とする。<br>自身が<colortype(500)><edgecolortype(501)>「トランス・ソルバハムート」<edgecolortype(0)><colortype(0)>状態になり、さらにソルバハムートを顕現させる。\u3000<colortype(504)><edgecolortype(505)>顕現時間：<edgecolortype(0)><colortype(0)>15秒<br>ソルバハムートは召喚士の攻撃対象に<colortype(500)><edgecolortype(501)>「光芒」<edgecolortype(0)><colortype(0)>による攻撃を行う。<br><colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)>自身に<colortype(500)><edgecolortype(501)>「ルクス・ソラリス実行可」<edgecolortype(0)><colortype(0)>を付与する。<br><colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>30秒<br><colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)>ルインガがアンブラルインパルスに変化し、トライディザスターがアンブラルフレアに変化する。<br><colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)>自身に<colortype(500)><edgecolortype(501)>「ルビーの神秘」「トパーズの神秘」「エメラルドの神秘」<edgecolortype(0)><colortype(0)>を付与する。<br>このアクションを実行すると、対象から自身への敵視を上昇させる。<br><colortype(504)><edgecolortype(505)>発動条件：<edgecolortype(0)><colortype(0)>カーバンクルが存在する<br>カーバンクルはソルバハムートの顕現時に帰還するが、顕現時間が経過すると再出現する。<br>この魔法は固有のリキャストタイマーを持つ。<br><br><colortype(506)><edgecolortype(507)>※このアクションはホットバーに登録することはできない。<br>\u3000発動条件を満たすとサモン・バハムートがサモン・ソルバハムートに変化する。<edgecolortype(0)><colortype(0)>",
+      "unlock_level": 100,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Magical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 27,
+          "name": "召喚士",
+          "abbreviation": "SMN",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

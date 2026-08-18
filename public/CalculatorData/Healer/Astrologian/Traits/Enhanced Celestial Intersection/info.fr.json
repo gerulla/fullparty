@@ -1,0 +1,25 @@
+{
+  "kind": "trait",
+  "id": 500,
+  "name": "Rencontre céleste améliorée",
+  "description": "Permet de cumuler plusieurs charges pour Rencontre céleste.\nMaximum de charges : 2",
+  "description_macro": "Permet de cumuler plusieurs charges pour <colortype(500)><edgecolortype(501)>Rencontre céleste<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Maximum de charges<nbsp>:<edgecolortype(0)><colortype(0)> 2",
+  "effects": [
+    "Permet de cumuler plusieurs charges pour Rencontre céleste.",
+    "Maximum de charges : 2"
+  ],
+  "role": "Healer",
+  "job": {
+    "id": 33,
+    "name": "Astromancien",
+    "abbreviation": "AST"
+  },
+  "unlock_level": 88,
+  "value": 2,
+  "icon": {
+    "id": 6119,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 99,
+  "source_class_job_id": 33
+}

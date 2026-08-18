@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 150,
+  "name": "Medica II",
+  "description": "Regenerating HP over time.",
+  "effects": [
+    "Regenerating HP over time."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 210413,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 5,
+  "parameter": {
+    "effect": 0,
+    "modifier": 10
+  },
+  "class_job_category_id": 25,
+  "source_abilities": [
+    {
+      "id": 133,
+      "name": "Medica II",
+      "description": "Restores own HP and the HP of all nearby party members.\nCure Potency: 250\nAdditional Effect: Regen\nCure Potency: 150\nDuration: 15s",
+      "description_macro": "Restores own HP and the HP of all nearby party members.<br><colortype(504)><edgecolortype(505)>Cure Potency:<edgecolortype(0)><colortype(0)> <if([gnum68==24],<if([gnum72>=85],250,200)>,200)><br><colortype(504)><edgecolortype(505)>Additional Effect:<edgecolortype(0)><colortype(0)> <colortype(506)><edgecolortype(507)>Regen<edgecolortype(0)><colortype(0)><br><colortype(504)><edgecolortype(505)>Cure Potency:<edgecolortype(0)><colortype(0)> <if([gnum68==24],<if([gnum72>=85],150,100)>,100)><br><colortype(504)><edgecolortype(505)>Duration:<edgecolortype(0)><colortype(0)> 15s",
+      "unlock_level": 50,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Healer"
+      ],
+      "jobs": [
+        {
+          "id": 24,
+          "name": "White Mage",
+          "abbreviation": "WHM",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

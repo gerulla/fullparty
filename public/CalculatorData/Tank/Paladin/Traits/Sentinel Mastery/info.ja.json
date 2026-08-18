@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 564,
+  "name": "センチネルマスタリー",
+  "description": "センチネルがエクストリームガードに変化する。",
+  "description_macro": "センチネルがエクストリームガードに変化する。",
+  "effects": [
+    "センチネルがエクストリームガードに変化する。"
+  ],
+  "role": "Tank",
+  "job": {
+    "id": 19,
+    "name": "ナイト",
+    "abbreviation": "PLD"
+  },
+  "unlock_level": 92,
+  "value": 0,
+  "icon": {
+    "id": 5202,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 20,
+  "source_class_job_id": 19
+}

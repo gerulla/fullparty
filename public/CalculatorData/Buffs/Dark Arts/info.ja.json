@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 3034,
+  "name": "ダークアーツ",
+  "description": "ＨＰを消費することなくシャドウブリンガーを実行できる状態。",
+  "effects": [
+    "ＨＰを消費することなくシャドウブリンガーを実行できる状態。"
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 213107,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": true,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 98,
+  "source_abilities": [
+    {
+      "id": 7393,
+      "name": "ブラックナイト",
+      "description": "自身またはパーティメンバーひとりを対象として、一定量のダメージを防ぐバリアを張る。\nこのバリアは対象の最大ＨＰの25％分のダメージを軽減する。\n効果時間：7秒\nバリアがダメージを完全に吸収して消滅すると、暗黒騎士自身に「ダークアーツ」を付与する。\nダークアーツ効果：ＭＰの代わりにダークアーツを消費して「漆黒の波動」および「漆黒の剣」を発動できる。",
+      "description_macro": "自身またはパーティメンバーひとりを対象として、一定量のダメージを防ぐバリアを張る。<br>このバリアは対象の最大ＨＰの25％分のダメージを軽減する。<br><colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>7秒<br>バリアがダメージを完全に吸収して消滅すると、暗黒騎士自身に<colortype(500)><edgecolortype(501)>「ダークアーツ」<edgecolortype(0)><colortype(0)>を付与する。<br><colortype(504)><edgecolortype(505)>ダークアーツ効果：<edgecolortype(0)><colortype(0)>ＭＰの代わりにダークアーツを消費して<if([gnum68==32],<if([gnum72>=74],<colortype(500)><edgecolortype(501)>「漆黒の波動」<edgecolortype(0)><colortype(0)>および<colortype(500)><edgecolortype(501)>「漆黒の剣」<edgecolortype(0)><colortype(0)>,<colortype(500)><edgecolortype(501)>「暗黒の波動」<edgecolortype(0)><colortype(0)>および<colortype(500)><edgecolortype(501)>「暗黒の剣」<edgecolortype(0)><colortype(0)>)>,<colortype(500)><edgecolortype(501)>「暗黒の波動」<edgecolortype(0)><colortype(0)>および<colortype(500)><edgecolortype(501)>「暗黒の剣」<edgecolortype(0)><colortype(0)>)>を発動できる。",
+      "unlock_level": 70,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Tank"
+      ],
+      "jobs": [
+        {
+          "id": 32,
+          "name": "暗黒騎士",
+          "abbreviation": "DRK",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

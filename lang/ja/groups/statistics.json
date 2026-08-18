@@ -44,6 +44,12 @@
     "applications": {
         "distribution_title": "応募分布",
         "distribution_subtitle": "グループのラン全体の現在の応募結果。",
+        "daily_title": "日別応募数",
+        "daily_subtitle": "過去7日間に日ごとに送信された応募数。",
+        "daily_badge": "過去7日間",
+        "daily_tooltip": "{date}: {count} 件の応募",
+        "daily_empty_title": "今週の応募はありません",
+        "daily_empty_description": "過去7日間に送信された新しい応募がここに表示されます。",
         "volume_title": "応募数",
         "volume_subtitle": "過去12か月の月別応募数。",
         "total_label": "応募",

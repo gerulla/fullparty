@@ -1,0 +1,92 @@
+{
+  "kind": "combat_status",
+  "id": 13,
+  "name": "Entrave",
+  "description": "Tout déplacement est impossible.",
+  "effects": [
+    "Tout déplacement est impossible."
+  ],
+  "classification": "debuff",
+  "icon": {
+    "id": 215003,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 2,
+  "target_type": 0,
+  "can_dispel": true,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 100,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 2268,
+      "name": "Hyôton",
+      "description": "Effectue un ninjutsu d'attaque magique de glace sur la cible.\nPuissance : 350\nEffet additionnel : inflige Entrave à la cible.\nDurée : 15s\nInterrompt les attaques automatiques.\nMudrâ requises :\nTen→Jin ou Chi→Jin\nDéclenche le temps de recharge des techniques d'arme, sorts, mudrâ et ninjutsu.\n\n* Cette action ne peut pas être ajoutée aux barres de raccourcis.\nRemplace Ninjutsu lorsque les conditions sont réunies.",
+      "description_macro": "Effectue un ninjutsu d'attaque magique de glace sur la cible.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> 350<br><colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> inflige Entrave à la cible.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 15s<br>Interrompt les attaques automatiques.<br><colortype(506)><edgecolortype(507)>Mudrâ requises<nbsp>:<edgecolortype(0)><colortype(0)><br><colortype(500)><edgecolortype(501)>Ten<edgecolortype(0)><colortype(0)>→<colortype(500)><edgecolortype(501)>Jin<edgecolortype(0)><colortype(0)> ou <colortype(500)><edgecolortype(501)>Chi<edgecolortype(0)><colortype(0)>→<colortype(500)><edgecolortype(501)>Jin<edgecolortype(0)><colortype(0)><br>Déclenche le temps de recharge des techniques d'arme, sorts, mudrâ et ninjutsu.<br><br><colortype(504)><edgecolortype(505)>* Cette action ne peut pas être ajoutée aux barres de raccourcis.<br>Remplace <colortype(500)><edgecolortype(501)>Ninjutsu<edgecolortype(0)><colortype(0)> lorsque les conditions sont réunies.<edgecolortype(0)><colortype(0)>",
+      "unlock_level": 45,
+      "relations": [
+        "applied_by_description"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 30,
+          "name": "Ninja",
+          "abbreviation": "NIN",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 18311,
+      "name": "Tour de cavalier noir",
+      "description": "Effectue une attaque magique neutre en ligne droite sur les ennemis devant vous.\nPuissance : 200\nSi l'ennemi subit Lenteur, dissipe cet effet et inflige plus de dégâts.\nPuissance avec Lenteur : 400\nLa puissance est réduite de 50% au-delà du premier ennemi touché.\nEffet additionnel : inflige Entrave.\nDurée : 20s",
+      "description_macro": "Effectue une attaque magique neutre en ligne droite sur les ennemis devant vous.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> 200<br>Si l'ennemi subit <colortype(500)><edgecolortype(501)>Lenteur<edgecolortype(0)><colortype(0)>, dissipe cet effet et inflige plus de dégâts.<br><colortype(506)><edgecolortype(507)>Puissance avec Lenteur<nbsp>:<edgecolortype(0)><colortype(0)> 400<br>La puissance est réduite de 50% au-delà du premier ennemi touché.<br><colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> inflige Entrave.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 20s",
+      "unlock_level": 1,
+      "relations": [
+        "applied_by_description"
+      ],
+      "roles": [
+        "Magical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 36,
+          "name": "Mage Bleu",
+          "abbreviation": "MBU",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 18878,
+      "name": "Hyôton",
+      "description": "Effectue un ninjutsu d'attaque magique de glace sur la cible.\nPuissance : 350\nEffet additionnel : inflige Entrave à la cible.\nDurée : 15s\nInterrompt les attaques automatiques.\nMudrâ requises :\nTen→Jin ou Chi→Jin\nDéclenche le temps de recharge des techniques d'arme, sorts, mudrâ et ninjutsu.\n\n* Cette action ne peut pas être ajoutée aux barres de raccourcis.\nRemplace Ninjutsu lorsque les conditions sont réunies.",
+      "description_macro": "Effectue un ninjutsu d'attaque magique de glace sur la cible.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> 350<br><colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> inflige Entrave à la cible.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 15s<br>Interrompt les attaques automatiques.<br><colortype(506)><edgecolortype(507)>Mudrâ requises<nbsp>:<edgecolortype(0)><colortype(0)><br><colortype(500)><edgecolortype(501)>Ten<edgecolortype(0)><colortype(0)>→<colortype(500)><edgecolortype(501)>Jin<edgecolortype(0)><colortype(0)> ou <colortype(500)><edgecolortype(501)>Chi<edgecolortype(0)><colortype(0)>→<colortype(500)><edgecolortype(501)>Jin<edgecolortype(0)><colortype(0)><br>Déclenche le temps de recharge des techniques d'arme, sorts, mudrâ et ninjutsu.<br><br><colortype(504)><edgecolortype(505)>* Cette action ne peut pas être ajoutée aux barres de raccourcis.<br>Remplace <colortype(500)><edgecolortype(501)>Ninjutsu<edgecolortype(0)><colortype(0)> lorsque les conditions sont réunies.<edgecolortype(0)><colortype(0)>",
+      "unlock_level": 45,
+      "relations": [
+        "applied_by_description"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 30,
+          "name": "Ninja",
+          "abbreviation": "NIN",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

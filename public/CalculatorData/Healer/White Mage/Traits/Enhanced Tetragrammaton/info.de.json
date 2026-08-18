@@ -1,0 +1,25 @@
+{
+  "kind": "trait",
+  "id": 625,
+  "name": "Verbessertes Tetragrammaton",
+  "description": "Erlaubt es dir, Tetragrammaton aufzuladen.\nMaximale Aufladungen: 2",
+  "description_macro": "Erlaubt es dir, <colortype(502)><edgecolortype(503)>Tetragrammaton<edgecolortype(0)><colortype(0)> aufzuladen.<br>Maximale Aufladungen: 2",
+  "effects": [
+    "Erlaubt es dir, Tetragrammaton aufzuladen.",
+    "Maximale Aufladungen: 2"
+  ],
+  "role": "Healer",
+  "job": {
+    "id": 24,
+    "name": "Weißmagier",
+    "abbreviation": "WMA"
+  },
+  "unlock_level": 98,
+  "value": 2,
+  "icon": {
+    "id": 5349,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 25,
+  "source_class_job_id": 24
+}

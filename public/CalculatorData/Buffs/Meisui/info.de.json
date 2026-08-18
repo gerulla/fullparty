@@ -1,0 +1,51 @@
+{
+  "kind": "combat_status",
+  "id": 2689,
+  "name": "Meisui",
+  "description": "Nächstes Rad des Werdens hat einen erhöhten Attacke-Wert.",
+  "effects": [
+    "Nächstes Rad des Werdens hat einen erhöhten Attacke-Wert."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 212914,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 92,
+  "source_abilities": [
+    {
+      "id": 16489,
+      "name": "Meisui",
+      "description": "Du verbrauchst In die Schatten und füllst dafür deinen Ninki-Balken um 50.\nZusatzeffekt: Gewährt dir Meisui.\nDauer: 30 Sekunden\nEffekt von Meisui: Der Attacke-Wert des nächsten Zesho Meppo bzw. Rad des Werdens ist auf 850 bzw. 550 erhöht.\nBedingung: Im Kampf und In die Schatten aktiv",
+      "description_macro": "Du verbrauchst <colortype(506)><edgecolortype(507)>In die Schatten<edgecolortype(0)><colortype(0)> und füllst dafür deinen Ninki-Balken um 50.<br><if([gnum68==30],<if([gnum72>=88],Zusatzeffekt: Gewährt dir <colortype(506)><edgecolortype(507)>Meisui<edgecolortype(0)><colortype(0)>.<br>Dauer: 30 Sekunden<br>Effekt von <colortype(506)><edgecolortype(507)>Meisui<edgecolortype(0)><colortype(0)>: <if([gnum68==30],<if([gnum72>=96],Der Attacke-Wert des nächsten <colortype(502)><edgecolortype(503)>Zesho Meppo<edgecolortype(0)><colortype(0)> bzw. <colortype(502)><edgecolortype(503)>Rad des Werdens<edgecolortype(0)><colortype(0)> ist auf 850 bzw. 550 erhöht.<br>,Der Attacke-Wert des nächsten <colortype(502)><edgecolortype(503)>Rad des Werdens<edgecolortype(0)><colortype(0)> ist auf <if([gnum68==30],<if([gnum72>=94],550,500)>,500)> erhöht.<br>)>,Der Attacke-Wert des nächsten <colortype(502)><edgecolortype(503)>Rad des Werdens<edgecolortype(0)><colortype(0)> ist auf <if([gnum68==30],<if([gnum72>=94],550,500)>,500)> erhöht.<br>)>,)>,)>Bedingung: Im Kampf und <colortype(506)><edgecolortype(507)>In die Schatten<edgecolortype(0)><colortype(0)> aktiv",
+      "unlock_level": 72,
+      "relations": [
+        "granted_by_description",
+        "same_name"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 30,
+          "name": "Ninja",
+          "abbreviation": "NIN",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

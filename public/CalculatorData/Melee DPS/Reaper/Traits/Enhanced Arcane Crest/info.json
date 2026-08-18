@@ -1,0 +1,26 @@
+{
+  "kind": "trait",
+  "id": 385,
+  "name": "Enhanced Arcane Crest",
+  "description": "Grants Crest of Time Returned to self and nearby party members, gradually restoring HP over time. This effect is only granted when the Crest of Time Borrowed barrier is completely absorbed.\nCure Potency: 50\nDuration: 15s",
+  "description_macro": "Grants <colortype(506)><edgecolortype(507)>Crest of Time Returned<edgecolortype(0)><colortype(0)> to self and nearby party members, gradually restoring HP over time. This effect is only granted when the <colortype(506)><edgecolortype(507)>Crest of Time Borrowed<edgecolortype(0)><colortype(0)> barrier is completely absorbed.<br><colortype(504)><edgecolortype(505)>Cure Potency: <edgecolortype(0)><colortype(0)>50<br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>15s",
+  "effects": [
+    "Grants Crest of Time Returned to self and nearby party members, gradually restoring HP over time. This effect is only granted when the Crest of Time Borrowed barrier is completely absorbed.",
+    "Cure Potency: 50",
+    "Duration: 15s"
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 39,
+    "name": "Reaper",
+    "abbreviation": "RPR"
+  },
+  "unlock_level": 84,
+  "value": 0,
+  "icon": {
+    "id": 6407,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 180,
+  "source_class_job_id": 39
+}

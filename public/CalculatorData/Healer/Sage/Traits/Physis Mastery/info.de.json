@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 510,
+  "name": "Meister der Physis",
+  "description": "Verbessert Physis zu Physis II.",
+  "description_macro": "Verbessert <colortype(502)><edgecolortype(503)>Physis<edgecolortype(0)><colortype(0)> zu <colortype(502)><edgecolortype(503)>Physis II<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Verbessert Physis zu Physis II."
+  ],
+  "role": "Healer",
+  "job": {
+    "id": 40,
+    "name": "Weiser",
+    "abbreviation": "WEI"
+  },
+  "unlock_level": 60,
+  "value": 0,
+  "icon": {
+    "id": 6459,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 181,
+  "source_class_job_id": 40
+}

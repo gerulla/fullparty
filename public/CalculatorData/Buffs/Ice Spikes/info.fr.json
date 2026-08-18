@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 1307,
+  "name": "Pointes de glace",
+  "description": "Chaque attaque physique subie entraîne une riposte infligeant des dégâts de glace qui a des chances d'infliger Lenteur.",
+  "effects": [
+    "Chaque attaque physique subie entraîne une riposte infligeant des dégâts de glace qui a des chances d'infliger Lenteur."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 215501,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": true,
+  "inflicted_by_actor": true,
+  "party_list_priority": 1,
+  "parameter": {
+    "effect": 0,
+    "modifier": 100
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 11418,
+      "name": "Pointes de glace",
+      "description": "Chaque attaque physique que vous recevez entraîne une riposte infligeant des dégâts magiques de glace.\nPuissance : 40 Durée : 15s\nNe peut être cumulé avec les effets Voile du Déchaîneur et Sheltron.\nEffet additionnel : chaque riposte a 50% de chances d'infliger Lenteur 20%.\nDurée : 15s",
+      "description_macro": "Chaque attaque physique que vous recevez entraîne une riposte infligeant des dégâts magiques de glace.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> 40 <colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 15s<br>Ne peut être cumulé avec les effets <colortype(500)><edgecolortype(501)>Voile du Déchaîneur<edgecolortype(0)><colortype(0)> et <colortype(500)><edgecolortype(501)>Sheltron<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> chaque riposte a 50% de chances d'infliger Lenteur 20%.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 15s",
+      "unlock_level": 1,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Magical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 36,
+          "name": "Mage Bleu",
+          "abbreviation": "MBU",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

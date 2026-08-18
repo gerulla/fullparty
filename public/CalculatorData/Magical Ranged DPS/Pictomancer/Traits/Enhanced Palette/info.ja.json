@@ -1,0 +1,26 @@
+{
+  "kind": "trait",
+  "id": 542,
+  "name": "サブトラクト効果アップ",
+  "description": "自身に「色調反転」が付与される。\n色調反転効果：ホワイトペイントが1スタックのみブラックペイントに変化する。\n発動条件：サブトラクティブパレット実行時",
+  "description_macro": "自身に<colortype(500)><edgecolortype(501)>「色調反転」<edgecolortype(0)><colortype(0)>が付与される。<br><colortype(504)><edgecolortype(505)>色調反転効果：<edgecolortype(0)><colortype(0)>ホワイトペイントが1スタックのみブラックペイントに変化する。<br><colortype(504)><edgecolortype(505)>発動条件：<edgecolortype(0)><colortype(0)>サブトラクティブパレット実行時",
+  "effects": [
+    "自身に「色調反転」が付与される。",
+    "色調反転効果：ホワイトペイントが1スタックのみブラックペイントに変化する。",
+    "発動条件：サブトラクティブパレット実行時"
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 42,
+    "name": "ピクトマンサー",
+    "abbreviation": "PCT"
+  },
+  "unlock_level": 90,
+  "value": 0,
+  "icon": {
+    "id": 6556,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 197,
+  "source_class_job_id": 42
+}

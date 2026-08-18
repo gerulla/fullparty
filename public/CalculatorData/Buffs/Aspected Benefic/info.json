@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 835,
+  "name": "Aspected Benefic",
+  "description": "Regenerating HP over time.",
+  "effects": [
+    "Regenerating HP over time."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 213215,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 5,
+  "parameter": {
+    "effect": 0,
+    "modifier": 10
+  },
+  "class_job_category_id": 99,
+  "source_abilities": [
+    {
+      "id": 3595,
+      "name": "Aspected Benefic",
+      "description": "Restores target's HP.\nCure Potency: 250\nAdditional Effect: Regen\nCure Potency: 250\nDuration: 15s",
+      "description_macro": "Restores target's HP.<br><colortype(504)><edgecolortype(505)>Cure Potency:<edgecolortype(0)><colortype(0)> <if([gnum68==33],<if([gnum72>=85],250,200)>,200)><br><colortype(504)><edgecolortype(505)>Additional Effect:<edgecolortype(0)><colortype(0)> <colortype(506)><edgecolortype(507)>Regen<edgecolortype(0)><colortype(0)><br><colortype(504)><edgecolortype(505)>Cure Potency:<edgecolortype(0)><colortype(0)> <if([gnum68==33],<if([gnum72>=85],250,200)>,200)><br><colortype(504)><edgecolortype(505)>Duration:<edgecolortype(0)><colortype(0)> 15s",
+      "unlock_level": 34,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Healer"
+      ],
+      "jobs": [
+        {
+          "id": 33,
+          "name": "Astrologian",
+          "abbreviation": "AST",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

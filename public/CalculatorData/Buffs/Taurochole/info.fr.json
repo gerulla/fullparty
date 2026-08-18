@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 2619,
+  "name": "Taurochole",
+  "description": "Les dégâts reçus sont réduits.",
+  "effects": [
+    "Les dégâts reçus sont réduits."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 212965,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": -10
+  },
+  "class_job_category_id": 181,
+  "source_abilities": [
+    {
+      "id": 24303,
+      "name": "Taurochole",
+      "description": "Restaure vos PV ou ceux de l'équipier ciblé.\nPuissance : 700\nEffet additionnel : réduit de 10% les dégâts subis par la cible.\nDurée : 15s\nNe peut être cumulé avec l'effet Kerachole.\nEffet additionnel : restaure 7% de vos PM maximums.\nCondition : consomme une vésicule de Bile de vipère.",
+      "description_macro": "Restaure vos PV ou ceux de l'équipier ciblé.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> 700<br><colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> réduit de 10% les dégâts subis par la cible.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 15s<br>Ne peut être cumulé avec l'effet <colortype(500)><edgecolortype(501)>Kerachole<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> restaure 7% de vos PM maximums.<br><colortype(506)><edgecolortype(507)>Condition<nbsp>:<edgecolortype(0)><colortype(0)> consomme une vésicule de <colortype(500)><edgecolortype(501)>Bile de vipère<edgecolortype(0)><colortype(0)>.",
+      "unlock_level": 62,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Healer"
+      ],
+      "jobs": [
+        {
+          "id": 40,
+          "name": "Sage",
+          "abbreviation": "SAG",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

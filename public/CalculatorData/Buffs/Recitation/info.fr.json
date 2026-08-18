@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 1896,
+  "name": "Récitation",
+  "description": "Le prochain Traité du réconfort, , Traité de la persévérance ou Traité de l'excogitation est critique et ne consomme ni PM ni Flux d'éther.",
+  "effects": [
+    "Le prochain Traité du réconfort, , Traité de la persévérance ou Traité de l'excogitation est critique et ne consomme ni PM ni Flux d'éther."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 212813,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 29,
+  "source_abilities": [
+    {
+      "id": 16542,
+      "name": "Récitation",
+      "description": "Votre prochain Traité du réconfort, Traité de l'exultation, Traité de la persévérance ou Traité de l'excogitation est critique et ne consomme ni PM ni Flux d'éther.\nDurée : 15s",
+      "description_macro": "Votre prochain <colortype(500)><edgecolortype(501)>Traité du réconfort<edgecolortype(0)><colortype(0)>, <colortype(500)><edgecolortype(501)><if([gnum68==28],<if([gnum72>=96],Traité de l'exultation,Traité du soulagement)>,Traité du soulagement)><edgecolortype(0)><colortype(0)>, <colortype(500)><edgecolortype(501)>Traité de la persévérance<edgecolortype(0)><colortype(0)> ou <colortype(500)><edgecolortype(501)>Traité de l'excogitation<edgecolortype(0)><colortype(0)> est critique et ne consomme ni PM ni <colortype(500)><edgecolortype(501)>Flux d'éther<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 15s",
+      "unlock_level": 74,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Healer"
+      ],
+      "jobs": [
+        {
+          "id": 28,
+          "name": "Érudit",
+          "abbreviation": "ÉRU",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "kind": "trait",
+  "id": 539,
+  "name": "Barbouillage amélioré",
+  "description": "Barbouillage augmente votre vitesse de déplacement.\nDurée : 5s",
+  "description_macro": "Barbouillage augmente votre vitesse de déplacement.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 5s",
+  "effects": [
+    "Barbouillage augmente votre vitesse de déplacement.",
+    "Durée : 5s"
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 42,
+    "name": "Pictomancien",
+    "abbreviation": "PIC"
+  },
+  "unlock_level": 84,
+  "value": 0,
+  "icon": {
+    "id": 6553,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 197,
+  "source_class_job_id": 42
+}

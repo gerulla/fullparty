@@ -1,0 +1,86 @@
+{
+  "kind": "ability",
+  "id": 3569,
+  "name": "Asile",
+  "description": "Crée une aura bénéfique dans l'aire ciblée, restaurant périodiquement vos PV et ceux des équipiers alentour.\nPuissance : 100 Durée : 24s\nEffet additionnel : augmente de 10% les effets curatifs reçus par vous et les équipiers dans l'aire d'effet.",
+  "description_macro": "Crée une aura bénéfique dans l'aire ciblée, restaurant périodiquement vos PV et ceux des équipiers alentour.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> 100 <colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 24s<if([gnum68==24],<if([gnum72>=78],<br><colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> augmente de 10% les effets curatifs reçus par vous et les équipiers dans l'aire d'effet.,)>,)>",
+  "effects": [
+    "Crée une aura bénéfique dans l'aire ciblée, restaurant périodiquement vos PV et ceux des équipiers alentour.",
+    "Puissance : 100 Durée : 24s",
+    "Effet additionnel : augmente de 10% les effets curatifs reçus par vous et les équipiers dans l'aire d'effet."
+  ],
+  "role": "Healer",
+  "job": {
+    "id": 24,
+    "name": "Mage Blanc",
+    "abbreviation": "MBL"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 52,
+  "icon": {
+    "id": 2632,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 4,
+    "name": "Aptitude"
+  },
+  "attack_type": {
+    "id": 0,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 90,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 15,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 0,
+      "value": 0
+    },
+    "secondary": {
+      "type_id": 0,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": 30,
+    "effect_yalms": 15,
+    "cast_type": 7
+  },
+  "targeting": {
+    "self": false,
+    "party": false,
+    "alliance": false,
+    "hostile": false,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": true,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 0,
+    "behavior_type": 0,
+    "class_job_category_id": 25,
+    "source_class_job_id": 24,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

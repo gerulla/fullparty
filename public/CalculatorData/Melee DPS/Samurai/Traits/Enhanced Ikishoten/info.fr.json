@@ -1,0 +1,25 @@
+{
+  "kind": "trait",
+  "id": 514,
+  "name": "Ikishôten amélioré",
+  "description": "Vous octroie Ôgi : Namikiri préparée lorsque vous utilisez Ikishôten.\nDurée : 30s",
+  "description_macro": "Vous octroie <colortype(500)><edgecolortype(501)>Ôgi<nbsp>: Namikiri préparée<edgecolortype(0)><colortype(0)> lorsque vous utilisez <colortype(500)><edgecolortype(501)>Ikishôten<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 30s",
+  "effects": [
+    "Vous octroie Ôgi : Namikiri préparée lorsque vous utilisez Ikishôten.",
+    "Durée : 30s"
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 34,
+    "name": "Samouraï",
+    "abbreviation": "SAM"
+  },
+  "unlock_level": 90,
+  "value": 0,
+  "icon": {
+    "id": 6157,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 111,
+  "source_class_job_id": 34
+}

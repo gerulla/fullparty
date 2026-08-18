@@ -1,0 +1,26 @@
+{
+  "kind": "trait",
+  "id": 566,
+  "name": "Lame de vaillance améliorée",
+  "description": "Permet de recevoir Lame d'honneur préparée lorsque vous utilisez Lame de vaillance.\nDurée : 30s\nRemplace Imperator par Lame d'honneur pendant la durée de l'effet.",
+  "description_macro": "Permet de recevoir <colortype(500)><edgecolortype(501)>Lame d'honneur préparée<edgecolortype(0)><colortype(0)> lorsque vous utilisez <colortype(500)><edgecolortype(501)>Lame de vaillance<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 30s<br>Remplace <colortype(500)><edgecolortype(501)>Imperator<edgecolortype(0)><colortype(0)> par <colortype(500)><edgecolortype(501)>Lame d'honneur<edgecolortype(0)><colortype(0)> pendant la durée de l'effet.",
+  "effects": [
+    "Permet de recevoir Lame d'honneur préparée lorsque vous utilisez Lame de vaillance.",
+    "Durée : 30s",
+    "Remplace Imperator par Lame d'honneur pendant la durée de l'effet."
+  ],
+  "role": "Tank",
+  "job": {
+    "id": 19,
+    "name": "Paladin",
+    "abbreviation": "PLD"
+  },
+  "unlock_level": 100,
+  "value": 0,
+  "icon": {
+    "id": 5224,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 20,
+  "source_class_job_id": 19
+}

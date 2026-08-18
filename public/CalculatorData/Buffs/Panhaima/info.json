@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 2613,
+  "name": "Panhaima",
+  "description": "A magicked barrier is nullifying damage.",
+  "effects": [
+    "A magicked barrier is nullifying damage."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 212959,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": true,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 100
+  },
+  "class_job_category_id": 181,
+  "source_abilities": [
+    {
+      "id": 24311,
+      "name": "Panhaima",
+      "description": "Erects a magicked barrier around self and all party members near you that absorbs damage equivalent to a heal of 200 potency.\nAdditional Effect: Grants 5 stacks of Panhaimatinon\nDuration: 15s\nWhen the barrier is completely absorbed, a stack of Panhaimatinon is consumed and a new barrier is applied.\nWhen the effect duration expires, a healing effect is then applied.\nCure Potency: 100 per remaining stack of Panhaimatinon",
+      "description_macro": "Erects a magicked barrier around self and all party members near you that absorbs damage equivalent to a heal of 200 potency.<br><colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>Grants 5 stacks of <colortype(506)><edgecolortype(507)>Panhaimatinon<edgecolortype(0)><colortype(0)><br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>15s<br>When the barrier is completely absorbed, a stack of <colortype(506)><edgecolortype(507)>Panhaimatinon<edgecolortype(0)><colortype(0)> is consumed and a new barrier is applied.<br>When the effect duration expires, a healing effect is then applied.<br><colortype(504)><edgecolortype(505)>Cure Potency: <edgecolortype(0)><colortype(0)>100 per remaining stack of <colortype(506)><edgecolortype(507)>Panhaimatinon<edgecolortype(0)><colortype(0)>",
+      "unlock_level": 80,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Healer"
+      ],
+      "jobs": [
+        {
+          "id": 40,
+          "name": "Sage",
+          "abbreviation": "SGE",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

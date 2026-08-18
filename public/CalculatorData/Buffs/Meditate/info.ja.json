@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 1231,
+  "name": "黙想",
+  "description": "剣気を上昇させている状態。",
+  "effects": [
+    "剣気を上昇させている状態。"
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 213306,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 4,
+    "modifier": 10
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 7497,
+      "name": "黙想",
+      "description": "黙想を行い徐々に「剣気」を上昇させる。\u3000効果時間：15秒\n追加効果：自身に「剣圧」を継続的に付与する。\n最大スタック数：3\u3000効果時間：永続\n効果時間中にアクションの実行や移動・ターンを行うと、黙想は即座に解除される。\n実行後にオートアタックを停止する。\n非戦闘中に使用した場合は「剣気」は上昇せず、「剣圧」も付与されない。\nこのアビリティには固有のリキャストタイムに加えて、ウェポンスキルと同様のリキャストタイムも発生する。",
+      "description_macro": "黙想を行い徐々に<colortype(500)><edgecolortype(501)>「剣気」<edgecolortype(0)><colortype(0)>を上昇させる。\u3000<colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>15秒<br><if([gnum68==34],<if([gnum72>=80],<colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)>自身に<colortype(500)><edgecolortype(501)>「剣圧」<edgecolortype(0)><colortype(0)>を継続的に付与する。<br><colortype(504)><edgecolortype(505)>最大スタック数：<edgecolortype(0)><colortype(0)>3\u3000<colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>永続<br>,)>,)>効果時間中にアクションの実行や移動・ターンを行うと、黙想は即座に解除される。<br>実行後にオートアタックを停止する。<br><if([gnum68==34],<if([gnum72>=80],非戦闘中に使用した場合は<colortype(500)><edgecolortype(501)>「剣気」<edgecolortype(0)><colortype(0)>は上昇せず、<colortype(500)><edgecolortype(501)>「剣圧」<edgecolortype(0)><colortype(0)>も付与されない。<br>,非戦闘中に使用した場合は<colortype(500)><edgecolortype(501)>「剣気」<edgecolortype(0)><colortype(0)>は上昇しない。<br>)>,非戦闘中に使用した場合は<colortype(500)><edgecolortype(501)>「剣気」<edgecolortype(0)><colortype(0)>は上昇しない。<br>)>このアビリティには固有のリキャストタイムに加えて、ウェポンスキルと同様のリキャストタイムも発生する。",
+      "unlock_level": 60,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 34,
+          "name": "侍",
+          "abbreviation": "SAM",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

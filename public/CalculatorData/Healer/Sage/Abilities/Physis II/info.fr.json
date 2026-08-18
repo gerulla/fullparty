@@ -1,0 +1,88 @@
+{
+  "kind": "ability",
+  "id": 24302,
+  "name": "Physis II",
+  "description": "Restaure périodiquement vos PV et ceux des équipiers alentour.\nPuissance : 130 Durée : 15s\nEffet additionnel : octroie Autophysis à vous et aux équipiers alentour.\nDurée : 15s\nAutophysis : augmente de 10% les effets curatifs reçus.",
+  "description_macro": "Restaure périodiquement vos PV et ceux des équipiers alentour.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> 130 <colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 15s<br><colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> octroie <colortype(500)><edgecolortype(501)>Autophysis<edgecolortype(0)><colortype(0)> à vous et aux équipiers alentour.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> <if([gnum68==40],<if([gnum72>=98],15,10)>,10)>s<br><colortype(506)><edgecolortype(507)>Autophysis<nbsp>:<edgecolortype(0)><colortype(0)> augmente de 10% les effets curatifs reçus.",
+  "effects": [
+    "Restaure périodiquement vos PV et ceux des équipiers alentour.",
+    "Puissance : 130 Durée : 15s",
+    "Effet additionnel : octroie Autophysis à vous et aux équipiers alentour.",
+    "Durée : 15s",
+    "Autophysis : augmente de 10% les effets curatifs reçus."
+  ],
+  "role": "Healer",
+  "job": {
+    "id": 40,
+    "name": "Sage",
+    "abbreviation": "SAG"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 60,
+  "icon": {
+    "id": 3670,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 4,
+    "name": "Aptitude"
+  },
+  "attack_type": {
+    "id": 0,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 60,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 12,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 0,
+      "value": 0
+    },
+    "secondary": {
+      "type_id": 0,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": 0,
+    "effect_yalms": 30,
+    "cast_type": 2
+  },
+  "targeting": {
+    "self": true,
+    "party": false,
+    "alliance": false,
+    "hostile": false,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": false
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 0,
+    "behavior_type": 0,
+    "class_job_category_id": 181,
+    "source_class_job_id": 40,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 1220,
+  "name": "Weise Voraussicht",
+  "description": "LP werden regeneriert, wenn sie auf bzw. unter einen bestimmten Betrag fallen oder die Wirkungsdauer endet.",
+  "effects": [
+    "LP werden regeneriert, wenn sie auf bzw. unter einen bestimmten Betrag fallen oder die Wirkungsdauer endet."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 212808,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 60,
+  "parameter": {
+    "effect": 0,
+    "modifier": 100
+  },
+  "class_job_category_id": 29,
+  "source_abilities": [
+    {
+      "id": 7434,
+      "name": "Weise Voraussicht",
+      "description": "Du gewährst dir oder einem Gruppenmitglied Weise Voraussicht, wodurch das Ziel geheilt wird, sobald seine LP auf bzw. unter 50 % sinken oder die Wirkungsdauer endet.\nHeilpotenzial: 800\nDauer: 45 Sekunden\nZusatzeffekt: Feenbalken füllt sich um 10.\nÄtherfluss-Kosten: 1",
+      "description_macro": "Du gewährst dir oder einem Grup<->pen<->mit<->glied <colortype(506)><edgecolortype(507)>Weise Voraussicht<edgecolortype(0)><colortype(0)>, wodurch das Ziel geheilt wird, sobald seine LP auf bzw. unter 50 % sinken oder die Wirkungsdauer endet.<br>Heilpotenzial: 800<br>Dauer: 45 Sekunden<br><if([gnum72>=70],<if([gnum68==28],Zusatzeffekt: Feenbalken füllt sich um 10.<br>,)>,)><colortype(506)><edgecolortype(507)>Ätherfluss<edgecolortype(0)><colortype(0)>-Kosten: 1",
+      "unlock_level": 62,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Healer"
+      ],
+      "jobs": [
+        {
+          "id": 28,
+          "name": "Gelehrter",
+          "abbreviation": "GLT",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 2130,
+  "name": "Verbessertes Surpanakha",
+  "description": "Der Attacke-Wert des nächsten Surpanakha ist erhöht.",
+  "effects": [
+    "Der Attacke-Wert des nächsten Surpanakha ist erhöht."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 219581,
+    "file": "icon.png"
+  },
+  "max_stacks": 3,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 18323,
+      "name": "Surpanakha",
+      "description": "Du führst eine erdbasierte magische Attacke auf die fächerförmig vor dir stehenden Gegner aus.\nAttacke-Wert: 200\nAttacke-Wert verringert sich ab dem zweiten Gegner um 50 %.\nMaximale Aufladungen: 4\nZusatzeffekt: Während der Wirkungsdauer ist der Attacke-Wert von Surpanakha um 50 % erhöht.\nMaximalstapelzahl: 3\nDauer: 3 Sekunden\nDie Wirkung wird durch andere Kommandos unterbrochen.",
+      "description_macro": "Du führst eine erdbasierte magische Attacke auf die fächerförmig vor dir stehenden Gegner aus.<br>Attacke-Wert: 200<br>Attacke-Wert verringert sich ab dem zweiten Gegner um 50<nbsp>%.<br>Maximale Aufladungen: 4<br>Zusatzeffekt: Während der Wirkungsdauer ist der Attacke-Wert von <colortype(502)><edgecolortype(503)>Surpanakha<edgecolortype(0)><colortype(0)> um 50<nbsp>% erhöht.<br>Ma<->xi<->mal<->sta<->pel<->zahl: 3<br>Dauer: 3 Sekunden<br>Die Wirkung wird durch andere Kommandos unterbrochen.",
+      "unlock_level": 1,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Magical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 36,
+          "name": "Blaumagier",
+          "abbreviation": "BMA",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

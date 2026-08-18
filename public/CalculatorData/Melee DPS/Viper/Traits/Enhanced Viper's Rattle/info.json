@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 530,
+  "name": "Enhanced Viper's Rattle",
+  "description": "Allows the stacking of a third Rattling Coil.",
+  "description_macro": "Allows the stacking of a third <colortype(506)><edgecolortype(507)>Rattling Coil<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Allows the stacking of a third Rattling Coil."
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 41,
+    "name": "Viper",
+    "abbreviation": "VPR"
+  },
+  "unlock_level": 88,
+  "value": 0,
+  "icon": {
+    "id": 6507,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 196,
+  "source_class_job_id": 41
+}

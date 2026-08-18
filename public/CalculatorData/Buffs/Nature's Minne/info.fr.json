@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 1202,
+  "name": "Minne de la nature",
+  "description": "Les effets de récupération de PV sont augmentés.",
+  "effects": [
+    "Les effets de récupération de PV sont augmentés."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 212618,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 1,
+  "parameter": {
+    "effect": 0,
+    "modifier": 10
+  },
+  "class_job_category_id": 24,
+  "source_abilities": [
+    {
+      "id": 7408,
+      "name": "Minne de la nature",
+      "description": "Augmente de 15% les effets curatifs sur vous et les équipiers alentour.\nDurée : 15s",
+      "description_macro": "Augmente de 15% les effets curatifs sur vous et les équipiers alentour.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 15s",
+      "unlock_level": 66,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Physical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 23,
+          "name": "Barde",
+          "abbreviation": "BRD",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

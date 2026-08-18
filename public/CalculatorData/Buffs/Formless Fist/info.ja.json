@@ -1,0 +1,218 @@
+{
+  "kind": "combat_status",
+  "id": 2513,
+  "name": "零の型",
+  "description": "壱の型、弐の型、参の型のすべてに対応できる態勢をとっており、さらに追加効果も発動させることができる状態。",
+  "effects": [
+    "壱の型、弐の型、参の型のすべてに対応できる態勢をとっており、さらに追加効果も発動させることができる状態。"
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 212535,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": true,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 21,
+  "source_abilities": [
+    {
+      "id": 3543,
+      "name": "闘魂旋風脚",
+      "description": "対象とその周囲の敵に範囲物理攻撃。\u3000威力：1200\n2体目以降の対象への威力は35％減少する。\n追加効果：自身に「零の型」を付与する。\u3000効果時間：30秒\n零の型効果：発動条件に「型」を持つウェポンスキルを、「型」が付いていなくても実行することができるようになる。\nその場合には追加効果も発動させることができる。\n発動条件：「陰の闘気」と「陽の闘気」効果中かつ「チャクラ」が3つ付与されている\n\n※このアクションはホットバーに登録することはできない。\n\u3000発動条件を満たすと必殺技が闘魂旋風脚に変化する。",
+      "description_macro": "対象とその周囲の敵に範囲物理攻撃。\u3000<colortype(504)><edgecolortype(505)>威力：<edgecolortype(0)><colortype(0)>1200<br>2体目以降の対象への威力は35％減少する。<br><colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)>自身に<colortype(500)><edgecolortype(501)>「零の型」<edgecolortype(0)><colortype(0)>を付与する。\u3000<colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>30秒<br><colortype(504)><edgecolortype(505)>零の型効果：<edgecolortype(0)><colortype(0)>発動条件に「型」を持つウェポンスキルを、「型」が付いていなくても実行することができるようになる。<br>その場合には追加効果も発動させることができる。<br><colortype(504)><edgecolortype(505)>発動条件：<edgecolortype(0)><colortype(0)><colortype(500)><edgecolortype(501)>「陰の闘気」<edgecolortype(0)><colortype(0)>と<colortype(500)><edgecolortype(501)>「陽の闘気」<edgecolortype(0)><colortype(0)>効果中かつ<colortype(500)><edgecolortype(501)>「チャクラ」<edgecolortype(0)><colortype(0)>が3つ付与されている<br><br><colortype(506)><edgecolortype(507)>※このアクションはホットバーに登録することはできない。<br>\u3000発動条件を満たすと必殺技が闘魂旋風脚に変化する。<edgecolortype(0)><colortype(0)>",
+      "unlock_level": 60,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 20,
+          "name": "モンク",
+          "abbreviation": "MNK",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 3545,
+      "name": "蒼気砲",
+      "description": "自身の周囲の敵に範囲物理攻撃。\u3000威力：800\n2体目以降の対象への威力は35％減少する。\n追加効果：自身に「陰の闘気」を付与する。\n追加効果：自身に「零の型」を付与する。\u3000効果時間：30秒\n零の型効果：発動条件に「型」を持つウェポンスキルを、「型」が付いていなくても実行することができるようになる。\nその場合には追加効果も発動させることができる。\n発動条件：自身に同じ「チャクラ」が3つ付与されている\n\n※このアクションはホットバーに登録することはできない。\n\u3000発動条件を満たすと必殺技が蒼気砲に変化する。",
+      "description_macro": "自身の周囲の敵に範囲物理攻撃。\u3000<colortype(504)><edgecolortype(505)>威力：<edgecolortype(0)><colortype(0)>800<br>2体目以降の対象への威力は35％減少する。<br><colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)>自身に<colortype(500)><edgecolortype(501)>「陰の闘気」<edgecolortype(0)><colortype(0)>を付与する。<br><colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)>自身に<colortype(500)><edgecolortype(501)>「零の型」<edgecolortype(0)><colortype(0)>を付与する。\u3000<colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>30秒<br><colortype(504)><edgecolortype(505)>零の型効果：<edgecolortype(0)><colortype(0)>発動条件に「型」を持つウェポンスキルを、「型」が付いていなくても実行することができるようになる。<br>その場合には追加効果も発動させることができる。<br><colortype(504)><edgecolortype(505)>発動条件：<edgecolortype(0)><colortype(0)>自身に同じ<colortype(500)><edgecolortype(501)>「チャクラ」<edgecolortype(0)><colortype(0)>が3つ付与されている<br><br><colortype(506)><edgecolortype(507)>※このアクションはホットバーに登録することはできない。<br>\u3000発動条件を満たすと必殺技が蒼気砲に変化する。<edgecolortype(0)><colortype(0)>",
+      "unlock_level": 60,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 20,
+          "name": "モンク",
+          "abbreviation": "MNK",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 4262,
+      "name": "演武",
+      "description": "自身に「零の型」を付与する。\u3000効果時間：30秒\n零の型効果：発動条件に「型」を持つウェポンスキルを、「型」が付いていなくても実行することができるようになる。\nその場合には追加効果も発動させることができる。",
+      "description_macro": "自身に<colortype(500)><edgecolortype(501)>「零の型」<edgecolortype(0)><colortype(0)>を付与する。\u3000<colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>30秒<br><colortype(504)><edgecolortype(505)>零の型効果：<edgecolortype(0)><colortype(0)>発動条件に「型」を持つウェポンスキルを、「型」が付いていなくても実行することができるようになる。<br>その場合には追加効果も発動させることができる。",
+      "unlock_level": 52,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 20,
+          "name": "モンク",
+          "abbreviation": "MNK",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 25765,
+      "name": "天宙脚",
+      "description": "対象に物理攻撃。\u3000威力：600\n追加効果：自身に「陰の闘気」を付与する。\n既に付与されている場合は「陽の闘気」を付与する。\n追加効果：自身に「零の型」を付与する。\u3000効果時間：30秒\n零の型効果：発動条件に「型」を持つウェポンスキルを、「型」が付いていなくても実行することができるようになる。\nその場合には追加効果も発動させることができる。\n発動条件：自身に「チャクラ」が3つ付与されている\n\n※このアクションはホットバーに登録することはできない。\n\u3000発動条件を満たすと必殺技が天宙脚に変化する。",
+      "description_macro": "対象に物理攻撃。\u3000<colortype(504)><edgecolortype(505)>威力：<edgecolortype(0)><colortype(0)>600<br><colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)>自身に<colortype(500)><edgecolortype(501)>「陰の闘気」<edgecolortype(0)><colortype(0)>を付与する。<br>既に付与されている場合は<colortype(500)><edgecolortype(501)>「陽の闘気」<edgecolortype(0)><colortype(0)>を付与する。<br><colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)>自身に<colortype(500)><edgecolortype(501)>「零の型」<edgecolortype(0)><colortype(0)>を付与する。\u3000<colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>30秒<br><colortype(504)><edgecolortype(505)>零の型効果：<edgecolortype(0)><colortype(0)>発動条件に「型」を持つウェポンスキルを、「型」が付いていなくても実行することができるようになる。<br>その場合には追加効果も発動させることができる。<br><colortype(504)><edgecolortype(505)>発動条件：<edgecolortype(0)><colortype(0)>自身に<colortype(500)><edgecolortype(501)>「チャクラ」<edgecolortype(0)><colortype(0)>が3つ付与されている<br><br><colortype(506)><edgecolortype(507)>※このアクションはホットバーに登録することはできない。<br>\u3000発動条件を満たすと必殺技が天宙脚に変化する。<edgecolortype(0)><colortype(0)>",
+      "unlock_level": 60,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 20,
+          "name": "モンク",
+          "abbreviation": "MNK",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 25768,
+      "name": "鳳凰の舞",
+      "description": "自身の周囲の敵に火属性範囲物理攻撃。\u3000威力：900\n2体目以降の対象への威力は35％減少する。\n追加効果：自身に「陽の闘気」を付与する。\n追加効果：自身に「零の型」を付与する。\u3000効果時間：30秒\n零の型効果：発動条件に「型」を持つウェポンスキルを、「型」が付いていなくても実行することができるようになる。\nその場合には追加効果も発動させることができる。\n発動条件：自身に異なる「チャクラ」が3つ付与されている\n\n※このアクションはホットバーに登録することはできない。\n\u3000発動条件を満たすと必殺技が鳳凰の舞に変化する。",
+      "description_macro": "自身の周囲の敵に火属性範囲物理攻撃。\u3000<colortype(504)><edgecolortype(505)>威力：<edgecolortype(0)><colortype(0)>900<br>2体目以降の対象への威力は35％減少する。<br><colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)>自身に<colortype(500)><edgecolortype(501)>「陽の闘気」<edgecolortype(0)><colortype(0)>を付与する。<br><colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)>自身に<colortype(500)><edgecolortype(501)>「零の型」<edgecolortype(0)><colortype(0)>を付与する。\u3000<colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>30秒<br><colortype(504)><edgecolortype(505)>零の型効果：<edgecolortype(0)><colortype(0)>発動条件に「型」を持つウェポンスキルを、「型」が付いていなくても実行することができるようになる。<br>その場合には追加効果も発動させることができる。<br><colortype(504)><edgecolortype(505)>発動条件：<edgecolortype(0)><colortype(0)>自身に異なる<colortype(500)><edgecolortype(501)>「チャクラ」<edgecolortype(0)><colortype(0)>が3つ付与されている<br><br><colortype(506)><edgecolortype(507)>※このアクションはホットバーに登録することはできない。<br>\u3000発動条件を満たすと必殺技が鳳凰の舞に変化する。<edgecolortype(0)><colortype(0)>",
+      "unlock_level": 86,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 20,
+          "name": "モンク",
+          "abbreviation": "MNK",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 25769,
+      "name": "夢幻闘舞",
+      "description": "対象とその周囲の敵に範囲物理攻撃。\u3000威力：1500\n2体目以降の対象への威力は35％減少する。\n追加効果：自身に「零の型」を付与する。\u3000効果時間：30秒\n零の型効果：発動条件に「型」を持つウェポンスキルを、「型」が付いていなくても実行することができるようになる。\nその場合には追加効果も発動させることができる。\n発動条件：「陰の闘気」と「陽の闘気」効果中かつ「チャクラ」が3つ付与されている\n\n※このアクションはホットバーに登録することはできない。\n\u3000発動条件を満たすと必殺技が夢幻闘舞に変化する。",
+      "description_macro": "対象とその周囲の敵に範囲物理攻撃。\u3000<colortype(504)><edgecolortype(505)>威力：<edgecolortype(0)><colortype(0)><if([gnum68==20],<if([gnum72>=94],1500,1400)>,1400)><br>2体目以降の対象への威力は35％減少する。<br><colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)>自身に<colortype(500)><edgecolortype(501)>「零の型」<edgecolortype(0)><colortype(0)>を付与する。\u3000<colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>30秒<br><colortype(504)><edgecolortype(505)>零の型効果：<edgecolortype(0)><colortype(0)>発動条件に「型」を持つウェポンスキルを、「型」が付いていなくても実行することができるようになる。<br>その場合には追加効果も発動させることができる。<br><colortype(504)><edgecolortype(505)>発動条件：<edgecolortype(0)><colortype(0)><colortype(500)><edgecolortype(501)>「陰の闘気」<edgecolortype(0)><colortype(0)>と<colortype(500)><edgecolortype(501)>「陽の闘気」<edgecolortype(0)><colortype(0)>効果中かつ<colortype(500)><edgecolortype(501)>「チャクラ」<edgecolortype(0)><colortype(0)>が3つ付与されている<br><br><colortype(506)><edgecolortype(507)>※このアクションはホットバーに登録することはできない。<br>\u3000発動条件を満たすと必殺技が夢幻闘舞に変化する。<edgecolortype(0)><colortype(0)>",
+      "unlock_level": 90,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 20,
+          "name": "モンク",
+          "abbreviation": "MNK",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 25882,
+      "name": "爆裂脚",
+      "description": "自身の周囲の敵に範囲物理攻撃。\u3000威力：800\n2体目以降の対象への威力は35％減少する。\n追加効果：自身に「陽の闘気」を付与する。\n追加効果：自身に「零の型」を付与する。\u3000効果時間：30秒\n零の型効果：発動条件に「型」を持つウェポンスキルを、「型」が付いていなくても実行することができるようになる。\nその場合には追加効果も発動させることができる。\n発動条件：自身に異なる「チャクラ」が3つ付与されている\n\n※このアクションはホットバーに登録することはできない。\n\u3000発動条件を満たすと必殺技が爆裂脚に変化する。",
+      "description_macro": "自身の周囲の敵に範囲物理攻撃。\u3000<colortype(504)><edgecolortype(505)>威力：<edgecolortype(0)><colortype(0)>800<br>2体目以降の対象への威力は35％減少する。<br><colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)>自身に<colortype(500)><edgecolortype(501)>「陽の闘気」<edgecolortype(0)><colortype(0)>を付与する。<br><colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)>自身に<colortype(500)><edgecolortype(501)>「零の型」<edgecolortype(0)><colortype(0)>を付与する。\u3000<colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>30秒<br><colortype(504)><edgecolortype(505)>零の型効果：<edgecolortype(0)><colortype(0)>発動条件に「型」を持つウェポンスキルを、「型」が付いていなくても実行することができるようになる。<br>その場合には追加効果も発動させることができる。<br><colortype(504)><edgecolortype(505)>発動条件：<edgecolortype(0)><colortype(0)>自身に異なる<colortype(500)><edgecolortype(501)>「チャクラ」<edgecolortype(0)><colortype(0)>が3つ付与されている<br><br><colortype(506)><edgecolortype(507)>※このアクションはホットバーに登録することはできない。<br>\u3000発動条件を満たすと必殺技が爆裂脚に変化する。<edgecolortype(0)><colortype(0)>",
+      "unlock_level": 60,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 20,
+          "name": "モンク",
+          "abbreviation": "MNK",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 36948,
+      "name": "真空波",
+      "description": "自身の周囲の敵に範囲物理攻撃。\u3000威力：900\n2体目以降の対象への威力は35％減少する。\n追加効果：自身に「陰の闘気」を付与する。\n追加効果：自身に「零の型」を付与する。\u3000効果時間：30秒\n零の型効果：発動条件に「型」を持つウェポンスキルを、「型」が付いていなくても実行することができるようになる。\nその場合には追加効果も発動させることができる。\n発動条件：自身に同じ「チャクラ」が3つ付与されている\n\n※このアクションはホットバーに登録することはできない。\n\u3000発動条件を満たすと必殺技が真空波に変化する。",
+      "description_macro": "自身の周囲の敵に範囲物理攻撃。\u3000<colortype(504)><edgecolortype(505)>威力：<edgecolortype(0)><colortype(0)>900<br>2体目以降の対象への威力は35％減少する。<br><colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)>自身に<colortype(500)><edgecolortype(501)>「陰の闘気」<edgecolortype(0)><colortype(0)>を付与する。<br><colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)>自身に<colortype(500)><edgecolortype(501)>「零の型」<edgecolortype(0)><colortype(0)>を付与する。\u3000<colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>30秒<br><colortype(504)><edgecolortype(505)>零の型効果：<edgecolortype(0)><colortype(0)>発動条件に「型」を持つウェポンスキルを、「型」が付いていなくても実行することができるようになる。<br>その場合には追加効果も発動させることができる。<br><colortype(504)><edgecolortype(505)>発動条件：<edgecolortype(0)><colortype(0)>自身に同じ<colortype(500)><edgecolortype(501)>「チャクラ」<edgecolortype(0)><colortype(0)>が3つ付与されている<br><br><colortype(506)><edgecolortype(507)>※このアクションはホットバーに登録することはできない。<br>\u3000発動条件を満たすと必殺技が真空波に変化する。<edgecolortype(0)><colortype(0)>",
+      "unlock_level": 92,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 20,
+          "name": "モンク",
+          "abbreviation": "MNK",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 36950,
+      "name": "乾坤闘気弾",
+      "description": "対象とその周囲の敵に範囲物理攻撃。\u3000威力：1400\n2体目以降の対象への威力は35％減少する。\n追加効果：自身に「零の型」を付与する。\u3000効果時間：30秒\n零の型効果：発動条件に「型」を持つウェポンスキルを、「型」が付いていなくても実行することができるようになる。\nその場合には追加効果も発動させることができる。\n発動条件：「乾坤闘気弾実行可」効果中",
+      "description_macro": "対象とその周囲の敵に範囲物理攻撃。\u3000<colortype(504)><edgecolortype(505)>威力：<edgecolortype(0)><colortype(0)>1400<br>2体目以降の対象への威力は35％減少する。<br><colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)>自身に<colortype(500)><edgecolortype(501)>「零の型」<edgecolortype(0)><colortype(0)>を付与する。\u3000<colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>30秒<br><colortype(504)><edgecolortype(505)>零の型効果：<edgecolortype(0)><colortype(0)>発動条件に「型」を持つウェポンスキルを、「型」が付いていなくても実行することができるようになる。<br>その場合には追加効果も発動させることができる。<br><colortype(504)><edgecolortype(505)>発動条件：<edgecolortype(0)><colortype(0)><colortype(500)><edgecolortype(501)>「乾坤闘気弾実行可」<edgecolortype(0)><colortype(0)>効果中",
+      "unlock_level": 100,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 20,
+          "name": "モンク",
+          "abbreviation": "MNK",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

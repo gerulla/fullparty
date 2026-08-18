@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 90,
+  "name": "Storm's Eye",
+  "description": "Damage dealt is increased.",
+  "effects": [
+    "Damage dealt is increased."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 210263,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 5
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 45,
+      "name": "Storm's Eye",
+      "description": "Delivers an attack with a potency of 220.\nCombo Action: Maim\nCombo Potency: 500\nCombo Bonus: Grants Surging Tempest, increasing damage dealt by 10%\nDuration: 30s\nExtends Surging Tempest duration by 30s to a maximum of 60s.\nCombo Bonus: Increases Beast Gauge by 10",
+      "description_macro": "Delivers an attack with a potency of <if([gnum68==21],<if([gnum72>=94],220,<if([gnum68==21],<if([gnum72>=84],160,100)>,100)>)>,<if([gnum68==21],<if([gnum72>=84],160,100)>,100)>)>.<br><colortype(504)><edgecolortype(505)>Combo Action: <edgecolortype(0)><colortype(0)><colortype(500)><edgecolortype(501)>Maim<edgecolortype(0)><colortype(0)><br><colortype(504)><edgecolortype(505)>Combo Potency: <edgecolortype(0)><colortype(0)><if([gnum68==21],<if([gnum72>=94],500,<if([gnum68==21],<if([gnum72>=84],440,380)>,380)>)>,<if([gnum68==21],<if([gnum72>=84],440,380)>,380)>)><br><colortype(504)><edgecolortype(505)>Combo Bonus: <edgecolortype(0)><colortype(0)>Grants <colortype(506)><edgecolortype(507)>Surging Tempest<edgecolortype(0)><colortype(0)>, increasing damage dealt by 10%<br><colortype(504)><edgecolortype(505)>Duration:<edgecolortype(0)><colortype(0)> 30s<br>Extends <colortype(506)><edgecolortype(507)>Surging Tempest<edgecolortype(0)><colortype(0)> duration by 30s to a maximum of 60s.<if([gnum68==21],<if([gnum72>=35],<br><colortype(504)><edgecolortype(505)>Combo Bonus:<edgecolortype(0)><colortype(0)> Increases <colortype(500)><edgecolortype(501)>Beast Gauge<edgecolortype(0)><colortype(0)> by 10,)>,)>",
+      "unlock_level": 50,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Tank"
+      ],
+      "jobs": [
+        {
+          "id": 21,
+          "name": "Warrior",
+          "abbreviation": "WAR",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 2682,
+  "name": "Opfergabe",
+  "description": "Erlittener Schaden ist verringert.",
+  "effects": [
+    "Erlittener Schaden ist verringert."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 213123,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": -10
+  },
+  "class_job_category_id": 98,
+  "source_abilities": [
+    {
+      "id": 25754,
+      "name": "Opfergabe",
+      "description": "Du verringerst deinen erlittenen Schaden oder den des Ziels um 10 %.\nDauer: 10 Sekunden\nMaximale Aufladungen: 2",
+      "description_macro": "Du verringerst deinen erlittenen Schaden oder den des Ziels um 10<nbsp>%.<br>Dauer: 10 Sekunden<br>Maximale Aufladungen: 2",
+      "unlock_level": 82,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Tank"
+      ],
+      "jobs": [
+        {
+          "id": 32,
+          "name": "Dunkelritter",
+          "abbreviation": "DKR",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

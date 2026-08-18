@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 172,
+  "name": "Maîtrise de Foudre II",
+  "description": "Remplace Extra Foudre par Giga Foudre.",
+  "description_macro": "Remplace <colortype(500)><edgecolortype(501)>Extra Foudre<edgecolortype(0)><colortype(0)> par <colortype(500)><edgecolortype(501)>Giga Foudre<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Remplace Extra Foudre par Giga Foudre."
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 25,
+    "name": "Mage Noir",
+    "abbreviation": "MNO"
+  },
+  "unlock_level": 64,
+  "value": 0,
+  "icon": {
+    "id": 5358,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 26,
+  "source_class_job_id": 25
+}

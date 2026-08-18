@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 2719,
+  "name": "桜華繚乱",
+  "description": "ＨＰが徐々に失われる状態。",
+  "effects": [
+    "ＨＰが徐々に失われる状態。"
+  ],
+  "classification": "debuff",
+  "icon": {
+    "id": 212586,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 2,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 10,
+  "parameter": {
+    "effect": 0,
+    "modifier": 10
+  },
+  "class_job_category_id": 23,
+  "source_abilities": [
+    {
+      "id": 25772,
+      "name": "桜華繚乱",
+      "description": "対象に物理攻撃。\u3000威力：140\n背面攻撃時威力：180\nコンボ条件：スパイラルブロウ\u3000コンボ時威力：300\nコンボ時かつ背面攻撃時威力：340\nコンボボーナス：対象に継続ダメージを付与する。\n威力：45\u3000効果時間：24秒",
+      "description_macro": "対象に物理攻撃。\u3000<colortype(504)><edgecolortype(505)>威力：<edgecolortype(0)><colortype(0)><if([gnum68==22],<if([gnum72>=94],140,100)>,100)><br><colortype(504)><edgecolortype(505)>背面攻撃時威力：<edgecolortype(0)><colortype(0)><if([gnum68==22],<if([gnum72>=94],180,140)>,140)><br><colortype(504)><edgecolortype(505)>コンボ条件：<edgecolortype(0)><colortype(0)><if([gnum68==22],<if([gnum72>=96],スパイラルブロウ,ディセムボウル)>,ディセムボウル)>\u3000<colortype(504)><edgecolortype(505)>コンボ時威力：<edgecolortype(0)><colortype(0)><if([gnum68==22],<if([gnum72>=94],300,260)>,260)><br><colortype(504)><edgecolortype(505)>コンボ時かつ背面攻撃時威力：<edgecolortype(0)><colortype(0)><if([gnum68==22],<if([gnum72>=94],340,300)>,300)><br><colortype(504)><edgecolortype(505)>コンボボーナス：<edgecolortype(0)><colortype(0)>対象に継続ダメージを付与する。<br><colortype(504)><edgecolortype(505)>威力：<edgecolortype(0)><colortype(0)>45\u3000<colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>24秒",
+      "unlock_level": 86,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 22,
+          "name": "竜騎士",
+          "abbreviation": "DRG",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 424,
+  "name": "Maîtrise de Cœur de pierre",
+  "description": "Remplace Cœur de pierre par Cœur de corindon.",
+  "description_macro": "Remplace <colortype(500)><edgecolortype(501)>Cœur de pierre<edgecolortype(0)><colortype(0)> par <colortype(500)><edgecolortype(501)>Cœur de corindon<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Remplace Cœur de pierre par Cœur de corindon."
+  ],
+  "role": "Tank",
+  "job": {
+    "id": 37,
+    "name": "Pistosabreur",
+    "abbreviation": "PSB"
+  },
+  "unlock_level": 82,
+  "value": 0,
+  "icon": {
+    "id": 6304,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 149,
+  "source_class_job_id": 37
+}

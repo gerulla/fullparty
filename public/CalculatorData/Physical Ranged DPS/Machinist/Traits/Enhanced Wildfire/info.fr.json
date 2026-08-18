@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 293,
+  "name": "Flambée améliorée",
+  "description": "Augmente le bonus conféré à la puissance de Flambée à 240 pour chaque technique d'arme utilisée pendant l'effet.",
+  "description_macro": "Augmente le bonus conféré à la puissance de <colortype(500)><edgecolortype(501)>Flambée<edgecolortype(0)><colortype(0)> à 240 pour chaque technique d'arme utilisée pendant l'effet.",
+  "effects": [
+    "Augmente le bonus conféré à la puissance de Flambée à 240 pour chaque technique d'arme utilisée pendant l'effet."
+  ],
+  "role": "Physical Ranged DPS",
+  "job": {
+    "id": 31,
+    "name": "Machiniste",
+    "abbreviation": "MCH"
+  },
+  "unlock_level": 78,
+  "value": 0,
+  "icon": {
+    "id": 6014,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 96,
+  "source_class_job_id": 31
+}

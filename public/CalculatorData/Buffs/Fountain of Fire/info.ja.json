@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 2029,
+  "name": "霊泉の炎",
+  "description": "継続ダメージを受ける状態。",
+  "effects": [
+    "継続ダメージを受ける状態。"
+  ],
+  "classification": "debuff",
+  "icon": {
+    "id": 212731,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 2,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": true,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 100
+  },
+  "class_job_category_id": 28,
+  "source_abilities": [
+    {
+      "id": 16514,
+      "name": "霊泉の炎",
+      "description": "対象に火属性魔法攻撃。\u3000威力：580\n発動条件：「トランス・フェニックス」効果中\n\n※このアクションはホットバーに登録することはできない。\n\u3000発動条件を満たすとルインガが霊泉の炎に変化する。",
+      "description_macro": "対象に火属性魔法攻撃。\u3000<colortype(504)><edgecolortype(505)>威力：<edgecolortype(0)><colortype(0)><if([gnum68==27],<if([gnum72>=94],580,540)>,540)><br><colortype(504)><edgecolortype(505)>発動条件：<edgecolortype(0)><colortype(0)><colortype(500)><edgecolortype(501)>「トランス・フェニックス」<edgecolortype(0)><colortype(0)>効果中<br><br><colortype(506)><edgecolortype(507)>※このアクションはホットバーに登録することはできない。<br>\u3000発動条件を満たすとルインガが霊泉の炎に変化する。<edgecolortype(0)><colortype(0)>",
+      "unlock_level": 80,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Magical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 27,
+          "name": "召喚士",
+          "abbreviation": "SMN",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

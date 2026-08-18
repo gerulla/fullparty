@@ -1,0 +1,89 @@
+{
+  "kind": "ability",
+  "id": 3587,
+  "name": "転化",
+  "description": "召喚しているフェアリーを帰還させることと引き換えに、自身に最大スタック分の「エーテルフロー」を付与する。\nさらに、自身の回復魔法の効果を20％上昇させる。\n効果時間：30秒\nただし、効果時間中は「サモン・エオス」を使うことができなくなる。\n効果が終了するとフェアリーが再出現する。\n発動条件：自身が戦闘状態かつフェアリーが存在する",
+  "description_macro": "召喚しているフェアリーを帰還させることと引き換えに、自身に最大スタック分の<colortype(500)><edgecolortype(501)>「エーテルフロー」<edgecolortype(0)><colortype(0)>を付与する。<br>さらに、自身の回復魔法の効果を20％上昇させる。<br><colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>30秒<br>ただし、効果時間中は<colortype(500)><edgecolortype(501)>「サモン・エオス」<edgecolortype(0)><colortype(0)>を使うことができなくなる。<br>効果が終了するとフェアリーが再出現する。<br><colortype(504)><edgecolortype(505)>発動条件：<edgecolortype(0)><colortype(0)>自身が戦闘状態かつフェアリーが存在する",
+  "effects": [
+    "召喚しているフェアリーを帰還させることと引き換えに、自身に最大スタック分の「エーテルフロー」を付与する。",
+    "さらに、自身の回復魔法の効果を20％上昇させる。",
+    "効果時間：30秒",
+    "ただし、効果時間中は「サモン・エオス」を使うことができなくなる。",
+    "効果が終了するとフェアリーが再出現する。",
+    "発動条件：自身が戦闘状態かつフェアリーが存在する"
+  ],
+  "role": "Healer",
+  "job": {
+    "id": 28,
+    "name": "学者",
+    "abbreviation": "SCH"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 60,
+  "icon": {
+    "id": 2810,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 4,
+    "name": "アビリティ"
+  },
+  "attack_type": {
+    "id": 0,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 180,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 25,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 0,
+      "value": 0
+    },
+    "secondary": {
+      "type_id": 102,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": 0,
+    "effect_yalms": 0,
+    "cast_type": 1
+  },
+  "targeting": {
+    "self": true,
+    "party": false,
+    "alliance": false,
+    "hostile": false,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 0,
+    "behavior_type": 0,
+    "class_job_category_id": 29,
+    "source_class_job_id": 28,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

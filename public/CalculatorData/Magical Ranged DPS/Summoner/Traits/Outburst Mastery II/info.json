@@ -1,0 +1,27 @@
+{
+  "kind": "trait",
+  "id": 478,
+  "name": "Outburst Mastery II",
+  "description": "Enhances Precious Brilliance according to your current elemental attunement.\nFire Attunement Upgrade: Ruby Catastrophe\nEarth Attunement Upgrade: Topaz Catastrophe\nWind Attunement Upgrade: Emerald Catastrophe",
+  "description_macro": "Enhances <colortype(500)><edgecolortype(501)>Precious Brilliance<edgecolortype(0)><colortype(0)> according to your current elemental attunement.<br><colortype(504)><edgecolortype(505)>Fire Attunement Upgrade: <edgecolortype(0)><colortype(0)><colortype(500)><edgecolortype(501)>Ruby Catastrophe<edgecolortype(0)><colortype(0)><br><colortype(504)><edgecolortype(505)>Earth Attunement Upgrade: <edgecolortype(0)><colortype(0)><colortype(500)><edgecolortype(501)>Topaz Catastrophe<edgecolortype(0)><colortype(0)><br><colortype(504)><edgecolortype(505)>Wind Attunement Upgrade: <edgecolortype(0)><colortype(0)><colortype(500)><edgecolortype(501)>Emerald Catastrophe<edgecolortype(0)><colortype(0)>",
+  "effects": [
+    "Enhances Precious Brilliance according to your current elemental attunement.",
+    "Fire Attunement Upgrade: Ruby Catastrophe",
+    "Earth Attunement Upgrade: Topaz Catastrophe",
+    "Wind Attunement Upgrade: Emerald Catastrophe"
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 27,
+    "name": "Summoner",
+    "abbreviation": "SMN"
+  },
+  "unlock_level": 82,
+  "value": 0,
+  "icon": {
+    "id": 5693,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 28,
+  "source_class_job_id": 27
+}

@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 468,
+  "name": "Meister der Rubin-Beschwörung",
+  "description": "Verbessert Rubin-Beschwörung zu Ifrit-Beschwörung.",
+  "description_macro": "Verbessert <colortype(502)><edgecolortype(503)>Rubin-Beschwörung<edgecolortype(0)><colortype(0)> zu <colortype(502)><edgecolortype(503)>Ifrit-Beschwörung<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Verbessert Rubin-Beschwörung zu Ifrit-Beschwörung."
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 27,
+    "name": "Beschwörer",
+    "abbreviation": "BSW"
+  },
+  "unlock_level": 30,
+  "value": 0,
+  "icon": {
+    "id": 5682,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 28,
+  "source_class_job_id": 27
+}

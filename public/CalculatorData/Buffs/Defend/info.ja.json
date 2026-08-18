@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 4792,
+  "name": "ぼうぎょ",
+  "description": "受けるダメージの一部が軽減される状態。",
+  "effects": [
+    "受けるダメージの一部が軽減される状態。"
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 229967,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": -50
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 46595,
+      "name": "ぼうぎょ",
+      "description": "自身の被ダメージを50％軽減する。\n効果時間：5秒\n軽減成功時追加効果：自身に「ひっさつ強化」を付与する。\n最大スタック数：4\n効果時間：120秒\nこのアクションがリキャスト状態ではない時に攻撃を受けると、「ひっさつ強化」が1スタック減少する。",
+      "description_macro": "自身の被ダメージを50％軽減する。<br><colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>5秒<br><colortype(504)><edgecolortype(505)>軽減成功時追加効果：<edgecolortype(0)><colortype(0)>自身に<colortype(500)><edgecolortype(501)>「ひっさつ強化」<edgecolortype(0)><colortype(0)>を付与する。<br><colortype(504)><edgecolortype(505)>最大スタック数：<edgecolortype(0)><colortype(0)>4<br><colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>120秒<br>このアクションがリキャスト状態ではない時に攻撃を受けると、<colortype(500)><edgecolortype(501)>「ひっさつ強化」<edgecolortype(0)><colortype(0)>が1スタック減少する。",
+      "unlock_level": 0,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Phantom Jobs"
+      ],
+      "jobs": [
+        {
+          "id": 14,
+          "name": "Phantom サポート剣闘士",
+          "abbreviation": "Ph. Gladiator",
+          "is_phantom": true
+        }
+      ]
+    }
+  ]
+}

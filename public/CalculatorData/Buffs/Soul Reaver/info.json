@@ -1,0 +1,113 @@
+{
+  "kind": "combat_status",
+  "id": 2587,
+  "name": "Soul Reaver",
+  "description": "Able to execute Gibbet, Gallows, and Guillotine.",
+  "effects": [
+    "Able to execute Gibbet, Gallows, and Guillotine."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 217097,
+    "file": "icon.png"
+  },
+  "max_stacks": 2,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 27,
+    "modifier": 0
+  },
+  "class_job_category_id": 180,
+  "source_abilities": [
+    {
+      "id": 24389,
+      "name": "Blood Stalk",
+      "description": "Summons your avatar to deliver an attack with a potency of 340.\nAdditional Effect: Grants Soul Reaver\nDuration: 30s\nStack count will be reduced to 1 when already under the effect of Soul Reaver.\nEffect cannot be stacked with Executioner.\nSoul Gauge Cost: 50\nShares a recast timer with all avatar attacks except Gluttony.",
+      "description_macro": "Summons your avatar to deliver an attack with a potency of 340.<br><if([gnum68==39],<if([gnum72>=70],<colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>Grants <colortype(506)><edgecolortype(507)>Soul Reaver<edgecolortype(0)><colortype(0)><br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>30s<br>Stack count will be reduced to 1 when already under the effect of <colortype(506)><edgecolortype(507)>Soul Reaver<edgecolortype(0)><colortype(0)>.<br>,)>,)><if([gnum68==39],<if([gnum72>=96],Effect cannot be stacked with <colortype(506)><edgecolortype(507)>Executioner<edgecolortype(0)><colortype(0)>.<br>,)>,)><colortype(504)><edgecolortype(505)>Soul Gauge Cost: <edgecolortype(0)><colortype(0)>50<br>Shares a recast timer with all avatar attacks except <colortype(500)><edgecolortype(501)>Gluttony<edgecolortype(0)><colortype(0)>.",
+      "unlock_level": 50,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 39,
+          "name": "Reaper",
+          "abbreviation": "RPR",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 24390,
+      "name": "Unveiled Gibbet",
+      "description": "Summons your avatar to deliver an attack with a potency of 440.\nAdditional Effect: Grants Soul Reaver\nDuration: 30s\nStack count will be reduced to 1 when already under the effect of Soul Reaver.\nEffect cannot be stacked with Executioner.\nSoul Gauge Cost: 50\nCan only be executed while under the effect of Enhanced Gibbet.\nShares a recast timer with all avatar attacks except Gluttony.\n\n※This action cannot be assigned to a hotbar.\n※Blood Stalk changes to Unveiled Gibbet when under the effect of Enhanced Gibbet.",
+      "description_macro": "Summons your avatar to deliver an attack with a potency of <if([gnum68==39],<if([gnum72>=94],440,400)>,400)>.<br><colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>Grants <colortype(506)><edgecolortype(507)>Soul Reaver<edgecolortype(0)><colortype(0)><br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>30s<br>Stack count will be reduced to 1 when already under the effect of <colortype(506)><edgecolortype(507)>Soul Reaver<edgecolortype(0)><colortype(0)>.<br><if([gnum68==39],<if([gnum72>=96],Effect cannot be stacked with <colortype(506)><edgecolortype(507)>Executioner<edgecolortype(0)><colortype(0)>.<br>,)>,)><colortype(504)><edgecolortype(505)>Soul Gauge Cost: <edgecolortype(0)><colortype(0)>50<br>Can only be executed while under the effect of <colortype(506)><edgecolortype(507)>Enhanced Gibbet<edgecolortype(0)><colortype(0)>.<br>Shares a recast timer with all avatar attacks except <colortype(500)><edgecolortype(501)>Gluttony<edgecolortype(0)><colortype(0)>.<br><br>※This action cannot be assigned to a hotbar.<br>※<colortype(500)><edgecolortype(501)>Blood Stalk<edgecolortype(0)><colortype(0)> changes to <colortype(500)><edgecolortype(501)>Unveiled Gibbet<edgecolortype(0)><colortype(0)> when under the effect of <colortype(506)><edgecolortype(507)>Enhanced Gibbet<edgecolortype(0)><colortype(0)>.",
+      "unlock_level": 70,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 39,
+          "name": "Reaper",
+          "abbreviation": "RPR",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 24391,
+      "name": "Unveiled Gallows",
+      "description": "Summons your avatar to deliver an attack with a potency of 440.\nAdditional Effect: Grants Soul Reaver\nDuration: 30s\nStack count will be reduced to 1 when already under the effect of Soul Reaver.\nEffect cannot be stacked with Executioner.\nSoul Gauge Cost: 50\nCan only be executed while under the effect of Enhanced Gallows.\nShares a recast timer with all avatar attacks except Gluttony.\n\n※This action cannot be assigned to a hotbar.\n※Blood Stalk changes to Unveiled Gallows while under the effect of Enhanced Gallows.",
+      "description_macro": "Summons your avatar to deliver an attack with a potency of <if([gnum68==39],<if([gnum72>=94],440,400)>,400)>.<br><colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>Grants <colortype(506)><edgecolortype(507)>Soul Reaver<edgecolortype(0)><colortype(0)><br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>30s<br>Stack count will be reduced to 1 when already under the effect of <colortype(506)><edgecolortype(507)>Soul Reaver<edgecolortype(0)><colortype(0)>.<br><if([gnum68==39],<if([gnum72>=96],Effect cannot be stacked with <colortype(506)><edgecolortype(507)>Executioner<edgecolortype(0)><colortype(0)>.<br>,)>,)><colortype(504)><edgecolortype(505)>Soul Gauge Cost: <edgecolortype(0)><colortype(0)>50<br>Can only be executed while under the effect of <colortype(506)><edgecolortype(507)>Enhanced Gallows<edgecolortype(0)><colortype(0)>.<br>Shares a recast timer with all avatar attacks except <colortype(500)><edgecolortype(501)>Gluttony<edgecolortype(0)><colortype(0)>.<br><br>※This action cannot be assigned to a hotbar.<br>※<colortype(500)><edgecolortype(501)>Blood Stalk<edgecolortype(0)><colortype(0)> changes to <colortype(500)><edgecolortype(501)>Unveiled Gallows<edgecolortype(0)><colortype(0)> while under the effect of <colortype(506)><edgecolortype(507)>Enhanced Gallows<edgecolortype(0)><colortype(0)>.",
+      "unlock_level": 70,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 39,
+          "name": "Reaper",
+          "abbreviation": "RPR",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 24392,
+      "name": "Grim Swathe",
+      "description": "Summons your avatar to deliver an attack with a potency of 140 to all enemies in a cone before you.\nAdditional Effect: Grants Soul Reaver\nDuration: 30s\nStack count will be reduced to 1 when already under the effect of Soul Reaver.\nEffect cannot be stacked with Executioner.\nSoul Gauge Cost: 50\nShares a recast timer with all avatar attacks except Gluttony.",
+      "description_macro": "Summons your avatar to deliver an attack with a potency of 140 to all enemies in a cone before you.<br><if([gnum68==39],<if([gnum72>=70],<colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>Grants <colortype(506)><edgecolortype(507)>Soul Reaver<edgecolortype(0)><colortype(0)><br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>30s<br>Stack count will be reduced to 1 when already under the effect of <colortype(506)><edgecolortype(507)>Soul Reaver<edgecolortype(0)><colortype(0)>.<br>,)>,)><if([gnum68==39],<if([gnum72>=96],Effect cannot be stacked with <colortype(506)><edgecolortype(507)>Executioner<edgecolortype(0)><colortype(0)>.<br>,)>,)><colortype(504)><edgecolortype(505)>Soul Gauge Cost: <edgecolortype(0)><colortype(0)>50<br>Shares a recast timer with all avatar attacks except <colortype(500)><edgecolortype(501)>Gluttony<edgecolortype(0)><colortype(0)>.",
+      "unlock_level": 55,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 39,
+          "name": "Reaper",
+          "abbreviation": "RPR",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

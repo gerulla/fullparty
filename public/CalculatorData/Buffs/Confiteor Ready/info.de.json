@@ -1,0 +1,71 @@
+{
+  "kind": "combat_status",
+  "id": 3019,
+  "name": "Confiteor",
+  "description": "Confiteor kann ausgeführt werden.",
+  "effects": [
+    "Confiteor kann ausgeführt werden."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 212520,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 20,
+  "source_abilities": [
+    {
+      "id": 7383,
+      "name": "Requiescat",
+      "description": "Du führst eine elementneutrale magische Attacke aus.\nAttacke-Wert: 320\nZusatzeffekt: Gewährt 4 Stapel Requiescat.\nDauer: 30 Sekunden\nEffekt von Requiescat: Zauber können sofort gewirkt werden.\nDarüber hinaus erhöht sich der Attacke-Wert von Heiliger Geist\\\nZusatzeffekt: Confiteor\nDauer: 30 Sekunden",
+      "description_macro": "Du führst eine elementneutrale magische Attacke aus.<br>Attacke-Wert: 320<br>Zusatzeffekt: Gewährt 4 Stapel <colortype(506)><edgecolortype(507)>Requiescat<edgecolortype(0)><colortype(0)>.<br>Dauer: 30 Sekunden<br>Effekt von <colortype(506)><edgecolortype(507)>Requiescat<edgecolortype(0)><colortype(0)>: Zauber können sofort gewirkt werden.<br><if([gnum68==19],<if([gnum72>=90],Darüber hinaus erhöht sich der Attacke-Wert von <colortype(502)><edgecolortype(503)>Heiliger Geist<edgecolortype(0)><colortype(0)>\\, <colortype(502)><edgecolortype(503)>Heiliger Kreis<edgecolortype(0)><colortype(0)>\\, sowie von <colortype(502)><edgecolortype(503)>Confiteor<edgecolortype(0)><colortype(0)> und dessen Kombo-Kommandos.,<if([gnum68==19],<if([gnum72>=80],Darüber hinaus erhöht sich der Attacke-Wert von <colortype(502)><edgecolortype(503)>Heiliger Geist<edgecolortype(0)><colortype(0)>\\, <colortype(502)><edgecolortype(503)>Heiliger Kreis<edgecolortype(0)><colortype(0)> und <colortype(502)><edgecolortype(503)>Confiteor<edgecolortype(0)><colortype(0)>.,<if([gnum68==19],<if([gnum72>=72],Darüber hinaus erhöht sich der Attacke-Wert von <colortype(502)><edgecolortype(503)>Heiliger Geist<edgecolortype(0)><colortype(0)> und <colortype(502)><edgecolortype(503)>Heiliger Kreis<edgecolortype(0)><colortype(0)>.,Darüber hinaus erhöht sich der Attacke-Wert von <colortype(502)><edgecolortype(503)>Heiliger Geist<edgecolortype(0)><colortype(0)>.)>,Darüber hinaus erhöht sich der Attacke-Wert von <colortype(502)><edgecolortype(503)>Heiliger Geist<edgecolortype(0)><colortype(0)>.)>)>,<if([gnum68==19],<if([gnum72>=72],Darüber hinaus erhöht sich der Attacke-Wert von <colortype(502)><edgecolortype(503)>Heiliger Geist<edgecolortype(0)><colortype(0)> und <colortype(502)><edgecolortype(503)>Heiliger Kreis<edgecolortype(0)><colortype(0)>.,Darüber hinaus erhöht sich der Attacke-Wert von <colortype(502)><edgecolortype(503)>Heiliger Geist<edgecolortype(0)><colortype(0)>.)>,Darüber hinaus erhöht sich der Attacke-Wert von <colortype(502)><edgecolortype(503)>Heiliger Geist<edgecolortype(0)><colortype(0)>.)>)>)>,<if([gnum68==19],<if([gnum72>=80],Darüber hinaus erhöht sich der Attacke-Wert von <colortype(502)><edgecolortype(503)>Heiliger Geist<edgecolortype(0)><colortype(0)>\\, <colortype(502)><edgecolortype(503)>Heiliger Kreis<edgecolortype(0)><colortype(0)> und <colortype(502)><edgecolortype(503)>Confiteor<edgecolortype(0)><colortype(0)>.,<if([gnum68==19],<if([gnum72>=72],Darüber hinaus erhöht sich der Attacke-Wert von <colortype(502)><edgecolortype(503)>Heiliger Geist<edgecolortype(0)><colortype(0)> und <colortype(502)><edgecolortype(503)>Heiliger Kreis<edgecolortype(0)><colortype(0)>.,Darüber hinaus erhöht sich der Attacke-Wert von <colortype(502)><edgecolortype(503)>Heiliger Geist<edgecolortype(0)><colortype(0)>.)>,Darüber hinaus erhöht sich der Attacke-Wert von <colortype(502)><edgecolortype(503)>Heiliger Geist<edgecolortype(0)><colortype(0)>.)>)>,<if([gnum68==19],<if([gnum72>=72],Darüber hinaus erhöht sich der Attacke-Wert von <colortype(502)><edgecolortype(503)>Heiliger Geist<edgecolortype(0)><colortype(0)> und <colortype(502)><edgecolortype(503)>Heiliger Kreis<edgecolortype(0)><colortype(0)>.,Darüber hinaus erhöht sich der Attacke-Wert von <colortype(502)><edgecolortype(503)>Heiliger Geist<edgecolortype(0)><colortype(0)>.)>,Darüber hinaus erhöht sich der Attacke-Wert von <colortype(502)><edgecolortype(503)>Heiliger Geist<edgecolortype(0)><colortype(0)>.)>)>)><if([gnum68==19],<if([gnum72>=80],<br>Zusatzeffekt: <colortype(506)><edgecolortype(507)>Confiteor<edgecolortype(0)><colortype(0)><br>Dauer: 30 Sekunden,)>,)>",
+      "unlock_level": 68,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Tank"
+      ],
+      "jobs": [
+        {
+          "id": 19,
+          "name": "Paladin",
+          "abbreviation": "PLD",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 36921,
+      "name": "Imperator",
+      "description": "Du führst eine elementneutrale magische Attacke auf das Ziel und die Gegner in seiner Nähe aus.\nAttacke-Wert: 580\nAttacke-Wert verringert sich ab dem zweiten Gegner um 60 ％\nZusatzeffekt: Du verleihst dir 4 Stapel Requiescat.\nDauer: 30 Sekunden\nEffekt von Requiescat: Zauber können sofort gewirkt werden.\nDarüber hinaus erhöht sich der Attacke-Wert von Heiliger Geist, Heiliger Kreis, sowie von Confiteor und dessen Kombo-Kommandos.\nZusatzeffekt: Gewährt dir Confiteor.\nDauer: 30 Sekunden",
+      "description_macro": "Du führst eine elementneutrale magische Attacke auf das Ziel und die Gegner in seiner Nähe aus.<br>Attacke-Wert: 580<br>Attacke-Wert verringert sich ab dem zweiten Gegner um 60<nbsp>％<br>Zusatzeffekt: Du verleihst dir 4 Stapel <colortype(506)><edgecolortype(507)>Requiescat<edgecolortype(0)><colortype(0)>.<br>Dauer: 30 Sekunden<br>Effekt von <colortype(506)><edgecolortype(507)>Requiescat<edgecolortype(0)><colortype(0)>: Zauber können sofort gewirkt werden.<br>Darüber hinaus erhöht sich der Attacke-Wert von <colortype(502)><edgecolortype(503)>Heiliger Geist<edgecolortype(0)><colortype(0)>, <colortype(502)><edgecolortype(503)>Heiliger Kreis<edgecolortype(0)><colortype(0)>, sowie von <colortype(502)><edgecolortype(503)>Confiteor<edgecolortype(0)><colortype(0)> und dessen Kombo-Kommandos.<br>Zusatzeffekt: Gewährt dir <colortype(506)><edgecolortype(507)>Confiteor<edgecolortype(0)><colortype(0)>.<br>Dauer: 30 Sekunden",
+      "unlock_level": 96,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Tank"
+      ],
+      "jobs": [
+        {
+          "id": 19,
+          "name": "Paladin",
+          "abbreviation": "PLD",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

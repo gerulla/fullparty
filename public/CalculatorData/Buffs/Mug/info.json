@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 3183,
+  "name": "Mug",
+  "description": "Damage taken is increased.",
+  "effects": [
+    "Damage taken is increased."
+  ],
+  "classification": "debuff",
+  "icon": {
+    "id": 214942,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 2,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": true,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 10
+  },
+  "class_job_category_id": 92,
+  "source_abilities": [
+    {
+      "id": 2248,
+      "name": "Mug",
+      "description": "Delivers an attack with a potency of 150.\nAdditional Effect: Increases target's damage taken by 5%\nDuration: 20s\nAdditional Effect: Increases the chance of additional items being dropped by target if Mug is dealt before, or as, the finishing blow",
+      "description_macro": "Delivers an attack with a potency of 150.<br><colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>Increases target's damage taken by 5%<br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>20s<br><colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>Increases the chance of additional items being dropped by target if <colortype(500)><edgecolortype(501)>Mug<edgecolortype(0)><colortype(0)> is dealt before, or as, the finishing blow",
+      "unlock_level": 15,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 30,
+          "name": "Ninja",
+          "abbreviation": "NIN",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

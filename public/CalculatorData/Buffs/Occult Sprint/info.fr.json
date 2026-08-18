@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 4276,
+  "name": "Magi Élan",
+  "description": "La vitesse de déplacement est augmentée.",
+  "effects": [
+    "La vitesse de déplacement est augmentée."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 216678,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 18,
+    "modifier": 0
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 41646,
+      "name": "Magi Élan",
+      "description": "Augmente grandement votre vitesse de déplacement.\nDurée : 10s",
+      "description_macro": "Augmente grandement votre vitesse de déplacement.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 10s",
+      "unlock_level": 0,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Phantom Jobs"
+      ],
+      "jobs": [
+        {
+          "id": 12,
+          "name": "Phantom Voleur fantôme",
+          "abbreviation": "Voleur fant.",
+          "is_phantom": true
+        }
+      ]
+    }
+  ]
+}

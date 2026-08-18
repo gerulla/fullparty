@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 166,
+  "name": "Succor",
+  "description": "Next Succor will cost no MP.",
+  "effects": [
+    "Next Succor will cost no MP."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 212804,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 186,
+      "name": "Succor",
+      "description": "Restores own HP and the HP of all nearby party members.\nCure Potency: 200\nAdditional Effect: Erects a magicked barrier which nullifies damage equaling 160% of the amount of HP restored\nDuration: 30s\nEffect cannot be stacked with certain sage barrier effects.",
+      "description_macro": "Restores own HP and the HP of all nearby party members.<br><colortype(504)><edgecolortype(505)>Cure Potency:<edgecolortype(0)><colortype(0)> 200<br><colortype(504)><edgecolortype(505)>Additional Effect:<edgecolortype(0)><colortype(0)> Erects a magicked barrier which nullifies damage equaling <if([gnum68==28],<if([gnum72>=85],160,115)>,115)>% of the amount of HP restored<br><colortype(504)><edgecolortype(505)>Duration:<edgecolortype(0)><colortype(0)> 30s<br>Effect cannot be stacked with certain sage barrier effects.",
+      "unlock_level": 35,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Healer"
+      ],
+      "jobs": [
+        {
+          "id": 28,
+          "name": "Scholar",
+          "abbreviation": "SCH",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

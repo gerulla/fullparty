@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 3225,
+  "name": "Wirbelströmung",
+  "description": "Hält eine Schadenszone aufrecht.",
+  "effects": [
+    "Hält eine Schadenszone aufrecht."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 212695,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": true,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 28,
+  "source_abilities": [
+    {
+      "id": 25837,
+      "name": "Wirbelströmung",
+      "description": "Du führst eine windbasierte magische Attacke auf das Ziel und die Gegner in seiner Nähe aus.\nAttacke-Wert: 520\nAttacke-Wert verringert sich ab dem zweiten Gegner um 60 %.\nZusatzeffekt: Errichtet eine Schadenszone um das Ziel.\nAttacke-Wert: 30\nDauer: 15 Sekunden\nBedingung: Garudas Gunst aktiv\nEigener Reaktivierungs-Timer\nBei Ausführung wird der Reaktivierungs-Timer dieses Kommandos auf alle anderen Waffenfertigkeiten und Magie angewendet.\nBei erfüllter Bedingung ändert sich Lichtstrom zu diesem Kommando.\nKann nicht im Kommandomenü angelegt werden.",
+      "description_macro": "Du führst eine windbasierte magische Attacke auf das Ziel und die Gegner in seiner Nähe aus.<br>Attacke-Wert: <if([gnum68==27],<if([gnum72>=94],520,430)>,430)><br>Attacke-Wert verringert sich ab dem zweiten Gegner um 60<nbsp>%.<br>Zusatzeffekt: Errichtet eine Schadenszone um das Ziel.<br>Attacke-Wert: 30<br>Dauer: 15 Sekunden<br>Bedingung: <colortype(506)><edgecolortype(507)>Garudas Gunst<edgecolortype(0)><colortype(0)> aktiv<br>Eigener Reaktivierungs-Timer<br>Bei Ausführung wird der Reaktivierungs-Timer dieses Kommandos auf alle anderen Waf<->fen<->fer<->tig<->kei<->ten und Magie angewendet.<br>Bei erfüllter Bedingung ändert sich <colortype(502)><edgecolortype(503)>Lichtstrom<edgecolortype(0)><colortype(0)> zu diesem Kommando.<br>Kann nicht im Kommandomenü angelegt werden.",
+      "unlock_level": 86,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Magical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 27,
+          "name": "Beschwörer",
+          "abbreviation": "BSW",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

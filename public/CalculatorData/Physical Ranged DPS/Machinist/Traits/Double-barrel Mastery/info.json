@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 604,
+  "name": "Double-barrel Mastery",
+  "description": "Upgrades Gauss Round to Double Check and Ricochet to Checkmate.",
+  "description_macro": "Upgrades <colortype(500)><edgecolortype(501)>Gauss Round<edgecolortype(0)><colortype(0)> to <colortype(500)><edgecolortype(501)>Double Check<edgecolortype(0)><colortype(0)> and <colortype(500)><edgecolortype(501)>Ricochet<edgecolortype(0)><colortype(0)> to <colortype(500)><edgecolortype(501)>Checkmate<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Upgrades Gauss Round to Double Check and Ricochet to Checkmate."
+  ],
+  "role": "Physical Ranged DPS",
+  "job": {
+    "id": 31,
+    "name": "Machinist",
+    "abbreviation": "MCH"
+  },
+  "unlock_level": 92,
+  "value": 0,
+  "icon": {
+    "id": 6022,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 96,
+  "source_class_job_id": 31
+}

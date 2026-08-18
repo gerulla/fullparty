@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 1722,
+  "name": "Diamondback",
+  "description": "Though unable to move, damage taken is reduced.",
+  "effects": [
+    "Though unable to move, damage taken is reduced."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 213509,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": true,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 1,
+  "parameter": {
+    "effect": 4,
+    "modifier": -10
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 11424,
+      "name": "Diamondback",
+      "description": "Reduces damage taken by 90% and nullifies most knockback and draw-in effects.\nUnable to move or take action for the duration of this effect.\nDuration: 10s\nIf used when Waxing Nocturne is active, its effect will transition immediately to Waning Nocturne.\nThe effect of this action cannot be ended manually.",
+      "description_macro": "Reduces damage taken by 90% and nullifies most knockback and draw-in effects.<br>Unable to move or take action for the duration of this effect.<br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>10s<br>If used when <colortype(506)><edgecolortype(507)>Waxing Nocturne<edgecolortype(0)><colortype(0)> is active, its effect will transition immediately to <colortype(506)><edgecolortype(507)>Waning Nocturne<edgecolortype(0)><colortype(0)>.<br>The effect of this action cannot be ended manually.",
+      "unlock_level": 1,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Magical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 36,
+          "name": "Blue Mage",
+          "abbreviation": "BLU",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

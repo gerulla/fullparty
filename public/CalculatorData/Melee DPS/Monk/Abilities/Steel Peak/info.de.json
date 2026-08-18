@@ -1,0 +1,86 @@
+{
+  "kind": "ability",
+  "id": 25761,
+  "name": "Stahlzinnen",
+  "description": "Du führst eine physische Attacke aus.\nAttacke-Wert: 180\nBedingung: 5 Schatten-Chakren aktiv und im Kampf",
+  "description_macro": "Du führst eine physische Attacke aus.<br>Attacke-Wert: 180<br>Bedingung: 5 <colortype(506)><edgecolortype(507)>Schatten-Chakren<edgecolortype(0)><colortype(0)> aktiv und im Kampf",
+  "effects": [
+    "Du führst eine physische Attacke aus.",
+    "Attacke-Wert: 180",
+    "Bedingung: 5 Schatten-Chakren aktiv und im Kampf"
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 20,
+    "name": "Mönch",
+    "abbreviation": "MÖN"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 15,
+  "icon": {
+    "id": 2530,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 4,
+    "name": "Talent"
+  },
+  "attack_type": {
+    "id": 4294967295,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 1,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 1,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 28,
+      "value": 5
+    },
+    "secondary": {
+      "type_id": 122,
+      "value": 428
+    }
+  },
+  "range": {
+    "target_yalms": -1,
+    "effect_yalms": 0,
+    "cast_type": 1
+  },
+  "targeting": {
+    "self": false,
+    "party": false,
+    "alliance": false,
+    "hostile": true,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 7,
+    "behavior_type": 0,
+    "class_job_category_id": 41,
+    "source_class_job_id": 2,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

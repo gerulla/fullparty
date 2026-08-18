@@ -1,0 +1,92 @@
+{
+  "kind": "ability",
+  "id": 18877,
+  "name": "Raiton",
+  "description": "Deals lightning damage with a potency of 740.\nAdditional Effect: Grants a stack of Raiju Ready\nDuration: 30s\nMaximum Stacks: 3\nEffect of Raiju Ready ends upon execution of any melee weaponskill.\nMudra Combination: Ten→Chi or Jin→Chi\nTriggers the cooldown of weaponskills, mudra, and Ninjutsu upon execution.\n\n※This action cannot be assigned to a hotbar.\n※Ninjutsu changes to Raiton when requirements for execution are met.",
+  "description_macro": "Deals lightning damage with a potency of <if([gnum68==30],<if([gnum72>=94],740,650)>,650)>.<br><if([gnum68==30],<if([gnum72>=90],<colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>Grants a stack of <colortype(506)><edgecolortype(507)>Raiju Ready<edgecolortype(0)><colortype(0)><br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>30s<br><colortype(504)><edgecolortype(505)>Maximum Stacks: <edgecolortype(0)><colortype(0)>3<br>Effect of <colortype(506)><edgecolortype(507)>Raiju Ready<edgecolortype(0)><colortype(0)> ends upon execution of any melee weaponskill.<br>,)>,)><colortype(504)><edgecolortype(505)>Mudra Combination:<edgecolortype(0)><colortype(0)> <colortype(500)><edgecolortype(501)>Ten<edgecolortype(0)><colortype(0)>→<colortype(500)><edgecolortype(501)>Chi<edgecolortype(0)><colortype(0)> or <colortype(500)><edgecolortype(501)>Jin<edgecolortype(0)><colortype(0)>→<colortype(500)><edgecolortype(501)>Chi<edgecolortype(0)><colortype(0)><br>Triggers the cooldown of weaponskills, mudra, and <colortype(500)><edgecolortype(501)>Ninjutsu<edgecolortype(0)><colortype(0)> upon execution.<br><br>※This action cannot be assigned to a hotbar.<br>※<colortype(500)><edgecolortype(501)>Ninjutsu<edgecolortype(0)><colortype(0)> changes to <colortype(500)><edgecolortype(501)>Raiton<edgecolortype(0)><colortype(0)> when requirements for execution are met.",
+  "effects": [
+    "Deals lightning damage with a potency of 740.",
+    "Additional Effect: Grants a stack of Raiju Ready",
+    "Duration: 30s",
+    "Maximum Stacks: 3",
+    "Effect of Raiju Ready ends upon execution of any melee weaponskill.",
+    "Mudra Combination: Ten→Chi or Jin→Chi",
+    "Triggers the cooldown of weaponskills, mudra, and Ninjutsu upon execution.",
+    "※This action cannot be assigned to a hotbar.",
+    "※Ninjutsu changes to Raiton when requirements for execution are met."
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 30,
+    "name": "Ninja",
+    "abbreviation": "NIN"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 35,
+  "icon": {
+    "id": 2912,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 4,
+    "name": "Ability"
+  },
+  "attack_type": {
+    "id": 5,
+    "name": "魔法"
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 1,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 58,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 0,
+      "value": 0
+    },
+    "secondary": {
+      "type_id": 32,
+      "value": 1186
+    }
+  },
+  "range": {
+    "target_yalms": 20,
+    "effect_yalms": 0,
+    "cast_type": 1
+  },
+  "targeting": {
+    "self": false,
+    "party": false,
+    "alliance": false,
+    "hostile": true,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 5,
+    "behavior_type": 0,
+    "class_job_category_id": 92,
+    "source_class_job_id": 0,
+    "is_role_action": false,
+    "is_player_action": false,
+    "is_derived_action": true,
+    "equivalence_group": 0
+  }
+}

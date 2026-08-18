@@ -1,0 +1,113 @@
+{
+  "kind": "combat_status",
+  "id": 3676,
+  "name": "色魔法3実行可",
+  "description": "ブルー、マゼンタの魔法を実行できる状態。",
+  "effects": [
+    "ブルー、マゼンタの魔法を実行できる状態。"
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 213802,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": true,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 33,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 197,
+  "source_abilities": [
+    {
+      "id": 34651,
+      "name": "グリーンエアロ",
+      "description": "対象に風属性魔法攻撃。\u3000威力：530\n追加効果：自身に「色魔法3実行可」を付与する。\n効果時間：30秒\n発動条件：「色魔法2実行可」効果中かつ「サブトラクティブパレット」非効果中\n実行時にインスタレーションが付与されていて、かつイマジンスカイの空間アート内にいる場合は、インスタレーションを1スタック消費する。\n\n※このアクションはホットバーに登録することはできない。\n\u3000発動条件を満たすとレッドファイアがグリーンエアロに変化する。",
+      "description_macro": "対象に風属性魔法攻撃。\u3000<colortype(504)><edgecolortype(505)>威力：<edgecolortype(0)><colortype(0)><if([gnum68==42],<if([gnum72>=94],530,<if([gnum68==42],<if([gnum72>=84],460,<if([gnum68==42],<if([gnum72>=74],420,<if([gnum68==42],<if([gnum72>=54],350,280)>,280)>)>,<if([gnum68==42],<if([gnum72>=54],350,280)>,280)>)>)>,<if([gnum68==42],<if([gnum72>=74],420,<if([gnum68==42],<if([gnum72>=54],350,280)>,280)>)>,<if([gnum68==42],<if([gnum72>=54],350,280)>,280)>)>)>)>,<if([gnum68==42],<if([gnum72>=84],460,<if([gnum68==42],<if([gnum72>=74],420,<if([gnum68==42],<if([gnum72>=54],350,280)>,280)>)>,<if([gnum68==42],<if([gnum72>=54],350,280)>,280)>)>)>,<if([gnum68==42],<if([gnum72>=74],420,<if([gnum68==42],<if([gnum72>=54],350,280)>,280)>)>,<if([gnum68==42],<if([gnum72>=54],350,280)>,280)>)>)>)><br><colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)>自身に<colortype(500)><edgecolortype(501)>「色魔法3実行可」<edgecolortype(0)><colortype(0)>を付与する。<br><colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>30秒<br><colortype(504)><edgecolortype(505)>発動条件：<edgecolortype(0)><colortype(0)><colortype(500)><edgecolortype(501)>「色魔法2実行可」<edgecolortype(0)><colortype(0)>効果中かつ<colortype(500)><edgecolortype(501)>「サブトラクティブパレット」<edgecolortype(0)><colortype(0)>非効果中<if([gnum68==42],<if([gnum72>=82],<br>実行時にインスタレーションが付与されていて、かつイマジンスカイの空間アート内にいる場合は、インスタレーションを1スタック消費する。,)>,)><br><br><colortype(506)><edgecolortype(507)>※このアクションはホットバーに登録することはできない。<br>\u3000発動条件を満たすとレッドファイアがグリーンエアロに変化する。<edgecolortype(0)><colortype(0)>",
+      "unlock_level": 5,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Magical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 42,
+          "name": "ピクトマンサー",
+          "abbreviation": "PCT",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 34654,
+      "name": "イエローストーン",
+      "description": "対象に土属性魔法攻撃。\u3000威力：900\n追加効果：自身に「色魔法3実行可」を付与する。\n効果時間：30秒\n発動条件：「色魔法2実行可」および「サブトラクティブパレット」効果中\n実行時にインスタレーションが付与されていて、かつイマジンスカイの空間アート内にいる場合は、インスタレーションを1スタック消費する。\nこの魔法は固有のリキャストタイマーを持ち、実行すると他のウェポンスキルと魔法にこのアクションと同じリキャストタイムが発生する。\n\n※このアクションはホットバーに登録することはできない。\n\u3000発動条件を満たすとシアンブリザドがイエローストーンに変化する。",
+      "description_macro": "対象に土属性魔法攻撃。\u3000<colortype(504)><edgecolortype(505)>威力：<edgecolortype(0)><colortype(0)><if([gnum68==42],<if([gnum72>=94],900,<if([gnum68==42],<if([gnum72>=84],790,<if([gnum68==42],<if([gnum72>=74],720,600)>,600)>)>,<if([gnum68==42],<if([gnum72>=74],720,600)>,600)>)>)>,<if([gnum68==42],<if([gnum72>=84],790,<if([gnum68==42],<if([gnum72>=74],720,600)>,600)>)>,<if([gnum68==42],<if([gnum72>=74],720,600)>,600)>)>)><br><colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)>自身に<colortype(500)><edgecolortype(501)>「色魔法3実行可」<edgecolortype(0)><colortype(0)>を付与する。<br><colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>30秒<br><colortype(504)><edgecolortype(505)>発動条件：<edgecolortype(0)><colortype(0)><colortype(500)><edgecolortype(501)>「色魔法2実行可」<edgecolortype(0)><colortype(0)>および<colortype(500)><edgecolortype(501)>「サブトラクティブパレット」<edgecolortype(0)><colortype(0)>効果中<br><if([gnum68==42],<if([gnum72>=82],実行時にインスタレーションが付与されていて、かつイマジンスカイの空間アート内にいる場合は、インスタレーションを1スタック消費する。<br>,)>,)>この魔法は固有のリキャストタイマーを持ち、実行すると他のウェポンスキルと魔法にこのアクションと同じリキャストタイムが発生する。<br><br><colortype(506)><edgecolortype(507)>※このアクションはホットバーに登録することはできない。<br>\u3000発動条件を満たすとシアンブリザドがイエローストーンに変化する。<edgecolortype(0)><colortype(0)>",
+      "unlock_level": 60,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Magical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 42,
+          "name": "ピクトマンサー",
+          "abbreviation": "PCT",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 34657,
+      "name": "グリーンエアロラ",
+      "description": "対象とその周囲の敵に風属性範囲魔法攻撃。\u3000威力：200\n追加効果：自身に「色魔法3実行可」を付与する。\n効果時間：30秒\n発動条件：「色魔法2実行可」効果中かつ「サブトラクティブパレット」非効果中\n実行時にインスタレーションが付与されていて、かつイマジンスカイの空間アート内にいる場合は、インスタレーションを1スタック消費する。\n\n※このアクションはホットバーに登録することはできない。\n\u3000発動条件を満たすとレッドファイラがグリーンエアロラに変化する。",
+      "description_macro": "対象とその周囲の敵に風属性範囲魔法攻撃。\u3000<colortype(504)><edgecolortype(505)>威力：<edgecolortype(0)><colortype(0)><if([gnum68==42],<if([gnum72>=94],200,<if([gnum68==42],<if([gnum72>=74],170,140)>,140)>)>,<if([gnum68==42],<if([gnum72>=74],170,140)>,140)>)><br><colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)>自身に<colortype(500)><edgecolortype(501)>「色魔法3実行可」<edgecolortype(0)><colortype(0)>を付与する。<br><colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>30秒<br><colortype(504)><edgecolortype(505)>発動条件：<edgecolortype(0)><colortype(0)><colortype(500)><edgecolortype(501)>「色魔法2実行可」<edgecolortype(0)><colortype(0)>効果中かつ<colortype(500)><edgecolortype(501)>「サブトラクティブパレット」<edgecolortype(0)><colortype(0)>非効果中<if([gnum68==42],<if([gnum72>=82],<br>実行時にインスタレーションが付与されていて、かつイマジンスカイの空間アート内にいる場合は、インスタレーションを1スタック消費する。,)>,)><br><br><colortype(506)><edgecolortype(507)>※このアクションはホットバーに登録することはできない。<br>\u3000発動条件を満たすとレッドファイラがグリーンエアロラに変化する。<edgecolortype(0)><colortype(0)>",
+      "unlock_level": 35,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Magical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 42,
+          "name": "ピクトマンサー",
+          "abbreviation": "PCT",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 34660,
+      "name": "イエローストンラ",
+      "description": "対象とその周囲の敵に土属性範囲魔法攻撃。\u3000威力：380\n追加効果：自身に「色魔法3実行可」を付与する。\n効果時間：30秒\n発動条件：「色魔法2実行可」および「サブトラクティブパレット」効果中\n実行時にインスタレーションが付与されていて、かつイマジンスカイの空間アート内にいる場合は、インスタレーションを1スタック消費する。\nこの魔法は固有のリキャストタイマーを持ち、実行すると他のウェポンスキルと魔法にこのアクションと同じリキャストタイムが発生する。\n\n※このアクションはホットバーに登録することはできない。\n\u3000発動条件を満たすとシアンブリザラがイエローストンラに変化する。",
+      "description_macro": "対象とその周囲の敵に土属性範囲魔法攻撃。\u3000<colortype(504)><edgecolortype(505)>威力：<edgecolortype(0)><colortype(0)><if([gnum68==42],<if([gnum72>=94],380,<if([gnum68==42],<if([gnum72>=74],350,290)>,290)>)>,<if([gnum68==42],<if([gnum72>=74],350,290)>,290)>)><br><colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)>自身に<colortype(500)><edgecolortype(501)>「色魔法3実行可」<edgecolortype(0)><colortype(0)>を付与する。<br><colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>30秒<br><colortype(504)><edgecolortype(505)>発動条件：<edgecolortype(0)><colortype(0)><colortype(500)><edgecolortype(501)>「色魔法2実行可」<edgecolortype(0)><colortype(0)>および<colortype(500)><edgecolortype(501)>「サブトラクティブパレット」<edgecolortype(0)><colortype(0)>効果中<br><if([gnum68==42],<if([gnum72>=82],実行時にインスタレーションが付与されていて、かつイマジンスカイの空間アート内にいる場合は、インスタレーションを1スタック消費する。<br>,)>,)>この魔法は固有のリキャストタイマーを持ち、実行すると他のウェポンスキルと魔法にこのアクションと同じリキャストタイムが発生する。<br><br><colortype(506)><edgecolortype(507)>※このアクションはホットバーに登録することはできない。<br>\u3000発動条件を満たすとシアンブリザラがイエローストンラに変化する。<edgecolortype(0)><colortype(0)>",
+      "unlock_level": 60,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Magical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 42,
+          "name": "ピクトマンサー",
+          "abbreviation": "PCT",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

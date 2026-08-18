@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 1307,
+  "name": "Eisstachel",
+  "description": "Wenn physischer Schaden erlitten wird, wird eine Eisattacke auf den Angreifer ausgeführt. Kann zusätzlich Gemach auslösen.",
+  "effects": [
+    "Wenn physischer Schaden erlitten wird, wird eine Eisattacke auf den Angreifer ausgeführt. Kann zusätzlich Gemach auslösen."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 215501,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": true,
+  "inflicted_by_actor": true,
+  "party_list_priority": 1,
+  "parameter": {
+    "effect": 0,
+    "modifier": 100
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 11418,
+      "name": "Eisstachel",
+      "description": "Wenn du physischen Schaden erleidest, fügst du dem Angreifer eisbasierten magischen Schaden zu.\nAttacke-Wert: 40\nDauer: 15 Sekunden\nKann nicht zugleich mit Wogenschleier und Skiltron aktiv sein.\nZusatzeffekt: 50 % Wahrscheinlichkeit, dass das Ziel Gemach (20 %) erleidet.\nDauer: 15 Sekunden",
+      "description_macro": "Wenn du physischen Schaden erleidest, fügst du dem Angreifer eisbasierten magischen Schaden zu.<br>Attacke-Wert: 40<br>Dauer: 15 Sekunden<br>Kann nicht zugleich mit <colortype(502)><edgecolortype(503)>Wogenschleier<edgecolortype(0)><colortype(0)> und <colortype(502)><edgecolortype(503)>Skiltron<edgecolortype(0)><colortype(0)> aktiv sein.<br>Zusatzeffekt: 50<nbsp>% Wahr<->schein<->lich<->keit, dass das Ziel <colortype(506)><edgecolortype(507)>Gemach<edgecolortype(0)><colortype(0)> (20<nbsp>%) erleidet.<br>Dauer: 15 Sekunden",
+      "unlock_level": 1,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Magical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 36,
+          "name": "Blaumagier",
+          "abbreviation": "BMA",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

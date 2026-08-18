@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 1834,
+  "name": "Nebula",
+  "description": "Erlittener Schaden ist verringert.",
+  "effects": [
+    "Erlittener Schaden ist verringert."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 213604,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": -10
+  },
+  "class_job_category_id": 149,
+  "source_abilities": [
+    {
+      "id": 16148,
+      "name": "Nebula",
+      "description": "Du verringerst erlittenen Schaden um 30 %.\nDauer: 15 Sekunden",
+      "description_macro": "Du verringerst erlittenen Schaden um 30 %.<br>Dauer: 15 Sekunden",
+      "unlock_level": 38,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Tank"
+      ],
+      "jobs": [
+        {
+          "id": 37,
+          "name": "Revolverklinge",
+          "abbreviation": "REV",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

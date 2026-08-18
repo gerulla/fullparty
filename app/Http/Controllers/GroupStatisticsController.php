@@ -23,7 +23,7 @@ class GroupStatisticsController extends Controller
 {
     private const CACHE_TTL_SECONDS = 86_400;
 
-    private const CACHE_VERSION = 2;
+    private const CACHE_VERSION = 3;
 
     private const REFRESH_COOLDOWN_SECONDS = 300;
 
@@ -187,6 +187,7 @@ class GroupStatisticsController extends Controller
         $now = CarbonImmutable::now();
         $activeSince = $now->subMonth()->startOfDay();
         $trendStart = $now->subDays(29)->startOfDay();
+        $applicationDaySeriesStart = $now->subDays(6)->startOfDay();
         $monthSeriesStart = $now->startOfMonth()->subMonths(11);
         $activities = Activity::query()
             ->where('group_id', $group->id)
@@ -227,7 +228,12 @@ class GroupStatisticsController extends Controller
                 'active_players_past_month' => $activePlayers,
             ],
             'participation_trend' => $this->buildParticipationTrend($activities, $participantsByRun, $trendStart, $now),
-            'applications' => $this->buildApplicationStatistics($group, $monthSeriesStart, $now),
+            'applications' => $this->buildApplicationStatistics(
+                $group,
+                $applicationDaySeriesStart,
+                $monthSeriesStart,
+                $now,
+            ),
             'classes' => $this->buildLoadoutStatistics($participantRecords, 'class', $monthSeriesStart, $now),
             'phantom_jobs' => $this->buildLoadoutStatistics($participantRecords, 'phantom_job', $monthSeriesStart, $now),
         ];
@@ -345,10 +351,14 @@ class GroupStatisticsController extends Controller
     }
 
     /**
-     * @return array{total: int, distribution: array<int, array{key: string, count: int, percent: float}>, volume_by_month: array<int, array{month: string, total: int, statuses: array<string, int>}>}
+     * @return array{total: int, distribution: array<int, array{key: string, count: int, percent: float}>, daily_submissions: array<int, array{date: string, count: int}>, volume_by_month: array<int, array{month: string, total: int, statuses: array<string, int>}>}
      */
-    private function buildApplicationStatistics(Group $group, CarbonImmutable $monthSeriesStart, CarbonImmutable $now): array
-    {
+    private function buildApplicationStatistics(
+        Group $group,
+        CarbonImmutable $daySeriesStart,
+        CarbonImmutable $monthSeriesStart,
+        CarbonImmutable $now,
+    ): array {
         $applications = ActivityApplication::query()
             ->whereHas('activity', fn ($query) => $query->where('group_id', $group->id))
             ->get([
@@ -363,6 +373,13 @@ class GroupStatisticsController extends Controller
             ->map(fn (ActivityApplication $application) => $this->applicationBucket($application->status))
             ->countBy();
         $months = $this->monthKeys($monthSeriesStart, $now);
+        $applicationsByDay = $applications
+            ->filter(function (ActivityApplication $application) use ($daySeriesStart, $now) {
+                $date = $this->applicationDate($application);
+
+                return $date?->betweenIncluded($daySeriesStart, $now) ?? false;
+            })
+            ->countBy(fn (ActivityApplication $application) => $this->applicationDate($application)?->toDateString() ?? '');
         $applicationsByMonth = $applications
             ->filter(function (ActivityApplication $application) use ($monthSeriesStart, $now) {
                 $date = $this->applicationDate($application);
@@ -379,6 +396,16 @@ class GroupStatisticsController extends Controller
                     'count' => (int) ($distributionCounts->get($bucket) ?? 0),
                     'percent' => $total > 0 ? round(((int) ($distributionCounts->get($bucket) ?? 0) / $total) * 100, 1) : 0.0,
                 ])
+                ->all(),
+            'daily_submissions' => collect(range(0, 6))
+                ->map(function (int $offset) use ($applicationsByDay, $daySeriesStart) {
+                    $date = $daySeriesStart->addDays($offset)->toDateString();
+
+                    return [
+                        'date' => $date,
+                        'count' => (int) ($applicationsByDay->get($date) ?? 0),
+                    ];
+                })
                 ->all(),
             'volume_by_month' => $months
                 ->map(function (CarbonImmutable $month) use ($applicationsByMonth) {

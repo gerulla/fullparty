@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 533,
+  "name": "Verbessertes Wissen der Ahnen",
+  "description": "Die Maximalstapelzahl von Wissen der Ahnen wird auf 5 erhöht. Außerdem kannst du während Ruf der Ahnen Ouroboros ausführen.",
+  "description_macro": "Die Ma<->xi<->mal<->sta<->pel<->zahl von <colortype(506)><edgecolortype(507)>Wissen der Ahnen<edgecolortype(0)><colortype(0)> wird auf 5 erhöht. Außerdem kannst du während <colortype(506)><edgecolortype(507)>Ruf der Ahnen<edgecolortype(0)><colortype(0)> <colortype(502)><edgecolortype(503)>Ouroboros<edgecolortype(0)><colortype(0)> ausführen.",
+  "effects": [
+    "Die Maximalstapelzahl von Wissen der Ahnen wird auf 5 erhöht. Außerdem kannst du während Ruf der Ahnen Ouroboros ausführen."
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 41,
+    "name": "Viper",
+    "abbreviation": "VPR"
+  },
+  "unlock_level": 96,
+  "value": 0,
+  "icon": {
+    "id": 6511,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 196,
+  "source_class_job_id": 41
+}

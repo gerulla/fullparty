@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 1211,
+  "name": "三連魔",
+  "description": "魔法が詠唱時間無しで唱えられる状態。",
+  "effects": [
+    "魔法が詠唱時間無しで唱えられる状態。"
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 219621,
+    "file": "icon.png"
+  },
+  "max_stacks": 3,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 27,
+    "modifier": 0
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 7421,
+      "name": "三連魔",
+      "description": "効果時間中に実行する3回までの、詠唱をともなう魔法について、詠唱時間無しで詠唱することができる。\u3000効果時間：15秒\n最大チャージ数：2",
+      "description_macro": "効果時間中に実行する3回までの、詠唱をともなう魔法について、詠唱時間無しで詠唱することができる。\u3000<colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>15秒<br><colortype(504)><edgecolortype(505)>最大チャージ数：<edgecolortype(0)><colortype(0)>2",
+      "unlock_level": 66,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Magical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 25,
+          "name": "黒魔道士",
+          "abbreviation": "BLM",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

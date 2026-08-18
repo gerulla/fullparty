@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 545,
+  "name": "Enhanced Pictomancy IV",
+  "description": "Allows a third charge of Living Muse. In addition, Claw Motif and Maw Motif may now be performed after executing Living Muse.",
+  "description_macro": "Allows a third charge of <colortype(500)><edgecolortype(501)>Living Muse<edgecolortype(0)><colortype(0)>. In addition, <colortype(500)><edgecolortype(501)>Claw Motif<edgecolortype(0)><colortype(0)> and <colortype(500)><edgecolortype(501)>Maw Motif<edgecolortype(0)><colortype(0)> may now be performed after executing <colortype(500)><edgecolortype(501)>Living Muse<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Allows a third charge of Living Muse. In addition, Claw Motif and Maw Motif may now be performed after executing Living Muse."
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 42,
+    "name": "Pictomancer",
+    "abbreviation": "PCT"
+  },
+  "unlock_level": 96,
+  "value": 3,
+  "icon": {
+    "id": 6559,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 197,
+  "source_class_job_id": 42
+}

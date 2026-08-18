@@ -1,0 +1,27 @@
+{
+  "kind": "trait",
+  "id": 371,
+  "name": "Serment des sages",
+  "description": "Augmente la puissance de certaines actions.\n\nPuissance de Dosis : 250\nPuissance de Phlegma : 330\nPuissance de Dosis eucrasique : 35",
+  "description_macro": "Augmente la puissance de certaines actions.<br><br><colortype(506)><edgecolortype(507)>Puissance de Dosis<nbsp>:<edgecolortype(0)><colortype(0)> 250<br><colortype(506)><edgecolortype(507)>Puissance de Phlegma<nbsp>:<edgecolortype(0)><colortype(0)> 330<br><colortype(506)><edgecolortype(507)>Puissance de Dosis eucrasique<nbsp>:<edgecolortype(0)><colortype(0)> 35",
+  "effects": [
+    "Augmente la puissance de certaines actions.",
+    "Puissance de Dosis : 250",
+    "Puissance de Phlegma : 330",
+    "Puissance de Dosis eucrasique : 35"
+  ],
+  "role": "Healer",
+  "job": {
+    "id": 40,
+    "name": "Sage",
+    "abbreviation": "SAG"
+  },
+  "unlock_level": 54,
+  "value": 0,
+  "icon": {
+    "id": 6452,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 181,
+  "source_class_job_id": 40
+}

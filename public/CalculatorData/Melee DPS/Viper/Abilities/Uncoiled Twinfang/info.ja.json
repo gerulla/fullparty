@@ -1,0 +1,100 @@
+{
+  "kind": "ability",
+  "id": 34644,
+  "name": "飛蛇連尾撃",
+  "description": "対象とその周囲の敵に範囲物理攻撃。\u3000威力：120\n飛鋭尾【連尾】時威力：170\n2体目以降の対象への威力は75％減少する。\n追加効果：自身に「飛鋭尾【乱尾】」を付与する。\n効果時間：60秒\n発動条件：飛蛇の尾の命中時\n\n※このアクションはホットバーに登録することはできない。\n\u3000発動条件を満たすと双牙連術が飛蛇連尾撃に変化する。",
+  "description_macro": "対象とその周囲の敵に範囲物理攻撃。\u3000<colortype(504)><edgecolortype(505)>威力：<edgecolortype(0)><colortype(0)>120<br><colortype(504)><edgecolortype(505)>飛鋭尾【連尾】時威力：<edgecolortype(0)><colortype(0)>170<br>2体目以降の対象への威力は75％減少する。<br><colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)>自身に<colortype(500)><edgecolortype(501)>「飛鋭尾【乱尾】」<edgecolortype(0)><colortype(0)>を付与する。<br><colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>60秒<br><colortype(504)><edgecolortype(505)>発動条件：<edgecolortype(0)><colortype(0)>飛蛇の尾の命中時<br><br><colortype(506)><edgecolortype(507)>※このアクションはホットバーに登録することはできない。<br>\u3000発動条件を満たすと双牙連術が飛蛇連尾撃に変化する。<edgecolortype(0)><colortype(0)>",
+  "effects": [
+    "対象とその周囲の敵に範囲物理攻撃。\u3000威力：120",
+    "飛鋭尾【連尾】時威力：170",
+    "2体目以降の対象への威力は75％減少する。",
+    "追加効果：自身に「飛鋭尾【乱尾】」を付与する。",
+    "効果時間：60秒",
+    "発動条件：飛蛇の尾の命中時",
+    "※このアクションはホットバーに登録することはできない。",
+    "発動条件を満たすと双牙連術が飛蛇連尾撃に変化する。"
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 41,
+    "name": "ヴァイパー",
+    "abbreviation": "VPR"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 92,
+  "icon": {
+    "id": 3739,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 4,
+    "name": "アビリティ"
+  },
+  "attack_type": {
+    "id": 4294967295,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 1,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 2,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 104,
+      "value": 9
+    },
+    "secondary": {
+      "type_id": 0,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": 20,
+    "effect_yalms": 5,
+    "cast_type": 2
+  },
+  "targeting": {
+    "self": false,
+    "party": false,
+    "alliance": false,
+    "hostile": true,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": {
+      "id": 136,
+      "status": {
+        "id": 3665,
+        "name": "飛鋭尾【連尾】",
+        "description": "蛇の構えから繰り出す特定のアクションの威力を上昇させる状態。",
+        "icon_id": 213771,
+        "max_stacks": 0
+      }
+    }
+  },
+  "metadata": {
+    "aspect_id": 7,
+    "behavior_type": 0,
+    "class_job_category_id": 196,
+    "source_class_job_id": 0,
+    "is_role_action": false,
+    "is_player_action": false,
+    "is_derived_action": true,
+    "equivalence_group": 0
+  }
+}

@@ -1,0 +1,94 @@
+{
+  "kind": "ability",
+  "id": 25840,
+  "name": "Invocation Garuda II",
+  "description": "Vous invoquez une Garuda émeraude et lui ordonnez d'exécuter Rafale aérienne.\n\nEffectue une attaque magique de vent sur la cible et les ennemis autour dans une zone de 5 yalms.\nPuissance : 800\nLa puissance est réduite de 50% au-delà du premier ennemi touché.\nEffet additionnel : vous octroie 4 degrés de Syntonie de vent.\nDurée : 30s\nSyntonie de vent : l'élément d'Éclat des gemmes et de Resplendissement des gemmes devient le vent.\nEffet additionnel : vous octroie Sillage préparé.\nCet effet disparaît si vous utilisez une autre action d'invocation.\nCondition : Arcane émeraude et Carbuncle invoqué.\nCarbuncle disparaît lors de l'invocation, mais revient automatiquement une fois qu'elle prend fin.",
+  "description_macro": "Vous invoquez une Garuda émeraude et lui ordonnez d'exécuter <colortype(500)><edgecolortype(501)>Rafale aérienne<edgecolortype(0)><colortype(0)>.<br><br>Effectue une attaque magique de vent sur la cible et les ennemis autour dans une zone de 5 yalms.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> <if([gnum68==27],<if([gnum72>=94],800,750)>,750)><br>La puissance est réduite de 50% au-delà du premier ennemi touché.<br><colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> vous octroie 4 degrés de <colortype(500)><edgecolortype(501)>Syntonie de vent<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 30s<br><colortype(506)><edgecolortype(507)>Syntonie de vent<nbsp>:<edgecolortype(0)><colortype(0)> l'élément d'<colortype(500)><edgecolortype(501)>Éclat des gemmes<edgecolortype(0)><colortype(0)> et de <colortype(500)><edgecolortype(501)>Resplendissement des gemmes<edgecolortype(0)><colortype(0)> devient le vent.<br><if([gnum68==27],<if([gnum72>=86],<colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> vous octroie <colortype(500)><edgecolortype(501)>Sillage préparé<edgecolortype(0)><colortype(0)>.<br>Cet effet disparaît si vous utilisez une autre action d'invocation.<br>,)>,)><colortype(506)><edgecolortype(507)>Condition<nbsp>:<edgecolortype(0)><colortype(0)> <colortype(500)><edgecolortype(501)>Arcane émeraude<edgecolortype(0)><colortype(0)> et Carbuncle invoqué.<br>Carbuncle disparaît lors de l'invocation, mais revient au<->to<->ma<->ti<->que<->ment une fois qu'elle prend fin.",
+  "effects": [
+    "Vous invoquez une Garuda émeraude et lui ordonnez d'exécuter Rafale aérienne.",
+    "Effectue une attaque magique de vent sur la cible et les ennemis autour dans une zone de 5 yalms.",
+    "Puissance : 800",
+    "La puissance est réduite de 50% au-delà du premier ennemi touché.",
+    "Effet additionnel : vous octroie 4 degrés de Syntonie de vent.",
+    "Durée : 30s",
+    "Syntonie de vent : l'élément d'Éclat des gemmes et de Resplendissement des gemmes devient le vent.",
+    "Effet additionnel : vous octroie Sillage préparé.",
+    "Cet effet disparaît si vous utilisez une autre action d'invocation.",
+    "Condition : Arcane émeraude et Carbuncle invoqué.",
+    "Carbuncle disparaît lors de l'invocation, mais revient automatiquement une fois qu'elle prend fin."
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 27,
+    "name": "Invocateur",
+    "abbreviation": "INV"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 90,
+  "icon": {
+    "id": 2774,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 2,
+    "name": "Sort"
+  },
+  "attack_type": {
+    "id": 5,
+    "name": "magie"
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 2.5,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 58,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 71,
+      "value": 3
+    },
+    "secondary": {
+      "type_id": 116,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": 25,
+    "effect_yalms": 0,
+    "cast_type": 1
+  },
+  "targeting": {
+    "self": false,
+    "party": false,
+    "alliance": false,
+    "hostile": true,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": false
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 7,
+    "behavior_type": 0,
+    "class_job_category_id": 28,
+    "source_class_job_id": 27,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

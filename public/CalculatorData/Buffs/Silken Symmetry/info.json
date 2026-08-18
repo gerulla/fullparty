@@ -1,0 +1,71 @@
+{
+  "kind": "combat_status",
+  "id": 2693,
+  "name": "Silken Symmetry",
+  "description": "Able to execute Reverse Cascade or Rising Windmill.",
+  "effects": [
+    "Able to execute Reverse Cascade or Rising Windmill."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 213718,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 150,
+  "source_abilities": [
+    {
+      "id": 15989,
+      "name": "Cascade",
+      "description": "Delivers an attack with a potency of 220.\nAdditional Effect: 50% chance of granting Silken Symmetry\nDuration: 30s",
+      "description_macro": "Delivers an attack with a potency of <if([gnum68==38],<if([gnum72>=94],220,200)>,200)>.<br><if([gnum68==38],<if([gnum72>=20],<colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>50% chance of granting <colortype(506)><edgecolortype(507)>Silken Symmetry<edgecolortype(0)><colortype(0)><br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>30s,)>,)>",
+      "unlock_level": 1,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Physical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 38,
+          "name": "Dancer",
+          "abbreviation": "DNC",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 15993,
+      "name": "Windmill",
+      "description": "Delivers an attack with a potency of 120 to all nearby enemies.\nAdditional Effect: 50% chance of granting Silken Symmetry\nDuration: 30s",
+      "description_macro": "Delivers an attack with a potency of 120 to all nearby enemies.<br><if([gnum68==38],<if([gnum72>=35],<colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>50% chance of granting <colortype(506)><edgecolortype(507)>Silken Symmetry<edgecolortype(0)><colortype(0)><br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>30s,)>,)>",
+      "unlock_level": 15,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Physical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 38,
+          "name": "Dancer",
+          "abbreviation": "DNC",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

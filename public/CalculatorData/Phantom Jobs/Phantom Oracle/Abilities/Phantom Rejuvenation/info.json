@@ -1,0 +1,87 @@
+{
+  "kind": "ability",
+  "id": 41643,
+  "name": "Phantom Rejuvenation",
+  "description": "Grants Phantom Rejuvenation to self or target party member.\nPhantom Rejuvenation Effect: Restores HP of target and nearby party members within 30 yalms when effect expires\nCure Potency: 90,000\nDuration: 20s",
+  "description_macro": "Grants <colortype(506)><edgecolortype(507)>Phantom Rejuvenation<edgecolortype(0)><colortype(0)> to self or target party member.<br><colortype(504)><edgecolortype(505)>Phantom Rejuvenation Effect: <edgecolortype(0)><colortype(0)>Restores HP of target and nearby party members within 30 yalms when effect expires<br><colortype(504)><edgecolortype(505)>Cure Potency: <edgecolortype(0)><colortype(0)>90,000<br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>20s",
+  "effects": [
+    "Grants Phantom Rejuvenation to self or target party member.",
+    "Phantom Rejuvenation Effect: Restores HP of target and nearby party members within 30 yalms when effect expires",
+    "Cure Potency: 90,000",
+    "Duration: 20s"
+  ],
+  "role": "Phantom Jobs",
+  "job": {
+    "id": 11,
+    "name": "Phantom Oracle",
+    "abbreviation": "Ph. Oracle"
+  },
+  "is_phantom_action": true,
+  "unlock_level": 4,
+  "icon": {
+    "id": 64565,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 4,
+    "name": "Ability"
+  },
+  "attack_type": {
+    "id": 0,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 60,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 86,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 0,
+      "value": 0
+    },
+    "secondary": {
+      "type_id": 0,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": 30,
+    "effect_yalms": 0,
+    "cast_type": 1
+  },
+  "targeting": {
+    "self": true,
+    "party": true,
+    "alliance": false,
+    "hostile": false,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": false
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 0,
+    "behavior_type": 0,
+    "class_job_category_id": 142,
+    "source_class_job_id": 4294967295,
+    "is_role_action": false,
+    "is_player_action": false,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

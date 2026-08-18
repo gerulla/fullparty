@@ -1,0 +1,88 @@
+{
+  "kind": "ability",
+  "id": 16501,
+  "name": "Automaton DAME",
+  "description": "Du mobilisierst das Automaton DAME. Sein Attacke-Wert steigt je nach Stand des Batteriebalkens beim Herbeirufen.\nDauer: 12 Sekunden\nDas Automaton verschwindet durch Ausführung von DAME-Überhitzung oder wenn die Wirkungsdauer endet.\nBedingung: Batteriebalken min. 50\nGemeinsamer Reaktivierungs-Timer mit DAME-Überhitzung",
+  "description_macro": "Du mobilisierst das Automaton DAME. Sein Attacke-Wert steigt je nach Stand des Batteriebalkens beim Herbeirufen.<br>Dauer: 12 Sekunden<br>Das Automaton verschwindet durch Ausführung von <colortype(502)><edgecolortype(503)>DAME-Überhitzung<edgecolortype(0)><colortype(0)> oder wenn die Wirkungsdauer endet.<br>Bedingung: Batteriebalken min. 50<br>Gemeinsamer Reaktivierungs-Timer mit <colortype(502)><edgecolortype(503)>DAME-Überhitzung<edgecolortype(0)><colortype(0)>",
+  "effects": [
+    "Du mobilisierst das Automaton DAME. Sein Attacke-Wert steigt je nach Stand des Batteriebalkens beim Herbeirufen.",
+    "Dauer: 12 Sekunden",
+    "Das Automaton verschwindet durch Ausführung von DAME-Überhitzung oder wenn die Wirkungsdauer endet.",
+    "Bedingung: Batteriebalken min. 50",
+    "Gemeinsamer Reaktivierungs-Timer mit DAME-Überhitzung"
+  ],
+  "role": "Physical Ranged DPS",
+  "job": {
+    "id": 31,
+    "name": "Maschinist",
+    "abbreviation": "MCH"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 80,
+  "icon": {
+    "id": 3501,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 4,
+    "name": "Talent"
+  },
+  "attack_type": {
+    "id": 0,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 6,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 3,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 62,
+      "value": 50
+    },
+    "secondary": {
+      "type_id": 97,
+      "value": 50
+    }
+  },
+  "range": {
+    "target_yalms": 0,
+    "effect_yalms": 0,
+    "cast_type": 1
+  },
+  "targeting": {
+    "self": true,
+    "party": false,
+    "alliance": false,
+    "hostile": false,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 0,
+    "behavior_type": 0,
+    "class_job_category_id": 96,
+    "source_class_job_id": 31,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

@@ -1,0 +1,71 @@
+{
+  "kind": "combat_status",
+  "id": 3186,
+  "name": "Huton",
+  "description": "A magicked barrier is nullifying damage. Weaponskill cast and recast times are reduced while movement speed is increased.",
+  "effects": [
+    "A magicked barrier is nullifying damage. Weaponskill cast and recast times are reduced while movement speed is increased."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 212903,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": true,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 18,
+    "modifier": 100
+  },
+  "class_job_category_id": 92,
+  "source_abilities": [
+    {
+      "id": 2269,
+      "name": "Huton",
+      "description": "Deals wind damage with a potency of 240 to target and all enemies nearby it.\nAdditional Effect: Grants Shadow Walker\nShadow Walker Effect: Allows execution of actions which require the effect of Hidden, without being under that effect\nDuration: 20s\nMudra Combination: Jin→Chi→Ten or Chi→Jin→Ten\nTriggers the cooldown of weaponskills, mudra, and Ninjutsu upon execution.\n\n※This action cannot be assigned to a hotbar.\n※Ninjutsu changes to Huton when requirements for execution are met.",
+      "description_macro": "Deals wind damage with a potency of 240 to target and all enemies nearby it.<br><colortype(504)><edgecolortype(505)>Additional Effect:<edgecolortype(0)><colortype(0)> Grants <colortype(506)><edgecolortype(507)>Shadow Walker<edgecolortype(0)><colortype(0)><br><colortype(504)><edgecolortype(505)>Shadow Walker Effect: <edgecolortype(0)><colortype(0)>Allows execution of actions which require the effect of <colortype(506)><edgecolortype(507)>Hidden<edgecolortype(0)><colortype(0)>, without being under that effect<br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>20s<br><colortype(504)><edgecolortype(505)>Mudra Combination:<edgecolortype(0)><colortype(0)> <colortype(500)><edgecolortype(501)>Jin<edgecolortype(0)><colortype(0)>→<colortype(500)><edgecolortype(501)>Chi<edgecolortype(0)><colortype(0)>→<colortype(500)><edgecolortype(501)>Ten<edgecolortype(0)><colortype(0)> or <colortype(500)><edgecolortype(501)>Chi<edgecolortype(0)><colortype(0)>→<colortype(500)><edgecolortype(501)>Jin<edgecolortype(0)><colortype(0)>→<colortype(500)><edgecolortype(501)>Ten<edgecolortype(0)><colortype(0)><br>Triggers the cooldown of weaponskills, mudra, and <colortype(500)><edgecolortype(501)>Ninjutsu<edgecolortype(0)><colortype(0)> upon execution.<br><br>※This action cannot be assigned to a hotbar.<br>※<colortype(500)><edgecolortype(501)>Ninjutsu<edgecolortype(0)><colortype(0)> changes to <colortype(500)><edgecolortype(501)>Huton<edgecolortype(0)><colortype(0)> when requirements for execution are met.",
+      "unlock_level": 45,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 30,
+          "name": "Ninja",
+          "abbreviation": "NIN",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 18879,
+      "name": "Huton",
+      "description": "Deals fire damage with a potency of 240 to target and all enemies nearby it.\nAdditional Effect: Grants Shadow Walker\nShadow Walker Effect: Allows execution of actions which require the effect of Hidden, without being under that effect\nDuration: 20s\nMudra Combination: Jin→Chi→Ten or Chi→Jin→Ten\nTriggers the cooldown of weaponskills, mudra, and Ninjutsu upon execution.\n\n※This action cannot be assigned to a hotbar.\n※Ninjutsu changes to Huton when requirements for execution are met.",
+      "description_macro": "Deals fire damage with a potency of 240 to target and all enemies nearby it.<br><colortype(504)><edgecolortype(505)>Additional Effect:<edgecolortype(0)><colortype(0)> Grants <colortype(506)><edgecolortype(507)>Shadow Walker<edgecolortype(0)><colortype(0)><br><colortype(504)><edgecolortype(505)>Shadow Walker Effect: <edgecolortype(0)><colortype(0)>Allows execution of actions which require the effect of <colortype(506)><edgecolortype(507)>Hidden<edgecolortype(0)><colortype(0)>, without being under that effect<br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>20s<br><colortype(504)><edgecolortype(505)>Mudra Combination:<edgecolortype(0)><colortype(0)> <colortype(500)><edgecolortype(501)>Jin<edgecolortype(0)><colortype(0)>→<colortype(500)><edgecolortype(501)>Chi<edgecolortype(0)><colortype(0)>→<colortype(500)><edgecolortype(501)>Ten<edgecolortype(0)><colortype(0)> or <colortype(500)><edgecolortype(501)>Chi<edgecolortype(0)><colortype(0)>→<colortype(500)><edgecolortype(501)>Jin<edgecolortype(0)><colortype(0)>→<colortype(500)><edgecolortype(501)>Ten<edgecolortype(0)><colortype(0)><br>Triggers the cooldown of weaponskills, mudra, and <colortype(500)><edgecolortype(501)>Ninjutsu<edgecolortype(0)><colortype(0)> upon execution.<br><br>※This action cannot be assigned to a hotbar.<br>※<colortype(500)><edgecolortype(501)>Ninjutsu<edgecolortype(0)><colortype(0)> changes to <colortype(500)><edgecolortype(501)>Huton<edgecolortype(0)><colortype(0)> when requirements for execution are met.",
+      "unlock_level": 45,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 30,
+          "name": "Ninja",
+          "abbreviation": "NIN",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

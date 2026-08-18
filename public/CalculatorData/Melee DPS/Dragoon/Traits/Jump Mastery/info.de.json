@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 275,
+  "name": "Meister der Sprünge",
+  "description": "Verbessert Sprung zu Hochsprung.",
+  "description_macro": "Verbessert <colortype(502)><edgecolortype(503)>Sprung<edgecolortype(0)><colortype(0)> zu <colortype(502)><edgecolortype(503)>Hochsprung<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Verbessert Sprung zu Hochsprung."
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 22,
+    "name": "Dragoon",
+    "abbreviation": "DRG"
+  },
+  "unlock_level": 74,
+  "value": 0,
+  "icon": {
+    "id": 5286,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 23,
+  "source_class_job_id": 22
+}

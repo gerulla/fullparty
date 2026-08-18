@@ -1,0 +1,51 @@
+{
+  "kind": "combat_status",
+  "id": 4271,
+  "name": "Recuperation",
+  "description": "Changes to Fortified Recuperation when effect expires.",
+  "effects": [
+    "Changes to Fortified Recuperation when effect expires."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 229928,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": true,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 41641,
+      "name": "Recuperation",
+      "description": "Grants Recuperation to self or target party member.\nDuration: 20s\nWhen effect expires, removes a single detrimental effect from target and all nearby party members.\nRecuperation changes to Fortified Recuperation if effect is not triggered.\nFortified Recuperation Effect: Removes a detrimental effect from target and nearby party members if afflicted with a detrimental effect\nDuration: 3s",
+      "description_macro": "Grants <colortype(506)><edgecolortype(507)>Recuperation<edgecolortype(0)><colortype(0)> to self or target party member.<br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>20s<br>When effect expires, removes a single detrimental effect from target and all nearby party members.<br><colortype(506)><edgecolortype(507)>Recuperation<edgecolortype(0)><colortype(0)> changes to <colortype(506)><edgecolortype(507)>Fortified Recuperation<edgecolortype(0)><colortype(0)> if effect is not triggered.<br><colortype(504)><edgecolortype(505)>Fortified Recuperation Effect: <edgecolortype(0)><colortype(0)>Removes a detrimental effect from target and nearby party members if afflicted with a detrimental effect<br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>3s<if([gnum108>=3],<br>Shares a recast timer with <colortype(500)><edgecolortype(501)>Phantom Doom<edgecolortype(0)><colortype(0)>.,)>",
+      "unlock_level": 0,
+      "relations": [
+        "granted_by_description",
+        "same_name"
+      ],
+      "roles": [
+        "Phantom Jobs"
+      ],
+      "jobs": [
+        {
+          "id": 11,
+          "name": "Phantom Oracle",
+          "abbreviation": "Ph. Oracle",
+          "is_phantom": true
+        }
+      ]
+    }
+  ]
+}

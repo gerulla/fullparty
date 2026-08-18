@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 2692,
+  "name": "Flèche explosive préparée",
+  "description": "Flèche explosive peut être lancée.",
+  "effects": [
+    "Flèche explosive peut être lancée."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 212621,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 24,
+  "source_abilities": [
+    {
+      "id": 16496,
+      "name": "Trait alpha",
+      "description": "Effectue une attaque physique en ligne droite sur les ennemis devant vous.\nPuissance : de 140 à 700\nVide entièrement la Jauge de voix de l'âme.\nLa puissance de l'attaque augmente avec la quantité de jauge consommée.\nJauge de voix de l'âme ≧ 80 : vous octroie Flèche explosive préparée.\nDurée : 10s\nCondition : Jauge de voix de l'âme à 20 ou plus.",
+      "description_macro": "Effectue une attaque physique en ligne droite sur les ennemis devant vous.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> <if([gnum68==23],<if([gnum72>=94],de 140 à 700,de 100 à 500)>,de 100 à 500)><br>Vide entièrement la <colortype(502)><edgecolortype(503)>Jauge de voix de l'âme<edgecolortype(0)><colortype(0)>.<br>La puissance de l'attaque augmente avec la quantité de jauge consommée.<br><if([gnum68==23],<if([gnum72>=86],<colortype(506)><edgecolortype(507)>Jauge de voix de l'âme ≧ 80<nbsp>:<edgecolortype(0)><colortype(0)> vous octroie <colortype(500)><edgecolortype(501)>Flèche explosive préparée<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 10s<br>,)>,)><colortype(506)><edgecolortype(507)>Condition<nbsp>:<edgecolortype(0)><colortype(0)> <colortype(502)><edgecolortype(503)>Jauge de voix de l'âme<edgecolortype(0)><colortype(0)> à 20 ou plus.",
+      "unlock_level": 80,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Physical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 23,
+          "name": "Barde",
+          "abbreviation": "BRD",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

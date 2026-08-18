@@ -1,0 +1,26 @@
+{
+  "kind": "trait",
+  "id": 616,
+  "name": "Enhanced Astral Fire",
+  "description": "Grants a stack of Astral Soul upon landing Fire IV or Flare.\nMaximum Stacks: 6\nAllows for the immediate casting of Despair.",
+  "description_macro": "Grants a stack of <colortype(506)><edgecolortype(507)>Astral Soul<edgecolortype(0)><colortype(0)> upon landing <colortype(500)><edgecolortype(501)>Fire IV<edgecolortype(0)><colortype(0)> or <colortype(500)><edgecolortype(501)>Flare<edgecolortype(0)><colortype(0)>.<br><colortype(504)><edgecolortype(505)>Maximum Stacks: <edgecolortype(0)><colortype(0)>6<br>Allows for the immediate casting of <colortype(500)><edgecolortype(501)>Despair<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Grants a stack of Astral Soul upon landing Fire IV or Flare.",
+    "Maximum Stacks: 6",
+    "Allows for the immediate casting of Despair."
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 25,
+    "name": "Black Mage",
+    "abbreviation": "BLM"
+  },
+  "unlock_level": 100,
+  "value": 0,
+  "icon": {
+    "id": 5654,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 26,
+  "source_class_job_id": 25
+}

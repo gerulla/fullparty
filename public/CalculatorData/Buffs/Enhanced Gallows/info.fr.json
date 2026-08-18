@@ -1,0 +1,71 @@
+{
+  "kind": "combat_status",
+  "id": 2589,
+  "name": "Potence améliorée",
+  "description": "La puissance de la prochaine Potence est augmentée.",
+  "effects": [
+    "La puissance de la prochaine Potence est augmentée."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 212928,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 50,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 180,
+  "source_abilities": [
+    {
+      "id": 24382,
+      "name": "Gibet",
+      "description": "Effectue une attaque physique sur la cible.\nPuissance : 500\nPuissance avec Gibet amélioré : 560\nPuissance de côté : 560\nPuissance de côté avec Gibet amélioré : 620\nEffet additionnel : vous octroie Potence améliorée.\nDurée : 60s\nFétu ensanglanté devient Potence suppliciante pendant la durée de l'effet.\nEffet additionnel : remplit la Jauge du linceul de 10.\nCondition : Moissonneur d'âmes.",
+      "description_macro": "Effectue une attaque physique sur la cible.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> <if([gnum68==39],<if([gnum72>=94],500,400)>,400)><br><colortype(506)><edgecolortype(507)>Puissance avec Gibet amélioré<nbsp>:<edgecolortype(0)><colortype(0)> <if([gnum68==39],<if([gnum72>=94],560,460)>,460)><br><colortype(506)><edgecolortype(507)>Puissance de côté<nbsp>:<edgecolortype(0)><colortype(0)> <if([gnum68==39],<if([gnum72>=94],560,460)>,460)><br><colortype(506)><edgecolortype(507)>Puissance de côté avec Gibet amélioré<nbsp>:<edgecolortype(0)><colortype(0)> <if([gnum68==39],<if([gnum72>=94],620,520)>,520)><br><colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> vous octroie <colortype(500)><edgecolortype(501)>Potence améliorée<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 60s<br>Fétu ensanglanté devient Potence suppliciante pendant la durée de l'effet.<br><if([gnum68==39],<if([gnum72>=80],<colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> remplit la <colortype(502)><edgecolortype(503)>Jauge du linceul<edgecolortype(0)><colortype(0)> de 10.<br>,)>,)><colortype(506)><edgecolortype(507)>Condition<nbsp>:<edgecolortype(0)><colortype(0)> <colortype(500)><edgecolortype(501)>Moissonneur d'âmes<edgecolortype(0)><colortype(0)>.",
+      "unlock_level": 70,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 39,
+          "name": "Faucheur",
+          "abbreviation": "FCH",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 36970,
+      "name": "Gibet tortionnaire",
+      "description": "Effectue une attaque physique sur la cible.\nPuissance : 700\nPuissance avec Gibet amélioré : 760\nPuissance de côté : 760\nPuissance de côté avec Gibet amélioré : 820\nEffet additionnel : vous octroie Potence améliorée.\nDurée : 60s\nFétu ensanglanté devient Potence suppliciante pendant la durée de l'effet.\nEffet additionnel : remplit la Jauge du linceul de 10.\nCondition : Bourreau.\n\n* Cette action ne peut pas être ajoutée aux barres de raccourcis.\nRemplace Gibet lorsque les conditions sont réunies.",
+      "description_macro": "Effectue une attaque physique sur la cible.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> 700<br><colortype(506)><edgecolortype(507)>Puissance avec Gibet amélioré<nbsp>:<edgecolortype(0)><colortype(0)> 760<br><colortype(506)><edgecolortype(507)>Puissance de côté<nbsp>:<edgecolortype(0)><colortype(0)> 760<br><colortype(506)><edgecolortype(507)>Puissance de côté avec Gibet amélioré<nbsp>:<edgecolortype(0)><colortype(0)> 820<br><colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> vous octroie <colortype(500)><edgecolortype(501)>Potence améliorée<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 60s<br>Fétu ensanglanté devient Potence suppliciante pendant la durée de l'effet.<br><if([gnum68==39],<if([gnum72>=80],<colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> remplit la <colortype(502)><edgecolortype(503)>Jauge du linceul<edgecolortype(0)><colortype(0)> de 10.<br>,)>,)><colortype(506)><edgecolortype(507)>Condition<nbsp>:<edgecolortype(0)><colortype(0)> <colortype(500)><edgecolortype(501)>Bourreau<edgecolortype(0)><colortype(0)>.<br><br><colortype(504)><edgecolortype(505)>* Cette action ne peut pas être ajoutée aux barres de raccourcis.<br>Remplace <colortype(500)><edgecolortype(501)>Gibet<edgecolortype(0)><colortype(0)> lorsque les conditions sont réunies.<edgecolortype(0)><colortype(0)>",
+      "unlock_level": 96,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 39,
+          "name": "Faucheur",
+          "abbreviation": "FCH",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

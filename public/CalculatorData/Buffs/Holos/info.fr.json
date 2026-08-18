@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 3003,
+  "name": "Holos",
+  "description": "Les dégâts reçus sont réduits.",
+  "effects": [
+    "Les dégâts reçus sont réduits."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 212971,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": -10
+  },
+  "class_job_category_id": 181,
+  "source_abilities": [
+    {
+      "id": 24310,
+      "name": "Holos",
+      "description": "Restaure vos PV et ceux des équipiers alentour.\nPuissance : 300\nEffet additionnel : crée une barrière annulant un montant de dégâts égal à 100% des PV restaurés.\nDurée : 30s\nEffet additionnel : réduit de 10% les dégâts reçus par vous et les équipiers alentour.\nDurée : 20s",
+      "description_macro": "Restaure vos PV et ceux des équipiers alentour.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> 300<br><colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> crée une barrière annulant un montant de dégâts égal à 100% des PV restaurés.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 30s<br><colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> réduit de 10% les dégâts reçus par vous et les équipiers alentour.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 20s",
+      "unlock_level": 76,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Healer"
+      ],
+      "jobs": [
+        {
+          "id": 40,
+          "name": "Sage",
+          "abbreviation": "SAG",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 2680,
+  "name": "Stem the Tide",
+  "description": "A highly effective defensive maneuver is nullifying damage.",
+  "effects": [
+    "A highly effective defensive maneuver is nullifying damage."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 212564,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 30,
+  "parameter": {
+    "effect": 0,
+    "modifier": 100
+  },
+  "class_job_category_id": 22,
+  "source_abilities": [
+    {
+      "id": 16464,
+      "name": "Nascent Flash",
+      "description": "Grants Nascent Flash to self and Nascent Glint to target party member.\nNascent Flash Effect: Restores HP with each weaponskill successfully delivered\nCure Potency: 400\nNascent Glint Effect: Restores HP equaling 100% of that recovered by Nascent Flash while also reducing damage taken by 10%\nDuration: 8s\nAdditional Effect: Grants Stem the Flow to target\\Shares a recast timer with Bloodwhetting.",
+      "description_macro": "Grants <colortype(506)><edgecolortype(507)>Nascent Flash<edgecolortype(0)><colortype(0)> to self and <colortype(506)><edgecolortype(507)>Nascent Glint<edgecolortype(0)><colortype(0)> to target party member.<br><colortype(504)><edgecolortype(505)>Nascent Flash Effect: <edgecolortype(0)><colortype(0)>Restores HP with each weaponskill successfully delivered<br><colortype(504)><edgecolortype(505)>Cure Potency: <edgecolortype(0)><colortype(0)>400<br><colortype(504)><edgecolortype(505)>Nascent Glint Effect: <edgecolortype(0)><colortype(0)>Restores HP equaling 100% of that recovered by <colortype(506)><edgecolortype(507)>Nascent Flash<edgecolortype(0)><colortype(0)> while also reducing damage taken by 10%<br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)><if([gnum68==21],<if([gnum72>=82],8,6)>,6)>s<br><if([gnum68==21],<if([gnum72>=82],<colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>Grants <colortype(506)><edgecolortype(507)>Stem the Flow<edgecolortype(0)><colortype(0)> to target\\, reducing damage taken by 10%<br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>4s<br><colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>Grants <colortype(506)><edgecolortype(507)>Stem the Tide<edgecolortype(0)><colortype(0)> to target\\, nullifying damage equivalent to a heal of 400 potency<br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>20s<br>,)>,)>Shares a recast timer with <if([gnum68==21],<if([gnum72>=82],<colortype(500)><edgecolortype(501)>Bloodwhetting<edgecolortype(0)><colortype(0)>,<colortype(500)><edgecolortype(501)>Raw Intuition<edgecolortype(0)><colortype(0)>)>,<colortype(500)><edgecolortype(501)>Raw Intuition<edgecolortype(0)><colortype(0)>)>.",
+      "unlock_level": 76,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Tank"
+      ],
+      "jobs": [
+        {
+          "id": 21,
+          "name": "Warrior",
+          "abbreviation": "WAR",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

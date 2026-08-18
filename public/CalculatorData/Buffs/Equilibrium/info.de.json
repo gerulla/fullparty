@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 2681,
+  "name": "Äquilibrium",
+  "description": "Regeneriert schrittweise LP.",
+  "effects": [
+    "Regeneriert schrittweise LP."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 212565,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 5,
+  "parameter": {
+    "effect": 0,
+    "modifier": 10
+  },
+  "class_job_category_id": 22,
+  "source_abilities": [
+    {
+      "id": 3552,
+      "name": "Äquilibrium",
+      "description": "Du regenerierst einen Teil deiner LP.\nHeilpotenzial: 1.200\nZusatzeffekt: Regeneriert stetig eigene LP.\nHeilpotenzial: 200\nDauer: 15 Sekunden",
+      "description_macro": "Du regenerierst einen Teil deiner LP.<br>Heilpotenzial: 1.200<if([gnum68==21],<if([gnum72>=84],<br>Zusatzeffekt: Regeneriert stetig eigene LP.<br>Heilpotenzial: 200<br>Dauer: 15 Sekunden,)>,)>",
+      "unlock_level": 58,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Tank"
+      ],
+      "jobs": [
+        {
+          "id": 21,
+          "name": "Krieger",
+          "abbreviation": "KRG",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

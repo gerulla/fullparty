@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 260,
+  "name": "レイジ・オブ・ハルオーネマスタリー",
+  "description": "レイジ・オブ・ハルオーネがロイヤルアソリティに変化する。",
+  "description_macro": "レイジ・オブ・ハルオーネがロイヤルアソリティに変化する。",
+  "effects": [
+    "レイジ・オブ・ハルオーネがロイヤルアソリティに変化する。"
+  ],
+  "role": "Tank",
+  "job": {
+    "id": 19,
+    "name": "ナイト",
+    "abbreviation": "PLD"
+  },
+  "unlock_level": 60,
+  "value": 0,
+  "icon": {
+    "id": 5213,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 20,
+  "source_class_job_id": 19
+}

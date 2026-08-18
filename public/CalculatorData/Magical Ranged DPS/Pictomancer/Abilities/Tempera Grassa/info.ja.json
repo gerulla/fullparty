@@ -1,0 +1,97 @@
+{
+  "kind": "ability",
+  "id": 34686,
+  "name": "テンペラグラッサ",
+  "description": "自身に付与した「テンペラコート」を解除する代わりに、自身と周囲のパーティメンバーに、一定量のダメージを防ぐバリアを付与する。\nこのバリアは対象の最大ＨＰの10％分のダメージを軽減する。\n効果時間：10秒\n発動条件：「テンペラコート」効果中\n自身に付与されたバリアがダメージを完全に吸収して消滅すると、テンペラコートのリキャストタイムを30秒短縮する。",
+  "description_macro": "自身に付与した<colortype(500)><edgecolortype(501)>「テンペラコート」<edgecolortype(0)><colortype(0)>を解除する代わりに、自身と周囲のパーティメンバーに、一定量のダメージを防ぐバリアを付与する。<br>このバリアは対象の最大ＨＰの10％分のダメージを軽減する。<br><colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>10秒<br><colortype(504)><edgecolortype(505)>発動条件：<edgecolortype(0)><colortype(0)><colortype(500)><edgecolortype(501)>「テンペラコート」<edgecolortype(0)><colortype(0)>効果中<br>自身に付与されたバリアがダメージを完全に吸収して消滅すると、テンペラコートのリキャストタイムを30秒短縮する。",
+  "effects": [
+    "自身に付与した「テンペラコート」を解除する代わりに、自身と周囲のパーティメンバーに、一定量のダメージを防ぐバリアを付与する。",
+    "このバリアは対象の最大ＨＰの10％分のダメージを軽減する。",
+    "効果時間：10秒",
+    "発動条件：「テンペラコート」効果中",
+    "自身に付与されたバリアがダメージを完全に吸収して消滅すると、テンペラコートのリキャストタイムを30秒短縮する。"
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 42,
+    "name": "ピクトマンサー",
+    "abbreviation": "PCT"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 88,
+  "icon": {
+    "id": 3836,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 4,
+    "name": "アビリティ"
+  },
+  "attack_type": {
+    "id": 0,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 1,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 2,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 0,
+      "value": 0
+    },
+    "secondary": {
+      "type_id": 32,
+      "value": 3686
+    }
+  },
+  "range": {
+    "target_yalms": 0,
+    "effect_yalms": 30,
+    "cast_type": 2
+  },
+  "targeting": {
+    "self": true,
+    "party": false,
+    "alliance": false,
+    "hostile": false,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": {
+      "id": 145,
+      "status": {
+        "id": 3686,
+        "name": "テンペラコート",
+        "description": "一定量のダメージを軽減する状態。",
+        "icon_id": 213809,
+        "max_stacks": 0
+      }
+    }
+  },
+  "metadata": {
+    "aspect_id": 0,
+    "behavior_type": 0,
+    "class_job_category_id": 197,
+    "source_class_job_id": 42,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

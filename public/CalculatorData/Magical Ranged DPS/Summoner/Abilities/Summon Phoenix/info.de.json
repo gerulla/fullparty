@@ -1,0 +1,93 @@
+{
+  "kind": "ability",
+  "id": 25831,
+  "name": "Phönix-Beschwörung",
+  "description": "Du fällst in tiefe Phönix-Trance und rufst Demi-Phönix an deine Seite, der sofort nach der Beschwörung Scharlachflamme auf das von dir anvisierte Ziel sowie Schwingen der Unsterblichkeit ausführt.\nDauer: 15 Sekunden\nZusatzeffekt: Ruinga ändert sich zu Quell des Feuers und Trisaster ändert sich zu Zeichen der Läuterung.\nZusatzeffekt: Gewährt dir Rubin-Arkanum, Topas-Arkanum und Smaragd-Arkanum.\nBedingung: Karfunkel ist bereits gerufen.\nDemi-Phönix nimmt für die Dauer der Beschwörung den Platz deines Karfunkels ein, aber das Karfunkel findet danach von selbst wieder zu dir.\nDie Ausführung dieses Kommandos erhöht die Feindseligkeit des Ziels gegen dich.\nEigener Reaktivierungs-Timer\nBei erfüllter Bedingung ändert sich Bahamut-Beschwörung zu diesem Kommando.\nKann nicht im Kommandomenü angelegt werden.",
+  "description_macro": "Du fällst in tiefe <colortype(506)><edgecolortype(507)>Phönix-Trance<edgecolortype(0)><colortype(0)> und rufst Demi-Phönix an deine Seite, der sofort nach der Beschwörung <colortype(502)><edgecolortype(503)>Scharlachflamme<edgecolortype(0)><colortype(0)> auf das von dir anvisierte Ziel sowie <colortype(502)><edgecolortype(503)>Schwingen der Unsterblichkeit<edgecolortype(0)><colortype(0)> ausführt.<br>Dauer: 15 Sekunden<br>Zusatzeffekt: <colortype(502)><edgecolortype(503)>Ruinga<edgecolortype(0)><colortype(0)> ändert sich zu <colortype(502)><edgecolortype(503)>Quell des Feuers<edgecolortype(0)><colortype(0)> und <colortype(502)><edgecolortype(503)>Trisaster<edgecolortype(0)><colortype(0)> ändert sich zu <colortype(502)><edgecolortype(503)>Zeichen der Läuterung<edgecolortype(0)><colortype(0)>.<br>Zusatzeffekt: Gewährt dir <colortype(506)><edgecolortype(507)>Rubin-Arkanum<edgecolortype(0)><colortype(0)>, <colortype(506)><edgecolortype(507)>Topas-Arkanum<edgecolortype(0)><colortype(0)> und <colortype(506)><edgecolortype(507)>Smaragd-Arkanum<edgecolortype(0)><colortype(0)>.<br>Bedingung: Karfunkel ist bereits gerufen.<br>Demi-Phönix nimmt für die Dauer der Beschwörung den Platz deines Karfunkels ein, aber das Karfunkel findet danach von selbst wieder zu dir.<br>Die Ausführung dieses Kommandos erhöht die Feindseligkeit des Ziels gegen dich.<br>Eigener Reaktivierungs-Timer<br>Bei erfüllter Bedingung ändert sich <colortype(502)><edgecolortype(503)>Bahamut-Beschwörung<edgecolortype(0)><colortype(0)> zu diesem Kommando.<br>Kann nicht im Kommandomenü angelegt werden.",
+  "effects": [
+    "Du fällst in tiefe Phönix-Trance und rufst Demi-Phönix an deine Seite, der sofort nach der Beschwörung Scharlachflamme auf das von dir anvisierte Ziel sowie Schwingen der Unsterblichkeit ausführt.",
+    "Dauer: 15 Sekunden",
+    "Zusatzeffekt: Ruinga ändert sich zu Quell des Feuers und Trisaster ändert sich zu Zeichen der Läuterung.",
+    "Zusatzeffekt: Gewährt dir Rubin-Arkanum, Topas-Arkanum und Smaragd-Arkanum.",
+    "Bedingung: Karfunkel ist bereits gerufen.",
+    "Demi-Phönix nimmt für die Dauer der Beschwörung den Platz deines Karfunkels ein, aber das Karfunkel findet danach von selbst wieder zu dir.",
+    "Die Ausführung dieses Kommandos erhöht die Feindseligkeit des Ziels gegen dich.",
+    "Eigener Reaktivierungs-Timer",
+    "Bei erfüllter Bedingung ändert sich Bahamut-Beschwörung zu diesem Kommando.",
+    "Kann nicht im Kommandomenü angelegt werden."
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 27,
+    "name": "Beschwörer",
+    "abbreviation": "BSW"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 80,
+  "icon": {
+    "id": 2765,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 2,
+    "name": "Zauber"
+  },
+  "attack_type": {
+    "id": 5,
+    "name": "魔法"
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 60,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 10,
+    "additional_cooldown_group": 58,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 0,
+      "value": 0
+    },
+    "secondary": {
+      "type_id": 92,
+      "value": 1
+    }
+  },
+  "range": {
+    "target_yalms": 25,
+    "effect_yalms": 0,
+    "cast_type": 1
+  },
+  "targeting": {
+    "self": false,
+    "party": false,
+    "alliance": false,
+    "hostile": true,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 7,
+    "behavior_type": 0,
+    "class_job_category_id": 28,
+    "source_class_job_id": 0,
+    "is_role_action": false,
+    "is_player_action": false,
+    "is_derived_action": true,
+    "equivalence_group": 0
+  }
+}

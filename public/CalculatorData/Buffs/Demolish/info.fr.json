@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 1309,
+  "name": "Démolition",
+  "description": "Des dégâts périodiques sont subis, et les dégâts reçus du joueur ayant créé l'effet sont augmentés.",
+  "effects": [
+    "Des dégâts périodiques sont subis, et les dégâts reçus du joueur ayant créé l'effet sont augmentés."
+  ],
+  "classification": "debuff",
+  "icon": {
+    "id": 210218,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 2,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": true,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 10
+  },
+  "class_job_category_id": 21,
+  "source_abilities": [
+    {
+      "id": 66,
+      "name": "Démolition",
+      "description": "Effectue une attaque physique sur la cible.\nPuissance : 360\nPuissance par derrière : 420\nEffet additionnel : vous octroie 2 degrés de Fureur du coeurl.\nFureur du coeurl : augmente de 150 la puissance de Plongeon du coeurl.\nEffet additionnel : posture de l'opo-opo.\nDurée : 30s\nCondition : posture du coeurl.",
+      "description_macro": "Effectue une attaque physique sur la cible.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> <if([gnum68==20],<if([gnum72>=94],360,<if([gnum68==20],<if([gnum72>=84],320,280)>,280)>)>,<if([gnum68==20],<if([gnum72>=84],320,280)>,280)>)><br><colortype(506)><edgecolortype(507)>Puissance par derrière<nbsp>:<edgecolortype(0)><colortype(0)> <if([gnum68==20],<if([gnum72>=94],420,<if([gnum68==20],<if([gnum72>=84],380,340)>,340)>)>,<if([gnum68==20],<if([gnum72>=84],380,340)>,340)>)><br><colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> vous octroie 2 degrés de <colortype(500)><edgecolortype(501)>Fureur du coeurl<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Fureur du coeurl<nbsp>:<edgecolortype(0)><colortype(0)> augmente de 150 la puissance de <if([gnum68==20],<if([gnum72>=92],Plongeon du coeurl,Coup de poing brusque)>,Coup de poing brusque)>.<br><colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> posture de l'<colortype(500)><edgecolortype(501)>opo-opo<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 30s<br><colortype(506)><edgecolortype(507)>Condition<nbsp>:<edgecolortype(0)><colortype(0)> posture du <colortype(500)><edgecolortype(501)>coeurl<edgecolortype(0)><colortype(0)>.",
+      "unlock_level": 30,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 20,
+          "name": "Moine",
+          "abbreviation": "MOI",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

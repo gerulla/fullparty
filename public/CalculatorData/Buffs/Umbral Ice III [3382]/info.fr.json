@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 3382,
+  "name": "Glace ombrale III",
+  "description": "Extra Glace majeure peut être lancée.",
+  "effects": [
+    "Extra Glace majeure peut être lancée."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 210468,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": true,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 26,
+  "source_abilities": [
+    {
+      "id": 16506,
+      "name": "Âme ombrale",
+      "description": "Vous octroie un degré de Glace ombrale et de Cœur ombral.\nCœur ombral : annule l'augmentation du coût en PM des sorts de feu sous Feu astral.\nDe plus\\Effet additionnel : restaure vos PM en fonction du degré de Glace ombrale.\nAvec 1 degré : 2500\nAvec 2 degrés : 5000\nAvec 3 degrés : 10 000.\nSi vous êtes hors combat\\Condition : Glace ombrale.",
+      "description_macro": "<if([gnum68==25],<if([gnum72>=58],Vous octroie un degré de <colortype(500)><edgecolortype(501)>Glace ombrale<edgecolortype(0)><colortype(0)> et de <colortype(500)><edgecolortype(501)>Cœur ombral<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Cœur ombral<nbsp>:<edgecolortype(0)><colortype(0)> annule l'augmentation du coût en PM des sorts de feu sous <colortype(500)><edgecolortype(501)>Feu astral<edgecolortype(0)><colortype(0)>.<br>De plus\\, réduit d'un tiers le coût en PM de <colortype(500)><edgecolortype(501)>Brasier<edgecolortype(0)><colortype(0)> en échange de tous les degrés restants de <colortype(500)><edgecolortype(501)>Cœur ombral<edgecolortype(0)><colortype(0)>.<br>,Vous octroie <colortype(500)><edgecolortype(501)>Glace ombrale<edgecolortype(0)><colortype(0)>.<br>)>,Vous octroie <colortype(500)><edgecolortype(501)>Glace ombrale<edgecolortype(0)><colortype(0)>.<br>)><colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> restaure vos PM en fonction du degré de <colortype(500)><edgecolortype(501)>Glace ombrale<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Avec 1 degré<nbsp>:<edgecolortype(0)><colortype(0)> 2500<br><colortype(506)><edgecolortype(507)>Avec 2 degrés<nbsp>:<edgecolortype(0)><colortype(0)> 5000<br><colortype(506)><edgecolortype(507)>Avec 3 degrés<nbsp>:<edgecolortype(0)><colortype(0)> 10<nbsp>000.<br><if([gnum68==25],<if([gnum72>=58],Si vous êtes hors combat\\, vous octroie <colortype(500)><edgecolortype(501)>Glace ombrale<edgecolortype(0)><colortype(0)> et <colortype(500)><edgecolortype(501)>Cœur ombral<edgecolortype(0)><colortype(0)> au plus haut degré et restaure 10<nbsp>000 PM.<br>,Si vous êtes hors combat\\, vous octroie <colortype(500)><edgecolortype(501)>Glace ombrale<edgecolortype(0)><colortype(0)> au plus haut degré et restaure 10<nbsp>000 PM.<br>)>,Si vous êtes hors combat\\, vous octroie <colortype(500)><edgecolortype(501)>Glace ombrale<edgecolortype(0)><colortype(0)> au plus haut degré et restaure 10<nbsp>000 PM.<br>)><colortype(506)><edgecolortype(507)>Condition<nbsp>:<edgecolortype(0)><colortype(0)> <colortype(500)><edgecolortype(501)>Glace ombrale<edgecolortype(0)><colortype(0)>.",
+      "unlock_level": 35,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Magical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 25,
+          "name": "Mage Noir",
+          "abbreviation": "MNO",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

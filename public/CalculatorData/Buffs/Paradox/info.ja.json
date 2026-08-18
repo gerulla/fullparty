@@ -1,0 +1,71 @@
+{
+  "kind": "combat_status",
+  "id": 3223,
+  "name": "パラドックスシンボル",
+  "description": "パラドックスを実行できる状態。",
+  "effects": [
+    "パラドックスを実行できる状態。"
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 214961,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": true,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 26,
+  "source_abilities": [
+    {
+      "id": 158,
+      "name": "マナフォント",
+      "description": "自身のＭＰを全回復する。\n追加効果：自身に最大スタック分の「アストラルファイア」を付与する。\u3000効果時間：永続\n追加効果：自身に「サンダー系魔法実行可」を付与する。\n効果時間：永続\n追加効果：自身に「アンブラルハート」を3つ付与する。\nアンブラルハート効果：ファイア系魔法実行時の「アストラルファイア」による消費ＭＰの増加効果を防ぐ。\nさらに、フレア実行時に「アンブラルハート」を全て消費する代わりに、消費ＭＰを2/3にすることができる。\n追加効果：自身に「パラドックスシンボル」を付与する。\n発動条件：「アストラルファイア」効果中",
+      "description_macro": "自身のＭＰを全回復する。<br><colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)>自身に最大スタック分の<colortype(500)><edgecolortype(501)>「アストラルファイア」<edgecolortype(0)><colortype(0)>を付与する。\u3000<colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>永続<br><colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)>自身に<colortype(500)><edgecolortype(501)>「サンダー系魔法実行可」<edgecolortype(0)><colortype(0)>を付与する。<br><colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>永続<br><if([gnum68==25],<if([gnum72>=58],<colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)>自身に<colortype(500)><edgecolortype(501)>「アンブラルハート」<edgecolortype(0)><colortype(0)>を3つ付与する。<br><colortype(504)><edgecolortype(505)>アンブラルハート効果：<edgecolortype(0)><colortype(0)>ファイア系魔法実行時の<colortype(500)><edgecolortype(501)>「アストラルファイア」<edgecolortype(0)><colortype(0)>による消費ＭＰの増加効果を防ぐ。<br>さらに、フレア実行時に<colortype(500)><edgecolortype(501)>「アンブラルハート」<edgecolortype(0)><colortype(0)>を全て消費する代わりに、消費ＭＰを2/3にすることができる。<br>,)>,)><if([gnum68==25],<if([gnum72>=90],<colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)>自身に<colortype(500)><edgecolortype(501)>「パラドックスシンボル」<edgecolortype(0)><colortype(0)>を付与する。<br>,)>,)><colortype(504)><edgecolortype(505)>発動条件：<edgecolortype(0)><colortype(0)><colortype(500)><edgecolortype(501)>「アストラルファイア」<edgecolortype(0)><colortype(0)>効果中",
+      "unlock_level": 30,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Magical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 25,
+          "name": "黒魔道士",
+          "abbreviation": "BLM",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 25797,
+      "name": "パラドックス",
+      "description": "対象に無属性魔法攻撃。\u3000威力：540\nアストラルファイア時追加効果：自身に「ファイガ効果アップ」を付与する。\u3000効果時間：永続\nファイガ効果アップ効果：次に詠唱するファイガの詠唱時間と消費ＭＰを0にする。\nアンブラルブリザード時追加効果：この魔法の消費ＭＰが0になる。\n発動条件：「パラドックスシンボル」\n\n※このアクションはホットバーに登録することはできない。\n\u3000発動条件を満たすとファイアとブリザドがパラドックスに変化する。",
+      "description_macro": "対象に無属性魔法攻撃。\u3000<colortype(504)><edgecolortype(505)>威力：<edgecolortype(0)><colortype(0)>540<br><colortype(504)><edgecolortype(505)>アストラルファイア時追加効果：<edgecolortype(0)><colortype(0)>自身に<colortype(500)><edgecolortype(501)>「ファイガ効果アップ」<edgecolortype(0)><colortype(0)>を付与する。\u3000<colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>永続<br><colortype(504)><edgecolortype(505)>ファイガ効果アップ効果：<edgecolortype(0)><colortype(0)>次に詠唱するファイガの詠唱時間と消費ＭＰを0にする。<br><colortype(504)><edgecolortype(505)>アンブラルブリザード時追加効果：<edgecolortype(0)><colortype(0)>この魔法の消費ＭＰが0になる。<br><colortype(504)><edgecolortype(505)>発動条件：<edgecolortype(0)><colortype(0)><colortype(500)><edgecolortype(501)>「パラドックスシンボル」<edgecolortype(0)><colortype(0)><br><br><colortype(506)><edgecolortype(507)>※このアクションはホットバーに登録することはできない。<br>\u3000発動条件を満たすとファイアとブリザドがパラドックスに変化する。<edgecolortype(0)><colortype(0)>",
+      "unlock_level": 90,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Magical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 25,
+          "name": "黒魔道士",
+          "abbreviation": "BLM",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

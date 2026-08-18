@@ -1,0 +1,27 @@
+{
+  "kind": "trait",
+  "id": 441,
+  "name": "雷遁の術効果アップ",
+  "description": "自身に「月影雷獣実行可」が付与される。\n最大スタック数：3\u3000効果時間：30秒\nこの効果はウェポンスキルによる近接攻撃を実行すると解除される。\n発動条件：雷遁の術実行時",
+  "description_macro": "自身に<colortype(500)><edgecolortype(501)>「月影雷獣実行可」<edgecolortype(0)><colortype(0)>が付与される。<br><colortype(504)><edgecolortype(505)>最大スタック数：<edgecolortype(0)><colortype(0)>3\u3000<colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>30秒<br>この効果はウェポンスキルによる近接攻撃を実行すると解除される。<br><colortype(504)><edgecolortype(505)>発動条件：<edgecolortype(0)><colortype(0)>雷遁の術実行時",
+  "effects": [
+    "自身に「月影雷獣実行可」が付与される。",
+    "最大スタック数：3\u3000効果時間：30秒",
+    "この効果はウェポンスキルによる近接攻撃を実行すると解除される。",
+    "発動条件：雷遁の術実行時"
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 30,
+    "name": "忍者",
+    "abbreviation": "NIN"
+  },
+  "unlock_level": 90,
+  "value": 0,
+  "icon": {
+    "id": 5419,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 92,
+  "source_class_job_id": 30
+}

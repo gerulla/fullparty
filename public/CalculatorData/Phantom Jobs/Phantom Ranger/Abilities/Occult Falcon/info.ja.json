@@ -1,0 +1,88 @@
+{
+  "kind": "ability",
+  "id": 41601,
+  "name": "マギ・ファルコン",
+  "description": "指定した地面の周囲に範囲物理攻撃。\n威力：10（アイテムレベル依存威力）\n追加効果：対象をスタンさせる。\n効果時間：4秒\n追加効果：攻撃範囲のトラップを破壊する。",
+  "description_macro": "指定した地面の周囲に範囲物理攻撃。<br><colortype(504)><edgecolortype(505)>威力：<edgecolortype(0)><colortype(0)>10（アイテムレベル依存威力）<br><colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)>対象をスタンさせる。<br><colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>4秒<br><colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)>攻撃範囲のトラップを破壊する。",
+  "effects": [
+    "指定した地面の周囲に範囲物理攻撃。",
+    "威力：10（アイテムレベル依存威力）",
+    "追加効果：対象をスタンさせる。",
+    "効果時間：4秒",
+    "追加効果：攻撃範囲のトラップを破壊する。"
+  ],
+  "role": "Phantom Jobs",
+  "job": {
+    "id": 4,
+    "name": "サポート狩人",
+    "abbreviation": "Ph. Ranger"
+  },
+  "is_phantom_action": true,
+  "unlock_level": 4,
+  "icon": {
+    "id": 64774,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 3,
+    "name": "ウェポンスキル"
+  },
+  "attack_type": {
+    "id": 2,
+    "name": "突"
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 2.5,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 58,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 0,
+      "value": 0
+    },
+    "secondary": {
+      "type_id": 0,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": 30,
+    "effect_yalms": 5,
+    "cast_type": 2
+  },
+  "targeting": {
+    "self": false,
+    "party": false,
+    "alliance": false,
+    "hostile": false,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": true,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 7,
+    "behavior_type": 0,
+    "class_job_category_id": 142,
+    "source_class_job_id": 4294967295,
+    "is_role_action": false,
+    "is_player_action": false,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

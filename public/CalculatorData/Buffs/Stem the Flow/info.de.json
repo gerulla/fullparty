@@ -1,0 +1,71 @@
+{
+  "kind": "combat_status",
+  "id": 2679,
+  "name": "Blutgeruch",
+  "description": "Erlittener Schaden ist verringert.",
+  "effects": [
+    "Erlittener Schaden ist verringert."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 212563,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": -10
+  },
+  "class_job_category_id": 22,
+  "source_abilities": [
+    {
+      "id": 16464,
+      "name": "Urflackern",
+      "description": "Du erhältst Urflackern und das anvisierte Gruppenmitglied Urglimmen.\nDauer: 8 Sekunden\nEffekt von Urflackern: Jede deiner erfolgreich ausgeführten Waffenfertigkeiten regeneriert deine LP.\nHeilpotenzial: 400\nEffekt von Urglimmen: Regeneration von 100 % der durch Urflackern regenerierten LP und Reduktion des erlittenen Schadens um 10 %.\nZusatzeffekt: Blutgeruch\nDauer: 4 Sekunden\nEffekt von Blutgeruch: Verringert erlittenen Schaden um 10 %.\nZusatzeffekt: Gewährt dir Jagdtrieb und errichtet eine Barriere um dich\\Nicht auf sich selbst anwendbar.\nGemeinsamer Reaktivierungs-Timer mit Urimpuls",
+      "description_macro": "Du erhältst <colortype(506)><edgecolortype(507)>Urflackern<edgecolortype(0)><colortype(0)> und das anvisierte Grup<->pen<->mit<->glied <colortype(506)><edgecolortype(507)>Urglimmen<edgecolortype(0)><colortype(0)>.<br>Dauer: <if([gnum68==21],<if([gnum72>=82],8,6)>,6)> Sekunden<br>Effekt von <colortype(506)><edgecolortype(507)>Urflackern<edgecolortype(0)><colortype(0)>: Jede deiner erfolgreich ausgeführten Waf<->fen<->fer<->tig<->kei<->ten regeneriert deine LP.<br>Heilpotenzial: 400<br>Effekt von <colortype(506)><edgecolortype(507)>Urglimmen<edgecolortype(0)><colortype(0)>: Regeneration von 100<nbsp>% der durch <colortype(506)><edgecolortype(507)>Urflackern<edgecolortype(0)><colortype(0)> regenerierten LP und Reduktion des erlittenen Schadens um 10<nbsp>%.<br><if([gnum68==21],<if([gnum72>=82],Zusatzeffekt: <colortype(506)><edgecolortype(507)>Blutgeruch<edgecolortype(0)><colortype(0)><br>Dauer: 4 Sekunden<br>Effekt von <colortype(506)><edgecolortype(507)>Blutgeruch<edgecolortype(0)><colortype(0)>: Verringert erlittenen Schaden um 10<nbsp>%.<br>Zusatzeffekt: Gewährt dir <colortype(506)><edgecolortype(507)>Jagdtrieb<edgecolortype(0)><colortype(0)> und errichtet eine Barriere um dich\\, die Schaden entsprechend einem Heilpotenzial von 400 absorbiert.<br>Dauer: 20 Sekunden<br>,)>,)>Nicht auf sich selbst anwendbar.<br>Gemeinsamer Reaktivierungs-Timer mit <if([gnum68==21],<if([gnum72>=82],<colortype(502)><edgecolortype(503)>Urimpuls<edgecolortype(0)><colortype(0)>,<colortype(502)><edgecolortype(503)>Urinstinkt<edgecolortype(0)><colortype(0)>)>,<colortype(502)><edgecolortype(503)>Urinstinkt<edgecolortype(0)><colortype(0)>)>",
+      "unlock_level": 76,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Tank"
+      ],
+      "jobs": [
+        {
+          "id": 21,
+          "name": "Krieger",
+          "abbreviation": "KRG",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 25751,
+      "name": "Urimpuls",
+      "description": "Du verringerst deinen erlittenen Schaden um 10 %.\nDauer: 8 Sekunden\nZusatzeffekt: Jede deiner erfolgreich ausgeführten Waffenfertigkeiten regeneriert deine LP.\nHeilpotenzial: 400\nZusatzeffekt: Gewährt dir Blutgeruch.\nDauer: 4 Sekunden\nEffekt von Blutgeruch: Verringert erlittenen Schaden um 10 %.\nZusatzeffekt: Gewährt dir Jagdtrieb und errichtet eine Barriere um dich, die Schaden entsprechend einem Heilpotenzial von 400 absorbiert.\nDauer: 20 Sekunden\nGemeinsamer Reaktivierungs-Timer mit Urflackern",
+      "description_macro": "Du verringerst deinen erlittenen Schaden um 10<nbsp>%.<br>Dauer: 8 Sekunden<br>Zusatzeffekt: Jede deiner erfolgreich ausgeführten Waf<->fen<->fer<->tig<->kei<->ten regeneriert deine LP.<br>Heilpotenzial: 400<br>Zusatzeffekt: Gewährt dir <colortype(506)><edgecolortype(507)>Blutgeruch<edgecolortype(0)><colortype(0)>.<br>Dauer: 4 Sekunden<br>Effekt von <colortype(506)><edgecolortype(507)>Blutgeruch<edgecolortype(0)><colortype(0)>: Verringert erlittenen Schaden um 10<nbsp>%.<br>Zusatzeffekt: Gewährt dir <colortype(506)><edgecolortype(507)>Jagdtrieb<edgecolortype(0)><colortype(0)> und errichtet eine Barriere um dich, die Schaden entsprechend einem Heilpotenzial von 400 absorbiert.<br>Dauer: 20 Sekunden<br>Gemeinsamer Reaktivierungs-Timer mit <colortype(502)><edgecolortype(503)>Urflackern<edgecolortype(0)><colortype(0)>",
+      "unlock_level": 82,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Tank"
+      ],
+      "jobs": [
+        {
+          "id": 21,
+          "name": "Krieger",
+          "abbreviation": "KRG",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

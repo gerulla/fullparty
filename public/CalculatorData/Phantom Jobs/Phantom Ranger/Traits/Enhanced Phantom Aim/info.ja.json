@@ -1,0 +1,22 @@
+{
+  "kind": "trait",
+  "id": 6,
+  "name": "ねらう効果アップ",
+  "description": "「ねらう」の効果量が30％に上昇し、さらに攻撃が必中になる。",
+  "description_macro": "<colortype(500)><edgecolortype(501)>「ねらう」<edgecolortype(0)><colortype(0)>の効果量が30％に上昇し、さらに攻撃が必中になる。",
+  "effects": [
+    "「ねらう」の効果量が30％に上昇し、さらに攻撃が必中になる。"
+  ],
+  "role": "Phantom Jobs",
+  "job": {
+    "id": 4,
+    "name": "サポート狩人",
+    "abbreviation": "Ph. Ranger"
+  },
+  "is_phantom_trait": true,
+  "unlock_level": 3,
+  "icon": {
+    "id": 82206,
+    "file": "icon.png"
+  }
+}

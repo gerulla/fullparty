@@ -1,0 +1,26 @@
+{
+  "kind": "trait",
+  "id": 588,
+  "name": "Enhanced Ten Chi Jin",
+  "description": "Grants Tenri Jindo Ready upon executing Ten Chi Jin.\nDuration: 30s\nTen Chi Jin changes to Tenri Jindo while under the effect of Tenri Jindo Ready.",
+  "description_macro": "Grants <colortype(506)><edgecolortype(507)>Tenri Jindo Ready<edgecolortype(0)><colortype(0)> upon executing <colortype(500)><edgecolortype(501)>Ten Chi Jin<edgecolortype(0)><colortype(0)>.<br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>30s<br><colortype(500)><edgecolortype(501)>Ten Chi Jin<edgecolortype(0)><colortype(0)> changes to <colortype(500)><edgecolortype(501)>Tenri Jindo<edgecolortype(0)><colortype(0)> while under the effect of <colortype(506)><edgecolortype(507)>Tenri Jindo Ready<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Grants Tenri Jindo Ready upon executing Ten Chi Jin.",
+    "Duration: 30s",
+    "Ten Chi Jin changes to Tenri Jindo while under the effect of Tenri Jindo Ready."
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 30,
+    "name": "Ninja",
+    "abbreviation": "NIN"
+  },
+  "unlock_level": 100,
+  "value": 0,
+  "icon": {
+    "id": 5726,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 92,
+  "source_class_job_id": 30
+}

@@ -1,0 +1,26 @@
+{
+  "kind": "trait",
+  "id": 621,
+  "name": "Enhanced Acceleration II",
+  "description": "Grants Grand Impact Ready upon executing Acceleration.\nDuration: 30s\nJolt III and Impact change to Grand Impact while under the effect of Grand Impact Ready.",
+  "description_macro": "Grants <colortype(506)><edgecolortype(507)>Grand Impact Ready<edgecolortype(0)><colortype(0)> upon executing <colortype(500)><edgecolortype(501)>Acceleration<edgecolortype(0)><colortype(0)>.<br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>30s<br><colortype(500)><edgecolortype(501)>Jolt III<edgecolortype(0)><colortype(0)> and <colortype(500)><edgecolortype(501)>Impact<edgecolortype(0)><colortype(0)> change to <colortype(500)><edgecolortype(501)>Grand Impact<edgecolortype(0)><colortype(0)> while under the effect of <colortype(506)><edgecolortype(507)>Grand Impact Ready<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Grants Grand Impact Ready upon executing Acceleration.",
+    "Duration: 30s",
+    "Jolt III and Impact change to Grand Impact while under the effect of Grand Impact Ready."
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 35,
+    "name": "Red Mage",
+    "abbreviation": "RDM"
+  },
+  "unlock_level": 96,
+  "value": 0,
+  "icon": {
+    "id": 6214,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 112,
+  "source_class_job_id": 35
+}

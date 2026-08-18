@@ -1,0 +1,71 @@
+{
+  "kind": "combat_status",
+  "id": 2709,
+  "name": "Glockenspiel",
+  "description": "Bei erlittenem Schaden, bei erneuter Ausführung von Glockenspiel oder bei Ablauf der Wirkungsdauer wird der LP-Regenerationseffekt von Glockenspiel ausgelöst.",
+  "effects": [
+    "Bei erlittenem Schaden, bei erneuter Ausführung von Glockenspiel oder bei Ablauf der Wirkungsdauer wird der LP-Regenerationseffekt von Glockenspiel ausgelöst."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 218373,
+    "file": "icon.png"
+  },
+  "max_stacks": 5,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": true,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 27,
+    "modifier": 0
+  },
+  "class_job_category_id": 25,
+  "source_abilities": [
+    {
+      "id": 25862,
+      "name": "Glockenspiel",
+      "description": "Du erschaffst eine weißmagische Blume und erhältst 5 Stapel Glockenspiel.\nDauer: 20 Sekunden\nEffekt von Glockenspiel: Bei erlittenem Schaden wird ein Stapel verbraucht. Jeder so verbrauchte Stapel regeneriert in einem Umkreis von 20 Yalmen um das Glockenspiel bei dir und allen Gruppenmitgliedern LP.\nHeilpotenzial: 400\nDieser Effekt kann nur einmal pro Sekunde ausgelöst werden. Sind bei Ablauf der Wirkdauer noch Stapel übrig oder wird das Kommando abermals ausgeführt, werden sie verbraucht und ihr dementsprechender Effekt ausgelöst.\nHeilpotenzial: 200 pro übrigem Stapel",
+      "description_macro": "Du erschaffst eine weißmagische Blume und erhältst 5 Stapel <colortype(506)><edgecolortype(507)>Glockenspiel<edgecolortype(0)><colortype(0)>.<br>Dauer: 20 Sekunden<br>Effekt von <colortype(506)><edgecolortype(507)>Glockenspiel<edgecolortype(0)><colortype(0)>: Bei erlittenem Schaden wird ein Stapel verbraucht. Jeder so verbrauchte Stapel regeneriert in einem Umkreis von 20 Yalmen um das Glockenspiel bei dir und allen Grup<->pen<->mit<->gliedern LP.<br>Heilpotenzial: 400<br>Dieser Effekt kann nur einmal pro Sekunde ausgelöst werden. Sind bei Ablauf der Wirkdauer noch Stapel übrig oder wird das Kommando abermals ausgeführt, werden sie verbraucht und ihr dem<->ent<->spre<->chender Effekt ausgelöst.<br>Heilpotenzial: 200 pro übrigem Stapel",
+      "unlock_level": 90,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Healer"
+      ],
+      "jobs": [
+        {
+          "id": 24,
+          "name": "Weißmagier",
+          "abbreviation": "WMA",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 28509,
+      "name": "Glockenspiel",
+      "description": "Du erschaffst eine weißmagische Blume und erhältst 5 Stapel Glockenspiel.\nDauer: 20 Sekunden\nEffekt von Glockenspiel: Bei erlittenem Schaden wird ein Stapel verbraucht. Jeder so verbrauchte Stapel regeneriert in einem Umkreis von 20 Yalmen um das Glockenspiel bei dir und allen Gruppenmitgliedern LP.\nHeilpotenzial: 400\nDieser Effekt kann nur einmal pro Sekunde ausgelöst werden. Sind bei Ablauf der Wirkdauer noch Stapel übrig oder wird das Kommando abermals ausgeführt, werden sie verbraucht und ihr dementsprechender Effekt ausgelöst.\nHeilpotenzial: 200 pro übrigem Stapel",
+      "description_macro": "Du erschaffst eine weißmagische Blume und erhältst 5 Stapel <colortype(506)><edgecolortype(507)>Glockenspiel<edgecolortype(0)><colortype(0)>.<br>Dauer: 20 Sekunden<br>Effekt von <colortype(506)><edgecolortype(507)>Glockenspiel<edgecolortype(0)><colortype(0)>: Bei erlittenem Schaden wird ein Stapel verbraucht. Jeder so verbrauchte Stapel regeneriert in einem Umkreis von 20 Yalmen um das Glockenspiel bei dir und allen Grup<->pen<->mit<->gliedern LP.<br>Heilpotenzial: 400<br>Dieser Effekt kann nur einmal pro Sekunde ausgelöst werden. Sind bei Ablauf der Wirkdauer noch Stapel übrig oder wird das Kommando abermals ausgeführt, werden sie verbraucht und ihr dem<->ent<->spre<->chender Effekt ausgelöst.<br>Heilpotenzial: 200 pro übrigem Stapel",
+      "unlock_level": 90,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Healer"
+      ],
+      "jobs": [
+        {
+          "id": 24,
+          "name": "Weißmagier",
+          "abbreviation": "WMA",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

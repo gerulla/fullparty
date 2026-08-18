@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 616,
+  "name": "Feu astral amélioré",
+  "description": "Permet de recevoir des Âmes astrales (maximum 6) lorsque vous utilisez Giga Feu ou Brasier avec succès, et de lancer instantanément Feu du désespoir.",
+  "description_macro": "Permet de recevoir des <colortype(500)><edgecolortype(501)>Âmes astrales<edgecolortype(0)><colortype(0)> (maximum 6) lorsque vous utilisez <colortype(500)><edgecolortype(501)>Giga Feu<edgecolortype(0)><colortype(0)> ou <colortype(500)><edgecolortype(501)>Brasier<edgecolortype(0)><colortype(0)> avec succès, et de lancer instantanément <colortype(500)><edgecolortype(501)>Feu du désespoir<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Permet de recevoir des Âmes astrales (maximum 6) lorsque vous utilisez Giga Feu ou Brasier avec succès, et de lancer instantanément Feu du désespoir."
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 25,
+    "name": "Mage Noir",
+    "abbreviation": "MNO"
+  },
+  "unlock_level": 100,
+  "value": 0,
+  "icon": {
+    "id": 5654,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 26,
+  "source_class_job_id": 25
+}

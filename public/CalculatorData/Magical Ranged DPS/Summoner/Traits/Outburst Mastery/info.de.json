@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 477,
+  "name": "Meister der Elementarkorona",
+  "description": "Verbessert Elementarkorona zu Trisaster.",
+  "description_macro": "Verbessert <colortype(502)><edgecolortype(503)>Elementarkorona<edgecolortype(0)><colortype(0)> zu <colortype(502)><edgecolortype(503)>Trisaster<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Verbessert Elementarkorona zu Trisaster."
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 27,
+    "name": "Beschwörer",
+    "abbreviation": "BSW"
+  },
+  "unlock_level": 74,
+  "value": 0,
+  "icon": {
+    "id": 5692,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 28,
+  "source_class_job_id": 27
+}

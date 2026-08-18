@@ -1,0 +1,71 @@
+{
+  "kind": "combat_status",
+  "id": 2693,
+  "name": "Lancer synchrone",
+  "description": "Cascade inversée et Moulin à vent ascendant peuvent être lancés.",
+  "effects": [
+    "Cascade inversée et Moulin à vent ascendant peuvent être lancés."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 213718,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 150,
+  "source_abilities": [
+    {
+      "id": 15989,
+      "name": "Cascade",
+      "description": "Effectue une attaque physique sur la cible.\nPuissance : 220\nEffet additionnel : 50% de chances que Lancer synchrone vous soit octroyé.\nDurée : 30s\nDurant une danse, cette action devient Emboîté carmin.",
+      "description_macro": "Effectue une attaque physique sur la cible.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> <if([gnum68==38],<if([gnum72>=94],220,200)>,200)><br><if([gnum68==38],<if([gnum72>=20],<colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> 50% de chances que <colortype(500)><edgecolortype(501)>Lancer synchrone <edgecolortype(0)><colortype(0)>,)>,)>vous soit octroyé.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 30s<br>Durant une danse, cette action devient <colortype(500)><edgecolortype(501)>Emboîté carmin<edgecolortype(0)><colortype(0)>.",
+      "unlock_level": 1,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Physical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 38,
+          "name": "Danseur",
+          "abbreviation": "DNS",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 15993,
+      "name": "Moulin à vent",
+      "description": "Effectue une attaque physique sur les ennemis alentour.\nPuissance : 120\nEffet additionnel : 50% de chances que Lancer synchrone vous soit octroyé.\nDurée : 30s\nDurant une danse, cette action devient Emboîté carmin.",
+      "description_macro": "Effectue une attaque physique sur les ennemis alentour.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> 120<br><if([gnum68==38],<if([gnum72>=35],<colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> 50% de chances que <colortype(500)><edgecolortype(501)>Lancer synchrone<edgecolortype(0)><colortype(0)> vous soit octroyé.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 30s<br>,)>,)>Durant une danse, cette action devient <colortype(500)><edgecolortype(501)>Emboîté carmin<edgecolortype(0)><colortype(0)>.",
+      "unlock_level": 15,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Physical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 38,
+          "name": "Danseur",
+          "abbreviation": "DNS",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

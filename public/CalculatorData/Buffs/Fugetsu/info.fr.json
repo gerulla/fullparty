@@ -1,0 +1,92 @@
+{
+  "kind": "combat_status",
+  "id": 1298,
+  "name": "Fûgetsu",
+  "description": "Les dégâts infligés sont augmentés.",
+  "effects": [
+    "Les dégâts infligés sont augmentés."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 213311,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 15
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 7478,
+      "name": "Jinpû",
+      "description": "Effectue une attaque physique sur la cible.\nPuissance : 140\nCombo : Gyôfû\nPuissance du combo : 300\nBonus du combo : vous octroie Fûgetsu.\nDurée : 40s\nFûgetsu : augmente de 13% vos dégâts infligés.\nBonus du combo : remplit la Jauge de Kenki de 5.",
+      "description_macro": "Effectue une attaque physique sur la cible.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> <if([gnum68==34],<if([gnum72>=94],140,<if([gnum68==34],<if([gnum72>=66],120,100)>,100)>)>,<if([gnum68==34],<if([gnum72>=66],120,100)>,100)>)><br><colortype(506)><edgecolortype(507)>Combo<nbsp>:<edgecolortype(0)><colortype(0)> <if([gnum68==34],<if([gnum72>=92],Gyôfû,Hakaze)>,Hakaze)><br><colortype(506)><edgecolortype(507)>Puissance du combo<nbsp>:<edgecolortype(0)><colortype(0)> <if([gnum68==34],<if([gnum72>=94],300,<if([gnum68==34],<if([gnum72>=66],280,260)>,260)>)>,<if([gnum68==34],<if([gnum72>=66],280,260)>,260)>)><br><colortype(506)><edgecolortype(507)>Bonus du combo<nbsp>:<edgecolortype(0)><colortype(0)> vous octroie <colortype(500)><edgecolortype(501)>Fûgetsu<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 40s<br><colortype(506)><edgecolortype(507)>Fûgetsu<nbsp>:<edgecolortype(0)><colortype(0)> augmente de <if([gnum68==34],<if([gnum72>=78],13,10)>,10)>% vos dégâts infligés.<if([gnum72>=62],<if([gnum68==34],<br><colortype(506)><edgecolortype(507)>Bonus du combo<nbsp>:<edgecolortype(0)><colortype(0)> remplit la <colortype(502)><edgecolortype(503)>Jauge de Kenki<edgecolortype(0)><colortype(0)> de 5.,)>,)>",
+      "unlock_level": 4,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 34,
+          "name": "Samouraï",
+          "abbreviation": "SAM",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 7484,
+      "name": "Mangetsu",
+      "description": "Effectue une attaque physique sur les ennemis alentour.\nPuissance : 100\nCombo : Fûkô\nPuissance du combo : 120\nBonus du combo : vous octroie Fûgetsu.\nDurée : 40s\nFûgetsu : augmente de 13% vos dégâts infligés.\nBonus du combo : remplit la Jauge de Kenki de 10 et vous octroie Getsu.",
+      "description_macro": "Effectue une attaque physique sur les ennemis alentour.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> 100<br><colortype(506)><edgecolortype(507)>Combo<nbsp>:<edgecolortype(0)><colortype(0)> <if([gnum68==34],<if([gnum72>=86],Fûkô,Fûga)>,Fûga)><br><colortype(506)><edgecolortype(507)>Puissance du combo<nbsp>:<edgecolortype(0)><colortype(0)> 120<br><colortype(506)><edgecolortype(507)>Bonus du combo<nbsp>:<edgecolortype(0)><colortype(0)> vous octroie <colortype(500)><edgecolortype(501)>Fûgetsu<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 40s<br><colortype(506)><edgecolortype(507)>Fûgetsu<nbsp>:<edgecolortype(0)><colortype(0)> augmente de <if([gnum68==34],<if([gnum72>=78],13,10)>,10)>% vos dégâts infligés.<if([gnum72>=52],<if([gnum68==34],<br><colortype(506)><edgecolortype(507)>Bonus du combo<nbsp>:<edgecolortype(0)><colortype(0)> remplit la <colortype(502)><edgecolortype(503)>Jauge de Kenki<edgecolortype(0)><colortype(0)> de <if([gnum72>=62],<if([gnum68==34],10,5)>,5)> et vous octroie <colortype(500)><edgecolortype(501)>Getsu<edgecolortype(0)><colortype(0)>.,<br><colortype(506)><edgecolortype(507)>Bonus du combo<nbsp>:<edgecolortype(0)><colortype(0)> vous octroie <colortype(500)><edgecolortype(501)>Getsu<edgecolortype(0)><colortype(0)>.)>,<br><colortype(506)><edgecolortype(507)>Bonus du combo<nbsp>:<edgecolortype(0)><colortype(0)> vous octroie <colortype(500)><edgecolortype(501)>Getsu<edgecolortype(0)><colortype(0)>.)>",
+      "unlock_level": 35,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 34,
+          "name": "Samouraï",
+          "abbreviation": "SAM",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 7499,
+      "name": "Meikyô Shisui",
+      "description": "Permet de déclencher des bonus de combo sans que les conditions ne soient remplies.\nOctroie respectivement Fûgetsu et Fûka quand Gekkô et Kasha sont utilisés avec succès.\nL'effet prend automatiquement fin après 3 techniques d'arme autres qu'Iaijutsuet Ôgi : Namikiri.\nDurée : 20s\nEffet additionnel : vous octroie Tendô.\nDurée : 30s\nMaximum de charges : 2",
+      "description_macro": "Permet de déclencher des bonus de combo sans que les conditions ne soient remplies.<br>Octroie respectivement <colortype(500)><edgecolortype(501)>Fûgetsu<edgecolortype(0)><colortype(0)> et <colortype(500)><edgecolortype(501)>Fûka<edgecolortype(0)><colortype(0)> quand Gekkô et Kasha sont utilisés avec succès.<br>L'effet prend au<->to<->ma<->ti<->que<->ment fin après 3 techniques d'arme autres qu'Iaijutsu<if([gnum68==34],<if([gnum72>=90], et Ôgi<nbsp>: Namikiri,)>,)>.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 20s<if([gnum68==34],<if([gnum72>=100],<br><colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> vous octroie <colortype(500)><edgecolortype(501)>Tendô<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 30s,)>,)><if([gnum68==34],<if([gnum72>=76],<br><colortype(506)><edgecolortype(507)>Maximum de charges<nbsp>:<edgecolortype(0)><colortype(0)> 2,)>,)>",
+      "unlock_level": 50,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 34,
+          "name": "Samouraï",
+          "abbreviation": "SAM",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

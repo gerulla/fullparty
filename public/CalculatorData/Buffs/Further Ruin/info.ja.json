@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 1212,
+  "name": "ルインラ強化",
+  "description": "ルインジャを実行できる状態。",
+  "effects": [
+    "ルインジャを実行できる状態。"
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 219481,
+    "file": "icon.png"
+  },
+  "max_stacks": 4,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": true,
+  "is_permanent": true,
+  "inflicted_by_actor": true,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 16508,
+      "name": "エナジードレイン",
+      "description": "対象に無属性魔法攻撃。\u3000威力：200\n追加効果：自身に2スタックの「エーテルフロー」を付与する。\n追加効果：自身に「ルインジャ実行可」を付与する。\n効果時間：60秒\nリキャストタイマーを「エナジーサイフォン」と共有する。",
+      "description_macro": "対象に無属性魔法攻撃。\u3000<colortype(504)><edgecolortype(505)>威力：<edgecolortype(0)><colortype(0)>200<br><colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)>自身に2スタックの<colortype(500)><edgecolortype(501)>「エーテルフロー」<edgecolortype(0)><colortype(0)>を付与する。<if([gnum68==27],<if([gnum72>=62],<br><colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)>自身に<colortype(500)><edgecolortype(501)>「ルインジャ実行可」<edgecolortype(0)><colortype(0)>を付与する。<br><colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>60秒,)>,)><if([gnum68==27],<if([gnum72>=52],<br>リキャストタイマーを<colortype(500)><edgecolortype(501)>「エナジーサイフォン」<edgecolortype(0)><colortype(0)>と共有する。,)>,)>",
+      "unlock_level": 10,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Magical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 27,
+          "name": "召喚士",
+          "abbreviation": "SMN",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 4789,
+  "name": "まほうけん強化",
+  "description": "次に実行するまほうけんの威力が上昇する状態。",
+  "effects": [
+    "次に実行するまほうけんの威力が上昇する状態。"
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 229964,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 46590,
+      "name": "まほうバリア",
+      "description": "自身かパーティメンバーひとりを対象に、一定量のダメージを防ぐバリアを張る。\nこのバリアは実行者の最大ＨＰの20％分のダメージを軽減する。\n効果時間：60秒\nバリアが消滅すると、実行者に「まほうけん強化」を付与する。",
+      "description_macro": "自身かパーティメンバーひとりを対象に、一定量のダメージを防ぐバリアを張る。<br>このバリアは実行者の最大ＨＰの20％分のダメージを軽減する。<br><colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>60秒<br>バリアが消滅すると、実行者に<colortype(500)><edgecolortype(501)>「まほうけん強化」<edgecolortype(0)><colortype(0)>を付与する。<if([gnum108>=2],<br><colortype(504)><edgecolortype(505)>まほうけん強化効果：<edgecolortype(0)><colortype(0)>次に実行する1回のまほうけんの威力が上昇する。<br><colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>30秒,)>",
+      "unlock_level": 0,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Phantom Jobs"
+      ],
+      "jobs": [
+        {
+          "id": 13,
+          "name": "Phantom サポート魔法剣士",
+          "abbreviation": "Ph. Mystic Knight",
+          "is_phantom": true
+        }
+      ]
+    }
+  ]
+}

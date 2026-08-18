@@ -1,0 +1,71 @@
+{
+  "kind": "combat_status",
+  "id": 2502,
+  "name": "鬼宿脚",
+  "description": "鬼宿脚を放っている状態。",
+  "effects": [
+    "鬼宿脚を放っている状態。"
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 213541,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": true,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 23288,
+      "name": "鬼宿脚",
+      "description": "自身の前方扇範囲に向かって攻撃をし続ける。\n範囲内にいる敵に対して毎秒ダメージを与える。\n威力：200\u3000効果時間：5秒\n効果時間中に再使用すると、自身の前方に向かって無属性扇範囲物理攻撃。\u3000威力：600\n2体目以降の対象への威力は50％減少する。\n効果時間中に鬼宿脚以外のアクションの実行や移動・ターンを行うと、鬼宿脚は即座に解除される。\n実行後にオートアタックを停止する。",
+      "description_macro": "自身の前方扇範囲に向かって攻撃をし続ける。<br>範囲内にいる敵に対して毎秒ダメージを与える。<br><colortype(504)><edgecolortype(505)>威力：<edgecolortype(0)><colortype(0)>200\u3000<colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>5秒<br>効果時間中に再使用すると、自身の前方に向かって無属性扇範囲物理攻撃。\u3000<colortype(504)><edgecolortype(505)>威力：<edgecolortype(0)><colortype(0)>600<br>2体目以降の対象への威力は50％減少する。<br>効果時間中に鬼宿脚以外のアクションの実行や移動・ターンを行うと、鬼宿脚は即座に解除される。<br>実行後にオートアタックを停止する。",
+      "unlock_level": 1,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Magical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 36,
+          "name": "青魔道士",
+          "abbreviation": "BLU",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 23289,
+      "name": "鬼宿脚",
+      "description": "自身の前方扇範囲に向かって攻撃をし続ける。\n範囲内にいる敵に対して毎秒ダメージを与える。\n威力：200\u3000効果時間：5秒\n効果時間中に再使用すると、自身の前方に向かって無属性扇範囲物理攻撃。\u3000威力：600\n2体目以降の対象への威力は50％減少する。\n効果時間中に鬼宿脚以外のアクションの実行や移動・ターンを行うと、鬼宿脚は即座に解除される。\n実行後にオートアタックを停止する。",
+      "description_macro": "自身の前方扇範囲に向かって攻撃をし続ける。<br>範囲内にいる敵に対して毎秒ダメージを与える。<br><colortype(504)><edgecolortype(505)>威力：<edgecolortype(0)><colortype(0)>200\u3000<colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>5秒<br>効果時間中に再使用すると、自身の前方に向かって無属性扇範囲物理攻撃。\u3000<colortype(504)><edgecolortype(505)>威力：<edgecolortype(0)><colortype(0)>600<br>2体目以降の対象への威力は50％減少する。<br>効果時間中に鬼宿脚以外のアクションの実行や移動・ターンを行うと、鬼宿脚は即座に解除される。<br>実行後にオートアタックを停止する。",
+      "unlock_level": 1,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Magical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 36,
+          "name": "青魔道士",
+          "abbreviation": "BLU",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

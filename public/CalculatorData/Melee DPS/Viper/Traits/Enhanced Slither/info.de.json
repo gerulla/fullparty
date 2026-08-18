@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 529,
+  "name": "Verbesserter Schuppensprung",
+  "description": "Schuppensprung kann bis zu dreimal aufgeladen werden.",
+  "description_macro": "<colortype(502)><edgecolortype(503)>Schuppensprung<edgecolortype(0)><colortype(0)> kann bis zu dreimal aufgeladen werden.",
+  "effects": [
+    "Schuppensprung kann bis zu dreimal aufgeladen werden."
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 41,
+    "name": "Viper",
+    "abbreviation": "VPR"
+  },
+  "unlock_level": 84,
+  "value": 3,
+  "icon": {
+    "id": 6506,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 196,
+  "source_class_job_id": 41
+}

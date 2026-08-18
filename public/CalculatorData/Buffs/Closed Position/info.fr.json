@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 1823,
+  "name": "Position rapprochée",
+  "description": "L'utilisation de certaines actions octroie des bonus au partenaire de position rapprochée.",
+  "effects": [
+    "L'utilisation de certaines actions octroie des bonus au partenaire de position rapprochée."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 213712,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": true,
+  "is_permanent": true,
+  "inflicted_by_actor": true,
+  "party_list_priority": 100,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 150,
+  "source_abilities": [
+    {
+      "id": 16006,
+      "name": "Position rapprochée",
+      "description": "Vous octroie Position rapprochée, et octroie Partenaire de position rapprochée à un équipier ciblé.\nPermet à l'équipier ciblé de bénéficier de certains effets liés à Final classique\\.\nL'effet prend fin en relançant l'action.",
+      "description_macro": "Vous octroie <colortype(500)><edgecolortype(501)>Position rapprochée<edgecolortype(0)><colortype(0)>, et octroie <colortype(500)><edgecolortype(501)>Partenaire de position rapprochée<edgecolortype(0)><colortype(0)> à un équipier ciblé.<br>Permet à l'équipier ciblé de bénéficier de certains effets liés à <if([gnum68==38],<if([gnum72>=62],<if([gnum68==38],<if([gnum72>=96],<colortype(500)><edgecolortype(501)>Final classique<edgecolortype(0)><colortype(0)>\\, <colortype(500)><edgecolortype(501)>Valse revigorante<edgecolortype(0)><colortype(0)>\\, <colortype(500)><edgecolortype(501)>Tango endiablé<edgecolortype(0)><colortype(0)> et <colortype(500)><edgecolortype(501)>Mouvement final<edgecolortype(0)><colortype(0)>,<colortype(500)><edgecolortype(501)>Final classique<edgecolortype(0)><colortype(0)>\\, <colortype(500)><edgecolortype(501)>Valse revigorante<edgecolortype(0)><colortype(0)> et <colortype(500)><edgecolortype(501)>Tango endiablé<edgecolortype(0)><colortype(0)>)>,<colortype(500)><edgecolortype(501)>Final classique<edgecolortype(0)><colortype(0)>\\, <colortype(500)><edgecolortype(501)>Valse revigorante<edgecolortype(0)><colortype(0)> et <colortype(500)><edgecolortype(501)>Tango endiablé<edgecolortype(0)><colortype(0)>)>,<colortype(500)><edgecolortype(501)>Final classique<edgecolortype(0)><colortype(0)> et <colortype(500)><edgecolortype(501)>Valse revigorante<edgecolortype(0)><colortype(0)>)>,<colortype(500)><edgecolortype(501)>Final classique<edgecolortype(0)><colortype(0)> et <colortype(500)><edgecolortype(501)>Valse revigorante<edgecolortype(0)><colortype(0)>)>.<br>L'effet prend fin en relançant l'action.",
+      "unlock_level": 60,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Physical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 38,
+          "name": "Danseur",
+          "abbreviation": "DNS",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

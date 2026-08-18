@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 322,
+  "name": "Énochien amélioré II",
+  "description": "Augmente l'effet Énochien à 15%.",
+  "description_macro": "Augmente l'effet <colortype(500)><edgecolortype(501)>Énochien<edgecolortype(0)><colortype(0)> à 15%.",
+  "effects": [
+    "Augmente l'effet Énochien à 15%."
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 25,
+    "name": "Mage Noir",
+    "abbreviation": "MNO"
+  },
+  "unlock_level": 78,
+  "value": 10,
+  "icon": {
+    "id": 5365,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 26,
+  "source_class_job_id": 25
+}

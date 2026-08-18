@@ -1,0 +1,87 @@
+{
+  "kind": "ability",
+  "id": 15997,
+  "name": "スタンダードステップ",
+  "description": "ダンスモードになり、自身に「スタンダードステップ」を付与する。\u3000効果時間：15秒\n効果中は「スタンダードフィニッシュ」に変化する。\nまた、ステップアクションと「スタンダードフィニッシュ」「アン・アヴァン」「癒やしのワルツ」「守りのサンバ」、ロールアクション、スプリント、リミットブレイク以外を実行することができなくなる。\nこのウェポンスキルは固有のリキャストタイマーを持ち、実行すると他のウェポンスキルと魔法にこのアクションと同じリキャストタイムが発生する。",
+  "description_macro": "ダンスモードになり、自身に<colortype(500)><edgecolortype(501)>「スタンダードステップ」<edgecolortype(0)><colortype(0)>を付与する。\u3000<colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>15秒<br>効果中は<colortype(500)><edgecolortype(501)>「スタンダードフィニッシュ」<edgecolortype(0)><colortype(0)>に変化する。<br>また、ステップアクションと<colortype(500)><edgecolortype(501)>「スタンダードフィニッシュ」<if([gnum68==38],<if([gnum72>=50],「アン・アヴァン」,)>,)><if([gnum68==38],<if([gnum72>=52],「癒やしのワルツ」,)>,)><if([gnum68==38],<if([gnum72>=56],「守りのサンバ」,)>,)><edgecolortype(0)><colortype(0)>、ロールアクション、スプリント、リミットブレイク以外を実行することができなくなる。<br>このウェポンスキルは固有のリキャストタイマーを持ち、実行すると他のウェポンスキルと魔法にこのアクションと同じリキャストタイムが発生する。",
+  "effects": [
+    "ダンスモードになり、自身に「スタンダードステップ」を付与する。\u3000効果時間：15秒",
+    "効果中は「スタンダードフィニッシュ」に変化する。",
+    "また、ステップアクションと「スタンダードフィニッシュ」「アン・アヴァン」「癒やしのワルツ」「守りのサンバ」、ロールアクション、スプリント、リミットブレイク以外を実行することができなくなる。",
+    "このウェポンスキルは固有のリキャストタイマーを持ち、実行すると他のウェポンスキルと魔法にこのアクションと同じリキャストタイムが発生する。"
+  ],
+  "role": "Physical Ranged DPS",
+  "job": {
+    "id": 38,
+    "name": "踊り子",
+    "abbreviation": "DNC"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 15,
+  "icon": {
+    "id": 3454,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 3,
+    "name": "ウェポンスキル"
+  },
+  "attack_type": {
+    "id": 0,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 30,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 7,
+    "additional_cooldown_group": 58,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 0,
+      "value": 0
+    },
+    "secondary": {
+      "type_id": 91,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": 0,
+    "effect_yalms": 0,
+    "cast_type": 1
+  },
+  "targeting": {
+    "self": true,
+    "party": false,
+    "alliance": false,
+    "hostile": false,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 0,
+    "behavior_type": 0,
+    "class_job_category_id": 150,
+    "source_class_job_id": 38,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

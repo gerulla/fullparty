@@ -1,0 +1,26 @@
+{
+  "kind": "trait",
+  "id": 309,
+  "name": "ハート・オブ・ソラス効果アップ",
+  "description": "自身に「ブラッドリリー」が付与される。\n最大スタック数：3\n発動条件：ハート・オブ・ソラス実行時",
+  "description_macro": "自身に<colortype(500)><edgecolortype(501)>「ブラッドリリー」<edgecolortype(0)><colortype(0)>が付与される。<br><colortype(504)><edgecolortype(505)>最大スタック数：<edgecolortype(0)><colortype(0)>3<br><colortype(504)><edgecolortype(505)>発動条件：<edgecolortype(0)><colortype(0)>ハート・オブ・ソラス実行時",
+  "effects": [
+    "自身に「ブラッドリリー」が付与される。",
+    "最大スタック数：3",
+    "発動条件：ハート・オブ・ソラス実行時"
+  ],
+  "role": "Healer",
+  "job": {
+    "id": 24,
+    "name": "白魔道士",
+    "abbreviation": "WHM"
+  },
+  "unlock_level": 74,
+  "value": 0,
+  "icon": {
+    "id": 5341,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 25,
+  "source_class_job_id": 24
+}

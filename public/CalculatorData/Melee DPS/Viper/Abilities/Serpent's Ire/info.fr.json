@@ -1,0 +1,87 @@
+{
+  "kind": "ability",
+  "id": 34647,
+  "name": "Communion ophidienne",
+  "description": "Vous octroie une Âme ophidienne.\nEffet additionnel : vous octroie Réminiscence préparée.\nDurée : 30s\nCondition : en combat.",
+  "description_macro": "Vous octroie une <colortype(500)><edgecolortype(501)>Âme ophidienne<edgecolortype(0)><colortype(0)>.<br><if([gnum68==41],<if([gnum72>=90],<colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> vous octroie <colortype(500)><edgecolortype(501)>Réminiscence préparée<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 30s<br>,)>,)><colortype(506)><edgecolortype(507)>Condition<nbsp>:<edgecolortype(0)><colortype(0)> en combat.",
+  "effects": [
+    "Vous octroie une Âme ophidienne.",
+    "Effet additionnel : vous octroie Réminiscence préparée.",
+    "Durée : 30s",
+    "Condition : en combat."
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 41,
+    "name": "Rôdeur Vipère",
+    "abbreviation": "VPR"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 86,
+  "icon": {
+    "id": 3742,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 4,
+    "name": "Aptitude"
+  },
+  "attack_type": {
+    "id": 0,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 120,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 20,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 0,
+      "value": 0
+    },
+    "secondary": {
+      "type_id": 42,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": 0,
+    "effect_yalms": 0,
+    "cast_type": 1
+  },
+  "targeting": {
+    "self": true,
+    "party": false,
+    "alliance": false,
+    "hostile": false,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 0,
+    "behavior_type": 0,
+    "class_job_category_id": 196,
+    "source_class_job_id": 41,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

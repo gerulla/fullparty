@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 669,
+  "name": "Magick Mastery",
+  "description": "Increases the potency of Dosis III to 380, Eukrasian Dosis III damage over time to 90, Toxikon II to 380, and Pneuma to 380.",
+  "description_macro": "Increases the potency of <colortype(500)><edgecolortype(501)>Dosis III<edgecolortype(0)><colortype(0)> to 380, <colortype(500)><edgecolortype(501)>Eukrasian Dosis III<edgecolortype(0)><colortype(0)> damage over time to 90, <colortype(500)><edgecolortype(501)>Toxikon II<edgecolortype(0)><colortype(0)> to 380, and <colortype(500)><edgecolortype(501)>Pneuma<edgecolortype(0)><colortype(0)> to 380.",
+  "effects": [
+    "Increases the potency of Dosis III to 380, Eukrasian Dosis III damage over time to 90, Toxikon II to 380, and Pneuma to 380."
+  ],
+  "role": "Healer",
+  "job": {
+    "id": 40,
+    "name": "Sage",
+    "abbreviation": "SGE"
+  },
+  "unlock_level": 94,
+  "value": 0,
+  "icon": {
+    "id": 6831,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 181,
+  "source_class_job_id": 40
+}

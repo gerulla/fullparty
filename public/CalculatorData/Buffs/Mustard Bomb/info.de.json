@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 4007,
+  "name": "Senfbombe",
+  "description": "Mit einer Senfbombe behaftet. Löst bei Ablauf der Wirkungsdauer eine Explosion aus.",
+  "effects": [
+    "Mit einer Senfbombe behaftet. Löst bei Ablauf der Wirkungsdauer eine Explosion aus."
+  ],
+  "classification": "debuff",
+  "icon": {
+    "id": 214185,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 2,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 198,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 23279,
+      "name": "Senfbombe",
+      "description": "Du führst eine feuerbasierte magische Attacke auf das Ziel und die Gegner in seiner Nähe aus.\nAttacke-Wert: 220\nAttacke-Wert verringert sich ab dem zweiten Gegner um 50 %.\nZusatzeffekt: Wenn das Ziel unter Auf wackeligen Beinen leidet, wird ihm Feuerschaden über Zeit zugefügt.\nAttacke-Wert: 50\nDauer: 15 Sekunden",
+      "description_macro": "Du führst eine feuerbasierte magische Attacke auf das Ziel und die Gegner in seiner Nähe aus.<br>Attacke-Wert: 220<br>Attacke-Wert verringert sich ab dem zweiten Gegner um 50<nbsp>%.<br>Zusatzeffekt: Wenn das Ziel unter <colortype(506)><edgecolortype(507)>Auf wackeligen Beinen<edgecolortype(0)><colortype(0)> leidet, wird ihm Feuerschaden über Zeit zugefügt.<br>Attacke-Wert: 50<br>Dauer: 15 Sekunden",
+      "unlock_level": 1,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Magical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 36,
+          "name": "Blaumagier",
+          "abbreviation": "BMA",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

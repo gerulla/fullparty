@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 674,
+  "name": "Melee Mastery",
+  "description": "Increases the potency of Steel Fangs to 200, Reaving Fangs to 200, Hunter's Sting to 300, and Swiftskin's Sting to 300.",
+  "description_macro": "Increases the potency of <colortype(500)><edgecolortype(501)>Steel Fangs<edgecolortype(0)><colortype(0)> to 200, <colortype(500)><edgecolortype(501)>Reaving Fangs<edgecolortype(0)><colortype(0)> to 200, <colortype(500)><edgecolortype(501)>Hunter's Sting<edgecolortype(0)><colortype(0)> to 300, and <colortype(500)><edgecolortype(501)>Swiftskin's Sting<edgecolortype(0)><colortype(0)> to 300.",
+  "effects": [
+    "Increases the potency of Steel Fangs to 200, Reaving Fangs to 200, Hunter's Sting to 300, and Swiftskin's Sting to 300."
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 41,
+    "name": "Viper",
+    "abbreviation": "VPR"
+  },
+  "unlock_level": 74,
+  "value": 0,
+  "icon": {
+    "id": 6801,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 196,
+  "source_class_job_id": 41
+}

@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 371,
+  "name": "Somanoutic Oath",
+  "description": "Increases the potency of Dosis to 250, Phlegma to 330, and Eukrasian Dosis to 35.",
+  "description_macro": "Increases the potency of <colortype(500)><edgecolortype(501)>Dosis<edgecolortype(0)><colortype(0)> to 250, <colortype(500)><edgecolortype(501)>Phlegma<edgecolortype(0)><colortype(0)> to 330, and <colortype(500)><edgecolortype(501)>Eukrasian Dosis<edgecolortype(0)><colortype(0)> to 35.",
+  "effects": [
+    "Increases the potency of Dosis to 250, Phlegma to 330, and Eukrasian Dosis to 35."
+  ],
+  "role": "Healer",
+  "job": {
+    "id": 40,
+    "name": "Sage",
+    "abbreviation": "SGE"
+  },
+  "unlock_level": 54,
+  "value": 0,
+  "icon": {
+    "id": 6452,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 181,
+  "source_class_job_id": 40
+}

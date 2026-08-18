@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 297,
+  "name": "ポリグロット効果アップ",
+  "description": "「ポリグロット」の最大スタック数が2に増加する。",
+  "description_macro": "<colortype(500)><edgecolortype(501)>「ポリグロット」<edgecolortype(0)><colortype(0)>の最大スタック数が2に増加する。",
+  "effects": [
+    "「ポリグロット」の最大スタック数が2に増加する。"
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 25,
+    "name": "黒魔道士",
+    "abbreviation": "BLM"
+  },
+  "unlock_level": 80,
+  "value": 0,
+  "icon": {
+    "id": 5363,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 26,
+  "source_class_job_id": 25
+}

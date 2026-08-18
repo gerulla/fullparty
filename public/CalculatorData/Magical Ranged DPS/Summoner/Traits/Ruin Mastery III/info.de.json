@@ -1,0 +1,27 @@
+{
+  "kind": "trait",
+  "id": 476,
+  "name": "Meister des Ruins III",
+  "description": "Ändert Juwelenschein je nach deinem momentan aktiven Äther.\nBei Feueräther: Rubin-Ritus\nBei Erdäther: Topas-Ritus\nBei Windäther: Smaragd-Ritus",
+  "description_macro": "Ändert <colortype(502)><edgecolortype(503)>Juwelenschein<edgecolortype(0)><colortype(0)> je nach deinem momentan aktiven Äther.<br>Bei <colortype(506)><edgecolortype(507)>Feueräther<edgecolortype(0)><colortype(0)>: <colortype(502)><edgecolortype(503)>Rubin-Ritus<edgecolortype(0)><colortype(0)><br>Bei <colortype(506)><edgecolortype(507)>Erdäther<edgecolortype(0)><colortype(0)>: <colortype(502)><edgecolortype(503)>Topas-Ritus<edgecolortype(0)><colortype(0)><br>Bei <colortype(506)><edgecolortype(507)>Windäther<edgecolortype(0)><colortype(0)>: <colortype(502)><edgecolortype(503)>Smaragd-Ritus<edgecolortype(0)><colortype(0)>",
+  "effects": [
+    "Ändert Juwelenschein je nach deinem momentan aktiven Äther.",
+    "Bei Feueräther: Rubin-Ritus",
+    "Bei Erdäther: Topas-Ritus",
+    "Bei Windäther: Smaragd-Ritus"
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 27,
+    "name": "Beschwörer",
+    "abbreviation": "BSW"
+  },
+  "unlock_level": 72,
+  "value": 0,
+  "icon": {
+    "id": 5688,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 28,
+  "source_class_job_id": 27
+}

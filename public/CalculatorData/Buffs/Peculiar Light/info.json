@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 1721,
+  "name": "Peculiar Light",
+  "description": "Magic damage taken is increased.",
+  "effects": [
+    "Magic damage taken is increased."
+  ],
+  "classification": "debuff",
+  "icon": {
+    "id": 213508,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 2,
+  "target_type": 0,
+  "can_dispel": true,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 50,
+  "parameter": {
+    "effect": 0,
+    "modifier": 10
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 11421,
+      "name": "Peculiar Light",
+      "description": "Increases magic damage taken by all nearby enemies by 5%.\nDuration: 15s\nRecast timer cannot be affected by other spells. However, this action shares a recast timer with Off-guard.",
+      "description_macro": "Increases magic damage taken by all nearby enemies by 5%.<br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>15s<br>Recast timer cannot be affected by other spells. However, this action shares a recast timer with <colortype(500)><edgecolortype(501)>Off-guard<edgecolortype(0)><colortype(0)>.",
+      "unlock_level": 1,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Magical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 36,
+          "name": "Blue Mage",
+          "abbreviation": "BLU",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

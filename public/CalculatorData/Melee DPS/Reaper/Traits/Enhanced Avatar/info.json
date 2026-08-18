@@ -1,0 +1,26 @@
+{
+  "kind": "trait",
+  "id": 381,
+  "name": "Enhanced Avatar",
+  "description": "Grants the effect of Soul Reaver upon successfully landing Blood Stalk or Grim Swathe.\nDuration: 30s\nEffect ends upon execution of any weaponskill or magic attack.",
+  "description_macro": "Grants the effect of <colortype(506)><edgecolortype(507)>Soul Reaver<edgecolortype(0)><colortype(0)> upon successfully landing <colortype(500)><edgecolortype(501)>Blood Stalk<edgecolortype(0)><colortype(0)> or <colortype(500)><edgecolortype(501)>Grim Swathe<edgecolortype(0)><colortype(0)>.<br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>30s<br>Effect ends upon execution of any weaponskill or magic attack.",
+  "effects": [
+    "Grants the effect of Soul Reaver upon successfully landing Blood Stalk or Grim Swathe.",
+    "Duration: 30s",
+    "Effect ends upon execution of any weaponskill or magic attack."
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 39,
+    "name": "Reaper",
+    "abbreviation": "RPR"
+  },
+  "unlock_level": 70,
+  "value": 0,
+  "icon": {
+    "id": 6403,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 180,
+  "source_class_job_id": 39
+}

@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 256,
+  "name": "Enhanced En Avant II",
+  "description": "Allows a third charge of En Avant.",
+  "description_macro": "Allows a third charge of <colortype(500)><edgecolortype(501)>En Avant<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Allows a third charge of En Avant."
+  ],
+  "role": "Physical Ranged DPS",
+  "job": {
+    "id": 38,
+    "name": "Dancer",
+    "abbreviation": "DNC"
+  },
+  "unlock_level": 78,
+  "value": 3,
+  "icon": {
+    "id": 6356,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 150,
+  "source_class_job_id": 38
+}

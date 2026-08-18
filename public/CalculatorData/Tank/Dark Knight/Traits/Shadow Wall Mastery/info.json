@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 571,
+  "name": "Shadow Wall Mastery",
+  "description": "Upgrades Shadow Wall to Shadowed Vigil.",
+  "description_macro": "Upgrades <colortype(500)><edgecolortype(501)>Shadow Wall<edgecolortype(0)><colortype(0)> to <colortype(500)><edgecolortype(501)>Shadowed Vigil<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Upgrades Shadow Wall to Shadowed Vigil."
+  ],
+  "role": "Tank",
+  "job": {
+    "id": 32,
+    "name": "Dark Knight",
+    "abbreviation": "DRK"
+  },
+  "unlock_level": 92,
+  "value": 0,
+  "icon": {
+    "id": 6068,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 98,
+  "source_class_job_id": 32
+}

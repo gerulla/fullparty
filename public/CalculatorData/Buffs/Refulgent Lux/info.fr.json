@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 3874,
+  "name": "Lux solaris préparée",
+  "description": "Lux Solaris peut être lancée.",
+  "effects": [
+    "Lux Solaris peut être lancée."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 212751,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 28,
+  "source_abilities": [
+    {
+      "id": 36992,
+      "name": "Invocation Sol-Bahamut",
+      "description": "Vous plongez dans une Transe-Sol-Bahamut et invoquez un Sol-Bahamut.\nDurée : 15s\nTant qu'il est présent, votre Sol-Bahamut exécute Onde radieuse sur votre cible.\nEffet additionnel : vous octroie Lux solaris préparée.\nDurée : 30s\nEffet additionnel : Méga Ruine devient Pulsar ombral et Tri-désastre devient Brasier ombral.\nEffet additionnel : vous octroie Arcane rubis, Arcane topaze et Arcane émeraude.\nEffet additionnel : augmente l'inimitié de la cible envers vous au lancement.\nCondition : Carbuncle invoqué.\nCarbuncle disparaît lors de l'invocation, mais revient automatiquement une fois qu'elle prend fin.\nCe sort a un temps de recharge indépendant.\n\n* Cette action ne peut pas être ajoutée aux barres de raccourcis.\nRemplace Invocation Bahamut lorsque les conditions sont réunies.",
+      "description_macro": "Vous plongez dans une <colortype(500)><edgecolortype(501)>Transe-Sol-Bahamut<edgecolortype(0)><colortype(0)> et invoquez un Sol-Bahamut.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 15s<br>Tant qu'il est présent, votre Sol-Bahamut exécute <colortype(500)><edgecolortype(501)>Onde radieuse<edgecolortype(0)><colortype(0)> sur votre cible.<br><colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> vous octroie <colortype(500)><edgecolortype(501)>Lux solaris préparée<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 30s<br><colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> Méga Ruine devient Pulsar ombral et Tri-désastre devient Brasier ombral.<br><colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> vous octroie <colortype(500)><edgecolortype(501)>Arcane rubis<edgecolortype(0)><colortype(0)>, <colortype(500)><edgecolortype(501)>Arcane topaze<edgecolortype(0)><colortype(0)> et <colortype(500)><edgecolortype(501)>Arcane émeraude<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> augmente l'inimitié de la cible envers vous au lancement.<br><colortype(506)><edgecolortype(507)>Condition<nbsp>:<edgecolortype(0)><colortype(0)> Carbuncle invoqué.<br>Carbuncle disparaît lors de l'invocation, mais revient au<->to<->ma<->ti<->que<->ment une fois qu'elle prend fin.<br>Ce sort a un temps de recharge indépendant.<br><br><colortype(504)><edgecolortype(505)>* Cette action ne peut pas être ajoutée aux barres de raccourcis.<br>Remplace <colortype(500)><edgecolortype(501)>Invocation Bahamut<edgecolortype(0)><colortype(0)> lorsque les conditions sont réunies.<edgecolortype(0)><colortype(0)>",
+      "unlock_level": 100,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Magical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 27,
+          "name": "Invocateur",
+          "abbreviation": "INV",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

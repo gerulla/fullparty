@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 1993,
+  "name": "Shake It Off",
+  "description": "A barrier is preventing damage.",
+  "effects": [
+    "A barrier is preventing damage."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 212557,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": true,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 22,
+  "source_abilities": [
+    {
+      "id": 7388,
+      "name": "Shake It Off",
+      "description": "Creates a barrier around self and all nearby party members that absorbs damage totaling 15% of maximum HP.\nDispels Thrill of Battle, Damnation, and Bloodwhetting, increasing damage absorbed by 2% for each effect removed. \nDuration: 30s\nAdditional Effect: Gradually restores HP\nCure Potency: 100\nDuration: 15s\nAdditional Effect: Restores target's HP\nCure Potency: 300",
+      "description_macro": "Creates a barrier around self and all nearby party members that absorbs damage totaling 15% of maximum HP.<br>Dispels <colortype(506)><edgecolortype(507)>Thrill of Battle<edgecolortype(0)><colortype(0)>, <colortype(506)><edgecolortype(507)><if([gnum68==21],<if([gnum72>=92],Damnation,Vengeance)>,Vengeance)><edgecolortype(0)><colortype(0)>, and <if([gnum68==21],<if([gnum72>=82],<colortype(506)><edgecolortype(507)>Bloodwhetting<edgecolortype(0)><colortype(0)>,<colortype(506)><edgecolortype(507)>Raw Intuition<edgecolortype(0)><colortype(0)>)>,<colortype(506)><edgecolortype(507)>Raw Intuition<edgecolortype(0)><colortype(0)>)>, increasing damage absorbed by 2% for each effect removed. <br><colortype(504)><edgecolortype(505)>Duration:<edgecolortype(0)><colortype(0)> 30s<br><colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>Gradually restores HP<br><colortype(504)><edgecolortype(505)>Cure Potency: <edgecolortype(0)><colortype(0)>100<br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>15s<if([gnum68==21],<if([gnum72>=76],<br><colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>Restores target's HP<br><colortype(504)><edgecolortype(505)>Cure Potency: <edgecolortype(0)><colortype(0)>300,)>,)>",
+      "unlock_level": 68,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Tank"
+      ],
+      "jobs": [
+        {
+          "id": 21,
+          "name": "Warrior",
+          "abbreviation": "WAR",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

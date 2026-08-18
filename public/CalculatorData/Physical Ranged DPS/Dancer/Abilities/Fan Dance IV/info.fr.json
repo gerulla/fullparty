@@ -1,0 +1,96 @@
+{
+  "kind": "ability",
+  "id": 25791,
+  "name": "Danse de l'éventail IV",
+  "description": "Effectue une attaque physique dans une zone en éventail vers la cible.\nPuissance : 460\nLa puissance est réduite de 60% au-delà du premier ennemi touché.\nCondition : Danse de l'éventail IV préparée.",
+  "description_macro": "Effectue une attaque physique dans une zone en éventail vers la cible.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> <edgecolortype(0)><colortype(0)><if([gnum68==38],<if([gnum72>=94],460,300)>,300)><br>La puissance est réduite de 60% au-delà du premier ennemi touché.<br><colortype(506)><edgecolortype(507)>Condition<nbsp>:<edgecolortype(0)><colortype(0)> <colortype(500)><edgecolortype(501)>Danse de l'éventail IV préparée<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Effectue une attaque physique dans une zone en éventail vers la cible.",
+    "Puissance : 460",
+    "La puissance est réduite de 60% au-delà du premier ennemi touché.",
+    "Condition : Danse de l'éventail IV préparée."
+  ],
+  "role": "Physical Ranged DPS",
+  "job": {
+    "id": 38,
+    "name": "Danseur",
+    "abbreviation": "DNS"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 86,
+  "icon": {
+    "id": 3481,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 4,
+    "name": "Aptitude"
+  },
+  "attack_type": {
+    "id": 4294967295,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 1,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 1,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 10,
+      "value": 2699
+    },
+    "secondary": {
+      "type_id": 91,
+      "value": 2699
+    }
+  },
+  "range": {
+    "target_yalms": 15,
+    "effect_yalms": 15,
+    "cast_type": 3
+  },
+  "targeting": {
+    "self": false,
+    "party": false,
+    "alliance": false,
+    "hostile": true,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": {
+      "id": 66,
+      "status": {
+        "id": 2699,
+        "name": "Danse de l'éventail IV préparée",
+        "description": "Danse de l'éventail IV peut être lancée.",
+        "icon_id": 213723,
+        "max_stacks": 0
+      }
+    }
+  },
+  "metadata": {
+    "aspect_id": 7,
+    "behavior_type": 0,
+    "class_job_category_id": 150,
+    "source_class_job_id": 38,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

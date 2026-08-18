@@ -1,0 +1,29 @@
+{
+  "kind": "trait",
+  "id": 207,
+  "name": "Maîtrise de la magie divine",
+  "description": "Réduit de 50% le coût en PM de tous vos sorts, et vous permet de les lancer sans risque d'interruption due à des dégâts.\nAutorité royale bénéficie des effets supplémentaires suivants :\n\nBonus du combo : vous octroie Grâce divine.\nDurée : 30s\nGrâce divine : permet de lancer instantanément le prochain Esprit saint ou Cercle sacré avec une puissance augmentée.\nCondition : combo avec Autorité royale réussi.",
+  "description_macro": "Réduit de 50% le coût en PM de tous vos sorts, et vous permet de les lancer sans risque d'interruption due à des dégâts.<br><colortype(500)><edgecolortype(501)>Autorité royale<edgecolortype(0)><colortype(0)> bénéficie des effets sup<->plé<->men<->tai<->res suivants<nbsp>:<br><br><colortype(506)><edgecolortype(507)>Bonus du combo<nbsp>:<edgecolortype(0)><colortype(0)> vous octroie <colortype(500)><edgecolortype(501)>Grâce divine<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 30s<br><colortype(506)><edgecolortype(507)>Grâce divine<nbsp>:<edgecolortype(0)><colortype(0)> permet de lancer instantanément le prochain Esprit saint ou Cercle sacré avec une puissance augmentée.<br><colortype(506)><edgecolortype(507)>Condition<nbsp>:<edgecolortype(0)><colortype(0)> combo avec <colortype(500)><edgecolortype(501)>Autorité royale<edgecolortype(0)><colortype(0)> réussi.",
+  "effects": [
+    "Réduit de 50% le coût en PM de tous vos sorts, et vous permet de les lancer sans risque d'interruption due à des dégâts.",
+    "Autorité royale bénéficie des effets supplémentaires suivants :",
+    "Bonus du combo : vous octroie Grâce divine.",
+    "Durée : 30s",
+    "Grâce divine : permet de lancer instantanément le prochain Esprit saint ou Cercle sacré avec une puissance augmentée.",
+    "Condition : combo avec Autorité royale réussi."
+  ],
+  "role": "Tank",
+  "job": {
+    "id": 19,
+    "name": "Paladin",
+    "abbreviation": "PLD"
+  },
+  "unlock_level": 64,
+  "value": -50,
+  "icon": {
+    "id": 5210,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 20,
+  "source_class_job_id": 19
+}

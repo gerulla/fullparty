@@ -1,0 +1,113 @@
+{
+  "kind": "combat_status",
+  "id": 3669,
+  "name": "Swiftscaled",
+  "description": "Weaponskill cast time and recast time, spell cast time and recast time, and auto-attack delay are reduced.",
+  "effects": [
+    "Weaponskill cast time and recast time, spell cast time and recast time, and auto-attack delay are reduced."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 213775,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 40,
+  "parameter": {
+    "effect": 0,
+    "modifier": -15
+  },
+  "class_job_category_id": 196,
+  "source_abilities": [
+    {
+      "id": 34609,
+      "name": "Swiftskin's Sting",
+      "description": "Delivers an attack with a potency of 300.\nAdditional Effect: Grants Swiftscaled\nSwiftscaled Effect: Reduces weaponskill cast time and recast time, spell cast time and recast time, and auto-attack delay by 15%\nDuration: 40s\nCan only be executed after successfully landing Steel Fangs or Reaving Fangs.\n\n※This action cannot be assigned to a hotbar.\n※Reaving Fangs changes to Swiftskin's Sting when requirements for execution are met.",
+      "description_macro": "Delivers an attack with a potency of <if([gnum68==41],<if([gnum72>=74],300,280)>,280)>.<br><colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>Grants <colortype(506)><edgecolortype(507)>Swiftscaled<edgecolortype(0)><colortype(0)><br><colortype(504)><edgecolortype(505)>Swiftscaled Effect: <edgecolortype(0)><colortype(0)>Reduces weaponskill cast time and recast time, spell cast time and recast time, and auto-attack delay by 15%<br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>40s<br>Can only be executed after successfully landing <colortype(500)><edgecolortype(501)>Steel Fangs<edgecolortype(0)><colortype(0)> or <colortype(500)><edgecolortype(501)>Reaving Fangs<edgecolortype(0)><colortype(0)>.<br><br>※This action cannot be assigned to a hotbar.<br>※<colortype(500)><edgecolortype(501)>Reaving Fangs<edgecolortype(0)><colortype(0)> changes to <colortype(500)><edgecolortype(501)>Swiftskin's Sting<edgecolortype(0)><colortype(0)> when requirements for execution are met.",
+      "unlock_level": 20,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 41,
+          "name": "Viper",
+          "abbreviation": "VPR",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 34617,
+      "name": "Swiftskin's Bite",
+      "description": "Delivers an attack with a potency of 180 to all nearby enemies.\nAdditional Effect: Grants Swiftscaled\nSwiftscaled Effect: Reduces weaponskill cast time and recast time, spell cast time and recast time, and auto-attack delay by 15%\nDuration: 40s\nCan only be executed after successfully landing Steel Maw or Reaving Maw.\n\n※This action cannot be assigned to a hotbar.\n※Reaving Maw changes to Swiftskin's Bite when requirements for execution are met.",
+      "description_macro": "Delivers an attack with a potency of 180 to all nearby enemies.<br><colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>Grants <colortype(506)><edgecolortype(507)>Swiftscaled<edgecolortype(0)><colortype(0)><br><colortype(504)><edgecolortype(505)>Swiftscaled Effect: <edgecolortype(0)><colortype(0)>Reduces weaponskill cast time and recast time, spell cast time and recast time, and auto-attack delay by 15%<br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>40s<br>Can only be executed after successfully landing <colortype(500)><edgecolortype(501)>Steel Maw<edgecolortype(0)><colortype(0)> or <colortype(500)><edgecolortype(501)>Reaving Maw<edgecolortype(0)><colortype(0)>.<br><br>※This action cannot be assigned to a hotbar.<br>※<colortype(500)><edgecolortype(501)>Reaving Maw<edgecolortype(0)><colortype(0)> changes to <colortype(500)><edgecolortype(501)>Swiftskin's Bite<edgecolortype(0)><colortype(0)> when requirements for execution are met.",
+      "unlock_level": 45,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 41,
+          "name": "Viper",
+          "abbreviation": "VPR",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 34622,
+      "name": "Swiftskin's Coil",
+      "description": "Delivers an attack with a potency of 630.\n680 when executed from a target's rear.\nAdditional Effect: Grants Swiftscaled\nSwiftscaled Effect: Reduces weaponskill cast time and recast time, spell cast time and recast time, and auto-attack delay by 15%\nDuration: 40s\nAdditional Effect: Grants Swiftskin's Venom\nSwiftskin's Venom Effect: Increases potency of Twinblood Bite by 50\nDuration: 30s\nAdditional Effect: Increases Serpent Offerings Gauge by 5\nUpon successfully landing this action\\Can only be executed after successfully landing Vicewinder or Hunter's Coil.\nThis weaponskill does not share a recast timer with any other actions.",
+      "description_macro": "Delivers an attack with a potency of 630.<br>680 when executed from a target's rear.<br><colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>Grants <colortype(506)><edgecolortype(507)>Swiftscaled<edgecolortype(0)><colortype(0)><br><colortype(504)><edgecolortype(505)>Swiftscaled Effect: <edgecolortype(0)><colortype(0)>Reduces weaponskill cast time and recast time, spell cast time and recast time, and auto-attack delay by 15%<br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>40s<br><if([gnum68==41],<if([gnum72>=75],<colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>Grants <colortype(506)><edgecolortype(507)>Swiftskin's Venom<edgecolortype(0)><colortype(0)><br><colortype(504)><edgecolortype(505)>Swiftskin's Venom Effect: <edgecolortype(0)><colortype(0)>Increases potency of <colortype(500)><edgecolortype(501)>Twinblood Bite<edgecolortype(0)><colortype(0)> by 50<br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>30s<br>,)>,)><if([gnum68==41],<if([gnum72>=90],<colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>Increases <colortype(500)><edgecolortype(501)>Serpent Offerings Gauge<edgecolortype(0)><colortype(0)> by 5<br>,)>,)><if([gnum68==41],<if([gnum72>=75],Upon successfully landing this action\\, <colortype(500)><edgecolortype(501)>Twinfang<edgecolortype(0)><colortype(0)> changes to <colortype(500)><edgecolortype(501)>Twinfang Bite<edgecolortype(0)><colortype(0)>\\, and <colortype(500)><edgecolortype(501)>Twinblood<edgecolortype(0)><colortype(0)> changes to <colortype(500)><edgecolortype(501)>Twinblood Bite<edgecolortype(0)><colortype(0)>.<br>These actions can be executed a total of two times following <colortype(500)><edgecolortype(501)>Swiftskin's Coil<edgecolortype(0)><colortype(0)>.<br>,)>,)>Can only be executed after successfully landing <colortype(500)><edgecolortype(501)>Vicewinder<edgecolortype(0)><colortype(0)> or <colortype(500)><edgecolortype(501)>Hunter's Coil<edgecolortype(0)><colortype(0)>.<br>This weaponskill does not share a recast timer with any other actions.",
+      "unlock_level": 65,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 41,
+          "name": "Viper",
+          "abbreviation": "VPR",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 34625,
+      "name": "Swiftskin's Den",
+      "description": "Delivers an attack with a potency of 300 to all nearby enemies.\nAdditional Effect: Grants Swiftscaled\nSwiftscaled Effect: Reduces weaponskill cast time and recast time, spell cast time and recast time, and auto-attack delay by 15%\nDuration: 40s\nAdditional Effect: Grants Fellskin's Venom\nFellskin's Venom Effect: Increases potency of Twinblood Thresh by 30\nDuration: 30s\nAdditional Effect: Increases Serpent Offerings Gauge by 5\nUpon successfully landing this action\\Can only be executed after Vicepit or Hunter's Den.\nThis weaponskill does not share a recast timer with any other actions.",
+      "description_macro": "Delivers an attack with a potency of 300 to all nearby enemies.<br><colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>Grants <colortype(506)><edgecolortype(507)>Swiftscaled<edgecolortype(0)><colortype(0)><br><colortype(504)><edgecolortype(505)>Swiftscaled Effect: <edgecolortype(0)><colortype(0)>Reduces weaponskill cast time and recast time, spell cast time and recast time, and auto-attack delay by 15%<br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>40s<br><if([gnum68==41],<if([gnum72>=80],<colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>Grants <colortype(506)><edgecolortype(507)>Fellskin's Venom<edgecolortype(0)><colortype(0)><br><colortype(504)><edgecolortype(505)>Fellskin's Venom Effect: <edgecolortype(0)><colortype(0)>Increases potency of <colortype(500)><edgecolortype(501)>Twinblood Thresh<edgecolortype(0)><colortype(0)> by 30<br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>30s<br>,)>,)><if([gnum68==41],<if([gnum72>=90],<colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>Increases <colortype(500)><edgecolortype(501)>Serpent Offerings Gauge<edgecolortype(0)><colortype(0)> by 5<br>,)>,)><if([gnum68==41],<if([gnum72>=80],Upon successfully landing this action\\, <colortype(500)><edgecolortype(501)>Twinfang<edgecolortype(0)><colortype(0)> changes to <colortype(500)><edgecolortype(501)>Twinfang Thresh<edgecolortype(0)><colortype(0)>\\, and <colortype(500)><edgecolortype(501)>Twinblood<edgecolortype(0)><colortype(0)> changes to <colortype(500)><edgecolortype(501)>Twinblood Thresh<edgecolortype(0)><colortype(0)>.<br>These actions can be executed a total of two times following <colortype(500)><edgecolortype(501)>Swiftskin's Den<edgecolortype(0)><colortype(0)>.<br>,)>,)>Can only be executed after <colortype(500)><edgecolortype(501)>Vicepit<edgecolortype(0)><colortype(0)> or <colortype(500)><edgecolortype(501)>Hunter's Den<edgecolortype(0)><colortype(0)>.<br>This weaponskill does not share a recast timer with any other actions.",
+      "unlock_level": 70,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 41,
+          "name": "Viper",
+          "abbreviation": "VPR",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

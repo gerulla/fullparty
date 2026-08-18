@@ -1,0 +1,27 @@
+{
+  "kind": "trait",
+  "id": 471,
+  "name": "Galvanisation",
+  "description": "Modifie l'action qu'utilisent vos Egi.\nInvocation Ifrit : remplace Frappe ardente par Flammes de l'enfer.\nInvocation Titan : remplace Casse-roc par Fureur  tellurique.\nInvocation Garuda : remplace Taillade aérienne par Rafale aérienne.",
+  "description_macro": "Modifie l'action qu'utilisent vos Egi.<br><colortype(506)><edgecolortype(507)>Invocation Ifrit<nbsp>:<edgecolortype(0)><colortype(0)> remplace <colortype(500)><edgecolortype(501)>Frappe ardente<edgecolortype(0)><colortype(0)> par <colortype(500)><edgecolortype(501)>Flammes de l'enfer<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Invocation Titan<nbsp>:<edgecolortype(0)><colortype(0)> remplace <colortype(500)><edgecolortype(501)>Casse-roc<edgecolortype(0)><colortype(0)> par <colortype(500)><edgecolortype(501)>Fureur  tellurique<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Invocation Garuda<nbsp>:<edgecolortype(0)><colortype(0)> remplace <colortype(500)><edgecolortype(501)>Taillade aérienne<edgecolortype(0)><colortype(0)> par <colortype(500)><edgecolortype(501)>Rafale aérienne<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Modifie l'action qu'utilisent vos Egi.",
+    "Invocation Ifrit : remplace Frappe ardente par Flammes de l'enfer.",
+    "Invocation Titan : remplace Casse-roc par Fureur  tellurique.",
+    "Invocation Garuda : remplace Taillade aérienne par Rafale aérienne."
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 27,
+    "name": "Invocateur",
+    "abbreviation": "INV"
+  },
+  "unlock_level": 50,
+  "value": 0,
+  "icon": {
+    "id": 5685,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 28,
+  "source_class_job_id": 27
+}

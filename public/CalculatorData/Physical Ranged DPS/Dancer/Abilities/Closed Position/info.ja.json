@@ -1,0 +1,87 @@
+{
+  "kind": "ability",
+  "id": 16006,
+  "name": "クローズドポジション",
+  "description": "パーティメンバーひとりを対象とする。\n自身に「クローズドポジション」を付与し、対象には「クローズドポジション［被］」を付与する。\n効果中に「スタンダードフィニッシュ」「癒やしのワルツ」「攻めのタンゴ」「フィニシングムーブ」を実行すると、クローズドポジション［被］を付与したパーティメンバーも、同様の効果を得ることができる。\n再使用で解除する。\u3000効果時間：永続",
+  "description_macro": "パーティメンバーひとりを対象とする。<br>自身に<colortype(500)><edgecolortype(501)>「クローズドポジション」<edgecolortype(0)><colortype(0)>を付与し、対象には<colortype(500)><edgecolortype(501)>「クローズドポジション［被］」<edgecolortype(0)><colortype(0)>を付与する。<br>効果中に<colortype(500)><edgecolortype(501)>「スタンダードフィニッシュ」「癒やしのワルツ」<if([gnum68==38],<if([gnum72>=62],「攻めのタンゴ」,)>,)><if([gnum68==38],<if([gnum72>=96],「フィニシングムーブ」,)>,)><edgecolortype(0)><colortype(0)>を実行すると、クローズドポジション［被］を付与したパーティメンバーも、同様の効果を得ることができる。<br>再使用で解除する。\u3000<colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>永続",
+  "effects": [
+    "パーティメンバーひとりを対象とする。",
+    "自身に「クローズドポジション」を付与し、対象には「クローズドポジション［被］」を付与する。",
+    "効果中に「スタンダードフィニッシュ」「癒やしのワルツ」「攻めのタンゴ」「フィニシングムーブ」を実行すると、クローズドポジション［被］を付与したパーティメンバーも、同様の効果を得ることができる。",
+    "再使用で解除する。\u3000効果時間：永続"
+  ],
+  "role": "Physical Ranged DPS",
+  "job": {
+    "id": 38,
+    "name": "踊り子",
+    "abbreviation": "DNC"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 60,
+  "icon": {
+    "id": 3470,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 4,
+    "name": "アビリティ"
+  },
+  "attack_type": {
+    "id": 0,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 30,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 8,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 0,
+      "value": 0
+    },
+    "secondary": {
+      "type_id": 91,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": 30,
+    "effect_yalms": 0,
+    "cast_type": 1
+  },
+  "targeting": {
+    "self": false,
+    "party": true,
+    "alliance": false,
+    "hostile": false,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": false
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 0,
+    "behavior_type": 0,
+    "class_job_category_id": 150,
+    "source_class_job_id": 38,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

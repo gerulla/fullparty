@@ -1,0 +1,86 @@
+{
+  "kind": "ability",
+  "id": 25757,
+  "name": "Shadowbringer",
+  "description": "Deals unaspected damage to all enemies in a straight line before you with a potency of 600 for the first enemy, and 25% less for all remaining enemies.\nMaximum Charges: 2\nCan only be executed while under the effect of Darkside.",
+  "description_macro": "Deals unaspected damage to all enemies in a straight line before you with a potency of 600 for the first enemy, and 25% less for all remaining enemies.<br><colortype(504)><edgecolortype(505)>Maximum Charges: <edgecolortype(0)><colortype(0)>2<br>Can only be executed while under the effect of <colortype(506)><edgecolortype(507)>Darkside<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Deals unaspected damage to all enemies in a straight line before you with a potency of 600 for the first enemy, and 25% less for all remaining enemies.",
+    "Maximum Charges: 2",
+    "Can only be executed while under the effect of Darkside."
+  ],
+  "role": "Tank",
+  "job": {
+    "id": 32,
+    "name": "Dark Knight",
+    "abbreviation": "DRK"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 90,
+  "icon": {
+    "id": 3091,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 4,
+    "name": "Ability"
+  },
+  "attack_type": {
+    "id": 5,
+    "name": "魔法"
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 60,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 23,
+    "additional_cooldown_group": 73,
+    "max_charges": 2
+  },
+  "costs": {
+    "primary": {
+      "type_id": 0,
+      "value": 0
+    },
+    "secondary": {
+      "type_id": 123,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": 10,
+    "effect_yalms": 10,
+    "cast_type": 4
+  },
+  "targeting": {
+    "self": false,
+    "party": false,
+    "alliance": false,
+    "hostile": true,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 7,
+    "behavior_type": 0,
+    "class_job_category_id": 98,
+    "source_class_job_id": 32,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

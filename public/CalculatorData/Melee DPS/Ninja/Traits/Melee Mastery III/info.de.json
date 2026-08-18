@@ -1,0 +1,35 @@
+{
+  "kind": "trait",
+  "id": 661,
+  "name": "Verbessertes Ninjutsu III",
+  "description": "Erhöht den Attacke-Wert folgender Kommandos:\nAttacke-Wert von Wirbelklinge: 300\nAttacke-Wert von Windschlitzer: 240\nAttacke-Wert von Äolusklinge: 220\nAttacke-Wert von Fuma Shuriken: 500\nAttacke-Wert von Raiton: 740\nAttacke-Wert von Suiton: 580\nAttacke-Wert von Harnischbrecher: 240\nAttacke-Wert von Rad des Werdens: 400\nBei Meisui: 550\nAttacke-Wert von Tanzendes Raiju: 700\nAttacke-Wert von Brüllendes Raiju: 700",
+  "description_macro": "Erhöht den Attacke-Wert folgender Kommandos:<br>Attacke-Wert von <colortype(502)><edgecolortype(503)>Wirbelklinge<edgecolortype(0)><colortype(0)>: 300<br>Attacke-Wert von <colortype(502)><edgecolortype(503)>Windschlitzer<edgecolortype(0)><colortype(0)>: 240<br>Attacke-Wert von <colortype(502)><edgecolortype(503)>Äolusklinge<edgecolortype(0)><colortype(0)>: 220<br>Attacke-Wert von <colortype(502)><edgecolortype(503)>Fuma Shuriken<edgecolortype(0)><colortype(0)>: 500<br>Attacke-Wert von <colortype(502)><edgecolortype(503)>Raiton<edgecolortype(0)><colortype(0)>: 740<br>Attacke-Wert von <colortype(502)><edgecolortype(503)>Suiton<edgecolortype(0)><colortype(0)>: 580<br>Attacke-Wert von <colortype(502)><edgecolortype(503)>Harnischbrecher<edgecolortype(0)><colortype(0)>: 240<br>Attacke-Wert von <colortype(502)><edgecolortype(503)>Rad des Werdens<edgecolortype(0)><colortype(0)>: 400<br>Bei <colortype(506)><edgecolortype(507)>Meisui<edgecolortype(0)><colortype(0)>: 550<br>Attacke-Wert von <colortype(502)><edgecolortype(503)>Tanzendes Raiju<edgecolortype(0)><colortype(0)>: 700<br>Attacke-Wert von <colortype(502)><edgecolortype(503)>Brüllendes Raiju<edgecolortype(0)><colortype(0)>: 700",
+  "effects": [
+    "Erhöht den Attacke-Wert folgender Kommandos:",
+    "Attacke-Wert von Wirbelklinge: 300",
+    "Attacke-Wert von Windschlitzer: 240",
+    "Attacke-Wert von Äolusklinge: 220",
+    "Attacke-Wert von Fuma Shuriken: 500",
+    "Attacke-Wert von Raiton: 740",
+    "Attacke-Wert von Suiton: 580",
+    "Attacke-Wert von Harnischbrecher: 240",
+    "Attacke-Wert von Rad des Werdens: 400",
+    "Bei Meisui: 550",
+    "Attacke-Wert von Tanzendes Raiju: 700",
+    "Attacke-Wert von Brüllendes Raiju: 700"
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 30,
+    "name": "Ninja",
+    "abbreviation": "NIN"
+  },
+  "unlock_level": 94,
+  "value": 0,
+  "icon": {
+    "id": 6803,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 92,
+  "source_class_job_id": 30
+}

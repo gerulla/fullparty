@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 282,
+  "name": "Maîtrise de Tir droit",
+  "description": "Remplace Tir droit par Flèche rayonnante.",
+  "description_macro": "Remplace <colortype(500)><edgecolortype(501)>Tir droit<edgecolortype(0)><colortype(0)> par <colortype(500)><edgecolortype(501)>Flèche rayonnante<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Remplace Tir droit par Flèche rayonnante."
+  ],
+  "role": "Physical Ranged DPS",
+  "job": {
+    "id": 23,
+    "name": "Barde",
+    "abbreviation": "BRD"
+  },
+  "unlock_level": 70,
+  "value": 0,
+  "icon": {
+    "id": 5311,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 24,
+  "source_class_job_id": 23
+}

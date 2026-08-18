@@ -1,0 +1,26 @@
+{
+  "kind": "trait",
+  "id": 25,
+  "name": "ケアル効果アップ",
+  "description": "次に詠唱するケアルラの消費ＭＰを0にする。\n効果時間：15秒\n発動条件：ケアル実行時（発動確率15％）",
+  "description_macro": "次に詠唱するケアルラの消費ＭＰを0にする。<br><colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>15秒<br><colortype(504)><edgecolortype(505)>発動条件：<edgecolortype(0)><colortype(0)>ケアル実行時（発動確率15％）",
+  "effects": [
+    "次に詠唱するケアルラの消費ＭＰを0にする。",
+    "効果時間：15秒",
+    "発動条件：ケアル実行時（発動確率15％）"
+  ],
+  "role": "Healer",
+  "job": {
+    "id": 24,
+    "name": "白魔道士",
+    "abbreviation": "WHM"
+  },
+  "unlock_level": 32,
+  "value": 0,
+  "icon": {
+    "id": 5330,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 53,
+  "source_class_job_id": 6
+}

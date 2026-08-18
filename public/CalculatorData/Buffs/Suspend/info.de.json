@@ -1,0 +1,51 @@
+{
+  "kind": "combat_status",
+  "id": 4258,
+  "name": "Schweben",
+  "description": "Schwebt einige Ilme über dem Boden.",
+  "effects": [
+    "Schwebt einige Ilme über dem Boden."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 215037,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 12,
+    "modifier": 0
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 41620,
+      "name": "Schweben",
+      "description": "Du lässt dich oder das anvisierte Gruppenmitglied schweben. Während des Schwebens kann einigen Mechaniken automatisch ausgewichen werden.\nDauer: 60 Sekunden\nGemeinsamer Reaktivierungs-Timer mit allen anderen Waffenfertigkeiten und Magie",
+      "description_macro": "Du lässt dich oder das anvisierte Grup<->pen<->mit<->glied schweben. Während des Schwebens kann einigen Mechaniken automatisch ausgewichen werden.<br>Dauer: 60 Sekunden<br>Gemeinsamer Reaktivierungs-Timer mit allen anderen Waf<->fen<->fer<->tig<->kei<->ten und Magie",
+      "unlock_level": 0,
+      "relations": [
+        "granted_by_description",
+        "same_name"
+      ],
+      "roles": [
+        "Phantom Jobs"
+      ],
+      "jobs": [
+        {
+          "id": 7,
+          "name": "Phantom Phantom-Geomant",
+          "abbreviation": "Ph-Geomant",
+          "is_phantom": true
+        }
+      ]
+    }
+  ]
+}

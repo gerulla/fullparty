@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 634,
+  "name": "Enhanced Essential Dignity II",
+  "description": "Allows a third charge of Essential Dignity.",
+  "description_macro": "Allows a third charge of <colortype(500)><edgecolortype(501)>Essential Dignity<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Allows a third charge of Essential Dignity."
+  ],
+  "role": "Healer",
+  "job": {
+    "id": 33,
+    "name": "Astrologian",
+    "abbreviation": "AST"
+  },
+  "unlock_level": 98,
+  "value": 3,
+  "icon": {
+    "id": 6124,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 99,
+  "source_class_job_id": 33
+}

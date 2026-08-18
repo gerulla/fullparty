@@ -1,0 +1,90 @@
+{
+  "kind": "ability",
+  "id": 36945,
+  "name": "Affenprankenhieb",
+  "description": "Du führst eine physische Attacke aus.\nAttacke-Wert: 260\nBei Rechtschaffene Faust: 460\nZusatzeffekt während Opo-Opo-Form: Trifft garantiert kritisch.\nIst ein Effekt aktiv, der deine Rate kritischer oder direkter Treffer steigert, erhöht sich auch der Attacke-Wert.\nZusatzeffekt: Du wechselst in die Raptor-Form.\nDauer: 30 Sekunden",
+  "description_macro": "Du führst eine physische Attacke aus.<br>Attacke-Wert: 260<br>Bei <colortype(506)><edgecolortype(507)>Rechtschaffene Faust<edgecolortype(0)><colortype(0)>: 460<br>Zusatzeffekt während <colortype(506)><edgecolortype(507)>Opo-Opo-Form<edgecolortype(0)><colortype(0)>: Trifft garantiert kritisch.<br>Ist ein Effekt aktiv, der deine Rate kritischer oder direkter Treffer steigert, erhöht sich auch der Attacke-Wert.<br>Zusatzeffekt: Du wechselst in die <colortype(506)><edgecolortype(507)>Raptor-Form<edgecolortype(0)><colortype(0)>.<br>Dauer: 30 Sekunden",
+  "effects": [
+    "Du führst eine physische Attacke aus.",
+    "Attacke-Wert: 260",
+    "Bei Rechtschaffene Faust: 460",
+    "Zusatzeffekt während Opo-Opo-Form: Trifft garantiert kritisch.",
+    "Ist ein Effekt aktiv, der deine Rate kritischer oder direkter Treffer steigert, erhöht sich auch der Attacke-Wert.",
+    "Zusatzeffekt: Du wechselst in die Raptor-Form.",
+    "Dauer: 30 Sekunden"
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 20,
+    "name": "Mönch",
+    "abbreviation": "MÖN"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 92,
+  "icon": {
+    "id": 2982,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 3,
+    "name": "Waffenfertigkeit"
+  },
+  "attack_type": {
+    "id": 4294967295,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 2.5,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 58,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 100,
+      "value": 577
+    },
+    "secondary": {
+      "type_id": 0,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": -1,
+    "effect_yalms": 0,
+    "cast_type": 1
+  },
+  "targeting": {
+    "self": false,
+    "party": false,
+    "alliance": false,
+    "hostile": true,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": false
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 7,
+    "behavior_type": 0,
+    "class_job_category_id": 21,
+    "source_class_job_id": 20,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

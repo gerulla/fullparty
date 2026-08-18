@@ -1,0 +1,96 @@
+{
+  "kind": "ability",
+  "id": 36924,
+  "name": "Primal Wrath",
+  "description": "Delivers an attack to all nearby enemies with a potency of 700 for the first enemy, and 50% less for all remaining enemies.\nCan only be executed when Wrathful.\n\n※This action cannot be assigned to a hotbar.\n※Inner Release changes to Primal Wrath when requirements for execution are met.",
+  "description_macro": "Delivers an attack to all nearby enemies with a potency of 700 for the first enemy, and 50% less for all remaining enemies.<br>Can only be executed when <colortype(506)><edgecolortype(507)>Wrathful<edgecolortype(0)><colortype(0)>.<br><br>※This action cannot be assigned to a hotbar.<br>※<colortype(500)><edgecolortype(501)>Inner Release<edgecolortype(0)><colortype(0)> changes to <colortype(500)><edgecolortype(501)>Primal Wrath<edgecolortype(0)><colortype(0)> when requirements for execution are met.",
+  "effects": [
+    "Delivers an attack to all nearby enemies with a potency of 700 for the first enemy, and 50% less for all remaining enemies.",
+    "Can only be executed when Wrathful.",
+    "※This action cannot be assigned to a hotbar.",
+    "※Inner Release changes to Primal Wrath when requirements for execution are met."
+  ],
+  "role": "Tank",
+  "job": {
+    "id": 21,
+    "name": "Warrior",
+    "abbreviation": "WAR"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 96,
+  "icon": {
+    "id": 2574,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 4,
+    "name": "Ability"
+  },
+  "attack_type": {
+    "id": 4294967295,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 1,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 1,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 0,
+      "value": 0
+    },
+    "secondary": {
+      "type_id": 32,
+      "value": 3901
+    }
+  },
+  "range": {
+    "target_yalms": 0,
+    "effect_yalms": 5,
+    "cast_type": 2
+  },
+  "targeting": {
+    "self": true,
+    "party": false,
+    "alliance": false,
+    "hostile": false,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": {
+      "id": 152,
+      "status": {
+        "id": 3901,
+        "name": "Wrathful",
+        "description": "Able to execute Primal Wrath.",
+        "icon_id": 212571,
+        "max_stacks": 0
+      }
+    }
+  },
+  "metadata": {
+    "aspect_id": 7,
+    "behavior_type": 0,
+    "class_job_category_id": 22,
+    "source_class_job_id": 0,
+    "is_role_action": false,
+    "is_player_action": false,
+    "is_derived_action": true,
+    "equivalence_group": 0
+  }
+}

@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 735,
+  "name": "Raw Intuition",
+  "description": "Damage taken is reduced and HP is restored with each weaponskill successfully delivered.",
+  "effects": [
+    "Damage taken is reduced and HP is restored with each weaponskill successfully delivered."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 212555,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 30,
+  "parameter": {
+    "effect": 0,
+    "modifier": -20
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 3551,
+      "name": "Raw Intuition",
+      "description": "Reduces damage taken by 10%.\nDuration: 6s\nAdditional Effect: Restores HP with each weaponskill successfully delivered\nCure Potency: 400\nShares a recast timer with Nascent Flash.",
+      "description_macro": "Reduces damage taken by 10%.<br><colortype(504)><edgecolortype(505)>Duration:<edgecolortype(0)><colortype(0)> 6s<br><colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>Restores HP with each weaponskill successfully delivered<br><colortype(504)><edgecolortype(505)>Cure Potency: <edgecolortype(0)><colortype(0)>400<if([gnum68==21],<if([gnum72>=76],<br>Shares a recast timer with <colortype(500)><edgecolortype(501)>Nascent Flash<edgecolortype(0)><colortype(0)>.,)>,)>",
+      "unlock_level": 56,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Tank"
+      ],
+      "jobs": [
+        {
+          "id": 21,
+          "name": "Warrior",
+          "abbreviation": "WAR",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 524,
+  "name": "Verbesserte Fänge",
+  "description": "Nach erfolgreicher Ausführung von Flankenbiss, Flankenreißer, Nackenbiss oder Nackenreißer kannst du Todesrasseln ausführen.",
+  "description_macro": "Nach erfolgreicher Ausführung von <colortype(502)><edgecolortype(503)>Flankenbiss<edgecolortype(0)><colortype(0)>, <colortype(502)><edgecolortype(503)>Flankenreißer<edgecolortype(0)><colortype(0)>, <colortype(502)><edgecolortype(503)>Nackenbiss<edgecolortype(0)><colortype(0)> oder <colortype(502)><edgecolortype(503)>Nackenreißer<edgecolortype(0)><colortype(0)> kannst du <colortype(502)><edgecolortype(503)>Todesrasseln<edgecolortype(0)><colortype(0)> ausführen.",
+  "effects": [
+    "Nach erfolgreicher Ausführung von Flankenbiss, Flankenreißer, Nackenbiss oder Nackenreißer kannst du Todesrasseln ausführen."
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 41,
+    "name": "Viper",
+    "abbreviation": "VPR"
+  },
+  "unlock_level": 55,
+  "value": 0,
+  "icon": {
+    "id": 6501,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 196,
+  "source_class_job_id": 41
+}

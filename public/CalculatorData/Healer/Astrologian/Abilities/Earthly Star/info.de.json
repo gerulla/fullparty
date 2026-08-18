@@ -1,0 +1,92 @@
+{
+  "kind": "ability",
+  "id": 7439,
+  "name": "Irdischer Stern",
+  "description": "Du erschaffst einen irdischen Stern und erhältst Irdische Herrschaft.\nDauer: 10 Sekunden\nBei erneuter Anwendung während dieses Status wird Stellarer Knall ausgelöst, der eine elementneutrale magische Flächenattacke mit Attacke-Wert 205 ausführt.\nZusatzeffekt: Heilt eigene LP und die von Gruppenmitgliedern in der Nähe.\nHeilpotenzial: 540\nBei Ende des Effekts wird der irdische Stern gestärkt und du erhältst für 10 Sekunden Planetare Herrschaft.\nBei erneuter Ausführung oder nach Ende der Wirkung von Planetare Herrschaft wird Stellare Explosion ausgelöst, die eine elementneutrale magische Flächenattacke mit Attacke-Wert 310 ausführt.\nZusatzeffekt: Heilt eigene LP und die von Gruppenmitgliedern in der Nähe.\nHeilpotenzial: 720",
+  "description_macro": "Du erschaffst einen irdischen Stern und erhältst <colortype(506)><edgecolortype(507)>Irdische Herrschaft<edgecolortype(0)><colortype(0)>.<br>Dauer: 10 Sekunden<br>Bei erneuter Anwendung während dieses Status wird <colortype(502)><edgecolortype(503)>Stellarer Knall<edgecolortype(0)><colortype(0)> ausgelöst, der eine elementneutrale magische Flächenattacke mit Attacke-Wert 205 ausführt.<br>Zusatzeffekt: Heilt eigene LP und die von Grup<->pen<->mit<->gliedern in der Nähe.<br>Heilpotenzial: 540<br>Bei Ende des Effekts wird der irdische Stern gestärkt und du erhältst für 10 Sekunden <colortype(506)><edgecolortype(507)>Planetare Herrschaft<edgecolortype(0)><colortype(0)>.<br>Bei erneuter Ausführung oder nach Ende der Wirkung von Planetare Herrschaft wird <colortype(502)><edgecolortype(503)>Stellare Explosion<edgecolortype(0)><colortype(0)> ausgelöst, die eine elementneutrale magische Flächenattacke mit Attacke-Wert 310 ausführt.<br>Zusatzeffekt: Heilt eigene LP und die von Grup<->pen<->mit<->gliedern in der Nähe.<br>Heilpotenzial: 720",
+  "effects": [
+    "Du erschaffst einen irdischen Stern und erhältst Irdische Herrschaft.",
+    "Dauer: 10 Sekunden",
+    "Bei erneuter Anwendung während dieses Status wird Stellarer Knall ausgelöst, der eine elementneutrale magische Flächenattacke mit Attacke-Wert 205 ausführt.",
+    "Zusatzeffekt: Heilt eigene LP und die von Gruppenmitgliedern in der Nähe.",
+    "Heilpotenzial: 540",
+    "Bei Ende des Effekts wird der irdische Stern gestärkt und du erhältst für 10 Sekunden Planetare Herrschaft.",
+    "Bei erneuter Ausführung oder nach Ende der Wirkung von Planetare Herrschaft wird Stellare Explosion ausgelöst, die eine elementneutrale magische Flächenattacke mit Attacke-Wert 310 ausführt.",
+    "Zusatzeffekt: Heilt eigene LP und die von Gruppenmitgliedern in der Nähe.",
+    "Heilpotenzial: 720"
+  ],
+  "role": "Healer",
+  "job": {
+    "id": 33,
+    "name": "Astrologe",
+    "abbreviation": "AST"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 62,
+  "icon": {
+    "id": 3143,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 4,
+    "name": "Talent"
+  },
+  "attack_type": {
+    "id": 0,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 60,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 13,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 0,
+      "value": 0
+    },
+    "secondary": {
+      "type_id": 0,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": 30,
+    "effect_yalms": 20,
+    "cast_type": 7
+  },
+  "targeting": {
+    "self": false,
+    "party": false,
+    "alliance": false,
+    "hostile": false,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": true,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 0,
+    "behavior_type": 0,
+    "class_job_category_id": 99,
+    "source_class_job_id": 33,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

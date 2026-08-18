@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 1217,
+  "name": "Sponte",
+  "description": "La prochaine action ne consomme aucun PM.",
+  "effects": [
+    "La prochaine action ne consomme aucun PM."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 212631,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 6,
+    "modifier": 0
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 7430,
+      "name": "Sponte",
+      "description": "Réduit de 100% le coût en PM de la prochaine action.\nDurée : 12s\nMaximum de charges : 2",
+      "description_macro": "Réduit de 100% le coût en PM de la prochaine action.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 12s<br><colortype(506)><edgecolortype(507)>Maximum de charges<nbsp>:<edgecolortype(0)><colortype(0)> 2",
+      "unlock_level": 58,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Healer"
+      ],
+      "jobs": [
+        {
+          "id": 24,
+          "name": "Mage Blanc",
+          "abbreviation": "MBL",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

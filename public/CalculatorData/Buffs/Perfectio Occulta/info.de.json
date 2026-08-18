@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 3859,
+  "name": "Perfectio occulta",
+  "description": "Wird während der Effektdauer Communio ausgeführt, ändert sich der Status zu Perfectio parata.",
+  "effects": [
+    "Wird während der Effektdauer Communio ausgeführt, ändert sich der Status zu Perfectio parata."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 212942,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 180,
+  "source_abilities": [
+    {
+      "id": 24385,
+      "name": "Große Mahd",
+      "description": "Du führst eine physische Attacke auf alle Gegner in gerader Linie vor dir aus.\nAttacke-Wert umso höher, je mehr Stapel Totenopfer auf dir aktiv sind.\nAttacke-Wert: 720 bis 1.000\nAttacke-Wert verringert sich ab dem zweiten Gegner um 20 %.\nBei Ausführung werden alle Totenopfer verbraucht.\nZusatzeffekt: Gewährt dir Lemurenschleier.\nDauer: 30 Sekunden\nZusatzeffekt: Gewährt dir Perfectio occulta.\nDauer: 30 Sekunden\nEffekt von Perfectio occulta: Wird während der Effektdauer Communio ausgeführt\\Bedingung: Opfergeist nicht aktiv und mind. 1 Totenopfer aktiv",
+      "description_macro": "Du führst eine physische Attacke auf alle Gegner in gerader Linie vor dir aus.<br>Attacke-Wert umso höher, je mehr Stapel <colortype(506)><edgecolortype(507)>Totenopfer<edgecolortype(0)><colortype(0)> auf dir aktiv sind.<br>Attacke-Wert: 720 bis 1.000<br>Attacke-Wert verringert sich ab dem zweiten Gegner um 20<nbsp>%.<br>Bei Ausführung werden alle <colortype(506)><edgecolortype(507)>Totenopfer<edgecolortype(0)><colortype(0)> verbraucht.<br>Zusatzeffekt: Gewährt dir <colortype(506)><edgecolortype(507)>Lemurenschleier<edgecolortype(0)><colortype(0)>.<br>Dauer: 30 Sekunden<br><if([gnum68==39],<if([gnum72>=100],Zusatzeffekt: Gewährt dir <colortype(506)><edgecolortype(507)>Perfectio occulta<edgecolortype(0)><colortype(0)>.<br>Dauer: 30 Sekunden<br>Effekt von <colortype(506)><edgecolortype(507)>Perfectio occulta<edgecolortype(0)><colortype(0)>: Wird während der Effektdauer <colortype(502)><edgecolortype(503)>Communio<edgecolortype(0)><colortype(0)> ausgeführt\\, ändert sich der Status zu <colortype(506)><edgecolortype(507)>Perfectio parata<edgecolortype(0)><colortype(0)>.<br>,)>,)>Bedingung: <colortype(500)><edgecolortype(501)>Opfergeist<edgecolortype(0)><colortype(0)> nicht aktiv und mind. 1 <colortype(506)><edgecolortype(507)>Totenopfer<edgecolortype(0)><colortype(0)> aktiv",
+      "unlock_level": 88,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 39,
+          "name": "Schnitter",
+          "abbreviation": "SNT",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

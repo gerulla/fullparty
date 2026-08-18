@@ -1,0 +1,84 @@
+{
+  "kind": "ability",
+  "id": 35922,
+  "name": "Twinblood",
+  "description": "Changes to Twinblood Bite\\ when requirements for execution are met.",
+  "description_macro": "Changes to <if([gnum68==41],<if([gnum72>=92],<colortype(500)><edgecolortype(501)>Twinblood Bite<edgecolortype(0)><colortype(0)>\\, <colortype(500)><edgecolortype(501)>Twinblood Thresh<edgecolortype(0)><colortype(0)>\\, or <colortype(500)><edgecolortype(501)>Uncoiled Twinblood<edgecolortype(0)><colortype(0)>,<if([gnum68==41],<if([gnum72>=80],<colortype(500)><edgecolortype(501)>Twinblood Bite<edgecolortype(0)><colortype(0)> or <colortype(500)><edgecolortype(501)>Twinblood Thresh<edgecolortype(0)><colortype(0)>,<colortype(500)><edgecolortype(501)>Twinblood Bite<edgecolortype(0)><colortype(0)>)>,<colortype(500)><edgecolortype(501)>Twinblood Bite<edgecolortype(0)><colortype(0)>)>)>,<if([gnum68==41],<if([gnum72>=80],<colortype(500)><edgecolortype(501)>Twinblood Bite<edgecolortype(0)><colortype(0)> or <colortype(500)><edgecolortype(501)>Twinblood Thresh<edgecolortype(0)><colortype(0)>,<colortype(500)><edgecolortype(501)>Twinblood Bite<edgecolortype(0)><colortype(0)>)>,<colortype(500)><edgecolortype(501)>Twinblood Bite<edgecolortype(0)><colortype(0)>)>)> when requirements for execution are met.",
+  "effects": [
+    "Changes to Twinblood Bite\\ when requirements for execution are met."
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 41,
+    "name": "Viper",
+    "abbreviation": "VPR"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 75,
+  "icon": {
+    "id": 3745,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 4,
+    "name": "Ability"
+  },
+  "attack_type": {
+    "id": 0,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 1,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 3,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 0,
+      "value": 0
+    },
+    "secondary": {
+      "type_id": 73,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": 0,
+    "effect_yalms": 0,
+    "cast_type": 1
+  },
+  "targeting": {
+    "self": true,
+    "party": false,
+    "alliance": false,
+    "hostile": false,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 0,
+    "behavior_type": 0,
+    "class_job_category_id": 196,
+    "source_class_job_id": 41,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

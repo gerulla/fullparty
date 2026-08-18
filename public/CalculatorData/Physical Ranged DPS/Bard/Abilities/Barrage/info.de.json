@@ -1,0 +1,88 @@
+{
+  "kind": "ability",
+  "id": 107,
+  "name": "Sperrfeuer",
+  "description": "Du gewährst dir Sperrfeuer.\nDauer: 10 Sekunden\nEffekt von Sperrfeuer: Glänzender Pfeil oder Schattenbiss können ausgeführt werden, wobei Glänzender Pfeil dreimal Schaden anrichtet. Kann Schattenbiss ausgeführt werden, steigt sein Attacke-Wert bei Ausführung außerdem auf 300.\nZusatzeffekt: Resonanzpfeilbereit\nDauer: 30 Sekunden",
+  "description_macro": "Du gewährst dir <colortype(506)><edgecolortype(507)>Sperrfeuer<edgecolortype(0)><colortype(0)>.<br>Dauer: 10 Sekunden<br>Effekt von <colortype(506)><edgecolortype(507)>Sperrfeuer<edgecolortype(0)><colortype(0)>: <if([gnum68==23],<if([gnum72>=70],<colortype(502)><edgecolortype(503)>Glänzender Pfeil<edgecolortype(0)><colortype(0)>,<colortype(502)><edgecolortype(503)>Direkter Schuss<edgecolortype(0)><colortype(0)>)>,<colortype(502)><edgecolortype(503)>Direkter Schuss<edgecolortype(0)><colortype(0)>)> <if([gnum68==23],<if([gnum72>=72],oder <colortype(502)><edgecolortype(503)>Schattenbiss<edgecolortype(0)><colortype(0)>,<if([gnum72>=25],<if([gnum68==5],oder <colortype(502)><edgecolortype(503)>Sternenhagel<edgecolortype(0)><colortype(0)>,<if([gnum68==23],oder <colortype(502)><edgecolortype(503)>Sternenhagel<edgecolortype(0)><colortype(0)>,)>)>,)>)>,<if([gnum72>=25],<if([gnum68==5],oder <colortype(502)><edgecolortype(503)>Sternenhagel<edgecolortype(0)><colortype(0)>,<if([gnum68==23],oder <colortype(502)><edgecolortype(503)>Sternenhagel<edgecolortype(0)><colortype(0)>,)>)>,)>)> können ausgeführt werden, wobei <if([gnum68==23],<if([gnum72>=70],<colortype(502)><edgecolortype(503)>Glänzender Pfeil<edgecolortype(0)><colortype(0)>,<colortype(502)><edgecolortype(503)>Direkter Schuss<edgecolortype(0)><colortype(0)>)>,<colortype(502)><edgecolortype(503)>Direkter Schuss<edgecolortype(0)><colortype(0)>)> dreimal Schaden anrichtet. Kann <if([gnum68==23],<if([gnum72>=72],<colortype(502)><edgecolortype(503)>Schattenbiss<edgecolortype(0)><colortype(0)>,<if([gnum72>=25],<if([gnum68==5],<colortype(502)><edgecolortype(503)>Sternenhagel<edgecolortype(0)><colortype(0)>,<if([gnum68==23],<colortype(502)><edgecolortype(503)>Sternenhagel<edgecolortype(0)><colortype(0)>,)>)>,)>)>,<if([gnum72>=25],<if([gnum68==5],<colortype(502)><edgecolortype(503)>Sternenhagel<edgecolortype(0)><colortype(0)>,<if([gnum68==23],<colortype(502)><edgecolortype(503)>Sternenhagel<edgecolortype(0)><colortype(0)>,)>)>,)>)> ausgeführt werden, steigt sein Attacke-Wert bei Ausführung außerdem auf <if([gnum68==23],<if([gnum72>=72],300,220)>,220)>.<if([gnum68==23],<if([gnum72>=96],<br>Zusatzeffekt: <colortype(506)><edgecolortype(507)>Resonanzpfeilbereit<edgecolortype(0)><colortype(0)><br>Dauer: 30 Sekunden,)>,)>",
+  "effects": [
+    "Du gewährst dir Sperrfeuer.",
+    "Dauer: 10 Sekunden",
+    "Effekt von Sperrfeuer: Glänzender Pfeil oder Schattenbiss können ausgeführt werden, wobei Glänzender Pfeil dreimal Schaden anrichtet. Kann Schattenbiss ausgeführt werden, steigt sein Attacke-Wert bei Ausführung außerdem auf 300.",
+    "Zusatzeffekt: Resonanzpfeilbereit",
+    "Dauer: 30 Sekunden"
+  ],
+  "role": "Physical Ranged DPS",
+  "job": {
+    "id": 23,
+    "name": "Barde",
+    "abbreviation": "BRD"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 38,
+  "icon": {
+    "id": 353,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 4,
+    "name": "Talent"
+  },
+  "attack_type": {
+    "id": 0,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 120,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 20,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 0,
+      "value": 0
+    },
+    "secondary": {
+      "type_id": 0,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": 0,
+    "effect_yalms": 0,
+    "cast_type": 1
+  },
+  "targeting": {
+    "self": true,
+    "party": false,
+    "alliance": false,
+    "hostile": false,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 0,
+    "behavior_type": 0,
+    "class_job_category_id": 50,
+    "source_class_job_id": 5,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

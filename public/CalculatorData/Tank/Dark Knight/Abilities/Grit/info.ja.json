@@ -1,0 +1,85 @@
+{
+  "kind": "ability",
+  "id": 3629,
+  "name": "グリットスタンス",
+  "description": "戦闘中の敵から自身に向けられる敵視を非常に大きく上昇させる。\n再使用で解除する。\u3000効果時間：永続",
+  "description_macro": "戦闘中の敵から自身に向けられる敵視を非常に大きく上昇させる。<br>再使用で解除する。\u3000<colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>永続",
+  "effects": [
+    "戦闘中の敵から自身に向けられる敵視を非常に大きく上昇させる。",
+    "再使用で解除する。\u3000効果時間：永続"
+  ],
+  "role": "Tank",
+  "job": {
+    "id": 32,
+    "name": "暗黒騎士",
+    "abbreviation": "DRK"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 10,
+  "icon": {
+    "id": 3070,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 4,
+    "name": "アビリティ"
+  },
+  "attack_type": {
+    "id": 0,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 2,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 2,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 0,
+      "value": 0
+    },
+    "secondary": {
+      "type_id": 0,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": 0,
+    "effect_yalms": 0,
+    "cast_type": 1
+  },
+  "targeting": {
+    "self": true,
+    "party": false,
+    "alliance": false,
+    "hostile": false,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 0,
+    "behavior_type": 0,
+    "class_job_category_id": 98,
+    "source_class_job_id": 32,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

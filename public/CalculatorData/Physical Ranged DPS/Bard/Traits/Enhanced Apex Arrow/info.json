@@ -1,0 +1,26 @@
+{
+  "kind": "trait",
+  "id": 446,
+  "name": "Enhanced Apex Arrow",
+  "description": "Grants Blast Arrow Ready upon executing Apex Arrow after the Soul Voice Gauge has reached 80 or higher.\nDuration: 10s\nApex Arrow becomes Blast Arrow while under this effect.",
+  "description_macro": "Grants <colortype(506)><edgecolortype(507)>Blast Arrow Ready<edgecolortype(0)><colortype(0)> upon executing <colortype(500)><edgecolortype(501)>Apex Arrow<edgecolortype(0)><colortype(0)> after the <colortype(500)><edgecolortype(501)>Soul Voice Gauge<edgecolortype(0)><colortype(0)> has reached 80 or higher.<br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>10s<br><colortype(500)><edgecolortype(501)>Apex Arrow<edgecolortype(0)><colortype(0)> becomes <colortype(500)><edgecolortype(501)>Blast Arrow<edgecolortype(0)><colortype(0)> while under this effect.",
+  "effects": [
+    "Grants Blast Arrow Ready upon executing Apex Arrow after the Soul Voice Gauge has reached 80 or higher.",
+    "Duration: 10s",
+    "Apex Arrow becomes Blast Arrow while under this effect."
+  ],
+  "role": "Physical Ranged DPS",
+  "job": {
+    "id": 23,
+    "name": "Bard",
+    "abbreviation": "BRD"
+  },
+  "unlock_level": 86,
+  "value": 0,
+  "icon": {
+    "id": 5318,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 24,
+  "source_class_job_id": 23
+}

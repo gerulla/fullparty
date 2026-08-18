@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 3838,
+  "name": "Great Nebula",
+  "description": "Maximum HP is increased while damage taken is reduced.",
+  "effects": [
+    "Maximum HP is increased while damage taken is reduced."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 213619,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": -10
+  },
+  "class_job_category_id": 149,
+  "source_abilities": [
+    {
+      "id": 36935,
+      "name": "Great Nebula",
+      "description": "Reduces damage taken by 40%.\nAdditional Effect: Increases maximum HP by 20% and restores the amount increased.\nDuration: 15s",
+      "description_macro": "Reduces damage taken by 40%.<br><colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>Increases maximum HP by 20% and restores the amount increased.<br><colortype(504)><edgecolortype(505)>Duration:<edgecolortype(0)><colortype(0)> 15s",
+      "unlock_level": 92,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Tank"
+      ],
+      "jobs": [
+        {
+          "id": 37,
+          "name": "Gunbreaker",
+          "abbreviation": "GNB",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

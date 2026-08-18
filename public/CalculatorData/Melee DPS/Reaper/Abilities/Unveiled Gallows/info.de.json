@@ -1,0 +1,94 @@
+{
+  "kind": "ability",
+  "id": 24391,
+  "name": "Galgengriff",
+  "description": "Du rufst deinen Avatar, der eine physische Attacke auf das Ziel ausführt.\nAttacke-Wert: 440\nZusatzeffekt: Gewährt dir Nichtssense.\nDauer: 30 Sekunden\nIst Nichtssense bereits aktiv, wird es auf 1 Stapel zurückgesetzt.\nKann nicht zugleich mit Henkerssense aktiv sein.\nBedingung: Hängen aktiv\nSeelenbalken-Kosten: 50\nGemeinsamer Reaktivierungs-Timer mit allen anderen Avatar-Kommandos außer Völlerei\nWährend Hängen ändert sich Knochengarbe zu diesem Kommando.\nKann nicht im Kommandomenü angelegt werden.",
+  "description_macro": "Du rufst deinen Avatar, der eine physische Attacke auf das Ziel ausführt.<br>Attacke-Wert: <if([gnum68==39],<if([gnum72>=94],440,400)>,400)><br>Zusatzeffekt: Gewährt dir <colortype(506)><edgecolortype(507)>Nichtssense<edgecolortype(0)><colortype(0)>.<br>Dauer: 30 Sekunden<br>Ist <colortype(506)><edgecolortype(507)>Nichtssense<edgecolortype(0)><colortype(0)> bereits aktiv, wird es auf 1 Stapel zurückgesetzt.<br><if([gnum68==39],<if([gnum72>=96],Kann nicht zugleich mit <colortype(500)><edgecolortype(501)>Henkerssense<edgecolortype(0)><colortype(0)> aktiv sein.<br>,)>,)>Bedingung: <colortype(506)><edgecolortype(507)>Hängen<edgecolortype(0)><colortype(0)> aktiv<br>Seelenbalken-Kosten: 50<br>Gemeinsamer Reaktivierungs-Timer mit allen anderen <colortype(502)><edgecolortype(503)>Avatar<edgecolortype(0)><colortype(0)>-Kommandos außer <colortype(502)><edgecolortype(503)>Völlerei<edgecolortype(0)><colortype(0)><br>Während <colortype(506)><edgecolortype(507)>Hängen<edgecolortype(0)><colortype(0)> ändert sich <colortype(502)><edgecolortype(503)>Knochengarbe<edgecolortype(0)><colortype(0)> zu diesem Kommando.<br>Kann nicht im Kommandomenü angelegt werden.",
+  "effects": [
+    "Du rufst deinen Avatar, der eine physische Attacke auf das Ziel ausführt.",
+    "Attacke-Wert: 440",
+    "Zusatzeffekt: Gewährt dir Nichtssense.",
+    "Dauer: 30 Sekunden",
+    "Ist Nichtssense bereits aktiv, wird es auf 1 Stapel zurückgesetzt.",
+    "Kann nicht zugleich mit Henkerssense aktiv sein.",
+    "Bedingung: Hängen aktiv",
+    "Seelenbalken-Kosten: 50",
+    "Gemeinsamer Reaktivierungs-Timer mit allen anderen Avatar-Kommandos außer Völlerei",
+    "Während Hängen ändert sich Knochengarbe zu diesem Kommando.",
+    "Kann nicht im Kommandomenü angelegt werden."
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 39,
+    "name": "Schnitter",
+    "abbreviation": "SNT"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 70,
+  "icon": {
+    "id": 3619,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 4,
+    "name": "Talent"
+  },
+  "attack_type": {
+    "id": 1,
+    "name": "斬"
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 1,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 1,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 64,
+      "value": 50
+    },
+    "secondary": {
+      "type_id": 113,
+      "value": 2589
+    }
+  },
+  "range": {
+    "target_yalms": -1,
+    "effect_yalms": 0,
+    "cast_type": 1
+  },
+  "targeting": {
+    "self": false,
+    "party": false,
+    "alliance": false,
+    "hostile": true,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 7,
+    "behavior_type": 0,
+    "class_job_category_id": 180,
+    "source_class_job_id": 0,
+    "is_role_action": false,
+    "is_player_action": false,
+    "is_derived_action": true,
+    "equivalence_group": 0
+  }
+}

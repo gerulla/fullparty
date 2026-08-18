@@ -1,0 +1,25 @@
+{
+  "kind": "trait",
+  "id": 450,
+  "name": "Verbessertes Justieren",
+  "description": "Erlaubt es dir, Justieren aufzuladen.\nMaximale Aufladungen: 2",
+  "description_macro": "Erlaubt es dir, <colortype(502)><edgecolortype(503)>Justieren<edgecolortype(0)><colortype(0)> aufzuladen.<br>Maximale Aufladungen: 2",
+  "effects": [
+    "Erlaubt es dir, Justieren aufzuladen.",
+    "Maximale Aufladungen: 2"
+  ],
+  "role": "Physical Ranged DPS",
+  "job": {
+    "id": 31,
+    "name": "Maschinist",
+    "abbreviation": "MCH"
+  },
+  "unlock_level": 84,
+  "value": 2,
+  "icon": {
+    "id": 6018,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 96,
+  "source_class_job_id": 31
+}

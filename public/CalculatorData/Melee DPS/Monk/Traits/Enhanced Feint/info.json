@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 641,
+  "name": "Enhanced Feint",
+  "description": "Extends the duration of Feint to 15 seconds.",
+  "description_macro": "Extends the duration of <colortype(506)><edgecolortype(507)>Feint<edgecolortype(0)><colortype(0)> to 15 seconds.",
+  "effects": [
+    "Extends the duration of Feint to 15 seconds."
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 20,
+    "name": "Monk",
+    "abbreviation": "MNK"
+  },
+  "unlock_level": 98,
+  "value": 0,
+  "icon": {
+    "id": 6851,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 114,
+  "source_class_job_id": 0
+}

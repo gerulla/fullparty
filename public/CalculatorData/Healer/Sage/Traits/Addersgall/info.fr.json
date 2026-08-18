@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 370,
+  "name": "Bile de vipère",
+  "description": "Remplit une vésicule de Bile de vipère toutes les 20 secondes, jusqu'à un maximum de 3. Le remplissage a lieu même en étant K.O.",
+  "description_macro": "Remplit une vésicule de <colortype(500)><edgecolortype(501)>Bile de vipère<edgecolortype(0)><colortype(0)> toutes les 20 secondes, jusqu'à un maximum de 3. Le remplissage a lieu même en étant K.O.",
+  "effects": [
+    "Remplit une vésicule de Bile de vipère toutes les 20 secondes, jusqu'à un maximum de 3. Le remplissage a lieu même en étant K.O."
+  ],
+  "role": "Healer",
+  "job": {
+    "id": 40,
+    "name": "Sage",
+    "abbreviation": "SAG"
+  },
+  "unlock_level": 45,
+  "value": 0,
+  "icon": {
+    "id": 6451,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 181,
+  "source_class_job_id": 40
+}

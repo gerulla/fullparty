@@ -1,0 +1,25 @@
+{
+  "kind": "trait",
+  "id": 576,
+  "name": "Verbesserte Blutpatronen",
+  "description": "Die Ausführung von Blutpatronen gewährt dir nun Löwenherz.\nDauer: 30 Sekunden",
+  "description_macro": "Die Ausführung von <colortype(502)><edgecolortype(503)>Blutpatronen<edgecolortype(0)><colortype(0)> gewährt dir nun <colortype(506)><edgecolortype(507)>Löwenherz<edgecolortype(0)><colortype(0)>.<br>Dauer: 30 Sekunden",
+  "effects": [
+    "Die Ausführung von Blutpatronen gewährt dir nun Löwenherz.",
+    "Dauer: 30 Sekunden"
+  ],
+  "role": "Tank",
+  "job": {
+    "id": 37,
+    "name": "Revolverklinge",
+    "abbreviation": "REV"
+  },
+  "unlock_level": 100,
+  "value": 0,
+  "icon": {
+    "id": 6310,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 149,
+  "source_class_job_id": 37
+}

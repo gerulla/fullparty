@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 246,
+  "name": "Chevalerie",
+  "description": "Octroie un effet de restauration des PM à Lame déchaînée et à Esprits intérieurs.",
+  "description_macro": "Octroie un effet de restauration des PM à <colortype(500)><edgecolortype(501)>Lame déchaînée<edgecolortype(0)><colortype(0)> et à <colortype(500)><edgecolortype(501)>Esprits intérieurs<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Octroie un effet de restauration des PM à Lame déchaînée et à Esprits intérieurs."
+  ],
+  "role": "Tank",
+  "job": {
+    "id": 19,
+    "name": "Paladin",
+    "abbreviation": "PLD"
+  },
+  "unlock_level": 58,
+  "value": 0,
+  "icon": {
+    "id": 5212,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 20,
+  "source_class_job_id": 19
+}

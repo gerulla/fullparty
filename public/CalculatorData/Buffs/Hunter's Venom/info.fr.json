@@ -1,0 +1,71 @@
+{
+  "kind": "combat_status",
+  "id": 3657,
+  "name": "Mordeur vicieux",
+  "description": "La puissance de Morsure vicieuse est augmentée.",
+  "effects": [
+    "La puissance de Morsure vicieuse est augmentée."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 213763,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 196,
+  "source_abilities": [
+    {
+      "id": 34621,
+      "name": "Anneaux du prédateur",
+      "description": "Effectue une attaque physique sur la cible.\nPuissance : 630\nPuissance de côté : 680\nEffet additionnel : vous octroie Prédation.\nDurée : 40s\nPrédation : augmente de 10% vos dégâts infligés.\nEffet additionnel : vous octroie Mordeur vicieux.\nDurée : 30s\nMordeur vicieux : augmente de 50 la puissance de Morsure vicieuse.\nEffet additionnel : remplit la Jauge ophidienne de 5.\nSi cette action est utilisée avec succès\\Condition : après avoir utilisé Anneaux de l'effroi ou Anneaux de l'écorcheur avec succès.\nCette technique d'arme a un temps de recharge indépendant.",
+      "description_macro": "Effectue une attaque physique sur la cible.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> 630<br><colortype(506)><edgecolortype(507)>Puissance de côté<nbsp>:<edgecolortype(0)><colortype(0)> 680<br><colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> vous octroie <colortype(500)><edgecolortype(501)>Prédation<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 40s<br><colortype(506)><edgecolortype(507)>Prédation<nbsp>:<edgecolortype(0)><colortype(0)> augmente de 10% vos dégâts infligés.<br><if([gnum68==41],<if([gnum72>=75],<colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> vous octroie <colortype(500)><edgecolortype(501)>Mordeur vicieux<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 30s<br><colortype(506)><edgecolortype(507)>Mordeur vicieux<nbsp>:<edgecolortype(0)><colortype(0)> augmente de 50 la puissance de Morsure vicieuse.<br>,)>,)><if([gnum68==41],<if([gnum72>=90],<colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> remplit la <colortype(502)><edgecolortype(503)>Jauge ophidienne<edgecolortype(0)><colortype(0)> de 5.<br>,)>,)><if([gnum68==41],<if([gnum72>=75],Si cette action est utilisée avec succès\\, <colortype(500)><edgecolortype(501)>Morsure vicieuse<edgecolortype(0)><colortype(0)> remplace <colortype(500)><edgecolortype(501)>Crochets vicieux<edgecolortype(0)><colortype(0)> et <colortype(500)><edgecolortype(501)>Morsure frénétique<edgecolortype(0)><colortype(0)> remplace <colortype(500)><edgecolortype(501)>Crochets frénétiques<edgecolortype(0)><colortype(0)>. Ces actions peuvent être lancées deux fois.<br>,)>,)><colortype(506)><edgecolortype(507)>Condition<nbsp>:<edgecolortype(0)><colortype(0)> après avoir utilisé <colortype(500)><edgecolortype(501)>Anneaux de l'effroi<edgecolortype(0)><colortype(0)> ou <colortype(500)><edgecolortype(501)>Anneaux de l'écorcheur<edgecolortype(0)><colortype(0)> avec succès.<br>Cette technique d'arme a un temps de recharge indépendant.",
+      "unlock_level": 65,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 41,
+          "name": "Rôdeur Vipère",
+          "abbreviation": "VPR",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 34637,
+      "name": "Morsure frénétique",
+      "description": "Effectue une attaque physique sur la cible.\nPuissance : 120\nPuissance avec Mordeur frénétique : 170\nEffet additionnel : vous octroie Mordeur vicieux lorsque cette action est utilisée juste après Anneaux de l'écorcheur.\nDurée : 30s\nCondition : après avoir utilisé Anneaux du prédateur ou Anneaux de l'écorcheur avec succès.\n\n* Cette action ne peut pas être ajoutée aux barres de raccourcis.\nRemplace Crochets frénétiques lorsque les conditions sont réunies.",
+      "description_macro": "Effectue une attaque physique sur la cible.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> 120<br><colortype(506)><edgecolortype(507)>Puissance avec Mordeur frénétique<nbsp>:<edgecolortype(0)><colortype(0)> 170<br><colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> vous octroie <colortype(500)><edgecolortype(501)>Mordeur vicieux<edgecolortype(0)><colortype(0)> lorsque cette action est utilisée juste après <colortype(500)><edgecolortype(501)>Anneaux de l'écorcheur<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 30s<br><colortype(506)><edgecolortype(507)>Condition<nbsp>:<edgecolortype(0)><colortype(0)> après avoir utilisé <colortype(500)><edgecolortype(501)>Anneaux du prédateur<edgecolortype(0)><colortype(0)> ou <colortype(500)><edgecolortype(501)>Anneaux de l'écorcheur<edgecolortype(0)><colortype(0)> avec succès.<br><br><colortype(504)><edgecolortype(505)>* Cette action ne peut pas être ajoutée aux barres de raccourcis.<br>Remplace <colortype(500)><edgecolortype(501)>Crochets frénétiques<edgecolortype(0)><colortype(0)> lorsque les conditions sont réunies.<edgecolortype(0)><colortype(0)>",
+      "unlock_level": 75,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 41,
+          "name": "Rôdeur Vipère",
+          "abbreviation": "VPR",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

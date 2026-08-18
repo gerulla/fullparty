@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 159,
+  "name": "Sang noir II",
+  "description": "Permet à votre Jauge de sang de se remplir lorsque vous utilisez une technique d'arme ou un sort avec succès sous l'effet Arme de sang.",
+  "description_macro": "Permet à votre <colortype(502)><edgecolortype(503)>Jauge de sang<edgecolortype(0)><colortype(0)> de se remplir lorsque vous utilisez une technique d'arme ou un sort avec succès sous l'effet <colortype(500)><edgecolortype(501)>Arme de sang<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Permet à votre Jauge de sang de se remplir lorsque vous utilisez une technique d'arme ou un sort avec succès sous l'effet Arme de sang."
+  ],
+  "role": "Tank",
+  "job": {
+    "id": 32,
+    "name": "Chevalier Noir",
+    "abbreviation": "CHN"
+  },
+  "unlock_level": 66,
+  "value": 0,
+  "icon": {
+    "id": 6060,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 98,
+  "source_class_job_id": 32
+}

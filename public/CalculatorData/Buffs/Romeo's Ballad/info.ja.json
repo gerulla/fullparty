@@ -1,0 +1,51 @@
+{
+  "kind": "combat_status",
+  "id": 4244,
+  "name": "あいのうた",
+  "description": "敵討伐時のサポート経験値の獲得量が上昇する状態。",
+  "effects": [
+    "敵討伐時のサポート経験値の獲得量が上昇する状態。"
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 229955,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 10
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 41609,
+      "name": "あいのうた",
+      "description": "自身の周囲の敵の時間を停止させる。\n効果時間：3秒\n追加効果：ナレッジクリスタルの周囲で実行すると自身とパーティメンバーに「あいのうた」を付与する。\n効果時間：30分\nあいのうた効果：モンスター討伐時の獲得サポート経験値が10％上昇する。",
+      "description_macro": "自身の周囲の敵の時間を停止させる。<br><colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>3秒<br><colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)>ナレッジクリスタルの周囲で実行すると自身とパーティメンバーに<colortype(500)><edgecolortype(501)>「あいのうた」<edgecolortype(0)><colortype(0)>を付与する。<br><colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>30分<br><colortype(504)><edgecolortype(505)>あいのうた効果：<edgecolortype(0)><colortype(0)>モンスター討伐時の獲得サポート経験値が10％上昇する。",
+      "unlock_level": 0,
+      "relations": [
+        "granted_by_description",
+        "same_name"
+      ],
+      "roles": [
+        "Phantom Jobs"
+      ],
+      "jobs": [
+        {
+          "id": 6,
+          "name": "Phantom サポート吟遊詩人",
+          "abbreviation": "Ph. Bard",
+          "is_phantom": true
+        }
+      ]
+    }
+  ]
+}

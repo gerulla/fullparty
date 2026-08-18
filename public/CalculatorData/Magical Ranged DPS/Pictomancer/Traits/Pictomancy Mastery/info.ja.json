@@ -1,0 +1,31 @@
+{
+  "kind": "trait",
+  "id": 672,
+  "name": "アクション威力アップ",
+  "description": "特定のアクションの威力を上昇させる。\n\nレッドファイアの威力：310\nグリーンエアロの威力：350\nブルーウォータの威力：390\nイマジンポンポンの威力：700\nイマジンウィングの威力：700\nモーグリストリームの威力：800\nハンマースタンプの威力：420",
+  "description_macro": "特定のアクションの威力を上昇させる。<br><br><colortype(504)><edgecolortype(505)>レッドファイアの威力：<edgecolortype(0)><colortype(0)>310<br><colortype(504)><edgecolortype(505)>グリーンエアロの威力：<edgecolortype(0)><colortype(0)>350<br><colortype(504)><edgecolortype(505)>ブルーウォータの威力：<edgecolortype(0)><colortype(0)>390<br><colortype(504)><edgecolortype(505)>イマジンポンポンの威力：<edgecolortype(0)><colortype(0)>700<br><colortype(504)><edgecolortype(505)>イマジンウィングの威力：<edgecolortype(0)><colortype(0)>700<br><colortype(504)><edgecolortype(505)>モーグリストリームの威力：<edgecolortype(0)><colortype(0)>800<br><colortype(504)><edgecolortype(505)>ハンマースタンプの威力：<edgecolortype(0)><colortype(0)>420",
+  "effects": [
+    "特定のアクションの威力を上昇させる。",
+    "レッドファイアの威力：310",
+    "グリーンエアロの威力：350",
+    "ブルーウォータの威力：390",
+    "イマジンポンポンの威力：700",
+    "イマジンウィングの威力：700",
+    "モーグリストリームの威力：800",
+    "ハンマースタンプの威力：420"
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 42,
+    "name": "ピクトマンサー",
+    "abbreviation": "PCT"
+  },
+  "unlock_level": 54,
+  "value": 0,
+  "icon": {
+    "id": 6829,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 197,
+  "source_class_job_id": 42
+}

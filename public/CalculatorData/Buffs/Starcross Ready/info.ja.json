@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 3846,
+  "name": "スタークロッサー実行可",
+  "description": "スタークロッサーを実行できる状態。",
+  "effects": [
+    "スタークロッサーを実行できる状態。"
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 212588,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 23,
+  "source_abilities": [
+    {
+      "id": 16480,
+      "name": "スターダイバー",
+      "description": "対象にジャンプで近づきつつ火属性範囲物理攻撃。\u3000威力：840\n2体目以降の対象への威力は40％減少する。\n追加効果：自身に「スタークロッサー実行可」を付与する。\n効果時間：20秒\nこの効果は「紅の竜血」の効果が切れると解除される。\n発動条件：「紅の竜血」効果中\nバインド中は実行不可。",
+      "description_macro": "対象にジャンプで近づきつつ火属性範囲物理攻撃。\u3000<colortype(504)><edgecolortype(505)>威力：<edgecolortype(0)><colortype(0)><if([gnum68==22],<if([gnum72>=94],840,720)>,720)><br>2体目以降の対象への威力は40％減少する。<br><if([gnum68==22],<if([gnum72>=100],<colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)>自身に<colortype(500)><edgecolortype(501)>「スタークロッサー実行可」<edgecolortype(0)><colortype(0)>を付与する。<br><colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>20秒<br>この効果は<colortype(500)><edgecolortype(501)>「紅の竜血」<edgecolortype(0)><colortype(0)>の効果が切れると解除される。<br>,)>,)><colortype(504)><edgecolortype(505)>発動条件：<edgecolortype(0)><colortype(0)><colortype(500)><edgecolortype(501)>「紅の竜血」<edgecolortype(0)><colortype(0)>効果中<br>バインド中は実行不可。",
+      "unlock_level": 80,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 22,
+          "name": "竜騎士",
+          "abbreviation": "DRG",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

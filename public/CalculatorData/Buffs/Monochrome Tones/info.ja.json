@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 3691,
+  "name": "色調反転",
+  "description": "ホワイトペイントが1スタックのみブラックペイントに変化する状態。",
+  "effects": [
+    "ホワイトペイントが1スタックのみブラックペイントに変化する状態。"
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 213814,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": true,
+  "inflicted_by_actor": true,
+  "party_list_priority": 32,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 197,
+  "source_abilities": [
+    {
+      "id": 34683,
+      "name": "サブトラクティブパレット",
+      "description": "自身に3スタックの「サブトラクティブパレット」を付与する。\n追加効果：自身に「色調反転」を付与する。\n色調反転効果：ホワイトペイントが1スタックのみブラックペイントに変化する。\n発動条件：「サブトラクティブパレット」非効果中かつ「パレットゲージ」50",
+      "description_macro": "自身に3スタックの<colortype(500)><edgecolortype(501)>「サブトラクティブパレット」<edgecolortype(0)><colortype(0)>を付与する。<br><if([gnum68==42],<if([gnum72>=90],<colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)>自身に<colortype(500)><edgecolortype(501)>「色調反転」<edgecolortype(0)><colortype(0)>を付与する。<br><colortype(504)><edgecolortype(505)>色調反転効果：<edgecolortype(0)><colortype(0)>ホワイトペイントが1スタックのみブラックペイントに変化する。<br>,)>,)><colortype(504)><edgecolortype(505)>発動条件：<edgecolortype(0)><colortype(0)><colortype(500)><edgecolortype(501)>「サブトラクティブパレット」<edgecolortype(0)><colortype(0)>非効果中かつ<colortype(500)><edgecolortype(501)>「パレットゲージ」<edgecolortype(0)><colortype(0)>50",
+      "unlock_level": 60,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Magical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 42,
+          "name": "ピクトマンサー",
+          "abbreviation": "PCT",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

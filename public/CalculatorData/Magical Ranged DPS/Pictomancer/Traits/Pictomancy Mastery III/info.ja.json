@@ -1,0 +1,35 @@
+{
+  "kind": "trait",
+  "id": 677,
+  "name": "アクション威力アップIII",
+  "description": "特定のアクションの威力を上昇させる。\n\nレッドファイアの威力：420\nグリーンエアロの威力：460\nブルーウォータの威力：500\nイマジンポンポンの威力：800\nイマジンウィングの威力：800\nモーグリストリームの威力：1000\nハンマースタンプの威力：540\nシアンブリザドの威力：750\nイエローストーンの威力：790\nマゼンタサンダーの威力：830\nホワイトホーリーの威力：500",
+  "description_macro": "特定のアクションの威力を上昇させる。<br><br><colortype(504)><edgecolortype(505)>レッドファイアの威力：<edgecolortype(0)><colortype(0)>420<br><colortype(504)><edgecolortype(505)>グリーンエアロの威力：<edgecolortype(0)><colortype(0)>460<br><colortype(504)><edgecolortype(505)>ブルーウォータの威力：<edgecolortype(0)><colortype(0)>500<br><colortype(504)><edgecolortype(505)>イマジンポンポンの威力：<edgecolortype(0)><colortype(0)>800<br><colortype(504)><edgecolortype(505)>イマジンウィングの威力：<edgecolortype(0)><colortype(0)>800<br><colortype(504)><edgecolortype(505)>モーグリストリームの威力：<edgecolortype(0)><colortype(0)>1000<br><colortype(504)><edgecolortype(505)>ハンマースタンプの威力：<edgecolortype(0)><colortype(0)>540<br><colortype(504)><edgecolortype(505)>シアンブリザドの威力：<edgecolortype(0)><colortype(0)>750<br><colortype(504)><edgecolortype(505)>イエローストーンの威力：<edgecolortype(0)><colortype(0)>790<br><colortype(504)><edgecolortype(505)>マゼンタサンダーの威力：<edgecolortype(0)><colortype(0)>830<br><colortype(504)><edgecolortype(505)>ホワイトホーリーの威力：<edgecolortype(0)><colortype(0)>500",
+  "effects": [
+    "特定のアクションの威力を上昇させる。",
+    "レッドファイアの威力：420",
+    "グリーンエアロの威力：460",
+    "ブルーウォータの威力：500",
+    "イマジンポンポンの威力：800",
+    "イマジンウィングの威力：800",
+    "モーグリストリームの威力：1000",
+    "ハンマースタンプの威力：540",
+    "シアンブリザドの威力：750",
+    "イエローストーンの威力：790",
+    "マゼンタサンダーの威力：830",
+    "ホワイトホーリーの威力：500"
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 42,
+    "name": "ピクトマンサー",
+    "abbreviation": "PCT"
+  },
+  "unlock_level": 84,
+  "value": 0,
+  "icon": {
+    "id": 6832,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 197,
+  "source_class_job_id": 42
+}

@@ -1,0 +1,87 @@
+{
+  "kind": "ability",
+  "id": 7393,
+  "name": "The Blackest Night",
+  "description": "Creates a barrier around self or target party member that absorbs damage totaling 25% of target's maximum HP.\nDuration: 7s\nGrants Dark Arts when barrier is completely absorbed.\nDark Arts Effect: Consume Dark Arts instead of MP to execute Edge of Shadow or Flood of Shadow",
+  "description_macro": "Creates a barrier around self or target party member that absorbs damage totaling 25% of target's maximum HP.<br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>7s<br>Grants <colortype(506)><edgecolortype(507)>Dark Arts<edgecolortype(0)><colortype(0)> when barrier is completely absorbed.<br><colortype(504)><edgecolortype(505)>Dark Arts Effect: <edgecolortype(0)><colortype(0)>Consume <colortype(506)><edgecolortype(507)>Dark Arts<edgecolortype(0)><colortype(0)> instead of MP to execute <if([gnum68==32],<if([gnum72>=74],<colortype(500)><edgecolortype(501)>Edge of Shadow<edgecolortype(0)><colortype(0)> or <colortype(500)><edgecolortype(501)>Flood of Shadow<edgecolortype(0)><colortype(0)>,<colortype(500)><edgecolortype(501)>Edge of Darkness<edgecolortype(0)><colortype(0)> or <colortype(500)><edgecolortype(501)>Flood of Darkness<edgecolortype(0)><colortype(0)>)>,<colortype(500)><edgecolortype(501)>Edge of Darkness<edgecolortype(0)><colortype(0)> or <colortype(500)><edgecolortype(501)>Flood of Darkness<edgecolortype(0)><colortype(0)>)>",
+  "effects": [
+    "Creates a barrier around self or target party member that absorbs damage totaling 25% of target's maximum HP.",
+    "Duration: 7s",
+    "Grants Dark Arts when barrier is completely absorbed.",
+    "Dark Arts Effect: Consume Dark Arts instead of MP to execute Edge of Shadow or Flood of Shadow"
+  ],
+  "role": "Tank",
+  "job": {
+    "id": 32,
+    "name": "Dark Knight",
+    "abbreviation": "DRK"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 70,
+  "icon": {
+    "id": 3081,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 4,
+    "name": "Ability"
+  },
+  "attack_type": {
+    "id": 0,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 15,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 3,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 3,
+      "value": 30
+    },
+    "secondary": {
+      "type_id": 0,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": 30,
+    "effect_yalms": 0,
+    "cast_type": 1
+  },
+  "targeting": {
+    "self": true,
+    "party": true,
+    "alliance": false,
+    "hostile": false,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": false
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 0,
+    "behavior_type": 0,
+    "class_job_category_id": 98,
+    "source_class_job_id": 32,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

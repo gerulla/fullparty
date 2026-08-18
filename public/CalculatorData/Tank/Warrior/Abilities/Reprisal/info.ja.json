@@ -1,0 +1,85 @@
+{
+  "kind": "ability",
+  "id": 7535,
+  "name": "リプライザル",
+  "description": "自身の周囲の敵の与ダメージを10％減少させる。\n効果時間：15秒",
+  "description_macro": "自身の周囲の敵の与ダメージを10％減少させる。<br><colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)><if([gnum72>=98],<if([gnum68==1],15,<if([gnum68==19],15,<if([gnum68==3],15,<if([gnum68==21],15,<if([gnum68==32],15,<if([gnum68==37],15,10)>)>)>)>)>)>,10)>秒",
+  "effects": [
+    "自身の周囲の敵の与ダメージを10％減少させる。",
+    "効果時間：15秒"
+  ],
+  "role": "Tank",
+  "job": {
+    "id": 21,
+    "name": "戦士",
+    "abbreviation": "WAR"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 22,
+  "icon": {
+    "id": 806,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 4,
+    "name": "アビリティ"
+  },
+  "attack_type": {
+    "id": 4294967295,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 60,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 45,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 0,
+      "value": 0
+    },
+    "secondary": {
+      "type_id": 0,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": 0,
+    "effect_yalms": 5,
+    "cast_type": 2
+  },
+  "targeting": {
+    "self": true,
+    "party": false,
+    "alliance": false,
+    "hostile": false,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 7,
+    "behavior_type": 0,
+    "class_job_category_id": 113,
+    "source_class_job_id": 4294967295,
+    "is_role_action": true,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 1878,
+  "name": "ディヴィネーション",
+  "description": "与ダメージが上昇した状態。",
+  "effects": [
+    "与ダメージが上昇した状態。"
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 213245,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 1,
+  "parameter": {
+    "effect": 0,
+    "modifier": 10
+  },
+  "class_job_category_id": 99,
+  "source_abilities": [
+    {
+      "id": 16552,
+      "name": "ディヴィネーション",
+      "description": "自身と周囲のパーティメンバーの与ダメージを6％上昇させる。\n効果時間：20秒\n追加効果：自身に「オラクル実行可」を付与する。\n効果時間：30秒",
+      "description_macro": "自身と周囲のパーティメンバーの与ダメージを6％上昇させる。<br><colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>20秒<if([gnum68==33],<if([gnum72>=92],<br><colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)>自身に<colortype(500)><edgecolortype(501)>「オラクル実行可」<edgecolortype(0)><colortype(0)>を付与する。<br><colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>30秒,)>,)>",
+      "unlock_level": 50,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Healer"
+      ],
+      "jobs": [
+        {
+          "id": 33,
+          "name": "占星術師",
+          "abbreviation": "AST",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

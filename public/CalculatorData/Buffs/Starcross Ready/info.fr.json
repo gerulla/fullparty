@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 3846,
+  "name": "Traversée céleste préparée",
+  "description": "Traversée céleste peut être lancée.",
+  "effects": [
+    "Traversée céleste peut être lancée."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 212588,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 23,
+  "source_abilities": [
+    {
+      "id": 16480,
+      "name": "Plongeon céleste",
+      "description": "Saute vers la cible et effectue une attaque physique de feu sur elle et les ennemis alentour.\nPuissance : 840\nLa puissance est réduite de 40% au-delà du premier ennemi touché.\nEffet additionnel : vous octroie Traversée céleste préparée.\nDurée : 20s\nCet effet disparaît lorsque Vie du dragon se dissipe.\nCondition : Vie du dragon.\nNe peut pas être utilisé sous l'effet Entrave.",
+      "description_macro": "Saute vers la cible et effectue une attaque physique de feu sur elle et les ennemis alentour.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> <if([gnum68==22],<if([gnum72>=94],840,720)>,720)><br>La puissance est réduite de 40% au-delà du premier ennemi touché.<br><if([gnum68==22],<if([gnum72>=100],<colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> vous octroie <colortype(500)><edgecolortype(501)>Traversée céleste préparée<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 20s<br>Cet effet disparaît lorsque <colortype(500)><edgecolortype(501)>Vie du dragon<edgecolortype(0)><colortype(0)> se dissipe.<br>,)>,)><colortype(506)><edgecolortype(507)>Condition<nbsp>:<edgecolortype(0)><colortype(0)> <colortype(500)><edgecolortype(501)>Vie du dragon<edgecolortype(0)><colortype(0)>.<br>Ne peut pas être utilisé sous l'effet Entrave.",
+      "unlock_level": 80,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 22,
+          "name": "Chevalier Dragon",
+          "abbreviation": "DRG",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

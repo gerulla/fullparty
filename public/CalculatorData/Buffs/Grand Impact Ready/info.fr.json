@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 3877,
+  "name": "Impact majestueux préparé",
+  "description": "Impact majestueux peut être lancé.",
+  "effects": [
+    "Impact majestueux peut être lancé."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 213412,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 112,
+  "source_abilities": [
+    {
+      "id": 7518,
+      "name": "Accélération",
+      "description": "Le prochain Méga VerFoudre\\ ou Impact peut être lancé instantanément.\nDurée : 20s\nEffet additionnel : augmente de 50 la puissance d'Impact.\nEffet additionnel : vous octroie respectivement VerFeu préparé ou VerTerre préparée lorsque vous utilisez Méga VerFoudre ou Méga VerVent.\nEffet additionnel : vous octroie Impact majestueux préparé.\nDurée : 30s\nMaximum de charges : 2",
+      "description_macro": "Le prochain <if([gnum68==35],<if([gnum72>=82],Méga VerFoudre\\, Méga VerVent,VerFoudre\\, VerVent)>,VerFoudre\\, VerVent)> ou <if([gnum68==35],<if([gnum72>=66],Impact,Éparpillement)>,Éparpillement)> peut être lancé instantanément.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 20s<br><colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> augmente de 50 la puissance d'<if([gnum68==35],<if([gnum72>=66],Impact,Éparpillement)>,Éparpillement)>.<br><colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> vous octroie respectivement VerFeu préparé ou VerTerre préparée lorsque vous utilisez <if([gnum68==35],<if([gnum72>=82],Méga VerFoudre ou Méga VerVent,VerFoudre ou VerVent)>,VerFoudre ou VerVent)>.<if([gnum68==35],<if([gnum72>=96],<br><colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> vous octroie <colortype(500)><edgecolortype(501)>Impact majestueux préparé<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 30s,)>,)><if([gnum68==35],<if([gnum72>=88],<br><colortype(506)><edgecolortype(507)>Maximum de charges<nbsp>:<edgecolortype(0)><colortype(0)> 2,)>,)>",
+      "unlock_level": 50,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Magical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 35,
+          "name": "Mage Rouge",
+          "abbreviation": "MRG",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

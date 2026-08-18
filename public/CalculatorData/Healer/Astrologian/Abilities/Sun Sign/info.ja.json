@@ -1,0 +1,94 @@
+{
+  "kind": "ability",
+  "id": 37031,
+  "name": "サンサイン",
+  "description": "一定時間、自身と周囲のパーティメンバーの被ダメージを10％軽減させる。\u3000効果時間：15秒\n発動条件：「サンサイン実行可」効果中",
+  "description_macro": "一定時間、自身と周囲のパーティメンバーの被ダメージを10％軽減させる。\u3000<colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>15秒<br><colortype(504)><edgecolortype(505)>発動条件：<edgecolortype(0)><colortype(0)><colortype(500)><edgecolortype(501)>「サンサイン実行可」<edgecolortype(0)><colortype(0)>効果中",
+  "effects": [
+    "一定時間、自身と周囲のパーティメンバーの被ダメージを10％軽減させる。\u3000効果時間：15秒",
+    "発動条件：「サンサイン実行可」効果中"
+  ],
+  "role": "Healer",
+  "job": {
+    "id": 33,
+    "name": "占星術師",
+    "abbreviation": "AST"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 100,
+  "icon": {
+    "id": 3109,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 4,
+    "name": "アビリティ"
+  },
+  "attack_type": {
+    "id": 0,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 1,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 8,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 10,
+      "value": 3895
+    },
+    "secondary": {
+      "type_id": 32,
+      "value": 3895
+    }
+  },
+  "range": {
+    "target_yalms": 0,
+    "effect_yalms": 30,
+    "cast_type": 2
+  },
+  "targeting": {
+    "self": true,
+    "party": false,
+    "alliance": false,
+    "hostile": false,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": {
+      "id": 185,
+      "status": {
+        "id": 3895,
+        "name": "サンサイン実行可",
+        "description": "サンサインを実行できる状態。",
+        "icon_id": 213266,
+        "max_stacks": 0
+      }
+    }
+  },
+  "metadata": {
+    "aspect_id": 0,
+    "behavior_type": 0,
+    "class_job_category_id": 99,
+    "source_class_job_id": 33,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

@@ -1,0 +1,96 @@
+{
+  "kind": "ability",
+  "id": 16153,
+  "name": "ソニックブレイク",
+  "description": "対象に物理攻撃。\u3000威力：340\n追加効果：対象に継続ダメージを付与する。\n威力：120\u3000効果時間：15秒\n発動条件：「ソニックブレイク実行可」効果中",
+  "description_macro": "対象に物理攻撃。\u3000<colortype(504)><edgecolortype(505)>威力：<edgecolortype(0)><colortype(0)>340<br><colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)>対象に継続ダメージを付与する。<br><colortype(504)><edgecolortype(505)>威力：<edgecolortype(0)><colortype(0)>120\u3000<colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>15秒<br><colortype(504)><edgecolortype(505)>発動条件：<edgecolortype(0)><colortype(0)><colortype(500)><edgecolortype(501)>「ソニックブレイク実行可」<edgecolortype(0)><colortype(0)>効果中",
+  "effects": [
+    "対象に物理攻撃。\u3000威力：340",
+    "追加効果：対象に継続ダメージを付与する。",
+    "威力：120\u3000効果時間：15秒",
+    "発動条件：「ソニックブレイク実行可」効果中"
+  ],
+  "role": "Tank",
+  "job": {
+    "id": 37,
+    "name": "ガンブレイカー",
+    "abbreviation": "GNB"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 54,
+  "icon": {
+    "id": 3417,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 3,
+    "name": "ウェポンスキル"
+  },
+  "attack_type": {
+    "id": 4294967295,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 2.5,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 58,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 0,
+      "value": 0
+    },
+    "secondary": {
+      "type_id": 32,
+      "value": 3886
+    }
+  },
+  "range": {
+    "target_yalms": -1,
+    "effect_yalms": 0,
+    "cast_type": 1
+  },
+  "targeting": {
+    "self": false,
+    "party": false,
+    "alliance": false,
+    "hostile": true,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": {
+      "id": 210,
+      "status": {
+        "id": 3886,
+        "name": "ソニックブレイク実行可",
+        "description": "ソニックブレイクを実行できる状態。",
+        "icon_id": 213622,
+        "max_stacks": 0
+      }
+    }
+  },
+  "metadata": {
+    "aspect_id": 7,
+    "behavior_type": 0,
+    "class_job_category_id": 149,
+    "source_class_job_id": 37,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

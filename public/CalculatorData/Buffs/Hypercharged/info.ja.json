@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 3864,
+  "name": "ハイパーチャージ実行可",
+  "description": "ハイパーチャージを実行できる状態。",
+  "effects": [
+    "ハイパーチャージを実行できる状態。"
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 213022,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 96,
+  "source_abilities": [
+    {
+      "id": 7414,
+      "name": "バレルヒーター",
+      "description": "自身に「ハイパーチャージ実行可」を付与する。\n効果時間：30秒\n追加効果：自身に「フルメタルバースト実行可」を付与する。\n効果時間：30秒\n発動条件：自身が戦闘状態",
+      "description_macro": "自身に<colortype(500)><edgecolortype(501)>「ハイパーチャージ実行可」<edgecolortype(0)><colortype(0)>を付与する。<br><colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>30秒<br><if([gnum68==31],<if([gnum72>=100],<colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)>自身に<colortype(500)><edgecolortype(501)>「フルメタルバースト実行可」<edgecolortype(0)><colortype(0)>を付与する。<br><colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>30秒<br>,)>,)><colortype(504)><edgecolortype(505)>発動条件：<edgecolortype(0)><colortype(0)>自身が戦闘状態",
+      "unlock_level": 66,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Physical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 31,
+          "name": "機工士",
+          "abbreviation": "MCH",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

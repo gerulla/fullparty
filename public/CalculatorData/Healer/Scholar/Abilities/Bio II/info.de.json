@@ -1,0 +1,86 @@
+{
+  "kind": "ability",
+  "id": 17865,
+  "name": "Biora",
+  "description": "Du fügst dem Ziel elementneutralen Schaden über Zeit zu.\nAttacke-Wert: 40\nDauer: 30 Sekunden",
+  "description_macro": "Du fügst dem Ziel elementneutralen Schaden über Zeit zu.<br>Attacke-Wert: 40<br>Dauer: 30 Sekunden",
+  "effects": [
+    "Du fügst dem Ziel elementneutralen Schaden über Zeit zu.",
+    "Attacke-Wert: 40",
+    "Dauer: 30 Sekunden"
+  ],
+  "role": "Healer",
+  "job": {
+    "id": 28,
+    "name": "Gelehrter",
+    "abbreviation": "GLT"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 26,
+  "icon": {
+    "id": 504,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 2,
+    "name": "Zauber"
+  },
+  "attack_type": {
+    "id": 5,
+    "name": "魔法"
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 2.5,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 58,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 3,
+      "value": 3
+    },
+    "secondary": {
+      "type_id": 63,
+      "value": 311
+    }
+  },
+  "range": {
+    "target_yalms": 25,
+    "effect_yalms": 0,
+    "cast_type": 1
+  },
+  "targeting": {
+    "self": false,
+    "party": false,
+    "alliance": false,
+    "hostile": true,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": false
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 7,
+    "behavior_type": 0,
+    "class_job_category_id": 29,
+    "source_class_job_id": 28,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 29
+  }
+}

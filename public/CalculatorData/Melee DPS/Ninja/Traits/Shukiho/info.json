@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 165,
+  "name": "Shukiho",
+  "description": "Increases Ninki Gauge by 5 upon successfully landing certain weaponskills or completing certain combos.",
+  "description_macro": "Increases <colortype(500)><edgecolortype(501)>Ninki Gauge<edgecolortype(0)><colortype(0)> by 5 upon successfully landing certain weaponskills or completing certain combos.",
+  "effects": [
+    "Increases Ninki Gauge by 5 upon successfully landing certain weaponskills or completing certain combos."
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 30,
+    "name": "Ninja",
+    "abbreviation": "NIN"
+  },
+  "unlock_level": 62,
+  "value": 6,
+  "icon": {
+    "id": 5411,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 92,
+  "source_class_job_id": 30
+}

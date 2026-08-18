@@ -1,0 +1,86 @@
+{
+  "kind": "ability",
+  "id": 7498,
+  "name": "Third Eye",
+  "description": "Reduces the amount of damage taken by the next attack by 10%.\nDuration: 4s\nAdditional Effect: Increases Kenki Gauge by 10 when hit",
+  "description_macro": "Reduces the amount of damage taken by the next attack by 10%.<br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>4s<if([gnum72>=52],<if([gnum68==34],<br><colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>Increases <colortype(500)><edgecolortype(501)>Kenki Gauge<edgecolortype(0)><colortype(0)> by 10 when hit,)>,)>",
+  "effects": [
+    "Reduces the amount of damage taken by the next attack by 10%.",
+    "Duration: 4s",
+    "Additional Effect: Increases Kenki Gauge by 10 when hit"
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 34,
+    "name": "Samurai",
+    "abbreviation": "SAM"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 6,
+  "icon": {
+    "id": 3153,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 4,
+    "name": "Ability"
+  },
+  "attack_type": {
+    "id": 0,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 15,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 7,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 0,
+      "value": 0
+    },
+    "secondary": {
+      "type_id": 63,
+      "value": 589
+    }
+  },
+  "range": {
+    "target_yalms": 0,
+    "effect_yalms": 0,
+    "cast_type": 1
+  },
+  "targeting": {
+    "self": true,
+    "party": false,
+    "alliance": false,
+    "hostile": false,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 0,
+    "behavior_type": 0,
+    "class_job_category_id": 111,
+    "source_class_job_id": 34,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

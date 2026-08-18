@@ -1,0 +1,87 @@
+{
+  "kind": "ability",
+  "id": 41625,
+  "name": "Occult Quick",
+  "description": "Reduces weaponskill cast time and recast time, spell cast time and recast time, and auto-attack delay of self or target party member by 10%, and reduces cast times for spells by 10 seconds.\nDuration: 20s\nAdditional Effect: Greatly increases movement speed\nDuration: 10s",
+  "description_macro": "Reduces weaponskill cast time and recast time, spell cast time and recast time, and auto-attack delay of self or target party member by 10%, and reduces cast times for spells by 10 seconds.<br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>20s<br><colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>Greatly increases movement speed<br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>10s",
+  "effects": [
+    "Reduces weaponskill cast time and recast time, spell cast time and recast time, and auto-attack delay of self or target party member by 10%, and reduces cast times for spells by 10 seconds.",
+    "Duration: 20s",
+    "Additional Effect: Greatly increases movement speed",
+    "Duration: 10s"
+  ],
+  "role": "Phantom Jobs",
+  "job": {
+    "id": 8,
+    "name": "Phantom Time Mage",
+    "abbreviation": "Ph. Time Mage"
+  },
+  "is_phantom_action": true,
+  "unlock_level": 5,
+  "icon": {
+    "id": 64797,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 2,
+    "name": "Spell"
+  },
+  "attack_type": {
+    "id": 0,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 1.5,
+    "recast_seconds": 120,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 87,
+    "additional_cooldown_group": 58,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 0,
+      "value": 0
+    },
+    "secondary": {
+      "type_id": 0,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": 30,
+    "effect_yalms": 0,
+    "cast_type": 1
+  },
+  "targeting": {
+    "self": true,
+    "party": true,
+    "alliance": false,
+    "hostile": false,
+    "ally": true,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": false
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 0,
+    "behavior_type": 0,
+    "class_job_category_id": 142,
+    "source_class_job_id": 4294967295,
+    "is_role_action": false,
+    "is_player_action": false,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

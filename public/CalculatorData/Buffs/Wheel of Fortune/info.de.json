@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 1206,
+  "name": "Numinosum",
+  "description": "Erlittener Schaden ist verringert.",
+  "effects": [
+    "Erlittener Schaden ist verringert."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 213226,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": -10
+  },
+  "class_job_category_id": 99,
+  "source_abilities": [
+    {
+      "id": 3613,
+      "name": "Numinosum",
+      "description": "Du schaffst eine Kraftzone mit einem Radius von 8y um dich.\nDauer: 18 Sekunden\nDie Kraftzone verringert den erlittenen Schaden aller Gruppenmitglieder innerhalb von 30y um 10 %.\nDauer: 10 Sekunden\nVerleiht weiterhin Gruppenmitgliedern innerhalb der Kraftzone durchgehend Numinosum.\nEffekt von Numinosum: Regeneriert stetig LP.\nHeilpotenzial: 100\nDauer: 15 Sekunden\nUnterbindet Auto-Attacke.\nEffekt endet bei Bewegung, Umdrehen oder Ausführen eines Kommandos.",
+      "description_macro": "Du schaffst eine Kraftzone mit einem Radius von 8y um dich.<br>Dauer: 18 Sekunden<br>Die Kraftzone verringert den erlittenen Schaden aller Grup<->pen<->mit<->glieder innerhalb von 30y um 10<nbsp>%.<br>Dauer: 10 Sekunden<br>Verleiht weiterhin Grup<->pen<->mit<->gliedern innerhalb der Kraftzone durchgehend <colortype(506)><edgecolortype(507)>Numinosum<edgecolortype(0)><colortype(0)>.<br>Effekt von <colortype(506)><edgecolortype(507)>Numinosum<edgecolortype(0)><colortype(0)>: Regeneriert stetig LP.<br>Heilpotenzial: 100<br>Dauer: 15 Sekunden<br>Unterbindet Auto-Attacke.<br>Effekt endet bei Bewegung, Umdrehen oder Ausführen eines Kommandos.",
+      "unlock_level": 58,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Healer"
+      ],
+      "jobs": [
+        {
+          "id": 33,
+          "name": "Astrologe",
+          "abbreviation": "AST",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

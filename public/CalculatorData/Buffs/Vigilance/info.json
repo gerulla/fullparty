@@ -1,0 +1,51 @@
+{
+  "kind": "combat_status",
+  "id": 4277,
+  "name": "Vigilance",
+  "description": "Keeping vigilant. Gain the effect of Foreseen Offense when entering combat.",
+  "effects": [
+    "Keeping vigilant. Gain the effect of Foreseen Offense when entering combat."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 229932,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": true,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 41647,
+      "name": "Vigilance",
+      "description": "Grants Vigilance.\nDuration: 20s\nEffect changes to Foreseen Offense when entering combat.\nForeseen Offense Effect: Increases critical hit rate by 60%\nDuration: 20s\nCannot be executed while in combat.",
+      "description_macro": "Grants <colortype(506)><edgecolortype(507)>Vigilance<edgecolortype(0)><colortype(0)>.<br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>20s<br>Effect changes to <colortype(506)><edgecolortype(507)>Foreseen Offense<edgecolortype(0)><colortype(0)> when entering combat.<br><colortype(504)><edgecolortype(505)>Foreseen Offense Effect: <edgecolortype(0)><colortype(0)>Increases critical hit rate by 60%<br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>20s<br>Cannot be executed while in combat.",
+      "unlock_level": 0,
+      "relations": [
+        "granted_by_description",
+        "same_name"
+      ],
+      "roles": [
+        "Phantom Jobs"
+      ],
+      "jobs": [
+        {
+          "id": 12,
+          "name": "Phantom Thief",
+          "abbreviation": "Ph. Thief",
+          "is_phantom": true
+        }
+      ]
+    }
+  ]
+}

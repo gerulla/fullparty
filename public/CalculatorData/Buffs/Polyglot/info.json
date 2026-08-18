@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 3169,
+  "name": "Polyglot",
+  "description": "Able to execute Foul.",
+  "effects": [
+    "Able to execute Foul."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 214984,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": true,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 26,
+  "source_abilities": [
+    {
+      "id": 25796,
+      "name": "Amplifier",
+      "description": "Grants Polyglot.\nCan only be executed while under the effect of Astral Fire or Umbral Ice.",
+      "description_macro": "Grants <colortype(506)><edgecolortype(507)>Polyglot<edgecolortype(0)><colortype(0)>.<br>Can only be executed while under the effect of <colortype(506)><edgecolortype(507)>Astral Fire<edgecolortype(0)><colortype(0)> or <colortype(506)><edgecolortype(507)>Umbral Ice<edgecolortype(0)><colortype(0)>.",
+      "unlock_level": 86,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Magical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 25,
+          "name": "Black Mage",
+          "abbreviation": "BLM",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

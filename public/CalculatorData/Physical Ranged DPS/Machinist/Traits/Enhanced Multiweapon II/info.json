@@ -1,0 +1,26 @@
+{
+  "kind": "trait",
+  "id": 606,
+  "name": "Enhanced Multiweapon II",
+  "description": "Grants Excavator Ready upon executing Chain Saw.\nDuration: 30s\nChain Saw changes to Excavator while under the effect of Excavator Ready.",
+  "description_macro": "Grants <colortype(506)><edgecolortype(507)>Excavator Ready<edgecolortype(0)><colortype(0)> upon executing <colortype(500)><edgecolortype(501)>Chain Saw<edgecolortype(0)><colortype(0)>.<br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>30s<br><colortype(500)><edgecolortype(501)>Chain Saw<edgecolortype(0)><colortype(0)> changes to <colortype(500)><edgecolortype(501)>Excavator<edgecolortype(0)><colortype(0)> while under the effect of <colortype(506)><edgecolortype(507)>Excavator Ready<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Grants Excavator Ready upon executing Chain Saw.",
+    "Duration: 30s",
+    "Chain Saw changes to Excavator while under the effect of Excavator Ready."
+  ],
+  "role": "Physical Ranged DPS",
+  "job": {
+    "id": 31,
+    "name": "Machinist",
+    "abbreviation": "MCH"
+  },
+  "unlock_level": 96,
+  "value": 0,
+  "icon": {
+    "id": 6024,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 96,
+  "source_class_job_id": 31
+}

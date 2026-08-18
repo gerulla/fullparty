@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 1870,
+  "name": "Reißende Klauen",
+  "description": "Nächstes Reißende Klauen hat einen erhöhten Attacke-Wert.",
+  "effects": [
+    "Nächstes Reißende Klauen hat einen erhöhten Attacke-Wert."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 212590,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 23,
+  "source_abilities": [
+    {
+      "id": 94,
+      "name": "Ausweichsprung",
+      "description": "Du führst einen 15-Yalm-Sprung nach hinten aus.\nZusatzeffekt: Gewährt dir Reißende Klauen.\nDauer: 15 Sekunden\nKann nicht während Fessel ausgeführt werden.",
+      "description_macro": "Du führst einen 15-Yalm-Sprung nach hinten aus.<br>Zusatzeffekt: Gewährt dir <colortype(506)><edgecolortype(507)>Reißende Klauen<edgecolortype(0)><colortype(0)>.<br>Dauer: 15 Sekunden<br>Kann nicht während <colortype(500)><edgecolortype(501)>Fessel<edgecolortype(0)><colortype(0)> ausgeführt werden. ",
+      "unlock_level": 35,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 22,
+          "name": "Dragoon",
+          "abbreviation": "DRG",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

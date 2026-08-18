@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 1300,
+  "name": "Couverture",
+  "description": "En train de protéger un équipier.",
+  "effects": [
+    "En train de protéger un équipier."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 212501,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": true,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 20,
+  "source_abilities": [
+    {
+      "id": 27,
+      "name": "Couverture",
+      "description": "Détourne vers vous les attaques dirigées vers l'équipier ciblé.\nSans effet sur certaines attaques.\nCondition : cible à 20 yalms ou moins.\nDurée : 12s\nCoût Jauge du serment : 50",
+      "description_macro": "Détourne vers vous les attaques dirigées vers l'équipier ciblé.<br>Sans effet sur certaines attaques.<br><colortype(506)><edgecolortype(507)>Condition<nbsp>:<edgecolortype(0)><colortype(0)> cible à 20 yalms ou moins.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 12s<br><colortype(506)><edgecolortype(507)>Coût Jauge du serment<nbsp>:<edgecolortype(0)><colortype(0)> 50",
+      "unlock_level": 45,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Tank"
+      ],
+      "jobs": [
+        {
+          "id": 19,
+          "name": "Paladin",
+          "abbreviation": "PLD",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 2598,
+  "name": "活性のクレスト",
+  "description": "連続してＨＰが回復している状態。",
+  "effects": [
+    "連続してＨＰが回復している状態。"
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 212935,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 5,
+  "parameter": {
+    "effect": 0,
+    "modifier": 100
+  },
+  "class_job_category_id": 180,
+  "source_abilities": [
+    {
+      "id": 24404,
+      "name": "アルケインクレスト",
+      "description": "自身に一定量のダメージを防ぐバリアである「守護のクレスト」を付与する。\nバリア量：自身の最大ＨＰの10％分\u3000効果時間：5秒\nバリアがダメージを完全に吸収して消滅すると、自身と周囲15ｍ以内のパーティメンバーに「活性のクレスト」を付与する。\n活性のクレスト効果：対象のＨＰを継続回復する。\n回復力：50\u3000効果時間：15秒",
+      "description_macro": "自身に一定量のダメージを防ぐバリアである<colortype(500)><edgecolortype(501)>「守護のクレスト」<edgecolortype(0)><colortype(0)>を付与する。<br><colortype(504)><edgecolortype(505)>バリア量：<edgecolortype(0)><colortype(0)>自身の最大ＨＰの10％分\u3000<colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>5秒<if([gnum68==39],<if([gnum72>=84],<br>バリアがダメージを完全に吸収して消滅すると、自身と周囲15ｍ以内のパーティメンバーに<colortype(500)><edgecolortype(501)>「活性のクレスト」<edgecolortype(0)><colortype(0)>を付与する。<br><colortype(504)><edgecolortype(505)>活性のクレスト効果：<edgecolortype(0)><colortype(0)>対象のＨＰを継続回復する。<br><colortype(504)><edgecolortype(505)>回復力：<edgecolortype(0)><colortype(0)>50\u3000<colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>15秒,)>,)>",
+      "unlock_level": 40,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 39,
+          "name": "リーパー",
+          "abbreviation": "RPR",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

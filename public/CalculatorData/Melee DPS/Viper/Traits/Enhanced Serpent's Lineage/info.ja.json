@@ -1,0 +1,26 @@
+{
+  "kind": "trait",
+  "id": 533,
+  "name": "祖霊の魂効果アップ",
+  "description": "「霊力」の最大スタック数が5に増加する。\nさらに、祖霊の大蛇牙が実行できるようになる。\n発動条件：「祖霊降ろし」効果中",
+  "description_macro": "<colortype(500)><edgecolortype(501)>「霊力」<edgecolortype(0)><colortype(0)>の最大スタック数が5に増加する。<br>さらに、祖霊の大蛇牙が実行できるようになる。<br><colortype(504)><edgecolortype(505)>発動条件：<edgecolortype(0)><colortype(0)><colortype(500)><edgecolortype(501)>「祖霊降ろし」<edgecolortype(0)><colortype(0)>効果中",
+  "effects": [
+    "「霊力」の最大スタック数が5に増加する。",
+    "さらに、祖霊の大蛇牙が実行できるようになる。",
+    "発動条件：「祖霊降ろし」効果中"
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 41,
+    "name": "ヴァイパー",
+    "abbreviation": "VPR"
+  },
+  "unlock_level": 96,
+  "value": 0,
+  "icon": {
+    "id": 6511,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 196,
+  "source_class_job_id": 41
+}

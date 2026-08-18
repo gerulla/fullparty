@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 224,
+  "name": "Verbesserte Kommandos V",
+  "description": "Erhöht den Basisschaden und das Regenerationspotenzial von Kommandos außer Auto-Attacke um 50 %.",
+  "description_macro": "Erhöht den Basisschaden und das Regenerationspotenzial von Kommandos außer Auto-Attacke um 50<nbsp>%.",
+  "effects": [
+    "Erhöht den Basisschaden und das Regenerationspotenzial von Kommandos außer Auto-Attacke um 50 %."
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 36,
+    "name": "Blaumagier",
+    "abbreviation": "BMA"
+  },
+  "unlock_level": 50,
+  "value": 50,
+  "icon": {
+    "id": 5189,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 129,
+  "source_class_job_id": 36
+}

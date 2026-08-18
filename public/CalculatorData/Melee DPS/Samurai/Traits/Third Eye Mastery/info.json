@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 589,
+  "name": "Third Eye Mastery",
+  "description": "Upgrades Third Eye to Tengentsu.",
+  "description_macro": "Upgrades <colortype(500)><edgecolortype(501)>Third Eye<edgecolortype(0)><colortype(0)> to <colortype(500)><edgecolortype(501)>Tengentsu<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Upgrades Third Eye to Tengentsu."
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 34,
+    "name": "Samurai",
+    "abbreviation": "SAM"
+  },
+  "unlock_level": 82,
+  "value": 0,
+  "icon": {
+    "id": 6159,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 111,
+  "source_class_job_id": 34
+}

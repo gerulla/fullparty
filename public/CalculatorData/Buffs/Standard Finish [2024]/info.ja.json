@@ -1,0 +1,93 @@
+{
+  "kind": "combat_status",
+  "id": 2024,
+  "name": "スタンダードフィニッシュ",
+  "description": "ウェポンスキルおよび魔法のキャストタイムとリキャストタイムが短縮された状態。",
+  "effects": [
+    "ウェポンスキルおよび魔法のキャストタイムとリキャストタイムが短縮された状態。"
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 213708,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": true,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": -10
+  },
+  "class_job_category_id": 150,
+  "source_abilities": [
+    {
+      "id": 16003,
+      "name": "スタンダードフィニッシュ",
+      "description": "自身の周囲の敵に範囲物理攻撃。\nステップ成功時追加効果：自身と「クローズドポジション［被］」を付与したパーティメンバーに「スタンダードフィニッシュ」と「エスプリ」を付与する。\u3000効果時間：60秒\nこのアクションの威力とスタンダードフィニッシュの効果量は、ステップアクションの成功回数により異なる。\n成功回数が0回のとき：威力360\n成功回数が1回のとき：威力540および効果量2％\n成功回数が2回のとき：威力850および効果量5％\n2体目以降の対象への威力は60％減少する。\n追加効果：自身に「ラストダンス実行可」を付与する。\n効果時間：30秒\n発動条件：ダンスモード中\nこのウェポンスキルは固有のリキャストタイマーを持ち、実行すると他のウェポンスキルと魔法にこのアクションと同じリキャストタイムが発生する。\n\n※このアクションはホットバーに登録することはできない。\n\u3000発動条件を満たすとスタンダードステップがスタンダードフィニッシュに変化する。",
+      "description_macro": "自身の周囲の敵に範囲物理攻撃。<br><if([gnum68==38],<if([gnum72>=76],<colortype(504)><edgecolortype(505)>ステップ成功時追加効果：<edgecolortype(0)><colortype(0)>自身と<colortype(500)><edgecolortype(501)>「クローズドポジション［被］」<edgecolortype(0)><colortype(0)>を付与したパーティメンバーに<colortype(500)><edgecolortype(501)>「スタンダードフィニッシュ」<edgecolortype(0)><colortype(0)>と<colortype(500)><edgecolortype(501)>「エスプリ」<edgecolortype(0)><colortype(0)>を付与する。,<colortype(504)><edgecolortype(505)>ステップ成功時追加効果：<edgecolortype(0)><colortype(0)>自身と<colortype(500)><edgecolortype(501)>「クローズドポジション［被］」<edgecolortype(0)><colortype(0)>を付与したパーティメンバーに<colortype(500)><edgecolortype(501)>「スタンダードフィニッシュ」<edgecolortype(0)><colortype(0)>を付与する。)>,<colortype(504)><edgecolortype(505)>ステップ成功時追加効果：<edgecolortype(0)><colortype(0)>自身と<colortype(500)><edgecolortype(501)>「クローズドポジション［被］」<edgecolortype(0)><colortype(0)>を付与したパーティメンバーに<colortype(500)><edgecolortype(501)>「スタンダードフィニッシュ」<edgecolortype(0)><colortype(0)>を付与する。)>\u3000<colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>60秒<br>このアクションの威力とスタンダードフィニッシュの効果量は、ステップアクションの成功回数により異なる。<br><colortype(504)><edgecolortype(505)>成功回数が0回のとき：<edgecolortype(0)><colortype(0)>威力360<br><colortype(504)><edgecolortype(505)>成功回数が1回のとき：<edgecolortype(0)><colortype(0)>威力540および効果量2％<br><colortype(504)><edgecolortype(505)>成功回数が2回のとき：<edgecolortype(0)><colortype(0)>威力<if([gnum68==38],<if([gnum72>=94],850,800)>,800)>および効果量5％<br>2体目以降の対象への威力は60％減少する。<br><if([gnum68==38],<if([gnum72>=92],<colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)>自身に<colortype(500)><edgecolortype(501)>「ラストダンス実行可」<edgecolortype(0)><colortype(0)>を付与する。<br><colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>30秒<br>,)>,)><colortype(504)><edgecolortype(505)>発動条件：<edgecolortype(0)><colortype(0)>ダンスモード中<br>このウェポンスキルは固有のリキャストタイマーを持ち、実行すると他のウェポンスキルと魔法にこのアクションと同じリキャストタイムが発生する。<br><br><colortype(506)><edgecolortype(507)>※このアクションはホットバーに登録することはできない。<br>\u3000発動条件を満たすとスタンダードステップがスタンダードフィニッシュに変化する。<edgecolortype(0)><colortype(0)>",
+      "unlock_level": 15,
+      "relations": [
+        "granted_by_description",
+        "same_name"
+      ],
+      "roles": [
+        "Physical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 38,
+          "name": "踊り子",
+          "abbreviation": "DNC",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 16191,
+      "name": "シングル・スタンダードフィニッシュ",
+      "description": "自身の周囲の敵に範囲物理攻撃。\nステップ成功時追加効果：自身と「クローズドポジション［被］」を付与したパーティメンバーに「スタンダードフィニッシュ」と「エスプリ」を付与する。\u3000効果時間：60秒\nこのアクションの威力とスタンダードフィニッシュの効果量は、ステップアクションの成功回数により異なる。\n成功回数が0回のとき：威力360\n成功回数が1回のとき：威力540および効果量2％\n成功回数が2回のとき：威力850および効果量5％\n2体目以降の対象への威力は60％減少する。\n追加効果：自身に「ラストダンス実行可」を付与する。\n効果時間：30秒\n発動条件：ダンスモード中\nこのウェポンスキルは固有のリキャストタイマーを持ち、実行すると他のウェポンスキルと魔法にこのアクションと同じリキャストタイムが発生する。\n\n※このアクションはホットバーに登録することはできない。\n\u3000発動条件を満たすとスタンダードステップがシングル・スタンダードフィニッシュに変化する。",
+      "description_macro": "自身の周囲の敵に範囲物理攻撃。<br><if([gnum68==38],<if([gnum72>=76],<colortype(504)><edgecolortype(505)>ステップ成功時追加効果：<edgecolortype(0)><colortype(0)>自身と<colortype(500)><edgecolortype(501)>「クローズドポジション［被］」<edgecolortype(0)><colortype(0)>を付与したパーティメンバーに<colortype(500)><edgecolortype(501)>「スタンダードフィニッシュ」<edgecolortype(0)><colortype(0)>と<colortype(500)><edgecolortype(501)>「エスプリ」<edgecolortype(0)><colortype(0)>を付与する。,<colortype(504)><edgecolortype(505)>ステップ成功時追加効果：<edgecolortype(0)><colortype(0)>自身と<colortype(500)><edgecolortype(501)>「クローズドポジション［被］」<edgecolortype(0)><colortype(0)>を付与したパーティメンバーに<colortype(500)><edgecolortype(501)>「スタンダードフィニッシュ」<edgecolortype(0)><colortype(0)>を付与する。)>,<colortype(504)><edgecolortype(505)>ステップ成功時追加効果：<edgecolortype(0)><colortype(0)>自身と<colortype(500)><edgecolortype(501)>「クローズドポジション［被］」<edgecolortype(0)><colortype(0)>を付与したパーティメンバーに<colortype(500)><edgecolortype(501)>「スタンダードフィニッシュ」<edgecolortype(0)><colortype(0)>を付与する。)>\u3000<colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>60秒<br>このアクションの威力とスタンダードフィニッシュの効果量は、ステップアクションの成功回数により異なる。<br><colortype(504)><edgecolortype(505)>成功回数が0回のとき：<edgecolortype(0)><colortype(0)>威力360<br><colortype(504)><edgecolortype(505)>成功回数が1回のとき：<edgecolortype(0)><colortype(0)>威力540および効果量2％<br><colortype(504)><edgecolortype(505)>成功回数が2回のとき：<edgecolortype(0)><colortype(0)>威力<if([gnum68==38],<if([gnum72>=94],850,800)>,800)>および効果量5％<br>2体目以降の対象への威力は60％減少する。<br><if([gnum68==38],<if([gnum72>=92],<colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)>自身に<colortype(500)><edgecolortype(501)>「ラストダンス実行可」<edgecolortype(0)><colortype(0)>を付与する。<br><colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>30秒<br>,)>,)><colortype(504)><edgecolortype(505)>発動条件：<edgecolortype(0)><colortype(0)>ダンスモード中<br>このウェポンスキルは固有のリキャストタイマーを持ち、実行すると他のウェポンスキルと魔法にこのアクションと同じリキャストタイムが発生する。<br><br><colortype(506)><edgecolortype(507)>※このアクションはホットバーに登録することはできない。<br>\u3000発動条件を満たすとスタンダードステップがシングル・スタンダードフィニッシュに変化する。<edgecolortype(0)><colortype(0)>",
+      "unlock_level": 15,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Physical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 38,
+          "name": "踊り子",
+          "abbreviation": "DNC",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 16192,
+      "name": "ダブル・スタンダードフィニッシュ",
+      "description": "自身の周囲の敵に範囲物理攻撃。\nステップ成功時追加効果：自身と「クローズドポジション［被］」を付与したパーティメンバーに「スタンダードフィニッシュ」と「エスプリ」を付与する。\u3000効果時間：60秒\nこのアクションの威力とスタンダードフィニッシュの効果量は、ステップアクションの成功回数により異なる。\n成功回数が0回のとき：威力360\n成功回数が1回のとき：威力540および効果量2％\n成功回数が2回のとき：威力850および効果量5％\n2体目以降の対象への威力は60％減少する。\n追加効果：自身に「ラストダンス実行可」を付与する。\n効果時間：30秒\n発動条件：ダンスモード中\nこのウェポンスキルは固有のリキャストタイマーを持ち、実行すると他のウェポンスキルと魔法にこのアクションと同じリキャストタイムが発生する。\n\n※このアクションはホットバーに登録することはできない。\n\u3000発動条件を満たすとスタンダードステップがダブル・スタンダードフィニッシュに変化する。",
+      "description_macro": "自身の周囲の敵に範囲物理攻撃。<br><if([gnum68==38],<if([gnum72>=76],<colortype(504)><edgecolortype(505)>ステップ成功時追加効果：<edgecolortype(0)><colortype(0)>自身と<colortype(500)><edgecolortype(501)>「クローズドポジション［被］」<edgecolortype(0)><colortype(0)>を付与したパーティメンバーに<colortype(500)><edgecolortype(501)>「スタンダードフィニッシュ」<edgecolortype(0)><colortype(0)>と<colortype(500)><edgecolortype(501)>「エスプリ」<edgecolortype(0)><colortype(0)>を付与する。,<colortype(504)><edgecolortype(505)>ステップ成功時追加効果：<edgecolortype(0)><colortype(0)>自身と<colortype(500)><edgecolortype(501)>「クローズドポジション［被］」<edgecolortype(0)><colortype(0)>を付与したパーティメンバーに<colortype(500)><edgecolortype(501)>「スタンダードフィニッシュ」<edgecolortype(0)><colortype(0)>を付与する。)>,<colortype(504)><edgecolortype(505)>ステップ成功時追加効果：<edgecolortype(0)><colortype(0)>自身と<colortype(500)><edgecolortype(501)>「クローズドポジション［被］」<edgecolortype(0)><colortype(0)>を付与したパーティメンバーに<colortype(500)><edgecolortype(501)>「スタンダードフィニッシュ」<edgecolortype(0)><colortype(0)>を付与する。)>\u3000<colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>60秒<br>このアクションの威力とスタンダードフィニッシュの効果量は、ステップアクションの成功回数により異なる。<br><colortype(504)><edgecolortype(505)>成功回数が0回のとき：<edgecolortype(0)><colortype(0)>威力360<br><colortype(504)><edgecolortype(505)>成功回数が1回のとき：<edgecolortype(0)><colortype(0)>威力540および効果量2％<br><colortype(504)><edgecolortype(505)>成功回数が2回のとき：<edgecolortype(0)><colortype(0)>威力<if([gnum68==38],<if([gnum72>=94],850,800)>,800)>および効果量5％<br>2体目以降の対象への威力は60％減少する。<br><if([gnum68==38],<if([gnum72>=92],<colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)>自身に<colortype(500)><edgecolortype(501)>「ラストダンス実行可」<edgecolortype(0)><colortype(0)>を付与する。<br><colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>30秒<br>,)>,)><colortype(504)><edgecolortype(505)>発動条件：<edgecolortype(0)><colortype(0)>ダンスモード中<br>このウェポンスキルは固有のリキャストタイマーを持ち、実行すると他のウェポンスキルと魔法にこのアクションと同じリキャストタイムが発生する。<br><br><colortype(506)><edgecolortype(507)>※このアクションはホットバーに登録することはできない。<br>\u3000発動条件を満たすとスタンダードステップがダブル・スタンダードフィニッシュに変化する。<edgecolortype(0)><colortype(0)>",
+      "unlock_level": 15,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Physical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 38,
+          "name": "踊り子",
+          "abbreviation": "DNC",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

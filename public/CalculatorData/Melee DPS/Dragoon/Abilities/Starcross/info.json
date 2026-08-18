@@ -1,0 +1,94 @@
+{
+  "kind": "ability",
+  "id": 36956,
+  "name": "Starcross",
+  "description": "Deals physical damage to target and all enemies nearby it with a potency of 1,000 for the first enemy, and 40% less for all remaining enemies.\nCan only be executed while under the effect of Starcross Ready.",
+  "description_macro": "Deals physical damage to target and all enemies nearby it with a potency of 1,000 for the first enemy, and 40% less for all remaining enemies.<br>Can only be executed while under the effect of <colortype(506)><edgecolortype(507)>Starcross Ready<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Deals physical damage to target and all enemies nearby it with a potency of 1,000 for the first enemy, and 40% less for all remaining enemies.",
+    "Can only be executed while under the effect of Starcross Ready."
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 22,
+    "name": "Dragoon",
+    "abbreviation": "DRG"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 100,
+  "icon": {
+    "id": 2078,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 4,
+    "name": "Ability"
+  },
+  "attack_type": {
+    "id": 4294967295,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 1,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 3,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 10,
+      "value": 3846
+    },
+    "secondary": {
+      "type_id": 76,
+      "value": 2
+    }
+  },
+  "range": {
+    "target_yalms": 20,
+    "effect_yalms": 5,
+    "cast_type": 2
+  },
+  "targeting": {
+    "self": false,
+    "party": false,
+    "alliance": false,
+    "hostile": true,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": {
+      "id": 162,
+      "status": {
+        "id": 3846,
+        "name": "Starcross Ready",
+        "description": "Able to execute Starcross.",
+        "icon_id": 212588,
+        "max_stacks": 0
+      }
+    }
+  },
+  "metadata": {
+    "aspect_id": 7,
+    "behavior_type": 0,
+    "class_job_category_id": 23,
+    "source_class_job_id": 22,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

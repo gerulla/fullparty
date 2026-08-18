@@ -1,0 +1,91 @@
+{
+  "kind": "ability",
+  "id": 7388,
+  "name": "Shake It Off",
+  "description": "Creates a barrier around self and all nearby party members that absorbs damage totaling 15% of maximum HP.\nDispels Thrill of Battle, Damnation, and Bloodwhetting, increasing damage absorbed by 2% for each effect removed. \nDuration: 30s\nAdditional Effect: Gradually restores HP\nCure Potency: 100\nDuration: 15s\nAdditional Effect: Restores target's HP\nCure Potency: 300",
+  "description_macro": "Creates a barrier around self and all nearby party members that absorbs damage totaling 15% of maximum HP.<br>Dispels <colortype(506)><edgecolortype(507)>Thrill of Battle<edgecolortype(0)><colortype(0)>, <colortype(506)><edgecolortype(507)><if([gnum68==21],<if([gnum72>=92],Damnation,Vengeance)>,Vengeance)><edgecolortype(0)><colortype(0)>, and <if([gnum68==21],<if([gnum72>=82],<colortype(506)><edgecolortype(507)>Bloodwhetting<edgecolortype(0)><colortype(0)>,<colortype(506)><edgecolortype(507)>Raw Intuition<edgecolortype(0)><colortype(0)>)>,<colortype(506)><edgecolortype(507)>Raw Intuition<edgecolortype(0)><colortype(0)>)>, increasing damage absorbed by 2% for each effect removed. <br><colortype(504)><edgecolortype(505)>Duration:<edgecolortype(0)><colortype(0)> 30s<br><colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>Gradually restores HP<br><colortype(504)><edgecolortype(505)>Cure Potency: <edgecolortype(0)><colortype(0)>100<br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>15s<if([gnum68==21],<if([gnum72>=76],<br><colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>Restores target's HP<br><colortype(504)><edgecolortype(505)>Cure Potency: <edgecolortype(0)><colortype(0)>300,)>,)>",
+  "effects": [
+    "Creates a barrier around self and all nearby party members that absorbs damage totaling 15% of maximum HP.",
+    "Dispels Thrill of Battle, Damnation, and Bloodwhetting, increasing damage absorbed by 2% for each effect removed.",
+    "Duration: 30s",
+    "Additional Effect: Gradually restores HP",
+    "Cure Potency: 100",
+    "Duration: 15s",
+    "Additional Effect: Restores target's HP",
+    "Cure Potency: 300"
+  ],
+  "role": "Tank",
+  "job": {
+    "id": 21,
+    "name": "Warrior",
+    "abbreviation": "WAR"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 68,
+  "icon": {
+    "id": 2563,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 4,
+    "name": "Ability"
+  },
+  "attack_type": {
+    "id": 0,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 90,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 15,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 0,
+      "value": 0
+    },
+    "secondary": {
+      "type_id": 0,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": 0,
+    "effect_yalms": 30,
+    "cast_type": 2
+  },
+  "targeting": {
+    "self": true,
+    "party": false,
+    "alliance": false,
+    "hostile": false,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 0,
+    "behavior_type": 0,
+    "class_job_category_id": 22,
+    "source_class_job_id": 21,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

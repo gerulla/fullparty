@@ -1,0 +1,38 @@
+{
+  "kind": "trait",
+  "id": 664,
+  "name": "Verbessertes Arkanum",
+  "description": "Erhöht den Attacke-Wert folgender Kommandos:\nAttacke-Wert von Ruinga: 400\nAttacke-Wert von Lichtimpuls: 500\nAttacke-Wert von Ruinka: 520\nAttacke-Wert von Rubin-Ritus: 620\nAttacke-Wert von Topas-Ritus: 340\nAttacke-Wert von Smaragd-Ritus: 280\nAttacke-Wert von Quell des Feuers: 580\nAttacke-Wert von Zinnober-Schlag: 560\nAttacke-Wert von Zinnober-Zyklon: 560\nAttacke-Wert von Bergsprenger: 160\nAttacke-Wert von Wirbelströmung: 520\nAttacke-Wert von Inferno: 800\nAttacke-Wert von Gaias Zorn: 800\nAttacke-Wert von Windschlag: 800",
+  "description_macro": "Erhöht den Attacke-Wert folgender Kommandos:<br>Attacke-Wert von <colortype(502)><edgecolortype(503)>Ruinga<edgecolortype(0)><colortype(0)>: 400<br>Attacke-Wert von <colortype(502)><edgecolortype(503)>Lichtimpuls<edgecolortype(0)><colortype(0)>: 500<br>Attacke-Wert von <colortype(502)><edgecolortype(503)>Ruinka<edgecolortype(0)><colortype(0)>: 520<br>Attacke-Wert von <colortype(502)><edgecolortype(503)>Rubin-Ritus<edgecolortype(0)><colortype(0)>: 620<br>Attacke-Wert von <colortype(502)><edgecolortype(503)>Topas-Ritus<edgecolortype(0)><colortype(0)>: 340<br>Attacke-Wert von <colortype(502)><edgecolortype(503)>Smaragd-Ritus<edgecolortype(0)><colortype(0)>: 280<br>Attacke-Wert von <colortype(502)><edgecolortype(503)>Quell des Feuers<edgecolortype(0)><colortype(0)>: 580<br>Attacke-Wert von <colortype(502)><edgecolortype(503)>Zinnober-Schlag<edgecolortype(0)><colortype(0)>: 560<br>Attacke-Wert von <colortype(502)><edgecolortype(503)>Zinnober-Zyklon<edgecolortype(0)><colortype(0)>: 560<br>Attacke-Wert von <colortype(502)><edgecolortype(503)>Bergsprenger<edgecolortype(0)><colortype(0)>: 160<br>Attacke-Wert von <colortype(502)><edgecolortype(503)>Wirbelströmung<edgecolortype(0)><colortype(0)>: 520<br>Attacke-Wert von <colortype(502)><edgecolortype(503)>Inferno<edgecolortype(0)><colortype(0)>: 800<br>Attacke-Wert von <colortype(502)><edgecolortype(503)>Gaias Zorn<edgecolortype(0)><colortype(0)>: 800<br>Attacke-Wert von <colortype(502)><edgecolortype(503)>Windschlag<edgecolortype(0)><colortype(0)>: 800",
+  "effects": [
+    "Erhöht den Attacke-Wert folgender Kommandos:",
+    "Attacke-Wert von Ruinga: 400",
+    "Attacke-Wert von Lichtimpuls: 500",
+    "Attacke-Wert von Ruinka: 520",
+    "Attacke-Wert von Rubin-Ritus: 620",
+    "Attacke-Wert von Topas-Ritus: 340",
+    "Attacke-Wert von Smaragd-Ritus: 280",
+    "Attacke-Wert von Quell des Feuers: 580",
+    "Attacke-Wert von Zinnober-Schlag: 560",
+    "Attacke-Wert von Zinnober-Zyklon: 560",
+    "Attacke-Wert von Bergsprenger: 160",
+    "Attacke-Wert von Wirbelströmung: 520",
+    "Attacke-Wert von Inferno: 800",
+    "Attacke-Wert von Gaias Zorn: 800",
+    "Attacke-Wert von Windschlag: 800"
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 27,
+    "name": "Beschwörer",
+    "abbreviation": "BSW"
+  },
+  "unlock_level": 94,
+  "value": 0,
+  "icon": {
+    "id": 6831,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 28,
+  "source_class_job_id": 27
+}

@@ -1,0 +1,25 @@
+{
+  "kind": "trait",
+  "id": 485,
+  "name": "Enhanced Acceleration",
+  "description": "Allows the accumulation of charges for consecutive uses of Acceleration.\nMaximum Charges: 2",
+  "description_macro": "Allows the accumulation of charges for consecutive uses of <colortype(500)><edgecolortype(501)>Acceleration<edgecolortype(0)><colortype(0)>.<br><colortype(504)><edgecolortype(505)>Maximum Charges: <edgecolortype(0)><colortype(0)>2",
+  "effects": [
+    "Allows the accumulation of charges for consecutive uses of Acceleration.",
+    "Maximum Charges: 2"
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 35,
+    "name": "Red Mage",
+    "abbreviation": "RDM"
+  },
+  "unlock_level": 88,
+  "value": 2,
+  "icon": {
+    "id": 6211,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 112,
+  "source_class_job_id": 35
+}

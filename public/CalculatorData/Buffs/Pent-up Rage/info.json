@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 4236,
+  "name": "Pent-up Rage",
+  "description": "Increasing the potency of Deadly Blow based on damage taken.",
+  "effects": [
+    "Increasing the potency of Deadly Blow based on damage taken."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 229905,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": true,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 41592,
+      "name": "Rage",
+      "description": "Become enraged, delivering an attack with a potency of 150 to all enemies in a cone before you.\nPotency scales with item level. Immune to certain status effects, as well as most knockback and draw-in effects.\nDuration: 10s",
+      "description_macro": "Become enraged, delivering an attack with a potency of 150 to all enemies in a cone before you.<br>Potency scales with item level. Immune to certain status effects, as well as most knockback and draw-in effects.<br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>10s<if([gnum108>=3],<br><colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>Grants <colortype(506)><edgecolortype(507)>Pent-up Rage<edgecolortype(0)><colortype(0)><br><colortype(504)><edgecolortype(505)>Pent-up Rage Effect: <edgecolortype(0)><colortype(0)>Increases the potency of <colortype(500)><edgecolortype(501)>Deadly Blow<edgecolortype(0)><colortype(0)> based on the amount of damage taken while this effect is active,)>",
+      "unlock_level": 0,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Phantom Jobs"
+      ],
+      "jobs": [
+        {
+          "id": 2,
+          "name": "Phantom Berserker",
+          "abbreviation": "Ph. Berserker",
+          "is_phantom": true
+        }
+      ]
+    }
+  ]
+}

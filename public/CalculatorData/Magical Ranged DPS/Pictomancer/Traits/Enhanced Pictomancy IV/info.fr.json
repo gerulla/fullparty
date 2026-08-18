@@ -1,0 +1,25 @@
+{
+  "kind": "trait",
+  "id": 545,
+  "name": "Sorts Picto améliorés IV",
+  "description": "Augmente le maximum de charges d'Imagi Animal à 3.\nAjoute Picto Griffes et Picto Crocs aux actions exécutables avec Picto Animal.",
+  "description_macro": "Augmente le maximum de charges d'<colortype(500)><edgecolortype(501)>Imagi Animal<edgecolortype(0)><colortype(0)> à 3.<br>Ajoute <colortype(500)><edgecolortype(501)>Picto Griffes<edgecolortype(0)><colortype(0)> et <colortype(500)><edgecolortype(501)>Picto Crocs<edgecolortype(0)><colortype(0)> aux actions exécutables avec <colortype(500)><edgecolortype(501)>Picto Animal<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Augmente le maximum de charges d'Imagi Animal à 3.",
+    "Ajoute Picto Griffes et Picto Crocs aux actions exécutables avec Picto Animal."
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 42,
+    "name": "Pictomancien",
+    "abbreviation": "PIC"
+  },
+  "unlock_level": 96,
+  "value": 3,
+  "icon": {
+    "id": 6559,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 197,
+  "source_class_job_id": 42
+}

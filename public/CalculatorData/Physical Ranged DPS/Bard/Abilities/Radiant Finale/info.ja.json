@@ -1,0 +1,91 @@
+{
+  "kind": "ability",
+  "id": 25785,
+  "name": "光神のフィナーレ",
+  "description": "一定時間、自身と周囲のパーティメンバーの与ダメージを上昇させる。\u3000効果時間：20秒\nこのアクションの効果量は、自身に付与されている「コーダシンボル」の種類数により変化する。\nシンボルが1種類のときの効果量：2％\nシンボルが2種類のときの効果量：4％\nシンボルが3種類のときの効果量：6％\n追加効果：自身に「光神のアンコール実行可」を付与する。\n効果時間：30秒\n発動条件：コーダシンボルが1つ以上付与されている",
+  "description_macro": "一定時間、自身と周囲のパーティメンバーの与ダメージを上昇させる。\u3000<colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>20秒<br>このアクションの効果量は、自身に付与されている<colortype(500)><edgecolortype(501)>「コーダシンボル」<edgecolortype(0)><colortype(0)>の種類数により変化する。<br><colortype(504)><edgecolortype(505)>シンボルが1種類のときの効果量：<edgecolortype(0)><colortype(0)>2％<br><colortype(504)><edgecolortype(505)>シンボルが2種類のときの効果量：<edgecolortype(0)><colortype(0)>4％<br><colortype(504)><edgecolortype(505)>シンボルが3種類のときの効果量：<edgecolortype(0)><colortype(0)>6％<br><if([gnum68==23],<if([gnum72>=100],<colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)>自身に<colortype(500)><edgecolortype(501)>「光神のアンコール実行可」<edgecolortype(0)><colortype(0)>を付与する。<br><colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>30秒<br>,)>,)><colortype(504)><edgecolortype(505)>発動条件：<edgecolortype(0)><colortype(0)>コーダシンボルが1つ以上付与されている",
+  "effects": [
+    "一定時間、自身と周囲のパーティメンバーの与ダメージを上昇させる。\u3000効果時間：20秒",
+    "このアクションの効果量は、自身に付与されている「コーダシンボル」の種類数により変化する。",
+    "シンボルが1種類のときの効果量：2％",
+    "シンボルが2種類のときの効果量：4％",
+    "シンボルが3種類のときの効果量：6％",
+    "追加効果：自身に「光神のアンコール実行可」を付与する。",
+    "効果時間：30秒",
+    "発動条件：コーダシンボルが1つ以上付与されている"
+  ],
+  "role": "Physical Ranged DPS",
+  "job": {
+    "id": 23,
+    "name": "吟遊詩人",
+    "abbreviation": "BRD"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 90,
+  "icon": {
+    "id": 2622,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 4,
+    "name": "アビリティ"
+  },
+  "attack_type": {
+    "id": 0,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 110,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 14,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 81,
+      "value": 0
+    },
+    "secondary": {
+      "type_id": 0,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": 0,
+    "effect_yalms": 30,
+    "cast_type": 2
+  },
+  "targeting": {
+    "self": true,
+    "party": false,
+    "alliance": false,
+    "hostile": false,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": false
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 0,
+    "behavior_type": 0,
+    "class_job_category_id": 24,
+    "source_class_job_id": 23,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

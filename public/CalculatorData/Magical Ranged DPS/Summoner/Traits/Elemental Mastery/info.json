@@ -1,0 +1,28 @@
+{
+  "kind": "trait",
+  "id": 503,
+  "name": "Elemental Mastery",
+  "description": "Grants Ifrit's Favor upon executing Summon Ifrit, Titan's Favor upon executing Topaz Rite or Topaz Catastrophe, and Garuda's Favor upon executing Summon Garuda.\nEnhances Astral Flow according to your current elemental favor.\nIfrit's Favor Upgrade: Crimson Cyclone\nTitan's Favor Upgrade: Mountain Buster\nGaruda's Favor Upgrade: Slipstream",
+  "description_macro": "Grants <colortype(506)><edgecolortype(507)>Ifrit's Favor<edgecolortype(0)><colortype(0)> upon executing <colortype(500)><edgecolortype(501)>Summon Ifrit<edgecolortype(0)><colortype(0)>, <colortype(506)><edgecolortype(507)>Titan's Favor<edgecolortype(0)><colortype(0)> upon executing <colortype(500)><edgecolortype(501)>Topaz Rite<edgecolortype(0)><colortype(0)> or <colortype(500)><edgecolortype(501)>Topaz Catastrophe<edgecolortype(0)><colortype(0)>, and <colortype(506)><edgecolortype(507)>Garuda's Favor<edgecolortype(0)><colortype(0)> upon executing <colortype(500)><edgecolortype(501)>Summon Garuda<edgecolortype(0)><colortype(0)>.<br>Enhances <colortype(500)><edgecolortype(501)>Astral Flow<edgecolortype(0)><colortype(0)> according to your current elemental favor.<br><colortype(504)><edgecolortype(505)>Ifrit's Favor Upgrade: <edgecolortype(0)><colortype(0)><colortype(500)><edgecolortype(501)>Crimson Cyclone<edgecolortype(0)><colortype(0)><br><colortype(504)><edgecolortype(505)>Titan's Favor Upgrade: <edgecolortype(0)><colortype(0)><colortype(500)><edgecolortype(501)>Mountain Buster<edgecolortype(0)><colortype(0)><br><colortype(504)><edgecolortype(505)>Garuda's Favor Upgrade: <edgecolortype(0)><colortype(0)><colortype(500)><edgecolortype(501)>Slipstream<edgecolortype(0)><colortype(0)>",
+  "effects": [
+    "Grants Ifrit's Favor upon executing Summon Ifrit, Titan's Favor upon executing Topaz Rite or Topaz Catastrophe, and Garuda's Favor upon executing Summon Garuda.",
+    "Enhances Astral Flow according to your current elemental favor.",
+    "Ifrit's Favor Upgrade: Crimson Cyclone",
+    "Titan's Favor Upgrade: Mountain Buster",
+    "Garuda's Favor Upgrade: Slipstream"
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 27,
+    "name": "Summoner",
+    "abbreviation": "SMN"
+  },
+  "unlock_level": 86,
+  "value": 0,
+  "icon": {
+    "id": 5697,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 28,
+  "source_class_job_id": 27
+}

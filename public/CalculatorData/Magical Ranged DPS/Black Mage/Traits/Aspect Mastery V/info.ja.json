@@ -1,0 +1,27 @@
+{
+  "kind": "trait",
+  "id": 465,
+  "name": "極性マスタリーV",
+  "description": "自身に「パラドックスシンボル」が付与される。\nこの効果が付与されるとブリザドとファイアがパラドックスに変化する。\nパラドックスシンボルはアストラルファイアおよびアンブラルブリザードが解除されると消滅する。\n発動条件：自身に「アストラルファイア」もしくは「アンブラルブリザード」と「アンブラルハート」が最大スタック数まで付与された状態で、自身の状態が反対属性に変化したとき。",
+  "description_macro": "自身に<colortype(500)><edgecolortype(501)>「パラドックスシンボル」<edgecolortype(0)><colortype(0)>が付与される。<br>この効果が付与されるとブリザドとファイアがパラドックスに変化する。<br>パラドックスシンボルはアストラルファイアおよびアンブラルブリザードが解除されると消滅する。<br><colortype(504)><edgecolortype(505)>発動条件：<edgecolortype(0)><colortype(0)>自身に<colortype(500)><edgecolortype(501)>「アストラルファイア」<edgecolortype(0)><colortype(0)>もしくは<colortype(500)><edgecolortype(501)>「アンブラルブリザード」<edgecolortype(0)><colortype(0)>と<colortype(500)><edgecolortype(501)>「アンブラルハート」<edgecolortype(0)><colortype(0)>が最大スタック数まで付与された状態で、自身の状態が反対属性に変化したとき。",
+  "effects": [
+    "自身に「パラドックスシンボル」が付与される。",
+    "この効果が付与されるとブリザドとファイアがパラドックスに変化する。",
+    "パラドックスシンボルはアストラルファイアおよびアンブラルブリザードが解除されると消滅する。",
+    "発動条件：自身に「アストラルファイア」もしくは「アンブラルブリザード」と「アンブラルハート」が最大スタック数まで付与された状態で、自身の状態が反対属性に変化したとき。"
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 25,
+    "name": "黒魔道士",
+    "abbreviation": "BLM"
+  },
+  "unlock_level": 90,
+  "value": 0,
+  "icon": {
+    "id": 5373,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 26,
+  "source_class_job_id": 25
+}

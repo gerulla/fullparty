@@ -1,0 +1,26 @@
+{
+  "kind": "trait",
+  "id": 124,
+  "name": "ベネフィク効果アップ",
+  "description": "次に詠唱するベネフィラが必ずクリティカルヒットする\n効果時間：15秒\n発動条件：ベネフィク実行時（発動確率15％）",
+  "description_macro": "次に詠唱するベネフィラが必ずクリティカルヒットする<br><colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>15秒<br><colortype(504)><edgecolortype(505)>発動条件：<edgecolortype(0)><colortype(0)>ベネフィク実行時（発動確率15％）",
+  "effects": [
+    "次に詠唱するベネフィラが必ずクリティカルヒットする",
+    "効果時間：15秒",
+    "発動条件：ベネフィク実行時（発動確率15％）"
+  ],
+  "role": "Healer",
+  "job": {
+    "id": 33,
+    "name": "占星術師",
+    "abbreviation": "AST"
+  },
+  "unlock_level": 36,
+  "value": 15,
+  "icon": {
+    "id": 6105,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 99,
+  "source_class_job_id": 33
+}

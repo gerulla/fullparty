@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 617,
+  "name": "Maîtrise de Suppuration",
+  "description": "Remplace Suppuration par Nécrose.",
+  "description_macro": "Remplace <colortype(500)><edgecolortype(501)>Suppuration<edgecolortype(0)><colortype(0)> par <colortype(500)><edgecolortype(501)>Nécrose<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Remplace Suppuration par Nécrose."
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 27,
+    "name": "Invocateur",
+    "abbreviation": "INV"
+  },
+  "unlock_level": 92,
+  "value": 0,
+  "icon": {
+    "id": 5398,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 28,
+  "source_class_job_id": 27
+}

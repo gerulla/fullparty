@@ -1,0 +1,26 @@
+{
+  "kind": "trait",
+  "id": 593,
+  "name": "Enhanced Meikyo Shisui II",
+  "description": "Grants Tendo upon executing Meikyo Shisui.\nDuration: 30s\nTenka Goken changes to Tendo Goken and Midare Setsugekka changes to Tendo Setsugekka while under the effect of Tendo.",
+  "description_macro": "Grants <colortype(506)><edgecolortype(507)>Tendo<edgecolortype(0)><colortype(0)> upon executing <colortype(500)><edgecolortype(501)>Meikyo Shisui<edgecolortype(0)><colortype(0)>.<br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>30s<br><colortype(500)><edgecolortype(501)>Tenka Goken<edgecolortype(0)><colortype(0)> changes to <colortype(500)><edgecolortype(501)>Tendo Goken<edgecolortype(0)><colortype(0)> and <colortype(500)><edgecolortype(501)>Midare Setsugekka<edgecolortype(0)><colortype(0)> changes to <colortype(500)><edgecolortype(501)>Tendo Setsugekka<edgecolortype(0)><colortype(0)> while under the effect of <colortype(506)><edgecolortype(507)>Tendo<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Grants Tendo upon executing Meikyo Shisui.",
+    "Duration: 30s",
+    "Tenka Goken changes to Tendo Goken and Midare Setsugekka changes to Tendo Setsugekka while under the effect of Tendo."
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 34,
+    "name": "Samurai",
+    "abbreviation": "SAM"
+  },
+  "unlock_level": 100,
+  "value": 0,
+  "icon": {
+    "id": 6163,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 111,
+  "source_class_job_id": 34
+}

@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 262,
+  "name": "シェルトロン効果アップ",
+  "description": "シェルトロンの効果時間を6秒に延長する。",
+  "description_macro": "シェルトロンの効果時間を6秒に延長する。",
+  "effects": [
+    "シェルトロンの効果時間を6秒に延長する。"
+  ],
+  "role": "Tank",
+  "job": {
+    "id": 19,
+    "name": "ナイト",
+    "abbreviation": "PLD"
+  },
+  "unlock_level": 74,
+  "value": 0,
+  "icon": {
+    "id": 5215,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 20,
+  "source_class_job_id": 19
+}

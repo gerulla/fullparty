@@ -1,0 +1,25 @@
+{
+  "kind": "trait",
+  "id": 417,
+  "name": "Débarrassage amélioré",
+  "description": "Débarrassage restaure vos PV et ceux des équipiers alentour.\nPuissance : 300",
+  "description_macro": "<colortype(500)><edgecolortype(501)>Débarrassage<edgecolortype(0)><colortype(0)> restaure vos PV et ceux des équipiers alentour.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> 300",
+  "effects": [
+    "Débarrassage restaure vos PV et ceux des équipiers alentour.",
+    "Puissance : 300"
+  ],
+  "role": "Tank",
+  "job": {
+    "id": 21,
+    "name": "Guerrier",
+    "abbreviation": "GUE"
+  },
+  "unlock_level": 76,
+  "value": 0,
+  "icon": {
+    "id": 5266,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 22,
+  "source_class_job_id": 21
+}

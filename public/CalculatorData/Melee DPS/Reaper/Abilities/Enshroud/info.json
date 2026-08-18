@@ -1,0 +1,89 @@
+{
+  "kind": "ability",
+  "id": 24394,
+  "name": "Enshroud",
+  "description": "Offers your flesh as a vessel to your avatar, gaining maximum stacks of Lemure Shroud.\nDuration: 30s\nCertain actions cannot be executed while playing host to your avatar.\nAdditional Effect: Grants Oblatio\nDuration: 30s\nShroud Gauge Cost: 50",
+  "description_macro": "Offers your flesh as a vessel to your avatar, gaining maximum stacks of <colortype(506)><edgecolortype(507)>Lemure Shroud<edgecolortype(0)><colortype(0)>.<br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>30s<br>Certain actions cannot be executed while playing host to your avatar.<br><if([gnum68==39],<if([gnum72>=92],<colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>Grants <colortype(506)><edgecolortype(507)>Oblatio<edgecolortype(0)><colortype(0)><br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>30s<br>,)>,)><colortype(504)><edgecolortype(505)>Shroud Gauge Cost: <edgecolortype(0)><colortype(0)>50",
+  "effects": [
+    "Offers your flesh as a vessel to your avatar, gaining maximum stacks of Lemure Shroud.",
+    "Duration: 30s",
+    "Certain actions cannot be executed while playing host to your avatar.",
+    "Additional Effect: Grants Oblatio",
+    "Duration: 30s",
+    "Shroud Gauge Cost: 50"
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 39,
+    "name": "Reaper",
+    "abbreviation": "RPR"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 80,
+  "icon": {
+    "id": 3622,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 4,
+    "name": "Ability"
+  },
+  "attack_type": {
+    "id": 0,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 5,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 4,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 65,
+      "value": 50
+    },
+    "secondary": {
+      "type_id": 113,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": 0,
+    "effect_yalms": 0,
+    "cast_type": 1
+  },
+  "targeting": {
+    "self": true,
+    "party": false,
+    "alliance": false,
+    "hostile": false,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 0,
+    "behavior_type": 0,
+    "class_job_category_id": 180,
+    "source_class_job_id": 39,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

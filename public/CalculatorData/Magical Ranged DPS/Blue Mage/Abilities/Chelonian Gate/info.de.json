@@ -1,0 +1,96 @@
+{
+  "kind": "ability",
+  "id": 23273,
+  "name": "Barriere",
+  "description": "Du errichtest eine Barriere um dich und verringerst deinen erlittenen Schaden um 20 %.\nDauer: 10 Sekunden\nZusatzeffekt: Gewährt Göttlicher Katarakt, wenn Schaden in der Höhe von 30 % deiner Maximal-LP erlitten wird.\nEffekt von Göttlicher Katarakt: Barriere ändert sich zu Göttlicher Katarakt.\nEffekt endet bei Bewegung, Umdrehen oder Ausführen eines Kommandos. Bei Ende von Barriere endet auch Göttlicher Katarakt.\nUnterbindet Auto-Attacke.\nGemeinsamer Reaktivierungs-Timer mit Zermalmender Geist und Rubin-Dynamo\n\nGöttlicher Katarakt\nDu führst eine wasserbasierte magische Attacke auf alle umstehenden Gegner aus.\nAttacke-Wert: 500\nZusatzeffekt bei Äther-Mimikry: Verteidiger: Attacke-Wert erhöht sich auf 1.000.\nAttacke-Wert verringert sich ab dem zweiten Gegner um 50 %.\nKann nur während Göttlicher Katarakt ausgeführt werden.",
+  "description_macro": "Du errichtest eine Barriere um dich und verringerst deinen erlittenen Schaden um 20<nbsp>%.<br>Dauer: 10 Sekunden<br>Zusatzeffekt: Gewährt <colortype(506)><edgecolortype(507)>Göttlicher Katarakt<edgecolortype(0)><colortype(0)>, wenn Schaden in der Höhe von 30<nbsp>% deiner Maximal-LP erlitten wird.<br>Effekt von <colortype(506)><edgecolortype(507)>Göttlicher Katarakt<edgecolortype(0)><colortype(0)>: <colortype(502)><edgecolortype(503)>Barriere<edgecolortype(0)><colortype(0)> ändert sich zu <colortype(502)><edgecolortype(503)>Göttlicher Katarakt<edgecolortype(0)><colortype(0)>.<br>Effekt endet bei Bewegung, Umdrehen oder Ausführen eines Kommandos. Bei Ende von <colortype(506)><edgecolortype(507)>Barriere<edgecolortype(0)><colortype(0)> endet auch <colortype(506)><edgecolortype(507)>Göttlicher Katarakt<edgecolortype(0)><colortype(0)>.<br>Unterbindet Auto-Attacke.<br>Gemeinsamer Reaktivierungs-Timer mit <colortype(502)><edgecolortype(503)>Zermalmender Geist<edgecolortype(0)><colortype(0)> und <colortype(502)><edgecolortype(503)>Rubin-Dynamo<edgecolortype(0)><colortype(0)><br><br><colortype(502)><edgecolortype(503)>Göttlicher Katarakt<edgecolortype(0)><colortype(0)><br>Du führst eine wasserbasierte magische Attacke auf alle umstehenden Gegner aus.<br>Attacke-Wert: 500<br>Zusatzeffekt bei <colortype(506)><edgecolortype(507)>Äther-Mimikry: Verteidiger<edgecolortype(0)><colortype(0)>: Attacke-Wert erhöht sich auf 1.000.<br>Attacke-Wert verringert sich ab dem zweiten Gegner um 50<nbsp>%.<br>Kann nur während <colortype(506)><edgecolortype(507)>Göttlicher Katarakt<edgecolortype(0)><colortype(0)> ausgeführt werden. ",
+  "effects": [
+    "Du errichtest eine Barriere um dich und verringerst deinen erlittenen Schaden um 20 %.",
+    "Dauer: 10 Sekunden",
+    "Zusatzeffekt: Gewährt Göttlicher Katarakt, wenn Schaden in der Höhe von 30 % deiner Maximal-LP erlitten wird.",
+    "Effekt von Göttlicher Katarakt: Barriere ändert sich zu Göttlicher Katarakt.",
+    "Effekt endet bei Bewegung, Umdrehen oder Ausführen eines Kommandos. Bei Ende von Barriere endet auch Göttlicher Katarakt.",
+    "Unterbindet Auto-Attacke.",
+    "Gemeinsamer Reaktivierungs-Timer mit Zermalmender Geist und Rubin-Dynamo",
+    "Göttlicher Katarakt",
+    "Du führst eine wasserbasierte magische Attacke auf alle umstehenden Gegner aus.",
+    "Attacke-Wert: 500",
+    "Zusatzeffekt bei Äther-Mimikry: Verteidiger: Attacke-Wert erhöht sich auf 1.000.",
+    "Attacke-Wert verringert sich ab dem zweiten Gegner um 50 %.",
+    "Kann nur während Göttlicher Katarakt ausgeführt werden."
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 36,
+    "name": "Blaumagier",
+    "abbreviation": "BMA"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 1,
+  "icon": {
+    "id": 3340,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 2,
+    "name": "Zauber"
+  },
+  "attack_type": {
+    "id": 5,
+    "name": "魔法"
+  },
+  "timing": {
+    "cast_seconds": 2,
+    "recast_seconds": 30,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 4,
+    "additional_cooldown_group": 58,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 3,
+      "value": 3
+    },
+    "secondary": {
+      "type_id": 0,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": 0,
+    "effect_yalms": 0,
+    "cast_type": 1
+  },
+  "targeting": {
+    "self": true,
+    "party": false,
+    "alliance": false,
+    "hostile": false,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": false
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 6,
+    "behavior_type": 0,
+    "class_job_category_id": 129,
+    "source_class_job_id": 36,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

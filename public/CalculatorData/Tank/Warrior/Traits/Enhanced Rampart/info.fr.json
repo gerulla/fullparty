@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 639,
+  "name": "Rempart amélioré",
+  "description": "Ajoute un effet additionel qui augmente de 15% les effets curatifs sur vous à Rempart.",
+  "description_macro": "Ajoute un effet additionel qui augmente de 15% les effets curatifs sur vous à <colortype(500)><edgecolortype(501)>Rempart<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Ajoute un effet additionel qui augmente de 15% les effets curatifs sur vous à Rempart."
+  ],
+  "role": "Tank",
+  "job": {
+    "id": 21,
+    "name": "Guerrier",
+    "abbreviation": "GUE"
+  },
+  "unlock_level": 94,
+  "value": 0,
+  "icon": {
+    "id": 6804,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 113,
+  "source_class_job_id": 0
+}

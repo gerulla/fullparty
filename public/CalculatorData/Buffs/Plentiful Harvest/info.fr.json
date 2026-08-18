@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 3205,
+  "name": "Moisson abondante",
+  "description": "La jauge de Transcendance augmente graduellement.",
+  "effects": [
+    "La jauge de Transcendance augmente graduellement."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 214956,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": true,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 100
+  },
+  "class_job_category_id": 180,
+  "source_abilities": [
+    {
+      "id": 24385,
+      "name": "Moisson abondante",
+      "description": "Effectue une attaque physique en ligne droite sur les ennemis devant vous.\nLa puissance de cette attaque dépend du degré de votre Offrande à la Mort.\nPuissance : de 720 à 1000\nLa puissance est réduite de 20% au-delà du premier ennemi touché.\nConsomme tous les degrés d'Offrande à la Mort.\nEffet additionnel : vous octroie Linceul du lémure préparé.\nDurée : 30s\nEffet additionnel : vous octroie Perfectio occulta.\nDurée : 30s\nPerfectio occulta : devient Perfectio parata après utilisation de Communio.\nCondition : Guide du rite sacrificiel non octroyé et Offrande à la Mort.",
+      "description_macro": "Effectue une attaque physique en ligne droite sur les ennemis devant vous.<br>La puissance de cette attaque dépend du degré de votre <colortype(500)><edgecolortype(501)>Offrande à la Mort<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> de 720 à 1000<br>La puissance est réduite de 20% au-delà du premier ennemi touché.<br>Consomme tous les degrés d'<colortype(500)><edgecolortype(501)>Offrande à la Mort<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> vous octroie <colortype(500)><edgecolortype(501)>Linceul du lémure préparé<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 30s<br><if([gnum68==39],<if([gnum72>=100],<colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> vous octroie <colortype(500)><edgecolortype(501)>Perfectio occulta<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 30s<br><colortype(506)><edgecolortype(507)>Perfectio occulta<nbsp>:<edgecolortype(0)><colortype(0)> devient <colortype(500)><edgecolortype(501)>Perfectio parata<edgecolortype(0)><colortype(0)> après utilisation de Communio.<br>,)>,)><colortype(506)><edgecolortype(507)>Condition<nbsp>:<edgecolortype(0)><colortype(0)> <colortype(500)><edgecolortype(501)>Guide du rite sacrificiel<edgecolortype(0)><colortype(0)> non octroyé et <colortype(500)><edgecolortype(501)>Offrande à la Mort<edgecolortype(0)><colortype(0)>.",
+      "unlock_level": 88,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 39,
+          "name": "Faucheur",
+          "abbreviation": "FCH",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

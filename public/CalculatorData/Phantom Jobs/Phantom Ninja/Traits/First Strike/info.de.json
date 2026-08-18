@@ -1,0 +1,25 @@
+{
+  "kind": "trait",
+  "id": 13,
+  "name": "Erstschlag",
+  "description": "Gewährt dir Erstschlag bei Kampfeintritt.\nEffekt von Erstschlag: Auto-Attacke-Intervall und\n(Re-)Aktivierungszeiten von Waffenfertigkeiten und Magie sind verkürzt.\nDauer: 25 Sekunden",
+  "description_macro": "Gewährt dir <colortype(506)><edgecolortype(507)>Erstschlag<edgecolortype(0)><colortype(0)> bei Kampfeintritt.<br>Effekt von <colortype(506)><edgecolortype(507)>Erstschlag<edgecolortype(0)><colortype(0)>: Auto-Attacke-Intervall und<br>(Re-)Ak<->ti<->vie<->rungs<->zei<->ten von Waf<->fen<->fer<->tig<->kei<->ten und Magie sind verkürzt.<br>Dauer: 25 Sekunden",
+  "effects": [
+    "Gewährt dir Erstschlag bei Kampfeintritt.",
+    "Effekt von Erstschlag: Auto-Attacke-Intervall und",
+    "(Re-)Aktivierungszeiten von Waffenfertigkeiten und Magie sind verkürzt.",
+    "Dauer: 25 Sekunden"
+  ],
+  "role": "Phantom Jobs",
+  "job": {
+    "id": 16,
+    "name": "Phantom-Ninja",
+    "abbreviation": "Ph-Ninja"
+  },
+  "is_phantom_trait": true,
+  "unlock_level": 5,
+  "icon": {
+    "id": 82213,
+    "file": "icon.png"
+  }
+}

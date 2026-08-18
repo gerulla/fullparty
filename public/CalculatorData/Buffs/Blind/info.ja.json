@@ -1,0 +1,71 @@
+{
+  "kind": "combat_status",
+  "id": 15,
+  "name": "暗闇",
+  "description": "闇に囚われ、命中率が低下した状態。",
+  "effects": [
+    "闇に囚われ、命中率が低下した状態。"
+  ],
+  "classification": "debuff",
+  "icon": {
+    "id": 215012,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 2,
+  "target_type": 0,
+  "can_dispel": true,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 50,
+  "parameter": {
+    "effect": 0,
+    "modifier": -10
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 11422,
+      "name": "インクジェット",
+      "description": "自身の前方に向かって無属性扇範囲魔法攻撃。\u3000威力：200\n2体目以降の対象への威力は50％減少する。\n追加効果：対象に暗闇を付与する\u3000効果時間：30秒",
+      "description_macro": "自身の前方に向かって無属性扇範囲魔法攻撃。\u3000<colortype(504)><edgecolortype(505)>威力：<edgecolortype(0)><colortype(0)>200<br>2体目以降の対象への威力は50％減少する。<br><colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)>対象に暗闇を付与する\u3000<colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>30秒",
+      "unlock_level": 1,
+      "relations": [
+        "applied_by_description"
+      ],
+      "roles": [
+        "Magical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 36,
+          "name": "青魔道士",
+          "abbreviation": "BLU",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 41628,
+      "name": "ダークキャノン",
+      "description": "対象とその周囲の敵に無属性範囲魔法攻撃。\n威力：210（アイテムレベル依存威力）\n追加効果：対象に暗闇を付与する。\n効果時間：30秒",
+      "description_macro": "対象とその周囲の敵に無属性範囲魔法攻撃。<br><colortype(504)><edgecolortype(505)>威力：<edgecolortype(0)><colortype(0)>210（アイテムレベル依存威力）<br><colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)>対象に暗闇を付与する。<br><colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>30秒<if([gnum108>=4],<br>リキャストタイマーを<colortype(500)><edgecolortype(501)>「ショックキャノン」<edgecolortype(0)><colortype(0)>と共有する。,)>",
+      "unlock_level": 0,
+      "relations": [
+        "applied_by_description"
+      ],
+      "roles": [
+        "Phantom Jobs"
+      ],
+      "jobs": [
+        {
+          "id": 9,
+          "name": "Phantom サポート砲撃士",
+          "abbreviation": "Ph. Cannoneer",
+          "is_phantom": true
+        }
+      ]
+    }
+  ]
+}

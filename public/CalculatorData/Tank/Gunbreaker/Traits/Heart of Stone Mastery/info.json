@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 424,
+  "name": "Heart of Stone Mastery",
+  "description": "Upgrades Heart of Stone to Heart of Corundum.",
+  "description_macro": "Upgrades <colortype(500)><edgecolortype(501)>Heart of Stone<edgecolortype(0)><colortype(0)> to <colortype(500)><edgecolortype(501)>Heart of Corundum<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Upgrades Heart of Stone to Heart of Corundum."
+  ],
+  "role": "Tank",
+  "job": {
+    "id": 37,
+    "name": "Gunbreaker",
+    "abbreviation": "GNB"
+  },
+  "unlock_level": 82,
+  "value": 0,
+  "icon": {
+    "id": 6304,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 149,
+  "source_class_job_id": 37
+}

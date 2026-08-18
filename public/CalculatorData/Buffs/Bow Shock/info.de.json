@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 1838,
+  "name": "Schockpatrone",
+  "description": "Erleidet schrittweise Schaden.",
+  "effects": [
+    "Erleidet schrittweise Schaden."
+  ],
+  "classification": "debuff",
+  "icon": {
+    "id": 213608,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 2,
+  "target_type": 0,
+  "can_dispel": true,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 10,
+  "parameter": {
+    "effect": 0,
+    "modifier": 30
+  },
+  "class_job_category_id": 149,
+  "source_abilities": [
+    {
+      "id": 16159,
+      "name": "Schockpatrone",
+      "description": "Du führst eine physische Attacke auf alle umstehenden Gegner aus.\nAttacke-Wert: 150\nZusatzeffekt: Schaden über Zeit\nAttacke-Wert: 60\nDauer: 15 Sekunden",
+      "description_macro": "Du führst eine physische Attacke auf alle umstehenden Gegner aus.<br>Attacke-Wert: 150<br>Zusatzeffekt: Schaden über Zeit<br>Attacke-Wert: 60<br>Dauer: 15 Sekunden",
+      "unlock_level": 62,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Tank"
+      ],
+      "jobs": [
+        {
+          "id": 37,
+          "name": "Revolverklinge",
+          "abbreviation": "REV",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

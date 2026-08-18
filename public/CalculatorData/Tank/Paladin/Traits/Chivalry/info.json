@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 246,
+  "name": "Chivalry",
+  "description": "Restores MP when using Riot Blade or Spirits Within.",
+  "description_macro": "Restores MP when using <colortype(500)><edgecolortype(501)>Riot Blade<edgecolortype(0)><colortype(0)> or <colortype(500)><edgecolortype(501)>Spirits Within<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Restores MP when using Riot Blade or Spirits Within."
+  ],
+  "role": "Tank",
+  "job": {
+    "id": 19,
+    "name": "Paladin",
+    "abbreviation": "PLD"
+  },
+  "unlock_level": 58,
+  "value": 0,
+  "icon": {
+    "id": 5212,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 20,
+  "source_class_job_id": 19
+}

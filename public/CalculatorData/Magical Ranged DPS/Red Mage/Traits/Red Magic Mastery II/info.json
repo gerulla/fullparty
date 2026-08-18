@@ -1,0 +1,25 @@
+{
+  "kind": "trait",
+  "id": 483,
+  "name": "Red Magic Mastery II",
+  "description": "Upgrades Verthunder to Verthunder III and Veraero to Veraero III.\nUpon gaining 3 Mana Stacks, Verthunder III is upgraded to Verflare and Veraero III is upgraded to Verholy.",
+  "description_macro": "Upgrades <colortype(500)><edgecolortype(501)>Verthunder<edgecolortype(0)><colortype(0)> to <colortype(500)><edgecolortype(501)>Verthunder III<edgecolortype(0)><colortype(0)> and <colortype(500)><edgecolortype(501)>Veraero<edgecolortype(0)><colortype(0)> to <colortype(500)><edgecolortype(501)>Veraero III<edgecolortype(0)><colortype(0)>.<br>Upon gaining 3 <colortype(506)><edgecolortype(507)>Mana Stacks<edgecolortype(0)><colortype(0)>, <colortype(500)><edgecolortype(501)>Verthunder III<edgecolortype(0)><colortype(0)> is upgraded to <colortype(500)><edgecolortype(501)>Verflare<edgecolortype(0)><colortype(0)> and <colortype(500)><edgecolortype(501)>Veraero III<edgecolortype(0)><colortype(0)> is upgraded to <colortype(500)><edgecolortype(501)>Verholy<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Upgrades Verthunder to Verthunder III and Veraero to Veraero III.",
+    "Upon gaining 3 Mana Stacks, Verthunder III is upgraded to Verflare and Veraero III is upgraded to Verholy."
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 35,
+    "name": "Red Mage",
+    "abbreviation": "RDM"
+  },
+  "unlock_level": 82,
+  "value": 0,
+  "icon": {
+    "id": 6209,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 112,
+  "source_class_job_id": 35
+}

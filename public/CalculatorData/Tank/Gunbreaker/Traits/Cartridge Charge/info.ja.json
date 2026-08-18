@@ -1,0 +1,26 @@
+{
+  "kind": "trait",
+  "id": 257,
+  "name": "ソイルチャージ",
+  "description": "自身に「ソイル」が付与される。\n最大スタック数：2\n発動条件：ソリッドバレルのコンボ成功時",
+  "description_macro": "自身に<colortype(500)><edgecolortype(501)>「ソイル」<edgecolortype(0)><colortype(0)>が付与される。<br><colortype(504)><edgecolortype(505)>最大スタック数：<edgecolortype(0)><colortype(0)>2<br><colortype(504)><edgecolortype(505)>発動条件：<edgecolortype(0)><colortype(0)>ソリッドバレルのコンボ成功時",
+  "effects": [
+    "自身に「ソイル」が付与される。",
+    "最大スタック数：2",
+    "発動条件：ソリッドバレルのコンボ成功時"
+  ],
+  "role": "Tank",
+  "job": {
+    "id": 37,
+    "name": "ガンブレイカー",
+    "abbreviation": "GNB"
+  },
+  "unlock_level": 30,
+  "value": 0,
+  "icon": {
+    "id": 6301,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 149,
+  "source_class_job_id": 37
+}

@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 374,
+  "name": "Meister der Offensivmagie",
+  "description": "Dosis verwandelt sich in Dosis II, Phlegma in Phlegma II und Eukratische Dosis in Eukratische Dosis II. Außerdem erhöht sich der Attacke-Wert von Toxikon auf 300.",
+  "description_macro": "<colortype(502)><edgecolortype(503)>Dosis<edgecolortype(0)><colortype(0)> verwandelt sich in <colortype(502)><edgecolortype(503)>Dosis II<edgecolortype(0)><colortype(0)>, <colortype(502)><edgecolortype(503)>Phlegma<edgecolortype(0)><colortype(0)> in <colortype(502)><edgecolortype(503)>Phlegma II<edgecolortype(0)><colortype(0)> und <colortype(502)><edgecolortype(503)>Eukratische Dosis<edgecolortype(0)><colortype(0)> in <colortype(502)><edgecolortype(503)>Eukratische Dosis II<edgecolortype(0)><colortype(0)>. Außerdem erhöht sich der Attacke-Wert von <colortype(502)><edgecolortype(503)>Toxikon<edgecolortype(0)><colortype(0)> auf 300.",
+  "effects": [
+    "Dosis verwandelt sich in Dosis II, Phlegma in Phlegma II und Eukratische Dosis in Eukratische Dosis II. Außerdem erhöht sich der Attacke-Wert von Toxikon auf 300."
+  ],
+  "role": "Healer",
+  "job": {
+    "id": 40,
+    "name": "Weiser",
+    "abbreviation": "WEI"
+  },
+  "unlock_level": 72,
+  "value": 0,
+  "icon": {
+    "id": 6455,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 181,
+  "source_class_job_id": 40
+}

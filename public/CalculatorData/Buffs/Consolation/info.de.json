@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 3098,
+  "name": "Seelentrost",
+  "description": "Erlittener Schaden ist um einen bestimmten Betrag verringert.",
+  "effects": [
+    "Erlittener Schaden ist um einen bestimmten Betrag verringert."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 214907,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": true,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 100
+  },
+  "class_job_category_id": 29,
+  "source_abilities": [
+    {
+      "id": 16546,
+      "name": "Seelentrost",
+      "description": "Du lässt deinen Seraphen Seelentrost ausführen.\nRegeneriert eigene LP und die von umstehenden Gruppenmitgliedern.\nHeilpotenzial: 250\nZusatzeffekt: Errichtet eine Barriere um die Ziele, die Schaden in der Höhe von 100 % der Heilwirkung absorbiert.\nDauer: 30 Sekunden\nMaximale Aufladungen: 2\nBedingung: Seraph ist bereits gerufen.",
+      "description_macro": "Du lässt deinen Seraphen <colortype(502)><edgecolortype(503)>Seelentrost<edgecolortype(0)><colortype(0)> ausführen.<br>Regeneriert eigene LP und die von umstehenden Grup<->pen<->mit<->gliedern.<br>Heilpotenzial: 250<br>Zusatzeffekt: Errichtet eine Barriere um die Ziele, die Schaden in der Höhe von 100<nbsp>% der Heilwirkung absorbiert.<br>Dauer: 30 Sekunden<br>Maximale Aufladungen: 2<br>Bedingung: Seraph ist bereits gerufen.",
+      "unlock_level": 80,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Healer"
+      ],
+      "jobs": [
+        {
+          "id": 28,
+          "name": "Gelehrter",
+          "abbreviation": "GLT",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

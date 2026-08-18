@@ -1,0 +1,25 @@
+{
+  "kind": "trait",
+  "id": 283,
+  "name": "Enhanced Quick Nock",
+  "description": "Adds to Quick Nock a 20% chance to grant Hawk's Eye.\nDuration: 30s",
+  "description_macro": "Adds to <colortype(500)><edgecolortype(501)>Quick Nock<edgecolortype(0)><colortype(0)> a 20% chance to grant <colortype(506)><edgecolortype(507)>Hawk's Eye<edgecolortype(0)><colortype(0)>.<br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>30s",
+  "effects": [
+    "Adds to Quick Nock a 20% chance to grant Hawk's Eye.",
+    "Duration: 30s"
+  ],
+  "role": "Physical Ranged DPS",
+  "job": {
+    "id": 23,
+    "name": "Bard",
+    "abbreviation": "BRD"
+  },
+  "unlock_level": 25,
+  "value": 0,
+  "icon": {
+    "id": 5304,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 50,
+  "source_class_job_id": 5
+}

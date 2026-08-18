@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 189,
+  "name": "Vitesse de la lumière accélérée",
+  "description": "Réduit à 60s le temps de recharge de Vitesse de la lumière.",
+  "description_macro": "Réduit à 60s le temps de recharge de <colortype(500)><edgecolortype(501)>Vitesse de la lumière<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Réduit à 60s le temps de recharge de Vitesse de la lumière."
+  ],
+  "role": "Healer",
+  "job": {
+    "id": 33,
+    "name": "Astromancien",
+    "abbreviation": "AST"
+  },
+  "unlock_level": 68,
+  "value": -300,
+  "icon": {
+    "id": 6101,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 99,
+  "source_class_job_id": 33
+}

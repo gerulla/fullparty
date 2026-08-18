@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 375,
+  "name": "Enhanced Kerachole",
+  "description": "Adds an additional effect to Kerachole that grants healing over time.",
+  "description_macro": "Adds an additional effect to <colortype(500)><edgecolortype(501)>Kerachole<edgecolortype(0)><colortype(0)> that grants healing over time.",
+  "effects": [
+    "Adds an additional effect to Kerachole that grants healing over time."
+  ],
+  "role": "Healer",
+  "job": {
+    "id": 40,
+    "name": "Sage",
+    "abbreviation": "SGE"
+  },
+  "unlock_level": 78,
+  "value": 0,
+  "icon": {
+    "id": 6456,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 181,
+  "source_class_job_id": 40
+}

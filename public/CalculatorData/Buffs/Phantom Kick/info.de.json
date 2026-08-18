@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 4237,
+  "name": "Treten",
+  "description": "Ausgeteilter Schaden ist erhöht.",
+  "effects": [
+    "Ausgeteilter Schaden ist erhöht."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 218167,
+    "file": "icon.png"
+  },
+  "max_stacks": 3,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": true,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 5
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 41595,
+      "name": "Treten",
+      "description": "Du springst auf das Ziel zu und führst eine physische Attacke auf alle Gegner in gerader Linie vor dem Ziel aus.\nAttacke-Wert: 100 (skaliert mit Gegenstandsstufe)\nZusatzeffekt: Mit jeder Ausführung von Treten steigert sich eigener ausgeteilter Schaden um 5 %.\nMaximalstapelzahl: 3\nDauer: 40 Sekunden",
+      "description_macro": "Du springst auf das Ziel zu und führst eine physische Attacke auf alle Gegner in gerader Linie vor dem Ziel aus.<br>Attacke-Wert: 100 (skaliert mit Gegen<->stands<->stufe)<br>Zusatzeffekt: Mit jeder Ausführung von <colortype(502)><edgecolortype(503)>Treten<edgecolortype(0)><colortype(0)> steigert sich eigener ausgeteilter Schaden um <if([gnum108>=6],9<nbsp>%,<if([gnum108>=4],7<nbsp>%,5<nbsp>%)>)>.<br>Ma<->xi<->mal<->sta<->pel<->zahl: 3<br>Dauer: 40 Sekunden",
+      "unlock_level": 0,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Phantom Jobs"
+      ],
+      "jobs": [
+        {
+          "id": 3,
+          "name": "Phantom Phantom-Mönch",
+          "abbreviation": "Ph-Mönch",
+          "is_phantom": true
+        }
+      ]
+    }
+  ]
+}

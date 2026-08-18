@@ -1,0 +1,88 @@
+{
+  "kind": "ability",
+  "id": 7412,
+  "name": "Tir de balle chauffé",
+  "description": "Effectue une attaque physique sur la cible.\nPuissance : 140\nCombo : Tir scindé chauffé\nPuissance du combo : 320\nBonus du combo : remplit la Jauge de chaleur de 5.",
+  "description_macro": "Effectue une attaque physique sur la cible.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> <if([gnum68==31],<if([gnum72>=94],140,<if([gnum68==31],<if([gnum72>=84],120,100)>,100)>)>,<if([gnum68==31],<if([gnum72>=84],120,100)>,100)>)><br><colortype(506)><edgecolortype(507)>Combo<nbsp>:<edgecolortype(0)><colortype(0)> Tir scindé chauffé<br><colortype(506)><edgecolortype(507)>Puissance du combo<nbsp>:<edgecolortype(0)><colortype(0)> <if([gnum68==31],<if([gnum72>=94],320,<if([gnum68==31],<if([gnum72>=84],300,280)>,280)>)>,<if([gnum68==31],<if([gnum72>=84],300,280)>,280)>)><if([gnum68==31],<if([gnum72>=30],<br><colortype(506)><edgecolortype(507)>Bonus du combo<nbsp>:<edgecolortype(0)><colortype(0)> remplit la <colortype(502)><edgecolortype(503)>Jauge de chaleur<edgecolortype(0)><colortype(0)> de 5.,)>,)>",
+  "effects": [
+    "Effectue une attaque physique sur la cible.",
+    "Puissance : 140",
+    "Combo : Tir scindé chauffé",
+    "Puissance du combo : 320",
+    "Bonus du combo : remplit la Jauge de chaleur de 5."
+  ],
+  "role": "Physical Ranged DPS",
+  "job": {
+    "id": 31,
+    "name": "Machiniste",
+    "abbreviation": "MCH"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 60,
+  "icon": {
+    "id": 3032,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 3,
+    "name": "Technique d'arme"
+  },
+  "attack_type": {
+    "id": 4294967295,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 2.5,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 58,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 0,
+      "value": 0
+    },
+    "secondary": {
+      "type_id": 0,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": -1,
+    "effect_yalms": 0,
+    "cast_type": 1
+  },
+  "targeting": {
+    "self": false,
+    "party": false,
+    "alliance": false,
+    "hostile": true,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": 2866,
+    "preserves_combo": false
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 7,
+    "behavior_type": 0,
+    "class_job_category_id": 96,
+    "source_class_job_id": 31,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

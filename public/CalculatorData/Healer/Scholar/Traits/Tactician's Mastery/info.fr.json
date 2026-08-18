@@ -1,0 +1,26 @@
+{
+  "kind": "trait",
+  "id": 656,
+  "name": "Actions améliorées",
+  "description": "Augmente la puissance de certaines actions.\n\nPuissance de Loi de l'infection : 85\nPuissance de Loi de l'ébullition IV : 320",
+  "description_macro": "Augmente la puissance de certaines actions.<br><br><colortype(506)><edgecolortype(507)>Puissance de Loi de l'infection<nbsp>:<edgecolortype(0)><colortype(0)> 85<br><colortype(506)><edgecolortype(507)>Puissance de Loi de l'ébullition IV<nbsp>:<edgecolortype(0)><colortype(0)> 320",
+  "effects": [
+    "Augmente la puissance de certaines actions.",
+    "Puissance de Loi de l'infection : 85",
+    "Puissance de Loi de l'ébullition IV : 320"
+  ],
+  "role": "Healer",
+  "job": {
+    "id": 28,
+    "name": "Érudit",
+    "abbreviation": "ÉRU"
+  },
+  "unlock_level": 94,
+  "value": 0,
+  "icon": {
+    "id": 6831,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 29,
+  "source_class_job_id": 28
+}

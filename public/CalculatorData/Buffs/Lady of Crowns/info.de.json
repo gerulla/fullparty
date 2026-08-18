@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 4328,
+  "name": "Königin der Kronen",
+  "description": "Die Königin der Kronen wurde gezogen.",
+  "effects": [
+    "Die Königin der Kronen wurde gezogen."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 214840,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": true,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 99,
+  "source_abilities": [
+    {
+      "id": 7445,
+      "name": "Königin der Kronen",
+      "description": "Du regenerierst eigene LP und die von umstehenden Gruppenmitgliedern.\nHeilpotenzial: 400\nBei erfüllter Bedingung ändert sich Kleine Arkana zu diesem Kommando.\nKann nicht im Kommandomenü angelegt werden.",
+      "description_macro": "Du regenerierst eigene LP und die von umstehenden Grup<->pen<->mit<->gliedern.<br>Heilpotenzial: 400<br>Bei erfüllter Bedingung ändert sich <colortype(502)><edgecolortype(503)>Kleine Arkana<edgecolortype(0)><colortype(0)> zu diesem Kommando.<br>Kann nicht im Kommandomenü angelegt werden.",
+      "unlock_level": 70,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Healer"
+      ],
+      "jobs": [
+        {
+          "id": 33,
+          "name": "Astrologe",
+          "abbreviation": "AST",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

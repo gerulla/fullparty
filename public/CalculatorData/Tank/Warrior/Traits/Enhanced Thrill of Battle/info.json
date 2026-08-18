@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 269,
+  "name": "Enhanced Thrill of Battle",
+  "description": "Adds an additional effect to Thrill of Battle that increases HP recovery via healing actions by 20%.",
+  "description_macro": "Adds an additional effect to <colortype(500)><edgecolortype(501)>Thrill of Battle<edgecolortype(0)><colortype(0)> that increases HP recovery via healing actions by 20%.",
+  "effects": [
+    "Adds an additional effect to Thrill of Battle that increases HP recovery via healing actions by 20%."
+  ],
+  "role": "Tank",
+  "job": {
+    "id": 21,
+    "name": "Warrior",
+    "abbreviation": "WAR"
+  },
+  "unlock_level": 78,
+  "value": 0,
+  "icon": {
+    "id": 5258,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 22,
+  "source_class_job_id": 21
+}

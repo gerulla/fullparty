@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 2076,
+  "name": "Confiteor",
+  "description": "Ausgeteilter Schaden und erhaltene Heileffekte sind verringert.",
+  "effects": [
+    "Ausgeteilter Schaden und erhaltene Heileffekte sind verringert."
+  ],
+  "classification": "debuff",
+  "icon": {
+    "id": 214873,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 2,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": true,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": -10
+  },
+  "class_job_category_id": 20,
+  "source_abilities": [
+    {
+      "id": 16459,
+      "name": "Confiteor",
+      "description": "Du führst eine elementneutrale magische Attacke auf das Ziel und die Gegner in seiner Nähe aus.\nAttacke-Wert: 500\nAttacke-Wert verringert sich ab dem zweiten Gegner um 60 %.\nAttacke-Wert bei Requiescat: 1.000\nZusatzeffekt: Regeneriert eigene LP.\nHeilpotenzial: 400\nBedingung: Confiteor aktiv",
+      "description_macro": "Du führst eine elementneutrale magische Attacke auf das Ziel und die Gegner in seiner Nähe aus.<br>Attacke-Wert: <if([gnum68==19],<if([gnum72>=94],500,420)>,420)><br>Attacke-Wert verringert sich ab dem zweiten Gegner um 60 %.<br>Attacke-Wert bei <colortype(506)><edgecolortype(507)>Requiescat<edgecolortype(0)><colortype(0)>: <if([gnum68==19],<if([gnum72>=94],1.000,920)>,920)><br><if([gnum68==19],<if([gnum72>=84],Zusatzeffekt: Regeneriert eigene LP.<br>Heilpotenzial: 400<br>,)>,)>Bedingung: <colortype(506)><edgecolortype(507)>Confiteor<edgecolortype(0)><colortype(0)> aktiv",
+      "unlock_level": 80,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Tank"
+      ],
+      "jobs": [
+        {
+          "id": 19,
+          "name": "Paladin",
+          "abbreviation": "PLD",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

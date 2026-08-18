@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 3842,
+  "name": "Grondement du vent",
+  "description": "Réaction du vent peut être lancée.",
+  "effects": [
+    "Réaction du vent peut être lancée."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 212540,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 21,
+  "source_abilities": [
+    {
+      "id": 25766,
+      "name": "Énigme du vent",
+      "description": "Réduit de 50% le délai de vos attaques automatiques.\nDurée : 15s\nEffet additionnel : vous octroie Grondement du vent.\nDurée : 15s",
+      "description_macro": "Réduit de 50% le délai de vos attaques automatiques.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 15s<if([gnum68==20],<if([gnum72>=96],<br><colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> vous octroie <colortype(500)><edgecolortype(501)>Grondement du vent<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 15s,)>,)>",
+      "unlock_level": 72,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 20,
+          "name": "Moine",
+          "abbreviation": "MOI",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 2692,
+  "name": "ブラストアロー実行可",
+  "description": "ブラストアローを実行できる状態。",
+  "effects": [
+    "ブラストアローを実行できる状態。"
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 212621,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 24,
+  "source_abilities": [
+    {
+      "id": 16496,
+      "name": "エイペックスアロー",
+      "description": "対象に向かって前方直線範囲物理攻撃。\u3000威力：140～700\n実行時に「ソウルボイス」を全て消費する。\n「ソウルボイス」の消費量が高いほど威力が上昇する。\n追加効果（ソウルボイス80以上消費時）：自身に「ブラストアロー実行可」を付与する。\u3000効果時間：10秒\n発動条件：「ソウルボイス」20以上",
+      "description_macro": "対象に向かって前方直線範囲物理攻撃。\u3000<colortype(504)><edgecolortype(505)>威力：<edgecolortype(0)><colortype(0)><if([gnum68==23],<if([gnum72>=94],140～700,100～500)>,100～500)><br>実行時に<colortype(500)><edgecolortype(501)>「ソウルボイス」<edgecolortype(0)><colortype(0)>を全て消費する。<br><colortype(500)><edgecolortype(501)>「ソウルボイス」<edgecolortype(0)><colortype(0)>の消費量が高いほど威力が上昇する。<br><if([gnum68==23],<if([gnum72>=86],<colortype(504)><edgecolortype(505)>追加効果（ソウルボイス80以上消費時）：<edgecolortype(0)><colortype(0)>自身に<colortype(500)><edgecolortype(501)>「ブラストアロー実行可」<edgecolortype(0)><colortype(0)>を付与する。\u3000<colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>10秒<br>,)>,)><colortype(504)><edgecolortype(505)>発動条件：<edgecolortype(0)><colortype(0)><colortype(500)><edgecolortype(501)>「ソウルボイス」<edgecolortype(0)><colortype(0)>20以上",
+      "unlock_level": 80,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Physical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 23,
+          "name": "吟遊詩人",
+          "abbreviation": "BRD",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 633,
+  "name": "アスペクト・ヘリオスマスタリー",
+  "description": "アスペクト・ヘリオスがコンジャンクション・ヘリオスに変化する。",
+  "description_macro": "アスペクト・ヘリオスがコンジャンクション・ヘリオスに変化する。",
+  "effects": [
+    "アスペクト・ヘリオスがコンジャンクション・ヘリオスに変化する。"
+  ],
+  "role": "Healer",
+  "job": {
+    "id": 33,
+    "name": "占星術師",
+    "abbreviation": "AST"
+  },
+  "unlock_level": 96,
+  "value": 0,
+  "icon": {
+    "id": 6122,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 99,
+  "source_class_job_id": 33
+}

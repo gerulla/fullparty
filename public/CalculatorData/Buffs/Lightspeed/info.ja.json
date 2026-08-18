@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 841,
+  "name": "ライトスピード",
+  "description": "魔法の詠唱時間が短縮される状態。",
+  "effects": [
+    "魔法の詠唱時間が短縮される状態。"
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 213220,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 3606,
+      "name": "ライトスピード",
+      "description": "一定時間、魔法の詠唱時間を2.5秒短縮させて詠唱することができる。\u3000効果時間：15秒\n最大チャージ数：2",
+      "description_macro": "一定時間、魔法の詠唱時間を2.5秒短縮させて詠唱することができる。\u3000<colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>15秒<br><colortype(504)><edgecolortype(505)>最大チャージ数：<edgecolortype(0)><colortype(0)>2",
+      "unlock_level": 6,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Healer"
+      ],
+      "jobs": [
+        {
+          "id": 33,
+          "name": "占星術師",
+          "abbreviation": "AST",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

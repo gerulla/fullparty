@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 3228,
+  "name": "トランス・バハムート",
+  "description": "アストラルインパルスおよびデスフレアを実行できる状態。",
+  "effects": [
+    "アストラルインパルスおよびデスフレアを実行できる状態。"
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 214964,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": true,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 28,
+  "source_abilities": [
+    {
+      "id": 3581,
+      "name": "トランス・バハムート",
+      "description": "自身が「トランス・バハムート」状態になる。\u3000効果時間：15秒\n追加効果：ルインガがアストラルインパルスに変化し、アウトバーストがアストラルフレアに変化する。\n追加効果：自身に「ルビーの神秘」「トパーズの神秘」「エメラルドの神秘」を付与する。\n発動条件：自身が戦闘状態かつカーバンクルが存在する。\nこの魔法は固有のリキャストタイマーを持つ。",
+      "description_macro": "自身が<colortype(500)><edgecolortype(501)>「トランス・バハムート」<edgecolortype(0)><colortype(0)>状態になる。\u3000<colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>15秒<br><colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)>ルインガがアストラルインパルスに変化し、アウトバーストがアストラルフレアに変化する。<br><colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)>自身に<colortype(500)><edgecolortype(501)>「ルビーの神秘」「トパーズの神秘」「エメラルドの神秘」<edgecolortype(0)><colortype(0)>を付与する。<br><colortype(504)><edgecolortype(505)>発動条件：<edgecolortype(0)><colortype(0)>自身が戦闘状態かつカーバンクルが存在する。<br>この魔法は固有のリキャストタイマーを持つ。",
+      "unlock_level": 58,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Magical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 27,
+          "name": "召喚士",
+          "abbreviation": "SMN",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

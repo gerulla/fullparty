@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 379,
+  "name": "Erntereif",
+  "description": "Bei bestimmten erfolgreich ausgeführten Waffenfertigkeiten und Magie, und beim Besiegen von Gegnern während Architekt des Todes aktiv ist, füllt sich der Seelenbalken.",
+  "description_macro": "Bei bestimmten erfolgreich ausgeführten Waf<->fen<->fer<->tig<->kei<->ten und Magie, und beim Besiegen von Gegnern während <colortype(506)><edgecolortype(507)>Architekt des Todes<edgecolortype(0)><colortype(0)> aktiv ist, füllt sich der Seelenbalken.",
+  "effects": [
+    "Bei bestimmten erfolgreich ausgeführten Waffenfertigkeiten und Magie, und beim Besiegen von Gegnern während Architekt des Todes aktiv ist, füllt sich der Seelenbalken."
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 39,
+    "name": "Schnitter",
+    "abbreviation": "SNT"
+  },
+  "unlock_level": 50,
+  "value": 0,
+  "icon": {
+    "id": 6401,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 180,
+  "source_class_job_id": 39
+}

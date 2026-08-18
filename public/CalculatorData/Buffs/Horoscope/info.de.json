@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 1890,
+  "name": "Horoskop",
+  "description": "Heilung durch Horoskop kann gewirkt werden.",
+  "effects": [
+    "Heilung durch Horoskop kann gewirkt werden."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 213251,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": true,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 1,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 99,
+  "source_abilities": [
+    {
+      "id": 16557,
+      "name": "Horoskop",
+      "description": "Du gewährst dir und den Gruppenmitgliedern in der Nähe Horoskop.\nDauer: 10 Sekunden\nEffekt von Horoskop: Horoskop wird zu Helios-Horoskop, sobald du den Effekt des selbst ausgeführten Helios oder Helios in Konjunktion erhältst.\nDauer: 30 Sekunden\nBei erneuter Ausführung während der Wirkungsdauer oder nach Ende der Wirkung von Horoskop oder Helios-Horoskop werden du und die Gruppenmitglieder in der Nähe, bei denen der Effekt von Horoskop oder Helios-Horoskop aktiv ist, geheilt.\nHeilpotenzial bei Horoskop: 200\nHeilpotenzial bei Helios-Horoskop: 400",
+      "description_macro": "Du gewährst dir und den Grup<->pen<->mit<->gliedern in der Nähe <colortype(506)><edgecolortype(507)>Horoskop<edgecolortype(0)><colortype(0)>.<br>Dauer: 10 Sekunden<br>Effekt von Horoskop: <colortype(502)><edgecolortype(503)>Horoskop<edgecolortype(0)><colortype(0)> wird zu <colortype(502)><edgecolortype(503)>Helios-Horoskop<edgecolortype(0)><colortype(0)>, sobald du den Effekt des selbst ausgeführten <colortype(502)><edgecolortype(503)>Helios<edgecolortype(0)><colortype(0)> oder <if([gnum68==33],<if([gnum72>=96],<colortype(502)><edgecolortype(503)>Helios in Konjunktion<edgecolortype(0)><colortype(0)>,<colortype(502)><edgecolortype(503)>Aspektierter Helios<edgecolortype(0)><colortype(0)>)>,<colortype(502)><edgecolortype(503)>Aspektierter Helios<edgecolortype(0)><colortype(0)>)> erhältst.<br>Dauer: 30 Sekunden<br>Bei erneuter Ausführung während der Wirkungsdauer oder nach Ende der Wirkung von Horoskop oder Helios-Horoskop werden du und die Grup<->pen<->mit<->glieder in der Nähe, bei denen der Effekt von Horoskop oder Helios-Horoskop aktiv ist, geheilt.<br>Heilpotenzial bei Horoskop: 200<br>Heilpotenzial bei Helios-Horoskop: 400",
+      "unlock_level": 76,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Healer"
+      ],
+      "jobs": [
+        {
+          "id": 33,
+          "name": "Astrologe",
+          "abbreviation": "AST",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

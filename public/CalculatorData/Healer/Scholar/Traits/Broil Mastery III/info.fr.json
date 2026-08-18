@@ -1,0 +1,25 @@
+{
+  "kind": "trait",
+  "id": 312,
+  "name": "Maîtrise de Loi de l'ébullition III",
+  "description": "Remplace Loi de l'ébullition II par Loi de l'ébullition III.\nAugmente la puissance d'Extra Ruine à 200.",
+  "description_macro": "Remplace <colortype(500)><edgecolortype(501)>Loi de l'ébullition II<edgecolortype(0)><colortype(0)> par <colortype(500)><edgecolortype(501)>Loi de l'ébullition III<edgecolortype(0)><colortype(0)>.<br>Augmente la puissance d'<colortype(500)><edgecolortype(501)>Extra Ruine<edgecolortype(0)><colortype(0)> à 200.",
+  "effects": [
+    "Remplace Loi de l'ébullition II par Loi de l'ébullition III.",
+    "Augmente la puissance d'Extra Ruine à 200."
+  ],
+  "role": "Healer",
+  "job": {
+    "id": 28,
+    "name": "Érudit",
+    "abbreviation": "ÉRU"
+  },
+  "unlock_level": 72,
+  "value": 0,
+  "icon": {
+    "id": 5702,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 29,
+  "source_class_job_id": 28
+}

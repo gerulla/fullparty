@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 298,
+  "name": "Dogme de survie",
+  "description": "Crée une aura bénéfique à l'endroit visé, qui réduit les dégâts reçus.",
+  "effects": [
+    "Crée une aura bénéfique à l'endroit visé, qui réduit les dégâts reçus."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 212802,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": true,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 188,
+      "name": "Dogme de survie",
+      "description": "Crée un bouclier protecteur dans l'aire ciblée, réduisant de 10% les dégâts subis des équipiers à l'intérieuret restaurant périodiquement leurs PV.\nPuissance : 100 Durée : 15s\nEffet additionnel : remplit la jauge d'éther féerique de 10.\nCondition : consomme un Flux d'éther.",
+      "description_macro": "Crée un bouclier protecteur dans l'aire ciblée, réduisant de 10% les dégâts subis des équipiers à l'intérieur<if([gnum68==28],<if([gnum72>=78], et restaurant périodiquement leurs PV.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> 100,.)>,.)> <colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 15s<br><if([gnum72>=70],<if([gnum68==28],<colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> remplit la <colortype(502)><edgecolortype(503)>jauge d'éther féerique<edgecolortype(0)><colortype(0)> de 10.<br>,)>,)><colortype(506)><edgecolortype(507)>Condition<nbsp>:<edgecolortype(0)><colortype(0)> consomme un <colortype(500)><edgecolortype(501)>Flux d'éther<edgecolortype(0)><colortype(0)>.",
+      "unlock_level": 50,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Healer"
+      ],
+      "jobs": [
+        {
+          "id": 28,
+          "name": "Érudit",
+          "abbreviation": "ÉRU",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

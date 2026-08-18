@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 1837,
+  "name": "ソニックブレイク",
+  "description": "ＨＰが徐々に失われる状態。",
+  "effects": [
+    "ＨＰが徐々に失われる状態。"
+  ],
+  "classification": "debuff",
+  "icon": {
+    "id": 213607,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 2,
+  "target_type": 0,
+  "can_dispel": true,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 10,
+  "parameter": {
+    "effect": 0,
+    "modifier": 10
+  },
+  "class_job_category_id": 149,
+  "source_abilities": [
+    {
+      "id": 16153,
+      "name": "ソニックブレイク",
+      "description": "対象に物理攻撃。\u3000威力：340\n追加効果：対象に継続ダメージを付与する。\n威力：120\u3000効果時間：15秒\n発動条件：「ソニックブレイク実行可」効果中",
+      "description_macro": "対象に物理攻撃。\u3000<colortype(504)><edgecolortype(505)>威力：<edgecolortype(0)><colortype(0)>340<br><colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)>対象に継続ダメージを付与する。<br><colortype(504)><edgecolortype(505)>威力：<edgecolortype(0)><colortype(0)>120\u3000<colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>15秒<br><colortype(504)><edgecolortype(505)>発動条件：<edgecolortype(0)><colortype(0)><colortype(500)><edgecolortype(501)>「ソニックブレイク実行可」<edgecolortype(0)><colortype(0)>効果中",
+      "unlock_level": 54,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Tank"
+      ],
+      "jobs": [
+        {
+          "id": 37,
+          "name": "ガンブレイカー",
+          "abbreviation": "GNB",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

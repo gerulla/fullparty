@@ -1,0 +1,26 @@
+{
+  "kind": "trait",
+  "id": 382,
+  "name": "Hellsgate",
+  "description": "Upon executing Hell's Ingress or Hell's Egress, leave behind a Hellsgate and grant Threshold to self.\nDuration: 10s\nHell's Ingress changes to Regress after executing Hell's Egress, and vice versa.",
+  "description_macro": "Upon executing <colortype(500)><edgecolortype(501)>Hell's Ingress<edgecolortype(0)><colortype(0)> or <colortype(500)><edgecolortype(501)>Hell's Egress<edgecolortype(0)><colortype(0)>, leave behind a <colortype(506)><edgecolortype(507)>Hellsgate<edgecolortype(0)><colortype(0)> and grant <colortype(506)><edgecolortype(507)>Threshold<edgecolortype(0)><colortype(0)> to self.<br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>10s<br><colortype(500)><edgecolortype(501)>Hell's Ingress<edgecolortype(0)><colortype(0)> changes to <colortype(500)><edgecolortype(501)>Regress<edgecolortype(0)><colortype(0)> after executing <colortype(500)><edgecolortype(501)>Hell's Egress<edgecolortype(0)><colortype(0)>, and vice versa.",
+  "effects": [
+    "Upon executing Hell's Ingress or Hell's Egress, leave behind a Hellsgate and grant Threshold to self.",
+    "Duration: 10s",
+    "Hell's Ingress changes to Regress after executing Hell's Egress, and vice versa."
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 39,
+    "name": "Reaper",
+    "abbreviation": "RPR"
+  },
+  "unlock_level": 74,
+  "value": 0,
+  "icon": {
+    "id": 6404,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 180,
+  "source_class_job_id": 39
+}

@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 374,
+  "name": "Offensive Magic Mastery",
+  "description": "Upgrades Dosis to Dosis II, Phlegma to Phlegma II, and Eukrasian Dosis to Eukrasian Dosis II. Also increases the potency of Toxikon to 300.",
+  "description_macro": "Upgrades <colortype(500)><edgecolortype(501)>Dosis<edgecolortype(0)><colortype(0)> to <colortype(500)><edgecolortype(501)>Dosis II<edgecolortype(0)><colortype(0)>, <colortype(500)><edgecolortype(501)>Phlegma<edgecolortype(0)><colortype(0)> to <colortype(500)><edgecolortype(501)>Phlegma II<edgecolortype(0)><colortype(0)>, and <colortype(500)><edgecolortype(501)>Eukrasian Dosis<edgecolortype(0)><colortype(0)> to <colortype(500)><edgecolortype(501)>Eukrasian Dosis II<edgecolortype(0)><colortype(0)>. Also increases the potency of <colortype(500)><edgecolortype(501)>Toxikon<edgecolortype(0)><colortype(0)> to 300.",
+  "effects": [
+    "Upgrades Dosis to Dosis II, Phlegma to Phlegma II, and Eukrasian Dosis to Eukrasian Dosis II. Also increases the potency of Toxikon to 300."
+  ],
+  "role": "Healer",
+  "job": {
+    "id": 40,
+    "name": "Sage",
+    "abbreviation": "SGE"
+  },
+  "unlock_level": 72,
+  "value": 0,
+  "icon": {
+    "id": 6455,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 181,
+  "source_class_job_id": 40
+}

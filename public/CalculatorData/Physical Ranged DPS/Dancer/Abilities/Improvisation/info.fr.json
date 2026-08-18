@@ -1,0 +1,91 @@
+{
+  "kind": "ability",
+  "id": 16014,
+  "name": "Improvisation",
+  "description": "Vous improvisez une danse, vous octroyant Frénésie des danseurs.\nDurée : 15s\nL'effet s'accumule toutes les 3 secondes jusqu'à un maximum de 4 fois.\nEffet additionnel : restaure périodiquement vos PV et ceux des équipiers alentour.\nPuissance : 100 Durée : 15s\nL'effet prend fin si vous effectuez une action, un déplacement ou une rotation.\nInterrompt vos attaques automatiques.\nCette action devient Final improvisé après utilisation.",
+  "description_macro": "Vous improvisez une danse, vous octroyant <colortype(500)><edgecolortype(501)>Frénésie des danseurs<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 15s<br>L'effet s'accumule toutes les 3 secondes jusqu'à un maximum de 4 fois.<br><colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> restaure périodiquement vos PV et ceux des équipiers alentour.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> 100 <colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 15s<br>L'effet prend fin si vous effectuez une action, un déplacement ou une rotation.<br>Interrompt vos attaques automatiques.<br>Cette action devient <colortype(500)><edgecolortype(501)>Final improvisé<edgecolortype(0)><colortype(0)> après utilisation.",
+  "effects": [
+    "Vous improvisez une danse, vous octroyant Frénésie des danseurs.",
+    "Durée : 15s",
+    "L'effet s'accumule toutes les 3 secondes jusqu'à un maximum de 4 fois.",
+    "Effet additionnel : restaure périodiquement vos PV et ceux des équipiers alentour.",
+    "Puissance : 100 Durée : 15s",
+    "L'effet prend fin si vous effectuez une action, un déplacement ou une rotation.",
+    "Interrompt vos attaques automatiques.",
+    "Cette action devient Final improvisé après utilisation."
+  ],
+  "role": "Physical Ranged DPS",
+  "job": {
+    "id": 38,
+    "name": "Danseur",
+    "abbreviation": "DNS"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 80,
+  "icon": {
+    "id": 3477,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 4,
+    "name": "Aptitude"
+  },
+  "attack_type": {
+    "id": 0,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 120,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 19,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 0,
+      "value": 0
+    },
+    "secondary": {
+      "type_id": 91,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": 0,
+    "effect_yalms": 8,
+    "cast_type": 7
+  },
+  "targeting": {
+    "self": true,
+    "party": false,
+    "alliance": false,
+    "hostile": false,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 0,
+    "behavior_type": 0,
+    "class_job_category_id": 150,
+    "source_class_job_id": 38,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

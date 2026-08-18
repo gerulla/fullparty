@@ -1,0 +1,28 @@
+{
+  "kind": "trait",
+  "id": 651,
+  "name": "Verbesserte Weißmagie",
+  "description": "Erhöht den Attacke-Wert folgender Kommandos:\nAttacke-Wert von Dia: 85\nAttacke-Wert des Schaden-über-Zeit-Effekts: 85\nAttacke-Wert von Afflatus miseriae: 1.400\nAttacke-Wert von Blendga: 350",
+  "description_macro": "Erhöht den Attacke-Wert folgender Kommandos:<br>Attacke-Wert von <colortype(502)><edgecolortype(503)>Dia<edgecolortype(0)><colortype(0)>: 85<br>Attacke-Wert des Schaden-über-Zeit-Effekts: 85<br>Attacke-Wert von <colortype(502)><edgecolortype(503)>Afflatus miseriae<edgecolortype(0)><colortype(0)>: 1.400<br>Attacke-Wert von <colortype(502)><edgecolortype(503)>Blendga<edgecolortype(0)><colortype(0)>: 350",
+  "effects": [
+    "Erhöht den Attacke-Wert folgender Kommandos:",
+    "Attacke-Wert von Dia: 85",
+    "Attacke-Wert des Schaden-über-Zeit-Effekts: 85",
+    "Attacke-Wert von Afflatus miseriae: 1.400",
+    "Attacke-Wert von Blendga: 350"
+  ],
+  "role": "Healer",
+  "job": {
+    "id": 24,
+    "name": "Weißmagier",
+    "abbreviation": "WMA"
+  },
+  "unlock_level": 94,
+  "value": 0,
+  "icon": {
+    "id": 6831,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 25,
+  "source_class_job_id": 24
+}

@@ -1,0 +1,51 @@
+{
+  "kind": "combat_status",
+  "id": 2594,
+  "name": "Seelensaat",
+  "description": "Erntemond kann ausgeführt werden.",
+  "effects": [
+    "Erntemond kann ausgeführt werden."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 212932,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": true,
+  "inflicted_by_actor": true,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 180,
+  "source_abilities": [
+    {
+      "id": 24387,
+      "name": "Seelensaat",
+      "description": "Du gewährst dir selbst Seelensaat und änderst dieses Kommando damit zu Erntemond.\nAußerhalb des Kampfes kannst du Zauber sofort wirken.",
+      "description_macro": "Du gewährst dir selbst <colortype(506)><edgecolortype(507)>Seelensaat<edgecolortype(0)><colortype(0)> und änderst dieses Kommando damit zu <colortype(502)><edgecolortype(503)>Erntemond<edgecolortype(0)><colortype(0)>.<br>Außerhalb des Kampfes kannst du Zauber sofort wirken.",
+      "unlock_level": 82,
+      "relations": [
+        "granted_by_description",
+        "same_name"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 39,
+          "name": "Schnitter",
+          "abbreviation": "SNT",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

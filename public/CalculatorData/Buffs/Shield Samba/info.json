@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 1826,
+  "name": "Shield Samba",
+  "description": "Damage taken is reduced.",
+  "effects": [
+    "Damage taken is reduced."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 213715,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": -10
+  },
+  "class_job_category_id": 150,
+  "source_abilities": [
+    {
+      "id": 16012,
+      "name": "Shield Samba",
+      "description": "Reduces damage taken by self and nearby party members by 15%.\nDuration: 15s\nEffect cannot be stacked with bard's Troubadour or machinist's Tactician.",
+      "description_macro": "Reduces damage taken by self and nearby party members by <if([gnum68==38],<if([gnum72>=98],15,10)>,10)>%.<br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>15s<br>Effect cannot be stacked with bard's <colortype(506)><edgecolortype(507)>Troubadour<edgecolortype(0)><colortype(0)> or machinist's <colortype(506)><edgecolortype(507)>Tactician<edgecolortype(0)><colortype(0)>.",
+      "unlock_level": 56,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Physical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 38,
+          "name": "Dancer",
+          "abbreviation": "DNC",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

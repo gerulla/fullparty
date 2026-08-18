@@ -1,0 +1,25 @@
+{
+  "kind": "trait",
+  "id": 539,
+  "name": "Verbessserter Schmierschritt",
+  "description": "Bei erfolgreicher Ausführung von Schmierschritt erhöht sich deine Bewegungsgeschwindigkeit.\nDauer: 5 Sekunden",
+  "description_macro": "Bei erfolgreicher Ausführung von <colortype(502)><edgecolortype(503)>Schmierschritt<edgecolortype(0)><colortype(0)> erhöht sich deine Be<->we<->gungs<->ge<->schwin<->dig<->keit.<br>Dauer: 5 Sekunden",
+  "effects": [
+    "Bei erfolgreicher Ausführung von Schmierschritt erhöht sich deine Bewegungsgeschwindigkeit.",
+    "Dauer: 5 Sekunden"
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 42,
+    "name": "Piktomant",
+    "abbreviation": "PKT"
+  },
+  "unlock_level": 84,
+  "value": 0,
+  "icon": {
+    "id": 6553,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 197,
+  "source_class_job_id": 42
+}

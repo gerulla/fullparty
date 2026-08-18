@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 570,
+  "name": "Maîtrise d'Arme de sang",
+  "description": "Remplace Arme de sang par Delirium de sang.",
+  "description_macro": "Remplace <colortype(500)><edgecolortype(501)>Arme de sang<edgecolortype(0)><colortype(0)> par <colortype(500)><edgecolortype(501)>Delirium de sang<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Remplace Arme de sang par Delirium de sang."
+  ],
+  "role": "Tank",
+  "job": {
+    "id": 32,
+    "name": "Chevalier Noir",
+    "abbreviation": "CHN"
+  },
+  "unlock_level": 68,
+  "value": 0,
+  "icon": {
+    "id": 6053,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 98,
+  "source_class_job_id": 32
+}

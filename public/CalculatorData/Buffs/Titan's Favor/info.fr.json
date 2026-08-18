@@ -1,0 +1,71 @@
+{
+  "kind": "combat_status",
+  "id": 2853,
+  "name": "Casse-montagnes préparé",
+  "description": "Casse-montagnes peut être lancé.",
+  "effects": [
+    "Casse-montagnes peut être lancé."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 212698,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": true,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 28,
+  "source_abilities": [
+    {
+      "id": 25824,
+      "name": "Rite de topaze",
+      "description": "Effectue une attaque magique de terre sur la cible.\nPuissance : 340\nEffet additionnel : vous octroie Casse-montagnes préparé.\nCet effet disparaît si vous utilisez une autre action d'invocation.\nCondition : consomme un degré de Syntonie de terre.\n\n* Cette action ne peut pas être ajoutée aux barres de raccourcis.\nRemplace Éclat des gemmes lorsque les conditions sont réunies.",
+      "description_macro": "Effectue une attaque magique de terre sur la cible.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> <if([gnum68==27],<if([gnum72>=94],340,<if([gnum68==27],<if([gnum72>=84],330,320)>,320)>)>,<if([gnum68==27],<if([gnum72>=84],330,320)>,320)>)><br><if([gnum68==27],<if([gnum72>=86],<colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> vous octroie <colortype(500)><edgecolortype(501)>Casse-montagnes préparé<edgecolortype(0)><colortype(0)>.<br>Cet effet disparaît si vous utilisez une autre action d'invocation.<br>,)>,)><colortype(506)><edgecolortype(507)>Condition<nbsp>:<edgecolortype(0)><colortype(0)> consomme un degré de <colortype(500)><edgecolortype(501)>Syntonie de terre<edgecolortype(0)><colortype(0)>.<br><br><colortype(504)><edgecolortype(505)>* Cette action ne peut pas être ajoutée aux barres de raccourcis.<br>Remplace <colortype(500)><edgecolortype(501)>Éclat des gemmes<edgecolortype(0)><colortype(0)> lorsque les conditions sont réunies.<edgecolortype(0)><colortype(0)>",
+      "unlock_level": 72,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Magical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 27,
+          "name": "Invocateur",
+          "abbreviation": "INV",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 25833,
+      "name": "Cataclysme de topaze",
+      "description": "Effectue une attaque magique de terre sur la cible et les ennemis autour.\nPuissance : 140\nEffet additionnel : vous octroie Casse-montagnes préparé.\nCet effet disparaît si vous utilisez une autre action d'invocation.\nCondition : consomme un degré de Syntonie de terre.\n\n* Cette action ne peut pas être ajoutée aux barres de raccourcis.\nRemplace Resplendissement des gemmes lorsque les conditions sont réunies.",
+      "description_macro": "Effectue une attaque magique de terre sur la cible et les ennemis autour.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> 140<br><if([gnum68==27],<if([gnum72>=86],<colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> vous octroie <colortype(500)><edgecolortype(501)>Casse-montagnes préparé<edgecolortype(0)><colortype(0)>.<br>Cet effet disparaît si vous utilisez une autre action d'invocation.<br>,)>,)><colortype(506)><edgecolortype(507)>Condition<nbsp>:<edgecolortype(0)><colortype(0)> consomme un degré de <colortype(500)><edgecolortype(501)>Syntonie de terre<edgecolortype(0)><colortype(0)>.<br><br><colortype(504)><edgecolortype(505)>* Cette action ne peut pas être ajoutée aux barres de raccourcis.<br>Remplace <colortype(500)><edgecolortype(501)>Resplendissement des gemmes<edgecolortype(0)><colortype(0)> lorsque les conditions sont réunies.<edgecolortype(0)><colortype(0)>",
+      "unlock_level": 82,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Magical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 27,
+          "name": "Invocateur",
+          "abbreviation": "INV",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

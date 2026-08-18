@@ -1,0 +1,92 @@
+{
+  "kind": "ability",
+  "id": 25785,
+  "name": "Radiant Finale",
+  "description": "Increases damage dealt by self and nearby party members.\nDuration: 20s\nEffectiveness is determined by the number of different Coda active in the Song Gauge.\n1 Coda: 2%\n2 Coda: 4%\n3 Coda: 6%\nAdditional Effect: Grants Radiant Encore Ready\nDuration: 30s\nCan only be executed when at least 1 coda is active.",
+  "description_macro": "Increases damage dealt by self and nearby party members.<br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>20s<br>Effectiveness is determined by the number of different <colortype(506)><edgecolortype(507)>Coda<edgecolortype(0)><colortype(0)> active in the <colortype(500)><edgecolortype(501)>Song Gauge<edgecolortype(0)><colortype(0)>.<br><colortype(504)><edgecolortype(505)>1 Coda: <edgecolortype(0)><colortype(0)>2%<br><colortype(504)><edgecolortype(505)>2 Coda: <edgecolortype(0)><colortype(0)>4%<br><colortype(504)><edgecolortype(505)>3 Coda: <edgecolortype(0)><colortype(0)>6%<br><if([gnum68==23],<if([gnum72>=100],<colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>Grants <colortype(506)><edgecolortype(507)>Radiant Encore Ready<edgecolortype(0)><colortype(0)><br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>30s<br>,)>,)>Can only be executed when at least 1 coda is active.",
+  "effects": [
+    "Increases damage dealt by self and nearby party members.",
+    "Duration: 20s",
+    "Effectiveness is determined by the number of different Coda active in the Song Gauge.",
+    "1 Coda: 2%",
+    "2 Coda: 4%",
+    "3 Coda: 6%",
+    "Additional Effect: Grants Radiant Encore Ready",
+    "Duration: 30s",
+    "Can only be executed when at least 1 coda is active."
+  ],
+  "role": "Physical Ranged DPS",
+  "job": {
+    "id": 23,
+    "name": "Bard",
+    "abbreviation": "BRD"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 90,
+  "icon": {
+    "id": 2622,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 4,
+    "name": "Ability"
+  },
+  "attack_type": {
+    "id": 0,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 110,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 14,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 81,
+      "value": 0
+    },
+    "secondary": {
+      "type_id": 0,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": 0,
+    "effect_yalms": 30,
+    "cast_type": 2
+  },
+  "targeting": {
+    "self": true,
+    "party": false,
+    "alliance": false,
+    "hostile": false,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": false
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 0,
+    "behavior_type": 0,
+    "class_job_category_id": 24,
+    "source_class_job_id": 23,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

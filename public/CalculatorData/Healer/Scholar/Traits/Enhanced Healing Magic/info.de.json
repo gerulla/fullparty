@@ -1,0 +1,29 @@
+{
+  "kind": "trait",
+  "id": 493,
+  "name": "Meister der Heilmagie",
+  "description": "Erhöht das Heilpotenzial und den Barriere-Effekt folgender Kommandos:\nHeilpotenzial von Physick: 450\nHeilpotenzial von Sanfte Umarmung: 180\nBarriere-Effekt von Adloquium: 180 % der Heilwirkung\nBarriere-Effekt von Kurieren: 160 % der Heilwirkung\nHeilpotenzial von Schleier der Seraphim: 180",
+  "description_macro": "Erhöht das Heilpotenzial und den Barriere-Effekt folgender Kommandos:<br>Heilpotenzial von <colortype(502)><edgecolortype(503)>Physick<edgecolortype(0)><colortype(0)>: 450<br>Heilpotenzial von <colortype(502)><edgecolortype(503)>Sanfte Umarmung<edgecolortype(0)><colortype(0)>: 180<br>Barriere-Effekt von <colortype(502)><edgecolortype(503)>Adloquium<edgecolortype(0)><colortype(0)>: 180<nbsp>% der Heilwirkung<br>Barriere-Effekt von <colortype(502)><edgecolortype(503)>Kurieren<edgecolortype(0)><colortype(0)>: 160<nbsp>% der Heilwirkung<br>Heilpotenzial von <colortype(502)><edgecolortype(503)>Schleier der Seraphim<edgecolortype(0)><colortype(0)>: 180",
+  "effects": [
+    "Erhöht das Heilpotenzial und den Barriere-Effekt folgender Kommandos:",
+    "Heilpotenzial von Physick: 450",
+    "Heilpotenzial von Sanfte Umarmung: 180",
+    "Barriere-Effekt von Adloquium: 180 % der Heilwirkung",
+    "Barriere-Effekt von Kurieren: 160 % der Heilwirkung",
+    "Heilpotenzial von Schleier der Seraphim: 180"
+  ],
+  "role": "Healer",
+  "job": {
+    "id": 28,
+    "name": "Gelehrter",
+    "abbreviation": "GLT"
+  },
+  "unlock_level": 85,
+  "value": 0,
+  "icon": {
+    "id": 6826,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 29,
+  "source_class_job_id": 28
+}

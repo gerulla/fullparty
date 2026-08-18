@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 278,
+  "name": "Fûgetsu/Fûka améliorés",
+  "description": "Augmente à 13% les effets de Fûgetsu et de Fûka.",
+  "description_macro": "Augmente à 13% les effets de <colortype(500)><edgecolortype(501)>Fûgetsu<edgecolortype(0)><colortype(0)> et de <colortype(500)><edgecolortype(501)>Fûka<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Augmente à 13% les effets de Fûgetsu et de Fûka."
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 34,
+    "name": "Samouraï",
+    "abbreviation": "SAM"
+  },
+  "unlock_level": 78,
+  "value": 0,
+  "icon": {
+    "id": 6154,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 111,
+  "source_class_job_id": 34
+}

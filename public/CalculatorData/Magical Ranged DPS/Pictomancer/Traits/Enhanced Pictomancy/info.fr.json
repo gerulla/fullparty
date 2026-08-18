@@ -1,0 +1,25 @@
+{
+  "kind": "trait",
+  "id": 546,
+  "name": "Sorts Picto améliorés",
+  "description": "Permet de recevoir 5 degrés d'Installation lorsque vous utilisez Imagi Ciel.\nDurée : 30s",
+  "description_macro": "Permet de recevoir 5 degrés d'<colortype(500)><edgecolortype(501)>Installation<edgecolortype(0)><colortype(0)> lorsque vous utilisez <colortype(500)><edgecolortype(501)>Imagi Ciel<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 30s",
+  "effects": [
+    "Permet de recevoir 5 degrés d'Installation lorsque vous utilisez Imagi Ciel.",
+    "Durée : 30s"
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 42,
+    "name": "Pictomancien",
+    "abbreviation": "PIC"
+  },
+  "unlock_level": 82,
+  "value": 0,
+  "icon": {
+    "id": 6558,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 197,
+  "source_class_job_id": 42
+}

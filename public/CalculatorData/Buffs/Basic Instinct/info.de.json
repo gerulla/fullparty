@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 2498,
+  "name": "Kampfinstinkt",
+  "description": "Bewegungsgeschwindigkeit, Wirkung von eigenen Heileffekten und ausgeteilter Schaden sind erhöht. Immun gegen Schadensreduzierung durch Totalabwehr.",
+  "effects": [
+    "Bewegungsgeschwindigkeit, Wirkung von eigenen Heileffekten und ausgeteilter Schaden sind erhöht. Immun gegen Schadensreduzierung durch Totalabwehr."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 213537,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": true,
+  "inflicted_by_actor": true,
+  "party_list_priority": 1,
+  "parameter": {
+    "effect": 18,
+    "modifier": 100
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 23276,
+      "name": "Kampfinstinkt",
+      "description": "Nur wirksam in Inhalten für 2 oder mehr Spieler.\nNur alleine oder als einzig kampffähiges Gruppenmitglied wirksam.\n\nDu erhöhst deine Bewegungsgeschwindigkeit um 30 %, deinen ausgeteilten Schaden und die Wirkung deiner Heileffekte um 100 % und bist gegen die Schadensreduzierung durch Totalabwehr immun.\nEffekt endet bei erneuter Ausführung und bei Anwesenheit von Gruppenmitgliedern.",
+      "description_macro": "<colortype(500)><edgecolortype(501)>Nur wirksam in Inhalten für 2 oder mehr Spieler.<br>Nur alleine oder als einzig kampffähiges Grup<->pen<->mit<->glied wirksam.<edgecolortype(0)><colortype(0)><br><br>Du erhöhst deine Be<->we<->gungs<->ge<->schwin<->dig<->keit um 30<nbsp>%, deinen ausgeteilten Schaden und die Wirkung deiner Heileffekte um 100<nbsp>% und bist gegen die Schadensreduzierung durch <colortype(506)><edgecolortype(507)>Totalabwehr<edgecolortype(0)><colortype(0)> immun.<br>Effekt endet bei erneuter Ausführung und bei Anwesenheit von Grup<->pen<->mit<->gliedern.",
+      "unlock_level": 1,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Magical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 36,
+          "name": "Blaumagier",
+          "abbreviation": "BMA",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

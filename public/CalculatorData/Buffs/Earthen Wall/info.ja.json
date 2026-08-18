@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 5320,
+  "name": "アースウォール",
+  "description": "一定量のダメージを軽減する状態。",
+  "effects": [
+    "一定量のダメージを軽減する状態。"
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 229981,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 100
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 49082,
+      "name": "アースウォール",
+      "description": "自身と周囲のパーティメンバーに、一定量のダメージを防ぐバリアを張る。\n効果量：40000\n効果時間：10秒\nこの魔法のキャストタイム、リキャストタイムは固定となり、装備やステータスなどによって変化しない。",
+      "description_macro": "自身と周囲のパーティメンバーに、一定量のダメージを防ぐバリアを張る。<br><colortype(504)><edgecolortype(505)>効果量：<edgecolortype(0)><colortype(0)>40000<br><colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>10秒<br>この魔法のキャストタイム、リキャストタイムは固定となり、装備やステータスなどによって変化しない。",
+      "unlock_level": 0,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Phantom Jobs"
+      ],
+      "jobs": [
+        {
+          "id": 20,
+          "name": "Phantom サポート召喚士",
+          "abbreviation": "Ph. Summoner",
+          "is_phantom": true
+        }
+      ]
+    }
+  ]
+}

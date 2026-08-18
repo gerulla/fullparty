@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 639,
+  "name": "Enhanced Rampart",
+  "description": "Adds an additional effect to Rampart that increases HP recovery via healing actions on self by 15%.",
+  "description_macro": "Adds an additional effect to <colortype(500)><edgecolortype(501)>Rampart<edgecolortype(0)><colortype(0)> that increases HP recovery via healing actions on self by 15%.",
+  "effects": [
+    "Adds an additional effect to Rampart that increases HP recovery via healing actions on self by 15%."
+  ],
+  "role": "Tank",
+  "job": {
+    "id": 37,
+    "name": "Gunbreaker",
+    "abbreviation": "GNB"
+  },
+  "unlock_level": 94,
+  "value": 0,
+  "icon": {
+    "id": 6804,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 113,
+  "source_class_job_id": 0
+}

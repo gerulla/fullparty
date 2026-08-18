@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 537,
+  "name": "Jauge de palette",
+  "description": "Permet à votre Jauge de palette de se remplir lorsque vous utilisez Eau en bleu ou Extra Eau en bleu avec succès.",
+  "description_macro": "Permet à votre <colortype(502)><edgecolortype(503)>Jauge de palette<edgecolortype(0)><colortype(0)> de se remplir lorsque vous utilisez <colortype(500)><edgecolortype(501)>Eau en bleu<edgecolortype(0)><colortype(0)> ou <colortype(500)><edgecolortype(501)>Extra Eau en bleu<edgecolortype(0)><colortype(0)> avec succès.",
+  "effects": [
+    "Permet à votre Jauge de palette de se remplir lorsque vous utilisez Eau en bleu ou Extra Eau en bleu avec succès."
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 42,
+    "name": "Pictomancien",
+    "abbreviation": "PIC"
+  },
+  "unlock_level": 60,
+  "value": 0,
+  "icon": {
+    "id": 6551,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 197,
+  "source_class_job_id": 42
+}

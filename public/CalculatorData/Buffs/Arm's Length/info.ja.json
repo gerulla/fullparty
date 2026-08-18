@@ -1,0 +1,125 @@
+{
+  "kind": "combat_status",
+  "id": 1209,
+  "name": "アームズレングス",
+  "description": "一部を除くすべてのノックバックと引き寄せを無効化する状態。\n物理攻撃を受けると攻撃者にスロウを付与する。",
+  "effects": [
+    "一部を除くすべてのノックバックと引き寄せを無効化する状態。",
+    "物理攻撃を受けると攻撃者にスロウを付与する。"
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 213915,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 30,
+  "parameter": {
+    "effect": 0,
+    "modifier": 3139
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 7548,
+      "name": "アームズレングス",
+      "description": "一定時間、一部を除くすべてのノックバックと引き寄せを無効化する。\u3000効果時間：6秒\n追加効果：効果中に自身が物理攻撃を受けると、攻撃者に20％スロウを付与する。\u3000効果時間：15秒",
+      "description_macro": "一定時間、一部を除くすべてのノックバックと引き寄せを無効化する。\u3000<colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>6秒<br><colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)>効果中に自身が物理攻撃を受けると、攻撃者に20％スロウを付与する。\u3000<colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>15秒",
+      "unlock_level": 32,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Tank",
+        "Melee DPS",
+        "Physical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 19,
+          "name": "ナイト",
+          "abbreviation": "PLD",
+          "is_phantom": false
+        },
+        {
+          "id": 21,
+          "name": "戦士",
+          "abbreviation": "WAR",
+          "is_phantom": false
+        },
+        {
+          "id": 32,
+          "name": "暗黒騎士",
+          "abbreviation": "DRK",
+          "is_phantom": false
+        },
+        {
+          "id": 37,
+          "name": "ガンブレイカー",
+          "abbreviation": "GNB",
+          "is_phantom": false
+        },
+        {
+          "id": 20,
+          "name": "モンク",
+          "abbreviation": "MNK",
+          "is_phantom": false
+        },
+        {
+          "id": 22,
+          "name": "竜騎士",
+          "abbreviation": "DRG",
+          "is_phantom": false
+        },
+        {
+          "id": 30,
+          "name": "忍者",
+          "abbreviation": "NIN",
+          "is_phantom": false
+        },
+        {
+          "id": 34,
+          "name": "侍",
+          "abbreviation": "SAM",
+          "is_phantom": false
+        },
+        {
+          "id": 39,
+          "name": "リーパー",
+          "abbreviation": "RPR",
+          "is_phantom": false
+        },
+        {
+          "id": 41,
+          "name": "ヴァイパー",
+          "abbreviation": "VPR",
+          "is_phantom": false
+        },
+        {
+          "id": 23,
+          "name": "吟遊詩人",
+          "abbreviation": "BRD",
+          "is_phantom": false
+        },
+        {
+          "id": 31,
+          "name": "機工士",
+          "abbreviation": "MCH",
+          "is_phantom": false
+        },
+        {
+          "id": 38,
+          "name": "踊り子",
+          "abbreviation": "DNC",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

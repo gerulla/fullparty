@@ -1,0 +1,89 @@
+{
+  "kind": "ability",
+  "id": 17209,
+  "name": "ハイパーチャージ",
+  "description": "自身に5スタックの「オーバーヒート」を付与する。\n効果時間：10秒\nオーバーヒート効果：効果時間中に実行する単体対象ウェポンスキルの威力を20上昇させる。\nただし、機工士のジョブアクションにのみ有効。\nまた、ブレイズショットとオートボウガンを実行できる。\n発動条件：「ヒート」50",
+  "description_macro": "自身に5スタックの<colortype(500)><edgecolortype(501)>「オーバーヒート」<edgecolortype(0)><colortype(0)>を付与する。<br><colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>10秒<br><colortype(504)><edgecolortype(505)>オーバーヒート効果：<edgecolortype(0)><colortype(0)>効果時間中に実行する単体対象ウェポンスキルの威力を20上昇させる。<br>ただし、機工士のジョブアクションにのみ有効。<br><if([gnum68==31],<if([gnum72>=35],また、<if([gnum68==31],<if([gnum72>=68],ブレイズショット,ヒートブラスト)>,ヒートブラスト)><if([gnum68==31],<if([gnum72>=52],とオートボウガン,)>,)>を実行できる。<br>,)>,)><colortype(504)><edgecolortype(505)>発動条件：<edgecolortype(0)><colortype(0)><colortype(500)><edgecolortype(501)>「ヒート」<edgecolortype(0)><colortype(0)>50",
+  "effects": [
+    "自身に5スタックの「オーバーヒート」を付与する。",
+    "効果時間：10秒",
+    "オーバーヒート効果：効果時間中に実行する単体対象ウェポンスキルの威力を20上昇させる。",
+    "ただし、機工士のジョブアクションにのみ有効。",
+    "また、ブレイズショットとオートボウガンを実行できる。",
+    "発動条件：「ヒート」50"
+  ],
+  "role": "Physical Ranged DPS",
+  "job": {
+    "id": 31,
+    "name": "機工士",
+    "abbreviation": "MCH"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 30,
+  "icon": {
+    "id": 3041,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 4,
+    "name": "アビリティ"
+  },
+  "attack_type": {
+    "id": 0,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 10,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 2,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 61,
+      "value": 50
+    },
+    "secondary": {
+      "type_id": 0,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": 0,
+    "effect_yalms": 0,
+    "cast_type": 1
+  },
+  "targeting": {
+    "self": true,
+    "party": false,
+    "alliance": false,
+    "hostile": false,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 0,
+    "behavior_type": 0,
+    "class_job_category_id": 96,
+    "source_class_job_id": 31,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

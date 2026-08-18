@@ -1,0 +1,71 @@
+{
+  "kind": "combat_status",
+  "id": 18,
+  "name": "Poison",
+  "description": "Toxins are causing damage over time.",
+  "effects": [
+    "Toxins are causing damage over time."
+  ],
+  "classification": "debuff",
+  "icon": {
+    "id": 215007,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 2,
+  "target_type": 0,
+  "can_dispel": true,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 10,
+  "parameter": {
+    "effect": 0,
+    "modifier": 10
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 7406,
+      "name": "Caustic Bite",
+      "description": "Delivers an attack with a potency of 150.\nAdditional Effect: Poison\nPotency: 20\nDuration: 45s\nAdditional Effect: 35% chance of granting Hawk's Eye\nDuration: 30s",
+      "description_macro": "Delivers an attack with a potency of 150.<br><colortype(504)><edgecolortype(505)>Additional Effect:<edgecolortype(0)><colortype(0)> <colortype(506)><edgecolortype(507)>Poison<edgecolortype(0)><colortype(0)><br><colortype(504)><edgecolortype(505)>Potency:<edgecolortype(0)><colortype(0)> 20<br><colortype(504)><edgecolortype(505)>Duration:<edgecolortype(0)><colortype(0)> 45s<if([gnum68==23],<if([gnum72>=76],<br><colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>35% chance of granting <colortype(506)><edgecolortype(507)>Hawk's Eye<edgecolortype(0)><colortype(0)><br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>30s,)>,)>",
+      "unlock_level": 64,
+      "relations": [
+        "applied_by_description"
+      ],
+      "roles": [
+        "Physical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 23,
+          "name": "Bard",
+          "abbreviation": "BRD",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 11388,
+      "name": "Bad Breath",
+      "description": "Blow noxious breath on all enemies in a cone before you, inflicting Slow +20%, Heavy +40%, Blind, and Paralysis.\nAdditional Effect: Poison\nPotency: 20\nAdditional Effect: Damage dealt reduced 10%\nDuration: 15s\nAdditional Effect: Interrupts target",
+      "description_macro": "Blow noxious breath on all enemies in a cone before you, inflicting <colortype(506)><edgecolortype(507)>Slow<edgecolortype(0)><colortype(0)> +20%, <colortype(506)><edgecolortype(507)>Heavy<edgecolortype(0)><colortype(0)> +40%, <colortype(506)><edgecolortype(507)>Blind<edgecolortype(0)><colortype(0)>, and <colortype(506)><edgecolortype(507)>Paralysis<edgecolortype(0)><colortype(0)>.<br><colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)><colortype(506)><edgecolortype(507)>Poison<edgecolortype(0)><colortype(0)><br><colortype(504)><edgecolortype(505)>Potency: <edgecolortype(0)><colortype(0)>20<br><colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>Damage dealt reduced 10%<br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>15s<br><colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>Interrupts target",
+      "unlock_level": 1,
+      "relations": [
+        "applied_by_description"
+      ],
+      "roles": [
+        "Magical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 36,
+          "name": "Blue Mage",
+          "abbreviation": "BLU",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

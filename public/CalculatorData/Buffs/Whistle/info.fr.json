@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 880,
+  "name": "Siffler en travaillant",
+  "description": "Des avantages relatifs à la synthèse sont conférés en fonction du degré de l'effet.",
+  "effects": [
+    "Des avantages relatifs à la synthèse sont conférés en fonction du degré de l'effet."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 218361,
+    "file": "icon.png"
+  },
+  "max_stacks": 11,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": true,
+  "is_permanent": false,
+  "inflicted_by_actor": true,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 50
+  },
+  "class_job_category_id": 33,
+  "source_abilities": [
+    {
+      "id": 18309,
+      "name": "Sifflement",
+      "description": "Augmente de 80% la puissance du prochain sort qui inflige des dégâts physiques.\nDurée : 30s\nNe peut être cumulé avec l'effet Accumulation.",
+      "description_macro": "Augmente de 80% la puissance du prochain sort qui inflige des dégâts physiques.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 30s<br>Ne peut être cumulé avec l'effet <colortype(500)><edgecolortype(501)>Accumulation<edgecolortype(0)><colortype(0)>.",
+      "unlock_level": 1,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Magical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 36,
+          "name": "Mage Bleu",
+          "abbreviation": "MBU",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

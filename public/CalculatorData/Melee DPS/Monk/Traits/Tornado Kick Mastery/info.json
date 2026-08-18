@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 513,
+  "name": "Tornado Kick Mastery",
+  "description": "Upgrades Tornado Kick to Phantom Rush.",
+  "description_macro": "Upgrades <colortype(500)><edgecolortype(501)>Tornado Kick<edgecolortype(0)><colortype(0)> to <colortype(500)><edgecolortype(501)>Phantom Rush<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Upgrades Tornado Kick to Phantom Rush."
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 20,
+    "name": "Monk",
+    "abbreviation": "MNK"
+  },
+  "unlock_level": 90,
+  "value": 0,
+  "icon": {
+    "id": 5247,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 21,
+  "source_class_job_id": 20
+}

@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 3870,
+  "name": "Thunderhead",
+  "description": "Able to cast Thunder spells.",
+  "effects": [
+    "Able to cast Thunder spells."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 212660,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": true,
+  "inflicted_by_actor": true,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 26,
+  "source_abilities": [
+    {
+      "id": 158,
+      "name": "Manafont",
+      "description": "Fully restores MP.\nAdditional Effect: Grants Astral Fire III\nAdditional Effect: Grants Thunderhead\nAdditional Effect: Grants 3 Umbral Hearts\nUmbral Heart Bonus: Nullifies Astral Fire's MP cost increase for Fire spells and reduces MP cost for Flare by one-third\nAdditional Effect: Grants Paradox\nCan only be executed while under the effect of Astral Fire.",
+      "description_macro": "Fully restores MP.<br><colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>Grants <colortype(506)><edgecolortype(507)>Astral Fire III<edgecolortype(0)><colortype(0)><br><colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>Grants <colortype(506)><edgecolortype(507)>Thunderhead<edgecolortype(0)><colortype(0)><br><if([gnum68==25],<if([gnum72>=58],<colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>Grants 3 <colortype(506)><edgecolortype(507)>Umbral Hearts<edgecolortype(0)><colortype(0)><br><colortype(504)><edgecolortype(505)>Umbral Heart Bonus: <edgecolortype(0)><colortype(0)>Nullifies <colortype(506)><edgecolortype(507)>Astral Fire<edgecolortype(0)><colortype(0)>'s MP cost increase for <colortype(500)><edgecolortype(501)>Fire<edgecolortype(0)><colortype(0)> spells and reduces MP cost for <colortype(500)><edgecolortype(501)>Flare<edgecolortype(0)><colortype(0)> by one-third<br>,)>,)><if([gnum68==25],<if([gnum72>=90],<colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>Grants <colortype(506)><edgecolortype(507)>Paradox<edgecolortype(0)><colortype(0)><br>,)>,)>Can only be executed while under the effect of <colortype(506)><edgecolortype(507)>Astral Fire<edgecolortype(0)><colortype(0)>.",
+      "unlock_level": 30,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Magical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 25,
+          "name": "Black Mage",
+          "abbreviation": "BLM",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

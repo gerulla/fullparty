@@ -1,0 +1,90 @@
+{
+  "kind": "ability",
+  "id": 41630,
+  "name": "Silberkanone",
+  "description": "Du führst eine elementneutrale magische Attacke auf das Ziel und die Gegner in seiner Nähe aus.\nAttacke-Wert: 210 (skaliert mit Gegenstandsstufe)\nZusatzeffekt: Belegt das Ziel mit Silber.\nEffekt von Silber: Verringert den ausgeteilten Schaden um 10 % und erhöht den erlittenen Schaden um 5 %.\nDauer: 70 Sekunden\nKann nicht zugleich mit Betörung des Phantom-Tänzers aktiv sein.\nGemeinsamer Reaktivierungs-Timer mit Heilige Kanone",
+  "description_macro": "Du führst eine elementneutrale magische Attacke auf das Ziel und die Gegner in seiner Nähe aus.<br>Attacke-Wert: 210 (skaliert mit Gegen<->stands<->stufe)<br>Zusatzeffekt: Belegt das Ziel mit <colortype(506)><edgecolortype(507)>Silber<edgecolortype(0)><colortype(0)>.<br>Effekt von <colortype(506)><edgecolortype(507)>Silber<edgecolortype(0)><colortype(0)>: Verringert den ausgeteilten Schaden um 10<nbsp>% und erhöht den erlittenen Schaden um 5<nbsp>%.<br>Dauer: 70 Sekunden<br>Kann nicht zugleich mit <colortype(500)><edgecolortype(501)>Betörung<edgecolortype(0)><colortype(0)> des Phantom-Tänzers aktiv sein.<br>Gemeinsamer Reaktivierungs-Timer mit <colortype(502)><edgecolortype(503)>Heilige Kanone<edgecolortype(0)><colortype(0)>",
+  "effects": [
+    "Du führst eine elementneutrale magische Attacke auf das Ziel und die Gegner in seiner Nähe aus.",
+    "Attacke-Wert: 210 (skaliert mit Gegenstandsstufe)",
+    "Zusatzeffekt: Belegt das Ziel mit Silber.",
+    "Effekt von Silber: Verringert den ausgeteilten Schaden um 10 % und erhöht den erlittenen Schaden um 5 %.",
+    "Dauer: 70 Sekunden",
+    "Kann nicht zugleich mit Betörung des Phantom-Tänzers aktiv sein.",
+    "Gemeinsamer Reaktivierungs-Timer mit Heilige Kanone"
+  ],
+  "role": "Phantom Jobs",
+  "job": {
+    "id": 9,
+    "name": "Phantom-Grenadier",
+    "abbreviation": "Ph-Grenadier"
+  },
+  "is_phantom_action": true,
+  "unlock_level": 6,
+  "icon": {
+    "id": 64552,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 3,
+    "name": "Waffenfertigkeit"
+  },
+  "attack_type": {
+    "id": 5,
+    "name": "魔法"
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 30,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 84,
+    "additional_cooldown_group": 58,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 0,
+      "value": 0
+    },
+    "secondary": {
+      "type_id": 0,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": 30,
+    "effect_yalms": 5,
+    "cast_type": 2
+  },
+  "targeting": {
+    "self": false,
+    "party": false,
+    "alliance": false,
+    "hostile": true,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 7,
+    "behavior_type": 0,
+    "class_job_category_id": 142,
+    "source_class_job_id": 4294967295,
+    "is_role_action": false,
+    "is_player_action": false,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

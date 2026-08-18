@@ -1,0 +1,29 @@
+{
+  "kind": "trait",
+  "id": 660,
+  "name": "アクション威力アップII",
+  "description": "特定のアクションの威力を上昇させる。\n\n双掌打の威力：420\n破砕拳の威力：360\n双竜脚の威力：320\n六合星導脚の威力：780\n夢幻闘舞の威力：1500",
+  "description_macro": "特定のアクションの威力を上昇させる。<br><br><colortype(504)><edgecolortype(505)>双掌打の威力：<edgecolortype(0)><colortype(0)>420<br><colortype(504)><edgecolortype(505)>破砕拳の威力：<edgecolortype(0)><colortype(0)>360<br><colortype(504)><edgecolortype(505)>双竜脚の威力：<edgecolortype(0)><colortype(0)>320<br><colortype(504)><edgecolortype(505)>六合星導脚の威力：<edgecolortype(0)><colortype(0)>780<br><colortype(504)><edgecolortype(505)>夢幻闘舞の威力：<edgecolortype(0)><colortype(0)>1500",
+  "effects": [
+    "特定のアクションの威力を上昇させる。",
+    "双掌打の威力：420",
+    "破砕拳の威力：360",
+    "双竜脚の威力：320",
+    "六合星導脚の威力：780",
+    "夢幻闘舞の威力：1500"
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 20,
+    "name": "モンク",
+    "abbreviation": "MNK"
+  },
+  "unlock_level": 94,
+  "value": 0,
+  "icon": {
+    "id": 6802,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 21,
+  "source_class_job_id": 20
+}

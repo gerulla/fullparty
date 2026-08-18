@@ -1,0 +1,86 @@
+{
+  "kind": "ability",
+  "id": 7495,
+  "name": "葉隠",
+  "description": "自身に付与されている閃を「剣気」に変換する。\n付与されている閃ひとつにつき「剣気」が10上昇する。\n発動条件：「雪の閃」「月の閃」「花の閃」のいずれかが付与されている",
+  "description_macro": "自身に付与されている閃を<colortype(500)><edgecolortype(501)>「剣気」<edgecolortype(0)><colortype(0)>に変換する。<br>付与されている閃ひとつにつき<colortype(500)><edgecolortype(501)>「剣気」<edgecolortype(0)><colortype(0)>が10上昇する。<br><colortype(504)><edgecolortype(505)>発動条件：<edgecolortype(0)><colortype(0)><colortype(500)><edgecolortype(501)>「雪の閃」「月の閃」「花の閃」<edgecolortype(0)><colortype(0)>のいずれかが付与されている",
+  "effects": [
+    "自身に付与されている閃を「剣気」に変換する。",
+    "付与されている閃ひとつにつき「剣気」が10上昇する。",
+    "発動条件：「雪の閃」「月の閃」「花の閃」のいずれかが付与されている"
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 34,
+    "name": "侍",
+    "abbreviation": "SAM"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 68,
+  "icon": {
+    "id": 3176,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 4,
+    "name": "アビリティ"
+  },
+  "attack_type": {
+    "id": 0,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 5,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 4,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 40,
+      "value": 0
+    },
+    "secondary": {
+      "type_id": 0,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": 0,
+    "effect_yalms": 0,
+    "cast_type": 1
+  },
+  "targeting": {
+    "self": true,
+    "party": false,
+    "alliance": false,
+    "hostile": false,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 0,
+    "behavior_type": 0,
+    "class_job_category_id": 111,
+    "source_class_job_id": 34,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

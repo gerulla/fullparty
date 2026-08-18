@@ -1,0 +1,93 @@
+{
+  "kind": "ability",
+  "id": 36966,
+  "name": "Tendô Setsugekka",
+  "description": "Effectue une attaque physique sur la cible.\nPuissance : 1100\nInflige obligatoirement un coup critique.\nLes dégâts infligés sont augmentés lorsque vous bénéficiez d'un effet augmentant les chances de coups critiques.\nEffet additionnel : vous octroie Tsubamegaeshi préparé.\nDurée : 30s\nEffet additionnel : vous octroie Tension de la lame (maximum 3).\nCondition : Tendô et Marque Setsugekka pleine.\n\n* Cette action ne peut pas être ajoutée aux barres de raccourcis.\nRemplace Iaijutsu lorsque les conditions sont réunies.",
+  "description_macro": "Effectue une attaque physique sur la cible.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> 1100<br>Inflige obligatoirement un coup critique.<br>Les dégâts infligés sont augmentés lorsque vous bénéficiez d'un effet augmentant les chances de coups critiques.<br><colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> vous octroie <colortype(500)><edgecolortype(501)>Tsubamegaeshi préparé<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 30s<br><colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> vous octroie <colortype(500)><edgecolortype(501)>Tension de la lame<edgecolortype(0)><colortype(0)> (maximum 3).<br><colortype(506)><edgecolortype(507)>Condition<nbsp>:<edgecolortype(0)><colortype(0)> <colortype(500)><edgecolortype(501)>Tendô<edgecolortype(0)><colortype(0)> et <colortype(502)><edgecolortype(503)>Marque Setsugekka<edgecolortype(0)><colortype(0)> pleine.<br><br><colortype(504)><edgecolortype(505)>* Cette action ne peut pas être ajoutée aux barres de raccourcis.<br>Remplace <colortype(500)><edgecolortype(501)>Iaijutsu<edgecolortype(0)><colortype(0)> lorsque les conditions sont réunies.<edgecolortype(0)><colortype(0)>",
+  "effects": [
+    "Effectue une attaque physique sur la cible.",
+    "Puissance : 1100",
+    "Inflige obligatoirement un coup critique.",
+    "Les dégâts infligés sont augmentés lorsque vous bénéficiez d'un effet augmentant les chances de coups critiques.",
+    "Effet additionnel : vous octroie Tsubamegaeshi préparé.",
+    "Durée : 30s",
+    "Effet additionnel : vous octroie Tension de la lame (maximum 3).",
+    "Condition : Tendô et Marque Setsugekka pleine.",
+    "* Cette action ne peut pas être ajoutée aux barres de raccourcis.",
+    "Remplace Iaijutsu lorsque les conditions sont réunies."
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 34,
+    "name": "Samouraï",
+    "abbreviation": "SAM"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 100,
+  "icon": {
+    "id": 3194,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 3,
+    "name": "Technique d'arme"
+  },
+  "attack_type": {
+    "id": 4294967295,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 1.8,
+    "recast_seconds": 2.5,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 58,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 40,
+      "value": 3
+    },
+    "secondary": {
+      "type_id": 32,
+      "value": 3856
+    }
+  },
+  "range": {
+    "target_yalms": 6,
+    "effect_yalms": 0,
+    "cast_type": 1
+  },
+  "targeting": {
+    "self": false,
+    "party": false,
+    "alliance": false,
+    "hostile": true,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 7,
+    "behavior_type": 0,
+    "class_job_category_id": 111,
+    "source_class_job_id": 0,
+    "is_role_action": false,
+    "is_player_action": false,
+    "is_derived_action": true,
+    "equivalence_group": 0
+  }
+}

@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 4798,
+  "name": "Quickstep",
+  "description": "Evasion is enhanced.",
+  "effects": [
+    "Evasion is enhanced."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 229972,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 20
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 46603,
+      "name": "Quickstep",
+      "description": "Increases evasion by 20%.\nDuration: 90s\nAdditional Effect: Grants Quicker Step to self and nearby party members when executed within proximity of a knowledge crystal\nQuicker Step Effect: Increases damage dealt by 2%\nDuration: 30m",
+      "description_macro": "Increases evasion by 20%.<br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>90s<br><colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>Grants <colortype(506)><edgecolortype(507)>Quicker Step<edgecolortype(0)><colortype(0)> to self and nearby party members when executed within proximity of a knowledge crystal<br><colortype(504)><edgecolortype(505)>Quicker Step Effect: <edgecolortype(0)><colortype(0)>Increases damage dealt by 2%<br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>30m",
+      "unlock_level": 0,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Phantom Jobs"
+      ],
+      "jobs": [
+        {
+          "id": 15,
+          "name": "Phantom Dancer",
+          "abbreviation": "Ph. Dancer",
+          "is_phantom": true
+        }
+      ]
+    }
+  ]
+}

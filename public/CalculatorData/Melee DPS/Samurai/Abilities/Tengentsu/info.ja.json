@@ -1,0 +1,88 @@
+{
+  "kind": "ability",
+  "id": 36962,
+  "name": "天眼通",
+  "description": "効果時間中に受ける1回の攻撃のダメージを10％軽減する。\n効果時間：4秒\n追加効果：天眼通に成功すると「剣気」が10上昇し、さらに「天眼通：生」に変化する。\u3000効果時間：9秒\n天眼通：生効果：自身の被ダメージを10％軽減する。\nさらに、自身のＨＰを継続回復する。\u3000回復力：200",
+  "description_macro": "効果時間中に受ける1回の攻撃のダメージを10％軽減する。<br><colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>4秒<br><colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)>天眼通に成功すると<colortype(500)><edgecolortype(501)>「剣気」<edgecolortype(0)><colortype(0)>が10上昇し、さらに<colortype(500)><edgecolortype(501)>「天眼通：生」<edgecolortype(0)><colortype(0)>に変化する。\u3000<colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>9秒<br><colortype(504)><edgecolortype(505)>天眼通：生効果：<edgecolortype(0)><colortype(0)>自身の被ダメージを10％軽減する。<br>さらに、自身のＨＰを継続回復する。\u3000<colortype(504)><edgecolortype(505)>回復力：<edgecolortype(0)><colortype(0)>200",
+  "effects": [
+    "効果時間中に受ける1回の攻撃のダメージを10％軽減する。",
+    "効果時間：4秒",
+    "追加効果：天眼通に成功すると「剣気」が10上昇し、さらに「天眼通：生」に変化する。\u3000効果時間：9秒",
+    "天眼通：生効果：自身の被ダメージを10％軽減する。",
+    "さらに、自身のＨＰを継続回復する。\u3000回復力：200"
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 34,
+    "name": "侍",
+    "abbreviation": "SAM"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 82,
+  "icon": {
+    "id": 3190,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 4,
+    "name": "アビリティ"
+  },
+  "attack_type": {
+    "id": 0,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 15,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 7,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 0,
+      "value": 0
+    },
+    "secondary": {
+      "type_id": 62,
+      "value": 589
+    }
+  },
+  "range": {
+    "target_yalms": 0,
+    "effect_yalms": 0,
+    "cast_type": 1
+  },
+  "targeting": {
+    "self": true,
+    "party": false,
+    "alliance": false,
+    "hostile": false,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 0,
+    "behavior_type": 0,
+    "class_job_category_id": 111,
+    "source_class_job_id": 34,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

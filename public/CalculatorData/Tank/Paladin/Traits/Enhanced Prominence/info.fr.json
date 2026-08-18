@@ -1,0 +1,29 @@
+{
+  "kind": "trait",
+  "id": 261,
+  "name": "Évidence améliorée",
+  "description": "Évidence bénéficie des effets supplémentaires suivants :\n\nBonus du combo : restaure vos PM.\nBonus du combo : vous octroie Grâce divine.\nDurée : 30s\nGrâce divine : permet de lancer instantanément le prochain Esprit saint ou Cercle sacré avec une puissance augmentée.\nCondition : combo avec Évidence réussi.",
+  "description_macro": "<colortype(500)><edgecolortype(501)>Évidence<edgecolortype(0)><colortype(0)> bénéficie des effets sup<->plé<->men<->tai<->res suivants<nbsp>:<br><br><colortype(506)><edgecolortype(507)>Bonus du combo<nbsp>:<edgecolortype(0)><colortype(0)> restaure vos PM.<br><colortype(506)><edgecolortype(507)>Bonus du combo<nbsp>:<edgecolortype(0)><colortype(0)> vous octroie <colortype(500)><edgecolortype(501)>Grâce divine<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 30s<br><colortype(506)><edgecolortype(507)>Grâce divine<nbsp>:<edgecolortype(0)><colortype(0)> permet de lancer instantanément le prochain Esprit saint ou Cercle sacré avec une puissance augmentée.<br><colortype(506)><edgecolortype(507)>Condition<nbsp>:<edgecolortype(0)><colortype(0)> combo avec <colortype(500)><edgecolortype(501)>Évidence<edgecolortype(0)><colortype(0)> réussi.",
+  "effects": [
+    "Évidence bénéficie des effets supplémentaires suivants :",
+    "Bonus du combo : restaure vos PM.",
+    "Bonus du combo : vous octroie Grâce divine.",
+    "Durée : 30s",
+    "Grâce divine : permet de lancer instantanément le prochain Esprit saint ou Cercle sacré avec une puissance augmentée.",
+    "Condition : combo avec Évidence réussi."
+  ],
+  "role": "Tank",
+  "job": {
+    "id": 19,
+    "name": "Paladin",
+    "abbreviation": "PLD"
+  },
+  "unlock_level": 72,
+  "value": 0,
+  "icon": {
+    "id": 5214,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 20,
+  "source_class_job_id": 19
+}

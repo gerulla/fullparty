@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 1827,
+  "name": "Tanzimprovisation",
+  "description": "Deiner Intuition folgend, tanzt du den Kriegstanz.",
+  "effects": [
+    "Deiner Intuition folgend, tanzt du den Kriegstanz."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 213716,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": true,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 4,
+    "modifier": 0
+  },
+  "class_job_category_id": 150,
+  "source_abilities": [
+    {
+      "id": 16014,
+      "name": "Tanzimprovisation",
+      "description": "Deiner Intuition folgend, tanzt du den Kriegstanz und wirst eins mit dem Schlachtfeld. Er gewährt dir den Status Tanzekstase und du erhältst alle 3 Sekunden eine Intensitätsstufe Tanzekstase, bis zu 4 maximal.\nZusatzeffekt: Regeneriert stetig eigene LP und die von Gruppenmitgliedern in deiner Nähe.\nHeilpotenzial: 100\nDauer: 15 Sekunden\nEffekt endet bei Bewegung, Umdrehen oder Ausführen eines Kommandos.\nÄndert sich bei Ausführung zu Improvisiertes Finale.\nUnterbindet Auto-Attacke.",
+      "description_macro": "Deiner Intuition folgend, tanzt du den Kriegstanz und wirst eins mit dem Schlachtfeld. Er gewährt dir den Status <colortype(506)><edgecolortype(507)>Tanzekstase<edgecolortype(0)><colortype(0)> und du erhältst alle 3 Sekunden eine Intensitätsstufe <colortype(506)><edgecolortype(507)>Tanzekstase<edgecolortype(0)><colortype(0)>, bis zu 4 maximal.<br>Zusatzeffekt: Regeneriert stetig eigene LP und die von Grup<->pen<->mit<->gliedern in deiner Nähe.<br>Heilpotenzial: 100<br>Dauer: 15 Sekunden<br>Effekt endet bei Bewegung, Umdrehen oder Ausführen eines Kommandos.<br>Ändert sich bei Ausführung zu <colortype(502)><edgecolortype(503)>Improvisiertes Finale<edgecolortype(0)><colortype(0)>.<br>Unterbindet Auto-Attacke.",
+      "unlock_level": 80,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Physical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 38,
+          "name": "Tänzer",
+          "abbreviation": "TÄN",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

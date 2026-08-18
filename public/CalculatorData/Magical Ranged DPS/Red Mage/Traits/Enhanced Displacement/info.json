@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 304,
+  "name": "Enhanced Displacement",
+  "description": "Increases Displacement and Engagement potency to 180.",
+  "description_macro": "Increases <colortype(500)><edgecolortype(501)>Displacement<edgecolortype(0)><colortype(0)> and <colortype(500)><edgecolortype(501)>Engagement<edgecolortype(0)><colortype(0)> potency to 180.",
+  "effects": [
+    "Increases Displacement and Engagement potency to 180."
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 35,
+    "name": "Red Mage",
+    "abbreviation": "RDM"
+  },
+  "unlock_level": 72,
+  "value": 0,
+  "icon": {
+    "id": 6204,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 112,
+  "source_class_job_id": 35
+}

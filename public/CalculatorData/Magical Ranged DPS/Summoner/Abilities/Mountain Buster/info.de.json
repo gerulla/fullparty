@@ -1,0 +1,98 @@
+{
+  "kind": "ability",
+  "id": 25836,
+  "name": "Bergsprenger",
+  "description": "Du führst eine erdbasierte magische Attacke auf das Ziel und die Gegner in seiner Nähe aus.\nAttacke-Wert: 160\nAttacke-Wert verringert sich ab dem zweiten Gegner um 60 %.\nBedingung: Titans Gunst aktiv\nBei erfüllter Bedingung ändert sich Lichtstrom zu diesem Kommando.\nKann nicht im Kommandomenü angelegt werden.",
+  "description_macro": "Du führst eine erdbasierte magische Attacke auf das Ziel und die Gegner in seiner Nähe aus.<br>Attacke-Wert: <if([gnum68==27],<if([gnum72>=94],160,150)>,150)><br>Attacke-Wert verringert sich ab dem zweiten Gegner um 60<nbsp>%.<br>Bedingung: <colortype(506)><edgecolortype(507)>Titans Gunst<edgecolortype(0)><colortype(0)> aktiv<br>Bei erfüllter Bedingung ändert sich <colortype(502)><edgecolortype(503)>Lichtstrom<edgecolortype(0)><colortype(0)> zu diesem Kommando.<br>Kann nicht im Kommandomenü angelegt werden.",
+  "effects": [
+    "Du führst eine erdbasierte magische Attacke auf das Ziel und die Gegner in seiner Nähe aus.",
+    "Attacke-Wert: 160",
+    "Attacke-Wert verringert sich ab dem zweiten Gegner um 60 %.",
+    "Bedingung: Titans Gunst aktiv",
+    "Bei erfüllter Bedingung ändert sich Lichtstrom zu diesem Kommando.",
+    "Kann nicht im Kommandomenü angelegt werden."
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 27,
+    "name": "Beschwörer",
+    "abbreviation": "BSW"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 86,
+  "icon": {
+    "id": 2770,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 4,
+    "name": "Talent"
+  },
+  "attack_type": {
+    "id": 5,
+    "name": "魔法"
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 1,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 3,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 10,
+      "value": 2853
+    },
+    "secondary": {
+      "type_id": 32,
+      "value": 2853
+    }
+  },
+  "range": {
+    "target_yalms": 25,
+    "effect_yalms": 5,
+    "cast_type": 2
+  },
+  "targeting": {
+    "self": false,
+    "party": false,
+    "alliance": false,
+    "hostile": true,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": {
+      "id": 76,
+      "status": {
+        "id": 2853,
+        "name": "Titans Gunst",
+        "description": "Bergsprenger kann ausgeführt werden.",
+        "icon_id": 212698,
+        "max_stacks": 0
+      }
+    }
+  },
+  "metadata": {
+    "aspect_id": 4,
+    "behavior_type": 0,
+    "class_job_category_id": 28,
+    "source_class_job_id": 0,
+    "is_role_action": false,
+    "is_player_action": false,
+    "is_derived_action": true,
+    "equivalence_group": 0
+  }
+}

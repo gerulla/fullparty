@@ -1,0 +1,33 @@
+{
+  "kind": "trait",
+  "id": 489,
+  "name": "回復アクション効果アップ",
+  "description": "特定のアクションの回復力を上昇させる。\n\nケアルの回復力：500\nメディカの回復力：400\nケアルラの回復力：800\nリジェネの継続回復効果の回復力：250\nケアルガの回復力：600\nメディカラの回復力：250\nメディカラの継続回復効果の回復力：150\nハート・オブ・ソラスの回復力：800\nハート・オブ・ラプチャーの回復力：400",
+  "description_macro": "特定のアクションの回復力を上昇させる。<br><br><colortype(504)><edgecolortype(505)>ケアルの回復力：<edgecolortype(0)><colortype(0)>500<br><colortype(504)><edgecolortype(505)>メディカの回復力：<edgecolortype(0)><colortype(0)>400<br><colortype(504)><edgecolortype(505)>ケアルラの回復力：<edgecolortype(0)><colortype(0)>800<br><colortype(504)><edgecolortype(505)>リジェネの継続回復効果の回復力：<edgecolortype(0)><colortype(0)>250<br><colortype(504)><edgecolortype(505)>ケアルガの回復力：<edgecolortype(0)><colortype(0)>600<br><colortype(504)><edgecolortype(505)>メディカラの回復力：<edgecolortype(0)><colortype(0)>250<br><colortype(504)><edgecolortype(505)>メディカラの継続回復効果の回復力：<edgecolortype(0)><colortype(0)>150<br><colortype(504)><edgecolortype(505)>ハート・オブ・ソラスの回復力：<edgecolortype(0)><colortype(0)>800<br><colortype(504)><edgecolortype(505)>ハート・オブ・ラプチャーの回復力：<edgecolortype(0)><colortype(0)>400",
+  "effects": [
+    "特定のアクションの回復力を上昇させる。",
+    "ケアルの回復力：500",
+    "メディカの回復力：400",
+    "ケアルラの回復力：800",
+    "リジェネの継続回復効果の回復力：250",
+    "ケアルガの回復力：600",
+    "メディカラの回復力：250",
+    "メディカラの継続回復効果の回復力：150",
+    "ハート・オブ・ソラスの回復力：800",
+    "ハート・オブ・ラプチャーの回復力：400"
+  ],
+  "role": "Healer",
+  "job": {
+    "id": 24,
+    "name": "白魔道士",
+    "abbreviation": "WHM"
+  },
+  "unlock_level": 85,
+  "value": 0,
+  "icon": {
+    "id": 6826,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 25,
+  "source_class_job_id": 24
+}

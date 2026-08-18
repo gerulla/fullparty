@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 265,
+  "name": "Meister der Urkraft",
+  "description": "Verbessert Tier in dir zu Niedermähen.",
+  "description_macro": "Verbessert <colortype(502)><edgecolortype(503)>Tier in dir<edgecolortype(0)><colortype(0)> zu <colortype(502)><edgecolortype(503)>Niedermähen<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Verbessert Tier in dir zu Niedermähen."
+  ],
+  "role": "Tank",
+  "job": {
+    "id": 21,
+    "name": "Krieger",
+    "abbreviation": "KRG"
+  },
+  "unlock_level": 54,
+  "value": 0,
+  "icon": {
+    "id": 5262,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 22,
+  "source_class_job_id": 21
+}

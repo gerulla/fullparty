@@ -1,0 +1,94 @@
+{
+  "kind": "ability",
+  "id": 7382,
+  "name": "Intervention",
+  "description": "Reduces target party member's damage taken by 10%.\nDuration: 8s\nAdditional Effect: Increases damage reduction by an additional 10% if Rampart or Guardian are active\nAdditional Effect: Grants Knight's Resolve to target\nKnight's Resolve Effect: Reduces damage taken by 10%\nDuration: 4s\nAdditional Effect: Grants Knight's Benediction to target\nKnight's Benediction Effect: Gradually restores HP\nCure Potency: 250\nDuration: 12s\nOath Gauge Cost: 50",
+  "description_macro": "Reduces target party member's damage taken by 10%.<br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)><if([gnum68==19],<if([gnum72>=82],8,6)>,6)>s<br><colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>Increases damage reduction by an additional 10% if <colortype(506)><edgecolortype(507)>Rampart<edgecolortype(0)><colortype(0)> or <if([gnum68==19],<if([gnum72>=92],<colortype(506)><edgecolortype(507)>Guardian<edgecolortype(0)><colortype(0)>,<colortype(506)><edgecolortype(507)>Sentinel<edgecolortype(0)><colortype(0)>)>,<colortype(506)><edgecolortype(507)>Sentinel<edgecolortype(0)><colortype(0)>)> are active<br><if([gnum68==19],<if([gnum72>=82],<colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>Grants <colortype(506)><edgecolortype(507)>Knight's Resolve<edgecolortype(0)><colortype(0)> to target<br><colortype(504)><edgecolortype(505)>Knight's Resolve Effect: <edgecolortype(0)><colortype(0)>Reduces damage taken by 10%<br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>4s<br><colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>Grants <colortype(506)><edgecolortype(507)>Knight's Benediction<edgecolortype(0)><colortype(0)> to target<br><colortype(504)><edgecolortype(505)>Knight's Benediction Effect: <edgecolortype(0)><colortype(0)>Gradually restores HP<br><colortype(504)><edgecolortype(505)>Cure Potency: <edgecolortype(0)><colortype(0)>250<br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>12s<br>,)>,)><colortype(504)><edgecolortype(505)>Oath Gauge Cost: <edgecolortype(0)><colortype(0)>50",
+  "effects": [
+    "Reduces target party member's damage taken by 10%.",
+    "Duration: 8s",
+    "Additional Effect: Increases damage reduction by an additional 10% if Rampart or Guardian are active",
+    "Additional Effect: Grants Knight's Resolve to target",
+    "Knight's Resolve Effect: Reduces damage taken by 10%",
+    "Duration: 4s",
+    "Additional Effect: Grants Knight's Benediction to target",
+    "Knight's Benediction Effect: Gradually restores HP",
+    "Cure Potency: 250",
+    "Duration: 12s",
+    "Oath Gauge Cost: 50"
+  ],
+  "role": "Tank",
+  "job": {
+    "id": 19,
+    "name": "Paladin",
+    "abbreviation": "PLD"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 62,
+  "icon": {
+    "id": 2512,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 4,
+    "name": "Ability"
+  },
+  "attack_type": {
+    "id": 0,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 10,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 5,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 41,
+      "value": 50
+    },
+    "secondary": {
+      "type_id": 62,
+      "value": 209
+    }
+  },
+  "range": {
+    "target_yalms": 30,
+    "effect_yalms": 0,
+    "cast_type": 1
+  },
+  "targeting": {
+    "self": false,
+    "party": true,
+    "alliance": false,
+    "hostile": false,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": false
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 0,
+    "behavior_type": 0,
+    "class_job_category_id": 20,
+    "source_class_job_id": 19,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 310,
+  "name": "Enhanced Asylum",
+  "description": "Adds an additional effect to Asylum that increases HP recovery via healing actions by 10%.",
+  "description_macro": "Adds an additional effect to <colortype(500)><edgecolortype(501)>Asylum<edgecolortype(0)><colortype(0)> that increases HP recovery via healing actions by 10%.",
+  "effects": [
+    "Adds an additional effect to Asylum that increases HP recovery via healing actions by 10%."
+  ],
+  "role": "Healer",
+  "job": {
+    "id": 24,
+    "name": "White Mage",
+    "abbreviation": "WHM"
+  },
+  "unlock_level": 78,
+  "value": 0,
+  "icon": {
+    "id": 5342,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 25,
+  "source_class_job_id": 24
+}

@@ -1,0 +1,99 @@
+{
+  "kind": "ability",
+  "id": 36987,
+  "name": "Extra Foudre majeure",
+  "description": "Effectue une attaque magique de foudre sur la cible et les ennemis autour.\nPuissance : 100\nEffet additionnel : dégâts périodiques de foudre.\nPuissance : 40 Durée : 24s\nVous ne pouvez infliger qu'un type de dégâts périodiques de foudre à la fois.\nCondition : Électrifié.\nL'état Électrifié est octroyé lorsque vous obtenez les effets Feu astral ou Glace ombrale, ou lorsque vous basculez de l'un à l'autre.",
+  "description_macro": "Effectue une attaque magique de foudre sur la cible et les ennemis autour.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> 100<br><colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> dégâts périodiques de foudre.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> 40 <colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 24s<br>Vous ne pouvez infliger qu'un type de dégâts périodiques de foudre à la fois.<br><colortype(506)><edgecolortype(507)>Condition<nbsp>:<edgecolortype(0)><colortype(0)> <colortype(500)><edgecolortype(501)>Électrifié<edgecolortype(0)><colortype(0)>.<br>L'état Électrifié est octroyé lorsque vous obtenez les effets Feu astral ou Glace ombrale, ou lorsque vous basculez de l'un à l'autre.",
+  "effects": [
+    "Effectue une attaque magique de foudre sur la cible et les ennemis autour.",
+    "Puissance : 100",
+    "Effet additionnel : dégâts périodiques de foudre.",
+    "Puissance : 40 Durée : 24s",
+    "Vous ne pouvez infliger qu'un type de dégâts périodiques de foudre à la fois.",
+    "Condition : Électrifié.",
+    "L'état Électrifié est octroyé lorsque vous obtenez les effets Feu astral ou Glace ombrale, ou lorsque vous basculez de l'un à l'autre."
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 25,
+    "name": "Mage Noir",
+    "abbreviation": "MNO"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 92,
+  "icon": {
+    "id": 2674,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 2,
+    "name": "Sort"
+  },
+  "attack_type": {
+    "id": 5,
+    "name": "magie"
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 2.5,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 58,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 10,
+      "value": 3870
+    },
+    "secondary": {
+      "type_id": 62,
+      "value": 613
+    }
+  },
+  "range": {
+    "target_yalms": 25,
+    "effect_yalms": 5,
+    "cast_type": 2
+  },
+  "targeting": {
+    "self": false,
+    "party": false,
+    "alliance": false,
+    "hostile": true,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": false
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": {
+      "id": 177,
+      "status": {
+        "id": 3870,
+        "name": "Électrifié",
+        "description": "Les sorts de foudre peuvent être lancés.",
+        "icon_id": 212660,
+        "max_stacks": 0
+      }
+    }
+  },
+  "metadata": {
+    "aspect_id": 5,
+    "behavior_type": 0,
+    "class_job_category_id": 26,
+    "source_class_job_id": 25,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

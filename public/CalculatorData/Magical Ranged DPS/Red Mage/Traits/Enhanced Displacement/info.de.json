@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 304,
+  "name": "Meister der Körperparade",
+  "description": "Erhöht den Attacke-Wert von Körperparade und Arret-Stoß auf 180.",
+  "description_macro": "Erhöht den Attacke-Wert von <colortype(502)><edgecolortype(503)>Körperparade<edgecolortype(0)><colortype(0)> und <colortype(502)><edgecolortype(503)>Arret-Stoß<edgecolortype(0)><colortype(0)> auf 180.",
+  "effects": [
+    "Erhöht den Attacke-Wert von Körperparade und Arret-Stoß auf 180."
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 35,
+    "name": "Rotmagier",
+    "abbreviation": "RMA"
+  },
+  "unlock_level": 72,
+  "value": 0,
+  "icon": {
+    "id": 6204,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 112,
+  "source_class_job_id": 35
+}

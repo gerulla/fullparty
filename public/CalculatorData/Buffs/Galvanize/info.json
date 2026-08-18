@@ -1,0 +1,92 @@
+{
+  "kind": "combat_status",
+  "id": 297,
+  "name": "Galvanize",
+  "description": "A magicked barrier is nullifying damage.",
+  "effects": [
+    "A magicked barrier is nullifying damage."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 212801,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 30,
+  "parameter": {
+    "effect": 0,
+    "modifier": 100
+  },
+  "class_job_category_id": 29,
+  "source_abilities": [
+    {
+      "id": 185,
+      "name": "Adloquium",
+      "description": "Restores target's HP.\nCure Potency: 300\nAdditional Effect: Grants Galvanize to target, nullifying damage equaling 180% of the amount of HP restored. When critical HP is restored, also grants Catalyze, nullifying damage equaling 180% the amount of HP restored.\nDuration: 30s\nEffect cannot be stacked with certain sage barrier effects.",
+      "description_macro": "Restores target's HP.<br><colortype(504)><edgecolortype(505)>Cure Potency:<edgecolortype(0)><colortype(0)> 300<br><colortype(504)><edgecolortype(505)>Additional Effect:<edgecolortype(0)><colortype(0)> Grants <colortype(506)><edgecolortype(507)>Galvanize<edgecolortype(0)><colortype(0)> to target, nullifying damage equaling <if([gnum68==28],<if([gnum72>=85],180,125)>,125)>% of the amount of HP restored. When critical HP is restored, also grants <colortype(506)><edgecolortype(507)>Catalyze<edgecolortype(0)><colortype(0)>, nullifying damage equaling <if([gnum68==28],<if([gnum72>=85],180,125)>,125)>% the amount of HP restored.<br><colortype(504)><edgecolortype(505)>Duration:<edgecolortype(0)><colortype(0)> 30s<br>Effect cannot be stacked with certain sage barrier effects.",
+      "unlock_level": 30,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Healer"
+      ],
+      "jobs": [
+        {
+          "id": 28,
+          "name": "Scholar",
+          "abbreviation": "SCH",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 3585,
+      "name": "Deployment Tactics",
+      "description": "Extends Galvanize effect cast on self or target party member to other nearby party members.\nDuration: Time remaining on original effect\nNo effect when target is not under the effect of Galvanize.",
+      "description_macro": "Extends <colortype(506)><edgecolortype(507)>Galvanize<edgecolortype(0)><colortype(0)> effect cast on self or target party member to other nearby party members.<br><colortype(504)><edgecolortype(505)>Duration:<edgecolortype(0)><colortype(0)> Time remaining on original effect<br>No effect when target is not under the effect of <colortype(506)><edgecolortype(507)>Galvanize<edgecolortype(0)><colortype(0)>.",
+      "unlock_level": 56,
+      "relations": [
+        "extended_by_description"
+      ],
+      "roles": [
+        "Healer"
+      ],
+      "jobs": [
+        {
+          "id": 28,
+          "name": "Scholar",
+          "abbreviation": "SCH",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 37015,
+      "name": "Manifestation",
+      "description": "Restores target's HP.\nCure Potency: 360\nAdditional Effect: Grants Galvanize to target, nullifying damage equaling 180% of the amount of HP restored. When critical HP is restored, also grants Catalyze, nullifying damage equaling 180% the amount of HP restored.\nDuration: 30s\nEffect cannot be stacked with certain sage barrier effects.\nCan only be executed while under the effect of Seraphism.\n\n※This action cannot be assigned to a hotbar.\n※Adloquium changes to Manifestation when requirements for execution are met.",
+      "description_macro": "Restores target's HP.<br><colortype(504)><edgecolortype(505)>Cure Potency:<edgecolortype(0)><colortype(0)> 360<br><colortype(504)><edgecolortype(505)>Additional Effect:<edgecolortype(0)><colortype(0)> Grants <colortype(506)><edgecolortype(507)>Galvanize<edgecolortype(0)><colortype(0)> to target, nullifying damage equaling 180% of the amount of HP restored. When critical HP is restored, also grants <colortype(506)><edgecolortype(507)>Catalyze<edgecolortype(0)><colortype(0)>, nullifying damage equaling 180% the amount of HP restored.<br><colortype(504)><edgecolortype(505)>Duration:<edgecolortype(0)><colortype(0)> 30s<br>Effect cannot be stacked with certain sage barrier effects.<br>Can only be executed while under the effect of <colortype(506)><edgecolortype(507)>Seraphism<edgecolortype(0)><colortype(0)>.<br><br>※This action cannot be assigned to a hotbar.<br>※<colortype(500)><edgecolortype(501)>Adloquium<edgecolortype(0)><colortype(0)> changes to <colortype(500)><edgecolortype(501)>Manifestation<edgecolortype(0)><colortype(0)> when requirements for execution are met.",
+      "unlock_level": 100,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Healer"
+      ],
+      "jobs": [
+        {
+          "id": 28,
+          "name": "Scholar",
+          "abbreviation": "SCH",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

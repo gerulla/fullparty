@@ -1,0 +1,27 @@
+{
+  "kind": "trait",
+  "id": 521,
+  "name": "Actions améliorées II",
+  "description": "Augmente la puissance de certaines actions.\n\nPuissance de Gekkô : 110\nPuissance de Kasha : 110\nPuissance de Yukikaze : 110",
+  "description_macro": "Augmente la puissance de certaines actions.<br><br><colortype(506)><edgecolortype(507)>Puissance de Gekkô<nbsp>:<edgecolortype(0)><colortype(0)> 110<br><colortype(506)><edgecolortype(507)>Puissance de Kasha<nbsp>:<edgecolortype(0)><colortype(0)> 110<br><colortype(506)><edgecolortype(507)>Puissance de Yukikaze<nbsp>:<edgecolortype(0)><colortype(0)> 110",
+  "effects": [
+    "Augmente la puissance de certaines actions.",
+    "Puissance de Gekkô : 110",
+    "Puissance de Kasha : 110",
+    "Puissance de Yukikaze : 110"
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 34,
+    "name": "Samouraï",
+    "abbreviation": "SAM"
+  },
+  "unlock_level": 84,
+  "value": 0,
+  "icon": {
+    "id": 6802,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 111,
+  "source_class_job_id": 34
+}

@@ -1,0 +1,93 @@
+{
+  "kind": "ability",
+  "id": 25831,
+  "name": "Summon Phoenix",
+  "description": "Enters Firebird Trance and summons Demi-Phoenix to fight by your side, which executes Everlasting Flight as it manifests.\nDemi-Phoenix will execute Scarlet Flame automatically on the targets attacked by you after summoning.\nIncreases enmity in target when Demi-Phoenix is summoned.\nDuration: 15s\nAdditional Effect: Changes Ruin III to Fountain of Fire and Tri-disaster to Brand of Purgatory\nAdditional Effect: Grants Ruby Arcanum, Topaz Arcanum, and Emerald Arcanum\nCan only be executed while Carbuncle is summoned.\nThis action does not share a recast timer with any other actions.\n\n※This action cannot be assigned to a hotbar.\n※Summon Bahamut changes to Summon Phoenix when requirements for execution are met.",
+  "description_macro": "Enters <colortype(506)><edgecolortype(507)>Firebird Trance<edgecolortype(0)><colortype(0)> and summons Demi-Phoenix to fight by your side, which executes <colortype(500)><edgecolortype(501)>Everlasting Flight<edgecolortype(0)><colortype(0)> as it manifests.<br>Demi-Phoenix will execute <colortype(500)><edgecolortype(501)>Scarlet Flame<edgecolortype(0)><colortype(0)> automatically on the targets attacked by you after summoning.<br>Increases enmity in target when Demi-Phoenix is summoned.<br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>15s<br><colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>Changes <colortype(500)><edgecolortype(501)>Ruin III<edgecolortype(0)><colortype(0)> to <colortype(500)><edgecolortype(501)>Fountain of Fire<edgecolortype(0)><colortype(0)> and <colortype(500)><edgecolortype(501)>Tri-disaster<edgecolortype(0)><colortype(0)> to <colortype(500)><edgecolortype(501)>Brand of Purgatory<edgecolortype(0)><colortype(0)><br><colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>Grants <colortype(506)><edgecolortype(507)>Ruby Arcanum<edgecolortype(0)><colortype(0)>, <colortype(506)><edgecolortype(507)>Topaz Arcanum<edgecolortype(0)><colortype(0)>, and <colortype(506)><edgecolortype(507)>Emerald Arcanum<edgecolortype(0)><colortype(0)><br>Can only be executed while Carbuncle is summoned.<br>This action does not share a recast timer with any other actions.<br><br>※This action cannot be assigned to a hotbar.<br>※<colortype(500)><edgecolortype(501)>Summon Bahamut<edgecolortype(0)><colortype(0)> changes to <colortype(500)><edgecolortype(501)>Summon Phoenix<edgecolortype(0)><colortype(0)> when requirements for execution are met.",
+  "effects": [
+    "Enters Firebird Trance and summons Demi-Phoenix to fight by your side, which executes Everlasting Flight as it manifests.",
+    "Demi-Phoenix will execute Scarlet Flame automatically on the targets attacked by you after summoning.",
+    "Increases enmity in target when Demi-Phoenix is summoned.",
+    "Duration: 15s",
+    "Additional Effect: Changes Ruin III to Fountain of Fire and Tri-disaster to Brand of Purgatory",
+    "Additional Effect: Grants Ruby Arcanum, Topaz Arcanum, and Emerald Arcanum",
+    "Can only be executed while Carbuncle is summoned.",
+    "This action does not share a recast timer with any other actions.",
+    "※This action cannot be assigned to a hotbar.",
+    "※Summon Bahamut changes to Summon Phoenix when requirements for execution are met."
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 27,
+    "name": "Summoner",
+    "abbreviation": "SMN"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 80,
+  "icon": {
+    "id": 2765,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 2,
+    "name": "Spell"
+  },
+  "attack_type": {
+    "id": 5,
+    "name": "魔法"
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 60,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 10,
+    "additional_cooldown_group": 58,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 0,
+      "value": 0
+    },
+    "secondary": {
+      "type_id": 92,
+      "value": 1
+    }
+  },
+  "range": {
+    "target_yalms": 25,
+    "effect_yalms": 0,
+    "cast_type": 1
+  },
+  "targeting": {
+    "self": false,
+    "party": false,
+    "alliance": false,
+    "hostile": true,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 7,
+    "behavior_type": 0,
+    "class_job_category_id": 28,
+    "source_class_job_id": 0,
+    "is_role_action": false,
+    "is_player_action": false,
+    "is_derived_action": true,
+    "equivalence_group": 0
+  }
+}

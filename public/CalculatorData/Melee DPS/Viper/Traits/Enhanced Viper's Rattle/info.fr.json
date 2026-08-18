@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 530,
+  "name": "Esprits des serpents améliorés",
+  "description": "Augmente à 3 le nombre maximal d'Âmes ophidiennes.",
+  "description_macro": "Augmente à 3 le nombre maximal d'<colortype(500)><edgecolortype(501)>Âmes ophidiennes<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Augmente à 3 le nombre maximal d'Âmes ophidiennes."
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 41,
+    "name": "Rôdeur Vipère",
+    "abbreviation": "VPR"
+  },
+  "unlock_level": 88,
+  "value": 0,
+  "icon": {
+    "id": 6507,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 196,
+  "source_class_job_id": 41
+}

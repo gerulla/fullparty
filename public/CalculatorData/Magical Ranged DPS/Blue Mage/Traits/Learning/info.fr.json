@@ -1,0 +1,25 @@
+{
+  "kind": "trait",
+  "id": 219,
+  "name": "Apprentissage",
+  "description": "Vous permet d'apprendre des actions de magie bleue.\nSi un ennemi utilise une action assimilable, et que vous le vainquez ensuite, vous avez une faible chance d'apprendre cette action.",
+  "description_macro": "Vous permet d'apprendre des actions de magie bleue.<br>Si un ennemi utilise une action assimilable, et que vous le vainquez ensuite, vous avez une faible chance d'apprendre cette action.",
+  "effects": [
+    "Vous permet d'apprendre des actions de magie bleue.",
+    "Si un ennemi utilise une action assimilable, et que vous le vainquez ensuite, vous avez une faible chance d'apprendre cette action."
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 36,
+    "name": "Mage Bleu",
+    "abbreviation": "MBU"
+  },
+  "unlock_level": 1,
+  "value": 0,
+  "icon": {
+    "id": 6251,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 129,
+  "source_class_job_id": 36
+}

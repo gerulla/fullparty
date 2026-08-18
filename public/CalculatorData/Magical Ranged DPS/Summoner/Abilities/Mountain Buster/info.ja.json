@@ -1,0 +1,97 @@
+{
+  "kind": "ability",
+  "id": 25836,
+  "name": "マウンテンバスター",
+  "description": "対象とその周囲の敵に土属性範囲魔法攻撃。\u3000威力：160\n2体目以降の対象への威力は60％減少する。\n発動条件：「マウンテンバスター実行可」効果中\n\n※このアクションはホットバーに登録することはできない。\n\u3000発動条件を満たすとアストラルフロウがマウンテンバスターに変化する。",
+  "description_macro": "対象とその周囲の敵に土属性範囲魔法攻撃。\u3000<colortype(504)><edgecolortype(505)>威力：<edgecolortype(0)><colortype(0)><if([gnum68==27],<if([gnum72>=94],160,150)>,150)><br>2体目以降の対象への威力は60％減少する。<br><colortype(504)><edgecolortype(505)>発動条件：<edgecolortype(0)><colortype(0)><colortype(500)><edgecolortype(501)>「マウンテンバスター実行可」<edgecolortype(0)><colortype(0)>効果中<br><br><colortype(506)><edgecolortype(507)>※このアクションはホットバーに登録することはできない。<br>\u3000発動条件を満たすとアストラルフロウがマウンテンバスターに変化する。<edgecolortype(0)><colortype(0)>",
+  "effects": [
+    "対象とその周囲の敵に土属性範囲魔法攻撃。\u3000威力：160",
+    "2体目以降の対象への威力は60％減少する。",
+    "発動条件：「マウンテンバスター実行可」効果中",
+    "※このアクションはホットバーに登録することはできない。",
+    "発動条件を満たすとアストラルフロウがマウンテンバスターに変化する。"
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 27,
+    "name": "召喚士",
+    "abbreviation": "SMN"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 86,
+  "icon": {
+    "id": 2770,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 4,
+    "name": "アビリティ"
+  },
+  "attack_type": {
+    "id": 5,
+    "name": "魔法"
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 1,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 3,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 10,
+      "value": 2853
+    },
+    "secondary": {
+      "type_id": 32,
+      "value": 2853
+    }
+  },
+  "range": {
+    "target_yalms": 25,
+    "effect_yalms": 5,
+    "cast_type": 2
+  },
+  "targeting": {
+    "self": false,
+    "party": false,
+    "alliance": false,
+    "hostile": true,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": {
+      "id": 76,
+      "status": {
+        "id": 2853,
+        "name": "マウンテンバスター実行可",
+        "description": "マウンテンバスターを実行できる状態。",
+        "icon_id": 212698,
+        "max_stacks": 0
+      }
+    }
+  },
+  "metadata": {
+    "aspect_id": 4,
+    "behavior_type": 0,
+    "class_job_category_id": 28,
+    "source_class_job_id": 0,
+    "is_role_action": false,
+    "is_player_action": false,
+    "is_derived_action": true,
+    "equivalence_group": 0
+  }
+}

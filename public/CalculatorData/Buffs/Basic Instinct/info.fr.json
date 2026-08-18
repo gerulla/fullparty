@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 2498,
+  "name": "Instinct profond",
+  "description": "La vitesse de déplacement, les dégâts infligés ainsi que la puissance des effets curatifs sont augmentés. Garde puissante ne réduit plus les dégâts infligés.",
+  "effects": [
+    "La vitesse de déplacement, les dégâts infligés ainsi que la puissance des effets curatifs sont augmentés. Garde puissante ne réduit plus les dégâts infligés."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 213537,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": true,
+  "inflicted_by_actor": true,
+  "party_list_priority": 1,
+  "parameter": {
+    "effect": 18,
+    "modifier": 100
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 23276,
+      "name": "Instinct profond",
+      "description": "Augmente votre vitesse de déplacement de 30%, et vos dégâts et effets curatifs que vous prodiguez de 100%. Les dégâts infligés ne sont pas réduits avec Garde puissante.\nN'a d'effet que lorsque vous participez en solitaire à une mission pouvant être jouée à deux ou plus, ou que tous vos équipiers ont été mis K.O.\nL'effet prend fin si un équipier est ranimé.",
+      "description_macro": "Augmente votre vitesse de déplacement de 30%, et vos dégâts et effets curatifs que vous prodiguez de 100%. Les dégâts infligés ne sont pas réduits avec <colortype(500)><edgecolortype(501)>Garde puissante<edgecolortype(0)><colortype(0)>.<br>N'a d'effet que lorsque vous participez en solitaire à une mission pouvant être jouée à deux ou plus, ou que tous vos équipiers ont été mis K.O.<br>L'effet prend fin si un équipier est ranimé.",
+      "unlock_level": 1,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Magical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 36,
+          "name": "Mage Bleu",
+          "abbreviation": "MBU",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

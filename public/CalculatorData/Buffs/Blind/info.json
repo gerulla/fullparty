@@ -1,0 +1,71 @@
+{
+  "kind": "combat_status",
+  "id": 15,
+  "name": "Blind",
+  "description": "Encroaching darkness is lowering accuracy.",
+  "effects": [
+    "Encroaching darkness is lowering accuracy."
+  ],
+  "classification": "debuff",
+  "icon": {
+    "id": 215012,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 2,
+  "target_type": 0,
+  "can_dispel": true,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 50,
+  "parameter": {
+    "effect": 0,
+    "modifier": -10
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 11422,
+      "name": "Ink Jet",
+      "description": "Deals unaspected damage to all enemies in a cone before you with a potency of 200 for the first enemy, and 50% less for all remaining enemies.\nAdditional Effect: Blind\nDuration: 30s",
+      "description_macro": "Deals unaspected damage to all enemies in a cone before you with a potency of 200 for the first enemy, and 50% less for all remaining enemies.<br><colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)><colortype(506)><edgecolortype(507)>Blind<edgecolortype(0)><colortype(0)><br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>30s",
+      "unlock_level": 1,
+      "relations": [
+        "applied_by_description"
+      ],
+      "roles": [
+        "Magical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 36,
+          "name": "Blue Mage",
+          "abbreviation": "BLU",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 41628,
+      "name": "Dark Cannon",
+      "description": "Deals unaspected damage with a potency of 210 to target and all enemies nearby it.\nPotency scales with item level.\nAdditional Effect: Blind\nDuration: 30s",
+      "description_macro": "Deals unaspected damage with a potency of 210 to target and all enemies nearby it.<br>Potency scales with item level.<br><colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)><colortype(506)><edgecolortype(507)>Blind<edgecolortype(0)><colortype(0)><br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>30s<if([gnum108>=4],<br>Shares a recast timer with <colortype(500)><edgecolortype(501)>Shock Cannon<edgecolortype(0)><colortype(0)>.,)>",
+      "unlock_level": 0,
+      "relations": [
+        "applied_by_description"
+      ],
+      "roles": [
+        "Phantom Jobs"
+      ],
+      "jobs": [
+        {
+          "id": 9,
+          "name": "Phantom Cannoneer",
+          "abbreviation": "Ph. Cannoneer",
+          "is_phantom": true
+        }
+      ]
+    }
+  ]
+}

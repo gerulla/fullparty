@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 481,
+  "name": "エンキンドルII",
+  "description": "サモン・イフリートがサモン・イフリートIIに、サモン・タイタンがサモン・タイタンIIに、サモン・ガルーダがサモン・ガルーダIIに変化する。",
+  "description_macro": "サモン・イフリートがサモン・イフリートIIに、サモン・タイタンがサモン・タイタンIIに、サモン・ガルーダがサモン・ガルーダIIに変化する。",
+  "effects": [
+    "サモン・イフリートがサモン・イフリートIIに、サモン・タイタンがサモン・タイタンIIに、サモン・ガルーダがサモン・ガルーダIIに変化する。"
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 27,
+    "name": "召喚士",
+    "abbreviation": "SMN"
+  },
+  "unlock_level": 90,
+  "value": 0,
+  "icon": {
+    "id": 5695,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 28,
+  "source_class_job_id": 27
+}

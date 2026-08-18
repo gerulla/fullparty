@@ -1,0 +1,71 @@
+{
+  "kind": "combat_status",
+  "id": 2724,
+  "name": "クリムゾンサイクロン実行可",
+  "description": "クリムゾンサイクロンを実行できる状態。",
+  "effects": [
+    "クリムゾンサイクロンを実行できる状態。"
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 212696,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": true,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 28,
+  "source_abilities": [
+    {
+      "id": 25805,
+      "name": "サモン・イフリート",
+      "description": "イフリート・エギを召喚し、「地獄の火炎」を実行させる。\n\n対象に接近し、前方5mに対して火属性扇範囲魔法攻撃。\n威力：600\n2体目以降の対象への威力は50％減少する。\n追加効果：自身に2スタックの「ファイアエーテル」を付与する。\n効果時間：30秒\nファイアエーテル効果：ジェムシャインとジェムブリリアンスが火属性魔法に変化する。\n追加効果：自身に「クリムゾンサイクロン実行可」を付与する\n効果時間：永続\nこの効果は他のサモン系アクションを実行すると解除される。\n発動条件：カーバンクルが存在し、自身に「ルビーの神秘」が付与されている。\nカーバンクルはイフリート・エギの顕現時に帰還するが、顕現時間が経過すると再出現する。",
+      "description_macro": "イフリート・エギを召喚し、<colortype(500)><edgecolortype(501)>「<if([gnum68==27],<if([gnum72>=50],地獄の火炎,バーニングストライク)>,バーニングストライク)>」<edgecolortype(0)><colortype(0)>を実行させる。<br><br><if([gnum68==27],<if([gnum72>=50],対象に接近し、前方5mに対して火属性扇範囲魔法攻撃。<br><colortype(504)><edgecolortype(505)>威力：<edgecolortype(0)><colortype(0)>600<br>2体目以降の対象への威力は50％減少する。<br>,対象に接近して火属性魔法攻撃。\u3000<colortype(504)><edgecolortype(505)>威力：<edgecolortype(0)><colortype(0)>500<br>)>,対象に接近して火属性魔法攻撃。\u3000<colortype(504)><edgecolortype(505)>威力：<edgecolortype(0)><colortype(0)>500<br>)><colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)>自身に2スタックの<colortype(500)><edgecolortype(501)>「ファイアエーテル」<edgecolortype(0)><colortype(0)>を付与する。<br><colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>30秒<br><colortype(504)><edgecolortype(505)>ファイアエーテル効果：<edgecolortype(0)><colortype(0)>ジェムシャインとジェムブリリアンスが火属性魔法に変化する。<br><if([gnum68==27],<if([gnum72>=86],<colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)>自身に<colortype(500)><edgecolortype(501)>「クリムゾンサイクロン実行可」<edgecolortype(0)><colortype(0)>を付与する<br><colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>永続<br>この効果は他のサモン系アクションを実行すると解除される。<br>,)>,)><colortype(504)><edgecolortype(505)>発動条件：<edgecolortype(0)><colortype(0)>カーバンクルが存在し、自身に<colortype(500)><edgecolortype(501)>「ルビーの神秘」<edgecolortype(0)><colortype(0)>が付与されている。<br>カーバンクルはイフリート・エギの顕現時に帰還するが、顕現時間が経過すると再出現する。",
+      "unlock_level": 30,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Magical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 27,
+          "name": "召喚士",
+          "abbreviation": "SMN",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 25838,
+      "name": "サモン・イフリートII",
+      "description": "イフリート・ルビーを召喚し、「地獄の火炎」を実行させる。\n\n対象とその周囲5m以内の敵に火属性範囲魔法攻撃。\n威力：800\n2体目以降の対象への威力は50％減少する。\n追加効果：自身に2スタックの「ファイアエーテル」を付与する。\n効果時間：30秒\nファイアエーテル効果：ジェムシャインとジェムブリリアンスが火属性魔法に変化する。\n追加効果：自身に「クリムゾンサイクロン実行可」を付与する。\n効果時間：永続\nこの効果は他のサモン系アクションを実行すると解除される。\n発動条件：カーバンクルが存在し、自身に「ルビーの神秘」が付与されている。\nカーバンクルはイフリート・ルビーの顕現時に帰還するが、顕現時間が経過すると再出現する。",
+      "description_macro": "イフリート・ルビーを召喚し、<colortype(500)><edgecolortype(501)>「地獄の火炎」<edgecolortype(0)><colortype(0)>を実行させる。<br><br>対象とその周囲5m以内の敵に火属性範囲魔法攻撃。<br><colortype(504)><edgecolortype(505)>威力：<edgecolortype(0)><colortype(0)><if([gnum68==27],<if([gnum72>=94],800,750)>,750)><br>2体目以降の対象への威力は50％減少する。<br><colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)>自身に2スタックの<colortype(500)><edgecolortype(501)>「ファイアエーテル」<edgecolortype(0)><colortype(0)>を付与する。<br><colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>30秒<br><colortype(504)><edgecolortype(505)>ファイアエーテル効果：<edgecolortype(0)><colortype(0)>ジェムシャインとジェムブリリアンスが火属性魔法に変化する。<br><colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)>自身に<colortype(500)><edgecolortype(501)>「クリムゾンサイクロン実行可」<edgecolortype(0)><colortype(0)>を付与する。<br><colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>永続<br>この効果は他のサモン系アクションを実行すると解除される。<br><colortype(504)><edgecolortype(505)>発動条件：<edgecolortype(0)><colortype(0)>カーバンクルが存在し、自身に<colortype(500)><edgecolortype(501)>「ルビーの神秘」<edgecolortype(0)><colortype(0)>が付与されている。<br>カーバンクルはイフリート・ルビーの顕現時に帰還するが、顕現時間が経過すると再出現する。",
+      "unlock_level": 90,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Magical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 27,
+          "name": "召喚士",
+          "abbreviation": "SMN",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,98 @@
+{
+  "kind": "ability",
+  "id": 34615,
+  "name": "Reaving Maw",
+  "description": "Delivers an attack with a potency of 120 to all nearby enemies.\nHoned Reavers Potency: 140\nAdditional Effect: Grants Honed Steel\nHoned Steel Effect: Increases potency of Steel Fangs by 100 and Steel Maw by 20\nDuration: 60s\nEffect cannot be stacked with Honed Reavers.",
+  "description_macro": "Delivers an attack with a potency of 120 to all nearby enemies.<br><colortype(504)><edgecolortype(505)>Honed Reavers Potency:<edgecolortype(0)><colortype(0)> 140<br><colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>Grants <colortype(506)><edgecolortype(507)>Honed Steel<edgecolortype(0)><colortype(0)><br><colortype(504)><edgecolortype(505)>Honed Steel Effect: <edgecolortype(0)><colortype(0)>Increases potency of <colortype(500)><edgecolortype(501)>Steel Fangs<edgecolortype(0)><colortype(0)> by 100 and <colortype(500)><edgecolortype(501)>Steel Maw<edgecolortype(0)><colortype(0)> by 20<br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>60s<br>Effect cannot be stacked with <colortype(506)><edgecolortype(507)>Honed Reavers<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Delivers an attack with a potency of 120 to all nearby enemies.",
+    "Honed Reavers Potency: 140",
+    "Additional Effect: Grants Honed Steel",
+    "Honed Steel Effect: Increases potency of Steel Fangs by 100 and Steel Maw by 20",
+    "Duration: 60s",
+    "Effect cannot be stacked with Honed Reavers."
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 41,
+    "name": "Viper",
+    "abbreviation": "VPR"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 35,
+  "icon": {
+    "id": 3710,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 3,
+    "name": "Weaponskill"
+  },
+  "attack_type": {
+    "id": 4294967295,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 2.5,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 58,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 0,
+      "value": 0
+    },
+    "secondary": {
+      "type_id": 136,
+      "value": 4
+    }
+  },
+  "range": {
+    "target_yalms": 0,
+    "effect_yalms": 5,
+    "cast_type": 2
+  },
+  "targeting": {
+    "self": true,
+    "party": false,
+    "alliance": false,
+    "hostile": false,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": false
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": {
+      "id": 3,
+      "status": {
+        "id": 3772,
+        "name": "Honed Reavers",
+        "description": "Potency of Reaving Fangs and Reaving Maw is increased.",
+        "icon_id": 213758,
+        "max_stacks": 0
+      }
+    }
+  },
+  "metadata": {
+    "aspect_id": 7,
+    "behavior_type": 0,
+    "class_job_category_id": 196,
+    "source_class_job_id": 41,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

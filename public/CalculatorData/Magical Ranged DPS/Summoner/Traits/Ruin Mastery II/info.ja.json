@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 473,
+  "name": "ルインマスタリーII",
+  "description": "ルインラがルインガに変化する。",
+  "description_macro": "ルインラがルインガに変化する。",
+  "effects": [
+    "ルインラがルインガに変化する。"
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 27,
+    "name": "召喚士",
+    "abbreviation": "SMN"
+  },
+  "unlock_level": 54,
+  "value": 0,
+  "icon": {
+    "id": 5687,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 28,
+  "source_class_job_id": 27
+}

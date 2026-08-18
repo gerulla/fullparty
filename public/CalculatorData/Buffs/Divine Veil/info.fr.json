@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 2168,
+  "name": "Voile divin",
+  "description": "Insensible à un certain montant de dégâts. Quand la barrière a absorbé son montant de dégâts, crée une barrière protégeant les équipiers alentour.",
+  "effects": [
+    "Insensible à un certain montant de dégâts. Quand la barrière a absorbé son montant de dégâts, crée une barrière protégeant les équipiers alentour."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 212508,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": true,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 20,
+  "source_abilities": [
+    {
+      "id": 3540,
+      "name": "Voile divin",
+      "description": "Crée une barrière sur vous et les équipiers alentour, absorbant les dégâts subis pour un total de 10% de vos PV maximums.\nDurée : 30s\nEffet additionnel : restaure les PV de la cible.\nPuissance : 400",
+      "description_macro": "Crée une barrière sur vous et les équipiers alentour, absorbant les dégâts subis pour un total de 10% de vos PV maximums.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 30s<if([gnum68==19],<if([gnum72>=88],<br><colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> restaure les PV de la cible.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> 400,)>,)>",
+      "unlock_level": 56,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Tank"
+      ],
+      "jobs": [
+        {
+          "id": 19,
+          "name": "Paladin",
+          "abbreviation": "PLD",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

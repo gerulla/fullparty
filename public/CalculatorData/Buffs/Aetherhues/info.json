@@ -1,0 +1,113 @@
+{
+  "kind": "combat_status",
+  "id": 3675,
+  "name": "Aetherhues",
+  "description": "Able to cast green and yellow magicks.",
+  "effects": [
+    "Able to cast green and yellow magicks."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 213801,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": true,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 33,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 197,
+  "source_abilities": [
+    {
+      "id": 34650,
+      "name": "Fire in Red",
+      "description": "Deals fire damage with a potency of 490.\nAdditional Effect: Grants Aetherhues\nDuration: 30s\nCannot be executed while under the effect of Subtractive Palette.\nWhen standing within the bounds of Starry Muse\\",
+      "description_macro": "Deals fire damage with a potency of <if([gnum68==42],<if([gnum72>=94],490,<if([gnum68==42],<if([gnum72>=84],420,<if([gnum68==42],<if([gnum72>=74],380,<if([gnum68==42],<if([gnum72>=54],310,250)>,250)>)>,<if([gnum68==42],<if([gnum72>=54],310,250)>,250)>)>)>,<if([gnum68==42],<if([gnum72>=74],380,<if([gnum68==42],<if([gnum72>=54],310,250)>,250)>)>,<if([gnum68==42],<if([gnum72>=54],310,250)>,250)>)>)>)>,<if([gnum68==42],<if([gnum72>=84],420,<if([gnum68==42],<if([gnum72>=74],380,<if([gnum68==42],<if([gnum72>=54],310,250)>,250)>)>,<if([gnum68==42],<if([gnum72>=54],310,250)>,250)>)>)>,<if([gnum68==42],<if([gnum72>=74],380,<if([gnum68==42],<if([gnum72>=54],310,250)>,250)>)>,<if([gnum68==42],<if([gnum72>=54],310,250)>,250)>)>)>)>.<br><colortype(504)><edgecolortype(505)>Additional Effect:<edgecolortype(0)><colortype(0)> Grants <colortype(506)><edgecolortype(507)>Aetherhues<edgecolortype(0)><colortype(0)><br><colortype(504)><edgecolortype(505)>Duration:<edgecolortype(0)><colortype(0)> 30s<br>Cannot be executed while under the effect of <colortype(506)><edgecolortype(507)>Subtractive Palette<edgecolortype(0)><colortype(0)>.<if([gnum68==42],<if([gnum72>=82],<br>When standing within the bounds of <colortype(500)><edgecolortype(501)>Starry Muse<edgecolortype(0)><colortype(0)>\\, consumes a stack of <colortype(506)><edgecolortype(507)>Hyperphantasia<edgecolortype(0)><colortype(0)> if available.,)>,)>",
+      "unlock_level": 1,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Magical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 42,
+          "name": "Pictomancer",
+          "abbreviation": "PCT",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 34653,
+      "name": "Blizzard in Cyan",
+      "description": "Deals ice damage with a potency of 860.\nAdditional Effect: Grants Aetherhues\nDuration: 30s\nCan only be executed while under the effect of Subtractive Palette.\nWhen standing within the bounds of Starry Muse\\This action does not share a recast timer with any other actions. Upon execution, the recast timer for this action will be applied to all other weaponskills and magic actions.",
+      "description_macro": "Deals ice damage with a potency of <if([gnum68==42],<if([gnum72>=94],860,<if([gnum68==42],<if([gnum72>=84],750,<if([gnum68==42],<if([gnum72>=74],680,560)>,560)>)>,<if([gnum68==42],<if([gnum72>=74],680,560)>,560)>)>)>,<if([gnum68==42],<if([gnum72>=84],750,<if([gnum68==42],<if([gnum72>=74],680,560)>,560)>)>,<if([gnum68==42],<if([gnum72>=74],680,560)>,560)>)>)>.<br><colortype(504)><edgecolortype(505)>Additional Effect:<edgecolortype(0)><colortype(0)> Grants <colortype(506)><edgecolortype(507)>Aetherhues<edgecolortype(0)><colortype(0)><br><colortype(504)><edgecolortype(505)>Duration:<edgecolortype(0)><colortype(0)> 30s<br>Can only be executed while under the effect of <colortype(506)><edgecolortype(507)>Subtractive Palette<edgecolortype(0)><colortype(0)>.<br><if([gnum68==42],<if([gnum72>=82],When standing within the bounds of <colortype(500)><edgecolortype(501)>Starry Muse<edgecolortype(0)><colortype(0)>\\, consumes a stack of <colortype(506)><edgecolortype(507)>Hyperphantasia<edgecolortype(0)><colortype(0)> if available.<br>,)>,)>This action does not share a recast timer with any other actions. Upon execution, the recast timer for this action will be applied to all other weaponskills and magic actions.",
+      "unlock_level": 60,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Magical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 42,
+          "name": "Pictomancer",
+          "abbreviation": "PCT",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 34656,
+      "name": "Fire II in Red",
+      "description": "Deals fire damage with a potency of 180 to target and all enemies nearby it.\nAdditional Effect: Grants Aetherhues\nDuration: 30s\nCannot be executed while under the effect of Subtractive Palette.\nWhen standing within the bounds of Starry Muse\\",
+      "description_macro": "Deals fire damage with a potency of <if([gnum68==42],<if([gnum72>=94],180,<if([gnum68==42],<if([gnum72>=74],150,120)>,120)>)>,<if([gnum68==42],<if([gnum72>=74],150,120)>,120)>)> to target and all enemies nearby it.<br><colortype(504)><edgecolortype(505)>Additional Effect:<edgecolortype(0)><colortype(0)> Grants <colortype(506)><edgecolortype(507)>Aetherhues<edgecolortype(0)><colortype(0)><br><colortype(504)><edgecolortype(505)>Duration:<edgecolortype(0)><colortype(0)> 30s<br>Cannot be executed while under the effect of <colortype(506)><edgecolortype(507)>Subtractive Palette<edgecolortype(0)><colortype(0)>.<if([gnum68==42],<if([gnum72>=82],<br>When standing within the bounds of <colortype(500)><edgecolortype(501)>Starry Muse<edgecolortype(0)><colortype(0)>\\, consumes a stack of <colortype(506)><edgecolortype(507)>Hyperphantasia<edgecolortype(0)><colortype(0)> if available.,)>,)>",
+      "unlock_level": 25,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Magical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 42,
+          "name": "Pictomancer",
+          "abbreviation": "PCT",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 34659,
+      "name": "Blizzard II in Cyan",
+      "description": "Deals ice damage with a potency of 360 to target and all enemies nearby it.\nAdditional Effect: Grants Aetherhues\nDuration: 30s\nCan only be executed while under the effect of Subtractive Palette.\nWhen standing within the bounds of Starry Muse\\This action does not share a recast timer with any other actions. Upon execution, the recast timer for this action will be applied to all other weaponskills and magic actions.",
+      "description_macro": "Deals ice damage with a potency of <if([gnum68==42],<if([gnum72>=94],360,<if([gnum68==42],<if([gnum72>=74],330,270)>,270)>)>,<if([gnum68==42],<if([gnum72>=74],330,270)>,270)>)> to target and all enemies nearby it.<br><colortype(504)><edgecolortype(505)>Additional Effect:<edgecolortype(0)><colortype(0)> Grants <colortype(506)><edgecolortype(507)>Aetherhues<edgecolortype(0)><colortype(0)><br><colortype(504)><edgecolortype(505)>Duration:<edgecolortype(0)><colortype(0)> 30s<br>Can only be executed while under the effect of <colortype(506)><edgecolortype(507)>Subtractive Palette<edgecolortype(0)><colortype(0)>.<br><if([gnum68==42],<if([gnum72>=82],When standing within the bounds of <colortype(500)><edgecolortype(501)>Starry Muse<edgecolortype(0)><colortype(0)>\\, consumes a stack of <colortype(506)><edgecolortype(507)>Hyperphantasia<edgecolortype(0)><colortype(0)> if available.<br>,)>,)>This action does not share a recast timer with any other actions. Upon execution, the recast timer for this action will be applied to all other weaponskills and magic actions.",
+      "unlock_level": 60,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Magical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 42,
+          "name": "Pictomancer",
+          "abbreviation": "PCT",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

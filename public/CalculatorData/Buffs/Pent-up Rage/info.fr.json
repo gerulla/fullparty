@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 4236,
+  "name": "Brutalité",
+  "description": "La puissance de la prochaine action Frappes brutales est augmentée lorsque des dégâts sont subis.",
+  "effects": [
+    "La puissance de la prochaine action Frappes brutales est augmentée lorsque des dégâts sont subis."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 229905,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": true,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 41592,
+      "name": "Fureur",
+      "description": "Vous rend incontrôlable, effectuant des attaques physiques dans une zone en éventail vers les ennemis à proximité.\nPuissance : 150 (varie selon le niveau d'objet)\nDurée : 10s\nAnnule aussi certaines altérations d'état et vous protège contre la plupart des projections et attractions.plus la puissance de la prochaine action Frappes brutales augmente.",
+      "description_macro": "Vous rend in<->con<->trô<->la<->ble, effectuant des attaques physiques dans une zone en éventail vers les ennemis à proximité.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> 150 (varie selon le niveau d'objet)<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 10s<br>Annule aussi certaines altérations d'état et vous protège contre la plupart des projections et attractions.<if([gnum108>=3],<br><colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> vous octroie <colortype(500)><edgecolortype(501)>Brutalité<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 15s<br><colortype(506)><edgecolortype(507)>Brutalité<nbsp>:<edgecolortype(0)><colortype(0)> plus des dégâts sont subis pendant la durée de l'effet\\, plus la puissance de la prochaine action <colortype(500)><edgecolortype(501)>Frappes brutales<edgecolortype(0)><colortype(0)> augmente.,)>",
+      "unlock_level": 0,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Phantom Jobs"
+      ],
+      "jobs": [
+        {
+          "id": 2,
+          "name": "Phantom Berserker fantôme",
+          "abbreviation": "Berserker fant.",
+          "is_phantom": true
+        }
+      ]
+    }
+  ]
+}

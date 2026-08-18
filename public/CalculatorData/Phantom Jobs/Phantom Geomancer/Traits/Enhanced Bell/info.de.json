@@ -1,0 +1,22 @@
+{
+  "kind": "trait",
+  "id": 12,
+  "name": "Verbessertes Läuten",
+  "description": "Erhöht den Effekt von Kampfesglocke auf 5 % und die Heilwirkung von Ruheglocke auf 3.000.",
+  "description_macro": "Erhöht den Effekt von <colortype(502)><edgecolortype(503)>Kampfesglocke<edgecolortype(0)><colortype(0)> auf 5<nbsp>% und die Heilwirkung von <colortype(502)><edgecolortype(503)>Ruheglocke<edgecolortype(0)><colortype(0)> auf 3.000.",
+  "effects": [
+    "Erhöht den Effekt von Kampfesglocke auf 5 % und die Heilwirkung von Ruheglocke auf 3.000."
+  ],
+  "role": "Phantom Jobs",
+  "job": {
+    "id": 7,
+    "name": "Phantom-Geomant",
+    "abbreviation": "Ph-Geomant"
+  },
+  "is_phantom_trait": true,
+  "unlock_level": 5,
+  "icon": {
+    "id": 82210,
+    "file": "icon.png"
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 294,
+  "name": "プロモーション",
+  "description": "オートタレット・ルークがオートマトン・クイーンに、オーバードライブ・ルークがオーバードライブ・クイーンに変化する。",
+  "description_macro": "オートタレット・ルークがオートマトン・クイーンに、オーバードライブ・ルークがオーバードライブ・クイーンに変化する。",
+  "effects": [
+    "オートタレット・ルークがオートマトン・クイーンに、オーバードライブ・ルークがオーバードライブ・クイーンに変化する。"
+  ],
+  "role": "Physical Ranged DPS",
+  "job": {
+    "id": 31,
+    "name": "機工士",
+    "abbreviation": "MCH"
+  },
+  "unlock_level": 80,
+  "value": 0,
+  "icon": {
+    "id": 6015,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 96,
+  "source_class_job_id": 31
+}

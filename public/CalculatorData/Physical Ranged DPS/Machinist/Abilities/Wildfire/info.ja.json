@@ -1,0 +1,88 @@
+{
+  "kind": "ability",
+  "id": 2878,
+  "name": "ワイルドファイア",
+  "description": "対象に「ワイルドファイア」を付与すると共に、このアクションが「デトネーター」に変化する。\n効果時間が経過するかデトネーターを実行することで対象にダメージを与える。\nこのアクションの威力は、効果時間中に自身が対象に命中させたウェポンスキルの回数により変化し、最大6回分まで威力が上昇する。\nウェポンスキル1回ごとの威力：240\n効果時間：10秒",
+  "description_macro": "対象に<colortype(500)><edgecolortype(501)>「ワイルドファイア」<edgecolortype(0)><colortype(0)>を付与すると共に、このアクションが<colortype(500)><edgecolortype(501)>「デトネーター」<edgecolortype(0)><colortype(0)>に変化する。<br>効果時間が経過するかデトネーターを実行することで対象にダメージを与える。<br>このアクションの威力は、効果時間中に自身が対象に命中させたウェポンスキルの回数により変化し、最大6回分まで威力が上昇する。<br><colortype(504)><edgecolortype(505)>ウェポンスキル1回ごとの威力：<edgecolortype(0)><colortype(0)><if([gnum68==31],<if([gnum72>=78],240,100)>,100)><br><colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>10秒",
+  "effects": [
+    "対象に「ワイルドファイア」を付与すると共に、このアクションが「デトネーター」に変化する。",
+    "効果時間が経過するかデトネーターを実行することで対象にダメージを与える。",
+    "このアクションの威力は、効果時間中に自身が対象に命中させたウェポンスキルの回数により変化し、最大6回分まで威力が上昇する。",
+    "ウェポンスキル1回ごとの威力：240",
+    "効果時間：10秒"
+  ],
+  "role": "Physical Ranged DPS",
+  "job": {
+    "id": 31,
+    "name": "機工士",
+    "abbreviation": "MCH"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 45,
+  "icon": {
+    "id": 3018,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 4,
+    "name": "アビリティ"
+  },
+  "attack_type": {
+    "id": 4294967295,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 120,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 20,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 0,
+      "value": 0
+    },
+    "secondary": {
+      "type_id": 0,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": -1,
+    "effect_yalms": 0,
+    "cast_type": 1
+  },
+  "targeting": {
+    "self": false,
+    "party": false,
+    "alliance": false,
+    "hostile": true,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 7,
+    "behavior_type": 0,
+    "class_job_category_id": 96,
+    "source_class_job_id": 31,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

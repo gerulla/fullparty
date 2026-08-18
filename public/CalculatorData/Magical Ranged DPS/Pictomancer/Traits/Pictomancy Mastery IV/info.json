@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 678,
+  "name": "Pictomancy Mastery IV",
+  "description": "Increases the potency of Fire in Red to 490, Aero in Green to 530, Water in Blue to 570, Fire II in Red to 180, Aero II in Green to 200, Water II in Blue to 220, Hammer Stamp to 560, Blizzard in Cyan to 860, Stone in Yellow to 900, Thunder in Magenta to 940, Blizzard II in Cyan to 360, Stone II in Yellow to 380, Thunder II in Magenta to 400, Holy in White to 570, Hammer Brush to 580, Polishing Hammer to 600, and Comet in Black to 940.",
+  "description_macro": "Increases the potency of <colortype(500)><edgecolortype(501)>Fire in Red<edgecolortype(0)><colortype(0)> to 490, <colortype(500)><edgecolortype(501)>Aero in Green<edgecolortype(0)><colortype(0)> to 530, <colortype(500)><edgecolortype(501)>Water in Blue<edgecolortype(0)><colortype(0)> to 570, <colortype(500)><edgecolortype(501)>Fire II in Red<edgecolortype(0)><colortype(0)> to 180, <colortype(500)><edgecolortype(501)>Aero II in Green<edgecolortype(0)><colortype(0)> to 200, <colortype(500)><edgecolortype(501)>Water II in Blue<edgecolortype(0)><colortype(0)> to 220, <colortype(500)><edgecolortype(501)>Hammer Stamp<edgecolortype(0)><colortype(0)> to 560, <colortype(500)><edgecolortype(501)>Blizzard in Cyan<edgecolortype(0)><colortype(0)> to 860, <colortype(500)><edgecolortype(501)>Stone in Yellow<edgecolortype(0)><colortype(0)> to 900, <colortype(500)><edgecolortype(501)>Thunder in Magenta<edgecolortype(0)><colortype(0)> to 940, <colortype(500)><edgecolortype(501)>Blizzard II in Cyan<edgecolortype(0)><colortype(0)> to 360, <colortype(500)><edgecolortype(501)>Stone II in Yellow<edgecolortype(0)><colortype(0)> to 380, <colortype(500)><edgecolortype(501)>Thunder II in Magenta<edgecolortype(0)><colortype(0)> to 400, <colortype(500)><edgecolortype(501)>Holy in White<edgecolortype(0)><colortype(0)> to 570, <colortype(500)><edgecolortype(501)>Hammer Brush<edgecolortype(0)><colortype(0)> to 580, <colortype(500)><edgecolortype(501)>Polishing Hammer<edgecolortype(0)><colortype(0)> to 600, and <colortype(500)><edgecolortype(501)>Comet in Black<edgecolortype(0)><colortype(0)> to 940.",
+  "effects": [
+    "Increases the potency of Fire in Red to 490, Aero in Green to 530, Water in Blue to 570, Fire II in Red to 180, Aero II in Green to 200, Water II in Blue to 220, Hammer Stamp to 560, Blizzard in Cyan to 860, Stone in Yellow to 900, Thunder in Magenta to 940, Blizzard II in Cyan to 360, Stone II in Yellow to 380, Thunder II in Magenta to 400, Holy in White to 570, Hammer Brush to 580, Polishing Hammer to 600, and Comet in Black to 940."
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 42,
+    "name": "Pictomancer",
+    "abbreviation": "PCT"
+  },
+  "unlock_level": 94,
+  "value": 0,
+  "icon": {
+    "id": 6833,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 197,
+  "source_class_job_id": 42
+}

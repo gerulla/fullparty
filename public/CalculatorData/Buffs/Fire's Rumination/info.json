@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 3843,
+  "name": "Fire's Rumination",
+  "description": "Able to execute Fire's Reply.",
+  "effects": [
+    "Able to execute Fire's Reply."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 212541,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 21,
+  "source_abilities": [
+    {
+      "id": 7395,
+      "name": "Riddle of Fire",
+      "description": "Increases damage dealt by 15%.\nDuration: 20s\nAdditional Effect: Grants Fire's Rumination\nDuration: 20s",
+      "description_macro": "Increases damage dealt by 15%.<br><colortype(504)><edgecolortype(505)>Duration:<edgecolortype(0)><colortype(0)> 20s<if([gnum68==20],<if([gnum72>=100],<br><colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>Grants <colortype(506)><edgecolortype(507)>Fire's Rumination<edgecolortype(0)><colortype(0)><br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>20s,)>,)>",
+      "unlock_level": 68,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 20,
+          "name": "Monk",
+          "abbreviation": "MNK",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,88 @@
+{
+  "kind": "ability",
+  "id": 34662,
+  "name": "Miracle en blanc",
+  "description": "Effectue une attaque magique neutre sur la cible et les ennemis autour.\nPuissance : 570\nLa puissance est réduite de 65% au-delà du premier ennemi touché.\nCondition : Inversion de couleur non octroyée et consomme une Peinture blanche.\nSi Installation est active et que vous vous tenez dans les limites du ciel peint avec Imagi Ciel\\",
+  "description_macro": "Effectue une attaque magique neutre sur la cible et les ennemis autour.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> <if([gnum68==42],<if([gnum72>=94],570,<if([gnum68==42],<if([gnum72>=84],500,460)>,460)>)>,<if([gnum68==42],<if([gnum72>=84],500,460)>,460)>)><br>La puissance est réduite de 65% au-delà du premier ennemi touché.<br><colortype(506)><edgecolortype(507)>Condition<nbsp>:<edgecolortype(0)><colortype(0)> <colortype(500)><edgecolortype(501)>Inversion de couleur<edgecolortype(0)><colortype(0)> non octroyée et consomme une <colortype(500)><edgecolortype(501)>Peinture blanche<edgecolortype(0)><colortype(0)>.<if([gnum68==42],<if([gnum72>=82],<br>Si <colortype(500)><edgecolortype(501)>Installation<edgecolortype(0)><colortype(0)> est active et que vous vous tenez dans les limites du ciel peint avec Imagi Ciel\\, en consomme un degré.,)>,)>",
+  "effects": [
+    "Effectue une attaque magique neutre sur la cible et les ennemis autour.",
+    "Puissance : 570",
+    "La puissance est réduite de 65% au-delà du premier ennemi touché.",
+    "Condition : Inversion de couleur non octroyée et consomme une Peinture blanche.",
+    "Si Installation est active et que vous vous tenez dans les limites du ciel peint avec Imagi Ciel\\"
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 42,
+    "name": "Pictomancien",
+    "abbreviation": "PIC"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 80,
+  "icon": {
+    "id": 3813,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 2,
+    "name": "Sort"
+  },
+  "attack_type": {
+    "id": 5,
+    "name": "magie"
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 2.5,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 58,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 92,
+      "value": 3
+    },
+    "secondary": {
+      "type_id": 46,
+      "value": 3691
+    }
+  },
+  "range": {
+    "target_yalms": 25,
+    "effect_yalms": 5,
+    "cast_type": 2
+  },
+  "targeting": {
+    "self": false,
+    "party": false,
+    "alliance": false,
+    "hostile": true,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 7,
+    "behavior_type": 0,
+    "class_job_category_id": 197,
+    "source_class_job_id": 42,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 1220,
+  "name": "深謀遠慮の策",
+  "description": "ＨＰが一定割合以下に減少するか効果時間が経過すると、回復効果が発動する状態。",
+  "effects": [
+    "ＨＰが一定割合以下に減少するか効果時間が経過すると、回復効果が発動する状態。"
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 212808,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 60,
+  "parameter": {
+    "effect": 0,
+    "modifier": 100
+  },
+  "class_job_category_id": 29,
+  "source_abilities": [
+    {
+      "id": 7434,
+      "name": "深謀遠慮の策",
+      "description": "自身またはパーティメンバーひとりを対象とする。\n対象に「ＨＰが50％以下に減少するか効果時間が経過すると、回復効果が発動する」というステータスを付与する。\n回復力：800\u3000効果時間：45秒\n追加効果：「フェイエーテル」を10上昇させる。\n発動条件：「エーテルフロー」",
+      "description_macro": "自身またはパーティメンバーひとりを対象とする。<br>対象に「ＨＰが50％以下に減少するか効果時間が経過すると、回復効果が発動する」というステータスを付与する。<br><colortype(504)><edgecolortype(505)>回復力：<edgecolortype(0)><colortype(0)>800\u3000<colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>45秒<br><if([gnum72>=70],<if([gnum68==28],<colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)><colortype(500)><edgecolortype(501)>「フェイエーテル」<edgecolortype(0)><colortype(0)>を10上昇させる。<br>,)>,)><colortype(504)><edgecolortype(505)>発動条件：<edgecolortype(0)><colortype(0)><colortype(500)><edgecolortype(501)>「エーテルフロー」<edgecolortype(0)><colortype(0)>",
+      "unlock_level": 62,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Healer"
+      ],
+      "jobs": [
+        {
+          "id": 28,
+          "name": "学者",
+          "abbreviation": "SCH",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

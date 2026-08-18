@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 209,
+  "name": "Eidmeister",
+  "description": "Der Eidbalken füllt sich bei jedem Treffer durch Auto-Attacken um 5.",
+  "description_macro": "Der Eidbalken füllt sich bei jedem Treffer durch Auto-Attacken um 5.",
+  "effects": [
+    "Der Eidbalken füllt sich bei jedem Treffer durch Auto-Attacken um 5."
+  ],
+  "role": "Tank",
+  "job": {
+    "id": 19,
+    "name": "Paladin",
+    "abbreviation": "PLD"
+  },
+  "unlock_level": 35,
+  "value": 0,
+  "icon": {
+    "id": 5211,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 20,
+  "source_class_job_id": 19
+}

@@ -1,0 +1,29 @@
+{
+  "kind": "trait",
+  "id": 493,
+  "name": "回復アクション効果アップ",
+  "description": "特定のアクションの回復力とバリア効果量を上昇させる。\n\nフィジクの回復力：450\n光の癒しの回復力：180\n鼓舞激励の策のバリア効果量：回復量の180％分\n士気高揚の策のバリア効果量：回復量の160％分\nセラフィックヴェールの回復力：180",
+  "description_macro": "特定のアクションの回復力とバリア効果量を上昇させる。<br><br><colortype(504)><edgecolortype(505)>フィジクの回復力：<edgecolortype(0)><colortype(0)>450<br><colortype(504)><edgecolortype(505)>光の癒しの回復力：<edgecolortype(0)><colortype(0)>180<br><colortype(504)><edgecolortype(505)>鼓舞激励の策のバリア効果量：<edgecolortype(0)><colortype(0)>回復量の180％分<br><colortype(504)><edgecolortype(505)>士気高揚の策のバリア効果量：<edgecolortype(0)><colortype(0)>回復量の160％分<br><colortype(504)><edgecolortype(505)>セラフィックヴェールの回復力：<edgecolortype(0)><colortype(0)>180",
+  "effects": [
+    "特定のアクションの回復力とバリア効果量を上昇させる。",
+    "フィジクの回復力：450",
+    "光の癒しの回復力：180",
+    "鼓舞激励の策のバリア効果量：回復量の180％分",
+    "士気高揚の策のバリア効果量：回復量の160％分",
+    "セラフィックヴェールの回復力：180"
+  ],
+  "role": "Healer",
+  "job": {
+    "id": 28,
+    "name": "学者",
+    "abbreviation": "SCH"
+  },
+  "unlock_level": 85,
+  "value": 0,
+  "icon": {
+    "id": 6826,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 29,
+  "source_class_job_id": 28
+}

@@ -1,0 +1,87 @@
+{
+  "kind": "ability",
+  "id": 49080,
+  "name": "Höllenfeuer",
+  "description": "Du fügst dem Ziel und den Gegnern in seiner Nähe feuerbasierten magischen Schaden zu.\nAttacke-Wert: 600 (skaliert mit Gegenstandsstufe)\nAttacke-Wert gegen Ziele mit Feuerschwäche: 780 (skaliert mit Gegenstandsstufe)\nDie (Re-)Aktivierungszeit dieses Zaubers ist fest und wird nicht von Ausrüstungsgegenständen oder Status beeinflusst.",
+  "description_macro": "Du fügst dem Ziel und den Gegnern in seiner Nähe feuerbasierten magischen Schaden zu.<br>Attacke-Wert: 600 (skaliert mit Gegen<->stands<->stufe)<br>Attacke-Wert gegen Ziele mit Feuerschwäche: 780 (skaliert mit Gegen<->stands<->stufe)<br>Die (Re-)Ak<->ti<->vie<->rungs<->zeit dieses Zaubers ist fest und wird nicht von Aus<->rüstungs<->gegen<->ständen oder Status beeinflusst.<if([gnum108>=2],<br>Gemeinsamer Reaktivierungs-Timer mit <colortype(502)><edgecolortype(503)>Blitz des Urteils<edgecolortype(0)><colortype(0)><if([gnum108>=4], und <colortype(502)><edgecolortype(503)>Donnersturm<edgecolortype(0)><colortype(0)>,)>.,)>",
+  "effects": [
+    "Du fügst dem Ziel und den Gegnern in seiner Nähe feuerbasierten magischen Schaden zu.",
+    "Attacke-Wert: 600 (skaliert mit Gegenstandsstufe)",
+    "Attacke-Wert gegen Ziele mit Feuerschwäche: 780 (skaliert mit Gegenstandsstufe)",
+    "Die (Re-)Aktivierungszeit dieses Zaubers ist fest und wird nicht von Ausrüstungsgegenständen oder Status beeinflusst."
+  ],
+  "role": "Phantom Jobs",
+  "job": {
+    "id": 20,
+    "name": "Phantom-Beschwörer",
+    "abbreviation": "Ph-Beschwörer"
+  },
+  "is_phantom_action": true,
+  "unlock_level": 1,
+  "icon": {
+    "id": 64519,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 2,
+    "name": "Zauber"
+  },
+  "attack_type": {
+    "id": 5,
+    "name": "魔法"
+  },
+  "timing": {
+    "cast_seconds": 4,
+    "recast_seconds": 60,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 85,
+    "additional_cooldown_group": 58,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 0,
+      "value": 0
+    },
+    "secondary": {
+      "type_id": 0,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": 30,
+    "effect_yalms": 12,
+    "cast_type": 2
+  },
+  "targeting": {
+    "self": false,
+    "party": false,
+    "alliance": false,
+    "hostile": true,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 1,
+    "behavior_type": 0,
+    "class_job_category_id": 142,
+    "source_class_job_id": 4294967295,
+    "is_role_action": false,
+    "is_player_action": false,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

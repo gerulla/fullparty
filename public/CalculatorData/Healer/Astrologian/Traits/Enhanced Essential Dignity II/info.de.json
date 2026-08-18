@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 634,
+  "name": "Verbesserte Essenzielle Würde II",
+  "description": "Essenzielle Würde kann bis zu dreimal aufgeladen werden.",
+  "description_macro": "<colortype(502)><edgecolortype(503)>Essenzielle Würde<edgecolortype(0)><colortype(0)> kann bis zu dreimal aufgeladen werden.",
+  "effects": [
+    "Essenzielle Würde kann bis zu dreimal aufgeladen werden."
+  ],
+  "role": "Healer",
+  "job": {
+    "id": 33,
+    "name": "Astrologe",
+    "abbreviation": "AST"
+  },
+  "unlock_level": 98,
+  "value": 3,
+  "icon": {
+    "id": 6124,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 99,
+  "source_class_job_id": 33
+}

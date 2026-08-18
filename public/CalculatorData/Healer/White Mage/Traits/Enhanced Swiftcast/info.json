@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 644,
+  "name": "Enhanced Swiftcast",
+  "description": "Reduces Swiftcast recast time to 40 seconds.",
+  "description_macro": "Reduces <colortype(500)><edgecolortype(501)>Swiftcast<edgecolortype(0)><colortype(0)> recast time to 40 seconds.",
+  "effects": [
+    "Reduces Swiftcast recast time to 40 seconds."
+  ],
+  "role": "Healer",
+  "job": {
+    "id": 24,
+    "name": "White Mage",
+    "abbreviation": "WHM"
+  },
+  "unlock_level": 94,
+  "value": -200,
+  "icon": {
+    "id": 6828,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 199,
+  "source_class_job_id": 0
+}

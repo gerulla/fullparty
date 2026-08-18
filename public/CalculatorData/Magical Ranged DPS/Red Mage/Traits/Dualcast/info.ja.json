@@ -1,0 +1,26 @@
+{
+  "kind": "trait",
+  "id": 216,
+  "name": "連続魔",
+  "description": "詠唱時間を有する魔法を実行すると、自身に「連続魔」が付与される。\u3000効果時間：15秒\n連続魔効果：次の魔法を詠唱時間無しで実行することができる。\n効果時間中にオートアタックかアビリティ以外のアクションを実行すると、連続魔は即座に解除される。",
+  "description_macro": "詠唱時間を有する魔法を実行すると、自身に<colortype(500)><edgecolortype(501)>「連続魔」<edgecolortype(0)><colortype(0)>が付与される。\u3000<colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>15秒<br><colortype(504)><edgecolortype(505)>連続魔効果：<edgecolortype(0)><colortype(0)>次の魔法を詠唱時間無しで実行することができる。<br>効果時間中にオートアタックかアビリティ以外のアクションを実行すると、連続魔は即座に解除される。",
+  "effects": [
+    "詠唱時間を有する魔法を実行すると、自身に「連続魔」が付与される。\u3000効果時間：15秒",
+    "連続魔効果：次の魔法を詠唱時間無しで実行することができる。",
+    "効果時間中にオートアタックかアビリティ以外のアクションを実行すると、連続魔は即座に解除される。"
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 35,
+    "name": "赤魔道士",
+    "abbreviation": "RDM"
+  },
+  "unlock_level": 1,
+  "value": 0,
+  "icon": {
+    "id": 6203,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 112,
+  "source_class_job_id": 35
+}

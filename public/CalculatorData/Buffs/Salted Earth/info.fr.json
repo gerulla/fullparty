@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 3036,
+  "name": "Terre salée",
+  "description": "Les ennemis dans la zone d'effet subissent des dégâts.",
+  "effects": [
+    "Les ennemis dans la zone d'effet subissent des dégâts."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 213104,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": true,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 98,
+  "source_abilities": [
+    {
+      "id": 3639,
+      "name": "Terre salée",
+      "description": "Fait apparaître à vos pieds un cercle infligeant des dégâts neutres aux ennemis à l'intérieur.\nPuissance : 50 Durée : 15s",
+      "description_macro": "Fait apparaître à vos pieds un cercle infligeant des dégâts neutres aux ennemis à l'intérieur.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> 50 <colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 15s",
+      "unlock_level": 52,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Tank"
+      ],
+      "jobs": [
+        {
+          "id": 32,
+          "name": "Chevalier Noir",
+          "abbreviation": "CHN",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

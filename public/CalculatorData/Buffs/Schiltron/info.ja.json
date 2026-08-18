@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 3631,
+  "name": "スキルトロン",
+  "description": "物理攻撃を受けた場合に、反撃ダメージを与える状態。",
+  "effects": [
+    "物理攻撃を受けた場合に、反撃ダメージを与える状態。"
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 213542,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 1,
+  "parameter": {
+    "effect": 0,
+    "modifier": 100
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 34565,
+      "name": "スキルトロン",
+      "description": "一定時間、自身が物理攻撃を受けた場合に、その攻撃者に無属性魔法ダメージを与える。\u3000威力：50\u3000効果時間：15秒\n自身に「エーテルコピー：タンク」が付与されている場合は威力が上昇する。\nエーテルコピー：タンク時威力：100\n「アイススパイク」「水神のヴェール」とは同時に付与されない。",
+      "description_macro": "一定時間、自身が物理攻撃を受けた場合に、その攻撃者に無属性魔法ダメージを与える。\u3000<colortype(504)><edgecolortype(505)>威力：<edgecolortype(0)><colortype(0)>50\u3000<colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>15秒<br>自身に<colortype(500)><edgecolortype(501)>「エーテルコピー：タンク」<edgecolortype(0)><colortype(0)>が付与されている場合は威力が上昇する。<br><colortype(504)><edgecolortype(505)>エーテルコピー：タンク時威力：<edgecolortype(0)><colortype(0)>100<br><colortype(500)><edgecolortype(501)>「アイススパイク」「水神のヴェール」<edgecolortype(0)><colortype(0)>とは同時に付与されない。",
+      "unlock_level": 1,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Magical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 36,
+          "name": "青魔道士",
+          "abbreviation": "BLU",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

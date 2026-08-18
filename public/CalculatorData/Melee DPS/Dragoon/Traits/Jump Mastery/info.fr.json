@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 275,
+  "name": "Maîtrise de Saut",
+  "description": "Remplace Saut par Grand saut.",
+  "description_macro": "Remplace <colortype(500)><edgecolortype(501)>Saut<edgecolortype(0)><colortype(0)> par <colortype(500)><edgecolortype(501)>Grand saut<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Remplace Saut par Grand saut."
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 22,
+    "name": "Chevalier Dragon",
+    "abbreviation": "DRG"
+  },
+  "unlock_level": 74,
+  "value": 0,
+  "icon": {
+    "id": 5286,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 23,
+  "source_class_job_id": 22
+}

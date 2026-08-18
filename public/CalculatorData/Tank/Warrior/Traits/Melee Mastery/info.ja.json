@@ -1,0 +1,28 @@
+{
+  "kind": "trait",
+  "id": 505,
+  "name": "アクション威力アップ",
+  "description": "特定のアクションの威力を上昇させる。\n\nヘヴィスウィングの威力：200\nメイムの威力：150\nシュトルムヴィントの威力：160\nシュトルムブレハの威力：160",
+  "description_macro": "特定のアクションの威力を上昇させる。<br><br><colortype(504)><edgecolortype(505)>ヘヴィスウィングの威力：<edgecolortype(0)><colortype(0)>200<br><colortype(504)><edgecolortype(505)>メイムの威力：<edgecolortype(0)><colortype(0)>150<br><colortype(504)><edgecolortype(505)>シュトルムヴィントの威力：<edgecolortype(0)><colortype(0)>160<br><colortype(504)><edgecolortype(505)>シュトルムブレハの威力：<edgecolortype(0)><colortype(0)>160",
+  "effects": [
+    "特定のアクションの威力を上昇させる。",
+    "ヘヴィスウィングの威力：200",
+    "メイムの威力：150",
+    "シュトルムヴィントの威力：160",
+    "シュトルムブレハの威力：160"
+  ],
+  "role": "Tank",
+  "job": {
+    "id": 21,
+    "name": "戦士",
+    "abbreviation": "WAR"
+  },
+  "unlock_level": 84,
+  "value": 0,
+  "icon": {
+    "id": 6801,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 22,
+  "source_class_job_id": 21
+}

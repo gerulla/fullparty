@@ -1,0 +1,26 @@
+{
+  "kind": "trait",
+  "id": 539,
+  "name": "スマッジ効果アップ",
+  "description": "自身の移動速度を上昇させる。\n効果時間：5秒\n発動条件：スマッジ実行時",
+  "description_macro": "自身の移動速度を上昇させる。<br><colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>5秒<br><colortype(504)><edgecolortype(505)>発動条件：<edgecolortype(0)><colortype(0)>スマッジ実行時",
+  "effects": [
+    "自身の移動速度を上昇させる。",
+    "効果時間：5秒",
+    "発動条件：スマッジ実行時"
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 42,
+    "name": "ピクトマンサー",
+    "abbreviation": "PCT"
+  },
+  "unlock_level": 84,
+  "value": 0,
+  "icon": {
+    "id": 6553,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 197,
+  "source_class_job_id": 42
+}

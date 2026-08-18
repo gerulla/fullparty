@@ -1,0 +1,92 @@
+{
+  "kind": "combat_status",
+  "id": 1298,
+  "name": "Fugetsu",
+  "description": "Damage dealt is increased.",
+  "effects": [
+    "Damage dealt is increased."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 213311,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 15
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 7478,
+      "name": "Jinpu",
+      "description": "Delivers an attack with a potency of 140.\nCombo Action: Gyofu\nCombo Potency: 300\nCombo Bonus: Grants Fugetsu\nFugetsu Effect: Increases damage dealt by 13%\nDuration: 40s\nCombo Bonus: Increases Kenki Gauge by 5",
+      "description_macro": "Delivers an attack with a potency of <if([gnum68==34],<if([gnum72>=94],140,<if([gnum68==34],<if([gnum72>=66],120,100)>,100)>)>,<if([gnum68==34],<if([gnum72>=66],120,100)>,100)>)>.<br><colortype(504)><edgecolortype(505)>Combo Action: <edgecolortype(0)><colortype(0)><colortype(500)><edgecolortype(501)><if([gnum68==34],<if([gnum72>=92],Gyofu,Hakaze)>,Hakaze)><edgecolortype(0)><colortype(0)><br><colortype(504)><edgecolortype(505)>Combo Potency: <edgecolortype(0)><colortype(0)><if([gnum68==34],<if([gnum72>=94],300,<if([gnum68==34],<if([gnum72>=66],280,260)>,260)>)>,<if([gnum68==34],<if([gnum72>=66],280,260)>,260)>)><br><colortype(504)><edgecolortype(505)>Combo Bonus: <edgecolortype(0)><colortype(0)>Grants <colortype(506)><edgecolortype(507)>Fugetsu<edgecolortype(0)><colortype(0)><br><colortype(504)><edgecolortype(505)>Fugetsu Effect: <edgecolortype(0)><colortype(0)>Increases damage dealt by <if([gnum68==34],<if([gnum72>=78],13,10)>,10)>%<br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>40s<if([gnum72>=62],<if([gnum68==34],<br><colortype(504)><edgecolortype(505)>Combo Bonus: <edgecolortype(0)><colortype(0)>Increases <colortype(500)><edgecolortype(501)>Kenki Gauge<edgecolortype(0)><colortype(0)> by 5,)>,)>",
+      "unlock_level": 4,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 34,
+          "name": "Samurai",
+          "abbreviation": "SAM",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 7484,
+      "name": "Mangetsu",
+      "description": "Delivers an attack with a potency of 100 to all nearby enemies.\nCombo Action: Fuko\nCombo Potency: 120\nCombo Bonus: Grants Fugetsu\nFugetsu Effect: Increases damage dealt by 13%\nDuration: 40s\nCombo Bonus: Increases Kenki Gauge by 10\nCombo Bonus: Grants Getsu",
+      "description_macro": "Delivers an attack with a potency of 100 to all nearby enemies.<br><colortype(504)><edgecolortype(505)>Combo Action:<edgecolortype(0)><colortype(0)> <colortype(500)><edgecolortype(501)><if([gnum68==34],<if([gnum72>=86],Fuko,Fuga)>,Fuga)><edgecolortype(0)><colortype(0)><br><colortype(504)><edgecolortype(505)>Combo Potency:<edgecolortype(0)><colortype(0)> 120<br><colortype(504)><edgecolortype(505)>Combo Bonus: <edgecolortype(0)><colortype(0)>Grants <colortype(506)><edgecolortype(507)>Fugetsu<edgecolortype(0)><colortype(0)><br><colortype(504)><edgecolortype(505)>Fugetsu Effect: <edgecolortype(0)><colortype(0)>Increases damage dealt by <if([gnum68==34],<if([gnum72>=78],13,10)>,10)>%<br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>40s<if([gnum72>=52],<if([gnum68==34],<br><colortype(504)><edgecolortype(505)>Combo Bonus: <edgecolortype(0)><colortype(0)>Increases <colortype(500)><edgecolortype(501)>Kenki Gauge<edgecolortype(0)><colortype(0)> by <if([gnum72>=62],<if([gnum68==34],10,5)>,5)><br><colortype(504)><edgecolortype(505)>Combo Bonus:<edgecolortype(0)><colortype(0)> Grants <colortype(506)><edgecolortype(507)>Getsu<edgecolortype(0)><colortype(0)>,<br><colortype(504)><edgecolortype(505)>Combo Bonus:<edgecolortype(0)><colortype(0)> Grants <colortype(506)><edgecolortype(507)>Getsu<edgecolortype(0)><colortype(0)>)>,<br><colortype(504)><edgecolortype(505)>Combo Bonus:<edgecolortype(0)><colortype(0)> Grants <colortype(506)><edgecolortype(507)>Getsu<edgecolortype(0)><colortype(0)>)>",
+      "unlock_level": 35,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 34,
+          "name": "Samurai",
+          "abbreviation": "SAM",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 7499,
+      "name": "Meikyo Shisui",
+      "description": "Execute up to 3 weaponskill combos without meeting combo prerequisites. Does not affect Iaijutsuor Ogi Namikiri.\nDuration: 20s\nAdditional Effect: Successfully landing Gekko grants Fugetsu, and successfully landing Kasha grants Fuka\nAdditional Effect: Grants Tendo\nDuration: 30s\nMaximum Charges: 2",
+      "description_macro": "Execute up to 3 weaponskill combos without meeting combo prerequisites. Does not affect <colortype(500)><edgecolortype(501)>Iaijutsu<edgecolortype(0)><colortype(0)><if([gnum68==34],<if([gnum72>=90], or <colortype(500)><edgecolortype(501)>Ogi Namikiri<edgecolortype(0)><colortype(0)>,)>,)>.<br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>20s<br><colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>Successfully landing <colortype(500)><edgecolortype(501)>Gekko<edgecolortype(0)><colortype(0)> grants <colortype(506)><edgecolortype(507)>Fugetsu<edgecolortype(0)><colortype(0)>, and successfully landing <colortype(500)><edgecolortype(501)>Kasha<edgecolortype(0)><colortype(0)> grants <colortype(506)><edgecolortype(507)>Fuka<edgecolortype(0)><colortype(0)><if([gnum68==34],<if([gnum72>=100],<br><colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>Grants <colortype(506)><edgecolortype(507)>Tendo<edgecolortype(0)><colortype(0)><br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>30s,)>,)><if([gnum68==34],<if([gnum72>=76],<br><colortype(504)><edgecolortype(505)>Maximum Charges: <edgecolortype(0)><colortype(0)>2,)>,)>",
+      "unlock_level": 50,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 34,
+          "name": "Samurai",
+          "abbreviation": "SAM",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

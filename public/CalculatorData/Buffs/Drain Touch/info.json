@@ -1,0 +1,51 @@
+{
+  "kind": "combat_status",
+  "id": 5326,
+  "name": "Drain Touch",
+  "description": "Most attacks cannot reduce own HP to less than 1.",
+  "effects": [
+    "Most attacks cannot reduce own HP to less than 1."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 229987,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 49097,
+      "name": "Drain Touch",
+      "description": "Deals unaspected damage with a potency of 150.\nPotency scales with item level.\nAdditional Effect: Absorbs a portion of damage dealt as HP\nAdditional Effect: Grants Drain Touch\nDrain Touch Effect: Most attacks cannot reduce your HP to less than 1and increases the potency of Phantom Necromancer actions\nDuration: 6s",
+      "description_macro": "Deals unaspected damage with a potency of 150.<br>Potency scales with item level.<br><colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>Absorbs a portion of damage dealt as HP<br><colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>Grants <colortype(506)><edgecolortype(507)>Drain Touch<edgecolortype(0)><colortype(0)><br><colortype(504)><edgecolortype(505)>Drain Touch Effect: <edgecolortype(0)><colortype(0)>Most attacks cannot reduce your HP to less than 1<if([gnum108>=2],\\, and increases the potency of Phantom Necromancer actions,)><br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>6s",
+      "unlock_level": 0,
+      "relations": [
+        "granted_by_description",
+        "same_name"
+      ],
+      "roles": [
+        "Phantom Jobs"
+      ],
+      "jobs": [
+        {
+          "id": 23,
+          "name": "Phantom Necromancer",
+          "abbreviation": "Ph. Necromancer",
+          "is_phantom": true
+        }
+      ]
+    }
+  ]
+}

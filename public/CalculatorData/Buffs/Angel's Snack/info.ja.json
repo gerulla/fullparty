@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 2495,
+  "name": "天使のおやつ",
+  "description": "持続的にHPが回復している状態。",
+  "effects": [
+    "持続的にHPが回復している状態。"
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 213534,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 1,
+  "parameter": {
+    "effect": 0,
+    "modifier": 50
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 23272,
+      "name": "天使のおやつ",
+      "description": "自身と周囲のパーティメンバーのＨＰを回復する。\n回復力：400\n自身に「エーテルコピー：ヒーラー」が付与されている場合は追加効果が発生する。\nエーテルコピー：ヒーラー時追加効果：対象のＨＰを継続回復する。\n回復力：200\u3000効果時間：15秒\nこの魔法は固有のリキャストタイマーを持ち、「ドラゴンフォース」「マトラマジック」と共有する。",
+      "description_macro": "自身と周囲のパーティメンバーのＨＰを回復する。<br><colortype(504)><edgecolortype(505)>回復力：<edgecolortype(0)><colortype(0)>400<br>自身に<colortype(500)><edgecolortype(501)>「エーテルコピー：ヒーラー」<edgecolortype(0)><colortype(0)>が付与されている場合は追加効果が発生する。<br><colortype(504)><edgecolortype(505)>エーテルコピー：ヒーラー時追加効果：<edgecolortype(0)><colortype(0)>対象のＨＰを継続回復する。<br><colortype(504)><edgecolortype(505)>回復力：<edgecolortype(0)><colortype(0)>200\u3000<colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>15秒<br>この魔法は固有のリキャストタイマーを持ち、<colortype(500)><edgecolortype(501)>「ドラゴンフォース」「マトラマジック」<edgecolortype(0)><colortype(0)>と共有する。",
+      "unlock_level": 1,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Magical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 36,
+          "name": "青魔道士",
+          "abbreviation": "BLU",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

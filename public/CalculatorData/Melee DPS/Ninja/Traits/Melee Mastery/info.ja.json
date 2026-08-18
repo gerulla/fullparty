@@ -1,0 +1,27 @@
+{
+  "kind": "trait",
+  "id": 516,
+  "name": "アクション威力アップ",
+  "description": "特定のアクションの威力を上昇させる。\n\n風断ちの威力：120\n旋風刃の威力：140\n強甲破点突の威力：140",
+  "description_macro": "特定のアクションの威力を上昇させる。<br><br><colortype(504)><edgecolortype(505)>風断ちの威力：<edgecolortype(0)><colortype(0)>120<br><colortype(504)><edgecolortype(505)>旋風刃の威力：<edgecolortype(0)><colortype(0)>140<br><colortype(504)><edgecolortype(505)>強甲破点突の威力：<edgecolortype(0)><colortype(0)>140",
+  "effects": [
+    "特定のアクションの威力を上昇させる。",
+    "風断ちの威力：120",
+    "旋風刃の威力：140",
+    "強甲破点突の威力：140"
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 30,
+    "name": "忍者",
+    "abbreviation": "NIN"
+  },
+  "unlock_level": 74,
+  "value": 0,
+  "icon": {
+    "id": 6801,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 92,
+  "source_class_job_id": 30
+}

@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 658,
+  "name": "Marksman's Mastery II",
+  "description": "Increases the potency of Auto Crossbow to 180, Heated Split Shot to 220, Drill to 660, Heated Slug Shot to 140, Heated Clean Shot to 160, Blazing Shot to 240, Air Anchor to 660, and Chain Saw to 660.",
+  "description_macro": "Increases the potency of <colortype(500)><edgecolortype(501)>Auto Crossbow<edgecolortype(0)><colortype(0)> to 180, <colortype(500)><edgecolortype(501)>Heated Split Shot<edgecolortype(0)><colortype(0)> to 220, <colortype(500)><edgecolortype(501)>Drill<edgecolortype(0)><colortype(0)> to 660, <colortype(500)><edgecolortype(501)>Heated Slug Shot<edgecolortype(0)><colortype(0)> to 140, <colortype(500)><edgecolortype(501)>Heated Clean Shot<edgecolortype(0)><colortype(0)> to 160, <colortype(500)><edgecolortype(501)>Blazing Shot<edgecolortype(0)><colortype(0)> to 240, <colortype(500)><edgecolortype(501)>Air Anchor<edgecolortype(0)><colortype(0)> to 660, and <colortype(500)><edgecolortype(501)>Chain Saw<edgecolortype(0)><colortype(0)> to 660.",
+  "effects": [
+    "Increases the potency of Auto Crossbow to 180, Heated Split Shot to 220, Drill to 660, Heated Slug Shot to 140, Heated Clean Shot to 160, Blazing Shot to 240, Air Anchor to 660, and Chain Saw to 660."
+  ],
+  "role": "Physical Ranged DPS",
+  "job": {
+    "id": 31,
+    "name": "Machinist",
+    "abbreviation": "MCH"
+  },
+  "unlock_level": 94,
+  "value": 0,
+  "icon": {
+    "id": 6802,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 96,
+  "source_class_job_id": 31
+}

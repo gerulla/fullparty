@@ -1,0 +1,97 @@
+{
+  "kind": "ability",
+  "id": 36964,
+  "name": "Zanshin",
+  "description": "Du führst eine physische Attacke auf die fächerförmig vor dir stehenden Gegner aus.\nAttacke-Wert: 940\nAttacke-Wert verringert sich ab dem zweiten Gegner um 40 %.\nKenki-Balken-Kosten: 50\nBedingung: Zanshin aktiv",
+  "description_macro": "Du führst eine physische Attacke auf die fächerförmig vor dir stehenden Gegner aus.<br>Attacke-Wert: 940<br>Attacke-Wert verringert sich ab dem zweiten Gegner um 40 %.<br>Kenki-Balken-Kosten: 50<br>Bedingung: <colortype(506)><edgecolortype(507)>Zanshin<edgecolortype(0)><colortype(0)> aktiv",
+  "effects": [
+    "Du führst eine physische Attacke auf die fächerförmig vor dir stehenden Gegner aus.",
+    "Attacke-Wert: 940",
+    "Attacke-Wert verringert sich ab dem zweiten Gegner um 40 %.",
+    "Kenki-Balken-Kosten: 50",
+    "Bedingung: Zanshin aktiv"
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 34,
+    "name": "Samurai",
+    "abbreviation": "SAM"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 96,
+  "icon": {
+    "id": 3192,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 4,
+    "name": "Talent"
+  },
+  "attack_type": {
+    "id": 4294967295,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 1,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 3,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 39,
+      "value": 50
+    },
+    "secondary": {
+      "type_id": 32,
+      "value": 3855
+    }
+  },
+  "range": {
+    "target_yalms": 8,
+    "effect_yalms": 8,
+    "cast_type": 3
+  },
+  "targeting": {
+    "self": false,
+    "party": false,
+    "alliance": false,
+    "hostile": true,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": {
+      "id": 166,
+      "status": {
+        "id": 3855,
+        "name": "Zanshin",
+        "description": "Zanshin kann ausgeführt werden.",
+        "icon_id": 213318,
+        "max_stacks": 0
+      }
+    }
+  },
+  "metadata": {
+    "aspect_id": 7,
+    "behavior_type": 0,
+    "class_job_category_id": 111,
+    "source_class_job_id": 34,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

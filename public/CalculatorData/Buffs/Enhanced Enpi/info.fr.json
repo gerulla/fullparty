@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 1236,
+  "name": "Enpi amélioré",
+  "description": "La puissance du prochain Enpi est augmentée.",
+  "effects": [
+    "La puissance du prochain Enpi est augmentée."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 213310,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 7493,
+      "name": "Hissatsu : Yaten",
+      "description": "Effectue une attaque physique sur la cible.\nPuissance : 100\nEffet additionnel : vous fait sauter 10 yalms en arrière.\nEffet additionnel : vous octroie Enpi amélioré.\nDurée : 15s\nCoût Jauge de Kenki : 10\nNe peut pas être utilisé sous l'effet Entrave.",
+      "description_macro": "Effectue une attaque physique sur la cible.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> 100<br><colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> vous fait sauter 10 yalms en arrière.<br><colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> vous octroie <colortype(500)><edgecolortype(501)>Enpi amélioré<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 15s<br><colortype(506)><edgecolortype(507)>Coût Jauge de Kenki<nbsp>:<edgecolortype(0)><colortype(0)> 10<br>Ne peut pas être utilisé sous l'effet Entrave.",
+      "unlock_level": 56,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 34,
+          "name": "Samouraï",
+          "abbreviation": "SAM",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

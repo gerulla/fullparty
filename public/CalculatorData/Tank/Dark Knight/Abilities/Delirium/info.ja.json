@@ -1,0 +1,87 @@
+{
+  "kind": "ability",
+  "id": 7390,
+  "name": "ブラッドデリリアム",
+  "description": "自身に3スタックの「ブラッドデリリアム」と「ブラッドウェポン」を付与する。\u3000効果時間：15秒\nブラッドデリリアム効果：ブラッドスピラーがレッドデリリアムに、クワイタスがインペイルメントに変化する。\nブラッドウェポン効果：自身のウェポンスキルおよび魔法が命中するとＭＰを回復し、さらに「ブラックブラッド」を10上昇させる。\n範囲攻撃を2体以上の敵に命中させた場合、効果は1回のみ発動する。",
+  "description_macro": "自身に3スタックの<colortype(500)><edgecolortype(501)>「ブラッドデリリアム」<edgecolortype(0)><colortype(0)>と<colortype(500)><edgecolortype(501)>「ブラッドウェポン」<edgecolortype(0)><colortype(0)>を付与する。\u3000<colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>15秒<br><colortype(504)><edgecolortype(505)>ブラッドデリリアム効果：<edgecolortype(0)><colortype(0)><if([gnum68==32],<if([gnum72>=96],ブラッドスピラーがレッドデリリアムに、クワイタスがインペイルメントに変化する。<br>,<colortype(500)><edgecolortype(501)>「ブラックブラッド」<edgecolortype(0)><colortype(0)>を消費することなくブラッドスピラーとクワイタスを実行することができるようになり、さらに命中時にＭＰを回復する。<br>)>,<colortype(500)><edgecolortype(501)>「ブラックブラッド」<edgecolortype(0)><colortype(0)>を消費することなくブラッドスピラーとクワイタスを実行することができるようになり、さらに命中時にＭＰを回復する。<br>)><colortype(504)><edgecolortype(505)>ブラッドウェポン効果：<edgecolortype(0)><colortype(0)>自身のウェポンスキルおよび魔法が命中するとＭＰを回復し、さらに<colortype(500)><edgecolortype(501)>「ブラックブラッド」<edgecolortype(0)><colortype(0)>を10上昇させる。<br>範囲攻撃を2体以上の敵に命中させた場合、効果は1回のみ発動する。",
+  "effects": [
+    "自身に3スタックの「ブラッドデリリアム」と「ブラッドウェポン」を付与する。\u3000効果時間：15秒",
+    "ブラッドデリリアム効果：ブラッドスピラーがレッドデリリアムに、クワイタスがインペイルメントに変化する。",
+    "ブラッドウェポン効果：自身のウェポンスキルおよび魔法が命中するとＭＰを回復し、さらに「ブラックブラッド」を10上昇させる。",
+    "範囲攻撃を2体以上の敵に命中させた場合、効果は1回のみ発動する。"
+  ],
+  "role": "Tank",
+  "job": {
+    "id": 32,
+    "name": "暗黒騎士",
+    "abbreviation": "DRK"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 68,
+  "icon": {
+    "id": 3078,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 4,
+    "name": "アビリティ"
+  },
+  "attack_type": {
+    "id": 0,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 60,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 11,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 0,
+      "value": 0
+    },
+    "secondary": {
+      "type_id": 62,
+      "value": 570
+    }
+  },
+  "range": {
+    "target_yalms": 0,
+    "effect_yalms": 0,
+    "cast_type": 1
+  },
+  "targeting": {
+    "self": true,
+    "party": false,
+    "alliance": false,
+    "hostile": false,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 0,
+    "behavior_type": 0,
+    "class_job_category_id": 98,
+    "source_class_job_id": 32,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

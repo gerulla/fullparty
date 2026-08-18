@@ -1,0 +1,90 @@
+{
+  "kind": "ability",
+  "id": 36998,
+  "name": "Sol-Bahamut-Entflammung",
+  "description": "Du lässt Sol-Bahamut Exodus ausführen.\nEffekt: Fügt dem Ziel und allen Gegnern in seiner Nähe elementneutralen Magieschaden zu.\nAttacke-Wert: 1.500\nAttacke-Wert verringert sich ab dem zweiten Gegner um 50 %.\nBedingung: Sol-Bahamut ist anwesend.\nBei erfüllter Bedingung ändert sich Bahamut-Entflammung zu diesem Kommando.\nKann nicht im Kommandomenü angelegt werden.",
+  "description_macro": "Du lässt Sol-Bahamut <colortype(502)><edgecolortype(503)>Exodus<edgecolortype(0)><colortype(0)> ausführen.<br>Effekt: Fügt dem Ziel und allen Gegnern in seiner Nähe elementneutralen Magieschaden zu.<br>Attacke-Wert: 1.500<br>Attacke-Wert verringert sich ab dem zweiten Gegner um 50 %.<br>Bedingung: Sol-Bahamut ist anwesend.<br>Bei erfüllter Bedingung ändert sich <colortype(502)><edgecolortype(503)>Bahamut-Entflammung<edgecolortype(0)><colortype(0)> zu diesem Kommando.<br>Kann nicht im Kommandomenü angelegt werden.",
+  "effects": [
+    "Du lässt Sol-Bahamut Exodus ausführen.",
+    "Effekt: Fügt dem Ziel und allen Gegnern in seiner Nähe elementneutralen Magieschaden zu.",
+    "Attacke-Wert: 1.500",
+    "Attacke-Wert verringert sich ab dem zweiten Gegner um 50 %.",
+    "Bedingung: Sol-Bahamut ist anwesend.",
+    "Bei erfüllter Bedingung ändert sich Bahamut-Entflammung zu diesem Kommando.",
+    "Kann nicht im Kommandomenü angelegt werden."
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 27,
+    "name": "Beschwörer",
+    "abbreviation": "BSW"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 100,
+  "icon": {
+    "id": 2788,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 4,
+    "name": "Talent"
+  },
+  "attack_type": {
+    "id": 5,
+    "name": "魔法"
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 20,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 6,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 0,
+      "value": 0
+    },
+    "secondary": {
+      "type_id": 144,
+      "value": 1
+    }
+  },
+  "range": {
+    "target_yalms": 25,
+    "effect_yalms": 0,
+    "cast_type": 1
+  },
+  "targeting": {
+    "self": false,
+    "party": false,
+    "alliance": false,
+    "hostile": true,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": false
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": false
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 7,
+    "behavior_type": 0,
+    "class_job_category_id": 28,
+    "source_class_job_id": 0,
+    "is_role_action": false,
+    "is_player_action": false,
+    "is_derived_action": true,
+    "equivalence_group": 0
+  }
+}

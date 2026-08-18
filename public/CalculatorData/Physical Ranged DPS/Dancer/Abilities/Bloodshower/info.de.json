@@ -1,0 +1,88 @@
+{
+  "kind": "ability",
+  "id": 15996,
+  "name": "Blutklingen",
+  "description": "Du führst eine physische Attacke auf alle umstehenden Gegner aus.\nAttacke-Wert: 200\nZusatzeffekt: 50 % Wahrscheinlichkeit auf eine Plume Burlesque\nBedingung: Asynchroner Wurf oder Asynchrone Trance aktiv\nKommando ändert sich während des Tanzes zu Pirouette der Krone.",
+  "description_macro": "Du führst eine physische Attacke auf alle umstehenden Gegner aus.<br>Attacke-Wert: 200<br>Zusatzeffekt: 50 % Wahr<->schein<->lich<->keit auf eine <colortype(506)><edgecolortype(507)>Plume Burlesque<edgecolortype(0)><colortype(0)><br>Bedingung: <if([gnum68==38],<if([gnum72>=72],<colortype(506)><edgecolortype(507)>Asynchroner Wurf<edgecolortype(0)><colortype(0)> oder <colortype(506)><edgecolortype(507)>Asynchrone Trance<edgecolortype(0)><colortype(0)>,<colortype(506)><edgecolortype(507)>Asynchroner Wurf<edgecolortype(0)><colortype(0)>)>,<colortype(506)><edgecolortype(507)>Asynchroner Wurf<edgecolortype(0)><colortype(0)>)> aktiv<br>Kommando ändert sich während des Tanzes zu <colortype(502)><edgecolortype(503)>Pirouette der Krone<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Du führst eine physische Attacke auf alle umstehenden Gegner aus.",
+    "Attacke-Wert: 200",
+    "Zusatzeffekt: 50 % Wahrscheinlichkeit auf eine Plume Burlesque",
+    "Bedingung: Asynchroner Wurf oder Asynchrone Trance aktiv",
+    "Kommando ändert sich während des Tanzes zu Pirouette der Krone."
+  ],
+  "role": "Physical Ranged DPS",
+  "job": {
+    "id": 38,
+    "name": "Tänzer",
+    "abbreviation": "TÄN"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 45,
+  "icon": {
+    "id": 3465,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 3,
+    "name": "Waffenfertigkeit"
+  },
+  "attack_type": {
+    "id": 4294967295,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 2.5,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 58,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 86,
+      "value": 0
+    },
+    "secondary": {
+      "type_id": 91,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": 0,
+    "effect_yalms": 5,
+    "cast_type": 2
+  },
+  "targeting": {
+    "self": true,
+    "party": false,
+    "alliance": false,
+    "hostile": false,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 7,
+    "behavior_type": 0,
+    "class_job_category_id": 150,
+    "source_class_job_id": 38,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

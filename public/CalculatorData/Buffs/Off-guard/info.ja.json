@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 1717,
+  "name": "ガードオファ",
+  "description": "受けるダメージが増加する状態。",
+  "effects": [
+    "受けるダメージが増加する状態。"
+  ],
+  "classification": "debuff",
+  "icon": {
+    "id": 213504,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 2,
+  "target_type": 0,
+  "can_dispel": true,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 50,
+  "parameter": {
+    "effect": 0,
+    "modifier": 5
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 11411,
+      "name": "ガードオファ",
+      "description": "一定時間、対象が受けるダメージを5％上昇させる\n効果時間：15秒\nこの魔法は固有のリキャストタイマーを持ち、他の魔法のリキャストタイマーの影響を受けない。\nただし、「不思議な光」とはリキャストタイマーを共有する。",
+      "description_macro": "一定時間、対象が受けるダメージを5％上昇させる<br><colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>15秒<br>この魔法は固有のリキャストタイマーを持ち、他の魔法のリキャストタイマーの影響を受けない。<br>ただし、<colortype(500)><edgecolortype(501)>「不思議な光」<edgecolortype(0)><colortype(0)>とはリキャストタイマーを共有する。",
+      "unlock_level": 1,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Magical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 36,
+          "name": "青魔道士",
+          "abbreviation": "BLU",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

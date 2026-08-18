@@ -1,0 +1,113 @@
+{
+  "kind": "combat_status",
+  "id": 3668,
+  "name": "Vipernblut",
+  "description": "Ausgeteilter Schaden ist erhöht.",
+  "effects": [
+    "Ausgeteilter Schaden ist erhöht."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 213774,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 45,
+  "parameter": {
+    "effect": 0,
+    "modifier": 10
+  },
+  "class_job_category_id": 196,
+  "source_abilities": [
+    {
+      "id": 34608,
+      "name": "Blutige Fänge",
+      "description": "Du führst eine physische Attacke aus.\nAttacke-Wert: 300\nZusatzeffekt: Gewährt dir Vipernblut.\nDauer: 40 Sekunden\nEffekt von Vipernblut: Eigener ausgeteilter Schaden ist um 10 % erhöht.\nBedingung: Erfolgreiche Ausführung von Tödliche Fänge oder Tückische Fänge.\nBei erfüllter Bedingung ändert sich Tödliche Fänge zu diesem Kommando.\nKann nicht im Kommandomenü angelegt werden.",
+      "description_macro": "Du führst eine physische Attacke aus.<br>Attacke-Wert: <if([gnum68==41],<if([gnum72>=74],300,280)>,280)><br>Zusatzeffekt: Gewährt dir <colortype(506)><edgecolortype(507)>Vipernblut<edgecolortype(0)><colortype(0)>.<br>Dauer: 40 Sekunden<br>Effekt von <colortype(506)><edgecolortype(507)>Vipernblut<edgecolortype(0)><colortype(0)>: Eigener ausgeteilter Schaden ist um 10<nbsp>% erhöht.<br>Bedingung: Erfolgreiche Ausführung von <colortype(502)><edgecolortype(503)>Tödliche Fänge<edgecolortype(0)><colortype(0)> oder <colortype(502)><edgecolortype(503)>Tückische Fänge<edgecolortype(0)><colortype(0)>.<br>Bei erfüllter Bedingung ändert sich <colortype(502)><edgecolortype(503)>Tödliche Fänge<edgecolortype(0)><colortype(0)> zu diesem Kommando.<br>Kann nicht im Kommandomenü angelegt werden.",
+      "unlock_level": 5,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 41,
+          "name": "Viper",
+          "abbreviation": "VPR",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 34616,
+      "name": "Blutige Kiefer",
+      "description": "Du führst eine physische Attacke auf alle umstehenden Gegner aus.\nAttacke-Wert: 180\nZusatzeffekt: Gewährt dir Vipernblut.\nDauer: 40 Sekunden\nEffekt von Vipernblut: Eigener ausgeteilter Schaden ist um 10 % erhöht.\nBedingung: Erfolgreiche Ausführung von Tödliche Kiefer oder Tückische Kiefer.\nBei erfüllter Bedingung ändert sich Tödliche Kiefer zu diesem Kommando.\nKann nicht im Kommandomenü angelegt werden.",
+      "description_macro": "Du führst eine physische Attacke auf alle umstehenden Gegner aus.<br>Attacke-Wert: 180<br>Zusatzeffekt: Gewährt dir <colortype(506)><edgecolortype(507)>Vipernblut<edgecolortype(0)><colortype(0)>.<br>Dauer: 40 Sekunden<br>Effekt von <colortype(506)><edgecolortype(507)>Vipernblut<edgecolortype(0)><colortype(0)>: Eigener ausgeteilter Schaden ist um 10<nbsp>% erhöht.<br>Bedingung: Erfolgreiche Ausführung von <colortype(502)><edgecolortype(503)>Tödliche Kiefer<edgecolortype(0)><colortype(0)> oder <colortype(502)><edgecolortype(503)>Tückische Kiefer<edgecolortype(0)><colortype(0)>.<br>Bei erfüllter Bedingung ändert sich <colortype(502)><edgecolortype(503)>Tödliche Kiefer<edgecolortype(0)><colortype(0)> zu diesem Kommando.<br>Kann nicht im Kommandomenü angelegt werden.",
+      "unlock_level": 40,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 41,
+          "name": "Viper",
+          "abbreviation": "VPR",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 34621,
+      "name": "Blutiger Otterngriff",
+      "description": "Du führst eine physische Attacke aus.\nAttacke-Wert: 630\nVon der Seite: 680\nZusatzeffekt: Gewährt dir Vipernblut\nDauer: 40 Sekunden\nEffekt von Vipernblut: Eigener ausgeteilter Schaden ist um 10 % erhöht.\nZusatzeffekt: Gewährt dir Fänge der Otter.\nDauer: 30 Sekunden\nEffekt von Fänge der Otter: Attacke-Werte von Biss der Zwillingsfänge sind um 50 erhöht.\nZusatzeffekt: Erhöht den Geistbalken um 5.\nTrifft dieses Kommando erfolgreich\\Bedingung: Erfolgreiche Ausführung von Harter Otterngriff oder Flinker Otterngriff.\nEigener Reaktivierungs-Timer",
+      "description_macro": "Du führst eine physische Attacke aus.<br>Attacke-Wert: 630<br>Von der Seite: 680<br>Zusatzeffekt: Gewährt dir <colortype(506)><edgecolortype(507)>Vipernblut<edgecolortype(0)><colortype(0)><br>Dauer: 40 Sekunden<br>Effekt von <colortype(506)><edgecolortype(507)>Vipernblut<edgecolortype(0)><colortype(0)>: Eigener ausgeteilter Schaden ist um 10<nbsp>% erhöht.<br><if([gnum68==41],<if([gnum72>=75],Zusatzeffekt: Gewährt dir <colortype(506)><edgecolortype(507)>Fänge der Otter<edgecolortype(0)><colortype(0)>.<br>Dauer: 30 Sekunden<br>Effekt von <colortype(506)><edgecolortype(507)>Fänge der Otter<edgecolortype(0)><colortype(0)>: Attacke-Werte von <colortype(502)><edgecolortype(503)>Biss der Zwillingsfänge<edgecolortype(0)><colortype(0)> sind um 50 erhöht.<br>,)>,)><if([gnum68==41],<if([gnum72>=90],Zusatzeffekt: Erhöht den Geistbalken um 5.<br>,)>,)><if([gnum68==41],<if([gnum72>=75],Trifft dieses Kommando erfolgreich\\, ändert sich <colortype(502)><edgecolortype(503)>Zwillingsfänge<edgecolortype(0)><colortype(0)> zu <colortype(502)><edgecolortype(503)>Biss der Zwillingsfänge<edgecolortype(0)><colortype(0)> und <colortype(502)><edgecolortype(503)>Zwillingsschuppen<edgecolortype(0)><colortype(0)> zu <colortype(502)><edgecolortype(503)>Biss der Zwillingsschuppen<edgecolortype(0)><colortype(0)>\\, dich diese Kommandos zweifach ausführen lassend.<br>,)>,)>Bedingung: Erfolgreiche Ausführung von <colortype(502)><edgecolortype(503)>Harter Otterngriff<edgecolortype(0)><colortype(0)> oder <colortype(502)><edgecolortype(503)>Flinker Otterngriff<edgecolortype(0)><colortype(0)>.<br>Eigener Reaktivierungs-Timer",
+      "unlock_level": 65,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 41,
+          "name": "Viper",
+          "abbreviation": "VPR",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 34624,
+      "name": "Blutige Otterngrube",
+      "description": "Du führst eine physische Attacke auf alle umstehenden Gegner aus.\nAttacke-Wert: 300\nZusatzeffekt: Gewährt dir Vipernblut.\nDauer: 40 Sekunden\nEffekt von Vipernblut: Eigener ausgeteilter Schaden ist um 10 % erhöht.\nZusatzeffekt: Gewährt dir Fänge der Grube.\nDauer: 30 Sekunden\nEffekt von Fänge der Grube: Erhöht die Attacke-Werte von Nest der Zwillingsfänge um 30.\nZusatzeffekt: Erhöht den Geistbalken um 5.\nTrifft dieses Kommando erfolgreich\\Bedingung: Erfolgreiche Ausführung von Harte Otterngrube oder Flinke Otterngrube.\nEigener Reaktivierungs-Timer",
+      "description_macro": "Du führst eine physische Attacke auf alle umstehenden Gegner aus.<br>Attacke-Wert: 300<br>Zusatzeffekt: Gewährt dir <colortype(506)><edgecolortype(507)>Vipernblut<edgecolortype(0)><colortype(0)>.<br>Dauer: 40 Sekunden<br>Effekt von <colortype(506)><edgecolortype(507)>Vipernblut<edgecolortype(0)><colortype(0)>: Eigener ausgeteilter Schaden ist um 10<nbsp>% erhöht.<br><if([gnum68==41],<if([gnum72>=80],Zusatzeffekt: Gewährt dir <colortype(506)><edgecolortype(507)>Fänge der Grube<edgecolortype(0)><colortype(0)>.<br>Dauer: 30 Sekunden<br>Effekt von <colortype(506)><edgecolortype(507)>Fänge der Grube<edgecolortype(0)><colortype(0)>: Erhöht die Attacke-Werte von <colortype(502)><edgecolortype(503)>Nest der Zwillingsfänge<edgecolortype(0)><colortype(0)> um 30.<br>,)>,)><if([gnum68==41],<if([gnum72>=90],Zusatzeffekt: Erhöht den Geistbalken um 5.<br>,)>,)><if([gnum68==41],<if([gnum72>=80],Trifft dieses Kommando erfolgreich\\, ändert sich <colortype(502)><edgecolortype(503)>Zwillingsfänge<edgecolortype(0)><colortype(0)> zu <colortype(502)><edgecolortype(503)>Nest der Zwillingsfänge<edgecolortype(0)><colortype(0)> und <colortype(502)><edgecolortype(503)>Zwillingsschuppen<edgecolortype(0)><colortype(0)> zu <colortype(502)><edgecolortype(503)>Nest der Zwillingsschuppen<edgecolortype(0)><colortype(0)>\\, dich diese Kommandos zweifach ausführen lassend.<br>,)>,)>Bedingung: Erfolgreiche Ausführung von <colortype(502)><edgecolortype(503)>Harte Otterngrube<edgecolortype(0)><colortype(0)> oder <colortype(502)><edgecolortype(503)>Flinke Otterngrube<edgecolortype(0)><colortype(0)>.<br>Eigener Reaktivierungs-Timer",
+      "unlock_level": 70,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 41,
+          "name": "Viper",
+          "abbreviation": "VPR",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

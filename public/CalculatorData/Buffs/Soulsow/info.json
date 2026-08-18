@@ -1,0 +1,51 @@
+{
+  "kind": "combat_status",
+  "id": 2594,
+  "name": "Soulsow",
+  "description": "Able to execute Harvest Moon.",
+  "effects": [
+    "Able to execute Harvest Moon."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 212932,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": true,
+  "inflicted_by_actor": true,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 180,
+  "source_abilities": [
+    {
+      "id": 24387,
+      "name": "Soulsow",
+      "description": "Grants Soulsow to self, changing the action to Harvest Moon.\nCast time is instant when used outside of battle.",
+      "description_macro": "Grants <colortype(506)><edgecolortype(507)>Soulsow<edgecolortype(0)><colortype(0)> to self, changing the action to <colortype(500)><edgecolortype(501)>Harvest Moon<edgecolortype(0)><colortype(0)>.<br>Cast time is instant when used outside of battle.",
+      "unlock_level": 82,
+      "relations": [
+        "granted_by_description",
+        "same_name"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 39,
+          "name": "Reaper",
+          "abbreviation": "RPR",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

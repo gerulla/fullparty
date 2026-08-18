@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 4247,
+  "name": "Menuet vaillant",
+  "description": "Les dégâts infligés sont augmentés.",
+  "effects": [
+    "Les dégâts infligés sont augmentés."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 229911,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 1
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 41608,
+      "name": "Menuet vaillant",
+      "description": "Augmente de 1% vos dégâts infligés et ceux des équipiers alentour.\nDurée : 70s",
+      "description_macro": "Augmente de <if([gnum108>=4],4%,<if([gnum108>=3],3%,<if([gnum108>=2],2%,1%)>)>)> vos dégâts infligés et ceux des équipiers alentour.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 70s<if([gnum108>=4],<br>Ne peut être cumulé avec l'effet <colortype(500)><edgecolortype(501)>Héroïque<edgecolortype(0)><colortype(0)>.,)>",
+      "unlock_level": 0,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Phantom Jobs"
+      ],
+      "jobs": [
+        {
+          "id": 6,
+          "name": "Phantom Barde fantôme",
+          "abbreviation": "Barde fant.",
+          "is_phantom": true
+        }
+      ]
+    }
+  ]
+}

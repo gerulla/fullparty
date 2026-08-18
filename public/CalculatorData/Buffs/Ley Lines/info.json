@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 737,
+  "name": "Ley Lines",
+  "description": "Naturally occurring ley lines have been connected into a circle of power.",
+  "effects": [
+    "Naturally occurring ley lines have been connected into a circle of power."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 212653,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": true,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 3573,
+      "name": "Ley Lines",
+      "description": "Connects naturally occurring ley lines to create a circle of power which, while standing within it, reduces spell cast time and recast time, and auto-attack delay by 15%.\nDuration: 20s\nMaximum Charges: 2\nCannot be executed while under the effect of Ley Lines.",
+      "description_macro": "Connects naturally occurring ley lines to create a circle of power which, while standing within it, reduces spell cast time and recast time, and auto-attack delay by 15%.<br><colortype(504)><edgecolortype(505)>Duration:<edgecolortype(0)><colortype(0)> 20s<br><colortype(504)><edgecolortype(505)>Maximum Charges: <edgecolortype(0)><colortype(0)>2<br>Cannot be executed while under the effect of <colortype(506)><edgecolortype(507)>Ley Lines<edgecolortype(0)><colortype(0)>.",
+      "unlock_level": 52,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Magical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 25,
+          "name": "Black Mage",
+          "abbreviation": "BLM",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

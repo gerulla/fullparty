@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 1823,
+  "name": "Closed Position",
+  "description": "Sharing the effects of certain actions with target party member.",
+  "effects": [
+    "Sharing the effects of certain actions with target party member."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 213712,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": true,
+  "is_permanent": true,
+  "inflicted_by_actor": true,
+  "party_list_priority": 100,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 150,
+  "source_abilities": [
+    {
+      "id": 16006,
+      "name": "Closed Position",
+      "description": "Grants you Closed Position and designates a party member as your Dance Partner, allowing you to share the effects of Standard Finish\\ with said party member.\nEffect ends upon reuse.",
+      "description_macro": "Grants you <colortype(506)><edgecolortype(507)>Closed Position<edgecolortype(0)><colortype(0)> and designates a party member as your <colortype(506)><edgecolortype(507)>Dance Partner<edgecolortype(0)><colortype(0)>, allowing you to share the effects of <if([gnum68==38],<if([gnum72>=62],<colortype(500)><edgecolortype(501)>Standard Finish<edgecolortype(0)><colortype(0)>\\, <colortype(500)><edgecolortype(501)>Curing Waltz<edgecolortype(0)><colortype(0)>\\, <if([gnum68==38],<if([gnum72>=96],<colortype(500)><edgecolortype(501)>Devilment<edgecolortype(0)><colortype(0)>\\, and <colortype(500)><edgecolortype(501)>Finishing Move<edgecolortype(0)><colortype(0)>,and <colortype(500)><edgecolortype(501)>Devilment<edgecolortype(0)><colortype(0)>)>,and <colortype(500)><edgecolortype(501)>Devilment<edgecolortype(0)><colortype(0)>)>,<colortype(500)><edgecolortype(501)>Standard Finish<edgecolortype(0)><colortype(0)> and <colortype(500)><edgecolortype(501)>Curing Waltz<edgecolortype(0)><colortype(0)>)>,<colortype(500)><edgecolortype(501)>Standard Finish<edgecolortype(0)><colortype(0)> and <colortype(500)><edgecolortype(501)>Curing Waltz<edgecolortype(0)><colortype(0)>)> with said party member.<br>Effect ends upon reuse.",
+      "unlock_level": 60,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Physical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 38,
+          "name": "Dancer",
+          "abbreviation": "DNC",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

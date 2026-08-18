@@ -1,0 +1,22 @@
+{
+  "kind": "trait",
+  "id": 7,
+  "name": "Ciblage amélioré II",
+  "description": "Augmente l'effet de Ciblage à 50% et permet aux attaques de toucher à coup sûr.",
+  "description_macro": "Augmente l'effet de <colortype(500)><edgecolortype(501)>Ciblage<edgecolortype(0)><colortype(0)> à 50% et permet aux attaques de toucher à coup sûr.",
+  "effects": [
+    "Augmente l'effet de Ciblage à 50% et permet aux attaques de toucher à coup sûr."
+  ],
+  "role": "Phantom Jobs",
+  "job": {
+    "id": 4,
+    "name": "Rôdeur fantôme",
+    "abbreviation": "Rôdeur fant."
+  },
+  "is_phantom_trait": true,
+  "unlock_level": 5,
+  "icon": {
+    "id": 82207,
+    "file": "icon.png"
+  }
+}

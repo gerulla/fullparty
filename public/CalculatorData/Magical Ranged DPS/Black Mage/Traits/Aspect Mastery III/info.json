@@ -1,0 +1,27 @@
+{
+  "kind": "trait",
+  "id": 459,
+  "name": "Aspect Mastery III",
+  "description": "Allows the stacking of a third Astral Fire and Umbral Ice.\nCasting Fire II or Blizzard II grants maximum stacks of Astral Fire or Umbral Ice respectively.\nWhile under the effect of Astral Fire III, the potency of Fire spells is increased by 80%, and the cast time of Ice spells is halved and potency lowered by 30%.\nWhile under the effect of Umbral Ice III, 10,000 MP is recovered upon landing an Ice spell, and the cast time of Fire spells is halved and potency lowered by 30%.",
+  "description_macro": "Allows the stacking of a third <colortype(506)><edgecolortype(507)>Astral Fire<edgecolortype(0)><colortype(0)> and <colortype(506)><edgecolortype(507)>Umbral Ice<edgecolortype(0)><colortype(0)>.<br>Casting <colortype(500)><edgecolortype(501)>Fire II<edgecolortype(0)><colortype(0)> or <colortype(500)><edgecolortype(501)>Blizzard II<edgecolortype(0)><colortype(0)> grants maximum stacks of <colortype(506)><edgecolortype(507)>Astral Fire<edgecolortype(0)><colortype(0)> or <colortype(506)><edgecolortype(507)>Umbral Ice<edgecolortype(0)><colortype(0)> respectively.<br>While under the effect of <colortype(506)><edgecolortype(507)>Astral Fire III<edgecolortype(0)><colortype(0)>, the potency of <colortype(500)><edgecolortype(501)>Fire<edgecolortype(0)><colortype(0)> spells is increased by 80%, and the cast time of <colortype(500)><edgecolortype(501)>Ice<edgecolortype(0)><colortype(0)> spells is halved and potency lowered by 30%.<br>While under the effect of <colortype(506)><edgecolortype(507)>Umbral Ice III<edgecolortype(0)><colortype(0)>, 10,000 MP is recovered upon landing an <colortype(500)><edgecolortype(501)>Ice<edgecolortype(0)><colortype(0)> spell, and the cast time of <colortype(500)><edgecolortype(501)>Fire<edgecolortype(0)><colortype(0)> spells is halved and potency lowered by 30%.",
+  "effects": [
+    "Allows the stacking of a third Astral Fire and Umbral Ice.",
+    "Casting Fire II or Blizzard II grants maximum stacks of Astral Fire or Umbral Ice respectively.",
+    "While under the effect of Astral Fire III, the potency of Fire spells is increased by 80%, and the cast time of Ice spells is halved and potency lowered by 30%.",
+    "While under the effect of Umbral Ice III, 10,000 MP is recovered upon landing an Ice spell, and the cast time of Fire spells is halved and potency lowered by 30%."
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 25,
+    "name": "Black Mage",
+    "abbreviation": "BLM"
+  },
+  "unlock_level": 35,
+  "value": 0,
+  "icon": {
+    "id": 5367,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 55,
+  "source_class_job_id": 7
+}

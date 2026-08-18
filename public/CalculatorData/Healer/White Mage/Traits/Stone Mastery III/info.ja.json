@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 182,
+  "name": "ストーンマスタリーIII",
+  "description": "ストンガがストンジャに変化する。",
+  "description_macro": "ストンガがストンジャに変化する。",
+  "effects": [
+    "ストンガがストンジャに変化する。"
+  ],
+  "role": "Healer",
+  "job": {
+    "id": 24,
+    "name": "白魔道士",
+    "abbreviation": "WHM"
+  },
+  "unlock_level": 64,
+  "value": 0,
+  "icon": {
+    "id": 5337,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 25,
+  "source_class_job_id": 24
+}

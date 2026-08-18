@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 629,
+  "name": "Récitation améliorée",
+  "description": "Réduit à 60s le temps de recharge de Récitation.",
+  "description_macro": "Réduit à 60s le temps de recharge de <colortype(500)><edgecolortype(501)>Récitation<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Réduit à 60s le temps de recharge de Récitation."
+  ],
+  "role": "Healer",
+  "job": {
+    "id": 28,
+    "name": "Érudit",
+    "abbreviation": "ÉRU"
+  },
+  "unlock_level": 98,
+  "value": -300,
+  "icon": {
+    "id": 5710,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 29,
+  "source_class_job_id": 28
+}

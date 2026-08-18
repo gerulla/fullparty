@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 2102,
+  "name": "Schattenklinge",
+  "description": "Erhaltene Heileffekte sind verringert.",
+  "effects": [
+    "Erhaltene Heileffekte sind verringert."
+  ],
+  "classification": "debuff",
+  "icon": {
+    "id": 214876,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 2,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": true,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": -20
+  },
+  "class_job_category_id": 98,
+  "source_abilities": [
+    {
+      "id": 16470,
+      "name": "Schattenklinge",
+      "description": "Du führst eine elementneutrale magische Attacke aus.\nAttacke-Wert: 460\nZusatzeffekt: Du erhältst Dunkle Seite, wodurch dein ausgeteilter Schaden um 10 % erhöht ist.\nDauer: 30 Sekunden\nIst dieser Status bereits aktiv, wird er um 30 Sekunden verlängert (max. 60 Sekunden).\nGemeinsamer Reaktivierungs-Timer mit Schattenflut",
+      "description_macro": "Du führst eine elementneutrale magische Attacke aus.<br>Attacke-Wert: 460<br>Zusatzeffekt: Du erhältst <colortype(506)><edgecolortype(507)>Dunkle Seite<edgecolortype(0)><colortype(0)>, wodurch dein ausgeteilter Schaden um 10 % erhöht ist.<br>Dauer: 30 Sekunden<br>Ist dieser Status bereits aktiv, wird er um 30 Sekunden verlängert (max. 60 Sekunden).<br>Gemeinsamer Reaktivierungs-Timer mit <colortype(502)><edgecolortype(503)>Schattenflut<edgecolortype(0)><colortype(0)>",
+      "unlock_level": 74,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Tank"
+      ],
+      "jobs": [
+        {
+          "id": 32,
+          "name": "Dunkelritter",
+          "abbreviation": "DKR",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,100 @@
+{
+  "kind": "ability",
+  "id": 34688,
+  "name": "Prismatische Oszillation",
+  "description": "Du führst eine elementneutrale magische Attacke auf alle Gegner in gerader Linie vor dir aus.\nAttacke-Wert: 1.000\nAttacke-Wert verringert sich ab dem zweiten Gegner um 85 %.\nZusatzeffekt: Gewährt dir Weiße Pikto-Farbe.\nMaximalstapelzahl: 5\nIst Oszillierender Pinsel aktiv, hat dieses Kommando eine verkürzte Reaktivierungszeit und kann sofort gewirkt werden.\nEigener Reaktivierungs-Timer\nBei Ausführung wird der Reaktivierungs-Timer dieses Kommandos auf alle anderen Waffenfertigkeiten und Magie angewendet.",
+  "description_macro": "Du führst eine elementneutrale magische Attacke auf alle Gegner in gerader Linie vor dir aus.<br>Attacke-Wert: 1.000<br>Attacke-Wert verringert sich ab dem zweiten Gegner um 85<nbsp>%.<br>Zusatzeffekt: Gewährt dir <colortype(506)><edgecolortype(507)>Weiße Pikto-Farbe<edgecolortype(0)><colortype(0)>.<br>Ma<->xi<->mal<->sta<->pel<->zahl: 5<br>Ist <colortype(506)><edgecolortype(507)>Oszillierender Pinsel<edgecolortype(0)><colortype(0)> aktiv, hat dieses Kommando eine verkürzte Re<->ak<->ti<->vie<->rungs<->zeit und kann sofort gewirkt werden.<br>Eigener Reaktivierungs-Timer<br>Bei Ausführung wird der Reaktivierungs-Timer dieses Kommandos auf alle anderen Waf<->fen<->fer<->tig<->kei<->ten und Magie angewendet.",
+  "effects": [
+    "Du führst eine elementneutrale magische Attacke auf alle Gegner in gerader Linie vor dir aus.",
+    "Attacke-Wert: 1.000",
+    "Attacke-Wert verringert sich ab dem zweiten Gegner um 85 %.",
+    "Zusatzeffekt: Gewährt dir Weiße Pikto-Farbe.",
+    "Maximalstapelzahl: 5",
+    "Ist Oszillierender Pinsel aktiv, hat dieses Kommando eine verkürzte Reaktivierungszeit und kann sofort gewirkt werden.",
+    "Eigener Reaktivierungs-Timer",
+    "Bei Ausführung wird der Reaktivierungs-Timer dieses Kommandos auf alle anderen Waffenfertigkeiten und Magie angewendet."
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 42,
+    "name": "Piktomant",
+    "abbreviation": "PKT"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 92,
+  "icon": {
+    "id": 3838,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 2,
+    "name": "Zauber"
+  },
+  "attack_type": {
+    "id": 5,
+    "name": "魔法"
+  },
+  "timing": {
+    "cast_seconds": 4,
+    "recast_seconds": 6,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 58,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 0,
+      "value": 0
+    },
+    "secondary": {
+      "type_id": 0,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": 25,
+    "effect_yalms": 25,
+    "cast_type": 4
+  },
+  "targeting": {
+    "self": false,
+    "party": false,
+    "alliance": false,
+    "hostile": true,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": {
+      "id": 144,
+      "status": {
+        "id": 3679,
+        "name": "Oszillierender Pinsel",
+        "description": "Nächste Prismatische Oszillation hat eine verkürzte Reaktivierungszeit und kann sofort gewirkt werden.",
+        "icon_id": 213805,
+        "max_stacks": 0
+      }
+    }
+  },
+  "metadata": {
+    "aspect_id": 7,
+    "behavior_type": 0,
+    "class_job_category_id": 197,
+    "source_class_job_id": 42,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

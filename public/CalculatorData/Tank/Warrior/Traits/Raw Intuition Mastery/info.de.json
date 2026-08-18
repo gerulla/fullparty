@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 418,
+  "name": "Meister des Urinstinkts",
+  "description": "Verbessert Urinstinkt zu Urimpuls.",
+  "description_macro": "Verbessert <colortype(502)><edgecolortype(503)>Urinstinkt<edgecolortype(0)><colortype(0)> zu <colortype(502)><edgecolortype(503)>Urimpuls<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Verbessert Urinstinkt zu Urimpuls."
+  ],
+  "role": "Tank",
+  "job": {
+    "id": 21,
+    "name": "Krieger",
+    "abbreviation": "KRG"
+  },
+  "unlock_level": 82,
+  "value": 0,
+  "icon": {
+    "id": 5267,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 22,
+  "source_class_job_id": 21
+}

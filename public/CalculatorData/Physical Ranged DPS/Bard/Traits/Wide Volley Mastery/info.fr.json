@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 598,
+  "name": "Maîtrise de Rafale impitoyable",
+  "description": "Remplace Rafale impitoyable par Morsure de l'ombre.",
+  "description_macro": "Remplace <colortype(500)><edgecolortype(501)>Rafale impitoyable<edgecolortype(0)><colortype(0)> par <colortype(500)><edgecolortype(501)>Morsure de l'ombre<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Remplace Rafale impitoyable par Morsure de l'ombre."
+  ],
+  "role": "Physical Ranged DPS",
+  "job": {
+    "id": 23,
+    "name": "Barde",
+    "abbreviation": "BRD"
+  },
+  "unlock_level": 72,
+  "value": 0,
+  "icon": {
+    "id": 5322,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 24,
+  "source_class_job_id": 23
+}

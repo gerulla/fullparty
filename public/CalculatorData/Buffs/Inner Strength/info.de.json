@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 2663,
+  "name": "Urgewalt",
+  "description": "Immun gegen Betäubung, Schlaf, Fessel, Gewicht und fast alle Rückstoß- und Heranzieheffekte.",
+  "effects": [
+    "Immun gegen Betäubung, Schlaf, Fessel, Gewicht und fast alle Rückstoß- und Heranzieheffekte."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 212556,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 7389,
+      "name": "Urbefreiung",
+      "description": "Du gewährst dir drei Stapel Urbefreiung.\nDauer: 15 Sekunden\nEffekt von Urbefreiung: Niedermähen und Dezimieren treffen direkt und kritisch und verringern den Urkraftbalken nicht.\nIst ein Effekt aktiv, der deine Rate kritischer oder direkter Treffer steigert, erhöht sich auch der Attacke-Wert.\nZusatzeffekt: Gewährt dir Urgewalt.\nDauer: 15 Sekunden\nEffekt von Urgewalt: Du bist immun gegen Betäubung, Schlaf, Fessel, Gewicht und fast alle Rückstoß- und Heranzieheffekte.\nZusatzeffekt: Tosender Sturm ist um 10 Sekunden verlängert (maximal 60 Sekunden)\nZusatzeffekt: Gewährt dir Brachiale Gewalt.\nDauer: 30 Sekunden\nZusatzeffekt: Verleiht für jedes erfolgreich ausgeführte Niedermähen oder Dezimieren während der Effektdauer einen von maximal 3 Stapeln Inneres Zittern.\nDauer: 30 Sekunden\nBei 3 Stapeln ändert sich Inneres Zittern zu Inneres Beben und Urbefreiung zu Urbeben.",
+      "description_macro": "Du gewährst dir drei Stapel <colortype(506)><edgecolortype(507)>Urbefreiung<edgecolortype(0)><colortype(0)>.<br>Dauer: 15 Sekunden<br>Effekt von <colortype(506)><edgecolortype(507)>Urbefreiung<edgecolortype(0)><colortype(0)>: <colortype(502)><edgecolortype(503)>Niedermähen<edgecolortype(0)><colortype(0)> und <colortype(502)><edgecolortype(503)>Dezimieren<edgecolortype(0)><colortype(0)> treffen direkt und kritisch und verringern den Urkraftbalken nicht.<br>Ist ein Effekt aktiv, der deine Rate kritischer oder direkter Treffer steigert, erhöht sich auch der Attacke-Wert.<br>Zusatzeffekt: Gewährt dir <colortype(506)><edgecolortype(507)>Urgewalt<edgecolortype(0)><colortype(0)>.<br>Dauer: 15 Sekunden<br>Effekt von <colortype(506)><edgecolortype(507)>Urgewalt<edgecolortype(0)><colortype(0)>: Du bist immun gegen <colortype(506)><edgecolortype(507)>Betäubung<edgecolortype(0)><colortype(0)>, <colortype(506)><edgecolortype(507)>Schlaf<edgecolortype(0)><colortype(0)>, <colortype(506)><edgecolortype(507)>Fessel<edgecolortype(0)><colortype(0)>, <colortype(506)><edgecolortype(507)>Gewicht<edgecolortype(0)><colortype(0)> und fast alle Rückstoß- und Heranzieheffekte.<br>Zusatzeffekt: <colortype(506)><edgecolortype(507)>Tosender Sturm<edgecolortype(0)><colortype(0)> ist um 10 Sekunden verlängert (maximal 60 Sekunden)<if([gnum68==21],<if([gnum72>=90],<br>Zusatzeffekt: Gewährt dir <colortype(506)><edgecolortype(507)>Brachiale Gewalt<edgecolortype(0)><colortype(0)>.<br>Dauer: 30 Sekunden,)>,)><if([gnum68==21],<if([gnum72>=96],<br>Zusatzeffekt: Verleiht für jedes erfolgreich ausgeführte <colortype(502)><edgecolortype(503)>Niedermähen<edgecolortype(0)><colortype(0)> oder <colortype(502)><edgecolortype(503)>Dezimieren<edgecolortype(0)><colortype(0)> während der Effektdauer einen von maximal 3 Stapeln <colortype(506)><edgecolortype(507)>Inneres Zittern<edgecolortype(0)><colortype(0)>.<br>Dauer: 30 Sekunden<br>Bei 3 Stapeln ändert sich <colortype(506)><edgecolortype(507)>Inneres Zittern<edgecolortype(0)><colortype(0)> zu <colortype(506)><edgecolortype(507)>Inneres Beben<edgecolortype(0)><colortype(0)> und <colortype(502)><edgecolortype(503)>Urbefreiung<edgecolortype(0)><colortype(0)> zu <colortype(502)><edgecolortype(503)>Urbeben<edgecolortype(0)><colortype(0)>.,)>,)>",
+      "unlock_level": 70,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Tank"
+      ],
+      "jobs": [
+        {
+          "id": 21,
+          "name": "Krieger",
+          "abbreviation": "KRG",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

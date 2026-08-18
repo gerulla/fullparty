@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 217,
+  "name": "Ruin Mastery",
+  "description": "Upgrades Ruin to Ruin II.",
+  "description_macro": "Upgrades <colortype(500)><edgecolortype(501)>Ruin<edgecolortype(0)><colortype(0)> to <colortype(500)><edgecolortype(501)>Ruin II<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Upgrades Ruin to Ruin II."
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 27,
+    "name": "Summoner",
+    "abbreviation": "SMN"
+  },
+  "unlock_level": 30,
+  "value": 0,
+  "icon": {
+    "id": 5395,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 69,
+  "source_class_job_id": 26
+}

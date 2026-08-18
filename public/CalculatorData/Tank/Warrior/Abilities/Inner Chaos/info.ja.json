@@ -1,0 +1,100 @@
+{
+  "kind": "ability",
+  "id": 16465,
+  "name": "インナーカオス",
+  "description": "対象に物理攻撃。\u3000威力：700\nこのアクションは必ずクリティカルヒットかつダイレクトヒットする。\nクリティカルヒットやダイレクトヒットの発動率を上昇させる効果を受けている場合は与ダメージが上昇する。\n追加効果：ウォークライのリキャストタイムを5秒短縮する。\n実行時に「原初の混沌」の効果が切れる。\n発動条件：「原初の混沌」効果中かつ「インナービースト」50\n\n※このアクションはホットバーに登録することはできない。\n\u3000発動条件を満たすとフェルクリーヴがインナーカオスに変化する。",
+  "description_macro": "対象に物理攻撃。\u3000<colortype(504)><edgecolortype(505)>威力：<edgecolortype(0)><colortype(0)>700<br>このアクションは必ずクリティカルヒットかつダイレクトヒットする。<br>クリティカルヒットやダイレクトヒットの発動率を上昇させる効果を受けている場合は与ダメージが上昇する。<br><colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)>ウォークライのリキャストタイムを5秒短縮する。<br>実行時に<colortype(500)><edgecolortype(501)>「原初の混沌」<edgecolortype(0)><colortype(0)>の効果が切れる。<br><colortype(504)><edgecolortype(505)>発動条件：<edgecolortype(0)><colortype(0)><colortype(500)><edgecolortype(501)>「原初の混沌」<edgecolortype(0)><colortype(0)>効果中かつ<colortype(500)><edgecolortype(501)>「インナービースト」<edgecolortype(0)><colortype(0)>50<br><br><colortype(506)><edgecolortype(507)>※このアクションはホットバーに登録することはできない。<br>\u3000発動条件を満たすとフェルクリーヴがインナーカオスに変化する。<edgecolortype(0)><colortype(0)>",
+  "effects": [
+    "対象に物理攻撃。\u3000威力：700",
+    "このアクションは必ずクリティカルヒットかつダイレクトヒットする。",
+    "クリティカルヒットやダイレクトヒットの発動率を上昇させる効果を受けている場合は与ダメージが上昇する。",
+    "追加効果：ウォークライのリキャストタイムを5秒短縮する。",
+    "実行時に「原初の混沌」の効果が切れる。",
+    "発動条件：「原初の混沌」効果中かつ「インナービースト」50",
+    "※このアクションはホットバーに登録することはできない。",
+    "発動条件を満たすとフェルクリーヴがインナーカオスに変化する。"
+  ],
+  "role": "Tank",
+  "job": {
+    "id": 21,
+    "name": "戦士",
+    "abbreviation": "WAR"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 80,
+  "icon": {
+    "id": 2568,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 3,
+    "name": "ウェポンスキル"
+  },
+  "attack_type": {
+    "id": 4294967295,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 2.5,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 58,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 22,
+      "value": 50
+    },
+    "secondary": {
+      "type_id": 32,
+      "value": 1897
+    }
+  },
+  "range": {
+    "target_yalms": -1,
+    "effect_yalms": 0,
+    "cast_type": 1
+  },
+  "targeting": {
+    "self": false,
+    "party": false,
+    "alliance": false,
+    "hostile": true,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": {
+      "id": 189,
+      "status": {
+        "id": 1897,
+        "name": "原初の混沌",
+        "description": "十分なインナービーストが蓄積されるとデシメートがカオティックサイクロンに変化する状態。\nインナーカオス修得後はフェルクリーヴもインナーカオスに変化する。",
+        "icon_id": 212560,
+        "max_stacks": 0
+      }
+    }
+  },
+  "metadata": {
+    "aspect_id": 7,
+    "behavior_type": 0,
+    "class_job_category_id": 22,
+    "source_class_job_id": 0,
+    "is_role_action": false,
+    "is_player_action": false,
+    "is_derived_action": true,
+    "equivalence_group": 0
+  }
+}

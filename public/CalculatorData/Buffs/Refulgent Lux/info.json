@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 3874,
+  "name": "Refulgent Lux",
+  "description": "Able to execute Lux Solaris.",
+  "effects": [
+    "Able to execute Lux Solaris."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 212751,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 28,
+  "source_abilities": [
+    {
+      "id": 36992,
+      "name": "Summon Solar Bahamut",
+      "description": "Enters Lightwyrm Trance and summons Solar Bahamut to fight your target.\nSolar Bahamut will execute Luxwave automatically on the targets attacked by you after summoning.\nIncreases enmity in target when Solar Bahamut is summoned.\nDuration: 15s\nAdditional Effect: Grants Refulgent Lux\nDuration: 30s\nAdditional Effect: Changes Ruin III to Umbral Impulse and Tri-disaster to Umbral Flare\nAdditional Effect: Grants Ruby Arcanum, Topaz Arcanum, and Emerald Arcanum\nCan only be executed while Carbuncle is summoned.\nThis action does not share a recast timer with any other actions.\n\n※This action cannot be assigned to a hotbar.\n※Summon Bahamut changes to Summon Solar Bahamut when requirements for execution are met.",
+      "description_macro": "Enters <colortype(506)><edgecolortype(507)>Lightwyrm Trance<edgecolortype(0)><colortype(0)> and summons Solar Bahamut to fight your target.<br>Solar Bahamut will execute <colortype(500)><edgecolortype(501)>Luxwave<edgecolortype(0)><colortype(0)> automatically on the targets attacked by you after summoning.<br>Increases enmity in target when Solar Bahamut is summoned.<br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>15s<br><colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>Grants <colortype(506)><edgecolortype(507)>Refulgent Lux<edgecolortype(0)><colortype(0)><br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>30s<br><colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>Changes <colortype(500)><edgecolortype(501)>Ruin III<edgecolortype(0)><colortype(0)> to <colortype(500)><edgecolortype(501)>Umbral Impulse<edgecolortype(0)><colortype(0)> and <colortype(500)><edgecolortype(501)>Tri-disaster<edgecolortype(0)><colortype(0)> to <colortype(500)><edgecolortype(501)>Umbral Flare<edgecolortype(0)><colortype(0)><br><colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>Grants <colortype(506)><edgecolortype(507)>Ruby Arcanum<edgecolortype(0)><colortype(0)>, <colortype(506)><edgecolortype(507)>Topaz Arcanum<edgecolortype(0)><colortype(0)>, and <colortype(506)><edgecolortype(507)>Emerald Arcanum<edgecolortype(0)><colortype(0)><br>Can only be executed while Carbuncle is summoned.<br>This action does not share a recast timer with any other actions.<br><br>※This action cannot be assigned to a hotbar.<br>※<colortype(500)><edgecolortype(501)>Summon Bahamut<edgecolortype(0)><colortype(0)> changes to <colortype(500)><edgecolortype(501)>Summon Solar Bahamut<edgecolortype(0)><colortype(0)> when requirements for execution are met.",
+      "unlock_level": 100,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Magical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 27,
+          "name": "Summoner",
+          "abbreviation": "SMN",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

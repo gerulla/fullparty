@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 428,
+  "name": "鉄山靠マスタリー",
+  "description": "鉄山闘気が陰陽闘気に、鉄山靠が陰陽闘気斬に変化する。",
+  "description_macro": "鉄山闘気が陰陽闘気に、鉄山靠が陰陽闘気斬に変化する。",
+  "effects": [
+    "鉄山闘気が陰陽闘気に、鉄山靠が陰陽闘気斬に変化する。"
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 20,
+    "name": "モンク",
+    "abbreviation": "MNK"
+  },
+  "unlock_level": 54,
+  "value": 0,
+  "icon": {
+    "id": 5241,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 21,
+  "source_class_job_id": 20
+}

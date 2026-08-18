@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 1232,
+  "name": "Third Eye",
+  "description": "Next damage taken is reduced.",
+  "effects": [
+    "Next damage taken is reduced."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 213307,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": -20
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 7498,
+      "name": "Third Eye",
+      "description": "Reduces the amount of damage taken by the next attack by 10%.\nDuration: 4s\nAdditional Effect: Increases Kenki Gauge by 10 when hit",
+      "description_macro": "Reduces the amount of damage taken by the next attack by 10%.<br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>4s<if([gnum72>=52],<if([gnum68==34],<br><colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>Increases <colortype(500)><edgecolortype(501)>Kenki Gauge<edgecolortype(0)><colortype(0)> by 10 when hit,)>,)>",
+      "unlock_level": 6,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 34,
+          "name": "Samurai",
+          "abbreviation": "SAM",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

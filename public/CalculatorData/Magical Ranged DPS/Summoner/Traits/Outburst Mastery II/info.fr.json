@@ -1,0 +1,27 @@
+{
+  "kind": "trait",
+  "id": 478,
+  "name": "Maîtrise de Fracas élémentaire II",
+  "description": "Remplace Resplendissement des gemmes par un sort plus puissant en fonction de vos Syntonies.\nSyntonie de feu : Cataclysme de rubis.\nSyntonie de terre : Cataclysme de topaze.\nSyntonie de vent : Cataclysme d'émeraude.",
+  "description_macro": "Remplace <colortype(500)><edgecolortype(501)>Resplendissement des gemmes<edgecolortype(0)><colortype(0)> par un sort plus puissant en fonction de vos <colortype(500)><edgecolortype(501)>Syntonies<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Syntonie de feu<nbsp>:<edgecolortype(0)><colortype(0)> <colortype(500)><edgecolortype(501)>Cataclysme de rubis<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Syntonie de terre<nbsp>:<edgecolortype(0)><colortype(0)> <colortype(500)><edgecolortype(501)>Cataclysme de topaze<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Syntonie de vent<nbsp>:<edgecolortype(0)><colortype(0)> <colortype(500)><edgecolortype(501)>Cataclysme d'émeraude<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Remplace Resplendissement des gemmes par un sort plus puissant en fonction de vos Syntonies.",
+    "Syntonie de feu : Cataclysme de rubis.",
+    "Syntonie de terre : Cataclysme de topaze.",
+    "Syntonie de vent : Cataclysme d'émeraude."
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 27,
+    "name": "Invocateur",
+    "abbreviation": "INV"
+  },
+  "unlock_level": 82,
+  "value": 0,
+  "icon": {
+    "id": 5693,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 28,
+  "source_class_job_id": 27
+}

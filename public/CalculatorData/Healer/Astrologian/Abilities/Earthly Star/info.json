@@ -1,0 +1,91 @@
+{
+  "kind": "ability",
+  "id": 7439,
+  "name": "Earthly Star",
+  "description": "Deploys an Earthly Star in the designated area and grants the effect of Earthly Dominance.\nDuration: 10s\nExecuting Stellar Detonation while under the effect of Earthly Dominance creates a Stellar Burst dealing unaspected damage with a potency of 205 to all nearby enemies. Also restores own HP and the HP of all nearby party members.\nCure Potency: 540\nAfter 10s, Earthly Dominance effect is changed to Giant Dominance.\nDuration: 10s\nWaiting 10s or executing Stellar Detonation while under the effect of Giant Dominance creates a Stellar Explosion dealing unaspected damage with a potency of 310 to all nearby enemies. Also restores own HP and the HP of all nearby party members.\nCure Potency: 720",
+  "description_macro": "Deploys an <colortype(500)><edgecolortype(501)>Earthly Star<edgecolortype(0)><colortype(0)> in the designated area and grants the effect of <colortype(506)><edgecolortype(507)>Earthly Dominance<edgecolortype(0)><colortype(0)>.<br><colortype(504)><edgecolortype(505)>Duration:<edgecolortype(0)><colortype(0)> 10s<br>Executing <colortype(500)><edgecolortype(501)>Stellar Detonation<edgecolortype(0)><colortype(0)> while under the effect of <colortype(506)><edgecolortype(507)>Earthly Dominance<edgecolortype(0)><colortype(0)> creates a <colortype(500)><edgecolortype(501)>Stellar Burst<edgecolortype(0)><colortype(0)> dealing unaspected damage with a potency of 205 to all nearby enemies. Also restores own HP and the HP of all nearby party members.<br><colortype(504)><edgecolortype(505)>Cure Potency:<edgecolortype(0)><colortype(0)> 540<br>After 10s, <colortype(506)><edgecolortype(507)>Earthly Dominance<edgecolortype(0)><colortype(0)> effect is changed to <colortype(506)><edgecolortype(507)>Giant Dominance<edgecolortype(0)><colortype(0)>.<br><colortype(504)><edgecolortype(505)>Duration:<edgecolortype(0)><colortype(0)> 10s<br>Waiting 10s or executing <colortype(500)><edgecolortype(501)>Stellar Detonation<edgecolortype(0)><colortype(0)> while under the effect of <colortype(506)><edgecolortype(507)>Giant Dominance<edgecolortype(0)><colortype(0)> creates a <colortype(500)><edgecolortype(501)>Stellar Explosion<edgecolortype(0)><colortype(0)> dealing unaspected damage with a potency of 310 to all nearby enemies. Also restores own HP and the HP of all nearby party members.<br><colortype(504)><edgecolortype(505)>Cure Potency:<edgecolortype(0)><colortype(0)> 720",
+  "effects": [
+    "Deploys an Earthly Star in the designated area and grants the effect of Earthly Dominance.",
+    "Duration: 10s",
+    "Executing Stellar Detonation while under the effect of Earthly Dominance creates a Stellar Burst dealing unaspected damage with a potency of 205 to all nearby enemies. Also restores own HP and the HP of all nearby party members.",
+    "Cure Potency: 540",
+    "After 10s, Earthly Dominance effect is changed to Giant Dominance.",
+    "Duration: 10s",
+    "Waiting 10s or executing Stellar Detonation while under the effect of Giant Dominance creates a Stellar Explosion dealing unaspected damage with a potency of 310 to all nearby enemies. Also restores own HP and the HP of all nearby party members.",
+    "Cure Potency: 720"
+  ],
+  "role": "Healer",
+  "job": {
+    "id": 33,
+    "name": "Astrologian",
+    "abbreviation": "AST"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 62,
+  "icon": {
+    "id": 3143,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 4,
+    "name": "Ability"
+  },
+  "attack_type": {
+    "id": 0,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 60,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 13,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 0,
+      "value": 0
+    },
+    "secondary": {
+      "type_id": 0,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": 30,
+    "effect_yalms": 20,
+    "cast_type": 7
+  },
+  "targeting": {
+    "self": false,
+    "party": false,
+    "alliance": false,
+    "hostile": false,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": true,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 0,
+    "behavior_type": 0,
+    "class_job_category_id": 99,
+    "source_class_job_id": 33,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

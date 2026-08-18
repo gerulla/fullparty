@@ -1,0 +1,89 @@
+{
+  "kind": "ability",
+  "id": 2260,
+  "name": "Ninjutsu",
+  "description": "Effectue un ninjutsu spécifique en fonction des mudrâ effectuées juste avant.\nSi vous utilisez une action autre sous l'effet des mudrâ avant de lancer le ninjutsu, ce dernier échoue.\nLe temps de recharge se déclenche au lancement du ninjutsu.\nDéclenche le temps de recharge des techniques d'arme, sorts, mudrâ et ninjutsu.\nCette aptitude partage le temps de recharge des techniques d'arme.\nSi vous perdez conscience après avoir lancé dissimulation, les charges des mûdra sont restaurées.",
+  "description_macro": "Effectue un ninjutsu spécifique en fonction des <colortype(500)><edgecolortype(501)>mudrâ<edgecolortype(0)><colortype(0)> effectuées juste avant.<br>Si vous utilisez une action autre sous l'effet des <colortype(500)><edgecolortype(501)>mudrâ<edgecolortype(0)><colortype(0)> avant de lancer le <colortype(500)><edgecolortype(501)>ninjutsu<edgecolortype(0)><colortype(0)>, ce dernier échoue.<br>Le temps de recharge se déclenche au lancement du ninjutsu.<br>Déclenche le temps de recharge des techniques d'arme, sorts, mudrâ et ninjutsu.<br>Cette aptitude partage le temps de recharge des techniques d'arme.<br>Si vous perdez conscience après avoir lancé <colortype(500)><edgecolortype(501)>dissimulation<edgecolortype(0)><colortype(0)>, les charges des mûdra sont restaurées.",
+  "effects": [
+    "Effectue un ninjutsu spécifique en fonction des mudrâ effectuées juste avant.",
+    "Si vous utilisez une action autre sous l'effet des mudrâ avant de lancer le ninjutsu, ce dernier échoue.",
+    "Le temps de recharge se déclenche au lancement du ninjutsu.",
+    "Déclenche le temps de recharge des techniques d'arme, sorts, mudrâ et ninjutsu.",
+    "Cette aptitude partage le temps de recharge des techniques d'arme.",
+    "Si vous perdez conscience après avoir lancé dissimulation, les charges des mûdra sont restaurées."
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 30,
+    "name": "Ninja",
+    "abbreviation": "NIN"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 30,
+  "icon": {
+    "id": 2904,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 4,
+    "name": "Aptitude"
+  },
+  "attack_type": {
+    "id": 0,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 1.5,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 58,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 10,
+      "value": 496
+    },
+    "secondary": {
+      "type_id": 32,
+      "value": 496
+    }
+  },
+  "range": {
+    "target_yalms": 0,
+    "effect_yalms": 0,
+    "cast_type": 1
+  },
+  "targeting": {
+    "self": true,
+    "party": false,
+    "alliance": false,
+    "hostile": false,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 0,
+    "behavior_type": 0,
+    "class_job_category_id": 92,
+    "source_class_job_id": 30,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

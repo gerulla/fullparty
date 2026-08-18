@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 589,
+  "name": "Maîtrise de Troisième œil",
+  "description": "Remplace Troisième œil par Tengentsû.",
+  "description_macro": "Remplace <colortype(500)><edgecolortype(501)>Troisième œil<edgecolortype(0)><colortype(0)> par <colortype(500)><edgecolortype(501)>Tengentsû<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Remplace Troisième œil par Tengentsû."
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 34,
+    "name": "Samouraï",
+    "abbreviation": "SAM"
+  },
+  "unlock_level": 82,
+  "value": 0,
+  "icon": {
+    "id": 6159,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 111,
+  "source_class_job_id": 34
+}

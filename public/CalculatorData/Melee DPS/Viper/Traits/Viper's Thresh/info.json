@@ -1,0 +1,25 @@
+{
+  "kind": "trait",
+  "id": 527,
+  "name": "Viper's Thresh",
+  "description": "Allows the execution of Twinfang Thresh and Twinblood Thresh.\nCan only be executed after successfully landing Hunter's Den or Swiftskin's Den.",
+  "description_macro": "Allows the execution of <colortype(500)><edgecolortype(501)>Twinfang Thresh<edgecolortype(0)><colortype(0)> and <colortype(500)><edgecolortype(501)>Twinblood Thresh<edgecolortype(0)><colortype(0)>.<br>Can only be executed after successfully landing <colortype(500)><edgecolortype(501)>Hunter's Den<edgecolortype(0)><colortype(0)> or <colortype(500)><edgecolortype(501)>Swiftskin's Den<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Allows the execution of Twinfang Thresh and Twinblood Thresh.",
+    "Can only be executed after successfully landing Hunter's Den or Swiftskin's Den."
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 41,
+    "name": "Viper",
+    "abbreviation": "VPR"
+  },
+  "unlock_level": 80,
+  "value": 0,
+  "icon": {
+    "id": 6504,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 196,
+  "source_class_job_id": 41
+}

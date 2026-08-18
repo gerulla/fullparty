@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 3712,
+  "name": "Zauberatem",
+  "description": "Erleidet schrittweise Schaden.",
+  "effects": [
+    "Erleidet schrittweise Schaden."
+  ],
+  "classification": "debuff",
+  "icon": {
+    "id": 213553,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 2,
+  "target_type": 0,
+  "can_dispel": true,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 10,
+  "parameter": {
+    "effect": 0,
+    "modifier": 100
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 34567,
+      "name": "Zauberatem",
+      "description": "Du fügst den fächerförmig vor dir stehenden Gegnern im Sekundentakt feuer-, eis- und blitzbasierten Schaden über Zeit zu.\nAttacke-Wert: 120\nDauer: 60 Sekunden\nDieser Effekt kann nicht gestapelt werden.",
+      "description_macro": "Du fügst den fächerförmig vor dir stehenden Gegnern im Sekundentakt feuer-, eis- und blitzbasierten Schaden über Zeit zu.<br>Attacke-Wert: 120<br>Dauer: 60 Sekunden<br>Dieser Effekt kann nicht gestapelt werden.",
+      "unlock_level": 1,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Magical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 36,
+          "name": "Blaumagier",
+          "abbreviation": "BMA",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

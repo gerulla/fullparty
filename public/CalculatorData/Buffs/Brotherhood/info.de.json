@@ -1,0 +1,51 @@
+{
+  "kind": "combat_status",
+  "id": 1185,
+  "name": "Bruderschaft",
+  "description": "Ausgeteilter Schaden ist erhöht.",
+  "effects": [
+    "Ausgeteilter Schaden ist erhöht."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 212532,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 1,
+  "parameter": {
+    "effect": 0,
+    "modifier": 10
+  },
+  "class_job_category_id": 21,
+  "source_abilities": [
+    {
+      "id": 7396,
+      "name": "Bruderschaft",
+      "description": "Du gewährst dir und umstehenden Gruppenmitgliedern Bruderschaft.\nDauer: 20 Sekunden\nEffekt von Bruderschaft: Ausgeteilter Schaden ist um 5 % erhöht.\nDu gewährst dir und umstehenden Gruppenmitgliedern Meditative Bruderschaft.\nDauer: 20 Sekunden\nEffekt von Meditative Bruderschaft: Öffnet ein Schatten-Chakra mit 100 % Wahrscheinlichkeit für dich selbst und 20 % für Gruppenmitglieder\\\nWeiterhin steigt die maximale Stapelanzahl von Schatten-Chakra auf 10.",
+      "description_macro": "Du gewährst dir und umstehenden Grup<->pen<->mit<->gliedern <colortype(506)><edgecolortype(507)>Bruderschaft<edgecolortype(0)><colortype(0)>.<br>Dauer: 20 Sekunden<br>Effekt von <colortype(506)><edgecolortype(507)>Bruderschaft<edgecolortype(0)><colortype(0)>: Ausgeteilter Schaden ist um 5<nbsp>% erhöht.<br>Du gewährst dir und umstehenden Grup<->pen<->mit<->gliedern <colortype(506)><edgecolortype(507)>Meditative Bruderschaft<edgecolortype(0)><colortype(0)>.<br>Dauer: 20 Sekunden<br><if([gnum68==20],<if([gnum72>=88],Effekt von <colortype(506)><edgecolortype(507)>Meditative Bruderschaft<edgecolortype(0)><colortype(0)>: Öffnet ein <colortype(506)><edgecolortype(507)>Schatten-Chakra<edgecolortype(0)><colortype(0)> mit 100<nbsp>% Wahr<->schein<->lich<->keit für dich selbst und 20<nbsp>% für Grup<->pen<->mit<->glieder\\, wenn du oder ein betroffenes Grup<->pen<->mit<->glied einen Treffer mit einer Waf<->fen<->fer<->tig<->keit oder einem Zauber landet.,Öffnet ein <colortype(506)><edgecolortype(507)>Schatten-Chakra<edgecolortype(0)><colortype(0)> mit 20<nbsp>% Wahr<->schein<->lich<->keit\\, wenn du oder ein betroffenes Grup<->pen<->mit<->glied einen Treffer mit einer Waf<->fen<->fer<->tig<->keit oder einem Zauber landet.)>,Öffnet ein <colortype(506)><edgecolortype(507)>Schatten-Chakra<edgecolortype(0)><colortype(0)> mit 20<nbsp>% Wahr<->schein<->lich<->keit\\, wenn du oder ein betroffenes Grup<->pen<->mit<->glied einen Treffer mit einer Waf<->fen<->fer<->tig<->keit oder einem Zauber landet.)><br>Weiterhin steigt die maximale Stapelanzahl von <colortype(506)><edgecolortype(507)>Schatten-Chakra<edgecolortype(0)><colortype(0)> auf 10.",
+      "unlock_level": 70,
+      "relations": [
+        "granted_by_description",
+        "same_name"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 20,
+          "name": "Mönch",
+          "abbreviation": "MÖN",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

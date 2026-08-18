@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 13,
+  "name": "せんせいこうげき",
+  "description": "戦闘状態になると、自身に「せんせいこうげき」が付与される。\nせんせいこうげき効果：オートアタックの攻撃間隔と、ウェポンスキルおよび魔法のキャストタイムとリキャストタイムが短縮される。\n効果時間：25秒",
+  "description_macro": "戦闘状態になると、自身に<colortype(500)><edgecolortype(501)>「せんせいこうげき」<edgecolortype(0)><colortype(0)>が付与される。<br><colortype(504)><edgecolortype(505)>せんせいこうげき効果：<edgecolortype(0)><colortype(0)>オートアタックの攻撃間隔と、ウェポンスキルおよび魔法のキャストタイムとリキャストタイムが短縮される。<br><colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>25秒",
+  "effects": [
+    "戦闘状態になると、自身に「せんせいこうげき」が付与される。",
+    "せんせいこうげき効果：オートアタックの攻撃間隔と、ウェポンスキルおよび魔法のキャストタイムとリキャストタイムが短縮される。",
+    "効果時間：25秒"
+  ],
+  "role": "Phantom Jobs",
+  "job": {
+    "id": 16,
+    "name": "サポート忍者",
+    "abbreviation": "Ph. Ninja"
+  },
+  "is_phantom_trait": true,
+  "unlock_level": 5,
+  "icon": {
+    "id": 82213,
+    "file": "icon.png"
+  }
+}

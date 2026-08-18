@@ -1,0 +1,94 @@
+{
+  "kind": "ability",
+  "id": 34675,
+  "name": "Imagi Ciel",
+  "description": "Matérialise l'esquisse de Ciel, déployant un ciel peint qui augmente de 5% les dégâts infligés par vous et les équipiers alentour.\nDurée : 20s\nEffet additionnel : vous octroie Palette soustractive préparée.\nDurée : 30s\nEffet additionnel : vous octroie 5 degrés d'Installation.\nDurée : 30s\nInstallation : lorsque vous vous tenez dans les limites du ciel peint\\Effet additionnel : lorsque 5 degrés d'Installation sont consommés\\Effet additionnel : vous octroie Prisme d'étoiles préparé.\nDurée : 20s\nCondition : en combat et esquisse de Ciel peinte sur la toile Paysage.\n\n* Cette action ne peut pas être ajoutée aux barres de raccourcis.\nRemplace Imagi Paysage lorsque les conditions sont réunies.",
+  "description_macro": "Matérialise l'esquisse de <colortype(500)><edgecolortype(501)>Ciel<edgecolortype(0)><colortype(0)>, déployant un ciel peint qui augmente de 5% les dégâts infligés par vous et les équipiers alentour.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 20s<br><colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> vous octroie <colortype(500)><edgecolortype(501)>Palette soustractive préparée<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 30s<br><if([gnum68==42],<if([gnum72>=82],<colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> vous octroie 5 degrés d'<colortype(500)><edgecolortype(501)>Installation<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 30s<br><colortype(506)><edgecolortype(507)>Installation<nbsp>:<edgecolortype(0)><colortype(0)> lorsque vous vous tenez dans les limites du ciel peint\\, réduit de 25% les temps de lancement et de recharge de vos sorts chromatiques et de Prisme d'étoiles.<br>Un degré d'<colortype(500)><edgecolortype(501)>Installation<edgecolortype(0)><colortype(0)> est consommé chaque fois que cela se produit.<br>,)>,)><if([gnum68==42],<if([gnum72>=92],<colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> lorsque 5 degrés d'<colortype(500)><edgecolortype(501)>Installation<edgecolortype(0)><colortype(0)> sont consommés\\, vous octroie <colortype(500)><edgecolortype(501)>Gouttes arc-en-ciel améliorées<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 30s<br><colortype(506)><edgecolortype(507)>Gouttes arc-en-ciel améliorées<nbsp>:<edgecolortype(0)><colortype(0)> Gouttes arc-en-ciel est instantané\\, et son temps de recharge est réduit.<br>,)>,)><if([gnum68==42],<if([gnum72>=100],<colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> vous octroie <colortype(500)><edgecolortype(501)>Prisme d'étoiles préparé<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 20s<br>,)>,)><colortype(506)><edgecolortype(507)>Condition<nbsp>:<edgecolortype(0)><colortype(0)> en combat et esquisse de <colortype(500)><edgecolortype(501)>Ciel<edgecolortype(0)><colortype(0)> peinte sur la toile Paysage.<br><br><colortype(504)><edgecolortype(505)>* Cette action ne peut pas être ajoutée aux barres de raccourcis.<br>Remplace <colortype(500)><edgecolortype(501)>Imagi Paysage<edgecolortype(0)><colortype(0)> lorsque les conditions sont réunies.<edgecolortype(0)><colortype(0)>",
+  "effects": [
+    "Matérialise l'esquisse de Ciel, déployant un ciel peint qui augmente de 5% les dégâts infligés par vous et les équipiers alentour.",
+    "Durée : 20s",
+    "Effet additionnel : vous octroie Palette soustractive préparée.",
+    "Durée : 30s",
+    "Effet additionnel : vous octroie 5 degrés d'Installation.",
+    "Durée : 30s",
+    "Installation : lorsque vous vous tenez dans les limites du ciel peint\\Effet additionnel : lorsque 5 degrés d'Installation sont consommés\\Effet additionnel : vous octroie Prisme d'étoiles préparé.",
+    "Durée : 20s",
+    "Condition : en combat et esquisse de Ciel peinte sur la toile Paysage.",
+    "* Cette action ne peut pas être ajoutée aux barres de raccourcis.",
+    "Remplace Imagi Paysage lorsque les conditions sont réunies."
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 42,
+    "name": "Pictomancien",
+    "abbreviation": "PIC"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 70,
+  "icon": {
+    "id": 3826,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 4,
+    "name": "Aptitude"
+  },
+  "attack_type": {
+    "id": 0,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 120,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 21,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 94,
+      "value": 32
+    },
+    "secondary": {
+      "type_id": 42,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": 0,
+    "effect_yalms": 30,
+    "cast_type": 2
+  },
+  "targeting": {
+    "self": false,
+    "party": false,
+    "alliance": false,
+    "hostile": false,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": true,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 0,
+    "behavior_type": 0,
+    "class_job_category_id": 197,
+    "source_class_job_id": 0,
+    "is_role_action": false,
+    "is_player_action": false,
+    "is_derived_action": true,
+    "equivalence_group": 0
+  }
+}

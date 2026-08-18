@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 224,
+  "name": "Efficacité des actions augmentée V",
+  "description": "Les soins et les dégâts de base des actions sont augmentés de 50%.",
+  "description_macro": "Les soins et les dégâts de base des actions sont augmentés de 50%.",
+  "effects": [
+    "Les soins et les dégâts de base des actions sont augmentés de 50%."
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 36,
+    "name": "Mage Bleu",
+    "abbreviation": "MBU"
+  },
+  "unlock_level": 50,
+  "value": 50,
+  "icon": {
+    "id": 5189,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 129,
+  "source_class_job_id": 36
+}

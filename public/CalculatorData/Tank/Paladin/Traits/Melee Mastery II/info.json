@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 650,
+  "name": "Melee Mastery II",
+  "description": "Increases the potency of Fast Blade to 220, Riot Blade to 170, Royal Authority to 200, Holy Spirit to 400, Atonement to 460, Supplication to 500, Sepulchre to 540, Confiteor to 500, Blade of Faith to 260, Blade of Truth to 380, and Blade of Valor to 500.",
+  "description_macro": "Increases the potency of <colortype(500)><edgecolortype(501)>Fast Blade<edgecolortype(0)><colortype(0)> to 220, <colortype(500)><edgecolortype(501)>Riot Blade<edgecolortype(0)><colortype(0)> to 170, <colortype(500)><edgecolortype(501)>Royal Authority<edgecolortype(0)><colortype(0)> to 200, <colortype(500)><edgecolortype(501)>Holy Spirit<edgecolortype(0)><colortype(0)> to 400, <colortype(500)><edgecolortype(501)>Atonement<edgecolortype(0)><colortype(0)> to 460, <colortype(500)><edgecolortype(501)>Supplication<edgecolortype(0)><colortype(0)> to 500, <colortype(500)><edgecolortype(501)>Sepulchre<edgecolortype(0)><colortype(0)> to 540, <colortype(500)><edgecolortype(501)>Confiteor<edgecolortype(0)><colortype(0)> to 500, <colortype(500)><edgecolortype(501)>Blade of Faith<edgecolortype(0)><colortype(0)> to 260, <colortype(500)><edgecolortype(501)>Blade of Truth<edgecolortype(0)><colortype(0)> to 380, and <colortype(500)><edgecolortype(501)>Blade of Valor<edgecolortype(0)><colortype(0)> to 500.",
+  "effects": [
+    "Increases the potency of Fast Blade to 220, Riot Blade to 170, Royal Authority to 200, Holy Spirit to 400, Atonement to 460, Supplication to 500, Sepulchre to 540, Confiteor to 500, Blade of Faith to 260, Blade of Truth to 380, and Blade of Valor to 500."
+  ],
+  "role": "Tank",
+  "job": {
+    "id": 19,
+    "name": "Paladin",
+    "abbreviation": "PLD"
+  },
+  "unlock_level": 94,
+  "value": 0,
+  "icon": {
+    "id": 6802,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 20,
+  "source_class_job_id": 19
+}

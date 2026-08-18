@@ -1,0 +1,22 @@
+{
+  "kind": "trait",
+  "id": 8,
+  "name": "いあいぬき効果アップ",
+  "description": "いあいぬきの威力を500に上昇させる。さらに即死の確率を10％に上昇させる。",
+  "description_macro": "いあいぬきの威力を500に上昇させる。さらに即死の確率を10％に上昇させる。",
+  "effects": [
+    "いあいぬきの威力を500に上昇させる。さらに即死の確率を10％に上昇させる。"
+  ],
+  "role": "Phantom Jobs",
+  "job": {
+    "id": 5,
+    "name": "サポート侍",
+    "abbreviation": "Ph. Samurai"
+  },
+  "is_phantom_trait": true,
+  "unlock_level": 5,
+  "icon": {
+    "id": 82208,
+    "file": "icon.png"
+  }
+}

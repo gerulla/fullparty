@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 866,
+  "name": "Péon du Contemplateur",
+  "description": "La prochaine altération d'état est annulée.",
+  "effects": [
+    "La prochaine altération d'état est annulée."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 212611,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 24,
+  "source_abilities": [
+    {
+      "id": 3561,
+      "name": "Péon du Contemplateur",
+      "description": "Soigne une altération d'état sur vous ou l'équipier ciblé.\nSi cet effet ne s'est pas déclenché, crée une barrière qui protège de la prochaine altération d'état.\nDurée : 30s",
+      "description_macro": "Soigne une altération d'état sur vous ou l'équipier ciblé.<br>Si cet effet ne s'est pas déclenché, crée une barrière qui protège de la prochaine altération d'état.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 30s",
+      "unlock_level": 35,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Physical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 23,
+          "name": "Barde",
+          "abbreviation": "BRD",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

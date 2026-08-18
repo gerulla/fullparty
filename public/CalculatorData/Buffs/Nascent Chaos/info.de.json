@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 1897,
+  "name": "Saat des Chaos",
+  "description": "Bei ausreichend gefülltem Urkraftbalken verbessert sich Dezimieren zu Chaosklinge und Niedermähen zu Inneres Chaos, sofern erlernt.",
+  "effects": [
+    "Bei ausreichend gefülltem Urkraftbalken verbessert sich Dezimieren zu Chaosklinge und Niedermähen zu Inneres Chaos, sofern erlernt."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 212560,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 22,
+  "source_abilities": [
+    {
+      "id": 52,
+      "name": "Schlachtruf",
+      "description": "Du füllst den Urkraftbalken um 50.\nZusatzeffekt: Gewährt dir Saat des Chaos.\nDauer: 30 Sekunden\nEffekt von Saat des Chaos: Ist dein Urkraftbalken um min. 50 gefüllt\\Maximale Aufladungen: 2\nNur im Kampf wirksam.",
+      "description_macro": "Du füllst den Urkraftbalken um 50.<br><if([gnum68==21],<if([gnum72>=72],Zusatzeffekt: Gewährt dir <colortype(506)><edgecolortype(507)>Saat des Chaos<edgecolortype(0)><colortype(0)>.<br>Dauer: 30 Sekunden<br>Effekt von <colortype(506)><edgecolortype(507)>Saat des Chaos<edgecolortype(0)><colortype(0)>: Ist dein Urkraftbalken um min. 50 gefüllt\\, <if([gnum68==21],<if([gnum72>=80],ändert sich <colortype(502)><edgecolortype(503)>Niedermähen<edgecolortype(0)><colortype(0)> zu <colortype(502)><edgecolortype(503)>Inneres Chaos<edgecolortype(0)><colortype(0)> und <colortype(502)><edgecolortype(503)>Dezimieren<edgecolortype(0)><colortype(0)> zu <colortype(502)><edgecolortype(503)>Chaosklinge<edgecolortype(0)><colortype(0)>.<br>,ändert sich <colortype(502)><edgecolortype(503)>Dezimieren<edgecolortype(0)><colortype(0)> zu <colortype(502)><edgecolortype(503)>Chaosklinge<edgecolortype(0)><colortype(0)>.<br>)>,ändert sich <colortype(502)><edgecolortype(503)>Dezimieren<edgecolortype(0)><colortype(0)> zu <colortype(502)><edgecolortype(503)>Chaosklinge<edgecolortype(0)><colortype(0)>.<br>)>,)>,)>Maximale Aufladungen: 2<br>Nur im Kampf wirksam.",
+      "unlock_level": 50,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Tank"
+      ],
+      "jobs": [
+        {
+          "id": 21,
+          "name": "Krieger",
+          "abbreviation": "KRG",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

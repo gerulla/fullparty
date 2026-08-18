@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 380,
+  "name": "Melee Mastery",
+  "description": "Increases the potency of Slice to 300, Waxing Slice to 140, Shadow of Death to 300, Harpe to 300, Spinning Scythe to 140, Infernal Slice to 140, Whorl of Death to 100, and Nightmare Scythe to 120.",
+  "description_macro": "Increases the potency of <colortype(500)><edgecolortype(501)>Slice<edgecolortype(0)><colortype(0)> to 300, <colortype(500)><edgecolortype(501)>Waxing Slice<edgecolortype(0)><colortype(0)> to 140, <colortype(500)><edgecolortype(501)>Shadow of Death<edgecolortype(0)><colortype(0)> to 300, <colortype(500)><edgecolortype(501)>Harpe<edgecolortype(0)><colortype(0)> to 300, <colortype(500)><edgecolortype(501)>Spinning Scythe<edgecolortype(0)><colortype(0)> to 140, <colortype(500)><edgecolortype(501)>Infernal Slice<edgecolortype(0)><colortype(0)> to 140, <colortype(500)><edgecolortype(501)>Whorl of Death<edgecolortype(0)><colortype(0)> to 100, and <colortype(500)><edgecolortype(501)>Nightmare Scythe<edgecolortype(0)><colortype(0)> to 120.",
+  "effects": [
+    "Increases the potency of Slice to 300, Waxing Slice to 140, Shadow of Death to 300, Harpe to 300, Spinning Scythe to 140, Infernal Slice to 140, Whorl of Death to 100, and Nightmare Scythe to 120."
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 39,
+    "name": "Reaper",
+    "abbreviation": "RPR"
+  },
+  "unlock_level": 60,
+  "value": 0,
+  "icon": {
+    "id": 6801,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 180,
+  "source_class_job_id": 39
+}

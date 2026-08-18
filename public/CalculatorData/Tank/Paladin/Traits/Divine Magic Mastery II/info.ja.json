@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 414,
+  "name": "神聖魔法マスタリーII",
+  "description": "ホーリースピリット、ホーリーサークル、コンフィテオルにＨＰ回復効果を付与する。\u3000回復力：400",
+  "description_macro": "ホーリースピリット、ホーリーサークル、コンフィテオルにＨＰ回復効果を付与する。\u3000<colortype(504)><edgecolortype(505)>回復力：<edgecolortype(0)><colortype(0)>400",
+  "effects": [
+    "ホーリースピリット、ホーリーサークル、コンフィテオルにＨＰ回復効果を付与する。\u3000回復力：400"
+  ],
+  "role": "Tank",
+  "job": {
+    "id": 19,
+    "name": "ナイト",
+    "abbreviation": "PLD"
+  },
+  "unlock_level": 84,
+  "value": 0,
+  "icon": {
+    "id": 5220,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 20,
+  "source_class_job_id": 19
+}

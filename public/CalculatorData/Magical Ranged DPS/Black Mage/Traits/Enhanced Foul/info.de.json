@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 461,
+  "name": "Verbesserter Moder",
+  "description": "Moder kann sofort gewirkt werden.",
+  "description_macro": "<colortype(502)><edgecolortype(503)>Moder<edgecolortype(0)><colortype(0)> kann sofort gewirkt werden.",
+  "effects": [
+    "Moder kann sofort gewirkt werden."
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 25,
+    "name": "Schwarzmagier",
+    "abbreviation": "SMA"
+  },
+  "unlock_level": 80,
+  "value": 0,
+  "icon": {
+    "id": 5369,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 26,
+  "source_class_job_id": 25
+}

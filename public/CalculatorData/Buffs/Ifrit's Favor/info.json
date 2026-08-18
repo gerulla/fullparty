@@ -1,0 +1,71 @@
+{
+  "kind": "combat_status",
+  "id": 2724,
+  "name": "Ifrit's Favor",
+  "description": "Able to execute Crimson Cyclone.",
+  "effects": [
+    "Able to execute Crimson Cyclone."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 212696,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": true,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 28,
+  "source_abilities": [
+    {
+      "id": 25805,
+      "name": "Summon Ifrit",
+      "description": "Summons Ifrit-Egi and orders it to execute Inferno.\nInferno Effect: Rushes forward and deals fire damage to all enemies in a 5-yalm cone before it with a potency of 600 for the first enemy\\\nAdditional Effect: Grants 2 stacks of Fire Attunement\nFire Attunement Effect: Gemshine and Precious Brilliance become fire-aspected\nDuration: 30s\nAdditional Effect: Grants Ifrit's Favor\nEffect of Ifrit's Favor ends upon execution of certain summoner actions.\nCan only be executed while under the effect of Ruby Arcanum and Carbuncle is summoned.\nCurrent pet will leave the battlefield while Ifrit-Egi is present, and return once gone.",
+      "description_macro": "Summons Ifrit-Egi and orders it to execute <if([gnum68==27],<if([gnum72>=50],<colortype(500)><edgecolortype(501)>Inferno<edgecolortype(0)><colortype(0)>,<colortype(500)><edgecolortype(501)>Burning Strike<edgecolortype(0)><colortype(0)>)>,<colortype(500)><edgecolortype(501)>Burning Strike<edgecolortype(0)><colortype(0)>)>.<br><if([gnum68==27],<if([gnum72>=50],<colortype(504)><edgecolortype(505)>Inferno Effect: <edgecolortype(0)><colortype(0)>Rushes forward and deals fire damage to all enemies in a 5-yalm cone before it with a potency of 600 for the first enemy\\, and 50% less for all remaining enemies,<colortype(504)><edgecolortype(505)>Burning Strike Effect: <edgecolortype(0)><colortype(0)>Rushes forward and deals fire damage with a potency of 500)>,<colortype(504)><edgecolortype(505)>Burning Strike Effect: <edgecolortype(0)><colortype(0)>Rushes forward and deals fire damage with a potency of 500)><br><colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>Grants 2 stacks of <colortype(506)><edgecolortype(507)>Fire Attunement<edgecolortype(0)><colortype(0)><br><colortype(504)><edgecolortype(505)>Fire Attunement Effect: <edgecolortype(0)><colortype(0)><colortype(500)><edgecolortype(501)>Gemshine<edgecolortype(0)><colortype(0)> and <colortype(500)><edgecolortype(501)>Precious Brilliance<edgecolortype(0)><colortype(0)> become fire-aspected<br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>30s<br><if([gnum68==27],<if([gnum72>=86],<colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>Grants <colortype(506)><edgecolortype(507)>Ifrit's Favor<edgecolortype(0)><colortype(0)><br>Effect of <colortype(506)><edgecolortype(507)>Ifrit's Favor<edgecolortype(0)><colortype(0)> ends upon execution of certain summoner actions.<br>,)>,)>Can only be executed while under the effect of <colortype(506)><edgecolortype(507)>Ruby Arcanum<edgecolortype(0)><colortype(0)> and Carbuncle is summoned.<br>Current pet will leave the battlefield while Ifrit-Egi is present, and return once gone.",
+      "unlock_level": 30,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Magical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 27,
+          "name": "Summoner",
+          "abbreviation": "SMN",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 25838,
+      "name": "Summon Ifrit II",
+      "description": "Summons Ruby Ifrit and orders it to execute Inferno.\nInferno Effect: Deals fire damage to target and all enemies within 5 yalms with a potency of 800 for the first enemy, and 50% less for all remaining enemies\nAdditional Effect: Grants 2 stacks of Fire Attunement\nDuration: 30s\nFire Attunement Effect: Gemshine and Precious Brilliance become fire-aspected\nAdditional Effect: Grants Ifrit's Favor\nEffect of Ifrit's Favor ends upon execution of certain summoner actions.\nCan only be executed while under the effect of Ruby Arcanum and Carbuncle is summoned.\nCurrent pet will leave the battlefield while Ruby Ifrit is present, and return once gone.",
+      "description_macro": "Summons Ruby Ifrit and orders it to execute <colortype(500)><edgecolortype(501)>Inferno<edgecolortype(0)><colortype(0)>.<br><colortype(504)><edgecolortype(505)>Inferno Effect: <edgecolortype(0)><colortype(0)>Deals fire damage to target and all enemies within 5 yalms with a potency of <if([gnum68==27],<if([gnum72>=94],800,750)>,750)> for the first enemy, and 50% less for all remaining enemies<br><colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>Grants 2 stacks of <colortype(506)><edgecolortype(507)>Fire Attunement<edgecolortype(0)><colortype(0)><br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>30s<br><colortype(504)><edgecolortype(505)>Fire Attunement Effect: <edgecolortype(0)><colortype(0)><colortype(500)><edgecolortype(501)>Gemshine<edgecolortype(0)><colortype(0)> and <colortype(500)><edgecolortype(501)>Precious Brilliance<edgecolortype(0)><colortype(0)> become fire-aspected<br><colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>Grants <colortype(506)><edgecolortype(507)>Ifrit's Favor<edgecolortype(0)><colortype(0)><br>Effect of <colortype(506)><edgecolortype(507)>Ifrit's Favor<edgecolortype(0)><colortype(0)> ends upon execution of certain summoner actions.<br>Can only be executed while under the effect of <colortype(506)><edgecolortype(507)>Ruby Arcanum<edgecolortype(0)><colortype(0)> and Carbuncle is summoned.<br>Current pet will leave the battlefield while Ruby Ifrit is present, and return once gone.",
+      "unlock_level": 90,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Magical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 27,
+          "name": "Summoner",
+          "abbreviation": "SMN",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

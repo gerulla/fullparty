@@ -1,0 +1,25 @@
+{
+  "kind": "trait",
+  "id": 384,
+  "name": "シュラウドゲージ",
+  "description": "「シュラウドゲージ」が上昇するようになる。\n発動条件：ジビトゥ、ギャロウズ、ギロティンの命中時",
+  "description_macro": "<colortype(500)><edgecolortype(501)>「シュラウドゲージ」<edgecolortype(0)><colortype(0)>が上昇するようになる。<br><colortype(504)><edgecolortype(505)>発動条件：<edgecolortype(0)><colortype(0)>ジビトゥ、ギャロウズ、ギロティンの命中時",
+  "effects": [
+    "「シュラウドゲージ」が上昇するようになる。",
+    "発動条件：ジビトゥ、ギャロウズ、ギロティンの命中時"
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 39,
+    "name": "リーパー",
+    "abbreviation": "RPR"
+  },
+  "unlock_level": 80,
+  "value": 0,
+  "icon": {
+    "id": 6406,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 180,
+  "source_class_job_id": 39
+}

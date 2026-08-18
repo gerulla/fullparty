@@ -1,0 +1,25 @@
+{
+  "kind": "trait",
+  "id": 257,
+  "name": "Cartridge Charge",
+  "description": "Stores a Cartridge in your Powder Gauge after successfully completing a combo with Solid Barrel.\nMaximum Cartridges: 2",
+  "description_macro": "Stores a <colortype(506)><edgecolortype(507)>Cartridge<edgecolortype(0)><colortype(0)> in your <colortype(500)><edgecolortype(501)>Powder Gauge<edgecolortype(0)><colortype(0)> after successfully completing a combo with <colortype(500)><edgecolortype(501)>Solid Barrel<edgecolortype(0)><colortype(0)>.<br><colortype(504)><edgecolortype(505)>Maximum Cartridges: <edgecolortype(0)><colortype(0)>2",
+  "effects": [
+    "Stores a Cartridge in your Powder Gauge after successfully completing a combo with Solid Barrel.",
+    "Maximum Cartridges: 2"
+  ],
+  "role": "Tank",
+  "job": {
+    "id": 37,
+    "name": "Gunbreaker",
+    "abbreviation": "GNB"
+  },
+  "unlock_level": 30,
+  "value": 0,
+  "icon": {
+    "id": 6301,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 149,
+  "source_class_job_id": 37
+}

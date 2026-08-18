@@ -1,0 +1,94 @@
+{
+  "kind": "ability",
+  "id": 46598,
+  "name": "おどる",
+  "description": "自身に\n「おどる：つるぎのまい」\n「おどる：みわくのタンゴ」\n「おどる：ふたりのジルバ」\n「おどる：ミステリーワルツ」\nのうち、いずれかの「おどる」ステータスを付与する。\nおどるステータスの効果中は、対応するアクションが実行可能となる。\nつるぎのまい効果：対象に高威力の物理攻撃。\nみわくのタンゴ効果：対象に無属性魔法攻撃を行い、さらに時間を停止させる。\nふたりのジルバ効果：対象に無属性魔法攻撃を行い、麻痺を付与する。さらに与えたダメージの一部をＨＰとして吸収する。\nミステリーワルツ効果：対象に無属性魔法攻撃を行い、暗闇を付与する。さらに自身のＭＰを回復する。",
+  "description_macro": "自身に<br><colortype(500)><edgecolortype(501)>「おどる：つるぎのまい」<br>「おどる：みわくのタンゴ」<br>「おどる：ふたりのジルバ」<br>「おどる：ミステリーワルツ」<br><edgecolortype(0)><colortype(0)>のうち、いずれかの<colortype(500)><edgecolortype(501)>「おどる」<edgecolortype(0)><colortype(0)>ステータスを付与する。<br>おどるステータスの効果中は、対応するアクションが実行可能となる。<br><colortype(504)><edgecolortype(505)>つるぎのまい効果：<edgecolortype(0)><colortype(0)>対象に高威力の物理攻撃。<br><colortype(504)><edgecolortype(505)>みわくのタンゴ効果：<edgecolortype(0)><colortype(0)>対象に無属性魔法攻撃を行い、さらに時間を停止させる。<br><colortype(504)><edgecolortype(505)>ふたりのジルバ効果：<edgecolortype(0)><colortype(0)>対象に無属性魔法攻撃を行い、麻痺を付与する。さらに与えたダメージの一部をＨＰとして吸収する。<br><colortype(504)><edgecolortype(505)>ミステリーワルツ効果：<edgecolortype(0)><colortype(0)>対象に無属性魔法攻撃を行い、暗闇を付与する。さらに自身のＭＰを回復する。",
+  "effects": [
+    "自身に",
+    "「おどる：つるぎのまい」",
+    "「おどる：みわくのタンゴ」",
+    "「おどる：ふたりのジルバ」",
+    "「おどる：ミステリーワルツ」",
+    "のうち、いずれかの「おどる」ステータスを付与する。",
+    "おどるステータスの効果中は、対応するアクションが実行可能となる。",
+    "つるぎのまい効果：対象に高威力の物理攻撃。",
+    "みわくのタンゴ効果：対象に無属性魔法攻撃を行い、さらに時間を停止させる。",
+    "ふたりのジルバ効果：対象に無属性魔法攻撃を行い、麻痺を付与する。さらに与えたダメージの一部をＨＰとして吸収する。",
+    "ミステリーワルツ効果：対象に無属性魔法攻撃を行い、暗闇を付与する。さらに自身のＭＰを回復する。"
+  ],
+  "role": "Phantom Jobs",
+  "job": {
+    "id": 15,
+    "name": "サポート踊り子",
+    "abbreviation": "Ph. Dancer"
+  },
+  "is_phantom_action": true,
+  "unlock_level": 1,
+  "icon": {
+    "id": 64583,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 4,
+    "name": "アビリティ"
+  },
+  "attack_type": {
+    "id": 0,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 30,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 83,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 0,
+      "value": 0
+    },
+    "secondary": {
+      "type_id": 0,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": 0,
+    "effect_yalms": 0,
+    "cast_type": 1
+  },
+  "targeting": {
+    "self": true,
+    "party": false,
+    "alliance": false,
+    "hostile": false,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": false,
+    "requires_facing_target": false
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 0,
+    "behavior_type": 0,
+    "class_job_category_id": 142,
+    "source_class_job_id": 4294967295,
+    "is_role_action": false,
+    "is_player_action": false,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

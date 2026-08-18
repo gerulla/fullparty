@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 565,
+  "name": "Requiescat Mastery",
+  "description": "Upgrades Requiescat to Imperator.",
+  "description_macro": "Upgrades <colortype(500)><edgecolortype(501)>Requiescat<edgecolortype(0)><colortype(0)> to <colortype(500)><edgecolortype(501)>Imperator<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Upgrades Requiescat to Imperator."
+  ],
+  "role": "Tank",
+  "job": {
+    "id": 19,
+    "name": "Paladin",
+    "abbreviation": "PLD"
+  },
+  "unlock_level": 96,
+  "value": 0,
+  "icon": {
+    "id": 5223,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 20,
+  "source_class_job_id": 19
+}

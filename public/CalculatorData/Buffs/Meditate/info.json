@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 1231,
+  "name": "Meditate",
+  "description": "Storing Kenki.",
+  "effects": [
+    "Storing Kenki."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 213306,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 4,
+    "modifier": 10
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 7497,
+      "name": "Meditate",
+      "description": "Gradually increases your Kenki Gauge.\nDuration: 15s\nAdditional Effect: Grants stacks of Meditation when used in combat\\Kenki Gauge not affected when used outside battle.\nEffect ends upon using another action or moving (including facing a different direction).\nCancels auto-attack upon execution.\nTriggers the cooldown of weaponskills upon execution. Cannot be executed during the cooldown of weaponskills.",
+      "description_macro": "Gradually increases your <colortype(500)><edgecolortype(501)>Kenki Gauge<edgecolortype(0)><colortype(0)>.<br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>15s<br><if([gnum68==34],<if([gnum72>=80],<colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>Grants stacks of <colortype(506)><edgecolortype(507)>Meditation<edgecolortype(0)><colortype(0)> when used in combat\\, up to a maximum of 3<br>,)>,)><colortype(500)><edgecolortype(501)>Kenki Gauge<edgecolortype(0)><colortype(0)> not affected when used outside battle.<br>Effect ends upon using another action or moving (including facing a different direction).<br>Cancels auto-attack upon execution.<br>Triggers the cooldown of weaponskills upon execution. Cannot be executed during the cooldown of weaponskills.",
+      "unlock_level": 60,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 34,
+          "name": "Samurai",
+          "abbreviation": "SAM",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

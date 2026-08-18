@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 2712,
+  "name": "Sturm",
+  "description": "Bewegungsgeschwindigkeit ist erhöht.",
+  "effects": [
+    "Bewegungsgeschwindigkeit ist erhöht."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 212817,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 18,
+    "modifier": 0
+  },
+  "class_job_category_id": 29,
+  "source_abilities": [
+    {
+      "id": 25868,
+      "name": "Sturm und Drang",
+      "description": "Du gewährst dir und umstehenden Gruppenmitgliedern Sturm und Drang.\nEffekt von Sturm: Bewegungsgeschwindigkeit ist erhöht.\nDauer: 10 Sekunden\nEffekt von Drang: Erlittener Schaden ist um 10 % verringert.\nDauer: 20 Sekunden",
+      "description_macro": "Du gewährst dir und umstehenden Grup<->pen<->mit<->gliedern <colortype(506)><edgecolortype(507)>Sturm<edgecolortype(0)><colortype(0)> und <colortype(506)><edgecolortype(507)>Drang<edgecolortype(0)><colortype(0)>.<br>Effekt von <colortype(506)><edgecolortype(507)>Sturm<edgecolortype(0)><colortype(0)>: Be<->we<->gungs<->ge<->schwin<->dig<->keit ist erhöht.<br>Dauer: 10 Sekunden<br>Effekt von <colortype(506)><edgecolortype(507)>Drang<edgecolortype(0)><colortype(0)>: Erlittener Schaden ist um 10<nbsp>% verringert.<br>Dauer: 20 Sekunden",
+      "unlock_level": 90,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Healer"
+      ],
+      "jobs": [
+        {
+          "id": 28,
+          "name": "Gelehrter",
+          "abbreviation": "GLT",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

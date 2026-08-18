@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 2029,
+  "name": "Flamme de la vie",
+  "description": "Des dégâts périodiques sont subis.",
+  "effects": [
+    "Des dégâts périodiques sont subis."
+  ],
+  "classification": "debuff",
+  "icon": {
+    "id": 212731,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 2,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": true,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 100
+  },
+  "class_job_category_id": 28,
+  "source_abilities": [
+    {
+      "id": 16514,
+      "name": "Flamme de la vie",
+      "description": "Effectue une attaque magique de feu sur la cible.\nPuissance : 580\nCondition : Transe-Phénix.\n\n* Cette action ne peut pas être ajoutée aux barres de raccourcis.\nRemplace Méga Ruine lorsque les conditions sont réunies.",
+      "description_macro": "Effectue une attaque magique de feu sur la cible.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> <if([gnum68==27],<if([gnum72>=94],580,540)>,540)><br><colortype(506)><edgecolortype(507)>Condition<nbsp>:<edgecolortype(0)><colortype(0)> <colortype(500)><edgecolortype(501)>Transe-Phénix<edgecolortype(0)><colortype(0)>.<br><br><colortype(504)><edgecolortype(505)>* Cette action ne peut pas être ajoutée aux barres de raccourcis.<br>Remplace <colortype(500)><edgecolortype(501)>Méga Ruine<edgecolortype(0)><colortype(0)> lorsque les conditions sont réunies.<edgecolortype(0)><colortype(0)>",
+      "unlock_level": 80,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Magical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 27,
+          "name": "Invocateur",
+          "abbreviation": "INV",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

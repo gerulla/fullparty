@@ -1,0 +1,29 @@
+{
+  "kind": "trait",
+  "id": 387,
+  "name": "Enhanced Arcane Circle",
+  "description": "Grants Circle of Sacrifice to you and nearby party members upon executing Arcane Circle.\nDuration: 5s\nWhen you or party members under this effect successfully land a weaponskill or cast a spell, you may gain a stack of Immortal Sacrifice, up to a maximum of 8.\nDuration: 30s\nAlso grants Bloodsown Circle to self, allowing you to receive stacks of Immortal Sacrifice from party members under the effect of your Circle of Sacrifice.\nDuration: 6s",
+  "description_macro": "Grants <colortype(506)><edgecolortype(507)>Circle of Sacrifice<edgecolortype(0)><colortype(0)> to you and nearby party members upon executing <colortype(500)><edgecolortype(501)>Arcane Circle<edgecolortype(0)><colortype(0)>.<br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>5s<br>When you or party members under this effect successfully land a weaponskill or cast a spell, you may gain a stack of <colortype(506)><edgecolortype(507)>Immortal Sacrifice<edgecolortype(0)><colortype(0)>, up to a maximum of 8.<br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>30s<br>Also grants <colortype(506)><edgecolortype(507)>Bloodsown Circle<edgecolortype(0)><colortype(0)> to self, allowing you to receive stacks of <colortype(506)><edgecolortype(507)>Immortal Sacrifice<edgecolortype(0)><colortype(0)> from party members under the effect of your <colortype(506)><edgecolortype(507)>Circle of Sacrifice<edgecolortype(0)><colortype(0)>.<br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>6s",
+  "effects": [
+    "Grants Circle of Sacrifice to you and nearby party members upon executing Arcane Circle.",
+    "Duration: 5s",
+    "When you or party members under this effect successfully land a weaponskill or cast a spell, you may gain a stack of Immortal Sacrifice, up to a maximum of 8.",
+    "Duration: 30s",
+    "Also grants Bloodsown Circle to self, allowing you to receive stacks of Immortal Sacrifice from party members under the effect of your Circle of Sacrifice.",
+    "Duration: 6s"
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 39,
+    "name": "Reaper",
+    "abbreviation": "RPR"
+  },
+  "unlock_level": 88,
+  "value": 0,
+  "icon": {
+    "id": 6409,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 180,
+  "source_class_job_id": 39
+}

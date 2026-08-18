@@ -1,0 +1,35 @@
+{
+  "kind": "trait",
+  "id": 650,
+  "name": "アクション威力アップII",
+  "description": "特定のアクションの威力を上昇させる。\n\nファストブレードの威力：220\nライオットソードの威力：170\nロイヤルアソリティの威力：200\nホーリースピリットの威力：400\nロイエの威力：460\nゲベートの威力：500\nグラブカッマーの威力：540\nコンフィテオルの威力：500\nブレード・オブ・フェイスの威力：260\nブレード・オブ・トゥルースの威力：380\nブレード・オブ・ヴァラーの威力：500",
+  "description_macro": "特定のアクションの威力を上昇させる。<br><br><colortype(504)><edgecolortype(505)>ファストブレードの威力：<edgecolortype(0)><colortype(0)>220<br><colortype(504)><edgecolortype(505)>ライオットソードの威力：<edgecolortype(0)><colortype(0)>170<br><colortype(504)><edgecolortype(505)>ロイヤルアソリティの威力：<edgecolortype(0)><colortype(0)>200<br><colortype(504)><edgecolortype(505)>ホーリースピリットの威力：<edgecolortype(0)><colortype(0)>400<br><colortype(504)><edgecolortype(505)>ロイエの威力：<edgecolortype(0)><colortype(0)>460<br><colortype(504)><edgecolortype(505)>ゲベートの威力：<edgecolortype(0)><colortype(0)>500<br><colortype(504)><edgecolortype(505)>グラブカッマーの威力：<edgecolortype(0)><colortype(0)>540<br><colortype(504)><edgecolortype(505)>コンフィテオルの威力：<edgecolortype(0)><colortype(0)>500<br><colortype(504)><edgecolortype(505)>ブレード・オブ・フェイスの威力：<edgecolortype(0)><colortype(0)>260<br><colortype(504)><edgecolortype(505)>ブレード・オブ・トゥルースの威力：<edgecolortype(0)><colortype(0)>380<br><colortype(504)><edgecolortype(505)>ブレード・オブ・ヴァラーの威力：<edgecolortype(0)><colortype(0)>500",
+  "effects": [
+    "特定のアクションの威力を上昇させる。",
+    "ファストブレードの威力：220",
+    "ライオットソードの威力：170",
+    "ロイヤルアソリティの威力：200",
+    "ホーリースピリットの威力：400",
+    "ロイエの威力：460",
+    "ゲベートの威力：500",
+    "グラブカッマーの威力：540",
+    "コンフィテオルの威力：500",
+    "ブレード・オブ・フェイスの威力：260",
+    "ブレード・オブ・トゥルースの威力：380",
+    "ブレード・オブ・ヴァラーの威力：500"
+  ],
+  "role": "Tank",
+  "job": {
+    "id": 19,
+    "name": "ナイト",
+    "abbreviation": "PLD"
+  },
+  "unlock_level": 94,
+  "value": 0,
+  "icon": {
+    "id": 6802,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 20,
+  "source_class_job_id": 19
+}

@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 1993,
+  "name": "Débarrassage",
+  "description": "Insensible à un certain montant de dégâts.",
+  "effects": [
+    "Insensible à un certain montant de dégâts."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 212557,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": true,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 22,
+  "source_abilities": [
+    {
+      "id": 7388,
+      "name": "Débarrassage",
+      "description": "Crée une barrière sur vous et les équipiers alentour, absorbant les dégâts subis pour un total de 15% des PV maximums.\nSi Frisson de la bataille, Damnation et/ou Intuition fougueuse sont octroyés, dissipe ces effets et augmente de 2% celui de la barrière pour chacun d'entre eux.\nDurée : 30s\nEffet additionnel : restaure périodiquement vos PV et ceux des équipiers alentour.\nPuissance : 100 Durée : 15s\nEffet additionnel : restaure vos PV et ceux des équipiers alentour.\nPuissance : 300",
+      "description_macro": "Crée une barrière sur vous et les équipiers alentour, absorbant les dégâts subis pour un total de 15% des PV maximums.<br>Si <colortype(500)><edgecolortype(501)>Frisson de la bataille<edgecolortype(0)><colortype(0)>, <if([gnum68==21],<if([gnum72>=92],<colortype(500)><edgecolortype(501)>Damnation<edgecolortype(0)><colortype(0)>,<colortype(500)><edgecolortype(501)>Représailles<edgecolortype(0)><colortype(0)>)>,<colortype(500)><edgecolortype(501)>Représailles<edgecolortype(0)><colortype(0)>)> et/ou <colortype(500)><edgecolortype(501)><if([gnum68==21],<if([gnum72>=82],Intuition fougueuse,Intuition pure)>,Intuition pure)><edgecolortype(0)><colortype(0)> sont octroyés, dissipe ces effets et augmente de 2% celui de la barrière pour chacun d'entre eux.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 30s<br><colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> restaure périodiquement vos PV et ceux des équipiers alentour.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> 100 <colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 15s<if([gnum68==21],<if([gnum72>=76],<br><colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> restaure vos PV et ceux des équipiers alentour.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> 300,)>,)>",
+      "unlock_level": 68,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Tank"
+      ],
+      "jobs": [
+        {
+          "id": 21,
+          "name": "Guerrier",
+          "abbreviation": "GUE",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 1318,
+  "name": "Zanshin Ready",
+  "description": "Able to execute Zanshin.",
+  "effects": [
+    "Able to execute Zanshin."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 213318,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": true,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 111,
+  "source_abilities": [
+    {
+      "id": 16482,
+      "name": "Ikishoten",
+      "description": "Increases Kenki Gauge by 50.\nAdditional Effect: Grants Ogi Namikiri Ready\nDuration: 30s\nAdditional Effect: Grants Zanshin Ready\nDuration: 30s\nCan only be executed while in combat.",
+      "description_macro": "Increases <colortype(500)><edgecolortype(501)>Kenki Gauge<edgecolortype(0)><colortype(0)> by 50.<br><if([gnum68==34],<if([gnum72>=90],<colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>Grants <colortype(506)><edgecolortype(507)>Ogi Namikiri Ready<edgecolortype(0)><colortype(0)><br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>30s<br>,)>,)><if([gnum68==34],<if([gnum72>=96],<colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>Grants <colortype(506)><edgecolortype(507)>Zanshin Ready<edgecolortype(0)><colortype(0)><br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>30s<br>,)>,)>Can only be executed while in combat.",
+      "unlock_level": 68,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 34,
+          "name": "Samurai",
+          "abbreviation": "SAM",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

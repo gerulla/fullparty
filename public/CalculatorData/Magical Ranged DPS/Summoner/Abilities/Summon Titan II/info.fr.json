@@ -1,0 +1,92 @@
+{
+  "kind": "ability",
+  "id": 25839,
+  "name": "Invocation Titan II",
+  "description": "Vous invoquez un Titan topaze et lui ordonnez d'exécuter Fureur tellurique.\n\nEffectue une attaque magique de terre sur la cible et les ennemis autour dans une zone de 5 yalms.\nPuissance : 800\nLa puissance est réduite de 50% au-delà du premier ennemi touché.\nEffet additionnel : vous octroie 4 degrés de Syntonie de terre.\nDurée : 30s\nSyntonie de terre : l'élément d'Éclat des gemmes et de Resplendissement des gemmes devient la terre.\nCondition : Arcane topaze et Carbuncle invoqué.\nCarbuncle disparaît lors de l'invocation, mais revient automatiquement une fois qu'elle prend fin.",
+  "description_macro": "Vous invoquez un Titan topaze et lui ordonnez d'exécuter <colortype(500)><edgecolortype(501)>Fureur tellurique<edgecolortype(0)><colortype(0)>.<br><br>Effectue une attaque magique de terre sur la cible et les ennemis autour dans une zone de 5 yalms.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> <if([gnum68==27],<if([gnum72>=94],800,750)>,750)><br>La puissance est réduite de 50% au-delà du premier ennemi touché.<br><colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> vous octroie 4 degrés de <colortype(500)><edgecolortype(501)>Syntonie de terre<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 30s<br><colortype(506)><edgecolortype(507)>Syntonie de terre<nbsp>:<edgecolortype(0)><colortype(0)> l'élément d'<colortype(500)><edgecolortype(501)>Éclat des gemmes<edgecolortype(0)><colortype(0)> et de <colortype(500)><edgecolortype(501)>Resplendissement des gemmes<edgecolortype(0)><colortype(0)> devient la terre.<br><colortype(506)><edgecolortype(507)>Condition<nbsp>:<edgecolortype(0)><colortype(0)> <colortype(500)><edgecolortype(501)>Arcane topaze<edgecolortype(0)><colortype(0)> et Carbuncle invoqué.<br>Carbuncle disparaît lors de l'invocation, mais revient au<->to<->ma<->ti<->que<->ment une fois qu'elle prend fin.",
+  "effects": [
+    "Vous invoquez un Titan topaze et lui ordonnez d'exécuter Fureur tellurique.",
+    "Effectue une attaque magique de terre sur la cible et les ennemis autour dans une zone de 5 yalms.",
+    "Puissance : 800",
+    "La puissance est réduite de 50% au-delà du premier ennemi touché.",
+    "Effet additionnel : vous octroie 4 degrés de Syntonie de terre.",
+    "Durée : 30s",
+    "Syntonie de terre : l'élément d'Éclat des gemmes et de Resplendissement des gemmes devient la terre.",
+    "Condition : Arcane topaze et Carbuncle invoqué.",
+    "Carbuncle disparaît lors de l'invocation, mais revient automatiquement une fois qu'elle prend fin."
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 27,
+    "name": "Invocateur",
+    "abbreviation": "INV"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 90,
+  "icon": {
+    "id": 2773,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 2,
+    "name": "Sort"
+  },
+  "attack_type": {
+    "id": 5,
+    "name": "magie"
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 2.5,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 58,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 71,
+      "value": 2
+    },
+    "secondary": {
+      "type_id": 116,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": 25,
+    "effect_yalms": 0,
+    "cast_type": 1
+  },
+  "targeting": {
+    "self": false,
+    "party": false,
+    "alliance": false,
+    "hostile": true,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": false
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 7,
+    "behavior_type": 0,
+    "class_job_category_id": 28,
+    "source_class_job_id": 27,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

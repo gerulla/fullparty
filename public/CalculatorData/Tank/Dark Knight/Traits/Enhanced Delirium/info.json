@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 572,
+  "name": "Enhanced Delirium",
+  "description": "Upgrades Bloodspiller and Quietus to Scarlet Delirium and Impalement respectively.",
+  "description_macro": "Upgrades <colortype(500)><edgecolortype(501)>Bloodspiller<edgecolortype(0)><colortype(0)> and <colortype(500)><edgecolortype(501)>Quietus<edgecolortype(0)><colortype(0)> to <colortype(500)><edgecolortype(501)>Scarlet Delirium<edgecolortype(0)><colortype(0)> and <colortype(500)><edgecolortype(501)>Impalement<edgecolortype(0)><colortype(0)> respectively.",
+  "effects": [
+    "Upgrades Bloodspiller and Quietus to Scarlet Delirium and Impalement respectively."
+  ],
+  "role": "Tank",
+  "job": {
+    "id": 32,
+    "name": "Dark Knight",
+    "abbreviation": "DRK"
+  },
+  "unlock_level": 96,
+  "value": 0,
+  "icon": {
+    "id": 6069,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 98,
+  "source_class_job_id": 32
+}

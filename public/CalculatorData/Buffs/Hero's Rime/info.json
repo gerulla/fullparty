@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 4249,
+  "name": "Hero's Rime",
+  "description": "Damage dealt and healing potency are increased while damage taken is reduced.",
+  "effects": [
+    "Damage dealt and healing potency are increased while damage taken is reduced."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 229912,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": true,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 10
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 41610,
+      "name": "Hero's Rime",
+      "description": "Increases damage dealt and healing potency of self and nearby party members by 10%, while reducing damage taken by 10%.\nDuration: 20s\nEffect cannot be stacked with Offensive Aria.",
+      "description_macro": "Increases damage dealt and healing potency of self and nearby party members by 10%, while reducing damage taken by 10%.<br><colortype(504)><edgecolortype(505)>Duration:<edgecolortype(0)><colortype(0)> 20s<br>Effect cannot be stacked with <colortype(506)><edgecolortype(507)>Offensive Aria<edgecolortype(0)><colortype(0)>.",
+      "unlock_level": 0,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Phantom Jobs"
+      ],
+      "jobs": [
+        {
+          "id": 6,
+          "name": "Phantom Bard",
+          "abbreviation": "Ph. Bard",
+          "is_phantom": true
+        }
+      ]
+    }
+  ]
+}

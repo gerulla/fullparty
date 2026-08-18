@@ -1,0 +1,31 @@
+{
+  "kind": "trait",
+  "id": 413,
+  "name": "Verbesserte Intervention",
+  "description": "Verlängert den Effekt von Intervention auf 8 Sekunden und fügt folgende Effekte hinzu:\nZusatzeffekt: Gewährt dem Ziel Trutz des Ritters.\nDauer: 4 Sekunden\nEffekt von Trutz des Ritters: Verringert erlittenen Schaden um 10 %.\nZusatzeffekt: Gewährt dem Ziel Schutz des Ritters.\nDauer: 12 Sekunden\nEffekt von Schutz des Ritters: Regeneriert stetig LP des Ziels.\nHeilpotenzial: 250",
+  "description_macro": "Verlängert den Effekt von <colortype(502)><edgecolortype(503)>Intervention<edgecolortype(0)><colortype(0)> auf 8 Sekunden und fügt folgende Effekte hinzu:<br>Zusatzeffekt: Gewährt dem Ziel <colortype(506)><edgecolortype(507)>Trutz des Ritters<edgecolortype(0)><colortype(0)>.<br>Dauer: 4 Sekunden<br>Effekt von <colortype(506)><edgecolortype(507)>Trutz des Ritters<edgecolortype(0)><colortype(0)>: Verringert erlittenen Schaden um 10<nbsp>%.<br>Zusatzeffekt: Gewährt dem Ziel <colortype(506)><edgecolortype(507)>Schutz des Ritters<edgecolortype(0)><colortype(0)>.<br>Dauer: 12 Sekunden<br>Effekt von <colortype(506)><edgecolortype(507)>Schutz des Ritters<edgecolortype(0)><colortype(0)>: Regeneriert stetig LP des Ziels.<br>Heilpotenzial: 250",
+  "effects": [
+    "Verlängert den Effekt von Intervention auf 8 Sekunden und fügt folgende Effekte hinzu:",
+    "Zusatzeffekt: Gewährt dem Ziel Trutz des Ritters.",
+    "Dauer: 4 Sekunden",
+    "Effekt von Trutz des Ritters: Verringert erlittenen Schaden um 10 %.",
+    "Zusatzeffekt: Gewährt dem Ziel Schutz des Ritters.",
+    "Dauer: 12 Sekunden",
+    "Effekt von Schutz des Ritters: Regeneriert stetig LP des Ziels.",
+    "Heilpotenzial: 250"
+  ],
+  "role": "Tank",
+  "job": {
+    "id": 19,
+    "name": "Paladin",
+    "abbreviation": "PLD"
+  },
+  "unlock_level": 82,
+  "value": 0,
+  "icon": {
+    "id": 5219,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 20,
+  "source_class_job_id": 19
+}

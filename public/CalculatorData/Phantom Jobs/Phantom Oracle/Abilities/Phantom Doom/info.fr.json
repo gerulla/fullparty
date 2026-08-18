@@ -1,0 +1,89 @@
+{
+  "kind": "ability",
+  "id": 41642,
+  "name": "Châtiment",
+  "description": "A une chance d'infliger Châtiment a la cible.\nDurée : de 8 à 60s\nChâtiment : à la fin de l'effet, la cible tombe inconsciente.\nSans effet si la cible est hors-combat.\nL'effet est annulé si la cible quitte le combat.\nPartage le même temps de recharge que Récupération.",
+  "description_macro": "A une chance d'infliger <colortype(500)><edgecolortype(501)>Châtiment<edgecolortype(0)><colortype(0)> a la cible.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> de 8 à 60s<br><colortype(506)><edgecolortype(507)>Châtiment<nbsp>:<edgecolortype(0)><colortype(0)> à la fin de l'effet, la cible tombe in<->cons<->cien<->te.<br>Sans effet si la cible est hors-combat.<br>L'effet est annulé si la cible quitte le combat.<br>Partage le même temps de recharge que <colortype(500)><edgecolortype(501)>Récupération<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "A une chance d'infliger Châtiment a la cible.",
+    "Durée : de 8 à 60s",
+    "Châtiment : à la fin de l'effet, la cible tombe inconsciente.",
+    "Sans effet si la cible est hors-combat.",
+    "L'effet est annulé si la cible quitte le combat.",
+    "Partage le même temps de recharge que Récupération."
+  ],
+  "role": "Phantom Jobs",
+  "job": {
+    "id": 11,
+    "name": "Devin fantôme",
+    "abbreviation": "Devin fant."
+  },
+  "is_phantom_action": true,
+  "unlock_level": 3,
+  "icon": {
+    "id": 64564,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 4,
+    "name": "Aptitude"
+  },
+  "attack_type": {
+    "id": 0,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 30,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 85,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 0,
+      "value": 0
+    },
+    "secondary": {
+      "type_id": 0,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": 30,
+    "effect_yalms": 0,
+    "cast_type": 1
+  },
+  "targeting": {
+    "self": false,
+    "party": false,
+    "alliance": false,
+    "hostile": true,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 0,
+    "behavior_type": 0,
+    "class_job_category_id": 142,
+    "source_class_job_id": 4294967295,
+    "is_role_action": false,
+    "is_player_action": false,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

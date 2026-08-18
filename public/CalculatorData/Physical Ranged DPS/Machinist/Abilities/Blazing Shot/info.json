@@ -1,0 +1,87 @@
+{
+  "kind": "ability",
+  "id": 36978,
+  "name": "Blazing Shot",
+  "description": "Delivers an attack with a potency of 240.\nAdditional Effect: Reduces the recast time of both Double Check and Checkmate by 15s\nCan only be executed when firearm is Overheated.\nThis weaponskill does not share a recast timer with any other actions. Upon execution, the recast timer for this action will be applied to all other weaponskills and magic actions.",
+  "description_macro": "Delivers an attack with a potency of <if([gnum68==31],<if([gnum72>=94],240,220)>,220)>.<br><colortype(504)><edgecolortype(505)>Additional Effect:<edgecolortype(0)><colortype(0)> <if([gnum68==31],<if([gnum72>=92],Reduces the recast time of both <colortype(500)><edgecolortype(501)>Double Check<edgecolortype(0)><colortype(0)> and <colortype(500)><edgecolortype(501)>Checkmate<edgecolortype(0)><colortype(0)>,Reduces the recast time of both <colortype(500)><edgecolortype(501)>Gauss Round<edgecolortype(0)><colortype(0)> and <colortype(500)><edgecolortype(501)>Ricochet<edgecolortype(0)><colortype(0)>)>,Reduces the recast time of both <colortype(500)><edgecolortype(501)>Gauss Round<edgecolortype(0)><colortype(0)> and <colortype(500)><edgecolortype(501)>Ricochet<edgecolortype(0)><colortype(0)>)> by 15s<br>Can only be executed when firearm is <colortype(506)><edgecolortype(507)>Overheated<edgecolortype(0)><colortype(0)>.<br>This weaponskill does not share a recast timer with any other actions. Upon execution, the recast timer for this action will be applied to all other weaponskills and magic actions.",
+  "effects": [
+    "Delivers an attack with a potency of 240.",
+    "Additional Effect: Reduces the recast time of both Double Check and Checkmate by 15s",
+    "Can only be executed when firearm is Overheated.",
+    "This weaponskill does not share a recast timer with any other actions. Upon execution, the recast timer for this action will be applied to all other weaponskills and magic actions."
+  ],
+  "role": "Physical Ranged DPS",
+  "job": {
+    "id": 31,
+    "name": "Machinist",
+    "abbreviation": "MCH"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 68,
+  "icon": {
+    "id": 3506,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 3,
+    "name": "Weaponskill"
+  },
+  "attack_type": {
+    "id": 4294967295,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 2.5,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 58,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 10,
+      "value": 2688
+    },
+    "secondary": {
+      "type_id": 62,
+      "value": 603
+    }
+  },
+  "range": {
+    "target_yalms": -1,
+    "effect_yalms": 0,
+    "cast_type": 1
+  },
+  "targeting": {
+    "self": false,
+    "party": false,
+    "alliance": false,
+    "hostile": true,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 7,
+    "behavior_type": 0,
+    "class_job_category_id": 96,
+    "source_class_job_id": 31,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

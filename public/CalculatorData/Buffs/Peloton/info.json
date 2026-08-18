@@ -1,0 +1,62 @@
+{
+  "kind": "combat_status",
+  "id": 1199,
+  "name": "Peloton",
+  "description": "Movement speed is increased. Effect ends upon entering battle.",
+  "effects": [
+    "Movement speed is increased. Effect ends upon entering battle."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 213908,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 1,
+  "parameter": {
+    "effect": 18,
+    "modifier": 0
+  },
+  "class_job_category_id": 115,
+  "source_abilities": [
+    {
+      "id": 7557,
+      "name": "Peloton",
+      "description": "Increases movement speed of self and nearby party members.\nDuration: 30s\nEffect ends when enmity is generated. Has no effect in battle.",
+      "description_macro": "Increases movement speed of self and nearby party members.<br><colortype(504)><edgecolortype(505)>Duration:<edgecolortype(0)><colortype(0)> 30s<br>Effect ends when enmity is generated. Has no effect in battle.",
+      "unlock_level": 20,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Physical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 23,
+          "name": "Bard",
+          "abbreviation": "BRD",
+          "is_phantom": false
+        },
+        {
+          "id": 31,
+          "name": "Machinist",
+          "abbreviation": "MCH",
+          "is_phantom": false
+        },
+        {
+          "id": 38,
+          "name": "Dancer",
+          "abbreviation": "DNC",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "kind": "trait",
+  "id": 672,
+  "name": "Verbesserte Pikto-Farben",
+  "description": "Erhöht den Attacke-Wert folgender Kommandos:\nAttacke-Wert von Feuer in Rot: 310\nAttacke-Wert von Wind in Grün: 350\nAttacke-Wert von Aqua in Blau: 390\nAttacke-Wert von Muse mit Bommel: 700\nAttacke-Wert von Beschwingte Muse: 700\nAttacke-Wert von Opus Mognum: 800\nAttacke-Wert von Hammerstempel: 420",
+  "description_macro": "Erhöht den Attacke-Wert folgender Kommandos:<br>Attacke-Wert von <colortype(502)><edgecolortype(503)>Feuer in Rot<edgecolortype(0)><colortype(0)>: 310<br>Attacke-Wert von <colortype(502)><edgecolortype(503)>Wind in Grün<edgecolortype(0)><colortype(0)>: 350<br>Attacke-Wert von <colortype(502)><edgecolortype(503)>Aqua in Blau<edgecolortype(0)><colortype(0)>: 390<br>Attacke-Wert von <colortype(502)><edgecolortype(503)>Muse mit Bommel<edgecolortype(0)><colortype(0)>: 700<br>Attacke-Wert von <colortype(502)><edgecolortype(503)>Beschwingte Muse<edgecolortype(0)><colortype(0)>: 700<br>Attacke-Wert von <colortype(502)><edgecolortype(503)>Opus Mognum<edgecolortype(0)><colortype(0)>: 800<br>Attacke-Wert von <colortype(502)><edgecolortype(503)>Hammerstempel<edgecolortype(0)><colortype(0)>: 420",
+  "effects": [
+    "Erhöht den Attacke-Wert folgender Kommandos:",
+    "Attacke-Wert von Feuer in Rot: 310",
+    "Attacke-Wert von Wind in Grün: 350",
+    "Attacke-Wert von Aqua in Blau: 390",
+    "Attacke-Wert von Muse mit Bommel: 700",
+    "Attacke-Wert von Beschwingte Muse: 700",
+    "Attacke-Wert von Opus Mognum: 800",
+    "Attacke-Wert von Hammerstempel: 420"
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 42,
+    "name": "Piktomant",
+    "abbreviation": "PKT"
+  },
+  "unlock_level": 54,
+  "value": 0,
+  "icon": {
+    "id": 6829,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 197,
+  "source_class_job_id": 42
+}

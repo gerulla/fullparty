@@ -1,0 +1,89 @@
+{
+  "kind": "ability",
+  "id": 7390,
+  "name": "Delirium",
+  "description": "Grants 3 stacks of Delirium and Blood Weapon.\nDelirium Effect: Changes Bloodspiller to Scarlet Delirium and Quietus to Impalement\nDuration: 15s\nBlood Weapon Effect: Each stack increases Blood Gauge by 10 and restores MP upon landing weaponskills or spells\nDuration: 15s\nEffect does not stack when hitting multiple targets with a single attack.",
+  "description_macro": "Grants 3 stacks of <colortype(506)><edgecolortype(507)>Delirium<edgecolortype(0)><colortype(0)> and <colortype(506)><edgecolortype(507)>Blood Weapon<edgecolortype(0)><colortype(0)>.<br><colortype(504)><edgecolortype(505)>Delirium Effect: <edgecolortype(0)><colortype(0)><if([gnum68==32],<if([gnum72>=96],Changes <colortype(500)><edgecolortype(501)>Bloodspiller<edgecolortype(0)><colortype(0)> to <colortype(500)><edgecolortype(501)>Scarlet Delirium<edgecolortype(0)><colortype(0)> and <colortype(500)><edgecolortype(501)>Quietus<edgecolortype(0)><colortype(0)> to <colortype(500)><edgecolortype(501)>Impalement<edgecolortype(0)><colortype(0)><br>,Each stack allows the execution of <colortype(500)><edgecolortype(501)>Quietus<edgecolortype(0)><colortype(0)> or <colortype(500)><edgecolortype(501)>Bloodspiller<edgecolortype(0)><colortype(0)> without <colortype(506)><edgecolortype(507)>Blackblood<edgecolortype(0)><colortype(0)> cost\\, restoring MP when landing either weaponskill<br>)>,Each stack allows the execution of <colortype(500)><edgecolortype(501)>Quietus<edgecolortype(0)><colortype(0)> or <colortype(500)><edgecolortype(501)>Bloodspiller<edgecolortype(0)><colortype(0)> without <colortype(506)><edgecolortype(507)>Blackblood<edgecolortype(0)><colortype(0)> cost\\, restoring MP when landing either weaponskill<br>)><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>15s<br><colortype(504)><edgecolortype(505)>Blood Weapon Effect: <edgecolortype(0)><colortype(0)>Each stack increases <colortype(500)><edgecolortype(501)>Blood Gauge<edgecolortype(0)><colortype(0)> by 10 and restores MP upon landing weaponskills or spells<br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>15s<br>Effect does not stack when hitting multiple targets with a single attack.",
+  "effects": [
+    "Grants 3 stacks of Delirium and Blood Weapon.",
+    "Delirium Effect: Changes Bloodspiller to Scarlet Delirium and Quietus to Impalement",
+    "Duration: 15s",
+    "Blood Weapon Effect: Each stack increases Blood Gauge by 10 and restores MP upon landing weaponskills or spells",
+    "Duration: 15s",
+    "Effect does not stack when hitting multiple targets with a single attack."
+  ],
+  "role": "Tank",
+  "job": {
+    "id": 32,
+    "name": "Dark Knight",
+    "abbreviation": "DRK"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 68,
+  "icon": {
+    "id": 3078,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 4,
+    "name": "Ability"
+  },
+  "attack_type": {
+    "id": 0,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 60,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 11,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 0,
+      "value": 0
+    },
+    "secondary": {
+      "type_id": 62,
+      "value": 570
+    }
+  },
+  "range": {
+    "target_yalms": 0,
+    "effect_yalms": 0,
+    "cast_type": 1
+  },
+  "targeting": {
+    "self": true,
+    "party": false,
+    "alliance": false,
+    "hostile": false,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 0,
+    "behavior_type": 0,
+    "class_job_category_id": 98,
+    "source_class_job_id": 32,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

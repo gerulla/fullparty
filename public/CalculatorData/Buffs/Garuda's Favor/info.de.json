@@ -1,0 +1,71 @@
+{
+  "kind": "combat_status",
+  "id": 2725,
+  "name": "Garudas Gunst",
+  "description": "Wirbelströmung kann ausgeführt werden.",
+  "effects": [
+    "Wirbelströmung kann ausgeführt werden."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 212697,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": true,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 28,
+  "source_abilities": [
+    {
+      "id": 25807,
+      "name": "Garuda-Beschwörung",
+      "description": "Du rufst dein Garuda-Egi an deine Seite und lässt es Windschlag ausführen, was dem Ziel und allen ihm umstehenden Gegnern innerhalb von 5y windbasierten magischen Schaden zufügt.\nAttacke-Wert: 600\nAttacke-Wert verringert sich ab dem zweiten Gegner um 50 %.\nZusatzeffekt: 4 Stapel Windäther\nDauer: 30 Sekunden\nEffekt von Windäther: Juwelenschein und Edelglanz werden windbasiert.\nZusatzeffekt: Garudas Gunst\nDieser Effekt wird aufgehoben\\Bedingung: Smaragd-Arkanum aktiv und Karfunkel bereits gerufen.\nDein Karfunkel verschwindet während der Beschwörung von Garuda, kehrt danach aber an deine Seite zurück.",
+      "description_macro": "Du rufst dein Garuda-Egi an deine Seite und lässt es <if([gnum68==27],<if([gnum72>=50],<colortype(502)><edgecolortype(503)>Windschlag<edgecolortype(0)><colortype(0)>,<colortype(502)><edgecolortype(503)>Lufthieb<edgecolortype(0)><colortype(0)>)>,<colortype(502)><edgecolortype(503)>Lufthieb<edgecolortype(0)><colortype(0)>)> ausführen, was dem Ziel und allen ihm umstehenden Gegnern innerhalb von 5y windbasierten magischen Schaden zufügt.<br>Attacke-Wert: <if([gnum68==27],<if([gnum72>=50],600,100)>,100)><br><if([gnum68==27],<if([gnum72>=50],Attacke-Wert verringert sich ab dem zweiten Gegner um 50<nbsp>%.<br>,)>,)>Zusatzeffekt: 4 Stapel <colortype(506)><edgecolortype(507)>Windäther<edgecolortype(0)><colortype(0)><br>Dauer: 30 Sekunden<br>Effekt von <colortype(506)><edgecolortype(507)>Windäther<edgecolortype(0)><colortype(0)>: <colortype(502)><edgecolortype(503)>Juwelenschein<edgecolortype(0)><colortype(0)> und <colortype(502)><edgecolortype(503)>Edelglanz<edgecolortype(0)><colortype(0)> werden windbasiert.<br><if([gnum68==27],<if([gnum72>=86],Zusatzeffekt: <colortype(506)><edgecolortype(507)>Garudas Gunst<edgecolortype(0)><colortype(0)><br>Dieser Effekt wird aufgehoben\\, sobald du ein anderes <colortype(500)><edgecolortype(501)>Beschwörungs<edgecolortype(0)><colortype(0)>-Kommando ausführst.<br>,)>,)>Bedingung: <colortype(506)><edgecolortype(507)>Smaragd-Arkanum<edgecolortype(0)><colortype(0)> aktiv und Karfunkel bereits gerufen.<br>Dein Karfunkel verschwindet während der Beschwörung von Garuda, kehrt danach aber an deine Seite zurück.",
+      "unlock_level": 45,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Magical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 27,
+          "name": "Beschwörer",
+          "abbreviation": "BSW",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 25840,
+      "name": "Smaragd-Garuda-Beschwörung",
+      "description": "Du rufst Smaragd-Garuda an deine Seite und lässt sie Windschlag ausführen, was dem Ziel und allen ihn umstehenden Gegnern innerhalb von 5y windbasierten magischen Schaden zufügt.\nAttacke-Wert: 800\nAttacke-Wert verringert sich ab dem zweiten Gegner um 50 %.\nZusatzeffekt: 4 Stapel Windäther\nDauer: 30 Sekunden\nEffekt von Windäther: Juwelenschein und Edelglanz werden windbasiert.\nZusatzeffekt: Gewährt dir Garudas Gunst.\nDieser Effekt wird aufgehoben\\Bedingung: Smaragd-Arkanum aktiv und Karfunkel bereits gerufen.\nDein Karfunkel verschwindet während der Beschwörung von Smaragd-Garuda, kehrt danach aber an deine Seite zurück.",
+      "description_macro": "Du rufst Smaragd-Garuda an deine Seite und lässt sie <colortype(502)><edgecolortype(503)>Windschlag<edgecolortype(0)><colortype(0)> ausführen, was dem Ziel und allen ihn umstehenden Gegnern innerhalb von 5y windbasierten magischen Schaden zufügt.<br>Attacke-Wert: <if([gnum68==27],<if([gnum72>=94],800,750)>,750)><br>Attacke-Wert verringert sich ab dem zweiten Gegner um 50<nbsp>%.<br>Zusatzeffekt: 4 Stapel <colortype(506)><edgecolortype(507)>Windäther<edgecolortype(0)><colortype(0)><br>Dauer: 30 Sekunden<br>Effekt von <colortype(506)><edgecolortype(507)>Windäther<edgecolortype(0)><colortype(0)>: <colortype(502)><edgecolortype(503)>Juwelenschein<edgecolortype(0)><colortype(0)> und <colortype(502)><edgecolortype(503)>Edelglanz<edgecolortype(0)><colortype(0)> werden windbasiert.<br><if([gnum68==27],<if([gnum72>=86],Zusatzeffekt: Gewährt dir <colortype(506)><edgecolortype(507)>Garudas Gunst<edgecolortype(0)><colortype(0)>.<br>Dieser Effekt wird aufgehoben\\, sobald du ein anderes <colortype(500)><edgecolortype(501)>Beschwörungs<edgecolortype(0)><colortype(0)>-Kommando ausführst.<br>,)>,)>Bedingung: <colortype(506)><edgecolortype(507)>Smaragd-Arkanum<edgecolortype(0)><colortype(0)> aktiv und Karfunkel bereits gerufen.<br>Dein Karfunkel verschwindet während der Beschwörung von Smaragd-Garuda, kehrt danach aber an deine Seite zurück.",
+      "unlock_level": 90,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Magical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 27,
+          "name": "Beschwörer",
+          "abbreviation": "BSW",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

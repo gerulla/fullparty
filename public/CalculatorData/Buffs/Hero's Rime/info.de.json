@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 4249,
+  "name": "Helden-Hymnus",
+  "description": "Ausgeteilter Schaden und Wirkung von Heileffekten sind erhöht. Außerdem ist ein Teil des erlittenen Schadens verringert.",
+  "effects": [
+    "Ausgeteilter Schaden und Wirkung von Heileffekten sind erhöht. Außerdem ist ein Teil des erlittenen Schadens verringert."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 229912,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": true,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 10
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 41610,
+      "name": "Helden-Hymnus",
+      "description": "Du erhöhst den ausgeteilten Schaden und die gewirkte Heilmagie von dir und umstehenden Gruppenmitgliedern um 10 %. Außerdem verringerst du den erlittenen Schaden von dir und umstehenden Gruppenmitgliedern um 10 %.\nDauer: 20 Sekunden\nKann nicht zugleich mit Angriffs-Arie aktiv sein.",
+      "description_macro": "Du erhöhst den ausgeteilten Schaden und die gewirkte Heilmagie von dir und umstehenden Grup<->pen<->mit<->gliedern um 10<nbsp>%. Außerdem verringerst du den erlittenen Schaden von dir und umstehenden Grup<->pen<->mit<->gliedern um 10<nbsp>%.<br>Dauer: 20 Sekunden<br>Kann nicht zugleich mit <colortype(500)><edgecolortype(501)>Angriffs-Arie<edgecolortype(0)><colortype(0)> aktiv sein.",
+      "unlock_level": 0,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Phantom Jobs"
+      ],
+      "jobs": [
+        {
+          "id": 6,
+          "name": "Phantom Phantom-Barde",
+          "abbreviation": "Ph-Barde",
+          "is_phantom": true
+        }
+      ]
+    }
+  ]
+}

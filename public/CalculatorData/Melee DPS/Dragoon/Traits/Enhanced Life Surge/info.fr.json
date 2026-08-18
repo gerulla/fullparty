@@ -1,0 +1,25 @@
+{
+  "kind": "trait",
+  "id": 438,
+  "name": "Souffle de vie amélioré",
+  "description": "Permet de cumuler plusieurs charges pour Souffle de vie.\nMaximum de charges : 2",
+  "description_macro": "Permet de cumuler plusieurs charges pour <colortype(500)><edgecolortype(501)>Souffle de vie<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Maximum de charges<nbsp>:<edgecolortype(0)><colortype(0)> 2",
+  "effects": [
+    "Permet de cumuler plusieurs charges pour Souffle de vie.",
+    "Maximum de charges : 2"
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 22,
+    "name": "Chevalier Dragon",
+    "abbreviation": "DRG"
+  },
+  "unlock_level": 88,
+  "value": 2,
+  "icon": {
+    "id": 5277,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 23,
+  "source_class_job_id": 22
+}

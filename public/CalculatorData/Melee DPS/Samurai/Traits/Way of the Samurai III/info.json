@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 655,
+  "name": "Way of the Samurai III",
+  "description": "Increases the potency of Jinpu to 140, Shifu to 140, Enhanced Enpi to 270, Gekko to 160, Higanbana damage over time to 50, Kasha to 160, Yukikaze to 160, Midare Setsugekka to 680, Kaeshi: Setsugekka to 680, Shoha to 640, Ogi Namikiri to 1,000, and Kaeshi: Namikiri to 1,000.",
+  "description_macro": "Increases the potency of <colortype(500)><edgecolortype(501)>Jinpu<edgecolortype(0)><colortype(0)> to 140, <colortype(500)><edgecolortype(501)>Shifu<edgecolortype(0)><colortype(0)> to 140, <colortype(500)><edgecolortype(501)>Enhanced Enpi<edgecolortype(0)><colortype(0)> to 270, <colortype(500)><edgecolortype(501)>Gekko<edgecolortype(0)><colortype(0)> to 160, <colortype(500)><edgecolortype(501)>Higanbana<edgecolortype(0)><colortype(0)> damage over time to 50, <colortype(500)><edgecolortype(501)>Kasha<edgecolortype(0)><colortype(0)> to 160, <colortype(500)><edgecolortype(501)>Yukikaze<edgecolortype(0)><colortype(0)> to 160, <colortype(500)><edgecolortype(501)>Midare Setsugekka<edgecolortype(0)><colortype(0)> to 680, <colortype(500)><edgecolortype(501)>Kaeshi: Setsugekka<edgecolortype(0)><colortype(0)> to 680, <colortype(500)><edgecolortype(501)>Shoha<edgecolortype(0)><colortype(0)> to 640, <colortype(500)><edgecolortype(501)>Ogi Namikiri<edgecolortype(0)><colortype(0)> to 1,000, and <colortype(500)><edgecolortype(501)>Kaeshi: Namikiri<edgecolortype(0)><colortype(0)> to 1,000.",
+  "effects": [
+    "Increases the potency of Jinpu to 140, Shifu to 140, Enhanced Enpi to 270, Gekko to 160, Higanbana damage over time to 50, Kasha to 160, Yukikaze to 160, Midare Setsugekka to 680, Kaeshi: Setsugekka to 680, Shoha to 640, Ogi Namikiri to 1,000, and Kaeshi: Namikiri to 1,000."
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 34,
+    "name": "Samurai",
+    "abbreviation": "SAM"
+  },
+  "unlock_level": 94,
+  "value": 0,
+  "icon": {
+    "id": 6803,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 111,
+  "source_class_job_id": 34
+}

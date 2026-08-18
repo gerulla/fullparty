@@ -1,0 +1,26 @@
+{
+  "kind": "trait",
+  "id": 588,
+  "name": "Verbessertes Ten Chi Jin",
+  "description": "Erfolgreiche Ausführung von Ten Chi Jin gewährt dir Tenri Jindo.\nDauer: 30 Sekunden\nIst Tenri Jindo aktiv, ändert sich Ten Chi Jin zu Tenri Jindo.",
+  "description_macro": "Erfolgreiche Ausführung von <colortype(502)><edgecolortype(503)>Ten Chi Jin<edgecolortype(0)><colortype(0)> gewährt dir <colortype(506)><edgecolortype(507)>Tenri Jindo<edgecolortype(0)><colortype(0)>.<br>Dauer: 30 Sekunden<br>Ist <colortype(506)><edgecolortype(507)>Tenri Jindo<edgecolortype(0)><colortype(0)> aktiv, ändert sich <colortype(502)><edgecolortype(503)>Ten Chi Jin<edgecolortype(0)><colortype(0)> zu <colortype(502)><edgecolortype(503)>Tenri Jindo<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Erfolgreiche Ausführung von Ten Chi Jin gewährt dir Tenri Jindo.",
+    "Dauer: 30 Sekunden",
+    "Ist Tenri Jindo aktiv, ändert sich Ten Chi Jin zu Tenri Jindo."
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 30,
+    "name": "Ninja",
+    "abbreviation": "NIN"
+  },
+  "unlock_level": 100,
+  "value": 0,
+  "icon": {
+    "id": 5726,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 92,
+  "source_class_job_id": 30
+}

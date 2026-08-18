@@ -1,0 +1,25 @@
+{
+  "kind": "trait",
+  "id": 531,
+  "name": "Wissen der Ahnen",
+  "description": "Bei bestimmten erfolgreich ausgeführten Kommandos füllt sich der Geistbalken. Geist der Viper gewährt außerdem Geist der Ahnen.\nDauer: 30 Sekunden",
+  "description_macro": "Bei bestimmten erfolgreich ausgeführten Kommandos füllt sich der Geistbalken. <colortype(502)><edgecolortype(503)>Geist der Viper<edgecolortype(0)><colortype(0)> gewährt außerdem <colortype(506)><edgecolortype(507)>Geist der Ahnen<edgecolortype(0)><colortype(0)>.<br>Dauer: 30 Sekunden",
+  "effects": [
+    "Bei bestimmten erfolgreich ausgeführten Kommandos füllt sich der Geistbalken. Geist der Viper gewährt außerdem Geist der Ahnen.",
+    "Dauer: 30 Sekunden"
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 41,
+    "name": "Viper",
+    "abbreviation": "VPR"
+  },
+  "unlock_level": 90,
+  "value": 0,
+  "icon": {
+    "id": 6508,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 196,
+  "source_class_job_id": 41
+}

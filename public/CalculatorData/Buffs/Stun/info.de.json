@@ -1,0 +1,92 @@
+{
+  "kind": "combat_status",
+  "id": 2,
+  "name": "Betäubung",
+  "description": "Betäubte Sinne verhindern das Ausführen jeglicher Kommandos.",
+  "effects": [
+    "Betäubte Sinne verhindern das Ausführen jeglicher Kommandos."
+  ],
+  "classification": "debuff",
+  "icon": {
+    "id": 215004,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 2,
+  "target_type": 0,
+  "can_dispel": true,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 100,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 16,
+      "name": "Schildschlag",
+      "description": "Du führst eine physische Attacke aus.\nAttacke-Wert: 100\nZusatzeffekt: Betäubung\nDauer: 6 Sekunden",
+      "description_macro": "Du führst eine physische Attacke aus.<br>Attacke-Wert: 100<br>Zusatzeffekt: <colortype(506)><edgecolortype(507)>Betäubung<edgecolortype(0)><colortype(0)><br>Dauer: 6 Sekunden",
+      "unlock_level": 10,
+      "relations": [
+        "applied_by_description"
+      ],
+      "roles": [
+        "Tank"
+      ],
+      "jobs": [
+        {
+          "id": 19,
+          "name": "Paladin",
+          "abbreviation": "PLD",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 11412,
+      "name": "Spitze Zunge",
+      "description": "Du holst den Gegner heran und betäubst ihn.\nDauer: 4 Sekunden\nZusatzeffekt: Erhöhte Feindseligkeit",
+      "description_macro": "Du holst den Gegner heran und betäubst ihn.<br>Dauer: 4 Sekunden<br>Zusatzeffekt: Erhöhte Feindseligkeit",
+      "unlock_level": 1,
+      "relations": [
+        "applied_by_description"
+      ],
+      "roles": [
+        "Magical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 36,
+          "name": "Blaumagier",
+          "abbreviation": "BMA",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 41601,
+      "name": "Kreszenter Falke",
+      "description": "Du führst eine physische Flächenattacke auf den anvisierten Bereich aus.\nAttacke-Wert: 10 (skaliert mit Gegenstandsstufe)\nZusatzeffekt: Betäubung\nDauer: 4 Sekunden\nZusatzeffekt: Zerstört Fallen im anvisierten Bereich.",
+      "description_macro": "Du führst eine physische Flächenattacke auf den anvisierten Bereich aus.<br>Attacke-Wert: 10 (skaliert mit Gegen<->stands<->stufe)<br>Zusatzeffekt: <colortype(506)><edgecolortype(507)>Betäubung<edgecolortype(0)><colortype(0)><br>Dauer: 4 Sekunden<br>Zusatzeffekt: Zerstört Fallen im anvisierten Bereich.",
+      "unlock_level": 0,
+      "relations": [
+        "applied_by_description"
+      ],
+      "roles": [
+        "Phantom Jobs"
+      ],
+      "jobs": [
+        {
+          "id": 4,
+          "name": "Phantom Phantom-Jäger",
+          "abbreviation": "Ph-Jäger",
+          "is_phantom": true
+        }
+      ]
+    }
+  ]
+}

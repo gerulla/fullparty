@@ -1,0 +1,71 @@
+{
+  "kind": "combat_status",
+  "id": 173,
+  "name": "Feu astral",
+  "description": "L'équilibre éthéré de votre esprit s'incline vers l'astral. Vos sorts de feu sont plus puissants mais consomment davantage de PM. Les sorts de glace sont moins puissants mais consomment moins de PM. Les PM ne se régénèrent plus naturellement.",
+  "effects": [
+    "L'équilibre éthéré de votre esprit s'incline vers l'astral. Vos sorts de feu sont plus puissants mais consomment davantage de PM. Les sorts de glace sont moins puissants mais consomment moins de PM. Les PM ne se régénèrent plus naturellement."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 210463,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": true,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 141,
+      "name": "Feu",
+      "description": "Effectue une attaque magique de feu sur la cible.\nPuissance : 180\nEffet additionnel : dissipe Glace ombrale si actif. Sinon, vous octroie Feu astral.\nEffet additionnel : 40% de chances que Pyromane vous soit octroyé.\nPyromane : le prochain Méga Feu est instantané et ne consomme aucun PM.",
+      "description_macro": "Effectue une attaque magique de feu sur la cible.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> 180<br><colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> dissipe <colortype(500)><edgecolortype(501)>Glace ombrale<edgecolortype(0)><colortype(0)> si actif. Sinon, vous octroie <colortype(500)><edgecolortype(501)>Feu astral<edgecolortype(0)><colortype(0)>.<if([gnum72>=42],<if([gnum68==7],<br><colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> 40% de chances que <colortype(500)><edgecolortype(501)>Pyromane<edgecolortype(0)><colortype(0)> vous soit octroyé.<br><colortype(506)><edgecolortype(507)>Pyromane<nbsp>:<edgecolortype(0)><colortype(0)> le prochain Méga Feu est instantané et ne consomme aucun PM.,<if([gnum68==25],<br><colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> 40% de chances que <colortype(500)><edgecolortype(501)>Pyromane<edgecolortype(0)><colortype(0)> vous soit octroyé.<br><colortype(506)><edgecolortype(507)>Pyromane<nbsp>:<edgecolortype(0)><colortype(0)> le prochain Méga Feu est instantané et ne consomme aucun PM.,)>)>,)>",
+      "unlock_level": 2,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Magical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 25,
+          "name": "Mage Noir",
+          "abbreviation": "MNO",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 147,
+      "name": "Extra Feu",
+      "description": "Effectue une attaque magique de feu sur la cible et les ennemis autour.\nPuissance : 80\nEffet additionnel : dissipe Glace ombrale si actif et vous octroie Feu astral au plus haut degré.",
+      "description_macro": "Effectue une attaque magique de feu sur la cible et les ennemis autour.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> 80<br><colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> <if([gnum72>=35],<if([gnum68==7],dissipe <colortype(500)><edgecolortype(501)>Glace ombrale<edgecolortype(0)><colortype(0)> si actif et vous octroie <colortype(500)><edgecolortype(501)>Feu astral<edgecolortype(0)><colortype(0)> au plus haut degré.,<if([gnum68==25],dissipe <colortype(500)><edgecolortype(501)>Glace ombrale<edgecolortype(0)><colortype(0)> si actif et vous octroie <colortype(500)><edgecolortype(501)>Feu astral<edgecolortype(0)><colortype(0)> au plus haut degré.,dissipe <colortype(500)><edgecolortype(501)>Glace ombrale<edgecolortype(0)><colortype(0)> si actif. Sinon\\, vous octroie <colortype(500)><edgecolortype(501)>Feu astral<edgecolortype(0)><colortype(0)>.)>)>,dissipe <colortype(500)><edgecolortype(501)>Glace ombrale<edgecolortype(0)><colortype(0)> si actif. Sinon\\, vous octroie <colortype(500)><edgecolortype(501)>Feu astral<edgecolortype(0)><colortype(0)>.)>",
+      "unlock_level": 18,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Magical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 25,
+          "name": "Mage Noir",
+          "abbreviation": "MNO",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

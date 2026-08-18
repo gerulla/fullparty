@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 157,
+  "name": "神速魔",
+  "description": "オートアタックの攻撃間隔と、魔法のキャストタイムとリキャストタイムが短縮された状態。",
+  "effects": [
+    "オートアタックの攻撃間隔と、魔法のキャストタイムとリキャストタイムが短縮された状態。"
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 212627,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": -15
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 136,
+      "name": "神速魔",
+      "description": "一定時間、自身のオートアタックの攻撃間隔と、魔法のキャストタイムとリキャストタイムを20％短縮させる。\n効果時間：15秒\n追加効果：自身に3スタックの「グレアジャ実行可」を付与する。\n効果時間：30秒",
+      "description_macro": "一定時間、自身のオートアタックの攻撃間隔と、魔法のキャストタイムとリキャストタイムを20％短縮させる。<br><colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>15秒<if([gnum68==24],<if([gnum72>=92],<br><colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)>自身に3スタックの<colortype(500)><edgecolortype(501)>「グレアジャ実行可」<edgecolortype(0)><colortype(0)>を付与する。<br><colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>30秒,)>,)>",
+      "unlock_level": 30,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Healer"
+      ],
+      "jobs": [
+        {
+          "id": 24,
+          "name": "白魔道士",
+          "abbreviation": "WHM",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

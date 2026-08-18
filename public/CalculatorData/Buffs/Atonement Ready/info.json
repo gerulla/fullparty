@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 1902,
+  "name": "Atonement Ready",
+  "description": "Able to execute Atonement.",
+  "effects": [
+    "Able to execute Atonement."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 212522,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 20,
+  "source_abilities": [
+    {
+      "id": 3539,
+      "name": "Royal Authority",
+      "description": "Delivers an attack with a potency of 200.\nCombo Action: Riot Blade\nCombo Potency: 460\nCombo Bonus: Grants Atonement Ready\nDuration: 30s\nCombo Bonus: Grants Divine Might\nDivine Might Effect: Allows next Holy Spiritor Holy Circle to be cast immediately with increased potency\nDuration: 30s",
+      "description_macro": "Delivers an attack with a potency of <if([gnum68==19],<if([gnum72>=94],200,<if([gnum68==19],<if([gnum72>=84],140,100)>,100)>)>,<if([gnum68==19],<if([gnum72>=84],140,100)>,100)>)>.<br><colortype(504)><edgecolortype(505)>Combo Action:<edgecolortype(0)><colortype(0)> <colortype(500)><edgecolortype(501)>Riot Blade<edgecolortype(0)><colortype(0)><br><colortype(504)><edgecolortype(505)>Combo Potency:<edgecolortype(0)><colortype(0)> <if([gnum68==19],<if([gnum72>=94],460,<if([gnum68==19],<if([gnum72>=84],400,360)>,360)>)>,<if([gnum68==19],<if([gnum72>=84],400,360)>,360)>)><if([gnum68==19],<if([gnum72>=76],<br><colortype(504)><edgecolortype(505)>Combo Bonus: <edgecolortype(0)><colortype(0)>Grants <colortype(506)><edgecolortype(507)>Atonement Ready<edgecolortype(0)><colortype(0)><br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>30s,)>,)><if([gnum68==19],<if([gnum72>=64],<br><colortype(504)><edgecolortype(505)>Combo Bonus: <edgecolortype(0)><colortype(0)>Grants <colortype(506)><edgecolortype(507)>Divine Might<edgecolortype(0)><colortype(0)><br><colortype(504)><edgecolortype(505)>Divine Might Effect: <edgecolortype(0)><colortype(0)>Allows next <colortype(500)><edgecolortype(501)>Holy Spirit<edgecolortype(0)><colortype(0)><if([gnum68==19],<if([gnum72>=72], or <colortype(500)><edgecolortype(501)>Holy Circle<edgecolortype(0)><colortype(0)>,)>,)> to be cast immediately with increased potency<br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>30s,)>,)>",
+      "unlock_level": 60,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Tank"
+      ],
+      "jobs": [
+        {
+          "id": 19,
+          "name": "Paladin",
+          "abbreviation": "PLD",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

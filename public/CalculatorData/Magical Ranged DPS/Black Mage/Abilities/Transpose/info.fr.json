@@ -1,0 +1,84 @@
+{
+  "kind": "ability",
+  "id": 149,
+  "name": "Transposition",
+  "description": "Remplace Feu astral par le 1er degré de Glace ombrale, ou Glace ombrale par le 1er degré de Feu astral.",
+  "description_macro": "Remplace <colortype(500)><edgecolortype(501)>Feu astral<edgecolortype(0)><colortype(0)> par le 1er degré de <colortype(500)><edgecolortype(501)>Glace ombrale<edgecolortype(0)><colortype(0)>, ou <colortype(500)><edgecolortype(501)>Glace ombrale<edgecolortype(0)><colortype(0)> par le 1er degré de <colortype(500)><edgecolortype(501)>Feu astral<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Remplace Feu astral par le 1er degré de Glace ombrale, ou Glace ombrale par le 1er degré de Feu astral."
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 25,
+    "name": "Mage Noir",
+    "abbreviation": "MNO"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 4,
+  "icon": {
+    "id": 466,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 4,
+    "name": "Aptitude"
+  },
+  "attack_type": {
+    "id": 0,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 5,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 2,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 0,
+      "value": 0
+    },
+    "secondary": {
+      "type_id": 0,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": 0,
+    "effect_yalms": 0,
+    "cast_type": 1
+  },
+  "targeting": {
+    "self": true,
+    "party": false,
+    "alliance": false,
+    "hostile": false,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 0,
+    "behavior_type": 0,
+    "class_job_category_id": 55,
+    "source_class_job_id": 7,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

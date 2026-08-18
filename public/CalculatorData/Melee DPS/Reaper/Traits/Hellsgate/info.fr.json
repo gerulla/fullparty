@@ -1,0 +1,26 @@
+{
+  "kind": "trait",
+  "id": 382,
+  "name": "Portail infernal amélioré",
+  "description": "Lorsque vous lancez Intrusion de l'enfer ou Retraite de l'enfer, un Portail infernal apparaît là où vous vous trouvez et Repli préparé vous est octroyé.\nDurée : 10s\nAprès avoir lancé Intrusion de l'enfer ou Retraite de l'enfer, ces actions deviennent Repli.",
+  "description_macro": "Lorsque vous lancez <colortype(500)><edgecolortype(501)>Intrusion de l'enfer<edgecolortype(0)><colortype(0)> ou <colortype(500)><edgecolortype(501)>Retraite de l'enfer<edgecolortype(0)><colortype(0)>, un <colortype(500)><edgecolortype(501)>Portail infernal<edgecolortype(0)><colortype(0)> apparaît là où vous vous trouvez et <colortype(500)><edgecolortype(501)>Repli préparé<edgecolortype(0)><colortype(0)> vous est octroyé.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 10s<br>Après avoir lancé <colortype(500)><edgecolortype(501)>Intrusion de l'enfer<edgecolortype(0)><colortype(0)> ou <colortype(500)><edgecolortype(501)>Retraite de l'enfer<edgecolortype(0)><colortype(0)>, ces actions deviennent <colortype(500)><edgecolortype(501)>Repli<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Lorsque vous lancez Intrusion de l'enfer ou Retraite de l'enfer, un Portail infernal apparaît là où vous vous trouvez et Repli préparé vous est octroyé.",
+    "Durée : 10s",
+    "Après avoir lancé Intrusion de l'enfer ou Retraite de l'enfer, ces actions deviennent Repli."
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 39,
+    "name": "Faucheur",
+    "abbreviation": "FCH"
+  },
+  "unlock_level": 74,
+  "value": 0,
+  "icon": {
+    "id": 6404,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 180,
+  "source_class_job_id": 39
+}

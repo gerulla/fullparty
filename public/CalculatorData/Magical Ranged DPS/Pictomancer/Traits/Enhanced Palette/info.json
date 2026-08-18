@@ -1,0 +1,25 @@
+{
+  "kind": "trait",
+  "id": 542,
+  "name": "Enhanced Palette",
+  "description": "Grants Monochrome Tones upon executing Subtractive Palette.\nMonochrome Tones Effect: Converts one stack of White Paint into Black Paint",
+  "description_macro": "Grants <colortype(506)><edgecolortype(507)>Monochrome Tones<edgecolortype(0)><colortype(0)> upon executing <colortype(500)><edgecolortype(501)>Subtractive Palette<edgecolortype(0)><colortype(0)>.<br><colortype(504)><edgecolortype(505)>Monochrome Tones Effect: <edgecolortype(0)><colortype(0)>Converts one stack of <colortype(506)><edgecolortype(507)>White Paint<edgecolortype(0)><colortype(0)> into <colortype(506)><edgecolortype(507)>Black Paint<edgecolortype(0)><colortype(0)>",
+  "effects": [
+    "Grants Monochrome Tones upon executing Subtractive Palette.",
+    "Monochrome Tones Effect: Converts one stack of White Paint into Black Paint"
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 42,
+    "name": "Pictomancer",
+    "abbreviation": "PCT"
+  },
+  "unlock_level": 90,
+  "value": 0,
+  "icon": {
+    "id": 6556,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 197,
+  "source_class_job_id": 42
+}

@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 98,
+  "name": "Dragon Kick",
+  "description": "Blunt resistance is reduced.",
+  "effects": [
+    "Blunt resistance is reduced."
+  ],
+  "classification": "debuff",
+  "icon": {
+    "id": 210215,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 2,
+  "target_type": 0,
+  "can_dispel": true,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 50,
+  "parameter": {
+    "effect": 0,
+    "modifier": -5
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 74,
+      "name": "Dragon Kick",
+      "description": "Delivers an attack with a potency of 320.\nOpo-opo Form Bonus: Grants a stack of Opo-opo's Fury\nOpo-opo's Fury Effect: Increases potency of Leaping Opo by 200\nAdditional Effect: Changes form to raptor\nDuration: 30s",
+      "description_macro": "Delivers an attack with a potency of <if([gnum68==20],<if([gnum72>=94],320,<if([gnum68==20],<if([gnum72>=84],280,240)>,240)>)>,<if([gnum68==20],<if([gnum72>=84],280,240)>,240)>)>.<br><colortype(504)><edgecolortype(505)>Opo-opo Form Bonus: <edgecolortype(0)><colortype(0)>Grants a stack of <colortype(506)><edgecolortype(507)>Opo-opo's Fury<edgecolortype(0)><colortype(0)><br><colortype(504)><edgecolortype(505)>Opo-opo's Fury Effect: <edgecolortype(0)><colortype(0)>Increases potency of <colortype(500)><edgecolortype(501)><if([gnum68==20],<if([gnum72>=92],Leaping Opo,Bootshine)>,Bootshine)><edgecolortype(0)><colortype(0)> by 200<br><colortype(504)><edgecolortype(505)>Additional Effect:<edgecolortype(0)><colortype(0)> Changes form to <colortype(506)><edgecolortype(507)>raptor<edgecolortype(0)><colortype(0)><br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>30s",
+      "unlock_level": 50,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 20,
+          "name": "Monk",
+          "abbreviation": "MNK",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

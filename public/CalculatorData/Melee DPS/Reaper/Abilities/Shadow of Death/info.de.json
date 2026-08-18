@@ -1,0 +1,89 @@
+{
+  "kind": "ability",
+  "id": 24378,
+  "name": "Schatten des Todes",
+  "description": "Du führst eine physische Attacke aus.\nAttacke-Wert: 300\nZusatzeffekt: Fügt dem Ziel Architekt des Todes zu.\nDauer: 30 Sekunden\nEffekt von Architekt des Todes: Eigener Schaden beim Ziel ist um 10 % erhöht.\nGeht das Ziel während der Wirkungsdauer k. o.\\Ist dieser Status bereits aktiv, wird er um 30 Sekunden verlängert (max. 60 Sekunden).",
+  "description_macro": "Du führst eine physische Attacke aus.<br>Attacke-Wert: <if([gnum68==39],<if([gnum72>=60],300,240)>,240)><br>Zusatzeffekt: Fügt dem Ziel <colortype(506)><edgecolortype(507)>Architekt des Todes<edgecolortype(0)><colortype(0)> zu.<br>Dauer: 30 Sekunden<br>Effekt von <colortype(506)><edgecolortype(507)>Architekt des Todes<edgecolortype(0)><colortype(0)>: Eigener Schaden beim Ziel ist um 10<nbsp>% erhöht.<br><if([gnum68==39],<if([gnum72>=50],Geht das Ziel während der Wirkungsdauer k. o.\\, füllt sich der Seelenbalken um 10.<br>,)>,)>Ist dieser Status bereits aktiv, wird er um 30 Sekunden verlängert (max. 60 Sekunden).",
+  "effects": [
+    "Du führst eine physische Attacke aus.",
+    "Attacke-Wert: 300",
+    "Zusatzeffekt: Fügt dem Ziel Architekt des Todes zu.",
+    "Dauer: 30 Sekunden",
+    "Effekt von Architekt des Todes: Eigener Schaden beim Ziel ist um 10 % erhöht.",
+    "Geht das Ziel während der Wirkungsdauer k. o.\\Ist dieser Status bereits aktiv, wird er um 30 Sekunden verlängert (max. 60 Sekunden)."
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 39,
+    "name": "Schnitter",
+    "abbreviation": "SNT"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 10,
+  "icon": {
+    "id": 3606,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 3,
+    "name": "Waffenfertigkeit"
+  },
+  "attack_type": {
+    "id": 1,
+    "name": "斬"
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 2.5,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 58,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 0,
+      "value": 0
+    },
+    "secondary": {
+      "type_id": 0,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": -1,
+    "effect_yalms": 0,
+    "cast_type": 1
+  },
+  "targeting": {
+    "self": false,
+    "party": false,
+    "alliance": false,
+    "hostile": true,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 7,
+    "behavior_type": 0,
+    "class_job_category_id": 180,
+    "source_class_job_id": 39,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

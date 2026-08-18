@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 619,
+  "name": "Invocation Bahamut améliorée II",
+  "description": "Permet de faire apparaître Sol Bahamut, puis Demi-Bahamut ou Demi-Phénix à tour de rôle.",
+  "description_macro": "Permet de faire apparaître Sol Bahamut, puis Demi-Bahamut ou Demi-Phénix à tour de rôle.",
+  "effects": [
+    "Permet de faire apparaître Sol Bahamut, puis Demi-Bahamut ou Demi-Phénix à tour de rôle."
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 27,
+    "name": "Invocateur",
+    "abbreviation": "INV"
+  },
+  "unlock_level": 100,
+  "value": 0,
+  "icon": {
+    "id": 5698,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 28,
+  "source_class_job_id": 27
+}

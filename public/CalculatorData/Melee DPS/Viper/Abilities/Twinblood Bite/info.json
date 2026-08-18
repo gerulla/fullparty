@@ -1,0 +1,99 @@
+{
+  "kind": "ability",
+  "id": 34637,
+  "name": "Twinblood Bite",
+  "description": "Delivers an attack with a potency of 120.\nSwiftskin's Venom Potency: 170\nAdditional Effect: Grants Hunter's Venom when executed after Swiftskin's Coil\nDuration: 30s\nCan only be executed after successfully landing Hunter's Coil or Swiftskin's Coil.\n\n※This action cannot be assigned to a hotbar.\n※Twinblood changes to Twinblood Bite when requirements for execution are met.",
+  "description_macro": "Delivers an attack with a potency of 120.<br><colortype(504)><edgecolortype(505)>Swiftskin's Venom Potency: <edgecolortype(0)><colortype(0)>170<br><colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>Grants <colortype(506)><edgecolortype(507)>Hunter's Venom<edgecolortype(0)><colortype(0)> when executed after <colortype(500)><edgecolortype(501)>Swiftskin's Coil<edgecolortype(0)><colortype(0)><br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>30s<br>Can only be executed after successfully landing <colortype(500)><edgecolortype(501)>Hunter's Coil<edgecolortype(0)><colortype(0)> or <colortype(500)><edgecolortype(501)>Swiftskin's Coil<edgecolortype(0)><colortype(0)>.<br><br>※This action cannot be assigned to a hotbar.<br>※<colortype(500)><edgecolortype(501)>Twinblood<edgecolortype(0)><colortype(0)> changes to <colortype(500)><edgecolortype(501)>Twinblood Bite<edgecolortype(0)><colortype(0)> when requirements for execution are met.",
+  "effects": [
+    "Delivers an attack with a potency of 120.",
+    "Swiftskin's Venom Potency: 170",
+    "Additional Effect: Grants Hunter's Venom when executed after Swiftskin's Coil",
+    "Duration: 30s",
+    "Can only be executed after successfully landing Hunter's Coil or Swiftskin's Coil.",
+    "※This action cannot be assigned to a hotbar.",
+    "※Twinblood changes to Twinblood Bite when requirements for execution are met."
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 41,
+    "name": "Viper",
+    "abbreviation": "VPR"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 75,
+  "icon": {
+    "id": 3732,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 4,
+    "name": "Ability"
+  },
+  "attack_type": {
+    "id": 4294967295,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 1,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 3,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 104,
+      "value": 7
+    },
+    "secondary": {
+      "type_id": 135,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": 5,
+    "effect_yalms": 0,
+    "cast_type": 1
+  },
+  "targeting": {
+    "self": false,
+    "party": false,
+    "alliance": false,
+    "hostile": true,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": {
+      "id": 129,
+      "status": {
+        "id": 3658,
+        "name": "Swiftskin's Venom",
+        "description": "Potency of Twinblood Bite is increased.",
+        "icon_id": 213764,
+        "max_stacks": 0
+      }
+    }
+  },
+  "metadata": {
+    "aspect_id": 7,
+    "behavior_type": 0,
+    "class_job_category_id": 196,
+    "source_class_job_id": 0,
+    "is_role_action": false,
+    "is_player_action": false,
+    "is_derived_action": true,
+    "equivalence_group": 0
+  }
+}

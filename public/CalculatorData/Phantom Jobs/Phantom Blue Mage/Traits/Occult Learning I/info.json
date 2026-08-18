@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 15,
+  "name": "Occult Learning I",
+  "description": "Occult Missile and Occult Aqua Breath are now learnable actions.\nMissile Effect: Delivers an attack with a 35% chance to deal damage equal to 75% of target's current HP, with some exceptions\nOccult Aqua Breath Effect: Deals unaspected damage to target and all enemies nearby it",
+  "description_macro": "<colortype(500)><edgecolortype(501)>Occult Missile<edgecolortype(0)><colortype(0)> and <colortype(500)><edgecolortype(501)>Occult Aqua Breath<edgecolortype(0)><colortype(0)> are now learnable actions.<br><colortype(504)><edgecolortype(505)>Missile Effect: <edgecolortype(0)><colortype(0)>Delivers an attack with a 35% chance to deal damage equal to 75% of target's current HP, with some exceptions<br><colortype(504)><edgecolortype(505)>Occult Aqua Breath Effect: <edgecolortype(0)><colortype(0)>Deals unaspected damage to target and all enemies nearby it",
+  "effects": [
+    "Occult Missile and Occult Aqua Breath are now learnable actions.",
+    "Missile Effect: Delivers an attack with a 35% chance to deal damage equal to 75% of target's current HP, with some exceptions",
+    "Occult Aqua Breath Effect: Deals unaspected damage to target and all enemies nearby it"
+  ],
+  "role": "Phantom Jobs",
+  "job": {
+    "id": 21,
+    "name": "Phantom Blue Mage",
+    "abbreviation": "Ph. Blue Mage"
+  },
+  "is_phantom_trait": true,
+  "unlock_level": 1,
+  "icon": {
+    "id": 82215,
+    "file": "icon.png"
+  }
+}

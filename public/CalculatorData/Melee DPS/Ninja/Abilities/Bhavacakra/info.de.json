@@ -1,0 +1,88 @@
+{
+  "kind": "ability",
+  "id": 7402,
+  "name": "Rad des Werdens",
+  "description": "Du führst eine elementneutrale magische Attacke aus.\nAttacke-Wert: 400\nAttacke-Wert bei Meisui: 550\nNinki-Balken-Kosten: 50\nGemeinsamer Reaktivierungs-Timer mit Krötenmedium",
+  "description_macro": "Du führst eine elementneutrale magische Attacke aus.<br>Attacke-Wert: <if([gnum68==30],<if([gnum72>=94],400,350)>,350)><br><if([gnum68==30],<if([gnum72>=88],Attacke-Wert bei <colortype(506)><edgecolortype(507)>Meisui<edgecolortype(0)><colortype(0)>: <if([gnum68==30],<if([gnum72>=94],550,500)>,500)><br>,)>,)>Ninki-Balken-Kosten: 50<br>Gemeinsamer Reaktivierungs-Timer mit <colortype(502)><edgecolortype(503)>Krötenmedium<edgecolortype(0)><colortype(0)>  ",
+  "effects": [
+    "Du führst eine elementneutrale magische Attacke aus.",
+    "Attacke-Wert: 400",
+    "Attacke-Wert bei Meisui: 550",
+    "Ninki-Balken-Kosten: 50",
+    "Gemeinsamer Reaktivierungs-Timer mit Krötenmedium"
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 30,
+    "name": "Ninja",
+    "abbreviation": "NIN"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 68,
+  "icon": {
+    "id": 2921,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 4,
+    "name": "Talent"
+  },
+  "attack_type": {
+    "id": 5,
+    "name": "魔法"
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 1,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 1,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 27,
+      "value": 50
+    },
+    "secondary": {
+      "type_id": 46,
+      "value": 3850
+    }
+  },
+  "range": {
+    "target_yalms": -1,
+    "effect_yalms": 0,
+    "cast_type": 1
+  },
+  "targeting": {
+    "self": false,
+    "party": false,
+    "alliance": false,
+    "hostile": true,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 7,
+    "behavior_type": 0,
+    "class_job_category_id": 92,
+    "source_class_job_id": 30,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

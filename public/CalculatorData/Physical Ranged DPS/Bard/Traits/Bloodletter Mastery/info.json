@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 599,
+  "name": "Bloodletter Mastery",
+  "description": "Upgrades Bloodletter to Heartbreak Shot.",
+  "description_macro": "Upgrades <colortype(500)><edgecolortype(501)>Bloodletter<edgecolortype(0)><colortype(0)> to <colortype(500)><edgecolortype(501)>Heartbreak Shot<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Upgrades Bloodletter to Heartbreak Shot."
+  ],
+  "role": "Physical Ranged DPS",
+  "job": {
+    "id": 23,
+    "name": "Bard",
+    "abbreviation": "BRD"
+  },
+  "unlock_level": 92,
+  "value": 0,
+  "icon": {
+    "id": 5323,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 24,
+  "source_class_job_id": 23
+}

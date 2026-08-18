@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 1823,
+  "name": "クローズドポジション",
+  "description": "一部のアクションの実行時に、指定したパーティメンバーに対して追加効果を発動させる状態。",
+  "effects": [
+    "一部のアクションの実行時に、指定したパーティメンバーに対して追加効果を発動させる状態。"
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 213712,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": true,
+  "is_permanent": true,
+  "inflicted_by_actor": true,
+  "party_list_priority": 100,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 150,
+  "source_abilities": [
+    {
+      "id": 16006,
+      "name": "クローズドポジション",
+      "description": "パーティメンバーひとりを対象とする。\n自身に「クローズドポジション」を付与し、対象には「クローズドポジション［被］」を付与する。\n効果中に「スタンダードフィニッシュ」「癒やしのワルツ」「攻めのタンゴ」「フィニシングムーブ」を実行すると、クローズドポジション［被］を付与したパーティメンバーも、同様の効果を得ることができる。\n再使用で解除する。\u3000効果時間：永続",
+      "description_macro": "パーティメンバーひとりを対象とする。<br>自身に<colortype(500)><edgecolortype(501)>「クローズドポジション」<edgecolortype(0)><colortype(0)>を付与し、対象には<colortype(500)><edgecolortype(501)>「クローズドポジション［被］」<edgecolortype(0)><colortype(0)>を付与する。<br>効果中に<colortype(500)><edgecolortype(501)>「スタンダードフィニッシュ」「癒やしのワルツ」<if([gnum68==38],<if([gnum72>=62],「攻めのタンゴ」,)>,)><if([gnum68==38],<if([gnum72>=96],「フィニシングムーブ」,)>,)><edgecolortype(0)><colortype(0)>を実行すると、クローズドポジション［被］を付与したパーティメンバーも、同様の効果を得ることができる。<br>再使用で解除する。\u3000<colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>永続",
+      "unlock_level": 60,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Physical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 38,
+          "name": "踊り子",
+          "abbreviation": "DNC",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 1413,
+  "name": "紅蓮の極意",
+  "description": "与ダメージが上昇した状態。",
+  "effects": [
+    "与ダメージが上昇した状態。"
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 212528,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": true,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 10
+  },
+  "class_job_category_id": 21,
+  "source_abilities": [
+    {
+      "id": 7395,
+      "name": "紅蓮の極意",
+      "description": "一定時間、自身の与ダメージを15％上昇させる。\n効果時間：20秒\n追加効果：自身に「乾坤闘気弾実行可」を付与する。\n効果時間：20秒",
+      "description_macro": "一定時間、自身の与ダメージを15％上昇させる。<br><colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>20秒<if([gnum68==20],<if([gnum72>=100],<br><colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)>自身に<colortype(500)><edgecolortype(501)>「乾坤闘気弾実行可」<edgecolortype(0)><colortype(0)>を付与する。<br><colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>20秒,)>,)>",
+      "unlock_level": 68,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 20,
+          "name": "モンク",
+          "abbreviation": "MNK",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

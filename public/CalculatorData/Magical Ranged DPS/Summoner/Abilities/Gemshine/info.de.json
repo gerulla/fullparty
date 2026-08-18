@@ -1,0 +1,87 @@
+{
+  "kind": "ability",
+  "id": 25883,
+  "name": "Juwelenschein",
+  "description": "Du führst das deinem momentan aktivem Äther entsprechende Kommando aus.\nBei Feueräther: Kommando ändert sich zu feuerbasierter magischer Attacke auf ein Einzelziel.\nBei Erdäther: Kommando ändert sich zu erdbasierter magischer Attacke auf ein Einzelziel.\nBei Windäther: Kommando ändert sich zu windbasierter magischer Attacke auf ein Einzelziel.",
+  "description_macro": "Du führst das deinem momentan aktivem <colortype(506)><edgecolortype(507)>Äther<edgecolortype(0)><colortype(0)> entsprechende Kommando aus.<br>Bei <colortype(506)><edgecolortype(507)>Feueräther<edgecolortype(0)><colortype(0)>: Kommando ändert sich zu feuerbasierter magischer Attacke auf ein Einzelziel.<br>Bei <colortype(506)><edgecolortype(507)>Erdäther<edgecolortype(0)><colortype(0)>: Kommando ändert sich zu erdbasierter magischer Attacke auf ein Einzelziel.<br>Bei <colortype(506)><edgecolortype(507)>Windäther<edgecolortype(0)><colortype(0)>: Kommando ändert sich zu windbasierter magischer Attacke auf ein Einzelziel.",
+  "effects": [
+    "Du führst das deinem momentan aktivem Äther entsprechende Kommando aus.",
+    "Bei Feueräther: Kommando ändert sich zu feuerbasierter magischer Attacke auf ein Einzelziel.",
+    "Bei Erdäther: Kommando ändert sich zu erdbasierter magischer Attacke auf ein Einzelziel.",
+    "Bei Windäther: Kommando ändert sich zu windbasierter magischer Attacke auf ein Einzelziel."
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 27,
+    "name": "Beschwörer",
+    "abbreviation": "BSW"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 6,
+  "icon": {
+    "id": 2777,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 2,
+    "name": "Zauber"
+  },
+  "attack_type": {
+    "id": 5,
+    "name": "魔法"
+  },
+  "timing": {
+    "cast_seconds": 2.5,
+    "recast_seconds": 2.5,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 58,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 0,
+      "value": 0
+    },
+    "secondary": {
+      "type_id": 73,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": 25,
+    "effect_yalms": 0,
+    "cast_type": 1
+  },
+  "targeting": {
+    "self": false,
+    "party": false,
+    "alliance": false,
+    "hostile": true,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": false
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 7,
+    "behavior_type": 0,
+    "class_job_category_id": 69,
+    "source_class_job_id": 26,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

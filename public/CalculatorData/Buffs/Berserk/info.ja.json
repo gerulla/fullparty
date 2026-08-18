@@ -1,0 +1,51 @@
+{
+  "kind": "combat_status",
+  "id": 86,
+  "name": "バーサク",
+  "description": "自身のウェポンスキルによる攻撃が必ずクリティカルヒットかつダイレクトヒットする状態。\nクリティカルヒットやダイレクトヒットの発動率を上昇させる効果を受けている場合は与ダメージが上昇する。",
+  "effects": [
+    "自身のウェポンスキルによる攻撃が必ずクリティカルヒットかつダイレクトヒットする状態。",
+    "クリティカルヒットやダイレクトヒットの発動率を上昇させる効果を受けている場合は与ダメージが上昇する。"
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 217217,
+    "file": "icon.png"
+  },
+  "max_stacks": 3,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 27,
+    "modifier": 0
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 38,
+      "name": "バーサク",
+      "description": "自身に3スタックの「バーサク」を付与する。\u3000効果時間：15秒\nバーサク効果：一定時間、自身のウェポンスキルによる攻撃が必ずクリティカルヒットかつダイレクトヒットする。\nクリティカルヒットやダイレクトヒットの発動率を上昇させる効果を受けている場合は与ダメージが上昇する。\n追加効果：「戦嵐」の効果時間を10秒延長する。\n最大60秒まで延長することができる。",
+      "description_macro": "自身に3スタックの<colortype(500)><edgecolortype(501)>「バーサク」<edgecolortype(0)><colortype(0)>を付与する。\u3000<colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>15秒<br><colortype(504)><edgecolortype(505)>バーサク効果：<edgecolortype(0)><colortype(0)>一定時間、自身のウェポンスキルによる攻撃が必ずクリティカルヒットかつダイレクトヒットする。<br>クリティカルヒットやダイレクトヒットの発動率を上昇させる効果を受けている場合は与ダメージが上昇する。<if([gnum72>=40],<if([gnum68==3],<br><colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)><colortype(500)><edgecolortype(501)>「戦嵐」<edgecolortype(0)><colortype(0)>の効果時間を10秒延長する。<br>最大60秒まで延長することができる。,<if([gnum68==21],<br><colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)><colortype(500)><edgecolortype(501)>「戦嵐」<edgecolortype(0)><colortype(0)>の効果時間を10秒延長する。<br>最大60秒まで延長することができる。,)>)>,)>",
+      "unlock_level": 6,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Tank"
+      ],
+      "jobs": [
+        {
+          "id": 21,
+          "name": "戦士",
+          "abbreviation": "WAR",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

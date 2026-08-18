@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 324,
+  "name": "Maîtrise des infections",
+  "description": "Remplace Bactérie par Extra Bactérie.",
+  "description_macro": "Remplace <colortype(500)><edgecolortype(501)>Bactérie<edgecolortype(0)><colortype(0)> par <colortype(500)><edgecolortype(501)>Extra Bactérie<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Remplace Bactérie par Extra Bactérie."
+  ],
+  "role": "Healer",
+  "job": {
+    "id": 28,
+    "name": "Érudit",
+    "abbreviation": "ÉRU"
+  },
+  "unlock_level": 26,
+  "value": 0,
+  "icon": {
+    "id": 5376,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 29,
+  "source_class_job_id": 28
+}

@@ -1,0 +1,100 @@
+{
+  "kind": "ability",
+  "id": 34637,
+  "name": "Biss der Zwillingsschuppen",
+  "description": "Du führst eine physische Attacke aus.\nAttacke-Wert: 120\nAttacke-Wert bei Instinkt der Otter: 170\nZusatzeffekt: Folgt dieses Kommando direkt auf Flinker Otterngriff, wird dir Fänge der Otter gewährt.\nDauer: 30 Sekunden\nBedingung: Erfolgreiche Ausführung von Blutiger Otterngriff oder Flinker Otterngriff.\nBei erfüllter Bedingung ändert sich Zwillingsschuppen zu diesem Kommando.\nKann nicht im Kommandomenü angelegt werden.",
+  "description_macro": "Du führst eine physische Attacke aus.<br>Attacke-Wert: 120<br>Attacke-Wert bei <colortype(506)><edgecolortype(507)>Instinkt der Otter<edgecolortype(0)><colortype(0)>: 170<br>Zusatzeffekt: Folgt dieses Kommando direkt auf <colortype(502)><edgecolortype(503)>Flinker Otterngriff<edgecolortype(0)><colortype(0)>, wird dir <colortype(506)><edgecolortype(507)>Fänge der Otter<edgecolortype(0)><colortype(0)> gewährt.<br>Dauer: 30 Sekunden<br>Bedingung: Erfolgreiche Ausführung von <colortype(502)><edgecolortype(503)>Blutiger Otterngriff<edgecolortype(0)><colortype(0)> oder <colortype(502)><edgecolortype(503)>Flinker Otterngriff<edgecolortype(0)><colortype(0)>.<br>Bei erfüllter Bedingung ändert sich <colortype(502)><edgecolortype(503)>Zwillingsschuppen<edgecolortype(0)><colortype(0)> zu diesem Kommando.<br>Kann nicht im Kommandomenü angelegt werden.",
+  "effects": [
+    "Du führst eine physische Attacke aus.",
+    "Attacke-Wert: 120",
+    "Attacke-Wert bei Instinkt der Otter: 170",
+    "Zusatzeffekt: Folgt dieses Kommando direkt auf Flinker Otterngriff, wird dir Fänge der Otter gewährt.",
+    "Dauer: 30 Sekunden",
+    "Bedingung: Erfolgreiche Ausführung von Blutiger Otterngriff oder Flinker Otterngriff.",
+    "Bei erfüllter Bedingung ändert sich Zwillingsschuppen zu diesem Kommando.",
+    "Kann nicht im Kommandomenü angelegt werden."
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 41,
+    "name": "Viper",
+    "abbreviation": "VPR"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 75,
+  "icon": {
+    "id": 3732,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 4,
+    "name": "Talent"
+  },
+  "attack_type": {
+    "id": 4294967295,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 1,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 3,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 104,
+      "value": 7
+    },
+    "secondary": {
+      "type_id": 135,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": 5,
+    "effect_yalms": 0,
+    "cast_type": 1
+  },
+  "targeting": {
+    "self": false,
+    "party": false,
+    "alliance": false,
+    "hostile": true,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": {
+      "id": 129,
+      "status": {
+        "id": 3658,
+        "name": "Instinkt der Otter",
+        "description": "Attacke-Werte von Biss der Zwillingsschuppen sind erhöht.",
+        "icon_id": 213764,
+        "max_stacks": 0
+      }
+    }
+  },
+  "metadata": {
+    "aspect_id": 7,
+    "behavior_type": 0,
+    "class_job_category_id": 196,
+    "source_class_job_id": 0,
+    "is_role_action": false,
+    "is_player_action": false,
+    "is_derived_action": true,
+    "equivalence_group": 0
+  }
+}

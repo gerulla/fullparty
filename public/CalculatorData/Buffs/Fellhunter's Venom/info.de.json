@@ -1,0 +1,71 @@
+{
+  "kind": "combat_status",
+  "id": 3659,
+  "name": "Fänge der Grube",
+  "description": "Attacke-Werte von Nest der Zwillingsfänge sind erhöht.",
+  "effects": [
+    "Attacke-Werte von Nest der Zwillingsfänge sind erhöht."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 213765,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 196,
+  "source_abilities": [
+    {
+      "id": 34624,
+      "name": "Blutige Otterngrube",
+      "description": "Du führst eine physische Attacke auf alle umstehenden Gegner aus.\nAttacke-Wert: 300\nZusatzeffekt: Gewährt dir Vipernblut.\nDauer: 40 Sekunden\nEffekt von Vipernblut: Eigener ausgeteilter Schaden ist um 10 % erhöht.\nZusatzeffekt: Gewährt dir Fänge der Grube.\nDauer: 30 Sekunden\nEffekt von Fänge der Grube: Erhöht die Attacke-Werte von Nest der Zwillingsfänge um 30.\nZusatzeffekt: Erhöht den Geistbalken um 5.\nTrifft dieses Kommando erfolgreich\\Bedingung: Erfolgreiche Ausführung von Harte Otterngrube oder Flinke Otterngrube.\nEigener Reaktivierungs-Timer",
+      "description_macro": "Du führst eine physische Attacke auf alle umstehenden Gegner aus.<br>Attacke-Wert: 300<br>Zusatzeffekt: Gewährt dir <colortype(506)><edgecolortype(507)>Vipernblut<edgecolortype(0)><colortype(0)>.<br>Dauer: 40 Sekunden<br>Effekt von <colortype(506)><edgecolortype(507)>Vipernblut<edgecolortype(0)><colortype(0)>: Eigener ausgeteilter Schaden ist um 10<nbsp>% erhöht.<br><if([gnum68==41],<if([gnum72>=80],Zusatzeffekt: Gewährt dir <colortype(506)><edgecolortype(507)>Fänge der Grube<edgecolortype(0)><colortype(0)>.<br>Dauer: 30 Sekunden<br>Effekt von <colortype(506)><edgecolortype(507)>Fänge der Grube<edgecolortype(0)><colortype(0)>: Erhöht die Attacke-Werte von <colortype(502)><edgecolortype(503)>Nest der Zwillingsfänge<edgecolortype(0)><colortype(0)> um 30.<br>,)>,)><if([gnum68==41],<if([gnum72>=90],Zusatzeffekt: Erhöht den Geistbalken um 5.<br>,)>,)><if([gnum68==41],<if([gnum72>=80],Trifft dieses Kommando erfolgreich\\, ändert sich <colortype(502)><edgecolortype(503)>Zwillingsfänge<edgecolortype(0)><colortype(0)> zu <colortype(502)><edgecolortype(503)>Nest der Zwillingsfänge<edgecolortype(0)><colortype(0)> und <colortype(502)><edgecolortype(503)>Zwillingsschuppen<edgecolortype(0)><colortype(0)> zu <colortype(502)><edgecolortype(503)>Nest der Zwillingsschuppen<edgecolortype(0)><colortype(0)>\\, dich diese Kommandos zweifach ausführen lassend.<br>,)>,)>Bedingung: Erfolgreiche Ausführung von <colortype(502)><edgecolortype(503)>Harte Otterngrube<edgecolortype(0)><colortype(0)> oder <colortype(502)><edgecolortype(503)>Flinke Otterngrube<edgecolortype(0)><colortype(0)>.<br>Eigener Reaktivierungs-Timer",
+      "unlock_level": 70,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 41,
+          "name": "Viper",
+          "abbreviation": "VPR",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 34639,
+      "name": "Nest der Zwillingsschuppen",
+      "description": "Du führst eine physische Attacke auf alle umstehenden Gegner aus.\nAttacke-Wert: 50\nAttacke-Wert bei Instinkt der Grube: 80\nZusatzeffekt: Folgt dieses Kommando direkt auf Flinke Otterngrube, wird dir Fänge der Grube gewährt.\nDauer: 30 Sekunden\nBedingung: Erfolgreiche Ausführung von Blutige Otterngrube oder Flinke Otterngrube.\nBei erfüllter Bedingung ändert sich Zwillingsschuppe zu diesem Kommando.\nKann nicht im Kommandomenü angelegt werden.",
+      "description_macro": "Du führst eine physische Attacke auf alle umstehenden Gegner aus.<br>Attacke-Wert: 50<br>Attacke-Wert bei <colortype(506)><edgecolortype(507)>Instinkt der Grube<edgecolortype(0)><colortype(0)>: 80<br>Zusatzeffekt: Folgt dieses Kommando direkt auf <colortype(502)><edgecolortype(503)>Flinke Otterngrube<edgecolortype(0)><colortype(0)>, wird dir <colortype(506)><edgecolortype(507)>Fänge der Grube<edgecolortype(0)><colortype(0)> gewährt.<br>Dauer: 30 Sekunden<br>Bedingung: Erfolgreiche Ausführung von <colortype(502)><edgecolortype(503)>Blutige Otterngrube<edgecolortype(0)><colortype(0)> oder <colortype(502)><edgecolortype(503)>Flinke Otterngrube<edgecolortype(0)><colortype(0)>.<br>Bei erfüllter Bedingung ändert sich <colortype(502)><edgecolortype(503)>Zwillingsschuppe<edgecolortype(0)><colortype(0)> zu diesem Kommando.<br>Kann nicht im Kommandomenü angelegt werden.",
+      "unlock_level": 80,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 41,
+          "name": "Viper",
+          "abbreviation": "VPR",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

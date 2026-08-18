@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 293,
+  "name": "ワイルドファイア効果アップ",
+  "description": "ワイルドファイアの「ウェポンスキル1回ごとの威力」が240に上昇する。",
+  "description_macro": "ワイルドファイアの「ウェポンスキル1回ごとの威力」が240に上昇する。",
+  "effects": [
+    "ワイルドファイアの「ウェポンスキル1回ごとの威力」が240に上昇する。"
+  ],
+  "role": "Physical Ranged DPS",
+  "job": {
+    "id": 31,
+    "name": "機工士",
+    "abbreviation": "MCH"
+  },
+  "unlock_level": 78,
+  "value": 0,
+  "icon": {
+    "id": 6014,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 96,
+  "source_class_job_id": 31
+}

@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 492,
+  "name": "破陣法マスタリー",
+  "description": "破陣法が裂陣法に変化する。",
+  "description_macro": "破陣法が裂陣法に変化する。",
+  "effects": [
+    "破陣法が裂陣法に変化する。"
+  ],
+  "role": "Healer",
+  "job": {
+    "id": 28,
+    "name": "学者",
+    "abbreviation": "SCH"
+  },
+  "unlock_level": 82,
+  "value": 0,
+  "icon": {
+    "id": 5705,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 29,
+  "source_class_job_id": 28
+}

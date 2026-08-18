@@ -1,0 +1,218 @@
+{
+  "kind": "combat_status",
+  "id": 897,
+  "name": "Regen",
+  "description": "Regenerating HP over time.",
+  "effects": [
+    "Regenerating HP over time."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 212626,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": true,
+  "inflicted_by_actor": true,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 10
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 133,
+      "name": "Medica II",
+      "description": "Restores own HP and the HP of all nearby party members.\nCure Potency: 250\nAdditional Effect: Regen\nCure Potency: 150\nDuration: 15s",
+      "description_macro": "Restores own HP and the HP of all nearby party members.<br><colortype(504)><edgecolortype(505)>Cure Potency:<edgecolortype(0)><colortype(0)> <if([gnum68==24],<if([gnum72>=85],250,200)>,200)><br><colortype(504)><edgecolortype(505)>Additional Effect:<edgecolortype(0)><colortype(0)> <colortype(506)><edgecolortype(507)>Regen<edgecolortype(0)><colortype(0)><br><colortype(504)><edgecolortype(505)>Cure Potency:<edgecolortype(0)><colortype(0)> <if([gnum68==24],<if([gnum72>=85],150,100)>,100)><br><colortype(504)><edgecolortype(505)>Duration:<edgecolortype(0)><colortype(0)> 15s",
+      "unlock_level": 50,
+      "relations": [
+        "applied_by_description"
+      ],
+      "roles": [
+        "Healer"
+      ],
+      "jobs": [
+        {
+          "id": 24,
+          "name": "White Mage",
+          "abbreviation": "WHM",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 188,
+      "name": "Sacred Soil",
+      "description": "Creates a designated area in which party members will only suffer 90% of all damage inflicted.\nDuration: 15s\nAdditional Effect: Regen\nCure Potency: 100\nAdditional Effect: Increases Faerie Gauge by 10\nAetherflow Gauge Cost: 1",
+      "description_macro": "Creates a designated area in which party members will only suffer 90% of all damage inflicted.<br><colortype(504)><edgecolortype(505)>Duration:<edgecolortype(0)><colortype(0)> 15s<br><if([gnum68==28],<if([gnum72>=78],<colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)><colortype(506)><edgecolortype(507)>Regen<edgecolortype(0)><colortype(0)><br><colortype(504)><edgecolortype(505)>Cure Potency: <edgecolortype(0)><colortype(0)>100<br>,)>,)><if([gnum72>=70],<if([gnum68==28],<colortype(504)><edgecolortype(505)>Additional Effect:<edgecolortype(0)><colortype(0)> Increases <colortype(500)><edgecolortype(501)>Faerie Gauge<edgecolortype(0)><colortype(0)> by 10<br>,)>,)><colortype(504)><edgecolortype(505)>Aetherflow Gauge Cost:<edgecolortype(0)><colortype(0)> 1",
+      "unlock_level": 50,
+      "relations": [
+        "applied_by_description"
+      ],
+      "roles": [
+        "Healer"
+      ],
+      "jobs": [
+        {
+          "id": 28,
+          "name": "Scholar",
+          "abbreviation": "SCH",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 3595,
+      "name": "Aspected Benefic",
+      "description": "Restores target's HP.\nCure Potency: 250\nAdditional Effect: Regen\nCure Potency: 250\nDuration: 15s",
+      "description_macro": "Restores target's HP.<br><colortype(504)><edgecolortype(505)>Cure Potency:<edgecolortype(0)><colortype(0)> <if([gnum68==33],<if([gnum72>=85],250,200)>,200)><br><colortype(504)><edgecolortype(505)>Additional Effect:<edgecolortype(0)><colortype(0)> <colortype(506)><edgecolortype(507)>Regen<edgecolortype(0)><colortype(0)><br><colortype(504)><edgecolortype(505)>Cure Potency:<edgecolortype(0)><colortype(0)> <if([gnum68==33],<if([gnum72>=85],250,200)>,200)><br><colortype(504)><edgecolortype(505)>Duration:<edgecolortype(0)><colortype(0)> 15s",
+      "unlock_level": 34,
+      "relations": [
+        "applied_by_description"
+      ],
+      "roles": [
+        "Healer"
+      ],
+      "jobs": [
+        {
+          "id": 33,
+          "name": "Astrologian",
+          "abbreviation": "AST",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 3601,
+      "name": "Aspected Helios",
+      "description": "Restores own HP and the HP of all nearby party members.\nCure Potency: 250\nAdditional Effect: Regen\nCure Potency: 150\nDuration: 15s",
+      "description_macro": "Restores own HP and the HP of all nearby party members.<br><colortype(504)><edgecolortype(505)>Cure Potency:<edgecolortype(0)><colortype(0)> <if([gnum68==33],<if([gnum72>=85],250,200)>,200)><br><colortype(504)><edgecolortype(505)>Additional Effect:<edgecolortype(0)><colortype(0)> <colortype(506)><edgecolortype(507)>Regen<edgecolortype(0)><colortype(0)><br><colortype(504)><edgecolortype(505)>Cure Potency:<edgecolortype(0)><colortype(0)> <if([gnum68==33],<if([gnum72>=85],150,100)>,100)><br><colortype(504)><edgecolortype(505)>Duration:<edgecolortype(0)><colortype(0)> 15s",
+      "unlock_level": 40,
+      "relations": [
+        "applied_by_description"
+      ],
+      "roles": [
+        "Healer"
+      ],
+      "jobs": [
+        {
+          "id": 33,
+          "name": "Astrologian",
+          "abbreviation": "AST",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 16151,
+      "name": "Aurora",
+      "description": "Grants Regen to target.\nCure Potency: 300\nDuration: 18s\nMaximum Charges: 2",
+      "description_macro": "Grants <colortype(506)><edgecolortype(507)>Regen<edgecolortype(0)><colortype(0)> to target.<br><colortype(504)><edgecolortype(505)>Cure Potency: <edgecolortype(0)><colortype(0)>300<br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>18s<if([gnum68==37],<if([gnum72>=84],<br><colortype(504)><edgecolortype(505)>Maximum Charges: <edgecolortype(0)><colortype(0)>2,)>,)>",
+      "unlock_level": 45,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Tank"
+      ],
+      "jobs": [
+        {
+          "id": 37,
+          "name": "Gunbreaker",
+          "abbreviation": "GNB",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 16553,
+      "name": "Celestial Opposition",
+      "description": "Restores own HP and the HP of all nearby party members.\nCure Potency: 200\nAdditional Effect: Regen\nCure Potency: 100\nDuration: 15s",
+      "description_macro": "Restores own HP and the HP of all nearby party members.<br><colortype(504)><edgecolortype(505)>Cure Potency: <edgecolortype(0)><colortype(0)>200<br><colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)><colortype(506)><edgecolortype(507)>Regen<edgecolortype(0)><colortype(0)><br><colortype(504)><edgecolortype(505)>Cure Potency: <edgecolortype(0)><colortype(0)>100<br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>15s",
+      "unlock_level": 60,
+      "relations": [
+        "applied_by_description"
+      ],
+      "roles": [
+        "Healer"
+      ],
+      "jobs": [
+        {
+          "id": 33,
+          "name": "Astrologian",
+          "abbreviation": "AST",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 24298,
+      "name": "Kerachole",
+      "description": "Reduces damage taken by self and nearby party members by 10%.\nDuration: 15s\nEffect cannot be stacked with Taurochole.\nAdditional Effect: Regen\nCure Potency: 100\nDuration: 15s\nAdditional Effect: Restores 7% of maximum MP\nAddersgall Cost: 1",
+      "description_macro": "Reduces damage taken by self and nearby party members by 10%.<br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>15s<br>Effect cannot be stacked with <colortype(506)><edgecolortype(507)>Taurochole<edgecolortype(0)><colortype(0)>.<br><if([gnum68==40],<if([gnum72>=78],<colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)><colortype(506)><edgecolortype(507)>Regen<edgecolortype(0)><colortype(0)><br><colortype(504)><edgecolortype(505)>Cure Potency: <edgecolortype(0)><colortype(0)>100<br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>15s<br>,)>,)><colortype(504)><edgecolortype(505)>Additional Effect:<edgecolortype(0)><colortype(0)> Restores 7% of maximum MP<br><colortype(504)><edgecolortype(505)>Addersgall Cost: <edgecolortype(0)><colortype(0)>1",
+      "unlock_level": 50,
+      "relations": [
+        "applied_by_description"
+      ],
+      "roles": [
+        "Healer"
+      ],
+      "jobs": [
+        {
+          "id": 40,
+          "name": "Sage",
+          "abbreviation": "SGE",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 37030,
+      "name": "Helios Conjunction",
+      "description": "Restores own HP and the HP of all nearby party members.\nCure Potency: 250\nAdditional Effect: Regen\nCure Potency: 175\nDuration: 15s",
+      "description_macro": "Restores own HP and the HP of all nearby party members.<br><colortype(504)><edgecolortype(505)>Cure Potency:<edgecolortype(0)><colortype(0)> 250<br><colortype(504)><edgecolortype(505)>Additional Effect:<edgecolortype(0)><colortype(0)> <colortype(506)><edgecolortype(507)>Regen<edgecolortype(0)><colortype(0)><br><colortype(504)><edgecolortype(505)>Cure Potency:<edgecolortype(0)><colortype(0)> 175<br><colortype(504)><edgecolortype(505)>Duration:<edgecolortype(0)><colortype(0)> 15s",
+      "unlock_level": 96,
+      "relations": [
+        "applied_by_description"
+      ],
+      "roles": [
+        "Healer"
+      ],
+      "jobs": [
+        {
+          "id": 33,
+          "name": "Astrologian",
+          "abbreviation": "AST",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 41636,
+      "name": "Predict",
+      "description": "Grants Prediction of Judgment, Prediction of Cleansing, Prediction of Blessing, or Prediction of Starfall, allowing the execution of an action depending on the prophecy granted.\nPhantom Judgment Action Effect: Deals unaspected damage to nearby enemies while healing self and nearby party members\nCleansing Action Effect: Deals unaspected damage to nearby enemies and freezes time\nBlessing Action Effect: Heals self and nearby party members, as well as granting Regen\nStarfall Action Effect: Deals unaspected damage to self and nearby enemies\nWhen the effect of a prediction expires, a new prophecy is granted. If all predictions expire without a commensurate action being used, the prophecy changes to False Prediction, causing damage over time to self with a potency of 50,000.\nDuration: 30s",
+      "description_macro": "Grants <colortype(506)><edgecolortype(507)>Prediction of Judgment<edgecolortype(0)><colortype(0)>, <colortype(506)><edgecolortype(507)>Prediction of Cleansing<edgecolortype(0)><colortype(0)>, <colortype(506)><edgecolortype(507)>Prediction of Blessing<edgecolortype(0)><colortype(0)>, or <colortype(506)><edgecolortype(507)>Prediction of Starfall<edgecolortype(0)><colortype(0)>, allowing the execution of an action depending on the prophecy granted.<br><colortype(504)><edgecolortype(505)>Phantom Judgment Action Effect: <edgecolortype(0)><colortype(0)>Deals unaspected damage to nearby enemies while healing self and nearby party members<br><colortype(504)><edgecolortype(505)>Cleansing Action Effect: <edgecolortype(0)><colortype(0)>Deals unaspected damage to nearby enemies and freezes time<br><colortype(504)><edgecolortype(505)>Blessing Action Effect: <edgecolortype(0)><colortype(0)>Heals self and nearby party members, as well as granting <colortype(506)><edgecolortype(507)>Regen<edgecolortype(0)><colortype(0)><br><colortype(504)><edgecolortype(505)>Starfall Action Effect: <edgecolortype(0)><colortype(0)>Deals unaspected damage to self and nearby enemies<br>When the effect of a prediction expires, a new prophecy is granted. If all predictions expire without a commensurate action being used, the prophecy changes to <colortype(506)><edgecolortype(507)>False Prediction<edgecolortype(0)><colortype(0)>, causing damage over time to self with a potency of 50,000.<br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>30s",
+      "unlock_level": 0,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Phantom Jobs"
+      ],
+      "jobs": [
+        {
+          "id": 11,
+          "name": "Phantom Oracle",
+          "abbreviation": "Ph. Oracle",
+          "is_phantom": true
+        }
+      ]
+    }
+  ]
+}

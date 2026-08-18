@@ -1,0 +1,28 @@
+{
+  "kind": "trait",
+  "id": 673,
+  "name": "Verbesserte Astrologie",
+  "description": "Erhöht den Attacke-Wert folgender Kommandos:\nAttacke-Wert des Schaden-über-Zeit-Effekts von Konjunktion III: 70\nAttacke-Wert von Aspekt im Fall: 270\nAttacke-Wert von Gravitra: 140\nAttacke-Wert von Makrokosmos: 270",
+  "description_macro": "Erhöht den Attacke-Wert folgender Kommandos:<br>Attacke-Wert des Schaden-über-Zeit-Effekts von <colortype(502)><edgecolortype(503)>Konjunktion III<edgecolortype(0)><colortype(0)>: 70<br>Attacke-Wert von <colortype(502)><edgecolortype(503)>Aspekt im Fall<edgecolortype(0)><colortype(0)>: 270<br>Attacke-Wert von <colortype(502)><edgecolortype(503)>Gravitra<edgecolortype(0)><colortype(0)>: 140<br>Attacke-Wert von <colortype(502)><edgecolortype(503)>Makrokosmos<edgecolortype(0)><colortype(0)>: 270",
+  "effects": [
+    "Erhöht den Attacke-Wert folgender Kommandos:",
+    "Attacke-Wert des Schaden-über-Zeit-Effekts von Konjunktion III: 70",
+    "Attacke-Wert von Aspekt im Fall: 270",
+    "Attacke-Wert von Gravitra: 140",
+    "Attacke-Wert von Makrokosmos: 270"
+  ],
+  "role": "Healer",
+  "job": {
+    "id": 33,
+    "name": "Astrologe",
+    "abbreviation": "AST"
+  },
+  "unlock_level": 94,
+  "value": 0,
+  "icon": {
+    "id": 6831,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 99,
+  "source_class_job_id": 33
+}

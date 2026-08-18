@@ -1,0 +1,113 @@
+{
+  "kind": "combat_status",
+  "id": 3861,
+  "name": "Œil de faucon",
+  "description": ".",
+  "effects": [
+    "."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 213075,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 24,
+  "source_abilities": [
+    {
+      "id": 3560,
+      "name": "Mâchoires de fer",
+      "description": "Effectue une attaque physique sur la cible.\nPuissance : 100\nEffet additionnel : réinitialise la durée de Morsure caustique et Morsure de la tempête infligés par vous à la cible.\nEffet additionnel : 35% de chances qu'Œil de faucon vous soit octroyé.\nDurée : 30s",
+      "description_macro": "Effectue une attaque physique sur la cible.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> 100<br><colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> réinitialise la durée de <if([gnum72>=64],<if([gnum68==23],Morsure caustique et Morsure de la tempête,Morsure venimeuse et Morsure du vent)>,Morsure venimeuse et Morsure du vent)> infligés par vous à la cible.<if([gnum68==23],<if([gnum72>=76],<br><colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> 35% de chances qu'<colortype(500)><edgecolortype(501)>Œil de faucon<edgecolortype(0)><colortype(0)> vous soit octroyé.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 30s,)>,)>",
+      "unlock_level": 56,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Physical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 23,
+          "name": "Barde",
+          "abbreviation": "BRD",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 7406,
+      "name": "Morsure caustique",
+      "description": "Effectue une attaque physique sur la cible.\nPuissance : 150\nEffet additionnel : dégâts périodiques de poison.\nPuissance : 20 Durée : 45s\nEffet additionnel : 35% de chances qu'Œil de faucon vous soit octroyé.\nDurée : 30s",
+      "description_macro": "Effectue une attaque physique sur la cible.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> 150<br><colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> dégâts périodiques de poison.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> 20 <colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 45s<if([gnum68==23],<if([gnum72>=76],<br><colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> 35% de chances qu'<colortype(500)><edgecolortype(501)>Œil de faucon<edgecolortype(0)><colortype(0)> vous soit octroyé.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 30s,)>,)>",
+      "unlock_level": 64,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Physical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 23,
+          "name": "Barde",
+          "abbreviation": "BRD",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 7407,
+      "name": "Morsure de la tempête",
+      "description": "Effectue une attaque physique de vent sur la cible.\nPuissance : 100\nEffet additionnel : dégâts périodiques de vent.\nPuissance : 25 Durée : 45s\nEffet additionnel : 35% de chances qu'Œil de faucon vous soit octroyé.\nDurée : 30s",
+      "description_macro": "Effectue une attaque physique de vent sur la cible.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> 100<br><colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> dégâts périodiques de vent.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> 25 <colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 45s<if([gnum68==23],<if([gnum72>=76],<br><colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> 35% de chances qu'<colortype(500)><edgecolortype(501)>Œil de faucon<edgecolortype(0)><colortype(0)> vous soit octroyé.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 30s,)>,)>",
+      "unlock_level": 64,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Physical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 23,
+          "name": "Barde",
+          "abbreviation": "BRD",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 16495,
+      "name": "Tir éclatant",
+      "description": "Effectue une attaque physique sur la cible.\nPuissance : 220\nEffet additionnel : 35% de chances qu'Œil de faucon vous soit octroyé.\nDurée : 30s",
+      "description_macro": "Effectue une attaque physique sur la cible.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> <if([gnum68==23],<if([gnum72>=94],220,200)>,200)><br><colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> 35% de chances qu'<colortype(500)><edgecolortype(501)>Œil de faucon<edgecolortype(0)><colortype(0)> vous soit octroyé.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 30s",
+      "unlock_level": 76,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Physical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 23,
+          "name": "Barde",
+          "abbreviation": "BRD",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

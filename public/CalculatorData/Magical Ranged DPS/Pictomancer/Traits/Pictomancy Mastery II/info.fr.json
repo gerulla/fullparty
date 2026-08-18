@@ -1,0 +1,37 @@
+{
+  "kind": "trait",
+  "id": 676,
+  "name": "Actions améliorées II",
+  "description": "Augmente la puissance de certaines actions.\n\nPuissance de Feu en rouge : 380\nPuissance de Vent en vert : 420\nPuissance d'Eau en bleu : 460\nPuissance d'Extra Feu en rouge : 150\nPuissance d'Extra Vent en vert : 170\nPuissance d'Extra Eau en bleu : 190\nPuissance de Tamponnage Marteau : 500\nPuissance de Glace en cyan : 680\nPuissance de Terre en jaune : 720\nPuissance de Foudre en magenta : 760\nPuissance d'Extra Glace en cyan : 330\nPuissance d'Extra Terre en jaune : 350\nPuissance d'Extra Foudre en magenta : 370",
+  "description_macro": "Augmente la puissance de certaines actions.<br><br><colortype(506)><edgecolortype(507)>Puissance de Feu en rouge<nbsp>:<edgecolortype(0)><colortype(0)> 380<br><colortype(506)><edgecolortype(507)>Puissance de Vent en vert<nbsp>:<edgecolortype(0)><colortype(0)> 420<br><colortype(506)><edgecolortype(507)>Puissance d'Eau en bleu<nbsp>:<edgecolortype(0)><colortype(0)> 460<br><colortype(506)><edgecolortype(507)>Puissance d'Extra Feu en rouge<nbsp>:<edgecolortype(0)><colortype(0)> 150<br><colortype(506)><edgecolortype(507)>Puissance d'Extra Vent en vert<nbsp>:<edgecolortype(0)><colortype(0)> 170<br><colortype(506)><edgecolortype(507)>Puissance d'Extra Eau en bleu<nbsp>:<edgecolortype(0)><colortype(0)> 190<br><colortype(506)><edgecolortype(507)>Puissance de Tamponnage Marteau<nbsp>:<edgecolortype(0)><colortype(0)> 500<br><colortype(506)><edgecolortype(507)>Puissance de Glace en cyan<nbsp>:<edgecolortype(0)><colortype(0)> 680<br><colortype(506)><edgecolortype(507)>Puissance de Terre en jaune<nbsp>:<edgecolortype(0)><colortype(0)> 720<br><colortype(506)><edgecolortype(507)>Puissance de Foudre en magenta<nbsp>:<edgecolortype(0)><colortype(0)> 760<br><colortype(506)><edgecolortype(507)>Puissance d'Extra Glace en cyan<nbsp>:<edgecolortype(0)><colortype(0)> 330<br><colortype(506)><edgecolortype(507)>Puissance d'Extra Terre en jaune<nbsp>:<edgecolortype(0)><colortype(0)> 350<br><colortype(506)><edgecolortype(507)>Puissance d'Extra Foudre en magenta<nbsp>:<edgecolortype(0)><colortype(0)> 370",
+  "effects": [
+    "Augmente la puissance de certaines actions.",
+    "Puissance de Feu en rouge : 380",
+    "Puissance de Vent en vert : 420",
+    "Puissance d'Eau en bleu : 460",
+    "Puissance d'Extra Feu en rouge : 150",
+    "Puissance d'Extra Vent en vert : 170",
+    "Puissance d'Extra Eau en bleu : 190",
+    "Puissance de Tamponnage Marteau : 500",
+    "Puissance de Glace en cyan : 680",
+    "Puissance de Terre en jaune : 720",
+    "Puissance de Foudre en magenta : 760",
+    "Puissance d'Extra Glace en cyan : 330",
+    "Puissance d'Extra Terre en jaune : 350",
+    "Puissance d'Extra Foudre en magenta : 370"
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 42,
+    "name": "Pictomancien",
+    "abbreviation": "PIC"
+  },
+  "unlock_level": 74,
+  "value": 0,
+  "icon": {
+    "id": 6830,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 197,
+  "source_class_job_id": 42
+}

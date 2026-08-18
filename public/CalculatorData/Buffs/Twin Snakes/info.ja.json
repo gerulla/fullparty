@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 101,
+  "name": "双掌打",
+  "description": "与ダメージが上昇した状態。",
+  "effects": [
+    "与ダメージが上昇した状態。"
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 210216,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 5
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 61,
+      "name": "双掌打",
+      "description": "対象に物理攻撃。\u3000威力：420\n追加効果：自身に「弐の功力」を付与する。\n弐の功力効果：竜頷正拳撃の威力を200上昇させる。\n追加効果：自身に「参の型」を付与する。\u3000効果時間：30秒\n発動条件：「弐の型」効果中",
+      "description_macro": "対象に物理攻撃。\u3000<colortype(504)><edgecolortype(505)>威力：<edgecolortype(0)><colortype(0)><if([gnum68==20],<if([gnum72>=94],420,<if([gnum68==20],<if([gnum72>=84],380,340)>,340)>)>,<if([gnum68==20],<if([gnum72>=84],380,340)>,340)>)><br><colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)>自身に<colortype(500)><edgecolortype(501)>「弐の功力」<edgecolortype(0)><colortype(0)>を付与する。<br><colortype(504)><edgecolortype(505)>弐の功力効果：<edgecolortype(0)><colortype(0)><if([gnum68==20],<if([gnum72>=92],竜頷正拳撃,正拳突き)>,正拳突き)>の威力を200上昇させる。<br><colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)>自身に<colortype(500)><edgecolortype(501)>「参の型」<edgecolortype(0)><colortype(0)>を付与する。\u3000<colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>30秒<br><colortype(504)><edgecolortype(505)>発動条件：<edgecolortype(0)><colortype(0)><colortype(500)><edgecolortype(501)>「弐の型」<edgecolortype(0)><colortype(0)>効果中",
+      "unlock_level": 18,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 20,
+          "name": "モンク",
+          "abbreviation": "MNK",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

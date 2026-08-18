@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 2697,
+  "name": "インプロビゼーション・フィニッシュ",
+  "description": "一定量のダメージを軽減する状態。",
+  "effects": [
+    "一定量のダメージを軽減する状態。"
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 213721,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 30,
+  "parameter": {
+    "effect": 0,
+    "modifier": 100
+  },
+  "class_job_category_id": 150,
+  "source_abilities": [
+    {
+      "id": 25789,
+      "name": "インプロビゼーション・フィニッシュ",
+      "description": "自身と周囲のパーティメンバーに、一定量のダメージを防ぐバリアを張る。\nこのバリアの効果量は、自身に付与されている「踊りの熱情」のスタック数により変化する。\nスタック数が0のとき：対象の最大ＨＰの5％分\nスタック数が1のとき：対象の最大ＨＰの6％分\nスタック数が2のとき：対象の最大ＨＰの7％分\nスタック数が3のとき：対象の最大ＨＰの8％分\nスタック数が4のとき：対象の最大ＨＰの10％分\n効果時間：30秒\n発動条件：インプロビゼーション実行中\n\n※このアクションはホットバーに登録することはできない。\n\u3000発動条件を満たすとインプロビゼーションがインプロビゼーション・フィニッシュに変化する。",
+      "description_macro": "自身と周囲のパーティメンバーに、一定量のダメージを防ぐバリアを張る。<br>このバリアの効果量は、自身に付与されている<colortype(500)><edgecolortype(501)>「踊りの熱情」<edgecolortype(0)><colortype(0)>のスタック数により変化する。<br><colortype(504)><edgecolortype(505)>スタック数が0のとき：<edgecolortype(0)><colortype(0)>対象の最大ＨＰの5％分<br><colortype(504)><edgecolortype(505)>スタック数が1のとき：<edgecolortype(0)><colortype(0)>対象の最大ＨＰの6％分<br><colortype(504)><edgecolortype(505)>スタック数が2のとき：<edgecolortype(0)><colortype(0)>対象の最大ＨＰの7％分<br><colortype(504)><edgecolortype(505)>スタック数が3のとき：<edgecolortype(0)><colortype(0)>対象の最大ＨＰの8％分<br><colortype(504)><edgecolortype(505)>スタック数が4のとき：<edgecolortype(0)><colortype(0)>対象の最大ＨＰの10％分<br><colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>30秒<br><colortype(504)><edgecolortype(505)>発動条件：<edgecolortype(0)><colortype(0)>インプロビゼーション実行中<br><br><colortype(506)><edgecolortype(507)>※このアクションはホットバーに登録することはできない。<br>\u3000発動条件を満たすとインプロビゼーションがインプロビゼーション・フィニッシュに変化する。<edgecolortype(0)><colortype(0)>",
+      "unlock_level": 80,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Physical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 38,
+          "name": "踊り子",
+          "abbreviation": "DNC",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

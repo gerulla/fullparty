@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 603,
+  "name": "Maîtrise de Pyro-explosion",
+  "description": "Remplace Pyro-explosion par Tir ardent.",
+  "description_macro": "Remplace <colortype(500)><edgecolortype(501)>Pyro-explosion<edgecolortype(0)><colortype(0)> par <colortype(500)><edgecolortype(501)>Tir ardent<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Remplace Pyro-explosion par Tir ardent."
+  ],
+  "role": "Physical Ranged DPS",
+  "job": {
+    "id": 31,
+    "name": "Machiniste",
+    "abbreviation": "MCH"
+  },
+  "unlock_level": 68,
+  "value": 0,
+  "icon": {
+    "id": 6021,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 96,
+  "source_class_job_id": 31
+}

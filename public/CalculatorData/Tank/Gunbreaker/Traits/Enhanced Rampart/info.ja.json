@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 639,
+  "name": "ランパート効果アップ",
+  "description": "ランパートに、「自身が受けるＨＰ回復効果を15％上昇させる効果」が付与される。",
+  "description_macro": "ランパートに、「自身が受けるＨＰ回復効果を15％上昇させる効果」が付与される。",
+  "effects": [
+    "ランパートに、「自身が受けるＨＰ回復効果を15％上昇させる効果」が付与される。"
+  ],
+  "role": "Tank",
+  "job": {
+    "id": 37,
+    "name": "ガンブレイカー",
+    "abbreviation": "GNB"
+  },
+  "unlock_level": 94,
+  "value": 0,
+  "icon": {
+    "id": 6804,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 113,
+  "source_class_job_id": 0
+}

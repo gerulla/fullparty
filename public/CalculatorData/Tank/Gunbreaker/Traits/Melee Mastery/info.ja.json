@@ -1,0 +1,27 @@
+{
+  "kind": "trait",
+  "id": 507,
+  "name": "アクション威力アップ",
+  "description": "特定のアクションの威力を上昇させる。\n\nキーンエッジの威力：200\nブルータルシェルの威力：160\nソリッドバレルの威力：140",
+  "description_macro": "特定のアクションの威力を上昇させる。<br><br><colortype(504)><edgecolortype(505)>キーンエッジの威力：<edgecolortype(0)><colortype(0)>200<br><colortype(504)><edgecolortype(505)>ブルータルシェルの威力：<edgecolortype(0)><colortype(0)>160<br><colortype(504)><edgecolortype(505)>ソリッドバレルの威力：<edgecolortype(0)><colortype(0)>140",
+  "effects": [
+    "特定のアクションの威力を上昇させる。",
+    "キーンエッジの威力：200",
+    "ブルータルシェルの威力：160",
+    "ソリッドバレルの威力：140"
+  ],
+  "role": "Tank",
+  "job": {
+    "id": 37,
+    "name": "ガンブレイカー",
+    "abbreviation": "GNB"
+  },
+  "unlock_level": 84,
+  "value": 0,
+  "icon": {
+    "id": 6801,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 149,
+  "source_class_job_id": 37
+}

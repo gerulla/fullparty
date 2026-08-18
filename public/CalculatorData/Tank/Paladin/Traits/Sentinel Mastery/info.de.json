@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 564,
+  "name": "Sentinel-Meister",
+  "description": "Verbessert Sentinel zu Heilige Wacht.",
+  "description_macro": "Verbessert <colortype(502)><edgecolortype(503)>Sentinel<edgecolortype(0)><colortype(0)> zu <colortype(502)><edgecolortype(503)>Heilige Wacht<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Verbessert Sentinel zu Heilige Wacht."
+  ],
+  "role": "Tank",
+  "job": {
+    "id": 19,
+    "name": "Paladin",
+    "abbreviation": "PLD"
+  },
+  "unlock_level": 92,
+  "value": 0,
+  "icon": {
+    "id": 5202,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 20,
+  "source_class_job_id": 19
+}

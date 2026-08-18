@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 13,
+  "name": "Préséance",
+  "description": "Permet de recevoir Préséance lorsque vous entrez en combat.\nPréséance : la vitesse des attaques automatiques est augmentée, et les temps de lancement et de recharge des sorts et des techniques d'arme sont réduits.\nDurée : 25s",
+  "description_macro": "Permet de recevoir <colortype(500)><edgecolortype(501)>Préséance<edgecolortype(0)><colortype(0)> lorsque vous entrez en combat.<br><colortype(506)><edgecolortype(507)>Préséance<nbsp>:<edgecolortype(0)><colortype(0)> la vitesse des attaques automatiques est augmentée, et les temps de lancement et de recharge des sorts et des techniques d'arme sont réduits.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 25s",
+  "effects": [
+    "Permet de recevoir Préséance lorsque vous entrez en combat.",
+    "Préséance : la vitesse des attaques automatiques est augmentée, et les temps de lancement et de recharge des sorts et des techniques d'arme sont réduits.",
+    "Durée : 25s"
+  ],
+  "role": "Phantom Jobs",
+  "job": {
+    "id": 16,
+    "name": "Ninja fantôme",
+    "abbreviation": "Ninja fant."
+  },
+  "is_phantom_trait": true,
+  "unlock_level": 5,
+  "icon": {
+    "id": 82213,
+    "file": "icon.png"
+  }
+}

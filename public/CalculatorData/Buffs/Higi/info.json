@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 3850,
+  "name": "Higi",
+  "description": "Able to make use of advanced ninja arts.",
+  "effects": [
+    "Able to make use of advanced ninja arts."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 212921,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 92,
+  "source_abilities": [
+    {
+      "id": 36957,
+      "name": "Dokumori",
+      "description": "Delivers an attack to all enemies in a cone before you with a potency of 400.\nAdditional Effect: Increases target's damage taken by 5%\nDuration: 20s\nAdditional Effect: Increases the chance of additional items being dropped by target if Dokumori is dealt before, or as, the finishing blow\nAdditional Effect: Increases Ninki Gauge by 40\nAdditional Effect: Grants Higi\nDuration: 30s",
+      "description_macro": "Delivers an attack to all enemies in a cone before you with a potency of 400.<br><colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>Increases target's damage taken by 5%<br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>20s<br><colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>Increases the chance of additional items being dropped by target if <colortype(500)><edgecolortype(501)>Dokumori<edgecolortype(0)><colortype(0)> is dealt before, or as, the finishing blow<br><colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>Increases <colortype(500)><edgecolortype(501)>Ninki Gauge<edgecolortype(0)><colortype(0)> by 40<if([gnum68==30],<if([gnum72>=96],<br><colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>Grants <colortype(506)><edgecolortype(507)>Higi<edgecolortype(0)><colortype(0)><br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>30s,)>,)>",
+      "unlock_level": 66,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 30,
+          "name": "Ninja",
+          "abbreviation": "NIN",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

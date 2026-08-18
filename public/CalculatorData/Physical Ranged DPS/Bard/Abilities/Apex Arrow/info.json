@@ -1,0 +1,89 @@
+{
+  "kind": "ability",
+  "id": 16496,
+  "name": "Apex Arrow",
+  "description": "Delivers an attack with a potency of 140 to all enemies in a straight line before you.\nSoul Voice Gauge Cost: 20 \nPotency increases up to 700 as Soul Voice Gauge exceeds minimum cost.\nAdditional Effect: Grants Blast Arrow Ready upon execution while Soul Voice Gauge is 80 or higher\nDuration: 10s\nConsumes Soul Voice Gauge upon execution.",
+  "description_macro": "Delivers an attack with a potency of <if([gnum68==23],<if([gnum72>=94],140,100)>,100)> to all enemies in a straight line before you.<br><colortype(504)><edgecolortype(505)>Soul Voice Gauge Cost: <edgecolortype(0)><colortype(0)>20 <br>Potency increases up to <if([gnum68==23],<if([gnum72>=94],700,500)>,500)> as <colortype(500)><edgecolortype(501)>Soul Voice Gauge<edgecolortype(0)><colortype(0)> exceeds minimum cost.<br><if([gnum68==23],<if([gnum72>=86],<colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>Grants <colortype(506)><edgecolortype(507)>Blast Arrow Ready<edgecolortype(0)><colortype(0)> upon execution while <colortype(500)><edgecolortype(501)>Soul Voice Gauge<edgecolortype(0)><colortype(0)> is 80 or higher<br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>10s<br>,)>,)>Consumes <colortype(500)><edgecolortype(501)>Soul Voice Gauge<edgecolortype(0)><colortype(0)> upon execution.",
+  "effects": [
+    "Delivers an attack with a potency of 140 to all enemies in a straight line before you.",
+    "Soul Voice Gauge Cost: 20",
+    "Potency increases up to 700 as Soul Voice Gauge exceeds minimum cost.",
+    "Additional Effect: Grants Blast Arrow Ready upon execution while Soul Voice Gauge is 80 or higher",
+    "Duration: 10s",
+    "Consumes Soul Voice Gauge upon execution."
+  ],
+  "role": "Physical Ranged DPS",
+  "job": {
+    "id": 23,
+    "name": "Bard",
+    "abbreviation": "BRD"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 80,
+  "icon": {
+    "id": 2619,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 3,
+    "name": "Weaponskill"
+  },
+  "attack_type": {
+    "id": 4294967295,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 2.5,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 58,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 59,
+      "value": 20
+    },
+    "secondary": {
+      "type_id": 0,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": 25,
+    "effect_yalms": 25,
+    "cast_type": 4
+  },
+  "targeting": {
+    "self": false,
+    "party": false,
+    "alliance": false,
+    "hostile": true,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": false
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 7,
+    "behavior_type": 0,
+    "class_job_category_id": 24,
+    "source_class_job_id": 23,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

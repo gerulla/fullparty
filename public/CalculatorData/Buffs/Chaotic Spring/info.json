@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 2719,
+  "name": "Chaotic Spring",
+  "description": "Sustaining damage over time.",
+  "effects": [
+    "Sustaining damage over time."
+  ],
+  "classification": "debuff",
+  "icon": {
+    "id": 212586,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 2,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 10,
+  "parameter": {
+    "effect": 0,
+    "modifier": 10
+  },
+  "class_job_category_id": 23,
+  "source_abilities": [
+    {
+      "id": 25772,
+      "name": "Chaotic Spring",
+      "description": "Delivers an attack with a potency of 140.\n180 when executed from a target's rear.\nCombo Action: Spiral Blow\nCombo Potency: 300\nRear Combo Potency: 340\nCombo Bonus: Damage over time\nPotency: 45\nDuration: 24s",
+      "description_macro": "Delivers an attack with a potency of <if([gnum68==22],<if([gnum72>=94],140,100)>,100)>.<br><if([gnum68==22],<if([gnum72>=94],180,140)>,140)> when executed from a target's rear.<br><colortype(504)><edgecolortype(505)>Combo Action: <edgecolortype(0)><colortype(0)><if([gnum68==22],<if([gnum72>=96],<colortype(500)><edgecolortype(501)>Spiral Blow<edgecolortype(0)><colortype(0)>,<colortype(500)><edgecolortype(501)>Disembowel<edgecolortype(0)><colortype(0)>)>,<colortype(500)><edgecolortype(501)>Disembowel<edgecolortype(0)><colortype(0)>)><br><colortype(504)><edgecolortype(505)>Combo Potency: <edgecolortype(0)><colortype(0)><if([gnum68==22],<if([gnum72>=94],300,260)>,260)><br><colortype(504)><edgecolortype(505)>Rear Combo Potency: <edgecolortype(0)><colortype(0)><if([gnum68==22],<if([gnum72>=94],340,300)>,300)><br><colortype(504)><edgecolortype(505)>Combo Bonus: <edgecolortype(0)><colortype(0)>Damage over time<br><colortype(504)><edgecolortype(505)>Potency: <edgecolortype(0)><colortype(0)>45<br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>24s",
+      "unlock_level": 86,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 22,
+          "name": "Dragoon",
+          "abbreviation": "DRG",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

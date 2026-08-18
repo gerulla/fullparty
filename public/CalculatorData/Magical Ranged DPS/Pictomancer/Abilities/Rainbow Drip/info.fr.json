@@ -1,0 +1,98 @@
+{
+  "kind": "ability",
+  "id": 34688,
+  "name": "Gouttes arc-en-ciel",
+  "description": "Effectue une attaque magique neutre en ligne droite vers la cible.\nPuissance : 1000\nLa puissance est réduite de 85% au-delà du premier ennemi touché.\nEffet additionnel : vous octroie Peinture blanche (maximum 5).\nAvec Gouttes arc-en-ciel améliorées, ce sort est instantané, et son temps de recharge est réduit.\nCe sort a un temps de recharge indépendant qui est appliqué aux autres sorts ou techniques d'arme après utilisation.",
+  "description_macro": "Effectue une attaque magique neutre en ligne droite vers la cible.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> 1000<br>La puissance est réduite de 85% au-delà du premier ennemi touché.<br><colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> vous octroie <colortype(500)><edgecolortype(501)>Peinture blanche<edgecolortype(0)><colortype(0)> (maximum 5).<br>Avec <colortype(500)><edgecolortype(501)>Gouttes arc-en-ciel améliorées<edgecolortype(0)><colortype(0)>, ce sort est instantané, et son temps de recharge est réduit.<br>Ce sort a un temps de recharge indépendant qui est appliqué aux autres sorts ou techniques d'arme après utilisation.",
+  "effects": [
+    "Effectue une attaque magique neutre en ligne droite vers la cible.",
+    "Puissance : 1000",
+    "La puissance est réduite de 85% au-delà du premier ennemi touché.",
+    "Effet additionnel : vous octroie Peinture blanche (maximum 5).",
+    "Avec Gouttes arc-en-ciel améliorées, ce sort est instantané, et son temps de recharge est réduit.",
+    "Ce sort a un temps de recharge indépendant qui est appliqué aux autres sorts ou techniques d'arme après utilisation."
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 42,
+    "name": "Pictomancien",
+    "abbreviation": "PIC"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 92,
+  "icon": {
+    "id": 3838,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 2,
+    "name": "Sort"
+  },
+  "attack_type": {
+    "id": 5,
+    "name": "magie"
+  },
+  "timing": {
+    "cast_seconds": 4,
+    "recast_seconds": 6,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 58,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 0,
+      "value": 0
+    },
+    "secondary": {
+      "type_id": 0,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": 25,
+    "effect_yalms": 25,
+    "cast_type": 4
+  },
+  "targeting": {
+    "self": false,
+    "party": false,
+    "alliance": false,
+    "hostile": true,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": {
+      "id": 144,
+      "status": {
+        "id": 3679,
+        "name": "Gouttes arc-en-ciel améliorées",
+        "description": "Le prochain sort Gouttes arc-en-ciel est instantané, et son temps de recharge est réduit.",
+        "icon_id": 213805,
+        "max_stacks": 0
+      }
+    }
+  },
+  "metadata": {
+    "aspect_id": 7,
+    "behavior_type": 0,
+    "class_job_category_id": 197,
+    "source_class_job_id": 42,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

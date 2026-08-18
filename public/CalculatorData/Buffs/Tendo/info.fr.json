@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 3856,
+  "name": "Tendô",
+  "description": "Tenka Goken devient Tendô Goken, et Midare Setsugekka devient Tendô Setsugekka.",
+  "effects": [
+    "Tenka Goken devient Tendô Goken, et Midare Setsugekka devient Tendô Setsugekka."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 213319,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 111,
+  "source_abilities": [
+    {
+      "id": 7499,
+      "name": "Meikyô Shisui",
+      "description": "Permet de déclencher des bonus de combo sans que les conditions ne soient remplies.\nOctroie respectivement Fûgetsu et Fûka quand Gekkô et Kasha sont utilisés avec succès.\nL'effet prend automatiquement fin après 3 techniques d'arme autres qu'Iaijutsuet Ôgi : Namikiri.\nDurée : 20s\nEffet additionnel : vous octroie Tendô.\nDurée : 30s\nMaximum de charges : 2",
+      "description_macro": "Permet de déclencher des bonus de combo sans que les conditions ne soient remplies.<br>Octroie respectivement <colortype(500)><edgecolortype(501)>Fûgetsu<edgecolortype(0)><colortype(0)> et <colortype(500)><edgecolortype(501)>Fûka<edgecolortype(0)><colortype(0)> quand Gekkô et Kasha sont utilisés avec succès.<br>L'effet prend au<->to<->ma<->ti<->que<->ment fin après 3 techniques d'arme autres qu'Iaijutsu<if([gnum68==34],<if([gnum72>=90], et Ôgi<nbsp>: Namikiri,)>,)>.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 20s<if([gnum68==34],<if([gnum72>=100],<br><colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> vous octroie <colortype(500)><edgecolortype(501)>Tendô<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 30s,)>,)><if([gnum68==34],<if([gnum72>=76],<br><colortype(506)><edgecolortype(507)>Maximum de charges<nbsp>:<edgecolortype(0)><colortype(0)> 2,)>,)>",
+      "unlock_level": 50,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 34,
+          "name": "Samouraï",
+          "abbreviation": "SAM",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

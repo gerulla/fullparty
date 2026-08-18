@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 2719,
+  "name": "Chaotischer Sturm",
+  "description": "Erleidet schrittweise Schaden.",
+  "effects": [
+    "Erleidet schrittweise Schaden."
+  ],
+  "classification": "debuff",
+  "icon": {
+    "id": 212586,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 2,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 10,
+  "parameter": {
+    "effect": 0,
+    "modifier": 10
+  },
+  "class_job_category_id": 23,
+  "source_abilities": [
+    {
+      "id": 25772,
+      "name": "Chaotischer Sturm",
+      "description": "Du führst eine physische Attacke aus.\nAttacke-Wert: 140\nVon hinten: 180\nKombo-Bedingung: Spiralhieb\nAttacke-Wert: 300\nVon hinten: 340\nBonus: Schaden über Zeit\nAttacke-Wert: 45\nDauer: 24 Sekunden",
+      "description_macro": "Du führst eine physische Attacke aus.<br>Attacke-Wert: <if([gnum68==22],<if([gnum72>=94],140,100)>,100)><br>Von hinten: <if([gnum68==22],<if([gnum72>=94],180,140)>,140)><br>Kombo-Bedingung: <if([gnum68==22],<if([gnum72>=96],<colortype(502)><edgecolortype(503)>Spiralhieb<edgecolortype(0)><colortype(0)>,<colortype(502)><edgecolortype(503)>Drachengriff<edgecolortype(0)><colortype(0)>)>,<colortype(502)><edgecolortype(503)>Drachengriff<edgecolortype(0)><colortype(0)>)><br>Attacke-Wert: <if([gnum68==22],<if([gnum72>=94],300,260)>,260)><br>Von hinten: <if([gnum68==22],<if([gnum72>=94],340,300)>,300)><br>Bonus: Schaden über Zeit<br>Attacke-Wert: 45<br>Dauer: 24 Sekunden",
+      "unlock_level": 86,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 22,
+          "name": "Dragoon",
+          "abbreviation": "DRG",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

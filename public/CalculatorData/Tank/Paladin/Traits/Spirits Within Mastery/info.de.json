@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 415,
+  "name": "Meister des Selbsterhaltungstriebs",
+  "description": "Verbessert Selbsterhaltungstrieb zu Expiacion.",
+  "description_macro": "Verbessert <colortype(502)><edgecolortype(503)>Selbsterhaltungstrieb<edgecolortype(0)><colortype(0)> zu <colortype(502)><edgecolortype(503)>Expiacion<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Verbessert Selbsterhaltungstrieb zu Expiacion."
+  ],
+  "role": "Tank",
+  "job": {
+    "id": 19,
+    "name": "Paladin",
+    "abbreviation": "PLD"
+  },
+  "unlock_level": 86,
+  "value": 0,
+  "icon": {
+    "id": 5221,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 20,
+  "source_class_job_id": 19
+}

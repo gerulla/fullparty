@@ -1,0 +1,91 @@
+{
+  "kind": "ability",
+  "id": 2864,
+  "name": "Auto-tourelle Tour",
+  "description": "Place une auto-tourelle Tour à vos côtés qui effectue des attaques physiques sur la cible.\nDurée maximum : 9s\nL'auto-tourelle Tour attaque automatiquement avec Tir de volée.\nLa puissance de Tir de volée augmente avec la quantité de Jauge de batterie consommée à l'activation de l'auto-tourelle Tour.\nPuissance de Tir de volée : de 35 à 70\nL'auto-tourelle Tour disparaît quand la durée d'activation est écoulée, ou quand Surmultiplication de Tour est utilisée.\nCoût Jauge de batterie : 50 ou plus\nPartage le même temps de recharge que Surmultiplication de Tour.",
+  "description_macro": "Place une auto-tourelle Tour à vos côtés qui effectue des attaques physiques sur la cible.<br><colortype(506)><edgecolortype(507)>Durée maximum<nbsp>:<edgecolortype(0)><colortype(0)> 9s<br>L'auto-tourelle Tour attaque au<->to<->ma<->ti<->que<->ment avec <colortype(500)><edgecolortype(501)>Tir de volée<edgecolortype(0)><colortype(0)>.<br>La puissance de <colortype(500)><edgecolortype(501)>Tir de volée<edgecolortype(0)><colortype(0)> augmente avec la quantité de <colortype(502)><edgecolortype(503)>Jauge de batterie<edgecolortype(0)><colortype(0)> consommée à l'activation de l'auto-tourelle Tour.<br><colortype(506)><edgecolortype(507)>Puissance de Tir de volée<nbsp>:<edgecolortype(0)><colortype(0)> de 35 à 70<br>L'auto-tourelle Tour disparaît quand la durée d'activation est écoulée, ou quand <colortype(500)><edgecolortype(501)>Surmul<->ti<->pli<->ca<->tion de Tour<edgecolortype(0)><colortype(0)> est utilisée.<br><colortype(506)><edgecolortype(507)>Coût Jauge de batterie<nbsp>:<edgecolortype(0)><colortype(0)> 50 ou plus<br>Partage le même temps de recharge que <colortype(500)><edgecolortype(501)>Surmul<->ti<->pli<->ca<->tion de Tour<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Place une auto-tourelle Tour à vos côtés qui effectue des attaques physiques sur la cible.",
+    "Durée maximum : 9s",
+    "L'auto-tourelle Tour attaque automatiquement avec Tir de volée.",
+    "La puissance de Tir de volée augmente avec la quantité de Jauge de batterie consommée à l'activation de l'auto-tourelle Tour.",
+    "Puissance de Tir de volée : de 35 à 70",
+    "L'auto-tourelle Tour disparaît quand la durée d'activation est écoulée, ou quand Surmultiplication de Tour est utilisée.",
+    "Coût Jauge de batterie : 50 ou plus",
+    "Partage le même temps de recharge que Surmultiplication de Tour."
+  ],
+  "role": "Physical Ranged DPS",
+  "job": {
+    "id": 31,
+    "name": "Machiniste",
+    "abbreviation": "MCH"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 40,
+  "icon": {
+    "id": 3026,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 4,
+    "name": "Aptitude"
+  },
+  "attack_type": {
+    "id": 0,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 6,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 3,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 62,
+      "value": 50
+    },
+    "secondary": {
+      "type_id": 101,
+      "value": 50
+    }
+  },
+  "range": {
+    "target_yalms": 0,
+    "effect_yalms": 0,
+    "cast_type": 1
+  },
+  "targeting": {
+    "self": true,
+    "party": false,
+    "alliance": false,
+    "hostile": false,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 0,
+    "behavior_type": 0,
+    "class_job_category_id": 96,
+    "source_class_job_id": 31,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

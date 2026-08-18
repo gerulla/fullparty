@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 526,
+  "name": "Verbesserter Otterngriff",
+  "description": "Nach erfolgreicher Ausführung von Blutiger Otterngriff oder Flinker Otterngriff kannst du Biss der Zwillingsfänge und Biss der Zwillingsschuppen ausführen.",
+  "description_macro": "Nach erfolgreicher Ausführung von <colortype(502)><edgecolortype(503)>Blutiger Otterngriff<edgecolortype(0)><colortype(0)> oder <colortype(502)><edgecolortype(503)>Flinker Otterngriff<edgecolortype(0)><colortype(0)> kannst du <colortype(502)><edgecolortype(503)>Biss der Zwillingsfänge<edgecolortype(0)><colortype(0)> und <colortype(502)><edgecolortype(503)>Biss der Zwillingsschuppen<edgecolortype(0)><colortype(0)> ausführen.",
+  "effects": [
+    "Nach erfolgreicher Ausführung von Blutiger Otterngriff oder Flinker Otterngriff kannst du Biss der Zwillingsfänge und Biss der Zwillingsschuppen ausführen."
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 41,
+    "name": "Viper",
+    "abbreviation": "VPR"
+  },
+  "unlock_level": 75,
+  "value": 0,
+  "icon": {
+    "id": 6503,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 196,
+  "source_class_job_id": 41
+}

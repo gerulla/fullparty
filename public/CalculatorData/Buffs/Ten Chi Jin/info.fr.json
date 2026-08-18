@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 1186,
+  "name": "Ten Chi Jin",
+  "description": "Des ninjutsu peuvent être lancés en succession.",
+  "effects": [
+    "Des ninjutsu peuvent être lancés en succession."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 212911,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 10
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 7403,
+      "name": "Ten Chi Jin",
+      "description": "Convertit les mudrâ en ninjutsu.\nLes ninjutsu disponibles changent à chaque utilisation de Ninjutsu.\nJusqu'à trois ninjutsu peuvent être exécutés.\nDurée : 6s\nLes ninjutsu sont les seules actions utilisables.\nEffet additionnel : vous octroie Tenri Jindô préparé.\nDurée : 30s\nCondition : Kassatsu non octroyé.",
+      "description_macro": "Convertit les mudrâ en ninjutsu.<br>Les ninjutsu disponibles changent à chaque utilisation de <colortype(500)><edgecolortype(501)>Ninjutsu<edgecolortype(0)><colortype(0)>.<br>Jusqu'à trois ninjutsu peuvent être exécutés.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 6s<br>Les ninjutsu sont les seules actions utilisables.<br><if([gnum68==30],<if([gnum72>=100],<colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> vous octroie <colortype(500)><edgecolortype(501)>Tenri Jindô préparé<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 30s<br>,)>,)><colortype(506)><edgecolortype(507)>Condition<nbsp>:<edgecolortype(0)><colortype(0)> <colortype(500)><edgecolortype(501)>Kassatsu<edgecolortype(0)><colortype(0)> non octroyé.",
+      "unlock_level": 70,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 30,
+          "name": "Ninja",
+          "abbreviation": "NIN",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

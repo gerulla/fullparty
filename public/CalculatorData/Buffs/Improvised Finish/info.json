@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 2697,
+  "name": "Improvised Finish",
+  "description": "A magicked barrier is nullifying damage.",
+  "effects": [
+    "A magicked barrier is nullifying damage."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 213721,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 30,
+  "parameter": {
+    "effect": 0,
+    "modifier": 100
+  },
+  "class_job_category_id": 150,
+  "source_abilities": [
+    {
+      "id": 25789,
+      "name": "Improvised Finish",
+      "description": "Creates a barrier around self and all nearby party members. Damage absorbed increases with stacks of Rising Rhythm.\n0 Stacks: 5% of maximum HP\n1 Stack: 6% of maximum HP\n2 Stacks: 7% of maximum HP\n3 Stacks: 8% of maximum HP\n4 Stacks: 10% of maximum HP\nDuration: 30s\nCan only be executed while Improvisation is active.\n\n※This action cannot be assigned to a hotbar.\n※Improvisation changes to Improvised Finish when requirements for execution are met.",
+      "description_macro": "Creates a barrier around self and all nearby party members. Damage absorbed increases with stacks of <colortype(506)><edgecolortype(507)>Rising Rhythm<edgecolortype(0)><colortype(0)>.<br><colortype(504)><edgecolortype(505)>0 Stacks: <edgecolortype(0)><colortype(0)>5% of maximum HP<br><colortype(504)><edgecolortype(505)>1 Stack: <edgecolortype(0)><colortype(0)>6% of maximum HP<br><colortype(504)><edgecolortype(505)>2 Stacks: <edgecolortype(0)><colortype(0)>7% of maximum HP<br><colortype(504)><edgecolortype(505)>3 Stacks: <edgecolortype(0)><colortype(0)>8% of maximum HP<br><colortype(504)><edgecolortype(505)>4 Stacks: <edgecolortype(0)><colortype(0)>10% of maximum HP<br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>30s<br>Can only be executed while <colortype(500)><edgecolortype(501)>Improvisation<edgecolortype(0)><colortype(0)> is active.<br><br>※This action cannot be assigned to a hotbar.<br>※<colortype(500)><edgecolortype(501)>Improvisation<edgecolortype(0)><colortype(0)> changes to <colortype(500)><edgecolortype(501)>Improvised Finish<edgecolortype(0)><colortype(0)> when requirements for execution are met.",
+      "unlock_level": 80,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Physical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 38,
+          "name": "Dancer",
+          "abbreviation": "DNC",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

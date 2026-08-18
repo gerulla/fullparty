@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 1836,
+  "name": "Bolide",
+  "description": "Insensible à la plupart des attaques.",
+  "effects": [
+    "Insensible à la plupart des attaques."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 213606,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 70,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 149,
+  "source_abilities": [
+    {
+      "id": 16152,
+      "name": "Bolide",
+      "description": "Réduit vos PV à 50% de vos PV maximums et vous rend invulnérable à la plupart des attaques.\nDurée : 10s",
+      "description_macro": "Réduit vos PV à 50% de vos PV maximums et vous rend invulnérable à la plupart des attaques.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 10s",
+      "unlock_level": 50,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Tank"
+      ],
+      "jobs": [
+        {
+          "id": 37,
+          "name": "Pistosabreur",
+          "abbreviation": "PSB",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

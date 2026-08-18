@@ -1,0 +1,26 @@
+{
+  "kind": "trait",
+  "id": 540,
+  "name": "Enhanced Pictomancy II",
+  "description": "Hammer Stamp changes to Hammer Brush upon execution, which in turn changes to Polishing Hammer upon execution.\nAdditionally allows the accumulation of charges for consecutive uses of Striking Muse.\nMaximum Charges: 2",
+  "description_macro": "<colortype(500)><edgecolortype(501)>Hammer Stamp<edgecolortype(0)><colortype(0)> changes to <colortype(500)><edgecolortype(501)>Hammer Brush<edgecolortype(0)><colortype(0)> upon execution, which in turn changes to <colortype(500)><edgecolortype(501)>Polishing Hammer<edgecolortype(0)><colortype(0)> upon execution.<br>Additionally allows the accumulation of charges for consecutive uses of <colortype(500)><edgecolortype(501)>Striking Muse<edgecolortype(0)><colortype(0)>.<br><colortype(504)><edgecolortype(505)>Maximum Charges: <edgecolortype(0)><colortype(0)>2",
+  "effects": [
+    "Hammer Stamp changes to Hammer Brush upon execution, which in turn changes to Polishing Hammer upon execution.",
+    "Additionally allows the accumulation of charges for consecutive uses of Striking Muse.",
+    "Maximum Charges: 2"
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 42,
+    "name": "Pictomancer",
+    "abbreviation": "PCT"
+  },
+  "unlock_level": 86,
+  "value": 2,
+  "icon": {
+    "id": 6554,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 197,
+  "source_class_job_id": 42
+}

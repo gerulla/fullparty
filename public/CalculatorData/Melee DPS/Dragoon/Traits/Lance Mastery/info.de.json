@@ -1,0 +1,28 @@
+{
+  "kind": "trait",
+  "id": 247,
+  "name": "Meister der Lanze",
+  "description": "Verleiht den Status Zornesfeuer, wenn Drachenhort direkt nach Fächerstoß oder Fang und Klaue erfolgreich ausgeführt wird.\nDauer: 30 Sekunden\nDer Effekt endet bei Ausführung einer Waffenfertigkeit.\nSauberer Stoß wird während der Wirkungsdauer zu Überfallsstoß.\nDarüber hinaus erhöht sich der Attacke-Wert von Sauberer Stoß auf 230, von Vorpalstoß auf 130, von Reißende Klauen auf 200, von Reißende Klauen bei Reißende Klauen auf 350 und von Drachengriff auf 140.",
+  "description_macro": "Verleiht den Status <colortype(506)><edgecolortype(507)>Zornesfeuer<edgecolortype(0)><colortype(0)>, wenn <colortype(502)><edgecolortype(503)>Drachenhort<edgecolortype(0)><colortype(0)> direkt nach <colortype(502)><edgecolortype(503)>Fächerstoß<edgecolortype(0)><colortype(0)> oder <colortype(502)><edgecolortype(503)>Fang und Klaue<edgecolortype(0)><colortype(0)> erfolgreich ausgeführt wird.<br>Dauer: 30 Sekunden<br>Der Effekt endet bei Ausführung einer Waf<->fen<->fer<->tig<->keit.<br><colortype(502)><edgecolortype(503)>Sauberer Stoß<edgecolortype(0)><colortype(0)> wird während der Wirkungsdauer zu <colortype(502)><edgecolortype(503)>Überfallsstoß<edgecolortype(0)><colortype(0)>.<br>Darüber hinaus erhöht sich der Attacke-Wert von <colortype(502)><edgecolortype(503)>Sauberer Stoß<edgecolortype(0)><colortype(0)> auf 230, von <colortype(502)><edgecolortype(503)>Vorpalstoß<edgecolortype(0)><colortype(0)> auf 130, von <colortype(502)><edgecolortype(503)>Reißende Klauen<edgecolortype(0)><colortype(0)> auf 200, von <colortype(502)><edgecolortype(503)>Reißende Klauen<edgecolortype(0)><colortype(0)> bei <colortype(506)><edgecolortype(507)>Reißende Klauen<edgecolortype(0)><colortype(0)> auf 350 und von <colortype(502)><edgecolortype(503)>Drachengriff<edgecolortype(0)><colortype(0)> auf 140. ",
+  "effects": [
+    "Verleiht den Status Zornesfeuer, wenn Drachenhort direkt nach Fächerstoß oder Fang und Klaue erfolgreich ausgeführt wird.",
+    "Dauer: 30 Sekunden",
+    "Der Effekt endet bei Ausführung einer Waffenfertigkeit.",
+    "Sauberer Stoß wird während der Wirkungsdauer zu Überfallsstoß.",
+    "Darüber hinaus erhöht sich der Attacke-Wert von Sauberer Stoß auf 230, von Vorpalstoß auf 130, von Reißende Klauen auf 200, von Reißende Klauen bei Reißende Klauen auf 350 und von Drachengriff auf 140."
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 22,
+    "name": "Dragoon",
+    "abbreviation": "DRG"
+  },
+  "unlock_level": 76,
+  "value": 0,
+  "icon": {
+    "id": 5284,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 23,
+  "source_class_job_id": 22
+}

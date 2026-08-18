@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 1825,
+  "name": "Devilment",
+  "description": "Critical hit rate and direct hit rate are increased.",
+  "effects": [
+    "Critical hit rate and direct hit rate are increased."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 213714,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 10
+  },
+  "class_job_category_id": 150,
+  "source_abilities": [
+    {
+      "id": 16011,
+      "name": "Devilment",
+      "description": "Increases critical hit rate and direct hit rate by 20%.\nDuration: 20s\nAdditional Effect: Party member designated as your Dance Partner will also receive the effect of Devilment\nAdditional Effect: Grants Flourishing Starfall\nDuration: 20s",
+      "description_macro": "Increases critical hit rate and direct hit rate by 20%.<br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>20s<br><colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>Party member designated as your <colortype(506)><edgecolortype(507)>Dance Partner<edgecolortype(0)><colortype(0)> will also receive the effect of <colortype(506)><edgecolortype(507)>Devilment<edgecolortype(0)><colortype(0)><if([gnum68==38],<if([gnum72>=90],<br><colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>Grants <colortype(506)><edgecolortype(507)>Flourishing Starfall<edgecolortype(0)><colortype(0)><br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>20s,)>,)>",
+      "unlock_level": 62,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Physical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 38,
+          "name": "Dancer",
+          "abbreviation": "DNC",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

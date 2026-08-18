@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 2496,
+  "name": "Barriere",
+  "description": "Erlittener Schaden ist verringert. Gewährt Göttlicher Katarakt, wenn eine bestimmte Menge Schaden erlitten wird.",
+  "effects": [
+    "Erlittener Schaden ist verringert. Gewährt Göttlicher Katarakt, wenn eine bestimmte Menge Schaden erlitten wird."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 213535,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": true,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 1,
+  "parameter": {
+    "effect": 4,
+    "modifier": -20
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 23273,
+      "name": "Barriere",
+      "description": "Du errichtest eine Barriere um dich und verringerst deinen erlittenen Schaden um 20 %.\nDauer: 10 Sekunden\nZusatzeffekt: Gewährt Göttlicher Katarakt, wenn Schaden in der Höhe von 30 % deiner Maximal-LP erlitten wird.\nEffekt von Göttlicher Katarakt: Barriere ändert sich zu Göttlicher Katarakt.\nEffekt endet bei Bewegung, Umdrehen oder Ausführen eines Kommandos. Bei Ende von Barriere endet auch Göttlicher Katarakt.\nUnterbindet Auto-Attacke.\nGemeinsamer Reaktivierungs-Timer mit Zermalmender Geist und Rubin-Dynamo\n\nGöttlicher Katarakt\nDu führst eine wasserbasierte magische Attacke auf alle umstehenden Gegner aus.\nAttacke-Wert: 500\nZusatzeffekt bei Äther-Mimikry: Verteidiger: Attacke-Wert erhöht sich auf 1.000.\nAttacke-Wert verringert sich ab dem zweiten Gegner um 50 %.\nKann nur während Göttlicher Katarakt ausgeführt werden.",
+      "description_macro": "Du errichtest eine Barriere um dich und verringerst deinen erlittenen Schaden um 20<nbsp>%.<br>Dauer: 10 Sekunden<br>Zusatzeffekt: Gewährt <colortype(506)><edgecolortype(507)>Göttlicher Katarakt<edgecolortype(0)><colortype(0)>, wenn Schaden in der Höhe von 30<nbsp>% deiner Maximal-LP erlitten wird.<br>Effekt von <colortype(506)><edgecolortype(507)>Göttlicher Katarakt<edgecolortype(0)><colortype(0)>: <colortype(502)><edgecolortype(503)>Barriere<edgecolortype(0)><colortype(0)> ändert sich zu <colortype(502)><edgecolortype(503)>Göttlicher Katarakt<edgecolortype(0)><colortype(0)>.<br>Effekt endet bei Bewegung, Umdrehen oder Ausführen eines Kommandos. Bei Ende von <colortype(506)><edgecolortype(507)>Barriere<edgecolortype(0)><colortype(0)> endet auch <colortype(506)><edgecolortype(507)>Göttlicher Katarakt<edgecolortype(0)><colortype(0)>.<br>Unterbindet Auto-Attacke.<br>Gemeinsamer Reaktivierungs-Timer mit <colortype(502)><edgecolortype(503)>Zermalmender Geist<edgecolortype(0)><colortype(0)> und <colortype(502)><edgecolortype(503)>Rubin-Dynamo<edgecolortype(0)><colortype(0)><br><br><colortype(502)><edgecolortype(503)>Göttlicher Katarakt<edgecolortype(0)><colortype(0)><br>Du führst eine wasserbasierte magische Attacke auf alle umstehenden Gegner aus.<br>Attacke-Wert: 500<br>Zusatzeffekt bei <colortype(506)><edgecolortype(507)>Äther-Mimikry: Verteidiger<edgecolortype(0)><colortype(0)>: Attacke-Wert erhöht sich auf 1.000.<br>Attacke-Wert verringert sich ab dem zweiten Gegner um 50<nbsp>%.<br>Kann nur während <colortype(506)><edgecolortype(507)>Göttlicher Katarakt<edgecolortype(0)><colortype(0)> ausgeführt werden. ",
+      "unlock_level": 1,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Magical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 36,
+          "name": "Blaumagier",
+          "abbreviation": "BMA",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

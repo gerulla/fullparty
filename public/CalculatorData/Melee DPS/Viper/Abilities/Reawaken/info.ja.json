@@ -1,0 +1,98 @@
+{
+  "kind": "ability",
+  "id": 34626,
+  "name": "祖霊降ろし",
+  "description": "自身の周囲の敵に範囲物理攻撃。\u3000威力：750\n2体目以降の対象への威力は75％減少する。\n追加効果：自身に5スタックの「霊力」を付与する。\n効果時間：30秒\n発動条件：「霊力ゲージ」50\nこのウェポンスキルは固有のリキャストタイマーを持つ。",
+  "description_macro": "自身の周囲の敵に範囲物理攻撃。\u3000<colortype(504)><edgecolortype(505)>威力：<edgecolortype(0)><colortype(0)>750<br>2体目以降の対象への威力は75％減少する。<br><colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)>自身に<if([gnum68==41],<if([gnum72>=96],5,4)>,4)>スタックの<colortype(500)><edgecolortype(501)>「霊力」<edgecolortype(0)><colortype(0)>を付与する。<br><colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>30秒<br><colortype(504)><edgecolortype(505)>発動条件：<edgecolortype(0)><colortype(0)><colortype(500)><edgecolortype(501)>「霊力ゲージ」<edgecolortype(0)><colortype(0)>50<br>このウェポンスキルは固有のリキャストタイマーを持つ。",
+  "effects": [
+    "自身の周囲の敵に範囲物理攻撃。\u3000威力：750",
+    "2体目以降の対象への威力は75％減少する。",
+    "追加効果：自身に5スタックの「霊力」を付与する。",
+    "効果時間：30秒",
+    "発動条件：「霊力ゲージ」50",
+    "このウェポンスキルは固有のリキャストタイマーを持つ。"
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 41,
+    "name": "ヴァイパー",
+    "abbreviation": "VPR"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 90,
+  "icon": {
+    "id": 3721,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 3,
+    "name": "ウェポンスキル"
+  },
+  "attack_type": {
+    "id": 4294967295,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 2.2,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 58,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 88,
+      "value": 50
+    },
+    "secondary": {
+      "type_id": 135,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": 0,
+    "effect_yalms": 5,
+    "cast_type": 2
+  },
+  "targeting": {
+    "self": true,
+    "party": false,
+    "alliance": false,
+    "hostile": false,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": {
+      "id": 218,
+      "status": {
+        "id": 3671,
+        "name": "祖霊降ろし実行可",
+        "description": "祖霊降ろしを、霊力を消費せずに実行できる状態。",
+        "icon_id": 213777,
+        "max_stacks": 0
+      }
+    }
+  },
+  "metadata": {
+    "aspect_id": 7,
+    "behavior_type": 0,
+    "class_job_category_id": 196,
+    "source_class_job_id": 41,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

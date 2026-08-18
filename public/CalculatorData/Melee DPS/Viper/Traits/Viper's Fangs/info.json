@@ -1,0 +1,25 @@
+{
+  "kind": "trait",
+  "id": 524,
+  "name": "Viper's Fangs",
+  "description": "Allows the execution of Death Rattle.\nCan only be executed upon successfully landing Flanksting Strike, Flanksbane Fang, Hindsting Strike, or Hindsbane Fang.",
+  "description_macro": "Allows the execution of <colortype(500)><edgecolortype(501)>Death Rattle<edgecolortype(0)><colortype(0)>.<br>Can only be executed upon successfully landing <colortype(500)><edgecolortype(501)>Flanksting Strike<edgecolortype(0)><colortype(0)>, <colortype(500)><edgecolortype(501)>Flanksbane Fang<edgecolortype(0)><colortype(0)>, <colortype(500)><edgecolortype(501)>Hindsting Strike<edgecolortype(0)><colortype(0)>, or <colortype(500)><edgecolortype(501)>Hindsbane Fang<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Allows the execution of Death Rattle.",
+    "Can only be executed upon successfully landing Flanksting Strike, Flanksbane Fang, Hindsting Strike, or Hindsbane Fang."
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 41,
+    "name": "Viper",
+    "abbreviation": "VPR"
+  },
+  "unlock_level": 55,
+  "value": 0,
+  "icon": {
+    "id": 6501,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 196,
+  "source_class_job_id": 41
+}

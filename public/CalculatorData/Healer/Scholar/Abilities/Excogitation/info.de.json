@@ -1,0 +1,88 @@
+{
+  "kind": "ability",
+  "id": 7434,
+  "name": "Weise Voraussicht",
+  "description": "Du gewährst dir oder einem Gruppenmitglied Weise Voraussicht, wodurch das Ziel geheilt wird, sobald seine LP auf bzw. unter 50 % sinken oder die Wirkungsdauer endet.\nHeilpotenzial: 800\nDauer: 45 Sekunden\nZusatzeffekt: Feenbalken füllt sich um 10.\nÄtherfluss-Kosten: 1",
+  "description_macro": "Du gewährst dir oder einem Grup<->pen<->mit<->glied <colortype(506)><edgecolortype(507)>Weise Voraussicht<edgecolortype(0)><colortype(0)>, wodurch das Ziel geheilt wird, sobald seine LP auf bzw. unter 50 % sinken oder die Wirkungsdauer endet.<br>Heilpotenzial: 800<br>Dauer: 45 Sekunden<br><if([gnum72>=70],<if([gnum68==28],Zusatzeffekt: Feenbalken füllt sich um 10.<br>,)>,)><colortype(506)><edgecolortype(507)>Ätherfluss<edgecolortype(0)><colortype(0)>-Kosten: 1",
+  "effects": [
+    "Du gewährst dir oder einem Gruppenmitglied Weise Voraussicht, wodurch das Ziel geheilt wird, sobald seine LP auf bzw. unter 50 % sinken oder die Wirkungsdauer endet.",
+    "Heilpotenzial: 800",
+    "Dauer: 45 Sekunden",
+    "Zusatzeffekt: Feenbalken füllt sich um 10.",
+    "Ätherfluss-Kosten: 1"
+  ],
+  "role": "Healer",
+  "job": {
+    "id": 28,
+    "name": "Gelehrter",
+    "abbreviation": "GLT"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 62,
+  "icon": {
+    "id": 2813,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 4,
+    "name": "Talent"
+  },
+  "attack_type": {
+    "id": 0,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 45,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 10,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 30,
+      "value": 1
+    },
+    "secondary": {
+      "type_id": 0,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": 30,
+    "effect_yalms": 0,
+    "cast_type": 1
+  },
+  "targeting": {
+    "self": true,
+    "party": true,
+    "alliance": false,
+    "hostile": false,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": false
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 0,
+    "behavior_type": 0,
+    "class_job_category_id": 29,
+    "source_class_job_id": 28,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

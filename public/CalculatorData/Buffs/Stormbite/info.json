@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 1201,
+  "name": "Stormbite",
+  "description": "Wounds are exposed to the elements, causing wind damage over time.",
+  "effects": [
+    "Wounds are exposed to the elements, causing wind damage over time."
+  ],
+  "classification": "debuff",
+  "icon": {
+    "id": 212617,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 2,
+  "target_type": 0,
+  "can_dispel": true,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 10,
+  "parameter": {
+    "effect": 0,
+    "modifier": 10
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 7407,
+      "name": "Stormbite",
+      "description": "Deals wind damage with a potency of 100.\nAdditional Effect: Wind damage over time\nPotency: 25\nDuration: 45s\nAdditional Effect: 35% chance of granting Hawk's Eye\nDuration: 30s",
+      "description_macro": "Deals wind damage with a potency of 100.<br><colortype(504)><edgecolortype(505)>Additional Effect:<edgecolortype(0)><colortype(0)> Wind damage over time<br><colortype(504)><edgecolortype(505)>Potency:<edgecolortype(0)><colortype(0)> 25<br><colortype(504)><edgecolortype(505)>Duration:<edgecolortype(0)><colortype(0)> 45s<if([gnum68==23],<if([gnum72>=76],<br><colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>35% chance of granting <colortype(506)><edgecolortype(507)>Hawk's Eye<edgecolortype(0)><colortype(0)><br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>30s,)>,)>",
+      "unlock_level": 64,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Physical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 23,
+          "name": "Bard",
+          "abbreviation": "BRD",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "kind": "trait",
+  "id": 479,
+  "name": "Maîtrise de Ruine IV",
+  "description": "Augmente la puissance des actions dérivées du sort Ruine.\n\nPuissance de Méga Ruine : 310\nPuissance de Rite de rubis : 510\nPuissance de Rite de topaze : 330\nPuissance de Rite d'émeraude : 230",
+  "description_macro": "Augmente la puissance des actions dérivées du sort <colortype(500)><edgecolortype(501)>Ruine<edgecolortype(0)><colortype(0)>.<br><br><colortype(506)><edgecolortype(507)>Puissance de Méga Ruine<nbsp>:<edgecolortype(0)><colortype(0)> 310<br><colortype(506)><edgecolortype(507)>Puissance de Rite de rubis<nbsp>:<edgecolortype(0)><colortype(0)> 510<br><colortype(506)><edgecolortype(507)>Puissance de Rite de topaze<nbsp>:<edgecolortype(0)><colortype(0)> 330<br><colortype(506)><edgecolortype(507)>Puissance de Rite d'émeraude<nbsp>:<edgecolortype(0)><colortype(0)> 230",
+  "effects": [
+    "Augmente la puissance des actions dérivées du sort Ruine.",
+    "Puissance de Méga Ruine : 310",
+    "Puissance de Rite de rubis : 510",
+    "Puissance de Rite de topaze : 330",
+    "Puissance de Rite d'émeraude : 230"
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 27,
+    "name": "Invocateur",
+    "abbreviation": "INV"
+  },
+  "unlock_level": 84,
+  "value": 0,
+  "icon": {
+    "id": 5689,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 28,
+  "source_class_job_id": 27
+}

@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 2168,
+  "name": "ディヴァインヴェール",
+  "description": "一定量のダメージを軽減する状態。バリアがダメージを完全に吸収して消滅すると周囲のパーティメンバーに一定量のダメージを軽減するバリア効果を付与する。",
+  "effects": [
+    "一定量のダメージを軽減する状態。バリアがダメージを完全に吸収して消滅すると周囲のパーティメンバーに一定量のダメージを軽減するバリア効果を付与する。"
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 212508,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": true,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 20,
+  "source_abilities": [
+    {
+      "id": 3540,
+      "name": "ディヴァインヴェール",
+      "description": "自身と周囲のパーティメンバーに、一定量のダメージを防ぐバリアを張る。\nこのバリアはナイト自身の最大ＨＰの10％分のダメージを軽減する。\u3000効果時間：30秒\n追加効果：対象のＨＰを回復する。\u3000回復力：400",
+      "description_macro": "自身と周囲のパーティメンバーに、一定量のダメージを防ぐバリアを張る。<br>このバリアはナイト自身の最大ＨＰの10％分のダメージを軽減する。\u3000<colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>30秒<if([gnum68==19],<if([gnum72>=88],<br><colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)>対象のＨＰを回復する。\u3000<colortype(504)><edgecolortype(505)>回復力：<edgecolortype(0)><colortype(0)>400,)>,)>",
+      "unlock_level": 56,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Tank"
+      ],
+      "jobs": [
+        {
+          "id": 19,
+          "name": "ナイト",
+          "abbreviation": "PLD",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

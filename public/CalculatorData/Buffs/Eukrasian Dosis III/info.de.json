@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 2616,
+  "name": "Eukratische Dosis III",
+  "description": "Erleidet schrittweise Schaden.",
+  "effects": [
+    "Erleidet schrittweise Schaden."
+  ],
+  "classification": "debuff",
+  "icon": {
+    "id": 212962,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 2,
+  "target_type": 0,
+  "can_dispel": true,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 10,
+  "parameter": {
+    "effect": 0,
+    "modifier": 10
+  },
+  "class_job_category_id": 181,
+  "source_abilities": [
+    {
+      "id": 24314,
+      "name": "Eukratische Dosis III",
+      "description": "Du fügst dem Ziel elementneutralen magischen Schaden über Zeit zu.\nAttacke-Wert: 90\nDauer: 30 Sekunden\nKann nicht zugleich mit Eukratische Dyskrasie aktiv sein.\nZusatzeffekt: Regeneriert LP bei dem Ziel mit von dir gewährtem Kardion.\nHeilpotenzial: 170\nBedingung: Eukrasie aktiv\nBei erfüllter Bedingung ändert sich Dosis III zu diesem Kommando.\nKann nicht im Kommandomenü angelegt werden.",
+      "description_macro": "Du fügst dem Ziel elementneutralen magischen Schaden über Zeit zu.<br>Attacke-Wert: <if([gnum68==40],<if([gnum72>=94],90,80)>,80)><br>Dauer: 30 Sekunden<br>Kann nicht zugleich mit <colortype(500)><edgecolortype(501)>Eukratische Dyskrasie<edgecolortype(0)><colortype(0)> aktiv sein.<br>Zusatzeffekt: Regeneriert LP bei dem Ziel mit von dir gewährtem <colortype(506)><edgecolortype(507)>Kardion<edgecolortype(0)><colortype(0)>.<br>Heilpotenzial: <if([gnum68==40],<if([gnum72>=85],170,130)>,130)><br>Bedingung: <colortype(506)><edgecolortype(507)>Eukrasie<edgecolortype(0)><colortype(0)> aktiv<br>Bei erfüllter Bedingung ändert sich <colortype(502)><edgecolortype(503)>Dosis III<edgecolortype(0)><colortype(0)> zu diesem Kommando.<br>Kann nicht im Kommandomenü angelegt werden.",
+      "unlock_level": 82,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Healer"
+      ],
+      "jobs": [
+        {
+          "id": 40,
+          "name": "Weiser",
+          "abbreviation": "WEI",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

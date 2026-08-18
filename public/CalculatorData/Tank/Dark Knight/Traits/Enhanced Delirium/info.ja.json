@@ -1,0 +1,25 @@
+{
+  "kind": "trait",
+  "id": 572,
+  "name": "ブラッドデリリアム効果アップ",
+  "description": "ブラッドスピラーがレッドデリリアムに、クワイタスがインペイルメントに変化する。\n発動条件：「ブラッドデリリアム」効果中",
+  "description_macro": "ブラッドスピラーがレッドデリリアムに、クワイタスがインペイルメントに変化する。<br><colortype(504)><edgecolortype(505)>発動条件：<edgecolortype(0)><colortype(0)><colortype(500)><edgecolortype(501)>「ブラッドデリリアム」<edgecolortype(0)><colortype(0)>効果中",
+  "effects": [
+    "ブラッドスピラーがレッドデリリアムに、クワイタスがインペイルメントに変化する。",
+    "発動条件：「ブラッドデリリアム」効果中"
+  ],
+  "role": "Tank",
+  "job": {
+    "id": 32,
+    "name": "暗黒騎士",
+    "abbreviation": "DRK"
+  },
+  "unlock_level": 96,
+  "value": 0,
+  "icon": {
+    "id": 6069,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 98,
+  "source_class_job_id": 32
+}

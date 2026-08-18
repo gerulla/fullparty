@@ -1,0 +1,91 @@
+{
+  "kind": "ability",
+  "id": 34671,
+  "name": "Imagi Ailes",
+  "description": "Matérialise l'esquisse d'Ailes et effectue une attaque magique neutre sur la cible et les ennemis autour.\nPuissance : 800\nLa puissance est réduite de 70% au-delà du premier ennemi touché.\nEffet additionnel : vous octroie un Symbole Animal Picto Ailes (maximum 3).\nSi vous possédez les Symboles Animaux Picto Pompon et Picto Ailes, un Symbole Mog vous est octroyé.\nCondition : esquisse d'Ailes peinte sur la toile Animal.\n\n* Cette action ne peut pas être ajoutée aux barres de raccourcis.\nRemplace Imagi Animal lorsque les conditions sont réunies.",
+  "description_macro": "Matérialise l'esquisse d'<colortype(500)><edgecolortype(501)>Ailes<edgecolortype(0)><colortype(0)> et effectue une attaque magique neutre sur la cible et les ennemis autour.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> <if([gnum68==42],<if([gnum72>=84],800,<if([gnum68==42],<if([gnum72>=54],700,400)>,400)>)>,<if([gnum68==42],<if([gnum72>=54],700,400)>,400)>)><br>La puissance est réduite de 70% au-delà du premier ennemi touché.<br><colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> vous octroie un Symbole Animal <colortype(500)><edgecolortype(501)>Picto Ailes<edgecolortype(0)><colortype(0)> (maximum <if([gnum68==42],<if([gnum72>=96],3,2)>,2)>).<br>Si vous possédez les Symboles Animaux <colortype(500)><edgecolortype(501)>Picto Pompon<edgecolortype(0)><colortype(0)> et <colortype(500)><edgecolortype(501)>Picto Ailes<edgecolortype(0)><colortype(0)>, un Symbole Mog vous est octroyé.<br><colortype(506)><edgecolortype(507)>Condition<nbsp>:<edgecolortype(0)><colortype(0)> esquisse d'<colortype(500)><edgecolortype(501)>Ailes<edgecolortype(0)><colortype(0)> peinte sur la toile Animal.<br><br><colortype(504)><edgecolortype(505)>* Cette action ne peut pas être ajoutée aux barres de raccourcis.<br>Remplace <colortype(500)><edgecolortype(501)>Imagi Animal<edgecolortype(0)><colortype(0)> lorsque les conditions sont réunies.<edgecolortype(0)><colortype(0)>",
+  "effects": [
+    "Matérialise l'esquisse d'Ailes et effectue une attaque magique neutre sur la cible et les ennemis autour.",
+    "Puissance : 800",
+    "La puissance est réduite de 70% au-delà du premier ennemi touché.",
+    "Effet additionnel : vous octroie un Symbole Animal Picto Ailes (maximum 3).",
+    "Si vous possédez les Symboles Animaux Picto Pompon et Picto Ailes, un Symbole Mog vous est octroyé.",
+    "Condition : esquisse d'Ailes peinte sur la toile Animal.",
+    "* Cette action ne peut pas être ajoutée aux barres de raccourcis.",
+    "Remplace Imagi Animal lorsque les conditions sont réunies."
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 42,
+    "name": "Pictomancien",
+    "abbreviation": "PIC"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 30,
+  "icon": {
+    "id": 3822,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 4,
+    "name": "Aptitude"
+  },
+  "attack_type": {
+    "id": 5,
+    "name": "magie"
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 40,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 19,
+    "additional_cooldown_group": 71,
+    "max_charges": 2
+  },
+  "costs": {
+    "primary": {
+      "type_id": 94,
+      "value": 2
+    },
+    "secondary": {
+      "type_id": 0,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": 25,
+    "effect_yalms": 5,
+    "cast_type": 2
+  },
+  "targeting": {
+    "self": false,
+    "party": false,
+    "alliance": false,
+    "hostile": true,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 7,
+    "behavior_type": 0,
+    "class_job_category_id": 197,
+    "source_class_job_id": 0,
+    "is_role_action": false,
+    "is_player_action": false,
+    "is_derived_action": true,
+    "equivalence_group": 0
+  }
+}

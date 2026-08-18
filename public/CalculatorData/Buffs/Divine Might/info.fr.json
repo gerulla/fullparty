@@ -1,0 +1,71 @@
+{
+  "kind": "combat_status",
+  "id": 2673,
+  "name": "Grâce divine",
+  "description": "Le prochain Esprit saint ou Cercle sacré peut être lancé instantanément avec une puissance augmentée.",
+  "effects": [
+    "Le prochain Esprit saint ou Cercle sacré peut être lancé instantanément avec une puissance augmentée."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 212521,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 20,
+  "source_abilities": [
+    {
+      "id": 3539,
+      "name": "Autorité royale",
+      "description": "Effectue une attaque physique sur la cible.\nPuissance : 200\nCombo : Lame déchaînée\nPuissance du combo : 460\nBonus du combo : vous octroie Absolution préparée.\nDurée : 30s\nBonus du combo : vous octroie Grâce divine.\nDurée : 30s\nGrâce divine : permet de lancer instantanément le prochain Esprit saintou Cercle sacré avec une puissance augmentée.",
+      "description_macro": "Effectue une attaque physique sur la cible.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> <if([gnum68==19],<if([gnum72>=94],200,<if([gnum68==19],<if([gnum72>=84],140,100)>,100)>)>,<if([gnum68==19],<if([gnum72>=84],140,100)>,100)>)><br><colortype(506)><edgecolortype(507)>Combo<nbsp>:<edgecolortype(0)><colortype(0)> Lame déchaînée<br><colortype(506)><edgecolortype(507)>Puissance du combo<nbsp>:<edgecolortype(0)><colortype(0)> <if([gnum68==19],<if([gnum72>=94],460,<if([gnum68==19],<if([gnum72>=84],400,360)>,360)>)>,<if([gnum68==19],<if([gnum72>=84],400,360)>,360)>)><if([gnum68==19],<if([gnum72>=76],<br><colortype(506)><edgecolortype(507)>Bonus du combo<nbsp>:<edgecolortype(0)><colortype(0)> vous octroie <colortype(500)><edgecolortype(501)>Absolution préparée<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 30s,)>,)><if([gnum68==19],<if([gnum72>=64],<br><colortype(506)><edgecolortype(507)>Bonus du combo<nbsp>:<edgecolortype(0)><colortype(0)> vous octroie <colortype(500)><edgecolortype(501)>Grâce divine<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 30s<br><colortype(506)><edgecolortype(507)>Grâce divine<nbsp>:<edgecolortype(0)><colortype(0)> permet de lancer instantanément le prochain Esprit saint<if([gnum68==19],<if([gnum72>=72], ou Cercle sacré,)>,)> avec une puissance augmentée.,)>,)>",
+      "unlock_level": 60,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Tank"
+      ],
+      "jobs": [
+        {
+          "id": 19,
+          "name": "Paladin",
+          "abbreviation": "PLD",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 16457,
+      "name": "Évidence",
+      "description": "Effectue une attaque physique sur les ennemis alentour.\nPuissance : 100\nEffet additionnel : augmente l'inimitié envers vous.\nCombo : Éclipse totale\nPuissance du combo : 220\nBonus du combo : restaure vos PM.\nBonus du combo : vous octroie Grâce divine.\nDurée : 30s\nGrâce divine : permet de lancer instantanément le prochain Esprit saintou Cercle sacré avec une puissance augmentée.",
+      "description_macro": "Effectue une attaque physique sur les ennemis alentour.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> 100<br><colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> augmente l'inimitié envers vous.<br><colortype(506)><edgecolortype(507)>Combo<nbsp>:<edgecolortype(0)><colortype(0)> Éclipse totale<br><colortype(506)><edgecolortype(507)>Puissance du combo<nbsp>:<edgecolortype(0)><colortype(0)> 220<if([gnum68==19],<if([gnum72>=72],<br><colortype(506)><edgecolortype(507)>Bonus du combo<nbsp>:<edgecolortype(0)><colortype(0)> restaure vos PM.<br><colortype(506)><edgecolortype(507)>Bonus du combo<nbsp>:<edgecolortype(0)><colortype(0)> vous octroie <colortype(500)><edgecolortype(501)>Grâce divine<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 30s<br><colortype(506)><edgecolortype(507)>Grâce divine<nbsp>:<edgecolortype(0)><colortype(0)> permet de lancer instantanément le prochain Esprit saint<if([gnum68==19],<if([gnum72>=72], ou Cercle sacré,)>,)> avec une puissance augmentée.,)>,)>",
+      "unlock_level": 40,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Tank"
+      ],
+      "jobs": [
+        {
+          "id": 19,
+          "name": "Paladin",
+          "abbreviation": "PLD",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

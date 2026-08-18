@@ -1,0 +1,27 @@
+{
+  "kind": "trait",
+  "id": 523,
+  "name": "Verbesserte Ernte II",
+  "description": "Erhöht den Attacke-Wert folgender Kommandos:\nAttacke-Wert von Schlitzer: 320\nAttacke-Wert von Neulicht-Schlitzer: 160\nAttacke-Wert von Infernalischer Schlitzer: 180",
+  "description_macro": "Erhöht den Attacke-Wert folgender Kommandos:<br>Attacke-Wert von <colortype(502)><edgecolortype(503)>Schlitzer<edgecolortype(0)><colortype(0)>: 320<br>Attacke-Wert von <colortype(502)><edgecolortype(503)>Neulicht-Schlitzer<edgecolortype(0)><colortype(0)>: 160<br>Attacke-Wert von <colortype(502)><edgecolortype(503)>Infernalischer Schlitzer<edgecolortype(0)><colortype(0)>: 180",
+  "effects": [
+    "Erhöht den Attacke-Wert folgender Kommandos:",
+    "Attacke-Wert von Schlitzer: 320",
+    "Attacke-Wert von Neulicht-Schlitzer: 160",
+    "Attacke-Wert von Infernalischer Schlitzer: 180"
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 39,
+    "name": "Schnitter",
+    "abbreviation": "SNT"
+  },
+  "unlock_level": 84,
+  "value": 0,
+  "icon": {
+    "id": 6802,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 180,
+  "source_class_job_id": 39
+}

@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 452,
+  "name": "Verbesserter Taktiker",
+  "description": "Verkürzt die Reaktivierungszeit von Taktiker auf 90 Sekunden.",
+  "description_macro": "Verkürzt die Re<->ak<->ti<->vie<->rungs<->zeit von <colortype(502)><edgecolortype(503)>Taktiker<edgecolortype(0)><colortype(0)> auf 90 Sekunden.",
+  "effects": [
+    "Verkürzt die Reaktivierungszeit von Taktiker auf 90 Sekunden."
+  ],
+  "role": "Physical Ranged DPS",
+  "job": {
+    "id": 31,
+    "name": "Maschinist",
+    "abbreviation": "MCH"
+  },
+  "unlock_level": 88,
+  "value": -300,
+  "icon": {
+    "id": 6020,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 96,
+  "source_class_job_id": 31
+}

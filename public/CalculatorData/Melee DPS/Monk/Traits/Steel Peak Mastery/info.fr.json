@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 428,
+  "name": "Maîtrise de Charge d'acier",
+  "description": "Remplace Charge d'acier par Chakra interdit et Méditation profonde par Méditation interdite.",
+  "description_macro": "Remplace <colortype(500)><edgecolortype(501)>Charge d'acier<edgecolortype(0)><colortype(0)> par <colortype(500)><edgecolortype(501)>Chakra interdit<edgecolortype(0)><colortype(0)> et <colortype(500)><edgecolortype(501)>Méditation profonde<edgecolortype(0)><colortype(0)> par <colortype(500)><edgecolortype(501)>Méditation interdite<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Remplace Charge d'acier par Chakra interdit et Méditation profonde par Méditation interdite."
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 20,
+    "name": "Moine",
+    "abbreviation": "MOI"
+  },
+  "unlock_level": 54,
+  "value": 0,
+  "icon": {
+    "id": 5241,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 21,
+  "source_class_job_id": 20
+}

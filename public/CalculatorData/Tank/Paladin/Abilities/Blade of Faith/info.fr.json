@@ -1,0 +1,92 @@
+{
+  "kind": "ability",
+  "id": 25748,
+  "name": "Lame de foi",
+  "description": "Effectue une attaque magique neutre sur la cible et les ennemis autour.\nPuissance : 260\nPuissance avec Requiescat : 760\nLa puissance est réduite de 60% au-delà du premier ennemi touché.\nCombo : Confiteor\nEffet additionnel : restaure vos PV.\nPuissance : 400\n\n* Cette action ne peut pas être ajoutée aux barres de raccourcis.\nRemplace Confiteor lorsque les conditions sont réunies.",
+  "description_macro": "Effectue une attaque magique neutre sur la cible et les ennemis autour.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> <if([gnum68==19],<if([gnum72>=94],260,220)>,220)><br><colortype(506)><edgecolortype(507)>Puissance avec Requiescat<nbsp>:<edgecolortype(0)><colortype(0)> <if([gnum68==19],<if([gnum72>=94],760,720)>,720)><br>La puissance est réduite de 60% au-delà du premier ennemi touché.<br><colortype(506)><edgecolortype(507)>Combo<nbsp>:<edgecolortype(0)><colortype(0)> Confiteor<br><colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> restaure vos PV.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> 400<br><br><colortype(504)><edgecolortype(505)>* Cette action ne peut pas être ajoutée aux barres de raccourcis.<br>Remplace <colortype(500)><edgecolortype(501)>Confiteor<edgecolortype(0)><colortype(0)> lorsque les conditions sont réunies.<edgecolortype(0)><colortype(0)>",
+  "effects": [
+    "Effectue une attaque magique neutre sur la cible et les ennemis autour.",
+    "Puissance : 260",
+    "Puissance avec Requiescat : 760",
+    "La puissance est réduite de 60% au-delà du premier ennemi touché.",
+    "Combo : Confiteor",
+    "Effet additionnel : restaure vos PV.",
+    "Puissance : 400",
+    "* Cette action ne peut pas être ajoutée aux barres de raccourcis.",
+    "Remplace Confiteor lorsque les conditions sont réunies."
+  ],
+  "role": "Tank",
+  "job": {
+    "id": 19,
+    "name": "Paladin",
+    "abbreviation": "PLD"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 90,
+  "icon": {
+    "id": 2952,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 2,
+    "name": "Sort"
+  },
+  "attack_type": {
+    "id": 5,
+    "name": "magie"
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 2.5,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 58,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 3,
+      "value": 20
+    },
+    "secondary": {
+      "type_id": 18,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": 25,
+    "effect_yalms": 5,
+    "cast_type": 2
+  },
+  "targeting": {
+    "self": false,
+    "party": false,
+    "alliance": false,
+    "hostile": true,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": 16459,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 7,
+    "behavior_type": 0,
+    "class_job_category_id": 20,
+    "source_class_job_id": 0,
+    "is_role_action": false,
+    "is_player_action": false,
+    "is_derived_action": true,
+    "equivalence_group": 0
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 462,
+  "name": "Maîtrise des polarités IV",
+  "description": "Remplace Extra Feu par Extra Feu majeur et Extra Glace par Extra Glace majeure.",
+  "description_macro": "Remplace <colortype(500)><edgecolortype(501)>Extra Feu<edgecolortype(0)><colortype(0)> par <colortype(500)><edgecolortype(501)>Extra Feu majeur<edgecolortype(0)><colortype(0)> et <colortype(500)><edgecolortype(501)>Extra Glace<edgecolortype(0)><colortype(0)> par <colortype(500)><edgecolortype(501)>Extra Glace majeure<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Remplace Extra Feu par Extra Feu majeur et Extra Glace par Extra Glace majeure."
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 25,
+    "name": "Mage Noir",
+    "abbreviation": "MNO"
+  },
+  "unlock_level": 82,
+  "value": 0,
+  "icon": {
+    "id": 5370,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 26,
+  "source_class_job_id": 25
+}

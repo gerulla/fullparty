@@ -1,0 +1,88 @@
+{
+  "kind": "ability",
+  "id": 36941,
+  "name": "Heulende Meditation",
+  "description": "Du öffnest ein Schatten-Chakra (max. 5 stapelbar).\nDauer: Fortdauernd\nBedingung: weniger als 5 offene Schatten-Chakren\nAußerhalb des Kampfes erhältst du die volle Stapelzahl (5).\nBei Ausführung wird der Reaktivierungs-Timer von Waffenfertigkeiten und Magie ausgelöst. Waffenfertigkeiten und Magie lösen den Reaktivierungs-Timer dieses Kommandos aus.",
+  "description_macro": "Du öffnest ein <colortype(506)><edgecolortype(507)>Schatten-Chakra<edgecolortype(0)><colortype(0)> (max. 5 stapelbar).<br>Dauer: Fortdauernd<br>Bedingung: weniger als 5 offene <colortype(506)><edgecolortype(507)>Schatten-Chakren<edgecolortype(0)><colortype(0)><br>Außerhalb des Kampfes erhältst du die volle Stapelzahl (5).<br>Bei Ausführung wird der Reaktivierungs-Timer von Waf<->fen<->fer<->tig<->kei<->ten und Magie ausgelöst. Waf<->fen<->fer<->tig<->kei<->ten und Magie lösen den Reaktivierungs-Timer dieses Kommandos aus.",
+  "effects": [
+    "Du öffnest ein Schatten-Chakra (max. 5 stapelbar).",
+    "Dauer: Fortdauernd",
+    "Bedingung: weniger als 5 offene Schatten-Chakren",
+    "Außerhalb des Kampfes erhältst du die volle Stapelzahl (5).",
+    "Bei Ausführung wird der Reaktivierungs-Timer von Waffenfertigkeiten und Magie ausgelöst. Waffenfertigkeiten und Magie lösen den Reaktivierungs-Timer dieses Kommandos aus."
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 20,
+    "name": "Mönch",
+    "abbreviation": "MÖN"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 40,
+  "icon": {
+    "id": 219,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 4,
+    "name": "Talent"
+  },
+  "attack_type": {
+    "id": 0,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 1,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 58,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 101,
+      "value": 429
+    },
+    "secondary": {
+      "type_id": 121,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": 0,
+    "effect_yalms": 0,
+    "cast_type": 1
+  },
+  "targeting": {
+    "self": true,
+    "party": false,
+    "alliance": false,
+    "hostile": false,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 0,
+    "behavior_type": 0,
+    "class_job_category_id": 21,
+    "source_class_job_id": 20,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

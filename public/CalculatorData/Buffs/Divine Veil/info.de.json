@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 2168,
+  "name": "Heiliger Quell",
+  "description": "Erlittener Schaden ist um einen bestimmten Betrag verringert. Falls die Barriere den vollen Schaden absorbiert, wird eine Barriere um die umstehenden Gruppenmitglieder errichtet, die Schaden neutralisiert.",
+  "effects": [
+    "Erlittener Schaden ist um einen bestimmten Betrag verringert. Falls die Barriere den vollen Schaden absorbiert, wird eine Barriere um die umstehenden Gruppenmitglieder errichtet, die Schaden neutralisiert."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 212508,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": true,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 20,
+  "source_abilities": [
+    {
+      "id": 3540,
+      "name": "Heiliger Quell",
+      "description": "Du errichtest eine Barriere um alle Mitglieder in deiner Nähe.\nWirkung der Barriere: Schaden in Höhe von 10 % deiner Maximal-LP wird neutralisiert.\nDauer: 30 Sekunden\nZusatzeffekt: Regeneriert LP des Ziels.\nHeilpotenzial: 400",
+      "description_macro": "Du errichtest eine Barriere um alle Mitglieder in deiner Nähe.<br>Wirkung der Barriere: Schaden in Höhe von 10 % deiner Maximal-LP wird neutralisiert.<br>Dauer: 30 Sekunden<if([gnum68==19],<if([gnum72>=88],<br>Zusatzeffekt: Regeneriert LP des Ziels.<br>Heilpotenzial: 400,)>,)>",
+      "unlock_level": 56,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Tank"
+      ],
+      "jobs": [
+        {
+          "id": 19,
+          "name": "Paladin",
+          "abbreviation": "PLD",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

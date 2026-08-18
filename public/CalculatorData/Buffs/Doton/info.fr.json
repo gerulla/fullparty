@@ -1,0 +1,71 @@
+{
+  "kind": "combat_status",
+  "id": 3187,
+  "name": "Doton",
+  "description": "Les ennemis dans la zone d'effet subissent des dégâts.",
+  "effects": [
+    "Les ennemis dans la zone d'effet subissent des dégâts."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 212904,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": true,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 92,
+  "source_abilities": [
+    {
+      "id": 2270,
+      "name": "Doton",
+      "description": "Effectue un ninjutsu créant une aire de dégâts de terre autour de vous.\nPuissance : 80 Durée : 18s\nEffet additionnel : inflige Pesanteur 40% aux ennemis dans l'aire d'effet.\nMudrâ requises :\nTen→Jin→Chi ou Jin→Ten→Chi\nDéclenche le temps de recharge des techniques d'arme, sorts, mudrâ et ninjutsu.\n\n* Cette action ne peut pas être ajoutée aux barres de raccourcis.\nRemplace Ninjutsu lorsque les conditions sont réunies.",
+      "description_macro": "Effectue un ninjutsu créant une aire de dégâts de terre autour de vous.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> 80 <colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 18s<br><colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> inflige Pesanteur 40% aux ennemis dans l'aire d'effet.<br><colortype(506)><edgecolortype(507)>Mudrâ requises<nbsp>:<edgecolortype(0)><colortype(0)><br><colortype(500)><edgecolortype(501)>Ten<edgecolortype(0)><colortype(0)>→<colortype(500)><edgecolortype(501)>Jin<edgecolortype(0)><colortype(0)>→<colortype(500)><edgecolortype(501)>Chi<edgecolortype(0)><colortype(0)> ou <colortype(500)><edgecolortype(501)>Jin<edgecolortype(0)><colortype(0)>→<colortype(500)><edgecolortype(501)>Ten<edgecolortype(0)><colortype(0)>→<colortype(500)><edgecolortype(501)>Chi<edgecolortype(0)><colortype(0)><br>Déclenche le temps de recharge des techniques d'arme, sorts, mudrâ et ninjutsu.<br><br><colortype(504)><edgecolortype(505)>* Cette action ne peut pas être ajoutée aux barres de raccourcis.<br>Remplace <colortype(500)><edgecolortype(501)>Ninjutsu<edgecolortype(0)><colortype(0)> lorsque les conditions sont réunies.<edgecolortype(0)><colortype(0)>",
+      "unlock_level": 45,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 30,
+          "name": "Ninja",
+          "abbreviation": "NIN",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 18880,
+      "name": "Doton",
+      "description": "Effectue un ninjutsu créant une aire de dégâts de terre autour de vous.\nPuissance : 80 Durée : 18s\nEffet additionnel : inflige Pesanteur 40% aux ennemis dans l'aire d'effet.\nMudrâ requises :\nTen→Jin→Chi ou Jin→Ten→Chi\nDéclenche le temps de recharge des techniques d'arme, sorts, mudrâ et ninjutsu.\n\n* Cette action ne peut pas être ajoutée aux barres de raccourcis.\nRemplace Ninjutsu lorsque les conditions sont réunies.",
+      "description_macro": "Effectue un ninjutsu créant une aire de dégâts de terre autour de vous.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> 80 <colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 18s<br><colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> inflige Pesanteur 40% aux ennemis dans l'aire d'effet.<br><colortype(506)><edgecolortype(507)>Mudrâ requises<nbsp>:<edgecolortype(0)><colortype(0)><br><colortype(500)><edgecolortype(501)>Ten<edgecolortype(0)><colortype(0)>→<colortype(500)><edgecolortype(501)>Jin<edgecolortype(0)><colortype(0)>→<colortype(500)><edgecolortype(501)>Chi<edgecolortype(0)><colortype(0)> ou <colortype(500)><edgecolortype(501)>Jin<edgecolortype(0)><colortype(0)>→<colortype(500)><edgecolortype(501)>Ten<edgecolortype(0)><colortype(0)>→<colortype(500)><edgecolortype(501)>Chi<edgecolortype(0)><colortype(0)><br>Déclenche le temps de recharge des techniques d'arme, sorts, mudrâ et ninjutsu.<br><br><colortype(504)><edgecolortype(505)>* Cette action ne peut pas être ajoutée aux barres de raccourcis.<br>Remplace <colortype(500)><edgecolortype(501)>Ninjutsu<edgecolortype(0)><colortype(0)> lorsque les conditions sont réunies.<edgecolortype(0)><colortype(0)>",
+      "unlock_level": 45,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 30,
+          "name": "Ninja",
+          "abbreviation": "NIN",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 3031,
+  "name": "Stem the Tide",
+  "description": "A magicked barrier is nullifying damage.",
+  "effects": [
+    "A magicked barrier is nullifying damage."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 212564,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": true,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 100
+  },
+  "class_job_category_id": 22,
+  "source_abilities": [
+    {
+      "id": 25751,
+      "name": "Bloodwhetting",
+      "description": "Reduces damage taken by 10%.\nDuration: 8s\nAdditional Effect: Restores HP with each weaponskill successfully delivered\nCure Potency: 400\nAdditional Effect: Grants Stem the Flow\nStem the Flow Effect: Reduces damage taken by 10%\nDuration: 4s\nAdditional Effect: Grants Stem the Tide\nStem the Tide Effect: Creates a barrier around self that absorbs damage equivalent to a heal of 400 potency\nDuration: 20s\nShares a recast timer with Nascent Flash.",
+      "description_macro": "Reduces damage taken by 10%.<br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>8s<br><colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>Restores HP with each weaponskill successfully delivered<br><colortype(504)><edgecolortype(505)>Cure Potency: <edgecolortype(0)><colortype(0)>400<br><colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>Grants <colortype(506)><edgecolortype(507)>Stem the Flow<edgecolortype(0)><colortype(0)><br><colortype(504)><edgecolortype(505)>Stem the Flow Effect: <edgecolortype(0)><colortype(0)>Reduces damage taken by 10%<br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>4s<br><colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>Grants <colortype(506)><edgecolortype(507)>Stem the Tide<edgecolortype(0)><colortype(0)><br><colortype(504)><edgecolortype(505)>Stem the Tide Effect: <edgecolortype(0)><colortype(0)>Creates a barrier around self that absorbs damage equivalent to a heal of 400 potency<br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>20s<br>Shares a recast timer with <colortype(500)><edgecolortype(501)>Nascent Flash<edgecolortype(0)><colortype(0)>.",
+      "unlock_level": 82,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Tank"
+      ],
+      "jobs": [
+        {
+          "id": 21,
+          "name": "Warrior",
+          "abbreviation": "WAR",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

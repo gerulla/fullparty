@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 1972,
+  "name": "Delirium de sang",
+  "description": "Les actions Quietus et Marée de sang ne consomment plus de Jauge de sang et restaurent des PM à chaque fois qu'elles touchent.",
+  "effects": [
+    "Les actions Quietus et Marée de sang ne consomment plus de Jauge de sang et restaurent des PM à chaque fois qu'elles touchent."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 217147,
+    "file": "icon.png"
+  },
+  "max_stacks": 3,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 27,
+    "modifier": 0
+  },
+  "class_job_category_id": 98,
+  "source_abilities": [
+    {
+      "id": 7390,
+      "name": "Delirium de sang",
+      "description": "Vous octroie 3 degrés de Delirium de sang et d'Arme de sang.\nDurée : 15s\nDelirium de sang : Marée de sang devient Delirium écarlate\\Arme de sang : restaure vos PM chaque fois qu'un de vos sorts ou une de vos techniques d'arme touche et remplit la Jauge de sang de 10.\nCet effet ne s'active qu'une fois même si une attaque touche plusieurs ennemis.",
+      "description_macro": "Vous octroie 3 degrés de <colortype(500)><edgecolortype(501)>Delirium de sang<edgecolortype(0)><colortype(0)> et d'<colortype(500)><edgecolortype(501)>Arme de sang<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 15s<br><colortype(506)><edgecolortype(507)>Delirium de sang<nbsp>:<edgecolortype(0)><colortype(0)> <if([gnum68==32],<if([gnum72>=96],Marée de sang devient Delirium écarlate\\, et Quietus devient Empalement sanglant.<br>,vos actions <colortype(500)><edgecolortype(501)>Quietus<edgecolortype(0)><colortype(0)> et <colortype(500)><edgecolortype(501)>Marée de sang<edgecolortype(0)><colortype(0)> ne consomment plus de <colortype(502)><edgecolortype(503)>Jauge de sang<edgecolortype(0)><colortype(0)> et restaurent vos PM à chaque fois qu'elles touchent.<br>)>,vos actions <colortype(500)><edgecolortype(501)>Quietus<edgecolortype(0)><colortype(0)> et <colortype(500)><edgecolortype(501)>Marée de sang<edgecolortype(0)><colortype(0)> ne consomment plus de <colortype(502)><edgecolortype(503)>Jauge de sang<edgecolortype(0)><colortype(0)> et restaurent vos PM à chaque fois qu'elles touchent.<br>)><colortype(506)><edgecolortype(507)>Arme de sang<nbsp>:<edgecolortype(0)><colortype(0)> restaure vos PM chaque fois qu'un de vos sorts ou une de vos techniques d'arme touche et remplit la <colortype(502)><edgecolortype(503)>Jauge de sang<edgecolortype(0)><colortype(0)> de 10.<br>Cet effet ne s'active qu'une fois même si une attaque touche plusieurs ennemis.",
+      "unlock_level": 68,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Tank"
+      ],
+      "jobs": [
+        {
+          "id": 32,
+          "name": "Chevalier Noir",
+          "abbreviation": "CHN",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

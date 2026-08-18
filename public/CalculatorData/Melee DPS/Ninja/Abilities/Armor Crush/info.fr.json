@@ -1,0 +1,92 @@
+{
+  "kind": "ability",
+  "id": 3563,
+  "name": "Perce-armure",
+  "description": "Effectue une attaque physique sur la cible.\nPuissance : 240\nPuissance de côté : 300\nCombo : Tourbillon tailladant\nPuissance du combo : 440\nPuissance du combo de côté : 500\nBonus du combo : vous octroie 2 degrés de Kazematoi (maximum 5).\nKazematoi : augmente de 100 la puissance de Lame éolienne.\nBonus du combo : remplit la Jauge de Ninki de 15.",
+  "description_macro": "Effectue une attaque physique sur la cible.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> <if([gnum68==30],<if([gnum72>=94],240,<if([gnum68==30],<if([gnum72>=74],140,100)>,100)>)>,<if([gnum68==30],<if([gnum72>=74],140,100)>,100)>)><br><colortype(506)><edgecolortype(507)>Puissance de côté<nbsp>:<edgecolortype(0)><colortype(0)> <if([gnum68==30],<if([gnum72>=94],300,<if([gnum68==30],<if([gnum72>=74],200,160)>,160)>)>,<if([gnum68==30],<if([gnum72>=74],200,160)>,160)>)><br><colortype(506)><edgecolortype(507)>Combo<nbsp>:<edgecolortype(0)><colortype(0)> Tourbillon tailladant<br><colortype(506)><edgecolortype(507)>Puissance du combo<nbsp>:<edgecolortype(0)><colortype(0)> <if([gnum68==30],<if([gnum72>=94],440,<if([gnum68==30],<if([gnum72>=74],340,300)>,300)>)>,<if([gnum68==30],<if([gnum72>=74],340,300)>,300)>)><br><colortype(506)><edgecolortype(507)>Puissance du combo de côté<nbsp>:<edgecolortype(0)><colortype(0)> <if([gnum68==30],<if([gnum72>=94],500,<if([gnum68==30],<if([gnum72>=74],400,360)>,360)>)>,<if([gnum68==30],<if([gnum72>=74],400,360)>,360)>)><br><colortype(506)><edgecolortype(507)>Bonus du combo<nbsp>:<edgecolortype(0)><colortype(0)> vous octroie 2 degrés de <colortype(500)><edgecolortype(501)>Kazematoi<edgecolortype(0)><colortype(0)> (maximum 5).<br><colortype(506)><edgecolortype(507)>Kazematoi<nbsp>:<edgecolortype(0)><colortype(0)> augmente de 100 la puissance de Lame éolienne.<if([gnum68==30],<if([gnum72>=62],<br><colortype(506)><edgecolortype(507)>Bonus du combo<nbsp>:<edgecolortype(0)><colortype(0)> remplit la <colortype(502)><edgecolortype(503)>Jauge de Ninki<edgecolortype(0)><colortype(0)> de <if([gnum68==30],<if([gnum72>=84],15,<if([gnum68==30],<if([gnum72>=78],10,5)>,5)>)>,<if([gnum68==30],<if([gnum72>=78],10,5)>,5)>)>.,)>,)>",
+  "effects": [
+    "Effectue une attaque physique sur la cible.",
+    "Puissance : 240",
+    "Puissance de côté : 300",
+    "Combo : Tourbillon tailladant",
+    "Puissance du combo : 440",
+    "Puissance du combo de côté : 500",
+    "Bonus du combo : vous octroie 2 degrés de Kazematoi (maximum 5).",
+    "Kazematoi : augmente de 100 la puissance de Lame éolienne.",
+    "Bonus du combo : remplit la Jauge de Ninki de 15."
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 30,
+    "name": "Ninja",
+    "abbreviation": "NIN"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 54,
+  "icon": {
+    "id": 2915,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 3,
+    "name": "Technique d'arme"
+  },
+  "attack_type": {
+    "id": 4294967295,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 2.5,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 58,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 0,
+      "value": 0
+    },
+    "secondary": {
+      "type_id": 0,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": -1,
+    "effect_yalms": 0,
+    "cast_type": 1
+  },
+  "targeting": {
+    "self": false,
+    "party": false,
+    "alliance": false,
+    "hostile": true,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": 2242,
+    "preserves_combo": false
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 7,
+    "behavior_type": 0,
+    "class_job_category_id": 92,
+    "source_class_job_id": 30,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

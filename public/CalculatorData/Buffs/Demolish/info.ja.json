@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 1309,
+  "name": "破砕拳",
+  "description": "継続ダメージを受け、この効果を付与したプレイヤーから受けるダメージが増加する状態。",
+  "effects": [
+    "継続ダメージを受け、この効果を付与したプレイヤーから受けるダメージが増加する状態。"
+  ],
+  "classification": "debuff",
+  "icon": {
+    "id": 210218,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 2,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": true,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 10
+  },
+  "class_job_category_id": 21,
+  "source_abilities": [
+    {
+      "id": 66,
+      "name": "破砕拳",
+      "description": "対象に物理攻撃。\u3000威力：360\n背面攻撃時威力：420\n追加効果：自身に2スタックの「参の功力」を付与する。\n参の功力効果：虎襲崩拳の威力を150上昇させる。\n追加効果：自身に「壱の型」を付与する。\u3000効果時間：30秒\n発動条件：「参の型」効果中",
+      "description_macro": "対象に物理攻撃。\u3000<colortype(504)><edgecolortype(505)>威力：<edgecolortype(0)><colortype(0)><if([gnum68==20],<if([gnum72>=94],360,<if([gnum68==20],<if([gnum72>=84],320,280)>,280)>)>,<if([gnum68==20],<if([gnum72>=84],320,280)>,280)>)><br><colortype(504)><edgecolortype(505)>背面攻撃時威力：<edgecolortype(0)><colortype(0)><if([gnum68==20],<if([gnum72>=94],420,<if([gnum68==20],<if([gnum72>=84],380,340)>,340)>)>,<if([gnum68==20],<if([gnum72>=84],380,340)>,340)>)><br><colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)>自身に2スタックの<colortype(500)><edgecolortype(501)>「参の功力」<edgecolortype(0)><colortype(0)>を付与する。<br><colortype(504)><edgecolortype(505)>参の功力効果：<edgecolortype(0)><colortype(0)><if([gnum68==20],<if([gnum72>=92],虎襲崩拳,崩拳)>,崩拳)>の威力を150上昇させる。<br><colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)>自身に<colortype(500)><edgecolortype(501)>「壱の型」<edgecolortype(0)><colortype(0)>を付与する。\u3000<colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>30秒<br><colortype(504)><edgecolortype(505)>発動条件：<edgecolortype(0)><colortype(0)><colortype(500)><edgecolortype(501)>「参の型」<edgecolortype(0)><colortype(0)>効果中",
+      "unlock_level": 30,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 20,
+          "name": "モンク",
+          "abbreviation": "MNK",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 285,
+  "name": "Heavy Shot Mastery",
+  "description": "Upgrades Heavy Shot to Burst Shot.",
+  "description_macro": "Upgrades <colortype(500)><edgecolortype(501)>Heavy Shot<edgecolortype(0)><colortype(0)> to <colortype(500)><edgecolortype(501)>Burst Shot<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Upgrades Heavy Shot to Burst Shot."
+  ],
+  "role": "Physical Ranged DPS",
+  "job": {
+    "id": 23,
+    "name": "Bard",
+    "abbreviation": "BRD"
+  },
+  "unlock_level": 76,
+  "value": 0,
+  "icon": {
+    "id": 5306,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 24,
+  "source_class_job_id": 23
+}

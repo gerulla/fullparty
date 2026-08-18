@@ -1,0 +1,27 @@
+{
+  "kind": "trait",
+  "id": 441,
+  "name": "Verbessertes Raiton",
+  "description": "Gewährt Raiju, wenn Raiton erfolgreich ausgeführt wird.\nMaximalstapelzahl: 3\nDauer: 30 Sekunden\nDer Effekt endet bei Ausführung einer nahkampfbasierten Waffenfertigkeit.",
+  "description_macro": "Gewährt <colortype(506)><edgecolortype(507)>Raiju<edgecolortype(0)><colortype(0)>, wenn <colortype(502)><edgecolortype(503)>Raiton<edgecolortype(0)><colortype(0)> erfolgreich ausgeführt wird.<br>Ma<->xi<->mal<->sta<->pel<->zahl: 3<br>Dauer: 30 Sekunden<br>Der Effekt endet bei Ausführung einer nahkampfbasierten Waf<->fen<->fer<->tig<->keit.",
+  "effects": [
+    "Gewährt Raiju, wenn Raiton erfolgreich ausgeführt wird.",
+    "Maximalstapelzahl: 3",
+    "Dauer: 30 Sekunden",
+    "Der Effekt endet bei Ausführung einer nahkampfbasierten Waffenfertigkeit."
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 30,
+    "name": "Ninja",
+    "abbreviation": "NIN"
+  },
+  "unlock_level": 90,
+  "value": 0,
+  "icon": {
+    "id": 5419,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 92,
+  "source_class_job_id": 30
+}

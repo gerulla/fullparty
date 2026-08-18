@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 2615,
+  "name": "エウクラシア・ドシスII",
+  "description": "ＨＰが徐々に失われる状態。",
+  "effects": [
+    "ＨＰが徐々に失われる状態。"
+  ],
+  "classification": "debuff",
+  "icon": {
+    "id": 212961,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 2,
+  "target_type": 0,
+  "can_dispel": true,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 10,
+  "parameter": {
+    "effect": 0,
+    "modifier": 10
+  },
+  "class_job_category_id": 181,
+  "source_abilities": [
+    {
+      "id": 24308,
+      "name": "エウクラシア・ドシスII",
+      "description": "対象に無属性の継続ダメージを付与する。\n威力：60\u3000効果時間：30秒\n追加効果：カルディア［被］の効果対象のＨＰを回復する。\n回復力：170\n発動条件：「エウクラシア」効果中\n\n※このアクションはホットバーに登録することはできない。\n\u3000発動条件を満たすとドシスIIがエウクラシア・ドシスIIに変化する。",
+      "description_macro": "対象に無属性の継続ダメージを付与する。<br><colortype(504)><edgecolortype(505)>威力：<edgecolortype(0)><colortype(0)>60\u3000<colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>30秒<br><colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)>カルディア［被］の効果対象のＨＰを回復する。<br><colortype(504)><edgecolortype(505)>回復力：<edgecolortype(0)><colortype(0)><if([gnum68==40],<if([gnum72>=85],170,130)>,130)><br><colortype(504)><edgecolortype(505)>発動条件：<edgecolortype(0)><colortype(0)><colortype(500)><edgecolortype(501)>「エウクラシア」<edgecolortype(0)><colortype(0)>効果中<br><br><colortype(506)><edgecolortype(507)>※このアクションはホットバーに登録することはできない。<br>\u3000発動条件を満たすとドシスIIがエウクラシア・ドシスIIに変化する。<edgecolortype(0)><colortype(0)>",
+      "unlock_level": 72,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Healer"
+      ],
+      "jobs": [
+        {
+          "id": 40,
+          "name": "賢者",
+          "abbreviation": "SGE",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

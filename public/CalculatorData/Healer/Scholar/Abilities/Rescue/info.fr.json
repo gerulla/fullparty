@@ -1,0 +1,86 @@
+{
+  "kind": "ability",
+  "id": 7571,
+  "name": "Secours",
+  "description": "Attire l'équipier ciblé près de vous.\nSans effet si la cible subit certaines altérations d'état.\nCondition : cible et vous-même en combat.",
+  "description_macro": "Attire l'équipier ciblé près de vous.<br>Sans effet si la cible subit certaines altérations d'état.<br><colortype(506)><edgecolortype(507)>Condition<nbsp>:<edgecolortype(0)><colortype(0)> cible et vous-même en combat.",
+  "effects": [
+    "Attire l'équipier ciblé près de vous.",
+    "Sans effet si la cible subit certaines altérations d'état.",
+    "Condition : cible et vous-même en combat."
+  ],
+  "role": "Healer",
+  "job": {
+    "id": 28,
+    "name": "Érudit",
+    "abbreviation": "ÉRU"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 48,
+  "icon": {
+    "id": 890,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 4,
+    "name": "Aptitude"
+  },
+  "attack_type": {
+    "id": 0,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 120,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 50,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 0,
+      "value": 0
+    },
+    "secondary": {
+      "type_id": 42,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": 30,
+    "effect_yalms": 0,
+    "cast_type": 1
+  },
+  "targeting": {
+    "self": false,
+    "party": true,
+    "alliance": false,
+    "hostile": false,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": false
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 0,
+    "behavior_type": 0,
+    "class_job_category_id": 117,
+    "source_class_job_id": 4294967295,
+    "is_role_action": true,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

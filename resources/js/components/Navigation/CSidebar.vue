@@ -58,7 +58,8 @@ const groups = computed(() => [
 ])
 
 const tools = computed(() => [
-	{ label: t('navigation.sidebar.raid_planner'), href: route('planner.index'), icon: 'i-lucide-map' },
+	{ label: t('navigation.sidebar.raid_planner'), href: route('planner.index'), icon: 'i-lucide-map', badge: t('navigation.sidebar.beta_badge') },
+	{ label: t('navigation.sidebar.calculator'), href: route('calculator.index'), icon: 'i-lucide-calculator', badge: t('navigation.sidebar.beta_badge') },
 ])
 
 const admin = computed(() => [
@@ -308,7 +309,17 @@ const isGroupQuickLinkSectionActive = (section) => {
 						@click="closeSidebarMenu"
 					>
 						<UIcon :name="item.icon" :class="!collapsed ? 'sidebar-link-icon' : 'sidebar-link-icon-large'" />
-						<span v-if="!collapsed">{{ item.label }}</span>
+						<span v-if="!collapsed" class="flex min-w-0 flex-1 items-center gap-2">
+							<span class="truncate">{{ item.label }}</span>
+							<UBadge
+								v-if="item.badge"
+								color="info"
+								variant="soft"
+								size="xs"
+								class="border border-info/30 bg-info/15 px-1.5 py-0 text-[10px] font-semibold tracking-normal text-info"
+								:label="item.badge"
+							/>
+						</span>
 					</a>
 
 					<h1 v-if="!collapsed" class="sidebar-separator">{{t('navigation.sidebar.admin')}}</h1>

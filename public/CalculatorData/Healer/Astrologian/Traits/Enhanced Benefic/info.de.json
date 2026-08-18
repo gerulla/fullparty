@@ -1,0 +1,25 @@
+{
+  "kind": "trait",
+  "id": 124,
+  "name": "Verbesserter Harmonieaspekt",
+  "description": "Fügt Harmonieaspekt eine 15 %ige Wahrscheinlichkeit hinzu, dass der nächste Harmonieaspekt II kritisch trifft.\nDauer: 15 Sekunden",
+  "description_macro": "Fügt <colortype(502)><edgecolortype(503)>Harmonieaspekt<edgecolortype(0)><colortype(0)> eine 15<nbsp>%ige Wahr<->schein<->lich<->keit hinzu, dass der nächste <colortype(502)><edgecolortype(503)>Harmonieaspekt II<edgecolortype(0)><colortype(0)> kritisch trifft.<br>Dauer: 15 Sekunden",
+  "effects": [
+    "Fügt Harmonieaspekt eine 15 %ige Wahrscheinlichkeit hinzu, dass der nächste Harmonieaspekt II kritisch trifft.",
+    "Dauer: 15 Sekunden"
+  ],
+  "role": "Healer",
+  "job": {
+    "id": 33,
+    "name": "Astrologe",
+    "abbreviation": "AST"
+  },
+  "unlock_level": 36,
+  "value": 15,
+  "icon": {
+    "id": 6105,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 99,
+  "source_class_job_id": 33
+}

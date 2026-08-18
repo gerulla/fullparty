@@ -1,0 +1,32 @@
+{
+  "kind": "trait",
+  "id": 380,
+  "name": "アクション威力アップ",
+  "description": "特定のアクションの威力を上昇させる。\n\nスライスの威力：300\nワクシングスライスの威力：140\nシャドウ・オブ・デスの威力：300\nハルパーの威力：300\nスピニングサイズの威力：140\nインファナルスライスの威力：140\nワーラル・オブ・デスの威力：100\nナイトメアサイズの威力：120",
+  "description_macro": "特定のアクションの威力を上昇させる。<br><br><colortype(504)><edgecolortype(505)>スライスの威力：<edgecolortype(0)><colortype(0)>300<br><colortype(504)><edgecolortype(505)>ワクシングスライスの威力：<edgecolortype(0)><colortype(0)>140<br><colortype(504)><edgecolortype(505)>シャドウ・オブ・デスの威力：<edgecolortype(0)><colortype(0)>300<br><colortype(504)><edgecolortype(505)>ハルパーの威力：<edgecolortype(0)><colortype(0)>300<br><colortype(504)><edgecolortype(505)>スピニングサイズの威力：<edgecolortype(0)><colortype(0)>140<br><colortype(504)><edgecolortype(505)>インファナルスライスの威力：<edgecolortype(0)><colortype(0)>140<br><colortype(504)><edgecolortype(505)>ワーラル・オブ・デスの威力：<edgecolortype(0)><colortype(0)>100<br><colortype(504)><edgecolortype(505)>ナイトメアサイズの威力：<edgecolortype(0)><colortype(0)>120",
+  "effects": [
+    "特定のアクションの威力を上昇させる。",
+    "スライスの威力：300",
+    "ワクシングスライスの威力：140",
+    "シャドウ・オブ・デスの威力：300",
+    "ハルパーの威力：300",
+    "スピニングサイズの威力：140",
+    "インファナルスライスの威力：140",
+    "ワーラル・オブ・デスの威力：100",
+    "ナイトメアサイズの威力：120"
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 39,
+    "name": "リーパー",
+    "abbreviation": "RPR"
+  },
+  "unlock_level": 60,
+  "value": 0,
+  "icon": {
+    "id": 6801,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 180,
+  "source_class_job_id": 39
+}

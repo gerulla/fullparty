@@ -1,0 +1,124 @@
+{
+  "kind": "combat_status",
+  "id": 1209,
+  "name": "Abtausch",
+  "description": "Fast alle Rückstoß- und Heranzieheffekte sind unwirksam. Fügt Angreifern bei erlittenem physischen Schaden Gemach zu.",
+  "effects": [
+    "Fast alle Rückstoß- und Heranzieheffekte sind unwirksam. Fügt Angreifern bei erlittenem physischen Schaden Gemach zu."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 213915,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 30,
+  "parameter": {
+    "effect": 0,
+    "modifier": 3139
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 7548,
+      "name": "Abtausch",
+      "description": "Du errichtest eine Barriere um dich, die fast alle Rückstoß- und Heranzieheffekte verhindert.\nDauer: 6 Sekunden\nZusatzeffekt bei erlittener physischer Attacke: Fügt Angreifern während der Effektdauer 20 % Gemach zu.\nDauer: 15 Sekunden",
+      "description_macro": "Du errichtest eine Barriere um dich, die fast alle Rückstoß- und Heranzieheffekte verhindert.<br>Dauer: 6 Sekunden<br>Zusatzeffekt bei erlittener physischer Attacke: Fügt Angreifern während der Effektdauer 20<nbsp>% <colortype(506)><edgecolortype(507)>Gemach<edgecolortype(0)><colortype(0)> zu.<br>Dauer: 15 Sekunden",
+      "unlock_level": 32,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Tank",
+        "Melee DPS",
+        "Physical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 19,
+          "name": "Paladin",
+          "abbreviation": "PLD",
+          "is_phantom": false
+        },
+        {
+          "id": 21,
+          "name": "Krieger",
+          "abbreviation": "KRG",
+          "is_phantom": false
+        },
+        {
+          "id": 32,
+          "name": "Dunkelritter",
+          "abbreviation": "DKR",
+          "is_phantom": false
+        },
+        {
+          "id": 37,
+          "name": "Revolverklinge",
+          "abbreviation": "REV",
+          "is_phantom": false
+        },
+        {
+          "id": 20,
+          "name": "Mönch",
+          "abbreviation": "MÖN",
+          "is_phantom": false
+        },
+        {
+          "id": 22,
+          "name": "Dragoon",
+          "abbreviation": "DRG",
+          "is_phantom": false
+        },
+        {
+          "id": 30,
+          "name": "Ninja",
+          "abbreviation": "NIN",
+          "is_phantom": false
+        },
+        {
+          "id": 34,
+          "name": "Samurai",
+          "abbreviation": "SAM",
+          "is_phantom": false
+        },
+        {
+          "id": 39,
+          "name": "Schnitter",
+          "abbreviation": "SNT",
+          "is_phantom": false
+        },
+        {
+          "id": 41,
+          "name": "Viper",
+          "abbreviation": "VPR",
+          "is_phantom": false
+        },
+        {
+          "id": 23,
+          "name": "Barde",
+          "abbreviation": "BRD",
+          "is_phantom": false
+        },
+        {
+          "id": 31,
+          "name": "Maschinist",
+          "abbreviation": "MCH",
+          "is_phantom": false
+        },
+        {
+          "id": 38,
+          "name": "Tänzer",
+          "abbreviation": "TÄN",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

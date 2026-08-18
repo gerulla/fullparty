@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 4273,
+  "name": "Phantom-Todesurteil",
+  "description": "Wird kampfunfähig, sobald der Timer des Fluchs auf 0 sinkt.",
+  "effects": [
+    "Wird kampfunfähig, sobald der Timer des Fluchs auf 0 sinkt."
+  ],
+  "classification": "debuff",
+  "icon": {
+    "id": 215503,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 2,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 41642,
+      "name": "Phantom-Todesurteil",
+      "description": "Mit einer gewissen Chance belegst du das Ziel mit Phantom-Todesurteil. Nach Ende der Dauer wird das Ziel kampfunfähig.\nDauer: 8 bis 60 Sekunden\nKein Effekt auf Ziele, die sich nicht im Kampf befinden.\nSobald das Ziel den Kampf verlässt, endet auch der Effekt von Phantom-Todesurteil.\nGemeinsamer Reaktivierungs-Timer mit Gesundung",
+      "description_macro": "Mit einer gewissen Chance belegst du das Ziel mit <colortype(506)><edgecolortype(507)>Phantom-Todesurteil<edgecolortype(0)><colortype(0)>. Nach Ende der Dauer wird das Ziel kampfunfähig.<br>Dauer: 8 bis 60 Sekunden<br>Kein Effekt auf Ziele, die sich nicht im Kampf befinden.<br>Sobald das Ziel den Kampf verlässt, endet auch der Effekt von <colortype(506)><edgecolortype(507)>Phantom-Todesurteil<edgecolortype(0)><colortype(0)>.<br>Gemeinsamer Reaktivierungs-Timer mit <colortype(502)><edgecolortype(503)>Gesundung<edgecolortype(0)><colortype(0)>",
+      "unlock_level": 0,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Phantom Jobs"
+      ],
+      "jobs": [
+        {
+          "id": 11,
+          "name": "Phantom Phantom-Seher",
+          "abbreviation": "Ph-Seher",
+          "is_phantom": true
+        }
+      ]
+    }
+  ]
+}

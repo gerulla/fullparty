@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 428,
+  "name": "Meister der Stahlzinnen",
+  "description": "Verbessert Stählerne Meditation zu Verbotene Meditation und Stahlzinnen zu Verbotenes Chakra.",
+  "description_macro": "Verbessert <colortype(502)><edgecolortype(503)>Stählerne Meditation<edgecolortype(0)><colortype(0)> zu <colortype(502)><edgecolortype(503)>Verbotene Meditation<edgecolortype(0)><colortype(0)> und <colortype(502)><edgecolortype(503)>Stahlzinnen<edgecolortype(0)><colortype(0)> zu <colortype(502)><edgecolortype(503)>Verbotenes Chakra<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Verbessert Stählerne Meditation zu Verbotene Meditation und Stahlzinnen zu Verbotenes Chakra."
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 20,
+    "name": "Mönch",
+    "abbreviation": "MÖN"
+  },
+  "unlock_level": 54,
+  "value": 0,
+  "icon": {
+    "id": 5241,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 21,
+  "source_class_job_id": 20
+}

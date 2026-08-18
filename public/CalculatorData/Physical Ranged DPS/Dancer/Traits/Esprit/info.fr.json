@@ -1,0 +1,27 @@
+{
+  "kind": "trait",
+  "id": 255,
+  "name": "Fascination",
+  "description": "Permet à vous et à vos équipiers d'obtenir l'effet Fascination lorsque vous utilisez Final classique ou Final technique.\nFascination (sur soi) : remplit de 5 votre Jauge de fascination lorsque vous utilisez Cascade, Cascade inversée, Fontaine, Fontaine en cascade, Moulin à vent, Moulin à vent ascendant, Averse de lames ou Averse de sang.\nFascination (sur les alliés) : remplit de 10 votre Jauge de fascination lorsque l'allié utilise une technique d'arme ou un sort offensif.\nLes chances d'activation de l'effet sur les alliés varient selon les jobs.",
+  "description_macro": "Permet à vous et à vos équipiers d'obtenir l'effet <colortype(500)><edgecolortype(501)>Fascination<edgecolortype(0)><colortype(0)> lorsque vous utilisez Final classique ou Final technique.<br><colortype(506)><edgecolortype(507)>Fascination (sur soi)<nbsp>:<edgecolortype(0)><colortype(0)> remplit de 5 votre <colortype(502)><edgecolortype(503)>Jauge de fascination<edgecolortype(0)><colortype(0)> lorsque vous utilisez Cascade, Cascade inversée, Fontaine, Fontaine en cascade, Moulin à vent, Moulin à vent ascendant, Averse de lames ou Averse de sang.<br><colortype(506)><edgecolortype(507)>Fascination (sur les alliés)<nbsp>:<edgecolortype(0)><colortype(0)> remplit de 10 votre <colortype(502)><edgecolortype(503)>Jauge de fascination<edgecolortype(0)><colortype(0)> lorsque l'allié utilise une technique d'arme ou un sort offensif.<br>Les chances d'activation de l'effet sur les alliés varient selon les jobs.",
+  "effects": [
+    "Permet à vous et à vos équipiers d'obtenir l'effet Fascination lorsque vous utilisez Final classique ou Final technique.",
+    "Fascination (sur soi) : remplit de 5 votre Jauge de fascination lorsque vous utilisez Cascade, Cascade inversée, Fontaine, Fontaine en cascade, Moulin à vent, Moulin à vent ascendant, Averse de lames ou Averse de sang.",
+    "Fascination (sur les alliés) : remplit de 10 votre Jauge de fascination lorsque l'allié utilise une technique d'arme ou un sort offensif.",
+    "Les chances d'activation de l'effet sur les alliés varient selon les jobs."
+  ],
+  "role": "Physical Ranged DPS",
+  "job": {
+    "id": 38,
+    "name": "Danseur",
+    "abbreviation": "DNS"
+  },
+  "unlock_level": 76,
+  "value": 0,
+  "icon": {
+    "id": 6355,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 150,
+  "source_class_job_id": 38
+}

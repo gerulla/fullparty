@@ -1,0 +1,28 @@
+{
+  "kind": "trait",
+  "id": 669,
+  "name": "Verbesserte Äthergrammkunst",
+  "description": "Erhöht den Attacke-Wert folgender Kommandos:\nAttacke-Wert von Dosis III: 380\nAttacke-Wert von Eukratische Dosis III: 90\nAttacke-Wert von Toxikon II: 380\nAttacke-Wert von Pneuma: 380",
+  "description_macro": "Erhöht den Attacke-Wert folgender Kommandos:<br>Attacke-Wert von <colortype(502)><edgecolortype(503)>Dosis III<edgecolortype(0)><colortype(0)>: 380<br>Attacke-Wert von <colortype(502)><edgecolortype(503)>Eukratische Dosis III<edgecolortype(0)><colortype(0)>: 90<br>Attacke-Wert von <colortype(502)><edgecolortype(503)>Toxikon II<edgecolortype(0)><colortype(0)>: 380<br>Attacke-Wert von <colortype(502)><edgecolortype(503)>Pneuma<edgecolortype(0)><colortype(0)>: 380",
+  "effects": [
+    "Erhöht den Attacke-Wert folgender Kommandos:",
+    "Attacke-Wert von Dosis III: 380",
+    "Attacke-Wert von Eukratische Dosis III: 90",
+    "Attacke-Wert von Toxikon II: 380",
+    "Attacke-Wert von Pneuma: 380"
+  ],
+  "role": "Healer",
+  "job": {
+    "id": 40,
+    "name": "Weiser",
+    "abbreviation": "WEI"
+  },
+  "unlock_level": 94,
+  "value": 0,
+  "icon": {
+    "id": 6831,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 181,
+  "source_class_job_id": 40
+}

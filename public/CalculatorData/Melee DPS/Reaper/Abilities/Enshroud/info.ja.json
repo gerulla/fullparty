@@ -1,0 +1,89 @@
+{
+  "kind": "ability",
+  "id": 24394,
+  "name": "レムールシュラウド",
+  "description": "自身にアヴァターを憑依させて「レムール」状態になり、自身に最大スタック分の「レムールソウル」を付与する。\n効果時間：30秒\n効果中はアヴァターを呼び出すアクションと一部のウェポンスキルを実行することができなくなる。\n追加効果：自身に「サクリフィキウム実行可」を付与する。\n効果時間：30秒\n発動条件：「シュラウドゲージ」50",
+  "description_macro": "自身にアヴァターを憑依させて<colortype(500)><edgecolortype(501)>「レムール」<edgecolortype(0)><colortype(0)>状態になり、自身に最大スタック分の<colortype(500)><edgecolortype(501)>「レムールソウル」<edgecolortype(0)><colortype(0)>を付与する。<br><colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>30秒<br>効果中はアヴァターを呼び出すアクションと一部のウェポンスキルを実行することができなくなる。<br><if([gnum68==39],<if([gnum72>=92],<colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)>自身に<colortype(500)><edgecolortype(501)>「サクリフィキウム実行可」<edgecolortype(0)><colortype(0)>を付与する。<br><colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>30秒<br>,)>,)><colortype(504)><edgecolortype(505)>発動条件：<edgecolortype(0)><colortype(0)><colortype(500)><edgecolortype(501)>「シュラウドゲージ」<edgecolortype(0)><colortype(0)>50",
+  "effects": [
+    "自身にアヴァターを憑依させて「レムール」状態になり、自身に最大スタック分の「レムールソウル」を付与する。",
+    "効果時間：30秒",
+    "効果中はアヴァターを呼び出すアクションと一部のウェポンスキルを実行することができなくなる。",
+    "追加効果：自身に「サクリフィキウム実行可」を付与する。",
+    "効果時間：30秒",
+    "発動条件：「シュラウドゲージ」50"
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 39,
+    "name": "リーパー",
+    "abbreviation": "RPR"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 80,
+  "icon": {
+    "id": 3622,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 4,
+    "name": "アビリティ"
+  },
+  "attack_type": {
+    "id": 0,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 5,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 4,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 65,
+      "value": 50
+    },
+    "secondary": {
+      "type_id": 113,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": 0,
+    "effect_yalms": 0,
+    "cast_type": 1
+  },
+  "targeting": {
+    "self": true,
+    "party": false,
+    "alliance": false,
+    "hostile": false,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 0,
+    "behavior_type": 0,
+    "class_job_category_id": 180,
+    "source_class_job_id": 39,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

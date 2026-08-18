@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 3169,
+  "name": "Polyglotte",
+  "description": "Infect peut être lancé.",
+  "effects": [
+    "Infect peut être lancé."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 214984,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": true,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 26,
+  "source_abilities": [
+    {
+      "id": 25796,
+      "name": "Amplificateur",
+      "description": "Vous octroie Polyglotte.\nCondition : Feu astral ou Glace ombrale.",
+      "description_macro": "Vous octroie <colortype(500)><edgecolortype(501)>Polyglotte<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Condition<nbsp>:<edgecolortype(0)><colortype(0)> <colortype(500)><edgecolortype(501)>Feu astral<edgecolortype(0)><colortype(0)> ou <colortype(500)><edgecolortype(501)>Glace ombrale<edgecolortype(0)><colortype(0)>.",
+      "unlock_level": 86,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Magical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 25,
+          "name": "Mage Noir",
+          "abbreviation": "MNO",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

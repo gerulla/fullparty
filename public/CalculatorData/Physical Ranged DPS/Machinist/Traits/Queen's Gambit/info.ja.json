@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 451,
+  "name": "クイーンズ・ガンビット",
+  "description": "オートマトン・クイーンがクイーン・パイルバンカーを実行した後に、クイーン・コレダーを実行してから帰還するようになる。",
+  "description_macro": "オートマトン・クイーンがクイーン・パイルバンカーを実行した後に、クイーン・コレダーを実行してから帰還するようになる。",
+  "effects": [
+    "オートマトン・クイーンがクイーン・パイルバンカーを実行した後に、クイーン・コレダーを実行してから帰還するようになる。"
+  ],
+  "role": "Physical Ranged DPS",
+  "job": {
+    "id": 31,
+    "name": "機工士",
+    "abbreviation": "MCH"
+  },
+  "unlock_level": 86,
+  "value": 0,
+  "icon": {
+    "id": 6019,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 96,
+  "source_class_job_id": 31
+}

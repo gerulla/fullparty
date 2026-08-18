@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 4243,
+  "name": "Magi Licorne",
+  "description": "Insensible à un certain montant de dégâts.",
+  "effects": [
+    "Insensible à un certain montant de dégâts."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 229956,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 100
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 41602,
+      "name": "Magi Licorne",
+      "description": "Crée sur vous et les équipiers alentour une barrière absorbant un certain montant de dégâts.\nPuissance : 40 000 Durée : 30s",
+      "description_macro": "Crée sur vous et les équipiers alentour une barrière absorbant un certain montant de dégâts.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> 40 000 <colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 30s",
+      "unlock_level": 0,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Phantom Jobs"
+      ],
+      "jobs": [
+        {
+          "id": 4,
+          "name": "Phantom Rôdeur fantôme",
+          "abbreviation": "Rôdeur fant.",
+          "is_phantom": true
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "kind": "trait",
+  "id": 506,
+  "name": "Actions améliorées",
+  "description": "Augmente la puissance de certaines actions.\n\nPuissance de Taillade violente : 180\nPuissance de Frappe siphon : 120\nPuissance de Dévoreur d'âme : 140",
+  "description_macro": "Augmente la puissance de certaines actions.<br><br><colortype(506)><edgecolortype(507)>Puissance de Taillade violente<nbsp>:<edgecolortype(0)><colortype(0)> 180<br><colortype(506)><edgecolortype(507)>Puissance de Frappe siphon<nbsp>:<edgecolortype(0)><colortype(0)> 120<br><colortype(506)><edgecolortype(507)>Puissance de Dévoreur d'âme<nbsp>:<edgecolortype(0)><colortype(0)> 140",
+  "effects": [
+    "Augmente la puissance de certaines actions.",
+    "Puissance de Taillade violente : 180",
+    "Puissance de Frappe siphon : 120",
+    "Puissance de Dévoreur d'âme : 140"
+  ],
+  "role": "Tank",
+  "job": {
+    "id": 32,
+    "name": "Chevalier Noir",
+    "abbreviation": "CHN"
+  },
+  "unlock_level": 84,
+  "value": 0,
+  "icon": {
+    "id": 6801,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 98,
+  "source_class_job_id": 32
+}

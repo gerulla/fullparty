@@ -1,0 +1,71 @@
+{
+  "kind": "combat_status",
+  "id": 2595,
+  "name": "Repli préparé",
+  "description": "Repli peut être lancé.",
+  "effects": [
+    "Repli peut être lancé."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 212933,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": true,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 180,
+  "source_abilities": [
+    {
+      "id": 24401,
+      "name": "Intrusion de l'enfer",
+      "description": "Permet de se déplacer rapidement de 15 yalms vers l'avant.\nEffet additionnel : vous octroie Harpé améliorée.\nHarpé améliorée : votre prochaine Harpé est instantanée.\nEn outre, réduit de 5s le temps de recharge d'Intrusion de l'enfer.\nDurée : 10s\nEffet additionnel : crée un Portail infernal où vous vous trouvez au moment de lancer l'action et vous octroie Repli préparé.\nDurée : 10s\nNe peut pas être utilisé sous l'effet Entrave.\nPartage le même temps de recharge que Retraite de l'enfer.",
+      "description_macro": "Permet de se déplacer rapidement de 15 yalms vers l'avant.<br><colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> vous octroie <colortype(500)><edgecolortype(501)>Harpé améliorée<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Harpé améliorée<nbsp>:<edgecolortype(0)><colortype(0)> votre prochaine Harpé est instantanée.<br>En outre, réduit de 5s le temps de recharge d'Intrusion de l'enfer.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 10s<br><if([gnum68==39],<if([gnum72>=74],<colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> crée un <colortype(500)><edgecolortype(501)>Portail infernal<edgecolortype(0)><colortype(0)> où vous vous trouvez au moment de lancer l'action et vous octroie <colortype(500)><edgecolortype(501)>Repli préparé<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 10s<br>,)>,)>Ne peut pas être utilisé sous l'effet Entrave.<br>Partage le même temps de recharge que <colortype(500)><edgecolortype(501)>Retraite de l'enfer<edgecolortype(0)><colortype(0)>.",
+      "unlock_level": 20,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 39,
+          "name": "Faucheur",
+          "abbreviation": "FCH",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 24402,
+      "name": "Retraite de l'enfer",
+      "description": "Permet de se déplacer rapidement de 15 yalms vers l'arrière.\nEffet additionnel : vous octroie Harpé améliorée.\nHarpé améliorée : votre prochaine Harpé est instantanée.\nEn outre, réduit de 5s le temps de recharge de Retraite de l'enfer.\nDurée : 10s\nEffet additionnel : crée un Portail infernal où vous vous trouvez au moment de lancer l'action et vous octroie Repli préparé.\nDurée : 10s\nNe peut pas être utilisé sous l'effet Entrave.\nPartage le même temps de recharge qu'Intrusion de l'enfer.",
+      "description_macro": "Permet de se déplacer rapidement de 15 yalms vers l'arrière.<br><colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> vous octroie <colortype(500)><edgecolortype(501)>Harpé améliorée<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Harpé améliorée<nbsp>:<edgecolortype(0)><colortype(0)> votre prochaine Harpé est instantanée.<br>En outre, réduit de 5s le temps de recharge de Retraite de l'enfer.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 10s<br><if([gnum68==39],<if([gnum72>=74],<colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> crée un <colortype(500)><edgecolortype(501)>Portail infernal<edgecolortype(0)><colortype(0)> où vous vous trouvez au moment de lancer l'action et vous octroie <colortype(500)><edgecolortype(501)>Repli préparé<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 10s<br>,)>,)>Ne peut pas être utilisé sous l'effet Entrave.<br>Partage le même temps de recharge qu'<colortype(500)><edgecolortype(501)>Intrusion de l'enfer<edgecolortype(0)><colortype(0)>.",
+      "unlock_level": 20,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 39,
+          "name": "Faucheur",
+          "abbreviation": "FCH",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

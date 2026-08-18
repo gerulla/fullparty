@@ -1,0 +1,92 @@
+{
+  "kind": "ability",
+  "id": 3613,
+  "name": "Inconscient collectif",
+  "description": "Crée un dôme protecteur d'une portée de 8 yalms autour du lanceur.\nDurée : 18s\nRéduit de 10% les dégâts subis par vous et les équipiers dans un rayon de 30 yalms.\nDurée : 10s\nOctroie également un effet de restauration périodique de PV à vous et aux équipiers sous le dôme.\nPuissance : 100 Durée : 15s\nCes effets continuent de s'appliquer tant que vous ou vos alliés vous trouvez dans le dôme.\nLe dôme disparaît si vous effectuez une action, un déplacement ou une rotation.\nInterrompt vos attaques automatiques.",
+  "description_macro": "Crée un dôme protecteur d'une portée de 8 yalms autour du lanceur.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 18s<br>Réduit de 10% les dégâts subis par vous et les équipiers dans un rayon de 30 yalms.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 10s<br>Octroie également un effet de restauration périodique de PV à vous et aux équipiers sous le dôme.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> 100 <colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 15s<br>Ces effets continuent de s'appliquer tant que vous ou vos alliés vous trouvez dans le dôme.<br>Le dôme disparaît si vous effectuez une action, un déplacement ou une rotation.<br>Interrompt vos attaques automatiques.",
+  "effects": [
+    "Crée un dôme protecteur d'une portée de 8 yalms autour du lanceur.",
+    "Durée : 18s",
+    "Réduit de 10% les dégâts subis par vous et les équipiers dans un rayon de 30 yalms.",
+    "Durée : 10s",
+    "Octroie également un effet de restauration périodique de PV à vous et aux équipiers sous le dôme.",
+    "Puissance : 100 Durée : 15s",
+    "Ces effets continuent de s'appliquer tant que vous ou vos alliés vous trouvez dans le dôme.",
+    "Le dôme disparaît si vous effectuez une action, un déplacement ou une rotation.",
+    "Interrompt vos attaques automatiques."
+  ],
+  "role": "Healer",
+  "job": {
+    "id": 33,
+    "name": "Astromancien",
+    "abbreviation": "AST"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 58,
+  "icon": {
+    "id": 3140,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 4,
+    "name": "Aptitude"
+  },
+  "attack_type": {
+    "id": 0,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 60,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 12,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 0,
+      "value": 0
+    },
+    "secondary": {
+      "type_id": 0,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": 0,
+    "effect_yalms": 30,
+    "cast_type": 2
+  },
+  "targeting": {
+    "self": true,
+    "party": false,
+    "alliance": false,
+    "hostile": false,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 0,
+    "behavior_type": 0,
+    "class_job_category_id": 99,
+    "source_class_job_id": 33,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

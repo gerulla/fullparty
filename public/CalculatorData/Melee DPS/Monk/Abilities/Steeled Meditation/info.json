@@ -1,0 +1,88 @@
+{
+  "kind": "ability",
+  "id": 36940,
+  "name": "Steeled Meditation",
+  "description": "Opens a chakra. Up to five chakra can be opened at once.\nOpens all five chakra when used outside of combat.\nTriggers the cooldown of weaponskills upon execution.\nConversely, execution of weaponskills triggers the cooldown of this action.\nCan only be executed while less than five chakra are open.",
+  "description_macro": "Opens a chakra. Up to five chakra can be opened at once.<br>Opens all five chakra when used outside of combat.<br>Triggers the cooldown of weaponskills upon execution.<br>Conversely, execution of weaponskills triggers the cooldown of this action.<br>Can only be executed while less than five chakra are open.",
+  "effects": [
+    "Opens a chakra. Up to five chakra can be opened at once.",
+    "Opens all five chakra when used outside of combat.",
+    "Triggers the cooldown of weaponskills upon execution.",
+    "Conversely, execution of weaponskills triggers the cooldown of this action.",
+    "Can only be executed while less than five chakra are open."
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 20,
+    "name": "Monk",
+    "abbreviation": "MNK"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 15,
+  "icon": {
+    "id": 218,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 4,
+    "name": "Ability"
+  },
+  "attack_type": {
+    "id": 0,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 1,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 58,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 101,
+      "value": 428
+    },
+    "secondary": {
+      "type_id": 121,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": 0,
+    "effect_yalms": 0,
+    "cast_type": 1
+  },
+  "targeting": {
+    "self": true,
+    "party": false,
+    "alliance": false,
+    "hostile": false,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 0,
+    "behavior_type": 0,
+    "class_job_category_id": 41,
+    "source_class_job_id": 2,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

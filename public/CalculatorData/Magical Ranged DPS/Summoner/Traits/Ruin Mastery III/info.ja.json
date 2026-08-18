@@ -1,0 +1,27 @@
+{
+  "kind": "trait",
+  "id": 476,
+  "name": "ルインマスタリーIII",
+  "description": "自身に付与されている「エーテル」によりジェムシャインが変化する。\nファイアエーテル効果中：ルビー・リチュアルに変化する。\nアースエーテル効果中：トパーズ・リチュアルに変化する。\nウィンドエーテル効果中：エメラルド・リチュアルに変化する。",
+  "description_macro": "自身に付与されている<colortype(500)><edgecolortype(501)>「エーテル」<edgecolortype(0)><colortype(0)>によりジェムシャインが変化する。<br><colortype(504)><edgecolortype(505)>ファイアエーテル効果中：<edgecolortype(0)><colortype(0)>ルビー・リチュアルに変化する。<br><colortype(504)><edgecolortype(505)>アースエーテル効果中：<edgecolortype(0)><colortype(0)>トパーズ・リチュアルに変化する。<br><colortype(504)><edgecolortype(505)>ウィンドエーテル効果中：<edgecolortype(0)><colortype(0)>エメラルド・リチュアルに変化する。",
+  "effects": [
+    "自身に付与されている「エーテル」によりジェムシャインが変化する。",
+    "ファイアエーテル効果中：ルビー・リチュアルに変化する。",
+    "アースエーテル効果中：トパーズ・リチュアルに変化する。",
+    "ウィンドエーテル効果中：エメラルド・リチュアルに変化する。"
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 27,
+    "name": "召喚士",
+    "abbreviation": "SMN"
+  },
+  "unlock_level": 72,
+  "value": 0,
+  "icon": {
+    "id": 5688,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 28,
+  "source_class_job_id": 27
+}

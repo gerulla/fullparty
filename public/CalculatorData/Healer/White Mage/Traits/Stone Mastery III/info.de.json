@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 182,
+  "name": "Steinmeister III",
+  "description": "Verbessert Steinga zu Steinka.",
+  "description_macro": "Verbessert <colortype(502)><edgecolortype(503)>Steinga<edgecolortype(0)><colortype(0)> zu <colortype(502)><edgecolortype(503)>Steinka<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Verbessert Steinga zu Steinka."
+  ],
+  "role": "Healer",
+  "job": {
+    "id": 24,
+    "name": "Weißmagier",
+    "abbreviation": "WMA"
+  },
+  "unlock_level": 64,
+  "value": 0,
+  "icon": {
+    "id": 5337,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 25,
+  "source_class_job_id": 24
+}

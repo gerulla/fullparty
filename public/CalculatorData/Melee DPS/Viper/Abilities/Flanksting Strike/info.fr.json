@@ -1,0 +1,104 @@
+{
+  "kind": "ability",
+  "id": 34610,
+  "name": "Saignée du flanc",
+  "description": "Effectue une attaque physique sur la cible.\nPuissance : 340\nPuissance de côté : 400\nSi vous êtes sous l'effet de Saigneur du flanc, augmente la puissance de 100.\nEffet additionnel : vous octroie Saigneur de l'échine.\nDurée : 60s\nSaigneur de l'échine : augmente de 100 la puissance de Saignée de l'échine.\nNe peut être cumulé avec Saigneur du flanc\\.\nEffet additionnel : remplit la Jauge ophidienne de 10.\nCondition : après avoir utilisé Ponction prédatrice avec succès.\n\n* Cette action ne peut pas être ajoutée aux barres de raccourcis.\nRemplace Ponction prédatrice lorsque les conditions sont réunies.",
+  "description_macro": "Effectue une attaque physique sur la cible.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> <if([gnum68==41],<if([gnum72>=84],340,320)>,320)><br><colortype(506)><edgecolortype(507)>Puissance de côté<nbsp>:<edgecolortype(0)><colortype(0)> <edgecolortype(0)><colortype(0)><if([gnum68==41],<if([gnum72>=84],400,380)>,380)><br>Si vous êtes sous l'effet de <colortype(500)><edgecolortype(501)>Saigneur du flanc<edgecolortype(0)><colortype(0)>, augmente la puissance de 100.<br><colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> vous octroie <colortype(500)><edgecolortype(501)>Saigneur de l'échine<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 60s<br><colortype(506)><edgecolortype(507)>Saigneur de l'échine<nbsp>:<edgecolortype(0)><colortype(0)> augmente de 100 la puissance de Saignée de l'échine.<br>Ne peut être cumulé avec <if([gnum68==41],<if([gnum72>=50],<colortype(500)><edgecolortype(501)>Saigneur du flanc<edgecolortype(0)><colortype(0)>\\, <colortype(500)><edgecolortype(501)>Déchireur du flanc<edgecolortype(0)><colortype(0)>\\, <colortype(500)><edgecolortype(501)>Déchireur de l'échine<edgecolortype(0)><colortype(0)>\\, <colortype(500)><edgecolortype(501)>Déchiqueteur vorace<edgecolortype(0)><colortype(0)> ou <colortype(500)><edgecolortype(501)>Déchiqueteur sanglant<edgecolortype(0)><colortype(0)>,<colortype(500)><edgecolortype(501)>Saigneur du flanc<edgecolortype(0)><colortype(0)>\\, <colortype(500)><edgecolortype(501)>Déchireur du flanc<edgecolortype(0)><colortype(0)> ou <colortype(500)><edgecolortype(501)>Déchireur de l'échine<edgecolortype(0)><colortype(0)>)>,<colortype(500)><edgecolortype(501)>Saigneur du flanc<edgecolortype(0)><colortype(0)>\\, <colortype(500)><edgecolortype(501)>Déchireur du flanc<edgecolortype(0)><colortype(0)> ou <colortype(500)><edgecolortype(501)>Déchireur de l'échine<edgecolortype(0)><colortype(0)>)>.<br><if([gnum68==41],<if([gnum72>=90],<colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> remplit la <colortype(502)><edgecolortype(503)>Jauge ophidienne<edgecolortype(0)><colortype(0)> de 10.<br>,)>,)><colortype(506)><edgecolortype(507)>Condition<nbsp>:<edgecolortype(0)><colortype(0)> après avoir utilisé <colortype(500)><edgecolortype(501)>Ponction prédatrice<edgecolortype(0)><colortype(0)> avec succès.<br><br><colortype(504)><edgecolortype(505)>* Cette action ne peut pas être ajoutée aux barres de raccourcis.<br>Remplace <colortype(500)><edgecolortype(501)>Ponction prédatrice<edgecolortype(0)><colortype(0)> lorsque les conditions sont réunies.<edgecolortype(0)><colortype(0)>",
+  "effects": [
+    "Effectue une attaque physique sur la cible.",
+    "Puissance : 340",
+    "Puissance de côté : 400",
+    "Si vous êtes sous l'effet de Saigneur du flanc, augmente la puissance de 100.",
+    "Effet additionnel : vous octroie Saigneur de l'échine.",
+    "Durée : 60s",
+    "Saigneur de l'échine : augmente de 100 la puissance de Saignée de l'échine.",
+    "Ne peut être cumulé avec Saigneur du flanc\\.",
+    "Effet additionnel : remplit la Jauge ophidienne de 10.",
+    "Condition : après avoir utilisé Ponction prédatrice avec succès.",
+    "* Cette action ne peut pas être ajoutée aux barres de raccourcis.",
+    "Remplace Ponction prédatrice lorsque les conditions sont réunies."
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 41,
+    "name": "Rôdeur Vipère",
+    "abbreviation": "VPR"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 30,
+  "icon": {
+    "id": 3705,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 3,
+    "name": "Technique d'arme"
+  },
+  "attack_type": {
+    "id": 4294967295,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 2.5,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 58,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 0,
+      "value": 0
+    },
+    "secondary": {
+      "type_id": 136,
+      "value": 3
+    }
+  },
+  "range": {
+    "target_yalms": -1,
+    "effect_yalms": 0,
+    "cast_type": 1
+  },
+  "targeting": {
+    "self": false,
+    "party": false,
+    "alliance": false,
+    "hostile": true,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": 34608,
+    "preserves_combo": false
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": {
+      "id": 116,
+      "status": {
+        "id": 3645,
+        "name": "Saigneur du flanc",
+        "description": "La puissance de Saignée du flanc est augmentée.",
+        "icon_id": 213751,
+        "max_stacks": 0
+      }
+    }
+  },
+  "metadata": {
+    "aspect_id": 7,
+    "behavior_type": 0,
+    "class_job_category_id": 196,
+    "source_class_job_id": 0,
+    "is_role_action": false,
+    "is_player_action": false,
+    "is_derived_action": true,
+    "equivalence_group": 0
+  }
+}

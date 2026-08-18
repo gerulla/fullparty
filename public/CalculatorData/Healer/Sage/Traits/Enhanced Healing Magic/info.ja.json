@@ -1,0 +1,28 @@
+{
+  "kind": "trait",
+  "id": 377,
+  "name": "回復アクション効果アップ",
+  "description": "特定のアクションの回復力とバリア効果量を上昇させる。\n\nディアグノシスの回復力：450\nカルディアの回復力：170\nエウクラシア・ディアグノシスのバリア効果量：回復量の180％分\nエウクラシア・プログノシスのバリア効果量：回復量の320％分",
+  "description_macro": "特定のアクションの回復力とバリア効果量を上昇させる。<br><br><colortype(504)><edgecolortype(505)>ディアグノシスの回復力：<edgecolortype(0)><colortype(0)>450<br><colortype(504)><edgecolortype(505)>カルディアの回復力：<edgecolortype(0)><colortype(0)>170<br><colortype(504)><edgecolortype(505)>エウクラシア・ディアグノシスのバリア効果量：<edgecolortype(0)><colortype(0)>回復量の180％分<br><colortype(504)><edgecolortype(505)>エウクラシア・プログノシスのバリア効果量：<edgecolortype(0)><colortype(0)>回復量の320％分",
+  "effects": [
+    "特定のアクションの回復力とバリア効果量を上昇させる。",
+    "ディアグノシスの回復力：450",
+    "カルディアの回復力：170",
+    "エウクラシア・ディアグノシスのバリア効果量：回復量の180％分",
+    "エウクラシア・プログノシスのバリア効果量：回復量の320％分"
+  ],
+  "role": "Healer",
+  "job": {
+    "id": 40,
+    "name": "賢者",
+    "abbreviation": "SGE"
+  },
+  "unlock_level": 85,
+  "value": 0,
+  "icon": {
+    "id": 6826,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 181,
+  "source_class_job_id": 40
+}

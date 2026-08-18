@@ -1,0 +1,88 @@
+{
+  "kind": "ability",
+  "id": 46604,
+  "name": "ホールドポジション",
+  "description": "自身かパーティメンバーひとりを対象とする。\n対象の目前まで素早く移動し、自身に「ホールドポジション」を付与する。\nパーティメンバーひとりを対象として実行した場合は、対象にも「ホールドポジション」を付与する。\nホールドポジション効果：使用者の最大ＨＰの10％分のダメージを軽減する。\n効果時間：30秒",
+  "description_macro": "自身かパーティメンバーひとりを対象とする。<br>対象の目前まで素早く移動し、自身に<colortype(500)><edgecolortype(501)>「ホールドポジション」<edgecolortype(0)><colortype(0)>を付与する。<br>パーティメンバーひとりを対象として実行した場合は、対象にも<colortype(500)><edgecolortype(501)>「ホールドポジション」<edgecolortype(0)><colortype(0)>を付与する。<br><colortype(504)><edgecolortype(505)>ホールドポジション効果：<edgecolortype(0)><colortype(0)>使用者の最大ＨＰの10％分のダメージを軽減する。<br><colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>30秒",
+  "effects": [
+    "自身かパーティメンバーひとりを対象とする。",
+    "対象の目前まで素早く移動し、自身に「ホールドポジション」を付与する。",
+    "パーティメンバーひとりを対象として実行した場合は、対象にも「ホールドポジション」を付与する。",
+    "ホールドポジション効果：使用者の最大ＨＰの10％分のダメージを軽減する。",
+    "効果時間：30秒"
+  ],
+  "role": "Phantom Jobs",
+  "job": {
+    "id": 15,
+    "name": "サポート踊り子",
+    "abbreviation": "Ph. Dancer"
+  },
+  "is_phantom_action": true,
+  "unlock_level": 3,
+  "icon": {
+    "id": 64589,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 4,
+    "name": "アビリティ"
+  },
+  "attack_type": {
+    "id": 0,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 60,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 85,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 0,
+      "value": 0
+    },
+    "secondary": {
+      "type_id": 0,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": 15,
+    "effect_yalms": 0,
+    "cast_type": 1
+  },
+  "targeting": {
+    "self": true,
+    "party": true,
+    "alliance": false,
+    "hostile": false,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 0,
+    "behavior_type": 1,
+    "class_job_category_id": 142,
+    "source_class_job_id": 4294967295,
+    "is_role_action": false,
+    "is_player_action": false,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

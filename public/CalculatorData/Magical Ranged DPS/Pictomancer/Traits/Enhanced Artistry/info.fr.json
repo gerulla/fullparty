@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 538,
+  "name": "Magie picturale améliorée",
+  "description": "Permet de recevoir Peinture blanche lorsque vous utilisez Eau en bleu, Foudre en magenta, Extra Eau en bleu ou Extra Foudre en magenta avec succès.",
+  "description_macro": "Permet de recevoir <colortype(500)><edgecolortype(501)>Peinture blanche<edgecolortype(0)><colortype(0)> lorsque vous utilisez <colortype(500)><edgecolortype(501)>Eau en bleu<edgecolortype(0)><colortype(0)>, <colortype(500)><edgecolortype(501)>Foudre en magenta<edgecolortype(0)><colortype(0)>, <colortype(500)><edgecolortype(501)>Extra Eau en bleu<edgecolortype(0)><colortype(0)> ou <colortype(500)><edgecolortype(501)>Extra Foudre en magenta<edgecolortype(0)><colortype(0)> avec succès.",
+  "effects": [
+    "Permet de recevoir Peinture blanche lorsque vous utilisez Eau en bleu, Foudre en magenta, Extra Eau en bleu ou Extra Foudre en magenta avec succès."
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 42,
+    "name": "Pictomancien",
+    "abbreviation": "PIC"
+  },
+  "unlock_level": 80,
+  "value": 0,
+  "icon": {
+    "id": 6552,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 197,
+  "source_class_job_id": 42
+}

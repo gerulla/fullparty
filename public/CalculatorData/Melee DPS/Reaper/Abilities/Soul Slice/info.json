@@ -1,0 +1,88 @@
+{
+  "kind": "ability",
+  "id": 24380,
+  "name": "Soul Slice",
+  "description": "Delivers an attack with a potency of 520.\nAdditional Effect: Increases Soul Gauge by 50\nMaximum Charges: 2\nShares a recast timer with Soul Scythe.\nRecast timer cannot be affected by status effects or gear attributes.",
+  "description_macro": "Delivers an attack with a potency of <if([gnum68==39],<if([gnum72>=94],520,460)>,460)>.<br><colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>Increases <colortype(500)><edgecolortype(501)>Soul Gauge<edgecolortype(0)><colortype(0)> by 50<br><if([gnum68==39],<if([gnum72>=78],<colortype(504)><edgecolortype(505)>Maximum Charges: <edgecolortype(0)><colortype(0)>2<br>,)>,)>Shares a recast timer with <colortype(500)><edgecolortype(501)>Soul Scythe<edgecolortype(0)><colortype(0)>.<br>Recast timer cannot be affected by status effects or gear attributes.",
+  "effects": [
+    "Delivers an attack with a potency of 520.",
+    "Additional Effect: Increases Soul Gauge by 50",
+    "Maximum Charges: 2",
+    "Shares a recast timer with Soul Scythe.",
+    "Recast timer cannot be affected by status effects or gear attributes."
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 39,
+    "name": "Reaper",
+    "abbreviation": "RPR"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 60,
+  "icon": {
+    "id": 3608,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 3,
+    "name": "Weaponskill"
+  },
+  "attack_type": {
+    "id": 1,
+    "name": "斬"
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 30,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 9,
+    "additional_cooldown_group": 58,
+    "max_charges": 1
+  },
+  "costs": {
+    "primary": {
+      "type_id": 0,
+      "value": 0
+    },
+    "secondary": {
+      "type_id": 113,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": -1,
+    "effect_yalms": 0,
+    "cast_type": 1
+  },
+  "targeting": {
+    "self": false,
+    "party": false,
+    "alliance": false,
+    "hostile": true,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 7,
+    "behavior_type": 0,
+    "class_job_category_id": 180,
+    "source_class_job_id": 39,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

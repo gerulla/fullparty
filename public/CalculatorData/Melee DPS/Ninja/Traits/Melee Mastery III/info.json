@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 661,
+  "name": "Melee Mastery III",
+  "description": "Increases the potency of Spinning Edge to 300, Gust Slash to 240, Aeolian Edge to 220, Fuma Shuriken to 500, Raiton to 740, Suiton to 580, Armor Crush to 240, Bhavacakra to 400, Bhavacakra while under the effect of Meisui to 550, Forked Raiju to 700, and Fleeting Raiju to 700.",
+  "description_macro": "Increases the potency of <colortype(500)><edgecolortype(501)>Spinning Edge<edgecolortype(0)><colortype(0)> to 300, <colortype(500)><edgecolortype(501)>Gust Slash<edgecolortype(0)><colortype(0)> to 240, <colortype(500)><edgecolortype(501)>Aeolian Edge<edgecolortype(0)><colortype(0)> to 220, <colortype(500)><edgecolortype(501)>Fuma Shuriken<edgecolortype(0)><colortype(0)> to 500, <colortype(500)><edgecolortype(501)>Raiton<edgecolortype(0)><colortype(0)> to 740, <colortype(500)><edgecolortype(501)>Suiton<edgecolortype(0)><colortype(0)> to 580, <colortype(500)><edgecolortype(501)>Armor Crush<edgecolortype(0)><colortype(0)> to 240, <colortype(500)><edgecolortype(501)>Bhavacakra<edgecolortype(0)><colortype(0)> to 400, <colortype(500)><edgecolortype(501)>Bhavacakra<edgecolortype(0)><colortype(0)> while under the effect of <colortype(506)><edgecolortype(507)>Meisui<edgecolortype(0)><colortype(0)> to 550, <colortype(500)><edgecolortype(501)>Forked Raiju<edgecolortype(0)><colortype(0)> to 700, and <colortype(500)><edgecolortype(501)>Fleeting Raiju<edgecolortype(0)><colortype(0)> to 700.",
+  "effects": [
+    "Increases the potency of Spinning Edge to 300, Gust Slash to 240, Aeolian Edge to 220, Fuma Shuriken to 500, Raiton to 740, Suiton to 580, Armor Crush to 240, Bhavacakra to 400, Bhavacakra while under the effect of Meisui to 550, Forked Raiju to 700, and Fleeting Raiju to 700."
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 30,
+    "name": "Ninja",
+    "abbreviation": "NIN"
+  },
+  "unlock_level": 94,
+  "value": 0,
+  "icon": {
+    "id": 6803,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 92,
+  "source_class_job_id": 30
+}

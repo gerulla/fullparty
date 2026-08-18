@@ -1,0 +1,92 @@
+{
+  "kind": "ability",
+  "id": 3563,
+  "name": "Armor Crush",
+  "description": "Delivers an attack with a potency of 240.\n300 when executed from a target's flank.\nCombo Action: Gust Slash\nCombo Potency: 440\nFlank Combo Potency: 500\nCombo Bonus: Grants 2 stacks of Kazematoi\nKazematoi Effect: Increases potency of Aeolian Edge by 100\nMaximum Stacks: 5\nCombo Bonus: Increases Ninki Gauge by 15",
+  "description_macro": "Delivers an attack with a potency of <if([gnum68==30],<if([gnum72>=94],240,<if([gnum68==30],<if([gnum72>=74],140,100)>,100)>)>,<if([gnum68==30],<if([gnum72>=74],140,100)>,100)>)>.<br><if([gnum68==30],<if([gnum72>=94],300,<if([gnum68==30],<if([gnum72>=74],200,160)>,160)>)>,<if([gnum68==30],<if([gnum72>=74],200,160)>,160)>)> when executed from a target's flank.<br><colortype(504)><edgecolortype(505)>Combo Action:<edgecolortype(0)><colortype(0)> <colortype(500)><edgecolortype(501)>Gust Slash<edgecolortype(0)><colortype(0)><br><colortype(504)><edgecolortype(505)>Combo Potency: <edgecolortype(0)><colortype(0)><if([gnum68==30],<if([gnum72>=94],440,<if([gnum68==30],<if([gnum72>=74],340,300)>,300)>)>,<if([gnum68==30],<if([gnum72>=74],340,300)>,300)>)><br><colortype(504)><edgecolortype(505)>Flank Combo Potency: <edgecolortype(0)><colortype(0)><if([gnum68==30],<if([gnum72>=94],500,<if([gnum68==30],<if([gnum72>=74],400,360)>,360)>)>,<if([gnum68==30],<if([gnum72>=74],400,360)>,360)>)><br><colortype(504)><edgecolortype(505)>Combo Bonus: <edgecolortype(0)><colortype(0)>Grants 2 stacks of <colortype(506)><edgecolortype(507)>Kazematoi<edgecolortype(0)><colortype(0)><br><colortype(504)><edgecolortype(505)>Kazematoi Effect: <edgecolortype(0)><colortype(0)>Increases potency of <colortype(500)><edgecolortype(501)>Aeolian Edge<edgecolortype(0)><colortype(0)> by 100<br><colortype(504)><edgecolortype(505)>Maximum Stacks: <edgecolortype(0)><colortype(0)>5<if([gnum68==30],<if([gnum72>=62],<br><colortype(504)><edgecolortype(505)>Combo Bonus: <edgecolortype(0)><colortype(0)>Increases <colortype(500)><edgecolortype(501)>Ninki Gauge<edgecolortype(0)><colortype(0)> by <if([gnum68==30],<if([gnum72>=84],15,<if([gnum68==30],<if([gnum72>=78],10,5)>,5)>)>,<if([gnum68==30],<if([gnum72>=78],10,5)>,5)>)>,)>,)>",
+  "effects": [
+    "Delivers an attack with a potency of 240.",
+    "300 when executed from a target's flank.",
+    "Combo Action: Gust Slash",
+    "Combo Potency: 440",
+    "Flank Combo Potency: 500",
+    "Combo Bonus: Grants 2 stacks of Kazematoi",
+    "Kazematoi Effect: Increases potency of Aeolian Edge by 100",
+    "Maximum Stacks: 5",
+    "Combo Bonus: Increases Ninki Gauge by 15"
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 30,
+    "name": "Ninja",
+    "abbreviation": "NIN"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 54,
+  "icon": {
+    "id": 2915,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 3,
+    "name": "Weaponskill"
+  },
+  "attack_type": {
+    "id": 4294967295,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 2.5,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 58,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 0,
+      "value": 0
+    },
+    "secondary": {
+      "type_id": 0,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": -1,
+    "effect_yalms": 0,
+    "cast_type": 1
+  },
+  "targeting": {
+    "self": false,
+    "party": false,
+    "alliance": false,
+    "hostile": true,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": 2242,
+    "preserves_combo": false
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 7,
+    "behavior_type": 0,
+    "class_job_category_id": 92,
+    "source_class_job_id": 30,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

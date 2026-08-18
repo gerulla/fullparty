@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 585,
+  "name": "Maîtrise de Rapine",
+  "description": "Remplace Rapine par Dokumori.",
+  "description_macro": "Remplace <colortype(500)><edgecolortype(501)>Rapine<edgecolortype(0)><colortype(0)> par <colortype(500)><edgecolortype(501)>Dokumori<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Remplace Rapine par Dokumori."
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 30,
+    "name": "Ninja",
+    "abbreviation": "NIN"
+  },
+  "unlock_level": 66,
+  "value": 0,
+  "icon": {
+    "id": 5422,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 92,
+  "source_class_job_id": 30
+}

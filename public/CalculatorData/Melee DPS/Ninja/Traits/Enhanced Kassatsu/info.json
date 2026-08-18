@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 250,
+  "name": "Enhanced Kassatsu",
+  "description": "Upgrades Katon and Hyoton to Goka Mekkyaku and Hyosho Ranryu while under the effect of Kassatsu.",
+  "description_macro": "Upgrades <colortype(500)><edgecolortype(501)>Katon<edgecolortype(0)><colortype(0)> and <colortype(500)><edgecolortype(501)>Hyoton<edgecolortype(0)><colortype(0)> to <colortype(500)><edgecolortype(501)>Goka Mekkyaku<edgecolortype(0)><colortype(0)> and <colortype(500)><edgecolortype(501)>Hyosho Ranryu<edgecolortype(0)><colortype(0)> while under the effect of <colortype(506)><edgecolortype(507)>Kassatsu<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Upgrades Katon and Hyoton to Goka Mekkyaku and Hyosho Ranryu while under the effect of Kassatsu."
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 30,
+    "name": "Ninja",
+    "abbreviation": "NIN"
+  },
+  "unlock_level": 76,
+  "value": 0,
+  "icon": {
+    "id": 5414,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 92,
+  "source_class_job_id": 30
+}

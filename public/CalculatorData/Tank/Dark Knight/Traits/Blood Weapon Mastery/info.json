@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 570,
+  "name": "Blood Weapon Mastery",
+  "description": "Upgrades Blood Weapon to Delirium.",
+  "description_macro": "Upgrades <colortype(500)><edgecolortype(501)>Blood Weapon<edgecolortype(0)><colortype(0)> to <colortype(500)><edgecolortype(501)>Delirium<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Upgrades Blood Weapon to Delirium."
+  ],
+  "role": "Tank",
+  "job": {
+    "id": 32,
+    "name": "Dark Knight",
+    "abbreviation": "DRK"
+  },
+  "unlock_level": 68,
+  "value": 0,
+  "icon": {
+    "id": 6053,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 98,
+  "source_class_job_id": 32
+}

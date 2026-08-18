@@ -1,0 +1,37 @@
+{
+  "kind": "trait",
+  "id": 676,
+  "name": "アクション威力アップII",
+  "description": "特定のアクションの威力を上昇させる。\n\nレッドファイアの威力：380\nグリーンエアロの威力：420\nブルーウォータの威力：460\nレッドファイラの威力：150\nグリーンエアロラの威力：170\nブルーウォタラの威力：190\nハンマースタンプの威力：500\nシアンブリザドの威力：680\nイエローストーンの威力：720\nマゼンタサンダーの威力：760\nシアンブリザラの威力：330\nイエローストンラの威力：350\nマゼンタサンダラの威力：370",
+  "description_macro": "特定のアクションの威力を上昇させる。<br><br><colortype(504)><edgecolortype(505)>レッドファイアの威力：<edgecolortype(0)><colortype(0)>380<br><colortype(504)><edgecolortype(505)>グリーンエアロの威力：<edgecolortype(0)><colortype(0)>420<br><colortype(504)><edgecolortype(505)>ブルーウォータの威力：<edgecolortype(0)><colortype(0)>460<br><colortype(504)><edgecolortype(505)>レッドファイラの威力：<edgecolortype(0)><colortype(0)>150<br><colortype(504)><edgecolortype(505)>グリーンエアロラの威力：<edgecolortype(0)><colortype(0)>170<br><colortype(504)><edgecolortype(505)>ブルーウォタラの威力：<edgecolortype(0)><colortype(0)>190<br><colortype(504)><edgecolortype(505)>ハンマースタンプの威力：<edgecolortype(0)><colortype(0)>500<br><colortype(504)><edgecolortype(505)>シアンブリザドの威力：<edgecolortype(0)><colortype(0)>680<br><colortype(504)><edgecolortype(505)>イエローストーンの威力：<edgecolortype(0)><colortype(0)>720<br><colortype(504)><edgecolortype(505)>マゼンタサンダーの威力：<edgecolortype(0)><colortype(0)>760<br><colortype(504)><edgecolortype(505)>シアンブリザラの威力：<edgecolortype(0)><colortype(0)>330<br><colortype(504)><edgecolortype(505)>イエローストンラの威力：<edgecolortype(0)><colortype(0)>350<br><colortype(504)><edgecolortype(505)>マゼンタサンダラの威力：<edgecolortype(0)><colortype(0)>370",
+  "effects": [
+    "特定のアクションの威力を上昇させる。",
+    "レッドファイアの威力：380",
+    "グリーンエアロの威力：420",
+    "ブルーウォータの威力：460",
+    "レッドファイラの威力：150",
+    "グリーンエアロラの威力：170",
+    "ブルーウォタラの威力：190",
+    "ハンマースタンプの威力：500",
+    "シアンブリザドの威力：680",
+    "イエローストーンの威力：720",
+    "マゼンタサンダーの威力：760",
+    "シアンブリザラの威力：330",
+    "イエローストンラの威力：350",
+    "マゼンタサンダラの威力：370"
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 42,
+    "name": "ピクトマンサー",
+    "abbreviation": "PCT"
+  },
+  "unlock_level": 74,
+  "value": 0,
+  "icon": {
+    "id": 6830,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 197,
+  "source_class_job_id": 42
+}

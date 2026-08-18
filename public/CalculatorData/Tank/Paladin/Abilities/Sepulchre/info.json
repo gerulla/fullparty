@@ -1,0 +1,97 @@
+{
+  "kind": "ability",
+  "id": 36919,
+  "name": "Sepulchre",
+  "description": "Delivers an attack with a potency of 540.\nAdditional Effect: Restores MP\nCan only be executed while under the effect of Sepulchre Ready.\n\n※This action cannot be assigned to a hotbar.\n※Supplication changes to Sepulchre when requirements for execution are met.",
+  "description_macro": "Delivers an attack with a potency of <if([gnum68==19],<if([gnum72>=94],540,<if([gnum68==19],<if([gnum72>=84],440,400)>,400)>)>,<if([gnum68==19],<if([gnum72>=84],440,400)>,400)>)>.<br><colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>Restores MP<br>Can only be executed while under the effect of <colortype(506)><edgecolortype(507)>Sepulchre Ready<edgecolortype(0)><colortype(0)>.<br><br>※This action cannot be assigned to a hotbar.<br>※<colortype(500)><edgecolortype(501)>Supplication<edgecolortype(0)><colortype(0)> changes to <colortype(500)><edgecolortype(501)>Sepulchre<edgecolortype(0)><colortype(0)> when requirements for execution are met.",
+  "effects": [
+    "Delivers an attack with a potency of 540.",
+    "Additional Effect: Restores MP",
+    "Can only be executed while under the effect of Sepulchre Ready.",
+    "※This action cannot be assigned to a hotbar.",
+    "※Supplication changes to Sepulchre when requirements for execution are met."
+  ],
+  "role": "Tank",
+  "job": {
+    "id": 19,
+    "name": "Paladin",
+    "abbreviation": "PLD"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 76,
+  "icon": {
+    "id": 2523,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 3,
+    "name": "Weaponskill"
+  },
+  "attack_type": {
+    "id": 4294967295,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 2.5,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 58,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 0,
+      "value": 0
+    },
+    "secondary": {
+      "type_id": 32,
+      "value": 3828
+    }
+  },
+  "range": {
+    "target_yalms": -1,
+    "effect_yalms": 0,
+    "cast_type": 1
+  },
+  "targeting": {
+    "self": false,
+    "party": false,
+    "alliance": false,
+    "hostile": true,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": {
+      "id": 150,
+      "status": {
+        "id": 3828,
+        "name": "Sepulchre Ready",
+        "description": "Able to execute Sepulchre.",
+        "icon_id": 212524,
+        "max_stacks": 0
+      }
+    }
+  },
+  "metadata": {
+    "aspect_id": 7,
+    "behavior_type": 0,
+    "class_job_category_id": 20,
+    "source_class_job_id": 0,
+    "is_role_action": false,
+    "is_player_action": false,
+    "is_derived_action": true,
+    "equivalence_group": 0
+  }
+}

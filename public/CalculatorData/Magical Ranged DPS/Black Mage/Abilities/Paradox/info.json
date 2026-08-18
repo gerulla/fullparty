@@ -1,0 +1,90 @@
+{
+  "kind": "ability",
+  "id": 25797,
+  "name": "Paradox",
+  "description": "Deals unaspected damage with a potency of 540.\nAstral Fire Bonus: Grants Firestarter\nFirestarter Effect: Next Fire III will require no time to cast and cost no MP\nUmbral Ice Bonus: Requires no MP to cast\nCan only be executed while under the effect of Paradox.\n\n※This action cannot be assigned to a hotbar.\n※Fire and Blizzard change to Paradox when requirements for execution are met.",
+  "description_macro": "Deals unaspected damage with a potency of 540.<br><colortype(504)><edgecolortype(505)>Astral Fire Bonus: <edgecolortype(0)><colortype(0)>Grants <colortype(506)><edgecolortype(507)>Firestarter<edgecolortype(0)><colortype(0)><br><colortype(504)><edgecolortype(505)>Firestarter Effect: <edgecolortype(0)><colortype(0)>Next <colortype(500)><edgecolortype(501)>Fire III<edgecolortype(0)><colortype(0)> will require no time to cast and cost no MP<br><colortype(504)><edgecolortype(505)>Umbral Ice Bonus: <edgecolortype(0)><colortype(0)>Requires no MP to cast<br>Can only be executed while under the effect of <colortype(506)><edgecolortype(507)>Paradox<edgecolortype(0)><colortype(0)>.<br><br>※This action cannot be assigned to a hotbar.<br>※<colortype(500)><edgecolortype(501)>Fire<edgecolortype(0)><colortype(0)> and <colortype(500)><edgecolortype(501)>Blizzard<edgecolortype(0)><colortype(0)> change to <colortype(500)><edgecolortype(501)>Paradox<edgecolortype(0)><colortype(0)> when requirements for execution are met.",
+  "effects": [
+    "Deals unaspected damage with a potency of 540.",
+    "Astral Fire Bonus: Grants Firestarter",
+    "Firestarter Effect: Next Fire III will require no time to cast and cost no MP",
+    "Umbral Ice Bonus: Requires no MP to cast",
+    "Can only be executed while under the effect of Paradox.",
+    "※This action cannot be assigned to a hotbar.",
+    "※Fire and Blizzard change to Paradox when requirements for execution are met."
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 25,
+    "name": "Black Mage",
+    "abbreviation": "BLM"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 90,
+  "icon": {
+    "id": 2672,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 2,
+    "name": "Spell"
+  },
+  "attack_type": {
+    "id": 5,
+    "name": "魔法"
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 2.5,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 58,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 76,
+      "value": 16
+    },
+    "secondary": {
+      "type_id": 0,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": 25,
+    "effect_yalms": 0,
+    "cast_type": 1
+  },
+  "targeting": {
+    "self": false,
+    "party": false,
+    "alliance": false,
+    "hostile": true,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": false
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 7,
+    "behavior_type": 0,
+    "class_job_category_id": 26,
+    "source_class_job_id": 0,
+    "is_role_action": false,
+    "is_player_action": false,
+    "is_derived_action": true,
+    "equivalence_group": 0
+  }
+}

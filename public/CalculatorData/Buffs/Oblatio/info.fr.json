@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 3857,
+  "name": "Sacrificium préparé",
+  "description": "Sacrificium peut être lancé.",
+  "effects": [
+    "Sacrificium peut être lancé."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 212941,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 180,
+  "source_abilities": [
+    {
+      "id": 24394,
+      "name": "Linceul du lémure",
+      "description": "Vous offrez votre enveloppe corporelle à votre avatar et devenez un lémure. Vous octroie autant d'Âmes de lémure que vous pouvez en engranger.\nDurée : 30s\nCertaines de vos techniques de combat ainsi que vos actions faisant appel à votre avatar deviennent inutilisables durant la transformation.\nEffet additionnel : vous octroie Sacrificium préparé.\nDurée : 30s\nCoût Jauge du linceul : 50",
+      "description_macro": "Vous offrez votre enveloppe corporelle à votre avatar et devenez un lémure. Vous octroie autant d'<colortype(500)><edgecolortype(501)>Âmes de lémure<edgecolortype(0)><colortype(0)> que vous pouvez en engranger.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 30s<br>Certaines de vos techniques de combat ainsi que vos actions faisant appel à votre avatar deviennent in<->uti<->li<->sa<->bles durant la transformation.<br><if([gnum68==39],<if([gnum72>=92],<colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> vous octroie <colortype(500)><edgecolortype(501)>Sacrificium préparé<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 30s<br>,)>,)><colortype(506)><edgecolortype(507)>Coût Jauge du linceul<nbsp>:<edgecolortype(0)><colortype(0)> 50",
+      "unlock_level": 80,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 39,
+          "name": "Faucheur",
+          "abbreviation": "FCH",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 504,
+  "name": "Melee Mastery",
+  "description": "Increases the potency of Fast Blade to 200, Riot Blade to 140, Royal Authority to 140, Holy Spirit to 350, Atonement to 400, Supplication to 420, and Sepulchre to 440.",
+  "description_macro": "Increases the potency of <colortype(500)><edgecolortype(501)>Fast Blade<edgecolortype(0)><colortype(0)> to 200, <colortype(500)><edgecolortype(501)>Riot Blade<edgecolortype(0)><colortype(0)> to 140, <colortype(500)><edgecolortype(501)>Royal Authority<edgecolortype(0)><colortype(0)> to 140, <colortype(500)><edgecolortype(501)>Holy Spirit<edgecolortype(0)><colortype(0)> to 350, <colortype(500)><edgecolortype(501)>Atonement<edgecolortype(0)><colortype(0)> to 400, <colortype(500)><edgecolortype(501)>Supplication<edgecolortype(0)><colortype(0)> to 420, and <colortype(500)><edgecolortype(501)>Sepulchre<edgecolortype(0)><colortype(0)> to 440.",
+  "effects": [
+    "Increases the potency of Fast Blade to 200, Riot Blade to 140, Royal Authority to 140, Holy Spirit to 350, Atonement to 400, Supplication to 420, and Sepulchre to 440."
+  ],
+  "role": "Tank",
+  "job": {
+    "id": 19,
+    "name": "Paladin",
+    "abbreviation": "PLD"
+  },
+  "unlock_level": 84,
+  "value": 0,
+  "icon": {
+    "id": 6801,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 20,
+  "source_class_job_id": 19
+}

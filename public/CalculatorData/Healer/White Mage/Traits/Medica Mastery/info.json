@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 624,
+  "name": "Medica Mastery",
+  "description": "Upgrades Medica II to Medica III.",
+  "description_macro": "Upgrades <colortype(500)><edgecolortype(501)>Medica II<edgecolortype(0)><colortype(0)> to <colortype(500)><edgecolortype(501)>Medica III<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Upgrades Medica II to Medica III."
+  ],
+  "role": "Healer",
+  "job": {
+    "id": 24,
+    "name": "White Mage",
+    "abbreviation": "WHM"
+  },
+  "unlock_level": 96,
+  "value": 0,
+  "icon": {
+    "id": 5347,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 25,
+  "source_class_job_id": 24
+}

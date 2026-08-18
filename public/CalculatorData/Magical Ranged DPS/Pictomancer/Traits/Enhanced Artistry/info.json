@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 538,
+  "name": "Enhanced Artistry",
+  "description": "Grants White Paint upon the landing of Water in Blue, Water II in Blue, Thunder in Magenta, and Thunder II in Magenta.",
+  "description_macro": "Grants <colortype(506)><edgecolortype(507)>White Paint<edgecolortype(0)><colortype(0)> upon the landing of <colortype(500)><edgecolortype(501)>Water in Blue<edgecolortype(0)><colortype(0)>, <colortype(500)><edgecolortype(501)>Water II in Blue<edgecolortype(0)><colortype(0)>, <colortype(500)><edgecolortype(501)>Thunder in Magenta<edgecolortype(0)><colortype(0)>, and <colortype(500)><edgecolortype(501)>Thunder II in Magenta<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Grants White Paint upon the landing of Water in Blue, Water II in Blue, Thunder in Magenta, and Thunder II in Magenta."
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 42,
+    "name": "Pictomancer",
+    "abbreviation": "PCT"
+  },
+  "unlock_level": 80,
+  "value": 0,
+  "icon": {
+    "id": 6552,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 197,
+  "source_class_job_id": 42
+}

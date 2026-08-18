@@ -1,0 +1,29 @@
+{
+  "kind": "trait",
+  "id": 493,
+  "name": "Magie curative améliorée",
+  "description": "Augmente la puissance de certaines actions curatives.\n\nPuissance de Médecine : 450\nPuissance d'Embrassement : 180\nPuissance de Traité du réconfort (barrière) : 180%\nPuissance de Traité du soulagement (barrière) : 160%\nPuissance de Voile séraphique : 180",
+  "description_macro": "Augmente la puissance de certaines actions curatives.<br><br><colortype(506)><edgecolortype(507)>Puissance de Médecine<nbsp>:<edgecolortype(0)><colortype(0)> 450<br><colortype(506)><edgecolortype(507)>Puissance d'Embrassement<nbsp>:<edgecolortype(0)><colortype(0)> 180<br><colortype(506)><edgecolortype(507)>Puissance de Traité du réconfort (barrière)<nbsp>:<edgecolortype(0)><colortype(0)> 180%<br><colortype(506)><edgecolortype(507)>Puissance de Traité du soulagement (barrière)<nbsp>:<edgecolortype(0)><colortype(0)> 160%<br><colortype(506)><edgecolortype(507)>Puissance de Voile séraphique<nbsp>:<edgecolortype(0)><colortype(0)> 180",
+  "effects": [
+    "Augmente la puissance de certaines actions curatives.",
+    "Puissance de Médecine : 450",
+    "Puissance d'Embrassement : 180",
+    "Puissance de Traité du réconfort (barrière) : 180%",
+    "Puissance de Traité du soulagement (barrière) : 160%",
+    "Puissance de Voile séraphique : 180"
+  ],
+  "role": "Healer",
+  "job": {
+    "id": 28,
+    "name": "Érudit",
+    "abbreviation": "ÉRU"
+  },
+  "unlock_level": 85,
+  "value": 0,
+  "icon": {
+    "id": 6826,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 29,
+  "source_class_job_id": 28
+}

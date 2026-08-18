@@ -1,0 +1,25 @@
+{
+  "kind": "trait",
+  "id": 625,
+  "name": "テトラグラマトン効果アップ",
+  "description": "テトラグラマトンがチャージアクションに変化する。\n最大チャージ数：2",
+  "description_macro": "テトラグラマトンがチャージアクションに変化する。<br><colortype(504)><edgecolortype(505)>最大チャージ数：<edgecolortype(0)><colortype(0)>2",
+  "effects": [
+    "テトラグラマトンがチャージアクションに変化する。",
+    "最大チャージ数：2"
+  ],
+  "role": "Healer",
+  "job": {
+    "id": 24,
+    "name": "白魔道士",
+    "abbreviation": "WHM"
+  },
+  "unlock_level": 98,
+  "value": 2,
+  "icon": {
+    "id": 5349,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 25,
+  "source_class_job_id": 24
+}

@@ -1,0 +1,91 @@
+{
+  "kind": "ability",
+  "id": 46594,
+  "name": "ひっさつ",
+  "description": "対象に物理攻撃。アクションの性能が確率によって変化する。\n大成功の発動確率：20％\n威力：1000（アイテムレベル依存威力）\n追加効果：25％の確率で一部の対象を即死させる。\n成功の発動確率：60％\n威力：600（アイテムレベル依存威力）\n失敗の発動確率：20％\n攻撃が命中しない。",
+  "description_macro": "対象に物理攻撃。アクションの性能が確率によって変化する。<br><colortype(504)><edgecolortype(505)>大成功の発動確率：<edgecolortype(0)><colortype(0)>20％<br><colortype(504)><edgecolortype(505)>威力：<edgecolortype(0)><colortype(0)>1000（アイテムレベル依存威力）<br><colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)>25％の確率で一部の対象を即死させる。<br><colortype(504)><edgecolortype(505)>成功の発動確率：<edgecolortype(0)><colortype(0)>60％<br><colortype(504)><edgecolortype(505)>威力：<edgecolortype(0)><colortype(0)>600（アイテムレベル依存威力）<br><colortype(504)><edgecolortype(505)>失敗の発動確率：<edgecolortype(0)><colortype(0)>20％<br>攻撃が命中しない。<if([gnum108>=2],<br><colortype(504)><edgecolortype(505)>ひっさつ強化中追加効果：<edgecolortype(0)><colortype(0)>大成功確率を1スタックにつき20％上昇させる。さらに成功確率を15％、失敗確率を5％減少させる。,)>",
+  "effects": [
+    "対象に物理攻撃。アクションの性能が確率によって変化する。",
+    "大成功の発動確率：20％",
+    "威力：1000（アイテムレベル依存威力）",
+    "追加効果：25％の確率で一部の対象を即死させる。",
+    "成功の発動確率：60％",
+    "威力：600（アイテムレベル依存威力）",
+    "失敗の発動確率：20％",
+    "攻撃が命中しない。"
+  ],
+  "role": "Phantom Jobs",
+  "job": {
+    "id": 14,
+    "name": "サポート剣闘士",
+    "abbreviation": "Ph. Gladiator"
+  },
+  "is_phantom_action": true,
+  "unlock_level": 1,
+  "icon": {
+    "id": 64579,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 3,
+    "name": "ウェポンスキル"
+  },
+  "attack_type": {
+    "id": 1,
+    "name": "斬"
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 60,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 84,
+    "additional_cooldown_group": 58,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 0,
+      "value": 0
+    },
+    "secondary": {
+      "type_id": 0,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": 5,
+    "effect_yalms": 0,
+    "cast_type": 1
+  },
+  "targeting": {
+    "self": false,
+    "party": false,
+    "alliance": false,
+    "hostile": true,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 7,
+    "behavior_type": 0,
+    "class_job_category_id": 142,
+    "source_class_job_id": 4294967295,
+    "is_role_action": false,
+    "is_player_action": false,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

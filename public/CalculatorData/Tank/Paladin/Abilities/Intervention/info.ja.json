@@ -1,0 +1,94 @@
+{
+  "kind": "ability",
+  "id": 7382,
+  "name": "インターベンション",
+  "description": "パーティメンバーひとりを対象とする。\n対象の被ダメージを10％軽減する。\u3000効果時間：8秒\n追加効果：自身にランパートまたはエクストリームガードが付与されている場合は効果量が10％上昇する。\n追加効果：対象に「ナイトの堅守」を付与する。\n効果時間：4秒\nナイトの堅守効果：対象の被ダメージを10％軽減する。\n追加効果：対象に「ナイトの加護」を付与する。\n効果時間：12秒\nナイトの加護効果：対象のＨＰを継続回復する。\n回復力：250\n発動条件：「オウス」50",
+  "description_macro": "パーティメンバーひとりを対象とする。<br>対象の被ダメージを10％軽減する。\u3000<colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)><if([gnum68==19],<if([gnum72>=82],8,6)>,6)>秒<br><colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)>自身にランパートまたは<if([gnum68==19],<if([gnum72>=92],エクストリームガード,センチネル)>,センチネル)>が付与されている場合は効果量が10％上昇する。<br><if([gnum68==19],<if([gnum72>=82],<colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)>対象に<colortype(500)><edgecolortype(501)>「ナイトの堅守」<edgecolortype(0)><colortype(0)>を付与する。<br><colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>4秒<br><colortype(504)><edgecolortype(505)>ナイトの堅守効果：<edgecolortype(0)><colortype(0)>対象の被ダメージを10％軽減する。<br><colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)>対象に<colortype(500)><edgecolortype(501)>「ナイトの加護」<edgecolortype(0)><colortype(0)>を付与する。<br><colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>12秒<br><colortype(504)><edgecolortype(505)>ナイトの加護効果：<edgecolortype(0)><colortype(0)>対象のＨＰを継続回復する。<br><colortype(504)><edgecolortype(505)>回復力：<edgecolortype(0)><colortype(0)>250<br>,)>,)><colortype(504)><edgecolortype(505)>発動条件：<edgecolortype(0)><colortype(0)><colortype(500)><edgecolortype(501)>「オウス」<edgecolortype(0)><colortype(0)>50",
+  "effects": [
+    "パーティメンバーひとりを対象とする。",
+    "対象の被ダメージを10％軽減する。\u3000効果時間：8秒",
+    "追加効果：自身にランパートまたはエクストリームガードが付与されている場合は効果量が10％上昇する。",
+    "追加効果：対象に「ナイトの堅守」を付与する。",
+    "効果時間：4秒",
+    "ナイトの堅守効果：対象の被ダメージを10％軽減する。",
+    "追加効果：対象に「ナイトの加護」を付与する。",
+    "効果時間：12秒",
+    "ナイトの加護効果：対象のＨＰを継続回復する。",
+    "回復力：250",
+    "発動条件：「オウス」50"
+  ],
+  "role": "Tank",
+  "job": {
+    "id": 19,
+    "name": "ナイト",
+    "abbreviation": "PLD"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 62,
+  "icon": {
+    "id": 2512,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 4,
+    "name": "アビリティ"
+  },
+  "attack_type": {
+    "id": 0,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 10,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 5,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 41,
+      "value": 50
+    },
+    "secondary": {
+      "type_id": 62,
+      "value": 209
+    }
+  },
+  "range": {
+    "target_yalms": 30,
+    "effect_yalms": 0,
+    "cast_type": 1
+  },
+  "targeting": {
+    "self": false,
+    "party": true,
+    "alliance": false,
+    "hostile": false,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": false
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 0,
+    "behavior_type": 0,
+    "class_job_category_id": 20,
+    "source_class_job_id": 19,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

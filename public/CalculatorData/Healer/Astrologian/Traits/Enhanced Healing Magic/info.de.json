@@ -1,0 +1,31 @@
+{
+  "kind": "trait",
+  "id": 499,
+  "name": "Meister der Heilmagie",
+  "description": "Erhöht das Heilpotenzial folgender Kommandos:\nHeilpotenzial von Harmonieaspekt: 500\nHeilpotenzial von Helios: 400\nHeilpotenzial von Harmonieaspekt II: 800\nHeilpotenzial von Harmonischer Orbis : 250\nHeilpotenzial von Harmonischer Orbis (stetige LP-Heilung): 250\nHeilpotenzial von Aspektierter Helios: 250\nHeilpotenzial von Aspektierter Helios (stetige LP-Heilung): 150",
+  "description_macro": "Erhöht das Heilpotenzial folgender Kommandos:<br>Heilpotenzial von <colortype(502)><edgecolortype(503)>Harmonieaspekt<edgecolortype(0)><colortype(0)>: 500<br>Heilpotenzial von <colortype(502)><edgecolortype(503)>Helios<edgecolortype(0)><colortype(0)>: 400<br>Heilpotenzial von <colortype(502)><edgecolortype(503)>Harmonieaspekt II<edgecolortype(0)><colortype(0)>: 800<br>Heilpotenzial von <colortype(502)><edgecolortype(503)>Harmonischer Orbis<edgecolortype(0)><colortype(0)> : 250<br>Heilpotenzial von <colortype(502)><edgecolortype(503)>Harmonischer Orbis<edgecolortype(0)><colortype(0)> (stetige LP-Heilung): 250<br>Heilpotenzial von <colortype(502)><edgecolortype(503)>Aspektierter Helios<edgecolortype(0)><colortype(0)>: 250<br>Heilpotenzial von <colortype(502)><edgecolortype(503)>Aspektierter Helios<edgecolortype(0)><colortype(0)> (stetige LP-Heilung): 150",
+  "effects": [
+    "Erhöht das Heilpotenzial folgender Kommandos:",
+    "Heilpotenzial von Harmonieaspekt: 500",
+    "Heilpotenzial von Helios: 400",
+    "Heilpotenzial von Harmonieaspekt II: 800",
+    "Heilpotenzial von Harmonischer Orbis : 250",
+    "Heilpotenzial von Harmonischer Orbis (stetige LP-Heilung): 250",
+    "Heilpotenzial von Aspektierter Helios: 250",
+    "Heilpotenzial von Aspektierter Helios (stetige LP-Heilung): 150"
+  ],
+  "role": "Healer",
+  "job": {
+    "id": 33,
+    "name": "Astrologe",
+    "abbreviation": "AST"
+  },
+  "unlock_level": 85,
+  "value": 0,
+  "icon": {
+    "id": 6826,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 99,
+  "source_class_job_id": 33
+}

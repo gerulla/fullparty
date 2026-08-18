@@ -1,0 +1,88 @@
+{
+  "kind": "ability",
+  "id": 83,
+  "name": "ライフサージ",
+  "description": "効果時間中に実行する1回のウェポンスキルが必ずクリティカルヒットし、かつＨＰを吸収する。\nクリティカルヒットの発動率を上昇させる効果を受けている場合は与ダメージが上昇する。\nこの効果は、継続ダメージなどのステータスには適用されない。\n効果時間：5秒\n最大チャージ数：2",
+  "description_macro": "効果時間中に実行する1回のウェポンスキルが必ずクリティカルヒットし、かつＨＰを吸収する。<br>クリティカルヒットの発動率を上昇させる効果を受けている場合は与ダメージが上昇する。<br>この効果は、継続ダメージなどのステータスには適用されない。<br><colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>5秒<if([gnum68==22],<if([gnum72>=88],<br><colortype(504)><edgecolortype(505)>最大チャージ数：<edgecolortype(0)><colortype(0)>2,)>,)>",
+  "effects": [
+    "効果時間中に実行する1回のウェポンスキルが必ずクリティカルヒットし、かつＨＰを吸収する。",
+    "クリティカルヒットの発動率を上昇させる効果を受けている場合は与ダメージが上昇する。",
+    "この効果は、継続ダメージなどのステータスには適用されない。",
+    "効果時間：5秒",
+    "最大チャージ数：2"
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 22,
+    "name": "竜騎士",
+    "abbreviation": "DRG"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 6,
+  "icon": {
+    "id": 304,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 4,
+    "name": "アビリティ"
+  },
+  "attack_type": {
+    "id": 0,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 40,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 15,
+    "additional_cooldown_group": 71,
+    "max_charges": 1
+  },
+  "costs": {
+    "primary": {
+      "type_id": 0,
+      "value": 0
+    },
+    "secondary": {
+      "type_id": 0,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": 0,
+    "effect_yalms": 0,
+    "cast_type": 1
+  },
+  "targeting": {
+    "self": true,
+    "party": false,
+    "alliance": false,
+    "hostile": false,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 0,
+    "behavior_type": 0,
+    "class_job_category_id": 47,
+    "source_class_job_id": 4,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 324,
+  "name": "Biologischer Abbau",
+  "description": "Verbessert Bio zu Biora.",
+  "description_macro": "Verbessert <colortype(502)><edgecolortype(503)>Bio<edgecolortype(0)><colortype(0)> zu <colortype(502)><edgecolortype(503)>Biora<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Verbessert Bio zu Biora."
+  ],
+  "role": "Healer",
+  "job": {
+    "id": 28,
+    "name": "Gelehrter",
+    "abbreviation": "GLT"
+  },
+  "unlock_level": 26,
+  "value": 0,
+  "icon": {
+    "id": 5376,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 29,
+  "source_class_job_id": 28
+}

@@ -1,0 +1,97 @@
+{
+  "kind": "ability",
+  "id": 34688,
+  "name": "Rainbow Drip",
+  "description": "Deals unaspected damage to all enemies in a straight line before you with a potency of 1,000 for the first enemy, and 85% less for all remaining enemies.\nAdditional Effect: Grants White Paint\nMaximum Stacks: 5\nWhen Rainbow Bright is active, Rainbow Drip can be cast immediately and its recast timer is reduced.\nThis action does not share a recast timer with any other actions. Upon execution, the recast timer for this action will be applied to all other weaponskills and magic actions.",
+  "description_macro": "Deals unaspected damage to all enemies in a straight line before you with a potency of 1,000 for the first enemy, and 85% less for all remaining enemies.<br><colortype(504)><edgecolortype(505)>Additional Effect:<edgecolortype(0)><colortype(0)> Grants <colortype(506)><edgecolortype(507)>White Paint<edgecolortype(0)><colortype(0)><br><colortype(504)><edgecolortype(505)>Maximum Stacks: <edgecolortype(0)><colortype(0)>5<br>When <colortype(506)><edgecolortype(507)>Rainbow Bright<edgecolortype(0)><colortype(0)> is active, <colortype(500)><edgecolortype(501)>Rainbow Drip<edgecolortype(0)><colortype(0)> can be cast immediately and its recast timer is reduced.<br>This action does not share a recast timer with any other actions. Upon execution, the recast timer for this action will be applied to all other weaponskills and magic actions.",
+  "effects": [
+    "Deals unaspected damage to all enemies in a straight line before you with a potency of 1,000 for the first enemy, and 85% less for all remaining enemies.",
+    "Additional Effect: Grants White Paint",
+    "Maximum Stacks: 5",
+    "When Rainbow Bright is active, Rainbow Drip can be cast immediately and its recast timer is reduced.",
+    "This action does not share a recast timer with any other actions. Upon execution, the recast timer for this action will be applied to all other weaponskills and magic actions."
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 42,
+    "name": "Pictomancer",
+    "abbreviation": "PCT"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 92,
+  "icon": {
+    "id": 3838,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 2,
+    "name": "Spell"
+  },
+  "attack_type": {
+    "id": 5,
+    "name": "魔法"
+  },
+  "timing": {
+    "cast_seconds": 4,
+    "recast_seconds": 6,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 58,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 0,
+      "value": 0
+    },
+    "secondary": {
+      "type_id": 0,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": 25,
+    "effect_yalms": 25,
+    "cast_type": 4
+  },
+  "targeting": {
+    "self": false,
+    "party": false,
+    "alliance": false,
+    "hostile": true,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": {
+      "id": 144,
+      "status": {
+        "id": 3679,
+        "name": "Rainbow Bright",
+        "description": "Next Rainbow Drip will require no time to cast, and will have a reduced recast timer.",
+        "icon_id": 213805,
+        "max_stacks": 0
+      }
+    }
+  },
+  "metadata": {
+    "aspect_id": 7,
+    "behavior_type": 0,
+    "class_job_category_id": 197,
+    "source_class_job_id": 42,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

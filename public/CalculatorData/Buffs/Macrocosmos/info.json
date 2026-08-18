@@ -1,0 +1,51 @@
+{
+  "kind": "combat_status",
+  "id": 2718,
+  "name": "Macrocosmos",
+  "description": "Restores HP when effect duration expires or the astrologian who granted this effect executes Microcosmos. Healing potency is based on damage taken and compiled over the duration of the effect.",
+  "effects": [
+    "Restores HP when effect duration expires or the astrologian who granted this effect executes Microcosmos. Healing potency is based on damage taken and compiled over the duration of the effect."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 213263,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": true,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 99,
+  "source_abilities": [
+    {
+      "id": 25874,
+      "name": "Macrocosmos",
+      "description": "Deals unaspected damage to all nearby enemies with a potency of 270 for the first enemy, and 40% less for all remaining enemies.\nAdditional Effect: Grants Macrocosmos to self and all nearby party members\nDuration: 15s\nFor the effect's duration, 50% of damage taken is compiled.\nRestores HP equal to a cure of 200 potency plus compiled damage when the effect expires or upon execution of Microcosmos.\nAmount restored cannot exceed the target's maximum HP.\nRecast timer cannot be affected by status effects or gear attributes.",
+      "description_macro": "Deals unaspected damage to all nearby enemies with a potency of <if([gnum68==33],<if([gnum72>=94],270,250)>,250)> for the first enemy, and 40% less for all remaining enemies.<br><colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>Grants <colortype(506)><edgecolortype(507)>Macrocosmos<edgecolortype(0)><colortype(0)> to self and all nearby party members<br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>15s<br>For the effect's duration, 50% of damage taken is compiled.<br>Restores HP equal to a cure of 200 potency plus compiled damage when the effect expires or upon execution of <colortype(500)><edgecolortype(501)>Microcosmos<edgecolortype(0)><colortype(0)>.<br>Amount restored cannot exceed the target's maximum HP.<br>Recast timer cannot be affected by status effects or gear attributes.",
+      "unlock_level": 90,
+      "relations": [
+        "granted_by_description",
+        "same_name"
+      ],
+      "roles": [
+        "Healer"
+      ],
+      "jobs": [
+        {
+          "id": 33,
+          "name": "Astrologian",
+          "abbreviation": "AST",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,71 @@
+{
+  "kind": "combat_status",
+  "id": 2675,
+  "name": "Knight's Resolve",
+  "description": "Damage taken is reduced.",
+  "effects": [
+    "Damage taken is reduced."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 212516,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": -10
+  },
+  "class_job_category_id": 20,
+  "source_abilities": [
+    {
+      "id": 7382,
+      "name": "Intervention",
+      "description": "Reduces target party member's damage taken by 10%.\nDuration: 8s\nAdditional Effect: Increases damage reduction by an additional 10% if Rampart or Guardian are active\nAdditional Effect: Grants Knight's Resolve to target\nKnight's Resolve Effect: Reduces damage taken by 10%\nDuration: 4s\nAdditional Effect: Grants Knight's Benediction to target\nKnight's Benediction Effect: Gradually restores HP\nCure Potency: 250\nDuration: 12s\nOath Gauge Cost: 50",
+      "description_macro": "Reduces target party member's damage taken by 10%.<br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)><if([gnum68==19],<if([gnum72>=82],8,6)>,6)>s<br><colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>Increases damage reduction by an additional 10% if <colortype(506)><edgecolortype(507)>Rampart<edgecolortype(0)><colortype(0)> or <if([gnum68==19],<if([gnum72>=92],<colortype(506)><edgecolortype(507)>Guardian<edgecolortype(0)><colortype(0)>,<colortype(506)><edgecolortype(507)>Sentinel<edgecolortype(0)><colortype(0)>)>,<colortype(506)><edgecolortype(507)>Sentinel<edgecolortype(0)><colortype(0)>)> are active<br><if([gnum68==19],<if([gnum72>=82],<colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>Grants <colortype(506)><edgecolortype(507)>Knight's Resolve<edgecolortype(0)><colortype(0)> to target<br><colortype(504)><edgecolortype(505)>Knight's Resolve Effect: <edgecolortype(0)><colortype(0)>Reduces damage taken by 10%<br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>4s<br><colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>Grants <colortype(506)><edgecolortype(507)>Knight's Benediction<edgecolortype(0)><colortype(0)> to target<br><colortype(504)><edgecolortype(505)>Knight's Benediction Effect: <edgecolortype(0)><colortype(0)>Gradually restores HP<br><colortype(504)><edgecolortype(505)>Cure Potency: <edgecolortype(0)><colortype(0)>250<br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>12s<br>,)>,)><colortype(504)><edgecolortype(505)>Oath Gauge Cost: <edgecolortype(0)><colortype(0)>50",
+      "unlock_level": 62,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Tank"
+      ],
+      "jobs": [
+        {
+          "id": 19,
+          "name": "Paladin",
+          "abbreviation": "PLD",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 25746,
+      "name": "Holy Sheltron",
+      "description": "Reduces damage taken by 15%.\nDuration: 8s\nAdditional Effect: Grants Knight's Resolve\nKnight's Resolve Effect: Reduces damage taken by 15%\nDuration: 4s\nAdditional Effect: Grants Knight's Benediction\nKnight's Benediction Effect: Gradually restores HP\nCure Potency: 250\nDuration: 12s\nOath Gauge Cost: 50",
+      "description_macro": "Reduces damage taken by 15%.<br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>8s<br><colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>Grants <colortype(506)><edgecolortype(507)>Knight's Resolve<edgecolortype(0)><colortype(0)><br><colortype(504)><edgecolortype(505)>Knight's Resolve Effect: <edgecolortype(0)><colortype(0)>Reduces damage taken by 15%<br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>4s<br><colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>Grants <colortype(506)><edgecolortype(507)>Knight's Benediction<edgecolortype(0)><colortype(0)><br><colortype(504)><edgecolortype(505)>Knight's Benediction Effect: <edgecolortype(0)><colortype(0)>Gradually restores HP<br><colortype(504)><edgecolortype(505)>Cure Potency: <edgecolortype(0)><colortype(0)>250<br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>12s<br><colortype(504)><edgecolortype(505)>Oath Gauge Cost: <edgecolortype(0)><colortype(0)>50",
+      "unlock_level": 82,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Tank"
+      ],
+      "jobs": [
+        {
+          "id": 19,
+          "name": "Paladin",
+          "abbreviation": "PLD",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

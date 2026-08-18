@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 515,
+  "name": "終撃皆伝",
+  "description": "終撃が夢幻三段に変化する。",
+  "description_macro": "終撃が夢幻三段に変化する。",
+  "effects": [
+    "終撃が夢幻三段に変化する。"
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 30,
+    "name": "忍者",
+    "abbreviation": "NIN"
+  },
+  "unlock_level": 56,
+  "value": 0,
+  "icon": {
+    "id": 5420,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 92,
+  "source_class_job_id": 30
+}

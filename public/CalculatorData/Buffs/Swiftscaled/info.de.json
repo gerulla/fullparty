@@ -1,0 +1,113 @@
+{
+  "kind": "combat_status",
+  "id": 3669,
+  "name": "Vipernhatz",
+  "description": "Die Intervalle zwischen Auto-Attacken und die (Re-)Aktivierungszeiten von Waffenfertigkeiten und Magie sind verkürzt.",
+  "effects": [
+    "Die Intervalle zwischen Auto-Attacken und die (Re-)Aktivierungszeiten von Waffenfertigkeiten und Magie sind verkürzt."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 213775,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 40,
+  "parameter": {
+    "effect": 0,
+    "modifier": -15
+  },
+  "class_job_category_id": 196,
+  "source_abilities": [
+    {
+      "id": 34609,
+      "name": "Flinke Fänge",
+      "description": "Du führst eine physische Attacke aus.\nAttacke-Wert: 300\nZusatzeffekt: Gewährt dir Vipernhatz.\nDauer: 40 Sekunden\nEffekt von Vipernhatz: Auto-Attacke-Intervall und\n(Re-)Aktivierungszeit von Magie und Waffenfertigkeiten um 15 % verkürzt.\nBedingung: Erfolgreiche Ausführung von Tödliche Fänge oder Tückische Fänge.\nBei erfüllter Bedingung ändert sich Tückische Fänge zu diesem Kommando.\nKann nicht im Kommandomenü angelegt werden.",
+      "description_macro": "Du führst eine physische Attacke aus.<br>Attacke-Wert: <if([gnum68==41],<if([gnum72>=74],300,280)>,280)><br>Zusatzeffekt: Gewährt dir <colortype(506)><edgecolortype(507)>Vipernhatz<edgecolortype(0)><colortype(0)>.<br>Dauer: 40 Sekunden<br>Effekt von <colortype(506)><edgecolortype(507)>Vipernhatz<edgecolortype(0)><colortype(0)>: Auto-Attacke-Intervall und<br>(Re-)Ak<->ti<->vie<->rungs<->zeit von Magie und Waf<->fen<->fer<->tig<->kei<->ten um 15<nbsp>% verkürzt.<br>Bedingung: Erfolgreiche Ausführung von <colortype(502)><edgecolortype(503)>Tödliche Fänge<edgecolortype(0)><colortype(0)> oder <colortype(502)><edgecolortype(503)>Tückische Fänge<edgecolortype(0)><colortype(0)>.<br>Bei erfüllter Bedingung ändert sich <colortype(502)><edgecolortype(503)>Tückische Fänge<edgecolortype(0)><colortype(0)> zu diesem Kommando.<br>Kann nicht im Kommandomenü angelegt werden.",
+      "unlock_level": 20,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 41,
+          "name": "Viper",
+          "abbreviation": "VPR",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 34617,
+      "name": "Flinke Kiefer",
+      "description": "Du führst eine physische Attacke auf alle umstehenden Gegner aus.\nAttacke-Wert: 180\nZusatzeffekt: Gewährt dir Vipernhatz.\nDauer: 40 Sekunden\nEffekt von Vipernhatz: Auto-Attacke-Intervall und\n(Re-)Aktivierungszeit von Magie und Waffenfertigkeiten um 15 % verkürzt.\nBedingung: Erfolgreiche Ausführung von Tödliche Kiefer oder Tückische Kiefer.\nBei erfüllter Bedingung ändert sich Tückische Kiefer zu diesem Kommando.\nKann nicht im Kommandomenü angelegt werden.",
+      "description_macro": "Du führst eine physische Attacke auf alle umstehenden Gegner aus.<br>Attacke-Wert: 180<br>Zusatzeffekt: Gewährt dir <colortype(506)><edgecolortype(507)>Vipernhatz<edgecolortype(0)><colortype(0)>.<br>Dauer: 40 Sekunden<br>Effekt von <colortype(506)><edgecolortype(507)>Vipernhatz<edgecolortype(0)><colortype(0)>: Auto-Attacke-Intervall und<br>(Re-)Ak<->ti<->vie<->rungs<->zeit von Magie und Waf<->fen<->fer<->tig<->kei<->ten um 15<nbsp>% verkürzt.<br>Bedingung: Erfolgreiche Ausführung von <colortype(502)><edgecolortype(503)>Tödliche Kiefer<edgecolortype(0)><colortype(0)> oder <colortype(502)><edgecolortype(503)>Tückische Kiefer<edgecolortype(0)><colortype(0)><edgecolortype(0)><colortype(0)>.<br>Bei erfüllter Bedingung ändert sich <colortype(502)><edgecolortype(503)>Tückische Kiefer<edgecolortype(0)><colortype(0)> zu diesem Kommando.<br>Kann nicht im Kommandomenü angelegt werden.",
+      "unlock_level": 45,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 41,
+          "name": "Viper",
+          "abbreviation": "VPR",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 34622,
+      "name": "Flinker Otterngriff",
+      "description": "Du führst eine physische Attacke aus.\nAttacke-Wert: 630\nVon hinten: 680\nZusatzeffekt: Gewährt dir Vipernhatz.\nDauer: 40 Sekunden\nEffekt von Vipernhatz: Auto-Attacke-Intervall und\n(Re-)Aktivierungszeit von Magie und Waffenfertigkeiten um 15 % verkürzt.\nZusatzeffekt: Gewährt dir Instinkt der Otter.\nDauer: 30 Sekunden\nEffekt von Instinkt der Otter: Attacke-Werte von Biss der Zwillingsschuppen sind um 50 erhöht.\nZusatzeffekt: Erhöht den Geistbalken um 5.\nTrifft dieses Kommando erfolgreich\\Bedingung: Erfolgreiche Ausführung von Harter Otterngriff oder Blutiger Otterngriff.\nEigener Reaktivierungs-Timer",
+      "description_macro": "Du führst eine physische Attacke aus.<br>Attacke-Wert: 630<br>Von hinten: 680<br>Zusatzeffekt: Gewährt dir <colortype(506)><edgecolortype(507)>Vipernhatz<edgecolortype(0)><colortype(0)>.<br>Dauer: 40 Sekunden<br>Effekt von <colortype(506)><edgecolortype(507)>Vipernhatz<edgecolortype(0)><colortype(0)>: Auto-Attacke-Intervall und<br>(Re-)Ak<->ti<->vie<->rungs<->zeit von Magie und Waf<->fen<->fer<->tig<->kei<->ten um 15<nbsp>% verkürzt.<br><if([gnum68==41],<if([gnum72>=75],Zusatzeffekt: Gewährt dir <colortype(506)><edgecolortype(507)>Instinkt der Otter<edgecolortype(0)><colortype(0)>.<br>Dauer: 30 Sekunden<br>Effekt von <colortype(506)><edgecolortype(507)>Instinkt der Otter<edgecolortype(0)><colortype(0)>: Attacke-Werte von Biss der Zwillingsschuppen sind um 50 erhöht.<br>,)>,)><if([gnum68==41],<if([gnum72>=90],Zusatzeffekt: Erhöht den Geistbalken um 5.<br>,)>,)><if([gnum68==41],<if([gnum72>=75],Trifft dieses Kommando erfolgreich\\, ändert sich <colortype(502)><edgecolortype(503)>Zwillingsfänge<edgecolortype(0)><colortype(0)> zu <colortype(502)><edgecolortype(503)>Biss der Zwillingsfänge<edgecolortype(0)><colortype(0)> und <colortype(502)><edgecolortype(503)>Zwillingsschuppen<edgecolortype(0)><colortype(0)> zu <colortype(502)><edgecolortype(503)>Biss der Zwillingsschuppen<edgecolortype(0)><colortype(0)>\\, dich diese Kommandos zweifach ausführen lassend.<br>,)>,)>Bedingung: Erfolgreiche Ausführung von <colortype(502)><edgecolortype(503)>Harter Otterngriff<edgecolortype(0)><colortype(0)> oder <colortype(502)><edgecolortype(503)>Blutiger Otterngriff<edgecolortype(0)><colortype(0)>.<br>Eigener Reaktivierungs-Timer",
+      "unlock_level": 65,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 41,
+          "name": "Viper",
+          "abbreviation": "VPR",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 34625,
+      "name": "Flinke Otterngrube",
+      "description": "Du führst eine physische Attacke auf alle umstehenden Gegner aus.\nAttacke-Wert: 300\nBonus: Gewährt dir Vipernhatz.\nDauer: 40 Sekunden\nEffekt von Vipernhatz: Auto-Attacke-Intervall und\n(Re-)Aktivierungszeit von Magie und Waffenfertigkeiten um 15 % verkürzt.\nZusatzeffekt: Gewährt dir Instinkt der Grube.\nDauer: 30 Sekunden\nEffekt von Instinkt der Grube: Erhöht die Attacke-Werte von Nest der Zwillingsschuppen um 30.\nZusatzeffekt: Erhöht den Geistbalken um 5.\nTrifft dieses Kommando erfolgreich\\Bedingung: Erfolgreiche Ausführung von Harte Otterngrube oder Blutige Otterngrube.\nEigener Reaktivierungs-Timer",
+      "description_macro": "Du führst eine physische Attacke auf alle umstehenden Gegner aus.<br>Attacke-Wert: 300<br>Bonus: Gewährt dir <colortype(506)><edgecolortype(507)>Vipernhatz<edgecolortype(0)><colortype(0)>.<br>Dauer: 40 Sekunden<br>Effekt von <colortype(506)><edgecolortype(507)>Vipernhatz<edgecolortype(0)><colortype(0)>: Auto-Attacke-Intervall und<br>(Re-)Ak<->ti<->vie<->rungs<->zeit von Magie und Waf<->fen<->fer<->tig<->kei<->ten um 15<nbsp>% verkürzt.<br><if([gnum68==41],<if([gnum72>=80],Zusatzeffekt: Gewährt dir <colortype(506)><edgecolortype(507)>Instinkt der Grube<edgecolortype(0)><colortype(0)>.<br>Dauer: 30 Sekunden<br>Effekt von <colortype(506)><edgecolortype(507)>Instinkt der Grube<edgecolortype(0)><colortype(0)>: Erhöht die Attacke-Werte von <colortype(502)><edgecolortype(503)>Nest der Zwillingsschuppen<edgecolortype(0)><colortype(0)> um 30.<br>,)>,)><if([gnum68==41],<if([gnum72>=90],Zusatzeffekt: Erhöht den Geistbalken um 5.<br>,)>,)><if([gnum68==41],<if([gnum72>=80],Trifft dieses Kommando erfolgreich\\, ändert sich <colortype(502)><edgecolortype(503)>Zwillingsfänge<edgecolortype(0)><colortype(0)> zu <colortype(502)><edgecolortype(503)>Nest der Zwillingsfänge<edgecolortype(0)><colortype(0)> und <colortype(502)><edgecolortype(503)>Zwillingsschuppen<edgecolortype(0)><colortype(0)> zu <colortype(502)><edgecolortype(503)>Nest der Zwillingsschuppen<edgecolortype(0)><colortype(0)>\\, dich diese Kommandos zweifach ausführen lassend.<br>,)>,)>Bedingung: Erfolgreiche Ausführung von <colortype(502)><edgecolortype(503)>Harte Otterngrube<edgecolortype(0)><colortype(0)> oder <colortype(502)><edgecolortype(503)>Blutige Otterngrube<edgecolortype(0)><colortype(0)>.<br>Eigener Reaktivierungs-Timer",
+      "unlock_level": 70,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 41,
+          "name": "Viper",
+          "abbreviation": "VPR",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

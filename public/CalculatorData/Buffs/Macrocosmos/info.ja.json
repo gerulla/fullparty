@@ -1,0 +1,51 @@
+{
+  "kind": "combat_status",
+  "id": 2718,
+  "name": "マクロコスモス",
+  "description": "効果時間が経過するか自身にこのステータスを付与した占星術師が「ミクロコスモス」を実行することで、自身のＨＰを回復させる効果が発動する状態。回復効果の効果量はこのステータスが付与されているときに受けたダメージの総量によって変化する。",
+  "effects": [
+    "効果時間が経過するか自身にこのステータスを付与した占星術師が「ミクロコスモス」を実行することで、自身のＨＰを回復させる効果が発動する状態。回復効果の効果量はこのステータスが付与されているときに受けたダメージの総量によって変化する。"
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 213263,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": true,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 99,
+  "source_abilities": [
+    {
+      "id": 25874,
+      "name": "マクロコスモス",
+      "description": "自身の周囲の敵に無属性範囲魔法攻撃。\u3000威力：270\n2体目以降の対象への威力は40％減少する。\n追加効果：自身と周囲のパーティメンバーに「マクロコスモス」を付与する。\u3000効果時間：15秒\n効果中に対象がダメージを受けるとそのダメージを蓄積する。\n効果時間が経過するか、効果時間中に「ミクロコスモス」を実行すると、対象のＨＰを回復する。\n回復量：回復力200＋蓄積されたダメージの50％分\nただし、回復量は対象の最大ＨＰを上限とする。\nこの魔法は固有のリキャストタイマーを持ち、装備やステータスなどによって変化しない。",
+      "description_macro": "自身の周囲の敵に無属性範囲魔法攻撃。\u3000<colortype(504)><edgecolortype(505)>威力：<edgecolortype(0)><colortype(0)><if([gnum68==33],<if([gnum72>=94],270,250)>,250)><br>2体目以降の対象への威力は40％減少する。<br><colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)>自身と周囲のパーティメンバーに<colortype(500)><edgecolortype(501)>「マクロコスモス」<edgecolortype(0)><colortype(0)>を付与する。\u3000<colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>15秒<br>効果中に対象がダメージを受けるとそのダメージを蓄積する。<br>効果時間が経過するか、効果時間中に<colortype(500)><edgecolortype(501)>「ミクロコスモス」<edgecolortype(0)><colortype(0)>を実行すると、対象のＨＰを回復する。<br><colortype(504)><edgecolortype(505)>回復量：<edgecolortype(0)><colortype(0)>回復力200＋蓄積されたダメージの50％分<br>ただし、回復量は対象の最大ＨＰを上限とする。<br>この魔法は固有のリキャストタイマーを持ち、装備やステータスなどによって変化しない。",
+      "unlock_level": 90,
+      "relations": [
+        "granted_by_description",
+        "same_name"
+      ],
+      "roles": [
+        "Healer"
+      ],
+      "jobs": [
+        {
+          "id": 33,
+          "name": "占星術師",
+          "abbreviation": "AST",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

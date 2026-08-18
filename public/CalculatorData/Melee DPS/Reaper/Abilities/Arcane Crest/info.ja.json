@@ -1,0 +1,88 @@
+{
+  "kind": "ability",
+  "id": 24404,
+  "name": "アルケインクレスト",
+  "description": "自身に一定量のダメージを防ぐバリアである「守護のクレスト」を付与する。\nバリア量：自身の最大ＨＰの10％分\u3000効果時間：5秒\nバリアがダメージを完全に吸収して消滅すると、自身と周囲15ｍ以内のパーティメンバーに「活性のクレスト」を付与する。\n活性のクレスト効果：対象のＨＰを継続回復する。\n回復力：50\u3000効果時間：15秒",
+  "description_macro": "自身に一定量のダメージを防ぐバリアである<colortype(500)><edgecolortype(501)>「守護のクレスト」<edgecolortype(0)><colortype(0)>を付与する。<br><colortype(504)><edgecolortype(505)>バリア量：<edgecolortype(0)><colortype(0)>自身の最大ＨＰの10％分\u3000<colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>5秒<if([gnum68==39],<if([gnum72>=84],<br>バリアがダメージを完全に吸収して消滅すると、自身と周囲15ｍ以内のパーティメンバーに<colortype(500)><edgecolortype(501)>「活性のクレスト」<edgecolortype(0)><colortype(0)>を付与する。<br><colortype(504)><edgecolortype(505)>活性のクレスト効果：<edgecolortype(0)><colortype(0)>対象のＨＰを継続回復する。<br><colortype(504)><edgecolortype(505)>回復力：<edgecolortype(0)><colortype(0)>50\u3000<colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>15秒,)>,)>",
+  "effects": [
+    "自身に一定量のダメージを防ぐバリアである「守護のクレスト」を付与する。",
+    "バリア量：自身の最大ＨＰの10％分\u3000効果時間：5秒",
+    "バリアがダメージを完全に吸収して消滅すると、自身と周囲15ｍ以内のパーティメンバーに「活性のクレスト」を付与する。",
+    "活性のクレスト効果：対象のＨＰを継続回復する。",
+    "回復力：50\u3000効果時間：15秒"
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 39,
+    "name": "リーパー",
+    "abbreviation": "RPR"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 40,
+  "icon": {
+    "id": 3632,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 4,
+    "name": "アビリティ"
+  },
+  "attack_type": {
+    "id": 0,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 30,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 7,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 0,
+      "value": 0
+    },
+    "secondary": {
+      "type_id": 0,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": 0,
+    "effect_yalms": 0,
+    "cast_type": 1
+  },
+  "targeting": {
+    "self": true,
+    "party": false,
+    "alliance": false,
+    "hostile": false,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 0,
+    "behavior_type": 0,
+    "class_job_category_id": 180,
+    "source_class_job_id": 39,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

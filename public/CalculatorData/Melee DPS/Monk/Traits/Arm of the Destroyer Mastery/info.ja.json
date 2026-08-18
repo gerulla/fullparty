@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 430,
+  "name": "壊神衝マスタリー",
+  "description": "壊神衝が壊神脚に変化する。",
+  "description_macro": "壊神衝が壊神脚に変化する。",
+  "effects": [
+    "壊神衝が壊神脚に変化する。"
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 20,
+    "name": "モンク",
+    "abbreviation": "MNK"
+  },
+  "unlock_level": 82,
+  "value": 0,
+  "icon": {
+    "id": 5243,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 21,
+  "source_class_job_id": 20
+}

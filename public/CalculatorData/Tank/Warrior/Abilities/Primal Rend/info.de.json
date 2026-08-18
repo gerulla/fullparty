@@ -1,0 +1,100 @@
+{
+  "kind": "ability",
+  "id": 25753,
+  "name": "Brachiale Gewalt",
+  "description": "Du führst eine Sprung-Attacke aus, die direkt und kritisch trifft, und fügst dem Ziel und den Gegnern in seiner Nähe physischen Schaden zu.\nAttacke-Wert: 720\nAttacke-Wert verringert sich ab dem zweiten Gegner um 50 %.\nIst ein Effekt aktiv, der deine Rate kritischer oder direkter Treffer steigert, erhöht sich auch der Attacke-Wert.\nZusatzeffekt: Gewährt dir Ruinator.\nDauer: 20 Sekunden\nBedingung: Durch Urbefreiung gewährte Brachiale Gewalt aktiv\nKann nicht während Fessel ausgeführt werden.",
+  "description_macro": "Du führst eine Sprung-Attacke aus, die direkt und kritisch trifft, und fügst dem Ziel und den Gegnern in seiner Nähe physischen Schaden zu.<br>Attacke-Wert: 720<br>Attacke-Wert verringert sich ab dem zweiten Gegner um 50<nbsp>%.<br>Ist ein Effekt aktiv, der deine Rate kritischer oder direkter Treffer steigert, erhöht sich auch der Attacke-Wert.<br><if([gnum68==21],<if([gnum72>=100],Zusatzeffekt: Gewährt dir <colortype(506)><edgecolortype(507)>Ruinator<edgecolortype(0)><colortype(0)>.<br>Dauer: 20 Sekunden<br>,)>,)>Bedingung: Durch <colortype(502)><edgecolortype(503)>Urbefreiung<edgecolortype(0)><colortype(0)> gewährte <colortype(506)><edgecolortype(507)>Brachiale Gewalt<edgecolortype(0)><colortype(0)> aktiv<br>Kann nicht während <colortype(500)><edgecolortype(501)>Fessel<edgecolortype(0)><colortype(0)> ausgeführt werden.",
+  "effects": [
+    "Du führst eine Sprung-Attacke aus, die direkt und kritisch trifft, und fügst dem Ziel und den Gegnern in seiner Nähe physischen Schaden zu.",
+    "Attacke-Wert: 720",
+    "Attacke-Wert verringert sich ab dem zweiten Gegner um 50 %.",
+    "Ist ein Effekt aktiv, der deine Rate kritischer oder direkter Treffer steigert, erhöht sich auch der Attacke-Wert.",
+    "Zusatzeffekt: Gewährt dir Ruinator.",
+    "Dauer: 20 Sekunden",
+    "Bedingung: Durch Urbefreiung gewährte Brachiale Gewalt aktiv",
+    "Kann nicht während Fessel ausgeführt werden."
+  ],
+  "role": "Tank",
+  "job": {
+    "id": 21,
+    "name": "Krieger",
+    "abbreviation": "KRG"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 90,
+  "icon": {
+    "id": 2571,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 3,
+    "name": "Waffenfertigkeit"
+  },
+  "attack_type": {
+    "id": 4294967295,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 2.5,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 58,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 10,
+      "value": 2624
+    },
+    "secondary": {
+      "type_id": 0,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": 20,
+    "effect_yalms": 5,
+    "cast_type": 2
+  },
+  "targeting": {
+    "self": false,
+    "party": false,
+    "alliance": false,
+    "hostile": true,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": {
+      "id": 61,
+      "status": {
+        "id": 2624,
+        "name": "Brachiale Gewalt",
+        "description": "Brachiale Gewalt kann ausgeführt werden.",
+        "icon_id": 212566,
+        "max_stacks": 0
+      }
+    }
+  },
+  "metadata": {
+    "aspect_id": 7,
+    "behavior_type": 1,
+    "class_job_category_id": 22,
+    "source_class_job_id": 21,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

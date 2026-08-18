@@ -1,0 +1,71 @@
+{
+  "kind": "combat_status",
+  "id": 3772,
+  "name": "Honed Reavers",
+  "description": "Potency of Reaving Fangs and Reaving Maw is increased.",
+  "effects": [
+    "Potency of Reaving Fangs and Reaving Maw is increased."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 213758,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 10,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 196,
+  "source_abilities": [
+    {
+      "id": 34606,
+      "name": "Steel Fangs",
+      "description": "Delivers an attack with a potency of 200.\nHoned Steel Potency: 300\nAdditional Effect: Grants Honed Reavers\nHoned Reavers Effect: Increases potency of Reaving Fangs by 100 and Reaving Maw by 20\nDuration: 60s\nEffect cannot be stacked with Honed Steel.",
+      "description_macro": "Delivers an attack with a potency of <if([gnum68==41],<if([gnum72>=74],200,180)>,180)>.<br><colortype(504)><edgecolortype(505)>Honed Steel Potency:<edgecolortype(0)><colortype(0)> <if([gnum68==41],<if([gnum72>=74],300,280)>,280)><br><colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>Grants <colortype(506)><edgecolortype(507)>Honed Reavers<edgecolortype(0)><colortype(0)><br><colortype(504)><edgecolortype(505)>Honed Reavers Effect: <edgecolortype(0)><colortype(0)>Increases potency of <colortype(500)><edgecolortype(501)>Reaving Fangs<edgecolortype(0)><colortype(0)> by 100 and <colortype(500)><edgecolortype(501)>Reaving Maw<edgecolortype(0)><colortype(0)> by 20<br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>60s<br>Effect cannot be stacked with <colortype(506)><edgecolortype(507)>Honed Steel<edgecolortype(0)><colortype(0)>.",
+      "unlock_level": 1,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 41,
+          "name": "Viper",
+          "abbreviation": "VPR",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 34614,
+      "name": "Steel Maw",
+      "description": "Delivers an attack with a potency of 120 to all nearby enemies.\nHoned Steel Potency: 140\nAdditional Effect: Grants Honed Reavers\nHoned Reavers Effect: Increases potency of Reaving Fangs by 100 and Reaving Maw by 20\nDuration: 60s\nEffect cannot be stacked with Honed Steel.",
+      "description_macro": "Delivers an attack with a potency of 120 to all nearby enemies.<br><colortype(504)><edgecolortype(505)>Honed Steel Potency:<edgecolortype(0)><colortype(0)> 140<br><colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>Grants <colortype(506)><edgecolortype(507)>Honed Reavers<edgecolortype(0)><colortype(0)><br><colortype(504)><edgecolortype(505)>Honed Reavers Effect: <edgecolortype(0)><colortype(0)>Increases potency of <colortype(500)><edgecolortype(501)>Reaving Fangs<edgecolortype(0)><colortype(0)> by 100 and <colortype(500)><edgecolortype(501)>Reaving Maw<edgecolortype(0)><colortype(0)> by 20<br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>60s<br>Effect cannot be stacked with <colortype(506)><edgecolortype(507)>Honed Steel<edgecolortype(0)><colortype(0)>.",
+      "unlock_level": 25,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 41,
+          "name": "Viper",
+          "abbreviation": "VPR",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

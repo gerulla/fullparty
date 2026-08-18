@@ -1,0 +1,51 @@
+{
+  "kind": "combat_status",
+  "id": 4271,
+  "name": "Récupération",
+  "description": "Une altération d'état est soignée à la fin de l'effet. Sinon, devient Récupération prédite.",
+  "effects": [
+    "Une altération d'état est soignée à la fin de l'effet. Sinon, devient Récupération prédite."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 229928,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": true,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 41641,
+      "name": "Récupération",
+      "description": "Octroie à vous ou à l'équipier ciblé Récupération.\nDurée : 20s\nRécupération : à la fin de l'effet, soigne une altération d'état de la cible et des équipiers dans un rayon de 15 yalms.\nSi cet effet ne s'est pas déclenché, Récupération devient Récupération prédite.\nDurée : 3s\nRécupération prédite : si la cible subit une altération d'état pendant la durée de l'effet, soigne une altération d'état de la cible et des équipiers alentour.",
+      "description_macro": "Octroie à vous ou à l'équipier ciblé <colortype(500)><edgecolortype(501)>Récupération<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 20s<br><colortype(506)><edgecolortype(507)>Récupération<nbsp>:<edgecolortype(0)><colortype(0)> à la fin de l'effet, soigne une altération d'état de la cible et des équipiers dans un rayon de 15 yalms.<br>Si cet effet ne s'est pas déclenché, <colortype(500)><edgecolortype(501)>Récupération<edgecolortype(0)><colortype(0)> devient <colortype(500)><edgecolortype(501)>Récupération prédite<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 3s<br><colortype(506)><edgecolortype(507)>Récupération prédite<nbsp>:<edgecolortype(0)><colortype(0)> si la cible subit une altération d'état pendant la durée de l'effet, soigne une altération d'état de la cible et des équipiers alentour.<if([gnum108>=3],<br>Partage le même temps de recharge que <colortype(500)><edgecolortype(501)>Châtiment<edgecolortype(0)><colortype(0)>.,)>",
+      "unlock_level": 0,
+      "relations": [
+        "granted_by_description",
+        "same_name"
+      ],
+      "roles": [
+        "Phantom Jobs"
+      ],
+      "jobs": [
+        {
+          "id": 11,
+          "name": "Phantom Devin fantôme",
+          "abbreviation": "Devin fant.",
+          "is_phantom": true
+        }
+      ]
+    }
+  ]
+}

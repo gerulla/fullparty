@@ -1,0 +1,32 @@
+{
+  "kind": "trait",
+  "id": 413,
+  "name": "インターベンション効果アップ",
+  "description": "インターベンションの効果時間を8秒に延長する。\nさらに、下記の効果を追加する。\n\n追加効果：対象に「ナイトの堅守」を付与する。\n効果時間：4秒\nナイトの堅守効果：対象の被ダメージを10％軽減する。\n追加効果：対象に「ナイトの加護」を付与する。\n効果時間：12秒\nナイトの加護効果：対象のＨＰを継続回復する。\n回復力：250",
+  "description_macro": "インターベンションの効果時間を8秒に延長する。<br>さらに、下記の効果を追加する。<br><br><colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)>対象に<colortype(500)><edgecolortype(501)>「ナイトの堅守」<edgecolortype(0)><colortype(0)>を付与する。<br><colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>4秒<br><colortype(504)><edgecolortype(505)>ナイトの堅守効果：<edgecolortype(0)><colortype(0)>対象の被ダメージを10％軽減する。<br><colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)>対象に<colortype(500)><edgecolortype(501)>「ナイトの加護」<edgecolortype(0)><colortype(0)>を付与する。<br><colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>12秒<br><colortype(504)><edgecolortype(505)>ナイトの加護効果：<edgecolortype(0)><colortype(0)>対象のＨＰを継続回復する。<br><colortype(504)><edgecolortype(505)>回復力：<edgecolortype(0)><colortype(0)>250",
+  "effects": [
+    "インターベンションの効果時間を8秒に延長する。",
+    "さらに、下記の効果を追加する。",
+    "追加効果：対象に「ナイトの堅守」を付与する。",
+    "効果時間：4秒",
+    "ナイトの堅守効果：対象の被ダメージを10％軽減する。",
+    "追加効果：対象に「ナイトの加護」を付与する。",
+    "効果時間：12秒",
+    "ナイトの加護効果：対象のＨＰを継続回復する。",
+    "回復力：250"
+  ],
+  "role": "Tank",
+  "job": {
+    "id": 19,
+    "name": "ナイト",
+    "abbreviation": "PLD"
+  },
+  "unlock_level": 82,
+  "value": 0,
+  "icon": {
+    "id": 5219,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 20,
+  "source_class_job_id": 19
+}

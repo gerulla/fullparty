@@ -1,0 +1,26 @@
+{
+  "kind": "trait",
+  "id": 216,
+  "name": "Chaîne de sorts",
+  "description": "Permet de recevoir Chaîne de sorts lorsque vous utilisez un sort requérant un temps de lancement.\nDurée : 15s\nChaîne de sorts permet de lancer votre sort suivant instantanément. Utiliser une action (sauf attaque automatique ou aptitude) met immédiatement fin à l'effet.",
+  "description_macro": "Permet de recevoir <colortype(500)><edgecolortype(501)>Chaîne de sorts<edgecolortype(0)><colortype(0)> lorsque vous utilisez un sort requérant un temps de lancement.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 15s<br><colortype(500)><edgecolortype(501)>Chaîne de sorts<edgecolortype(0)><colortype(0)> permet de lancer votre sort suivant instantanément. Utiliser une action (sauf attaque automatique ou aptitude) met im<->mé<->dia<->te<->ment fin à l'effet.",
+  "effects": [
+    "Permet de recevoir Chaîne de sorts lorsque vous utilisez un sort requérant un temps de lancement.",
+    "Durée : 15s",
+    "Chaîne de sorts permet de lancer votre sort suivant instantanément. Utiliser une action (sauf attaque automatique ou aptitude) met immédiatement fin à l'effet."
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 35,
+    "name": "Mage Rouge",
+    "abbreviation": "MRG"
+  },
+  "unlock_level": 1,
+  "value": 0,
+  "icon": {
+    "id": 6203,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 112,
+  "source_class_job_id": 35
+}

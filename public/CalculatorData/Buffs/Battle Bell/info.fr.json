@@ -1,0 +1,51 @@
+{
+  "kind": "combat_status",
+  "id": 4251,
+  "name": "Cloche de combat",
+  "description": "Octroie Cloche d'attaque lorsque des dégâts sont subis.",
+  "effects": [
+    "Octroie Cloche d'attaque lorsque des dégâts sont subis."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 229914,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 41611,
+      "name": "Cloche de combat",
+      "description": "Octroie Cloche de combat à la cible.\nDurée : 60s\nCloche de combat : chaque fois que des dégâts sont subis pendant la durée de l'effet, octroie un degré de Cloche d'attaque.\nDurée : 30s\nCloche d'attaque : augmente les dégâts infligés de 3%. Cumulable jusqu'au 8e degré.",
+      "description_macro": "Octroie <colortype(500)><edgecolortype(501)>Cloche de combat<edgecolortype(0)><colortype(0)> à la cible.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 60s<br><colortype(506)><edgecolortype(507)>Cloche de combat<nbsp>:<edgecolortype(0)><colortype(0)> chaque fois que des dégâts sont subis pendant la durée de l'effet, octroie un degré de <colortype(500)><edgecolortype(501)>Cloche d'attaque<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 30s<br><colortype(506)><edgecolortype(507)>Cloche d'attaque<nbsp>:<edgecolortype(0)><colortype(0)> augmente les dégâts infligés de <if([gnum108>=5],5%,3%)>. Cumulable jusqu'au 8e degré.",
+      "unlock_level": 0,
+      "relations": [
+        "granted_by_description",
+        "same_name"
+      ],
+      "roles": [
+        "Phantom Jobs"
+      ],
+      "jobs": [
+        {
+          "id": 7,
+          "name": "Phantom Géomancien fantôme",
+          "abbreviation": "Géomancien fant.",
+          "is_phantom": true
+        }
+      ]
+    }
+  ]
+}

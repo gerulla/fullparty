@@ -1,0 +1,98 @@
+{
+  "kind": "ability",
+  "id": 41636,
+  "name": "よげん",
+  "description": "自身に\n「よげん：せいなるしんぱん」\n「よげん：てんちほうかい」\n「よげん：てんのめぐみ」\n「よげん：いんせき」\nのうち、いずれかの予言ステータスを付与する。\n予言ステータスの効果中は、対応する予言アクションが実行可能となる。\nせいなるしんぱん効果：周囲の敵に範囲魔法攻撃を行うと同時に、自身と周囲のパーティメンバーを回復する。\nてんちほうかい効果：周囲の敵に範囲魔法攻撃を行い、さらに時間を停止させる。\nてんのめぐみ効果：自身と周囲のパーティメンバーを回復し、さらにＨＰを継続回復する。\nいんせき効果：自身と周囲の敵に範囲魔法攻撃。\n予言ステータスの効果時間が終了すると、他の予言ステータスに変化し、いずれの予言も成就しないまま一定時間が経過すると、「にせよげん」へと変化する。\n「にせよげん」効果中は、自身に継続ダメージの効果。\n効果量：50000\n効果時間：30秒",
+  "description_macro": "自身に<br><colortype(500)><edgecolortype(501)>「よげん：せいなるしんぱん」<br>「よげん：てんちほうかい」<br>「よげん：てんのめぐみ」<br>「よげん：いんせき」<br><edgecolortype(0)><colortype(0)>のうち、いずれかの予言ステータスを付与する。<br>予言ステータスの効果中は、対応する予言アクションが実行可能となる。<br><colortype(504)><edgecolortype(505)>せいなるしんぱん効果：<edgecolortype(0)><colortype(0)>周囲の敵に範囲魔法攻撃を行うと同時に、自身と周囲のパーティメンバーを回復する。<br><colortype(504)><edgecolortype(505)>てんちほうかい効果：<edgecolortype(0)><colortype(0)>周囲の敵に範囲魔法攻撃を行い、さらに時間を停止させる。<br><colortype(504)><edgecolortype(505)>てんのめぐみ効果：<edgecolortype(0)><colortype(0)>自身と周囲のパーティメンバーを回復し、さらにＨＰを継続回復する。<br><colortype(504)><edgecolortype(505)>いんせき効果：<edgecolortype(0)><colortype(0)>自身と周囲の敵に範囲魔法攻撃。<br>予言ステータスの効果時間が終了すると、他の予言ステータスに変化し、いずれの予言も成就しないまま一定時間が経過すると、<colortype(500)><edgecolortype(501)>「にせよげん」<edgecolortype(0)><colortype(0)>へと変化する。<br><colortype(500)><edgecolortype(501)>「にせよげん」<edgecolortype(0)><colortype(0)>効果中は、自身に継続ダメージの効果。<br><colortype(504)><edgecolortype(505)>効果量：<edgecolortype(0)><colortype(0)>50000<br><colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>30秒",
+  "effects": [
+    "自身に",
+    "「よげん：せいなるしんぱん」",
+    "「よげん：てんちほうかい」",
+    "「よげん：てんのめぐみ」",
+    "「よげん：いんせき」",
+    "のうち、いずれかの予言ステータスを付与する。",
+    "予言ステータスの効果中は、対応する予言アクションが実行可能となる。",
+    "せいなるしんぱん効果：周囲の敵に範囲魔法攻撃を行うと同時に、自身と周囲のパーティメンバーを回復する。",
+    "てんちほうかい効果：周囲の敵に範囲魔法攻撃を行い、さらに時間を停止させる。",
+    "てんのめぐみ効果：自身と周囲のパーティメンバーを回復し、さらにＨＰを継続回復する。",
+    "いんせき効果：自身と周囲の敵に範囲魔法攻撃。",
+    "予言ステータスの効果時間が終了すると、他の予言ステータスに変化し、いずれの予言も成就しないまま一定時間が経過すると、「にせよげん」へと変化する。",
+    "「にせよげん」効果中は、自身に継続ダメージの効果。",
+    "効果量：50000",
+    "効果時間：30秒"
+  ],
+  "role": "Phantom Jobs",
+  "job": {
+    "id": 11,
+    "name": "サポート予言士",
+    "abbreviation": "Ph. Oracle"
+  },
+  "is_phantom_action": true,
+  "unlock_level": 1,
+  "icon": {
+    "id": 64558,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 2,
+    "name": "魔法"
+  },
+  "attack_type": {
+    "id": 0,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 60,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 83,
+    "additional_cooldown_group": 58,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 0,
+      "value": 0
+    },
+    "secondary": {
+      "type_id": 0,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": 0,
+    "effect_yalms": 0,
+    "cast_type": 1
+  },
+  "targeting": {
+    "self": true,
+    "party": false,
+    "alliance": false,
+    "hostile": false,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 0,
+    "behavior_type": 0,
+    "class_job_category_id": 142,
+    "source_class_job_id": 4294967295,
+    "is_role_action": false,
+    "is_player_action": false,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

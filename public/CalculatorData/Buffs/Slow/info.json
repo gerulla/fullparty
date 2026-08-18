@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 9,
+  "name": "Slow",
+  "description": "Weaponskill cast time and recast time, spell cast time and recast time, and auto-attack delay are increased.",
+  "effects": [
+    "Weaponskill cast time and recast time, spell cast time and recast time, and auto-attack delay are increased."
+  ],
+  "classification": "debuff",
+  "icon": {
+    "id": 215009,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 2,
+  "target_type": 0,
+  "can_dispel": true,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 50,
+  "parameter": {
+    "effect": 0,
+    "modifier": 15
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 18310,
+      "name": "White Knight's Tour",
+      "description": "Deals unaspected damage to all enemies in a straight line before you with a potency of 200 for the first enemy, and 50% less for all remaining enemies.\nAdditional Effect: Potency is increased to 400 when enemies are bound. The Bind effect is also removed.\nAdditional Effect: Slow +20%\nDuration: 20s",
+      "description_macro": "Deals unaspected damage to all enemies in a straight line before you with a potency of 200 for the first enemy, and 50% less for all remaining enemies.<br><colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>Potency is increased to 400 when enemies are bound. The <colortype(506)><edgecolortype(507)>Bind<edgecolortype(0)><colortype(0)> effect is also removed.<br><colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)><colortype(506)><edgecolortype(507)>Slow<edgecolortype(0)><colortype(0)> +20%<br><colortype(504)><edgecolortype(505)>Duration:<edgecolortype(0)><colortype(0)> 20s",
+      "unlock_level": 1,
+      "relations": [
+        "applied_by_description"
+      ],
+      "roles": [
+        "Magical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 36,
+          "name": "Blue Mage",
+          "abbreviation": "BLU",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

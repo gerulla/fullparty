@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 313,
+  "name": "Verbesserte Geweihte Erde",
+  "description": "Fügt Geweihte Erde einen Effekt hinzu, der stetig LP von sich in dem Bereich befindenden Gruppenmitgliedern regeneriert.",
+  "description_macro": "Fügt <colortype(502)><edgecolortype(503)>Geweihte Erde<edgecolortype(0)><colortype(0)> einen Effekt hinzu, der stetig LP von sich in dem Bereich befindenden Grup<->pen<->mit<->gliedern regeneriert.",
+  "effects": [
+    "Fügt Geweihte Erde einen Effekt hinzu, der stetig LP von sich in dem Bereich befindenden Gruppenmitgliedern regeneriert."
+  ],
+  "role": "Healer",
+  "job": {
+    "id": 28,
+    "name": "Gelehrter",
+    "abbreviation": "GLT"
+  },
+  "unlock_level": 78,
+  "value": 0,
+  "icon": {
+    "id": 5703,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 29,
+  "source_class_job_id": 28
+}

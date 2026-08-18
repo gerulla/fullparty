@@ -1,0 +1,90 @@
+{
+  "kind": "ability",
+  "id": 7487,
+  "name": "Midare Setsugekka",
+  "description": "Delivers a critical hit with a potency of 680.\nDamage dealt is increased when under an effect that raises critical hit rate.\nAdditional Effect: Grants Tsubame-gaeshi Ready\nDuration: 30s\nAdditional Effect: Grants a stack of Meditation\\Can only be executed after accumulating 3 Sen.\n\n※This action cannot be assigned to a hotbar.\n※Iaijutsu changes to Midare Setsugekka when requirements for execution are met.",
+  "description_macro": "Delivers a critical hit with a potency of <if([gnum68==34],<if([gnum72>=94],680,620)>,620)>.<br>Damage dealt is increased when under an effect that raises critical hit rate.<br><if([gnum68==34],<if([gnum72>=74],<colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>Grants <colortype(506)><edgecolortype(507)>Tsubame-gaeshi Ready<edgecolortype(0)><colortype(0)><br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>30s<br>,)>,)><if([gnum68==34],<if([gnum72>=80],<colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>Grants a stack of <colortype(506)><edgecolortype(507)>Meditation<edgecolortype(0)><colortype(0)>\\, up to a maximum of 3<br>,)>,)>Can only be executed after accumulating 3 <colortype(506)><edgecolortype(507)>Sen<edgecolortype(0)><colortype(0)>.<br><br>※This action cannot be assigned to a hotbar.<br>※<colortype(500)><edgecolortype(501)>Iaijutsu<edgecolortype(0)><colortype(0)> changes to <colortype(500)><edgecolortype(501)>Midare Setsugekka<edgecolortype(0)><colortype(0)> when requirements for execution are met.",
+  "effects": [
+    "Delivers a critical hit with a potency of 680.",
+    "Damage dealt is increased when under an effect that raises critical hit rate.",
+    "Additional Effect: Grants Tsubame-gaeshi Ready",
+    "Duration: 30s",
+    "Additional Effect: Grants a stack of Meditation\\Can only be executed after accumulating 3 Sen.",
+    "※This action cannot be assigned to a hotbar.",
+    "※Iaijutsu changes to Midare Setsugekka when requirements for execution are met."
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 34,
+    "name": "Samurai",
+    "abbreviation": "SAM"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 50,
+  "icon": {
+    "id": 3162,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 3,
+    "name": "Weaponskill"
+  },
+  "attack_type": {
+    "id": 4294967295,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 1.8,
+    "recast_seconds": 2.5,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 58,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 40,
+      "value": 3
+    },
+    "secondary": {
+      "type_id": 46,
+      "value": 3856
+    }
+  },
+  "range": {
+    "target_yalms": 6,
+    "effect_yalms": 0,
+    "cast_type": 1
+  },
+  "targeting": {
+    "self": false,
+    "party": false,
+    "alliance": false,
+    "hostile": true,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 7,
+    "behavior_type": 0,
+    "class_job_category_id": 111,
+    "source_class_job_id": 0,
+    "is_role_action": false,
+    "is_player_action": false,
+    "is_derived_action": true,
+    "equivalence_group": 0
+  }
+}

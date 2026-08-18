@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 481,
+  "name": "Galvanisation II",
+  "description": "Remplace Invocation Ifrit, Invocation Titan et Invocation Garuda par Invocation Ifrit II, Invocation Titan II et Invocation Garuda II.",
+  "description_macro": "Remplace <colortype(500)><edgecolortype(501)>Invocation Ifrit<edgecolortype(0)><colortype(0)>, <colortype(500)><edgecolortype(501)>Invocation Titan<edgecolortype(0)><colortype(0)> et <colortype(500)><edgecolortype(501)>Invocation Garuda<edgecolortype(0)><colortype(0)> par <colortype(500)><edgecolortype(501)>Invocation Ifrit II<edgecolortype(0)><colortype(0)>, <colortype(500)><edgecolortype(501)>Invocation Titan II<edgecolortype(0)><colortype(0)> et <colortype(500)><edgecolortype(501)>Invocation Garuda II<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Remplace Invocation Ifrit, Invocation Titan et Invocation Garuda par Invocation Ifrit II, Invocation Titan II et Invocation Garuda II."
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 27,
+    "name": "Invocateur",
+    "abbreviation": "INV"
+  },
+  "unlock_level": 90,
+  "value": 0,
+  "icon": {
+    "id": 5695,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 28,
+  "source_class_job_id": 27
+}

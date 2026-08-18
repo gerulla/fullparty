@@ -1,0 +1,25 @@
+{
+  "kind": "trait",
+  "id": 374,
+  "name": "Maîtrise de la magie offensive",
+  "description": "Remplace Dosis par Dosis II, Phlegma par Phlegma II et Dosis eucrasique par Dosis eucrasique II.\nAugmente la puissance de Toxikon à 300.",
+  "description_macro": "Remplace <colortype(500)><edgecolortype(501)>Dosis<edgecolortype(0)><colortype(0)> par <colortype(500)><edgecolortype(501)>Dosis II<edgecolortype(0)><colortype(0)>, <colortype(500)><edgecolortype(501)>Phlegma<edgecolortype(0)><colortype(0)> par <colortype(500)><edgecolortype(501)>Phlegma II<edgecolortype(0)><colortype(0)> et <colortype(500)><edgecolortype(501)>Dosis eucrasique<edgecolortype(0)><colortype(0)> par <colortype(500)><edgecolortype(501)>Dosis eucrasique II<edgecolortype(0)><colortype(0)>.<br>Augmente la puissance de <colortype(500)><edgecolortype(501)>Toxikon<edgecolortype(0)><colortype(0)> à 300.",
+  "effects": [
+    "Remplace Dosis par Dosis II, Phlegma par Phlegma II et Dosis eucrasique par Dosis eucrasique II.",
+    "Augmente la puissance de Toxikon à 300."
+  ],
+  "role": "Healer",
+  "job": {
+    "id": 40,
+    "name": "Sage",
+    "abbreviation": "SAG"
+  },
+  "unlock_level": 72,
+  "value": 0,
+  "icon": {
+    "id": 6455,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 181,
+  "source_class_job_id": 40
+}

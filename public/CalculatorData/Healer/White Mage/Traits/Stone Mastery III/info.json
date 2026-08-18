@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 182,
+  "name": "Stone Mastery III",
+  "description": "Upgrades Stone III to Stone IV.",
+  "description_macro": "Upgrades <colortype(500)><edgecolortype(501)>Stone III<edgecolortype(0)><colortype(0)> to <colortype(500)><edgecolortype(501)>Stone IV<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Upgrades Stone III to Stone IV."
+  ],
+  "role": "Healer",
+  "job": {
+    "id": 24,
+    "name": "White Mage",
+    "abbreviation": "WHM"
+  },
+  "unlock_level": 64,
+  "value": 0,
+  "icon": {
+    "id": 5337,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 25,
+  "source_class_job_id": 24
+}

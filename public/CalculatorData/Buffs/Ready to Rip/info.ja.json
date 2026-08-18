@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 1842,
+  "name": "ジャギュラーリップ実行可",
+  "description": "ジャギュラーリップを実行できる状態。",
+  "effects": [
+    "ジャギュラーリップを実行できる状態。"
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 213611,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 149,
+  "source_abilities": [
+    {
+      "id": 16146,
+      "name": "ビートファング",
+      "description": "対象に物理攻撃。\u3000威力：440\n追加効果：自身に「ジャギュラーリップ実行可」を付与する。\n効果時間：10秒\nこの効果はウェポンスキルを実行すると解除される。\n最大チャージ数：2\n発動条件：「ソイル」\nこのウェポンスキルは固有のリキャストタイマーを持つ。",
+      "description_macro": "対象に物理攻撃。\u3000<colortype(504)><edgecolortype(505)>威力：<edgecolortype(0)><colortype(0)><if([gnum68==37],<if([gnum72>=94],440,330)>,330)><br><if([gnum68==37],<if([gnum72>=70],<colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)>自身に<colortype(500)><edgecolortype(501)>「ジャギュラーリップ実行可」<edgecolortype(0)><colortype(0)>を付与する。<br><colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>10秒<br>この効果はウェポンスキルを実行すると解除される。<br>,)>,)><colortype(504)><edgecolortype(505)>最大チャージ数：<edgecolortype(0)><colortype(0)>2<br><colortype(504)><edgecolortype(505)>発動条件：<edgecolortype(0)><colortype(0)><colortype(500)><edgecolortype(501)>「ソイル」<edgecolortype(0)><colortype(0)><br>このウェポンスキルは固有のリキャストタイマーを持つ。",
+      "unlock_level": 60,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Tank"
+      ],
+      "jobs": [
+        {
+          "id": 37,
+          "name": "ガンブレイカー",
+          "abbreviation": "GNB",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

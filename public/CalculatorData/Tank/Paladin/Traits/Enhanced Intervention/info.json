@@ -1,0 +1,29 @@
+{
+  "kind": "trait",
+  "id": 413,
+  "name": "Enhanced Intervention",
+  "description": "Extends the duration of Intervention to 8 seconds.\nGrants Knight's Resolve to target, reducing damage taken by 10%.\nDuration: 4s\nGrants Knight's Benediction to target, gradually restoring HP over time.\nCure Potency: 250\nDuration: 12s",
+  "description_macro": "Extends the duration of <colortype(506)><edgecolortype(507)>Intervention<edgecolortype(0)><colortype(0)> to 8 seconds.<br>Grants <colortype(506)><edgecolortype(507)>Knight's Resolve<edgecolortype(0)><colortype(0)> to target, reducing damage taken by 10%.<br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>4s<br>Grants <colortype(506)><edgecolortype(507)>Knight's Benediction<edgecolortype(0)><colortype(0)> to target, gradually restoring HP over time.<br><colortype(504)><edgecolortype(505)>Cure Potency: <edgecolortype(0)><colortype(0)>250<br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>12s",
+  "effects": [
+    "Extends the duration of Intervention to 8 seconds.",
+    "Grants Knight's Resolve to target, reducing damage taken by 10%.",
+    "Duration: 4s",
+    "Grants Knight's Benediction to target, gradually restoring HP over time.",
+    "Cure Potency: 250",
+    "Duration: 12s"
+  ],
+  "role": "Tank",
+  "job": {
+    "id": 19,
+    "name": "Paladin",
+    "abbreviation": "PLD"
+  },
+  "unlock_level": 82,
+  "value": 0,
+  "icon": {
+    "id": 5219,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 20,
+  "source_class_job_id": 19
+}

@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 470,
+  "name": "Maîtrise d'Invocation Émeraude",
+  "description": "Remplace Invocation Émeraude par Invocation Garuda.",
+  "description_macro": "Remplace <colortype(500)><edgecolortype(501)>Invocation Émeraude<edgecolortype(0)><colortype(0)> par <colortype(500)><edgecolortype(501)>Invocation Garuda<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Remplace Invocation Émeraude par Invocation Garuda."
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 27,
+    "name": "Invocateur",
+    "abbreviation": "INV"
+  },
+  "unlock_level": 45,
+  "value": 0,
+  "icon": {
+    "id": 5684,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 28,
+  "source_class_job_id": 27
+}

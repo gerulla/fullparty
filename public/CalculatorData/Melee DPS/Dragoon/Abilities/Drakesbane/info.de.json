@@ -1,0 +1,90 @@
+{
+  "kind": "ability",
+  "id": 36952,
+  "name": "Drachenhort",
+  "description": "Du führst eine physische Attacke aus.\nAttacke-Wert: 460\nKombo-Bedingung: Fächerstoß oder Fang und Klaue\nBonus: Gewährt dir Zornesfeuer.\nDauer: 30 Sekunden\nBei erfüllter Bedingung ändert sich Fang und Klaue beziehungsweise Fächerstoß zu diesem Kommando.\nKann nicht im Kommandomenü angelegt werden.",
+  "description_macro": "Du führst eine physische Attacke aus.<br>Attacke-Wert: <if([gnum68==22],<if([gnum72>=94],460,<if([gnum68==22],<if([gnum72>=86],400,380)>,380)>)>,<if([gnum68==22],<if([gnum72>=86],400,380)>,380)>)><br>Kombo-Bedingung: <colortype(502)><edgecolortype(503)>Fächerstoß<edgecolortype(0)><colortype(0)> oder <colortype(502)><edgecolortype(503)>Fang und Klaue<edgecolortype(0)><colortype(0)><br><if([gnum68==22],<if([gnum72>=76],Bonus: Gewährt dir <colortype(506)><edgecolortype(507)>Zornesfeuer<edgecolortype(0)><colortype(0)>.<br>Dauer: 30 Sekunden<br>,)>,)>Bei erfüllter Bedingung ändert sich <colortype(502)><edgecolortype(503)>Fang und Klaue<edgecolortype(0)><colortype(0)> be<->ziehungs<->weise <colortype(502)><edgecolortype(503)>Fächerstoß<edgecolortype(0)><colortype(0)> zu diesem Kommando.<br>Kann nicht im Kommandomenü angelegt werden.",
+  "effects": [
+    "Du führst eine physische Attacke aus.",
+    "Attacke-Wert: 460",
+    "Kombo-Bedingung: Fächerstoß oder Fang und Klaue",
+    "Bonus: Gewährt dir Zornesfeuer.",
+    "Dauer: 30 Sekunden",
+    "Bei erfüllter Bedingung ändert sich Fang und Klaue beziehungsweise Fächerstoß zu diesem Kommando.",
+    "Kann nicht im Kommandomenü angelegt werden."
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 22,
+    "name": "Dragoon",
+    "abbreviation": "DRG"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 64,
+  "icon": {
+    "id": 2599,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 3,
+    "name": "Waffenfertigkeit"
+  },
+  "attack_type": {
+    "id": 4294967295,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 2.5,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 58,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 0,
+      "value": 0
+    },
+    "secondary": {
+      "type_id": 58,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": -1,
+    "effect_yalms": 0,
+    "cast_type": 1
+  },
+  "targeting": {
+    "self": false,
+    "party": false,
+    "alliance": false,
+    "hostile": true,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": 3554,
+    "preserves_combo": false
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 7,
+    "behavior_type": 0,
+    "class_job_category_id": 23,
+    "source_class_job_id": 0,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

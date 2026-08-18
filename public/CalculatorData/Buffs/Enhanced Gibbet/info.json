@@ -1,0 +1,71 @@
+{
+  "kind": "combat_status",
+  "id": 2588,
+  "name": "Enhanced Gibbet",
+  "description": "Next Gibbet will deal increased damage.",
+  "effects": [
+    "Next Gibbet will deal increased damage."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 212927,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 50,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 180,
+  "source_abilities": [
+    {
+      "id": 24383,
+      "name": "Gallows",
+      "description": "Delivers an attack with a potency of 500.\n560 when executed from a target's rear.\nEnhanced Gallows Potency: 560\nRear Enhanced Potency: 620\nAdditional Effect: Grants Enhanced Gibbet\nDuration: 60s\nThe action Blood Stalk changes to Unveiled Gibbet while under the effect of Enhanced Gibbet.\nAdditional Effect: Increases Shroud Gauge by 10\nCan only be executed while under the effect of Soul Reaver.",
+      "description_macro": "Delivers an attack with a potency of <if([gnum68==39],<if([gnum72>=94],500,400)>,400)>.<br><if([gnum68==39],<if([gnum72>=94],560,460)>,460)> when executed from a target's rear.<br><colortype(504)><edgecolortype(505)>Enhanced Gallows Potency: <edgecolortype(0)><colortype(0)><if([gnum68==39],<if([gnum72>=94],560,460)>,460)><br><colortype(504)><edgecolortype(505)>Rear Enhanced Potency: <edgecolortype(0)><colortype(0)><if([gnum68==39],<if([gnum72>=94],620,520)>,520)><br><colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>Grants <colortype(506)><edgecolortype(507)>Enhanced Gibbet<edgecolortype(0)><colortype(0)><br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>60s<br>The action <colortype(500)><edgecolortype(501)>Blood Stalk<edgecolortype(0)><colortype(0)> changes to <colortype(500)><edgecolortype(501)>Unveiled Gibbet<edgecolortype(0)><colortype(0)> while under the effect of <colortype(506)><edgecolortype(507)>Enhanced Gibbet<edgecolortype(0)><colortype(0)>.<br><if([gnum68==39],<if([gnum72>=80],<colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>Increases <colortype(500)><edgecolortype(501)>Shroud Gauge<edgecolortype(0)><colortype(0)> by 10<br>,)>,)>Can only be executed while under the effect of <colortype(506)><edgecolortype(507)>Soul Reaver<edgecolortype(0)><colortype(0)>.",
+      "unlock_level": 70,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 39,
+          "name": "Reaper",
+          "abbreviation": "RPR",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 36971,
+      "name": "Executioner's Gallows",
+      "description": "Delivers an attack with a potency of 700.\n760 when executed from a target's rear.\nEnhanced Gallows Potency: 760\nRear Enhanced Potency: 820\nAdditional Effect: Grants Enhanced Gibbet\nDuration: 60s\nThe action Blood Stalk changes to Unveiled Gibbet while under the effect of Enhanced Gibbet.\nAdditional Effect: Increases Shroud Gauge by 10\nCan only be executed while under the effect of Executioner.\n\n※This action cannot be assigned to a hotbar.\n※Gallows changes to Executioner's Gallows when requirements for execution are met.",
+      "description_macro": "Delivers an attack with a potency of 700.<br>760 when executed from a target's rear.<br><colortype(504)><edgecolortype(505)>Enhanced Gallows Potency: <edgecolortype(0)><colortype(0)>760<br><colortype(504)><edgecolortype(505)>Rear Enhanced Potency: <edgecolortype(0)><colortype(0)>820<br><colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>Grants <colortype(506)><edgecolortype(507)>Enhanced Gibbet<edgecolortype(0)><colortype(0)><br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>60s<br>The action <colortype(500)><edgecolortype(501)>Blood Stalk<edgecolortype(0)><colortype(0)> changes to <colortype(500)><edgecolortype(501)>Unveiled Gibbet<edgecolortype(0)><colortype(0)> while under the effect of <colortype(506)><edgecolortype(507)>Enhanced Gibbet<edgecolortype(0)><colortype(0)>.<br><if([gnum68==39],<if([gnum72>=80],<colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>Increases <colortype(500)><edgecolortype(501)>Shroud Gauge<edgecolortype(0)><colortype(0)> by 10<br>,)>,)>Can only be executed while under the effect of <colortype(506)><edgecolortype(507)>Executioner<edgecolortype(0)><colortype(0)>.<br><br>※This action cannot be assigned to a hotbar.<br>※<colortype(500)><edgecolortype(501)>Gallows<edgecolortype(0)><colortype(0)> changes to <colortype(500)><edgecolortype(501)>Executioner's Gallows<edgecolortype(0)><colortype(0)> when requirements for execution are met.",
+      "unlock_level": 96,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 39,
+          "name": "Reaper",
+          "abbreviation": "RPR",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

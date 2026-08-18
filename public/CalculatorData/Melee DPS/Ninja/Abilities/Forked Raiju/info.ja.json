@@ -1,0 +1,96 @@
+{
+  "kind": "ability",
+  "id": 25777,
+  "name": "月影雷獣爪",
+  "description": "対象に急接近して雷属性魔法攻撃。\u3000威力：700\n追加効果：「忍気」を5上昇させる。\n発動条件：「月影雷獣実行可」効果中\nバインド中は実行不可。",
+  "description_macro": "対象に急接近して雷属性魔法攻撃。\u3000<colortype(504)><edgecolortype(505)>威力：<edgecolortype(0)><colortype(0)><if([gnum68==30],<if([gnum72>=94],700,560)>,560)><br><colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)><colortype(500)><edgecolortype(501)>「忍気」<edgecolortype(0)><colortype(0)>を5上昇させる。<br><colortype(504)><edgecolortype(505)>発動条件：<edgecolortype(0)><colortype(0)><colortype(500)><edgecolortype(501)>「月影雷獣実行可」<edgecolortype(0)><colortype(0)>効果中<br>バインド中は実行不可。",
+  "effects": [
+    "対象に急接近して雷属性魔法攻撃。\u3000威力：700",
+    "追加効果：「忍気」を5上昇させる。",
+    "発動条件：「月影雷獣実行可」効果中",
+    "バインド中は実行不可。"
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 30,
+    "name": "忍者",
+    "abbreviation": "NIN"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 90,
+  "icon": {
+    "id": 2931,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 3,
+    "name": "ウェポンスキル"
+  },
+  "attack_type": {
+    "id": 5,
+    "name": "魔法"
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 2.5,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 58,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 0,
+      "value": 0
+    },
+    "secondary": {
+      "type_id": 32,
+      "value": 2690
+    }
+  },
+  "range": {
+    "target_yalms": 20,
+    "effect_yalms": 0,
+    "cast_type": 1
+  },
+  "targeting": {
+    "self": false,
+    "party": false,
+    "alliance": false,
+    "hostile": true,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": {
+      "id": 58,
+      "status": {
+        "id": 2690,
+        "name": "月影雷獣実行可",
+        "description": "月影雷獣爪または月影雷獣牙を実行できる状態。",
+        "icon_id": 217597,
+        "max_stacks": 3
+      }
+    }
+  },
+  "metadata": {
+    "aspect_id": 5,
+    "behavior_type": 1,
+    "class_job_category_id": 92,
+    "source_class_job_id": 30,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

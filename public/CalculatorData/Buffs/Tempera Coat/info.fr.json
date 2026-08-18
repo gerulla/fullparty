@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 3686,
+  "name": "Enduit a tempera",
+  "description": "Insensible à un certain montant de dégâts.",
+  "effects": [
+    "Insensible à un certain montant de dégâts."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 213809,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 30,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 197,
+  "source_abilities": [
+    {
+      "id": 34685,
+      "name": "Enduit a tempera",
+      "description": "Vous octroie une barrière absorbant les dégâts pour un total de 20% de vos PV maximums.\nDurée : 10s\nLe temps de recharge de ce sort est réduit de 60s quand la barrière a absorbé son montant de dégâts.",
+      "description_macro": "Vous octroie une barrière absorbant les dégâts pour un total de 20% de vos PV maximums.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 10s<br>Le temps de recharge de ce sort est réduit de 60s quand la barrière a absorbé son montant de dégâts.",
+      "unlock_level": 10,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Magical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 42,
+          "name": "Pictomancien",
+          "abbreviation": "PIC",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

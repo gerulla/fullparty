@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 3643,
+  "name": "必滅の炎",
+  "description": "火属性ダメージにより、ＨＰが徐々に失われる状態。この炎は対象を燃やし尽くすまで消えない。",
+  "effects": [
+    "火属性ダメージにより、ＨＰが徐々に失われる状態。この炎は対象を燃やし尽くすまで消えない。"
+  ],
+  "classification": "debuff",
+  "icon": {
+    "id": 213551,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 2,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": true,
+  "inflicted_by_actor": true,
+  "party_list_priority": 10,
+  "parameter": {
+    "effect": 0,
+    "modifier": 10
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 34579,
+      "name": "必滅の炎",
+      "description": "対象に火属性の継続ダメージを付与する。\n威力：40\u3000効果時間：永続\nこのアクションの効果は同時に1つしか付与されない。\n対象が非戦闘状態の場合は効果無し。\nまた、対象の戦闘状態が解除されると付与されている「必滅の炎」は解除される。",
+      "description_macro": "対象に火属性の継続ダメージを付与する。<br><colortype(504)><edgecolortype(505)>威力：<edgecolortype(0)><colortype(0)>40\u3000<colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>永続<br>このアクションの効果は同時に1つしか付与されない。<br>対象が非戦闘状態の場合は効果無し。<br>また、対象の戦闘状態が解除されると付与されている<colortype(500)><edgecolortype(501)>「必滅の炎」<edgecolortype(0)><colortype(0)>は解除される。",
+      "unlock_level": 1,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Magical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 36,
+          "name": "青魔道士",
+          "abbreviation": "BLU",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

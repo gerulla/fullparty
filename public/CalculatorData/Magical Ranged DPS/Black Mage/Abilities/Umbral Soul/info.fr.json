@@ -1,0 +1,90 @@
+{
+  "kind": "ability",
+  "id": 16506,
+  "name": "Âme ombrale",
+  "description": "Vous octroie un degré de Glace ombrale et de Cœur ombral.\nCœur ombral : annule l'augmentation du coût en PM des sorts de feu sous Feu astral.\nDe plus\\Effet additionnel : restaure vos PM en fonction du degré de Glace ombrale.\nAvec 1 degré : 2500\nAvec 2 degrés : 5000\nAvec 3 degrés : 10 000.\nSi vous êtes hors combat\\Condition : Glace ombrale.",
+  "description_macro": "<if([gnum68==25],<if([gnum72>=58],Vous octroie un degré de <colortype(500)><edgecolortype(501)>Glace ombrale<edgecolortype(0)><colortype(0)> et de <colortype(500)><edgecolortype(501)>Cœur ombral<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Cœur ombral<nbsp>:<edgecolortype(0)><colortype(0)> annule l'augmentation du coût en PM des sorts de feu sous <colortype(500)><edgecolortype(501)>Feu astral<edgecolortype(0)><colortype(0)>.<br>De plus\\, réduit d'un tiers le coût en PM de <colortype(500)><edgecolortype(501)>Brasier<edgecolortype(0)><colortype(0)> en échange de tous les degrés restants de <colortype(500)><edgecolortype(501)>Cœur ombral<edgecolortype(0)><colortype(0)>.<br>,Vous octroie <colortype(500)><edgecolortype(501)>Glace ombrale<edgecolortype(0)><colortype(0)>.<br>)>,Vous octroie <colortype(500)><edgecolortype(501)>Glace ombrale<edgecolortype(0)><colortype(0)>.<br>)><colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> restaure vos PM en fonction du degré de <colortype(500)><edgecolortype(501)>Glace ombrale<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Avec 1 degré<nbsp>:<edgecolortype(0)><colortype(0)> 2500<br><colortype(506)><edgecolortype(507)>Avec 2 degrés<nbsp>:<edgecolortype(0)><colortype(0)> 5000<br><colortype(506)><edgecolortype(507)>Avec 3 degrés<nbsp>:<edgecolortype(0)><colortype(0)> 10<nbsp>000.<br><if([gnum68==25],<if([gnum72>=58],Si vous êtes hors combat\\, vous octroie <colortype(500)><edgecolortype(501)>Glace ombrale<edgecolortype(0)><colortype(0)> et <colortype(500)><edgecolortype(501)>Cœur ombral<edgecolortype(0)><colortype(0)> au plus haut degré et restaure 10<nbsp>000 PM.<br>,Si vous êtes hors combat\\, vous octroie <colortype(500)><edgecolortype(501)>Glace ombrale<edgecolortype(0)><colortype(0)> au plus haut degré et restaure 10<nbsp>000 PM.<br>)>,Si vous êtes hors combat\\, vous octroie <colortype(500)><edgecolortype(501)>Glace ombrale<edgecolortype(0)><colortype(0)> au plus haut degré et restaure 10<nbsp>000 PM.<br>)><colortype(506)><edgecolortype(507)>Condition<nbsp>:<edgecolortype(0)><colortype(0)> <colortype(500)><edgecolortype(501)>Glace ombrale<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Vous octroie un degré de Glace ombrale et de Cœur ombral.",
+    "Cœur ombral : annule l'augmentation du coût en PM des sorts de feu sous Feu astral.",
+    "De plus\\Effet additionnel : restaure vos PM en fonction du degré de Glace ombrale.",
+    "Avec 1 degré : 2500",
+    "Avec 2 degrés : 5000",
+    "Avec 3 degrés : 10 000.",
+    "Si vous êtes hors combat\\Condition : Glace ombrale."
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 25,
+    "name": "Mage Noir",
+    "abbreviation": "MNO"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 35,
+  "icon": {
+    "id": 2666,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 2,
+    "name": "Sort"
+  },
+  "attack_type": {
+    "id": 0,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 2.5,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 58,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 0,
+      "value": 0
+    },
+    "secondary": {
+      "type_id": 48,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": 0,
+    "effect_yalms": 0,
+    "cast_type": 1
+  },
+  "targeting": {
+    "self": true,
+    "party": false,
+    "alliance": false,
+    "hostile": false,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": false
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 0,
+    "behavior_type": 0,
+    "class_job_category_id": 26,
+    "source_class_job_id": 25,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

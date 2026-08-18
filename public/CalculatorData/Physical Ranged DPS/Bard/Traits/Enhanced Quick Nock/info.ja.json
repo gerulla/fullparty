@@ -1,0 +1,26 @@
+{
+  "kind": "trait",
+  "id": 283,
+  "name": "クイックノック効果アップ",
+  "description": "自身に「ホークアイ」を付与する。\n効果時間：30秒\n発動条件：クイックノックの命中時（発動確率20％）",
+  "description_macro": "自身に<colortype(500)><edgecolortype(501)>「ホークアイ」<edgecolortype(0)><colortype(0)>を付与する。<br><colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>30秒<br><colortype(504)><edgecolortype(505)>発動条件：<edgecolortype(0)><colortype(0)>クイックノックの命中時（発動確率20％）",
+  "effects": [
+    "自身に「ホークアイ」を付与する。",
+    "効果時間：30秒",
+    "発動条件：クイックノックの命中時（発動確率20％）"
+  ],
+  "role": "Physical Ranged DPS",
+  "job": {
+    "id": 23,
+    "name": "吟遊詩人",
+    "abbreviation": "BRD"
+  },
+  "unlock_level": 25,
+  "value": 0,
+  "icon": {
+    "id": 5304,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 50,
+  "source_class_job_id": 5
+}

@@ -1,0 +1,89 @@
+{
+  "kind": "ability",
+  "id": 37035,
+  "name": "Philosophia",
+  "description": "Du erhöhst die Wirkung deiner Heilmagie um 20 %.\nDauer: 20 Sekunden\nZusatzeffekt: Gewährt dir und deinen Gruppenmitgliedern Eudaimonie.\nDauer: 20 Sekunden\nEffekt von Eudaimonie: Wirkst du einen Zauber, regeneriert das Ziel LP.\nHeilpotenzial: 150",
+  "description_macro": "Du erhöhst die Wirkung deiner Heilmagie um 20<nbsp>%.<br>Dauer: 20 Sekunden<br>Zusatzeffekt: Gewährt dir und deinen Grup<->pen<->mit<->gliedern <colortype(506)><edgecolortype(507)>Eudaimonie<edgecolortype(0)><colortype(0)>.<br>Dauer: 20 Sekunden<br>Effekt von <colortype(506)><edgecolortype(507)>Eudaimonie<edgecolortype(0)><colortype(0)>: Wirkst du einen Zauber, regeneriert das Ziel LP.<br>Heilpotenzial: 150",
+  "effects": [
+    "Du erhöhst die Wirkung deiner Heilmagie um 20 %.",
+    "Dauer: 20 Sekunden",
+    "Zusatzeffekt: Gewährt dir und deinen Gruppenmitgliedern Eudaimonie.",
+    "Dauer: 20 Sekunden",
+    "Effekt von Eudaimonie: Wirkst du einen Zauber, regeneriert das Ziel LP.",
+    "Heilpotenzial: 150"
+  ],
+  "role": "Healer",
+  "job": {
+    "id": 40,
+    "name": "Weiser",
+    "abbreviation": "WEI"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 100,
+  "icon": {
+    "id": 3690,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 4,
+    "name": "Talent"
+  },
+  "attack_type": {
+    "id": 0,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 180,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 25,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 0,
+      "value": 0
+    },
+    "secondary": {
+      "type_id": 0,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": 0,
+    "effect_yalms": 30,
+    "cast_type": 2
+  },
+  "targeting": {
+    "self": true,
+    "party": false,
+    "alliance": false,
+    "hostile": false,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 0,
+    "behavior_type": 0,
+    "class_job_category_id": 181,
+    "source_class_job_id": 40,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

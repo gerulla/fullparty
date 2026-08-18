@@ -1,0 +1,92 @@
+{
+  "kind": "ability",
+  "id": 25765,
+  "name": "Révolution céleste",
+  "description": "Effectue une attaque physique sur la cible.\nPuissance : 600\nEffet additionnel : ouvre le Nadi lunaire, ou le Nadi solaire si vous l'aviez déjà.\nEffet additionnel : vous octroie Poing informe.\nDurée : 30s\nPoing informe : vous permet d'utiliser les techniques d'arme requérant une posture particulière sans être dans cette posture. Les effets additionnels associés seront appliqués.\nCondition : trois Chakras bestiaux de deux types différents.\n\n* Cette action ne peut pas être ajoutée aux barres de raccourcis.\nRemplace Blitz magistral lorsque les conditions sont réunies.",
+  "description_macro": "Effectue une attaque physique sur la cible.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> 600<br><colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> ouvre le <colortype(500)><edgecolortype(501)>Nadi lunaire<edgecolortype(0)><colortype(0)>, ou le <colortype(500)><edgecolortype(501)>Nadi solaire<edgecolortype(0)><colortype(0)> si vous l'aviez déjà.<br><colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> vous octroie <colortype(500)><edgecolortype(501)>Poing informe<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 30s<br><colortype(506)><edgecolortype(507)>Poing informe<nbsp>:<edgecolortype(0)><colortype(0)> vous permet d'utiliser les techniques d'arme requérant une posture par<->ti<->cu<->liè<->re sans être dans cette posture. Les effets additionnels associés seront appliqués.<br><colortype(506)><edgecolortype(507)>Condition<nbsp>:<edgecolortype(0)><colortype(0)> trois <colortype(500)><edgecolortype(501)>Chakras bestiaux<edgecolortype(0)><colortype(0)> de deux types différents.<br><br><colortype(504)><edgecolortype(505)>* Cette action ne peut pas être ajoutée aux barres de raccourcis.<br>Remplace <colortype(500)><edgecolortype(501)>Blitz magistral<edgecolortype(0)><colortype(0)> lorsque les conditions sont réunies.<edgecolortype(0)><colortype(0)>",
+  "effects": [
+    "Effectue une attaque physique sur la cible.",
+    "Puissance : 600",
+    "Effet additionnel : ouvre le Nadi lunaire, ou le Nadi solaire si vous l'aviez déjà.",
+    "Effet additionnel : vous octroie Poing informe.",
+    "Durée : 30s",
+    "Poing informe : vous permet d'utiliser les techniques d'arme requérant une posture particulière sans être dans cette posture. Les effets additionnels associés seront appliqués.",
+    "Condition : trois Chakras bestiaux de deux types différents.",
+    "* Cette action ne peut pas être ajoutée aux barres de raccourcis.",
+    "Remplace Blitz magistral lorsque les conditions sont réunies."
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 20,
+    "name": "Moine",
+    "abbreviation": "MOI"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 60,
+  "icon": {
+    "id": 2977,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 3,
+    "name": "Technique d'arme"
+  },
+  "attack_type": {
+    "id": 4294967295,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 2.5,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 58,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 79,
+      "value": 1
+    },
+    "secondary": {
+      "type_id": 0,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": -1,
+    "effect_yalms": 0,
+    "cast_type": 1
+  },
+  "targeting": {
+    "self": false,
+    "party": false,
+    "alliance": false,
+    "hostile": true,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": false
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 7,
+    "behavior_type": 0,
+    "class_job_category_id": 21,
+    "source_class_job_id": 0,
+    "is_role_action": false,
+    "is_player_action": false,
+    "is_derived_action": true,
+    "equivalence_group": 0
+  }
+}

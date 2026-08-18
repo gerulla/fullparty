@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 4246,
+  "name": "Mighty March",
+  "description": "Regenerating HP over time and maximum HP is increased.",
+  "effects": [
+    "Regenerating HP over time and maximum HP is increased."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 229910,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 10
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 41607,
+      "name": "Mighty March",
+      "description": "Gradually restores own HP and the HP of all nearby party members.\nCure Potency: 500\nAdditional Effect: Increases maximum HP by 20% and restores the amount increased\nDuration: 30s",
+      "description_macro": "Gradually restores own HP and the HP of all nearby party members.<br><colortype(504)><edgecolortype(505)>Cure Potency: <edgecolortype(0)><colortype(0)><if([gnum108>=4],3\\,500,3\\,000)><br><colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>Increases maximum HP by 20% and restores the amount increased<br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>30s",
+      "unlock_level": 0,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Phantom Jobs"
+      ],
+      "jobs": [
+        {
+          "id": 6,
+          "name": "Phantom Bard",
+          "abbreviation": "Ph. Bard",
+          "is_phantom": true
+        }
+      ]
+    }
+  ]
+}

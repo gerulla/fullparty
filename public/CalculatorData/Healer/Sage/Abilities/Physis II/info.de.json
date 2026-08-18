@@ -1,0 +1,88 @@
+{
+  "kind": "ability",
+  "id": 24302,
+  "name": "Physis II",
+  "description": "Regeneriert schrittweise eigene LP und die von umstehenden Gruppenmitgliedern.\nHeilpotenzial: 130\nDauer: 15 Sekunden\nZusatzeffekt: Wirkung von Heileffekten auf die Ziele ist um 10 % erhöht.\nDauer: 15 Sekunden",
+  "description_macro": "Regeneriert schrittweise eigene LP und die von umstehenden Grup<->pen<->mit<->gliedern.<br>Heilpotenzial: 130<br>Dauer: 15 Sekunden<br>Zusatzeffekt: Wirkung von Heileffekten auf die Ziele ist um 10<nbsp>% erhöht.<br>Dauer: <if([gnum68==40],<if([gnum72>=98],15,10)>,10)> Sekunden",
+  "effects": [
+    "Regeneriert schrittweise eigene LP und die von umstehenden Gruppenmitgliedern.",
+    "Heilpotenzial: 130",
+    "Dauer: 15 Sekunden",
+    "Zusatzeffekt: Wirkung von Heileffekten auf die Ziele ist um 10 % erhöht.",
+    "Dauer: 15 Sekunden"
+  ],
+  "role": "Healer",
+  "job": {
+    "id": 40,
+    "name": "Weiser",
+    "abbreviation": "WEI"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 60,
+  "icon": {
+    "id": 3670,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 4,
+    "name": "Talent"
+  },
+  "attack_type": {
+    "id": 0,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 60,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 12,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 0,
+      "value": 0
+    },
+    "secondary": {
+      "type_id": 0,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": 0,
+    "effect_yalms": 30,
+    "cast_type": 2
+  },
+  "targeting": {
+    "self": true,
+    "party": false,
+    "alliance": false,
+    "hostile": false,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": false
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 0,
+    "behavior_type": 0,
+    "class_job_category_id": 181,
+    "source_class_job_id": 40,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 294,
+  "name": "Promotion",
+  "description": "Upgrades Rook Autoturret and Rook Overdrive to Automaton Queen and Queen Overdrive respectively.",
+  "description_macro": "Upgrades <colortype(500)><edgecolortype(501)>Rook Autoturret<edgecolortype(0)><colortype(0)> and <colortype(500)><edgecolortype(501)>Rook Overdrive<edgecolortype(0)><colortype(0)> to <colortype(500)><edgecolortype(501)>Automaton Queen<edgecolortype(0)><colortype(0)> and <colortype(500)><edgecolortype(501)>Queen Overdrive<edgecolortype(0)><colortype(0)> respectively.",
+  "effects": [
+    "Upgrades Rook Autoturret and Rook Overdrive to Automaton Queen and Queen Overdrive respectively."
+  ],
+  "role": "Physical Ranged DPS",
+  "job": {
+    "id": 31,
+    "name": "Machinist",
+    "abbreviation": "MCH"
+  },
+  "unlock_level": 80,
+  "value": 0,
+  "icon": {
+    "id": 6015,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 96,
+  "source_class_job_id": 31
+}

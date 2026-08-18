@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 424,
+  "name": "ハート・オブ・ストーンマスタリー",
+  "description": "ハート・オブ・ストーンがハート・オブ・コランダムに変化する。",
+  "description_macro": "ハート・オブ・ストーンがハート・オブ・コランダムに変化する。",
+  "effects": [
+    "ハート・オブ・ストーンがハート・オブ・コランダムに変化する。"
+  ],
+  "role": "Tank",
+  "job": {
+    "id": 37,
+    "name": "ガンブレイカー",
+    "abbreviation": "GNB"
+  },
+  "unlock_level": 82,
+  "value": 0,
+  "icon": {
+    "id": 6304,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 149,
+  "source_class_job_id": 37
+}

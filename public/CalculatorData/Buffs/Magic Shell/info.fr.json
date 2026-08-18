@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 4788,
+  "name": "Magi Blindage",
+  "description": "Insensible à un certain montant de dégâts.",
+  "effects": [
+    "Insensible à un certain montant de dégâts."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 229963,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 100
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 46590,
+      "name": "Magi Blindage",
+      "description": "Crée sur vous ou l'équipier ciblé une barrière absorbant un montant de dégâts égal à 20% de vos PV maximums.\nDurée : 60s\nLorsque la barrière disparaît, vous octroie Magi Lame renforcée.",
+      "description_macro": "Crée sur vous ou l'équipier ciblé une barrière absorbant un montant de dégâts égal à 20% de vos PV maximums.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 60s<br>Lorsque la barrière disparaît, vous octroie <colortype(500)><edgecolortype(501)>Magi Lame renforcée<edgecolortype(0)><colortype(0)>.<if([gnum108>=2],<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 30s<br><colortype(506)><edgecolortype(507)>Magi Lame renforcée<nbsp>:<edgecolortype(0)><colortype(0)> la puissance de la prochaine Magi Lame est augmentée.,)>",
+      "unlock_level": 0,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Phantom Jobs"
+      ],
+      "jobs": [
+        {
+          "id": 13,
+          "name": "Phantom Chevalier mage fantôme",
+          "abbreviation": "Chevalier mage fant.",
+          "is_phantom": true
+        }
+      ]
+    }
+  ]
+}

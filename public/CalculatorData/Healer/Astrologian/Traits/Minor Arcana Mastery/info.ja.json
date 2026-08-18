@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 631,
+  "name": "マイナーアルカナマスタリー",
+  "description": "アストラルドローの実行時に「クラウンロード」を、アンブラルドローの実行時に「クラウンレディ」をドローするようになる。",
+  "description_macro": "アストラルドローの実行時に<colortype(500)><edgecolortype(501)>「クラウンロード」<edgecolortype(0)><colortype(0)>を、アンブラルドローの実行時に<colortype(500)><edgecolortype(501)>「クラウンレディ」<edgecolortype(0)><colortype(0)>をドローするようになる。",
+  "effects": [
+    "アストラルドローの実行時に「クラウンロード」を、アンブラルドローの実行時に「クラウンレディ」をドローするようになる。"
+  ],
+  "role": "Healer",
+  "job": {
+    "id": 33,
+    "name": "占星術師",
+    "abbreviation": "AST"
+  },
+  "unlock_level": 70,
+  "value": 0,
+  "icon": {
+    "id": 6120,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 99,
+  "source_class_job_id": 33
+}

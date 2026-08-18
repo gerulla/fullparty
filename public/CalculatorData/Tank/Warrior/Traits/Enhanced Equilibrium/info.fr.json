@@ -1,0 +1,25 @@
+{
+  "kind": "trait",
+  "id": 420,
+  "name": "Équilibre amélioré",
+  "description": "Équilibre restaure périodiquement vos PV.\nPuissance : 200 Durée : 15s",
+  "description_macro": "<colortype(500)><edgecolortype(501)>Équilibre<edgecolortype(0)><colortype(0)> restaure périodiquement vos PV.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> 200 <colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 15s",
+  "effects": [
+    "Équilibre restaure périodiquement vos PV.",
+    "Puissance : 200 Durée : 15s"
+  ],
+  "role": "Tank",
+  "job": {
+    "id": 21,
+    "name": "Guerrier",
+    "abbreviation": "GUE"
+  },
+  "unlock_level": 84,
+  "value": 0,
+  "icon": {
+    "id": 5269,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 22,
+  "source_class_job_id": 21
+}

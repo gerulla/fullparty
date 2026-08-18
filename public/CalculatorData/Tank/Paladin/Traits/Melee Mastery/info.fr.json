@@ -1,0 +1,31 @@
+{
+  "kind": "trait",
+  "id": 504,
+  "name": "Actions améliorées",
+  "description": "Augmente la puissance de certaines actions.\n\nPuissance de Lame rapide : 200\nPuissance de Lame déchaînée : 140\nPuissance d'Autorité royale : 140\nPuissance d'Esprit saint : 350\nPuissance d'Absolution : 400\nPuissance d'Oraison : 420\nPuissance de Sépulcre : 440",
+  "description_macro": "Augmente la puissance de certaines actions.<br><br><colortype(506)><edgecolortype(507)>Puissance de Lame rapide<nbsp>:<edgecolortype(0)><colortype(0)> 200<br><colortype(506)><edgecolortype(507)>Puissance de Lame déchaînée<nbsp>:<edgecolortype(0)><colortype(0)> 140<br><colortype(506)><edgecolortype(507)>Puissance d'Autorité royale<nbsp>:<edgecolortype(0)><colortype(0)> 140<br><colortype(506)><edgecolortype(507)>Puissance d'Esprit saint<nbsp>:<edgecolortype(0)><colortype(0)> 350<br><colortype(506)><edgecolortype(507)>Puissance d'Absolution<nbsp>:<edgecolortype(0)><colortype(0)> 400<br><colortype(506)><edgecolortype(507)>Puissance d'Oraison<nbsp>:<edgecolortype(0)><colortype(0)> 420<br><colortype(506)><edgecolortype(507)>Puissance de Sépulcre<nbsp>:<edgecolortype(0)><colortype(0)> 440",
+  "effects": [
+    "Augmente la puissance de certaines actions.",
+    "Puissance de Lame rapide : 200",
+    "Puissance de Lame déchaînée : 140",
+    "Puissance d'Autorité royale : 140",
+    "Puissance d'Esprit saint : 350",
+    "Puissance d'Absolution : 400",
+    "Puissance d'Oraison : 420",
+    "Puissance de Sépulcre : 440"
+  ],
+  "role": "Tank",
+  "job": {
+    "id": 19,
+    "name": "Paladin",
+    "abbreviation": "PLD"
+  },
+  "unlock_level": 84,
+  "value": 0,
+  "icon": {
+    "id": 6801,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 20,
+  "source_class_job_id": 19
+}

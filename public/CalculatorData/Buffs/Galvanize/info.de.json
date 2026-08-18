@@ -1,0 +1,92 @@
+{
+  "kind": "combat_status",
+  "id": 297,
+  "name": "Dynamisieren",
+  "description": "Erlittener Schaden ist um einen bestimmten Betrag verringert.",
+  "effects": [
+    "Erlittener Schaden ist um einen bestimmten Betrag verringert."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 212801,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 30,
+  "parameter": {
+    "effect": 0,
+    "modifier": 100
+  },
+  "class_job_category_id": 29,
+  "source_abilities": [
+    {
+      "id": 185,
+      "name": "Adloquium",
+      "description": "Du regenerierst LP des Ziels.\nHeilpotenzial: 300\nZusatzeffekt: Errichtet eine Barriere um das Ziel, die Schaden in der Höhe von 180 % der Heilwirkung absorbiert (Dynamisierung).\nDauer: 30 Sekunden\nZusatzeffekt bei kritischem Heilerfolg: Zusätzliche Barriere absorbiert 180 % der Heilwirkung (Katalyse).\nDauer: 30 Sekunden\nKann nicht zugleich mit einigen Barriere-Effekten des Weisen aktiv sein.",
+      "description_macro": "Du regenerierst LP des Ziels.<br>Heilpotenzial: 300<br>Zusatzeffekt: Errichtet eine Barriere um das Ziel, die Schaden in der Höhe von <if([gnum68==28],<if([gnum72>=85],180,125)>,125)><nbsp>% der Heilwirkung absorbiert (<colortype(506)><edgecolortype(507)>Dynamisierung<edgecolortype(0)><colortype(0)>).<br>Dauer: 30 Sekunden<br>Zusatzeffekt bei kritischem Heilerfolg: Zusätzliche Barriere absorbiert <if([gnum68==28],<if([gnum72>=85],180,125)>,125)><nbsp>% der Heilwirkung (<colortype(506)><edgecolortype(507)>Katalyse<edgecolortype(0)><colortype(0)>).<br>Dauer: 30 Sekunden<br>Kann nicht zugleich mit einigen Barriere-Effekten des Weisen aktiv sein.",
+      "unlock_level": 30,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Healer"
+      ],
+      "jobs": [
+        {
+          "id": 28,
+          "name": "Gelehrter",
+          "abbreviation": "GLT",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 3585,
+      "name": "Dislokation",
+      "description": "Du erweiterst die Wirkung von Dynamisieren, das du dir selbst oder einem Gruppenmitglied gegeben hast, auf alle umstehenden Gruppenmitglieder.\nDauer: Jeweilige Wirkungsdauer ab Erweiterung der Wirkung",
+      "description_macro": "Du erweiterst die Wirkung von <colortype(506)><edgecolortype(507)>Dynamisieren<edgecolortype(0)><colortype(0)>, das du dir selbst oder einem Grup<->pen<->mit<->glied gegeben hast, auf alle umstehenden Grup<->pen<->mit<->glieder.<br>Dauer: Jeweilige Wirkungsdauer ab Erweiterung der Wirkung",
+      "unlock_level": 56,
+      "relations": [
+        "extended_by_description"
+      ],
+      "roles": [
+        "Healer"
+      ],
+      "jobs": [
+        {
+          "id": 28,
+          "name": "Gelehrter",
+          "abbreviation": "GLT",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 37015,
+      "name": "Manifestation",
+      "description": "Du regenerierst LP des Ziels.\nHeilpotenzial: 360\nZusatzeffekt: Gewährt dem Ziel Dynamisieren.\nEffekt von Dynamisieren: Errichtet eine Barriere um das Ziel, die Schaden in der Höhe von 180 % der Heilwirkung absorbiert.\nDauer: 30 Sekunden\nKann nicht zugleich mit einigen Barriere-Effekten des Weisen aktiv sein.\nZusatzeffekt bei kritischem Heilerfolg: Zusätzliche Barriere absorbiert 180 % der Heilwirkung (Katalyse).\nDauer: 30 Sekunden\nBedingung: Seraphenlehre aktiv\nBei erfüllter Bedingung ändert sich Adloquium zu diesem Kommando.\nKann nicht im Kommandomenü angelegt werden.",
+      "description_macro": "Du regenerierst LP des Ziels.<br>Heilpotenzial: 360<br>Zusatzeffekt: Gewährt dem Ziel <colortype(506)><edgecolortype(507)>Dynamisieren<edgecolortype(0)><colortype(0)>.<br>Effekt von <colortype(506)><edgecolortype(507)>Dynamisieren<edgecolortype(0)><colortype(0)>: Errichtet eine Barriere um das Ziel, die Schaden in der Höhe von 180<nbsp>% der Heilwirkung absorbiert.<br>Dauer: 30 Sekunden<br>Kann nicht zugleich mit einigen Barriere-Effekten des Weisen aktiv sein.<br>Zusatzeffekt bei kritischem Heilerfolg: Zusätzliche Barriere absorbiert 180<nbsp>% der Heilwirkung (<colortype(506)><edgecolortype(507)>Katalyse<edgecolortype(0)><colortype(0)>).<br>Dauer: 30 Sekunden<br>Bedingung: <colortype(506)><edgecolortype(507)>Seraphenlehre<edgecolortype(0)><colortype(0)> aktiv<br>Bei erfüllter Bedingung ändert sich <colortype(502)><edgecolortype(503)>Adloquium<edgecolortype(0)><colortype(0)> zu diesem Kommando.<br>Kann nicht im Kommandomenü angelegt werden.",
+      "unlock_level": 100,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Healer"
+      ],
+      "jobs": [
+        {
+          "id": 28,
+          "name": "Gelehrter",
+          "abbreviation": "GLT",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 313,
+  "name": "Dogme de survie amélioré",
+  "description": "Octroie à Dogme de survie un effet restaurant périodiquement les PV des équipiers dans l'aire d'effet.",
+  "description_macro": "Octroie à <colortype(500)><edgecolortype(501)>Dogme de survie<edgecolortype(0)><colortype(0)> un effet restaurant périodiquement les PV des équipiers dans l'aire d'effet.",
+  "effects": [
+    "Octroie à Dogme de survie un effet restaurant périodiquement les PV des équipiers dans l'aire d'effet."
+  ],
+  "role": "Healer",
+  "job": {
+    "id": 28,
+    "name": "Érudit",
+    "abbreviation": "ÉRU"
+  },
+  "unlock_level": 78,
+  "value": 0,
+  "icon": {
+    "id": 5703,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 29,
+  "source_class_job_id": 28
+}

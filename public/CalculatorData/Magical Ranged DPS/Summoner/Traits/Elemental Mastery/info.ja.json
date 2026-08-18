@@ -1,0 +1,27 @@
+{
+  "kind": "trait",
+  "id": 503,
+  "name": "エレメントマスタリー",
+  "description": "特定のアクションの実行時にアストラルフロウが変化する。\nサモン・イフリート実行時：クリムゾンサイクロンに変化する。\nトパーズ・リチュアルおよびトパーズ・カタストロフィ実行時：マウンテンバスターに変化する。\nサモン・ガルーダ実行時：スリップストリームに変化する。",
+  "description_macro": "特定のアクションの実行時にアストラルフロウが変化する。<br><colortype(504)><edgecolortype(505)>サモン・イフリート実行時：<edgecolortype(0)><colortype(0)>クリムゾンサイクロンに変化する。<br><colortype(504)><edgecolortype(505)>トパーズ・リチュアルおよびトパーズ・カタストロフィ実行時：<edgecolortype(0)><colortype(0)>マウンテンバスターに変化する。<br><colortype(504)><edgecolortype(505)>サモン・ガルーダ実行時：<edgecolortype(0)><colortype(0)>スリップストリームに変化する。",
+  "effects": [
+    "特定のアクションの実行時にアストラルフロウが変化する。",
+    "サモン・イフリート実行時：クリムゾンサイクロンに変化する。",
+    "トパーズ・リチュアルおよびトパーズ・カタストロフィ実行時：マウンテンバスターに変化する。",
+    "サモン・ガルーダ実行時：スリップストリームに変化する。"
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 27,
+    "name": "召喚士",
+    "abbreviation": "SMN"
+  },
+  "unlock_level": 86,
+  "value": 0,
+  "icon": {
+    "id": 5697,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 28,
+  "source_class_job_id": 27
+}

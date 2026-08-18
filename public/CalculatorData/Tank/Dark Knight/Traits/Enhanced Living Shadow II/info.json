@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 423,
+  "name": "Enhanced Living Shadow II",
+  "description": "Upgrades Flood of Shadow executed by your simulacrum to Shadowbringer, which delivers an attack to all enemies in a straight line before it with a potency of 570 for the first enemy, and 25% less for all remaining enemies.",
+  "description_macro": "Upgrades <colortype(500)><edgecolortype(501)>Flood of Shadow<edgecolortype(0)><colortype(0)> executed by your simulacrum to <colortype(500)><edgecolortype(501)>Shadowbringer<edgecolortype(0)><colortype(0)>, which delivers an attack to all enemies in a straight line before it with a potency of 570 for the first enemy, and 25% less for all remaining enemies.",
+  "effects": [
+    "Upgrades Flood of Shadow executed by your simulacrum to Shadowbringer, which delivers an attack to all enemies in a straight line before it with a potency of 570 for the first enemy, and 25% less for all remaining enemies."
+  ],
+  "role": "Tank",
+  "job": {
+    "id": 32,
+    "name": "Dark Knight",
+    "abbreviation": "DRK"
+  },
+  "unlock_level": 90,
+  "value": 0,
+  "icon": {
+    "id": 6066,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 98,
+  "source_class_job_id": 32
+}

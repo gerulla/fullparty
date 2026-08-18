@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 2119,
+  "name": "Cactugarde",
+  "description": "Les dégâts reçus sont réduits.",
+  "effects": [
+    "Les dégâts reçus sont réduits."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 213522,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": -15
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 18315,
+      "name": "Cactugarde",
+      "description": "Réduit de 5% les dégâts subis par l'équipier ciblé.\nDurée : 6s\nRéduit de 15% les dégâts subis si vous êtes sous l'effet d'Éther de protecteur.",
+      "description_macro": "Réduit de 5% les dégâts subis par l'équipier ciblé.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 6s<br>Réduit de 15% les dégâts subis si vous êtes sous l'effet d'<colortype(500)><edgecolortype(501)>Éther de protecteur<edgecolortype(0)><colortype(0)>.",
+      "unlock_level": 1,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Magical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 36,
+          "name": "Mage Bleu",
+          "abbreviation": "MBU",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,86 @@
+{
+  "kind": "ability",
+  "id": 154,
+  "name": "Méga Glace",
+  "description": "Effectue une attaque magique de glace sur la cible.\nPuissance : 290\nEffet additionnel : dissipe Feu astral si actif et vous octroie Glace ombrale au plus haut degré.",
+  "description_macro": "Effectue une attaque magique de glace sur la cible.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> 290<br><colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> dissipe <colortype(500)><edgecolortype(501)>Feu astral<edgecolortype(0)><colortype(0)> si actif et vous octroie <colortype(500)><edgecolortype(501)>Glace ombrale<edgecolortype(0)><colortype(0)> au plus haut degré.",
+  "effects": [
+    "Effectue une attaque magique de glace sur la cible.",
+    "Puissance : 290",
+    "Effet additionnel : dissipe Feu astral si actif et vous octroie Glace ombrale au plus haut degré."
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 25,
+    "name": "Mage Noir",
+    "abbreviation": "MNO"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 35,
+  "icon": {
+    "id": 456,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 2,
+    "name": "Sort"
+  },
+  "attack_type": {
+    "id": 5,
+    "name": "magie"
+  },
+  "timing": {
+    "cast_seconds": 3.5,
+    "recast_seconds": 2.5,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 58,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 3,
+      "value": 8
+    },
+    "secondary": {
+      "type_id": 0,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": 25,
+    "effect_yalms": 0,
+    "cast_type": 1
+  },
+  "targeting": {
+    "self": false,
+    "party": false,
+    "alliance": false,
+    "hostile": true,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": false
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 2,
+    "behavior_type": 0,
+    "class_job_category_id": 26,
+    "source_class_job_id": 25,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

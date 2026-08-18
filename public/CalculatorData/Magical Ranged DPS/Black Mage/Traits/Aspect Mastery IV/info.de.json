@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 462,
+  "name": "Elementare Meisterschaft IV",
+  "description": "Verbessert Feura zu Hohes Feura und Eisra zu Hohes Eisra.",
+  "description_macro": "Verbessert <colortype(502)><edgecolortype(503)>Feura<edgecolortype(0)><colortype(0)> zu <colortype(502)><edgecolortype(503)>Hohes Feura<edgecolortype(0)><colortype(0)> und <colortype(502)><edgecolortype(503)>Eisra<edgecolortype(0)><colortype(0)> zu <colortype(502)><edgecolortype(503)>Hohes Eisra<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Verbessert Feura zu Hohes Feura und Eisra zu Hohes Eisra."
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 25,
+    "name": "Schwarzmagier",
+    "abbreviation": "SMA"
+  },
+  "unlock_level": 82,
+  "value": 0,
+  "icon": {
+    "id": 5370,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 26,
+  "source_class_job_id": 25
+}

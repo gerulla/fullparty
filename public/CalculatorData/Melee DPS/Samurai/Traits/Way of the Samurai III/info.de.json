@@ -1,0 +1,36 @@
+{
+  "kind": "trait",
+  "id": 655,
+  "name": "Verbessertes Bushido III",
+  "description": "Erhöht den Attacke-Wert folgender Kommandos:\nAttacke-Wert von Jinpu: 140\nAttacke-Wert von Enpi bei Verbessertes Enpi: 270\nAttacke-Wert von Shifu: 140\nAttacke-Wert von Gekko: 160\nAttacke-Wert des Schaden-über-Zeit-Effekts von Higanbana: 50\nAttacke-Wert von Kasha: 160\nAttacke-Wert von Yukikaze: 160\nAttacke-Wert von Midare Setsugekka: 680\nAttacke-Wert von Kaeshi Setsugekka: 680\nAttacke-Wert von Shoha: 640\nAttacke-Wert von Ogi Namikiri: 1.000\nAttacke-Wert von Kaeshi Namikiri: 1.000",
+  "description_macro": "Erhöht den Attacke-Wert folgender Kommandos:<br>Attacke-Wert von <colortype(502)><edgecolortype(503)>Jinpu<edgecolortype(0)><colortype(0)>: 140<br>Attacke-Wert von <colortype(502)><edgecolortype(503)>Enpi<edgecolortype(0)><colortype(0)> bei <colortype(506)><edgecolortype(507)>Verbessertes Enpi<edgecolortype(0)><colortype(0)>: 270<br>Attacke-Wert von <colortype(502)><edgecolortype(503)>Shifu<edgecolortype(0)><colortype(0)>: 140<br>Attacke-Wert von <colortype(502)><edgecolortype(503)>Gekko<edgecolortype(0)><colortype(0)>: 160<br>Attacke-Wert des Schaden-über-Zeit-Effekts von <colortype(502)><edgecolortype(503)>Higanbana<edgecolortype(0)><colortype(0)>: 50<br>Attacke-Wert von <colortype(502)><edgecolortype(503)>Kasha<edgecolortype(0)><colortype(0)>: 160<br>Attacke-Wert von <colortype(502)><edgecolortype(503)>Yukikaze<edgecolortype(0)><colortype(0)>: 160<br>Attacke-Wert von <colortype(502)><edgecolortype(503)>Midare Setsugekka<edgecolortype(0)><colortype(0)>: 680<br>Attacke-Wert von <colortype(502)><edgecolortype(503)>Kaeshi Setsugekka<edgecolortype(0)><colortype(0)>: 680<br>Attacke-Wert von <colortype(502)><edgecolortype(503)>Shoha<edgecolortype(0)><colortype(0)>: 640<br>Attacke-Wert von <colortype(502)><edgecolortype(503)>Ogi Namikiri<edgecolortype(0)><colortype(0)>: 1.000<br>Attacke-Wert von <colortype(502)><edgecolortype(503)>Kaeshi Namikiri<edgecolortype(0)><colortype(0)>: 1.000",
+  "effects": [
+    "Erhöht den Attacke-Wert folgender Kommandos:",
+    "Attacke-Wert von Jinpu: 140",
+    "Attacke-Wert von Enpi bei Verbessertes Enpi: 270",
+    "Attacke-Wert von Shifu: 140",
+    "Attacke-Wert von Gekko: 160",
+    "Attacke-Wert des Schaden-über-Zeit-Effekts von Higanbana: 50",
+    "Attacke-Wert von Kasha: 160",
+    "Attacke-Wert von Yukikaze: 160",
+    "Attacke-Wert von Midare Setsugekka: 680",
+    "Attacke-Wert von Kaeshi Setsugekka: 680",
+    "Attacke-Wert von Shoha: 640",
+    "Attacke-Wert von Ogi Namikiri: 1.000",
+    "Attacke-Wert von Kaeshi Namikiri: 1.000"
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 34,
+    "name": "Samurai",
+    "abbreviation": "SAM"
+  },
+  "unlock_level": 94,
+  "value": 0,
+  "icon": {
+    "id": 6803,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 111,
+  "source_class_job_id": 34
+}

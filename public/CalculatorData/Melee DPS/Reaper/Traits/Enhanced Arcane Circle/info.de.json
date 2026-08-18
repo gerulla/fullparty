@@ -1,0 +1,31 @@
+{
+  "kind": "trait",
+  "id": 387,
+  "name": "Verbesserter Arkaner Kreis",
+  "description": "Gewährt dir und umstehenden Gruppenmitgliedern bei erfolgreicher Ausführung von Arkaner Kreis Kreis des Blutes.\nDauer: 5 Sekunden\nEffekt von Kreis des Blutes: Bei erfolgreichem Treffer mit einer Waffenfertigkeit oder einem Zauber wird dem Verursacher des Status Totenopfer gewährt.\nMaximalstapelzahl: 8\nDauer: 30 Sekunden\nZusatzeffekt: Opfergeist\nDauer: 6 Sekunden\nEffekt von Opfergeist: Kann von Zielen mit aktivem Kreis des Blutes Stapel von Totenopfer erhalten.",
+  "description_macro": "Gewährt dir und umstehenden Grup<->pen<->mit<->gliedern bei erfolgreicher Ausführung von <colortype(502)><edgecolortype(503)>Arkaner Kreis<edgecolortype(0)><colortype(0)> <colortype(506)><edgecolortype(507)>Kreis des Blutes<edgecolortype(0)><colortype(0)>.<br>Dauer: 5 Sekunden<br>Effekt von <colortype(506)><edgecolortype(507)>Kreis des Blutes<edgecolortype(0)><colortype(0)>: Bei erfolgreichem Treffer mit einer Waf<->fen<->fer<->tig<->keit oder einem Zauber wird dem Verursacher des Status <colortype(506)><edgecolortype(507)>Totenopfer<edgecolortype(0)><colortype(0)> gewährt.<br>Ma<->xi<->mal<->sta<->pel<->zahl: 8<br>Dauer: 30 Sekunden<br>Zusatzeffekt: <colortype(506)><edgecolortype(507)>Opfergeist<edgecolortype(0)><colortype(0)><br>Dauer: 6 Sekunden<br>Effekt von <colortype(506)><edgecolortype(507)>Opfergeist<edgecolortype(0)><colortype(0)>: Kann von Zielen mit aktivem <colortype(506)><edgecolortype(507)>Kreis des Blutes<edgecolortype(0)><colortype(0)> Stapel von <colortype(506)><edgecolortype(507)>Totenopfer<edgecolortype(0)><colortype(0)> erhalten.",
+  "effects": [
+    "Gewährt dir und umstehenden Gruppenmitgliedern bei erfolgreicher Ausführung von Arkaner Kreis Kreis des Blutes.",
+    "Dauer: 5 Sekunden",
+    "Effekt von Kreis des Blutes: Bei erfolgreichem Treffer mit einer Waffenfertigkeit oder einem Zauber wird dem Verursacher des Status Totenopfer gewährt.",
+    "Maximalstapelzahl: 8",
+    "Dauer: 30 Sekunden",
+    "Zusatzeffekt: Opfergeist",
+    "Dauer: 6 Sekunden",
+    "Effekt von Opfergeist: Kann von Zielen mit aktivem Kreis des Blutes Stapel von Totenopfer erhalten."
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 39,
+    "name": "Schnitter",
+    "abbreviation": "SNT"
+  },
+  "unlock_level": 88,
+  "value": 0,
+  "icon": {
+    "id": 6409,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 180,
+  "source_class_job_id": 39
+}

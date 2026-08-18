@@ -1,0 +1,134 @@
+{
+  "kind": "combat_status",
+  "id": 175,
+  "name": "Feu astral III",
+  "description": "L'équilibre éthéré de votre esprit s'incline vers l'astral. Vos sorts de feu sont plus puissants mais consomment davantage de PM. Les sorts de glace sont moins puissants mais consomment moins de PM, et leur temps de lancement est divisé par deux. Les PM ne se régénèrent plus naturellement.",
+  "effects": [
+    "L'équilibre éthéré de votre esprit s'incline vers l'astral. Vos sorts de feu sont plus puissants mais consomment davantage de PM. Les sorts de glace sont moins puissants mais consomment moins de PM, et leur temps de lancement est divisé par deux. Les PM ne se régénèrent plus naturellement."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 210465,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": true,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 147,
+      "name": "Extra Feu",
+      "description": "Effectue une attaque magique de feu sur la cible et les ennemis autour.\nPuissance : 80\nEffet additionnel : dissipe Glace ombrale si actif et vous octroie Feu astral au plus haut degré.",
+      "description_macro": "Effectue une attaque magique de feu sur la cible et les ennemis autour.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> 80<br><colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> <if([gnum72>=35],<if([gnum68==7],dissipe <colortype(500)><edgecolortype(501)>Glace ombrale<edgecolortype(0)><colortype(0)> si actif et vous octroie <colortype(500)><edgecolortype(501)>Feu astral<edgecolortype(0)><colortype(0)> au plus haut degré.,<if([gnum68==25],dissipe <colortype(500)><edgecolortype(501)>Glace ombrale<edgecolortype(0)><colortype(0)> si actif et vous octroie <colortype(500)><edgecolortype(501)>Feu astral<edgecolortype(0)><colortype(0)> au plus haut degré.,dissipe <colortype(500)><edgecolortype(501)>Glace ombrale<edgecolortype(0)><colortype(0)> si actif. Sinon\\, vous octroie <colortype(500)><edgecolortype(501)>Feu astral<edgecolortype(0)><colortype(0)>.)>)>,dissipe <colortype(500)><edgecolortype(501)>Glace ombrale<edgecolortype(0)><colortype(0)> si actif. Sinon\\, vous octroie <colortype(500)><edgecolortype(501)>Feu astral<edgecolortype(0)><colortype(0)>.)>",
+      "unlock_level": 18,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Magical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 25,
+          "name": "Mage Noir",
+          "abbreviation": "MNO",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 152,
+      "name": "Méga Feu",
+      "description": "Effectue une attaque magique de feu sur la cible.\nPuissance : 290\nEffet additionnel : dissipe Glace ombrale si actif et vous octroie Feu astral au plus haut degré.",
+      "description_macro": "Effectue une attaque magique de feu sur la cible.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> 290<br><colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> dissipe <colortype(500)><edgecolortype(501)>Glace ombrale<edgecolortype(0)><colortype(0)> si actif et vous octroie <colortype(500)><edgecolortype(501)>Feu astral<edgecolortype(0)><colortype(0)> au plus haut degré.",
+      "unlock_level": 35,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Magical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 25,
+          "name": "Mage Noir",
+          "abbreviation": "MNO",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 162,
+      "name": "Brasier",
+      "description": "Effectue une attaque magique de feu sur la cible et les ennemis autour.\nPuissance : 240\nLa puissance est réduite de 30% au-delà du premier ennemi touché.\nEffet additionnel : vous octroie Feu astral au plus haut degré.\nEffet additionnel : vous octroie 3 degrés d'Âme astrale.\nLes Âmes astrales disparaissent lorsque Feu astral se dissipe.\nCondition : Feu astral.",
+      "description_macro": "Effectue une attaque magique de feu sur la cible et les ennemis autour.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> 240<br>La puissance est réduite de 30% au-delà du premier ennemi touché.<br><colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> vous octroie <colortype(500)><edgecolortype(501)>Feu astral<edgecolortype(0)><colortype(0)> au plus haut degré.<br><if([gnum68==25],<if([gnum72>=100],<colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> vous octroie 3 degrés d'<colortype(500)><edgecolortype(501)>Âme astrale<edgecolortype(0)><colortype(0)>.<br>Les Âmes astrales dis<->pa<->rais<->sent lorsque Feu astral se dissipe.<br>,)>,)><colortype(506)><edgecolortype(507)>Condition<nbsp>:<edgecolortype(0)><colortype(0)> <colortype(500)><edgecolortype(501)>Feu astral<edgecolortype(0)><colortype(0)>.",
+      "unlock_level": 50,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Magical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 25,
+          "name": "Mage Noir",
+          "abbreviation": "MNO",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 16505,
+      "name": "Feu du désespoir",
+      "description": "Effectue une attaque magique de feu sur la cible.\nPuissance : 350\nEffet additionnel : vous octroie Feu astral au plus haut degré.\nCondition : Feu astral.",
+      "description_macro": "Effectue une attaque magique de feu sur la cible.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> 350<br><colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> vous octroie <colortype(500)><edgecolortype(501)>Feu astral<edgecolortype(0)><colortype(0)> au plus haut degré.<br><colortype(506)><edgecolortype(507)>Condition<nbsp>:<edgecolortype(0)><colortype(0)> <colortype(500)><edgecolortype(501)>Feu astral<edgecolortype(0)><colortype(0)>.",
+      "unlock_level": 72,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Magical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 25,
+          "name": "Mage Noir",
+          "abbreviation": "MNO",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 25794,
+      "name": "Extra Feu majeur",
+      "description": "Effectue une attaque magique de feu sur la cible et les ennemis autour.\nPuissance : 100\nEffet additionnel : dissipe Glace ombrale si actif et vous octroie Feu astral au plus haut degré.",
+      "description_macro": "Effectue une attaque magique de feu sur la cible et les ennemis autour.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> 100<br><colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> dissipe <colortype(500)><edgecolortype(501)>Glace ombrale<edgecolortype(0)><colortype(0)> si actif et vous octroie <colortype(500)><edgecolortype(501)>Feu astral<edgecolortype(0)><colortype(0)> au plus haut degré.",
+      "unlock_level": 82,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Magical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 25,
+          "name": "Mage Noir",
+          "abbreviation": "MNO",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 2599,
+  "name": "Arcane Circle",
+  "description": "Damage dealt is increased.",
+  "effects": [
+    "Damage dealt is increased."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 212936,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 1,
+  "parameter": {
+    "effect": 0,
+    "modifier": 5
+  },
+  "class_job_category_id": 180,
+  "source_abilities": [
+    {
+      "id": 24405,
+      "name": "Arcane Circle",
+      "description": "Increases damage dealt by self and nearby party members by 3%.\nDuration: 20s\nAdditional Effect: Grants Circle of Sacrifice to self and nearby party members\nDuration: 5s\nAdditional Effect: Grants Bloodsown Circle to self\nDuration: 6s\nCircle of Sacrifice Effect: When you or party members under this effect successfully land a weaponskill or ability\\",
+      "description_macro": "Increases damage dealt by self and nearby party members by 3%.<br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>20s<if([gnum68==39],<if([gnum72>=88],<br><colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>Grants <colortype(506)><edgecolortype(507)>Circle of Sacrifice<edgecolortype(0)><colortype(0)> to self and nearby party members<br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>5s<br><colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>Grants <colortype(506)><edgecolortype(507)>Bloodsown Circle<edgecolortype(0)><colortype(0)> to self<br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>6s<br><colortype(504)><edgecolortype(505)>Circle of Sacrifice Effect: <edgecolortype(0)><colortype(0)>When you or party members under this effect successfully land a weaponskill or ability\\, or cast a spell\\, the reaper who applied it may be granted a stack of <colortype(506)><edgecolortype(507)>Immortal Sacrifice<edgecolortype(0)><colortype(0)>\\, up to a maximum of 8<br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>30s<br><colortype(504)><edgecolortype(505)>Bloodsown Circle Effect: <edgecolortype(0)><colortype(0)>Allows you to accumulate stacks of <colortype(506)><edgecolortype(507)>Immortal Sacrifice<edgecolortype(0)><colortype(0)> from party members under the effect of your <colortype(506)><edgecolortype(507)>Circle of Sacrifice<edgecolortype(0)><colortype(0)>,)>,)>",
+      "unlock_level": 72,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 39,
+          "name": "Reaper",
+          "abbreviation": "RPR",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

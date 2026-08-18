@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 673,
+  "name": "Magick Mastery",
+  "description": "Increases the potency of Combust III's damage over time to 70, Fall Malefic to 270, Gravity II to 140, and Macrocosmos to 270.",
+  "description_macro": "Increases the potency of <colortype(500)><edgecolortype(501)>Combust III<edgecolortype(0)><colortype(0)>'s damage over time to 70, <colortype(500)><edgecolortype(501)>Fall Malefic<edgecolortype(0)><colortype(0)> to 270, <colortype(500)><edgecolortype(501)>Gravity II<edgecolortype(0)><colortype(0)> to 140, and <colortype(500)><edgecolortype(501)>Macrocosmos<edgecolortype(0)><colortype(0)> to 270.",
+  "effects": [
+    "Increases the potency of Combust III's damage over time to 70, Fall Malefic to 270, Gravity II to 140, and Macrocosmos to 270."
+  ],
+  "role": "Healer",
+  "job": {
+    "id": 33,
+    "name": "Astrologian",
+    "abbreviation": "AST"
+  },
+  "unlock_level": 94,
+  "value": 0,
+  "icon": {
+    "id": 6831,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 99,
+  "source_class_job_id": 33
+}

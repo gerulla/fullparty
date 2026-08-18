@@ -1,0 +1,87 @@
+{
+  "kind": "ability",
+  "id": 7496,
+  "name": "Hissatsu: Guren",
+  "description": "Du führst eine physische Attacke auf alle Gegner in gerader Linie vor dir aus.\nAttacke-Wert: 400\nKenki-Balken-Kosten: 25\nGemeinsamer Reaktivierungs-Timer mit Hissatsu: Senei",
+  "description_macro": "Du führst eine physische Attacke auf alle Gegner in gerader Linie vor dir aus.<br>Attacke-Wert: 400<br>Kenki-Balken-Kosten: 25<if([gnum68==34],<if([gnum72>=72],<br>Gemeinsamer Reaktivierungs-Timer mit <colortype(502)><edgecolortype(503)>Hissatsu: Senei<edgecolortype(0)><colortype(0)>,)>,)>",
+  "effects": [
+    "Du führst eine physische Attacke auf alle Gegner in gerader Linie vor dir aus.",
+    "Attacke-Wert: 400",
+    "Kenki-Balken-Kosten: 25",
+    "Gemeinsamer Reaktivierungs-Timer mit Hissatsu: Senei"
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 34,
+    "name": "Samurai",
+    "abbreviation": "SAM"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 70,
+  "icon": {
+    "id": 3177,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 4,
+    "name": "Talent"
+  },
+  "attack_type": {
+    "id": 4294967295,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 120,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 22,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 39,
+      "value": 25
+    },
+    "secondary": {
+      "type_id": 0,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": 10,
+    "effect_yalms": 10,
+    "cast_type": 4
+  },
+  "targeting": {
+    "self": false,
+    "party": false,
+    "alliance": false,
+    "hostile": true,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 7,
+    "behavior_type": 0,
+    "class_job_category_id": 111,
+    "source_class_job_id": 34,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

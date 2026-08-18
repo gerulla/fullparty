@@ -1,0 +1,99 @@
+{
+  "kind": "combat_status",
+  "id": 1204,
+  "name": "Rêve lucide",
+  "description": "Des PM sont récupérés périodiquement.",
+  "effects": [
+    "Des PM sont récupérés périodiquement."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 213909,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 60
+  },
+  "class_job_category_id": 120,
+  "source_abilities": [
+    {
+      "id": 7562,
+      "name": "Rêve lucide",
+      "description": "Restaure périodiquement vos PM.\nPuissance : 55 Durée : 21s",
+      "description_macro": "Restaure périodiquement vos PM.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> 55 <colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 21s",
+      "unlock_level": 14,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Healer",
+        "Magical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 24,
+          "name": "Mage Blanc",
+          "abbreviation": "MBL",
+          "is_phantom": false
+        },
+        {
+          "id": 28,
+          "name": "Érudit",
+          "abbreviation": "ÉRU",
+          "is_phantom": false
+        },
+        {
+          "id": 33,
+          "name": "Astromancien",
+          "abbreviation": "AST",
+          "is_phantom": false
+        },
+        {
+          "id": 40,
+          "name": "Sage",
+          "abbreviation": "SAG",
+          "is_phantom": false
+        },
+        {
+          "id": 25,
+          "name": "Mage Noir",
+          "abbreviation": "MNO",
+          "is_phantom": false
+        },
+        {
+          "id": 27,
+          "name": "Invocateur",
+          "abbreviation": "INV",
+          "is_phantom": false
+        },
+        {
+          "id": 35,
+          "name": "Mage Rouge",
+          "abbreviation": "MRG",
+          "is_phantom": false
+        },
+        {
+          "id": 42,
+          "name": "Pictomancien",
+          "abbreviation": "PIC",
+          "is_phantom": false
+        },
+        {
+          "id": 36,
+          "name": "Mage Bleu",
+          "abbreviation": "MBU",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "kind": "trait",
+  "id": 195,
+  "name": "Verbesserter Stoß",
+  "description": "Verbessert Stoß zu Stoß II.\nAußerdem werden die Attacke-Werte von Erzblitz und Erzwind auf 360 und von Erzfeuer und Erzstein auf 300 erhöht.",
+  "description_macro": "Verbessert <colortype(502)><edgecolortype(503)>Stoß<edgecolortype(0)><colortype(0)> zu <colortype(502)><edgecolortype(503)>Stoß II<edgecolortype(0)><colortype(0)>.<br>Außerdem werden die Attacke-Werte von <colortype(502)><edgecolortype(503)>Erzblitz<edgecolortype(0)><colortype(0)> und <colortype(502)><edgecolortype(503)>Erzwind<edgecolortype(0)><colortype(0)> auf 360 und von <colortype(502)><edgecolortype(503)>Erzfeuer<edgecolortype(0)><colortype(0)> und <colortype(502)><edgecolortype(503)>Erzstein<edgecolortype(0)><colortype(0)> auf 300 erhöht.",
+  "effects": [
+    "Verbessert Stoß zu Stoß II.",
+    "Außerdem werden die Attacke-Werte von Erzblitz und Erzwind auf 360 und von Erzfeuer und Erzstein auf 300 erhöht."
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 35,
+    "name": "Rotmagier",
+    "abbreviation": "RMA"
+  },
+  "unlock_level": 62,
+  "value": 0,
+  "icon": {
+    "id": 6201,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 112,
+  "source_class_job_id": 35
+}

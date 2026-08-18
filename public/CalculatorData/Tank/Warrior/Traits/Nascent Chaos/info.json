@@ -1,0 +1,25 @@
+{
+  "kind": "trait",
+  "id": 267,
+  "name": "Nascent Chaos",
+  "description": "Infuriate grants the effect of Nascent Chaos, upgrading Decimate to Chaotic Cyclone when the Beast Gauge is 50 or greater. Upon reaching level 80, Nascent Chaos will also upgrade Fell Cleave to Inner Chaos. \nDuration: 30s",
+  "description_macro": "<colortype(500)><edgecolortype(501)>Infuriate<edgecolortype(0)><colortype(0)> grants the effect of <colortype(506)><edgecolortype(507)>Nascent Chaos<edgecolortype(0)><colortype(0)>, upgrading <colortype(500)><edgecolortype(501)>Decimate<edgecolortype(0)><colortype(0)> to <colortype(500)><edgecolortype(501)>Chaotic Cyclone<edgecolortype(0)><colortype(0)> when the <colortype(500)><edgecolortype(501)>Beast Gauge<edgecolortype(0)><colortype(0)> is 50 or greater. Upon reaching level 80, <colortype(506)><edgecolortype(507)>Nascent Chaos<edgecolortype(0)><colortype(0)> will also upgrade <colortype(500)><edgecolortype(501)>Fell Cleave<edgecolortype(0)><colortype(0)> to <colortype(500)><edgecolortype(501)>Inner Chaos<edgecolortype(0)><colortype(0)>. <br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>30s",
+  "effects": [
+    "Infuriate grants the effect of Nascent Chaos, upgrading Decimate to Chaotic Cyclone when the Beast Gauge is 50 or greater. Upon reaching level 80, Nascent Chaos will also upgrade Fell Cleave to Inner Chaos.",
+    "Duration: 30s"
+  ],
+  "role": "Tank",
+  "job": {
+    "id": 21,
+    "name": "Warrior",
+    "abbreviation": "WAR"
+  },
+  "unlock_level": 72,
+  "value": 0,
+  "icon": {
+    "id": 5264,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 22,
+  "source_class_job_id": 21
+}

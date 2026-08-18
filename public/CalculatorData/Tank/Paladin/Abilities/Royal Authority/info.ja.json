@@ -1,0 +1,90 @@
+{
+  "kind": "ability",
+  "id": 3539,
+  "name": "ロイヤルアソリティ",
+  "description": "対象に物理攻撃。\u3000威力：200\nコンボ条件：ライオットソード\u3000コンボ時威力：460\nコンボボーナス：自身に「ロイエ実行可」を付与する。\n効果時間：30秒\nコンボボーナス：自身に「神聖魔法効果アップ」を付与する。\n効果時間：30秒\n神聖魔法効果アップ効果：次に実行する1回のホーリースピリットまたはホーリーサークルの威力が上昇し、かつ詠唱時間無しで実行できる。",
+  "description_macro": "対象に物理攻撃。\u3000<colortype(504)><edgecolortype(505)>威力：<edgecolortype(0)><colortype(0)><if([gnum68==19],<if([gnum72>=94],200,<if([gnum68==19],<if([gnum72>=84],140,100)>,100)>)>,<if([gnum68==19],<if([gnum72>=84],140,100)>,100)>)><br><colortype(504)><edgecolortype(505)>コンボ条件：<edgecolortype(0)><colortype(0)>ライオットソード\u3000<colortype(504)><edgecolortype(505)>コンボ時威力：<edgecolortype(0)><colortype(0)><if([gnum68==19],<if([gnum72>=94],460,<if([gnum68==19],<if([gnum72>=84],400,360)>,360)>)>,<if([gnum68==19],<if([gnum72>=84],400,360)>,360)>)><if([gnum68==19],<if([gnum72>=76],<br><colortype(504)><edgecolortype(505)>コンボボーナス：<edgecolortype(0)><colortype(0)>自身に<colortype(500)><edgecolortype(501)>「ロイエ実行可」<edgecolortype(0)><colortype(0)>を付与する。<br><colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>30秒,)>,)><if([gnum68==19],<if([gnum72>=64],<br><colortype(504)><edgecolortype(505)>コンボボーナス：<edgecolortype(0)><colortype(0)>自身に<colortype(500)><edgecolortype(501)>「神聖魔法効果アップ」<edgecolortype(0)><colortype(0)>を付与する。<br><colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>30秒<br><colortype(504)><edgecolortype(505)>神聖魔法効果アップ効果：<edgecolortype(0)><colortype(0)>次に実行する1回のホーリースピリット<if([gnum68==19],<if([gnum72>=72],またはホーリーサークル,)>,)>の威力が上昇し、かつ詠唱時間無しで実行できる。,)>,)>",
+  "effects": [
+    "対象に物理攻撃。\u3000威力：200",
+    "コンボ条件：ライオットソード\u3000コンボ時威力：460",
+    "コンボボーナス：自身に「ロイエ実行可」を付与する。",
+    "効果時間：30秒",
+    "コンボボーナス：自身に「神聖魔法効果アップ」を付与する。",
+    "効果時間：30秒",
+    "神聖魔法効果アップ効果：次に実行する1回のホーリースピリットまたはホーリーサークルの威力が上昇し、かつ詠唱時間無しで実行できる。"
+  ],
+  "role": "Tank",
+  "job": {
+    "id": 19,
+    "name": "ナイト",
+    "abbreviation": "PLD"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 60,
+  "icon": {
+    "id": 2507,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 3,
+    "name": "ウェポンスキル"
+  },
+  "attack_type": {
+    "id": 4294967295,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 2.5,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 58,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 0,
+      "value": 0
+    },
+    "secondary": {
+      "type_id": 0,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": -1,
+    "effect_yalms": 0,
+    "cast_type": 1
+  },
+  "targeting": {
+    "self": false,
+    "party": false,
+    "alliance": false,
+    "hostile": true,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": 15,
+    "preserves_combo": false
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 7,
+    "behavior_type": 0,
+    "class_job_category_id": 20,
+    "source_class_job_id": 19,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

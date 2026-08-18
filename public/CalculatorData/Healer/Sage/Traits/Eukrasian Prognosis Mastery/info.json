@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 637,
+  "name": "Eukrasian Prognosis Mastery",
+  "description": "Upgrades Eukrasian Prognosis to Eukrasian Prognosis II.",
+  "description_macro": "Upgrades <colortype(500)><edgecolortype(501)>Eukrasian Prognosis<edgecolortype(0)><colortype(0)> to <colortype(500)><edgecolortype(501)>Eukrasian Prognosis II<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Upgrades Eukrasian Prognosis to Eukrasian Prognosis II."
+  ],
+  "role": "Healer",
+  "job": {
+    "id": 40,
+    "name": "Sage",
+    "abbreviation": "SGE"
+  },
+  "unlock_level": 96,
+  "value": 0,
+  "icon": {
+    "id": 6460,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 181,
+  "source_class_job_id": 40
+}

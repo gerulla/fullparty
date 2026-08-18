@@ -1,0 +1,93 @@
+{
+  "kind": "combat_status",
+  "id": 2024,
+  "name": "Einfaches Finale",
+  "description": "Die (Re-)Aktivierungszeit von Waffenfertigkeiten und Zaubern ist verkürzt.",
+  "effects": [
+    "Die (Re-)Aktivierungszeit von Waffenfertigkeiten und Zaubern ist verkürzt."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 213708,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": true,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": -10
+  },
+  "class_job_category_id": 150,
+  "source_abilities": [
+    {
+      "id": 16003,
+      "name": "Einfaches Finale",
+      "description": "Du führst eine physische Attacke auf alle umstehenden Gegner aus.\nAttacke-Wert variiert mit der Anzahl der Tanzschritte:\n0 Schritte: 360\n1 Schritt: 540\n2 Schritte: 850\nAttacke-Wert verringert sich ab dem zweiten Gegner um 60 %.\nZusatzeffekt: Gewährt dir Bühneneuphorie.\nDauer: 30 Sekunden\nBedingung: Während des Tanzes\nTanzschritt-Bonus: Gewährt dir und dem von dir bestimmten Gruppenmitglied mit dem Status Auserwählter Tanzpartner die Status Tanzfieber und Einfaches Finale.\nDer Schadensbonus von Einfaches Finale variiert mit der Anzahl der Tanzschritte:\n1 Schritt: 2 %\n2 Schritte: 5 %\nDauer: 60 Sekunden\nEigener Reaktivierungs-Timer\nBei Ausführung wird der Reaktivierungs-Timer dieses Kommandos auf alle anderen Waffenfertigkeiten und Magie angewendet.\nBei erfüllter Bedingung ändert sich Einfache Choreographie zu diesem Kommando.\nKann nicht im Kommandomenü angelegt werden.",
+      "description_macro": "Du führst eine physische Attacke auf alle umstehenden Gegner aus.<br>Attacke-Wert variiert mit der Anzahl der Tanzschritte:<br>0 Schritte: 360<br>1 Schritt: 540<br>2 Schritte: <if([gnum68==38],<if([gnum72>=94],850,800)>,800)><br>Attacke-Wert verringert sich ab dem zweiten Gegner um 60 %.<br><if([gnum68==38],<if([gnum72>=92],Zusatzeffekt: Gewährt dir <colortype(506)><edgecolortype(507)>Bühneneuphorie<edgecolortype(0)><colortype(0)>.<br>Dauer: 30 Sekunden<br>,)>,)>Bedingung: Während des Tanzes<br><if([gnum68==38],<if([gnum72>=76],Tanzschritt-Bonus: Gewährt dir und dem von dir bestimmten Grup<->pen<->mit<->glied mit dem Status <colortype(506)><edgecolortype(507)>Auserwählter Tanzpartner<edgecolortype(0)><colortype(0)> die Status <colortype(506)><edgecolortype(507)>Tanzfieber<edgecolortype(0)><colortype(0)> und <colortype(506)><edgecolortype(507)>Einfaches Finale<edgecolortype(0)><colortype(0)>.<br>,Tanzschritt-Bonus: Gewährt dir und dem von dir bestimmten Grup<->pen<->mit<->glied mit dem Status <colortype(506)><edgecolortype(507)>Auserwählter Tanzpartner<edgecolortype(0)><colortype(0)> den Status <colortype(506)><edgecolortype(507)>Einfaches Finale<edgecolortype(0)><colortype(0)>.<br>)>,Tanzschritt-Bonus: Gewährt dir und dem von dir bestimmten Grup<->pen<->mit<->glied mit dem Status <colortype(506)><edgecolortype(507)>Auserwählter Tanzpartner<edgecolortype(0)><colortype(0)> den Status <colortype(506)><edgecolortype(507)>Einfaches Finale<edgecolortype(0)><colortype(0)>.<br>)>Der Schadensbonus von <colortype(502)><edgecolortype(503)>Einfaches Finale<edgecolortype(0)><colortype(0)> variiert mit der Anzahl der Tanzschritte:<br>1 Schritt: 2 %<br>2 Schritte: 5 %<br>Dauer: 60 Sekunden<br>Eigener Reaktivierungs-Timer<br>Bei Ausführung wird der Reaktivierungs-Timer dieses Kommandos auf alle anderen Waf<->fen<->fer<->tig<->kei<->ten und Magie angewendet.<br>Bei erfüllter Bedingung ändert sich <colortype(502)><edgecolortype(503)>Einfache Choreographie<edgecolortype(0)><colortype(0)> zu diesem Kommando.<br>Kann nicht im Kommandomenü angelegt werden.",
+      "unlock_level": 15,
+      "relations": [
+        "granted_by_description",
+        "same_name"
+      ],
+      "roles": [
+        "Physical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 38,
+          "name": "Tänzer",
+          "abbreviation": "TÄN",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 16191,
+      "name": "Einfaches Finale I",
+      "description": "Du führst eine physische Attacke auf alle umstehenden Gegner aus.\nAttacke-Wert variiert mit der Anzahl der Tanzschritte:\n0 Schritte: 360\n1 Schritt: 540\n2 Schritte: 850\nAttacke-Wert verringert sich ab dem zweiten Gegner um 60 %.\nZusatzeffekt: Gewährt dir Bühneneuphorie\nDauer: 30 Sekunden\nBedingung: Tanzend\nTanzschritt-Bonus: Gewährt dir und dem von dir bestimmten Gruppenmitglied mit dem Status Auserwählter Tanzpartner die Status Tanzfieber und Einfaches Finale.\nDer Schadensbonus von Einfaches Finale variiert mit der Anzahl der Tanzschritte:\n1 Schritt: 2 %\n2 Schritte: 5 %\nDauer: 60 Sekunden\nEigener Reaktivierungs-Timer\nBei Ausführung wird der Reaktivierungs-Timer dieses Kommandos auf alle anderen Waffenfertigkeiten und Magie angewendet.\nBei erfüllter Bedingung ändert sich Einfache Choreographie zu diesem Kommando.\nKann nicht im Kommandomenü angelegt werden.",
+      "description_macro": "Du führst eine physische Attacke auf alle umstehenden Gegner aus.<br>Attacke-Wert variiert mit der Anzahl der Tanzschritte:<br>0 Schritte: 360<br>1 Schritt: 540<br>2 Schritte: <if([gnum68==38],<if([gnum72>=94],850,800)>,800)><br>Attacke-Wert verringert sich ab dem zweiten Gegner um 60 %.<br><if([gnum68==38],<if([gnum72>=92],Zusatzeffekt: Gewährt dir <colortype(506)><edgecolortype(507)>Bühneneuphorie<edgecolortype(0)><colortype(0)><br>Dauer: 30 Sekunden<br>,)>,)>Bedingung: Tanzend<br><if([gnum68==38],<if([gnum72>=76],Tanzschritt-Bonus: Gewährt dir und dem von dir bestimmten Grup<->pen<->mit<->glied mit dem Status <colortype(506)><edgecolortype(507)>Auserwählter Tanzpartner<edgecolortype(0)><colortype(0)> die Status <colortype(506)><edgecolortype(507)>Tanzfieber<edgecolortype(0)><colortype(0)> und <colortype(506)><edgecolortype(507)>Einfaches Finale<edgecolortype(0)><colortype(0)>.<br>,Tanzschritt-Bonus: Gewährt dir und dem von dir bestimmten Grup<->pen<->mit<->glied mit dem Status <colortype(506)><edgecolortype(507)>Auserwählter Tanzpartner<edgecolortype(0)><colortype(0)> den Status <colortype(506)><edgecolortype(507)>Einfaches Finale<edgecolortype(0)><colortype(0)>.<br>)>,Tanzschritt-Bonus: Gewährt dir und dem von dir bestimmten Grup<->pen<->mit<->glied mit dem Status <colortype(506)><edgecolortype(507)>Auserwählter Tanzpartner<edgecolortype(0)><colortype(0)> den Status <colortype(506)><edgecolortype(507)>Einfaches Finale<edgecolortype(0)><colortype(0)>.<br>)>Der Schadensbonus von <colortype(502)><edgecolortype(503)>Einfaches Finale<edgecolortype(0)><colortype(0)> variiert mit der Anzahl der Tanzschritte:<br>1 Schritt: 2 %<br>2 Schritte: 5 %<br>Dauer: 60 Sekunden<br>Eigener Reaktivierungs-Timer<br>Bei Ausführung wird der Reaktivierungs-Timer dieses Kommandos auf alle anderen Waf<->fen<->fer<->tig<->kei<->ten und Magie angewendet.<br>Bei erfüllter Bedingung ändert sich <colortype(502)><edgecolortype(503)>Einfache Choreographie<edgecolortype(0)><colortype(0)> zu diesem Kommando.<br>Kann nicht im Kommandomenü angelegt werden.",
+      "unlock_level": 15,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Physical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 38,
+          "name": "Tänzer",
+          "abbreviation": "TÄN",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 16192,
+      "name": "Einfaches Finale II",
+      "description": "Du führst eine physische Attacke auf alle umstehenden Gegner aus.\nAttacke-Wert variiert mit der Anzahl der Tanzschritte:\n0 Schritte: 360\n1 Schritt: 540\n2 Schritte: 850\nAttacke-Wert verringert sich ab dem zweiten Gegner um 60 %.\nZusatzeffekt: Gewährt dir Bühneneuphorie.\nDauer: 30 Sekunden\nBedingung: Tanzend\nTanzschritt-Bonus: Gewährt dir und dem von dir bestimmten Gruppenmitglied mit dem Status Auserwählter Tanzpartner die Status Tanzfieber und Einfaches Finale.\nDer Schadensbonus von Einfaches Finale variiert mit der Anzahl der Tanzschritte:\n1 Schritt: 2 %\n2 Schritte: 5 %\nDauer: 60 Sekunden\nEigener Reaktivierungs-Timer\nBei Ausführung wird der Reaktivierungs-Timer dieses Kommandos auf alle anderen Waffenfertigkeiten und Magie angewendet.\nBei erfüllter Bedingung ändert sich Einfache Choreographie zu diesem Kommando.\nKann nicht im Kommandomenü angelegt werden.",
+      "description_macro": "Du führst eine physische Attacke auf alle umstehenden Gegner aus.<br>Attacke-Wert variiert mit der Anzahl der Tanzschritte:<br>0 Schritte: 360<br>1 Schritt: 540<br>2 Schritte: <if([gnum68==38],<if([gnum72>=94],850,800)>,800)><br>Attacke-Wert verringert sich ab dem zweiten Gegner um 60 %.<br><if([gnum68==38],<if([gnum72>=92],Zusatzeffekt: Gewährt dir <colortype(506)><edgecolortype(507)>Bühneneuphorie<edgecolortype(0)><colortype(0)>.<br>Dauer: 30 Sekunden<br>,)>,)>Bedingung: Tanzend<br><if([gnum68==38],<if([gnum72>=76],Tanzschritt-Bonus: Gewährt dir und dem von dir bestimmten Grup<->pen<->mit<->glied mit dem Status <colortype(506)><edgecolortype(507)>Auserwählter Tanzpartner<edgecolortype(0)><colortype(0)> die Status <colortype(506)><edgecolortype(507)>Tanzfieber<edgecolortype(0)><colortype(0)> und <colortype(506)><edgecolortype(507)>Einfaches Finale<edgecolortype(0)><colortype(0)>.<br>,Tanzschritt-Bonus: Gewährt dir und dem von dir bestimmten Grup<->pen<->mit<->glied mit dem Status <colortype(506)><edgecolortype(507)>Auserwählter Tanzpartner<edgecolortype(0)><colortype(0)> den Status <colortype(506)><edgecolortype(507)>Einfaches Finale<edgecolortype(0)><colortype(0)>.<br>)>,Tanzschritt-Bonus: Gewährt dir und dem von dir bestimmten Grup<->pen<->mit<->glied mit dem Status <colortype(506)><edgecolortype(507)>Auserwählter Tanzpartner<edgecolortype(0)><colortype(0)> den Status <colortype(506)><edgecolortype(507)>Einfaches Finale<edgecolortype(0)><colortype(0)>.<br>)>Der Schadensbonus von <colortype(502)><edgecolortype(503)>Einfaches Finale<edgecolortype(0)><colortype(0)> variiert mit der Anzahl der Tanzschritte:<br>1 Schritt: 2 %<br>2 Schritte: 5 %<br>Dauer: 60 Sekunden<br>Eigener Reaktivierungs-Timer<br>Bei Ausführung wird der Reaktivierungs-Timer dieses Kommandos auf alle anderen Waf<->fen<->fer<->tig<->kei<->ten und Magie angewendet.<br>Bei erfüllter Bedingung ändert sich <colortype(502)><edgecolortype(503)>Einfache Choreographie<edgecolortype(0)><colortype(0)> zu diesem Kommando.<br>Kann nicht im Kommandomenü angelegt werden.",
+      "unlock_level": 15,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Physical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 38,
+          "name": "Tänzer",
+          "abbreviation": "TÄN",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 3846,
+  "name": "Starcross Ready",
+  "description": "Able to execute Starcross.",
+  "effects": [
+    "Able to execute Starcross."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 212588,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 23,
+  "source_abilities": [
+    {
+      "id": 16480,
+      "name": "Stardiver",
+      "description": "Delivers a jumping fire-based attack to target and all enemies nearby it with a potency of 840 for the first enemy, and 40% less for all remaining enemies.\nAdditional Effect: Grants Starcross Ready\nDuration: 20s\nEffect ends when Life of the Dragon expires.\nCan only be executed while under the effect of Life of the Dragon.\nCannot be executed while bound.",
+      "description_macro": "Delivers a jumping fire-based attack to target and all enemies nearby it with a potency of <if([gnum68==22],<if([gnum72>=94],840,720)>,720)> for the first enemy, and 40% less for all remaining enemies.<br><if([gnum68==22],<if([gnum72>=100],<colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>Grants <colortype(506)><edgecolortype(507)>Starcross Ready<edgecolortype(0)><colortype(0)><br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>20s<br>Effect ends when <colortype(506)><edgecolortype(507)>Life of the Dragon<edgecolortype(0)><colortype(0)> expires.<br>,)>,)>Can only be executed while under the effect of <colortype(506)><edgecolortype(507)>Life of the Dragon<edgecolortype(0)><colortype(0)>.<br>Cannot be executed while bound.",
+      "unlock_level": 80,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 22,
+          "name": "Dragoon",
+          "abbreviation": "DRG",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

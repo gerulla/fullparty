@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 421,
+  "name": "Verbesserter Sturmlauf",
+  "description": "Sturmlauf kann bis zu dreimal aufgeladen werden.",
+  "description_macro": "<colortype(502)><edgecolortype(503)>Sturmlauf<edgecolortype(0)><colortype(0)> kann bis zu dreimal aufgeladen werden.",
+  "effects": [
+    "Sturmlauf kann bis zu dreimal aufgeladen werden."
+  ],
+  "role": "Tank",
+  "job": {
+    "id": 21,
+    "name": "Krieger",
+    "abbreviation": "KRG"
+  },
+  "unlock_level": 88,
+  "value": 3,
+  "icon": {
+    "id": 5270,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 22,
+  "source_class_job_id": 21
+}

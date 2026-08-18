@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 141,
+  "name": "バトルボイス",
+  "description": "ダイレクトヒット発動率が向上した状態。",
+  "effects": [
+    "ダイレクトヒット発動率が向上した状態。"
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 212601,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 20
+  },
+  "class_job_category_id": 24,
+  "source_abilities": [
+    {
+      "id": 118,
+      "name": "バトルボイス",
+      "description": "一定時間、自身と周囲のパーティメンバーのダイレクトヒット発動率を20％上昇させる。\u3000効果時間：20秒",
+      "description_macro": "一定時間、自身と周囲のパーティメンバーのダイレクトヒット発動率を20％上昇させる。\u3000<colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>20秒",
+      "unlock_level": 50,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Physical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 23,
+          "name": "吟遊詩人",
+          "abbreviation": "BRD",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

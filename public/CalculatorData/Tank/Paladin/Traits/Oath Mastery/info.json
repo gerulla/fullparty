@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 209,
+  "name": "Oath Mastery",
+  "description": "Increases Oath Gauge by 5 each time an auto-attack lands.",
+  "description_macro": "Increases <colortype(500)><edgecolortype(501)>Oath Gauge<edgecolortype(0)><colortype(0)> by 5 each time an auto-attack lands.",
+  "effects": [
+    "Increases Oath Gauge by 5 each time an auto-attack lands."
+  ],
+  "role": "Tank",
+  "job": {
+    "id": 19,
+    "name": "Paladin",
+    "abbreviation": "PLD"
+  },
+  "unlock_level": 35,
+  "value": 0,
+  "icon": {
+    "id": 5211,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 20,
+  "source_class_job_id": 19
+}

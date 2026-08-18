@@ -1,0 +1,25 @@
+{
+  "kind": "trait",
+  "id": 480,
+  "name": "Verbesserter Schimmerschild",
+  "description": "Erlaubt es dir, Schimmerschild aufzuladen.\nMaximale Aufladungen: 2",
+  "description_macro": "Erlaubt es dir, <colortype(502)><edgecolortype(503)>Schimmerschild<edgecolortype(0)><colortype(0)> aufzuladen.<br>Maximale Aufladungen: 2",
+  "effects": [
+    "Erlaubt es dir, Schimmerschild aufzuladen.",
+    "Maximale Aufladungen: 2"
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 27,
+    "name": "Beschwörer",
+    "abbreviation": "BSW"
+  },
+  "unlock_level": 88,
+  "value": 2,
+  "icon": {
+    "id": 5694,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 28,
+  "source_class_job_id": 27
+}

@@ -1,0 +1,26 @@
+{
+  "kind": "trait",
+  "id": 482,
+  "name": "Mana Stack",
+  "description": "Adds a Mana Stack to your Balance Gauge upon landing Enchanted Riposte, Enchanted Zwerchhau, Enchanted Redoublement, Enchanted Moulinet, Enchanted Moulinet Deux, or Enchanted Moulinet Trois, up to a maximum of 3.\nUpon gaining 3 Mana Stacks, Verthunder and Verthunder II are upgraded to Verflare.\nUpon learning Verholy, gaining 3 Mana Stacks also upgrades Veraero and Veraero II to Verholy.",
+  "description_macro": "Adds a <colortype(506)><edgecolortype(507)>Mana Stack<edgecolortype(0)><colortype(0)> to your <colortype(500)><edgecolortype(501)>Balance Gauge<edgecolortype(0)><colortype(0)> upon landing <colortype(500)><edgecolortype(501)>Enchanted Riposte<edgecolortype(0)><colortype(0)>, <colortype(500)><edgecolortype(501)>Enchanted Zwerchhau<edgecolortype(0)><colortype(0)>, <colortype(500)><edgecolortype(501)>Enchanted Redoublement<edgecolortype(0)><colortype(0)>, <colortype(500)><edgecolortype(501)>Enchanted Moulinet<edgecolortype(0)><colortype(0)>, <colortype(500)><edgecolortype(501)>Enchanted Moulinet Deux<edgecolortype(0)><colortype(0)>, or <colortype(500)><edgecolortype(501)>Enchanted Moulinet Trois<edgecolortype(0)><colortype(0)>, up to a maximum of 3.<br>Upon gaining 3 <colortype(506)><edgecolortype(507)>Mana Stacks<edgecolortype(0)><colortype(0)>, <colortype(500)><edgecolortype(501)>Verthunder<edgecolortype(0)><colortype(0)> and <colortype(500)><edgecolortype(501)>Verthunder II<edgecolortype(0)><colortype(0)> are upgraded to <colortype(500)><edgecolortype(501)>Verflare<edgecolortype(0)><colortype(0)>.<br>Upon learning <colortype(500)><edgecolortype(501)>Verholy<edgecolortype(0)><colortype(0)>, gaining 3 <colortype(506)><edgecolortype(507)>Mana Stacks<edgecolortype(0)><colortype(0)> also upgrades <colortype(500)><edgecolortype(501)>Veraero<edgecolortype(0)><colortype(0)> and <colortype(500)><edgecolortype(501)>Veraero II<edgecolortype(0)><colortype(0)> to <colortype(500)><edgecolortype(501)>Verholy<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Adds a Mana Stack to your Balance Gauge upon landing Enchanted Riposte, Enchanted Zwerchhau, Enchanted Redoublement, Enchanted Moulinet, Enchanted Moulinet Deux, or Enchanted Moulinet Trois, up to a maximum of 3.",
+    "Upon gaining 3 Mana Stacks, Verthunder and Verthunder II are upgraded to Verflare.",
+    "Upon learning Verholy, gaining 3 Mana Stacks also upgrades Veraero and Veraero II to Verholy."
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 35,
+    "name": "Red Mage",
+    "abbreviation": "RDM"
+  },
+  "unlock_level": 68,
+  "value": 0,
+  "icon": {
+    "id": 6208,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 112,
+  "source_class_job_id": 35
+}

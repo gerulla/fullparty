@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 379,
+  "name": "Soul Gauge",
+  "description": "Allows for Soul Gauge accumulation upon the landing of certain weaponskills and magic actions, or defeating enemies under the effect of Death's Design.",
+  "description_macro": "Allows for <colortype(500)><edgecolortype(501)>Soul Gauge<edgecolortype(0)><colortype(0)> accumulation upon the landing of certain weaponskills and magic actions, or defeating enemies under the effect of <colortype(506)><edgecolortype(507)>Death's Design<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Allows for Soul Gauge accumulation upon the landing of certain weaponskills and magic actions, or defeating enemies under the effect of Death's Design."
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 39,
+    "name": "Reaper",
+    "abbreviation": "RPR"
+  },
+  "unlock_level": 50,
+  "value": 0,
+  "icon": {
+    "id": 6401,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 180,
+  "source_class_job_id": 39
+}

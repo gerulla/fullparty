@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 2613,
+  "name": "パンハイマ",
+  "description": "一定量のダメージを軽減する状態。",
+  "effects": [
+    "一定量のダメージを軽減する状態。"
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 212959,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": true,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 100
+  },
+  "class_job_category_id": 181,
+  "source_abilities": [
+    {
+      "id": 24311,
+      "name": "パンハイマ",
+      "description": "自身と周囲のパーティメンバーに、回復力200相当のダメージを軽減するバリアを付与し、さらに5スタックの「パンハイマの印」を付与する。\u3000効果時間：15秒\nバリアがダメージを完全に吸収して消滅すると、「パンハイマの印」を1スタック消費してバリアを付与しなおす。\n効果時間が経過して「パンハイマの印」が消滅するときに、対象のＨＰを回復する。\n回復力：100×「パンハイマの印」の残スタック数",
+      "description_macro": "自身と周囲のパーティメンバーに、回復力200相当のダメージを軽減するバリアを付与し、さらに5スタックの<colortype(500)><edgecolortype(501)>「パンハイマの印」<edgecolortype(0)><colortype(0)>を付与する。\u3000<colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>15秒<br>バリアがダメージを完全に吸収して消滅すると、「パンハイマの印」を1スタック消費してバリアを付与しなおす。<br>効果時間が経過して「パンハイマの印」が消滅するときに、対象のＨＰを回復する。<br><colortype(504)><edgecolortype(505)>回復力：<edgecolortype(0)><colortype(0)>100×「パンハイマの印」の残スタック数",
+      "unlock_level": 80,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Healer"
+      ],
+      "jobs": [
+        {
+          "id": 40,
+          "name": "賢者",
+          "abbreviation": "SGE",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

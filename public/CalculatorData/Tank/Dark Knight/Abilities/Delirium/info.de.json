@@ -1,0 +1,88 @@
+{
+  "kind": "ability",
+  "id": 7390,
+  "name": "Blutdelirium",
+  "description": "Du gewährst dir drei Stapel Blutdelirium sowie drei Stapel Blutwaffe.\nDauer: 15 Sekunden\nEffekt von Blutdelirium: Blutvergießen wird zu Rotes Delirium und Quietus wird zu Blutige Pfählung. Wenn diese Kommandos treffen, regenerierst du MP.\nEffekt von Blutwaffe: Regeneriert bei einem erfolgreichen Treffer deiner Waffenfertigkeiten oder Zauber MP und füllt den Blutbalken um 10.\nBei Attacken auf mehrere Ziele ist der Effekt nur einmalig wirksam.",
+  "description_macro": "Du gewährst dir drei Stapel <colortype(506)><edgecolortype(507)>Blutdelirium<edgecolortype(0)><colortype(0)> sowie drei Stapel <colortype(506)><edgecolortype(507)>Blutwaffe<edgecolortype(0)><colortype(0)>.<br>Dauer: 15 Sekunden<br>Effekt von <colortype(506)><edgecolortype(507)>Blutdelirium<edgecolortype(0)><colortype(0)>: <if([gnum68==32],<if([gnum72>=96],<colortype(502)><edgecolortype(503)>Blutvergießen<edgecolortype(0)><colortype(0)> wird zu <colortype(502)><edgecolortype(503)>Rotes Delirium<edgecolortype(0)><colortype(0)> und <colortype(502)><edgecolortype(503)>Quietus<edgecolortype(0)><colortype(0)> wird zu <colortype(502)><edgecolortype(503)>Blutige Pfählung<edgecolortype(0)><colortype(0)>.,<colortype(502)><edgecolortype(503)>Quietus<edgecolortype(0)><colortype(0)> und <colortype(502)><edgecolortype(503)>Blutvergießen<edgecolortype(0)><colortype(0)> können ohne Blutbalken-Kosten ausgeführt werden.)>,<colortype(502)><edgecolortype(503)>Quietus<edgecolortype(0)><colortype(0)> und <colortype(502)><edgecolortype(503)>Blutvergießen<edgecolortype(0)><colortype(0)> können ohne Blutbalken-Kosten ausgeführt werden.)> Wenn diese Kommandos treffen, regenerierst du MP.<br>Effekt von <colortype(506)><edgecolortype(507)>Blutwaffe<edgecolortype(0)><colortype(0)>: Regeneriert bei einem erfolgreichen Treffer deiner Waf<->fen<->fer<->tig<->kei<->ten oder Zauber MP und füllt den Blutbalken um 10.<br>Bei Attacken auf mehrere Ziele ist der Effekt nur einmalig wirksam.",
+  "effects": [
+    "Du gewährst dir drei Stapel Blutdelirium sowie drei Stapel Blutwaffe.",
+    "Dauer: 15 Sekunden",
+    "Effekt von Blutdelirium: Blutvergießen wird zu Rotes Delirium und Quietus wird zu Blutige Pfählung. Wenn diese Kommandos treffen, regenerierst du MP.",
+    "Effekt von Blutwaffe: Regeneriert bei einem erfolgreichen Treffer deiner Waffenfertigkeiten oder Zauber MP und füllt den Blutbalken um 10.",
+    "Bei Attacken auf mehrere Ziele ist der Effekt nur einmalig wirksam."
+  ],
+  "role": "Tank",
+  "job": {
+    "id": 32,
+    "name": "Dunkelritter",
+    "abbreviation": "DKR"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 68,
+  "icon": {
+    "id": 3078,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 4,
+    "name": "Talent"
+  },
+  "attack_type": {
+    "id": 0,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 60,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 11,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 0,
+      "value": 0
+    },
+    "secondary": {
+      "type_id": 62,
+      "value": 570
+    }
+  },
+  "range": {
+    "target_yalms": 0,
+    "effect_yalms": 0,
+    "cast_type": 1
+  },
+  "targeting": {
+    "self": true,
+    "party": false,
+    "alliance": false,
+    "hostile": false,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 0,
+    "behavior_type": 0,
+    "class_job_category_id": 98,
+    "source_class_job_id": 32,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

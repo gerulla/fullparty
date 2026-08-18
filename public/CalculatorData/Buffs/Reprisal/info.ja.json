@@ -1,0 +1,68 @@
+{
+  "kind": "combat_status",
+  "id": 753,
+  "name": "リプライザル",
+  "description": "与ダメージが低下した状態。",
+  "effects": [
+    "与ダメージが低下した状態。"
+  ],
+  "classification": "debuff",
+  "icon": {
+    "id": 213103,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 2,
+  "target_type": 0,
+  "can_dispel": true,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 50,
+  "parameter": {
+    "effect": 0,
+    "modifier": -10
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 7535,
+      "name": "リプライザル",
+      "description": "自身の周囲の敵の与ダメージを10％減少させる。\n効果時間：15秒",
+      "description_macro": "自身の周囲の敵の与ダメージを10％減少させる。<br><colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)><if([gnum72>=98],<if([gnum68==1],15,<if([gnum68==19],15,<if([gnum68==3],15,<if([gnum68==21],15,<if([gnum68==32],15,<if([gnum68==37],15,10)>)>)>)>)>)>,10)>秒",
+      "unlock_level": 22,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Tank"
+      ],
+      "jobs": [
+        {
+          "id": 19,
+          "name": "ナイト",
+          "abbreviation": "PLD",
+          "is_phantom": false
+        },
+        {
+          "id": 21,
+          "name": "戦士",
+          "abbreviation": "WAR",
+          "is_phantom": false
+        },
+        {
+          "id": 32,
+          "name": "暗黒騎士",
+          "abbreviation": "DRK",
+          "is_phantom": false
+        },
+        {
+          "id": 37,
+          "name": "ガンブレイカー",
+          "abbreviation": "GNB",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

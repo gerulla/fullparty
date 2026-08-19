@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 510,
+  "name": "ピュシスマスタリー",
+  "description": "ピュシスがピュシスIIに変化する。",
+  "description_macro": "ピュシスがピュシスIIに変化する。",
+  "effects": [
+    "ピュシスがピュシスIIに変化する。"
+  ],
+  "role": "Healer",
+  "job": {
+    "id": 40,
+    "name": "賢者",
+    "abbreviation": "SGE"
+  },
+  "unlock_level": 60,
+  "value": 0,
+  "icon": {
+    "id": 6459,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 181,
+  "source_class_job_id": 40
+}

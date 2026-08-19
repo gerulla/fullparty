@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 506,
+  "name": "Melee Mastery",
+  "description": "Increases the potency of Hard Slash to 180, Syphon Strike to 120, and Souleater to 140.",
+  "description_macro": "Increases the potency of <colortype(500)><edgecolortype(501)>Hard Slash<edgecolortype(0)><colortype(0)> to 180, <colortype(500)><edgecolortype(501)>Syphon Strike<edgecolortype(0)><colortype(0)> to 120, and <colortype(500)><edgecolortype(501)>Souleater<edgecolortype(0)><colortype(0)> to 140.",
+  "effects": [
+    "Increases the potency of Hard Slash to 180, Syphon Strike to 120, and Souleater to 140."
+  ],
+  "role": "Tank",
+  "job": {
+    "id": 32,
+    "name": "Dark Knight",
+    "abbreviation": "DRK"
+  },
+  "unlock_level": 84,
+  "value": 0,
+  "icon": {
+    "id": 6801,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 98,
+  "source_class_job_id": 32
+}

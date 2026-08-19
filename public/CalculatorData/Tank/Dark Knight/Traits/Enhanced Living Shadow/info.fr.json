@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 511,
+  "name": "Ombre vivante améliorée",
+  "description": "Augmente la puissance des attaques de votre estime à 420.",
+  "description_macro": "Augmente la puissance des attaques de votre estime à 420.",
+  "effects": [
+    "Augmente la puissance des attaques de votre estime à 420."
+  ],
+  "role": "Tank",
+  "job": {
+    "id": 32,
+    "name": "Chevalier Noir",
+    "abbreviation": "CHN"
+  },
+  "unlock_level": 88,
+  "value": 0,
+  "icon": {
+    "id": 6065,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 98,
+  "source_class_job_id": 32
+}

@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 3843,
+  "name": "Himmel und Erde",
+  "description": "Himmel und Erde kann ausgeführt werden.",
+  "effects": [
+    "Himmel und Erde kann ausgeführt werden."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 212541,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 21,
+  "source_abilities": [
+    {
+      "id": 7395,
+      "name": "Flammendes Enigma",
+      "description": "Dein ausgeteilter Schaden ist um 15 % erhöht.\nDauer: 20 Sekunden\nZusatzeffekt: Gewährt dir Himmel und Erde.\nDauer: 20 Sekunden",
+      "description_macro": "Dein ausgeteilter Schaden ist um 15 % erhöht.<br>Dauer: 20 Sekunden<if([gnum68==20],<if([gnum72>=100],<br>Zusatzeffekt: Gewährt dir <colortype(506)><edgecolortype(507)>Himmel und Erde<edgecolortype(0)><colortype(0)>.<br>Dauer: 20 Sekunden,)>,)>",
+      "unlock_level": 68,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 20,
+          "name": "Mönch",
+          "abbreviation": "MÖN",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "kind": "combat_status",
+  "id": 2061,
+  "name": "Exaltation naissante",
+  "description": "Des PV sont absorbés lorsqu'une attaque physique touche. De plus, les dégâts reçus sont réduits.",
+  "effects": [
+    "Des PV sont absorbés lorsqu'une attaque physique touche. De plus, les dégâts reçus sont réduits."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 212558,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": true,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": -10
+  },
+  "class_job_category_id": 22,
+  "source_abilities": [
+    {
+      "id": 16464,
+      "name": "Exaltation naissante",
+      "description": "Vous octroie Exaltation naissante et octroie Exaltation communicative à un équipier ciblé.\nDurée : 8s\nExaltation naissante : absorbe des PV quand des dégâts sont infligés avec des techniques d'arme.\nPuissance : 400\nExaltation communicative : restaure les PV de la cible à hauteur de 100% des soins générés par Exaltation naissante et réduit de 10% ses dégâts subis.\nEffet additionnel : octroie Barrage au sang à la cible.\nDurée : 4s\nBarrage au sang : réduit de 10% les dégâts subis.\nEffet additionnel : octroie Digue au sang à la cible\\Partage le même temps de recharge que Intuition fougueuse.",
+      "description_macro": "Vous octroie <colortype(500)><edgecolortype(501)>Exaltation naissante<edgecolortype(0)><colortype(0)> et octroie <colortype(500)><edgecolortype(501)>Exaltation communicative<edgecolortype(0)><colortype(0)> à un équipier ciblé.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> <if([gnum68==21],<if([gnum72>=82],8,6)>,6)>s<br><colortype(506)><edgecolortype(507)>Exaltation naissante<nbsp>:<edgecolortype(0)><colortype(0)> absorbe des PV quand des dégâts sont infligés avec des techniques d'arme.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> 400<br><colortype(506)><edgecolortype(507)>Exaltation communicative<nbsp>:<edgecolortype(0)><colortype(0)> restaure les PV de la cible à hauteur de 100% des soins générés par Exaltation naissante et réduit de 10% ses dégâts subis.<br><if([gnum68==21],<if([gnum72>=82],<colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> octroie <colortype(500)><edgecolortype(501)>Barrage au sang<edgecolortype(0)><colortype(0)> à la cible.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 4s<br><colortype(506)><edgecolortype(507)>Barrage au sang<nbsp>:<edgecolortype(0)><colortype(0)> réduit de 10% les dégâts subis.<br><colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> octroie <colortype(500)><edgecolortype(501)>Digue au sang<edgecolortype(0)><colortype(0)> à la cible\\, une barrière annulant un certain montant de dégâts.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> 400 <colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 20s<br>,)>,)>Partage le même temps de recharge que <colortype(500)><edgecolortype(501)><if([gnum68==21],<if([gnum72>=82],Intuition fougueuse,Intuition pure)>,Intuition pure)><edgecolortype(0)><colortype(0)>.",
+      "unlock_level": 76,
+      "relations": [
+        "granted_by_description",
+        "same_name"
+      ],
+      "roles": [
+        "Tank"
+      ],
+      "jobs": [
+        {
+          "id": 21,
+          "name": "Guerrier",
+          "abbreviation": "GUE",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

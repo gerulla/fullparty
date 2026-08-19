@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 32,
+  "name": "Firestarter",
+  "description": "Grants a 40% chance that after casting Fire, your next Fire III will require no MP and have no cast time.",
+  "description_macro": "Grants a 40% chance that after casting <colortype(500)><edgecolortype(501)>Fire<edgecolortype(0)><colortype(0)>, your next <colortype(500)><edgecolortype(501)>Fire III<edgecolortype(0)><colortype(0)> will require no MP and have no cast time.",
+  "effects": [
+    "Grants a 40% chance that after casting Fire, your next Fire III will require no MP and have no cast time."
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 25,
+    "name": "Black Mage",
+    "abbreviation": "BLM"
+  },
+  "unlock_level": 42,
+  "value": 0,
+  "icon": {
+    "id": 5352,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 55,
+  "source_class_job_id": 7
+}

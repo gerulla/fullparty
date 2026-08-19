@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 178,
+  "name": "Verbesserte Bahamut-Trance",
+  "description": "Verbessert Bahamut-Trance zu Bahamut-Beschwörung.",
+  "description_macro": "Verbessert <colortype(502)><edgecolortype(503)>Bahamut-Trance<edgecolortype(0)><colortype(0)> zu <colortype(502)><edgecolortype(503)>Bahamut-Beschwörung<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Verbessert Bahamut-Trance zu Bahamut-Beschwörung."
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 27,
+    "name": "Beschwörer",
+    "abbreviation": "BSW"
+  },
+  "unlock_level": 70,
+  "value": 0,
+  "icon": {
+    "id": 5380,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 28,
+  "source_class_job_id": 27
+}

@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 810,
+  "name": "Totenerweckung",
+  "description": "Fast alle erlittenen Attacken führen nicht zu K. o., sondern zu Erweckter.",
+  "effects": [
+    "Fast alle erlittenen Attacken führen nicht zu K. o., sondern zu Erweckter."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 213115,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 70,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 3638,
+      "name": "Totenerweckung",
+      "description": "Du erhältst den Status Totenerweckung.\nDauer: 10 Sekunden\nWenn du während der Wirkungsdauer k. o. gehst, wird das K. o. in den Status Erweckter umgewandelt.\nDauer: 10 Sekunden\nWährend Erweckter kann kaum eine Attacke deine LP auf 0 sinken lassen.\nZusatzeffekt: Regeneriert bei einem erfolgreichen Treffer deiner Waffenfertigkeiten oder Zauber LP.\nHeilpotenzial: 1.500\nWenn du während der Wirkungsdauer Heilung von insgesamt 100 % deiner Maximal-LP erhalten hast, ändert sich Erweckter zu Untote Auferstehung. Läuft die Wirkungsdauer davor ab, gehst du k. o.\nWährend Untote Auferstehung kann kaum eine Attacke deine LP auf 0 sinken lassen.\nDauer von Untote Auferstehung: Restdauer von Erweckter",
+      "description_macro": "Du erhältst den Status <colortype(506)><edgecolortype(507)>Totenerweckung<edgecolortype(0)><colortype(0)>.<br>Dauer: 10 Sekunden<br>Wenn du während der Wirkungsdauer k. o. gehst, wird das K. o. in den Status <colortype(506)><edgecolortype(507)>Erweckter<edgecolortype(0)><colortype(0)> umgewandelt.<br>Dauer: 10 Sekunden<br>Während <colortype(506)><edgecolortype(507)>Erweckter<edgecolortype(0)><colortype(0)> kann kaum eine Attacke deine LP auf 0 sinken lassen.<br>Zusatzeffekt: Regeneriert bei einem erfolgreichen Treffer deiner Waf<->fen<->fer<->tig<->kei<->ten oder Zauber LP.<br>Heilpotenzial: 1.500<br>Wenn du während der Wirkungsdauer Heilung von insgesamt 100<nbsp>% deiner Maximal-LP erhalten hast, ändert sich <colortype(506)><edgecolortype(507)>Erweckter<edgecolortype(0)><colortype(0)> zu <colortype(506)><edgecolortype(507)>Untote Auferstehung<edgecolortype(0)><colortype(0)>. Läuft die Wirkungsdauer davor ab, gehst du k. o.<br>Während <colortype(506)><edgecolortype(507)>Untote Auferstehung<edgecolortype(0)><colortype(0)> kann kaum eine Attacke deine LP auf 0 sinken lassen.<br>Dauer von <colortype(506)><edgecolortype(507)>Untote Auferstehung<edgecolortype(0)><colortype(0)>: Restdauer von <colortype(506)><edgecolortype(507)>Erweckter<edgecolortype(0)><colortype(0)>",
+      "unlock_level": 50,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Tank"
+      ],
+      "jobs": [
+        {
+          "id": 32,
+          "name": "Dunkelritter",
+          "abbreviation": "DKR",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

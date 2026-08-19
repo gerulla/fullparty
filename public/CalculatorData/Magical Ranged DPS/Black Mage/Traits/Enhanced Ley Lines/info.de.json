@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 614,
+  "name": "Verbesserte Ley-Linien",
+  "description": "Während Ley-Linien aktiv ist, kann Ley-Erneuerung ausgeführt werden.",
+  "description_macro": "Während <colortype(506)><edgecolortype(507)>Ley-Linien<edgecolortype(0)><colortype(0)> aktiv ist, kann <colortype(502)><edgecolortype(503)>Ley-Erneuerung<edgecolortype(0)><colortype(0)> ausgeführt werden.",
+  "effects": [
+    "Während Ley-Linien aktiv ist, kann Ley-Erneuerung ausgeführt werden."
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 25,
+    "name": "Schwarzmagier",
+    "abbreviation": "SMA"
+  },
+  "unlock_level": 96,
+  "value": 0,
+  "icon": {
+    "id": 5652,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 26,
+  "source_class_job_id": 25
+}

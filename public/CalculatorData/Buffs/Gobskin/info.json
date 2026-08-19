@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 2114,
+  "name": "Gobskin",
+  "description": "Hardened flesh is absorbing damage.",
+  "effects": [
+    "Hardened flesh is absorbing damage."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 213517,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 30,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 18304,
+      "name": "Gobskin",
+      "description": "Creates a barrier around self and all nearby party members that absorbs damage equivalent to a heal of 100 potency.\nDuration: 30s\nBarrier strength is increased to absorb damage equivalent to a heal of 250 potency when you are under the effect of Aetheric Mimicry: Healer.\nEffect cannot be stacked with those of scholar's Galvanize or sage's Eukrasian Diagnosis and Eukrasian Prognosis.",
+      "description_macro": "Creates a barrier around self and all nearby party members that absorbs damage equivalent to a heal of 100 potency.<br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>30s<br>Barrier strength is increased to absorb damage equivalent to a heal of 250 potency when you are under the effect of <colortype(506)><edgecolortype(507)>Aetheric Mimicry: Healer<edgecolortype(0)><colortype(0)>.<br>Effect cannot be stacked with those of scholar's <colortype(506)><edgecolortype(507)>Galvanize<edgecolortype(0)><colortype(0)> or sage's <colortype(506)><edgecolortype(507)>Eukrasian Diagnosis<edgecolortype(0)><colortype(0)> and <colortype(506)><edgecolortype(507)>Eukrasian Prognosis<edgecolortype(0)><colortype(0)>.",
+      "unlock_level": 1,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Magical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 36,
+          "name": "Blue Mage",
+          "abbreviation": "BLU",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

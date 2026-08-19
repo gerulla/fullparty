@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 3873,
+  "name": "Ruby's Glimmer",
+  "description": "Able to execute Searing Flash.",
+  "effects": [
+    "Able to execute Searing Flash."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 212750,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 28,
+  "source_abilities": [
+    {
+      "id": 25801,
+      "name": "Searing Light",
+      "description": "Increases damage dealt by self and nearby party members by 5%.\nDuration: 20s\nAdditional Effect: Grants Ruby's Glimmer\nDuration: 30s",
+      "description_macro": "Increases damage dealt by self and nearby party members by 5%.<br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>20s<if([gnum68==27],<if([gnum72>=96],<br><colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>Grants <colortype(506)><edgecolortype(507)>Ruby's Glimmer<edgecolortype(0)><colortype(0)><br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>30s,)>,)>",
+      "unlock_level": 66,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Magical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 27,
+          "name": "Summoner",
+          "abbreviation": "SMN",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

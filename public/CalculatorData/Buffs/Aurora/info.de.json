@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 1835,
+  "name": "Aurora",
+  "description": "Regeneriert schrittweise LP.",
+  "effects": [
+    "Regeneriert schrittweise LP."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 213605,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 5,
+  "parameter": {
+    "effect": 0,
+    "modifier": 10
+  },
+  "class_job_category_id": 149,
+  "source_abilities": [
+    {
+      "id": 16151,
+      "name": "Aurora",
+      "description": "Du regenerierst stetig LP des Ziels.\nHeilpotenzial: 300\nDauer: 18 Sekunden\nMaximale Aufladungen: 2",
+      "description_macro": "Du regenerierst stetig LP des Ziels.<br>Heilpotenzial: 300<br>Dauer: 18 Sekunden<if([gnum68==37],<if([gnum72>=84],<br>Maximale Aufladungen: 2,)>,)>",
+      "unlock_level": 45,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Tank"
+      ],
+      "jobs": [
+        {
+          "id": 37,
+          "name": "Revolverklinge",
+          "abbreviation": "REV",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

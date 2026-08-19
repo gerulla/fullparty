@@ -1,0 +1,26 @@
+{
+  "kind": "trait",
+  "id": 453,
+  "name": "Final technique amélioré",
+  "description": "Vous permet d'obtenir l'effet Tillana préparé lorsque vous utilisez Final technique.\nRemplace Final technique par Tillana pendant la durée de l'effet.\nDurée : 30s",
+  "description_macro": "Vous permet d'obtenir l'effet <colortype(500)><edgecolortype(501)>Tillana préparé<edgecolortype(0)><colortype(0)> lorsque vous utilisez <colortype(500)><edgecolortype(501)>Final technique<edgecolortype(0)><colortype(0)>.<br>Remplace <colortype(500)><edgecolortype(501)>Final technique<edgecolortype(0)><colortype(0)> par <colortype(500)><edgecolortype(501)>Tillana<edgecolortype(0)><colortype(0)> pendant la durée de l'effet.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 30s",
+  "effects": [
+    "Vous permet d'obtenir l'effet Tillana préparé lorsque vous utilisez Final technique.",
+    "Remplace Final technique par Tillana pendant la durée de l'effet.",
+    "Durée : 30s"
+  ],
+  "role": "Physical Ranged DPS",
+  "job": {
+    "id": 38,
+    "name": "Danseur",
+    "abbreviation": "DNS"
+  },
+  "unlock_level": 82,
+  "value": 0,
+  "icon": {
+    "id": 6357,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 150,
+  "source_class_job_id": 38
+}

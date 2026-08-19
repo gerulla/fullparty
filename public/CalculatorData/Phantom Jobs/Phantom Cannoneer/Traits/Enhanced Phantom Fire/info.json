@@ -1,0 +1,22 @@
+{
+  "kind": "trait",
+  "id": 11,
+  "name": "Enhanced Phantom Fire",
+  "description": "Grants a 5% chance to instantly kill targets when executing Phantom Fire, with some exceptions.",
+  "description_macro": "Grants a 5% chance to instantly kill targets when executing <colortype(500)><edgecolortype(501)>Phantom Fire<edgecolortype(0)><colortype(0)>, with some exceptions.",
+  "effects": [
+    "Grants a 5% chance to instantly kill targets when executing Phantom Fire, with some exceptions."
+  ],
+  "role": "Phantom Jobs",
+  "job": {
+    "id": 9,
+    "name": "Phantom Cannoneer",
+    "abbreviation": "Ph. Cannoneer"
+  },
+  "is_phantom_trait": true,
+  "unlock_level": 5,
+  "icon": {
+    "id": 82211,
+    "file": "icon.png"
+  }
+}

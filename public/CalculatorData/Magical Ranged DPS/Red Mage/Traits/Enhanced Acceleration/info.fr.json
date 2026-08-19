@@ -1,0 +1,25 @@
+{
+  "kind": "trait",
+  "id": 485,
+  "name": "Accélération améliorée",
+  "description": "Permet de cumuler plusieurs charges pour Accélération.\nMaximum de charges : 2",
+  "description_macro": "Permet de cumuler plusieurs charges pour <colortype(500)><edgecolortype(501)>Accélération<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Maximum de charges<nbsp>:<edgecolortype(0)><colortype(0)> 2",
+  "effects": [
+    "Permet de cumuler plusieurs charges pour Accélération.",
+    "Maximum de charges : 2"
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 35,
+    "name": "Mage Rouge",
+    "abbreviation": "MRG"
+  },
+  "unlock_level": 88,
+  "value": 2,
+  "icon": {
+    "id": 6211,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 112,
+  "source_class_job_id": 35
+}

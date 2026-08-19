@@ -1,0 +1,90 @@
+{
+  "kind": "ability",
+  "id": 7481,
+  "name": "Gekkô",
+  "description": "Effectue une attaque physique sur la cible.\nPuissance : 160\nPuissance par derrière : 210\nCombo : Jinpû\nPuissance du combo : 370\nPuissance du combo par derrière : 420\nBonus du combo : remplit la Jauge de Kenki de 10 et vous octroie Getsu.",
+  "description_macro": "Effectue une attaque physique sur la cible.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> <if([gnum68==34],<if([gnum72>=94],160,<if([gnum68==34],<if([gnum72>=84],110,100)>,100)>)>,<if([gnum68==34],<if([gnum72>=84],110,100)>,100)>)><br><colortype(506)><edgecolortype(507)>Puissance par derrière<nbsp>:<edgecolortype(0)><colortype(0)> <if([gnum68==34],<if([gnum72>=94],210,<if([gnum68==34],<if([gnum72>=84],160,150)>,150)>)>,<if([gnum68==34],<if([gnum72>=84],160,150)>,150)>)><br><colortype(506)><edgecolortype(507)>Combo<nbsp>:<edgecolortype(0)><colortype(0)> Jinpû<br><colortype(506)><edgecolortype(507)>Puissance du combo<nbsp>:<edgecolortype(0)><colortype(0)> <if([gnum68==34],<if([gnum72>=94],370,<if([gnum68==34],<if([gnum72>=84],320,310)>,310)>)>,<if([gnum68==34],<if([gnum72>=84],320,310)>,310)>)><br><colortype(506)><edgecolortype(507)>Puissance du combo par derrière<nbsp>:<edgecolortype(0)><colortype(0)> <if([gnum68==34],<if([gnum72>=94],420,<if([gnum68==34],<if([gnum72>=84],370,360)>,360)>)>,<if([gnum68==34],<if([gnum72>=84],370,360)>,360)>)><br><if([gnum72>=52],<if([gnum68==34],<colortype(506)><edgecolortype(507)>Bonus du combo<nbsp>:<edgecolortype(0)><colortype(0)> remplit la <colortype(502)><edgecolortype(503)>Jauge de Kenki<edgecolortype(0)><colortype(0)> de <if([gnum72>=62],<if([gnum68==34],10,5)>,5)> et vous octroie <colortype(500)><edgecolortype(501)>Getsu<edgecolortype(0)><colortype(0)>.,<colortype(506)><edgecolortype(507)>Bonus du combo<nbsp>:<edgecolortype(0)><colortype(0)> vous octroie <colortype(500)><edgecolortype(501)>Getsu<edgecolortype(0)><colortype(0)>.)>,<colortype(506)><edgecolortype(507)>Bonus du combo<nbsp>:<edgecolortype(0)><colortype(0)> vous octroie <colortype(500)><edgecolortype(501)>Getsu<edgecolortype(0)><colortype(0)>.)>",
+  "effects": [
+    "Effectue une attaque physique sur la cible.",
+    "Puissance : 160",
+    "Puissance par derrière : 210",
+    "Combo : Jinpû",
+    "Puissance du combo : 370",
+    "Puissance du combo par derrière : 420",
+    "Bonus du combo : remplit la Jauge de Kenki de 10 et vous octroie Getsu."
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 34,
+    "name": "Samouraï",
+    "abbreviation": "SAM"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 30,
+  "icon": {
+    "id": 3158,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 3,
+    "name": "Technique d'arme"
+  },
+  "attack_type": {
+    "id": 4294967295,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 2.5,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 58,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 0,
+      "value": 0
+    },
+    "secondary": {
+      "type_id": 0,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": -1,
+    "effect_yalms": 0,
+    "cast_type": 1
+  },
+  "targeting": {
+    "self": false,
+    "party": false,
+    "alliance": false,
+    "hostile": true,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": 7478,
+    "preserves_combo": false
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 7,
+    "behavior_type": 0,
+    "class_job_category_id": 111,
+    "source_class_job_id": 34,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

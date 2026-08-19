@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 3098,
+  "name": "コンソレイション",
+  "description": "一定量のダメージを軽減する状態。",
+  "effects": [
+    "一定量のダメージを軽減する状態。"
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 214907,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": true,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 100
+  },
+  "class_job_category_id": 29,
+  "source_abilities": [
+    {
+      "id": 16546,
+      "name": "コンソレイション",
+      "description": "召喚しているセラフィムに「コンソレイション」を実行させる。\n\n周囲のパーティメンバーのＨＰを回復する。\n回復力：250\n追加効果：対象に一定量のダメージを防ぐバリアを張る。\nこのバリアは回復量の100％分のダメージを軽減する。\n効果時間：30秒\n最大チャージ数：2\n発動条件：セラフィムが存在する",
+      "description_macro": "召喚しているセラフィムに<colortype(500)><edgecolortype(501)>「コンソレイション」<edgecolortype(0)><colortype(0)>を実行させる。<br><br>周囲のパーティメンバーのＨＰを回復する。<br><colortype(504)><edgecolortype(505)>回復力：<edgecolortype(0)><colortype(0)>250<br><colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)>対象に一定量のダメージを防ぐバリアを張る。<br>このバリアは回復量の100％分のダメージを軽減する。<br><colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>30秒<br><colortype(504)><edgecolortype(505)>最大チャージ数：<edgecolortype(0)><colortype(0)>2<br><colortype(504)><edgecolortype(505)>発動条件：<edgecolortype(0)><colortype(0)>セラフィムが存在する",
+      "unlock_level": 80,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Healer"
+      ],
+      "jobs": [
+        {
+          "id": 28,
+          "name": "学者",
+          "abbreviation": "SCH",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

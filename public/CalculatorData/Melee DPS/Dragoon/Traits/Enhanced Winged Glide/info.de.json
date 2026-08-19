@@ -1,0 +1,25 @@
+{
+  "kind": "trait",
+  "id": 580,
+  "name": "Verbesserter Gleitflügel",
+  "description": "Erlaubt es dir, Gleitflügel aufzuladen.\nMaximale Aufladungen: 2",
+  "description_macro": "Erlaubt es dir, <colortype(502)><edgecolortype(503)>Gleitflügel<edgecolortype(0)><colortype(0)> aufzuladen.<br>Maximale Aufladungen: 2",
+  "effects": [
+    "Erlaubt es dir, Gleitflügel aufzuladen.",
+    "Maximale Aufladungen: 2"
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 22,
+    "name": "Dragoon",
+    "abbreviation": "DRG"
+  },
+  "unlock_level": 84,
+  "value": 2,
+  "icon": {
+    "id": 5295,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 23,
+  "source_class_job_id": 22
+}

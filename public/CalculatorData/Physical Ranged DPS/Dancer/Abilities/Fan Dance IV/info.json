@@ -1,0 +1,94 @@
+{
+  "kind": "ability",
+  "id": 25791,
+  "name": "Fan Dance IV",
+  "description": "Delivers an attack to all enemies in a cone before you with a potency of 460 for the first enemy, and 60% less for all remaining enemies.\nCan only be executed while under the effect of Fourfold Fan Dance.",
+  "description_macro": "Delivers an attack to all enemies in a cone before you with a potency of <if([gnum68==38],<if([gnum72>=94],460,300)>,300)> for the first enemy, and 60% less for all remaining enemies.<br>Can only be executed while under the effect of <colortype(506)><edgecolortype(507)>Fourfold Fan Dance<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Delivers an attack to all enemies in a cone before you with a potency of 460 for the first enemy, and 60% less for all remaining enemies.",
+    "Can only be executed while under the effect of Fourfold Fan Dance."
+  ],
+  "role": "Physical Ranged DPS",
+  "job": {
+    "id": 38,
+    "name": "Dancer",
+    "abbreviation": "DNC"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 86,
+  "icon": {
+    "id": 3481,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 4,
+    "name": "Ability"
+  },
+  "attack_type": {
+    "id": 4294967295,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 1,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 1,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 10,
+      "value": 2699
+    },
+    "secondary": {
+      "type_id": 91,
+      "value": 2699
+    }
+  },
+  "range": {
+    "target_yalms": 15,
+    "effect_yalms": 15,
+    "cast_type": 3
+  },
+  "targeting": {
+    "self": false,
+    "party": false,
+    "alliance": false,
+    "hostile": true,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": {
+      "id": 66,
+      "status": {
+        "id": 2699,
+        "name": "Fourfold Fan Dance",
+        "description": "Able to execute Fan Dance IV.",
+        "icon_id": 213723,
+        "max_stacks": 0
+      }
+    }
+  },
+  "metadata": {
+    "aspect_id": 7,
+    "behavior_type": 0,
+    "class_job_category_id": 150,
+    "source_class_job_id": 38,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

@@ -1,0 +1,90 @@
+{
+  "kind": "ability",
+  "id": 18320,
+  "name": "Dévoration",
+  "description": "Effectue une attaque magique neutre sur la cible.\nPuissance : 250\nEffet additionnel : augmente de 20% vos PV maximum.\nDurée : 15s\nSi vous bénéficiez d'Éther de protecteur, la durée est augmentée à 70s.\nEffet additionnel : absorbe en PV 100% des dégâts infligés.\nCe sort a un temps de recharge indépendant.",
+  "description_macro": "Effectue une attaque magique neutre sur la cible.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> 250<br><colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> augmente de 20% vos PV maximum.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 15s<br>Si vous bénéficiez d'<colortype(500)><edgecolortype(501)>Éther de protecteur<edgecolortype(0)><colortype(0)>, la durée est augmentée à 70s.<br><colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> absorbe en PV 100% des dégâts infligés.<br>Ce sort a un temps de recharge indépendant.",
+  "effects": [
+    "Effectue une attaque magique neutre sur la cible.",
+    "Puissance : 250",
+    "Effet additionnel : augmente de 20% vos PV maximum.",
+    "Durée : 15s",
+    "Si vous bénéficiez d'Éther de protecteur, la durée est augmentée à 70s.",
+    "Effet additionnel : absorbe en PV 100% des dégâts infligés.",
+    "Ce sort a un temps de recharge indépendant."
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 36,
+    "name": "Mage Bleu",
+    "abbreviation": "MBU"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 1,
+  "icon": {
+    "id": 3325,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 2,
+    "name": "Sort"
+  },
+  "attack_type": {
+    "id": 5,
+    "name": "magie"
+  },
+  "timing": {
+    "cast_seconds": 1,
+    "recast_seconds": 60,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 8,
+    "additional_cooldown_group": 58,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 3,
+      "value": 3
+    },
+    "secondary": {
+      "type_id": 0,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": 3,
+    "effect_yalms": 0,
+    "cast_type": 1
+  },
+  "targeting": {
+    "self": false,
+    "party": false,
+    "alliance": false,
+    "hostile": true,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": false
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 7,
+    "behavior_type": 0,
+    "class_job_category_id": 129,
+    "source_class_job_id": 36,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

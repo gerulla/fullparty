@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 69,
+  "name": "Efficacité des actions augmentée II",
+  "description": "Les soins et les dégâts de base des actions (sauf attaques automatiques) sont augmentés de 30%. Les soins et les dégâts de base des actions du familier sont également augmentés de 30%.",
+  "description_macro": "Les soins et les dégâts de base des actions (sauf attaques automatiques) sont augmentés de 30%. Les soins et les dégâts de base des actions du familier sont également augmentés de 30%.",
+  "effects": [
+    "Les soins et les dégâts de base des actions (sauf attaques automatiques) sont augmentés de 30%. Les soins et les dégâts de base des actions du familier sont également augmentés de 30%."
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 27,
+    "name": "Invocateur",
+    "abbreviation": "INV"
+  },
+  "unlock_level": 40,
+  "value": 30,
+  "icon": {
+    "id": 5186,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 68,
+  "source_class_job_id": 26
+}

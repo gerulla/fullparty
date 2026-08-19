@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 13,
+  "name": "First Strike",
+  "description": "Grants First Strike when entering combat.\nFirst Strike Effect: Weaponskill cast time and recast time, spell cast time and recast time, and auto-attack delay are reduced\nDuration: 25s",
+  "description_macro": "Grants <colortype(506)><edgecolortype(507)>First Strike<edgecolortype(0)><colortype(0)> when entering combat.<br><colortype(504)><edgecolortype(505)>First Strike Effect: <edgecolortype(0)><colortype(0)>Weaponskill cast time and recast time, spell cast time and recast time, and auto-attack delay are reduced<br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>25s",
+  "effects": [
+    "Grants First Strike when entering combat.",
+    "First Strike Effect: Weaponskill cast time and recast time, spell cast time and recast time, and auto-attack delay are reduced",
+    "Duration: 25s"
+  ],
+  "role": "Phantom Jobs",
+  "job": {
+    "id": 16,
+    "name": "Phantom Ninja",
+    "abbreviation": "Ph. Ninja"
+  },
+  "is_phantom_trait": true,
+  "unlock_level": 5,
+  "icon": {
+    "id": 82213,
+    "file": "icon.png"
+  }
+}

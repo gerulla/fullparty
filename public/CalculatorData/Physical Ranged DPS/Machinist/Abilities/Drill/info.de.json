@@ -1,0 +1,87 @@
+{
+  "kind": "ability",
+  "id": 16498,
+  "name": "Bohrer",
+  "description": "Du führst eine physische Attacke aus.\nAttacke-Wert: 660\nMaximale Aufladungen: 2\nGemeinsamer Reaktivierungs-Timer mit Bioblaster",
+  "description_macro": "Du führst eine physische Attacke aus.<br>Attacke-Wert: <if([gnum68==31],<if([gnum72>=94],660,620)>,620)><br>Maximale Aufladungen: 2<if([gnum68==31],<if([gnum72>=72],<br>Gemeinsamer Reaktivierungs-Timer mit <colortype(502)><edgecolortype(503)>Bioblaster<edgecolortype(0)><colortype(0)>,)>,)>",
+  "effects": [
+    "Du führst eine physische Attacke aus.",
+    "Attacke-Wert: 660",
+    "Maximale Aufladungen: 2",
+    "Gemeinsamer Reaktivierungs-Timer mit Bioblaster"
+  ],
+  "role": "Physical Ranged DPS",
+  "job": {
+    "id": 31,
+    "name": "Maschinist",
+    "abbreviation": "MCH"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 58,
+  "icon": {
+    "id": 3043,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 3,
+    "name": "Waffenfertigkeit"
+  },
+  "attack_type": {
+    "id": 4294967295,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 20,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 5,
+    "additional_cooldown_group": 58,
+    "max_charges": 1
+  },
+  "costs": {
+    "primary": {
+      "type_id": 0,
+      "value": 0
+    },
+    "secondary": {
+      "type_id": 0,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": -1,
+    "effect_yalms": 0,
+    "cast_type": 1
+  },
+  "targeting": {
+    "self": false,
+    "party": false,
+    "alliance": false,
+    "hostile": true,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 7,
+    "behavior_type": 0,
+    "class_job_category_id": 96,
+    "source_class_job_id": 31,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

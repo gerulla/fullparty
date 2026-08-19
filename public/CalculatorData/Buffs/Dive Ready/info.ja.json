@@ -1,0 +1,71 @@
+{
+  "kind": "combat_status",
+  "id": 1243,
+  "name": "ミラージュダイブ実行可",
+  "description": "ミラージュダイブを実行できる状態。",
+  "effects": [
+    "ミラージュダイブを実行できる状態。"
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 212583,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 92,
+      "name": "ジャンプ",
+      "description": "対象にジャンプで近づきつつ物理攻撃。\u3000威力：320\n攻撃後は元の位置に戻る。\n追加効果：自身に「ミラージュダイブ実行可」を付与する。\n効果時間：15秒",
+      "description_macro": "対象にジャンプで近づきつつ物理攻撃。\u3000<colortype(504)><edgecolortype(505)>威力：<edgecolortype(0)><colortype(0)><if([gnum68==22],<if([gnum72>=54],320,250)>,250)><br>攻撃後は元の位置に戻る。<if([gnum72>=68],<if([gnum68==22],<br><colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)>自身に<colortype(500)><edgecolortype(501)>「ミラージュダイブ実行可」<edgecolortype(0)><colortype(0)>を付与する。<br><colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>15秒,)>,)>",
+      "unlock_level": 30,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 22,
+          "name": "竜騎士",
+          "abbreviation": "DRG",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 16478,
+      "name": "ハイジャンプ",
+      "description": "対象にジャンプで近づきつつ物理攻撃。\u3000威力：400\n攻撃後は元の位置に戻る。\n追加効果：自身に「ミラージュダイブ実行可」を付与する。\n効果時間：15秒",
+      "description_macro": "対象にジャンプで近づきつつ物理攻撃。\u3000<colortype(504)><edgecolortype(505)>威力：<edgecolortype(0)><colortype(0)>400<br>攻撃後は元の位置に戻る。<br><colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)>自身に<colortype(500)><edgecolortype(501)>「ミラージュダイブ実行可」<edgecolortype(0)><colortype(0)>を付与する。<br><colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>15秒",
+      "unlock_level": 74,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 22,
+          "name": "竜騎士",
+          "abbreviation": "DRG",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

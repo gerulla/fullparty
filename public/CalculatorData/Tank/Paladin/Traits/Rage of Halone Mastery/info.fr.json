@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 260,
+  "name": "Maîtrise de Rage de Halone",
+  "description": "Remplace Rage de Halone par Autorité royale.",
+  "description_macro": "Remplace <colortype(500)><edgecolortype(501)>Rage de Halone<edgecolortype(0)><colortype(0)> par <colortype(500)><edgecolortype(501)>Autorité royale<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Remplace Rage de Halone par Autorité royale."
+  ],
+  "role": "Tank",
+  "job": {
+    "id": 19,
+    "name": "Paladin",
+    "abbreviation": "PLD"
+  },
+  "unlock_level": 60,
+  "value": 0,
+  "icon": {
+    "id": 5213,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 20,
+  "source_class_job_id": 19
+}

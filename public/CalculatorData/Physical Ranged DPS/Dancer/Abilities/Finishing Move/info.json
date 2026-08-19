@@ -1,0 +1,102 @@
+{
+  "kind": "ability",
+  "id": 36984,
+  "name": "Finishing Move",
+  "description": "Delivers an attack to all nearby enemies with a potency of 850 for the first enemy, and 60% less for all remaining enemies.\nAdditional Effect: Grants Standard Finish and Esprit to self and party member designated as your Dance Partner\nStandard Finish Effect: Increases damage dealt by 5%\nDuration: 60s\nAdditional Effect: Grants Last Dance Ready\nDuration: 30s\nCan only be executed while under the effect of Finishing Move Ready.\nShares a recast timer with Standard Step. Upon execution, the recast timer for this action will be applied to all other weaponskills and magic actions.\n\n※This action cannot be assigned to a hotbar.\n※Standard Step changes to Finishing Move when requirements for execution are met.",
+  "description_macro": "Delivers an attack to all nearby enemies with a potency of 850 for the first enemy, and 60% less for all remaining enemies.<br><colortype(504)><edgecolortype(505)>Additional Effect:<edgecolortype(0)><colortype(0)> Grants <colortype(506)><edgecolortype(507)>Standard Finish<edgecolortype(0)><colortype(0)> and <colortype(506)><edgecolortype(507)>Esprit<edgecolortype(0)><colortype(0)> to self and party member designated as your <colortype(506)><edgecolortype(507)>Dance Partner<edgecolortype(0)><colortype(0)><br><colortype(504)><edgecolortype(505)>Standard Finish Effect: <edgecolortype(0)><colortype(0)>Increases damage dealt by 5%<br><colortype(504)><edgecolortype(505)>Duration:<edgecolortype(0)><colortype(0)> 60s<br><colortype(504)><edgecolortype(505)>Additional Effect:<edgecolortype(0)><colortype(0)> Grants <colortype(506)><edgecolortype(507)>Last Dance Ready<edgecolortype(0)><colortype(0)><br><colortype(504)><edgecolortype(505)>Duration:<edgecolortype(0)><colortype(0)> 30s<br>Can only be executed while under the effect of <colortype(506)><edgecolortype(507)>Finishing Move Ready<edgecolortype(0)><colortype(0)>.<br>Shares a recast timer with <colortype(500)><edgecolortype(501)>Standard Step<edgecolortype(0)><colortype(0)>. Upon execution, the recast timer for this action will be applied to all other weaponskills and magic actions.<br><br>※This action cannot be assigned to a hotbar.<br>※<colortype(500)><edgecolortype(501)>Standard Step<edgecolortype(0)><colortype(0)> changes to <colortype(500)><edgecolortype(501)>Finishing Move<edgecolortype(0)><colortype(0)> when requirements for execution are met.",
+  "effects": [
+    "Delivers an attack to all nearby enemies with a potency of 850 for the first enemy, and 60% less for all remaining enemies.",
+    "Additional Effect: Grants Standard Finish and Esprit to self and party member designated as your Dance Partner",
+    "Standard Finish Effect: Increases damage dealt by 5%",
+    "Duration: 60s",
+    "Additional Effect: Grants Last Dance Ready",
+    "Duration: 30s",
+    "Can only be executed while under the effect of Finishing Move Ready.",
+    "Shares a recast timer with Standard Step. Upon execution, the recast timer for this action will be applied to all other weaponskills and magic actions.",
+    "※This action cannot be assigned to a hotbar.",
+    "※Standard Step changes to Finishing Move when requirements for execution are met."
+  ],
+  "role": "Physical Ranged DPS",
+  "job": {
+    "id": 38,
+    "name": "Dancer",
+    "abbreviation": "DNC"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 96,
+  "icon": {
+    "id": 3484,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 3,
+    "name": "Weaponskill"
+  },
+  "attack_type": {
+    "id": 4294967295,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 30,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 7,
+    "additional_cooldown_group": 58,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 10,
+      "value": 3868
+    },
+    "secondary": {
+      "type_id": 91,
+      "value": 3868
+    }
+  },
+  "range": {
+    "target_yalms": 0,
+    "effect_yalms": 15,
+    "cast_type": 2
+  },
+  "targeting": {
+    "self": true,
+    "party": false,
+    "alliance": false,
+    "hostile": false,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": {
+      "id": 175,
+      "status": {
+        "id": 3868,
+        "name": "Finishing Move Ready",
+        "description": "Able to execute Finishing Move.",
+        "icon_id": 213728,
+        "max_stacks": 0
+      }
+    }
+  },
+  "metadata": {
+    "aspect_id": 7,
+    "behavior_type": 0,
+    "class_job_category_id": 150,
+    "source_class_job_id": 0,
+    "is_role_action": false,
+    "is_player_action": false,
+    "is_derived_action": true,
+    "equivalence_group": 0
+  }
+}

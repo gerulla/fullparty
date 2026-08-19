@@ -1,0 +1,28 @@
+{
+  "kind": "trait",
+  "id": 247,
+  "name": "Lance Mastery",
+  "description": "Increases the potency of True Thrust to 230, Vorpal Thrust to 130, Piercing Talon to 200, Enhanced Piercing Talon to 350, and Disembowel to 140.\nGrants Draconian Fire if Drakesbane is executed following Fang and Claw or Wheeling Thrust.\nDuration: 30s\nEffect of Draconian Fire ends upon execution of any melee weaponskill.\nUpgrades True Thrust to Raiden Thrust while under the effect of Draconian Fire.",
+  "description_macro": "Increases the potency of <colortype(500)><edgecolortype(501)>True Thrust<edgecolortype(0)><colortype(0)> to 230, <colortype(500)><edgecolortype(501)>Vorpal Thrust<edgecolortype(0)><colortype(0)> to 130, <colortype(500)><edgecolortype(501)>Piercing Talon<edgecolortype(0)><colortype(0)> to 200, <colortype(500)><edgecolortype(501)>Enhanced Piercing Talon<edgecolortype(0)><colortype(0)> to 350, and <colortype(500)><edgecolortype(501)>Disembowel<edgecolortype(0)><colortype(0)> to 140.<br>Grants <colortype(506)><edgecolortype(507)>Draconian Fire<edgecolortype(0)><colortype(0)> if <colortype(500)><edgecolortype(501)>Drakesbane<edgecolortype(0)><colortype(0)> is executed following <colortype(500)><edgecolortype(501)>Fang and Claw<edgecolortype(0)><colortype(0)> or <colortype(500)><edgecolortype(501)>Wheeling Thrust<edgecolortype(0)><colortype(0)>.<br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>30s<br>Effect of <colortype(506)><edgecolortype(507)>Draconian Fire<edgecolortype(0)><colortype(0)> ends upon execution of any melee weaponskill.<br>Upgrades <colortype(500)><edgecolortype(501)>True Thrust<edgecolortype(0)><colortype(0)> to <colortype(500)><edgecolortype(501)>Raiden Thrust<edgecolortype(0)><colortype(0)> while under the effect of <colortype(506)><edgecolortype(507)>Draconian Fire<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Increases the potency of True Thrust to 230, Vorpal Thrust to 130, Piercing Talon to 200, Enhanced Piercing Talon to 350, and Disembowel to 140.",
+    "Grants Draconian Fire if Drakesbane is executed following Fang and Claw or Wheeling Thrust.",
+    "Duration: 30s",
+    "Effect of Draconian Fire ends upon execution of any melee weaponskill.",
+    "Upgrades True Thrust to Raiden Thrust while under the effect of Draconian Fire."
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 22,
+    "name": "Dragoon",
+    "abbreviation": "DRG"
+  },
+  "unlock_level": 76,
+  "value": 0,
+  "icon": {
+    "id": 5284,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 23,
+  "source_class_job_id": 22
+}

@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 3209,
+  "name": "イルーシブジャンプ",
+  "description": "移動速度が上昇した状態。",
+  "effects": [
+    "移動速度が上昇した状態。"
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 214937,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": true,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 18,
+    "modifier": 0
+  },
+  "class_job_category_id": 23,
+  "source_abilities": [
+    {
+      "id": 94,
+      "name": "イルーシブジャンプ",
+      "description": "自身の15m後方に大きくジャンプする。\n追加効果：自身に「ピアシングタロン効果アップ」を付与する。\n効果時間：15秒\nバインド中は実行不可。",
+      "description_macro": "自身の15m後方に大きくジャンプする。<br><colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)>自身に<colortype(500)><edgecolortype(501)>「ピアシングタロン効果アップ」<edgecolortype(0)><colortype(0)>を付与する。<br><colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>15秒<br>バインド中は実行不可。",
+      "unlock_level": 35,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 22,
+          "name": "竜騎士",
+          "abbreviation": "DRG",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

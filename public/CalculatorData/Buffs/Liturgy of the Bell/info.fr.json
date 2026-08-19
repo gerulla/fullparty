@@ -1,0 +1,71 @@
+{
+  "kind": "combat_status",
+  "id": 2709,
+  "name": "Tintinnabule",
+  "description": "Le tintinnabule vous soigne, ainsi que les équipiers alentour, chaque fois que des dégâts sont subis et lorsqu'il disparaît ou qu'il est lancé une nouvelle fois.",
+  "effects": [
+    "Le tintinnabule vous soigne, ainsi que les équipiers alentour, chaque fois que des dégâts sont subis et lorsqu'il disparaît ou qu'il est lancé une nouvelle fois."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 218373,
+    "file": "icon.png"
+  },
+  "max_stacks": 5,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": true,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 27,
+    "modifier": 0
+  },
+  "class_job_category_id": 25,
+  "source_abilities": [
+    {
+      "id": 25862,
+      "name": "Tintinnabule",
+      "description": "Place un tintinnabule à l'endroit ciblé et vous octroie 5 degrés de Tintinnabule.\nDurée : 20s\nChaque fois que vous recevez des dégâts, un degré est consommé, et le tintinnabule vous soigne vous ainsi que tous vos équipiers dans un rayon de 20 yalms.\nPuissance : 400\nPas plus d'un degré ne peut être consommé par seconde.\nLorsque le tintinnabule disparaît ou qu'il est relancé une seconde fois, il consomme tous les degrés restants et vous soigne, ainsi que les équipiers alentour.\nPuissance : 200 par degré restant.",
+      "description_macro": "Place un tintinnabule à l'endroit ciblé et vous octroie 5 degrés de <colortype(500)><edgecolortype(501)>Tintinnabule<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 20s<br>Chaque fois que vous recevez des dégâts, un degré est consommé, et le tintinnabule vous soigne vous ainsi que tous vos équipiers dans un rayon de 20 yalms.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> 400<br>Pas plus d'un degré ne peut être consommé par seconde.<br>Lorsque le tintinnabule disparaît ou qu'il est relancé une seconde fois, il consomme tous les degrés restants et vous soigne, ainsi que les équipiers alentour.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> 200 par degré restant.",
+      "unlock_level": 90,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Healer"
+      ],
+      "jobs": [
+        {
+          "id": 24,
+          "name": "Mage Blanc",
+          "abbreviation": "MBL",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 28509,
+      "name": "Tintinnabule",
+      "description": "Place un tintinnabule à l'endroit ciblé et vous octroie 5 degrés de Tintinnabule.\nDurée : 20s\nChaque fois que vous recevez des dégâts, un degré est consommé, et le tintinnabule vous soigne vous ainsi que tous vos équipiers dans un rayon de 20 yalms.\nPuissance : 400\nPas plus d'un degré ne peut être consommé par seconde.\nLorsque le tintinnabule disparaît ou qu'il est relancé une seconde fois, il consomme tous les degrés restants et vous soigne, ainsi que les équipiers alentour.\nPuissance : 200 par degré restant.",
+      "description_macro": "Place un tintinnabule à l'endroit ciblé et vous octroie 5 degrés de <colortype(500)><edgecolortype(501)>Tintinnabule<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 20s<br>Chaque fois que vous recevez des dégâts, un degré est consommé, et le tintinnabule vous soigne vous ainsi que tous vos équipiers dans un rayon de 20 yalms.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> 400<br>Pas plus d'un degré ne peut être consommé par seconde.<br>Lorsque le tintinnabule disparaît ou qu'il est relancé une seconde fois, il consomme tous les degrés restants et vous soigne, ainsi que les équipiers alentour.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> 200 par degré restant.",
+      "unlock_level": 90,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Healer"
+      ],
+      "jobs": [
+        {
+          "id": 24,
+          "name": "Mage Blanc",
+          "abbreviation": "MBL",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

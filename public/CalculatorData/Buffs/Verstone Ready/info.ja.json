@@ -1,0 +1,92 @@
+{
+  "kind": "combat_status",
+  "id": 1235,
+  "name": "ヴァルストーン実行可",
+  "description": "ヴァルストーンを実行できる状態。",
+  "effects": [
+    "ヴァルストーンを実行できる状態。"
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 213403,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 7507,
+      "name": "ヴァルエアロ",
+      "description": "対象に風属性魔法攻撃。\u3000威力：360\n追加効果：「ホワイトマナ」を6上昇させる。\n追加効果（発動確率50％）：自身に「ヴァルストーン実行可」を付与する。\u3000効果時間：30秒",
+      "description_macro": "対象に風属性魔法攻撃。\u3000<colortype(504)><edgecolortype(505)>威力：<edgecolortype(0)><colortype(0)><if([gnum68==35],<if([gnum72>=62],360,300)>,300)><br><colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)><colortype(500)><edgecolortype(501)>「ホワイトマナ」<edgecolortype(0)><colortype(0)>を6上昇させる。<if([gnum72>=30],<if([gnum68==35],<br><colortype(504)><edgecolortype(505)>追加効果（発動確率50％）：<edgecolortype(0)><colortype(0)>自身に<colortype(500)><edgecolortype(501)>「ヴァルストーン実行可」<edgecolortype(0)><colortype(0)>を付与する。\u3000<colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>30秒,)>,)>",
+      "unlock_level": 10,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Magical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 35,
+          "name": "赤魔道士",
+          "abbreviation": "RDM",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 7526,
+      "name": "ヴァルホーリー",
+      "description": "対象とその周囲の敵に無属性範囲魔法攻撃。\u3000威力：650\n2体目以降の対象への威力は55％減少する。\n追加効果：「ホワイトマナ」を11上昇させる。\n追加効果（発動確率20％）：自身に「ヴァルストーン実行可」を付与する。\u3000効果時間：30秒\n実行時に「ブラックマナ」が「ホワイトマナ」より高かった場合、追加効果の発動確率が100％になる。\n発動条件：「マナスタック」3\n\n※このアクションはホットバーに登録することはできない。\n\u3000発動条件を満たすとヴァルエアロガとヴァルエアロラがヴァルホーリーに変化する。",
+      "description_macro": "対象とその周囲の敵に無属性範囲魔法攻撃。\u3000<colortype(504)><edgecolortype(505)>威力：<edgecolortype(0)><colortype(0)><if([gnum68==35],<if([gnum72>=94],650,600)>,600)><br>2体目以降の対象への威力は55％減少する。<br><colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)><colortype(500)><edgecolortype(501)>「ホワイトマナ」<edgecolortype(0)><colortype(0)>を11上昇させる。<br><colortype(504)><edgecolortype(505)>追加効果（発動確率20％）：<edgecolortype(0)><colortype(0)>自身に<colortype(500)><edgecolortype(501)>「ヴァルストーン実行可」<edgecolortype(0)><colortype(0)>を付与する。\u3000<colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>30秒<br>実行時に<colortype(500)><edgecolortype(501)>「ブラックマナ」<edgecolortype(0)><colortype(0)>が<colortype(500)><edgecolortype(501)>「ホワイトマナ」<edgecolortype(0)><colortype(0)>より高かった場合、追加効果の発動確率が100％になる。<br><colortype(504)><edgecolortype(505)>発動条件：<edgecolortype(0)><colortype(0)><colortype(500)><edgecolortype(501)>「マナスタック」<edgecolortype(0)><colortype(0)>3<br><br><colortype(506)><edgecolortype(507)>※このアクションはホットバーに登録することはできない。<br>\u3000発動条件を満たすと<if([gnum68==35],<if([gnum72>=82],ヴァルエアロガ,ヴァルエアロ)>,ヴァルエアロ)>とヴァルエアロラがヴァルホーリーに変化する。<edgecolortype(0)><colortype(0)>",
+      "unlock_level": 70,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Magical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 35,
+          "name": "赤魔道士",
+          "abbreviation": "RDM",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 25856,
+      "name": "ヴァルエアロガ",
+      "description": "対象に風属性魔法攻撃。\u3000威力：440\n追加効果：「ホワイトマナ」を6上昇させる。\n追加効果（発動確率50％）：自身に「ヴァルストーン実行可」を付与する。\u3000効果時間：30秒",
+      "description_macro": "対象に風属性魔法攻撃。\u3000<colortype(504)><edgecolortype(505)>威力：<edgecolortype(0)><colortype(0)><if([gnum68==35],<if([gnum72>=94],440,380)>,380)><br><colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)><colortype(500)><edgecolortype(501)>「ホワイトマナ」<edgecolortype(0)><colortype(0)>を6上昇させる。<br><colortype(504)><edgecolortype(505)>追加効果（発動確率50％）：<edgecolortype(0)><colortype(0)>自身に<colortype(500)><edgecolortype(501)>「ヴァルストーン実行可」<edgecolortype(0)><colortype(0)>を付与する。\u3000<colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>30秒",
+      "unlock_level": 82,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Magical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 35,
+          "name": "赤魔道士",
+          "abbreviation": "RDM",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

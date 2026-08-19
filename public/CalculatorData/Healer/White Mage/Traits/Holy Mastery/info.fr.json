@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 488,
+  "name": "Maîtrise de Miracle",
+  "description": "Remplace Miracle par Méga Miracle.",
+  "description_macro": "Remplace <colortype(500)><edgecolortype(501)>Miracle<edgecolortype(0)><colortype(0)> par <colortype(500)><edgecolortype(501)>Méga Miracle<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Remplace Miracle par Méga Miracle."
+  ],
+  "role": "Healer",
+  "job": {
+    "id": 24,
+    "name": "Mage Blanc",
+    "abbreviation": "MBL"
+  },
+  "unlock_level": 82,
+  "value": 0,
+  "icon": {
+    "id": 5344,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 25,
+  "source_class_job_id": 24
+}

@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 484,
+  "name": "Red Magic Mastery III",
+  "description": "Upgrades Jolt II to Jolt III. Also increases the potency of Enchanted Riposte to 280, Verthunder II to 140, Veraero II to 140, Verfire to 340, Verstone to 340, Enchanted Zwerchhau to 150, Enchanted Redoublement to 130, Impact to 210, and Enchanted Reprise to 340.",
+  "description_macro": "Upgrades <colortype(500)><edgecolortype(501)>Jolt II<edgecolortype(0)><colortype(0)> to <colortype(500)><edgecolortype(501)>Jolt III<edgecolortype(0)><colortype(0)>. Also increases the potency of <colortype(500)><edgecolortype(501)>Enchanted Riposte<edgecolortype(0)><colortype(0)> to 280, <colortype(500)><edgecolortype(501)>Verthunder II<edgecolortype(0)><colortype(0)> to 140, <colortype(500)><edgecolortype(501)>Veraero II<edgecolortype(0)><colortype(0)> to 140, <colortype(500)><edgecolortype(501)>Verfire<edgecolortype(0)><colortype(0)> to 340, <colortype(500)><edgecolortype(501)>Verstone<edgecolortype(0)><colortype(0)> to 340, <colortype(500)><edgecolortype(501)>Enchanted Zwerchhau<edgecolortype(0)><colortype(0)> to 150, <colortype(500)><edgecolortype(501)>Enchanted Redoublement<edgecolortype(0)><colortype(0)> to 130, <colortype(500)><edgecolortype(501)>Impact<edgecolortype(0)><colortype(0)> to 210, and <colortype(500)><edgecolortype(501)>Enchanted Reprise<edgecolortype(0)><colortype(0)> to 340.",
+  "effects": [
+    "Upgrades Jolt II to Jolt III. Also increases the potency of Enchanted Riposte to 280, Verthunder II to 140, Veraero II to 140, Verfire to 340, Verstone to 340, Enchanted Zwerchhau to 150, Enchanted Redoublement to 130, Impact to 210, and Enchanted Reprise to 340."
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 35,
+    "name": "Red Mage",
+    "abbreviation": "RDM"
+  },
+  "unlock_level": 84,
+  "value": 0,
+  "icon": {
+    "id": 6210,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 112,
+  "source_class_job_id": 35
+}

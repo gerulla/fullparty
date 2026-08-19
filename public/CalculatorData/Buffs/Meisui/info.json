@@ -1,0 +1,51 @@
+{
+  "kind": "combat_status",
+  "id": 2689,
+  "name": "Meisui",
+  "description": "Next Bhavacakra will deal increased damage.",
+  "effects": [
+    "Next Bhavacakra will deal increased damage."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 212914,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 92,
+  "source_abilities": [
+    {
+      "id": 16489,
+      "name": "Meisui",
+      "description": "Dispels Shadow Walker, increasing the Ninki Gauge by 50.\nAdditional Effect: Grants Meisui\nDuration: 30s\nMeisui Effect: Increases the potency of Zesho Meppo to 850 and Bhavacakra to 550\nCan only be executed while in combat and under the effect of Shadow Walker.",
+      "description_macro": "Dispels <colortype(506)><edgecolortype(507)>Shadow Walker<edgecolortype(0)><colortype(0)>, increasing the <colortype(500)><edgecolortype(501)>Ninki Gauge<edgecolortype(0)><colortype(0)> by 50.<br><if([gnum68==30],<if([gnum72>=88],<colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>Grants <colortype(506)><edgecolortype(507)>Meisui<edgecolortype(0)><colortype(0)><br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>30s<br><colortype(504)><edgecolortype(505)>Meisui Effect: <edgecolortype(0)><colortype(0)><if([gnum68==30],<if([gnum72>=96],Increases the potency of <colortype(500)><edgecolortype(501)>Zesho Meppo<edgecolortype(0)><colortype(0)> to 850 and <colortype(500)><edgecolortype(501)>Bhavacakra<edgecolortype(0)><colortype(0)> to 550,Increases the potency of <colortype(500)><edgecolortype(501)>Bhavacakra<edgecolortype(0)><colortype(0)> to <if([gnum68==30],<if([gnum72>=94],550,500)>,500)>)>,Increases the potency of <colortype(500)><edgecolortype(501)>Bhavacakra<edgecolortype(0)><colortype(0)> to <if([gnum68==30],<if([gnum72>=94],550,500)>,500)>)><br>,)>,)>Can only be executed while in combat and under the effect of <colortype(506)><edgecolortype(507)>Shadow Walker<edgecolortype(0)><colortype(0)>.",
+      "unlock_level": 72,
+      "relations": [
+        "granted_by_description",
+        "same_name"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 30,
+          "name": "Ninja",
+          "abbreviation": "NIN",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "kind": "trait",
+  "id": 18,
+  "name": "Dualcast",
+  "description": "Grants the effect of Dualcast upon casting any spell with a cast time. While under the effect of Dualcast, your next spell will require no time to cast. Effect is canceled upon execution of any action other than an ability. Auto-attacks do not cancel effect.\nDuration: 15s",
+  "description_macro": "Grants the effect of <colortype(506)><edgecolortype(507)>Dualcast<edgecolortype(0)><colortype(0)> upon casting any spell with a cast time. While under the effect of <colortype(506)><edgecolortype(507)>Dualcast<edgecolortype(0)><colortype(0)>, your next spell will require no time to cast. Effect is canceled upon execution of any action other than an ability. Auto-attacks do not cancel effect.<br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>15s",
+  "effects": [
+    "Grants the effect of Dualcast upon casting any spell with a cast time. While under the effect of Dualcast, your next spell will require no time to cast. Effect is canceled upon execution of any action other than an ability. Auto-attacks do not cancel effect.",
+    "Duration: 15s"
+  ],
+  "role": "Phantom Jobs",
+  "job": {
+    "id": 22,
+    "name": "Phantom Red Mage",
+    "abbreviation": "Ph. Red Mage"
+  },
+  "is_phantom_trait": true,
+  "unlock_level": 6,
+  "icon": {
+    "id": 82218,
+    "file": "icon.png"
+  }
+}

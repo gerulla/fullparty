@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 376,
+  "name": "Offensive Magic Mastery II",
+  "description": "Upgrades Dosis II to Dosis III, Phlegma II to Phlegma III, Eukrasian Dosis II to Eukrasian Dosis III, Dyskrasia to Dyskrasia II, and Toxikon to Toxikon II.",
+  "description_macro": "Upgrades <colortype(500)><edgecolortype(501)>Dosis II<edgecolortype(0)><colortype(0)> to <colortype(500)><edgecolortype(501)>Dosis III<edgecolortype(0)><colortype(0)>, <colortype(500)><edgecolortype(501)>Phlegma II<edgecolortype(0)><colortype(0)> to <colortype(500)><edgecolortype(501)>Phlegma III<edgecolortype(0)><colortype(0)>, <colortype(500)><edgecolortype(501)>Eukrasian Dosis II<edgecolortype(0)><colortype(0)> to <colortype(500)><edgecolortype(501)>Eukrasian Dosis III<edgecolortype(0)><colortype(0)>, <colortype(500)><edgecolortype(501)>Dyskrasia<edgecolortype(0)><colortype(0)> to <colortype(500)><edgecolortype(501)>Dyskrasia II<edgecolortype(0)><colortype(0)>, and <colortype(500)><edgecolortype(501)>Toxikon<edgecolortype(0)><colortype(0)> to <colortype(500)><edgecolortype(501)>Toxikon II<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Upgrades Dosis II to Dosis III, Phlegma II to Phlegma III, Eukrasian Dosis II to Eukrasian Dosis III, Dyskrasia to Dyskrasia II, and Toxikon to Toxikon II."
+  ],
+  "role": "Healer",
+  "job": {
+    "id": 40,
+    "name": "Sage",
+    "abbreviation": "SGE"
+  },
+  "unlock_level": 82,
+  "value": 0,
+  "icon": {
+    "id": 6457,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 181,
+  "source_class_job_id": 40
+}

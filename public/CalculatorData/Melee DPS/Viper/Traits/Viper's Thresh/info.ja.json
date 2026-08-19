@@ -1,0 +1,25 @@
+{
+  "kind": "trait",
+  "id": 527,
+  "name": "大蛇の技効果アップ",
+  "description": "双牙連閃および双牙乱閃が実行できるようになる。\n発動条件：弐の大蛇【猛襲】および弐の大蛇【疾速】の命中時",
+  "description_macro": "双牙連閃および双牙乱閃が実行できるようになる。<br><colortype(504)><edgecolortype(505)>発動条件：<edgecolortype(0)><colortype(0)>弐の大蛇【猛襲】および弐の大蛇【疾速】の命中時",
+  "effects": [
+    "双牙連閃および双牙乱閃が実行できるようになる。",
+    "発動条件：弐の大蛇【猛襲】および弐の大蛇【疾速】の命中時"
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 41,
+    "name": "ヴァイパー",
+    "abbreviation": "VPR"
+  },
+  "unlock_level": 80,
+  "value": 0,
+  "icon": {
+    "id": 6504,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 196,
+  "source_class_job_id": 41
+}

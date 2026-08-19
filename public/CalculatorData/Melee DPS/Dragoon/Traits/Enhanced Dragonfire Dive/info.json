@@ -1,0 +1,25 @@
+{
+  "kind": "trait",
+  "id": 581,
+  "name": "Enhanced Dragonfire Dive",
+  "description": "Grants Dragon's Flight upon executing Dragonfire Dive.\nDuration: 30s",
+  "description_macro": "Grants <colortype(506)><edgecolortype(507)>Dragon's Flight<edgecolortype(0)><colortype(0)> upon executing <colortype(500)><edgecolortype(501)>Dragonfire Dive<edgecolortype(0)><colortype(0)>.<br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>30s",
+  "effects": [
+    "Grants Dragon's Flight upon executing Dragonfire Dive.",
+    "Duration: 30s"
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 22,
+    "name": "Dragoon",
+    "abbreviation": "DRG"
+  },
+  "unlock_level": 92,
+  "value": 0,
+  "icon": {
+    "id": 5296,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 23,
+  "source_class_job_id": 22
+}

@@ -1,0 +1,91 @@
+{
+  "kind": "ability",
+  "id": 24290,
+  "name": "Eukrasie",
+  "description": "Du verstärkst bestimmte Heil- und Angriffszauber.\nDosis III ändert sich zu Eukratische Dosis III.\nDyskrasie II ändert sich zu Eukratische Dyskrasie.\nDiagnose ändert sich zu Eukratische Diagnose.\nPrognose ändert sich zu Eukratische Prognose II.\nDer Effekt endet, sobald ein verstärktes Kommando ausgeführt wird.\nEigener Reaktivierungs-Timer\nBei Ausführung wird der Reaktivierungs-Timer dieses Kommandos auf alle anderen Waffenfertigkeiten und Magie angewendet.",
+  "description_macro": "Du verstärkst bestimmte Heil- und Angriffszauber.<br><if([gnum68==40],<if([gnum72>=82],<colortype(502)><edgecolortype(503)>Dosis III<edgecolortype(0)><colortype(0)> ändert sich zu <colortype(502)><edgecolortype(503)>Eukratische Dosis III<edgecolortype(0)><colortype(0)>.,<if([gnum68==40],<if([gnum72>=72],<colortype(502)><edgecolortype(503)>Dosis II<edgecolortype(0)><colortype(0)> ändert sich zu <colortype(502)><edgecolortype(503)>Eukratische Dosis II<edgecolortype(0)><colortype(0)>.,<colortype(502)><edgecolortype(503)>Dosis<edgecolortype(0)><colortype(0)> ändert sich zu <colortype(502)><edgecolortype(503)>Eukratische Dosis<edgecolortype(0)><colortype(0)>.)>,<colortype(502)><edgecolortype(503)>Dosis<edgecolortype(0)><colortype(0)> ändert sich zu <colortype(502)><edgecolortype(503)>Eukratische Dosis<edgecolortype(0)><colortype(0)>.)>)>,<if([gnum68==40],<if([gnum72>=72],<colortype(502)><edgecolortype(503)>Dosis II<edgecolortype(0)><colortype(0)> ändert sich zu <colortype(502)><edgecolortype(503)>Eukratische Dosis II<edgecolortype(0)><colortype(0)>.,<colortype(502)><edgecolortype(503)>Dosis<edgecolortype(0)><colortype(0)> ändert sich zu <colortype(502)><edgecolortype(503)>Eukratische Dosis<edgecolortype(0)><colortype(0)>.)>,<colortype(502)><edgecolortype(503)>Dosis<edgecolortype(0)><colortype(0)> ändert sich zu <colortype(502)><edgecolortype(503)>Eukratische Dosis<edgecolortype(0)><colortype(0)>.)>)><br><if([gnum68==40],<if([gnum72>=82],<colortype(502)><edgecolortype(503)>Dyskrasie II<edgecolortype(0)><colortype(0)> ändert sich zu <colortype(502)><edgecolortype(503)>Eukratische Dyskrasie<edgecolortype(0)><colortype(0)>.<br>,)>,)><colortype(502)><edgecolortype(503)>Diagnose<edgecolortype(0)><colortype(0)> ändert sich zu <colortype(502)><edgecolortype(503)>Eukratische Diagnose<edgecolortype(0)><colortype(0)>.<br><colortype(502)><edgecolortype(503)>Prognose<edgecolortype(0)><colortype(0)> ändert sich zu <if([gnum68==40],<if([gnum72>=96],<colortype(502)><edgecolortype(503)>Eukratische Prognose II<edgecolortype(0)><colortype(0)>,<colortype(502)><edgecolortype(503)>Eukratische Prognose<edgecolortype(0)><colortype(0)>)>,<colortype(502)><edgecolortype(503)>Eukratische Prognose<edgecolortype(0)><colortype(0)>)>.<br>Der Effekt endet, sobald ein verstärktes Kommando ausgeführt wird.<br>Eigener Reaktivierungs-Timer<br>Bei Ausführung wird der Reaktivierungs-Timer dieses Kommandos auf alle anderen Waf<->fen<->fer<->tig<->kei<->ten und Magie angewendet.",
+  "effects": [
+    "Du verstärkst bestimmte Heil- und Angriffszauber.",
+    "Dosis III ändert sich zu Eukratische Dosis III.",
+    "Dyskrasie II ändert sich zu Eukratische Dyskrasie.",
+    "Diagnose ändert sich zu Eukratische Diagnose.",
+    "Prognose ändert sich zu Eukratische Prognose II.",
+    "Der Effekt endet, sobald ein verstärktes Kommando ausgeführt wird.",
+    "Eigener Reaktivierungs-Timer",
+    "Bei Ausführung wird der Reaktivierungs-Timer dieses Kommandos auf alle anderen Waffenfertigkeiten und Magie angewendet."
+  ],
+  "role": "Healer",
+  "job": {
+    "id": 40,
+    "name": "Weiser",
+    "abbreviation": "WEI"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 30,
+  "icon": {
+    "id": 3658,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 2,
+    "name": "Zauber"
+  },
+  "attack_type": {
+    "id": 0,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 2.5,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 58,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 0,
+      "value": 0
+    },
+    "secondary": {
+      "type_id": 46,
+      "value": 2606
+    }
+  },
+  "range": {
+    "target_yalms": 0,
+    "effect_yalms": 0,
+    "cast_type": 1
+  },
+  "targeting": {
+    "self": true,
+    "party": false,
+    "alliance": false,
+    "hostile": false,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 0,
+    "behavior_type": 0,
+    "class_job_category_id": 181,
+    "source_class_job_id": 40,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

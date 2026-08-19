@@ -1,0 +1,71 @@
+{
+  "kind": "combat_status",
+  "id": 2589,
+  "name": "Hängen",
+  "description": "Nächster Galgen hat einen erhöhten Attacke-Wert.",
+  "effects": [
+    "Nächster Galgen hat einen erhöhten Attacke-Wert."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 212928,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 50,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 180,
+  "source_abilities": [
+    {
+      "id": 24382,
+      "name": "Richtpfahl",
+      "description": "Du führst eine physische Attacke aus.\nAttacke-Wert: 500\nBei Richten: 560\nVon der Seite: 560\nBei Richten und von der Seite: 620\nZusatzeffekt: Gewährt dir Hängen.\nDauer: 60 Sekunden\nWährend Hängen ändert sich Knochengarbe zu Galgengriff.\nZusatzeffekt: Schleierbalken füllt sich um 10.\nBedingung: Nichtssense aktiv",
+      "description_macro": "Du führst eine physische Attacke aus.<br>Attacke-Wert: <if([gnum68==39],<if([gnum72>=94],500,400)>,400)><br>Bei <colortype(506)><edgecolortype(507)>Richten<edgecolortype(0)><colortype(0)>: <edgecolortype(0)><colortype(0)><if([gnum68==39],<if([gnum72>=94],560,460)>,460)><br>Von der Seite: <if([gnum68==39],<if([gnum72>=94],560,460)>,460)><br>Bei <colortype(506)><edgecolortype(507)>Richten<edgecolortype(0)><colortype(0)> und von der Seite: <if([gnum68==39],<if([gnum72>=94],620,520)>,520)><br>Zusatzeffekt: Gewährt dir <colortype(506)><edgecolortype(507)>Hängen<edgecolortype(0)><colortype(0)>.<br>Dauer: 60 Sekunden<br>Während <colortype(506)><edgecolortype(507)>Hängen<edgecolortype(0)><colortype(0)> ändert sich <colortype(502)><edgecolortype(503)>Knochengarbe<edgecolortype(0)><colortype(0)> zu <colortype(502)><edgecolortype(503)>Galgengriff<edgecolortype(0)><colortype(0)>.<br><if([gnum68==39],<if([gnum72>=80],Zusatzeffekt: Schleierbalken füllt sich um 10.<br>,)>,)>Bedingung: <colortype(506)><edgecolortype(507)>Nichtssense<edgecolortype(0)><colortype(0)> aktiv",
+      "unlock_level": 70,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 39,
+          "name": "Schnitter",
+          "abbreviation": "SNT",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 36970,
+      "name": "Henkerspfahl",
+      "description": "Du führst eine physische Attacke aus.\nAttacke-Wert: 700\nBei Richten: 760\nVon der Seite: 760\nBei Richten und von der Seite: 820\nZusatzeffekt: Gewährt dir Hängen.\nDauer: 60 Sekunden\nWährend Hängen ändert sich Knochengarbe zu Galgengriff.\nZusatzeffekt: Schleierbalken füllt sich um 10.\nBedingung: Henkerssense aktiv\nBei erfüllter Bedingung ändert sich Richtpfahl zu diesem Kommando.\nKann nicht im Kommandomenü angelegt werden.",
+      "description_macro": "Du führst eine physische Attacke aus.<br>Attacke-Wert: 700<br>Bei <colortype(506)><edgecolortype(507)>Richten<edgecolortype(0)><colortype(0)>: 760<br>Von der Seite: 760<br>Bei <colortype(506)><edgecolortype(507)>Richten<edgecolortype(0)><colortype(0)> und von der Seite: 820<br>Zusatzeffekt: Gewährt dir <colortype(506)><edgecolortype(507)>Hängen<edgecolortype(0)><colortype(0)>.<br>Dauer: 60 Sekunden<br>Während <colortype(506)><edgecolortype(507)>Hängen<edgecolortype(0)><colortype(0)> ändert sich <colortype(502)><edgecolortype(503)>Knochengarbe<edgecolortype(0)><colortype(0)> zu <colortype(502)><edgecolortype(503)>Galgengriff<edgecolortype(0)><colortype(0)>.<br><if([gnum68==39],<if([gnum72>=80],Zusatzeffekt: Schleierbalken füllt sich um 10.<br>,)>,)>Bedingung: <colortype(506)><edgecolortype(507)>Henkerssense<edgecolortype(0)><colortype(0)> aktiv<br>Bei erfüllter Bedingung ändert sich <colortype(502)><edgecolortype(503)>Richtpfahl<edgecolortype(0)><colortype(0)> zu diesem Kommando.<br>Kann nicht im Kommandomenü angelegt werden.",
+      "unlock_level": 96,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 39,
+          "name": "Schnitter",
+          "abbreviation": "SNT",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

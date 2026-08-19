@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 4246,
+  "name": "たいりょくのうた",
+  "description": "連続してＨＰが回復している状態。さらに最大ＨＰが増加する。",
+  "effects": [
+    "連続してＨＰが回復している状態。さらに最大ＨＰが増加する。"
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 229910,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 10
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 41607,
+      "name": "たいりょくのうた",
+      "description": "一定時間、自身と周囲のパーティメンバーのＨＰを継続回復する。\n回復力：3000\u3000効果時間：30秒\nさらに、対象の最大ＨＰを20％上昇させ、実行した時点での最大ＨＰの20％分のＨＰを回復する。",
+      "description_macro": "一定時間、自身と周囲のパーティメンバーのＨＰを継続回復する。<br><colortype(504)><edgecolortype(505)>回復力：<edgecolortype(0)><colortype(0)><if([gnum108>=4],3500,3000)>\u3000<colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>30秒<br>さらに、対象の最大ＨＰを20％上昇させ、実行した時点での最大ＨＰの20％分のＨＰを回復する。",
+      "unlock_level": 0,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Phantom Jobs"
+      ],
+      "jobs": [
+        {
+          "id": 6,
+          "name": "Phantom サポート吟遊詩人",
+          "abbreviation": "Ph. Bard",
+          "is_phantom": true
+        }
+      ]
+    }
+  ]
+}

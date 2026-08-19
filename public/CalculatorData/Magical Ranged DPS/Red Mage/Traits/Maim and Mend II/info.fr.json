@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 201,
+  "name": "Efficacité des actions augmentée II",
+  "description": "Les soins et les dégâts de base des actions sont augmentés de 30%.",
+  "description_macro": "Les soins et les dégâts de base des actions sont augmentés de 30%.",
+  "effects": [
+    "Les soins et les dégâts de base des actions sont augmentés de 30%."
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 35,
+    "name": "Mage Rouge",
+    "abbreviation": "MRG"
+  },
+  "unlock_level": 40,
+  "value": 30,
+  "icon": {
+    "id": 5186,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 112,
+  "source_class_job_id": 35
+}

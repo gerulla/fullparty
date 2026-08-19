@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 469,
+  "name": "Topaz Summoning Mastery",
+  "description": "Upgrades Summon Topaz to Summon Titan.",
+  "description_macro": "Upgrades <colortype(500)><edgecolortype(501)>Summon Topaz<edgecolortype(0)><colortype(0)> to <colortype(500)><edgecolortype(501)>Summon Titan<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Upgrades Summon Topaz to Summon Titan."
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 27,
+    "name": "Summoner",
+    "abbreviation": "SMN"
+  },
+  "unlock_level": 35,
+  "value": 0,
+  "icon": {
+    "id": 5683,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 28,
+  "source_class_job_id": 27
+}

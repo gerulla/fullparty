@@ -1,0 +1,94 @@
+{
+  "kind": "ability",
+  "id": 2245,
+  "name": "Verstecken",
+  "description": "Du verbirgst dich vor den Blicken der meisten Gegner, verlangsamst aber deine Bewegungsgeschwindigkeit um 50 %.\nEinige Gegner wie solche, deren Stufe 10 oder mehr über deiner liegt, können dich sehen.\nZusatzeffekt: Reaktivierungs-Timer von Ninjutsu wird für 2 Aufladungen zurückgesetzt.\nIst Doton aktiv\\Bedingung: Nicht im Kampf.\nEffekt endet bei erneuter Ausführung oder nächstem Kommando mit Ausnahme von Sprint.",
+  "description_macro": "Du verbirgst dich vor den Blicken der meisten Gegner, verlangsamst aber deine Be<->we<->gungs<->ge<->schwin<->dig<->keit um 50 %.<br>Einige Gegner wie solche, deren Stufe 10 oder mehr über deiner liegt, können dich sehen.<if([gnum72>=30],<if([gnum68==30],<br>Zusatzeffekt: Reaktivierungs-Timer von <colortype(502)><edgecolortype(503)>Ninjutsu<edgecolortype(0)><colortype(0)> wird für 2 Aufladungen zurückgesetzt.,)>,)><br><if([gnum68==30],<if([gnum72>=45],Ist <colortype(506)><edgecolortype(507)>Doton<edgecolortype(0)><colortype(0)> aktiv\\, wird es bei Ausführung beendet.<br>,)>,)>Bedingung: Nicht im Kampf.<br>Effekt endet bei erneuter Ausführung oder nächstem Kommando mit Ausnahme von <colortype(502)><edgecolortype(503)>Sprint<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Du verbirgst dich vor den Blicken der meisten Gegner, verlangsamst aber deine Bewegungsgeschwindigkeit um 50 %.",
+    "Einige Gegner wie solche, deren Stufe 10 oder mehr über deiner liegt, können dich sehen.",
+    "Zusatzeffekt: Reaktivierungs-Timer von Ninjutsu wird für 2 Aufladungen zurückgesetzt.",
+    "Ist Doton aktiv\\Bedingung: Nicht im Kampf.",
+    "Effekt endet bei erneuter Ausführung oder nächstem Kommando mit Ausnahme von Sprint."
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 30,
+    "name": "Ninja",
+    "abbreviation": "NIN"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 10,
+  "icon": {
+    "id": 609,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 4,
+    "name": "Talent"
+  },
+  "attack_type": {
+    "id": 0,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 20,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 3,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 0,
+      "value": 0
+    },
+    "secondary": {
+      "type_id": 38,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": 0,
+    "effect_yalms": 0,
+    "cast_type": 1
+  },
+  "targeting": {
+    "self": true,
+    "party": false,
+    "alliance": false,
+    "hostile": false,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": {
+      "id": 614,
+      "name": "Versteckt",
+      "description": "Kann nicht gesehen werden, aber Bewegungsgeschwindigkeit ist verringert.",
+      "icon_id": 210607,
+      "max_stacks": 0
+    },
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 0,
+    "behavior_type": 0,
+    "class_job_category_id": 93,
+    "source_class_job_id": 29,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

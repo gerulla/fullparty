@@ -1,0 +1,51 @@
+{
+  "kind": "combat_status",
+  "id": 4257,
+  "name": "Ringing Respite",
+  "description": "Triggers a healing effect upon taking damage.",
+  "effects": [
+    "Triggers a healing effect upon taking damage."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 229920,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 3000
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 41619,
+      "name": "Ringing Respite",
+      "description": "Grants Ringing Respite to self or target player.\nRinging Respite Effect: Heals self or target player when damage is taken\nCure Potency: 000\nDuration: 60s",
+      "description_macro": "Grants <colortype(506)><edgecolortype(507)>Ringing Respite<edgecolortype(0)><colortype(0)> to self or target player.<br><colortype(504)><edgecolortype(505)>Ringing Respite Effect: <edgecolortype(0)><colortype(0)>Heals self or target player when damage is taken<br><colortype(504)><edgecolortype(505)>Cure Potency: <edgecolortype(0)><colortype(0)><if([gnum108>=5],3\\,000,2\\,000)><br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>60s",
+      "unlock_level": 0,
+      "relations": [
+        "granted_by_description",
+        "same_name"
+      ],
+      "roles": [
+        "Phantom Jobs"
+      ],
+      "jobs": [
+        {
+          "id": 7,
+          "name": "Phantom Geomancer",
+          "abbreviation": "Ph. Geomancer",
+          "is_phantom": true
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,91 @@
+{
+  "kind": "ability",
+  "id": 49101,
+  "name": "Doomsday",
+  "description": "Deals unaspected damage with a potency of 350 to all enemies in a straight line.\nDrain Touch Potency: 500\nPotency scales with item level.\nConsumes 10% of maximum HP when executed.\nAdditional Effect: Removes one beneficial status from target, with some exceptions when under the effect of Drain Touch\nAdditional Effect: Afflicts yourself with Doom\nDuration: 10s\nEffect is dispelled when HP is restored to full.",
+  "description_macro": "Deals unaspected damage with a potency of 350 to all enemies in a straight line.<br><colortype(504)><edgecolortype(505)>Drain Touch Potency: <edgecolortype(0)><colortype(0)>500<br>Potency scales with item level.<br>Consumes 10% of maximum HP when executed.<br><colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>Removes one beneficial status from target, with some exceptions when under the effect of <colortype(506)><edgecolortype(507)>Drain Touch<edgecolortype(0)><colortype(0)><br><colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>Afflicts yourself with <colortype(506)><edgecolortype(507)>Doom<edgecolortype(0)><colortype(0)><br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>10s<br>Effect is dispelled when HP is restored to full.",
+  "effects": [
+    "Deals unaspected damage with a potency of 350 to all enemies in a straight line.",
+    "Drain Touch Potency: 500",
+    "Potency scales with item level.",
+    "Consumes 10% of maximum HP when executed.",
+    "Additional Effect: Removes one beneficial status from target, with some exceptions when under the effect of Drain Touch",
+    "Additional Effect: Afflicts yourself with Doom",
+    "Duration: 10s",
+    "Effect is dispelled when HP is restored to full."
+  ],
+  "role": "Phantom Jobs",
+  "job": {
+    "id": 23,
+    "name": "Phantom Necromancer",
+    "abbreviation": "Ph. Necromancer"
+  },
+  "is_phantom_action": true,
+  "unlock_level": 5,
+  "icon": {
+    "id": 64533,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 2,
+    "name": "Spell"
+  },
+  "attack_type": {
+    "id": 5,
+    "name": "魔法"
+  },
+  "timing": {
+    "cast_seconds": 1.5,
+    "recast_seconds": 120,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 87,
+    "additional_cooldown_group": 58,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 1,
+      "value": 10
+    },
+    "secondary": {
+      "type_id": 0,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": 30,
+    "effect_yalms": 30,
+    "cast_type": 4
+  },
+  "targeting": {
+    "self": false,
+    "party": false,
+    "alliance": false,
+    "hostile": true,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 7,
+    "behavior_type": 0,
+    "class_job_category_id": 142,
+    "source_class_job_id": 4294967295,
+    "is_role_action": false,
+    "is_player_action": false,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

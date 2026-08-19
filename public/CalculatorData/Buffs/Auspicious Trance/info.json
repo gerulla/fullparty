@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 2497,
+  "name": "Auspicious Trance",
+  "description": "Able to execute the blue magic spell Divine Cataract.",
+  "effects": [
+    "Able to execute the blue magic spell Divine Cataract."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 213536,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": true,
+  "inflicted_by_actor": true,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 23273,
+      "name": "Chelonian Gate",
+      "description": "Summons a chelonian gate, reducing damage taken by 20%.\nDuration: 10s\nAdditional Effect: Grants Auspicious Trance after taking damage equal to 30% of maximum HP\nAuspicious Trance Effect: Action changes from Chelonian Gate to Divine Cataract\nChelonian Gate effect ends upon using another action or moving (including facing a different direction).\nAuspicious Trance ends upon losing the effect of Chelonian Gate.\nCancels auto-attack upon execution.\nShares a recast timer with The Rose of Destruction and Ruby Dynamics.\n\nDivine Cataract\nDeals water damage to all nearby enemies with a potency of 500 for the first enemy, and 50% less for all remaining enemies.\nPotency increases to 1,000 when you are under the effect of Aetheric Mimicry: Tank.\nCan only be executed when under the effect of Auspicious Trance.",
+      "description_macro": "Summons a chelonian gate, reducing damage taken by 20%.<br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>10s<br><colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>Grants <colortype(506)><edgecolortype(507)>Auspicious Trance<edgecolortype(0)><colortype(0)> after taking damage equal to 30% of maximum HP<br><colortype(504)><edgecolortype(505)>Auspicious Trance Effect: <edgecolortype(0)><colortype(0)>Action changes from <colortype(500)><edgecolortype(501)>Chelonian Gate<edgecolortype(0)><colortype(0)> to <colortype(500)><edgecolortype(501)>Divine Cataract<edgecolortype(0)><colortype(0)><br><colortype(506)><edgecolortype(507)>Chelonian Gate<edgecolortype(0)><colortype(0)> effect ends upon using another action or moving (including facing a different direction).<br><colortype(506)><edgecolortype(507)>Auspicious Trance<edgecolortype(0)><colortype(0)> ends upon losing the effect of <colortype(506)><edgecolortype(507)>Chelonian Gate<edgecolortype(0)><colortype(0)>.<br>Cancels auto-attack upon execution.<br>Shares a recast timer with <colortype(500)><edgecolortype(501)>The Rose of Destruction<edgecolortype(0)><colortype(0)> and <colortype(500)><edgecolortype(501)>Ruby Dynamics<edgecolortype(0)><colortype(0)>.<br><br><colortype(500)><edgecolortype(501)>Divine Cataract<edgecolortype(0)><colortype(0)><br>Deals water damage to all nearby enemies with a potency of 500 for the first enemy, and 50% less for all remaining enemies.<br>Potency increases to 1,000 when you are under the effect of <colortype(506)><edgecolortype(507)>Aetheric Mimicry: Tank<edgecolortype(0)><colortype(0)>.<br>Can only be executed when under the effect of <colortype(506)><edgecolortype(507)>Auspicious Trance<edgecolortype(0)><colortype(0)>.",
+      "unlock_level": 1,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Magical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 36,
+          "name": "Blue Mage",
+          "abbreviation": "BLU",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

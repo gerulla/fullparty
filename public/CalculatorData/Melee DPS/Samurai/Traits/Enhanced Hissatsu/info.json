@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 591,
+  "name": "Enhanced Hissatsu",
+  "description": "Reduces Hissatsu: Guren and Hissatsu: Senei recast time to 60 seconds.",
+  "description_macro": "Reduces <colortype(500)><edgecolortype(501)>Hissatsu: Guren<edgecolortype(0)><colortype(0)> and <colortype(500)><edgecolortype(501)>Hissatsu: Senei<edgecolortype(0)><colortype(0)> recast time to 60 seconds.",
+  "effects": [
+    "Reduces Hissatsu: Guren and Hissatsu: Senei recast time to 60 seconds."
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 34,
+    "name": "Samurai",
+    "abbreviation": "SAM"
+  },
+  "unlock_level": 94,
+  "value": -600,
+  "icon": {
+    "id": 6161,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 111,
+  "source_class_job_id": 34
+}

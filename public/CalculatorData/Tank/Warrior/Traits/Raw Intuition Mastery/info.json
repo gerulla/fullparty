@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 418,
+  "name": "Raw Intuition Mastery",
+  "description": "Upgrades Raw Intuition to Bloodwhetting.",
+  "description_macro": "Upgrades <colortype(500)><edgecolortype(501)>Raw Intuition<edgecolortype(0)><colortype(0)> to <colortype(500)><edgecolortype(501)>Bloodwhetting<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Upgrades Raw Intuition to Bloodwhetting."
+  ],
+  "role": "Tank",
+  "job": {
+    "id": 21,
+    "name": "Warrior",
+    "abbreviation": "WAR"
+  },
+  "unlock_level": 82,
+  "value": 0,
+  "icon": {
+    "id": 5267,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 22,
+  "source_class_job_id": 21
+}

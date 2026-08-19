@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 564,
+  "name": "Sentinel Mastery",
+  "description": "Upgrades Sentinel to Guardian.",
+  "description_macro": "Upgrades <colortype(500)><edgecolortype(501)>Sentinel<edgecolortype(0)><colortype(0)> to <colortype(500)><edgecolortype(501)>Guardian<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Upgrades Sentinel to Guardian."
+  ],
+  "role": "Tank",
+  "job": {
+    "id": 19,
+    "name": "Paladin",
+    "abbreviation": "PLD"
+  },
+  "unlock_level": 92,
+  "value": 0,
+  "icon": {
+    "id": 5202,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 20,
+  "source_class_job_id": 19
+}

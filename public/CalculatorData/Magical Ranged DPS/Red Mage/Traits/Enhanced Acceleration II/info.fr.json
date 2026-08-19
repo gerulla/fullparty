@@ -1,0 +1,26 @@
+{
+  "kind": "trait",
+  "id": 621,
+  "name": "Accélération améliorée II",
+  "description": "Permet de recevoir Impact majestueux préparé lorsque vous utilisez Accélération.\nDurée : 30s\nRemplace Méga À-coup et Impact par Impact majestueux pendant la durée de l'effet.",
+  "description_macro": "Permet de recevoir <colortype(500)><edgecolortype(501)>Impact majestueux préparé<edgecolortype(0)><colortype(0)> lorsque vous utilisez <colortype(500)><edgecolortype(501)>Accélération<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 30s<br>Remplace <colortype(500)><edgecolortype(501)>Méga À-coup<edgecolortype(0)><colortype(0)> et <colortype(500)><edgecolortype(501)>Impact<edgecolortype(0)><colortype(0)> par <colortype(500)><edgecolortype(501)>Impact majestueux<edgecolortype(0)><colortype(0)> pendant la durée de l'effet.",
+  "effects": [
+    "Permet de recevoir Impact majestueux préparé lorsque vous utilisez Accélération.",
+    "Durée : 30s",
+    "Remplace Méga À-coup et Impact par Impact majestueux pendant la durée de l'effet."
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 35,
+    "name": "Mage Rouge",
+    "abbreviation": "MRG"
+  },
+  "unlock_level": 96,
+  "value": 0,
+  "icon": {
+    "id": 6214,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 112,
+  "source_class_job_id": 35
+}

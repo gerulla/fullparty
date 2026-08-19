@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 3857,
+  "name": "Oblatio",
+  "description": "Able to execute Sacrificium.",
+  "effects": [
+    "Able to execute Sacrificium."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 212941,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 180,
+  "source_abilities": [
+    {
+      "id": 24394,
+      "name": "Enshroud",
+      "description": "Offers your flesh as a vessel to your avatar, gaining maximum stacks of Lemure Shroud.\nDuration: 30s\nCertain actions cannot be executed while playing host to your avatar.\nAdditional Effect: Grants Oblatio\nDuration: 30s\nShroud Gauge Cost: 50",
+      "description_macro": "Offers your flesh as a vessel to your avatar, gaining maximum stacks of <colortype(506)><edgecolortype(507)>Lemure Shroud<edgecolortype(0)><colortype(0)>.<br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>30s<br>Certain actions cannot be executed while playing host to your avatar.<br><if([gnum68==39],<if([gnum72>=92],<colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>Grants <colortype(506)><edgecolortype(507)>Oblatio<edgecolortype(0)><colortype(0)><br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>30s<br>,)>,)><colortype(504)><edgecolortype(505)>Shroud Gauge Cost: <edgecolortype(0)><colortype(0)>50",
+      "unlock_level": 80,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 39,
+          "name": "Reaper",
+          "abbreviation": "RPR",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

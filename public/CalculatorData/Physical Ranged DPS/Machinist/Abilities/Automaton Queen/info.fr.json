@@ -1,0 +1,89 @@
+{
+  "kind": "ability",
+  "id": 16501,
+  "name": "Automate Reine",
+  "description": "Active l'automate Reine.\nLa puissance des actions de l'automate Reine augmente avec la quantité de Jauge de batterie consommée à sa mise en marche.\nDurée : 12s\nL'automate Reine disparaît quand la durée d'activation est écoulée, ou quand Surmultiplication de Reine est utilisé.\nCondition : Jauge de batterie à 50 ou plus.\nPartage le même temps de recharge que Surmultiplication de Reine.",
+  "description_macro": "Active l'automate Reine.<br>La puissance des actions de l'automate Reine augmente avec la quantité de <colortype(502)><edgecolortype(503)>Jauge de batterie<edgecolortype(0)><colortype(0)> consommée à sa mise en marche.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 12s<br>L'automate Reine disparaît quand la durée d'activation est écoulée, ou quand <colortype(500)><edgecolortype(501)>Surmul<->ti<->pli<->ca<->tion de Reine<edgecolortype(0)><colortype(0)> est utilisé.<br><colortype(506)><edgecolortype(507)>Condition<nbsp>:<edgecolortype(0)><colortype(0)> <colortype(502)><edgecolortype(503)>Jauge de batterie<edgecolortype(0)><colortype(0)> à 50 ou plus.<br>Partage le même temps de recharge que <colortype(500)><edgecolortype(501)>Surmul<->ti<->pli<->ca<->tion de Reine<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Active l'automate Reine.",
+    "La puissance des actions de l'automate Reine augmente avec la quantité de Jauge de batterie consommée à sa mise en marche.",
+    "Durée : 12s",
+    "L'automate Reine disparaît quand la durée d'activation est écoulée, ou quand Surmultiplication de Reine est utilisé.",
+    "Condition : Jauge de batterie à 50 ou plus.",
+    "Partage le même temps de recharge que Surmultiplication de Reine."
+  ],
+  "role": "Physical Ranged DPS",
+  "job": {
+    "id": 31,
+    "name": "Machiniste",
+    "abbreviation": "MCH"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 80,
+  "icon": {
+    "id": 3501,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 4,
+    "name": "Aptitude"
+  },
+  "attack_type": {
+    "id": 0,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 6,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 3,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 62,
+      "value": 50
+    },
+    "secondary": {
+      "type_id": 97,
+      "value": 50
+    }
+  },
+  "range": {
+    "target_yalms": 0,
+    "effect_yalms": 0,
+    "cast_type": 1
+  },
+  "targeting": {
+    "self": true,
+    "party": false,
+    "alliance": false,
+    "hostile": false,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 0,
+    "behavior_type": 0,
+    "class_job_category_id": 96,
+    "source_class_job_id": 31,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

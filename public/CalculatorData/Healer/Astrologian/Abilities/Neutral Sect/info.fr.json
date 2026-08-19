@@ -1,0 +1,91 @@
+{
+  "kind": "ability",
+  "id": 16559,
+  "name": "Adepte de la neutralité",
+  "description": "Augmente de 20% les PV restaurés par vos sorts curatifs.\nDurée : 20s\nEffet additionnel : crée une barrière sur la cible lorsque vous utilisez Bienfaisance aspectée ou Hélios combiné.\nPuissance avec Bienfaisance aspectée : 250% des PV restaurés.\nPuissance avec Hélios combiné : 125% des PV restaurés.\nDurée : 30s\nEffet additionnel : vous octroie Signe solaire préparé.\nDurée : 30s",
+  "description_macro": "Augmente de 20% les PV restaurés par vos sorts curatifs.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 20s<br><colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> crée une barrière sur la cible lorsque vous utilisez Bienfaisance aspectée ou <if([gnum68==33],<if([gnum72>=96],Hélios combiné,Hélios aspecté)>,Hélios aspecté)>.<br><colortype(506)><edgecolortype(507)>Puissance avec Bienfaisance aspectée<nbsp>:<edgecolortype(0)><colortype(0)> 250% des PV restaurés.<br><colortype(506)><edgecolortype(507)>Puissance avec <if([gnum68==33],<if([gnum72>=96],Hélios combiné,Hélios aspecté)>,Hélios aspecté)><nbsp>:<edgecolortype(0)><colortype(0)> 125% des PV restaurés.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 30s<if([gnum68==33],<if([gnum72>=100],<br><colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> vous octroie <colortype(500)><edgecolortype(501)>Signe solaire préparé<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 30s,)>,)>",
+  "effects": [
+    "Augmente de 20% les PV restaurés par vos sorts curatifs.",
+    "Durée : 20s",
+    "Effet additionnel : crée une barrière sur la cible lorsque vous utilisez Bienfaisance aspectée ou Hélios combiné.",
+    "Puissance avec Bienfaisance aspectée : 250% des PV restaurés.",
+    "Puissance avec Hélios combiné : 125% des PV restaurés.",
+    "Durée : 30s",
+    "Effet additionnel : vous octroie Signe solaire préparé.",
+    "Durée : 30s"
+  ],
+  "role": "Healer",
+  "job": {
+    "id": 33,
+    "name": "Astromancien",
+    "abbreviation": "AST"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 80,
+  "icon": {
+    "id": 3552,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 4,
+    "name": "Aptitude"
+  },
+  "attack_type": {
+    "id": 0,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 120,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 22,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 0,
+      "value": 0
+    },
+    "secondary": {
+      "type_id": 0,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": 0,
+    "effect_yalms": 0,
+    "cast_type": 1
+  },
+  "targeting": {
+    "self": true,
+    "party": false,
+    "alliance": false,
+    "hostile": false,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 0,
+    "behavior_type": 0,
+    "class_job_category_id": 99,
+    "source_class_job_id": 33,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

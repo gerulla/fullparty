@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 3183,
+  "name": "ぶんどる",
+  "description": "受けるダメージが増加する状態。",
+  "effects": [
+    "受けるダメージが増加する状態。"
+  ],
+  "classification": "debuff",
+  "icon": {
+    "id": 214942,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 2,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": true,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 10
+  },
+  "class_job_category_id": 92,
+  "source_abilities": [
+    {
+      "id": 2248,
+      "name": "ぶんどる",
+      "description": "対象に物理攻撃。\u3000威力：150\n追加効果：対象に「被ダメージ上昇」を付与し、受けるダメージを5％上昇させる。\u3000効果時間：20秒\n追加効果：このアクションを命中させてから敵を倒すと、より多くのアイテムを獲得できることがある。",
+      "description_macro": "対象に物理攻撃。\u3000<colortype(504)><edgecolortype(505)>威力：<edgecolortype(0)><colortype(0)>150<br><colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)>対象に<colortype(500)><edgecolortype(501)>「被ダメージ上昇」<edgecolortype(0)><colortype(0)>を付与し、受けるダメージを5％上昇させる。\u3000<colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>20秒<br><colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)>このアクションを命中させてから敵を倒すと、より多くのアイテムを獲得できることがある。",
+      "unlock_level": 15,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 30,
+          "name": "忍者",
+          "abbreviation": "NIN",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

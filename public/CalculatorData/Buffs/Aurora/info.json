@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 1835,
+  "name": "Aurora",
+  "description": "Regenerating HP over time.",
+  "effects": [
+    "Regenerating HP over time."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 213605,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 5,
+  "parameter": {
+    "effect": 0,
+    "modifier": 10
+  },
+  "class_job_category_id": 149,
+  "source_abilities": [
+    {
+      "id": 16151,
+      "name": "Aurora",
+      "description": "Grants Regen to target.\nCure Potency: 300\nDuration: 18s\nMaximum Charges: 2",
+      "description_macro": "Grants <colortype(506)><edgecolortype(507)>Regen<edgecolortype(0)><colortype(0)> to target.<br><colortype(504)><edgecolortype(505)>Cure Potency: <edgecolortype(0)><colortype(0)>300<br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>18s<if([gnum68==37],<if([gnum72>=84],<br><colortype(504)><edgecolortype(505)>Maximum Charges: <edgecolortype(0)><colortype(0)>2,)>,)>",
+      "unlock_level": 45,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Tank"
+      ],
+      "jobs": [
+        {
+          "id": 37,
+          "name": "Gunbreaker",
+          "abbreviation": "GNB",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,26 @@
+{
+  "kind": "trait",
+  "id": 514,
+  "name": "意気衝天効果アップ",
+  "description": "自身に「奥義波切実行可」を付与する。\n効果時間：30秒\n発動条件：意気衝天実行時",
+  "description_macro": "自身に<colortype(500)><edgecolortype(501)>「奥義波切実行可」<edgecolortype(0)><colortype(0)>を付与する。<br><colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>30秒<br><colortype(504)><edgecolortype(505)>発動条件：<edgecolortype(0)><colortype(0)>意気衝天実行時",
+  "effects": [
+    "自身に「奥義波切実行可」を付与する。",
+    "効果時間：30秒",
+    "発動条件：意気衝天実行時"
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 34,
+    "name": "侍",
+    "abbreviation": "SAM"
+  },
+  "unlock_level": 90,
+  "value": 0,
+  "icon": {
+    "id": 6157,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 111,
+  "source_class_job_id": 34
+}

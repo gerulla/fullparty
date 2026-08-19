@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 275,
+  "name": "Jump Mastery",
+  "description": "Upgrades Jump to High Jump.",
+  "description_macro": "Upgrades <colortype(500)><edgecolortype(501)>Jump<edgecolortype(0)><colortype(0)> to <colortype(500)><edgecolortype(501)>High Jump<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Upgrades Jump to High Jump."
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 22,
+    "name": "Dragoon",
+    "abbreviation": "DRG"
+  },
+  "unlock_level": 74,
+  "value": 0,
+  "icon": {
+    "id": 5286,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 23,
+  "source_class_job_id": 22
+}

@@ -1,0 +1,88 @@
+{
+  "kind": "ability",
+  "id": 7404,
+  "name": "Pitch Perfect",
+  "description": "Delivers an attack to the target and all enemies nearby it. Potency varies with number of Repertoire stacks, dealing full damage for the first enemy, and 50% less for all remaining enemies.\n1 Repertoire Stack: 100\n2 Repertoire Stacks: 220\n3 Repertoire Stacks: 360\nCan only be executed when the Wanderer's Minuet is active and you have at least one stack of Repertoire.",
+  "description_macro": "Delivers an attack to the target and all enemies nearby it. Potency varies with number of <colortype(506)><edgecolortype(507)>Repertoire<edgecolortype(0)><colortype(0)> stacks, dealing full damage for the first enemy, and 50% less for all remaining enemies.<br><colortype(504)><edgecolortype(505)>1 Repertoire Stack: <edgecolortype(0)><colortype(0)>100<br><colortype(504)><edgecolortype(505)>2 Repertoire Stacks: <edgecolortype(0)><colortype(0)>220<br><colortype(504)><edgecolortype(505)>3 Repertoire Stacks: <edgecolortype(0)><colortype(0)>360<br>Can only be executed when the <colortype(506)><edgecolortype(507)>Wanderer's Minuet<edgecolortype(0)><colortype(0)> is active and you have at least one stack of <colortype(506)><edgecolortype(507)>Repertoire<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Delivers an attack to the target and all enemies nearby it. Potency varies with number of Repertoire stacks, dealing full damage for the first enemy, and 50% less for all remaining enemies.",
+    "1 Repertoire Stack: 100",
+    "2 Repertoire Stacks: 220",
+    "3 Repertoire Stacks: 360",
+    "Can only be executed when the Wanderer's Minuet is active and you have at least one stack of Repertoire."
+  ],
+  "role": "Physical Ranged DPS",
+  "job": {
+    "id": 23,
+    "name": "Bard",
+    "abbreviation": "BRD"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 52,
+  "icon": {
+    "id": 2611,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 4,
+    "name": "Ability"
+  },
+  "attack_type": {
+    "id": 4294967295,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 1,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 1,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 32,
+      "value": 1
+    },
+    "secondary": {
+      "type_id": 0,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": -1,
+    "effect_yalms": 5,
+    "cast_type": 2
+  },
+  "targeting": {
+    "self": false,
+    "party": false,
+    "alliance": false,
+    "hostile": true,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 7,
+    "behavior_type": 0,
+    "class_job_category_id": 24,
+    "source_class_job_id": 23,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 3228,
+  "name": "Bahamut-Trance",
+  "description": "Lichtimpuls und Todesflamme können ausgeführt werden.",
+  "effects": [
+    "Lichtimpuls und Todesflamme können ausgeführt werden."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 214964,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": true,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 28,
+  "source_abilities": [
+    {
+      "id": 3581,
+      "name": "Bahamut-Trance",
+      "description": "Du fällst in tiefe Bahamut-Trance.\nDauer: 15 Sekunden\nZusatzeffekt: Ruinga ändert sich zu Lichtimpuls und Elementarkorona ändert sich zu Lichtflare.\nZusatzeffekt: Rubin-Arkanum, Topas-Arkanum, Smaragd-Arkanum\nBedingung: Im Kampf und Karfunkel ist bereits gerufen.\nEigener Reaktivierungs-Timer",
+      "description_macro": "Du fällst in tiefe <colortype(506)><edgecolortype(507)>Bahamut-Trance<edgecolortype(0)><colortype(0)>.<br>Dauer: 15 Sekunden<br>Zusatzeffekt: <colortype(502)><edgecolortype(503)>Ruinga<edgecolortype(0)><colortype(0)> ändert sich zu <colortype(502)><edgecolortype(503)>Lichtimpuls<edgecolortype(0)><colortype(0)> und <colortype(502)><edgecolortype(503)>Elementarkorona<edgecolortype(0)><colortype(0)> ändert sich zu <colortype(502)><edgecolortype(503)>Lichtflare<edgecolortype(0)><colortype(0)>.<br>Zusatzeffekt: <colortype(506)><edgecolortype(507)>Rubin-Arkanum<edgecolortype(0)><colortype(0)>, <colortype(506)><edgecolortype(507)>Topas-Arkanum<edgecolortype(0)><colortype(0)>, <colortype(506)><edgecolortype(507)>Smaragd-Arkanum<edgecolortype(0)><colortype(0)><br>Bedingung: Im Kampf und Karfunkel ist bereits gerufen.<br>Eigener Reaktivierungs-Timer",
+      "unlock_level": 58,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Magical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 27,
+          "name": "Beschwörer",
+          "abbreviation": "BSW",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

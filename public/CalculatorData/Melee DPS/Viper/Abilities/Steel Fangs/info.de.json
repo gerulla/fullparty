@@ -1,0 +1,99 @@
+{
+  "kind": "ability",
+  "id": 34606,
+  "name": "Tödliche Fänge",
+  "description": "Du führst eine physische Attacke aus.\nAttacke-Wert: 200\nBei Tödliche Haltung: 300\nZusatzeffekt: Gewährt dir Tückische Haltung.\nDauer: 60 Sekunden\nEffekt von Tückische Haltung: Der Attacke-Wert von Tückische Fänge ist um 100 und der von Tückische Kiefer um 20 erhöht.\nKann nicht gleichzeitig mit Tödliche Haltung aktiv sein.",
+  "description_macro": "Du führst eine physische Attacke aus.<br>Attacke-Wert: <if([gnum68==41],<if([gnum72>=74],200,180)>,180)><br>Bei <colortype(506)><edgecolortype(507)>Tödliche Haltung<edgecolortype(0)><colortype(0)>: <if([gnum68==41],<if([gnum72>=74],300,280)>,280)><br>Zusatzeffekt: Gewährt dir <colortype(506)><edgecolortype(507)>Tückische Haltung<edgecolortype(0)><colortype(0)>.<br>Dauer: 60 Sekunden<br>Effekt von <colortype(506)><edgecolortype(507)>Tückische Haltung<edgecolortype(0)><colortype(0)>: Der Attacke-Wert von <colortype(502)><edgecolortype(503)>Tückische Fänge<edgecolortype(0)><colortype(0)> ist um 100 und der von <colortype(502)><edgecolortype(503)>Tückische Kiefer<edgecolortype(0)><colortype(0)> um 20 erhöht.<br>Kann nicht gleichzeitig mit <colortype(500)><edgecolortype(501)>Tödliche Haltung<edgecolortype(0)><colortype(0)> aktiv sein.",
+  "effects": [
+    "Du führst eine physische Attacke aus.",
+    "Attacke-Wert: 200",
+    "Bei Tödliche Haltung: 300",
+    "Zusatzeffekt: Gewährt dir Tückische Haltung.",
+    "Dauer: 60 Sekunden",
+    "Effekt von Tückische Haltung: Der Attacke-Wert von Tückische Fänge ist um 100 und der von Tückische Kiefer um 20 erhöht.",
+    "Kann nicht gleichzeitig mit Tödliche Haltung aktiv sein."
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 41,
+    "name": "Viper",
+    "abbreviation": "VPR"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 1,
+  "icon": {
+    "id": 3701,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 3,
+    "name": "Waffenfertigkeit"
+  },
+  "attack_type": {
+    "id": 4294967295,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 2.5,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 58,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 0,
+      "value": 0
+    },
+    "secondary": {
+      "type_id": 136,
+      "value": 1
+    }
+  },
+  "range": {
+    "target_yalms": -1,
+    "effect_yalms": 0,
+    "cast_type": 1
+  },
+  "targeting": {
+    "self": false,
+    "party": false,
+    "alliance": false,
+    "hostile": true,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": false
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": {
+      "id": 59,
+      "status": {
+        "id": 3672,
+        "name": "Tödliche Haltung",
+        "description": "Der Attacke-Wert bestimmter Kommandos ist erhöht.",
+        "icon_id": 213757,
+        "max_stacks": 0
+      }
+    }
+  },
+  "metadata": {
+    "aspect_id": 7,
+    "behavior_type": 0,
+    "class_job_category_id": 196,
+    "source_class_job_id": 41,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

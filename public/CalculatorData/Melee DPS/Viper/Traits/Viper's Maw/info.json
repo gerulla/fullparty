@@ -1,0 +1,25 @@
+{
+  "kind": "trait",
+  "id": 525,
+  "name": "Viper's Maw",
+  "description": "Allows the execution of Last Lash.\nCan only be executed after successfully landing Jagged Maw or Bloodied Maw.",
+  "description_macro": "Allows the execution of <colortype(500)><edgecolortype(501)>Last Lash<edgecolortype(0)><colortype(0)>.<br>Can only be executed after successfully landing <colortype(500)><edgecolortype(501)>Jagged Maw<edgecolortype(0)><colortype(0)> or <colortype(500)><edgecolortype(501)>Bloodied Maw<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Allows the execution of Last Lash.",
+    "Can only be executed after successfully landing Jagged Maw or Bloodied Maw."
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 41,
+    "name": "Viper",
+    "abbreviation": "VPR"
+  },
+  "unlock_level": 60,
+  "value": 0,
+  "icon": {
+    "id": 6502,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 196,
+  "source_class_job_id": 41
+}

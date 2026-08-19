@@ -1,0 +1,25 @@
+{
+  "kind": "trait",
+  "id": 219,
+  "name": "ラーニング",
+  "description": "一部の敵を倒した際、まれに青魔法アクションを修得できる。\n修得条件：戦闘中に敵がラーニング可能アクションを使用",
+  "description_macro": "一部の敵を倒した際、まれに青魔法アクションを修得できる。<br><colortype(504)><edgecolortype(505)>修得条件：<edgecolortype(0)><colortype(0)>戦闘中に敵がラーニング可能アクションを使用",
+  "effects": [
+    "一部の敵を倒した際、まれに青魔法アクションを修得できる。",
+    "修得条件：戦闘中に敵がラーニング可能アクションを使用"
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 36,
+    "name": "青魔道士",
+    "abbreviation": "BLU"
+  },
+  "unlock_level": 1,
+  "value": 0,
+  "icon": {
+    "id": 6251,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 129,
+  "source_class_job_id": 36
+}

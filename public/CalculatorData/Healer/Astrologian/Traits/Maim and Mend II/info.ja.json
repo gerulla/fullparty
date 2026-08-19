@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 125,
+  "name": "アクションダメージ・回復量アップII",
+  "description": "自身のオートアタックを除くアクションによる、ダメージと回復量をベース値の1.3倍にする。",
+  "description_macro": "自身のオートアタックを除くアクションによる、ダメージと回復量をベース値の1.3倍にする。",
+  "effects": [
+    "自身のオートアタックを除くアクションによる、ダメージと回復量をベース値の1.3倍にする。"
+  ],
+  "role": "Healer",
+  "job": {
+    "id": 33,
+    "name": "占星術師",
+    "abbreviation": "AST"
+  },
+  "unlock_level": 40,
+  "value": 30,
+  "icon": {
+    "id": 6103,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 99,
+  "source_class_job_id": 33
+}

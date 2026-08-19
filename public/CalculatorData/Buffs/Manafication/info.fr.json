@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 1971,
+  "name": "Manafication",
+  "description": "La portée de Riposte enchantée, Zwerchhau enchanté et Redoublement enchanté est allongée.",
+  "effects": [
+    "La portée de Riposte enchantée, Zwerchhau enchanté et Redoublement enchanté est allongée."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 213407,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 112,
+  "source_abilities": [
+    {
+      "id": 7521,
+      "name": "Manafication",
+      "description": "Allonge de 25 yalms la portée de Riposte enchantée, Zwerchhau enchanté et Redoublement enchanté.\nDurée : 30s\nEffet additionnel : vous octroie 3 degrés de Combo Magilame préparé.\nDurée : 30s\nCombo Magilame préparé : permet d'utiliser Riposte enchantée, Zwerchhau enchanté, Redoublement enchanté, Moulinet enchanté, Deuxième moulinet et Troisième moulinet sans consommer de Mana noire ni de Mana blanche.\nEffet additionnel : vous octroie Syncristallisation préparée.\nDurée : 30s\nInterrompt les combos.\nCondition : en combat.",
+      "description_macro": "Allonge de 25 yalms la portée de <colortype(500)><edgecolortype(501)>Riposte enchantée<edgecolortype(0)><colortype(0)>, <colortype(500)><edgecolortype(501)>Zwerchhau enchanté<edgecolortype(0)><colortype(0)> et <colortype(500)><edgecolortype(501)>Redoublement enchanté<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 30s<br><colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> vous octroie 3 degrés de <colortype(500)><edgecolortype(501)>Combo Magilame préparé<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 30s<br><colortype(506)><edgecolortype(507)>Combo Magilame préparé<nbsp>:<edgecolortype(0)><colortype(0)> permet d'utiliser Riposte enchantée, Zwerchhau enchanté, Redoublement enchanté, Moulinet enchanté, Deuxième moulinet et Troisième moulinet sans consommer de <colortype(502)><edgecolortype(503)>Mana noire<edgecolortype(0)><colortype(0)> ni de <colortype(502)><edgecolortype(503)>Mana blanche<edgecolortype(0)><colortype(0)>.<br><if([gnum68==35],<if([gnum72>=100],<colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> vous octroie <colortype(500)><edgecolortype(501)>Syncristallisation préparée<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 30s<br>,)>,)>Interrompt les combos.<br><colortype(506)><edgecolortype(507)>Condition<nbsp>:<edgecolortype(0)><colortype(0)> en combat.",
+      "unlock_level": 60,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Magical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 35,
+          "name": "Mage Rouge",
+          "abbreviation": "MRG",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 675,
+  "name": "Melee Mastery II",
+  "description": "Increases the potency of Flanksting Strike, Flanksbane Fang, Hindsting Strike, and Hindsbane Fang to 340.",
+  "description_macro": "Increases the potency of <colortype(500)><edgecolortype(501)>Flanksting Strike<edgecolortype(0)><colortype(0)>, <colortype(500)><edgecolortype(501)>Flanksbane Fang<edgecolortype(0)><colortype(0)>, <colortype(500)><edgecolortype(501)>Hindsting Strike<edgecolortype(0)><colortype(0)>, and <colortype(500)><edgecolortype(501)>Hindsbane Fang<edgecolortype(0)><colortype(0)> to 340.",
+  "effects": [
+    "Increases the potency of Flanksting Strike, Flanksbane Fang, Hindsting Strike, and Hindsbane Fang to 340."
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 41,
+    "name": "Viper",
+    "abbreviation": "VPR"
+  },
+  "unlock_level": 84,
+  "value": 0,
+  "icon": {
+    "id": 6802,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 196,
+  "source_class_job_id": 41
+}

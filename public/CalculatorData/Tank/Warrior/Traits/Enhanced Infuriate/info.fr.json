@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 157,
+  "name": "Cri de guerre amélioré",
+  "description": "Réduit de 5s le temps de recharge de Cri de guerre lorsque vous utilisez Sape-fendeur ou Décimation avec succès sur la plupart des ennemis.",
+  "description_macro": "Réduit de 5s le temps de recharge de <colortype(500)><edgecolortype(501)>Cri de guerre<edgecolortype(0)><colortype(0)> lorsque vous utilisez <colortype(500)><edgecolortype(501)>Sape-fendeur<edgecolortype(0)><colortype(0)> ou <colortype(500)><edgecolortype(501)>Décimation<edgecolortype(0)><colortype(0)> avec succès sur la plupart des ennemis.",
+  "effects": [
+    "Réduit de 5s le temps de recharge de Cri de guerre lorsque vous utilisez Sape-fendeur ou Décimation avec succès sur la plupart des ennemis."
+  ],
+  "role": "Tank",
+  "job": {
+    "id": 21,
+    "name": "Guerrier",
+    "abbreviation": "GUE"
+  },
+  "unlock_level": 66,
+  "value": 0,
+  "icon": {
+    "id": 5259,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 22,
+  "source_class_job_id": 21
+}

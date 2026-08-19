@@ -1,0 +1,27 @@
+{
+  "kind": "trait",
+  "id": 568,
+  "name": "Verbesserte Urbefreiung",
+  "description": "Erfolgreiche Ausführung von Niedermähen und  Dezimieren, während Urbefreiung aktiv ist, gewährt dir Inneres Zittern.\nMaximale Stapelanzahl: 3\nDauer: 30 Sekunden\nBei maximaler Stapelanzahl ändert sich Inneres Zittern zu Inneres Beben und Urbefreiung zu Urbeben.",
+  "description_macro": "Erfolgreiche Ausführung von <colortype(502)><edgecolortype(503)>Niedermähen<edgecolortype(0)><colortype(0)> und  <colortype(502)><edgecolortype(503)>Dezimieren<edgecolortype(0)><colortype(0)>, während <colortype(506)><edgecolortype(507)>Urbefreiung<edgecolortype(0)><colortype(0)> aktiv ist, gewährt dir <colortype(506)><edgecolortype(507)>Inneres Zittern<edgecolortype(0)><colortype(0)>.<br>Maximale Stapelanzahl: 3<br>Dauer: 30 Sekunden<br>Bei maximaler Stapelanzahl ändert sich <colortype(506)><edgecolortype(507)>Inneres Zittern<edgecolortype(0)><colortype(0)> zu <colortype(506)><edgecolortype(507)>Inneres Beben<edgecolortype(0)><colortype(0)> und <colortype(502)><edgecolortype(503)>Urbefreiung<edgecolortype(0)><colortype(0)> zu <colortype(502)><edgecolortype(503)>Urbeben<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Erfolgreiche Ausführung von Niedermähen und  Dezimieren, während Urbefreiung aktiv ist, gewährt dir Inneres Zittern.",
+    "Maximale Stapelanzahl: 3",
+    "Dauer: 30 Sekunden",
+    "Bei maximaler Stapelanzahl ändert sich Inneres Zittern zu Inneres Beben und Urbefreiung zu Urbeben."
+  ],
+  "role": "Tank",
+  "job": {
+    "id": 21,
+    "name": "Krieger",
+    "abbreviation": "KRG"
+  },
+  "unlock_level": 96,
+  "value": 0,
+  "icon": {
+    "id": 5272,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 22,
+  "source_class_job_id": 21
+}

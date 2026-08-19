@@ -1,0 +1,91 @@
+{
+  "kind": "ability",
+  "id": 49101,
+  "name": "Apocalypse",
+  "description": "Effectue une attaque magique neutre en ligne droite sur les ennemis devant vous.\nPuissance : 350 (varie selon le niveau d'objet)\nConsomme 10% des PV maximums.\nPuissance avec Sangsue : 500 (varie selon le niveau d'objet)\nEffet additionnel avec Sangsue : dissipe un effet bénéfique de la cible.\nEffet additionnel avec Sangsue : vous inflige Glas.\nDurée : 10s\nCet effet disparaît si l'intégralité des PV est restaurée.",
+  "description_macro": "Effectue une attaque magique neutre en ligne droite sur les ennemis devant vous.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> 350 (varie selon le niveau d'objet)<br>Consomme 10% des PV maximums.<br><colortype(506)><edgecolortype(507)>Puissance avec Sangsue<nbsp>:<edgecolortype(0)><colortype(0)> 500 (varie selon le niveau d'objet)<br><colortype(506)><edgecolortype(507)>Effet additionnel avec Sangsue<nbsp>:<edgecolortype(0)><colortype(0)> dissipe un effet bénéfique de la cible.<br><colortype(506)><edgecolortype(507)>Effet additionnel avec Sangsue<nbsp>:<edgecolortype(0)><colortype(0)> vous inflige <colortype(500)><edgecolortype(501)>Glas<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 10s<br>Cet effet disparaît si l'intégralité des PV est restaurée.",
+  "effects": [
+    "Effectue une attaque magique neutre en ligne droite sur les ennemis devant vous.",
+    "Puissance : 350 (varie selon le niveau d'objet)",
+    "Consomme 10% des PV maximums.",
+    "Puissance avec Sangsue : 500 (varie selon le niveau d'objet)",
+    "Effet additionnel avec Sangsue : dissipe un effet bénéfique de la cible.",
+    "Effet additionnel avec Sangsue : vous inflige Glas.",
+    "Durée : 10s",
+    "Cet effet disparaît si l'intégralité des PV est restaurée."
+  ],
+  "role": "Phantom Jobs",
+  "job": {
+    "id": 23,
+    "name": "Nécromancien fantôme",
+    "abbreviation": "Nécromancien fant."
+  },
+  "is_phantom_action": true,
+  "unlock_level": 5,
+  "icon": {
+    "id": 64533,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 2,
+    "name": "Sort"
+  },
+  "attack_type": {
+    "id": 5,
+    "name": "magie"
+  },
+  "timing": {
+    "cast_seconds": 1.5,
+    "recast_seconds": 120,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 87,
+    "additional_cooldown_group": 58,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 1,
+      "value": 10
+    },
+    "secondary": {
+      "type_id": 0,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": 30,
+    "effect_yalms": 30,
+    "cast_type": 4
+  },
+  "targeting": {
+    "self": false,
+    "party": false,
+    "alliance": false,
+    "hostile": true,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 7,
+    "behavior_type": 0,
+    "class_job_category_id": 142,
+    "source_class_job_id": 4294967295,
+    "is_role_action": false,
+    "is_player_action": false,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

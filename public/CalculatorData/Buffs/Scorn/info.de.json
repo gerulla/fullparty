@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 3837,
+  "name": "Lied des Antihelden",
+  "description": "Antiheld kann ausgeführt werden.",
+  "effects": [
+    "Antiheld kann ausgeführt werden."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 213126,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 98,
+  "source_abilities": [
+    {
+      "id": 16472,
+      "name": "Schattenschemen",
+      "description": "Du lässt ein Abbild deiner selbst erscheinen, das an deiner Seite kämpft.\nAttacke-Wert des Heldenschemens: 420\nDauer: 22 Sekunden\nZusatzeffekt: Gewährt dir Lied des Antihelden.\nDauer: 30 Sekunden\nAttacke-Wert von Schattenbringer: 570\nAttacke-Wert von Antiheld: 620\nAttacke-Wert verringert sich ab dem zweiten Gegner um 25 %.",
+      "description_macro": "Du lässt ein Abbild deiner selbst erscheinen, das an deiner Seite kämpft.<br>Attacke-Wert des Heldenschemens: <edgecolortype(0)><colortype(0)><if([gnum68==32],<if([gnum72>=88],420,340)>,340)><br>Dauer: 22 Sekunden<if([gnum68==32],<if([gnum72>=100],<br>Zusatzeffekt: Gewährt dir <colortype(506)><edgecolortype(507)>Lied des Antihelden<edgecolortype(0)><colortype(0)>.<br>Dauer: 30 Sekunden,)>,)><if([gnum68==32],<if([gnum72>=90],<br>Attacke-Wert von <colortype(502)><edgecolortype(503)>Schattenbringer<edgecolortype(0)><colortype(0)>: 570<br><if([gnum68==32],<if([gnum72>=100],Attacke-Wert von <colortype(502)><edgecolortype(503)>Antiheld<edgecolortype(0)><colortype(0)>: 620<br>,)>,)>Attacke-Wert verringert sich ab dem zweiten Gegner um 25<nbsp>%.,)>,)>",
+      "unlock_level": 80,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Tank"
+      ],
+      "jobs": [
+        {
+          "id": 32,
+          "name": "Dunkelritter",
+          "abbreviation": "DKR",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

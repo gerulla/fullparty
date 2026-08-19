@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 4232,
+  "name": "Gebet",
+  "description": "Regeneriert schrittweise LP.",
+  "effects": [
+    "Regeneriert schrittweise LP."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 229902,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 10
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 41589,
+      "name": "Beten",
+      "description": "Du regenerierst stetig eigene LP.\nDauer: 30 Sekunden\nHeilpotenzial: 3.000\nZusatzeffekt: In der Nähe eines Wissenskristalls gewährst du dir und Gruppenmitgliedern Schutzgebet.\nDauer: 30 Minuten\nEffekt von Schutzgebet: Verringert den erlittenen Schaden des Ziels um 10 %.",
+      "description_macro": "Du regenerierst stetig eigene LP.<br>Dauer: 30 Sekunden<br>Heilpotenzial: <if([gnum108>=5],5.000,3.000)><br>Zusatzeffekt: In der Nähe eines Wissenskristalls gewährst du dir und Grup<->pen<->mit<->gliedern <colortype(506)><edgecolortype(507)>Schutzgebet<edgecolortype(0)><colortype(0)>.<br>Dauer: 30 Minuten<br>Effekt von <colortype(506)><edgecolortype(507)>Schutzgebet<edgecolortype(0)><colortype(0)>: Verringert den erlittenen Schaden des Ziels um 10<nbsp>%.",
+      "unlock_level": 0,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Phantom Jobs"
+      ],
+      "jobs": [
+        {
+          "id": 1,
+          "name": "Phantom Phantom-Ritter",
+          "abbreviation": "Ph-Ritter",
+          "is_phantom": true
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 4260,
+  "name": "Occult Quick",
+  "description": "Attack speed is increased and spell casting time is reduced.",
+  "effects": [
+    "Attack speed is increased and spell casting time is reduced."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 229922,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": -10
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 41625,
+      "name": "Occult Quick",
+      "description": "Reduces weaponskill cast time and recast time, spell cast time and recast time, and auto-attack delay of self or target party member by 10%, and reduces cast times for spells by 10 seconds.\nDuration: 20s\nAdditional Effect: Greatly increases movement speed\nDuration: 10s",
+      "description_macro": "Reduces weaponskill cast time and recast time, spell cast time and recast time, and auto-attack delay of self or target party member by 10%, and reduces cast times for spells by 10 seconds.<br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>20s<br><colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>Greatly increases movement speed<br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>10s",
+      "unlock_level": 0,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Phantom Jobs"
+      ],
+      "jobs": [
+        {
+          "id": 8,
+          "name": "Phantom Time Mage",
+          "abbreviation": "Ph. Time Mage",
+          "is_phantom": true
+        }
+      ]
+    }
+  ]
+}

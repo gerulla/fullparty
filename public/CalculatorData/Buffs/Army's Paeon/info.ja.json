@@ -1,0 +1,51 @@
+{
+  "kind": "combat_status",
+  "id": 2214,
+  "name": "軍神のパイオン",
+  "description": "ウェポンスキルおよび魔法のキャストタイムとリキャストタイムが短縮された状態。",
+  "effects": [
+    "ウェポンスキルおよび魔法のキャストタイムとリキャストタイムが短縮された状態。"
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 212605,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": true,
+  "is_permanent": true,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": -5
+  },
+  "class_job_category_id": 24,
+  "source_abilities": [
+    {
+      "id": 116,
+      "name": "軍神のパイオン",
+      "description": "軍神のパイオンを歌い、自身と周囲50m以内のパーティメンバーのダイレクトヒット発動率を3％上昇させる。\u3000効果時間：45秒\n追加効果（発動確率80％）：自身に「詩心」が付与される。\nこの効果は軍神のパイオンの効果中に継続的に発動する。\n詩心効果：自身のオートアタックの攻撃間隔と、ウェポンスキルおよび魔法のキャストタイムとリキャストタイムを4％短縮させる。\n最大スタック数：4\n追加効果：自身に「軍神のコーダ」が付与される。\n発動条件：自身が戦闘状態",
+      "description_macro": "軍神のパイオンを歌い、自身と周囲50m以内のパーティメンバーのダイレクトヒット発動率を3％上昇させる。\u3000<colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>45秒<br><colortype(504)><edgecolortype(505)>追加効果（発動確率80％）：<edgecolortype(0)><colortype(0)>自身に<colortype(500)><edgecolortype(501)>「詩心」<edgecolortype(0)><colortype(0)>が付与される。<br>この効果は軍神のパイオンの効果中に継続的に発動する。<br><colortype(504)><edgecolortype(505)>詩心効果：<edgecolortype(0)><colortype(0)>自身のオートアタックの攻撃間隔と、ウェポンスキルおよび魔法のキャストタイムとリキャストタイムを4％短縮させる。<br><colortype(504)><edgecolortype(505)>最大スタック数：<edgecolortype(0)><colortype(0)>4<br><if([gnum68==23],<if([gnum72>=90],<colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)>自身に<colortype(500)><edgecolortype(501)>「軍神のコーダ」<edgecolortype(0)><colortype(0)>が付与される。<br>,)>,)><colortype(504)><edgecolortype(505)>発動条件：<edgecolortype(0)><colortype(0)>自身が戦闘状態",
+      "unlock_level": 40,
+      "relations": [
+        "granted_by_description",
+        "same_name"
+      ],
+      "roles": [
+        "Physical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 23,
+          "name": "吟遊詩人",
+          "abbreviation": "BRD",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

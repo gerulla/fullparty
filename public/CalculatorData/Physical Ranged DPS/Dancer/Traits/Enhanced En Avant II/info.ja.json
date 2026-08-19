@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 256,
+  "name": "アン・アヴァン効果アップII",
+  "description": "アン・アヴァンの最大チャージ数が3に増加する。",
+  "description_macro": "アン・アヴァンの最大チャージ数が3に増加する。",
+  "effects": [
+    "アン・アヴァンの最大チャージ数が3に増加する。"
+  ],
+  "role": "Physical Ranged DPS",
+  "job": {
+    "id": 38,
+    "name": "踊り子",
+    "abbreviation": "DNC"
+  },
+  "unlock_level": 78,
+  "value": 3,
+  "icon": {
+    "id": 6356,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 150,
+  "source_class_job_id": 38
+}

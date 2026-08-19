@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 219,
+  "name": "Learning",
+  "description": "Infrequently grants the ability to discern the secrets of enemy actions wielded in battle and make them your own.",
+  "description_macro": "Infrequently grants the ability to discern the secrets of enemy actions wielded in battle and make them your own.",
+  "effects": [
+    "Infrequently grants the ability to discern the secrets of enemy actions wielded in battle and make them your own."
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 36,
+    "name": "Blue Mage",
+    "abbreviation": "BLU"
+  },
+  "unlock_level": 1,
+  "value": 0,
+  "icon": {
+    "id": 6251,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 129,
+  "source_class_job_id": 36
+}

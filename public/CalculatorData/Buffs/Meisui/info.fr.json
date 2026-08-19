@@ -1,0 +1,51 @@
+{
+  "kind": "combat_status",
+  "id": 2689,
+  "name": "Meisui",
+  "description": "La puissance du prochain Bhavacakra est augmentée.",
+  "effects": [
+    "La puissance du prochain Bhavacakra est augmentée."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 212914,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 92,
+  "source_abilities": [
+    {
+      "id": 16489,
+      "name": "Meisui",
+      "description": "Met fin à l'effet Camouflage shinobi et remplit la Jauge de Ninki de 50.\nEffet additionnel : vous octroie Meisui.\nDurée : 30s\nMeisui : augmente à 850 la puissance du prochain Zeshô Meppô\\Condition : en combat et Camouflage shinobi.",
+      "description_macro": "Met fin à l'effet <colortype(500)><edgecolortype(501)>Camouflage shinobi<edgecolortype(0)><colortype(0)> et remplit la <colortype(502)><edgecolortype(503)>Jauge de Ninki<edgecolortype(0)><colortype(0)> de 50.<br><if([gnum68==30],<if([gnum72>=88],<colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> vous octroie <colortype(500)><edgecolortype(501)>Meisui<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 30s<br><colortype(506)><edgecolortype(507)>Meisui<nbsp>:<edgecolortype(0)><colortype(0)> <if([gnum68==30],<if([gnum72>=96],augmente à 850 la puissance du prochain Zeshô Meppô\\, ou à 550 celle du prochain Bhavacakra.<br>,augmente à <if([gnum68==30],<if([gnum72>=94],550,500)>,500)> la puissance du prochain Bhavacakra.<br>)>,augmente à <if([gnum68==30],<if([gnum72>=94],550,500)>,500)> la puissance du prochain Bhavacakra.<br>)>,)>,)><colortype(506)><edgecolortype(507)>Condition<nbsp>:<edgecolortype(0)><colortype(0)> en combat et <colortype(500)><edgecolortype(501)>Camouflage shinobi<edgecolortype(0)><colortype(0)>.",
+      "unlock_level": 72,
+      "relations": [
+        "granted_by_description",
+        "same_name"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 30,
+          "name": "Ninja",
+          "abbreviation": "NIN",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

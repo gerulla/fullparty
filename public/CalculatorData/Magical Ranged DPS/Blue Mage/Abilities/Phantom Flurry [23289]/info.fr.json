@@ -1,0 +1,91 @@
+{
+  "kind": "ability",
+  "id": 23289,
+  "name": "Frénésie spectrale",
+  "description": "Effectue une série d'attaques dans une zone en éventail devant vous.\nLes ennemis dans la zone subissent des dégâts toutes les secondes.\nPuissance : 200 Durée : 5s\nSi l'action est réutilisée pendant cette durée, effectue une attaque physique neutre dans une zone en éventail devant vous.\nPuissance : 600\nLa puissance est réduite de 50% au-delà du premier ennemi touché.\nL'effet prend fin si vous effectuez une action autre que Frénésie spectrale, un déplacement ou une rotation.\nInterrompt vos attaques automatiques.",
+  "description_macro": "Effectue une série d'attaques dans une zone en éventail devant vous.<br>Les ennemis dans la zone subissent des dégâts toutes les secondes.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> 200 <colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 5s<br>Si l'action est réutilisée pendant cette durée, effectue une attaque physique neutre dans une zone en éventail devant vous.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> 600<br>La puissance est réduite de 50% au-delà du premier ennemi touché.<br>L'effet prend fin si vous effectuez une action autre que Frénésie spectrale, un déplacement ou une rotation.<br>Interrompt vos attaques automatiques.",
+  "effects": [
+    "Effectue une série d'attaques dans une zone en éventail devant vous.",
+    "Les ennemis dans la zone subissent des dégâts toutes les secondes.",
+    "Puissance : 200 Durée : 5s",
+    "Si l'action est réutilisée pendant cette durée, effectue une attaque physique neutre dans une zone en éventail devant vous.",
+    "Puissance : 600",
+    "La puissance est réduite de 50% au-delà du premier ennemi touché.",
+    "L'effet prend fin si vous effectuez une action autre que Frénésie spectrale, un déplacement ou une rotation.",
+    "Interrompt vos attaques automatiques."
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 36,
+    "name": "Mage Bleu",
+    "abbreviation": "MBU"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 1,
+  "icon": {
+    "id": 3356,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 4,
+    "name": "Aptitude"
+  },
+  "attack_type": {
+    "id": 3,
+    "name": "contondant"
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 2.5,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 58,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 0,
+      "value": 0
+    },
+    "secondary": {
+      "type_id": 32,
+      "value": 2502
+    }
+  },
+  "range": {
+    "target_yalms": 0,
+    "effect_yalms": 16,
+    "cast_type": 3
+  },
+  "targeting": {
+    "self": true,
+    "party": false,
+    "alliance": false,
+    "hostile": false,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": false
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 7,
+    "behavior_type": 0,
+    "class_job_category_id": 129,
+    "source_class_job_id": 0,
+    "is_role_action": false,
+    "is_player_action": false,
+    "is_derived_action": true,
+    "equivalence_group": 0
+  }
+}

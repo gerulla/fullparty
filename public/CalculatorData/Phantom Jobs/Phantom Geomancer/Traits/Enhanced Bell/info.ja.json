@@ -1,0 +1,23 @@
+{
+  "kind": "trait",
+  "id": 12,
+  "name": "ベル効果アップ",
+  "description": "「たたかいのベル」の効果量を5％に上昇させる。\nさらに「いこいのベル」の回復力を3000に上昇させる。",
+  "description_macro": "<colortype(500)><edgecolortype(501)>「たたかいのベル」<edgecolortype(0)><colortype(0)>の効果量を5％に上昇させる。<br>さらに<colortype(500)><edgecolortype(501)>「いこいのベル」<edgecolortype(0)><colortype(0)>の回復力を3000に上昇させる。",
+  "effects": [
+    "「たたかいのベル」の効果量を5％に上昇させる。",
+    "さらに「いこいのベル」の回復力を3000に上昇させる。"
+  ],
+  "role": "Phantom Jobs",
+  "job": {
+    "id": 7,
+    "name": "サポート風水士",
+    "abbreviation": "Ph. Geomancer"
+  },
+  "is_phantom_trait": true,
+  "unlock_level": 5,
+  "icon": {
+    "id": 82210,
+    "file": "icon.png"
+  }
+}

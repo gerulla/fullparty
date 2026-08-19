@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 449,
+  "name": "Spread Shot Mastery",
+  "description": "Upgrades Spread Shot to Scattergun.",
+  "description_macro": "Upgrades <colortype(500)><edgecolortype(501)>Spread Shot<edgecolortype(0)><colortype(0)> to <colortype(500)><edgecolortype(501)>Scattergun<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Upgrades Spread Shot to Scattergun."
+  ],
+  "role": "Physical Ranged DPS",
+  "job": {
+    "id": 31,
+    "name": "Machinist",
+    "abbreviation": "MCH"
+  },
+  "unlock_level": 82,
+  "value": 0,
+  "icon": {
+    "id": 6017,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 96,
+  "source_class_job_id": 31
+}

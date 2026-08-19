@@ -1,0 +1,88 @@
+{
+  "kind": "ability",
+  "id": 18323,
+  "name": "徹甲散弾",
+  "description": "自身の前方に向かって土属性扇範囲魔法攻撃。\u3000威力：200\n2体目以降の対象への威力は50％減少する。\n最大チャージ数：4\n追加効果：効果時間中に実行する徹甲散弾の威力を50％上昇させる\u3000最大スタック数：3\u3000効果時間：3秒\nこの効果は徹甲散弾以外のアクションを実行すると即座に解除される。",
+  "description_macro": "自身の前方に向かって土属性扇範囲魔法攻撃。\u3000<colortype(504)><edgecolortype(505)>威力：<edgecolortype(0)><colortype(0)>200<br>2体目以降の対象への威力は50％減少する。<br><colortype(504)><edgecolortype(505)>最大チャージ数：<edgecolortype(0)><colortype(0)>4<br><colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)>効果時間中に実行する徹甲散弾の威力を50％上昇させる\u3000<colortype(504)><edgecolortype(505)>最大スタック数：<edgecolortype(0)><colortype(0)>3\u3000<colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>3秒<br>この効果は徹甲散弾以外のアクションを実行すると即座に解除される。",
+  "effects": [
+    "自身の前方に向かって土属性扇範囲魔法攻撃。\u3000威力：200",
+    "2体目以降の対象への威力は50％減少する。",
+    "最大チャージ数：4",
+    "追加効果：効果時間中に実行する徹甲散弾の威力を50％上昇させる\u3000最大スタック数：3\u3000効果時間：3秒",
+    "この効果は徹甲散弾以外のアクションを実行すると即座に解除される。"
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 36,
+    "name": "青魔道士",
+    "abbreviation": "BLU"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 1,
+  "icon": {
+    "id": 3328,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 4,
+    "name": "アビリティ"
+  },
+  "attack_type": {
+    "id": 5,
+    "name": "魔法"
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 30,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 14,
+    "additional_cooldown_group": 71,
+    "max_charges": 4
+  },
+  "costs": {
+    "primary": {
+      "type_id": 3,
+      "value": 2
+    },
+    "secondary": {
+      "type_id": 0,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": 0,
+    "effect_yalms": 16,
+    "cast_type": 3
+  },
+  "targeting": {
+    "self": true,
+    "party": false,
+    "alliance": false,
+    "hostile": false,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": false
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 4,
+    "behavior_type": 0,
+    "class_job_category_id": 129,
+    "source_class_job_id": 36,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

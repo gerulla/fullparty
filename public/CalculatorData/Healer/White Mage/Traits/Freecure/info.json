@@ -1,0 +1,25 @@
+{
+  "kind": "trait",
+  "id": 25,
+  "name": "Freecure",
+  "description": "Grants a 15% chance that after casting Cure, the MP cost for your next Cure II will be 0.\nDuration: 15s",
+  "description_macro": "Grants a 15% chance that after casting <colortype(500)><edgecolortype(501)>Cure<edgecolortype(0)><colortype(0)>, the MP cost for your next <colortype(500)><edgecolortype(501)>Cure II<edgecolortype(0)><colortype(0)> will be 0.<br><colortype(504)><edgecolortype(505)>Duration:<edgecolortype(0)><colortype(0)> 15s",
+  "effects": [
+    "Grants a 15% chance that after casting Cure, the MP cost for your next Cure II will be 0.",
+    "Duration: 15s"
+  ],
+  "role": "Healer",
+  "job": {
+    "id": 24,
+    "name": "White Mage",
+    "abbreviation": "WHM"
+  },
+  "unlock_level": 32,
+  "value": 0,
+  "icon": {
+    "id": 5330,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 53,
+  "source_class_job_id": 6
+}

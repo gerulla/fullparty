@@ -1,0 +1,31 @@
+{
+  "kind": "trait",
+  "id": 518,
+  "name": "Actions améliorées",
+  "description": "Augmente la puissance de certaines actions.\n\nPuissance de Volée de coups : 220\nPuissance de Coup de poing direct : 300\nPuissance de Coup de poing brusque : 270\nPuissance de Serpents jumeaux : 380\nPuissance de Démolition : 320\nPuissance de Tacle du dragon : 280\nPuissance de Chakra interdit : 400",
+  "description_macro": "Augmente la puissance de certaines actions.<br><br><colortype(506)><edgecolortype(507)>Puissance de Volée de coups<nbsp>:<edgecolortype(0)><colortype(0)> 220<br><colortype(506)><edgecolortype(507)>Puissance de Coup de poing direct<nbsp>:<edgecolortype(0)><colortype(0)> 300<br><colortype(506)><edgecolortype(507)>Puissance de Coup de poing brusque<nbsp>:<edgecolortype(0)><colortype(0)> 270<br><colortype(506)><edgecolortype(507)>Puissance de Serpents jumeaux<nbsp>:<edgecolortype(0)><colortype(0)> 380<br><colortype(506)><edgecolortype(507)>Puissance de Démolition<nbsp>:<edgecolortype(0)><colortype(0)> 320<br><colortype(506)><edgecolortype(507)>Puissance de Tacle du dragon<nbsp>:<edgecolortype(0)><colortype(0)> 280<br><colortype(506)><edgecolortype(507)>Puissance de Chakra interdit<nbsp>:<edgecolortype(0)><colortype(0)> 400",
+  "effects": [
+    "Augmente la puissance de certaines actions.",
+    "Puissance de Volée de coups : 220",
+    "Puissance de Coup de poing direct : 300",
+    "Puissance de Coup de poing brusque : 270",
+    "Puissance de Serpents jumeaux : 380",
+    "Puissance de Démolition : 320",
+    "Puissance de Tacle du dragon : 280",
+    "Puissance de Chakra interdit : 400"
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 20,
+    "name": "Moine",
+    "abbreviation": "MOI"
+  },
+  "unlock_level": 84,
+  "value": 0,
+  "icon": {
+    "id": 6801,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 21,
+  "source_class_job_id": 20
+}

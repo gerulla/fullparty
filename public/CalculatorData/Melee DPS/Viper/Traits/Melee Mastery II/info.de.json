@@ -1,0 +1,28 @@
+{
+  "kind": "trait",
+  "id": 675,
+  "name": "Verbesserte Zwillingsfänge II",
+  "description": "Erhöht den Attacke-Wert folgender Kommandos:\nAttacke-Wert von Flankenbiss: 340\nAttacke-Wert von Flankenreißer: 340\nAttacke-Wert von Nackenbiss: 340\nAttacke-Wert von Nackenreißer: 340",
+  "description_macro": "Erhöht den Attacke-Wert folgender Kommandos:<br>Attacke-Wert von <colortype(502)><edgecolortype(503)>Flankenbiss<edgecolortype(0)><colortype(0)>: 340<br>Attacke-Wert von <colortype(502)><edgecolortype(503)>Flankenreißer<edgecolortype(0)><colortype(0)>: 340<br>Attacke-Wert von <colortype(502)><edgecolortype(503)>Nackenbiss<edgecolortype(0)><colortype(0)>: 340<br>Attacke-Wert von <colortype(502)><edgecolortype(503)>Nackenreißer<edgecolortype(0)><colortype(0)>: 340",
+  "effects": [
+    "Erhöht den Attacke-Wert folgender Kommandos:",
+    "Attacke-Wert von Flankenbiss: 340",
+    "Attacke-Wert von Flankenreißer: 340",
+    "Attacke-Wert von Nackenbiss: 340",
+    "Attacke-Wert von Nackenreißer: 340"
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 41,
+    "name": "Viper",
+    "abbreviation": "VPR"
+  },
+  "unlock_level": 84,
+  "value": 0,
+  "icon": {
+    "id": 6802,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 196,
+  "source_class_job_id": 41
+}

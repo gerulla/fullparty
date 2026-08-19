@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 487,
+  "name": "グレアマスタリー",
+  "description": "グレアがグレアガに変化する。",
+  "description_macro": "グレアがグレアガに変化する。",
+  "effects": [
+    "グレアがグレアガに変化する。"
+  ],
+  "role": "Healer",
+  "job": {
+    "id": 24,
+    "name": "白魔道士",
+    "abbreviation": "WHM"
+  },
+  "unlock_level": 82,
+  "value": 0,
+  "icon": {
+    "id": 5343,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 25,
+  "source_class_job_id": 24
+}

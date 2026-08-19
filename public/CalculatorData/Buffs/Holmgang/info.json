@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 409,
+  "name": "Holmgang",
+  "description": "Most attacks cannot reduce your HP to less than 1.",
+  "effects": [
+    "Most attacks cannot reduce your HP to less than 1."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 210266,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 70,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 43,
+      "name": "Holmgang",
+      "description": "Brace yourself for an enemy onslaught, preventing most attacks from reducing your HP to less than 1.\nDuration: 10s\nWhen a target is selected, halts their movement with chains.",
+      "description_macro": "Brace yourself for an enemy onslaught, preventing most attacks from reducing your HP to less than 1.<br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>10s<br>When a target is selected, halts their movement with chains.",
+      "unlock_level": 42,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Tank"
+      ],
+      "jobs": [
+        {
+          "id": 21,
+          "name": "Warrior",
+          "abbreviation": "WAR",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

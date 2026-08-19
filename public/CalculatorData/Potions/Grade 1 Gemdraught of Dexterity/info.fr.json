@@ -1,0 +1,68 @@
+{
+  "kind": "combat_potion",
+  "id": 44158,
+  "name": "Philtre prodigieux de dextérité I",
+  "description": "Ce philtre d'effet durable augmente la dextérité.\nDurée d'effet : 30 secondes",
+  "description_macro": "Ce philtre d'effet durable augmente la dextérité.<br>Durée d'effet<nbsp>: 30 secondes",
+  "effects": [
+    "Ce philtre d'effet durable augmente la dextérité.",
+    "Durée d'effet : 30 secondes"
+  ],
+  "icon": {
+    "id": 20709,
+    "file": "icon.png"
+  },
+  "item_level": 690,
+  "can_be_high_quality": true,
+  "stack_size": 999,
+  "rarity": 1,
+  "category": {
+    "id": 44,
+    "name": "Médicament"
+  },
+  "use": {
+    "item_action_id": 2402,
+    "action_id": 846,
+    "usable_in_battle": true,
+    "minimum_level": 0,
+    "duration_seconds": 30,
+    "effect_row_id": 645,
+    "raw_data": [
+      49,
+      645,
+      30,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "raw_data_high_quality": [
+      49,
+      645,
+      30,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ]
+  },
+  "stats": [
+    {
+      "id": 2,
+      "name": "Dextérité",
+      "is_percentage": true,
+      "normal": {
+        "value": 8,
+        "cap": 280
+      },
+      "high_quality": {
+        "value": 10,
+        "cap": 351
+      }
+    }
+  ]
+}

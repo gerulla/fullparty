@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 144,
+  "name": "Extra Vent",
+  "description": "Des dégâts périodiques de vent sont subis.",
+  "effects": [
+    "Des dégâts périodiques de vent sont subis."
+  ],
+  "classification": "debuff",
+  "icon": {
+    "id": 210409,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 2,
+  "target_type": 0,
+  "can_dispel": true,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 10,
+  "parameter": {
+    "effect": 0,
+    "modifier": 10
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 132,
+      "name": "Extra Vent",
+      "description": "Effectue une attaque magique de vent sur la cible.\nPuissance : 50\nEffet additionnel : dégâts périodiques de vent.\nPuissance : 50 Durée : 30s",
+      "description_macro": "Effectue une attaque magique de vent sur la cible.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> 50<br><colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> dégâts périodiques de vent.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> 50 <colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 30s",
+      "unlock_level": 46,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Healer"
+      ],
+      "jobs": [
+        {
+          "id": 24,
+          "name": "Mage Blanc",
+          "abbreviation": "MBL",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

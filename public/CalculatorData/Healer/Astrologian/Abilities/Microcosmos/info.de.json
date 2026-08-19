@@ -1,0 +1,86 @@
+{
+  "kind": "ability",
+  "id": 25875,
+  "name": "Mikrokosmos",
+  "description": "Du beendest den Effekt von Makrokosmos auf den Zielen und regenerierst ihre LP.\nHeilpotenzial: 200 plus 50 % des angesammelten Schadens\nDie Menge der regenerierten LP ist nur so hoch wie die Maximal-LP des Ziels.",
+  "description_macro": "Du beendest den Effekt von <colortype(506)><edgecolortype(507)>Makrokosmos<edgecolortype(0)><colortype(0)> auf den Zielen und regenerierst ihre LP.<br>Heilpotenzial: 200 plus 50<nbsp>% des angesammelten Schadens<br>Die Menge der regenerierten LP ist nur so hoch wie die Maximal-LP des Ziels.",
+  "effects": [
+    "Du beendest den Effekt von Makrokosmos auf den Zielen und regenerierst ihre LP.",
+    "Heilpotenzial: 200 plus 50 % des angesammelten Schadens",
+    "Die Menge der regenerierten LP ist nur so hoch wie die Maximal-LP des Ziels."
+  ],
+  "role": "Healer",
+  "job": {
+    "id": 33,
+    "name": "Astrologe",
+    "abbreviation": "AST"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 90,
+  "icon": {
+    "id": 3563,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 4,
+    "name": "Talent"
+  },
+  "attack_type": {
+    "id": 0,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 1,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 1,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 0,
+      "value": 0
+    },
+    "secondary": {
+      "type_id": 32,
+      "value": 2718
+    }
+  },
+  "range": {
+    "target_yalms": 0,
+    "effect_yalms": 20,
+    "cast_type": 2
+  },
+  "targeting": {
+    "self": true,
+    "party": false,
+    "alliance": false,
+    "hostile": false,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": false
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 7,
+    "behavior_type": 0,
+    "class_job_category_id": 99,
+    "source_class_job_id": 33,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

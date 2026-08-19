@@ -1,0 +1,25 @@
+{
+  "kind": "trait",
+  "id": 284,
+  "name": "Maîtrise des Morsures II",
+  "description": "Accorde 35% de chances qu'Œil de faucon vous soit octroyé lorsque vous utilisez Morsure de la tempête, Morsure caustique ou Mâchoires de fer avec succès.\nDurée : 30s",
+  "description_macro": "Accorde 35% de chances qu'<colortype(500)><edgecolortype(501)>Œil de faucon<edgecolortype(0)><colortype(0)> vous soit octroyé lorsque vous utilisez <colortype(500)><edgecolortype(501)>Morsure de la tempête<edgecolortype(0)><colortype(0)>, <colortype(500)><edgecolortype(501)>Morsure caustique<edgecolortype(0)><colortype(0)> ou <colortype(500)><edgecolortype(501)>Mâchoires de fer<edgecolortype(0)><colortype(0)> avec succès.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 30s",
+  "effects": [
+    "Accorde 35% de chances qu'Œil de faucon vous soit octroyé lorsque vous utilisez Morsure de la tempête, Morsure caustique ou Mâchoires de fer avec succès.",
+    "Durée : 30s"
+  ],
+  "role": "Physical Ranged DPS",
+  "job": {
+    "id": 23,
+    "name": "Barde",
+    "abbreviation": "BRD"
+  },
+  "unlock_level": 76,
+  "value": 0,
+  "icon": {
+    "id": 5312,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 24,
+  "source_class_job_id": 23
+}

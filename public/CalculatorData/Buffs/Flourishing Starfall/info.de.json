@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 2700,
+  "name": "Sternenfalltanz",
+  "description": "Sternenfalltanz kann ausgeführt werden.",
+  "effects": [
+    "Sternenfalltanz kann ausgeführt werden."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 213724,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 150,
+  "source_abilities": [
+    {
+      "id": 16011,
+      "name": "Todestango",
+      "description": "Deine Rate kritischer und direkter Treffer ist um 20 % erhöht.\nDauer: 20 Sekunden\nZusatzeffekt: Das von dir bestimmte Gruppenmitglied mit dem Status Auserwählter Tanzpartner erhält ebenfalls den Status Todestango.\nZusatzeffekt: Sternenfalltanz\nDauer: 20 Sekunden",
+      "description_macro": "Deine Rate kritischer und direkter Treffer ist um 20<nbsp>% erhöht.<br>Dauer: 20 Sekunden<br>Zusatzeffekt: Das von dir bestimmte Grup<->pen<->mit<->glied mit dem Status <colortype(506)><edgecolortype(507)>Auserwählter Tanzpartner<edgecolortype(0)><colortype(0)> erhält ebenfalls den Status <colortype(506)><edgecolortype(507)>Todestango<edgecolortype(0)><colortype(0)>.<if([gnum68==38],<if([gnum72>=90],<br>Zusatzeffekt: <colortype(506)><edgecolortype(507)>Sternenfalltanz<edgecolortype(0)><colortype(0)><br>Dauer: 20 Sekunden,)>,)>",
+      "unlock_level": 62,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Physical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 38,
+          "name": "Tänzer",
+          "abbreviation": "TÄN",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

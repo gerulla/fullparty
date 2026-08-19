@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 3845,
+  "name": "Envol du dragon préparé",
+  "description": "Envol du dragon peut être lancé.",
+  "effects": [
+    "Envol du dragon peut être lancé."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 212587,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 23,
+  "source_abilities": [
+    {
+      "id": 96,
+      "name": "Piqué du dragon",
+      "description": "Saute vers la cible et effectue une attaque physique de feu sur les ennemis alentour.\nPuissance : 500\nLa puissance est réduite de 50% au-delà du premier ennemi touché.\nEffet additionnel : vous octroie Envol du dragon préparé.\nDurée : 30s\nNe peut pas être utilisé sous l'effet Entrave.",
+      "description_macro": "Saute vers la cible et effectue une attaque physique de feu sur les ennemis alentour.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> 500<br>La puissance est réduite de 50% au-delà du premier ennemi touché.<br><if([gnum68==22],<if([gnum72>=92],<colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> vous octroie <colortype(500)><edgecolortype(501)>Envol du dragon préparé<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 30s<br>,)>,)>Ne peut pas être utilisé sous l'effet Entrave.",
+      "unlock_level": 50,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 22,
+          "name": "Chevalier Dragon",
+          "abbreviation": "DRG",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

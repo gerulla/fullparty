@@ -1,0 +1,32 @@
+{
+  "kind": "trait",
+  "id": 413,
+  "name": "Intervention améliorée",
+  "description": "Allonge à 8s la durée d'Intervention.\nIntervention bénéficie des effets supplémentaires suivants :\n\nEffet additionnel : octroie Égide du paladin à la cible.\nDurée : 4s\nÉgide du paladin : réduit de 10% les dégâts subis par la cible.\nEffet additionnel : octroie Bénédiction du paladin à la cible.\nDurée : 12s\nBénédiction du paladin : restaure périodiquement les PV de la cible.\nPuissance : 250",
+  "description_macro": "Allonge à 8s la durée d'<colortype(500)><edgecolortype(501)>Intervention<edgecolortype(0)><colortype(0)>.<br><colortype(500)><edgecolortype(501)>Intervention<edgecolortype(0)><colortype(0)> bénéficie des effets sup<->plé<->men<->tai<->res suivants<nbsp>:<br><br><colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> octroie <colortype(500)><edgecolortype(501)>Égide du paladin<edgecolortype(0)><colortype(0)> à la cible.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 4s<br><colortype(506)><edgecolortype(507)>Égide du paladin<nbsp>:<edgecolortype(0)><colortype(0)> réduit de 10% les dégâts subis par la cible.<br><colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> octroie <colortype(500)><edgecolortype(501)>Bénédiction du paladin<edgecolortype(0)><colortype(0)> à la cible.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 12s<br><colortype(506)><edgecolortype(507)>Bénédiction du paladin<nbsp>:<edgecolortype(0)><colortype(0)> restaure périodiquement les PV de la cible.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> 250",
+  "effects": [
+    "Allonge à 8s la durée d'Intervention.",
+    "Intervention bénéficie des effets supplémentaires suivants :",
+    "Effet additionnel : octroie Égide du paladin à la cible.",
+    "Durée : 4s",
+    "Égide du paladin : réduit de 10% les dégâts subis par la cible.",
+    "Effet additionnel : octroie Bénédiction du paladin à la cible.",
+    "Durée : 12s",
+    "Bénédiction du paladin : restaure périodiquement les PV de la cible.",
+    "Puissance : 250"
+  ],
+  "role": "Tank",
+  "job": {
+    "id": 19,
+    "name": "Paladin",
+    "abbreviation": "PLD"
+  },
+  "unlock_level": 82,
+  "value": 0,
+  "icon": {
+    "id": 5219,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 20,
+  "source_class_job_id": 19
+}

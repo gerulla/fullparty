@@ -1,0 +1,26 @@
+{
+  "kind": "trait",
+  "id": 543,
+  "name": "ピクト効果アップIII",
+  "description": "自身に「レインボードリップ効果アップ」が付与される。\n効果時間：30秒\n発動条件：色魔法の実行によりインスタレーションの効果を全て消費したとき",
+  "description_macro": "自身に<colortype(500)><edgecolortype(501)>「レインボードリップ効果アップ」<edgecolortype(0)><colortype(0)>が付与される。<br><colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>30秒<br><colortype(504)><edgecolortype(505)>発動条件：<edgecolortype(0)><colortype(0)>色魔法の実行によりインスタレーションの効果を全て消費したとき",
+  "effects": [
+    "自身に「レインボードリップ効果アップ」が付与される。",
+    "効果時間：30秒",
+    "発動条件：色魔法の実行によりインスタレーションの効果を全て消費したとき"
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 42,
+    "name": "ピクトマンサー",
+    "abbreviation": "PCT"
+  },
+  "unlock_level": 92,
+  "value": 0,
+  "icon": {
+    "id": 6560,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 197,
+  "source_class_job_id": 42
+}

@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 537,
+  "name": "Palettenbalken",
+  "description": "Bei erfolgreich ausgeführtem Aqua in Blau und Aquara in Blau füllt sich der Palettenbalken.",
+  "description_macro": "Bei erfolgreich ausgeführtem <colortype(502)><edgecolortype(503)>Aqua in Blau<edgecolortype(0)><colortype(0)> und <colortype(502)><edgecolortype(503)>Aquara in Blau<edgecolortype(0)><colortype(0)> füllt sich der Palettenbalken.",
+  "effects": [
+    "Bei erfolgreich ausgeführtem Aqua in Blau und Aquara in Blau füllt sich der Palettenbalken."
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 42,
+    "name": "Piktomant",
+    "abbreviation": "PKT"
+  },
+  "unlock_level": 60,
+  "value": 0,
+  "icon": {
+    "id": 6551,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 197,
+  "source_class_job_id": 42
+}

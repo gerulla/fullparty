@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 4400,
+  "name": "クリムゾンストライク実行可",
+  "description": "クリムゾンストライクを実行できる状態。",
+  "effects": [
+    "クリムゾンストライクを実行できる状態。"
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 212752,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": true,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 28,
+  "source_abilities": [
+    {
+      "id": 25835,
+      "name": "クリムゾンサイクロン",
+      "description": "対象に急接近して、対象とその周囲の敵に火属性範囲魔法攻撃。\n威力：560\n2体目以降の対象への威力は60％減少する。\n追加効果：自身に「クリムゾンストライク実行可」を付与する。\n効果時間：永続\nこの効果は他のサモン系アクションを実行すると解除される。\n発動条件：「クリムゾンサイクロン実行可」効果中\nバインド中は実行不可。\nこのアクションを実行すると「クリムゾンストライク」に変化する。\n\n※このアクションはホットバーに登録することはできない。\n\u3000発動条件を満たすとアストラルフロウがクリムゾンサイクロンに変化する。",
+      "description_macro": "対象に急接近して、対象とその周囲の敵に火属性範囲魔法攻撃。<br><colortype(504)><edgecolortype(505)>威力：<edgecolortype(0)><colortype(0)><if([gnum68==27],<if([gnum72>=94],560,430)>,430)><br>2体目以降の対象への威力は60％減少する。<br><colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)>自身に<colortype(500)><edgecolortype(501)>「クリムゾンストライク実行可」<edgecolortype(0)><colortype(0)>を付与する。<br><colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>永続<br>この効果は他のサモン系アクションを実行すると解除される。<br><colortype(504)><edgecolortype(505)>発動条件：<edgecolortype(0)><colortype(0)><colortype(500)><edgecolortype(501)>「クリムゾンサイクロン実行可」<edgecolortype(0)><colortype(0)>効果中<br>バインド中は実行不可。<br>このアクションを実行すると<colortype(500)><edgecolortype(501)>「クリムゾンストライク」<edgecolortype(0)><colortype(0)>に変化する。<br><br><colortype(506)><edgecolortype(507)>※このアクションはホットバーに登録することはできない。<br>\u3000発動条件を満たすとアストラルフロウがクリムゾンサイクロンに変化する。<edgecolortype(0)><colortype(0)>",
+      "unlock_level": 86,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Magical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 27,
+          "name": "召喚士",
+          "abbreviation": "SMN",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

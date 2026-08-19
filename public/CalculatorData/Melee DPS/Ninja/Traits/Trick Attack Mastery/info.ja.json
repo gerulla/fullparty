@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 586,
+  "name": "だまし討ち皆伝",
+  "description": "だまし討ちが百雷銃に変化する。",
+  "description_macro": "だまし討ちが百雷銃に変化する。",
+  "effects": [
+    "だまし討ちが百雷銃に変化する。"
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 30,
+    "name": "忍者",
+    "abbreviation": "NIN"
+  },
+  "unlock_level": 92,
+  "value": 0,
+  "icon": {
+    "id": 5423,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 92,
+  "source_class_job_id": 30
+}

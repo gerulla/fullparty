@@ -1,0 +1,38 @@
+{
+  "kind": "trait",
+  "id": 652,
+  "name": "Actions améliorées",
+  "description": "Augmente la puissance de certaines actions.\n\nPuissance de Riposte enchantée : 340\nPuissance de VerFeu : 380\nPuissance de VerTerre : 380\nPuissance de Zwerchhau enchanté : 190\nPuissance de Flèche : 480\nPuissance de Redoublement enchanté : 190\nPuissance de Contre de sixte : 420\nPuissance de VerBrasier : 650\nPuissance de VerMiracle : 650\nPuissance de Reprise enchantée : 420\nPuissance de Calcination : 750\nPuissance de Méga VerVent : 440\nPuissance de Méga VerFoudre : 440\nPuissance de Résolution : 850",
+  "description_macro": "Augmente la puissance de certaines actions.<br><br><colortype(506)><edgecolortype(507)>Puissance de Riposte enchantée<nbsp>:<edgecolortype(0)><colortype(0)> 340<br><colortype(506)><edgecolortype(507)>Puissance de VerFeu<nbsp>:<edgecolortype(0)><colortype(0)> 380<br><colortype(506)><edgecolortype(507)>Puissance de VerTerre<nbsp>:<edgecolortype(0)><colortype(0)> 380<br><colortype(506)><edgecolortype(507)>Puissance de Zwerchhau enchanté<nbsp>:<edgecolortype(0)><colortype(0)> 190<br><colortype(506)><edgecolortype(507)>Puissance de Flèche<nbsp>:<edgecolortype(0)><colortype(0)> 480<br><colortype(506)><edgecolortype(507)>Puissance de Redoublement enchanté<nbsp>:<edgecolortype(0)><colortype(0)> 190<br><colortype(506)><edgecolortype(507)>Puissance de Contre de sixte<nbsp>:<edgecolortype(0)><colortype(0)> 420<br><colortype(506)><edgecolortype(507)>Puissance de VerBrasier<nbsp>:<edgecolortype(0)><colortype(0)> 650<br><colortype(506)><edgecolortype(507)>Puissance de VerMiracle<nbsp>:<edgecolortype(0)><colortype(0)> 650<br><colortype(506)><edgecolortype(507)>Puissance de Reprise enchantée<nbsp>:<edgecolortype(0)><colortype(0)> 420<br><colortype(506)><edgecolortype(507)>Puissance de Calcination<nbsp>:<edgecolortype(0)><colortype(0)> 750<br><colortype(506)><edgecolortype(507)>Puissance de Méga VerVent<nbsp>:<edgecolortype(0)><colortype(0)> 440<br><colortype(506)><edgecolortype(507)>Puissance de Méga VerFoudre<nbsp>:<edgecolortype(0)><colortype(0)> 440<br><colortype(506)><edgecolortype(507)>Puissance de Résolution<nbsp>:<edgecolortype(0)><colortype(0)> 850",
+  "effects": [
+    "Augmente la puissance de certaines actions.",
+    "Puissance de Riposte enchantée : 340",
+    "Puissance de VerFeu : 380",
+    "Puissance de VerTerre : 380",
+    "Puissance de Zwerchhau enchanté : 190",
+    "Puissance de Flèche : 480",
+    "Puissance de Redoublement enchanté : 190",
+    "Puissance de Contre de sixte : 420",
+    "Puissance de VerBrasier : 650",
+    "Puissance de VerMiracle : 650",
+    "Puissance de Reprise enchantée : 420",
+    "Puissance de Calcination : 750",
+    "Puissance de Méga VerVent : 440",
+    "Puissance de Méga VerFoudre : 440",
+    "Puissance de Résolution : 850"
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 35,
+    "name": "Mage Rouge",
+    "abbreviation": "MRG"
+  },
+  "unlock_level": 94,
+  "value": 0,
+  "icon": {
+    "id": 6831,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 112,
+  "source_class_job_id": 35
+}

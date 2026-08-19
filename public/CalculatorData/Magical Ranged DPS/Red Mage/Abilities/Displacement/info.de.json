@@ -1,0 +1,89 @@
+{
+  "kind": "ability",
+  "id": 7515,
+  "name": "Körperparade",
+  "description": "Du führst eine physische Attacke aus.\nAttacke-Wert: 180\nZusatzeffekt: 15y-Sprung zurück\nMaximale Aufladungen: 2\nGemeinsamer Reaktivierungs-Timer mit Arret-Stoß\nKann nicht während Fessel ausgeführt werden.",
+  "description_macro": "Du führst eine physische Attacke aus.<br>Attacke-Wert: <if([gnum68==35],<if([gnum72>=72],180,130)>,130)><br>Zusatzeffekt: 15y-Sprung zurück<br>Maximale Aufladungen: 2<br>Gemeinsamer Reaktivierungs-Timer mit <colortype(502)><edgecolortype(503)>Arret-Stoß<edgecolortype(0)><colortype(0)><br>Kann nicht während <colortype(500)><edgecolortype(501)>Fessel<edgecolortype(0)><colortype(0)> ausgeführt werden. ",
+  "effects": [
+    "Du führst eine physische Attacke aus.",
+    "Attacke-Wert: 180",
+    "Zusatzeffekt: 15y-Sprung zurück",
+    "Maximale Aufladungen: 2",
+    "Gemeinsamer Reaktivierungs-Timer mit Arret-Stoß",
+    "Kann nicht während Fessel ausgeführt werden."
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 35,
+    "name": "Rotmagier",
+    "abbreviation": "RMA"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 40,
+  "icon": {
+    "id": 3211,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 4,
+    "name": "Talent"
+  },
+  "attack_type": {
+    "id": 4294967295,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 35,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 10,
+    "additional_cooldown_group": 72,
+    "max_charges": 2
+  },
+  "costs": {
+    "primary": {
+      "type_id": 0,
+      "value": 0
+    },
+    "secondary": {
+      "type_id": 0,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": 5,
+    "effect_yalms": 0,
+    "cast_type": 1
+  },
+  "targeting": {
+    "self": false,
+    "party": false,
+    "alliance": false,
+    "hostile": true,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 7,
+    "behavior_type": 4,
+    "class_job_category_id": 112,
+    "source_class_job_id": 35,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

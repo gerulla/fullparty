@@ -1,0 +1,88 @@
+{
+  "kind": "ability",
+  "id": 7385,
+  "name": "パッセージ・オブ・アームズ",
+  "description": "自身の後方扇範囲に被ダメージを軽減するシールドを生成する。\n効果時間中、自身のブロック発動率が100％になり、さらに範囲内にいるパーティメンバーの被ダメージを15％軽減する。\n効果時間：18秒\n効果時間中にアクションの実行や移動・ターンを行うと、パッセージ・オブ・アームズは即座に解除される。\n実行後にオートアタックを停止する。",
+  "description_macro": "自身の後方扇範囲に被ダメージを軽減するシールドを生成する。<br>効果時間中、自身のブロック発動率が100％になり、さらに範囲内にいるパーティメンバーの被ダメージを15％軽減する。<br><colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>18秒<br>効果時間中にアクションの実行や移動・ターンを行うと、パッセージ・オブ・アームズは即座に解除される。<br>実行後にオートアタックを停止する。",
+  "effects": [
+    "自身の後方扇範囲に被ダメージを軽減するシールドを生成する。",
+    "効果時間中、自身のブロック発動率が100％になり、さらに範囲内にいるパーティメンバーの被ダメージを15％軽減する。",
+    "効果時間：18秒",
+    "効果時間中にアクションの実行や移動・ターンを行うと、パッセージ・オブ・アームズは即座に解除される。",
+    "実行後にオートアタックを停止する。"
+  ],
+  "role": "Tank",
+  "job": {
+    "id": 19,
+    "name": "ナイト",
+    "abbreviation": "PLD"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 70,
+  "icon": {
+    "id": 2515,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 4,
+    "name": "アビリティ"
+  },
+  "attack_type": {
+    "id": 0,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 120,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 22,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 0,
+      "value": 0
+    },
+    "secondary": {
+      "type_id": 0,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": 0,
+    "effect_yalms": 8,
+    "cast_type": 7
+  },
+  "targeting": {
+    "self": true,
+    "party": false,
+    "alliance": false,
+    "hostile": false,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 0,
+    "behavior_type": 0,
+    "class_job_category_id": 20,
+    "source_class_job_id": 19,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

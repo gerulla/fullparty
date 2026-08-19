@@ -1,0 +1,89 @@
+{
+  "kind": "ability",
+  "id": 11409,
+  "name": "融合",
+  "description": "パーティメンバーひとりを対象として、ＨＰとＭＰを全回復する。\n実行時に自身は戦闘不能になる。\n追加効果：自身に「意志薄弱」を付与する。\nこのステータスは戦闘不能時に解除されない。\n効果時間：600秒\n発動条件：「意志薄弱」非効果中",
+  "description_macro": "パーティメンバーひとりを対象として、ＨＰとＭＰを全回復する。<br>実行時に自身は戦闘不能になる。<br><colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)>自身に<colortype(500)><edgecolortype(501)>「意志薄弱」<edgecolortype(0)><colortype(0)>を付与する。<br>このステータスは戦闘不能時に解除されない。<br><colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>600秒<br><colortype(504)><edgecolortype(505)>発動条件：<edgecolortype(0)><colortype(0)><colortype(500)><edgecolortype(501)>「意志薄弱」<edgecolortype(0)><colortype(0)>非効果中",
+  "effects": [
+    "パーティメンバーひとりを対象として、ＨＰとＭＰを全回復する。",
+    "実行時に自身は戦闘不能になる。",
+    "追加効果：自身に「意志薄弱」を付与する。",
+    "このステータスは戦闘不能時に解除されない。",
+    "効果時間：600秒",
+    "発動条件：「意志薄弱」非効果中"
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 36,
+    "name": "青魔道士",
+    "abbreviation": "BLU"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 1,
+  "icon": {
+    "id": 3277,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 2,
+    "name": "魔法"
+  },
+  "attack_type": {
+    "id": 5,
+    "name": "魔法"
+  },
+  "timing": {
+    "cast_seconds": 2,
+    "recast_seconds": 2.5,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 58,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 2,
+      "value": 0
+    },
+    "secondary": {
+      "type_id": 46,
+      "value": 2127
+    }
+  },
+  "range": {
+    "target_yalms": 25,
+    "effect_yalms": 0,
+    "cast_type": 1
+  },
+  "targeting": {
+    "self": false,
+    "party": true,
+    "alliance": false,
+    "hostile": false,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": false
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": false
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 7,
+    "behavior_type": 0,
+    "class_job_category_id": 129,
+    "source_class_job_id": 36,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

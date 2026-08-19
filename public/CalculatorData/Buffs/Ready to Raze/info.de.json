@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 3839,
+  "name": "Fäden des Schicksals",
+  "description": "Schicksalszeichen kann ausgeführt werden.",
+  "effects": [
+    "Schicksalszeichen kann ausgeführt werden."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 213620,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 149,
+  "source_abilities": [
+    {
+      "id": 16163,
+      "name": "Schicksalszirkel",
+      "description": "Du führst eine physische Attacke auf alle umstehenden Gegner aus.\nAttacke-Wert: 300\nZusatzeffekt: Gewährt dir Fäden des Schicksals.\nDauer: 10 Sekunden\nEffekt endet bei Ausführung einer Waffenfertigkeit.\nErda-Patronen-Kosten: 1",
+      "description_macro": "Du führst eine physische Attacke auf alle umstehenden Gegner aus.<br>Attacke-Wert: 300<br><if([gnum68==37],<if([gnum72>=96],Zusatzeffekt: Gewährt dir <colortype(506)><edgecolortype(507)>Fäden des Schicksals<edgecolortype(0)><colortype(0)>.<br>Dauer: 10 Sekunden<br>Effekt endet bei Ausführung einer Waf<->fen<->fer<->tig<->keit.<br>,)>,)>Erda-Patronen-Kosten: 1",
+      "unlock_level": 72,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Tank"
+      ],
+      "jobs": [
+        {
+          "id": 37,
+          "name": "Revolverklinge",
+          "abbreviation": "REV",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

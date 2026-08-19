@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 309,
+  "name": "Verbessertes Afflatus solatii",
+  "description": "Erlaubt es dir, mit Afflatus solatii und Afflatus laetitiae eine Blutlilie zum Blühen zu bringen. Es bedarf 3 Stapel, bis sie vollends geöffnet ist.",
+  "description_macro": "Erlaubt es dir, mit <colortype(502)><edgecolortype(503)>Afflatus solatii<edgecolortype(0)><colortype(0)> und <colortype(502)><edgecolortype(503)>Afflatus laetitiae<edgecolortype(0)><colortype(0)> eine Blutlilie zum Blühen zu bringen. Es bedarf 3 Stapel, bis sie vollends geöffnet ist.",
+  "effects": [
+    "Erlaubt es dir, mit Afflatus solatii und Afflatus laetitiae eine Blutlilie zum Blühen zu bringen. Es bedarf 3 Stapel, bis sie vollends geöffnet ist."
+  ],
+  "role": "Healer",
+  "job": {
+    "id": 24,
+    "name": "Weißmagier",
+    "abbreviation": "WMA"
+  },
+  "unlock_level": 74,
+  "value": 0,
+  "icon": {
+    "id": 5341,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 25,
+  "source_class_job_id": 24
+}

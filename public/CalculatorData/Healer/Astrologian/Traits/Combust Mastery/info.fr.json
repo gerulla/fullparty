@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 186,
+  "name": "Maîtrise de Conjonction supérieure",
+  "description": "Remplace Conjonction supérieure par Conjonction supérieure II.",
+  "description_macro": "Remplace <colortype(500)><edgecolortype(501)>Conjonction supérieure<edgecolortype(0)><colortype(0)> par <colortype(500)><edgecolortype(501)>Conjonction supérieure II<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Remplace Conjonction supérieure par Conjonction supérieure II."
+  ],
+  "role": "Healer",
+  "job": {
+    "id": 33,
+    "name": "Astromancien",
+    "abbreviation": "AST"
+  },
+  "unlock_level": 46,
+  "value": 0,
+  "icon": {
+    "id": 6109,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 99,
+  "source_class_job_id": 33
+}

@@ -1,0 +1,26 @@
+{
+  "kind": "trait",
+  "id": 616,
+  "name": "Verbessertes Lichtfeuer",
+  "description": "Erfolgreiche Ausführung von Feuka und Flare gewährt dir 1 beziehungsweise 3 Stapel Lichtseele.\nMaximalstapelzahl: 6\nVerzweiflung kann sofort gewirkt werden.",
+  "description_macro": "Erfolgreiche Ausführung von <colortype(502)><edgecolortype(503)>Feuka<edgecolortype(0)><colortype(0)> und <colortype(502)><edgecolortype(503)>Flare<edgecolortype(0)><colortype(0)> gewährt dir 1 be<->ziehungs<->weise 3 Stapel <colortype(506)><edgecolortype(507)>Lichtseele<edgecolortype(0)><colortype(0)>.<br>Ma<->xi<->mal<->sta<->pel<->zahl: 6<br><colortype(502)><edgecolortype(503)>Ver<->zweif<->lung<edgecolortype(0)><colortype(0)> kann sofort gewirkt werden.",
+  "effects": [
+    "Erfolgreiche Ausführung von Feuka und Flare gewährt dir 1 beziehungsweise 3 Stapel Lichtseele.",
+    "Maximalstapelzahl: 6",
+    "Verzweiflung kann sofort gewirkt werden."
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 25,
+    "name": "Schwarzmagier",
+    "abbreviation": "SMA"
+  },
+  "unlock_level": 100,
+  "value": 0,
+  "icon": {
+    "id": 5654,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 26,
+  "source_class_job_id": 25
+}

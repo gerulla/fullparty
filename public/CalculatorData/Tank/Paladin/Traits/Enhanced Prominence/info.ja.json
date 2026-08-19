@@ -1,0 +1,29 @@
+{
+  "kind": "trait",
+  "id": 261,
+  "name": "プロミネンス効果アップ",
+  "description": "プロミネンスに下記の効果を追加する。\n\nコンボボーナス：自身のＭＰを回復する。\nコンボボーナス：自身に「神聖魔法効果アップ」が付与される。\n効果時間：30秒\n神聖魔法効果アップ効果：次に実行する1回のホーリースピリットまたはホーリーサークルの威力が上昇し、かつ詠唱時間無しで実行できる。\n発動条件：プロミネンスのコンボ成功時",
+  "description_macro": "プロミネンスに下記の効果を追加する。<br><br><colortype(504)><edgecolortype(505)>コンボボーナス：<edgecolortype(0)><colortype(0)>自身のＭＰを回復する。<br><colortype(504)><edgecolortype(505)>コンボボーナス：<edgecolortype(0)><colortype(0)>自身に<colortype(500)><edgecolortype(501)>「神聖魔法効果アップ」<edgecolortype(0)><colortype(0)>が付与される。<br><colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>30秒<br><colortype(504)><edgecolortype(505)>神聖魔法効果アップ効果：<edgecolortype(0)><colortype(0)>次に実行する1回のホーリースピリットまたはホーリーサークルの威力が上昇し、かつ詠唱時間無しで実行できる。<br><colortype(504)><edgecolortype(505)>発動条件：<edgecolortype(0)><colortype(0)>プロミネンスのコンボ成功時",
+  "effects": [
+    "プロミネンスに下記の効果を追加する。",
+    "コンボボーナス：自身のＭＰを回復する。",
+    "コンボボーナス：自身に「神聖魔法効果アップ」が付与される。",
+    "効果時間：30秒",
+    "神聖魔法効果アップ効果：次に実行する1回のホーリースピリットまたはホーリーサークルの威力が上昇し、かつ詠唱時間無しで実行できる。",
+    "発動条件：プロミネンスのコンボ成功時"
+  ],
+  "role": "Tank",
+  "job": {
+    "id": 19,
+    "name": "ナイト",
+    "abbreviation": "PLD"
+  },
+  "unlock_level": 72,
+  "value": 0,
+  "icon": {
+    "id": 5214,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 20,
+  "source_class_job_id": 19
+}

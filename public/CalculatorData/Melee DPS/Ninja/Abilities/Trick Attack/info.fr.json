@@ -1,0 +1,99 @@
+{
+  "kind": "ability",
+  "id": 2258,
+  "name": "Attaque sournoise",
+  "description": "Effectue une attaque physique sur la cible.\nPuissance : 300\nPuissance par derrière : 400\nEffet additionnel : inflige Attaque sournoise.\nDurée : 15s\nAttaque sournoise : augmente les dégâts infligés à la cible par le lanceur de 10%.\nCondition : Dissimulation.",
+  "description_macro": "Effectue une attaque physique sur la cible.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> 300<br><colortype(506)><edgecolortype(507)>Puissance par derrière<nbsp>:<edgecolortype(0)><colortype(0)> 400<br><colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> inflige Attaque sournoise.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 15s<br><colortype(506)><edgecolortype(507)>Attaque sournoise<nbsp>:<edgecolortype(0)><colortype(0)> augmente les dégâts infligés à la cible par le lanceur de 10%.<br><colortype(506)><edgecolortype(507)>Condition<nbsp>:<edgecolortype(0)><colortype(0)> <colortype(500)><edgecolortype(501)>Dissimulation<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Effectue une attaque physique sur la cible.",
+    "Puissance : 300",
+    "Puissance par derrière : 400",
+    "Effet additionnel : inflige Attaque sournoise.",
+    "Durée : 15s",
+    "Attaque sournoise : augmente les dégâts infligés à la cible par le lanceur de 10%.",
+    "Condition : Dissimulation."
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 30,
+    "name": "Ninja",
+    "abbreviation": "NIN"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 18,
+  "icon": {
+    "id": 618,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 4,
+    "name": "Aptitude"
+  },
+  "attack_type": {
+    "id": 4294967295,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 60,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 9,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 101,
+      "value": 586
+    },
+    "secondary": {
+      "type_id": 35,
+      "value": 3848
+    }
+  },
+  "range": {
+    "target_yalms": -1,
+    "effect_yalms": 0,
+    "cast_type": 1
+  },
+  "targeting": {
+    "self": false,
+    "party": false,
+    "alliance": false,
+    "hostile": true,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": {
+      "id": 163,
+      "status": {
+        "id": 3848,
+        "name": "Camouflage shinobi",
+        "description": "Le corps est entouré d'un voile aqueux reflétant la lumière, permettant d'effectuer les actions qui requièrent normalement l'effet Dissimulation.",
+        "icon_id": 212919,
+        "max_stacks": 0
+      }
+    }
+  },
+  "metadata": {
+    "aspect_id": 7,
+    "behavior_type": 0,
+    "class_job_category_id": 93,
+    "source_class_job_id": 29,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

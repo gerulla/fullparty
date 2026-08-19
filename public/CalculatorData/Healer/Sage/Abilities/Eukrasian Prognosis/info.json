@@ -1,0 +1,91 @@
+{
+  "kind": "ability",
+  "id": 24292,
+  "name": "Eukrasian Prognosis",
+  "description": "Restores own HP and the HP of all nearby party members.\nCure Potency: 100\nAdditional Effect: Erects a magicked barrier which nullifies damage equaling 320% of the amount of HP restored\nDuration: 30s\nEffect cannot be stacked with those of Eukrasian Diagnosis or scholar's Galvanize.\nCan only be executed while under the effect of Eukrasia.\n\n※This action cannot be assigned to a hotbar.\n※Prognosis changes to Eukrasian Prognosis when requirements for execution are met.",
+  "description_macro": "Restores own HP and the HP of all nearby party members.<br><colortype(504)><edgecolortype(505)>Cure Potency: <edgecolortype(0)><colortype(0)>100<br><colortype(504)><edgecolortype(505)>Additional Effect:<edgecolortype(0)><colortype(0)> Erects a magicked barrier which nullifies damage equaling <if([gnum68==40],<if([gnum72>=85],320,230)>,230)>% of the amount of HP restored<br><colortype(504)><edgecolortype(505)>Duration:<edgecolortype(0)><colortype(0)> 30s<br>Effect cannot be stacked with those of <colortype(506)><edgecolortype(507)>Eukrasian Diagnosis<edgecolortype(0)><colortype(0)> or scholar's <colortype(506)><edgecolortype(507)>Galvanize<edgecolortype(0)><colortype(0)>.<br>Can only be executed while under the effect of <colortype(506)><edgecolortype(507)>Eukrasia<edgecolortype(0)><colortype(0)>.<br><br>※This action cannot be assigned to a hotbar.<br>※<colortype(500)><edgecolortype(501)>Prognosis<edgecolortype(0)><colortype(0)> changes to <colortype(500)><edgecolortype(501)>Eukrasian Prognosis<edgecolortype(0)><colortype(0)> when requirements for execution are met.",
+  "effects": [
+    "Restores own HP and the HP of all nearby party members.",
+    "Cure Potency: 100",
+    "Additional Effect: Erects a magicked barrier which nullifies damage equaling 320% of the amount of HP restored",
+    "Duration: 30s",
+    "Effect cannot be stacked with those of Eukrasian Diagnosis or scholar's Galvanize.",
+    "Can only be executed while under the effect of Eukrasia.",
+    "※This action cannot be assigned to a hotbar.",
+    "※Prognosis changes to Eukrasian Prognosis when requirements for execution are met."
+  ],
+  "role": "Healer",
+  "job": {
+    "id": 40,
+    "name": "Sage",
+    "abbreviation": "SGE"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 30,
+  "icon": {
+    "id": 3660,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 2,
+    "name": "Spell"
+  },
+  "attack_type": {
+    "id": 5,
+    "name": "魔法"
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 1.5,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 58,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 70,
+      "value": 8
+    },
+    "secondary": {
+      "type_id": 63,
+      "value": 637
+    }
+  },
+  "range": {
+    "target_yalms": 0,
+    "effect_yalms": 20,
+    "cast_type": 2
+  },
+  "targeting": {
+    "self": true,
+    "party": false,
+    "alliance": false,
+    "hostile": false,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": false
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": false
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 7,
+    "behavior_type": 0,
+    "class_job_category_id": 181,
+    "source_class_job_id": 0,
+    "is_role_action": false,
+    "is_player_action": false,
+    "is_derived_action": true,
+    "equivalence_group": 0
+  }
+}

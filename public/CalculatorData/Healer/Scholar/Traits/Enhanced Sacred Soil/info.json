@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 313,
+  "name": "Enhanced Sacred Soil",
+  "description": "Adds an additional effect to Sacred Soil that grants healing over time.",
+  "description_macro": "Adds an additional effect to <colortype(500)><edgecolortype(501)>Sacred Soil<edgecolortype(0)><colortype(0)> that grants healing over time.",
+  "effects": [
+    "Adds an additional effect to Sacred Soil that grants healing over time."
+  ],
+  "role": "Healer",
+  "job": {
+    "id": 28,
+    "name": "Scholar",
+    "abbreviation": "SCH"
+  },
+  "unlock_level": 78,
+  "value": 0,
+  "icon": {
+    "id": 5703,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 29,
+  "source_class_job_id": 28
+}

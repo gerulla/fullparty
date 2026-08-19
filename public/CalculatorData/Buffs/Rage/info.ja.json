@@ -1,0 +1,51 @@
+{
+  "kind": "combat_status",
+  "id": 4235,
+  "name": "あばれる",
+  "description": "最も近くにいる対象をオートアタックで攻撃し続ける状態。\nまた一部の状態異常を無効化し、さらに一部を除くすべてのノックバックと引きよせを無効化する。",
+  "effects": [
+    "最も近くにいる対象をオートアタックで攻撃し続ける状態。",
+    "また一部の状態異常を無効化し、さらに一部を除くすべてのノックバックと引きよせを無効化する。"
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 229904,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": true,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 1,
+  "parameter": {
+    "effect": 19,
+    "modifier": 7751
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 41592,
+      "name": "あばれる",
+      "description": "一定時間、制御不能となり付近の敵に前方扇範囲物理攻撃を行う。\n威力：150（アイテムレベル依存威力）\n効果時間：10秒\nまた、一部の状態異常を無効化し、さらに一部を除くすべてのノックバックと引きよせを無効化する。",
+      "description_macro": "一定時間、制御不能となり付近の敵に前方扇範囲物理攻撃を行う。<br><colortype(504)><edgecolortype(505)>威力：<edgecolortype(0)><colortype(0)>150（アイテムレベル依存威力）<br><colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>10秒<br>また、一部の状態異常を無効化し、さらに一部を除くすべてのノックバックと引きよせを無効化する。<if([gnum108>=3],<br><colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)>自身に<colortype(500)><edgecolortype(501)>「肉斬骨断」<edgecolortype(0)><colortype(0)>を付与する。<br><colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>15秒<br><colortype(504)><edgecolortype(505)>肉斬骨断効果：<edgecolortype(0)><colortype(0)>効果中に受けたダメージが多いほど<colortype(500)><edgecolortype(501)>「いちげき」<edgecolortype(0)><colortype(0)>の威力が上昇する。,)>",
+      "unlock_level": 0,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Phantom Jobs"
+      ],
+      "jobs": [
+        {
+          "id": 2,
+          "name": "Phantom サポートバーサーカー",
+          "abbreviation": "Ph. Berserker",
+          "is_phantom": true
+        }
+      ]
+    }
+  ]
+}

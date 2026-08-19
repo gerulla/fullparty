@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 4873,
+  "name": "Bunshin",
+  "description": "Insensible une seule fois à la plupart des attaques physiques.",
+  "effects": [
+    "Insensible une seule fois à la plupart des attaques physiques."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 218957,
+    "file": "icon.png"
+  },
+  "max_stacks": 3,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 27,
+    "modifier": 0
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 49066,
+      "name": "Bunshin",
+      "description": "Vous octroie 3 degrés de Bunshin.\nDurée : 30s\nBunshin : annule les dégâts de la plupart des attaques physiques contre vous.",
+      "description_macro": "Vous octroie 3 degrés de <colortype(500)><edgecolortype(501)>Bunshin<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 30s<br><colortype(506)><edgecolortype(507)>Bunshin<nbsp>:<edgecolortype(0)><colortype(0)> annule les dégâts de la plupart des attaques physiques contre vous.",
+      "unlock_level": 0,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Phantom Jobs"
+      ],
+      "jobs": [
+        {
+          "id": 16,
+          "name": "Phantom Ninja fantôme",
+          "abbreviation": "Ninja fant.",
+          "is_phantom": true
+        }
+      ]
+    }
+  ]
+}

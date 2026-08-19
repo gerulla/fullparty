@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 2609,
+  "name": "Eukratische Prognose",
+  "description": "Erlittener Schaden ist um einen bestimmten Betrag verringert.",
+  "effects": [
+    "Erlittener Schaden ist um einen bestimmten Betrag verringert."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 212954,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 30,
+  "parameter": {
+    "effect": 0,
+    "modifier": 100
+  },
+  "class_job_category_id": 181,
+  "source_abilities": [
+    {
+      "id": 24292,
+      "name": "Eukratische Prognose",
+      "description": "Du regenerierst eigene LP und die von umstehenden Gruppenmitgliedern.\nHeilpotenzial: 100\nZusatzeffekt: Errichtet eine Barriere um die Ziele, die Schaden in der Höhe von 320 % der Heilwirkung absorbiert.\nDauer: 30 Sekunden\nKann nicht zugleich mit Eukratische Diagnose oder Dynamisieren des Gelehrten aktiv sein.\nBedingung: Eukrasie aktiv\nBei erfüllter Bedingung ändert sich Prognose zu diesem Kommando.\nKann nicht im Kommandomenü angelegt werden.",
+      "description_macro": "Du regenerierst eigene LP und die von umstehenden Grup<->pen<->mit<->gliedern.<br>Heilpotenzial: 100<br>Zusatzeffekt: Errichtet eine Barriere um die Ziele, die Schaden in der Höhe von <if([gnum68==40],<if([gnum72>=85],320,230)>,230)><nbsp>% der Heilwirkung absorbiert.<br>Dauer: 30 Sekunden<br>Kann nicht zugleich mit <colortype(500)><edgecolortype(501)>Eukratische Diagnose<edgecolortype(0)><colortype(0)> oder <colortype(500)><edgecolortype(501)>Dynamisieren<edgecolortype(0)><colortype(0)> des Gelehrten aktiv sein.<br>Bedingung: <colortype(506)><edgecolortype(507)>Eukrasie<edgecolortype(0)><colortype(0)> aktiv<br>Bei erfüllter Bedingung ändert sich <colortype(502)><edgecolortype(503)>Prognose<edgecolortype(0)><colortype(0)> zu diesem Kommando.<br>Kann nicht im Kommandomenü angelegt werden.",
+      "unlock_level": 30,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Healer"
+      ],
+      "jobs": [
+        {
+          "id": 40,
+          "name": "Weiser",
+          "abbreviation": "WEI",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

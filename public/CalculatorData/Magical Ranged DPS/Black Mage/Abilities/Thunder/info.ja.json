@@ -1,0 +1,98 @@
+{
+  "kind": "ability",
+  "id": 144,
+  "name": "サンダー",
+  "description": "対象に雷属性魔法攻撃。\u3000威力：100\n追加効果：対象に雷属性の継続ダメージを付与する。\n威力：45\u3000効果時間：24秒\n自身が実行するサンダー系魔法の継続ダメージ効果は、同時に1種類のみ付与される。\n発動条件：「サンダー系魔法実行可」効果中\nサンダー系魔法実行可は、アストラルファイアとアンブラルブリザードが付与されていない状態でいずれかが付与されたとき、またはいずれかが付与されている状態でもう一方に変化したときに付与される。\u3000効果時間：永続",
+  "description_macro": "対象に雷属性魔法攻撃。\u3000<colortype(504)><edgecolortype(505)>威力：<edgecolortype(0)><colortype(0)>100<br><colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)>対象に雷属性の継続ダメージを付与する。<br><colortype(504)><edgecolortype(505)>威力：<edgecolortype(0)><colortype(0)>45\u3000<colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>24秒<br>自身が実行するサンダー系魔法の継続ダメージ効果は、同時に1種類のみ付与される。<br><colortype(504)><edgecolortype(505)>発動条件：<edgecolortype(0)><colortype(0)><colortype(500)><edgecolortype(501)>「サンダー系魔法実行可」<edgecolortype(0)><colortype(0)>効果中<br>サンダー系魔法実行可は、アストラルファイアとアンブラルブリザードが付与されていない状態でいずれかが付与されたとき、またはいずれかが付与されている状態でもう一方に変化したときに付与される。\u3000<colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>永続",
+  "effects": [
+    "対象に雷属性魔法攻撃。\u3000威力：100",
+    "追加効果：対象に雷属性の継続ダメージを付与する。",
+    "威力：45\u3000効果時間：24秒",
+    "自身が実行するサンダー系魔法の継続ダメージ効果は、同時に1種類のみ付与される。",
+    "発動条件：「サンダー系魔法実行可」効果中",
+    "サンダー系魔法実行可は、アストラルファイアとアンブラルブリザードが付与されていない状態でいずれかが付与されたとき、またはいずれかが付与されている状態でもう一方に変化したときに付与される。\u3000効果時間：永続"
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 25,
+    "name": "黒魔道士",
+    "abbreviation": "BLM"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 6,
+  "icon": {
+    "id": 457,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 2,
+    "name": "魔法"
+  },
+  "attack_type": {
+    "id": 5,
+    "name": "魔法"
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 2.5,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 58,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 10,
+      "value": 3870
+    },
+    "secondary": {
+      "type_id": 63,
+      "value": 171
+    }
+  },
+  "range": {
+    "target_yalms": 25,
+    "effect_yalms": 0,
+    "cast_type": 1
+  },
+  "targeting": {
+    "self": false,
+    "party": false,
+    "alliance": false,
+    "hostile": true,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": false
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": {
+      "id": 177,
+      "status": {
+        "id": 3870,
+        "name": "サンダー系魔法実行可",
+        "description": "サンダー系魔法を実行できる状態。",
+        "icon_id": 212660,
+        "max_stacks": 0
+      }
+    }
+  },
+  "metadata": {
+    "aspect_id": 5,
+    "behavior_type": 0,
+    "class_job_category_id": 55,
+    "source_class_job_id": 7,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

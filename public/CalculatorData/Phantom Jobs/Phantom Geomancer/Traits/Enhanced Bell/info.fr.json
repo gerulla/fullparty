@@ -1,0 +1,23 @@
+{
+  "kind": "trait",
+  "id": 12,
+  "name": "Cloches améliorées",
+  "description": "Augmente l'effet de chaque degré de Cloche d'attaque à 5%.\nAugmente la puissance curative de Cloche de détente à 3000.",
+  "description_macro": "Augmente l'effet de chaque degré de <colortype(500)><edgecolortype(501)>Cloche d'attaque<edgecolortype(0)><colortype(0)> à 5%.<br>Augmente la puissance curative de <colortype(500)><edgecolortype(501)>Cloche de détente<edgecolortype(0)><colortype(0)> à 3000.",
+  "effects": [
+    "Augmente l'effet de chaque degré de Cloche d'attaque à 5%.",
+    "Augmente la puissance curative de Cloche de détente à 3000."
+  ],
+  "role": "Phantom Jobs",
+  "job": {
+    "id": 7,
+    "name": "Géomancien fantôme",
+    "abbreviation": "Géomancien fant."
+  },
+  "is_phantom_trait": true,
+  "unlock_level": 5,
+  "icon": {
+    "id": 82210,
+    "file": "icon.png"
+  }
+}

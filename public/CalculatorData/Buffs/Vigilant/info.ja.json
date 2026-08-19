@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 3902,
+  "name": "シャドウヴィジル［被］",
+  "description": "ＨＰが一定割合を下回るか効果時間が経過すると、回復効果が発動する状態。",
+  "effects": [
+    "ＨＰが一定割合を下回るか効果時間が経過すると、回復効果が発動する状態。"
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 213127,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 60,
+  "parameter": {
+    "effect": 0,
+    "modifier": 100
+  },
+  "class_job_category_id": 98,
+  "source_abilities": [
+    {
+      "id": 36927,
+      "name": "シャドウヴィジル",
+      "description": "一定時間、自身の被ダメージを40％軽減させる。\n効果時間：15秒\n追加効果：自身に「シャドウヴィジル［被］」を付与する。\n効果時間：20秒\nシャドウヴィジル［被］効果：ＨＰが50％を下回るか効果時間が経過すると、回復効果が発動する。\u3000回復力：1200",
+      "description_macro": "一定時間、自身の被ダメージを40％軽減させる。<br><colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>15秒<br><colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)>自身に<colortype(500)><edgecolortype(501)>「シャドウヴィジル［被］」<edgecolortype(0)><colortype(0)>を付与する。<br><colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>20秒<br><colortype(504)><edgecolortype(505)>シャドウヴィジル［被］効果：<edgecolortype(0)><colortype(0)>ＨＰが50％を下回るか効果時間が経過すると、回復効果が発動する。\u3000<colortype(504)><edgecolortype(505)>回復力：<edgecolortype(0)><colortype(0)>1200",
+      "unlock_level": 92,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Tank"
+      ],
+      "jobs": [
+        {
+          "id": 32,
+          "name": "暗黒騎士",
+          "abbreviation": "DRK",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

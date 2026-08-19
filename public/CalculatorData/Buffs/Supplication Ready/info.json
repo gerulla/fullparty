@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 3827,
+  "name": "Supplication Ready",
+  "description": "Able to execute Supplication.",
+  "effects": [
+    "Able to execute Supplication."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 212523,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 20,
+  "source_abilities": [
+    {
+      "id": 16460,
+      "name": "Atonement",
+      "description": "Delivers an attack with a potency of 460.\nAdditional Effect: Restores MP\nAdditional Effect: Grants Supplication Ready\nDuration: 30s\nCan only be executed while under the effect of Atonement Ready.",
+      "description_macro": "Delivers an attack with a potency of <if([gnum68==19],<if([gnum72>=94],460,<if([gnum68==19],<if([gnum72>=84],400,360)>,360)>)>,<if([gnum68==19],<if([gnum72>=84],400,360)>,360)>)>.<br><colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>Restores MP<br><colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>Grants <colortype(506)><edgecolortype(507)>Supplication Ready<edgecolortype(0)><colortype(0)><br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>30s<br>Can only be executed while under the effect of <colortype(506)><edgecolortype(507)>Atonement Ready<edgecolortype(0)><colortype(0)>.",
+      "unlock_level": 76,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Tank"
+      ],
+      "jobs": [
+        {
+          "id": 19,
+          "name": "Paladin",
+          "abbreviation": "PLD",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

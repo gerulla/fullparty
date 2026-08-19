@@ -1,0 +1,26 @@
+{
+  "kind": "trait",
+  "id": 568,
+  "name": "Relâchement bestial amélioré",
+  "description": "Permet de recevoir Palpitations bestiales (maximum 3) lorsque vous utilisez Sape-fendeur ou Décimation avec succès sous l'effet Relâchement bestial.\nDurée : 30s\nSi l'effet est accumulé 3 fois, devient Trépidation bestiale préparée et remplace Relâchement bestial par Trépidation bestiale.",
+  "description_macro": "Permet de recevoir <colortype(500)><edgecolortype(501)>Palpitations bestiales<edgecolortype(0)><colortype(0)> (maximum 3) lorsque vous utilisez <colortype(500)><edgecolortype(501)>Sape-fendeur<edgecolortype(0)><colortype(0)> ou <colortype(500)><edgecolortype(501)>Décimation<edgecolortype(0)><colortype(0)> avec succès sous l'effet <colortype(500)><edgecolortype(501)>Relâchement bestial<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 30s<br>Si l'effet est accumulé 3 fois, devient <colortype(500)><edgecolortype(501)>Trépidation bestiale préparée<edgecolortype(0)><colortype(0)> et remplace <colortype(500)><edgecolortype(501)>Relâchement bestial<edgecolortype(0)><colortype(0)> par <colortype(500)><edgecolortype(501)>Trépidation bestiale<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Permet de recevoir Palpitations bestiales (maximum 3) lorsque vous utilisez Sape-fendeur ou Décimation avec succès sous l'effet Relâchement bestial.",
+    "Durée : 30s",
+    "Si l'effet est accumulé 3 fois, devient Trépidation bestiale préparée et remplace Relâchement bestial par Trépidation bestiale."
+  ],
+  "role": "Tank",
+  "job": {
+    "id": 21,
+    "name": "Guerrier",
+    "abbreviation": "GUE"
+  },
+  "unlock_level": 96,
+  "value": 0,
+  "icon": {
+    "id": 5272,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 22,
+  "source_class_job_id": 21
+}

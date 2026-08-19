@@ -1,0 +1,94 @@
+{
+  "kind": "ability",
+  "id": 3638,
+  "name": "Mort-vivant",
+  "description": "Vous accorde avec le monde des morts et vous octroie Mort-vivant.\nDurée : 10s\nSi vous subissez des dégâts suffisants pour vous mettre K.O., vos PV sont réduits à 1 et vous obtenez à la place l'effet Marcheur des limbes.\nDurée : 10s\nMarcheur des limbes : les attaques ne peuvent pas réduire vos PV à moins de 1, et vous absorbez des PV quand vous infligez des dégâts avec une technique d'arme.\nPuissance : 1500\nVous tomberez inconscient si un montant égal à 100% de vos PV maximums n'est pas restauré avant la fin de la durée de l'effet.\nDevient Sur le fil si un montant égal à 100% de vos PV maximums est restauré avant la fin de la durée de l'effet.\nSur le fil : Les PV ne peuvent pas être réduits en dessous de 1.\nL'effet Sur le fil prendra fin à la fin de la durée originale de l'effet Marcheur des limbes.\nCertaines attaques annulent les effets Mort-vivant, Marcheur des limbes, et Sur le fil.",
+  "description_macro": "Vous accorde avec le monde des morts et vous octroie <colortype(500)><edgecolortype(501)>Mort-vivant<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 10s<br>Si vous subissez des dégâts suffisants pour vous mettre K.O., vos PV sont réduits à 1 et vous obtenez à la place l'effet <colortype(500)><edgecolortype(501)>Marcheur des limbes<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 10s<br><colortype(506)><edgecolortype(507)>Marcheur des limbes<nbsp>:<edgecolortype(0)><colortype(0)> les attaques ne peuvent pas réduire vos PV à moins de 1, et vous absorbez des PV quand vous infligez des dégâts avec une technique d'arme.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> 1500<br>Vous tomberez inconscient si un montant égal à 100% de vos PV maximums n'est pas restauré avant la fin de la durée de l'effet.<br>Devient <colortype(500)><edgecolortype(501)>Sur le fil<edgecolortype(0)><colortype(0)> si un montant égal à 100% de vos PV maximums est restauré avant la fin de la durée de l'effet.<br><colortype(506)><edgecolortype(507)>Sur le fil<nbsp>:<edgecolortype(0)><colortype(0)> Les PV ne peuvent pas être réduits en dessous de 1.<br>L'effet Sur le fil prendra fin à la fin de la durée originale de l'effet Marcheur des limbes.<br>Certaines attaques annulent les effets Mort-vivant, Marcheur des limbes, et Sur le fil.",
+  "effects": [
+    "Vous accorde avec le monde des morts et vous octroie Mort-vivant.",
+    "Durée : 10s",
+    "Si vous subissez des dégâts suffisants pour vous mettre K.O., vos PV sont réduits à 1 et vous obtenez à la place l'effet Marcheur des limbes.",
+    "Durée : 10s",
+    "Marcheur des limbes : les attaques ne peuvent pas réduire vos PV à moins de 1, et vous absorbez des PV quand vous infligez des dégâts avec une technique d'arme.",
+    "Puissance : 1500",
+    "Vous tomberez inconscient si un montant égal à 100% de vos PV maximums n'est pas restauré avant la fin de la durée de l'effet.",
+    "Devient Sur le fil si un montant égal à 100% de vos PV maximums est restauré avant la fin de la durée de l'effet.",
+    "Sur le fil : Les PV ne peuvent pas être réduits en dessous de 1.",
+    "L'effet Sur le fil prendra fin à la fin de la durée originale de l'effet Marcheur des limbes.",
+    "Certaines attaques annulent les effets Mort-vivant, Marcheur des limbes, et Sur le fil."
+  ],
+  "role": "Tank",
+  "job": {
+    "id": 32,
+    "name": "Chevalier Noir",
+    "abbreviation": "CHN"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 50,
+  "icon": {
+    "id": 3077,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 4,
+    "name": "Aptitude"
+  },
+  "attack_type": {
+    "id": 0,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 300,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 25,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 0,
+      "value": 0
+    },
+    "secondary": {
+      "type_id": 0,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": 0,
+    "effect_yalms": 0,
+    "cast_type": 1
+  },
+  "targeting": {
+    "self": true,
+    "party": false,
+    "alliance": false,
+    "hostile": false,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 0,
+    "behavior_type": 0,
+    "class_job_category_id": 98,
+    "source_class_job_id": 32,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

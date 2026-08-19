@@ -1,0 +1,88 @@
+{
+  "kind": "ability",
+  "id": 2259,
+  "name": "Ten",
+  "description": "Effectue le signe de mains rituel mudrâ du “ciel”.\nDurée : 6s\nMaximum de charges : 2\nDéclenche le temps de recharge des techniques d'arme, sorts, mudrâ et ninjutsu.\nCette aptitude a un temps de recharge indépendant, et partage aussi celui des techniques d'arme.",
+  "description_macro": "Effectue le signe de mains rituel mudrâ du “ciel”.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 6s<br><colortype(506)><edgecolortype(507)>Maximum de charges<nbsp>:<edgecolortype(0)><colortype(0)> 2<br>Déclenche le temps de recharge des techniques d'arme, sorts, mudrâ et ninjutsu.<br>Cette aptitude a un temps de recharge indépendant, et partage aussi celui des techniques d'arme.",
+  "effects": [
+    "Effectue le signe de mains rituel mudrâ du “ciel”.",
+    "Durée : 6s",
+    "Maximum de charges : 2",
+    "Déclenche le temps de recharge des techniques d'arme, sorts, mudrâ et ninjutsu.",
+    "Cette aptitude a un temps de recharge indépendant, et partage aussi celui des techniques d'arme."
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 30,
+    "name": "Ninja",
+    "abbreviation": "NIN"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 30,
+  "icon": {
+    "id": 2901,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 4,
+    "name": "Aptitude"
+  },
+  "attack_type": {
+    "id": 0,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 20,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 4,
+    "additional_cooldown_group": 58,
+    "max_charges": 2
+  },
+  "costs": {
+    "primary": {
+      "type_id": 0,
+      "value": 0
+    },
+    "secondary": {
+      "type_id": 0,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": 0,
+    "effect_yalms": 0,
+    "cast_type": 1
+  },
+  "targeting": {
+    "self": true,
+    "party": false,
+    "alliance": false,
+    "hostile": false,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 0,
+    "behavior_type": 0,
+    "class_job_category_id": 92,
+    "source_class_job_id": 30,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

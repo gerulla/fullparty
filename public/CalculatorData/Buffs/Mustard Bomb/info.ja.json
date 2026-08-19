@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 4007,
+  "name": "マスタードボム",
+  "description": "マスタードボムを受けた状態。効果時間終了時に爆発する。",
+  "effects": [
+    "マスタードボムを受けた状態。効果時間終了時に爆発する。"
+  ],
+  "classification": "debuff",
+  "icon": {
+    "id": 214185,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 2,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 198,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 23279,
+      "name": "マスタードボム",
+      "description": "対象とその周囲の敵に火属性範囲魔法攻撃。\u3000威力：220\n2体目以降の対象への威力は50％減少する。\n追加効果：対象に「ふらつき」が付与されている場合、火属性の継続ダメージを付与する。\u3000威力：50\n効果時間：15秒",
+      "description_macro": "対象とその周囲の敵に火属性範囲魔法攻撃。\u3000<colortype(504)><edgecolortype(505)>威力：<edgecolortype(0)><colortype(0)>220<br>2体目以降の対象への威力は50％減少する。<br><colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)>対象に<colortype(500)><edgecolortype(501)>「ふらつき」<edgecolortype(0)><colortype(0)>が付与されている場合、火属性の継続ダメージを付与する。\u3000<colortype(504)><edgecolortype(505)>威力：<edgecolortype(0)><colortype(0)>50<br><colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>15秒",
+      "unlock_level": 1,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Magical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 36,
+          "name": "青魔道士",
+          "abbreviation": "BLU",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

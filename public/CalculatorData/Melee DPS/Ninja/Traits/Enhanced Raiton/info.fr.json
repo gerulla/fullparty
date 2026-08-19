@@ -1,0 +1,26 @@
+{
+  "kind": "trait",
+  "id": 441,
+  "name": "Raiton amélioré",
+  "description": "Permet de recevoir un degré de Technique de Raijû préparée (maximum 3) lorsque vous utilisez Raiton.\nDurée : 30s\nCet effet disparaît si une technique d'arme de corps-à-corps est utilisée.",
+  "description_macro": "Permet de recevoir un degré de <colortype(500)><edgecolortype(501)>Technique de Raijû préparée<edgecolortype(0)><colortype(0)> (maximum 3) lorsque vous utilisez <colortype(500)><edgecolortype(501)>Raiton<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 30s<br>Cet effet disparaît si une technique d'arme de corps-à-corps est utilisée.",
+  "effects": [
+    "Permet de recevoir un degré de Technique de Raijû préparée (maximum 3) lorsque vous utilisez Raiton.",
+    "Durée : 30s",
+    "Cet effet disparaît si une technique d'arme de corps-à-corps est utilisée."
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 30,
+    "name": "Ninja",
+    "abbreviation": "NIN"
+  },
+  "unlock_level": 90,
+  "value": 0,
+  "icon": {
+    "id": 5419,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 92,
+  "source_class_job_id": 30
+}

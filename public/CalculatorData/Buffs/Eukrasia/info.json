@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 2606,
+  "name": "Eukrasia",
+  "description": "Certain actions are being augmented.",
+  "effects": [
+    "Certain actions are being augmented."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 212953,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": true,
+  "inflicted_by_actor": true,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 181,
+  "source_abilities": [
+    {
+      "id": 24290,
+      "name": "Eukrasia",
+      "description": "Augments certain offensive and healing magic actions.\nDosis III is upgraded to Eukrasian Dosis III.\nDyskrasia II is upgraded to Eukrasian Dyskrasia.\nDiagnosis is upgraded to Eukrasian Diagnosis.\nPrognosis is upgraded to Eukrasian PrognosisII.\nThis action does not share a recast timer with any other actions. Upon execution, the recast timer for this action will be applied to all other weaponskills and magic actions.",
+      "description_macro": "Augments certain offensive and healing magic actions.<br><if([gnum68==40],<if([gnum72>=82],<colortype(500)><edgecolortype(501)>Dosis III<edgecolortype(0)><colortype(0)> is upgraded to <colortype(500)><edgecolortype(501)>Eukrasian Dosis III<edgecolortype(0)><colortype(0)>,<if([gnum68==40],<if([gnum72>=72],<colortype(500)><edgecolortype(501)>Dosis II<edgecolortype(0)><colortype(0)> is upgraded to <colortype(500)><edgecolortype(501)>Eukrasian Dosis II<edgecolortype(0)><colortype(0)>,<colortype(500)><edgecolortype(501)>Dosis<edgecolortype(0)><colortype(0)> is upgraded to <colortype(500)><edgecolortype(501)>Eukrasian Dosis<edgecolortype(0)><colortype(0)>)>,<colortype(500)><edgecolortype(501)>Dosis<edgecolortype(0)><colortype(0)> is upgraded to <colortype(500)><edgecolortype(501)>Eukrasian Dosis<edgecolortype(0)><colortype(0)>)>)>,<if([gnum68==40],<if([gnum72>=72],<colortype(500)><edgecolortype(501)>Dosis II<edgecolortype(0)><colortype(0)> is upgraded to <colortype(500)><edgecolortype(501)>Eukrasian Dosis II<edgecolortype(0)><colortype(0)>,<colortype(500)><edgecolortype(501)>Dosis<edgecolortype(0)><colortype(0)> is upgraded to <colortype(500)><edgecolortype(501)>Eukrasian Dosis<edgecolortype(0)><colortype(0)>)>,<colortype(500)><edgecolortype(501)>Dosis<edgecolortype(0)><colortype(0)> is upgraded to <colortype(500)><edgecolortype(501)>Eukrasian Dosis<edgecolortype(0)><colortype(0)>)>)>.<br><if([gnum68==40],<if([gnum72>=82],<colortype(500)><edgecolortype(501)>Dyskrasia II<edgecolortype(0)><colortype(0)> is upgraded to <colortype(500)><edgecolortype(501)>Eukrasian Dyskrasia<edgecolortype(0)><colortype(0)>.<br>,)>,)><colortype(500)><edgecolortype(501)>Diagnosis<edgecolortype(0)><colortype(0)> is upgraded to <colortype(500)><edgecolortype(501)>Eukrasian Diagnosis<edgecolortype(0)><colortype(0)>.<br><colortype(500)><edgecolortype(501)>Prognosis<edgecolortype(0)><colortype(0)> is upgraded to <colortype(500)><edgecolortype(501)>Eukrasian Prognosis<if([gnum68==40],<if([gnum72>=96], II,)>,)><edgecolortype(0)><colortype(0)>.<br>This action does not share a recast timer with any other actions. Upon execution, the recast timer for this action will be applied to all other weaponskills and magic actions.",
+      "unlock_level": 30,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Healer"
+      ],
+      "jobs": [
+        {
+          "id": 40,
+          "name": "Sage",
+          "abbreviation": "SGE",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

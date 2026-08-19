@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 3645,
+  "name": "Flankstung Venom",
+  "description": "Potency of Flanksting Strike is increased.",
+  "effects": [
+    "Potency of Flanksting Strike is increased."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 213751,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 196,
+  "source_abilities": [
+    {
+      "id": 34613,
+      "name": "Hindsbane Fang",
+      "description": "Delivers an attack with a potency of 340.\n400 when executed from a target's rear.\nPotencies are increased by 100 while under the effect of Hindsbane Venom.\nAdditional Effect: Grants Flankstung Venom\nFlankstung Venom Effect: Increases potency of Flanksting Strike by 100\nDuration: 60s\nEffect cannot be stacked with other viper venom effects.\nAdditional Effect: Increases Serpent Offerings Gauge by 10\nCan only be executed after successfully landing Swiftskin's Sting.\n\n※This action cannot be assigned to a hotbar.\n※Swiftskin's Sting changes to Hindsbane Fang when requirements for execution are met.",
+      "description_macro": "Delivers an attack with a potency of <if([gnum68==41],<if([gnum72>=84],340,320)>,320)>.<br><if([gnum68==41],<if([gnum72>=84],400,380)>,380)> when executed from a target's rear.<br>Potencies are increased by 100 while under the effect of <colortype(506)><edgecolortype(507)>Hindsbane Venom<edgecolortype(0)><colortype(0)>.<br><colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>Grants <colortype(506)><edgecolortype(507)>Flankstung Venom<edgecolortype(0)><colortype(0)><br><colortype(504)><edgecolortype(505)>Flankstung Venom Effect: <edgecolortype(0)><colortype(0)>Increases potency of <colortype(500)><edgecolortype(501)>Flanksting Strike<edgecolortype(0)><colortype(0)> by 100<br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>60s<br>Effect cannot be stacked with other viper venom effects.<br><if([gnum68==41],<if([gnum72>=90],<colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>Increases <colortype(500)><edgecolortype(501)>Serpent Offerings Gauge<edgecolortype(0)><colortype(0)> by 10<br>,)>,)>Can only be executed after successfully landing <colortype(500)><edgecolortype(501)>Swiftskin's Sting<edgecolortype(0)><colortype(0)>.<br><br>※This action cannot be assigned to a hotbar.<br>※<colortype(500)><edgecolortype(501)>Swiftskin's Sting<edgecolortype(0)><colortype(0)> changes to <colortype(500)><edgecolortype(501)>Hindsbane Fang<edgecolortype(0)><colortype(0)> when requirements for execution are met.",
+      "unlock_level": 30,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 41,
+          "name": "Viper",
+          "abbreviation": "VPR",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

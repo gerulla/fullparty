@@ -1,0 +1,88 @@
+{
+  "kind": "ability",
+  "id": 15995,
+  "name": "Moulin à vent ascendant",
+  "description": "Effectue une attaque physique sur les ennemis alentour.\nPuissance : 160\nEffet additionnel : 50% de chances qu'une Plume onirique vous soit octroyée.\nCondition : Lancer synchrone ou Lancer synchrone : Apothéose.\nDurant une danse, cette action devient Jeté verdoyant.",
+  "description_macro": "Effectue une attaque physique sur les ennemis alentour.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> 160<br><colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> 50% de chances qu'une <colortype(500)><edgecolortype(501)>Plume onirique<edgecolortype(0)><colortype(0)> vous soit octroyée.<br><colortype(506)><edgecolortype(507)>Condition<nbsp>:<edgecolortype(0)><colortype(0)> <colortype(500)><edgecolortype(501)>Lancer synchrone<edgecolortype(0)><colortype(0)> <if([gnum68==38],<if([gnum72>=72],ou <colortype(500)><edgecolortype(501)>Lancer synchrone<nbsp>: Apothéose<edgecolortype(0)><colortype(0)>,)>,)>.<br>Durant une danse, cette action devient <colortype(500)><edgecolortype(501)>Jeté verdoyant<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Effectue une attaque physique sur les ennemis alentour.",
+    "Puissance : 160",
+    "Effet additionnel : 50% de chances qu'une Plume onirique vous soit octroyée.",
+    "Condition : Lancer synchrone ou Lancer synchrone : Apothéose.",
+    "Durant une danse, cette action devient Jeté verdoyant."
+  ],
+  "role": "Physical Ranged DPS",
+  "job": {
+    "id": 38,
+    "name": "Danseur",
+    "abbreviation": "DNS"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 35,
+  "icon": {
+    "id": 3463,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 3,
+    "name": "Technique d'arme"
+  },
+  "attack_type": {
+    "id": 4294967295,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 2.5,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 58,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 85,
+      "value": 0
+    },
+    "secondary": {
+      "type_id": 91,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": 0,
+    "effect_yalms": 5,
+    "cast_type": 2
+  },
+  "targeting": {
+    "self": true,
+    "party": false,
+    "alliance": false,
+    "hostile": false,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 7,
+    "behavior_type": 0,
+    "class_job_category_id": 150,
+    "source_class_job_id": 38,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

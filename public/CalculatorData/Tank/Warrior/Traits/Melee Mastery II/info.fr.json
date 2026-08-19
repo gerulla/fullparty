@@ -1,0 +1,30 @@
+{
+  "kind": "trait",
+  "id": 654,
+  "name": "Actions améliorées II",
+  "description": "Augmente la puissance de certaines actions.\n\nPuissance de Coup puissant : 240\nPuissance de Mutilation : 190\nPuissance de Couperet de justice : 220\nPuissance d'Œil de la tempête : 220\nPuissance de Sape-fendeur : 580\nPuissance de Révolte : 420",
+  "description_macro": "Augmente la puissance de certaines actions.<br><br><colortype(506)><edgecolortype(507)>Puissance de Coup puissant<nbsp>:<edgecolortype(0)><colortype(0)> 240<br><colortype(506)><edgecolortype(507)>Puissance de Mutilation<nbsp>:<edgecolortype(0)><colortype(0)> 190<br><colortype(506)><edgecolortype(507)>Puissance de Couperet de justice<nbsp>:<edgecolortype(0)><colortype(0)> 220<br><colortype(506)><edgecolortype(507)>Puissance d'Œil de la tempête<nbsp>:<edgecolortype(0)><colortype(0)> 220<br><colortype(506)><edgecolortype(507)>Puissance de Sape-fendeur<nbsp>:<edgecolortype(0)><colortype(0)> 580<br><colortype(506)><edgecolortype(507)>Puissance de Révolte<nbsp>:<edgecolortype(0)><colortype(0)> 420",
+  "effects": [
+    "Augmente la puissance de certaines actions.",
+    "Puissance de Coup puissant : 240",
+    "Puissance de Mutilation : 190",
+    "Puissance de Couperet de justice : 220",
+    "Puissance d'Œil de la tempête : 220",
+    "Puissance de Sape-fendeur : 580",
+    "Puissance de Révolte : 420"
+  ],
+  "role": "Tank",
+  "job": {
+    "id": 21,
+    "name": "Guerrier",
+    "abbreviation": "GUE"
+  },
+  "unlock_level": 94,
+  "value": 0,
+  "icon": {
+    "id": 6802,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 22,
+  "source_class_job_id": 21
+}

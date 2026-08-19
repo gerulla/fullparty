@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 528,
+  "name": "Esprits des serpents",
+  "description": "Permet de recevoir une Âme ophidienne (maximum 2) lorsque vous utilisez Anneaux de l'effroi ou Fosse de l'effroi avec succès.",
+  "description_macro": "Permet de recevoir une <colortype(500)><edgecolortype(501)>Âme ophidienne<edgecolortype(0)><colortype(0)> (maximum 2) lorsque vous utilisez <colortype(500)><edgecolortype(501)>Anneaux de l'effroi<edgecolortype(0)><colortype(0)> ou <colortype(500)><edgecolortype(501)>Fosse de l'effroi<edgecolortype(0)><colortype(0)> avec succès.",
+  "effects": [
+    "Permet de recevoir une Âme ophidienne (maximum 2) lorsque vous utilisez Anneaux de l'effroi ou Fosse de l'effroi avec succès."
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 41,
+    "name": "Rôdeur Vipère",
+    "abbreviation": "VPR"
+  },
+  "unlock_level": 82,
+  "value": 0,
+  "icon": {
+    "id": 6505,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 196,
+  "source_class_job_id": 41
+}

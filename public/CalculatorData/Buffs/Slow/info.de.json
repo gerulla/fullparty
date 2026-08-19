@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 9,
+  "name": "Gemach",
+  "description": "Die Intervalle zwischen Auto-Attacken und die (Re-)Aktivierungszeiten von Waffenfertigkeiten und Magie sind verlängert.",
+  "effects": [
+    "Die Intervalle zwischen Auto-Attacken und die (Re-)Aktivierungszeiten von Waffenfertigkeiten und Magie sind verlängert."
+  ],
+  "classification": "debuff",
+  "icon": {
+    "id": 215009,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 2,
+  "target_type": 0,
+  "can_dispel": true,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 50,
+  "parameter": {
+    "effect": 0,
+    "modifier": 15
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 18310,
+      "name": "Weißer Rösselsprung",
+      "description": "Du führst eine elementneutrale magische Attacke auf alle Gegner in gerader Linie vor dir aus.\nAttacke-Wert: 200\nAttacke-Wert verringert sich ab dem zweiten Gegner um 50 %.\nZusatzeffekt: Wenn das Ziel unter Fessel leidet, wird der Effekt beendet und der Attacke-Wert erhöht sich dafür auf 400.\nZusatzeffekt: Fügt dem Ziel 20 % Gemach zu.\nDauer: 20 Sekunden",
+      "description_macro": "Du führst eine elementneutrale magische Attacke auf alle Gegner in gerader Linie vor dir aus.<br>Attacke-Wert: 200<br>Attacke-Wert verringert sich ab dem zweiten Gegner um 50<nbsp>%.<br>Zusatzeffekt: Wenn das Ziel unter <colortype(506)><edgecolortype(507)>Fessel<edgecolortype(0)><colortype(0)> leidet, wird der Effekt beendet und der Attacke-Wert erhöht sich dafür auf 400.<br>Zusatzeffekt: Fügt dem Ziel 20<nbsp>% <colortype(506)><edgecolortype(507)>Gemach<edgecolortype(0)><colortype(0)> zu.<br>Dauer: 20 Sekunden",
+      "unlock_level": 1,
+      "relations": [
+        "applied_by_description"
+      ],
+      "roles": [
+        "Magical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 36,
+          "name": "Blaumagier",
+          "abbreviation": "BMA",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

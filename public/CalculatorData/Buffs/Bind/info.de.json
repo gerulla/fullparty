@@ -1,0 +1,92 @@
+{
+  "kind": "combat_status",
+  "id": 13,
+  "name": "Fessel",
+  "description": "Bewegungsunfähig.",
+  "effects": [
+    "Bewegungsunfähig."
+  ],
+  "classification": "debuff",
+  "icon": {
+    "id": 215003,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 2,
+  "target_type": 0,
+  "can_dispel": true,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 100,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 2268,
+      "name": "Hyoton",
+      "description": "Du führst eine eisbasierte magische Attacke aus.\nAttacke-Wert: 350\nZusatzeffekt: Fessel\nDauer: 15 Sekunden\nUnterbindet Auto-Attacke.\nBedingung: Ninjutsu nach Handgestenfolge Ten→Jin oder Chi→Jin\nBei Ausführung wird der Reaktivierungs-Timer von Waffenfertigkeiten, Magie, anderen Mudras und Ninjutsu ausgelöst.\nBei erfüllter Bedingung ändert sich Ninjutsu zu diesem Kommando.\nKann nicht im Kommandomenü angelegt werden.",
+      "description_macro": "Du führst eine eisbasierte magische Attacke aus.<br>Attacke-Wert: 350<br>Zusatzeffekt: <colortype(506)><edgecolortype(507)>Fessel<edgecolortype(0)><colortype(0)><br>Dauer: 15 Sekunden<br>Unterbindet Auto-Attacke.<br>Bedingung: <colortype(502)><edgecolortype(503)>Ninjutsu<edgecolortype(0)><colortype(0)> nach Handgestenfolge <colortype(502)><edgecolortype(503)>Ten→Jin<edgecolortype(0)><colortype(0)> oder <colortype(502)><edgecolortype(503)>Chi→Jin<edgecolortype(0)><colortype(0)><br>Bei Ausführung wird der Reaktivierungs-Timer von Waf<->fen<->fer<->tig<->kei<->ten, Magie, anderen Mudras und <colortype(502)><edgecolortype(503)>Ninjutsu<edgecolortype(0)><colortype(0)> ausgelöst.<br>Bei erfüllter Bedingung ändert sich <colortype(502)><edgecolortype(503)>Ninjutsu<edgecolortype(0)><colortype(0)> zu diesem Kommando.<br>Kann nicht im Kommandomenü angelegt werden.",
+      "unlock_level": 45,
+      "relations": [
+        "applied_by_description"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 30,
+          "name": "Ninja",
+          "abbreviation": "NIN",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 18311,
+      "name": "Schwarzer Rösselsprung",
+      "description": "Du führst eine elementneutrale magische Attacke auf alle Gegner in gerader Linie vor dir aus.\nAttacke-Wert: 200\nAttacke-Wert verringert sich ab dem zweiten Gegner um 50 %.\nZusatzeffekt: Wenn das Ziel unter Gemach leidet, wird der Effekt beendet und der Attacke-Wert erhöht sich dafür auf 400.\nZusatzeffekt: Fessel\nDauer: 20 Sekunden",
+      "description_macro": "Du führst eine elementneutrale magische Attacke auf alle Gegner in gerader Linie vor dir aus.<br>Attacke-Wert: 200<br>Attacke-Wert verringert sich ab dem zweiten Gegner um 50<nbsp>%.<br>Zusatzeffekt: Wenn das Ziel unter <colortype(506)><edgecolortype(507)>Gemach<edgecolortype(0)><colortype(0)> leidet, wird der Effekt beendet und der Attacke-Wert erhöht sich dafür auf 400.<br>Zusatzeffekt: <colortype(506)><edgecolortype(507)>Fessel<edgecolortype(0)><colortype(0)><br>Dauer: 20 Sekunden",
+      "unlock_level": 1,
+      "relations": [
+        "applied_by_description"
+      ],
+      "roles": [
+        "Magical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 36,
+          "name": "Blaumagier",
+          "abbreviation": "BMA",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 18878,
+      "name": "Hyoton",
+      "description": "Du führst eine eisbasierte magische Attacke aus.\nAttacke-Wert: 350\nZusatzeffekt: Fessel\nDauer: 15 Sekunden\nUnterbindet Auto-Attacke.\nBedingung: Ninjutsu nach Handgestenfolge Ten→Jin oder Chi→Jin\nBei Ausführung wird der Reaktivierungs-Timer von Waffenfertigkeiten, Magie, anderen Mudras und Ninjutsu ausgelöst.\nBei erfüllter Bedingung ändert sich Ninjutsu zu diesem Kommando.\nKann nicht im Kommandomenü angelegt werden.",
+      "description_macro": "Du führst eine eisbasierte magische Attacke aus.<br>Attacke-Wert: 350<br>Zusatzeffekt: <colortype(506)><edgecolortype(507)>Fessel<edgecolortype(0)><colortype(0)><br>Dauer: 15 Sekunden<br>Unterbindet Auto-Attacke.<br>Bedingung: <colortype(502)><edgecolortype(503)>Ninjutsu<edgecolortype(0)><colortype(0)> nach Handgestenfolge <colortype(502)><edgecolortype(503)>Ten→Jin<edgecolortype(0)><colortype(0)> oder <colortype(502)><edgecolortype(503)>Chi→Jin<edgecolortype(0)><colortype(0)><br>Bei Ausführung wird der Reaktivierungs-Timer von Waf<->fen<->fer<->tig<->kei<->ten, Magie, anderen Mudras und <colortype(502)><edgecolortype(503)>Ninjutsu<edgecolortype(0)><colortype(0)> ausgelöst.<br>Bei erfüllter Bedingung ändert sich <colortype(502)><edgecolortype(503)>Ninjutsu<edgecolortype(0)><colortype(0)> zu diesem Kommando.<br>Kann nicht im Kommandomenü angelegt werden.",
+      "unlock_level": 45,
+      "relations": [
+        "applied_by_description"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 30,
+          "name": "Ninja",
+          "abbreviation": "NIN",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

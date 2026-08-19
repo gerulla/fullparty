@@ -1,0 +1,28 @@
+{
+  "kind": "trait",
+  "id": 376,
+  "name": "攻撃魔法マスタリーII",
+  "description": "ドシスIIがドシスIIIに変化する。\nフレグマIIがフレグマIIIに変化する。\nエウクラシア・ドシスIIがエウクラシア・ドシスIIIに変化する。\nディスクラシアがディスクラシアIIに変化する。\nトキシコンがトキシコンIIに変化する。",
+  "description_macro": "ドシスIIがドシスIIIに変化する。<br>フレグマIIがフレグマIIIに変化する。<br>エウクラシア・ドシスIIがエウクラシア・ドシスIIIに変化する。<br>ディスクラシアがディスクラシアIIに変化する。<br>トキシコンがトキシコンIIに変化する。",
+  "effects": [
+    "ドシスIIがドシスIIIに変化する。",
+    "フレグマIIがフレグマIIIに変化する。",
+    "エウクラシア・ドシスIIがエウクラシア・ドシスIIIに変化する。",
+    "ディスクラシアがディスクラシアIIに変化する。",
+    "トキシコンがトキシコンIIに変化する。"
+  ],
+  "role": "Healer",
+  "job": {
+    "id": 40,
+    "name": "賢者",
+    "abbreviation": "SGE"
+  },
+  "unlock_level": 82,
+  "value": 0,
+  "icon": {
+    "id": 6457,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 181,
+  "source_class_job_id": 40
+}

@@ -1,0 +1,94 @@
+{
+  "kind": "ability",
+  "id": 24396,
+  "name": "Kreuzmäher",
+  "description": "Du führst eine physische Attacke aus.\nAttacke-Wert: 580\nBei Kreuzmahd: 640\nZusatzeffekt: Gewährt dir Nichtsmahd.\nDauer: 30 Sekunden\nZusatzeffekt: 1 Nichtsseele\nSeelenkosten: 1 Lemurenseele\nEigener Reaktivierungs-Timer\nBei Ausführung wird der Reaktivierungs-Timer dieses Kommandos auf alle anderen Waffenfertigkeiten und Magie angewendet.\nBei erfüllter Bedingung ändert sich Galgen zu diesem Kommando.\nKann nicht im Kommandomenü angelegt werden.",
+  "description_macro": "Du führst eine physische Attacke aus.<br>Attacke-Wert: <if([gnum68==39],<if([gnum72>=94],580,460)>,460)><br>Bei <colortype(506)><edgecolortype(507)>Kreuzmahd<edgecolortype(0)><colortype(0)>: <if([gnum68==39],<if([gnum72>=94],640,520)>,520)><br>Zusatzeffekt: Gewährt dir <colortype(506)><edgecolortype(507)>Nichtsmahd<edgecolortype(0)><colortype(0)>.<br>Dauer: 30 Sekunden<br><if([gnum68==39],<if([gnum72>=86],Zusatzeffekt: 1 <colortype(506)><edgecolortype(507)>Nichtsseele<edgecolortype(0)><colortype(0)><br>,)>,)>Seelenkosten: 1 <colortype(506)><edgecolortype(507)>Lemurenseele<edgecolortype(0)><colortype(0)><br>Eigener Reaktivierungs-Timer<br>Bei Ausführung wird der Reaktivierungs-Timer dieses Kommandos auf alle anderen Waf<->fen<->fer<->tig<->kei<->ten und Magie angewendet.<br>Bei erfüllter Bedingung ändert sich <colortype(502)><edgecolortype(503)>Galgen<edgecolortype(0)><colortype(0)> zu diesem Kommando.<br>Kann nicht im Kommandomenü angelegt werden.",
+  "effects": [
+    "Du führst eine physische Attacke aus.",
+    "Attacke-Wert: 580",
+    "Bei Kreuzmahd: 640",
+    "Zusatzeffekt: Gewährt dir Nichtsmahd.",
+    "Dauer: 30 Sekunden",
+    "Zusatzeffekt: 1 Nichtsseele",
+    "Seelenkosten: 1 Lemurenseele",
+    "Eigener Reaktivierungs-Timer",
+    "Bei Ausführung wird der Reaktivierungs-Timer dieses Kommandos auf alle anderen Waffenfertigkeiten und Magie angewendet.",
+    "Bei erfüllter Bedingung ändert sich Galgen zu diesem Kommando.",
+    "Kann nicht im Kommandomenü angelegt werden."
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 39,
+    "name": "Schnitter",
+    "abbreviation": "SNT"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 80,
+  "icon": {
+    "id": 3624,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 3,
+    "name": "Waffenfertigkeit"
+  },
+  "attack_type": {
+    "id": 1,
+    "name": "斬"
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 2.5,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 58,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 66,
+      "value": 1
+    },
+    "secondary": {
+      "type_id": 112,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": -1,
+    "effect_yalms": 0,
+    "cast_type": 1
+  },
+  "targeting": {
+    "self": false,
+    "party": false,
+    "alliance": false,
+    "hostile": true,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 7,
+    "behavior_type": 0,
+    "class_job_category_id": 180,
+    "source_class_job_id": 0,
+    "is_role_action": false,
+    "is_player_action": false,
+    "is_derived_action": true,
+    "equivalence_group": 0
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 641,
+  "name": "Verbessertes Zermürben",
+  "description": "Verlängert die Wirkungsdauer von Zermürben auf 15 Sekunden.",
+  "description_macro": "Verlängert die Wirkungsdauer von <colortype(506)><edgecolortype(507)>Zermürben<edgecolortype(0)><colortype(0)> auf 15 Sekunden.",
+  "effects": [
+    "Verlängert die Wirkungsdauer von Zermürben auf 15 Sekunden."
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 22,
+    "name": "Dragoon",
+    "abbreviation": "DRG"
+  },
+  "unlock_level": 98,
+  "value": 0,
+  "icon": {
+    "id": 6851,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 114,
+  "source_class_job_id": 0
+}

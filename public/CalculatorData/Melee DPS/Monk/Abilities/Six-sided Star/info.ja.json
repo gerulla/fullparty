@@ -1,0 +1,91 @@
+{
+  "kind": "ability",
+  "id": 16476,
+  "name": "六合星導脚",
+  "description": "対象に物理攻撃。\u3000威力：780\n自身に付与されている「闘気」のスタック数に応じた威力が上乗せされる。\n1スタックごとの上乗せ威力：80\n追加効果：自身の移動速度を上昇させる。\n効果時間：5秒\n実行時に「闘気」の効果が切れる。\nこのアクションはクリティカルヒットしても「闘気」が付与されない。\nこのウェポンスキルは固有のリキャストタイマーを持ち、実行すると他のウェポンスキルと魔法にこのアクションと同じリキャストタイムが発生する。",
+  "description_macro": "対象に物理攻撃。\u3000<colortype(504)><edgecolortype(505)>威力：<edgecolortype(0)><colortype(0)><if([gnum68==20],<if([gnum72>=94],780,710)>,710)><br>自身に付与されている<colortype(500)><edgecolortype(501)>「闘気」<edgecolortype(0)><colortype(0)>のスタック数に応じた威力が上乗せされる。<br><colortype(504)><edgecolortype(505)>1スタックごとの上乗せ威力：<edgecolortype(0)><colortype(0)>80<br><colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)>自身の移動速度を上昇させる。<br><colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>5秒<br>実行時に<colortype(500)><edgecolortype(501)>「闘気」<edgecolortype(0)><colortype(0)>の効果が切れる。<br>このアクションはクリティカルヒットしても<colortype(500)><edgecolortype(501)>「闘気」<edgecolortype(0)><colortype(0)>が付与されない。<br>このウェポンスキルは固有のリキャストタイマーを持ち、実行すると他のウェポンスキルと魔法にこのアクションと同じリキャストタイムが発生する。",
+  "effects": [
+    "対象に物理攻撃。\u3000威力：780",
+    "自身に付与されている「闘気」のスタック数に応じた威力が上乗せされる。",
+    "1スタックごとの上乗せ威力：80",
+    "追加効果：自身の移動速度を上昇させる。",
+    "効果時間：5秒",
+    "実行時に「闘気」の効果が切れる。",
+    "このアクションはクリティカルヒットしても「闘気」が付与されない。",
+    "このウェポンスキルは固有のリキャストタイマーを持ち、実行すると他のウェポンスキルと魔法にこのアクションと同じリキャストタイムが発生する。"
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 20,
+    "name": "モンク",
+    "abbreviation": "MNK"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 80,
+  "icon": {
+    "id": 2547,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 3,
+    "name": "ウェポンスキル"
+  },
+  "attack_type": {
+    "id": 4294967295,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 5,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 58,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 99,
+      "value": 0
+    },
+    "secondary": {
+      "type_id": 0,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": -1,
+    "effect_yalms": 0,
+    "cast_type": 1
+  },
+  "targeting": {
+    "self": false,
+    "party": false,
+    "alliance": false,
+    "hostile": true,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": false
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 7,
+    "behavior_type": 0,
+    "class_job_category_id": 21,
+    "source_class_job_id": 20,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

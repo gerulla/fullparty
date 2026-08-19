@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 165,
+  "name": "Shukiho",
+  "description": "Füllt den Ninki-Balken bei einem Treffer einer Waffenfertigkeit oder einer erfolgreich ausgeführten Kombo um 5.",
+  "description_macro": "Füllt den Ninki-Balken bei einem Treffer einer Waf<->fen<->fer<->tig<->keit oder einer erfolgreich ausgeführten Kombo um 5.",
+  "effects": [
+    "Füllt den Ninki-Balken bei einem Treffer einer Waffenfertigkeit oder einer erfolgreich ausgeführten Kombo um 5."
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 30,
+    "name": "Ninja",
+    "abbreviation": "NIN"
+  },
+  "unlock_level": 62,
+  "value": 6,
+  "icon": {
+    "id": 5411,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 92,
+  "source_class_job_id": 30
+}

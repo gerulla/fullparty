@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 577,
+  "name": "Beast Chakra Mastery",
+  "description": "Upgrades Bootshine to Leaping Opo, True Strike to Rising Raptor, Snap Punch to Pouncing Coeurl, and Elixir Field to Elixir Burst.",
+  "description_macro": "Upgrades <colortype(500)><edgecolortype(501)>Bootshine<edgecolortype(0)><colortype(0)> to <colortype(500)><edgecolortype(501)>Leaping Opo<edgecolortype(0)><colortype(0)>, <colortype(500)><edgecolortype(501)>True Strike<edgecolortype(0)><colortype(0)> to <colortype(500)><edgecolortype(501)>Rising Raptor<edgecolortype(0)><colortype(0)>, <colortype(500)><edgecolortype(501)>Snap Punch<edgecolortype(0)><colortype(0)> to <colortype(500)><edgecolortype(501)>Pouncing Coeurl<edgecolortype(0)><colortype(0)>, and <colortype(500)><edgecolortype(501)>Elixir Field<edgecolortype(0)><colortype(0)> to <colortype(500)><edgecolortype(501)>Elixir Burst<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Upgrades Bootshine to Leaping Opo, True Strike to Rising Raptor, Snap Punch to Pouncing Coeurl, and Elixir Field to Elixir Burst."
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 20,
+    "name": "Monk",
+    "abbreviation": "MNK"
+  },
+  "unlock_level": 92,
+  "value": 0,
+  "icon": {
+    "id": 5249,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 21,
+  "source_class_job_id": 20
+}

@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 510,
+  "name": "Maîtrise de Physis",
+  "description": "Remplace Physis par Physis II.",
+  "description_macro": "Remplace <colortype(500)><edgecolortype(501)>Physis<edgecolortype(0)><colortype(0)> par <colortype(500)><edgecolortype(501)>Physis II<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Remplace Physis par Physis II."
+  ],
+  "role": "Healer",
+  "job": {
+    "id": 40,
+    "name": "Sage",
+    "abbreviation": "SAG"
+  },
+  "unlock_level": 60,
+  "value": 0,
+  "icon": {
+    "id": 6459,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 181,
+  "source_class_job_id": 40
+}

@@ -1,0 +1,113 @@
+{
+  "kind": "combat_status",
+  "id": 2587,
+  "name": "妖異の鎌",
+  "description": "ジビトゥ、ギャロウズ、ギロティンを実行できる状態。",
+  "effects": [
+    "ジビトゥ、ギャロウズ、ギロティンを実行できる状態。"
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 217097,
+    "file": "icon.png"
+  },
+  "max_stacks": 2,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 27,
+    "modifier": 0
+  },
+  "class_job_category_id": 180,
+  "source_abilities": [
+    {
+      "id": 24389,
+      "name": "ストークスウェーズ",
+      "description": "アヴァターを呼び出し、対象に物理攻撃を実行させる。\n威力：340\n追加効果：自身に「妖異の鎌」を付与する。\n効果時間：30秒\n既に「妖異の鎌」が付与されている場合、そのスタック数に関わらず1スタックになる。\n「処刑人」とは同時に付与されない。\n発動条件：「ソウルゲージ」50\nリキャストタイマーを「グラトニー」以外のアヴァターを呼び出すアクションと共有する。",
+      "description_macro": "アヴァターを呼び出し、対象に物理攻撃を実行させる。<br><colortype(504)><edgecolortype(505)>威力：<edgecolortype(0)><colortype(0)>340<br><if([gnum68==39],<if([gnum72>=70],<colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)>自身に<colortype(500)><edgecolortype(501)>「妖異の鎌」<edgecolortype(0)><colortype(0)>を付与する。<br><colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>30秒<br>既に<colortype(500)><edgecolortype(501)>「妖異の鎌」<edgecolortype(0)><colortype(0)>が付与されている場合、そのスタック数に関わらず1スタックになる。<br>,)>,)><if([gnum68==39],<if([gnum72>=96],<colortype(500)><edgecolortype(501)>「処刑人」<edgecolortype(0)><colortype(0)>とは同時に付与されない。<br>,)>,)><colortype(504)><edgecolortype(505)>発動条件：<edgecolortype(0)><colortype(0)><colortype(500)><edgecolortype(501)>「ソウルゲージ」<edgecolortype(0)><colortype(0)>50<br>リキャストタイマーを<colortype(500)><edgecolortype(501)>「グラトニー」<edgecolortype(0)><colortype(0)>以外のアヴァターを呼び出すアクションと共有する。",
+      "unlock_level": 50,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 39,
+          "name": "リーパー",
+          "abbreviation": "RPR",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 24390,
+      "name": "ジビトゥクロウ",
+      "description": "アヴァターを呼び出し、対象に物理攻撃を実行させる。\n威力：440\n追加効果：自身に「妖異の鎌」を付与する。\n効果時間：30秒\n既に「妖異の鎌」が付与されている場合、そのスタック数に関わらず1スタックになる。\n「処刑人」とは同時に付与されない。\n発動条件：「ジビトゥ効果アップ」効果中かつ「ソウルゲージ」50\nリキャストタイマーを「グラトニー」以外のアヴァターを呼び出すアクションと共有する。\n\n※このアクションはホットバーに登録することはできない。\n\u3000ジビトゥ効果アップの効果中はストークスウェーズがジビトゥクロウに変化する。",
+      "description_macro": "アヴァターを呼び出し、対象に物理攻撃を実行させる。<br><colortype(504)><edgecolortype(505)>威力：<edgecolortype(0)><colortype(0)><if([gnum68==39],<if([gnum72>=94],440,400)>,400)><br><colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)>自身に<colortype(500)><edgecolortype(501)>「妖異の鎌」<edgecolortype(0)><colortype(0)>を付与する。<br><colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>30秒<br>既に<colortype(500)><edgecolortype(501)>「妖異の鎌」<edgecolortype(0)><colortype(0)>が付与されている場合、そのスタック数に関わらず1スタックになる。<br><if([gnum68==39],<if([gnum72>=96],<colortype(500)><edgecolortype(501)>「処刑人」<edgecolortype(0)><colortype(0)>とは同時に付与されない。<br>,)>,)><colortype(504)><edgecolortype(505)>発動条件：<edgecolortype(0)><colortype(0)><colortype(500)><edgecolortype(501)>「ジビトゥ効果アップ」<edgecolortype(0)><colortype(0)>効果中かつ<colortype(500)><edgecolortype(501)>「ソウルゲージ」<edgecolortype(0)><colortype(0)>50<br>リキャストタイマーを<colortype(500)><edgecolortype(501)>「グラトニー」<edgecolortype(0)><colortype(0)>以外のアヴァターを呼び出すアクションと共有する。<br><br><colortype(506)><edgecolortype(507)>※このアクションはホットバーに登録することはできない。<br>\u3000ジビトゥ効果アップの効果中はストークスウェーズがジビトゥクロウに変化する。<edgecolortype(0)><colortype(0)>",
+      "unlock_level": 70,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 39,
+          "name": "リーパー",
+          "abbreviation": "RPR",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 24391,
+      "name": "ギャロウズクロウ",
+      "description": "アヴァターを呼び出し、対象に物理攻撃を実行させる。\n威力：440\n追加効果：自身に「妖異の鎌」を付与する。\n効果時間：30秒\n既に「妖異の鎌」が付与されている場合、そのスタック数に関わらず1スタックになる。\n「処刑人」とは同時に付与されない。\n発動条件：「ギャロウズ効果アップ」効果中かつ「ソウルゲージ」50\nリキャストタイマーを「グラトニー」以外のアヴァターを呼び出すアクションと共有する。\n\n※このアクションはホットバーに登録することはできない。\n\u3000ギャロウズ効果アップの効果中はストークスウェーズがギャロウズクロウに変化する。",
+      "description_macro": "アヴァターを呼び出し、対象に物理攻撃を実行させる。<br><colortype(504)><edgecolortype(505)>威力：<edgecolortype(0)><colortype(0)><if([gnum68==39],<if([gnum72>=94],440,400)>,400)><br><colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)>自身に<colortype(500)><edgecolortype(501)>「妖異の鎌」<edgecolortype(0)><colortype(0)>を付与する。<br><colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>30秒<br>既に<colortype(500)><edgecolortype(501)>「妖異の鎌」<edgecolortype(0)><colortype(0)>が付与されている場合、そのスタック数に関わらず1スタックになる。<br><if([gnum68==39],<if([gnum72>=96],<colortype(500)><edgecolortype(501)>「処刑人」<edgecolortype(0)><colortype(0)>とは同時に付与されない。<br>,)>,)><colortype(504)><edgecolortype(505)>発動条件：<edgecolortype(0)><colortype(0)><colortype(500)><edgecolortype(501)>「ギャロウズ効果アップ」<edgecolortype(0)><colortype(0)>効果中かつ<colortype(500)><edgecolortype(501)>「ソウルゲージ」<edgecolortype(0)><colortype(0)>50<br>リキャストタイマーを<colortype(500)><edgecolortype(501)>「グラトニー」<edgecolortype(0)><colortype(0)>以外のアヴァターを呼び出すアクションと共有する。<br><br><colortype(506)><edgecolortype(507)>※このアクションはホットバーに登録することはできない。<br>\u3000ギャロウズ効果アップの効果中はストークスウェーズがギャロウズクロウに変化する。<edgecolortype(0)><colortype(0)>",
+      "unlock_level": 70,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 39,
+          "name": "リーパー",
+          "abbreviation": "RPR",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 24392,
+      "name": "シーフスウェーズ",
+      "description": "アヴァターを呼び出し、対象に向かって前方扇範囲物理攻撃を実行させる。\u3000威力：140\n追加効果：自身に「妖異の鎌」を付与する。\n効果時間：30秒\n既に「妖異の鎌」が付与されている場合、そのスタック数に関わらず1スタックになる。\n「処刑人」とは同時に付与されない。\n発動条件：「ソウルゲージ」50\nリキャストタイマーを「グラトニー」以外のアヴァターを呼び出すアクションと共有する。",
+      "description_macro": "アヴァターを呼び出し、対象に向かって前方扇範囲物理攻撃を実行させる。\u3000<colortype(504)><edgecolortype(505)>威力：<edgecolortype(0)><colortype(0)>140<br><if([gnum68==39],<if([gnum72>=70],<colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)>自身に<colortype(500)><edgecolortype(501)>「妖異の鎌」<edgecolortype(0)><colortype(0)>を付与する。<br><colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>30秒<br>既に<colortype(500)><edgecolortype(501)>「妖異の鎌」<edgecolortype(0)><colortype(0)>が付与されている場合、そのスタック数に関わらず1スタックになる。<br>,)>,)><if([gnum68==39],<if([gnum72>=96],<colortype(500)><edgecolortype(501)>「処刑人」<edgecolortype(0)><colortype(0)>とは同時に付与されない。<br>,)>,)><colortype(504)><edgecolortype(505)>発動条件：<edgecolortype(0)><colortype(0)><colortype(500)><edgecolortype(501)>「ソウルゲージ」<edgecolortype(0)><colortype(0)>50<br>リキャストタイマーを<colortype(500)><edgecolortype(501)>「グラトニー」<edgecolortype(0)><colortype(0)>以外のアヴァターを呼び出すアクションと共有する。",
+      "unlock_level": 55,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 39,
+          "name": "リーパー",
+          "abbreviation": "RPR",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

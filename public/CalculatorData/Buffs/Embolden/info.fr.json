@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 1239,
+  "name": "Enhardissement",
+  "description": "Les dégâts magiques infligés sont augmentés.",
+  "effects": [
+    "Les dégâts magiques infligés sont augmentés."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 213409,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 10
+  },
+  "class_job_category_id": 112,
+  "source_abilities": [
+    {
+      "id": 7520,
+      "name": "Enhardissement",
+      "description": "Augmente de 10% vos dégâts magiques infligés.\nDurée : 20s\nEffet additionnel : augmente de 5% les dégâts infligés par les équipiers alentour.\nDurée : 20s\nEffet additionnel : vous octroie Épine croisée préparée.\nDurée : 30s",
+      "description_macro": "Augmente de 10% vos dégâts magiques infligés.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 20s<br><colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> augmente de 5% les dégâts infligés par les équipiers alentour.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 20s<if([gnum68==35],<if([gnum72>=92],<br><colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> vous octroie <colortype(500)><edgecolortype(501)>Épine croisée préparée<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 30s,)>,)>",
+      "unlock_level": 58,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Magical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 35,
+          "name": "Mage Rouge",
+          "abbreviation": "MRG",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

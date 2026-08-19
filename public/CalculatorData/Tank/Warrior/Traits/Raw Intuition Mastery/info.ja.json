@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 418,
+  "name": "原初の直感マスタリー",
+  "description": "原初の直感が原初の血気に変化する。",
+  "description_macro": "原初の直感が原初の血気に変化する。",
+  "effects": [
+    "原初の直感が原初の血気に変化する。"
+  ],
+  "role": "Tank",
+  "job": {
+    "id": 21,
+    "name": "戦士",
+    "abbreviation": "WAR"
+  },
+  "unlock_level": 82,
+  "value": 0,
+  "icon": {
+    "id": 5267,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 22,
+  "source_class_job_id": 21
+}

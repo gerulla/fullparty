@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 218,
+  "name": "Meister der Tollwut",
+  "description": "Verbessert Tollwut zu Urbefreiung.",
+  "description_macro": "Verbessert <colortype(502)><edgecolortype(503)>Tollwut<edgecolortype(0)><colortype(0)> zu <colortype(502)><edgecolortype(503)>Urbefreiung<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Verbessert Tollwut zu Urbefreiung."
+  ],
+  "role": "Tank",
+  "job": {
+    "id": 21,
+    "name": "Krieger",
+    "abbreviation": "KRG"
+  },
+  "unlock_level": 70,
+  "value": 0,
+  "icon": {
+    "id": 5260,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 22,
+  "source_class_job_id": 21
+}

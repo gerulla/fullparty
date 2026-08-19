@@ -1,0 +1,88 @@
+{
+  "kind": "ability",
+  "id": 24405,
+  "name": "Cercle arcanique",
+  "description": "Augmente de 3% vos dégâts infligés et ceux des équipiers alentour.\nDurée : 20s\nOctroie Cercle sacrificiel à vous et aux équipiers alentour.\nDurée : 5s\nCercle sacrificiel : les personnes bénéficiant de l'effet octroient Offrande à la Mort au faucheur qui a posé le cercle quand ils utilisent une technique d'arme\\",
+  "description_macro": "Augmente de 3% vos dégâts infligés et ceux des équipiers alentour.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 20s<if([gnum68==39],<if([gnum72>=88],<br>Octroie <colortype(500)><edgecolortype(501)>Cercle sacrificiel<edgecolortype(0)><colortype(0)> à vous et aux équipiers alentour.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 5s<br><colortype(506)><edgecolortype(507)>Cercle sacrificiel<nbsp>:<edgecolortype(0)><colortype(0)> les personnes bénéficiant de l'effet octroient <colortype(500)><edgecolortype(501)>Offrande à la Mort<edgecolortype(0)><colortype(0)> au faucheur qui a posé le cercle quand ils utilisent une technique d'arme\\, un sort ou une aptitude avec succès. Cumulable jusqu'au 8e degré.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 30s<br><colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> vous octroie <colortype(500)><edgecolortype(501)>Guide du rite sacrificiel<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 6s<br><colortype(506)><edgecolortype(507)>Guide du rite sacrificiel<nbsp>:<edgecolortype(0)><colortype(0)> les personnes affectées par votre Cercle sacrificiel peuvent vous octroyer des degrés d'Offrande à la Mort.,)>,)>",
+  "effects": [
+    "Augmente de 3% vos dégâts infligés et ceux des équipiers alentour.",
+    "Durée : 20s",
+    "Octroie Cercle sacrificiel à vous et aux équipiers alentour.",
+    "Durée : 5s",
+    "Cercle sacrificiel : les personnes bénéficiant de l'effet octroient Offrande à la Mort au faucheur qui a posé le cercle quand ils utilisent une technique d'arme\\"
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 39,
+    "name": "Faucheur",
+    "abbreviation": "FCH"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 72,
+  "icon": {
+    "id": 3633,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 4,
+    "name": "Aptitude"
+  },
+  "attack_type": {
+    "id": 0,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 120,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 22,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 0,
+      "value": 0
+    },
+    "secondary": {
+      "type_id": 0,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": 0,
+    "effect_yalms": 30,
+    "cast_type": 2
+  },
+  "targeting": {
+    "self": true,
+    "party": false,
+    "alliance": false,
+    "hostile": false,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 0,
+    "behavior_type": 0,
+    "class_job_category_id": 180,
+    "source_class_job_id": 39,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

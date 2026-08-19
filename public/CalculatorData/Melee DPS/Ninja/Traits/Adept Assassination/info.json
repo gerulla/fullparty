@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 515,
+  "name": "Adept Assassination",
+  "description": "Upgrades Assassinate to Dream Within a Dream.",
+  "description_macro": "Upgrades <colortype(500)><edgecolortype(501)>Assassinate<edgecolortype(0)><colortype(0)> to <colortype(500)><edgecolortype(501)>Dream Within a Dream<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Upgrades Assassinate to Dream Within a Dream."
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 30,
+    "name": "Ninja",
+    "abbreviation": "NIN"
+  },
+  "unlock_level": 56,
+  "value": 0,
+  "icon": {
+    "id": 5420,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 92,
+  "source_class_job_id": 30
+}

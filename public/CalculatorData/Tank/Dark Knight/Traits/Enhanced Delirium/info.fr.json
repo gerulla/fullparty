@@ -1,0 +1,25 @@
+{
+  "kind": "trait",
+  "id": 572,
+  "name": "Delirium de sang amélioré",
+  "description": "Remplace Marée de sang par Delirium écarlate et Quietus par Empalement sanglant.\nCondition : Delirium de sang.",
+  "description_macro": "Remplace <colortype(500)><edgecolortype(501)>Marée de sang<edgecolortype(0)><colortype(0)> par <colortype(500)><edgecolortype(501)>Delirium écarlate<edgecolortype(0)><colortype(0)> et <colortype(500)><edgecolortype(501)>Quietus<edgecolortype(0)><colortype(0)> par <colortype(500)><edgecolortype(501)>Empalement sanglant<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Condition<nbsp>:<edgecolortype(0)><colortype(0)> <colortype(500)><edgecolortype(501)>Delirium de sang<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Remplace Marée de sang par Delirium écarlate et Quietus par Empalement sanglant.",
+    "Condition : Delirium de sang."
+  ],
+  "role": "Tank",
+  "job": {
+    "id": 32,
+    "name": "Chevalier Noir",
+    "abbreviation": "CHN"
+  },
+  "unlock_level": 96,
+  "value": 0,
+  "icon": {
+    "id": 6069,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 98,
+  "source_class_job_id": 32
+}

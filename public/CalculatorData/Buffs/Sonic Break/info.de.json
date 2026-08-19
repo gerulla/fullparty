@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 1837,
+  "name": "Schallbrecher",
+  "description": "Erleidet schrittweise Schaden.",
+  "effects": [
+    "Erleidet schrittweise Schaden."
+  ],
+  "classification": "debuff",
+  "icon": {
+    "id": 213607,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 2,
+  "target_type": 0,
+  "can_dispel": true,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 10,
+  "parameter": {
+    "effect": 0,
+    "modifier": 10
+  },
+  "class_job_category_id": 149,
+  "source_abilities": [
+    {
+      "id": 16153,
+      "name": "Schallbrecher",
+      "description": "Du führst eine physische Attacke aus.\nAttacke-Wert: 340\nZusatzeffekt: Schaden über Zeit\nAttacke-Wert: 120\nDauer: 15 Sekunden\nBedingung: Schallschnell aktiv",
+      "description_macro": "Du führst eine physische Attacke aus.<br>Attacke-Wert: 340<br>Zusatzeffekt: Schaden über Zeit<br>Attacke-Wert: 120<br>Dauer: 15 Sekunden<br>Bedingung: <colortype(506)><edgecolortype(507)>Schallschnell<edgecolortype(0)><colortype(0)> aktiv",
+      "unlock_level": 54,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Tank"
+      ],
+      "jobs": [
+        {
+          "id": 37,
+          "name": "Revolverklinge",
+          "abbreviation": "REV",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

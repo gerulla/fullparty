@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 520,
+  "name": "Way of the Samurai",
+  "description": "Increases the potency of Hakaze to 200, Jinpu to 120, and Shifu to 120.",
+  "description_macro": "Increases the potency of <colortype(500)><edgecolortype(501)>Hakaze<edgecolortype(0)><colortype(0)> to 200, <colortype(500)><edgecolortype(501)>Jinpu<edgecolortype(0)><colortype(0)> to 120, and <colortype(500)><edgecolortype(501)>Shifu<edgecolortype(0)><colortype(0)> to 120.",
+  "effects": [
+    "Increases the potency of Hakaze to 200, Jinpu to 120, and Shifu to 120."
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 34,
+    "name": "Samurai",
+    "abbreviation": "SAM"
+  },
+  "unlock_level": 66,
+  "value": 0,
+  "icon": {
+    "id": 6801,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 111,
+  "source_class_job_id": 34
+}

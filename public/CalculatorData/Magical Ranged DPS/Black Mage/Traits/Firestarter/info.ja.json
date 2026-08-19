@@ -1,0 +1,26 @@
+{
+  "kind": "trait",
+  "id": 32,
+  "name": "ファイア効果アップ",
+  "description": "次に詠唱するファイガの詠唱時間と消費ＭＰを0にする。\n効果時間：永続\n発動条件：ファイア実行時（発動確率40％）",
+  "description_macro": "次に詠唱するファイガの詠唱時間と消費ＭＰを0にする。<br><colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>永続<br><colortype(504)><edgecolortype(505)>発動条件：<edgecolortype(0)><colortype(0)>ファイア実行時（発動確率40％）",
+  "effects": [
+    "次に詠唱するファイガの詠唱時間と消費ＭＰを0にする。",
+    "効果時間：永続",
+    "発動条件：ファイア実行時（発動確率40％）"
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 25,
+    "name": "黒魔道士",
+    "abbreviation": "BLM"
+  },
+  "unlock_level": 42,
+  "value": 0,
+  "icon": {
+    "id": 5352,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 55,
+  "source_class_job_id": 7
+}

@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 2683,
+  "name": "Cœur de corindon",
+  "description": "Les dégâts reçus sont réduits.",
+  "effects": [
+    "Les dégâts reçus sont réduits."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 213615,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": -10
+  },
+  "class_job_category_id": 149,
+  "source_abilities": [
+    {
+      "id": 25758,
+      "name": "Cœur de corindon",
+      "description": "Réduit de 15% vos dégâts subis ou ceux de l'équipier ciblé.\nDurée : 8s\nEffet additionnel : si vous bénéficiez de l'effet Impact brutal et que la cible est un équipier, octroie également cet effet à la cible.\nDurée : 30s\nEffet additionnel : octroie Clarté de corindon à la cible.\nDurée : 4s\nClarté de corindon : réduit de 15% les dégâts subis.\nEffet additionnel : octroie Catharsis de corindon à la cible.\nDurée : 20s\nCatharsis de corindon : restaure les PV s'ils tombent sous 50% ou à la fin de l'effet.\nPuissance : 900",
+      "description_macro": "Réduit de 15% vos dégâts subis ou ceux de l'équipier ciblé.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 8s<br><colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> si vous bénéficiez de l'effet <colortype(500)><edgecolortype(501)>Impact brutal<edgecolortype(0)><colortype(0)> et que la cible est un équipier, octroie également cet effet à la cible.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 30s<br><colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> octroie <colortype(500)><edgecolortype(501)>Clarté de corindon<edgecolortype(0)><colortype(0)> à la cible.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 4s<br><colortype(506)><edgecolortype(507)>Clarté de corindon<nbsp>:<edgecolortype(0)><colortype(0)> réduit de 15% les dégâts subis.<br><colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> octroie <colortype(500)><edgecolortype(501)>Catharsis de corindon<edgecolortype(0)><colortype(0)> à la cible.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 20s<br><colortype(506)><edgecolortype(507)>Catharsis de corindon<nbsp>:<edgecolortype(0)><colortype(0)> restaure les PV s'ils tombent sous 50% ou à la fin de l'effet.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> 900",
+      "unlock_level": 82,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Tank"
+      ],
+      "jobs": [
+        {
+          "id": 37,
+          "name": "Pistosabreur",
+          "abbreviation": "PSB",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

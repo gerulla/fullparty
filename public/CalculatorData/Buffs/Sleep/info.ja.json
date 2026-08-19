@@ -1,0 +1,74 @@
+{
+  "kind": "combat_status",
+  "id": 3,
+  "name": "睡眠",
+  "description": "眠りに落ち、行動できなくなった状態。",
+  "effects": [
+    "眠りに落ち、行動できなくなった状態。"
+  ],
+  "classification": "debuff",
+  "icon": {
+    "id": 215013,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 2,
+  "target_type": 0,
+  "can_dispel": true,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 100,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 25880,
+      "name": "スリプル",
+      "description": "対象とその周囲の敵に睡眠を付与する。\u3000効果時間：30秒\n実行後にオートアタックを停止する。",
+      "description_macro": "対象とその周囲の敵に睡眠を付与する。\u3000<colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>30秒<br>実行後にオートアタックを停止する。",
+      "unlock_level": 10,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Magical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 25,
+          "name": "黒魔道士",
+          "abbreviation": "BLM",
+          "is_phantom": false
+        },
+        {
+          "id": 27,
+          "name": "召喚士",
+          "abbreviation": "SMN",
+          "is_phantom": false
+        },
+        {
+          "id": 35,
+          "name": "赤魔道士",
+          "abbreviation": "RDM",
+          "is_phantom": false
+        },
+        {
+          "id": 42,
+          "name": "ピクトマンサー",
+          "abbreviation": "PCT",
+          "is_phantom": false
+        },
+        {
+          "id": 36,
+          "name": "青魔道士",
+          "abbreviation": "BLU",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

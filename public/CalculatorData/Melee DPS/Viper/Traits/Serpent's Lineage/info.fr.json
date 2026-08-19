@@ -1,0 +1,27 @@
+{
+  "kind": "trait",
+  "id": 531,
+  "name": "Esprits des anciens",
+  "description": "Permet à votre Jauge ophidienne de se remplir lorsque vous utilisez certaines actions avec succès.\nPermet de recevoir Réminiscence préparée lorsque vous utilisez Communion ophidienne.\nDurée : 30s\nRéminiscence préparée : Réminiscence peut être utilisée sans consommer de Jauge ophidienne.",
+  "description_macro": "Permet à votre <colortype(502)><edgecolortype(503)>Jauge ophidienne<edgecolortype(0)><colortype(0)> de se remplir lorsque vous utilisez certaines actions avec succès.<br>Permet de recevoir <colortype(500)><edgecolortype(501)>Réminiscence préparée<edgecolortype(0)><colortype(0)> lorsque vous utilisez <colortype(500)><edgecolortype(501)>Communion ophidienne<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 30s<br><colortype(506)><edgecolortype(507)>Réminiscence préparée<nbsp>:<edgecolortype(0)><colortype(0)> Réminiscence peut être utilisée sans consommer de <colortype(502)><edgecolortype(503)>Jauge ophidienne<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Permet à votre Jauge ophidienne de se remplir lorsque vous utilisez certaines actions avec succès.",
+    "Permet de recevoir Réminiscence préparée lorsque vous utilisez Communion ophidienne.",
+    "Durée : 30s",
+    "Réminiscence préparée : Réminiscence peut être utilisée sans consommer de Jauge ophidienne."
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 41,
+    "name": "Rôdeur Vipère",
+    "abbreviation": "VPR"
+  },
+  "unlock_level": 90,
+  "value": 0,
+  "icon": {
+    "id": 6508,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 196,
+  "source_class_job_id": 41
+}

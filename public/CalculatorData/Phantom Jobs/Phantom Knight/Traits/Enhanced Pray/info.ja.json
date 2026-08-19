@@ -1,0 +1,22 @@
+{
+  "kind": "trait",
+  "id": 2,
+  "name": "いのり効果アップ",
+  "description": "「いのり」の回復力を5000に上昇させる。",
+  "description_macro": "<colortype(500)><edgecolortype(501)>「いのり」<edgecolortype(0)><colortype(0)>の回復力を5000に上昇させる。",
+  "effects": [
+    "「いのり」の回復力を5000に上昇させる。"
+  ],
+  "role": "Phantom Jobs",
+  "job": {
+    "id": 1,
+    "name": "サポートナイト",
+    "abbreviation": "Ph. Knight"
+  },
+  "is_phantom_trait": true,
+  "unlock_level": 5,
+  "icon": {
+    "id": 82202,
+    "file": "icon.png"
+  }
+}

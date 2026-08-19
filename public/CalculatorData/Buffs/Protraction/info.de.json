@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 2710,
+  "name": "Protraktion",
+  "description": "Maximal-LP und eigene LP-Regeneration durch Heilmagie sind erhöht.",
+  "effects": [
+    "Maximal-LP und eigene LP-Regeneration durch Heilmagie sind erhöht."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 212815,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 10
+  },
+  "class_job_category_id": 29,
+  "source_abilities": [
+    {
+      "id": 25867,
+      "name": "Protraktion",
+      "description": "Du erhöhst LP-Regenerationseffekte auf dich oder auf einem Gruppenmitglied um 10 %. Zusätzlich werden die Maximal-LP um 10 % erhöht und um diesen Betrag aufgefüllt.\nDauer: 10 Sekunden",
+      "description_macro": "Du erhöhst LP-Regenerationseffekte auf dich oder auf einem Grup<->pen<->mit<->glied um 10<nbsp>%. Zusätzlich werden die Maximal-LP um 10<nbsp>% erhöht und um diesen Betrag aufgefüllt.<br>Dauer: 10 Sekunden",
+      "unlock_level": 86,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Healer"
+      ],
+      "jobs": [
+        {
+          "id": 28,
+          "name": "Gelehrter",
+          "abbreviation": "GLT",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

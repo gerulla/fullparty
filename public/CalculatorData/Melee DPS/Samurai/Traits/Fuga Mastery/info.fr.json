@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 519,
+  "name": "Maîtrise de Fûga",
+  "description": "Remplace Fûga par Fûkô.",
+  "description_macro": "Remplace <colortype(500)><edgecolortype(501)>Fûga<edgecolortype(0)><colortype(0)> par <colortype(500)><edgecolortype(501)>Fûkô<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Remplace Fûga par Fûkô."
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 34,
+    "name": "Samouraï",
+    "abbreviation": "SAM"
+  },
+  "unlock_level": 86,
+  "value": 0,
+  "icon": {
+    "id": 6158,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 111,
+  "source_class_job_id": 34
+}

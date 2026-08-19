@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 1319,
+  "name": "彼岸花",
+  "description": "継続ダメージを受け、自身に対するＨＰ回復効果が低下した状態。",
+  "effects": [
+    "継続ダメージを受け、自身に対するＨＰ回復効果が低下した状態。"
+  ],
+  "classification": "debuff",
+  "icon": {
+    "id": 213304,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 2,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": true,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 10
+  },
+  "class_job_category_id": 111,
+  "source_abilities": [
+    {
+      "id": 7489,
+      "name": "彼岸花",
+      "description": "対象に物理攻撃。\u3000威力：200\n追加効果：対象に継続ダメージを付与する。\n威力：50\u3000効果時間：60秒\n追加効果：自身に「剣圧」を付与する。\n最大スタック数：3\u3000効果時間：永続\n発動条件：自身に「閃」が1種類付与されている\n\n※このアクションはホットバーに登録することはできない。\n\u3000発動条件を満たすと居合術が彼岸花に変化する。",
+      "description_macro": "対象に物理攻撃。\u3000<colortype(504)><edgecolortype(505)>威力：<edgecolortype(0)><colortype(0)>200<br><colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)>対象に継続ダメージを付与する。<br><colortype(504)><edgecolortype(505)>威力：<edgecolortype(0)><colortype(0)><if([gnum68==34],<if([gnum72>=94],50,45)>,45)>\u3000<colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>60秒<br><if([gnum68==34],<if([gnum72>=80],<colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)>自身に<colortype(500)><edgecolortype(501)>「剣圧」<edgecolortype(0)><colortype(0)>を付与する。<br><colortype(504)><edgecolortype(505)>最大スタック数：<edgecolortype(0)><colortype(0)>3\u3000<colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>永続<br>,)>,)><colortype(504)><edgecolortype(505)>発動条件：<edgecolortype(0)><colortype(0)>自身に<colortype(500)><edgecolortype(501)>「閃」<edgecolortype(0)><colortype(0)>が1種類付与されている<br><br><colortype(506)><edgecolortype(507)>※このアクションはホットバーに登録することはできない。<br>\u3000発動条件を満たすと居合術が彼岸花に変化する。<edgecolortype(0)><colortype(0)>",
+      "unlock_level": 30,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 34,
+          "name": "侍",
+          "abbreviation": "SAM",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

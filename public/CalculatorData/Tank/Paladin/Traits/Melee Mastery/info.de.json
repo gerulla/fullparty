@@ -1,0 +1,31 @@
+{
+  "kind": "trait",
+  "id": 504,
+  "name": "Verbesserte Ritterlichkeit",
+  "description": "Erhöht den Attacke-Wert folgender Kommandos:\nAttacke-Wert von Vortexschnitt: 200\nAttacke-Wert von Donnerklinge: 140\nAttacke-Wert von Königsklinge: 140\nAttacke-Wert von Heiliger Geist: 350\nAttacke-Wert von Absolution: 400\nAttacke-Wert von Anflehung: 420\nAttacke-Wert von Heilige Grabstätte: 440",
+  "description_macro": "Erhöht den Attacke-Wert folgender Kommandos:<br>Attacke-Wert von <colortype(502)><edgecolortype(503)>Vortexschnitt<edgecolortype(0)><colortype(0)>: 200<br>Attacke-Wert von <colortype(502)><edgecolortype(503)>Donnerklinge<edgecolortype(0)><colortype(0)>: 140<br>Attacke-Wert von <colortype(502)><edgecolortype(503)>Königsklinge<edgecolortype(0)><colortype(0)>: 140<br>Attacke-Wert von <colortype(502)><edgecolortype(503)>Heiliger Geist<edgecolortype(0)><colortype(0)>: 350<br>Attacke-Wert von <colortype(502)><edgecolortype(503)>Absolution<edgecolortype(0)><colortype(0)>: 400<br>Attacke-Wert von <colortype(502)><edgecolortype(503)>Anflehung<edgecolortype(0)><colortype(0)>: 420<br>Attacke-Wert von <colortype(502)><edgecolortype(503)>Heilige Grabstätte<edgecolortype(0)><colortype(0)>: 440",
+  "effects": [
+    "Erhöht den Attacke-Wert folgender Kommandos:",
+    "Attacke-Wert von Vortexschnitt: 200",
+    "Attacke-Wert von Donnerklinge: 140",
+    "Attacke-Wert von Königsklinge: 140",
+    "Attacke-Wert von Heiliger Geist: 350",
+    "Attacke-Wert von Absolution: 400",
+    "Attacke-Wert von Anflehung: 420",
+    "Attacke-Wert von Heilige Grabstätte: 440"
+  ],
+  "role": "Tank",
+  "job": {
+    "id": 19,
+    "name": "Paladin",
+    "abbreviation": "PLD"
+  },
+  "unlock_level": 84,
+  "value": 0,
+  "icon": {
+    "id": 6801,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 20,
+  "source_class_job_id": 19
+}

@@ -1,0 +1,91 @@
+{
+  "kind": "ability",
+  "id": 34570,
+  "name": "Grand nettoyage",
+  "description": "Effectue une attaque magique neutre sur la cible et les ennemis autour.\nPuissance : 220\nLa puissance est réduite de 50% au-delà du premier ennemi touché.\nEffet additionnel : vous octroie un degré de Grand nettoyage pour chaque cible subissant l'effet Bain de boue (maximum 6).\nGrand nettoyage : restaure périodiquement vos PV.\nLa quantité de PV restaurée varie en fonction du nombre de degrés de Grand nettoyage dont vous bénéficiez.\nPuissance : de 50 à 300 Durée : 15s\nLa durée de l'effet Grand nettoyage n'est pas réinitialisée même si vous cumulez des degrés supplémentaires.",
+  "description_macro": "Effectue une attaque magique neutre sur la cible et les ennemis autour.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> 220<br>La puissance est réduite de 50% au-delà du premier ennemi touché.<br><colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> vous octroie un degré de <colortype(500)><edgecolortype(501)>Grand nettoyage<edgecolortype(0)><colortype(0)> pour chaque cible subissant l'effet <colortype(500)><edgecolortype(501)>Bain de boue<edgecolortype(0)><colortype(0)> (maximum 6).<br><colortype(506)><edgecolortype(507)>Grand nettoyage<nbsp>:<edgecolortype(0)><colortype(0)> restaure périodiquement vos PV.<br>La quantité de PV restaurée varie en fonction du nombre de degrés de <colortype(500)><edgecolortype(501)>Grand nettoyage<edgecolortype(0)><colortype(0)> dont vous bénéficiez.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> de 50 à 300 <colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 15s<br>La durée de l'effet <colortype(500)><edgecolortype(501)>Grand nettoyage<edgecolortype(0)><colortype(0)> n'est pas réinitialisée même si vous cumulez des degrés sup<->plé<->men<->tai<->res.",
+  "effects": [
+    "Effectue une attaque magique neutre sur la cible et les ennemis autour.",
+    "Puissance : 220",
+    "La puissance est réduite de 50% au-delà du premier ennemi touché.",
+    "Effet additionnel : vous octroie un degré de Grand nettoyage pour chaque cible subissant l'effet Bain de boue (maximum 6).",
+    "Grand nettoyage : restaure périodiquement vos PV.",
+    "La quantité de PV restaurée varie en fonction du nombre de degrés de Grand nettoyage dont vous bénéficiez.",
+    "Puissance : de 50 à 300 Durée : 15s",
+    "La durée de l'effet Grand nettoyage n'est pas réinitialisée même si vous cumulez des degrés supplémentaires."
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 36,
+    "name": "Mage Bleu",
+    "abbreviation": "MBU"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 1,
+  "icon": {
+    "id": 3365,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 2,
+    "name": "Sort"
+  },
+  "attack_type": {
+    "id": 3,
+    "name": "contondant"
+  },
+  "timing": {
+    "cast_seconds": 2,
+    "recast_seconds": 2.5,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 58,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 3,
+      "value": 2
+    },
+    "secondary": {
+      "type_id": 0,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": 25,
+    "effect_yalms": 6,
+    "cast_type": 2
+  },
+  "targeting": {
+    "self": false,
+    "party": false,
+    "alliance": false,
+    "hostile": true,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": false
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 7,
+    "behavior_type": 0,
+    "class_job_category_id": 129,
+    "source_class_job_id": 36,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

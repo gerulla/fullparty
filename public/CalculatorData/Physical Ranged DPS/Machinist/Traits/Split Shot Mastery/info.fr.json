@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 288,
+  "name": "Maîtrise de Tir scindé",
+  "description": "Remplace Tir scindé par Tir scindé chauffé.",
+  "description_macro": "Remplace <colortype(500)><edgecolortype(501)>Tir scindé<edgecolortype(0)><colortype(0)> par <colortype(500)><edgecolortype(501)>Tir scindé chauffé<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Remplace Tir scindé par Tir scindé chauffé."
+  ],
+  "role": "Physical Ranged DPS",
+  "job": {
+    "id": 31,
+    "name": "Machiniste",
+    "abbreviation": "MCH"
+  },
+  "unlock_level": 54,
+  "value": 0,
+  "icon": {
+    "id": 6010,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 96,
+  "source_class_job_id": 31
+}

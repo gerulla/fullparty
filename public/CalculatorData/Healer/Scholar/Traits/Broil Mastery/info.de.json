@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 214,
+  "name": "Meister der Bravade",
+  "description": "Verbessert Ruin zu Bravade und erhöht den Attacke-Wert von Ruinra auf 160 und von Kunst des Krieges auf 165.",
+  "description_macro": "Verbessert <colortype(502)><edgecolortype(503)>Ruin<edgecolortype(0)><colortype(0)> zu <colortype(502)><edgecolortype(503)>Bravade<edgecolortype(0)><colortype(0)> und erhöht den Attacke-Wert von <colortype(502)><edgecolortype(503)>Ruinra<edgecolortype(0)><colortype(0)> auf 160 und von <colortype(502)><edgecolortype(503)>Kunst des Krieges<edgecolortype(0)><colortype(0)> auf 165.",
+  "effects": [
+    "Verbessert Ruin zu Bravade und erhöht den Attacke-Wert von Ruinra auf 160 und von Kunst des Krieges auf 165."
+  ],
+  "role": "Healer",
+  "job": {
+    "id": 28,
+    "name": "Gelehrter",
+    "abbreviation": "GLT"
+  },
+  "unlock_level": 54,
+  "value": 0,
+  "icon": {
+    "id": 5394,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 29,
+  "source_class_job_id": 28
+}

@@ -1,0 +1,25 @@
+{
+  "kind": "trait",
+  "id": 208,
+  "name": "剣気マスタリーII",
+  "description": "「剣気」が追加で上昇するようになる。\n発動条件：居合術を除くウェポンスキルの命中時",
+  "description_macro": "<colortype(500)><edgecolortype(501)>「剣気」<edgecolortype(0)><colortype(0)>が追加で上昇するようになる。<br><colortype(504)><edgecolortype(505)>発動条件：<edgecolortype(0)><colortype(0)>居合術を除くウェポンスキルの命中時",
+  "effects": [
+    "「剣気」が追加で上昇するようになる。",
+    "発動条件：居合術を除くウェポンスキルの命中時"
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 34,
+    "name": "侍",
+    "abbreviation": "SAM"
+  },
+  "unlock_level": 62,
+  "value": 5,
+  "icon": {
+    "id": 6151,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 111,
+  "source_class_job_id": 34
+}

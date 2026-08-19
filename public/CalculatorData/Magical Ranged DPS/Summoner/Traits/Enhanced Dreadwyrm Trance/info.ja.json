@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 178,
+  "name": "トランス・バハムート効果アップ",
+  "description": "トランス・バハムートがサモン・バハムートに変化する。",
+  "description_macro": "トランス・バハムートがサモン・バハムートに変化する。",
+  "effects": [
+    "トランス・バハムートがサモン・バハムートに変化する。"
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 27,
+    "name": "召喚士",
+    "abbreviation": "SMN"
+  },
+  "unlock_level": 70,
+  "value": 0,
+  "icon": {
+    "id": 5380,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 28,
+  "source_class_job_id": 27
+}

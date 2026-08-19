@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 309,
+  "name": "Offrande de réconfort améliorée",
+  "description": "Permet de nourrir votre Lys de sang lorsque vous utilisez Offrande de réconfort.",
+  "description_macro": "Permet de nourrir votre <colortype(500)><edgecolortype(501)>Lys de sang<edgecolortype(0)><colortype(0)> lorsque vous utilisez <colortype(500)><edgecolortype(501)>Offrande de réconfort<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Permet de nourrir votre Lys de sang lorsque vous utilisez Offrande de réconfort."
+  ],
+  "role": "Healer",
+  "job": {
+    "id": 24,
+    "name": "Mage Blanc",
+    "abbreviation": "MBL"
+  },
+  "unlock_level": 74,
+  "value": 0,
+  "icon": {
+    "id": 5341,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 25,
+  "source_class_job_id": 24
+}

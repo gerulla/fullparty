@@ -1,0 +1,28 @@
+{
+  "kind": "trait",
+  "id": 433,
+  "name": "踏鳴効果アップ",
+  "description": "自身に「壱の型」「弐の型」「参の型」のいずれかを付与するウェポンスキルを実行すると、自身に対応する「チャクラ」が付与されるようになる。\n壱の型を付与するウェポンスキル：「猛虎のチャクラ」が付与される。\n弐の型を付与するウェポンスキル：「魔猿のチャクラ」が付与される。\n参の型を付与するウェポンスキル：「走竜のチャクラ」が付与される。\n発動条件：「踏鳴」効果中",
+  "description_macro": "自身に<colortype(500)><edgecolortype(501)>「壱の型」「弐の型」「参の型」<edgecolortype(0)><colortype(0)>のいずれかを付与するウェポンスキルを実行すると、自身に対応する<colortype(500)><edgecolortype(501)>「チャクラ」<edgecolortype(0)><colortype(0)>が付与されるようになる。<br><colortype(504)><edgecolortype(505)>壱の型を付与するウェポンスキル：<edgecolortype(0)><colortype(0)><colortype(500)><edgecolortype(501)>「猛虎のチャクラ」<edgecolortype(0)><colortype(0)>が付与される。<br><colortype(504)><edgecolortype(505)>弐の型を付与するウェポンスキル：<edgecolortype(0)><colortype(0)><colortype(500)><edgecolortype(501)>「魔猿のチャクラ」<edgecolortype(0)><colortype(0)>が付与される。<br><colortype(504)><edgecolortype(505)>参の型を付与するウェポンスキル：<edgecolortype(0)><colortype(0)><colortype(500)><edgecolortype(501)>「走竜のチャクラ」<edgecolortype(0)><colortype(0)>が付与される。<br><colortype(504)><edgecolortype(505)>発動条件：<edgecolortype(0)><colortype(0)><colortype(500)><edgecolortype(501)>「踏鳴」<edgecolortype(0)><colortype(0)>効果中",
+  "effects": [
+    "自身に「壱の型」「弐の型」「参の型」のいずれかを付与するウェポンスキルを実行すると、自身に対応する「チャクラ」が付与されるようになる。",
+    "壱の型を付与するウェポンスキル：「猛虎のチャクラ」が付与される。",
+    "弐の型を付与するウェポンスキル：「魔猿のチャクラ」が付与される。",
+    "参の型を付与するウェポンスキル：「走竜のチャクラ」が付与される。",
+    "発動条件：「踏鳴」効果中"
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 20,
+    "name": "モンク",
+    "abbreviation": "MNK"
+  },
+  "unlock_level": 60,
+  "value": 0,
+  "icon": {
+    "id": 5246,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 21,
+  "source_class_job_id": 20
+}

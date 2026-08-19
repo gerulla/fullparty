@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 1914,
+  "name": "Éventration",
+  "description": "Les dégâts infligés sont augmentés.",
+  "effects": [
+    "Les dégâts infligés sont augmentés."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 212576,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 10
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 87,
+      "name": "Éventration",
+      "description": "Effectue une attaque physique sur la cible.\nPuissance : 140\nCombo : Percée véritable ou Percée Raiden\nPuissance du combo : 250\nBonus du combo : vous octroie Souffle de puissance.\nDurée : 30s\nSouffle de puissance : augmente de 10% vos dégâts infligés.",
+      "description_macro": "Effectue une attaque physique sur la cible.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> <if([gnum68==22],<if([gnum72>=76],140,100)>,100)><br><colortype(506)><edgecolortype(507)>Combo<nbsp>:<edgecolortype(0)><colortype(0)> <if([gnum68==22],<if([gnum72>=76],Percée véritable ou Percée Raiden,Percée véritable)>,Percée véritable)><br><colortype(506)><edgecolortype(507)>Puissance du combo<nbsp>:<edgecolortype(0)><colortype(0)> <if([gnum68==22],<if([gnum72>=76],250,210)>,210)><br><colortype(506)><edgecolortype(507)>Bonus du combo<nbsp>:<edgecolortype(0)><colortype(0)> vous octroie <colortype(500)><edgecolortype(501)>Souffle de puissance<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 30s<br><colortype(506)><edgecolortype(507)>Souffle de puissance<nbsp>:<edgecolortype(0)><colortype(0)> augmente de 10% vos dégâts infligés.",
+      "unlock_level": 18,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 22,
+          "name": "Chevalier Dragon",
+          "abbreviation": "DRG",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

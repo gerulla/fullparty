@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 4259,
+  "name": "Occult Mage Masher",
+  "description": "Attack magic potency is reduced.",
+  "effects": [
+    "Attack magic potency is reduced."
+  ],
+  "classification": "debuff",
+  "icon": {
+    "id": 229921,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 2,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": -10
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 41624,
+      "name": "Occult Mage Masher",
+      "description": "Lowers target's magic attack power by 10%.\nDuration: 60s",
+      "description_macro": "Lowers target's magic attack power by 10%.<br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>60s",
+      "unlock_level": 0,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Phantom Jobs"
+      ],
+      "jobs": [
+        {
+          "id": 8,
+          "name": "Phantom Time Mage",
+          "abbreviation": "Ph. Time Mage",
+          "is_phantom": true
+        }
+      ]
+    }
+  ]
+}

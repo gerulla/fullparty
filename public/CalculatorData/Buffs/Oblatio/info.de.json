@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 3857,
+  "name": "Sacrificium paratum",
+  "description": "Sacrificium kann ausgeführt werden.",
+  "effects": [
+    "Sacrificium kann ausgeführt werden."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 212941,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 180,
+  "source_abilities": [
+    {
+      "id": 24394,
+      "name": "Lemurenschleier",
+      "description": "Dein Avatar umhüllt dich und macht dich zu einer Lemure, dir die Maximalstapelzahl von Lemurenseelen gewährend.\nDauer: 30 Sekunden\nWährend der Wirkungsdauer können Avatar-Angriffe und einige Waffenfertigkeiten nicht ausgeführt werden.\nZusatzeffekt: Gewährt dir Sacrificium paratum.\nDauer: 30 Sekunden\nSchleierbalken-Kosten: 50",
+      "description_macro": "Dein Avatar umhüllt dich und macht dich zu einer <colortype(506)><edgecolortype(507)>Lemure<edgecolortype(0)><colortype(0)>, dir die Ma<->xi<->mal<->sta<->pel<->zahl von <colortype(506)><edgecolortype(507)>Lemurenseelen<edgecolortype(0)><colortype(0)> gewährend.<br>Dauer: 30 Sekunden<br>Während der Wirkungsdauer können Avatar-Angriffe und einige Waf<->fen<->fer<->tig<->kei<->ten nicht ausgeführt werden.<br><if([gnum68==39],<if([gnum72>=92],Zusatzeffekt: Gewährt dir <colortype(506)><edgecolortype(507)>Sacrificium paratum<edgecolortype(0)><colortype(0)>.<br>Dauer: 30 Sekunden<br>,)>,)>Schleierbalken-Kosten: 50",
+      "unlock_level": 80,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 39,
+          "name": "Schnitter",
+          "abbreviation": "SNT",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

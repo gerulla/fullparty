@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 3898,
+  "name": "Philosophia",
+  "description": "HP restoration via healing magic is increased.",
+  "effects": [
+    "HP restoration via healing magic is increased."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 212974,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 50,
+  "parameter": {
+    "effect": 0,
+    "modifier": 30
+  },
+  "class_job_category_id": 181,
+  "source_abilities": [
+    {
+      "id": 37035,
+      "name": "Philosophia",
+      "description": "Increases healing magic potency by 20%.\nDuration: 20s\nAdditional Effect: Grants self and nearby party members the effect of Eudaimonia, restoring HP after landing spells\nCure Potency: 150\nDuration: 20s",
+      "description_macro": "Increases healing magic potency by 20%.<br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>20s<br><colortype(504)><edgecolortype(505)>Additional Effect:<edgecolortype(0)><colortype(0)> Grants self and nearby party members the effect of <colortype(506)><edgecolortype(507)>Eudaimonia<edgecolortype(0)><colortype(0)>, restoring HP after landing spells<br><colortype(504)><edgecolortype(505)>Cure Potency: <edgecolortype(0)><colortype(0)>150<br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>20s",
+      "unlock_level": 100,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Healer"
+      ],
+      "jobs": [
+        {
+          "id": 40,
+          "name": "Sage",
+          "abbreviation": "SGE",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

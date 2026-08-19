@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 2697,
+  "name": "Improvisiertes Finale",
+  "description": "Erlittener Schaden ist um einen bestimmten Betrag verringert.",
+  "effects": [
+    "Erlittener Schaden ist um einen bestimmten Betrag verringert."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 213721,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 30,
+  "parameter": {
+    "effect": 0,
+    "modifier": 100
+  },
+  "class_job_category_id": 150,
+  "source_abilities": [
+    {
+      "id": 25789,
+      "name": "Improvisiertes Finale",
+      "description": "Du errichtest eine Barriere um dich und umgebende Gruppenmitglieder, die ein bestimmtes Maß an Schaden absorbiert. Der Barriere-Effekt steigt mit der Intensität deiner Tanzekstase.\nIntensität 0: 5 % der Maximal-LP des Ziels\nIntensität 1: 6 % der Maximal-LP des Ziels\nIntensität 2: 7 % der Maximal-LP des Ziels\nIntensität 3: 8 % der Maximal-LP des Ziels\nIntensität 4: 10 % der Maximal-LP des Ziels\nDauer: 30 Sekunden\nBedingung: Tanzimprovisation aktiv\nBei erfüllter Bedingung ändert sich Tanzimprovisation zu diesem Kommando.\nKann nicht im Kommandomenü angelegt werden.",
+      "description_macro": "Du errichtest eine Barriere um dich und umgebende Grup<->pen<->mit<->glieder, die ein bestimmtes Maß an Schaden absorbiert. Der Barriere-Effekt steigt mit der Intensität deiner <colortype(506)><edgecolortype(507)>Tanzekstase<edgecolortype(0)><colortype(0)>.<br>Intensität 0: 5<nbsp>% der Maximal-LP des Ziels<br>Intensität 1: 6<nbsp>% der Maximal-LP des Ziels<br>Intensität 2: 7<nbsp>% der Maximal-LP des Ziels<br>Intensität 3: 8<nbsp>% der Maximal-LP des Ziels<br>Intensität 4: 10<nbsp>% der Maximal-LP des Ziels<br>Dauer: 30 Sekunden<br>Bedingung: <colortype(506)><edgecolortype(507)>Tanzimprovisation<edgecolortype(0)><colortype(0)> aktiv<br>Bei erfüllter Bedingung ändert sich <colortype(502)><edgecolortype(503)>Tanzimprovisation<edgecolortype(0)><colortype(0)> zu diesem Kommando.<br>Kann nicht im Kommandomenü angelegt werden.",
+      "unlock_level": 80,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Physical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 38,
+          "name": "Tänzer",
+          "abbreviation": "TÄN",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

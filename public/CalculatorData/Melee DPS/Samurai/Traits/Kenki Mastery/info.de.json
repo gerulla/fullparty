@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 215,
+  "name": "Kenki-Meister",
+  "description": "Füllt den Kenki-Balken durch erfolgreiches Ausführen bestimmter Waffenfertigkeiten und bei erfolgreicher Schadensreduzierung durch Drittes Auge.",
+  "description_macro": "Füllt den Kenki-Balken durch erfolgreiches Ausführen bestimmter Waf<->fen<->fer<->tig<->kei<->ten und bei erfolgreicher Schadensreduzierung durch <colortype(502)><edgecolortype(503)>Drittes Auge<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Füllt den Kenki-Balken durch erfolgreiches Ausführen bestimmter Waffenfertigkeiten und bei erfolgreicher Schadensreduzierung durch Drittes Auge."
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 34,
+    "name": "Samurai",
+    "abbreviation": "SAM"
+  },
+  "unlock_level": 52,
+  "value": 0,
+  "icon": {
+    "id": 6152,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 111,
+  "source_class_job_id": 34
+}

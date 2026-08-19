@@ -1,0 +1,71 @@
+{
+  "kind": "combat_status",
+  "id": 3772,
+  "name": "Tückische Haltung",
+  "description": "Der Attacke-Wert bestimmter Kommandos ist erhöht.",
+  "effects": [
+    "Der Attacke-Wert bestimmter Kommandos ist erhöht."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 213758,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 10,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 196,
+  "source_abilities": [
+    {
+      "id": 34606,
+      "name": "Tödliche Fänge",
+      "description": "Du führst eine physische Attacke aus.\nAttacke-Wert: 200\nBei Tödliche Haltung: 300\nZusatzeffekt: Gewährt dir Tückische Haltung.\nDauer: 60 Sekunden\nEffekt von Tückische Haltung: Der Attacke-Wert von Tückische Fänge ist um 100 und der von Tückische Kiefer um 20 erhöht.\nKann nicht gleichzeitig mit Tödliche Haltung aktiv sein.",
+      "description_macro": "Du führst eine physische Attacke aus.<br>Attacke-Wert: <if([gnum68==41],<if([gnum72>=74],200,180)>,180)><br>Bei <colortype(506)><edgecolortype(507)>Tödliche Haltung<edgecolortype(0)><colortype(0)>: <if([gnum68==41],<if([gnum72>=74],300,280)>,280)><br>Zusatzeffekt: Gewährt dir <colortype(506)><edgecolortype(507)>Tückische Haltung<edgecolortype(0)><colortype(0)>.<br>Dauer: 60 Sekunden<br>Effekt von <colortype(506)><edgecolortype(507)>Tückische Haltung<edgecolortype(0)><colortype(0)>: Der Attacke-Wert von <colortype(502)><edgecolortype(503)>Tückische Fänge<edgecolortype(0)><colortype(0)> ist um 100 und der von <colortype(502)><edgecolortype(503)>Tückische Kiefer<edgecolortype(0)><colortype(0)> um 20 erhöht.<br>Kann nicht gleichzeitig mit <colortype(500)><edgecolortype(501)>Tödliche Haltung<edgecolortype(0)><colortype(0)> aktiv sein.",
+      "unlock_level": 1,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 41,
+          "name": "Viper",
+          "abbreviation": "VPR",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 34614,
+      "name": "Tödliche Kiefer",
+      "description": "Du führst eine physische Attacke auf alle umstehenden Gegner aus.\nAttacke-Wert: 120\nBei Tödliche Haltung: 140\nZusatzeffekt: Gewährt dir Tückische Haltung.\nDauer: 60 Sekunden\nEffekt von Tückische Haltung: Der Attacke-Wert von Tückische Fänge ist um 100 und von Tückische Kiefer um 20 erhöht.\nKann nicht gleichzeitig mit Tödliche Haltung aktiv sein.",
+      "description_macro": "Du führst eine physische Attacke auf alle umstehenden Gegner aus.<br>Attacke-Wert: 120<br>Bei <colortype(506)><edgecolortype(507)>Tödliche Haltung<edgecolortype(0)><colortype(0)>: 140<br>Zusatzeffekt: Gewährt dir <colortype(506)><edgecolortype(507)>Tückische Haltung<edgecolortype(0)><colortype(0)>.<br>Dauer: 60 Sekunden<br>Effekt von <colortype(506)><edgecolortype(507)>Tückische Haltung<edgecolortype(0)><colortype(0)>: Der Attacke-Wert von <colortype(502)><edgecolortype(503)>Tückische Fänge<edgecolortype(0)><colortype(0)> ist um 100 und von <colortype(502)><edgecolortype(503)>Tückische Kiefer<edgecolortype(0)><colortype(0)> um 20 erhöht.<br>Kann nicht gleichzeitig mit <colortype(500)><edgecolortype(501)>Tödliche Haltung<edgecolortype(0)><colortype(0)> aktiv sein.",
+      "unlock_level": 25,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 41,
+          "name": "Viper",
+          "abbreviation": "VPR",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 1954,
+  "name": "Doppeltes Ich",
+  "description": "Führt sofort nach einer Waffenfähigkeit eine weitere Attacke aus.",
+  "effects": [
+    "Führt sofort nach einer Waffenfähigkeit eine weitere Attacke aus."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 219681,
+    "file": "icon.png"
+  },
+  "max_stacks": 5,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 27,
+    "modifier": 0
+  },
+  "class_job_category_id": 92,
+  "source_abilities": [
+    {
+      "id": 16493,
+      "name": "Doppeltes Ich",
+      "description": "Du erhältst 5 Stapel Doppeltes Ich.\nDauer: 30 Sekunden\nEffekt von Doppeltes Ich: Dein Schatten greift jedes Mal an, wenn du eine Waffenfertigkeit ausführst. Zwar kann er keine Kombo-Boni auslösen, der Ninki-Balken erhöht sich aber bei jedem erfolgreichen Treffer deines Schattens um 5.\nSein Attacke-Wert unterscheidet sich je nach Art der von dir ausgeführten Waffenfertigkeit:\nNahkampf: 160\nPhysischer Fernkampf: 160\nFlächenangriff: 80\nZusatzeffekt: Gewährt dir Kamaitachi-bereit.\nDauer: 45 Sekunden\nNinki-Balken-Kosten: 50",
+      "description_macro": "Du erhältst 5 Stapel <colortype(506)><edgecolortype(507)>Doppeltes Ich<edgecolortype(0)><colortype(0)>.<br>Dauer: 30 Sekunden<br>Effekt von <colortype(506)><edgecolortype(507)>Doppeltes Ich<edgecolortype(0)><colortype(0)>: Dein Schatten greift jedes Mal an, wenn du eine Waf<->fen<->fer<->tig<->keit ausführst. Zwar kann er keine Kombo-Boni auslösen, der Ninki-Balken erhöht sich aber bei jedem erfolgreichen Treffer deines Schattens um 5.<br>Sein Attacke-Wert unterscheidet sich je nach Art der von dir ausgeführten Waf<->fen<->fer<->tig<->keit:<br>Nahkampf: 160<br>Physischer Fernkampf: 160<br>Flächenangriff: 80<br><if([gnum68==30],<if([gnum72>=82],Zusatzeffekt: Gewährt dir <colortype(506)><edgecolortype(507)>Kamaitachi-bereit<edgecolortype(0)><colortype(0)>.<br>Dauer: 45 Sekunden<br>,)>,)>Ninki-Balken-Kosten: 50",
+      "unlock_level": 80,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 30,
+          "name": "Ninja",
+          "abbreviation": "NIN",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

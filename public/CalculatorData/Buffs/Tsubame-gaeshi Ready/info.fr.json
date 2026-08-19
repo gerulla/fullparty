@@ -1,0 +1,113 @@
+{
+  "kind": "combat_status",
+  "id": 3852,
+  "name": "Tsubamegaeshi préparé",
+  "description": "Tsubamegaeshi peut être lancé.",
+  "effects": [
+    "Tsubamegaeshi peut être lancé."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 213315,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 111,
+  "source_abilities": [
+    {
+      "id": 7487,
+      "name": "Midare Setsugekka",
+      "description": "Effectue une attaque physique sur la cible.\nPuissance : 680\nInflige obligatoirement un coup critique.\nLes dégâts infligés sont augmentés lorsque vous bénéficiez d'un effet augmentant les chances de coups critiques.\nEffet additionnel : vous octroie Tsubamegaeshi préparé.\nDurée : 30s\nEffet additionnel : vous octroie Tension de la lame \\(maximum 3\\).\nCondition : Marque Setsugekka pleine.\n\n* Cette action ne peut pas être ajoutée aux barres de raccourcis.\nRemplace Iaijutsu lorsque les conditions sont réunies.",
+      "description_macro": "Effectue une attaque physique sur la cible.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> <if([gnum68==34],<if([gnum72>=94],680,620)>,620)><br>Inflige obligatoirement un coup critique.<br>Les dégâts infligés sont augmentés lorsque vous bénéficiez d'un effet augmentant les chances de coups critiques.<br><if([gnum68==34],<if([gnum72>=74],<colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> vous octroie <colortype(500)><edgecolortype(501)>Tsubamegaeshi préparé<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 30s<br>,)>,)><if([gnum68==34],<if([gnum72>=80],<colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> vous octroie <colortype(500)><edgecolortype(501)>Tension de la lame<edgecolortype(0)><colortype(0)> \\(maximum 3\\).<br>,)>,)><colortype(506)><edgecolortype(507)>Condition<nbsp>:<edgecolortype(0)><colortype(0)> <colortype(502)><edgecolortype(503)>Marque Setsugekka<edgecolortype(0)><colortype(0)> pleine.<br><br><colortype(504)><edgecolortype(505)>* Cette action ne peut pas être ajoutée aux barres de raccourcis.<br>Remplace <colortype(500)><edgecolortype(501)>Iaijutsu<edgecolortype(0)><colortype(0)> lorsque les conditions sont réunies.<edgecolortype(0)><colortype(0)>",
+      "unlock_level": 50,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 34,
+          "name": "Samouraï",
+          "abbreviation": "SAM",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 7488,
+      "name": "Tenka Goken",
+      "description": "Effectue une attaque physique sur les ennemis alentour.\nPuissance : 300\nEffet additionnel : vous octroie Tsubamegaeshi préparé.\nDurée : 30s\nEffet additionnel : vous octroie Tension de la lame \\(maximum 3\\).\nCondition : 2 effets Sen.\n\n* Cette action ne peut pas être ajoutée aux barres de raccourcis.\nRemplace Iaijutsu lorsque les conditions sont réunies.",
+      "description_macro": "Effectue une attaque physique sur les ennemis alentour.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> 300<br><if([gnum68==34],<if([gnum72>=74],<colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> vous octroie <colortype(500)><edgecolortype(501)>Tsubamegaeshi préparé<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 30s<br>,)>,)><if([gnum68==34],<if([gnum72>=80],<colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> vous octroie <colortype(500)><edgecolortype(501)>Tension de la lame<edgecolortype(0)><colortype(0)> \\(maximum 3\\).<br>,)>,)><colortype(506)><edgecolortype(507)>Condition<nbsp>:<edgecolortype(0)><colortype(0)> 2 effets <colortype(500)><edgecolortype(501)>Sen<edgecolortype(0)><colortype(0)>.<br><br><colortype(504)><edgecolortype(505)>* Cette action ne peut pas être ajoutée aux barres de raccourcis.<br>Remplace <colortype(500)><edgecolortype(501)>Iaijutsu<edgecolortype(0)><colortype(0)> lorsque les conditions sont réunies.<edgecolortype(0)><colortype(0)>",
+      "unlock_level": 40,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 34,
+          "name": "Samouraï",
+          "abbreviation": "SAM",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 36965,
+      "name": "Tendô Goken",
+      "description": "Effectue une attaque physique sur les ennemis alentour.\nPuissance : 410\nEffet additionnel : vous octroie Tsubamegaeshi préparé.\nDurée : 30s\nEffet additionnel : vous octroie Tension de la lame (maximum 3).\nCondition : Tendô et 2 effets Sen.\n\n* Cette action ne peut pas être ajoutée aux barres de raccourcis.\nRemplace Iaijutsu lorsque les conditions sont réunies.",
+      "description_macro": "Effectue une attaque physique sur les ennemis alentour.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> 410<br><colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> vous octroie <colortype(500)><edgecolortype(501)>Tsubamegaeshi préparé<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 30s<br><colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> vous octroie <colortype(500)><edgecolortype(501)>Tension de la lame<edgecolortype(0)><colortype(0)> (maximum 3).<br><colortype(506)><edgecolortype(507)>Condition<nbsp>:<edgecolortype(0)><colortype(0)> <colortype(500)><edgecolortype(501)>Tendô<edgecolortype(0)><colortype(0)> et 2 effets <colortype(500)><edgecolortype(501)>Sen<edgecolortype(0)><colortype(0)>.<br><br><colortype(504)><edgecolortype(505)>* Cette action ne peut pas être ajoutée aux barres de raccourcis.<br>Remplace <colortype(500)><edgecolortype(501)>Iaijutsu<edgecolortype(0)><colortype(0)> lorsque les conditions sont réunies.<edgecolortype(0)><colortype(0)>",
+      "unlock_level": 100,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 34,
+          "name": "Samouraï",
+          "abbreviation": "SAM",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 36966,
+      "name": "Tendô Setsugekka",
+      "description": "Effectue une attaque physique sur la cible.\nPuissance : 1100\nInflige obligatoirement un coup critique.\nLes dégâts infligés sont augmentés lorsque vous bénéficiez d'un effet augmentant les chances de coups critiques.\nEffet additionnel : vous octroie Tsubamegaeshi préparé.\nDurée : 30s\nEffet additionnel : vous octroie Tension de la lame (maximum 3).\nCondition : Tendô et Marque Setsugekka pleine.\n\n* Cette action ne peut pas être ajoutée aux barres de raccourcis.\nRemplace Iaijutsu lorsque les conditions sont réunies.",
+      "description_macro": "Effectue une attaque physique sur la cible.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> 1100<br>Inflige obligatoirement un coup critique.<br>Les dégâts infligés sont augmentés lorsque vous bénéficiez d'un effet augmentant les chances de coups critiques.<br><colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> vous octroie <colortype(500)><edgecolortype(501)>Tsubamegaeshi préparé<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 30s<br><colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> vous octroie <colortype(500)><edgecolortype(501)>Tension de la lame<edgecolortype(0)><colortype(0)> (maximum 3).<br><colortype(506)><edgecolortype(507)>Condition<nbsp>:<edgecolortype(0)><colortype(0)> <colortype(500)><edgecolortype(501)>Tendô<edgecolortype(0)><colortype(0)> et <colortype(502)><edgecolortype(503)>Marque Setsugekka<edgecolortype(0)><colortype(0)> pleine.<br><br><colortype(504)><edgecolortype(505)>* Cette action ne peut pas être ajoutée aux barres de raccourcis.<br>Remplace <colortype(500)><edgecolortype(501)>Iaijutsu<edgecolortype(0)><colortype(0)> lorsque les conditions sont réunies.<edgecolortype(0)><colortype(0)>",
+      "unlock_level": 100,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 34,
+          "name": "Samouraï",
+          "abbreviation": "SAM",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

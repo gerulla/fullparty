@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 303,
+  "name": "Scatter Mastery",
+  "description": "Upgrades Scatter to Impact.",
+  "description_macro": "Upgrades <colortype(500)><edgecolortype(501)>Scatter<edgecolortype(0)><colortype(0)> to <colortype(500)><edgecolortype(501)>Impact<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Upgrades Scatter to Impact."
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 35,
+    "name": "Red Mage",
+    "abbreviation": "RDM"
+  },
+  "unlock_level": 66,
+  "value": 0,
+  "icon": {
+    "id": 6207,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 112,
+  "source_class_job_id": 35
+}

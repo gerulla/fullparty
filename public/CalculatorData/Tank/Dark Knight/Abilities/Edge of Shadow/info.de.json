@@ -1,0 +1,89 @@
+{
+  "kind": "ability",
+  "id": 16470,
+  "name": "Schattenklinge",
+  "description": "Du führst eine elementneutrale magische Attacke aus.\nAttacke-Wert: 460\nZusatzeffekt: Du erhältst Dunkle Seite, wodurch dein ausgeteilter Schaden um 10 % erhöht ist.\nDauer: 30 Sekunden\nIst dieser Status bereits aktiv, wird er um 30 Sekunden verlängert (max. 60 Sekunden).\nGemeinsamer Reaktivierungs-Timer mit Schattenflut",
+  "description_macro": "Du führst eine elementneutrale magische Attacke aus.<br>Attacke-Wert: 460<br>Zusatzeffekt: Du erhältst <colortype(506)><edgecolortype(507)>Dunkle Seite<edgecolortype(0)><colortype(0)>, wodurch dein ausgeteilter Schaden um 10 % erhöht ist.<br>Dauer: 30 Sekunden<br>Ist dieser Status bereits aktiv, wird er um 30 Sekunden verlängert (max. 60 Sekunden).<br>Gemeinsamer Reaktivierungs-Timer mit <colortype(502)><edgecolortype(503)>Schattenflut<edgecolortype(0)><colortype(0)>",
+  "effects": [
+    "Du führst eine elementneutrale magische Attacke aus.",
+    "Attacke-Wert: 460",
+    "Zusatzeffekt: Du erhältst Dunkle Seite, wodurch dein ausgeteilter Schaden um 10 % erhöht ist.",
+    "Dauer: 30 Sekunden",
+    "Ist dieser Status bereits aktiv, wird er um 30 Sekunden verlängert (max. 60 Sekunden).",
+    "Gemeinsamer Reaktivierungs-Timer mit Schattenflut"
+  ],
+  "role": "Tank",
+  "job": {
+    "id": 32,
+    "name": "Dunkelritter",
+    "abbreviation": "DKR"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 74,
+  "icon": {
+    "id": 3086,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 4,
+    "name": "Talent"
+  },
+  "attack_type": {
+    "id": 5,
+    "name": "魔法"
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 1,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 1,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 3,
+      "value": 30
+    },
+    "secondary": {
+      "type_id": 62,
+      "value": 271
+    }
+  },
+  "range": {
+    "target_yalms": -1,
+    "effect_yalms": 0,
+    "cast_type": 1
+  },
+  "targeting": {
+    "self": false,
+    "party": false,
+    "alliance": false,
+    "hostile": true,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 7,
+    "behavior_type": 0,
+    "class_job_category_id": 98,
+    "source_class_job_id": 32,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

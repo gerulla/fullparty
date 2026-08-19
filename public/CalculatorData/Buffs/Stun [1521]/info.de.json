@@ -1,0 +1,134 @@
+{
+  "kind": "combat_status",
+  "id": 1521,
+  "name": "Betäubung",
+  "description": "Ist handlungsunfähig. Erlittener Schaden ist erhöht.",
+  "effects": [
+    "Ist handlungsunfähig. Erlittener Schaden ist erhöht."
+  ],
+  "classification": "debuff",
+  "icon": {
+    "id": 215858,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 2,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 5
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 139,
+      "name": "Sanctus",
+      "description": "Du führst eine elementneutrale magische Attacke auf alle umstehenden Gegner aus.\nAttacke-Wert: 140\nZusatzeffekt: Betäubung\nDauer: 4 Sekunden",
+      "description_macro": "Du führst eine elementneutrale magische Attacke auf alle umstehenden Gegner aus.<br>Attacke-Wert: 140<br>Zusatzeffekt: <colortype(506)><edgecolortype(507)>Betäubung<edgecolortype(0)><colortype(0)><br>Dauer: 4 Sekunden",
+      "unlock_level": 45,
+      "relations": [
+        "applied_by_description"
+      ],
+      "roles": [
+        "Healer"
+      ],
+      "jobs": [
+        {
+          "id": 24,
+          "name": "Weißmagier",
+          "abbreviation": "WMA",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 11396,
+      "name": "Bombenwurf",
+      "description": "Du führst eine feuerbasierte magische Attacke auf den anvisierten Bereich aus.\nAttacke-Wert: 200\nAttacke-Wert verringert sich ab dem zweiten Gegner um 50 %.\nZusatzeffekt: Betäubung\nDauer: 3 Sekunden",
+      "description_macro": "Du führst eine feuerbasierte magische Attacke auf den anvisierten Bereich aus.<br>Attacke-Wert: 200<br>Attacke-Wert verringert sich ab dem zweiten Gegner um 50 %.<br>Zusatzeffekt: <colortype(506)><edgecolortype(507)>Betäubung<edgecolortype(0)><colortype(0)><br>Dauer: 3 Sekunden",
+      "unlock_level": 1,
+      "relations": [
+        "applied_by_description"
+      ],
+      "roles": [
+        "Magical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 36,
+          "name": "Blaumagier",
+          "abbreviation": "BMA",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 18314,
+      "name": "Perpetueller Strahl",
+      "description": "Du führst eine elementneutrale magische Attacke aus.\nAttacke-Wert: 220\nZusatzeffekt: Betäubung\nDauer: 1 Sekunde\nBetäubungsaufhebende Effekte wirkungslos",
+      "description_macro": "Du führst eine elementneutrale magische Attacke aus.<br>Attacke-Wert: 220<br>Zusatzeffekt: <colortype(506)><edgecolortype(507)>Betäubung<edgecolortype(0)><colortype(0)><br>Dauer: 1 Sekunde<br>Betäubungsaufhebende Effekte wirkungslos",
+      "unlock_level": 1,
+      "relations": [
+        "applied_by_description"
+      ],
+      "roles": [
+        "Magical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 36,
+          "name": "Blaumagier",
+          "abbreviation": "BMA",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 23266,
+      "name": "Tatami-gaeshi",
+      "description": "Du führst eine elementneutrale magische Attacke auf alle Gegner in gerader Linie vor dir aus.\nAttacke-Wert: 220\nZusatzeffekt: Betäubung\nDauer: 3 Sekunden\nAttacke-Wert verringert sich ab dem zweiten Gegner um 50 %.",
+      "description_macro": "Du führst eine elementneutrale magische Attacke auf alle Gegner in gerader Linie vor dir aus.<br>Attacke-Wert: 220<br>Zusatzeffekt: <colortype(506)><edgecolortype(507)>Betäubung<edgecolortype(0)><colortype(0)><br>Dauer: 3 Sekunden<br>Attacke-Wert verringert sich ab dem zweiten Gegner um 50<nbsp>%.",
+      "unlock_level": 1,
+      "relations": [
+        "applied_by_description"
+      ],
+      "roles": [
+        "Magical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 36,
+          "name": "Blaumagier",
+          "abbreviation": "BMA",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 25860,
+      "name": "Sanctga",
+      "description": "Du führst eine elementneutrale magische Attacke auf alle umstehenden Gegner aus.\nAttacke-Wert: 150\nZusatzeffekt: Betäubung\nDauer: 4 Sekunden",
+      "description_macro": "Du führst eine elementneutrale magische Attacke auf alle umstehenden Gegner aus.<br>Attacke-Wert: 150<br>Zusatzeffekt: <colortype(506)><edgecolortype(507)>Betäubung<edgecolortype(0)><colortype(0)><br>Dauer: 4 Sekunden",
+      "unlock_level": 82,
+      "relations": [
+        "applied_by_description"
+      ],
+      "roles": [
+        "Healer"
+      ],
+      "jobs": [
+        {
+          "id": 24,
+          "name": "Weißmagier",
+          "abbreviation": "WMA",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

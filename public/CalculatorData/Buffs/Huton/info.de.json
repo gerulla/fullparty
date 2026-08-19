@@ -1,0 +1,71 @@
+{
+  "kind": "combat_status",
+  "id": 3186,
+  "name": "Huton",
+  "description": "Erlittener Schaden ist um einen bestimmten Betrag verringert. Aktivierungs- und Reaktivierungszeit von Waffenfertigkeiten ist verkürzt und Bewegungsgeschwindigkeit ist erhöht.",
+  "effects": [
+    "Erlittener Schaden ist um einen bestimmten Betrag verringert. Aktivierungs- und Reaktivierungszeit von Waffenfertigkeiten ist verkürzt und Bewegungsgeschwindigkeit ist erhöht."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 212903,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": true,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 18,
+    "modifier": 100
+  },
+  "class_job_category_id": 92,
+  "source_abilities": [
+    {
+      "id": 2269,
+      "name": "Huton",
+      "description": "Du führst eine windbasierte magische Attacke auf das Ziel und die Gegner in seiner Nähe aus.\nAttacke-Wert: 240\nZusatzeffekt: Gewährt dir In die Schatten.\nDauer: 20 Sekunden\nEffekt von In die Schatten: Erlaubt die einmalige Ausführung eines Kommandos, das Versteckt voraussetzt, ohne unter diesem Effekt zu sein.\nBedingung: Ninjutsu nach Handgestenfolge Jin→Chi→Ten oder Chi→Jin→Ten\nBei Ausführung wird der Reaktivierungs-Timer von Waffenfertigkeiten, Magie, anderen Mudras und Ninjutsu ausgelöst.\nBei erfüllter Bedingung ändert sich Ninjutsu zu diesem Kommando.\nKann nicht im Kommandomenü angelegt werden.",
+      "description_macro": "Du führst eine windbasierte magische Attacke auf das Ziel und die Gegner in seiner Nähe aus.<br>Attacke-Wert: 240<br>Zusatzeffekt: Gewährt dir <colortype(506)><edgecolortype(507)>In die Schatten<edgecolortype(0)><colortype(0)>.<br>Dauer: 20 Sekunden<br>Effekt von <colortype(506)><edgecolortype(507)>In die Schatten<edgecolortype(0)><colortype(0)>: Erlaubt die einmalige Ausführung eines Kommandos, das <colortype(506)><edgecolortype(507)>Versteckt<edgecolortype(0)><colortype(0)> voraussetzt, ohne unter diesem Effekt zu sein.<br>Bedingung: <colortype(502)><edgecolortype(503)>Ninjutsu<edgecolortype(0)><colortype(0)> nach Handgestenfolge <colortype(502)><edgecolortype(503)>Jin→Chi→Ten<edgecolortype(0)><colortype(0)> oder <colortype(502)><edgecolortype(503)>Chi→Jin→Ten<edgecolortype(0)><colortype(0)><br>Bei Ausführung wird der Reaktivierungs-Timer von Waf<->fen<->fer<->tig<->kei<->ten, Magie, anderen Mudras und <colortype(502)><edgecolortype(503)>Ninjutsu<edgecolortype(0)><colortype(0)> ausgelöst.<br>Bei erfüllter Bedingung ändert sich <colortype(502)><edgecolortype(503)>Ninjutsu<edgecolortype(0)><colortype(0)> zu diesem Kommando.<br>Kann nicht im Kommandomenü angelegt werden.",
+      "unlock_level": 45,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 30,
+          "name": "Ninja",
+          "abbreviation": "NIN",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 18879,
+      "name": "Huton",
+      "description": "Du führst eine windbasierte magische Attacke auf das Ziel und die Gegner in seiner Nähe aus.\nAttacke-Wert: 240\nZusatzeffekt: Gewährt dir In die Schatten.\nDauer: 20 Sekunden\nEffekt von In die Schatten: Erlaubt die einmalige Ausführung eines Kommandos, das Versteckt voraussetzt, ohne unter diesem Effekt zu sein.\nBedingung: Ninjutsu nach Handgestenfolge Jin→Chi→Ten oder Chi→Jin→Ten\nBei Ausführung wird der Reaktivierungs-Timer von Waffenfertigkeiten, Magie, anderen Mudras und Ninjutsu ausgelöst.\nBei erfüllter Bedingung ändert sich Ninjutsu zu diesem Kommando.\nKann nicht im Kommandomenü angelegt werden.",
+      "description_macro": "Du führst eine windbasierte magische Attacke auf das Ziel und die Gegner in seiner Nähe aus.<br>Attacke-Wert: 240<br>Zusatzeffekt: Gewährt dir <colortype(506)><edgecolortype(507)>In die Schatten<edgecolortype(0)><colortype(0)>.<br>Dauer: 20 Sekunden<br>Effekt von <colortype(506)><edgecolortype(507)>In die Schatten<edgecolortype(0)><colortype(0)>: Erlaubt die einmalige Ausführung eines Kommandos, das <colortype(506)><edgecolortype(507)>Versteckt<edgecolortype(0)><colortype(0)> voraussetzt, ohne unter diesem Effekt zu sein.<br>Bedingung: <colortype(502)><edgecolortype(503)>Ninjutsu<edgecolortype(0)><colortype(0)> nach Handgestenfolge <colortype(502)><edgecolortype(503)>Jin→Chi→Ten<edgecolortype(0)><colortype(0)> oder <colortype(502)><edgecolortype(503)>Chi→Jin→Ten<edgecolortype(0)><colortype(0)><br>Bei Ausführung wird der Reaktivierungs-Timer von Waf<->fen<->fer<->tig<->kei<->ten, Magie, anderen Mudras und <colortype(502)><edgecolortype(503)>Ninjutsu<edgecolortype(0)><colortype(0)> ausgelöst.<br>Bei erfüllter Bedingung ändert sich <colortype(502)><edgecolortype(503)>Ninjutsu<edgecolortype(0)><colortype(0)> zu diesem Kommando.<br>Kann nicht im Kommandomenü angelegt werden.",
+      "unlock_level": 45,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 30,
+          "name": "Ninja",
+          "abbreviation": "NIN",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

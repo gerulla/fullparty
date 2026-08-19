@@ -1,0 +1,87 @@
+{
+  "kind": "ability",
+  "id": 38,
+  "name": "Berserk",
+  "description": "Grants 3 stacks of Berserk, each stack guaranteeing weaponskill attacks are critical and direct hits.\nIncreases damage dealt when under an effect that raises critical hit rate or direct hit rate.\nDuration: 15s\nAdditional Effect: Extends Surging Tempest duration by 10s to a maximum of 60s",
+  "description_macro": "Grants 3 stacks of <colortype(506)><edgecolortype(507)>Berserk<edgecolortype(0)><colortype(0)>, each stack guaranteeing weaponskill attacks are critical and direct hits.<br>Increases damage dealt when under an effect that raises critical hit rate or direct hit rate.<br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>15s<if([gnum72>=40],<if([gnum68==3],<br><colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>Extends <colortype(506)><edgecolortype(507)>Surging Tempest<edgecolortype(0)><colortype(0)> duration by 10s to a maximum of 60s,<if([gnum68==21],<br><colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>Extends <colortype(506)><edgecolortype(507)>Surging Tempest<edgecolortype(0)><colortype(0)> duration by 10s to a maximum of 60s,)>)>,)>",
+  "effects": [
+    "Grants 3 stacks of Berserk, each stack guaranteeing weaponskill attacks are critical and direct hits.",
+    "Increases damage dealt when under an effect that raises critical hit rate or direct hit rate.",
+    "Duration: 15s",
+    "Additional Effect: Extends Surging Tempest duration by 10s to a maximum of 60s"
+  ],
+  "role": "Tank",
+  "job": {
+    "id": 21,
+    "name": "Warrior",
+    "abbreviation": "WAR"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 6,
+  "icon": {
+    "id": 259,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 4,
+    "name": "Ability"
+  },
+  "attack_type": {
+    "id": 0,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 60,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 11,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 0,
+      "value": 0
+    },
+    "secondary": {
+      "type_id": 63,
+      "value": 218
+    }
+  },
+  "range": {
+    "target_yalms": 0,
+    "effect_yalms": 0,
+    "cast_type": 1
+  },
+  "targeting": {
+    "self": true,
+    "party": false,
+    "alliance": false,
+    "hostile": false,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 0,
+    "behavior_type": 0,
+    "class_job_category_id": 44,
+    "source_class_job_id": 3,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

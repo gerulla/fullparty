@@ -1,0 +1,38 @@
+{
+  "kind": "trait",
+  "id": 664,
+  "name": "Actions améliorées",
+  "description": "Augmente la puissance de certaines actions.\n\nPuissance de Méga Ruine : 400\nPuissance de Pulsar astral : 500\nPuissance de Giga Ruine : 520\nPuissance de Rite de rubis : 620\nPuissance de Rite de topaze : 340\nPuissance de Rite d'émeraude : 280\nPuissance de Flamme de la vie : 580\nPuissance d'Assaut écarlate : 560\nPuissance de Cyclone écarlate : 560\nPuissance de Casse-montagnes : 160\nPuissance de Sillage : 520\nPuissance de Flammes de l'enfer : 800\nPuissance de Fureur tellurique : 800\nPuissance de Rafale aérienne : 800",
+  "description_macro": "Augmente la puissance de certaines actions.<br><br><colortype(506)><edgecolortype(507)>Puissance de Méga Ruine<nbsp>:<edgecolortype(0)><colortype(0)> 400<br><colortype(506)><edgecolortype(507)>Puissance de Pulsar astral<nbsp>:<edgecolortype(0)><colortype(0)> 500<br><colortype(506)><edgecolortype(507)>Puissance de Giga Ruine<nbsp>:<edgecolortype(0)><colortype(0)> 520<br><colortype(506)><edgecolortype(507)>Puissance de Rite de rubis<nbsp>:<edgecolortype(0)><colortype(0)> 620<br><colortype(506)><edgecolortype(507)>Puissance de Rite de topaze<nbsp>:<edgecolortype(0)><colortype(0)> 340<br><colortype(506)><edgecolortype(507)>Puissance de Rite d'émeraude<nbsp>:<edgecolortype(0)><colortype(0)> 280<br><colortype(506)><edgecolortype(507)>Puissance de Flamme de la vie<nbsp>:<edgecolortype(0)><colortype(0)> 580<br><colortype(506)><edgecolortype(507)>Puissance d'Assaut écarlate<nbsp>:<edgecolortype(0)><colortype(0)> 560<br><colortype(506)><edgecolortype(507)>Puissance de Cyclone écarlate<nbsp>:<edgecolortype(0)><colortype(0)> 560<br><colortype(506)><edgecolortype(507)>Puissance de Casse-montagnes<nbsp>:<edgecolortype(0)><colortype(0)> 160<br><colortype(506)><edgecolortype(507)>Puissance de Sillage<nbsp>:<edgecolortype(0)><colortype(0)> 520<br><colortype(506)><edgecolortype(507)>Puissance de Flammes de l'enfer<nbsp>:<edgecolortype(0)><colortype(0)> 800<br><colortype(506)><edgecolortype(507)>Puissance de Fureur tellurique<nbsp>:<edgecolortype(0)><colortype(0)> 800<br><colortype(506)><edgecolortype(507)>Puissance de Rafale aérienne<nbsp>:<edgecolortype(0)><colortype(0)> 800",
+  "effects": [
+    "Augmente la puissance de certaines actions.",
+    "Puissance de Méga Ruine : 400",
+    "Puissance de Pulsar astral : 500",
+    "Puissance de Giga Ruine : 520",
+    "Puissance de Rite de rubis : 620",
+    "Puissance de Rite de topaze : 340",
+    "Puissance de Rite d'émeraude : 280",
+    "Puissance de Flamme de la vie : 580",
+    "Puissance d'Assaut écarlate : 560",
+    "Puissance de Cyclone écarlate : 560",
+    "Puissance de Casse-montagnes : 160",
+    "Puissance de Sillage : 520",
+    "Puissance de Flammes de l'enfer : 800",
+    "Puissance de Fureur tellurique : 800",
+    "Puissance de Rafale aérienne : 800"
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 27,
+    "name": "Invocateur",
+    "abbreviation": "INV"
+  },
+  "unlock_level": 94,
+  "value": 0,
+  "icon": {
+    "id": 6831,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 28,
+  "source_class_job_id": 27
+}

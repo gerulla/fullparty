@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 285,
+  "name": "Meister des Gewaltigen Schusses",
+  "description": "Verbessert Gewaltiger Schuss zu Berstender Schuss.",
+  "description_macro": "Verbessert <colortype(502)><edgecolortype(503)>Gewaltiger Schuss<edgecolortype(0)><colortype(0)> zu <colortype(502)><edgecolortype(503)>Berstender Schuss<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Verbessert Gewaltiger Schuss zu Berstender Schuss."
+  ],
+  "role": "Physical Ranged DPS",
+  "job": {
+    "id": 23,
+    "name": "Barde",
+    "abbreviation": "BRD"
+  },
+  "unlock_level": 76,
+  "value": 0,
+  "icon": {
+    "id": 5306,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 24,
+  "source_class_job_id": 23
+}

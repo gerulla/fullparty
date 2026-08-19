@@ -1,0 +1,25 @@
+{
+  "kind": "trait",
+  "id": 526,
+  "name": "Anneaux améliorés",
+  "description": "Permet d'utiliser Morsure vicieuse et Morsure frénétique.\nCondition : après avoir utilisé Anneaux du prédateur ou Anneaux de l'écorcheur avec succès.",
+  "description_macro": "Permet d'utiliser <colortype(500)><edgecolortype(501)>Morsure vicieuse<edgecolortype(0)><colortype(0)> et <colortype(500)><edgecolortype(501)>Morsure frénétique<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Condition<nbsp>:<edgecolortype(0)><colortype(0)> après avoir utilisé <colortype(500)><edgecolortype(501)>Anneaux du prédateur<edgecolortype(0)><colortype(0)> ou <colortype(500)><edgecolortype(501)>Anneaux de l'écorcheur<edgecolortype(0)><colortype(0)> avec succès.",
+  "effects": [
+    "Permet d'utiliser Morsure vicieuse et Morsure frénétique.",
+    "Condition : après avoir utilisé Anneaux du prédateur ou Anneaux de l'écorcheur avec succès."
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 41,
+    "name": "Rôdeur Vipère",
+    "abbreviation": "VPR"
+  },
+  "unlock_level": 75,
+  "value": 0,
+  "icon": {
+    "id": 6503,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 196,
+  "source_class_job_id": 41
+}

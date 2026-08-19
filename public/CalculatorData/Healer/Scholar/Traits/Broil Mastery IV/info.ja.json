@@ -1,0 +1,25 @@
+{
+  "kind": "trait",
+  "id": 491,
+  "name": "炎法マスタリーIV",
+  "description": "死炎法が極炎法に変化する。\nさらに、ルインラの威力を220に上昇させる。",
+  "description_macro": "死炎法が極炎法に変化する。<br>さらに、ルインラの威力を220に上昇させる。",
+  "effects": [
+    "死炎法が極炎法に変化する。",
+    "さらに、ルインラの威力を220に上昇させる。"
+  ],
+  "role": "Healer",
+  "job": {
+    "id": 28,
+    "name": "学者",
+    "abbreviation": "SCH"
+  },
+  "unlock_level": 82,
+  "value": 0,
+  "icon": {
+    "id": 5704,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 29,
+  "source_class_job_id": 28
+}

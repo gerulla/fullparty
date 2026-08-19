@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 601,
+  "name": "Troubadour amélioré II",
+  "description": "Augmente l'effet Troubadour à 15%.",
+  "description_macro": "Augmente l'effet <colortype(500)><edgecolortype(501)>Troubadour<edgecolortype(0)><colortype(0)> à 15%.",
+  "effects": [
+    "Augmente l'effet Troubadour à 15%."
+  ],
+  "role": "Physical Ranged DPS",
+  "job": {
+    "id": 23,
+    "name": "Barde",
+    "abbreviation": "BRD"
+  },
+  "unlock_level": 98,
+  "value": 0,
+  "icon": {
+    "id": 5324,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 24,
+  "source_class_job_id": 23
+}

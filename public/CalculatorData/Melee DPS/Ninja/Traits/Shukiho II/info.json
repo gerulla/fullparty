@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 280,
+  "name": "Shukiho II",
+  "description": "Increases Ninki Gauge by 10 upon successfully completing a combo with Aeolian Edge or Armor Crush.",
+  "description_macro": "Increases <colortype(500)><edgecolortype(501)>Ninki Gauge<edgecolortype(0)><colortype(0)> by 10 upon successfully completing a combo with <colortype(500)><edgecolortype(501)>Aeolian Edge<edgecolortype(0)><colortype(0)> or <colortype(500)><edgecolortype(501)>Armor Crush<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Increases Ninki Gauge by 10 upon successfully completing a combo with Aeolian Edge or Armor Crush."
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 30,
+    "name": "Ninja",
+    "abbreviation": "NIN"
+  },
+  "unlock_level": 78,
+  "value": 0,
+  "icon": {
+    "id": 5416,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 92,
+  "source_class_job_id": 30
+}

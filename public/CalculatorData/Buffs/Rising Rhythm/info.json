@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 2696,
+  "name": "Rising Rhythm",
+  "description": "Potency of Improvised Finish is increased.",
+  "effects": [
+    "Potency of Improvised Finish is increased."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 217350,
+    "file": "icon.png"
+  },
+  "max_stacks": 4,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 150,
+  "source_abilities": [
+    {
+      "id": 16014,
+      "name": "Improvisation",
+      "description": "Dance to the beat of your own drum, granting Rising Rhythm to self.\nStacks increase every 3 seconds, up to a maximum of 4.\nAdditional Effect: Healing over time for self and nearby party members\nCure Potency: 100\nDuration: 15s\nEffect ends upon using another action or moving (including facing a different direction).\nCancels auto-attack upon execution.",
+      "description_macro": "Dance to the beat of your own drum, granting <colortype(506)><edgecolortype(507)>Rising Rhythm<edgecolortype(0)><colortype(0)> to self.<br>Stacks increase every 3 seconds, up to a maximum of 4.<br><colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>Healing over time for self and nearby party members<br><colortype(504)><edgecolortype(505)>Cure Potency: <edgecolortype(0)><colortype(0)>100<br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>15s<br>Effect ends upon using another action or moving (including facing a different direction).<br>Cancels auto-attack upon execution.",
+      "unlock_level": 80,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Physical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 38,
+          "name": "Dancer",
+          "abbreviation": "DNC",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

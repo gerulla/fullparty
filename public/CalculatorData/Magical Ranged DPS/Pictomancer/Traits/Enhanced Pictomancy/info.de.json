@@ -1,0 +1,25 @@
+{
+  "kind": "trait",
+  "id": 546,
+  "name": "Verbesserte Piktomantie",
+  "description": "Bei erfolgreicher Ausführung von Sternenmuse werden dir fünf Stapel Inszenierung gewährt.\nDauer: 30 Sekunden",
+  "description_macro": "Bei erfolgreicher Ausführung von <colortype(502)><edgecolortype(503)>Sternenmuse<edgecolortype(0)><colortype(0)> werden dir fünf Stapel <colortype(506)><edgecolortype(507)>Inszenierung<edgecolortype(0)><colortype(0)> gewährt.<br>Dauer: 30 Sekunden",
+  "effects": [
+    "Bei erfolgreicher Ausführung von Sternenmuse werden dir fünf Stapel Inszenierung gewährt.",
+    "Dauer: 30 Sekunden"
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 42,
+    "name": "Piktomant",
+    "abbreviation": "PKT"
+  },
+  "unlock_level": 82,
+  "value": 0,
+  "icon": {
+    "id": 6558,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 197,
+  "source_class_job_id": 42
+}

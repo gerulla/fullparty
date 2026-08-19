@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 739,
+  "name": "Asile",
+  "description": "Crée une aura bénéfique à l'endroit visé, qui soigne les équipiers.",
+  "effects": [
+    "Crée une aura bénéfique à l'endroit visé, qui soigne les équipiers."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 212629,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": true,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 50
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 3569,
+      "name": "Asile",
+      "description": "Crée une aura bénéfique dans l'aire ciblée, restaurant périodiquement vos PV et ceux des équipiers alentour.\nPuissance : 100 Durée : 24s\nEffet additionnel : augmente de 10% les effets curatifs reçus par vous et les équipiers dans l'aire d'effet.",
+      "description_macro": "Crée une aura bénéfique dans l'aire ciblée, restaurant périodiquement vos PV et ceux des équipiers alentour.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> 100 <colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 24s<if([gnum68==24],<if([gnum72>=78],<br><colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> augmente de 10% les effets curatifs reçus par vous et les équipiers dans l'aire d'effet.,)>,)>",
+      "unlock_level": 52,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Healer"
+      ],
+      "jobs": [
+        {
+          "id": 24,
+          "name": "Mage Blanc",
+          "abbreviation": "MBL",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

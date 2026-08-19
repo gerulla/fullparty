@@ -1,0 +1,27 @@
+{
+  "kind": "trait",
+  "id": 588,
+  "name": "天地人効果アップ",
+  "description": "自身に「天理人道実行可」が付与される。\n効果時間：30秒\n発動条件：天地人実行時\n効果中は天地人が天理人道に変化する。",
+  "description_macro": "自身に<colortype(500)><edgecolortype(501)>「天理人道実行可」<edgecolortype(0)><colortype(0)>が付与される。<br><colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>30秒<br><colortype(504)><edgecolortype(505)>発動条件：<edgecolortype(0)><colortype(0)>天地人実行時<br>効果中は天地人が天理人道に変化する。",
+  "effects": [
+    "自身に「天理人道実行可」が付与される。",
+    "効果時間：30秒",
+    "発動条件：天地人実行時",
+    "効果中は天地人が天理人道に変化する。"
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 30,
+    "name": "忍者",
+    "abbreviation": "NIN"
+  },
+  "unlock_level": 100,
+  "value": 0,
+  "icon": {
+    "id": 5726,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 92,
+  "source_class_job_id": 30
+}

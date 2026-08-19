@@ -1,0 +1,97 @@
+{
+  "kind": "ability",
+  "id": 16489,
+  "name": "Meisui",
+  "description": "Du verbrauchst In die Schatten und füllst dafür deinen Ninki-Balken um 50.\nZusatzeffekt: Gewährt dir Meisui.\nDauer: 30 Sekunden\nEffekt von Meisui: Der Attacke-Wert des nächsten Zesho Meppo bzw. Rad des Werdens ist auf 850 bzw. 550 erhöht.\nBedingung: Im Kampf und In die Schatten aktiv",
+  "description_macro": "Du verbrauchst <colortype(506)><edgecolortype(507)>In die Schatten<edgecolortype(0)><colortype(0)> und füllst dafür deinen Ninki-Balken um 50.<br><if([gnum68==30],<if([gnum72>=88],Zusatzeffekt: Gewährt dir <colortype(506)><edgecolortype(507)>Meisui<edgecolortype(0)><colortype(0)>.<br>Dauer: 30 Sekunden<br>Effekt von <colortype(506)><edgecolortype(507)>Meisui<edgecolortype(0)><colortype(0)>: <if([gnum68==30],<if([gnum72>=96],Der Attacke-Wert des nächsten <colortype(502)><edgecolortype(503)>Zesho Meppo<edgecolortype(0)><colortype(0)> bzw. <colortype(502)><edgecolortype(503)>Rad des Werdens<edgecolortype(0)><colortype(0)> ist auf 850 bzw. 550 erhöht.<br>,Der Attacke-Wert des nächsten <colortype(502)><edgecolortype(503)>Rad des Werdens<edgecolortype(0)><colortype(0)> ist auf <if([gnum68==30],<if([gnum72>=94],550,500)>,500)> erhöht.<br>)>,Der Attacke-Wert des nächsten <colortype(502)><edgecolortype(503)>Rad des Werdens<edgecolortype(0)><colortype(0)> ist auf <if([gnum68==30],<if([gnum72>=94],550,500)>,500)> erhöht.<br>)>,)>,)>Bedingung: Im Kampf und <colortype(506)><edgecolortype(507)>In die Schatten<edgecolortype(0)><colortype(0)> aktiv",
+  "effects": [
+    "Du verbrauchst In die Schatten und füllst dafür deinen Ninki-Balken um 50.",
+    "Zusatzeffekt: Gewährt dir Meisui.",
+    "Dauer: 30 Sekunden",
+    "Effekt von Meisui: Der Attacke-Wert des nächsten Zesho Meppo bzw. Rad des Werdens ist auf 850 bzw. 550 erhöht.",
+    "Bedingung: Im Kampf und In die Schatten aktiv"
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 30,
+    "name": "Ninja",
+    "abbreviation": "NIN"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 72,
+  "icon": {
+    "id": 2924,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 4,
+    "name": "Talent"
+  },
+  "attack_type": {
+    "id": 0,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 120,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 19,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 10,
+      "value": 3848
+    },
+    "secondary": {
+      "type_id": 42,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": 0,
+    "effect_yalms": 0,
+    "cast_type": 1
+  },
+  "targeting": {
+    "self": true,
+    "party": false,
+    "alliance": false,
+    "hostile": false,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": {
+      "id": 163,
+      "status": {
+        "id": 3848,
+        "name": "In die Schatten",
+        "description": "Kommandos sind ermöglicht, die sonst Versteckt erfordern.",
+        "icon_id": 212919,
+        "max_stacks": 0
+      }
+    }
+  },
+  "metadata": {
+    "aspect_id": 0,
+    "behavior_type": 0,
+    "class_job_category_id": 92,
+    "source_class_job_id": 30,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

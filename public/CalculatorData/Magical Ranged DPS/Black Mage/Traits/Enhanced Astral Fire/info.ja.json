@@ -1,0 +1,27 @@
+{
+  "kind": "trait",
+  "id": 616,
+  "name": "アストラルファイア効果アップ",
+  "description": "自身に「アストラルソウル」が付与される。\n最大スタック数：6\n発動条件：ファイジャおよびフレアの命中時\nまた、デスペアを詠唱時間なしで実行することができる。",
+  "description_macro": "自身に<colortype(500)><edgecolortype(501)>「アストラルソウル」<edgecolortype(0)><colortype(0)>が付与される。<br><colortype(504)><edgecolortype(505)>最大スタック数：<edgecolortype(0)><colortype(0)>6<br><colortype(504)><edgecolortype(505)>発動条件：<edgecolortype(0)><colortype(0)><edgecolortype(0)><colortype(0)>ファイジャおよびフレアの命中時<br>また、デスペアを詠唱時間なしで実行することができる。",
+  "effects": [
+    "自身に「アストラルソウル」が付与される。",
+    "最大スタック数：6",
+    "発動条件：ファイジャおよびフレアの命中時",
+    "また、デスペアを詠唱時間なしで実行することができる。"
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 25,
+    "name": "黒魔道士",
+    "abbreviation": "BLM"
+  },
+  "unlock_level": 100,
+  "value": 0,
+  "icon": {
+    "id": 5654,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 26,
+  "source_class_job_id": 25
+}

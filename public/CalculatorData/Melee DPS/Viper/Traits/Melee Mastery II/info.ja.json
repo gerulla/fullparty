@@ -1,0 +1,28 @@
+{
+  "kind": "trait",
+  "id": 675,
+  "name": "アクション威力アップII",
+  "description": "特定のアクションの威力を上昇させる。\n\n参の牙【側撃】の威力：340\n参の牙【側裂】の威力：340\n参の牙【背撃】の威力：340\n参の牙【背裂】の威力：340",
+  "description_macro": "特定のアクションの威力を上昇させる。<br><br><colortype(504)><edgecolortype(505)>参の牙【側撃】の威力：<edgecolortype(0)><colortype(0)>340<br><colortype(504)><edgecolortype(505)>参の牙【側裂】の威力：<edgecolortype(0)><colortype(0)>340<br><colortype(504)><edgecolortype(505)>参の牙【背撃】の威力：<edgecolortype(0)><colortype(0)>340<br><colortype(504)><edgecolortype(505)>参の牙【背裂】の威力：<edgecolortype(0)><colortype(0)>340",
+  "effects": [
+    "特定のアクションの威力を上昇させる。",
+    "参の牙【側撃】の威力：340",
+    "参の牙【側裂】の威力：340",
+    "参の牙【背撃】の威力：340",
+    "参の牙【背裂】の威力：340"
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 41,
+    "name": "ヴァイパー",
+    "abbreviation": "VPR"
+  },
+  "unlock_level": 84,
+  "value": 0,
+  "icon": {
+    "id": 6802,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 196,
+  "source_class_job_id": 41
+}

@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 378,
+  "name": "Zoe amélioré",
+  "description": "Réduit à 90s le temps de recharge de Zoe.",
+  "description_macro": "Réduit à 90s le temps de recharge de <colortype(500)><edgecolortype(501)>Zoe<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Réduit à 90s le temps de recharge de Zoe."
+  ],
+  "role": "Healer",
+  "job": {
+    "id": 40,
+    "name": "Sage",
+    "abbreviation": "SAG"
+  },
+  "unlock_level": 88,
+  "value": -300,
+  "icon": {
+    "id": 6458,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 181,
+  "source_class_job_id": 40
+}

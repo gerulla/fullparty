@@ -1,0 +1,87 @@
+{
+  "kind": "ability",
+  "id": 34635,
+  "name": "蛇尾閃",
+  "description": "自身の周囲の敵に範囲物理攻撃。\u3000威力：120\n発動条件：参の大牙【乱撃】または参の大牙【乱裂】の命中時\n\n※このアクションはホットバーに登録することはできない。\n\u3000発動条件を満たすと蛇尾術が蛇尾閃に変化する。",
+  "description_macro": "自身の周囲の敵に範囲物理攻撃。\u3000<colortype(504)><edgecolortype(505)>威力：<edgecolortype(0)><colortype(0)>120<br><colortype(504)><edgecolortype(505)>発動条件：<edgecolortype(0)><colortype(0)>参の大牙【乱撃】または参の大牙【乱裂】の命中時<br><br><colortype(506)><edgecolortype(507)>※このアクションはホットバーに登録することはできない。<br>\u3000発動条件を満たすと蛇尾術が蛇尾閃に変化する。<edgecolortype(0)><colortype(0)>",
+  "effects": [
+    "自身の周囲の敵に範囲物理攻撃。\u3000威力：120",
+    "発動条件：参の大牙【乱撃】または参の大牙【乱裂】の命中時",
+    "※このアクションはホットバーに登録することはできない。",
+    "発動条件を満たすと蛇尾術が蛇尾閃に変化する。"
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 41,
+    "name": "ヴァイパー",
+    "abbreviation": "VPR"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 60,
+  "icon": {
+    "id": 3730,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 4,
+    "name": "アビリティ"
+  },
+  "attack_type": {
+    "id": 4294967295,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 1,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 1,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 104,
+      "value": 2
+    },
+    "secondary": {
+      "type_id": 135,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": 0,
+    "effect_yalms": 5,
+    "cast_type": 2
+  },
+  "targeting": {
+    "self": true,
+    "party": false,
+    "alliance": false,
+    "hostile": false,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 7,
+    "behavior_type": 0,
+    "class_job_category_id": 196,
+    "source_class_job_id": 0,
+    "is_role_action": false,
+    "is_player_action": false,
+    "is_derived_action": true,
+    "equivalence_group": 0
+  }
+}

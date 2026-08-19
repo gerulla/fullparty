@@ -1,0 +1,36 @@
+{
+  "kind": "trait",
+  "id": 667,
+  "name": "Verbesserte Revolverklinge II",
+  "description": "Erhöht den Attacke-Wert folgender Kommandos:\nAttacke-Wert von Zerfetzer: 300\nAttacke-Wert von Brutaler Einschlag: 240\nAttacke-Wert von Stahlwalze: 240\nAttacke-Wert von Explosiver Stoß: 420\nAttacke-Wert von Schlagfänge: 440\nAttacke-Wert von Wilde Klauen: 500\nAttacke-Wert von Tückische Kralle: 560\nAttacke-Wert von Kehlreißer: 220\nAttacke-Wert von Bauchschlitzer: 260\nAttacke-Wert von Augenstecher: 300\nAttacke-Wert von Erda-Detonation: 800\nAttacke-Wert von Überschall: 180",
+  "description_macro": "Erhöht den Attacke-Wert folgender Kommandos:<br>Attacke-Wert von <colortype(502)><edgecolortype(503)>Zerfetzer<edgecolortype(0)><colortype(0)>: 300<br>Attacke-Wert von <colortype(502)><edgecolortype(503)>Brutaler Einschlag<edgecolortype(0)><colortype(0)>: 240<br>Attacke-Wert von <colortype(502)><edgecolortype(503)>Stahlwalze<edgecolortype(0)><colortype(0)>: 240<br>Attacke-Wert von <colortype(502)><edgecolortype(503)>Explosiver Stoß<edgecolortype(0)><colortype(0)>: 420<br>Attacke-Wert von <colortype(502)><edgecolortype(503)>Schlagfänge<edgecolortype(0)><colortype(0)>: 440<br>Attacke-Wert von <colortype(502)><edgecolortype(503)>Wilde Klauen<edgecolortype(0)><colortype(0)>: 500<br>Attacke-Wert von <colortype(502)><edgecolortype(503)>Tückische Kralle<edgecolortype(0)><colortype(0)>: 560<br>Attacke-Wert von <colortype(502)><edgecolortype(503)>Kehlreißer<edgecolortype(0)><colortype(0)>: 220<br>Attacke-Wert von <colortype(502)><edgecolortype(503)>Bauchschlitzer<edgecolortype(0)><colortype(0)>: 260<br>Attacke-Wert von <colortype(502)><edgecolortype(503)>Augenstecher<edgecolortype(0)><colortype(0)>: 300<br>Attacke-Wert von <colortype(502)><edgecolortype(503)>Erda-Detonation<edgecolortype(0)><colortype(0)>: 800<br>Attacke-Wert von <colortype(502)><edgecolortype(503)>Überschall<edgecolortype(0)><colortype(0)>: 180",
+  "effects": [
+    "Erhöht den Attacke-Wert folgender Kommandos:",
+    "Attacke-Wert von Zerfetzer: 300",
+    "Attacke-Wert von Brutaler Einschlag: 240",
+    "Attacke-Wert von Stahlwalze: 240",
+    "Attacke-Wert von Explosiver Stoß: 420",
+    "Attacke-Wert von Schlagfänge: 440",
+    "Attacke-Wert von Wilde Klauen: 500",
+    "Attacke-Wert von Tückische Kralle: 560",
+    "Attacke-Wert von Kehlreißer: 220",
+    "Attacke-Wert von Bauchschlitzer: 260",
+    "Attacke-Wert von Augenstecher: 300",
+    "Attacke-Wert von Erda-Detonation: 800",
+    "Attacke-Wert von Überschall: 180"
+  ],
+  "role": "Tank",
+  "job": {
+    "id": 37,
+    "name": "Revolverklinge",
+    "abbreviation": "REV"
+  },
+  "unlock_level": 94,
+  "value": 0,
+  "icon": {
+    "id": 6802,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 149,
+  "source_class_job_id": 37
+}

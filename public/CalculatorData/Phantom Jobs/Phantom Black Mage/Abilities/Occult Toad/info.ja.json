@@ -1,0 +1,86 @@
+{
+  "kind": "ability",
+  "id": 49075,
+  "name": "マギ・トード",
+  "description": "対象に「マギ・トード」を付与する。\n効果時間：20秒\nマギ・トード効果：与ダメージが99％減少し、オートアタック以外の行動が制限される。",
+  "description_macro": "対象に<colortype(500)><edgecolortype(501)>「マギ・トード」<edgecolortype(0)><colortype(0)>を付与する。<br><colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>20秒<br><colortype(504)><edgecolortype(505)>マギ・トード効果：<edgecolortype(0)><colortype(0)>与ダメージが99％減少し、オートアタック以外の行動が制限される。",
+  "effects": [
+    "対象に「マギ・トード」を付与する。",
+    "効果時間：20秒",
+    "マギ・トード効果：与ダメージが99％減少し、オートアタック以外の行動が制限される。"
+  ],
+  "role": "Phantom Jobs",
+  "job": {
+    "id": 18,
+    "name": "サポート黒魔道士",
+    "abbreviation": "Ph. Black Mage"
+  },
+  "is_phantom_action": true,
+  "unlock_level": 4,
+  "icon": {
+    "id": 64514,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 2,
+    "name": "魔法"
+  },
+  "attack_type": {
+    "id": 0,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 1.5,
+    "recast_seconds": 2.5,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 58,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 0,
+      "value": 0
+    },
+    "secondary": {
+      "type_id": 0,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": 30,
+    "effect_yalms": 0,
+    "cast_type": 1
+  },
+  "targeting": {
+    "self": false,
+    "party": false,
+    "alliance": false,
+    "hostile": true,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 0,
+    "behavior_type": 0,
+    "class_job_category_id": 142,
+    "source_class_job_id": 4294967295,
+    "is_role_action": false,
+    "is_player_action": false,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

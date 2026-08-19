@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 663,
+  "name": "Melee Mastery II",
+  "description": "Increases the potency of Hard Slash to 300, Syphon Strike to 240, Souleater to 260, Stalwart Soul to 120, Carve and Spit to 540, Bloodspiller to 600, and Quietus to 240.",
+  "description_macro": "Increases the potency of <colortype(500)><edgecolortype(501)>Hard Slash<edgecolortype(0)><colortype(0)> to 300, <colortype(500)><edgecolortype(501)>Syphon Strike<edgecolortype(0)><colortype(0)> to 240, <colortype(500)><edgecolortype(501)>Souleater<edgecolortype(0)><colortype(0)> to 260, <colortype(500)><edgecolortype(501)>Stalwart Soul<edgecolortype(0)><colortype(0)> to 120, <colortype(500)><edgecolortype(501)>Carve and Spit<edgecolortype(0)><colortype(0)> to 540, <colortype(500)><edgecolortype(501)>Bloodspiller<edgecolortype(0)><colortype(0)> to 600, and <colortype(500)><edgecolortype(501)>Quietus<edgecolortype(0)><colortype(0)> to 240.",
+  "effects": [
+    "Increases the potency of Hard Slash to 300, Syphon Strike to 240, Souleater to 260, Stalwart Soul to 120, Carve and Spit to 540, Bloodspiller to 600, and Quietus to 240."
+  ],
+  "role": "Tank",
+  "job": {
+    "id": 32,
+    "name": "Dark Knight",
+    "abbreviation": "DRK"
+  },
+  "unlock_level": 94,
+  "value": 0,
+  "icon": {
+    "id": 6802,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 98,
+  "source_class_job_id": 32
+}

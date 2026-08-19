@@ -1,0 +1,93 @@
+{
+  "kind": "ability",
+  "id": 25830,
+  "name": "Ravivement",
+  "description": "Restaure les PV de la cible.\nPuissance : 400\nEffet additionnel : octroie Ravivement.\nDurée : 30s\nRavivement : octroie Flamme éternelle lorsque les PV tombent sous 75% ou à la fin de l'effet.\nFlamme éternelle : restaure périodiquement les PV de la cible.\nPuissance : 200 Durée : 15s\nCondition : Transe-Phénix.\n\n* Cette action ne peut pas être ajoutée aux barres de raccourcis.\nRemplace Flux astral lorsque les conditions sont réunies.",
+  "description_macro": "Restaure les PV de la cible.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> 400<br><colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> octroie <colortype(500)><edgecolortype(501)>Ravivement<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 30s<br><colortype(506)><edgecolortype(507)>Ravivement<nbsp>:<edgecolortype(0)><colortype(0)> octroie <colortype(500)><edgecolortype(501)>Flamme éternelle<edgecolortype(0)><colortype(0)> lorsque les PV tombent sous 75% ou à la fin de l'effet.<br><colortype(506)><edgecolortype(507)>Flamme éternelle<nbsp>:<edgecolortype(0)><colortype(0)> restaure périodiquement les PV de la cible.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> 200 <colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 15s<br><colortype(506)><edgecolortype(507)>Condition<nbsp>:<edgecolortype(0)><colortype(0)> <colortype(500)><edgecolortype(501)>Transe-Phénix<edgecolortype(0)><colortype(0)>.<br><br><colortype(504)><edgecolortype(505)>* Cette action ne peut pas être ajoutée aux barres de raccourcis.<br>Remplace <colortype(500)><edgecolortype(501)>Flux astral<edgecolortype(0)><colortype(0)> lorsque les conditions sont réunies.<edgecolortype(0)><colortype(0)>",
+  "effects": [
+    "Restaure les PV de la cible.",
+    "Puissance : 400",
+    "Effet additionnel : octroie Ravivement.",
+    "Durée : 30s",
+    "Ravivement : octroie Flamme éternelle lorsque les PV tombent sous 75% ou à la fin de l'effet.",
+    "Flamme éternelle : restaure périodiquement les PV de la cible.",
+    "Puissance : 200 Durée : 15s",
+    "Condition : Transe-Phénix.",
+    "* Cette action ne peut pas être ajoutée aux barres de raccourcis.",
+    "Remplace Flux astral lorsque les conditions sont réunies."
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 27,
+    "name": "Invocateur",
+    "abbreviation": "INV"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 80,
+  "icon": {
+    "id": 2764,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 4,
+    "name": "Aptitude"
+  },
+  "attack_type": {
+    "id": 0,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 20,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 5,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 0,
+      "value": 0
+    },
+    "secondary": {
+      "type_id": 93,
+      "value": 1
+    }
+  },
+  "range": {
+    "target_yalms": 30,
+    "effect_yalms": 0,
+    "cast_type": 1
+  },
+  "targeting": {
+    "self": true,
+    "party": true,
+    "alliance": false,
+    "hostile": false,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": false
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": false
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 0,
+    "behavior_type": 0,
+    "class_job_category_id": 28,
+    "source_class_job_id": 0,
+    "is_role_action": false,
+    "is_player_action": false,
+    "is_derived_action": true,
+    "equivalence_group": 0
+  }
+}

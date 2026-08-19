@@ -1,0 +1,98 @@
+{
+  "kind": "ability",
+  "id": 37011,
+  "name": "Caresse divine",
+  "description": "Crée une barrière sur vous et les équipiers alentour, absorbant un certain montant de dégâts.\nPuissance : 400 Durée : 10s\nEffet additionnel : octroie Caresse divine à la cible une fois la barrière dissipée.\nCaresse divine : restaure périodiquement les PV.\nPuissance : 200 Durée : 15s\nCondition : Caresse divine préparée.",
+  "description_macro": "Crée une barrière sur vous et les équipiers alentour, absorbant un certain montant de dégâts.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> 400 <colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 10s<br><colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> octroie <colortype(500)><edgecolortype(501)>Caresse divine<edgecolortype(0)><colortype(0)> à la cible une fois la barrière dissipée.<br><colortype(506)><edgecolortype(507)>Caresse divine<nbsp>:<edgecolortype(0)><colortype(0)> restaure périodiquement les PV.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> 200 <colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 15s<br><colortype(506)><edgecolortype(507)>Condition<nbsp>:<edgecolortype(0)><colortype(0)> <colortype(500)><edgecolortype(501)>Caresse divine préparée<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Crée une barrière sur vous et les équipiers alentour, absorbant un certain montant de dégâts.",
+    "Puissance : 400 Durée : 10s",
+    "Effet additionnel : octroie Caresse divine à la cible une fois la barrière dissipée.",
+    "Caresse divine : restaure périodiquement les PV.",
+    "Puissance : 200 Durée : 15s",
+    "Condition : Caresse divine préparée."
+  ],
+  "role": "Healer",
+  "job": {
+    "id": 24,
+    "name": "Mage Blanc",
+    "abbreviation": "MBL"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 100,
+  "icon": {
+    "id": 2128,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 4,
+    "name": "Aptitude"
+  },
+  "attack_type": {
+    "id": 0,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 1,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 2,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 10,
+      "value": 3881
+    },
+    "secondary": {
+      "type_id": 32,
+      "value": 3881
+    }
+  },
+  "range": {
+    "target_yalms": 0,
+    "effect_yalms": 30,
+    "cast_type": 2
+  },
+  "targeting": {
+    "self": true,
+    "party": false,
+    "alliance": false,
+    "hostile": false,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": false
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": {
+      "id": 182,
+      "status": {
+        "id": 3881,
+        "name": "Caresse divine préparée",
+        "description": "Caresse divine peut être lancée.",
+        "icon_id": 212640,
+        "max_stacks": 0
+      }
+    }
+  },
+  "metadata": {
+    "aspect_id": 0,
+    "behavior_type": 0,
+    "class_job_category_id": 25,
+    "source_class_job_id": 24,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

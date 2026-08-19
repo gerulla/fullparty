@@ -1,0 +1,89 @@
+{
+  "kind": "ability",
+  "id": 24304,
+  "name": "Toxikon",
+  "description": "Du führst eine elementneutrale magische Attacke auf das Ziel und die Gegner in seiner Nähe aus.\nAttacke-Wert: 300\nAttacke-Wert verringert sich ab dem zweiten Gegner um 50 %.\nZusatzeffekt: Regeneriert LP bei dem Ziel mit von dir gewährtem Kardion.\nHeilpotenzial: 170\nKomplexion-Kosten: 1",
+  "description_macro": "Du führst eine elementneutrale magische Attacke auf das Ziel und die Gegner in seiner Nähe aus.<br>Attacke-Wert: <if([gnum68==40],<if([gnum72>=72],300,240)>,240)><br>Attacke-Wert verringert sich ab dem zweiten Gegner um 50<nbsp>%.<br>Zusatzeffekt: Regeneriert LP bei dem Ziel mit von dir gewährtem <colortype(506)><edgecolortype(507)>Kardion<edgecolortype(0)><colortype(0)>.<br>Heilpotenzial: <if([gnum68==40],<if([gnum72>=85],170,130)>,130)><br><colortype(506)><edgecolortype(507)>Komplexion<edgecolortype(0)><colortype(0)>-Kosten: 1",
+  "effects": [
+    "Du führst eine elementneutrale magische Attacke auf das Ziel und die Gegner in seiner Nähe aus.",
+    "Attacke-Wert: 300",
+    "Attacke-Wert verringert sich ab dem zweiten Gegner um 50 %.",
+    "Zusatzeffekt: Regeneriert LP bei dem Ziel mit von dir gewährtem Kardion.",
+    "Heilpotenzial: 170",
+    "Komplexion-Kosten: 1"
+  ],
+  "role": "Healer",
+  "job": {
+    "id": 40,
+    "name": "Weiser",
+    "abbreviation": "WEI"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 66,
+  "icon": {
+    "id": 3672,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 2,
+    "name": "Zauber"
+  },
+  "attack_type": {
+    "id": 5,
+    "name": "魔法"
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 2.5,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 58,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 69,
+      "value": 1
+    },
+    "secondary": {
+      "type_id": 63,
+      "value": 376
+    }
+  },
+  "range": {
+    "target_yalms": 25,
+    "effect_yalms": 5,
+    "cast_type": 2
+  },
+  "targeting": {
+    "self": false,
+    "party": false,
+    "alliance": false,
+    "hostile": true,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": false
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 7,
+    "behavior_type": 0,
+    "class_job_category_id": 181,
+    "source_class_job_id": 40,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

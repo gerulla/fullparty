@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 157,
+  "name": "Verbesserter Schlachtruf",
+  "description": "Reaktivierungszeit von Schlachtruf ist um 5 Sekunden verkürzt, wenn du Niedermähen oder Dezimieren erfolgreich auf einen Gegner (einige ausgenommen) ausführst.",
+  "description_macro": "Re<->ak<->ti<->vie<->rungs<->zeit von <colortype(502)><edgecolortype(503)>Schlachtruf<edgecolortype(0)><colortype(0)> ist um 5 Sekunden verkürzt, wenn du <colortype(502)><edgecolortype(503)>Niedermähen<edgecolortype(0)><colortype(0)> oder <colortype(502)><edgecolortype(503)>Dezimieren<edgecolortype(0)><colortype(0)> erfolgreich auf einen Gegner (einige ausgenommen) ausführst.",
+  "effects": [
+    "Reaktivierungszeit von Schlachtruf ist um 5 Sekunden verkürzt, wenn du Niedermähen oder Dezimieren erfolgreich auf einen Gegner (einige ausgenommen) ausführst."
+  ],
+  "role": "Tank",
+  "job": {
+    "id": 21,
+    "name": "Krieger",
+    "abbreviation": "KRG"
+  },
+  "unlock_level": 66,
+  "value": 0,
+  "icon": {
+    "id": 5259,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 22,
+  "source_class_job_id": 21
+}

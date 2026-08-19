@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 324,
+  "name": "Corruption Mastery",
+  "description": "Upgrades Bio to Bio II.",
+  "description_macro": "Upgrades <colortype(500)><edgecolortype(501)>Bio<edgecolortype(0)><colortype(0)> to <colortype(500)><edgecolortype(501)>Bio II<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Upgrades Bio to Bio II."
+  ],
+  "role": "Healer",
+  "job": {
+    "id": 28,
+    "name": "Scholar",
+    "abbreviation": "SCH"
+  },
+  "unlock_level": 26,
+  "value": 0,
+  "icon": {
+    "id": 5376,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 29,
+  "source_class_job_id": 28
+}

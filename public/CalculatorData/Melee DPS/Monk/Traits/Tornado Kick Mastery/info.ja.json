@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 513,
+  "name": "闘魂旋風脚マスタリー",
+  "description": "闘魂旋風脚が夢幻闘舞に変化する。",
+  "description_macro": "闘魂旋風脚が夢幻闘舞に変化する。",
+  "effects": [
+    "闘魂旋風脚が夢幻闘舞に変化する。"
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 20,
+    "name": "モンク",
+    "abbreviation": "MNK"
+  },
+  "unlock_level": 90,
+  "value": 0,
+  "icon": {
+    "id": 5247,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 21,
+  "source_class_job_id": 20
+}

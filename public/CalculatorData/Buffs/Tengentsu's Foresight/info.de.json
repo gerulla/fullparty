@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 3854,
+  "name": "Tengentsu: Sei",
+  "description": "Erlittener Schaden ist verringert und LP werden stetig regeneriert.",
+  "effects": [
+    "Erlittener Schaden ist verringert und LP werden stetig regeneriert."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 213317,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 39,
+    "modifier": 10
+  },
+  "class_job_category_id": 111,
+  "source_abilities": [
+    {
+      "id": 36962,
+      "name": "Tengentsu",
+      "description": "Du verringerst den nächsten erlittenen Schaden um 10 %.\nDauer: 4 Sekunden\nZusatzeffekt: Bei erlittenem Treffer füllt sich der Kenki-Balken um 10 und Tengentsu ändert sich zu Tengentsu: Sei.\nDauer: 9 Sekunden\nEffekt von Tengentsu: Sei: Verringert erlittenen Schaden um 10 % und regeneriert stetig eigene LP.\nHeilpotenzial: 200",
+      "description_macro": "Du verringerst den nächsten erlittenen Schaden um 10<nbsp>%.<br>Dauer: 4 Sekunden<br>Zusatzeffekt: Bei erlittenem Treffer füllt sich der Kenki-Balken um 10 und <colortype(506)><edgecolortype(507)>Tengentsu<edgecolortype(0)><colortype(0)> ändert sich zu <colortype(506)><edgecolortype(507)>Tengentsu: Sei<edgecolortype(0)><colortype(0)>.<br>Dauer: 9 Sekunden<br>Effekt von <colortype(506)><edgecolortype(507)>Tengentsu: Sei<edgecolortype(0)><colortype(0)>: Verringert erlittenen Schaden um 10 % und regeneriert stetig eigene LP.<br>Heilpotenzial: 200",
+      "unlock_level": 82,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 34,
+          "name": "Samurai",
+          "abbreviation": "SAM",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

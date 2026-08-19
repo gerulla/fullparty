@@ -1,0 +1,27 @@
+{
+  "kind": "trait",
+  "id": 583,
+  "name": "スターダイバー効果アップ",
+  "description": "自身に「スタークロッサー実行可」が付与される。\n効果時間：20秒\nこの効果は「紅の竜血」の効果が切れると解除される。\n発動条件：スターダイバー実行時",
+  "description_macro": "自身に<colortype(500)><edgecolortype(501)>「スタークロッサー実行可」<edgecolortype(0)><colortype(0)>が付与される。<br><colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>20秒<br>この効果は<colortype(500)><edgecolortype(501)>「紅の竜血」<edgecolortype(0)><colortype(0)>の効果が切れると解除される。<br><colortype(504)><edgecolortype(505)>発動条件：<edgecolortype(0)><colortype(0)>スターダイバー実行時",
+  "effects": [
+    "自身に「スタークロッサー実行可」が付与される。",
+    "効果時間：20秒",
+    "この効果は「紅の竜血」の効果が切れると解除される。",
+    "発動条件：スターダイバー実行時"
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 22,
+    "name": "竜騎士",
+    "abbreviation": "DRG"
+  },
+  "unlock_level": 100,
+  "value": 0,
+  "icon": {
+    "id": 5298,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 23,
+  "source_class_job_id": 22
+}

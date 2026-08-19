@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 3874,
+  "name": "Lux Solaris",
+  "description": "Lux Solaris kann ausgeführt werden.",
+  "effects": [
+    "Lux Solaris kann ausgeführt werden."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 212751,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 28,
+  "source_abilities": [
+    {
+      "id": 36992,
+      "name": "Sol-Bahamut-Beschwörung",
+      "description": "Du fällst in tiefe Sol-Bahamut-Trance und rufst Sol-Bahamut an deine Seite, der auf das von dir anvisierte Ziel Lichtschein ausführt.\nDauer: 15 Sekunden\nZusatzeffekt: Gewährt dir Lux Solaris.\nDauer: 30 Sekunden\nZusatzeffekt: Ruinga ändert sich zu Schattenimpuls und Trisaster ändert sich zu Schattenflare.\nZusatzeffekt: Rubin-Arkanum, Topas-Arkanum, Smaragd-Arkanum\nBedingung: Karfunkel ist bereits gerufen.\nSol-Bahamut nimmt für die Dauer der Beschwörung den Platz deines Karfunkels ein, aber das Karfunkel findet danach von selbst wieder zu dir.\nDie Ausführung dieses Kommandos erhöht die Feindseligkeit des Ziels gegen dich.\nEigener Reaktivierungs-Timer\nBei erfüllter Bedingung ändert sich Bahamut-Beschwörung zu diesem Kommando.\nKann nicht im Kommandomenü angelegt werden.",
+      "description_macro": "Du fällst in tiefe <colortype(506)><edgecolortype(507)>Sol-Bahamut-Trance<edgecolortype(0)><colortype(0)> und rufst Sol-Bahamut an deine Seite, der auf das von dir anvisierte Ziel <colortype(502)><edgecolortype(503)>Lichtschein<edgecolortype(0)><colortype(0)> ausführt.<br>Dauer: 15 Sekunden<br>Zusatzeffekt: Gewährt dir <colortype(506)><edgecolortype(507)>Lux Solaris<edgecolortype(0)><colortype(0)>.<br>Dauer: 30 Sekunden<br>Zusatzeffekt: <colortype(502)><edgecolortype(503)>Ruinga<edgecolortype(0)><colortype(0)> ändert sich zu <colortype(502)><edgecolortype(503)>Schattenimpuls<edgecolortype(0)><colortype(0)> und <colortype(502)><edgecolortype(503)>Trisaster<edgecolortype(0)><colortype(0)> ändert sich zu <colortype(502)><edgecolortype(503)>Schattenflare<edgecolortype(0)><colortype(0)>.<br>Zusatzeffekt: <colortype(506)><edgecolortype(507)>Rubin-Arkanum<edgecolortype(0)><colortype(0)>, <colortype(506)><edgecolortype(507)>Topas-Arkanum<edgecolortype(0)><colortype(0)>, <colortype(506)><edgecolortype(507)>Smaragd-Arkanum<edgecolortype(0)><colortype(0)><br>Bedingung: Karfunkel ist bereits gerufen.<br>Sol-Bahamut nimmt für die Dauer der Beschwörung den Platz deines Karfunkels ein, aber das Karfunkel findet danach von selbst wieder zu dir.<br>Die Ausführung dieses Kommandos erhöht die Feindseligkeit des Ziels gegen dich.<br>Eigener Reaktivierungs-Timer<br>Bei erfüllter Bedingung ändert sich <colortype(502)><edgecolortype(503)>Bahamut-Beschwörung<edgecolortype(0)><colortype(0)> zu diesem Kommando.<br>Kann nicht im Kommandomenü angelegt werden.",
+      "unlock_level": 100,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Magical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 27,
+          "name": "Beschwörer",
+          "abbreviation": "BSW",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

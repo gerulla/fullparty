@@ -1,0 +1,27 @@
+{
+  "kind": "trait",
+  "id": 381,
+  "name": "アヴァターアビリティ効果アップ",
+  "description": "自身に「妖異の鎌」が付与される。\n効果時間：30秒\nこの効果はウェポンスキルや魔法を実行すると解除される。\n発動条件：ストークスウェーズおよびシーフスウェーズの命中時",
+  "description_macro": "自身に<colortype(500)><edgecolortype(501)>「妖異の鎌」<edgecolortype(0)><colortype(0)>が付与される。<br><colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>30秒<br>この効果はウェポンスキルや魔法を実行すると解除される。<br><colortype(504)><edgecolortype(505)>発動条件：<edgecolortype(0)><colortype(0)>ストークスウェーズおよびシーフスウェーズの命中時",
+  "effects": [
+    "自身に「妖異の鎌」が付与される。",
+    "効果時間：30秒",
+    "この効果はウェポンスキルや魔法を実行すると解除される。",
+    "発動条件：ストークスウェーズおよびシーフスウェーズの命中時"
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 39,
+    "name": "リーパー",
+    "abbreviation": "RPR"
+  },
+  "unlock_level": 70,
+  "value": 0,
+  "icon": {
+    "id": 6403,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 180,
+  "source_class_job_id": 39
+}

@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 376,
+  "name": "Meister der Offensivmagie II",
+  "description": "Dosis II verwandelt sich in Dosis III, Phlegma II in Phlegma III, Eukratische Dosis II in Eukratische Dosis III, Dyskrasie in Dyskrasie II und Toxikon in Toxikon II.",
+  "description_macro": "<colortype(502)><edgecolortype(503)>Dosis II<edgecolortype(0)><colortype(0)> verwandelt sich in <colortype(502)><edgecolortype(503)>Dosis III<edgecolortype(0)><colortype(0)>, <colortype(502)><edgecolortype(503)>Phlegma II<edgecolortype(0)><colortype(0)> in <colortype(502)><edgecolortype(503)>Phlegma III<edgecolortype(0)><colortype(0)>, <colortype(502)><edgecolortype(503)>Eukratische Dosis II<edgecolortype(0)><colortype(0)> in <colortype(502)><edgecolortype(503)>Eukratische Dosis III<edgecolortype(0)><colortype(0)>, <colortype(502)><edgecolortype(503)>Dyskrasie<edgecolortype(0)><colortype(0)> in <colortype(502)><edgecolortype(503)>Dyskrasie II<edgecolortype(0)><colortype(0)> und <colortype(502)><edgecolortype(503)>Toxikon<edgecolortype(0)><colortype(0)> in <colortype(502)><edgecolortype(503)>Toxikon II<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Dosis II verwandelt sich in Dosis III, Phlegma II in Phlegma III, Eukratische Dosis II in Eukratische Dosis III, Dyskrasie in Dyskrasie II und Toxikon in Toxikon II."
+  ],
+  "role": "Healer",
+  "job": {
+    "id": 40,
+    "name": "Weiser",
+    "abbreviation": "WEI"
+  },
+  "unlock_level": 82,
+  "value": 0,
+  "icon": {
+    "id": 6457,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 181,
+  "source_class_job_id": 40
+}

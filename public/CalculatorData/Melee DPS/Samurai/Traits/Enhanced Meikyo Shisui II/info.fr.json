@@ -1,0 +1,26 @@
+{
+  "kind": "trait",
+  "id": 593,
+  "name": "Meikyô Shisui amélioré II",
+  "description": "Permet de recevoir Tendô lorsque vous utilisez Meikyô Shisui.\nDurée : 30s\nRemplace Tenka Goken par Tendô Goken et Midare Setsugekka par Tendô Setsugekka pendant la durée de l'effet.",
+  "description_macro": "Permet de recevoir <colortype(500)><edgecolortype(501)>Tendô<edgecolortype(0)><colortype(0)> lorsque vous utilisez <colortype(500)><edgecolortype(501)>Meikyô Shisui<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 30s<br>Remplace <colortype(500)><edgecolortype(501)>Tenka Goken<edgecolortype(0)><colortype(0)> par <colortype(500)><edgecolortype(501)>Tendô Goken<edgecolortype(0)><colortype(0)> et <colortype(500)><edgecolortype(501)>Midare Setsugekka<edgecolortype(0)><colortype(0)> par <colortype(500)><edgecolortype(501)>Tendô Setsugekka<edgecolortype(0)><colortype(0)> pendant la durée de l'effet.",
+  "effects": [
+    "Permet de recevoir Tendô lorsque vous utilisez Meikyô Shisui.",
+    "Durée : 30s",
+    "Remplace Tenka Goken par Tendô Goken et Midare Setsugekka par Tendô Setsugekka pendant la durée de l'effet."
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 34,
+    "name": "Samouraï",
+    "abbreviation": "SAM"
+  },
+  "unlock_level": 100,
+  "value": 0,
+  "icon": {
+    "id": 6163,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 111,
+  "source_class_job_id": 34
+}

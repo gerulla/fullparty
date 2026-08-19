@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 166,
+  "name": "士気高揚の策効果アップ",
+  "description": "次に詠唱する士気高揚の策の消費ＭＰが0になる状態。",
+  "effects": [
+    "次に詠唱する士気高揚の策の消費ＭＰが0になる状態。"
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 212804,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 186,
+      "name": "士気高揚の策",
+      "description": "自身と周囲のパーティメンバーのＨＰを回復する。\n回復力：200\n追加効果：対象に一定量のダメージを防ぐバリアを張る。\nこのバリアは回復量の160％分のダメージを軽減する。\n効果時間：30秒\n賢者の一部のバリア効果とは同時に付与されない。",
+      "description_macro": "自身と周囲のパーティメンバーのＨＰを回復する。<br><colortype(504)><edgecolortype(505)>回復力：<edgecolortype(0)><colortype(0)>200<br><colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)>対象に一定量のダメージを防ぐバリアを張る。<br>このバリアは回復量の<if([gnum68==28],<if([gnum72>=85],160,115)>,115)>％分のダメージを軽減する。<br><colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>30秒<br>賢者の一部のバリア効果とは同時に付与されない。",
+      "unlock_level": 35,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Healer"
+      ],
+      "jobs": [
+        {
+          "id": 28,
+          "name": "学者",
+          "abbreviation": "SCH",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

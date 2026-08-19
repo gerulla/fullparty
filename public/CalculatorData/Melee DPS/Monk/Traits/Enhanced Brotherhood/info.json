@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 432,
+  "name": "Enhanced Brotherhood",
+  "description": "Guarantees that a chakra will open when you are under the effect of Meditative Brotherhood and execute a weaponskill or cast a spell.",
+  "description_macro": "Guarantees that a chakra will open when you are under the effect of <colortype(506)><edgecolortype(507)>Meditative Brotherhood<edgecolortype(0)><colortype(0)> and execute a weaponskill or cast a spell.",
+  "effects": [
+    "Guarantees that a chakra will open when you are under the effect of Meditative Brotherhood and execute a weaponskill or cast a spell."
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 20,
+    "name": "Monk",
+    "abbreviation": "MNK"
+  },
+  "unlock_level": 88,
+  "value": 0,
+  "icon": {
+    "id": 5245,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 21,
+  "source_class_job_id": 20
+}

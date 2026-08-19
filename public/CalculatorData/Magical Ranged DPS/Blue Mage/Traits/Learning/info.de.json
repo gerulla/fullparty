@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 219,
+  "name": "Erlernen",
+  "description": "Gewährt nach Besiegen bestimmter Gegner gelegentlich einen neuen Blaumagiezauber. Der Gegner muss die entsprechende Fähigkeit im Kampf benutzt haben.",
+  "description_macro": "Gewährt nach Besiegen bestimmter Gegner gelegentlich einen neuen Blaumagiezauber. Der Gegner muss die entsprechende Fähigkeit im Kampf benutzt haben.",
+  "effects": [
+    "Gewährt nach Besiegen bestimmter Gegner gelegentlich einen neuen Blaumagiezauber. Der Gegner muss die entsprechende Fähigkeit im Kampf benutzt haben."
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 36,
+    "name": "Blaumagier",
+    "abbreviation": "BMA"
+  },
+  "unlock_level": 1,
+  "value": 0,
+  "icon": {
+    "id": 6251,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 129,
+  "source_class_job_id": 36
+}

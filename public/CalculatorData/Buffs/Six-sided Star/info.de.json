@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 2514,
+  "name": "Sechsstern-Tritt",
+  "description": "Bewegungsgeschwindigkeit ist erhöht.",
+  "effects": [
+    "Bewegungsgeschwindigkeit ist erhöht."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 212536,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 18,
+    "modifier": 0
+  },
+  "class_job_category_id": 21,
+  "source_abilities": [
+    {
+      "id": 16476,
+      "name": "Sechsstern-Tritt",
+      "description": "Du führst eine physische Attacke aus.\nAttacke-Wert: 780\nAttacke-Wert erhöht um 80 für jedes Schatten-Chakra, das aktiv ist.\nZusatzeffekt: Deine Bewegungsgeschwindigkeit wird erhöht.\nDauer: 5 Sekunden\nBei Ausführung wird Schatten-Chakra beendet.\nGewährt auch bei einem kritischen Treffer kein Schatten-Chakra.\nEigener Reaktivierungs-Timer, der nach Ausführung auf alle anderen Waffenfertigkeiten und Zauber angewendet wird.",
+      "description_macro": "Du führst eine physische Attacke aus.<br>Attacke-Wert: <if([gnum68==20],<if([gnum72>=94],780,710)>,710)><br>Attacke-Wert erhöht um 80 für jedes <colortype(506)><edgecolortype(507)>Schatten-Chakra<edgecolortype(0)><colortype(0)>, das aktiv ist.<br>Zusatzeffekt: Deine Be<->we<->gungs<->ge<->schwin<->dig<->keit wird erhöht.<br>Dauer: 5 Sekunden<br>Bei Ausführung wird <colortype(506)><edgecolortype(507)>Schatten-Chakra<edgecolortype(0)><colortype(0)> beendet.<br>Gewährt auch bei einem kritischen Treffer kein <colortype(506)><edgecolortype(507)>Schatten-Chakra<edgecolortype(0)><colortype(0)>.<br>Eigener Reaktivierungs-Timer, der nach Ausführung auf alle anderen Waf<->fen<->fer<->tig<->kei<->ten und Zauber angewendet wird.",
+      "unlock_level": 80,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 20,
+          "name": "Mönch",
+          "abbreviation": "MÖN",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

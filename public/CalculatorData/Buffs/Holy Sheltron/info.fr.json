@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 2674,
+  "name": "Schiltron sacré",
+  "description": "Les dégâts reçus sont réduits.",
+  "effects": [
+    "Les dégâts reçus sont réduits."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 212515,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": -10
+  },
+  "class_job_category_id": 20,
+  "source_abilities": [
+    {
+      "id": 25746,
+      "name": "Schiltron sacré",
+      "description": "Réduit de 15% vos dégâts subis.\nDurée : 8s\nEffet additionnel : vous octroie Égide du paladin.\nDurée : 4s\nÉgide du paladin : réduit de 15% les dégâts subis.\nEffet additionnel : vous octroie Bénédiction du paladin.\nDurée : 12s\nBénédiction du paladin : restaure périodiquement les PV.\nPuissance : 250\nCoût Jauge du serment : 50",
+      "description_macro": "Réduit de 15% vos dégâts subis.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 8s<br><colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> vous octroie <colortype(500)><edgecolortype(501)>Égide du paladin<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 4s<br><colortype(506)><edgecolortype(507)>Égide du paladin<nbsp>:<edgecolortype(0)><colortype(0)> réduit de 15% les dégâts subis.<br><colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> vous octroie <colortype(500)><edgecolortype(501)>Bénédiction du paladin<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 12s<br><colortype(506)><edgecolortype(507)>Bénédiction du paladin<nbsp>:<edgecolortype(0)><colortype(0)> restaure périodiquement les PV.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> 250<br><colortype(506)><edgecolortype(507)>Coût Jauge du serment<nbsp>:<edgecolortype(0)><colortype(0)> 50",
+      "unlock_level": 82,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Tank"
+      ],
+      "jobs": [
+        {
+          "id": 19,
+          "name": "Paladin",
+          "abbreviation": "PLD",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

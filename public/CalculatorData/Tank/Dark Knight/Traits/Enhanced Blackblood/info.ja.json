@@ -1,0 +1,25 @@
+{
+  "kind": "trait",
+  "id": 159,
+  "name": "ブラックブラッドII",
+  "description": "「ブラックブラッド」が上昇するようになる。\n発動条件：「ブラッドウェポン」効果中に実行するウェポンスキルおよび魔法の命中時",
+  "description_macro": "<colortype(500)><edgecolortype(501)>「ブラックブラッド」<edgecolortype(0)><colortype(0)>が上昇するようになる。<br><colortype(504)><edgecolortype(505)>発動条件：<edgecolortype(0)><colortype(0)><colortype(500)><edgecolortype(501)>「ブラッドウェポン」<edgecolortype(0)><colortype(0)>効果中に実行するウェポンスキルおよび魔法の命中時",
+  "effects": [
+    "「ブラックブラッド」が上昇するようになる。",
+    "発動条件：「ブラッドウェポン」効果中に実行するウェポンスキルおよび魔法の命中時"
+  ],
+  "role": "Tank",
+  "job": {
+    "id": 32,
+    "name": "暗黒騎士",
+    "abbreviation": "DRK"
+  },
+  "unlock_level": 66,
+  "value": 0,
+  "icon": {
+    "id": 6060,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 98,
+  "source_class_job_id": 32
+}

@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 102,
+  "name": "Mantra",
+  "description": "Les effets de récupération de PV sont augmentés.",
+  "effects": [
+    "Les effets de récupération de PV sont augmentés."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 210206,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 5,
+  "parameter": {
+    "effect": 0,
+    "modifier": 5
+  },
+  "class_job_category_id": 41,
+  "source_abilities": [
+    {
+      "id": 65,
+      "name": "Mantra",
+      "description": "Augmente de 10% les effets de récupération de PV sur vous et les équipiers alentour.\nDurée : 15s",
+      "description_macro": "Augmente de 10% les effets de récupération de PV sur vous et les équipiers alentour.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 15s",
+      "unlock_level": 42,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 20,
+          "name": "Moine",
+          "abbreviation": "MOI",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

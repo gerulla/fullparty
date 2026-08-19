@@ -1,0 +1,107 @@
+{
+  "kind": "ability",
+  "id": 16196,
+  "name": "Komplexes Finale IV",
+  "description": "Du führst eine physische Attacke auf alle Gegner innerhalb von 15y aus.\nAttacke-Wert variiert mit der Anzahl der Tanzschritte:\n0 Schritte: 350\n1 Schritt: 540\n2 Schritte: 720\n3 Schritte: 900\n4 Schritte: 1.300\nAttacke-Wert verringert sich ab dem zweiten Gegner um 60 %.\nTanzschritt-Bonus: Gewährt dir und Gruppenmitgliedern innerhalb von 30y die Status Tanzfieber und Komplexes Finale.\nDer Schadensbonus von Komplexes Finale variiert mit der Anzahl der Tanzschritte:\n1 Schritt: 1 %\n2 Schritte: 2 %\n3 Schritte: 3 %\n4 Schritte: 5 %\nDauer: 20 Sekunden\nZusatzeffekt: Gewährt dir Tillana.\nDauer: 30 Sekunden\nZusatzeffekt: Gewährt dir Glühende Sohlen.\nDauer: 30 Sekunden\nBedingung: Tanzend\nEigener Reaktivierungs-Timer\nBei Ausführung wird der Reaktivierungs-Timer dieses Kommandos auf alle anderen Waffenfertigkeiten und Magie angewendet.\nBei erfüllter Bedingung ändert sich Komplexe Choreographie zu diesem Kommando.\nKann nicht im Kommandomenü angelegt werden.",
+  "description_macro": "Du führst eine physische Attacke auf alle Gegner innerhalb von 15y aus.<br>Attacke-Wert variiert mit der Anzahl der Tanzschritte:<br>0 Schritte: 350<br>1 Schritt: 540<br>2 Schritte: 720<br>3 Schritte: 900<br>4 Schritte: <if([gnum68==38],<if([gnum72>=94],1.300,1.200)>,1.200)><br>Attacke-Wert verringert sich ab dem zweiten Gegner um 60<nbsp>%.<br><if([gnum68==38],<if([gnum72>=76],Tanzschritt-Bonus: Gewährt dir und Grup<->pen<->mit<->gliedern innerhalb von 30y die Status <colortype(506)><edgecolortype(507)>Tanzfieber<edgecolortype(0)><colortype(0)> und <colortype(506)><edgecolortype(507)>Komplexes Finale<edgecolortype(0)><colortype(0)>.<br>,Tanzschritt-Bonus: Gewährt dir und Grup<->pen<->mit<->gliedern in deiner Nähe den Status <colortype(506)><edgecolortype(507)>Komplexes Finale<edgecolortype(0)><colortype(0)>.<br>)>,Tanzschritt-Bonus: Gewährt dir und Grup<->pen<->mit<->gliedern in deiner Nähe den Status <colortype(506)><edgecolortype(507)>Komplexes Finale<edgecolortype(0)><colortype(0)>.<br>)>Der Schadensbonus von <colortype(502)><edgecolortype(503)>Komplexes Finale<edgecolortype(0)><colortype(0)> variiert mit der Anzahl der Tanzschritte:<br>1 Schritt: 1 %<br>2 Schritte: 2 %<br>3 Schritte: 3 %<br>4 Schritte: 5 %<br>Dauer: 20 Sekunden<br><if([gnum68==38],<if([gnum72>=82],Zusatzeffekt: Gewährt dir <colortype(506)><edgecolortype(507)>Tillana<edgecolortype(0)><colortype(0)>.<br>Dauer: 30 Sekunden<br>,)>,)><if([gnum68==38],<if([gnum72>=100],Zusatzeffekt: Gewährt dir <colortype(506)><edgecolortype(507)>Glühende Sohlen<edgecolortype(0)><colortype(0)>.<br>Dauer: 30 Sekunden<br>,)>,)>Bedingung: Tanzend<br>Eigener Reaktivierungs-Timer<br>Bei Ausführung wird der Reaktivierungs-Timer dieses Kommandos auf alle anderen Waf<->fen<->fer<->tig<->kei<->ten und Magie angewendet.<br>Bei erfüllter Bedingung ändert sich <colortype(502)><edgecolortype(503)>Komplexe Choreographie<edgecolortype(0)><colortype(0)> zu diesem Kommando.<br>Kann nicht im Kommandomenü angelegt werden.",
+  "effects": [
+    "Du führst eine physische Attacke auf alle Gegner innerhalb von 15y aus.",
+    "Attacke-Wert variiert mit der Anzahl der Tanzschritte:",
+    "0 Schritte: 350",
+    "1 Schritt: 540",
+    "2 Schritte: 720",
+    "3 Schritte: 900",
+    "4 Schritte: 1.300",
+    "Attacke-Wert verringert sich ab dem zweiten Gegner um 60 %.",
+    "Tanzschritt-Bonus: Gewährt dir und Gruppenmitgliedern innerhalb von 30y die Status Tanzfieber und Komplexes Finale.",
+    "Der Schadensbonus von Komplexes Finale variiert mit der Anzahl der Tanzschritte:",
+    "1 Schritt: 1 %",
+    "2 Schritte: 2 %",
+    "3 Schritte: 3 %",
+    "4 Schritte: 5 %",
+    "Dauer: 20 Sekunden",
+    "Zusatzeffekt: Gewährt dir Tillana.",
+    "Dauer: 30 Sekunden",
+    "Zusatzeffekt: Gewährt dir Glühende Sohlen.",
+    "Dauer: 30 Sekunden",
+    "Bedingung: Tanzend",
+    "Eigener Reaktivierungs-Timer",
+    "Bei Ausführung wird der Reaktivierungs-Timer dieses Kommandos auf alle anderen Waffenfertigkeiten und Magie angewendet.",
+    "Bei erfüllter Bedingung ändert sich Komplexe Choreographie zu diesem Kommando.",
+    "Kann nicht im Kommandomenü angelegt werden."
+  ],
+  "role": "Physical Ranged DPS",
+  "job": {
+    "id": 38,
+    "name": "Tänzer",
+    "abbreviation": "TÄN"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 70,
+  "icon": {
+    "id": 3474,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 3,
+    "name": "Waffenfertigkeit"
+  },
+  "attack_type": {
+    "id": 4294967295,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 2.5,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 58,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 0,
+      "value": 0
+    },
+    "secondary": {
+      "type_id": 90,
+      "value": 8
+    }
+  },
+  "range": {
+    "target_yalms": 0,
+    "effect_yalms": 15,
+    "cast_type": 2
+  },
+  "targeting": {
+    "self": true,
+    "party": false,
+    "alliance": false,
+    "hostile": false,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 7,
+    "behavior_type": 0,
+    "class_job_category_id": 150,
+    "source_class_job_id": 0,
+    "is_role_action": false,
+    "is_player_action": false,
+    "is_derived_action": true,
+    "equivalence_group": 0
+  }
+}

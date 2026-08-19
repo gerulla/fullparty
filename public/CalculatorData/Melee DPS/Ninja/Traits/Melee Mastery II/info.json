@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 522,
+  "name": "Melee Mastery II",
+  "description": "Increases the potency of Spinning Edge to 220, Gust Slash to 160, and Throwing Dagger to 200.",
+  "description_macro": "Increases the potency of <colortype(500)><edgecolortype(501)>Spinning Edge<edgecolortype(0)><colortype(0)> to 220, <colortype(500)><edgecolortype(501)>Gust Slash<edgecolortype(0)><colortype(0)> to 160, and <colortype(500)><edgecolortype(501)>Throwing Dagger<edgecolortype(0)><colortype(0)> to 200.",
+  "effects": [
+    "Increases the potency of Spinning Edge to 220, Gust Slash to 160, and Throwing Dagger to 200."
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 30,
+    "name": "Ninja",
+    "abbreviation": "NIN"
+  },
+  "unlock_level": 84,
+  "value": 0,
+  "icon": {
+    "id": 6802,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 92,
+  "source_class_job_id": 30
+}

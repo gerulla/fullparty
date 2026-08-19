@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 3847,
+  "name": "Gewetzte Klinge",
+  "description": "Ausweiden kann ausgeführt werden.",
+  "effects": [
+    "Ausweiden kann ausgeführt werden."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 213053,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 20,
+  "source_abilities": [
+    {
+      "id": 20,
+      "name": "Verwegenheit",
+      "description": "Du erhöhst den ausgeteilten Schaden um 25 %.\nDauer: 20 Sekunden\nZusatzseffekt: Gewährt dir Gewetzte Klinge.\nDauer: 30 Sekunden",
+      "description_macro": "Du erhöhst den ausgeteilten Schaden um 25 %.<br>Dauer: 20 Sekunden<if([gnum68==19],<if([gnum72>=54],<br>Zusatzseffekt: Gewährt dir <colortype(506)><edgecolortype(507)>Gewetzte Klinge<edgecolortype(0)><colortype(0)>.<br>Dauer: 30 Sekunden,)>,)>",
+      "unlock_level": 2,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Tank"
+      ],
+      "jobs": [
+        {
+          "id": 19,
+          "name": "Paladin",
+          "abbreviation": "PLD",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

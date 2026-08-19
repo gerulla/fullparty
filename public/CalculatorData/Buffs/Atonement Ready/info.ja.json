@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 1902,
+  "name": "ロイエ実行可",
+  "description": "ロイエを実行できる状態。",
+  "effects": [
+    "ロイエを実行できる状態。"
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 212522,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 20,
+  "source_abilities": [
+    {
+      "id": 3539,
+      "name": "ロイヤルアソリティ",
+      "description": "対象に物理攻撃。\u3000威力：200\nコンボ条件：ライオットソード\u3000コンボ時威力：460\nコンボボーナス：自身に「ロイエ実行可」を付与する。\n効果時間：30秒\nコンボボーナス：自身に「神聖魔法効果アップ」を付与する。\n効果時間：30秒\n神聖魔法効果アップ効果：次に実行する1回のホーリースピリットまたはホーリーサークルの威力が上昇し、かつ詠唱時間無しで実行できる。",
+      "description_macro": "対象に物理攻撃。\u3000<colortype(504)><edgecolortype(505)>威力：<edgecolortype(0)><colortype(0)><if([gnum68==19],<if([gnum72>=94],200,<if([gnum68==19],<if([gnum72>=84],140,100)>,100)>)>,<if([gnum68==19],<if([gnum72>=84],140,100)>,100)>)><br><colortype(504)><edgecolortype(505)>コンボ条件：<edgecolortype(0)><colortype(0)>ライオットソード\u3000<colortype(504)><edgecolortype(505)>コンボ時威力：<edgecolortype(0)><colortype(0)><if([gnum68==19],<if([gnum72>=94],460,<if([gnum68==19],<if([gnum72>=84],400,360)>,360)>)>,<if([gnum68==19],<if([gnum72>=84],400,360)>,360)>)><if([gnum68==19],<if([gnum72>=76],<br><colortype(504)><edgecolortype(505)>コンボボーナス：<edgecolortype(0)><colortype(0)>自身に<colortype(500)><edgecolortype(501)>「ロイエ実行可」<edgecolortype(0)><colortype(0)>を付与する。<br><colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>30秒,)>,)><if([gnum68==19],<if([gnum72>=64],<br><colortype(504)><edgecolortype(505)>コンボボーナス：<edgecolortype(0)><colortype(0)>自身に<colortype(500)><edgecolortype(501)>「神聖魔法効果アップ」<edgecolortype(0)><colortype(0)>を付与する。<br><colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>30秒<br><colortype(504)><edgecolortype(505)>神聖魔法効果アップ効果：<edgecolortype(0)><colortype(0)>次に実行する1回のホーリースピリット<if([gnum68==19],<if([gnum72>=72],またはホーリーサークル,)>,)>の威力が上昇し、かつ詠唱時間無しで実行できる。,)>,)>",
+      "unlock_level": 60,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Tank"
+      ],
+      "jobs": [
+        {
+          "id": 19,
+          "name": "ナイト",
+          "abbreviation": "PLD",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

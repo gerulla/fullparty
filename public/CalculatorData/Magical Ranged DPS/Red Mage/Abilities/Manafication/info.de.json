@@ -1,0 +1,92 @@
+{
+  "kind": "ability",
+  "id": 7521,
+  "name": "Manafizierung",
+  "description": "Erhöht kurzzeitig die Reichweite von Magische Riposte, Magischer Zwerchhau und Magisches Redoublement auf 25y.\nDauer: 30 Sekunden\nZusatzeffekt: Verleiht dir 3 Stapel Manafizierte Klinge.\nDauer: 30 Sekunden\nEffekt von Manafizierte Klinge: Erlaubt die Ausführung von Magische Riposte, Magischer Zwerchhau, Magisches Redoublement, Magischer Moulinet Un, Magischer Moulinet Deux und Magischer Moulinet Trois, ohne Schwarzes Mana oder Weißes Mana zu verwenden.\nZusatzeffekt: Verleiht Kristallglanz-bereit.\nDauer: 30 Sekunden\nManafizierung unterbricht Kombos.\nNur im Kampf wirksam.",
+  "description_macro": "Erhöht kurzzeitig die Reichweite von <colortype(502)><edgecolortype(503)>Magische Riposte<edgecolortype(0)><colortype(0)>, <colortype(502)><edgecolortype(503)>Magischer Zwerchhau<edgecolortype(0)><colortype(0)> und <colortype(502)><edgecolortype(503)>Magisches Redoublement<edgecolortype(0)><colortype(0)> auf 25y.<br>Dauer: 30 Sekunden<br>Zusatzeffekt: Verleiht dir 3 Stapel <colortype(506)><edgecolortype(507)>Manafizierte Klinge<edgecolortype(0)><colortype(0)>.<br>Dauer: 30 Sekunden<br>Effekt von <colortype(506)><edgecolortype(507)>Manafizierte Klinge<edgecolortype(0)><colortype(0)>: Erlaubt die Ausführung von <colortype(502)><edgecolortype(503)>Magische Riposte<edgecolortype(0)><colortype(0)>, <colortype(502)><edgecolortype(503)>Magischer Zwerchhau<edgecolortype(0)><colortype(0)>, <colortype(502)><edgecolortype(503)>Magisches Redoublement<edgecolortype(0)><colortype(0)>, <colortype(502)><edgecolortype(503)>Magischer Moulinet Un<edgecolortype(0)><colortype(0)>, <colortype(502)><edgecolortype(503)>Magischer Moulinet Deux<edgecolortype(0)><colortype(0)> und <colortype(502)><edgecolortype(503)>Magischer Moulinet Trois<edgecolortype(0)><colortype(0)>, ohne Schwarzes Mana oder Weißes Mana zu verwenden.<br><if([gnum68==35],<if([gnum72>=100],Zusatzeffekt: Verleiht <colortype(506)><edgecolortype(507)>Kristallglanz-bereit<edgecolortype(0)><colortype(0)>.<br>Dauer: 30 Sekunden<br>,)>,)><colortype(502)><edgecolortype(503)>Manafizierung<edgecolortype(0)><colortype(0)> unterbricht Kombos.<br>Nur im Kampf wirksam.",
+  "effects": [
+    "Erhöht kurzzeitig die Reichweite von Magische Riposte, Magischer Zwerchhau und Magisches Redoublement auf 25y.",
+    "Dauer: 30 Sekunden",
+    "Zusatzeffekt: Verleiht dir 3 Stapel Manafizierte Klinge.",
+    "Dauer: 30 Sekunden",
+    "Effekt von Manafizierte Klinge: Erlaubt die Ausführung von Magische Riposte, Magischer Zwerchhau, Magisches Redoublement, Magischer Moulinet Un, Magischer Moulinet Deux und Magischer Moulinet Trois, ohne Schwarzes Mana oder Weißes Mana zu verwenden.",
+    "Zusatzeffekt: Verleiht Kristallglanz-bereit.",
+    "Dauer: 30 Sekunden",
+    "Manafizierung unterbricht Kombos.",
+    "Nur im Kampf wirksam."
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 35,
+    "name": "Rotmagier",
+    "abbreviation": "RMA"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 60,
+  "icon": {
+    "id": 3219,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 4,
+    "name": "Talent"
+  },
+  "attack_type": {
+    "id": 0,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 110,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 22,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 0,
+      "value": 0
+    },
+    "secondary": {
+      "type_id": 42,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": 0,
+    "effect_yalms": 0,
+    "cast_type": 1
+  },
+  "targeting": {
+    "self": true,
+    "party": false,
+    "alliance": false,
+    "hostile": false,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": false
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 0,
+    "behavior_type": 0,
+    "class_job_category_id": 112,
+    "source_class_job_id": 35,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 289,
+  "name": "スラッグショットマスタリー",
+  "description": "スラッグショットがヒートスラッグショットに変化する。",
+  "description_macro": "スラッグショットがヒートスラッグショットに変化する。",
+  "effects": [
+    "スラッグショットがヒートスラッグショットに変化する。"
+  ],
+  "role": "Physical Ranged DPS",
+  "job": {
+    "id": 31,
+    "name": "機工士",
+    "abbreviation": "MCH"
+  },
+  "unlock_level": 60,
+  "value": 0,
+  "icon": {
+    "id": 6011,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 96,
+  "source_class_job_id": 31
+}

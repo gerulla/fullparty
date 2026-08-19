@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 312,
+  "name": "Meister der Bravade III",
+  "description": "Verbessert Hitzige Bravade zu Vernichtende Bravade und erhöht den Attacke-Wert von Ruinra auf 200.",
+  "description_macro": "Verbessert <colortype(502)><edgecolortype(503)>Hitzige Bravade<edgecolortype(0)><colortype(0)> zu <colortype(502)><edgecolortype(503)>Vernichtende Bravade<edgecolortype(0)><colortype(0)> und erhöht den Attacke-Wert von <colortype(502)><edgecolortype(503)>Ruinra<edgecolortype(0)><colortype(0)> auf 200.",
+  "effects": [
+    "Verbessert Hitzige Bravade zu Vernichtende Bravade und erhöht den Attacke-Wert von Ruinra auf 200."
+  ],
+  "role": "Healer",
+  "job": {
+    "id": 28,
+    "name": "Gelehrter",
+    "abbreviation": "GLT"
+  },
+  "unlock_level": 72,
+  "value": 0,
+  "icon": {
+    "id": 5702,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 29,
+  "source_class_job_id": 28
+}

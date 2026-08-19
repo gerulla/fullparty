@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 32,
+  "name": "Pyromane",
+  "description": "Accorde 40% de chances lors du lancement de Feu que le prochain Méga Feu soit instantané et qu'il ne consomme aucun PM.",
+  "description_macro": "Accorde 40% de chances lors du lancement de <colortype(500)><edgecolortype(501)>Feu<edgecolortype(0)><colortype(0)> que le prochain <colortype(500)><edgecolortype(501)>Méga Feu<edgecolortype(0)><colortype(0)> soit instantané et qu'il ne consomme aucun PM.",
+  "effects": [
+    "Accorde 40% de chances lors du lancement de Feu que le prochain Méga Feu soit instantané et qu'il ne consomme aucun PM."
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 25,
+    "name": "Mage Noir",
+    "abbreviation": "MNO"
+  },
+  "unlock_level": 42,
+  "value": 0,
+  "icon": {
+    "id": 5352,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 55,
+  "source_class_job_id": 7
+}

@@ -1,0 +1,86 @@
+{
+  "kind": "ability",
+  "id": 41606,
+  "name": "ぜになげ",
+  "description": "「サポートアイテム:古びた銭箱」を1つ消費し、対象に物理攻撃。この攻撃は必ず命中する。\n威力：1500（アイテムレベル依存威力）\n発動条件：「サポートアイテム:古びた銭箱」の所持",
+  "description_macro": "<colortype(500)><edgecolortype(501)>「サポートアイテム:古びた銭箱」<edgecolortype(0)><colortype(0)>を1つ消費し、対象に物理攻撃。この攻撃は必ず命中する。<br><colortype(504)><edgecolortype(505)>威力：<edgecolortype(0)><colortype(0)>1500（アイテムレベル依存威力）<br><colortype(504)><edgecolortype(505)>発動条件：<edgecolortype(0)><colortype(0)><colortype(500)><edgecolortype(501)>「サポートアイテム:古びた銭箱」<edgecolortype(0)><colortype(0)>の所持",
+  "effects": [
+    "「サポートアイテム:古びた銭箱」を1つ消費し、対象に物理攻撃。この攻撃は必ず命中する。",
+    "威力：1500（アイテムレベル依存威力）",
+    "発動条件：「サポートアイテム:古びた銭箱」の所持"
+  ],
+  "role": "Phantom Jobs",
+  "job": {
+    "id": 5,
+    "name": "サポート侍",
+    "abbreviation": "Ph. Samurai"
+  },
+  "is_phantom_action": true,
+  "unlock_level": 4,
+  "icon": {
+    "id": 64779,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 3,
+    "name": "ウェポンスキル"
+  },
+  "attack_type": {
+    "id": 3,
+    "name": "打"
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 120,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 87,
+    "additional_cooldown_group": 58,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 106,
+      "value": 47740
+    },
+    "secondary": {
+      "type_id": 0,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": 30,
+    "effect_yalms": 0,
+    "cast_type": 1
+  },
+  "targeting": {
+    "self": false,
+    "party": false,
+    "alliance": false,
+    "hostile": true,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 7,
+    "behavior_type": 0,
+    "class_job_category_id": 142,
+    "source_class_job_id": 4294967295,
+    "is_role_action": false,
+    "is_player_action": false,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

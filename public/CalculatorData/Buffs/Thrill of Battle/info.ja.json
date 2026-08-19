@@ -1,0 +1,51 @@
+{
+  "kind": "combat_status",
+  "id": 87,
+  "name": "スリル・オブ・バトル",
+  "description": "最大ＨＰが増加した状態。\nスリル・オブ・バトル効果アップ修得後追加効果：自身に対するＨＰ回復効果を向上させる。",
+  "effects": [
+    "最大ＨＰが増加した状態。",
+    "スリル・オブ・バトル効果アップ修得後追加効果：自身に対するＨＰ回復効果を向上させる。"
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 210254,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 5,
+  "parameter": {
+    "effect": 0,
+    "modifier": 10
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 40,
+      "name": "スリル・オブ・バトル",
+      "description": "一定時間、自身の最大ＨＰを20％上昇させる。\nさらに、自身が受けるＨＰ回復効果を20％上昇させる。\n実行した時点での最大ＨＰの20％分のＨＰを回復する。\n効果時間：10秒",
+      "description_macro": "一定時間、自身の最大ＨＰを20％上昇させる。<br><if([gnum68==21],<if([gnum72>=78],さらに、自身が受けるＨＰ回復効果を20％上昇させる。<br>,)>,)>実行した時点での最大ＨＰの20％分のＨＰを回復する。<br><colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>10秒",
+      "unlock_level": 30,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Tank"
+      ],
+      "jobs": [
+        {
+          "id": 21,
+          "name": "戦士",
+          "abbreviation": "WAR",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

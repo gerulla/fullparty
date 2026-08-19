@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 5317,
+  "name": "Occult Toad",
+  "description": "Transformed into a toad most magical, but nevertheless unable to execute actions.",
+  "effects": [
+    "Transformed into a toad most magical, but nevertheless unable to execute actions."
+  ],
+  "classification": "debuff",
+  "icon": {
+    "id": 215580,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 2,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 100,
+  "parameter": {
+    "effect": 2,
+    "modifier": -99
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 49075,
+      "name": "Occult Toad",
+      "description": "Afflicts target with Occult Toad.\nOccult Toad Effect: Reduces target's damage dealt by 99%, and prevents the execution of actions save for auto-attack\nDuration: 20s",
+      "description_macro": "Afflicts target with <colortype(506)><edgecolortype(507)>Occult Toad<edgecolortype(0)><colortype(0)>.<br><colortype(504)><edgecolortype(505)>Occult Toad Effect: <edgecolortype(0)><colortype(0)>Reduces target's damage dealt by 99%, and prevents the execution of actions save for auto-attack<br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>20s",
+      "unlock_level": 0,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Phantom Jobs"
+      ],
+      "jobs": [
+        {
+          "id": 18,
+          "name": "Phantom Black Mage",
+          "abbreviation": "Ph. Black Mage",
+          "is_phantom": true
+        }
+      ]
+    }
+  ]
+}

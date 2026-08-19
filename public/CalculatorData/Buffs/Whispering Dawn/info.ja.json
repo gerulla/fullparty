@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 315,
+  "name": "光の囁き",
+  "description": "連続してＨＰが回復している状態。",
+  "effects": [
+    "連続してＨＰが回復している状態。"
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 212826,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 5,
+  "parameter": {
+    "effect": 0,
+    "modifier": 10
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 16537,
+      "name": "光の囁き",
+      "description": "召喚しているフェアリーに「光の囁き」を実行させる。\nセラフィムを召喚している場合は「光輝の囁き」を実行させる。\n\n周囲のパーティメンバーのＨＰを継続回復する。\n回復力：80\u3000効果時間：21秒\n発動条件：フェアリーまたはセラフィムが存在する",
+      "description_macro": "召喚しているフェアリーに<colortype(500)><edgecolortype(501)>「光の囁き」<edgecolortype(0)><colortype(0)>を実行させる。<br><if([gnum68==28],<if([gnum72>=80],セラフィムを召喚している場合は<colortype(500)><edgecolortype(501)>「光輝の囁き」<edgecolortype(0)><colortype(0)>を実行させる。<br>,)>,)><br>周囲のパーティメンバーのＨＰを継続回復する。<br><colortype(504)><edgecolortype(505)>回復力：<edgecolortype(0)><colortype(0)>80\u3000<colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>21秒<br><colortype(504)><edgecolortype(505)>発動条件：<edgecolortype(0)><colortype(0)><if([gnum68==28],<if([gnum72>=80],フェアリーまたはセラフィム,フェアリー)>,フェアリー)>が存在する",
+      "unlock_level": 20,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Healer"
+      ],
+      "jobs": [
+        {
+          "id": 28,
+          "name": "学者",
+          "abbreviation": "SCH",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

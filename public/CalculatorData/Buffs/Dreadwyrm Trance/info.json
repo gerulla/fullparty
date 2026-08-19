@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 3228,
+  "name": "Dreadwyrm Trance",
+  "description": "Able to execute Astral Impulse and Deathflare.",
+  "effects": [
+    "Able to execute Astral Impulse and Deathflare."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 214964,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": true,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 28,
+  "source_abilities": [
+    {
+      "id": 3581,
+      "name": "Dreadwyrm Trance",
+      "description": "Enters Dreadwyrm Trance.\nDuration: 15s\nAdditional Effect: Changes Ruin III to Astral Impulse and Outburst to Astral Flare\nAdditional Effect: Grants Ruby Arcanum, Topaz Arcanum, and Emerald Arcanum\nCan only be executed in combat and while Carbuncle is summoned.\nThis action does not share a recast timer with any other actions.",
+      "description_macro": "Enters <colortype(506)><edgecolortype(507)>Dreadwyrm Trance<edgecolortype(0)><colortype(0)>.<br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>15s<br><colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>Changes <colortype(500)><edgecolortype(501)>Ruin III<edgecolortype(0)><colortype(0)> to <colortype(500)><edgecolortype(501)>Astral Impulse<edgecolortype(0)><colortype(0)> and <colortype(500)><edgecolortype(501)>Outburst<edgecolortype(0)><colortype(0)> to <colortype(500)><edgecolortype(501)>Astral Flare<edgecolortype(0)><colortype(0)><br><colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>Grants <colortype(506)><edgecolortype(507)>Ruby Arcanum<edgecolortype(0)><colortype(0)>, <colortype(506)><edgecolortype(507)>Topaz Arcanum<edgecolortype(0)><colortype(0)>, and <colortype(506)><edgecolortype(507)>Emerald Arcanum<edgecolortype(0)><colortype(0)><br>Can only be executed in combat and while Carbuncle is summoned.<br>This action does not share a recast timer with any other actions.",
+      "unlock_level": 58,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Magical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 27,
+          "name": "Summoner",
+          "abbreviation": "SMN",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,26 @@
+{
+  "kind": "trait",
+  "id": 573,
+  "name": "Enhanced Living Shadow III",
+  "description": "Grants the effect of Scorn after executing Living Shadow.\nDuration: 30s\nAdditionally upgrades Carve and Spit executed by your simulacrum to Disesteem, which delivers an attack to all enemies in a straight line before it with a potency of 620 for the first enemy, and 25% less for all remaining enemies.",
+  "description_macro": "Grants the effect of <colortype(506)><edgecolortype(507)>Scorn<edgecolortype(0)><colortype(0)> after executing <colortype(500)><edgecolortype(501)>Living Shadow<edgecolortype(0)><colortype(0)>.<br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>30s<br>Additionally upgrades <colortype(500)><edgecolortype(501)>Carve and Spit<edgecolortype(0)><colortype(0)> executed by your simulacrum to <colortype(500)><edgecolortype(501)>Disesteem<edgecolortype(0)><colortype(0)>, which delivers an attack to all enemies in a straight line before it with a potency of 620 for the first enemy, and 25% less for all remaining enemies.",
+  "effects": [
+    "Grants the effect of Scorn after executing Living Shadow.",
+    "Duration: 30s",
+    "Additionally upgrades Carve and Spit executed by your simulacrum to Disesteem, which delivers an attack to all enemies in a straight line before it with a potency of 620 for the first enemy, and 25% less for all remaining enemies."
+  ],
+  "role": "Tank",
+  "job": {
+    "id": 32,
+    "name": "Dark Knight",
+    "abbreviation": "DRK"
+  },
+  "unlock_level": 100,
+  "value": 0,
+  "icon": {
+    "id": 6070,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 98,
+  "source_class_job_id": 32
+}

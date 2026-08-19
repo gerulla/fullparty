@@ -1,0 +1,90 @@
+{
+  "kind": "ability",
+  "id": 34651,
+  "name": "Wind in Grün",
+  "description": "Du führst eine windbasierte magische Attacke aus.\nAttacke-Wert: 530\nZusatzeffekt: Gewährt dir Dritte Pikto-Farbe.\nDauer: 30 Sekunden\nBedingung: Zweite Pikto-Farbe aktiv und Subtraktive Palette nicht aktiv\nFalls Inszenierung aktiv ist und du dich innerhalb des Wirkradius befindest\\Bei erfüllter Bedingung ändert sich Feuer in Rot zu diesem Kommando.\nKann nicht im Kommandomenü angelegt werden.",
+  "description_macro": "Du führst eine windbasierte magische Attacke aus.<br>Attacke-Wert: <if([gnum68==42],<if([gnum72>=94],530,<if([gnum68==42],<if([gnum72>=84],460,<if([gnum68==42],<if([gnum72>=74],420,<if([gnum68==42],<if([gnum72>=54],350,280)>,280)>)>,<if([gnum68==42],<if([gnum72>=54],350,280)>,280)>)>)>,<if([gnum68==42],<if([gnum72>=74],420,<if([gnum68==42],<if([gnum72>=54],350,280)>,280)>)>,<if([gnum68==42],<if([gnum72>=54],350,280)>,280)>)>)>)>,<if([gnum68==42],<if([gnum72>=84],460,<if([gnum68==42],<if([gnum72>=74],420,<if([gnum68==42],<if([gnum72>=54],350,280)>,280)>)>,<if([gnum68==42],<if([gnum72>=54],350,280)>,280)>)>)>,<if([gnum68==42],<if([gnum72>=74],420,<if([gnum68==42],<if([gnum72>=54],350,280)>,280)>)>,<if([gnum68==42],<if([gnum72>=54],350,280)>,280)>)>)>)><br>Zusatzeffekt: Gewährt dir <colortype(506)><edgecolortype(507)>Dritte Pikto-Farbe<edgecolortype(0)><colortype(0)>.<br>Dauer: 30 Sekunden<br>Bedingung: <colortype(506)><edgecolortype(507)>Zweite Pikto-Farbe<edgecolortype(0)><colortype(0)> aktiv und <colortype(500)><edgecolortype(501)>Subtraktive Palette<edgecolortype(0)><colortype(0)> nicht aktiv<br><if([gnum68==42],<if([gnum72>=82],Falls <colortype(506)><edgecolortype(507)>Inszenierung<edgecolortype(0)><colortype(0)> aktiv ist und du dich innerhalb des Wirkradius befindest\\, wird 1 Stapel verbraucht.<br>,)>,)>Bei erfüllter Bedingung ändert sich <colortype(502)><edgecolortype(503)>Feuer in Rot<edgecolortype(0)><colortype(0)> zu diesem Kommando.<br>Kann nicht im Kommandomenü angelegt werden.",
+  "effects": [
+    "Du führst eine windbasierte magische Attacke aus.",
+    "Attacke-Wert: 530",
+    "Zusatzeffekt: Gewährt dir Dritte Pikto-Farbe.",
+    "Dauer: 30 Sekunden",
+    "Bedingung: Zweite Pikto-Farbe aktiv und Subtraktive Palette nicht aktiv",
+    "Falls Inszenierung aktiv ist und du dich innerhalb des Wirkradius befindest\\Bei erfüllter Bedingung ändert sich Feuer in Rot zu diesem Kommando.",
+    "Kann nicht im Kommandomenü angelegt werden."
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 42,
+    "name": "Piktomant",
+    "abbreviation": "PKT"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 5,
+  "icon": {
+    "id": 3802,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 2,
+    "name": "Zauber"
+  },
+  "attack_type": {
+    "id": 5,
+    "name": "魔法"
+  },
+  "timing": {
+    "cast_seconds": 1.5,
+    "recast_seconds": 2.5,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 58,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 96,
+      "value": 3
+    },
+    "secondary": {
+      "type_id": 0,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": 25,
+    "effect_yalms": 0,
+    "cast_type": 1
+  },
+  "targeting": {
+    "self": false,
+    "party": false,
+    "alliance": false,
+    "hostile": true,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 3,
+    "behavior_type": 0,
+    "class_job_category_id": 197,
+    "source_class_job_id": 0,
+    "is_role_action": false,
+    "is_player_action": false,
+    "is_derived_action": true,
+    "equivalence_group": 0
+  }
+}

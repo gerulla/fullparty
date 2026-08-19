@@ -1,0 +1,90 @@
+{
+  "kind": "ability",
+  "id": 24393,
+  "name": "Völlerei",
+  "description": "Du rufst deinen Avatar, der eine elementneutrale magische Attacke auf das Ziel und die Gegner in seiner Nähe ausführt.\nAttacke-Wert: 560\nAttacke-Wert verringert sich ab dem zweiten Gegner um 25 %.\nZusatzeffekt: Gewährt dir zwei Stapel Henkerssense.\nDauer: 30 Sekunden\nKann nicht zugleich mit Nichtssense aktiv sein.\nSeelenbalken-Kosten: 50",
+  "description_macro": "Du rufst deinen Avatar, der eine elementneutrale magische Attacke auf das Ziel und die Gegner in seiner Nähe ausführt.<br>Attacke-Wert: 560<br>Attacke-Wert verringert sich ab dem zweiten Gegner um 25<nbsp>%.<br>Zusatzeffekt: Gewährt dir zwei Stapel <colortype(506)><edgecolortype(507)><if([gnum68==39],<if([gnum72>=96],Henkerssense,Nichtssense)>,Nichtssense)><edgecolortype(0)><colortype(0)>.<br>Dauer: 30 Sekunden<br><if([gnum68==39],<if([gnum72>=96],Kann nicht zugleich mit <colortype(500)><edgecolortype(501)>Nichtssense<edgecolortype(0)><colortype(0)> aktiv sein.<br>,)>,)>Seelenbalken-Kosten: 50",
+  "effects": [
+    "Du rufst deinen Avatar, der eine elementneutrale magische Attacke auf das Ziel und die Gegner in seiner Nähe ausführt.",
+    "Attacke-Wert: 560",
+    "Attacke-Wert verringert sich ab dem zweiten Gegner um 25 %.",
+    "Zusatzeffekt: Gewährt dir zwei Stapel Henkerssense.",
+    "Dauer: 30 Sekunden",
+    "Kann nicht zugleich mit Nichtssense aktiv sein.",
+    "Seelenbalken-Kosten: 50"
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 39,
+    "name": "Schnitter",
+    "abbreviation": "SNT"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 76,
+  "icon": {
+    "id": 3621,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 4,
+    "name": "Talent"
+  },
+  "attack_type": {
+    "id": 5,
+    "name": "魔法"
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 60,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 13,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 64,
+      "value": 50
+    },
+    "secondary": {
+      "type_id": 113,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": 25,
+    "effect_yalms": 5,
+    "cast_type": 2
+  },
+  "targeting": {
+    "self": false,
+    "party": false,
+    "alliance": false,
+    "hostile": true,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 7,
+    "behavior_type": 0,
+    "class_job_category_id": 180,
+    "source_class_job_id": 39,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

@@ -1,0 +1,97 @@
+{
+  "kind": "ability",
+  "id": 36950,
+  "name": "Fire's Reply",
+  "description": "Deals damage to target and all enemies nearby it with a potency of 1,400 for the first enemy, and 35% less for all remaining enemies.\nAdditional Effect: Grants Formless Fist, allowing the execution of a weaponskill that requires a certain form, without being in that form\nDuration: 30s\nAny additional effects associated with the executed action will also be applied.\nCan only be executed while under the effect of Fire's Rumination.",
+  "description_macro": "Deals damage to target and all enemies nearby it with a potency of 1,400 for the first enemy, and 35% less for all remaining enemies.<br><colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>Grants <colortype(506)><edgecolortype(507)>Formless Fist<edgecolortype(0)><colortype(0)>, allowing the execution of a weaponskill that requires a certain form, without being in that form<br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>30s<br>Any additional effects associated with the executed action will also be applied.<br>Can only be executed while under the effect of <colortype(506)><edgecolortype(507)>Fire's Rumination<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Deals damage to target and all enemies nearby it with a potency of 1,400 for the first enemy, and 35% less for all remaining enemies.",
+    "Additional Effect: Grants Formless Fist, allowing the execution of a weaponskill that requires a certain form, without being in that form",
+    "Duration: 30s",
+    "Any additional effects associated with the executed action will also be applied.",
+    "Can only be executed while under the effect of Fire's Rumination."
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 20,
+    "name": "Monk",
+    "abbreviation": "MNK"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 100,
+  "icon": {
+    "id": 2987,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 3,
+    "name": "Weaponskill"
+  },
+  "attack_type": {
+    "id": 4294967295,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 2.5,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 58,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 10,
+      "value": 3843
+    },
+    "secondary": {
+      "type_id": 32,
+      "value": 3843
+    }
+  },
+  "range": {
+    "target_yalms": 20,
+    "effect_yalms": 5,
+    "cast_type": 2
+  },
+  "targeting": {
+    "self": false,
+    "party": false,
+    "alliance": false,
+    "hostile": true,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": false
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": {
+      "id": 160,
+      "status": {
+        "id": 3843,
+        "name": "Fire's Rumination",
+        "description": "Able to execute Fire's Reply.",
+        "icon_id": 212541,
+        "max_stacks": 0
+      }
+    }
+  },
+  "metadata": {
+    "aspect_id": 7,
+    "behavior_type": 0,
+    "class_job_category_id": 21,
+    "source_class_job_id": 20,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

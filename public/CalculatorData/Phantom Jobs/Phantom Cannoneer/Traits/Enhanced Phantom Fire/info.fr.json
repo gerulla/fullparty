@@ -1,0 +1,22 @@
+{
+  "kind": "trait",
+  "id": 11,
+  "name": "Tir amélioré",
+  "description": "Accorde 5% de chances d'infliger Mort à certaines cibles lors de l'utilisation de Tir.",
+  "description_macro": "Accorde 5% de chances d'infliger Mort à certaines cibles lors de l'utilisation de <colortype(500)><edgecolortype(501)>Tir<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Accorde 5% de chances d'infliger Mort à certaines cibles lors de l'utilisation de Tir."
+  ],
+  "role": "Phantom Jobs",
+  "job": {
+    "id": 9,
+    "name": "Artilleur fantôme",
+    "abbreviation": "Artilleur fant."
+  },
+  "is_phantom_trait": true,
+  "unlock_level": 5,
+  "icon": {
+    "id": 82211,
+    "file": "icon.png"
+  }
+}

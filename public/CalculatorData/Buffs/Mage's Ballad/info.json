@@ -1,0 +1,51 @@
+{
+  "kind": "combat_status",
+  "id": 2217,
+  "name": "Mage's Ballad",
+  "description": "Damage dealt is increased.",
+  "effects": [
+    "Damage dealt is increased."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 212603,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": true,
+  "is_permanent": true,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 1
+  },
+  "class_job_category_id": 24,
+  "source_abilities": [
+    {
+      "id": 114,
+      "name": "Mage's Ballad",
+      "description": "Grants Mage's Ballad to self and all party members within 50 yalms, increasing damage dealt by 1%.\nDuration: 45s\nAdditional Effect: 80% chance to grant Repertoire\nThis effect can trigger repeatedly while singing the Mage's Ballad.\nRepertoire Effect: Reduces the recast time of Heartbreak Shotand Rain of Death by 7.5s\nAdditional Effect: Grants Mage's Coda\nCan only be executed while in combat.",
+      "description_macro": "Grants <colortype(506)><edgecolortype(507)>Mage's Ballad<edgecolortype(0)><colortype(0)> to self and all party members within 50 yalms, increasing damage dealt by 1%.<br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>45s<br><colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>80% chance to grant <colortype(506)><edgecolortype(507)>Repertoire<edgecolortype(0)><colortype(0)><br>This effect can trigger repeatedly while singing the <colortype(506)><edgecolortype(507)>Mage's Ballad<edgecolortype(0)><colortype(0)>.<br><colortype(504)><edgecolortype(505)>Repertoire Effect: <edgecolortype(0)><colortype(0)>Reduces the recast time of <colortype(500)><edgecolortype(501)><if([gnum68==23],<if([gnum72>=92],Heartbreak Shot,Bloodletter)>,Bloodletter)><edgecolortype(0)><colortype(0)><if([gnum72>=45],<if([gnum68==23], and <colortype(500)><edgecolortype(501)>Rain of Death<edgecolortype(0)><colortype(0)>,)>,)> by 7.5s<br><if([gnum68==23],<if([gnum72>=90],<colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>Grants <colortype(506)><edgecolortype(507)>Mage's Coda<edgecolortype(0)><colortype(0)><br>,)>,)>Can only be executed while in combat.",
+      "unlock_level": 30,
+      "relations": [
+        "granted_by_description",
+        "same_name"
+      ],
+      "roles": [
+        "Physical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 23,
+          "name": "Bard",
+          "abbreviation": "BRD",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

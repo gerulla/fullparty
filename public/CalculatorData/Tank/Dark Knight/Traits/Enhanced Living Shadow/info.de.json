@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 511,
+  "name": "Verbesserter Schattenschemen",
+  "description": "Erhöht den Attacke-Wert des Angriffs deines Heldenschemens auf 420.",
+  "description_macro": "Erhöht den Attacke-Wert des Angriffs deines Heldenschemens auf 420.",
+  "effects": [
+    "Erhöht den Attacke-Wert des Angriffs deines Heldenschemens auf 420."
+  ],
+  "role": "Tank",
+  "job": {
+    "id": 32,
+    "name": "Dunkelritter",
+    "abbreviation": "DKR"
+  },
+  "unlock_level": 88,
+  "value": 0,
+  "icon": {
+    "id": 6065,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 98,
+  "source_class_job_id": 32
+}

@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 461,
+  "name": "ファウル効果アップ",
+  "description": "ファウルを詠唱時間なしで実行することができる。",
+  "description_macro": "ファウルを詠唱時間なしで実行することができる。",
+  "effects": [
+    "ファウルを詠唱時間なしで実行することができる。"
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 25,
+    "name": "黒魔道士",
+    "abbreviation": "BLM"
+  },
+  "unlock_level": 80,
+  "value": 0,
+  "icon": {
+    "id": 5369,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 26,
+  "source_class_job_id": 25
+}

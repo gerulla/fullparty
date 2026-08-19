@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 3095,
+  "name": "サモン・セラフィム",
+  "description": "セラフィムを召喚している状態。",
+  "effects": [
+    "セラフィムを召喚している状態。"
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 214905,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": true,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 29,
+  "source_abilities": [
+    {
+      "id": 16545,
+      "name": "サモン・セラフィム",
+      "description": "召喚しているフェアリーを帰還させるとともに、セラフィムを召喚する。\u3000召喚時間：22秒\nセラフィムの状態が「インターセプト」の場合、ＨＰが減少したパーティメンバーに対して「セラフィックヴェール」を実行する。\nセラフィムが帰還するとフェアリーが再出現する。\n発動条件：フェアリーが存在する",
+      "description_macro": "召喚しているフェアリーを帰還させるとともに、セラフィムを召喚する。\u3000<colortype(504)><edgecolortype(505)>召喚時間：<edgecolortype(0)><colortype(0)>22秒<br>セラフィムの状態が<colortype(500)><edgecolortype(501)>「インターセプト」<edgecolortype(0)><colortype(0)>の場合、ＨＰが減少したパーティメンバーに対して<colortype(500)><edgecolortype(501)>「セラフィックヴェール」<edgecolortype(0)><colortype(0)>を実行する。<br>セラフィムが帰還するとフェアリーが再出現する。<br><colortype(504)><edgecolortype(505)>発動条件：<edgecolortype(0)><colortype(0)>フェアリーが存在する",
+      "unlock_level": 80,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Healer"
+      ],
+      "jobs": [
+        {
+          "id": 28,
+          "name": "学者",
+          "abbreviation": "SCH",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

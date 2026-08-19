@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 656,
+  "name": "Tactician's Mastery",
+  "description": "Increases the potency of Biolysis's damage over time effect to 85 and Broil IV to 320.",
+  "description_macro": "Increases the potency of <colortype(500)><edgecolortype(501)>Biolysis<edgecolortype(0)><colortype(0)>'s damage over time effect to 85 and <colortype(500)><edgecolortype(501)>Broil IV<edgecolortype(0)><colortype(0)> to 320.",
+  "effects": [
+    "Increases the potency of Biolysis's damage over time effect to 85 and Broil IV to 320."
+  ],
+  "role": "Healer",
+  "job": {
+    "id": 28,
+    "name": "Scholar",
+    "abbreviation": "SCH"
+  },
+  "unlock_level": 94,
+  "value": 0,
+  "icon": {
+    "id": 6831,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 29,
+  "source_class_job_id": 28
+}

@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 292,
+  "name": "Charged Action Mastery",
+  "description": "Allows a third charge of Gauss Round and Ricochet.",
+  "description_macro": "Allows a third charge of <colortype(500)><edgecolortype(501)>Gauss Round<edgecolortype(0)><colortype(0)> and <colortype(500)><edgecolortype(501)>Ricochet<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Allows a third charge of Gauss Round and Ricochet."
+  ],
+  "role": "Physical Ranged DPS",
+  "job": {
+    "id": 31,
+    "name": "Machinist",
+    "abbreviation": "MCH"
+  },
+  "unlock_level": 74,
+  "value": 3,
+  "icon": {
+    "id": 6013,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 96,
+  "source_class_job_id": 31
+}

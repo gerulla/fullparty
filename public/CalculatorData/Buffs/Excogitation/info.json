@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 1220,
+  "name": "Excogitation",
+  "description": "HP will be restored automatically upon falling below a certain level or expiration of effect duration.",
+  "effects": [
+    "HP will be restored automatically upon falling below a certain level or expiration of effect duration."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 212808,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 60,
+  "parameter": {
+    "effect": 0,
+    "modifier": 100
+  },
+  "class_job_category_id": 29,
+  "source_abilities": [
+    {
+      "id": 7434,
+      "name": "Excogitation",
+      "description": "Grants self or target party member the effect of Excogitation, restoring HP when member's HP falls to 50% or below, or upon effect duration expiration.\nCure Potency: 800\nDuration: 45s\nAdditional Effect: Increases Faerie Gauge by 10\nAetherflow Gauge Cost: 1",
+      "description_macro": "Grants self or target party member the effect of <colortype(506)><edgecolortype(507)>Excogitation<edgecolortype(0)><colortype(0)>, restoring HP when member's HP falls to 50% or below, or upon effect duration expiration.<br><colortype(504)><edgecolortype(505)>Cure Potency:<edgecolortype(0)><colortype(0)> 800<br><colortype(504)><edgecolortype(505)>Duration:<edgecolortype(0)><colortype(0)> 45s<br><if([gnum72>=70],<if([gnum68==28],<colortype(504)><edgecolortype(505)>Additional Effect:<edgecolortype(0)><colortype(0)> Increases <colortype(500)><edgecolortype(501)>Faerie Gauge<edgecolortype(0)><colortype(0)> by 10<br>,)>,)><colortype(504)><edgecolortype(505)>Aetherflow Gauge Cost:<edgecolortype(0)><colortype(0)> 1",
+      "unlock_level": 62,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Healer"
+      ],
+      "jobs": [
+        {
+          "id": 28,
+          "name": "Scholar",
+          "abbreviation": "SCH",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,95 @@
+{
+  "kind": "ability",
+  "id": 34675,
+  "name": "Sternenmuse",
+  "description": "Du materialisierst deinen piktomantischen Himmel als künstlerische Inszenierung und erhöhst den ausgeteilten Schaden von dir und umstehenden Gruppenmitgliedern um 5 %.\nDauer: 20 Sekunden\nZusatzeffekt: Gewährt dir Subtraktive Mischung.\nDauer: 30 Sekunden\nZusatzeffekt: Gewährt dir 5 Stapel Inszenierung.\nDauer: 30 Sekunden\nEffekt von Inszenierung: Bist du innerhalb des Wirkradius deiner Inszenierung\\Zusatzeffekt: Gewährt dir Oszillierender Pinsel\\Zusatzeffekt: Gewährt dir Sternenfunkeln.\nDauer: 20 Sekunden\nEffekt von Sternenfunkeln: Sternenprisma kann gewirkt werden.\nBedingung: Gemalter Himmel\nBei erfüllter Bedingung ändert sich Malerische Muse zu diesem Kommando.\nKann nicht im Kommandomenü angelegt werden.",
+  "description_macro": "Du materialisierst deinen piktomantischen <colortype(506)><edgecolortype(507)>Himmel<edgecolortype(0)><colortype(0)> als künstlerische Inszenierung und erhöhst den ausgeteilten Schaden von dir und umstehenden Grup<->pen<->mit<->gliedern um 5<nbsp>%.<br>Dauer: 20 Sekunden<br>Zusatzeffekt: Gewährt dir <colortype(506)><edgecolortype(507)>Subtraktive Mischung<edgecolortype(0)><colortype(0)>.<br>Dauer: 30 Sekunden<br><if([gnum68==42],<if([gnum72>=82],Zusatzeffekt: Gewährt dir 5 Stapel <colortype(506)><edgecolortype(507)>Inszenierung<edgecolortype(0)><colortype(0)>.<br>Dauer: 30 Sekunden<br>Effekt von <colortype(506)><edgecolortype(507)>Inszenierung<edgecolortype(0)><colortype(0)>: Bist du innerhalb des Wirkradius deiner <colortype(506)><edgecolortype(507)>Inszenierung<edgecolortype(0)><colortype(0)>\\, sind die \\(Re-\\)Ak<->ti<->vie<->rungs<->zei<->ten deiner <colortype(502)><edgecolortype(503)>Farbzauber<edgecolortype(0)><colortype(0)> und von <colortype(502)><edgecolortype(503)>Sternenprisma<edgecolortype(0)><colortype(0)> um 25<nbsp>% verkürzt. Von diesem Effekt betroffene Zauber verbrauchen pro Ausführung 1 Stapel.<br>,)>,)><if([gnum68==42],<if([gnum72>=92],Zusatzeffekt: Gewährt dir <colortype(506)><edgecolortype(507)>Oszillierender Pinsel<edgecolortype(0)><colortype(0)>\\, wenn alle 5 Stapel <colortype(506)><edgecolortype(507)>Inszenierung<edgecolortype(0)><colortype(0)> verbraucht worden sind.<br>Dauer: 30 Sekunden<br>Effekt von <colortype(506)><edgecolortype(507)>Oszillierender Pinsel<edgecolortype(0)><colortype(0)>: Nächste <colortype(502)><edgecolortype(503)>Prismatische Oszillation<edgecolortype(0)><colortype(0)> hat eine verkürzte Re<->ak<->ti<->vie<->rungs<->zeit und kann sofort gewirkt werden.<br>,)>,)><if([gnum68==42],<if([gnum72>=100],Zusatzeffekt: Gewährt dir <colortype(506)><edgecolortype(507)>Sternenfunkeln<edgecolortype(0)><colortype(0)>.<br>Dauer: 20 Sekunden<br>Effekt von <colortype(506)><edgecolortype(507)>Sternenfunkeln<edgecolortype(0)><colortype(0)>: <colortype(502)><edgecolortype(503)>Sternenprisma<edgecolortype(0)><colortype(0)> kann gewirkt werden.<br>,)>,)>Bedingung: Gemalter <colortype(506)><edgecolortype(507)>Himmel<edgecolortype(0)><colortype(0)><br>Bei erfüllter Bedingung ändert sich <colortype(502)><edgecolortype(503)>Malerische Muse<edgecolortype(0)><colortype(0)> zu diesem Kommando.<br>Kann nicht im Kommandomenü angelegt werden.",
+  "effects": [
+    "Du materialisierst deinen piktomantischen Himmel als künstlerische Inszenierung und erhöhst den ausgeteilten Schaden von dir und umstehenden Gruppenmitgliedern um 5 %.",
+    "Dauer: 20 Sekunden",
+    "Zusatzeffekt: Gewährt dir Subtraktive Mischung.",
+    "Dauer: 30 Sekunden",
+    "Zusatzeffekt: Gewährt dir 5 Stapel Inszenierung.",
+    "Dauer: 30 Sekunden",
+    "Effekt von Inszenierung: Bist du innerhalb des Wirkradius deiner Inszenierung\\Zusatzeffekt: Gewährt dir Oszillierender Pinsel\\Zusatzeffekt: Gewährt dir Sternenfunkeln.",
+    "Dauer: 20 Sekunden",
+    "Effekt von Sternenfunkeln: Sternenprisma kann gewirkt werden.",
+    "Bedingung: Gemalter Himmel",
+    "Bei erfüllter Bedingung ändert sich Malerische Muse zu diesem Kommando.",
+    "Kann nicht im Kommandomenü angelegt werden."
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 42,
+    "name": "Piktomant",
+    "abbreviation": "PKT"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 70,
+  "icon": {
+    "id": 3826,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 4,
+    "name": "Talent"
+  },
+  "attack_type": {
+    "id": 0,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 120,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 21,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 94,
+      "value": 32
+    },
+    "secondary": {
+      "type_id": 42,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": 0,
+    "effect_yalms": 30,
+    "cast_type": 2
+  },
+  "targeting": {
+    "self": false,
+    "party": false,
+    "alliance": false,
+    "hostile": false,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": true,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 0,
+    "behavior_type": 0,
+    "class_job_category_id": 197,
+    "source_class_job_id": 0,
+    "is_role_action": false,
+    "is_player_action": false,
+    "is_derived_action": true,
+    "equivalence_group": 0
+  }
+}

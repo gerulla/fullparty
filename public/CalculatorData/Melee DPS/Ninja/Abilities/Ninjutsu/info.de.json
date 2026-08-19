@@ -1,0 +1,86 @@
+{
+  "kind": "ability",
+  "id": 2260,
+  "name": "Ninjutsu",
+  "description": "Du führst ein Ninjutsu-Kommando aus, das von den zuvor gemachten Mudra-Handgesten (Ten, Chi, Jin) und deren Reihenfolge bestimmt wird. Wird ein anderes Talent oder eine Waffenfertigkeit während des Status Mudra ausgeführt, schlägt das Kommando fehl.\nBei Ausführung wird der Reaktivierungs-Timer von Waffenfertigkeiten, Magie, anderen Mudras und Ninjutsu ausgelöst. Waffenfertigkeiten lösen den Reaktivierungs-Timer dieses Kommandos aus.\nBefindest du dich nach Ausführung von Verstecken außerhalb des Kampfes, wird außerdem der Reaktivierungs-Timer von Ninjutsu für 2 Aufladungen zurückgesetzt.",
+  "description_macro": "Du führst ein Ninjutsu-Kommando aus, das von den zuvor gemachten Mudra-Handgesten (<colortype(502)><edgecolortype(503)>Ten<edgecolortype(0)><colortype(0)>, <colortype(502)><edgecolortype(503)>Chi<edgecolortype(0)><colortype(0)>, <colortype(502)><edgecolortype(503)>Jin<edgecolortype(0)><colortype(0)>) und deren Reihenfolge bestimmt wird. Wird ein anderes Talent oder eine Waf<->fen<->fer<->tig<->keit während des Status <colortype(506)><edgecolortype(507)>Mudra<edgecolortype(0)><colortype(0)> ausgeführt, schlägt das Kommando fehl.<br>Bei Ausführung wird der Reaktivierungs-Timer von Waf<->fen<->fer<->tig<->kei<->ten, Magie, anderen Mudras und <colortype(502)><edgecolortype(503)>Ninjutsu<edgecolortype(0)><colortype(0)> ausgelöst. Waf<->fen<->fer<->tig<->kei<->ten lösen den Reaktivierungs-Timer dieses Kommandos aus.<br>Befindest du dich nach Ausführung von <colortype(502)><edgecolortype(503)>Verstecken<edgecolortype(0)><colortype(0)> außerhalb des Kampfes, wird außerdem der Reaktivierungs-Timer von <colortype(502)><edgecolortype(503)>Ninjutsu<edgecolortype(0)><colortype(0)> für 2 Aufladungen zurückgesetzt.",
+  "effects": [
+    "Du führst ein Ninjutsu-Kommando aus, das von den zuvor gemachten Mudra-Handgesten (Ten, Chi, Jin) und deren Reihenfolge bestimmt wird. Wird ein anderes Talent oder eine Waffenfertigkeit während des Status Mudra ausgeführt, schlägt das Kommando fehl.",
+    "Bei Ausführung wird der Reaktivierungs-Timer von Waffenfertigkeiten, Magie, anderen Mudras und Ninjutsu ausgelöst. Waffenfertigkeiten lösen den Reaktivierungs-Timer dieses Kommandos aus.",
+    "Befindest du dich nach Ausführung von Verstecken außerhalb des Kampfes, wird außerdem der Reaktivierungs-Timer von Ninjutsu für 2 Aufladungen zurückgesetzt."
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 30,
+    "name": "Ninja",
+    "abbreviation": "NIN"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 30,
+  "icon": {
+    "id": 2904,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 4,
+    "name": "Talent"
+  },
+  "attack_type": {
+    "id": 0,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 1.5,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 58,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 10,
+      "value": 496
+    },
+    "secondary": {
+      "type_id": 32,
+      "value": 496
+    }
+  },
+  "range": {
+    "target_yalms": 0,
+    "effect_yalms": 0,
+    "cast_type": 1
+  },
+  "targeting": {
+    "self": true,
+    "party": false,
+    "alliance": false,
+    "hostile": false,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 0,
+    "behavior_type": 0,
+    "class_job_category_id": 92,
+    "source_class_job_id": 30,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

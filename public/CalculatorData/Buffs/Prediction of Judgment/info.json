@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 4265,
+  "name": "Prediction of Judgment",
+  "description": "You have seen Phantom Judgment in the near future.",
+  "effects": [
+    "You have seen Phantom Judgment in the near future."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 229923,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": true,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 41636,
+      "name": "Predict",
+      "description": "Grants Prediction of Judgment, Prediction of Cleansing, Prediction of Blessing, or Prediction of Starfall, allowing the execution of an action depending on the prophecy granted.\nPhantom Judgment Action Effect: Deals unaspected damage to nearby enemies while healing self and nearby party members\nCleansing Action Effect: Deals unaspected damage to nearby enemies and freezes time\nBlessing Action Effect: Heals self and nearby party members, as well as granting Regen\nStarfall Action Effect: Deals unaspected damage to self and nearby enemies\nWhen the effect of a prediction expires, a new prophecy is granted. If all predictions expire without a commensurate action being used, the prophecy changes to False Prediction, causing damage over time to self with a potency of 50,000.\nDuration: 30s",
+      "description_macro": "Grants <colortype(506)><edgecolortype(507)>Prediction of Judgment<edgecolortype(0)><colortype(0)>, <colortype(506)><edgecolortype(507)>Prediction of Cleansing<edgecolortype(0)><colortype(0)>, <colortype(506)><edgecolortype(507)>Prediction of Blessing<edgecolortype(0)><colortype(0)>, or <colortype(506)><edgecolortype(507)>Prediction of Starfall<edgecolortype(0)><colortype(0)>, allowing the execution of an action depending on the prophecy granted.<br><colortype(504)><edgecolortype(505)>Phantom Judgment Action Effect: <edgecolortype(0)><colortype(0)>Deals unaspected damage to nearby enemies while healing self and nearby party members<br><colortype(504)><edgecolortype(505)>Cleansing Action Effect: <edgecolortype(0)><colortype(0)>Deals unaspected damage to nearby enemies and freezes time<br><colortype(504)><edgecolortype(505)>Blessing Action Effect: <edgecolortype(0)><colortype(0)>Heals self and nearby party members, as well as granting <colortype(506)><edgecolortype(507)>Regen<edgecolortype(0)><colortype(0)><br><colortype(504)><edgecolortype(505)>Starfall Action Effect: <edgecolortype(0)><colortype(0)>Deals unaspected damage to self and nearby enemies<br>When the effect of a prediction expires, a new prophecy is granted. If all predictions expire without a commensurate action being used, the prophecy changes to <colortype(506)><edgecolortype(507)>False Prediction<edgecolortype(0)><colortype(0)>, causing damage over time to self with a potency of 50,000.<br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>30s",
+      "unlock_level": 0,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Phantom Jobs"
+      ],
+      "jobs": [
+        {
+          "id": 11,
+          "name": "Phantom Oracle",
+          "abbreviation": "Ph. Oracle",
+          "is_phantom": true
+        }
+      ]
+    }
+  ]
+}

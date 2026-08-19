@@ -1,0 +1,28 @@
+{
+  "kind": "trait",
+  "id": 651,
+  "name": "アクション威力アップ",
+  "description": "特定のアクションの威力を上昇させる。\n\nディアの威力：85\nディアの継続ダメージの威力：85\nハート・オブ・ミゼリの威力：1400\nグレアガの威力：350",
+  "description_macro": "特定のアクションの威力を上昇させる。<br><br><colortype(504)><edgecolortype(505)>ディアの威力：<edgecolortype(0)><colortype(0)>85<br><colortype(504)><edgecolortype(505)>ディアの継続ダメージの威力：<edgecolortype(0)><colortype(0)>85<br><colortype(504)><edgecolortype(505)>ハート・オブ・ミゼリの威力：<edgecolortype(0)><colortype(0)>1400<br><colortype(504)><edgecolortype(505)>グレアガの威力：<edgecolortype(0)><colortype(0)>350",
+  "effects": [
+    "特定のアクションの威力を上昇させる。",
+    "ディアの威力：85",
+    "ディアの継続ダメージの威力：85",
+    "ハート・オブ・ミゼリの威力：1400",
+    "グレアガの威力：350"
+  ],
+  "role": "Healer",
+  "job": {
+    "id": 24,
+    "name": "白魔道士",
+    "abbreviation": "WHM"
+  },
+  "unlock_level": 94,
+  "value": 0,
+  "icon": {
+    "id": 6831,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 25,
+  "source_class_job_id": 24
+}

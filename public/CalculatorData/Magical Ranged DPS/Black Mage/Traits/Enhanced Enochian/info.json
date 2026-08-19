@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 174,
+  "name": "Enhanced Enochian",
+  "description": "Grants the effect of Polyglot upon maintaining Enochian for 30 seconds. Also improves Enochian's magic damage increase to 10%.",
+  "description_macro": "Grants the effect of <colortype(506)><edgecolortype(507)>Polyglot<edgecolortype(0)><colortype(0)> upon maintaining <colortype(506)><edgecolortype(507)>Enochian<edgecolortype(0)><colortype(0)> for 30 seconds. Also improves <colortype(506)><edgecolortype(507)>Enochian<edgecolortype(0)><colortype(0)>'s magic damage increase to 10%.",
+  "effects": [
+    "Grants the effect of Polyglot upon maintaining Enochian for 30 seconds. Also improves Enochian's magic damage increase to 10%."
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 25,
+    "name": "Black Mage",
+    "abbreviation": "BLM"
+  },
+  "unlock_level": 70,
+  "value": 5,
+  "icon": {
+    "id": 5360,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 26,
+  "source_class_job_id": 25
+}

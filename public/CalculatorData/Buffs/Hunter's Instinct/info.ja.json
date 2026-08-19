@@ -1,0 +1,113 @@
+{
+  "kind": "combat_status",
+  "id": 3668,
+  "name": "猛襲",
+  "description": "与ダメージが上昇した状態。",
+  "effects": [
+    "与ダメージが上昇した状態。"
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 213774,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 45,
+  "parameter": {
+    "effect": 0,
+    "modifier": 10
+  },
+  "class_job_category_id": 196,
+  "source_abilities": [
+    {
+      "id": 34608,
+      "name": "弐の牙【猛襲】",
+      "description": "対象に物理攻撃。\u3000威力：300\n追加効果：自身に「猛襲」を付与する。\n効果時間：40秒\n猛襲効果：自身の与ダメージを10％上昇させる。\n発動条件：壱の牙【咬創】または壱の牙【穿裂】命中時\n\n※このアクションはホットバーに登録することはできない。\n\u3000発動条件を満たすと壱の牙【咬創】が弐の牙【猛襲】に変化する。",
+      "description_macro": "対象に物理攻撃。\u3000<colortype(504)><edgecolortype(505)>威力：<edgecolortype(0)><colortype(0)><if([gnum68==41],<if([gnum72>=74],300,280)>,280)><br><colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)>自身に<colortype(500)><edgecolortype(501)>「猛襲」<edgecolortype(0)><colortype(0)>を付与する。<br><colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>40秒<br><colortype(504)><edgecolortype(505)>猛襲効果：<edgecolortype(0)><colortype(0)>自身の与ダメージを10％上昇させる。<br><colortype(504)><edgecolortype(505)>発動条件：<edgecolortype(0)><colortype(0)>壱の牙【咬創】または壱の牙【穿裂】命中時<br><br><colortype(506)><edgecolortype(507)>※このアクションはホットバーに登録することはできない。<br>\u3000発動条件を満たすと壱の牙【咬創】が弐の牙【猛襲】に変化する。<edgecolortype(0)><colortype(0)>",
+      "unlock_level": 5,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 41,
+          "name": "ヴァイパー",
+          "abbreviation": "VPR",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 34616,
+      "name": "弐の大牙【猛襲】",
+      "description": "自身の周囲の敵に範囲物理攻撃。\u3000威力：180\n追加効果：自身に「猛襲」を付与する。\n効果時間：40秒\n猛襲効果：自身の与ダメージを10％上昇させる。\n発動条件：壱の大牙【咬創】または壱の大牙【穿裂】命中時\n\n※このアクションはホットバーに登録することはできない。\n\u3000発動条件を満たすと壱の大牙【咬創】が弐の大牙【猛襲】に変化する。",
+      "description_macro": "自身の周囲の敵に範囲物理攻撃。\u3000<colortype(504)><edgecolortype(505)>威力：<edgecolortype(0)><colortype(0)>180<br><colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)>自身に<colortype(500)><edgecolortype(501)>「猛襲」<edgecolortype(0)><colortype(0)>を付与する。<br><colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>40秒<br><colortype(504)><edgecolortype(505)>猛襲効果：<edgecolortype(0)><colortype(0)>自身の与ダメージを10％上昇させる。<br><colortype(504)><edgecolortype(505)>発動条件：<edgecolortype(0)><colortype(0)>壱の大牙【咬創】または壱の大牙【穿裂】命中時<br><br><colortype(506)><edgecolortype(507)>※このアクションはホットバーに登録することはできない。<br>\u3000発動条件を満たすと壱の大牙【咬創】が弐の大牙【猛襲】に変化する。<edgecolortype(0)><colortype(0)>",
+      "unlock_level": 40,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 41,
+          "name": "ヴァイパー",
+          "abbreviation": "VPR",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 34621,
+      "name": "弐の蛇【猛襲】",
+      "description": "対象に物理攻撃。\u3000威力：630\n側面攻撃時威力：680\n追加効果：自身に「猛襲」を付与する。\n効果時間：40秒\n猛襲効果：自身の与ダメージを10％上昇させる。\n追加効果：自身に「双鋭牙【連撃】」を付与する。\n効果時間：30秒\n双鋭牙【連撃】効果：双牙連撃の威力を50上昇させる。\n追加効果：「霊力ゲージ」を5上昇させる。\nこのアクションを命中させると双牙連術が双牙連撃に、双牙乱術が双牙乱撃にそれぞれ変化し、それらのアクションを2回実行できるようになる。\n発動条件：壱の蛇【強砕】または弐の蛇【疾速】実行後\nこのウェポンスキルは固有のリキャストタイマーを持つ。",
+      "description_macro": "対象に物理攻撃。\u3000<colortype(504)><edgecolortype(505)>威力：<edgecolortype(0)><colortype(0)>630<br><colortype(504)><edgecolortype(505)>側面攻撃時威力：<edgecolortype(0)><colortype(0)>680<br><colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)>自身に<colortype(500)><edgecolortype(501)>「猛襲」<edgecolortype(0)><colortype(0)>を付与する。<br><colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>40秒<br><colortype(504)><edgecolortype(505)>猛襲効果：<edgecolortype(0)><colortype(0)>自身の与ダメージを10％上昇させる。<br><if([gnum68==41],<if([gnum72>=75],<colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)>自身に<colortype(500)><edgecolortype(501)>「双鋭牙【連撃】」<edgecolortype(0)><colortype(0)>を付与する。<br><colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>30秒<br><colortype(504)><edgecolortype(505)>双鋭牙【連撃】効果：<edgecolortype(0)><colortype(0)>双牙連撃の威力を50上昇させる。<br>,)>,)><if([gnum68==41],<if([gnum72>=90],<colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)><colortype(500)><edgecolortype(501)>「霊力ゲージ」<edgecolortype(0)><colortype(0)>を5上昇させる。<br>,)>,)><if([gnum68==41],<if([gnum72>=75],このアクションを命中させると双牙連術が双牙連撃に、双牙乱術が双牙乱撃にそれぞれ変化し、それらのアクションを2回実行できるようになる。<br>,)>,)><colortype(504)><edgecolortype(505)>発動条件：<edgecolortype(0)><colortype(0)>壱の蛇【強砕】または弐の蛇【疾速】実行後<br>このウェポンスキルは固有のリキャストタイマーを持つ。",
+      "unlock_level": 65,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 41,
+          "name": "ヴァイパー",
+          "abbreviation": "VPR",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 34624,
+      "name": "弐の大蛇【猛襲】",
+      "description": "自身の周囲の敵に範囲物理攻撃。\u3000威力：300\n追加効果：自身に「猛襲」を付与する。\n効果時間：40秒\n猛襲効果：自身の与ダメージを10％上昇させる。\n追加効果：自身に「双鋭牙【連閃】」を付与する。\n効果時間：30秒\n双鋭牙【連閃】効果：双牙連閃の威力を30上昇させる。\n追加効果：「霊力ゲージ」を5上昇させる。\nこのアクションを命中させると双牙連術が双牙連閃に、双牙乱術が双牙乱閃にそれぞれ変化し、それらのアクションを2回実行できるようになる。\n発動条件：壱の大蛇【強砕】または弐の大蛇【疾速】実行後\nこのウェポンスキルは固有のリキャストタイマーを持つ。",
+      "description_macro": "自身の周囲の敵に範囲物理攻撃。\u3000<colortype(504)><edgecolortype(505)>威力：<edgecolortype(0)><colortype(0)>300<br><colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)>自身に<colortype(500)><edgecolortype(501)>「猛襲」<edgecolortype(0)><colortype(0)>を付与する。<br><colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>40秒<br><colortype(504)><edgecolortype(505)>猛襲効果：<edgecolortype(0)><colortype(0)>自身の与ダメージを10％上昇させる。<br><if([gnum68==41],<if([gnum72>=80],<colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)>自身に<colortype(500)><edgecolortype(501)>「双鋭牙【連閃】」<edgecolortype(0)><colortype(0)>を付与する。<br><colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>30秒<br><colortype(504)><edgecolortype(505)>双鋭牙【連閃】効果：<edgecolortype(0)><colortype(0)>双牙連閃の威力を30上昇させる。<br>,)>,)><if([gnum68==41],<if([gnum72>=90],<colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)><colortype(500)><edgecolortype(501)>「霊力ゲージ」<edgecolortype(0)><colortype(0)>を5上昇させる。<br>,)>,)><if([gnum68==41],<if([gnum72>=80],このアクションを命中させると双牙連術が双牙連閃に、双牙乱術が双牙乱閃にそれぞれ変化し、それらのアクションを2回実行できるようになる。<br>,)>,)><colortype(504)><edgecolortype(505)>発動条件：<edgecolortype(0)><colortype(0)>壱の大蛇【強砕】または弐の大蛇【疾速】実行後<br>このウェポンスキルは固有のリキャストタイマーを持つ。",
+      "unlock_level": 70,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 41,
+          "name": "ヴァイパー",
+          "abbreviation": "VPR",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,88 @@
+{
+  "kind": "ability",
+  "id": 24398,
+  "name": "コムニオ",
+  "description": "対象とその周囲の敵に無属性範囲魔法攻撃。\u3000威力：1100\n2体目以降の対象への威力は20％減少する。\n追加効果：「ペルフェクティオ待機」の効果時間中に実行すると「ペルフェクティオ実行可」を付与する。\u3000効果時間：30秒\n実行時に「レムール」の効果が切れる。\n発動条件：「レムールソウル」1以上",
+  "description_macro": "対象とその周囲の敵に無属性範囲魔法攻撃。\u3000<colortype(504)><edgecolortype(505)>威力：<edgecolortype(0)><colortype(0)>1100<br>2体目以降の対象への威力は20％減少する。<br><if([gnum68==39],<if([gnum72>=100],<colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)><colortype(500)><edgecolortype(501)>「ペルフェクティオ待機」<edgecolortype(0)><colortype(0)>の効果時間中に実行すると<colortype(500)><edgecolortype(501)>「ペルフェクティオ実行可」<edgecolortype(0)><colortype(0)>を付与する。\u3000<colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>30秒<br>,)>,)>実行時に<colortype(500)><edgecolortype(501)>「レムール」<edgecolortype(0)><colortype(0)>の効果が切れる。<br><colortype(504)><edgecolortype(505)>発動条件：<edgecolortype(0)><colortype(0)><colortype(500)><edgecolortype(501)>「レムールソウル」<edgecolortype(0)><colortype(0)>1以上",
+  "effects": [
+    "対象とその周囲の敵に無属性範囲魔法攻撃。\u3000威力：1100",
+    "2体目以降の対象への威力は20％減少する。",
+    "追加効果：「ペルフェクティオ待機」の効果時間中に実行すると「ペルフェクティオ実行可」を付与する。\u3000効果時間：30秒",
+    "実行時に「レムール」の効果が切れる。",
+    "発動条件：「レムールソウル」1以上"
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 39,
+    "name": "リーパー",
+    "abbreviation": "RPR"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 90,
+  "icon": {
+    "id": 3626,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 2,
+    "name": "魔法"
+  },
+  "attack_type": {
+    "id": 5,
+    "name": "魔法"
+  },
+  "timing": {
+    "cast_seconds": 1.3,
+    "recast_seconds": 2.5,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 58,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 82,
+      "value": 1
+    },
+    "secondary": {
+      "type_id": 112,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": 25,
+    "effect_yalms": 5,
+    "cast_type": 2
+  },
+  "targeting": {
+    "self": false,
+    "party": false,
+    "alliance": false,
+    "hostile": true,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 7,
+    "behavior_type": 0,
+    "class_job_category_id": 180,
+    "source_class_job_id": 39,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

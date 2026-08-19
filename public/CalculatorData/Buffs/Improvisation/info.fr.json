@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 1827,
+  "name": "Improvisation",
+  "description": "Improvise une danse.",
+  "effects": [
+    "Improvise une danse."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 213716,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": true,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 4,
+    "modifier": 0
+  },
+  "class_job_category_id": 150,
+  "source_abilities": [
+    {
+      "id": 16014,
+      "name": "Improvisation",
+      "description": "Vous improvisez une danse, vous octroyant Frénésie des danseurs.\nDurée : 15s\nL'effet s'accumule toutes les 3 secondes jusqu'à un maximum de 4 fois.\nEffet additionnel : restaure périodiquement vos PV et ceux des équipiers alentour.\nPuissance : 100 Durée : 15s\nL'effet prend fin si vous effectuez une action, un déplacement ou une rotation.\nInterrompt vos attaques automatiques.\nCette action devient Final improvisé après utilisation.",
+      "description_macro": "Vous improvisez une danse, vous octroyant <colortype(500)><edgecolortype(501)>Frénésie des danseurs<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 15s<br>L'effet s'accumule toutes les 3 secondes jusqu'à un maximum de 4 fois.<br><colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> restaure périodiquement vos PV et ceux des équipiers alentour.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> 100 <colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 15s<br>L'effet prend fin si vous effectuez une action, un déplacement ou une rotation.<br>Interrompt vos attaques automatiques.<br>Cette action devient <colortype(500)><edgecolortype(501)>Final improvisé<edgecolortype(0)><colortype(0)> après utilisation.",
+      "unlock_level": 80,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Physical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 38,
+          "name": "Danseur",
+          "abbreviation": "DNS",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 1724,
+  "name": "Veil of the Whorl",
+  "description": "Dealing water damage to attackers upon taking damage.",
+  "effects": [
+    "Dealing water damage to attackers upon taking damage."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 213511,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 10,
+  "parameter": {
+    "effect": 0,
+    "modifier": 100
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 11431,
+      "name": "Veil of the Whorl",
+      "description": "Counters enemies with water damage every time you suffer damage.\nCounter Potency: 50\nDuration: 30s\nEffect cannot be stacked with Ice Spikes or Schiltron.\nShares a recast timer with Glass Dance.",
+      "description_macro": "Counters enemies with water damage every time you suffer damage.<br><colortype(504)><edgecolortype(505)>Counter Potency: <edgecolortype(0)><colortype(0)>50<br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>30s<br>Effect cannot be stacked with <colortype(506)><edgecolortype(507)>Ice Spikes<edgecolortype(0)><colortype(0)> or <colortype(506)><edgecolortype(507)>Schiltron<edgecolortype(0)><colortype(0)>.<br>Shares a recast timer with <colortype(500)><edgecolortype(501)>Glass Dance<edgecolortype(0)><colortype(0)>.",
+      "unlock_level": 1,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Magical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 36,
+          "name": "Blue Mage",
+          "abbreviation": "BLU",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

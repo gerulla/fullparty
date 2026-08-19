@@ -1,0 +1,91 @@
+{
+  "kind": "ability",
+  "id": 36947,
+  "name": "Tigerpeitschenhieb",
+  "description": "Du führst eine physische Attacke aus.\nAttacke-Wert: 310\nVon der Seite: 370\nBei Rechtschaffene Faust: 460\nVon der Seite und bei Rechtschaffene Faust: 520\nBedingung: Coeurl-Form aktiv\nZusatzeffekt: Du wechselst in die Opo-Opo-Form.\nDauer: 30 Sekunden",
+  "description_macro": "Du führst eine physische Attacke aus.<br>Attacke-Wert: 310<br>Von der Seite: 370<br>Bei <colortype(506)><edgecolortype(507)>Rechtschaffene Faust<edgecolortype(0)><colortype(0)>: 460<br>Von der Seite und bei <colortype(506)><edgecolortype(507)>Rechtschaffene Faust<edgecolortype(0)><colortype(0)>: 520<br>Bedingung: <colortype(506)><edgecolortype(507)>Coeurl-Form<edgecolortype(0)><colortype(0)> aktiv<br>Zusatzeffekt: Du wechselst in die <colortype(506)><edgecolortype(507)>Opo-Opo-Form<edgecolortype(0)><colortype(0)>.<br>Dauer: 30 Sekunden",
+  "effects": [
+    "Du führst eine physische Attacke aus.",
+    "Attacke-Wert: 310",
+    "Von der Seite: 370",
+    "Bei Rechtschaffene Faust: 460",
+    "Von der Seite und bei Rechtschaffene Faust: 520",
+    "Bedingung: Coeurl-Form aktiv",
+    "Zusatzeffekt: Du wechselst in die Opo-Opo-Form.",
+    "Dauer: 30 Sekunden"
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 20,
+    "name": "Mönch",
+    "abbreviation": "MÖN"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 92,
+  "icon": {
+    "id": 2984,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 3,
+    "name": "Waffenfertigkeit"
+  },
+  "attack_type": {
+    "id": 4294967295,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 2.5,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 58,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 100,
+      "value": 577
+    },
+    "secondary": {
+      "type_id": 32,
+      "value": 109
+    }
+  },
+  "range": {
+    "target_yalms": -1,
+    "effect_yalms": 0,
+    "cast_type": 1
+  },
+  "targeting": {
+    "self": false,
+    "party": false,
+    "alliance": false,
+    "hostile": true,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": false
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 7,
+    "behavior_type": 0,
+    "class_job_category_id": 21,
+    "source_class_job_id": 20,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

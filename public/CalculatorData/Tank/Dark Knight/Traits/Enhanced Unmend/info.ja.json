@@ -1,0 +1,25 @@
+{
+  "kind": "trait",
+  "id": 422,
+  "name": "アンメンド効果アップ",
+  "description": "シャドウストライドのリキャストタイムを5秒短縮する。\n発動条件：一部を除く敵に対するアンメンドの命中時",
+  "description_macro": "シャドウストライドのリキャストタイムを5秒短縮する。<br><colortype(504)><edgecolortype(505)>発動条件：<edgecolortype(0)><colortype(0)>一部を除く敵に対するアンメンドの命中時",
+  "effects": [
+    "シャドウストライドのリキャストタイムを5秒短縮する。",
+    "発動条件：一部を除く敵に対するアンメンドの命中時"
+  ],
+  "role": "Tank",
+  "job": {
+    "id": 32,
+    "name": "暗黒騎士",
+    "abbreviation": "DRK"
+  },
+  "unlock_level": 84,
+  "value": 0,
+  "icon": {
+    "id": 6064,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 98,
+  "source_class_job_id": 32
+}

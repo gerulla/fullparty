@@ -1,0 +1,92 @@
+{
+  "kind": "ability",
+  "id": 25807,
+  "name": "Summon Garuda",
+  "description": "Summons Garuda-Egi and orders it to execute Aerial Blast.\nAerial Blast Effect: Deals wind damage to target and all enemies within 5 yalms with a potency of 600 for the first enemy\\\nAdditional Effect: Grants 4 stacks of Wind Attunement\nWind Attunement Effect: Gemshine and Precious Brilliance become wind-aspected\nDuration: 30s\nAdditional Effect: Grants Garuda's Favor\nEffect of Garuda's Favor ends upon execution of certain summoner actions.\nCan only be executed while under the effect of Emerald Arcanum and Carbuncle is summoned.\nCurrent pet will leave the battlefield while Garuda-Egi is present, and return once gone.",
+  "description_macro": "Summons Garuda-Egi and orders it to execute <if([gnum68==27],<if([gnum72>=50],<colortype(500)><edgecolortype(501)>Aerial Blast<edgecolortype(0)><colortype(0)>,<colortype(500)><edgecolortype(501)>Aerial Slash<edgecolortype(0)><colortype(0)>)>,<colortype(500)><edgecolortype(501)>Aerial Slash<edgecolortype(0)><colortype(0)>)>.<br><if([gnum68==27],<if([gnum72>=50],<colortype(504)><edgecolortype(505)>Aerial Blast Effect: <edgecolortype(0)><colortype(0)>Deals wind damage to target and all enemies within 5 yalms with a potency of 600 for the first enemy\\, and 50% less for all remaining enemies,<colortype(504)><edgecolortype(505)>Aerial Slash Effect: <edgecolortype(0)><colortype(0)>Deals wind damage with a potency of 100 to target and all enemies nearby it)>,<colortype(504)><edgecolortype(505)>Aerial Slash Effect: <edgecolortype(0)><colortype(0)>Deals wind damage with a potency of 100 to target and all enemies nearby it)><br><colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>Grants 4 stacks of <colortype(506)><edgecolortype(507)>Wind Attunement<edgecolortype(0)><colortype(0)><br><colortype(504)><edgecolortype(505)>Wind Attunement Effect: <edgecolortype(0)><colortype(0)><colortype(500)><edgecolortype(501)>Gemshine<edgecolortype(0)><colortype(0)> and <colortype(500)><edgecolortype(501)>Precious Brilliance<edgecolortype(0)><colortype(0)> become wind-aspected<br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>30s<br><if([gnum68==27],<if([gnum72>=86],<colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>Grants <colortype(506)><edgecolortype(507)>Garuda's Favor<edgecolortype(0)><colortype(0)><br>Effect of <colortype(506)><edgecolortype(507)>Garuda's Favor<edgecolortype(0)><colortype(0)> ends upon execution of certain summoner actions.<br>,)>,)>Can only be executed while under the effect of <colortype(506)><edgecolortype(507)>Emerald Arcanum<edgecolortype(0)><colortype(0)> and Carbuncle is summoned.<br>Current pet will leave the battlefield while Garuda-Egi is present, and return once gone.",
+  "effects": [
+    "Summons Garuda-Egi and orders it to execute Aerial Blast.",
+    "Aerial Blast Effect: Deals wind damage to target and all enemies within 5 yalms with a potency of 600 for the first enemy\\",
+    "Additional Effect: Grants 4 stacks of Wind Attunement",
+    "Wind Attunement Effect: Gemshine and Precious Brilliance become wind-aspected",
+    "Duration: 30s",
+    "Additional Effect: Grants Garuda's Favor",
+    "Effect of Garuda's Favor ends upon execution of certain summoner actions.",
+    "Can only be executed while under the effect of Emerald Arcanum and Carbuncle is summoned.",
+    "Current pet will leave the battlefield while Garuda-Egi is present, and return once gone."
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 27,
+    "name": "Summoner",
+    "abbreviation": "SMN"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 45,
+  "icon": {
+    "id": 2756,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 2,
+    "name": "Spell"
+  },
+  "attack_type": {
+    "id": 5,
+    "name": "魔法"
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 2.5,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 58,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 71,
+      "value": 3
+    },
+    "secondary": {
+      "type_id": 116,
+      "value": 481
+    }
+  },
+  "range": {
+    "target_yalms": 25,
+    "effect_yalms": 0,
+    "cast_type": 1
+  },
+  "targeting": {
+    "self": false,
+    "party": false,
+    "alliance": false,
+    "hostile": true,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": false
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 7,
+    "behavior_type": 0,
+    "class_job_category_id": 28,
+    "source_class_job_id": 27,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

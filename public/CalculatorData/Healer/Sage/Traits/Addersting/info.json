@@ -1,0 +1,25 @@
+{
+  "kind": "trait",
+  "id": 373,
+  "name": "Addersting",
+  "description": "Grants 1 stack of Addersting when the barrier granted by Eukrasian Diagnosis to any party member or the barrier granted by Eukrasian Prognosis to self is completely absorbed.\nMaximum Stacks: 3",
+  "description_macro": "Grants 1 stack of <colortype(506)><edgecolortype(507)>Addersting<edgecolortype(0)><colortype(0)> when the barrier granted by <colortype(500)><edgecolortype(501)>Eukrasian Diagnosis<edgecolortype(0)><colortype(0)> to any party member or the barrier granted by <colortype(500)><edgecolortype(501)>Eukrasian Prognosis<edgecolortype(0)><colortype(0)> to self is completely absorbed.<br><colortype(504)><edgecolortype(505)>Maximum Stacks: <edgecolortype(0)><colortype(0)>3",
+  "effects": [
+    "Grants 1 stack of Addersting when the barrier granted by Eukrasian Diagnosis to any party member or the barrier granted by Eukrasian Prognosis to self is completely absorbed.",
+    "Maximum Stacks: 3"
+  ],
+  "role": "Healer",
+  "job": {
+    "id": 40,
+    "name": "Sage",
+    "abbreviation": "SGE"
+  },
+  "unlock_level": 66,
+  "value": 0,
+  "icon": {
+    "id": 6454,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 181,
+  "source_class_job_id": 40
+}

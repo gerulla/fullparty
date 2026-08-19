@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 315,
+  "name": "Murmure de l'aurore",
+  "description": "Des PV sont récupérés périodiquement.",
+  "effects": [
+    "Des PV sont récupérés périodiquement."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 212826,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 5,
+  "parameter": {
+    "effect": 0,
+    "modifier": 10
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 16537,
+      "name": "Murmure de l'aurore",
+      "description": "Ordonne à votre fée d'exécuter Murmure de l'aurore.Si Séraphin est invoqué\\\n\nRestaure périodiquement les PV des équipiers alentour.\nPuissance : 80 Durée : 21s",
+      "description_macro": "Ordonne à votre fée d'exécuter <colortype(500)><edgecolortype(501)>Murmure de l'aurore<edgecolortype(0)><colortype(0)>.<if([gnum68==28],<if([gnum72>=80], Si Séraphin est invoqué\\, lui ordonne d'exécuter <colortype(500)><edgecolortype(501)>Murmure des anges<edgecolortype(0)><colortype(0)>.,)>,)><br><br>Restaure périodiquement les PV des équipiers alentour.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> 80 <colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 21s",
+      "unlock_level": 20,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Healer"
+      ],
+      "jobs": [
+        {
+          "id": 28,
+          "name": "Érudit",
+          "abbreviation": "ÉRU",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,90 @@
+{
+  "kind": "ability",
+  "id": 16491,
+  "name": "劫火滅却の術",
+  "description": "対象とその周囲の敵に火属性範囲魔法攻撃。\u3000威力：850\n発動条件：「活殺自在」効果時間中に、下記のいずれかの順に印を結んだ状態で、忍術を実行する。\n「地の印」「天の印」または、\n「人の印」「天の印」の順で印を結ぶ。\nこのアクションを実行するとウェポンスキルと魔法、印アクション、忍術アクションにリキャストタイムが発生する。\n\n※このアクションはホットバーに登録することはできない。\n\u3000発動条件を満たすと忍術が劫火滅却の術に変化する。",
+  "description_macro": "対象とその周囲の敵に火属性範囲魔法攻撃。\u3000<colortype(504)><edgecolortype(505)>威力：<edgecolortype(0)><colortype(0)>850<br><colortype(504)><edgecolortype(505)>発動条件：<edgecolortype(0)><colortype(0)><colortype(500)><edgecolortype(501)>「活殺自在」<edgecolortype(0)><colortype(0)>効果時間中に、下記のいずれかの順に印を結んだ状態で、忍術を実行する。<br><colortype(500)><edgecolortype(501)>「地の印」「天の印」<edgecolortype(0)><colortype(0)>または、<br><colortype(500)><edgecolortype(501)>「人の印」「天の印」<edgecolortype(0)><colortype(0)>の順で印を結ぶ。<br>このアクションを実行するとウェポンスキルと魔法、印アクション、忍術アクションにリキャストタイムが発生する。<br><br><colortype(506)><edgecolortype(507)>※このアクションはホットバーに登録することはできない。<br>\u3000発動条件を満たすと忍術が劫火滅却の術に変化する。<edgecolortype(0)><colortype(0)>",
+  "effects": [
+    "対象とその周囲の敵に火属性範囲魔法攻撃。\u3000威力：850",
+    "発動条件：「活殺自在」効果時間中に、下記のいずれかの順に印を結んだ状態で、忍術を実行する。",
+    "「地の印」「天の印」または、",
+    "「人の印」「天の印」の順で印を結ぶ。",
+    "このアクションを実行するとウェポンスキルと魔法、印アクション、忍術アクションにリキャストタイムが発生する。",
+    "※このアクションはホットバーに登録することはできない。",
+    "発動条件を満たすと忍術が劫火滅却の術に変化する。"
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 30,
+    "name": "忍者",
+    "abbreviation": "NIN"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 76,
+  "icon": {
+    "id": 2925,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 4,
+    "name": "アビリティ"
+  },
+  "attack_type": {
+    "id": 5,
+    "name": "魔法"
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 1.5,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 58,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 10,
+      "value": 496
+    },
+    "secondary": {
+      "type_id": 32,
+      "value": 497
+    }
+  },
+  "range": {
+    "target_yalms": 20,
+    "effect_yalms": 5,
+    "cast_type": 2
+  },
+  "targeting": {
+    "self": false,
+    "party": false,
+    "alliance": false,
+    "hostile": true,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 1,
+    "behavior_type": 0,
+    "class_job_category_id": 92,
+    "source_class_job_id": 0,
+    "is_role_action": false,
+    "is_player_action": false,
+    "is_derived_action": true,
+    "equivalence_group": 0
+  }
+}

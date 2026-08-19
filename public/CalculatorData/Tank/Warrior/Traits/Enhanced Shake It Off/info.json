@@ -1,0 +1,25 @@
+{
+  "kind": "trait",
+  "id": 417,
+  "name": "Enhanced Shake It Off",
+  "description": "Adds a healing effect to Shake It Off.\nCure Potency: 300",
+  "description_macro": "Adds a healing effect to <colortype(500)><edgecolortype(501)>Shake It Off<edgecolortype(0)><colortype(0)>.<br><colortype(504)><edgecolortype(505)>Cure Potency: <edgecolortype(0)><colortype(0)>300",
+  "effects": [
+    "Adds a healing effect to Shake It Off.",
+    "Cure Potency: 300"
+  ],
+  "role": "Tank",
+  "job": {
+    "id": 21,
+    "name": "Warrior",
+    "abbreviation": "WAR"
+  },
+  "unlock_level": 76,
+  "value": 0,
+  "icon": {
+    "id": 5266,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 22,
+  "source_class_job_id": 21
+}

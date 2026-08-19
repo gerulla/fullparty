@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 2500,
+  "name": "ドラゴンフォース",
+  "description": "被ダメージを軽減する状態。",
+  "effects": [
+    "被ダメージを軽減する状態。"
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 213539,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 1,
+  "parameter": {
+    "effect": 0,
+    "modifier": -20
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 23280,
+      "name": "ドラゴンフォース",
+      "description": "一定時間、自身の被ダメージを20％軽減させる。\n効果時間：15秒\n自身に「エーテルコピー：タンク」が付与されている場合は効果量が上昇する。\nエーテルコピー：タンク時効果：自身の被ダメージを40％軽減させる。\nこの魔法は固有のリキャストタイマーを持ち、「天使のおやつ」「マトラマジック」と共有する。",
+      "description_macro": "一定時間、自身の被ダメージを20％軽減させる。<br><colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>15秒<br>自身に<colortype(500)><edgecolortype(501)>「エーテルコピー：タンク」<edgecolortype(0)><colortype(0)>が付与されている場合は効果量が上昇する。<br><colortype(504)><edgecolortype(505)>エーテルコピー：タンク時効果：<edgecolortype(0)><colortype(0)>自身の被ダメージを40％軽減させる。<br>この魔法は固有のリキャストタイマーを持ち、<colortype(500)><edgecolortype(501)>「天使のおやつ」「マトラマジック」<edgecolortype(0)><colortype(0)>と共有する。",
+      "unlock_level": 1,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Magical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 36,
+          "name": "青魔道士",
+          "abbreviation": "BLU",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

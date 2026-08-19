@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 168,
+  "name": "Bite Mastery",
+  "description": "Upgrades Venomous Bite and Windbite to Caustic Bite and Stormbite respectively.",
+  "description_macro": "Upgrades <colortype(500)><edgecolortype(501)>Venomous Bite<edgecolortype(0)><colortype(0)> and <colortype(500)><edgecolortype(501)>Windbite<edgecolortype(0)><colortype(0)> to <colortype(500)><edgecolortype(501)>Caustic Bite<edgecolortype(0)><colortype(0)> and <colortype(500)><edgecolortype(501)>Stormbite<edgecolortype(0)><colortype(0)> respectively.",
+  "effects": [
+    "Upgrades Venomous Bite and Windbite to Caustic Bite and Stormbite respectively."
+  ],
+  "role": "Physical Ranged DPS",
+  "job": {
+    "id": 23,
+    "name": "Bard",
+    "abbreviation": "BRD"
+  },
+  "unlock_level": 64,
+  "value": 0,
+  "icon": {
+    "id": 5309,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 24,
+  "source_class_job_id": 23
+}

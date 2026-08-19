@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 282,
+  "name": "Straight Shot Mastery",
+  "description": "Upgrades Straight Shot to Refulgent Arrow.",
+  "description_macro": "Upgrades <colortype(500)><edgecolortype(501)>Straight Shot<edgecolortype(0)><colortype(0)> to <colortype(500)><edgecolortype(501)>Refulgent Arrow<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Upgrades Straight Shot to Refulgent Arrow."
+  ],
+  "role": "Physical Ranged DPS",
+  "job": {
+    "id": 23,
+    "name": "Bard",
+    "abbreviation": "BRD"
+  },
+  "unlock_level": 70,
+  "value": 0,
+  "icon": {
+    "id": 5311,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 24,
+  "source_class_job_id": 23
+}

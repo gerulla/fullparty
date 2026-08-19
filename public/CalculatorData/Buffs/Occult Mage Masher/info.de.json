@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 4259,
+  "name": "Kreszenter Stummdolch",
+  "description": "Das magische Potenzial ist verringert.",
+  "effects": [
+    "Das magische Potenzial ist verringert."
+  ],
+  "classification": "debuff",
+  "icon": {
+    "id": 229921,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 2,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": -10
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 41624,
+      "name": "Kreszenter Stummdolch",
+      "description": "Du reduzierst den ausgeteilten magischen Schaden des Ziels um 10 %.\nDauer: 60 Sekunden",
+      "description_macro": "Du reduzierst den ausgeteilten magischen Schaden des Ziels um 10<nbsp>%.<br>Dauer: 60 Sekunden",
+      "unlock_level": 0,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Phantom Jobs"
+      ],
+      "jobs": [
+        {
+          "id": 8,
+          "name": "Phantom Phantom-Zeitmagier",
+          "abbreviation": "Ph-Zeitmagier",
+          "is_phantom": true
+        }
+      ]
+    }
+  ]
+}

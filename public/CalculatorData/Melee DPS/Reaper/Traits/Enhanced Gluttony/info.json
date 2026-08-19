@@ -1,0 +1,28 @@
+{
+  "kind": "trait",
+  "id": 596,
+  "name": "Enhanced Gluttony",
+  "description": "Grants 2 stacks of Executioner upon executing Gluttony.\nDuration: 30s\nEffect cannot be stacked with Soul Reaver.\nEffect ends upon execution of any weaponskill or magic attack.\nGibbet changes to Executioner's Gibbet, Gallows changes to Executioner's Gallows, and Guillotine changes to Executioner's Guillotine while under the effect of Executioner.",
+  "description_macro": "Grants 2 stacks of <colortype(506)><edgecolortype(507)>Executioner<edgecolortype(0)><colortype(0)> upon executing <colortype(500)><edgecolortype(501)>Gluttony<edgecolortype(0)><colortype(0)>.<br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>30s<br>Effect cannot be stacked with <colortype(506)><edgecolortype(507)>Soul Reaver<edgecolortype(0)><colortype(0)>.<br>Effect ends upon execution of any weaponskill or magic attack.<br><colortype(500)><edgecolortype(501)>Gibbet<edgecolortype(0)><colortype(0)> changes to <colortype(500)><edgecolortype(501)>Executioner's Gibbet<edgecolortype(0)><colortype(0)>, <colortype(500)><edgecolortype(501)>Gallows<edgecolortype(0)><colortype(0)> changes to <colortype(500)><edgecolortype(501)>Executioner's Gallows<edgecolortype(0)><colortype(0)>, and <colortype(500)><edgecolortype(501)>Guillotine<edgecolortype(0)><colortype(0)> changes to <colortype(500)><edgecolortype(501)>Executioner's Guillotine<edgecolortype(0)><colortype(0)> while under the effect of <colortype(506)><edgecolortype(507)>Executioner<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Grants 2 stacks of Executioner upon executing Gluttony.",
+    "Duration: 30s",
+    "Effect cannot be stacked with Soul Reaver.",
+    "Effect ends upon execution of any weaponskill or magic attack.",
+    "Gibbet changes to Executioner's Gibbet, Gallows changes to Executioner's Gallows, and Guillotine changes to Executioner's Guillotine while under the effect of Executioner."
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 39,
+    "name": "Reaper",
+    "abbreviation": "RPR"
+  },
+  "unlock_level": 96,
+  "value": 0,
+  "icon": {
+    "id": 6413,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 180,
+  "source_class_job_id": 39
+}

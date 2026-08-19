@@ -1,0 +1,71 @@
+{
+  "kind": "combat_status",
+  "id": 3657,
+  "name": "双鋭牙【連撃】",
+  "description": "牙の構えから繰り出す特定のアクションの威力を上昇させる状態。",
+  "effects": [
+    "牙の構えから繰り出す特定のアクションの威力を上昇させる状態。"
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 213763,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 196,
+  "source_abilities": [
+    {
+      "id": 34621,
+      "name": "弐の蛇【猛襲】",
+      "description": "対象に物理攻撃。\u3000威力：630\n側面攻撃時威力：680\n追加効果：自身に「猛襲」を付与する。\n効果時間：40秒\n猛襲効果：自身の与ダメージを10％上昇させる。\n追加効果：自身に「双鋭牙【連撃】」を付与する。\n効果時間：30秒\n双鋭牙【連撃】効果：双牙連撃の威力を50上昇させる。\n追加効果：「霊力ゲージ」を5上昇させる。\nこのアクションを命中させると双牙連術が双牙連撃に、双牙乱術が双牙乱撃にそれぞれ変化し、それらのアクションを2回実行できるようになる。\n発動条件：壱の蛇【強砕】または弐の蛇【疾速】実行後\nこのウェポンスキルは固有のリキャストタイマーを持つ。",
+      "description_macro": "対象に物理攻撃。\u3000<colortype(504)><edgecolortype(505)>威力：<edgecolortype(0)><colortype(0)>630<br><colortype(504)><edgecolortype(505)>側面攻撃時威力：<edgecolortype(0)><colortype(0)>680<br><colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)>自身に<colortype(500)><edgecolortype(501)>「猛襲」<edgecolortype(0)><colortype(0)>を付与する。<br><colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>40秒<br><colortype(504)><edgecolortype(505)>猛襲効果：<edgecolortype(0)><colortype(0)>自身の与ダメージを10％上昇させる。<br><if([gnum68==41],<if([gnum72>=75],<colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)>自身に<colortype(500)><edgecolortype(501)>「双鋭牙【連撃】」<edgecolortype(0)><colortype(0)>を付与する。<br><colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>30秒<br><colortype(504)><edgecolortype(505)>双鋭牙【連撃】効果：<edgecolortype(0)><colortype(0)>双牙連撃の威力を50上昇させる。<br>,)>,)><if([gnum68==41],<if([gnum72>=90],<colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)><colortype(500)><edgecolortype(501)>「霊力ゲージ」<edgecolortype(0)><colortype(0)>を5上昇させる。<br>,)>,)><if([gnum68==41],<if([gnum72>=75],このアクションを命中させると双牙連術が双牙連撃に、双牙乱術が双牙乱撃にそれぞれ変化し、それらのアクションを2回実行できるようになる。<br>,)>,)><colortype(504)><edgecolortype(505)>発動条件：<edgecolortype(0)><colortype(0)>壱の蛇【強砕】または弐の蛇【疾速】実行後<br>このウェポンスキルは固有のリキャストタイマーを持つ。",
+      "unlock_level": 65,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 41,
+          "name": "ヴァイパー",
+          "abbreviation": "VPR",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 34637,
+      "name": "双牙乱撃",
+      "description": "対象に物理攻撃。\u3000威力：120\n双鋭牙【乱撃】時威力：170\n追加効果：弐の蛇【疾速】の直後に実行すると自身に「双鋭牙【連撃】」を付与する。\u3000効果時間：30秒\n発動条件：弐の蛇【猛襲】または弐の蛇【疾速】の命中時\n\n※このアクションはホットバーに登録することはできない。\n\u3000発動条件を満たすと双牙乱術が双牙乱撃に変化する。",
+      "description_macro": "対象に物理攻撃。\u3000<colortype(504)><edgecolortype(505)>威力：<edgecolortype(0)><colortype(0)>120<br><colortype(504)><edgecolortype(505)>双鋭牙【乱撃】時威力：<edgecolortype(0)><colortype(0)>170<br><colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)>弐の蛇【疾速】の直後に実行すると自身に<colortype(500)><edgecolortype(501)>「双鋭牙【連撃】」<edgecolortype(0)><colortype(0)>を付与する。\u3000<colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>30秒<br><colortype(504)><edgecolortype(505)>発動条件：<edgecolortype(0)><colortype(0)>弐の蛇【猛襲】または弐の蛇【疾速】の命中時<br><br><colortype(506)><edgecolortype(507)>※このアクションはホットバーに登録することはできない。<br>\u3000発動条件を満たすと双牙乱術が双牙乱撃に変化する。<edgecolortype(0)><colortype(0)>",
+      "unlock_level": 75,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 41,
+          "name": "ヴァイパー",
+          "abbreviation": "VPR",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

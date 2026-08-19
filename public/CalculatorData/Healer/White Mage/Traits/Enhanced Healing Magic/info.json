@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 489,
+  "name": "Enhanced Healing Magic",
+  "description": "Increases the healing potency of Cure to 500, Medica to 400, Cure II to 800, Regen to 250, Cure III to 600, Medica II to 250, Medica II's Regen effect to 150, Afflatus Solace to 800, and Afflatus Rapture to 400.",
+  "description_macro": "Increases the healing potency of <colortype(500)><edgecolortype(501)>Cure<edgecolortype(0)><colortype(0)> to 500, <colortype(500)><edgecolortype(501)>Medica<edgecolortype(0)><colortype(0)> to 400, <colortype(500)><edgecolortype(501)>Cure II<edgecolortype(0)><colortype(0)> to 800, <colortype(500)><edgecolortype(501)>Regen<edgecolortype(0)><colortype(0)> to 250, <colortype(500)><edgecolortype(501)>Cure III<edgecolortype(0)><colortype(0)> to 600, <colortype(500)><edgecolortype(501)>Medica II<edgecolortype(0)><colortype(0)> to 250, <colortype(500)><edgecolortype(501)>Medica II<edgecolortype(0)><colortype(0)>'s <colortype(506)><edgecolortype(507)>Regen<edgecolortype(0)><colortype(0)> effect to 150, <colortype(500)><edgecolortype(501)>Afflatus Solace<edgecolortype(0)><colortype(0)> to 800, and <colortype(500)><edgecolortype(501)>Afflatus Rapture<edgecolortype(0)><colortype(0)> to 400.",
+  "effects": [
+    "Increases the healing potency of Cure to 500, Medica to 400, Cure II to 800, Regen to 250, Cure III to 600, Medica II to 250, Medica II's Regen effect to 150, Afflatus Solace to 800, and Afflatus Rapture to 400."
+  ],
+  "role": "Healer",
+  "job": {
+    "id": 24,
+    "name": "White Mage",
+    "abbreviation": "WHM"
+  },
+  "unlock_level": 85,
+  "value": 0,
+  "icon": {
+    "id": 6826,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 25,
+  "source_class_job_id": 24
+}

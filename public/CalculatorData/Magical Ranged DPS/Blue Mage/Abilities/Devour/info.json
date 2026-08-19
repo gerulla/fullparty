@@ -1,0 +1,89 @@
+{
+  "kind": "ability",
+  "id": 18320,
+  "name": "Devour",
+  "description": "Deals unaspected damage with a potency of 250.\nAdditional Effect: Increases maximum HP by 20%\nDuration: 15s\nIncreases duration to 70s when you are under the effect of Aetheric Mimicry: Tank.\nAdditional Effect: Restores an amount of own HP equal to damage dealt\nThis action does not share a recast timer with any other actions.",
+  "description_macro": "Deals unaspected damage with a potency of 250.<br><colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>Increases maximum HP by 20%<br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>15s<br>Increases duration to 70s when you are under the effect of <colortype(506)><edgecolortype(507)>Aetheric Mimicry: Tank<edgecolortype(0)><colortype(0)>.<br><colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>Restores an amount of own HP equal to damage dealt<br>This action does not share a recast timer with any other actions.",
+  "effects": [
+    "Deals unaspected damage with a potency of 250.",
+    "Additional Effect: Increases maximum HP by 20%",
+    "Duration: 15s",
+    "Increases duration to 70s when you are under the effect of Aetheric Mimicry: Tank.",
+    "Additional Effect: Restores an amount of own HP equal to damage dealt",
+    "This action does not share a recast timer with any other actions."
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 36,
+    "name": "Blue Mage",
+    "abbreviation": "BLU"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 1,
+  "icon": {
+    "id": 3325,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 2,
+    "name": "Spell"
+  },
+  "attack_type": {
+    "id": 5,
+    "name": "魔法"
+  },
+  "timing": {
+    "cast_seconds": 1,
+    "recast_seconds": 60,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 8,
+    "additional_cooldown_group": 58,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 3,
+      "value": 3
+    },
+    "secondary": {
+      "type_id": 0,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": 3,
+    "effect_yalms": 0,
+    "cast_type": 1
+  },
+  "targeting": {
+    "self": false,
+    "party": false,
+    "alliance": false,
+    "hostile": true,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": false
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 7,
+    "behavior_type": 0,
+    "class_job_category_id": 129,
+    "source_class_job_id": 36,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

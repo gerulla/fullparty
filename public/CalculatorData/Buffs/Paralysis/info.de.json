@@ -1,0 +1,155 @@
+{
+  "kind": "combat_status",
+  "id": 17,
+  "name": "Paralyse",
+  "description": "Paralysierte Nerven lassen Kommandos ab und zu aussetzen.",
+  "effects": [
+    "Paralysierte Nerven lassen Kommandos ab und zu aussetzen."
+  ],
+  "classification": "debuff",
+  "icon": {
+    "id": 215006,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 2,
+  "target_type": 0,
+  "can_dispel": true,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 100,
+  "parameter": {
+    "effect": 0,
+    "modifier": 33
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 11387,
+      "name": "Hochstrom",
+      "description": "Du führst eine blitzbasierte magische Attacke auf alle umstehenden Gegner aus.\nAttacke-Wert: 180\nAttacke-Wert verringert sich ab dem zweiten Gegner um 50 %.\nZusatzeffekt: Paralyse\nDauer: 15 Sekunden\nZusatzeffekt: Wenn das Ziel unter Wassersucht leidet, erhöhen sich Attacke-Wert und Dauer.\nErhöhter Attacke-Wert: 220\nErhöhte Dauer: 30 Sekunden",
+      "description_macro": "Du führst eine blitzbasierte magische Attacke auf alle umstehenden Gegner aus.<br>Attacke-Wert: 180<br>Attacke-Wert verringert sich ab dem zweiten Gegner um 50 %.<br>Zusatzeffekt: <colortype(506)><edgecolortype(507)>Paralyse<edgecolortype(0)><colortype(0)><br>Dauer: 15 Sekunden<br>Zusatzeffekt: Wenn das Ziel unter <colortype(506)><edgecolortype(507)>Wassersucht<edgecolortype(0)><colortype(0)> leidet, erhöhen sich Attacke-Wert und Dauer.<br>Erhöhter Attacke-Wert: 220<br>Erhöhte Dauer: 30 Sekunden",
+      "unlock_level": 1,
+      "relations": [
+        "applied_by_description"
+      ],
+      "roles": [
+        "Magical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 36,
+          "name": "Blaumagier",
+          "abbreviation": "BMA",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 11394,
+      "name": "Geiststoß",
+      "description": "Du führst eine elementneutrale magische Attacke auf alle umstehenden Gegner aus.\nAttacke-Wert: 200\nAttacke-Wert verringert sich ab dem zweiten Gegner um 50 %.\nZusatzeffekt: Paralyse\nDauer: 30 Sekunden",
+      "description_macro": "Du führst eine elementneutrale magische Attacke auf alle umstehenden Gegner aus.<br>Attacke-Wert: 200<br>Attacke-Wert verringert sich ab dem zweiten Gegner um 50 %.<br>Zusatzeffekt: <colortype(506)><edgecolortype(507)>Paralyse<edgecolortype(0)><colortype(0)><br>Dauer: 30 Sekunden",
+      "unlock_level": 1,
+      "relations": [
+        "applied_by_description"
+      ],
+      "roles": [
+        "Magical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 36,
+          "name": "Blaumagier",
+          "abbreviation": "BMA",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 11404,
+      "name": "Finsterer Blick",
+      "description": "Du führst eine blitzbasierte magische Attacke auf alle Gegner in gerader Linie vor dir aus.\nAttacke-Wert: 220\nAttacke-Wert verringert sich ab dem zweiten Gegner um 50 %.\nZusatzeffekt: Paralyse\nDauer: 6 Sekunden",
+      "description_macro": "Du führst eine blitzbasierte magische Attacke auf alle Gegner in gerader Linie vor dir aus.<br>Attacke-Wert: 220<br>Attacke-Wert verringert sich ab dem zweiten Gegner um 50 %.<br>Zusatzeffekt: <colortype(506)><edgecolortype(507)>Paralyse<edgecolortype(0)><colortype(0)><br>Dauer: 6 Sekunden",
+      "unlock_level": 1,
+      "relations": [
+        "applied_by_description"
+      ],
+      "roles": [
+        "Magical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 36,
+          "name": "Blaumagier",
+          "abbreviation": "BMA",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 11420,
+      "name": "Stimme des Drachen",
+      "description": "Du führst eine blitzbasierte magische Attacke auf alle umstehenden Gegner aus.\nAttacke-Wert: 200\nAttacke-Wert verringert sich ab dem zweiten Gegner um 50 %.\nWirkt nicht auf Gegner, die näher als 8 Yalme stehen.\nZusatzeffekt: Ziel erleidet Paralyse.\nDauer: 9 Sekunden\nWenn das Ziel unter Tiefkühlung leidet, ist in den meisten Fällen der Attacke-Wert erhöht und Tiefkühlung wird aufgehoben.\nErhöhter Attacke-Wert: 400",
+      "description_macro": "Du führst eine blitzbasierte magische Attacke auf alle umstehenden Gegner aus.<br>Attacke-Wert: 200<br>Attacke-Wert verringert sich ab dem zweiten Gegner um 50 %.<br>Wirkt nicht auf Gegner, die näher als 8 Yalme stehen.<br>Zusatzeffekt: Ziel erleidet <colortype(506)><edgecolortype(507)>Paralyse<edgecolortype(0)><colortype(0)>.<br>Dauer: 9 Sekunden<br>Wenn das Ziel unter <colortype(506)><edgecolortype(507)>Tiefkühlung<edgecolortype(0)><colortype(0)> leidet, ist in den meisten Fällen der Attacke-Wert erhöht und Tiefkühlung wird aufgehoben.<br>Erhöhter Attacke-Wert: 400",
+      "unlock_level": 1,
+      "relations": [
+        "applied_by_description"
+      ],
+      "roles": [
+        "Magical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 36,
+          "name": "Blaumagier",
+          "abbreviation": "BMA",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 18300,
+      "name": "Abyssal-Transfixion",
+      "description": "Du führst eine elementneutrale physische Attacke aus.\nAttacke-Wert: 220\nZusatzeffekt: Paralyse\nDauer: 30 Sekunden",
+      "description_macro": "Du führst eine elementneutrale physische Attacke aus.<br>Attacke-Wert: 220<br>Zusatzeffekt: <colortype(506)><edgecolortype(507)>Paralyse<edgecolortype(0)><colortype(0)><br>Dauer: 30 Sekunden",
+      "unlock_level": 1,
+      "relations": [
+        "applied_by_description"
+      ],
+      "roles": [
+        "Magical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 36,
+          "name": "Blaumagier",
+          "abbreviation": "BMA",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 41629,
+      "name": "Schockkanone",
+      "description": "Du führst eine elementneutrale magische Attacke auf das Ziel und die Gegner in seiner Nähe aus.\nAttacke-Wert: 210 (skaliert mit Gegenstandsstufe)\nZusatzeffekt: Paralyse\nDauer: 18 Sekunden\nGemeinsamer Reaktivierungs-Timer mit Dunkle Kanone",
+      "description_macro": "Du führst eine elementneutrale magische Attacke auf das Ziel und die Gegner in seiner Nähe aus.<br>Attacke-Wert: 210 (skaliert mit Gegen<->stands<->stufe)<br>Zusatzeffekt: <colortype(506)><edgecolortype(507)>Paralyse<edgecolortype(0)><colortype(0)><br>Dauer: 18 Sekunden<br>Gemeinsamer Reaktivierungs-Timer mit <colortype(502)><edgecolortype(503)>Dunkle Kanone<edgecolortype(0)><colortype(0)>",
+      "unlock_level": 0,
+      "relations": [
+        "applied_by_description"
+      ],
+      "roles": [
+        "Phantom Jobs"
+      ],
+      "jobs": [
+        {
+          "id": 9,
+          "name": "Phantom Phantom-Grenadier",
+          "abbreviation": "Ph-Grenadier",
+          "is_phantom": true
+        }
+      ]
+    }
+  ]
+}

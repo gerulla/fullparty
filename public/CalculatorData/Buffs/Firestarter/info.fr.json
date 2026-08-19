@@ -1,0 +1,71 @@
+{
+  "kind": "combat_status",
+  "id": 165,
+  "name": "Pyromane",
+  "description": "Le prochain Méga Feu est instantané et ne consomme aucun PM.",
+  "effects": [
+    "Le prochain Méga Feu est instantané et ne consomme aucun PM."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 210460,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": true,
+  "inflicted_by_actor": true,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 141,
+      "name": "Feu",
+      "description": "Effectue une attaque magique de feu sur la cible.\nPuissance : 180\nEffet additionnel : dissipe Glace ombrale si actif. Sinon, vous octroie Feu astral.\nEffet additionnel : 40% de chances que Pyromane vous soit octroyé.\nPyromane : le prochain Méga Feu est instantané et ne consomme aucun PM.",
+      "description_macro": "Effectue une attaque magique de feu sur la cible.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> 180<br><colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> dissipe <colortype(500)><edgecolortype(501)>Glace ombrale<edgecolortype(0)><colortype(0)> si actif. Sinon, vous octroie <colortype(500)><edgecolortype(501)>Feu astral<edgecolortype(0)><colortype(0)>.<if([gnum72>=42],<if([gnum68==7],<br><colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> 40% de chances que <colortype(500)><edgecolortype(501)>Pyromane<edgecolortype(0)><colortype(0)> vous soit octroyé.<br><colortype(506)><edgecolortype(507)>Pyromane<nbsp>:<edgecolortype(0)><colortype(0)> le prochain Méga Feu est instantané et ne consomme aucun PM.,<if([gnum68==25],<br><colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> 40% de chances que <colortype(500)><edgecolortype(501)>Pyromane<edgecolortype(0)><colortype(0)> vous soit octroyé.<br><colortype(506)><edgecolortype(507)>Pyromane<nbsp>:<edgecolortype(0)><colortype(0)> le prochain Méga Feu est instantané et ne consomme aucun PM.,)>)>,)>",
+      "unlock_level": 2,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Magical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 25,
+          "name": "Mage Noir",
+          "abbreviation": "MNO",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 25797,
+      "name": "Paradoxe",
+      "description": "Effectue une attaque magique neutre sur la cible.\nPuissance : 540\nEffet additionnel avec Feu astral : vous octroie Pyromane.\nPyromane : le prochain Méga Feu est instantané et ne consomme aucun PM.\nEffet additionnel avec Glace ombrale : réduit le coût en PM de ce sort à 0.\nCondition : Symbole paradoxal.\n\n* Cette action ne peut pas être ajoutée aux barres de raccourcis.\nRemplace Feu et Glace lorsque les conditions sont réunies.",
+      "description_macro": "Effectue une attaque magique neutre sur la cible.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> 540<br><colortype(506)><edgecolortype(507)>Effet additionnel avec Feu astral<nbsp>:<edgecolortype(0)><colortype(0)> vous octroie <colortype(500)><edgecolortype(501)>Pyromane<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Pyromane<nbsp>:<edgecolortype(0)><colortype(0)> le prochain Méga Feu est instantané et ne consomme aucun PM.<br><colortype(506)><edgecolortype(507)>Effet additionnel avec Glace ombrale<nbsp>:<edgecolortype(0)><colortype(0)> réduit le coût en PM de ce sort à 0.<br><colortype(506)><edgecolortype(507)>Condition<nbsp>:<edgecolortype(0)><colortype(0)> <colortype(500)><edgecolortype(501)>Symbole paradoxal<edgecolortype(0)><colortype(0)>.<br><br><colortype(504)><edgecolortype(505)>* Cette action ne peut pas être ajoutée aux barres de raccourcis.<br>Remplace <colortype(500)><edgecolortype(501)>Feu<edgecolortype(0)><colortype(0)> et <colortype(500)><edgecolortype(501)>Glace<edgecolortype(0)><colortype(0)> lorsque les conditions sont réunies.<edgecolortype(0)><colortype(0)>",
+      "unlock_level": 90,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Magical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 25,
+          "name": "Mage Noir",
+          "abbreviation": "MNO",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

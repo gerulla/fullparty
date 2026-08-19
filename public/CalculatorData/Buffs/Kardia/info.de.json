@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 2604,
+  "name": "Kardia",
+  "description": "Gewisse erfolgreich ausgeführte magische Attacken regenerieren beim Ziel mit Kardion LP.",
+  "effects": [
+    "Gewisse erfolgreich ausgeführte magische Attacken regenerieren beim Ziel mit Kardion LP."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 212951,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": true,
+  "inflicted_by_actor": true,
+  "party_list_priority": 45,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 181,
+  "source_abilities": [
+    {
+      "id": 24285,
+      "name": "Kardia",
+      "description": "Du erhältst Kardia und du oder das anvisierte Gruppenmitglied Kardion. Gewisse deiner magische Attacken regenerieren bei dem Ziel mit aktivem Kardion LP.\nHeilpotenzial: 170",
+      "description_macro": "Du erhältst <colortype(506)><edgecolortype(507)>Kardia<edgecolortype(0)><colortype(0)> und du oder das anvisierte Grup<->pen<->mit<->glied <colortype(506)><edgecolortype(507)>Kardion<edgecolortype(0)><colortype(0)>. Gewisse deiner magische Attacken regenerieren bei dem Ziel mit aktivem <colortype(506)><edgecolortype(507)>Kardion<edgecolortype(0)><colortype(0)> LP.<br>Heilpotenzial: <if([gnum68==40],<if([gnum72>=85],170,130)>,130)>",
+      "unlock_level": 4,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Healer"
+      ],
+      "jobs": [
+        {
+          "id": 40,
+          "name": "Weiser",
+          "abbreviation": "WEI",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

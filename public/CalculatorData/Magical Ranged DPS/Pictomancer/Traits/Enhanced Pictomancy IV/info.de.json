@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 545,
+  "name": "Verbesserte Piktomantie IV",
+  "description": "Lebende Muse kann bis zu dreimal aufgeladen werden. Außerdem können die Pikto-Klaue und Pikto-Hauer auf die Kreaturen-Leinwand gemalt werden.",
+  "description_macro": "<colortype(502)><edgecolortype(503)>Lebende Muse<edgecolortype(0)><colortype(0)> kann bis zu dreimal aufgeladen werden. Außerdem können die <colortype(506)><edgecolortype(507)>Pikto-Klaue<edgecolortype(0)><colortype(0)> und <colortype(506)><edgecolortype(507)>Pikto-Hauer<edgecolortype(0)><colortype(0)> auf die Kreaturen-Leinwand gemalt werden.",
+  "effects": [
+    "Lebende Muse kann bis zu dreimal aufgeladen werden. Außerdem können die Pikto-Klaue und Pikto-Hauer auf die Kreaturen-Leinwand gemalt werden."
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 42,
+    "name": "Piktomant",
+    "abbreviation": "PKT"
+  },
+  "unlock_level": 96,
+  "value": 3,
+  "icon": {
+    "id": 6559,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 197,
+  "source_class_job_id": 42
+}

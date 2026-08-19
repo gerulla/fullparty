@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 3845,
+  "name": "Aufstiegsbereit",
+  "description": "Steigender Drache kann ausgeführt werden.",
+  "effects": [
+    "Steigender Drache kann ausgeführt werden."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 212587,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 23,
+  "source_abilities": [
+    {
+      "id": 96,
+      "name": "Wyrmodem",
+      "description": "Du springst zum Ziel und greifst alle umstehenden Gegner mit einer feuerbasierten Attacke an.\nAttacke-Wert: 500\nAttacke-Wert verringert sich ab dem zweiten Gegner um 50 %.\nZusatzeffekt: Gewährt dir Aufstiegsbereit.\nDauer: 30 Sekunden\nKann nicht während Fessel ausgeführt werden.",
+      "description_macro": "Du springst zum Ziel und greifst alle umstehenden Gegner mit einer feuerbasierten Attacke an.<br>Attacke-Wert: 500<br>Attacke-Wert verringert sich ab dem zweiten Gegner um 50<nbsp>%.<br><if([gnum68==22],<if([gnum72>=92],Zusatzeffekt: Gewährt dir <colortype(506)><edgecolortype(507)>Aufstiegsbereit<edgecolortype(0)><colortype(0)>.<br>Dauer: 30 Sekunden<br>,)>,)>Kann nicht während <colortype(500)><edgecolortype(501)>Fessel<edgecolortype(0)><colortype(0)> ausgeführt werden.",
+      "unlock_level": 50,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 22,
+          "name": "Dragoon",
+          "abbreviation": "DRG",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

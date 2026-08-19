@@ -1,0 +1,92 @@
+{
+  "kind": "combat_status",
+  "id": 2720,
+  "name": "Power Surge",
+  "description": "Damage dealt is increased.",
+  "effects": [
+    "Damage dealt is increased."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 210303,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 10
+  },
+  "class_job_category_id": 23,
+  "source_abilities": [
+    {
+      "id": 87,
+      "name": "Disembowel",
+      "description": "Delivers an attack with a potency of 140.\nCombo Action: True Thrust or Raiden Thrust\nCombo Potency: 250\nCombo Bonus: Grants Power Surge\nPower Surge Effect: Increases damage dealt by 10%\nDuration: 30s",
+      "description_macro": "Delivers an attack with a potency of <if([gnum68==22],<if([gnum72>=76],140,100)>,100)>.<br><colortype(504)><edgecolortype(505)>Combo Action:<edgecolortype(0)><colortype(0)> <if([gnum68==22],<if([gnum72>=76],<colortype(500)><edgecolortype(501)>True Thrust<edgecolortype(0)><colortype(0)> or <colortype(500)><edgecolortype(501)>Raiden Thrust<edgecolortype(0)><colortype(0)>,<colortype(500)><edgecolortype(501)>True Thrust<edgecolortype(0)><colortype(0)>)>,<colortype(500)><edgecolortype(501)>True Thrust<edgecolortype(0)><colortype(0)>)><br><colortype(504)><edgecolortype(505)>Combo Potency:<edgecolortype(0)><colortype(0)> <if([gnum68==22],<if([gnum72>=76],250,210)>,210)><br><colortype(504)><edgecolortype(505)>Combo Bonus:<edgecolortype(0)><colortype(0)> Grants <colortype(506)><edgecolortype(507)>Power Surge<edgecolortype(0)><colortype(0)><br><colortype(504)><edgecolortype(505)>Power Surge Effect:<edgecolortype(0)><colortype(0)> Increases damage dealt by 10%<br><colortype(504)><edgecolortype(505)>Duration:<edgecolortype(0)><colortype(0)> 30s",
+      "unlock_level": 18,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 22,
+          "name": "Dragoon",
+          "abbreviation": "DRG",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 7397,
+      "name": "Sonic Thrust",
+      "description": "Delivers an attack with a potency of 100 to all enemies in a straight line before you.\nCombo Action: Doom Spike or Draconian Fury\nCombo Potency: 120\nCombo Bonus: Grants Power Surge\nPower Surge Effect: Increases damage dealt by 10%\nDuration: 30s",
+      "description_macro": "Delivers an attack with a potency of 100 to all enemies in a straight line before you.<br><colortype(504)><edgecolortype(505)>Combo Action:<edgecolortype(0)><colortype(0)> <if([gnum68==22],<if([gnum72>=82],<colortype(500)><edgecolortype(501)>Doom Spike<edgecolortype(0)><colortype(0)> or <colortype(500)><edgecolortype(501)>Draconian Fury<edgecolortype(0)><colortype(0)>,<colortype(500)><edgecolortype(501)>Doom Spike<edgecolortype(0)><colortype(0)>)>,<colortype(500)><edgecolortype(501)>Doom Spike<edgecolortype(0)><colortype(0)>)><br><colortype(504)><edgecolortype(505)>Combo Potency:<edgecolortype(0)><colortype(0)> 120<br><colortype(504)><edgecolortype(505)>Combo Bonus:<edgecolortype(0)><colortype(0)> Grants <colortype(506)><edgecolortype(507)>Power Surge<edgecolortype(0)><colortype(0)><br><colortype(504)><edgecolortype(505)>Power Surge Effect:<edgecolortype(0)><colortype(0)> Increases damage dealt by 10%<br><colortype(504)><edgecolortype(505)>Duration:<edgecolortype(0)><colortype(0)> 30s",
+      "unlock_level": 62,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 22,
+          "name": "Dragoon",
+          "abbreviation": "DRG",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 36955,
+      "name": "Spiral Blow",
+      "description": "Delivers an attack with a potency of 140.\nCombo Action: True Thrust or Raiden Thrust\nCombo Potency: 300\nCombo Bonus: Grants Power Surge\nPower Surge Effect: Increases damage dealt by 10%\nDuration: 30s",
+      "description_macro": "Delivers an attack with a potency of 140.<br><colortype(504)><edgecolortype(505)>Combo Action: <edgecolortype(0)><colortype(0)><colortype(500)><edgecolortype(501)>True Thrust<edgecolortype(0)><colortype(0)> or <colortype(500)><edgecolortype(501)>Raiden Thrust<edgecolortype(0)><colortype(0)><br><colortype(504)><edgecolortype(505)>Combo Potency: <edgecolortype(0)><colortype(0)>300<br><colortype(504)><edgecolortype(505)>Combo Bonus: <edgecolortype(0)><colortype(0)>Grants <colortype(506)><edgecolortype(507)>Power Surge<edgecolortype(0)><colortype(0)><br><colortype(504)><edgecolortype(505)>Power Surge Effect: <edgecolortype(0)><colortype(0)>Increases damage dealt by 10%<br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>30s",
+      "unlock_level": 96,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 22,
+          "name": "Dragoon",
+          "abbreviation": "DRG",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

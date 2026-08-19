@@ -1,0 +1,51 @@
+{
+  "kind": "combat_status",
+  "id": 1719,
+  "name": "マイティガード",
+  "description": "受けるダメージを軽減し、自身に向けられる敵視が上昇する代わりに、与ダメージが低下する状態。",
+  "effects": [
+    "受けるダメージを軽減し、自身に向けられる敵視が上昇する代わりに、与ダメージが低下する状態。"
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 213506,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": true,
+  "is_permanent": true,
+  "inflicted_by_actor": true,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": -10
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 11417,
+      "name": "マイティガード",
+      "description": "自身の被ダメージを40％減少させ、かつ自身への敵視を上昇させる代わりに、自身の与ダメージを40％減少させる。\nさらに、被ダメージにより詠唱が中断されることがなくなる。\n再使用で解除する。\u3000効果時間：永続",
+      "description_macro": "自身の被ダメージを40％減少させ、かつ自身への敵視を上昇させる代わりに、自身の与ダメージを40％減少させる。<br>さらに、被ダメージにより詠唱が中断されることがなくなる。<br>再使用で解除する。\u3000<colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>永続",
+      "unlock_level": 1,
+      "relations": [
+        "direct_gain_self",
+        "same_name"
+      ],
+      "roles": [
+        "Magical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 36,
+          "name": "青魔道士",
+          "abbreviation": "BLU",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

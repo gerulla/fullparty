@@ -1,0 +1,80 @@
+{
+  "kind": "combat_status",
+  "id": 1250,
+  "name": "True North",
+  "description": "All action direction requirements are nullified.",
+  "effects": [
+    "All action direction requirements are nullified."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 213903,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 7546,
+      "name": "True North",
+      "description": "Nullifies all action direction requirements.\nDuration: 10s\nMaximum Charges: 2",
+      "description_macro": "Nullifies all action direction requirements.<br><colortype(504)><edgecolortype(505)>Duration:<edgecolortype(0)><colortype(0)> 10s<br><colortype(504)><edgecolortype(505)>Maximum Charges: <edgecolortype(0)><colortype(0)>2",
+      "unlock_level": 50,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 20,
+          "name": "Monk",
+          "abbreviation": "MNK",
+          "is_phantom": false
+        },
+        {
+          "id": 22,
+          "name": "Dragoon",
+          "abbreviation": "DRG",
+          "is_phantom": false
+        },
+        {
+          "id": 30,
+          "name": "Ninja",
+          "abbreviation": "NIN",
+          "is_phantom": false
+        },
+        {
+          "id": 34,
+          "name": "Samurai",
+          "abbreviation": "SAM",
+          "is_phantom": false
+        },
+        {
+          "id": 39,
+          "name": "Reaper",
+          "abbreviation": "RPR",
+          "is_phantom": false
+        },
+        {
+          "id": 41,
+          "name": "Viper",
+          "abbreviation": "VPR",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

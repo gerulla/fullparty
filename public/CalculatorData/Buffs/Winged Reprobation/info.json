@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 3640,
+  "name": "Winged Reprobation",
+  "description": "Able to repeatedly execute Winged Reprobation. Grants additional stacks with each execution. At four stacks, effect changes to Winged Redemption.",
+  "effects": [
+    "Able to repeatedly execute Winged Reprobation. Grants additional stacks with each execution. At four stacks, effect changes to Winged Redemption."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 219454,
+    "file": "icon.png"
+  },
+  "max_stacks": 4,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": true,
+  "is_permanent": true,
+  "inflicted_by_actor": true,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 34576,
+      "name": "Winged Reprobation",
+      "description": "Deals physical damage to all enemies in a straight line before you with a potency of 300 for the first enemy, and 50% less for all remaining enemies.\nAdditional Effect: Grants one stack of Winged Reprobation and resets this action's recast timer\nMaximum Stacks: 4\nExecution at 3 stacks increases potency to 400 and grants one stack of Winged Reprobation, but recast timer will not be reset.\nAt maximum stacks, Winged Reprobation changes to Winged Redemption.\nWinged Redemption Effect: Increases the potency of Conviction Marcato\nDuration: 10s\nThis action does not share a recast timer with any other actions.",
+      "description_macro": "Deals physical damage to all enemies in a straight line before you with a potency of 300 for the first enemy, and 50% less for all remaining enemies.<br><colortype(504)><edgecolortype(505)>Additional Effect:<edgecolortype(0)><colortype(0)> Grants one stack of <colortype(506)><edgecolortype(507)>Winged Reprobation<edgecolortype(0)><colortype(0)> and resets this action's recast timer<br><colortype(504)><edgecolortype(505)>Maximum Stacks:<edgecolortype(0)><colortype(0)> 4<br>Execution at 3 stacks increases potency to 400 and grants one stack of <colortype(506)><edgecolortype(507)>Winged Reprobation<edgecolortype(0)><colortype(0)>, but recast timer will not be reset.<br>At maximum stacks, <colortype(506)><edgecolortype(507)>Winged Reprobation<edgecolortype(0)><colortype(0)> changes to <colortype(506)><edgecolortype(507)>Winged Redemption<edgecolortype(0)><colortype(0)>.<br><colortype(504)><edgecolortype(505)>Winged Redemption Effect:<edgecolortype(0)><colortype(0)> Increases the potency of <colortype(500)><edgecolortype(501)>Conviction Marcato<edgecolortype(0)><colortype(0)><br><colortype(504)><edgecolortype(505)>Duration:<edgecolortype(0)><colortype(0)> 10s<br>This action does not share a recast timer with any other actions.",
+      "unlock_level": 1,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Magical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 36,
+          "name": "Blue Mage",
+          "abbreviation": "BLU",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

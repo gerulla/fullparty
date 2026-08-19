@@ -1,0 +1,96 @@
+{
+  "kind": "ability",
+  "id": 37005,
+  "name": "Épine croisée",
+  "description": "Effectue une attaque magique neutre sur la cible et les ennemis autour.\nPuissance : 950\nLa puissance est réduite de 55% au-delà du premier ennemi touché.\nCondition : Épine croisée préparée.",
+  "description_macro": "Effectue une attaque magique neutre sur la cible et les ennemis autour.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> 950<br>La puissance est réduite de 55% au-delà du premier ennemi touché.<br><colortype(506)><edgecolortype(507)>Condition<nbsp>:<edgecolortype(0)><colortype(0)> <colortype(500)><edgecolortype(501)>Épine croisée préparée<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Effectue une attaque magique neutre sur la cible et les ennemis autour.",
+    "Puissance : 950",
+    "La puissance est réduite de 55% au-delà du premier ennemi touché.",
+    "Condition : Épine croisée préparée."
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 35,
+    "name": "Mage Rouge",
+    "abbreviation": "MRG"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 92,
+  "icon": {
+    "id": 3242,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 4,
+    "name": "Aptitude"
+  },
+  "attack_type": {
+    "id": 5,
+    "name": "magie"
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 1,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 1,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 10,
+      "value": 3876
+    },
+    "secondary": {
+      "type_id": 32,
+      "value": 3876
+    }
+  },
+  "range": {
+    "target_yalms": 25,
+    "effect_yalms": 5,
+    "cast_type": 2
+  },
+  "targeting": {
+    "self": false,
+    "party": false,
+    "alliance": false,
+    "hostile": true,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": {
+      "id": 179,
+      "status": {
+        "id": 3876,
+        "name": "Épine croisée préparée",
+        "description": "Épine croisée peut être lancée.",
+        "icon_id": 213411,
+        "max_stacks": 0
+      }
+    }
+  },
+  "metadata": {
+    "aspect_id": 7,
+    "behavior_type": 0,
+    "class_job_category_id": 112,
+    "source_class_job_id": 35,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

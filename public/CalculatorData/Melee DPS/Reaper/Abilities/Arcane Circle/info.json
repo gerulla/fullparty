@@ -1,0 +1,90 @@
+{
+  "kind": "ability",
+  "id": 24405,
+  "name": "Arcane Circle",
+  "description": "Increases damage dealt by self and nearby party members by 3%.\nDuration: 20s\nAdditional Effect: Grants Circle of Sacrifice to self and nearby party members\nDuration: 5s\nAdditional Effect: Grants Bloodsown Circle to self\nDuration: 6s\nCircle of Sacrifice Effect: When you or party members under this effect successfully land a weaponskill or ability\\",
+  "description_macro": "Increases damage dealt by self and nearby party members by 3%.<br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>20s<if([gnum68==39],<if([gnum72>=88],<br><colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>Grants <colortype(506)><edgecolortype(507)>Circle of Sacrifice<edgecolortype(0)><colortype(0)> to self and nearby party members<br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>5s<br><colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>Grants <colortype(506)><edgecolortype(507)>Bloodsown Circle<edgecolortype(0)><colortype(0)> to self<br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>6s<br><colortype(504)><edgecolortype(505)>Circle of Sacrifice Effect: <edgecolortype(0)><colortype(0)>When you or party members under this effect successfully land a weaponskill or ability\\, or cast a spell\\, the reaper who applied it may be granted a stack of <colortype(506)><edgecolortype(507)>Immortal Sacrifice<edgecolortype(0)><colortype(0)>\\, up to a maximum of 8<br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>30s<br><colortype(504)><edgecolortype(505)>Bloodsown Circle Effect: <edgecolortype(0)><colortype(0)>Allows you to accumulate stacks of <colortype(506)><edgecolortype(507)>Immortal Sacrifice<edgecolortype(0)><colortype(0)> from party members under the effect of your <colortype(506)><edgecolortype(507)>Circle of Sacrifice<edgecolortype(0)><colortype(0)>,)>,)>",
+  "effects": [
+    "Increases damage dealt by self and nearby party members by 3%.",
+    "Duration: 20s",
+    "Additional Effect: Grants Circle of Sacrifice to self and nearby party members",
+    "Duration: 5s",
+    "Additional Effect: Grants Bloodsown Circle to self",
+    "Duration: 6s",
+    "Circle of Sacrifice Effect: When you or party members under this effect successfully land a weaponskill or ability\\"
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 39,
+    "name": "Reaper",
+    "abbreviation": "RPR"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 72,
+  "icon": {
+    "id": 3633,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 4,
+    "name": "Ability"
+  },
+  "attack_type": {
+    "id": 0,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 120,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 22,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 0,
+      "value": 0
+    },
+    "secondary": {
+      "type_id": 0,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": 0,
+    "effect_yalms": 30,
+    "cast_type": 2
+  },
+  "targeting": {
+    "self": true,
+    "party": false,
+    "alliance": false,
+    "hostile": false,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 0,
+    "behavior_type": 0,
+    "class_job_category_id": 180,
+    "source_class_job_id": 39,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

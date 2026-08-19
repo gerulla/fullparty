@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 1952,
+  "name": "Versteckt",
+  "description": "Kann nicht gesehen werden, aber Bewegungsgeschwindigkeit ist verringert.",
+  "effects": [
+    "Kann nicht gesehen werden, aber Bewegungsgeschwindigkeit ist verringert."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 210607,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": true,
+  "inflicted_by_actor": true,
+  "party_list_priority": 100,
+  "parameter": {
+    "effect": 1,
+    "modifier": 0
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 2245,
+      "name": "Verstecken",
+      "description": "Du verbirgst dich vor den Blicken der meisten Gegner, verlangsamst aber deine Bewegungsgeschwindigkeit um 50 %.\nEinige Gegner wie solche, deren Stufe 10 oder mehr über deiner liegt, können dich sehen.\nZusatzeffekt: Reaktivierungs-Timer von Ninjutsu wird für 2 Aufladungen zurückgesetzt.\nIst Doton aktiv\\Bedingung: Nicht im Kampf.\nEffekt endet bei erneuter Ausführung oder nächstem Kommando mit Ausnahme von Sprint.",
+      "description_macro": "Du verbirgst dich vor den Blicken der meisten Gegner, verlangsamst aber deine Be<->we<->gungs<->ge<->schwin<->dig<->keit um 50 %.<br>Einige Gegner wie solche, deren Stufe 10 oder mehr über deiner liegt, können dich sehen.<if([gnum72>=30],<if([gnum68==30],<br>Zusatzeffekt: Reaktivierungs-Timer von <colortype(502)><edgecolortype(503)>Ninjutsu<edgecolortype(0)><colortype(0)> wird für 2 Aufladungen zurückgesetzt.,)>,)><br><if([gnum68==30],<if([gnum72>=45],Ist <colortype(506)><edgecolortype(507)>Doton<edgecolortype(0)><colortype(0)> aktiv\\, wird es bei Ausführung beendet.<br>,)>,)>Bedingung: Nicht im Kampf.<br>Effekt endet bei erneuter Ausführung oder nächstem Kommando mit Ausnahme von <colortype(502)><edgecolortype(503)>Sprint<edgecolortype(0)><colortype(0)>.",
+      "unlock_level": 10,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 30,
+          "name": "Ninja",
+          "abbreviation": "NIN",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

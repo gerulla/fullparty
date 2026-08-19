@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 636,
+  "name": "Soteria améliorée",
+  "description": "Réduit à 60s le temps de recharge de Soteria.",
+  "description_macro": "Réduit à 60s le temps de recharge de <colortype(500)><edgecolortype(501)>Soteria<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Réduit à 60s le temps de recharge de Soteria."
+  ],
+  "role": "Healer",
+  "job": {
+    "id": 40,
+    "name": "Sage",
+    "abbreviation": "SAG"
+  },
+  "unlock_level": 94,
+  "value": -300,
+  "icon": {
+    "id": 6461,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 181,
+  "source_class_job_id": 40
+}

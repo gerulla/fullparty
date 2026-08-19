@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 4873,
+  "name": "Image",
+  "description": "Impervious to most physical attacks for one strike.",
+  "effects": [
+    "Impervious to most physical attacks for one strike."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 218957,
+    "file": "icon.png"
+  },
+  "max_stacks": 3,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 27,
+    "modifier": 0
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 49066,
+      "name": "Image",
+      "description": "Grants three stacks of Image.\nImage Effect: Nullifies most physical attacks\nDuration: 30s",
+      "description_macro": "Grants three stacks of <colortype(506)><edgecolortype(507)>Image<edgecolortype(0)><colortype(0)>.<br><colortype(504)><edgecolortype(505)>Image Effect: <edgecolortype(0)><colortype(0)>Nullifies most physical attacks<br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>30s",
+      "unlock_level": 0,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Phantom Jobs"
+      ],
+      "jobs": [
+        {
+          "id": 16,
+          "name": "Phantom Ninja",
+          "abbreviation": "Ph. Ninja",
+          "is_phantom": true
+        }
+      ]
+    }
+  ]
+}

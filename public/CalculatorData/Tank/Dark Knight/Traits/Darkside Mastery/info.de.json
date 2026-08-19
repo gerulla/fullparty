@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 271,
+  "name": "Meister der Dunklen Seite",
+  "description": "Verbessert Finstere Flut zu Schattenflut und Finstere Klinge zu Schattenklinge.",
+  "description_macro": "Verbessert <colortype(502)><edgecolortype(503)>Finstere Flut<edgecolortype(0)><colortype(0)> zu <colortype(502)><edgecolortype(503)>Schattenflut<edgecolortype(0)><colortype(0)> und <colortype(502)><edgecolortype(503)>Finstere Klinge<edgecolortype(0)><colortype(0)> zu <colortype(502)><edgecolortype(503)>Schattenklinge<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Verbessert Finstere Flut zu Schattenflut und Finstere Klinge zu Schattenklinge."
+  ],
+  "role": "Tank",
+  "job": {
+    "id": 32,
+    "name": "Dunkelritter",
+    "abbreviation": "DKR"
+  },
+  "unlock_level": 74,
+  "value": 0,
+  "icon": {
+    "id": 6062,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 98,
+  "source_class_job_id": 32
+}

@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 2624,
+  "name": "Griffade primitive préparée",
+  "description": "Griffade primitive peut être lancée.",
+  "effects": [
+    "Griffade primitive peut être lancée."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 212566,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 22,
+  "source_abilities": [
+    {
+      "id": 7389,
+      "name": "Relâchement bestial",
+      "description": "Vous octroie 3 degrés de Relâchement bestial.\nDurée : 15s\nRelâchement bestial : permet d'utiliser les actions sans coût sur la Jauge de la bête, permet d'utiliser Sape-fendeur et Décimation, et fait de vos attaques des coups nets et critiques.\nLes dégâts infligés sont augmentés lorsque vous bénéficiez d'un effet augmentant les chances de coups nets et critiques.\nEffet additionnel : vous octroie Résolution primordiale.\nRésolution primordiale : vous immunise contre les effets Étourdissement, Sommeil, Entrave et Pesanteur, et la plupart des projections et attractions.\nDurée : 15s\nEffet additionnel : allonge la durée d'effet de Vent de tempête de 10s (maximum 60s).\nEffet additionnel : vous octroie Griffade primitive préparée.\nDurée : 30s\nEffet additionnel : vous octroie Palpitations bestiales si Sape-fendeur et/ou Décimation ont infligé des dégâts à la cible. Cumulable jusqu'au 3e degré.\nDurée : 30s\nSi l'effet est accumulé 3 fois\\",
+      "description_macro": "Vous octroie 3 degrés de <colortype(500)><edgecolortype(501)>Relâchement bestial<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 15s<br><colortype(506)><edgecolortype(507)>Relâchement bestial<nbsp>:<edgecolortype(0)><colortype(0)> permet d'utiliser les actions sans coût sur la <colortype(502)><edgecolortype(503)>Jauge de la bête<edgecolortype(0)><colortype(0)>, permet d'utiliser Sape-fendeur et Décimation, et fait de vos attaques des coups nets et critiques.<br>Les dégâts infligés sont augmentés lorsque vous bénéficiez d'un effet augmentant les chances de coups nets et critiques.<br><colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> vous octroie <colortype(500)><edgecolortype(501)>Résolution primordiale<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Résolution primordiale<nbsp>:<edgecolortype(0)><colortype(0)> vous immunise contre les effets Étourdissement, Sommeil, Entrave et Pesanteur, et la plupart des projections et attractions.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 15s<br><colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> allonge la durée d'effet de <colortype(500)><edgecolortype(501)>Vent de tempête<edgecolortype(0)><colortype(0)> de 10s (maximum 60s).<if([gnum68==21],<if([gnum72>=90],<br><colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> vous octroie <colortype(500)><edgecolortype(501)>Griffade primitive préparée<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 30s,)>,)><if([gnum68==21],<if([gnum72>=96],<br><colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> vous octroie <colortype(500)><edgecolortype(501)>Palpitations bestiales<edgecolortype(0)><colortype(0)> si <colortype(500)><edgecolortype(501)>Sape-fendeur<edgecolortype(0)><colortype(0)> et/ou <colortype(500)><edgecolortype(501)>Décimation<edgecolortype(0)><colortype(0)> ont infligé des dégâts à la cible. Cumulable jusqu'au 3e degré.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 30s<br>Si l'effet est accumulé 3 fois\\, devient <colortype(500)><edgecolortype(501)>Trépidation bestiale préparée<edgecolortype(0)><colortype(0)> et remplace <colortype(500)><edgecolortype(501)>Relâchement bestial<edgecolortype(0)><colortype(0)> par <colortype(500)><edgecolortype(501)>Trépidation bestiale<edgecolortype(0)><colortype(0)>.,)>,)>",
+      "unlock_level": 70,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Tank"
+      ],
+      "jobs": [
+        {
+          "id": 21,
+          "name": "Guerrier",
+          "abbreviation": "GUE",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

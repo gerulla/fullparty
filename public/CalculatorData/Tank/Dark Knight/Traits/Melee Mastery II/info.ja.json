@@ -1,0 +1,31 @@
+{
+  "kind": "trait",
+  "id": 663,
+  "name": "アクション威力アップII",
+  "description": "特定のアクションの威力を上昇させる。\n\nハードスラッシュの威力：300\nサイフォンストライクの威力：240\nソウルイーターの威力：260\nストルワートソウルの威力：120\nカーヴ・アンド・スピットの威力：540\nブラッドスピラーの威力：600\nクワイタスの威力：240",
+  "description_macro": "特定のアクションの威力を上昇させる。<br><br><colortype(504)><edgecolortype(505)>ハードスラッシュの威力：<edgecolortype(0)><colortype(0)>300<br><colortype(504)><edgecolortype(505)>サイフォンストライクの威力：<edgecolortype(0)><colortype(0)>240<br><colortype(504)><edgecolortype(505)>ソウルイーターの威力：<edgecolortype(0)><colortype(0)>260<br><colortype(504)><edgecolortype(505)>ストルワートソウルの威力：<edgecolortype(0)><colortype(0)>120<br><colortype(504)><edgecolortype(505)>カーヴ・アンド・スピットの威力：<edgecolortype(0)><colortype(0)>540<br><colortype(504)><edgecolortype(505)>ブラッドスピラーの威力：<edgecolortype(0)><colortype(0)>600<br><colortype(504)><edgecolortype(505)>クワイタスの威力：<edgecolortype(0)><colortype(0)>240",
+  "effects": [
+    "特定のアクションの威力を上昇させる。",
+    "ハードスラッシュの威力：300",
+    "サイフォンストライクの威力：240",
+    "ソウルイーターの威力：260",
+    "ストルワートソウルの威力：120",
+    "カーヴ・アンド・スピットの威力：540",
+    "ブラッドスピラーの威力：600",
+    "クワイタスの威力：240"
+  ],
+  "role": "Tank",
+  "job": {
+    "id": 32,
+    "name": "暗黒騎士",
+    "abbreviation": "DRK"
+  },
+  "unlock_level": 94,
+  "value": 0,
+  "icon": {
+    "id": 6802,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 98,
+  "source_class_job_id": 32
+}

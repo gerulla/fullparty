@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 412,
+  "name": "Maîtrise de Schiltron",
+  "description": "Remplace Schiltron par Schiltron sacré.",
+  "description_macro": "Remplace <colortype(500)><edgecolortype(501)>Schiltron<edgecolortype(0)><colortype(0)> par <colortype(500)><edgecolortype(501)>Schiltron sacré<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Remplace Schiltron par Schiltron sacré."
+  ],
+  "role": "Tank",
+  "job": {
+    "id": 19,
+    "name": "Paladin",
+    "abbreviation": "PLD"
+  },
+  "unlock_level": 82,
+  "value": 0,
+  "icon": {
+    "id": 5218,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 20,
+  "source_class_job_id": 19
+}

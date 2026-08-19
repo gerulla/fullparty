@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 1302,
+  "name": "Hallowed Ground",
+  "description": "Impervious to most attacks.",
+  "effects": [
+    "Impervious to most attacks."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 212504,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": true,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 20,
+  "source_abilities": [
+    {
+      "id": 30,
+      "name": "Hallowed Ground",
+      "description": "Renders you impervious to most attacks.\nDuration: 10s",
+      "description_macro": "Renders you impervious to most attacks.<br><colortype(504)><edgecolortype(505)>Duration:<edgecolortype(0)><colortype(0)> 10s",
+      "unlock_level": 50,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Tank"
+      ],
+      "jobs": [
+        {
+          "id": 19,
+          "name": "Paladin",
+          "abbreviation": "PLD",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

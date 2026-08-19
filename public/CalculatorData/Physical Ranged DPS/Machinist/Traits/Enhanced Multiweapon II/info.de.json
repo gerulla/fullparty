@@ -1,0 +1,25 @@
+{
+  "kind": "trait",
+  "id": 606,
+  "name": "Verbesserte Multiwaffe II",
+  "description": "Erfolgreiche Ausführung von Kreissäge gewährt dir Exkavator, wobei sich während des Effekts Kreissäge zu Exkavator ändert.\nDauer: 30 Sekunden",
+  "description_macro": "Erfolgreiche Ausführung von <colortype(502)><edgecolortype(503)>Kreissäge<edgecolortype(0)><colortype(0)> gewährt dir <colortype(506)><edgecolortype(507)>Exkavator<edgecolortype(0)><colortype(0)>, wobei sich während des Effekts <colortype(502)><edgecolortype(503)>Kreissäge<edgecolortype(0)><colortype(0)> zu <colortype(502)><edgecolortype(503)>Exkavator<edgecolortype(0)><colortype(0)> ändert.<br>Dauer: 30 Sekunden",
+  "effects": [
+    "Erfolgreiche Ausführung von Kreissäge gewährt dir Exkavator, wobei sich während des Effekts Kreissäge zu Exkavator ändert.",
+    "Dauer: 30 Sekunden"
+  ],
+  "role": "Physical Ranged DPS",
+  "job": {
+    "id": 31,
+    "name": "Maschinist",
+    "abbreviation": "MCH"
+  },
+  "unlock_level": 96,
+  "value": 0,
+  "icon": {
+    "id": 6024,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 96,
+  "source_class_job_id": 31
+}

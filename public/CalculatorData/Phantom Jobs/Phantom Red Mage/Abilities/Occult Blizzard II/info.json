@@ -1,0 +1,87 @@
+{
+  "kind": "ability",
+  "id": 49095,
+  "name": "Occult Blizzard II",
+  "description": "Deals ice damage with a potency of 300 to target and all enemies nearby it.\nPotency increases to 390 when used against targets weak to ice.\nPotency scales with item level.\nShares a recast timer with Occult Fire II.",
+  "description_macro": "Deals ice damage with a potency of 300 to target and all enemies nearby it.<br>Potency increases to 390 when used against targets weak to ice.<br>Potency scales with item level.<br>Shares a recast timer with <colortype(500)><edgecolortype(501)>Occult Fire II<edgecolortype(0)><colortype(0)><if([gnum108>=5], and <colortype(500)><edgecolortype(501)>Occult Thunder II<edgecolortype(0)><colortype(0)>,)>.",
+  "effects": [
+    "Deals ice damage with a potency of 300 to target and all enemies nearby it.",
+    "Potency increases to 390 when used against targets weak to ice.",
+    "Potency scales with item level.",
+    "Shares a recast timer with Occult Fire II."
+  ],
+  "role": "Phantom Jobs",
+  "job": {
+    "id": 22,
+    "name": "Phantom Red Mage",
+    "abbreviation": "Ph. Red Mage"
+  },
+  "is_phantom_action": true,
+  "unlock_level": 4,
+  "icon": {
+    "id": 64527,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 2,
+    "name": "Spell"
+  },
+  "attack_type": {
+    "id": 5,
+    "name": "魔法"
+  },
+  "timing": {
+    "cast_seconds": 1.5,
+    "recast_seconds": 30,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 83,
+    "additional_cooldown_group": 58,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 0,
+      "value": 0
+    },
+    "secondary": {
+      "type_id": 0,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": 30,
+    "effect_yalms": 5,
+    "cast_type": 2
+  },
+  "targeting": {
+    "self": false,
+    "party": false,
+    "alliance": false,
+    "hostile": true,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 2,
+    "behavior_type": 0,
+    "class_job_category_id": 142,
+    "source_class_job_id": 4294967295,
+    "is_role_action": false,
+    "is_player_action": false,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

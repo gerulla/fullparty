@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 3671,
+  "name": "祖霊降ろし実行可",
+  "description": "祖霊降ろしを、霊力を消費せずに実行できる状態。",
+  "effects": [
+    "祖霊降ろしを、霊力を消費せずに実行できる状態。"
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 213777,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 196,
+  "source_abilities": [
+    {
+      "id": 34647,
+      "name": "蛇の霊気",
+      "description": "自身に「飛蛇の魂」を付与する。\nさらに、自身に「祖霊降ろし実行可」を付与する。\n効果時間：30秒\n発動条件：自身が戦闘状態",
+      "description_macro": "自身に<colortype(500)><edgecolortype(501)>「飛蛇の魂」<edgecolortype(0)><colortype(0)>を付与する。<br><if([gnum68==41],<if([gnum72>=90],さらに、自身に<colortype(500)><edgecolortype(501)>「祖霊降ろし実行可」<edgecolortype(0)><colortype(0)>を付与する。<br><colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>30秒<br>,)>,)><colortype(504)><edgecolortype(505)>発動条件：<edgecolortype(0)><colortype(0)>自身が戦闘状態",
+      "unlock_level": 86,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 41,
+          "name": "ヴァイパー",
+          "abbreviation": "VPR",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

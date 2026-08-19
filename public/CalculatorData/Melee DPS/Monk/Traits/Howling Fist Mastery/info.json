@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 429,
+  "name": "Howling Fist Mastery",
+  "description": "Upgrades Inspirited Meditation to Enlightened Meditation and Howling Fist to Enlightenment.",
+  "description_macro": "Upgrades <colortype(500)><edgecolortype(501)>Inspirited Meditation<edgecolortype(0)><colortype(0)> to <colortype(500)><edgecolortype(501)>Enlightened Meditation<edgecolortype(0)><colortype(0)> and <colortype(500)><edgecolortype(501)>Howling Fist<edgecolortype(0)><colortype(0)> to <colortype(500)><edgecolortype(501)>Enlightenment<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Upgrades Inspirited Meditation to Enlightened Meditation and Howling Fist to Enlightenment."
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 20,
+    "name": "Monk",
+    "abbreviation": "MNK"
+  },
+  "unlock_level": 74,
+  "value": 0,
+  "icon": {
+    "id": 5242,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 21,
+  "source_class_job_id": 20
+}

@@ -1,0 +1,51 @@
+{
+  "kind": "combat_status",
+  "id": 2704,
+  "name": "再生の炎",
+  "description": "ＨＰが一定割合を下回るか効果時間が経過すると、「再生の炎：効果」が発動する状態。",
+  "effects": [
+    "ＨＰが一定割合を下回るか効果時間が経過すると、「再生の炎：効果」が発動する状態。"
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 212693,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": true,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 50,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 28,
+  "source_abilities": [
+    {
+      "id": 25830,
+      "name": "再生の炎",
+      "description": "自身またはパーティメンバーひとりを対象とする。\n対象のＨＰを回復する。\u3000回復力：400\n追加効果：対象に「再生の炎」を付与する。\n効果時間：30秒\n再生の炎効果：対象のＨＰが75％を下回るか効果時間が経過すると、ＨＰ継続回復効果が発動する。\n回復力：200\u3000効果時間：15秒\n発動条件：「トランス・フェニックス」効果中\n\n※このアクションはホットバーに登録することはできない。\n\u3000発動条件を満たすとアストラルフロウが再生の炎に変化する。",
+      "description_macro": "自身またはパーティメンバーひとりを対象とする。<br>対象のＨＰを回復する。\u3000<colortype(504)><edgecolortype(505)>回復力：<edgecolortype(0)><colortype(0)>400<br><colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)>対象に<colortype(500)><edgecolortype(501)>「再生の炎」<edgecolortype(0)><colortype(0)>を付与する。<br><colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>30秒<br><colortype(504)><edgecolortype(505)>再生の炎効果：<edgecolortype(0)><colortype(0)>対象のＨＰが75％を下回るか効果時間が経過すると、ＨＰ継続回復効果が発動する。<br><colortype(504)><edgecolortype(505)>回復力：<edgecolortype(0)><colortype(0)>200\u3000<colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>15秒<br><colortype(504)><edgecolortype(505)>発動条件：<edgecolortype(0)><colortype(0)><colortype(500)><edgecolortype(501)>「トランス・フェニックス」<edgecolortype(0)><colortype(0)>効果中<br><br><colortype(506)><edgecolortype(507)>※このアクションはホットバーに登録することはできない。<br>\u3000発動条件を満たすとアストラルフロウが再生の炎に変化する。<edgecolortype(0)><colortype(0)>",
+      "unlock_level": 80,
+      "relations": [
+        "granted_by_description",
+        "same_name"
+      ],
+      "roles": [
+        "Magical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 27,
+          "name": "召喚士",
+          "abbreviation": "SMN",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

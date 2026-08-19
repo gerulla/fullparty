@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 3903,
+  "name": "Divine Caress",
+  "description": "A holy barrier is nullifying damage.",
+  "effects": [
+    "A holy barrier is nullifying damage."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 212641,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": true,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 30,
+  "parameter": {
+    "effect": 0,
+    "modifier": 100
+  },
+  "class_job_category_id": 25,
+  "source_abilities": [
+    {
+      "id": 37011,
+      "name": "Divine Caress",
+      "description": "Creates a barrier around self and all party members near you that absorbs damage equivalent to a heal of 400 potency.\nDuration: 10s\nAdditional Effect: Grants Divine Aura when barrier effect expires\nDivine Aura Effect: Healing over time\nCure Potency: 200\nDuration: 15s\nCan only be executed while Divine Grace is active.",
+      "description_macro": "Creates a barrier around self and all party members near you that absorbs damage equivalent to a heal of 400 potency.<br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>10s<br><colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>Grants <colortype(506)><edgecolortype(507)>Divine Aura<edgecolortype(0)><colortype(0)> when barrier effect expires<br><colortype(504)><edgecolortype(505)>Divine Aura Effect: <edgecolortype(0)><colortype(0)>Healing over time<br><colortype(504)><edgecolortype(505)>Cure Potency:<edgecolortype(0)><colortype(0)> 200<br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>15s<br>Can only be executed while <colortype(506)><edgecolortype(507)>Divine Grace<edgecolortype(0)><colortype(0)> is active.",
+      "unlock_level": 100,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Healer"
+      ],
+      "jobs": [
+        {
+          "id": 24,
+          "name": "White Mage",
+          "abbreviation": "WHM",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

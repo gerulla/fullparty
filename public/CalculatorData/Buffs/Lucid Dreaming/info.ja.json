@@ -1,0 +1,99 @@
+{
+  "kind": "combat_status",
+  "id": 1204,
+  "name": "ルーシッドドリーム",
+  "description": "ＭＰが徐々に回復する状態。",
+  "effects": [
+    "ＭＰが徐々に回復する状態。"
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 213909,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 60
+  },
+  "class_job_category_id": 120,
+  "source_abilities": [
+    {
+      "id": 7562,
+      "name": "ルーシッドドリーム",
+      "description": "自身のＭＰを継続回復する。\n効果量：55\u3000効果時間：21秒",
+      "description_macro": "自身のＭＰを継続回復する。<br><colortype(504)><edgecolortype(505)>効果量：<edgecolortype(0)><colortype(0)>55\u3000<colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>21秒",
+      "unlock_level": 14,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Healer",
+        "Magical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 24,
+          "name": "白魔道士",
+          "abbreviation": "WHM",
+          "is_phantom": false
+        },
+        {
+          "id": 28,
+          "name": "学者",
+          "abbreviation": "SCH",
+          "is_phantom": false
+        },
+        {
+          "id": 33,
+          "name": "占星術師",
+          "abbreviation": "AST",
+          "is_phantom": false
+        },
+        {
+          "id": 40,
+          "name": "賢者",
+          "abbreviation": "SGE",
+          "is_phantom": false
+        },
+        {
+          "id": 25,
+          "name": "黒魔道士",
+          "abbreviation": "BLM",
+          "is_phantom": false
+        },
+        {
+          "id": 27,
+          "name": "召喚士",
+          "abbreviation": "SMN",
+          "is_phantom": false
+        },
+        {
+          "id": 35,
+          "name": "赤魔道士",
+          "abbreviation": "RDM",
+          "is_phantom": false
+        },
+        {
+          "id": 42,
+          "name": "ピクトマンサー",
+          "abbreviation": "PCT",
+          "is_phantom": false
+        },
+        {
+          "id": 36,
+          "name": "青魔道士",
+          "abbreviation": "BLU",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "kind": "trait",
+  "id": 460,
+  "name": "エノキアン",
+  "description": "自身の与魔法ダメージを5％上昇させる。\n発動条件：「アストラルファイア」または「アンブラルブリザード」効果中",
+  "description_macro": "自身の与魔法ダメージを5％上昇させる。<br><colortype(504)><edgecolortype(505)>発動条件：<edgecolortype(0)><colortype(0)><colortype(500)><edgecolortype(501)>「アストラルファイア」<edgecolortype(0)><colortype(0)>または<colortype(500)><edgecolortype(501)>「アンブラルブリザード」<edgecolortype(0)><colortype(0)>効果中",
+  "effects": [
+    "自身の与魔法ダメージを5％上昇させる。",
+    "発動条件：「アストラルファイア」または「アンブラルブリザード」効果中"
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 25,
+    "name": "黒魔道士",
+    "abbreviation": "BLM"
+  },
+  "unlock_level": 56,
+  "value": 0,
+  "icon": {
+    "id": 5368,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 26,
+  "source_class_job_id": 25
+}

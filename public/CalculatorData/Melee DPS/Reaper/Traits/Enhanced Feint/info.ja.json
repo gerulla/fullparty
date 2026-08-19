@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 641,
+  "name": "牽制効果アップ",
+  "description": "牽制の効果時間を15秒に延長する。",
+  "description_macro": "牽制の効果時間を15秒に延長する。",
+  "effects": [
+    "牽制の効果時間を15秒に延長する。"
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 39,
+    "name": "リーパー",
+    "abbreviation": "RPR"
+  },
+  "unlock_level": 98,
+  "value": 0,
+  "icon": {
+    "id": 6851,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 114,
+  "source_class_job_id": 0
+}

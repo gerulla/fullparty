@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 3906,
+  "name": "Kunai's Bane",
+  "description": "Sustaining increased damage from target who executed Kunai's Bane.",
+  "effects": [
+    "Sustaining increased damage from target who executed Kunai's Bane."
+  ],
+  "classification": "debuff",
+  "icon": {
+    "id": 212923,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 2,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 10
+  },
+  "class_job_category_id": 92,
+  "source_abilities": [
+    {
+      "id": 36958,
+      "name": "Kunai's Bane",
+      "description": "Deals damage to target and all enemies nearby it with a potency of 700.\nAdditional Effect: Afflicts target with Kunai's Bane\nKunai's Bane Effect: Increases damage you deal target by 10%\nDuration: 15s\nCan only be executed while Hidden.",
+      "description_macro": "Deals damage to target and all enemies nearby it with a potency of 700.<br><colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>Afflicts target with <colortype(506)><edgecolortype(507)>Kunai's Bane<edgecolortype(0)><colortype(0)><br><colortype(504)><edgecolortype(505)>Kunai's Bane Effect: <edgecolortype(0)><colortype(0)>Increases damage you deal target by 10%<br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>15s<br>Can only be executed while <colortype(506)><edgecolortype(507)>Hidden<edgecolortype(0)><colortype(0)>.",
+      "unlock_level": 92,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 30,
+          "name": "Ninja",
+          "abbreviation": "NIN",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

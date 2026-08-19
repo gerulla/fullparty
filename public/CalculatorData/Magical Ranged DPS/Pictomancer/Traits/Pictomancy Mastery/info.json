@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 672,
+  "name": "Pictomancy Mastery",
+  "description": "Increases the potency of Fire in Red to 310, Aero in Green to 350, Water in Blue to 390, Pom Muse to 700, Winged Muse to 700, Mog of the Ages to 800, and Hammer Stamp to 420.",
+  "description_macro": "Increases the potency of <colortype(500)><edgecolortype(501)>Fire in Red<edgecolortype(0)><colortype(0)> to 310, <colortype(500)><edgecolortype(501)>Aero in Green<edgecolortype(0)><colortype(0)> to 350, <colortype(500)><edgecolortype(501)>Water in Blue<edgecolortype(0)><colortype(0)> to 390, <colortype(500)><edgecolortype(501)>Pom Muse<edgecolortype(0)><colortype(0)> to 700, <colortype(500)><edgecolortype(501)>Winged Muse<edgecolortype(0)><colortype(0)> to 700, <colortype(500)><edgecolortype(501)>Mog of the Ages<edgecolortype(0)><colortype(0)> to 800, and <colortype(500)><edgecolortype(501)>Hammer Stamp<edgecolortype(0)><colortype(0)> to 420.",
+  "effects": [
+    "Increases the potency of Fire in Red to 310, Aero in Green to 350, Water in Blue to 390, Pom Muse to 700, Winged Muse to 700, Mog of the Ages to 800, and Hammer Stamp to 420."
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 42,
+    "name": "Pictomancer",
+    "abbreviation": "PCT"
+  },
+  "unlock_level": 54,
+  "value": 0,
+  "icon": {
+    "id": 6829,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 197,
+  "source_class_job_id": 42
+}

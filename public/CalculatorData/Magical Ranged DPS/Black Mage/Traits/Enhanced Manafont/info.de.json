@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 463,
+  "name": "Verbesserter Mana-Brunnen",
+  "description": "Verkürzt die Reaktivierungszeit von Mana-Brunnen auf 100 Sekunden.",
+  "description_macro": "Verkürzt die Re<->ak<->ti<->vie<->rungs<->zeit von <colortype(502)><edgecolortype(503)>Mana-Brunnen<edgecolortype(0)><colortype(0)> auf 100 Sekunden.",
+  "effects": [
+    "Verkürzt die Reaktivierungszeit von Mana-Brunnen auf 100 Sekunden."
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 25,
+    "name": "Schwarzmagier",
+    "abbreviation": "SMA"
+  },
+  "unlock_level": 84,
+  "value": -200,
+  "icon": {
+    "id": 5371,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 26,
+  "source_class_job_id": 25
+}

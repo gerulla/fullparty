@@ -1,0 +1,88 @@
+{
+  "kind": "ability",
+  "id": 16470,
+  "name": "Edge of Shadow",
+  "description": "Deals unaspected damage with a potency of 460.\nAdditional Effect: Grants Darkside, increasing damage dealt by 10%\nDuration: 30s\nExtends Darkside duration by 30s to a maximum of 60s.\nShares a recast timer with Flood of Shadow.",
+  "description_macro": "Deals unaspected damage with a potency of 460.<br><colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>Grants <colortype(506)><edgecolortype(507)>Darkside<edgecolortype(0)><colortype(0)>, increasing damage dealt by 10%<br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>30s<br>Extends <colortype(506)><edgecolortype(507)>Darkside<edgecolortype(0)><colortype(0)> duration by 30s to a maximum of 60s.<br>Shares a recast timer with <colortype(500)><edgecolortype(501)>Flood of Shadow<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Deals unaspected damage with a potency of 460.",
+    "Additional Effect: Grants Darkside, increasing damage dealt by 10%",
+    "Duration: 30s",
+    "Extends Darkside duration by 30s to a maximum of 60s.",
+    "Shares a recast timer with Flood of Shadow."
+  ],
+  "role": "Tank",
+  "job": {
+    "id": 32,
+    "name": "Dark Knight",
+    "abbreviation": "DRK"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 74,
+  "icon": {
+    "id": 3086,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 4,
+    "name": "Ability"
+  },
+  "attack_type": {
+    "id": 5,
+    "name": "魔法"
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 1,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 1,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 3,
+      "value": 30
+    },
+    "secondary": {
+      "type_id": 62,
+      "value": 271
+    }
+  },
+  "range": {
+    "target_yalms": -1,
+    "effect_yalms": 0,
+    "cast_type": 1
+  },
+  "targeting": {
+    "self": false,
+    "party": false,
+    "alliance": false,
+    "hostile": true,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 7,
+    "behavior_type": 0,
+    "class_job_category_id": 98,
+    "source_class_job_id": 32,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

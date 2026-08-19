@@ -1,0 +1,22 @@
+{
+  "kind": "trait",
+  "id": 14,
+  "name": "マギ・ジャンプ効果アップ",
+  "description": "マギ・ジャンプの威力が500に上昇し、さらに被ダメージ低下の効果量が90％になる。",
+  "description_macro": "マギ・ジャンプの威力が500に上昇し、さらに被ダメージ低下の効果量が90％になる。",
+  "effects": [
+    "マギ・ジャンプの威力が500に上昇し、さらに被ダメージ低下の効果量が90％になる。"
+  ],
+  "role": "Phantom Jobs",
+  "job": {
+    "id": 19,
+    "name": "サポート竜騎士",
+    "abbreviation": "Ph. Dragoon"
+  },
+  "is_phantom_trait": true,
+  "unlock_level": 4,
+  "icon": {
+    "id": 82214,
+    "file": "icon.png"
+  }
+}

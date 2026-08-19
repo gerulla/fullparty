@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 636,
+  "name": "Verbesserte Soteria",
+  "description": "Verkürzt die Reaktivierungszeit von Soteria auf 60 Sekunden.",
+  "description_macro": "Verkürzt die Re<->ak<->ti<->vie<->rungs<->zeit von <colortype(502)><edgecolortype(503)>Soteria<edgecolortype(0)><colortype(0)> auf 60 Sekunden.",
+  "effects": [
+    "Verkürzt die Reaktivierungszeit von Soteria auf 60 Sekunden."
+  ],
+  "role": "Healer",
+  "job": {
+    "id": 40,
+    "name": "Weiser",
+    "abbreviation": "WEI"
+  },
+  "unlock_level": 94,
+  "value": -300,
+  "icon": {
+    "id": 6461,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 181,
+  "source_class_job_id": 40
+}

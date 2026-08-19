@@ -1,0 +1,80 @@
+{
+  "kind": "combat_status",
+  "id": 84,
+  "name": "Blutbad",
+  "description": "Ein Teil des mit der nächsten Attacke ausgeteilten Schadens generiert eigene LP.",
+  "effects": [
+    "Ein Teil des mit der nächsten Attacke ausgeteilten Schadens generiert eigene LP."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 213913,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 25
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 7542,
+      "name": "Blutbad",
+      "description": "Du absorbierst einen Teil des physischen Schadens, den du austeilst, als eigene LP.\nDauer: 20 Sekunden",
+      "description_macro": "Du absorbierst einen Teil des physischen Schadens, den du austeilst, als eigene LP.<br>Dauer: 20 Sekunden",
+      "unlock_level": 12,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 20,
+          "name": "Mönch",
+          "abbreviation": "MÖN",
+          "is_phantom": false
+        },
+        {
+          "id": 22,
+          "name": "Dragoon",
+          "abbreviation": "DRG",
+          "is_phantom": false
+        },
+        {
+          "id": 30,
+          "name": "Ninja",
+          "abbreviation": "NIN",
+          "is_phantom": false
+        },
+        {
+          "id": 34,
+          "name": "Samurai",
+          "abbreviation": "SAM",
+          "is_phantom": false
+        },
+        {
+          "id": 39,
+          "name": "Schnitter",
+          "abbreviation": "SNT",
+          "is_phantom": false
+        },
+        {
+          "id": 41,
+          "name": "Viper",
+          "abbreviation": "VPR",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

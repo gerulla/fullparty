@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 266,
+  "name": "Steel Cyclone Mastery",
+  "description": "Upgrades Steel Cyclone to Decimate.",
+  "description_macro": "Upgrades <colortype(500)><edgecolortype(501)>Steel Cyclone<edgecolortype(0)><colortype(0)> to <colortype(500)><edgecolortype(501)>Decimate<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Upgrades Steel Cyclone to Decimate."
+  ],
+  "role": "Tank",
+  "job": {
+    "id": 21,
+    "name": "Warrior",
+    "abbreviation": "WAR"
+  },
+  "unlock_level": 60,
+  "value": 0,
+  "icon": {
+    "id": 5263,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 22,
+  "source_class_job_id": 21
+}

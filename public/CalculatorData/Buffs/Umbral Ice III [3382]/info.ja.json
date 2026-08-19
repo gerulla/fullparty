@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 3382,
+  "name": "アンブラルブリザードIII",
+  "description": "ハイブリザラを実行できる状態。",
+  "effects": [
+    "ハイブリザラを実行できる状態。"
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 210468,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": true,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 26,
+  "source_abilities": [
+    {
+      "id": 16506,
+      "name": "アンブラルソウル",
+      "description": "自身に「アンブラルブリザード」を付与し、さらに「アンブラルハート」を1つ付与する。\nアンブラルハート効果：ファイア系魔法実行時の「アストラルファイア」による消費ＭＰの増加効果を防ぐ。\nさらに、フレア実行時に「アンブラルハート」を全て消費する代わりに、消費ＭＰを2/3にすることができる。\n追加効果：自身のＭＰが100％未満の場合、付与されているアンブラルブリザードのスタック数に応じてＭＰを回復する。\n1/2/3スタック時の回復量：2500/5000/10000\n自身が非戦闘状態であれば、「アンブラルブリザード」と「アンブラルハート」を最大スタック分付与し、さらに自身のＭＰが100％未満の場合にＭＰを10000回復する。\n発動条件：「アンブラルブリザード」効果中",
+      "description_macro": "<if([gnum68==25],<if([gnum72>=58],自身に<colortype(500)><edgecolortype(501)>「アンブラルブリザード」<edgecolortype(0)><colortype(0)>を付与し、さらに<colortype(500)><edgecolortype(501)>「アンブラルハート」<edgecolortype(0)><colortype(0)>を1つ付与する。<br><colortype(504)><edgecolortype(505)>アンブラルハート効果：<edgecolortype(0)><colortype(0)>ファイア系魔法実行時の<colortype(500)><edgecolortype(501)>「アストラルファイア」<edgecolortype(0)><colortype(0)>による消費ＭＰの増加効果を防ぐ。<br>さらに、フレア実行時に<colortype(500)><edgecolortype(501)>「アンブラルハート」<edgecolortype(0)><colortype(0)>を全て消費する代わりに、消費ＭＰを2/3にすることができる。<br>,自身に<colortype(500)><edgecolortype(501)>「アンブラルブリザード」<edgecolortype(0)><colortype(0)>を付与する。<br>)>,自身に<colortype(500)><edgecolortype(501)>「アンブラルブリザード」<edgecolortype(0)><colortype(0)>を付与する。<br>)><colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)>自身のＭＰが100％未満の場合、付与されているアンブラルブリザードのスタック数に応じてＭＰを回復する。<br><colortype(504)><edgecolortype(505)>1/2/3スタック時の回復量：<edgecolortype(0)><colortype(0)>2500/5000/10000<br><if([gnum68==25],<if([gnum72>=58],自身が非戦闘状態であれば、<colortype(500)><edgecolortype(501)>「アンブラルブリザード」<edgecolortype(0)><colortype(0)>と<colortype(500)><edgecolortype(501)>「アンブラルハート」<edgecolortype(0)><colortype(0)>を最大スタック分付与し、さらに自身のＭＰが100％未満の場合にＭＰを10000回復する。<br>,自身が非戦闘状態であれば<colortype(500)><edgecolortype(501)>「アンブラルブリザード」<edgecolortype(0)><colortype(0)>を最大スタック分付与し、さらに自身のＭＰが100％未満の場合にＭＰを10000回復する。<br>)>,自身が非戦闘状態であれば<colortype(500)><edgecolortype(501)>「アンブラルブリザード」<edgecolortype(0)><colortype(0)>を最大スタック分付与し、さらに自身のＭＰが100％未満の場合にＭＰを10000回復する。<br>)><colortype(504)><edgecolortype(505)>発動条件：<edgecolortype(0)><colortype(0)><colortype(500)><edgecolortype(501)>「アンブラルブリザード」<edgecolortype(0)><colortype(0)>効果中",
+      "unlock_level": 35,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Magical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 25,
+          "name": "黒魔道士",
+          "abbreviation": "BLM",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

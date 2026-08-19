@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 841,
+  "name": "Lightspeed",
+  "description": "Spell casting time is reduced.",
+  "effects": [
+    "Spell casting time is reduced."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 213220,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 3606,
+      "name": "Lightspeed",
+      "description": "Reduces cast times for spells by 2.5 seconds.\nDuration: 15s\nMaximum Charges: 2",
+      "description_macro": "Reduces cast times for spells by 2.5 seconds.<br><colortype(504)><edgecolortype(505)>Duration:<edgecolortype(0)><colortype(0)> 15s<br><colortype(504)><edgecolortype(505)>Maximum Charges: <edgecolortype(0)><colortype(0)>2",
+      "unlock_level": 6,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Healer"
+      ],
+      "jobs": [
+        {
+          "id": 33,
+          "name": "Astrologian",
+          "abbreviation": "AST",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

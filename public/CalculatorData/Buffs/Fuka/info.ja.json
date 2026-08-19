@@ -1,0 +1,92 @@
+{
+  "kind": "combat_status",
+  "id": 1299,
+  "name": "風花",
+  "description": "オートアタックの攻撃間隔と、ウェポンスキルおよび魔法のキャストタイムとリキャストタイムが短縮された状態。",
+  "effects": [
+    "オートアタックの攻撃間隔と、ウェポンスキルおよび魔法のキャストタイムとリキャストタイムが短縮された状態。"
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 213312,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": -15
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 7479,
+      "name": "士風",
+      "description": "対象に物理攻撃。\u3000威力：140\nコンボ条件：暁風\u3000コンボ時威力：300\nコンボボーナス：自身に「風花」を付与する。\n効果時間：40秒\n風花効果：自身のオートアタックの攻撃間隔と、ウェポンスキルおよび魔法のキャストタイムとリキャストタイムを13％短縮させる。\nコンボボーナス：「剣気」を5上昇させる。",
+      "description_macro": "対象に物理攻撃。\u3000<colortype(504)><edgecolortype(505)>威力：<edgecolortype(0)><colortype(0)><if([gnum68==34],<if([gnum72>=94],140,<if([gnum68==34],<if([gnum72>=66],120,100)>,100)>)>,<if([gnum68==34],<if([gnum72>=66],120,100)>,100)>)><br><colortype(504)><edgecolortype(505)>コンボ条件：<edgecolortype(0)><colortype(0)><if([gnum68==34],<if([gnum72>=92],暁風,刃風)>,刃風)>\u3000<colortype(504)><edgecolortype(505)>コンボ時威力：<edgecolortype(0)><colortype(0)><if([gnum68==34],<if([gnum72>=94],300,<if([gnum68==34],<if([gnum72>=66],280,260)>,260)>)>,<if([gnum68==34],<if([gnum72>=66],280,260)>,260)>)><br><colortype(504)><edgecolortype(505)>コンボボーナス：<edgecolortype(0)><colortype(0)>自身に<colortype(500)><edgecolortype(501)>「風花」<edgecolortype(0)><colortype(0)>を付与する。<br><colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>40秒<br><colortype(504)><edgecolortype(505)>風花効果：<edgecolortype(0)><colortype(0)>自身のオートアタックの攻撃間隔と、ウェポンスキルおよび魔法のキャストタイムとリキャストタイムを<if([gnum68==34],<if([gnum72>=78],13,10)>,10)>％短縮させる。<if([gnum72>=62],<if([gnum68==34],<br><colortype(504)><edgecolortype(505)>コンボボーナス：<edgecolortype(0)><colortype(0)><colortype(500)><edgecolortype(501)>「剣気」<edgecolortype(0)><colortype(0)>を5上昇させる。,)>,)>",
+      "unlock_level": 18,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 34,
+          "name": "侍",
+          "abbreviation": "SAM",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 7485,
+      "name": "桜花",
+      "description": "自身の周囲の敵に範囲物理攻撃。\u3000威力：100\nコンボ条件：風光\u3000コンボ時威力：120\nコンボボーナス：自身に「風花」を付与する。\n効果時間：40秒\n風花効果：自身のオートアタックの攻撃間隔と、ウェポンスキルおよび魔法のキャストタイムとリキャストタイムを13％短縮させる。\nコンボボーナス：「剣気」を10上昇させ、かつ「花の閃」を付与する。",
+      "description_macro": "自身の周囲の敵に範囲物理攻撃。\u3000<colortype(504)><edgecolortype(505)>威力：<edgecolortype(0)><colortype(0)>100<br><colortype(504)><edgecolortype(505)>コンボ条件：<edgecolortype(0)><colortype(0)><if([gnum68==34],<if([gnum72>=86],風光,風雅)>,風雅)>\u3000<colortype(504)><edgecolortype(505)>コンボ時威力：<edgecolortype(0)><colortype(0)>120<br><colortype(504)><edgecolortype(505)>コンボボーナス：<edgecolortype(0)><colortype(0)>自身に<colortype(500)><edgecolortype(501)>「風花」<edgecolortype(0)><colortype(0)>を付与する。<br><colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>40秒<br><colortype(504)><edgecolortype(505)>風花効果：<edgecolortype(0)><colortype(0)>自身のオートアタックの攻撃間隔と、ウェポンスキルおよび魔法のキャストタイムとリキャストタイムを<if([gnum68==34],<if([gnum72>=78],13,10)>,10)>％短縮させる。<if([gnum72>=52],<if([gnum68==34],<br><colortype(504)><edgecolortype(505)>コンボボーナス：<edgecolortype(0)><colortype(0)><colortype(500)><edgecolortype(501)>「剣気」<edgecolortype(0)><colortype(0)>を<if([gnum72>=62],<if([gnum68==34],10,5)>,5)>上昇させ、かつ<colortype(500)><edgecolortype(501)>「花の閃」<edgecolortype(0)><colortype(0)>を付与する。,<br><colortype(504)><edgecolortype(505)>コンボボーナス：<edgecolortype(0)><colortype(0)><colortype(500)><edgecolortype(501)>「花の閃」<edgecolortype(0)><colortype(0)>を付与する。)>,<br><colortype(504)><edgecolortype(505)>コンボボーナス：<edgecolortype(0)><colortype(0)><colortype(500)><edgecolortype(501)>「花の閃」<edgecolortype(0)><colortype(0)>を付与する。)>",
+      "unlock_level": 45,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 34,
+          "name": "侍",
+          "abbreviation": "SAM",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 7499,
+      "name": "明鏡止水",
+      "description": "一定時間、ウェポンスキルのコンボを、その条件を満たしていなくても成功させる。\nまた、月光を命中させると「風月」が、花車を命中させると「風花」が自身に付与される。\n効果時間が経過するか、居合術および奥義波切を除くウェポンスキルを3回実行すると効果が切れる。\u3000効果時間：20秒\n追加効果：自身に「天道」を付与する。\n効果時間：30秒\n最大チャージ数：2",
+      "description_macro": "一定時間、ウェポンスキルのコンボを、その条件を満たしていなくても成功させる。<br>また、月光を命中させると<colortype(500)><edgecolortype(501)>「風月」<edgecolortype(0)><colortype(0)>が、花車を命中させると<colortype(500)><edgecolortype(501)>「風花」<edgecolortype(0)><colortype(0)>が自身に付与される。<br>効果時間が経過するか、居合術<if([gnum68==34],<if([gnum72>=90],および奥義波切,)>,)>を除くウェポンスキルを3回実行すると効果が切れる。\u3000<colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>20秒<if([gnum68==34],<if([gnum72>=100],<br><colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)>自身に<colortype(500)><edgecolortype(501)>「天道」<edgecolortype(0)><colortype(0)>を付与する。<br><colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>30秒,)>,)><if([gnum68==34],<if([gnum72>=76],<br><colortype(504)><edgecolortype(505)>最大チャージ数：<edgecolortype(0)><colortype(0)>2,)>,)>",
+      "unlock_level": 50,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 34,
+          "name": "侍",
+          "abbreviation": "SAM",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

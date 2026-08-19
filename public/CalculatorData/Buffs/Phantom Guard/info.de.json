@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 4231,
+  "name": "Phantom-Beschützen",
+  "description": "Erlittener Schaden ist verringert.",
+  "effects": [
+    "Erlittener Schaden ist verringert."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 229901,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": -60
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 41588,
+      "name": "Phantom-Beschützen",
+      "description": "Du verringerst erlittenen Schaden um 60 %.\nDauer: 10 Sekunden",
+      "description_macro": "Du verringerst erlittenen Schaden um <if([gnum108>=4],90<nbsp>%,60<nbsp>%)>.<br>Dauer: 10 Sekunden",
+      "unlock_level": 0,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Phantom Jobs"
+      ],
+      "jobs": [
+        {
+          "id": 1,
+          "name": "Phantom Phantom-Ritter",
+          "abbreviation": "Ph-Ritter",
+          "is_phantom": true
+        }
+      ]
+    }
+  ]
+}

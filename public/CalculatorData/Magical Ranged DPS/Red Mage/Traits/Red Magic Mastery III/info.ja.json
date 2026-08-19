@@ -1,0 +1,34 @@
+{
+  "kind": "trait",
+  "id": 484,
+  "name": "赤魔法マスタリーIII",
+  "description": "ジョルラがジョルガに変化する。\nさらに、特定のアクションの威力を上昇させる。\n\nエンリポストの威力：280\nヴァルサンダラの威力：140\nヴァルエアロラの威力：140\nヴァルファイアの威力：340\nヴァルストーンの威力：340\nエンツヴェルクハウの威力：150\nエンルドゥブルマンの威力：130\nインパクトの威力：210\nエンルプリーズの威力：340",
+  "description_macro": "ジョルラがジョルガに変化する。<br>さらに、特定のアクションの威力を上昇させる。<br><br><colortype(504)><edgecolortype(505)>エンリポストの威力：<edgecolortype(0)><colortype(0)>280<br><colortype(504)><edgecolortype(505)>ヴァルサンダラの威力：<edgecolortype(0)><colortype(0)>140<br><colortype(504)><edgecolortype(505)>ヴァルエアロラの威力：<edgecolortype(0)><colortype(0)>140<br><colortype(504)><edgecolortype(505)>ヴァルファイアの威力：<edgecolortype(0)><colortype(0)>340<br><colortype(504)><edgecolortype(505)>ヴァルストーンの威力：<edgecolortype(0)><colortype(0)>340<br><colortype(504)><edgecolortype(505)>エンツヴェルクハウの威力：<edgecolortype(0)><colortype(0)>150<br><colortype(504)><edgecolortype(505)>エンルドゥブルマンの威力：<edgecolortype(0)><colortype(0)>130<br><colortype(504)><edgecolortype(505)>インパクトの威力：<edgecolortype(0)><colortype(0)>210<br><colortype(504)><edgecolortype(505)>エンルプリーズの威力：<edgecolortype(0)><colortype(0)>340",
+  "effects": [
+    "ジョルラがジョルガに変化する。",
+    "さらに、特定のアクションの威力を上昇させる。",
+    "エンリポストの威力：280",
+    "ヴァルサンダラの威力：140",
+    "ヴァルエアロラの威力：140",
+    "ヴァルファイアの威力：340",
+    "ヴァルストーンの威力：340",
+    "エンツヴェルクハウの威力：150",
+    "エンルドゥブルマンの威力：130",
+    "インパクトの威力：210",
+    "エンルプリーズの威力：340"
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 35,
+    "name": "赤魔道士",
+    "abbreviation": "RDM"
+  },
+  "unlock_level": 84,
+  "value": 0,
+  "icon": {
+    "id": 6210,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 112,
+  "source_class_job_id": 35
+}

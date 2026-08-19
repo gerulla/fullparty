@@ -1,0 +1,27 @@
+{
+  "kind": "trait",
+  "id": 476,
+  "name": "Maîtrise de Ruine III",
+  "description": "Remplace Éclat des gemmes par un sort plus puissant en fonction de vos Syntonies.\nSyntonie de feu : Rite de rubis.\nSyntonie de terre : Rite de topaze.\nSyntonie de vent : Rite d'émeraude.",
+  "description_macro": "Remplace <colortype(500)><edgecolortype(501)>Éclat des gemmes<edgecolortype(0)><colortype(0)> par un sort plus puissant en fonction de vos <colortype(500)><edgecolortype(501)>Syntonies<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Syntonie de feu<nbsp>:<edgecolortype(0)><colortype(0)> <colortype(500)><edgecolortype(501)>Rite de rubis<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Syntonie de terre<nbsp>:<edgecolortype(0)><colortype(0)> <colortype(500)><edgecolortype(501)>Rite de topaze<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Syntonie de vent<nbsp>:<edgecolortype(0)><colortype(0)> <colortype(500)><edgecolortype(501)>Rite d'émeraude<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Remplace Éclat des gemmes par un sort plus puissant en fonction de vos Syntonies.",
+    "Syntonie de feu : Rite de rubis.",
+    "Syntonie de terre : Rite de topaze.",
+    "Syntonie de vent : Rite d'émeraude."
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 27,
+    "name": "Invocateur",
+    "abbreviation": "INV"
+  },
+  "unlock_level": 72,
+  "value": 0,
+  "icon": {
+    "id": 5688,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 28,
+  "source_class_job_id": 27
+}

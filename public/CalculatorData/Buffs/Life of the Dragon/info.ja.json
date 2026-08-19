@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 3177,
+  "name": "紅の竜血",
+  "description": "与ダメージが上昇する代わりに被ダメージも上昇している状態。",
+  "effects": [
+    "与ダメージが上昇する代わりに被ダメージも上昇している状態。"
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 214935,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": true,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 10
+  },
+  "class_job_category_id": 23,
+  "source_abilities": [
+    {
+      "id": 3555,
+      "name": "ゲイルスコグル",
+      "description": "対象に向かって前方直線範囲物理攻撃。\u3000威力：280\n2体目以降の対象への威力は50％減少する。\n追加効果：自身が「紅の竜血」状態に変化する。\n効果時間：20秒\n紅の竜血効果：自身の与ダメージを15％上昇させる。\n追加効果：自身に「ナーストレンド実行可」を付与する。\n効果時間：20秒",
+      "description_macro": "対象に向かって前方直線範囲物理攻撃。\u3000<colortype(504)><edgecolortype(505)>威力：<edgecolortype(0)><colortype(0)><if([gnum68==22],<if([gnum72>=90],280,200)>,200)><br>2体目以降の対象への威力は50％減少する。<br><if([gnum72>=70],<if([gnum68==22],<colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)>自身が<colortype(500)><edgecolortype(501)>「紅の竜血」<edgecolortype(0)><colortype(0)>状態に変化する。<br><colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>20秒<br><colortype(504)><edgecolortype(505)>紅の竜血効果：<edgecolortype(0)><colortype(0)>自身の与ダメージを15％上昇させる。<br><colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)>自身に<colortype(500)><edgecolortype(501)>「ナーストレンド実行可」<edgecolortype(0)><colortype(0)>を付与する。<br><colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>20秒,<colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)>自身が<colortype(500)><edgecolortype(501)>「蒼の竜血」<edgecolortype(0)><colortype(0)>状態に変化する。<br><colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>20秒<br><colortype(504)><edgecolortype(505)>蒼の竜血効果：<edgecolortype(0)><colortype(0)>自身の与ダメージを10％上昇させる。)>,<colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)>自身が<colortype(500)><edgecolortype(501)>「蒼の竜血」<edgecolortype(0)><colortype(0)>状態に変化する。<br><colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>20秒<br><colortype(504)><edgecolortype(505)>蒼の竜血効果：<edgecolortype(0)><colortype(0)>自身の与ダメージを10％上昇させる。)>",
+      "unlock_level": 60,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 22,
+          "name": "竜騎士",
+          "abbreviation": "DRG",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

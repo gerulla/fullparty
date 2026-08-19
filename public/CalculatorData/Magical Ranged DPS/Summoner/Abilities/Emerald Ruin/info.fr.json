@@ -1,0 +1,87 @@
+{
+  "kind": "ability",
+  "id": 25810,
+  "name": "Ruine émeraude",
+  "description": "Effectue une attaque magique de vent sur la cible.\nPuissance : 160\nCondition : consomme un degré de Syntonie de vent.\n\n* Cette action ne peut pas être ajoutée aux barres de raccourcis.",
+  "description_macro": "Effectue une attaque magique de vent sur la cible.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> 160<br><colortype(506)><edgecolortype(507)>Condition<nbsp>:<edgecolortype(0)><colortype(0)> consomme un degré de <colortype(500)><edgecolortype(501)>Syntonie de vent<edgecolortype(0)><colortype(0)>.<br><br><colortype(504)><edgecolortype(505)>* Cette action ne peut pas être ajoutée aux barres de raccourcis.<edgecolortype(0)><colortype(0)>",
+  "effects": [
+    "Effectue une attaque magique de vent sur la cible.",
+    "Puissance : 160",
+    "Condition : consomme un degré de Syntonie de vent.",
+    "* Cette action ne peut pas être ajoutée aux barres de raccourcis."
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 27,
+    "name": "Invocateur",
+    "abbreviation": "INV"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 22,
+  "icon": {
+    "id": 501,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 2,
+    "name": "Sort"
+  },
+  "attack_type": {
+    "id": 5,
+    "name": "magie"
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 1.5,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 58,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 74,
+      "value": 3
+    },
+    "secondary": {
+      "type_id": 120,
+      "value": 217
+    }
+  },
+  "range": {
+    "target_yalms": 25,
+    "effect_yalms": 0,
+    "cast_type": 1
+  },
+  "targeting": {
+    "self": false,
+    "party": false,
+    "alliance": false,
+    "hostile": true,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": false
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 3,
+    "behavior_type": 0,
+    "class_job_category_id": 69,
+    "source_class_job_id": 0,
+    "is_role_action": false,
+    "is_player_action": false,
+    "is_derived_action": true,
+    "equivalence_group": 0
+  }
+}

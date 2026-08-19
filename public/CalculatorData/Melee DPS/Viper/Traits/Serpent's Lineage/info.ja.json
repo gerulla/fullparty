@@ -1,0 +1,27 @@
+{
+  "kind": "trait",
+  "id": 531,
+  "name": "祖霊の魂",
+  "description": "「霊力ゲージ」が上昇するようになる。\nさらに、自身に「祖霊降ろし実行可」が付与される。\n効果時間：30秒\n発動条件：特定のウェポンスキルの命中時と蛇の霊気実行時",
+  "description_macro": "<colortype(500)><edgecolortype(501)>「霊力ゲージ」<edgecolortype(0)><colortype(0)>が上昇するようになる。<br>さらに、自身に<colortype(500)><edgecolortype(501)>「祖霊降ろし実行可」<edgecolortype(0)><colortype(0)>が付与される。<br><colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>30秒<br><colortype(504)><edgecolortype(505)>発動条件：<edgecolortype(0)><colortype(0)>特定のウェポンスキルの命中時と蛇の霊気実行時",
+  "effects": [
+    "「霊力ゲージ」が上昇するようになる。",
+    "さらに、自身に「祖霊降ろし実行可」が付与される。",
+    "効果時間：30秒",
+    "発動条件：特定のウェポンスキルの命中時と蛇の霊気実行時"
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 41,
+    "name": "ヴァイパー",
+    "abbreviation": "VPR"
+  },
+  "unlock_level": 90,
+  "value": 0,
+  "icon": {
+    "id": 6508,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 196,
+  "source_class_job_id": 41
+}

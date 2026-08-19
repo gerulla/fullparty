@@ -1,0 +1,97 @@
+{
+  "kind": "ability",
+  "id": 23273,
+  "name": "Barrière mystique",
+  "description": "Déploie une barrière mystique qui réduit de 20% vos dégâts subis.\nDurée : 10s\nEffet additionnel : si vous subissez des dégâts d'un montant supérieur à 30% de vos PV maximums, vous octroie Cataracte divine.\nCataracte divine : l'action Barrière mystique devient Cataracte divine.\nLa barrière mystique se dissipe si vous effectuez une action, un déplacement ou une rotation.\nDans ce cas, l'effet additionnel Cataracte divine prendra également fin.\nInterrompt vos attaques automatiques.\nCe sort a un temps de recharge indépendant partagé avec Rose de la destruction et Générateur rubis.\n\nCataracte divine\nEffectue une attaque magique d'eau sur les ennemis alentour.\nPuissance : 500\nPuissance avec Éther de protecteur : 1000\nLa puissance est réduite de 50% au-delà du premier ennemi touché.\nCondition : Cataracte divine.",
+  "description_macro": "Déploie une barrière mystique qui réduit de 20% vos dégâts subis.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 10s<br><colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> si vous subissez des dégâts d'un montant supérieur à 30% de vos PV maximums, vous octroie <colortype(500)><edgecolortype(501)>Cataracte divine<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Cataracte divine<nbsp>:<edgecolortype(0)><colortype(0)> l'action <colortype(500)><edgecolortype(501)>Barrière mystique<edgecolortype(0)><colortype(0)> devient <colortype(500)><edgecolortype(501)>Cataracte divine<edgecolortype(0)><colortype(0)>.<br>La barrière mystique se dissipe si vous effectuez une action, un déplacement ou une rotation.<br>Dans ce cas, l'effet additionnel <colortype(500)><edgecolortype(501)>Cataracte divine<edgecolortype(0)><colortype(0)> prendra également fin.<br>Interrompt vos attaques automatiques.<br>Ce sort a un temps de recharge indépendant partagé avec <colortype(500)><edgecolortype(501)>Rose de la destruction<edgecolortype(0)><colortype(0)> et <colortype(500)><edgecolortype(501)>Générateur rubis<edgecolortype(0)><colortype(0)>.<br><br><colortype(500)><edgecolortype(501)>Cataracte divine<edgecolortype(0)><colortype(0)><br>Effectue une attaque magique d'eau sur les ennemis alentour.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> 500<br><colortype(506)><edgecolortype(507)>Puissance avec Éther de protecteur<nbsp>:<edgecolortype(0)><colortype(0)> 1000<br>La puissance est réduite de 50% au-delà du premier ennemi touché.<br><colortype(506)><edgecolortype(507)>Condition<nbsp>:<edgecolortype(0)><colortype(0)> <colortype(500)><edgecolortype(501)>Cataracte divine<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Déploie une barrière mystique qui réduit de 20% vos dégâts subis.",
+    "Durée : 10s",
+    "Effet additionnel : si vous subissez des dégâts d'un montant supérieur à 30% de vos PV maximums, vous octroie Cataracte divine.",
+    "Cataracte divine : l'action Barrière mystique devient Cataracte divine.",
+    "La barrière mystique se dissipe si vous effectuez une action, un déplacement ou une rotation.",
+    "Dans ce cas, l'effet additionnel Cataracte divine prendra également fin.",
+    "Interrompt vos attaques automatiques.",
+    "Ce sort a un temps de recharge indépendant partagé avec Rose de la destruction et Générateur rubis.",
+    "Cataracte divine",
+    "Effectue une attaque magique d'eau sur les ennemis alentour.",
+    "Puissance : 500",
+    "Puissance avec Éther de protecteur : 1000",
+    "La puissance est réduite de 50% au-delà du premier ennemi touché.",
+    "Condition : Cataracte divine."
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 36,
+    "name": "Mage Bleu",
+    "abbreviation": "MBU"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 1,
+  "icon": {
+    "id": 3340,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 2,
+    "name": "Sort"
+  },
+  "attack_type": {
+    "id": 5,
+    "name": "magie"
+  },
+  "timing": {
+    "cast_seconds": 2,
+    "recast_seconds": 30,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 4,
+    "additional_cooldown_group": 58,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 3,
+      "value": 3
+    },
+    "secondary": {
+      "type_id": 0,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": 0,
+    "effect_yalms": 0,
+    "cast_type": 1
+  },
+  "targeting": {
+    "self": true,
+    "party": false,
+    "alliance": false,
+    "hostile": false,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": false
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 6,
+    "behavior_type": 0,
+    "class_job_category_id": 129,
+    "source_class_job_id": 36,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

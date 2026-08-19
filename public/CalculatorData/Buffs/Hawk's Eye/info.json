@@ -1,0 +1,92 @@
+{
+  "kind": "combat_status",
+  "id": 123,
+  "name": "Hawk's Eye",
+  "description": "Dexterity is increased and all attacks are guaranteed to land.",
+  "effects": [
+    "Dexterity is increased and all attacks are guaranteed to land."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 210351,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 10
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 97,
+      "name": "Heavy Shot",
+      "description": "Delivers an attack with a potency of 160.\nAdditional Effect: 20% chance of granting Hawk's Eye\nDuration: 30s",
+      "description_macro": "Delivers an attack with a potency of 160.<if([gnum72>=2],<if([gnum68==5],<br><colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>20% chance of granting <colortype(506)><edgecolortype(507)>Hawk's Eye<edgecolortype(0)><colortype(0)><br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>30s,<if([gnum68==23],<br><colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>20% chance of granting <colortype(506)><edgecolortype(507)>Hawk's Eye<edgecolortype(0)><colortype(0)><br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>30s,)>)>,)>",
+      "unlock_level": 1,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Physical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 23,
+          "name": "Bard",
+          "abbreviation": "BRD",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 106,
+      "name": "Quick Nock",
+      "description": "Delivers an attack with a potency of 110 to all enemies in a cone before you.\nAdditional Effect: 20% chance of granting Hawk's Eye\nDuration: 30s",
+      "description_macro": "Delivers an attack with a potency of 110 to all enemies in a cone before you.<if([gnum72>=25],<if([gnum68==5],<br><colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>20% chance of granting <colortype(506)><edgecolortype(507)>Hawk's Eye<edgecolortype(0)><colortype(0)><br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>30s,<if([gnum68==23],<br><colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>20% chance of granting <colortype(506)><edgecolortype(507)>Hawk's Eye<edgecolortype(0)><colortype(0)><br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>30s,)>)>,)>",
+      "unlock_level": 18,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Physical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 23,
+          "name": "Bard",
+          "abbreviation": "BRD",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 25783,
+      "name": "Ladonsbite",
+      "description": "Delivers an attack with a potency of 140 to all enemies in a cone before you.\nAdditional Effect: 35% chance of granting Hawk's Eye\nDuration: 30s",
+      "description_macro": "Delivers an attack with a potency of 140 to all enemies in a cone before you.<br><colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>35% chance of granting <colortype(506)><edgecolortype(507)>Hawk's Eye<edgecolortype(0)><colortype(0)><br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>30s",
+      "unlock_level": 82,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Physical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 23,
+          "name": "Bard",
+          "abbreviation": "BRD",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

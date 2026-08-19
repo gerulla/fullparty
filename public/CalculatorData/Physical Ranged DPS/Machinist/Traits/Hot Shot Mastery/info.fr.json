@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 291,
+  "name": "Maîtrise de Tir déchaîné",
+  "description": "Remplace Tir déchaîné par Ancre aérienne.",
+  "description_macro": "Remplace <colortype(500)><edgecolortype(501)>Tir déchaîné<edgecolortype(0)><colortype(0)> par <colortype(500)><edgecolortype(501)>Ancre aérienne<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Remplace Tir déchaîné par Ancre aérienne."
+  ],
+  "role": "Physical Ranged DPS",
+  "job": {
+    "id": 31,
+    "name": "Machiniste",
+    "abbreviation": "MCH"
+  },
+  "unlock_level": 76,
+  "value": 0,
+  "icon": {
+    "id": 6016,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 96,
+  "source_class_job_id": 31
+}

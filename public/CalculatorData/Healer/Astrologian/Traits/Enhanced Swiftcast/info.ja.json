@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 644,
+  "name": "迅速魔効果アップ",
+  "description": "迅速魔のリキャストタイムを40秒に短縮する。",
+  "description_macro": "迅速魔のリキャストタイムを40秒に短縮する。",
+  "effects": [
+    "迅速魔のリキャストタイムを40秒に短縮する。"
+  ],
+  "role": "Healer",
+  "job": {
+    "id": 33,
+    "name": "占星術師",
+    "abbreviation": "AST"
+  },
+  "unlock_level": 94,
+  "value": -200,
+  "icon": {
+    "id": 6828,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 199,
+  "source_class_job_id": 0
+}

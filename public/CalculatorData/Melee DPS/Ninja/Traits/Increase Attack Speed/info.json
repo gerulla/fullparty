@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 584,
+  "name": "Increase Attack Speed",
+  "description": "Reduces weaponskill cast time and recast time, spell cast time and recast time, and auto-attack delay by 15%.",
+  "description_macro": "Reduces weaponskill cast time and recast time, spell cast time and recast time, and auto-attack delay by 15%.",
+  "effects": [
+    "Reduces weaponskill cast time and recast time, spell cast time and recast time, and auto-attack delay by 15%."
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 30,
+    "name": "Ninja",
+    "abbreviation": "NIN"
+  },
+  "unlock_level": 45,
+  "value": 0,
+  "icon": {
+    "id": 5421,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 92,
+  "source_class_job_id": 30
+}

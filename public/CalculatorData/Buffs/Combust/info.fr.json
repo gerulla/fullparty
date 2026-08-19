@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 838,
+  "name": "Conjonction supérieure",
+  "description": "Des dégâts périodiques sont subis.",
+  "effects": [
+    "Des dégâts périodiques sont subis."
+  ],
+  "classification": "debuff",
+  "icon": {
+    "id": 213213,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 2,
+  "target_type": 0,
+  "can_dispel": true,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 10,
+  "parameter": {
+    "effect": 0,
+    "modifier": 10
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 3599,
+      "name": "Conjonction supérieure",
+      "description": "Inflige des dégâts magiques périodiques neutres à la cible.\nPuissance : 50 Durée : 30s",
+      "description_macro": "Inflige des dégâts magiques périodiques neutres à la cible.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> 50 <colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 30s",
+      "unlock_level": 4,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Healer"
+      ],
+      "jobs": [
+        {
+          "id": 33,
+          "name": "Astromancien",
+          "abbreviation": "AST",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

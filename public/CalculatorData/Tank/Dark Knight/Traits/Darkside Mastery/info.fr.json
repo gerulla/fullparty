@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 271,
+  "name": "Maîtrise de Ténèbres intérieures",
+  "description": "Remplace Déluge de ténèbres par Déluge d'ombre, et Tranchant de ténèbres par Tranchant d'ombre.",
+  "description_macro": "Remplace <colortype(500)><edgecolortype(501)>Déluge de ténèbres<edgecolortype(0)><colortype(0)> par <colortype(500)><edgecolortype(501)>Déluge d'ombre<edgecolortype(0)><colortype(0)>, et <colortype(500)><edgecolortype(501)>Tranchant de ténèbres<edgecolortype(0)><colortype(0)> par <colortype(500)><edgecolortype(501)>Tranchant d'ombre<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Remplace Déluge de ténèbres par Déluge d'ombre, et Tranchant de ténèbres par Tranchant d'ombre."
+  ],
+  "role": "Tank",
+  "job": {
+    "id": 32,
+    "name": "Chevalier Noir",
+    "abbreviation": "CHN"
+  },
+  "unlock_level": 74,
+  "value": 0,
+  "icon": {
+    "id": 6062,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 98,
+  "source_class_job_id": 32
+}

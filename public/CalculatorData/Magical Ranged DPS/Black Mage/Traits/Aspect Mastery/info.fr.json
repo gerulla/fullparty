@@ -1,0 +1,28 @@
+{
+  "kind": "trait",
+  "id": 296,
+  "name": "Maîtrise des polarités",
+  "description": "Utiliser certains sorts vous octroie Feu astral ou Glace ombrale (maximum 1).\nEffet avec Feu astral : empêche la récupération de MP avec le temps, augmente la puissance des sorts de feu de 40％, mais multiplie par deux leur coût en PM.\nRéduit également la puissance des sorts de glace de 10%, mais réduit à 0 leur coût en PM.\nEffet avec Glace ombrale: restaure 2500 PM quand un sort de glace est utilisé avec succès et réduit à 0 leur coût en PM.\nRéduit également la puissance des sorts de feu de 10%, mais réduit à 0 leur coût en PM.",
+  "description_macro": "Utiliser certains sorts vous octroie <colortype(500)><edgecolortype(501)>Feu astral<edgecolortype(0)><colortype(0)> ou <colortype(500)><edgecolortype(501)>Glace ombrale<edgecolortype(0)><colortype(0)> (maximum 1).<br><colortype(506)><edgecolortype(507)>Effet avec Feu astral<nbsp>:<edgecolortype(0)><colortype(0)> empêche la récupération de MP avec le temps, augmente la puissance des sorts de feu de 40％, mais multiplie par deux leur coût en PM.<br>Réduit également la puissance des sorts de glace de 10%, mais réduit à 0 leur coût en PM.<br><colortype(506)><edgecolortype(507)>Effet avec Glace ombrale:<edgecolortype(0)><colortype(0)> restaure 2500 PM quand un sort de glace est utilisé avec succès et réduit à 0 leur coût en PM.<br>Réduit également la puissance des sorts de feu de 10%, mais réduit à 0 leur coût en PM.",
+  "effects": [
+    "Utiliser certains sorts vous octroie Feu astral ou Glace ombrale (maximum 1).",
+    "Effet avec Feu astral : empêche la récupération de MP avec le temps, augmente la puissance des sorts de feu de 40％, mais multiplie par deux leur coût en PM.",
+    "Réduit également la puissance des sorts de glace de 10%, mais réduit à 0 leur coût en PM.",
+    "Effet avec Glace ombrale: restaure 2500 PM quand un sort de glace est utilisé avec succès et réduit à 0 leur coût en PM.",
+    "Réduit également la puissance des sorts de feu de 10%, mais réduit à 0 leur coût en PM."
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 25,
+    "name": "Mage Noir",
+    "abbreviation": "MNO"
+  },
+  "unlock_level": 1,
+  "value": 0,
+  "icon": {
+    "id": 5362,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 55,
+  "source_class_job_id": 7
+}

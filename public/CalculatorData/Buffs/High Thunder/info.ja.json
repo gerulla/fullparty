@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 3871,
+  "name": "ハイサンダー",
+  "description": "雷属性ダメージにより、ＨＰが徐々に失われる状態。",
+  "effects": [
+    "雷属性ダメージにより、ＨＰが徐々に失われる状態。"
+  ],
+  "classification": "debuff",
+  "icon": {
+    "id": 212661,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 2,
+  "target_type": 0,
+  "can_dispel": true,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 10,
+  "parameter": {
+    "effect": 0,
+    "modifier": 10
+  },
+  "class_job_category_id": 26,
+  "source_abilities": [
+    {
+      "id": 36986,
+      "name": "ハイサンダー",
+      "description": "対象に雷属性魔法攻撃。\u3000威力：150\n追加効果：対象に雷属性の継続ダメージを付与する。\n威力：60\u3000効果時間：30秒\n自身が実行するサンダー系魔法の継続ダメージ効果は、同時に1種類のみ付与される。\n発動条件：「サンダー系魔法実行可」効果中\nサンダー系魔法実行可は、アストラルファイアとアンブラルブリザードが付与されていない状態でいずれかが付与されたとき、またはいずれかが付与されている状態でもう一方に変化したときに付与される。\u3000効果時間：永続",
+      "description_macro": "対象に雷属性魔法攻撃。\u3000<colortype(504)><edgecolortype(505)>威力：<edgecolortype(0)><colortype(0)>150<br><colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)>対象に雷属性の継続ダメージを付与する。<br><colortype(504)><edgecolortype(505)>威力：<edgecolortype(0)><colortype(0)>60\u3000<colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>30秒<br>自身が実行するサンダー系魔法の継続ダメージ効果は、同時に1種類のみ付与される。<br><colortype(504)><edgecolortype(505)>発動条件：<edgecolortype(0)><colortype(0)><colortype(500)><edgecolortype(501)>「サンダー系魔法実行可」<edgecolortype(0)><colortype(0)>効果中<br>サンダー系魔法実行可は、アストラルファイアとアンブラルブリザードが付与されていない状態でいずれかが付与されたとき、またはいずれかが付与されている状態でもう一方に変化したときに付与される。\u3000<colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>永続",
+      "unlock_level": 92,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Magical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 25,
+          "name": "黒魔道士",
+          "abbreviation": "BLM",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 214,
+  "name": "Broil Mastery",
+  "description": "Upgrades Ruin to Broil and increases the potency of Ruin II to 160, and Art of War to 165.",
+  "description_macro": "Upgrades <colortype(500)><edgecolortype(501)>Ruin<edgecolortype(0)><colortype(0)> to <colortype(500)><edgecolortype(501)>Broil<edgecolortype(0)><colortype(0)> and increases the potency of <colortype(500)><edgecolortype(501)>Ruin II<edgecolortype(0)><colortype(0)> to 160, and <colortype(500)><edgecolortype(501)>Art of War<edgecolortype(0)><colortype(0)> to 165.",
+  "effects": [
+    "Upgrades Ruin to Broil and increases the potency of Ruin II to 160, and Art of War to 165."
+  ],
+  "role": "Healer",
+  "job": {
+    "id": 28,
+    "name": "Scholar",
+    "abbreviation": "SCH"
+  },
+  "unlock_level": 54,
+  "value": 0,
+  "icon": {
+    "id": 5394,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 29,
+  "source_class_job_id": 28
+}

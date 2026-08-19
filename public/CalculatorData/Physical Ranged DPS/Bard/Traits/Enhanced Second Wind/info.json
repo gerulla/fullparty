@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 642,
+  "name": "Enhanced Second Wind",
+  "description": "Increases the healing potency of Second Wind to 800.",
+  "description_macro": "Increases the healing potency of <colortype(500)><edgecolortype(501)>Second Wind<edgecolortype(0)><colortype(0)> to 800.",
+  "effects": [
+    "Increases the healing potency of Second Wind to 800."
+  ],
+  "role": "Physical Ranged DPS",
+  "job": {
+    "id": 23,
+    "name": "Bard",
+    "abbreviation": "BRD"
+  },
+  "unlock_level": 94,
+  "value": 0,
+  "icon": {
+    "id": 6852,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 118,
+  "source_class_job_id": 0
+}

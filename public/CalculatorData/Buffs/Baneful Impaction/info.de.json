@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 3883,
+  "name": "Gift und Galle",
+  "description": "Erleidet schrittweise Schaden.",
+  "effects": [
+    "Erleidet schrittweise Schaden."
+  ],
+  "classification": "debuff",
+  "icon": {
+    "id": 212819,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 2,
+  "target_type": 0,
+  "can_dispel": true,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 10,
+  "parameter": {
+    "effect": 0,
+    "modifier": 5
+  },
+  "class_job_category_id": 29,
+  "source_abilities": [
+    {
+      "id": 37012,
+      "name": "Gift und Galle",
+      "description": "Du fügst dem Ziel und den Gegnern in seiner Nähe elementneutralen magischen Schaden über Zeit zu.\nAttacke-Wert: 140\nDauer: 15 Sekunden\nBedingung: Mit Gift und Galle aktiv",
+      "description_macro": "Du fügst dem Ziel und den Gegnern in seiner Nähe elementneutralen magischen Schaden über Zeit zu.<br>Attacke-Wert: 140<br>Dauer: 15 Sekunden<br>Bedingung: <colortype(506)><edgecolortype(507)>Mit Gift und Galle<edgecolortype(0)><colortype(0)> aktiv",
+      "unlock_level": 92,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Healer"
+      ],
+      "jobs": [
+        {
+          "id": 28,
+          "name": "Gelehrter",
+          "abbreviation": "GLT",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

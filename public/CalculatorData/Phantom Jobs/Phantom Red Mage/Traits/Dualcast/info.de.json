@@ -1,0 +1,23 @@
+{
+  "kind": "trait",
+  "id": 18,
+  "name": "Doppelzauber",
+  "description": "Gewährt Doppelzauber beim Ausführen von Zaubern mit einer Ausführungszeit. Durch den Status entfällt die Ausführungszeit des nächsten Zaubers. Die Wirkung wird durch Kommandos (außer Auto-Attacke und Talenten) unterbrochen.\nDauer: 15 Sekunden",
+  "description_macro": "Gewährt <colortype(506)><edgecolortype(507)>Doppelzauber<edgecolortype(0)><colortype(0)> beim Ausführen von Zaubern mit einer Ausführungszeit. Durch den Status entfällt die Ausführungszeit des nächsten Zaubers. Die Wirkung wird durch Kommandos (außer Auto-Attacke und Talenten) unterbrochen.<br>Dauer: 15 Sekunden",
+  "effects": [
+    "Gewährt Doppelzauber beim Ausführen von Zaubern mit einer Ausführungszeit. Durch den Status entfällt die Ausführungszeit des nächsten Zaubers. Die Wirkung wird durch Kommandos (außer Auto-Attacke und Talenten) unterbrochen.",
+    "Dauer: 15 Sekunden"
+  ],
+  "role": "Phantom Jobs",
+  "job": {
+    "id": 22,
+    "name": "Phantom-Rotmagier",
+    "abbreviation": "Ph-Rotmagier"
+  },
+  "is_phantom_trait": true,
+  "unlock_level": 6,
+  "icon": {
+    "id": 82218,
+    "file": "icon.png"
+  }
+}

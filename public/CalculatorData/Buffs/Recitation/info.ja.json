@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 1896,
+  "name": "秘策",
+  "description": "次に実行する1回の「鼓舞激励の策」「」「不撓不屈の策」「深謀遠慮の策」について、ＭＰや「エーテルフロー」を消費することなく実行することができ、かつ必ずクリティカルヒットする状態。",
+  "effects": [
+    "次に実行する1回の「鼓舞激励の策」「」「不撓不屈の策」「深謀遠慮の策」について、ＭＰや「エーテルフロー」を消費することなく実行することができ、かつ必ずクリティカルヒットする状態。"
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 212813,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 29,
+  "source_abilities": [
+    {
+      "id": 16542,
+      "name": "秘策",
+      "description": "効果時間中に実行する1回の「鼓舞激励の策」「意気軒昂の策」「不撓不屈の策」「深謀遠慮の策」について、ＭＰや「エーテルフロー」を消費することなく実行することができ、かつ必ずクリティカルヒットする。\u3000効果時間：15秒",
+      "description_macro": "効果時間中に実行する1回の<colortype(500)><edgecolortype(501)>「鼓舞激励の策」「<if([gnum68==28],<if([gnum72>=96],意気軒昂の策,士気高揚の策)>,士気高揚の策)>」「不撓不屈の策」「深謀遠慮の策」<edgecolortype(0)><colortype(0)>について、ＭＰや<colortype(500)><edgecolortype(501)>「エーテルフロー」<edgecolortype(0)><colortype(0)>を消費することなく実行することができ、かつ必ずクリティカルヒットする。\u3000<colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>15秒",
+      "unlock_level": 74,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Healer"
+      ],
+      "jobs": [
+        {
+          "id": 28,
+          "name": "学者",
+          "abbreviation": "SCH",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 4007,
+  "name": "Mustard Bomb",
+  "description": "A mustard bomb is affixed to the body and will detonate when this effect expires.",
+  "effects": [
+    "A mustard bomb is affixed to the body and will detonate when this effect expires."
+  ],
+  "classification": "debuff",
+  "icon": {
+    "id": 214185,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 2,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 198,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 23279,
+      "name": "Mustard Bomb",
+      "description": "Deals fire damage to target and all enemies nearby it with a potency of 220 for the first enemy, and 50% less for all remaining enemies.\nAdditional Effect: Enemies affected by Lightheaded suffer damage over time\nPotency: 50\nDuration: 15s",
+      "description_macro": "Deals fire damage to target and all enemies nearby it with a potency of 220 for the first enemy, and 50% less for all remaining enemies.<br><colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>Enemies affected by <colortype(506)><edgecolortype(507)>Lightheaded<edgecolortype(0)><colortype(0)> suffer damage over time<br><colortype(504)><edgecolortype(505)>Potency: <edgecolortype(0)><colortype(0)>50<br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>15s",
+      "unlock_level": 1,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Magical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 36,
+          "name": "Blue Mage",
+          "abbreviation": "BLU",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

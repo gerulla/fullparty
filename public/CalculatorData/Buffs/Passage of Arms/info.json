@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 1175,
+  "name": "Passage of Arms",
+  "description": "An area of land has been granted protection, reducing damage taken for all who enter.",
+  "effects": [
+    "An area of land has been granted protection, reducing damage taken for all who enter."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 212512,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": true,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 4,
+    "modifier": 100
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 7385,
+      "name": "Passage of Arms",
+      "description": "Increases block rate to 100% and creates a designated area in a cone behind you in which party members will only suffer 85% of all damage inflicted.\nDuration: 18s\nEffect ends upon using another action or moving (including facing a different direction).\nCancels auto-attack upon execution.",
+      "description_macro": "Increases block rate to 100% and creates a designated area in a cone behind you in which party members will only suffer 85% of all damage inflicted.<br><colortype(504)><edgecolortype(505)>Duration:<edgecolortype(0)><colortype(0)> 18s<br>Effect ends upon using another action or moving (including facing a different direction).<br>Cancels auto-attack upon execution.",
+      "unlock_level": 70,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Tank"
+      ],
+      "jobs": [
+        {
+          "id": 19,
+          "name": "Paladin",
+          "abbreviation": "PLD",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

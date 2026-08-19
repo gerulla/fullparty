@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 603,
+  "name": "ヒートブラストマスタリー",
+  "description": "ヒートブラストがブレイズショットに変化する。",
+  "description_macro": "ヒートブラストがブレイズショットに変化する。",
+  "effects": [
+    "ヒートブラストがブレイズショットに変化する。"
+  ],
+  "role": "Physical Ranged DPS",
+  "job": {
+    "id": 31,
+    "name": "機工士",
+    "abbreviation": "MCH"
+  },
+  "unlock_level": 68,
+  "value": 0,
+  "icon": {
+    "id": 6021,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 96,
+  "source_class_job_id": 31
+}

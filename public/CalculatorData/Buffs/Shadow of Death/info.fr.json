@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 4518,
+  "name": "Noirceur de l'au-delà",
+  "description": "L'esprit est attiré vers l'au-delà, le personnage devenant inconscient à la fin de l'effet. Subir une attaque de Lumière dissipera l'effet.",
+  "effects": [
+    "L'esprit est attiré vers l'au-delà, le personnage devenant inconscient à la fin de l'effet. Subir une attaque de Lumière dissipera l'effet."
+  ],
+  "classification": "debuff",
+  "icon": {
+    "id": 214289,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 2,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 200,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 24378,
+      "name": "Ombre de la mort",
+      "description": "Effectue une attaque physique sur la cible.\nPuissance : 300\nEffet additionnel : inflige Dessein de la Camarde.\nDurée : 30s\nDessein de la Camarde : augmente de 10% vos dégâts infligés à la cibleet remplit votre Jauge des âmes de 10 si elle tombe inconsciente sous cet effet.\nSi la cible est déjà sous l'effet de Dessein de la Camarde, allonge la durée de 30s (maximum 60s).",
+      "description_macro": "Effectue une attaque physique sur la cible.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> <if([gnum68==39],<if([gnum72>=60],300,240)>,240)><br><colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> inflige <colortype(500)><edgecolortype(501)>Dessein de la Camarde<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 30s<br><colortype(506)><edgecolortype(507)>Dessein de la Camarde<nbsp>:<edgecolortype(0)><colortype(0)> augmente de 10% vos dégâts infligés à la cible<if([gnum68==39],<if([gnum72>=50], et remplit votre <colortype(502)><edgecolortype(503)>Jauge des âmes<edgecolortype(0)><colortype(0)> de 10 si elle tombe in<->cons<->cien<->te sous cet effet.,.)>,.)><br>Si la cible est déjà sous l'effet de <colortype(500)><edgecolortype(501)>Dessein de la Camarde<edgecolortype(0)><colortype(0)>, allonge la durée de 30s (maximum 60s).",
+      "unlock_level": 10,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 39,
+          "name": "Faucheur",
+          "abbreviation": "FCH",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 306,
+  "name": "Maîtrise de la magie rouge",
+  "description": "Réduit le temps de recharge de Contre de sixte à 35s et augmente la puissance d'Extra VerFoudre et d'Extra VerVent à 120.",
+  "description_macro": "Réduit le temps de recharge de <colortype(500)><edgecolortype(501)>Contre de sixte<edgecolortype(0)><colortype(0)> à 35s et augmente la puissance d'<colortype(500)><edgecolortype(501)>Extra VerFoudre<edgecolortype(0)><colortype(0)> et d'<colortype(500)><edgecolortype(501)>Extra VerVent<edgecolortype(0)><colortype(0)> à 120.",
+  "effects": [
+    "Réduit le temps de recharge de Contre de sixte à 35s et augmente la puissance d'Extra VerFoudre et d'Extra VerVent à 120."
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 35,
+    "name": "Mage Rouge",
+    "abbreviation": "MRG"
+  },
+  "unlock_level": 74,
+  "value": -100,
+  "icon": {
+    "id": 6206,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 112,
+  "source_class_job_id": 35
+}

@@ -1,0 +1,89 @@
+{
+  "kind": "ability",
+  "id": 36978,
+  "name": "Brandschuss",
+  "description": "Du führst eine physische Attacke aus.\nAttacke-Wert: 240\nZusatzeffekt: Verkürzt die Reaktivierungszeit von Doppelschach und Schachmatt um 15 Sekunden.\nBedingung: Überhitzung aktiv\nEigener Reaktivierungs-Timer\nBei Ausführung wird der Reaktivierungs-Timer dieses Kommandos auf alle anderen Waffenfertigkeiten und Magie angewendet.",
+  "description_macro": "Du führst eine physische Attacke aus.<br>Attacke-Wert: <if([gnum68==31],<if([gnum72>=94],240,220)>,220)><br>Zusatzeffekt: Verkürzt die Re<->ak<->ti<->vie<->rungs<->zeit von <if([gnum68==31],<if([gnum72>=92],<colortype(502)><edgecolortype(503)>Doppelschach<edgecolortype(0)><colortype(0)> und <colortype(502)><edgecolortype(503)>Schachmatt<edgecolortype(0)><colortype(0)>,<colortype(502)><edgecolortype(503)>Gauß-Geschoss<edgecolortype(0)><colortype(0)> und <colortype(502)><edgecolortype(503)>Rikoschettschuss<edgecolortype(0)><colortype(0)>)>,<colortype(502)><edgecolortype(503)>Gauß-Geschoss<edgecolortype(0)><colortype(0)> und <colortype(502)><edgecolortype(503)>Rikoschettschuss<edgecolortype(0)><colortype(0)>)> um 15 Sekunden.<br>Bedingung: <colortype(506)><edgecolortype(507)>Überhitzung<edgecolortype(0)><colortype(0)> aktiv<br>Eigener Reaktivierungs-Timer<br>Bei Ausführung wird der Reaktivierungs-Timer dieses Kommandos auf alle anderen Waf<->fen<->fer<->tig<->kei<->ten und Magie angewendet.",
+  "effects": [
+    "Du führst eine physische Attacke aus.",
+    "Attacke-Wert: 240",
+    "Zusatzeffekt: Verkürzt die Reaktivierungszeit von Doppelschach und Schachmatt um 15 Sekunden.",
+    "Bedingung: Überhitzung aktiv",
+    "Eigener Reaktivierungs-Timer",
+    "Bei Ausführung wird der Reaktivierungs-Timer dieses Kommandos auf alle anderen Waffenfertigkeiten und Magie angewendet."
+  ],
+  "role": "Physical Ranged DPS",
+  "job": {
+    "id": 31,
+    "name": "Maschinist",
+    "abbreviation": "MCH"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 68,
+  "icon": {
+    "id": 3506,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 3,
+    "name": "Waffenfertigkeit"
+  },
+  "attack_type": {
+    "id": 4294967295,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 2.5,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 58,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 10,
+      "value": 2688
+    },
+    "secondary": {
+      "type_id": 62,
+      "value": 603
+    }
+  },
+  "range": {
+    "target_yalms": -1,
+    "effect_yalms": 0,
+    "cast_type": 1
+  },
+  "targeting": {
+    "self": false,
+    "party": false,
+    "alliance": false,
+    "hostile": true,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 7,
+    "behavior_type": 0,
+    "class_job_category_id": 96,
+    "source_class_job_id": 31,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

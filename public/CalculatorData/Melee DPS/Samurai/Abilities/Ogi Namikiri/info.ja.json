@@ -1,0 +1,100 @@
+{
+  "kind": "ability",
+  "id": 25781,
+  "name": "奥義波切",
+  "description": "対象に向かって前方扇範囲物理攻撃。\u3000威力：1000\n2体目以降の対象への威力は40％減少する。\nこのアクションは必ずクリティカルヒットする。\nクリティカルヒットの発動率を上昇させる効果を受けている場合は与ダメージが上昇する。\n追加効果：自身に「剣圧」を付与する。\n最大スタック数：3\u3000効果時間：永続\n発動条件：「奥義波切実行可」効果中\nこのアクションを実行すると「返し波切」に変化する。",
+  "description_macro": "対象に向かって前方扇範囲物理攻撃。\u3000<colortype(504)><edgecolortype(505)>威力：<edgecolortype(0)><colortype(0)><if([gnum68==34],<if([gnum72>=94],1000,860)>,860)><br>2体目以降の対象への威力は40％減少する。<br>このアクションは必ずクリティカルヒットする。<br>クリティカルヒットの発動率を上昇させる効果を受けている場合は与ダメージが上昇する。<br><colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)>自身に<colortype(500)><edgecolortype(501)>「剣圧」<edgecolortype(0)><colortype(0)>を付与する。<br><colortype(504)><edgecolortype(505)>最大スタック数：<edgecolortype(0)><colortype(0)>3\u3000<colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>永続<br><colortype(504)><edgecolortype(505)>発動条件：<edgecolortype(0)><colortype(0)><colortype(500)><edgecolortype(501)>「奥義波切実行可」<edgecolortype(0)><colortype(0)>効果中<br>このアクションを実行すると<colortype(500)><edgecolortype(501)>「返し波切」<edgecolortype(0)><colortype(0)>に変化する。",
+  "effects": [
+    "対象に向かって前方扇範囲物理攻撃。\u3000威力：1000",
+    "2体目以降の対象への威力は40％減少する。",
+    "このアクションは必ずクリティカルヒットする。",
+    "クリティカルヒットの発動率を上昇させる効果を受けている場合は与ダメージが上昇する。",
+    "追加効果：自身に「剣圧」を付与する。",
+    "最大スタック数：3\u3000効果時間：永続",
+    "発動条件：「奥義波切実行可」効果中",
+    "このアクションを実行すると「返し波切」に変化する。"
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 34,
+    "name": "侍",
+    "abbreviation": "SAM"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 90,
+  "icon": {
+    "id": 3187,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 3,
+    "name": "ウェポンスキル"
+  },
+  "attack_type": {
+    "id": 4294967295,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 1.8,
+    "recast_seconds": 2.5,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 58,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 0,
+      "value": 0
+    },
+    "secondary": {
+      "type_id": 32,
+      "value": 2959
+    }
+  },
+  "range": {
+    "target_yalms": 8,
+    "effect_yalms": 8,
+    "cast_type": 3
+  },
+  "targeting": {
+    "self": false,
+    "party": false,
+    "alliance": false,
+    "hostile": true,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": {
+      "id": 72,
+      "status": {
+        "id": 2959,
+        "name": "奥義波切実行可",
+        "description": "奥義波切を実行できる状態。",
+        "icon_id": 213313,
+        "max_stacks": 0
+      }
+    }
+  },
+  "metadata": {
+    "aspect_id": 7,
+    "behavior_type": 0,
+    "class_job_category_id": 111,
+    "source_class_job_id": 34,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

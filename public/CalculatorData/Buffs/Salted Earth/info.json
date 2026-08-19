@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 3036,
+  "name": "Salted Earth",
+  "description": "The ground is rendered void of all life, dealing unaspected damage to any who tread upon it.",
+  "effects": [
+    "The ground is rendered void of all life, dealing unaspected damage to any who tread upon it."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 213104,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": true,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 98,
+  "source_abilities": [
+    {
+      "id": 3639,
+      "name": "Salted Earth",
+      "description": "Creates a patch of salted earth at your feet, dealing unaspected damage with a potency of 50 to any enemies who enter.\nDuration: 15s",
+      "description_macro": "Creates a patch of salted earth at your feet, dealing unaspected damage with a potency of 50 to any enemies who enter.<br><colortype(504)><edgecolortype(505)>Duration:<edgecolortype(0)><colortype(0)> 15s",
+      "unlock_level": 52,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Tank"
+      ],
+      "jobs": [
+        {
+          "id": 32,
+          "name": "Dark Knight",
+          "abbreviation": "DRK",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

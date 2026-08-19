@@ -1,0 +1,90 @@
+{
+  "kind": "ability",
+  "id": 8324,
+  "name": "Stellare Detonation",
+  "description": "Du entfesselst die Wirkung eines von dir erschaffenen irdischen Sterns.\nWirkung bei Irdische Herrschaft: Elementneutrale magische Attacke mit Attacke-Wert 205 auf die Gegner in der Nähe\nZusatzeffekt: Regeneriert LP der Gruppenmitglieder in der Nähe.\nHeilpotenzial: 540\nWirkung bei Planetare Herrschaft: Elementneutrale magische Attacke mit Attacke-Wert 310 auf die Gegner in der Nähe\nZusatzeffekt: Regeneriert LP der Gruppenmitglieder in der Nähe.\nHeilpotenzial: 720",
+  "description_macro": "Du entfesselst die Wirkung eines von dir erschaffenen irdischen Sterns.<br>Wirkung bei <colortype(506)><edgecolortype(507)>Irdische Herrschaft<edgecolortype(0)><colortype(0)>: Elementneutrale magische Attacke mit Attacke-Wert 205 auf die Gegner in der Nähe<br>Zusatzeffekt: Regeneriert LP der Grup<->pen<->mit<->glieder in der Nähe.<br>Heilpotenzial: 540<br>Wirkung bei <colortype(506)><edgecolortype(507)>Planetare Herrschaft<edgecolortype(0)><colortype(0)>: Elementneutrale magische Attacke mit Attacke-Wert 310 auf die Gegner in der Nähe<br>Zusatzeffekt: Regeneriert LP der Grup<->pen<->mit<->glieder in der Nähe.<br>Heilpotenzial: 720",
+  "effects": [
+    "Du entfesselst die Wirkung eines von dir erschaffenen irdischen Sterns.",
+    "Wirkung bei Irdische Herrschaft: Elementneutrale magische Attacke mit Attacke-Wert 205 auf die Gegner in der Nähe",
+    "Zusatzeffekt: Regeneriert LP der Gruppenmitglieder in der Nähe.",
+    "Heilpotenzial: 540",
+    "Wirkung bei Planetare Herrschaft: Elementneutrale magische Attacke mit Attacke-Wert 310 auf die Gegner in der Nähe",
+    "Zusatzeffekt: Regeneriert LP der Gruppenmitglieder in der Nähe.",
+    "Heilpotenzial: 720"
+  ],
+  "role": "Healer",
+  "job": {
+    "id": 33,
+    "name": "Astrologe",
+    "abbreviation": "AST"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 62,
+  "icon": {
+    "id": 3144,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 4,
+    "name": "Talent"
+  },
+  "attack_type": {
+    "id": 0,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 3,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 9,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 0,
+      "value": 0
+    },
+    "secondary": {
+      "type_id": 40,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": 0,
+    "effect_yalms": 20,
+    "cast_type": 2
+  },
+  "targeting": {
+    "self": true,
+    "party": false,
+    "alliance": false,
+    "hostile": false,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 0,
+    "behavior_type": 0,
+    "class_job_category_id": 99,
+    "source_class_job_id": 0,
+    "is_role_action": false,
+    "is_player_action": false,
+    "is_derived_action": true,
+    "equivalence_group": 0
+  }
+}

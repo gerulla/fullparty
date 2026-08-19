@@ -1,0 +1,90 @@
+{
+  "kind": "ability",
+  "id": 25874,
+  "name": "Makrokosmos",
+  "description": "Du führst eine elementneutrale magische Attacke auf alle umstehenden Gegner aus.\nAttacke-Wert: 270\nAttacke-Wert verringert sich ab dem zweiten Gegner um 40 %.\nZusatzeffekt: Gewährt dir und umstehenden Gruppenmitgliedern Makrokosmos.\nDauer: 15 Sekunden\nEffekt von Makrokosmos: Erleidet das Ziel während der Wirkungsdauer Schaden, wird dieser angesammelt. Bei Ablauf der Wirkungsdauer oder bei Ausführung von Mikrokosmos wird das Ziel entsprechend einem Heilpotenzial von 200 plus 50 % des angesammelten Schadens geheilt. Dabei ist die Menge der regenerierten LP nur so hoch wie die Maximal-LP des Ziels.\nEigener Reaktivierungs-Timer, der nicht von Statuseffekten oder Ausrüstung beeinflusst wird.",
+  "description_macro": "Du führst eine elementneutrale magische Attacke auf alle umstehenden Gegner aus.<br>Attacke-Wert: <if([gnum68==33],<if([gnum72>=94],270,250)>,250)><br>Attacke-Wert verringert sich ab dem zweiten Gegner um 40<nbsp>%.<br>Zusatzeffekt: Gewährt dir und umstehenden Grup<->pen<->mit<->gliedern <colortype(506)><edgecolortype(507)>Makrokosmos<edgecolortype(0)><colortype(0)>.<br>Dauer: 15 Sekunden<br>Effekt von <colortype(506)><edgecolortype(507)>Makrokosmos<edgecolortype(0)><colortype(0)>: Erleidet das Ziel während der Wirkungsdauer Schaden, wird dieser angesammelt. Bei Ablauf der Wirkungsdauer oder bei Ausführung von <colortype(502)><edgecolortype(503)>Mikrokosmos<edgecolortype(0)><colortype(0)> wird das Ziel entsprechend einem Heilpotenzial von 200 plus 50<nbsp>% des angesammelten Schadens geheilt. Dabei ist die Menge der regenerierten LP nur so hoch wie die Maximal-LP des Ziels.<br>Eigener Reaktivierungs-Timer, der nicht von Statuseffekten oder Ausrüstung beeinflusst wird.",
+  "effects": [
+    "Du führst eine elementneutrale magische Attacke auf alle umstehenden Gegner aus.",
+    "Attacke-Wert: 270",
+    "Attacke-Wert verringert sich ab dem zweiten Gegner um 40 %.",
+    "Zusatzeffekt: Gewährt dir und umstehenden Gruppenmitgliedern Makrokosmos.",
+    "Dauer: 15 Sekunden",
+    "Effekt von Makrokosmos: Erleidet das Ziel während der Wirkungsdauer Schaden, wird dieser angesammelt. Bei Ablauf der Wirkungsdauer oder bei Ausführung von Mikrokosmos wird das Ziel entsprechend einem Heilpotenzial von 200 plus 50 % des angesammelten Schadens geheilt. Dabei ist die Menge der regenerierten LP nur so hoch wie die Maximal-LP des Ziels.",
+    "Eigener Reaktivierungs-Timer, der nicht von Statuseffekten oder Ausrüstung beeinflusst wird."
+  ],
+  "role": "Healer",
+  "job": {
+    "id": 33,
+    "name": "Astrologe",
+    "abbreviation": "AST"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 90,
+  "icon": {
+    "id": 3562,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 2,
+    "name": "Zauber"
+  },
+  "attack_type": {
+    "id": 5,
+    "name": "魔法"
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 180,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 23,
+    "additional_cooldown_group": 58,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 3,
+      "value": 6
+    },
+    "secondary": {
+      "type_id": 0,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": 0,
+    "effect_yalms": 20,
+    "cast_type": 2
+  },
+  "targeting": {
+    "self": true,
+    "party": false,
+    "alliance": false,
+    "hostile": false,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": false
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": false
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 7,
+    "behavior_type": 0,
+    "class_job_category_id": 99,
+    "source_class_job_id": 33,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

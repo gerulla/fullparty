@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 452,
+  "name": "タクティシャン効果アップ",
+  "description": "タクティシャンのリキャストタイムを90秒に短縮させる。",
+  "description_macro": "タクティシャンのリキャストタイムを90秒に短縮させる。",
+  "effects": [
+    "タクティシャンのリキャストタイムを90秒に短縮させる。"
+  ],
+  "role": "Physical Ranged DPS",
+  "job": {
+    "id": 31,
+    "name": "機工士",
+    "abbreviation": "MCH"
+  },
+  "unlock_level": 88,
+  "value": -300,
+  "icon": {
+    "id": 6020,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 96,
+  "source_class_job_id": 31
+}

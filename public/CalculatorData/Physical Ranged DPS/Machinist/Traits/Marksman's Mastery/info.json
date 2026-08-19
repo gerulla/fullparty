@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 517,
+  "name": "Marksman's Mastery",
+  "description": "Increases the potency of Heated Split Shot to 200, Heated Slug Shot to 120, and Heated Clean Shot to 120.",
+  "description_macro": "Increases the potency of <colortype(500)><edgecolortype(501)>Heated Split Shot<edgecolortype(0)><colortype(0)> to 200, <colortype(500)><edgecolortype(501)>Heated Slug Shot<edgecolortype(0)><colortype(0)> to 120, and <colortype(500)><edgecolortype(501)>Heated Clean Shot<edgecolortype(0)><colortype(0)> to 120.",
+  "effects": [
+    "Increases the potency of Heated Split Shot to 200, Heated Slug Shot to 120, and Heated Clean Shot to 120."
+  ],
+  "role": "Physical Ranged DPS",
+  "job": {
+    "id": 31,
+    "name": "Machinist",
+    "abbreviation": "MCH"
+  },
+  "unlock_level": 84,
+  "value": 0,
+  "icon": {
+    "id": 6801,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 96,
+  "source_class_job_id": 31
+}

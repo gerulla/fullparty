@@ -1,0 +1,94 @@
+{
+  "kind": "ability",
+  "id": 34576,
+  "name": "Schwinge des Urteils",
+  "description": "Du führst eine elementneutrale physische Attacke auf alle Gegner in gerader Linie vor dir aus.\nAttacke-Wert: 300\nAttacke-Wert verringert sich ab dem zweiten Gegner um 50 %.\nZusatzeffekt: Reaktivierungs-Timer ist sofort zurückgesetzt und gewährt den Status Schwinge des Urteils.\nMaximal vier Schwingen des Urteils stapelbar.\nDauer: Fortdauernd\nWenn der Stapel von Schwinge des Urteils drei beträgt, wird mit der nächsten Aktivierung der Reaktivierungstimer nicht zurückgesetzt und der Attacke-Wert auf 400 erhöht.\nSobald der Stapel von Schwinge des Urteils vier beträgt, ändert sich der Status von Schwinge des Urteils zu Segen des Allmächtigen.\nDauer: 10 Sekunden\nSegen des Allmächtigen: Attacke-Wert von Mette marcato erhöht sich.\nEigener Reaktivierungs-Timer",
+  "description_macro": "Du führst eine elementneutrale physische Attacke auf alle Gegner in gerader Linie vor dir aus.<br>Attacke-Wert: 300<br>Attacke-Wert verringert sich ab dem zweiten Gegner um 50<nbsp>%.<br>Zusatzeffekt: Reaktivierungs-Timer ist sofort zurückgesetzt und gewährt den Status <colortype(506)><edgecolortype(507)>Schwinge des Urteils<edgecolortype(0)><colortype(0)>.<br>Maximal vier <colortype(506)><edgecolortype(507)>Schwingen des Urteils<edgecolortype(0)><colortype(0)> stapelbar.<br>Dauer: Fortdauernd<br>Wenn der Stapel von <colortype(506)><edgecolortype(507)>Schwinge des Urteils<edgecolortype(0)><colortype(0)> drei beträgt, wird mit der nächsten Aktivierung der Reaktivierungstimer nicht zurückgesetzt und der Attacke-Wert auf 400 erhöht.<br>Sobald der Stapel von <colortype(506)><edgecolortype(507)>Schwinge des Urteils<edgecolortype(0)><colortype(0)> vier beträgt, ändert sich der Status von <colortype(506)><edgecolortype(507)>Schwinge des Urteils<edgecolortype(0)><colortype(0)> zu <colortype(506)><edgecolortype(507)>Segen des Allmächtigen<edgecolortype(0)><colortype(0)>.<br>Dauer: 10 Sekunden<br><colortype(506)><edgecolortype(507)>Segen des Allmächtigen<edgecolortype(0)><colortype(0)>: Attacke-Wert von <colortype(502)><edgecolortype(503)>Mette marcato<edgecolortype(0)><colortype(0)> erhöht sich.<br>Eigener Reaktivierungs-Timer",
+  "effects": [
+    "Du führst eine elementneutrale physische Attacke auf alle Gegner in gerader Linie vor dir aus.",
+    "Attacke-Wert: 300",
+    "Attacke-Wert verringert sich ab dem zweiten Gegner um 50 %.",
+    "Zusatzeffekt: Reaktivierungs-Timer ist sofort zurückgesetzt und gewährt den Status Schwinge des Urteils.",
+    "Maximal vier Schwingen des Urteils stapelbar.",
+    "Dauer: Fortdauernd",
+    "Wenn der Stapel von Schwinge des Urteils drei beträgt, wird mit der nächsten Aktivierung der Reaktivierungstimer nicht zurückgesetzt und der Attacke-Wert auf 400 erhöht.",
+    "Sobald der Stapel von Schwinge des Urteils vier beträgt, ändert sich der Status von Schwinge des Urteils zu Segen des Allmächtigen.",
+    "Dauer: 10 Sekunden",
+    "Segen des Allmächtigen: Attacke-Wert von Mette marcato erhöht sich.",
+    "Eigener Reaktivierungs-Timer"
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 36,
+    "name": "Blaumagier",
+    "abbreviation": "BMA"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 1,
+  "icon": {
+    "id": 3371,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 2,
+    "name": "Zauber"
+  },
+  "attack_type": {
+    "id": 2,
+    "name": "突"
+  },
+  "timing": {
+    "cast_seconds": 1,
+    "recast_seconds": 90,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 13,
+    "additional_cooldown_group": 58,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 3,
+      "value": 2
+    },
+    "secondary": {
+      "type_id": 0,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": 25,
+    "effect_yalms": 25,
+    "cast_type": 4
+  },
+  "targeting": {
+    "self": false,
+    "party": false,
+    "alliance": false,
+    "hostile": true,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": false
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 7,
+    "behavior_type": 0,
+    "class_job_category_id": 129,
+    "source_class_job_id": 36,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "kind": "trait",
+  "id": 517,
+  "name": "Verbessertes Schützentum",
+  "description": "Erhöht den Attacke-Wert folgender Kommandos:\nAttacke-Wert von Höllenfeuer frei: 200\nAttacke-Wert von Höllen-Flintenlaufgeschoss: 120\nAttacke-Wert von Sauberer Höllenschuss: 120",
+  "description_macro": "Erhöht den Attacke-Wert folgender Kommandos:<br>Attacke-Wert von <colortype(502)><edgecolortype(503)>Höllenfeuer frei<edgecolortype(0)><colortype(0)>: 200<br>Attacke-Wert von <colortype(502)><edgecolortype(503)>Höllen-Flintenlaufgeschoss<edgecolortype(0)><colortype(0)>: 120<br>Attacke-Wert von <colortype(502)><edgecolortype(503)>Sauberer Höllenschuss<edgecolortype(0)><colortype(0)>: 120",
+  "effects": [
+    "Erhöht den Attacke-Wert folgender Kommandos:",
+    "Attacke-Wert von Höllenfeuer frei: 200",
+    "Attacke-Wert von Höllen-Flintenlaufgeschoss: 120",
+    "Attacke-Wert von Sauberer Höllenschuss: 120"
+  ],
+  "role": "Physical Ranged DPS",
+  "job": {
+    "id": 31,
+    "name": "Maschinist",
+    "abbreviation": "MCH"
+  },
+  "unlock_level": 84,
+  "value": 0,
+  "icon": {
+    "id": 6801,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 96,
+  "source_class_job_id": 31
+}

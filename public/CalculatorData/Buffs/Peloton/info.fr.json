@@ -1,0 +1,62 @@
+{
+  "kind": "combat_status",
+  "id": 1199,
+  "name": "Peloton",
+  "description": "La vitesse de déplacement est augmentée. L'effet prend fin lorsque de l'inimitié est générée.",
+  "effects": [
+    "La vitesse de déplacement est augmentée. L'effet prend fin lorsque de l'inimitié est générée."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 213908,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 1,
+  "parameter": {
+    "effect": 18,
+    "modifier": 0
+  },
+  "class_job_category_id": 115,
+  "source_abilities": [
+    {
+      "id": 7557,
+      "name": "Peloton",
+      "description": "Augmente votre vitesse de déplacement et celle des équipiers alentour.\nL'effet prend fin lorsque de l'inimitié est générée, et ne peut pas être octroyé en combat.\nDurée : 30s",
+      "description_macro": "Augmente votre vitesse de déplacement et celle des équipiers alentour.<br>L'effet prend fin lorsque de l'inimitié est générée, et ne peut pas être octroyé en combat.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 30s",
+      "unlock_level": 20,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Physical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 23,
+          "name": "Barde",
+          "abbreviation": "BRD",
+          "is_phantom": false
+        },
+        {
+          "id": 31,
+          "name": "Machiniste",
+          "abbreviation": "MCH",
+          "is_phantom": false
+        },
+        {
+          "id": 38,
+          "name": "Danseur",
+          "abbreviation": "DNS",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

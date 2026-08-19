@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 466,
+  "name": "Infusion d'éther améliorée",
+  "description": "Permet à Infusion d'éther de vous octroyer Arcane rubis et Arcane topaze.",
+  "description_macro": "Permet à Infusion d'éther de vous octroyer <colortype(500)><edgecolortype(501)>Arcane rubis<edgecolortype(0)><colortype(0)> et <colortype(500)><edgecolortype(501)>Arcane topaze<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Permet à Infusion d'éther de vous octroyer Arcane rubis et Arcane topaze."
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 27,
+    "name": "Invocateur",
+    "abbreviation": "INV"
+  },
+  "unlock_level": 15,
+  "value": 0,
+  "icon": {
+    "id": 5396,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 69,
+  "source_class_job_id": 26
+}

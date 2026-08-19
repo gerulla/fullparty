@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 651,
+  "name": "White Magic Mastery",
+  "description": "Increases the potency of Dia and its damage over time to 85, Afflatus Misery to 1,400, and Glare III to 350.",
+  "description_macro": "Increases the potency of <colortype(500)><edgecolortype(501)>Dia<edgecolortype(0)><colortype(0)> and its damage over time to 85, <colortype(500)><edgecolortype(501)>Afflatus Misery<edgecolortype(0)><colortype(0)> to 1,400, and <colortype(500)><edgecolortype(501)>Glare III<edgecolortype(0)><colortype(0)> to 350.",
+  "effects": [
+    "Increases the potency of Dia and its damage over time to 85, Afflatus Misery to 1,400, and Glare III to 350."
+  ],
+  "role": "Healer",
+  "job": {
+    "id": 24,
+    "name": "White Mage",
+    "abbreviation": "WHM"
+  },
+  "unlock_level": 94,
+  "value": 0,
+  "icon": {
+    "id": 6831,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 25,
+  "source_class_job_id": 24
+}

@@ -1,0 +1,92 @@
+{
+  "kind": "ability",
+  "id": 16493,
+  "name": "Bunshin",
+  "description": "Grants 5 stacks of Bunshin, each stack allowing your shadow to attack enemies each time you execute a weaponskill. Shadow attack potency varies based on the attack executed, but is not affected by combo bonuses.\nMelee Attack Potency: 160\nRanged Attack Potency: 160\nArea Attack Potency: 80\nNinki Gauge increases by 5 each time your shadow lands an attack.\nDuration: 30s\nAdditional Effect: Grants Phantom Kamaitachi Ready\nDuration: 45s\nNinki Gauge Cost: 50",
+  "description_macro": "Grants 5 stacks of <colortype(506)><edgecolortype(507)>Bunshin<edgecolortype(0)><colortype(0)>, each stack allowing your shadow to attack enemies each time you execute a weaponskill. Shadow attack potency varies based on the attack executed, but is not affected by combo bonuses.<br><colortype(504)><edgecolortype(505)>Melee Attack Potency: <edgecolortype(0)><colortype(0)>160<br><colortype(504)><edgecolortype(505)>Ranged Attack Potency: <edgecolortype(0)><colortype(0)>160<br><colortype(504)><edgecolortype(505)>Area Attack Potency: <edgecolortype(0)><colortype(0)>80<br><colortype(500)><edgecolortype(501)>Ninki Gauge<edgecolortype(0)><colortype(0)> increases by 5 each time your shadow lands an attack.<br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>30s<br><if([gnum68==30],<if([gnum72>=82],<colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>Grants <colortype(506)><edgecolortype(507)>Phantom Kamaitachi Ready<edgecolortype(0)><colortype(0)><br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>45s<br>,)>,)><colortype(504)><edgecolortype(505)>Ninki Gauge Cost: <edgecolortype(0)><colortype(0)>50",
+  "effects": [
+    "Grants 5 stacks of Bunshin, each stack allowing your shadow to attack enemies each time you execute a weaponskill. Shadow attack potency varies based on the attack executed, but is not affected by combo bonuses.",
+    "Melee Attack Potency: 160",
+    "Ranged Attack Potency: 160",
+    "Area Attack Potency: 80",
+    "Ninki Gauge increases by 5 each time your shadow lands an attack.",
+    "Duration: 30s",
+    "Additional Effect: Grants Phantom Kamaitachi Ready",
+    "Duration: 45s",
+    "Ninki Gauge Cost: 50"
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 30,
+    "name": "Ninja",
+    "abbreviation": "NIN"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 80,
+  "icon": {
+    "id": 2927,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 4,
+    "name": "Ability"
+  },
+  "attack_type": {
+    "id": 0,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 90,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 15,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 27,
+      "value": 50
+    },
+    "secondary": {
+      "type_id": 0,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": 0,
+    "effect_yalms": 0,
+    "cast_type": 1
+  },
+  "targeting": {
+    "self": true,
+    "party": false,
+    "alliance": false,
+    "hostile": false,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 0,
+    "behavior_type": 0,
+    "class_job_category_id": 92,
+    "source_class_job_id": 30,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

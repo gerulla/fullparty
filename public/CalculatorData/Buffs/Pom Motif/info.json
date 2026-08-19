@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 4105,
+  "name": "Pom Motif",
+  "description": "Able to execute Pom Muse.",
+  "effects": [
+    "Able to execute Pom Muse."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 214701,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": true,
+  "is_permanent": true,
+  "inflicted_by_actor": true,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 197,
+  "source_abilities": [
+    {
+      "id": 34664,
+      "name": "Pom Motif",
+      "description": "Paints a pom.\nCast immediately when used outside of combat.\nThe Creature Canvas must be empty to execute this action.\nThis action does not share a recast timer with any other actions. Recast timer cannot be affected by status effects or gear attributes.\nUpon execution, the recast timer for this action will be applied to all other weaponskills and magic actions.\n\n※This action cannot be assigned to a hotbar.\n※Creature Motif changes to Pom Motif when requirements for execution are met.",
+      "description_macro": "Paints a <colortype(506)><edgecolortype(507)>pom<edgecolortype(0)><colortype(0)>.<br>Cast immediately when used outside of combat.<br>The <colortype(500)><edgecolortype(501)>Creature Canvas<edgecolortype(0)><colortype(0)> must be empty to execute this action.<br>This action does not share a recast timer with any other actions. Recast timer cannot be affected by status effects or gear attributes.<br>Upon execution, the recast timer for this action will be applied to all other weaponskills and magic actions.<br><br>※This action cannot be assigned to a hotbar.<br>※<colortype(500)><edgecolortype(501)>Creature Motif<edgecolortype(0)><colortype(0)> changes to <colortype(500)><edgecolortype(501)>Pom Motif<edgecolortype(0)><colortype(0)> when requirements for execution are met.",
+      "unlock_level": 30,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Magical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 42,
+          "name": "Pictomancer",
+          "abbreviation": "PCT",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

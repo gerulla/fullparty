@@ -1,0 +1,92 @@
+{
+  "kind": "combat_status",
+  "id": 2720,
+  "name": "Drachenklaue",
+  "description": "Ausgeteilter Schaden ist erhöht.",
+  "effects": [
+    "Ausgeteilter Schaden ist erhöht."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 210303,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 10
+  },
+  "class_job_category_id": 23,
+  "source_abilities": [
+    {
+      "id": 87,
+      "name": "Drachengriff",
+      "description": "Du führst eine physische Attacke aus.\nAttacke-Wert: 140\nKombo-Bedingung: Sauberer Stoß oder Überfallsstoß\nAttacke-Wert: 250\nBonus: Gewährt dir Drachenklaue.\nDauer: 30 Sekunden\nEffekt von Drachenklaue: Ausgeteilter Schaden ist um 10 % erhöht.",
+      "description_macro": "Du führst eine physische Attacke aus.<br>Attacke-Wert: <if([gnum68==22],<if([gnum72>=76],140,100)>,100)><br>Kombo-Bedingung: <if([gnum68==22],<if([gnum72>=76],<colortype(502)><edgecolortype(503)>Sauberer Stoß<edgecolortype(0)><colortype(0)> oder <colortype(502)><edgecolortype(503)>Überfallsstoß<edgecolortype(0)><colortype(0)>,<colortype(502)><edgecolortype(503)>Sauberer Stoß<edgecolortype(0)><colortype(0)>)>,<colortype(502)><edgecolortype(503)>Sauberer Stoß<edgecolortype(0)><colortype(0)>)><br>Attacke-Wert: <if([gnum68==22],<if([gnum72>=76],250,210)>,210)><br>Bonus: Gewährt dir <colortype(506)><edgecolortype(507)>Drachenklaue<edgecolortype(0)><colortype(0)>.<br>Dauer: 30 Sekunden<br>Effekt von <colortype(506)><edgecolortype(507)>Drachenklaue<edgecolortype(0)><colortype(0)>: Ausgeteilter Schaden ist um 10<nbsp>% erhöht.",
+      "unlock_level": 18,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 22,
+          "name": "Dragoon",
+          "abbreviation": "DRG",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 7397,
+      "name": "Schallspitze",
+      "description": "Du führst eine physische Attacke auf alle Gegner in gerader Linie vor dir aus.\nAttacke-Wert: 100\nKombo-Bedingung: Schicksalsdorn oder Groll des Drachen\nAttacke-Wert: 120\nBonus: Gewährt dir Drachenklaue.\nDauer: 30 Sekunden\nEffekt von Drachenklaue: Ausgeteilter Schaden ist um 10 % erhöht.",
+      "description_macro": "Du führst eine physische Attacke auf alle Gegner in gerader Linie vor dir aus.<br>Attacke-Wert: 100<br>Kombo-Bedingung: <if([gnum68==22],<if([gnum72>=82],<colortype(502)><edgecolortype(503)>Schicksalsdorn<edgecolortype(0)><colortype(0)> oder <colortype(502)><edgecolortype(503)>Groll des Drachen<edgecolortype(0)><colortype(0)>,<colortype(502)><edgecolortype(503)>Schicksalsdorn<edgecolortype(0)><colortype(0)>)>,<colortype(502)><edgecolortype(503)>Schicksalsdorn<edgecolortype(0)><colortype(0)>)><br>Attacke-Wert: 120<br>Bonus: Gewährt dir <colortype(506)><edgecolortype(507)>Drachenklaue<edgecolortype(0)><colortype(0)>.<br>Dauer: 30 Sekunden<br>Effekt von <colortype(506)><edgecolortype(507)>Drachenklaue<edgecolortype(0)><colortype(0)>: Ausgeteilter Schaden ist um 10<nbsp>% erhöht.",
+      "unlock_level": 62,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 22,
+          "name": "Dragoon",
+          "abbreviation": "DRG",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 36955,
+      "name": "Spiralhieb",
+      "description": "Du führst eine physische Attacke aus.\nAttacke-Wert: 140\nKombo-Bedingung: Sauberer Stoß oder Überfallsstoß\nAttacke-Wert: 300\nBonus: Gewährt dir Drachenklaue.\nDauer: 30 Sekunden\nEffekt von Drachenklaue: Ausgeteilter Schaden ist um 10 % erhöht.",
+      "description_macro": "Du führst eine physische Attacke aus.<br>Attacke-Wert: 140<br>Kombo-Bedingung: <colortype(502)><edgecolortype(503)>Sauberer Stoß<edgecolortype(0)><colortype(0)> oder <colortype(502)><edgecolortype(503)>Überfallsstoß<edgecolortype(0)><colortype(0)><br>Attacke-Wert: 300<br>Bonus: Gewährt dir <colortype(506)><edgecolortype(507)>Drachenklaue<edgecolortype(0)><colortype(0)>.<br>Dauer: 30 Sekunden<br>Effekt von <colortype(506)><edgecolortype(507)>Drachenklaue<edgecolortype(0)><colortype(0)>: Ausgeteilter Schaden ist um 10 % erhöht.",
+      "unlock_level": 96,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 22,
+          "name": "Dragoon",
+          "abbreviation": "DRG",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

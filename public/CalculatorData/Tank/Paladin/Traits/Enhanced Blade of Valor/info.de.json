@@ -1,0 +1,26 @@
+{
+  "kind": "trait",
+  "id": 566,
+  "name": "Verbesserte Klinge der Tapferkeit",
+  "description": "Erfolgreiche Ausführung von Klinge der Tapferkeit gewährt dir Ehrenhaftigkeit.\nDauer: 30 Sekunden\nWährend Ehrenhaftigkeit aktiv ist, ändert sich Imperator zu Klinge der Ehre.",
+  "description_macro": "Erfolgreiche Ausführung von <colortype(502)><edgecolortype(503)>Klinge der Tapferkeit<edgecolortype(0)><colortype(0)> gewährt dir <colortype(506)><edgecolortype(507)>Ehrenhaftigkeit<edgecolortype(0)><colortype(0)>.<br>Dauer: 30 Sekunden<br>Während <colortype(506)><edgecolortype(507)>Ehrenhaftigkeit<edgecolortype(0)><colortype(0)> aktiv ist, ändert sich <colortype(502)><edgecolortype(503)>Imperator<edgecolortype(0)><colortype(0)> zu <colortype(502)><edgecolortype(503)>Klinge der Ehre<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Erfolgreiche Ausführung von Klinge der Tapferkeit gewährt dir Ehrenhaftigkeit.",
+    "Dauer: 30 Sekunden",
+    "Während Ehrenhaftigkeit aktiv ist, ändert sich Imperator zu Klinge der Ehre."
+  ],
+  "role": "Tank",
+  "job": {
+    "id": 19,
+    "name": "Paladin",
+    "abbreviation": "PLD"
+  },
+  "unlock_level": 100,
+  "value": 0,
+  "icon": {
+    "id": 5224,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 20,
+  "source_class_job_id": 19
+}

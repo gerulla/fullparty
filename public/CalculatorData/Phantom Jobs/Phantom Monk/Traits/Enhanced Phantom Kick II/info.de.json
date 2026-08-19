@@ -1,0 +1,22 @@
+{
+  "kind": "trait",
+  "id": 5,
+  "name": "Verbessertes Treten II",
+  "description": "Erhöht den Effekt von Treten auf 9 %.",
+  "description_macro": "Erhöht den Effekt von <colortype(502)><edgecolortype(503)>Treten<edgecolortype(0)><colortype(0)> auf 9<nbsp>%.",
+  "effects": [
+    "Erhöht den Effekt von Treten auf 9 %."
+  ],
+  "role": "Phantom Jobs",
+  "job": {
+    "id": 3,
+    "name": "Phantom-Mönch",
+    "abbreviation": "Ph-Mönch"
+  },
+  "is_phantom_trait": true,
+  "unlock_level": 6,
+  "icon": {
+    "id": 82205,
+    "file": "icon.png"
+  }
+}

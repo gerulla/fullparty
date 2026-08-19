@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 306,
+  "name": "Meister der Rotmagie",
+  "description": "Verkürzt den Reaktivierungs-Timer von Contre Sixte auf 35 Sekunden und erhöht den Attacke-Wert von Erzblitzra und Erzwindra auf 120.",
+  "description_macro": "Verkürzt den Reaktivierungs-Timer von <colortype(502)><edgecolortype(503)>Contre Sixte<edgecolortype(0)><colortype(0)> auf 35 Sekunden und erhöht den Attacke-Wert von <colortype(502)><edgecolortype(503)>Erzblitzra<edgecolortype(0)><colortype(0)> und <colortype(502)><edgecolortype(503)>Erzwindra<edgecolortype(0)><colortype(0)> auf 120.",
+  "effects": [
+    "Verkürzt den Reaktivierungs-Timer von Contre Sixte auf 35 Sekunden und erhöht den Attacke-Wert von Erzblitzra und Erzwindra auf 120."
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 35,
+    "name": "Rotmagier",
+    "abbreviation": "RMA"
+  },
+  "unlock_level": 74,
+  "value": -100,
+  "icon": {
+    "id": 6206,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 112,
+  "source_class_job_id": 35
+}

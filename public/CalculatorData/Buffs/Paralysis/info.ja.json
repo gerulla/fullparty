@@ -1,0 +1,155 @@
+{
+  "kind": "combat_status",
+  "id": 17,
+  "name": "麻痺",
+  "description": "身体が痺れ、時々行動できなくなる状態。",
+  "effects": [
+    "身体が痺れ、時々行動できなくなる状態。"
+  ],
+  "classification": "debuff",
+  "icon": {
+    "id": 215006,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 2,
+  "target_type": 0,
+  "can_dispel": true,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 100,
+  "parameter": {
+    "effect": 0,
+    "modifier": 33
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 11387,
+      "name": "高圧電流",
+      "description": "自身の周囲の敵に雷属性範囲魔法攻撃。\u3000威力：180\n2体目以降の対象への威力は50％減少する。\n追加効果：対象に麻痺を付与する\u3000効果時間：15秒\n追加効果：対象に「水毒」が付与されている場合、威力と効果時間が上昇する。\n対象に水毒が付与されているときの威力：220\n対象に水毒が付与されているときの効果時間：30秒",
+      "description_macro": "自身の周囲の敵に雷属性範囲魔法攻撃。\u3000<colortype(504)><edgecolortype(505)>威力：<edgecolortype(0)><colortype(0)>180<br>2体目以降の対象への威力は50％減少する。<br><colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)>対象に麻痺を付与する\u3000<colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>15秒<br><colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)>対象に<colortype(500)><edgecolortype(501)>「水毒」<edgecolortype(0)><colortype(0)>が付与されている場合、威力と効果時間が上昇する。<br><colortype(504)><edgecolortype(505)>対象に水毒が付与されているときの威力：<edgecolortype(0)><colortype(0)>220<br><colortype(504)><edgecolortype(505)>対象に水毒が付与されているときの効果時間：<edgecolortype(0)><colortype(0)>30秒<br>",
+      "unlock_level": 1,
+      "relations": [
+        "applied_by_description"
+      ],
+      "roles": [
+        "Magical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 36,
+          "name": "青魔道士",
+          "abbreviation": "BLU",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 11394,
+      "name": "マインドブラスト",
+      "description": "自身の周囲の敵に無属性範囲魔法攻撃。\u3000威力：200\n2体目以降の対象への威力は50％減少する。\n追加効果：対象に麻痺を付与する\u3000効果時間：30秒",
+      "description_macro": "自身の周囲の敵に無属性範囲魔法攻撃。\u3000<colortype(504)><edgecolortype(505)>威力：<edgecolortype(0)><colortype(0)>200<br>2体目以降の対象への威力は50％減少する。<br><colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)>対象に麻痺を付与する\u3000<colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>30秒",
+      "unlock_level": 1,
+      "relations": [
+        "applied_by_description"
+      ],
+      "roles": [
+        "Magical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 36,
+          "name": "青魔道士",
+          "abbreviation": "BLU",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 11404,
+      "name": "グラワー",
+      "description": "対象に向かって雷属性前方直線範囲魔法攻撃。\u3000威力：220\n2体目以降の対象への威力は50％減少する。\n追加効果：対象に麻痺を付与する\u3000効果時間：6秒",
+      "description_macro": "対象に向かって雷属性前方直線範囲魔法攻撃。\u3000<colortype(504)><edgecolortype(505)>威力：<edgecolortype(0)><colortype(0)>220<br>2体目以降の対象への威力は50％減少する。<br><colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)>対象に麻痺を付与する\u3000<colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>6秒",
+      "unlock_level": 1,
+      "relations": [
+        "applied_by_description"
+      ],
+      "roles": [
+        "Magical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 36,
+          "name": "青魔道士",
+          "abbreviation": "BLU",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 11420,
+      "name": "雷電の咆哮",
+      "description": "自身の周囲の敵に雷属性範囲魔法攻撃。\u3000威力：200\nただし自身の周囲8m以内には攻撃範囲が発生しない。\n2体目以降の対象への威力は50％減少する。\n追加効果：対象に麻痺を付与する。\u3000効果時間：9秒\n対象に一部を除く「氷結」が付与されている場合、威力が上昇する。\n対象に氷結が付与されているときの威力：400\n追加効果：対象に一部を除く「氷結」が付与されている場合、それを解除する。",
+      "description_macro": "自身の周囲の敵に雷属性範囲魔法攻撃。\u3000<colortype(504)><edgecolortype(505)>威力：<edgecolortype(0)><colortype(0)>200<br>ただし自身の周囲8m以内には攻撃範囲が発生しない。<br>2体目以降の対象への威力は50％減少する。<br><colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)>対象に麻痺を付与する。\u3000<colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>9秒<br>対象に一部を除く<colortype(500)><edgecolortype(501)>「氷結」<edgecolortype(0)><colortype(0)>が付与されている場合、威力が上昇する。<br><colortype(504)><edgecolortype(505)>対象に氷結が付与されているときの威力：<edgecolortype(0)><colortype(0)>400<br><colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)>対象に一部を除く<colortype(500)><edgecolortype(501)>「氷結」<edgecolortype(0)><colortype(0)>が付与されている場合、それを解除する。",
+      "unlock_level": 1,
+      "relations": [
+        "applied_by_description"
+      ],
+      "roles": [
+        "Magical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 36,
+          "name": "青魔道士",
+          "abbreviation": "BLU",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 18300,
+      "name": "アビサルトランスフィクション",
+      "description": "対象に無属性物理攻撃。\u3000威力：220\n追加効果：対象に麻痺を付与する\u3000効果時間：30秒",
+      "description_macro": "対象に無属性物理攻撃。\u3000<colortype(504)><edgecolortype(505)>威力：<edgecolortype(0)><colortype(0)>220<br><colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)>対象に麻痺を付与する\u3000<colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>30秒",
+      "unlock_level": 1,
+      "relations": [
+        "applied_by_description"
+      ],
+      "roles": [
+        "Magical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 36,
+          "name": "青魔道士",
+          "abbreviation": "BLU",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 41629,
+      "name": "ショックキャノン",
+      "description": "対象とその周囲の敵に無属性範囲魔法攻撃。\n威力：210（アイテムレベル依存威力）\n追加効果：対象に麻痺を付与する。\n効果時間：18秒\nリキャストタイマーを「ダークキャノン」と共有する。",
+      "description_macro": "対象とその周囲の敵に無属性範囲魔法攻撃。<br><colortype(504)><edgecolortype(505)>威力：<edgecolortype(0)><colortype(0)>210（アイテムレベル依存威力）<br><colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)>対象に麻痺を付与する。<br><colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>18秒<br>リキャストタイマーを<colortype(500)><edgecolortype(501)>「ダークキャノン」<edgecolortype(0)><colortype(0)>と共有する。",
+      "unlock_level": 0,
+      "relations": [
+        "applied_by_description"
+      ],
+      "roles": [
+        "Phantom Jobs"
+      ],
+      "jobs": [
+        {
+          "id": 9,
+          "name": "Phantom サポート砲撃士",
+          "abbreviation": "Ph. Cannoneer",
+          "is_phantom": true
+        }
+      ]
+    }
+  ]
+}

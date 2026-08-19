@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 4109,
+  "name": "イマジンポンポン",
+  "description": "与ダメージと自身からのＨＰ回復効果が上昇した状態。",
+  "effects": [
+    "与ダメージと自身からのＨＰ回復効果が上昇した状態。"
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 214705,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": true,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 20
+  },
+  "class_job_category_id": 197,
+  "source_abilities": [
+    {
+      "id": 34670,
+      "name": "イマジンポンポン",
+      "description": "「ポンポン」の絵素を具現化し、対象とその周囲の敵に無属性範囲魔法攻撃。\u3000威力：800\n2体目以降の対象への威力は70％減少する。\n追加効果：自身に「ピクトポンポン」のアニマルシンボルを付与する。\n最大チャージ数：3\n発動条件：アニマルキャンバスに「ポンポン」の絵素が描かれている\n\n※このアクションはホットバーに登録することはできない。\n\u3000発動条件を満たすとイマジンアニマルがイマジンポンポンに変化する。",
+      "description_macro": "<colortype(500)><edgecolortype(501)>「ポンポン」<edgecolortype(0)><colortype(0)>の絵素を具現化し、対象とその周囲の敵に無属性範囲魔法攻撃。\u3000<colortype(504)><edgecolortype(505)>威力：<edgecolortype(0)><colortype(0)><if([gnum68==42],<if([gnum72>=84],800,<if([gnum68==42],<if([gnum72>=54],700,400)>,400)>)>,<if([gnum68==42],<if([gnum72>=54],700,400)>,400)>)><br>2体目以降の対象への威力は70％減少する。<br><colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)>自身に<colortype(500)><edgecolortype(501)>「ピクトポンポン」<edgecolortype(0)><colortype(0)>のアニマルシンボルを付与する。<br><colortype(504)><edgecolortype(505)>最大チャージ数：<edgecolortype(0)><colortype(0)><if([gnum68==42],<if([gnum72>=96],3,2)>,2)><br><colortype(504)><edgecolortype(505)>発動条件：<edgecolortype(0)><colortype(0)>アニマルキャンバスに<colortype(500)><edgecolortype(501)>「ポンポン」<edgecolortype(0)><colortype(0)>の絵素が描かれている<br><br><colortype(506)><edgecolortype(507)>※このアクションはホットバーに登録することはできない。<br>\u3000発動条件を満たすとイマジンアニマルがイマジンポンポンに変化する。<edgecolortype(0)><colortype(0)>",
+      "unlock_level": 30,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Magical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 42,
+          "name": "ピクトマンサー",
+          "abbreviation": "PCT",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 2596,
+  "name": "Blason protecteur",
+  "description": "Insensible à un certain montant de dégâts.",
+  "effects": [
+    "Insensible à un certain montant de dégâts."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 212934,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 30,
+  "parameter": {
+    "effect": 0,
+    "modifier": 100
+  },
+  "class_job_category_id": 180,
+  "source_abilities": [
+    {
+      "id": 24404,
+      "name": "Blason arcanique",
+      "description": "Vous octroie Blason protecteur, une barrière absorbant les dégâts subis pour un montant égal à 10% de vos PV maximums.\nDurée : 5s\nEffet additionnel : octroie Blason revigorant à vous et à vos équipiers dans un rayon de 15 yalms quand la barrière a absorbé son montant de dégâts.\nBlason revigorant : restaure périodiquement les PV.\nPuissance : 50 Durée : 15s",
+      "description_macro": "Vous octroie <colortype(500)><edgecolortype(501)>Blason protecteur<edgecolortype(0)><colortype(0)>, une barrière absorbant les dégâts subis pour un montant égal à 10% de vos PV maximums.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 5s<if([gnum68==39],<if([gnum72>=84],<br><colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> octroie <colortype(500)><edgecolortype(501)>Blason revigorant<edgecolortype(0)><colortype(0)> à vous et à vos équipiers dans un rayon de 15 yalms quand la barrière a absorbé son montant de dégâts.<br><colortype(506)><edgecolortype(507)>Blason revigorant<nbsp>:<edgecolortype(0)><colortype(0)> restaure périodiquement les PV.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> 50 <colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 15s,)>,)>",
+      "unlock_level": 40,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 39,
+          "name": "Faucheur",
+          "abbreviation": "FCH",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

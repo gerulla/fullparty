@@ -1,0 +1,89 @@
+{
+  "kind": "ability",
+  "id": 16468,
+  "name": "Stalwart Soul",
+  "description": "Deals unaspected damage with a potency of 120 to all nearby enemies.\nAdditional Effect: Increased enmity\nCombo Action: Unleash\nCombo Potency: 160\nCombo Bonus: Restores MP\nCombo Bonus: Increases Blood Gauge by 20",
+  "description_macro": "Deals unaspected damage with a potency of <if([gnum68==32],<if([gnum72>=94],120,100)>,100)> to all nearby enemies.<br><colortype(504)><edgecolortype(505)>Additional Effect:<edgecolortype(0)><colortype(0)> Increased enmity<br><colortype(504)><edgecolortype(505)>Combo Action: <edgecolortype(0)><colortype(0)><colortype(500)><edgecolortype(501)>Unleash<edgecolortype(0)><colortype(0)><br><colortype(504)><edgecolortype(505)>Combo Potency: <edgecolortype(0)><colortype(0)><if([gnum68==32],<if([gnum72>=94],160,140)>,140)><br><colortype(504)><edgecolortype(505)>Combo Bonus: <edgecolortype(0)><colortype(0)>Restores MP<if([gnum72>=62],<if([gnum68==32],<br><colortype(504)><edgecolortype(505)>Combo Bonus: <edgecolortype(0)><colortype(0)>Increases <colortype(500)><edgecolortype(501)>Blood Gauge<edgecolortype(0)><colortype(0)> by 20,)>,)>",
+  "effects": [
+    "Deals unaspected damage with a potency of 120 to all nearby enemies.",
+    "Additional Effect: Increased enmity",
+    "Combo Action: Unleash",
+    "Combo Potency: 160",
+    "Combo Bonus: Restores MP",
+    "Combo Bonus: Increases Blood Gauge by 20"
+  ],
+  "role": "Tank",
+  "job": {
+    "id": 32,
+    "name": "Dark Knight",
+    "abbreviation": "DRK"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 40,
+  "icon": {
+    "id": 3084,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 2,
+    "name": "Spell"
+  },
+  "attack_type": {
+    "id": 5,
+    "name": "魔法"
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 2.5,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 58,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 0,
+      "value": 0
+    },
+    "secondary": {
+      "type_id": 0,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": 0,
+    "effect_yalms": 5,
+    "cast_type": 2
+  },
+  "targeting": {
+    "self": true,
+    "party": false,
+    "alliance": false,
+    "hostile": false,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": 3621,
+    "preserves_combo": false
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 7,
+    "behavior_type": 0,
+    "class_job_category_id": 98,
+    "source_class_job_id": 32,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

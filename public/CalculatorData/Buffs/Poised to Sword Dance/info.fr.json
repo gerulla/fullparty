@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 4794,
+  "name": "Danse du sabre",
+  "description": "Danse du sabre peut être lancée.",
+  "effects": [
+    "Danse du sabre peut être lancée."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 229968,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 46598,
+      "name": "Danser",
+      "description": "Vous octroie Danse du sabre, Tango enchanteur, Boogie-woogie ou Valse mystérieuse.\nLes actions suivantes peuvent être utilisées pendant la durée de l'effet correspondant :\nDanse du sabre : effectue une attaque physique sur la cible.\nTango enchanteur : effectue une attaque magique neutre sur la cible et arrête le temps pour elle.\nBoogie-woogie : effectue une attaque magique neutre sur la cible, lui inflige Paralysie et absorbe en PV une partie des dégâts infligés.\nValse mystérieuse : effectue une attaque magique neutre sur la cible, lui inflige Cécité et restaure l'intégralité de vos PM.",
+      "description_macro": "Vous octroie <colortype(500)><edgecolortype(501)>Danse du sabre<edgecolortype(0)><colortype(0)>, <colortype(500)><edgecolortype(501)>Tango enchanteur<edgecolortype(0)><colortype(0)>, <colortype(500)><edgecolortype(501)>Boogie-woogie<edgecolortype(0)><colortype(0)> ou <colortype(500)><edgecolortype(501)>Valse mystérieuse<edgecolortype(0)><colortype(0)>.<br>Les actions suivantes peuvent être utilisées pendant la durée de l'effet correspondant<nbsp>:<br><colortype(506)><edgecolortype(507)>Danse du sabre<nbsp>:<edgecolortype(0)><colortype(0)> effectue une attaque physique sur la cible.<br><colortype(506)><edgecolortype(507)>Tango enchanteur<nbsp>:<edgecolortype(0)><colortype(0)> effectue une attaque magique neutre sur la cible et arrête le temps pour elle.<br><colortype(506)><edgecolortype(507)>Boogie-woogie<nbsp>:<edgecolortype(0)><colortype(0)> effectue une attaque magique neutre sur la cible, lui inflige Paralysie et absorbe en PV une partie des dégâts infligés.<br><colortype(506)><edgecolortype(507)>Valse mystérieuse<nbsp>:<edgecolortype(0)><colortype(0)> effectue une attaque magique neutre sur la cible, lui inflige Cécité et restaure l'intégralité de vos PM.",
+      "unlock_level": 0,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Phantom Jobs"
+      ],
+      "jobs": [
+        {
+          "id": 15,
+          "name": "Phantom Danseur fantôme",
+          "abbreviation": "Danseur fant.",
+          "is_phantom": true
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,26 @@
+{
+  "kind": "trait",
+  "id": 465,
+  "name": "Aspect Mastery V",
+  "description": "Adds a Paradox marker to your Elemental Gauge.\nThe marker is made active after reaching Astral Fire III then swapping to the opposite element. Conversely, the marker can also be made active after reaching Umbral Ice III and gaining 3 Umbral Hearts then swapping to the opposite element. The marker is made inactive when the effect of Astral Fire or Umbral Ice expires.\nFire and Blizzard become Paradox when the Paradox marker is made active.",
+  "description_macro": "Adds a <colortype(500)><edgecolortype(501)>Paradox<edgecolortype(0)><colortype(0)> marker to your <colortype(500)><edgecolortype(501)>Elemental Gauge<edgecolortype(0)><colortype(0)>.<br>The marker is made active after reaching <colortype(506)><edgecolortype(507)>Astral Fire III<edgecolortype(0)><colortype(0)> then swapping to the opposite element. Conversely, the marker can also be made active after reaching <colortype(506)><edgecolortype(507)>Umbral Ice III<edgecolortype(0)><colortype(0)> and gaining 3 <colortype(506)><edgecolortype(507)>Umbral Hearts<edgecolortype(0)><colortype(0)> then swapping to the opposite element. The marker is made inactive when the effect of <colortype(506)><edgecolortype(507)>Astral Fire<edgecolortype(0)><colortype(0)> or <colortype(506)><edgecolortype(507)>Umbral Ice<edgecolortype(0)><colortype(0)> expires.<br><colortype(500)><edgecolortype(501)>Fire<edgecolortype(0)><colortype(0)> and <colortype(500)><edgecolortype(501)>Blizzard<edgecolortype(0)><colortype(0)> become <colortype(500)><edgecolortype(501)>Paradox<edgecolortype(0)><colortype(0)> when the <colortype(500)><edgecolortype(501)>Paradox<edgecolortype(0)><colortype(0)> marker is made active.",
+  "effects": [
+    "Adds a Paradox marker to your Elemental Gauge.",
+    "The marker is made active after reaching Astral Fire III then swapping to the opposite element. Conversely, the marker can also be made active after reaching Umbral Ice III and gaining 3 Umbral Hearts then swapping to the opposite element. The marker is made inactive when the effect of Astral Fire or Umbral Ice expires.",
+    "Fire and Blizzard become Paradox when the Paradox marker is made active."
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 25,
+    "name": "Black Mage",
+    "abbreviation": "BLM"
+  },
+  "unlock_level": 90,
+  "value": 0,
+  "icon": {
+    "id": 5373,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 26,
+  "source_class_job_id": 25
+}

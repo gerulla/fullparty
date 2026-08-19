@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 2701,
+  "name": "Giga Ruine préparée",
+  "description": "Giga Ruine peut être lancée.",
+  "effects": [
+    "Giga Ruine peut être lancée."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 212690,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 28,
+  "source_abilities": [
+    {
+      "id": 16510,
+      "name": "Siphon d'énergie",
+      "description": "Effectue une attaque magique neutre sur la cible et les ennemis autour.\nPuissance : 100\nEffet additionnel : vous octroie 2 degrés de Flux d'éther.\nEffet additionnel : vous octroie Giga Ruine préparée.\nDurée : 60s\nPartage le même temps de recharge que Aspiration d'énergie.",
+      "description_macro": "Effectue une attaque magique neutre sur la cible et les ennemis autour.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> 100<br><colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> vous octroie 2 degrés de <colortype(500)><edgecolortype(501)>Flux d'éther<edgecolortype(0)><colortype(0)>.<br><if([gnum68==27],<if([gnum72>=62],<colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> vous octroie <colortype(500)><edgecolortype(501)>Giga Ruine préparée<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 60s<br>,)>,)>Partage le même temps de recharge que <colortype(500)><edgecolortype(501)>Aspiration d'énergie<edgecolortype(0)><colortype(0)>.",
+      "unlock_level": 52,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Magical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 27,
+          "name": "Invocateur",
+          "abbreviation": "INV",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

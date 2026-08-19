@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 3225,
+  "name": "スリップストリーム",
+  "description": "ダメージエリアを発生させている状態。",
+  "effects": [
+    "ダメージエリアを発生させている状態。"
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 212695,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": true,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 28,
+  "source_abilities": [
+    {
+      "id": 25837,
+      "name": "スリップストリーム",
+      "description": "対象とその周囲の敵に風属性範囲魔法攻撃。\u3000威力：520\n2体目以降の対象への威力は60％減少する。\n追加効果：対象を中心にダメージエリアを生成する。\n威力：30\u3000効果時間：15秒\n発動条件：「スリップストリーム実行可」効果中\nこの魔法は固有のリキャストタイマーを持ち、実行すると他のウェポンスキルと魔法にこのアクションと同じリキャストタイムが発生する。\n\n※このアクションはホットバーに登録することはできない。\n\u3000発動条件を満たすとアストラルフロウがスリップストリームに変化する。",
+      "description_macro": "対象とその周囲の敵に風属性範囲魔法攻撃。\u3000<colortype(504)><edgecolortype(505)>威力：<edgecolortype(0)><colortype(0)><if([gnum68==27],<if([gnum72>=94],520,430)>,430)><br>2体目以降の対象への威力は60％減少する。<br><colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)>対象を中心にダメージエリアを生成する。<br><colortype(504)><edgecolortype(505)>威力：<edgecolortype(0)><colortype(0)>30\u3000<colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>15秒<br><colortype(504)><edgecolortype(505)>発動条件：<edgecolortype(0)><colortype(0)><colortype(500)><edgecolortype(501)>「スリップストリーム実行可」<edgecolortype(0)><colortype(0)>効果中<br>この魔法は固有のリキャストタイマーを持ち、実行すると他のウェポンスキルと魔法にこのアクションと同じリキャストタイムが発生する。<br><br><colortype(506)><edgecolortype(507)>※このアクションはホットバーに登録することはできない。<br>\u3000発動条件を満たすとアストラルフロウがスリップストリームに変化する。<edgecolortype(0)><colortype(0)>",
+      "unlock_level": 86,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Magical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 27,
+          "name": "召喚士",
+          "abbreviation": "SMN",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

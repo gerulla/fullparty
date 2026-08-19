@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 3098,
+  "name": "Consolation",
+  "description": "A magicked barrier is nullifying damage.",
+  "effects": [
+    "A magicked barrier is nullifying damage."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 214907,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": true,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 100
+  },
+  "class_job_category_id": 29,
+  "source_abilities": [
+    {
+      "id": 16546,
+      "name": "Consolation",
+      "description": "Orders Seraph to execute Consolation.\nConsolation Effect: Restores the HP of all nearby party members\nCure Potency: 250\nAdditional Effect: Erects a magicked barrier which nullifies damage equaling the amount of HP restored\nDuration: 30s\nMaximum Charges: 2",
+      "description_macro": "Orders <colortype(506)><edgecolortype(507)>Seraph<edgecolortype(0)><colortype(0)> to execute <colortype(500)><edgecolortype(501)>Consolation<edgecolortype(0)><colortype(0)>.<br><colortype(504)><edgecolortype(505)>Consolation Effect: <edgecolortype(0)><colortype(0)>Restores the HP of all nearby party members<br><colortype(504)><edgecolortype(505)>Cure Potency: <edgecolortype(0)><colortype(0)>250<br><colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>Erects a magicked barrier which nullifies damage equaling the amount of HP restored<br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>30s<br><colortype(504)><edgecolortype(505)>Maximum Charges: <edgecolortype(0)><colortype(0)>2",
+      "unlock_level": 80,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Healer"
+      ],
+      "jobs": [
+        {
+          "id": 28,
+          "name": "Scholar",
+          "abbreviation": "SCH",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "kind": "trait",
+  "id": 597,
+  "name": "Enhanced Plentiful Harvest",
+  "description": "Grants Perfectio Occulta upon executing Plentiful Harvest.\nDuration: 30s\nPerfectio Occulta changes to Perfectio Parata upon executing Communio.\nEffect of Perfectio Parata ends upon gaining the effect of Lemure Shroud.",
+  "description_macro": "Grants <colortype(506)><edgecolortype(507)>Perfectio Occulta<edgecolortype(0)><colortype(0)> upon executing <colortype(500)><edgecolortype(501)>Plentiful Harvest<edgecolortype(0)><colortype(0)>.<br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>30s<br><colortype(506)><edgecolortype(507)>Perfectio Occulta<edgecolortype(0)><colortype(0)> changes to <colortype(506)><edgecolortype(507)>Perfectio Parata<edgecolortype(0)><colortype(0)> upon executing <colortype(500)><edgecolortype(501)>Communio<edgecolortype(0)><colortype(0)>.<br>Effect of <colortype(506)><edgecolortype(507)>Perfectio Parata<edgecolortype(0)><colortype(0)> ends upon gaining the effect of <colortype(506)><edgecolortype(507)>Lemure Shroud<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Grants Perfectio Occulta upon executing Plentiful Harvest.",
+    "Duration: 30s",
+    "Perfectio Occulta changes to Perfectio Parata upon executing Communio.",
+    "Effect of Perfectio Parata ends upon gaining the effect of Lemure Shroud."
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 39,
+    "name": "Reaper",
+    "abbreviation": "RPR"
+  },
+  "unlock_level": 100,
+  "value": 0,
+  "icon": {
+    "id": 6414,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 180,
+  "source_class_job_id": 39
+}

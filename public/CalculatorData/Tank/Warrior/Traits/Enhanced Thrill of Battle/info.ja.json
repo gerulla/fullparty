@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 269,
+  "name": "スリル・オブ・バトル効果アップ",
+  "description": "スリル・オブ・バトルに、「自身が受けるＨＰ回復効果を20％上昇させる効果」が付与される。",
+  "description_macro": "スリル・オブ・バトルに、「自身が受けるＨＰ回復効果を20％上昇させる効果」が付与される。",
+  "effects": [
+    "スリル・オブ・バトルに、「自身が受けるＨＰ回復効果を20％上昇させる効果」が付与される。"
+  ],
+  "role": "Tank",
+  "job": {
+    "id": 21,
+    "name": "戦士",
+    "abbreviation": "WAR"
+  },
+  "unlock_level": 78,
+  "value": 0,
+  "icon": {
+    "id": 5258,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 22,
+  "source_class_job_id": 21
+}

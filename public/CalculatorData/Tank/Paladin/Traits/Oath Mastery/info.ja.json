@@ -1,0 +1,25 @@
+{
+  "kind": "trait",
+  "id": 209,
+  "name": "忠義マスタリー",
+  "description": "「オウス」が5ずつ上昇するようになる。\n発動条件：オートアタックの命中時",
+  "description_macro": "<colortype(500)><edgecolortype(501)>「オウス」<edgecolortype(0)><colortype(0)>が5ずつ上昇するようになる。<br><colortype(504)><edgecolortype(505)>発動条件：<edgecolortype(0)><colortype(0)>オートアタックの命中時",
+  "effects": [
+    "「オウス」が5ずつ上昇するようになる。",
+    "発動条件：オートアタックの命中時"
+  ],
+  "role": "Tank",
+  "job": {
+    "id": 19,
+    "name": "ナイト",
+    "abbreviation": "PLD"
+  },
+  "unlock_level": 35,
+  "value": 0,
+  "icon": {
+    "id": 5211,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 20,
+  "source_class_job_id": 19
+}

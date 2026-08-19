@@ -1,0 +1,25 @@
+{
+  "kind": "trait",
+  "id": 544,
+  "name": "Verbesserte Piktomantie V",
+  "description": "Bei erfolgreicher Ausführung von Sternenmuse wird dir Sternenfunkeln gewährt.\nDauer: 20 Sekunden",
+  "description_macro": "Bei erfolgreicher Ausführung von <colortype(502)><edgecolortype(503)>Sternenmuse<edgecolortype(0)><colortype(0)> wird dir <colortype(506)><edgecolortype(507)>Sternenfunkeln<edgecolortype(0)><colortype(0)> gewährt.<br>Dauer: 20 Sekunden",
+  "effects": [
+    "Bei erfolgreicher Ausführung von Sternenmuse wird dir Sternenfunkeln gewährt.",
+    "Dauer: 20 Sekunden"
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 42,
+    "name": "Piktomant",
+    "abbreviation": "PKT"
+  },
+  "unlock_level": 100,
+  "value": 0,
+  "icon": {
+    "id": 6561,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 197,
+  "source_class_job_id": 42
+}

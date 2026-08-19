@@ -1,0 +1,90 @@
+{
+  "kind": "ability",
+  "id": 24405,
+  "name": "アルケインサークル",
+  "description": "自身と周囲のパーティメンバーの与ダメージを3％上昇させる。\n効果時間：20秒\n追加効果：自身と周囲のパーティメンバーに「供儀のサークル」を付与する。\u3000効果時間：5秒\n供儀のサークル効果：効果中に対象者がウェポンスキル、魔法、アビリティによる攻撃を命中させると、供儀のサークルを付与したリーパーに「死の供物」が付与される。\n最大スタック数：8\u3000効果時間：30秒\n追加効果：自身に「死の供儀」を付与する。\u3000効果時間：6秒\n死の供儀効果：自身が供儀のサークルを付与した対象から死の供物を得ることができる。",
+  "description_macro": "自身と周囲のパーティメンバーの与ダメージを3％上昇させる。<br><colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>20秒<if([gnum68==39],<if([gnum72>=88],<br><colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)>自身と周囲のパーティメンバーに<colortype(500)><edgecolortype(501)>「供儀のサークル」<edgecolortype(0)><colortype(0)>を付与する。\u3000<colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>5秒<br><colortype(504)><edgecolortype(505)>供儀のサークル効果：<edgecolortype(0)><colortype(0)>効果中に対象者がウェポンスキル、魔法、アビリティによる攻撃を命中させると、供儀のサークルを付与したリーパーに<colortype(500)><edgecolortype(501)>「死の供物」<edgecolortype(0)><colortype(0)>が付与される。<br><colortype(504)><edgecolortype(505)>最大スタック数：<edgecolortype(0)><colortype(0)>8\u3000<colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>30秒<br><colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)>自身に<colortype(500)><edgecolortype(501)>「死の供儀」<edgecolortype(0)><colortype(0)>を付与する。\u3000<colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>6秒<br><colortype(504)><edgecolortype(505)>死の供儀効果：<edgecolortype(0)><colortype(0)>自身が供儀のサークルを付与した対象から死の供物を得ることができる。,)>,)>",
+  "effects": [
+    "自身と周囲のパーティメンバーの与ダメージを3％上昇させる。",
+    "効果時間：20秒",
+    "追加効果：自身と周囲のパーティメンバーに「供儀のサークル」を付与する。\u3000効果時間：5秒",
+    "供儀のサークル効果：効果中に対象者がウェポンスキル、魔法、アビリティによる攻撃を命中させると、供儀のサークルを付与したリーパーに「死の供物」が付与される。",
+    "最大スタック数：8\u3000効果時間：30秒",
+    "追加効果：自身に「死の供儀」を付与する。\u3000効果時間：6秒",
+    "死の供儀効果：自身が供儀のサークルを付与した対象から死の供物を得ることができる。"
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 39,
+    "name": "リーパー",
+    "abbreviation": "RPR"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 72,
+  "icon": {
+    "id": 3633,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 4,
+    "name": "アビリティ"
+  },
+  "attack_type": {
+    "id": 0,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 120,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 22,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 0,
+      "value": 0
+    },
+    "secondary": {
+      "type_id": 0,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": 0,
+    "effect_yalms": 30,
+    "cast_type": 2
+  },
+  "targeting": {
+    "self": true,
+    "party": false,
+    "alliance": false,
+    "hostile": false,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 0,
+    "behavior_type": 0,
+    "class_job_category_id": 180,
+    "source_class_job_id": 39,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

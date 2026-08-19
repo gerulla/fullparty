@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 688,
+  "name": "Hypercharge",
+  "description": "Battle turret is overcharged.",
+  "effects": [
+    "Battle turret is overcharged."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 213012,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 17209,
+      "name": "Hypercharge",
+      "description": "Grants 5 stacks of Overheated\\.\nDuration: 10s\nOverheated Effect: Increases the potency of single-target weaponskills by 20\nHeat Gauge Cost: 50\nOverheated effect only applicable to machinist job actions.",
+      "description_macro": "Grants 5 stacks of <colortype(506)><edgecolortype(507)>Overheated<edgecolortype(0)><colortype(0)><if([gnum68==31],<if([gnum72>=35],\\, each stack allowing the execution of <colortype(500)><edgecolortype(501)><if([gnum68==31],<if([gnum72>=68],Blazing Shot,Heat Blast)>,Heat Blast)><edgecolortype(0)><colortype(0)><if([gnum68==31],<if([gnum72>=52], or <colortype(500)><edgecolortype(501)>Auto Crossbow<edgecolortype(0)><colortype(0)>,)>,)>,)>,)>.<br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>10s<br><colortype(504)><edgecolortype(505)>Overheated Effect: <edgecolortype(0)><colortype(0)>Increases the potency of single-target weaponskills by 20<br><colortype(504)><edgecolortype(505)>Heat Gauge Cost: <edgecolortype(0)><colortype(0)>50<br><colortype(506)><edgecolortype(507)>Overheated<edgecolortype(0)><colortype(0)> effect only applicable to machinist job actions.",
+      "unlock_level": 30,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Physical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 31,
+          "name": "Machinist",
+          "abbreviation": "MCH",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "kind": "trait",
+  "id": 441,
+  "name": "Enhanced Raiton",
+  "description": "Grants a stack of Raiju Ready upon executing Raiton.\nMaximum Stacks: 3\nDuration: 30s\nEffect of Raiju Ready ends upon execution of any melee weaponskill.",
+  "description_macro": "Grants a stack of <colortype(506)><edgecolortype(507)>Raiju Ready<edgecolortype(0)><colortype(0)> upon executing <colortype(500)><edgecolortype(501)>Raiton<edgecolortype(0)><colortype(0)>.<br><colortype(504)><edgecolortype(505)>Maximum Stacks: <edgecolortype(0)><colortype(0)>3<br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>30s<br>Effect of <colortype(506)><edgecolortype(507)>Raiju Ready<edgecolortype(0)><colortype(0)> ends upon execution of any melee weaponskill.",
+  "effects": [
+    "Grants a stack of Raiju Ready upon executing Raiton.",
+    "Maximum Stacks: 3",
+    "Duration: 30s",
+    "Effect of Raiju Ready ends upon execution of any melee weaponskill."
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 30,
+    "name": "Ninja",
+    "abbreviation": "NIN"
+  },
+  "unlock_level": 90,
+  "value": 0,
+  "icon": {
+    "id": 5419,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 92,
+  "source_class_job_id": 30
+}

@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 643,
+  "name": "Enhanced Addle",
+  "description": "Extends the duration of Addle to 15 seconds.",
+  "description_macro": "Extends the duration of <colortype(506)><edgecolortype(507)>Addle<edgecolortype(0)><colortype(0)> to 15 seconds.",
+  "effects": [
+    "Extends the duration of Addle to 15 seconds."
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 27,
+    "name": "Summoner",
+    "abbreviation": "SMN"
+  },
+  "unlock_level": 98,
+  "value": 0,
+  "icon": {
+    "id": 6827,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 198,
+  "source_class_job_id": 0
+}

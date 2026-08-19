@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 1238,
+  "name": "アクセラレーション",
+  "description": "次に詠唱する、を詠唱無しで唱えることができる。さらに、の威力を上昇させ、の実行時にヴァルファイア実行可またはヴァルストーン実行可が必ず付与される状態。",
+  "effects": [
+    "次に詠唱する、を詠唱無しで唱えることができる。さらに、の威力を上昇させ、の実行時にヴァルファイア実行可またはヴァルストーン実行可が必ず付与される状態。"
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 213405,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 7518,
+      "name": "アクセラレーション",
+      "description": "効果時間中に実行する1回のヴァルサンダガ、ヴァルエアロガ、インパクトを詠唱無しで唱えることができる。\u3000効果時間：20秒\n追加効果：インパクトの威力を50上昇させる。\n追加効果：ヴァルサンダガとヴァルエアロガの実行時に、「ヴァルファイア実行可」または「ヴァルストーン実行可」が必ず付与される。\n追加効果：自身に「ノーブルインパクト実行可」を付与する。\n効果時間：30秒\n最大チャージ数：2",
+      "description_macro": "効果時間中に実行する1回の<if([gnum68==35],<if([gnum72>=82],ヴァルサンダガ、ヴァルエアロガ,ヴァルサンダー、ヴァルエアロ)>,ヴァルサンダー、ヴァルエアロ)>、<if([gnum68==35],<if([gnum72>=66],インパクト,スキャッター)>,スキャッター)>を詠唱無しで唱えることができる。\u3000<colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>20秒<br><colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)><if([gnum68==35],<if([gnum72>=66],インパクト,スキャッター)>,スキャッター)>の威力を50上昇させる。<br><colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)><if([gnum68==35],<if([gnum72>=82],ヴァルサンダガとヴァルエアロガ,ヴァルサンダーとヴァルエアロ)>,ヴァルサンダーとヴァルエアロ)>の実行時に、<colortype(500)><edgecolortype(501)>「ヴァルファイア実行可」<edgecolortype(0)><colortype(0)>または<colortype(500)><edgecolortype(501)>「ヴァルストーン実行可」<edgecolortype(0)><colortype(0)>が必ず付与される。<if([gnum68==35],<if([gnum72>=96],<br><colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)>自身に<colortype(500)><edgecolortype(501)>「ノーブルインパクト実行可」<edgecolortype(0)><colortype(0)>を付与する。<br><colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>30秒,)>,)><if([gnum68==35],<if([gnum72>=88],<br><colortype(504)><edgecolortype(505)>最大チャージ数：<edgecolortype(0)><colortype(0)>2,)>,)>",
+      "unlock_level": 50,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Magical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 35,
+          "name": "赤魔道士",
+          "abbreviation": "RDM",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

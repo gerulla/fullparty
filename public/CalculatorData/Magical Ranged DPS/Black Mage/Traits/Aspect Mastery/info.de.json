@@ -1,0 +1,35 @@
+{
+  "kind": "trait",
+  "id": 296,
+  "name": "Elementare Meisterschaft",
+  "description": "Gewisse Feuer- und Eiszauber gewähren einen Stapel Lichtfeuer beziehungsweise Schatteneis.\nMaximalstapelzahl: 1\nEffekt von Lichtfeuer:\nAttacke-Werte von feuerbasierten Zaubern sind um 40 ％ erhöht.\nMP-Kosten von feuerbasierten Zaubern sind verdoppelt.\nMP-Regeneration von eisbasierten Zaubern ist auf 0 reduziert.\nAttacke-Werte von eisbasierten Zaubern sind um 10 ％ verringert.\nEffekt von Schatteneis:\nEisbasierte Zauber kosten keine MP.\nDie Ausführung eines eisbasierten Zaubers regeneriert 2.500 MP.\nFeuerbasierte Zauber kosten keine MP.\nAttacke-Werte von feuerbasierten Zaubern sind um 10 ％ verringert.",
+  "description_macro": "Gewisse Feuer- und Eiszauber gewähren einen Stapel <colortype(506)><edgecolortype(507)>Lichtfeuer<edgecolortype(0)><colortype(0)> be<->ziehungs<->weise <colortype(506)><edgecolortype(507)>Schatteneis<edgecolortype(0)><colortype(0)>.<br>Ma<->xi<->mal<->sta<->pel<->zahl: 1<br>Effekt von <colortype(506)><edgecolortype(507)>Lichtfeuer<edgecolortype(0)><colortype(0)>:<br>Attacke-Werte von feuerbasierten Zaubern sind um 40<nbsp>％ erhöht.<br>MP-Kosten von feuerbasierten Zaubern sind verdoppelt.<br>MP-Regeneration von eisbasierten Zaubern ist auf 0 reduziert.<br>Attacke-Werte von eisbasierten Zaubern sind um 10<nbsp>％ verringert.<br>Effekt von <colortype(506)><edgecolortype(507)>Schatteneis<edgecolortype(0)><colortype(0)>:<br>Eisbasierte Zauber kosten keine MP.<br>Die Ausführung eines eisbasierten Zaubers regeneriert 2.500 MP.<br>Feuerbasierte Zauber kosten keine MP.<br>Attacke-Werte von feuerbasierten Zaubern sind um 10<nbsp>％ verringert.",
+  "effects": [
+    "Gewisse Feuer- und Eiszauber gewähren einen Stapel Lichtfeuer beziehungsweise Schatteneis.",
+    "Maximalstapelzahl: 1",
+    "Effekt von Lichtfeuer:",
+    "Attacke-Werte von feuerbasierten Zaubern sind um 40 ％ erhöht.",
+    "MP-Kosten von feuerbasierten Zaubern sind verdoppelt.",
+    "MP-Regeneration von eisbasierten Zaubern ist auf 0 reduziert.",
+    "Attacke-Werte von eisbasierten Zaubern sind um 10 ％ verringert.",
+    "Effekt von Schatteneis:",
+    "Eisbasierte Zauber kosten keine MP.",
+    "Die Ausführung eines eisbasierten Zaubers regeneriert 2.500 MP.",
+    "Feuerbasierte Zauber kosten keine MP.",
+    "Attacke-Werte von feuerbasierten Zaubern sind um 10 ％ verringert."
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 25,
+    "name": "Schwarzmagier",
+    "abbreviation": "SMA"
+  },
+  "unlock_level": 1,
+  "value": 0,
+  "icon": {
+    "id": 5362,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 55,
+  "source_class_job_id": 7
+}

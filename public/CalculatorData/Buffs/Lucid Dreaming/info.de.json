@@ -1,0 +1,99 @@
+{
+  "kind": "combat_status",
+  "id": 1204,
+  "name": "Klartraum",
+  "description": "Regeneriert schrittweise MP.",
+  "effects": [
+    "Regeneriert schrittweise MP."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 213909,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 60
+  },
+  "class_job_category_id": 120,
+  "source_abilities": [
+    {
+      "id": 7562,
+      "name": "Klartraum",
+      "description": "Du regenerierst schrittweise eigene MP.\nRegenerationswirkung: 55\nDauer: 21 Sekunden",
+      "description_macro": "Du regenerierst schrittweise eigene MP.<br>Regenerationswirkung: 55<br>Dauer: 21 Sekunden",
+      "unlock_level": 14,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Healer",
+        "Magical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 24,
+          "name": "Weißmagier",
+          "abbreviation": "WMA",
+          "is_phantom": false
+        },
+        {
+          "id": 28,
+          "name": "Gelehrter",
+          "abbreviation": "GLT",
+          "is_phantom": false
+        },
+        {
+          "id": 33,
+          "name": "Astrologe",
+          "abbreviation": "AST",
+          "is_phantom": false
+        },
+        {
+          "id": 40,
+          "name": "Weiser",
+          "abbreviation": "WEI",
+          "is_phantom": false
+        },
+        {
+          "id": 25,
+          "name": "Schwarzmagier",
+          "abbreviation": "SMA",
+          "is_phantom": false
+        },
+        {
+          "id": 27,
+          "name": "Beschwörer",
+          "abbreviation": "BSW",
+          "is_phantom": false
+        },
+        {
+          "id": 35,
+          "name": "Rotmagier",
+          "abbreviation": "RMA",
+          "is_phantom": false
+        },
+        {
+          "id": 42,
+          "name": "Piktomant",
+          "abbreviation": "PKT",
+          "is_phantom": false
+        },
+        {
+          "id": 36,
+          "name": "Blaumagier",
+          "abbreviation": "BMA",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

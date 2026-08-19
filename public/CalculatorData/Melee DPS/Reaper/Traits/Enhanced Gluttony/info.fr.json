@@ -1,0 +1,28 @@
+{
+  "kind": "trait",
+  "id": 596,
+  "name": "Gloutonnerie améliorée",
+  "description": "Permet de recevoir 2 degrés de Bourreau lorsque vous utilisez Gloutonnerie avec succès.\nDurée : 30s\nCet effet disparaît si une technique d'arme ou un sort est utilisé.\nNe peut être cumulé avec l'effet Moissonneur d'âmes.\nRemplace Gibet, Potence et Guillotine par respectivement Gibet tortionnaire, Potence tortionnaire et Guillotine tortionnaire pendant la durée de l'effet.",
+  "description_macro": "Permet de recevoir 2 degrés de <colortype(500)><edgecolortype(501)>Bourreau<edgecolortype(0)><colortype(0)> lorsque vous utilisez <colortype(500)><edgecolortype(501)>Gloutonnerie<edgecolortype(0)><colortype(0)> avec succès.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 30s<br>Cet effet disparaît si une technique d'arme ou un sort est utilisé.<br>Ne peut être cumulé avec l'effet <colortype(500)><edgecolortype(501)>Moissonneur d'âmes<edgecolortype(0)><colortype(0)>.<br>Remplace <colortype(500)><edgecolortype(501)>Gibet<edgecolortype(0)><colortype(0)>, <colortype(500)><edgecolortype(501)>Potence<edgecolortype(0)><colortype(0)> et <colortype(500)><edgecolortype(501)>Guillotine<edgecolortype(0)><colortype(0)> par respectivement <colortype(500)><edgecolortype(501)>Gibet tortionnaire<edgecolortype(0)><colortype(0)>, <colortype(500)><edgecolortype(501)>Potence tortionnaire<edgecolortype(0)><colortype(0)> et <colortype(500)><edgecolortype(501)>Guillotine tortionnaire<edgecolortype(0)><colortype(0)> pendant la durée de l'effet.",
+  "effects": [
+    "Permet de recevoir 2 degrés de Bourreau lorsque vous utilisez Gloutonnerie avec succès.",
+    "Durée : 30s",
+    "Cet effet disparaît si une technique d'arme ou un sort est utilisé.",
+    "Ne peut être cumulé avec l'effet Moissonneur d'âmes.",
+    "Remplace Gibet, Potence et Guillotine par respectivement Gibet tortionnaire, Potence tortionnaire et Guillotine tortionnaire pendant la durée de l'effet."
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 39,
+    "name": "Faucheur",
+    "abbreviation": "FCH"
+  },
+  "unlock_level": 96,
+  "value": 0,
+  "icon": {
+    "id": 6413,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 180,
+  "source_class_job_id": 39
+}

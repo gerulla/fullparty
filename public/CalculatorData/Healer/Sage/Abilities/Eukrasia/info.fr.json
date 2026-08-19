@@ -1,0 +1,90 @@
+{
+  "kind": "ability",
+  "id": 24290,
+  "name": "Eukrasia",
+  "description": "Remplace certains de vos sorts.\nDosis III devient Dosis eucrasique III.\nDyskrasia II devient Dyskrasia eucrasique.\nDiagnosis devient Diagnosis eucrasique.\nPrognosis devient Prognosis eucrasiqueII.\nL'effet prend fin lorsque vous lancez un de ces sorts.\nCe sort a un temps de recharge indépendant qui est appliqué aux autres sorts ou techniques d'arme après utilisation.",
+  "description_macro": "Remplace certains de vos sorts.<br><if([gnum68==40],<if([gnum72>=82],<colortype(500)><edgecolortype(501)>Dosis III<edgecolortype(0)><colortype(0)> devient <colortype(500)><edgecolortype(501)>Dosis eucrasique III<edgecolortype(0)><colortype(0)>.,<if([gnum68==40],<if([gnum72>=72],<colortype(500)><edgecolortype(501)>Dosis II<edgecolortype(0)><colortype(0)> devient <colortype(500)><edgecolortype(501)>Dosis eucrasique II<edgecolortype(0)><colortype(0)>.,<colortype(500)><edgecolortype(501)>Dosis<edgecolortype(0)><colortype(0)> devient <colortype(500)><edgecolortype(501)>Dosis eucrasique<edgecolortype(0)><colortype(0)>.)>,<colortype(500)><edgecolortype(501)>Dosis<edgecolortype(0)><colortype(0)> devient <colortype(500)><edgecolortype(501)>Dosis eucrasique<edgecolortype(0)><colortype(0)>.)>)>,<if([gnum68==40],<if([gnum72>=72],<colortype(500)><edgecolortype(501)>Dosis II<edgecolortype(0)><colortype(0)> devient <colortype(500)><edgecolortype(501)>Dosis eucrasique II<edgecolortype(0)><colortype(0)>.,<colortype(500)><edgecolortype(501)>Dosis<edgecolortype(0)><colortype(0)> devient <colortype(500)><edgecolortype(501)>Dosis eucrasique<edgecolortype(0)><colortype(0)>.)>,<colortype(500)><edgecolortype(501)>Dosis<edgecolortype(0)><colortype(0)> devient <colortype(500)><edgecolortype(501)>Dosis eucrasique<edgecolortype(0)><colortype(0)>.)>)><br><if([gnum68==40],<if([gnum72>=82],<colortype(500)><edgecolortype(501)>Dyskrasia II<edgecolortype(0)><colortype(0)> devient <colortype(500)><edgecolortype(501)>Dyskrasia eucrasique<edgecolortype(0)><colortype(0)>.<br>,)>,)><colortype(500)><edgecolortype(501)>Diagnosis<edgecolortype(0)><colortype(0)> devient <colortype(500)><edgecolortype(501)>Diagnosis eucrasique<edgecolortype(0)><colortype(0)>.<br><colortype(500)><edgecolortype(501)>Prognosis<edgecolortype(0)><colortype(0)> devient <colortype(500)><edgecolortype(501)>Prognosis eucrasique<if([gnum68==40],<if([gnum72>=96], II,)>,)><edgecolortype(0)><colortype(0)>.<br>L'effet prend fin lorsque vous lancez un de ces sorts.<br>Ce sort a un temps de recharge indépendant qui est appliqué aux autres sorts ou techniques d'arme après utilisation.",
+  "effects": [
+    "Remplace certains de vos sorts.",
+    "Dosis III devient Dosis eucrasique III.",
+    "Dyskrasia II devient Dyskrasia eucrasique.",
+    "Diagnosis devient Diagnosis eucrasique.",
+    "Prognosis devient Prognosis eucrasiqueII.",
+    "L'effet prend fin lorsque vous lancez un de ces sorts.",
+    "Ce sort a un temps de recharge indépendant qui est appliqué aux autres sorts ou techniques d'arme après utilisation."
+  ],
+  "role": "Healer",
+  "job": {
+    "id": 40,
+    "name": "Sage",
+    "abbreviation": "SAG"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 30,
+  "icon": {
+    "id": 3658,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 2,
+    "name": "Sort"
+  },
+  "attack_type": {
+    "id": 0,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 2.5,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 58,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 0,
+      "value": 0
+    },
+    "secondary": {
+      "type_id": 46,
+      "value": 2606
+    }
+  },
+  "range": {
+    "target_yalms": 0,
+    "effect_yalms": 0,
+    "cast_type": 1
+  },
+  "targeting": {
+    "self": true,
+    "party": false,
+    "alliance": false,
+    "hostile": false,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 0,
+    "behavior_type": 0,
+    "class_job_category_id": 181,
+    "source_class_job_id": 40,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

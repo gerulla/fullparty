@@ -1,0 +1,33 @@
+{
+  "kind": "trait",
+  "id": 247,
+  "name": "ランスマスタリー",
+  "description": "竜牙竜爪または竜尾大車輪の命中直後に雲蒸竜変の実行に成功すると、自身に「竜眼」を付与する。\n効果時間：30秒\nこの効果はウェポンスキルによる近接攻撃を実行すると解除される。\n効果時間中はトゥルースラストが「竜眼雷電」に変化する。\nさらに、特定のアクションの威力を上昇させる。\n\nトゥルースラストの威力：230\nボーパルスラストの威力：130\nピアシングタロンの威力：200\nピアシングタロン効果アップ時のピアシングタロンの威力：350\nディセムボウルの威力：140",
+  "description_macro": "竜牙竜爪または竜尾大車輪の命中直後に雲蒸竜変の実行に成功すると、自身に<colortype(500)><edgecolortype(501)>「竜眼」<edgecolortype(0)><colortype(0)>を付与する。<br><colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>30秒<br>この効果はウェポンスキルによる近接攻撃を実行すると解除される。<br>効果時間中はトゥルースラストが<colortype(500)><edgecolortype(501)>「竜眼雷電」<edgecolortype(0)><colortype(0)>に変化する。<br>さらに、特定のアクションの威力を上昇させる。<br><br><colortype(504)><edgecolortype(505)>トゥルースラストの威力：<edgecolortype(0)><colortype(0)>230<br><colortype(504)><edgecolortype(505)>ボーパルスラストの威力：<edgecolortype(0)><colortype(0)>130<br><colortype(504)><edgecolortype(505)>ピアシングタロンの威力：<edgecolortype(0)><colortype(0)>200<br><colortype(504)><edgecolortype(505)>ピアシングタロン効果アップ時のピアシングタロンの威力：<edgecolortype(0)><colortype(0)>350<br><colortype(504)><edgecolortype(505)>ディセムボウルの威力：<edgecolortype(0)><colortype(0)>140",
+  "effects": [
+    "竜牙竜爪または竜尾大車輪の命中直後に雲蒸竜変の実行に成功すると、自身に「竜眼」を付与する。",
+    "効果時間：30秒",
+    "この効果はウェポンスキルによる近接攻撃を実行すると解除される。",
+    "効果時間中はトゥルースラストが「竜眼雷電」に変化する。",
+    "さらに、特定のアクションの威力を上昇させる。",
+    "トゥルースラストの威力：230",
+    "ボーパルスラストの威力：130",
+    "ピアシングタロンの威力：200",
+    "ピアシングタロン効果アップ時のピアシングタロンの威力：350",
+    "ディセムボウルの威力：140"
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 22,
+    "name": "竜騎士",
+    "abbreviation": "DRG"
+  },
+  "unlock_level": 76,
+  "value": 0,
+  "icon": {
+    "id": 5284,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 23,
+  "source_class_job_id": 22
+}

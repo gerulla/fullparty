@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 1300,
+  "name": "Cover",
+  "description": "Protecting a party member.",
+  "effects": [
+    "Protecting a party member."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 212501,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": true,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 20,
+  "source_abilities": [
+    {
+      "id": 27,
+      "name": "Cover",
+      "description": "Take all damage intended for another party member as long as said member remains within 20 yalms.\nDoes not activate with certain attacks.\nDuration: 12s\nOath Gauge Cost: 50",
+      "description_macro": "Take all damage intended for another party member as long as said member remains within 20 yalms.<br>Does not activate with certain attacks.<br><colortype(504)><edgecolortype(505)>Duration:<edgecolortype(0)><colortype(0)> 12s<br><colortype(504)><edgecolortype(505)>Oath Gauge Cost: <edgecolortype(0)><colortype(0)>50",
+      "unlock_level": 45,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Tank"
+      ],
+      "jobs": [
+        {
+          "id": 19,
+          "name": "Paladin",
+          "abbreviation": "PLD",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,88 @@
+{
+  "kind": "ability",
+  "id": 25764,
+  "name": "必殺技",
+  "description": "自身に3つの「チャクラ」が付与されていて、かつ特定の条件を満たす場合、必殺技を発動する。\n付与されているチャクラが1種類：「真空波」を発動する。\n付与されているチャクラが2種類：「天宙脚」を発動する。\n付与されているチャクラが3種類：「鳳凰の舞」を発動する。\nチャクラ3つと「陰の闘気」と「陽の闘気」：「夢幻闘舞」を発動する。",
+  "description_macro": "自身に3つの<colortype(500)><edgecolortype(501)>「チャクラ」<edgecolortype(0)><colortype(0)>が付与されていて、かつ特定の条件を満たす場合、必殺技を発動する。<br><colortype(504)><edgecolortype(505)>付与されているチャクラが1種類：<edgecolortype(0)><colortype(0)><if([gnum68==20],<if([gnum72>=92],<colortype(500)><edgecolortype(501)>「真空波」<edgecolortype(0)><colortype(0)>,<colortype(500)><edgecolortype(501)>「蒼気砲」<edgecolortype(0)><colortype(0)>)>,<colortype(500)><edgecolortype(501)>「蒼気砲」<edgecolortype(0)><colortype(0)>)>を発動する。<br><colortype(504)><edgecolortype(505)>付与されているチャクラが2種類：<edgecolortype(0)><colortype(0)><colortype(500)><edgecolortype(501)>「天宙脚」<edgecolortype(0)><colortype(0)>を発動する。<br><colortype(504)><edgecolortype(505)>付与されているチャクラが3種類：<edgecolortype(0)><colortype(0)><if([gnum68==20],<if([gnum72>=86],<colortype(500)><edgecolortype(501)>「鳳凰の舞」<edgecolortype(0)><colortype(0)>,<colortype(500)><edgecolortype(501)>「爆裂脚」<edgecolortype(0)><colortype(0)>)>,<colortype(500)><edgecolortype(501)>「爆裂脚」<edgecolortype(0)><colortype(0)>)>を発動する。<br><colortype(504)><edgecolortype(505)>チャクラ3つと「陰の闘気」と「陽の闘気」：<edgecolortype(0)><colortype(0)><if([gnum68==20],<if([gnum72>=90],<colortype(500)><edgecolortype(501)>「夢幻闘舞」<edgecolortype(0)><colortype(0)>,<colortype(500)><edgecolortype(501)>「闘魂旋風脚」<edgecolortype(0)><colortype(0)>)>,<colortype(500)><edgecolortype(501)>「闘魂旋風脚」<edgecolortype(0)><colortype(0)>)>を発動する。",
+  "effects": [
+    "自身に3つの「チャクラ」が付与されていて、かつ特定の条件を満たす場合、必殺技を発動する。",
+    "付与されているチャクラが1種類：「真空波」を発動する。",
+    "付与されているチャクラが2種類：「天宙脚」を発動する。",
+    "付与されているチャクラが3種類：「鳳凰の舞」を発動する。",
+    "チャクラ3つと「陰の闘気」と「陽の闘気」：「夢幻闘舞」を発動する。"
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 20,
+    "name": "モンク",
+    "abbreviation": "MNK"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 60,
+  "icon": {
+    "id": 2976,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 3,
+    "name": "ウェポンスキル"
+  },
+  "attack_type": {
+    "id": 0,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 2.5,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 58,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 0,
+      "value": 0
+    },
+    "secondary": {
+      "type_id": 73,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": 0,
+    "effect_yalms": 0,
+    "cast_type": 1
+  },
+  "targeting": {
+    "self": true,
+    "party": false,
+    "alliance": false,
+    "hostile": false,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": false
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 0,
+    "behavior_type": 0,
+    "class_job_category_id": 21,
+    "source_class_job_id": 20,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

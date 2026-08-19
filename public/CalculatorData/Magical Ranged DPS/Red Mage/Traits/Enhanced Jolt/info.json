@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 195,
+  "name": "Enhanced Jolt",
+  "description": "Upgrades Jolt to Jolt II. Also increases the potency of Verthunder and Veraero to 360, and the potency of Verfire and Verstone to 300.",
+  "description_macro": "Upgrades <colortype(500)><edgecolortype(501)>Jolt<edgecolortype(0)><colortype(0)> to <colortype(500)><edgecolortype(501)>Jolt II<edgecolortype(0)><colortype(0)>. Also increases the potency of <colortype(500)><edgecolortype(501)>Verthunder<edgecolortype(0)><colortype(0)> and <colortype(500)><edgecolortype(501)>Veraero<edgecolortype(0)><colortype(0)> to 360, and the potency of <colortype(500)><edgecolortype(501)>Verfire<edgecolortype(0)><colortype(0)> and <colortype(500)><edgecolortype(501)>Verstone<edgecolortype(0)><colortype(0)> to 300.",
+  "effects": [
+    "Upgrades Jolt to Jolt II. Also increases the potency of Verthunder and Veraero to 360, and the potency of Verfire and Verstone to 300."
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 35,
+    "name": "Red Mage",
+    "abbreviation": "RDM"
+  },
+  "unlock_level": 62,
+  "value": 0,
+  "icon": {
+    "id": 6201,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 112,
+  "source_class_job_id": 35
+}

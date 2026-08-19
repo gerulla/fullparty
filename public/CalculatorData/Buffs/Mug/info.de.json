@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 3183,
+  "name": "Ausrauben",
+  "description": "Erlittener Schaden ist erhöht",
+  "effects": [
+    "Erlittener Schaden ist erhöht"
+  ],
+  "classification": "debuff",
+  "icon": {
+    "id": 214942,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 2,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": true,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 10
+  },
+  "class_job_category_id": 92,
+  "source_abilities": [
+    {
+      "id": 2248,
+      "name": "Ausrauben",
+      "description": "Du führst eine physische Attacke aus.\nAttacke-Wert: 150\nZusatzeffekt: Erhöht den erlittenen Schaden des Ziels um 5 %.\nDauer: 20 Sekunden\nZusatzeffekt: Chance auf zusätzliche Beute beim Sieg über den Gegner durch dieses Kommando",
+      "description_macro": "Du führst eine physische Attacke aus.<br>Attacke-Wert: 150<br>Zusatzeffekt: Erhöht den erlittenen Schaden des Ziels um 5<nbsp>%.<br>Dauer: 20 Sekunden<br>Zusatzeffekt: Chance auf zusätzliche Beute beim Sieg über den Gegner durch dieses Kommando",
+      "unlock_level": 15,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 30,
+          "name": "Ninja",
+          "abbreviation": "NIN",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

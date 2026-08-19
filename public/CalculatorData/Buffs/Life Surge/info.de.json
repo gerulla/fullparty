@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 116,
+  "name": "Vitalwallung",
+  "description": "Die nächste Waffenfertigkeit trifft kritisch und LP in Schadenshöhe werden regeneriert. Ist ein Effekt aktiv, der die Rate kritischer oder direkter Treffer steigert, erhöht sich auch der Attacke-Wert.",
+  "effects": [
+    "Die nächste Waffenfertigkeit trifft kritisch und LP in Schadenshöhe werden regeneriert. Ist ein Effekt aktiv, der die Rate kritischer oder direkter Treffer steigert, erhöht sich auch der Attacke-Wert."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 210302,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 83,
+      "name": "Vitalwallung",
+      "description": "Du erzielst mit der nächsten physischen Waffenfertigkeit während der Wirkungsdauer einen kritischen Treffer und absorbierst außerdem LP.\nIst ein Effekt aktiv, der deine Rate kritischer oder direkter Treffer steigert, erhöht sich auch der Attacke-Wert.\nWirkt nicht auf Schaden über Zeit.\nDauer: 5 Sekunden\nMaximale Aufladungen: 2",
+      "description_macro": "Du erzielst mit der nächsten physischen Waf<->fen<->fer<->tig<->keit während der Wirkungsdauer einen kritischen Treffer und absorbierst außerdem LP.<br>Ist ein Effekt aktiv, der deine Rate kritischer oder direkter Treffer steigert, erhöht sich auch der Attacke-Wert.<br>Wirkt nicht auf Schaden über Zeit.<br>Dauer: 5 Sekunden<if([gnum68==22],<if([gnum72>=88],<br>Maximale Aufladungen: 2,)>,)>",
+      "unlock_level": 6,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 22,
+          "name": "Dragoon",
+          "abbreviation": "DRG",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,95 @@
+{
+  "kind": "ability",
+  "id": 7439,
+  "name": "Étoile terrestre",
+  "description": "Place une étoile terrestre dans l'aire ciblée, et vous octroie Domination terrestre.\nDurée : 10s\nSi l'action est réutilisée pendant cette durée, déclenche Éclatement stellaire, effectuant une attaque magique neutre sur les ennemis dans l'aire d'effet.\nPuissance : 205\nEffet additionnel : restaure vos PV et ceux des équipiers dans l'aire d'effet.\nPuissance : 540\nAprès 10s, renforce l'étoile terrestre, et vous octroie Domination stellaire.\nDurée : 10s\nSi l'action est réutilisée pendant cette durée ou à l'issue de celle-ci, déclenche Explosion stellaire, effectuant une attaque magique neutre sur les ennemis dans l'aire d'effet.\nPuissance : 310\nEffet additionnel : restaure vos PV et ceux des équipiers dans l'aire d'effet.\nPuissance : 720",
+  "description_macro": "Place une <colortype(500)><edgecolortype(501)>étoile terrestre<edgecolortype(0)><colortype(0)> dans l'aire ciblée, et vous octroie <colortype(500)><edgecolortype(501)>Domination terrestre<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 10s<br>Si l'action est réutilisée pendant cette durée, déclenche <colortype(500)><edgecolortype(501)>Éclatement stellaire<edgecolortype(0)><colortype(0)>, effectuant une attaque magique neutre sur les ennemis dans l'aire d'effet.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> 205<br><colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> restaure vos PV et ceux des équipiers dans l'aire d'effet.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> 540<br>Après 10s, renforce l'<colortype(500)><edgecolortype(501)>étoile terrestre<edgecolortype(0)><colortype(0)>, et vous octroie <colortype(500)><edgecolortype(501)>Domination stellaire<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 10s<br>Si l'action est réutilisée pendant cette durée ou à l'issue de celle-ci, déclenche <colortype(500)><edgecolortype(501)>Explosion stellaire<edgecolortype(0)><colortype(0)>, effectuant une attaque magique neutre sur les ennemis dans l'aire d'effet.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> 310<br><colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> restaure vos PV et ceux des équipiers dans l'aire d'effet.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> 720",
+  "effects": [
+    "Place une étoile terrestre dans l'aire ciblée, et vous octroie Domination terrestre.",
+    "Durée : 10s",
+    "Si l'action est réutilisée pendant cette durée, déclenche Éclatement stellaire, effectuant une attaque magique neutre sur les ennemis dans l'aire d'effet.",
+    "Puissance : 205",
+    "Effet additionnel : restaure vos PV et ceux des équipiers dans l'aire d'effet.",
+    "Puissance : 540",
+    "Après 10s, renforce l'étoile terrestre, et vous octroie Domination stellaire.",
+    "Durée : 10s",
+    "Si l'action est réutilisée pendant cette durée ou à l'issue de celle-ci, déclenche Explosion stellaire, effectuant une attaque magique neutre sur les ennemis dans l'aire d'effet.",
+    "Puissance : 310",
+    "Effet additionnel : restaure vos PV et ceux des équipiers dans l'aire d'effet.",
+    "Puissance : 720"
+  ],
+  "role": "Healer",
+  "job": {
+    "id": 33,
+    "name": "Astromancien",
+    "abbreviation": "AST"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 62,
+  "icon": {
+    "id": 3143,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 4,
+    "name": "Aptitude"
+  },
+  "attack_type": {
+    "id": 0,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 60,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 13,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 0,
+      "value": 0
+    },
+    "secondary": {
+      "type_id": 0,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": 30,
+    "effect_yalms": 20,
+    "cast_type": 7
+  },
+  "targeting": {
+    "self": false,
+    "party": false,
+    "alliance": false,
+    "hostile": false,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": true,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 0,
+    "behavior_type": 0,
+    "class_job_category_id": 99,
+    "source_class_job_id": 33,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

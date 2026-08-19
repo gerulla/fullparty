@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 3839,
+  "name": "Ready to Raze",
+  "description": "Able to execute Fated Brand.",
+  "effects": [
+    "Able to execute Fated Brand."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 213620,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 149,
+  "source_abilities": [
+    {
+      "id": 16163,
+      "name": "Fated Circle",
+      "description": "Delivers an attack with a potency of 300 to all nearby enemies.\nAdditional Effect: Grants Ready to Raze\nDuration: 10s\nEffect of Ready to Raze ends upon execution of any weaponskill.\nCartridge Cost: 1",
+      "description_macro": "Delivers an attack with a potency of 300 to all nearby enemies.<br><if([gnum68==37],<if([gnum72>=96],<colortype(504)><edgecolortype(505)>Additional Effect:<edgecolortype(0)><colortype(0)> Grants <colortype(506)><edgecolortype(507)>Ready to Raze<edgecolortype(0)><colortype(0)><br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>10s<br>Effect of <colortype(506)><edgecolortype(507)>Ready to Raze<edgecolortype(0)><colortype(0)> ends upon execution of any weaponskill.<br>,)>,)><colortype(504)><edgecolortype(505)>Cartridge Cost: <edgecolortype(0)><colortype(0)>1",
+      "unlock_level": 72,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Tank"
+      ],
+      "jobs": [
+        {
+          "id": 37,
+          "name": "Gunbreaker",
+          "abbreviation": "GNB",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

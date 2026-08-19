@@ -1,0 +1,51 @@
+{
+  "kind": "combat_status",
+  "id": 3832,
+  "name": "Verdammnis",
+  "description": "Erlittener Schaden ist verringert und ein Teil des erlittenen physischen Schadens wird auf den Angreifer zurückgeworfen.\nDarüber hinaus werden stetig LP regeneriert, wenn Schaden genommen wird oder der Effekt ausläuft.",
+  "effects": [
+    "Erlittener Schaden ist verringert und ein Teil des erlittenen physischen Schadens wird auf den Angreifer zurückgeworfen.",
+    "Darüber hinaus werden stetig LP regeneriert, wenn Schaden genommen wird oder der Effekt ausläuft."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 212568,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 1,
+  "parameter": {
+    "effect": 0,
+    "modifier": -30
+  },
+  "class_job_category_id": 22,
+  "source_abilities": [
+    {
+      "id": 36923,
+      "name": "Verdammnis",
+      "description": "Du verringerst den erlittenen Schaden um 40 % und schlägst bei jedem erlittenen physischen Schaden mit einem Attacke-Wert von 55 zurück.\nDauer: 15 Sekunden\nZusatzeffekt: Gewährt dir Erlöst, sobald du Schaden nimmst oder der Effekt ausläuft.\nEffekt von Erlöst: Regeneriert stetig LP.\nHeilpotenzial: 300\nDauer: 15 Sekunden",
+      "description_macro": "Du verringerst den erlittenen Schaden um 40 % und schlägst bei jedem erlittenen physischen Schaden mit einem Attacke-Wert von 55 zurück.<br>Dauer: 15 Sekunden<br>Zusatzeffekt: Gewährt dir <colortype(506)><edgecolortype(507)>Erlöst<edgecolortype(0)><colortype(0)>, sobald du Schaden nimmst oder der Effekt ausläuft.<br>Effekt von <colortype(506)><edgecolortype(507)>Erlöst<edgecolortype(0)><colortype(0)>: Regeneriert stetig LP.<br>Heilpotenzial: 300<br>Dauer: 15 Sekunden",
+      "unlock_level": 92,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Tank"
+      ],
+      "jobs": [
+        {
+          "id": 21,
+          "name": "Krieger",
+          "abbreviation": "KRG",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

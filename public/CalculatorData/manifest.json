@@ -1,0 +1,362 @@
+{
+  "generated_at_utc": "2026-08-18T01:29:23.3462047+00:00",
+  "source": "Installed FINAL FANTASY XIV game files via Lumina",
+  "languages": [
+    "en",
+    "de",
+    "fr",
+    "ja"
+  ],
+  "standard_job_scope": "All battle jobs: tanks, healers, melee DPS, physical ranged DPS, and magical ranged DPS",
+  "totals": {
+    "actions": 1233,
+    "traits": 429
+  },
+  "roles": [
+    {
+      "name": "Tank",
+      "jobs": [
+        {
+          "id": 19,
+          "name": "Paladin",
+          "abbreviation": "PLD",
+          "actions": 46,
+          "traits": 22
+        },
+        {
+          "id": 21,
+          "name": "Warrior",
+          "abbreviation": "WAR",
+          "actions": 40,
+          "traits": 21
+        },
+        {
+          "id": 32,
+          "name": "Dark Knight",
+          "abbreviation": "DRK",
+          "actions": 43,
+          "traits": 15
+        },
+        {
+          "id": 37,
+          "name": "Gunbreaker",
+          "abbreviation": "GNB",
+          "actions": 45,
+          "traits": 16
+        }
+      ]
+    },
+    {
+      "name": "Healer",
+      "jobs": [
+        {
+          "id": 24,
+          "name": "White Mage",
+          "abbreviation": "WHM",
+          "actions": 43,
+          "traits": 22
+        },
+        {
+          "id": 28,
+          "name": "Scholar",
+          "abbreviation": "SCH",
+          "actions": 48,
+          "traits": 17
+        },
+        {
+          "id": 33,
+          "name": "Astrologian",
+          "abbreviation": "AST",
+          "actions": 54,
+          "traits": 21
+        },
+        {
+          "id": 40,
+          "name": "Sage",
+          "abbreviation": "SGE",
+          "actions": 48,
+          "traits": 17
+        }
+      ]
+    },
+    {
+      "name": "Melee DPS",
+      "jobs": [
+        {
+          "id": 20,
+          "name": "Monk",
+          "abbreviation": "MNK",
+          "actions": 47,
+          "traits": 21
+        },
+        {
+          "id": 22,
+          "name": "Dragoon",
+          "abbreviation": "DRG",
+          "actions": 39,
+          "traits": 15
+        },
+        {
+          "id": 30,
+          "name": "Ninja",
+          "abbreviation": "NIN",
+          "actions": 61,
+          "traits": 21
+        },
+        {
+          "id": 34,
+          "name": "Samurai",
+          "abbreviation": "SAM",
+          "actions": 45,
+          "traits": 17
+        },
+        {
+          "id": 39,
+          "name": "Reaper",
+          "abbreviation": "RPR",
+          "actions": 44,
+          "traits": 16
+        },
+        {
+          "id": 41,
+          "name": "Viper",
+          "abbreviation": "VPR",
+          "actions": 51,
+          "traits": 15
+        }
+      ]
+    },
+    {
+      "name": "Physical Ranged DPS",
+      "jobs": [
+        {
+          "id": 23,
+          "name": "Bard",
+          "abbreviation": "BRD",
+          "actions": 40,
+          "traits": 23
+        },
+        {
+          "id": 31,
+          "name": "Machinist",
+          "abbreviation": "MCH",
+          "actions": 40,
+          "traits": 22
+        },
+        {
+          "id": 38,
+          "name": "Dancer",
+          "abbreviation": "DNC",
+          "actions": 47,
+          "traits": 17
+        }
+      ]
+    },
+    {
+      "name": "Magical Ranged DPS",
+      "jobs": [
+        {
+          "id": 25,
+          "name": "Black Mage",
+          "abbreviation": "BLM",
+          "actions": 39,
+          "traits": 25
+        },
+        {
+          "id": 27,
+          "name": "Summoner",
+          "abbreviation": "SMN",
+          "actions": 77,
+          "traits": 27
+        },
+        {
+          "id": 35,
+          "name": "Red Mage",
+          "abbreviation": "RDM",
+          "actions": 51,
+          "traits": 17
+        },
+        {
+          "id": 42,
+          "name": "Pictomancer",
+          "abbreviation": "PCT",
+          "actions": 49,
+          "traits": 18
+        },
+        {
+          "id": 36,
+          "name": "Blue Mage",
+          "abbreviation": "BLU",
+          "actions": 136,
+          "traits": 6
+        }
+      ]
+    },
+    {
+      "name": "Phantom Jobs",
+      "jobs": [
+        {
+          "id": 1,
+          "name": "Phantom Knight",
+          "max_level": 6,
+          "actions": 4,
+          "traits": 2
+        },
+        {
+          "id": 3,
+          "name": "Phantom Monk",
+          "max_level": 6,
+          "actions": 4,
+          "traits": 2
+        },
+        {
+          "id": 12,
+          "name": "Phantom Thief",
+          "max_level": 6,
+          "actions": 5,
+          "traits": 1
+        },
+        {
+          "id": 19,
+          "name": "Phantom Dragoon",
+          "max_level": 4,
+          "actions": 3,
+          "traits": 1
+        },
+        {
+          "id": 16,
+          "name": "Phantom Ninja",
+          "max_level": 6,
+          "actions": 5,
+          "traits": 1
+        },
+        {
+          "id": 5,
+          "name": "Phantom Samurai",
+          "max_level": 5,
+          "actions": 4,
+          "traits": 1
+        },
+        {
+          "id": 2,
+          "name": "Phantom Berserker",
+          "max_level": 3,
+          "actions": 2,
+          "traits": 1
+        },
+        {
+          "id": 4,
+          "name": "Phantom Ranger",
+          "max_level": 6,
+          "actions": 4,
+          "traits": 2
+        },
+        {
+          "id": 13,
+          "name": "Phantom Mystic Knight",
+          "max_level": 4,
+          "actions": 4,
+          "traits": 0
+        },
+        {
+          "id": 17,
+          "name": "Phantom White Mage",
+          "max_level": 5,
+          "actions": 5,
+          "traits": 0
+        },
+        {
+          "id": 18,
+          "name": "Phantom Black Mage",
+          "max_level": 5,
+          "actions": 5,
+          "traits": 0
+        },
+        {
+          "id": 8,
+          "name": "Phantom Time Mage",
+          "max_level": 5,
+          "actions": 5,
+          "traits": 0
+        },
+        {
+          "id": 20,
+          "name": "Phantom Summoner",
+          "max_level": 5,
+          "actions": 5,
+          "traits": 0
+        },
+        {
+          "id": 21,
+          "name": "Phantom Blue Mage",
+          "max_level": 3,
+          "actions": 5,
+          "traits": 3
+        },
+        {
+          "id": 22,
+          "name": "Phantom Red Mage",
+          "max_level": 6,
+          "actions": 5,
+          "traits": 1
+        },
+        {
+          "id": 10,
+          "name": "Phantom Chemist",
+          "max_level": 4,
+          "actions": 4,
+          "traits": 0
+        },
+        {
+          "id": 7,
+          "name": "Phantom Geomancer",
+          "max_level": 5,
+          "actions": 4,
+          "traits": 1
+        },
+        {
+          "id": 6,
+          "name": "Phantom Bard",
+          "max_level": 4,
+          "actions": 4,
+          "traits": 1
+        },
+        {
+          "id": 15,
+          "name": "Phantom Dancer",
+          "max_level": 4,
+          "actions": 4,
+          "traits": 0
+        },
+        {
+          "id": 23,
+          "name": "Phantom Necromancer",
+          "max_level": 5,
+          "actions": 5,
+          "traits": 0
+        },
+        {
+          "id": 11,
+          "name": "Phantom Oracle",
+          "max_level": 5,
+          "actions": 5,
+          "traits": 0
+        },
+        {
+          "id": 9,
+          "name": "Phantom Cannoneer",
+          "max_level": 6,
+          "actions": 5,
+          "traits": 1
+        },
+        {
+          "id": 14,
+          "name": "Phantom Gladiator",
+          "max_level": 4,
+          "actions": 4,
+          "traits": 0
+        }
+      ]
+    }
+  ]
+}

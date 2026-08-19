@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 379,
+  "name": "Jauge des âmes",
+  "description": "Permet à votre Jauge des âmes de se remplir lorsque vous utilisez certains sorts et techniques d'arme avec succès, ou lorsque vous abattez des ennemis subissant votre Dessein de la Camarde.",
+  "description_macro": "Permet à votre <colortype(502)><edgecolortype(503)>Jauge des âmes<edgecolortype(0)><colortype(0)> de se remplir lorsque vous utilisez certains sorts et techniques d'arme avec succès, ou lorsque vous abattez des ennemis subissant votre <colortype(500)><edgecolortype(501)>Dessein de la Camarde<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Permet à votre Jauge des âmes de se remplir lorsque vous utilisez certains sorts et techniques d'arme avec succès, ou lorsque vous abattez des ennemis subissant votre Dessein de la Camarde."
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 39,
+    "name": "Faucheur",
+    "abbreviation": "FCH"
+  },
+  "unlock_level": 50,
+  "value": 0,
+  "icon": {
+    "id": 6401,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 180,
+  "source_class_job_id": 39
+}

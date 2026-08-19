@@ -1,0 +1,88 @@
+{
+  "kind": "ability",
+  "id": 37017,
+  "name": "アストラルドロー",
+  "description": "「アーゼマの均衡」「オシュオンの矢」「ビエルゴの塔」「クラウンロード」のカードをドローする。\n「プレイI」がアーゼマの均衡に、「プレイII」がオシュオンの矢に、「プレイIII」がビエルゴの塔に、「マイナーアルカナ」がクラウンロードにそれぞれ変化する。\n追加効果：自身のＭＰを最大ＭＰの20％分回復する。\n実行後にこのアクションがアンブラルドローに変化する。\nリキャストタイマーを「アンブラルドロー」と共有する。",
+  "description_macro": "<colortype(500)><edgecolortype(501)>「アーゼマの均衡」「オシュオンの矢」「ビエルゴの塔」<if([gnum68==33],<if([gnum72>=70],「クラウンロード」,)>,)><edgecolortype(0)><colortype(0)>のカードをドローする。<br><colortype(500)><edgecolortype(501)>「プレイI」<edgecolortype(0)><colortype(0)>がアーゼマの均衡に、<colortype(500)><edgecolortype(501)>「プレイII」<edgecolortype(0)><colortype(0)>がオシュオンの矢に、<colortype(500)><edgecolortype(501)>「プレイIII」<edgecolortype(0)><colortype(0)>がビエルゴの塔に<if([gnum68==33],<if([gnum72>=70],、<colortype(500)><edgecolortype(501)>「マイナーアルカナ」<edgecolortype(0)><colortype(0)>がクラウンロードに,)>,)>それぞれ変化する。<br><colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)>自身のＭＰを最大ＭＰの20％分回復する。<br>実行後にこのアクションがアンブラルドローに変化する。<br>リキャストタイマーを<colortype(500)><edgecolortype(501)>「アンブラルドロー」<edgecolortype(0)><colortype(0)>と共有する。",
+  "effects": [
+    "「アーゼマの均衡」「オシュオンの矢」「ビエルゴの塔」「クラウンロード」のカードをドローする。",
+    "「プレイI」がアーゼマの均衡に、「プレイII」がオシュオンの矢に、「プレイIII」がビエルゴの塔に、「マイナーアルカナ」がクラウンロードにそれぞれ変化する。",
+    "追加効果：自身のＭＰを最大ＭＰの20％分回復する。",
+    "実行後にこのアクションがアンブラルドローに変化する。",
+    "リキャストタイマーを「アンブラルドロー」と共有する。"
+  ],
+  "role": "Healer",
+  "job": {
+    "id": 33,
+    "name": "占星術師",
+    "abbreviation": "AST"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 30,
+  "icon": {
+    "id": 3564,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 4,
+    "name": "アビリティ"
+  },
+  "attack_type": {
+    "id": 0,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 55,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 17,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 0,
+      "value": 0
+    },
+    "secondary": {
+      "type_id": 140,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": 0,
+    "effect_yalms": 0,
+    "cast_type": 1
+  },
+  "targeting": {
+    "self": true,
+    "party": false,
+    "alliance": false,
+    "hostile": false,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 0,
+    "behavior_type": 0,
+    "class_job_category_id": 99,
+    "source_class_job_id": 33,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

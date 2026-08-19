@@ -1,0 +1,71 @@
+{
+  "kind": "combat_status",
+  "id": 2709,
+  "name": "リタージー・オブ・ベル",
+  "description": "自身がダメージを受けるか効果時間が経過もしくはリタージー・オブ・ベルを再使用すると、「リタージー・オブ・ベル」のＨＰ回復効果が発動する状態。",
+  "effects": [
+    "自身がダメージを受けるか効果時間が経過もしくはリタージー・オブ・ベルを再使用すると、「リタージー・オブ・ベル」のＨＰ回復効果が発動する状態。"
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 218373,
+    "file": "icon.png"
+  },
+  "max_stacks": 5,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": true,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 27,
+    "modifier": 0
+  },
+  "class_job_category_id": 25,
+  "source_abilities": [
+    {
+      "id": 25862,
+      "name": "リタージー・オブ・ベル",
+      "description": "指定した地面に「リタージー・オブ・ベル」を設置し、自身に5スタックの「リタージー・オブ・ベル」を付与する。\n効果時間：20秒\nリタージー・オブ・ベルの効果時間中に自身がダメージを受けると、スタックを1つ消費してリタージー・オブ・ベルの周囲20m以内にいる自身およびパーティメンバーを回復する。\n回復力：400\nこの効果は、発動後1秒間は再発動しない。\nリタージー・オブ・ベルの効果時間が経過するか効果時間中に再使用すると、残りスタック数に応じた回復効果が発動して消滅する。\n回復力：200×残りスタック数",
+      "description_macro": "指定した地面に<colortype(500)><edgecolortype(501)>「リタージー・オブ・ベル」<edgecolortype(0)><colortype(0)>を設置し、自身に5スタックの<colortype(500)><edgecolortype(501)>「リタージー・オブ・ベル」<edgecolortype(0)><colortype(0)>を付与する。<br><colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>20秒<br>リタージー・オブ・ベルの効果時間中に自身がダメージを受けると、スタックを1つ消費してリタージー・オブ・ベルの周囲20m以内にいる自身およびパーティメンバーを回復する。<br><colortype(504)><edgecolortype(505)>回復力：<edgecolortype(0)><colortype(0)>400<br>この効果は、発動後1秒間は再発動しない。<br>リタージー・オブ・ベルの効果時間が経過するか効果時間中に再使用すると、残りスタック数に応じた回復効果が発動して消滅する。<br><colortype(504)><edgecolortype(505)>回復力：<edgecolortype(0)><colortype(0)>200×残りスタック数",
+      "unlock_level": 90,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Healer"
+      ],
+      "jobs": [
+        {
+          "id": 24,
+          "name": "白魔道士",
+          "abbreviation": "WHM",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 28509,
+      "name": "リタージー・オブ・ベル",
+      "description": "指定した地面に「リタージー・オブ・ベル」を設置し、自身に5スタックの「リタージー・オブ・ベル」を付与する。\n効果時間：20秒\nリタージー・オブ・ベルの効果時間中に自身がダメージを受けると、スタックを1つ消費してリタージー・オブ・ベルの周囲20m以内にいる自身およびパーティメンバーを回復する。\n回復力：400\nこの効果は、発動後1秒間は再発動しない。\nリタージー・オブ・ベルの効果時間が経過するか効果時間中に再使用すると、残りスタック数に応じた回復効果が発動して消滅する。\n回復力：200×残りスタック数",
+      "description_macro": "指定した地面に<colortype(500)><edgecolortype(501)>「リタージー・オブ・ベル」<edgecolortype(0)><colortype(0)>を設置し、自身に5スタックの<colortype(500)><edgecolortype(501)>「リタージー・オブ・ベル」<edgecolortype(0)><colortype(0)>を付与する。<br><colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>20秒<br>リタージー・オブ・ベルの効果時間中に自身がダメージを受けると、スタックを1つ消費してリタージー・オブ・ベルの周囲20m以内にいる自身およびパーティメンバーを回復する。<br><colortype(504)><edgecolortype(505)>回復力：<edgecolortype(0)><colortype(0)>400<br>この効果は、発動後1秒間は再発動しない。<br>リタージー・オブ・ベルの効果時間が経過するか効果時間中に再使用すると、残りスタック数に応じた回復効果が発動して消滅する。<br><colortype(504)><edgecolortype(505)>回復力：<edgecolortype(0)><colortype(0)>200×残りスタック数",
+      "unlock_level": 90,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Healer"
+      ],
+      "jobs": [
+        {
+          "id": 24,
+          "name": "白魔道士",
+          "abbreviation": "WHM",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 638,
+  "name": "Physis II améliorée",
+  "description": "Allonge à 15s la durée de l'effet d'augmentation de 10% des effets curatifs reçus.",
+  "description_macro": "Allonge à 15s la durée de l'effet d'augmentation de 10% des effets curatifs reçus.",
+  "effects": [
+    "Allonge à 15s la durée de l'effet d'augmentation de 10% des effets curatifs reçus."
+  ],
+  "role": "Healer",
+  "job": {
+    "id": 40,
+    "name": "Sage",
+    "abbreviation": "SAG"
+  },
+  "unlock_level": 98,
+  "value": 0,
+  "icon": {
+    "id": 6462,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 181,
+  "source_class_job_id": 40
+}

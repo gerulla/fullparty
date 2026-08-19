@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 16,
+  "name": "マギ・ラーニングII",
+  "description": "マギ・エアロラ、マギ・マイティガードがラーニング可能となる。\nマギ・エアロラ効果：対象に風属性魔法攻撃。\nマギ・マイティガード効果：一定時間、自身と周囲のパーティメンバーの被ダメージを20％軽減させる。",
+  "description_macro": "マギ・エアロラ、マギ・マイティガードがラーニング可能となる。<br><colortype(504)><edgecolortype(505)>マギ・エアロラ効果：<edgecolortype(0)><colortype(0)>対象に風属性魔法攻撃。<br><colortype(504)><edgecolortype(505)>マギ・マイティガード効果：<edgecolortype(0)><colortype(0)>一定時間、自身と周囲のパーティメンバーの被ダメージを20％軽減させる。",
+  "effects": [
+    "マギ・エアロラ、マギ・マイティガードがラーニング可能となる。",
+    "マギ・エアロラ効果：対象に風属性魔法攻撃。",
+    "マギ・マイティガード効果：一定時間、自身と周囲のパーティメンバーの被ダメージを20％軽減させる。"
+  ],
+  "role": "Phantom Jobs",
+  "job": {
+    "id": 21,
+    "name": "サポート青魔道士",
+    "abbreviation": "Ph. Blue Mage"
+  },
+  "is_phantom_trait": true,
+  "unlock_level": 2,
+  "icon": {
+    "id": 82216,
+    "file": "icon.png"
+  }
+}

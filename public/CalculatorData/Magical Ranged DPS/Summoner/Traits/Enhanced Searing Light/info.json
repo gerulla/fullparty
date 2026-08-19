@@ -1,0 +1,25 @@
+{
+  "kind": "trait",
+  "id": 618,
+  "name": "Enhanced Searing Light",
+  "description": "Grants Ruby's Glimmer after executing Searing Light.\nDuration: 30s",
+  "description_macro": "Grants <colortype(506)><edgecolortype(507)>Ruby's Glimmer<edgecolortype(0)><colortype(0)> after executing <colortype(500)><edgecolortype(501)>Searing Light<edgecolortype(0)><colortype(0)>.<br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>30s",
+  "effects": [
+    "Grants Ruby's Glimmer after executing Searing Light.",
+    "Duration: 30s"
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 27,
+    "name": "Summoner",
+    "abbreviation": "SMN"
+  },
+  "unlock_level": 96,
+  "value": 0,
+  "icon": {
+    "id": 5399,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 28,
+  "source_class_job_id": 27
+}

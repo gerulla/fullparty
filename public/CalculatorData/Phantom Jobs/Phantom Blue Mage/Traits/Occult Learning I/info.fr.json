@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 15,
+  "name": "Magi Apprentissage I",
+  "description": "Magi Missile et Magi Aquasouffle peuvent être appris.\nMagi Missile : 35% de chances d'infliger à certaines cibles un montant de dégâts égal à 75% des PV maximums.\nMagi Aquasouffle : effectue une attaque magique neutre sur la cible et les ennemis autour.",
+  "description_macro": "<colortype(500)><edgecolortype(501)>Magi Missile<edgecolortype(0)><colortype(0)> et <colortype(500)><edgecolortype(501)>Magi Aquasouffle<edgecolortype(0)><colortype(0)> peuvent être appris.<br><colortype(506)><edgecolortype(507)>Magi Missile<nbsp>:<edgecolortype(0)><colortype(0)> 35% de chances d'infliger à certaines cibles un montant de dégâts égal à 75% des PV maximums.<br><colortype(506)><edgecolortype(507)>Magi Aquasouffle<nbsp>:<edgecolortype(0)><colortype(0)> effectue une attaque magique neutre sur la cible et les ennemis autour.",
+  "effects": [
+    "Magi Missile et Magi Aquasouffle peuvent être appris.",
+    "Magi Missile : 35% de chances d'infliger à certaines cibles un montant de dégâts égal à 75% des PV maximums.",
+    "Magi Aquasouffle : effectue une attaque magique neutre sur la cible et les ennemis autour."
+  ],
+  "role": "Phantom Jobs",
+  "job": {
+    "id": 21,
+    "name": "Mage bleu fantôme",
+    "abbreviation": "Mage bleu fant."
+  },
+  "is_phantom_trait": true,
+  "unlock_level": 1,
+  "icon": {
+    "id": 82215,
+    "file": "icon.png"
+  }
+}

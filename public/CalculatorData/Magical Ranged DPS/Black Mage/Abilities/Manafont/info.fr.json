@@ -1,0 +1,90 @@
+{
+  "kind": "ability",
+  "id": 158,
+  "name": "Vasque de mana",
+  "description": "Restaure l'intégralité de vos PM.\nEffet additionnel : vous octroie Feu astral au plus haut degré.\nEffet additionnel : vous octroie Électrifié.\nEffet additionnel : vous octroie 3 degrés de Cœur ombral.\nCœur ombral : annule l'augmentation du coût en PM des sorts de feu sous Feu astral.\nDe plus\\Effet additionnel : vous octroie Symbole paradoxal.\nCondition : Feu astral.",
+  "description_macro": "Restaure l'intégralité de vos PM.<br><colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> vous octroie <colortype(500)><edgecolortype(501)>Feu astral<edgecolortype(0)><colortype(0)> au plus haut degré.<br><colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> vous octroie <colortype(500)><edgecolortype(501)>Électrifié<edgecolortype(0)><colortype(0)>.<br><if([gnum68==25],<if([gnum72>=58],<colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> vous octroie 3 degrés de <colortype(500)><edgecolortype(501)>Cœur ombral<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Cœur ombral<nbsp>:<edgecolortype(0)><colortype(0)> annule l'augmentation du coût en PM des sorts de feu sous <colortype(500)><edgecolortype(501)>Feu astral<edgecolortype(0)><colortype(0)>.<br>De plus\\, réduit d'un tiers le coût en PM de <colortype(500)><edgecolortype(501)>Brasier<edgecolortype(0)><colortype(0)> en échange de tous les degrés restants de <colortype(500)><edgecolortype(501)>Cœur ombral<edgecolortype(0)><colortype(0)>.<br>,)>,)><if([gnum68==25],<if([gnum72>=90],<colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> vous octroie <colortype(500)><edgecolortype(501)>Symbole paradoxal<edgecolortype(0)><colortype(0)>.<br>,)>,)><colortype(506)><edgecolortype(507)>Condition<nbsp>:<edgecolortype(0)><colortype(0)> <colortype(500)><edgecolortype(501)>Feu astral<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Restaure l'intégralité de vos PM.",
+    "Effet additionnel : vous octroie Feu astral au plus haut degré.",
+    "Effet additionnel : vous octroie Électrifié.",
+    "Effet additionnel : vous octroie 3 degrés de Cœur ombral.",
+    "Cœur ombral : annule l'augmentation du coût en PM des sorts de feu sous Feu astral.",
+    "De plus\\Effet additionnel : vous octroie Symbole paradoxal.",
+    "Condition : Feu astral."
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 25,
+    "name": "Mage Noir",
+    "abbreviation": "MNO"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 30,
+  "icon": {
+    "id": 2651,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 4,
+    "name": "Aptitude"
+  },
+  "attack_type": {
+    "id": 0,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 120,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 24,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 0,
+      "value": 0
+    },
+    "secondary": {
+      "type_id": 49,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": 0,
+    "effect_yalms": 0,
+    "cast_type": 1
+  },
+  "targeting": {
+    "self": true,
+    "party": false,
+    "alliance": false,
+    "hostile": false,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 0,
+    "behavior_type": 0,
+    "class_job_category_id": 26,
+    "source_class_job_id": 25,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

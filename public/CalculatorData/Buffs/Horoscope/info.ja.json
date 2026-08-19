@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 1890,
+  "name": "ホロスコープ",
+  "description": "「ホロスコープ」による回復効果を受けることができる状態。",
+  "effects": [
+    "「ホロスコープ」による回復効果を受けることができる状態。"
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 213251,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": true,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 1,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 99,
+  "source_abilities": [
+    {
+      "id": 16557,
+      "name": "ホロスコープ",
+      "description": "自身と周囲のパーティメンバーに「ホロスコープ」を付与する。\n効果時間：10秒\nホロスコープの効果時間中に、自身が実行するヘリオスおよびコンジャンクション・ヘリオスを受けると、ホロスコープは「ホロスコープ・ヘリオス」に変化する。\u3000効果時間：30秒\nホロスコープおよびホロスコープ・ヘリオスの効果時間が経過するか、効果時間中に再使用すると、ホロスコープおよびホロスコープ・ヘリオスの効果を受けている自身と周囲のパーティメンバーを回復する。\nホロスコープ効果中の回復力：200\nホロスコープ・ヘリオス効果中の回復力：400",
+      "description_macro": "自身と周囲のパーティメンバーに<colortype(500)><edgecolortype(501)>「ホロスコープ」<edgecolortype(0)><colortype(0)>を付与する。<br><colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>10秒<br>ホロスコープの効果時間中に、自身が実行するヘリオスおよび<if([gnum68==33],<if([gnum72>=96],コンジャンクション・ヘリオス,アスペクト・ヘリオス)>,アスペクト・ヘリオス)>を受けると、ホロスコープは<colortype(500)><edgecolortype(501)>「ホロスコープ・ヘリオス」<edgecolortype(0)><colortype(0)>に変化する。\u3000<colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>30秒<br>ホロスコープおよびホロスコープ・ヘリオスの効果時間が経過するか、効果時間中に再使用すると、ホロスコープおよびホロスコープ・ヘリオスの効果を受けている自身と周囲のパーティメンバーを回復する。<br><colortype(504)><edgecolortype(505)>ホロスコープ効果中の回復力：<edgecolortype(0)><colortype(0)>200<br><colortype(504)><edgecolortype(505)>ホロスコープ・ヘリオス効果中の回復力：<edgecolortype(0)><colortype(0)>400",
+      "unlock_level": 76,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Healer"
+      ],
+      "jobs": [
+        {
+          "id": 33,
+          "name": "占星術師",
+          "abbreviation": "AST",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

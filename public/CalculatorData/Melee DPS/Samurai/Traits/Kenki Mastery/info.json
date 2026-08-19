@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 215,
+  "name": "Kenki Mastery",
+  "description": "Increases Kenki Gauge when landing select weaponskills or when taking damage while under the effect of Third Eye.",
+  "description_macro": "Increases <colortype(500)><edgecolortype(501)>Kenki Gauge<edgecolortype(0)><colortype(0)> when landing select weaponskills or when taking damage while under the effect of <colortype(506)><edgecolortype(507)>Third Eye<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Increases Kenki Gauge when landing select weaponskills or when taking damage while under the effect of Third Eye."
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 34,
+    "name": "Samurai",
+    "abbreviation": "SAM"
+  },
+  "unlock_level": 52,
+  "value": 0,
+  "icon": {
+    "id": 6152,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 111,
+  "source_class_job_id": 34
+}

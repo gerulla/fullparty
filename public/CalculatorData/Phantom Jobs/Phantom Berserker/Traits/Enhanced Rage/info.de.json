@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 3,
+  "name": "Verbessertes Wüten",
+  "description": "Gewährt dir Durch Mark und Bein.\nEffekt von Durch Mark und Bein: Je mehr Schaden während der Effektdauer erlitten wird, desto höher der Attacke-Wert von Todesstoß.\nDauer: 15 Sekunden",
+  "description_macro": "Gewährt dir <colortype(506)><edgecolortype(507)>Durch Mark und Bein<edgecolortype(0)><colortype(0)>.<br>Effekt von <colortype(506)><edgecolortype(507)>Durch Mark und Bein<edgecolortype(0)><colortype(0)>: Je mehr Schaden während der Effektdauer erlitten wird, desto höher der Attacke-Wert von <colortype(502)><edgecolortype(503)>Todesstoß<edgecolortype(0)><colortype(0)>.<br>Dauer: 15 Sekunden",
+  "effects": [
+    "Gewährt dir Durch Mark und Bein.",
+    "Effekt von Durch Mark und Bein: Je mehr Schaden während der Effektdauer erlitten wird, desto höher der Attacke-Wert von Todesstoß.",
+    "Dauer: 15 Sekunden"
+  ],
+  "role": "Phantom Jobs",
+  "job": {
+    "id": 2,
+    "name": "Phantom-Berserker",
+    "abbreviation": "Ph-Berserker"
+  },
+  "is_phantom_trait": true,
+  "unlock_level": 3,
+  "icon": {
+    "id": 82203,
+    "file": "icon.png"
+  }
+}

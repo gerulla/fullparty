@@ -1,0 +1,71 @@
+{
+  "kind": "combat_status",
+  "id": 1243,
+  "name": "Sprungbereit",
+  "description": "Illusionssprung kann ausgeführt werden.",
+  "effects": [
+    "Illusionssprung kann ausgeführt werden."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 212583,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 92,
+      "name": "Sprung",
+      "description": "Du greifst den Gegner mit einem großen Sprung an.\nAttacke-Wert: 320\nNach der Attacke kehrst du wieder an deine ursprüngliche Position zurück.\nZusatzeffekt: Sprungbereit\nDauer: 15 Sekunden",
+      "description_macro": "Du greifst den Gegner mit einem großen Sprung an.<br>Attacke-Wert: <if([gnum68==22],<if([gnum72>=54],320,250)>,250)><br>Nach der Attacke kehrst du wieder an deine ursprüngliche Position zurück.<br><if([gnum72>=68],<if([gnum68==22],Zusatzeffekt: <colortype(506)><edgecolortype(507)>Sprungbereit<edgecolortype(0)><colortype(0)><br>Dauer: 15 Sekunden<br>,)>,)>",
+      "unlock_level": 30,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 22,
+          "name": "Dragoon",
+          "abbreviation": "DRG",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 16478,
+      "name": "Hochsprung",
+      "description": "Du greifst den Gegner mit einem großen Sprung an.\nAttacke-Wert: 400\nNach der Attacke kehrst du wieder an deine ursprüngliche Position zurück.\nZusatzeffekt: Gewährt dir Sprungbereit.\nDauer: 15 Sekunden",
+      "description_macro": "Du greifst den Gegner mit einem großen Sprung an.<br>Attacke-Wert: 400<br>Nach der Attacke kehrst du wieder an deine ursprüngliche Position zurück.<br>Zusatzeffekt: Gewährt dir <colortype(506)><edgecolortype(507)>Sprungbereit<edgecolortype(0)><colortype(0)>.<br>Dauer: 15 Sekunden",
+      "unlock_level": 74,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 22,
+          "name": "Dragoon",
+          "abbreviation": "DRG",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

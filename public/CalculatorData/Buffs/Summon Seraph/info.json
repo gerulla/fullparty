@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 3095,
+  "name": "Summon Seraph",
+  "description": "Manifesting Seraph to assist in battle.",
+  "effects": [
+    "Manifesting Seraph to assist in battle."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 214905,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": true,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 29,
+  "source_abilities": [
+    {
+      "id": 16545,
+      "name": "Summon Seraph",
+      "description": "Summons Seraph to fight at your side. When set to guard, automatically casts Seraphic Veil on party members who suffer damage.\nCannot summon Seraph unless a pet is already summoned. Current pet will leave the battlefield while Seraph is present, and return once gone.\nDuration: 22s",
+      "description_macro": "Summons <colortype(506)><edgecolortype(507)>Seraph<edgecolortype(0)><colortype(0)> to fight at your side. When set to guard, automatically casts <colortype(500)><edgecolortype(501)>Seraphic Veil<edgecolortype(0)><colortype(0)> on party members who suffer damage.<br>Cannot summon <colortype(506)><edgecolortype(507)>Seraph<edgecolortype(0)><colortype(0)> unless a pet is already summoned. Current pet will leave the battlefield while <colortype(506)><edgecolortype(507)>Seraph<edgecolortype(0)><colortype(0)> is present, and return once gone.<br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>22s",
+      "unlock_level": 80,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Healer"
+      ],
+      "jobs": [
+        {
+          "id": 28,
+          "name": "Scholar",
+          "abbreviation": "SCH",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

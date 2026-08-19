@@ -1,0 +1,34 @@
+{
+  "kind": "trait",
+  "id": 484,
+  "name": "Meister der Rotmagie III",
+  "description": "Verbessert Stoß II zu Stoß III.\nErhöht dazu den Attacke-Wert folgender Kommandos:\nAttacke-Wert von Magische Riposte: 280\nAttacke-Wert von Erzblitzra: 140\nAttacke-Wert von Erzwindra: 140\nAttacke-Wert von Erzfeuer: 340\nAttacke-Wert von Erzstein: 340\nAttacke-Wert von Magischer Zwerchhau: 150\nAttacke-Wert von Magisches Redoublement: 130\nAttacke-Wert von Impakt: 210\nAttacke-Wert von Magische Reprise: 340",
+  "description_macro": "Verbessert <colortype(502)><edgecolortype(503)>Stoß II<edgecolortype(0)><colortype(0)> zu <colortype(502)><edgecolortype(503)>Stoß III<edgecolortype(0)><colortype(0)>.<br>Erhöht dazu den Attacke-Wert folgender Kommandos:<br>Attacke-Wert von <colortype(502)><edgecolortype(503)>Magische Riposte<edgecolortype(0)><colortype(0)>: 280<br>Attacke-Wert von <colortype(502)><edgecolortype(503)>Erzblitzra<edgecolortype(0)><colortype(0)>: 140<br>Attacke-Wert von <colortype(502)><edgecolortype(503)>Erzwindra<edgecolortype(0)><colortype(0)>: 140<br>Attacke-Wert von <colortype(502)><edgecolortype(503)>Erzfeuer<edgecolortype(0)><colortype(0)>: 340<br>Attacke-Wert von <colortype(502)><edgecolortype(503)>Erzstein<edgecolortype(0)><colortype(0)>: 340<br>Attacke-Wert von <colortype(502)><edgecolortype(503)>Magischer Zwerchhau<edgecolortype(0)><colortype(0)>: 150<br>Attacke-Wert von <colortype(502)><edgecolortype(503)>Magisches Redoublement<edgecolortype(0)><colortype(0)>: 130<br>Attacke-Wert von <colortype(502)><edgecolortype(503)>Impakt<edgecolortype(0)><colortype(0)>: 210<br>Attacke-Wert von <colortype(502)><edgecolortype(503)>Magische Reprise<edgecolortype(0)><colortype(0)>: 340",
+  "effects": [
+    "Verbessert Stoß II zu Stoß III.",
+    "Erhöht dazu den Attacke-Wert folgender Kommandos:",
+    "Attacke-Wert von Magische Riposte: 280",
+    "Attacke-Wert von Erzblitzra: 140",
+    "Attacke-Wert von Erzwindra: 140",
+    "Attacke-Wert von Erzfeuer: 340",
+    "Attacke-Wert von Erzstein: 340",
+    "Attacke-Wert von Magischer Zwerchhau: 150",
+    "Attacke-Wert von Magisches Redoublement: 130",
+    "Attacke-Wert von Impakt: 210",
+    "Attacke-Wert von Magische Reprise: 340"
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 35,
+    "name": "Rotmagier",
+    "abbreviation": "RMA"
+  },
+  "unlock_level": 84,
+  "value": 0,
+  "icon": {
+    "id": 6210,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 112,
+  "source_class_job_id": 35
+}

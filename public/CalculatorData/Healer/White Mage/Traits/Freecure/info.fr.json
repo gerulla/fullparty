@@ -1,0 +1,25 @@
+{
+  "kind": "trait",
+  "id": 25,
+  "name": "Soin amélioré",
+  "description": "Accorde 15% de chances lors du lancement de Soin que le prochain Extra Soin ne consomme pas de PM.\nDurée : 15s",
+  "description_macro": "Accorde 15% de chances lors du lancement de Soin que le prochain Extra Soin ne consomme pas de PM.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 15s",
+  "effects": [
+    "Accorde 15% de chances lors du lancement de Soin que le prochain Extra Soin ne consomme pas de PM.",
+    "Durée : 15s"
+  ],
+  "role": "Healer",
+  "job": {
+    "id": 24,
+    "name": "Mage Blanc",
+    "abbreviation": "MBL"
+  },
+  "unlock_level": 32,
+  "value": 0,
+  "icon": {
+    "id": 5330,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 53,
+  "source_class_job_id": 6
+}

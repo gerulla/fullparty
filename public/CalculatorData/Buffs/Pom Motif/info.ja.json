@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 4105,
+  "name": "ピクトポンポン",
+  "description": "イマジンポンポンを実行できる状態。",
+  "effects": [
+    "イマジンポンポンを実行できる状態。"
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 214701,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": true,
+  "is_permanent": true,
+  "inflicted_by_actor": true,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 197,
+  "source_abilities": [
+    {
+      "id": 34664,
+      "name": "ピクトポンポン",
+      "description": "「ポンポン」の絵素を描く。\n自身が非戦闘状態であれば詠唱時間無しで詠唱することができる。\n発動条件：アニマルキャンバスに絵素が描かれていない\nこの魔法は固有のリキャストタイマーを持ち、装備やステータスなどによって変化しない。\nまた、実行すると他のウェポンスキルと魔法にこのアクションと同じリキャストタイムが発生する。\n\n※このアクションはホットバーに登録することはできない。\n\u3000発動条件を満たすとピクトアニマルがピクトポンポンに変化する。",
+      "description_macro": "<colortype(500)><edgecolortype(501)>「ポンポン」<edgecolortype(0)><colortype(0)>の絵素を描く。<br>自身が非戦闘状態であれば詠唱時間無しで詠唱することができる。<br><colortype(504)><edgecolortype(505)>発動条件：<edgecolortype(0)><colortype(0)>アニマルキャンバスに絵素が描かれていない<br>この魔法は固有のリキャストタイマーを持ち、装備やステータスなどによって変化しない。<br>また、実行すると他のウェポンスキルと魔法にこのアクションと同じリキャストタイムが発生する。<br><br><colortype(506)><edgecolortype(507)>※このアクションはホットバーに登録することはできない。<br>\u3000発動条件を満たすとピクトアニマルがピクトポンポンに変化する。<edgecolortype(0)><colortype(0)>",
+      "unlock_level": 30,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Magical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 42,
+          "name": "ピクトマンサー",
+          "abbreviation": "PCT",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

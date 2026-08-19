@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 2964,
+  "name": "光神のフィナーレ",
+  "description": "与ダメージが上昇した状態。",
+  "effects": [
+    "与ダメージが上昇した状態。"
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 212624,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 5
+  },
+  "class_job_category_id": 24,
+  "source_abilities": [
+    {
+      "id": 25785,
+      "name": "光神のフィナーレ",
+      "description": "一定時間、自身と周囲のパーティメンバーの与ダメージを上昇させる。\u3000効果時間：20秒\nこのアクションの効果量は、自身に付与されている「コーダシンボル」の種類数により変化する。\nシンボルが1種類のときの効果量：2％\nシンボルが2種類のときの効果量：4％\nシンボルが3種類のときの効果量：6％\n追加効果：自身に「光神のアンコール実行可」を付与する。\n効果時間：30秒\n発動条件：コーダシンボルが1つ以上付与されている",
+      "description_macro": "一定時間、自身と周囲のパーティメンバーの与ダメージを上昇させる。\u3000<colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>20秒<br>このアクションの効果量は、自身に付与されている<colortype(500)><edgecolortype(501)>「コーダシンボル」<edgecolortype(0)><colortype(0)>の種類数により変化する。<br><colortype(504)><edgecolortype(505)>シンボルが1種類のときの効果量：<edgecolortype(0)><colortype(0)>2％<br><colortype(504)><edgecolortype(505)>シンボルが2種類のときの効果量：<edgecolortype(0)><colortype(0)>4％<br><colortype(504)><edgecolortype(505)>シンボルが3種類のときの効果量：<edgecolortype(0)><colortype(0)>6％<br><if([gnum68==23],<if([gnum72>=100],<colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)>自身に<colortype(500)><edgecolortype(501)>「光神のアンコール実行可」<edgecolortype(0)><colortype(0)>を付与する。<br><colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>30秒<br>,)>,)><colortype(504)><edgecolortype(505)>発動条件：<edgecolortype(0)><colortype(0)>コーダシンボルが1つ以上付与されている",
+      "unlock_level": 90,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Physical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 23,
+          "name": "吟遊詩人",
+          "abbreviation": "BRD",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

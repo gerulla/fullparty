@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 174,
+  "name": "Verbessertes Henochisch",
+  "description": "Gewährt Polyglott, wenn Henochisch mindestens 30 Sekunden lang aktiv war. Verbessert außerdem die Erhöhung des Magieschadens durch Henochisch auf 10 %.",
+  "description_macro": "Gewährt <colortype(506)><edgecolortype(507)>Polyglott<edgecolortype(0)><colortype(0)>, wenn <colortype(506)><edgecolortype(507)>Henochisch<edgecolortype(0)><colortype(0)> mindestens 30 Sekunden lang aktiv war. Verbessert außerdem die Erhöhung des Magieschadens durch <colortype(506)><edgecolortype(507)>Henochisch<edgecolortype(0)><colortype(0)> auf 10<nbsp>%.",
+  "effects": [
+    "Gewährt Polyglott, wenn Henochisch mindestens 30 Sekunden lang aktiv war. Verbessert außerdem die Erhöhung des Magieschadens durch Henochisch auf 10 %."
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 25,
+    "name": "Schwarzmagier",
+    "abbreviation": "SMA"
+  },
+  "unlock_level": 70,
+  "value": 5,
+  "icon": {
+    "id": 5360,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 26,
+  "source_class_job_id": 25
+}

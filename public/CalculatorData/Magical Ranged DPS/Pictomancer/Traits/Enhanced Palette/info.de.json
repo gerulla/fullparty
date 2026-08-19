@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 542,
+  "name": "Verbesserte Palette",
+  "description": "Bei erfolgreicher Ausführung von Subtraktive Palette wird dir Invertierung gewährt. Invertierung wandelt einen Stapel Weiße Pikto-Farbe in Schwarze Pikto-Farbe um.",
+  "description_macro": "Bei erfolgreicher Ausführung von <colortype(506)><edgecolortype(507)>Subtraktive Palette<edgecolortype(0)><colortype(0)> wird dir <colortype(506)><edgecolortype(507)>Invertierung<edgecolortype(0)><colortype(0)> gewährt. <colortype(506)><edgecolortype(507)>Invertierung<edgecolortype(0)><colortype(0)> wandelt einen Stapel <colortype(506)><edgecolortype(507)>Weiße Pikto-Farbe<edgecolortype(0)><colortype(0)> in <colortype(506)><edgecolortype(507)>Schwarze Pikto-Farbe<edgecolortype(0)><colortype(0)> um.",
+  "effects": [
+    "Bei erfolgreicher Ausführung von Subtraktive Palette wird dir Invertierung gewährt. Invertierung wandelt einen Stapel Weiße Pikto-Farbe in Schwarze Pikto-Farbe um."
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 42,
+    "name": "Piktomant",
+    "abbreviation": "PKT"
+  },
+  "unlock_level": 90,
+  "value": 0,
+  "icon": {
+    "id": 6556,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 197,
+  "source_class_job_id": 42
+}

@@ -1,0 +1,88 @@
+{
+  "kind": "ability",
+  "id": 2878,
+  "name": "Wildfire",
+  "description": "Covers target's body in a slow-burning pitch. Action is changed to Detonator for the duration of the effect.\nDeals damage when time expires or upon executing Detonator.\nPotency is increased by 240 for each of your own weaponskills you land prior to the end of the effect.\nCan be stacked up to 6 times.\nDuration: 10s",
+  "description_macro": "Covers target's body in a slow-burning pitch. Action is changed to <colortype(500)><edgecolortype(501)>Detonator<edgecolortype(0)><colortype(0)> for the duration of the effect.<br>Deals damage when time expires or upon executing <colortype(500)><edgecolortype(501)>Detonator<edgecolortype(0)><colortype(0)>.<br>Potency is increased by <if([gnum68==31],<if([gnum72>=78],240,100)>,100)> for each of your own weaponskills you land prior to the end of the effect.<br>Can be stacked up to 6 times.<br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>10s",
+  "effects": [
+    "Covers target's body in a slow-burning pitch. Action is changed to Detonator for the duration of the effect.",
+    "Deals damage when time expires or upon executing Detonator.",
+    "Potency is increased by 240 for each of your own weaponskills you land prior to the end of the effect.",
+    "Can be stacked up to 6 times.",
+    "Duration: 10s"
+  ],
+  "role": "Physical Ranged DPS",
+  "job": {
+    "id": 31,
+    "name": "Machinist",
+    "abbreviation": "MCH"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 45,
+  "icon": {
+    "id": 3018,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 4,
+    "name": "Ability"
+  },
+  "attack_type": {
+    "id": 4294967295,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 120,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 20,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 0,
+      "value": 0
+    },
+    "secondary": {
+      "type_id": 0,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": -1,
+    "effect_yalms": 0,
+    "cast_type": 1
+  },
+  "targeting": {
+    "self": false,
+    "party": false,
+    "alliance": false,
+    "hostile": true,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 7,
+    "behavior_type": 0,
+    "class_job_category_id": 96,
+    "source_class_job_id": 31,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

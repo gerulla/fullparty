@@ -1,0 +1,86 @@
+{
+  "kind": "ability",
+  "id": 24288,
+  "name": "Physis",
+  "description": "Du regenerierst schrittweise eigene LP und die von umstehenden Gruppenmitgliedern.\nHeilpotenzial: 100\nDauer: 15 Sekunden",
+  "description_macro": "Du regenerierst schrittweise eigene LP und die von umstehenden Grup<->pen<->mit<->gliedern.<br>Heilpotenzial: 100<br>Dauer: 15 Sekunden",
+  "effects": [
+    "Du regenerierst schrittweise eigene LP und die von umstehenden Gruppenmitgliedern.",
+    "Heilpotenzial: 100",
+    "Dauer: 15 Sekunden"
+  ],
+  "role": "Healer",
+  "job": {
+    "id": 40,
+    "name": "Weiser",
+    "abbreviation": "WEI"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 20,
+  "icon": {
+    "id": 3656,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 4,
+    "name": "Talent"
+  },
+  "attack_type": {
+    "id": 0,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 60,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 11,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 0,
+      "value": 0
+    },
+    "secondary": {
+      "type_id": 63,
+      "value": 510
+    }
+  },
+  "range": {
+    "target_yalms": 0,
+    "effect_yalms": 20,
+    "cast_type": 2
+  },
+  "targeting": {
+    "self": true,
+    "party": false,
+    "alliance": false,
+    "hostile": false,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": false
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 0,
+    "behavior_type": 0,
+    "class_job_category_id": 181,
+    "source_class_job_id": 40,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

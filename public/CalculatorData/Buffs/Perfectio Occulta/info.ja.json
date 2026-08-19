@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 3859,
+  "name": "ペルフェクティオ待機",
+  "description": "効果中にコムニオを実行すると「ペルフェクティオ実行可」に変化する状態。",
+  "effects": [
+    "効果中にコムニオを実行すると「ペルフェクティオ実行可」に変化する状態。"
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 212942,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 180,
+  "source_abilities": [
+    {
+      "id": 24385,
+      "name": "プレンティフルハーベスト",
+      "description": "対象に向かって前方直線範囲物理攻撃。\nこのアクションの威力は、自身に付与されている「死の供物」のスタック数により変化する。\n威力：720～1000\n2体目以降の対象への威力は20％減少する。\n実行時に「死の供物」を全て消費する。\n追加効果：自身に「レムールシュラウド実行可」を付与する。\n効果時間：30秒\n追加効果：自身に「ペルフェクティオ待機」を付与する。\n効果時間：30秒\nペルフェクティオ待機効果：効果中にコムニオを実行すると「ペルフェクティオ実行可」に変化する。\n発動条件：「死の供儀」非効果中かつ「死の供物」1以上",
+      "description_macro": "対象に向かって前方直線範囲物理攻撃。<br>このアクションの威力は、自身に付与されている<colortype(500)><edgecolortype(501)>「死の供物」<edgecolortype(0)><colortype(0)>のスタック数により変化する。<br><colortype(504)><edgecolortype(505)>威力：<edgecolortype(0)><colortype(0)>720～1000<br>2体目以降の対象への威力は20％減少する。<br>実行時に<colortype(500)><edgecolortype(501)>「死の供物」<edgecolortype(0)><colortype(0)>を全て消費する。<br><colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)>自身に<colortype(500)><edgecolortype(501)>「レムールシュラウド実行可」<edgecolortype(0)><colortype(0)>を付与する。<br><colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>30秒<br><if([gnum68==39],<if([gnum72>=100],<colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)>自身に<colortype(500)><edgecolortype(501)>「ペルフェクティオ待機」<edgecolortype(0)><colortype(0)>を付与する。<br><colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>30秒<br><colortype(504)><edgecolortype(505)>ペルフェクティオ待機効果：<edgecolortype(0)><colortype(0)>効果中にコムニオを実行すると<colortype(500)><edgecolortype(501)>「ペルフェクティオ実行可」<edgecolortype(0)><colortype(0)>に変化する。<br>,)>,)><colortype(504)><edgecolortype(505)>発動条件：<edgecolortype(0)><colortype(0)><colortype(500)><edgecolortype(501)>「死の供儀」<edgecolortype(0)><colortype(0)>非効果中かつ<colortype(500)><edgecolortype(501)>「死の供物」<edgecolortype(0)><colortype(0)>1以上",
+      "unlock_level": 88,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 39,
+          "name": "リーパー",
+          "abbreviation": "RPR",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "kind": "trait",
+  "id": 252,
+  "name": "Plume Burlesque",
+  "description": "Gewährt einen Stapel Plume Burlesque bei Treffer mit bestimmten Kommandos.\nMaximalstapelzahl: 4",
+  "description_macro": "Gewährt einen Stapel <colortype(500)><edgecolortype(501)>Plume Burlesque<edgecolortype(0)><colortype(0)> bei Treffer mit bestimmten Kommandos.<br>Ma<->xi<->mal<->sta<->pel<->zahl: 4",
+  "effects": [
+    "Gewährt einen Stapel Plume Burlesque bei Treffer mit bestimmten Kommandos.",
+    "Maximalstapelzahl: 4"
+  ],
+  "role": "Physical Ranged DPS",
+  "job": {
+    "id": 38,
+    "name": "Tänzer",
+    "abbreviation": "TÄN"
+  },
+  "unlock_level": 30,
+  "value": 0,
+  "icon": {
+    "id": 6352,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 150,
+  "source_class_job_id": 38
+}

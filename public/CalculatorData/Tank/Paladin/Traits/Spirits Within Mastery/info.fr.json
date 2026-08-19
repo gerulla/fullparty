@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 415,
+  "name": "Maîtrise d'Esprits intérieurs",
+  "description": "Remplace Esprits intérieurs par Expiation.",
+  "description_macro": "Remplace <colortype(500)><edgecolortype(501)>Esprits intérieurs<edgecolortype(0)><colortype(0)> par <colortype(500)><edgecolortype(501)>Expiation<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Remplace Esprits intérieurs par Expiation."
+  ],
+  "role": "Tank",
+  "job": {
+    "id": 19,
+    "name": "Paladin",
+    "abbreviation": "PLD"
+  },
+  "unlock_level": 86,
+  "value": 0,
+  "icon": {
+    "id": 5221,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 20,
+  "source_class_job_id": 19
+}

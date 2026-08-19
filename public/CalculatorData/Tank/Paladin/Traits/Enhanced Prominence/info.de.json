@@ -1,0 +1,29 @@
+{
+  "kind": "trait",
+  "id": 261,
+  "name": "Verbesserte Protuberanz",
+  "description": "Protuberanz werden die folgenden Effekte hinzugefügt:\nBonus: MP-Regeneration\nBonus: Göttliche Gunst\nDauer: 30 Sekunden\nEffekt von Göttliche Gunst: Der nächste Heilige Geist oder Heilige Kreis kann sofort gewirkt werden und hat einen erhöhten Attacke-Wert.\nBedingung: Erfolgreiches Ausführen einer Kombo mit Protuberanz.",
+  "description_macro": "<colortype(502)><edgecolortype(503)>Protuberanz<edgecolortype(0)><colortype(0)> werden die folgenden Effekte hinzugefügt:<br>Bonus: MP-Regeneration<br>Bonus: <colortype(506)><edgecolortype(507)>Göttliche Gunst<edgecolortype(0)><colortype(0)><br>Dauer: 30 Sekunden<br>Effekt von <colortype(506)><edgecolortype(507)>Göttliche Gunst<edgecolortype(0)><colortype(0)>: Der nächste <colortype(502)><edgecolortype(503)>Heilige Geist<edgecolortype(0)><colortype(0)> oder <colortype(502)><edgecolortype(503)>Heilige Kreis<edgecolortype(0)><colortype(0)> kann sofort gewirkt werden und hat einen erhöhten Attacke-Wert.<br>Bedingung: Erfolgreiches Ausführen einer Kombo mit <colortype(502)><edgecolortype(503)>Protuberanz<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Protuberanz werden die folgenden Effekte hinzugefügt:",
+    "Bonus: MP-Regeneration",
+    "Bonus: Göttliche Gunst",
+    "Dauer: 30 Sekunden",
+    "Effekt von Göttliche Gunst: Der nächste Heilige Geist oder Heilige Kreis kann sofort gewirkt werden und hat einen erhöhten Attacke-Wert.",
+    "Bedingung: Erfolgreiches Ausführen einer Kombo mit Protuberanz."
+  ],
+  "role": "Tank",
+  "job": {
+    "id": 19,
+    "name": "Paladin",
+    "abbreviation": "PLD"
+  },
+  "unlock_level": 72,
+  "value": 0,
+  "icon": {
+    "id": 5214,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 20,
+  "source_class_job_id": 19
+}

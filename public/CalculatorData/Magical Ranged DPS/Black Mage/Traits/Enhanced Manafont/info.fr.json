@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 463,
+  "name": "Vasque de mana améliorée",
+  "description": "Réduit à 100s le temps de recharge de Vasque de mana.",
+  "description_macro": "Réduit à 100s le temps de recharge de <colortype(500)><edgecolortype(501)>Vasque de mana<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Réduit à 100s le temps de recharge de Vasque de mana."
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 25,
+    "name": "Mage Noir",
+    "abbreviation": "MNO"
+  },
+  "unlock_level": 84,
+  "value": -200,
+  "icon": {
+    "id": 5371,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 26,
+  "source_class_job_id": 25
+}

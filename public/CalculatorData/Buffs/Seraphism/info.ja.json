@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 3884,
+  "name": "セラフィズム",
+  "description": "自身と周囲のパーティメンバーのＨＰを継続回復している状態。",
+  "effects": [
+    "自身と周囲のパーティメンバーのＨＰを継続回復している状態。"
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 212820,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 50,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 29,
+  "source_abilities": [
+    {
+      "id": 37014,
+      "name": "セラフィズム",
+      "description": "一定時間、自身と周囲50m以内にいるパーティメンバーのＨＰを継続回復する。\u3000回復力：100\u3000効果時間：20秒\n追加効果：鼓舞激励の策がマニフェステーションに、意気軒昂の策がアクセッションにそれぞれ変化する。\nさらに、応急戦術のリキャストタイムをリセットし、かつリキャストタイムを1秒に短縮する。\n転化とは同時に付与されない。\n発動条件：自身が戦闘状態かつフェアリーまたはセラフィムが存在する",
+      "description_macro": "一定時間、自身と周囲50m以内にいるパーティメンバーのＨＰを継続回復する。\u3000<colortype(504)><edgecolortype(505)>回復力：<edgecolortype(0)><colortype(0)>100\u3000<colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>20秒<br><colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)>鼓舞激励の策がマニフェステーションに、意気軒昂の策がアクセッションにそれぞれ変化する。<br>さらに、応急戦術のリキャストタイムをリセットし、かつリキャストタイムを1秒に短縮する。<br>転化とは同時に付与されない。<br><colortype(504)><edgecolortype(505)>発動条件：<edgecolortype(0)><colortype(0)>自身が戦闘状態かつフェアリーまたはセラフィムが存在する",
+      "unlock_level": 100,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Healer"
+      ],
+      "jobs": [
+        {
+          "id": 28,
+          "name": "学者",
+          "abbreviation": "SCH",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

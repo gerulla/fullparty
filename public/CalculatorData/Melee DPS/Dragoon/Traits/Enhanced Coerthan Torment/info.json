@@ -1,0 +1,27 @@
+{
+  "kind": "trait",
+  "id": 435,
+  "name": "Enhanced Coerthan Torment",
+  "description": "Grants the effect of Draconian Fire after successfully completing a combo with Coerthan Torment.\nDuration: 30s\nEffect of Draconian Fire ends upon execution of any melee weaponskill.\nUpgrades Doom Spike to Draconian Fury while under the effect of Draconian Fire.",
+  "description_macro": "Grants the effect of <colortype(506)><edgecolortype(507)>Draconian Fire<edgecolortype(0)><colortype(0)> after successfully completing a combo with <colortype(500)><edgecolortype(501)>Coerthan Torment<edgecolortype(0)><colortype(0)>.<br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>30s<br>Effect of <colortype(506)><edgecolortype(507)>Draconian Fire<edgecolortype(0)><colortype(0)> ends upon execution of any melee weaponskill.<br>Upgrades <colortype(500)><edgecolortype(501)>Doom Spike<edgecolortype(0)><colortype(0)> to <colortype(500)><edgecolortype(501)>Draconian Fury<edgecolortype(0)><colortype(0)> while under the effect of <colortype(506)><edgecolortype(507)>Draconian Fire<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Grants the effect of Draconian Fire after successfully completing a combo with Coerthan Torment.",
+    "Duration: 30s",
+    "Effect of Draconian Fire ends upon execution of any melee weaponskill.",
+    "Upgrades Doom Spike to Draconian Fury while under the effect of Draconian Fire."
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 22,
+    "name": "Dragoon",
+    "abbreviation": "DRG"
+  },
+  "unlock_level": 82,
+  "value": 0,
+  "icon": {
+    "id": 5290,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 23,
+  "source_class_job_id": 22
+}

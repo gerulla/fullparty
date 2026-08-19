@@ -1,0 +1,88 @@
+{
+  "kind": "ability",
+  "id": 16537,
+  "name": "光の囁き",
+  "description": "召喚しているフェアリーに「光の囁き」を実行させる。\nセラフィムを召喚している場合は「光輝の囁き」を実行させる。\n\n周囲のパーティメンバーのＨＰを継続回復する。\n回復力：80\u3000効果時間：21秒\n発動条件：フェアリーまたはセラフィムが存在する",
+  "description_macro": "召喚しているフェアリーに<colortype(500)><edgecolortype(501)>「光の囁き」<edgecolortype(0)><colortype(0)>を実行させる。<br><if([gnum68==28],<if([gnum72>=80],セラフィムを召喚している場合は<colortype(500)><edgecolortype(501)>「光輝の囁き」<edgecolortype(0)><colortype(0)>を実行させる。<br>,)>,)><br>周囲のパーティメンバーのＨＰを継続回復する。<br><colortype(504)><edgecolortype(505)>回復力：<edgecolortype(0)><colortype(0)>80\u3000<colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>21秒<br><colortype(504)><edgecolortype(505)>発動条件：<edgecolortype(0)><colortype(0)><if([gnum68==28],<if([gnum72>=80],フェアリーまたはセラフィム,フェアリー)>,フェアリー)>が存在する",
+  "effects": [
+    "召喚しているフェアリーに「光の囁き」を実行させる。",
+    "セラフィムを召喚している場合は「光輝の囁き」を実行させる。",
+    "周囲のパーティメンバーのＨＰを継続回復する。",
+    "回復力：80\u3000効果時間：21秒",
+    "発動条件：フェアリーまたはセラフィムが存在する"
+  ],
+  "role": "Healer",
+  "job": {
+    "id": 28,
+    "name": "学者",
+    "abbreviation": "SCH"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 20,
+  "icon": {
+    "id": 2852,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 4,
+    "name": "アビリティ"
+  },
+  "attack_type": {
+    "id": 0,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 60,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 15,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 0,
+      "value": 0
+    },
+    "secondary": {
+      "type_id": 40,
+      "value": 1
+    }
+  },
+  "range": {
+    "target_yalms": 0,
+    "effect_yalms": 0,
+    "cast_type": 1
+  },
+  "targeting": {
+    "self": true,
+    "party": false,
+    "alliance": false,
+    "hostile": false,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": false
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 0,
+    "behavior_type": 0,
+    "class_job_category_id": 29,
+    "source_class_job_id": 28,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 30
+  }
+}

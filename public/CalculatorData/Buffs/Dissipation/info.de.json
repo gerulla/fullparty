@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 791,
+  "name": "Dissipation",
+  "description": "Wirkung von Heilmagie ist erhöht.",
+  "effects": [
+    "Wirkung von Heilmagie ist erhöht."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 212805,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": true,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 50,
+  "parameter": {
+    "effect": 0,
+    "modifier": 30
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 3587,
+      "name": "Dissipation",
+      "description": "Du schickst deine Fee weg, um im Gegenzug die maximale Stapelzahl Ätherfluss zu erhalten. Außerdem ist die Wirkung deiner Heilmagie um 20 % erhöht.\nDauer: 30 Sekunden\nNach Ende der Wirkungsdauer kommt die Fee wieder zurück.\nWährend der Wirkungsdauer kann Eos-Beschwörung nicht ausgeführt werden.\nBedingung: Im Kampf und Fee ist anwesend",
+      "description_macro": "Du schickst deine Fee weg, um im Gegenzug die maximale Stapelzahl <colortype(506)><edgecolortype(507)>Ätherfluss<edgecolortype(0)><colortype(0)> zu erhalten. Außerdem ist die Wirkung deiner Heilmagie um 20<nbsp>% erhöht.<br>Dauer: 30 Sekunden<br>Nach Ende der Wirkungsdauer kommt die Fee wieder zurück.<br>Während der Wirkungsdauer kann <colortype(502)><edgecolortype(503)>Eos-Beschwörung<edgecolortype(0)><colortype(0)> nicht ausgeführt werden.<br>Bedingung: Im Kampf und Fee ist anwesend",
+      "unlock_level": 60,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Healer"
+      ],
+      "jobs": [
+        {
+          "id": 28,
+          "name": "Gelehrter",
+          "abbreviation": "GLT",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

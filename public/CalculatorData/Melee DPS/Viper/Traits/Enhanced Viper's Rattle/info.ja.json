@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 530,
+  "name": "飛蛇の魂効果アップ",
+  "description": "「飛蛇の魂」の最大スタック数が3に増加する。",
+  "description_macro": "<colortype(500)><edgecolortype(501)>「飛蛇の魂」<edgecolortype(0)><colortype(0)>の最大スタック数が3に増加する。",
+  "effects": [
+    "「飛蛇の魂」の最大スタック数が3に増加する。"
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 41,
+    "name": "ヴァイパー",
+    "abbreviation": "VPR"
+  },
+  "unlock_level": 88,
+  "value": 0,
+  "icon": {
+    "id": 6507,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 196,
+  "source_class_job_id": 41
+}

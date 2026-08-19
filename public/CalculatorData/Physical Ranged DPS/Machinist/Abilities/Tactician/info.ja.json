@@ -1,0 +1,85 @@
+{
+  "kind": "ability",
+  "id": 16889,
+  "name": "タクティシャン",
+  "description": "一定時間、自身と周囲のパーティメンバーの被ダメージを15％軽減させる。\u3000効果時間：15秒\n吟遊詩人のトルバドゥール、踊り子の守りのサンバとは同時に付与されない。",
+  "description_macro": "一定時間、自身と周囲のパーティメンバーの被ダメージを<if([gnum68==31],<if([gnum72>=98],15,10)>,10)>％軽減させる。\u3000<colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>15秒<br>吟遊詩人のトルバドゥール、踊り子の守りのサンバとは同時に付与されない。",
+  "effects": [
+    "一定時間、自身と周囲のパーティメンバーの被ダメージを15％軽減させる。\u3000効果時間：15秒",
+    "吟遊詩人のトルバドゥール、踊り子の守りのサンバとは同時に付与されない。"
+  ],
+  "role": "Physical Ranged DPS",
+  "job": {
+    "id": 31,
+    "name": "機工士",
+    "abbreviation": "MCH"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 56,
+  "icon": {
+    "id": 3040,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 4,
+    "name": "アビリティ"
+  },
+  "attack_type": {
+    "id": 0,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 120,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 22,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 0,
+      "value": 0
+    },
+    "secondary": {
+      "type_id": 0,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": 0,
+    "effect_yalms": 30,
+    "cast_type": 2
+  },
+  "targeting": {
+    "self": true,
+    "party": false,
+    "alliance": false,
+    "hostile": false,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": false
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 0,
+    "behavior_type": 0,
+    "class_job_category_id": 96,
+    "source_class_job_id": 31,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

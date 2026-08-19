@@ -1,0 +1,218 @@
+{
+  "kind": "combat_status",
+  "id": 2513,
+  "name": "Poing informe",
+  "description": "Les techniques d'arme requérant la posture de l'opo-opo, du raptor ou du coeurl peuvent être utilisées, et leurs effets additionnels sont appliqués le cas échéant.",
+  "effects": [
+    "Les techniques d'arme requérant la posture de l'opo-opo, du raptor ou du coeurl peuvent être utilisées, et leurs effets additionnels sont appliqués le cas échéant."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 212535,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": true,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 21,
+  "source_abilities": [
+    {
+      "id": 3543,
+      "name": "Coup de pied tornade",
+      "description": "Effectue une attaque physique sur la cible et les ennemis autour.\nPuissance : 1200\nLa puissance est réduite de 35% au-delà du premier ennemi touché.\nEffet additionnel : vous octroie Poing informe.\nDurée : 30s\nPoing informe : vous permet d'utiliser les techniques d'arme requérant une posture particulière sans être dans cette posture. Les effets additionnels associés seront appliqués.\nCondition : trois Chakras bestiaux, Nadi lunaire et Nadi solaire.\n\n* Cette action ne peut pas être ajoutée aux barres de raccourcis.\nRemplace Blitz magistral lorsque les conditions sont réunies.",
+      "description_macro": "Effectue une attaque physique sur la cible et les ennemis autour.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> 1200<br>La puissance est réduite de 35% au-delà du premier ennemi touché.<br><colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> vous octroie <colortype(500)><edgecolortype(501)>Poing informe<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 30s<br><colortype(506)><edgecolortype(507)>Poing informe<nbsp>:<edgecolortype(0)><colortype(0)> vous permet d'utiliser les techniques d'arme requérant une posture par<->ti<->cu<->liè<->re sans être dans cette posture. Les effets additionnels associés seront appliqués.<br><colortype(506)><edgecolortype(507)>Condition<nbsp>:<edgecolortype(0)><colortype(0)> trois <colortype(500)><edgecolortype(501)>Chakras bestiaux<edgecolortype(0)><colortype(0)>, <colortype(500)><edgecolortype(501)>Nadi lunaire<edgecolortype(0)><colortype(0)> et <colortype(500)><edgecolortype(501)>Nadi solaire<edgecolortype(0)><colortype(0)>.<br><br><colortype(504)><edgecolortype(505)>* Cette action ne peut pas être ajoutée aux barres de raccourcis.<br>Remplace <colortype(500)><edgecolortype(501)>Blitz magistral<edgecolortype(0)><colortype(0)> lorsque les conditions sont réunies.<edgecolortype(0)><colortype(0)>",
+      "unlock_level": 60,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 20,
+          "name": "Moine",
+          "abbreviation": "MOI",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 3545,
+      "name": "Champ-élixir",
+      "description": "Effectue une attaque physique sur les ennemis alentour.\nPuissance : 800\nLa puissance est réduite de 35% au-delà du premier ennemi touché.\nEffet additionnel : ouvre le Nadi lunaire.\nEffet additionnel : vous octroie Poing informe.\nDurée : 30s\nPoing informe : vous permet d'utiliser les techniques d'arme requérant une posture particulière sans être dans cette posture. Les effets additionnels associés seront appliqués.\nCondition : trois Chakras bestiaux identiques.\n\n* Cette action ne peut pas être ajoutée aux barres de raccourcis.\nRemplace Blitz magistral lorsque les conditions sont réunies.",
+      "description_macro": "Effectue une attaque physique sur les ennemis alentour.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> 800<br>La puissance est réduite de 35% au-delà du premier ennemi touché.<br><colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> ouvre le <colortype(500)><edgecolortype(501)>Nadi lunaire<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> vous octroie <colortype(500)><edgecolortype(501)>Poing informe<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 30s<br><colortype(506)><edgecolortype(507)>Poing informe<nbsp>:<edgecolortype(0)><colortype(0)> vous permet d'utiliser les techniques d'arme requérant une posture par<->ti<->cu<->liè<->re sans être dans cette posture. Les effets additionnels associés seront appliqués.<br><colortype(506)><edgecolortype(507)>Condition<nbsp>:<edgecolortype(0)><colortype(0)> trois <colortype(500)><edgecolortype(501)>Chakras bestiaux<edgecolortype(0)><colortype(0)> identiques.<br><br><colortype(504)><edgecolortype(505)>* Cette action ne peut pas être ajoutée aux barres de raccourcis.<br>Remplace <colortype(500)><edgecolortype(501)>Blitz magistral<edgecolortype(0)><colortype(0)> lorsque les conditions sont réunies.<edgecolortype(0)><colortype(0)>",
+      "unlock_level": 60,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 20,
+          "name": "Moine",
+          "abbreviation": "MOI",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 4262,
+      "name": "Glissement de posture",
+      "description": "Vous octroie Poing informe.\nDurée : 30s\nPoing informe : vous permet d'utiliser les techniques d'arme requérant une posture particulière sans être dans cette posture.\nLes effets additionnels associés seront appliqués.",
+      "description_macro": "Vous octroie <colortype(500)><edgecolortype(501)>Poing informe<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 30s<br><colortype(506)><edgecolortype(507)>Poing informe<nbsp>:<edgecolortype(0)><colortype(0)> vous permet d'utiliser les techniques d'arme requérant une posture par<->ti<->cu<->liè<->re sans être dans cette posture.<br>Les effets additionnels associés seront appliqués.",
+      "unlock_level": 52,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 20,
+          "name": "Moine",
+          "abbreviation": "MOI",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 25765,
+      "name": "Révolution céleste",
+      "description": "Effectue une attaque physique sur la cible.\nPuissance : 600\nEffet additionnel : ouvre le Nadi lunaire, ou le Nadi solaire si vous l'aviez déjà.\nEffet additionnel : vous octroie Poing informe.\nDurée : 30s\nPoing informe : vous permet d'utiliser les techniques d'arme requérant une posture particulière sans être dans cette posture. Les effets additionnels associés seront appliqués.\nCondition : trois Chakras bestiaux de deux types différents.\n\n* Cette action ne peut pas être ajoutée aux barres de raccourcis.\nRemplace Blitz magistral lorsque les conditions sont réunies.",
+      "description_macro": "Effectue une attaque physique sur la cible.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> 600<br><colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> ouvre le <colortype(500)><edgecolortype(501)>Nadi lunaire<edgecolortype(0)><colortype(0)>, ou le <colortype(500)><edgecolortype(501)>Nadi solaire<edgecolortype(0)><colortype(0)> si vous l'aviez déjà.<br><colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> vous octroie <colortype(500)><edgecolortype(501)>Poing informe<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 30s<br><colortype(506)><edgecolortype(507)>Poing informe<nbsp>:<edgecolortype(0)><colortype(0)> vous permet d'utiliser les techniques d'arme requérant une posture par<->ti<->cu<->liè<->re sans être dans cette posture. Les effets additionnels associés seront appliqués.<br><colortype(506)><edgecolortype(507)>Condition<nbsp>:<edgecolortype(0)><colortype(0)> trois <colortype(500)><edgecolortype(501)>Chakras bestiaux<edgecolortype(0)><colortype(0)> de deux types différents.<br><br><colortype(504)><edgecolortype(505)>* Cette action ne peut pas être ajoutée aux barres de raccourcis.<br>Remplace <colortype(500)><edgecolortype(501)>Blitz magistral<edgecolortype(0)><colortype(0)> lorsque les conditions sont réunies.<edgecolortype(0)><colortype(0)>",
+      "unlock_level": 60,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 20,
+          "name": "Moine",
+          "abbreviation": "MOI",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 25768,
+      "name": "Danse du Phénix",
+      "description": "Effectue une attaque physique de feu sur les ennemis alentour.\nPuissance : 900\nLa puissance est réduite de 35% au-delà du premier ennemi touché.\nEffet additionnel : ouvre le Nadi solaire.\nEffet additionnel : vous octroie Poing informe.\nDurée : 30s\nPoing informe : vous permet d'utiliser les techniques d'arme requérant une posture particulière sans être dans cette posture. Les effets additionnels associés seront appliqués.\nCondition : trois Chakras bestiaux différents.\n\n* Cette action ne peut pas être ajoutée aux barres de raccourcis.\nRemplace Blitz magistral lorsque les conditions sont réunies.",
+      "description_macro": "Effectue une attaque physique de feu sur les ennemis alentour.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> 900<br>La puissance est réduite de 35% au-delà du premier ennemi touché.<br><colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> ouvre le <colortype(500)><edgecolortype(501)>Nadi solaire<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> vous octroie <colortype(500)><edgecolortype(501)>Poing informe<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 30s<br><colortype(506)><edgecolortype(507)>Poing informe<nbsp>:<edgecolortype(0)><colortype(0)> vous permet d'utiliser les techniques d'arme requérant une posture par<->ti<->cu<->liè<->re sans être dans cette posture. Les effets additionnels associés seront appliqués.<br><colortype(506)><edgecolortype(507)>Condition<nbsp>:<edgecolortype(0)><colortype(0)> trois <colortype(500)><edgecolortype(501)>Chakras bestiaux<edgecolortype(0)><colortype(0)> différents.<br><br><colortype(504)><edgecolortype(505)>* Cette action ne peut pas être ajoutée aux barres de raccourcis.<br>Remplace <colortype(500)><edgecolortype(501)>Blitz magistral<edgecolortype(0)><colortype(0)> lorsque les conditions sont réunies.<edgecolortype(0)><colortype(0)>",
+      "unlock_level": 86,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 20,
+          "name": "Moine",
+          "abbreviation": "MOI",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 25769,
+      "name": "Rixe évanescente",
+      "description": "Effectue une attaque physique sur la cible et les ennemis autour.\nPuissance : 1500\nLa puissance est réduite de 35% au-delà du premier ennemi touché.\nEffet additionnel : vous octroie Poing informe.\nDurée : 30s\nPoing informe : vous permet d'utiliser les techniques d'arme requérant une posture particulière sans être dans cette posture. Les effets additionnels associés seront appliqués.\nCondition : trois Chakras bestiaux, Nadi lunaire et Nadi solaire.\n\n* Cette action ne peut pas être ajoutée aux barres de raccourcis.\nRemplace Blitz magistral lorsque les conditions sont réunies.",
+      "description_macro": "Effectue une attaque physique sur la cible et les ennemis autour.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> <if([gnum68==20],<if([gnum72>=94],1500,1400)>,1400)><br>La puissance est réduite de 35% au-delà du premier ennemi touché.<br><colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> vous octroie <colortype(500)><edgecolortype(501)>Poing informe<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 30s<br><colortype(506)><edgecolortype(507)>Poing informe<nbsp>:<edgecolortype(0)><colortype(0)> vous permet d'utiliser les techniques d'arme requérant une posture par<->ti<->cu<->liè<->re sans être dans cette posture. Les effets additionnels associés seront appliqués.<br><colortype(506)><edgecolortype(507)>Condition<nbsp>:<edgecolortype(0)><colortype(0)> trois <colortype(500)><edgecolortype(501)>Chakras bestiaux<edgecolortype(0)><colortype(0)>, <colortype(500)><edgecolortype(501)>Nadi lunaire<edgecolortype(0)><colortype(0)> et <colortype(500)><edgecolortype(501)>Nadi solaire<edgecolortype(0)><colortype(0)>.<br><br><colortype(504)><edgecolortype(505)>* Cette action ne peut pas être ajoutée aux barres de raccourcis.<br>Remplace <colortype(500)><edgecolortype(501)>Blitz magistral<edgecolortype(0)><colortype(0)> lorsque les conditions sont réunies.<edgecolortype(0)><colortype(0)>",
+      "unlock_level": 90,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 20,
+          "name": "Moine",
+          "abbreviation": "MOI",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 25882,
+      "name": "Départ de flammes",
+      "description": "Effectue une attaque physique sur les ennemis alentour.\nPuissance : 800\nLa puissance est réduite de 35% au-delà du premier ennemi touché.\nEffet additionnel : ouvre le Nadi solaire.\nEffet additionnel : vous octroie Poing informe.\nDurée : 30s\nPoing informe : vous permet d'utiliser les techniques d'arme requérant une posture particulière sans être dans cette posture. Les effets additionnels associés seront appliqués.\nCondition : trois Chakras bestiaux différents.\n\n* Cette action ne peut pas être ajoutée aux barres de raccourcis.\nRemplace Blitz magistral lorsque les conditions sont réunies.",
+      "description_macro": "Effectue une attaque physique sur les ennemis alentour.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> 800<br>La puissance est réduite de 35% au-delà du premier ennemi touché.<br><colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> ouvre le <colortype(500)><edgecolortype(501)>Nadi solaire<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> vous octroie <colortype(500)><edgecolortype(501)>Poing informe<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 30s<br><colortype(506)><edgecolortype(507)>Poing informe<nbsp>:<edgecolortype(0)><colortype(0)> vous permet d'utiliser les techniques d'arme requérant une posture par<->ti<->cu<->liè<->re sans être dans cette posture. Les effets additionnels associés seront appliqués.<br><colortype(506)><edgecolortype(507)>Condition<nbsp>:<edgecolortype(0)><colortype(0)> trois <colortype(500)><edgecolortype(501)>Chakras bestiaux<edgecolortype(0)><colortype(0)> différents.<br><br><colortype(504)><edgecolortype(505)>* Cette action ne peut pas être ajoutée aux barres de raccourcis.<br>Remplace <colortype(500)><edgecolortype(501)>Blitz magistral<edgecolortype(0)><colortype(0)> lorsque les conditions sont réunies.<edgecolortype(0)><colortype(0)>",
+      "unlock_level": 60,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 20,
+          "name": "Moine",
+          "abbreviation": "MOI",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 36948,
+      "name": "Onde de vide",
+      "description": "Effectue une attaque physique sur les ennemis alentour.\nPuissance : 900\nLa puissance est réduite de 35% au-delà du premier ennemi touché.\nEffet additionnel : ouvre le Nadi lunaire.\nEffet additionnel : vous octroie Poing informe.\nDurée : 30s\nPoing informe : vous permet d'utiliser les techniques d'arme requérant une posture particulière sans être dans cette posture. Les effets additionnels associés seront appliqués.\nCondition : trois Chakras bestiaux identiques.\n\n* Cette action ne peut pas être ajoutée aux barres de raccourcis.\nRemplace Blitz magistral lorsque les conditions sont réunies.",
+      "description_macro": "Effectue une attaque physique sur les ennemis alentour.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> 900<br>La puissance est réduite de 35% au-delà du premier ennemi touché.<br><colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> ouvre le <colortype(500)><edgecolortype(501)>Nadi lunaire<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> vous octroie <colortype(500)><edgecolortype(501)>Poing informe<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 30s<br><colortype(506)><edgecolortype(507)>Poing informe<nbsp>:<edgecolortype(0)><colortype(0)> vous permet d'utiliser les techniques d'arme requérant une posture par<->ti<->cu<->liè<->re sans être dans cette posture. Les effets additionnels associés seront appliqués.<br><colortype(506)><edgecolortype(507)>Condition<nbsp>:<edgecolortype(0)><colortype(0)> trois <colortype(500)><edgecolortype(501)>Chakras bestiaux<edgecolortype(0)><colortype(0)> identiques.<br><br><colortype(504)><edgecolortype(505)>* Cette action ne peut pas être ajoutée aux barres de raccourcis.<br>Remplace <colortype(500)><edgecolortype(501)>Blitz magistral<edgecolortype(0)><colortype(0)> lorsque les conditions sont réunies.<edgecolortype(0)><colortype(0)>",
+      "unlock_level": 92,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 20,
+          "name": "Moine",
+          "abbreviation": "MOI",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 36950,
+      "name": "Réaction du feu",
+      "description": "Effectue une attaque physique sur la cible et les ennemis autour.\nPuissance : 1400\nLa puissance est réduite de 35% au-delà du premier ennemi touché.\nEffet additionnel : vous octroie Poing informe.\nDurée : 30s\nPoing informe : vous permet d'utiliser les techniques d'arme requérant une posture particulière sans être dans cette posture. Les effets additionnels associés seront appliqués.\nCondition : Grondement du feu.",
+      "description_macro": "Effectue une attaque physique sur la cible et les ennemis autour.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> 1400<br>La puissance est réduite de 35% au-delà du premier ennemi touché.<br><colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> vous octroie <colortype(500)><edgecolortype(501)>Poing informe<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 30s<br><colortype(506)><edgecolortype(507)>Poing informe<nbsp>:<edgecolortype(0)><colortype(0)> vous permet d'utiliser les techniques d'arme requérant une posture par<->ti<->cu<->liè<->re sans être dans cette posture. Les effets additionnels associés seront appliqués.<br><colortype(506)><edgecolortype(507)>Condition<nbsp>:<edgecolortype(0)><colortype(0)> <colortype(500)><edgecolortype(501)>Grondement du feu<edgecolortype(0)><colortype(0)>.",
+      "unlock_level": 100,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 20,
+          "name": "Moine",
+          "abbreviation": "MOI",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

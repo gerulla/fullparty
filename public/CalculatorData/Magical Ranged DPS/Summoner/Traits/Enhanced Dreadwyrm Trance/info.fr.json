@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 178,
+  "name": "Transe-Bahamut améliorée",
+  "description": "Transe-Bahamut devient Invocation Bahamut.",
+  "description_macro": "<colortype(500)><edgecolortype(501)>Transe-Bahamut<edgecolortype(0)><colortype(0)> devient <colortype(500)><edgecolortype(501)>Invocation Bahamut<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Transe-Bahamut devient Invocation Bahamut."
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 27,
+    "name": "Invocateur",
+    "abbreviation": "INV"
+  },
+  "unlock_level": 70,
+  "value": 0,
+  "icon": {
+    "id": 5380,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 28,
+  "source_class_job_id": 27
+}

@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 318,
+  "name": "Meister der Verteidigung",
+  "description": "Verringert deinen erlittenen Schaden um 20 %. Gewährt dir außerdem einen LP-Bonus, der auf Konstitution basiert und Schadensbonus, der auf deiner Stärke basiert. Anpassung gemäß der Rolle als Verteidiger.",
+  "description_macro": "Verringert deinen erlittenen Schaden um 20<nbsp>%. Gewährt dir außerdem einen LP-Bonus, der auf Konstitution basiert und Schadensbonus, der auf deiner Stärke basiert. Anpassung gemäß der Rolle als Verteidiger.",
+  "effects": [
+    "Verringert deinen erlittenen Schaden um 20 %. Gewährt dir außerdem einen LP-Bonus, der auf Konstitution basiert und Schadensbonus, der auf deiner Stärke basiert. Anpassung gemäß der Rolle als Verteidiger."
+  ],
+  "role": "Tank",
+  "job": {
+    "id": 21,
+    "name": "Krieger",
+    "abbreviation": "KRG"
+  },
+  "unlock_level": 1,
+  "value": -20,
+  "icon": {
+    "id": 5190,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 44,
+  "source_class_job_id": 3
+}

@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 2712,
+  "name": "Thèse des rafales hurlantes",
+  "description": "La vitesse de déplacement est augmentée.",
+  "effects": [
+    "La vitesse de déplacement est augmentée."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 212817,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 18,
+    "modifier": 0
+  },
+  "class_job_category_id": 29,
+  "source_abilities": [
+    {
+      "id": 25868,
+      "name": "Thèse fluidique",
+      "description": "Vous octroie ainsi qu'aux équipiers alentour les effets Thèse des rafales hurlantes et Thèse des flots impétueux.\nThèse des rafales hurlantes : augmente la vitesse de déplacement.\nDurée : 10s\nThèse des flots impétueux : réduit de 10% les dégâts subis.\nDurée : 20s",
+      "description_macro": "Vous octroie ainsi qu'aux équipiers alentour les effets <colortype(500)><edgecolortype(501)>Thèse des rafales hurlantes<edgecolortype(0)><colortype(0)> et <colortype(500)><edgecolortype(501)>Thèse des flots impétueux<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Thèse des rafales hurlantes<nbsp>:<edgecolortype(0)><colortype(0)> augmente la vitesse de déplacement.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 10s<br><colortype(506)><edgecolortype(507)>Thèse des flots impétueux<nbsp>:<edgecolortype(0)><colortype(0)> réduit de 10% les dégâts subis.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 20s",
+      "unlock_level": 90,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Healer"
+      ],
+      "jobs": [
+        {
+          "id": 28,
+          "name": "Érudit",
+          "abbreviation": "ÉRU",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

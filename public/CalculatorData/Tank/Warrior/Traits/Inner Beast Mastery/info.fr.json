@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 265,
+  "name": "Maîtrise de Bête intérieure",
+  "description": "Remplace Bête intérieure par Sape-fendeur.",
+  "description_macro": "Remplace <colortype(500)><edgecolortype(501)>Bête intérieure<edgecolortype(0)><colortype(0)> par <colortype(500)><edgecolortype(501)>Sape-fendeur<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Remplace Bête intérieure par Sape-fendeur."
+  ],
+  "role": "Tank",
+  "job": {
+    "id": 21,
+    "name": "Guerrier",
+    "abbreviation": "GUE"
+  },
+  "unlock_level": 54,
+  "value": 0,
+  "icon": {
+    "id": 5262,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 22,
+  "source_class_job_id": 21
+}

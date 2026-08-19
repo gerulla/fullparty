@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 3631,
+  "name": "Sheltron",
+  "description": "Inflige des dégâts pour chaque attaque physique reçue.",
+  "effects": [
+    "Inflige des dégâts pour chaque attaque physique reçue."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 213542,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 1,
+  "parameter": {
+    "effect": 0,
+    "modifier": 100
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 34565,
+      "name": "Sheltron",
+      "description": "Inflige des dégâts neutres à votre assaillant pour chaque attaque physique que vous recevez.\nPuissance : 50 Durée : 15s\nLa puissance est augmentée si vous êtes sous l'effet d'Éther de protecteur.\nPuissance avec Éther de protecteur : 100\nNe peut être cumulé avec les effets Pointes de glace et Voile du Déchaîneur.",
+      "description_macro": "Inflige des dégâts neutres à votre assaillant pour chaque attaque physique que vous recevez.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> 50 <colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 15s<br>La puissance est augmentée si vous êtes sous l'effet d'<colortype(500)><edgecolortype(501)>Éther de protecteur<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Puissance avec Éther de protecteur<nbsp>:<edgecolortype(0)><colortype(0)> 100<br>Ne peut être cumulé avec les effets <colortype(500)><edgecolortype(501)>Pointes de glace<edgecolortype(0)><colortype(0)> et <colortype(500)><edgecolortype(501)>Voile du Déchaîneur<edgecolortype(0)><colortype(0)>.",
+      "unlock_level": 1,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Magical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 36,
+          "name": "Mage Bleu",
+          "abbreviation": "MBU",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

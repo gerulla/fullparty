@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 3642,
+  "name": "Zuckerstange",
+  "description": "STR und GESK sind verringert.",
+  "effects": [
+    "STR und GESK sind verringert."
+  ],
+  "classification": "debuff",
+  "icon": {
+    "id": 213550,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 2,
+  "target_type": 0,
+  "can_dispel": true,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 50,
+  "parameter": {
+    "effect": 0,
+    "modifier": -20
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 34578,
+      "name": "Zuckerstange",
+      "description": "Du führst eine elementneutrale magische Attacke auf das Ziel und die Gegner in seiner Nähe aus.\nAttacke-Wert: 250\nAttacke-Wert verringert sich ab dem zweiten Gegner um 50 %.\nZusatzeffekt: Du verringerst STR und GESK des Ziels um 10 %.\nDauer: 10 Sekunden\nZusatzeffekt: Regeneriert 10 % der eigenen Maximal-MP.\nGemeinsamer Reaktivierungs-Timer mit Zauberhammer",
+      "description_macro": "Du führst eine elementneutrale magische Attacke auf das Ziel und die Gegner in seiner Nähe aus.<br>Attacke-Wert: 250<br>Attacke-Wert verringert sich ab dem zweiten Gegner um 50<nbsp>%.<br>Zusatzeffekt: Du verringerst STR und GESK des Ziels um 10 %.<br>Dauer: 10 Sekunden<br>Zusatzeffekt: Regeneriert 10<nbsp>% der eigenen Maximal-MP.<br>Gemeinsamer Reaktivierungs-Timer mit <colortype(502)><edgecolortype(503)>Zauberhammer<edgecolortype(0)><colortype(0)>",
+      "unlock_level": 1,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Magical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 36,
+          "name": "Blaumagier",
+          "abbreviation": "BMA",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

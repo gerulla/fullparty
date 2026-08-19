@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 528,
+  "name": "Viper's Rattle",
+  "description": "Grants 1 stack of Rattling Coil upon successfully landing Vicewinder or Vicepit.",
+  "description_macro": "Grants 1 stack of <colortype(506)><edgecolortype(507)>Rattling Coil<edgecolortype(0)><colortype(0)> upon successfully landing <colortype(500)><edgecolortype(501)>Vicewinder<edgecolortype(0)><colortype(0)> or <colortype(500)><edgecolortype(501)>Vicepit<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Grants 1 stack of Rattling Coil upon successfully landing Vicewinder or Vicepit."
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 41,
+    "name": "Viper",
+    "abbreviation": "VPR"
+  },
+  "unlock_level": 82,
+  "value": 0,
+  "icon": {
+    "id": 6505,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 196,
+  "source_class_job_id": 41
+}

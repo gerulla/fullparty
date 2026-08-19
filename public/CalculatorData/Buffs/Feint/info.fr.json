@@ -1,0 +1,80 @@
+{
+  "kind": "combat_status",
+  "id": 1195,
+  "name": "Restreinte",
+  "description": "Les dégâts physiques et magiques infligés sont réduits.",
+  "effects": [
+    "Les dégâts physiques et magiques infligés sont réduits."
+  ],
+  "classification": "debuff",
+  "icon": {
+    "id": 213904,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 2,
+  "target_type": 0,
+  "can_dispel": true,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 50,
+  "parameter": {
+    "effect": 0,
+    "modifier": -10
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 7549,
+      "name": "Restreinte",
+      "description": "Réduit respectivement de 10% et 5% les dégâts physiques et magiques infligés par la cible.\nDurée : 15s",
+      "description_macro": "Réduit respectivement de 10% et 5% les dégâts physiques et magiques infligés par la cible.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> <if([gnum72>=98],<if([gnum68==2],15,<if([gnum68==20],15,<if([gnum68==4],15,<if([gnum68==22],15,<if([gnum68==29],15,<if([gnum68==30],15,<if([gnum68==34],15,<if([gnum68==39],15,<if([gnum68==41],15,10)>)>)>)>)>)>)>)>)>,10)>s",
+      "unlock_level": 22,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 20,
+          "name": "Moine",
+          "abbreviation": "MOI",
+          "is_phantom": false
+        },
+        {
+          "id": 22,
+          "name": "Chevalier Dragon",
+          "abbreviation": "DRG",
+          "is_phantom": false
+        },
+        {
+          "id": 30,
+          "name": "Ninja",
+          "abbreviation": "NIN",
+          "is_phantom": false
+        },
+        {
+          "id": 34,
+          "name": "Samouraï",
+          "abbreviation": "SAM",
+          "is_phantom": false
+        },
+        {
+          "id": 39,
+          "name": "Faucheur",
+          "abbreviation": "FCH",
+          "is_phantom": false
+        },
+        {
+          "id": 41,
+          "name": "Rôdeur Vipère",
+          "abbreviation": "VPR",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

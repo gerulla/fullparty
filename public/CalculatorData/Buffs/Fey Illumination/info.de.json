@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 317,
+  "name": "Illumination",
+  "description": "Magieabwehr und Wirkung von Heilmagie sind erhöht.",
+  "effects": [
+    "Magieabwehr und Wirkung von Heilmagie sind erhöht."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 212828,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 20
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 16538,
+      "name": "Illumination",
+      "description": "Du lässt deine Fee Illumination ausführen.\nKommando wird als Seraphische Illumination ausgeführt\\\nErhöht die Wirkung deiner Heilmagie und die von umstehenden Gruppenmitgliedern um 10 % und verringert deinen erlittenen Magieschaden und den von umstehenden Gruppenmitgliedern um 5 %.\nDauer: 20 Sekunden\nKann nicht zugleich mit der Seraphischen Illumination des Seraphen aktiv sein.\nBedingung: Fee oder Seraph ist bereits gerufen.",
+      "description_macro": "Du lässt deine Fee <colortype(502)><edgecolortype(503)>Illumination<edgecolortype(0)><colortype(0)> ausführen.<if([gnum68==28],<if([gnum72>=80],<br>Kommando wird als <colortype(502)><edgecolortype(503)>Seraphische Illumination<edgecolortype(0)><colortype(0)> ausgeführt\\, wenn Seraph anwesend ist.,)>,)><br>Erhöht die Wirkung deiner Heilmagie und die von umstehenden Grup<->pen<->mit<->gliedern um 10<nbsp>% und verringert deinen erlittenen Magieschaden und den von umstehenden Grup<->pen<->mit<->gliedern um 5<nbsp>%.<br>Dauer: 20 Sekunden<br>Kann nicht zugleich mit der <colortype(502)><edgecolortype(503)>Seraphischen Illumination<edgecolortype(0)><colortype(0)> des Seraphen aktiv sein.<br>Bedingung: <if([gnum68==28],<if([gnum72>=80],Fee oder Seraph,Fee)>,Fee)> ist bereits gerufen.",
+      "unlock_level": 40,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Healer"
+      ],
+      "jobs": [
+        {
+          "id": 28,
+          "name": "Gelehrter",
+          "abbreviation": "GLT",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "kind": "trait",
+  "id": 521,
+  "name": "Verbessertes Bushido II",
+  "description": "Erhöht den Attacke-Wert folgender Kommandos:\nAttacke-Wert von Gekko: 110\nAttacke-Wert von Kasha: 110\nAttacke-Wert von Yukikaze: 110",
+  "description_macro": "Erhöht den Attacke-Wert folgender Kommandos:<br>Attacke-Wert von <colortype(502)><edgecolortype(503)>Gekko<edgecolortype(0)><colortype(0)>: 110<br>Attacke-Wert von <colortype(502)><edgecolortype(503)>Kasha<edgecolortype(0)><colortype(0)>: 110<br>Attacke-Wert von <colortype(502)><edgecolortype(503)>Yukikaze<edgecolortype(0)><colortype(0)>: 110",
+  "effects": [
+    "Erhöht den Attacke-Wert folgender Kommandos:",
+    "Attacke-Wert von Gekko: 110",
+    "Attacke-Wert von Kasha: 110",
+    "Attacke-Wert von Yukikaze: 110"
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 34,
+    "name": "Samurai",
+    "abbreviation": "SAM"
+  },
+  "unlock_level": 84,
+  "value": 0,
+  "icon": {
+    "id": 6802,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 111,
+  "source_class_job_id": 34
+}

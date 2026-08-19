@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 570,
+  "name": "Meister der Blutwaffe",
+  "description": "Verbessert Blutwaffe zu Blutdelirium.",
+  "description_macro": "Verbessert <colortype(502)><edgecolortype(503)>Blutwaffe<edgecolortype(0)><colortype(0)> zu <colortype(502)><edgecolortype(503)>Blutdelirium<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Verbessert Blutwaffe zu Blutdelirium."
+  ],
+  "role": "Tank",
+  "job": {
+    "id": 32,
+    "name": "Dunkelritter",
+    "abbreviation": "DKR"
+  },
+  "unlock_level": 68,
+  "value": 0,
+  "icon": {
+    "id": 6053,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 98,
+  "source_class_job_id": 32
+}

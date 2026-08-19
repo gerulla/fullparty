@@ -1,0 +1,25 @@
+{
+  "kind": "trait",
+  "id": 580,
+  "name": "Enhanced Winged Glide",
+  "description": "Allows the accumulation of charges for consecutive uses of Winged Glide.\nMaximum Charges: 2",
+  "description_macro": "Allows the accumulation of charges for consecutive uses of <colortype(500)><edgecolortype(501)>Winged Glide<edgecolortype(0)><colortype(0)>.<br><colortype(504)><edgecolortype(505)>Maximum Charges: <edgecolortype(0)><colortype(0)>2",
+  "effects": [
+    "Allows the accumulation of charges for consecutive uses of Winged Glide.",
+    "Maximum Charges: 2"
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 22,
+    "name": "Dragoon",
+    "abbreviation": "DRG"
+  },
+  "unlock_level": 84,
+  "value": 2,
+  "icon": {
+    "id": 5295,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 23,
+  "source_class_job_id": 22
+}

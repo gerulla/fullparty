@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 4400,
+  "name": "Zinnoberfeuer",
+  "description": "Zinnober-Schlag kann ausgeführt werden.",
+  "effects": [
+    "Zinnober-Schlag kann ausgeführt werden."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 212752,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": true,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 28,
+  "source_abilities": [
+    {
+      "id": 25835,
+      "name": "Zinnober-Zyklon",
+      "description": "Du schnellst zum Ziel hin und führst eine feuerbasierte magische Attacke auf das Ziel und die Gegner in seiner Nähe aus.\nAttacke-Wert: 560\nAttacke-Wert verringert sich ab dem zweiten Gegner um 60 %.\nZusatzeffekt: Gewährt dir Zinnoberfeuer.\nDer Effekt endet bei Ausführung einer Beschwörung.\nBedingung: Ifrits Gunst aktiv\nÄndert sich bei Ausführung zu Zinnober-Schlag.\nKann nicht während Fessel ausgeführt werden.\nBei erfüllter Bedingung ändert sich Lichtstrom zu diesem Kommando.\nKann nicht im Kommandomenü angelegt werden.",
+      "description_macro": "Du schnellst zum Ziel hin und führst eine feuerbasierte magische Attacke auf das Ziel und die Gegner in seiner Nähe aus.<br>Attacke-Wert: <if([gnum68==27],<if([gnum72>=94],560,430)>,430)><br>Attacke-Wert verringert sich ab dem zweiten Gegner um 60<nbsp>%.<br>Zusatzeffekt: Gewährt dir <colortype(506)><edgecolortype(507)>Zinnoberfeuer<edgecolortype(0)><colortype(0)>.<br>Der Effekt endet bei Ausführung einer <colortype(502)><edgecolortype(503)>Beschwörung<edgecolortype(0)><colortype(0)>.<br>Bedingung: <colortype(506)><edgecolortype(507)>Ifrits Gunst<edgecolortype(0)><colortype(0)> aktiv<br>Ändert sich bei Ausführung zu <colortype(502)><edgecolortype(503)>Zinnober-Schlag<edgecolortype(0)><colortype(0)>.<br>Kann nicht während <colortype(500)><edgecolortype(501)>Fessel<edgecolortype(0)><colortype(0)> ausgeführt werden.<br>Bei erfüllter Bedingung ändert sich <colortype(502)><edgecolortype(503)>Lichtstrom<edgecolortype(0)><colortype(0)> zu diesem Kommando.<br>Kann nicht im Kommandomenü angelegt werden.",
+      "unlock_level": 86,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Magical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 27,
+          "name": "Beschwörer",
+          "abbreviation": "BSW",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

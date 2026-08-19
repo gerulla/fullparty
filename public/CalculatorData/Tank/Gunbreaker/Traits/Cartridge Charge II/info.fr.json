@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 427,
+  "name": "Chargement de cartouches amélioré",
+  "description": "Augmente à 3 le nombre maximum de Cartouches d'éther, ou 6 sous l'effet de Cartouche de sang. Par ailleurs, Cartouche de sang octroie 3 Cartouches d'éther lors de son utilisation.",
+  "description_macro": "Augmente à 3 le nombre maximum de <colortype(500)><edgecolortype(501)>Cartouches d'éther<edgecolortype(0)><colortype(0)>, ou 6 sous l'effet de <colortype(500)><edgecolortype(501)>Cartouche de sang<edgecolortype(0)><colortype(0)>. Par ailleurs, <colortype(500)><edgecolortype(501)>Cartouche de sang<edgecolortype(0)><colortype(0)> octroie 3 <colortype(500)><edgecolortype(501)>Cartouches d'éther<edgecolortype(0)><colortype(0)> lors de son utilisation.",
+  "effects": [
+    "Augmente à 3 le nombre maximum de Cartouches d'éther, ou 6 sous l'effet de Cartouche de sang. Par ailleurs, Cartouche de sang octroie 3 Cartouches d'éther lors de son utilisation."
+  ],
+  "role": "Tank",
+  "job": {
+    "id": 37,
+    "name": "Pistosabreur",
+    "abbreviation": "PSB"
+  },
+  "unlock_level": 88,
+  "value": 0,
+  "icon": {
+    "id": 6307,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 149,
+  "source_class_job_id": 37
+}

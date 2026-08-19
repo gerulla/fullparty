@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 529,
+  "name": "Reptation améliorée",
+  "description": "Augmente le maximum de charges de Reptation à 3.",
+  "description_macro": "Augmente le maximum de charges de <colortype(500)><edgecolortype(501)>Reptation<edgecolortype(0)><colortype(0)> à 3.",
+  "effects": [
+    "Augmente le maximum de charges de Reptation à 3."
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 41,
+    "name": "Rôdeur Vipère",
+    "abbreviation": "VPR"
+  },
+  "unlock_level": 84,
+  "value": 3,
+  "icon": {
+    "id": 6506,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 196,
+  "source_class_job_id": 41
+}

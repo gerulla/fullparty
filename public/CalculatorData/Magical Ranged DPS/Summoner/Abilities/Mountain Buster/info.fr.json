@@ -1,0 +1,98 @@
+{
+  "kind": "ability",
+  "id": 25836,
+  "name": "Casse-montagnes",
+  "description": "Effectue une attaque magique de terre sur la cible et les ennemis autour.\nPuissance : 160\nLa puissance est réduite de 60% au-delà du premier ennemi touché.\nCondition : Casse-montagnes préparé.\n\n* Cette action ne peut pas être ajoutée aux barres de raccourcis.\nRemplace Flux astral lorsque les conditions sont réunies.",
+  "description_macro": "Effectue une attaque magique de terre sur la cible et les ennemis autour.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> <if([gnum68==27],<if([gnum72>=94],160,150)>,150)><br>La puissance est réduite de 60% au-delà du premier ennemi touché.<br><colortype(506)><edgecolortype(507)>Condition<nbsp>:<edgecolortype(0)><colortype(0)> <colortype(500)><edgecolortype(501)>Casse-montagnes préparé<edgecolortype(0)><colortype(0)>.<br><br><colortype(504)><edgecolortype(505)>* Cette action ne peut pas être ajoutée aux barres de raccourcis.<br>Remplace <colortype(500)><edgecolortype(501)>Flux astral<edgecolortype(0)><colortype(0)> lorsque les conditions sont réunies.<edgecolortype(0)><colortype(0)>",
+  "effects": [
+    "Effectue une attaque magique de terre sur la cible et les ennemis autour.",
+    "Puissance : 160",
+    "La puissance est réduite de 60% au-delà du premier ennemi touché.",
+    "Condition : Casse-montagnes préparé.",
+    "* Cette action ne peut pas être ajoutée aux barres de raccourcis.",
+    "Remplace Flux astral lorsque les conditions sont réunies."
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 27,
+    "name": "Invocateur",
+    "abbreviation": "INV"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 86,
+  "icon": {
+    "id": 2770,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 4,
+    "name": "Aptitude"
+  },
+  "attack_type": {
+    "id": 5,
+    "name": "magie"
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 1,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 3,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 10,
+      "value": 2853
+    },
+    "secondary": {
+      "type_id": 32,
+      "value": 2853
+    }
+  },
+  "range": {
+    "target_yalms": 25,
+    "effect_yalms": 5,
+    "cast_type": 2
+  },
+  "targeting": {
+    "self": false,
+    "party": false,
+    "alliance": false,
+    "hostile": true,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": {
+      "id": 76,
+      "status": {
+        "id": 2853,
+        "name": "Casse-montagnes préparé",
+        "description": "Casse-montagnes peut être lancé.",
+        "icon_id": 212698,
+        "max_stacks": 0
+      }
+    }
+  },
+  "metadata": {
+    "aspect_id": 4,
+    "behavior_type": 0,
+    "class_job_category_id": 28,
+    "source_class_job_id": 0,
+    "is_role_action": false,
+    "is_player_action": false,
+    "is_derived_action": true,
+    "equivalence_group": 0
+  }
+}

@@ -1,0 +1,90 @@
+{
+  "kind": "ability",
+  "id": 7404,
+  "name": "Absolutes Gehör",
+  "description": "Du führst eine physische Attacke auf das Ziel und die Gegner in seiner Nähe aus.\nDer Attacke-Wert richtet sich nach der Stapelzahl von Virtuose:\nBei 1: 100\nBei 2: 220\nBei 3: 360\nAttacke-Wert verringert sich ab dem zweiten Gegner um 50 %.\nBedingung: Menuett des Wanderers aktiv und mind. 1 Virtuose",
+  "description_macro": "Du führst eine physische Attacke auf das Ziel und die Gegner in seiner Nähe aus.<br>Der Attacke-Wert richtet sich nach der Stapelzahl von <colortype(506)><edgecolortype(507)>Virtuose<edgecolortype(0)><colortype(0)>:<br>Bei 1: 100<br>Bei 2: 220<br>Bei 3: 360<br>Attacke-Wert verringert sich ab dem zweiten Gegner um 50<nbsp>%.<br>Bedingung: <colortype(506)><edgecolortype(507)>Menuett des Wanderers<edgecolortype(0)><colortype(0)> aktiv und mind. 1 <colortype(506)><edgecolortype(507)>Virtuose<edgecolortype(0)><colortype(0)>",
+  "effects": [
+    "Du führst eine physische Attacke auf das Ziel und die Gegner in seiner Nähe aus.",
+    "Der Attacke-Wert richtet sich nach der Stapelzahl von Virtuose:",
+    "Bei 1: 100",
+    "Bei 2: 220",
+    "Bei 3: 360",
+    "Attacke-Wert verringert sich ab dem zweiten Gegner um 50 %.",
+    "Bedingung: Menuett des Wanderers aktiv und mind. 1 Virtuose"
+  ],
+  "role": "Physical Ranged DPS",
+  "job": {
+    "id": 23,
+    "name": "Barde",
+    "abbreviation": "BRD"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 52,
+  "icon": {
+    "id": 2611,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 4,
+    "name": "Talent"
+  },
+  "attack_type": {
+    "id": 4294967295,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 1,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 1,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 32,
+      "value": 1
+    },
+    "secondary": {
+      "type_id": 0,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": -1,
+    "effect_yalms": 5,
+    "cast_type": 2
+  },
+  "targeting": {
+    "self": false,
+    "party": false,
+    "alliance": false,
+    "hostile": true,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 7,
+    "behavior_type": 0,
+    "class_job_category_id": 24,
+    "source_class_job_id": 23,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

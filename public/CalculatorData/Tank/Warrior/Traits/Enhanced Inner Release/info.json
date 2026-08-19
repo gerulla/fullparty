@@ -1,0 +1,27 @@
+{
+  "kind": "trait",
+  "id": 568,
+  "name": "Enhanced Inner Release",
+  "description": "Grants a stack of Burgeoning Fury upon landing Fell Cleave or Decimate while under the effect of Inner Release.\nDuration: 30s\nMaximum Stacks: 3\nAt maximum stacks, become Wrathful, upgrading Inner Release to Primal Wrath.",
+  "description_macro": "Grants a stack of <colortype(506)><edgecolortype(507)>Burgeoning Fury<edgecolortype(0)><colortype(0)> upon landing <colortype(500)><edgecolortype(501)>Fell Cleave<edgecolortype(0)><colortype(0)> or <colortype(500)><edgecolortype(501)>Decimate<edgecolortype(0)><colortype(0)> while under the effect of <colortype(506)><edgecolortype(507)>Inner Release<edgecolortype(0)><colortype(0)>.<br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>30s<br><colortype(504)><edgecolortype(505)>Maximum Stacks: <edgecolortype(0)><colortype(0)>3<br>At maximum stacks, become <colortype(506)><edgecolortype(507)>Wrathful<edgecolortype(0)><colortype(0)>, upgrading <colortype(500)><edgecolortype(501)>Inner Release<edgecolortype(0)><colortype(0)> to <colortype(500)><edgecolortype(501)>Primal Wrath<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Grants a stack of Burgeoning Fury upon landing Fell Cleave or Decimate while under the effect of Inner Release.",
+    "Duration: 30s",
+    "Maximum Stacks: 3",
+    "At maximum stacks, become Wrathful, upgrading Inner Release to Primal Wrath."
+  ],
+  "role": "Tank",
+  "job": {
+    "id": 21,
+    "name": "Warrior",
+    "abbreviation": "WAR"
+  },
+  "unlock_level": 96,
+  "value": 0,
+  "icon": {
+    "id": 5272,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 22,
+  "source_class_job_id": 21
+}

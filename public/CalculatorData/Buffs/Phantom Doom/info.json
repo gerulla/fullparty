@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 4273,
+  "name": "Phantom Doom",
+  "description": "Certain death when counter reaches zero.",
+  "effects": [
+    "Certain death when counter reaches zero."
+  ],
+  "classification": "debuff",
+  "icon": {
+    "id": 215503,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 2,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 41642,
+      "name": "Phantom Doom",
+      "description": "Chance to afflict target with Phantom Doom.\nDuration: 8 to 60s\nTarget is incapacitated when effect expires.\nShares a recast timer with Recuperation.\nHas no effect on targets outside of combat.\nEffect ends upon target leaving combat.",
+      "description_macro": "Chance to afflict target with <colortype(506)><edgecolortype(507)>Phantom Doom<edgecolortype(0)><colortype(0)>.<br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>8 to 60s<br>Target is incapacitated when effect expires.<br>Shares a recast timer with <colortype(500)><edgecolortype(501)>Recuperation<edgecolortype(0)><colortype(0)>.<br>Has no effect on targets outside of combat.<br>Effect ends upon target leaving combat.",
+      "unlock_level": 0,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Phantom Jobs"
+      ],
+      "jobs": [
+        {
+          "id": 11,
+          "name": "Phantom Oracle",
+          "abbreviation": "Ph. Oracle",
+          "is_phantom": true
+        }
+      ]
+    }
+  ]
+}

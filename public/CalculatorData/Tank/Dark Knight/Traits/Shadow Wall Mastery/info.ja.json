@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 571,
+  "name": "シャドウウォールマスタリー",
+  "description": "シャドウウォールがシャドウヴィジルに変化する。",
+  "description_macro": "シャドウウォールがシャドウヴィジルに変化する。",
+  "effects": [
+    "シャドウウォールがシャドウヴィジルに変化する。"
+  ],
+  "role": "Tank",
+  "job": {
+    "id": 32,
+    "name": "暗黒騎士",
+    "abbreviation": "DRK"
+  },
+  "unlock_level": 92,
+  "value": 0,
+  "icon": {
+    "id": 6068,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 98,
+  "source_class_job_id": 32
+}

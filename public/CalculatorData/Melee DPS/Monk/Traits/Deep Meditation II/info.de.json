@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 245,
+  "name": "Tiefe Meditation II",
+  "description": "100 % Wahrscheinlichkeit, dass sich bei einem kritischen Treffer durch eine Waffenfertigkeit ein Schatten-Chakra öffnet.",
+  "description_macro": "100 % Wahr<->schein<->lich<->keit, dass sich bei einem kritischen Treffer durch eine Waf<->fen<->fer<->tig<->keit ein Schatten-Chakra öffnet.",
+  "effects": [
+    "100 % Wahrscheinlichkeit, dass sich bei einem kritischen Treffer durch eine Waffenfertigkeit ein Schatten-Chakra öffnet."
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 20,
+    "name": "Mönch",
+    "abbreviation": "MÖN"
+  },
+  "unlock_level": 74,
+  "value": 100,
+  "icon": {
+    "id": 5238,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 21,
+  "source_class_job_id": 20
+}

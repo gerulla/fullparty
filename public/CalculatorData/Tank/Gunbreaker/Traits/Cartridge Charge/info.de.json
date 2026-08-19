@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 257,
+  "name": "Erda-Patronen",
+  "description": "Gewährt dir beim erfolgreichen Ausführen einer Kombo mit Stahlwalze eine Erda-Patrone. Maximal 2 Patronen stapelbar.",
+  "description_macro": "Gewährt dir beim erfolgreichen Ausführen einer Kombo mit <colortype(502)><edgecolortype(503)>Stahlwalze<edgecolortype(0)><colortype(0)> eine Erda-Patrone. Maximal 2 Patronen stapelbar.",
+  "effects": [
+    "Gewährt dir beim erfolgreichen Ausführen einer Kombo mit Stahlwalze eine Erda-Patrone. Maximal 2 Patronen stapelbar."
+  ],
+  "role": "Tank",
+  "job": {
+    "id": 37,
+    "name": "Revolverklinge",
+    "abbreviation": "REV"
+  },
+  "unlock_level": 30,
+  "value": 0,
+  "icon": {
+    "id": 6301,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 149,
+  "source_class_job_id": 37
+}

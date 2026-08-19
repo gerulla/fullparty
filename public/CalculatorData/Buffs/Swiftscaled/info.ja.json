@@ -1,0 +1,113 @@
+{
+  "kind": "combat_status",
+  "id": 3669,
+  "name": "疾速",
+  "description": "オートアタックの攻撃間隔と、ウェポンスキルおよび魔法のキャストタイムとリキャストタイムが短縮された状態。",
+  "effects": [
+    "オートアタックの攻撃間隔と、ウェポンスキルおよび魔法のキャストタイムとリキャストタイムが短縮された状態。"
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 213775,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 40,
+  "parameter": {
+    "effect": 0,
+    "modifier": -15
+  },
+  "class_job_category_id": 196,
+  "source_abilities": [
+    {
+      "id": 34609,
+      "name": "弐の牙【疾速】",
+      "description": "対象に物理攻撃。\u3000威力：300\n追加効果：自身に「疾速」を付与する。\n効果時間：40秒\n疾速効果：自身のオートアタックの攻撃間隔と、ウェポンスキルおよび魔法のキャストタイムとリキャストタイムを15％短縮させる。\n発動条件：壱の牙【咬創】または壱の牙【穿裂】命中時\n\n※このアクションはホットバーに登録することはできない。\n\u3000発動条件を満たすと壱の牙【穿裂】が弐の牙【疾速】に変化する。",
+      "description_macro": "対象に物理攻撃。\u3000<colortype(504)><edgecolortype(505)>威力：<edgecolortype(0)><colortype(0)><if([gnum68==41],<if([gnum72>=74],300,280)>,280)><br><colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)>自身に<colortype(500)><edgecolortype(501)>「疾速」<edgecolortype(0)><colortype(0)>を付与する。<br><colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>40秒<br><colortype(504)><edgecolortype(505)>疾速効果：<edgecolortype(0)><colortype(0)>自身のオートアタックの攻撃間隔と、ウェポンスキルおよび魔法のキャストタイムとリキャストタイムを15％短縮させる。<br><colortype(504)><edgecolortype(505)>発動条件：<edgecolortype(0)><colortype(0)>壱の牙【咬創】または壱の牙【穿裂】命中時<br><br><colortype(506)><edgecolortype(507)>※このアクションはホットバーに登録することはできない。<br>\u3000発動条件を満たすと壱の牙【穿裂】が弐の牙【疾速】に変化する。<edgecolortype(0)><colortype(0)>",
+      "unlock_level": 20,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 41,
+          "name": "ヴァイパー",
+          "abbreviation": "VPR",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 34617,
+      "name": "弐の大牙【疾速】",
+      "description": "自身の周囲の敵に範囲物理攻撃。\u3000威力：180\n追加効果：自身に「疾速」を付与する。\n効果時間：40秒\n疾速効果：自身のオートアタックの攻撃間隔と、ウェポンスキルおよび魔法のキャストタイムとリキャストタイムを15％短縮させる。\n発動条件：壱の大牙【咬創】または壱の大牙【穿裂】命中時\n\n※このアクションはホットバーに登録することはできない。\n\u3000発動条件を満たすと壱の大牙【穿裂】が弐の大牙【疾速】に変化する。",
+      "description_macro": "自身の周囲の敵に範囲物理攻撃。\u3000<colortype(504)><edgecolortype(505)>威力：<edgecolortype(0)><colortype(0)>180<br><colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)>自身に<colortype(500)><edgecolortype(501)>「疾速」<edgecolortype(0)><colortype(0)>を付与する。<br><colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>40秒<br><colortype(504)><edgecolortype(505)>疾速効果：<edgecolortype(0)><colortype(0)>自身のオートアタックの攻撃間隔と、ウェポンスキルおよび魔法のキャストタイムとリキャストタイムを15％短縮させる。<br><colortype(504)><edgecolortype(505)>発動条件：<edgecolortype(0)><colortype(0)>壱の大牙【咬創】または壱の大牙【穿裂】命中時<br><br><colortype(506)><edgecolortype(507)>※このアクションはホットバーに登録することはできない。<br>\u3000発動条件を満たすと壱の大牙【穿裂】が弐の大牙【疾速】に変化する。<edgecolortype(0)><colortype(0)>",
+      "unlock_level": 45,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 41,
+          "name": "ヴァイパー",
+          "abbreviation": "VPR",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 34622,
+      "name": "弐の蛇【疾速】",
+      "description": "対象に物理攻撃。\u3000威力：630\n背面攻撃時威力：680\n追加効果：自身に「疾速」を付与する。\n効果時間：40秒\n疾速効果：自身のオートアタックの攻撃間隔と、ウェポンスキルおよび魔法のキャストタイムとリキャストタイムを15％短縮させる。\n追加効果：自身に「双鋭牙【乱撃】」を付与する。\n効果時間：30秒\n双鋭牙【乱撃】効果：双牙乱撃の威力を50上昇させる。\n追加効果：「霊力ゲージ」を5上昇させる。\nこのアクションを命中させると双牙連術が双牙連撃に、双牙乱術が双牙乱撃にそれぞれ変化し、それらのアクションを2回実行できるようになる。\n発動条件：壱の蛇【強砕】または弐の蛇【猛襲】実行後\nこのウェポンスキルは固有のリキャストタイマーを持つ。",
+      "description_macro": "対象に物理攻撃。\u3000<colortype(504)><edgecolortype(505)>威力：<edgecolortype(0)><colortype(0)>630<br><colortype(504)><edgecolortype(505)>背面攻撃時威力：<edgecolortype(0)><colortype(0)>680<br><colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)>自身に<colortype(500)><edgecolortype(501)>「疾速」<edgecolortype(0)><colortype(0)>を付与する。<br><colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>40秒<br><colortype(504)><edgecolortype(505)>疾速効果：<edgecolortype(0)><colortype(0)>自身のオートアタックの攻撃間隔と、ウェポンスキルおよび魔法のキャストタイムとリキャストタイムを15％短縮させる。<br><if([gnum68==41],<if([gnum72>=75],<colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)>自身に<colortype(500)><edgecolortype(501)>「双鋭牙【乱撃】」<edgecolortype(0)><colortype(0)>を付与する。<br><colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>30秒<br><colortype(504)><edgecolortype(505)>双鋭牙【乱撃】効果：<edgecolortype(0)><colortype(0)>双牙乱撃の威力を50上昇させる。<br>,)>,)><if([gnum68==41],<if([gnum72>=90],<colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)><colortype(500)><edgecolortype(501)>「霊力ゲージ」<edgecolortype(0)><colortype(0)>を5上昇させる。<br>,)>,)><if([gnum68==41],<if([gnum72>=75],このアクションを命中させると双牙連術が双牙連撃に、双牙乱術が双牙乱撃にそれぞれ変化し、それらのアクションを2回実行できるようになる。<br>,)>,)><colortype(504)><edgecolortype(505)>発動条件：<edgecolortype(0)><colortype(0)>壱の蛇【強砕】または弐の蛇【猛襲】実行後<br>このウェポンスキルは固有のリキャストタイマーを持つ。",
+      "unlock_level": 65,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 41,
+          "name": "ヴァイパー",
+          "abbreviation": "VPR",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 34625,
+      "name": "弐の大蛇【疾速】",
+      "description": "自身の周囲の敵に範囲物理攻撃。\u3000威力：300\n追加効果：自身に「疾速」を付与する。\n効果時間：40秒\n疾速効果：自身のオートアタックの攻撃間隔と、ウェポンスキルおよび魔法のキャストタイムとリキャストタイムを15％短縮させる。\n追加効果：自身に「双鋭牙【乱閃】」を付与する。\n効果時間：30秒\n双鋭牙【乱閃】効果：双牙乱閃の威力を30上昇させる。\n追加効果：「霊力ゲージ」を5上昇させる。\nこのアクションを命中させると双牙連術が双牙連閃に、双牙乱術が双牙乱閃にそれぞれ変化し、それらのアクションを2回実行できるようになる。\n発動条件：壱の大蛇【強砕】または弐の大蛇【猛襲】実行後\nこのウェポンスキルは固有のリキャストタイマーを持つ。",
+      "description_macro": "自身の周囲の敵に範囲物理攻撃。\u3000<colortype(504)><edgecolortype(505)>威力：<edgecolortype(0)><colortype(0)>300<br><colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)>自身に<colortype(500)><edgecolortype(501)>「疾速」<edgecolortype(0)><colortype(0)>を付与する。<br><colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>40秒<br><colortype(504)><edgecolortype(505)>疾速効果：<edgecolortype(0)><colortype(0)>自身のオートアタックの攻撃間隔と、ウェポンスキルおよび魔法のキャストタイムとリキャストタイムを15％短縮させる。<br><if([gnum68==41],<if([gnum72>=80],<colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)>自身に<colortype(500)><edgecolortype(501)>「双鋭牙【乱閃】」<edgecolortype(0)><colortype(0)>を付与する。<br><colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>30秒<br><colortype(504)><edgecolortype(505)>双鋭牙【乱閃】効果：<edgecolortype(0)><colortype(0)>双牙乱閃の威力を30上昇させる。<br>,)>,)><if([gnum68==41],<if([gnum72>=90],<colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)><colortype(500)><edgecolortype(501)>「霊力ゲージ」<edgecolortype(0)><colortype(0)>を5上昇させる。<br>,)>,)><if([gnum68==41],<if([gnum72>=80],このアクションを命中させると双牙連術が双牙連閃に、双牙乱術が双牙乱閃にそれぞれ変化し、それらのアクションを2回実行できるようになる。<br>,)>,)><colortype(504)><edgecolortype(505)>発動条件：<edgecolortype(0)><colortype(0)>壱の大蛇【強砕】または弐の大蛇【猛襲】実行後<br>このウェポンスキルは固有のリキャストタイマーを持つ。",
+      "unlock_level": 70,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 41,
+          "name": "ヴァイパー",
+          "abbreviation": "VPR",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,36 @@
+{
+  "kind": "trait",
+  "id": 667,
+  "name": "アクション威力アップII",
+  "description": "特定のアクションの威力を上昇させる。\n\nキーンエッジの威力：300\nブルータルシェルの威力：240\nソリッドバレルの威力：240\nバーストストライクの威力：420\nビートファングの威力：440\nサベッジクロウの威力：500\nウィケッドタロンの威力：560\nジャギュラーリップの威力：220\nアブドメンテアーの威力：260\nアイガウジの威力：300\nブラスティングゾーンの威力：800\nハイパーヴェロシティの威力：180",
+  "description_macro": "特定のアクションの威力を上昇させる。<br><br><colortype(504)><edgecolortype(505)>キーンエッジの威力：<edgecolortype(0)><colortype(0)>300<br><colortype(504)><edgecolortype(505)>ブルータルシェルの威力：<edgecolortype(0)><colortype(0)>240<br><colortype(504)><edgecolortype(505)>ソリッドバレルの威力：<edgecolortype(0)><colortype(0)>240<br><colortype(504)><edgecolortype(505)>バーストストライクの威力：<edgecolortype(0)><colortype(0)>420<br><colortype(504)><edgecolortype(505)>ビートファングの威力：<edgecolortype(0)><colortype(0)>440<br><colortype(504)><edgecolortype(505)>サベッジクロウの威力：<edgecolortype(0)><colortype(0)>500<br><colortype(504)><edgecolortype(505)>ウィケッドタロンの威力：<edgecolortype(0)><colortype(0)>560<br><colortype(504)><edgecolortype(505)>ジャギュラーリップの威力：<edgecolortype(0)><colortype(0)>220<br><colortype(504)><edgecolortype(505)>アブドメンテアーの威力：<edgecolortype(0)><colortype(0)>260<br><colortype(504)><edgecolortype(505)>アイガウジの威力：<edgecolortype(0)><colortype(0)>300<br><colortype(504)><edgecolortype(505)>ブラスティングゾーンの威力：<edgecolortype(0)><colortype(0)>800<br><colortype(504)><edgecolortype(505)>ハイパーヴェロシティの威力：<edgecolortype(0)><colortype(0)>180",
+  "effects": [
+    "特定のアクションの威力を上昇させる。",
+    "キーンエッジの威力：300",
+    "ブルータルシェルの威力：240",
+    "ソリッドバレルの威力：240",
+    "バーストストライクの威力：420",
+    "ビートファングの威力：440",
+    "サベッジクロウの威力：500",
+    "ウィケッドタロンの威力：560",
+    "ジャギュラーリップの威力：220",
+    "アブドメンテアーの威力：260",
+    "アイガウジの威力：300",
+    "ブラスティングゾーンの威力：800",
+    "ハイパーヴェロシティの威力：180"
+  ],
+  "role": "Tank",
+  "job": {
+    "id": 37,
+    "name": "ガンブレイカー",
+    "abbreviation": "GNB"
+  },
+  "unlock_level": 94,
+  "value": 0,
+  "icon": {
+    "id": 6802,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 149,
+  "source_class_job_id": 37
+}

@@ -1,0 +1,99 @@
+{
+  "kind": "combat_status",
+  "id": 1987,
+  "name": "Swiftcast",
+  "description": "The next spell will be cast immediately.",
+  "effects": [
+    "The next spell will be cast immediately."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 210454,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": true,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 124,
+  "source_abilities": [
+    {
+      "id": 7561,
+      "name": "Swiftcast",
+      "description": "Next spell is cast immediately.\nDuration: 10s",
+      "description_macro": "Next spell is cast immediately.<br><colortype(504)><edgecolortype(505)>Duration:<edgecolortype(0)><colortype(0)> 10s",
+      "unlock_level": 18,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Healer",
+        "Magical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 24,
+          "name": "White Mage",
+          "abbreviation": "WHM",
+          "is_phantom": false
+        },
+        {
+          "id": 28,
+          "name": "Scholar",
+          "abbreviation": "SCH",
+          "is_phantom": false
+        },
+        {
+          "id": 33,
+          "name": "Astrologian",
+          "abbreviation": "AST",
+          "is_phantom": false
+        },
+        {
+          "id": 40,
+          "name": "Sage",
+          "abbreviation": "SGE",
+          "is_phantom": false
+        },
+        {
+          "id": 25,
+          "name": "Black Mage",
+          "abbreviation": "BLM",
+          "is_phantom": false
+        },
+        {
+          "id": 27,
+          "name": "Summoner",
+          "abbreviation": "SMN",
+          "is_phantom": false
+        },
+        {
+          "id": 35,
+          "name": "Red Mage",
+          "abbreviation": "RDM",
+          "is_phantom": false
+        },
+        {
+          "id": 42,
+          "name": "Pictomancer",
+          "abbreviation": "PCT",
+          "is_phantom": false
+        },
+        {
+          "id": 36,
+          "name": "Blue Mage",
+          "abbreviation": "BLU",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

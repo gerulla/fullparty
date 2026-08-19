@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 1175,
+  "name": "パッセージ・オブ・アームズ",
+  "description": "被ダメージを軽減するシールドを発生させている状態。",
+  "effects": [
+    "被ダメージを軽減するシールドを発生させている状態。"
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 212512,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": true,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 4,
+    "modifier": 100
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 7385,
+      "name": "パッセージ・オブ・アームズ",
+      "description": "自身の後方扇範囲に被ダメージを軽減するシールドを生成する。\n効果時間中、自身のブロック発動率が100％になり、さらに範囲内にいるパーティメンバーの被ダメージを15％軽減する。\n効果時間：18秒\n効果時間中にアクションの実行や移動・ターンを行うと、パッセージ・オブ・アームズは即座に解除される。\n実行後にオートアタックを停止する。",
+      "description_macro": "自身の後方扇範囲に被ダメージを軽減するシールドを生成する。<br>効果時間中、自身のブロック発動率が100％になり、さらに範囲内にいるパーティメンバーの被ダメージを15％軽減する。<br><colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>18秒<br>効果時間中にアクションの実行や移動・ターンを行うと、パッセージ・オブ・アームズは即座に解除される。<br>実行後にオートアタックを停止する。",
+      "unlock_level": 70,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Tank"
+      ],
+      "jobs": [
+        {
+          "id": 19,
+          "name": "ナイト",
+          "abbreviation": "PLD",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

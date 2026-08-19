@@ -1,0 +1,51 @@
+{
+  "kind": "combat_status",
+  "id": 4244,
+  "name": "Lied arrêté",
+  "description": "L'expérience de soutien obtenue au combat est augmentée.",
+  "effects": [
+    "L'expérience de soutien obtenue au combat est augmentée."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 229955,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 10
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 41609,
+      "name": "Lied arrêté",
+      "description": "Arrête le temps pour les ennemis alentour.\nDurée : 3s\nEffet additionnel : lorsque l'action est utilisée à proximité d'un cristal de savoir, vous octroie ainsi qu'à vos équipiers Lied arrêté.\nDurée : 30m\nLied arrêté : augmente de 10% les points d'expérience de soutien gagnés en éliminant des ennemis.",
+      "description_macro": "Arrête le temps pour les ennemis alentour.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 3s<br><colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> lorsque l'action est utilisée à proximité d'un cristal de savoir, vous octroie ainsi qu'à vos équipiers <colortype(500)><edgecolortype(501)>Lied arrêté<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 30m<br><colortype(506)><edgecolortype(507)>Lied arrêté<nbsp>:<edgecolortype(0)><colortype(0)> augmente de 10% les points d'expérience de soutien gagnés en éliminant des ennemis.",
+      "unlock_level": 0,
+      "relations": [
+        "granted_by_description",
+        "same_name"
+      ],
+      "roles": [
+        "Phantom Jobs"
+      ],
+      "jobs": [
+        {
+          "id": 6,
+          "name": "Phantom Barde fantôme",
+          "abbreviation": "Barde fant.",
+          "is_phantom": true
+        }
+      ]
+    }
+  ]
+}

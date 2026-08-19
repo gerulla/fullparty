@@ -1,0 +1,94 @@
+{
+  "kind": "ability",
+  "id": 37015,
+  "name": "Manifestation",
+  "description": "Du regenerierst LP des Ziels.\nHeilpotenzial: 360\nZusatzeffekt: Gewährt dem Ziel Dynamisieren.\nEffekt von Dynamisieren: Errichtet eine Barriere um das Ziel, die Schaden in der Höhe von 180 % der Heilwirkung absorbiert.\nDauer: 30 Sekunden\nKann nicht zugleich mit einigen Barriere-Effekten des Weisen aktiv sein.\nZusatzeffekt bei kritischem Heilerfolg: Zusätzliche Barriere absorbiert 180 % der Heilwirkung (Katalyse).\nDauer: 30 Sekunden\nBedingung: Seraphenlehre aktiv\nBei erfüllter Bedingung ändert sich Adloquium zu diesem Kommando.\nKann nicht im Kommandomenü angelegt werden.",
+  "description_macro": "Du regenerierst LP des Ziels.<br>Heilpotenzial: 360<br>Zusatzeffekt: Gewährt dem Ziel <colortype(506)><edgecolortype(507)>Dynamisieren<edgecolortype(0)><colortype(0)>.<br>Effekt von <colortype(506)><edgecolortype(507)>Dynamisieren<edgecolortype(0)><colortype(0)>: Errichtet eine Barriere um das Ziel, die Schaden in der Höhe von 180<nbsp>% der Heilwirkung absorbiert.<br>Dauer: 30 Sekunden<br>Kann nicht zugleich mit einigen Barriere-Effekten des Weisen aktiv sein.<br>Zusatzeffekt bei kritischem Heilerfolg: Zusätzliche Barriere absorbiert 180<nbsp>% der Heilwirkung (<colortype(506)><edgecolortype(507)>Katalyse<edgecolortype(0)><colortype(0)>).<br>Dauer: 30 Sekunden<br>Bedingung: <colortype(506)><edgecolortype(507)>Seraphenlehre<edgecolortype(0)><colortype(0)> aktiv<br>Bei erfüllter Bedingung ändert sich <colortype(502)><edgecolortype(503)>Adloquium<edgecolortype(0)><colortype(0)> zu diesem Kommando.<br>Kann nicht im Kommandomenü angelegt werden.",
+  "effects": [
+    "Du regenerierst LP des Ziels.",
+    "Heilpotenzial: 360",
+    "Zusatzeffekt: Gewährt dem Ziel Dynamisieren.",
+    "Effekt von Dynamisieren: Errichtet eine Barriere um das Ziel, die Schaden in der Höhe von 180 % der Heilwirkung absorbiert.",
+    "Dauer: 30 Sekunden",
+    "Kann nicht zugleich mit einigen Barriere-Effekten des Weisen aktiv sein.",
+    "Zusatzeffekt bei kritischem Heilerfolg: Zusätzliche Barriere absorbiert 180 % der Heilwirkung (Katalyse).",
+    "Dauer: 30 Sekunden",
+    "Bedingung: Seraphenlehre aktiv",
+    "Bei erfüllter Bedingung ändert sich Adloquium zu diesem Kommando.",
+    "Kann nicht im Kommandomenü angelegt werden."
+  ],
+  "role": "Healer",
+  "job": {
+    "id": 28,
+    "name": "Gelehrter",
+    "abbreviation": "GLT"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 100,
+  "icon": {
+    "id": 2882,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 2,
+    "name": "Zauber"
+  },
+  "attack_type": {
+    "id": 5,
+    "name": "魔法"
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 2.5,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 58,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 3,
+      "value": 9
+    },
+    "secondary": {
+      "type_id": 32,
+      "value": 3884
+    }
+  },
+  "range": {
+    "target_yalms": 30,
+    "effect_yalms": 0,
+    "cast_type": 1
+  },
+  "targeting": {
+    "self": true,
+    "party": true,
+    "alliance": true,
+    "hostile": false,
+    "ally": true,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": false
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": false
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 7,
+    "behavior_type": 0,
+    "class_job_category_id": 29,
+    "source_class_job_id": 0,
+    "is_role_action": false,
+    "is_player_action": false,
+    "is_derived_action": true,
+    "equivalence_group": 0
+  }
+}

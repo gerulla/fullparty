@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 3834,
+  "name": "Ruinator",
+  "description": "Ruinator kann ausgeführt werden.",
+  "effects": [
+    "Ruinator kann ausgeführt werden."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 212569,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 22,
+  "source_abilities": [
+    {
+      "id": 25753,
+      "name": "Brachiale Gewalt",
+      "description": "Du führst eine Sprung-Attacke aus, die direkt und kritisch trifft, und fügst dem Ziel und den Gegnern in seiner Nähe physischen Schaden zu.\nAttacke-Wert: 720\nAttacke-Wert verringert sich ab dem zweiten Gegner um 50 %.\nIst ein Effekt aktiv, der deine Rate kritischer oder direkter Treffer steigert, erhöht sich auch der Attacke-Wert.\nZusatzeffekt: Gewährt dir Ruinator.\nDauer: 20 Sekunden\nBedingung: Durch Urbefreiung gewährte Brachiale Gewalt aktiv\nKann nicht während Fessel ausgeführt werden.",
+      "description_macro": "Du führst eine Sprung-Attacke aus, die direkt und kritisch trifft, und fügst dem Ziel und den Gegnern in seiner Nähe physischen Schaden zu.<br>Attacke-Wert: 720<br>Attacke-Wert verringert sich ab dem zweiten Gegner um 50<nbsp>%.<br>Ist ein Effekt aktiv, der deine Rate kritischer oder direkter Treffer steigert, erhöht sich auch der Attacke-Wert.<br><if([gnum68==21],<if([gnum72>=100],Zusatzeffekt: Gewährt dir <colortype(506)><edgecolortype(507)>Ruinator<edgecolortype(0)><colortype(0)>.<br>Dauer: 20 Sekunden<br>,)>,)>Bedingung: Durch <colortype(502)><edgecolortype(503)>Urbefreiung<edgecolortype(0)><colortype(0)> gewährte <colortype(506)><edgecolortype(507)>Brachiale Gewalt<edgecolortype(0)><colortype(0)> aktiv<br>Kann nicht während <colortype(500)><edgecolortype(501)>Fessel<edgecolortype(0)><colortype(0)> ausgeführt werden.",
+      "unlock_level": 90,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Tank"
+      ],
+      "jobs": [
+        {
+          "id": 21,
+          "name": "Krieger",
+          "abbreviation": "KRG",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

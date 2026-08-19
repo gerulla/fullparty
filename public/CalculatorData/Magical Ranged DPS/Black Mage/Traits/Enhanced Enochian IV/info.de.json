@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 659,
+  "name": "Verbessertes Henochisch IV",
+  "description": "Erhöht den Effekt von Henochisch auf 27 %.",
+  "description_macro": "Erhöht den Effekt von <colortype(506)><edgecolortype(507)>Henochisch<edgecolortype(0)><colortype(0)> auf 27<nbsp>%.",
+  "effects": [
+    "Erhöht den Effekt von Henochisch auf 27 %."
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 25,
+    "name": "Schwarzmagier",
+    "abbreviation": "SMA"
+  },
+  "unlock_level": 96,
+  "value": 22,
+  "icon": {
+    "id": 5655,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 26,
+  "source_class_job_id": 25
+}

@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 295,
+  "name": "Cœur ombral",
+  "description": "Vous octroie des degrés de Cœur ombral lorsque vous utilisez Âme ombrale, Gel ou Vasque de mana.",
+  "description_macro": "Vous octroie des degrés de <colortype(500)><edgecolortype(501)>Cœur ombral<edgecolortype(0)><colortype(0)> lorsque vous utilisez <colortype(500)><edgecolortype(501)>Âme ombrale<edgecolortype(0)><colortype(0)>, <colortype(500)><edgecolortype(501)>Gel<edgecolortype(0)><colortype(0)> ou <colortype(500)><edgecolortype(501)>Vasque de mana<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Vous octroie des degrés de Cœur ombral lorsque vous utilisez Âme ombrale, Gel ou Vasque de mana."
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 25,
+    "name": "Mage Noir",
+    "abbreviation": "MNO"
+  },
+  "unlock_level": 58,
+  "value": 0,
+  "icon": {
+    "id": 5656,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 26,
+  "source_class_job_id": 25
+}

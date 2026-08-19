@@ -1,0 +1,25 @@
+{
+  "kind": "trait",
+  "id": 605,
+  "name": "マルチウェポン効果アップ",
+  "description": "ドリルとバイオブラストがチャージアクションに変化する。\n最大チャージ数：2",
+  "description_macro": "ドリルとバイオブラストがチャージアクションに変化する。<br><colortype(504)><edgecolortype(505)>最大チャージ数：<edgecolortype(0)><colortype(0)>2",
+  "effects": [
+    "ドリルとバイオブラストがチャージアクションに変化する。",
+    "最大チャージ数：2"
+  ],
+  "role": "Physical Ranged DPS",
+  "job": {
+    "id": 31,
+    "name": "機工士",
+    "abbreviation": "MCH"
+  },
+  "unlock_level": 94,
+  "value": 2,
+  "icon": {
+    "id": 6023,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 96,
+  "source_class_job_id": 31
+}

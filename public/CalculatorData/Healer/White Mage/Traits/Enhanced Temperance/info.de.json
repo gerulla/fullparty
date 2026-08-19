@@ -1,0 +1,25 @@
+{
+  "kind": "trait",
+  "id": 626,
+  "name": "Verbesserte Linderung",
+  "description": "Erfolgreiche Ausführung von Linderung gewährt dir Göttliche Gnade.\nDauer: 30 Sekunden",
+  "description_macro": "Erfolgreiche Ausführung von <colortype(502)><edgecolortype(503)>Linderung<edgecolortype(0)><colortype(0)> gewährt dir <colortype(506)><edgecolortype(507)>Göttliche Gnade<edgecolortype(0)><colortype(0)>.<br>Dauer: 30 Sekunden",
+  "effects": [
+    "Erfolgreiche Ausführung von Linderung gewährt dir Göttliche Gnade.",
+    "Dauer: 30 Sekunden"
+  ],
+  "role": "Healer",
+  "job": {
+    "id": 24,
+    "name": "Weißmagier",
+    "abbreviation": "WMA"
+  },
+  "unlock_level": 100,
+  "value": 0,
+  "icon": {
+    "id": 5348,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 25,
+  "source_class_job_id": 24
+}

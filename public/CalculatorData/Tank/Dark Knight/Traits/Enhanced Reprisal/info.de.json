@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 640,
+  "name": "Verbesserte Reflexion",
+  "description": "Verlängert die Wirkungsdauer von Reflexion auf 15 Sekunden.",
+  "description_macro": "Verlängert die Wirkungsdauer von <colortype(506)><edgecolortype(507)>Reflexion<edgecolortype(0)><colortype(0)> auf 15 Sekunden.",
+  "effects": [
+    "Verlängert die Wirkungsdauer von Reflexion auf 15 Sekunden."
+  ],
+  "role": "Tank",
+  "job": {
+    "id": 32,
+    "name": "Dunkelritter",
+    "abbreviation": "DKR"
+  },
+  "unlock_level": 98,
+  "value": 0,
+  "icon": {
+    "id": 6805,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 113,
+  "source_class_job_id": 0
+}

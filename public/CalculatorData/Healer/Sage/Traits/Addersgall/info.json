@@ -1,0 +1,26 @@
+{
+  "kind": "trait",
+  "id": 370,
+  "name": "Addersgall",
+  "description": "Grants 1 stack of Addersgall automatically every twenty seconds.\nMaximum Stacks: 3\nCan be charged outside of combat.",
+  "description_macro": "Grants 1 stack of <colortype(506)><edgecolortype(507)>Addersgall<edgecolortype(0)><colortype(0)> automatically every twenty seconds.<br><colortype(504)><edgecolortype(505)>Maximum Stacks: <edgecolortype(0)><colortype(0)>3<br>Can be charged outside of combat.",
+  "effects": [
+    "Grants 1 stack of Addersgall automatically every twenty seconds.",
+    "Maximum Stacks: 3",
+    "Can be charged outside of combat."
+  ],
+  "role": "Healer",
+  "job": {
+    "id": 40,
+    "name": "Sage",
+    "abbreviation": "SGE"
+  },
+  "unlock_level": 45,
+  "value": 0,
+  "icon": {
+    "id": 6451,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 181,
+  "source_class_job_id": 40
+}

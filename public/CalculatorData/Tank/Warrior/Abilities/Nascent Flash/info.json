@@ -1,0 +1,89 @@
+{
+  "kind": "ability",
+  "id": 16464,
+  "name": "Nascent Flash",
+  "description": "Grants Nascent Flash to self and Nascent Glint to target party member.\nNascent Flash Effect: Restores HP with each weaponskill successfully delivered\nCure Potency: 400\nNascent Glint Effect: Restores HP equaling 100% of that recovered by Nascent Flash while also reducing damage taken by 10%\nDuration: 8s\nAdditional Effect: Grants Stem the Flow to target\\Shares a recast timer with Bloodwhetting.",
+  "description_macro": "Grants <colortype(506)><edgecolortype(507)>Nascent Flash<edgecolortype(0)><colortype(0)> to self and <colortype(506)><edgecolortype(507)>Nascent Glint<edgecolortype(0)><colortype(0)> to target party member.<br><colortype(504)><edgecolortype(505)>Nascent Flash Effect: <edgecolortype(0)><colortype(0)>Restores HP with each weaponskill successfully delivered<br><colortype(504)><edgecolortype(505)>Cure Potency: <edgecolortype(0)><colortype(0)>400<br><colortype(504)><edgecolortype(505)>Nascent Glint Effect: <edgecolortype(0)><colortype(0)>Restores HP equaling 100% of that recovered by <colortype(506)><edgecolortype(507)>Nascent Flash<edgecolortype(0)><colortype(0)> while also reducing damage taken by 10%<br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)><if([gnum68==21],<if([gnum72>=82],8,6)>,6)>s<br><if([gnum68==21],<if([gnum72>=82],<colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>Grants <colortype(506)><edgecolortype(507)>Stem the Flow<edgecolortype(0)><colortype(0)> to target\\, reducing damage taken by 10%<br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>4s<br><colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>Grants <colortype(506)><edgecolortype(507)>Stem the Tide<edgecolortype(0)><colortype(0)> to target\\, nullifying damage equivalent to a heal of 400 potency<br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>20s<br>,)>,)>Shares a recast timer with <if([gnum68==21],<if([gnum72>=82],<colortype(500)><edgecolortype(501)>Bloodwhetting<edgecolortype(0)><colortype(0)>,<colortype(500)><edgecolortype(501)>Raw Intuition<edgecolortype(0)><colortype(0)>)>,<colortype(500)><edgecolortype(501)>Raw Intuition<edgecolortype(0)><colortype(0)>)>.",
+  "effects": [
+    "Grants Nascent Flash to self and Nascent Glint to target party member.",
+    "Nascent Flash Effect: Restores HP with each weaponskill successfully delivered",
+    "Cure Potency: 400",
+    "Nascent Glint Effect: Restores HP equaling 100% of that recovered by Nascent Flash while also reducing damage taken by 10%",
+    "Duration: 8s",
+    "Additional Effect: Grants Stem the Flow to target\\Shares a recast timer with Bloodwhetting."
+  ],
+  "role": "Tank",
+  "job": {
+    "id": 21,
+    "name": "Warrior",
+    "abbreviation": "WAR"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 76,
+  "icon": {
+    "id": 2567,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 4,
+    "name": "Ability"
+  },
+  "attack_type": {
+    "id": 0,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 25,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 7,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 0,
+      "value": 0
+    },
+    "secondary": {
+      "type_id": 0,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": 30,
+    "effect_yalms": 0,
+    "cast_type": 1
+  },
+  "targeting": {
+    "self": false,
+    "party": true,
+    "alliance": false,
+    "hostile": false,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": false
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 0,
+    "behavior_type": 0,
+    "class_job_category_id": 22,
+    "source_class_job_id": 21,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

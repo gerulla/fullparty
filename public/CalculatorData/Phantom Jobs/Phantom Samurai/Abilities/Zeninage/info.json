@@ -1,0 +1,86 @@
+{
+  "kind": "ability",
+  "id": 41606,
+  "name": "Zeninage",
+  "description": "Consume an Occult Coffer to deliver a guaranteed strike with a potency of 1,500.\nPotency scales with item level.\nCan only be executed while you possess an Occult Coffer.",
+  "description_macro": "Consume an <colortype(506)><edgecolortype(507)>Occult Coffer<edgecolortype(0)><colortype(0)> to deliver a guaranteed strike with a potency of 1,500.<br>Potency scales with item level.<br>Can only be executed while you possess an <colortype(506)><edgecolortype(507)>Occult Coffer<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Consume an Occult Coffer to deliver a guaranteed strike with a potency of 1,500.",
+    "Potency scales with item level.",
+    "Can only be executed while you possess an Occult Coffer."
+  ],
+  "role": "Phantom Jobs",
+  "job": {
+    "id": 5,
+    "name": "Phantom Samurai",
+    "abbreviation": "Ph. Samurai"
+  },
+  "is_phantom_action": true,
+  "unlock_level": 4,
+  "icon": {
+    "id": 64779,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 3,
+    "name": "Weaponskill"
+  },
+  "attack_type": {
+    "id": 3,
+    "name": "打"
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 120,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 87,
+    "additional_cooldown_group": 58,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 106,
+      "value": 47740
+    },
+    "secondary": {
+      "type_id": 0,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": 30,
+    "effect_yalms": 0,
+    "cast_type": 1
+  },
+  "targeting": {
+    "self": false,
+    "party": false,
+    "alliance": false,
+    "hostile": true,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 7,
+    "behavior_type": 0,
+    "class_job_category_id": 142,
+    "source_class_job_id": 4294967295,
+    "is_role_action": false,
+    "is_player_action": false,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

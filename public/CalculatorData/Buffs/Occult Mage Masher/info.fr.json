@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 4259,
+  "name": "Magi Bâillonnement",
+  "description": "La puissance magique est réduite.",
+  "effects": [
+    "La puissance magique est réduite."
+  ],
+  "classification": "debuff",
+  "icon": {
+    "id": 229921,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 2,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": -10
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 41624,
+      "name": "Magi Bâillonnement",
+      "description": "Réduit de 10% la puissance magique de la cible.\nDurée : 60s",
+      "description_macro": "Réduit de 10% la puissance magique de la cible.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 60s",
+      "unlock_level": 0,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Phantom Jobs"
+      ],
+      "jobs": [
+        {
+          "id": 8,
+          "name": "Phantom Chronomancien fantôme",
+          "abbreviation": "Chronomancien fant.",
+          "is_phantom": true
+        }
+      ]
+    }
+  ]
+}

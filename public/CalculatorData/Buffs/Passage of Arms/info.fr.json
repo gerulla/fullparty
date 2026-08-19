@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 1175,
+  "name": "Passe d'armes",
+  "description": "Crée une aura bénéfique derrière le personnage, qui réduit les dégâts reçus.",
+  "effects": [
+    "Crée une aura bénéfique derrière le personnage, qui réduit les dégâts reçus."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 212512,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": true,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 4,
+    "modifier": 100
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 7385,
+      "name": "Passe d'armes",
+      "description": "Crée un bouclier protecteur dans une zone en éventail derrière vous, réduisant de 15% les dégâts subis des équipiers à l'intérieur.\nAugmente à 100% votre taux de blocage.\nDurée : 18s\nL'effet prend fin si vous effectuez une action, un déplacement ou une rotation.\nInterrompt vos attaques automatiques.",
+      "description_macro": "Crée un bouclier protecteur dans une zone en éventail derrière vous, réduisant de 15% les dégâts subis des équipiers à l'intérieur.<br>Augmente à 100% votre taux de blocage.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 18s<br>L'effet prend fin si vous effectuez une action, un déplacement ou une rotation.<br>Interrompt vos attaques automatiques.",
+      "unlock_level": 70,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Tank"
+      ],
+      "jobs": [
+        {
+          "id": 19,
+          "name": "Paladin",
+          "abbreviation": "PLD",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

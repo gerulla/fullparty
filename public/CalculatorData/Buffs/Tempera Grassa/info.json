@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 3687,
+  "name": "Tempera Grassa",
+  "description": "A magicked barrier is nullifying damage.",
+  "effects": [
+    "A magicked barrier is nullifying damage."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 213810,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 30,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 197,
+  "source_abilities": [
+    {
+      "id": 34686,
+      "name": "Tempera Grassa",
+      "description": "Removes Tempera Coat to create a barrier around self and all nearby party members that absorbs damage totaling 10% of maximum HP.\nDuration: 10s\nReduces the recast time of Tempera Coat by 30 seconds when barrier is completely absorbed.\nCan only be executed when under the effect of Tempera Coat.",
+      "description_macro": "Removes <colortype(506)><edgecolortype(507)>Tempera Coat<edgecolortype(0)><colortype(0)> to create a barrier around self and all nearby party members that absorbs damage totaling 10% of maximum HP.<br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>10s<br>Reduces the recast time of <colortype(500)><edgecolortype(501)>Tempera Coat<edgecolortype(0)><colortype(0)> by 30 seconds when barrier is completely absorbed.<br>Can only be executed when under the effect of <colortype(506)><edgecolortype(507)>Tempera Coat<edgecolortype(0)><colortype(0)>.",
+      "unlock_level": 88,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Magical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 42,
+          "name": "Pictomancer",
+          "abbreviation": "PCT",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

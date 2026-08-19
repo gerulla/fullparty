@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 434,
+  "name": "Enhanced Jump",
+  "description": "Increases the potency of Jump to 320.",
+  "description_macro": "Increases the potency of <colortype(500)><edgecolortype(501)>Jump<edgecolortype(0)><colortype(0)> to 320.",
+  "effects": [
+    "Increases the potency of Jump to 320."
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 22,
+    "name": "Dragoon",
+    "abbreviation": "DRG"
+  },
+  "unlock_level": 54,
+  "value": 0,
+  "icon": {
+    "id": 5294,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 23,
+  "source_class_job_id": 22
+}

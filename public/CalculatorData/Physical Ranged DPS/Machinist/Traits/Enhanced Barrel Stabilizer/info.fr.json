@@ -1,0 +1,25 @@
+{
+  "kind": "trait",
+  "id": 608,
+  "name": "Stabilisateur de canon amélioré",
+  "description": "Permet de recevoir Rafale de métal préparée lorsque vous utilisez Stabilisateur de canon.\nDurée : 30s",
+  "description_macro": "Permet de recevoir <colortype(500)><edgecolortype(501)>Rafale de métal préparée<edgecolortype(0)><colortype(0)> lorsque vous utilisez <colortype(500)><edgecolortype(501)>Stabilisateur de canon<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 30s",
+  "effects": [
+    "Permet de recevoir Rafale de métal préparée lorsque vous utilisez Stabilisateur de canon.",
+    "Durée : 30s"
+  ],
+  "role": "Physical Ranged DPS",
+  "job": {
+    "id": 31,
+    "name": "Machiniste",
+    "abbreviation": "MCH"
+  },
+  "unlock_level": 100,
+  "value": 0,
+  "icon": {
+    "id": 6026,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 96,
+  "source_class_job_id": 31
+}

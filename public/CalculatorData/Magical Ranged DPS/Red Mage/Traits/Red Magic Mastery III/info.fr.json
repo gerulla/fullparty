@@ -1,0 +1,34 @@
+{
+  "kind": "trait",
+  "id": 484,
+  "name": "Maîtrise de la magie rouge III",
+  "description": "Remplace Extra À-coup par Méga À-coup.\nAugmente également la puissance de certaines actions.\n\nPuissance de Riposte enchantée : 280\nPuissance d'Extra VerFoudre : 140\nPuissance d'Extra VerVent : 140\nPuissance de VerFeu : 340\nPuissance de VerTerre : 340\nPuissance de Zwerchhau enchanté : 150\nPuissance de Redoublement enchanté : 130\nPuissance d'Impact : 210\nPuissance de Reprise enchantée : 340",
+  "description_macro": "Remplace <colortype(500)><edgecolortype(501)>Extra À-coup<edgecolortype(0)><colortype(0)> par <colortype(500)><edgecolortype(501)>Méga À-coup<edgecolortype(0)><colortype(0)>.<br>Augmente également la puissance de certaines actions.<br><br><colortype(506)><edgecolortype(507)>Puissance de Riposte enchantée<nbsp>:<edgecolortype(0)><colortype(0)> 280<br><colortype(506)><edgecolortype(507)>Puissance d'Extra VerFoudre<nbsp>:<edgecolortype(0)><colortype(0)> 140<br><colortype(506)><edgecolortype(507)>Puissance d'Extra VerVent<nbsp>:<edgecolortype(0)><colortype(0)> 140<br><colortype(506)><edgecolortype(507)>Puissance de VerFeu<nbsp>:<edgecolortype(0)><colortype(0)> 340<br><colortype(506)><edgecolortype(507)>Puissance de VerTerre<nbsp>:<edgecolortype(0)><colortype(0)> 340<br><colortype(506)><edgecolortype(507)>Puissance de Zwerchhau enchanté<nbsp>:<edgecolortype(0)><colortype(0)> 150<br><colortype(506)><edgecolortype(507)>Puissance de Redoublement enchanté<nbsp>:<edgecolortype(0)><colortype(0)> 130<br><colortype(506)><edgecolortype(507)>Puissance d'Impact<nbsp>:<edgecolortype(0)><colortype(0)> 210<br><colortype(506)><edgecolortype(507)>Puissance de Reprise enchantée<nbsp>:<edgecolortype(0)><colortype(0)> 340",
+  "effects": [
+    "Remplace Extra À-coup par Méga À-coup.",
+    "Augmente également la puissance de certaines actions.",
+    "Puissance de Riposte enchantée : 280",
+    "Puissance d'Extra VerFoudre : 140",
+    "Puissance d'Extra VerVent : 140",
+    "Puissance de VerFeu : 340",
+    "Puissance de VerTerre : 340",
+    "Puissance de Zwerchhau enchanté : 150",
+    "Puissance de Redoublement enchanté : 130",
+    "Puissance d'Impact : 210",
+    "Puissance de Reprise enchantée : 340"
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 35,
+    "name": "Mage Rouge",
+    "abbreviation": "MRG"
+  },
+  "unlock_level": 84,
+  "value": 0,
+  "icon": {
+    "id": 6210,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 112,
+  "source_class_job_id": 35
+}

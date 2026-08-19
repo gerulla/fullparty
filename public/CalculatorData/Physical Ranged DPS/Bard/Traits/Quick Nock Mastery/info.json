@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 444,
+  "name": "Quick Nock Mastery",
+  "description": "Upgrades Quick Nock to Ladonsbite.",
+  "description_macro": "Upgrades <colortype(500)><edgecolortype(501)>Quick Nock<edgecolortype(0)><colortype(0)> to <colortype(500)><edgecolortype(501)>Ladonsbite<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Upgrades Quick Nock to Ladonsbite."
+  ],
+  "role": "Physical Ranged DPS",
+  "job": {
+    "id": 23,
+    "name": "Bard",
+    "abbreviation": "BRD"
+  },
+  "unlock_level": 82,
+  "value": 0,
+  "icon": {
+    "id": 5316,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 24,
+  "source_class_job_id": 23
+}

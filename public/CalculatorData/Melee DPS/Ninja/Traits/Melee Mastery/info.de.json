@@ -1,0 +1,27 @@
+{
+  "kind": "trait",
+  "id": 516,
+  "name": "Verbessertes Ninjutsu",
+  "description": "Erhöht den Attacke-Wert folgender Kommandos:\nAttacke-Wert von Windschlitzer: 120\nAttacke-Wert von Äolusklinge: 140\nAttacke-Wert von Harnischbrecher: 140",
+  "description_macro": "Erhöht den Attacke-Wert folgender Kommandos:<br>Attacke-Wert von <colortype(502)><edgecolortype(503)>Windschlitzer<edgecolortype(0)><colortype(0)>: 120<br>Attacke-Wert von <colortype(502)><edgecolortype(503)>Äolusklinge<edgecolortype(0)><colortype(0)>: 140<br>Attacke-Wert von <colortype(502)><edgecolortype(503)>Harnischbrecher<edgecolortype(0)><colortype(0)>: 140",
+  "effects": [
+    "Erhöht den Attacke-Wert folgender Kommandos:",
+    "Attacke-Wert von Windschlitzer: 120",
+    "Attacke-Wert von Äolusklinge: 140",
+    "Attacke-Wert von Harnischbrecher: 140"
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 30,
+    "name": "Ninja",
+    "abbreviation": "NIN"
+  },
+  "unlock_level": 74,
+  "value": 0,
+  "icon": {
+    "id": 6801,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 92,
+  "source_class_job_id": 30
+}

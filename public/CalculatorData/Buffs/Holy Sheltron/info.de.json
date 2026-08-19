@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 2674,
+  "name": "Heiliges Schiltron",
+  "description": "Erlittener Schaden ist verringert.",
+  "effects": [
+    "Erlittener Schaden ist verringert."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 212515,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": -10
+  },
+  "class_job_category_id": 20,
+  "source_abilities": [
+    {
+      "id": 25746,
+      "name": "Heiliges Schiltron",
+      "description": "Du verringerst deinen erlittenen Schaden um 15 %.\nDauer: 8 Sekunden\nZusatzeffekt: Gewährt dir Trutz des Ritters.\nDauer: 4 Sekunden\nEffekt von Trutz des Ritters: Verringert erlittenen Schaden um 15 %.\nZusatzeffekt: Gewährt dir Schutz des Ritters.\nDauer: 12 Sekunden\nEffekt von Schutz des Ritters: Regeneriert stetig LP des Ziels.\nHeilpotenzial: 250\nEidbalken-Kosten: 50",
+      "description_macro": "Du verringerst deinen erlittenen Schaden um 15<nbsp>%.<br>Dauer: 8 Sekunden<br>Zusatzeffekt: Gewährt dir <colortype(506)><edgecolortype(507)>Trutz des Ritters<edgecolortype(0)><colortype(0)>.<br>Dauer: 4 Sekunden<br>Effekt von <colortype(506)><edgecolortype(507)>Trutz des Ritters<edgecolortype(0)><colortype(0)>: Verringert erlittenen Schaden um 15<nbsp>%.<br>Zusatzeffekt: Gewährt dir <colortype(506)><edgecolortype(507)>Schutz des Ritters<edgecolortype(0)><colortype(0)>.<br>Dauer: 12 Sekunden<br>Effekt von <colortype(506)><edgecolortype(507)>Schutz des Ritters<edgecolortype(0)><colortype(0)>: Regeneriert stetig LP des Ziels.<br>Heilpotenzial: 250<br>Eidbalken-Kosten: 50",
+      "unlock_level": 82,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Tank"
+      ],
+      "jobs": [
+        {
+          "id": 19,
+          "name": "Paladin",
+          "abbreviation": "PLD",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

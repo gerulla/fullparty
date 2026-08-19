@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 541,
+  "name": "Tempera améliorée",
+  "description": "Permet d'utiliser Tempera grassa lorsque vous bénéficiez de l'effet Enduit a tempera.",
+  "description_macro": "Permet d'utiliser <colortype(500)><edgecolortype(501)>Tempera grassa<edgecolortype(0)><colortype(0)> lorsque vous bénéficiez de l'effet <colortype(506)><edgecolortype(507)>Enduit a tempera<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Permet d'utiliser Tempera grassa lorsque vous bénéficiez de l'effet Enduit a tempera."
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 42,
+    "name": "Pictomancien",
+    "abbreviation": "PIC"
+  },
+  "unlock_level": 88,
+  "value": 0,
+  "icon": {
+    "id": 6555,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 197,
+  "source_class_job_id": 42
+}

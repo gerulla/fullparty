@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 432,
+  "name": "Fraternité améliorée",
+  "description": "Augmente à 100% les chances d'ouverture de chakra conférées par Fraternité méditative lorsque vous lancez un sort ou utilisez une technique d'arme.",
+  "description_macro": "Augmente à 100% les chances d'ouverture de chakra conférées par <colortype(500)><edgecolortype(501)>Fraternité méditative<edgecolortype(0)><colortype(0)> lorsque vous lancez un sort ou utilisez une technique d'arme.",
+  "effects": [
+    "Augmente à 100% les chances d'ouverture de chakra conférées par Fraternité méditative lorsque vous lancez un sort ou utilisez une technique d'arme."
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 20,
+    "name": "Moine",
+    "abbreviation": "MOI"
+  },
+  "unlock_level": 88,
+  "value": 0,
+  "icon": {
+    "id": 5245,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 21,
+  "source_class_job_id": 20
+}

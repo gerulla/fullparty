@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 1840,
+  "name": "Cœur de pierre",
+  "description": "Les dégâts reçus sont réduits.",
+  "effects": [
+    "Les dégâts reçus sont réduits."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 213610,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": -10
+  },
+  "class_job_category_id": 149,
+  "source_abilities": [
+    {
+      "id": 16161,
+      "name": "Cœur de pierre",
+      "description": "Réduit de 15% vos dégâts subis ou ceux de l'équipier ciblé.\nDurée : 7s\nEffet additionnel : si vous bénéficiez de l'effet Impact brutal et que la cible est un équipier, octroie également cet effet à la cible.\nDurée : 30s",
+      "description_macro": "Réduit de 15% vos dégâts subis ou ceux de l'équipier ciblé.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 7s<br><colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> si vous bénéficiez de l'effet <colortype(500)><edgecolortype(501)>Impact brutal<edgecolortype(0)><colortype(0)> et que la cible est un équipier, octroie également cet effet à la cible.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 30s",
+      "unlock_level": 68,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Tank"
+      ],
+      "jobs": [
+        {
+          "id": 37,
+          "name": "Pistosabreur",
+          "abbreviation": "PSB",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

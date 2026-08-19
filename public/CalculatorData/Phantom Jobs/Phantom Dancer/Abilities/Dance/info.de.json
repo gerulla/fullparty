@@ -1,0 +1,88 @@
+{
+  "kind": "ability",
+  "id": 46598,
+  "name": "Tanzen",
+  "description": "Du gewährst dir zufällig einen der vier Status Schwerttanz, Verführerischer Tango, Jitterbug und Bizarrer Walzer, unter dessen Einfluss das entsprechende Kommando ausgeführt werden kann.\nEffekt von Schwerttanz: Ermöglicht eine starke physische Attacke auf ein Ziel.\nEffekt von Verführerischer Tango: Ermöglicht eine elementneutrale magische Attacke auf ein Ziel, die dessen Zeit anhält.\nEffekt von Jitterbug: Ermöglicht eine elementneutrale magische Attacke auf ein Ziel, die dieses paralysiert und einen Teil des Schadens als LP absorbiert.\nEffekt von Bizarrer Walzer: Ermöglicht eine elementneutrale magische Attacke auf ein Ziel, die dieses blendet und die eigenen MP regeneriert.",
+  "description_macro": "Du gewährst dir zufällig einen der vier Status <colortype(506)><edgecolortype(507)>Schwerttanz<edgecolortype(0)><colortype(0)>, <colortype(506)><edgecolortype(507)>Verführerischer Tango<edgecolortype(0)><colortype(0)>, <colortype(506)><edgecolortype(507)>Jitterbug<edgecolortype(0)><colortype(0)> und <colortype(506)><edgecolortype(507)>Bizarrer Walzer<edgecolortype(0)><colortype(0)>, unter dessen Einfluss das entsprechende Kommando ausgeführt werden kann.<br>Effekt von <colortype(506)><edgecolortype(507)>Schwerttanz<edgecolortype(0)><colortype(0)>: Ermöglicht eine starke physische Attacke auf ein Ziel.<br>Effekt von <colortype(506)><edgecolortype(507)>Verführerischer Tango<edgecolortype(0)><colortype(0)>: Ermöglicht eine elementneutrale magische Attacke auf ein Ziel, die dessen Zeit anhält.<br>Effekt von <colortype(506)><edgecolortype(507)>Jitterbug<edgecolortype(0)><colortype(0)>: Ermöglicht eine elementneutrale magische Attacke auf ein Ziel, die dieses paralysiert und einen Teil des Schadens als LP absorbiert.<br>Effekt von <colortype(506)><edgecolortype(507)>Bizarrer Walzer<edgecolortype(0)><colortype(0)>: Ermöglicht eine elementneutrale magische Attacke auf ein Ziel, die dieses blendet und die eigenen MP regeneriert.",
+  "effects": [
+    "Du gewährst dir zufällig einen der vier Status Schwerttanz, Verführerischer Tango, Jitterbug und Bizarrer Walzer, unter dessen Einfluss das entsprechende Kommando ausgeführt werden kann.",
+    "Effekt von Schwerttanz: Ermöglicht eine starke physische Attacke auf ein Ziel.",
+    "Effekt von Verführerischer Tango: Ermöglicht eine elementneutrale magische Attacke auf ein Ziel, die dessen Zeit anhält.",
+    "Effekt von Jitterbug: Ermöglicht eine elementneutrale magische Attacke auf ein Ziel, die dieses paralysiert und einen Teil des Schadens als LP absorbiert.",
+    "Effekt von Bizarrer Walzer: Ermöglicht eine elementneutrale magische Attacke auf ein Ziel, die dieses blendet und die eigenen MP regeneriert."
+  ],
+  "role": "Phantom Jobs",
+  "job": {
+    "id": 15,
+    "name": "Phantom-Tänzer",
+    "abbreviation": "Ph-Tänzer"
+  },
+  "is_phantom_action": true,
+  "unlock_level": 1,
+  "icon": {
+    "id": 64583,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 4,
+    "name": "Talent"
+  },
+  "attack_type": {
+    "id": 0,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 30,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 83,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 0,
+      "value": 0
+    },
+    "secondary": {
+      "type_id": 0,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": 0,
+    "effect_yalms": 0,
+    "cast_type": 1
+  },
+  "targeting": {
+    "self": true,
+    "party": false,
+    "alliance": false,
+    "hostile": false,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": false,
+    "requires_facing_target": false
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 0,
+    "behavior_type": 0,
+    "class_job_category_id": 142,
+    "source_class_job_id": 4294967295,
+    "is_role_action": false,
+    "is_player_action": false,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

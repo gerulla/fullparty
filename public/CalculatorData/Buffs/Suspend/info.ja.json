@@ -1,0 +1,51 @@
+{
+  "kind": "combat_status",
+  "id": 4258,
+  "name": "ふゆう",
+  "description": "重力に反発し、宙に浮いた状態。",
+  "effects": [
+    "重力に反発し、宙に浮いた状態。"
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 215037,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 12,
+    "modifier": 0
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 41620,
+      "name": "ふゆう",
+      "description": "自身か対象のパーティメンバーひとりを浮遊状態にする。\n浮遊状態では、一部のギミックを無効化することが出来る。\n効果時間：60秒\nリキャストタイマーをウェポンスキルおよび魔法と共有する。",
+      "description_macro": "自身か対象のパーティメンバーひとりを浮遊状態にする。<br>浮遊状態では、一部のギミックを無効化することが出来る。<br><colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>60秒<br>リキャストタイマーをウェポンスキルおよび魔法と共有する。",
+      "unlock_level": 0,
+      "relations": [
+        "granted_by_description",
+        "same_name"
+      ],
+      "roles": [
+        "Phantom Jobs"
+      ],
+      "jobs": [
+        {
+          "id": 7,
+          "name": "Phantom サポート風水士",
+          "abbreviation": "Ph. Geomancer",
+          "is_phantom": true
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 3871,
+  "name": "High Thunder",
+  "description": "Sustaining lightning damage over time.",
+  "effects": [
+    "Sustaining lightning damage over time."
+  ],
+  "classification": "debuff",
+  "icon": {
+    "id": 212661,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 2,
+  "target_type": 0,
+  "can_dispel": true,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 10,
+  "parameter": {
+    "effect": 0,
+    "modifier": 10
+  },
+  "class_job_category_id": 26,
+  "source_abilities": [
+    {
+      "id": 36986,
+      "name": "High Thunder",
+      "description": "Deals lightning damage with a potency of 150.\nAdditional Effect: Lightning damage over time\nPotency: 60\nDuration: 30s\nCan only be cast while under the effect of Thunderhead, granted when gaining Astral Fire or Umbral Ice from an unaspected state, or changing between their influences.\nOnly one Thunder spell-induced damage over time effect per caster can be inflicted upon a single target.",
+      "description_macro": "Deals lightning damage with a potency of 150.<br><colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>Lightning damage over time<br><colortype(504)><edgecolortype(505)>Potency: <edgecolortype(0)><colortype(0)>60<br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>30s<br>Can only be cast while under the effect of <colortype(506)><edgecolortype(507)>Thunderhead<edgecolortype(0)><colortype(0)>, granted when gaining <colortype(506)><edgecolortype(507)>Astral Fire<edgecolortype(0)><colortype(0)> or <colortype(506)><edgecolortype(507)>Umbral Ice<edgecolortype(0)><colortype(0)> from an unaspected state, or changing between their influences.<br>Only one <colortype(500)><edgecolortype(501)>Thunder<edgecolortype(0)><colortype(0)> spell-induced damage over time effect per caster can be inflicted upon a single target.",
+      "unlock_level": 92,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Magical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 25,
+          "name": "Black Mage",
+          "abbreviation": "BLM",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 537,
+  "name": "Palette Gauge",
+  "description": "Allows for Palette Gauge accumulation upon the landing of Water in Blue and Water II in Blue.",
+  "description_macro": "Allows for <colortype(500)><edgecolortype(501)>Palette Gauge<edgecolortype(0)><colortype(0)> accumulation upon the landing of <colortype(500)><edgecolortype(501)>Water in Blue<edgecolortype(0)><colortype(0)> and <colortype(500)><edgecolortype(501)>Water II in Blue<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Allows for Palette Gauge accumulation upon the landing of Water in Blue and Water II in Blue."
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 42,
+    "name": "Pictomancer",
+    "abbreviation": "PCT"
+  },
+  "unlock_level": 60,
+  "value": 0,
+  "icon": {
+    "id": 6551,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 197,
+  "source_class_job_id": 42
+}

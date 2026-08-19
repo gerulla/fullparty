@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 189,
+  "name": "ライトスピード効果アップ",
+  "description": "ライトスピードのリキャストタイムを60秒に短縮させる。",
+  "description_macro": "ライトスピードのリキャストタイムを60秒に短縮させる。",
+  "effects": [
+    "ライトスピードのリキャストタイムを60秒に短縮させる。"
+  ],
+  "role": "Healer",
+  "job": {
+    "id": 33,
+    "name": "占星術師",
+    "abbreviation": "AST"
+  },
+  "unlock_level": 68,
+  "value": -300,
+  "icon": {
+    "id": 6101,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 99,
+  "source_class_job_id": 33
+}

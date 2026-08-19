@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 642,
+  "name": "内丹効果アップ",
+  "description": "内丹の回復力を800に上昇させる。",
+  "description_macro": "内丹の回復力を800に上昇させる。",
+  "effects": [
+    "内丹の回復力を800に上昇させる。"
+  ],
+  "role": "Physical Ranged DPS",
+  "job": {
+    "id": 23,
+    "name": "吟遊詩人",
+    "abbreviation": "BRD"
+  },
+  "unlock_level": 94,
+  "value": 0,
+  "icon": {
+    "id": 6852,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 118,
+  "source_class_job_id": 0
+}

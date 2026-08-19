@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 1866,
+  "name": "バイオブラスト",
+  "description": "ＨＰが徐々に失われる状態。",
+  "effects": [
+    "ＨＰが徐々に失われる状態。"
+  ],
+  "classification": "debuff",
+  "icon": {
+    "id": 213020,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 2,
+  "target_type": 0,
+  "can_dispel": true,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 10,
+  "parameter": {
+    "effect": 0,
+    "modifier": 10
+  },
+  "class_job_category_id": 96,
+  "source_abilities": [
+    {
+      "id": 16499,
+      "name": "バイオブラスト",
+      "description": "対象に向かって前方扇範囲物理攻撃。\u3000威力：50\n追加効果：対象に継続ダメージを付与する。\n威力：50\u3000効果時間：15秒\n最大チャージ数：2\nこのウェポンスキルは固有のリキャストタイマーを持ち、かつリキャストタイマーを「ドリル」と共有する。",
+      "description_macro": "対象に向かって前方扇範囲物理攻撃。\u3000<colortype(504)><edgecolortype(505)>威力：<edgecolortype(0)><colortype(0)>50<br><colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)>対象に継続ダメージを付与する。<br><colortype(504)><edgecolortype(505)>威力：<edgecolortype(0)><colortype(0)>50\u3000<colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>15秒<br><if([gnum68==31],<if([gnum72>=94],<colortype(504)><edgecolortype(505)>最大チャージ数：<edgecolortype(0)><colortype(0)>2<br>,)>,)>このウェポンスキルは固有のリキャストタイマーを持ち、かつリキャストタイマーを<colortype(500)><edgecolortype(501)>「ドリル」<edgecolortype(0)><colortype(0)>と共有する。",
+      "unlock_level": 72,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Physical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 31,
+          "name": "機工士",
+          "abbreviation": "MCH",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

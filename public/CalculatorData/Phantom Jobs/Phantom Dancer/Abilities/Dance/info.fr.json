@@ -1,0 +1,89 @@
+{
+  "kind": "ability",
+  "id": 46598,
+  "name": "Danser",
+  "description": "Vous octroie Danse du sabre, Tango enchanteur, Boogie-woogie ou Valse mystérieuse.\nLes actions suivantes peuvent être utilisées pendant la durée de l'effet correspondant :\nDanse du sabre : effectue une attaque physique sur la cible.\nTango enchanteur : effectue une attaque magique neutre sur la cible et arrête le temps pour elle.\nBoogie-woogie : effectue une attaque magique neutre sur la cible, lui inflige Paralysie et absorbe en PV une partie des dégâts infligés.\nValse mystérieuse : effectue une attaque magique neutre sur la cible, lui inflige Cécité et restaure l'intégralité de vos PM.",
+  "description_macro": "Vous octroie <colortype(500)><edgecolortype(501)>Danse du sabre<edgecolortype(0)><colortype(0)>, <colortype(500)><edgecolortype(501)>Tango enchanteur<edgecolortype(0)><colortype(0)>, <colortype(500)><edgecolortype(501)>Boogie-woogie<edgecolortype(0)><colortype(0)> ou <colortype(500)><edgecolortype(501)>Valse mystérieuse<edgecolortype(0)><colortype(0)>.<br>Les actions suivantes peuvent être utilisées pendant la durée de l'effet correspondant<nbsp>:<br><colortype(506)><edgecolortype(507)>Danse du sabre<nbsp>:<edgecolortype(0)><colortype(0)> effectue une attaque physique sur la cible.<br><colortype(506)><edgecolortype(507)>Tango enchanteur<nbsp>:<edgecolortype(0)><colortype(0)> effectue une attaque magique neutre sur la cible et arrête le temps pour elle.<br><colortype(506)><edgecolortype(507)>Boogie-woogie<nbsp>:<edgecolortype(0)><colortype(0)> effectue une attaque magique neutre sur la cible, lui inflige Paralysie et absorbe en PV une partie des dégâts infligés.<br><colortype(506)><edgecolortype(507)>Valse mystérieuse<nbsp>:<edgecolortype(0)><colortype(0)> effectue une attaque magique neutre sur la cible, lui inflige Cécité et restaure l'intégralité de vos PM.",
+  "effects": [
+    "Vous octroie Danse du sabre, Tango enchanteur, Boogie-woogie ou Valse mystérieuse.",
+    "Les actions suivantes peuvent être utilisées pendant la durée de l'effet correspondant :",
+    "Danse du sabre : effectue une attaque physique sur la cible.",
+    "Tango enchanteur : effectue une attaque magique neutre sur la cible et arrête le temps pour elle.",
+    "Boogie-woogie : effectue une attaque magique neutre sur la cible, lui inflige Paralysie et absorbe en PV une partie des dégâts infligés.",
+    "Valse mystérieuse : effectue une attaque magique neutre sur la cible, lui inflige Cécité et restaure l'intégralité de vos PM."
+  ],
+  "role": "Phantom Jobs",
+  "job": {
+    "id": 15,
+    "name": "Danseur fantôme",
+    "abbreviation": "Danseur fant."
+  },
+  "is_phantom_action": true,
+  "unlock_level": 1,
+  "icon": {
+    "id": 64583,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 4,
+    "name": "Aptitude"
+  },
+  "attack_type": {
+    "id": 0,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 30,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 83,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 0,
+      "value": 0
+    },
+    "secondary": {
+      "type_id": 0,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": 0,
+    "effect_yalms": 0,
+    "cast_type": 1
+  },
+  "targeting": {
+    "self": true,
+    "party": false,
+    "alliance": false,
+    "hostile": false,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": false,
+    "requires_facing_target": false
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 0,
+    "behavior_type": 0,
+    "class_job_category_id": 142,
+    "source_class_job_id": 4294967295,
+    "is_role_action": false,
+    "is_player_action": false,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

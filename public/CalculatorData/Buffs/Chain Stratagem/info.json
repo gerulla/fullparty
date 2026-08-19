@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 1221,
+  "name": "Chain Stratagem",
+  "description": "Rate at which critical hits are taken is increased.",
+  "effects": [
+    "Rate at which critical hits are taken is increased."
+  ],
+  "classification": "debuff",
+  "icon": {
+    "id": 212809,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 2,
+  "target_type": 0,
+  "can_dispel": true,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 50,
+  "parameter": {
+    "effect": 0,
+    "modifier": -50
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 7436,
+      "name": "Chain Stratagem",
+      "description": "Increases rate at which target takes critical hits by 10%.\nDuration: 20s\nAdditional Effect: Grants Impact Imminent\nDuration: 30s",
+      "description_macro": "Increases rate at which target takes critical hits by 10%.<br><colortype(504)><edgecolortype(505)>Duration:<edgecolortype(0)><colortype(0)> 20s<if([gnum68==28],<if([gnum72>=92],<br><colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>Grants <colortype(506)><edgecolortype(507)>Impact Imminent<edgecolortype(0)><colortype(0)><br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>30s,)>,)>",
+      "unlock_level": 66,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Healer"
+      ],
+      "jobs": [
+        {
+          "id": 28,
+          "name": "Scholar",
+          "abbreviation": "SCH",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 591,
+  "name": "Verbessertes Hissatsu",
+  "description": "Verkürzt die Reaktivierungszeit von Hissatsu: Guren und Hissatsu: Senei auf 60 Sekunden.",
+  "description_macro": "Verkürzt die Re<->ak<->ti<->vie<->rungs<->zeit von <colortype(502)><edgecolortype(503)>Hissatsu: Guren<edgecolortype(0)><colortype(0)> und <colortype(502)><edgecolortype(503)>Hissatsu: Senei<edgecolortype(0)><colortype(0)> auf 60 Sekunden.",
+  "effects": [
+    "Verkürzt die Reaktivierungszeit von Hissatsu: Guren und Hissatsu: Senei auf 60 Sekunden."
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 34,
+    "name": "Samurai",
+    "abbreviation": "SAM"
+  },
+  "unlock_level": 94,
+  "value": -600,
+  "icon": {
+    "id": 6161,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 111,
+  "source_class_job_id": 34
+}

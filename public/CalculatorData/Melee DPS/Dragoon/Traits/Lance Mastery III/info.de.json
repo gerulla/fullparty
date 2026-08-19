@@ -1,0 +1,25 @@
+{
+  "kind": "trait",
+  "id": 508,
+  "name": "Meister der Lanze III",
+  "description": "Erhöht den Attacke-Wert von Geirskogul auf 280 und den Attacke-Wert von Nastrond auf 720. Außerdem wird bei erfolgreicher Ausführung von Überfallsstoß und Groll des Drachen ein Wyrmauge gewährt.\nMaximalstapelzahl: 2",
+  "description_macro": "Erhöht den Attacke-Wert von <colortype(502)><edgecolortype(503)>Geirskogul<edgecolortype(0)><colortype(0)> auf 280 und den Attacke-Wert von <colortype(502)><edgecolortype(503)>Nastrond<edgecolortype(0)><colortype(0)> auf 720. Außerdem wird bei erfolgreicher Ausführung von <colortype(502)><edgecolortype(503)>Überfallsstoß<edgecolortype(0)><colortype(0)> und <colortype(502)><edgecolortype(503)>Groll des Drachen<edgecolortype(0)><colortype(0)> ein <colortype(506)><edgecolortype(507)>Wyrmauge<edgecolortype(0)><colortype(0)> gewährt.<br>Ma<->xi<->mal<->sta<->pel<->zahl: 2",
+  "effects": [
+    "Erhöht den Attacke-Wert von Geirskogul auf 280 und den Attacke-Wert von Nastrond auf 720. Außerdem wird bei erfolgreicher Ausführung von Überfallsstoß und Groll des Drachen ein Wyrmauge gewährt.",
+    "Maximalstapelzahl: 2"
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 22,
+    "name": "Dragoon",
+    "abbreviation": "DRG"
+  },
+  "unlock_level": 90,
+  "value": 0,
+  "icon": {
+    "id": 5292,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 23,
+  "source_class_job_id": 22
+}

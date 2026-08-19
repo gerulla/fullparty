@@ -1,0 +1,27 @@
+{
+  "kind": "trait",
+  "id": 597,
+  "name": "Moisson abondante améliorée",
+  "description": "Permet de recevoir Perfectio occulta lorsque vous utilisez Moisson abondante.\nDurée : 30s\nPerfectio occulta : devient Perfectio parata après utilisation de Communio pendant la durée de l'effet.\nPerfectio parata se dissipe si vous devenez un lémure pendant la durée de l'effet.",
+  "description_macro": "Permet de recevoir <colortype(500)><edgecolortype(501)>Perfectio occulta<edgecolortype(0)><colortype(0)> lorsque vous utilisez <colortype(500)><edgecolortype(501)>Moisson abondante<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 30s<br><colortype(506)><edgecolortype(507)>Perfectio occulta<nbsp>:<edgecolortype(0)><colortype(0)> devient <colortype(500)><edgecolortype(501)>Perfectio parata<edgecolortype(0)><colortype(0)> après utilisation de Communio pendant la durée de l'effet.<br><colortype(500)><edgecolortype(501)>Perfectio parata<edgecolortype(0)><colortype(0)> se dissipe si vous devenez un lémure pendant la durée de l'effet.",
+  "effects": [
+    "Permet de recevoir Perfectio occulta lorsque vous utilisez Moisson abondante.",
+    "Durée : 30s",
+    "Perfectio occulta : devient Perfectio parata après utilisation de Communio pendant la durée de l'effet.",
+    "Perfectio parata se dissipe si vous devenez un lémure pendant la durée de l'effet."
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 39,
+    "name": "Faucheur",
+    "abbreviation": "FCH"
+  },
+  "unlock_level": 100,
+  "value": 0,
+  "icon": {
+    "id": 6414,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 180,
+  "source_class_job_id": 39
+}

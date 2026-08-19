@@ -1,0 +1,27 @@
+{
+  "kind": "trait",
+  "id": 471,
+  "name": "Entflammung",
+  "description": "Verbessert die Spezialangriffe deiner Egi.\nIfrit-Egi: verbessert Brennender Schlag zu Inferno.\nTitan-Egi: verbessert Steinsprenger zu Gaias Zorn.\nGaruda-Egi: verbessert Lufthieb zu Windschlag.",
+  "description_macro": "Verbessert die Spezialangriffe deiner Egi.<br>Ifrit-Egi: verbessert <colortype(502)><edgecolortype(503)>Brennender Schlag<edgecolortype(0)><colortype(0)> zu <colortype(502)><edgecolortype(503)>Inferno<edgecolortype(0)><colortype(0)>.<br>Titan-Egi: verbessert <colortype(502)><edgecolortype(503)>Steinsprenger<edgecolortype(0)><colortype(0)> zu <colortype(502)><edgecolortype(503)>Gaias Zorn<edgecolortype(0)><colortype(0)>.<br>Garuda-Egi: verbessert <colortype(502)><edgecolortype(503)>Lufthieb<edgecolortype(0)><colortype(0)> zu <colortype(502)><edgecolortype(503)>Windschlag<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Verbessert die Spezialangriffe deiner Egi.",
+    "Ifrit-Egi: verbessert Brennender Schlag zu Inferno.",
+    "Titan-Egi: verbessert Steinsprenger zu Gaias Zorn.",
+    "Garuda-Egi: verbessert Lufthieb zu Windschlag."
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 27,
+    "name": "Beschwörer",
+    "abbreviation": "BSW"
+  },
+  "unlock_level": 50,
+  "value": 0,
+  "icon": {
+    "id": 5685,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 28,
+  "source_class_job_id": 27
+}

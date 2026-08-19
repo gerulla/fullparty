@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 644,
+  "name": "Verbesserte Spontaneität",
+  "description": "Verkürzt die Reaktivierungszeit von Spontaneität auf 40 Sekunden.",
+  "description_macro": "Verkürzt die Re<->ak<->ti<->vie<->rungs<->zeit von <colortype(502)><edgecolortype(503)>Spontaneität<edgecolortype(0)><colortype(0)> auf 40 Sekunden.",
+  "effects": [
+    "Verkürzt die Reaktivierungszeit von Spontaneität auf 40 Sekunden."
+  ],
+  "role": "Healer",
+  "job": {
+    "id": 28,
+    "name": "Gelehrter",
+    "abbreviation": "GLT"
+  },
+  "unlock_level": 94,
+  "value": -200,
+  "icon": {
+    "id": 6828,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 199,
+  "source_class_job_id": 0
+}

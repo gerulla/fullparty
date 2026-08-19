@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 810,
+  "name": "リビングデッド",
+  "description": "戦闘不能に至るダメージを受けた場合にＨＰ1の状態となり「ウォーキングデッド」が付与される状態。ただし、一部の攻撃には無効化される。",
+  "effects": [
+    "戦闘不能に至るダメージを受けた場合にＨＰ1の状態となり「ウォーキングデッド」が付与される状態。ただし、一部の攻撃には無効化される。"
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 213115,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 70,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 3638,
+      "name": "リビングデッド",
+      "description": "自身に「リビングデッド」を付与する。\u3000効果時間：10秒\n効果時間中に戦闘不能に至るダメージを受けた場合、戦闘不能にはならずにＨＰ1の状態となり「ウォーキングデッド」に変化する。\u3000効果時間：10秒\nウォーキングデッド効果：すべての攻撃に対してＨＰが1より減ることがない状態。\nさらに、自身のウェポンスキルおよび魔法による攻撃が命中すると自身のＨＰを回復する。\u3000回復力：1500\n効果時間中に受けた回復効果が自身の最大ＨＰの100％分に達すると、「デッドリバース」に変化する。\nデッドリバースの効果時間は、変化した時点でのウォーキングデッドの効果時間を引き継ぐ。\n十分な回復効果を受けられなかった場合はデッドリバースに変化せず、効果時間経過時に自身は戦闘不能になる。\nデッドリバース効果：すべての攻撃に対してＨＰが1より減ることがない状態。\nただし、いずれの効果も一部の攻撃には無効化される。",
+      "description_macro": "自身に<colortype(500)><edgecolortype(501)>「リビングデッド」<edgecolortype(0)><colortype(0)>を付与する。\u3000<colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>10秒<br>効果時間中に戦闘不能に至るダメージを受けた場合、戦闘不能にはならずにＨＰ1の状態となり<colortype(500)><edgecolortype(501)>「ウォーキングデッド」<edgecolortype(0)><colortype(0)>に変化する。\u3000<colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>10秒<br><colortype(504)><edgecolortype(505)>ウォーキングデッド効果：<edgecolortype(0)><colortype(0)>すべての攻撃に対してＨＰが1より減ることがない状態。<br>さらに、自身のウェポンスキルおよび魔法による攻撃が命中すると自身のＨＰを回復する。\u3000<colortype(504)><edgecolortype(505)>回復力：<edgecolortype(0)><colortype(0)>1500<br>効果時間中に受けた回復効果が自身の最大ＨＰの100％分に達すると、<colortype(500)><edgecolortype(501)>「デッドリバース」<edgecolortype(0)><colortype(0)>に変化する。<br>デッドリバースの効果時間は、変化した時点でのウォーキングデッドの効果時間を引き継ぐ。<br>十分な回復効果を受けられなかった場合はデッドリバースに変化せず、効果時間経過時に自身は戦闘不能になる。<br><colortype(504)><edgecolortype(505)>デッドリバース効果：<edgecolortype(0)><colortype(0)>すべての攻撃に対してＨＰが1より減ることがない状態。<br>ただし、いずれの効果も一部の攻撃には無効化される。",
+      "unlock_level": 50,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Tank"
+      ],
+      "jobs": [
+        {
+          "id": 32,
+          "name": "暗黒騎士",
+          "abbreviation": "DRK",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

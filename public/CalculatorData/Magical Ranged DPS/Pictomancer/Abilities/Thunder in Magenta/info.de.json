@@ -1,0 +1,90 @@
+{
+  "kind": "ability",
+  "id": 34655,
+  "name": "Blitz in Magenta",
+  "description": "Du führst eine blitzbasierte magische Attacke aus.\nAttacke-Wert: 940\nZusatzeffekt: Gewährt dir Weiße Pikto-Farbe.\nMaximalstapelzahl: 5\nBedingung: Dritte Pikto-Farbe und Subtraktive Palette aktiv\nFalls Inszenierung aktiv ist und du dich innerhalb des Wirkradius befindest\\Bei erfüllter Bedingung ändert sich Stein in Gelb zu diesem Kommando.\nKann nicht im Kommandomenü angelegt werden.",
+  "description_macro": "Du führst eine blitzbasierte magische Attacke aus.<br>Attacke-Wert: <if([gnum68==42],<if([gnum72>=94],940,<if([gnum68==42],<if([gnum72>=84],830,<if([gnum68==42],<if([gnum72>=74],760,640)>,640)>)>,<if([gnum68==42],<if([gnum72>=74],760,640)>,640)>)>)>,<if([gnum68==42],<if([gnum72>=84],830,<if([gnum68==42],<if([gnum72>=74],760,640)>,640)>)>,<if([gnum68==42],<if([gnum72>=74],760,640)>,640)>)>)><br><if([gnum68==42],<if([gnum72>=80],Zusatzeffekt: Gewährt dir <colortype(506)><edgecolortype(507)>Weiße Pikto-Farbe<edgecolortype(0)><colortype(0)>.<br>Ma<->xi<->mal<->sta<->pel<->zahl: 5<br>,)>,)>Bedingung: <colortype(506)><edgecolortype(507)>Dritte Pikto-Farbe<edgecolortype(0)><colortype(0)> und <colortype(506)><edgecolortype(507)>Subtraktive Palette<edgecolortype(0)><colortype(0)> aktiv<br><if([gnum68==42],<if([gnum72>=82],Falls <colortype(506)><edgecolortype(507)>Inszenierung<edgecolortype(0)><colortype(0)> aktiv ist und du dich innerhalb des Wirkradius befindest\\, wird 1 Stapel verbraucht.<br>,)>,)>Bei erfüllter Bedingung ändert sich <colortype(502)><edgecolortype(503)>Stein in Gelb<edgecolortype(0)><colortype(0)> zu diesem Kommando.<br>Kann nicht im Kommandomenü angelegt werden.",
+  "effects": [
+    "Du führst eine blitzbasierte magische Attacke aus.",
+    "Attacke-Wert: 940",
+    "Zusatzeffekt: Gewährt dir Weiße Pikto-Farbe.",
+    "Maximalstapelzahl: 5",
+    "Bedingung: Dritte Pikto-Farbe und Subtraktive Palette aktiv",
+    "Falls Inszenierung aktiv ist und du dich innerhalb des Wirkradius befindest\\Bei erfüllter Bedingung ändert sich Stein in Gelb zu diesem Kommando.",
+    "Kann nicht im Kommandomenü angelegt werden."
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 42,
+    "name": "Piktomant",
+    "abbreviation": "PKT"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 60,
+  "icon": {
+    "id": 3806,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 2,
+    "name": "Zauber"
+  },
+  "attack_type": {
+    "id": 5,
+    "name": "魔法"
+  },
+  "timing": {
+    "cast_seconds": 2.3,
+    "recast_seconds": 3.3,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 58,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 96,
+      "value": 4
+    },
+    "secondary": {
+      "type_id": 0,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": 25,
+    "effect_yalms": 0,
+    "cast_type": 1
+  },
+  "targeting": {
+    "self": false,
+    "party": false,
+    "alliance": false,
+    "hostile": true,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 5,
+    "behavior_type": 0,
+    "class_job_category_id": 197,
+    "source_class_job_id": 0,
+    "is_role_action": false,
+    "is_player_action": false,
+    "is_derived_action": true,
+    "equivalence_group": 0
+  }
+}

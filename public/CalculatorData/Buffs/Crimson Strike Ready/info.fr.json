@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 4400,
+  "name": "Assaut écarlate préparé",
+  "description": "Assaut écarlate peut être lancé.",
+  "effects": [
+    "Assaut écarlate peut être lancé."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 212752,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": true,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 28,
+  "source_abilities": [
+    {
+      "id": 25835,
+      "name": "Cyclone écarlate",
+      "description": "Fonce vers la cible et effectue une attaque magique de feu sur elle et les ennemis alentour.\nPuissance : 560\nLa puissance est réduite de 60% au-delà du premier ennemi touché.\nEffet additionnel : vous octroie Assaut écarlate préparé.\nCet effet disparaît si vous utilisez une autre action d'invocation.\nCondition : Cyclone écarlate préparé.\nNe peut pas être utilisé sous l'effet Entrave.\nCette action devient Assaut écarlate après utilisation.\n\n* Cette action ne peut pas être ajoutée aux barres de raccourcis.\nRemplace Flux astral lorsque les conditions sont réunies.",
+      "description_macro": "Fonce vers la cible et effectue une attaque magique de feu sur elle et les ennemis alentour.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> <if([gnum68==27],<if([gnum72>=94],560,430)>,430)><br>La puissance est réduite de 60% au-delà du premier ennemi touché.<br><colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> vous octroie <colortype(500)><edgecolortype(501)>Assaut écarlate préparé<edgecolortype(0)><colortype(0)>.<br>Cet effet disparaît si vous utilisez une autre action d'invocation.<br><colortype(506)><edgecolortype(507)>Condition<nbsp>:<edgecolortype(0)><colortype(0)> <colortype(500)><edgecolortype(501)>Cyclone écarlate préparé<edgecolortype(0)><colortype(0)>.<br>Ne peut pas être utilisé sous l'effet Entrave.<br>Cette action devient <colortype(500)><edgecolortype(501)>Assaut écarlate<edgecolortype(0)><colortype(0)> après utilisation.<br><br><colortype(504)><edgecolortype(505)>* Cette action ne peut pas être ajoutée aux barres de raccourcis.<br>Remplace <colortype(500)><edgecolortype(501)>Flux astral<edgecolortype(0)><colortype(0)> lorsque les conditions sont réunies.<edgecolortype(0)><colortype(0)>",
+      "unlock_level": 86,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Magical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 27,
+          "name": "Invocateur",
+          "abbreviation": "INV",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

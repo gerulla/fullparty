@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 445,
+  "name": "Hémorragie améliorée",
+  "description": "Augmente à 3 le nombre de charges maximums d'Hémorragie et de Pluie mortelle.",
+  "description_macro": "Augmente à 3 le nombre de charges maximums d'<colortype(500)><edgecolortype(501)>Hémorragie<edgecolortype(0)><colortype(0)> et de <colortype(500)><edgecolortype(501)>Pluie mortelle<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Augmente à 3 le nombre de charges maximums d'Hémorragie et de Pluie mortelle."
+  ],
+  "role": "Physical Ranged DPS",
+  "job": {
+    "id": 23,
+    "name": "Barde",
+    "abbreviation": "BRD"
+  },
+  "unlock_level": 84,
+  "value": 3,
+  "icon": {
+    "id": 5317,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 24,
+  "source_class_job_id": 23
+}

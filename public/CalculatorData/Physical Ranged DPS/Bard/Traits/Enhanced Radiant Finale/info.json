@@ -1,0 +1,25 @@
+{
+  "kind": "trait",
+  "id": 602,
+  "name": "Enhanced Radiant Finale",
+  "description": "Grants Radiant Encore Ready upon executing Radiant Finale.\nDuration: 30s",
+  "description_macro": "Grants <colortype(506)><edgecolortype(507)>Radiant Encore Ready<edgecolortype(0)><colortype(0)> upon executing <colortype(500)><edgecolortype(501)>Radiant Finale<edgecolortype(0)><colortype(0)>.<br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>30s",
+  "effects": [
+    "Grants Radiant Encore Ready upon executing Radiant Finale.",
+    "Duration: 30s"
+  ],
+  "role": "Physical Ranged DPS",
+  "job": {
+    "id": 23,
+    "name": "Bard",
+    "abbreviation": "BRD"
+  },
+  "unlock_level": 100,
+  "value": 0,
+  "icon": {
+    "id": 5601,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 24,
+  "source_class_job_id": 23
+}

@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 102,
+  "name": "マントラ",
+  "description": "自身に対するＨＰ回復効果を向上させる状態。",
+  "effects": [
+    "自身に対するＨＰ回復効果を向上させる状態。"
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 210206,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 5,
+  "parameter": {
+    "effect": 0,
+    "modifier": 5
+  },
+  "class_job_category_id": 41,
+  "source_abilities": [
+    {
+      "id": 65,
+      "name": "マントラ",
+      "description": "一定時間、自身と周囲のパーティメンバーが受けるＨＰ回復効果を10％上昇させる。\u3000効果時間：15秒",
+      "description_macro": "一定時間、自身と周囲のパーティメンバーが受けるＨＰ回復効果を10％上昇させる。\u3000<colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>15秒",
+      "unlock_level": 42,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 20,
+          "name": "モンク",
+          "abbreviation": "MNK",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

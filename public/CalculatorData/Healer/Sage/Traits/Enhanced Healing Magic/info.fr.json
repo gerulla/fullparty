@@ -1,0 +1,28 @@
+{
+  "kind": "trait",
+  "id": 377,
+  "name": "Magie curative améliorée",
+  "description": "Augmente la puissance de certaines actions curatives.\n\nPuissance de Diagnosis : 450\nPuissance de Kardia : 170\nPuissance de Diagnosis eucrasique (barrière) : 180%\nPuissance de Prognosis eucrasique (barrière) : 320%",
+  "description_macro": "Augmente la puissance de certaines actions curatives.<br><br><colortype(506)><edgecolortype(507)>Puissance de Diagnosis<nbsp>:<edgecolortype(0)><colortype(0)> 450<br><colortype(506)><edgecolortype(507)>Puissance de Kardia<nbsp>:<edgecolortype(0)><colortype(0)> 170<br><colortype(506)><edgecolortype(507)>Puissance de Diagnosis eucrasique (barrière)<nbsp>:<edgecolortype(0)><colortype(0)> 180%<br><colortype(506)><edgecolortype(507)>Puissance de Prognosis eucrasique (barrière)<nbsp>:<edgecolortype(0)><colortype(0)> 320%",
+  "effects": [
+    "Augmente la puissance de certaines actions curatives.",
+    "Puissance de Diagnosis : 450",
+    "Puissance de Kardia : 170",
+    "Puissance de Diagnosis eucrasique (barrière) : 180%",
+    "Puissance de Prognosis eucrasique (barrière) : 320%"
+  ],
+  "role": "Healer",
+  "job": {
+    "id": 40,
+    "name": "Sage",
+    "abbreviation": "SAG"
+  },
+  "unlock_level": 85,
+  "value": 0,
+  "icon": {
+    "id": 6826,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 181,
+  "source_class_job_id": 40
+}

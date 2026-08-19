@@ -1,0 +1,27 @@
+{
+  "kind": "trait",
+  "id": 433,
+  "name": "Équilibre parfait amélioré",
+  "description": "Exécuter une action octroyant une posture quand Équilibre parfait est actif octroie aussi un Chakra bestial.\nLes actions octroyant la posture de l'opo-opo ouvrent un Chakra du coeurl.\nLes actions octroyant la posture du raptor ouvrent un Chakra de l'opo-opo.\nLes actions octroyant la posture du coeurl ouvrent un Chakra du raptor.",
+  "description_macro": "Exécuter une action octroyant une posture quand <colortype(500)><edgecolortype(501)>Équilibre parfait<edgecolortype(0)><colortype(0)> est actif octroie aussi un <colortype(500)><edgecolortype(501)>Chakra bestial<edgecolortype(0)><colortype(0)>.<br>Les actions octroyant la posture de l'<colortype(500)><edgecolortype(501)>opo-opo<edgecolortype(0)><colortype(0)> ouvrent un <colortype(500)><edgecolortype(501)>Chakra du coeurl<edgecolortype(0)><colortype(0)>.<br>Les actions octroyant la posture du <colortype(500)><edgecolortype(501)>raptor<edgecolortype(0)><colortype(0)> ouvrent un <colortype(500)><edgecolortype(501)>Chakra de l'opo-opo<edgecolortype(0)><colortype(0)>.<br>Les actions octroyant la posture du <colortype(500)><edgecolortype(501)>coeurl<edgecolortype(0)><colortype(0)> ouvrent un <colortype(500)><edgecolortype(501)>Chakra du raptor<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Exécuter une action octroyant une posture quand Équilibre parfait est actif octroie aussi un Chakra bestial.",
+    "Les actions octroyant la posture de l'opo-opo ouvrent un Chakra du coeurl.",
+    "Les actions octroyant la posture du raptor ouvrent un Chakra de l'opo-opo.",
+    "Les actions octroyant la posture du coeurl ouvrent un Chakra du raptor."
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 20,
+    "name": "Moine",
+    "abbreviation": "MOI"
+  },
+  "unlock_level": 60,
+  "value": 0,
+  "icon": {
+    "id": 5246,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 21,
+  "source_class_job_id": 20
+}

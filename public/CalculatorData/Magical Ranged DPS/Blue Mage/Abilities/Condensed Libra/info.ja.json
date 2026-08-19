@@ -1,0 +1,88 @@
+{
+  "kind": "ability",
+  "id": 18321,
+  "name": "プチライブラ",
+  "description": "対象に「星極性耐性低下」、「霊極性耐性低下」、「被物理ダメージ増加」のいずれかを付与する。\u3000効果時間：30秒\n星極性耐性低下効果：火、風、雷属性攻撃による被ダメージを5％上昇させる。\n霊極性耐性低下効果：水、土、氷属性攻撃による被ダメージを5％上昇させる。\n被物理ダメージ増加効果：物理攻撃による被ダメージを5％上昇させる。\nこれらのステータスは同時に付与されない。",
+  "description_macro": "対象に<colortype(500)><edgecolortype(501)>「星極性耐性低下」<edgecolortype(0)><colortype(0)>、<colortype(500)><edgecolortype(501)>「霊極性耐性低下」<edgecolortype(0)><colortype(0)>、<colortype(500)><edgecolortype(501)>「被物理ダメージ増加」<edgecolortype(0)><colortype(0)>のいずれかを付与する。\u3000<colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>30秒<br><colortype(504)><edgecolortype(505)>星極性耐性低下効果：<edgecolortype(0)><colortype(0)>火、風、雷属性攻撃による被ダメージを5％上昇させる。<br><colortype(504)><edgecolortype(505)>霊極性耐性低下効果：<edgecolortype(0)><colortype(0)>水、土、氷属性攻撃による被ダメージを5％上昇させる。<br><colortype(504)><edgecolortype(505)>被物理ダメージ増加効果：<edgecolortype(0)><colortype(0)>物理攻撃による被ダメージを5％上昇させる。<br>これらのステータスは同時に付与されない。",
+  "effects": [
+    "対象に「星極性耐性低下」、「霊極性耐性低下」、「被物理ダメージ増加」のいずれかを付与する。\u3000効果時間：30秒",
+    "星極性耐性低下効果：火、風、雷属性攻撃による被ダメージを5％上昇させる。",
+    "霊極性耐性低下効果：水、土、氷属性攻撃による被ダメージを5％上昇させる。",
+    "被物理ダメージ増加効果：物理攻撃による被ダメージを5％上昇させる。",
+    "これらのステータスは同時に付与されない。"
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 36,
+    "name": "青魔道士",
+    "abbreviation": "BLU"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 1,
+  "icon": {
+    "id": 3326,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 2,
+    "name": "魔法"
+  },
+  "attack_type": {
+    "id": 5,
+    "name": "魔法"
+  },
+  "timing": {
+    "cast_seconds": 2,
+    "recast_seconds": 2.5,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 58,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 3,
+      "value": 2
+    },
+    "secondary": {
+      "type_id": 0,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": 25,
+    "effect_yalms": 0,
+    "cast_type": 1
+  },
+  "targeting": {
+    "self": false,
+    "party": false,
+    "alliance": false,
+    "hostile": true,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": false
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 7,
+    "behavior_type": 0,
+    "class_job_category_id": 129,
+    "source_class_job_id": 36,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

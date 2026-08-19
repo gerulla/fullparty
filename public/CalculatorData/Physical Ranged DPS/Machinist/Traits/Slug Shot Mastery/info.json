@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 289,
+  "name": "Slug Shot Mastery",
+  "description": "Upgrades Slug Shot to Heated Slug Shot.",
+  "description_macro": "Upgrades <colortype(500)><edgecolortype(501)>Slug Shot<edgecolortype(0)><colortype(0)> to <colortype(500)><edgecolortype(501)>Heated Slug Shot<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Upgrades Slug Shot to Heated Slug Shot."
+  ],
+  "role": "Physical Ranged DPS",
+  "job": {
+    "id": 31,
+    "name": "Machinist",
+    "abbreviation": "MCH"
+  },
+  "unlock_level": 60,
+  "value": 0,
+  "icon": {
+    "id": 6011,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 96,
+  "source_class_job_id": 31
+}

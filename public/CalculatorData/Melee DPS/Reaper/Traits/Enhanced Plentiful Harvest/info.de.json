@@ -1,0 +1,27 @@
+{
+  "kind": "trait",
+  "id": 597,
+  "name": "Verbesserte Große Mahd",
+  "description": "Erfolgreiche Ausführung von Große Mahd gewährt dir Perfectio occulta.\nEffekt von Perfectio occulta: Wird während der Effektdauer Communio ausgeführt, ändert sich der Status zu Perfectio parata.\nWirst du während Perfectio parata zur Lemure, wird der Effekt beendet.\nDauer: 30 Sekunden",
+  "description_macro": "Erfolgreiche Ausführung von <colortype(502)><edgecolortype(503)>Große Mahd<edgecolortype(0)><colortype(0)> gewährt dir <colortype(506)><edgecolortype(507)>Perfectio occulta<edgecolortype(0)><colortype(0)>.<br>Effekt von <colortype(506)><edgecolortype(507)>Perfectio occulta<edgecolortype(0)><colortype(0)>: Wird während der Effektdauer <colortype(502)><edgecolortype(503)>Communio<edgecolortype(0)><colortype(0)> ausgeführt, ändert sich der Status zu <colortype(506)><edgecolortype(507)>Perfectio parata<edgecolortype(0)><colortype(0)>.<br>Wirst du während <colortype(506)><edgecolortype(507)>Perfectio parata<edgecolortype(0)><colortype(0)> zur Lemure, wird der Effekt beendet.<br>Dauer: 30 Sekunden",
+  "effects": [
+    "Erfolgreiche Ausführung von Große Mahd gewährt dir Perfectio occulta.",
+    "Effekt von Perfectio occulta: Wird während der Effektdauer Communio ausgeführt, ändert sich der Status zu Perfectio parata.",
+    "Wirst du während Perfectio parata zur Lemure, wird der Effekt beendet.",
+    "Dauer: 30 Sekunden"
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 39,
+    "name": "Schnitter",
+    "abbreviation": "SNT"
+  },
+  "unlock_level": 100,
+  "value": 0,
+  "icon": {
+    "id": 6414,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 180,
+  "source_class_job_id": 39
+}

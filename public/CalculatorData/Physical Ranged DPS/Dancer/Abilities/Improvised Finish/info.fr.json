@@ -1,0 +1,103 @@
+{
+  "kind": "ability",
+  "id": 25789,
+  "name": "Final improvisé",
+  "description": "Crée une barrière sur vous et les équipiers alentour, absorbant les dégâts subis pour un certain pourcentage des PV maximums de la personne affectée.\nCe pourcentage dépend du degré de votre Frénésie des danseurs au lancement.\nDegré 0 : 5% des PV maximums\nDegré 1 : 6% des PV maximums\nDegré 2 : 7% des PV maximums\nDegré 3 : 8% des PV maximums\nDegré 4 : 10% des PV maximums\nDurée : 30s\nCondition : Improvisation.\n\n* Cette action ne peut pas être ajoutée aux barres de raccourcis.\nRemplace Improvisation lorsque les conditions sont réunies.",
+  "description_macro": "Crée une barrière sur vous et les équipiers alentour, absorbant les dégâts subis pour un certain pourcentage des PV maximums de la personne affectée.<br>Ce pourcentage dépend du degré de votre <colortype(500)><edgecolortype(501)>Frénésie des danseurs<edgecolortype(0)><colortype(0)> au lancement.<br><colortype(506)><edgecolortype(507)>Degré 0<nbsp>:<edgecolortype(0)><colortype(0)> 5% des PV maximums<br><colortype(506)><edgecolortype(507)>Degré 1<nbsp>:<edgecolortype(0)><colortype(0)> 6% des PV maximums<br><colortype(506)><edgecolortype(507)>Degré 2<nbsp>:<edgecolortype(0)><colortype(0)> 7% des PV maximums<br><colortype(506)><edgecolortype(507)>Degré 3<nbsp>:<edgecolortype(0)><colortype(0)> 8% des PV maximums<br><colortype(506)><edgecolortype(507)>Degré 4<nbsp>:<edgecolortype(0)><colortype(0)> 10% des PV maximums<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 30s<br><colortype(506)><edgecolortype(507)>Condition<nbsp>:<edgecolortype(0)><colortype(0)> <colortype(500)><edgecolortype(501)>Improvisation<edgecolortype(0)><colortype(0)>.<br><br><colortype(504)><edgecolortype(505)>* Cette action ne peut pas être ajoutée aux barres de raccourcis.<br>Remplace <colortype(500)><edgecolortype(501)>Improvisation<edgecolortype(0)><colortype(0)> lorsque les conditions sont réunies.<edgecolortype(0)><colortype(0)>",
+  "effects": [
+    "Crée une barrière sur vous et les équipiers alentour, absorbant les dégâts subis pour un certain pourcentage des PV maximums de la personne affectée.",
+    "Ce pourcentage dépend du degré de votre Frénésie des danseurs au lancement.",
+    "Degré 0 : 5% des PV maximums",
+    "Degré 1 : 6% des PV maximums",
+    "Degré 2 : 7% des PV maximums",
+    "Degré 3 : 8% des PV maximums",
+    "Degré 4 : 10% des PV maximums",
+    "Durée : 30s",
+    "Condition : Improvisation.",
+    "* Cette action ne peut pas être ajoutée aux barres de raccourcis.",
+    "Remplace Improvisation lorsque les conditions sont réunies."
+  ],
+  "role": "Physical Ranged DPS",
+  "job": {
+    "id": 38,
+    "name": "Danseur",
+    "abbreviation": "DNS"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 80,
+  "icon": {
+    "id": 3479,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 4,
+    "name": "Aptitude"
+  },
+  "attack_type": {
+    "id": 0,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 1.5,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 5,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 0,
+      "value": 0
+    },
+    "secondary": {
+      "type_id": 91,
+      "value": 1827
+    }
+  },
+  "range": {
+    "target_yalms": 0,
+    "effect_yalms": 8,
+    "cast_type": 2
+  },
+  "targeting": {
+    "self": true,
+    "party": false,
+    "alliance": false,
+    "hostile": false,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": {
+      "id": 64,
+      "status": {
+        "id": 1827,
+        "name": "Improvisation",
+        "description": "Improvise une danse.",
+        "icon_id": 213716,
+        "max_stacks": 0
+      }
+    }
+  },
+  "metadata": {
+    "aspect_id": 0,
+    "behavior_type": 0,
+    "class_job_category_id": 150,
+    "source_class_job_id": 0,
+    "is_role_action": false,
+    "is_player_action": false,
+    "is_derived_action": true,
+    "equivalence_group": 0
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "kind": "trait",
+  "id": 386,
+  "name": "ヴォイドソウル",
+  "description": "自身に「ヴォイドソウル」が付与される。\n発動条件：ヴォイドリーパー、クロスリーパー、グリムリーパーの命中時",
+  "description_macro": "自身に<colortype(500)><edgecolortype(501)>「ヴォイドソウル」<edgecolortype(0)><colortype(0)>が付与される。<br><colortype(504)><edgecolortype(505)>発動条件：<edgecolortype(0)><colortype(0)>ヴォイドリーパー、クロスリーパー、グリムリーパーの命中時",
+  "effects": [
+    "自身に「ヴォイドソウル」が付与される。",
+    "発動条件：ヴォイドリーパー、クロスリーパー、グリムリーパーの命中時"
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 39,
+    "name": "リーパー",
+    "abbreviation": "RPR"
+  },
+  "unlock_level": 86,
+  "value": 0,
+  "icon": {
+    "id": 6408,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 180,
+  "source_class_job_id": 39
+}

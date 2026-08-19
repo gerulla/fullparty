@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 4260,
+  "name": "Kreszente Flinkheit",
+  "description": "Angriffsgeschwindigkeit ist erhöht und Ausführungszeit von Zaubern ist verkürzt.",
+  "effects": [
+    "Angriffsgeschwindigkeit ist erhöht und Ausführungszeit von Zaubern ist verkürzt."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 229922,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": -10
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 41625,
+      "name": "Kreszentes Schnell",
+      "description": "Du verkürzt die Intervalle zwischen Auto-Attacken und die (Re-)Aktivierungszeiten von Waffenfertigkeiten und Magie des Ziels um 10 %.\nDu verkürzt außerdem die Ausführungszeit von Zaubern um 10 Sekunden.\nDauer: 20 Sekunden\nZusatzeffekt: Erhöht die Bewegungsgeschwindigkeit beträchtlich.\nDauer: 10 Sekunden",
+      "description_macro": "Du verkürzt die Intervalle zwischen Auto-Attacken und die (Re-)Ak<->ti<->vie<->rungs<->zei<->ten von Waf<->fen<->fer<->tig<->kei<->ten und Magie des Ziels um 10<nbsp>%.<br>Du verkürzt außerdem die Ausführungszeit von Zaubern um 10 Sekunden.<br>Dauer: 20 Sekunden<br>Zusatzeffekt: Erhöht die Be<->we<->gungs<->ge<->schwin<->dig<->keit beträchtlich.<br>Dauer: 10 Sekunden",
+      "unlock_level": 0,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Phantom Jobs"
+      ],
+      "jobs": [
+        {
+          "id": 8,
+          "name": "Phantom Phantom-Zeitmagier",
+          "abbreviation": "Ph-Zeitmagier",
+          "is_phantom": true
+        }
+      ]
+    }
+  ]
+}

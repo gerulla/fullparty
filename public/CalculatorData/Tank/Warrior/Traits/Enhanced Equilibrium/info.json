@@ -1,0 +1,26 @@
+{
+  "kind": "trait",
+  "id": 420,
+  "name": "Enhanced Equilibrium",
+  "description": "Grants healing over time to self.\nCure Potency: 200\nDuration: 15s",
+  "description_macro": "Grants healing over time to self.<br><colortype(504)><edgecolortype(505)>Cure Potency: <edgecolortype(0)><colortype(0)>200<br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>15s",
+  "effects": [
+    "Grants healing over time to self.",
+    "Cure Potency: 200",
+    "Duration: 15s"
+  ],
+  "role": "Tank",
+  "job": {
+    "id": 21,
+    "name": "Warrior",
+    "abbreviation": "WAR"
+  },
+  "unlock_level": 84,
+  "value": 0,
+  "icon": {
+    "id": 5269,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 22,
+  "source_class_job_id": 21
+}

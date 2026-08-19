@@ -1,0 +1,51 @@
+{
+  "kind": "combat_status",
+  "id": 2217,
+  "name": "賢人のバラード",
+  "description": "与ダメージが上昇した状態。",
+  "effects": [
+    "与ダメージが上昇した状態。"
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 212603,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": true,
+  "is_permanent": true,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 1
+  },
+  "class_job_category_id": 24,
+  "source_abilities": [
+    {
+      "id": 114,
+      "name": "賢人のバラード",
+      "description": "賢人のバラードを歌い、自身と周囲50m以内のパーティメンバーの与ダメージを1％上昇させる。\u3000効果時間：45秒\n追加効果（発動確率80％）：自身に「詩心」が付与される。\nこの効果は賢人のバラードの効果中に継続的に発動する。\n詩心効果：ハートブレイクショットおよびレイン・オブ・デスのリキャストタイムを7.5秒短縮する。\n追加効果：自身に「賢人のコーダ」が付与される。\n発動条件：自身が戦闘状態",
+      "description_macro": "賢人のバラードを歌い、自身と周囲50m以内のパーティメンバーの与ダメージを1％上昇させる。\u3000<colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>45秒<br><colortype(504)><edgecolortype(505)>追加効果（発動確率80％）：<edgecolortype(0)><colortype(0)>自身に<colortype(500)><edgecolortype(501)>「詩心」<edgecolortype(0)><colortype(0)>が付与される。<br>この効果は賢人のバラードの効果中に継続的に発動する。<br><colortype(504)><edgecolortype(505)>詩心効果：<edgecolortype(0)><colortype(0)><if([gnum68==23],<if([gnum72>=92],ハートブレイクショット,ブラッドレッター)>,ブラッドレッター)><if([gnum72>=45],<if([gnum68==23],およびレイン・オブ・デス,)>,)>のリキャストタイムを7.5秒短縮する。<br><if([gnum68==23],<if([gnum72>=90],<colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)>自身に<colortype(500)><edgecolortype(501)>「賢人のコーダ」<edgecolortype(0)><colortype(0)>が付与される。<br>,)>,)><colortype(504)><edgecolortype(505)>発動条件：<edgecolortype(0)><colortype(0)>自身が戦闘状態",
+      "unlock_level": 30,
+      "relations": [
+        "granted_by_description",
+        "same_name"
+      ],
+      "roles": [
+        "Physical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 23,
+          "name": "吟遊詩人",
+          "abbreviation": "BRD",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

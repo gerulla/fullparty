@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 639,
+  "name": "Verbesserter Schutzwall",
+  "description": "Fügt Schutzwall den folgenden Zusatzeffekt hinzu: Heilmagie auf dich ist um 15 % erhöht.",
+  "description_macro": "Fügt <colortype(502)><edgecolortype(503)>Schutzwall<edgecolortype(0)><colortype(0)> den folgenden Zusatzeffekt hinzu: Heilmagie auf dich ist um 15 % erhöht.",
+  "effects": [
+    "Fügt Schutzwall den folgenden Zusatzeffekt hinzu: Heilmagie auf dich ist um 15 % erhöht."
+  ],
+  "role": "Tank",
+  "job": {
+    "id": 32,
+    "name": "Dunkelritter",
+    "abbreviation": "DKR"
+  },
+  "unlock_level": 94,
+  "value": 0,
+  "icon": {
+    "id": 6804,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 113,
+  "source_class_job_id": 0
+}

@@ -1,0 +1,88 @@
+{
+  "kind": "ability",
+  "id": 2876,
+  "name": "Reassemble",
+  "description": "Guarantees that next weaponskill is a critical direct hit.\nDuration: 5s\nIncreases damage dealt when under an effect that raises critical hit rate or direct hit rate.\nThis action does not affect damage over time effects.\nMaximum Charges: 2",
+  "description_macro": "Guarantees that next weaponskill is a critical direct hit.<br><colortype(504)><edgecolortype(505)>Duration:<edgecolortype(0)><colortype(0)> 5s<br>Increases damage dealt when under an effect that raises critical hit rate or direct hit rate.<br>This action does not affect damage over time effects.<if([gnum68==31],<if([gnum72>=84],<br><colortype(504)><edgecolortype(505)>Maximum Charges: <edgecolortype(0)><colortype(0)>2,)>,)>",
+  "effects": [
+    "Guarantees that next weaponskill is a critical direct hit.",
+    "Duration: 5s",
+    "Increases damage dealt when under an effect that raises critical hit rate or direct hit rate.",
+    "This action does not affect damage over time effects.",
+    "Maximum Charges: 2"
+  ],
+  "role": "Physical Ranged DPS",
+  "job": {
+    "id": 31,
+    "name": "Machinist",
+    "abbreviation": "MCH"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 10,
+  "icon": {
+    "id": 3022,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 4,
+    "name": "Ability"
+  },
+  "attack_type": {
+    "id": 0,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 55,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 18,
+    "additional_cooldown_group": 73,
+    "max_charges": 1
+  },
+  "costs": {
+    "primary": {
+      "type_id": 0,
+      "value": 0
+    },
+    "secondary": {
+      "type_id": 0,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": 0,
+    "effect_yalms": 0,
+    "cast_type": 1
+  },
+  "targeting": {
+    "self": true,
+    "party": false,
+    "alliance": false,
+    "hostile": false,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 0,
+    "behavior_type": 0,
+    "class_job_category_id": 96,
+    "source_class_job_id": 31,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

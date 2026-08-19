@@ -1,0 +1,91 @@
+{
+  "kind": "ability",
+  "id": 34629,
+  "name": "Drittes Blut",
+  "description": "Du führst eine physische Attacke auf das Ziel und die Gegner in seiner Nähe aus.\nAttacke-Wert: 480\nBei direkter Ausführung nach Zweites Blut erhöht sich der Attacke-Wert auf 680.\nAttacke-Wert verringert sich ab dem zweiten Gegner um 75 %.\nWissen der Ahnen-Kosten: 1\nEigener Reaktivierungs-Timer\nBei erfüllter Bedingung ändern sich Blutiger Otterngriff und Blutige Otterngrube zu diesem Kommando.\nKann nicht im Kommandomenü angelegt werden.",
+  "description_macro": "Du führst eine physische Attacke auf das Ziel und die Gegner in seiner Nähe aus.<br>Attacke-Wert: 480<br>Bei direkter Ausführung nach <colortype(502)><edgecolortype(503)>Zweites Blut<edgecolortype(0)><colortype(0)> erhöht sich der Attacke-Wert auf 680.<br>Attacke-Wert verringert sich ab dem zweiten Gegner um 75 %.<br><colortype(506)><edgecolortype(507)>Wissen der Ahnen<edgecolortype(0)><colortype(0)>-Kosten: 1<br>Eigener Reaktivierungs-Timer<br>Bei erfüllter Bedingung ändern sich <colortype(502)><edgecolortype(503)>Blutiger Otterngriff<edgecolortype(0)><colortype(0)> und <colortype(502)><edgecolortype(503)>Blutige Otterngrube<edgecolortype(0)><colortype(0)> zu diesem Kommando.<br>Kann nicht im Kommandomenü angelegt werden.",
+  "effects": [
+    "Du führst eine physische Attacke auf das Ziel und die Gegner in seiner Nähe aus.",
+    "Attacke-Wert: 480",
+    "Bei direkter Ausführung nach Zweites Blut erhöht sich der Attacke-Wert auf 680.",
+    "Attacke-Wert verringert sich ab dem zweiten Gegner um 75 %.",
+    "Wissen der Ahnen-Kosten: 1",
+    "Eigener Reaktivierungs-Timer",
+    "Bei erfüllter Bedingung ändern sich Blutiger Otterngriff und Blutige Otterngrube zu diesem Kommando.",
+    "Kann nicht im Kommandomenü angelegt werden."
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 41,
+    "name": "Viper",
+    "abbreviation": "VPR"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 90,
+  "icon": {
+    "id": 3724,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 3,
+    "name": "Waffenfertigkeit"
+  },
+  "attack_type": {
+    "id": 4294967295,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 2,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 58,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 89,
+      "value": 1
+    },
+    "secondary": {
+      "type_id": 134,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": -1,
+    "effect_yalms": 5,
+    "cast_type": 2
+  },
+  "targeting": {
+    "self": false,
+    "party": false,
+    "alliance": false,
+    "hostile": true,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 7,
+    "behavior_type": 0,
+    "class_job_category_id": 196,
+    "source_class_job_id": 0,
+    "is_role_action": false,
+    "is_player_action": false,
+    "is_derived_action": true,
+    "equivalence_group": 0
+  }
+}

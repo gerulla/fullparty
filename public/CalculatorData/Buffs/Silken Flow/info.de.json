@@ -1,0 +1,71 @@
+{
+  "kind": "combat_status",
+  "id": 2694,
+  "name": "Asynchroner Wurf",
+  "description": "Fallende Fontäne und Blutklingen können ausgeführt werden.",
+  "effects": [
+    "Fallende Fontäne und Blutklingen können ausgeführt werden."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 213719,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 150,
+  "source_abilities": [
+    {
+      "id": 15990,
+      "name": "Fontäne",
+      "description": "Du führst eine physische Attacke aus.\nAttacke-Wert: 120\nKombo-Bedingung: Cascade\nAttacke-Wert: 280\nBonus: 50 % Wahrscheinlichkeit auf Asynchroner Wurf\nDauer: 30 Sekunden\nKommando ändert sich während des Tanzes zu Entrechat der Schwalbe.",
+      "description_macro": "Du führst eine physische Attacke aus.<br>Attacke-Wert: <if([gnum68==38],<if([gnum72>=94],120,100)>,100)><br>Kombo-Bedingung: <colortype(502)><edgecolortype(503)>Cascade<edgecolortype(0)><colortype(0)><br>Attacke-Wert: <if([gnum68==38],<if([gnum72>=94],280,260)>,260)><br><if([gnum68==38],<if([gnum72>=40],Bonus: 50 % Wahr<->schein<->lich<->keit auf <colortype(506)><edgecolortype(507)>Asynchroner Wurf<edgecolortype(0)><colortype(0)><br>,)>,)>Dauer: 30 Sekunden<br>Kommando ändert sich während des Tanzes zu <colortype(502)><edgecolortype(503)>Entrechat der Schwalbe<edgecolortype(0)><colortype(0)>.",
+      "unlock_level": 2,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Physical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 38,
+          "name": "Tänzer",
+          "abbreviation": "TÄN",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 15994,
+      "name": "Klingenflut",
+      "description": "Du führst eine physische Attacke auf alle umstehenden Gegner aus.\nAttacke-Wert: 100\nKombo-Bedingung: Windmühle\nAttacke-Wert: 160\nBonus: 50 % Wahrscheinlichkeit auf Asynchroner Wurf\nDauer: 30 Sekunden\nKommando ändert sich während des Tanzes zu Entrechat der Schwalbe.",
+      "description_macro": "Du führst eine physische Attacke auf alle umstehenden Gegner aus.<br>Attacke-Wert: 100<br>Kombo-Bedingung: <colortype(502)><edgecolortype(503)>Windmühle<edgecolortype(0)><colortype(0)><br>Attacke-Wert: 160<br><if([gnum68==38],<if([gnum72>=45],Bonus: 50 % Wahr<->schein<->lich<->keit auf <colortype(506)><edgecolortype(507)>Asynchroner Wurf<edgecolortype(0)><colortype(0)><br>Dauer: 30 Sekunden<br>,)>,)>Kommando ändert sich während des Tanzes zu <colortype(502)><edgecolortype(503)>Entrechat der Schwalbe<edgecolortype(0)><colortype(0)>.",
+      "unlock_level": 25,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Physical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 38,
+          "name": "Tänzer",
+          "abbreviation": "TÄN",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

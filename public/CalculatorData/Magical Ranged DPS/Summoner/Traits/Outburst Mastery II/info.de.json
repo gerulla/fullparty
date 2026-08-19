@@ -1,0 +1,27 @@
+{
+  "kind": "trait",
+  "id": 478,
+  "name": "Meister der Elementarkorona II",
+  "description": "Ändert Edelglanz je nach deinem momentan aktiven Äther.\nBei Feueräther: Rubin-Verderben\nBei Erdäther: Topas-Verderben\nBei Windäther: Smaragd-Verderben",
+  "description_macro": "Ändert <colortype(502)><edgecolortype(503)>Edelglanz<edgecolortype(0)><colortype(0)> je nach deinem momentan aktiven Äther.<br>Bei <colortype(506)><edgecolortype(507)>Feueräther<edgecolortype(0)><colortype(0)>: <colortype(502)><edgecolortype(503)>Rubin-Verderben<edgecolortype(0)><colortype(0)><br>Bei <colortype(506)><edgecolortype(507)>Erdäther<edgecolortype(0)><colortype(0)>: <colortype(502)><edgecolortype(503)>Topas-Verderben<edgecolortype(0)><colortype(0)><br>Bei <colortype(506)><edgecolortype(507)>Windäther<edgecolortype(0)><colortype(0)>: <colortype(502)><edgecolortype(503)>Smaragd-Verderben<edgecolortype(0)><colortype(0)>",
+  "effects": [
+    "Ändert Edelglanz je nach deinem momentan aktiven Äther.",
+    "Bei Feueräther: Rubin-Verderben",
+    "Bei Erdäther: Topas-Verderben",
+    "Bei Windäther: Smaragd-Verderben"
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 27,
+    "name": "Beschwörer",
+    "abbreviation": "BSW"
+  },
+  "unlock_level": 82,
+  "value": 0,
+  "icon": {
+    "id": 5693,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 28,
+  "source_class_job_id": 27
+}

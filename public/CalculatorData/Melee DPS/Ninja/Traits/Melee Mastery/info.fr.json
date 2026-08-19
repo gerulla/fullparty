@@ -1,0 +1,27 @@
+{
+  "kind": "trait",
+  "id": 516,
+  "name": "Actions améliorées",
+  "description": "Augmente la puissance de certaines actions.\n\nPuissance de Tourbillon tailladant : 120\nPuissance de Lame éolienne : 140\nPuissance de Perce-armure : 140",
+  "description_macro": "Augmente la puissance de certaines actions.<br><br><colortype(506)><edgecolortype(507)>Puissance de Tourbillon tailladant<nbsp>:<edgecolortype(0)><colortype(0)> 120<br><colortype(506)><edgecolortype(507)>Puissance de Lame éolienne<nbsp>:<edgecolortype(0)><colortype(0)> 140<br><colortype(506)><edgecolortype(507)>Puissance de Perce-armure<nbsp>:<edgecolortype(0)><colortype(0)> 140",
+  "effects": [
+    "Augmente la puissance de certaines actions.",
+    "Puissance de Tourbillon tailladant : 120",
+    "Puissance de Lame éolienne : 140",
+    "Puissance de Perce-armure : 140"
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 30,
+    "name": "Ninja",
+    "abbreviation": "NIN"
+  },
+  "unlock_level": 74,
+  "value": 0,
+  "icon": {
+    "id": 6801,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 92,
+  "source_class_job_id": 30
+}

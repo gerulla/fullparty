@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 479,
+  "name": "Ruin Mastery IV",
+  "description": "Increases the potency of Ruin III to 310, Ruby Rite to 510, Topaz Rite to 330, and Emerald Rite to 230.",
+  "description_macro": "Increases the potency of <colortype(500)><edgecolortype(501)>Ruin III<edgecolortype(0)><colortype(0)> to 310, <colortype(500)><edgecolortype(501)>Ruby Rite<edgecolortype(0)><colortype(0)> to 510, <colortype(500)><edgecolortype(501)>Topaz Rite<edgecolortype(0)><colortype(0)> to 330, and <colortype(500)><edgecolortype(501)>Emerald Rite<edgecolortype(0)><colortype(0)> to 230.",
+  "effects": [
+    "Increases the potency of Ruin III to 310, Ruby Rite to 510, Topaz Rite to 330, and Emerald Rite to 230."
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 27,
+    "name": "Summoner",
+    "abbreviation": "SMN"
+  },
+  "unlock_level": 84,
+  "value": 0,
+  "icon": {
+    "id": 5689,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 28,
+  "source_class_job_id": 27
+}

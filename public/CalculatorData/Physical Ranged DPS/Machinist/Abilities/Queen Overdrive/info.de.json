@@ -1,0 +1,90 @@
+{
+  "kind": "ability",
+  "id": 16502,
+  "name": "DAME-Überhitzung",
+  "description": "Du lässt das Automaton DAME die physische Attacke Pressluftramme ausführen.\nAttacke-Wert: 340 bis 680\nAttacke-Wert steigt je nach Stand des Batteriebalkens beim Herbeirufen des Automatons.\nAutomaton verschwindet nach der Ausführung.\nWird ausgelöst, sobald DAME-Überhitzung ausgeführt wird oder der Batteriebalken leer ist.\nBedingung: Automaton DAME ist bereits gerufen.\nGemeinsamer Reaktivierungs-Timer mit Automaton DAME",
+  "description_macro": "Du lässt das Automaton DAME die physische Attacke <colortype(502)><edgecolortype(503)>Pressluftramme<edgecolortype(0)><colortype(0)> ausführen.<br>Attacke-Wert: 340 bis 680<br>Attacke-Wert steigt je nach Stand des Batteriebalkens beim Herbeirufen des Automatons.<br>Automaton verschwindet nach der Ausführung.<br>Wird ausgelöst, sobald <colortype(502)><edgecolortype(503)>DAME-Überhitzung<edgecolortype(0)><colortype(0)> ausgeführt wird oder der Batteriebalken leer ist.<br>Bedingung: Automaton DAME ist bereits gerufen.<br>Gemeinsamer Reaktivierungs-Timer mit <colortype(502)><edgecolortype(503)>Automaton DAME<edgecolortype(0)><colortype(0)>",
+  "effects": [
+    "Du lässt das Automaton DAME die physische Attacke Pressluftramme ausführen.",
+    "Attacke-Wert: 340 bis 680",
+    "Attacke-Wert steigt je nach Stand des Batteriebalkens beim Herbeirufen des Automatons.",
+    "Automaton verschwindet nach der Ausführung.",
+    "Wird ausgelöst, sobald DAME-Überhitzung ausgeführt wird oder der Batteriebalken leer ist.",
+    "Bedingung: Automaton DAME ist bereits gerufen.",
+    "Gemeinsamer Reaktivierungs-Timer mit Automaton DAME"
+  ],
+  "role": "Physical Ranged DPS",
+  "job": {
+    "id": 31,
+    "name": "Maschinist",
+    "abbreviation": "MCH"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 80,
+  "icon": {
+    "id": 3502,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 4,
+    "name": "Talent"
+  },
+  "attack_type": {
+    "id": 0,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 15,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 4,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 0,
+      "value": 0
+    },
+    "secondary": {
+      "type_id": 40,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": 30,
+    "effect_yalms": 0,
+    "cast_type": 1
+  },
+  "targeting": {
+    "self": true,
+    "party": false,
+    "alliance": false,
+    "hostile": false,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 0,
+    "behavior_type": 0,
+    "class_job_category_id": 96,
+    "source_class_job_id": 31,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

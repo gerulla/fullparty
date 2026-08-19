@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 200,
+  "name": "Hauen und Heilen",
+  "description": "Erhöht den Basiswert des Schadens und der Regenerationswirkung von Kommandos außer Auto-Attacke um 10 %.",
+  "description_macro": "Erhöht den Basiswert des Schadens und der Regenerationswirkung von Kommandos außer Auto-Attacke um 10 %.",
+  "effects": [
+    "Erhöht den Basiswert des Schadens und der Regenerationswirkung von Kommandos außer Auto-Attacke um 10 %."
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 35,
+    "name": "Rotmagier",
+    "abbreviation": "RMA"
+  },
+  "unlock_level": 20,
+  "value": 10,
+  "icon": {
+    "id": 5185,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 112,
+  "source_class_job_id": 35
+}

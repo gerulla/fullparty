@@ -1,0 +1,25 @@
+{
+  "kind": "trait",
+  "id": 618,
+  "name": "Verbesserter Gleißender Schein",
+  "description": "Erfolgreiche Ausführung von Gleißender Schein gewährt dir Gleißender Funke.\nDauer: 30 Sekunden",
+  "description_macro": "Erfolgreiche Ausführung von <colortype(502)><edgecolortype(503)>Gleißender Schein<edgecolortype(0)><colortype(0)> gewährt dir <colortype(506)><edgecolortype(507)>Gleißender Funke<edgecolortype(0)><colortype(0)>.<br>Dauer: 30 Sekunden",
+  "effects": [
+    "Erfolgreiche Ausführung von Gleißender Schein gewährt dir Gleißender Funke.",
+    "Dauer: 30 Sekunden"
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 27,
+    "name": "Beschwörer",
+    "abbreviation": "BSW"
+  },
+  "unlock_level": 96,
+  "value": 0,
+  "icon": {
+    "id": 5399,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 28,
+  "source_class_job_id": 27
+}

@@ -1,0 +1,28 @@
+{
+  "kind": "trait",
+  "id": 261,
+  "name": "Enhanced Prominence",
+  "description": "Grants the following effects after successfully completing a combo with Prominence:\nCombo Bonus: Restores MP\nCombo Bonus: Grants Divine Might\nDivine Might Effect: Allows next Holy Spirit or Holy Circle to be cast immediately with increased potency\nDuration: 30s",
+  "description_macro": "Grants the following effects after successfully completing a combo with <colortype(500)><edgecolortype(501)>Prominence<edgecolortype(0)><colortype(0)>:<br><colortype(504)><edgecolortype(505)>Combo Bonus: <edgecolortype(0)><colortype(0)>Restores MP<br><colortype(504)><edgecolortype(505)>Combo Bonus: <edgecolortype(0)><colortype(0)>Grants <colortype(506)><edgecolortype(507)>Divine Might<edgecolortype(0)><colortype(0)><br><colortype(504)><edgecolortype(505)>Divine Might Effect: <edgecolortype(0)><colortype(0)>Allows next <colortype(500)><edgecolortype(501)>Holy Spirit<edgecolortype(0)><colortype(0)> or <colortype(500)><edgecolortype(501)>Holy Circle<edgecolortype(0)><colortype(0)> to be cast immediately with increased potency<br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>30s",
+  "effects": [
+    "Grants the following effects after successfully completing a combo with Prominence:",
+    "Combo Bonus: Restores MP",
+    "Combo Bonus: Grants Divine Might",
+    "Divine Might Effect: Allows next Holy Spirit or Holy Circle to be cast immediately with increased potency",
+    "Duration: 30s"
+  ],
+  "role": "Tank",
+  "job": {
+    "id": 19,
+    "name": "Paladin",
+    "abbreviation": "PLD"
+  },
+  "unlock_level": 72,
+  "value": 0,
+  "icon": {
+    "id": 5214,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 20,
+  "source_class_job_id": 19
+}

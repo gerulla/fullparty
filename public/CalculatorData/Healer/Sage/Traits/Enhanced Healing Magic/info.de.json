@@ -1,0 +1,28 @@
+{
+  "kind": "trait",
+  "id": 377,
+  "name": "Meister der Heilmagie",
+  "description": "Erhöht das Heilpotenzial und den Barriere-Effekt folgender Kommandos:\nHeilpotenzial von Diagnose: 450\nHeilpotenzial von Kardia: 170\nBarriere-Effekt von Eukratische Diagnose: 180 % der Heilwirkung\nBarriere-Effekt von Eukratische Prognose: 320 % der Heilwirkung",
+  "description_macro": "Erhöht das Heilpotenzial und den Barriere-Effekt folgender Kommandos:<br>Heilpotenzial von <colortype(502)><edgecolortype(503)>Diagnose<edgecolortype(0)><colortype(0)>: 450<br>Heilpotenzial von <colortype(502)><edgecolortype(503)>Kardia<edgecolortype(0)><colortype(0)>: 170<br>Barriere-Effekt von <colortype(502)><edgecolortype(503)>Eukratische Diagnose<edgecolortype(0)><colortype(0)>: 180<nbsp>% der Heilwirkung<br>Barriere-Effekt von <colortype(502)><edgecolortype(503)>Eukratische Prognose<edgecolortype(0)><colortype(0)>: 320<nbsp>% der Heilwirkung",
+  "effects": [
+    "Erhöht das Heilpotenzial und den Barriere-Effekt folgender Kommandos:",
+    "Heilpotenzial von Diagnose: 450",
+    "Heilpotenzial von Kardia: 170",
+    "Barriere-Effekt von Eukratische Diagnose: 180 % der Heilwirkung",
+    "Barriere-Effekt von Eukratische Prognose: 320 % der Heilwirkung"
+  ],
+  "role": "Healer",
+  "job": {
+    "id": 40,
+    "name": "Weiser",
+    "abbreviation": "WEI"
+  },
+  "unlock_level": 85,
+  "value": 0,
+  "icon": {
+    "id": 6826,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 181,
+  "source_class_job_id": 40
+}

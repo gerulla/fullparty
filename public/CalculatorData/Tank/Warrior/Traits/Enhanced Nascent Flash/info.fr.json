@@ -1,0 +1,30 @@
+{
+  "kind": "trait",
+  "id": 419,
+  "name": "Exaltation naissante améliorée",
+  "description": "Allonge à 8s la durée d'Exaltation naissante et d'Exaltation communicative. De plus, ajoute les effets suivants à Exaltation communicative.\n\nEffet additionnel : octroie Barrage au sang à la cible.\nDurée : 4s\nBarrage au sang : réduit de 10% les dégâts subis.\nEffet additionnel : octroie Digue au sang à la cible, une barrière annulant un certain montant de dégâts.\nPuissance : 400\nDurée : 20s",
+  "description_macro": "Allonge à 8s la durée d'<colortype(500)><edgecolortype(501)>Exaltation naissante<edgecolortype(0)><colortype(0)> et d'<colortype(500)><edgecolortype(501)>Exaltation communicative<edgecolortype(0)><colortype(0)>. De plus, ajoute les effets suivants à <colortype(500)><edgecolortype(501)>Exaltation communicative<edgecolortype(0)><colortype(0)>.<br><br><colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> octroie <colortype(500)><edgecolortype(501)>Barrage au sang<edgecolortype(0)><colortype(0)> à la cible.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 4s<br><colortype(506)><edgecolortype(507)>Barrage au sang<nbsp>:<edgecolortype(0)><colortype(0)> réduit de 10% les dégâts subis.<br><colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> octroie <colortype(500)><edgecolortype(501)>Digue au sang<edgecolortype(0)><colortype(0)> à la cible, une barrière annulant un certain montant de dégâts.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> 400<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 20s",
+  "effects": [
+    "Allonge à 8s la durée d'Exaltation naissante et d'Exaltation communicative. De plus, ajoute les effets suivants à Exaltation communicative.",
+    "Effet additionnel : octroie Barrage au sang à la cible.",
+    "Durée : 4s",
+    "Barrage au sang : réduit de 10% les dégâts subis.",
+    "Effet additionnel : octroie Digue au sang à la cible, une barrière annulant un certain montant de dégâts.",
+    "Puissance : 400",
+    "Durée : 20s"
+  ],
+  "role": "Tank",
+  "job": {
+    "id": 21,
+    "name": "Guerrier",
+    "abbreviation": "GUE"
+  },
+  "unlock_level": 82,
+  "value": 0,
+  "icon": {
+    "id": 5268,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 22,
+  "source_class_job_id": 21
+}

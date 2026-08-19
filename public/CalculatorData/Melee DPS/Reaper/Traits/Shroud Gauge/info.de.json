@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 384,
+  "name": "Verschleierung",
+  "description": "Bei erfolgreich ausgeführtem Richtpfahl, Galgen und Guillotine füllt sich der Schleierbalken.",
+  "description_macro": "Bei erfolgreich ausgeführtem <colortype(502)><edgecolortype(503)>Richtpfahl<edgecolortype(0)><colortype(0)>, <colortype(502)><edgecolortype(503)>Galgen<edgecolortype(0)><colortype(0)> und <colortype(502)><edgecolortype(503)>Guillotine<edgecolortype(0)><colortype(0)> füllt sich der Schleierbalken.",
+  "effects": [
+    "Bei erfolgreich ausgeführtem Richtpfahl, Galgen und Guillotine füllt sich der Schleierbalken."
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 39,
+    "name": "Schnitter",
+    "abbreviation": "SNT"
+  },
+  "unlock_level": 80,
+  "value": 0,
+  "icon": {
+    "id": 6406,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 180,
+  "source_class_job_id": 39
+}

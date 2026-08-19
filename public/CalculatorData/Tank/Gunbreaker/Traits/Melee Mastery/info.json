@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 507,
+  "name": "Melee Mastery",
+  "description": "Increases the potency of Keen Edge to 200, Brutal Shell to 160, and Solid Barrel to 140.",
+  "description_macro": "Increases the potency of <colortype(500)><edgecolortype(501)>Keen Edge<edgecolortype(0)><colortype(0)> to 200, <colortype(500)><edgecolortype(501)>Brutal Shell<edgecolortype(0)><colortype(0)> to 160, and <colortype(500)><edgecolortype(501)>Solid Barrel<edgecolortype(0)><colortype(0)> to 140.",
+  "effects": [
+    "Increases the potency of Keen Edge to 200, Brutal Shell to 160, and Solid Barrel to 140."
+  ],
+  "role": "Tank",
+  "job": {
+    "id": 37,
+    "name": "Gunbreaker",
+    "abbreviation": "GNB"
+  },
+  "unlock_level": 84,
+  "value": 0,
+  "icon": {
+    "id": 6801,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 149,
+  "source_class_job_id": 37
+}

@@ -1,0 +1,25 @@
+{
+  "kind": "trait",
+  "id": 420,
+  "name": "エクリブリウム効果アップ",
+  "description": "エクリブリウム実行時に、自身のＨＰを継続回復する。\n回復力：200\u3000効果時間：15秒",
+  "description_macro": "エクリブリウム実行時に、自身のＨＰを継続回復する。<br><colortype(504)><edgecolortype(505)>回復力：<edgecolortype(0)><colortype(0)>200\u3000<colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>15秒",
+  "effects": [
+    "エクリブリウム実行時に、自身のＨＰを継続回復する。",
+    "回復力：200\u3000効果時間：15秒"
+  ],
+  "role": "Tank",
+  "job": {
+    "id": 21,
+    "name": "戦士",
+    "abbreviation": "WAR"
+  },
+  "unlock_level": 84,
+  "value": 0,
+  "icon": {
+    "id": 5269,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 22,
+  "source_class_job_id": 21
+}

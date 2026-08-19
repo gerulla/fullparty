@@ -1,0 +1,51 @@
+{
+  "kind": "combat_status",
+  "id": 4257,
+  "name": "Cloche de détente",
+  "description": "Les PV sont restaurés lorsque des dégâts sont subis.",
+  "effects": [
+    "Les PV sont restaurés lorsque des dégâts sont subis."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 229920,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 3000
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 41619,
+      "name": "Cloche de détente",
+      "description": "Octroie Cloche de détente à la cible.\nDurée : 60s\nCloche de détente : les PV sont restaurés si des dégâts sont subis pendant la durée de l'effet.\nPuissance : 2000",
+      "description_macro": "Octroie <colortype(500)><edgecolortype(501)>Cloche de détente<edgecolortype(0)><colortype(0)> à la cible.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 60s<br><colortype(506)><edgecolortype(507)>Cloche de détente<nbsp>:<edgecolortype(0)><colortype(0)> les PV sont restaurés si des dégâts sont subis pendant la durée de l'effet.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> <if([gnum108>=5],3000,2000)>",
+      "unlock_level": 0,
+      "relations": [
+        "granted_by_description",
+        "same_name"
+      ],
+      "roles": [
+        "Phantom Jobs"
+      ],
+      "jobs": [
+        {
+          "id": 7,
+          "name": "Phantom Géomancien fantôme",
+          "abbreviation": "Géomancien fant.",
+          "is_phantom": true
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "kind": "trait",
+  "id": 663,
+  "name": "Actions améliorées II",
+  "description": "Augmente la puissance de certaines actions.\n\nPuissance de Taillade violente : 300\nPuissance de Frappe siphon : 240\nPuissance de Dévoreur d'âme : 260\nPuissance de Noirceur insoumise : 120\nPuissance de Tranchage-habillage : 540\nPuissance de Marée de sang : 600\nPuissance de Quietus : 240",
+  "description_macro": "Augmente la puissance de certaines actions.<br><br><colortype(506)><edgecolortype(507)>Puissance de Taillade violente<nbsp>:<edgecolortype(0)><colortype(0)> 300<br><colortype(506)><edgecolortype(507)>Puissance de Frappe siphon<nbsp>:<edgecolortype(0)><colortype(0)> 240<br><colortype(506)><edgecolortype(507)>Puissance de Dévoreur d'âme<nbsp>:<edgecolortype(0)><colortype(0)> 260<br><colortype(506)><edgecolortype(507)>Puissance de Noirceur insoumise<nbsp>:<edgecolortype(0)><colortype(0)> 120<br><colortype(506)><edgecolortype(507)>Puissance de Tranchage-habillage<nbsp>:<edgecolortype(0)><colortype(0)> 540<br><colortype(506)><edgecolortype(507)>Puissance de Marée de sang<nbsp>:<edgecolortype(0)><colortype(0)> 600<br><colortype(506)><edgecolortype(507)>Puissance de Quietus<nbsp>:<edgecolortype(0)><colortype(0)> 240",
+  "effects": [
+    "Augmente la puissance de certaines actions.",
+    "Puissance de Taillade violente : 300",
+    "Puissance de Frappe siphon : 240",
+    "Puissance de Dévoreur d'âme : 260",
+    "Puissance de Noirceur insoumise : 120",
+    "Puissance de Tranchage-habillage : 540",
+    "Puissance de Marée de sang : 600",
+    "Puissance de Quietus : 240"
+  ],
+  "role": "Tank",
+  "job": {
+    "id": 32,
+    "name": "Chevalier Noir",
+    "abbreviation": "CHN"
+  },
+  "unlock_level": 94,
+  "value": 0,
+  "icon": {
+    "id": 6802,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 98,
+  "source_class_job_id": 32
+}

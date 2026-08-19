@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 585,
+  "name": "Meister des Ausraubens",
+  "description": "Verbessert Ausrauben zu Dokumori.",
+  "description_macro": "Verbessert <colortype(502)><edgecolortype(503)>Ausrauben<edgecolortype(0)><colortype(0)> zu <colortype(502)><edgecolortype(503)>Dokumori<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Verbessert Ausrauben zu Dokumori."
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 30,
+    "name": "Ninja",
+    "abbreviation": "NIN"
+  },
+  "unlock_level": 66,
+  "value": 0,
+  "icon": {
+    "id": 5422,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 92,
+  "source_class_job_id": 30
+}

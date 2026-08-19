@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 541,
+  "name": "Verbesserte Tempera",
+  "description": "Während Tempera-Schicht aktiv ist, kannst du Fette Tempera ausführen.",
+  "description_macro": "Während <colortype(506)><edgecolortype(507)>Tempera-Schicht<edgecolortype(0)><colortype(0)> aktiv ist, kannst du <colortype(502)><edgecolortype(503)>Fette Tempera<edgecolortype(0)><colortype(0)> ausführen.",
+  "effects": [
+    "Während Tempera-Schicht aktiv ist, kannst du Fette Tempera ausführen."
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 42,
+    "name": "Piktomant",
+    "abbreviation": "PKT"
+  },
+  "unlock_level": 88,
+  "value": 0,
+  "icon": {
+    "id": 6555,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 197,
+  "source_class_job_id": 42
+}

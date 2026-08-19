@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 386,
+  "name": "Nichtsseele",
+  "description": "Bei erfolgreich ausgeführtem Nichtsmäher, Kreuzmäher und Gevatters Schnitt erhältst du eine Nichtsseele.",
+  "description_macro": "Bei erfolgreich ausgeführtem <colortype(502)><edgecolortype(503)>Nichtsmäher<edgecolortype(0)><colortype(0)>, <colortype(502)><edgecolortype(503)>Kreuzmäher<edgecolortype(0)><colortype(0)> und <colortype(502)><edgecolortype(503)>Gevatters Schnitt<edgecolortype(0)><colortype(0)> erhältst du eine <colortype(506)><edgecolortype(507)>Nichtsseele<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Bei erfolgreich ausgeführtem Nichtsmäher, Kreuzmäher und Gevatters Schnitt erhältst du eine Nichtsseele."
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 39,
+    "name": "Schnitter",
+    "abbreviation": "SNT"
+  },
+  "unlock_level": 86,
+  "value": 0,
+  "icon": {
+    "id": 6408,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 180,
+  "source_class_job_id": 39
+}

@@ -1,0 +1,71 @@
+{
+  "kind": "combat_status",
+  "id": 18,
+  "name": "Poison",
+  "description": "Des dégâts périodiques de poison sont subis.",
+  "effects": [
+    "Des dégâts périodiques de poison sont subis."
+  ],
+  "classification": "debuff",
+  "icon": {
+    "id": 215007,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 2,
+  "target_type": 0,
+  "can_dispel": true,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 10,
+  "parameter": {
+    "effect": 0,
+    "modifier": 10
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 7406,
+      "name": "Morsure caustique",
+      "description": "Effectue une attaque physique sur la cible.\nPuissance : 150\nEffet additionnel : dégâts périodiques de poison.\nPuissance : 20 Durée : 45s\nEffet additionnel : 35% de chances qu'Œil de faucon vous soit octroyé.\nDurée : 30s",
+      "description_macro": "Effectue une attaque physique sur la cible.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> 150<br><colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> dégâts périodiques de poison.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> 20 <colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 45s<if([gnum68==23],<if([gnum72>=76],<br><colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> 35% de chances qu'<colortype(500)><edgecolortype(501)>Œil de faucon<edgecolortype(0)><colortype(0)> vous soit octroyé.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 30s,)>,)>",
+      "unlock_level": 64,
+      "relations": [
+        "applied_by_description"
+      ],
+      "roles": [
+        "Physical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 23,
+          "name": "Barde",
+          "abbreviation": "BRD",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 11388,
+      "name": "Mauvaise haleine",
+      "description": "Exhale une haleine fétide dans une zone en éventail devant vous.\nLes ennemis dans la zone subissent Poison, Malus de dégâts 10%, Pesanteur 40%, Lenteur 20%, Cécité et Paralysie.\nPuissance du poison : 20 Durée : 15s\nEffet additionnel : interrompt le lancement d'une action par la cible.",
+      "description_macro": "Exhale une haleine fétide dans une zone en éventail devant vous.<br>Les ennemis dans la zone subissent Poison, Malus de dégâts 10%, Pesanteur 40%, Lenteur 20%, Cécité et Paralysie.<br><colortype(506)><edgecolortype(507)>Puissance du poison<nbsp>:<edgecolortype(0)><colortype(0)> 20 <colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 15s<br><colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> interrompt le lancement d'une action par la cible.",
+      "unlock_level": 1,
+      "relations": [
+        "applied_by_description"
+      ],
+      "roles": [
+        "Magical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 36,
+          "name": "Mage Bleu",
+          "abbreviation": "MBU",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

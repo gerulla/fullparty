@@ -1,0 +1,28 @@
+{
+  "kind": "trait",
+  "id": 505,
+  "name": "Actions améliorées",
+  "description": "Augmente la puissance de certaines actions.\n\nPuissance de Coup puissant : 200\nPuissance de Mutilation : 150\nPuissance de Couperet de justice : 160\nPuissance d'Œil de la tempête : 160",
+  "description_macro": "Augmente la puissance de certaines actions.<br><br><colortype(506)><edgecolortype(507)>Puissance de Coup puissant<nbsp>:<edgecolortype(0)><colortype(0)> 200<br><colortype(506)><edgecolortype(507)>Puissance de Mutilation<nbsp>:<edgecolortype(0)><colortype(0)> 150<br><colortype(506)><edgecolortype(507)>Puissance de Couperet de justice<nbsp>:<edgecolortype(0)><colortype(0)> 160<br><colortype(506)><edgecolortype(507)>Puissance d'Œil de la tempête<nbsp>:<edgecolortype(0)><colortype(0)> 160",
+  "effects": [
+    "Augmente la puissance de certaines actions.",
+    "Puissance de Coup puissant : 200",
+    "Puissance de Mutilation : 150",
+    "Puissance de Couperet de justice : 160",
+    "Puissance d'Œil de la tempête : 160"
+  ],
+  "role": "Tank",
+  "job": {
+    "id": 21,
+    "name": "Guerrier",
+    "abbreviation": "GUE"
+  },
+  "unlock_level": 84,
+  "value": 0,
+  "icon": {
+    "id": 6801,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 22,
+  "source_class_job_id": 21
+}

@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 3902,
+  "name": "Vigilant",
+  "description": "HP will be restored automatically upon falling below a certain level or expiration of effect duration.",
+  "effects": [
+    "HP will be restored automatically upon falling below a certain level or expiration of effect duration."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 213127,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 60,
+  "parameter": {
+    "effect": 0,
+    "modifier": 100
+  },
+  "class_job_category_id": 98,
+  "source_abilities": [
+    {
+      "id": 36927,
+      "name": "Shadowed Vigil",
+      "description": "Reduces damage taken by 40%.\nDuration: 15s\nAdditional Effect: Grants Vigilant\nDuration: 20s\nVigilant Effect: Restores HP when HP falls below 50% or upon effect duration expiration\nCure Potency: 1,200",
+      "description_macro": "Reduces damage taken by 40%.<br><colortype(504)><edgecolortype(505)>Duration:<edgecolortype(0)><colortype(0)> 15s<br><colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>Grants <colortype(506)><edgecolortype(507)>Vigilant<edgecolortype(0)><colortype(0)><br><colortype(504)><edgecolortype(505)>Duration:<edgecolortype(0)><colortype(0)> 20s<br><colortype(504)><edgecolortype(505)>Vigilant Effect: <edgecolortype(0)><colortype(0)>Restores HP when HP falls below 50% or upon effect duration expiration<br><colortype(504)><edgecolortype(505)>Cure Potency: <edgecolortype(0)><colortype(0)>1,200",
+      "unlock_level": 92,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Tank"
+      ],
+      "jobs": [
+        {
+          "id": 32,
+          "name": "Dark Knight",
+          "abbreviation": "DRK",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

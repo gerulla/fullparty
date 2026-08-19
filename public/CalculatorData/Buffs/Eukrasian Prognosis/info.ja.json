@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 2609,
+  "name": "エウクラシア・プログノシス",
+  "description": "一定量のダメージを軽減する状態。",
+  "effects": [
+    "一定量のダメージを軽減する状態。"
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 212954,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 30,
+  "parameter": {
+    "effect": 0,
+    "modifier": 100
+  },
+  "class_job_category_id": 181,
+  "source_abilities": [
+    {
+      "id": 24292,
+      "name": "エウクラシア・プログノシス",
+      "description": "自身と周囲のパーティメンバーのＨＰを回復する。\n回復力：100\n追加効果：対象に一定量のダメージを防ぐバリアを張る。\nこのバリアは回復量の320％分のダメージを軽減する。\n効果時間：30秒\nエウクラシア・ディアグノシスおよび学者の鼓舞効果とは同時に付与されない。\n発動条件：「エウクラシア」効果中\n\n※このアクションはホットバーに登録することはできない。\n\u3000発動条件を満たすとプログノシスがエウクラシア・プログノシスに変化する。",
+      "description_macro": "自身と周囲のパーティメンバーのＨＰを回復する。<br><colortype(504)><edgecolortype(505)>回復力：<edgecolortype(0)><colortype(0)>100<br><colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)>対象に一定量のダメージを防ぐバリアを張る。<br>このバリアは回復量の<if([gnum68==40],<if([gnum72>=85],320,230)>,230)>％分のダメージを軽減する。<br><colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>30秒<br>エウクラシア・ディアグノシスおよび学者の鼓舞効果とは同時に付与されない。<br><colortype(504)><edgecolortype(505)>発動条件：<edgecolortype(0)><colortype(0)><colortype(500)><edgecolortype(501)>「エウクラシア」<edgecolortype(0)><colortype(0)>効果中<br><br><colortype(506)><edgecolortype(507)>※このアクションはホットバーに登録することはできない。<br>\u3000発動条件を満たすとプログノシスがエウクラシア・プログノシスに変化する。<edgecolortype(0)><colortype(0)>",
+      "unlock_level": 30,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Healer"
+      ],
+      "jobs": [
+        {
+          "id": 40,
+          "name": "賢者",
+          "abbreviation": "SGE",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

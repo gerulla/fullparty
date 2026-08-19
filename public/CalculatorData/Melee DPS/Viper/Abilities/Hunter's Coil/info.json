@@ -1,0 +1,94 @@
+{
+  "kind": "ability",
+  "id": 34621,
+  "name": "Hunter's Coil",
+  "description": "Delivers an attack with a potency of 630.\n680 when executed from a target's flank.\nAdditional Effect: Grants Hunter's Instinct\nHunter's Instinct Effect: Increases damage dealt by 10%\nDuration: 40s\nAdditional Effect: Grants Hunter's Venom\nHunter's Venom Effect: Increases potency of Twinfang Bite by 50\nDuration: 30s\nAdditional Effect: Increases Serpent Offerings Gauge by 5\nUpon successfully landing this action\\Can only be executed after successfully landing Vicewinder or Swiftskin's Coil.\nThis weaponskill does not share a recast timer with any other actions.",
+  "description_macro": "Delivers an attack with a potency of 630.<br>680 when executed from a target's flank.<br><colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>Grants <colortype(506)><edgecolortype(507)>Hunter's Instinct<edgecolortype(0)><colortype(0)><br><colortype(504)><edgecolortype(505)>Hunter's Instinct Effect: <edgecolortype(0)><colortype(0)>Increases damage dealt by 10%<br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>40s<br><if([gnum68==41],<if([gnum72>=75],<colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>Grants <colortype(506)><edgecolortype(507)>Hunter's Venom<edgecolortype(0)><colortype(0)><br><colortype(504)><edgecolortype(505)>Hunter's Venom Effect: <edgecolortype(0)><colortype(0)>Increases potency of <colortype(500)><edgecolortype(501)>Twinfang Bite<edgecolortype(0)><colortype(0)> by 50<br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>30s<br>,)>,)><if([gnum68==41],<if([gnum72>=90],<colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>Increases <colortype(500)><edgecolortype(501)>Serpent Offerings Gauge<edgecolortype(0)><colortype(0)> by 5<br>,)>,)><if([gnum68==41],<if([gnum72>=75],Upon successfully landing this action\\, <colortype(500)><edgecolortype(501)>Twinfang<edgecolortype(0)><colortype(0)> changes to <colortype(500)><edgecolortype(501)>Twinfang Bite<edgecolortype(0)><colortype(0)>\\, and <colortype(500)><edgecolortype(501)>Twinblood<edgecolortype(0)><colortype(0)> changes to <colortype(500)><edgecolortype(501)>Twinblood Bite<edgecolortype(0)><colortype(0)>.<br>These actions can be executed a total of two times following <colortype(500)><edgecolortype(501)>Hunter's Coil<edgecolortype(0)><colortype(0)>.<br>,)>,)>Can only be executed after successfully landing <colortype(500)><edgecolortype(501)>Vicewinder<edgecolortype(0)><colortype(0)> or <colortype(500)><edgecolortype(501)>Swiftskin's Coil<edgecolortype(0)><colortype(0)>.<br>This weaponskill does not share a recast timer with any other actions.",
+  "effects": [
+    "Delivers an attack with a potency of 630.",
+    "680 when executed from a target's flank.",
+    "Additional Effect: Grants Hunter's Instinct",
+    "Hunter's Instinct Effect: Increases damage dealt by 10%",
+    "Duration: 40s",
+    "Additional Effect: Grants Hunter's Venom",
+    "Hunter's Venom Effect: Increases potency of Twinfang Bite by 50",
+    "Duration: 30s",
+    "Additional Effect: Increases Serpent Offerings Gauge by 5",
+    "Upon successfully landing this action\\Can only be executed after successfully landing Vicewinder or Swiftskin's Coil.",
+    "This weaponskill does not share a recast timer with any other actions."
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 41,
+    "name": "Viper",
+    "abbreviation": "VPR"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 65,
+  "icon": {
+    "id": 3716,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 3,
+    "name": "Weaponskill"
+  },
+  "attack_type": {
+    "id": 4294967295,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 3,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 58,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 0,
+      "value": 0
+    },
+    "secondary": {
+      "type_id": 145,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": -1,
+    "effect_yalms": 0,
+    "cast_type": 1
+  },
+  "targeting": {
+    "self": false,
+    "party": false,
+    "alliance": false,
+    "hostile": true,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": 34620,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 7,
+    "behavior_type": 0,
+    "class_job_category_id": 196,
+    "source_class_job_id": 41,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

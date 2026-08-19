@@ -1,0 +1,71 @@
+{
+  "kind": "combat_status",
+  "id": 2502,
+  "name": "Phantomhast",
+  "description": "Von Phantomhast beflügelt.",
+  "effects": [
+    "Von Phantomhast beflügelt."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 213541,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": true,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 23288,
+      "name": "Phantomhast",
+      "description": "Du fügst den fächerförmig vor dir stehenden Gegnern im Sekundentakt Schaden über Zeit zu.\nAttacke-Wert: 200\nDauer: 5 Sekunden\nBei erneuter Anwendung während der Wirkdauer führst du eine elementneutrale physische Attacke auf die fächerförmig vor dir stehenden Gegner aus.\nAuto-Attacke: 600\nAttacke-Wert verringert sich ab dem zweiten Gegner um 50 %.\nPhantomhast endet bei Bewegung, Umdrehen oder Ausführung eines anderen Kommandos als Phantomhast.\nUnterbindet Auto-Attacke.",
+      "description_macro": "Du fügst den fächerförmig vor dir stehenden Gegnern im Sekundentakt Schaden über Zeit zu.<br>Attacke-Wert: 200<br>Dauer: 5 Sekunden<br>Bei erneuter Anwendung während der Wirkdauer führst du eine elementneutrale physische Attacke auf die fächerförmig vor dir stehenden Gegner aus.<br>Auto-Attacke: 600<br>Attacke-Wert verringert sich ab dem zweiten Gegner um 50<nbsp>%.<br><colortype(506)><edgecolortype(507)>Phantomhast<edgecolortype(0)><colortype(0)> endet bei Bewegung, Umdrehen oder Ausführung eines anderen Kommandos als <colortype(502)><edgecolortype(503)>Phantomhast<edgecolortype(0)><colortype(0)>.<br>Unterbindet Auto-Attacke.",
+      "unlock_level": 1,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Magical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 36,
+          "name": "Blaumagier",
+          "abbreviation": "BMA",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 23289,
+      "name": "Phantomhast",
+      "description": "Du fügst den fächerförmig vor dir stehenden Gegnern im Sekundentakt Schaden über Zeit zu.\nAttacke-Wert: 200\nDauer: 5 Sekunden\nBei erneuter Anwendung während der Wirkdauer führst du eine elementneutrale physische Attacke auf die fächerförmig vor dir stehenden Gegner aus.\nAuto-Attacke: 600\nAttacke-Wert verringert sich ab dem zweiten Gegner um 50 %.\nPhantomhast endet bei Bewegung, Umdrehen oder Ausführung eines anderen Kommandos als Phantomhast.\nUnterbindet Auto-Attacke.",
+      "description_macro": "Du fügst den fächerförmig vor dir stehenden Gegnern im Sekundentakt Schaden über Zeit zu.<br>Attacke-Wert: 200<br>Dauer: 5 Sekunden<br>Bei erneuter Anwendung während der Wirkdauer führst du eine elementneutrale physische Attacke auf die fächerförmig vor dir stehenden Gegner aus.<br>Auto-Attacke: 600<br>Attacke-Wert verringert sich ab dem zweiten Gegner um 50<nbsp>%.<br><colortype(506)><edgecolortype(507)>Phantomhast<edgecolortype(0)><colortype(0)> endet bei Bewegung, Umdrehen oder Ausführung eines anderen Kommandos als <colortype(502)><edgecolortype(503)>Phantomhast<edgecolortype(0)><colortype(0)>.<br>Unterbindet Auto-Attacke.",
+      "unlock_level": 1,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Magical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 36,
+          "name": "Blaumagier",
+          "abbreviation": "BMA",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

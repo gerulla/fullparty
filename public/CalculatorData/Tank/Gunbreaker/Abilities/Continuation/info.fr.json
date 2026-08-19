@@ -1,0 +1,89 @@
+{
+  "kind": "ability",
+  "id": 16155,
+  "name": "Consécution",
+  "description": "Cette action n'a pas d'effet seule. Elle change en fonction de celle qui la précède.\nDevient Arrachage de la jugulaire après Croc pugnace.\nDevient Lacération de l'abdomen après Griffe sauvage.\nDevient Perforation des yeux après Serre vicieuse.\nDevient Hypervitesse après Frappe explosive.\nDevient Insigne fatidique après Tourbillon fatidique.",
+  "description_macro": "Cette action n'a pas d'effet seule. Elle change en fonction de celle qui la précède.<br>Devient <colortype(500)><edgecolortype(501)>Arrachage de la jugulaire<edgecolortype(0)><colortype(0)> après <colortype(500)><edgecolortype(501)>Croc pugnace<edgecolortype(0)><colortype(0)>.<br>Devient <colortype(500)><edgecolortype(501)>Lacération de l'abdomen<edgecolortype(0)><colortype(0)> après <colortype(500)><edgecolortype(501)>Griffe sauvage<edgecolortype(0)><colortype(0)>.<br>Devient <colortype(500)><edgecolortype(501)>Perforation des yeux<edgecolortype(0)><colortype(0)> après <colortype(500)><edgecolortype(501)>Serre vicieuse<edgecolortype(0)><colortype(0)>.<if([gnum68==37],<if([gnum72>=86],<br>Devient <colortype(500)><edgecolortype(501)>Hypervitesse<edgecolortype(0)><colortype(0)> après <colortype(500)><edgecolortype(501)>Frappe explosive<edgecolortype(0)><colortype(0)>.,)>,)><if([gnum68==37],<if([gnum72>=96],<br>Devient <colortype(500)><edgecolortype(501)>Insigne fatidique<edgecolortype(0)><colortype(0)> après <colortype(500)><edgecolortype(501)>Tourbillon fatidique<edgecolortype(0)><colortype(0)>.,)>,)>",
+  "effects": [
+    "Cette action n'a pas d'effet seule. Elle change en fonction de celle qui la précède.",
+    "Devient Arrachage de la jugulaire après Croc pugnace.",
+    "Devient Lacération de l'abdomen après Griffe sauvage.",
+    "Devient Perforation des yeux après Serre vicieuse.",
+    "Devient Hypervitesse après Frappe explosive.",
+    "Devient Insigne fatidique après Tourbillon fatidique."
+  ],
+  "role": "Tank",
+  "job": {
+    "id": 37,
+    "name": "Pistosabreur",
+    "abbreviation": "PSB"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 70,
+  "icon": {
+    "id": 3419,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 4,
+    "name": "Aptitude"
+  },
+  "attack_type": {
+    "id": 0,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 1,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 1,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 0,
+      "value": 0
+    },
+    "secondary": {
+      "type_id": 73,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": 0,
+    "effect_yalms": 0,
+    "cast_type": 1
+  },
+  "targeting": {
+    "self": true,
+    "party": false,
+    "alliance": false,
+    "hostile": false,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 0,
+    "behavior_type": 0,
+    "class_job_category_id": 149,
+    "source_class_job_id": 37,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

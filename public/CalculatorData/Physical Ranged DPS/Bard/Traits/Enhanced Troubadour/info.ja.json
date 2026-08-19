@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 447,
+  "name": "トルバドゥール効果アップ",
+  "description": "トルバドゥールのリキャストタイムを90秒に短縮させる。",
+  "description_macro": "トルバドゥールのリキャストタイムを90秒に短縮させる。",
+  "effects": [
+    "トルバドゥールのリキャストタイムを90秒に短縮させる。"
+  ],
+  "role": "Physical Ranged DPS",
+  "job": {
+    "id": 23,
+    "name": "吟遊詩人",
+    "abbreviation": "BRD"
+  },
+  "unlock_level": 88,
+  "value": -300,
+  "icon": {
+    "id": 5319,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 24,
+  "source_class_job_id": 23
+}

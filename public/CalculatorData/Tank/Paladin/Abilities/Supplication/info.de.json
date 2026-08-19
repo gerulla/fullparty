@@ -1,0 +1,100 @@
+{
+  "kind": "ability",
+  "id": 36918,
+  "name": "Anflehung",
+  "description": "Du führst eine physische Attacke aus.\nAttacke-Wert: 500\nZusatzeffekt: MP werden regeneriert.\nZusatzeffekt: Gewährt dir Heilige Grabstätte.\nDauer: 30 Sekunden\nBedingung: Gnadenerfüllt aktiv\nBei erfüllter Bedingung ändert sich Absolution zu diesem Kommando.\nKann nicht im Kommandomenü angelegt werden.",
+  "description_macro": "Du führst eine physische Attacke aus.<br>Attacke-Wert: <if([gnum68==19],<if([gnum72>=94],500,<if([gnum68==19],<if([gnum72>=84],420,380)>,380)>)>,<if([gnum68==19],<if([gnum72>=84],420,380)>,380)>)><br>Zusatzeffekt: MP werden regeneriert.<br>Zusatzeffekt: Gewährt dir <colortype(506)><edgecolortype(507)>Heilige Grabstätte<edgecolortype(0)><colortype(0)>.<br>Dauer: 30 Sekunden<br>Bedingung: <colortype(506)><edgecolortype(507)>Gnadenerfüllt<edgecolortype(0)><colortype(0)> aktiv<br>Bei erfüllter Bedingung ändert sich <colortype(502)><edgecolortype(503)>Absolution<edgecolortype(0)><colortype(0)> zu diesem Kommando.<br>Kann nicht im Kommandomenü angelegt werden.",
+  "effects": [
+    "Du führst eine physische Attacke aus.",
+    "Attacke-Wert: 500",
+    "Zusatzeffekt: MP werden regeneriert.",
+    "Zusatzeffekt: Gewährt dir Heilige Grabstätte.",
+    "Dauer: 30 Sekunden",
+    "Bedingung: Gnadenerfüllt aktiv",
+    "Bei erfüllter Bedingung ändert sich Absolution zu diesem Kommando.",
+    "Kann nicht im Kommandomenü angelegt werden."
+  ],
+  "role": "Tank",
+  "job": {
+    "id": 19,
+    "name": "Paladin",
+    "abbreviation": "PLD"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 76,
+  "icon": {
+    "id": 2522,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 3,
+    "name": "Waffenfertigkeit"
+  },
+  "attack_type": {
+    "id": 4294967295,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 2.5,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 58,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 0,
+      "value": 0
+    },
+    "secondary": {
+      "type_id": 32,
+      "value": 3827
+    }
+  },
+  "range": {
+    "target_yalms": -1,
+    "effect_yalms": 0,
+    "cast_type": 1
+  },
+  "targeting": {
+    "self": false,
+    "party": false,
+    "alliance": false,
+    "hostile": true,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": {
+      "id": 149,
+      "status": {
+        "id": 3827,
+        "name": "Gnadenerfüllt",
+        "description": "Anflehung kann ausgeführt werden.",
+        "icon_id": 212523,
+        "max_stacks": 0
+      }
+    }
+  },
+  "metadata": {
+    "aspect_id": 7,
+    "behavior_type": 0,
+    "class_job_category_id": 20,
+    "source_class_job_id": 0,
+    "is_role_action": false,
+    "is_player_action": false,
+    "is_derived_action": true,
+    "equivalence_group": 0
+  }
+}

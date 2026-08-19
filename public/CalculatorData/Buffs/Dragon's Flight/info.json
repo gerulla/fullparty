@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 3845,
+  "name": "Dragon's Flight",
+  "description": "Able to execute Rise of the Dragon.",
+  "effects": [
+    "Able to execute Rise of the Dragon."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 212587,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 23,
+  "source_abilities": [
+    {
+      "id": 96,
+      "name": "Dragonfire Dive",
+      "description": "Delivers a jumping fire-based attack to target and all enemies nearby it with a potency of 500 for the first enemy, and 50% less for all remaining enemies.\nAdditional Effect: Grants Dragon's Flight\nDuration: 30s\nCannot be executed while bound.",
+      "description_macro": "Delivers a jumping fire-based attack to target and all enemies nearby it with a potency of 500 for the first enemy, and 50% less for all remaining enemies.<br><if([gnum68==22],<if([gnum72>=92],<colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>Grants <colortype(506)><edgecolortype(507)>Dragon's Flight<edgecolortype(0)><colortype(0)><br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>30s<br>,)>,)>Cannot be executed while bound.",
+      "unlock_level": 50,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 22,
+          "name": "Dragoon",
+          "abbreviation": "DRG",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

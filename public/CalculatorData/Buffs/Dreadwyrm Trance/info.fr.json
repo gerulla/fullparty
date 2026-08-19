@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 3228,
+  "name": "Transe-Bahamut",
+  "description": "Pulsar astral et Brasier de mort peuvent être lancés.",
+  "effects": [
+    "Pulsar astral et Brasier de mort peuvent être lancés."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 214964,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": true,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 28,
+  "source_abilities": [
+    {
+      "id": 3581,
+      "name": "Transe-Bahamut",
+      "description": "Vous plongez dans une Transe-Bahamut.\nDurée : 15s\nEffet additionnel : Méga Ruine devient Pulsar astral et Fracas élémentaire devient Brasier astral.\nEffet additionnel : vous octroie Arcane rubis, Arcane topaze et Arcane émeraude.\nCondition : en combat et Carbuncle invoqué.\nCe sort a un temps de recharge indépendant.",
+      "description_macro": "Vous plongez dans une <colortype(500)><edgecolortype(501)>Transe-Bahamut<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 15s<br><colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> Méga Ruine devient Pulsar astral et Fracas élémentaire devient Brasier astral.<br><colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> vous octroie <colortype(500)><edgecolortype(501)>Arcane rubis<edgecolortype(0)><colortype(0)>, <colortype(500)><edgecolortype(501)>Arcane topaze<edgecolortype(0)><colortype(0)> et <colortype(500)><edgecolortype(501)>Arcane émeraude<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Condition<nbsp>:<edgecolortype(0)><colortype(0)> en combat et Carbuncle invoqué.<br>Ce sort a un temps de recharge indépendant.",
+      "unlock_level": 58,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Magical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 27,
+          "name": "Invocateur",
+          "abbreviation": "INV",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

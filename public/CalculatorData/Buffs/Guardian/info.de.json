@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 3829,
+  "name": "Heilige Wacht",
+  "description": "Erlittener Schaden ist verringert.",
+  "effects": [
+    "Erlittener Schaden ist verringert."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 213050,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": -20
+  },
+  "class_job_category_id": 20,
+  "source_abilities": [
+    {
+      "id": 36920,
+      "name": "Heilige Wacht",
+      "description": "Du verringerst erlittenen Schaden um 40 %.\nDauer: 15 Sekunden\nZusatzeffekt: Errichtet eine Barriere um dich, die Schaden entsprechend einem Heilpotenzial von 1.000 absorbiert.\nDauer: 15 Sekunden",
+      "description_macro": "Du verringerst erlittenen Schaden um 40 %.<br>Dauer: 15 Sekunden<br>Zusatzeffekt: Errichtet eine Barriere um dich, die Schaden entsprechend einem Heilpotenzial von 1.000 absorbiert.<br>Dauer: 15 Sekunden",
+      "unlock_level": 92,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Tank"
+      ],
+      "jobs": [
+        {
+          "id": 19,
+          "name": "Paladin",
+          "abbreviation": "PLD",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

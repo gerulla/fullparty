@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 196,
+  "name": "Geheimnis der Lilie",
+  "description": "Fügt deinem Heilbalken alle 20 Sekunden, die du dich im Kampf befindest, eine Lilie hinzu. Bis zu 3 Lilien möglich.",
+  "description_macro": "Fügt deinem Heilbalken alle 20 Sekunden, die du dich im Kampf befindest, eine <colortype(506)><edgecolortype(507)>Lilie<edgecolortype(0)><colortype(0)> hinzu. Bis zu 3 <colortype(506)><edgecolortype(507)>Lilien<edgecolortype(0)><colortype(0)> möglich.",
+  "effects": [
+    "Fügt deinem Heilbalken alle 20 Sekunden, die du dich im Kampf befindest, eine Lilie hinzu. Bis zu 3 Lilien möglich."
+  ],
+  "role": "Healer",
+  "job": {
+    "id": 24,
+    "name": "Weißmagier",
+    "abbreviation": "WMA"
+  },
+  "unlock_level": 52,
+  "value": 0,
+  "icon": {
+    "id": 5335,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 25,
+  "source_class_job_id": 24
+}

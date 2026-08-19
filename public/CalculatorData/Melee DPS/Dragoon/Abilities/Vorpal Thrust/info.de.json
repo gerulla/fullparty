@@ -1,0 +1,87 @@
+{
+  "kind": "ability",
+  "id": 78,
+  "name": "Vorpalstoß",
+  "description": "Du führst eine physische Attacke aus.\nAttacke-Wert: 130\nKombo-Bedingung: Sauberer Stoß oder Überfallsstoß\nAttacke-Wert: 280",
+  "description_macro": "Du führst eine physische Attacke aus.<br>Attacke-Wert: <if([gnum68==22],<if([gnum72>=76],130,100)>,100)><br>Kombo-Bedingung: <if([gnum68==22],<if([gnum72>=76],<colortype(502)><edgecolortype(503)>Sauberer Stoß<edgecolortype(0)><colortype(0)> oder <colortype(502)><edgecolortype(503)>Überfallsstoß<edgecolortype(0)><colortype(0)>,<colortype(502)><edgecolortype(503)>Sauberer Stoß<edgecolortype(0)><colortype(0)>)>,<colortype(502)><edgecolortype(503)>Sauberer Stoß<edgecolortype(0)><colortype(0)>)><br>Attacke-Wert: <if([gnum68==22],<if([gnum72>=76],280,250)>,250)>",
+  "effects": [
+    "Du führst eine physische Attacke aus.",
+    "Attacke-Wert: 130",
+    "Kombo-Bedingung: Sauberer Stoß oder Überfallsstoß",
+    "Attacke-Wert: 280"
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 22,
+    "name": "Dragoon",
+    "abbreviation": "DRG"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 4,
+  "icon": {
+    "id": 312,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 3,
+    "name": "Waffenfertigkeit"
+  },
+  "attack_type": {
+    "id": 4294967295,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 2.5,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 58,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 0,
+      "value": 0
+    },
+    "secondary": {
+      "type_id": 63,
+      "value": 582
+    }
+  },
+  "range": {
+    "target_yalms": -1,
+    "effect_yalms": 0,
+    "cast_type": 1
+  },
+  "targeting": {
+    "self": false,
+    "party": false,
+    "alliance": false,
+    "hostile": true,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": 75,
+    "preserves_combo": false
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 7,
+    "behavior_type": 0,
+    "class_job_category_id": 47,
+    "source_class_job_id": 4,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

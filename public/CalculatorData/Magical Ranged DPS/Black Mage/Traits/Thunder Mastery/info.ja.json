@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 171,
+  "name": "サンダーマスタリー",
+  "description": "サンダーがサンダガに変化する。",
+  "description_macro": "サンダーがサンダガに変化する。",
+  "effects": [
+    "サンダーがサンダガに変化する。"
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 25,
+    "name": "黒魔道士",
+    "abbreviation": "BLM"
+  },
+  "unlock_level": 45,
+  "value": 0,
+  "icon": {
+    "id": 5357,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 26,
+  "source_class_job_id": 25
+}

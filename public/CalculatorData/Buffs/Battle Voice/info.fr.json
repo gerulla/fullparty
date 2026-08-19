@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 141,
+  "name": "Voix de combat",
+  "description": "Les chances de coups nets sont augmentées.",
+  "effects": [
+    "Les chances de coups nets sont augmentées."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 212601,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 20
+  },
+  "class_job_category_id": 24,
+  "source_abilities": [
+    {
+      "id": 118,
+      "name": "Voix de combat",
+      "description": "Augmente de 20% vos chances de coups nets ainsi que celles des équipiers alentour.\nDurée : 20s",
+      "description_macro": "Augmente de 20% vos chances de coups nets ainsi que celles des équipiers alentour.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 20s",
+      "unlock_level": 50,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Physical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 23,
+          "name": "Barde",
+          "abbreviation": "BRD",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

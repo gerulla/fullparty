@@ -1,0 +1,92 @@
+{
+  "kind": "combat_status",
+  "id": 2,
+  "name": "スタン",
+  "description": "行動できなくなった状態。",
+  "effects": [
+    "行動できなくなった状態。"
+  ],
+  "classification": "debuff",
+  "icon": {
+    "id": 215004,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 2,
+  "target_type": 0,
+  "can_dispel": true,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 100,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 16,
+      "name": "シールドバッシュ",
+      "description": "対象に物理攻撃。\u3000威力：100\n追加効果：対象をスタンさせる。\u3000効果時間：6秒",
+      "description_macro": "対象に物理攻撃。\u3000<colortype(504)><edgecolortype(505)>威力：<edgecolortype(0)><colortype(0)>100<br><colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)>対象をスタンさせる。\u3000<colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>6秒",
+      "unlock_level": 10,
+      "relations": [
+        "applied_by_description"
+      ],
+      "roles": [
+        "Tank"
+      ],
+      "jobs": [
+        {
+          "id": 19,
+          "name": "ナイト",
+          "abbreviation": "PLD",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 11412,
+      "name": "スティッキータン",
+      "description": "対象を引き寄せつつスタンさせる。\u3000効果時間：4秒\n追加効果：敵視アップ",
+      "description_macro": "対象を引き寄せつつスタンさせる。\u3000<colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>4秒<br><colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)>敵視アップ",
+      "unlock_level": 1,
+      "relations": [
+        "applied_by_description"
+      ],
+      "roles": [
+        "Magical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 36,
+          "name": "青魔道士",
+          "abbreviation": "BLU",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 41601,
+      "name": "マギ・ファルコン",
+      "description": "指定した地面の周囲に範囲物理攻撃。\n威力：10（アイテムレベル依存威力）\n追加効果：対象をスタンさせる。\n効果時間：4秒\n追加効果：攻撃範囲のトラップを破壊する。",
+      "description_macro": "指定した地面の周囲に範囲物理攻撃。<br><colortype(504)><edgecolortype(505)>威力：<edgecolortype(0)><colortype(0)>10（アイテムレベル依存威力）<br><colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)>対象をスタンさせる。<br><colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>4秒<br><colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)>攻撃範囲のトラップを破壊する。",
+      "unlock_level": 0,
+      "relations": [
+        "applied_by_description"
+      ],
+      "roles": [
+        "Phantom Jobs"
+      ],
+      "jobs": [
+        {
+          "id": 4,
+          "name": "Phantom サポート狩人",
+          "abbreviation": "Ph. Ranger",
+          "is_phantom": true
+        }
+      ]
+    }
+  ]
+}

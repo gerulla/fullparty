@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 310,
+  "name": "アサイラム効果アップ",
+  "description": "アサイラムに、「効果範囲内にいるパーティメンバーの受けるＨＰ回復効果が10％上昇する効果」が付与される。",
+  "description_macro": "アサイラムに、「効果範囲内にいるパーティメンバーの受けるＨＰ回復効果が10％上昇する効果」が付与される。",
+  "effects": [
+    "アサイラムに、「効果範囲内にいるパーティメンバーの受けるＨＰ回復効果が10％上昇する効果」が付与される。"
+  ],
+  "role": "Healer",
+  "job": {
+    "id": 24,
+    "name": "白魔道士",
+    "abbreviation": "WHM"
+  },
+  "unlock_level": 78,
+  "value": 0,
+  "icon": {
+    "id": 5342,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 25,
+  "source_class_job_id": 24
+}

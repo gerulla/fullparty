@@ -1,0 +1,26 @@
+{
+  "kind": "trait",
+  "id": 621,
+  "name": "Verbesserte Präparation II",
+  "description": "Erfolgreiche Ausführung von Präparation gewährt dir Noble Aura.\nDauer: 30 Sekunden\nIst Noble Aura aktiv, ändern sich Stoß III und Impakt zu Nobler Impakt.",
+  "description_macro": "Erfolgreiche Ausführung von <colortype(502)><edgecolortype(503)>Präparation<edgecolortype(0)><colortype(0)> gewährt dir <colortype(506)><edgecolortype(507)>Noble Aura<edgecolortype(0)><colortype(0)>.<br>Dauer: 30 Sekunden<br>Ist <colortype(506)><edgecolortype(507)>Noble Aura<edgecolortype(0)><colortype(0)> aktiv, ändern sich <colortype(502)><edgecolortype(503)>Stoß III<edgecolortype(0)><colortype(0)> und <colortype(502)><edgecolortype(503)>Impakt<edgecolortype(0)><colortype(0)> zu <colortype(502)><edgecolortype(503)>Nobler Impakt<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Erfolgreiche Ausführung von Präparation gewährt dir Noble Aura.",
+    "Dauer: 30 Sekunden",
+    "Ist Noble Aura aktiv, ändern sich Stoß III und Impakt zu Nobler Impakt."
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 35,
+    "name": "Rotmagier",
+    "abbreviation": "RMA"
+  },
+  "unlock_level": 96,
+  "value": 0,
+  "icon": {
+    "id": 6214,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 112,
+  "source_class_job_id": 35
+}

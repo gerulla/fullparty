@@ -1,0 +1,26 @@
+{
+  "kind": "trait",
+  "id": 382,
+  "name": "ヘルズゲート効果アップ",
+  "description": "ヘルズイングレスとヘルズイーグレスを実行した地点に「ヘルズゲート」を生成し、自身に「リターン実行可」を付与する。\n効果時間：10秒\nヘルズイングレス実行後はヘルズイーグレスがリターンに変化し、ヘルズイーグレス実行後はヘルズイングレスがリターンに変化する。",
+  "description_macro": "ヘルズイングレスとヘルズイーグレスを実行した地点に<colortype(500)><edgecolortype(501)>「ヘルズゲート」<edgecolortype(0)><colortype(0)>を生成し、自身に<colortype(500)><edgecolortype(501)>「リターン実行可」<edgecolortype(0)><colortype(0)>を付与する。<br><colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>10秒<br>ヘルズイングレス実行後はヘルズイーグレスがリターンに変化し、ヘルズイーグレス実行後はヘルズイングレスがリターンに変化する。",
+  "effects": [
+    "ヘルズイングレスとヘルズイーグレスを実行した地点に「ヘルズゲート」を生成し、自身に「リターン実行可」を付与する。",
+    "効果時間：10秒",
+    "ヘルズイングレス実行後はヘルズイーグレスがリターンに変化し、ヘルズイーグレス実行後はヘルズイングレスがリターンに変化する。"
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 39,
+    "name": "リーパー",
+    "abbreviation": "RPR"
+  },
+  "unlock_level": 74,
+  "value": 0,
+  "icon": {
+    "id": 6404,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 180,
+  "source_class_job_id": 39
+}

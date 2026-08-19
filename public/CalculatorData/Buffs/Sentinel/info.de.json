@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 74,
+  "name": "Sentinel",
+  "description": "Erlittener Schaden ist verringert.",
+  "effects": [
+    "Erlittener Schaden ist verringert."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 210151,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": -20
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 17,
+      "name": "Sentinel",
+      "description": "Du verringerst erlittenen Schaden um 30 %.\nDauer: 15 Sekunden",
+      "description_macro": "Du verringerst erlittenen Schaden um 30 %.<br>Dauer: 15 Sekunden",
+      "unlock_level": 38,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Tank"
+      ],
+      "jobs": [
+        {
+          "id": 19,
+          "name": "Paladin",
+          "abbreviation": "PLD",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 4243,
+  "name": "Occult Unicorn",
+  "description": "A magicked barrier is nullifying damage.",
+  "effects": [
+    "A magicked barrier is nullifying damage."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 229956,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 100
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 41602,
+      "name": "Occult Unicorn",
+      "description": "Creates a barrier around self and all party members near you that absorbs 40,000 damage.\nDuration: 30s",
+      "description_macro": "Creates a barrier around self and all party members near you that absorbs 40,000 damage.<br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>30s",
+      "unlock_level": 0,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Phantom Jobs"
+      ],
+      "jobs": [
+        {
+          "id": 4,
+          "name": "Phantom Ranger",
+          "abbreviation": "Ph. Ranger",
+          "is_phantom": true
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 1835,
+  "name": "Aurore",
+  "description": "Des PV sont récupérés périodiquement.",
+  "effects": [
+    "Des PV sont récupérés périodiquement."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 213605,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 5,
+  "parameter": {
+    "effect": 0,
+    "modifier": 10
+  },
+  "class_job_category_id": 149,
+  "source_abilities": [
+    {
+      "id": 16151,
+      "name": "Aurore",
+      "description": "Restaure périodiquement les PV de la cible.\nPuissance : 300 Durée : 18s\nMaximum de charges : 2",
+      "description_macro": "Restaure périodiquement les PV de la cible.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> 300 <colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 18s<if([gnum68==37],<if([gnum72>=84],<br><colortype(506)><edgecolortype(507)>Maximum de charges<nbsp>:<edgecolortype(0)><colortype(0)> 2,)>,)>",
+      "unlock_level": 45,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Tank"
+      ],
+      "jobs": [
+        {
+          "id": 37,
+          "name": "Pistosabreur",
+          "abbreviation": "PSB",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "kind": "combat_status",
+  "id": 4800,
+  "name": "Position fermée",
+  "description": "Insensible à un certain montant de dégâts.",
+  "effects": [
+    "Insensible à un certain montant de dégâts."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 229974,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 100
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 46604,
+      "name": "Position fermée",
+      "description": "Vous octroie l'effet Position fermée.\nSi un équipier est ciblé, vous déplace rapidement vers lui et lui octroie aussi l'effet Position fermée.\nDurée : 30s\nPosition fermée : absorbe les dégâts pour un total de 10% de vos PV maximums.",
+      "description_macro": "Vous octroie l'effet <colortype(500)><edgecolortype(501)>Position fermée<edgecolortype(0)><colortype(0)>.<br>Si un équipier est ciblé, vous déplace rapidement vers lui et lui octroie aussi l'effet <colortype(500)><edgecolortype(501)>Position fermée<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 30s<br><colortype(506)><edgecolortype(507)>Position fermée<nbsp>:<edgecolortype(0)><colortype(0)> absorbe les dégâts pour un total de 10% de vos PV maximums.",
+      "unlock_level": 0,
+      "relations": [
+        "granted_by_description",
+        "same_name"
+      ],
+      "roles": [
+        "Phantom Jobs"
+      ],
+      "jobs": [
+        {
+          "id": 15,
+          "name": "Phantom Danseur fantôme",
+          "abbreviation": "Danseur fant.",
+          "is_phantom": true
+        }
+      ]
+    }
+  ]
+}

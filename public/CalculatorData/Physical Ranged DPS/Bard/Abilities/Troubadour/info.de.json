@@ -1,0 +1,86 @@
+{
+  "kind": "ability",
+  "id": 7405,
+  "name": "Troubadour",
+  "description": "Du verringerst den erlittenen Schaden von dir und den umstehenden Gruppenmitgliedern um 15 %.\nDauer: 15 Sekunden\nKann nicht zugleich mit Taktiker des Maschinisten oder Schildsamba des Tänzers aktiv sein.",
+  "description_macro": "Du verringerst den erlittenen Schaden von dir und den umstehenden Grup<->pen<->mit<->gliedern um <if([gnum68==23],<if([gnum72>=98],15,10)>,10)> %.<br>Dauer: 15 Sekunden<br>Kann nicht zugleich mit <colortype(500)><edgecolortype(501)>Taktiker<edgecolortype(0)><colortype(0)> des Maschinisten oder <colortype(500)><edgecolortype(501)>Schildsamba<edgecolortype(0)><colortype(0)> des Tänzers aktiv sein.",
+  "effects": [
+    "Du verringerst den erlittenen Schaden von dir und den umstehenden Gruppenmitgliedern um 15 %.",
+    "Dauer: 15 Sekunden",
+    "Kann nicht zugleich mit Taktiker des Maschinisten oder Schildsamba des Tänzers aktiv sein."
+  ],
+  "role": "Physical Ranged DPS",
+  "job": {
+    "id": 23,
+    "name": "Barde",
+    "abbreviation": "BRD"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 62,
+  "icon": {
+    "id": 2612,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 4,
+    "name": "Talent"
+  },
+  "attack_type": {
+    "id": 0,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 120,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 21,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 0,
+      "value": 0
+    },
+    "secondary": {
+      "type_id": 0,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": 0,
+    "effect_yalms": 30,
+    "cast_type": 2
+  },
+  "targeting": {
+    "self": true,
+    "party": false,
+    "alliance": false,
+    "hostile": false,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 0,
+    "behavior_type": 0,
+    "class_job_category_id": 24,
+    "source_class_job_id": 23,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

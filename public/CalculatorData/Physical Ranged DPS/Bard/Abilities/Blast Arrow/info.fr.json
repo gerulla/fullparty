@@ -1,0 +1,98 @@
+{
+  "kind": "ability",
+  "id": 25784,
+  "name": "Flèche explosive",
+  "description": "Effectue une attaque physique en ligne droite sur les ennemis devant vous.\nPuissance : 700\nLa puissance est réduite de 50% au-delà du premier ennemi touché.\nCondition : Flèche explosive préparée.\n\n* Cette action ne peut pas être ajoutée aux barres de raccourcis.\nRemplace Trait alpha lorsque les conditions sont réunies.",
+  "description_macro": "Effectue une attaque physique en ligne droite sur les ennemis devant vous.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> 700<br>La puissance est réduite de 50% au-delà du premier ennemi touché.<br><colortype(506)><edgecolortype(507)>Condition<nbsp>:<edgecolortype(0)><colortype(0)> <colortype(500)><edgecolortype(501)>Flèche explosive préparée<edgecolortype(0)><colortype(0)>.<br><br><colortype(504)><edgecolortype(505)>* Cette action ne peut pas être ajoutée aux barres de raccourcis.<br>Remplace <colortype(500)><edgecolortype(501)>Trait alpha<edgecolortype(0)><colortype(0)> lorsque les conditions sont réunies.<edgecolortype(0)><colortype(0)>",
+  "effects": [
+    "Effectue une attaque physique en ligne droite sur les ennemis devant vous.",
+    "Puissance : 700",
+    "La puissance est réduite de 50% au-delà du premier ennemi touché.",
+    "Condition : Flèche explosive préparée.",
+    "* Cette action ne peut pas être ajoutée aux barres de raccourcis.",
+    "Remplace Trait alpha lorsque les conditions sont réunies."
+  ],
+  "role": "Physical Ranged DPS",
+  "job": {
+    "id": 23,
+    "name": "Barde",
+    "abbreviation": "BRD"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 86,
+  "icon": {
+    "id": 2621,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 3,
+    "name": "Technique d'arme"
+  },
+  "attack_type": {
+    "id": 4294967295,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 2.5,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 58,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 10,
+      "value": 2692
+    },
+    "secondary": {
+      "type_id": 32,
+      "value": 2692
+    }
+  },
+  "range": {
+    "target_yalms": 25,
+    "effect_yalms": 25,
+    "cast_type": 4
+  },
+  "targeting": {
+    "self": false,
+    "party": false,
+    "alliance": false,
+    "hostile": true,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": false
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": {
+      "id": 53,
+      "status": {
+        "id": 2692,
+        "name": "Flèche explosive préparée",
+        "description": "Flèche explosive peut être lancée.",
+        "icon_id": 212621,
+        "max_stacks": 0
+      }
+    }
+  },
+  "metadata": {
+    "aspect_id": 7,
+    "behavior_type": 0,
+    "class_job_category_id": 24,
+    "source_class_job_id": 0,
+    "is_role_action": false,
+    "is_player_action": false,
+    "is_derived_action": true,
+    "equivalence_group": 0
+  }
+}

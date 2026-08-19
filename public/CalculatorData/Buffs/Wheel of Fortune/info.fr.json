@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 1206,
+  "name": "Inconscient collectif (effet)",
+  "description": "Les dégâts reçus sont réduits.",
+  "effects": [
+    "Les dégâts reçus sont réduits."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 213226,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": -10
+  },
+  "class_job_category_id": 99,
+  "source_abilities": [
+    {
+      "id": 3613,
+      "name": "Inconscient collectif",
+      "description": "Crée un dôme protecteur d'une portée de 8 yalms autour du lanceur.\nDurée : 18s\nRéduit de 10% les dégâts subis par vous et les équipiers dans un rayon de 30 yalms.\nDurée : 10s\nOctroie également un effet de restauration périodique de PV à vous et aux équipiers sous le dôme.\nPuissance : 100 Durée : 15s\nCes effets continuent de s'appliquer tant que vous ou vos alliés vous trouvez dans le dôme.\nLe dôme disparaît si vous effectuez une action, un déplacement ou une rotation.\nInterrompt vos attaques automatiques.",
+      "description_macro": "Crée un dôme protecteur d'une portée de 8 yalms autour du lanceur.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 18s<br>Réduit de 10% les dégâts subis par vous et les équipiers dans un rayon de 30 yalms.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 10s<br>Octroie également un effet de restauration périodique de PV à vous et aux équipiers sous le dôme.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> 100 <colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 15s<br>Ces effets continuent de s'appliquer tant que vous ou vos alliés vous trouvez dans le dôme.<br>Le dôme disparaît si vous effectuez une action, un déplacement ou une rotation.<br>Interrompt vos attaques automatiques.",
+      "unlock_level": 58,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Healer"
+      ],
+      "jobs": [
+        {
+          "id": 33,
+          "name": "Astromancien",
+          "abbreviation": "AST",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

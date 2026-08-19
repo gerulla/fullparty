@@ -1,0 +1,25 @@
+{
+  "kind": "trait",
+  "id": 526,
+  "name": "Viper's Bite",
+  "description": "Allows the execution of Twinfang Bite and Twinblood Bite.\nCan only be executed after successfully landing Hunter's Coil or Swiftskin's Coil.",
+  "description_macro": "Allows the execution of <colortype(500)><edgecolortype(501)>Twinfang Bite<edgecolortype(0)><colortype(0)> and <colortype(500)><edgecolortype(501)>Twinblood Bite<edgecolortype(0)><colortype(0)>.<br>Can only be executed after successfully landing <colortype(500)><edgecolortype(501)>Hunter's Coil<edgecolortype(0)><colortype(0)> or <colortype(500)><edgecolortype(501)>Swiftskin's Coil<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Allows the execution of Twinfang Bite and Twinblood Bite.",
+    "Can only be executed after successfully landing Hunter's Coil or Swiftskin's Coil."
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 41,
+    "name": "Viper",
+    "abbreviation": "VPR"
+  },
+  "unlock_level": 75,
+  "value": 0,
+  "icon": {
+    "id": 6503,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 196,
+  "source_class_job_id": 41
+}

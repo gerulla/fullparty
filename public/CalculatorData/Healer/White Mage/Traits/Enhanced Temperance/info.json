@@ -1,0 +1,25 @@
+{
+  "kind": "trait",
+  "id": 626,
+  "name": "Enhanced Temperance",
+  "description": "Temperance grants Divine Grace upon execution.\nDuration: 30s",
+  "description_macro": "<colortype(500)><edgecolortype(501)>Temperance<edgecolortype(0)><colortype(0)> grants <colortype(506)><edgecolortype(507)>Divine Grace<edgecolortype(0)><colortype(0)> upon execution.<br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>30s",
+  "effects": [
+    "Temperance grants Divine Grace upon execution.",
+    "Duration: 30s"
+  ],
+  "role": "Healer",
+  "job": {
+    "id": 24,
+    "name": "White Mage",
+    "abbreviation": "WHM"
+  },
+  "unlock_level": 100,
+  "value": 0,
+  "icon": {
+    "id": 5348,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 25,
+  "source_class_job_id": 24
+}

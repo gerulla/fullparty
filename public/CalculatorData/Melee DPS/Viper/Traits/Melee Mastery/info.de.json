@@ -1,0 +1,28 @@
+{
+  "kind": "trait",
+  "id": 674,
+  "name": "Verbesserte Zwillingsfänge I",
+  "description": "Erhöht den Attacke-Wert folgender Kommandos:\nAttacke-Wert von Tödliche Fänge: 200\nAttacke-Wert von Tückische Fänge: 200\nAttacke-Wert von Blutige Fänge: 300\nAttacke-Wert von Flinke Fänge: 300",
+  "description_macro": "Erhöht den Attacke-Wert folgender Kommandos:<br>Attacke-Wert von <colortype(502)><edgecolortype(503)>Tödliche Fänge<edgecolortype(0)><colortype(0)>: 200<br>Attacke-Wert von <colortype(502)><edgecolortype(503)>Tückische Fänge<edgecolortype(0)><colortype(0)>: 200<br>Attacke-Wert von <colortype(502)><edgecolortype(503)>Blutige Fänge<edgecolortype(0)><colortype(0)>: 300<br>Attacke-Wert von <colortype(502)><edgecolortype(503)>Flinke Fänge<edgecolortype(0)><colortype(0)>: 300",
+  "effects": [
+    "Erhöht den Attacke-Wert folgender Kommandos:",
+    "Attacke-Wert von Tödliche Fänge: 200",
+    "Attacke-Wert von Tückische Fänge: 200",
+    "Attacke-Wert von Blutige Fänge: 300",
+    "Attacke-Wert von Flinke Fänge: 300"
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 41,
+    "name": "Viper",
+    "abbreviation": "VPR"
+  },
+  "unlock_level": 74,
+  "value": 0,
+  "icon": {
+    "id": 6801,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 196,
+  "source_class_job_id": 41
+}

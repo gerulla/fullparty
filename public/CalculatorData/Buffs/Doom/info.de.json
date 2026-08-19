@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 210,
+  "name": "Verhängnis",
+  "description": "Wird kampfunfähig, sobald der Timer des Fluchs auf 0 sinkt.",
+  "effects": [
+    "Wird kampfunfähig, sobald der Timer des Fluchs auf 0 sinkt."
+  ],
+  "classification": "debuff",
+  "icon": {
+    "id": 215503,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 2,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 200,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 11416,
+      "name": "Verhängnis",
+      "description": "Löst beim Ziel den Status Verhängnis aus.\nDauer: 15 Sekunden\nNach Ende der Dauer wird das Ziel kampfunfähig.\nHat eine geringe Erfolgswahrscheinlichkeit.\nWirkt nicht bei Gegnern, die eine höhere Stufe als der Wirkende haben.",
+      "description_macro": "Löst beim Ziel den Status <colortype(500)><edgecolortype(501)>Verhängnis<edgecolortype(0)><colortype(0)> aus.<br>Dauer: 15 Sekunden<br>Nach Ende der Dauer wird das Ziel kampfunfähig.<br>Hat eine geringe Erfolgswahrscheinlichkeit.<br>Wirkt nicht bei Gegnern, die eine höhere Stufe als der Wirkende haben.",
+      "unlock_level": 1,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Magical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 36,
+          "name": "Blaumagier",
+          "abbreviation": "BMA",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

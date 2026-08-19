@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 437,
+  "name": "Meister der Lanze II",
+  "description": "Verbessert Ungebremster Stoß zu Himmelsstoß und Chaotischer Tjost zu Chaotischer Sturm. Erhöht darüber hinaus den Attacke-Wert von Drachenhort auf 400.",
+  "description_macro": "Verbessert <colortype(502)><edgecolortype(503)>Ungebremster Stoß<edgecolortype(0)><colortype(0)> zu <colortype(502)><edgecolortype(503)>Himmelsstoß<edgecolortype(0)><colortype(0)> und <colortype(502)><edgecolortype(503)>Chaotischer Tjost<edgecolortype(0)><colortype(0)> zu <colortype(502)><edgecolortype(503)>Chaotischer Sturm<edgecolortype(0)><colortype(0)>. Erhöht darüber hinaus den Attacke-Wert von <colortype(502)><edgecolortype(503)>Drachenhort<edgecolortype(0)><colortype(0)> auf 400.",
+  "effects": [
+    "Verbessert Ungebremster Stoß zu Himmelsstoß und Chaotischer Tjost zu Chaotischer Sturm. Erhöht darüber hinaus den Attacke-Wert von Drachenhort auf 400."
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 22,
+    "name": "Dragoon",
+    "abbreviation": "DRG"
+  },
+  "unlock_level": 86,
+  "value": 0,
+  "icon": {
+    "id": 5288,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 23,
+  "source_class_job_id": 22
+}

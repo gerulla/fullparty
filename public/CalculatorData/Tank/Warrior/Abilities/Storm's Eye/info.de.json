@@ -1,0 +1,92 @@
+{
+  "kind": "ability",
+  "id": 45,
+  "name": "Sturmbrecher",
+  "description": "Du führst eine physische Attacke aus.\nAttacke-Wert: 220\nKombo-Bedingung: Verstümmelung\nAttacke-Wert: 500\nBonus: Gewährt dir Tosender Sturm.\nDauer: 30 Sekunden\nEffekt von Tosender Sturm: Ausgeteilter Schaden ist um 10 % erhöht.\nIst dieser Status bereits aktiv, wird er um 30 Sekunden verlängert (max. 60 Sekunden).\nBonus: Urkraftbalken füllt sich um 10.",
+  "description_macro": "Du führst eine physische Attacke aus.<br>Attacke-Wert: <if([gnum68==21],<if([gnum72>=94],220,<if([gnum68==21],<if([gnum72>=84],160,100)>,100)>)>,<if([gnum68==21],<if([gnum72>=84],160,100)>,100)>)><br>Kombo-Bedingung: <colortype(502)><edgecolortype(503)>Verstümmelung<edgecolortype(0)><colortype(0)><br>Attacke-Wert: <if([gnum68==21],<if([gnum72>=94],500,<if([gnum68==21],<if([gnum72>=84],440,380)>,380)>)>,<if([gnum68==21],<if([gnum72>=84],440,380)>,380)>)><br>Bonus: Gewährt dir <colortype(506)><edgecolortype(507)>Tosender Sturm<edgecolortype(0)><colortype(0)>.<br>Dauer: 30 Sekunden<br>Effekt von <colortype(506)><edgecolortype(507)>Tosender Sturm<edgecolortype(0)><colortype(0)>: Ausgeteilter Schaden ist um 10 % erhöht.<br>Ist dieser Status bereits aktiv, wird er um 30 Sekunden verlängert (max. 60 Sekunden).<if([gnum68==21],<if([gnum72>=35],<br>Bonus: Urkraftbalken füllt sich um 10.,)>,)>",
+  "effects": [
+    "Du führst eine physische Attacke aus.",
+    "Attacke-Wert: 220",
+    "Kombo-Bedingung: Verstümmelung",
+    "Attacke-Wert: 500",
+    "Bonus: Gewährt dir Tosender Sturm.",
+    "Dauer: 30 Sekunden",
+    "Effekt von Tosender Sturm: Ausgeteilter Schaden ist um 10 % erhöht.",
+    "Ist dieser Status bereits aktiv, wird er um 30 Sekunden verlängert (max. 60 Sekunden).",
+    "Bonus: Urkraftbalken füllt sich um 10."
+  ],
+  "role": "Tank",
+  "job": {
+    "id": 21,
+    "name": "Krieger",
+    "abbreviation": "KRG"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 50,
+  "icon": {
+    "id": 264,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 3,
+    "name": "Waffenfertigkeit"
+  },
+  "attack_type": {
+    "id": 4294967295,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 2.5,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 58,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 0,
+      "value": 0
+    },
+    "secondary": {
+      "type_id": 0,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": -1,
+    "effect_yalms": 0,
+    "cast_type": 1
+  },
+  "targeting": {
+    "self": false,
+    "party": false,
+    "alliance": false,
+    "hostile": true,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": 37,
+    "preserves_combo": false
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 7,
+    "behavior_type": 0,
+    "class_job_category_id": 44,
+    "source_class_job_id": 3,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

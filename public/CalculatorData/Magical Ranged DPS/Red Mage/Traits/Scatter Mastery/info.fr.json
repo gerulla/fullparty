@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 303,
+  "name": "Maîtrise d'Éparpillement",
+  "description": "Remplace Éparpillement par Impact.",
+  "description_macro": "Remplace <colortype(500)><edgecolortype(501)>Éparpillement<edgecolortype(0)><colortype(0)> par <colortype(500)><edgecolortype(501)>Impact<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Remplace Éparpillement par Impact."
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 35,
+    "name": "Mage Rouge",
+    "abbreviation": "MRG"
+  },
+  "unlock_level": 66,
+  "value": 0,
+  "icon": {
+    "id": 6207,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 112,
+  "source_class_job_id": 35
+}

@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 298,
+  "name": "Sacred Soil",
+  "description": "An area of land has been sanctified, reducing damage taken for all who enter.",
+  "effects": [
+    "An area of land has been sanctified, reducing damage taken for all who enter."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 212802,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": true,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 188,
+      "name": "Sacred Soil",
+      "description": "Creates a designated area in which party members will only suffer 90% of all damage inflicted.\nDuration: 15s\nAdditional Effect: Regen\nCure Potency: 100\nAdditional Effect: Increases Faerie Gauge by 10\nAetherflow Gauge Cost: 1",
+      "description_macro": "Creates a designated area in which party members will only suffer 90% of all damage inflicted.<br><colortype(504)><edgecolortype(505)>Duration:<edgecolortype(0)><colortype(0)> 15s<br><if([gnum68==28],<if([gnum72>=78],<colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)><colortype(506)><edgecolortype(507)>Regen<edgecolortype(0)><colortype(0)><br><colortype(504)><edgecolortype(505)>Cure Potency: <edgecolortype(0)><colortype(0)>100<br>,)>,)><if([gnum72>=70],<if([gnum68==28],<colortype(504)><edgecolortype(505)>Additional Effect:<edgecolortype(0)><colortype(0)> Increases <colortype(500)><edgecolortype(501)>Faerie Gauge<edgecolortype(0)><colortype(0)> by 10<br>,)>,)><colortype(504)><edgecolortype(505)>Aetherflow Gauge Cost:<edgecolortype(0)><colortype(0)> 1",
+      "unlock_level": 50,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Healer"
+      ],
+      "jobs": [
+        {
+          "id": 28,
+          "name": "Scholar",
+          "abbreviation": "SCH",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,89 @@
+{
+  "kind": "ability",
+  "id": 18306,
+  "name": "防御指示",
+  "description": "パーティメンバーひとりを対象とする。\n対象のパーティメンバーに自身が受けるダメージを肩代わりさせる。\nただし、一部の攻撃は肩代わりさせることができない。\n効果時間：12秒\n対象との距離が10mより離れると効果が発揮されない。\nこの魔法は固有のリキャストタイマーを持つ。",
+  "description_macro": "パーティメンバーひとりを対象とする。<br>対象のパーティメンバーに自身が受けるダメージを肩代わりさせる。<br>ただし、一部の攻撃は肩代わりさせることができない。<br><colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>12秒<br>対象との距離が10mより離れると効果が発揮されない。<br>この魔法は固有のリキャストタイマーを持つ。",
+  "effects": [
+    "パーティメンバーひとりを対象とする。",
+    "対象のパーティメンバーに自身が受けるダメージを肩代わりさせる。",
+    "ただし、一部の攻撃は肩代わりさせることができない。",
+    "効果時間：12秒",
+    "対象との距離が10mより離れると効果が発揮されない。",
+    "この魔法は固有のリキャストタイマーを持つ。"
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 36,
+    "name": "青魔道士",
+    "abbreviation": "BLU"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 1,
+  "icon": {
+    "id": 3311,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 2,
+    "name": "魔法"
+  },
+  "attack_type": {
+    "id": 5,
+    "name": "魔法"
+  },
+  "timing": {
+    "cast_seconds": 1,
+    "recast_seconds": 120,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 15,
+    "additional_cooldown_group": 58,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 3,
+      "value": 10
+    },
+    "secondary": {
+      "type_id": 0,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": 10,
+    "effect_yalms": 0,
+    "cast_type": 1
+  },
+  "targeting": {
+    "self": false,
+    "party": true,
+    "alliance": false,
+    "hostile": false,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": false
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": false
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 7,
+    "behavior_type": 0,
+    "class_job_category_id": 129,
+    "source_class_job_id": 36,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

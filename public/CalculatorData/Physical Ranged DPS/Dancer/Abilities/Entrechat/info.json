@@ -1,0 +1,89 @@
+{
+  "kind": "ability",
+  "id": 16000,
+  "name": "Entrechat",
+  "description": "Perform an entrechat.\nWhen performed together with other step actions, in sequence, the potency of Standard Finish and Technical Finish is increased.\nCan only be executed while Dancing.\nThis weaponskill does not share a recast timer with any other actions. Upon execution, the recast timer for this action will be applied to all other weaponskills and magic actions.\n\n※This action cannot be assigned to a hotbar.\n※Fountain and Bladeshower change to Entrechat when requirements for execution are met.",
+  "description_macro": "Perform an entrechat.<br>When performed together with other step actions, in sequence, the potency of <colortype(500)><edgecolortype(501)>Standard Finish<edgecolortype(0)><colortype(0)> and <colortype(500)><edgecolortype(501)>Technical Finish<edgecolortype(0)><colortype(0)> is increased.<br>Can only be executed while <colortype(506)><edgecolortype(507)>Dancing<edgecolortype(0)><colortype(0)>.<br>This weaponskill does not share a recast timer with any other actions. Upon execution, the recast timer for this action will be applied to all other weaponskills and magic actions.<br><br>※This action cannot be assigned to a hotbar.<br>※<colortype(500)><edgecolortype(501)>Fountain<edgecolortype(0)><colortype(0)> and <colortype(500)><edgecolortype(501)>Bladeshower<edgecolortype(0)><colortype(0)> change to <colortype(500)><edgecolortype(501)>Entrechat<edgecolortype(0)><colortype(0)> when requirements for execution are met.",
+  "effects": [
+    "Perform an entrechat.",
+    "When performed together with other step actions, in sequence, the potency of Standard Finish and Technical Finish is increased.",
+    "Can only be executed while Dancing.",
+    "This weaponskill does not share a recast timer with any other actions. Upon execution, the recast timer for this action will be applied to all other weaponskills and magic actions.",
+    "※This action cannot be assigned to a hotbar.",
+    "※Fountain and Bladeshower change to Entrechat when requirements for execution are met."
+  ],
+  "role": "Physical Ranged DPS",
+  "job": {
+    "id": 38,
+    "name": "Dancer",
+    "abbreviation": "DNC"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 15,
+  "icon": {
+    "id": 3456,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 3,
+    "name": "Weaponskill"
+  },
+  "attack_type": {
+    "id": 0,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 1.5,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 58,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 0,
+      "value": 0
+    },
+    "secondary": {
+      "type_id": 90,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": 0,
+    "effect_yalms": 0,
+    "cast_type": 1
+  },
+  "targeting": {
+    "self": true,
+    "party": false,
+    "alliance": false,
+    "hostile": false,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 0,
+    "behavior_type": 0,
+    "class_job_category_id": 150,
+    "source_class_job_id": 0,
+    "is_role_action": false,
+    "is_player_action": false,
+    "is_derived_action": true,
+    "equivalence_group": 0
+  }
+}

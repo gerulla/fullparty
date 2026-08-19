@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 1724,
+  "name": "Wogenschleier",
+  "description": "Wenn Schaden erlitten wird, wird eine Wasserattacke auf den Angreifer ausgeführt.",
+  "effects": [
+    "Wenn Schaden erlitten wird, wird eine Wasserattacke auf den Angreifer ausgeführt."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 213511,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 10,
+  "parameter": {
+    "effect": 0,
+    "modifier": 100
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 11431,
+      "name": "Wogenschleier",
+      "description": "Wenn du Schaden erleidest, fügst du dem Angreifer wasserbasierten magischen Schaden zu.\nAttacke-Wert: 50\nDauer: 30 Sekunden\nKann nicht zugleich mit Eisstachel und Skiltron aktiv sein.\nGemeinsamer Reaktivierungs-Timer mit Gläserner Tanz",
+      "description_macro": "Wenn du Schaden erleidest, fügst du dem Angreifer wasserbasierten magischen Schaden zu.<br>Attacke-Wert: 50<br>Dauer: 30 Sekunden<br>Kann nicht zugleich mit <colortype(500)><edgecolortype(501)>Eisstachel<edgecolortype(0)><colortype(0)> und <colortype(500)><edgecolortype(501)>Skiltron<edgecolortype(0)><colortype(0)> aktiv sein.<br>Gemeinsamer Reaktivierungs-Timer mit <colortype(502)><edgecolortype(503)>Gläserner Tanz<edgecolortype(0)><colortype(0)>",
+      "unlock_level": 1,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Magical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 36,
+          "name": "Blaumagier",
+          "abbreviation": "BMA",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

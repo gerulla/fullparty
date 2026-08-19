@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 463,
+  "name": "Enhanced Manafont",
+  "description": "Reduces Manafont recast time to 100 seconds.",
+  "description_macro": "Reduces <colortype(500)><edgecolortype(501)>Manafont<edgecolortype(0)><colortype(0)> recast time to 100 seconds.",
+  "effects": [
+    "Reduces Manafont recast time to 100 seconds."
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 25,
+    "name": "Black Mage",
+    "abbreviation": "BLM"
+  },
+  "unlock_level": 84,
+  "value": -200,
+  "icon": {
+    "id": 5371,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 26,
+  "source_class_job_id": 25
+}

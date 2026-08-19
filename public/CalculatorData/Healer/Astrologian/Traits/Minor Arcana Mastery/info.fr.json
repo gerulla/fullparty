@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 631,
+  "name": "Maîtrise d'Arcane mineur",
+  "description": "Permet d'utiliser Roi des couronnes après Tirage astral et Reine des couronnes après Tirage ombral.",
+  "description_macro": "Permet d'utiliser <colortype(500)><edgecolortype(501)>Roi des couronnes<edgecolortype(0)><colortype(0)> après <colortype(500)><edgecolortype(501)>Tirage astral<edgecolortype(0)><colortype(0)> et <colortype(500)><edgecolortype(501)>Reine des couronnes<edgecolortype(0)><colortype(0)> après <colortype(500)><edgecolortype(501)>Tirage ombral<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Permet d'utiliser Roi des couronnes après Tirage astral et Reine des couronnes après Tirage ombral."
+  ],
+  "role": "Healer",
+  "job": {
+    "id": 33,
+    "name": "Astromancien",
+    "abbreviation": "AST"
+  },
+  "unlock_level": 70,
+  "value": 0,
+  "icon": {
+    "id": 6120,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 99,
+  "source_class_job_id": 33
+}

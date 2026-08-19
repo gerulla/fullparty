@@ -1,0 +1,25 @@
+{
+  "kind": "trait",
+  "id": 480,
+  "name": "Égide rayonnante améliorée",
+  "description": "Permet de cumuler plusieurs charges pour Égide rayonnante.\nMaximum de charges : 2",
+  "description_macro": "Permet de cumuler plusieurs charges pour <colortype(500)><edgecolortype(501)>Égide rayonnante<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Maximum de charges<nbsp>:<edgecolortype(0)><colortype(0)> 2",
+  "effects": [
+    "Permet de cumuler plusieurs charges pour Égide rayonnante.",
+    "Maximum de charges : 2"
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 27,
+    "name": "Invocateur",
+    "abbreviation": "INV"
+  },
+  "unlock_level": 88,
+  "value": 2,
+  "icon": {
+    "id": 5694,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 28,
+  "source_class_job_id": 27
+}

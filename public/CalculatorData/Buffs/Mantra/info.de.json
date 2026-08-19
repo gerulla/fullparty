@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 102,
+  "name": "Mantra",
+  "description": "Effekt von Heilkommandos ist verstärkt.",
+  "effects": [
+    "Effekt von Heilkommandos ist verstärkt."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 210206,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 5,
+  "parameter": {
+    "effect": 0,
+    "modifier": 5
+  },
+  "class_job_category_id": 41,
+  "source_abilities": [
+    {
+      "id": 65,
+      "name": "Mantra",
+      "description": "Du erhöhst LP-Regenerationseffekte auf dich und die Gruppenmitglieder in der Nähe um 10 %.\nDauer: 15 Sekunden",
+      "description_macro": "Du erhöhst LP-Regenerationseffekte auf dich und die Grup<->pen<->mit<->glieder in der Nähe um 10 %.<br>Dauer: 15 Sekunden",
+      "unlock_level": 42,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 20,
+          "name": "Mönch",
+          "abbreviation": "MÖN",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "kind": "combat_status",
+  "id": 1897,
+  "name": "Chaos naissant",
+  "description": "Lorsque la Jauge de la bête a atteint un seuil suffisant, Décimation est remplacé par Cyclone chaotique.\nEffet supplémentaire après obtention de Chaos intérieur\u00A0: Sape-fendeur est remplacé par Chaos intérieur.",
+  "effects": [
+    "Lorsque la Jauge de la bête a atteint un seuil suffisant, Décimation est remplacé par Cyclone chaotique.",
+    "Effet supplémentaire après obtention de Chaos intérieur\u00A0: Sape-fendeur est remplacé par Chaos intérieur."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 212560,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 22,
+  "source_abilities": [
+    {
+      "id": 52,
+      "name": "Cri de guerre",
+      "description": "Remplit la Jauge de la bête de 50.\nEffet additionnel : vous octroie Chaos naissant.\nDurée : 30s\nChaos naissant : si la Jauge de la bête est remplie à 50 ou plus\\Maximum de charges : 2\nCondition : en combat.",
+      "description_macro": "Remplit la <colortype(502)><edgecolortype(503)>Jauge de la bête<edgecolortype(0)><colortype(0)> de 50.<br><if([gnum68==21],<if([gnum72>=72],<colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> vous octroie <colortype(500)><edgecolortype(501)>Chaos naissant<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 30s<br><colortype(506)><edgecolortype(507)>Chaos naissant<nbsp>:<edgecolortype(0)><colortype(0)> si la <colortype(502)><edgecolortype(503)>Jauge de la bête<edgecolortype(0)><colortype(0)> est remplie à 50 ou plus\\, <if([gnum68==21],<if([gnum72>=80],remplace <colortype(500)><edgecolortype(501)>Décimation<edgecolortype(0)><colortype(0)> par <colortype(500)><edgecolortype(501)>Cyclone chaotique<edgecolortype(0)><colortype(0)> et <colortype(500)><edgecolortype(501)>Sape-fendeur<edgecolortype(0)><colortype(0)> par <colortype(500)><edgecolortype(501)>Chaos intérieur<edgecolortype(0)><colortype(0)>.<br>,remplace <colortype(500)><edgecolortype(501)>Décimation<edgecolortype(0)><colortype(0)> par <colortype(500)><edgecolortype(501)>Cyclone chaotique<edgecolortype(0)><colortype(0)>.<br>)>,remplace <colortype(500)><edgecolortype(501)>Décimation<edgecolortype(0)><colortype(0)> par <colortype(500)><edgecolortype(501)>Cyclone chaotique<edgecolortype(0)><colortype(0)>.<br>)>,)>,)><colortype(506)><edgecolortype(507)>Maximum de charges<nbsp>:<edgecolortype(0)><colortype(0)> 2<br><colortype(506)><edgecolortype(507)>Condition<nbsp>:<edgecolortype(0)><colortype(0)> en combat.",
+      "unlock_level": 50,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Tank"
+      ],
+      "jobs": [
+        {
+          "id": 21,
+          "name": "Guerrier",
+          "abbreviation": "GUE",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

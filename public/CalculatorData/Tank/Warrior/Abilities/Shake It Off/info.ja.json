@@ -1,0 +1,91 @@
+{
+  "kind": "ability",
+  "id": 7388,
+  "name": "シェイクオフ",
+  "description": "自身と周囲のパーティメンバーに、一定量のダメージを防ぐバリアを張る。\nこのバリアは対象の最大ＨＰの15％分のダメージを軽減する。\nまた、自身に「スリル・オブ・バトル」「ダムネーション」「原初の血気」のステータスが付与されている場合、それらを解除するとともにバリアの効果量を2％ずつ上昇させる。\n効果時間：30秒\n追加効果：対象のＨＰを継続回復する。\n回復力：100\u3000効果時間：15秒\n追加効果：対象のＨＰを回復する。\n回復力：300",
+  "description_macro": "自身と周囲のパーティメンバーに、一定量のダメージを防ぐバリアを張る。<br>このバリアは対象の最大ＨＰの15％分のダメージを軽減する。<br>また、自身に<colortype(500)><edgecolortype(501)>「スリル・オブ・バトル」<if([gnum68==21],<if([gnum72>=92],「ダムネーション」,「ヴェンジェンス」)>,「ヴェンジェンス」)><if([gnum68==21],<if([gnum72>=82],「原初の血気」,「原初の直感」)>,「原初の直感」)><edgecolortype(0)><colortype(0)>のステータスが付与されている場合、それらを解除するとともにバリアの効果量を2％ずつ上昇させる。<br><colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>30秒<br><colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)>対象のＨＰを継続回復する。<br><colortype(504)><edgecolortype(505)>回復力：<edgecolortype(0)><colortype(0)>100\u3000<colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>15秒<if([gnum68==21],<if([gnum72>=76],<br><colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)>対象のＨＰを回復する。<br><colortype(504)><edgecolortype(505)>回復力：<edgecolortype(0)><colortype(0)>300,)>,)>",
+  "effects": [
+    "自身と周囲のパーティメンバーに、一定量のダメージを防ぐバリアを張る。",
+    "このバリアは対象の最大ＨＰの15％分のダメージを軽減する。",
+    "また、自身に「スリル・オブ・バトル」「ダムネーション」「原初の血気」のステータスが付与されている場合、それらを解除するとともにバリアの効果量を2％ずつ上昇させる。",
+    "効果時間：30秒",
+    "追加効果：対象のＨＰを継続回復する。",
+    "回復力：100\u3000効果時間：15秒",
+    "追加効果：対象のＨＰを回復する。",
+    "回復力：300"
+  ],
+  "role": "Tank",
+  "job": {
+    "id": 21,
+    "name": "戦士",
+    "abbreviation": "WAR"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 68,
+  "icon": {
+    "id": 2563,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 4,
+    "name": "アビリティ"
+  },
+  "attack_type": {
+    "id": 0,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 90,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 15,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 0,
+      "value": 0
+    },
+    "secondary": {
+      "type_id": 0,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": 0,
+    "effect_yalms": 30,
+    "cast_type": 2
+  },
+  "targeting": {
+    "self": true,
+    "party": false,
+    "alliance": false,
+    "hostile": false,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 0,
+    "behavior_type": 0,
+    "class_job_category_id": 22,
+    "source_class_job_id": 21,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

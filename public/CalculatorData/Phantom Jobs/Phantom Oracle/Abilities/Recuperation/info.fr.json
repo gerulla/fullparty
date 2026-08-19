@@ -1,0 +1,89 @@
+{
+  "kind": "ability",
+  "id": 41641,
+  "name": "Récupération",
+  "description": "Octroie à vous ou à l'équipier ciblé Récupération.\nDurée : 20s\nRécupération : à la fin de l'effet, soigne une altération d'état de la cible et des équipiers dans un rayon de 15 yalms.\nSi cet effet ne s'est pas déclenché, Récupération devient Récupération prédite.\nDurée : 3s\nRécupération prédite : si la cible subit une altération d'état pendant la durée de l'effet, soigne une altération d'état de la cible et des équipiers alentour.",
+  "description_macro": "Octroie à vous ou à l'équipier ciblé <colortype(500)><edgecolortype(501)>Récupération<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 20s<br><colortype(506)><edgecolortype(507)>Récupération<nbsp>:<edgecolortype(0)><colortype(0)> à la fin de l'effet, soigne une altération d'état de la cible et des équipiers dans un rayon de 15 yalms.<br>Si cet effet ne s'est pas déclenché, <colortype(500)><edgecolortype(501)>Récupération<edgecolortype(0)><colortype(0)> devient <colortype(500)><edgecolortype(501)>Récupération prédite<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 3s<br><colortype(506)><edgecolortype(507)>Récupération prédite<nbsp>:<edgecolortype(0)><colortype(0)> si la cible subit une altération d'état pendant la durée de l'effet, soigne une altération d'état de la cible et des équipiers alentour.<if([gnum108>=3],<br>Partage le même temps de recharge que <colortype(500)><edgecolortype(501)>Châtiment<edgecolortype(0)><colortype(0)>.,)>",
+  "effects": [
+    "Octroie à vous ou à l'équipier ciblé Récupération.",
+    "Durée : 20s",
+    "Récupération : à la fin de l'effet, soigne une altération d'état de la cible et des équipiers dans un rayon de 15 yalms.",
+    "Si cet effet ne s'est pas déclenché, Récupération devient Récupération prédite.",
+    "Durée : 3s",
+    "Récupération prédite : si la cible subit une altération d'état pendant la durée de l'effet, soigne une altération d'état de la cible et des équipiers alentour."
+  ],
+  "role": "Phantom Jobs",
+  "job": {
+    "id": 11,
+    "name": "Devin fantôme",
+    "abbreviation": "Devin fant."
+  },
+  "is_phantom_action": true,
+  "unlock_level": 2,
+  "icon": {
+    "id": 64563,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 4,
+    "name": "Aptitude"
+  },
+  "attack_type": {
+    "id": 0,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 30,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 85,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 0,
+      "value": 0
+    },
+    "secondary": {
+      "type_id": 0,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": 30,
+    "effect_yalms": 0,
+    "cast_type": 1
+  },
+  "targeting": {
+    "self": true,
+    "party": true,
+    "alliance": false,
+    "hostile": false,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": false
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 0,
+    "behavior_type": 0,
+    "class_job_category_id": 142,
+    "source_class_job_id": 4294967295,
+    "is_role_action": false,
+    "is_player_action": false,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

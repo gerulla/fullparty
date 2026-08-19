@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 66,
+  "name": "Efficacité des actions augmentée",
+  "description": "Les soins et les dégâts de base des actions (sauf attaques automatiques) sont augmentés de 10%. Les soins et les dégâts de base des actions du familier sont également augmentés de 10%.",
+  "description_macro": "Les soins et les dégâts de base des actions (sauf attaques automatiques) sont augmentés de 10%. Les soins et les dégâts de base des actions du familier sont également augmentés de 10%.",
+  "effects": [
+    "Les soins et les dégâts de base des actions (sauf attaques automatiques) sont augmentés de 10%. Les soins et les dégâts de base des actions du familier sont également augmentés de 10%."
+  ],
+  "role": "Healer",
+  "job": {
+    "id": 28,
+    "name": "Érudit",
+    "abbreviation": "ÉRU"
+  },
+  "unlock_level": 20,
+  "value": 10,
+  "icon": {
+    "id": 5185,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 68,
+  "source_class_job_id": 26
+}

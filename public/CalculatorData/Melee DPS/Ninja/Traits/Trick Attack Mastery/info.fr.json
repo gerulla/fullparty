@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 586,
+  "name": "Maîtrise d'Attaque sournoise",
+  "description": "Remplace Attaque sournoise par Kunai explosifs.",
+  "description_macro": "Remplace <colortype(500)><edgecolortype(501)>Attaque sournoise<edgecolortype(0)><colortype(0)> par <colortype(500)><edgecolortype(501)>Kunai explosifs<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Remplace Attaque sournoise par Kunai explosifs."
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 30,
+    "name": "Ninja",
+    "abbreviation": "NIN"
+  },
+  "unlock_level": 92,
+  "value": 0,
+  "icon": {
+    "id": 5423,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 92,
+  "source_class_job_id": 30
+}

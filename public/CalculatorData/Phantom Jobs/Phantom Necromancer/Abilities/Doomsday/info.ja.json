@@ -1,0 +1,91 @@
+{
+  "kind": "ability",
+  "id": 49101,
+  "name": "パニッシュレイ",
+  "description": "対象に向かって前方直線無属性範囲魔法攻撃。\n威力：350（アイテムレベル依存威力）\n実行時に最大ＨＰの10％分を消費する。\nドレインタッチ時威力：500（アイテムレベル依存威力）\nドレインタッチ時追加効果：対象にかかっている一部を除く強化系ステータスを1つ消す。\nドレインタッチ時追加効果：自身に「死の宣告」を付与する。\nこの死の宣告はＨＰが全回復すると解除される。\n効果時間：10秒",
+  "description_macro": "対象に向かって前方直線無属性範囲魔法攻撃。<br><colortype(504)><edgecolortype(505)>威力：<edgecolortype(0)><colortype(0)>350（アイテムレベル依存威力）<br>実行時に最大ＨＰの10％分を消費する。<br><colortype(504)><edgecolortype(505)>ドレインタッチ時威力：<edgecolortype(0)><colortype(0)>500（アイテムレベル依存威力）<br><colortype(504)><edgecolortype(505)>ドレインタッチ時追加効果：<edgecolortype(0)><colortype(0)>対象にかかっている一部を除く強化系ステータスを1つ消す。<br><colortype(504)><edgecolortype(505)>ドレインタッチ時追加効果：<edgecolortype(0)><colortype(0)>自身に<colortype(500)><edgecolortype(501)>「死の宣告」<edgecolortype(0)><colortype(0)>を付与する。<br>この死の宣告はＨＰが全回復すると解除される。<br><colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>10秒",
+  "effects": [
+    "対象に向かって前方直線無属性範囲魔法攻撃。",
+    "威力：350（アイテムレベル依存威力）",
+    "実行時に最大ＨＰの10％分を消費する。",
+    "ドレインタッチ時威力：500（アイテムレベル依存威力）",
+    "ドレインタッチ時追加効果：対象にかかっている一部を除く強化系ステータスを1つ消す。",
+    "ドレインタッチ時追加効果：自身に「死の宣告」を付与する。",
+    "この死の宣告はＨＰが全回復すると解除される。",
+    "効果時間：10秒"
+  ],
+  "role": "Phantom Jobs",
+  "job": {
+    "id": 23,
+    "name": "サポートネクロマンサー",
+    "abbreviation": "Ph. Necromancer"
+  },
+  "is_phantom_action": true,
+  "unlock_level": 5,
+  "icon": {
+    "id": 64533,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 2,
+    "name": "魔法"
+  },
+  "attack_type": {
+    "id": 5,
+    "name": "魔法"
+  },
+  "timing": {
+    "cast_seconds": 1.5,
+    "recast_seconds": 120,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 87,
+    "additional_cooldown_group": 58,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 1,
+      "value": 10
+    },
+    "secondary": {
+      "type_id": 0,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": 30,
+    "effect_yalms": 30,
+    "cast_type": 4
+  },
+  "targeting": {
+    "self": false,
+    "party": false,
+    "alliance": false,
+    "hostile": true,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 7,
+    "behavior_type": 0,
+    "class_job_category_id": 142,
+    "source_class_job_id": 4294967295,
+    "is_role_action": false,
+    "is_player_action": false,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

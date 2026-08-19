@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 421,
+  "name": "Assaut violent amélioré",
+  "description": "Augmente à 3 le nombre maximum de charges d'Assaut violent.",
+  "description_macro": "Augmente à 3 le nombre maximum de charges d'<colortype(500)><edgecolortype(501)>Assaut violent<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Augmente à 3 le nombre maximum de charges d'Assaut violent."
+  ],
+  "role": "Tank",
+  "job": {
+    "id": 21,
+    "name": "Guerrier",
+    "abbreviation": "GUE"
+  },
+  "unlock_level": 88,
+  "value": 3,
+  "icon": {
+    "id": 5270,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 22,
+  "source_class_job_id": 21
+}

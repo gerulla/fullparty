@@ -1,0 +1,98 @@
+{
+  "kind": "ability",
+  "id": 36977,
+  "name": "Radiant Encore",
+  "description": "Delivers an attack to target and all enemies nearby it.\nPotency is determined by the number of different Coda consumed in the Radiant Finale executed prior, dealing full damage for the first enemy, and 50% less for all remaining enemies.\n1 Coda: 700\n2 Coda: 800\n3 Coda: 1,100\nCan only be executed while under the effect of Radiant Encore Ready.",
+  "description_macro": "Delivers an attack to target and all enemies nearby it.<br>Potency is determined by the number of different <colortype(506)><edgecolortype(507)>Coda<edgecolortype(0)><colortype(0)> consumed in the <colortype(500)><edgecolortype(501)>Radiant Finale<edgecolortype(0)><colortype(0)> executed prior, dealing full damage for the first enemy, and 50% less for all remaining enemies.<br><colortype(504)><edgecolortype(505)>1 Coda: <edgecolortype(0)><colortype(0)>700<br><colortype(504)><edgecolortype(505)>2 Coda: <edgecolortype(0)><colortype(0)>800<br><colortype(504)><edgecolortype(505)>3 Coda: <edgecolortype(0)><colortype(0)>1,100<br>Can only be executed while under the effect of <colortype(506)><edgecolortype(507)>Radiant Encore Ready<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Delivers an attack to target and all enemies nearby it.",
+    "Potency is determined by the number of different Coda consumed in the Radiant Finale executed prior, dealing full damage for the first enemy, and 50% less for all remaining enemies.",
+    "1 Coda: 700",
+    "2 Coda: 800",
+    "3 Coda: 1,100",
+    "Can only be executed while under the effect of Radiant Encore Ready."
+  ],
+  "role": "Physical Ranged DPS",
+  "job": {
+    "id": 23,
+    "name": "Bard",
+    "abbreviation": "BRD"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 100,
+  "icon": {
+    "id": 2100,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 3,
+    "name": "Weaponskill"
+  },
+  "attack_type": {
+    "id": 4294967295,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 2.5,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 58,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 10,
+      "value": 3863
+    },
+    "secondary": {
+      "type_id": 32,
+      "value": 3863
+    }
+  },
+  "range": {
+    "target_yalms": -1,
+    "effect_yalms": 5,
+    "cast_type": 2
+  },
+  "targeting": {
+    "self": false,
+    "party": false,
+    "alliance": false,
+    "hostile": true,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": {
+      "id": 171,
+      "status": {
+        "id": 3863,
+        "name": "Radiant Encore Ready",
+        "description": "Able to execute Radiant Encore.",
+        "icon_id": 213077,
+        "max_stacks": 0
+      }
+    }
+  },
+  "metadata": {
+    "aspect_id": 7,
+    "behavior_type": 0,
+    "class_job_category_id": 24,
+    "source_class_job_id": 23,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

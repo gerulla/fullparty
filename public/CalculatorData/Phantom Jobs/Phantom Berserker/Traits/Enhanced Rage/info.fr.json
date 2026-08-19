@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 3,
+  "name": "Fureur améliorée",
+  "description": "Permet de recevoir Brutalité lorsque vous utilisez Fureur.\nBrutalité : plus des dégâts sont subis pendant la durée de l'effet, plus la puissance de la prochaine action Frappes brutales augmente.\nDurée : 15s",
+  "description_macro": "Permet de recevoir <colortype(500)><edgecolortype(501)>Brutalité<edgecolortype(0)><colortype(0)> lorsque vous utilisez <colortype(500)><edgecolortype(501)>Fureur<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Brutalité<nbsp>:<edgecolortype(0)><colortype(0)> plus des dégâts sont subis pendant la durée de l'effet, plus la puissance de la prochaine action <colortype(500)><edgecolortype(501)>Frappes brutales<edgecolortype(0)><colortype(0)> augmente.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 15s",
+  "effects": [
+    "Permet de recevoir Brutalité lorsque vous utilisez Fureur.",
+    "Brutalité : plus des dégâts sont subis pendant la durée de l'effet, plus la puissance de la prochaine action Frappes brutales augmente.",
+    "Durée : 15s"
+  ],
+  "role": "Phantom Jobs",
+  "job": {
+    "id": 2,
+    "name": "Berserker fantôme",
+    "abbreviation": "Berserker fant."
+  },
+  "is_phantom_trait": true,
+  "unlock_level": 3,
+  "icon": {
+    "id": 82203,
+    "file": "icon.png"
+  }
+}

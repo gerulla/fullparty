@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 2610,
+  "name": "Soteria",
+  "description": "The healing potency of Kardia is increased.",
+  "effects": [
+    "The healing potency of Kardia is increased."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 219756,
+    "file": "icon.png"
+  },
+  "max_stacks": 4,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 27,
+    "modifier": 20
+  },
+  "class_job_category_id": 181,
+  "source_abilities": [
+    {
+      "id": 24294,
+      "name": "Soteria",
+      "description": "Grants 4 stacks of Soteria, each stack increasing the cure potency of Kardion effects granted by you by 70%.\nDuration: 15s",
+      "description_macro": "Grants 4 stacks of <colortype(506)><edgecolortype(507)>Soteria<edgecolortype(0)><colortype(0)>, each stack increasing the cure potency of <colortype(506)><edgecolortype(507)>Kardion<edgecolortype(0)><colortype(0)> effects granted by you by 70%.<br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>15s",
+      "unlock_level": 35,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Healer"
+      ],
+      "jobs": [
+        {
+          "id": 40,
+          "name": "Sage",
+          "abbreviation": "SGE",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 615,
+  "name": "Enhanced Polyglot II",
+  "description": "Allows the stacking of a third Polyglot.",
+  "description_macro": "Allows the stacking of a third <colortype(506)><edgecolortype(507)>Polyglot<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Allows the stacking of a third Polyglot."
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 25,
+    "name": "Black Mage",
+    "abbreviation": "BLM"
+  },
+  "unlock_level": 98,
+  "value": 0,
+  "icon": {
+    "id": 5653,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 26,
+  "source_class_job_id": 25
+}

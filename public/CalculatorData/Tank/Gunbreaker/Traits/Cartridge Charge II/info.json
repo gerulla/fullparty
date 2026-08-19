@@ -1,0 +1,25 @@
+{
+  "kind": "trait",
+  "id": 427,
+  "name": "Cartridge Charge II",
+  "description": "Increases Powder Gauge capacity to 3 Cartridges. While under the effect of Bloodfest, increases the maximum capacity to 6.\nExecuting Bloodfest stores 3 Cartridges.",
+  "description_macro": "Increases <colortype(500)><edgecolortype(501)>Powder Gauge<edgecolortype(0)><colortype(0)> capacity to 3 <colortype(506)><edgecolortype(507)>Cartridges<edgecolortype(0)><colortype(0)>. While under the effect of <colortype(506)><edgecolortype(507)>Bloodfest<edgecolortype(0)><colortype(0)>, increases the maximum capacity to 6.<br>Executing <colortype(500)><edgecolortype(501)>Bloodfest<edgecolortype(0)><colortype(0)> stores 3 <colortype(506)><edgecolortype(507)>Cartridges<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Increases Powder Gauge capacity to 3 Cartridges. While under the effect of Bloodfest, increases the maximum capacity to 6.",
+    "Executing Bloodfest stores 3 Cartridges."
+  ],
+  "role": "Tank",
+  "job": {
+    "id": 37,
+    "name": "Gunbreaker",
+    "abbreviation": "GNB"
+  },
+  "unlock_level": 88,
+  "value": 0,
+  "icon": {
+    "id": 6307,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 149,
+  "source_class_job_id": 37
+}

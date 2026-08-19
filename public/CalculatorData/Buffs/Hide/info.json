@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 1952,
+  "name": "Hide",
+  "description": "Unable to be detected. Movement speed is severely reduced.",
+  "effects": [
+    "Unable to be detected. Movement speed is severely reduced."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 210607,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": true,
+  "inflicted_by_actor": true,
+  "party_list_priority": 100,
+  "parameter": {
+    "effect": 1,
+    "modifier": 0
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 2245,
+      "name": "Hide",
+      "description": "Blend in with your surroundings, making it impossible for most enemies to detect you, but reducing movement speed by 50%. Has no effect on enemies 10 levels higher than your own, or certain enemies with special sight.\nAdditional Effect: Restores 2 charges to all mudra\nThe effect of Doton ends upon execution of Hide.\nCannot be executed while in combat.\nEffect ends upon use of any action other than Sprint, or upon reuse of Hide.",
+      "description_macro": "Blend in with your surroundings, making it impossible for most enemies to detect you, but reducing movement speed by 50%. Has no effect on enemies 10 levels higher than your own, or certain enemies with special sight.<br><if([gnum72>=30],<if([gnum68==30],<colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>Restores 2 charges to all mudra<br>,)>,)><if([gnum68==30],<if([gnum72>=45],The effect of <colortype(500)><edgecolortype(501)>Doton<edgecolortype(0)><colortype(0)> ends upon execution of <colortype(500)><edgecolortype(501)>Hide<edgecolortype(0)><colortype(0)>.<br>,)>,)>Cannot be executed while in combat.<br>Effect ends upon use of any action other than Sprint, or upon reuse of <colortype(500)><edgecolortype(501)>Hide<edgecolortype(0)><colortype(0)>.",
+      "unlock_level": 10,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 30,
+          "name": "Ninja",
+          "abbreviation": "NIN",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

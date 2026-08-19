@@ -1,0 +1,89 @@
+{
+  "kind": "ability",
+  "id": 24394,
+  "name": "Lemurenschleier",
+  "description": "Dein Avatar umhüllt dich und macht dich zu einer Lemure, dir die Maximalstapelzahl von Lemurenseelen gewährend.\nDauer: 30 Sekunden\nWährend der Wirkungsdauer können Avatar-Angriffe und einige Waffenfertigkeiten nicht ausgeführt werden.\nZusatzeffekt: Gewährt dir Sacrificium paratum.\nDauer: 30 Sekunden\nSchleierbalken-Kosten: 50",
+  "description_macro": "Dein Avatar umhüllt dich und macht dich zu einer <colortype(506)><edgecolortype(507)>Lemure<edgecolortype(0)><colortype(0)>, dir die Ma<->xi<->mal<->sta<->pel<->zahl von <colortype(506)><edgecolortype(507)>Lemurenseelen<edgecolortype(0)><colortype(0)> gewährend.<br>Dauer: 30 Sekunden<br>Während der Wirkungsdauer können Avatar-Angriffe und einige Waf<->fen<->fer<->tig<->kei<->ten nicht ausgeführt werden.<br><if([gnum68==39],<if([gnum72>=92],Zusatzeffekt: Gewährt dir <colortype(506)><edgecolortype(507)>Sacrificium paratum<edgecolortype(0)><colortype(0)>.<br>Dauer: 30 Sekunden<br>,)>,)>Schleierbalken-Kosten: 50",
+  "effects": [
+    "Dein Avatar umhüllt dich und macht dich zu einer Lemure, dir die Maximalstapelzahl von Lemurenseelen gewährend.",
+    "Dauer: 30 Sekunden",
+    "Während der Wirkungsdauer können Avatar-Angriffe und einige Waffenfertigkeiten nicht ausgeführt werden.",
+    "Zusatzeffekt: Gewährt dir Sacrificium paratum.",
+    "Dauer: 30 Sekunden",
+    "Schleierbalken-Kosten: 50"
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 39,
+    "name": "Schnitter",
+    "abbreviation": "SNT"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 80,
+  "icon": {
+    "id": 3622,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 4,
+    "name": "Talent"
+  },
+  "attack_type": {
+    "id": 0,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 5,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 4,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 65,
+      "value": 50
+    },
+    "secondary": {
+      "type_id": 113,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": 0,
+    "effect_yalms": 0,
+    "cast_type": 1
+  },
+  "targeting": {
+    "self": true,
+    "party": false,
+    "alliance": false,
+    "hostile": false,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 0,
+    "behavior_type": 0,
+    "class_job_category_id": 180,
+    "source_class_job_id": 39,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

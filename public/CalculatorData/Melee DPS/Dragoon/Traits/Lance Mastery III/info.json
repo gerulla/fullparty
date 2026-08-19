@@ -1,0 +1,25 @@
+{
+  "kind": "trait",
+  "id": 508,
+  "name": "Lance Mastery III",
+  "description": "Increases the potency of Geirskogul to 280 and Nastrond to 720.\nAllows for the sharpening of the Firstminds' Focus upon successfully landing Raiden Thrust or Draconian Fury, up to a maximum of 2 units.",
+  "description_macro": "Increases the potency of <colortype(500)><edgecolortype(501)>Geirskogul<edgecolortype(0)><colortype(0)> to 280 and <colortype(500)><edgecolortype(501)>Nastrond<edgecolortype(0)><colortype(0)> to 720.<br>Allows for the sharpening of the <colortype(506)><edgecolortype(507)>Firstminds' Focus<edgecolortype(0)><colortype(0)> upon successfully landing <colortype(500)><edgecolortype(501)>Raiden Thrust<edgecolortype(0)><colortype(0)> or <colortype(500)><edgecolortype(501)>Draconian Fury<edgecolortype(0)><colortype(0)>, up to a maximum of 2 units.",
+  "effects": [
+    "Increases the potency of Geirskogul to 280 and Nastrond to 720.",
+    "Allows for the sharpening of the Firstminds' Focus upon successfully landing Raiden Thrust or Draconian Fury, up to a maximum of 2 units."
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 22,
+    "name": "Dragoon",
+    "abbreviation": "DRG"
+  },
+  "unlock_level": 90,
+  "value": 0,
+  "icon": {
+    "id": 5292,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 23,
+  "source_class_job_id": 22
+}

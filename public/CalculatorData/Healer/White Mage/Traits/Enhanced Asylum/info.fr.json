@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 310,
+  "name": "Asile amélioré",
+  "description": "Octroie à Asile un effet augmentant de 10% les effets curatifs reçus par vous et les équipiers dans l'aire d'effet.",
+  "description_macro": "Octroie à <colortype(500)><edgecolortype(501)>Asile<edgecolortype(0)><colortype(0)> un effet augmentant de 10% les effets curatifs reçus par vous et les équipiers dans l'aire d'effet.",
+  "effects": [
+    "Octroie à Asile un effet augmentant de 10% les effets curatifs reçus par vous et les équipiers dans l'aire d'effet."
+  ],
+  "role": "Healer",
+  "job": {
+    "id": 24,
+    "name": "Mage Blanc",
+    "abbreviation": "MBL"
+  },
+  "unlock_level": 78,
+  "value": 0,
+  "icon": {
+    "id": 5342,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 25,
+  "source_class_job_id": 24
+}

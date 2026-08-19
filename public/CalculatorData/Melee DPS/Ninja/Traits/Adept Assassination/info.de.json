@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 515,
+  "name": "Meister des Meuchelsprungs",
+  "description": "Verbessert Meuchelsprung zu Ternäre Trance.",
+  "description_macro": "Verbessert <colortype(502)><edgecolortype(503)>Meuchelsprung<edgecolortype(0)><colortype(0)> zu <colortype(502)><edgecolortype(503)>Ternäre Trance<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Verbessert Meuchelsprung zu Ternäre Trance."
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 30,
+    "name": "Ninja",
+    "abbreviation": "NIN"
+  },
+  "unlock_level": 56,
+  "value": 0,
+  "icon": {
+    "id": 5420,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 92,
+  "source_class_job_id": 30
+}

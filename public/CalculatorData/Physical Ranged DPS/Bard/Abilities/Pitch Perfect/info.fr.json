@@ -1,0 +1,90 @@
+{
+  "kind": "ability",
+  "id": 7404,
+  "name": "Ton parfait",
+  "description": "Effectue une attaque physique sur la cible et les ennemis autour.\nLes dégâts sont déterminés par le degré d'Inspiration poétique.\nPuissance (1 degré) : 100\nPuissance (2 degrés) : 220\nPuissance (3 degrés) : 360\nLa puissance est réduite de 50% au-delà du premier ennemi touché.\nCondition : Menuet du Vagabond et Inspiration poétique.",
+  "description_macro": "Effectue une attaque physique sur la cible et les ennemis autour.<br>Les dégâts sont déterminés par le degré d'<colortype(500)><edgecolortype(501)>Inspiration poétique<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Puissance (1 degré)<nbsp>:<edgecolortype(0)><colortype(0)> 100<br><colortype(506)><edgecolortype(507)>Puissance (2 degrés)<nbsp>:<edgecolortype(0)><colortype(0)> 220<br><colortype(506)><edgecolortype(507)>Puissance (3 degrés)<nbsp>:<edgecolortype(0)><colortype(0)> 360<br>La puissance est réduite de 50% au-delà du premier ennemi touché.<br><colortype(506)><edgecolortype(507)>Condition<nbsp>:<edgecolortype(0)><colortype(0)> <colortype(500)><edgecolortype(501)>Menuet du Vagabond<edgecolortype(0)><colortype(0)> et <colortype(500)><edgecolortype(501)>Inspiration poétique<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Effectue une attaque physique sur la cible et les ennemis autour.",
+    "Les dégâts sont déterminés par le degré d'Inspiration poétique.",
+    "Puissance (1 degré) : 100",
+    "Puissance (2 degrés) : 220",
+    "Puissance (3 degrés) : 360",
+    "La puissance est réduite de 50% au-delà du premier ennemi touché.",
+    "Condition : Menuet du Vagabond et Inspiration poétique."
+  ],
+  "role": "Physical Ranged DPS",
+  "job": {
+    "id": 23,
+    "name": "Barde",
+    "abbreviation": "BRD"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 52,
+  "icon": {
+    "id": 2611,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 4,
+    "name": "Aptitude"
+  },
+  "attack_type": {
+    "id": 4294967295,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 1,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 1,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 32,
+      "value": 1
+    },
+    "secondary": {
+      "type_id": 0,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": -1,
+    "effect_yalms": 5,
+    "cast_type": 2
+  },
+  "targeting": {
+    "self": false,
+    "party": false,
+    "alliance": false,
+    "hostile": true,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 7,
+    "behavior_type": 0,
+    "class_job_category_id": 24,
+    "source_class_job_id": 23,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

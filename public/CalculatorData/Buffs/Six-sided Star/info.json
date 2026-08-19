@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 2514,
+  "name": "Six-sided Star",
+  "description": "Movement speed is increased.",
+  "effects": [
+    "Movement speed is increased."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 212536,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 18,
+    "modifier": 0
+  },
+  "class_job_category_id": 21,
+  "source_abilities": [
+    {
+      "id": 16476,
+      "name": "Six-sided Star",
+      "description": "Delivers an attack with a potency of 780. Potency increases by 80 for each Chakra open.\nCloses all chakra upon execution.\nAdditional Effect: Increases movement speed\nDuration: 5s\nCritical hits with this weaponskill will not open a chakra.\nThis weaponskill does not share a recast timer with any other actions. Upon execution, the recast timer for this action will be applied to all other weaponskills and magic actions.",
+      "description_macro": "Delivers an attack with a potency of <if([gnum68==20],<if([gnum72>=94],780,710)>,710)>. Potency increases by 80 for each <colortype(506)><edgecolortype(507)>Chakra<edgecolortype(0)><colortype(0)> open.<br>Closes all chakra upon execution.<br><colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>Increases movement speed<br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>5s<br>Critical hits with this weaponskill will not open a chakra.<br>This weaponskill does not share a recast timer with any other actions. Upon execution, the recast timer for this action will be applied to all other weaponskills and magic actions.",
+      "unlock_level": 80,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 20,
+          "name": "Monk",
+          "abbreviation": "MNK",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

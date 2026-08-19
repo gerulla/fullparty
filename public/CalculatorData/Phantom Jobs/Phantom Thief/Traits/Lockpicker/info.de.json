@@ -1,0 +1,22 @@
+{
+  "kind": "trait",
+  "id": 10,
+  "name": "Schlüsselmeister",
+  "description": "Erlaubt dir das Öffnen von verschlossenen Türen in Dungeons.",
+  "description_macro": "Erlaubt dir das Öffnen von verschlossenen Türen in Dungeons.",
+  "effects": [
+    "Erlaubt dir das Öffnen von verschlossenen Türen in Dungeons."
+  ],
+  "role": "Phantom Jobs",
+  "job": {
+    "id": 12,
+    "name": "Phantom-Dieb",
+    "abbreviation": "Ph-Dieb"
+  },
+  "is_phantom_trait": true,
+  "unlock_level": 6,
+  "icon": {
+    "id": 82212,
+    "file": "icon.png"
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "kind": "trait",
+  "id": 446,
+  "name": "Verbesserter Apex-Pfeil",
+  "description": "Wird Apex-Pfeil ausgeführt während der Seelenstimmen-Balken zu mindestens 80 gefüllt ist, erhältst du Stoßpfeilbereit.\nDauer: 10 Sekunden\nWährend der Effektdauer ändert sich Apex-Pfeil zu Stoßpfeil.",
+  "description_macro": "Wird <colortype(502)><edgecolortype(503)>Apex-Pfeil<edgecolortype(0)><colortype(0)> ausgeführt während der Seelenstimmen-Balken zu mindestens 80 gefüllt ist, erhältst du <colortype(506)><edgecolortype(507)>Stoßpfeilbereit<edgecolortype(0)><colortype(0)>.<br>Dauer: 10 Sekunden<br>Während der Effektdauer ändert sich <colortype(502)><edgecolortype(503)>Apex-Pfeil<edgecolortype(0)><colortype(0)> zu <colortype(502)><edgecolortype(503)>Stoßpfeil<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Wird Apex-Pfeil ausgeführt während der Seelenstimmen-Balken zu mindestens 80 gefüllt ist, erhältst du Stoßpfeilbereit.",
+    "Dauer: 10 Sekunden",
+    "Während der Effektdauer ändert sich Apex-Pfeil zu Stoßpfeil."
+  ],
+  "role": "Physical Ranged DPS",
+  "job": {
+    "id": 23,
+    "name": "Barde",
+    "abbreviation": "BRD"
+  },
+  "unlock_level": 86,
+  "value": 0,
+  "icon": {
+    "id": 5318,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 24,
+  "source_class_job_id": 23
+}

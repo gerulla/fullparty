@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 90,
+  "name": "落下ダメージ軽減",
+  "description": "落下による被ダメージを軽減する。",
+  "description_macro": "落下による被ダメージを軽減する。",
+  "effects": [
+    "落下による被ダメージを軽減する。"
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 30,
+    "name": "忍者",
+    "abbreviation": "NIN"
+  },
+  "unlock_level": 14,
+  "value": 10,
+  "icon": {
+    "id": 5401,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 93,
+  "source_class_job_id": 29
+}

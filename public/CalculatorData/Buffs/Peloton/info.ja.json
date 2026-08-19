@@ -1,0 +1,62 @@
+{
+  "kind": "combat_status",
+  "id": 1199,
+  "name": "プロトン",
+  "description": "移動速度が上昇した状態。戦闘状態に入ると効果は終了する。",
+  "effects": [
+    "移動速度が上昇した状態。戦闘状態に入ると効果は終了する。"
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 213908,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 1,
+  "parameter": {
+    "effect": 18,
+    "modifier": 0
+  },
+  "class_job_category_id": 115,
+  "source_abilities": [
+    {
+      "id": 7557,
+      "name": "プロトン",
+      "description": "自身と周囲のパーティメンバーの移動速度を上昇させる。\n戦闘状態に入ると効果が切れ、かつ戦闘状態では効果がかからない。\n効果時間：30秒",
+      "description_macro": "自身と周囲のパーティメンバーの移動速度を上昇させる。<br>戦闘状態に入ると効果が切れ、かつ戦闘状態では効果がかからない。<br><colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>30秒",
+      "unlock_level": 20,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Physical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 23,
+          "name": "吟遊詩人",
+          "abbreviation": "BRD",
+          "is_phantom": false
+        },
+        {
+          "id": 31,
+          "name": "機工士",
+          "abbreviation": "MCH",
+          "is_phantom": false
+        },
+        {
+          "id": 38,
+          "name": "踊り子",
+          "abbreviation": "DNC",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

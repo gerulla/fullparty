@@ -1,0 +1,25 @@
+{
+  "kind": "trait",
+  "id": 485,
+  "name": "Verbesserte Präparation",
+  "description": "Erlaubt es dir, Präparation aufzuladen.\nMaximale Aufladungen: 2",
+  "description_macro": "Erlaubt es dir, <colortype(502)><edgecolortype(503)>Präparation<edgecolortype(0)><colortype(0)> aufzuladen.<br>Maximale Aufladungen: 2",
+  "effects": [
+    "Erlaubt es dir, Präparation aufzuladen.",
+    "Maximale Aufladungen: 2"
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 35,
+    "name": "Rotmagier",
+    "abbreviation": "RMA"
+  },
+  "unlock_level": 88,
+  "value": 2,
+  "icon": {
+    "id": 6211,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 112,
+  "source_class_job_id": 35
+}

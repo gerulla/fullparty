@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 180,
+  "name": "Aero Mastery",
+  "description": "Upgrades Aero to Aero II.",
+  "description_macro": "Upgrades <colortype(500)><edgecolortype(501)>Aero<edgecolortype(0)><colortype(0)> to <colortype(500)><edgecolortype(501)>Aero II<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Upgrades Aero to Aero II."
+  ],
+  "role": "Healer",
+  "job": {
+    "id": 24,
+    "name": "White Mage",
+    "abbreviation": "WHM"
+  },
+  "unlock_level": 46,
+  "value": 0,
+  "icon": {
+    "id": 5334,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 53,
+  "source_class_job_id": 6
+}

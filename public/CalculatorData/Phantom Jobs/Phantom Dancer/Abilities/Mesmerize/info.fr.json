@@ -1,0 +1,89 @@
+{
+  "kind": "ability",
+  "id": 46605,
+  "name": "Envoûtement",
+  "description": "Inflige à l'ennemi ciblé les effets Envoûtement et Envoûtement intense.\nEnvoûtement : réduit de 10% les dégâts infligés et augmente de 5% les dégâts subis.\nDurée : 100s\nNe peut être cumulé avec l'effet Déclin de l'artilleur fantôme.\nEnvoûtement intense : réduit de 40% les dégâts infligés.\nDurée : 4s",
+  "description_macro": "Inflige à l'ennemi ciblé les effets <colortype(500)><edgecolortype(501)>Envoûtement<edgecolortype(0)><colortype(0)> et <colortype(500)><edgecolortype(501)>Envoûtement intense<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Envoûtement<nbsp>:<edgecolortype(0)><colortype(0)> réduit de 10% les dégâts infligés et augmente de 5% les dégâts subis.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 100s<br>Ne peut être cumulé avec l'effet <colortype(500)><edgecolortype(501)>Déclin<edgecolortype(0)><colortype(0)> de l'artilleur fantôme.<br><colortype(506)><edgecolortype(507)>Envoûtement intense<nbsp>:<edgecolortype(0)><colortype(0)> réduit de 40% les dégâts infligés.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 4s",
+  "effects": [
+    "Inflige à l'ennemi ciblé les effets Envoûtement et Envoûtement intense.",
+    "Envoûtement : réduit de 10% les dégâts infligés et augmente de 5% les dégâts subis.",
+    "Durée : 100s",
+    "Ne peut être cumulé avec l'effet Déclin de l'artilleur fantôme.",
+    "Envoûtement intense : réduit de 40% les dégâts infligés.",
+    "Durée : 4s"
+  ],
+  "role": "Phantom Jobs",
+  "job": {
+    "id": 15,
+    "name": "Danseur fantôme",
+    "abbreviation": "Danseur fant."
+  },
+  "is_phantom_action": true,
+  "unlock_level": 4,
+  "icon": {
+    "id": 64590,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 4,
+    "name": "Aptitude"
+  },
+  "attack_type": {
+    "id": 0,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 90,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 87,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 0,
+      "value": 0
+    },
+    "secondary": {
+      "type_id": 0,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": 30,
+    "effect_yalms": 0,
+    "cast_type": 1
+  },
+  "targeting": {
+    "self": false,
+    "party": false,
+    "alliance": false,
+    "hostile": true,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 0,
+    "behavior_type": 0,
+    "class_job_category_id": 142,
+    "source_class_job_id": 4294967295,
+    "is_role_action": false,
+    "is_player_action": false,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 3036,
+  "name": "ソルトアース",
+  "description": "ダメージエリアを発生させている状態。",
+  "effects": [
+    "ダメージエリアを発生させている状態。"
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 213104,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": true,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 98,
+  "source_abilities": [
+    {
+      "id": 3639,
+      "name": "ソルトアース",
+      "description": "自身の足元にダメージエリアを生成する。\n範囲内に入った対象に無属性ダメージを与える。\n威力：50\u3000効果時間：15秒",
+      "description_macro": "自身の足元にダメージエリアを生成する。<br>範囲内に入った対象に無属性ダメージを与える。<br><colortype(504)><edgecolortype(505)>威力：<edgecolortype(0)><colortype(0)>50\u3000<colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>15秒",
+      "unlock_level": 52,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Tank"
+      ],
+      "jobs": [
+        {
+          "id": 32,
+          "name": "暗黒騎士",
+          "abbreviation": "DRK",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

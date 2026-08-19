@@ -1,0 +1,99 @@
+{
+  "kind": "ability",
+  "id": 36959,
+  "name": "Weg der Kröte",
+  "description": "Du führst eine feuerbasierte magische Attacke auf das Ziel und die Gegner in seiner Nähe aus.\nAttacke-Wert: 400\nNinki-Balken-Kosten: 50\nBedingung: Higi aktiv\nGemeinsamer Reaktivierungs-Timer mit Rad des Werdens\nBei erfüllter Bedingung ändert sich Krötenmedium zu diesem Kommando.\nKann nicht im Kommandomenü angelegt werden.",
+  "description_macro": "Du führst eine feuerbasierte magische Attacke auf das Ziel und die Gegner in seiner Nähe aus.<br>Attacke-Wert: 400<br>Ninki-Balken-Kosten: 50<br>Bedingung: <colortype(506)><edgecolortype(507)>Higi<edgecolortype(0)><colortype(0)> aktiv<br>Gemeinsamer Reaktivierungs-Timer mit <colortype(502)><edgecolortype(503)>Rad des Werdens<edgecolortype(0)><colortype(0)><br>Bei erfüllter Bedingung ändert sich <colortype(502)><edgecolortype(503)>Krötenmedium<edgecolortype(0)><colortype(0)> zu diesem Kommando.<br>Kann nicht im Kommandomenü angelegt werden.",
+  "effects": [
+    "Du führst eine feuerbasierte magische Attacke auf das Ziel und die Gegner in seiner Nähe aus.",
+    "Attacke-Wert: 400",
+    "Ninki-Balken-Kosten: 50",
+    "Bedingung: Higi aktiv",
+    "Gemeinsamer Reaktivierungs-Timer mit Rad des Werdens",
+    "Bei erfüllter Bedingung ändert sich Krötenmedium zu diesem Kommando.",
+    "Kann nicht im Kommandomenü angelegt werden."
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 30,
+    "name": "Ninja",
+    "abbreviation": "NIN"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 96,
+  "icon": {
+    "id": 2934,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 4,
+    "name": "Talent"
+  },
+  "attack_type": {
+    "id": 5,
+    "name": "魔法"
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 1,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 1,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 27,
+      "value": 50
+    },
+    "secondary": {
+      "type_id": 32,
+      "value": 3850
+    }
+  },
+  "range": {
+    "target_yalms": 25,
+    "effect_yalms": 6,
+    "cast_type": 2
+  },
+  "targeting": {
+    "self": false,
+    "party": false,
+    "alliance": false,
+    "hostile": true,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": {
+      "id": 164,
+      "status": {
+        "id": 3850,
+        "name": "Higi",
+        "description": "Fortgeschrittene Ninja-Techniken können ausgeführt werden.",
+        "icon_id": 212921,
+        "max_stacks": 0
+      }
+    }
+  },
+  "metadata": {
+    "aspect_id": 1,
+    "behavior_type": 0,
+    "class_job_category_id": 92,
+    "source_class_job_id": 0,
+    "is_role_action": false,
+    "is_player_action": false,
+    "is_derived_action": true,
+    "equivalence_group": 0
+  }
+}

@@ -1,0 +1,99 @@
+{
+  "kind": "ability",
+  "id": 34645,
+  "name": "Assaut frénétique",
+  "description": "Effectue une attaque physique sur la cible et les ennemis autour.\nPuissance : 120\nPuissance avec Impulsion frénétique : 170\nLa puissance est réduite de 75% au-delà du premier ennemi touché.\nCondition : après avoir utilisé Assaut ophidien avec succès.\n\n* Cette action ne peut pas être ajoutée aux barres de raccourcis.\nRemplace Crochets frénétiques lorsque les conditions sont réunies.",
+  "description_macro": "Effectue une attaque physique sur la cible et les ennemis autour.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> 120<br><colortype(506)><edgecolortype(507)>Puissance avec Impulsion frénétique<nbsp>:<edgecolortype(0)><colortype(0)> 170<br>La puissance est réduite de 75% au-delà du premier ennemi touché.<br><colortype(506)><edgecolortype(507)>Condition<nbsp>:<edgecolortype(0)><colortype(0)> après avoir utilisé <colortype(500)><edgecolortype(501)>Assaut ophidien<edgecolortype(0)><colortype(0)> avec succès.<br><br><colortype(504)><edgecolortype(505)>* Cette action ne peut pas être ajoutée aux barres de raccourcis.<br>Remplace <colortype(500)><edgecolortype(501)>Crochets frénétiques<edgecolortype(0)><colortype(0)> lorsque les conditions sont réunies.<edgecolortype(0)><colortype(0)>",
+  "effects": [
+    "Effectue une attaque physique sur la cible et les ennemis autour.",
+    "Puissance : 120",
+    "Puissance avec Impulsion frénétique : 170",
+    "La puissance est réduite de 75% au-delà du premier ennemi touché.",
+    "Condition : après avoir utilisé Assaut ophidien avec succès.",
+    "* Cette action ne peut pas être ajoutée aux barres de raccourcis.",
+    "Remplace Crochets frénétiques lorsque les conditions sont réunies."
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 41,
+    "name": "Rôdeur Vipère",
+    "abbreviation": "VPR"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 92,
+  "icon": {
+    "id": 3740,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 4,
+    "name": "Aptitude"
+  },
+  "attack_type": {
+    "id": 4294967295,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 1,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 3,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 104,
+      "value": 9
+    },
+    "secondary": {
+      "type_id": 0,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": 20,
+    "effect_yalms": 5,
+    "cast_type": 2
+  },
+  "targeting": {
+    "self": false,
+    "party": false,
+    "alliance": false,
+    "hostile": true,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": {
+      "id": 137,
+      "status": {
+        "id": 3666,
+        "name": "Impulsion frénétique",
+        "description": "La puissance d'Assaut frénétique est augmentée.",
+        "icon_id": 213772,
+        "max_stacks": 0
+      }
+    }
+  },
+  "metadata": {
+    "aspect_id": 7,
+    "behavior_type": 0,
+    "class_job_category_id": 196,
+    "source_class_job_id": 0,
+    "is_role_action": false,
+    "is_player_action": false,
+    "is_derived_action": true,
+    "equivalence_group": 0
+  }
+}

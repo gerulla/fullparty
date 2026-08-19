@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 1934,
+  "name": "Troubadour",
+  "description": "Les dégâts reçus sont réduits.",
+  "effects": [
+    "Les dégâts reçus sont réduits."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 212615,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": -10
+  },
+  "class_job_category_id": 24,
+  "source_abilities": [
+    {
+      "id": 7405,
+      "name": "Troubadour",
+      "description": "Réduit de 15% les dégâts reçus par vous et les équipiers alentour.\nDurée : 15s\nNe peut être cumulé ni avec l'effet Tacticien des machinistes ni avec l'effet Samba protectrice des danseurs.",
+      "description_macro": "Réduit de <if([gnum68==23],<if([gnum72>=98],15,10)>,10)>% les dégâts reçus par vous et les équipiers alentour.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 15s<br>Ne peut être cumulé ni avec l'effet Tacticien des machinistes ni avec l'effet Samba protectrice des danseurs.",
+      "unlock_level": 62,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Physical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 23,
+          "name": "Barde",
+          "abbreviation": "BRD",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

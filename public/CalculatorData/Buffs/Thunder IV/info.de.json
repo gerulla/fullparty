@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 1210,
+  "name": "Blitzka",
+  "description": "Erleidet schrittweise Blitzschaden.",
+  "effects": [
+    "Erleidet schrittweise Blitzschaden."
+  ],
+  "classification": "debuff",
+  "icon": {
+    "id": 212657,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 2,
+  "target_type": 0,
+  "can_dispel": true,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 10,
+  "parameter": {
+    "effect": 0,
+    "modifier": 10
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 7420,
+      "name": "Blitzka",
+      "description": "Du fügst dem Ziel und den Gegnern in seiner Nähe blitzbasierten magischen Schaden zu.\nAttacke-Wert: 80\nZusatzeffekt: Blitzschaden über Zeit\nAttacke-Wert: 35\nDauer: 21 Sekunden\nImmer nur ein Schaden-über-Zeit-Effekt durch deine Blitz-Zauber beim Ziel möglich.\nBedingung: Schwarze Funken aktiv\nSchwarze Funken wird gewährt, wenn du in keinem Zustand bist und dir entweder Lichtfeuer oder Schatteneis gewährt wird, oder du aber von aktivem Lichtfeuer zu Schatteneis (und umgekehrt) wechselst.",
+      "description_macro": "Du fügst dem Ziel und den Gegnern in seiner Nähe blitzbasierten magischen Schaden zu.<br>Attacke-Wert: 80<br>Zusatzeffekt: Blitzschaden über Zeit<br>Attacke-Wert: 35<br>Dauer: 21 Sekunden<br>Immer nur ein Schaden-über-Zeit-Effekt durch deine Blitz-Zauber beim Ziel möglich.<br>Bedingung: <colortype(506)><edgecolortype(507)>Schwarze Funken<edgecolortype(0)><colortype(0)> aktiv<br><colortype(506)><edgecolortype(507)>Schwarze Funken<edgecolortype(0)><colortype(0)> wird gewährt, wenn du in keinem Zustand bist und dir entweder <colortype(506)><edgecolortype(507)>Lichtfeuer<edgecolortype(0)><colortype(0)> oder <colortype(506)><edgecolortype(507)>Schatteneis<edgecolortype(0)><colortype(0)> gewährt wird, oder du aber von aktivem <colortype(506)><edgecolortype(507)>Lichtfeuer<edgecolortype(0)><colortype(0)> zu <colortype(506)><edgecolortype(507)>Schatteneis<edgecolortype(0)><colortype(0)> (und umgekehrt) wechselst.",
+      "unlock_level": 64,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Magical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 25,
+          "name": "Schwarzmagier",
+          "abbreviation": "SMA",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 168,
+  "name": "Mana-Schild",
+  "description": "Eine Ätherbarriere absorbiert Schaden.",
+  "effects": [
+    "Eine Ätherbarriere absorbiert Schaden."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 210456,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 100
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 157,
+      "name": "Mana-Schild",
+      "description": "Du errichtest eine Barriere um dich, die insgesamt 30 % deiner Maximal-LP an Schaden absorbiert.\nDauer: 20 Sekunden",
+      "description_macro": "Du errichtest eine Barriere um dich, die insgesamt 30<nbsp>% deiner Maximal-LP an Schaden absorbiert.<br>Dauer: 20 Sekunden",
+      "unlock_level": 30,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Magical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 25,
+          "name": "Schwarzmagier",
+          "abbreviation": "SMA",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

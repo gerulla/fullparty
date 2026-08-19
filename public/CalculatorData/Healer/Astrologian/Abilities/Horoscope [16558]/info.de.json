@@ -1,0 +1,87 @@
+{
+  "kind": "ability",
+  "id": 16558,
+  "name": "Horoskop",
+  "description": "Du regenerierst eigene LP und die von umstehenden Gruppenmitgliedern.\nHeilpotenzial, wenn beim Ziel Horoskop aktiv ist: 200\nWenn beim Ziel Helios-Horoskop aktiv ist: 400\nHoroskop bzw. Helios-Horoskop wird bei Erhalt des Effekts beendet.",
+  "description_macro": "Du regenerierst eigene LP und die von umstehenden Grup<->pen<->mit<->gliedern.<br>Heilpotenzial, wenn beim Ziel <colortype(506)><edgecolortype(507)>Horoskop<edgecolortype(0)><colortype(0)> aktiv ist: 200<br>Wenn beim Ziel <colortype(506)><edgecolortype(507)>Helios-Horoskop<edgecolortype(0)><colortype(0)> aktiv ist: 400<br>Horoskop bzw. Helios-Horoskop wird bei Erhalt des Effekts beendet.",
+  "effects": [
+    "Du regenerierst eigene LP und die von umstehenden Gruppenmitgliedern.",
+    "Heilpotenzial, wenn beim Ziel Horoskop aktiv ist: 200",
+    "Wenn beim Ziel Helios-Horoskop aktiv ist: 400",
+    "Horoskop bzw. Helios-Horoskop wird bei Erhalt des Effekts beendet."
+  ],
+  "role": "Healer",
+  "job": {
+    "id": 33,
+    "name": "Astrologe",
+    "abbreviation": "AST"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 76,
+  "icon": {
+    "id": 3551,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 4,
+    "name": "Talent"
+  },
+  "attack_type": {
+    "id": 0,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 1,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 6,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 0,
+      "value": 0
+    },
+    "secondary": {
+      "type_id": 96,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": 0,
+    "effect_yalms": 30,
+    "cast_type": 2
+  },
+  "targeting": {
+    "self": true,
+    "party": false,
+    "alliance": false,
+    "hostile": false,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": false
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 7,
+    "behavior_type": 0,
+    "class_job_category_id": 99,
+    "source_class_job_id": 0,
+    "is_role_action": false,
+    "is_player_action": false,
+    "is_derived_action": true,
+    "equivalence_group": 0
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 473,
+  "name": "Meister des Ruins II",
+  "description": "Verbessert Ruinra zu Ruinga.",
+  "description_macro": "Verbessert <colortype(502)><edgecolortype(503)>Ruinra<edgecolortype(0)><colortype(0)> zu <colortype(502)><edgecolortype(503)>Ruinga<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Verbessert Ruinra zu Ruinga."
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 27,
+    "name": "Beschwörer",
+    "abbreviation": "BSW"
+  },
+  "unlock_level": 54,
+  "value": 0,
+  "icon": {
+    "id": 5687,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 28,
+  "source_class_job_id": 27
+}

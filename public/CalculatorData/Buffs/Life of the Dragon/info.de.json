@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 3177,
+  "name": "Drachengeist",
+  "description": "Ausgeteilter und erlittener Schaden sind erhöht.",
+  "effects": [
+    "Ausgeteilter und erlittener Schaden sind erhöht."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 214935,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": true,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 10
+  },
+  "class_job_category_id": 23,
+  "source_abilities": [
+    {
+      "id": 3555,
+      "name": "Geirskogul",
+      "description": "Du führst eine physische Attacke auf alle Gegner in gerader Linie vor dir aus.\nAttacke-Wert: 280\nAttacke-Wert verringert sich ab dem zweiten Gegner um 50 %.\nZusatzeffekt: Drachengeist wird aktiv.\nDauer: 20 Sekunden\nEffekt von Drachengeist: Ausgeteilter Schaden ist um 15 % erhöht.\nZusatzeffekt: Gewährt dir Zielgerichtet.\nDauer: 20 Sekunden",
+      "description_macro": "Du führst eine physische Attacke auf alle Gegner in gerader Linie vor dir aus.<br>Attacke-Wert: <if([gnum68==22],<if([gnum72>=90],280,200)>,200)><br>Attacke-Wert verringert sich ab dem zweiten Gegner um 50<nbsp>%.<br><if([gnum72>=70],<if([gnum68==22],Zusatzeffekt: <colortype(506)><edgecolortype(507)>Drachengeist<edgecolortype(0)><colortype(0)> wird aktiv.<br>Dauer: 20 Sekunden<br>Effekt von <colortype(506)><edgecolortype(507)>Drachengeist<edgecolortype(0)><colortype(0)>: Ausgeteilter Schaden ist um 15<nbsp>% erhöht.<br>Zusatzeffekt: Gewährt dir <colortype(506)><edgecolortype(507)>Zielgerichtet<edgecolortype(0)><colortype(0)>.<br>Dauer: 20 Sekunden,Zusatzeffekt: <colortype(506)><edgecolortype(507)>Drachenherz<edgecolortype(0)><colortype(0)> wird aktiv.<br>Dauer: 20 Sekunden<br>Effekt von <colortype(506)><edgecolortype(507)>Drachenherz<edgecolortype(0)><colortype(0)>: Ausgeteilter Schaden ist um 10<nbsp>% erhöht.)>,Zusatzeffekt: <colortype(506)><edgecolortype(507)>Drachenherz<edgecolortype(0)><colortype(0)> wird aktiv.<br>Dauer: 20 Sekunden<br>Effekt von <colortype(506)><edgecolortype(507)>Drachenherz<edgecolortype(0)><colortype(0)>: Ausgeteilter Schaden ist um 10<nbsp>% erhöht.)>",
+      "unlock_level": 60,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 22,
+          "name": "Dragoon",
+          "abbreviation": "DRG",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

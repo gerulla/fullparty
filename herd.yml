@@ -1,0 +1,6 @@
+name: fullparty
+php: '8.4'
+secured: true
+aliases:
+  - plan.fullparty
+  - math.fullparty

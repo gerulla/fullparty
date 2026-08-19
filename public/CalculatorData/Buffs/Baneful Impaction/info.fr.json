@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 3883,
+  "name": "Impaction venimeuse",
+  "description": "Des dégâts périodiques sont subis.",
+  "effects": [
+    "Des dégâts périodiques sont subis."
+  ],
+  "classification": "debuff",
+  "icon": {
+    "id": 212819,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 2,
+  "target_type": 0,
+  "can_dispel": true,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 10,
+  "parameter": {
+    "effect": 0,
+    "modifier": 5
+  },
+  "class_job_category_id": 29,
+  "source_abilities": [
+    {
+      "id": 37012,
+      "name": "Impaction venimeuse",
+      "description": "Inflige des dégâts périodiques neutres à la cible et aux ennemis autour.\nPuissance : 140 Durée : 15s\nCondition : Impaction venimeuse préparée.",
+      "description_macro": "Inflige des dégâts périodiques neutres à la cible et aux ennemis autour.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> 140 <colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 15s<br><colortype(506)><edgecolortype(507)>Condition<nbsp>:<edgecolortype(0)><colortype(0)> <colortype(500)><edgecolortype(501)>Impaction venimeuse préparée<edgecolortype(0)><colortype(0)>.",
+      "unlock_level": 92,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Healer"
+      ],
+      "jobs": [
+        {
+          "id": 28,
+          "name": "Érudit",
+          "abbreviation": "ÉRU",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

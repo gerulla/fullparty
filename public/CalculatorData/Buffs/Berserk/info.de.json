@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 86,
+  "name": "Tollwut",
+  "description": "Alle eigenen Waffenfertigkeiten landen kritische und direkte Treffer. Ist ein Effekt aktiv, der die Rate kritischer oder direkter Treffer steigert, erhöht sich auch der Attacke-Wert.",
+  "effects": [
+    "Alle eigenen Waffenfertigkeiten landen kritische und direkte Treffer. Ist ein Effekt aktiv, der die Rate kritischer oder direkter Treffer steigert, erhöht sich auch der Attacke-Wert."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 217217,
+    "file": "icon.png"
+  },
+  "max_stacks": 3,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 27,
+    "modifier": 0
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 38,
+      "name": "Tollwut",
+      "description": "Du gewährst dir drei Stapel von Tollwut.\nDauer: 15 Sekunden\nEffekt von Tollwut: Deine nächste Waffenfertigkeit trifft direkt und kritisch.\nIst ein Effekt aktiv, der deine Rate kritischer oder direkter Treffer steigert, erhöht sich auch der Attacke-Wert.\nZusatzeffekt: Tosender Sturm ist um 10 Sekunden verlängert \\(maximal 60 Sekunden\\).",
+      "description_macro": "Du gewährst dir drei Stapel von <colortype(506)><edgecolortype(507)>Tollwut<edgecolortype(0)><colortype(0)>.<br>Dauer: 15 Sekunden<br>Effekt von <colortype(506)><edgecolortype(507)>Tollwut<edgecolortype(0)><colortype(0)>: Deine nächste Waf<->fen<->fer<->tig<->keit trifft direkt und kritisch.<br>Ist ein Effekt aktiv, der deine Rate kritischer oder direkter Treffer steigert, erhöht sich auch der Attacke-Wert.<if([gnum72>=40],<if([gnum68==3],<br>Zusatzeffekt: <colortype(506)><edgecolortype(507)>Tosender Sturm<edgecolortype(0)><colortype(0)> ist um 10 Sekunden verlängert \\(maximal 60 Sekunden\\).,<if([gnum68==21],<br>Zusatzeffekt: <colortype(506)><edgecolortype(507)>Tosender Sturm<edgecolortype(0)><colortype(0)> ist um 10 Sekunden verlängert \\(maximal 60 Sekunden\\).,)>)>,)>",
+      "unlock_level": 6,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Tank"
+      ],
+      "jobs": [
+        {
+          "id": 21,
+          "name": "Krieger",
+          "abbreviation": "KRG",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

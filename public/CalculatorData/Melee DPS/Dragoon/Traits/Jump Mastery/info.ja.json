@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 275,
+  "name": "ジャンプマスタリー",
+  "description": "ジャンプがハイジャンプに変化する。",
+  "description_macro": "ジャンプがハイジャンプに変化する。",
+  "effects": [
+    "ジャンプがハイジャンプに変化する。"
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 22,
+    "name": "竜騎士",
+    "abbreviation": "DRG"
+  },
+  "unlock_level": 74,
+  "value": 0,
+  "icon": {
+    "id": 5286,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 23,
+  "source_class_job_id": 22
+}

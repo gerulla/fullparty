@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 3839,
+  "name": "Insigne fatidique préparé",
+  "description": "Insigne fatidique peut être lancé.",
+  "effects": [
+    "Insigne fatidique peut être lancé."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 213620,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 149,
+  "source_abilities": [
+    {
+      "id": 16163,
+      "name": "Tourbillon fatidique",
+      "description": "Effectue une attaque physique sur les ennemis alentour.\nPuissance : 300\nEffet additionnel : vous octroie Insigne fatidique préparé.\nDurée : 10s\nCet effet disparaît si une technique d'arme est utilisée.\nCondition : consomme une Cartouche d'éther.",
+      "description_macro": "Effectue une attaque physique sur les ennemis alentour.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> 300<br><if([gnum68==37],<if([gnum72>=96],<colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> vous octroie <colortype(500)><edgecolortype(501)>Insigne fatidique préparé<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 10s<br>Cet effet disparaît si une technique d'arme est utilisée.<br>,)>,)><colortype(506)><edgecolortype(507)>Condition<nbsp>:<edgecolortype(0)><colortype(0)> consomme une <colortype(500)><edgecolortype(501)>Cartouche d'éther<edgecolortype(0)><colortype(0)>.",
+      "unlock_level": 72,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Tank"
+      ],
+      "jobs": [
+        {
+          "id": 37,
+          "name": "Pistosabreur",
+          "abbreviation": "PSB",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

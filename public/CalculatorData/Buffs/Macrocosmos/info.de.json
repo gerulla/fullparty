@@ -1,0 +1,51 @@
+{
+  "kind": "combat_status",
+  "id": 2718,
+  "name": "Makrokosmos",
+  "description": "Bei Ablauf der Wirkungsdauer oder wenn der Verursacher des Status Mikrokosmos ausführt, werden eigene LP regeneriert. Der Heileffekt steigt mit der Menge des während der Wirkungsdauer erlittenen Schadens.",
+  "effects": [
+    "Bei Ablauf der Wirkungsdauer oder wenn der Verursacher des Status Mikrokosmos ausführt, werden eigene LP regeneriert. Der Heileffekt steigt mit der Menge des während der Wirkungsdauer erlittenen Schadens."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 213263,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": true,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 99,
+  "source_abilities": [
+    {
+      "id": 25874,
+      "name": "Makrokosmos",
+      "description": "Du führst eine elementneutrale magische Attacke auf alle umstehenden Gegner aus.\nAttacke-Wert: 270\nAttacke-Wert verringert sich ab dem zweiten Gegner um 40 %.\nZusatzeffekt: Gewährt dir und umstehenden Gruppenmitgliedern Makrokosmos.\nDauer: 15 Sekunden\nEffekt von Makrokosmos: Erleidet das Ziel während der Wirkungsdauer Schaden, wird dieser angesammelt. Bei Ablauf der Wirkungsdauer oder bei Ausführung von Mikrokosmos wird das Ziel entsprechend einem Heilpotenzial von 200 plus 50 % des angesammelten Schadens geheilt. Dabei ist die Menge der regenerierten LP nur so hoch wie die Maximal-LP des Ziels.\nEigener Reaktivierungs-Timer, der nicht von Statuseffekten oder Ausrüstung beeinflusst wird.",
+      "description_macro": "Du führst eine elementneutrale magische Attacke auf alle umstehenden Gegner aus.<br>Attacke-Wert: <if([gnum68==33],<if([gnum72>=94],270,250)>,250)><br>Attacke-Wert verringert sich ab dem zweiten Gegner um 40<nbsp>%.<br>Zusatzeffekt: Gewährt dir und umstehenden Grup<->pen<->mit<->gliedern <colortype(506)><edgecolortype(507)>Makrokosmos<edgecolortype(0)><colortype(0)>.<br>Dauer: 15 Sekunden<br>Effekt von <colortype(506)><edgecolortype(507)>Makrokosmos<edgecolortype(0)><colortype(0)>: Erleidet das Ziel während der Wirkungsdauer Schaden, wird dieser angesammelt. Bei Ablauf der Wirkungsdauer oder bei Ausführung von <colortype(502)><edgecolortype(503)>Mikrokosmos<edgecolortype(0)><colortype(0)> wird das Ziel entsprechend einem Heilpotenzial von 200 plus 50<nbsp>% des angesammelten Schadens geheilt. Dabei ist die Menge der regenerierten LP nur so hoch wie die Maximal-LP des Ziels.<br>Eigener Reaktivierungs-Timer, der nicht von Statuseffekten oder Ausrüstung beeinflusst wird.",
+      "unlock_level": 90,
+      "relations": [
+        "granted_by_description",
+        "same_name"
+      ],
+      "roles": [
+        "Healer"
+      ],
+      "jobs": [
+        {
+          "id": 33,
+          "name": "Astrologe",
+          "abbreviation": "AST",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

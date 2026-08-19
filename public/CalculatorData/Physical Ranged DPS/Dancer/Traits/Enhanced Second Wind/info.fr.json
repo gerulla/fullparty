@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 642,
+  "name": "Second souffle amélioré",
+  "description": "Augmente la puissance de Second souffle à 800.",
+  "description_macro": "Augmente la puissance de <colortype(500)><edgecolortype(501)>Second souffle<edgecolortype(0)><colortype(0)> à 800.",
+  "effects": [
+    "Augmente la puissance de Second souffle à 800."
+  ],
+  "role": "Physical Ranged DPS",
+  "job": {
+    "id": 38,
+    "name": "Danseur",
+    "abbreviation": "DNS"
+  },
+  "unlock_level": 94,
+  "value": 0,
+  "icon": {
+    "id": 6852,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 118,
+  "source_class_job_id": 0
+}

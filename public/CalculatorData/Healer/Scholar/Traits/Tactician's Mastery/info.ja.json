@@ -1,0 +1,26 @@
+{
+  "kind": "trait",
+  "id": 656,
+  "name": "アクション威力アップ",
+  "description": "特定のアクションの威力を上昇させる。\n\n蠱毒法の継続ダメージの威力：85\n極炎法の威力：320",
+  "description_macro": "特定のアクションの威力を上昇させる。<br><br><colortype(504)><edgecolortype(505)>蠱毒法の継続ダメージの威力：<edgecolortype(0)><colortype(0)>85<br><colortype(504)><edgecolortype(505)>極炎法の威力：<edgecolortype(0)><colortype(0)>320",
+  "effects": [
+    "特定のアクションの威力を上昇させる。",
+    "蠱毒法の継続ダメージの威力：85",
+    "極炎法の威力：320"
+  ],
+  "role": "Healer",
+  "job": {
+    "id": 28,
+    "name": "学者",
+    "abbreviation": "SCH"
+  },
+  "unlock_level": 94,
+  "value": 0,
+  "icon": {
+    "id": 6831,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 29,
+  "source_class_job_id": 28
+}

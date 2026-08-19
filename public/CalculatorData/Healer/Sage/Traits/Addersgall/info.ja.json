@@ -1,0 +1,27 @@
+{
+  "kind": "trait",
+  "id": 370,
+  "name": "アダーガル",
+  "description": "自身に「アダーガル」が付与される。\n最大スタック数：3\nアダーガルは20秒経過するたびに付与される。\nまた、アダーガルは自身が戦闘不能状態でも付与される。",
+  "description_macro": "自身に<colortype(500)><edgecolortype(501)>「アダーガル」<edgecolortype(0)><colortype(0)>が付与される。<br><colortype(504)><edgecolortype(505)>最大スタック数：<edgecolortype(0)><colortype(0)>3<br>アダーガルは20秒経過するたびに付与される。<br>また、アダーガルは自身が戦闘不能状態でも付与される。",
+  "effects": [
+    "自身に「アダーガル」が付与される。",
+    "最大スタック数：3",
+    "アダーガルは20秒経過するたびに付与される。",
+    "また、アダーガルは自身が戦闘不能状態でも付与される。"
+  ],
+  "role": "Healer",
+  "job": {
+    "id": 40,
+    "name": "賢者",
+    "abbreviation": "SGE"
+  },
+  "unlock_level": 45,
+  "value": 0,
+  "icon": {
+    "id": 6451,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 181,
+  "source_class_job_id": 40
+}

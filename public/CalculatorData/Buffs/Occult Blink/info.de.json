@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 5316,
+  "name": "Kreszentes Blink",
+  "description": "Einmalig immun gegen fast allen magischen Schaden.",
+  "effects": [
+    "Einmalig immun gegen fast allen magischen Schaden."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 229978,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 49069,
+      "name": "Kreszentes Blink",
+      "description": "Das Ziel wird einmalig immun gegen fast alle magischen Angriffe.\nDauer: 30 Sekunden",
+      "description_macro": "Das Ziel wird einmalig immun gegen fast alle magischen Angriffe.<br>Dauer: 30 Sekunden",
+      "unlock_level": 0,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Phantom Jobs"
+      ],
+      "jobs": [
+        {
+          "id": 17,
+          "name": "Phantom Phantom-Weißmagier",
+          "abbreviation": "Ph-Weißmagier",
+          "is_phantom": true
+        }
+      ]
+    }
+  ]
+}

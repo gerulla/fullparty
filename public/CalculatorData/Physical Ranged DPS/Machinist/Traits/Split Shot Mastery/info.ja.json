@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 288,
+  "name": "スプリットショットマスタリー",
+  "description": "スプリットショットがヒートスプリットショットに変化する。",
+  "description_macro": "スプリットショットがヒートスプリットショットに変化する。",
+  "effects": [
+    "スプリットショットがヒートスプリットショットに変化する。"
+  ],
+  "role": "Physical Ranged DPS",
+  "job": {
+    "id": 31,
+    "name": "機工士",
+    "abbreviation": "MCH"
+  },
+  "unlock_level": 54,
+  "value": 0,
+  "icon": {
+    "id": 6010,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 96,
+  "source_class_job_id": 31
+}

@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 3034,
+  "name": "Dark Arts",
+  "description": "Able to execute Shadowbringer without consuming HP.",
+  "effects": [
+    "Able to execute Shadowbringer without consuming HP."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 213107,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": true,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 98,
+  "source_abilities": [
+    {
+      "id": 7393,
+      "name": "The Blackest Night",
+      "description": "Creates a barrier around self or target party member that absorbs damage totaling 25% of target's maximum HP.\nDuration: 7s\nGrants Dark Arts when barrier is completely absorbed.\nDark Arts Effect: Consume Dark Arts instead of MP to execute Edge of Shadow or Flood of Shadow",
+      "description_macro": "Creates a barrier around self or target party member that absorbs damage totaling 25% of target's maximum HP.<br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>7s<br>Grants <colortype(506)><edgecolortype(507)>Dark Arts<edgecolortype(0)><colortype(0)> when barrier is completely absorbed.<br><colortype(504)><edgecolortype(505)>Dark Arts Effect: <edgecolortype(0)><colortype(0)>Consume <colortype(506)><edgecolortype(507)>Dark Arts<edgecolortype(0)><colortype(0)> instead of MP to execute <if([gnum68==32],<if([gnum72>=74],<colortype(500)><edgecolortype(501)>Edge of Shadow<edgecolortype(0)><colortype(0)> or <colortype(500)><edgecolortype(501)>Flood of Shadow<edgecolortype(0)><colortype(0)>,<colortype(500)><edgecolortype(501)>Edge of Darkness<edgecolortype(0)><colortype(0)> or <colortype(500)><edgecolortype(501)>Flood of Darkness<edgecolortype(0)><colortype(0)>)>,<colortype(500)><edgecolortype(501)>Edge of Darkness<edgecolortype(0)><colortype(0)> or <colortype(500)><edgecolortype(501)>Flood of Darkness<edgecolortype(0)><colortype(0)>)>",
+      "unlock_level": 70,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Tank"
+      ],
+      "jobs": [
+        {
+          "id": 32,
+          "name": "Dark Knight",
+          "abbreviation": "DRK",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

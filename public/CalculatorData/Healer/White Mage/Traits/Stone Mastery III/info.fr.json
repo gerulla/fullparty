@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 182,
+  "name": "Maîtrise de Terre III",
+  "description": "Remplace Méga Terre par Giga Terre.",
+  "description_macro": "Remplace <colortype(500)><edgecolortype(501)>Méga Terre<edgecolortype(0)><colortype(0)> par <colortype(500)><edgecolortype(501)>Giga Terre<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Remplace Méga Terre par Giga Terre."
+  ],
+  "role": "Healer",
+  "job": {
+    "id": 24,
+    "name": "Mage Blanc",
+    "abbreviation": "MBL"
+  },
+  "unlock_level": 64,
+  "value": 0,
+  "icon": {
+    "id": 5337,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 25,
+  "source_class_job_id": 24
+}

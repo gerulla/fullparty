@@ -1,0 +1,90 @@
+{
+  "kind": "ability",
+  "id": 16501,
+  "name": "Automaton Queen",
+  "description": "Deploys an Automaton Queen to fight at your side.\nPotency of Automaton Queen actions increases as Battery Gauge exceeds required cost at time of deployment.\nBattery Gauge Cost: 50\nDuration: 12s\nConsumes Battery Gauge upon execution.\nShuts down when time expires or upon execution of Queen Overdrive.\nShares a recast timer with Queen Overdrive.",
+  "description_macro": "Deploys an Automaton Queen to fight at your side.<br>Potency of Automaton Queen actions increases as <colortype(500)><edgecolortype(501)>Battery Gauge<edgecolortype(0)><colortype(0)> exceeds required cost at time of deployment.<br><colortype(504)><edgecolortype(505)>Battery Gauge Cost: <edgecolortype(0)><colortype(0)>50<br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>12s<br>Consumes <colortype(500)><edgecolortype(501)>Battery Gauge<edgecolortype(0)><colortype(0)> upon execution.<br>Shuts down when time expires or upon execution of <colortype(500)><edgecolortype(501)>Queen Overdrive<edgecolortype(0)><colortype(0)>.<br>Shares a recast timer with <colortype(500)><edgecolortype(501)>Queen Overdrive<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Deploys an Automaton Queen to fight at your side.",
+    "Potency of Automaton Queen actions increases as Battery Gauge exceeds required cost at time of deployment.",
+    "Battery Gauge Cost: 50",
+    "Duration: 12s",
+    "Consumes Battery Gauge upon execution.",
+    "Shuts down when time expires or upon execution of Queen Overdrive.",
+    "Shares a recast timer with Queen Overdrive."
+  ],
+  "role": "Physical Ranged DPS",
+  "job": {
+    "id": 31,
+    "name": "Machinist",
+    "abbreviation": "MCH"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 80,
+  "icon": {
+    "id": 3501,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 4,
+    "name": "Ability"
+  },
+  "attack_type": {
+    "id": 0,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 6,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 3,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 62,
+      "value": 50
+    },
+    "secondary": {
+      "type_id": 97,
+      "value": 50
+    }
+  },
+  "range": {
+    "target_yalms": 0,
+    "effect_yalms": 0,
+    "cast_type": 1
+  },
+  "targeting": {
+    "self": true,
+    "party": false,
+    "alliance": false,
+    "hostile": false,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 0,
+    "behavior_type": 0,
+    "class_job_category_id": 96,
+    "source_class_job_id": 31,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

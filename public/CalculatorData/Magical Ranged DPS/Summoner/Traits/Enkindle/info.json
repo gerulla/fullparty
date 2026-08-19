@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 471,
+  "name": "Enkindle",
+  "description": "Enhances the signature attack of summons, upgrading Ifrit-Egi's Burning Strike to Inferno, Titan-Egi's Rock Buster to Earthen Fury, and Garuda-Egi's Aerial Slash to Aerial Blast.",
+  "description_macro": "Enhances the signature attack of summons, upgrading Ifrit-Egi's <colortype(500)><edgecolortype(501)>Burning Strike<edgecolortype(0)><colortype(0)> to <colortype(500)><edgecolortype(501)>Inferno<edgecolortype(0)><colortype(0)>, Titan-Egi's <colortype(500)><edgecolortype(501)>Rock Buster<edgecolortype(0)><colortype(0)> to <colortype(500)><edgecolortype(501)>Earthen Fury<edgecolortype(0)><colortype(0)>, and Garuda-Egi's <colortype(500)><edgecolortype(501)>Aerial Slash<edgecolortype(0)><colortype(0)> to <colortype(500)><edgecolortype(501)>Aerial Blast<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Enhances the signature attack of summons, upgrading Ifrit-Egi's Burning Strike to Inferno, Titan-Egi's Rock Buster to Earthen Fury, and Garuda-Egi's Aerial Slash to Aerial Blast."
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 27,
+    "name": "Summoner",
+    "abbreviation": "SMN"
+  },
+  "unlock_level": 50,
+  "value": 0,
+  "icon": {
+    "id": 5685,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 28,
+  "source_class_job_id": 27
+}

@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 428,
+  "name": "Steel Peak Mastery",
+  "description": "Upgrades Steel Peak to The Forbidden Chakra and Steeled Meditation to Forbidden Meditation.",
+  "description_macro": "Upgrades <colortype(500)><edgecolortype(501)>Steel Peak<edgecolortype(0)><colortype(0)> to <colortype(500)><edgecolortype(501)>The Forbidden Chakra<edgecolortype(0)><colortype(0)> and <colortype(500)><edgecolortype(501)>Steeled Meditation<edgecolortype(0)><colortype(0)> to <colortype(500)><edgecolortype(501)>Forbidden Meditation<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Upgrades Steel Peak to The Forbidden Chakra and Steeled Meditation to Forbidden Meditation."
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 20,
+    "name": "Monk",
+    "abbreviation": "MNK"
+  },
+  "unlock_level": 54,
+  "value": 0,
+  "icon": {
+    "id": 5241,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 21,
+  "source_class_job_id": 20
+}

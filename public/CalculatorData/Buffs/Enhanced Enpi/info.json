@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 1236,
+  "name": "Enhanced Enpi",
+  "description": "Next Enpi will deal increased damage.",
+  "effects": [
+    "Next Enpi will deal increased damage."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 213310,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 7493,
+      "name": "Hissatsu: Yaten",
+      "description": "Delivers an attack with a potency of 100.\nAdditional Effect: 10-yalm backstep\nAdditional Effect: Grants Enhanced Enpi\nDuration: 15s\nKenki Gauge Cost: 10\nCannot be executed while bound.",
+      "description_macro": "Delivers an attack with a potency of 100.<br><colortype(504)><edgecolortype(505)>Additional Effect:<edgecolortype(0)><colortype(0)> 10-yalm backstep<br><colortype(504)><edgecolortype(505)>Additional Effect:<edgecolortype(0)><colortype(0)> Grants <colortype(506)><edgecolortype(507)>Enhanced Enpi<edgecolortype(0)><colortype(0)><br><colortype(504)><edgecolortype(505)>Duration:<edgecolortype(0)><colortype(0)> 15s<br><colortype(504)><edgecolortype(505)>Kenki Gauge Cost:<edgecolortype(0)><colortype(0)> 10<br>Cannot be executed while bound.",
+      "unlock_level": 56,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 34,
+          "name": "Samurai",
+          "abbreviation": "SAM",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

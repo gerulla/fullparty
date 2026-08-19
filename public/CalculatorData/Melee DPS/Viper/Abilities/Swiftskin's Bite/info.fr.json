@@ -1,0 +1,91 @@
+{
+  "kind": "ability",
+  "id": 34617,
+  "name": "Morsure véloce",
+  "description": "Effectue une attaque physique sur les ennemis alentour.\nPuissance : 180\nEffet additionnel : vous octroie Vélocité.\nDurée : 40s\nVélocité : réduit de 15% le délai des attaques automatiques et les temps de lancement et de recharge des techniques d'arme et des sorts de magie.\nCondition : après avoir utilisé Mâchoire d'acier ou Mâchoire mortelle avec succès.\n\n* Cette action ne peut pas être ajoutée aux barres de raccourcis.\nRemplace Mâchoire mortelle lorsque les conditions sont réunies.",
+  "description_macro": "Effectue une attaque physique sur les ennemis alentour.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> 180<br><colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> vous octroie <colortype(500)><edgecolortype(501)>Vélocité<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 40s<br><colortype(506)><edgecolortype(507)>Vélocité<nbsp>:<edgecolortype(0)><colortype(0)> réduit de 15% le délai des attaques automatiques et les temps de lancement et de recharge des techniques d'arme et des sorts de magie.<br><colortype(506)><edgecolortype(507)>Condition<nbsp>:<edgecolortype(0)><colortype(0)> après avoir utilisé <colortype(500)><edgecolortype(501)>Mâchoire d'acier<edgecolortype(0)><colortype(0)> ou <colortype(500)><edgecolortype(501)>Mâchoire mortelle<edgecolortype(0)><colortype(0)> avec succès.<br><br><colortype(504)><edgecolortype(505)>* Cette action ne peut pas être ajoutée aux barres de raccourcis.<br>Remplace <colortype(500)><edgecolortype(501)>Mâchoire mortelle<edgecolortype(0)><colortype(0)> lorsque les conditions sont réunies.<edgecolortype(0)><colortype(0)>",
+  "effects": [
+    "Effectue une attaque physique sur les ennemis alentour.",
+    "Puissance : 180",
+    "Effet additionnel : vous octroie Vélocité.",
+    "Durée : 40s",
+    "Vélocité : réduit de 15% le délai des attaques automatiques et les temps de lancement et de recharge des techniques d'arme et des sorts de magie.",
+    "Condition : après avoir utilisé Mâchoire d'acier ou Mâchoire mortelle avec succès.",
+    "* Cette action ne peut pas être ajoutée aux barres de raccourcis.",
+    "Remplace Mâchoire mortelle lorsque les conditions sont réunies."
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 41,
+    "name": "Rôdeur Vipère",
+    "abbreviation": "VPR"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 45,
+  "icon": {
+    "id": 3712,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 3,
+    "name": "Technique d'arme"
+  },
+  "attack_type": {
+    "id": 4294967295,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 2.5,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 58,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 0,
+      "value": 0
+    },
+    "secondary": {
+      "type_id": 136,
+      "value": 5
+    }
+  },
+  "range": {
+    "target_yalms": 0,
+    "effect_yalms": 5,
+    "cast_type": 2
+  },
+  "targeting": {
+    "self": true,
+    "party": false,
+    "alliance": false,
+    "hostile": false,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": 34614,
+    "preserves_combo": false
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 7,
+    "behavior_type": 0,
+    "class_job_category_id": 196,
+    "source_class_job_id": 0,
+    "is_role_action": false,
+    "is_player_action": false,
+    "is_derived_action": true,
+    "equivalence_group": 0
+  }
+}

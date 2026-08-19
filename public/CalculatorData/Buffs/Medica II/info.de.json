@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 150,
+  "name": "Resedra",
+  "description": "Regeneriert schrittweise LP.",
+  "effects": [
+    "Regeneriert schrittweise LP."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 210413,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 5,
+  "parameter": {
+    "effect": 0,
+    "modifier": 10
+  },
+  "class_job_category_id": 25,
+  "source_abilities": [
+    {
+      "id": 133,
+      "name": "Resedra",
+      "description": "Du regenerierst eigene LP und die von umstehenden Gruppenmitgliedern.\nHeilpotenzial: 250\nZusatzeffekt: Regeneriert stetig LP des Ziels.\nHeilpotenzial: 150\nDauer: 15 Sekunden",
+      "description_macro": "Du regenerierst eigene LP und die von umstehenden Grup<->pen<->mit<->gliedern.<br>Heilpotenzial: <if([gnum68==24],<if([gnum72>=85],250,200)>,200)><br>Zusatzeffekt: Regeneriert stetig LP des Ziels.<br>Heilpotenzial: <if([gnum68==24],<if([gnum72>=85],150,100)>,100)><br>Dauer: 15 Sekunden",
+      "unlock_level": 50,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Healer"
+      ],
+      "jobs": [
+        {
+          "id": 24,
+          "name": "Weißmagier",
+          "abbreviation": "WMA",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

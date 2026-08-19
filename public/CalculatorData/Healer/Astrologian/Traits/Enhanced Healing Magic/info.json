@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 499,
+  "name": "Enhanced Healing Magic",
+  "description": "Increases the healing potency of Benefic to 500, Helios to 400, Benefic II to 800, Aspected Benefic to 250, Aspected Benefic's Regen effect to 250, Aspected Helios to 250, and Aspected Helios's Regen effect to 150.",
+  "description_macro": "Increases the healing potency of <colortype(500)><edgecolortype(501)>Benefic<edgecolortype(0)><colortype(0)> to 500, <colortype(500)><edgecolortype(501)>Helios<edgecolortype(0)><colortype(0)> to 400, <colortype(500)><edgecolortype(501)>Benefic II<edgecolortype(0)><colortype(0)> to 800, <colortype(500)><edgecolortype(501)>Aspected Benefic<edgecolortype(0)><colortype(0)> to 250, <colortype(500)><edgecolortype(501)>Aspected Benefic<edgecolortype(0)><colortype(0)>'s <colortype(506)><edgecolortype(507)>Regen<edgecolortype(0)><colortype(0)> effect to 250, <colortype(500)><edgecolortype(501)>Aspected Helios<edgecolortype(0)><colortype(0)> to 250, and <colortype(500)><edgecolortype(501)>Aspected Helios<edgecolortype(0)><colortype(0)>'s <colortype(506)><edgecolortype(507)>Regen<edgecolortype(0)><colortype(0)> effect to 150.",
+  "effects": [
+    "Increases the healing potency of Benefic to 500, Helios to 400, Benefic II to 800, Aspected Benefic to 250, Aspected Benefic's Regen effect to 250, Aspected Helios to 250, and Aspected Helios's Regen effect to 150."
+  ],
+  "role": "Healer",
+  "job": {
+    "id": 33,
+    "name": "Astrologian",
+    "abbreviation": "AST"
+  },
+  "unlock_level": 85,
+  "value": 0,
+  "icon": {
+    "id": 6826,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 99,
+  "source_class_job_id": 33
+}

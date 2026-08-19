@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 628,
+  "name": "士気高揚の策マスタリー",
+  "description": "士気高揚の策が意気軒昂の策に変化する。",
+  "description_macro": "士気高揚の策が意気軒昂の策に変化する。",
+  "effects": [
+    "士気高揚の策が意気軒昂の策に変化する。"
+  ],
+  "role": "Healer",
+  "job": {
+    "id": 28,
+    "name": "学者",
+    "abbreviation": "SCH"
+  },
+  "unlock_level": 96,
+  "value": 0,
+  "icon": {
+    "id": 5708,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 29,
+  "source_class_job_id": 28
+}

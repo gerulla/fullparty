@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 1219,
+  "name": "Vollkommener Ablass",
+  "description": "Erlittener Schaden ist verringert. Darüber hinaus löst ein Teil der Heilmagie des verursachenden Weißmagiers bei erfolgreicher Ausführung einen zusätzlichen Heileffekt aus, der LP regeneriert.",
+  "effects": [
+    "Erlittener Schaden ist verringert. Darüber hinaus löst ein Teil der Heilmagie des verursachenden Weißmagiers bei erfolgreicher Ausführung einen zusätzlichen Heileffekt aus, der LP regeneriert."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 212637,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 60,
+  "parameter": {
+    "effect": 39,
+    "modifier": 100
+  },
+  "class_job_category_id": 25,
+  "source_abilities": [
+    {
+      "id": 7433,
+      "name": "Vollkommener Ablass",
+      "description": "Du gewährst dir und den umstehenden Gruppenmitgliedern Vollkommener Ablass.\nEffekt von Vollkommener Ablass: Verringert erlittenen Schaden um 10 %.\nDauer: 10 Sekunden\nErfolgreich ausgeführtes Reseda, Vitaga\\ gewährt Zielen mit Vollkommener Ablass einen zusätzlichen Heileffekt.\nHeilpotenzial: 200",
+      "description_macro": "Du gewährst dir und den umstehenden Grup<->pen<->mit<->gliedern <colortype(506)><edgecolortype(507)>Vollkommener Ablass<edgecolortype(0)><colortype(0)>.<br>Effekt von <colortype(506)><edgecolortype(507)>Vollkommener Ablass<edgecolortype(0)><colortype(0)>: Verringert erlittenen Schaden um 10<nbsp>%.<br>Dauer: 10 Sekunden<br>Erfolgreich ausgeführtes <colortype(502)><edgecolortype(503)>Reseda<edgecolortype(0)><colortype(0)>, <colortype(502)><edgecolortype(503)>Vitaga<edgecolortype(0)><colortype(0)><if([gnum68==24],<if([gnum72>=76],\\, <if([gnum68==24],<if([gnum72>=96],<colortype(502)><edgecolortype(503)>Resega<edgecolortype(0)><colortype(0)>,<colortype(502)><edgecolortype(503)>Resedra<edgecolortype(0)><colortype(0)>)>,<colortype(502)><edgecolortype(503)>Resedra<edgecolortype(0)><colortype(0)>)> oder <colortype(502)><edgecolortype(503)>Afflatus laetitiae<edgecolortype(0)><colortype(0)>,<if([gnum68==24],<if([gnum72>=96], oder <colortype(502)><edgecolortype(503)>Resega<edgecolortype(0)><colortype(0)>, oder <colortype(502)><edgecolortype(503)>Resedra<edgecolortype(0)><colortype(0)>)>, oder <colortype(502)><edgecolortype(503)>Resedra<edgecolortype(0)><colortype(0)>)>)>,<if([gnum68==24],<if([gnum72>=96], oder <colortype(502)><edgecolortype(503)>Resega<edgecolortype(0)><colortype(0)>, oder <colortype(502)><edgecolortype(503)>Resedra<edgecolortype(0)><colortype(0)>)>, oder <colortype(502)><edgecolortype(503)>Resedra<edgecolortype(0)><colortype(0)>)>)> gewährt Zielen mit <colortype(506)><edgecolortype(507)>Vollkommener Ablass<edgecolortype(0)><colortype(0)> einen zusätzlichen Heileffekt.<br>Heilpotenzial: 200",
+      "unlock_level": 70,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Healer"
+      ],
+      "jobs": [
+        {
+          "id": 24,
+          "name": "Weißmagier",
+          "abbreviation": "WMA",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

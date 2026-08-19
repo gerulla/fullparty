@@ -1,0 +1,25 @@
+{
+  "kind": "trait",
+  "id": 539,
+  "name": "Enhanced Smudge",
+  "description": "Increases movement speed after executing Smudge.\nDuration: 5s",
+  "description_macro": "Increases movement speed after executing <colortype(500)><edgecolortype(501)>Smudge<edgecolortype(0)><colortype(0)>.<br><colortype(504)><edgecolortype(505)>Duration:<edgecolortype(0)><colortype(0)> 5s",
+  "effects": [
+    "Increases movement speed after executing Smudge.",
+    "Duration: 5s"
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 42,
+    "name": "Pictomancer",
+    "abbreviation": "PCT"
+  },
+  "unlock_level": 84,
+  "value": 0,
+  "icon": {
+    "id": 6553,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 197,
+  "source_class_job_id": 42
+}

@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 432,
+  "name": "Verbesserte Bruderschaft",
+  "description": "Die Wahrscheinlichkeit, dass sich durch Meditative Bruderschaft ein Schatten-Chakra öffnet, steigt auf 100 %.",
+  "description_macro": "Die Wahr<->schein<->lich<->keit, dass sich durch <colortype(506)><edgecolortype(507)>Meditative Bruderschaft<edgecolortype(0)><colortype(0)> ein <colortype(506)><edgecolortype(507)>Schatten-Chakra<edgecolortype(0)><colortype(0)> öffnet, steigt auf 100<nbsp>%.",
+  "effects": [
+    "Die Wahrscheinlichkeit, dass sich durch Meditative Bruderschaft ein Schatten-Chakra öffnet, steigt auf 100 %."
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 20,
+    "name": "Mönch",
+    "abbreviation": "MÖN"
+  },
+  "unlock_level": 88,
+  "value": 0,
+  "icon": {
+    "id": 5245,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 21,
+  "source_class_job_id": 20
+}

@@ -1,0 +1,30 @@
+{
+  "kind": "trait",
+  "id": 654,
+  "name": "Verbesserte Axtkunst II",
+  "description": "Erhöht den Attacke-Wert folgender Kommandos:\nAttacke-Wert von Gewaltiger Hieb: 240\nAttacke-Wert von Verstümmelung: 190\nAttacke-Wert von Sturmkeil: 220\nAttacke-Wert von Sturmbrecher: 220\nAttacke-Wert von Niedermähen: 580\nAttacke-Wert von Umsturz: 420",
+  "description_macro": "Erhöht den Attacke-Wert folgender Kommandos:<br>Attacke-Wert von <colortype(502)><edgecolortype(503)>Gewaltiger Hieb<edgecolortype(0)><colortype(0)>: 240<br>Attacke-Wert von <colortype(502)><edgecolortype(503)>Verstümmelung<edgecolortype(0)><colortype(0)>: 190<br>Attacke-Wert von <colortype(502)><edgecolortype(503)>Sturmkeil<edgecolortype(0)><colortype(0)>: 220<br>Attacke-Wert von <colortype(502)><edgecolortype(503)>Sturmbrecher<edgecolortype(0)><colortype(0)>: 220<br>Attacke-Wert von <colortype(502)><edgecolortype(503)>Niedermähen<edgecolortype(0)><colortype(0)>: 580<br>Attacke-Wert von <colortype(502)><edgecolortype(503)>Umsturz<edgecolortype(0)><colortype(0)>: 420",
+  "effects": [
+    "Erhöht den Attacke-Wert folgender Kommandos:",
+    "Attacke-Wert von Gewaltiger Hieb: 240",
+    "Attacke-Wert von Verstümmelung: 190",
+    "Attacke-Wert von Sturmkeil: 220",
+    "Attacke-Wert von Sturmbrecher: 220",
+    "Attacke-Wert von Niedermähen: 580",
+    "Attacke-Wert von Umsturz: 420"
+  ],
+  "role": "Tank",
+  "job": {
+    "id": 21,
+    "name": "Krieger",
+    "abbreviation": "KRG"
+  },
+  "unlock_level": 94,
+  "value": 0,
+  "icon": {
+    "id": 6802,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 22,
+  "source_class_job_id": 21
+}

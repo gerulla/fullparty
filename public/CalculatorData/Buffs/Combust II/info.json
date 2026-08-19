@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 843,
+  "name": "Combust II",
+  "description": "Proximity of a theoretical sun is causing damage over time.",
+  "effects": [
+    "Proximity of a theoretical sun is causing damage over time."
+  ],
+  "classification": "debuff",
+  "icon": {
+    "id": 213214,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 2,
+  "target_type": 0,
+  "can_dispel": true,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 10,
+  "parameter": {
+    "effect": 0,
+    "modifier": 10
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 3608,
+      "name": "Combust II",
+      "description": "Deals unaspected damage over time.\nPotency: 60\nDuration: 30s",
+      "description_macro": "Deals unaspected damage over time.<br><colortype(504)><edgecolortype(505)>Potency:<edgecolortype(0)><colortype(0)> 60<br><colortype(504)><edgecolortype(505)>Duration:<edgecolortype(0)><colortype(0)> 30s",
+      "unlock_level": 46,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Healer"
+      ],
+      "jobs": [
+        {
+          "id": 33,
+          "name": "Astrologian",
+          "abbreviation": "AST",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

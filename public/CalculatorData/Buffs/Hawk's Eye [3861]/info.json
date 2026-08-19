@@ -1,0 +1,113 @@
+{
+  "kind": "combat_status",
+  "id": 3861,
+  "name": "Hawk's Eye",
+  "description": "Able to execute",
+  "effects": [
+    "Able to execute"
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 213075,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 24,
+  "source_abilities": [
+    {
+      "id": 3560,
+      "name": "Iron Jaws",
+      "description": "Delivers an attack with a potency of 100.\nAdditional Effect: If the target is suffering from a Caustic Bite or Stormbite effect inflicted by you, the effect timer is reset\nAdditional Effect: 35% chance of granting Hawk's Eye\nDuration: 30s",
+      "description_macro": "Delivers an attack with a potency of 100.<br><colortype(504)><edgecolortype(505)>Additional Effect:<edgecolortype(0)><colortype(0)> If the target is suffering from a <if([gnum72>=64],<if([gnum68==23],<colortype(506)><edgecolortype(507)>Caustic Bite<edgecolortype(0)><colortype(0)> or <colortype(506)><edgecolortype(507)>Stormbite<edgecolortype(0)><colortype(0)>,<colortype(506)><edgecolortype(507)>Venomous Bite<edgecolortype(0)><colortype(0)> or <colortype(506)><edgecolortype(507)>Windbite<edgecolortype(0)><colortype(0)>)>,<colortype(506)><edgecolortype(507)>Venomous Bite<edgecolortype(0)><colortype(0)> or <colortype(506)><edgecolortype(507)>Windbite<edgecolortype(0)><colortype(0)>)> effect inflicted by you, the effect timer is reset<if([gnum68==23],<if([gnum72>=76],<br><colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>35% chance of granting <colortype(506)><edgecolortype(507)>Hawk's Eye<edgecolortype(0)><colortype(0)><br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>30s,)>,)>",
+      "unlock_level": 56,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Physical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 23,
+          "name": "Bard",
+          "abbreviation": "BRD",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 7406,
+      "name": "Caustic Bite",
+      "description": "Delivers an attack with a potency of 150.\nAdditional Effect: Poison\nPotency: 20\nDuration: 45s\nAdditional Effect: 35% chance of granting Hawk's Eye\nDuration: 30s",
+      "description_macro": "Delivers an attack with a potency of 150.<br><colortype(504)><edgecolortype(505)>Additional Effect:<edgecolortype(0)><colortype(0)> <colortype(506)><edgecolortype(507)>Poison<edgecolortype(0)><colortype(0)><br><colortype(504)><edgecolortype(505)>Potency:<edgecolortype(0)><colortype(0)> 20<br><colortype(504)><edgecolortype(505)>Duration:<edgecolortype(0)><colortype(0)> 45s<if([gnum68==23],<if([gnum72>=76],<br><colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>35% chance of granting <colortype(506)><edgecolortype(507)>Hawk's Eye<edgecolortype(0)><colortype(0)><br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>30s,)>,)>",
+      "unlock_level": 64,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Physical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 23,
+          "name": "Bard",
+          "abbreviation": "BRD",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 7407,
+      "name": "Stormbite",
+      "description": "Deals wind damage with a potency of 100.\nAdditional Effect: Wind damage over time\nPotency: 25\nDuration: 45s\nAdditional Effect: 35% chance of granting Hawk's Eye\nDuration: 30s",
+      "description_macro": "Deals wind damage with a potency of 100.<br><colortype(504)><edgecolortype(505)>Additional Effect:<edgecolortype(0)><colortype(0)> Wind damage over time<br><colortype(504)><edgecolortype(505)>Potency:<edgecolortype(0)><colortype(0)> 25<br><colortype(504)><edgecolortype(505)>Duration:<edgecolortype(0)><colortype(0)> 45s<if([gnum68==23],<if([gnum72>=76],<br><colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>35% chance of granting <colortype(506)><edgecolortype(507)>Hawk's Eye<edgecolortype(0)><colortype(0)><br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>30s,)>,)>",
+      "unlock_level": 64,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Physical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 23,
+          "name": "Bard",
+          "abbreviation": "BRD",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 16495,
+      "name": "Burst Shot",
+      "description": "Delivers an attack with a potency of 220.\nAdditional Effect: 35% chance of granting Hawk's Eye\nDuration: 30s",
+      "description_macro": "Delivers an attack with a potency of <if([gnum68==23],<if([gnum72>=94],220,200)>,200)>.<br><colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>35% chance of granting <colortype(506)><edgecolortype(507)>Hawk's Eye<edgecolortype(0)><colortype(0)><br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>30s",
+      "unlock_level": 76,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Physical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 23,
+          "name": "Bard",
+          "abbreviation": "BRD",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 589,
+  "name": "心眼皆伝",
+  "description": "心眼が天眼通に変化する。",
+  "description_macro": "心眼が天眼通に変化する。",
+  "effects": [
+    "心眼が天眼通に変化する。"
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 34,
+    "name": "侍",
+    "abbreviation": "SAM"
+  },
+  "unlock_level": 82,
+  "value": 0,
+  "icon": {
+    "id": 6159,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 111,
+  "source_class_job_id": 34
+}

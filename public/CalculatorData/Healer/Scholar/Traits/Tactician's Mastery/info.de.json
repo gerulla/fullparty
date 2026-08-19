@@ -1,0 +1,26 @@
+{
+  "kind": "trait",
+  "id": 656,
+  "name": "Verbessertes Strategentum",
+  "description": "Erhöht den Attacke-Wert folgender Kommandos:\nAttacke-Wert des Schadens über Zeit von Causae et Curae: 85\nAttacke-Wert von Rabiate Bravade: 320",
+  "description_macro": "Erhöht den Attacke-Wert folgender Kommandos:<br>Attacke-Wert des Schadens über Zeit von <colortype(502)><edgecolortype(503)>Causae et Curae<edgecolortype(0)><colortype(0)>: 85<br>Attacke-Wert von <colortype(502)><edgecolortype(503)>Rabiate Bravade<edgecolortype(0)><colortype(0)>: 320",
+  "effects": [
+    "Erhöht den Attacke-Wert folgender Kommandos:",
+    "Attacke-Wert des Schadens über Zeit von Causae et Curae: 85",
+    "Attacke-Wert von Rabiate Bravade: 320"
+  ],
+  "role": "Healer",
+  "job": {
+    "id": 28,
+    "name": "Gelehrter",
+    "abbreviation": "GLT"
+  },
+  "unlock_level": 94,
+  "value": 0,
+  "icon": {
+    "id": 6831,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 29,
+  "source_class_job_id": 28
+}

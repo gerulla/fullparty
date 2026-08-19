@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 427,
+  "name": "Verbesserte Erda-Patronen",
+  "description": "Die maximale Anzahl deiner Erda-Patronen wird auf 3 erhöht und während Blutpatronen aktiv ist, erhöht sich die maximale Anzahl auf 6. Die Ausführung von Blutpatronen gewährt außerdem sofort 3 Patronen.",
+  "description_macro": "Die maximale Anzahl deiner <colortype(506)><edgecolortype(507)>Erda-Patronen<edgecolortype(0)><colortype(0)> wird auf 3 erhöht und während <colortype(506)><edgecolortype(507)>Blutpatronen<edgecolortype(0)><colortype(0)> aktiv ist, erhöht sich die maximale Anzahl auf 6. Die Ausführung von <colortype(502)><edgecolortype(503)>Blutpatronen<edgecolortype(0)><colortype(0)> gewährt außerdem sofort 3 Patronen.",
+  "effects": [
+    "Die maximale Anzahl deiner Erda-Patronen wird auf 3 erhöht und während Blutpatronen aktiv ist, erhöht sich die maximale Anzahl auf 6. Die Ausführung von Blutpatronen gewährt außerdem sofort 3 Patronen."
+  ],
+  "role": "Tank",
+  "job": {
+    "id": 37,
+    "name": "Revolverklinge",
+    "abbreviation": "REV"
+  },
+  "unlock_level": 88,
+  "value": 0,
+  "icon": {
+    "id": 6307,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 149,
+  "source_class_job_id": 37
+}

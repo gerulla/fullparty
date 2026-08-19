@@ -1,0 +1,91 @@
+{
+  "kind": "ability",
+  "id": 34633,
+  "name": "Assaut ophidien",
+  "description": "Effectue une attaque physique sur la cible et les ennemis autour.\nPuissance : 680\nLa puissance est réduite de 75% au-delà du premier ennemi touché.\nEffet additionnel : vous octroie Impulsion vicieuse.\nDurée : 60s\nImpulsion vicieuse : augmente de 50 la puissance d'Assaut vicieux.\nSi cette action est utilisée avec succès\\Condition : Âme ophidienne.\nCette technique d'arme a un temps de recharge indépendant.",
+  "description_macro": "Effectue une attaque physique sur la cible et les ennemis autour.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> 680<br>La puissance est réduite de 75% au-delà du premier ennemi touché.<br><if([gnum68==41],<if([gnum72>=92],<colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> vous octroie <colortype(500)><edgecolortype(501)>Impulsion vicieuse<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 60s<br><colortype(506)><edgecolortype(507)>Impulsion vicieuse<nbsp>:<edgecolortype(0)><colortype(0)> augmente de 50 la puissance d'Assaut vicieux.<br>Si cette action est utilisée avec succès\\, <colortype(500)><edgecolortype(501)>Assaut vicieux<edgecolortype(0)><colortype(0)> remplace <colortype(500)><edgecolortype(501)>Crochets vicieux<edgecolortype(0)><colortype(0)> et <colortype(500)><edgecolortype(501)>Assaut frénétique<edgecolortype(0)><colortype(0)> remplace <colortype(500)><edgecolortype(501)>Crochets frénétiques<edgecolortype(0)><colortype(0)>. Ces actions peuvent être lancées deux fois.<br>,)>,)><colortype(506)><edgecolortype(507)>Condition<nbsp>:<edgecolortype(0)><colortype(0)> <colortype(500)><edgecolortype(501)>Âme ophidienne<edgecolortype(0)><colortype(0)>.<br>Cette technique d'arme a un temps de recharge indépendant.",
+  "effects": [
+    "Effectue une attaque physique sur la cible et les ennemis autour.",
+    "Puissance : 680",
+    "La puissance est réduite de 75% au-delà du premier ennemi touché.",
+    "Effet additionnel : vous octroie Impulsion vicieuse.",
+    "Durée : 60s",
+    "Impulsion vicieuse : augmente de 50 la puissance d'Assaut vicieux.",
+    "Si cette action est utilisée avec succès\\Condition : Âme ophidienne.",
+    "Cette technique d'arme a un temps de recharge indépendant."
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 41,
+    "name": "Rôdeur Vipère",
+    "abbreviation": "VPR"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 82,
+  "icon": {
+    "id": 3728,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 3,
+    "name": "Technique d'arme"
+  },
+  "attack_type": {
+    "id": 4294967295,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 3.5,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 58,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 87,
+      "value": 1
+    },
+    "secondary": {
+      "type_id": 0,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": 20,
+    "effect_yalms": 5,
+    "cast_type": 2
+  },
+  "targeting": {
+    "self": false,
+    "party": false,
+    "alliance": false,
+    "hostile": true,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 7,
+    "behavior_type": 0,
+    "class_job_category_id": 196,
+    "source_class_job_id": 41,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

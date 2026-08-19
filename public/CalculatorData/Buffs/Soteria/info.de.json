@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 2610,
+  "name": "Soteria",
+  "description": "Wirkung von Kardia erhaltener Heilung ist erhöht.",
+  "effects": [
+    "Wirkung von Kardia erhaltener Heilung ist erhöht."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 219756,
+    "file": "icon.png"
+  },
+  "max_stacks": 4,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 27,
+    "modifier": 20
+  },
+  "class_job_category_id": 181,
+  "source_abilities": [
+    {
+      "id": 24294,
+      "name": "Soteria",
+      "description": "Du erhältst vier Stapel Soteria.\nEffekt von Soteria: Erhöht das Heilpotenzial der von deinen Zaubern gewährten Kardion-Heilung um 70 %.\nDauer: 15 Sekunden",
+      "description_macro": "Du erhältst vier Stapel <colortype(506)><edgecolortype(507)>Soteria<edgecolortype(0)><colortype(0)>.<br>Effekt von <colortype(506)><edgecolortype(507)>Soteria<edgecolortype(0)><colortype(0)>: Erhöht das Heilpotenzial der von deinen Zaubern gewährten <colortype(506)><edgecolortype(507)>Kardion<edgecolortype(0)><colortype(0)>-Heilung um 70<nbsp>%.<br>Dauer: 15 Sekunden",
+      "unlock_level": 35,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Healer"
+      ],
+      "jobs": [
+        {
+          "id": 40,
+          "name": "Weiser",
+          "abbreviation": "WEI",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

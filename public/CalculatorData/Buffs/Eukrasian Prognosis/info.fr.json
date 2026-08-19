@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 2609,
+  "name": "Prognosis eucrasique",
+  "description": "Insensible à un certain montant de dégâts.",
+  "effects": [
+    "Insensible à un certain montant de dégâts."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 212954,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 30,
+  "parameter": {
+    "effect": 0,
+    "modifier": 100
+  },
+  "class_job_category_id": 181,
+  "source_abilities": [
+    {
+      "id": 24292,
+      "name": "Prognosis eucrasique",
+      "description": "Restaure vos PV et ceux des équipiers alentour.\nPuissance : 100\nEffet additionnel : octroie Prognosis eucrasique, une barrière annulant un montant de dégâts égal à 320% des PV restaurés.\nDurée : 30s\nCondition : Eukrasia.\nNe peut être cumulé avec l'effet Diagnosis eucrasique des sages et l'effet Réconfort des érudits.\n\n* Cette action ne peut pas être ajoutée aux barres de raccourcis.\nRemplace Prognosis lorsque les conditions sont réunies.",
+      "description_macro": "Restaure vos PV et ceux des équipiers alentour.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> 100<br><colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> octroie <colortype(500)><edgecolortype(501)>Prognosis eucrasique<edgecolortype(0)><colortype(0)>, une barrière annulant un montant de dégâts égal à <if([gnum68==40],<if([gnum72>=85],320,230)>,230)>% des PV restaurés.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 30s<br><colortype(506)><edgecolortype(507)>Condition<nbsp>:<edgecolortype(0)><colortype(0)> <colortype(500)><edgecolortype(501)>Eukrasia<edgecolortype(0)><colortype(0)>.<br>Ne peut être cumulé avec l'effet Diagnosis eucrasique des sages et l'effet Réconfort des érudits.<br><br><colortype(504)><edgecolortype(505)>* Cette action ne peut pas être ajoutée aux barres de raccourcis.<br>Remplace <colortype(500)><edgecolortype(501)>Prognosis<edgecolortype(0)><colortype(0)> lorsque les conditions sont réunies.<edgecolortype(0)><colortype(0)>",
+      "unlock_level": 30,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Healer"
+      ],
+      "jobs": [
+        {
+          "id": 40,
+          "name": "Sage",
+          "abbreviation": "SAG",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

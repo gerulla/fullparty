@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 262,
+  "name": "Verbessertes Schiltron",
+  "description": "Verlängert den Effekt von Schiltron auf 6 Sekunden.",
+  "description_macro": "Verlängert den Effekt von <colortype(502)><edgecolortype(503)>Schiltron<edgecolortype(0)><colortype(0)> auf 6 Sekunden.",
+  "effects": [
+    "Verlängert den Effekt von Schiltron auf 6 Sekunden."
+  ],
+  "role": "Tank",
+  "job": {
+    "id": 19,
+    "name": "Paladin",
+    "abbreviation": "PLD"
+  },
+  "unlock_level": 74,
+  "value": 0,
+  "icon": {
+    "id": 5215,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 20,
+  "source_class_job_id": 19
+}

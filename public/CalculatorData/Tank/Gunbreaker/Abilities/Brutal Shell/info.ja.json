@@ -1,0 +1,89 @@
+{
+  "kind": "ability",
+  "id": 16139,
+  "name": "ブルータルシェル",
+  "description": "対象に物理攻撃。\u3000威力：240\nコンボ条件：キーンエッジ\u3000コンボ時威力：380\nコンボボーナス：自身のＨＰを回復する。\u3000回復力：200\nさらに、自身に一定量のダメージを防ぐバリアを張る。\nこのバリアは回復量の100％分のダメージを軽減する。\n効果時間：30秒",
+  "description_macro": "対象に物理攻撃。\u3000<colortype(504)><edgecolortype(505)>威力：<edgecolortype(0)><colortype(0)><if([gnum68==37],<if([gnum72>=94],240,<if([gnum68==37],<if([gnum72>=84],160,100)>,100)>)>,<if([gnum68==37],<if([gnum72>=84],160,100)>,100)>)><br><colortype(504)><edgecolortype(505)>コンボ条件：<edgecolortype(0)><colortype(0)>キーンエッジ\u3000<colortype(504)><edgecolortype(505)>コンボ時威力：<edgecolortype(0)><colortype(0)><if([gnum68==37],<if([gnum72>=94],380,<if([gnum68==37],<if([gnum72>=84],300,240)>,240)>)>,<if([gnum68==37],<if([gnum72>=84],300,240)>,240)>)><br><colortype(504)><edgecolortype(505)>コンボボーナス：<edgecolortype(0)><colortype(0)>自身のＨＰを回復する。\u3000<colortype(504)><edgecolortype(505)>回復力：<edgecolortype(0)><colortype(0)>200<if([gnum68==37],<if([gnum72>=52],<br>さらに、自身に一定量のダメージを防ぐバリアを張る。<br>このバリアは回復量の100％分のダメージを軽減する。<br><colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>30秒,)>,)>",
+  "effects": [
+    "対象に物理攻撃。\u3000威力：240",
+    "コンボ条件：キーンエッジ\u3000コンボ時威力：380",
+    "コンボボーナス：自身のＨＰを回復する。\u3000回復力：200",
+    "さらに、自身に一定量のダメージを防ぐバリアを張る。",
+    "このバリアは回復量の100％分のダメージを軽減する。",
+    "効果時間：30秒"
+  ],
+  "role": "Tank",
+  "job": {
+    "id": 37,
+    "name": "ガンブレイカー",
+    "abbreviation": "GNB"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 4,
+  "icon": {
+    "id": 3403,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 3,
+    "name": "ウェポンスキル"
+  },
+  "attack_type": {
+    "id": 4294967295,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 2.5,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 58,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 0,
+      "value": 0
+    },
+    "secondary": {
+      "type_id": 0,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": -1,
+    "effect_yalms": 0,
+    "cast_type": 1
+  },
+  "targeting": {
+    "self": false,
+    "party": false,
+    "alliance": false,
+    "hostile": true,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": 16137,
+    "preserves_combo": false
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 7,
+    "behavior_type": 0,
+    "class_job_category_id": 149,
+    "source_class_job_id": 37,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

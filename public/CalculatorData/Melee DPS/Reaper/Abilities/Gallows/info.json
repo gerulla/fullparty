@@ -1,0 +1,101 @@
+{
+  "kind": "ability",
+  "id": 24383,
+  "name": "Gallows",
+  "description": "Delivers an attack with a potency of 500.\n560 when executed from a target's rear.\nEnhanced Gallows Potency: 560\nRear Enhanced Potency: 620\nAdditional Effect: Grants Enhanced Gibbet\nDuration: 60s\nThe action Blood Stalk changes to Unveiled Gibbet while under the effect of Enhanced Gibbet.\nAdditional Effect: Increases Shroud Gauge by 10\nCan only be executed while under the effect of Soul Reaver.",
+  "description_macro": "Delivers an attack with a potency of <if([gnum68==39],<if([gnum72>=94],500,400)>,400)>.<br><if([gnum68==39],<if([gnum72>=94],560,460)>,460)> when executed from a target's rear.<br><colortype(504)><edgecolortype(505)>Enhanced Gallows Potency: <edgecolortype(0)><colortype(0)><if([gnum68==39],<if([gnum72>=94],560,460)>,460)><br><colortype(504)><edgecolortype(505)>Rear Enhanced Potency: <edgecolortype(0)><colortype(0)><if([gnum68==39],<if([gnum72>=94],620,520)>,520)><br><colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>Grants <colortype(506)><edgecolortype(507)>Enhanced Gibbet<edgecolortype(0)><colortype(0)><br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>60s<br>The action <colortype(500)><edgecolortype(501)>Blood Stalk<edgecolortype(0)><colortype(0)> changes to <colortype(500)><edgecolortype(501)>Unveiled Gibbet<edgecolortype(0)><colortype(0)> while under the effect of <colortype(506)><edgecolortype(507)>Enhanced Gibbet<edgecolortype(0)><colortype(0)>.<br><if([gnum68==39],<if([gnum72>=80],<colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>Increases <colortype(500)><edgecolortype(501)>Shroud Gauge<edgecolortype(0)><colortype(0)> by 10<br>,)>,)>Can only be executed while under the effect of <colortype(506)><edgecolortype(507)>Soul Reaver<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Delivers an attack with a potency of 500.",
+    "560 when executed from a target's rear.",
+    "Enhanced Gallows Potency: 560",
+    "Rear Enhanced Potency: 620",
+    "Additional Effect: Grants Enhanced Gibbet",
+    "Duration: 60s",
+    "The action Blood Stalk changes to Unveiled Gibbet while under the effect of Enhanced Gibbet.",
+    "Additional Effect: Increases Shroud Gauge by 10",
+    "Can only be executed while under the effect of Soul Reaver."
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 39,
+    "name": "Reaper",
+    "abbreviation": "RPR"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 70,
+  "icon": {
+    "id": 3611,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 3,
+    "name": "Weaponskill"
+  },
+  "attack_type": {
+    "id": 1,
+    "name": "斬"
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 2.5,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 58,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 10,
+      "value": 2587
+    },
+    "secondary": {
+      "type_id": 113,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": -1,
+    "effect_yalms": 0,
+    "cast_type": 1
+  },
+  "targeting": {
+    "self": false,
+    "party": false,
+    "alliance": false,
+    "hostile": true,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": {
+      "id": 75,
+      "status": {
+        "id": 2589,
+        "name": "Enhanced Gallows",
+        "description": "Next Gallows will deal increased damage.",
+        "icon_id": 212928,
+        "max_stacks": 0
+      }
+    }
+  },
+  "metadata": {
+    "aspect_id": 7,
+    "behavior_type": 0,
+    "class_job_category_id": 180,
+    "source_class_job_id": 39,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

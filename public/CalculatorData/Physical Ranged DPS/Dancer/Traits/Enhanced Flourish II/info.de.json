@@ -1,0 +1,26 @@
+{
+  "kind": "trait",
+  "id": 610,
+  "name": "Verbesserte Trance II",
+  "description": "Erfolgreiche Ausführung von Trance gewährt dir Finalhaltung.\nDauer: 30 Sekunden\nIst Finalhaltung aktiv, ändert sich Einfache Choreographie zu Finalschritt.",
+  "description_macro": "Erfolgreiche Ausführung von <colortype(502)><edgecolortype(503)>Trance<edgecolortype(0)><colortype(0)> gewährt dir <colortype(506)><edgecolortype(507)>Finalhaltung<edgecolortype(0)><colortype(0)>.<br>Dauer: 30 Sekunden<br>Ist <colortype(506)><edgecolortype(507)>Finalhaltung<edgecolortype(0)><colortype(0)> aktiv, ändert sich <colortype(502)><edgecolortype(503)>Einfache Choreographie<edgecolortype(0)><colortype(0)> zu <colortype(502)><edgecolortype(503)>Finalschritt<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Erfolgreiche Ausführung von Trance gewährt dir Finalhaltung.",
+    "Dauer: 30 Sekunden",
+    "Ist Finalhaltung aktiv, ändert sich Einfache Choreographie zu Finalschritt."
+  ],
+  "role": "Physical Ranged DPS",
+  "job": {
+    "id": 38,
+    "name": "Tänzer",
+    "abbreviation": "TÄN"
+  },
+  "unlock_level": 96,
+  "value": 0,
+  "icon": {
+    "id": 6363,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 150,
+  "source_class_job_id": 38
+}

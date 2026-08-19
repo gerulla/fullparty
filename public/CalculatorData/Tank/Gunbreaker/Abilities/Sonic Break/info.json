@@ -1,0 +1,97 @@
+{
+  "kind": "ability",
+  "id": 16153,
+  "name": "Sonic Break",
+  "description": "Delivers an attack with a potency of 340.\nAdditional Effect: Damage over time\nPotency: 120\nDuration: 15s\nCan only be executed when Ready to Break.",
+  "description_macro": "Delivers an attack with a potency of 340.<br><colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>Damage over time<br><colortype(504)><edgecolortype(505)>Potency: <edgecolortype(0)><colortype(0)>120<br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>15s<br>Can only be executed when <colortype(506)><edgecolortype(507)>Ready to Break<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Delivers an attack with a potency of 340.",
+    "Additional Effect: Damage over time",
+    "Potency: 120",
+    "Duration: 15s",
+    "Can only be executed when Ready to Break."
+  ],
+  "role": "Tank",
+  "job": {
+    "id": 37,
+    "name": "Gunbreaker",
+    "abbreviation": "GNB"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 54,
+  "icon": {
+    "id": 3417,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 3,
+    "name": "Weaponskill"
+  },
+  "attack_type": {
+    "id": 4294967295,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 2.5,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 58,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 0,
+      "value": 0
+    },
+    "secondary": {
+      "type_id": 32,
+      "value": 3886
+    }
+  },
+  "range": {
+    "target_yalms": -1,
+    "effect_yalms": 0,
+    "cast_type": 1
+  },
+  "targeting": {
+    "self": false,
+    "party": false,
+    "alliance": false,
+    "hostile": true,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": {
+      "id": 210,
+      "status": {
+        "id": 3886,
+        "name": "Ready to Break",
+        "description": "Able to execute Sonic Break.",
+        "icon_id": 213622,
+        "max_stacks": 0
+      }
+    }
+  },
+  "metadata": {
+    "aspect_id": 7,
+    "behavior_type": 0,
+    "class_job_category_id": 149,
+    "source_class_job_id": 37,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 1892,
+  "name": "ニュートラルセクト",
+  "description": "回復魔法の回復量が向上した状態。",
+  "effects": [
+    "回復魔法の回復量が向上した状態。"
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 213253,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 10
+  },
+  "class_job_category_id": 99,
+  "source_abilities": [
+    {
+      "id": 16559,
+      "name": "ニュートラルセクト",
+      "description": "一定時間、自身の回復魔法の回復量を20％増加させる。\n効果時間：20秒\n追加効果：アスペクト・ベネフィクおよびコンジャンクション・ヘリオスの実行時に、対象に一定量のダメージを防ぐバリアを張る。\nアスペクト・ベネフィクの効果量：回復量の250％分\nコンジャンクション・ヘリオスの効果量：回復量の125％分\n効果時間：30秒\n追加効果：自身に「サンサイン実行可」を付与する。\n効果時間：30秒",
+      "description_macro": "一定時間、自身の回復魔法の回復量を20％増加させる。<br><colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>20秒<br><colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)>アスペクト・ベネフィクおよび<if([gnum68==33],<if([gnum72>=96],コンジャンクション・ヘリオス,アスペクト・ヘリオス)>,アスペクト・ヘリオス)>の実行時に、対象に一定量のダメージを防ぐバリアを張る。<br><colortype(504)><edgecolortype(505)>アスペクト・ベネフィクの効果量：<edgecolortype(0)><colortype(0)>回復量の250％分<br><colortype(504)><edgecolortype(505)><if([gnum68==33],<if([gnum72>=96],コンジャンクション・ヘリオス,アスペクト・ヘリオス)>,アスペクト・ヘリオス)>の効果量：<edgecolortype(0)><colortype(0)>回復量の125％分<br><colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>30秒<if([gnum68==33],<if([gnum72>=100],<br><colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)>自身に<colortype(500)><edgecolortype(501)>「サンサイン実行可」<edgecolortype(0)><colortype(0)>を付与する。<br><colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>30秒,)>,)>",
+      "unlock_level": 80,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Healer"
+      ],
+      "jobs": [
+        {
+          "id": 33,
+          "name": "占星術師",
+          "abbreviation": "AST",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

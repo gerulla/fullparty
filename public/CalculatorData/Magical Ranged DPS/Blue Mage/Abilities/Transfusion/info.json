@@ -1,0 +1,88 @@
+{
+  "kind": "ability",
+  "id": 11409,
+  "name": "Transfusion",
+  "description": "Restores all HP and MP of a single party member while incapacitating self.\nAdditional Effect: Inflicts Brush with Death on self\nDuration: 600s\nEffect will not be removed upon revival or further incapacitation.\nCannot be executed while under the effect of Brush with Death.",
+  "description_macro": "Restores all HP and MP of a single party member while incapacitating self.<br><colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>Inflicts <colortype(506)><edgecolortype(507)>Brush with Death<edgecolortype(0)><colortype(0)> on self<br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>600s<br>Effect will not be removed upon revival or further incapacitation.<br>Cannot be executed while under the effect of <colortype(506)><edgecolortype(507)>Brush with Death<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Restores all HP and MP of a single party member while incapacitating self.",
+    "Additional Effect: Inflicts Brush with Death on self",
+    "Duration: 600s",
+    "Effect will not be removed upon revival or further incapacitation.",
+    "Cannot be executed while under the effect of Brush with Death."
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 36,
+    "name": "Blue Mage",
+    "abbreviation": "BLU"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 1,
+  "icon": {
+    "id": 3277,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 2,
+    "name": "Spell"
+  },
+  "attack_type": {
+    "id": 5,
+    "name": "魔法"
+  },
+  "timing": {
+    "cast_seconds": 2,
+    "recast_seconds": 2.5,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 58,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 2,
+      "value": 0
+    },
+    "secondary": {
+      "type_id": 46,
+      "value": 2127
+    }
+  },
+  "range": {
+    "target_yalms": 25,
+    "effect_yalms": 0,
+    "cast_type": 1
+  },
+  "targeting": {
+    "self": false,
+    "party": true,
+    "alliance": false,
+    "hostile": false,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": false
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": false
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 7,
+    "behavior_type": 0,
+    "class_job_category_id": 129,
+    "source_class_job_id": 36,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

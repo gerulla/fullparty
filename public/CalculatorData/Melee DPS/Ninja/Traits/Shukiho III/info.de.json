@@ -1,0 +1,25 @@
+{
+  "kind": "trait",
+  "id": 439,
+  "name": "Shukiho III",
+  "description": "Füllt den Ninki-Balken um 15.\nBedingung: Kombos mit Äolusklinge und Harnischbrecher",
+  "description_macro": "Füllt den Ninki-Balken um 15.<br>Bedingung: Kombos mit <colortype(502)><edgecolortype(503)>Äolusklinge<edgecolortype(0)><colortype(0)> und <colortype(502)><edgecolortype(503)>Harnischbrecher<edgecolortype(0)><colortype(0)>",
+  "effects": [
+    "Füllt den Ninki-Balken um 15.",
+    "Bedingung: Kombos mit Äolusklinge und Harnischbrecher"
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 30,
+    "name": "Ninja",
+    "abbreviation": "NIN"
+  },
+  "unlock_level": 84,
+  "value": 0,
+  "icon": {
+    "id": 5417,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 92,
+  "source_class_job_id": 30
+}

@@ -1,0 +1,51 @@
+{
+  "kind": "combat_status",
+  "id": 4277,
+  "name": "Wachsamkeit",
+  "description": "Wachsam gegenüber der Umgebung. Bei Eintritt in den Kampf wird Sicherer Sieg gewährt.",
+  "effects": [
+    "Wachsam gegenüber der Umgebung. Bei Eintritt in den Kampf wird Sicherer Sieg gewährt."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 229932,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": true,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 41647,
+      "name": "Wachsamkeit",
+      "description": "Du gewährst dir Wachsamkeit.\nDauer: 20 Sekunden\nBedingung: Nicht im Kampf.\nTrittst du während Wachsamkeit aktiv ist in den Kampf ein, ändert sich der Status zu Sicherer Sieg.\nEffekt von Sicherer Sieg: Erhöht die kritische Trefferrate um 60 %.\nDauer: 20 Sekunden",
+      "description_macro": "Du gewährst dir <colortype(506)><edgecolortype(507)>Wachsamkeit<edgecolortype(0)><colortype(0)>.<br>Dauer: 20 Sekunden<br>Bedingung: Nicht im Kampf.<br>Trittst du während <colortype(506)><edgecolortype(507)>Wachsamkeit<edgecolortype(0)><colortype(0)> aktiv ist in den Kampf ein, ändert sich der Status zu <colortype(506)><edgecolortype(507)>Sicherer Sieg<edgecolortype(0)><colortype(0)>.<br>Effekt von <colortype(506)><edgecolortype(507)>Sicherer Sieg<edgecolortype(0)><colortype(0)>: Erhöht die kritische Trefferrate um 60<nbsp>%.<br>Dauer: 20 Sekunden",
+      "unlock_level": 0,
+      "relations": [
+        "granted_by_description",
+        "same_name"
+      ],
+      "roles": [
+        "Phantom Jobs"
+      ],
+      "jobs": [
+        {
+          "id": 12,
+          "name": "Phantom Phantom-Dieb",
+          "abbreviation": "Ph-Dieb",
+          "is_phantom": true
+        }
+      ]
+    }
+  ]
+}

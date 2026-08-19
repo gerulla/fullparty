@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 574,
+  "name": "Nebula Mastery",
+  "description": "Upgrades Nebula to Great Nebula.",
+  "description_macro": "Upgrades <colortype(500)><edgecolortype(501)>Nebula<edgecolortype(0)><colortype(0)> to <colortype(500)><edgecolortype(501)>Great Nebula<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Upgrades Nebula to Great Nebula."
+  ],
+  "role": "Tank",
+  "job": {
+    "id": 37,
+    "name": "Gunbreaker",
+    "abbreviation": "GNB"
+  },
+  "unlock_level": 92,
+  "value": 0,
+  "icon": {
+    "id": 6308,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 149,
+  "source_class_job_id": 37
+}

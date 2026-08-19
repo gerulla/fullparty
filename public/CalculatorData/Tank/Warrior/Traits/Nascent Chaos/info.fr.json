@@ -1,0 +1,26 @@
+{
+  "kind": "trait",
+  "id": 267,
+  "name": "Chaos naissant",
+  "description": "Permet de recevoir Chaos naissant lors de l'utilisation de Cri de guerre.\nChaos naissant : si la Jauge de la bête est remplie à 50 ou plus, remplace Décimation par Cyclone chaotique et, à partir du niveau 80, Sape-fendeur par Chaos intérieur.\nDurée : 30s",
+  "description_macro": "Permet de recevoir <colortype(500)><edgecolortype(501)>Chaos naissant<edgecolortype(0)><colortype(0)> lors de l'utilisation de <colortype(500)><edgecolortype(501)>Cri de guerre<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Chaos naissant<nbsp>:<edgecolortype(0)><colortype(0)> si la <colortype(502)><edgecolortype(503)>Jauge de la bête<edgecolortype(0)><colortype(0)> est remplie à 50 ou plus, remplace <colortype(500)><edgecolortype(501)>Décimation<edgecolortype(0)><colortype(0)> par <colortype(500)><edgecolortype(501)>Cyclone chaotique<edgecolortype(0)><colortype(0)> et, à partir du niveau 80, <colortype(500)><edgecolortype(501)>Sape-fendeur<edgecolortype(0)><colortype(0)> par <colortype(500)><edgecolortype(501)>Chaos intérieur<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 30s",
+  "effects": [
+    "Permet de recevoir Chaos naissant lors de l'utilisation de Cri de guerre.",
+    "Chaos naissant : si la Jauge de la bête est remplie à 50 ou plus, remplace Décimation par Cyclone chaotique et, à partir du niveau 80, Sape-fendeur par Chaos intérieur.",
+    "Durée : 30s"
+  ],
+  "role": "Tank",
+  "job": {
+    "id": 21,
+    "name": "Guerrier",
+    "abbreviation": "GUE"
+  },
+  "unlock_level": 72,
+  "value": 0,
+  "icon": {
+    "id": 5264,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 22,
+  "source_class_job_id": 21
+}

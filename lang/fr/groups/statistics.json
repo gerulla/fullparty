@@ -44,6 +44,12 @@
     "applications": {
         "distribution_title": "Distribution des candidatures",
         "distribution_subtitle": "Resultats actuels des candidatures sur les runs du groupe.",
+        "daily_title": "Candidatures quotidiennes",
+        "daily_subtitle": "Candidatures envoyées chaque jour au cours des 7 derniers jours.",
+        "daily_badge": "7 derniers jours",
+        "daily_tooltip": "{date} : {count} candidatures envoyées",
+        "daily_empty_title": "Aucune candidature cette semaine",
+        "daily_empty_description": "Les nouvelles candidatures des sept derniers jours apparaîtront ici.",
         "volume_title": "Volume des candidatures",
         "volume_subtitle": "Volume mensuel des candidatures sur les 12 derniers mois.",
         "total_label": "candidatures",

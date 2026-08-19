@@ -1,0 +1,87 @@
+{
+  "kind": "ability",
+  "id": 34623,
+  "name": "Vicepit",
+  "description": "Delivers an attack with a potency of 250 to all nearby enemies.\nAdditional Effect: Grants a Rattling Coil\\\nMaximum Charges: 2\nShares a recast timer with Vicewinder.",
+  "description_macro": "Delivers an attack with a potency of 250 to all nearby enemies.<br><if([gnum68==41],<if([gnum72>=82],<colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>Grants a <colortype(506)><edgecolortype(507)>Rattling Coil<edgecolortype(0)><colortype(0)><if([gnum68==41],<if([gnum72>=88],\\, up to a maximum of 3,\\, up to a maximum of 2)>,\\, up to a maximum of 2)><br>,)>,)><colortype(504)><edgecolortype(505)>Maximum Charges: <edgecolortype(0)><colortype(0)>2<br>Shares a recast timer with <colortype(500)><edgecolortype(501)>Vicewinder<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Delivers an attack with a potency of 250 to all nearby enemies.",
+    "Additional Effect: Grants a Rattling Coil\\",
+    "Maximum Charges: 2",
+    "Shares a recast timer with Vicewinder."
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 41,
+    "name": "Viper",
+    "abbreviation": "VPR"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 70,
+  "icon": {
+    "id": 3718,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 3,
+    "name": "Weaponskill"
+  },
+  "attack_type": {
+    "id": 4294967295,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 40,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 15,
+    "additional_cooldown_group": 58,
+    "max_charges": 2
+  },
+  "costs": {
+    "primary": {
+      "type_id": 0,
+      "value": 0
+    },
+    "secondary": {
+      "type_id": 135,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": 0,
+    "effect_yalms": 5,
+    "cast_type": 2
+  },
+  "targeting": {
+    "self": true,
+    "party": false,
+    "alliance": false,
+    "hostile": false,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 7,
+    "behavior_type": 0,
+    "class_job_category_id": 196,
+    "source_class_job_id": 41,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 613,
+  "name": "Blitzmeister III",
+  "description": "Verbessert Blitzga zu Hoher Blitz und Blitzka zu Hohes Blitzra.",
+  "description_macro": "Verbessert <colortype(502)><edgecolortype(503)>Blitzga<edgecolortype(0)><colortype(0)> zu <colortype(502)><edgecolortype(503)>Hoher Blitz<edgecolortype(0)><colortype(0)> und <colortype(502)><edgecolortype(503)>Blitzka<edgecolortype(0)><colortype(0)> zu <colortype(502)><edgecolortype(503)>Hohes Blitzra<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Verbessert Blitzga zu Hoher Blitz und Blitzka zu Hohes Blitzra."
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 25,
+    "name": "Schwarzmagier",
+    "abbreviation": "SMA"
+  },
+  "unlock_level": 92,
+  "value": 0,
+  "icon": {
+    "id": 5651,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 26,
+  "source_class_job_id": 25
+}

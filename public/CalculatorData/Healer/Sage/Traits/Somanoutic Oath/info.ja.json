@@ -1,0 +1,27 @@
+{
+  "kind": "trait",
+  "id": 371,
+  "name": "賢学の誓い",
+  "description": "特定のアクションの威力を上昇させる。\n\nドシスの威力：250\nフレグマの威力：330\nエウクラシア・ドシスの威力：35",
+  "description_macro": "特定のアクションの威力を上昇させる。<br><br><colortype(504)><edgecolortype(505)>ドシスの威力：<edgecolortype(0)><colortype(0)>250<br><colortype(504)><edgecolortype(505)>フレグマの威力：<edgecolortype(0)><colortype(0)>330<br><colortype(504)><edgecolortype(505)>エウクラシア・ドシスの威力：<edgecolortype(0)><colortype(0)>35",
+  "effects": [
+    "特定のアクションの威力を上昇させる。",
+    "ドシスの威力：250",
+    "フレグマの威力：330",
+    "エウクラシア・ドシスの威力：35"
+  ],
+  "role": "Healer",
+  "job": {
+    "id": 40,
+    "name": "賢者",
+    "abbreviation": "SGE"
+  },
+  "unlock_level": 54,
+  "value": 0,
+  "icon": {
+    "id": 6452,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 181,
+  "source_class_job_id": 40
+}

@@ -1,0 +1,26 @@
+{
+  "kind": "trait",
+  "id": 264,
+  "name": "忠義の剣",
+  "description": "自身に「ロイエ実行可」が付与される。\n効果時間：30秒\n発動条件：ロイヤルアソリティのコンボ成功時",
+  "description_macro": "自身に<colortype(500)><edgecolortype(501)>「ロイエ実行可」<edgecolortype(0)><colortype(0)>が付与される。<br><colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>30秒<br><colortype(504)><edgecolortype(505)>発動条件：<edgecolortype(0)><colortype(0)>ロイヤルアソリティのコンボ成功時",
+  "effects": [
+    "自身に「ロイエ実行可」が付与される。",
+    "効果時間：30秒",
+    "発動条件：ロイヤルアソリティのコンボ成功時"
+  ],
+  "role": "Tank",
+  "job": {
+    "id": 19,
+    "name": "ナイト",
+    "abbreviation": "PLD"
+  },
+  "unlock_level": 76,
+  "value": 0,
+  "icon": {
+    "id": 5217,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 20,
+  "source_class_job_id": 19
+}

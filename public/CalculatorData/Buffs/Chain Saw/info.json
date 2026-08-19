@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 3154,
+  "name": "Chain Saw",
+  "description": "Damage taken is increased.",
+  "effects": [
+    "Damage taken is increased."
+  ],
+  "classification": "debuff",
+  "icon": {
+    "id": 214923,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 2,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": true,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 10
+  },
+  "class_job_category_id": 96,
+  "source_abilities": [
+    {
+      "id": 25788,
+      "name": "Chain Saw",
+      "description": "Delivers an attack to all enemies in a straight line before you with a potency of 660 for the first enemy, and 25% less for all remaining enemies.\nAdditional Effect: Increases Battery Gauge by 20\nAdditional Effect: Grants Excavator Ready\nDuration: 30s\nThis weaponskill does not share a recast timer with any other actions.",
+      "description_macro": "Delivers an attack to all enemies in a straight line before you with a potency of <if([gnum68==31],<if([gnum72>=94],660,620)>,620)> for the first enemy, and 25% less for all remaining enemies.<br><colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>Increases <colortype(500)><edgecolortype(501)>Battery Gauge<edgecolortype(0)><colortype(0)> by 20<br><if([gnum68==31],<if([gnum72>=96],<colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>Grants <colortype(506)><edgecolortype(507)>Excavator Ready<edgecolortype(0)><colortype(0)><br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>30s<br>,)>,)>This weaponskill does not share a recast timer with any other actions.",
+      "unlock_level": 90,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Physical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 31,
+          "name": "Machinist",
+          "abbreviation": "MCH",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

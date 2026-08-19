@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 586,
+  "name": "Trick Attack Mastery",
+  "description": "Upgrades Trick Attack to Kunai's Bane.",
+  "description_macro": "Upgrades <colortype(500)><edgecolortype(501)>Trick Attack<edgecolortype(0)><colortype(0)> to <colortype(500)><edgecolortype(501)>Kunai's Bane<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Upgrades Trick Attack to Kunai's Bane."
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 30,
+    "name": "Ninja",
+    "abbreviation": "NIN"
+  },
+  "unlock_level": 92,
+  "value": 0,
+  "icon": {
+    "id": 5423,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 92,
+  "source_class_job_id": 30
+}

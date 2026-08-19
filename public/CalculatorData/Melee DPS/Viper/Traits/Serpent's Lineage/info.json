@@ -1,0 +1,26 @@
+{
+  "kind": "trait",
+  "id": 531,
+  "name": "Serpent's Lineage",
+  "description": "Allows for Serpent Offerings Gauge accumulation upon the landing of certain actions.\nFurthermore, adds an additional effect to Serpent's Ire that grants Ready to Reawaken.\nDuration: 30s",
+  "description_macro": "Allows for <colortype(500)><edgecolortype(501)>Serpent Offerings Gauge<edgecolortype(0)><colortype(0)> accumulation upon the landing of certain actions.<br>Furthermore, adds an additional effect to <colortype(500)><edgecolortype(501)>Serpent's Ire<edgecolortype(0)><colortype(0)> that grants <colortype(506)><edgecolortype(507)>Ready to Reawaken<edgecolortype(0)><colortype(0)>.<br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>30s",
+  "effects": [
+    "Allows for Serpent Offerings Gauge accumulation upon the landing of certain actions.",
+    "Furthermore, adds an additional effect to Serpent's Ire that grants Ready to Reawaken.",
+    "Duration: 30s"
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 41,
+    "name": "Viper",
+    "abbreviation": "VPR"
+  },
+  "unlock_level": 90,
+  "value": 0,
+  "icon": {
+    "id": 6508,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 196,
+  "source_class_job_id": 41
+}

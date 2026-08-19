@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 306,
+  "name": "Red Magic Mastery",
+  "description": "Reduces Contre Sixte recast timer to 35 seconds and increases the potency of both Verthunder II and Veraero II to 120.",
+  "description_macro": "Reduces <colortype(500)><edgecolortype(501)>Contre Sixte<edgecolortype(0)><colortype(0)> recast timer to 35 seconds and increases the potency of both <colortype(500)><edgecolortype(501)>Verthunder II<edgecolortype(0)><colortype(0)> and <colortype(500)><edgecolortype(501)>Veraero II<edgecolortype(0)><colortype(0)> to 120.",
+  "effects": [
+    "Reduces Contre Sixte recast timer to 35 seconds and increases the potency of both Verthunder II and Veraero II to 120."
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 35,
+    "name": "Red Mage",
+    "abbreviation": "RDM"
+  },
+  "unlock_level": 74,
+  "value": -100,
+  "icon": {
+    "id": 6206,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 112,
+  "source_class_job_id": 35
+}

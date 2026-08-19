@@ -1,0 +1,113 @@
+{
+  "kind": "combat_status",
+  "id": 3676,
+  "name": "Sorts chromatiques 3 préparés",
+  "description": "Les sorts en bleu et en magenta peuvent être lancés.",
+  "effects": [
+    "Les sorts en bleu et en magenta peuvent être lancés."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 213802,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": true,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 33,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 197,
+  "source_abilities": [
+    {
+      "id": 34651,
+      "name": "Vent en vert",
+      "description": "Effectue une attaque magique de vent sur la cible.\nPuissance : 530\nEffet additionnel : vous octroie Sorts chromatiques 3 préparés.\nDurée : 30s\nCondition : Sorts chromatiques 2 préparés et Palette soustractive non octroyée.\nSi Installation est active et que vous vous tenez dans les limites du ciel peint avec Imagi Ciel\\\n\n* Cette action ne peut pas être ajoutée aux barres de raccourcis.\nRemplace Feu en rouge lorsque les conditions sont réunies.",
+      "description_macro": "Effectue une attaque magique de vent sur la cible.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> <if([gnum68==42],<if([gnum72>=94],530,<if([gnum68==42],<if([gnum72>=84],460,<if([gnum68==42],<if([gnum72>=74],420,<if([gnum68==42],<if([gnum72>=54],350,280)>,280)>)>,<if([gnum68==42],<if([gnum72>=54],350,280)>,280)>)>)>,<if([gnum68==42],<if([gnum72>=74],420,<if([gnum68==42],<if([gnum72>=54],350,280)>,280)>)>,<if([gnum68==42],<if([gnum72>=54],350,280)>,280)>)>)>)>,<if([gnum68==42],<if([gnum72>=84],460,<if([gnum68==42],<if([gnum72>=74],420,<if([gnum68==42],<if([gnum72>=54],350,280)>,280)>)>,<if([gnum68==42],<if([gnum72>=54],350,280)>,280)>)>)>,<if([gnum68==42],<if([gnum72>=74],420,<if([gnum68==42],<if([gnum72>=54],350,280)>,280)>)>,<if([gnum68==42],<if([gnum72>=54],350,280)>,280)>)>)>)><br><colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> vous octroie <colortype(500)><edgecolortype(501)>Sorts chromatiques 3 préparés<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 30s<br><colortype(506)><edgecolortype(507)>Condition<nbsp>:<edgecolortype(0)><colortype(0)> <colortype(500)><edgecolortype(501)>Sorts chromatiques 2 préparés<edgecolortype(0)><colortype(0)> et <colortype(500)><edgecolortype(501)>Palette soustractive<edgecolortype(0)><colortype(0)> non octroyée.<if([gnum68==42],<if([gnum72>=82],<br>Si <colortype(500)><edgecolortype(501)>Installation<edgecolortype(0)><colortype(0)> est active et que vous vous tenez dans les limites du ciel peint avec Imagi Ciel\\, en consomme un degré.,)>,)><br><br><colortype(504)><edgecolortype(505)>* Cette action ne peut pas être ajoutée aux barres de raccourcis.<br>Remplace <colortype(500)><edgecolortype(501)>Feu en rouge<edgecolortype(0)><colortype(0)> lorsque les conditions sont réunies.<edgecolortype(0)><colortype(0)>",
+      "unlock_level": 5,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Magical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 42,
+          "name": "Pictomancien",
+          "abbreviation": "PIC",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 34654,
+      "name": "Terre en jaune",
+      "description": "Effectue une attaque magique de terre sur la cible.\nPuissance : 900\nEffet additionnel : vous octroie Sorts chromatiques 3 préparés.\nDurée : 30s\nCondition : Sorts chromatiques 2 préparés et Palette soustractive.\nSi Installation est active et que vous vous tenez dans les limites du ciel peint avec Imagi Ciel\\Ce sort a un temps de recharge indépendant qui est appliqué aux autres sorts ou techniques d'arme après utilisation.\n\n* Cette action ne peut pas être ajoutée aux barres de raccourcis.\nRemplace Glace en cyan lorsque les conditions sont réunies.",
+      "description_macro": "Effectue une attaque magique de terre sur la cible.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> <if([gnum68==42],<if([gnum72>=94],900,<if([gnum68==42],<if([gnum72>=84],790,<if([gnum68==42],<if([gnum72>=74],720,600)>,600)>)>,<if([gnum68==42],<if([gnum72>=74],720,600)>,600)>)>)>,<if([gnum68==42],<if([gnum72>=84],790,<if([gnum68==42],<if([gnum72>=74],720,600)>,600)>)>,<if([gnum68==42],<if([gnum72>=74],720,600)>,600)>)>)><br><colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> vous octroie <colortype(500)><edgecolortype(501)>Sorts chromatiques 3 préparés<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 30s<br><colortype(506)><edgecolortype(507)>Condition<nbsp>:<edgecolortype(0)><colortype(0)> <colortype(500)><edgecolortype(501)>Sorts chromatiques 2 préparés<edgecolortype(0)><colortype(0)> et <colortype(500)><edgecolortype(501)>Palette soustractive<edgecolortype(0)><colortype(0)>.<br><if([gnum68==42],<if([gnum72>=82],Si <colortype(500)><edgecolortype(501)>Installation<edgecolortype(0)><colortype(0)> est active et que vous vous tenez dans les limites du ciel peint avec Imagi Ciel\\, en consomme un degré.<br>,)>,)>Ce sort a un temps de recharge indépendant qui est appliqué aux autres sorts ou techniques d'arme après utilisation.<br><br><colortype(504)><edgecolortype(505)>* Cette action ne peut pas être ajoutée aux barres de raccourcis.<br>Remplace <colortype(500)><edgecolortype(501)>Glace en cyan<edgecolortype(0)><colortype(0)> lorsque les conditions sont réunies.<edgecolortype(0)><colortype(0)>",
+      "unlock_level": 60,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Magical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 42,
+          "name": "Pictomancien",
+          "abbreviation": "PIC",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 34657,
+      "name": "Extra Vent en vert",
+      "description": "Effectue une attaque magique de vent sur la cible et les ennemis autour.\nPuissance : 200\nEffet additionnel : vous octroie Sorts chromatiques 3 préparés.\nDurée : 30s\nCondition : Sorts chromatiques 2 préparés et Palette soustractive non octroyée.\nSi Installation est active et que vous vous tenez dans les limites du ciel peint avec Imagi Ciel\\\n\n* Cette action ne peut pas être ajoutée aux barres de raccourcis.\nRemplace Extra Feu en rouge lorsque les conditions sont réunies.",
+      "description_macro": "Effectue une attaque magique de vent sur la cible et les ennemis autour.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> <if([gnum68==42],<if([gnum72>=94],200,<if([gnum68==42],<if([gnum72>=74],170,140)>,140)>)>,<if([gnum68==42],<if([gnum72>=74],170,140)>,140)>)><br><colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> vous octroie <colortype(500)><edgecolortype(501)>Sorts chromatiques 3 préparés<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 30s<br><colortype(506)><edgecolortype(507)>Condition<nbsp>:<edgecolortype(0)><colortype(0)> <colortype(500)><edgecolortype(501)>Sorts chromatiques 2 préparés<edgecolortype(0)><colortype(0)> et <colortype(500)><edgecolortype(501)>Palette soustractive<edgecolortype(0)><colortype(0)> non octroyée.<if([gnum68==42],<if([gnum72>=82],<br>Si <colortype(500)><edgecolortype(501)>Installation<edgecolortype(0)><colortype(0)> est active et que vous vous tenez dans les limites du ciel peint avec Imagi Ciel\\, en consomme un degré.,)>,)><br><br><colortype(504)><edgecolortype(505)>* Cette action ne peut pas être ajoutée aux barres de raccourcis.<br>Remplace <colortype(500)><edgecolortype(501)>Extra Feu en rouge<edgecolortype(0)><colortype(0)> lorsque les conditions sont réunies.<edgecolortype(0)><colortype(0)>",
+      "unlock_level": 35,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Magical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 42,
+          "name": "Pictomancien",
+          "abbreviation": "PIC",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 34660,
+      "name": "Extra Terre en jaune",
+      "description": "Effectue une attaque magique de terre sur la cible et les ennemis autour.\nPuissance : 380\nEffet additionnel : vous octroie Sorts chromatiques 3 préparés.\nDurée : 30s\nCondition : Sorts chromatiques 2 préparés et Palette soustractive.\nSi Installation est active et que vous vous tenez dans les limites du ciel peint avec Imagi Ciel\\Ce sort a un temps de recharge indépendant qui est appliqué aux autres sorts ou techniques d'arme après utilisation.\n\n* Cette action ne peut pas être ajoutée aux barres de raccourcis.\nRemplace Extra Glace en cyan lorsque les conditions sont réunies.",
+      "description_macro": "Effectue une attaque magique de terre sur la cible et les ennemis autour.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> <if([gnum68==42],<if([gnum72>=94],380,<if([gnum68==42],<if([gnum72>=74],350,290)>,290)>)>,<if([gnum68==42],<if([gnum72>=74],350,290)>,290)>)><br><colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> vous octroie <colortype(500)><edgecolortype(501)>Sorts chromatiques 3 préparés<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 30s<br><colortype(506)><edgecolortype(507)>Condition<nbsp>:<edgecolortype(0)><colortype(0)> <colortype(500)><edgecolortype(501)>Sorts chromatiques 2 préparés<edgecolortype(0)><colortype(0)> et <colortype(500)><edgecolortype(501)>Palette soustractive<edgecolortype(0)><colortype(0)>.<br><if([gnum68==42],<if([gnum72>=82],Si <colortype(500)><edgecolortype(501)>Installation<edgecolortype(0)><colortype(0)> est active et que vous vous tenez dans les limites du ciel peint avec Imagi Ciel\\, en consomme un degré.<br>,)>,)>Ce sort a un temps de recharge indépendant qui est appliqué aux autres sorts ou techniques d'arme après utilisation.<br><br><colortype(504)><edgecolortype(505)>* Cette action ne peut pas être ajoutée aux barres de raccourcis.<br>Remplace <colortype(500)><edgecolortype(501)>Extra Glace en cyan<edgecolortype(0)><colortype(0)> lorsque les conditions sont réunies.<edgecolortype(0)><colortype(0)>",
+      "unlock_level": 60,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Magical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 42,
+          "name": "Pictomancien",
+          "abbreviation": "PIC",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

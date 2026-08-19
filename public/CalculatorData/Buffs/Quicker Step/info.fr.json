@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 4799,
+  "name": "Pas leste offensif",
+  "description": "Les dégâts infligés sont augmentés.",
+  "effects": [
+    "Les dégâts infligés sont augmentés."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 229973,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 5
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 46603,
+      "name": "Pas leste",
+      "description": "Augmente de 20% votre esquive.\nDurée : 90s\nEffet additionnel : lorsque l'action est utilisée à proximité d'un cristal de savoir, vous octroie ainsi qu'à vos équipiers Pas leste offensif.\nDurée : 30m\nPas leste offensif : augmente de 2% les dégâts infligés.",
+      "description_macro": "Augmente de 20% votre esquive.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 90s<br><colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> lorsque l'action est utilisée à proximité d'un cristal de savoir, vous octroie ainsi qu'à vos équipiers <colortype(500)><edgecolortype(501)>Pas leste offensif<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 30m<br><colortype(506)><edgecolortype(507)>Pas leste offensif<nbsp>:<edgecolortype(0)><colortype(0)> augmente de 2% les dégâts infligés.",
+      "unlock_level": 0,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Phantom Jobs"
+      ],
+      "jobs": [
+        {
+          "id": 15,
+          "name": "Phantom Danseur fantôme",
+          "abbreviation": "Danseur fant.",
+          "is_phantom": true
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 4265,
+  "name": "Prophezeiung: Das Jüngste Gericht",
+  "description": "Prophezeit das Jüngste Gericht.",
+  "effects": [
+    "Prophezeit das Jüngste Gericht."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 229923,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": true,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 41636,
+      "name": "Prophezeien",
+      "description": "Du gewährst dir den Status Prophezeiung: Das Jüngste Gericht, Prophezeiung: Kosmischer Kollaps, Prophezeiung: Segen oder Prophezeiung: Sternenregen. Während eine Prophezeiung aktiv ist, kannst du das entsprechende Prophezeiungskommando ausführen.\nDas Jüngste Gericht: Führt eine magische Attacke auf umstehende Gegner aus und heilt dabei dich selbst und umstehende Gruppenmitglieder.\nKosmischer Kollaps: Führt eine magische Attacke auf umstehende Gegner aus und hält die Zeit an.\nSegen: Heilt dich und umstehende Gruppenmitglieder und gewährt einen stetigen Heileffekt.\nSternenregen: Führt eine magische Attacke auf dich selbst und umstehende Gegner aus.\nWenn der Status der momentanen Prophezeiung endet, ändert er sich zu einer anderen Prophezeiung. Wird nach einer bestimmten Zeit keine Prophezeiung wahr, ändert sich der Status zu Falsche Prophetie.\nWährend Falsche Prophetie aktiv ist, nimmst du stetig Schaden.\nAttacke-Wert: 50.000\nDauer: 30 Sekunden",
+      "description_macro": "Du gewährst dir den Status <colortype(506)><edgecolortype(507)>Prophezeiung: Das Jüngste Gericht<edgecolortype(0)><colortype(0)>, <colortype(506)><edgecolortype(507)>Prophezeiung: Kosmischer Kollaps<edgecolortype(0)><colortype(0)>, <colortype(506)><edgecolortype(507)>Prophezeiung: Segen<edgecolortype(0)><colortype(0)> oder <colortype(506)><edgecolortype(507)>Prophezeiung: Sternenregen<edgecolortype(0)><colortype(0)>. Während eine Prophezeiung aktiv ist, kannst du das entsprechende <colortype(502)><edgecolortype(503)>Prophezeiungskommando<edgecolortype(0)><colortype(0)> ausführen.<br><colortype(502)><edgecolortype(503)>Das Jüngste Gericht<edgecolortype(0)><colortype(0)>: Führt eine magische Attacke auf umstehende Gegner aus und heilt dabei dich selbst und umstehende Grup<->pen<->mit<->glieder.<br><colortype(502)><edgecolortype(503)>Kosmischer Kollaps<edgecolortype(0)><colortype(0)>: Führt eine magische Attacke auf umstehende Gegner aus und hält die Zeit an.<br><colortype(502)><edgecolortype(503)>Segen<edgecolortype(0)><colortype(0)>: Heilt dich und umstehende Grup<->pen<->mit<->glieder und gewährt einen stetigen Heileffekt.<br><colortype(502)><edgecolortype(503)>Sternenregen<edgecolortype(0)><colortype(0)>: Führt eine magische Attacke auf dich selbst und umstehende Gegner aus.<br>Wenn der Status der momentanen Prophezeiung endet, ändert er sich zu einer anderen Prophezeiung. Wird nach einer bestimmten Zeit keine Prophezeiung wahr, ändert sich der Status zu <colortype(506)><edgecolortype(507)>Falsche Prophetie<edgecolortype(0)><colortype(0)>.<br>Während <colortype(506)><edgecolortype(507)>Falsche Prophetie<edgecolortype(0)><colortype(0)> aktiv ist, nimmst du stetig Schaden.<br>Attacke-Wert: 50.000<br>Dauer: 30 Sekunden",
+      "unlock_level": 0,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Phantom Jobs"
+      ],
+      "jobs": [
+        {
+          "id": 11,
+          "name": "Phantom Phantom-Seher",
+          "abbreviation": "Ph-Seher",
+          "is_phantom": true
+        }
+      ]
+    }
+  ]
+}

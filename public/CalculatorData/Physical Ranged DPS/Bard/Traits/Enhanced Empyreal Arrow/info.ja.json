@@ -1,0 +1,25 @@
+{
+  "kind": "trait",
+  "id": 169,
+  "name": "エンピリアルアロー効果アップ",
+  "description": "賢人のバラード、軍神のパイオン、旅神のメヌエットの追加効果が発動する。\n発動条件：賢人のバラード、軍神のパイオン、旅神のメヌエットのいずれかを実行中でかつエンピリアルアローの命中時",
+  "description_macro": "賢人のバラード、軍神のパイオン、旅神のメヌエットの追加効果が発動する。<br><colortype(504)><edgecolortype(505)>発動条件：<edgecolortype(0)><colortype(0)>賢人のバラード、軍神のパイオン、旅神のメヌエットのいずれかを実行中でかつエンピリアルアローの命中時",
+  "effects": [
+    "賢人のバラード、軍神のパイオン、旅神のメヌエットの追加効果が発動する。",
+    "発動条件：賢人のバラード、軍神のパイオン、旅神のメヌエットのいずれかを実行中でかつエンピリアルアローの命中時"
+  ],
+  "role": "Physical Ranged DPS",
+  "job": {
+    "id": 23,
+    "name": "吟遊詩人",
+    "abbreviation": "BRD"
+  },
+  "unlock_level": 68,
+  "value": 0,
+  "icon": {
+    "id": 5310,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 24,
+  "source_class_job_id": 23
+}

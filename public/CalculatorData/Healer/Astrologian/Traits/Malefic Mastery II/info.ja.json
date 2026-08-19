@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 188,
+  "name": "マレフィクマスタリーII",
+  "description": "マレフィラがマレフィガに変化する。",
+  "description_macro": "マレフィラがマレフィガに変化する。",
+  "effects": [
+    "マレフィラがマレフィガに変化する。"
+  ],
+  "role": "Healer",
+  "job": {
+    "id": 33,
+    "name": "占星術師",
+    "abbreviation": "AST"
+  },
+  "unlock_level": 64,
+  "value": 0,
+  "icon": {
+    "id": 6111,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 99,
+  "source_class_job_id": 33
+}

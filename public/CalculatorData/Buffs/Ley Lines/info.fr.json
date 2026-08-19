@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 737,
+  "name": "Manalignements",
+  "description": "Fait apparaître des signes magiques au sol.",
+  "effects": [
+    "Fait apparaître des signes magiques au sol."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 212653,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": true,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 3573,
+      "name": "Manalignements",
+      "description": "Fait apparaître à vos pieds des signes magiques, réduisant de 15% le délai de vos attaques automatiques et les temps de lancement et de recharge de vos sorts de magie.\nDurée : 20s\nMaximum de charges : 2\nCondition : Manalignements non octroyé.",
+      "description_macro": "Fait apparaître à vos pieds des signes magiques, réduisant de 15% le délai de vos attaques automatiques et les temps de lancement et de recharge de vos sorts de magie.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 20s<br><colortype(506)><edgecolortype(507)>Maximum de charges<nbsp>:<edgecolortype(0)><colortype(0)> 2<br><colortype(506)><edgecolortype(507)>Condition<nbsp>:<edgecolortype(0)><colortype(0)> <colortype(500)><edgecolortype(501)>Manalignements<edgecolortype(0)><colortype(0)> non octroyé.",
+      "unlock_level": 52,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Magical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 25,
+          "name": "Mage Noir",
+          "abbreviation": "MNO",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

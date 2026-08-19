@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 159,
+  "name": "Enhanced Blackblood",
+  "description": "Allows for Blood Gauge accumulation upon the landing of any weaponskill or spell while under the effect of Blood Weapon.",
+  "description_macro": "Allows for <colortype(500)><edgecolortype(501)>Blood Gauge<edgecolortype(0)><colortype(0)> accumulation upon the landing of any weaponskill or spell while under the effect of <colortype(506)><edgecolortype(507)>Blood Weapon<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Allows for Blood Gauge accumulation upon the landing of any weaponskill or spell while under the effect of Blood Weapon."
+  ],
+  "role": "Tank",
+  "job": {
+    "id": 32,
+    "name": "Dark Knight",
+    "abbreviation": "DRK"
+  },
+  "unlock_level": 66,
+  "value": 0,
+  "icon": {
+    "id": 6060,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 98,
+  "source_class_job_id": 32
+}

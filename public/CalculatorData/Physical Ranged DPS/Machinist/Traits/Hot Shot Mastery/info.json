@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 291,
+  "name": "Hot Shot Mastery",
+  "description": "Upgrades Hot Shot to Air Anchor.",
+  "description_macro": "Upgrades <colortype(500)><edgecolortype(501)>Hot Shot<edgecolortype(0)><colortype(0)> to <colortype(500)><edgecolortype(501)>Air Anchor<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Upgrades Hot Shot to Air Anchor."
+  ],
+  "role": "Physical Ranged DPS",
+  "job": {
+    "id": 31,
+    "name": "Machinist",
+    "abbreviation": "MCH"
+  },
+  "unlock_level": 76,
+  "value": 0,
+  "icon": {
+    "id": 6016,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 96,
+  "source_class_job_id": 31
+}

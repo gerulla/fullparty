@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 2622,
+  "name": "Krasis",
+  "description": "Eigene LP-Regeneration durch Heilmagie ist erhöht.",
+  "effects": [
+    "Eigene LP-Regeneration durch Heilmagie ist erhöht."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 212968,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 20,
+  "parameter": {
+    "effect": 0,
+    "modifier": 20
+  },
+  "class_job_category_id": 181,
+  "source_abilities": [
+    {
+      "id": 24317,
+      "name": "Krasis",
+      "description": "Du erhöhst LP-Regenerationseffekte auf dich oder ein Gruppenmitglied um 20 %.\nDauer: 10 Sekunden",
+      "description_macro": "Du erhöhst LP-Regenerationseffekte auf dich oder ein Grup<->pen<->mit<->glied um 20<nbsp>%.<br>Dauer: 10 Sekunden",
+      "unlock_level": 86,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Healer"
+      ],
+      "jobs": [
+        {
+          "id": 40,
+          "name": "Weiser",
+          "abbreviation": "WEI",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

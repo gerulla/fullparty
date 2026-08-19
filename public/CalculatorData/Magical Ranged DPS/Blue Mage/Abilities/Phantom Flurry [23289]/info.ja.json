@@ -1,0 +1,90 @@
+{
+  "kind": "ability",
+  "id": 23289,
+  "name": "鬼宿脚",
+  "description": "自身の前方扇範囲に向かって攻撃をし続ける。\n範囲内にいる敵に対して毎秒ダメージを与える。\n威力：200\u3000効果時間：5秒\n効果時間中に再使用すると、自身の前方に向かって無属性扇範囲物理攻撃。\u3000威力：600\n2体目以降の対象への威力は50％減少する。\n効果時間中に鬼宿脚以外のアクションの実行や移動・ターンを行うと、鬼宿脚は即座に解除される。\n実行後にオートアタックを停止する。",
+  "description_macro": "自身の前方扇範囲に向かって攻撃をし続ける。<br>範囲内にいる敵に対して毎秒ダメージを与える。<br><colortype(504)><edgecolortype(505)>威力：<edgecolortype(0)><colortype(0)>200\u3000<colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>5秒<br>効果時間中に再使用すると、自身の前方に向かって無属性扇範囲物理攻撃。\u3000<colortype(504)><edgecolortype(505)>威力：<edgecolortype(0)><colortype(0)>600<br>2体目以降の対象への威力は50％減少する。<br>効果時間中に鬼宿脚以外のアクションの実行や移動・ターンを行うと、鬼宿脚は即座に解除される。<br>実行後にオートアタックを停止する。",
+  "effects": [
+    "自身の前方扇範囲に向かって攻撃をし続ける。",
+    "範囲内にいる敵に対して毎秒ダメージを与える。",
+    "威力：200\u3000効果時間：5秒",
+    "効果時間中に再使用すると、自身の前方に向かって無属性扇範囲物理攻撃。\u3000威力：600",
+    "2体目以降の対象への威力は50％減少する。",
+    "効果時間中に鬼宿脚以外のアクションの実行や移動・ターンを行うと、鬼宿脚は即座に解除される。",
+    "実行後にオートアタックを停止する。"
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 36,
+    "name": "青魔道士",
+    "abbreviation": "BLU"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 1,
+  "icon": {
+    "id": 3356,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 4,
+    "name": "アビリティ"
+  },
+  "attack_type": {
+    "id": 3,
+    "name": "打"
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 2.5,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 58,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 0,
+      "value": 0
+    },
+    "secondary": {
+      "type_id": 32,
+      "value": 2502
+    }
+  },
+  "range": {
+    "target_yalms": 0,
+    "effect_yalms": 16,
+    "cast_type": 3
+  },
+  "targeting": {
+    "self": true,
+    "party": false,
+    "alliance": false,
+    "hostile": false,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": false
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 7,
+    "behavior_type": 0,
+    "class_job_category_id": 129,
+    "source_class_job_id": 0,
+    "is_role_action": false,
+    "is_player_action": false,
+    "is_derived_action": true,
+    "equivalence_group": 0
+  }
+}

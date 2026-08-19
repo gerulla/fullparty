@@ -1,0 +1,71 @@
+{
+  "kind": "combat_status",
+  "id": 2845,
+  "name": "Enhanced Harpe",
+  "description": "Next Harpe requires no time to cast and will reduce the recast timer of Hell's Ingress and Hell's Egress.",
+  "effects": [
+    "Next Harpe requires no time to cast and will reduce the recast timer of Hell's Ingress and Hell's Egress."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 212939,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 180,
+  "source_abilities": [
+    {
+      "id": 24401,
+      "name": "Hell's Ingress",
+      "description": "Quickly dash 15 yalms forward.\nAdditional Effect: Grants Enhanced Harpe\nEnhanced Harpe Effect: Next Harpe can be cast immediately and will reduce recast timer of Hell's Ingress by 5s upon execution\nDuration: 10s\nAdditional Effect: Leaves behind a Hellsgate at point of origin\\Cannot be executed while bound.\nShares a recast timer with Hell's Egress.",
+      "description_macro": "Quickly dash 15 yalms forward.<br><colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>Grants <colortype(506)><edgecolortype(507)>Enhanced Harpe<edgecolortype(0)><colortype(0)><br><colortype(504)><edgecolortype(505)>Enhanced Harpe Effect: <edgecolortype(0)><colortype(0)>Next <colortype(500)><edgecolortype(501)>Harpe<edgecolortype(0)><colortype(0)> can be cast immediately and will reduce recast timer of <colortype(500)><edgecolortype(501)>Hell's Ingress<edgecolortype(0)><colortype(0)> by 5s upon execution<br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>10s<br><if([gnum68==39],<if([gnum72>=74],<colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>Leaves behind a <colortype(506)><edgecolortype(507)>Hellsgate<edgecolortype(0)><colortype(0)> at point of origin\\, and grants <colortype(506)><edgecolortype(507)>Threshold<edgecolortype(0)><colortype(0)> to self<br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>10s<br>,)>,)>Cannot be executed while bound.<br>Shares a recast timer with <colortype(500)><edgecolortype(501)>Hell's Egress<edgecolortype(0)><colortype(0)>.",
+      "unlock_level": 20,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 39,
+          "name": "Reaper",
+          "abbreviation": "RPR",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 24402,
+      "name": "Hell's Egress",
+      "description": "Quickly dash 15 yalms backwards.\nAdditional Effect: Grants Enhanced Harpe\nEnhanced Harpe Effect: Next Harpe can be cast immediately and will reduce recast timer of Hell's Egress by 5s upon execution\nDuration: 10s\nAdditional Effect: Leaves behind a Hellsgate at point of origin\\Cannot be executed while bound.\nShares a recast timer with Hell's Ingress.",
+      "description_macro": "Quickly dash 15 yalms backwards.<br><colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>Grants <colortype(506)><edgecolortype(507)>Enhanced Harpe<edgecolortype(0)><colortype(0)><br><colortype(504)><edgecolortype(505)>Enhanced Harpe Effect: <edgecolortype(0)><colortype(0)>Next <colortype(500)><edgecolortype(501)>Harpe<edgecolortype(0)><colortype(0)> can be cast immediately and will reduce recast timer of <colortype(500)><edgecolortype(501)>Hell's Egress<edgecolortype(0)><colortype(0)> by 5s upon execution<br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>10s<br><if([gnum68==39],<if([gnum72>=74],<colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>Leaves behind a <colortype(506)><edgecolortype(507)>Hellsgate<edgecolortype(0)><colortype(0)> at point of origin\\, and grants <colortype(506)><edgecolortype(507)>Threshold<edgecolortype(0)><colortype(0)> to self<br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>10s<br>,)>,)>Cannot be executed while bound.<br>Shares a recast timer with <colortype(500)><edgecolortype(501)>Hell's Ingress<edgecolortype(0)><colortype(0)>.",
+      "unlock_level": 20,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 39,
+          "name": "Reaper",
+          "abbreviation": "RPR",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

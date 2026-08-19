@@ -1,0 +1,97 @@
+{
+  "kind": "ability",
+  "id": 36964,
+  "name": "Zanshin",
+  "description": "Effectue une attaque physique dans une zone en éventail vers la cible.\nPuissance : 940\nLa puissance est réduite de 40% au-delà du premier ennemi touché.\nCondition : Zanshin préparé.\nCoût Jauge de Kenki : 50",
+  "description_macro": "Effectue une attaque physique dans une zone en éventail vers la cible.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> 940<br>La puissance est réduite de 40% au-delà du premier ennemi touché.<br><colortype(506)><edgecolortype(507)>Condition<nbsp>:<edgecolortype(0)><colortype(0)> <colortype(500)><edgecolortype(501)>Zanshin préparé<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Coût Jauge de Kenki<nbsp>:<edgecolortype(0)><colortype(0)> 50",
+  "effects": [
+    "Effectue une attaque physique dans une zone en éventail vers la cible.",
+    "Puissance : 940",
+    "La puissance est réduite de 40% au-delà du premier ennemi touché.",
+    "Condition : Zanshin préparé.",
+    "Coût Jauge de Kenki : 50"
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 34,
+    "name": "Samouraï",
+    "abbreviation": "SAM"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 96,
+  "icon": {
+    "id": 3192,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 4,
+    "name": "Aptitude"
+  },
+  "attack_type": {
+    "id": 4294967295,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 1,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 3,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 39,
+      "value": 50
+    },
+    "secondary": {
+      "type_id": 32,
+      "value": 3855
+    }
+  },
+  "range": {
+    "target_yalms": 8,
+    "effect_yalms": 8,
+    "cast_type": 3
+  },
+  "targeting": {
+    "self": false,
+    "party": false,
+    "alliance": false,
+    "hostile": true,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": {
+      "id": 166,
+      "status": {
+        "id": 3855,
+        "name": "Zanshin préparé",
+        "description": "Zanshin peut être lancé.",
+        "icon_id": 213318,
+        "max_stacks": 0
+      }
+    }
+  },
+  "metadata": {
+    "aspect_id": 7,
+    "behavior_type": 0,
+    "class_job_category_id": 111,
+    "source_class_job_id": 34,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

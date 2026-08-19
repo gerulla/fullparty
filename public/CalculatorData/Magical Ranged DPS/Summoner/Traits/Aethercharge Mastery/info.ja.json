@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 474,
+  "name": "エーテルチャージマスタリー",
+  "description": "エーテルチャージがトランス・バハムートに変化する。",
+  "description_macro": "エーテルチャージがトランス・バハムートに変化する。",
+  "effects": [
+    "エーテルチャージがトランス・バハムートに変化する。"
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 27,
+    "name": "召喚士",
+    "abbreviation": "SMN"
+  },
+  "unlock_level": 58,
+  "value": 0,
+  "icon": {
+    "id": 5690,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 28,
+  "source_class_job_id": 27
+}

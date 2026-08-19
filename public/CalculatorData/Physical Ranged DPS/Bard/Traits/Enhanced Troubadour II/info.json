@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 601,
+  "name": "Enhanced Troubadour II",
+  "description": "Improves Troubadour's damage reduction effect to 15%.",
+  "description_macro": "Improves <colortype(500)><edgecolortype(501)>Troubadour<edgecolortype(0)><colortype(0)>'s damage reduction effect to 15%.",
+  "effects": [
+    "Improves Troubadour's damage reduction effect to 15%."
+  ],
+  "role": "Physical Ranged DPS",
+  "job": {
+    "id": 23,
+    "name": "Bard",
+    "abbreviation": "BRD"
+  },
+  "unlock_level": 98,
+  "value": 0,
+  "icon": {
+    "id": 5324,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 24,
+  "source_class_job_id": 23
+}

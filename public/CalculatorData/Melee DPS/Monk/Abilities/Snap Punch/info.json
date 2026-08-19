@@ -1,0 +1,90 @@
+{
+  "kind": "ability",
+  "id": 56,
+  "name": "Snap Punch",
+  "description": "Delivers an attack with a potency of 270.\n330 when executed from a target's flank.\nCoeurl's Fury Potency: 420\nFlank Coeurl's Fury Potency: 480\nCan only be executed when in coeurl form.\nAdditional Effect: Changes form to opo-opo\nDuration: 30s",
+  "description_macro": "Delivers an attack with a potency of <if([gnum68==20],<if([gnum72>=84],270,230)>,230)>.<br><if([gnum68==20],<if([gnum72>=84],330,290)>,290)> when executed from a target's flank.<br><if([gnum72>=30],<if([gnum68==2],<colortype(504)><edgecolortype(505)>Coeurl's Fury Potency: <edgecolortype(0)><colortype(0)><if([gnum68==20],<if([gnum72>=84],420,380)>,380)><br><colortype(504)><edgecolortype(505)>Flank Coeurl's Fury Potency: <edgecolortype(0)><colortype(0)><if([gnum68==20],<if([gnum72>=84],480,440)>,440)><br>,<if([gnum68==20],<colortype(504)><edgecolortype(505)>Coeurl's Fury Potency: <edgecolortype(0)><colortype(0)><if([gnum68==20],<if([gnum72>=84],420,380)>,380)><br><colortype(504)><edgecolortype(505)>Flank Coeurl's Fury Potency: <edgecolortype(0)><colortype(0)><if([gnum68==20],<if([gnum72>=84],480,440)>,440)><br>,)>)>,)>Can only be executed when in <colortype(506)><edgecolortype(507)>coeurl<edgecolortype(0)><colortype(0)> form.<br><colortype(504)><edgecolortype(505)>Additional Effect:<edgecolortype(0)><colortype(0)> Changes form to <colortype(506)><edgecolortype(507)>opo-opo<edgecolortype(0)><colortype(0)><br><colortype(504)><edgecolortype(505)>Duration:<edgecolortype(0)><colortype(0)> 30s",
+  "effects": [
+    "Delivers an attack with a potency of 270.",
+    "330 when executed from a target's flank.",
+    "Coeurl's Fury Potency: 420",
+    "Flank Coeurl's Fury Potency: 480",
+    "Can only be executed when in coeurl form.",
+    "Additional Effect: Changes form to opo-opo",
+    "Duration: 30s"
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 20,
+    "name": "Monk",
+    "abbreviation": "MNK"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 6,
+  "icon": {
+    "id": 210,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 3,
+    "name": "Weaponskill"
+  },
+  "attack_type": {
+    "id": 4294967295,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 2.5,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 58,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 101,
+      "value": 577
+    },
+    "secondary": {
+      "type_id": 32,
+      "value": 109
+    }
+  },
+  "range": {
+    "target_yalms": -1,
+    "effect_yalms": 0,
+    "cast_type": 1
+  },
+  "targeting": {
+    "self": false,
+    "party": false,
+    "alliance": false,
+    "hostile": true,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": false
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 7,
+    "behavior_type": 0,
+    "class_job_category_id": 41,
+    "source_class_job_id": 2,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

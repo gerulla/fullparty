@@ -1,0 +1,90 @@
+{
+  "kind": "ability",
+  "id": 25822,
+  "name": "Flux astral",
+  "description": "L'effet de cette action dépend de celle qui la précède.\n\nAprès Invocation Bahamut : devient Brasier de mort.\nAprès Invocation Phénix : devient Ravivement.\nAprès Invocation Ifrit II : devient Cyclone écarlate.\nAprès Rite de topaze ou Cataclysme de topaze : devient Casse-montagnes.\nAprès Invocation Garuda II : devient Sillage.\nAprès Invocation Sol-Bahamut : devient Brasier solaire.",
+  "description_macro": "L'effet de cette action dépend de celle qui la précède.<br><br><colortype(506)><edgecolortype(507)>Après <if([gnum72>=70],<if([gnum68==27],Invocation Bahamut,Transe-Bahamut)>,Transe-Bahamut)><nbsp>:<edgecolortype(0)><colortype(0)> devient <colortype(500)><edgecolortype(501)>Brasier de mort<edgecolortype(0)><colortype(0)>.<if([gnum68==27],<if([gnum72>=80],<br><colortype(506)><edgecolortype(507)>Après Invocation Phénix<nbsp>:<edgecolortype(0)><colortype(0)> devient <colortype(500)><edgecolortype(501)>Ravivement<edgecolortype(0)><colortype(0)>.,)>,)><if([gnum68==27],<if([gnum72>=86],<br><colortype(506)><edgecolortype(507)>Après <if([gnum68==27],<if([gnum72>=90],Invocation Ifrit II,Invocation Ifrit)>,Invocation Ifrit)><nbsp>:<edgecolortype(0)><colortype(0)> devient <colortype(500)><edgecolortype(501)>Cyclone écarlate<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Après Rite de topaze ou Cataclysme de topaze<nbsp>:<edgecolortype(0)><colortype(0)> devient <colortype(500)><edgecolortype(501)>Casse-montagnes<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Après <if([gnum68==27],<if([gnum72>=90],Invocation Garuda II,Invocation Garuda)>,Invocation Garuda)><nbsp>:<edgecolortype(0)><colortype(0)> devient <colortype(500)><edgecolortype(501)>Sillage<edgecolortype(0)><colortype(0)>.,)>,)><if([gnum68==27],<if([gnum72>=100],<br><colortype(506)><edgecolortype(507)>Après Invocation Sol-Bahamut<nbsp>:<edgecolortype(0)><colortype(0)> devient <colortype(500)><edgecolortype(501)>Brasier solaire<edgecolortype(0)><colortype(0)>.,)>,)>",
+  "effects": [
+    "L'effet de cette action dépend de celle qui la précède.",
+    "Après Invocation Bahamut : devient Brasier de mort.",
+    "Après Invocation Phénix : devient Ravivement.",
+    "Après Invocation Ifrit II : devient Cyclone écarlate.",
+    "Après Rite de topaze ou Cataclysme de topaze : devient Casse-montagnes.",
+    "Après Invocation Garuda II : devient Sillage.",
+    "Après Invocation Sol-Bahamut : devient Brasier solaire."
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 27,
+    "name": "Invocateur",
+    "abbreviation": "INV"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 60,
+  "icon": {
+    "id": 2759,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 2,
+    "name": "Sort"
+  },
+  "attack_type": {
+    "id": 0,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 2.5,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 58,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 0,
+      "value": 0
+    },
+    "secondary": {
+      "type_id": 73,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": 0,
+    "effect_yalms": 0,
+    "cast_type": 1
+  },
+  "targeting": {
+    "self": true,
+    "party": false,
+    "alliance": false,
+    "hostile": false,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 0,
+    "behavior_type": 0,
+    "class_job_category_id": 28,
+    "source_class_job_id": 27,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

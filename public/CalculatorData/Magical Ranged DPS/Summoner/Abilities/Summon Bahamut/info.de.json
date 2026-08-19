@@ -1,0 +1,91 @@
+{
+  "kind": "ability",
+  "id": 7427,
+  "name": "Bahamut-Beschwörung",
+  "description": "Du fällst in tiefe Bahamut-Trance und rufst Demi-Bahamut an deine Seite, der auf das von dir anvisierte Ziel Drachenwelle ausführt.\nDauer: 15 Sekunden\nZusatzeffekt: Ruinga ändert sich zu Lichtimpuls und Trisaster ändert sich zu Lichtflare.\nZusatzeffekt: Rubin-Arkanum, Topas-Arkanum, Smaragd-Arkanum\nBedingung: Karfunkel ist bereits gerufen.\nDemi-Bahamut nimmt für die Dauer der Beschwörung den Platz deines Karfunkels ein, aber das Karfunkel findet danach von selbst wieder zu dir.\nDie Ausführung dieses Kommandos erhöht die Feindseligkeit des Ziels gegen dich.\nEigener Reaktivierungs-Timer",
+  "description_macro": "Du fällst in tiefe <colortype(506)><edgecolortype(507)>Bahamut-Trance<edgecolortype(0)><colortype(0)> und rufst Demi-Bahamut an deine Seite, der auf das von dir anvisierte Ziel <colortype(502)><edgecolortype(503)>Drachenwelle<edgecolortype(0)><colortype(0)> ausführt.<br>Dauer: 15 Sekunden<br>Zusatzeffekt: <colortype(502)><edgecolortype(503)>Ruinga<edgecolortype(0)><colortype(0)> ändert sich zu <colortype(502)><edgecolortype(503)>Lichtimpuls<edgecolortype(0)><colortype(0)> und <if([gnum68==27],<if([gnum72>=74],<colortype(502)><edgecolortype(503)>Trisaster<edgecolortype(0)><colortype(0)>,<colortype(502)><edgecolortype(503)>Elementarkorona<edgecolortype(0)><colortype(0)>)>,<colortype(502)><edgecolortype(503)>Elementarkorona<edgecolortype(0)><colortype(0)>)> ändert sich zu <colortype(502)><edgecolortype(503)>Lichtflare<edgecolortype(0)><colortype(0)>.<br>Zusatzeffekt: <colortype(506)><edgecolortype(507)>Rubin-Arkanum<edgecolortype(0)><colortype(0)>, <colortype(506)><edgecolortype(507)>Topas-Arkanum<edgecolortype(0)><colortype(0)>, <colortype(506)><edgecolortype(507)>Smaragd-Arkanum<edgecolortype(0)><colortype(0)><br>Bedingung: Karfunkel ist bereits gerufen.<br>Demi-Bahamut nimmt für die Dauer der Beschwörung den Platz deines Karfunkels ein, aber das Karfunkel findet danach von selbst wieder zu dir.<br>Die Ausführung dieses Kommandos erhöht die Feindseligkeit des Ziels gegen dich.<br>Eigener Reaktivierungs-Timer",
+  "effects": [
+    "Du fällst in tiefe Bahamut-Trance und rufst Demi-Bahamut an deine Seite, der auf das von dir anvisierte Ziel Drachenwelle ausführt.",
+    "Dauer: 15 Sekunden",
+    "Zusatzeffekt: Ruinga ändert sich zu Lichtimpuls und Trisaster ändert sich zu Lichtflare.",
+    "Zusatzeffekt: Rubin-Arkanum, Topas-Arkanum, Smaragd-Arkanum",
+    "Bedingung: Karfunkel ist bereits gerufen.",
+    "Demi-Bahamut nimmt für die Dauer der Beschwörung den Platz deines Karfunkels ein, aber das Karfunkel findet danach von selbst wieder zu dir.",
+    "Die Ausführung dieses Kommandos erhöht die Feindseligkeit des Ziels gegen dich.",
+    "Eigener Reaktivierungs-Timer"
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 27,
+    "name": "Beschwörer",
+    "abbreviation": "BSW"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 70,
+  "icon": {
+    "id": 2691,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 2,
+    "name": "Zauber"
+  },
+  "attack_type": {
+    "id": 5,
+    "name": "魔法"
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 60,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 10,
+    "additional_cooldown_group": 58,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 0,
+      "value": 0
+    },
+    "secondary": {
+      "type_id": 66,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": 25,
+    "effect_yalms": 0,
+    "cast_type": 1
+  },
+  "targeting": {
+    "self": false,
+    "party": false,
+    "alliance": false,
+    "hostile": true,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 7,
+    "behavior_type": 0,
+    "class_job_category_id": 28,
+    "source_class_job_id": 27,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 278,
+  "name": "Enhanced Fugetsu and Fuka",
+  "description": "Improves Fugetsu's damage increase to 13% and Fuka's reduction to weaponskill cast time and recast time, spell cast time and recast time, and auto-attack delay to 13%.",
+  "description_macro": "Improves <colortype(506)><edgecolortype(507)>Fugetsu<edgecolortype(0)><colortype(0)>'s damage increase to 13% and <colortype(506)><edgecolortype(507)>Fuka<edgecolortype(0)><colortype(0)>'s reduction to weaponskill cast time and recast time, spell cast time and recast time, and auto-attack delay to 13%.",
+  "effects": [
+    "Improves Fugetsu's damage increase to 13% and Fuka's reduction to weaponskill cast time and recast time, spell cast time and recast time, and auto-attack delay to 13%."
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 34,
+    "name": "Samurai",
+    "abbreviation": "SAM"
+  },
+  "unlock_level": 78,
+  "value": 0,
+  "icon": {
+    "id": 6154,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 111,
+  "source_class_job_id": 34
+}

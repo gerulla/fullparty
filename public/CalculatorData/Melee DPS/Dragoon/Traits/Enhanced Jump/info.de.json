@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 434,
+  "name": "Verbesserter Sprung",
+  "description": "Erhöht den Attacke-Wert von Sprung auf 320.",
+  "description_macro": "Erhöht den Attacke-Wert von <colortype(502)><edgecolortype(503)>Sprung<edgecolortype(0)><colortype(0)> auf 320.",
+  "effects": [
+    "Erhöht den Attacke-Wert von Sprung auf 320."
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 22,
+    "name": "Dragoon",
+    "abbreviation": "DRG"
+  },
+  "unlock_level": 54,
+  "value": 0,
+  "icon": {
+    "id": 5294,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 23,
+  "source_class_job_id": 22
+}

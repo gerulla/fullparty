@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 664,
+  "name": "Arcane Mastery",
+  "description": "Increases the potency of Ruin III to 400, Astral Impulse to 500, Ruin IV to 520, Ruby Rite to 620, Topaz Rite to 340, Emerald Rite to 280, Fountain of Fire to 580, Crimson Strike to 560, Crimson Cyclone to 560, Mountain Buster to 160, Slipstream to 520, Inferno to 800, Earthen Fury to 800, and Aerial Blast to 800.",
+  "description_macro": "Increases the potency of <colortype(500)><edgecolortype(501)>Ruin III<edgecolortype(0)><colortype(0)> to 400, <colortype(500)><edgecolortype(501)>Astral Impulse<edgecolortype(0)><colortype(0)> to 500, <colortype(500)><edgecolortype(501)>Ruin IV<edgecolortype(0)><colortype(0)> to 520, <colortype(500)><edgecolortype(501)>Ruby Rite<edgecolortype(0)><colortype(0)> to 620, <colortype(500)><edgecolortype(501)>Topaz Rite<edgecolortype(0)><colortype(0)> to 340, <colortype(500)><edgecolortype(501)>Emerald Rite<edgecolortype(0)><colortype(0)> to 280, <colortype(500)><edgecolortype(501)>Fountain of Fire<edgecolortype(0)><colortype(0)> to 580, <colortype(500)><edgecolortype(501)>Crimson Strike<edgecolortype(0)><colortype(0)> to 560, <colortype(500)><edgecolortype(501)>Crimson Cyclone<edgecolortype(0)><colortype(0)> to 560, <colortype(500)><edgecolortype(501)>Mountain Buster<edgecolortype(0)><colortype(0)> to 160, <colortype(500)><edgecolortype(501)>Slipstream<edgecolortype(0)><colortype(0)> to 520, <colortype(500)><edgecolortype(501)>Inferno<edgecolortype(0)><colortype(0)> to 800, <colortype(500)><edgecolortype(501)>Earthen Fury<edgecolortype(0)><colortype(0)> to 800, and <colortype(500)><edgecolortype(501)>Aerial Blast<edgecolortype(0)><colortype(0)> to 800.",
+  "effects": [
+    "Increases the potency of Ruin III to 400, Astral Impulse to 500, Ruin IV to 520, Ruby Rite to 620, Topaz Rite to 340, Emerald Rite to 280, Fountain of Fire to 580, Crimson Strike to 560, Crimson Cyclone to 560, Mountain Buster to 160, Slipstream to 520, Inferno to 800, Earthen Fury to 800, and Aerial Blast to 800."
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 27,
+    "name": "Summoner",
+    "abbreviation": "SMN"
+  },
+  "unlock_level": 94,
+  "value": 0,
+  "icon": {
+    "id": 6831,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 28,
+  "source_class_job_id": 27
+}

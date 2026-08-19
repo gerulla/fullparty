@@ -1,0 +1,84 @@
+{
+  "kind": "ability",
+  "id": 7541,
+  "name": "内丹",
+  "description": "自身のＨＰを回復する。\u3000回復力：800",
+  "description_macro": "自身のＨＰを回復する。\u3000<colortype(504)><edgecolortype(505)>回復力：<edgecolortype(0)><colortype(0)><if([gnum72>=94],<if([gnum68==2],800,<if([gnum68==20],800,<if([gnum68==4],800,<if([gnum68==22],800,<if([gnum68==29],800,<if([gnum68==30],800,<if([gnum68==34],800,<if([gnum68==39],800,<if([gnum68==2],800,<if([gnum68==23],800,<if([gnum68==31],800,<if([gnum68==38],800,<if([gnum68==41],800,500)>)>)>)>)>)>)>)>)>)>)>)>)>,500)>",
+  "effects": [
+    "自身のＨＰを回復する。\u3000回復力：800"
+  ],
+  "role": "Physical Ranged DPS",
+  "job": {
+    "id": 23,
+    "name": "吟遊詩人",
+    "abbreviation": "BRD"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 8,
+  "icon": {
+    "id": 821,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 4,
+    "name": "アビリティ"
+  },
+  "attack_type": {
+    "id": 0,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 120,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 50,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 0,
+      "value": 0
+    },
+    "secondary": {
+      "type_id": 0,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": 0,
+    "effect_yalms": 0,
+    "cast_type": 1
+  },
+  "targeting": {
+    "self": true,
+    "party": false,
+    "alliance": false,
+    "hostile": false,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 0,
+    "behavior_type": 0,
+    "class_job_category_id": 118,
+    "source_class_job_id": 4294967295,
+    "is_role_action": true,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

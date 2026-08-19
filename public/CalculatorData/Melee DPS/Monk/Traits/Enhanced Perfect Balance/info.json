@@ -1,0 +1,27 @@
+{
+  "kind": "trait",
+  "id": 433,
+  "name": "Enhanced Perfect Balance",
+  "description": "When under the effect of Perfect Balance, grants Beast Chakra in accordance with the form granted by the executed weaponskills.\nWeaponskills granting opo-opo form will also grant Coeurl Chakra.\nWeaponskills granting raptor form will also grant Opo-opo Chakra.\nWeaponskills granting coeurl form will also grant Raptor Chakra.",
+  "description_macro": "When under the effect of <colortype(506)><edgecolortype(507)>Perfect Balance<edgecolortype(0)><colortype(0)>, grants <colortype(506)><edgecolortype(507)>Beast Chakra<edgecolortype(0)><colortype(0)> in accordance with the form granted by the executed weaponskills.<br>Weaponskills granting <colortype(506)><edgecolortype(507)>opo-opo<edgecolortype(0)><colortype(0)> form will also grant <colortype(506)><edgecolortype(507)>Coeurl Chakra<edgecolortype(0)><colortype(0)>.<br>Weaponskills granting <colortype(506)><edgecolortype(507)>raptor<edgecolortype(0)><colortype(0)> form will also grant <colortype(506)><edgecolortype(507)>Opo-opo Chakra<edgecolortype(0)><colortype(0)>.<br>Weaponskills granting <colortype(506)><edgecolortype(507)>coeurl<edgecolortype(0)><colortype(0)> form will also grant <colortype(506)><edgecolortype(507)>Raptor Chakra<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "When under the effect of Perfect Balance, grants Beast Chakra in accordance with the form granted by the executed weaponskills.",
+    "Weaponskills granting opo-opo form will also grant Coeurl Chakra.",
+    "Weaponskills granting raptor form will also grant Opo-opo Chakra.",
+    "Weaponskills granting coeurl form will also grant Raptor Chakra."
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 20,
+    "name": "Monk",
+    "abbreviation": "MNK"
+  },
+  "unlock_level": 60,
+  "value": 0,
+  "icon": {
+    "id": 5246,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 21,
+  "source_class_job_id": 20
+}

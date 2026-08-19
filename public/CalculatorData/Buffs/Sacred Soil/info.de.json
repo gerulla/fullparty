@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 298,
+  "name": "Geweihte Erde",
+  "description": "Ein Schild verringert erlittenen Schaden.",
+  "effects": [
+    "Ein Schild verringert erlittenen Schaden."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 212802,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": true,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 188,
+      "name": "Geweihte Erde",
+      "description": "Du weihst einen bestimmten Bereich, in dem Gruppenmitglieder durch einen Schild 10 % weniger Schaden erleidenund stetig LP regenerieren.\nHeilpotenzial: 100\nDauer: 15 Sekunden\nZusatzeffekt: Feenbalken füllt sich um 10.\nÄtherfluss-Kosten: 1",
+      "description_macro": "Du weihst einen bestimmten Bereich, in dem Grup<->pen<->mit<->glieder durch einen Schild 10 % weniger Schaden erleiden<if([gnum68==28],<if([gnum72>=78], und stetig LP regenerieren,)>,)>.<if([gnum68==28],<if([gnum72>=78],<br>Heilpotenzial: 100,)>,)><br>Dauer: 15 Sekunden<br><if([gnum72>=70],<if([gnum68==28],Zusatzeffekt: Feenbalken füllt sich um 10.<br>,)>,)><colortype(506)><edgecolortype(507)>Ätherfluss<edgecolortype(0)><colortype(0)>-Kosten: 1",
+      "unlock_level": 50,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Healer"
+      ],
+      "jobs": [
+        {
+          "id": 28,
+          "name": "Gelehrter",
+          "abbreviation": "GLT",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

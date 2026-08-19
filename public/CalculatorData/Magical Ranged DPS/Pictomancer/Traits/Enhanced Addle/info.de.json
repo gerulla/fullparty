@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 643,
+  "name": "Verbesserter Stumpfsinn",
+  "description": "Verlängert die Wirkungsdauer von Stumpfsinn auf 15 Sekunden.",
+  "description_macro": "Verlängert die Wirkungsdauer von <colortype(506)><edgecolortype(507)>Stumpfsinn<edgecolortype(0)><colortype(0)> auf 15 Sekunden.",
+  "effects": [
+    "Verlängert die Wirkungsdauer von Stumpfsinn auf 15 Sekunden."
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 42,
+    "name": "Piktomant",
+    "abbreviation": "PKT"
+  },
+  "unlock_level": 98,
+  "value": 0,
+  "icon": {
+    "id": 6827,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 198,
+  "source_class_job_id": 0
+}

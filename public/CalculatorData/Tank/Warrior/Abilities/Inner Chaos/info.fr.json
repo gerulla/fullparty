@@ -1,0 +1,102 @@
+{
+  "kind": "ability",
+  "id": 16465,
+  "name": "Chaos intérieur",
+  "description": "Effectue une attaque physique sur la cible.\nPuissance : 700\nCette attaque inflige nécessairement un coup net et critique.\nLes dégâts infligés sont augmentés lorsque vous bénéficiez d'un effet augmentant les chances de coups nets et critiques.\nEffet additionnel : réduit de 5s le temps de recharge de Cri de guerre.\nMet fin à l'effet Chaos naissant.\nCoût Jauge de la bête : 50\nCondition : Chaos naissant.\n\n* Cette action ne peut pas être ajoutée aux barres de raccourcis.\nRemplace Sape-fendeur lorsque les conditions sont réunies.",
+  "description_macro": "Effectue une attaque physique sur la cible.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> 700<br>Cette attaque inflige nécessairement un coup net et critique.<br>Les dégâts infligés sont augmentés lorsque vous bénéficiez d'un effet augmentant les chances de coups nets et critiques.<br><colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> réduit de 5s le temps de recharge de Cri de guerre.<br>Met fin à l'effet <colortype(500)><edgecolortype(501)>Chaos naissant<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Coût Jauge de la bête<nbsp>:<edgecolortype(0)><colortype(0)> 50<br><colortype(506)><edgecolortype(507)>Condition<nbsp>:<edgecolortype(0)><colortype(0)> <colortype(500)><edgecolortype(501)>Chaos naissant<edgecolortype(0)><colortype(0)>.<br><br><colortype(504)><edgecolortype(505)>* Cette action ne peut pas être ajoutée aux barres de raccourcis.<br>Remplace <colortype(500)><edgecolortype(501)>Sape-fendeur<edgecolortype(0)><colortype(0)> lorsque les conditions sont réunies.<edgecolortype(0)><colortype(0)>",
+  "effects": [
+    "Effectue une attaque physique sur la cible.",
+    "Puissance : 700",
+    "Cette attaque inflige nécessairement un coup net et critique.",
+    "Les dégâts infligés sont augmentés lorsque vous bénéficiez d'un effet augmentant les chances de coups nets et critiques.",
+    "Effet additionnel : réduit de 5s le temps de recharge de Cri de guerre.",
+    "Met fin à l'effet Chaos naissant.",
+    "Coût Jauge de la bête : 50",
+    "Condition : Chaos naissant.",
+    "* Cette action ne peut pas être ajoutée aux barres de raccourcis.",
+    "Remplace Sape-fendeur lorsque les conditions sont réunies."
+  ],
+  "role": "Tank",
+  "job": {
+    "id": 21,
+    "name": "Guerrier",
+    "abbreviation": "GUE"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 80,
+  "icon": {
+    "id": 2568,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 3,
+    "name": "Technique d'arme"
+  },
+  "attack_type": {
+    "id": 4294967295,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 2.5,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 58,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 22,
+      "value": 50
+    },
+    "secondary": {
+      "type_id": 32,
+      "value": 1897
+    }
+  },
+  "range": {
+    "target_yalms": -1,
+    "effect_yalms": 0,
+    "cast_type": 1
+  },
+  "targeting": {
+    "self": false,
+    "party": false,
+    "alliance": false,
+    "hostile": true,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": {
+      "id": 189,
+      "status": {
+        "id": 1897,
+        "name": "Chaos naissant",
+        "description": "Lorsque la Jauge de la bête a atteint un seuil suffisant, Décimation est remplacé par Cyclone chaotique.\nEffet supplémentaire après obtention de Chaos intérieur\u00A0: Sape-fendeur est remplacé par Chaos intérieur.",
+        "icon_id": 212560,
+        "max_stacks": 0
+      }
+    }
+  },
+  "metadata": {
+    "aspect_id": 7,
+    "behavior_type": 0,
+    "class_job_category_id": 22,
+    "source_class_job_id": 0,
+    "is_role_action": false,
+    "is_player_action": false,
+    "is_derived_action": true,
+    "equivalence_group": 0
+  }
+}

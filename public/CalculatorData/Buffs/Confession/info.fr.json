@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 1219,
+  "name": "Indulgence plénière",
+  "description": "Les dégâts reçus sont réduits. Des PV supplémentaires sont récupérés lorsque le mage blanc à l'origine de cet effet utilise certains sorts curatifs.",
+  "effects": [
+    "Les dégâts reçus sont réduits. Des PV supplémentaires sont récupérés lorsque le mage blanc à l'origine de cet effet utilise certains sorts curatifs."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 212637,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 60,
+  "parameter": {
+    "effect": 39,
+    "modifier": 100
+  },
+  "class_job_category_id": 25,
+  "source_abilities": [
+    {
+      "id": 7433,
+      "name": "Indulgence plénière",
+      "description": "Réduit de 10% les dégâts reçus par vous et les équipiers alentour.\nDurée : 10s\nPendant la durée de l'effet, les PV des personnes en bénéficiant sont restaurés à chaque fois que vous utilisez Médica, Méga Soin\\ ou Offrande de ravissement.\nPuissance : 200",
+      "description_macro": "Réduit de 10% les dégâts reçus par vous et les équipiers alentour.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 10s<br>Pendant la durée de l'effet, les PV des personnes en bénéficiant sont restaurés à chaque fois que vous utilisez Médica, Méga Soin<if([gnum68==24],<if([gnum72>=76],<if([gnum68==24],<if([gnum72>=96],\\, Méga Médica,\\, Extra Médica)>,\\, Extra Médica)> ou Offrande de ravissement, ou <if([gnum68==24],<if([gnum72>=96],Méga Médica,Extra Médica)>,Extra Médica)>)>, ou <if([gnum68==24],<if([gnum72>=96],Méga Médica,Extra Médica)>,Extra Médica)>)>.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> 200",
+      "unlock_level": 70,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Healer"
+      ],
+      "jobs": [
+        {
+          "id": 24,
+          "name": "Mage Blanc",
+          "abbreviation": "MBL",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

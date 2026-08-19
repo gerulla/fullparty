@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 4240,
+  "name": "Phantom Aim",
+  "description": "Critical hit rate and direct hit rate are increased. Effect does not apply to healing actions.",
+  "effects": [
+    "Critical hit rate and direct hit rate are increased. Effect does not apply to healing actions."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 229907,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 10
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 41599,
+      "name": "Phantom Aim",
+      "description": "Increases critical hit rate and direct hit rate by 15%.\nEffect does not apply to healing actions.\nDuration: 30s",
+      "description_macro": "Increases critical hit rate and direct hit rate by <if([gnum108>=5],50％,<if([gnum108>=3],30%,15%)>)><if([gnum108>=3], and guarantees that all attacks land,)>.<br>Effect does not apply to healing actions.<br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>30s",
+      "unlock_level": 0,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Phantom Jobs"
+      ],
+      "jobs": [
+        {
+          "id": 4,
+          "name": "Phantom Ranger",
+          "abbreviation": "Ph. Ranger",
+          "is_phantom": true
+        }
+      ]
+    }
+  ]
+}

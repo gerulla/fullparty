@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 577,
+  "name": "Maîtrise des chakras bestiaux",
+  "description": "Remplace Volée de coups par Bond de l'opo-opo, Coup de poing direct par Percée du raptor, Coup de poing brusque par Plongeon du coeurl et Champ-élixir par Onde de vide.",
+  "description_macro": "Remplace <colortype(500)><edgecolortype(501)>Volée de coups<edgecolortype(0)><colortype(0)> par <colortype(500)><edgecolortype(501)>Bond de l'opo-opo<edgecolortype(0)><colortype(0)>, <colortype(500)><edgecolortype(501)>Coup de poing direct<edgecolortype(0)><colortype(0)> par <colortype(500)><edgecolortype(501)>Percée du raptor<edgecolortype(0)><colortype(0)>, <colortype(500)><edgecolortype(501)>Coup de poing brusque<edgecolortype(0)><colortype(0)> par <colortype(500)><edgecolortype(501)>Plongeon du coeurl<edgecolortype(0)><colortype(0)> et <colortype(500)><edgecolortype(501)>Champ-élixir<edgecolortype(0)><colortype(0)> par <colortype(500)><edgecolortype(501)>Onde de vide<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Remplace Volée de coups par Bond de l'opo-opo, Coup de poing direct par Percée du raptor, Coup de poing brusque par Plongeon du coeurl et Champ-élixir par Onde de vide."
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 20,
+    "name": "Moine",
+    "abbreviation": "MOI"
+  },
+  "unlock_level": 92,
+  "value": 0,
+  "icon": {
+    "id": 5249,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 21,
+  "source_class_job_id": 20
+}

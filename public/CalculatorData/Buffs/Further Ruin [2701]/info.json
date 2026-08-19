@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 2701,
+  "name": "Further Ruin",
+  "description": "Able to execute Ruin IV.",
+  "effects": [
+    "Able to execute Ruin IV."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 212690,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 28,
+  "source_abilities": [
+    {
+      "id": 16510,
+      "name": "Energy Siphon",
+      "description": "Deals unaspected damage with a potency of 100 to target and all enemies nearby it.\nAdditional Effect: Aetherflow II\nAdditional Effect: Grants Further Ruin\nDuration: 60s\nShares a recast timer with Energy Drain.",
+      "description_macro": "Deals unaspected damage with a potency of 100 to target and all enemies nearby it.<br><colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)><colortype(506)><edgecolortype(507)>Aetherflow II<edgecolortype(0)><colortype(0)><br><if([gnum68==27],<if([gnum72>=62],<colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>Grants <colortype(506)><edgecolortype(507)>Further Ruin<edgecolortype(0)><colortype(0)><br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>60s<br>,)>,)>Shares a recast timer with <colortype(500)><edgecolortype(501)>Energy Drain<edgecolortype(0)><colortype(0)>.",
+      "unlock_level": 52,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Magical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 27,
+          "name": "Summoner",
+          "abbreviation": "SMN",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

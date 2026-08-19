@@ -1,0 +1,88 @@
+{
+  "kind": "ability",
+  "id": 74,
+  "name": "Dragon Kick",
+  "description": "Delivers an attack with a potency of 320.\nOpo-opo Form Bonus: Grants a stack of Opo-opo's Fury\nOpo-opo's Fury Effect: Increases potency of Leaping Opo by 200\nAdditional Effect: Changes form to raptor\nDuration: 30s",
+  "description_macro": "Delivers an attack with a potency of <if([gnum68==20],<if([gnum72>=94],320,<if([gnum68==20],<if([gnum72>=84],280,240)>,240)>)>,<if([gnum68==20],<if([gnum72>=84],280,240)>,240)>)>.<br><colortype(504)><edgecolortype(505)>Opo-opo Form Bonus: <edgecolortype(0)><colortype(0)>Grants a stack of <colortype(506)><edgecolortype(507)>Opo-opo's Fury<edgecolortype(0)><colortype(0)><br><colortype(504)><edgecolortype(505)>Opo-opo's Fury Effect: <edgecolortype(0)><colortype(0)>Increases potency of <colortype(500)><edgecolortype(501)><if([gnum68==20],<if([gnum72>=92],Leaping Opo,Bootshine)>,Bootshine)><edgecolortype(0)><colortype(0)> by 200<br><colortype(504)><edgecolortype(505)>Additional Effect:<edgecolortype(0)><colortype(0)> Changes form to <colortype(506)><edgecolortype(507)>raptor<edgecolortype(0)><colortype(0)><br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>30s",
+  "effects": [
+    "Delivers an attack with a potency of 320.",
+    "Opo-opo Form Bonus: Grants a stack of Opo-opo's Fury",
+    "Opo-opo's Fury Effect: Increases potency of Leaping Opo by 200",
+    "Additional Effect: Changes form to raptor",
+    "Duration: 30s"
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 20,
+    "name": "Monk",
+    "abbreviation": "MNK"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 50,
+  "icon": {
+    "id": 2528,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 3,
+    "name": "Weaponskill"
+  },
+  "attack_type": {
+    "id": 4294967295,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 2.5,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 58,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 0,
+      "value": 0
+    },
+    "secondary": {
+      "type_id": 0,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": -1,
+    "effect_yalms": 0,
+    "cast_type": 1
+  },
+  "targeting": {
+    "self": false,
+    "party": false,
+    "alliance": false,
+    "hostile": true,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": false
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 7,
+    "behavior_type": 0,
+    "class_job_category_id": 41,
+    "source_class_job_id": 2,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

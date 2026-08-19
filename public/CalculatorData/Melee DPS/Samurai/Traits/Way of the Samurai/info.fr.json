@@ -1,0 +1,27 @@
+{
+  "kind": "trait",
+  "id": 520,
+  "name": "Actions améliorées",
+  "description": "Augmente la puissance de certaines actions.\n\nPuissance de Hakaze : 200\nPuissance de Jinpû : 120\nPuissance de Shifû : 120",
+  "description_macro": "Augmente la puissance de certaines actions.<br><br><colortype(506)><edgecolortype(507)>Puissance de Hakaze<nbsp>:<edgecolortype(0)><colortype(0)> 200<br><colortype(506)><edgecolortype(507)>Puissance de Jinpû<nbsp>:<edgecolortype(0)><colortype(0)> 120<br><colortype(506)><edgecolortype(507)>Puissance de Shifû<nbsp>:<edgecolortype(0)><colortype(0)> 120",
+  "effects": [
+    "Augmente la puissance de certaines actions.",
+    "Puissance de Hakaze : 200",
+    "Puissance de Jinpû : 120",
+    "Puissance de Shifû : 120"
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 34,
+    "name": "Samouraï",
+    "abbreviation": "SAM"
+  },
+  "unlock_level": 66,
+  "value": 0,
+  "icon": {
+    "id": 6801,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 111,
+  "source_class_job_id": 34
+}

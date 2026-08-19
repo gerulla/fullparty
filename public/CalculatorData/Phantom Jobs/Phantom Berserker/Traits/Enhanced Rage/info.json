@@ -1,0 +1,23 @@
+{
+  "kind": "trait",
+  "id": 3,
+  "name": "Enhanced Rage",
+  "description": "Grants the effect of Pent-up Rage, increasing the potency of Deadly Blow based on the amount of damage you have taken while the effect is active.\nDuration: 15s",
+  "description_macro": "Grants the effect of <colortype(506)><edgecolortype(507)>Pent-up Rage<edgecolortype(0)><colortype(0)>, increasing the potency of <colortype(500)><edgecolortype(501)>Deadly Blow<edgecolortype(0)><colortype(0)> based on the amount of damage you have taken while the effect is active.<br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>15s",
+  "effects": [
+    "Grants the effect of Pent-up Rage, increasing the potency of Deadly Blow based on the amount of damage you have taken while the effect is active.",
+    "Duration: 15s"
+  ],
+  "role": "Phantom Jobs",
+  "job": {
+    "id": 2,
+    "name": "Phantom Berserker",
+    "abbreviation": "Ph. Berserker"
+  },
+  "is_phantom_trait": true,
+  "unlock_level": 3,
+  "icon": {
+    "id": 82203,
+    "file": "icon.png"
+  }
+}

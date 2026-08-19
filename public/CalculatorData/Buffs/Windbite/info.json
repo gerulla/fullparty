@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 129,
+  "name": "Windbite",
+  "description": "Wounds are exposed to the elements, causing wind damage over time.",
+  "effects": [
+    "Wounds are exposed to the elements, causing wind damage over time."
+  ],
+  "classification": "debuff",
+  "icon": {
+    "id": 210360,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 2,
+  "target_type": 0,
+  "can_dispel": true,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 10,
+  "parameter": {
+    "effect": 0,
+    "modifier": 10
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 113,
+      "name": "Windbite",
+      "description": "Deals wind damage with a potency of 60.\nAdditional Effect: Wind damage over time\nPotency: 20\nDuration: 45s",
+      "description_macro": "Deals wind damage with a potency of 60.<br><colortype(504)><edgecolortype(505)>Additional Effect:<edgecolortype(0)><colortype(0)> Wind damage over time<br><colortype(504)><edgecolortype(505)>Potency:<edgecolortype(0)><colortype(0)> 20<br><colortype(504)><edgecolortype(505)>Duration:<edgecolortype(0)><colortype(0)> 45s",
+      "unlock_level": 30,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Physical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 23,
+          "name": "Bard",
+          "abbreviation": "BRD",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

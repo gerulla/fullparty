@@ -1,0 +1,91 @@
+{
+  "kind": "ability",
+  "id": 34616,
+  "name": "Blutige Kiefer",
+  "description": "Du führst eine physische Attacke auf alle umstehenden Gegner aus.\nAttacke-Wert: 180\nZusatzeffekt: Gewährt dir Vipernblut.\nDauer: 40 Sekunden\nEffekt von Vipernblut: Eigener ausgeteilter Schaden ist um 10 % erhöht.\nBedingung: Erfolgreiche Ausführung von Tödliche Kiefer oder Tückische Kiefer.\nBei erfüllter Bedingung ändert sich Tödliche Kiefer zu diesem Kommando.\nKann nicht im Kommandomenü angelegt werden.",
+  "description_macro": "Du führst eine physische Attacke auf alle umstehenden Gegner aus.<br>Attacke-Wert: 180<br>Zusatzeffekt: Gewährt dir <colortype(506)><edgecolortype(507)>Vipernblut<edgecolortype(0)><colortype(0)>.<br>Dauer: 40 Sekunden<br>Effekt von <colortype(506)><edgecolortype(507)>Vipernblut<edgecolortype(0)><colortype(0)>: Eigener ausgeteilter Schaden ist um 10<nbsp>% erhöht.<br>Bedingung: Erfolgreiche Ausführung von <colortype(502)><edgecolortype(503)>Tödliche Kiefer<edgecolortype(0)><colortype(0)> oder <colortype(502)><edgecolortype(503)>Tückische Kiefer<edgecolortype(0)><colortype(0)>.<br>Bei erfüllter Bedingung ändert sich <colortype(502)><edgecolortype(503)>Tödliche Kiefer<edgecolortype(0)><colortype(0)> zu diesem Kommando.<br>Kann nicht im Kommandomenü angelegt werden.",
+  "effects": [
+    "Du führst eine physische Attacke auf alle umstehenden Gegner aus.",
+    "Attacke-Wert: 180",
+    "Zusatzeffekt: Gewährt dir Vipernblut.",
+    "Dauer: 40 Sekunden",
+    "Effekt von Vipernblut: Eigener ausgeteilter Schaden ist um 10 % erhöht.",
+    "Bedingung: Erfolgreiche Ausführung von Tödliche Kiefer oder Tückische Kiefer.",
+    "Bei erfüllter Bedingung ändert sich Tödliche Kiefer zu diesem Kommando.",
+    "Kann nicht im Kommandomenü angelegt werden."
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 41,
+    "name": "Viper",
+    "abbreviation": "VPR"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 40,
+  "icon": {
+    "id": 3711,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 3,
+    "name": "Waffenfertigkeit"
+  },
+  "attack_type": {
+    "id": 4294967295,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 2.5,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 58,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 0,
+      "value": 0
+    },
+    "secondary": {
+      "type_id": 136,
+      "value": 5
+    }
+  },
+  "range": {
+    "target_yalms": 0,
+    "effect_yalms": 5,
+    "cast_type": 2
+  },
+  "targeting": {
+    "self": true,
+    "party": false,
+    "alliance": false,
+    "hostile": false,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": 34614,
+    "preserves_combo": false
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 7,
+    "behavior_type": 0,
+    "class_job_category_id": 196,
+    "source_class_job_id": 0,
+    "is_role_action": false,
+    "is_player_action": false,
+    "is_derived_action": true,
+    "equivalence_group": 0
+  }
+}

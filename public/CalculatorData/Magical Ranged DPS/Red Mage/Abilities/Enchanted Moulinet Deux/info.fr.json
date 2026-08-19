@@ -1,0 +1,91 @@
+{
+  "kind": "ability",
+  "id": 37002,
+  "name": "Deuxième Moulinet",
+  "description": "Effectue une attaque magique dans une zone en éventail vers la cible.\nPuissance : 140\nCombo : Moulinet Enchanté\nEffet additionnel : vous octroie un Cristal de mana.\nCoût Jauge d'équilibre : Mana noire 15 et\nMana blanche 15\n\n* Cette action ne peut pas être ajoutée aux barres de raccourcis.\nRemplace Moulinet Enchanté lorsque les conditions sont réunies.",
+  "description_macro": "Effectue une attaque magique dans une zone en éventail vers la cible.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> 140<br><colortype(506)><edgecolortype(507)>Combo<nbsp>:<edgecolortype(0)><colortype(0)> Moulinet Enchanté<br><if([gnum68==35],<if([gnum72>=68],<colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> vous octroie un <colortype(500)><edgecolortype(501)>Cristal de mana<edgecolortype(0)><colortype(0)>.<br>,)>,)><colortype(506)><edgecolortype(507)>Coût Jauge d'équilibre<nbsp>:<edgecolortype(0)><colortype(0)> <colortype(502)><edgecolortype(503)>Mana noire<edgecolortype(0)><colortype(0)> 15 et<br><colortype(502)><edgecolortype(503)>Mana blanche<edgecolortype(0)><colortype(0)> 15<br><br><colortype(504)><edgecolortype(505)>* Cette action ne peut pas être ajoutée aux barres de raccourcis.<br>Remplace <colortype(500)><edgecolortype(501)>Moulinet Enchanté<edgecolortype(0)><colortype(0)> lorsque les conditions sont réunies.<edgecolortype(0)><colortype(0)>",
+  "effects": [
+    "Effectue une attaque magique dans une zone en éventail vers la cible.",
+    "Puissance : 140",
+    "Combo : Moulinet Enchanté",
+    "Effet additionnel : vous octroie un Cristal de mana.",
+    "Coût Jauge d'équilibre : Mana noire 15 et",
+    "Mana blanche 15",
+    "* Cette action ne peut pas être ajoutée aux barres de raccourcis.",
+    "Remplace Moulinet Enchanté lorsque les conditions sont réunies."
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 35,
+    "name": "Mage Rouge",
+    "abbreviation": "MRG"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 52,
+  "icon": {
+    "id": 3239,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 3,
+    "name": "Technique d'arme"
+  },
+  "attack_type": {
+    "id": 5,
+    "name": "magie"
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 1.5,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 58,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 43,
+      "value": 15
+    },
+    "secondary": {
+      "type_id": 58,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": 8,
+    "effect_yalms": 8,
+    "cast_type": 3
+  },
+  "targeting": {
+    "self": false,
+    "party": false,
+    "alliance": false,
+    "hostile": true,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": 7530,
+    "preserves_combo": false
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 7,
+    "behavior_type": 0,
+    "class_job_category_id": 112,
+    "source_class_job_id": 0,
+    "is_role_action": false,
+    "is_player_action": false,
+    "is_derived_action": true,
+    "equivalence_group": 0
+  }
+}

@@ -1,0 +1,88 @@
+{
+  "kind": "ability",
+  "id": 17209,
+  "name": "Hypercharge",
+  "description": "Vous octroie 5 degrés de Surchauffe.\nDurée : 10s\nSurchauffe : la puissance de toutes vos techniques d'arme de machiniste à cible unique est augmentée de 20.\nTir ardentet Arbalète automatique peuvent être lancés.\nCoût Jauge de chaleur : 50",
+  "description_macro": "Vous octroie 5 degrés de <colortype(500)><edgecolortype(501)>Surchauffe<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 10s<br><colortype(506)><edgecolortype(507)>Surchauffe<nbsp>:<edgecolortype(0)><colortype(0)> la puissance de toutes vos techniques d'arme de machiniste à cible unique est augmentée de 20.<br><if([gnum68==31],<if([gnum72>=35],<if([gnum68==31],<if([gnum72>=68],Tir ardent,Pyro-explosion)>,Pyro-explosion)><if([gnum68==31],<if([gnum72>=52], et Arbalète automatique,)>,)> <if([gnum68==31],<if([gnum72>=68],<if([gnum68==31],<if([gnum72>=52],peuvent être lancés,peut être lancé)>,peut être lancé)>,<if([gnum68==31],<if([gnum72>=52],peuvent être lancées,peut être lancée)>,peut être lancée)>)>,<if([gnum68==31],<if([gnum72>=52],peuvent être lancées,peut être lancée)>,peut être lancée)>)>.<br>,)>,)><colortype(506)><edgecolortype(507)>Coût Jauge de chaleur<nbsp>:<edgecolortype(0)><colortype(0)> 50",
+  "effects": [
+    "Vous octroie 5 degrés de Surchauffe.",
+    "Durée : 10s",
+    "Surchauffe : la puissance de toutes vos techniques d'arme de machiniste à cible unique est augmentée de 20.",
+    "Tir ardentet Arbalète automatique peuvent être lancés.",
+    "Coût Jauge de chaleur : 50"
+  ],
+  "role": "Physical Ranged DPS",
+  "job": {
+    "id": 31,
+    "name": "Machiniste",
+    "abbreviation": "MCH"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 30,
+  "icon": {
+    "id": 3041,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 4,
+    "name": "Aptitude"
+  },
+  "attack_type": {
+    "id": 0,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 10,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 2,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 61,
+      "value": 50
+    },
+    "secondary": {
+      "type_id": 0,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": 0,
+    "effect_yalms": 0,
+    "cast_type": 1
+  },
+  "targeting": {
+    "self": true,
+    "party": false,
+    "alliance": false,
+    "hostile": false,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 0,
+    "behavior_type": 0,
+    "class_job_category_id": 96,
+    "source_class_job_id": 31,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

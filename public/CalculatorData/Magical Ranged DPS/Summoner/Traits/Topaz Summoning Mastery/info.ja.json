@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 469,
+  "name": "サモン・トパーズマスタリー",
+  "description": "サモン・トパーズがサモン・タイタンに変化する。",
+  "description_macro": "サモン・トパーズがサモン・タイタンに変化する。",
+  "effects": [
+    "サモン・トパーズがサモン・タイタンに変化する。"
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 27,
+    "name": "召喚士",
+    "abbreviation": "SMN"
+  },
+  "unlock_level": 35,
+  "value": 0,
+  "icon": {
+    "id": 5683,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 28,
+  "source_class_job_id": 27
+}

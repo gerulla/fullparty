@@ -1,0 +1,27 @@
+{
+  "kind": "trait",
+  "id": 458,
+  "name": "Maîtrise des polarités II",
+  "description": "Augmente à 2 le degré maximal de Feu astral et de Glace ombrale.\nDes effets additionels sont octroyés lorsque 2 degrés sont cumulés :\nEffet avec Feu astral : augmente la puissance des sorts de feu de 60％, mais réduit la puissance des sorts de glace de 20％.\nEffet avec Glace ombrale: restaure 5000 PM quand un sort de glace est utilisé avec succès, mais réduit la puissance des sorts de feu de 20％.",
+  "description_macro": "Augmente à 2 le degré maximal de <colortype(500)><edgecolortype(501)>Feu astral<edgecolortype(0)><colortype(0)> et de <colortype(500)><edgecolortype(501)>Glace ombrale<edgecolortype(0)><colortype(0)>.<br>Des effets additionels sont octroyés lorsque 2 degrés sont cumulés<nbsp>:<br><colortype(506)><edgecolortype(507)>Effet avec Feu astral<nbsp>:<edgecolortype(0)><colortype(0)> augmente la puissance des sorts de feu de 60％, mais réduit la puissance des sorts de glace de 20％.<br><colortype(506)><edgecolortype(507)>Effet avec Glace ombrale:<edgecolortype(0)><colortype(0)> restaure 5000 PM quand un sort de glace est utilisé avec succès, mais réduit la puissance des sorts de feu de 20％.",
+  "effects": [
+    "Augmente à 2 le degré maximal de Feu astral et de Glace ombrale.",
+    "Des effets additionels sont octroyés lorsque 2 degrés sont cumulés :",
+    "Effet avec Feu astral : augmente la puissance des sorts de feu de 60％, mais réduit la puissance des sorts de glace de 20％.",
+    "Effet avec Glace ombrale: restaure 5000 PM quand un sort de glace est utilisé avec succès, mais réduit la puissance des sorts de feu de 20％."
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 25,
+    "name": "Mage Noir",
+    "abbreviation": "MNO"
+  },
+  "unlock_level": 20,
+  "value": 0,
+  "icon": {
+    "id": 5366,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 55,
+  "source_class_job_id": 7
+}

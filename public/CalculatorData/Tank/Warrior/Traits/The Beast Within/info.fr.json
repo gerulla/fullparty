@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 249,
+  "name": "Jauge de la bête",
+  "description": "Permet à votre Jauge de la bête de se remplir lorsque vous utilisez les combos de Mutilation et Couperet de justice avec succès.",
+  "description_macro": "Permet à votre <colortype(502)><edgecolortype(503)>Jauge de la bête<edgecolortype(0)><colortype(0)> de se remplir lorsque vous utilisez les combos de <colortype(500)><edgecolortype(501)>Mutilation<edgecolortype(0)><colortype(0)> et <colortype(500)><edgecolortype(501)>Couperet de justice<edgecolortype(0)><colortype(0)> avec succès.",
+  "effects": [
+    "Permet à votre Jauge de la bête de se remplir lorsque vous utilisez les combos de Mutilation et Couperet de justice avec succès."
+  ],
+  "role": "Tank",
+  "job": {
+    "id": 21,
+    "name": "Guerrier",
+    "abbreviation": "GUE"
+  },
+  "unlock_level": 35,
+  "value": 0,
+  "icon": {
+    "id": 5261,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 22,
+  "source_class_job_id": 21
+}

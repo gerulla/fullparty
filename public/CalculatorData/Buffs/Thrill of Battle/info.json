@@ -1,0 +1,51 @@
+{
+  "kind": "combat_status",
+  "id": 87,
+  "name": "Thrill of Battle",
+  "description": "Maximum HP is increased.\nEnhanced Thrill of Battle Effect: HP recovery via healing actions is increased.",
+  "effects": [
+    "Maximum HP is increased.",
+    "Enhanced Thrill of Battle Effect: HP recovery via healing actions is increased."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 210254,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 5,
+  "parameter": {
+    "effect": 0,
+    "modifier": 10
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 40,
+      "name": "Thrill of Battle",
+      "description": "Increases maximum HP by 20% and restores the amount increased.\nAdditional Effect: Increases HP recovery via healing actions on self by 20%\nDuration: 10s",
+      "description_macro": "Increases maximum HP by 20% and restores the amount increased.<br><if([gnum68==21],<if([gnum72>=78],<colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>Increases HP recovery via healing actions on self by 20%<br>,)>,)><colortype(504)><edgecolortype(505)>Duration:<edgecolortype(0)><colortype(0)> 10s",
+      "unlock_level": 30,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Tank"
+      ],
+      "jobs": [
+        {
+          "id": 21,
+          "name": "Warrior",
+          "abbreviation": "WAR",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

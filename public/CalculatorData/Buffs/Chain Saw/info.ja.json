@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 3154,
+  "name": "回転のこぎり",
+  "description": "受けるダメージが増加する状態。",
+  "effects": [
+    "受けるダメージが増加する状態。"
+  ],
+  "classification": "debuff",
+  "icon": {
+    "id": 214923,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 2,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": true,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 10
+  },
+  "class_job_category_id": 96,
+  "source_abilities": [
+    {
+      "id": 25788,
+      "name": "回転のこぎり",
+      "description": "対象に向かって前方直線範囲物理攻撃。\u3000威力：660\n2体目以降の対象への威力は25％減少する。\n追加効果：「バッテリー」を20上昇させる。\n追加効果：自身に「エクスカベーター実行可」を付与する。\n効果時間：30秒\nこのウェポンスキルは固有のリキャストタイマーを持つ。",
+      "description_macro": "対象に向かって前方直線範囲物理攻撃。\u3000<colortype(504)><edgecolortype(505)>威力：<edgecolortype(0)><colortype(0)><if([gnum68==31],<if([gnum72>=94],660,620)>,620)><br>2体目以降の対象への威力は25％減少する。<br><colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)><colortype(500)><edgecolortype(501)>「バッテリー」<edgecolortype(0)><colortype(0)>を20上昇させる。<br><if([gnum68==31],<if([gnum72>=96],<colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)>自身に<colortype(500)><edgecolortype(501)>「エクスカベーター実行可」<edgecolortype(0)><colortype(0)>を付与する。<br><colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>30秒<br>,)>,)>このウェポンスキルは固有のリキャストタイマーを持つ。",
+      "unlock_level": 90,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Physical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 31,
+          "name": "機工士",
+          "abbreviation": "MCH",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 1872,
+  "name": "テンパランス",
+  "description": "回復魔法の回復量が上昇し、さらに周囲のパーティメンバーが受けるダメージを軽減する状態。",
+  "effects": [
+    "回復魔法の回復量が上昇し、さらに周囲のパーティメンバーが受けるダメージを軽減する状態。"
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 212634,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 10
+  },
+  "class_job_category_id": 25,
+  "source_abilities": [
+    {
+      "id": 16536,
+      "name": "テンパランス",
+      "description": "一定時間、自身の回復魔法の回復量を20％上昇させ、自身と周囲50m以内にいるパーティメンバーの被ダメージを10％軽減する。\u3000効果時間：20秒\n追加効果：自身に「ディヴァインカレス実行可」を付与する。\u3000効果時間：30秒",
+      "description_macro": "一定時間、自身の回復魔法の回復量を20％上昇させ、自身と周囲50m以内にいるパーティメンバーの被ダメージを10％軽減する。\u3000<colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>20秒<if([gnum68==24],<if([gnum72>=100],<br><colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)>自身に<colortype(500)><edgecolortype(501)>「ディヴァインカレス実行可」<edgecolortype(0)><colortype(0)>を付与する。\u3000<colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>30秒,)>,)>",
+      "unlock_level": 80,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Healer"
+      ],
+      "jobs": [
+        {
+          "id": 24,
+          "name": "白魔道士",
+          "abbreviation": "WHM",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

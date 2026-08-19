@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 532,
+  "name": "Assaut amélioré",
+  "description": "Permet d'utiliser Assaut vicieux et Assaut frénétique après avoir utilisé Assaut ophidien avec succès.",
+  "description_macro": "Permet d'utiliser <colortype(500)><edgecolortype(501)>Assaut vicieux<edgecolortype(0)><colortype(0)> et <colortype(500)><edgecolortype(501)>Assaut frénétique<edgecolortype(0)><colortype(0)> après avoir utilisé <colortype(500)><edgecolortype(501)>Assaut ophidien<edgecolortype(0)><colortype(0)> avec succès.",
+  "effects": [
+    "Permet d'utiliser Assaut vicieux et Assaut frénétique après avoir utilisé Assaut ophidien avec succès."
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 41,
+    "name": "Rôdeur Vipère",
+    "abbreviation": "VPR"
+  },
+  "unlock_level": 92,
+  "value": 0,
+  "icon": {
+    "id": 6510,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 196,
+  "source_class_job_id": 41
+}

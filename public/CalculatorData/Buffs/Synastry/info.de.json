@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 846,
+  "name": "Synastrie",
+  "description": "Mit einem Astrologen der Gruppe durch ätherische Kräfte verbunden. Regeneriert LP, sobald der Astrologe Heilmagie auf ein Einzelziel anwendet.",
+  "effects": [
+    "Mit einem Astrologen der Gruppe durch ätherische Kräfte verbunden. Regeneriert LP, sobald der Astrologe Heilmagie auf ein Einzelziel anwendet."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 213224,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": true,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 100,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 99,
+  "source_abilities": [
+    {
+      "id": 3612,
+      "name": "Synastrie",
+      "description": "Du verleihst einem Gruppenmitglied Synastrie.\nSobald du Heilmagie auf dich oder ein einzelnes Gruppenmitglied wirkst, werden auch beim Ziel von Synastrie 40 % der regenerierten LP wiederhergestellt.\nDauer: 20 Sekunden",
+      "description_macro": "Du verleihst einem Grup<->pen<->mit<->glied <colortype(506)><edgecolortype(507)>Synastrie<edgecolortype(0)><colortype(0)>.<br>Sobald du Heilmagie auf dich oder ein einzelnes Grup<->pen<->mit<->glied wirkst, werden auch beim Ziel von Synastrie 40 % der regenerierten LP wieder<->her<->gestellt.<br>Dauer: 20 Sekunden",
+      "unlock_level": 50,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Healer"
+      ],
+      "jobs": [
+        {
+          "id": 33,
+          "name": "Astrologe",
+          "abbreviation": "AST",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

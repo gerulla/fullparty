@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 1312,
+  "name": "桜華狂咲",
+  "description": "継続ダメージを受け、この効果を付与したプレイヤーから受けるダメージが増加する状態。",
+  "effects": [
+    "継続ダメージを受け、この効果を付与したプレイヤーから受けるダメージが増加する状態。"
+  ],
+  "classification": "debuff",
+  "icon": {
+    "id": 210307,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 2,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": true,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 10
+  },
+  "class_job_category_id": 23,
+  "source_abilities": [
+    {
+      "id": 88,
+      "name": "桜華狂咲",
+      "description": "対象に物理攻撃。\u3000威力：100\n背面攻撃時威力：140\nコンボ条件：ディセムボウル\u3000コンボ時威力：220\nコンボ時かつ背面攻撃時威力：260\nコンボボーナス：対象に継続ダメージを付与する。\n威力：40\u3000効果時間：24秒",
+      "description_macro": "対象に物理攻撃。\u3000<colortype(504)><edgecolortype(505)>威力：<edgecolortype(0)><colortype(0)>100<br><colortype(504)><edgecolortype(505)>背面攻撃時威力：<edgecolortype(0)><colortype(0)>140<br><colortype(504)><edgecolortype(505)>コンボ条件：<edgecolortype(0)><colortype(0)>ディセムボウル\u3000<colortype(504)><edgecolortype(505)>コンボ時威力：<edgecolortype(0)><colortype(0)>220<br><colortype(504)><edgecolortype(505)>コンボ時かつ背面攻撃時威力：<edgecolortype(0)><colortype(0)>260<br><colortype(504)><edgecolortype(505)>コンボボーナス：<edgecolortype(0)><colortype(0)>対象に継続ダメージを付与する。<br><colortype(504)><edgecolortype(505)>威力：<edgecolortype(0)><colortype(0)>40\u3000<colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>24秒",
+      "unlock_level": 50,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 22,
+          "name": "竜騎士",
+          "abbreviation": "DRG",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

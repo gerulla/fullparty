@@ -1,0 +1,26 @@
+{
+  "kind": "trait",
+  "id": 385,
+  "name": "Blason arcanique amélioré",
+  "description": "Octroie Blason revigorant à vous et à vos équipiers dans un rayon de 15 yalms quand la barrière de votre Blason protecteur a absorbé son montant de dégâts.\nBlason revigorant : restaure périodiquement les PV.\nPuissance : 50 Durée : 15s",
+  "description_macro": "Octroie <colortype(500)><edgecolortype(501)>Blason revigorant<edgecolortype(0)><colortype(0)> à vous et à vos équipiers dans un rayon de 15 yalms quand la barrière de votre <colortype(500)><edgecolortype(501)>Blason protecteur<edgecolortype(0)><colortype(0)> a absorbé son montant de dégâts.<br><colortype(506)><edgecolortype(507)>Blason revigorant<nbsp>:<edgecolortype(0)><colortype(0)> restaure périodiquement les PV.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> 50 <colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 15s",
+  "effects": [
+    "Octroie Blason revigorant à vous et à vos équipiers dans un rayon de 15 yalms quand la barrière de votre Blason protecteur a absorbé son montant de dégâts.",
+    "Blason revigorant : restaure périodiquement les PV.",
+    "Puissance : 50 Durée : 15s"
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 39,
+    "name": "Faucheur",
+    "abbreviation": "FCH"
+  },
+  "unlock_level": 84,
+  "value": 0,
+  "icon": {
+    "id": 6407,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 180,
+  "source_class_job_id": 39
+}

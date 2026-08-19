@@ -1,0 +1,25 @@
+{
+  "kind": "trait",
+  "id": 460,
+  "name": "Henochisch",
+  "description": "Der Schaden deiner Offensivmagie ist um 5 % erhöht.\nBedingung: Lichtfeuer oder Schatteneis aktiv",
+  "description_macro": "Der Schaden deiner Offensivmagie ist um 5<nbsp>% erhöht.<br>Bedingung: <colortype(506)><edgecolortype(507)>Lichtfeuer<edgecolortype(0)><colortype(0)> oder <colortype(506)><edgecolortype(507)>Schatteneis<edgecolortype(0)><colortype(0)> aktiv",
+  "effects": [
+    "Der Schaden deiner Offensivmagie ist um 5 % erhöht.",
+    "Bedingung: Lichtfeuer oder Schatteneis aktiv"
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 25,
+    "name": "Schwarzmagier",
+    "abbreviation": "SMA"
+  },
+  "unlock_level": 56,
+  "value": 0,
+  "icon": {
+    "id": 5368,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 26,
+  "source_class_job_id": 25
+}

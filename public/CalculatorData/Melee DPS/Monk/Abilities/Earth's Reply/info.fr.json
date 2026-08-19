@@ -1,0 +1,96 @@
+{
+  "kind": "ability",
+  "id": 36944,
+  "name": "Réaction de la terre",
+  "description": "Restaure vos PV et ceux des équipiers alentour.\nPuissance : 300\nPuissance avec Détermination de la terre : 500\nCondition : Grondement de la terre.",
+  "description_macro": "Restaure vos PV et ceux des équipiers alentour.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> 300<br><colortype(506)><edgecolortype(507)>Puissance avec Détermination de la terre<nbsp>:<edgecolortype(0)><colortype(0)> 500<br><colortype(506)><edgecolortype(507)>Condition<nbsp>:<edgecolortype(0)><colortype(0)> <colortype(500)><edgecolortype(501)>Grondement de la terre<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Restaure vos PV et ceux des équipiers alentour.",
+    "Puissance : 300",
+    "Puissance avec Détermination de la terre : 500",
+    "Condition : Grondement de la terre."
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 20,
+    "name": "Moine",
+    "abbreviation": "MOI"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 64,
+  "icon": {
+    "id": 2549,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 4,
+    "name": "Aptitude"
+  },
+  "attack_type": {
+    "id": 0,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 1,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 2,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 10,
+      "value": 3841
+    },
+    "secondary": {
+      "type_id": 32,
+      "value": 3841
+    }
+  },
+  "range": {
+    "target_yalms": 0,
+    "effect_yalms": 5,
+    "cast_type": 2
+  },
+  "targeting": {
+    "self": true,
+    "party": false,
+    "alliance": false,
+    "hostile": false,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": {
+      "id": 158,
+      "status": {
+        "id": 3841,
+        "name": "Grondement de la terre",
+        "description": "Réaction de la terre peut être lancée.",
+        "icon_id": 212539,
+        "max_stacks": 0
+      }
+    }
+  },
+  "metadata": {
+    "aspect_id": 0,
+    "behavior_type": 0,
+    "class_job_category_id": 21,
+    "source_class_job_id": 20,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

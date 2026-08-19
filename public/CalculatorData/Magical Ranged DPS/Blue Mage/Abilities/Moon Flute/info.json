@@ -1,0 +1,87 @@
+{
+  "kind": "ability",
+  "id": 11415,
+  "name": "Moon Flute",
+  "description": "Grants the effect of Waxing Nocturne, increasing damage dealt by 50% and movement speed by 30%.\nDuration: 15s\nWhen effect ends, the player is afflicted with Waning Nocturne, preventing the use of auto-attack, weaponskills, spells, or abilities.\nDuration: 15s",
+  "description_macro": "Grants the effect of <colortype(506)><edgecolortype(507)>Waxing Nocturne<edgecolortype(0)><colortype(0)>, increasing damage dealt by 50% and movement speed by 30%.<br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>15s<br>When effect ends, the player is afflicted with <colortype(506)><edgecolortype(507)>Waning Nocturne<edgecolortype(0)><colortype(0)>, preventing the use of auto-attack, weaponskills, spells, or abilities.<br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>15s",
+  "effects": [
+    "Grants the effect of Waxing Nocturne, increasing damage dealt by 50% and movement speed by 30%.",
+    "Duration: 15s",
+    "When effect ends, the player is afflicted with Waning Nocturne, preventing the use of auto-attack, weaponskills, spells, or abilities.",
+    "Duration: 15s"
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 36,
+    "name": "Blue Mage",
+    "abbreviation": "BLU"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 1,
+  "icon": {
+    "id": 3283,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 2,
+    "name": "Spell"
+  },
+  "attack_type": {
+    "id": 5,
+    "name": "魔法"
+  },
+  "timing": {
+    "cast_seconds": 2,
+    "recast_seconds": 2.5,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 58,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 3,
+      "value": 5
+    },
+    "secondary": {
+      "type_id": 0,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": 0,
+    "effect_yalms": 0,
+    "cast_type": 1
+  },
+  "targeting": {
+    "self": true,
+    "party": false,
+    "alliance": false,
+    "hostile": false,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": false
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 7,
+    "behavior_type": 0,
+    "class_job_category_id": 129,
+    "source_class_job_id": 36,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 2029,
+  "name": "Quell des Feuers",
+  "description": "Erleidet schrittweise Schaden.",
+  "effects": [
+    "Erleidet schrittweise Schaden."
+  ],
+  "classification": "debuff",
+  "icon": {
+    "id": 212731,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 2,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": true,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 100
+  },
+  "class_job_category_id": 28,
+  "source_abilities": [
+    {
+      "id": 16514,
+      "name": "Quell des Feuers",
+      "description": "Du führst eine feuerbasierte magische Attacke aus.\nAttacke-Wert: 580\nBedingung: Phönix-Trance aktiv\nBei erfüllter Bedingung ändert sich Ruinga zu diesem Kommando.\nKann nicht im Kommandomenü angelegt werden.",
+      "description_macro": "Du führst eine feuerbasierte magische Attacke aus.<br>Attacke-Wert: <if([gnum68==27],<if([gnum72>=94],580,540)>,540)><br>Bedingung: <colortype(506)><edgecolortype(507)>Phönix-Trance<edgecolortype(0)><colortype(0)> aktiv<br>Bei erfüllter Bedingung ändert sich <colortype(502)><edgecolortype(503)>Ruinga<edgecolortype(0)><colortype(0)> zu diesem Kommando.<br>Kann nicht im Kommandomenü angelegt werden.",
+      "unlock_level": 80,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Magical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 27,
+          "name": "Beschwörer",
+          "abbreviation": "BSW",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

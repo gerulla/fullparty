@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 3904,
+  "name": "Göttliche Umarmung",
+  "description": "Regeneriert schrittweise LP.",
+  "effects": [
+    "Regeneriert schrittweise LP."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 212642,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 5,
+  "parameter": {
+    "effect": 0,
+    "modifier": 10
+  },
+  "class_job_category_id": 25,
+  "source_abilities": [
+    {
+      "id": 37011,
+      "name": "Göttliche Umarmung",
+      "description": "Du errichtest eine Barriere um dich und umstehende Gruppenmitglieder, die Schaden entsprechend einem Heilpotenzial von 400 absorbiert.\nDauer: 10 Sekunden\nZusatzeffekt: Gewährt dem Ziel bei Ablauf der Wirkungsdauer Göttliche Umarmung.\nEffekt von Göttliche Umarmung: Ziel regeneriert stetig LP.\nHeilpotenzial: 200\nDauer: 15 Sekunden\nBedingung: Göttliche Gnade aktiv",
+      "description_macro": "Du errichtest eine Barriere um dich und umstehende Grup<->pen<->mit<->glieder, die Schaden entsprechend einem Heilpotenzial von 400 absorbiert.<br>Dauer: 10 Sekunden<br>Zusatzeffekt: Gewährt dem Ziel bei Ablauf der Wirkungsdauer <colortype(506)><edgecolortype(507)>Göttliche Umarmung<edgecolortype(0)><colortype(0)>.<br>Effekt von <colortype(506)><edgecolortype(507)>Göttliche Umarmung<edgecolortype(0)><colortype(0)>: Ziel regeneriert stetig LP.<br>Heilpotenzial: 200<br>Dauer: 15 Sekunden<br>Bedingung: <colortype(506)><edgecolortype(507)>Göttliche Gnade<edgecolortype(0)><colortype(0)> aktiv",
+      "unlock_level": 100,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Healer"
+      ],
+      "jobs": [
+        {
+          "id": 24,
+          "name": "Weißmagier",
+          "abbreviation": "WMA",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

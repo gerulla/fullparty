@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 3828,
+  "name": "Sépulcre préparé",
+  "description": "Sépulcre peut être lancé.",
+  "effects": [
+    "Sépulcre peut être lancé."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 212524,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 20,
+  "source_abilities": [
+    {
+      "id": 36918,
+      "name": "Oraison",
+      "description": "Effectue une attaque physique sur la cible.\nPuissance : 500\nEffet additionnel : restaure vos PM.\nEffet additionnel : vous octroie Sépulcre préparé.\nDurée : 30s\nCondition : Oraison préparée.\n\n* Cette action ne peut pas être ajoutée aux barres de raccourcis.\nRemplace Absolution lorsque les conditions sont réunies.",
+      "description_macro": "Effectue une attaque physique sur la cible.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> <if([gnum68==19],<if([gnum72>=94],500,<if([gnum68==19],<if([gnum72>=84],420,380)>,380)>)>,<if([gnum68==19],<if([gnum72>=84],420,380)>,380)>)><br><colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> restaure vos PM.<br><colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> vous octroie <colortype(500)><edgecolortype(501)>Sépulcre préparé<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 30s<br><colortype(506)><edgecolortype(507)>Condition<nbsp>:<edgecolortype(0)><colortype(0)> <colortype(500)><edgecolortype(501)>Oraison préparée<edgecolortype(0)><colortype(0)>.<br><br><colortype(504)><edgecolortype(505)>* Cette action ne peut pas être ajoutée aux barres de raccourcis.<br>Remplace <colortype(500)><edgecolortype(501)>Absolution<edgecolortype(0)><colortype(0)> lorsque les conditions sont réunies.<edgecolortype(0)><colortype(0)>",
+      "unlock_level": 76,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Tank"
+      ],
+      "jobs": [
+        {
+          "id": 19,
+          "name": "Paladin",
+          "abbreviation": "PLD",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

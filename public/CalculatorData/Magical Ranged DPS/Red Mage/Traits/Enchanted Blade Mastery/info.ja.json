@@ -1,0 +1,38 @@
+{
+  "kind": "trait",
+  "id": 652,
+  "name": "アクション威力アップ",
+  "description": "特定のアクションの威力を上昇させる。\n\nエンリポストの威力：340\nヴァルファイアの威力：380\nヴァルストーンの威力：380\nエンツヴェルクハウの威力：190\nフレッシュの威力：480\nエンルドゥブルマンの威力：190\nコントルシクストの威力：420\nヴァルフレアの威力：650\nヴァルホーリーの威力：650\nエンルプリーズの威力：420\nスコーチの威力：750\nヴァルエアロガの威力：440\nヴァルサンダガの威力：440\nレゾリューションの威力：850",
+  "description_macro": "特定のアクションの威力を上昇させる。<br><br><colortype(504)><edgecolortype(505)>エンリポストの威力：<edgecolortype(0)><colortype(0)>340<br><colortype(504)><edgecolortype(505)>ヴァルファイアの威力：<edgecolortype(0)><colortype(0)>380<br><colortype(504)><edgecolortype(505)>ヴァルストーンの威力：<edgecolortype(0)><colortype(0)>380<br><colortype(504)><edgecolortype(505)>エンツヴェルクハウの威力：<edgecolortype(0)><colortype(0)>190<br><colortype(504)><edgecolortype(505)>フレッシュの威力：<edgecolortype(0)><colortype(0)>480<br><colortype(504)><edgecolortype(505)>エンルドゥブルマンの威力：<edgecolortype(0)><colortype(0)>190<br><colortype(504)><edgecolortype(505)>コントルシクストの威力：<edgecolortype(0)><colortype(0)>420<br><colortype(504)><edgecolortype(505)>ヴァルフレアの威力：<edgecolortype(0)><colortype(0)>650<br><colortype(504)><edgecolortype(505)>ヴァルホーリーの威力：<edgecolortype(0)><colortype(0)>650<br><colortype(504)><edgecolortype(505)>エンルプリーズの威力：<edgecolortype(0)><colortype(0)>420<br><colortype(504)><edgecolortype(505)>スコーチの威力：<edgecolortype(0)><colortype(0)>750<br><colortype(504)><edgecolortype(505)>ヴァルエアロガの威力：<edgecolortype(0)><colortype(0)>440<br><colortype(504)><edgecolortype(505)>ヴァルサンダガの威力：<edgecolortype(0)><colortype(0)>440<br><colortype(504)><edgecolortype(505)>レゾリューションの威力：<edgecolortype(0)><colortype(0)>850",
+  "effects": [
+    "特定のアクションの威力を上昇させる。",
+    "エンリポストの威力：340",
+    "ヴァルファイアの威力：380",
+    "ヴァルストーンの威力：380",
+    "エンツヴェルクハウの威力：190",
+    "フレッシュの威力：480",
+    "エンルドゥブルマンの威力：190",
+    "コントルシクストの威力：420",
+    "ヴァルフレアの威力：650",
+    "ヴァルホーリーの威力：650",
+    "エンルプリーズの威力：420",
+    "スコーチの威力：750",
+    "ヴァルエアロガの威力：440",
+    "ヴァルサンダガの威力：440",
+    "レゾリューションの威力：850"
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 35,
+    "name": "赤魔道士",
+    "abbreviation": "RDM"
+  },
+  "unlock_level": 94,
+  "value": 0,
+  "icon": {
+    "id": 6831,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 112,
+  "source_class_job_id": 35
+}

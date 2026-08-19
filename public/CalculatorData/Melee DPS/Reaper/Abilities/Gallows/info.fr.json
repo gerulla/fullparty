@@ -1,0 +1,102 @@
+{
+  "kind": "ability",
+  "id": 24383,
+  "name": "Potence",
+  "description": "Effectue une attaque physique sur la cible.\nPuissance : 500\nPuissance avec Potence améliorée : 560\nPuissance par derrière : 560\nPuissance par derrière avec Potence améliorée : 620\nEffet additionnel : vous octroie Gibet amélioré.\nDurée : 60s\nFétu ensanglanté devient Gibet suppliciant pendant la durée de l'effet.\nEffet additionnel : remplit la Jauge du linceul de 10.\nCondition : Moissonneur d'âmes.",
+  "description_macro": "Effectue une attaque physique sur la cible.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> <if([gnum68==39],<if([gnum72>=94],500,400)>,400)><br><colortype(506)><edgecolortype(507)>Puissance avec Potence améliorée<nbsp>:<edgecolortype(0)><colortype(0)> <if([gnum68==39],<if([gnum72>=94],560,460)>,460)><br><colortype(506)><edgecolortype(507)>Puissance par derrière<nbsp>:<edgecolortype(0)><colortype(0)> <if([gnum68==39],<if([gnum72>=94],560,460)>,460)><br><colortype(506)><edgecolortype(507)>Puissance par derrière avec Potence améliorée<nbsp>:<edgecolortype(0)><colortype(0)> <if([gnum68==39],<if([gnum72>=94],620,520)>,520)><br><colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> vous octroie <colortype(500)><edgecolortype(501)>Gibet amélioré<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 60s<br>Fétu ensanglanté devient Gibet suppliciant pendant la durée de l'effet.<br><if([gnum68==39],<if([gnum72>=80],<colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> remplit la <colortype(502)><edgecolortype(503)>Jauge du linceul<edgecolortype(0)><colortype(0)> de 10.<br>,)>,)><colortype(506)><edgecolortype(507)>Condition<nbsp>:<edgecolortype(0)><colortype(0)> <colortype(500)><edgecolortype(501)>Moissonneur d'âmes<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Effectue une attaque physique sur la cible.",
+    "Puissance : 500",
+    "Puissance avec Potence améliorée : 560",
+    "Puissance par derrière : 560",
+    "Puissance par derrière avec Potence améliorée : 620",
+    "Effet additionnel : vous octroie Gibet amélioré.",
+    "Durée : 60s",
+    "Fétu ensanglanté devient Gibet suppliciant pendant la durée de l'effet.",
+    "Effet additionnel : remplit la Jauge du linceul de 10.",
+    "Condition : Moissonneur d'âmes."
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 39,
+    "name": "Faucheur",
+    "abbreviation": "FCH"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 70,
+  "icon": {
+    "id": 3611,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 3,
+    "name": "Technique d'arme"
+  },
+  "attack_type": {
+    "id": 1,
+    "name": "tranchant"
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 2.5,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 58,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 10,
+      "value": 2587
+    },
+    "secondary": {
+      "type_id": 113,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": -1,
+    "effect_yalms": 0,
+    "cast_type": 1
+  },
+  "targeting": {
+    "self": false,
+    "party": false,
+    "alliance": false,
+    "hostile": true,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": {
+      "id": 75,
+      "status": {
+        "id": 2589,
+        "name": "Potence améliorée",
+        "description": "La puissance de la prochaine Potence est augmentée.",
+        "icon_id": 212928,
+        "max_stacks": 0
+      }
+    }
+  },
+  "metadata": {
+    "aspect_id": 7,
+    "behavior_type": 0,
+    "class_job_category_id": 180,
+    "source_class_job_id": 39,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

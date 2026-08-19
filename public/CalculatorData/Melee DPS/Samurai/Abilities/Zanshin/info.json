@@ -1,0 +1,95 @@
+{
+  "kind": "ability",
+  "id": 36964,
+  "name": "Zanshin",
+  "description": "Delivers an attack to all enemies in a cone before you with a potency of 940 for the first enemy, and 40% less for all remaining enemies.\nKenki Gauge Cost: 50\nCan only be executed while under the effect of Zanshin Ready.",
+  "description_macro": "Delivers an attack to all enemies in a cone before you with a potency of 940 for the first enemy, and 40% less for all remaining enemies.<br><colortype(504)><edgecolortype(505)>Kenki Gauge Cost: <edgecolortype(0)><colortype(0)>50<br>Can only be executed while under the effect of <colortype(506)><edgecolortype(507)>Zanshin Ready<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Delivers an attack to all enemies in a cone before you with a potency of 940 for the first enemy, and 40% less for all remaining enemies.",
+    "Kenki Gauge Cost: 50",
+    "Can only be executed while under the effect of Zanshin Ready."
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 34,
+    "name": "Samurai",
+    "abbreviation": "SAM"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 96,
+  "icon": {
+    "id": 3192,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 4,
+    "name": "Ability"
+  },
+  "attack_type": {
+    "id": 4294967295,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 1,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 3,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 39,
+      "value": 50
+    },
+    "secondary": {
+      "type_id": 32,
+      "value": 3855
+    }
+  },
+  "range": {
+    "target_yalms": 8,
+    "effect_yalms": 8,
+    "cast_type": 3
+  },
+  "targeting": {
+    "self": false,
+    "party": false,
+    "alliance": false,
+    "hostile": true,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": {
+      "id": 166,
+      "status": {
+        "id": 3855,
+        "name": "Zanshin Ready",
+        "description": "Able to execute Zanshin.",
+        "icon_id": 213318,
+        "max_stacks": 0
+      }
+    }
+  },
+  "metadata": {
+    "aspect_id": 7,
+    "behavior_type": 0,
+    "class_job_category_id": 111,
+    "source_class_job_id": 34,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

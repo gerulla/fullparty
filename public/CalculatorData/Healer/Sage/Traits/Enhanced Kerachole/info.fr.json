@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 375,
+  "name": "Kerachole amélioré",
+  "description": "Ajoute un effet de restauration périodique de PV à Kerachole.",
+  "description_macro": "Ajoute un effet de restauration périodique de PV à <colortype(500)><edgecolortype(501)>Kerachole<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Ajoute un effet de restauration périodique de PV à Kerachole."
+  ],
+  "role": "Healer",
+  "job": {
+    "id": 40,
+    "name": "Sage",
+    "abbreviation": "SAG"
+  },
+  "unlock_level": 78,
+  "value": 0,
+  "icon": {
+    "id": 6456,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 181,
+  "source_class_job_id": 40
+}

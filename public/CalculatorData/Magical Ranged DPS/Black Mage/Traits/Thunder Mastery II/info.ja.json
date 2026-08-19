@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 172,
+  "name": "サンダーマスタリーII",
+  "description": "サンダラがサンダジャに変化する。",
+  "description_macro": "サンダラがサンダジャに変化する。",
+  "effects": [
+    "サンダラがサンダジャに変化する。"
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 25,
+    "name": "黒魔道士",
+    "abbreviation": "BLM"
+  },
+  "unlock_level": 64,
+  "value": 0,
+  "icon": {
+    "id": 5358,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 26,
+  "source_class_job_id": 25
+}

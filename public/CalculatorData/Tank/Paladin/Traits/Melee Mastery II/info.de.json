@@ -1,0 +1,35 @@
+{
+  "kind": "trait",
+  "id": 650,
+  "name": "Verbesserte Ritterlichkeit II",
+  "description": "Erhöht den Attacke-Wert folgender Kommandos:\nAttacke-Wert von Vortexschnitt: 220\nAttacke-Wert von Donnerklinge: 170\nAttacke-Wert von Königsklinge: 200\nAttacke-Wert von Heiliger Geist: 400\nAttacke-Wert von Absolution: 460\nAttacke-Wert von Anflehung: 500\nAttacke-Wert von Heilige Grabstätte: 540\nAttacke-Wert von Confiteor: 500\nAttacke-Wert von Klinge der Frömmigkeit: 260\nAttacke-Wert von Klinge der Redlichkeit: 380\nAttacke-Wert von Klinge der Tapferkeit: 500",
+  "description_macro": "Erhöht den Attacke-Wert folgender Kommandos:<br>Attacke-Wert von <colortype(502)><edgecolortype(503)>Vortexschnitt<edgecolortype(0)><colortype(0)>: 220<br>Attacke-Wert von <colortype(502)><edgecolortype(503)>Donnerklinge<edgecolortype(0)><colortype(0)>: 170<br>Attacke-Wert von <colortype(502)><edgecolortype(503)>Königsklinge<edgecolortype(0)><colortype(0)>: 200<br>Attacke-Wert von <colortype(502)><edgecolortype(503)>Heiliger Geist<edgecolortype(0)><colortype(0)>: 400<br>Attacke-Wert von <colortype(502)><edgecolortype(503)>Absolution<edgecolortype(0)><colortype(0)>: 460<br>Attacke-Wert von <colortype(502)><edgecolortype(503)>Anflehung<edgecolortype(0)><colortype(0)>: 500<br>Attacke-Wert von <colortype(502)><edgecolortype(503)>Heilige Grabstätte<edgecolortype(0)><colortype(0)>: 540<br>Attacke-Wert von <colortype(502)><edgecolortype(503)>Confiteor<edgecolortype(0)><colortype(0)>: 500<br>Attacke-Wert von <colortype(502)><edgecolortype(503)>Klinge der Frömmigkeit<edgecolortype(0)><colortype(0)>: 260<br>Attacke-Wert von <colortype(502)><edgecolortype(503)>Klinge der Redlichkeit<edgecolortype(0)><colortype(0)>: 380<br>Attacke-Wert von <colortype(502)><edgecolortype(503)>Klinge der Tapferkeit<edgecolortype(0)><colortype(0)>: 500",
+  "effects": [
+    "Erhöht den Attacke-Wert folgender Kommandos:",
+    "Attacke-Wert von Vortexschnitt: 220",
+    "Attacke-Wert von Donnerklinge: 170",
+    "Attacke-Wert von Königsklinge: 200",
+    "Attacke-Wert von Heiliger Geist: 400",
+    "Attacke-Wert von Absolution: 460",
+    "Attacke-Wert von Anflehung: 500",
+    "Attacke-Wert von Heilige Grabstätte: 540",
+    "Attacke-Wert von Confiteor: 500",
+    "Attacke-Wert von Klinge der Frömmigkeit: 260",
+    "Attacke-Wert von Klinge der Redlichkeit: 380",
+    "Attacke-Wert von Klinge der Tapferkeit: 500"
+  ],
+  "role": "Tank",
+  "job": {
+    "id": 19,
+    "name": "Paladin",
+    "abbreviation": "PLD"
+  },
+  "unlock_level": 94,
+  "value": 0,
+  "icon": {
+    "id": 6802,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 20,
+  "source_class_job_id": 19
+}

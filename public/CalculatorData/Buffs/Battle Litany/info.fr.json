@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 786,
+  "name": "Litanie combattante",
+  "description": "Les chances de critiques sont augmentées.",
+  "effects": [
+    "Les chances de critiques sont augmentées."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 212578,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 10
+  },
+  "class_job_category_id": 23,
+  "source_abilities": [
+    {
+      "id": 3557,
+      "name": "Litanie combattante",
+      "description": "Augmente de 10% les chances de critiques pour vous et les équipiers alentour.\nDurée : 20s",
+      "description_macro": "Augmente de 10% les chances de critiques pour vous et les équipiers alentour.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 20s",
+      "unlock_level": 52,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 22,
+          "name": "Chevalier Dragon",
+          "abbreviation": "DRG",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

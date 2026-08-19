@@ -1,0 +1,90 @@
+{
+  "kind": "ability",
+  "id": 107,
+  "name": "Rafale de coups",
+  "description": "Vous octroie Rafale de coups.\nDurée : 10s\nRafale de coups : permet de lancer Flèche rayonnanteet Morsure de l'ombre.\nEn outre, Flèche rayonnante infligera 3 fois le montant normal de dégâts en un seul coup.\nSi Morsure de l'ombre est lancée, sa puissance est augmentée à 300.\nEffet additionnel : vous octroie Flèche résonante préparée.\nDurée : 30s",
+  "description_macro": "Vous octroie <colortype(500)><edgecolortype(501)>Rafale de coups<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 10s<br><colortype(506)><edgecolortype(507)>Rafale de coups<nbsp>:<edgecolortype(0)><colortype(0)> permet de lancer <if([gnum68==23],<if([gnum72>=70],Flèche rayonnante,Tir droit)>,Tir droit)><if([gnum68==23],<if([gnum72>=72], et Morsure de l'ombre, et Rafale impitoyable)>, et Rafale impitoyable)>.<br>En outre, <if([gnum68==23],<if([gnum72>=70],Flèche rayonnante,Tir droit)>,Tir droit)> infligera 3 fois le montant normal de dégâts en un seul coup.<br>Si <if([gnum68==23],<if([gnum72>=72],Morsure de l'ombre,Rafale impitoyable)>,Rafale impitoyable)> est lancée, sa puissance est augmentée à <if([gnum68==23],<if([gnum72>=72],300,220)>,220)>.<if([gnum68==23],<if([gnum72>=96],<br><colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> vous octroie <colortype(500)><edgecolortype(501)>Flèche résonante préparée<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 30s,)>,)>",
+  "effects": [
+    "Vous octroie Rafale de coups.",
+    "Durée : 10s",
+    "Rafale de coups : permet de lancer Flèche rayonnanteet Morsure de l'ombre.",
+    "En outre, Flèche rayonnante infligera 3 fois le montant normal de dégâts en un seul coup.",
+    "Si Morsure de l'ombre est lancée, sa puissance est augmentée à 300.",
+    "Effet additionnel : vous octroie Flèche résonante préparée.",
+    "Durée : 30s"
+  ],
+  "role": "Physical Ranged DPS",
+  "job": {
+    "id": 23,
+    "name": "Barde",
+    "abbreviation": "BRD"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 38,
+  "icon": {
+    "id": 353,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 4,
+    "name": "Aptitude"
+  },
+  "attack_type": {
+    "id": 0,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 120,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 20,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 0,
+      "value": 0
+    },
+    "secondary": {
+      "type_id": 0,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": 0,
+    "effect_yalms": 0,
+    "cast_type": 1
+  },
+  "targeting": {
+    "self": true,
+    "party": false,
+    "alliance": false,
+    "hostile": false,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 0,
+    "behavior_type": 0,
+    "class_job_category_id": 50,
+    "source_class_job_id": 5,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

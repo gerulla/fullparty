@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 4790,
+  "name": "Brennende Klinge",
+  "description": "Ausgeteilter Schaden ist erhöht.",
+  "effects": [
+    "Ausgeteilter Schaden ist erhöht."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 229965,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": true,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 5
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 46593,
+      "name": "Magieklingen-Flare",
+      "description": "Du führst eine physische Attacke aus.\nAttacke-Wert: 200 (skaliert mit Gegenstandsstufe)\nZusatzeffekt: Erhöht den eigenen ausgeteilten Schaden sowie den erlittenen Schaden des Ziels um jeweils 5 %.\nDauer: 70 Sekunden\nAttacke-Wert während Magieklingen-Verstärkung: 300 (skaliert mit Gegenstandsstufe)\nGemeinsamer Reaktivierungs-Timer mit Magieklingen-Versteinerung und Magieklingen-Sanctus",
+      "description_macro": "Du führst eine physische Attacke aus.<br>Attacke-Wert: 200 (skaliert mit Gegen<->stands<->stufe)<br>Zusatzeffekt: Erhöht den eigenen ausgeteilten Schaden sowie den erlittenen Schaden des Ziels um jeweils 5<nbsp>%.<br>Dauer: 70 Sekunden<br>Attacke-Wert während <colortype(506)><edgecolortype(507)>Magieklingen-Verstärkung<edgecolortype(0)><colortype(0)>: 300 (skaliert mit Gegen<->stands<->stufe)<br>Gemeinsamer Reaktivierungs-Timer mit <colortype(502)><edgecolortype(503)>Magieklingen-Versteinerung<edgecolortype(0)><colortype(0)> und <colortype(502)><edgecolortype(503)>Magieklingen-Sanctus<edgecolortype(0)><colortype(0)>",
+      "unlock_level": 0,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Phantom Jobs"
+      ],
+      "jobs": [
+        {
+          "id": 13,
+          "name": "Phantom Phantom-Paladin",
+          "abbreviation": "Ph-Paladin",
+          "is_phantom": true
+        }
+      ]
+    }
+  ]
+}

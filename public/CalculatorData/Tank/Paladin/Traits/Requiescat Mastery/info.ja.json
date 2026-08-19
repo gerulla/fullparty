@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 565,
+  "name": "レクイエスカットマスタリー",
+  "description": "レクイエスカットがインペラトルに変化する。",
+  "description_macro": "レクイエスカットがインペラトルに変化する。",
+  "effects": [
+    "レクイエスカットがインペラトルに変化する。"
+  ],
+  "role": "Tank",
+  "job": {
+    "id": 19,
+    "name": "ナイト",
+    "abbreviation": "PLD"
+  },
+  "unlock_level": 96,
+  "value": 0,
+  "icon": {
+    "id": 5223,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 20,
+  "source_class_job_id": 19
+}

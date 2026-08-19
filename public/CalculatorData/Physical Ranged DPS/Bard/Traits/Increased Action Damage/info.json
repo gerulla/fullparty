@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 18,
+  "name": "Increased Action Damage",
+  "description": "Increases base action damage by 10%.",
+  "description_macro": "Increases base action damage by 10%.",
+  "effects": [
+    "Increases base action damage by 10%."
+  ],
+  "role": "Physical Ranged DPS",
+  "job": {
+    "id": 23,
+    "name": "Bard",
+    "abbreviation": "BRD"
+  },
+  "unlock_level": 20,
+  "value": 10,
+  "icon": {
+    "id": 5302,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 50,
+  "source_class_job_id": 5
+}

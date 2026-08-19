@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 2495,
+  "name": "Angel's Snack",
+  "description": "Regenerating HP over time.",
+  "effects": [
+    "Regenerating HP over time."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 213534,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 1,
+  "parameter": {
+    "effect": 0,
+    "modifier": 50
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 23272,
+      "name": "Angel's Snack",
+      "description": "Restores own HP and the HP of all nearby party members.\nCure Potency: 400\nAdditional Effect: Grants healing over time effect when you are under the effect of Aetheric Mimicry: Healer\nCure Potency: 200\nDuration: 15s\nShares a recast timer with Dragon Force and Matra Magic.",
+      "description_macro": "Restores own HP and the HP of all nearby party members.<br><colortype(504)><edgecolortype(505)>Cure Potency: <edgecolortype(0)><colortype(0)>400<br><colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>Grants healing over time effect when you are under the effect of <colortype(506)><edgecolortype(507)>Aetheric Mimicry: Healer<edgecolortype(0)><colortype(0)><br><colortype(504)><edgecolortype(505)>Cure Potency: <edgecolortype(0)><colortype(0)>200<br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>15s<br>Shares a recast timer with <colortype(500)><edgecolortype(501)>Dragon Force<edgecolortype(0)><colortype(0)> and <colortype(500)><edgecolortype(501)>Matra Magic<edgecolortype(0)><colortype(0)>.",
+      "unlock_level": 1,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Magical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 36,
+          "name": "Blue Mage",
+          "abbreviation": "BLU",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

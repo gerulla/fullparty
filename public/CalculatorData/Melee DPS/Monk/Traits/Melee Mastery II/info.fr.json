@@ -1,0 +1,29 @@
+{
+  "kind": "trait",
+  "id": 660,
+  "name": "Actions améliorées II",
+  "description": "Augmente la puissance de certaines actions.\n\nPuissance de Serpents jumeaux : 420\nPuissance de Démolition : 360\nPuissance de Tacle du dragon : 320\nPuissance d'Étoile à six branches : 780\nPuissance de Rixe évanescente :1500",
+  "description_macro": "Augmente la puissance de certaines actions.<br><br><colortype(506)><edgecolortype(507)>Puissance de Serpents jumeaux<nbsp>:<edgecolortype(0)><colortype(0)> 420<br><colortype(506)><edgecolortype(507)>Puissance de Démolition<nbsp>:<edgecolortype(0)><colortype(0)> 360<br><colortype(506)><edgecolortype(507)>Puissance de Tacle du dragon<nbsp>:<edgecolortype(0)><colortype(0)> 320<br><colortype(506)><edgecolortype(507)>Puissance d'Étoile à six branches<nbsp>:<edgecolortype(0)><colortype(0)> 780<br><colortype(506)><edgecolortype(507)>Puissance de Rixe évanescente<nbsp>:<edgecolortype(0)><colortype(0)>1500",
+  "effects": [
+    "Augmente la puissance de certaines actions.",
+    "Puissance de Serpents jumeaux : 420",
+    "Puissance de Démolition : 360",
+    "Puissance de Tacle du dragon : 320",
+    "Puissance d'Étoile à six branches : 780",
+    "Puissance de Rixe évanescente :1500"
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 20,
+    "name": "Moine",
+    "abbreviation": "MOI"
+  },
+  "unlock_level": 94,
+  "value": 0,
+  "icon": {
+    "id": 6802,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 21,
+  "source_class_job_id": 20
+}

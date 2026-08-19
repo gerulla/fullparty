@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 20,
+  "name": "Verbesserte Kommandos II",
+  "description": "Erhöht den Basisschaden von Kommandos außer Auto-Attacke um 20 %.",
+  "description_macro": "Erhöht den Basisschaden von Kommandos außer Auto-Attacke um 20 %.",
+  "effects": [
+    "Erhöht den Basisschaden von Kommandos außer Auto-Attacke um 20 %."
+  ],
+  "role": "Physical Ranged DPS",
+  "job": {
+    "id": 23,
+    "name": "Barde",
+    "abbreviation": "BRD"
+  },
+  "unlock_level": 40,
+  "value": 20,
+  "icon": {
+    "id": 5303,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 50,
+  "source_class_job_id": 5
+}

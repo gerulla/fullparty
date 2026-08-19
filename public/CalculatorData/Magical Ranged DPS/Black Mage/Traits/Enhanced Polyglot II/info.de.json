@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 615,
+  "name": "Verbessertes Polyglott II",
+  "description": "Die Maximalstapelzahl von Polyglott wird auf 3 erhöht.",
+  "description_macro": "Die Ma<->xi<->mal<->sta<->pel<->zahl von <colortype(506)><edgecolortype(507)>Polyglott<edgecolortype(0)><colortype(0)> wird auf 3 erhöht.",
+  "effects": [
+    "Die Maximalstapelzahl von Polyglott wird auf 3 erhöht."
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 25,
+    "name": "Schwarzmagier",
+    "abbreviation": "SMA"
+  },
+  "unlock_level": 98,
+  "value": 0,
+  "icon": {
+    "id": 5653,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 26,
+  "source_class_job_id": 25
+}

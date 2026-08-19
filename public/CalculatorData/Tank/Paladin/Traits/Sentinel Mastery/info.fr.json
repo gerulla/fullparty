@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 564,
+  "name": "Maîtrise de Sentinelle",
+  "description": "Remplace Sentinelle par Garde extrême.",
+  "description_macro": "Remplace <colortype(500)><edgecolortype(501)>Sentinelle<edgecolortype(0)><colortype(0)> par <colortype(500)><edgecolortype(501)>Garde extrême<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Remplace Sentinelle par Garde extrême."
+  ],
+  "role": "Tank",
+  "job": {
+    "id": 19,
+    "name": "Paladin",
+    "abbreviation": "PLD"
+  },
+  "unlock_level": 92,
+  "value": 0,
+  "icon": {
+    "id": 5202,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 20,
+  "source_class_job_id": 19
+}

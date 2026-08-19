@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 2702,
+  "name": "Égide rayonnante",
+  "description": "Insensible à un certain montant de dégâts.",
+  "effects": [
+    "Insensible à un certain montant de dégâts."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 212691,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 30,
+  "parameter": {
+    "effect": 0,
+    "modifier": 100
+  },
+  "class_job_category_id": 28,
+  "source_abilities": [
+    {
+      "id": 25799,
+      "name": "Égide rayonnante",
+      "description": "Ordonne à votre Carbuncle d'exécuter Égide rayonnante.\n\nCrée une barrière sur le maître absorbant les dégâts subis pour un montant égal à 20% de vos PV maximums.\nDurée : 30s\nMaximum de charges : 2\nCondition : Carbuncle invoqué.",
+      "description_macro": "Ordonne à votre Carbuncle d'exécuter <colortype(500)><edgecolortype(501)>Égide rayonnante<edgecolortype(0)><colortype(0)>.<br><br>Crée une barrière sur le maître absorbant les dégâts subis pour un montant égal à 20% de vos PV maximums.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 30s<br><if([gnum68==27],<if([gnum72>=88],<colortype(506)><edgecolortype(507)>Maximum de charges<nbsp>:<edgecolortype(0)><colortype(0)> 2<br>,)>,)><colortype(506)><edgecolortype(507)>Condition<nbsp>:<edgecolortype(0)><colortype(0)> Carbuncle invoqué.",
+      "unlock_level": 2,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Magical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 27,
+          "name": "Invocateur",
+          "abbreviation": "INV",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

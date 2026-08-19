@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 3906,
+  "name": "Kunai explosifs",
+  "description": "Les dégâts reçus du personnage à l'origine de l'effet sont augmentés.",
+  "effects": [
+    "Les dégâts reçus du personnage à l'origine de l'effet sont augmentés."
+  ],
+  "classification": "debuff",
+  "icon": {
+    "id": 212923,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 2,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 10
+  },
+  "class_job_category_id": 92,
+  "source_abilities": [
+    {
+      "id": 36958,
+      "name": "Kunai explosifs",
+      "description": "Effectue une attaque physique sur la cible et les ennemis autour.\nPuissance : 700\nEffet additionnel : inflige Kunai explosifs.\nDurée : 15s\nKunai explosifs : augmente les dégâts infligés à la cible par le lanceur de 10%.\nCondition : Dissimulation.",
+      "description_macro": "Effectue une attaque physique sur la cible et les ennemis autour.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> 700<br><colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> inflige <colortype(500)><edgecolortype(501)>Kunai explosifs<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 15s<br><colortype(506)><edgecolortype(507)>Kunai explosifs<nbsp>:<edgecolortype(0)><colortype(0)> augmente les dégâts infligés à la cible par le lanceur de 10%.<br><colortype(506)><edgecolortype(507)>Condition<nbsp>:<edgecolortype(0)><colortype(0)> <colortype(500)><edgecolortype(501)>Dissimulation<edgecolortype(0)><colortype(0)>.",
+      "unlock_level": 92,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 30,
+          "name": "Ninja",
+          "abbreviation": "NIN",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

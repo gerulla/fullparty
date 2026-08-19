@@ -1,0 +1,27 @@
+{
+  "kind": "trait",
+  "id": 448,
+  "name": "戦歌効果アップ",
+  "description": "賢人のバラード、軍神のパイオン、旅神のメヌエットの実行時に、自身に対応した「コーダシンボル」が付与されるようになる。\n賢人のバラード実行時：「賢人のコーダ」が付与される。\n軍神のパイオン実行時：「軍神のコーダ」が付与される。\n旅神のメヌエット実行時：「旅神のコーダ」が付与される。",
+  "description_macro": "賢人のバラード、軍神のパイオン、旅神のメヌエットの実行時に、自身に対応した<colortype(500)><edgecolortype(501)>「コーダシンボル」<edgecolortype(0)><colortype(0)>が付与されるようになる。<br><colortype(504)><edgecolortype(505)>賢人のバラード実行時：<edgecolortype(0)><colortype(0)><colortype(500)><edgecolortype(501)>「賢人のコーダ」<edgecolortype(0)><colortype(0)>が付与される。<br><colortype(504)><edgecolortype(505)>軍神のパイオン実行時：<edgecolortype(0)><colortype(0)><colortype(500)><edgecolortype(501)>「軍神のコーダ」<edgecolortype(0)><colortype(0)>が付与される。<br><colortype(504)><edgecolortype(505)>旅神のメヌエット実行時：<edgecolortype(0)><colortype(0)><colortype(500)><edgecolortype(501)>「旅神のコーダ」<edgecolortype(0)><colortype(0)>が付与される。",
+  "effects": [
+    "賢人のバラード、軍神のパイオン、旅神のメヌエットの実行時に、自身に対応した「コーダシンボル」が付与されるようになる。",
+    "賢人のバラード実行時：「賢人のコーダ」が付与される。",
+    "軍神のパイオン実行時：「軍神のコーダ」が付与される。",
+    "旅神のメヌエット実行時：「旅神のコーダ」が付与される。"
+  ],
+  "role": "Physical Ranged DPS",
+  "job": {
+    "id": 23,
+    "name": "吟遊詩人",
+    "abbreviation": "BRD"
+  },
+  "unlock_level": 90,
+  "value": 0,
+  "icon": {
+    "id": 5320,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 24,
+  "source_class_job_id": 23
+}

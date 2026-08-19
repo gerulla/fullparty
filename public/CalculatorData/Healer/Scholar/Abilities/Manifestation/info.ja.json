@@ -1,0 +1,94 @@
+{
+  "kind": "ability",
+  "id": 37015,
+  "name": "マニフェステーション",
+  "description": "対象のＨＰを回復する。\u3000回復力：360\n追加効果：対象に一定量のダメージを防ぐバリアである「鼓舞」を付与する。\n鼓舞効果：回復量の180％分のダメージを軽減する。\n効果時間：30秒\n賢者の一部のバリア効果とは同時に付与されない。\n追加効果（クリティカル時）：対象に一定量のダメージを防ぐバリアである「激励」を付与する。\n激励効果：回復量の180％分のダメージを軽減する。\n効果時間：30秒\n発動条件：「セラフィズム」効果中\n\n※このアクションはホットバーに登録することはできない。\n\u3000発動条件を満たすと鼓舞激励の策がマニフェステーションに変化する。",
+  "description_macro": "対象のＨＰを回復する。\u3000<colortype(504)><edgecolortype(505)>回復力：<edgecolortype(0)><colortype(0)>360<br><colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)>対象に一定量のダメージを防ぐバリアである<colortype(500)><edgecolortype(501)>「鼓舞」<edgecolortype(0)><colortype(0)>を付与する。<br><colortype(504)><edgecolortype(505)>鼓舞効果：<edgecolortype(0)><colortype(0)>回復量の180％分のダメージを軽減する。<br><colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>30秒<br>賢者の一部のバリア効果とは同時に付与されない。<br><colortype(504)><edgecolortype(505)>追加効果（クリティカル時）：<edgecolortype(0)><colortype(0)>対象に一定量のダメージを防ぐバリアである<colortype(500)><edgecolortype(501)>「激励」<edgecolortype(0)><colortype(0)>を付与する。<br><colortype(504)><edgecolortype(505)>激励効果：<edgecolortype(0)><colortype(0)>回復量の180％分のダメージを軽減する。<br><colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>30秒<br><colortype(504)><edgecolortype(505)>発動条件：<edgecolortype(0)><colortype(0)><colortype(500)><edgecolortype(501)>「セラフィズム」<edgecolortype(0)><colortype(0)>効果中<br><br><colortype(506)><edgecolortype(507)>※このアクションはホットバーに登録することはできない。<br>\u3000発動条件を満たすと鼓舞激励の策がマニフェステーションに変化する。<edgecolortype(0)><colortype(0)>",
+  "effects": [
+    "対象のＨＰを回復する。\u3000回復力：360",
+    "追加効果：対象に一定量のダメージを防ぐバリアである「鼓舞」を付与する。",
+    "鼓舞効果：回復量の180％分のダメージを軽減する。",
+    "効果時間：30秒",
+    "賢者の一部のバリア効果とは同時に付与されない。",
+    "追加効果（クリティカル時）：対象に一定量のダメージを防ぐバリアである「激励」を付与する。",
+    "激励効果：回復量の180％分のダメージを軽減する。",
+    "効果時間：30秒",
+    "発動条件：「セラフィズム」効果中",
+    "※このアクションはホットバーに登録することはできない。",
+    "発動条件を満たすと鼓舞激励の策がマニフェステーションに変化する。"
+  ],
+  "role": "Healer",
+  "job": {
+    "id": 28,
+    "name": "学者",
+    "abbreviation": "SCH"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 100,
+  "icon": {
+    "id": 2882,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 2,
+    "name": "魔法"
+  },
+  "attack_type": {
+    "id": 5,
+    "name": "魔法"
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 2.5,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 58,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 3,
+      "value": 9
+    },
+    "secondary": {
+      "type_id": 32,
+      "value": 3884
+    }
+  },
+  "range": {
+    "target_yalms": 30,
+    "effect_yalms": 0,
+    "cast_type": 1
+  },
+  "targeting": {
+    "self": true,
+    "party": true,
+    "alliance": true,
+    "hostile": false,
+    "ally": true,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": false
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": false
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 7,
+    "behavior_type": 0,
+    "class_job_category_id": 29,
+    "source_class_job_id": 0,
+    "is_role_action": false,
+    "is_player_action": false,
+    "is_derived_action": true,
+    "equivalence_group": 0
+  }
+}

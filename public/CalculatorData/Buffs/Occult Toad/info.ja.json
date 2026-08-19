@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 5317,
+  "name": "マギ・トード",
+  "description": "カエルに変身した状態。アクション実行不可。",
+  "effects": [
+    "カエルに変身した状態。アクション実行不可。"
+  ],
+  "classification": "debuff",
+  "icon": {
+    "id": 215580,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 2,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 100,
+  "parameter": {
+    "effect": 2,
+    "modifier": -99
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 49075,
+      "name": "マギ・トード",
+      "description": "対象に「マギ・トード」を付与する。\n効果時間：20秒\nマギ・トード効果：与ダメージが99％減少し、オートアタック以外の行動が制限される。",
+      "description_macro": "対象に<colortype(500)><edgecolortype(501)>「マギ・トード」<edgecolortype(0)><colortype(0)>を付与する。<br><colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>20秒<br><colortype(504)><edgecolortype(505)>マギ・トード効果：<edgecolortype(0)><colortype(0)>与ダメージが99％減少し、オートアタック以外の行動が制限される。",
+      "unlock_level": 0,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Phantom Jobs"
+      ],
+      "jobs": [
+        {
+          "id": 18,
+          "name": "Phantom サポート黒魔道士",
+          "abbreviation": "Ph. Black Mage",
+          "is_phantom": true
+        }
+      ]
+    }
+  ]
+}

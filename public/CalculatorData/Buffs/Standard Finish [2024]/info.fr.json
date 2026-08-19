@@ -1,0 +1,93 @@
+{
+  "kind": "combat_status",
+  "id": 2024,
+  "name": "Final classique",
+  "description": "Les temps de lancement et de recharge des sorts et des techniques d'arme sont réduits.",
+  "effects": [
+    "Les temps de lancement et de recharge des sorts et des techniques d'arme sont réduits."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 213708,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": true,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": -10
+  },
+  "class_job_category_id": 150,
+  "source_abilities": [
+    {
+      "id": 16003,
+      "name": "Final classique",
+      "description": "Effectue une attaque physique sur les ennemis alentour.\nLa puissance de cette action dépend du nombre de pas de danse correctement enchaînés et sa puissance est réduite de 60% au-delà du premier ennemi touché.\nPuissance sans pas : 360\nPuissance après 1 pas : 540\nPuissance après 2 pas : 850\nEffet additionnel : octroie Fascination et Final classique à vous et à l'équipier bénéficiant de votre Position rapprochée, si au moins un pas de danse a été réussi.\nFinal classique : augmente les dégâts infligés. La puissance de l'effet dépend du nombre de pas de danse correctement enchaînés.\nAugmentation après 1 pas : 2%\nAugmentation après 2 pas : 5%\nDurée : 60s\nEffet additionnel : vous octroie Ultime danse préparée.\nDurée : 30s\nCondition : en train de danser.\nCette technique d'arme a un temps de recharge indépendant qui est appliqué aux autres techniques d'arme ou sorts après utilisation.\n\n* Cette action ne peut pas être ajoutée aux barres de raccourcis.\nRemplace Pas classique lorsque les conditions sont réunies.",
+      "description_macro": "Effectue une attaque physique sur les ennemis alentour.<br>La puissance de cette action dépend du nombre de pas de danse cor<->rec<->te<->ment enchaînés et sa puissance est réduite de 60% au-delà du premier ennemi touché.<br><colortype(506)><edgecolortype(507)>Puissance sans pas<nbsp>:<edgecolortype(0)><colortype(0)> 360<br><colortype(506)><edgecolortype(507)>Puissance après 1 pas<nbsp>:<edgecolortype(0)><colortype(0)> 540<br><colortype(506)><edgecolortype(507)>Puissance après 2 pas<nbsp>:<edgecolortype(0)><colortype(0)> <if([gnum68==38],<if([gnum72>=94],850,800)>,800)><br><colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> octroie <if([gnum68==38],<if([gnum72>=76],<colortype(500)><edgecolortype(501)>Fascination<edgecolortype(0)><colortype(0)> et <colortype(500)><edgecolortype(501)>Final classique<edgecolortype(0)><colortype(0)>,<colortype(500)><edgecolortype(501)>Final classique<edgecolortype(0)><colortype(0)>)>,<colortype(500)><edgecolortype(501)>Final classique<edgecolortype(0)><colortype(0)>)> à vous et à l'équipier bénéficiant de votre <colortype(500)><edgecolortype(501)>Position rapprochée<edgecolortype(0)><colortype(0)>, si au moins un pas de danse a été réussi.<br><colortype(506)><edgecolortype(507)>Final classique<nbsp>:<edgecolortype(0)><colortype(0)> augmente les dégâts infligés. La puissance de l'effet dépend du nombre de pas de danse cor<->rec<->te<->ment enchaînés.<br><colortype(506)><edgecolortype(507)>Augmentation après 1 pas<nbsp>:<edgecolortype(0)><colortype(0)> 2%<br><colortype(506)><edgecolortype(507)>Augmentation après 2 pas<nbsp>:<edgecolortype(0)><colortype(0)> 5%<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 60s<br><if([gnum68==38],<if([gnum72>=92],<colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> vous octroie <colortype(500)><edgecolortype(501)>Ultime danse préparée<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 30s<br>,)>,)><colortype(506)><edgecolortype(507)>Condition<nbsp>:<edgecolortype(0)><colortype(0)> en train de danser.<br>Cette technique d'arme a un temps de recharge indépendant qui est appliqué aux autres techniques d'arme ou sorts après utilisation.<br><br><colortype(504)><edgecolortype(505)>* Cette action ne peut pas être ajoutée aux barres de raccourcis.<br>Remplace <colortype(500)><edgecolortype(501)>Pas classique<edgecolortype(0)><colortype(0)> lorsque les conditions sont réunies.<edgecolortype(0)><colortype(0)>",
+      "unlock_level": 15,
+      "relations": [
+        "granted_by_description",
+        "same_name"
+      ],
+      "roles": [
+        "Physical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 38,
+          "name": "Danseur",
+          "abbreviation": "DNS",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 16191,
+      "name": "Final classique simple",
+      "description": "Effectue une attaque physique sur les ennemis alentour.\nLa puissance de cette action dépend du nombre de pas de danse correctement enchaînés et sa puissance est réduite de 60% au-delà du premier ennemi touché.\nPuissance sans pas : 360\nPuissance après 1 pas : 540\nPuissance après 2 pas : 850\nEffet additionnel : octroie Fascination et Final classique à vous et à l'équipier bénéficiant de votre Position rapprochée, si au moins un pas de danse a été réussi.\nFinal classique : augmente les dégâts infligés. La puissance de l'effet dépend du nombre de pas de danse correctement enchaînés.\nAugmentation après 1 pas : 2%\nAugmentation après 2 pas : 5%\nDurée : 60s\nEffet additionnel : vous octroie Ultime danse préparée.\nDurée : 30s\nCondition : en train de danser.\nCette technique d'arme a un temps de recharge indépendant qui est appliqué aux autres techniques d'arme ou sorts après utilisation.\n\n* Cette action ne peut pas être ajoutée aux barres de raccourcis.\nRemplace Pas classique lorsque les conditions sont réunies.",
+      "description_macro": "Effectue une attaque physique sur les ennemis alentour.<br>La puissance de cette action dépend du nombre de pas de danse cor<->rec<->te<->ment enchaînés et sa puissance est réduite de 60% au-delà du premier ennemi touché.<br><colortype(506)><edgecolortype(507)>Puissance sans pas<nbsp>:<edgecolortype(0)><colortype(0)> 360<br><colortype(506)><edgecolortype(507)>Puissance après 1 pas<nbsp>:<edgecolortype(0)><colortype(0)> 540<br><colortype(506)><edgecolortype(507)>Puissance après 2 pas<nbsp>:<edgecolortype(0)><colortype(0)> <if([gnum68==38],<if([gnum72>=94],850,800)>,800)><br><colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> octroie <if([gnum68==38],<if([gnum72>=76],<colortype(500)><edgecolortype(501)>Fascination<edgecolortype(0)><colortype(0)> et <colortype(500)><edgecolortype(501)>Final classique<edgecolortype(0)><colortype(0)>,<colortype(500)><edgecolortype(501)>Final classique<edgecolortype(0)><colortype(0)>)>,<colortype(500)><edgecolortype(501)>Final classique<edgecolortype(0)><colortype(0)>)> à vous et à l'équipier bénéficiant de votre <colortype(500)><edgecolortype(501)>Position rapprochée<edgecolortype(0)><colortype(0)>, si au moins un pas de danse a été réussi.<br><colortype(506)><edgecolortype(507)>Final classique<nbsp>:<edgecolortype(0)><colortype(0)> augmente les dégâts infligés. La puissance de l'effet dépend du nombre de pas de danse cor<->rec<->te<->ment enchaînés.<br><colortype(506)><edgecolortype(507)>Augmentation après 1 pas<nbsp>:<edgecolortype(0)><colortype(0)> 2%<br><colortype(506)><edgecolortype(507)>Augmentation après 2 pas<nbsp>:<edgecolortype(0)><colortype(0)> 5%<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 60s<br><if([gnum68==38],<if([gnum72>=92],<colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> vous octroie <colortype(500)><edgecolortype(501)>Ultime danse préparée<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 30s<br>,)>,)><colortype(506)><edgecolortype(507)>Condition<nbsp>:<edgecolortype(0)><colortype(0)> en train de danser.<br>Cette technique d'arme a un temps de recharge indépendant qui est appliqué aux autres techniques d'arme ou sorts après utilisation.<br><br><colortype(504)><edgecolortype(505)>* Cette action ne peut pas être ajoutée aux barres de raccourcis.<br>Remplace <colortype(500)><edgecolortype(501)>Pas classique<edgecolortype(0)><colortype(0)> lorsque les conditions sont réunies.<edgecolortype(0)><colortype(0)>",
+      "unlock_level": 15,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Physical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 38,
+          "name": "Danseur",
+          "abbreviation": "DNS",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 16192,
+      "name": "Final classique doublé",
+      "description": "Effectue une attaque physique sur les ennemis alentour.\nLa puissance de cette action dépend du nombre de pas de danse correctement enchaînés et sa puissance est réduite de 60% au-delà du premier ennemi touché.\nPuissance sans pas : 360\nPuissance après 1 pas : 540\nPuissance après 2 pas : 850\nEffet additionnel : octroie Fascination et Final classique à vous et à l'équipier bénéficiant de votre Position rapprochée, si au moins un pas de danse a été réussi.\nFinal classique : augmente les dégâts infligés. La puissance de l'effet dépend du nombre de pas de danse correctement enchaînés.\nAugmentation après 1 pas : 2%\nAugmentation après 2 pas : 5%\nDurée : 60s\nEffet additionnel : vous octroie Ultime danse préparée.\nDurée : 30s\nCondition : en train de danser.\nCette technique d'arme a un temps de recharge indépendant qui est appliqué aux autres techniques d'arme ou sorts après utilisation.\n\n* Cette action ne peut pas être ajoutée aux barres de raccourcis.\nRemplace Pas classique lorsque les conditions sont réunies.",
+      "description_macro": "Effectue une attaque physique sur les ennemis alentour.<br>La puissance de cette action dépend du nombre de pas de danse cor<->rec<->te<->ment enchaînés et sa puissance est réduite de 60% au-delà du premier ennemi touché.<br><colortype(506)><edgecolortype(507)>Puissance sans pas<nbsp>:<edgecolortype(0)><colortype(0)> 360<br><colortype(506)><edgecolortype(507)>Puissance après 1 pas<nbsp>:<edgecolortype(0)><colortype(0)> 540<br><colortype(506)><edgecolortype(507)>Puissance après 2 pas<nbsp>:<edgecolortype(0)><colortype(0)> <if([gnum68==38],<if([gnum72>=94],850,800)>,800)><br><colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> octroie <if([gnum68==38],<if([gnum72>=76],<colortype(500)><edgecolortype(501)>Fascination<edgecolortype(0)><colortype(0)> et <colortype(500)><edgecolortype(501)>Final classique<edgecolortype(0)><colortype(0)>,<colortype(500)><edgecolortype(501)>Final classique<edgecolortype(0)><colortype(0)>)>,<colortype(500)><edgecolortype(501)>Final classique<edgecolortype(0)><colortype(0)>)> à vous et à l'équipier bénéficiant de votre <colortype(500)><edgecolortype(501)>Position rapprochée<edgecolortype(0)><colortype(0)>, si au moins un pas de danse a été réussi.<br><colortype(506)><edgecolortype(507)>Final classique<nbsp>:<edgecolortype(0)><colortype(0)> augmente les dégâts infligés. La puissance de l'effet dépend du nombre de pas de danse cor<->rec<->te<->ment enchaînés.<br><colortype(506)><edgecolortype(507)>Augmentation après 1 pas<nbsp>:<edgecolortype(0)><colortype(0)> 2%<br><colortype(506)><edgecolortype(507)>Augmentation après 2 pas<nbsp>:<edgecolortype(0)><colortype(0)> 5%<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 60s<br><if([gnum68==38],<if([gnum72>=92],<colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> vous octroie <colortype(500)><edgecolortype(501)>Ultime danse préparée<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 30s<br>,)>,)><colortype(506)><edgecolortype(507)>Condition<nbsp>:<edgecolortype(0)><colortype(0)> en train de danser.<br>Cette technique d'arme a un temps de recharge indépendant qui est appliqué aux autres techniques d'arme ou sorts après utilisation.<br><br><colortype(504)><edgecolortype(505)>* Cette action ne peut pas être ajoutée aux barres de raccourcis.<br>Remplace <colortype(500)><edgecolortype(501)>Pas classique<edgecolortype(0)><colortype(0)> lorsque les conditions sont réunies.<edgecolortype(0)><colortype(0)>",
+      "unlock_level": 15,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Physical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 38,
+          "name": "Danseur",
+          "abbreviation": "DNS",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

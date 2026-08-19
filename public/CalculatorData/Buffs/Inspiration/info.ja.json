@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 3689,
+  "name": "インスタレーション［被］",
+  "description": "イマジンスカイの恩恵により、魔法のキャストタイムとリキャストタイムが短縮された状態。",
+  "effects": [
+    "イマジンスカイの恩恵により、魔法のキャストタイムとリキャストタイムが短縮された状態。"
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 213811,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": true,
+  "inflicted_by_actor": false,
+  "party_list_priority": 49,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 197,
+  "source_abilities": [
+    {
+      "id": 34675,
+      "name": "イマジンスカイ",
+      "description": "「スカイ」の絵素を具現化して空間アートを展開し、自身と周囲のパーティメンバーの与ダメージを5％上昇させる。\n効果時間：20秒\n追加効果：自身に「サブトラクティブパレット実行可」を付与する。\u3000効果時間：30秒\n追加効果：自身に5スタックの「インスタレーション」を付与する。\u3000効果時間：30秒\nインスタレーション効果：空間アートの範囲内にいる場合、自身の色魔法およびスタープリズムのキャストタイムとリキャストタイムを25％短縮させる。\nこの効果が発動するたびにインスタレーションを1スタック消費する。\n追加効果：インスタレーションを5スタック全て消費すると自身に「レインボードリップ効果アップ」を付与する。\n効果時間：30秒\nレインボードリップ効果アップ効果：レインボードリップのリキャストタイムが短縮され、さらに詠唱時間無しで唱えられる。\n追加効果：自身に「スタープリズム実行可」を付与する。\n効果時間：20秒\n発動条件：自身が戦闘状態かつスケープキャンバスに「スカイ」の絵素が描かれている\n\n※このアクションはホットバーに登録することはできない。\n\u3000発動条件を満たすとイマジンスケープがイマジンスカイに変化する。",
+      "description_macro": "<colortype(500)><edgecolortype(501)>「スカイ」<edgecolortype(0)><colortype(0)>の絵素を具現化して空間アートを展開し、自身と周囲のパーティメンバーの与ダメージを5％上昇させる。<br><colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>20秒<br><colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)>自身に<colortype(500)><edgecolortype(501)>「サブトラクティブパレット実行可」<edgecolortype(0)><colortype(0)>を付与する。\u3000<colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>30秒<br><if([gnum68==42],<if([gnum72>=82],<colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)>自身に5スタックの<colortype(500)><edgecolortype(501)>「インスタレーション」<edgecolortype(0)><colortype(0)>を付与する。\u3000<colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>30秒<br><colortype(504)><edgecolortype(505)>インスタレーション効果：<edgecolortype(0)><colortype(0)>空間アートの範囲内にいる場合、自身の色魔法およびスタープリズムのキャストタイムとリキャストタイムを25％短縮させる。<br>この効果が発動するたびにインスタレーションを1スタック消費する。<br>,)>,)><if([gnum68==42],<if([gnum72>=92],<colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)>インスタレーションを5スタック全て消費すると自身に<colortype(500)><edgecolortype(501)>「レインボードリップ効果アップ」<edgecolortype(0)><colortype(0)>を付与する。<br><colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>30秒<br><colortype(504)><edgecolortype(505)>レインボードリップ効果アップ効果：<edgecolortype(0)><colortype(0)>レインボードリップのリキャストタイムが短縮され、さらに詠唱時間無しで唱えられる。<br>,)>,)><if([gnum68==42],<if([gnum72>=100],<colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)>自身に<colortype(500)><edgecolortype(501)>「スタープリズム実行可」<edgecolortype(0)><colortype(0)>を付与する。<br><colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>20秒<br>,)>,)><colortype(504)><edgecolortype(505)>発動条件：<edgecolortype(0)><colortype(0)>自身が戦闘状態かつスケープキャンバスに<colortype(500)><edgecolortype(501)>「スカイ」<edgecolortype(0)><colortype(0)>の絵素が描かれている<br><br><colortype(506)><edgecolortype(507)>※このアクションはホットバーに登録することはできない。<br>\u3000発動条件を満たすとイマジンスケープがイマジンスカイに変化する。<edgecolortype(0)><colortype(0)>",
+      "unlock_level": 70,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Magical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 42,
+          "name": "ピクトマンサー",
+          "abbreviation": "PCT",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

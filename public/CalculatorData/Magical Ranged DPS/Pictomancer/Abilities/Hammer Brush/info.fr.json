@@ -1,0 +1,101 @@
+{
+  "kind": "ability",
+  "id": 34679,
+  "name": "Brossage Marteau",
+  "description": "Effectue une attaque magique neutre sur la cible et les ennemis autour.\nPuissance : 580\nLa puissance est réduite de 70% au-delà du premier ennemi touché.\nCette attaque inflige nécessairement un coup net et critique.\nLes dégâts infligés sont augmentés lorsque vous bénéficiez d'un effet augmentant les chances de coups nets et critiques.\nCombo : Tamponnage Marteau\nCondition : Combo Marteau préparé.\n\n* Cette action ne peut pas être ajoutée aux barres de raccourcis.\nRemplace Tamponnage Marteau lorsque les conditions sont réunies.",
+  "description_macro": "Effectue une attaque magique neutre sur la cible et les ennemis autour.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> <if([gnum68==42],<if([gnum72>=94],580,560)>,560)><br>La puissance est réduite de 70% au-delà du premier ennemi touché.<br>Cette attaque inflige nécessairement un coup net et critique.<br>Les dégâts infligés sont augmentés lorsque vous bénéficiez d'un effet augmentant les chances de coups nets et critiques.<br><colortype(506)><edgecolortype(507)>Combo<nbsp>:<edgecolortype(0)><colortype(0)> Tamponnage Marteau<br><colortype(506)><edgecolortype(507)>Condition<nbsp>:<edgecolortype(0)><colortype(0)> <colortype(500)><edgecolortype(501)>Combo Marteau préparé<edgecolortype(0)><colortype(0)>.<br><br><colortype(504)><edgecolortype(505)>* Cette action ne peut pas être ajoutée aux barres de raccourcis.<br>Remplace <colortype(500)><edgecolortype(501)>Tamponnage Marteau<edgecolortype(0)><colortype(0)> lorsque les conditions sont réunies.<edgecolortype(0)><colortype(0)>",
+  "effects": [
+    "Effectue une attaque magique neutre sur la cible et les ennemis autour.",
+    "Puissance : 580",
+    "La puissance est réduite de 70% au-delà du premier ennemi touché.",
+    "Cette attaque inflige nécessairement un coup net et critique.",
+    "Les dégâts infligés sont augmentés lorsque vous bénéficiez d'un effet augmentant les chances de coups nets et critiques.",
+    "Combo : Tamponnage Marteau",
+    "Condition : Combo Marteau préparé.",
+    "* Cette action ne peut pas être ajoutée aux barres de raccourcis.",
+    "Remplace Tamponnage Marteau lorsque les conditions sont réunies."
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 42,
+    "name": "Pictomancien",
+    "abbreviation": "PIC"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 86,
+  "icon": {
+    "id": 3830,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 2,
+    "name": "Sort"
+  },
+  "attack_type": {
+    "id": 5,
+    "name": "magie"
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 2.5,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 58,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 0,
+      "value": 0
+    },
+    "secondary": {
+      "type_id": 139,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": 25,
+    "effect_yalms": 5,
+    "cast_type": 2
+  },
+  "targeting": {
+    "self": false,
+    "party": false,
+    "alliance": false,
+    "hostile": true,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": 34678,
+    "preserves_combo": false
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": {
+      "id": 142,
+      "status": {
+        "id": 3680,
+        "name": "Combo Marteau préparé",
+        "description": "Combo Marteau peut être lancé.",
+        "icon_id": 218677,
+        "max_stacks": 3
+      }
+    }
+  },
+  "metadata": {
+    "aspect_id": 7,
+    "behavior_type": 0,
+    "class_job_category_id": 197,
+    "source_class_job_id": 0,
+    "is_role_action": false,
+    "is_player_action": false,
+    "is_derived_action": true,
+    "equivalence_group": 0
+  }
+}

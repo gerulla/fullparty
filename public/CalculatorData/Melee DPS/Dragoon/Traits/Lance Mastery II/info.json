@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 437,
+  "name": "Lance Mastery II",
+  "description": "Upgrades Full Thrust to Heavens' Thrust and Chaos Thrust to Chaotic Spring. Also increases the potency of Drakesbane to 400.",
+  "description_macro": "Upgrades <colortype(500)><edgecolortype(501)>Full Thrust<edgecolortype(0)><colortype(0)> to <colortype(500)><edgecolortype(501)>Heavens' Thrust<edgecolortype(0)><colortype(0)> and <colortype(500)><edgecolortype(501)>Chaos Thrust<edgecolortype(0)><colortype(0)> to <colortype(500)><edgecolortype(501)>Chaotic Spring<edgecolortype(0)><colortype(0)>. Also increases the potency of <colortype(500)><edgecolortype(501)>Drakesbane<edgecolortype(0)><colortype(0)> to 400.",
+  "effects": [
+    "Upgrades Full Thrust to Heavens' Thrust and Chaos Thrust to Chaotic Spring. Also increases the potency of Drakesbane to 400."
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 22,
+    "name": "Dragoon",
+    "abbreviation": "DRG"
+  },
+  "unlock_level": 86,
+  "value": 0,
+  "icon": {
+    "id": 5288,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 23,
+  "source_class_job_id": 22
+}

@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 3671,
+  "name": "Geist der Ahnen",
+  "description": "Ruf der Ahnen kann ohne Geistbalken-Kosten ausgeführt werden.",
+  "effects": [
+    "Ruf der Ahnen kann ohne Geistbalken-Kosten ausgeführt werden."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 213777,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 196,
+  "source_abilities": [
+    {
+      "id": 34647,
+      "name": "Geist der Viper",
+      "description": "Du gewährst dir eine Schlangenseelesowie Geist der Ahnen.\nDauer: 30 Sekunden\nNur im Kampf wirksam.",
+      "description_macro": "Du gewährst dir eine <colortype(506)><edgecolortype(507)>Schlangenseele<edgecolortype(0)><colortype(0)><if([gnum68==41],<if([gnum72>=90], sowie <colortype(506)><edgecolortype(507)>Geist der Ahnen<edgecolortype(0)><colortype(0)>,)>,)>.<br><if([gnum68==41],<if([gnum72>=90],Dauer: 30 Sekunden<br>,)>,)>Nur im Kampf wirksam.",
+      "unlock_level": 86,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 41,
+          "name": "Viper",
+          "abbreviation": "VPR",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

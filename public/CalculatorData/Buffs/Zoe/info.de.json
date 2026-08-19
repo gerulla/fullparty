@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 2611,
+  "name": "Zoe",
+  "description": "Das Heilpotenzial der nächsten Heilmagie ist erhöht.",
+  "effects": [
+    "Das Heilpotenzial der nächsten Heilmagie ist erhöht."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 212957,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 20
+  },
+  "class_job_category_id": 181,
+  "source_abilities": [
+    {
+      "id": 24300,
+      "name": "Zoe",
+      "description": "Du erhöhst das Heilpotenzial deiner nächsten gewirkten Heilmagie um 50 %.\nDauer: 30 Sekunden",
+      "description_macro": "Du erhöhst das Heilpotenzial deiner nächsten gewirkten Heilmagie um 50<nbsp>%.<br>Dauer: 30 Sekunden",
+      "unlock_level": 56,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Healer"
+      ],
+      "jobs": [
+        {
+          "id": 40,
+          "name": "Weiser",
+          "abbreviation": "WEI",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

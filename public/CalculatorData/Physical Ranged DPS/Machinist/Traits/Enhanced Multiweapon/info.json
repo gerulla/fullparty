@@ -1,0 +1,25 @@
+{
+  "kind": "trait",
+  "id": 605,
+  "name": "Enhanced Multiweapon",
+  "description": "Allows the accumulation of charges for consecutive uses of Drill and Bioblaster.\nMaximum Charges: 2",
+  "description_macro": "Allows the accumulation of charges for consecutive uses of <colortype(500)><edgecolortype(501)>Drill<edgecolortype(0)><colortype(0)> and <colortype(500)><edgecolortype(501)>Bioblaster<edgecolortype(0)><colortype(0)>.<br><colortype(504)><edgecolortype(505)>Maximum Charges: <edgecolortype(0)><colortype(0)>2",
+  "effects": [
+    "Allows the accumulation of charges for consecutive uses of Drill and Bioblaster.",
+    "Maximum Charges: 2"
+  ],
+  "role": "Physical Ranged DPS",
+  "job": {
+    "id": 31,
+    "name": "Machinist",
+    "abbreviation": "MCH"
+  },
+  "unlock_level": 94,
+  "value": 2,
+  "icon": {
+    "id": 6023,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 96,
+  "source_class_job_id": 31
+}

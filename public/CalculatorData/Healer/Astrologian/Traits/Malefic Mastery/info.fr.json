@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 187,
+  "name": "Maîtrise de Malfaisance",
+  "description": "Remplace Malfaisance par Malfaisance II.",
+  "description_macro": "Remplace <colortype(500)><edgecolortype(501)>Malfaisance<edgecolortype(0)><colortype(0)> par <colortype(500)><edgecolortype(501)>Malfaisance II<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Remplace Malfaisance par Malfaisance II."
+  ],
+  "role": "Healer",
+  "job": {
+    "id": 33,
+    "name": "Astromancien",
+    "abbreviation": "AST"
+  },
+  "unlock_level": 54,
+  "value": 0,
+  "icon": {
+    "id": 6110,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 99,
+  "source_class_job_id": 33
+}

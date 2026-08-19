@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 1217,
+  "name": "シンエアー",
+  "description": "次に実行するアクションの消費ＭＰが0になる状態。",
+  "effects": [
+    "次に実行するアクションの消費ＭＰが0になる状態。"
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 212631,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 6,
+    "modifier": 0
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 7430,
+      "name": "シンエアー",
+      "description": "効果時間中に実行する1回のアクションについて、消費ＭＰを0にする。\u3000効果時間：12秒\n最大チャージ数：2",
+      "description_macro": "効果時間中に実行する1回のアクションについて、消費ＭＰを0にする。\u3000<colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>12秒<br><colortype(504)><edgecolortype(505)>最大チャージ数：<edgecolortype(0)><colortype(0)>2",
+      "unlock_level": 58,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Healer"
+      ],
+      "jobs": [
+        {
+          "id": 24,
+          "name": "白魔道士",
+          "abbreviation": "WHM",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

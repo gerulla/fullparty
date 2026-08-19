@@ -1,0 +1,90 @@
+{
+  "kind": "ability",
+  "id": 16502,
+  "name": "Surmultiplication de Reine",
+  "description": "Ordonne à l'automate Reine d'utiliser l'attaque physique Marteau piqueur.\n\nPuissance de Marteau piqueur : de 340 à 680\nLa puissance de l'attaque augmente avec la quantité de Jauge de batterie consommée à l'activation de l'automate Reine.\nL'automate Reine disparaît après exécution.\nL'action se déclenche à l'exécution de Surmultiplication de Reine ou lorsque la durée d'activation\ntombe à 0.\nPartage le même temps de recharge que Automate Reine.",
+  "description_macro": "Ordonne à l'automate Reine d'utiliser l'attaque physique <colortype(500)><edgecolortype(501)>Marteau piqueur<edgecolortype(0)><colortype(0)>.<br><br><colortype(506)><edgecolortype(507)>Puissance de Marteau piqueur<nbsp>:<edgecolortype(0)><colortype(0)> de 340 à 680<br>La puissance de l'attaque augmente avec la quantité de <colortype(502)><edgecolortype(503)>Jauge de batterie<edgecolortype(0)><colortype(0)> consommée à l'activation de l'automate Reine.<br>L'automate Reine disparaît après exécution.<br>L'action se déclenche à l'exécution de <colortype(500)><edgecolortype(501)>Surmul<->ti<->pli<->ca<->tion de Reine<edgecolortype(0)><colortype(0)> ou lorsque la durée d'activation<br>tombe à 0.<br>Partage le même temps de recharge que <colortype(500)><edgecolortype(501)>Automate Reine<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Ordonne à l'automate Reine d'utiliser l'attaque physique Marteau piqueur.",
+    "Puissance de Marteau piqueur : de 340 à 680",
+    "La puissance de l'attaque augmente avec la quantité de Jauge de batterie consommée à l'activation de l'automate Reine.",
+    "L'automate Reine disparaît après exécution.",
+    "L'action se déclenche à l'exécution de Surmultiplication de Reine ou lorsque la durée d'activation",
+    "tombe à 0.",
+    "Partage le même temps de recharge que Automate Reine."
+  ],
+  "role": "Physical Ranged DPS",
+  "job": {
+    "id": 31,
+    "name": "Machiniste",
+    "abbreviation": "MCH"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 80,
+  "icon": {
+    "id": 3502,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 4,
+    "name": "Aptitude"
+  },
+  "attack_type": {
+    "id": 0,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 15,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 4,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 0,
+      "value": 0
+    },
+    "secondary": {
+      "type_id": 40,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": 30,
+    "effect_yalms": 0,
+    "cast_type": 1
+  },
+  "targeting": {
+    "self": true,
+    "party": false,
+    "alliance": false,
+    "hostile": false,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 0,
+    "behavior_type": 0,
+    "class_job_category_id": 96,
+    "source_class_job_id": 31,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

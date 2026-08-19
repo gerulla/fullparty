@@ -45,7 +45,15 @@ class HandleInertiaRequests extends Middleware
 
     public function rootView(Request $request): string
     {
-        return $request->routeIs('planner.*') ? 'planner' : parent::rootView($request);
+        if ($request->routeIs('planner.*')) {
+            return 'planner';
+        }
+
+        if ($request->routeIs('calculator.*')) {
+            return 'calculator';
+        }
+
+        return parent::rootView($request);
     }
 
     /**
@@ -61,7 +69,7 @@ class HandleInertiaRequests extends Middleware
             return array_merge(parent::share($request), [
                 'auth' => [
                     'user' => fn () => $request->user()
-                        ? $this->serializePlannerUser($request->user())
+                        ? $this->serializeToolUser($request->user())
                         : null,
                 ],
                 'locale' => [
@@ -70,6 +78,33 @@ class HandleInertiaRequests extends Middleware
                     'available' => fn () => ApplyLocale::SUPPORTED_LOCALES,
                 ],
                 'planner' => [
+                    'csrf_token' => fn () => csrf_token(),
+                    'routes' => fn () => collect([
+                        'dashboard',
+                        'settings',
+                        'logout',
+                        'login',
+                        'register',
+                    ])->mapWithKeys(fn (string $routeName) => [
+                        $routeName => rtrim((string) config('app.url'), '/').route($routeName, absolute: false),
+                    ])->all(),
+                ],
+            ]);
+        }
+
+        if ($request->routeIs('calculator.*')) {
+            return array_merge(parent::share($request), [
+                'auth' => [
+                    'user' => fn () => $request->user()
+                        ? $this->serializeToolUser($request->user())
+                        : null,
+                ],
+                'locale' => [
+                    'current' => fn () => app()->getLocale(),
+                    'fallback' => fn () => config('app.fallback_locale'),
+                    'available' => fn () => ApplyLocale::SUPPORTED_LOCALES,
+                ],
+                'calculator' => [
                     'csrf_token' => fn () => csrf_token(),
                     'routes' => fn () => collect([
                         'dashboard',
@@ -184,7 +219,7 @@ class HandleInertiaRequests extends Middleware
     /**
      * @return array<string, mixed>
      */
-    private function serializePlannerUser(User $user): array
+    private function serializeToolUser(User $user): array
     {
         $user->loadMissing('primaryCharacter');
 

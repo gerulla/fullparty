@@ -1,0 +1,28 @@
+{
+  "kind": "trait",
+  "id": 675,
+  "name": "Actions améliorées II",
+  "description": "Augmente la puissance de certaines actions.\n\nSaignée du flanc : 340\nDéchirement du flanc : 340\nSaignée de l'échine : 340\nDéchirement de l'échine : 340",
+  "description_macro": "Augmente la puissance de certaines actions.<br><br><colortype(506)><edgecolortype(507)>Saignée du flanc<nbsp>:<edgecolortype(0)><colortype(0)> 340<br><colortype(506)><edgecolortype(507)>Déchirement du flanc<nbsp>:<edgecolortype(0)><colortype(0)> 340<br><colortype(506)><edgecolortype(507)>Saignée de l'échine<nbsp>:<edgecolortype(0)><colortype(0)> 340<br><colortype(506)><edgecolortype(507)>Déchirement de l'échine<nbsp>:<edgecolortype(0)><colortype(0)> 340",
+  "effects": [
+    "Augmente la puissance de certaines actions.",
+    "Saignée du flanc : 340",
+    "Déchirement du flanc : 340",
+    "Saignée de l'échine : 340",
+    "Déchirement de l'échine : 340"
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 41,
+    "name": "Rôdeur Vipère",
+    "abbreviation": "VPR"
+  },
+  "unlock_level": 84,
+  "value": 0,
+  "icon": {
+    "id": 6802,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 196,
+  "source_class_job_id": 41
+}

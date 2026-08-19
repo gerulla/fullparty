@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 119,
+  "name": "Verbesserte Kommandos II",
+  "description": "Der Basisschaden von eigenen Kommandos außer Auto-Attacke sowie von Attacken selbst gesetzter Gyrocopter wird um 20 % erhöht.",
+  "description_macro": "Der Basisschaden von eigenen Kommandos außer Auto-Attacke sowie von Attacken selbst gesetzter Gyrocopter wird um 20<nbsp>% erhöht.",
+  "effects": [
+    "Der Basisschaden von eigenen Kommandos außer Auto-Attacke sowie von Attacken selbst gesetzter Gyrocopter wird um 20 % erhöht."
+  ],
+  "role": "Physical Ranged DPS",
+  "job": {
+    "id": 31,
+    "name": "Maschinist",
+    "abbreviation": "MCH"
+  },
+  "unlock_level": 40,
+  "value": 20,
+  "icon": {
+    "id": 6003,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 96,
+  "source_class_job_id": 31
+}

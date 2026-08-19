@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 498,
+  "name": "Gravity Mastery",
+  "description": "Upgrades Gravity to Gravity II.",
+  "description_macro": "Upgrades <colortype(500)><edgecolortype(501)>Gravity<edgecolortype(0)><colortype(0)> to <colortype(500)><edgecolortype(501)>Gravity II<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Upgrades Gravity to Gravity II."
+  ],
+  "role": "Healer",
+  "job": {
+    "id": 33,
+    "name": "Astrologian",
+    "abbreviation": "AST"
+  },
+  "unlock_level": 82,
+  "value": 0,
+  "icon": {
+    "id": 6118,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 99,
+  "source_class_job_id": 33
+}

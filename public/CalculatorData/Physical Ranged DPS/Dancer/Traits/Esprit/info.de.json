@@ -1,0 +1,26 @@
+{
+  "kind": "trait",
+  "id": 255,
+  "name": "Tanzfieber",
+  "description": "Sobald du Einfaches Finale oder Komplexes Finale ausführst, kannst du Tanzfieber sammeln.\nDu selbst erhältst je 5 Tanzfieber bei erfolgreicher Ausführung von Cascade, Invertierte Cascade, Fontäne, Fallende Fontäne, Windmühle, Steigende Windmühle, Klingenflut und Blutklingen.\nDein Tanzpartner füllt deinen Tanzfieberbalken durch das erfolgreiche Ausführen von Waffenfertigkeiten und Magie mit gewisser Wahrscheinlichkeit ebenfalls um je 10. Diese Auslösungswahrscheinlichkeit unterscheidet sich je nach Job.",
+  "description_macro": "Sobald du <colortype(502)><edgecolortype(503)>Einfaches Finale<edgecolortype(0)><colortype(0)> oder <colortype(502)><edgecolortype(503)>Komplexes Finale<edgecolortype(0)><colortype(0)> ausführst, kannst du Tanzfieber sammeln.<br>Du selbst erhältst je 5 Tanzfieber bei erfolgreicher Ausführung von <colortype(502)><edgecolortype(503)>Cascade<edgecolortype(0)><colortype(0)>, <colortype(502)><edgecolortype(503)>Invertierte Cascade<edgecolortype(0)><colortype(0)>, <colortype(502)><edgecolortype(503)>Fontäne<edgecolortype(0)><colortype(0)>, <colortype(502)><edgecolortype(503)>Fallende Fontäne<edgecolortype(0)><colortype(0)>, <colortype(502)><edgecolortype(503)>Windmühle<edgecolortype(0)><colortype(0)>, <colortype(502)><edgecolortype(503)>Steigende Windmühle<edgecolortype(0)><colortype(0)>, <colortype(502)><edgecolortype(503)>Klingenflut<edgecolortype(0)><colortype(0)> und <colortype(502)><edgecolortype(503)>Blutklingen<edgecolortype(0)><colortype(0)>.<br>Dein Tanzpartner füllt deinen Tanzfieberbalken durch das erfolgreiche Ausführen von Waf<->fen<->fer<->tig<->kei<->ten und Magie mit gewisser Wahr<->schein<->lich<->keit ebenfalls um je 10. Diese Auslösungswahrscheinlichkeit unterscheidet sich je nach Job.",
+  "effects": [
+    "Sobald du Einfaches Finale oder Komplexes Finale ausführst, kannst du Tanzfieber sammeln.",
+    "Du selbst erhältst je 5 Tanzfieber bei erfolgreicher Ausführung von Cascade, Invertierte Cascade, Fontäne, Fallende Fontäne, Windmühle, Steigende Windmühle, Klingenflut und Blutklingen.",
+    "Dein Tanzpartner füllt deinen Tanzfieberbalken durch das erfolgreiche Ausführen von Waffenfertigkeiten und Magie mit gewisser Wahrscheinlichkeit ebenfalls um je 10. Diese Auslösungswahrscheinlichkeit unterscheidet sich je nach Job."
+  ],
+  "role": "Physical Ranged DPS",
+  "job": {
+    "id": 38,
+    "name": "Tänzer",
+    "abbreviation": "TÄN"
+  },
+  "unlock_level": 76,
+  "value": 0,
+  "icon": {
+    "id": 6355,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 150,
+  "source_class_job_id": 38
+}

@@ -1,0 +1,90 @@
+{
+  "kind": "ability",
+  "id": 2864,
+  "name": "Selbstschuss-Gyrocopter TURM",
+  "description": "Du aktivierst einen Geschützturm, woraufhin er Salve auf Einzelziele ausführt.\nAttacke-Wert: 35 bis 70\nAttacke-Wert steigt je nach Stand des Batteriebalkens beim Herbeirufen des Gyrocopters.\nDauer: 9 Sekunden\nDer Gyrocopter verschwindet durch Ausführung von TURM-Überhitzung oder wenn der Batteriebalken leer ist.\nBedingung: Batteriebalken min. 50\nGemeinsamer Reaktivierungs-Timer mit TURM-Überhitzung",
+  "description_macro": "Du aktivierst einen Geschützturm, woraufhin er <colortype(502)><edgecolortype(503)>Salve<edgecolortype(0)><colortype(0)> auf Einzelziele ausführt.<br>Attacke-Wert: 35 bis 70<br>Attacke-Wert steigt je nach Stand des Batteriebalkens beim Herbeirufen des Gyrocopters.<br>Dauer: 9 Sekunden<br>Der Gyrocopter verschwindet durch Ausführung von <colortype(502)><edgecolortype(503)>TURM-Überhitzung<edgecolortype(0)><colortype(0)> oder wenn der Batteriebalken leer ist.<br>Bedingung: Batteriebalken min. 50<br>Gemeinsamer Reaktivierungs-Timer mit <colortype(502)><edgecolortype(503)>TURM-Überhitzung<edgecolortype(0)><colortype(0)> ",
+  "effects": [
+    "Du aktivierst einen Geschützturm, woraufhin er Salve auf Einzelziele ausführt.",
+    "Attacke-Wert: 35 bis 70",
+    "Attacke-Wert steigt je nach Stand des Batteriebalkens beim Herbeirufen des Gyrocopters.",
+    "Dauer: 9 Sekunden",
+    "Der Gyrocopter verschwindet durch Ausführung von TURM-Überhitzung oder wenn der Batteriebalken leer ist.",
+    "Bedingung: Batteriebalken min. 50",
+    "Gemeinsamer Reaktivierungs-Timer mit TURM-Überhitzung"
+  ],
+  "role": "Physical Ranged DPS",
+  "job": {
+    "id": 31,
+    "name": "Maschinist",
+    "abbreviation": "MCH"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 40,
+  "icon": {
+    "id": 3026,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 4,
+    "name": "Talent"
+  },
+  "attack_type": {
+    "id": 0,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 6,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 3,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 62,
+      "value": 50
+    },
+    "secondary": {
+      "type_id": 101,
+      "value": 50
+    }
+  },
+  "range": {
+    "target_yalms": 0,
+    "effect_yalms": 0,
+    "cast_type": 1
+  },
+  "targeting": {
+    "self": true,
+    "party": false,
+    "alliance": false,
+    "hostile": false,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 0,
+    "behavior_type": 0,
+    "class_job_category_id": 96,
+    "source_class_job_id": 31,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

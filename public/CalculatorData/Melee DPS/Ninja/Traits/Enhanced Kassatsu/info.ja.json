@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 250,
+  "name": "活殺自在効果アップ",
+  "description": "「活殺自在」の効果中は、火遁の術と氷遁の術がそれぞれ「劫火滅却の術」と「氷晶乱流の術」に変化する。",
+  "description_macro": "<colortype(500)><edgecolortype(501)>「活殺自在」<edgecolortype(0)><colortype(0)>の効果中は、火遁の術と氷遁の術がそれぞれ<colortype(500)><edgecolortype(501)>「劫火滅却の術」<edgecolortype(0)><colortype(0)>と<colortype(500)><edgecolortype(501)>「氷晶乱流の術」<edgecolortype(0)><colortype(0)>に変化する。",
+  "effects": [
+    "「活殺自在」の効果中は、火遁の術と氷遁の術がそれぞれ「劫火滅却の術」と「氷晶乱流の術」に変化する。"
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 30,
+    "name": "忍者",
+    "abbreviation": "NIN"
+  },
+  "unlock_level": 76,
+  "value": 0,
+  "icon": {
+    "id": 5414,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 92,
+  "source_class_job_id": 30
+}

@@ -1,0 +1,22 @@
+{
+  "kind": "trait",
+  "id": 9,
+  "name": "Enhanced Vocals",
+  "description": "Increases the effectiveness of songs in accordance with your Phantom Bard level.",
+  "description_macro": "Increases the effectiveness of songs in accordance with your Phantom Bard level.",
+  "effects": [
+    "Increases the effectiveness of songs in accordance with your Phantom Bard level."
+  ],
+  "role": "Phantom Jobs",
+  "job": {
+    "id": 6,
+    "name": "Phantom Bard",
+    "abbreviation": "Ph. Bard"
+  },
+  "is_phantom_trait": true,
+  "unlock_level": 2,
+  "icon": {
+    "id": 82209,
+    "file": "icon.png"
+  }
+}

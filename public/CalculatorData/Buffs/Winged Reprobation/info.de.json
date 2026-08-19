@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 3640,
+  "name": "Schwinge des Urteils",
+  "description": "Schwinge des Urteils kann mehrfach hintereinander ausgeführt werden. Nach 4 Aktivierungen ändert sich der Status zu Segen des Allmächtigen.",
+  "effects": [
+    "Schwinge des Urteils kann mehrfach hintereinander ausgeführt werden. Nach 4 Aktivierungen ändert sich der Status zu Segen des Allmächtigen."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 219454,
+    "file": "icon.png"
+  },
+  "max_stacks": 4,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": true,
+  "is_permanent": true,
+  "inflicted_by_actor": true,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 34576,
+      "name": "Schwinge des Urteils",
+      "description": "Du führst eine elementneutrale physische Attacke auf alle Gegner in gerader Linie vor dir aus.\nAttacke-Wert: 300\nAttacke-Wert verringert sich ab dem zweiten Gegner um 50 %.\nZusatzeffekt: Reaktivierungs-Timer ist sofort zurückgesetzt und gewährt den Status Schwinge des Urteils.\nMaximal vier Schwingen des Urteils stapelbar.\nDauer: Fortdauernd\nWenn der Stapel von Schwinge des Urteils drei beträgt, wird mit der nächsten Aktivierung der Reaktivierungstimer nicht zurückgesetzt und der Attacke-Wert auf 400 erhöht.\nSobald der Stapel von Schwinge des Urteils vier beträgt, ändert sich der Status von Schwinge des Urteils zu Segen des Allmächtigen.\nDauer: 10 Sekunden\nSegen des Allmächtigen: Attacke-Wert von Mette marcato erhöht sich.\nEigener Reaktivierungs-Timer",
+      "description_macro": "Du führst eine elementneutrale physische Attacke auf alle Gegner in gerader Linie vor dir aus.<br>Attacke-Wert: 300<br>Attacke-Wert verringert sich ab dem zweiten Gegner um 50<nbsp>%.<br>Zusatzeffekt: Reaktivierungs-Timer ist sofort zurückgesetzt und gewährt den Status <colortype(506)><edgecolortype(507)>Schwinge des Urteils<edgecolortype(0)><colortype(0)>.<br>Maximal vier <colortype(506)><edgecolortype(507)>Schwingen des Urteils<edgecolortype(0)><colortype(0)> stapelbar.<br>Dauer: Fortdauernd<br>Wenn der Stapel von <colortype(506)><edgecolortype(507)>Schwinge des Urteils<edgecolortype(0)><colortype(0)> drei beträgt, wird mit der nächsten Aktivierung der Reaktivierungstimer nicht zurückgesetzt und der Attacke-Wert auf 400 erhöht.<br>Sobald der Stapel von <colortype(506)><edgecolortype(507)>Schwinge des Urteils<edgecolortype(0)><colortype(0)> vier beträgt, ändert sich der Status von <colortype(506)><edgecolortype(507)>Schwinge des Urteils<edgecolortype(0)><colortype(0)> zu <colortype(506)><edgecolortype(507)>Segen des Allmächtigen<edgecolortype(0)><colortype(0)>.<br>Dauer: 10 Sekunden<br><colortype(506)><edgecolortype(507)>Segen des Allmächtigen<edgecolortype(0)><colortype(0)>: Attacke-Wert von <colortype(502)><edgecolortype(503)>Mette marcato<edgecolortype(0)><colortype(0)> erhöht sich.<br>Eigener Reaktivierungs-Timer",
+      "unlock_level": 1,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Magical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 36,
+          "name": "Blaumagier",
+          "abbreviation": "BMA",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

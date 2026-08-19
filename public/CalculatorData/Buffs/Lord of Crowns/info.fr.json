@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 4329,
+  "name": "Roi des couronnes",
+  "description": "La carte Roi des couronnes a été tirée.",
+  "effects": [
+    "La carte Roi des couronnes a été tirée."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 213256,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": true,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 99,
+  "source_abilities": [
+    {
+      "id": 7444,
+      "name": "Roi des couronnes",
+      "description": "Effectue une attaque magique neutre sur les ennemis alentour.\nPuissance : 400\n\n* Cette action ne peut pas être ajoutée aux barres de raccourcis.\nRemplace Arcane mineur lorsque les conditions sont réunies.",
+      "description_macro": "Effectue une attaque magique neutre sur les ennemis alentour.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> 400<br><br><colortype(504)><edgecolortype(505)>* Cette action ne peut pas être ajoutée aux barres de raccourcis.<br>Remplace <colortype(500)><edgecolortype(501)>Arcane mineur<edgecolortype(0)><colortype(0)> lorsque les conditions sont réunies.<edgecolortype(0)><colortype(0)>",
+      "unlock_level": 70,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Healer"
+      ],
+      "jobs": [
+        {
+          "id": 33,
+          "name": "Astromancien",
+          "abbreviation": "AST",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

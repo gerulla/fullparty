@@ -1,0 +1,71 @@
+{
+  "kind": "combat_status",
+  "id": 3187,
+  "name": "Doton",
+  "description": "Hält eine Schadenszone aufrecht.",
+  "effects": [
+    "Hält eine Schadenszone aufrecht."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 212904,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": true,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 92,
+  "source_abilities": [
+    {
+      "id": 2270,
+      "name": "Doton",
+      "description": "Du schaffst eine Zone um dich, in der allen Gegnern erdbasierter Schaden zugefügt wird.\nAttacke-Wert: 80\nDauer: 18 Sekunden\nZusatzeffekt: Ziele in der Zone erleiden 40 % Gewicht.\nBedingung: Ninjutsu nach Handgestenfolge Ten→Jin→Chi oder Jin→Ten→Chi\nBei Ausführung wird der Reaktivierungs-Timer von Waffenfertigkeiten, Magie, anderen Mudras und Ninjutsu ausgelöst.\nBei erfüllter Bedingung ändert sich Ninjutsu zu diesem Kommando.\nKann nicht im Kommandomenü angelegt werden.",
+      "description_macro": "Du schaffst eine Zone um dich, in der allen Gegnern erdbasierter Schaden zugefügt wird.<br>Attacke-Wert: 80<br>Dauer: 18 Sekunden<br>Zusatzeffekt: Ziele in der Zone erleiden 40 % <colortype(506)><edgecolortype(507)>Gewicht<edgecolortype(0)><colortype(0)>.<br>Bedingung: <colortype(502)><edgecolortype(503)>Ninjutsu<edgecolortype(0)><colortype(0)> nach Handgestenfolge <colortype(502)><edgecolortype(503)>Ten→Jin→Chi<edgecolortype(0)><colortype(0)> oder <colortype(502)><edgecolortype(503)>Jin→Ten→Chi<edgecolortype(0)><colortype(0)><br>Bei Ausführung wird der Reaktivierungs-Timer von Waf<->fen<->fer<->tig<->kei<->ten, Magie, anderen Mudras und <colortype(502)><edgecolortype(503)>Ninjutsu<edgecolortype(0)><colortype(0)> ausgelöst.<br>Bei erfüllter Bedingung ändert sich <colortype(502)><edgecolortype(503)>Ninjutsu<edgecolortype(0)><colortype(0)> zu diesem Kommando.<br>Kann nicht im Kommandomenü angelegt werden.",
+      "unlock_level": 45,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 30,
+          "name": "Ninja",
+          "abbreviation": "NIN",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 18880,
+      "name": "Doton",
+      "description": "Du schaffst eine Zone um dich, in der allen Gegnern erdbasierter Schaden zugefügt wird.\nAttacke-Wert: 80\nDauer: 18 Sekunden\nZusatzeffekt: Ziele in der Zone erleiden 40 % Gewicht.\nBedingung: Ninjutsu nach Handgestenfolge Ten→Jin→Chi oder Jin→Ten→Chi\nBei Ausführung wird der Reaktivierungs-Timer von Waffenfertigkeiten, Magie, anderen Mudras und Ninjutsu ausgelöst.\nBei erfüllter Bedingung ändert sich Ninjutsu zu diesem Kommando.\nKann nicht im Kommandomenü angelegt werden.",
+      "description_macro": "Du schaffst eine Zone um dich, in der allen Gegnern erdbasierter Schaden zugefügt wird.<br>Attacke-Wert: 80<br>Dauer: 18 Sekunden<br>Zusatzeffekt: Ziele in der Zone erleiden 40 % <colortype(506)><edgecolortype(507)>Gewicht<edgecolortype(0)><colortype(0)>.<br>Bedingung: <colortype(502)><edgecolortype(503)>Ninjutsu<edgecolortype(0)><colortype(0)> nach Handgestenfolge <colortype(502)><edgecolortype(503)>Ten→Jin→Chi<edgecolortype(0)><colortype(0)> oder <colortype(502)><edgecolortype(503)>Jin→Ten→Chi<edgecolortype(0)><colortype(0)><br>Bei Ausführung wird der Reaktivierungs-Timer von Waf<->fen<->fer<->tig<->kei<->ten, Magie, anderen Mudras und <colortype(502)><edgecolortype(503)>Ninjutsu<edgecolortype(0)><colortype(0)> ausgelöst.<br>Bei erfüllter Bedingung ändert sich <colortype(502)><edgecolortype(503)>Ninjutsu<edgecolortype(0)><colortype(0)> zu diesem Kommando.<br>Kann nicht im Kommandomenü angelegt werden.",
+      "unlock_level": 45,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 30,
+          "name": "Ninja",
+          "abbreviation": "NIN",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

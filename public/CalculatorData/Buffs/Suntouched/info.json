@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 3895,
+  "name": "Suntouched",
+  "description": "Able to execute Sun Sign.",
+  "effects": [
+    "Able to execute Sun Sign."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 213266,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 99,
+  "source_abilities": [
+    {
+      "id": 16559,
+      "name": "Neutral Sect",
+      "description": "Increases healing magic potency by 20%.\nDuration: 20s\nAdditional Effect: When casting Aspected Benefic or Helios Conjunction, erects a magicked barrier which nullifies damage\nAspected Benefic Effect: Nullifies damage equaling 250% of the amount of HP restored\nHelios Conjunction Effect: Nullifies damage equaling 125% of the amount of HP restored\nDuration: 30s\nAdditional Effect: Grants Suntouched\nDuration: 30s",
+      "description_macro": "Increases healing magic potency by 20%.<br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>20s<br><colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>When casting <colortype(500)><edgecolortype(501)>Aspected Benefic<edgecolortype(0)><colortype(0)> or <colortype(500)><edgecolortype(501)><if([gnum68==33],<if([gnum72>=96],Helios Conjunction,Aspected Helios)>,Aspected Helios)><edgecolortype(0)><colortype(0)>, erects a magicked barrier which nullifies damage<br><colortype(504)><edgecolortype(505)>Aspected Benefic Effect: <edgecolortype(0)><colortype(0)>Nullifies damage equaling 250% of the amount of HP restored<br><colortype(504)><edgecolortype(505)><if([gnum68==33],<if([gnum72>=96],Helios Conjunction,Aspected Helios)>,Aspected Helios)> Effect: <edgecolortype(0)><colortype(0)>Nullifies damage equaling 125% of the amount of HP restored<br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>30s<if([gnum68==33],<if([gnum72>=100],<br><colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>Grants <colortype(506)><edgecolortype(507)>Suntouched<edgecolortype(0)><colortype(0)><br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>30s,)>,)>",
+      "unlock_level": 80,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Healer"
+      ],
+      "jobs": [
+        {
+          "id": 33,
+          "name": "Astrologian",
+          "abbreviation": "AST",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

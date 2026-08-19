@@ -1,0 +1,71 @@
+{
+  "kind": "combat_status",
+  "id": 1863,
+  "name": "竜眼",
+  "description": "竜眼雷電を実行できる状態。",
+  "effects": [
+    "竜眼雷電を実行できる状態。"
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 212585,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 23,
+  "source_abilities": [
+    {
+      "id": 16477,
+      "name": "クルザントーメント",
+      "description": "対象に向かって前方直線範囲物理攻撃。\u3000威力：100\nコンボ条件：ソニックスラスト\u3000コンボ時威力：150\nコンボボーナス：自身に「竜眼」を付与する。\n効果時間：30秒",
+      "description_macro": "対象に向かって前方直線範囲物理攻撃。\u3000<colortype(504)><edgecolortype(505)>威力：<edgecolortype(0)><colortype(0)>100<br><colortype(504)><edgecolortype(505)>コンボ条件：<edgecolortype(0)><colortype(0)>ソニックスラスト\u3000<colortype(504)><edgecolortype(505)>コンボ時威力：<edgecolortype(0)><colortype(0)>150<if([gnum68==22],<if([gnum72>=82],<br><colortype(504)><edgecolortype(505)>コンボボーナス：<edgecolortype(0)><colortype(0)>自身に<colortype(500)><edgecolortype(501)>「竜眼」<edgecolortype(0)><colortype(0)>を付与する。<br><colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>30秒,)>,)>",
+      "unlock_level": 72,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 22,
+          "name": "竜騎士",
+          "abbreviation": "DRG",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 36952,
+      "name": "雲蒸竜変",
+      "description": "対象に物理攻撃。\u3000威力：460\nコンボ条件：竜尾大車輪および竜牙竜爪\nコンボボーナス：自身に「竜眼」を付与する。\n効果時間：30秒\n発動条件：竜牙竜爪または竜尾大車輪をコンボ状態で実行したとき\n\n※このアクションはホットバーに登録することはできない。\n\u3000発動条件を満たすと竜牙竜爪または竜尾大車輪が雲蒸竜変に変化する。",
+      "description_macro": "対象に物理攻撃。\u3000<colortype(504)><edgecolortype(505)>威力：<edgecolortype(0)><colortype(0)><if([gnum68==22],<if([gnum72>=94],460,<if([gnum68==22],<if([gnum72>=86],400,380)>,380)>)>,<if([gnum68==22],<if([gnum72>=86],400,380)>,380)>)><br><colortype(504)><edgecolortype(505)>コンボ条件：<edgecolortype(0)><colortype(0)>竜尾大車輪および竜牙竜爪<br><if([gnum68==22],<if([gnum72>=76],<colortype(504)><edgecolortype(505)>コンボボーナス：<edgecolortype(0)><colortype(0)>自身に<colortype(500)><edgecolortype(501)>「竜眼」<edgecolortype(0)><colortype(0)>を付与する。<br><colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>30秒<br>,)>,)><colortype(504)><edgecolortype(505)>発動条件：<edgecolortype(0)><colortype(0)>竜牙竜爪または竜尾大車輪をコンボ状態で実行したとき<br><br><colortype(506)><edgecolortype(507)>※このアクションはホットバーに登録することはできない。<br>\u3000発動条件を満たすと竜牙竜爪または竜尾大車輪が雲蒸竜変に変化する。<edgecolortype(0)><colortype(0)>",
+      "unlock_level": 64,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 22,
+          "name": "竜騎士",
+          "abbreviation": "DRG",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

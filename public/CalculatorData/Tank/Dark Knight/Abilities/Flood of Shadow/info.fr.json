@@ -1,0 +1,90 @@
+{
+  "kind": "ability",
+  "id": 16469,
+  "name": "Déluge d'ombre",
+  "description": "Effectue une attaque magique neutre en ligne droite sur les ennemis devant vous.\nPuissance : 160\nEffet additionnel : vous octroie Ténèbres intérieures.\nDurée : 30s\nTénèbres intérieures : augmente de 10% vos dégâts infligés.\nSi vous êtes déjà sous l'effet de Ténèbres intérieures, allonge la durée de 30s (maximum 60s).\nPartage le même temps de recharge que Tranchant d'ombre.",
+  "description_macro": "Effectue une attaque magique neutre en ligne droite sur les ennemis devant vous.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> 160<br><colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> vous octroie <colortype(500)><edgecolortype(501)>Ténèbres intérieures<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 30s<br><colortype(506)><edgecolortype(507)>Ténèbres intérieures<nbsp>:<edgecolortype(0)><colortype(0)> augmente de 10% vos dégâts infligés.<br>Si vous êtes déjà sous l'effet de <colortype(500)><edgecolortype(501)>Ténèbres intérieures<edgecolortype(0)><colortype(0)>, allonge la durée de 30s (maximum 60s).<br>Partage le même temps de recharge que <colortype(500)><edgecolortype(501)>Tranchant d'ombre<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Effectue une attaque magique neutre en ligne droite sur les ennemis devant vous.",
+    "Puissance : 160",
+    "Effet additionnel : vous octroie Ténèbres intérieures.",
+    "Durée : 30s",
+    "Ténèbres intérieures : augmente de 10% vos dégâts infligés.",
+    "Si vous êtes déjà sous l'effet de Ténèbres intérieures, allonge la durée de 30s (maximum 60s).",
+    "Partage le même temps de recharge que Tranchant d'ombre."
+  ],
+  "role": "Tank",
+  "job": {
+    "id": 32,
+    "name": "Chevalier Noir",
+    "abbreviation": "CHN"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 74,
+  "icon": {
+    "id": 3085,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 4,
+    "name": "Aptitude"
+  },
+  "attack_type": {
+    "id": 5,
+    "name": "magie"
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 1,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 1,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 3,
+      "value": 30
+    },
+    "secondary": {
+      "type_id": 62,
+      "value": 271
+    }
+  },
+  "range": {
+    "target_yalms": 10,
+    "effect_yalms": 10,
+    "cast_type": 4
+  },
+  "targeting": {
+    "self": false,
+    "party": false,
+    "alliance": false,
+    "hostile": true,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 7,
+    "behavior_type": 0,
+    "class_job_category_id": 98,
+    "source_class_job_id": 32,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

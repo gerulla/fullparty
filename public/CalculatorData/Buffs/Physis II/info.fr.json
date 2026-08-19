@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 2620,
+  "name": "Physis II",
+  "description": "Des PV sont récupérés périodiquement.",
+  "effects": [
+    "Des PV sont récupérés périodiquement."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 212966,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 5,
+  "parameter": {
+    "effect": 0,
+    "modifier": 10
+  },
+  "class_job_category_id": 181,
+  "source_abilities": [
+    {
+      "id": 24302,
+      "name": "Physis II",
+      "description": "Restaure périodiquement vos PV et ceux des équipiers alentour.\nPuissance : 130 Durée : 15s\nEffet additionnel : octroie Autophysis à vous et aux équipiers alentour.\nDurée : 15s\nAutophysis : augmente de 10% les effets curatifs reçus.",
+      "description_macro": "Restaure périodiquement vos PV et ceux des équipiers alentour.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> 130 <colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 15s<br><colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> octroie <colortype(500)><edgecolortype(501)>Autophysis<edgecolortype(0)><colortype(0)> à vous et aux équipiers alentour.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> <if([gnum68==40],<if([gnum72>=98],15,10)>,10)>s<br><colortype(506)><edgecolortype(507)>Autophysis<nbsp>:<edgecolortype(0)><colortype(0)> augmente de 10% les effets curatifs reçus.",
+      "unlock_level": 60,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Healer"
+      ],
+      "jobs": [
+        {
+          "id": 40,
+          "name": "Sage",
+          "abbreviation": "SAG",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

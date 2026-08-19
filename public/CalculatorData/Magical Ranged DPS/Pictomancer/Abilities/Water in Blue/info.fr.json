@@ -1,0 +1,91 @@
+{
+  "kind": "ability",
+  "id": 34652,
+  "name": "Eau en bleu",
+  "description": "Effectue une attaque magique d'eau sur la cible.\nPuissance : 570\nEffet additionnel : remplit la Jauge de palette de 25.\nEffet additionnel : vous octroie Peinture blanche \\(maximum 5\\).\nCondition : Sorts chromatiques 3 préparés et Palette soustractive non octroyée.\nSi Installation est active et que vous vous tenez dans les limites du ciel peint avec Imagi Ciel\\\n\n* Cette action ne peut pas être ajoutée aux barres de raccourcis.\nRemplace Vent en vert lorsque les conditions sont réunies.",
+  "description_macro": "Effectue une attaque magique d'eau sur la cible.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> <if([gnum68==42],<if([gnum72>=94],570,<if([gnum68==42],<if([gnum72>=84],500,<if([gnum68==42],<if([gnum72>=74],460,<if([gnum68==42],<if([gnum72>=54],390,320)>,320)>)>,<if([gnum68==42],<if([gnum72>=54],390,320)>,320)>)>)>,<if([gnum68==42],<if([gnum72>=74],460,<if([gnum68==42],<if([gnum72>=54],390,320)>,320)>)>,<if([gnum68==42],<if([gnum72>=54],390,320)>,320)>)>)>)>,<if([gnum68==42],<if([gnum72>=84],500,<if([gnum68==42],<if([gnum72>=74],460,<if([gnum68==42],<if([gnum72>=54],390,320)>,320)>)>,<if([gnum68==42],<if([gnum72>=54],390,320)>,320)>)>)>,<if([gnum68==42],<if([gnum72>=74],460,<if([gnum68==42],<if([gnum72>=54],390,320)>,320)>)>,<if([gnum68==42],<if([gnum72>=54],390,320)>,320)>)>)>)><br><if([gnum68==42],<if([gnum72>=60],<colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> remplit la <colortype(502)><edgecolortype(503)>Jauge de palette<edgecolortype(0)><colortype(0)> de 25.<br>,)>,)><if([gnum68==42],<if([gnum72>=80],<colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> vous octroie <colortype(500)><edgecolortype(501)>Peinture blanche<edgecolortype(0)><colortype(0)> \\(maximum 5\\).<br>,)>,)><colortype(506)><edgecolortype(507)>Condition<nbsp>:<edgecolortype(0)><colortype(0)> <colortype(500)><edgecolortype(501)>Sorts chromatiques 3 préparés<edgecolortype(0)><colortype(0)> et <colortype(500)><edgecolortype(501)>Palette soustractive<edgecolortype(0)><colortype(0)> non octroyée.<if([gnum68==42],<if([gnum72>=82],<br>Si <colortype(500)><edgecolortype(501)>Installation<edgecolortype(0)><colortype(0)> est active et que vous vous tenez dans les limites du ciel peint avec Imagi Ciel\\, en consomme un degré.,)>,)><br><br><colortype(504)><edgecolortype(505)>* Cette action ne peut pas être ajoutée aux barres de raccourcis.<br>Remplace <colortype(500)><edgecolortype(501)>Vent en vert<edgecolortype(0)><colortype(0)> lorsque les conditions sont réunies.<edgecolortype(0)><colortype(0)>",
+  "effects": [
+    "Effectue une attaque magique d'eau sur la cible.",
+    "Puissance : 570",
+    "Effet additionnel : remplit la Jauge de palette de 25.",
+    "Effet additionnel : vous octroie Peinture blanche \\(maximum 5\\).",
+    "Condition : Sorts chromatiques 3 préparés et Palette soustractive non octroyée.",
+    "Si Installation est active et que vous vous tenez dans les limites du ciel peint avec Imagi Ciel\\",
+    "* Cette action ne peut pas être ajoutée aux barres de raccourcis.",
+    "Remplace Vent en vert lorsque les conditions sont réunies."
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 42,
+    "name": "Pictomancien",
+    "abbreviation": "PIC"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 15,
+  "icon": {
+    "id": 3803,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 2,
+    "name": "Sort"
+  },
+  "attack_type": {
+    "id": 5,
+    "name": "magie"
+  },
+  "timing": {
+    "cast_seconds": 1.5,
+    "recast_seconds": 2.5,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 58,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 96,
+      "value": 3
+    },
+    "secondary": {
+      "type_id": 0,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": 25,
+    "effect_yalms": 0,
+    "cast_type": 1
+  },
+  "targeting": {
+    "self": false,
+    "party": false,
+    "alliance": false,
+    "hostile": true,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 6,
+    "behavior_type": 0,
+    "class_job_category_id": 197,
+    "source_class_job_id": 0,
+    "is_role_action": false,
+    "is_player_action": false,
+    "is_derived_action": true,
+    "equivalence_group": 0
+  }
+}

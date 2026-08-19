@@ -1,0 +1,96 @@
+{
+  "kind": "ability",
+  "id": 36956,
+  "name": "Sternenkreuz",
+  "description": "Du führst eine physische Attacke auf das Ziel und die Gegner in seiner Nähe aus.\nAttacke-Wert: 1.000\nAttacke-Wert verringert sich ab dem zweiten Gegner um 40 %.\nBedingung: Sternenkreuz aktiv",
+  "description_macro": "Du führst eine physische Attacke auf das Ziel und die Gegner in seiner Nähe aus.<br>Attacke-Wert: 1.000<br>Attacke-Wert verringert sich ab dem zweiten Gegner um 40<nbsp>%.<br>Bedingung: <colortype(506)><edgecolortype(507)>Sternenkreuz<edgecolortype(0)><colortype(0)> aktiv",
+  "effects": [
+    "Du führst eine physische Attacke auf das Ziel und die Gegner in seiner Nähe aus.",
+    "Attacke-Wert: 1.000",
+    "Attacke-Wert verringert sich ab dem zweiten Gegner um 40 %.",
+    "Bedingung: Sternenkreuz aktiv"
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 22,
+    "name": "Dragoon",
+    "abbreviation": "DRG"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 100,
+  "icon": {
+    "id": 2078,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 4,
+    "name": "Talent"
+  },
+  "attack_type": {
+    "id": 4294967295,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 1,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 3,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 10,
+      "value": 3846
+    },
+    "secondary": {
+      "type_id": 76,
+      "value": 2
+    }
+  },
+  "range": {
+    "target_yalms": 20,
+    "effect_yalms": 5,
+    "cast_type": 2
+  },
+  "targeting": {
+    "self": false,
+    "party": false,
+    "alliance": false,
+    "hostile": true,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": {
+      "id": 162,
+      "status": {
+        "id": 3846,
+        "name": "Sternenkreuz",
+        "description": "Sternenkreuz kann ausgeführt werden.",
+        "icon_id": 212588,
+        "max_stacks": 0
+      }
+    }
+  },
+  "metadata": {
+    "aspect_id": 7,
+    "behavior_type": 0,
+    "class_job_category_id": 23,
+    "source_class_job_id": 22,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

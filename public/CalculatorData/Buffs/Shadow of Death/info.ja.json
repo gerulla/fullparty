@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 4518,
+  "name": "死出の暗闇",
+  "description": "死出の道に誘われ、効果時間終了時に戦闘不能になる状態。光属性の攻撃を受けると解除される。",
+  "effects": [
+    "死出の道に誘われ、効果時間終了時に戦闘不能になる状態。光属性の攻撃を受けると解除される。"
+  ],
+  "classification": "debuff",
+  "icon": {
+    "id": 214289,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 2,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 200,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 24378,
+      "name": "シャドウ・オブ・デス",
+      "description": "対象に物理攻撃。\u3000威力：300\n追加効果：対象に「デスデザイン」を付与する。\n効果時間：30秒\nデスデザイン効果：自身から対象に与えるダメージを10％上昇させる。\n効果時間中に対象が倒されると、自身の「ソウルゲージ」が10上昇する。\n既に「デスデザイン」が付与されている場合は、その効果時間を30秒延長する。\n最大60秒まで延長することができる。",
+      "description_macro": "対象に物理攻撃。\u3000<colortype(504)><edgecolortype(505)>威力：<edgecolortype(0)><colortype(0)><if([gnum68==39],<if([gnum72>=60],300,240)>,240)><br><colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)>対象に<colortype(500)><edgecolortype(501)>「デスデザイン」<edgecolortype(0)><colortype(0)>を付与する。<br><colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>30秒<br><colortype(504)><edgecolortype(505)>デスデザイン効果：<edgecolortype(0)><colortype(0)>自身から対象に与えるダメージを10％上昇させる。<br><if([gnum68==39],<if([gnum72>=50],効果時間中に対象が倒されると、自身の<colortype(500)><edgecolortype(501)>「ソウルゲージ」<edgecolortype(0)><colortype(0)>が10上昇する。<br>,)>,)>既に<colortype(500)><edgecolortype(501)>「デスデザイン」<edgecolortype(0)><colortype(0)>が付与されている場合は、その効果時間を30秒延長する。<br>最大60秒まで延長することができる。",
+      "unlock_level": 10,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 39,
+          "name": "リーパー",
+          "abbreviation": "RPR",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

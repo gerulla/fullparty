@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 246,
+  "name": "シバルリー",
+  "description": "ライオットソードとスピリッツウィズインにＭＰ回復効果を付与する。",
+  "description_macro": "ライオットソードとスピリッツウィズインにＭＰ回復効果を付与する。",
+  "effects": [
+    "ライオットソードとスピリッツウィズインにＭＰ回復効果を付与する。"
+  ],
+  "role": "Tank",
+  "job": {
+    "id": 19,
+    "name": "ナイト",
+    "abbreviation": "PLD"
+  },
+  "unlock_level": 58,
+  "value": 0,
+  "icon": {
+    "id": 5212,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 20,
+  "source_class_job_id": 19
+}

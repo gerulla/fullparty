@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 444,
+  "name": "Meister der Pfeilsalve",
+  "description": "Verbessert Pfeilsalve zu Ladonsbiss.",
+  "description_macro": "Verbessert <colortype(502)><edgecolortype(503)>Pfeilsalve<edgecolortype(0)><colortype(0)> zu <colortype(502)><edgecolortype(503)>Ladonsbiss<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Verbessert Pfeilsalve zu Ladonsbiss."
+  ],
+  "role": "Physical Ranged DPS",
+  "job": {
+    "id": 23,
+    "name": "Barde",
+    "abbreviation": "BRD"
+  },
+  "unlock_level": 82,
+  "value": 0,
+  "icon": {
+    "id": 5316,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 24,
+  "source_class_job_id": 23
+}

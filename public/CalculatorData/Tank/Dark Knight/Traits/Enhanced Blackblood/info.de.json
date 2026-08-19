@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 159,
+  "name": "Schwarzblut II",
+  "description": "Der Blutbalken füllt sich, wenn während der Wirkungsdauer von Blutwaffe ausgeführte Waffenfertigkeiten oder Zauber treffen.",
+  "description_macro": "Der Blutbalken füllt sich, wenn während der Wirkungsdauer von <colortype(506)><edgecolortype(507)>Blutwaffe<edgecolortype(0)><colortype(0)> ausgeführte Waf<->fen<->fer<->tig<->kei<->ten oder Zauber treffen.",
+  "effects": [
+    "Der Blutbalken füllt sich, wenn während der Wirkungsdauer von Blutwaffe ausgeführte Waffenfertigkeiten oder Zauber treffen."
+  ],
+  "role": "Tank",
+  "job": {
+    "id": 32,
+    "name": "Dunkelritter",
+    "abbreviation": "DKR"
+  },
+  "unlock_level": 66,
+  "value": 0,
+  "icon": {
+    "id": 6060,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 98,
+  "source_class_job_id": 32
+}

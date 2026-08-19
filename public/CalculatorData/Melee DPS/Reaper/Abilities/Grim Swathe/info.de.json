@@ -1,0 +1,90 @@
+{
+  "kind": "ability",
+  "id": 24392,
+  "name": "Nachtschwad",
+  "description": "Du rufst deinen Avatar, der eine physische Attacke auf die fächerförmig vor dir stehenden Gegner ausführt.\nAttacke-Wert: 140\nZusatzeffekt: Gewährt dir Nichtssense.\nDauer: 30 Sekunden\nIst Nichtssense bereits aktiv\\Kann nicht zugleich mit Henkerssense aktiv sein.\nSeelenbalken-Kosten: 50\nGemeinsamer Reaktivierungs-Timer mit allen anderen Avatar-Kommandos außer Völlerei",
+  "description_macro": "Du rufst deinen Avatar, der eine physische Attacke auf die fächerförmig vor dir stehenden Gegner ausführt.<br>Attacke-Wert: 140<br><if([gnum68==39],<if([gnum72>=70],Zusatzeffekt: Gewährt dir <colortype(506)><edgecolortype(507)>Nichtssense<edgecolortype(0)><colortype(0)>.<br>Dauer: 30 Sekunden<br>Ist <colortype(506)><edgecolortype(507)>Nichtssense<edgecolortype(0)><colortype(0)> bereits aktiv\\, wird es auf 1 Stapel zurückgesetzt.<br>,)>,)><if([gnum68==39],<if([gnum72>=96],Kann nicht zugleich mit <colortype(500)><edgecolortype(501)>Henkerssense<edgecolortype(0)><colortype(0)> aktiv sein.<br>,)>,)>Seelenbalken-Kosten: 50<br>Gemeinsamer Reaktivierungs-Timer mit allen anderen <colortype(502)><edgecolortype(503)>Avatar<edgecolortype(0)><colortype(0)>-Kommandos außer <colortype(502)><edgecolortype(503)>Völlerei<edgecolortype(0)><colortype(0)>",
+  "effects": [
+    "Du rufst deinen Avatar, der eine physische Attacke auf die fächerförmig vor dir stehenden Gegner ausführt.",
+    "Attacke-Wert: 140",
+    "Zusatzeffekt: Gewährt dir Nichtssense.",
+    "Dauer: 30 Sekunden",
+    "Ist Nichtssense bereits aktiv\\Kann nicht zugleich mit Henkerssense aktiv sein.",
+    "Seelenbalken-Kosten: 50",
+    "Gemeinsamer Reaktivierungs-Timer mit allen anderen Avatar-Kommandos außer Völlerei"
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 39,
+    "name": "Schnitter",
+    "abbreviation": "SNT"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 55,
+  "icon": {
+    "id": 3620,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 4,
+    "name": "Talent"
+  },
+  "attack_type": {
+    "id": 1,
+    "name": "斬"
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 1,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 1,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 64,
+      "value": 50
+    },
+    "secondary": {
+      "type_id": 113,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": 8,
+    "effect_yalms": 8,
+    "cast_type": 3
+  },
+  "targeting": {
+    "self": false,
+    "party": false,
+    "alliance": false,
+    "hostile": true,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 7,
+    "behavior_type": 0,
+    "class_job_category_id": 180,
+    "source_class_job_id": 39,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

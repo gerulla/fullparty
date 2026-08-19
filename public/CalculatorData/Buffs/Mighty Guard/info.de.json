@@ -1,0 +1,51 @@
+{
+  "kind": "combat_status",
+  "id": 1719,
+  "name": "Totalabwehr",
+  "description": "Erlittener und ausgeteilter Schaden ist verringert, Feindseligkeit gegen dich erhöht.",
+  "effects": [
+    "Erlittener und ausgeteilter Schaden ist verringert, Feindseligkeit gegen dich erhöht."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 213506,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": true,
+  "is_permanent": true,
+  "inflicted_by_actor": true,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": -10
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 11417,
+      "name": "Totalabwehr",
+      "description": "Du verringerst erlittenen Schaden um 40 % und erhöhst die Feindseligkeit gegen dich, dafür ist auch dein ausgeteilter Schaden um 40 % verringert. Außerdem unterbricht erlittener Schaden das Wirken von Zaubern nicht.\nEffekt endet bei erneuter Ausführung.",
+      "description_macro": "Du verringerst erlittenen Schaden um 40<nbsp>% und erhöhst die Feindseligkeit gegen dich, dafür ist auch dein ausgeteilter Schaden um 40<nbsp>% verringert. Außerdem unterbricht erlittener Schaden das Wirken von Zaubern nicht.<br>Effekt endet bei erneuter Ausführung.",
+      "unlock_level": 1,
+      "relations": [
+        "direct_gain_self",
+        "same_name"
+      ],
+      "roles": [
+        "Magical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 36,
+          "name": "Blaumagier",
+          "abbreviation": "BMA",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

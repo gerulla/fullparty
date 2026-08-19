@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 375,
+  "name": "ケーラコレ効果アップ",
+  "description": "ケーラコレに、「対象のＨＰを継続回復する効果」が付与される。",
+  "description_macro": "ケーラコレに、「対象のＨＰを継続回復する効果」が付与される。",
+  "effects": [
+    "ケーラコレに、「対象のＨＰを継続回復する効果」が付与される。"
+  ],
+  "role": "Healer",
+  "job": {
+    "id": 40,
+    "name": "賢者",
+    "abbreviation": "SGE"
+  },
+  "unlock_level": 78,
+  "value": 0,
+  "icon": {
+    "id": 6456,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 181,
+  "source_class_job_id": 40
+}

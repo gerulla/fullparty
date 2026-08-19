@@ -1,0 +1,22 @@
+{
+  "kind": "trait",
+  "id": 4,
+  "name": "けり効果アップ",
+  "description": "「けり」の効果量を7％に上昇させる。",
+  "description_macro": "<colortype(500)><edgecolortype(501)>「けり」<edgecolortype(0)><colortype(0)>の効果量を7％に上昇させる。",
+  "effects": [
+    "「けり」の効果量を7％に上昇させる。"
+  ],
+  "role": "Phantom Jobs",
+  "job": {
+    "id": 3,
+    "name": "サポートモンク",
+    "abbreviation": "Ph. Monk"
+  },
+  "is_phantom_trait": true,
+  "unlock_level": 4,
+  "icon": {
+    "id": 82204,
+    "file": "icon.png"
+  }
+}

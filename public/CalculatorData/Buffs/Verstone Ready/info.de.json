@@ -1,0 +1,92 @@
+{
+  "kind": "combat_status",
+  "id": 1235,
+  "name": "Erzstein-bereit",
+  "description": "Erzstein kann ausgeführt werden.",
+  "effects": [
+    "Erzstein kann ausgeführt werden."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 213403,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 7507,
+      "name": "Erzwind",
+      "description": "Du führst eine windbasierte magische Attacke aus.\nAttacke-Wert: 360\nZusatzeffekt: +6 Weißes Mana\nZusatzeffekt: 50 % Wahrscheinlichkeit für Erzstein-bereit\nDauer: 30 Sekunden",
+      "description_macro": "Du führst eine windbasierte magische Attacke aus.<br>Attacke-Wert: <if([gnum68==35],<if([gnum72>=62],360,300)>,300)><br>Zusatzeffekt: +6 Weißes Mana<if([gnum72>=30],<if([gnum68==35],<br>Zusatzeffekt: 50 % Wahr<->schein<->lich<->keit für <colortype(506)><edgecolortype(507)>Erzstein-bereit<edgecolortype(0)><colortype(0)><br>Dauer: 30 Sekunden,)>,)>",
+      "unlock_level": 10,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Magical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 35,
+          "name": "Rotmagier",
+          "abbreviation": "RMA",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 7526,
+      "name": "Erz-Sanctus",
+      "description": "Du führst eine elementneutrale magische Attacke auf das Ziel und die Gegner in seiner Nähe aus.\nAttacke-Wert: 650\nAttacke-Wert verringert sich ab dem zweiten Gegner um 55 %.\nZusatzeffekt: +11 Weißes Mana\nZusatzeffekt: 20 % Wahrscheinlichkeit für Erzstein-bereit (100 %, wenn bei Ausführung mehr Schwarzes als Weißes Mana vorhanden war)\nDauer: 30 Sekunden\nBedingung: 3 Manasplitter\nBei erfüllter Bedingung ändern sich Erzwindga und Erzwindra zu diesem Kommando.\nKann nicht im Kommandomenü angelegt werden.",
+      "description_macro": "Du führst eine elementneutrale magische Attacke auf das Ziel und die Gegner in seiner Nähe aus.<br>Attacke-Wert: <if([gnum68==35],<if([gnum72>=94],650,600)>,600)><br>Attacke-Wert verringert sich ab dem zweiten Gegner um 55<nbsp>%.<br>Zusatzeffekt: +11 Weißes Mana<br>Zusatzeffekt: 20<nbsp>% Wahr<->schein<->lich<->keit für <colortype(506)><edgecolortype(507)>Erzstein-bereit<edgecolortype(0)><colortype(0)> (100<nbsp>%, wenn bei Ausführung mehr Schwarzes als Weißes Mana vorhanden war)<br>Dauer: 30 Sekunden<br>Bedingung: 3 <colortype(506)><edgecolortype(507)>Manasplitter<edgecolortype(0)><colortype(0)><br>Bei erfüllter Bedingung ändern sich <if([gnum68==35],<if([gnum72>=82],<colortype(502)><edgecolortype(503)>Erzwindga<edgecolortype(0)><colortype(0)>,<colortype(502)><edgecolortype(503)>Erzwind<edgecolortype(0)><colortype(0)>)>,<colortype(502)><edgecolortype(503)>Erzwind<edgecolortype(0)><colortype(0)>)> und <colortype(502)><edgecolortype(503)>Erzwindra<edgecolortype(0)><colortype(0)> zu diesem Kommando.<br>Kann nicht im Kommandomenü angelegt werden.",
+      "unlock_level": 70,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Magical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 35,
+          "name": "Rotmagier",
+          "abbreviation": "RMA",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 25856,
+      "name": "Erzwindga",
+      "description": "Du fügst dem Ziel windbasierten magischen Schaden zu.\nAttacke-Wert: 440\nZusatzeffekt: +6 Weißes Mana\nZusatzeffekt: 50 % Wahrscheinlichkeit für Erzstein-bereit\nDauer: 30 Sekunden",
+      "description_macro": "Du fügst dem Ziel windbasierten magischen Schaden zu.<br>Attacke-Wert: <if([gnum68==35],<if([gnum72>=94],440,380)>,380)><br>Zusatzeffekt: +6 Weißes Mana<br>Zusatzeffekt: 50<nbsp>% Wahr<->schein<->lich<->keit für <colortype(506)><edgecolortype(507)>Erzstein-bereit<edgecolortype(0)><colortype(0)><br>Dauer: 30 Sekunden",
+      "unlock_level": 82,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Magical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 35,
+          "name": "Rotmagier",
+          "abbreviation": "RMA",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

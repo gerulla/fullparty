@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 461,
+  "name": "Infect amélioré",
+  "description": "Infect devient instantané.",
+  "description_macro": "<colortype(500)><edgecolortype(501)>Infect<edgecolortype(0)><colortype(0)> devient instantané.",
+  "effects": [
+    "Infect devient instantané."
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 25,
+    "name": "Mage Noir",
+    "abbreviation": "MNO"
+  },
+  "unlock_level": 80,
+  "value": 0,
+  "icon": {
+    "id": 5369,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 26,
+  "source_class_job_id": 25
+}

@@ -1,0 +1,71 @@
+{
+  "kind": "combat_status",
+  "id": 792,
+  "name": "Emergency Tactics",
+  "description": "The next Galvanize and Catalyze statuses are transformed into HP recovery equaling the amount of damage reduction intended for their barriers.",
+  "effects": [
+    "The next Galvanize and Catalyze statuses are transformed into HP recovery equaling the amount of damage reduction intended for their barriers."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 212806,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 3586,
+      "name": "Emergency Tactics",
+      "description": "Transforms the next Galvanize and Catalyze statuses into HP recovery equaling the amount of damage reduction intended for the barrier.\nDuration: 15s",
+      "description_macro": "Transforms the next <colortype(506)><edgecolortype(507)>Galvanize<edgecolortype(0)><colortype(0)> and <colortype(506)><edgecolortype(507)>Catalyze<edgecolortype(0)><colortype(0)> statuses into HP recovery equaling the amount of damage reduction intended for the barrier.<br><colortype(504)><edgecolortype(505)>Duration:<edgecolortype(0)><colortype(0)> 15s",
+      "unlock_level": 58,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Healer"
+      ],
+      "jobs": [
+        {
+          "id": 28,
+          "name": "Scholar",
+          "abbreviation": "SCH",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 37037,
+      "name": "Emergency Tactics",
+      "description": "Transforms the next Galvanize and Catalyze statuses into HP recovery equaling the amount of damage reduction intended for the barrier.\nDuration: 15s",
+      "description_macro": "Transforms the next <colortype(506)><edgecolortype(507)>Galvanize<edgecolortype(0)><colortype(0)> and <colortype(506)><edgecolortype(507)>Catalyze<edgecolortype(0)><colortype(0)> statuses into HP recovery equaling the amount of damage reduction intended for the barrier.<br><colortype(504)><edgecolortype(505)>Duration:<edgecolortype(0)><colortype(0)> 15s",
+      "unlock_level": 100,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Healer"
+      ],
+      "jobs": [
+        {
+          "id": 28,
+          "name": "Scholar",
+          "abbreviation": "SCH",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

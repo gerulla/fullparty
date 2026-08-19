@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 2683,
+  "name": "ハート・オブ・コランダム",
+  "description": "受けるダメージの一部が軽減される状態。",
+  "effects": [
+    "受けるダメージの一部が軽減される状態。"
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 213615,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": -10
+  },
+  "class_job_category_id": 149,
+  "source_abilities": [
+    {
+      "id": 25758,
+      "name": "ハート・オブ・コランダム",
+      "description": "自身またはパーティメンバーひとりを対象とする。\n対象の被ダメージを15％軽減する。\u3000効果時間：8秒\n追加効果：パーティメンバーを対象として実行した場合、自身に「ブルータルシェル」が付与されていれば、その効果を対象にも付与する。\u3000効果時間：30秒\n追加効果：対象に「クラリティー・オブ・コランダム」を付与する。\u3000効果時間：4秒\nクラリティー・オブ・コランダム効果：対象の被ダメージを15％軽減する。\n追加効果：対象に「カタルシス・オブ・コランダム」を付与する。\n効果時間：20秒\nカタルシス・オブ・コランダム効果：ＨＰが50％以下に減少するか効果時間が経過すると、回復効果が発動する。\u3000回復力：900",
+      "description_macro": "自身またはパーティメンバーひとりを対象とする。<br>対象の被ダメージを15％軽減する。\u3000<colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>8秒<br><colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)>パーティメンバーを対象として実行した場合、自身に<colortype(500)><edgecolortype(501)>「ブルータルシェル」<edgecolortype(0)><colortype(0)>が付与されていれば、その効果を対象にも付与する。\u3000<colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>30秒<br><colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)>対象に<colortype(500)><edgecolortype(501)>「クラリティー・オブ・コランダム」<edgecolortype(0)><colortype(0)>を付与する。\u3000<colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>4秒<br><colortype(504)><edgecolortype(505)>クラリティー・オブ・コランダム効果：<edgecolortype(0)><colortype(0)>対象の被ダメージを15％軽減する。<br><colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)>対象に<colortype(500)><edgecolortype(501)>「カタルシス・オブ・コランダム」<edgecolortype(0)><colortype(0)>を付与する。<br><colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>20秒<br><colortype(504)><edgecolortype(505)>カタルシス・オブ・コランダム効果：<edgecolortype(0)><colortype(0)>ＨＰが50％以下に減少するか効果時間が経過すると、回復効果が発動する。\u3000<colortype(504)><edgecolortype(505)>回復力：<edgecolortype(0)><colortype(0)>900",
+      "unlock_level": 82,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Tank"
+      ],
+      "jobs": [
+        {
+          "id": 37,
+          "name": "ガンブレイカー",
+          "abbreviation": "GNB",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

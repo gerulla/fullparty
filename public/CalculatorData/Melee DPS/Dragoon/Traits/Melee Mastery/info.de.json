@@ -1,0 +1,32 @@
+{
+  "kind": "trait",
+  "id": 653,
+  "name": "Verbesserte Lanzenkunst",
+  "description": "Erhöht den Attacke-Wert folgender Kommandos:\nAttacke-Wert von Fang und Klaue: 140\nAttacke-Wert von Fächerstoß: 140\nAttacke-Wert von Drachenhort: 460\nAttacke-Wert von Überfallsstoß: 320\nAttacke-Wert von Sternensturz: 840\nAttacke-Wert von Himmelsstoß: 160\nAttacke-Wert von Chaotischer Sturm: 140\nAttacke-Wert von Zwillingswyrm: 440",
+  "description_macro": "Erhöht den Attacke-Wert folgender Kommandos:<br>Attacke-Wert von <colortype(502)><edgecolortype(503)>Fang und Klaue<edgecolortype(0)><colortype(0)>: 140<br>Attacke-Wert von <colortype(502)><edgecolortype(503)>Fächerstoß<edgecolortype(0)><colortype(0)>: 140<br>Attacke-Wert von <colortype(502)><edgecolortype(503)>Drachenhort<edgecolortype(0)><colortype(0)>: 460<br>Attacke-Wert von <colortype(502)><edgecolortype(503)>Überfallsstoß<edgecolortype(0)><colortype(0)>: 320<br>Attacke-Wert von <colortype(502)><edgecolortype(503)>Sternensturz<edgecolortype(0)><colortype(0)>: 840<br>Attacke-Wert von <colortype(502)><edgecolortype(503)>Himmelsstoß<edgecolortype(0)><colortype(0)>: 160<br>Attacke-Wert von <colortype(502)><edgecolortype(503)>Chaotischer Sturm<edgecolortype(0)><colortype(0)>: 140<br>Attacke-Wert von <colortype(502)><edgecolortype(503)>Zwillingswyrm<edgecolortype(0)><colortype(0)>: 440",
+  "effects": [
+    "Erhöht den Attacke-Wert folgender Kommandos:",
+    "Attacke-Wert von Fang und Klaue: 140",
+    "Attacke-Wert von Fächerstoß: 140",
+    "Attacke-Wert von Drachenhort: 460",
+    "Attacke-Wert von Überfallsstoß: 320",
+    "Attacke-Wert von Sternensturz: 840",
+    "Attacke-Wert von Himmelsstoß: 160",
+    "Attacke-Wert von Chaotischer Sturm: 140",
+    "Attacke-Wert von Zwillingswyrm: 440"
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 22,
+    "name": "Dragoon",
+    "abbreviation": "DRG"
+  },
+  "unlock_level": 94,
+  "value": 0,
+  "icon": {
+    "id": 6806,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 23,
+  "source_class_job_id": 22
+}

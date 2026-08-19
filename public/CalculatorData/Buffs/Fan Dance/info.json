@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 2052,
+  "name": "Fan Dance",
+  "description": "Damage taken is reduced.",
+  "effects": [
+    "Damage taken is reduced."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 214861,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": true,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": -15
+  },
+  "class_job_category_id": 150,
+  "source_abilities": [
+    {
+      "id": 16007,
+      "name": "Fan Dance",
+      "description": "Delivers an attack with a potency of 180.\nAdditional Effect: 50% chance of granting Threefold Fan Dance\nDuration: 30s\nCan only be executed while in possession of Fourfold Feathers.",
+      "description_macro": "Delivers an attack with a potency of <if([gnum68==38],<if([gnum72>=94],180,150)>,150)>.<br><if([gnum68==38],<if([gnum72>=66],<colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>50% chance of granting <colortype(506)><edgecolortype(507)>Threefold Fan Dance<edgecolortype(0)><colortype(0)><br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>30s<br>,)>,)>Can only be executed while in possession of <colortype(506)><edgecolortype(507)>Fourfold Feathers<edgecolortype(0)><colortype(0)>.",
+      "unlock_level": 30,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Physical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 38,
+          "name": "Dancer",
+          "abbreviation": "DNC",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

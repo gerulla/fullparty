@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 246,
+  "name": "Ritterlichkeit",
+  "description": "Erfolgreiches Ausführen von Donnerklinge oder Selbsterhaltungstrieb regeneriert MP.",
+  "description_macro": "Erfolgreiches Ausführen von <colortype(502)><edgecolortype(503)>Donnerklinge<edgecolortype(0)><colortype(0)> oder <colortype(502)><edgecolortype(503)>Selbsterhaltungstrieb<edgecolortype(0)><colortype(0)> regeneriert MP.",
+  "effects": [
+    "Erfolgreiches Ausführen von Donnerklinge oder Selbsterhaltungstrieb regeneriert MP."
+  ],
+  "role": "Tank",
+  "job": {
+    "id": 19,
+    "name": "Paladin",
+    "abbreviation": "PLD"
+  },
+  "unlock_level": 58,
+  "value": 0,
+  "icon": {
+    "id": 5212,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 20,
+  "source_class_job_id": 19
+}

@@ -1,0 +1,88 @@
+{
+  "kind": "ability",
+  "id": 7396,
+  "name": "Fraternité",
+  "description": "Vous octroie ainsi qu'aux équipiers alentour les effets Fraternité combattante et Fraternité méditative.\nDurée : 20s\nFraternité combattante : augmente de 5% les dégâts infligés.\nFraternité méditative : un chakra s'ouvre lorsque vous lancez un sort ou utilisez une technique d'arme. 20% de chances d'en ouvrir lorsqu'un équipier bénéficiant de l'effet en fait autant.\nEn outre, augmente votre total cumulable de chakras à 10.",
+  "description_macro": "Vous octroie ainsi qu'aux équipiers alentour les effets <colortype(500)><edgecolortype(501)>Fraternité combattante<edgecolortype(0)><colortype(0)> et <colortype(500)><edgecolortype(501)>Fraternité méditative<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 20s<br><colortype(506)><edgecolortype(507)>Fraternité combattante<nbsp>:<edgecolortype(0)><colortype(0)> augmente de 5% les dégâts infligés.<br><if([gnum68==20],<if([gnum72>=88],<colortype(506)><edgecolortype(507)>Fraternité méditative<nbsp>:<edgecolortype(0)><colortype(0)> un chakra s'ouvre lorsque vous lancez un sort ou utilisez une technique d'arme. 20% de chances d'en ouvrir lorsqu'un équipier bénéficiant de l'effet en fait autant.,<colortype(506)><edgecolortype(507)>Fraternité méditative<nbsp>:<edgecolortype(0)><colortype(0)> 20% de chances qu'un chakra s'ouvre lorsque vous ou un équipier lancez un sort ou utilisez une technique d'arme.)>,<colortype(506)><edgecolortype(507)>Fraternité méditative<nbsp>:<edgecolortype(0)><colortype(0)> 20% de chances qu'un chakra s'ouvre lorsque vous ou un équipier lancez un sort ou utilisez une technique d'arme.)><br>En outre, augmente votre total cumulable de chakras à 10.",
+  "effects": [
+    "Vous octroie ainsi qu'aux équipiers alentour les effets Fraternité combattante et Fraternité méditative.",
+    "Durée : 20s",
+    "Fraternité combattante : augmente de 5% les dégâts infligés.",
+    "Fraternité méditative : un chakra s'ouvre lorsque vous lancez un sort ou utilisez une technique d'arme. 20% de chances d'en ouvrir lorsqu'un équipier bénéficiant de l'effet en fait autant.",
+    "En outre, augmente votre total cumulable de chakras à 10."
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 20,
+    "name": "Moine",
+    "abbreviation": "MOI"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 70,
+  "icon": {
+    "id": 2542,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 4,
+    "name": "Aptitude"
+  },
+  "attack_type": {
+    "id": 0,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 120,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 20,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 0,
+      "value": 0
+    },
+    "secondary": {
+      "type_id": 0,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": 0,
+    "effect_yalms": 30,
+    "cast_type": 2
+  },
+  "targeting": {
+    "self": true,
+    "party": false,
+    "alliance": false,
+    "hostile": false,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 0,
+    "behavior_type": 0,
+    "class_job_category_id": 21,
+    "source_class_job_id": 20,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

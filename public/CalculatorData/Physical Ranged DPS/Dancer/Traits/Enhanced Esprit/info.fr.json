@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 454,
+  "name": "Fascination croissante",
+  "description": "Permet à votre Jauge de fascination de se remplir de 10 lorsque vous utilisez avec succès Cascade inversée, Fontaine en cascade, Moulin à vent ascendant ou Averse de sang.",
+  "description_macro": "Permet à votre <colortype(502)><edgecolortype(503)>Jauge de fascination<edgecolortype(0)><colortype(0)> de se remplir de 10 lorsque vous utilisez avec succès <colortype(500)><edgecolortype(501)>Cascade inversée<edgecolortype(0)><colortype(0)>, <colortype(500)><edgecolortype(501)>Fontaine en cascade<edgecolortype(0)><colortype(0)>, <colortype(500)><edgecolortype(501)>Moulin à vent ascendant<edgecolortype(0)><colortype(0)> ou <colortype(500)><edgecolortype(501)>Averse de sang<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Permet à votre Jauge de fascination de se remplir de 10 lorsque vous utilisez avec succès Cascade inversée, Fontaine en cascade, Moulin à vent ascendant ou Averse de sang."
+  ],
+  "role": "Physical Ranged DPS",
+  "job": {
+    "id": 38,
+    "name": "Danseur",
+    "abbreviation": "DNS"
+  },
+  "unlock_level": 84,
+  "value": 0,
+  "icon": {
+    "id": 6358,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 150,
+  "source_class_job_id": 38
+}

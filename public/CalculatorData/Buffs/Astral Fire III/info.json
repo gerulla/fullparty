@@ -1,0 +1,134 @@
+{
+  "kind": "combat_status",
+  "id": 175,
+  "name": "Astral Fire III",
+  "description": "Aetherial balance of mind and spirit is leaning astrally. Fire-aspected spells require more MP, but do more damage. Ice-aspected spells require less MP, but do less damage, and casting times are halved. MP regeneration has stopped.",
+  "effects": [
+    "Aetherial balance of mind and spirit is leaning astrally. Fire-aspected spells require more MP, but do more damage. Ice-aspected spells require less MP, but do less damage, and casting times are halved. MP regeneration has stopped."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 210465,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": true,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 147,
+      "name": "Fire II",
+      "description": "Deals fire damage with a potency of 80 to target and all enemies nearby it.\nAdditional Effect: Grants Astral Fire III and removes Umbral Ice",
+      "description_macro": "Deals fire damage with a potency of 80 to target and all enemies nearby it.<br><colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)><if([gnum72>=35],<if([gnum68==7],Grants <colortype(506)><edgecolortype(507)>Astral Fire III<edgecolortype(0)><colortype(0)> and removes <colortype(506)><edgecolortype(507)>Umbral Ice<edgecolortype(0)><colortype(0)>,<if([gnum68==25],Grants <colortype(506)><edgecolortype(507)>Astral Fire III<edgecolortype(0)><colortype(0)> and removes <colortype(506)><edgecolortype(507)>Umbral Ice<edgecolortype(0)><colortype(0)>,Grants <colortype(506)><edgecolortype(507)>Astral Fire<edgecolortype(0)><colortype(0)> or removes <colortype(506)><edgecolortype(507)>Umbral Ice<edgecolortype(0)><colortype(0)>)>)>,Grants <colortype(506)><edgecolortype(507)>Astral Fire<edgecolortype(0)><colortype(0)> or removes <colortype(506)><edgecolortype(507)>Umbral Ice<edgecolortype(0)><colortype(0)>)>",
+      "unlock_level": 18,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Magical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 25,
+          "name": "Black Mage",
+          "abbreviation": "BLM",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 152,
+      "name": "Fire III",
+      "description": "Deals fire damage with a potency of 290.\nAdditional Effect: Grants Astral Fire III and removes Umbral Ice",
+      "description_macro": "Deals fire damage with a potency of 290.<br><colortype(504)><edgecolortype(505)>Additional Effect:<edgecolortype(0)><colortype(0)> Grants <colortype(506)><edgecolortype(507)>Astral Fire III<edgecolortype(0)><colortype(0)> and removes <colortype(506)><edgecolortype(507)>Umbral Ice<edgecolortype(0)><colortype(0)>",
+      "unlock_level": 35,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Magical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 25,
+          "name": "Black Mage",
+          "abbreviation": "BLM",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 162,
+      "name": "Flare",
+      "description": "Deals fire damage to target and all enemies nearby it with a potency of 240 for the first enemy, and 30% less for all remaining enemies.\nAdditional Effect: Grants Astral Fire III\nAdditional Effect: Grants 3 stacks of Astral Soul\nEffect ends when Astral Fire expires.\nCan only be executed while under the effect of Astral Fire.",
+      "description_macro": "Deals fire damage to target and all enemies nearby it with a potency of 240 for the first enemy, and 30% less for all remaining enemies.<br><colortype(504)><edgecolortype(505)>Additional Effect:<edgecolortype(0)><colortype(0)> Grants <colortype(506)><edgecolortype(507)>Astral Fire III<edgecolortype(0)><colortype(0)><br><if([gnum68==25],<if([gnum72>=100],<colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>Grants 3 stacks of <colortype(506)><edgecolortype(507)>Astral Soul<edgecolortype(0)><colortype(0)><br>Effect ends when <colortype(506)><edgecolortype(507)>Astral Fire<edgecolortype(0)><colortype(0)> expires.<br>,)>,)>Can only be executed while under the effect of <colortype(506)><edgecolortype(507)>Astral Fire<edgecolortype(0)><colortype(0)>.",
+      "unlock_level": 50,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Magical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 25,
+          "name": "Black Mage",
+          "abbreviation": "BLM",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 16505,
+      "name": "Despair",
+      "description": "Deals fire damage with a potency of 350.\nAdditional Effect: Grants Astral Fire III\nCan only be executed while under the effect of Astral Fire.",
+      "description_macro": "Deals fire damage with a potency of 350.<br><colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>Grants <colortype(506)><edgecolortype(507)>Astral Fire III<edgecolortype(0)><colortype(0)><br>Can only be executed while under the effect of <colortype(506)><edgecolortype(507)>Astral Fire<edgecolortype(0)><colortype(0)>.",
+      "unlock_level": 72,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Magical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 25,
+          "name": "Black Mage",
+          "abbreviation": "BLM",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 25794,
+      "name": "High Fire II",
+      "description": "Deals fire damage with a potency of 100 to target and all enemies nearby it.\nAdditional Effect: Grants Astral Fire III and removes Umbral Ice",
+      "description_macro": "Deals fire damage with a potency of 100 to target and all enemies nearby it.<br><colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>Grants <colortype(506)><edgecolortype(507)>Astral Fire III<edgecolortype(0)><colortype(0)> and removes <colortype(506)><edgecolortype(507)>Umbral Ice<edgecolortype(0)><colortype(0)>",
+      "unlock_level": 82,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Magical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 25,
+          "name": "Black Mage",
+          "abbreviation": "BLM",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

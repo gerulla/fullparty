@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 369,
+  "name": "Verbesserte Kommandos II",
+  "description": "Erhöht den Basisschaden und das Regenerationspotenzial von Kommandos außer Auto-Attacke um 30 %.",
+  "description_macro": "Erhöht den Basisschaden und das Regenerationspotenzial von Kommandos außer Auto-Attacke um 30<nbsp>%.",
+  "effects": [
+    "Erhöht den Basisschaden und das Regenerationspotenzial von Kommandos außer Auto-Attacke um 30 %."
+  ],
+  "role": "Healer",
+  "job": {
+    "id": 40,
+    "name": "Weiser",
+    "abbreviation": "WEI"
+  },
+  "unlock_level": 40,
+  "value": 30,
+  "icon": {
+    "id": 5186,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 181,
+  "source_class_job_id": 40
+}

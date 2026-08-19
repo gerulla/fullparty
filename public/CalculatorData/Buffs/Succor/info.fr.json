@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 166,
+  "name": "Grand soulagement",
+  "description": "Le prochain Traité du soulagement ne coûte aucun PM.",
+  "effects": [
+    "Le prochain Traité du soulagement ne coûte aucun PM."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 212804,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 186,
+      "name": "Traité du soulagement",
+      "description": "Restaure vos PV et ceux des équipiers alentour.\nPuissance : 200\nEffet additionnel : octroie Réconfort, une barrière annulant un montant de dégâts égal à 160% des PV restaurés.\nDurée : 30s\nNe peut être cumulé avec certaines barrières des sages.",
+      "description_macro": "Restaure vos PV et ceux des équipiers alentour.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> 200<br><colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> octroie <colortype(500)><edgecolortype(501)>Réconfort<edgecolortype(0)><colortype(0)>, une barrière annulant un montant de dégâts égal à <if([gnum68==28],<if([gnum72>=85],160,115)>,115)>% des PV restaurés.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 30s<br>Ne peut être cumulé avec certaines barrières des sages.",
+      "unlock_level": 35,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Healer"
+      ],
+      "jobs": [
+        {
+          "id": 28,
+          "name": "Érudit",
+          "abbreviation": "ÉRU",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,26 @@
+{
+  "kind": "trait",
+  "id": 440,
+  "name": "Meisui amélioré",
+  "description": "Permet à Meisui de vous octroyer un effet lors de son utilisation.\nMeisui : augmente à 500 la puissance du prochain Bhavacakra.\nDurée : 30s",
+  "description_macro": "Permet à Meisui de vous octroyer un effet lors de son utilisation.<br><colortype(506)><edgecolortype(507)>Meisui<nbsp>:<edgecolortype(0)><colortype(0)> augmente à 500 la puissance du prochain Bhavacakra.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 30s",
+  "effects": [
+    "Permet à Meisui de vous octroyer un effet lors de son utilisation.",
+    "Meisui : augmente à 500 la puissance du prochain Bhavacakra.",
+    "Durée : 30s"
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 30,
+    "name": "Ninja",
+    "abbreviation": "NIN"
+  },
+  "unlock_level": 88,
+  "value": 0,
+  "icon": {
+    "id": 5418,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 92,
+  "source_class_job_id": 30
+}

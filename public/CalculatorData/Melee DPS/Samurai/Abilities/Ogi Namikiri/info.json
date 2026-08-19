@@ -1,0 +1,96 @@
+{
+  "kind": "ability",
+  "id": 25781,
+  "name": "Ogi Namikiri",
+  "description": "Delivers a critical hit to all enemies in a cone before you with a potency of 1\\ for the first enemy, and 40% less for all remaining enemies.\nDamage dealt is increased when under an effect that raises critical hit rate.\nGrants a stack of Meditation, up to a maximum of 3.\nCan only be executed while under the effect of Ogi Namikiri Ready.",
+  "description_macro": "Delivers a critical hit to all enemies in a cone before you with a potency of <if([gnum68==34],<if([gnum72>=94],1\\,000,860)>,860)> for the first enemy, and 40% less for all remaining enemies.<br>Damage dealt is increased when under an effect that raises critical hit rate.<br>Grants a stack of <colortype(506)><edgecolortype(507)>Meditation<edgecolortype(0)><colortype(0)>, up to a maximum of 3.<br>Can only be executed while under the effect of <colortype(506)><edgecolortype(507)>Ogi Namikiri Ready<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Delivers a critical hit to all enemies in a cone before you with a potency of 1\\ for the first enemy, and 40% less for all remaining enemies.",
+    "Damage dealt is increased when under an effect that raises critical hit rate.",
+    "Grants a stack of Meditation, up to a maximum of 3.",
+    "Can only be executed while under the effect of Ogi Namikiri Ready."
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 34,
+    "name": "Samurai",
+    "abbreviation": "SAM"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 90,
+  "icon": {
+    "id": 3187,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 3,
+    "name": "Weaponskill"
+  },
+  "attack_type": {
+    "id": 4294967295,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 1.8,
+    "recast_seconds": 2.5,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 58,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 0,
+      "value": 0
+    },
+    "secondary": {
+      "type_id": 32,
+      "value": 2959
+    }
+  },
+  "range": {
+    "target_yalms": 8,
+    "effect_yalms": 8,
+    "cast_type": 3
+  },
+  "targeting": {
+    "self": false,
+    "party": false,
+    "alliance": false,
+    "hostile": true,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": {
+      "id": 72,
+      "status": {
+        "id": 2959,
+        "name": "Ogi Namikiri Ready",
+        "description": "Able to execute Ogi Namikiri.",
+        "icon_id": 213313,
+        "max_stacks": 0
+      }
+    }
+  },
+  "metadata": {
+    "aspect_id": 7,
+    "behavior_type": 0,
+    "class_job_category_id": 111,
+    "source_class_job_id": 34,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "kind": "trait",
+  "id": 614,
+  "name": "Manalignements améliorés",
+  "description": "Permet de replacer les signes magiques.\nCondition : Manalignements.",
+  "description_macro": "Permet de replacer les signes magiques.<br><colortype(506)><edgecolortype(507)>Condition<nbsp>:<edgecolortype(0)><colortype(0)> <colortype(500)><edgecolortype(501)>Manalignements<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Permet de replacer les signes magiques.",
+    "Condition : Manalignements."
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 25,
+    "name": "Mage Noir",
+    "abbreviation": "MNO"
+  },
+  "unlock_level": 96,
+  "value": 0,
+  "icon": {
+    "id": 5652,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 26,
+  "source_class_job_id": 25
+}

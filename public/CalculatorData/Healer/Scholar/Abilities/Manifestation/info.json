@@ -1,0 +1,91 @@
+{
+  "kind": "ability",
+  "id": 37015,
+  "name": "Manifestation",
+  "description": "Restores target's HP.\nCure Potency: 360\nAdditional Effect: Grants Galvanize to target, nullifying damage equaling 180% of the amount of HP restored. When critical HP is restored, also grants Catalyze, nullifying damage equaling 180% the amount of HP restored.\nDuration: 30s\nEffect cannot be stacked with certain sage barrier effects.\nCan only be executed while under the effect of Seraphism.\n\n※This action cannot be assigned to a hotbar.\n※Adloquium changes to Manifestation when requirements for execution are met.",
+  "description_macro": "Restores target's HP.<br><colortype(504)><edgecolortype(505)>Cure Potency:<edgecolortype(0)><colortype(0)> 360<br><colortype(504)><edgecolortype(505)>Additional Effect:<edgecolortype(0)><colortype(0)> Grants <colortype(506)><edgecolortype(507)>Galvanize<edgecolortype(0)><colortype(0)> to target, nullifying damage equaling 180% of the amount of HP restored. When critical HP is restored, also grants <colortype(506)><edgecolortype(507)>Catalyze<edgecolortype(0)><colortype(0)>, nullifying damage equaling 180% the amount of HP restored.<br><colortype(504)><edgecolortype(505)>Duration:<edgecolortype(0)><colortype(0)> 30s<br>Effect cannot be stacked with certain sage barrier effects.<br>Can only be executed while under the effect of <colortype(506)><edgecolortype(507)>Seraphism<edgecolortype(0)><colortype(0)>.<br><br>※This action cannot be assigned to a hotbar.<br>※<colortype(500)><edgecolortype(501)>Adloquium<edgecolortype(0)><colortype(0)> changes to <colortype(500)><edgecolortype(501)>Manifestation<edgecolortype(0)><colortype(0)> when requirements for execution are met.",
+  "effects": [
+    "Restores target's HP.",
+    "Cure Potency: 360",
+    "Additional Effect: Grants Galvanize to target, nullifying damage equaling 180% of the amount of HP restored. When critical HP is restored, also grants Catalyze, nullifying damage equaling 180% the amount of HP restored.",
+    "Duration: 30s",
+    "Effect cannot be stacked with certain sage barrier effects.",
+    "Can only be executed while under the effect of Seraphism.",
+    "※This action cannot be assigned to a hotbar.",
+    "※Adloquium changes to Manifestation when requirements for execution are met."
+  ],
+  "role": "Healer",
+  "job": {
+    "id": 28,
+    "name": "Scholar",
+    "abbreviation": "SCH"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 100,
+  "icon": {
+    "id": 2882,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 2,
+    "name": "Spell"
+  },
+  "attack_type": {
+    "id": 5,
+    "name": "魔法"
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 2.5,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 58,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 3,
+      "value": 9
+    },
+    "secondary": {
+      "type_id": 32,
+      "value": 3884
+    }
+  },
+  "range": {
+    "target_yalms": 30,
+    "effect_yalms": 0,
+    "cast_type": 1
+  },
+  "targeting": {
+    "self": true,
+    "party": true,
+    "alliance": true,
+    "hostile": false,
+    "ally": true,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": false
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": false
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 7,
+    "behavior_type": 0,
+    "class_job_category_id": 29,
+    "source_class_job_id": 0,
+    "is_role_action": false,
+    "is_player_action": false,
+    "is_derived_action": true,
+    "equivalence_group": 0
+  }
+}

@@ -1,0 +1,88 @@
+{
+  "kind": "ability",
+  "id": 25855,
+  "name": "Erzblitzga",
+  "description": "Du fügst dem Ziel blitzbasierten magischen Schaden zu.\nAttacke-Wert: 440\nZusatzeffekt: +6 Schwarzes Mana\nZusatzeffekt: 50 % Wahrscheinlichkeit für Erzfeuer-bereit\nDauer: 30 Sekunden",
+  "description_macro": "Du fügst dem Ziel blitzbasierten magischen Schaden zu.<br>Attacke-Wert: <if([gnum68==35],<if([gnum72>=94],440,380)>,380)><br>Zusatzeffekt: +6 Schwarzes Mana<br>Zusatzeffekt: 50<nbsp>% Wahr<->schein<->lich<->keit für <colortype(506)><edgecolortype(507)>Erzfeuer-bereit<edgecolortype(0)><colortype(0)><br>Dauer: 30 Sekunden",
+  "effects": [
+    "Du fügst dem Ziel blitzbasierten magischen Schaden zu.",
+    "Attacke-Wert: 440",
+    "Zusatzeffekt: +6 Schwarzes Mana",
+    "Zusatzeffekt: 50 % Wahrscheinlichkeit für Erzfeuer-bereit",
+    "Dauer: 30 Sekunden"
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 35,
+    "name": "Rotmagier",
+    "abbreviation": "RMA"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 82,
+  "icon": {
+    "id": 3235,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 2,
+    "name": "Zauber"
+  },
+  "attack_type": {
+    "id": 5,
+    "name": "魔法"
+  },
+  "timing": {
+    "cast_seconds": 5,
+    "recast_seconds": 2.5,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 58,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 3,
+      "value": 3
+    },
+    "secondary": {
+      "type_id": 0,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": 25,
+    "effect_yalms": 0,
+    "cast_type": 1
+  },
+  "targeting": {
+    "self": false,
+    "party": false,
+    "alliance": false,
+    "hostile": true,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": false
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 5,
+    "behavior_type": 0,
+    "class_job_category_id": 112,
+    "source_class_job_id": 35,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

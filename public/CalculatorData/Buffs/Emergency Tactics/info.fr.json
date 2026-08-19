@@ -1,0 +1,71 @@
+{
+  "kind": "combat_status",
+  "id": 792,
+  "name": "Stratagème de l'urgence",
+  "description": "Le prochain effet Réconfort ou Exhortation à être appliqué devient une récupération de PV équivalente au montant de dégâts que la barrière devait annuler.",
+  "effects": [
+    "Le prochain effet Réconfort ou Exhortation à être appliqué devient une récupération de PV équivalente au montant de dégâts que la barrière devait annuler."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 212806,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 3586,
+      "name": "Stratagème de l'urgence",
+      "description": "Transforme l'effet Réconfort, et Exhortation le cas échéant, de votre prochain sort de soin en une restauration des PV équivalente au montant de dégâts que la barrière devait annuler.\nDurée : 15s",
+      "description_macro": "Transforme l'effet Réconfort, et Exhortation le cas échéant, de votre prochain sort de soin en une restauration des PV équivalente au montant de dégâts que la barrière devait annuler.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 15s",
+      "unlock_level": 58,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Healer"
+      ],
+      "jobs": [
+        {
+          "id": 28,
+          "name": "Érudit",
+          "abbreviation": "ÉRU",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 37037,
+      "name": "Stratagème de l'urgence",
+      "description": "Transforme l'effet Réconfort, et Exhortation le cas échéant, de votre prochain sort de soin en une restauration des PV équivalente au montant de dégâts que la barrière devait annuler.\nDurée : 15s",
+      "description_macro": "Transforme l'effet Réconfort, et Exhortation le cas échéant, de votre prochain sort de soin en une restauration des PV équivalente au montant de dégâts que la barrière devait annuler.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 15s",
+      "unlock_level": 100,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Healer"
+      ],
+      "jobs": [
+        {
+          "id": 28,
+          "name": "Érudit",
+          "abbreviation": "ÉRU",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

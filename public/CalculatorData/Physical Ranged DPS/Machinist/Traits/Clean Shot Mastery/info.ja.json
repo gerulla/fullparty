@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 290,
+  "name": "クリーンショットマスタリー",
+  "description": "クリーンショットがヒートクリーンショットに変化する。",
+  "description_macro": "クリーンショットがヒートクリーンショットに変化する。",
+  "effects": [
+    "クリーンショットがヒートクリーンショットに変化する。"
+  ],
+  "role": "Physical Ranged DPS",
+  "job": {
+    "id": 31,
+    "name": "機工士",
+    "abbreviation": "MCH"
+  },
+  "unlock_level": 64,
+  "value": 0,
+  "icon": {
+    "id": 6012,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 96,
+  "source_class_job_id": 31
+}

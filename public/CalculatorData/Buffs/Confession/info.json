@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 1219,
+  "name": "Confession",
+  "description": "Sins are confessed, partially diminishing damage accrued. Additional HP is recovered when receiving the healing effect of certain spells cast by the white mage who granted this effect.",
+  "effects": [
+    "Sins are confessed, partially diminishing damage accrued. Additional HP is recovered when receiving the healing effect of certain spells cast by the white mage who granted this effect."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 212637,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 60,
+  "parameter": {
+    "effect": 39,
+    "modifier": 100
+  },
+  "class_job_category_id": 25,
+  "source_abilities": [
+    {
+      "id": 7433,
+      "name": "Plenary Indulgence",
+      "description": "Grants Confession to self and nearby party members, reducing damage taken by 10%.\nDuration: 10s\nParty members under the effect of Confession will receive additional healing upon receiving HP recovery via Medica, Medica III, Cure III\\.\nCure Potency: 200",
+      "description_macro": "Grants <colortype(506)><edgecolortype(507)>Confession<edgecolortype(0)><colortype(0)> to self and nearby party members, reducing damage taken by 10%.<br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>10s<br>Party members under the effect of <colortype(506)><edgecolortype(507)>Confession<edgecolortype(0)><colortype(0)> will receive additional healing upon receiving HP recovery via <colortype(500)><edgecolortype(501)>Medica<edgecolortype(0)><colortype(0)>, <colortype(500)><edgecolortype(501)><if([gnum68==24],<if([gnum72>=96],Medica III,Medica II)>,Medica II)><edgecolortype(0)><colortype(0)>, <if([gnum68==24],<if([gnum72>=76],<colortype(500)><edgecolortype(501)>Cure III<edgecolortype(0)><colortype(0)>\\, or <colortype(500)><edgecolortype(501)>Afflatus Rapture<edgecolortype(0)><colortype(0)>,or <colortype(500)><edgecolortype(501)>Cure III<edgecolortype(0)><colortype(0)>)>,or <colortype(500)><edgecolortype(501)>Cure III<edgecolortype(0)><colortype(0)>)>.<br><colortype(504)><edgecolortype(505)>Cure Potency: <edgecolortype(0)><colortype(0)>200",
+      "unlock_level": 70,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Healer"
+      ],
+      "jobs": [
+        {
+          "id": 24,
+          "name": "White Mage",
+          "abbreviation": "WHM",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

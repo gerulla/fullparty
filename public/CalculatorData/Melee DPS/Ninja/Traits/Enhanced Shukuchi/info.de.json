@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 166,
+  "name": "Verbessertes Shukuchi",
+  "description": "Setzt den Reaktivierungs-Timer von Shukuchi zurück, wenn Katon, Raiton oder Hyoton auf einen Gegner (einige ausgenommen) ausgeführt wird.",
+  "description_macro": "Setzt den Reaktivierungs-Timer von <colortype(506)><edgecolortype(507)>Shukuchi<edgecolortype(0)><colortype(0)> zurück, wenn <colortype(502)><edgecolortype(503)>Katon<edgecolortype(0)><colortype(0)>, <colortype(502)><edgecolortype(503)>Raiton<edgecolortype(0)><colortype(0)> oder <colortype(502)><edgecolortype(503)>Hyoton<edgecolortype(0)><colortype(0)> auf einen Gegner (einige ausgenommen) ausgeführt wird.",
+  "effects": [
+    "Setzt den Reaktivierungs-Timer von Shukuchi zurück, wenn Katon, Raiton oder Hyoton auf einen Gegner (einige ausgenommen) ausgeführt wird."
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 30,
+    "name": "Ninja",
+    "abbreviation": "NIN"
+  },
+  "unlock_level": 64,
+  "value": 0,
+  "icon": {
+    "id": 5412,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 92,
+  "source_class_job_id": 30
+}

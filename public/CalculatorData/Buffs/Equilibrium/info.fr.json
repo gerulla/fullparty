@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 2681,
+  "name": "Équilibre",
+  "description": "Des PV sont récupérés périodiquement.",
+  "effects": [
+    "Des PV sont récupérés périodiquement."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 212565,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 5,
+  "parameter": {
+    "effect": 0,
+    "modifier": 10
+  },
+  "class_job_category_id": 22,
+  "source_abilities": [
+    {
+      "id": 3552,
+      "name": "Équilibre",
+      "description": "Restaure vos PV.\nPuissance : 1200\nEffet additionnel : restaure périodiquement vos PV.\nPuissance : 200 Durée : 15s",
+      "description_macro": "Restaure vos PV.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> 1200<if([gnum68==21],<if([gnum72>=84],<br><colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> restaure périodiquement vos PV.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> 200 <colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 15s,)>,)>",
+      "unlock_level": 58,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Tank"
+      ],
+      "jobs": [
+        {
+          "id": 21,
+          "name": "Guerrier",
+          "abbreviation": "GUE",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

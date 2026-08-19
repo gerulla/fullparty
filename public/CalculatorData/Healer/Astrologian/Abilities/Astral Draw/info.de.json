@@ -1,0 +1,88 @@
+{
+  "kind": "ability",
+  "id": 37017,
+  "name": "Lichtziehen",
+  "description": "Du ziehst die Waage, den Pfeil, den Turm und den König der Kronen.\nAusspielen I ändert sich danach zu Waage, Ausspielen II zu Pfeil\\.\nZusatzeffekt: Du regenerierst 20 % deiner Maximal-MP.\nAußerdem ändert sich dieses Kommando direkt nach der Ausführung zu Schattenziehen.\nGemeinsamer Reaktivierungs-Timer mit Schattenziehen",
+  "description_macro": "Du ziehst die <colortype(506)><edgecolortype(507)>Waage<edgecolortype(0)><colortype(0)>, den <colortype(506)><edgecolortype(507)>Pfeil<edgecolortype(0)><colortype(0)>, <if([gnum68==33],<if([gnum72>=70],den <colortype(506)><edgecolortype(507)>Turm<edgecolortype(0)><colortype(0)> und den <colortype(506)><edgecolortype(507)>König der Kronen<edgecolortype(0)><colortype(0)>,und den <colortype(506)><edgecolortype(507)>Turm<edgecolortype(0)><colortype(0)>)>,und den <colortype(506)><edgecolortype(507)>Turm<edgecolortype(0)><colortype(0)>)>.<br><colortype(502)><edgecolortype(503)>Ausspielen I<edgecolortype(0)><colortype(0)> ändert sich danach zu <colortype(502)><edgecolortype(503)>Waage<edgecolortype(0)><colortype(0)>, <colortype(502)><edgecolortype(503)>Ausspielen II<edgecolortype(0)><colortype(0)> zu <colortype(502)><edgecolortype(503)>Pfeil<edgecolortype(0)><colortype(0)><if([gnum68==33],<if([gnum72>=70],\\, <colortype(502)><edgecolortype(503)>Ausspielen III<edgecolortype(0)><colortype(0)> zu <colortype(502)><edgecolortype(503)>Turm<edgecolortype(0)><colortype(0)> und <colortype(502)><edgecolortype(503)>Kleine Arkana<edgecolortype(0)><colortype(0)> zu <colortype(502)><edgecolortype(503)>König der Kronen<edgecolortype(0)><colortype(0)>, und <colortype(502)><edgecolortype(503)>Ausspielen III<edgecolortype(0)><colortype(0)> zu <colortype(502)><edgecolortype(503)>Turm<edgecolortype(0)><colortype(0)>)>, und <colortype(502)><edgecolortype(503)>Ausspielen III<edgecolortype(0)><colortype(0)> zu <colortype(502)><edgecolortype(503)>Turm<edgecolortype(0)><colortype(0)>)>.<br>Zusatzeffekt: Du regenerierst 20 % deiner Maximal-MP.<br>Außerdem ändert sich dieses Kommando direkt nach der Ausführung zu <colortype(502)><edgecolortype(503)>Schattenziehen<edgecolortype(0)><colortype(0)>.<br>Gemeinsamer Reaktivierungs-Timer mit <colortype(502)><edgecolortype(503)>Schattenziehen<edgecolortype(0)><colortype(0)>",
+  "effects": [
+    "Du ziehst die Waage, den Pfeil, den Turm und den König der Kronen.",
+    "Ausspielen I ändert sich danach zu Waage, Ausspielen II zu Pfeil\\.",
+    "Zusatzeffekt: Du regenerierst 20 % deiner Maximal-MP.",
+    "Außerdem ändert sich dieses Kommando direkt nach der Ausführung zu Schattenziehen.",
+    "Gemeinsamer Reaktivierungs-Timer mit Schattenziehen"
+  ],
+  "role": "Healer",
+  "job": {
+    "id": 33,
+    "name": "Astrologe",
+    "abbreviation": "AST"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 30,
+  "icon": {
+    "id": 3564,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 4,
+    "name": "Talent"
+  },
+  "attack_type": {
+    "id": 0,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 55,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 17,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 0,
+      "value": 0
+    },
+    "secondary": {
+      "type_id": 140,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": 0,
+    "effect_yalms": 0,
+    "cast_type": 1
+  },
+  "targeting": {
+    "self": true,
+    "party": false,
+    "alliance": false,
+    "hostile": false,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 0,
+    "behavior_type": 0,
+    "class_job_category_id": 99,
+    "source_class_job_id": 33,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

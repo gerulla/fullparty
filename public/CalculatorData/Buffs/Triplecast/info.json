@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 1211,
+  "name": "Triplecast",
+  "description": "Spells require no time to cast.",
+  "effects": [
+    "Spells require no time to cast."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 219621,
+    "file": "icon.png"
+  },
+  "max_stacks": 3,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 27,
+    "modifier": 0
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 7421,
+      "name": "Triplecast",
+      "description": "The next three spells will require no cast time.\nDuration: 15s\nMaximum Charges: 2",
+      "description_macro": "The next three spells will require no cast time.<br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>15s<br><colortype(504)><edgecolortype(505)>Maximum Charges: <edgecolortype(0)><colortype(0)>2",
+      "unlock_level": 66,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Magical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 25,
+          "name": "Black Mage",
+          "abbreviation": "BLM",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

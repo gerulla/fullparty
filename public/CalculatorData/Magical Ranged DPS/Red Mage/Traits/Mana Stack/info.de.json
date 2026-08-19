@@ -1,0 +1,26 @@
+{
+  "kind": "trait",
+  "id": 482,
+  "name": "Verbesserte Magieklinge",
+  "description": "Erfolgreiche Ausführung von Magische Riposte, Magischer Zwerchhau, Magisches Redoublement, Magischer Moulinet Un,  Magischer Moulinet Deux und Magischer Moulinet Trois gewährt dir 1 Manasplitter.\nMaximalstapelzahl: 3\nBei 3 Manasplittern ändern sich Erzblitz und Erzblitzra zu Erzflare. Außerdem ändern sich Erzwind und Erzwindra zu Erz-Sanctus, sobald erlernt.",
+  "description_macro": "Erfolgreiche Ausführung von <colortype(502)><edgecolortype(503)>Magische Riposte<edgecolortype(0)><colortype(0)>, <colortype(502)><edgecolortype(503)>Magischer Zwerchhau<edgecolortype(0)><colortype(0)>, <colortype(502)><edgecolortype(503)>Magisches Redoublement<edgecolortype(0)><colortype(0)>, <colortype(502)><edgecolortype(503)>Magischer Moulinet Un<edgecolortype(0)><colortype(0)>,  <colortype(502)><edgecolortype(503)>Magischer Moulinet Deux<edgecolortype(0)><colortype(0)> und <colortype(502)><edgecolortype(503)>Magischer Moulinet Trois<edgecolortype(0)><colortype(0)> gewährt dir 1 <colortype(506)><edgecolortype(507)>Manasplitter<edgecolortype(0)><colortype(0)>.<br>Ma<->xi<->mal<->sta<->pel<->zahl: 3<br>Bei 3 <colortype(506)><edgecolortype(507)>Manasplittern<edgecolortype(0)><colortype(0)> ändern sich <colortype(502)><edgecolortype(503)>Erzblitz<edgecolortype(0)><colortype(0)> und <colortype(502)><edgecolortype(503)>Erzblitzra<edgecolortype(0)><colortype(0)> zu <colortype(502)><edgecolortype(503)>Erzflare<edgecolortype(0)><colortype(0)>. Außerdem ändern sich <colortype(502)><edgecolortype(503)>Erzwind<edgecolortype(0)><colortype(0)> und <colortype(502)><edgecolortype(503)>Erzwindra<edgecolortype(0)><colortype(0)> zu <colortype(502)><edgecolortype(503)>Erz-Sanctus<edgecolortype(0)><colortype(0)>, sobald erlernt.",
+  "effects": [
+    "Erfolgreiche Ausführung von Magische Riposte, Magischer Zwerchhau, Magisches Redoublement, Magischer Moulinet Un,  Magischer Moulinet Deux und Magischer Moulinet Trois gewährt dir 1 Manasplitter.",
+    "Maximalstapelzahl: 3",
+    "Bei 3 Manasplittern ändern sich Erzblitz und Erzblitzra zu Erzflare. Außerdem ändern sich Erzwind und Erzwindra zu Erz-Sanctus, sobald erlernt."
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 35,
+    "name": "Rotmagier",
+    "abbreviation": "RMA"
+  },
+  "unlock_level": 68,
+  "value": 0,
+  "icon": {
+    "id": 6208,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 112,
+  "source_class_job_id": 35
+}

@@ -1,0 +1,90 @@
+{
+  "kind": "ability",
+  "id": 41612,
+  "name": "Wetter",
+  "description": "Du verleihst dir und deinen Gruppenmitgliedern einen vom momentanen Wetter abhängigen Effekt.\nSonnenbad: Regeneriert eigene LP und die von umstehenden Gruppenmitgliedern.\nAbendkühle: Erhöht LP-Regenerationseffekte auf dich und umstehende Gruppenmitglieder um 30 %.\nSegensschauer: Errichtet eine Barriere um dich und umgebende Gruppenmitglieder, die ein bestimmtes Maß an Schaden absorbiert.\nTrugnebel: Erhöht die Ausweichrate von dir und umstehenden Gruppenmitgliedern um 40 %.\nTrughast: Erhöht die Bewegungsgeschwindigkeit von dir und umstehenden Gruppenmitgliedern um 20 %.\nÄtherernte: Erhöht den ausgeteilten Schaden von dir und umstehenden Gruppenmitgliedern um 10 %.",
+  "description_macro": "Du verleihst dir und deinen Grup<->pen<->mit<->gliedern einen vom momentanen Wetter abhängigen Effekt.<br><colortype(502)><edgecolortype(503)>Sonnenbad<edgecolortype(0)><colortype(0)>: Regeneriert eigene LP und die von umstehenden Grup<->pen<->mit<->gliedern.<br><colortype(502)><edgecolortype(503)>Abendkühle<edgecolortype(0)><colortype(0)>: Erhöht LP-Regenerationseffekte auf dich und umstehende Grup<->pen<->mit<->glieder um 30<nbsp>%.<br><colortype(502)><edgecolortype(503)>Segensschauer<edgecolortype(0)><colortype(0)>: Errichtet eine Barriere um dich und umgebende Grup<->pen<->mit<->glieder, die ein bestimmtes Maß an Schaden absorbiert.<br><colortype(502)><edgecolortype(503)>Trugnebel<edgecolortype(0)><colortype(0)>: Erhöht die Ausweichrate von dir und umstehenden Grup<->pen<->mit<->gliedern um 40<nbsp>%.<br><colortype(502)><edgecolortype(503)>Trughast<edgecolortype(0)><colortype(0)>: Erhöht die Be<->we<->gungs<->ge<->schwin<->dig<->keit von dir und umstehenden Grup<->pen<->mit<->gliedern um 20<nbsp>%.<br><colortype(502)><edgecolortype(503)>Ätherernte<edgecolortype(0)><colortype(0)>: Erhöht den ausgeteilten Schaden von dir und umstehenden Grup<->pen<->mit<->gliedern um 10<nbsp>%.",
+  "effects": [
+    "Du verleihst dir und deinen Gruppenmitgliedern einen vom momentanen Wetter abhängigen Effekt.",
+    "Sonnenbad: Regeneriert eigene LP und die von umstehenden Gruppenmitgliedern.",
+    "Abendkühle: Erhöht LP-Regenerationseffekte auf dich und umstehende Gruppenmitglieder um 30 %.",
+    "Segensschauer: Errichtet eine Barriere um dich und umgebende Gruppenmitglieder, die ein bestimmtes Maß an Schaden absorbiert.",
+    "Trugnebel: Erhöht die Ausweichrate von dir und umstehenden Gruppenmitgliedern um 40 %.",
+    "Trughast: Erhöht die Bewegungsgeschwindigkeit von dir und umstehenden Gruppenmitgliedern um 20 %.",
+    "Ätherernte: Erhöht den ausgeteilten Schaden von dir und umstehenden Gruppenmitgliedern um 10 %."
+  ],
+  "role": "Phantom Jobs",
+  "job": {
+    "id": 7,
+    "name": "Phantom-Geomant",
+    "abbreviation": "Ph-Geomant"
+  },
+  "is_phantom_action": true,
+  "unlock_level": 2,
+  "icon": {
+    "id": 64574,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 2,
+    "name": "Zauber"
+  },
+  "attack_type": {
+    "id": 0,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 40,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 85,
+    "additional_cooldown_group": 58,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 0,
+      "value": 0
+    },
+    "secondary": {
+      "type_id": 0,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": 0,
+    "effect_yalms": 0,
+    "cast_type": 1
+  },
+  "targeting": {
+    "self": true,
+    "party": false,
+    "alliance": false,
+    "hostile": false,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 0,
+    "behavior_type": 0,
+    "class_job_category_id": 142,
+    "source_class_job_id": 4294967295,
+    "is_role_action": false,
+    "is_player_action": false,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

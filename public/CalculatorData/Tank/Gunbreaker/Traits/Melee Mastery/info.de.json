@@ -1,0 +1,27 @@
+{
+  "kind": "trait",
+  "id": 507,
+  "name": "Verbesserte Revolverklinge",
+  "description": "Erhöht den Attacke-Wert folgender Kommandos:\nAttacke-Wert von Zerfetzer: 200\nAttacke-Wert von Brutaler Einschlag: 160\nAttacke-Wert von Stahlwalze: 140",
+  "description_macro": "Erhöht den Attacke-Wert folgender Kommandos:<br>Attacke-Wert von <colortype(502)><edgecolortype(503)>Zerfetzer<edgecolortype(0)><colortype(0)>: 200<br>Attacke-Wert von <colortype(502)><edgecolortype(503)>Brutaler Einschlag<edgecolortype(0)><colortype(0)>: 160<br>Attacke-Wert von <colortype(502)><edgecolortype(503)>Stahlwalze<edgecolortype(0)><colortype(0)>: 140",
+  "effects": [
+    "Erhöht den Attacke-Wert folgender Kommandos:",
+    "Attacke-Wert von Zerfetzer: 200",
+    "Attacke-Wert von Brutaler Einschlag: 160",
+    "Attacke-Wert von Stahlwalze: 140"
+  ],
+  "role": "Tank",
+  "job": {
+    "id": 37,
+    "name": "Revolverklinge",
+    "abbreviation": "REV"
+  },
+  "unlock_level": 84,
+  "value": 0,
+  "icon": {
+    "id": 6801,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 149,
+  "source_class_job_id": 37
+}

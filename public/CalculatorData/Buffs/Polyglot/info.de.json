@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 3169,
+  "name": "Polyglott",
+  "description": "Moder kann ausgeführt werden.",
+  "effects": [
+    "Moder kann ausgeführt werden."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 214984,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": true,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 26,
+  "source_abilities": [
+    {
+      "id": 25796,
+      "name": "Verstärker",
+      "description": "Du gewährst dir Polyglott.\nBedingung: Lichtfeuer oder Schatteneis aktiv",
+      "description_macro": "Du gewährst dir <colortype(506)><edgecolortype(507)>Polyglott<edgecolortype(0)><colortype(0)>.<br>Bedingung: <colortype(506)><edgecolortype(507)>Lichtfeuer<edgecolortype(0)><colortype(0)> oder <colortype(506)><edgecolortype(507)>Schatteneis<edgecolortype(0)><colortype(0)> aktiv",
+      "unlock_level": 86,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Magical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 25,
+          "name": "Schwarzmagier",
+          "abbreviation": "SMA",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

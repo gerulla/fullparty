@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 3665,
+  "name": "飛鋭尾【連尾】",
+  "description": "蛇の構えから繰り出す特定のアクションの威力を上昇させる状態。",
+  "effects": [
+    "蛇の構えから繰り出す特定のアクションの威力を上昇させる状態。"
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 213771,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 196,
+  "source_abilities": [
+    {
+      "id": 34633,
+      "name": "飛蛇の尾",
+      "description": "対象とその周囲の敵に範囲物理攻撃。\u3000威力：680\n2体目以降の対象への威力は75％減少する。\n追加効果：自身に「飛鋭尾【連尾】」を付与する。\n効果時間：60秒\n飛鋭尾【連尾】効果：飛蛇連尾撃の威力を50上昇させる。\nこのアクションを命中させると双牙連術が飛蛇連尾撃に、双牙乱術が飛蛇乱尾撃にそれぞれ変化し、それらのアクションを2回実行できるようになる。\n発動条件：「飛蛇の魂」\nこのウェポンスキルは固有のリキャストタイマーを持つ。",
+      "description_macro": "対象とその周囲の敵に範囲物理攻撃。\u3000<colortype(504)><edgecolortype(505)>威力：<edgecolortype(0)><colortype(0)>680<br>2体目以降の対象への威力は75％減少する。<br><if([gnum68==41],<if([gnum72>=92],<colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)>自身に<colortype(500)><edgecolortype(501)>「飛鋭尾【連尾】」<edgecolortype(0)><colortype(0)>を付与する。<br><colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>60秒<br><colortype(504)><edgecolortype(505)>飛鋭尾【連尾】効果：<edgecolortype(0)><colortype(0)>飛蛇連尾撃の威力を50上昇させる。<br>このアクションを命中させると双牙連術が飛蛇連尾撃に、双牙乱術が飛蛇乱尾撃にそれぞれ変化し、それらのアクションを2回実行できるようになる。<br>,)>,)><colortype(504)><edgecolortype(505)>発動条件：<edgecolortype(0)><colortype(0)><colortype(500)><edgecolortype(501)>「飛蛇の魂」<edgecolortype(0)><colortype(0)><br>このウェポンスキルは固有のリキャストタイマーを持つ。",
+      "unlock_level": 82,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 41,
+          "name": "ヴァイパー",
+          "abbreviation": "VPR",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

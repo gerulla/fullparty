@@ -1,0 +1,25 @@
+{
+  "kind": "trait",
+  "id": 580,
+  "name": "Glissade aérienne améliorée",
+  "description": "Permet de cumuler plusieurs charges pour Glissade aérienne.\nMaximum de charges : 2",
+  "description_macro": "Permet de cumuler plusieurs charges pour <colortype(500)><edgecolortype(501)>Glissade aérienne<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Maximum de charges<nbsp>:<edgecolortype(0)><colortype(0)> 2",
+  "effects": [
+    "Permet de cumuler plusieurs charges pour Glissade aérienne.",
+    "Maximum de charges : 2"
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 22,
+    "name": "Chevalier Dragon",
+    "abbreviation": "DRG"
+  },
+  "unlock_level": 84,
+  "value": 2,
+  "icon": {
+    "id": 5295,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 23,
+  "source_class_job_id": 22
+}

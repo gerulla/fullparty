@@ -1,0 +1,25 @@
+{
+  "kind": "trait",
+  "id": 17,
+  "name": "Tir à l'arc puissant amélioré",
+  "description": "Accorde 20% de chances qu'Œil de faucon vous soit octroyé lorsque vous utilisez Tir à l'arc puissant avec succès.\nDurée : 30s",
+  "description_macro": "Accorde 20% de chances qu'<colortype(500)><edgecolortype(501)>Œil de faucon<edgecolortype(0)><colortype(0)> vous soit octroyé lorsque vous utilisez <colortype(500)><edgecolortype(501)>Tir à l'arc puissant<edgecolortype(0)><colortype(0)> avec succès.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 30s",
+  "effects": [
+    "Accorde 20% de chances qu'Œil de faucon vous soit octroyé lorsque vous utilisez Tir à l'arc puissant avec succès.",
+    "Durée : 30s"
+  ],
+  "role": "Physical Ranged DPS",
+  "job": {
+    "id": 23,
+    "name": "Barde",
+    "abbreviation": "BRD"
+  },
+  "unlock_level": 2,
+  "value": 0,
+  "icon": {
+    "id": 5321,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 50,
+  "source_class_job_id": 5
+}

@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 510,
+  "name": "Physis Mastery",
+  "description": "Upgrades Physis to Physis II.",
+  "description_macro": "Upgrades <colortype(500)><edgecolortype(501)>Physis<edgecolortype(0)><colortype(0)> to <colortype(500)><edgecolortype(501)>Physis II<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Upgrades Physis to Physis II."
+  ],
+  "role": "Healer",
+  "job": {
+    "id": 40,
+    "name": "Sage",
+    "abbreviation": "SGE"
+  },
+  "unlock_level": 60,
+  "value": 0,
+  "icon": {
+    "id": 6459,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 181,
+  "source_class_job_id": 40
+}

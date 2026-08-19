@@ -1,0 +1,88 @@
+{
+  "kind": "ability",
+  "id": 36923,
+  "name": "ダムネーション",
+  "description": "一定時間、自身の被ダメージを40％軽減させ、かつ自身が物理攻撃を受けた場合に、反撃ダメージを与える。\n威力：55\u3000効果時間：15秒\n追加効果：ダメージを受けるか、ダメージを受けることなく効果時間が経過すると、自身に「ダムネーション［被］」を付与する。\nダムネーション［被］効果：自身のＨＰを継続回復する。\n回復力：300\u3000効果時間：15秒",
+  "description_macro": "一定時間、自身の被ダメージを40％軽減させ、かつ自身が物理攻撃を受けた場合に、反撃ダメージを与える。<br><colortype(504)><edgecolortype(505)>威力：<edgecolortype(0)><colortype(0)>55\u3000<colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>15秒<br><colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)>ダメージを受けるか、ダメージを受けることなく効果時間が経過すると、自身に<colortype(500)><edgecolortype(501)>「ダムネーション［被］」<edgecolortype(0)><colortype(0)>を付与する。<br><colortype(504)><edgecolortype(505)>ダムネーション［被］効果：<edgecolortype(0)><colortype(0)>自身のＨＰを継続回復する。<br><colortype(504)><edgecolortype(505)>回復力：<edgecolortype(0)><colortype(0)>300\u3000<colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>15秒",
+  "effects": [
+    "一定時間、自身の被ダメージを40％軽減させ、かつ自身が物理攻撃を受けた場合に、反撃ダメージを与える。",
+    "威力：55\u3000効果時間：15秒",
+    "追加効果：ダメージを受けるか、ダメージを受けることなく効果時間が経過すると、自身に「ダムネーション［被］」を付与する。",
+    "ダムネーション［被］効果：自身のＨＰを継続回復する。",
+    "回復力：300\u3000効果時間：15秒"
+  ],
+  "role": "Tank",
+  "job": {
+    "id": 21,
+    "name": "戦士",
+    "abbreviation": "WAR"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 92,
+  "icon": {
+    "id": 2573,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 4,
+    "name": "アビリティ"
+  },
+  "attack_type": {
+    "id": 0,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 120,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 22,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 0,
+      "value": 0
+    },
+    "secondary": {
+      "type_id": 62,
+      "value": 567
+    }
+  },
+  "range": {
+    "target_yalms": 0,
+    "effect_yalms": 0,
+    "cast_type": 1
+  },
+  "targeting": {
+    "self": true,
+    "party": false,
+    "alliance": false,
+    "hostile": false,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 0,
+    "behavior_type": 0,
+    "class_job_category_id": 22,
+    "source_class_job_id": 21,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

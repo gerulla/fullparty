@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 4109,
+  "name": "Muse mit Bommel",
+  "description": "Eigener ausgeteilter Schaden und Heilmagie sind erhöht.",
+  "effects": [
+    "Eigener ausgeteilter Schaden und Heilmagie sind erhöht."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 214705,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": true,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 20
+  },
+  "class_job_category_id": 197,
+  "source_abilities": [
+    {
+      "id": 34670,
+      "name": "Muse mit Bommel",
+      "description": "Du materialisierst deinen piktomantischen Bommel und führst eine elementneutrale magische Attacke auf das Ziel und die Gegner in seiner Nähe aus.\nAttacke-Wert: 800\nAttacke-Wert verringert sich ab dem zweiten Gegner um 70 %.\nZusatzeffekt: Malt das Element des Pikto-Bommels auf die Kreaturen-Leinwand.\nMaximale Aufladungen: 3\nBedingung: Gemalter Bommel\nBei erfüllter Bedingung ändert sich Lebende Muse zu diesem Kommando.\nKann nicht im Kommandomenü angelegt werden.",
+      "description_macro": "Du materialisierst deinen piktomantischen <colortype(506)><edgecolortype(507)>Bommel<edgecolortype(0)><colortype(0)> und führst eine elementneutrale magische Attacke auf das Ziel und die Gegner in seiner Nähe aus.<br>Attacke-Wert: <if([gnum68==42],<if([gnum72>=84],800,<if([gnum68==42],<if([gnum72>=54],700,400)>,400)>)>,<if([gnum68==42],<if([gnum72>=54],700,400)>,400)>)><br>Attacke-Wert verringert sich ab dem zweiten Gegner um 70<nbsp>%.<br>Zusatzeffekt: Malt das Element des <colortype(506)><edgecolortype(507)>Pikto-Bommels<edgecolortype(0)><colortype(0)> auf die <colortype(506)><edgecolortype(507)>Kreaturen-Leinwand<edgecolortype(0)><colortype(0)>.<br>Maximale Aufladungen: <if([gnum68==42],<if([gnum72>=96],3,2)>,2)><br>Bedingung: Gemalter <colortype(506)><edgecolortype(507)>Bommel<edgecolortype(0)><colortype(0)><br>Bei erfüllter Bedingung ändert sich <colortype(502)><edgecolortype(503)>Lebende Muse<edgecolortype(0)><colortype(0)> zu diesem Kommando.<br>Kann nicht im Kommandomenü angelegt werden.",
+      "unlock_level": 30,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Magical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 42,
+          "name": "Piktomant",
+          "abbreviation": "PKT",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

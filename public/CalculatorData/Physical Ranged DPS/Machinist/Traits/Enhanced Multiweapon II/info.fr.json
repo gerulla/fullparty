@@ -1,0 +1,26 @@
+{
+  "kind": "trait",
+  "id": 606,
+  "name": "Multiarmes améliorées II",
+  "description": "Permet de recevoir Excavation préparée lorsque vous utilisez Tronçonneuses rotatives.\nDurée : 30s\nRemplace Tronçonneuses rotatives par Excavation pendant la durée de l'effet.",
+  "description_macro": "Permet de recevoir <colortype(500)><edgecolortype(501)>Excavation préparée<edgecolortype(0)><colortype(0)> lorsque vous utilisez <colortype(500)><edgecolortype(501)>Tronçonneuses rotatives<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 30s<br>Remplace <colortype(500)><edgecolortype(501)>Tronçonneuses rotatives<edgecolortype(0)><colortype(0)> par <colortype(500)><edgecolortype(501)>Excavation<edgecolortype(0)><colortype(0)> pendant la durée de l'effet.",
+  "effects": [
+    "Permet de recevoir Excavation préparée lorsque vous utilisez Tronçonneuses rotatives.",
+    "Durée : 30s",
+    "Remplace Tronçonneuses rotatives par Excavation pendant la durée de l'effet."
+  ],
+  "role": "Physical Ranged DPS",
+  "job": {
+    "id": 31,
+    "name": "Machiniste",
+    "abbreviation": "MCH"
+  },
+  "unlock_level": 96,
+  "value": 0,
+  "icon": {
+    "id": 6024,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 96,
+  "source_class_job_id": 31
+}

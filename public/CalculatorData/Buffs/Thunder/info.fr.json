@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 161,
+  "name": "Foudre",
+  "description": "Des dégâts périodiques de foudre sont subis.",
+  "effects": [
+    "Des dégâts périodiques de foudre sont subis."
+  ],
+  "classification": "debuff",
+  "icon": {
+    "id": 210457,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 2,
+  "target_type": 0,
+  "can_dispel": true,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 10,
+  "parameter": {
+    "effect": 0,
+    "modifier": 10
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 144,
+      "name": "Foudre",
+      "description": "Effectue une attaque magique de foudre sur la cible.\nPuissance : 100\nEffet additionnel : dégâts périodiques de foudre.\nPuissance : 45 Durée : 24s\nVous ne pouvez infliger qu'un type de dégâts périodiques de foudre à la fois.\nCondition : Électrifié.\nL'état Électrifié est octroyé lorsque vous obtenez les effets Feu astral ou Glace ombrale, ou lorsque vous basculez de l'un à l'autre.",
+      "description_macro": "Effectue une attaque magique de foudre sur la cible.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> 100<br><colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> dégâts périodiques de foudre.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> 45 <colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 24s<br>Vous ne pouvez infliger qu'un type de dégâts périodiques de foudre à la fois.<br><colortype(506)><edgecolortype(507)>Condition<nbsp>:<edgecolortype(0)><colortype(0)> <colortype(500)><edgecolortype(501)>Électrifié<edgecolortype(0)><colortype(0)>.<br>L'état Électrifié est octroyé lorsque vous obtenez les effets Feu astral ou Glace ombrale, ou lorsque vous basculez de l'un à l'autre.",
+      "unlock_level": 6,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Magical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 25,
+          "name": "Mage Noir",
+          "abbreviation": "MNO",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

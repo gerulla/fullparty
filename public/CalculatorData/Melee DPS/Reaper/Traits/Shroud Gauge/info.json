@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 384,
+  "name": "Shroud Gauge",
+  "description": "Allows for Shroud Gauge accumulation upon the landing of Gibbet, Gallows, or Guillotine.",
+  "description_macro": "Allows for <colortype(500)><edgecolortype(501)>Shroud Gauge<edgecolortype(0)><colortype(0)> accumulation upon the landing of <colortype(500)><edgecolortype(501)>Gibbet<edgecolortype(0)><colortype(0)>, <colortype(500)><edgecolortype(501)>Gallows<edgecolortype(0)><colortype(0)>, or <colortype(500)><edgecolortype(501)>Guillotine<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Allows for Shroud Gauge accumulation upon the landing of Gibbet, Gallows, or Guillotine."
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 39,
+    "name": "Reaper",
+    "abbreviation": "RPR"
+  },
+  "unlock_level": 80,
+  "value": 0,
+  "icon": {
+    "id": 6406,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 180,
+  "source_class_job_id": 39
+}

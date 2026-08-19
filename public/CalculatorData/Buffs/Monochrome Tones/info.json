@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 3691,
+  "name": "Monochrome Tones",
+  "description": "One stack of White Paint has been converted to Black Paint.",
+  "effects": [
+    "One stack of White Paint has been converted to Black Paint."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 213814,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": true,
+  "inflicted_by_actor": true,
+  "party_list_priority": 32,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 197,
+  "source_abilities": [
+    {
+      "id": 34683,
+      "name": "Subtractive Palette",
+      "description": "Grants 3 stacks of Subtractive Palette.\nAdditional Effect: Grants Monochrome Tones\nMonochrome Tones Effect: Converts one stack of White Paint into Black Paint\nCannot be cast while under the effect of Subtractive Palette.\nPalette Gauge Cost: 50",
+      "description_macro": "Grants 3 stacks of <colortype(506)><edgecolortype(507)>Subtractive Palette<edgecolortype(0)><colortype(0)>.<br><if([gnum68==42],<if([gnum72>=90],<colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>Grants <colortype(506)><edgecolortype(507)>Monochrome Tones<edgecolortype(0)><colortype(0)><br><colortype(504)><edgecolortype(505)>Monochrome Tones Effect: <edgecolortype(0)><colortype(0)>Converts one stack of <colortype(506)><edgecolortype(507)>White Paint<edgecolortype(0)><colortype(0)> into <colortype(506)><edgecolortype(507)>Black Paint<edgecolortype(0)><colortype(0)><br>,)>,)>Cannot be cast while under the effect of <colortype(506)><edgecolortype(507)>Subtractive Palette<edgecolortype(0)><colortype(0)>.<br><colortype(504)><edgecolortype(505)>Palette Gauge Cost:<edgecolortype(0)><colortype(0)> 50",
+      "unlock_level": 60,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Magical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 42,
+          "name": "Pictomancer",
+          "abbreviation": "PCT",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

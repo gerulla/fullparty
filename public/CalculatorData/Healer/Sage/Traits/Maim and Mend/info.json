@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 368,
+  "name": "Maim and Mend",
+  "description": "Increases base action damage and HP restoration by 10%.",
+  "description_macro": "Increases base action damage and HP restoration by 10%.",
+  "effects": [
+    "Increases base action damage and HP restoration by 10%."
+  ],
+  "role": "Healer",
+  "job": {
+    "id": 40,
+    "name": "Sage",
+    "abbreviation": "SGE"
+  },
+  "unlock_level": 20,
+  "value": 10,
+  "icon": {
+    "id": 5185,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 181,
+  "source_class_job_id": 40
+}

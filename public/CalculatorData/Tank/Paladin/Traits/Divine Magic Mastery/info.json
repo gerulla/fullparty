@@ -1,0 +1,27 @@
+{
+  "kind": "trait",
+  "id": 207,
+  "name": "Divine Magic Mastery",
+  "description": "Halves MP cost for all spells while preventing casting interruptions via damage taken. Grants the following effects after successfully completing a combo with Royal Authority:\nCombo Bonus: Grants Divine Might\nDivine Might Effect: Allows next Holy Spirit or Holy Circle to be cast immediately with increased potency\nDuration: 30s",
+  "description_macro": "Halves MP cost for all spells while preventing casting interruptions via damage taken. Grants the following effects after successfully completing a combo with <colortype(500)><edgecolortype(501)>Royal Authority<edgecolortype(0)><colortype(0)>:<br><colortype(504)><edgecolortype(505)>Combo Bonus: <edgecolortype(0)><colortype(0)>Grants <colortype(506)><edgecolortype(507)>Divine Might<edgecolortype(0)><colortype(0)><br><colortype(504)><edgecolortype(505)>Divine Might Effect: <edgecolortype(0)><colortype(0)>Allows next <colortype(500)><edgecolortype(501)>Holy Spirit<edgecolortype(0)><colortype(0)> or <colortype(500)><edgecolortype(501)>Holy Circle<edgecolortype(0)><colortype(0)> to be cast immediately with increased potency<br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>30s",
+  "effects": [
+    "Halves MP cost for all spells while preventing casting interruptions via damage taken. Grants the following effects after successfully completing a combo with Royal Authority:",
+    "Combo Bonus: Grants Divine Might",
+    "Divine Might Effect: Allows next Holy Spirit or Holy Circle to be cast immediately with increased potency",
+    "Duration: 30s"
+  ],
+  "role": "Tank",
+  "job": {
+    "id": 19,
+    "name": "Paladin",
+    "abbreviation": "PLD"
+  },
+  "unlock_level": 64,
+  "value": -50,
+  "icon": {
+    "id": 5210,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 20,
+  "source_class_job_id": 19
+}

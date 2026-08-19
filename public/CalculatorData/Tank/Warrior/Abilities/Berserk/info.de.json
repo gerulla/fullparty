@@ -1,0 +1,88 @@
+{
+  "kind": "ability",
+  "id": 38,
+  "name": "Tollwut",
+  "description": "Du gewährst dir drei Stapel von Tollwut.\nDauer: 15 Sekunden\nEffekt von Tollwut: Deine nächste Waffenfertigkeit trifft direkt und kritisch.\nIst ein Effekt aktiv, der deine Rate kritischer oder direkter Treffer steigert, erhöht sich auch der Attacke-Wert.\nZusatzeffekt: Tosender Sturm ist um 10 Sekunden verlängert \\(maximal 60 Sekunden\\).",
+  "description_macro": "Du gewährst dir drei Stapel von <colortype(506)><edgecolortype(507)>Tollwut<edgecolortype(0)><colortype(0)>.<br>Dauer: 15 Sekunden<br>Effekt von <colortype(506)><edgecolortype(507)>Tollwut<edgecolortype(0)><colortype(0)>: Deine nächste Waf<->fen<->fer<->tig<->keit trifft direkt und kritisch.<br>Ist ein Effekt aktiv, der deine Rate kritischer oder direkter Treffer steigert, erhöht sich auch der Attacke-Wert.<if([gnum72>=40],<if([gnum68==3],<br>Zusatzeffekt: <colortype(506)><edgecolortype(507)>Tosender Sturm<edgecolortype(0)><colortype(0)> ist um 10 Sekunden verlängert \\(maximal 60 Sekunden\\).,<if([gnum68==21],<br>Zusatzeffekt: <colortype(506)><edgecolortype(507)>Tosender Sturm<edgecolortype(0)><colortype(0)> ist um 10 Sekunden verlängert \\(maximal 60 Sekunden\\).,)>)>,)>",
+  "effects": [
+    "Du gewährst dir drei Stapel von Tollwut.",
+    "Dauer: 15 Sekunden",
+    "Effekt von Tollwut: Deine nächste Waffenfertigkeit trifft direkt und kritisch.",
+    "Ist ein Effekt aktiv, der deine Rate kritischer oder direkter Treffer steigert, erhöht sich auch der Attacke-Wert.",
+    "Zusatzeffekt: Tosender Sturm ist um 10 Sekunden verlängert \\(maximal 60 Sekunden\\)."
+  ],
+  "role": "Tank",
+  "job": {
+    "id": 21,
+    "name": "Krieger",
+    "abbreviation": "KRG"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 6,
+  "icon": {
+    "id": 259,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 4,
+    "name": "Talent"
+  },
+  "attack_type": {
+    "id": 0,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 60,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 11,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 0,
+      "value": 0
+    },
+    "secondary": {
+      "type_id": 63,
+      "value": 218
+    }
+  },
+  "range": {
+    "target_yalms": 0,
+    "effect_yalms": 0,
+    "cast_type": 1
+  },
+  "targeting": {
+    "self": true,
+    "party": false,
+    "alliance": false,
+    "hostile": false,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 0,
+    "behavior_type": 0,
+    "class_job_category_id": 44,
+    "source_class_job_id": 3,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

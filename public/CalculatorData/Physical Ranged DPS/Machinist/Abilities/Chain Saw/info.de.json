@@ -1,0 +1,90 @@
+{
+  "kind": "ability",
+  "id": 25788,
+  "name": "Kreissäge",
+  "description": "Du führst eine physische Attacke auf alle Gegner in gerader Linie vor dir aus.\nAttacke-Wert: 660\nAttacke-Wert verringert sich ab dem zweiten Gegner um 25 %.\nZusatzeffekt: Batteriebalken füllt sich um 20.\nZusatzeffekt: Gewährt dir Exkavator.\nDauer: 30 Sekunden\nEigener Reaktivierungs-Timer",
+  "description_macro": "Du führst eine physische Attacke auf alle Gegner in gerader Linie vor dir aus.<br>Attacke-Wert: <if([gnum68==31],<if([gnum72>=94],660,620)>,620)><br>Attacke-Wert verringert sich ab dem zweiten Gegner um 25<nbsp>%.<br>Zusatzeffekt: Batteriebalken füllt sich um 20.<br><if([gnum68==31],<if([gnum72>=96],Zusatzeffekt: Gewährt dir <colortype(506)><edgecolortype(507)>Exkavator<edgecolortype(0)><colortype(0)>.<br>Dauer: 30 Sekunden<br>,)>,)>Eigener Reaktivierungs-Timer",
+  "effects": [
+    "Du führst eine physische Attacke auf alle Gegner in gerader Linie vor dir aus.",
+    "Attacke-Wert: 660",
+    "Attacke-Wert verringert sich ab dem zweiten Gegner um 25 %.",
+    "Zusatzeffekt: Batteriebalken füllt sich um 20.",
+    "Zusatzeffekt: Gewährt dir Exkavator.",
+    "Dauer: 30 Sekunden",
+    "Eigener Reaktivierungs-Timer"
+  ],
+  "role": "Physical Ranged DPS",
+  "job": {
+    "id": 31,
+    "name": "Maschinist",
+    "abbreviation": "MCH"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 90,
+  "icon": {
+    "id": 3048,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 3,
+    "name": "Waffenfertigkeit"
+  },
+  "attack_type": {
+    "id": 4294967295,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 60,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 12,
+    "additional_cooldown_group": 58,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 0,
+      "value": 0
+    },
+    "secondary": {
+      "type_id": 0,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": 25,
+    "effect_yalms": 25,
+    "cast_type": 4
+  },
+  "targeting": {
+    "self": false,
+    "party": false,
+    "alliance": false,
+    "hostile": true,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 7,
+    "behavior_type": 0,
+    "class_job_category_id": 96,
+    "source_class_job_id": 31,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

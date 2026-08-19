@@ -1,0 +1,25 @@
+{
+  "kind": "trait",
+  "id": 581,
+  "name": "Piqué du dragon amélioré",
+  "description": "Permet de recevoir Envol du dragon préparé lorsque vous utilisez Piqué du dragon.\nDurée : 30s",
+  "description_macro": "Permet de recevoir <colortype(500)><edgecolortype(501)>Envol du dragon préparé<edgecolortype(0)><colortype(0)> lorsque vous utilisez <colortype(500)><edgecolortype(501)>Piqué du dragon<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 30s",
+  "effects": [
+    "Permet de recevoir Envol du dragon préparé lorsque vous utilisez Piqué du dragon.",
+    "Durée : 30s"
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 22,
+    "name": "Chevalier Dragon",
+    "abbreviation": "DRG"
+  },
+  "unlock_level": 92,
+  "value": 0,
+  "icon": {
+    "id": 5296,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 23,
+  "source_class_job_id": 22
+}

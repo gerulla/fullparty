@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 90,
+  "name": "Sur ses pattes",
+  "description": "Les dégâts reçus en tombant sont réduits.",
+  "description_macro": "Les dégâts reçus en tombant sont réduits.",
+  "effects": [
+    "Les dégâts reçus en tombant sont réduits."
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 30,
+    "name": "Ninja",
+    "abbreviation": "NIN"
+  },
+  "unlock_level": 14,
+  "value": 10,
+  "icon": {
+    "id": 5401,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 93,
+  "source_class_job_id": 29
+}

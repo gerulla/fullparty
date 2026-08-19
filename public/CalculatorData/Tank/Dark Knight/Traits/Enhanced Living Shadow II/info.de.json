@@ -1,0 +1,27 @@
+{
+  "kind": "trait",
+  "id": 423,
+  "name": "Verbesserter Schattenschemen II",
+  "description": "Verbessert Finstere Klinge deines Heldenschemens zu Schattenbringer.\nFührt eine elementneutrale magische Attacke auf alle Gegner in gerader Linie vor sich aus.\nAttacke-Wert: 570\nAttacke-Wert verringert sich ab dem zweiten Gegner um 25 %.",
+  "description_macro": "Verbessert <colortype(502)><edgecolortype(503)>Finstere Klinge<edgecolortype(0)><colortype(0)> deines Heldenschemens zu <colortype(502)><edgecolortype(503)>Schattenbringer<edgecolortype(0)><colortype(0)>.<br>Führt eine elementneutrale magische Attacke auf alle Gegner in gerader Linie vor sich aus.<br>Attacke-Wert: 570<br>Attacke-Wert verringert sich ab dem zweiten Gegner um 25<nbsp>%.",
+  "effects": [
+    "Verbessert Finstere Klinge deines Heldenschemens zu Schattenbringer.",
+    "Führt eine elementneutrale magische Attacke auf alle Gegner in gerader Linie vor sich aus.",
+    "Attacke-Wert: 570",
+    "Attacke-Wert verringert sich ab dem zweiten Gegner um 25 %."
+  ],
+  "role": "Tank",
+  "job": {
+    "id": 32,
+    "name": "Dunkelritter",
+    "abbreviation": "DKR"
+  },
+  "unlock_level": 90,
+  "value": 0,
+  "icon": {
+    "id": 6066,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 98,
+  "source_class_job_id": 32
+}

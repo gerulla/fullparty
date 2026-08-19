@@ -1,0 +1,51 @@
+{
+  "kind": "combat_status",
+  "id": 2704,
+  "name": "Wiederaufleben",
+  "description": "Wenn LP unter einen bestimmten Betrag fallen oder die Wirkungsdauer endet, wird Immerflamme ausgelöst.",
+  "effects": [
+    "Wenn LP unter einen bestimmten Betrag fallen oder die Wirkungsdauer endet, wird Immerflamme ausgelöst."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 212693,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": true,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 50,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 28,
+  "source_abilities": [
+    {
+      "id": 25830,
+      "name": "Wiederaufleben",
+      "description": "Du regenerierst LP des Ziels.\nHeilpotenzial: 400\nZusatzeffekt: Gewährt dem Ziel Wiederaufleben.\nDauer: 30 Sekunden\nEffekt von Wiederaufleben: Sobald die LP unter 75 % sinken oder die Wirkungsdauer endet, werden LP regeneriert.\nHeilpotenzial: 200\nDauer: 15 Sekunden\nBedingung: Phönix-Trance aktiv\nBei erfüllter Bedingung ändert sich Lichtstrom zu diesem Kommando.\nKann nicht im Kommandomenü angelegt werden.",
+      "description_macro": "Du regenerierst LP des Ziels.<br>Heilpotenzial: 400<br>Zusatzeffekt: Gewährt dem Ziel <colortype(506)><edgecolortype(507)>Wiederaufleben<edgecolortype(0)><colortype(0)>.<br>Dauer: 30 Sekunden<br>Effekt von <colortype(506)><edgecolortype(507)>Wiederaufleben<edgecolortype(0)><colortype(0)>: Sobald die LP unter 75<nbsp>% sinken oder die Wirkungsdauer endet, werden LP regeneriert.<br>Heilpotenzial: 200<br>Dauer: 15 Sekunden<br>Bedingung: <colortype(506)><edgecolortype(507)>Phönix-Trance<edgecolortype(0)><colortype(0)> aktiv<br>Bei erfüllter Bedingung ändert sich <colortype(502)><edgecolortype(503)>Lichtstrom<edgecolortype(0)><colortype(0)> zu diesem Kommando.<br>Kann nicht im Kommandomenü angelegt werden.",
+      "unlock_level": 80,
+      "relations": [
+        "granted_by_description",
+        "same_name"
+      ],
+      "roles": [
+        "Magical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 27,
+          "name": "Beschwörer",
+          "abbreviation": "BSW",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

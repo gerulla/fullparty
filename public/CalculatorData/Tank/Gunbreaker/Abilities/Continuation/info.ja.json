@@ -1,0 +1,89 @@
+{
+  "kind": "ability",
+  "id": 16155,
+  "name": "コンティニュエーション",
+  "description": "一部のアクションの実行に成功すると、このアクションが変化する。\nビートファング実行後：「ジャギュラーリップ」に変化する。\nサベッジクロウ実行後：「アブドメンテアー」に変化する。\nウィケッドタロン実行後：「アイガウジ」に変化する。\nバーストストライク実行後：「ハイパーヴェロシティ」に変化する。\nフェイテッドサークル実行後：「フェイテッドブランド」に変化する。",
+  "description_macro": "一部のアクションの実行に成功すると、このアクションが変化する。<br><colortype(504)><edgecolortype(505)>ビートファング実行後：<edgecolortype(0)><colortype(0)><colortype(500)><edgecolortype(501)>「ジャギュラーリップ」<edgecolortype(0)><colortype(0)>に変化する。<br><colortype(504)><edgecolortype(505)>サベッジクロウ実行後：<edgecolortype(0)><colortype(0)><colortype(500)><edgecolortype(501)>「アブドメンテアー」<edgecolortype(0)><colortype(0)>に変化する。<br><colortype(504)><edgecolortype(505)>ウィケッドタロン実行後：<edgecolortype(0)><colortype(0)><colortype(500)><edgecolortype(501)>「アイガウジ」<edgecolortype(0)><colortype(0)>に変化する。<if([gnum68==37],<if([gnum72>=86],<br><colortype(504)><edgecolortype(505)>バーストストライク実行後：<edgecolortype(0)><colortype(0)><colortype(500)><edgecolortype(501)>「ハイパーヴェロシティ」<edgecolortype(0)><colortype(0)>に変化する。,)>,)><if([gnum68==37],<if([gnum72>=96],<br><colortype(504)><edgecolortype(505)>フェイテッドサークル実行後：<edgecolortype(0)><colortype(0)><colortype(500)><edgecolortype(501)>「フェイテッドブランド」<edgecolortype(0)><colortype(0)>に変化する。,)>,)>",
+  "effects": [
+    "一部のアクションの実行に成功すると、このアクションが変化する。",
+    "ビートファング実行後：「ジャギュラーリップ」に変化する。",
+    "サベッジクロウ実行後：「アブドメンテアー」に変化する。",
+    "ウィケッドタロン実行後：「アイガウジ」に変化する。",
+    "バーストストライク実行後：「ハイパーヴェロシティ」に変化する。",
+    "フェイテッドサークル実行後：「フェイテッドブランド」に変化する。"
+  ],
+  "role": "Tank",
+  "job": {
+    "id": 37,
+    "name": "ガンブレイカー",
+    "abbreviation": "GNB"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 70,
+  "icon": {
+    "id": 3419,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 4,
+    "name": "アビリティ"
+  },
+  "attack_type": {
+    "id": 0,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 1,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 1,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 0,
+      "value": 0
+    },
+    "secondary": {
+      "type_id": 73,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": 0,
+    "effect_yalms": 0,
+    "cast_type": 1
+  },
+  "targeting": {
+    "self": true,
+    "party": false,
+    "alliance": false,
+    "hostile": false,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 0,
+    "behavior_type": 0,
+    "class_job_category_id": 149,
+    "source_class_job_id": 37,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

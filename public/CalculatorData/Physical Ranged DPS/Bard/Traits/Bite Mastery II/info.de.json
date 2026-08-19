@@ -1,0 +1,25 @@
+{
+  "kind": "trait",
+  "id": 284,
+  "name": "Meister der Bisse II",
+  "description": "Fügt Sturmbiss, Kaustischer Biss und Eiserne Kiefer eine Wahrscheinlichkeit von 35 % hinzu, dass der Status Falkenauge gewährt wird.\nDauer: 30 Sekunden",
+  "description_macro": "Fügt <colortype(502)><edgecolortype(503)>Sturmbiss<edgecolortype(0)><colortype(0)>, <colortype(502)><edgecolortype(503)>Kaustischer Biss<edgecolortype(0)><colortype(0)> und <colortype(502)><edgecolortype(503)>Eiserne Kiefer<edgecolortype(0)><colortype(0)> eine Wahr<->schein<->lich<->keit von 35<nbsp>% hinzu, dass der Status <colortype(506)><edgecolortype(507)>Falkenauge<edgecolortype(0)><colortype(0)> gewährt wird.<br>Dauer: 30 Sekunden",
+  "effects": [
+    "Fügt Sturmbiss, Kaustischer Biss und Eiserne Kiefer eine Wahrscheinlichkeit von 35 % hinzu, dass der Status Falkenauge gewährt wird.",
+    "Dauer: 30 Sekunden"
+  ],
+  "role": "Physical Ranged DPS",
+  "job": {
+    "id": 23,
+    "name": "Barde",
+    "abbreviation": "BRD"
+  },
+  "unlock_level": 76,
+  "value": 0,
+  "icon": {
+    "id": 5312,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 24,
+  "source_class_job_id": 23
+}

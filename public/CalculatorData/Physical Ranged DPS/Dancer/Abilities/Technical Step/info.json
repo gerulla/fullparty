@@ -1,0 +1,88 @@
+{
+  "kind": "ability",
+  "id": 15998,
+  "name": "Technical Step",
+  "description": "Begin dancing, granting yourself Technical Step.\nDuration: 15s\nAction changes to Technical Finish while dancing.\nOnly Technical Finish, En Avant, Curing Waltz\\Shield Samba\\step actions, role actions, Sprint, and Limit Break can be performed while dancing.\nThis weaponskill does not share a recast timer with any other actions. Upon execution, the recast timer for this action will be applied to all other weaponskills and magic actions.",
+  "description_macro": "Begin dancing, granting yourself <colortype(506)><edgecolortype(507)>Technical Step<edgecolortype(0)><colortype(0)>.<br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>15s<br>Action changes to <colortype(500)><edgecolortype(501)>Technical Finish<edgecolortype(0)><colortype(0)> while dancing.<br>Only <colortype(500)><edgecolortype(501)>Technical Finish<edgecolortype(0)><colortype(0)>, <colortype(500)><edgecolortype(501)>En Avant<edgecolortype(0)><colortype(0)>, <if([gnum68==38],<if([gnum72>=52],<colortype(500)><edgecolortype(501)>Curing Waltz<edgecolortype(0)><colortype(0)>\\, ,)>,)><if([gnum68==38],<if([gnum72>=56],<colortype(500)><edgecolortype(501)>Shield Samba<edgecolortype(0)><colortype(0)>\\, ,)>,)>step actions, role actions, Sprint, and Limit Break can be performed while dancing.<br>This weaponskill does not share a recast timer with any other actions. Upon execution, the recast timer for this action will be applied to all other weaponskills and magic actions.",
+  "effects": [
+    "Begin dancing, granting yourself Technical Step.",
+    "Duration: 15s",
+    "Action changes to Technical Finish while dancing.",
+    "Only Technical Finish, En Avant, Curing Waltz\\Shield Samba\\step actions, role actions, Sprint, and Limit Break can be performed while dancing.",
+    "This weaponskill does not share a recast timer with any other actions. Upon execution, the recast timer for this action will be applied to all other weaponskills and magic actions."
+  ],
+  "role": "Physical Ranged DPS",
+  "job": {
+    "id": 38,
+    "name": "Dancer",
+    "abbreviation": "DNC"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 70,
+  "icon": {
+    "id": 3473,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 3,
+    "name": "Weaponskill"
+  },
+  "attack_type": {
+    "id": 0,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 120,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 20,
+    "additional_cooldown_group": 58,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 0,
+      "value": 0
+    },
+    "secondary": {
+      "type_id": 91,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": 0,
+    "effect_yalms": 0,
+    "cast_type": 1
+  },
+  "targeting": {
+    "self": true,
+    "party": false,
+    "alliance": false,
+    "hostile": false,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 0,
+    "behavior_type": 0,
+    "class_job_category_id": 150,
+    "source_class_job_id": 38,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

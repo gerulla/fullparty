@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 1971,
+  "name": "マナフィケーション",
+  "description": "エンリポスト、エンツヴェルクハウ、エンルドゥブルマンの射程が延長される状態。",
+  "effects": [
+    "エンリポスト、エンツヴェルクハウ、エンルドゥブルマンの射程が延長される状態。"
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 213407,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 112,
+  "source_abilities": [
+    {
+      "id": 7521,
+      "name": "マナフィケーション",
+      "description": "一定時間、エンリポスト、エンツヴェルクハウ、エンルドゥブルマンの射程を25mに延長させる。\u3000効果時間：30秒\n追加効果：自身に3スタックの「魔法剣コンボ実行可」を付与する。\u3000効果時間：30秒\n魔法剣コンボ実行可効果：「ブラックマナ」と「ホワイトマナ」を消費することなくエンリポスト、エンツヴェルクハウ、エンルドゥブルマン、エンムーリネ・アン、エンムーリネ・ドゥ、エンムーリネ・トロワを実行できる。\n追加効果：自身に「プリフルジェンス実行可」を付与する。\n効果時間：30秒\nこのアビリティを実行するとコンボが中断される。\n発動条件：自身が戦闘状態",
+      "description_macro": "一定時間、エンリポスト、エンツヴェルクハウ、エンルドゥブルマンの射程を25mに延長させる。\u3000<colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>30秒<br><colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)>自身に3スタックの<colortype(500)><edgecolortype(501)>「魔法剣コンボ実行可」<edgecolortype(0)><colortype(0)>を付与する。\u3000<colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>30秒<br><colortype(504)><edgecolortype(505)>魔法剣コンボ実行可効果：<edgecolortype(0)><colortype(0)><colortype(500)><edgecolortype(501)>「ブラックマナ」<edgecolortype(0)><colortype(0)>と<colortype(500)><edgecolortype(501)>「ホワイトマナ」<edgecolortype(0)><colortype(0)>を消費することなくエンリポスト、エンツヴェルクハウ、エンルドゥブルマン、エンムーリネ・アン、エンムーリネ・ドゥ、エンムーリネ・トロワを実行できる。<br><if([gnum68==35],<if([gnum72>=100],<colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)>自身に<colortype(500)><edgecolortype(501)>「プリフルジェンス実行可」<edgecolortype(0)><colortype(0)>を付与する。<br><colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>30秒<br>,)>,)>このアビリティを実行するとコンボが中断される。<br><colortype(504)><edgecolortype(505)>発動条件：<edgecolortype(0)><colortype(0)>自身が戦闘状態",
+      "unlock_level": 60,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Magical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 35,
+          "name": "赤魔道士",
+          "abbreviation": "RDM",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,102 @@
+{
+  "kind": "ability",
+  "id": 25835,
+  "name": "Zinnober-Zyklon",
+  "description": "Du schnellst zum Ziel hin und führst eine feuerbasierte magische Attacke auf das Ziel und die Gegner in seiner Nähe aus.\nAttacke-Wert: 560\nAttacke-Wert verringert sich ab dem zweiten Gegner um 60 %.\nZusatzeffekt: Gewährt dir Zinnoberfeuer.\nDer Effekt endet bei Ausführung einer Beschwörung.\nBedingung: Ifrits Gunst aktiv\nÄndert sich bei Ausführung zu Zinnober-Schlag.\nKann nicht während Fessel ausgeführt werden.\nBei erfüllter Bedingung ändert sich Lichtstrom zu diesem Kommando.\nKann nicht im Kommandomenü angelegt werden.",
+  "description_macro": "Du schnellst zum Ziel hin und führst eine feuerbasierte magische Attacke auf das Ziel und die Gegner in seiner Nähe aus.<br>Attacke-Wert: <if([gnum68==27],<if([gnum72>=94],560,430)>,430)><br>Attacke-Wert verringert sich ab dem zweiten Gegner um 60<nbsp>%.<br>Zusatzeffekt: Gewährt dir <colortype(506)><edgecolortype(507)>Zinnoberfeuer<edgecolortype(0)><colortype(0)>.<br>Der Effekt endet bei Ausführung einer <colortype(502)><edgecolortype(503)>Beschwörung<edgecolortype(0)><colortype(0)>.<br>Bedingung: <colortype(506)><edgecolortype(507)>Ifrits Gunst<edgecolortype(0)><colortype(0)> aktiv<br>Ändert sich bei Ausführung zu <colortype(502)><edgecolortype(503)>Zinnober-Schlag<edgecolortype(0)><colortype(0)>.<br>Kann nicht während <colortype(500)><edgecolortype(501)>Fessel<edgecolortype(0)><colortype(0)> ausgeführt werden.<br>Bei erfüllter Bedingung ändert sich <colortype(502)><edgecolortype(503)>Lichtstrom<edgecolortype(0)><colortype(0)> zu diesem Kommando.<br>Kann nicht im Kommandomenü angelegt werden.",
+  "effects": [
+    "Du schnellst zum Ziel hin und führst eine feuerbasierte magische Attacke auf das Ziel und die Gegner in seiner Nähe aus.",
+    "Attacke-Wert: 560",
+    "Attacke-Wert verringert sich ab dem zweiten Gegner um 60 %.",
+    "Zusatzeffekt: Gewährt dir Zinnoberfeuer.",
+    "Der Effekt endet bei Ausführung einer Beschwörung.",
+    "Bedingung: Ifrits Gunst aktiv",
+    "Ändert sich bei Ausführung zu Zinnober-Schlag.",
+    "Kann nicht während Fessel ausgeführt werden.",
+    "Bei erfüllter Bedingung ändert sich Lichtstrom zu diesem Kommando.",
+    "Kann nicht im Kommandomenü angelegt werden."
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 27,
+    "name": "Beschwörer",
+    "abbreviation": "BSW"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 86,
+  "icon": {
+    "id": 2769,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 2,
+    "name": "Zauber"
+  },
+  "attack_type": {
+    "id": 5,
+    "name": "魔法"
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 2.5,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 58,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 0,
+      "value": 0
+    },
+    "secondary": {
+      "type_id": 32,
+      "value": 2724
+    }
+  },
+  "range": {
+    "target_yalms": 25,
+    "effect_yalms": 5,
+    "cast_type": 2
+  },
+  "targeting": {
+    "self": false,
+    "party": false,
+    "alliance": false,
+    "hostile": true,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": false
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": {
+      "id": 68,
+      "status": {
+        "id": 2724,
+        "name": "Ifrits Gunst",
+        "description": "Zinnober-Zyklon kann ausgeführt werden.",
+        "icon_id": 212696,
+        "max_stacks": 0
+      }
+    }
+  },
+  "metadata": {
+    "aspect_id": 1,
+    "behavior_type": 1,
+    "class_job_category_id": 28,
+    "source_class_job_id": 0,
+    "is_role_action": false,
+    "is_player_action": false,
+    "is_derived_action": true,
+    "equivalence_group": 0
+  }
+}

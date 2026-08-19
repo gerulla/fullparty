@@ -1,0 +1,28 @@
+{
+  "kind": "trait",
+  "id": 674,
+  "name": "アクション威力アップ",
+  "description": "特定のアクションの威力を上昇させる。\n\n壱の牙【咬創】の威力：200\n壱の牙【穿裂】の威力：200\n弐の牙【猛襲】の威力：300\n弐の牙【疾速】の威力：300",
+  "description_macro": "特定のアクションの威力を上昇させる。<br><br><colortype(504)><edgecolortype(505)>壱の牙【咬創】の威力：<edgecolortype(0)><colortype(0)>200<br><colortype(504)><edgecolortype(505)>壱の牙【穿裂】の威力：<edgecolortype(0)><colortype(0)>200<br><colortype(504)><edgecolortype(505)>弐の牙【猛襲】の威力：<edgecolortype(0)><colortype(0)>300<br><colortype(504)><edgecolortype(505)>弐の牙【疾速】の威力：<edgecolortype(0)><colortype(0)>300",
+  "effects": [
+    "特定のアクションの威力を上昇させる。",
+    "壱の牙【咬創】の威力：200",
+    "壱の牙【穿裂】の威力：200",
+    "弐の牙【猛襲】の威力：300",
+    "弐の牙【疾速】の威力：300"
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 41,
+    "name": "ヴァイパー",
+    "abbreviation": "VPR"
+  },
+  "unlock_level": 74,
+  "value": 0,
+  "icon": {
+    "id": 6801,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 196,
+  "source_class_job_id": 41
+}

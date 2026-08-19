@@ -1,0 +1,91 @@
+{
+  "kind": "ability",
+  "id": 34629,
+  "name": "Troisième ère",
+  "description": "Effectue une attaque physique sur la cible et les ennemis autour.\nPuissance : 480\nSi utilisée après Deuxième ère, augmente la puissance à 680.\nLa puissance est réduite de 75% au-delà du premier ennemi touché.\nCondition : Esprit ophidien.\nCette technique d'arme a un temps de recharge indépendant.\n\n* Cette action ne peut pas être ajoutée aux barres de raccourcis.\nRemplace Anneaux du prédateur et Tanière du prédateur lorsque les conditions sont réunies.",
+  "description_macro": "Effectue une attaque physique sur la cible et les ennemis autour.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> 480<br>Si utilisée après <colortype(500)><edgecolortype(501)>Deuxième ère<edgecolortype(0)><colortype(0)>, augmente la puissance à 680.<br>La puissance est réduite de 75% au-delà du premier ennemi touché.<br><colortype(506)><edgecolortype(507)>Condition<nbsp>:<edgecolortype(0)><colortype(0)> <colortype(500)><edgecolortype(501)>Esprit ophidien<edgecolortype(0)><colortype(0)>.<br>Cette technique d'arme a un temps de recharge indépendant.<br><br><colortype(504)><edgecolortype(505)>* Cette action ne peut pas être ajoutée aux barres de raccourcis.<br>Remplace <colortype(500)><edgecolortype(501)>Anneaux du prédateur<edgecolortype(0)><colortype(0)> et <colortype(500)><edgecolortype(501)>Tanière du prédateur<edgecolortype(0)><colortype(0)> lorsque les conditions sont réunies.<edgecolortype(0)><colortype(0)>",
+  "effects": [
+    "Effectue une attaque physique sur la cible et les ennemis autour.",
+    "Puissance : 480",
+    "Si utilisée après Deuxième ère, augmente la puissance à 680.",
+    "La puissance est réduite de 75% au-delà du premier ennemi touché.",
+    "Condition : Esprit ophidien.",
+    "Cette technique d'arme a un temps de recharge indépendant.",
+    "* Cette action ne peut pas être ajoutée aux barres de raccourcis.",
+    "Remplace Anneaux du prédateur et Tanière du prédateur lorsque les conditions sont réunies."
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 41,
+    "name": "Rôdeur Vipère",
+    "abbreviation": "VPR"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 90,
+  "icon": {
+    "id": 3724,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 3,
+    "name": "Technique d'arme"
+  },
+  "attack_type": {
+    "id": 4294967295,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 2,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 58,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 89,
+      "value": 1
+    },
+    "secondary": {
+      "type_id": 134,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": -1,
+    "effect_yalms": 5,
+    "cast_type": 2
+  },
+  "targeting": {
+    "self": false,
+    "party": false,
+    "alliance": false,
+    "hostile": true,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 7,
+    "behavior_type": 0,
+    "class_job_category_id": 196,
+    "source_class_job_id": 0,
+    "is_role_action": false,
+    "is_player_action": false,
+    "is_derived_action": true,
+    "equivalence_group": 0
+  }
+}

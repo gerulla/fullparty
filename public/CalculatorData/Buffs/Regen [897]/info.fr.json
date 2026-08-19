@@ -1,0 +1,218 @@
+{
+  "kind": "combat_status",
+  "id": 897,
+  "name": "○削除予定",
+  "description": "連続してＨＰが回復している状態。",
+  "effects": [
+    "連続してＨＰが回復している状態。"
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 212626,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": true,
+  "inflicted_by_actor": true,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 10
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 133,
+      "name": "Extra Médica",
+      "description": "Restaure vos PV et ceux des équipiers alentour.\nPuissance : 250\nEffet additionnel : restaure périodiquement vos PV et ceux des équipiers alentour.\nPuissance : 150 Durée : 15s",
+      "description_macro": "Restaure vos PV et ceux des équipiers alentour.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> <if([gnum68==24],<if([gnum72>=85],250,200)>,200)><br><colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> restaure périodiquement vos PV et ceux des équipiers alentour.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> <if([gnum68==24],<if([gnum72>=85],150,100)>,100)> <colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 15s",
+      "unlock_level": 50,
+      "relations": [
+        "applied_by_description"
+      ],
+      "roles": [
+        "Healer"
+      ],
+      "jobs": [
+        {
+          "id": 24,
+          "name": "Mage Blanc",
+          "abbreviation": "MBL",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 188,
+      "name": "Dogme de survie",
+      "description": "Crée un bouclier protecteur dans l'aire ciblée, réduisant de 10% les dégâts subis des équipiers à l'intérieuret restaurant périodiquement leurs PV.\nPuissance : 100 Durée : 15s\nEffet additionnel : remplit la jauge d'éther féerique de 10.\nCondition : consomme un Flux d'éther.",
+      "description_macro": "Crée un bouclier protecteur dans l'aire ciblée, réduisant de 10% les dégâts subis des équipiers à l'intérieur<if([gnum68==28],<if([gnum72>=78], et restaurant périodiquement leurs PV.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> 100,.)>,.)> <colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 15s<br><if([gnum72>=70],<if([gnum68==28],<colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> remplit la <colortype(502)><edgecolortype(503)>jauge d'éther féerique<edgecolortype(0)><colortype(0)> de 10.<br>,)>,)><colortype(506)><edgecolortype(507)>Condition<nbsp>:<edgecolortype(0)><colortype(0)> consomme un <colortype(500)><edgecolortype(501)>Flux d'éther<edgecolortype(0)><colortype(0)>.",
+      "unlock_level": 50,
+      "relations": [
+        "applied_by_description"
+      ],
+      "roles": [
+        "Healer"
+      ],
+      "jobs": [
+        {
+          "id": 28,
+          "name": "Érudit",
+          "abbreviation": "ÉRU",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 3595,
+      "name": "Bienfaisance aspectée",
+      "description": "Restaure les PV de la cible.\nPuissance : 250\nEffet additionnel : restaure périodiquement les PV de la cible.\nPuissance : 250 Durée : 15s",
+      "description_macro": "Restaure les PV de la cible.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> <if([gnum68==33],<if([gnum72>=85],250,200)>,200)><br><colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> restaure périodiquement les PV de la cible.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> <if([gnum68==33],<if([gnum72>=85],250,200)>,200)> <colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 15s",
+      "unlock_level": 34,
+      "relations": [
+        "applied_by_description"
+      ],
+      "roles": [
+        "Healer"
+      ],
+      "jobs": [
+        {
+          "id": 33,
+          "name": "Astromancien",
+          "abbreviation": "AST",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 3601,
+      "name": "Hélios aspecté",
+      "description": "Restaure vos PV et ceux des équipiers alentour.\nPuissance : 250\nEffet additionnel : restaure périodiquement vos PV et ceux des équipiers alentour.\nPuissance : 150 Durée : 15s",
+      "description_macro": "Restaure vos PV et ceux des équipiers alentour.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> <if([gnum68==33],<if([gnum72>=85],250,200)>,200)><br><colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> restaure périodiquement vos PV et ceux des équipiers alentour.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> <if([gnum68==33],<if([gnum72>=85],150,100)>,100)> <colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 15s",
+      "unlock_level": 40,
+      "relations": [
+        "applied_by_description"
+      ],
+      "roles": [
+        "Healer"
+      ],
+      "jobs": [
+        {
+          "id": 33,
+          "name": "Astromancien",
+          "abbreviation": "AST",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 16151,
+      "name": "Aurore",
+      "description": "Restaure périodiquement les PV de la cible.\nPuissance : 300 Durée : 18s\nMaximum de charges : 2",
+      "description_macro": "Restaure périodiquement les PV de la cible.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> 300 <colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 18s<if([gnum68==37],<if([gnum72>=84],<br><colortype(506)><edgecolortype(507)>Maximum de charges<nbsp>:<edgecolortype(0)><colortype(0)> 2,)>,)>",
+      "unlock_level": 45,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Tank"
+      ],
+      "jobs": [
+        {
+          "id": 37,
+          "name": "Pistosabreur",
+          "abbreviation": "PSB",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 16553,
+      "name": "Opposition céleste",
+      "description": "Restaure vos PV et ceux des équipiers alentour.\nPuissance : 200\nEffet additionnel : restaure périodiquement vos PV et ceux des équipiers alentour.\nPuissance : 100 Durée : 15s",
+      "description_macro": "Restaure vos PV et ceux des équipiers alentour.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> 200<br><colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> restaure périodiquement vos PV et ceux des équipiers alentour.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> 100 <colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 15s",
+      "unlock_level": 60,
+      "relations": [
+        "applied_by_description"
+      ],
+      "roles": [
+        "Healer"
+      ],
+      "jobs": [
+        {
+          "id": 33,
+          "name": "Astromancien",
+          "abbreviation": "AST",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 24298,
+      "name": "Kerachole",
+      "description": "Réduit de 10% les dégâts reçus par vous et les équipiers alentour.\nDurée : 15s\nNe peut être cumulé avec l'effet Taurochole.\nEffet additionnel : octroie Kerakeia à vous et aux équipiers alentour.\nKerakeia : restaure périodiquement les PV de la cible.\nPuissance : 100 Durée : 15s\nEffet additionnel : restaure 7% de vos PM maximums.\nCondition : consomme une vésicule de Bile de vipère.",
+      "description_macro": "Réduit de 10% les dégâts reçus par vous et les équipiers alentour.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 15s<br>Ne peut être cumulé avec l'effet <colortype(500)><edgecolortype(501)>Taurochole<edgecolortype(0)><colortype(0)>.<br><if([gnum68==40],<if([gnum72>=78],<colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> octroie <colortype(500)><edgecolortype(501)>Kerakeia<edgecolortype(0)><colortype(0)> à vous et aux équipiers alentour.<br><colortype(506)><edgecolortype(507)>Kerakeia<nbsp>:<edgecolortype(0)><colortype(0)> restaure périodiquement les PV de la cible.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> 100 <colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 15s<br>,)>,)><colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> restaure 7% de vos PM maximums.<br><colortype(506)><edgecolortype(507)>Condition<nbsp>:<edgecolortype(0)><colortype(0)> consomme une vésicule de <colortype(500)><edgecolortype(501)>Bile de vipère<edgecolortype(0)><colortype(0)>.",
+      "unlock_level": 50,
+      "relations": [
+        "applied_by_description"
+      ],
+      "roles": [
+        "Healer"
+      ],
+      "jobs": [
+        {
+          "id": 40,
+          "name": "Sage",
+          "abbreviation": "SAG",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 37030,
+      "name": "Hélios combiné",
+      "description": "Restaure vos PV et ceux des équipiers alentour.\nPuissance : 250\nEffet additionnel : restaure périodiquement vos PV et ceux des équipiers alentour.\nPuissance : 175 Durée : 15s",
+      "description_macro": "Restaure vos PV et ceux des équipiers alentour.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> 250<br><colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> restaure périodiquement vos PV et ceux des équipiers alentour.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> 175 <colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 15s",
+      "unlock_level": 96,
+      "relations": [
+        "applied_by_description"
+      ],
+      "roles": [
+        "Healer"
+      ],
+      "jobs": [
+        {
+          "id": 33,
+          "name": "Astromancien",
+          "abbreviation": "AST",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 41636,
+      "name": "Prédiction",
+      "description": "Vous octroie l'un des effets suivants :\nPrédiction : jugement divin\nPrédiction : purification\nPrédiction : bénédiction\nPrédiction : météorites\n\nLes actions suivantes peuvent être utilisées pendant la durée de l'effet correspondant :\nJugement divin : effectue une attaque magique sur les ennemis alentour et restaure vos PV ainsi que ceux des équipiers alentour.\nPurification : effectue une attaque magique sur les ennemis alentour et arrête le temps.\nBénédiction : restaure vos PV ainsi que ceux des équipiers alentour et restaure périodiquement les PV.\nMétéorites : effectue une attaque magique sur vous et les ennemis alentour.\nUne fois la durée d'un effet terminée, il est remplacé par un autre. Si aucune des prédictions n'est réalisée, vous inflige l'effet Prédiction fallacieuse.\nPrédiction fallacieuse : vous inflige des dégâts périodiques.\nPuissance : 50 000 Durée : 30s",
+      "description_macro": "Vous octroie l'un des effets suivants<nbsp>:<br><colortype(500)><edgecolortype(501)>Prédiction<nbsp>: jugement divin<br>Prédiction<nbsp>: purification<br>Prédiction<nbsp>: bénédiction<br>Prédiction<nbsp>: météorites<br><edgecolortype(0)><colortype(0)><br>Les actions suivantes peuvent être utilisées pendant la durée de l'effet correspondant<nbsp>:<br><colortype(506)><edgecolortype(507)>Jugement divin<nbsp>:<edgecolortype(0)><colortype(0)> effectue une attaque magique sur les ennemis alentour et restaure vos PV ainsi que ceux des équipiers alentour.<br><colortype(506)><edgecolortype(507)>Purification<nbsp>:<edgecolortype(0)><colortype(0)> effectue une attaque magique sur les ennemis alentour et arrête le temps.<br><colortype(506)><edgecolortype(507)>Bénédiction<nbsp>:<edgecolortype(0)><colortype(0)> restaure vos PV ainsi que ceux des équipiers alentour et restaure périodiquement les PV.<br><colortype(506)><edgecolortype(507)>Météorites<nbsp>:<edgecolortype(0)><colortype(0)> effectue une attaque magique sur vous et les ennemis alentour.<br>Une fois la durée d'un effet terminée, il est remplacé par un autre. Si aucune des prédictions n'est réalisée, vous inflige l'effet <colortype(500)><edgecolortype(501)>Prédiction fallacieuse<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Prédiction fallacieuse<nbsp>:<edgecolortype(0)><colortype(0)> vous inflige des dégâts périodiques.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> 50 000 <colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 30s",
+      "unlock_level": 0,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Phantom Jobs"
+      ],
+      "jobs": [
+        {
+          "id": 11,
+          "name": "Phantom Devin fantôme",
+          "abbreviation": "Devin fant.",
+          "is_phantom": true
+        }
+      ]
+    }
+  ]
+}

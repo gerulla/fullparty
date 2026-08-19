@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 3837,
+  "name": "Scorn",
+  "description": "Able to execute Disesteem.",
+  "effects": [
+    "Able to execute Disesteem."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 213126,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 98,
+  "source_abilities": [
+    {
+      "id": 16472,
+      "name": "Living Shadow",
+      "description": "Conjure a simulacrum of your darkside to fight alongside you.\nDuration: 22s\nAdditional Effect: Grants Scorn\nDuration: 30s\nSimulacrum Attack Potency: 420\nAdditional Effect: Simulacrum is able to execute Shadowbringerand Disesteem\nShadowbringer Potency: 570 for the first enemy\\",
+      "description_macro": "Conjure a simulacrum of your darkside to fight alongside you.<br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>22s<br><if([gnum68==32],<if([gnum72>=100],<colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>Grants <colortype(506)><edgecolortype(507)>Scorn<edgecolortype(0)><colortype(0)><br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>30s<br>,)>,)><colortype(504)><edgecolortype(505)>Simulacrum Attack Potency: <edgecolortype(0)><colortype(0)><if([gnum68==32],<if([gnum72>=88],420,340)>,340)><if([gnum68==32],<if([gnum72>=90],<br><colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>Simulacrum is able to execute <colortype(500)><edgecolortype(501)>Shadowbringer<edgecolortype(0)><colortype(0)><if([gnum68==32],<if([gnum72>=100], and <colortype(500)><edgecolortype(501)>Disesteem<edgecolortype(0)><colortype(0)>,)>,)><br><colortype(504)><edgecolortype(505)>Shadowbringer Potency:<edgecolortype(0)><colortype(0)> 570 for the first enemy\\, and 25% less for all remaining enemies<if([gnum68==32],<if([gnum72>=100],<br><colortype(504)><edgecolortype(505)>Disesteem Potency:<edgecolortype(0)><colortype(0)> 620 for the first enemy\\, and 25% less for all remaining enemies,)>,)>,)>,)>",
+      "unlock_level": 80,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Tank"
+      ],
+      "jobs": [
+        {
+          "id": 32,
+          "name": "Dark Knight",
+          "abbreviation": "DRK",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 2114,
+  "name": "Gobépiderme",
+  "description": "Insensible à un certain montant de dégâts.",
+  "effects": [
+    "Insensible à un certain montant de dégâts."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 213517,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 30,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 18304,
+      "name": "Gobépiderme",
+      "description": "Crée une barrière sur vous et les équipiers alentour, absorbant un certain montant de dégâts.\nPuissance : 100 Durée : 30s\nPuissance avec Éther de soigneur : 250\nNe peut être cumulé avec l'effet Réconfort des érudits ou les effets Diagnosis eucrasique et Prognosis eucrasique des sages.",
+      "description_macro": "Crée une barrière sur vous et les équipiers alentour, absorbant un certain montant de dégâts.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> 100 <colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 30s<br><colortype(506)><edgecolortype(507)>Puissance avec Éther de soigneur<nbsp>:<edgecolortype(0)><colortype(0)> 250<br>Ne peut être cumulé avec l'effet Réconfort des érudits ou les effets Diagnosis eucrasique et Prognosis eucrasique des sages.",
+      "unlock_level": 1,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Magical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 36,
+          "name": "Mage Bleu",
+          "abbreviation": "MBU",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

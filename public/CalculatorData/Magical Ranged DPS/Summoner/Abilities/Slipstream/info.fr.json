@@ -1,0 +1,101 @@
+{
+  "kind": "ability",
+  "id": 25837,
+  "name": "Sillage",
+  "description": "Effectue une attaque magique de vent sur la cible.\nPuissance : 520\nLa puissance est réduite de 60% au-delà du premier ennemi touché.\nEffet additionnel : inflige des dégâts périodiques dans une zone autour de la cible.\nPuissance : 30 Durée : 15s\nCondition : Sillage préparé.\nCe sort a un temps de recharge indépendant qui est appliqué aux autres sorts ou techniques d'arme après utilisation.\n\n* Cette action ne peut pas être ajoutée aux barres de raccourcis.\nRemplace Flux astral lorsque les conditions sont réunies.",
+  "description_macro": "Effectue une attaque magique de vent sur la cible.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> <if([gnum68==27],<if([gnum72>=94],520,430)>,430)><br>La puissance est réduite de 60% au-delà du premier ennemi touché.<br><colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> inflige des dégâts périodiques dans une zone autour de la cible.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> 30 <colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 15s<br><colortype(506)><edgecolortype(507)>Condition<nbsp>:<edgecolortype(0)><colortype(0)> <colortype(500)><edgecolortype(501)>Sillage préparé<edgecolortype(0)><colortype(0)>.<br>Ce sort a un temps de recharge indépendant qui est appliqué aux autres sorts ou techniques d'arme après utilisation.<br><br><colortype(504)><edgecolortype(505)>* Cette action ne peut pas être ajoutée aux barres de raccourcis.<br>Remplace <colortype(500)><edgecolortype(501)>Flux astral<edgecolortype(0)><colortype(0)> lorsque les conditions sont réunies.<edgecolortype(0)><colortype(0)>",
+  "effects": [
+    "Effectue une attaque magique de vent sur la cible.",
+    "Puissance : 520",
+    "La puissance est réduite de 60% au-delà du premier ennemi touché.",
+    "Effet additionnel : inflige des dégâts périodiques dans une zone autour de la cible.",
+    "Puissance : 30 Durée : 15s",
+    "Condition : Sillage préparé.",
+    "Ce sort a un temps de recharge indépendant qui est appliqué aux autres sorts ou techniques d'arme après utilisation.",
+    "* Cette action ne peut pas être ajoutée aux barres de raccourcis.",
+    "Remplace Flux astral lorsque les conditions sont réunies."
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 27,
+    "name": "Invocateur",
+    "abbreviation": "INV"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 86,
+  "icon": {
+    "id": 2771,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 2,
+    "name": "Sort"
+  },
+  "attack_type": {
+    "id": 5,
+    "name": "magie"
+  },
+  "timing": {
+    "cast_seconds": 3,
+    "recast_seconds": 3.5,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 58,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 0,
+      "value": 0
+    },
+    "secondary": {
+      "type_id": 32,
+      "value": 2725
+    }
+  },
+  "range": {
+    "target_yalms": 25,
+    "effect_yalms": 5,
+    "cast_type": 2
+  },
+  "targeting": {
+    "self": false,
+    "party": false,
+    "alliance": false,
+    "hostile": true,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": false
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": {
+      "id": 69,
+      "status": {
+        "id": 2725,
+        "name": "Sillage préparé",
+        "description": "Sillage peut être lancé.",
+        "icon_id": 212697,
+        "max_stacks": 0
+      }
+    }
+  },
+  "metadata": {
+    "aspect_id": 3,
+    "behavior_type": 0,
+    "class_job_category_id": 28,
+    "source_class_job_id": 0,
+    "is_role_action": false,
+    "is_player_action": false,
+    "is_derived_action": true,
+    "equivalence_group": 0
+  }
+}

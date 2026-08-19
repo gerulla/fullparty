@@ -1,0 +1,94 @@
+{
+  "kind": "ability",
+  "id": 2245,
+  "name": "Hide",
+  "description": "Blend in with your surroundings, making it impossible for most enemies to detect you, but reducing movement speed by 50%. Has no effect on enemies 10 levels higher than your own, or certain enemies with special sight.\nAdditional Effect: Restores 2 charges to all mudra\nThe effect of Doton ends upon execution of Hide.\nCannot be executed while in combat.\nEffect ends upon use of any action other than Sprint, or upon reuse of Hide.",
+  "description_macro": "Blend in with your surroundings, making it impossible for most enemies to detect you, but reducing movement speed by 50%. Has no effect on enemies 10 levels higher than your own, or certain enemies with special sight.<br><if([gnum72>=30],<if([gnum68==30],<colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>Restores 2 charges to all mudra<br>,)>,)><if([gnum68==30],<if([gnum72>=45],The effect of <colortype(500)><edgecolortype(501)>Doton<edgecolortype(0)><colortype(0)> ends upon execution of <colortype(500)><edgecolortype(501)>Hide<edgecolortype(0)><colortype(0)>.<br>,)>,)>Cannot be executed while in combat.<br>Effect ends upon use of any action other than Sprint, or upon reuse of <colortype(500)><edgecolortype(501)>Hide<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Blend in with your surroundings, making it impossible for most enemies to detect you, but reducing movement speed by 50%. Has no effect on enemies 10 levels higher than your own, or certain enemies with special sight.",
+    "Additional Effect: Restores 2 charges to all mudra",
+    "The effect of Doton ends upon execution of Hide.",
+    "Cannot be executed while in combat.",
+    "Effect ends upon use of any action other than Sprint, or upon reuse of Hide."
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 30,
+    "name": "Ninja",
+    "abbreviation": "NIN"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 10,
+  "icon": {
+    "id": 609,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 4,
+    "name": "Ability"
+  },
+  "attack_type": {
+    "id": 0,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 20,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 3,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 0,
+      "value": 0
+    },
+    "secondary": {
+      "type_id": 38,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": 0,
+    "effect_yalms": 0,
+    "cast_type": 1
+  },
+  "targeting": {
+    "self": true,
+    "party": false,
+    "alliance": false,
+    "hostile": false,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": {
+      "id": 614,
+      "name": "Hidden",
+      "description": "Unable to be detected. Movement speed is severely reduced.",
+      "icon_id": 210607,
+      "max_stacks": 0
+    },
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 0,
+    "behavior_type": 0,
+    "class_job_category_id": 93,
+    "source_class_job_id": 29,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

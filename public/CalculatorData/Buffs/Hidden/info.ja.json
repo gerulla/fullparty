@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 614,
+  "name": "かくれる",
+  "description": "身を隠している状態。移動速度が低下した状態。",
+  "effects": [
+    "身を隠している状態。移動速度が低下した状態。"
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 210607,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": true,
+  "inflicted_by_actor": true,
+  "party_list_priority": 100,
+  "parameter": {
+    "effect": 1,
+    "modifier": 0
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 2245,
+      "name": "かくれる",
+      "description": "自身の姿を隠し、ほとんどの敵から感知されない状態になる。\nさらに移動速度が50％低下する。\n自身よりもレベルが10以上高いモンスターや、一部のモンスターからは感知される。\nスプリント以外のアクションを実行するか再使用で解除する。\n効果時間：永続\n追加効果：実行後に非戦闘状態であれば忍術のリキャストタイムを2チャージ分リセットする。\nまた、自身に「土遁の術」が付与されている場合は、それを解除する。\n発動条件：自身が非戦闘状態",
+      "description_macro": "自身の姿を隠し、ほとんどの敵から感知されない状態になる。<br>さらに移動速度が50％低下する。<br>自身よりもレベルが10以上高いモンスターや、一部のモンスターからは感知される。<br>スプリント以外のアクションを実行するか再使用で解除する。<br><colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>永続<br><if([gnum72>=30],<if([gnum68==30],<colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)>実行後に非戦闘状態であれば忍術のリキャストタイムを2チャージ分リセットする。<br>,)>,)><if([gnum68==30],<if([gnum72>=45],また、自身に<colortype(500)><edgecolortype(501)>「土遁の術」<edgecolortype(0)><colortype(0)>が付与されている場合は、それを解除する。<br>,)>,)><colortype(504)><edgecolortype(505)>発動条件：<edgecolortype(0)><colortype(0)>自身が非戦闘状態",
+      "unlock_level": 10,
+      "relations": [
+        "direct_gain_self"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 30,
+          "name": "忍者",
+          "abbreviation": "NIN",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

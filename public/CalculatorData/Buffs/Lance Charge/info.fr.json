@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 3258,
+  "name": "Lance acérée",
+  "description": "Les dégâts infligés par certaines techniques d'arme sont augmentés.",
+  "effects": [
+    "Les dégâts infligés par certaines techniques d'arme sont augmentés."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 210304,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": true,
+  "inflicted_by_actor": true,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 85,
+      "name": "Lance acérée",
+      "description": "Augmente vos dégâts infligés de 10%.\nDurée : 20s",
+      "description_macro": "Augmente vos dégâts infligés de 10%.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 20s",
+      "unlock_level": 30,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 22,
+          "name": "Chevalier Dragon",
+          "abbreviation": "DRG",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

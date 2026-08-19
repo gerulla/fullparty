@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 2500,
+  "name": "Dracoforce",
+  "description": "Les dégâts reçus sont réduits.",
+  "effects": [
+    "Les dégâts reçus sont réduits."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 213539,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 1,
+  "parameter": {
+    "effect": 0,
+    "modifier": -20
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 23280,
+      "name": "Dracoforce",
+      "description": "Réduit de 20% les dégâts subis.\nDurée : 15s\nRéduit de 40% les dégâts subis si vous êtes sous l'effet d'Éther de protecteur.\nCe sort a un temps de recharge indépendant partagé avec Angélique et Magie Matra.",
+      "description_macro": "Réduit de 20% les dégâts subis.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 15s<br>Réduit de 40% les dégâts subis si vous êtes sous l'effet d'<colortype(500)><edgecolortype(501)>Éther de protecteur<edgecolortype(0)><colortype(0)>.<br>Ce sort a un temps de recharge indépendant partagé avec <colortype(500)><edgecolortype(501)>Angélique<edgecolortype(0)><colortype(0)> et <colortype(500)><edgecolortype(501)>Magie Matra<edgecolortype(0)><colortype(0)>.",
+      "unlock_level": 1,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Magical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 36,
+          "name": "Mage Bleu",
+          "abbreviation": "MBU",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

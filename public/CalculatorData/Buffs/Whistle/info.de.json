@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 880,
+  "name": "Trällern",
+  "description": "Verschiedene Synthese-Effekte je nach Stapelzahl.",
+  "effects": [
+    "Verschiedene Synthese-Effekte je nach Stapelzahl."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 218361,
+    "file": "icon.png"
+  },
+  "max_stacks": 11,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": true,
+  "is_permanent": false,
+  "inflicted_by_actor": true,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 50
+  },
+  "class_job_category_id": 33,
+  "source_abilities": [
+    {
+      "id": 18309,
+      "name": "Pfeife",
+      "description": "Du erhöhst den Schaden deines nächsten physischen Angriffszaubers während der Wirkungsdauer um 80 %.\nDauer: 30 Sekunden\nKann nicht zugleich mit Starksammeln aktiv sein.",
+      "description_macro": "Du erhöhst den Schaden deines nächsten physischen Angriffszaubers während der Wirkungsdauer um 80<nbsp>%.<br>Dauer: 30 Sekunden<br>Kann nicht zugleich mit <colortype(500)><edgecolortype(501)>Starksammeln<edgecolortype(0)><colortype(0)> aktiv sein.",
+      "unlock_level": 1,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Magical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 36,
+          "name": "Blaumagier",
+          "abbreviation": "BMA",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

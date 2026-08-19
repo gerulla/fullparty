@@ -1,0 +1,90 @@
+{
+  "kind": "ability",
+  "id": 24392,
+  "name": "Grim Swathe",
+  "description": "Summons your avatar to deliver an attack with a potency of 140 to all enemies in a cone before you.\nAdditional Effect: Grants Soul Reaver\nDuration: 30s\nStack count will be reduced to 1 when already under the effect of Soul Reaver.\nEffect cannot be stacked with Executioner.\nSoul Gauge Cost: 50\nShares a recast timer with all avatar attacks except Gluttony.",
+  "description_macro": "Summons your avatar to deliver an attack with a potency of 140 to all enemies in a cone before you.<br><if([gnum68==39],<if([gnum72>=70],<colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>Grants <colortype(506)><edgecolortype(507)>Soul Reaver<edgecolortype(0)><colortype(0)><br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>30s<br>Stack count will be reduced to 1 when already under the effect of <colortype(506)><edgecolortype(507)>Soul Reaver<edgecolortype(0)><colortype(0)>.<br>,)>,)><if([gnum68==39],<if([gnum72>=96],Effect cannot be stacked with <colortype(506)><edgecolortype(507)>Executioner<edgecolortype(0)><colortype(0)>.<br>,)>,)><colortype(504)><edgecolortype(505)>Soul Gauge Cost: <edgecolortype(0)><colortype(0)>50<br>Shares a recast timer with all avatar attacks except <colortype(500)><edgecolortype(501)>Gluttony<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Summons your avatar to deliver an attack with a potency of 140 to all enemies in a cone before you.",
+    "Additional Effect: Grants Soul Reaver",
+    "Duration: 30s",
+    "Stack count will be reduced to 1 when already under the effect of Soul Reaver.",
+    "Effect cannot be stacked with Executioner.",
+    "Soul Gauge Cost: 50",
+    "Shares a recast timer with all avatar attacks except Gluttony."
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 39,
+    "name": "Reaper",
+    "abbreviation": "RPR"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 55,
+  "icon": {
+    "id": 3620,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 4,
+    "name": "Ability"
+  },
+  "attack_type": {
+    "id": 1,
+    "name": "斬"
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 1,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 1,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 64,
+      "value": 50
+    },
+    "secondary": {
+      "type_id": 113,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": 8,
+    "effect_yalms": 8,
+    "cast_type": 3
+  },
+  "targeting": {
+    "self": false,
+    "party": false,
+    "alliance": false,
+    "hostile": true,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 7,
+    "behavior_type": 0,
+    "class_job_category_id": 180,
+    "source_class_job_id": 39,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

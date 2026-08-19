@@ -1,0 +1,90 @@
+{
+  "kind": "ability",
+  "id": 25804,
+  "name": "Smaragd-Beschwörung",
+  "description": "Du rufst dein Smaragd-Karfunkel an deine Seite und lässt es Smaragdfunkeln ausführen, was es zum Ziel schnellen lässt und ihm windbasierten magischen Schaden zufügt.\nAttacke-Wert: 400\nZusatzeffekt: 4 Stapel Windäther\nDauer: 30 Sekunden\nEffekt von Windäther: Juwelenschein und Edelglanz werden windbasiert.\nBedingung: Smaragd-Arkanum aktiv und Karfunkel bereits gerufen.\nDein Karfunkel verschwindet während der Beschwörung von Smaragd-Karfunkel, kehrt danach aber an deine Seite zurück.",
+  "description_macro": "Du rufst dein Smaragd-Karfunkel an deine Seite und lässt es <colortype(502)><edgecolortype(503)>Smaragdfunkeln<edgecolortype(0)><colortype(0)> ausführen, was es zum Ziel schnellen lässt und ihm windbasierten magischen Schaden zufügt.<br>Attacke-Wert: 400<br>Zusatzeffekt: 4 Stapel <colortype(506)><edgecolortype(507)>Windäther<edgecolortype(0)><colortype(0)><br>Dauer: 30 Sekunden<br>Effekt von <colortype(506)><edgecolortype(507)>Windäther<edgecolortype(0)><colortype(0)>: <colortype(502)><edgecolortype(503)>Juwelenschein<edgecolortype(0)><colortype(0)> und <colortype(502)><edgecolortype(503)>Edelglanz<edgecolortype(0)><colortype(0)> werden windbasiert.<br>Bedingung: <colortype(506)><edgecolortype(507)>Smaragd-Arkanum<edgecolortype(0)><colortype(0)> aktiv und Karfunkel bereits gerufen.<br>Dein Karfunkel verschwindet während der Beschwörung von Smaragd-Karfunkel, kehrt danach aber an deine Seite zurück.",
+  "effects": [
+    "Du rufst dein Smaragd-Karfunkel an deine Seite und lässt es Smaragdfunkeln ausführen, was es zum Ziel schnellen lässt und ihm windbasierten magischen Schaden zufügt.",
+    "Attacke-Wert: 400",
+    "Zusatzeffekt: 4 Stapel Windäther",
+    "Dauer: 30 Sekunden",
+    "Effekt von Windäther: Juwelenschein und Edelglanz werden windbasiert.",
+    "Bedingung: Smaragd-Arkanum aktiv und Karfunkel bereits gerufen.",
+    "Dein Karfunkel verschwindet während der Beschwörung von Smaragd-Karfunkel, kehrt danach aber an deine Seite zurück."
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 27,
+    "name": "Beschwörer",
+    "abbreviation": "BSW"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 22,
+  "icon": {
+    "id": 2754,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 2,
+    "name": "Zauber"
+  },
+  "attack_type": {
+    "id": 5,
+    "name": "魔法"
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 2.5,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 58,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 71,
+      "value": 3
+    },
+    "secondary": {
+      "type_id": 116,
+      "value": 470
+    }
+  },
+  "range": {
+    "target_yalms": 25,
+    "effect_yalms": 0,
+    "cast_type": 1
+  },
+  "targeting": {
+    "self": false,
+    "party": false,
+    "alliance": false,
+    "hostile": true,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": false
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 7,
+    "behavior_type": 0,
+    "class_job_category_id": 69,
+    "source_class_job_id": 26,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 739,
+  "name": "Asylum",
+  "description": "A veil of succor is healing party members in the area.",
+  "effects": [
+    "A veil of succor is healing party members in the area."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 212629,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": true,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 50
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 3569,
+      "name": "Asylum",
+      "description": "Envelops a designated area in a veil of succor, granting healing over time to self and any party members who enter.\nCure Potency: 100\nDuration: 24s \nAdditional Effect: Increases HP recovery via healing actions on party members in the designated area by 10%",
+      "description_macro": "Envelops a designated area in a veil of succor, granting healing over time to self and any party members who enter.<br><colortype(504)><edgecolortype(505)>Cure Potency:<edgecolortype(0)><colortype(0)> 100<br><colortype(504)><edgecolortype(505)>Duration:<edgecolortype(0)><colortype(0)> 24s <if([gnum68==24],<if([gnum72>=78],<br><colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>Increases HP recovery via healing actions on party members in the designated area by 10%,)>,)>",
+      "unlock_level": 52,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Healer"
+      ],
+      "jobs": [
+        {
+          "id": 24,
+          "name": "White Mage",
+          "abbreviation": "WHM",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

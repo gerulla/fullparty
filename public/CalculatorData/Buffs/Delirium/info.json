@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 1972,
+  "name": "Delirium",
+  "description": "Blackblood cost for Bloodspiller and Quietus is nullified, and restoring MP when landing either weaponskill.",
+  "effects": [
+    "Blackblood cost for Bloodspiller and Quietus is nullified, and restoring MP when landing either weaponskill."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 217147,
+    "file": "icon.png"
+  },
+  "max_stacks": 3,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 27,
+    "modifier": 0
+  },
+  "class_job_category_id": 98,
+  "source_abilities": [
+    {
+      "id": 7390,
+      "name": "Delirium",
+      "description": "Grants 3 stacks of Delirium and Blood Weapon.\nDelirium Effect: Changes Bloodspiller to Scarlet Delirium and Quietus to Impalement\nDuration: 15s\nBlood Weapon Effect: Each stack increases Blood Gauge by 10 and restores MP upon landing weaponskills or spells\nDuration: 15s\nEffect does not stack when hitting multiple targets with a single attack.",
+      "description_macro": "Grants 3 stacks of <colortype(506)><edgecolortype(507)>Delirium<edgecolortype(0)><colortype(0)> and <colortype(506)><edgecolortype(507)>Blood Weapon<edgecolortype(0)><colortype(0)>.<br><colortype(504)><edgecolortype(505)>Delirium Effect: <edgecolortype(0)><colortype(0)><if([gnum68==32],<if([gnum72>=96],Changes <colortype(500)><edgecolortype(501)>Bloodspiller<edgecolortype(0)><colortype(0)> to <colortype(500)><edgecolortype(501)>Scarlet Delirium<edgecolortype(0)><colortype(0)> and <colortype(500)><edgecolortype(501)>Quietus<edgecolortype(0)><colortype(0)> to <colortype(500)><edgecolortype(501)>Impalement<edgecolortype(0)><colortype(0)><br>,Each stack allows the execution of <colortype(500)><edgecolortype(501)>Quietus<edgecolortype(0)><colortype(0)> or <colortype(500)><edgecolortype(501)>Bloodspiller<edgecolortype(0)><colortype(0)> without <colortype(506)><edgecolortype(507)>Blackblood<edgecolortype(0)><colortype(0)> cost\\, restoring MP when landing either weaponskill<br>)>,Each stack allows the execution of <colortype(500)><edgecolortype(501)>Quietus<edgecolortype(0)><colortype(0)> or <colortype(500)><edgecolortype(501)>Bloodspiller<edgecolortype(0)><colortype(0)> without <colortype(506)><edgecolortype(507)>Blackblood<edgecolortype(0)><colortype(0)> cost\\, restoring MP when landing either weaponskill<br>)><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>15s<br><colortype(504)><edgecolortype(505)>Blood Weapon Effect: <edgecolortype(0)><colortype(0)>Each stack increases <colortype(500)><edgecolortype(501)>Blood Gauge<edgecolortype(0)><colortype(0)> by 10 and restores MP upon landing weaponskills or spells<br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>15s<br>Effect does not stack when hitting multiple targets with a single attack.",
+      "unlock_level": 68,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Tank"
+      ],
+      "jobs": [
+        {
+          "id": 32,
+          "name": "Dark Knight",
+          "abbreviation": "DRK",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

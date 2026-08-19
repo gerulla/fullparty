@@ -1,0 +1,30 @@
+{
+  "kind": "trait",
+  "id": 419,
+  "name": "原初の猛り効果アップ",
+  "description": "原初の猛り実行時に付与する「原初の猛り」と「原初の猛り［被］」の効果時間を8秒に延長する。\nさらに、「原初の猛り［被］」に、下記の効果を追加する。\n\n追加効果：対象に「原初の血潮」を付与する。\n効果時間：4秒\n原初の血潮効果：対象の被ダメージを10％軽減する。\n追加効果：対象に一定量のダメージを防ぐバリアである「原初の血煙」を付与する。\nバリア量：回復力400相当\u3000効果時間：20秒",
+  "description_macro": "原初の猛り実行時に付与する<colortype(500)><edgecolortype(501)>「原初の猛り」<edgecolortype(0)><colortype(0)>と<colortype(500)><edgecolortype(501)>「原初の猛り［被］」<edgecolortype(0)><colortype(0)>の効果時間を8秒に延長する。<br>さらに、<colortype(500)><edgecolortype(501)>「原初の猛り［被］」<edgecolortype(0)><colortype(0)>に、下記の効果を追加する。<br><br><colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)>対象に<colortype(500)><edgecolortype(501)>「原初の血潮」<edgecolortype(0)><colortype(0)>を付与する。<br><colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>4秒<br><colortype(504)><edgecolortype(505)>原初の血潮効果：<edgecolortype(0)><colortype(0)>対象の被ダメージを10％軽減する。<br><colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)>対象に一定量のダメージを防ぐバリアである<colortype(500)><edgecolortype(501)>「原初の血煙」<edgecolortype(0)><colortype(0)>を付与する。<br><colortype(504)><edgecolortype(505)>バリア量：<edgecolortype(0)><colortype(0)>回復力400相当\u3000<colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>20秒",
+  "effects": [
+    "原初の猛り実行時に付与する「原初の猛り」と「原初の猛り［被］」の効果時間を8秒に延長する。",
+    "さらに、「原初の猛り［被］」に、下記の効果を追加する。",
+    "追加効果：対象に「原初の血潮」を付与する。",
+    "効果時間：4秒",
+    "原初の血潮効果：対象の被ダメージを10％軽減する。",
+    "追加効果：対象に一定量のダメージを防ぐバリアである「原初の血煙」を付与する。",
+    "バリア量：回復力400相当\u3000効果時間：20秒"
+  ],
+  "role": "Tank",
+  "job": {
+    "id": 21,
+    "name": "戦士",
+    "abbreviation": "WAR"
+  },
+  "unlock_level": 82,
+  "value": 0,
+  "icon": {
+    "id": 5268,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 22,
+  "source_class_job_id": 21
+}

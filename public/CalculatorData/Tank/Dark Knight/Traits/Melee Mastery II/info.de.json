@@ -1,0 +1,31 @@
+{
+  "kind": "trait",
+  "id": 663,
+  "name": "Verbesserter Schwertkampf II",
+  "description": "Erhöht den Attacke-Wert folgender Kommandos:\nAttacke-Wert von Harter Schlitzer: 300\nAttacke-Wert von Osmose: 240\nAttacke-Wert von Seelenfresser: 260\nAttacke-Wert von Seelenstärke: 120\nAttacke-Wert von Zweischnitt: 540\nAttacke-Wert von Blutvergießen: 600\nAttacke-Wert von Quietus: 240",
+  "description_macro": "Erhöht den Attacke-Wert folgender Kommandos:<br>Attacke-Wert von <colortype(502)><edgecolortype(503)>Harter Schlitzer<edgecolortype(0)><colortype(0)>: 300<br>Attacke-Wert von <colortype(502)><edgecolortype(503)>Osmose<edgecolortype(0)><colortype(0)>: 240<br>Attacke-Wert von <colortype(502)><edgecolortype(503)>Seelenfresser<edgecolortype(0)><colortype(0)>: 260<br>Attacke-Wert von <colortype(502)><edgecolortype(503)>Seelenstärke<edgecolortype(0)><colortype(0)>: 120<br>Attacke-Wert von <colortype(502)><edgecolortype(503)>Zweischnitt<edgecolortype(0)><colortype(0)>: 540<br>Attacke-Wert von <colortype(502)><edgecolortype(503)>Blutvergießen<edgecolortype(0)><colortype(0)>: 600<br>Attacke-Wert von <colortype(502)><edgecolortype(503)>Quietus<edgecolortype(0)><colortype(0)>: 240",
+  "effects": [
+    "Erhöht den Attacke-Wert folgender Kommandos:",
+    "Attacke-Wert von Harter Schlitzer: 300",
+    "Attacke-Wert von Osmose: 240",
+    "Attacke-Wert von Seelenfresser: 260",
+    "Attacke-Wert von Seelenstärke: 120",
+    "Attacke-Wert von Zweischnitt: 540",
+    "Attacke-Wert von Blutvergießen: 600",
+    "Attacke-Wert von Quietus: 240"
+  ],
+  "role": "Tank",
+  "job": {
+    "id": 32,
+    "name": "Dunkelritter",
+    "abbreviation": "DKR"
+  },
+  "unlock_level": 94,
+  "value": 0,
+  "icon": {
+    "id": 6802,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 98,
+  "source_class_job_id": 32
+}

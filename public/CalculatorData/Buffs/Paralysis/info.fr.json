@@ -1,0 +1,155 @@
+{
+  "kind": "combat_status",
+  "id": 17,
+  "name": "Paralysie",
+  "description": "Une paralysie empêche parfois d'effectuer des actions.",
+  "effects": [
+    "Une paralysie empêche parfois d'effectuer des actions."
+  ],
+  "classification": "debuff",
+  "icon": {
+    "id": 215006,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 2,
+  "target_type": 0,
+  "can_dispel": true,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 100,
+  "parameter": {
+    "effect": 0,
+    "modifier": 33
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 11387,
+      "name": "Haute tension",
+      "description": "Effectue une attaque magique de foudre sur les ennemis alentour.\nPuissance : 180\nLa puissance est réduite de 50% au-delà du premier ennemi touché.\nEffet additionnel : inflige Paralysie.\nDurée : 15s\nLa puissance et la durée de l'effet sont augmentées si l'ennemi subit Œdème.\nPuissance avec Œdème : 220\nDurée avec Œdème : 30s",
+      "description_macro": "Effectue une attaque magique de foudre sur les ennemis alentour.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> 180<br>La puissance est réduite de 50% au-delà du premier ennemi touché.<br><colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> inflige Paralysie.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 15s<br>La puissance et la durée de l'effet sont augmentées si l'ennemi subit <colortype(500)><edgecolortype(501)>Œdème<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Puissance avec Œdème<nbsp>:<edgecolortype(0)><colortype(0)> 220<br><colortype(506)><edgecolortype(507)>Durée avec Œdème<nbsp>:<edgecolortype(0)><colortype(0)> 30s",
+      "unlock_level": 1,
+      "relations": [
+        "applied_by_description"
+      ],
+      "roles": [
+        "Magical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 36,
+          "name": "Mage Bleu",
+          "abbreviation": "MBU",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 11394,
+      "name": "Explosion mentale",
+      "description": "Effectue une attaque magique neutre sur les ennemis alentour.\nPuissance : 200\nLa puissance est réduite de 50% au-delà du premier ennemi touché.\nEffet additionnel : inflige Paralysie.\nDurée : 30s",
+      "description_macro": "Effectue une attaque magique neutre sur les ennemis alentour.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> 200<br>La puissance est réduite de 50% au-delà du premier ennemi touché.<br><colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> inflige Paralysie.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 30s",
+      "unlock_level": 1,
+      "relations": [
+        "applied_by_description"
+      ],
+      "roles": [
+        "Magical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 36,
+          "name": "Mage Bleu",
+          "abbreviation": "MBU",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 11404,
+      "name": "Regard noir",
+      "description": "Effectue une attaque magique de foudre en ligne droite sur les ennemis devant vous.\nPuissance : 220\nLa puissance est réduite de 50% au-delà du premier ennemi touché.\nEffet additionnel : inflige Paralysie.\nDurée : 6s",
+      "description_macro": "Effectue une attaque magique de foudre en ligne droite sur les ennemis devant vous.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> 220<br>La puissance est réduite de 50% au-delà du premier ennemi touché.<br><colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> inflige Paralysie.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 6s",
+      "unlock_level": 1,
+      "relations": [
+        "applied_by_description"
+      ],
+      "roles": [
+        "Magical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 36,
+          "name": "Mage Bleu",
+          "abbreviation": "MBU",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 11420,
+      "name": "Voix du dragon",
+      "description": "Effectue une attaque magique de foudre sur les ennemis alentour.\nPuissance : 200\nLes ennemis à moins de 8 yalms ne sont pas touchés.\nLa puissance est réduite de 50% au-delà du premier ennemi touché.\nEffet additionnel : inflige Paralysie.\nDurée : 9s\nLa puissance est augmentée si l'ennemi subit Congélation (non valable pour certains ennemis).\nPuissance avec Congélation : 400\nMet fin à l'effet Congélation.",
+      "description_macro": "Effectue une attaque magique de foudre sur les ennemis alentour.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> 200<br>Les ennemis à moins de 8 yalms ne sont pas touchés.<br>La puissance est réduite de 50% au-delà du premier ennemi touché.<br><colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> inflige Paralysie.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 9s<br>La puissance est augmentée si l'ennemi subit <colortype(500)><edgecolortype(501)>Congélation<edgecolortype(0)><colortype(0)> (non valable pour certains ennemis).<br><colortype(506)><edgecolortype(507)>Puissance avec Congélation<nbsp>:<edgecolortype(0)><colortype(0)> 400<br>Met fin à l'effet <colortype(500)><edgecolortype(501)>Congélation<edgecolortype(0)><colortype(0)>.",
+      "unlock_level": 1,
+      "relations": [
+        "applied_by_description"
+      ],
+      "roles": [
+        "Magical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 36,
+          "name": "Mage Bleu",
+          "abbreviation": "MBU",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 18300,
+      "name": "Transfixion abyssale",
+      "description": "Effectue une attaque physique neutre sur la cible.\nPuissance : 220\nEffet additionnel : inflige Paralysie.\nDurée : 30s",
+      "description_macro": "Effectue une attaque physique neutre sur la cible.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> 220<br><colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> inflige Paralysie.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 30s",
+      "unlock_level": 1,
+      "relations": [
+        "applied_by_description"
+      ],
+      "roles": [
+        "Magical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 36,
+          "name": "Mage Bleu",
+          "abbreviation": "MBU",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 41629,
+      "name": "Canon foudroyant",
+      "description": "Effectue une attaque magique neutre sur la cible et les ennemis autour.\nPuissance : 210 (varie selon le niveau d'objet)\nEffet additionnel : inflige Paralysie.\nDurée : 18s",
+      "description_macro": "Effectue une attaque magique neutre sur la cible et les ennemis autour.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> 210 (varie selon le niveau d'objet)<br><colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> inflige Paralysie.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 18s<if([gnum108>=4],<br>Partage le même temps de recharge que <colortype(500)><edgecolortype(501)>Canon obscur<edgecolortype(0)><colortype(0)>.,)>",
+      "unlock_level": 0,
+      "relations": [
+        "applied_by_description"
+      ],
+      "roles": [
+        "Phantom Jobs"
+      ],
+      "jobs": [
+        {
+          "id": 9,
+          "name": "Phantom Artilleur fantôme",
+          "abbreviation": "Artilleur fant.",
+          "is_phantom": true
+        }
+      ]
+    }
+  ]
+}

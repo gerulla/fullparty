@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 4249,
+  "name": "Héroïque",
+  "description": "Les dégâts infligés ainsi que les effets de récupération de PV sont augmentés et les dégâts subis sont réduits.",
+  "effects": [
+    "Les dégâts infligés ainsi que les effets de récupération de PV sont augmentés et les dégâts subis sont réduits."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 229912,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": true,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 10
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 41610,
+      "name": "Héroïque",
+      "description": "Augmente de 10% les dégâts infligés ainsi que les PV restaurés par les sorts curatifs, et réduit de 10% les dégâts subis, pour vous et vos équipiers.\nDurée : 20s\nNe peut être cumulé avec l'effet Menuet vaillant.",
+      "description_macro": "Augmente de 10% les dégâts infligés ainsi que les PV restaurés par les sorts curatifs, et réduit de 10% les dégâts subis, pour vous et vos équipiers.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 20s<br>Ne peut être cumulé avec l'effet <colortype(500)><edgecolortype(501)>Menuet vaillant<edgecolortype(0)><colortype(0)>.",
+      "unlock_level": 0,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Phantom Jobs"
+      ],
+      "jobs": [
+        {
+          "id": 6,
+          "name": "Phantom Barde fantôme",
+          "abbreviation": "Barde fant.",
+          "is_phantom": true
+        }
+      ]
+    }
+  ]
+}

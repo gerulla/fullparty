@@ -1,0 +1,88 @@
+{
+  "kind": "ability",
+  "id": 34656,
+  "name": "Fire II in Red",
+  "description": "Deals fire damage with a potency of 180 to target and all enemies nearby it.\nAdditional Effect: Grants Aetherhues\nDuration: 30s\nCannot be executed while under the effect of Subtractive Palette.\nWhen standing within the bounds of Starry Muse\\",
+  "description_macro": "Deals fire damage with a potency of <if([gnum68==42],<if([gnum72>=94],180,<if([gnum68==42],<if([gnum72>=74],150,120)>,120)>)>,<if([gnum68==42],<if([gnum72>=74],150,120)>,120)>)> to target and all enemies nearby it.<br><colortype(504)><edgecolortype(505)>Additional Effect:<edgecolortype(0)><colortype(0)> Grants <colortype(506)><edgecolortype(507)>Aetherhues<edgecolortype(0)><colortype(0)><br><colortype(504)><edgecolortype(505)>Duration:<edgecolortype(0)><colortype(0)> 30s<br>Cannot be executed while under the effect of <colortype(506)><edgecolortype(507)>Subtractive Palette<edgecolortype(0)><colortype(0)>.<if([gnum68==42],<if([gnum72>=82],<br>When standing within the bounds of <colortype(500)><edgecolortype(501)>Starry Muse<edgecolortype(0)><colortype(0)>\\, consumes a stack of <colortype(506)><edgecolortype(507)>Hyperphantasia<edgecolortype(0)><colortype(0)> if available.,)>,)>",
+  "effects": [
+    "Deals fire damage with a potency of 180 to target and all enemies nearby it.",
+    "Additional Effect: Grants Aetherhues",
+    "Duration: 30s",
+    "Cannot be executed while under the effect of Subtractive Palette.",
+    "When standing within the bounds of Starry Muse\\"
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 42,
+    "name": "Pictomancer",
+    "abbreviation": "PCT"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 25,
+  "icon": {
+    "id": 3807,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 2,
+    "name": "Spell"
+  },
+  "attack_type": {
+    "id": 5,
+    "name": "魔法"
+  },
+  "timing": {
+    "cast_seconds": 1.5,
+    "recast_seconds": 2.5,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 58,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 96,
+      "value": 3
+    },
+    "secondary": {
+      "type_id": 0,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": 25,
+    "effect_yalms": 5,
+    "cast_type": 2
+  },
+  "targeting": {
+    "self": false,
+    "party": false,
+    "alliance": false,
+    "hostile": true,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 1,
+    "behavior_type": 0,
+    "class_job_category_id": 197,
+    "source_class_job_id": 42,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

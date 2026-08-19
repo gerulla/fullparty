@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 376,
+  "name": "Maîtrise de la magie offensive II",
+  "description": "Remplace Dosis II par Dosis III, Phlegma II par Phlegma III, Dosis eucrasique II par Dosis eucrasique III, Dyskrasia par Dyskrasia II et Toxikon par Toxikon II.",
+  "description_macro": "Remplace <colortype(500)><edgecolortype(501)>Dosis II<edgecolortype(0)><colortype(0)> par <colortype(500)><edgecolortype(501)>Dosis III<edgecolortype(0)><colortype(0)>, <colortype(500)><edgecolortype(501)>Phlegma II<edgecolortype(0)><colortype(0)> par <colortype(500)><edgecolortype(501)>Phlegma III<edgecolortype(0)><colortype(0)>, <colortype(500)><edgecolortype(501)>Dosis eucrasique II<edgecolortype(0)><colortype(0)> par <colortype(500)><edgecolortype(501)>Dosis eucrasique III<edgecolortype(0)><colortype(0)>, <colortype(500)><edgecolortype(501)>Dyskrasia<edgecolortype(0)><colortype(0)> par <colortype(500)><edgecolortype(501)>Dyskrasia II<edgecolortype(0)><colortype(0)> et <colortype(500)><edgecolortype(501)>Toxikon<edgecolortype(0)><colortype(0)> par <colortype(500)><edgecolortype(501)>Toxikon II<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Remplace Dosis II par Dosis III, Phlegma II par Phlegma III, Dosis eucrasique II par Dosis eucrasique III, Dyskrasia par Dyskrasia II et Toxikon par Toxikon II."
+  ],
+  "role": "Healer",
+  "job": {
+    "id": 40,
+    "name": "Sage",
+    "abbreviation": "SAG"
+  },
+  "unlock_level": 82,
+  "value": 0,
+  "icon": {
+    "id": 6457,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 181,
+  "source_class_job_id": 40
+}

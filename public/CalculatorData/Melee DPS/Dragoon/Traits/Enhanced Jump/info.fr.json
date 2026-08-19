@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 434,
+  "name": "Saut amélioré",
+  "description": "Augmente la puissance de Saut à 320.",
+  "description_macro": "Augmente la puissance de <colortype(500)><edgecolortype(501)>Saut<edgecolortype(0)><colortype(0)> à 320.",
+  "effects": [
+    "Augmente la puissance de Saut à 320."
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 22,
+    "name": "Chevalier Dragon",
+    "abbreviation": "DRG"
+  },
+  "unlock_level": 54,
+  "value": 0,
+  "icon": {
+    "id": 5294,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 23,
+  "source_class_job_id": 22
+}

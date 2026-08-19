@@ -1,0 +1,22 @@
+{
+  "kind": "trait",
+  "id": 10,
+  "name": "かぎあけ",
+  "description": "ダンジョン内にある鍵のかかった扉を開けることができるようになる。",
+  "description_macro": "ダンジョン内にある鍵のかかった扉を開けることができるようになる。",
+  "effects": [
+    "ダンジョン内にある鍵のかかった扉を開けることができるようになる。"
+  ],
+  "role": "Phantom Jobs",
+  "job": {
+    "id": 12,
+    "name": "サポートシーフ",
+    "abbreviation": "Ph. Thief"
+  },
+  "is_phantom_trait": true,
+  "unlock_level": 6,
+  "icon": {
+    "id": 82212,
+    "file": "icon.png"
+  }
+}

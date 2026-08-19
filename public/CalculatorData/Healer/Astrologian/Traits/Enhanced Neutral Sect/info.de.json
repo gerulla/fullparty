@@ -1,0 +1,25 @@
+{
+  "kind": "trait",
+  "id": 635,
+  "name": "Verbessertes Neutral",
+  "description": "Erfolgreiche Ausführung von Neutral gewährt Stand der Sonne.\nDauer: 30 Sekunden",
+  "description_macro": "Erfolgreiche Ausführung von <colortype(502)><edgecolortype(503)>Neutral<edgecolortype(0)><colortype(0)> gewährt <colortype(506)><edgecolortype(507)>Stand der Sonne<edgecolortype(0)><colortype(0)>.<br>Dauer: 30 Sekunden",
+  "effects": [
+    "Erfolgreiche Ausführung von Neutral gewährt Stand der Sonne.",
+    "Dauer: 30 Sekunden"
+  ],
+  "role": "Healer",
+  "job": {
+    "id": 33,
+    "name": "Astrologe",
+    "abbreviation": "AST"
+  },
+  "unlock_level": 100,
+  "value": 0,
+  "icon": {
+    "id": 6123,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 99,
+  "source_class_job_id": 33
+}

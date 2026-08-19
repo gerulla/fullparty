@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 169,
+  "name": "Flèche empyréenne améliorée",
+  "description": "Permet aux effets additionnels de Ballade du mage, Péan martial et Menuet du Vagabond de se déclencher, lorsqu'ils ont été entonnés et que vous utilisez Flèche empyréenne avec succès.",
+  "description_macro": "Permet aux effets additionnels de <colortype(500)><edgecolortype(501)>Ballade du mage<edgecolortype(0)><colortype(0)>, <colortype(500)><edgecolortype(501)>Péan martial<edgecolortype(0)><colortype(0)> et <colortype(500)><edgecolortype(501)>Menuet du Vagabond<edgecolortype(0)><colortype(0)> de se déclencher, lorsqu'ils ont été entonnés et que vous utilisez <colortype(500)><edgecolortype(501)>Flèche empyréenne<edgecolortype(0)><colortype(0)> avec succès.",
+  "effects": [
+    "Permet aux effets additionnels de Ballade du mage, Péan martial et Menuet du Vagabond de se déclencher, lorsqu'ils ont été entonnés et que vous utilisez Flèche empyréenne avec succès."
+  ],
+  "role": "Physical Ranged DPS",
+  "job": {
+    "id": 23,
+    "name": "Barde",
+    "abbreviation": "BRD"
+  },
+  "unlock_level": 68,
+  "value": 0,
+  "icon": {
+    "id": 5310,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 24,
+  "source_class_job_id": 23
+}

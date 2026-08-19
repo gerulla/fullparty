@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 4518,
+  "name": "Shadow of Death",
+  "description": "Death prowls ever closer, resulting in KO when this effect expires. Effect removed upon taking Light-aspected damage.",
+  "effects": [
+    "Death prowls ever closer, resulting in KO when this effect expires. Effect removed upon taking Light-aspected damage."
+  ],
+  "classification": "debuff",
+  "icon": {
+    "id": 214289,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 2,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 200,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 24378,
+      "name": "Shadow of Death",
+      "description": "Delivers an attack with a potency of 300.\nAdditional Effect: Afflicts target with Death's Design, increasing damage you deal target by 10%\nDuration: 30s\nExtends duration of Death's Design by 30s to a maximum of 60s.\nAdditional Effect: Increases Soul Gauge by 10 if target is KO'd before effect expires",
+      "description_macro": "Delivers an attack with a potency of <if([gnum68==39],<if([gnum72>=60],300,240)>,240)>.<br><colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>Afflicts target with <colortype(506)><edgecolortype(507)>Death's Design<edgecolortype(0)><colortype(0)>, increasing damage you deal target by 10%<br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>30s<br>Extends duration of <colortype(506)><edgecolortype(507)>Death's Design<edgecolortype(0)><colortype(0)> by 30s to a maximum of 60s.<if([gnum68==39],<if([gnum72>=50],<br><colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>Increases <colortype(500)><edgecolortype(501)>Soul Gauge<edgecolortype(0)><colortype(0)> by 10 if target is KO'd before effect expires,)>,)>",
+      "unlock_level": 10,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 39,
+          "name": "Reaper",
+          "abbreviation": "RPR",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

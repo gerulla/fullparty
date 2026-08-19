@@ -1,0 +1,103 @@
+{
+  "kind": "ability",
+  "id": 34610,
+  "name": "参の牙【側撃】",
+  "description": "対象に物理攻撃。\u3000威力：340\n側面攻撃時威力：400\n鋭牙【側撃】が付与されている場合は全ての威力が100上昇する。\n追加効果：自身に「鋭牙【背撃】」を付与する。\n効果時間：60秒\n鋭牙【背撃】効果：参の牙【背撃】の威力を100上昇させる。\n他の「鋭牙」「大鋭牙」とは同時に付与されない。\n追加効果：「霊力ゲージ」を10上昇させる。\n発動条件：弐の牙【猛襲】命中時\n\n※このアクションはホットバーに登録することはできない。\n\u3000発動条件を満たすと弐の牙【猛襲】が参の牙【側撃】に変化する。",
+  "description_macro": "対象に物理攻撃。\u3000<colortype(504)><edgecolortype(505)>威力：<edgecolortype(0)><colortype(0)><if([gnum68==41],<if([gnum72>=84],340,320)>,320)><br><colortype(504)><edgecolortype(505)>側面攻撃時威力：<edgecolortype(0)><colortype(0)><if([gnum68==41],<if([gnum72>=84],400,380)>,380)><br>鋭牙【側撃】が付与されている場合は全ての威力が100上昇する。<br><colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)>自身に<colortype(500)><edgecolortype(501)>「鋭牙【背撃】」<edgecolortype(0)><colortype(0)>を付与する。<br><colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>60秒<br><colortype(504)><edgecolortype(505)>鋭牙【背撃】効果：<edgecolortype(0)><colortype(0)>参の牙【背撃】の威力を100上昇させる。<br>他の<colortype(500)><edgecolortype(501)>「鋭牙」<if([gnum68==41],<if([gnum72>=50],「大鋭牙」,)>,)><edgecolortype(0)><colortype(0)>とは同時に付与されない。<br><if([gnum68==41],<if([gnum72>=90],<colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)><colortype(500)><edgecolortype(501)>「霊力ゲージ」<edgecolortype(0)><colortype(0)>を10上昇させる。<br>,)>,)><colortype(504)><edgecolortype(505)>発動条件：<edgecolortype(0)><colortype(0)>弐の牙【猛襲】命中時<br><br><colortype(506)><edgecolortype(507)>※このアクションはホットバーに登録することはできない。<br>\u3000発動条件を満たすと弐の牙【猛襲】が参の牙【側撃】に変化する。<edgecolortype(0)><colortype(0)>",
+  "effects": [
+    "対象に物理攻撃。\u3000威力：340",
+    "側面攻撃時威力：400",
+    "鋭牙【側撃】が付与されている場合は全ての威力が100上昇する。",
+    "追加効果：自身に「鋭牙【背撃】」を付与する。",
+    "効果時間：60秒",
+    "鋭牙【背撃】効果：参の牙【背撃】の威力を100上昇させる。",
+    "他の「鋭牙」「大鋭牙」とは同時に付与されない。",
+    "追加効果：「霊力ゲージ」を10上昇させる。",
+    "発動条件：弐の牙【猛襲】命中時",
+    "※このアクションはホットバーに登録することはできない。",
+    "発動条件を満たすと弐の牙【猛襲】が参の牙【側撃】に変化する。"
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 41,
+    "name": "ヴァイパー",
+    "abbreviation": "VPR"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 30,
+  "icon": {
+    "id": 3705,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 3,
+    "name": "ウェポンスキル"
+  },
+  "attack_type": {
+    "id": 4294967295,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 2.5,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 58,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 0,
+      "value": 0
+    },
+    "secondary": {
+      "type_id": 136,
+      "value": 3
+    }
+  },
+  "range": {
+    "target_yalms": -1,
+    "effect_yalms": 0,
+    "cast_type": 1
+  },
+  "targeting": {
+    "self": false,
+    "party": false,
+    "alliance": false,
+    "hostile": true,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": 34608,
+    "preserves_combo": false
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": {
+      "id": 116,
+      "status": {
+        "id": 3645,
+        "name": "鋭牙【側撃】",
+        "description": "牙の構えから繰り出す特定のアクションの威力を上昇させる状態。",
+        "icon_id": 213751,
+        "max_stacks": 0
+      }
+    }
+  },
+  "metadata": {
+    "aspect_id": 7,
+    "behavior_type": 0,
+    "class_job_category_id": 196,
+    "source_class_job_id": 0,
+    "is_role_action": false,
+    "is_player_action": false,
+    "is_derived_action": true,
+    "equivalence_group": 0
+  }
+}

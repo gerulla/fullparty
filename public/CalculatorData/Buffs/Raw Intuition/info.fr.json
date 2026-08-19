@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 735,
+  "name": "Intuition pure",
+  "description": "Absorbe des PV lorsque des techniques d'arme touchent et réduit les dégâts subits et les dégâts reçus sont réduits.",
+  "effects": [
+    "Absorbe des PV lorsque des techniques d'arme touchent et réduit les dégâts subits et les dégâts reçus sont réduits."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 212555,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 30,
+  "parameter": {
+    "effect": 0,
+    "modifier": -20
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 3551,
+      "name": "Intuition pure",
+      "description": "Réduit de 10% les dégâts subis.\nDurée : 6s\nEffet additionnel : absorbe des PV quand vous infligez des dégâts avec une technique d'arme.\nPuissance : 400\nPartage le même temps de recharge que Exaltation naissante.",
+      "description_macro": "Réduit de 10% les dégâts subis.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 6s<br><colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> absorbe des PV quand vous infligez des dégâts avec une technique d'arme.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> 400<if([gnum68==21],<if([gnum72>=76],<br>Partage le même temps de recharge que <colortype(500)><edgecolortype(501)>Exaltation naissante<edgecolortype(0)><colortype(0)>.,)>,)>",
+      "unlock_level": 56,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Tank"
+      ],
+      "jobs": [
+        {
+          "id": 21,
+          "name": "Guerrier",
+          "abbreviation": "GUE",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

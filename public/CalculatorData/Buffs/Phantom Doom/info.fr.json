@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 4273,
+  "name": "Châtiment",
+  "description": "Mort certaine lorsque le compteur atteint zéro.",
+  "effects": [
+    "Mort certaine lorsque le compteur atteint zéro."
+  ],
+  "classification": "debuff",
+  "icon": {
+    "id": 215503,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 2,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 41642,
+      "name": "Châtiment",
+      "description": "A une chance d'infliger Châtiment a la cible.\nDurée : de 8 à 60s\nChâtiment : à la fin de l'effet, la cible tombe inconsciente.\nSans effet si la cible est hors-combat.\nL'effet est annulé si la cible quitte le combat.\nPartage le même temps de recharge que Récupération.",
+      "description_macro": "A une chance d'infliger <colortype(500)><edgecolortype(501)>Châtiment<edgecolortype(0)><colortype(0)> a la cible.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> de 8 à 60s<br><colortype(506)><edgecolortype(507)>Châtiment<nbsp>:<edgecolortype(0)><colortype(0)> à la fin de l'effet, la cible tombe in<->cons<->cien<->te.<br>Sans effet si la cible est hors-combat.<br>L'effet est annulé si la cible quitte le combat.<br>Partage le même temps de recharge que <colortype(500)><edgecolortype(501)>Récupération<edgecolortype(0)><colortype(0)>.",
+      "unlock_level": 0,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Phantom Jobs"
+      ],
+      "jobs": [
+        {
+          "id": 11,
+          "name": "Phantom Devin fantôme",
+          "abbreviation": "Devin fant.",
+          "is_phantom": true
+        }
+      ]
+    }
+  ]
+}

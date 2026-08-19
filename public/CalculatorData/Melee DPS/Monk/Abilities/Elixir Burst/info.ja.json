@@ -1,0 +1,92 @@
+{
+  "kind": "ability",
+  "id": 36948,
+  "name": "真空波",
+  "description": "自身の周囲の敵に範囲物理攻撃。\u3000威力：900\n2体目以降の対象への威力は35％減少する。\n追加効果：自身に「陰の闘気」を付与する。\n追加効果：自身に「零の型」を付与する。\u3000効果時間：30秒\n零の型効果：発動条件に「型」を持つウェポンスキルを、「型」が付いていなくても実行することができるようになる。\nその場合には追加効果も発動させることができる。\n発動条件：自身に同じ「チャクラ」が3つ付与されている\n\n※このアクションはホットバーに登録することはできない。\n\u3000発動条件を満たすと必殺技が真空波に変化する。",
+  "description_macro": "自身の周囲の敵に範囲物理攻撃。\u3000<colortype(504)><edgecolortype(505)>威力：<edgecolortype(0)><colortype(0)>900<br>2体目以降の対象への威力は35％減少する。<br><colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)>自身に<colortype(500)><edgecolortype(501)>「陰の闘気」<edgecolortype(0)><colortype(0)>を付与する。<br><colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)>自身に<colortype(500)><edgecolortype(501)>「零の型」<edgecolortype(0)><colortype(0)>を付与する。\u3000<colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>30秒<br><colortype(504)><edgecolortype(505)>零の型効果：<edgecolortype(0)><colortype(0)>発動条件に「型」を持つウェポンスキルを、「型」が付いていなくても実行することができるようになる。<br>その場合には追加効果も発動させることができる。<br><colortype(504)><edgecolortype(505)>発動条件：<edgecolortype(0)><colortype(0)>自身に同じ<colortype(500)><edgecolortype(501)>「チャクラ」<edgecolortype(0)><colortype(0)>が3つ付与されている<br><br><colortype(506)><edgecolortype(507)>※このアクションはホットバーに登録することはできない。<br>\u3000発動条件を満たすと必殺技が真空波に変化する。<edgecolortype(0)><colortype(0)>",
+  "effects": [
+    "自身の周囲の敵に範囲物理攻撃。\u3000威力：900",
+    "2体目以降の対象への威力は35％減少する。",
+    "追加効果：自身に「陰の闘気」を付与する。",
+    "追加効果：自身に「零の型」を付与する。\u3000効果時間：30秒",
+    "零の型効果：発動条件に「型」を持つウェポンスキルを、「型」が付いていなくても実行することができるようになる。",
+    "その場合には追加効果も発動させることができる。",
+    "発動条件：自身に同じ「チャクラ」が3つ付与されている",
+    "※このアクションはホットバーに登録することはできない。",
+    "発動条件を満たすと必殺技が真空波に変化する。"
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 20,
+    "name": "モンク",
+    "abbreviation": "MNK"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 92,
+  "icon": {
+    "id": 2985,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 3,
+    "name": "ウェポンスキル"
+  },
+  "attack_type": {
+    "id": 4294967295,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 2.5,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 58,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 79,
+      "value": 4
+    },
+    "secondary": {
+      "type_id": 62,
+      "value": 577
+    }
+  },
+  "range": {
+    "target_yalms": 0,
+    "effect_yalms": 5,
+    "cast_type": 2
+  },
+  "targeting": {
+    "self": true,
+    "party": false,
+    "alliance": false,
+    "hostile": false,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 7,
+    "behavior_type": 0,
+    "class_job_category_id": 21,
+    "source_class_job_id": 0,
+    "is_role_action": false,
+    "is_player_action": false,
+    "is_derived_action": true,
+    "equivalence_group": 0
+  }
+}

@@ -1,0 +1,88 @@
+{
+  "kind": "ability",
+  "id": 2260,
+  "name": "Ninjutsu",
+  "description": "Executes a specific ninjutsu action coinciding with the combination of mudra made immediately beforehand.\nIf any other action is used before the mudra are combined and the ninjutsu executed, Ninjutsu will fail.\nTriggers the cooldown of weaponskills, mudra, and Ninjutsu upon execution.\nConversely, execution of weaponskills triggers the cooldown of this action.\nRestores 2 charges to all mudra when Hide is executed while outside of combat.",
+  "description_macro": "Executes a specific ninjutsu action coinciding with the combination of mudra made immediately beforehand.<br>If any other action is used before the mudra are combined and the ninjutsu executed, <colortype(500)><edgecolortype(501)>Ninjutsu<edgecolortype(0)><colortype(0)> will fail.<br>Triggers the cooldown of weaponskills, mudra, and <colortype(500)><edgecolortype(501)>Ninjutsu<edgecolortype(0)><colortype(0)> upon execution.<br>Conversely, execution of weaponskills triggers the cooldown of this action.<br>Restores 2 charges to all mudra when <colortype(500)><edgecolortype(501)>Hide<edgecolortype(0)><colortype(0)> is executed while outside of combat.",
+  "effects": [
+    "Executes a specific ninjutsu action coinciding with the combination of mudra made immediately beforehand.",
+    "If any other action is used before the mudra are combined and the ninjutsu executed, Ninjutsu will fail.",
+    "Triggers the cooldown of weaponskills, mudra, and Ninjutsu upon execution.",
+    "Conversely, execution of weaponskills triggers the cooldown of this action.",
+    "Restores 2 charges to all mudra when Hide is executed while outside of combat."
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 30,
+    "name": "Ninja",
+    "abbreviation": "NIN"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 30,
+  "icon": {
+    "id": 2904,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 4,
+    "name": "Ability"
+  },
+  "attack_type": {
+    "id": 0,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 1.5,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 58,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 10,
+      "value": 496
+    },
+    "secondary": {
+      "type_id": 32,
+      "value": 496
+    }
+  },
+  "range": {
+    "target_yalms": 0,
+    "effect_yalms": 0,
+    "cast_type": 1
+  },
+  "targeting": {
+    "self": true,
+    "party": false,
+    "alliance": false,
+    "hostile": false,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 0,
+    "behavior_type": 0,
+    "class_job_category_id": 92,
+    "source_class_job_id": 30,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

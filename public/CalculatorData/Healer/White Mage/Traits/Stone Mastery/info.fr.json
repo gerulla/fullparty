@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 179,
+  "name": "Maîtrise de Terre",
+  "description": "Remplace Terre par Extra Terre.",
+  "description_macro": "Remplace <colortype(500)><edgecolortype(501)>Terre<edgecolortype(0)><colortype(0)> par <colortype(500)><edgecolortype(501)>Extra Terre<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Remplace Terre par Extra Terre."
+  ],
+  "role": "Healer",
+  "job": {
+    "id": 24,
+    "name": "Mage Blanc",
+    "abbreviation": "MBL"
+  },
+  "unlock_level": 18,
+  "value": 0,
+  "icon": {
+    "id": 5333,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 53,
+  "source_class_job_id": 6
+}

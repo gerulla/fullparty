@@ -1,0 +1,35 @@
+{
+  "kind": "trait",
+  "id": 661,
+  "name": "アクション威力アップIII",
+  "description": "特定のアクションの威力を上昇させる。\n\n双刃旋の威力：300\n風断ちの威力：240\n旋風刃の威力：220\n風魔手裏剣の威力：500\n雷遁の術の威力：740\n水遁の術の威力：580\n強甲破点突の威力：240\n六道輪廻の威力：400\n命水効果中の六道輪廻の威力：550\n月影雷獣爪の威力：700\n月影雷獣牙の威力：700",
+  "description_macro": "特定のアクションの威力を上昇させる。<br><br><colortype(504)><edgecolortype(505)>双刃旋の威力：<edgecolortype(0)><colortype(0)>300<br><colortype(504)><edgecolortype(505)>風断ちの威力：<edgecolortype(0)><colortype(0)>240<br><colortype(504)><edgecolortype(505)>旋風刃の威力：<edgecolortype(0)><colortype(0)>220<br><colortype(504)><edgecolortype(505)>風魔手裏剣の威力：<edgecolortype(0)><colortype(0)>500<br><colortype(504)><edgecolortype(505)>雷遁の術の威力：<edgecolortype(0)><colortype(0)>740<br><colortype(504)><edgecolortype(505)>水遁の術の威力：<edgecolortype(0)><colortype(0)>580<br><colortype(504)><edgecolortype(505)>強甲破点突の威力：<edgecolortype(0)><colortype(0)>240<br><colortype(504)><edgecolortype(505)>六道輪廻の威力：<edgecolortype(0)><colortype(0)>400<br><colortype(504)><edgecolortype(505)>命水効果中の六道輪廻の威力：<edgecolortype(0)><colortype(0)>550<br><colortype(504)><edgecolortype(505)>月影雷獣爪の威力：<edgecolortype(0)><colortype(0)>700<br><colortype(504)><edgecolortype(505)>月影雷獣牙の威力：<edgecolortype(0)><colortype(0)>700",
+  "effects": [
+    "特定のアクションの威力を上昇させる。",
+    "双刃旋の威力：300",
+    "風断ちの威力：240",
+    "旋風刃の威力：220",
+    "風魔手裏剣の威力：500",
+    "雷遁の術の威力：740",
+    "水遁の術の威力：580",
+    "強甲破点突の威力：240",
+    "六道輪廻の威力：400",
+    "命水効果中の六道輪廻の威力：550",
+    "月影雷獣爪の威力：700",
+    "月影雷獣牙の威力：700"
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 30,
+    "name": "忍者",
+    "abbreviation": "NIN"
+  },
+  "unlock_level": 94,
+  "value": 0,
+  "icon": {
+    "id": 6803,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 92,
+  "source_class_job_id": 30
+}

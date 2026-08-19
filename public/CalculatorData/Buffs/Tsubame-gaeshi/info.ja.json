@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 4216,
+  "name": "燕返し実行可",
+  "description": "燕返しを実行できる状態。",
+  "effects": [
+    "燕返しを実行できる状態。"
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 213315,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 111,
+  "source_abilities": [
+    {
+      "id": 16483,
+      "name": "燕返し",
+      "description": "直前に実行した居合術を再発動する。\nただし、彼岸花を除く。\n発動条件：「燕返し実行可」効果中",
+      "description_macro": "直前に実行した居合術を再発動する。<br>ただし、彼岸花を除く。<br><colortype(504)><edgecolortype(505)>発動条件：<edgecolortype(0)><colortype(0)><colortype(500)><edgecolortype(501)>「燕返し実行可」<edgecolortype(0)><colortype(0)>効果中",
+      "unlock_level": 74,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 34,
+          "name": "侍",
+          "abbreviation": "SAM",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

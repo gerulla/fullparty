@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 4794,
+  "name": "おどる：つるぎのまい",
+  "description": "「つるぎのまい」を踊れる状態。",
+  "effects": [
+    "「つるぎのまい」を踊れる状態。"
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 229968,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 46598,
+      "name": "おどる",
+      "description": "自身に\n「おどる：つるぎのまい」\n「おどる：みわくのタンゴ」\n「おどる：ふたりのジルバ」\n「おどる：ミステリーワルツ」\nのうち、いずれかの「おどる」ステータスを付与する。\nおどるステータスの効果中は、対応するアクションが実行可能となる。\nつるぎのまい効果：対象に高威力の物理攻撃。\nみわくのタンゴ効果：対象に無属性魔法攻撃を行い、さらに時間を停止させる。\nふたりのジルバ効果：対象に無属性魔法攻撃を行い、麻痺を付与する。さらに与えたダメージの一部をＨＰとして吸収する。\nミステリーワルツ効果：対象に無属性魔法攻撃を行い、暗闇を付与する。さらに自身のＭＰを回復する。",
+      "description_macro": "自身に<br><colortype(500)><edgecolortype(501)>「おどる：つるぎのまい」<br>「おどる：みわくのタンゴ」<br>「おどる：ふたりのジルバ」<br>「おどる：ミステリーワルツ」<br><edgecolortype(0)><colortype(0)>のうち、いずれかの<colortype(500)><edgecolortype(501)>「おどる」<edgecolortype(0)><colortype(0)>ステータスを付与する。<br>おどるステータスの効果中は、対応するアクションが実行可能となる。<br><colortype(504)><edgecolortype(505)>つるぎのまい効果：<edgecolortype(0)><colortype(0)>対象に高威力の物理攻撃。<br><colortype(504)><edgecolortype(505)>みわくのタンゴ効果：<edgecolortype(0)><colortype(0)>対象に無属性魔法攻撃を行い、さらに時間を停止させる。<br><colortype(504)><edgecolortype(505)>ふたりのジルバ効果：<edgecolortype(0)><colortype(0)>対象に無属性魔法攻撃を行い、麻痺を付与する。さらに与えたダメージの一部をＨＰとして吸収する。<br><colortype(504)><edgecolortype(505)>ミステリーワルツ効果：<edgecolortype(0)><colortype(0)>対象に無属性魔法攻撃を行い、暗闇を付与する。さらに自身のＭＰを回復する。",
+      "unlock_level": 0,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Phantom Jobs"
+      ],
+      "jobs": [
+        {
+          "id": 15,
+          "name": "Phantom サポート踊り子",
+          "abbreviation": "Ph. Dancer",
+          "is_phantom": true
+        }
+      ]
+    }
+  ]
+}

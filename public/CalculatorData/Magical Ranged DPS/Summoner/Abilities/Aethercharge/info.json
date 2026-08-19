@@ -1,0 +1,87 @@
+{
+  "kind": "ability",
+  "id": 25800,
+  "name": "Aethercharge",
+  "description": "Grants Aethercharge, increasing the potency of Ruin, Ruin II, and Ruin III by 50, and Outburst by 20.\nDuration: 15s\nAdditional Effect: Grants Topaz Arcanum\\\nCan only be executed in combat and while Carbuncle is summoned.",
+  "description_macro": "Grants <colortype(506)><edgecolortype(507)>Aethercharge<edgecolortype(0)><colortype(0)>, increasing the potency of <colortype(500)><edgecolortype(501)>Ruin<edgecolortype(0)><colortype(0)>, <colortype(500)><edgecolortype(501)>Ruin II<edgecolortype(0)><colortype(0)>, and <colortype(500)><edgecolortype(501)>Ruin III<edgecolortype(0)><colortype(0)> by 50, and <colortype(500)><edgecolortype(501)>Outburst<edgecolortype(0)><colortype(0)> by 20.<br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>15s<br><colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>Grants <if([gnum72>=22],<if([gnum68==26],<colortype(506)><edgecolortype(507)>Ruby Arcanum<edgecolortype(0)><colortype(0)>\\, <colortype(506)><edgecolortype(507)>Topaz Arcanum<edgecolortype(0)><colortype(0)>\\, and <colortype(506)><edgecolortype(507)>Emerald Arcanum<edgecolortype(0)><colortype(0)>,<if([gnum68==27],<colortype(506)><edgecolortype(507)>Ruby Arcanum<edgecolortype(0)><colortype(0)>\\, <colortype(506)><edgecolortype(507)>Topaz Arcanum<edgecolortype(0)><colortype(0)>\\, and <colortype(506)><edgecolortype(507)>Emerald Arcanum<edgecolortype(0)><colortype(0)>,<if([gnum72>=15],<if([gnum68==26],<colortype(506)><edgecolortype(507)>Ruby Arcanum<edgecolortype(0)><colortype(0)> and <colortype(506)><edgecolortype(507)>Topaz Arcanum<edgecolortype(0)><colortype(0)>,<if([gnum68==27],<colortype(506)><edgecolortype(507)>Ruby Arcanum<edgecolortype(0)><colortype(0)> and <colortype(506)><edgecolortype(507)>Topaz Arcanum<edgecolortype(0)><colortype(0)>,<colortype(506)><edgecolortype(507)>Ruby Arcanum<edgecolortype(0)><colortype(0)>)>)>,<colortype(506)><edgecolortype(507)>Ruby Arcanum<edgecolortype(0)><colortype(0)>)>)>)>,<if([gnum72>=15],<if([gnum68==26],<colortype(506)><edgecolortype(507)>Ruby Arcanum<edgecolortype(0)><colortype(0)> and <colortype(506)><edgecolortype(507)>Topaz Arcanum<edgecolortype(0)><colortype(0)>,<if([gnum68==27],<colortype(506)><edgecolortype(507)>Ruby Arcanum<edgecolortype(0)><colortype(0)> and <colortype(506)><edgecolortype(507)>Topaz Arcanum<edgecolortype(0)><colortype(0)>,<colortype(506)><edgecolortype(507)>Ruby Arcanum<edgecolortype(0)><colortype(0)>)>)>,<colortype(506)><edgecolortype(507)>Ruby Arcanum<edgecolortype(0)><colortype(0)>)>)><br>Can only be executed in combat and while Carbuncle is summoned.",
+  "effects": [
+    "Grants Aethercharge, increasing the potency of Ruin, Ruin II, and Ruin III by 50, and Outburst by 20.",
+    "Duration: 15s",
+    "Additional Effect: Grants Topaz Arcanum\\",
+    "Can only be executed in combat and while Carbuncle is summoned."
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 27,
+    "name": "Summoner",
+    "abbreviation": "SMN"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 6,
+  "icon": {
+    "id": 2751,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 2,
+    "name": "Spell"
+  },
+  "attack_type": {
+    "id": 5,
+    "name": "魔法"
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 60,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 10,
+    "additional_cooldown_group": 58,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 0,
+      "value": 0
+    },
+    "secondary": {
+      "type_id": 124,
+      "value": 474
+    }
+  },
+  "range": {
+    "target_yalms": 0,
+    "effect_yalms": 0,
+    "cast_type": 1
+  },
+  "targeting": {
+    "self": true,
+    "party": false,
+    "alliance": false,
+    "hostile": false,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 7,
+    "behavior_type": 0,
+    "class_job_category_id": 69,
+    "source_class_job_id": 26,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

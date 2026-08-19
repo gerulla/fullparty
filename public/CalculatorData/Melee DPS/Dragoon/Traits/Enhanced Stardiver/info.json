@@ -1,0 +1,26 @@
+{
+  "kind": "trait",
+  "id": 583,
+  "name": "Enhanced Stardiver",
+  "description": "Grants Starcross Ready upon executing Stardiver.\nDuration: 20s\nEffect ends when Life of the Dragon expires.",
+  "description_macro": "Grants <colortype(506)><edgecolortype(507)>Starcross Ready<edgecolortype(0)><colortype(0)> upon executing <colortype(500)><edgecolortype(501)>Stardiver<edgecolortype(0)><colortype(0)>.<br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>20s<br>Effect ends when <colortype(506)><edgecolortype(507)>Life of the Dragon<edgecolortype(0)><colortype(0)> expires.",
+  "effects": [
+    "Grants Starcross Ready upon executing Stardiver.",
+    "Duration: 20s",
+    "Effect ends when Life of the Dragon expires."
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 22,
+    "name": "Dragoon",
+    "abbreviation": "DRG"
+  },
+  "unlock_level": 100,
+  "value": 0,
+  "icon": {
+    "id": 5298,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 23,
+  "source_class_job_id": 22
+}

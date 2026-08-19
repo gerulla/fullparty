@@ -1,0 +1,95 @@
+{
+  "kind": "ability",
+  "id": 37029,
+  "name": "オラクル",
+  "description": "対象とその周囲の敵に無属性範囲魔法攻撃。\u3000威力：860\n2体目以降の対象への威力は50％減少する。\n発動条件：「オラクル実行可」効果中",
+  "description_macro": "対象とその周囲の敵に無属性範囲魔法攻撃。\u3000<colortype(504)><edgecolortype(505)>威力：<edgecolortype(0)><colortype(0)>860<br>2体目以降の対象への威力は50％減少する。<br><colortype(504)><edgecolortype(505)>発動条件：<edgecolortype(0)><colortype(0)><colortype(500)><edgecolortype(501)>「オラクル実行可」<edgecolortype(0)><colortype(0)>効果中",
+  "effects": [
+    "対象とその周囲の敵に無属性範囲魔法攻撃。\u3000威力：860",
+    "2体目以降の対象への威力は50％減少する。",
+    "発動条件：「オラクル実行可」効果中"
+  ],
+  "role": "Healer",
+  "job": {
+    "id": 33,
+    "name": "占星術師",
+    "abbreviation": "AST"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 92,
+  "icon": {
+    "id": 3566,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 4,
+    "name": "アビリティ"
+  },
+  "attack_type": {
+    "id": 5,
+    "name": "魔法"
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 1,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 5,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 10,
+      "value": 3893
+    },
+    "secondary": {
+      "type_id": 32,
+      "value": 3893
+    }
+  },
+  "range": {
+    "target_yalms": 25,
+    "effect_yalms": 5,
+    "cast_type": 2
+  },
+  "targeting": {
+    "self": false,
+    "party": false,
+    "alliance": false,
+    "hostile": true,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": {
+      "id": 184,
+      "status": {
+        "id": 3893,
+        "name": "オラクル実行可",
+        "description": "オラクルを実行できる状態。",
+        "icon_id": 213264,
+        "max_stacks": 0
+      }
+    }
+  },
+  "metadata": {
+    "aspect_id": 7,
+    "behavior_type": 0,
+    "class_job_category_id": 99,
+    "source_class_job_id": 33,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

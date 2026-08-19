@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 4231,
+  "name": "Défense",
+  "description": "Certains dégâts subis sont réduits.",
+  "effects": [
+    "Certains dégâts subis sont réduits."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 229901,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": -60
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 41588,
+      "name": "Défense",
+      "description": "Réduit de 60% vos dégâts subis.\nDurée : 10s",
+      "description_macro": "Réduit de <if([gnum108>=4],90％,60%)> vos dégâts subis.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 10s",
+      "unlock_level": 0,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Phantom Jobs"
+      ],
+      "jobs": [
+        {
+          "id": 1,
+          "name": "Phantom Paladin fantôme",
+          "abbreviation": "Paladin fant.",
+          "is_phantom": true
+        }
+      ]
+    }
+  ]
+}

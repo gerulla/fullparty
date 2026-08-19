@@ -44,6 +44,12 @@
     "applications": {
         "distribution_title": "Bewerbungs-Verteilung",
         "distribution_subtitle": "Aktuelle Bewerbungsergebnisse über alle Runs der Gruppe.",
+        "daily_title": "Tägliche Bewerbungen",
+        "daily_subtitle": "Pro Tag eingereichte Bewerbungen der letzten 7 Tage.",
+        "daily_badge": "Letzte 7 Tage",
+        "daily_tooltip": "{date}: {count} Bewerbungen eingereicht",
+        "daily_empty_title": "Keine Bewerbungen in dieser Woche",
+        "daily_empty_description": "Neue Bewerbungen aus den letzten sieben Tagen erscheinen hier.",
         "volume_title": "Bewerbungs-Volumen",
         "volume_subtitle": "Monatliches Bewerbungsvolumen der letzten 12 Monate.",
         "total_label": "Bewerbungen",

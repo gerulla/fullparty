@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 218,
+  "name": "バーサクマスタリー",
+  "description": "バーサクが原初の解放に変化する。",
+  "description_macro": "バーサクが原初の解放に変化する。",
+  "effects": [
+    "バーサクが原初の解放に変化する。"
+  ],
+  "role": "Tank",
+  "job": {
+    "id": 21,
+    "name": "戦士",
+    "abbreviation": "WAR"
+  },
+  "unlock_level": 70,
+  "value": 0,
+  "icon": {
+    "id": 5260,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 22,
+  "source_class_job_id": 21
+}

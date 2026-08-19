@@ -1,0 +1,31 @@
+{
+  "kind": "trait",
+  "id": 672,
+  "name": "Actions améliorées",
+  "description": "Augmente la puissance de certaines actions.\n\nPuissance de Feu en rouge : 310\nPuissance de Vent en vert : 350\nPuissance d'Eau en bleu : 390\nPuissance d'Imagi Pompon : 700\nPuissance d'Imagi Ailes : 700\nPuissance de Mognum opus : 800\nPuissance de Tamponnage Marteau : 420",
+  "description_macro": "Augmente la puissance de certaines actions.<br><br><colortype(506)><edgecolortype(507)>Puissance de Feu en rouge<nbsp>:<edgecolortype(0)><colortype(0)> 310<br><colortype(506)><edgecolortype(507)>Puissance de Vent en vert<nbsp>:<edgecolortype(0)><colortype(0)> 350<br><colortype(506)><edgecolortype(507)>Puissance d'Eau en bleu<nbsp>:<edgecolortype(0)><colortype(0)> 390<br><colortype(506)><edgecolortype(507)>Puissance d'Imagi Pompon<nbsp>:<edgecolortype(0)><colortype(0)> 700<br><colortype(506)><edgecolortype(507)>Puissance d'Imagi Ailes<nbsp>:<edgecolortype(0)><colortype(0)> 700<br><colortype(506)><edgecolortype(507)>Puissance de Mognum opus<nbsp>:<edgecolortype(0)><colortype(0)> 800<br><colortype(506)><edgecolortype(507)>Puissance de Tamponnage Marteau<nbsp>:<edgecolortype(0)><colortype(0)> 420",
+  "effects": [
+    "Augmente la puissance de certaines actions.",
+    "Puissance de Feu en rouge : 310",
+    "Puissance de Vent en vert : 350",
+    "Puissance d'Eau en bleu : 390",
+    "Puissance d'Imagi Pompon : 700",
+    "Puissance d'Imagi Ailes : 700",
+    "Puissance de Mognum opus : 800",
+    "Puissance de Tamponnage Marteau : 420"
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 42,
+    "name": "Pictomancien",
+    "abbreviation": "PIC"
+  },
+  "unlock_level": 54,
+  "value": 0,
+  "icon": {
+    "id": 6829,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 197,
+  "source_class_job_id": 42
+}

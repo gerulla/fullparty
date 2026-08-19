@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 3884,
+  "name": "Séraphisme",
+  "description": "Des PV sont récupérés périodiquement par vous et les équipiers alentour.",
+  "effects": [
+    "Des PV sont récupérés périodiquement par vous et les équipiers alentour."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 212820,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 50,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 29,
+  "source_abilities": [
+    {
+      "id": 37014,
+      "name": "Séraphisme",
+      "description": "Restaure périodiquement vos PV et ceux des équipiers dans un rayon de 50 yalms.\nPuissance : 100 Durée : 20s\nEffet additionnel : Traité du réconfort devient Manifestation et Traité de l'exultation devient Accession.\nEn outre, réinitialise le temps de recharge de Stratagème de l'urgence et le réduit à 1s.\nCondition : en combat et fée ou Séraphin invoqués.\nNe peut être cumulé avec Dissipation.",
+      "description_macro": "Restaure périodiquement vos PV et ceux des équipiers dans un rayon de 50 yalms.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> 100 <colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 20s<br><colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> Traité du réconfort devient Manifestation et Traité de l'exultation devient Accession.<br>En outre, réinitialise le temps de recharge de Stratagème de l'urgence et le réduit à 1s.<br><colortype(506)><edgecolortype(507)>Condition<nbsp>:<edgecolortype(0)><colortype(0)> en combat et fée ou Séraphin invoqués.<br>Ne peut être cumulé avec Dissipation.",
+      "unlock_level": 100,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Healer"
+      ],
+      "jobs": [
+        {
+          "id": 28,
+          "name": "Érudit",
+          "abbreviation": "ÉRU",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

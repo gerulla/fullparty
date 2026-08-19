@@ -1,0 +1,22 @@
+{
+  "kind": "trait",
+  "id": 2,
+  "name": "Enhanced Pray",
+  "description": "Increases the healing potency of Pray to 5,000.",
+  "description_macro": "Increases the healing potency of <colortype(500)><edgecolortype(501)>Pray<edgecolortype(0)><colortype(0)> to 5,000.",
+  "effects": [
+    "Increases the healing potency of Pray to 5,000."
+  ],
+  "role": "Phantom Jobs",
+  "job": {
+    "id": 1,
+    "name": "Phantom Knight",
+    "abbreviation": "Ph. Knight"
+  },
+  "is_phantom_trait": true,
+  "unlock_level": 5,
+  "icon": {
+    "id": 82202,
+    "file": "icon.png"
+  }
+}

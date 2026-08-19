@@ -1,0 +1,25 @@
+{
+  "kind": "trait",
+  "id": 417,
+  "name": "シェイクオフ効果アップ",
+  "description": "シェイクオフ実行時に、対象のＨＰを回復させる。\n回復力：300",
+  "description_macro": "シェイクオフ実行時に、対象のＨＰを回復させる。<br><colortype(504)><edgecolortype(505)>回復力：<edgecolortype(0)><colortype(0)>300",
+  "effects": [
+    "シェイクオフ実行時に、対象のＨＰを回復させる。",
+    "回復力：300"
+  ],
+  "role": "Tank",
+  "job": {
+    "id": 21,
+    "name": "戦士",
+    "abbreviation": "WAR"
+  },
+  "unlock_level": 76,
+  "value": 0,
+  "icon": {
+    "id": 5266,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 22,
+  "source_class_job_id": 21
+}

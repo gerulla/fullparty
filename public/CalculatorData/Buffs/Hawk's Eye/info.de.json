@@ -1,0 +1,92 @@
+{
+  "kind": "combat_status",
+  "id": 123,
+  "name": "Falkenauge",
+  "description": "GESK ist erhöht und jede Attacke trifft garantiert.",
+  "effects": [
+    "GESK ist erhöht und jede Attacke trifft garantiert."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 210351,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 10
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 97,
+      "name": "Gewaltiger Schuss",
+      "description": "Du führst eine physische Attacke aus.\nAttacke-Wert: 160\nZusatzeffekt: 20 % Wahrscheinlichkeit auf Falkenauge\nDauer: 30 Sekunden",
+      "description_macro": "Du führst eine physische Attacke aus.<br>Attacke-Wert: 160<if([gnum72>=2],<if([gnum68==5],<br>Zusatzeffekt: 20 % Wahr<->schein<->lich<->keit auf <colortype(506)><edgecolortype(507)>Falkenauge<edgecolortype(0)><colortype(0)><br>Dauer: 30 Sekunden,<if([gnum68==23],<br>Zusatzeffekt: 20 % Wahr<->schein<->lich<->keit auf <colortype(506)><edgecolortype(507)>Falkenauge<edgecolortype(0)><colortype(0)><br>Dauer: 30 Sekunden,)>)>,)>",
+      "unlock_level": 1,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Physical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 23,
+          "name": "Barde",
+          "abbreviation": "BRD",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 106,
+      "name": "Pfeilsalve",
+      "description": "Du führst eine physische Attacke auf die fächerförmig vor dir stehenden Gegner aus.\nAttacke-Wert: 110\nZusatzeffekt: 20 % Wahrscheinlichkeit auf Falkenauge\nDauer: 30 Sekunden",
+      "description_macro": "Du führst eine physische Attacke auf die fächerförmig vor dir stehenden Gegner aus.<br>Attacke-Wert: 110<if([gnum72>=25],<if([gnum68==5],<br>Zusatzeffekt: 20 % Wahr<->schein<->lich<->keit auf <colortype(506)><edgecolortype(507)>Falkenauge<edgecolortype(0)><colortype(0)><br>Dauer: 30 Sekunden,<if([gnum68==23],<br>Zusatzeffekt: 20 % Wahr<->schein<->lich<->keit auf <colortype(506)><edgecolortype(507)>Falkenauge<edgecolortype(0)><colortype(0)><br>Dauer: 30 Sekunden,)>)>,)>",
+      "unlock_level": 18,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Physical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 23,
+          "name": "Barde",
+          "abbreviation": "BRD",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 25783,
+      "name": "Ladonsbiss",
+      "description": "Du führst eine physische Attacke auf die fächerförmig vor dir stehenden Gegner aus.\nAttacke-Wert: 140\nZusatzeffekt: 35 % Wahrscheinlichkeit auf Falkenauge\nDauer: 30 Sekunden",
+      "description_macro": "Du führst eine physische Attacke auf die fächerförmig vor dir stehenden Gegner aus.<br>Attacke-Wert: 140<br>Zusatzeffekt: 35<nbsp>% Wahr<->schein<->lich<->keit auf <colortype(506)><edgecolortype(507)>Falkenauge<edgecolortype(0)><colortype(0)><br>Dauer: 30 Sekunden",
+      "unlock_level": 82,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Physical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 23,
+          "name": "Barde",
+          "abbreviation": "BRD",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

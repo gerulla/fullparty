@@ -1,0 +1,25 @@
+{
+  "kind": "trait",
+  "id": 579,
+  "name": "Enhanced Riddle of Fire",
+  "description": "Grants Fire's Rumination upon executing Riddle of Fire.\nDuration: 20s",
+  "description_macro": "Grants <colortype(506)><edgecolortype(507)>Fire's Rumination<edgecolortype(0)><colortype(0)> upon executing <colortype(500)><edgecolortype(501)>Riddle of Fire<edgecolortype(0)><colortype(0)>.<br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>20s",
+  "effects": [
+    "Grants Fire's Rumination upon executing Riddle of Fire.",
+    "Duration: 20s"
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 20,
+    "name": "Monk",
+    "abbreviation": "MNK"
+  },
+  "unlock_level": 100,
+  "value": 0,
+  "icon": {
+    "id": 5527,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 21,
+  "source_class_job_id": 20
+}

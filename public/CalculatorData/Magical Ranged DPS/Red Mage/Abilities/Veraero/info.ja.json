@@ -1,0 +1,86 @@
+{
+  "kind": "ability",
+  "id": 7507,
+  "name": "ヴァルエアロ",
+  "description": "対象に風属性魔法攻撃。\u3000威力：360\n追加効果：「ホワイトマナ」を6上昇させる。\n追加効果（発動確率50％）：自身に「ヴァルストーン実行可」を付与する。\u3000効果時間：30秒",
+  "description_macro": "対象に風属性魔法攻撃。\u3000<colortype(504)><edgecolortype(505)>威力：<edgecolortype(0)><colortype(0)><if([gnum68==35],<if([gnum72>=62],360,300)>,300)><br><colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)><colortype(500)><edgecolortype(501)>「ホワイトマナ」<edgecolortype(0)><colortype(0)>を6上昇させる。<if([gnum72>=30],<if([gnum68==35],<br><colortype(504)><edgecolortype(505)>追加効果（発動確率50％）：<edgecolortype(0)><colortype(0)>自身に<colortype(500)><edgecolortype(501)>「ヴァルストーン実行可」<edgecolortype(0)><colortype(0)>を付与する。\u3000<colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>30秒,)>,)>",
+  "effects": [
+    "対象に風属性魔法攻撃。\u3000威力：360",
+    "追加効果：「ホワイトマナ」を6上昇させる。",
+    "追加効果（発動確率50％）：自身に「ヴァルストーン実行可」を付与する。\u3000効果時間：30秒"
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 35,
+    "name": "赤魔道士",
+    "abbreviation": "RDM"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 10,
+  "icon": {
+    "id": 3205,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 2,
+    "name": "魔法"
+  },
+  "attack_type": {
+    "id": 5,
+    "name": "魔法"
+  },
+  "timing": {
+    "cast_seconds": 5,
+    "recast_seconds": 2.5,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 58,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 3,
+      "value": 3
+    },
+    "secondary": {
+      "type_id": 63,
+      "value": 483
+    }
+  },
+  "range": {
+    "target_yalms": 25,
+    "effect_yalms": 0,
+    "cast_type": 1
+  },
+  "targeting": {
+    "self": false,
+    "party": false,
+    "alliance": false,
+    "hostile": true,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": false
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 3,
+    "behavior_type": 0,
+    "class_job_category_id": 112,
+    "source_class_job_id": 35,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

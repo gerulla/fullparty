@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 3849,
+  "name": "Dokumori",
+  "description": "Les dégâts reçus sont augmentés.",
+  "effects": [
+    "Les dégâts reçus sont augmentés."
+  ],
+  "classification": "debuff",
+  "icon": {
+    "id": 212920,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 2,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 50,
+  "parameter": {
+    "effect": 0,
+    "modifier": 10
+  },
+  "class_job_category_id": 92,
+  "source_abilities": [
+    {
+      "id": 36957,
+      "name": "Dokumori",
+      "description": "Effectue une attaque physique dans une zone en éventail vers la cible.\nPuissance : 400\nEffet additionnel : augmente de 5% les dégâts subis par la cible.\nDurée : 20s\nEffet additionnel : permet d'obtenir un plus grand nombre d'objets une fois l'ennemi vaincu, si l'action réussit.\nEffet additionnel : remplit la Jauge de Ninki de 40.\nEffet additionnel : vous octroie Technique interdite.\nDurée : 30s",
+      "description_macro": "Effectue une attaque physique dans une zone en éventail vers la cible.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> 400<br><colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> augmente de 5% les dégâts subis par la cible.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 20s<br><colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> permet d'obtenir un plus grand nombre d'objets une fois l'ennemi vaincu, si l'action réussit.<br><colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> remplit la <colortype(502)><edgecolortype(503)>Jauge de Ninki<edgecolortype(0)><colortype(0)> de 40.<br><if([gnum68==30],<if([gnum72>=96],<colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> vous octroie <colortype(500)><edgecolortype(501)>Technique interdite<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 30s,)>,)>",
+      "unlock_level": 66,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 30,
+          "name": "Ninja",
+          "abbreviation": "NIN",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

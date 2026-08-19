@@ -1,0 +1,29 @@
+{
+  "kind": "trait",
+  "id": 668,
+  "name": "Actions améliorées",
+  "description": "Augmente la puissance de certaines actions.\n\nPuissance de Flèche empyréenne : 260\nPuissance de Vent venimeux : 400\nPuissance de Flèche rayonnante : 280\nPuissance de Tir éclatant : 220\nPuissance de Trait alpha : de 140 à 700",
+  "description_macro": "Augmente la puissance de certaines actions.<br><br><colortype(506)><edgecolortype(507)>Puissance de Flèche empyréenne<nbsp>:<edgecolortype(0)><colortype(0)> 260<br><colortype(506)><edgecolortype(507)>Puissance de Vent venimeux<nbsp>:<edgecolortype(0)><colortype(0)> 400<br><colortype(506)><edgecolortype(507)>Puissance de Flèche rayonnante<nbsp>:<edgecolortype(0)><colortype(0)> 280<br><colortype(506)><edgecolortype(507)>Puissance de Tir éclatant<nbsp>:<edgecolortype(0)><colortype(0)> 220<br><colortype(506)><edgecolortype(507)>Puissance de Trait alpha<nbsp>:<edgecolortype(0)><colortype(0)> de 140 à 700<br>",
+  "effects": [
+    "Augmente la puissance de certaines actions.",
+    "Puissance de Flèche empyréenne : 260",
+    "Puissance de Vent venimeux : 400",
+    "Puissance de Flèche rayonnante : 280",
+    "Puissance de Tir éclatant : 220",
+    "Puissance de Trait alpha : de 140 à 700"
+  ],
+  "role": "Physical Ranged DPS",
+  "job": {
+    "id": 23,
+    "name": "Barde",
+    "abbreviation": "BRD"
+  },
+  "unlock_level": 94,
+  "value": 0,
+  "icon": {
+    "id": 6806,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 24,
+  "source_class_job_id": 23
+}

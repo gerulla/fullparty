@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 3225,
+  "name": "Sillage",
+  "description": "Les ennemis dans la zone d'effet subissent des dégâts.",
+  "effects": [
+    "Les ennemis dans la zone d'effet subissent des dégâts."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 212695,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": true,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 28,
+  "source_abilities": [
+    {
+      "id": 25837,
+      "name": "Sillage",
+      "description": "Effectue une attaque magique de vent sur la cible.\nPuissance : 520\nLa puissance est réduite de 60% au-delà du premier ennemi touché.\nEffet additionnel : inflige des dégâts périodiques dans une zone autour de la cible.\nPuissance : 30 Durée : 15s\nCondition : Sillage préparé.\nCe sort a un temps de recharge indépendant qui est appliqué aux autres sorts ou techniques d'arme après utilisation.\n\n* Cette action ne peut pas être ajoutée aux barres de raccourcis.\nRemplace Flux astral lorsque les conditions sont réunies.",
+      "description_macro": "Effectue une attaque magique de vent sur la cible.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> <if([gnum68==27],<if([gnum72>=94],520,430)>,430)><br>La puissance est réduite de 60% au-delà du premier ennemi touché.<br><colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> inflige des dégâts périodiques dans une zone autour de la cible.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> 30 <colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 15s<br><colortype(506)><edgecolortype(507)>Condition<nbsp>:<edgecolortype(0)><colortype(0)> <colortype(500)><edgecolortype(501)>Sillage préparé<edgecolortype(0)><colortype(0)>.<br>Ce sort a un temps de recharge indépendant qui est appliqué aux autres sorts ou techniques d'arme après utilisation.<br><br><colortype(504)><edgecolortype(505)>* Cette action ne peut pas être ajoutée aux barres de raccourcis.<br>Remplace <colortype(500)><edgecolortype(501)>Flux astral<edgecolortype(0)><colortype(0)> lorsque les conditions sont réunies.<edgecolortype(0)><colortype(0)>",
+      "unlock_level": 86,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Magical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 27,
+          "name": "Invocateur",
+          "abbreviation": "INV",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

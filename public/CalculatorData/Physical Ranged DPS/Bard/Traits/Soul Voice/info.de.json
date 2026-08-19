@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 287,
+  "name": "Klang der Seelenstimme",
+  "description": "Der Seelenstimmen-Balken füllt sich mit jedem Auslösen von Virtuose um 5.",
+  "description_macro": "Der Seelenstimmen-Balken füllt sich mit jedem Auslösen von Virtuose um 5.",
+  "effects": [
+    "Der Seelenstimmen-Balken füllt sich mit jedem Auslösen von Virtuose um 5."
+  ],
+  "role": "Physical Ranged DPS",
+  "job": {
+    "id": 23,
+    "name": "Barde",
+    "abbreviation": "BRD"
+  },
+  "unlock_level": 80,
+  "value": 0,
+  "icon": {
+    "id": 5315,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 24,
+  "source_class_job_id": 23
+}

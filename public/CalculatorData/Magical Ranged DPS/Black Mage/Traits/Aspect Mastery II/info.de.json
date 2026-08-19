@@ -1,0 +1,30 @@
+{
+  "kind": "trait",
+  "id": 458,
+  "name": "Elementare Meisterschaft II",
+  "description": "Die Maximalstapelzahl von sowohl Lichtfeuer als auch Schatteneis erhöht sich auf 2. Bei aktiver Maximalstapelzahl werden folgende Effekte gewährt:\nEffekt bei 2 Stapeln Lichtfeuer:\nAttacke-Werte von feuerbasierten Zaubern sind um 60 ％ erhöht.\nAttacke-Werte von eisbasierten Zaubern sind um 20 ％ verringert.\nEffekt bei 2 Stapeln Schatteneis:\nDie Ausführung eines eisbasierten Zaubers regeneriert 5.000 MP.\nAttacke-Werte von feuerbasierten Zaubern sind um 20 ％ verringert.",
+  "description_macro": "Die Ma<->xi<->mal<->sta<->pel<->zahl von sowohl <colortype(506)><edgecolortype(507)>Lichtfeuer<edgecolortype(0)><colortype(0)> als auch <colortype(506)><edgecolortype(507)>Schatteneis<edgecolortype(0)><colortype(0)> erhöht sich auf 2. Bei aktiver Ma<->xi<->mal<->sta<->pel<->zahl werden folgende Effekte gewährt:<br>Effekt bei 2 Stapeln <colortype(506)><edgecolortype(507)>Lichtfeuer<edgecolortype(0)><colortype(0)>:<br>Attacke-Werte von feuerbasierten Zaubern sind um 60<nbsp>％ erhöht.<br>Attacke-Werte von eisbasierten Zaubern sind um 20<nbsp>％ verringert.<br>Effekt bei 2 Stapeln <colortype(506)><edgecolortype(507)>Schatteneis<edgecolortype(0)><colortype(0)>:<br>Die Ausführung eines eisbasierten Zaubers regeneriert 5.000 MP.<br>Attacke-Werte von feuerbasierten Zaubern sind um 20<nbsp>％ verringert.",
+  "effects": [
+    "Die Maximalstapelzahl von sowohl Lichtfeuer als auch Schatteneis erhöht sich auf 2. Bei aktiver Maximalstapelzahl werden folgende Effekte gewährt:",
+    "Effekt bei 2 Stapeln Lichtfeuer:",
+    "Attacke-Werte von feuerbasierten Zaubern sind um 60 ％ erhöht.",
+    "Attacke-Werte von eisbasierten Zaubern sind um 20 ％ verringert.",
+    "Effekt bei 2 Stapeln Schatteneis:",
+    "Die Ausführung eines eisbasierten Zaubers regeneriert 5.000 MP.",
+    "Attacke-Werte von feuerbasierten Zaubern sind um 20 ％ verringert."
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 25,
+    "name": "Schwarzmagier",
+    "abbreviation": "SMA"
+  },
+  "unlock_level": 20,
+  "value": 0,
+  "icon": {
+    "id": 5366,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 55,
+  "source_class_job_id": 7
+}

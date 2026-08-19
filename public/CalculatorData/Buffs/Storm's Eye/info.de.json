@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 90,
+  "name": "Sturmbrecher",
+  "description": "Ausgeteilter Schaden ist erhöht.",
+  "effects": [
+    "Ausgeteilter Schaden ist erhöht."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 210263,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 5
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 45,
+      "name": "Sturmbrecher",
+      "description": "Du führst eine physische Attacke aus.\nAttacke-Wert: 220\nKombo-Bedingung: Verstümmelung\nAttacke-Wert: 500\nBonus: Gewährt dir Tosender Sturm.\nDauer: 30 Sekunden\nEffekt von Tosender Sturm: Ausgeteilter Schaden ist um 10 % erhöht.\nIst dieser Status bereits aktiv, wird er um 30 Sekunden verlängert (max. 60 Sekunden).\nBonus: Urkraftbalken füllt sich um 10.",
+      "description_macro": "Du führst eine physische Attacke aus.<br>Attacke-Wert: <if([gnum68==21],<if([gnum72>=94],220,<if([gnum68==21],<if([gnum72>=84],160,100)>,100)>)>,<if([gnum68==21],<if([gnum72>=84],160,100)>,100)>)><br>Kombo-Bedingung: <colortype(502)><edgecolortype(503)>Verstümmelung<edgecolortype(0)><colortype(0)><br>Attacke-Wert: <if([gnum68==21],<if([gnum72>=94],500,<if([gnum68==21],<if([gnum72>=84],440,380)>,380)>)>,<if([gnum68==21],<if([gnum72>=84],440,380)>,380)>)><br>Bonus: Gewährt dir <colortype(506)><edgecolortype(507)>Tosender Sturm<edgecolortype(0)><colortype(0)>.<br>Dauer: 30 Sekunden<br>Effekt von <colortype(506)><edgecolortype(507)>Tosender Sturm<edgecolortype(0)><colortype(0)>: Ausgeteilter Schaden ist um 10 % erhöht.<br>Ist dieser Status bereits aktiv, wird er um 30 Sekunden verlängert (max. 60 Sekunden).<if([gnum68==21],<if([gnum72>=35],<br>Bonus: Urkraftbalken füllt sich um 10.,)>,)>",
+      "unlock_level": 50,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Tank"
+      ],
+      "jobs": [
+        {
+          "id": 21,
+          "name": "Krieger",
+          "abbreviation": "KRG",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

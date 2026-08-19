@@ -1,0 +1,98 @@
+{
+  "kind": "ability",
+  "id": 153,
+  "name": "Thunder III",
+  "description": "Deals lightning damage with a potency of 120.\nAdditional Effect: Lightning damage over time\nPotency: 50\nDuration: 27s\nCan only be cast while under the effect of Thunderhead, granted when gaining Astral Fire or Umbral Ice from an unaspected state, or changing between their influences.\nOnly one Thunder spell-induced damage over time effect per caster can be inflicted upon a single target.",
+  "description_macro": "Deals lightning damage with a potency of 120.<br><colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>Lightning damage over time<br><colortype(504)><edgecolortype(505)>Potency: <edgecolortype(0)><colortype(0)>50<br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>27s<br>Can only be cast while under the effect of <colortype(506)><edgecolortype(507)>Thunderhead<edgecolortype(0)><colortype(0)>, granted when gaining <colortype(506)><edgecolortype(507)>Astral Fire<edgecolortype(0)><colortype(0)> or <colortype(506)><edgecolortype(507)>Umbral Ice<edgecolortype(0)><colortype(0)> from an unaspected state, or changing between their influences.<br>Only one <colortype(500)><edgecolortype(501)>Thunder<edgecolortype(0)><colortype(0)> spell-induced damage over time effect per caster can be inflicted upon a single target.",
+  "effects": [
+    "Deals lightning damage with a potency of 120.",
+    "Additional Effect: Lightning damage over time",
+    "Potency: 50",
+    "Duration: 27s",
+    "Can only be cast while under the effect of Thunderhead, granted when gaining Astral Fire or Umbral Ice from an unaspected state, or changing between their influences.",
+    "Only one Thunder spell-induced damage over time effect per caster can be inflicted upon a single target."
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 25,
+    "name": "Black Mage",
+    "abbreviation": "BLM"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 45,
+  "icon": {
+    "id": 459,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 2,
+    "name": "Spell"
+  },
+  "attack_type": {
+    "id": 5,
+    "name": "魔法"
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 2.5,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 58,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 10,
+      "value": 3870
+    },
+    "secondary": {
+      "type_id": 63,
+      "value": 613
+    }
+  },
+  "range": {
+    "target_yalms": 25,
+    "effect_yalms": 0,
+    "cast_type": 1
+  },
+  "targeting": {
+    "self": false,
+    "party": false,
+    "alliance": false,
+    "hostile": true,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": false
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": {
+      "id": 177,
+      "status": {
+        "id": 3870,
+        "name": "Thunderhead",
+        "description": "Able to cast Thunder spells.",
+        "icon_id": 212660,
+        "max_stacks": 0
+      }
+    }
+  },
+  "metadata": {
+    "aspect_id": 5,
+    "behavior_type": 0,
+    "class_job_category_id": 26,
+    "source_class_job_id": 25,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

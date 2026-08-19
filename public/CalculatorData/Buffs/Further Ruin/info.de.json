@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 1212,
+  "name": "Verbessertes Ruinra",
+  "description": "Kann Ruinka ausführen.",
+  "effects": [
+    "Kann Ruinka ausführen."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 219481,
+    "file": "icon.png"
+  },
+  "max_stacks": 4,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": true,
+  "is_permanent": true,
+  "inflicted_by_actor": true,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 16508,
+      "name": "Energieentzug",
+      "description": "Du führst eine elementneutrale magische Attacke aus.\nAttacke-Wert: 200\nZusatzeffekt: 2 Stapel Ätherfluss\nZusatzeffekt: Rand des Ruins\nDauer: 60 Sekunden\n\nGemeinsamer Reaktivierungs-Timer mit Energiesiphon",
+      "description_macro": "Du führst eine elementneutrale magische Attacke aus.<br>Attacke-Wert: 200<br>Zusatzeffekt: 2 Stapel <colortype(506)><edgecolortype(507)>Ätherfluss<edgecolortype(0)><colortype(0)><if([gnum68==27],<if([gnum72>=62],<br>Zusatzeffekt: <colortype(506)><edgecolortype(507)>Rand des Ruins<edgecolortype(0)><colortype(0)><br>Dauer: 60 Sekunden<br>,)>,)><if([gnum68==27],<if([gnum72>=52],<br>Gemeinsamer Reaktivierungs-Timer mit <colortype(502)><edgecolortype(503)>Energiesiphon<edgecolortype(0)><colortype(0)>,)>,)>",
+      "unlock_level": 10,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Magical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 27,
+          "name": "Beschwörer",
+          "abbreviation": "BSW",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

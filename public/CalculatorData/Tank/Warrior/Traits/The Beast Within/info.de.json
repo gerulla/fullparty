@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 249,
+  "name": "Wildes Geblüt",
+  "description": "Füllt den Urkraftbalken durch erfolgreiches Ausführen einer Kombo mit Verstümmelung oder Sturmkeil.",
+  "description_macro": "Füllt den Urkraftbalken durch erfolgreiches Ausführen einer Kombo mit <colortype(502)><edgecolortype(503)>Verstümmelung<edgecolortype(0)><colortype(0)> oder <colortype(502)><edgecolortype(503)>Sturmkeil<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Füllt den Urkraftbalken durch erfolgreiches Ausführen einer Kombo mit Verstümmelung oder Sturmkeil."
+  ],
+  "role": "Tank",
+  "job": {
+    "id": 21,
+    "name": "Krieger",
+    "abbreviation": "KRG"
+  },
+  "unlock_level": 35,
+  "value": 0,
+  "icon": {
+    "id": 5261,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 22,
+  "source_class_job_id": 21
+}

@@ -1,0 +1,27 @@
+{
+  "kind": "trait",
+  "id": 465,
+  "name": "Maîtrise des polarités V",
+  "description": "Permet de recevoir Symbole paradoxal.\nRemplace Feu et Glace par Paradoxe pendant la durée de l'effet.\nSe dissipe lorsque Feu astral ou Glace ombrale prend fin.\nCondition : lorsque vous passez à l'élément opposé avec le degré maximal de Feu astral, ou les degrés maximaux de Glace ombrale et Cœur ombral.",
+  "description_macro": "Permet de recevoir <colortype(500)><edgecolortype(501)>Symbole paradoxal<edgecolortype(0)><colortype(0)>.<br>Remplace <colortype(500)><edgecolortype(501)>Feu<edgecolortype(0)><colortype(0)> et <colortype(500)><edgecolortype(501)>Glace<edgecolortype(0)><colortype(0)> par <colortype(500)><edgecolortype(501)>Paradoxe<edgecolortype(0)><colortype(0)> pendant la durée de l'effet.<br>Se dissipe lorsque <colortype(500)><edgecolortype(501)>Feu astral<edgecolortype(0)><colortype(0)> ou <colortype(500)><edgecolortype(501)>Glace ombrale<edgecolortype(0)><colortype(0)> prend fin.<br><colortype(506)><edgecolortype(507)>Condition<nbsp>:<edgecolortype(0)><colortype(0)> lorsque vous passez à l'élément opposé avec le degré maximal de <colortype(500)><edgecolortype(501)>Feu astral<edgecolortype(0)><colortype(0)>, ou les degrés maximaux de <colortype(500)><edgecolortype(501)>Glace ombrale<edgecolortype(0)><colortype(0)> et <colortype(500)><edgecolortype(501)>Cœur ombral<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Permet de recevoir Symbole paradoxal.",
+    "Remplace Feu et Glace par Paradoxe pendant la durée de l'effet.",
+    "Se dissipe lorsque Feu astral ou Glace ombrale prend fin.",
+    "Condition : lorsque vous passez à l'élément opposé avec le degré maximal de Feu astral, ou les degrés maximaux de Glace ombrale et Cœur ombral."
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 25,
+    "name": "Mage Noir",
+    "abbreviation": "MNO"
+  },
+  "unlock_level": 90,
+  "value": 0,
+  "icon": {
+    "id": 5373,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 26,
+  "source_class_job_id": 25
+}

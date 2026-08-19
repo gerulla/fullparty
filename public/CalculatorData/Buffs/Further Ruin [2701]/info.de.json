@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 2701,
+  "name": "Rand des Ruins",
+  "description": "Ruinka kann ausgeführt werden.",
+  "effects": [
+    "Ruinka kann ausgeführt werden."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 212690,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 28,
+  "source_abilities": [
+    {
+      "id": 16510,
+      "name": "Energiesiphon",
+      "description": "Du führst eine elementneutrale magische Attacke auf das Ziel und die Gegner in seiner Nähe aus.\nAttacke-Wert: 100\nZusatzeffekt: 2 Stapel Ätherfluss\nZusatzeffekt: Rand des Ruins\nDauer: 60 Sekunden\n\nGemeinsamer Reaktivierungs-Timer mit Energieentzug",
+      "description_macro": "Du führst eine elementneutrale magische Attacke auf das Ziel und die Gegner in seiner Nähe aus.<br>Attacke-Wert: 100<br>Zusatzeffekt: 2 Stapel <colortype(506)><edgecolortype(507)>Ätherfluss<edgecolortype(0)><colortype(0)><if([gnum68==27],<if([gnum72>=62],<br>Zusatzeffekt: <colortype(506)><edgecolortype(507)>Rand des Ruins<edgecolortype(0)><colortype(0)><br>Dauer: 60 Sekunden<br>,)>,)><if([gnum68==27],<if([gnum72>=52],<br>Gemeinsamer Reaktivierungs-Timer mit <colortype(502)><edgecolortype(503)>Energieentzug<edgecolortype(0)><colortype(0)>,)>,)>",
+      "unlock_level": 52,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Magical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 27,
+          "name": "Beschwörer",
+          "abbreviation": "BSW",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

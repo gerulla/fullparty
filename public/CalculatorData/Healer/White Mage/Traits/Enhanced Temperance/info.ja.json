@@ -1,0 +1,26 @@
+{
+  "kind": "trait",
+  "id": 626,
+  "name": "テンパランス効果アップ",
+  "description": "自身に「ディヴァインカレス実行可」が付与される。\n効果時間：30秒\n発動条件：テンパランス実行時",
+  "description_macro": "自身に<colortype(500)><edgecolortype(501)>「ディヴァインカレス実行可」<edgecolortype(0)><colortype(0)>が付与される。<br><colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>30秒<br><colortype(504)><edgecolortype(505)>発動条件：<edgecolortype(0)><colortype(0)>テンパランス実行時",
+  "effects": [
+    "自身に「ディヴァインカレス実行可」が付与される。",
+    "効果時間：30秒",
+    "発動条件：テンパランス実行時"
+  ],
+  "role": "Healer",
+  "job": {
+    "id": 24,
+    "name": "白魔道士",
+    "abbreviation": "WHM"
+  },
+  "unlock_level": 100,
+  "value": 0,
+  "icon": {
+    "id": 5348,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 25,
+  "source_class_job_id": 24
+}

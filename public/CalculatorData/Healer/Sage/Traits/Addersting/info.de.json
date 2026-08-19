@@ -1,0 +1,25 @@
+{
+  "kind": "trait",
+  "id": 373,
+  "name": "Komplexion",
+  "description": "Gewährt dir einen Stapel Komplexion, wenn die von Eukratische Diagnose oder Eukratische Prognose auf dir selbst gewährte Barriere den vollen Schaden absorbiert.\nMaximalstapelzahl: 3",
+  "description_macro": "Gewährt dir einen Stapel <colortype(506)><edgecolortype(507)>Komplexion<edgecolortype(0)><colortype(0)>, wenn die von <colortype(502)><edgecolortype(503)>Eukratische Diagnose<edgecolortype(0)><colortype(0)> oder <colortype(502)><edgecolortype(503)>Eukratische Prognose<edgecolortype(0)><colortype(0)> auf dir selbst gewährte Barriere den vollen Schaden absorbiert.<br>Ma<->xi<->mal<->sta<->pel<->zahl: 3",
+  "effects": [
+    "Gewährt dir einen Stapel Komplexion, wenn die von Eukratische Diagnose oder Eukratische Prognose auf dir selbst gewährte Barriere den vollen Schaden absorbiert.",
+    "Maximalstapelzahl: 3"
+  ],
+  "role": "Healer",
+  "job": {
+    "id": 40,
+    "name": "Weiser",
+    "abbreviation": "WEI"
+  },
+  "unlock_level": 66,
+  "value": 0,
+  "icon": {
+    "id": 6454,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 181,
+  "source_class_job_id": 40
+}

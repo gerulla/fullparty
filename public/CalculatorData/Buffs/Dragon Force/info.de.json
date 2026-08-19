@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 2500,
+  "name": "Drachenkraft",
+  "description": "Erlittener Schaden ist verringert.",
+  "effects": [
+    "Erlittener Schaden ist verringert."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 213539,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 1,
+  "parameter": {
+    "effect": 0,
+    "modifier": -20
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 23280,
+      "name": "Drachenkraft",
+      "description": "Du verringerst erlittenen Schaden um 20 %.\nDauer: 15 Sekunden\nZusatzeffekt bei Äther-Mimikry: Verteidiger: Wirkung der Schadensreduktion erhöht sich auf 40 %.\nGemeinsamer Reaktivierungs-Timer mit Engelspeise und Matra-Magie",
+      "description_macro": "Du verringerst erlittenen Schaden um 20<nbsp>%.<br>Dauer: 15 Sekunden<br>Zusatzeffekt bei <colortype(506)><edgecolortype(507)>Äther-Mimikry: Verteidiger<edgecolortype(0)><colortype(0)>: Wirkung der Schadensreduktion erhöht sich auf 40<nbsp>%.<br>Gemeinsamer Reaktivierungs-Timer mit <colortype(502)><edgecolortype(503)>Engelspeise<edgecolortype(0)><colortype(0)> und <colortype(502)><edgecolortype(503)>Matra-Magie<edgecolortype(0)><colortype(0)>",
+      "unlock_level": 1,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Magical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 36,
+          "name": "Blaumagier",
+          "abbreviation": "BMA",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

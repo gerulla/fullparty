@@ -1,0 +1,101 @@
+{
+  "kind": "ability",
+  "id": 24382,
+  "name": "ジビトゥ",
+  "description": "対象に物理攻撃。\u3000威力：500\nジビトゥ効果アップ時威力：560\n側面攻撃時威力：560\nジビトゥ効果アップかつ側面攻撃時威力：620\n追加効果：自身に「ギャロウズ効果アップ」を付与する。\n効果時間：60秒\n効果中はストークスウェーズがギャロウズクロウに変化する。\n追加効果：「シュラウドゲージ」を10上昇させる。\n発動条件：「妖異の鎌」効果中",
+  "description_macro": "対象に物理攻撃。\u3000<colortype(504)><edgecolortype(505)>威力：<edgecolortype(0)><colortype(0)><if([gnum68==39],<if([gnum72>=94],500,400)>,400)><br><colortype(504)><edgecolortype(505)>ジビトゥ効果アップ時威力：<edgecolortype(0)><colortype(0)><if([gnum68==39],<if([gnum72>=94],560,460)>,460)><br><colortype(504)><edgecolortype(505)>側面攻撃時威力：<edgecolortype(0)><colortype(0)><if([gnum68==39],<if([gnum72>=94],560,460)>,460)><br><colortype(504)><edgecolortype(505)>ジビトゥ効果アップかつ側面攻撃時威力：<edgecolortype(0)><colortype(0)><if([gnum68==39],<if([gnum72>=94],620,520)>,520)><br><colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)>自身に<colortype(500)><edgecolortype(501)>「ギャロウズ効果アップ」<edgecolortype(0)><colortype(0)>を付与する。<br><colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>60秒<br>効果中はストークスウェーズがギャロウズクロウに変化する。<br><if([gnum68==39],<if([gnum72>=80],<colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)><colortype(500)><edgecolortype(501)>「シュラウドゲージ」<edgecolortype(0)><colortype(0)>を10上昇させる。<br>,)>,)><colortype(504)><edgecolortype(505)>発動条件：<edgecolortype(0)><colortype(0)><colortype(500)><edgecolortype(501)>「妖異の鎌」<edgecolortype(0)><colortype(0)>効果中",
+  "effects": [
+    "対象に物理攻撃。\u3000威力：500",
+    "ジビトゥ効果アップ時威力：560",
+    "側面攻撃時威力：560",
+    "ジビトゥ効果アップかつ側面攻撃時威力：620",
+    "追加効果：自身に「ギャロウズ効果アップ」を付与する。",
+    "効果時間：60秒",
+    "効果中はストークスウェーズがギャロウズクロウに変化する。",
+    "追加効果：「シュラウドゲージ」を10上昇させる。",
+    "発動条件：「妖異の鎌」効果中"
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 39,
+    "name": "リーパー",
+    "abbreviation": "RPR"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 70,
+  "icon": {
+    "id": 3610,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 3,
+    "name": "ウェポンスキル"
+  },
+  "attack_type": {
+    "id": 1,
+    "name": "斬"
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 2.5,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 58,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 10,
+      "value": 2587
+    },
+    "secondary": {
+      "type_id": 113,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": -1,
+    "effect_yalms": 0,
+    "cast_type": 1
+  },
+  "targeting": {
+    "self": false,
+    "party": false,
+    "alliance": false,
+    "hostile": true,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": {
+      "id": 74,
+      "status": {
+        "id": 2588,
+        "name": "ジビトゥ効果アップ",
+        "description": "次に実行するジビトゥの威力が上昇する状態。",
+        "icon_id": 212927,
+        "max_stacks": 0
+      }
+    }
+  },
+  "metadata": {
+    "aspect_id": 7,
+    "behavior_type": 0,
+    "class_job_category_id": 180,
+    "source_class_job_id": 39,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

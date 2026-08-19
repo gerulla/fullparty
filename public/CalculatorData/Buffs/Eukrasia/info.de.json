@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 2606,
+  "name": "Eukrasie",
+  "description": "Gewisse Kommandos sind verbessert.",
+  "effects": [
+    "Gewisse Kommandos sind verbessert."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 212953,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": true,
+  "inflicted_by_actor": true,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 181,
+  "source_abilities": [
+    {
+      "id": 24290,
+      "name": "Eukrasie",
+      "description": "Du verstärkst bestimmte Heil- und Angriffszauber.\nDosis III ändert sich zu Eukratische Dosis III.\nDyskrasie II ändert sich zu Eukratische Dyskrasie.\nDiagnose ändert sich zu Eukratische Diagnose.\nPrognose ändert sich zu Eukratische Prognose II.\nDer Effekt endet, sobald ein verstärktes Kommando ausgeführt wird.\nEigener Reaktivierungs-Timer\nBei Ausführung wird der Reaktivierungs-Timer dieses Kommandos auf alle anderen Waffenfertigkeiten und Magie angewendet.",
+      "description_macro": "Du verstärkst bestimmte Heil- und Angriffszauber.<br><if([gnum68==40],<if([gnum72>=82],<colortype(502)><edgecolortype(503)>Dosis III<edgecolortype(0)><colortype(0)> ändert sich zu <colortype(502)><edgecolortype(503)>Eukratische Dosis III<edgecolortype(0)><colortype(0)>.,<if([gnum68==40],<if([gnum72>=72],<colortype(502)><edgecolortype(503)>Dosis II<edgecolortype(0)><colortype(0)> ändert sich zu <colortype(502)><edgecolortype(503)>Eukratische Dosis II<edgecolortype(0)><colortype(0)>.,<colortype(502)><edgecolortype(503)>Dosis<edgecolortype(0)><colortype(0)> ändert sich zu <colortype(502)><edgecolortype(503)>Eukratische Dosis<edgecolortype(0)><colortype(0)>.)>,<colortype(502)><edgecolortype(503)>Dosis<edgecolortype(0)><colortype(0)> ändert sich zu <colortype(502)><edgecolortype(503)>Eukratische Dosis<edgecolortype(0)><colortype(0)>.)>)>,<if([gnum68==40],<if([gnum72>=72],<colortype(502)><edgecolortype(503)>Dosis II<edgecolortype(0)><colortype(0)> ändert sich zu <colortype(502)><edgecolortype(503)>Eukratische Dosis II<edgecolortype(0)><colortype(0)>.,<colortype(502)><edgecolortype(503)>Dosis<edgecolortype(0)><colortype(0)> ändert sich zu <colortype(502)><edgecolortype(503)>Eukratische Dosis<edgecolortype(0)><colortype(0)>.)>,<colortype(502)><edgecolortype(503)>Dosis<edgecolortype(0)><colortype(0)> ändert sich zu <colortype(502)><edgecolortype(503)>Eukratische Dosis<edgecolortype(0)><colortype(0)>.)>)><br><if([gnum68==40],<if([gnum72>=82],<colortype(502)><edgecolortype(503)>Dyskrasie II<edgecolortype(0)><colortype(0)> ändert sich zu <colortype(502)><edgecolortype(503)>Eukratische Dyskrasie<edgecolortype(0)><colortype(0)>.<br>,)>,)><colortype(502)><edgecolortype(503)>Diagnose<edgecolortype(0)><colortype(0)> ändert sich zu <colortype(502)><edgecolortype(503)>Eukratische Diagnose<edgecolortype(0)><colortype(0)>.<br><colortype(502)><edgecolortype(503)>Prognose<edgecolortype(0)><colortype(0)> ändert sich zu <if([gnum68==40],<if([gnum72>=96],<colortype(502)><edgecolortype(503)>Eukratische Prognose II<edgecolortype(0)><colortype(0)>,<colortype(502)><edgecolortype(503)>Eukratische Prognose<edgecolortype(0)><colortype(0)>)>,<colortype(502)><edgecolortype(503)>Eukratische Prognose<edgecolortype(0)><colortype(0)>)>.<br>Der Effekt endet, sobald ein verstärktes Kommando ausgeführt wird.<br>Eigener Reaktivierungs-Timer<br>Bei Ausführung wird der Reaktivierungs-Timer dieses Kommandos auf alle anderen Waf<->fen<->fer<->tig<->kei<->ten und Magie angewendet.",
+      "unlock_level": 30,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Healer"
+      ],
+      "jobs": [
+        {
+          "id": 40,
+          "name": "Weiser",
+          "abbreviation": "WEI",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

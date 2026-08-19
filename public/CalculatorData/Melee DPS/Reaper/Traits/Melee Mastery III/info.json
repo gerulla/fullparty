@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 657,
+  "name": "Melee Mastery III",
+  "description": "Increases the potency of Slice to 420, Waxing Slice to 260, Infernal Slice to 280, Soul Slice to 520, Gibbet to 500, Gallows to 500, Unveiled Gibbet to 440, Unveiled Gallows to 440, Void Reaping to 580, Cross Reaping to 580, Harvest Moon to 800, and Lemure's Slice to 280.",
+  "description_macro": "Increases the potency of <colortype(500)><edgecolortype(501)>Slice<edgecolortype(0)><colortype(0)> to 420, <colortype(500)><edgecolortype(501)>Waxing Slice<edgecolortype(0)><colortype(0)> to 260, <colortype(500)><edgecolortype(501)>Infernal Slice<edgecolortype(0)><colortype(0)> to 280, <colortype(500)><edgecolortype(501)>Soul Slice<edgecolortype(0)><colortype(0)> to 520, <colortype(500)><edgecolortype(501)>Gibbet<edgecolortype(0)><colortype(0)> to 500, <colortype(500)><edgecolortype(501)>Gallows<edgecolortype(0)><colortype(0)> to 500, <colortype(500)><edgecolortype(501)>Unveiled Gibbet<edgecolortype(0)><colortype(0)> to 440, <colortype(500)><edgecolortype(501)>Unveiled Gallows<edgecolortype(0)><colortype(0)> to 440, <colortype(500)><edgecolortype(501)>Void Reaping<edgecolortype(0)><colortype(0)> to 580, <colortype(500)><edgecolortype(501)>Cross Reaping<edgecolortype(0)><colortype(0)> to 580, <colortype(500)><edgecolortype(501)>Harvest Moon<edgecolortype(0)><colortype(0)> to 800, and <colortype(500)><edgecolortype(501)>Lemure's Slice<edgecolortype(0)><colortype(0)> to 280.",
+  "effects": [
+    "Increases the potency of Slice to 420, Waxing Slice to 260, Infernal Slice to 280, Soul Slice to 520, Gibbet to 500, Gallows to 500, Unveiled Gibbet to 440, Unveiled Gallows to 440, Void Reaping to 580, Cross Reaping to 580, Harvest Moon to 800, and Lemure's Slice to 280."
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 39,
+    "name": "Reaper",
+    "abbreviation": "RPR"
+  },
+  "unlock_level": 94,
+  "value": 0,
+  "icon": {
+    "id": 6803,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 180,
+  "source_class_job_id": 39
+}

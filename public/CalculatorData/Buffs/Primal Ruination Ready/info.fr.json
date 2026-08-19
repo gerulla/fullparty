@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 3834,
+  "name": "Dévastateur préparé",
+  "description": "Dévastateur peut être lancé.",
+  "effects": [
+    "Dévastateur peut être lancé."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 212569,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 22,
+  "source_abilities": [
+    {
+      "id": 25753,
+      "name": "Griffade primitive",
+      "description": "Saute sur la cible et porte une attaque physique sur elle et les ennemis alentour.\nPuissance : 720\nLa puissance est réduite de 50% au-delà du premier ennemi touché.\nCette attaque inflige nécessairement un coup net et critique.\nLes dégâts infligés sont augmentés lorsque vous bénéficiez d'un effet augmentant les chances de coups nets et critiques.\nEffet additionnel : vous octroie Dévastateur préparé.\nDurée : 20s\nCondition : Griffade primitive préparée obtenue grâce à Relâchement bestial.\nNe peut pas être utilisé sous l'effet Entrave.",
+      "description_macro": "Saute sur la cible et porte une attaque physique sur elle et les ennemis alentour.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> 720<br>La puissance est réduite de 50% au-delà du premier ennemi touché.<br>Cette attaque inflige nécessairement un coup net et critique.<br>Les dégâts infligés sont augmentés lorsque vous bénéficiez d'un effet augmentant les chances de coups nets et critiques.<br><if([gnum68==21],<if([gnum72>=100],<colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> vous octroie <colortype(500)><edgecolortype(501)>Dévastateur préparé<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 20s<br>,)>,)><colortype(506)><edgecolortype(507)>Condition<nbsp>:<edgecolortype(0)><colortype(0)> <colortype(500)><edgecolortype(501)>Griffade primitive préparée<edgecolortype(0)><colortype(0)> obtenue grâce à Relâchement bestial.<br>Ne peut pas être utilisé sous l'effet Entrave.",
+      "unlock_level": 90,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Tank"
+      ],
+      "jobs": [
+        {
+          "id": 21,
+          "name": "Guerrier",
+          "abbreviation": "GUE",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

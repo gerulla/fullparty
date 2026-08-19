@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 116,
+  "name": "Life Surge",
+  "description": "Next weaponskill will result in a critical hit with a portion of the resulting damage being absorbed as HP. Damage dealt when under an effect that raises critical hit rate is increased.",
+  "effects": [
+    "Next weaponskill will result in a critical hit with a portion of the resulting damage being absorbed as HP. Damage dealt when under an effect that raises critical hit rate is increased."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 210302,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 83,
+      "name": "Life Surge",
+      "description": "Ensures critical damage for first weaponskill used while Life Surge is active.\nDuration: 5s\nIncreases damage dealt when under an effect that raises critical hit rate.\nEffect cannot be applied to damage over time.\nAdditional Effect: Absorbs a portion of damage dealt as HP\nMaximum Charges: 2",
+      "description_macro": "Ensures critical damage for first weaponskill used while <colortype(506)><edgecolortype(507)>Life Surge<edgecolortype(0)><colortype(0)> is active.<br><colortype(504)><edgecolortype(505)>Duration:<edgecolortype(0)><colortype(0)> 5s<br>Increases damage dealt when under an effect that raises critical hit rate.<br>Effect cannot be applied to damage over time.<br><colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>Absorbs a portion of damage dealt as HP<if([gnum68==22],<if([gnum72>=88],<br><colortype(504)><edgecolortype(505)>Maximum Charges: <edgecolortype(0)><colortype(0)>2,)>,)>",
+      "unlock_level": 6,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 22,
+          "name": "Dragoon",
+          "abbreviation": "DRG",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

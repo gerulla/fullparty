@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 2590,
+  "name": "Nichtsmahd",
+  "description": "Nächster Nichtsmäher hat einen erhöhten Attacke-Wert.",
+  "effects": [
+    "Nächster Nichtsmäher hat einen erhöhten Attacke-Wert."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 212929,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 50,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 180,
+  "source_abilities": [
+    {
+      "id": 24396,
+      "name": "Kreuzmäher",
+      "description": "Du führst eine physische Attacke aus.\nAttacke-Wert: 580\nBei Kreuzmahd: 640\nZusatzeffekt: Gewährt dir Nichtsmahd.\nDauer: 30 Sekunden\nZusatzeffekt: 1 Nichtsseele\nSeelenkosten: 1 Lemurenseele\nEigener Reaktivierungs-Timer\nBei Ausführung wird der Reaktivierungs-Timer dieses Kommandos auf alle anderen Waffenfertigkeiten und Magie angewendet.\nBei erfüllter Bedingung ändert sich Galgen zu diesem Kommando.\nKann nicht im Kommandomenü angelegt werden.",
+      "description_macro": "Du führst eine physische Attacke aus.<br>Attacke-Wert: <if([gnum68==39],<if([gnum72>=94],580,460)>,460)><br>Bei <colortype(506)><edgecolortype(507)>Kreuzmahd<edgecolortype(0)><colortype(0)>: <if([gnum68==39],<if([gnum72>=94],640,520)>,520)><br>Zusatzeffekt: Gewährt dir <colortype(506)><edgecolortype(507)>Nichtsmahd<edgecolortype(0)><colortype(0)>.<br>Dauer: 30 Sekunden<br><if([gnum68==39],<if([gnum72>=86],Zusatzeffekt: 1 <colortype(506)><edgecolortype(507)>Nichtsseele<edgecolortype(0)><colortype(0)><br>,)>,)>Seelenkosten: 1 <colortype(506)><edgecolortype(507)>Lemurenseele<edgecolortype(0)><colortype(0)><br>Eigener Reaktivierungs-Timer<br>Bei Ausführung wird der Reaktivierungs-Timer dieses Kommandos auf alle anderen Waf<->fen<->fer<->tig<->kei<->ten und Magie angewendet.<br>Bei erfüllter Bedingung ändert sich <colortype(502)><edgecolortype(503)>Galgen<edgecolortype(0)><colortype(0)> zu diesem Kommando.<br>Kann nicht im Kommandomenü angelegt werden.",
+      "unlock_level": 80,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 39,
+          "name": "Schnitter",
+          "abbreviation": "SNT",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

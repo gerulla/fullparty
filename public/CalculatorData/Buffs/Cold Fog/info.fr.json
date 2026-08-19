@@ -1,0 +1,51 @@
+{
+  "kind": "combat_status",
+  "id": 2493,
+  "name": "Brume glaciale",
+  "description": "Une brume glaciale enveloppe le corps. Mort blanche est octroyé si des dégâts sont subis.",
+  "effects": [
+    "Une brume glaciale enveloppe le corps. Mort blanche est octroyé si des dégâts sont subis."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 213532,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 23267,
+      "name": "Brume glaciale",
+      "description": "Vous octroie Brume glaciale.\nDurée : 5s\nSi vous subissez une attaque ennemie, vous obtenez à la place l'effet Mort blanche.\nMort blanche : l'action Brume glaciale devient Mort blanche.\nDurée : 15s\nCe sort a un temps de recharge indépendant.\n\nMort blanche\nEffectue une attaque magique de glace sur la cible.\nPuissance : 400\nEffet additionnel : inflige Congélation.\nDurée : 10s\nCondition : Mort blanche.",
+      "description_macro": "Vous octroie <colortype(500)><edgecolortype(501)>Brume glaciale<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 5s<br>Si vous subissez une attaque ennemie, vous obtenez à la place l'effet <colortype(500)><edgecolortype(501)>Mort blanche<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Mort blanche<nbsp>:<edgecolortype(0)><colortype(0)> l'action <colortype(500)><edgecolortype(501)>Brume glaciale<edgecolortype(0)><colortype(0)> devient <colortype(500)><edgecolortype(501)>Mort blanche<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 15s<br>Ce sort a un temps de recharge indépendant.<br><br><colortype(500)><edgecolortype(501)>Mort blanche<edgecolortype(0)><colortype(0)><br>Effectue une attaque magique de glace sur la cible.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> 400<br><colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> inflige Congélation.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 10s<br><colortype(506)><edgecolortype(507)>Condition<nbsp>:<edgecolortype(0)><colortype(0)> <colortype(500)><edgecolortype(501)>Mort blanche<edgecolortype(0)><colortype(0)>.",
+      "unlock_level": 1,
+      "relations": [
+        "granted_by_description",
+        "same_name"
+      ],
+      "roles": [
+        "Magical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 36,
+          "name": "Mage Bleu",
+          "abbreviation": "MBU",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

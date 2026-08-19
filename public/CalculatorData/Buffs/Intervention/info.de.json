@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 1174,
+  "name": "Intervention",
+  "description": "Erlittener Schaden ist verringert.",
+  "effects": [
+    "Erlittener Schaden ist verringert."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 212511,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": -10
+  },
+  "class_job_category_id": 20,
+  "source_abilities": [
+    {
+      "id": 7382,
+      "name": "Intervention",
+      "description": "Du verringerst den erlittenen Schaden des Ziels um 10 %.\nDauer: 8 Sekunden\nZusatzeffekt: Die Wirkung ist um weitere 10 % erhöht, falls Schutzwall oder Heilige Wacht bei dir aktiv ist.\nZusatzeffekt: Gewährt dem Ziel Trutz des Ritters.\nDauer: 4 Sekunden\nEffekt von Trutz des Ritters: Verringert erlittenen Schaden um 10 %.\nZusatzeffekt: Gewährt dem Ziel Schutz des Ritters.\nDauer: 12 Sekunden\nEffekt von Schutz des Ritters: Regeneriert stetig LP des Ziels.\nHeilpotenzial: 250\nEidbalken-Kosten: 50",
+      "description_macro": "Du verringerst den erlittenen Schaden des Ziels um 10<nbsp>%.<br>Dauer: <if([gnum68==19],<if([gnum72>=82],8,6)>,6)> Sekunden<br>Zusatzeffekt: Die Wirkung ist um weitere 10<nbsp>% erhöht, falls <colortype(506)><edgecolortype(507)>Schutzwall<edgecolortype(0)><colortype(0)> oder <if([gnum68==19],<if([gnum72>=92],<colortype(506)><edgecolortype(507)>Heilige Wacht<edgecolortype(0)><colortype(0)>,<colortype(506)><edgecolortype(507)>Sentinel<edgecolortype(0)><colortype(0)>)>,<colortype(506)><edgecolortype(507)>Sentinel<edgecolortype(0)><colortype(0)>)><edgecolortype(0)><colortype(0)> bei dir aktiv ist.<br><if([gnum68==19],<if([gnum72>=82],Zusatzeffekt: Gewährt dem Ziel <colortype(506)><edgecolortype(507)>Trutz des Ritters<edgecolortype(0)><colortype(0)>.<br>Dauer: 4 Sekunden<br>Effekt von <colortype(506)><edgecolortype(507)>Trutz des Ritters<edgecolortype(0)><colortype(0)>: Verringert erlittenen Schaden um 10<nbsp>%.<br>Zusatzeffekt: Gewährt dem Ziel <colortype(506)><edgecolortype(507)>Schutz des Ritters<edgecolortype(0)><colortype(0)>.<br>Dauer: 12 Sekunden<br>Effekt von <colortype(506)><edgecolortype(507)>Schutz des Ritters<edgecolortype(0)><colortype(0)>: Regeneriert stetig LP des Ziels.<br>Heilpotenzial: 250<br>,)>,)>Eidbalken-Kosten: 50",
+      "unlock_level": 62,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Tank"
+      ],
+      "jobs": [
+        {
+          "id": 19,
+          "name": "Paladin",
+          "abbreviation": "PLD",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

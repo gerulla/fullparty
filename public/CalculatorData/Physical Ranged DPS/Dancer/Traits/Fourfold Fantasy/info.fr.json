@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 252,
+  "name": "Éventail onirique",
+  "description": "Permet de recevoir des Plumes oniriques (maximum 4) lorsque vous utilisez certaines actions avec succès.",
+  "description_macro": "Permet de recevoir des <colortype(500)><edgecolortype(501)>Plumes oniriques<edgecolortype(0)><colortype(0)> (maximum 4) lorsque vous utilisez certaines actions avec succès.",
+  "effects": [
+    "Permet de recevoir des Plumes oniriques (maximum 4) lorsque vous utilisez certaines actions avec succès."
+  ],
+  "role": "Physical Ranged DPS",
+  "job": {
+    "id": 38,
+    "name": "Danseur",
+    "abbreviation": "DNS"
+  },
+  "unlock_level": 30,
+  "value": 0,
+  "icon": {
+    "id": 6352,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 150,
+  "source_class_job_id": 38
+}

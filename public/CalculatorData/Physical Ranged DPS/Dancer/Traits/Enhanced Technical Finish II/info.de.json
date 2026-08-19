@@ -1,0 +1,26 @@
+{
+  "kind": "trait",
+  "id": 612,
+  "name": "Verbessertes Komplexes Finale II",
+  "description": "Erfolgreiche Ausführung von Komplexes Finale gewährt dir Glühende Sohlen.\nDauer: 30 Sekunden\nIst Glühende Sohlen aktiv und der Tanzfieberbalken um min. 50 gefüllt, ändert sich Schwerttanz zu Dämmertanz.",
+  "description_macro": "Erfolgreiche Ausführung von <colortype(502)><edgecolortype(503)>Komplexes Finale<edgecolortype(0)><colortype(0)> gewährt dir <colortype(506)><edgecolortype(507)>Glühende Sohlen<edgecolortype(0)><colortype(0)>.<br>Dauer: 30 Sekunden<br>Ist <colortype(506)><edgecolortype(507)>Glühende Sohlen<edgecolortype(0)><colortype(0)> aktiv und der Tanzfieberbalken um min. 50 gefüllt, ändert sich <colortype(502)><edgecolortype(503)>Schwerttanz<edgecolortype(0)><colortype(0)> zu <colortype(502)><edgecolortype(503)>Dämmertanz<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Erfolgreiche Ausführung von Komplexes Finale gewährt dir Glühende Sohlen.",
+    "Dauer: 30 Sekunden",
+    "Ist Glühende Sohlen aktiv und der Tanzfieberbalken um min. 50 gefüllt, ändert sich Schwerttanz zu Dämmertanz."
+  ],
+  "role": "Physical Ranged DPS",
+  "job": {
+    "id": 38,
+    "name": "Tänzer",
+    "abbreviation": "TÄN"
+  },
+  "unlock_level": 100,
+  "value": 0,
+  "icon": {
+    "id": 6365,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 150,
+  "source_class_job_id": 38
+}

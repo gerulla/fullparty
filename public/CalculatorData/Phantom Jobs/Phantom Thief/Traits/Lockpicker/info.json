@@ -1,0 +1,22 @@
+{
+  "kind": "trait",
+  "id": 10,
+  "name": "Lockpicker",
+  "description": "Allows you to open locked doors in dungeons.",
+  "description_macro": "Allows you to open locked doors in dungeons.",
+  "effects": [
+    "Allows you to open locked doors in dungeons."
+  ],
+  "role": "Phantom Jobs",
+  "job": {
+    "id": 12,
+    "name": "Phantom Thief",
+    "abbreviation": "Ph. Thief"
+  },
+  "is_phantom_trait": true,
+  "unlock_level": 6,
+  "icon": {
+    "id": 82212,
+    "file": "icon.png"
+  }
+}

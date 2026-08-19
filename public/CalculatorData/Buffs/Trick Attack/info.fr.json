@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 3254,
+  "name": "Attaque sournoise",
+  "description": "Les dégâts reçus du joueur ayant créé l'effet sont augmentés.",
+  "effects": [
+    "Les dégâts reçus du joueur ayant créé l'effet sont augmentés."
+  ],
+  "classification": "debuff",
+  "icon": {
+    "id": 212918,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 2,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 10
+  },
+  "class_job_category_id": 93,
+  "source_abilities": [
+    {
+      "id": 2258,
+      "name": "Attaque sournoise",
+      "description": "Effectue une attaque physique sur la cible.\nPuissance : 300\nPuissance par derrière : 400\nEffet additionnel : inflige Attaque sournoise.\nDurée : 15s\nAttaque sournoise : augmente les dégâts infligés à la cible par le lanceur de 10%.\nCondition : Dissimulation.",
+      "description_macro": "Effectue une attaque physique sur la cible.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> 300<br><colortype(506)><edgecolortype(507)>Puissance par derrière<nbsp>:<edgecolortype(0)><colortype(0)> 400<br><colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> inflige Attaque sournoise.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 15s<br><colortype(506)><edgecolortype(507)>Attaque sournoise<nbsp>:<edgecolortype(0)><colortype(0)> augmente les dégâts infligés à la cible par le lanceur de 10%.<br><colortype(506)><edgecolortype(507)>Condition<nbsp>:<edgecolortype(0)><colortype(0)> <colortype(500)><edgecolortype(501)>Dissimulation<edgecolortype(0)><colortype(0)>.",
+      "unlock_level": 18,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 30,
+          "name": "Ninja",
+          "abbreviation": "NIN",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

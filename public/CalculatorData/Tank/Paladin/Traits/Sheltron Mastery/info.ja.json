@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 412,
+  "name": "シェルトロンマスタリー",
+  "description": "シェルトロンがホーリーシェルトロンに変化する。",
+  "description_macro": "シェルトロンがホーリーシェルトロンに変化する。",
+  "effects": [
+    "シェルトロンがホーリーシェルトロンに変化する。"
+  ],
+  "role": "Tank",
+  "job": {
+    "id": 19,
+    "name": "ナイト",
+    "abbreviation": "PLD"
+  },
+  "unlock_level": 82,
+  "value": 0,
+  "icon": {
+    "id": 5218,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 20,
+  "source_class_job_id": 19
+}

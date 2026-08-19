@@ -1,0 +1,26 @@
+{
+  "kind": "trait",
+  "id": 465,
+  "name": "Elementare Meisterschaft V",
+  "description": "Wenn du entweder die Maximalstapelzahl an Lichtfeuer oder sowohl die Maximalstapelzahl an Schatteneis als auch an Schattenherzen hast und dann zum entgegengesetzten Element wechselst, wird dir eine Paradoxie gewährt.\nEndet der Effekt von Lichtfeuer bzw. Schatteneis, wird auch Paradoxie beendet.\nWährend der Effektdauer ändern sich Feuer und Eis zu Paradox.",
+  "description_macro": "Wenn du entweder die Ma<->xi<->mal<->sta<->pel<->zahl an <colortype(506)><edgecolortype(507)>Lichtfeuer<edgecolortype(0)><colortype(0)> oder sowohl die Ma<->xi<->mal<->sta<->pel<->zahl an <colortype(506)><edgecolortype(507)>Schatteneis<edgecolortype(0)><colortype(0)> als auch an <colortype(506)><edgecolortype(507)>Schattenherzen<edgecolortype(0)><colortype(0)> hast und dann zum entgegengesetzten Element wechselst, wird dir eine <colortype(506)><edgecolortype(507)>Paradoxie<edgecolortype(0)><colortype(0)> gewährt.<br>Endet der Effekt von <colortype(506)><edgecolortype(507)>Lichtfeuer<edgecolortype(0)><colortype(0)> bzw. <colortype(506)><edgecolortype(507)>Schatteneis<edgecolortype(0)><colortype(0)>, wird auch <colortype(506)><edgecolortype(507)>Paradoxie<edgecolortype(0)><colortype(0)> beendet.<br>Während der Effektdauer ändern sich <colortype(502)><edgecolortype(503)>Feuer<edgecolortype(0)><colortype(0)> und <colortype(502)><edgecolortype(503)>Eis<edgecolortype(0)><colortype(0)> zu <colortype(502)><edgecolortype(503)>Paradox<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Wenn du entweder die Maximalstapelzahl an Lichtfeuer oder sowohl die Maximalstapelzahl an Schatteneis als auch an Schattenherzen hast und dann zum entgegengesetzten Element wechselst, wird dir eine Paradoxie gewährt.",
+    "Endet der Effekt von Lichtfeuer bzw. Schatteneis, wird auch Paradoxie beendet.",
+    "Während der Effektdauer ändern sich Feuer und Eis zu Paradox."
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 25,
+    "name": "Schwarzmagier",
+    "abbreviation": "SMA"
+  },
+  "unlock_level": 90,
+  "value": 0,
+  "icon": {
+    "id": 5373,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 26,
+  "source_class_job_id": 25
+}

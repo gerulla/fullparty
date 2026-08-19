@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 1881,
+  "name": "Konjunktion III",
+  "description": "Erleidet schrittweise Schaden.",
+  "effects": [
+    "Erleidet schrittweise Schaden."
+  ],
+  "classification": "debuff",
+  "icon": {
+    "id": 213248,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 2,
+  "target_type": 0,
+  "can_dispel": true,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 10,
+  "parameter": {
+    "effect": 0,
+    "modifier": 10
+  },
+  "class_job_category_id": 99,
+  "source_abilities": [
+    {
+      "id": 16554,
+      "name": "Konjunktion III",
+      "description": "Du fügst dem Ziel elementneutralen Schaden über Zeit zu.\nAttacke-Wert: 70\nDauer: 30 Sekunden",
+      "description_macro": "Du fügst dem Ziel elementneutralen Schaden über Zeit zu.<br>Attacke-Wert: <if([gnum68==33],<if([gnum72>=94],70,65)>,65)><br>Dauer: 30 Sekunden",
+      "unlock_level": 72,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Healer"
+      ],
+      "jobs": [
+        {
+          "id": 33,
+          "name": "Astrologe",
+          "abbreviation": "AST",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 688,
+  "name": "Hypercharge",
+  "description": "L'auto-tourelle est hyperchargée et l'effet de ses actions est décuplé.",
+  "effects": [
+    "L'auto-tourelle est hyperchargée et l'effet de ses actions est décuplé."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 213012,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 17209,
+      "name": "Hypercharge",
+      "description": "Vous octroie 5 degrés de Surchauffe.\nDurée : 10s\nSurchauffe : la puissance de toutes vos techniques d'arme de machiniste à cible unique est augmentée de 20.\nTir ardentet Arbalète automatique peuvent être lancés.\nCoût Jauge de chaleur : 50",
+      "description_macro": "Vous octroie 5 degrés de <colortype(500)><edgecolortype(501)>Surchauffe<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 10s<br><colortype(506)><edgecolortype(507)>Surchauffe<nbsp>:<edgecolortype(0)><colortype(0)> la puissance de toutes vos techniques d'arme de machiniste à cible unique est augmentée de 20.<br><if([gnum68==31],<if([gnum72>=35],<if([gnum68==31],<if([gnum72>=68],Tir ardent,Pyro-explosion)>,Pyro-explosion)><if([gnum68==31],<if([gnum72>=52], et Arbalète automatique,)>,)> <if([gnum68==31],<if([gnum72>=68],<if([gnum68==31],<if([gnum72>=52],peuvent être lancés,peut être lancé)>,peut être lancé)>,<if([gnum68==31],<if([gnum72>=52],peuvent être lancées,peut être lancée)>,peut être lancée)>)>,<if([gnum68==31],<if([gnum72>=52],peuvent être lancées,peut être lancée)>,peut être lancée)>)>.<br>,)>,)><colortype(506)><edgecolortype(507)>Coût Jauge de chaleur<nbsp>:<edgecolortype(0)><colortype(0)> 50",
+      "unlock_level": 30,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Physical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 31,
+          "name": "Machiniste",
+          "abbreviation": "MCH",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 431,
+  "name": "Enhanced Thunderclap",
+  "description": "Allows a third charge of Thunderclap.",
+  "description_macro": "Allows a third charge of <colortype(500)><edgecolortype(501)>Thunderclap<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Allows a third charge of Thunderclap."
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 20,
+    "name": "Monk",
+    "abbreviation": "MNK"
+  },
+  "unlock_level": 84,
+  "value": 3,
+  "icon": {
+    "id": 5244,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 21,
+  "source_class_job_id": 20
+}

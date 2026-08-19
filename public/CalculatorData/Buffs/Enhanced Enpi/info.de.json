@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 1236,
+  "name": "Verbessertes Enpi",
+  "description": "Nächstes Enpi hat einen erhöhten Attacke-Wert.",
+  "effects": [
+    "Nächstes Enpi hat einen erhöhten Attacke-Wert."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 213310,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 7493,
+      "name": "Hissatsu: Yaten",
+      "description": "Du führst eine physische Attacke aus.\nAttacke-Wert: 100\nZusatzeffekt: 10y-Sprung zurück\nZusatzeffekt: Gewährt dir Verbessertes Enpi.\nDauer: 15 Sekunden\nKenki-Balken-Kosten: 10\nKann nicht während Fessel ausgeführt werden.",
+      "description_macro": "Du führst eine physische Attacke aus.<br>Attacke-Wert: 100<br>Zusatzeffekt: 10y-Sprung zurück<br>Zusatzeffekt: Gewährt dir <colortype(506)><edgecolortype(507)>Verbessertes Enpi<edgecolortype(0)><colortype(0)>.<br>Dauer: 15 Sekunden<br>Kenki-Balken-Kosten: 10<br>Kann nicht während <colortype(500)><edgecolortype(501)>Fessel<edgecolortype(0)><colortype(0)> ausgeführt werden.",
+      "unlock_level": 56,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 34,
+          "name": "Samurai",
+          "abbreviation": "SAM",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

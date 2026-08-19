@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 430,
+  "name": "Arm of the Destroyer Mastery",
+  "description": "Upgrades Arm of the Destroyer to Shadow of the Destroyer.",
+  "description_macro": "Upgrades <colortype(500)><edgecolortype(501)>Arm of the Destroyer<edgecolortype(0)><colortype(0)> to <colortype(500)><edgecolortype(501)>Shadow of the Destroyer<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Upgrades Arm of the Destroyer to Shadow of the Destroyer."
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 20,
+    "name": "Monk",
+    "abbreviation": "MNK"
+  },
+  "unlock_level": 82,
+  "value": 0,
+  "icon": {
+    "id": 5243,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 21,
+  "source_class_job_id": 20
+}

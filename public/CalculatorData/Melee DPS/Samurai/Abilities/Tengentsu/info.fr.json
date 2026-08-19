@@ -1,0 +1,89 @@
+{
+  "kind": "ability",
+  "id": 36962,
+  "name": "Tengentsû",
+  "description": "Réduit de 10% les dégâts de la prochaine attaque subie.\nDurée : 4s\nEffet additionnel : remplit la Jauge de Kenki de 10 si des dégâts sont subis et devient Tengentsû : Sei.\nDurée : 9s\nTengentsû : Sei : réduit de 10% vos dégâts subis et restaure périodiquement vos PV.\nPuissance : 200",
+  "description_macro": "Réduit de 10% les dégâts de la prochaine attaque subie.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 4s<br><colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> remplit la <colortype(502)><edgecolortype(503)>Jauge de Kenki<edgecolortype(0)><colortype(0)> de 10 si des dégâts sont subis et devient <colortype(500)><edgecolortype(501)>Tengentsû<nbsp>: Sei<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 9s<br><colortype(506)><edgecolortype(507)>Tengentsû<nbsp>: Sei<nbsp>:<edgecolortype(0)><colortype(0)> réduit de 10% vos dégâts subis et restaure périodiquement vos PV.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> 200",
+  "effects": [
+    "Réduit de 10% les dégâts de la prochaine attaque subie.",
+    "Durée : 4s",
+    "Effet additionnel : remplit la Jauge de Kenki de 10 si des dégâts sont subis et devient Tengentsû : Sei.",
+    "Durée : 9s",
+    "Tengentsû : Sei : réduit de 10% vos dégâts subis et restaure périodiquement vos PV.",
+    "Puissance : 200"
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 34,
+    "name": "Samouraï",
+    "abbreviation": "SAM"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 82,
+  "icon": {
+    "id": 3190,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 4,
+    "name": "Aptitude"
+  },
+  "attack_type": {
+    "id": 0,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 15,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 7,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 0,
+      "value": 0
+    },
+    "secondary": {
+      "type_id": 62,
+      "value": 589
+    }
+  },
+  "range": {
+    "target_yalms": 0,
+    "effect_yalms": 0,
+    "cast_type": 1
+  },
+  "targeting": {
+    "self": true,
+    "party": false,
+    "alliance": false,
+    "hostile": false,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 0,
+    "behavior_type": 0,
+    "class_job_category_id": 111,
+    "source_class_job_id": 34,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

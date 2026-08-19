@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 1826,
+  "name": "守りのサンバ",
+  "description": "受けるダメージの一部が軽減される状態。",
+  "effects": [
+    "受けるダメージの一部が軽減される状態。"
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 213715,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": -10
+  },
+  "class_job_category_id": 150,
+  "source_abilities": [
+    {
+      "id": 16012,
+      "name": "守りのサンバ",
+      "description": "一定時間、自身と周囲のパーティメンバーの被ダメージを15％軽減させる。\u3000効果時間：15秒\n吟遊詩人のトルバドゥール、機工士のタクティシャンとは同時に付与されない。",
+      "description_macro": "一定時間、自身と周囲のパーティメンバーの被ダメージを<if([gnum68==38],<if([gnum72>=98],15,10)>,10)>％軽減させる。\u3000<colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>15秒<br>吟遊詩人のトルバドゥール、機工士のタクティシャンとは同時に付与されない。",
+      "unlock_level": 56,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Physical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 38,
+          "name": "踊り子",
+          "abbreviation": "DNC",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

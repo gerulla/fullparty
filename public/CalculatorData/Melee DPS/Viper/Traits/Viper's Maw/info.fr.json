@@ -1,0 +1,25 @@
+{
+  "kind": "trait",
+  "id": 525,
+  "name": "Mâchoires améliorées",
+  "description": "Permet d'utiliser Spirale finale.\nCondition : après avoir utilisé Déchiquetage vorace ou Déchiquetage sanglant avec succès.",
+  "description_macro": "Permet d'utiliser <colortype(500)><edgecolortype(501)>Spirale finale<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Condition<nbsp>:<edgecolortype(0)><colortype(0)> après avoir utilisé <colortype(500)><edgecolortype(501)>Déchiquetage vorace<edgecolortype(0)><colortype(0)> ou <colortype(500)><edgecolortype(501)>Déchiquetage sanglant<edgecolortype(0)><colortype(0)> avec succès.",
+  "effects": [
+    "Permet d'utiliser Spirale finale.",
+    "Condition : après avoir utilisé Déchiquetage vorace ou Déchiquetage sanglant avec succès."
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 41,
+    "name": "Rôdeur Vipère",
+    "abbreviation": "VPR"
+  },
+  "unlock_level": 60,
+  "value": 0,
+  "icon": {
+    "id": 6502,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 196,
+  "source_class_job_id": 41
+}

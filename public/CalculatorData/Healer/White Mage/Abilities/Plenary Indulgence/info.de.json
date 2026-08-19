@@ -1,0 +1,88 @@
+{
+  "kind": "ability",
+  "id": 7433,
+  "name": "Vollkommener Ablass",
+  "description": "Du gewährst dir und den umstehenden Gruppenmitgliedern Vollkommener Ablass.\nEffekt von Vollkommener Ablass: Verringert erlittenen Schaden um 10 %.\nDauer: 10 Sekunden\nErfolgreich ausgeführtes Reseda, Vitaga\\ gewährt Zielen mit Vollkommener Ablass einen zusätzlichen Heileffekt.\nHeilpotenzial: 200",
+  "description_macro": "Du gewährst dir und den umstehenden Grup<->pen<->mit<->gliedern <colortype(506)><edgecolortype(507)>Vollkommener Ablass<edgecolortype(0)><colortype(0)>.<br>Effekt von <colortype(506)><edgecolortype(507)>Vollkommener Ablass<edgecolortype(0)><colortype(0)>: Verringert erlittenen Schaden um 10<nbsp>%.<br>Dauer: 10 Sekunden<br>Erfolgreich ausgeführtes <colortype(502)><edgecolortype(503)>Reseda<edgecolortype(0)><colortype(0)>, <colortype(502)><edgecolortype(503)>Vitaga<edgecolortype(0)><colortype(0)><if([gnum68==24],<if([gnum72>=76],\\, <if([gnum68==24],<if([gnum72>=96],<colortype(502)><edgecolortype(503)>Resega<edgecolortype(0)><colortype(0)>,<colortype(502)><edgecolortype(503)>Resedra<edgecolortype(0)><colortype(0)>)>,<colortype(502)><edgecolortype(503)>Resedra<edgecolortype(0)><colortype(0)>)> oder <colortype(502)><edgecolortype(503)>Afflatus laetitiae<edgecolortype(0)><colortype(0)>,<if([gnum68==24],<if([gnum72>=96], oder <colortype(502)><edgecolortype(503)>Resega<edgecolortype(0)><colortype(0)>, oder <colortype(502)><edgecolortype(503)>Resedra<edgecolortype(0)><colortype(0)>)>, oder <colortype(502)><edgecolortype(503)>Resedra<edgecolortype(0)><colortype(0)>)>)>,<if([gnum68==24],<if([gnum72>=96], oder <colortype(502)><edgecolortype(503)>Resega<edgecolortype(0)><colortype(0)>, oder <colortype(502)><edgecolortype(503)>Resedra<edgecolortype(0)><colortype(0)>)>, oder <colortype(502)><edgecolortype(503)>Resedra<edgecolortype(0)><colortype(0)>)>)> gewährt Zielen mit <colortype(506)><edgecolortype(507)>Vollkommener Ablass<edgecolortype(0)><colortype(0)> einen zusätzlichen Heileffekt.<br>Heilpotenzial: 200",
+  "effects": [
+    "Du gewährst dir und den umstehenden Gruppenmitgliedern Vollkommener Ablass.",
+    "Effekt von Vollkommener Ablass: Verringert erlittenen Schaden um 10 %.",
+    "Dauer: 10 Sekunden",
+    "Erfolgreich ausgeführtes Reseda, Vitaga\\ gewährt Zielen mit Vollkommener Ablass einen zusätzlichen Heileffekt.",
+    "Heilpotenzial: 200"
+  ],
+  "role": "Healer",
+  "job": {
+    "id": 24,
+    "name": "Weißmagier",
+    "abbreviation": "WMA"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 70,
+  "icon": {
+    "id": 2639,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 4,
+    "name": "Talent"
+  },
+  "attack_type": {
+    "id": 0,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 60,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 11,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 0,
+      "value": 0
+    },
+    "secondary": {
+      "type_id": 0,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": 0,
+    "effect_yalms": 30,
+    "cast_type": 2
+  },
+  "targeting": {
+    "self": true,
+    "party": false,
+    "alliance": false,
+    "hostile": false,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": false
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 7,
+    "behavior_type": 0,
+    "class_job_category_id": 25,
+    "source_class_job_id": 24,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

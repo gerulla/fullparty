@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 303,
+  "name": "スキャッターマスタリー",
+  "description": "スキャッターがインパクトに変化する。",
+  "description_macro": "スキャッターがインパクトに変化する。",
+  "effects": [
+    "スキャッターがインパクトに変化する。"
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 35,
+    "name": "赤魔道士",
+    "abbreviation": "RDM"
+  },
+  "unlock_level": 66,
+  "value": 0,
+  "icon": {
+    "id": 6207,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 112,
+  "source_class_job_id": 35
+}

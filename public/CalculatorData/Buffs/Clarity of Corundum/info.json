@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 2684,
+  "name": "Clarity of Corundum",
+  "description": "Damage taken is reduced.",
+  "effects": [
+    "Damage taken is reduced."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 213616,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": -10
+  },
+  "class_job_category_id": 149,
+  "source_abilities": [
+    {
+      "id": 25758,
+      "name": "Heart of Corundum",
+      "description": "Reduces damage taken by target party member or self by 15%.\nDuration: 8s\nAdditional Effect: When targeting a party member while under the effect of Brutal Shell, that effect is also granted to the target\nDuration: 30s\nAdditional Effect: Grants Clarity of Corundum to target\nClarity of Corundum Effect: Reduces damage taken by 15%\nDuration: 4s\nAdditional Effect: Grants Catharsis of Corundum to target\nCatharsis of Corundum Effect: Restores HP when HP falls to 50% or below, or upon effect duration expiration\nCure Potency: 900\nDuration: 20s",
+      "description_macro": "Reduces damage taken by target party member or self by 15%.<br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>8s<br><colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>When targeting a party member while under the effect of <colortype(506)><edgecolortype(507)>Brutal Shell<edgecolortype(0)><colortype(0)>, that effect is also granted to the target<br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>30s<br><colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>Grants <colortype(506)><edgecolortype(507)>Clarity of Corundum<edgecolortype(0)><colortype(0)> to target<br><colortype(504)><edgecolortype(505)>Clarity of Corundum Effect: <edgecolortype(0)><colortype(0)>Reduces damage taken by 15%<br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>4s<br><colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>Grants <colortype(506)><edgecolortype(507)>Catharsis of Corundum<edgecolortype(0)><colortype(0)> to target<br><colortype(504)><edgecolortype(505)>Catharsis of Corundum Effect: <edgecolortype(0)><colortype(0)>Restores HP when HP falls to 50% or below, or upon effect duration expiration<br><colortype(504)><edgecolortype(505)>Cure Potency: <edgecolortype(0)><colortype(0)>900<br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>20s",
+      "unlock_level": 82,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Tank"
+      ],
+      "jobs": [
+        {
+          "id": 37,
+          "name": "Gunbreaker",
+          "abbreviation": "GNB",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

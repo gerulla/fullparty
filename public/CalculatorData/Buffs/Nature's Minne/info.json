@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 1202,
+  "name": "Nature's Minne",
+  "description": "HP recovery via healing actions is increased.",
+  "effects": [
+    "HP recovery via healing actions is increased."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 212618,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 1,
+  "parameter": {
+    "effect": 0,
+    "modifier": 10
+  },
+  "class_job_category_id": 24,
+  "source_abilities": [
+    {
+      "id": 7408,
+      "name": "Nature's Minne",
+      "description": "Increases HP recovery via healing actions by 15% for self and nearby party members.\nDuration: 15s",
+      "description_macro": "Increases HP recovery via healing actions by 15% for self and nearby party members.<br><colortype(504)><edgecolortype(505)>Duration:<edgecolortype(0)><colortype(0)> 15s",
+      "unlock_level": 66,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Physical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 23,
+          "name": "Bard",
+          "abbreviation": "BRD",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

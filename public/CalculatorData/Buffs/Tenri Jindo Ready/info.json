@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 3851,
+  "name": "Tenri Jindo Ready",
+  "description": "Able to execute Tenri Jindo.",
+  "effects": [
+    "Able to execute Tenri Jindo."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 212922,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 92,
+  "source_abilities": [
+    {
+      "id": 7403,
+      "name": "Ten Chi Jin",
+      "description": "Temporarily converts each of the three mudra into a ninjutsu action. Executing one of these actions will convert the remaining mudra into different ninjutsu actions until all three have been executed or the Ten Chi Jin effect expires.\nDuration: 6s\nAdditional Effect: Grants Tenri Jindo Ready\nDuration: 30s\nOnly ninjutsu available while active. The same ninjutsu cannot be executed twice.\nCannot be executed while under the effect of Kassatsu.",
+      "description_macro": "Temporarily converts each of the three mudra into a ninjutsu action. Executing one of these actions will convert the remaining mudra into different ninjutsu actions until all three have been executed or the <colortype(506)><edgecolortype(507)>Ten Chi Jin<edgecolortype(0)><colortype(0)> effect expires.<br><colortype(504)><edgecolortype(505)>Duration:<edgecolortype(0)><colortype(0)> 6s<br><if([gnum68==30],<if([gnum72>=100],<colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>Grants <colortype(506)><edgecolortype(507)>Tenri Jindo Ready<edgecolortype(0)><colortype(0)><br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>30s<br>,)>,)>Only ninjutsu available while active. The same ninjutsu cannot be executed twice.<br>Cannot be executed while under the effect of <colortype(506)><edgecolortype(507)>Kassatsu<edgecolortype(0)><colortype(0)>.",
+      "unlock_level": 70,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 30,
+          "name": "Ninja",
+          "abbreviation": "NIN",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

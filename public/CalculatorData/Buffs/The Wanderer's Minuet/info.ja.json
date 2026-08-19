@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 2216,
+  "name": "旅神のメヌエット",
+  "description": "クリティカル発動率が向上した状態。",
+  "effects": [
+    "クリティカル発動率が向上した状態。"
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 212610,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": true,
+  "is_permanent": true,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 2
+  },
+  "class_job_category_id": 24,
+  "source_abilities": [
+    {
+      "id": 3559,
+      "name": "旅神のメヌエット",
+      "description": "旅神のメヌエットを歌い、自身と周囲50m以内のパーティメンバーのクリティカル発動率を2％上昇させる。\u3000効果時間：45秒\n追加効果（発動確率80％)：自身に「詩心」が付与される。\nこの効果は旅神のメヌエットの効果中に継続的に発動する。\n詩心効果：「ピッチパーフェクト」を実行することができるようになる。\u3000最大スタック数：3\n追加効果：自身に「旅神のコーダ」が付与される。\n発動条件：自身が戦闘状態",
+      "description_macro": "旅神のメヌエットを歌い、自身と周囲50m以内のパーティメンバーのクリティカル発動率を2％上昇させる。\u3000<colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>45秒<br><colortype(504)><edgecolortype(505)>追加効果（発動確率80％)：<edgecolortype(0)><colortype(0)>自身に<colortype(500)><edgecolortype(501)>「詩心」<edgecolortype(0)><colortype(0)>が付与される。<br>この効果は旅神のメヌエットの効果中に継続的に発動する。<br><colortype(504)><edgecolortype(505)>詩心効果：<edgecolortype(0)><colortype(0)><colortype(500)><edgecolortype(501)>「ピッチパーフェクト」<edgecolortype(0)><colortype(0)>を実行することができるようになる。\u3000<colortype(504)><edgecolortype(505)>最大スタック数：<edgecolortype(0)><colortype(0)>3<br><if([gnum68==23],<if([gnum72>=90],<colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)>自身に<colortype(500)><edgecolortype(501)>「旅神のコーダ」<edgecolortype(0)><colortype(0)>が付与される。<br>,)>,)><colortype(504)><edgecolortype(505)>発動条件：<edgecolortype(0)><colortype(0)>自身が戦闘状態",
+      "unlock_level": 52,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Physical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 23,
+          "name": "吟遊詩人",
+          "abbreviation": "BRD",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

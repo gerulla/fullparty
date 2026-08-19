@@ -1,0 +1,113 @@
+{
+  "kind": "combat_status",
+  "id": 3676,
+  "name": "Dritte Pikto-Farbe",
+  "description": "Aus Blau und Magenta kann Piktomantie gewirkt werden.",
+  "effects": [
+    "Aus Blau und Magenta kann Piktomantie gewirkt werden."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 213802,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": true,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 33,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 197,
+  "source_abilities": [
+    {
+      "id": 34651,
+      "name": "Wind in Grün",
+      "description": "Du führst eine windbasierte magische Attacke aus.\nAttacke-Wert: 530\nZusatzeffekt: Gewährt dir Dritte Pikto-Farbe.\nDauer: 30 Sekunden\nBedingung: Zweite Pikto-Farbe aktiv und Subtraktive Palette nicht aktiv\nFalls Inszenierung aktiv ist und du dich innerhalb des Wirkradius befindest\\Bei erfüllter Bedingung ändert sich Feuer in Rot zu diesem Kommando.\nKann nicht im Kommandomenü angelegt werden.",
+      "description_macro": "Du führst eine windbasierte magische Attacke aus.<br>Attacke-Wert: <if([gnum68==42],<if([gnum72>=94],530,<if([gnum68==42],<if([gnum72>=84],460,<if([gnum68==42],<if([gnum72>=74],420,<if([gnum68==42],<if([gnum72>=54],350,280)>,280)>)>,<if([gnum68==42],<if([gnum72>=54],350,280)>,280)>)>)>,<if([gnum68==42],<if([gnum72>=74],420,<if([gnum68==42],<if([gnum72>=54],350,280)>,280)>)>,<if([gnum68==42],<if([gnum72>=54],350,280)>,280)>)>)>)>,<if([gnum68==42],<if([gnum72>=84],460,<if([gnum68==42],<if([gnum72>=74],420,<if([gnum68==42],<if([gnum72>=54],350,280)>,280)>)>,<if([gnum68==42],<if([gnum72>=54],350,280)>,280)>)>)>,<if([gnum68==42],<if([gnum72>=74],420,<if([gnum68==42],<if([gnum72>=54],350,280)>,280)>)>,<if([gnum68==42],<if([gnum72>=54],350,280)>,280)>)>)>)><br>Zusatzeffekt: Gewährt dir <colortype(506)><edgecolortype(507)>Dritte Pikto-Farbe<edgecolortype(0)><colortype(0)>.<br>Dauer: 30 Sekunden<br>Bedingung: <colortype(506)><edgecolortype(507)>Zweite Pikto-Farbe<edgecolortype(0)><colortype(0)> aktiv und <colortype(500)><edgecolortype(501)>Subtraktive Palette<edgecolortype(0)><colortype(0)> nicht aktiv<br><if([gnum68==42],<if([gnum72>=82],Falls <colortype(506)><edgecolortype(507)>Inszenierung<edgecolortype(0)><colortype(0)> aktiv ist und du dich innerhalb des Wirkradius befindest\\, wird 1 Stapel verbraucht.<br>,)>,)>Bei erfüllter Bedingung ändert sich <colortype(502)><edgecolortype(503)>Feuer in Rot<edgecolortype(0)><colortype(0)> zu diesem Kommando.<br>Kann nicht im Kommandomenü angelegt werden.",
+      "unlock_level": 5,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Magical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 42,
+          "name": "Piktomant",
+          "abbreviation": "PKT",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 34654,
+      "name": "Stein in Gelb",
+      "description": "Du führst eine erdbasierte magische Attacke aus.\nAttacke-Wert: 900\nZusatzeffekt: Gewährt dir Dritte Pikto-Farbe.\nDauer: 30 Sekunden\nBedingung: Zweite Pikto-Farbe und Subtraktive Palette aktiv\nFalls Inszenierung aktiv ist und du dich innerhalb des Wirkradius befindest\\Bei erfüllter Bedingung ändert sich Eis in Cyan zu diesem Kommando.\nKann nicht im Kommandomenü angelegt werden.",
+      "description_macro": "Du führst eine erdbasierte magische Attacke aus.<br>Attacke-Wert: <if([gnum68==42],<if([gnum72>=94],900,<if([gnum68==42],<if([gnum72>=84],790,<if([gnum68==42],<if([gnum72>=74],720,600)>,600)>)>,<if([gnum68==42],<if([gnum72>=74],720,600)>,600)>)>)>,<if([gnum68==42],<if([gnum72>=84],790,<if([gnum68==42],<if([gnum72>=74],720,600)>,600)>)>,<if([gnum68==42],<if([gnum72>=74],720,600)>,600)>)>)><br>Zusatzeffekt: Gewährt dir <colortype(506)><edgecolortype(507)>Dritte Pikto-Farbe<edgecolortype(0)><colortype(0)>.<br>Dauer: 30 Sekunden<br>Bedingung: <colortype(506)><edgecolortype(507)>Zweite Pikto-Farbe<edgecolortype(0)><colortype(0)> und <colortype(506)><edgecolortype(507)>Subtraktive Palette<edgecolortype(0)><colortype(0)> aktiv<br><if([gnum68==42],<if([gnum72>=82],Falls <colortype(506)><edgecolortype(507)>Inszenierung<edgecolortype(0)><colortype(0)> aktiv ist und du dich innerhalb des Wirkradius befindest\\, wird 1 Stapel verbraucht.<br>,)>,)>Bei erfüllter Bedingung ändert sich <colortype(502)><edgecolortype(503)>Eis in Cyan<edgecolortype(0)><colortype(0)> zu diesem Kommando.<br>Kann nicht im Kommandomenü angelegt werden.",
+      "unlock_level": 60,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Magical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 42,
+          "name": "Piktomant",
+          "abbreviation": "PKT",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 34657,
+      "name": "Windra in Grün",
+      "description": "Du führst eine windbasierte magische Attacke auf das Ziel und die Gegner in seiner Nähe aus.\nAttacke-Wert: 200\nZusatzeffekt: Gewährt dir Dritte Pikto-Farbe.\nDauer: 30 Sekunden\nBedingung: Zweite Pikto-Farbe aktiv und Subtraktive Palette nicht aktiv\nFalls Inszenierung aktiv ist und du dich innerhalb des Wirkradius befindest\\Bei erfüllter Bedingung ändert sich Feura in Rot zu diesem Kommando.\nKann nicht im Kommandomenü angelegt werden.",
+      "description_macro": "Du führst eine windbasierte magische Attacke auf das Ziel und die Gegner in seiner Nähe aus.<br>Attacke-Wert: <if([gnum68==42],<if([gnum72>=94],200,<if([gnum68==42],<if([gnum72>=74],170,140)>,140)>)>,<if([gnum68==42],<if([gnum72>=74],170,140)>,140)>)><br>Zusatzeffekt: Gewährt dir <colortype(506)><edgecolortype(507)>Dritte Pikto-Farbe<edgecolortype(0)><colortype(0)>.<br>Dauer: 30 Sekunden<br>Bedingung: <colortype(506)><edgecolortype(507)>Zweite Pikto-Farbe<edgecolortype(0)><colortype(0)> aktiv und <colortype(500)><edgecolortype(501)>Subtraktive Palette<edgecolortype(0)><colortype(0)> nicht aktiv<br><if([gnum68==42],<if([gnum72>=82],Falls <colortype(506)><edgecolortype(507)>Inszenierung<edgecolortype(0)><colortype(0)> aktiv ist und du dich innerhalb des Wirkradius befindest\\, wird 1 Stapel verbraucht.<br>,)>,)>Bei erfüllter Bedingung ändert sich <colortype(502)><edgecolortype(503)>Feura in Rot<edgecolortype(0)><colortype(0)> zu diesem Kommando.<br>Kann nicht im Kommandomenü angelegt werden.",
+      "unlock_level": 35,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Magical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 42,
+          "name": "Piktomant",
+          "abbreviation": "PKT",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 34660,
+      "name": "Steinra in Gelb",
+      "description": "Du führst eine erdbasierte magische Attacke auf das Ziel und die Gegner in seiner Nähe aus.\nAttacke-Wert: 380\nZusatzeffekt: Gewährt dir Dritte Pikto-Farbe.\nDauer: 30 Sekunden\nBedingung: Zweite Pikto-Farbe und Subtraktive Palette aktiv\nFalls Inszenierung aktiv ist und du dich innerhalb des Wirkradius befindest\\Eigener Reaktivierungs-Timer\nBei Ausführung wird der Reaktivierungs-Timer dieses Kommandos auf alle anderen Waffenfertigkeiten und Magie angewendet.\nBei erfüllter Bedingung ändert sich Eisra in Cyan zu diesem Kommando.\nKann nicht im Kommandomenü angelegt werden.",
+      "description_macro": "Du führst eine erdbasierte magische Attacke auf das Ziel und die Gegner in seiner Nähe aus.<br>Attacke-Wert: <if([gnum68==42],<if([gnum72>=94],380,<if([gnum68==42],<if([gnum72>=74],350,290)>,290)>)>,<if([gnum68==42],<if([gnum72>=74],350,290)>,290)>)><br>Zusatzeffekt: Gewährt dir <colortype(506)><edgecolortype(507)>Dritte Pikto-Farbe<edgecolortype(0)><colortype(0)>.<br>Dauer: 30 Sekunden<br>Bedingung: <colortype(506)><edgecolortype(507)>Zweite Pikto-Farbe<edgecolortype(0)><colortype(0)> und <colortype(506)><edgecolortype(507)>Subtraktive Palette<edgecolortype(0)><colortype(0)> aktiv<br><if([gnum68==42],<if([gnum72>=82],Falls <colortype(506)><edgecolortype(507)>Inszenierung<edgecolortype(0)><colortype(0)> aktiv ist und du dich innerhalb des Wirkradius befindest\\, wird 1 Stapel verbraucht.<br>,)>,)>Eigener Reaktivierungs-Timer<br>Bei Ausführung wird der Reaktivierungs-Timer dieses Kommandos auf alle anderen Waf<->fen<->fer<->tig<->kei<->ten und Magie angewendet.<br>Bei erfüllter Bedingung ändert sich <colortype(502)><edgecolortype(503)>Eisra in Cyan<edgecolortype(0)><colortype(0)> zu diesem Kommando.<br>Kann nicht im Kommandomenü angelegt werden.",
+      "unlock_level": 60,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Magical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 42,
+          "name": "Piktomant",
+          "abbreviation": "PKT",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

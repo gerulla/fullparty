@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 810,
+  "name": "Living Dead",
+  "description": "Unable to be KO'd by most attacks. Status changed to Walking Dead in most cases when HP is reduced to 0.",
+  "effects": [
+    "Unable to be KO'd by most attacks. Status changed to Walking Dead in most cases when HP is reduced to 0."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 213115,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 70,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 3638,
+      "name": "Living Dead",
+      "description": "Grants the effect of Living Dead.\nWhen HP is reduced to 0 while under the effect of Living Dead, instead of becoming KO'd, your status will change to Walking Dead.\nLiving Dead Duration: 10s\nAdditional Effect: Restores HP with each weaponskill successfully delivered or spell cast\nCure Potency: 1500\nWhile under the effect of Walking Dead, most attacks will not lower your HP below 1. If, before the Walking Dead timer runs out, an amount of HP totaling your maximum HP is restored, the effect will change to Undead Rebirth. If this amount is not restored, you will be KO'd.\nWalking Dead Duration: 10s\nWhile under the effect of Undead Rebirth, most attacks will not lower your HP below 1.\nUndead Rebirth Duration: Time remaining on Walking Dead",
+      "description_macro": "Grants the effect of <colortype(506)><edgecolortype(507)>Living Dead<edgecolortype(0)><colortype(0)>.<br>When HP is reduced to 0 while under the effect of <colortype(506)><edgecolortype(507)>Living Dead<edgecolortype(0)><colortype(0)>, instead of becoming KO'd, your status will change to <colortype(506)><edgecolortype(507)>Walking Dead<edgecolortype(0)><colortype(0)>.<br><colortype(504)><edgecolortype(505)>Living Dead Duration: <edgecolortype(0)><colortype(0)>10s<br><colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>Restores HP with each weaponskill successfully delivered or spell cast<br><colortype(504)><edgecolortype(505)>Cure Potency: <edgecolortype(0)><colortype(0)>1500<br>While under the effect of <colortype(506)><edgecolortype(507)>Walking Dead<edgecolortype(0)><colortype(0)>, most attacks will not lower your HP below 1. If, before the <colortype(506)><edgecolortype(507)>Walking Dead<edgecolortype(0)><colortype(0)> timer runs out, an amount of HP totaling your maximum HP is restored, the effect will change to <colortype(506)><edgecolortype(507)>Undead Rebirth<edgecolortype(0)><colortype(0)>. If this amount is not restored, you will be KO'd.<br><colortype(504)><edgecolortype(505)>Walking Dead Duration: <edgecolortype(0)><colortype(0)>10s<br>While under the effect of <colortype(506)><edgecolortype(507)>Undead Rebirth<edgecolortype(0)><colortype(0)>, most attacks will not lower your HP below 1.<br><colortype(504)><edgecolortype(505)>Undead Rebirth Duration: <edgecolortype(0)><colortype(0)>Time remaining on <colortype(506)><edgecolortype(507)>Walking Dead<edgecolortype(0)><colortype(0)>",
+      "unlock_level": 50,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Tank"
+      ],
+      "jobs": [
+        {
+          "id": 32,
+          "name": "Dark Knight",
+          "abbreviation": "DRK",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

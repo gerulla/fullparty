@@ -1,0 +1,26 @@
+{
+  "kind": "trait",
+  "id": 540,
+  "name": "Sorts Picto améliorés II",
+  "description": "Remplace Tamponnage Marteau par Brossage Marteau, et Brossage Marteau par Finition Marteau lorsque vous les utilisez.\nPermet de cumuler plusieurs charges pour Imagi Marteau.\nMaximum de charges : 2",
+  "description_macro": "Remplace <colortype(500)><edgecolortype(501)>Tamponnage Marteau<edgecolortype(0)><colortype(0)> par <colortype(500)><edgecolortype(501)>Brossage Marteau<edgecolortype(0)><colortype(0)>, et <colortype(500)><edgecolortype(501)>Brossage Marteau<edgecolortype(0)><colortype(0)> par <colortype(500)><edgecolortype(501)>Finition Marteau<edgecolortype(0)><colortype(0)> lorsque vous les utilisez.<br>Permet de cumuler plusieurs charges pour <colortype(500)><edgecolortype(501)>Imagi Marteau<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Maximum de charges<nbsp>:<edgecolortype(0)><colortype(0)> 2",
+  "effects": [
+    "Remplace Tamponnage Marteau par Brossage Marteau, et Brossage Marteau par Finition Marteau lorsque vous les utilisez.",
+    "Permet de cumuler plusieurs charges pour Imagi Marteau.",
+    "Maximum de charges : 2"
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 42,
+    "name": "Pictomancien",
+    "abbreviation": "PIC"
+  },
+  "unlock_level": 86,
+  "value": 2,
+  "icon": {
+    "id": 6554,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 197,
+  "source_class_job_id": 42
+}

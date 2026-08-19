@@ -1,0 +1,33 @@
+{
+  "kind": "trait",
+  "id": 247,
+  "name": "Maîtrise de la lance",
+  "description": "Octroie Feu des dragons si Fléau du dragon est exécuté après avoir réussi Croc-et-griffe ou Percée tournante.\nDurée : 30s\nCet effet disparaît si une technique d'arme de corps-à-corps est utilisée.\nRemplace Percée véritable par Percée Raiden pendant cet effet.\nEn outre, augmente la puissance des actions suivantes :\nPercée véritable : 230\nPercée vorpale : 130\nGriffe perçante : 200\nGriffe perçante avec Griffe perçante améliorée : 350\nÉventration : 140",
+  "description_macro": "Octroie <colortype(500)><edgecolortype(501)>Feu des dragons<edgecolortype(0)><colortype(0)> si <colortype(500)><edgecolortype(501)>Fléau du dragon<edgecolortype(0)><colortype(0)> est exécuté après avoir réussi <colortype(500)><edgecolortype(501)>Croc-et-griffe<edgecolortype(0)><colortype(0)> ou <colortype(500)><edgecolortype(501)>Percée tournante<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 30s<br>Cet effet disparaît si une technique d'arme de corps-à-corps est utilisée.<br>Remplace <colortype(500)><edgecolortype(501)>Percée véritable<edgecolortype(0)><colortype(0)> par <colortype(500)><edgecolortype(501)>Percée Raiden<edgecolortype(0)><colortype(0)> pendant cet effet.<br>En outre, augmente la puissance des actions suivantes<nbsp>:<br><colortype(506)><edgecolortype(507)>Percée véritable<nbsp>:<edgecolortype(0)><colortype(0)> 230<br><colortype(506)><edgecolortype(507)>Percée vorpale<nbsp>:<edgecolortype(0)><colortype(0)> 130<br><colortype(506)><edgecolortype(507)>Griffe perçante<nbsp>:<edgecolortype(0)><colortype(0)> 200<br><colortype(506)><edgecolortype(507)>Griffe perçante avec Griffe perçante améliorée<nbsp>:<edgecolortype(0)><colortype(0)> 350<br><colortype(506)><edgecolortype(507)>Éventration<nbsp>:<edgecolortype(0)><colortype(0)> 140",
+  "effects": [
+    "Octroie Feu des dragons si Fléau du dragon est exécuté après avoir réussi Croc-et-griffe ou Percée tournante.",
+    "Durée : 30s",
+    "Cet effet disparaît si une technique d'arme de corps-à-corps est utilisée.",
+    "Remplace Percée véritable par Percée Raiden pendant cet effet.",
+    "En outre, augmente la puissance des actions suivantes :",
+    "Percée véritable : 230",
+    "Percée vorpale : 130",
+    "Griffe perçante : 200",
+    "Griffe perçante avec Griffe perçante améliorée : 350",
+    "Éventration : 140"
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 22,
+    "name": "Chevalier Dragon",
+    "abbreviation": "DRG"
+  },
+  "unlock_level": 76,
+  "value": 0,
+  "icon": {
+    "id": 5284,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 23,
+  "source_class_job_id": 22
+}

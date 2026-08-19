@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 186,
+  "name": "コンバスマスタリー",
+  "description": "コンバスがコンバラに変化する。",
+  "description_macro": "コンバスがコンバラに変化する。",
+  "effects": [
+    "コンバスがコンバラに変化する。"
+  ],
+  "role": "Healer",
+  "job": {
+    "id": 33,
+    "name": "占星術師",
+    "abbreviation": "AST"
+  },
+  "unlock_level": 46,
+  "value": 0,
+  "icon": {
+    "id": 6109,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 99,
+  "source_class_job_id": 33
+}

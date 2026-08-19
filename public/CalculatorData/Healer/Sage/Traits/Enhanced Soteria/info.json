@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 636,
+  "name": "Enhanced Soteria",
+  "description": "Reduces Soteria recast time to 60 seconds.",
+  "description_macro": "Reduces <colortype(500)><edgecolortype(501)>Soteria<edgecolortype(0)><colortype(0)> recast time to 60 seconds.",
+  "effects": [
+    "Reduces Soteria recast time to 60 seconds."
+  ],
+  "role": "Healer",
+  "job": {
+    "id": 40,
+    "name": "Sage",
+    "abbreviation": "SGE"
+  },
+  "unlock_level": 94,
+  "value": -300,
+  "icon": {
+    "id": 6461,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 181,
+  "source_class_job_id": 40
+}

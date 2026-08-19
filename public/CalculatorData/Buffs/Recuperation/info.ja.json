@@ -1,0 +1,51 @@
+{
+  "kind": "combat_status",
+  "id": 4271,
+  "name": "ちゆのせんこく",
+  "description": "「ちゆのせんこく」を受けた状態。効果時間が終了すると、ちゆのせんこく［強］になる。",
+  "effects": [
+    "「ちゆのせんこく」を受けた状態。効果時間が終了すると、ちゆのせんこく［強］になる。"
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 229928,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": true,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 41641,
+      "name": "ちゆのせんこく",
+      "description": "自身かパーティメンバーひとりを対象に、「ちゆのせんこく」を付与する。\n効果時間：20秒\n効果時間が経過すると、対象とその周囲15m以内にいるパーティメンバーにかかった一部の弱体効果を1つ解除する。\nこの効果が発動しなかった場合、「ちゆのせんこく［強］」に変化する。\n効果時間：3秒\n「ちゆのせんこく［強］」の効果時間中に弱体効果を受けると、対象と周囲のパーティメンバーにかかった一部の弱体効果を1つ解除する。",
+      "description_macro": "自身かパーティメンバーひとりを対象に、<colortype(500)><edgecolortype(501)>「ちゆのせんこく」<edgecolortype(0)><colortype(0)>を付与する。<br><colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>20秒<br>効果時間が経過すると、対象とその周囲15m以内にいるパーティメンバーにかかった一部の弱体効果を1つ解除する。<br>この効果が発動しなかった場合、<colortype(500)><edgecolortype(501)>「ちゆのせんこく［強］」<edgecolortype(0)><colortype(0)>に変化する。<br><colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>3秒<br><colortype(500)><edgecolortype(501)>「ちゆのせんこく［強］」<edgecolortype(0)><colortype(0)>の効果時間中に弱体効果を受けると、対象と周囲のパーティメンバーにかかった一部の弱体効果を1つ解除する。<if([gnum108>=3],<br>リキャストタイマーを<colortype(500)><edgecolortype(501)>「しのせんこく」<edgecolortype(0)><colortype(0)>と共有する。,)>",
+      "unlock_level": 0,
+      "relations": [
+        "granted_by_description",
+        "same_name"
+      ],
+      "roles": [
+        "Phantom Jobs"
+      ],
+      "jobs": [
+        {
+          "id": 11,
+          "name": "Phantom サポート予言士",
+          "abbreviation": "Ph. Oracle",
+          "is_phantom": true
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "kind": "combat_status",
+  "id": 116,
+  "name": "ライフサージ",
+  "description": "次に実行するウェポンスキルが必ずクリティカルヒットし、かつＨＰを吸収する状態。\nクリティカルヒットの発動率を上昇させる効果を受けている場合は与ダメージが上昇する。",
+  "effects": [
+    "次に実行するウェポンスキルが必ずクリティカルヒットし、かつＨＰを吸収する状態。",
+    "クリティカルヒットの発動率を上昇させる効果を受けている場合は与ダメージが上昇する。"
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 210302,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 83,
+      "name": "ライフサージ",
+      "description": "効果時間中に実行する1回のウェポンスキルが必ずクリティカルヒットし、かつＨＰを吸収する。\nクリティカルヒットの発動率を上昇させる効果を受けている場合は与ダメージが上昇する。\nこの効果は、継続ダメージなどのステータスには適用されない。\n効果時間：5秒\n最大チャージ数：2",
+      "description_macro": "効果時間中に実行する1回のウェポンスキルが必ずクリティカルヒットし、かつＨＰを吸収する。<br>クリティカルヒットの発動率を上昇させる効果を受けている場合は与ダメージが上昇する。<br>この効果は、継続ダメージなどのステータスには適用されない。<br><colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>5秒<if([gnum68==22],<if([gnum72>=88],<br><colortype(504)><edgecolortype(505)>最大チャージ数：<edgecolortype(0)><colortype(0)>2,)>,)>",
+      "unlock_level": 6,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 22,
+          "name": "竜騎士",
+          "abbreviation": "DRG",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

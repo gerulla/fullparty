@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 168,
+  "name": "バイトマスタリー",
+  "description": "ベノムバイトがコースティックバイトに、ウィンドバイトがストームバイトに変化する。",
+  "description_macro": "ベノムバイトがコースティックバイトに、ウィンドバイトがストームバイトに変化する。",
+  "effects": [
+    "ベノムバイトがコースティックバイトに、ウィンドバイトがストームバイトに変化する。"
+  ],
+  "role": "Physical Ranged DPS",
+  "job": {
+    "id": 23,
+    "name": "吟遊詩人",
+    "abbreviation": "BRD"
+  },
+  "unlock_level": 64,
+  "value": 0,
+  "icon": {
+    "id": 5309,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 24,
+  "source_class_job_id": 23
+}

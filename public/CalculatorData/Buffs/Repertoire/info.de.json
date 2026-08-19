@@ -1,0 +1,113 @@
+{
+  "kind": "combat_status",
+  "id": 3137,
+  "name": "Virtuose",
+  "description": "Absolutes Gehör kann ausgeführt werden.",
+  "effects": [
+    "Absolutes Gehör kann ausgeführt werden."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 214913,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": true,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 24,
+  "source_abilities": [
+    {
+      "id": 114,
+      "name": "Ballade des Weisen",
+      "description": "Du singst die Ballade des Weisen und erhöhst dabei deinen eigenen ausgeteilten Schaden und den von Gruppenmitgliedern im Umkreis von 50y um 1 %. Dieser Effekt bleibt bestehen, solange die Ballade aktiv ist.\nDauer: 45 Sekunden\nZusatzeffekt: 80 % Wahrscheinlichkeit auf Virtuose\nWirkung von Virtuose: Reaktivierungs-Timer von Herzeleid und Tödlicher Regen werden um 7,5 Sekunden verkürzt.\nZusatzeffekt: Coda des Weisen\nNur im Kampf wirksam.",
+      "description_macro": "Du singst die Ballade des Weisen und erhöhst dabei deinen eigenen ausgeteilten Schaden und den von Grup<->pen<->mit<->gliedern im Umkreis von 50y um 1<nbsp>%. Dieser Effekt bleibt bestehen, solange die Ballade aktiv ist.<br>Dauer: 45 Sekunden<br>Zusatzeffekt: 80<nbsp>% Wahr<->schein<->lich<->keit auf <colortype(506)><edgecolortype(507)>Virtuose<edgecolortype(0)><colortype(0)><br>Wirkung von <colortype(506)><edgecolortype(507)>Virtuose<edgecolortype(0)><colortype(0)>: Reaktivierungs-Timer von <if([gnum68==23],<if([gnum72>=92],<colortype(502)><edgecolortype(503)>Herzeleid<edgecolortype(0)><colortype(0)>,<colortype(502)><edgecolortype(503)>Aderlass<edgecolortype(0)><colortype(0)>)>,<colortype(502)><edgecolortype(503)>Aderlass<edgecolortype(0)><colortype(0)>)> <if([gnum72>=45],<if([gnum68==23],und <colortype(502)><edgecolortype(503)>Tödlicher Regen<edgecolortype(0)><colortype(0)> werden,wird)>,wird)> um 7,5 Sekunden verkürzt.<br><if([gnum68==23],<if([gnum72>=90],Zusatzeffekt: <colortype(506)><edgecolortype(507)>Coda des Weisen<edgecolortype(0)><colortype(0)><br>,)>,)>Nur im Kampf wirksam.",
+      "unlock_level": 30,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Physical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 23,
+          "name": "Barde",
+          "abbreviation": "BRD",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 116,
+      "name": "Hymne der Krieger",
+      "description": "Du singst die Hymne der Krieger und erhöhst dabei die Wahrscheinlichkeit, dass du und deine Gruppenmitglieder im Umkreis von 50y direkte Treffer landen, um 3 %. Dieser Effekt bleibt bestehen, solange die Hymne aktiv ist.\nDauer: 45 Sekunden\nZusatzeffekt: 80 % Wahrscheinlichkeit auf Virtuose\nWirkung von Virtuose: Auto-Attacke-Intervall und\n(Re-)Aktivierungszeiten von Waffenfertigkeiten und Magie um 4 % verkürzt.\nMaximal vier Virtuose stapelbar.\nZusatzeffekt: Coda des Kriegers\nNur im Kampf wirksam.",
+      "description_macro": "Du singst die Hymne der Krieger und erhöhst dabei die Wahr<->schein<->lich<->keit, dass du und deine Grup<->pen<->mit<->glieder im Umkreis von 50y direkte Treffer landen, um 3<nbsp>%. Dieser Effekt bleibt bestehen, solange die Hymne aktiv ist.<br>Dauer: 45 Sekunden<br>Zusatzeffekt: 80<nbsp>% Wahr<->schein<->lich<->keit auf <colortype(506)><edgecolortype(507)>Virtuose<edgecolortype(0)><colortype(0)><br>Wirkung von <colortype(506)><edgecolortype(507)>Virtuose<edgecolortype(0)><colortype(0)>: Auto-Attacke-Intervall und<br>(Re-)Ak<->ti<->vie<->rungs<->zei<->ten von Waf<->fen<->fer<->tig<->kei<->ten und Magie um 4<nbsp>% verkürzt.<br>Maximal vier <colortype(506)><edgecolortype(507)>Virtuose<edgecolortype(0)><colortype(0)> stapelbar.<br><if([gnum68==23],<if([gnum72>=90],Zusatzeffekt: <colortype(506)><edgecolortype(507)>Coda des Kriegers<edgecolortype(0)><colortype(0)><br>,)>,)>Nur im Kampf wirksam.",
+      "unlock_level": 40,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Physical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 23,
+          "name": "Barde",
+          "abbreviation": "BRD",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 3558,
+      "name": "Empyreischer Pfeil",
+      "description": "Du führst eine physische Attacke aus.\nAttacke-Wert: 260\nZusatzeffekt: Gewährt Virtuose\\",
+      "description_macro": "Du führst eine physische Attacke aus.<br>Attacke-Wert: <if([gnum68==23],<if([gnum72>=94],260,240)>,240)><if([gnum68==23],<if([gnum72>=68],<br>Zusatzeffekt: Gewährt <colortype(506)><edgecolortype(507)>Virtuose<edgecolortype(0)><colortype(0)>\\, wenn <colortype(502)><edgecolortype(503)>Ballade des Weisen<edgecolortype(0)><colortype(0)>\\, <colortype(502)><edgecolortype(503)>Hymne der Krieger<edgecolortype(0)><colortype(0)> oder <colortype(502)><edgecolortype(503)>Menuett des Wanderers<edgecolortype(0)><colortype(0)> gesungen wird.,)>,)>",
+      "unlock_level": 54,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Physical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 23,
+          "name": "Barde",
+          "abbreviation": "BRD",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 3559,
+      "name": "Menuett des Wanderers",
+      "description": "Du singst das Menuett des Wanderers und erhöhst dabei deine eigene kritische Trefferrate und die von Gruppenmitgliedern im Umkreis von 50y um 2 %. Dieser Effekt bleibt bestehen, solange das Menuett aktiv ist.\nDauer: 45 Sekunden\nZusatzeffekt: 80 % Wahrscheinlichkeit auf Virtuose\nWirkung von Virtuose: Du kannst Absolutes Gehör ausführen. Maximal drei Virtuose stapelbar.\nZusatzeffekt: Coda des Wanderers\nNur im Kampf wirksam.",
+      "description_macro": "Du singst das Menuett des Wanderers und erhöhst dabei deine eigene kritische Trefferrate und die von Grup<->pen<->mit<->gliedern im Umkreis von 50y um 2<nbsp>%. Dieser Effekt bleibt bestehen, solange das Menuett aktiv ist.<br>Dauer: 45 Sekunden<br>Zusatzeffekt: 80 % Wahr<->schein<->lich<->keit auf <colortype(506)><edgecolortype(507)>Virtuose<edgecolortype(0)><colortype(0)><br>Wirkung von <colortype(506)><edgecolortype(507)>Virtuose<edgecolortype(0)><colortype(0)>: Du kannst <colortype(502)><edgecolortype(503)>Absolutes Gehör<edgecolortype(0)><colortype(0)> ausführen. Maximal drei <colortype(506)><edgecolortype(507)>Virtuose<edgecolortype(0)><colortype(0)> stapelbar.<br><if([gnum68==23],<if([gnum72>=90],Zusatzeffekt: <colortype(506)><edgecolortype(507)>Coda des Wanderers<edgecolortype(0)><colortype(0)><br>,)>,)>Nur im Kampf wirksam.",
+      "unlock_level": 52,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Physical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 23,
+          "name": "Barde",
+          "abbreviation": "BRD",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

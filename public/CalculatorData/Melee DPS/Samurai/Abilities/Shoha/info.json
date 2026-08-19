@@ -1,0 +1,86 @@
+{
+  "kind": "ability",
+  "id": 16487,
+  "name": "Shoha",
+  "description": "Delivers an attack to all enemies in a straight line before you with a potency of 640 for the first enemy, and 40% less for all remaining enemies.\nCan only be executed after accumulating three stacks of Meditation by executing Iaijutsu, Meditate\\ while in combat.\nConsumes all stacks of Meditation upon execution.",
+  "description_macro": "Delivers an attack to all enemies in a straight line before you with a potency of <if([gnum68==34],<if([gnum72>=94],640,560)>,560)> for the first enemy, and 40% less for all remaining enemies.<br>Can only be executed after accumulating three stacks of <colortype(506)><edgecolortype(507)>Meditation<edgecolortype(0)><colortype(0)> by executing <colortype(500)><edgecolortype(501)>Iaijutsu<edgecolortype(0)><colortype(0)>, <if([gnum68==34],<if([gnum72>=90],<colortype(500)><edgecolortype(501)>Meditate<edgecolortype(0)><colortype(0)>\\, or <colortype(500)><edgecolortype(501)>Ogi Namikiri<edgecolortype(0)><colortype(0)>,or <colortype(500)><edgecolortype(501)>Meditate<edgecolortype(0)><colortype(0)>)>,or <colortype(500)><edgecolortype(501)>Meditate<edgecolortype(0)><colortype(0)>)> while in combat.<br>Consumes all stacks of <colortype(506)><edgecolortype(507)>Meditation<edgecolortype(0)><colortype(0)> upon execution.",
+  "effects": [
+    "Delivers an attack to all enemies in a straight line before you with a potency of 640 for the first enemy, and 40% less for all remaining enemies.",
+    "Can only be executed after accumulating three stacks of Meditation by executing Iaijutsu, Meditate\\ while in combat.",
+    "Consumes all stacks of Meditation upon execution."
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 34,
+    "name": "Samurai",
+    "abbreviation": "SAM"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 80,
+  "icon": {
+    "id": 3184,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 4,
+    "name": "Ability"
+  },
+  "attack_type": {
+    "id": 4294967295,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 15,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 8,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 63,
+      "value": 3
+    },
+    "secondary": {
+      "type_id": 109,
+      "value": 3
+    }
+  },
+  "range": {
+    "target_yalms": 10,
+    "effect_yalms": 10,
+    "cast_type": 4
+  },
+  "targeting": {
+    "self": false,
+    "party": false,
+    "alliance": false,
+    "hostile": true,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 7,
+    "behavior_type": 0,
+    "class_job_category_id": 111,
+    "source_class_job_id": 34,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

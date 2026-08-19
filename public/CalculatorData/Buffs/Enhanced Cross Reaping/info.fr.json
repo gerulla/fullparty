@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 2591,
+  "name": "Fauchage croisé amélioré",
+  "description": "La puissance du prochain Fauchage croisé est augmentée.",
+  "effects": [
+    "La puissance du prochain Fauchage croisé est augmentée."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 212930,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 50,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 180,
+  "source_abilities": [
+    {
+      "id": 24395,
+      "name": "Fauchage du néant",
+      "description": "Effectue une attaque physique sur la cible.\nPuissance : 580\nPuissance avec Fauchage du néant amélioré : 640\nEffet additionnel : vous octroie Fauchage croisé amélioré.\nDurée : 30s\nEffet additionnel : vous octroie une Âme du néant.\nCondition : consomme une Âme de lémure.\nCette technique d'arme a un temps de recharge indépendant qui est appliqué aux autres techniques d'arme ou sorts après utilisation.\n\n* Cette action ne peut pas être ajoutée aux barres de raccourcis.\nRemplace Gibet lorsque les conditions sont réunies.",
+      "description_macro": "Effectue une attaque physique sur la cible.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> <if([gnum68==39],<if([gnum72>=94],580,460)>,460)><br><colortype(506)><edgecolortype(507)>Puissance avec Fauchage du néant amélioré<nbsp>:<edgecolortype(0)><colortype(0)> <if([gnum68==39],<if([gnum72>=94],640,520)>,520)><br><colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> vous octroie <colortype(500)><edgecolortype(501)>Fauchage croisé amélioré<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 30s<br><if([gnum68==39],<if([gnum72>=86],<colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> vous octroie une <colortype(500)><edgecolortype(501)>Âme du néant<edgecolortype(0)><colortype(0)>.<br>,)>,)><colortype(506)><edgecolortype(507)>Condition<nbsp>:<edgecolortype(0)><colortype(0)> consomme une <colortype(500)><edgecolortype(501)>Âme de lémure<edgecolortype(0)><colortype(0)>.<br>Cette technique d'arme a un temps de recharge indépendant qui est appliqué aux autres techniques d'arme ou sorts après utilisation.<br><br><colortype(504)><edgecolortype(505)>* Cette action ne peut pas être ajoutée aux barres de raccourcis.<br>Remplace <colortype(500)><edgecolortype(501)>Gibet<edgecolortype(0)><colortype(0)> lorsque les conditions sont réunies.<edgecolortype(0)><colortype(0)>",
+      "unlock_level": 80,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 39,
+          "name": "Faucheur",
+          "abbreviation": "FCH",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

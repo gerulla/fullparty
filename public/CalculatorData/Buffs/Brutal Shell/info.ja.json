@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 1898,
+  "name": "ブルータルシェル",
+  "description": "一定量のダメージを軽減する状態。",
+  "effects": [
+    "一定量のダメージを軽減する状態。"
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 213614,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 30,
+  "parameter": {
+    "effect": 0,
+    "modifier": 100
+  },
+  "class_job_category_id": 149,
+  "source_abilities": [
+    {
+      "id": 16139,
+      "name": "ブルータルシェル",
+      "description": "対象に物理攻撃。\u3000威力：240\nコンボ条件：キーンエッジ\u3000コンボ時威力：380\nコンボボーナス：自身のＨＰを回復する。\u3000回復力：200\nさらに、自身に一定量のダメージを防ぐバリアを張る。\nこのバリアは回復量の100％分のダメージを軽減する。\n効果時間：30秒",
+      "description_macro": "対象に物理攻撃。\u3000<colortype(504)><edgecolortype(505)>威力：<edgecolortype(0)><colortype(0)><if([gnum68==37],<if([gnum72>=94],240,<if([gnum68==37],<if([gnum72>=84],160,100)>,100)>)>,<if([gnum68==37],<if([gnum72>=84],160,100)>,100)>)><br><colortype(504)><edgecolortype(505)>コンボ条件：<edgecolortype(0)><colortype(0)>キーンエッジ\u3000<colortype(504)><edgecolortype(505)>コンボ時威力：<edgecolortype(0)><colortype(0)><if([gnum68==37],<if([gnum72>=94],380,<if([gnum68==37],<if([gnum72>=84],300,240)>,240)>)>,<if([gnum68==37],<if([gnum72>=84],300,240)>,240)>)><br><colortype(504)><edgecolortype(505)>コンボボーナス：<edgecolortype(0)><colortype(0)>自身のＨＰを回復する。\u3000<colortype(504)><edgecolortype(505)>回復力：<edgecolortype(0)><colortype(0)>200<if([gnum68==37],<if([gnum72>=52],<br>さらに、自身に一定量のダメージを防ぐバリアを張る。<br>このバリアは回復量の100％分のダメージを軽減する。<br><colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>30秒,)>,)>",
+      "unlock_level": 4,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Tank"
+      ],
+      "jobs": [
+        {
+          "id": 37,
+          "name": "ガンブレイカー",
+          "abbreviation": "GNB",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

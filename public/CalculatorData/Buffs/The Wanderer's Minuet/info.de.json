@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 2216,
+  "name": "Menuett des Wanderers",
+  "description": "Kritische Trefferrate ist erhöht.",
+  "effects": [
+    "Kritische Trefferrate ist erhöht."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 212610,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": true,
+  "is_permanent": true,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 2
+  },
+  "class_job_category_id": 24,
+  "source_abilities": [
+    {
+      "id": 3559,
+      "name": "Menuett des Wanderers",
+      "description": "Du singst das Menuett des Wanderers und erhöhst dabei deine eigene kritische Trefferrate und die von Gruppenmitgliedern im Umkreis von 50y um 2 %. Dieser Effekt bleibt bestehen, solange das Menuett aktiv ist.\nDauer: 45 Sekunden\nZusatzeffekt: 80 % Wahrscheinlichkeit auf Virtuose\nWirkung von Virtuose: Du kannst Absolutes Gehör ausführen. Maximal drei Virtuose stapelbar.\nZusatzeffekt: Coda des Wanderers\nNur im Kampf wirksam.",
+      "description_macro": "Du singst das Menuett des Wanderers und erhöhst dabei deine eigene kritische Trefferrate und die von Grup<->pen<->mit<->gliedern im Umkreis von 50y um 2<nbsp>%. Dieser Effekt bleibt bestehen, solange das Menuett aktiv ist.<br>Dauer: 45 Sekunden<br>Zusatzeffekt: 80 % Wahr<->schein<->lich<->keit auf <colortype(506)><edgecolortype(507)>Virtuose<edgecolortype(0)><colortype(0)><br>Wirkung von <colortype(506)><edgecolortype(507)>Virtuose<edgecolortype(0)><colortype(0)>: Du kannst <colortype(502)><edgecolortype(503)>Absolutes Gehör<edgecolortype(0)><colortype(0)> ausführen. Maximal drei <colortype(506)><edgecolortype(507)>Virtuose<edgecolortype(0)><colortype(0)> stapelbar.<br><if([gnum68==23],<if([gnum72>=90],Zusatzeffekt: <colortype(506)><edgecolortype(507)>Coda des Wanderers<edgecolortype(0)><colortype(0)><br>,)>,)>Nur im Kampf wirksam.",
+      "unlock_level": 52,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Physical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 23,
+          "name": "Barde",
+          "abbreviation": "BRD",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

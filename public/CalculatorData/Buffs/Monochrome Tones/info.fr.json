@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 3691,
+  "name": "Inversion de couleur",
+  "description": "Une Peinture blanche devient une Peinture noire, jusqu'à utilisation de cette dernière.",
+  "effects": [
+    "Une Peinture blanche devient une Peinture noire, jusqu'à utilisation de cette dernière."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 213814,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": true,
+  "inflicted_by_actor": true,
+  "party_list_priority": 32,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 197,
+  "source_abilities": [
+    {
+      "id": 34683,
+      "name": "Palette soustractive",
+      "description": "Vous octroie 3 degrés de Palette soustractive.\nEffet additionnel : vous octroie Inversion de couleur.\nInversion de couleur : convertit une Peinture blanche en Peinture noire.\nCondition : Palette soustractive non octroyée.\nCoût Jauge de palette : 50",
+      "description_macro": "Vous octroie 3 degrés de <colortype(500)><edgecolortype(501)>Palette soustractive<edgecolortype(0)><colortype(0)>.<br><if([gnum68==42],<if([gnum72>=90],<colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> vous octroie <colortype(500)><edgecolortype(501)>Inversion de couleur<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Inversion de couleur<nbsp>:<edgecolortype(0)><colortype(0)> convertit une <colortype(500)><edgecolortype(501)>Peinture blanche<edgecolortype(0)><colortype(0)> en <colortype(500)><edgecolortype(501)>Peinture noire<edgecolortype(0)><colortype(0)>.<br>,)>,)><colortype(506)><edgecolortype(507)>Condition<nbsp>:<edgecolortype(0)><colortype(0)> <colortype(500)><edgecolortype(501)>Palette soustractive<edgecolortype(0)><colortype(0)> non octroyée.<br><colortype(506)><edgecolortype(507)>Coût Jauge de palette<nbsp>:<edgecolortype(0)><colortype(0)> 50",
+      "unlock_level": 60,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Magical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 42,
+          "name": "Pictomancien",
+          "abbreviation": "PIC",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

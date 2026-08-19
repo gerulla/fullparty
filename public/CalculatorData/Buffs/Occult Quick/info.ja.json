@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 4260,
+  "name": "マギ・クイック［攻］",
+  "description": "攻撃速度が上昇し、魔法の詠唱時間が短縮される状態。",
+  "effects": [
+    "攻撃速度が上昇し、魔法の詠唱時間が短縮される状態。"
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 229922,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": -10
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 41625,
+      "name": "マギ・クイック",
+      "description": "一定時間、対象のオートアタックの攻撃間隔と、ウェポンスキルおよび魔法のキャストタイムとリキャストタイムを10％短縮させ、魔法の詠唱時間を10秒短縮する。\n効果時間：20秒\n追加効果：移動速度を大幅に上昇させる。\n効果時間：10秒",
+      "description_macro": "一定時間、対象のオートアタックの攻撃間隔と、ウェポンスキルおよび魔法のキャストタイムとリキャストタイムを10％短縮させ、魔法の詠唱時間を10秒短縮する。<br><colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>20秒<br><colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)>移動速度を大幅に上昇させる。<br><colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>10秒",
+      "unlock_level": 0,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Phantom Jobs"
+      ],
+      "jobs": [
+        {
+          "id": 8,
+          "name": "Phantom サポート時魔道士",
+          "abbreviation": "Ph. Time Mage",
+          "is_phantom": true
+        }
+      ]
+    }
+  ]
+}

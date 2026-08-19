@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 172,
+  "name": "Blitzmeister II",
+  "description": "Verbessert Blitzra zu Blitzka.",
+  "description_macro": "Verbessert <colortype(502)><edgecolortype(503)>Blitzra<edgecolortype(0)><colortype(0)> zu <colortype(502)><edgecolortype(503)>Blitzka<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Verbessert Blitzra zu Blitzka."
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 25,
+    "name": "Schwarzmagier",
+    "abbreviation": "SMA"
+  },
+  "unlock_level": 64,
+  "value": 0,
+  "icon": {
+    "id": 5358,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 26,
+  "source_class_job_id": 25
+}

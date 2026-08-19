@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 2624,
+  "name": "Primal Rend Ready",
+  "description": "Able to execute Primal Rend.",
+  "effects": [
+    "Able to execute Primal Rend."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 212566,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 22,
+  "source_abilities": [
+    {
+      "id": 7389,
+      "name": "Inner Release",
+      "description": "Grants 3 stacks of Inner Release, each stack allowing the use of Fell Cleave or Decimate without cost and guaranteeing they are critical and direct hits.\nIncreases damage dealt when under an effect that raises critical hit rate or direct hit rate.\nAdditional Effect: Grants Inner Strength, nullifying Stun, Sleep, Bind, Heavy, and most knockback and draw-in effects\nDuration: 15s\nAdditional Effect: Extends Surging Tempest duration by 10s to a maximum of 60s\nAdditional Effect: Grants Primal Rend Ready\nDuration: 30s\nAdditional Effect: Grants a stack of Burgeoning Fury upon successfully landing Fell Cleave or Decimate\\",
+      "description_macro": "Grants 3 stacks of <colortype(506)><edgecolortype(507)>Inner Release<edgecolortype(0)><colortype(0)>, each stack allowing the use of <colortype(500)><edgecolortype(501)>Fell Cleave<edgecolortype(0)><colortype(0)> or <colortype(500)><edgecolortype(501)>Decimate<edgecolortype(0)><colortype(0)> without cost and guaranteeing they are critical and direct hits.<br>Increases damage dealt when under an effect that raises critical hit rate or direct hit rate.<br><colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>Grants <colortype(506)><edgecolortype(507)>Inner Strength<edgecolortype(0)><colortype(0)>, nullifying <colortype(506)><edgecolortype(507)>Stun<edgecolortype(0)><colortype(0)>, <colortype(506)><edgecolortype(507)>Sleep<edgecolortype(0)><colortype(0)>, <colortype(506)><edgecolortype(507)>Bind<edgecolortype(0)><colortype(0)>, <colortype(506)><edgecolortype(507)>Heavy<edgecolortype(0)><colortype(0)>, and most knockback and draw-in effects<br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>15s<br><colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>Extends <colortype(506)><edgecolortype(507)>Surging Tempest<edgecolortype(0)><colortype(0)> duration by 10s to a maximum of 60s<if([gnum68==21],<if([gnum72>=90],<br><colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>Grants <colortype(506)><edgecolortype(507)>Primal Rend Ready<edgecolortype(0)><colortype(0)><br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>30s,)>,)><if([gnum68==21],<if([gnum72>=96],<br><colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>Grants a stack of <colortype(506)><edgecolortype(507)>Burgeoning Fury<edgecolortype(0)><colortype(0)> upon successfully landing <colortype(500)><edgecolortype(501)>Fell Cleave<edgecolortype(0)><colortype(0)> or <colortype(500)><edgecolortype(501)>Decimate<edgecolortype(0)><colortype(0)>\\, up to a maximum of 3<br>At maximum stacks\\, become <colortype(506)><edgecolortype(507)>Wrathful<edgecolortype(0)><colortype(0)>\\, changing <colortype(500)><edgecolortype(501)>Inner Release<edgecolortype(0)><colortype(0)> to <colortype(500)><edgecolortype(501)>Primal Wrath<edgecolortype(0)><colortype(0)>.,)>,)>",
+      "unlock_level": 70,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Tank"
+      ],
+      "jobs": [
+        {
+          "id": 21,
+          "name": "Warrior",
+          "abbreviation": "WAR",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

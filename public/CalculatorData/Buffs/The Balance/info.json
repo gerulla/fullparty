@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 829,
+  "name": "The Balance",
+  "description": "Damage dealt is increased.",
+  "effects": [
+    "Damage dealt is increased."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 213204,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 1,
+  "parameter": {
+    "effect": 0,
+    "modifier": 10
+  },
+  "class_job_category_id": 99,
+  "source_abilities": [
+    {
+      "id": 37023,
+      "name": "the Balance",
+      "description": "Increases damage dealt by a party member or self by 6% if target is melee DPS or tank, or 3% for all other roles.\nDuration: 15s\n\n※This action cannot be assigned to a hotbar.\n※Play I changes to The Balance when requirements for execution are met.",
+      "description_macro": "Increases damage dealt by a party member or self by 6% if target is melee DPS or tank, or 3% for all other roles.<br><colortype(504)><edgecolortype(505)>Duration:<edgecolortype(0)><colortype(0)> 15s<br><br>※This action cannot be assigned to a hotbar.<br>※<colortype(500)><edgecolortype(501)>Play I<edgecolortype(0)><colortype(0)> changes to <colortype(500)><edgecolortype(501)>The Balance<edgecolortype(0)><colortype(0)> when requirements for execution are met.",
+      "unlock_level": 30,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Healer"
+      ],
+      "jobs": [
+        {
+          "id": 33,
+          "name": "Astrologian",
+          "abbreviation": "AST",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

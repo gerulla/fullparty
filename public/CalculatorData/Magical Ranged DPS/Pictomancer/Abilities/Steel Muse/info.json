@@ -1,0 +1,87 @@
+{
+  "kind": "ability",
+  "id": 35348,
+  "name": "Steel Muse",
+  "description": "Render your depiction of a weapon to life.\nThis action changes to Striking Muse based on your current motif.\nMaximum Charges: 2\nCan only be executed in combat and when a Weapon Motif is depicted on the Weapon Canvas.",
+  "description_macro": "Render your depiction of a weapon to life.<br>This action changes to <colortype(500)><edgecolortype(501)>Striking Muse<edgecolortype(0)><colortype(0)> based on your current motif.<if([gnum68==42],<if([gnum72>=86],<br><colortype(504)><edgecolortype(505)>Maximum Charges: <edgecolortype(0)><colortype(0)>2,)>,)><br>Can only be executed in combat and when a <colortype(500)><edgecolortype(501)>Weapon Motif<edgecolortype(0)><colortype(0)> is depicted on the <colortype(500)><edgecolortype(501)>Weapon Canvas<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Render your depiction of a weapon to life.",
+    "This action changes to Striking Muse based on your current motif.",
+    "Maximum Charges: 2",
+    "Can only be executed in combat and when a Weapon Motif is depicted on the Weapon Canvas."
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 42,
+    "name": "Pictomancer",
+    "abbreviation": "PCT"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 50,
+  "icon": {
+    "id": 3843,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 4,
+    "name": "Ability"
+  },
+  "attack_type": {
+    "id": 0,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 60,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 20,
+    "additional_cooldown_group": 72,
+    "max_charges": 1
+  },
+  "costs": {
+    "primary": {
+      "type_id": 0,
+      "value": 0
+    },
+    "secondary": {
+      "type_id": 73,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": 0,
+    "effect_yalms": 0,
+    "cast_type": 1
+  },
+  "targeting": {
+    "self": true,
+    "party": false,
+    "alliance": false,
+    "hostile": false,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 0,
+    "behavior_type": 0,
+    "class_job_category_id": 197,
+    "source_class_job_id": 42,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

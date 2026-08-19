@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 1993,
+  "name": "シェイクオフ",
+  "description": "一定量のダメージを無効化する状態。",
+  "effects": [
+    "一定量のダメージを無効化する状態。"
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 212557,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": true,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 22,
+  "source_abilities": [
+    {
+      "id": 7388,
+      "name": "シェイクオフ",
+      "description": "自身と周囲のパーティメンバーに、一定量のダメージを防ぐバリアを張る。\nこのバリアは対象の最大ＨＰの15％分のダメージを軽減する。\nまた、自身に「スリル・オブ・バトル」「ダムネーション」「原初の血気」のステータスが付与されている場合、それらを解除するとともにバリアの効果量を2％ずつ上昇させる。\n効果時間：30秒\n追加効果：対象のＨＰを継続回復する。\n回復力：100\u3000効果時間：15秒\n追加効果：対象のＨＰを回復する。\n回復力：300",
+      "description_macro": "自身と周囲のパーティメンバーに、一定量のダメージを防ぐバリアを張る。<br>このバリアは対象の最大ＨＰの15％分のダメージを軽減する。<br>また、自身に<colortype(500)><edgecolortype(501)>「スリル・オブ・バトル」<if([gnum68==21],<if([gnum72>=92],「ダムネーション」,「ヴェンジェンス」)>,「ヴェンジェンス」)><if([gnum68==21],<if([gnum72>=82],「原初の血気」,「原初の直感」)>,「原初の直感」)><edgecolortype(0)><colortype(0)>のステータスが付与されている場合、それらを解除するとともにバリアの効果量を2％ずつ上昇させる。<br><colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>30秒<br><colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)>対象のＨＰを継続回復する。<br><colortype(504)><edgecolortype(505)>回復力：<edgecolortype(0)><colortype(0)>100\u3000<colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>15秒<if([gnum68==21],<if([gnum72>=76],<br><colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)>対象のＨＰを回復する。<br><colortype(504)><edgecolortype(505)>回復力：<edgecolortype(0)><colortype(0)>300,)>,)>",
+      "unlock_level": 68,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Tank"
+      ],
+      "jobs": [
+        {
+          "id": 21,
+          "name": "戦士",
+          "abbreviation": "WAR",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

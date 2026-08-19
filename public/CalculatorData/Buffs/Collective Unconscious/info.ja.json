@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 2283,
+  "name": "運命の輪",
+  "description": "被ダメージを軽減するシールドを発生させている状態。",
+  "effects": [
+    "被ダメージを軽減するシールドを発生させている状態。"
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 213227,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": true,
+  "is_permanent": true,
+  "inflicted_by_actor": true,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 4,
+    "modifier": 0
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 3613,
+      "name": "運命の輪",
+      "description": "自身を中心に周囲8mを覆う運命の輪を生成する。\n効果時間：18秒\n実行時に自身と周囲30m以内にいるパーティメンバーに被ダメージを10％軽減する効果を付与する。\u3000効果時間：10秒\nさらに、運命の輪の範囲内にいる自身とパーティメンバーに継続回復効果を付与する。\u3000回復力：100\u3000効果時間：15秒\n継続回復効果は運命の輪の範囲内にいる自身とパーティメンバーに対して繰り返し付与される。\n効果時間中にアクションの実行や移動・ターンを行うと、運命の輪は即座に消える。\n実行後にオートアタックを停止する。",
+      "description_macro": "自身を中心に周囲8mを覆う運命の輪を生成する。<br><colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>18秒<br>実行時に自身と周囲30m以内にいるパーティメンバーに被ダメージを10％軽減する効果を付与する。\u3000<colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>10秒<br>さらに、運命の輪の範囲内にいる自身とパーティメンバーに継続回復効果を付与する。\u3000<colortype(504)><edgecolortype(505)>回復力：<edgecolortype(0)><colortype(0)>100\u3000<colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>15秒<br>継続回復効果は運命の輪の範囲内にいる自身とパーティメンバーに対して繰り返し付与される。<br>効果時間中にアクションの実行や移動・ターンを行うと、運命の輪は即座に消える。<br>実行後にオートアタックを停止する。",
+      "unlock_level": 58,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Healer"
+      ],
+      "jobs": [
+        {
+          "id": 33,
+          "name": "占星術師",
+          "abbreviation": "AST",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

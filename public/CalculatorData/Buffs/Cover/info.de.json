@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 1300,
+  "name": "Deckung",
+  "description": "Schützt ein Gruppenmitglied vor Schaden.",
+  "effects": [
+    "Schützt ein Gruppenmitglied vor Schaden."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 212501,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": true,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 20,
+  "source_abilities": [
+    {
+      "id": 27,
+      "name": "Deckung",
+      "description": "Du nimmst allen Schaden auf dich, der ein anderes Gruppenmitglied treffen sollte.\nDauer: 12 Sekunden\nEidbalken-Kosten: 50\nBedingung: Du darfst höchstens 20 Yalme entfernt sein. Bei manchen Attacken nicht wirksam.",
+      "description_macro": "Du nimmst allen Schaden auf dich, der ein anderes Grup<->pen<->mit<->glied treffen sollte.<br>Dauer: 12 Sekunden<br>Eidbalken-Kosten: 50<br>Bedingung: Du darfst höchstens 20 Yalme entfernt sein. Bei manchen Attacken nicht wirksam.",
+      "unlock_level": 45,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Tank"
+      ],
+      "jobs": [
+        {
+          "id": 19,
+          "name": "Paladin",
+          "abbreviation": "PLD",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

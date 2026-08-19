@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 1182,
+  "name": "Meditative Brotherhood",
+  "description": "Grants chance to open a chakra to the monk who applied the effect when you or party members under this effect successfully land a weaponskill or cast a spell.",
+  "effects": [
+    "Grants chance to open a chakra to the monk who applied the effect when you or party members under this effect successfully land a weaponskill or cast a spell."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 212529,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": true,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 10
+  },
+  "class_job_category_id": 21,
+  "source_abilities": [
+    {
+      "id": 7396,
+      "name": "Brotherhood",
+      "description": "Grants Brotherhood to self and all nearby party members.\nBrotherhood Effect: Increases damage dealt by 5%\nAdditional Effect: Allows the opening of up to ten chakra\nDuration: 20s\nAdditional Effect: Grants Meditative Brotherhood to self and all nearby party members\nMeditative Brotherhood Effect: 20% chance you open a chakra when party members under this effect successfully land a weaponskill or cast a spell\nChance is 100% when you successfully land a weaponskill or cast a spell while under the effect of Meditative Brotherhood.\nDuration: 20s",
+      "description_macro": "Grants <colortype(506)><edgecolortype(507)>Brotherhood<edgecolortype(0)><colortype(0)> to self and all nearby party members.<br><colortype(504)><edgecolortype(505)>Brotherhood Effect: <edgecolortype(0)><colortype(0)>Increases damage dealt by 5%<br><colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>Allows the opening of up to ten chakra<br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>20s<br><colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>Grants <colortype(506)><edgecolortype(507)>Meditative Brotherhood<edgecolortype(0)><colortype(0)> to self and all nearby party members<br><colortype(504)><edgecolortype(505)>Meditative Brotherhood Effect: <edgecolortype(0)><colortype(0)><if([gnum68==20],<if([gnum72>=88],20% chance you open a chakra when party members under this effect successfully land a weaponskill or cast a spell<br>Chance is 100% when you successfully land a weaponskill or cast a spell while under the effect of <colortype(506)><edgecolortype(507)>Meditative Brotherhood<edgecolortype(0)><colortype(0)>.,20% chance you open a chakra when you or party members under this effect successfully land a weaponskill or cast a spell)>,20% chance you open a chakra when you or party members under this effect successfully land a weaponskill or cast a spell)><br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>20s",
+      "unlock_level": 70,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 20,
+          "name": "Monk",
+          "abbreviation": "MNK",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

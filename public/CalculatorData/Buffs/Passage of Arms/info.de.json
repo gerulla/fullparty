@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 1175,
+  "name": "Waffengang",
+  "description": "Ein Schild verringert erlittenen Schaden für alle im Bereich.",
+  "effects": [
+    "Ein Schild verringert erlittenen Schaden für alle im Bereich."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 212512,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": true,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 4,
+    "modifier": 100
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 7385,
+      "name": "Waffengang",
+      "description": "Du errichtest einen Schild, der erlittenen Schaden im fächerförmig hinter dir liegenden Bereich verringert. Deine Blockrate ist 100 % und der erlittene Schaden von Gruppenmitgliedern im Bereich hinter dir ist um 15 % verringert.\nDauer: 18 Sekunden\nUnterbindet Auto-Attacke.\nEffekt endet bei Bewegung, Umdrehen oder Ausführen eines Kommandos.",
+      "description_macro": "Du errichtest einen Schild, der erlittenen Schaden im fächerförmig hinter dir liegenden Bereich verringert. Deine Blockrate ist 100<nbsp>% und der erlittene Schaden von Grup<->pen<->mit<->gliedern im Bereich hinter dir ist um 15 % verringert.<br>Dauer: 18 Sekunden<br>Unterbindet Auto-Attacke.<br>Effekt endet bei Bewegung, Umdrehen oder Ausführen eines Kommandos.",
+      "unlock_level": 70,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Tank"
+      ],
+      "jobs": [
+        {
+          "id": 19,
+          "name": "Paladin",
+          "abbreviation": "PLD",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

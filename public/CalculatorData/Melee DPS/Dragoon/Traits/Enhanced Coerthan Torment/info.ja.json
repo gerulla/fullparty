@@ -1,0 +1,26 @@
+{
+  "kind": "trait",
+  "id": 435,
+  "name": "クルザントーメント効果アップ",
+  "description": "クルザントーメントのコンボ成功時に、自身に「竜眼」を付与する。\u3000効果時間：30秒\nこの効果はウェポンスキルによる近接攻撃を実行すると解除される。\n効果時間中はドゥームスパイクが「竜眼蒼穹」に変化する。",
+  "description_macro": "クルザントーメントのコンボ成功時に、自身に<colortype(500)><edgecolortype(501)>「竜眼」<edgecolortype(0)><colortype(0)>を付与する。\u3000<colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>30秒<br>この効果はウェポンスキルによる近接攻撃を実行すると解除される。<br>効果時間中はドゥームスパイクが<colortype(500)><edgecolortype(501)>「竜眼蒼穹」<edgecolortype(0)><colortype(0)>に変化する。",
+  "effects": [
+    "クルザントーメントのコンボ成功時に、自身に「竜眼」を付与する。\u3000効果時間：30秒",
+    "この効果はウェポンスキルによる近接攻撃を実行すると解除される。",
+    "効果時間中はドゥームスパイクが「竜眼蒼穹」に変化する。"
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 22,
+    "name": "竜騎士",
+    "abbreviation": "DRG"
+  },
+  "unlock_level": 82,
+  "value": 0,
+  "icon": {
+    "id": 5290,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 23,
+  "source_class_job_id": 22
+}

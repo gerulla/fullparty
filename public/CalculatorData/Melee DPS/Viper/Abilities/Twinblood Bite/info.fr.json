@@ -1,0 +1,100 @@
+{
+  "kind": "ability",
+  "id": 34637,
+  "name": "Morsure frénétique",
+  "description": "Effectue une attaque physique sur la cible.\nPuissance : 120\nPuissance avec Mordeur frénétique : 170\nEffet additionnel : vous octroie Mordeur vicieux lorsque cette action est utilisée juste après Anneaux de l'écorcheur.\nDurée : 30s\nCondition : après avoir utilisé Anneaux du prédateur ou Anneaux de l'écorcheur avec succès.\n\n* Cette action ne peut pas être ajoutée aux barres de raccourcis.\nRemplace Crochets frénétiques lorsque les conditions sont réunies.",
+  "description_macro": "Effectue une attaque physique sur la cible.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> 120<br><colortype(506)><edgecolortype(507)>Puissance avec Mordeur frénétique<nbsp>:<edgecolortype(0)><colortype(0)> 170<br><colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> vous octroie <colortype(500)><edgecolortype(501)>Mordeur vicieux<edgecolortype(0)><colortype(0)> lorsque cette action est utilisée juste après <colortype(500)><edgecolortype(501)>Anneaux de l'écorcheur<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 30s<br><colortype(506)><edgecolortype(507)>Condition<nbsp>:<edgecolortype(0)><colortype(0)> après avoir utilisé <colortype(500)><edgecolortype(501)>Anneaux du prédateur<edgecolortype(0)><colortype(0)> ou <colortype(500)><edgecolortype(501)>Anneaux de l'écorcheur<edgecolortype(0)><colortype(0)> avec succès.<br><br><colortype(504)><edgecolortype(505)>* Cette action ne peut pas être ajoutée aux barres de raccourcis.<br>Remplace <colortype(500)><edgecolortype(501)>Crochets frénétiques<edgecolortype(0)><colortype(0)> lorsque les conditions sont réunies.<edgecolortype(0)><colortype(0)>",
+  "effects": [
+    "Effectue une attaque physique sur la cible.",
+    "Puissance : 120",
+    "Puissance avec Mordeur frénétique : 170",
+    "Effet additionnel : vous octroie Mordeur vicieux lorsque cette action est utilisée juste après Anneaux de l'écorcheur.",
+    "Durée : 30s",
+    "Condition : après avoir utilisé Anneaux du prédateur ou Anneaux de l'écorcheur avec succès.",
+    "* Cette action ne peut pas être ajoutée aux barres de raccourcis.",
+    "Remplace Crochets frénétiques lorsque les conditions sont réunies."
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 41,
+    "name": "Rôdeur Vipère",
+    "abbreviation": "VPR"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 75,
+  "icon": {
+    "id": 3732,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 4,
+    "name": "Aptitude"
+  },
+  "attack_type": {
+    "id": 4294967295,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 1,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 3,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 104,
+      "value": 7
+    },
+    "secondary": {
+      "type_id": 135,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": 5,
+    "effect_yalms": 0,
+    "cast_type": 1
+  },
+  "targeting": {
+    "self": false,
+    "party": false,
+    "alliance": false,
+    "hostile": true,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": {
+      "id": 129,
+      "status": {
+        "id": 3658,
+        "name": "Mordeur frénétique",
+        "description": "La puissance de Morsure frénétique est augmentée.",
+        "icon_id": 213764,
+        "max_stacks": 0
+      }
+    }
+  },
+  "metadata": {
+    "aspect_id": 7,
+    "behavior_type": 0,
+    "class_job_category_id": 196,
+    "source_class_job_id": 0,
+    "is_role_action": false,
+    "is_player_action": false,
+    "is_derived_action": true,
+    "equivalence_group": 0
+  }
+}

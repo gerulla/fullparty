@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 3841,
+  "name": "Geerdet",
+  "description": "Erdumrundung kann ausgeführt werden.",
+  "effects": [
+    "Erdumrundung kann ausgeführt werden."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 212539,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 21,
+  "source_abilities": [
+    {
+      "id": 7394,
+      "name": "Steinernes Enigma",
+      "description": "Du verringerst deinen erlittenen Schaden um 20 %.\nDauer: 10 Sekunden\nZusatzeffekt: Erleidest du während der Wirkungsdauer Schaden, wird Steinerne Klarheit gewährt.\nEffekt von Steinerne Klarheit: Regeneriert stetig eigene LP.\nHeilpotenzial: 100\nDauer: 15 Sekunden\nZusatzeffekt: Gewährt dir Geerdet.\nDauer: 30 Sekunden",
+      "description_macro": "Du verringerst deinen erlittenen Schaden um 20<nbsp>%.<br>Dauer: 10 Sekunden<br>Zusatzeffekt: Erleidest du während der Wirkungsdauer Schaden, wird <colortype(506)><edgecolortype(507)>Steinerne Klarheit<edgecolortype(0)><colortype(0)> gewährt.<br>Effekt von <colortype(506)><edgecolortype(507)>Steinerne Klarheit<edgecolortype(0)><colortype(0)>: Regeneriert stetig eigene LP.<br>Heilpotenzial: 100<br>Dauer: 15 Sekunden<br>Zusatzeffekt: Gewährt dir <colortype(506)><edgecolortype(507)>Geerdet<edgecolortype(0)><colortype(0)>.<br>Dauer: 30 Sekunden",
+      "unlock_level": 64,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 20,
+          "name": "Mönch",
+          "abbreviation": "MÖN",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "kind": "combat_status",
+  "id": 1719,
+  "name": "Garde puissante",
+  "description": "Les dégâts reçus et infligés sont réduits, et l'inimitié est augmentée.",
+  "effects": [
+    "Les dégâts reçus et infligés sont réduits, et l'inimitié est augmentée."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 213506,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": true,
+  "is_permanent": true,
+  "inflicted_by_actor": true,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": -10
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 11417,
+      "name": "Garde puissante",
+      "description": "Réduit de 40% vos dégâts subis, augmente l'inimitié envers vous et vous permet de lancer des sorts sans risque d'interruption due à des dégâts. En contrepartie, vos dégâts infligés sont réduits de 40%.\nL'effet prend fin en relançant l'action.",
+      "description_macro": "Réduit de 40% vos dégâts subis, augmente l'inimitié envers vous et vous permet de lancer des sorts sans risque d'interruption due à des dégâts. En contrepartie, vos dégâts infligés sont réduits de 40%.<br>L'effet prend fin en relançant l'action.",
+      "unlock_level": 1,
+      "relations": [
+        "direct_gain_self",
+        "same_name"
+      ],
+      "roles": [
+        "Magical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 36,
+          "name": "Mage Bleu",
+          "abbreviation": "MBU",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

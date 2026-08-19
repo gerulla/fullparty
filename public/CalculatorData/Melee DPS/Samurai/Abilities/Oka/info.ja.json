@@ -1,0 +1,89 @@
+{
+  "kind": "ability",
+  "id": 7485,
+  "name": "桜花",
+  "description": "自身の周囲の敵に範囲物理攻撃。\u3000威力：100\nコンボ条件：風光\u3000コンボ時威力：120\nコンボボーナス：自身に「風花」を付与する。\n効果時間：40秒\n風花効果：自身のオートアタックの攻撃間隔と、ウェポンスキルおよび魔法のキャストタイムとリキャストタイムを13％短縮させる。\nコンボボーナス：「剣気」を10上昇させ、かつ「花の閃」を付与する。",
+  "description_macro": "自身の周囲の敵に範囲物理攻撃。\u3000<colortype(504)><edgecolortype(505)>威力：<edgecolortype(0)><colortype(0)>100<br><colortype(504)><edgecolortype(505)>コンボ条件：<edgecolortype(0)><colortype(0)><if([gnum68==34],<if([gnum72>=86],風光,風雅)>,風雅)>\u3000<colortype(504)><edgecolortype(505)>コンボ時威力：<edgecolortype(0)><colortype(0)>120<br><colortype(504)><edgecolortype(505)>コンボボーナス：<edgecolortype(0)><colortype(0)>自身に<colortype(500)><edgecolortype(501)>「風花」<edgecolortype(0)><colortype(0)>を付与する。<br><colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>40秒<br><colortype(504)><edgecolortype(505)>風花効果：<edgecolortype(0)><colortype(0)>自身のオートアタックの攻撃間隔と、ウェポンスキルおよび魔法のキャストタイムとリキャストタイムを<if([gnum68==34],<if([gnum72>=78],13,10)>,10)>％短縮させる。<if([gnum72>=52],<if([gnum68==34],<br><colortype(504)><edgecolortype(505)>コンボボーナス：<edgecolortype(0)><colortype(0)><colortype(500)><edgecolortype(501)>「剣気」<edgecolortype(0)><colortype(0)>を<if([gnum72>=62],<if([gnum68==34],10,5)>,5)>上昇させ、かつ<colortype(500)><edgecolortype(501)>「花の閃」<edgecolortype(0)><colortype(0)>を付与する。,<br><colortype(504)><edgecolortype(505)>コンボボーナス：<edgecolortype(0)><colortype(0)><colortype(500)><edgecolortype(501)>「花の閃」<edgecolortype(0)><colortype(0)>を付与する。)>,<br><colortype(504)><edgecolortype(505)>コンボボーナス：<edgecolortype(0)><colortype(0)><colortype(500)><edgecolortype(501)>「花の閃」<edgecolortype(0)><colortype(0)>を付与する。)>",
+  "effects": [
+    "自身の周囲の敵に範囲物理攻撃。\u3000威力：100",
+    "コンボ条件：風光\u3000コンボ時威力：120",
+    "コンボボーナス：自身に「風花」を付与する。",
+    "効果時間：40秒",
+    "風花効果：自身のオートアタックの攻撃間隔と、ウェポンスキルおよび魔法のキャストタイムとリキャストタイムを13％短縮させる。",
+    "コンボボーナス：「剣気」を10上昇させ、かつ「花の閃」を付与する。"
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 34,
+    "name": "侍",
+    "abbreviation": "SAM"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 45,
+  "icon": {
+    "id": 3165,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 3,
+    "name": "ウェポンスキル"
+  },
+  "attack_type": {
+    "id": 4294967295,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 2.5,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 58,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 0,
+      "value": 0
+    },
+    "secondary": {
+      "type_id": 0,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": 0,
+    "effect_yalms": 5,
+    "cast_type": 2
+  },
+  "targeting": {
+    "self": true,
+    "party": false,
+    "alliance": false,
+    "hostile": false,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": 7483,
+    "preserves_combo": false
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 7,
+    "behavior_type": 0,
+    "class_job_category_id": 111,
+    "source_class_job_id": 34,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

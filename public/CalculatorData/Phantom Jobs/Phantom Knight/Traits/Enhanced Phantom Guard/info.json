@@ -1,0 +1,22 @@
+{
+  "kind": "trait",
+  "id": 1,
+  "name": "Enhanced Phantom Guard",
+  "description": "Improves Phantom Guard's damage reduction effect to 90%.",
+  "description_macro": "Improves <colortype(500)><edgecolortype(501)>Phantom Guard<edgecolortype(0)><colortype(0)>'s damage reduction effect to 90%.",
+  "effects": [
+    "Improves Phantom Guard's damage reduction effect to 90%."
+  ],
+  "role": "Phantom Jobs",
+  "job": {
+    "id": 1,
+    "name": "Phantom Knight",
+    "abbreviation": "Ph. Knight"
+  },
+  "is_phantom_trait": true,
+  "unlock_level": 4,
+  "icon": {
+    "id": 82201,
+    "file": "icon.png"
+  }
+}

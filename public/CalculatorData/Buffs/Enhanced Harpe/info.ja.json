@@ -1,0 +1,72 @@
+{
+  "kind": "combat_status",
+  "id": 2845,
+  "name": "ハルパー効果アップ",
+  "description": "次に実行するハルパーを、詠唱時間無しで唱えられる状態。\nさらに、ハルパーを実行するとヘルズイングレスとヘルズイーグレスのリキャストタイムを短縮する。",
+  "effects": [
+    "次に実行するハルパーを、詠唱時間無しで唱えられる状態。",
+    "さらに、ハルパーを実行するとヘルズイングレスとヘルズイーグレスのリキャストタイムを短縮する。"
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 212939,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 180,
+  "source_abilities": [
+    {
+      "id": 24401,
+      "name": "ヘルズイングレス",
+      "description": "自身の15m前方に向かって素早く移動する。\n追加効果：自身に「ハルパー効果アップ」を付与する。\nハルパー効果アップ効果：次に実行するハルパーを詠唱時間無しで詠唱できる。\nさらに、実行時にヘルズイングレスのリキャストタイムを5秒短縮する。\u3000効果時間：10秒\n追加効果：移動する直前の地点に「ヘルズゲート」を生成し、自身に「リターン実行可」を付与する。\u3000効果時間：10秒\nバインド中は実行不可。\nリキャストタイマーを「ヘルズイーグレス」と共有する。",
+      "description_macro": "自身の15m前方に向かって素早く移動する。<br><colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)>自身に<colortype(500)><edgecolortype(501)>「ハルパー効果アップ」<edgecolortype(0)><colortype(0)>を付与する。<br><colortype(504)><edgecolortype(505)>ハルパー効果アップ効果：<edgecolortype(0)><colortype(0)>次に実行するハルパーを詠唱時間無しで詠唱できる。<br>さらに、実行時にヘルズイングレスのリキャストタイムを5秒短縮する。\u3000<colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>10秒<br><if([gnum68==39],<if([gnum72>=74],<colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)>移動する直前の地点に<colortype(500)><edgecolortype(501)>「ヘルズゲート」<edgecolortype(0)><colortype(0)>を生成し、自身に<colortype(500)><edgecolortype(501)>「リターン実行可」<edgecolortype(0)><colortype(0)>を付与する。\u3000<colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>10秒<br>,)>,)>バインド中は実行不可。<br>リキャストタイマーを<colortype(500)><edgecolortype(501)>「ヘルズイーグレス」<edgecolortype(0)><colortype(0)>と共有する。",
+      "unlock_level": 20,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 39,
+          "name": "リーパー",
+          "abbreviation": "RPR",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 24402,
+      "name": "ヘルズイーグレス",
+      "description": "自身の15m後方に向かって素早く移動する。\n追加効果：自身に「ハルパー効果アップ」を付与する。\nハルパー効果アップ効果：次に実行するハルパーを詠唱時間無しで詠唱できる。\nさらに、実行時にヘルズイーグレスのリキャストタイムを5秒短縮する。\u3000効果時間：10秒\n追加効果：移動する直前の地点に「ヘルズゲート」を生成し、自身に「リターン実行可」を付与する。\u3000効果時間：10秒\nバインド中は実行不可。\nリキャストタイマーを「ヘルズイングレス」と共有する。",
+      "description_macro": "自身の15m後方に向かって素早く移動する。<br><colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)>自身に<colortype(500)><edgecolortype(501)>「ハルパー効果アップ」<edgecolortype(0)><colortype(0)>を付与する。<br><colortype(504)><edgecolortype(505)>ハルパー効果アップ効果：<edgecolortype(0)><colortype(0)>次に実行するハルパーを詠唱時間無しで詠唱できる。<br>さらに、実行時にヘルズイーグレスのリキャストタイムを5秒短縮する。\u3000<colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>10秒<br><if([gnum68==39],<if([gnum72>=74],<colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)>移動する直前の地点に<colortype(500)><edgecolortype(501)>「ヘルズゲート」<edgecolortype(0)><colortype(0)>を生成し、自身に<colortype(500)><edgecolortype(501)>「リターン実行可」<edgecolortype(0)><colortype(0)>を付与する。\u3000<colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>10秒<br>,)>,)>バインド中は実行不可。<br>リキャストタイマーを<colortype(500)><edgecolortype(501)>「ヘルズイングレス」<edgecolortype(0)><colortype(0)>と共有する。",
+      "unlock_level": 20,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 39,
+          "name": "リーパー",
+          "abbreviation": "RPR",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "kind": "trait",
+  "id": 9,
+  "name": "Chants améliorés",
+  "description": "Augmente l'effet de certains chants en fonction du niveau de job de soutien de barde fantôme.",
+  "description_macro": "Augmente l'effet de certains chants en fonction du niveau de job de soutien de barde fantôme.",
+  "effects": [
+    "Augmente l'effet de certains chants en fonction du niveau de job de soutien de barde fantôme."
+  ],
+  "role": "Phantom Jobs",
+  "job": {
+    "id": 6,
+    "name": "Barde fantôme",
+    "abbreviation": "Barde fant."
+  },
+  "is_phantom_trait": true,
+  "unlock_level": 2,
+  "icon": {
+    "id": 82209,
+    "file": "icon.png"
+  }
+}

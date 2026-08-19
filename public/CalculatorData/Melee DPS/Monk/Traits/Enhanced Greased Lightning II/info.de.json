@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 366,
+  "name": "Verbesserter Geölter Blitz II",
+  "description": "Reduziert das Auto-Attacke-Intervall und die (Re-)Aktivierungszeiten von Waffenfertigkeiten und Magie um 15 %.",
+  "description_macro": "Reduziert das Auto-Attacke-Intervall und die (Re-)Ak<->ti<->vie<->rungs<->zei<->ten von Waf<->fen<->fer<->tig<->kei<->ten und Magie um 15<nbsp>%.",
+  "effects": [
+    "Reduziert das Auto-Attacke-Intervall und die (Re-)Aktivierungszeiten von Waffenfertigkeiten und Magie um 15 %."
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 20,
+    "name": "Mönch",
+    "abbreviation": "MÖN"
+  },
+  "unlock_level": 40,
+  "value": 0,
+  "icon": {
+    "id": 5231,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 21,
+  "source_class_job_id": 20
+}

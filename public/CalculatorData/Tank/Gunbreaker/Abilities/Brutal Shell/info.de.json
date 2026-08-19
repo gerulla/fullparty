@@ -1,0 +1,90 @@
+{
+  "kind": "ability",
+  "id": 16139,
+  "name": "Brutaler Einschlag",
+  "description": "Du führst eine physische Attacke aus.\nAttacke-Wert: 240\nKombo-Bedingung: Zerfetzer\nAttacke-Wert: 380\nBonus: Du regenerierst eigene LP.\nHeilpotenzial: 200\nDas errichtet auch eine Barriere um dich\\",
+  "description_macro": "Du führst eine physische Attacke aus.<br>Attacke-Wert: <if([gnum68==37],<if([gnum72>=94],240,<if([gnum68==37],<if([gnum72>=84],160,100)>,100)>)>,<if([gnum68==37],<if([gnum72>=84],160,100)>,100)>)><br>Kombo-Bedingung: <colortype(502)><edgecolortype(503)>Zerfetzer<edgecolortype(0)><colortype(0)><br>Attacke-Wert: <if([gnum68==37],<if([gnum72>=94],380,<if([gnum68==37],<if([gnum72>=84],300,240)>,240)>)>,<if([gnum68==37],<if([gnum72>=84],300,240)>,240)>)><br>Bonus: Du regenerierst eigene LP.<br>Heilpotenzial: 200<if([gnum68==37],<if([gnum72>=52],<br>Das errichtet auch eine Barriere um dich\\, die Schaden in Höhe von 100 % der regenerierten LP absorbiert.<br>Dauer: 30 Sekunden,)>,)>",
+  "effects": [
+    "Du führst eine physische Attacke aus.",
+    "Attacke-Wert: 240",
+    "Kombo-Bedingung: Zerfetzer",
+    "Attacke-Wert: 380",
+    "Bonus: Du regenerierst eigene LP.",
+    "Heilpotenzial: 200",
+    "Das errichtet auch eine Barriere um dich\\"
+  ],
+  "role": "Tank",
+  "job": {
+    "id": 37,
+    "name": "Revolverklinge",
+    "abbreviation": "REV"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 4,
+  "icon": {
+    "id": 3403,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 3,
+    "name": "Waffenfertigkeit"
+  },
+  "attack_type": {
+    "id": 4294967295,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 2.5,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 58,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 0,
+      "value": 0
+    },
+    "secondary": {
+      "type_id": 0,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": -1,
+    "effect_yalms": 0,
+    "cast_type": 1
+  },
+  "targeting": {
+    "self": false,
+    "party": false,
+    "alliance": false,
+    "hostile": true,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": 16137,
+    "preserves_combo": false
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 7,
+    "behavior_type": 0,
+    "class_job_category_id": 149,
+    "source_class_job_id": 37,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

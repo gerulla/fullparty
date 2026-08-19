@@ -1,0 +1,113 @@
+{
+  "kind": "combat_status",
+  "id": 3852,
+  "name": "Tsubamegaeshi",
+  "description": "Tsubamegaeshi kann ausgeführt werden.",
+  "effects": [
+    "Tsubamegaeshi kann ausgeführt werden."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 213315,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 111,
+  "source_abilities": [
+    {
+      "id": 7487,
+      "name": "Midare Setsugekka",
+      "description": "Du führst eine physische Attacke aus, die kritisch trifft.\nAttacke-Wert: 680\nIst ein Effekt aktiv, der deine Rate kritischer oder direkter Treffer steigert, erhöht sich auch der Attacke-Wert.\nZusatzeffekt: Gewährt dir Tsubamegaeshi.\nDauer: 30 Sekunden\nZusatzeffekt: Gewährt dir Meditationsebene.\nMaximalstapelzahl: 3\nBedingung: 3 verschiedene Symbole sind aktiv.\nBei erfüllter Bedingung ändert sich Iaijutsu zu diesem Kommando.\nKann nicht im Kommandomenü angelegt werden.",
+      "description_macro": "Du führst eine physische Attacke aus, die kritisch trifft.<br>Attacke-Wert: <if([gnum68==34],<if([gnum72>=94],680,620)>,620)><br>Ist ein Effekt aktiv, der deine Rate kritischer oder direkter Treffer steigert, erhöht sich auch der Attacke-Wert.<br><if([gnum68==34],<if([gnum72>=74],Zusatzeffekt: Gewährt dir <colortype(506)><edgecolortype(507)>Tsubamegaeshi<edgecolortype(0)><colortype(0)>.<br>Dauer: 30 Sekunden<br>,)>,)><if([gnum68==34],<if([gnum72>=80],Zusatzeffekt: Gewährt dir <colortype(506)><edgecolortype(507)>Meditationsebene<edgecolortype(0)><colortype(0)>.<br>Ma<->xi<->mal<->sta<->pel<->zahl: 3<br>,)>,)>Bedingung: 3 verschiedene Symbole sind aktiv.<br>Bei erfüllter Bedingung ändert sich <colortype(502)><edgecolortype(503)>Iaijutsu<edgecolortype(0)><colortype(0)> zu diesem Kommando.<br>Kann nicht im Kommandomenü angelegt werden.",
+      "unlock_level": 50,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 34,
+          "name": "Samurai",
+          "abbreviation": "SAM",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 7488,
+      "name": "Tenka Goken",
+      "description": "Du führst eine physische Attacke auf alle umstehenden Gegner aus.\nAttacke-Wert: 300\nZusatzeffekt: Gewährt dir Tsubamegaeshi.\nDauer: 30 Sekunden\nZusatzeffekt: Gewährt dir Meditationsebene.\nMaximalstapelzahl: 3\nBedingung: 2 verschiedene Symbole sind aktiv.\nBei erfüllter Bedingung ändert sich Iaijutsu zu diesem Kommando.\nKann nicht im Kommandomenü angelegt werden.",
+      "description_macro": "Du führst eine physische Attacke auf alle umstehenden Gegner aus.<br>Attacke-Wert: 300<br><if([gnum68==34],<if([gnum72>=74],Zusatzeffekt: Gewährt dir <colortype(506)><edgecolortype(507)>Tsubamegaeshi<edgecolortype(0)><colortype(0)>.<br>Dauer: 30 Sekunden<br>,)>,)><if([gnum68==34],<if([gnum72>=80],Zusatzeffekt: Gewährt dir <colortype(506)><edgecolortype(507)>Meditationsebene<edgecolortype(0)><colortype(0)>.<br>Ma<->xi<->mal<->sta<->pel<->zahl: 3<br>,)>,)>Bedingung: 2 verschiedene Symbole sind aktiv.<br>Bei erfüllter Bedingung ändert sich <colortype(502)><edgecolortype(503)>Iaijutsu<edgecolortype(0)><colortype(0)> zu diesem Kommando.<br>Kann nicht im Kommandomenü angelegt werden.",
+      "unlock_level": 40,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 34,
+          "name": "Samurai",
+          "abbreviation": "SAM",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 36965,
+      "name": "Tendo Goken",
+      "description": "Du führst eine physische Attacke auf alle umstehenden Gegner aus.\nAttacke-Wert: 410\nZusatzeffekt: Gewährt dir Tsubamegaeshi.\nDauer: 30 Sekunden\nZusatzeffekt: Gewährt dir Meditationsebene.\nMaximalstapelzahl: 3\nDauer: Fortdauernd\nBedingung: Tendo und 2 verschiedene Symbole sind aktiv\nBei erfüllter Bedingung ändert sich Iaijutsu zu diesem Kommando.\nKann nicht im Kommandomenü angelegt werden.",
+      "description_macro": "Du führst eine physische Attacke auf alle umstehenden Gegner aus.<br>Attacke-Wert: 410<br>Zusatzeffekt: Gewährt dir <colortype(506)><edgecolortype(507)>Tsubamegaeshi<edgecolortype(0)><colortype(0)>.<br>Dauer: 30 Sekunden<br>Zusatzeffekt: Gewährt dir <colortype(506)><edgecolortype(507)>Meditationsebene<edgecolortype(0)><colortype(0)>.<br>Ma<->xi<->mal<->sta<->pel<->zahl: 3<br>Dauer: Fortdauernd<br>Bedingung: <colortype(506)><edgecolortype(507)>Tendo<edgecolortype(0)><colortype(0)> und 2 verschiedene Symbole sind aktiv<br>Bei erfüllter Bedingung ändert sich <colortype(502)><edgecolortype(503)>Iaijutsu<edgecolortype(0)><colortype(0)> zu diesem Kommando.<br>Kann nicht im Kommandomenü angelegt werden.",
+      "unlock_level": 100,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 34,
+          "name": "Samurai",
+          "abbreviation": "SAM",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 36966,
+      "name": "Tendo Setsugekka",
+      "description": "Du führst eine physische Attacke aus, die kritisch trifft.\nAttacke-Wert: 1.100\nIst ein Effekt aktiv, der deine Rate kritischer oder direkter Treffer steigert, erhöht sich auch der Attacke-Wert.\nZusatzeffekt: Gewährt dir Tsubamegaeshi.\nDauer: 30 Sekunden\nZusatzeffekt: Gewährt dir Meditationsebene.\nMaximalstapelzahl: 3\nDauer: Fortdauernd\nBedingung: Tendo und 3 verschiedene Symbole sind aktiv\nBei erfüllter Bedingung ändert sich Iaijutsu zu diesem Kommando.\nKann nicht im Kommandomenü angelegt werden.",
+      "description_macro": "Du führst eine physische Attacke aus, die kritisch trifft.<br>Attacke-Wert: 1.100<br>Ist ein Effekt aktiv, der deine Rate kritischer oder direkter Treffer steigert, erhöht sich auch der Attacke-Wert.<br>Zusatzeffekt: Gewährt dir <colortype(506)><edgecolortype(507)>Tsubamegaeshi<edgecolortype(0)><colortype(0)>.<br>Dauer: 30 Sekunden<br>Zusatzeffekt: Gewährt dir <colortype(506)><edgecolortype(507)>Meditationsebene<edgecolortype(0)><colortype(0)>.<br>Ma<->xi<->mal<->sta<->pel<->zahl: 3<br>Dauer: Fortdauernd<br>Bedingung: <colortype(506)><edgecolortype(507)>Tendo<edgecolortype(0)><colortype(0)> und 3 verschiedene Symbole sind aktiv<br>Bei erfüllter Bedingung ändert sich <colortype(502)><edgecolortype(503)>Iaijutsu<edgecolortype(0)><colortype(0)> zu diesem Kommando.<br>Kann nicht im Kommandomenü angelegt werden.",
+      "unlock_level": 100,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 34,
+          "name": "Samurai",
+          "abbreviation": "SAM",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

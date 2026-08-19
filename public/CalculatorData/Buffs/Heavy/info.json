@@ -1,0 +1,113 @@
+{
+  "kind": "combat_status",
+  "id": 14,
+  "name": "Heavy",
+  "description": "Movement speed is reduced.",
+  "effects": [
+    "Movement speed is reduced."
+  ],
+  "classification": "debuff",
+  "icon": {
+    "id": 215002,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 2,
+  "target_type": 0,
+  "can_dispel": true,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 100,
+  "parameter": {
+    "effect": 1,
+    "modifier": 0
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 2270,
+      "name": "Doton",
+      "description": "Creates a patch of corrupted earth, dealing damage with a potency of 80 to any enemies who enter.\nDuration: 18s\nAdditional Effect: Heavy +40%\nMudra Combination: Ten→Jin→Chi or Jin→Ten→Chi\nTriggers the cooldown of weaponskills, mudra, and Ninjutsu upon execution.\n\n※This action cannot be assigned to a hotbar.\n※Ninjutsu changes to Doton when requirements for execution are met.",
+      "description_macro": "Creates a patch of corrupted earth, dealing damage with a potency of 80 to any enemies who enter.<br><colortype(504)><edgecolortype(505)>Duration:<edgecolortype(0)><colortype(0)> 18s<br><colortype(504)><edgecolortype(505)>Additional Effect:<edgecolortype(0)><colortype(0)> <colortype(506)><edgecolortype(507)>Heavy<edgecolortype(0)><colortype(0)> +40%<br><colortype(504)><edgecolortype(505)>Mudra Combination:<edgecolortype(0)><colortype(0)> <colortype(500)><edgecolortype(501)>Ten<edgecolortype(0)><colortype(0)>→<colortype(500)><edgecolortype(501)>Jin<edgecolortype(0)><colortype(0)>→<colortype(500)><edgecolortype(501)>Chi<edgecolortype(0)><colortype(0)> or <colortype(500)><edgecolortype(501)>Jin<edgecolortype(0)><colortype(0)>→<colortype(500)><edgecolortype(501)>Ten<edgecolortype(0)><colortype(0)>→<colortype(500)><edgecolortype(501)>Chi<edgecolortype(0)><colortype(0)><br>Triggers the cooldown of weaponskills, mudra, and <colortype(500)><edgecolortype(501)>Ninjutsu<edgecolortype(0)><colortype(0)> upon execution.<br><br>※This action cannot be assigned to a hotbar.<br>※<colortype(500)><edgecolortype(501)>Ninjutsu<edgecolortype(0)><colortype(0)> changes to <colortype(500)><edgecolortype(501)>Doton<edgecolortype(0)><colortype(0)> when requirements for execution are met.",
+      "unlock_level": 45,
+      "relations": [
+        "applied_by_description"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 30,
+          "name": "Ninja",
+          "abbreviation": "NIN",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 11384,
+      "name": "4-tonze Weight",
+      "description": "Drops a 4-tonze weight dealing physical damage at a designated location with a potency of 200 for the first enemy, and 50% less for all remaining enemies.\nAdditional Effect: Heavy +40%\nDuration: 30s",
+      "description_macro": "Drops a 4-tonze weight dealing physical damage at a designated location with a potency of 200 for the first enemy, and 50% less for all remaining enemies.<br><colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)><colortype(506)><edgecolortype(507)>Heavy<edgecolortype(0)><colortype(0)> +40%<br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>30s",
+      "unlock_level": 1,
+      "relations": [
+        "applied_by_description"
+      ],
+      "roles": [
+        "Magical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 36,
+          "name": "Blue Mage",
+          "abbreviation": "BLU",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 18319,
+      "name": "Reflux",
+      "description": "Deals lightning damage with a potency of 220.\nAdditional Effect: Heavy +40%\nDuration: 10s\nIgnores target's Heavy resistance.",
+      "description_macro": "Deals lightning damage with a potency of 220.<br><colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)><colortype(506)><edgecolortype(507)>Heavy<edgecolortype(0)><colortype(0)> +40%<br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>10s<br>Ignores target's <colortype(506)><edgecolortype(507)>Heavy<edgecolortype(0)><colortype(0)> resistance.",
+      "unlock_level": 1,
+      "relations": [
+        "applied_by_description"
+      ],
+      "roles": [
+        "Magical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 36,
+          "name": "Blue Mage",
+          "abbreviation": "BLU",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 18880,
+      "name": "Doton",
+      "description": "Creates a patch of corrupted earth, dealing damage with a potency of 80 to any enemies who enter.\nDuration: 18s\nAdditional Effect: Heavy +40%\nMudra Combination: Ten→Jin→Chi or Jin→Ten→Chi\nTriggers the cooldown of weaponskills, mudra, and Ninjutsu upon execution.\n\n※This action cannot be assigned to a hotbar.\n※Ninjutsu changes to Doton when requirements for execution are met.",
+      "description_macro": "Creates a patch of corrupted earth, dealing damage with a potency of 80 to any enemies who enter.<br><colortype(504)><edgecolortype(505)>Duration:<edgecolortype(0)><colortype(0)> 18s<br><colortype(504)><edgecolortype(505)>Additional Effect:<edgecolortype(0)><colortype(0)> <colortype(506)><edgecolortype(507)>Heavy<edgecolortype(0)><colortype(0)> +40%<br><colortype(504)><edgecolortype(505)>Mudra Combination:<edgecolortype(0)><colortype(0)> <colortype(500)><edgecolortype(501)>Ten<edgecolortype(0)><colortype(0)>→<colortype(500)><edgecolortype(501)>Jin<edgecolortype(0)><colortype(0)>→<colortype(500)><edgecolortype(501)>Chi<edgecolortype(0)><colortype(0)> or <colortype(500)><edgecolortype(501)>Jin<edgecolortype(0)><colortype(0)>→<colortype(500)><edgecolortype(501)>Ten<edgecolortype(0)><colortype(0)>→<colortype(500)><edgecolortype(501)>Chi<edgecolortype(0)><colortype(0)><br>Triggers the cooldown of weaponskills, mudra, and <colortype(500)><edgecolortype(501)>Ninjutsu<edgecolortype(0)><colortype(0)> upon execution.<br><br>※This action cannot be assigned to a hotbar.<br>※<colortype(500)><edgecolortype(501)>Ninjutsu<edgecolortype(0)><colortype(0)> changes to <colortype(500)><edgecolortype(501)>Doton<edgecolortype(0)><colortype(0)> when requirements for execution are met.",
+      "unlock_level": 45,
+      "relations": [
+        "applied_by_description"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 30,
+          "name": "Ninja",
+          "abbreviation": "NIN",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

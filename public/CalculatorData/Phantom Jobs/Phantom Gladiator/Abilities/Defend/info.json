@@ -1,0 +1,89 @@
+{
+  "kind": "ability",
+  "id": 46595,
+  "name": "Defend",
+  "description": "Reduces damage taken by 50%.\nDuration: 5s\nAdditional Effect: Grants a stack of Finishing Fervor upon taking reduced damage\nMaximum Stacks: 4\nDuration: 120s\nRemoves a stack of Finishing Fervor upon taking damage when the action is not on cooldown.",
+  "description_macro": "Reduces damage taken by 50%.<br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>5s<br><colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>Grants a stack of <colortype(506)><edgecolortype(507)>Finishing Fervor<edgecolortype(0)><colortype(0)> upon taking reduced damage<br><colortype(504)><edgecolortype(505)>Maximum Stacks: <edgecolortype(0)><colortype(0)>4<br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>120s<br>Removes a stack of <colortype(506)><edgecolortype(507)>Finishing Fervor<edgecolortype(0)><colortype(0)> upon taking damage when the action is not on cooldown.",
+  "effects": [
+    "Reduces damage taken by 50%.",
+    "Duration: 5s",
+    "Additional Effect: Grants a stack of Finishing Fervor upon taking reduced damage",
+    "Maximum Stacks: 4",
+    "Duration: 120s",
+    "Removes a stack of Finishing Fervor upon taking damage when the action is not on cooldown."
+  ],
+  "role": "Phantom Jobs",
+  "job": {
+    "id": 14,
+    "name": "Phantom Gladiator",
+    "abbreviation": "Ph. Gladiator"
+  },
+  "is_phantom_action": true,
+  "unlock_level": 2,
+  "icon": {
+    "id": 64580,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 4,
+    "name": "Ability"
+  },
+  "attack_type": {
+    "id": 0,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 30,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 83,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 0,
+      "value": 0
+    },
+    "secondary": {
+      "type_id": 0,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": 0,
+    "effect_yalms": 0,
+    "cast_type": 1
+  },
+  "targeting": {
+    "self": true,
+    "party": false,
+    "alliance": false,
+    "hostile": false,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": false,
+    "requires_facing_target": false
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 0,
+    "behavior_type": 0,
+    "class_job_category_id": 142,
+    "source_class_job_id": 4294967295,
+    "is_role_action": false,
+    "is_player_action": false,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

@@ -1,0 +1,96 @@
+{
+  "kind": "ability",
+  "id": 34622,
+  "name": "Flinker Otterngriff",
+  "description": "Du führst eine physische Attacke aus.\nAttacke-Wert: 630\nVon hinten: 680\nZusatzeffekt: Gewährt dir Vipernhatz.\nDauer: 40 Sekunden\nEffekt von Vipernhatz: Auto-Attacke-Intervall und\n(Re-)Aktivierungszeit von Magie und Waffenfertigkeiten um 15 % verkürzt.\nZusatzeffekt: Gewährt dir Instinkt der Otter.\nDauer: 30 Sekunden\nEffekt von Instinkt der Otter: Attacke-Werte von Biss der Zwillingsschuppen sind um 50 erhöht.\nZusatzeffekt: Erhöht den Geistbalken um 5.\nTrifft dieses Kommando erfolgreich\\Bedingung: Erfolgreiche Ausführung von Harter Otterngriff oder Blutiger Otterngriff.\nEigener Reaktivierungs-Timer",
+  "description_macro": "Du führst eine physische Attacke aus.<br>Attacke-Wert: 630<br>Von hinten: 680<br>Zusatzeffekt: Gewährt dir <colortype(506)><edgecolortype(507)>Vipernhatz<edgecolortype(0)><colortype(0)>.<br>Dauer: 40 Sekunden<br>Effekt von <colortype(506)><edgecolortype(507)>Vipernhatz<edgecolortype(0)><colortype(0)>: Auto-Attacke-Intervall und<br>(Re-)Ak<->ti<->vie<->rungs<->zeit von Magie und Waf<->fen<->fer<->tig<->kei<->ten um 15<nbsp>% verkürzt.<br><if([gnum68==41],<if([gnum72>=75],Zusatzeffekt: Gewährt dir <colortype(506)><edgecolortype(507)>Instinkt der Otter<edgecolortype(0)><colortype(0)>.<br>Dauer: 30 Sekunden<br>Effekt von <colortype(506)><edgecolortype(507)>Instinkt der Otter<edgecolortype(0)><colortype(0)>: Attacke-Werte von Biss der Zwillingsschuppen sind um 50 erhöht.<br>,)>,)><if([gnum68==41],<if([gnum72>=90],Zusatzeffekt: Erhöht den Geistbalken um 5.<br>,)>,)><if([gnum68==41],<if([gnum72>=75],Trifft dieses Kommando erfolgreich\\, ändert sich <colortype(502)><edgecolortype(503)>Zwillingsfänge<edgecolortype(0)><colortype(0)> zu <colortype(502)><edgecolortype(503)>Biss der Zwillingsfänge<edgecolortype(0)><colortype(0)> und <colortype(502)><edgecolortype(503)>Zwillingsschuppen<edgecolortype(0)><colortype(0)> zu <colortype(502)><edgecolortype(503)>Biss der Zwillingsschuppen<edgecolortype(0)><colortype(0)>\\, dich diese Kommandos zweifach ausführen lassend.<br>,)>,)>Bedingung: Erfolgreiche Ausführung von <colortype(502)><edgecolortype(503)>Harter Otterngriff<edgecolortype(0)><colortype(0)> oder <colortype(502)><edgecolortype(503)>Blutiger Otterngriff<edgecolortype(0)><colortype(0)>.<br>Eigener Reaktivierungs-Timer",
+  "effects": [
+    "Du führst eine physische Attacke aus.",
+    "Attacke-Wert: 630",
+    "Von hinten: 680",
+    "Zusatzeffekt: Gewährt dir Vipernhatz.",
+    "Dauer: 40 Sekunden",
+    "Effekt von Vipernhatz: Auto-Attacke-Intervall und",
+    "(Re-)Aktivierungszeit von Magie und Waffenfertigkeiten um 15 % verkürzt.",
+    "Zusatzeffekt: Gewährt dir Instinkt der Otter.",
+    "Dauer: 30 Sekunden",
+    "Effekt von Instinkt der Otter: Attacke-Werte von Biss der Zwillingsschuppen sind um 50 erhöht.",
+    "Zusatzeffekt: Erhöht den Geistbalken um 5.",
+    "Trifft dieses Kommando erfolgreich\\Bedingung: Erfolgreiche Ausführung von Harter Otterngriff oder Blutiger Otterngriff.",
+    "Eigener Reaktivierungs-Timer"
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 41,
+    "name": "Viper",
+    "abbreviation": "VPR"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 65,
+  "icon": {
+    "id": 3717,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 3,
+    "name": "Waffenfertigkeit"
+  },
+  "attack_type": {
+    "id": 4294967295,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 3,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 58,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 0,
+      "value": 0
+    },
+    "secondary": {
+      "type_id": 145,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": -1,
+    "effect_yalms": 0,
+    "cast_type": 1
+  },
+  "targeting": {
+    "self": false,
+    "party": false,
+    "alliance": false,
+    "hostile": true,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": 34620,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 7,
+    "behavior_type": 0,
+    "class_job_category_id": 196,
+    "source_class_job_id": 41,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

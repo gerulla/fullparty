@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 1219,
+  "name": "インドゥルゲンティア",
+  "description": "受けるダメージの一部が軽減される状態。さらに、このステータスを付与した白魔道士が実行する一部の回復魔法の回復効果を受けると、自身のＨＰを追加で回復させる効果が発動する状態。",
+  "effects": [
+    "受けるダメージの一部が軽減される状態。さらに、このステータスを付与した白魔道士が実行する一部の回復魔法の回復効果を受けると、自身のＨＰを追加で回復させる効果が発動する状態。"
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 212637,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 60,
+  "parameter": {
+    "effect": 39,
+    "modifier": 100
+  },
+  "class_job_category_id": 25,
+  "source_abilities": [
+    {
+      "id": 7433,
+      "name": "インドゥルゲンティア",
+      "description": "一定時間、自身と周囲のパーティメンバーの被ダメージを10％軽減させる。\u3000効果時間：10秒\nさらに、この効果を付与した対象に、自身がメディカ、ケアルガ、メディガ、ハート・オブ・ラプチャーによる回復効果を発動すると、対象に追加の回復効果を発動する。\u3000回復力：200",
+      "description_macro": "一定時間、自身と周囲のパーティメンバーの被ダメージを10％軽減させる。\u3000<colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>10秒<br>さらに、この効果を付与した対象に、自身がメディカ、ケアルガ、<if([gnum68==24],<if([gnum72>=96],メディガ,メディカラ)>,メディカラ)><if([gnum68==24],<if([gnum72>=76],、ハート・オブ・ラプチャー,)>,)>による回復効果を発動すると、対象に追加の回復効果を発動する。\u3000<colortype(504)><edgecolortype(505)>回復力：<edgecolortype(0)><colortype(0)>200",
+      "unlock_level": 70,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Healer"
+      ],
+      "jobs": [
+        {
+          "id": 24,
+          "name": "白魔道士",
+          "abbreviation": "WHM",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

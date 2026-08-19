@@ -1,0 +1,26 @@
+{
+  "kind": "trait",
+  "id": 373,
+  "name": "アダースティング",
+  "description": "自身に「アダースティング」が付与される。\n最大スタック数：3\n発動条件：「エウクラシア・ディアグノシス」および自身に付与した「エウクラシア・プログノシス」がダメージを完全に吸収して消滅したとき。",
+  "description_macro": "自身に<colortype(500)><edgecolortype(501)>「アダースティング」<edgecolortype(0)><colortype(0)>が付与される。<br><colortype(504)><edgecolortype(505)>最大スタック数：<edgecolortype(0)><colortype(0)>3<br><colortype(504)><edgecolortype(505)>発動条件：<edgecolortype(0)><colortype(0)><colortype(500)><edgecolortype(501)>「エウクラシア・ディアグノシス」<edgecolortype(0)><colortype(0)>および自身に付与した<colortype(500)><edgecolortype(501)>「エウクラシア・プログノシス」<edgecolortype(0)><colortype(0)>がダメージを完全に吸収して消滅したとき。",
+  "effects": [
+    "自身に「アダースティング」が付与される。",
+    "最大スタック数：3",
+    "発動条件：「エウクラシア・ディアグノシス」および自身に付与した「エウクラシア・プログノシス」がダメージを完全に吸収して消滅したとき。"
+  ],
+  "role": "Healer",
+  "job": {
+    "id": 40,
+    "name": "賢者",
+    "abbreviation": "SGE"
+  },
+  "unlock_level": 66,
+  "value": 0,
+  "icon": {
+    "id": 6454,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 181,
+  "source_class_job_id": 40
+}

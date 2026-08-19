@@ -1,0 +1,25 @@
+{
+  "kind": "trait",
+  "id": 383,
+  "name": "Tranchage animique et Faux animique améliorés",
+  "description": "Permet de cumuler plusieurs charges pour Tranchage animique et Faux animique.\nMaximum de charges : 2",
+  "description_macro": "Permet de cumuler plusieurs charges pour <colortype(500)><edgecolortype(501)>Tranchage animique<edgecolortype(0)><colortype(0)> et <colortype(500)><edgecolortype(501)>Faux animique<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Maximum de charges<nbsp>:<edgecolortype(0)><colortype(0)> 2",
+  "effects": [
+    "Permet de cumuler plusieurs charges pour Tranchage animique et Faux animique.",
+    "Maximum de charges : 2"
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 39,
+    "name": "Faucheur",
+    "abbreviation": "FCH"
+  },
+  "unlock_level": 78,
+  "value": 2,
+  "icon": {
+    "id": 6405,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 180,
+  "source_class_job_id": 39
+}

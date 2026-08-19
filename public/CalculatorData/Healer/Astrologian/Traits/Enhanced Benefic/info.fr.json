@@ -1,0 +1,25 @@
+{
+  "kind": "trait",
+  "id": 124,
+  "name": "Bienfaisance améliorée",
+  "description": "Accorde 15% de chances lors du lancement de Bienfaisance que la prochaine Bienfaisance II soit critique.\nDurée : 15s",
+  "description_macro": "Accorde 15% de chances lors du lancement de Bienfaisance que la prochaine Bienfaisance II soit critique.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 15s",
+  "effects": [
+    "Accorde 15% de chances lors du lancement de Bienfaisance que la prochaine Bienfaisance II soit critique.",
+    "Durée : 15s"
+  ],
+  "role": "Healer",
+  "job": {
+    "id": 33,
+    "name": "Astromancien",
+    "abbreviation": "AST"
+  },
+  "unlock_level": 36,
+  "value": 15,
+  "icon": {
+    "id": 6105,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 99,
+  "source_class_job_id": 33
+}

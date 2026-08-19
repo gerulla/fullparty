@@ -18,6 +18,8 @@
         "audit": "Audit",
         "tools": "Outils",
         "raid_planner": "RaidPlanner",
+        "calculator": "Calculateur",
+        "beta_badge": "BETA",
         "admin": "Admin",
         "character_definitions": "Données des personnages",
         "admin_audit_log": "Journal d'audit",

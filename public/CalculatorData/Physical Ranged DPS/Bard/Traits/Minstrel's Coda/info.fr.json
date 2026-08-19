@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 448,
+  "name": "Chants guerriers améliorés",
+  "description": "Ballade du mage, Péan martial et Menuet du Vagabond vous octroient chacun la Coda associée (Coda du mage, Coda martiale, Coda du vagabond).",
+  "description_macro": "<colortype(500)><edgecolortype(501)>Ballade du mage<edgecolortype(0)><colortype(0)>, <colortype(500)><edgecolortype(501)>Péan martial<edgecolortype(0)><colortype(0)> et <colortype(500)><edgecolortype(501)>Menuet du Vagabond<edgecolortype(0)><colortype(0)> vous octroient chacun la <colortype(500)><edgecolortype(501)>Coda<edgecolortype(0)><colortype(0)> associée (<colortype(500)><edgecolortype(501)>Coda du mage<edgecolortype(0)><colortype(0)>, <colortype(500)><edgecolortype(501)>Coda martiale<edgecolortype(0)><colortype(0)>, <colortype(500)><edgecolortype(501)>Coda du vagabond<edgecolortype(0)><colortype(0)>).",
+  "effects": [
+    "Ballade du mage, Péan martial et Menuet du Vagabond vous octroient chacun la Coda associée (Coda du mage, Coda martiale, Coda du vagabond)."
+  ],
+  "role": "Physical Ranged DPS",
+  "job": {
+    "id": 23,
+    "name": "Barde",
+    "abbreviation": "BRD"
+  },
+  "unlock_level": 90,
+  "value": 0,
+  "icon": {
+    "id": 5320,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 24,
+  "source_class_job_id": 23
+}

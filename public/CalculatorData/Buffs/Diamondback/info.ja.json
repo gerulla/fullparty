@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 1722,
+  "name": "超硬化",
+  "description": "身動きが取れないが、受けるダメージが軽減される状態。",
+  "effects": [
+    "身動きが取れないが、受けるダメージが軽減される状態。"
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 213509,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": true,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 1,
+  "parameter": {
+    "effect": 4,
+    "modifier": -10
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 11424,
+      "name": "超硬化",
+      "description": "一定時間、自身の被ダメージを90％軽減させ、かつ一部を除くすべてのノックバックと引き寄せを無効化する。\nただし、効果時間中は移動やアクションの実行ができなくなる。効果時間：10秒\n追加効果：自身に「狂戦士化」が付与されている場合、それを解除する。\nこの効果は自身で解除することはできない。",
+      "description_macro": "一定時間、自身の被ダメージを90％軽減させ、かつ一部を除くすべてのノックバックと引き寄せを無効化する。<br>ただし、効果時間中は移動やアクションの実行ができなくなる。<colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>10秒<br><colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)>自身に<colortype(500)><edgecolortype(501)>「狂戦士化」<edgecolortype(0)><colortype(0)>が付与されている場合、それを解除する。<br>この効果は自身で解除することはできない。",
+      "unlock_level": 1,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Magical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 36,
+          "name": "青魔道士",
+          "abbreviation": "BLU",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

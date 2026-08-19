@@ -1,0 +1,41 @@
+{
+  "kind": "trait",
+  "id": 678,
+  "name": "Actions améliorées IV",
+  "description": "Augmente la puissance de certaines actions.\n\nPuissance de Feu en rouge : 490\nPuissance de Vent en vert : 530\nPuissance d'Eau en bleu : 570\nPuissance d'Extra Feu en rouge : 180\nPuissance d'Extra Vent en vert : 200\nPuissance d'Extra Eau en bleu : 220\nPuissance de Tamponnage Marteau : 560\nPuissance de Glace en cyan : 860\nPuissance de Terre en jaune : 900\nPuissance de Foudre en magenta : 940\nPuissance d'Extra Glace en cyan : 360\nPuissance d'Extra Terre en jaune : 380\nPuissance d'Extra Foudre en magenta : 400\nPuissance de Miracle en blanc : 570\nPuissance de Brossage Marteau : 580\nPuissance de Finition Marteau : 600\nPuissance de Comète en noir : 940",
+  "description_macro": "Augmente la puissance de certaines actions.<br><br><colortype(506)><edgecolortype(507)>Puissance de Feu en rouge<nbsp>:<edgecolortype(0)><colortype(0)> 490<br><colortype(506)><edgecolortype(507)>Puissance de Vent en vert<nbsp>:<edgecolortype(0)><colortype(0)> 530<br><colortype(506)><edgecolortype(507)>Puissance d'Eau en bleu<nbsp>:<edgecolortype(0)><colortype(0)> 570<br><colortype(506)><edgecolortype(507)>Puissance d'Extra Feu en rouge<nbsp>:<edgecolortype(0)><colortype(0)> 180<br><colortype(506)><edgecolortype(507)>Puissance d'Extra Vent en vert<nbsp>:<edgecolortype(0)><colortype(0)> 200<br><colortype(506)><edgecolortype(507)>Puissance d'Extra Eau en bleu<nbsp>:<edgecolortype(0)><colortype(0)> 220<br><colortype(506)><edgecolortype(507)>Puissance de Tamponnage Marteau<nbsp>:<edgecolortype(0)><colortype(0)> 560<br><colortype(506)><edgecolortype(507)>Puissance de Glace en cyan<nbsp>:<edgecolortype(0)><colortype(0)> 860<br><colortype(506)><edgecolortype(507)>Puissance de Terre en jaune<nbsp>:<edgecolortype(0)><colortype(0)> 900<br><colortype(506)><edgecolortype(507)>Puissance de Foudre en magenta<nbsp>:<edgecolortype(0)><colortype(0)> 940<br><colortype(506)><edgecolortype(507)>Puissance d'Extra Glace en cyan<nbsp>:<edgecolortype(0)><colortype(0)> 360<br><colortype(506)><edgecolortype(507)>Puissance d'Extra Terre en jaune<nbsp>:<edgecolortype(0)><colortype(0)> 380<br><colortype(506)><edgecolortype(507)>Puissance d'Extra Foudre en magenta<nbsp>:<edgecolortype(0)><colortype(0)> 400<br><colortype(506)><edgecolortype(507)>Puissance de Miracle en blanc<nbsp>:<edgecolortype(0)><colortype(0)> 570<br><colortype(506)><edgecolortype(507)>Puissance de Brossage Marteau<nbsp>:<edgecolortype(0)><colortype(0)> 580<br><colortype(506)><edgecolortype(507)>Puissance de Finition Marteau<nbsp>:<edgecolortype(0)><colortype(0)> 600<br><colortype(506)><edgecolortype(507)>Puissance de Comète en noir<nbsp>:<edgecolortype(0)><colortype(0)> 940",
+  "effects": [
+    "Augmente la puissance de certaines actions.",
+    "Puissance de Feu en rouge : 490",
+    "Puissance de Vent en vert : 530",
+    "Puissance d'Eau en bleu : 570",
+    "Puissance d'Extra Feu en rouge : 180",
+    "Puissance d'Extra Vent en vert : 200",
+    "Puissance d'Extra Eau en bleu : 220",
+    "Puissance de Tamponnage Marteau : 560",
+    "Puissance de Glace en cyan : 860",
+    "Puissance de Terre en jaune : 900",
+    "Puissance de Foudre en magenta : 940",
+    "Puissance d'Extra Glace en cyan : 360",
+    "Puissance d'Extra Terre en jaune : 380",
+    "Puissance d'Extra Foudre en magenta : 400",
+    "Puissance de Miracle en blanc : 570",
+    "Puissance de Brossage Marteau : 580",
+    "Puissance de Finition Marteau : 600",
+    "Puissance de Comète en noir : 940"
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 42,
+    "name": "Pictomancien",
+    "abbreviation": "PIC"
+  },
+  "unlock_level": 94,
+  "value": 0,
+  "icon": {
+    "id": 6833,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 197,
+  "source_class_job_id": 42
+}

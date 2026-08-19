@@ -44,6 +44,12 @@
   "applications": {
     "distribution_title": "Application Distribution",
     "distribution_subtitle": "Current application outcomes across the group's runs.",
+    "daily_title": "Daily Applications",
+    "daily_subtitle": "Applications submitted each day over the past 7 days.",
+    "daily_badge": "Last 7 days",
+    "daily_tooltip": "{date}: {count} applications submitted",
+    "daily_empty_title": "No applications this week",
+    "daily_empty_description": "New applications submitted during the past seven days will appear here.",
     "volume_title": "Application Volume",
     "volume_subtitle": "Monthly application volume for the past 12 months.",
     "total_label": "applications",

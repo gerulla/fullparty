@@ -1,0 +1,87 @@
+{
+  "kind": "ability",
+  "id": 34642,
+  "name": "Third Legacy",
+  "description": "Delivers an attack with a potency of 320 to the first enemy, and 75% less for all remaining enemies.\nCan only be executed after successfully landing Third Generation.\n\n※This action cannot be assigned to a hotbar.\n※Serpent's Tail changes to Third Legacy when requirements for execution are met.",
+  "description_macro": "Delivers an attack with a potency of 320 to the first enemy, and 75% less for all remaining enemies.<br>Can only be executed after successfully landing <colortype(500)><edgecolortype(501)>Third Generation<edgecolortype(0)><colortype(0)>.<br><br>※This action cannot be assigned to a hotbar.<br>※<colortype(500)><edgecolortype(501)>Serpent's Tail<edgecolortype(0)><colortype(0)> changes to <colortype(500)><edgecolortype(501)>Third Legacy<edgecolortype(0)><colortype(0)> when requirements for execution are met.",
+  "effects": [
+    "Delivers an attack with a potency of 320 to the first enemy, and 75% less for all remaining enemies.",
+    "Can only be executed after successfully landing Third Generation.",
+    "※This action cannot be assigned to a hotbar.",
+    "※Serpent's Tail changes to Third Legacy when requirements for execution are met."
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 41,
+    "name": "Viper",
+    "abbreviation": "VPR"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 100,
+  "icon": {
+    "id": 3737,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 4,
+    "name": "Ability"
+  },
+  "attack_type": {
+    "id": 4294967295,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 1,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 1,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 104,
+      "value": 5
+    },
+    "secondary": {
+      "type_id": 134,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": 5,
+    "effect_yalms": 5,
+    "cast_type": 2
+  },
+  "targeting": {
+    "self": false,
+    "party": false,
+    "alliance": false,
+    "hostile": true,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 7,
+    "behavior_type": 0,
+    "class_job_category_id": 196,
+    "source_class_job_id": 0,
+    "is_role_action": false,
+    "is_player_action": false,
+    "is_derived_action": true,
+    "equivalence_group": 0
+  }
+}

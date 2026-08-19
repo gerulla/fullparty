@@ -1,0 +1,90 @@
+{
+  "kind": "ability",
+  "id": 16469,
+  "name": "漆黒の波動",
+  "description": "対象に向かって無属性前方直線範囲魔法攻撃。\u3000威力：160\n追加効果：自身に「暗黒」を付与する。\n効果時間：30秒\n暗黒効果：自身の与ダメージを10％上昇させる。\n既に「暗黒」が付与されている場合は、その効果時間を30秒延長する。\n最大60秒まで延長することができる。\nリキャストタイマーを「漆黒の剣」と共有する。",
+  "description_macro": "対象に向かって無属性前方直線範囲魔法攻撃。\u3000<colortype(504)><edgecolortype(505)>威力：<edgecolortype(0)><colortype(0)>160<br><colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)>自身に<colortype(500)><edgecolortype(501)>「暗黒」<edgecolortype(0)><colortype(0)>を付与する。<br><colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>30秒<br><colortype(504)><edgecolortype(505)>暗黒効果：<edgecolortype(0)><colortype(0)>自身の与ダメージを10％上昇させる。<br>既に<colortype(500)><edgecolortype(501)>「暗黒」<edgecolortype(0)><colortype(0)>が付与されている場合は、その効果時間を30秒延長する。<br>最大60秒まで延長することができる。<br>リキャストタイマーを<colortype(500)><edgecolortype(501)>「漆黒の剣」<edgecolortype(0)><colortype(0)>と共有する。",
+  "effects": [
+    "対象に向かって無属性前方直線範囲魔法攻撃。\u3000威力：160",
+    "追加効果：自身に「暗黒」を付与する。",
+    "効果時間：30秒",
+    "暗黒効果：自身の与ダメージを10％上昇させる。",
+    "既に「暗黒」が付与されている場合は、その効果時間を30秒延長する。",
+    "最大60秒まで延長することができる。",
+    "リキャストタイマーを「漆黒の剣」と共有する。"
+  ],
+  "role": "Tank",
+  "job": {
+    "id": 32,
+    "name": "暗黒騎士",
+    "abbreviation": "DRK"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 74,
+  "icon": {
+    "id": 3085,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 4,
+    "name": "アビリティ"
+  },
+  "attack_type": {
+    "id": 5,
+    "name": "魔法"
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 1,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 1,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 3,
+      "value": 30
+    },
+    "secondary": {
+      "type_id": 62,
+      "value": 271
+    }
+  },
+  "range": {
+    "target_yalms": 10,
+    "effect_yalms": 10,
+    "cast_type": 4
+  },
+  "targeting": {
+    "self": false,
+    "party": false,
+    "alliance": false,
+    "hostile": true,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 7,
+    "behavior_type": 0,
+    "class_job_category_id": 98,
+    "source_class_job_id": 32,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "kind": "trait",
+  "id": 543,
+  "name": "Verbesserte Piktomantie III",
+  "description": "Brauchst du alle Stapel von Inszenierung mit deinen Pikto-Farben auf, wird dir Oszillierender Pinsel gewährt.\nDauer: 30 Sekunden",
+  "description_macro": "Brauchst du alle Stapel von <colortype(506)><edgecolortype(507)>Inszenierung<edgecolortype(0)><colortype(0)> mit deinen Pikto-Farben auf, wird dir <colortype(506)><edgecolortype(507)>Oszillierender Pinsel<edgecolortype(0)><colortype(0)> gewährt.<br>Dauer: 30 Sekunden",
+  "effects": [
+    "Brauchst du alle Stapel von Inszenierung mit deinen Pikto-Farben auf, wird dir Oszillierender Pinsel gewährt.",
+    "Dauer: 30 Sekunden"
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 42,
+    "name": "Piktomant",
+    "abbreviation": "PKT"
+  },
+  "unlock_level": 92,
+  "value": 0,
+  "icon": {
+    "id": 6560,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 197,
+  "source_class_job_id": 42
+}

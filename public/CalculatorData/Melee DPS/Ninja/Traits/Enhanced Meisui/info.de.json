@@ -1,0 +1,25 @@
+{
+  "kind": "trait",
+  "id": 440,
+  "name": "Verbessertes Meisui",
+  "description": "Erhöht den Attacke-Wert des nächsten Rad des Werdens auf 500 während Meisui aktiv ist.\nDauer: 30 Sekunden",
+  "description_macro": "Erhöht den Attacke-Wert des nächsten <colortype(502)><edgecolortype(503)>Rad des Werdens<edgecolortype(0)><colortype(0)> auf 500 während <colortype(506)><edgecolortype(507)>Meisui<edgecolortype(0)><colortype(0)> aktiv ist.<br>Dauer: 30 Sekunden",
+  "effects": [
+    "Erhöht den Attacke-Wert des nächsten Rad des Werdens auf 500 während Meisui aktiv ist.",
+    "Dauer: 30 Sekunden"
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 30,
+    "name": "Ninja",
+    "abbreviation": "NIN"
+  },
+  "unlock_level": 88,
+  "value": 0,
+  "icon": {
+    "id": 5418,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 92,
+  "source_class_job_id": 30
+}

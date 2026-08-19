@@ -1,0 +1,36 @@
+{
+  "kind": "trait",
+  "id": 655,
+  "name": "アクション威力アップIII",
+  "description": "特定のアクションの威力を上昇させる。\n\n陣風の威力：140\n燕飛効果アップ時の燕飛の威力：270\n士風の威力：140\n月光の威力：160\n彼岸花の継続ダメージの威力：50\n花車の威力：160\n雪風の威力：160\n乱れ雪月花の威力：680\n返し雪月花の威力：680\n照破の威力：640\n奥義波切の威力：1000\n返し波切の威力：1000",
+  "description_macro": "特定のアクションの威力を上昇させる。<br><br><colortype(504)><edgecolortype(505)>陣風の威力：<edgecolortype(0)><colortype(0)>140<br><colortype(504)><edgecolortype(505)>燕飛効果アップ時の燕飛の威力：<edgecolortype(0)><colortype(0)>270<br><colortype(504)><edgecolortype(505)>士風の威力：<edgecolortype(0)><colortype(0)>140<br><colortype(504)><edgecolortype(505)>月光の威力：<edgecolortype(0)><colortype(0)>160<br><colortype(504)><edgecolortype(505)>彼岸花の継続ダメージの威力：<edgecolortype(0)><colortype(0)>50<br><colortype(504)><edgecolortype(505)>花車の威力：<edgecolortype(0)><colortype(0)>160<br><colortype(504)><edgecolortype(505)>雪風の威力：<edgecolortype(0)><colortype(0)>160<br><colortype(504)><edgecolortype(505)>乱れ雪月花の威力：<edgecolortype(0)><colortype(0)>680<br><colortype(504)><edgecolortype(505)>返し雪月花の威力：<edgecolortype(0)><colortype(0)>680<br><colortype(504)><edgecolortype(505)>照破の威力：<edgecolortype(0)><colortype(0)>640<br><colortype(504)><edgecolortype(505)>奥義波切の威力：<edgecolortype(0)><colortype(0)>1000<br><colortype(504)><edgecolortype(505)>返し波切の威力：<edgecolortype(0)><colortype(0)>1000",
+  "effects": [
+    "特定のアクションの威力を上昇させる。",
+    "陣風の威力：140",
+    "燕飛効果アップ時の燕飛の威力：270",
+    "士風の威力：140",
+    "月光の威力：160",
+    "彼岸花の継続ダメージの威力：50",
+    "花車の威力：160",
+    "雪風の威力：160",
+    "乱れ雪月花の威力：680",
+    "返し雪月花の威力：680",
+    "照破の威力：640",
+    "奥義波切の威力：1000",
+    "返し波切の威力：1000"
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 34,
+    "name": "侍",
+    "abbreviation": "SAM"
+  },
+  "unlock_level": 94,
+  "value": 0,
+  "icon": {
+    "id": 6803,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 111,
+  "source_class_job_id": 34
+}

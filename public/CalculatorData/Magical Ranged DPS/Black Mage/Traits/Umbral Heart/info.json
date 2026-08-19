@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 295,
+  "name": "Umbral Heart",
+  "description": "Grants stacks of Umbral Heart upon casting Freeze, or executing Manafont or Umbral Soul.",
+  "description_macro": "Grants stacks of <colortype(506)><edgecolortype(507)>Umbral Heart<edgecolortype(0)><colortype(0)> upon casting <colortype(500)><edgecolortype(501)>Freeze<edgecolortype(0)><colortype(0)>, or executing <colortype(500)><edgecolortype(501)>Manafont<edgecolortype(0)><colortype(0)> or <colortype(500)><edgecolortype(501)>Umbral Soul<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Grants stacks of Umbral Heart upon casting Freeze, or executing Manafont or Umbral Soul."
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 25,
+    "name": "Black Mage",
+    "abbreviation": "BLM"
+  },
+  "unlock_level": 58,
+  "value": 0,
+  "icon": {
+    "id": 5656,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 26,
+  "source_class_job_id": 25
+}

@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 641,
+  "name": "Restreinte améliorée",
+  "description": "Allonge à 15s la durée de Restreinte.",
+  "description_macro": "Allonge à 15s la durée de <colortype(500)><edgecolortype(501)>Restreinte<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Allonge à 15s la durée de Restreinte."
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 22,
+    "name": "Chevalier Dragon",
+    "abbreviation": "DRG"
+  },
+  "unlock_level": 98,
+  "value": 0,
+  "icon": {
+    "id": 6851,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 114,
+  "source_class_job_id": 0
+}

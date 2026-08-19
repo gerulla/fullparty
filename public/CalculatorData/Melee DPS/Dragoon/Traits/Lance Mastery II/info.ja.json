@@ -1,0 +1,25 @@
+{
+  "kind": "trait",
+  "id": 437,
+  "name": "ランスマスタリーII",
+  "description": "フルスラストがヘヴンスラストに変化し、桜華狂咲が桜華繚乱に変化する。\nさらに、雲蒸竜変の威力を400に上昇させる。",
+  "description_macro": "フルスラストがヘヴンスラストに変化し、桜華狂咲が桜華繚乱に変化する。<br>さらに、雲蒸竜変の威力を400に上昇させる。",
+  "effects": [
+    "フルスラストがヘヴンスラストに変化し、桜華狂咲が桜華繚乱に変化する。",
+    "さらに、雲蒸竜変の威力を400に上昇させる。"
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 22,
+    "name": "竜騎士",
+    "abbreviation": "DRG"
+  },
+  "unlock_level": 86,
+  "value": 0,
+  "icon": {
+    "id": 5288,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 23,
+  "source_class_job_id": 22
+}

@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 429,
+  "name": "Maîtrise de Poing hurlant",
+  "description": "Remplace Poing hurlant par Illumination et Méditation immatérielle par Méditation illuminée.",
+  "description_macro": "Remplace <colortype(500)><edgecolortype(501)>Poing hurlant<edgecolortype(0)><colortype(0)> par <colortype(500)><edgecolortype(501)>Illumination<edgecolortype(0)><colortype(0)> et <colortype(500)><edgecolortype(501)>Méditation immatérielle<edgecolortype(0)><colortype(0)> par <colortype(500)><edgecolortype(501)>Méditation illuminée<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Remplace Poing hurlant par Illumination et Méditation immatérielle par Méditation illuminée."
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 20,
+    "name": "Moine",
+    "abbreviation": "MOI"
+  },
+  "unlock_level": 74,
+  "value": 0,
+  "icon": {
+    "id": 5242,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 21,
+  "source_class_job_id": 20
+}

@@ -49,6 +49,11 @@ export type GroupStatisticsApplicationMonth = {
 	statuses: Record<string, number>
 }
 
+export type GroupStatisticsApplicationDay = {
+	date: string
+	count: number
+}
+
 export type GroupStatisticsLoadoutItem = {
 	key: string
 	label: string
@@ -82,6 +87,7 @@ export type GroupStatisticsPayload = {
 	applications: {
 		total: number
 		distribution: GroupStatisticsStatusDistributionItem[]
+		daily_submissions: GroupStatisticsApplicationDay[]
 		volume_by_month: GroupStatisticsApplicationMonth[]
 	}
 	classes: GroupStatisticsLoadoutStats

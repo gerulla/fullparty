@@ -8,8 +8,9 @@ import path from 'node:path'
 export default defineConfig({
     plugins: [
         laravel({
-            input: ['resources/css/app.css', 'resources/js/app.js', 'resources/planner/app.js'],
+            input: ['resources/css/app.css', 'resources/js/app.js', 'resources/planner/app.js', 'resources/calculator/app.js'],
             refresh: true,
+            detectTls: 'fullparty.test',
         }),
         tailwindcss(),
         vue(),
@@ -80,8 +81,18 @@ export default defineConfig({
         })
     ],
     server: {
+        allowedHosts: [
+            'fullparty.test',
+            'plan.fullparty.test',
+            'math.fullparty.test',
+        ],
+        cors: true,
         watch: {
-            ignored: ['**/storage/framework/views/**'],
+            ignored: [
+                '**/storage/framework/views/**',
+                '**/public/CalculatorData/**',
+                'public/CalculatorData/**',
+            ],
         },
     },
     resolve: {

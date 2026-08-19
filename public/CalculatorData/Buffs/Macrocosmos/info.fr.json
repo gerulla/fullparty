@@ -1,0 +1,51 @@
+{
+  "kind": "combat_status",
+  "id": 2718,
+  "name": "Macrocosme",
+  "description": "Des PV sont récupérés à la fin de l'effet ou quand l'astromancien à l'origine de celui-ci utilise Microcosme. Le montant de PV récupérés dépend des dégâts reçus pendant cet intervalle.",
+  "effects": [
+    "Des PV sont récupérés à la fin de l'effet ou quand l'astromancien à l'origine de celui-ci utilise Microcosme. Le montant de PV récupérés dépend des dégâts reçus pendant cet intervalle."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 213263,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": true,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 99,
+  "source_abilities": [
+    {
+      "id": 25874,
+      "name": "Macrocosme",
+      "description": "Effectue une attaque magique neutre sur les ennemis alentour.\nPuissance : 270\nLa puissance est réduite de 40% au-delà du premier ennemi touché.\nEffet additionnel : octroie Macrocosme à vous et aux équipiers alentour.\nDurée : 15s\nMacrocosme : restaure des PV à la fin de l'effet ou quand Microcosme est utilisé.\nPuissance : 200 + 50% des dégâts encaissés pendant la durée de l'effet.\nLe montant de PV restaurés ne peut pas dépasser les PV maximums de la cible.\nCe sort a un temps de recharge indépendant qui ne peut pas être modifié par des effets ou des pièces d'équipement.",
+      "description_macro": "Effectue une attaque magique neutre sur les ennemis alentour.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> <if([gnum68==33],<if([gnum72>=94],270,250)>,250)><br>La puissance est réduite de 40% au-delà du premier ennemi touché.<br><colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> octroie <colortype(500)><edgecolortype(501)>Macrocosme<edgecolortype(0)><colortype(0)> à vous et aux équipiers alentour<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 15s<br><colortype(506)><edgecolortype(507)>Macrocosme<nbsp>:<edgecolortype(0)><colortype(0)> restaure des PV à la fin de l'effet ou quand <colortype(500)><edgecolortype(501)>Microcosme<edgecolortype(0)><colortype(0)> est utilisé.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> 200 + 50% des dégâts encaissés pendant la durée de l'effet.<br>Le montant de PV restaurés ne peut pas dépasser les PV maximums de la cible.<br>Ce sort a un temps de recharge indépendant qui ne peut pas être modifié par des effets ou des pièces d'équipement.",
+      "unlock_level": 90,
+      "relations": [
+        "granted_by_description",
+        "same_name"
+      ],
+      "roles": [
+        "Healer"
+      ],
+      "jobs": [
+        {
+          "id": 33,
+          "name": "Astromancien",
+          "abbreviation": "AST",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

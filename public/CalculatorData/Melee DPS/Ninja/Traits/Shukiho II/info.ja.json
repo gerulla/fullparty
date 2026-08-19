@@ -1,0 +1,25 @@
+{
+  "kind": "trait",
+  "id": 280,
+  "name": "集気法II",
+  "description": "「忍気」の上昇量が10に増加する。\n発動条件：旋風刃と強甲破点突のコンボ成功時",
+  "description_macro": "<colortype(500)><edgecolortype(501)>「忍気」<edgecolortype(0)><colortype(0)>の上昇量が10に増加する。<br><colortype(504)><edgecolortype(505)>発動条件：<edgecolortype(0)><colortype(0)>旋風刃と強甲破点突のコンボ成功時",
+  "effects": [
+    "「忍気」の上昇量が10に増加する。",
+    "発動条件：旋風刃と強甲破点突のコンボ成功時"
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 30,
+    "name": "忍者",
+    "abbreviation": "NIN"
+  },
+  "unlock_level": 78,
+  "value": 0,
+  "icon": {
+    "id": 5416,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 92,
+  "source_class_job_id": 30
+}

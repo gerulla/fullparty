@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 250,
+  "name": "Verbessertes Kassatsu",
+  "description": "Während Kassatsu aktiv ist, wird Katon zu Goka Mekkyaku und Hyoton zu Hyosho Ranryu verbessert.",
+  "description_macro": "Während <colortype(506)><edgecolortype(507)>Kassatsu<edgecolortype(0)><colortype(0)> aktiv ist, wird <colortype(502)><edgecolortype(503)>Katon<edgecolortype(0)><colortype(0)> zu <colortype(502)><edgecolortype(503)>Goka Mekkyaku<edgecolortype(0)><colortype(0)> und <colortype(502)><edgecolortype(503)>Hyoton<edgecolortype(0)><colortype(0)> zu <colortype(502)><edgecolortype(503)>Hyosho Ranryu<edgecolortype(0)><colortype(0)> verbessert.",
+  "effects": [
+    "Während Kassatsu aktiv ist, wird Katon zu Goka Mekkyaku und Hyoton zu Hyosho Ranryu verbessert."
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 30,
+    "name": "Ninja",
+    "abbreviation": "NIN"
+  },
+  "unlock_level": 76,
+  "value": 0,
+  "icon": {
+    "id": 5414,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 92,
+  "source_class_job_id": 30
+}

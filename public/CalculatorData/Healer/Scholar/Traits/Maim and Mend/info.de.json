@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 66,
+  "name": "Verbesserte Kommandos",
+  "description": "Erhöht den Basisschaden und das Regenerationspotenzial von Kommandos außer Auto-Attacke sowie den Basisschaden und die LP-Regeneration von Familiaren um 10 %.",
+  "description_macro": "Erhöht den Basisschaden und das Regenerationspotenzial von Kommandos außer Auto-Attacke sowie den Basisschaden und die LP-Regeneration von Familiaren um<nbsp>10 %.",
+  "effects": [
+    "Erhöht den Basisschaden und das Regenerationspotenzial von Kommandos außer Auto-Attacke sowie den Basisschaden und die LP-Regeneration von Familiaren um 10 %."
+  ],
+  "role": "Healer",
+  "job": {
+    "id": 28,
+    "name": "Gelehrter",
+    "abbreviation": "GLT"
+  },
+  "unlock_level": 20,
+  "value": 10,
+  "icon": {
+    "id": 5185,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 68,
+  "source_class_job_id": 26
+}

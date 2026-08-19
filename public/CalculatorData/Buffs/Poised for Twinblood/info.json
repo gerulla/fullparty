@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 3666,
+  "name": "Poised for Twinblood",
+  "description": "Potency of Uncoiled Twinblood is increased.",
+  "effects": [
+    "Potency of Uncoiled Twinblood is increased."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 213772,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 196,
+  "source_abilities": [
+    {
+      "id": 34644,
+      "name": "Uncoiled Twinfang",
+      "description": "Delivers an attack with a potency of 120 to the first enemy, and 75% less for all remaining enemies.\nPoised for Twinfang Potency: 170\nAdditional Effect: Grants Poised for Twinblood\nPoised for Twinblood Effect: Increases the potency of Uncoiled Twinblood by 50\nDuration: 60s\nCan only be executed after successfully landing Uncoiled Fury.\n\n※This action cannot be assigned to a hotbar.\n※Twinfang changes to Uncoiled Twinfang when requirements for execution are met.",
+      "description_macro": "Delivers an attack with a potency of 120 to the first enemy, and 75% less for all remaining enemies.<br><colortype(504)><edgecolortype(505)>Poised for Twinfang Potency: <edgecolortype(0)><colortype(0)>170<br><colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>Grants <colortype(506)><edgecolortype(507)>Poised for Twinblood<edgecolortype(0)><colortype(0)><br><colortype(504)><edgecolortype(505)>Poised for Twinblood Effect: <edgecolortype(0)><colortype(0)>Increases the potency of <colortype(500)><edgecolortype(501)>Uncoiled Twinblood<edgecolortype(0)><colortype(0)> by 50<br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>60s<br>Can only be executed after successfully landing <colortype(500)><edgecolortype(501)>Uncoiled Fury<edgecolortype(0)><colortype(0)>.<br><br>※This action cannot be assigned to a hotbar.<br>※<colortype(500)><edgecolortype(501)>Twinfang<edgecolortype(0)><colortype(0)> changes to <colortype(500)><edgecolortype(501)>Uncoiled Twinfang<edgecolortype(0)><colortype(0)> when requirements for execution are met.",
+      "unlock_level": 92,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 41,
+          "name": "Viper",
+          "abbreviation": "VPR",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

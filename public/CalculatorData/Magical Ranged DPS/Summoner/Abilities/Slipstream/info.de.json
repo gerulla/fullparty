@@ -1,0 +1,103 @@
+{
+  "kind": "ability",
+  "id": 25837,
+  "name": "Wirbelströmung",
+  "description": "Du führst eine windbasierte magische Attacke auf das Ziel und die Gegner in seiner Nähe aus.\nAttacke-Wert: 520\nAttacke-Wert verringert sich ab dem zweiten Gegner um 60 %.\nZusatzeffekt: Errichtet eine Schadenszone um das Ziel.\nAttacke-Wert: 30\nDauer: 15 Sekunden\nBedingung: Garudas Gunst aktiv\nEigener Reaktivierungs-Timer\nBei Ausführung wird der Reaktivierungs-Timer dieses Kommandos auf alle anderen Waffenfertigkeiten und Magie angewendet.\nBei erfüllter Bedingung ändert sich Lichtstrom zu diesem Kommando.\nKann nicht im Kommandomenü angelegt werden.",
+  "description_macro": "Du führst eine windbasierte magische Attacke auf das Ziel und die Gegner in seiner Nähe aus.<br>Attacke-Wert: <if([gnum68==27],<if([gnum72>=94],520,430)>,430)><br>Attacke-Wert verringert sich ab dem zweiten Gegner um 60<nbsp>%.<br>Zusatzeffekt: Errichtet eine Schadenszone um das Ziel.<br>Attacke-Wert: 30<br>Dauer: 15 Sekunden<br>Bedingung: <colortype(506)><edgecolortype(507)>Garudas Gunst<edgecolortype(0)><colortype(0)> aktiv<br>Eigener Reaktivierungs-Timer<br>Bei Ausführung wird der Reaktivierungs-Timer dieses Kommandos auf alle anderen Waf<->fen<->fer<->tig<->kei<->ten und Magie angewendet.<br>Bei erfüllter Bedingung ändert sich <colortype(502)><edgecolortype(503)>Lichtstrom<edgecolortype(0)><colortype(0)> zu diesem Kommando.<br>Kann nicht im Kommandomenü angelegt werden.",
+  "effects": [
+    "Du führst eine windbasierte magische Attacke auf das Ziel und die Gegner in seiner Nähe aus.",
+    "Attacke-Wert: 520",
+    "Attacke-Wert verringert sich ab dem zweiten Gegner um 60 %.",
+    "Zusatzeffekt: Errichtet eine Schadenszone um das Ziel.",
+    "Attacke-Wert: 30",
+    "Dauer: 15 Sekunden",
+    "Bedingung: Garudas Gunst aktiv",
+    "Eigener Reaktivierungs-Timer",
+    "Bei Ausführung wird der Reaktivierungs-Timer dieses Kommandos auf alle anderen Waffenfertigkeiten und Magie angewendet.",
+    "Bei erfüllter Bedingung ändert sich Lichtstrom zu diesem Kommando.",
+    "Kann nicht im Kommandomenü angelegt werden."
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 27,
+    "name": "Beschwörer",
+    "abbreviation": "BSW"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 86,
+  "icon": {
+    "id": 2771,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 2,
+    "name": "Zauber"
+  },
+  "attack_type": {
+    "id": 5,
+    "name": "魔法"
+  },
+  "timing": {
+    "cast_seconds": 3,
+    "recast_seconds": 3.5,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 58,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 0,
+      "value": 0
+    },
+    "secondary": {
+      "type_id": 32,
+      "value": 2725
+    }
+  },
+  "range": {
+    "target_yalms": 25,
+    "effect_yalms": 5,
+    "cast_type": 2
+  },
+  "targeting": {
+    "self": false,
+    "party": false,
+    "alliance": false,
+    "hostile": true,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": false
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": {
+      "id": 69,
+      "status": {
+        "id": 2725,
+        "name": "Garudas Gunst",
+        "description": "Wirbelströmung kann ausgeführt werden.",
+        "icon_id": 212697,
+        "max_stacks": 0
+      }
+    }
+  },
+  "metadata": {
+    "aspect_id": 3,
+    "behavior_type": 0,
+    "class_job_category_id": 28,
+    "source_class_job_id": 0,
+    "is_role_action": false,
+    "is_player_action": false,
+    "is_derived_action": true,
+    "equivalence_group": 0
+  }
+}

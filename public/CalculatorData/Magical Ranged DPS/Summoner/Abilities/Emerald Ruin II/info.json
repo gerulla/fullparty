@@ -1,0 +1,86 @@
+{
+  "kind": "ability",
+  "id": 25813,
+  "name": "Emerald Ruin II",
+  "description": "Deals wind damage with a potency of 170.\nWind Attunement Cost: 1\n\n※This action cannot be assigned to a hotbar.",
+  "description_macro": "Deals wind damage with a potency of 170.<br><colortype(504)><edgecolortype(505)>Wind Attunement Cost: <edgecolortype(0)><colortype(0)>1<br><br>※This action cannot be assigned to a hotbar.",
+  "effects": [
+    "Deals wind damage with a potency of 170.",
+    "Wind Attunement Cost: 1",
+    "※This action cannot be assigned to a hotbar."
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 27,
+    "name": "Summoner",
+    "abbreviation": "SMN"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 30,
+  "icon": {
+    "id": 502,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 2,
+    "name": "Spell"
+  },
+  "attack_type": {
+    "id": 5,
+    "name": "魔法"
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 1.5,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 58,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 74,
+      "value": 3
+    },
+    "secondary": {
+      "type_id": 120,
+      "value": 473
+    }
+  },
+  "range": {
+    "target_yalms": 25,
+    "effect_yalms": 0,
+    "cast_type": 1
+  },
+  "targeting": {
+    "self": false,
+    "party": false,
+    "alliance": false,
+    "hostile": true,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": false
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 3,
+    "behavior_type": 0,
+    "class_job_category_id": 69,
+    "source_class_job_id": 0,
+    "is_role_action": false,
+    "is_player_action": false,
+    "is_derived_action": true,
+    "equivalence_group": 0
+  }
+}

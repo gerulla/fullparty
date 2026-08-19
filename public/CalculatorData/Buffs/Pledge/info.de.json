@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 4234,
+  "name": "Gelübde",
+  "description": "Einmalig immun gegen fast alle Attacken.",
+  "effects": [
+    "Einmalig immun gegen fast alle Attacken."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 217238,
+    "file": "icon.png"
+  },
+  "max_stacks": 2,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 27,
+    "modifier": 0
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 41591,
+      "name": "Geloben",
+      "description": "Du gewährst dir selbst oder dem anvisierten Gruppenmitglied 2 Stapel Gelübde (max. 2 stapelbar).\nDauer: 10 Sekunden\nEffekt von Gelübde: Einmalig immun gegen fast alle Attacken.",
+      "description_macro": "Du gewährst dir selbst oder dem anvisierten Grup<->pen<->mit<->glied 2 Stapel <colortype(506)><edgecolortype(507)>Gelübde<edgecolortype(0)><colortype(0)> (max. 2 stapelbar).<br>Dauer: 10 Sekunden<br>Effekt von <colortype(506)><edgecolortype(507)>Gelübde<edgecolortype(0)><colortype(0)>: Einmalig immun gegen fast alle Attacken.",
+      "unlock_level": 0,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Phantom Jobs"
+      ],
+      "jobs": [
+        {
+          "id": 1,
+          "name": "Phantom Phantom-Ritter",
+          "abbreviation": "Ph-Ritter",
+          "is_phantom": true
+        }
+      ]
+    }
+  ]
+}

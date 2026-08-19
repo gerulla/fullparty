@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 1827,
+  "name": "インプロビゼーション",
+  "description": "ダンスを踊っている状態。",
+  "effects": [
+    "ダンスを踊っている状態。"
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 213716,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": true,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 4,
+    "modifier": 0
+  },
+  "class_job_category_id": 150,
+  "source_abilities": [
+    {
+      "id": 16014,
+      "name": "インプロビゼーション",
+      "description": "その場でダンスを踊り、自身に「踊りの熱情」を付与する。\n効果時間：15秒\n3秒ごとにスタック数が増加していき、最大4スタックする。\n追加効果：範囲内にいる自身およびパーティメンバーに継続回復効果を付与する。\u3000回復力：100\u3000効果時間：15秒\n効果時間中にアクションの実行や移動・ターンを行うと、インプロビゼーションを終了する。\n実行後にオートアタックを停止する。\nこのアクションを実行すると「インプロビゼーション・フィニッシュ」に変化する。",
+      "description_macro": "その場でダンスを踊り、自身に<colortype(500)><edgecolortype(501)>「踊りの熱情」<edgecolortype(0)><colortype(0)>を付与する。<br><colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>15秒<br>3秒ごとにスタック数が増加していき、最大4スタックする。<br><colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)>範囲内にいる自身およびパーティメンバーに継続回復効果を付与する。\u3000<colortype(504)><edgecolortype(505)>回復力：<edgecolortype(0)><colortype(0)>100\u3000<colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>15秒<br>効果時間中にアクションの実行や移動・ターンを行うと、インプロビゼーションを終了する。<br>実行後にオートアタックを停止する。<br>このアクションを実行すると<colortype(500)><edgecolortype(501)>「インプロビゼーション・フィニッシュ」<edgecolortype(0)><colortype(0)>に変化する。",
+      "unlock_level": 80,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Physical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 38,
+          "name": "踊り子",
+          "abbreviation": "DNC",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

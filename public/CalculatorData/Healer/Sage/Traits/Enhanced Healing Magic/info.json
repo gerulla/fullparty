@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 377,
+  "name": "Enhanced Healing Magic",
+  "description": "Increases the healing potency of Diagnosis to 450 and Kardia to 170. Also increases the strength of barriers granted by Eukrasian Diagnosis to 180% the amount of HP restored, and Eukrasian Prognosis to 320% the amount of HP restored.",
+  "description_macro": "Increases the healing potency of <colortype(500)><edgecolortype(501)>Diagnosis<edgecolortype(0)><colortype(0)> to 450 and <colortype(500)><edgecolortype(501)>Kardia<edgecolortype(0)><colortype(0)> to 170. Also increases the strength of barriers granted by <colortype(500)><edgecolortype(501)>Eukrasian Diagnosis<edgecolortype(0)><colortype(0)> to 180% the amount of HP restored, and <colortype(500)><edgecolortype(501)>Eukrasian Prognosis<edgecolortype(0)><colortype(0)> to 320% the amount of HP restored.",
+  "effects": [
+    "Increases the healing potency of Diagnosis to 450 and Kardia to 170. Also increases the strength of barriers granted by Eukrasian Diagnosis to 180% the amount of HP restored, and Eukrasian Prognosis to 320% the amount of HP restored."
+  ],
+  "role": "Healer",
+  "job": {
+    "id": 40,
+    "name": "Sage",
+    "abbreviation": "SGE"
+  },
+  "unlock_level": 85,
+  "value": 0,
+  "icon": {
+    "id": 6826,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 181,
+  "source_class_job_id": 40
+}

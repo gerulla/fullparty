@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 582,
+  "name": "Lance Mastery IV",
+  "description": "Upgrades Vorpal Thrust to Lance Barrage and Disembowel to Spiral Blow.",
+  "description_macro": "Upgrades <colortype(500)><edgecolortype(501)>Vorpal Thrust<edgecolortype(0)><colortype(0)> to <colortype(500)><edgecolortype(501)>Lance Barrage<edgecolortype(0)><colortype(0)> and <colortype(500)><edgecolortype(501)>Disembowel<edgecolortype(0)><colortype(0)> to <colortype(500)><edgecolortype(501)>Spiral Blow<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Upgrades Vorpal Thrust to Lance Barrage and Disembowel to Spiral Blow."
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 22,
+    "name": "Dragoon",
+    "abbreviation": "DRG"
+  },
+  "unlock_level": 96,
+  "value": 0,
+  "icon": {
+    "id": 5293,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 23,
+  "source_class_job_id": 22
+}

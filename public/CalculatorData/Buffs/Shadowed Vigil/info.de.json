@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 3835,
+  "name": "Schattenwacht",
+  "description": "Erlittener Schaden ist verringert.",
+  "effects": [
+    "Erlittener Schaden ist verringert."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 213125,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": -20
+  },
+  "class_job_category_id": 98,
+  "source_abilities": [
+    {
+      "id": 36927,
+      "name": "Schattenwacht",
+      "description": "Du verringerst deinen erlittenen Schaden um 40 %.\nDauer: 15 Sekunden\nZusatzeffekt: Gewährt dir Schattenschutz.\nDauer: 20 Sekunden\nEffekt von Schattenschutz: Sobald deine LP unter 50 % sinken oder die Wirkungsdauer endet, werden LP regeneriert.\nHeilpotenzial: 1.200",
+      "description_macro": "Du verringerst deinen erlittenen Schaden um 40<nbsp>%.<br>Dauer: 15 Sekunden<br>Zusatzeffekt: Gewährt dir <colortype(506)><edgecolortype(507)>Schattenschutz<edgecolortype(0)><colortype(0)>.<br>Dauer: 20 Sekunden<br>Effekt von <colortype(506)><edgecolortype(507)>Schattenschutz<edgecolortype(0)><colortype(0)>: Sobald deine LP unter 50<nbsp>% sinken oder die Wirkungsdauer endet, werden LP regeneriert.<br>Heilpotenzial: 1.200",
+      "unlock_level": 92,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Tank"
+      ],
+      "jobs": [
+        {
+          "id": 32,
+          "name": "Dunkelritter",
+          "abbreviation": "DKR",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

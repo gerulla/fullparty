@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 529,
+  "name": "蛇行効果アップ",
+  "description": "蛇行の最大チャージ数が3に増加する。",
+  "description_macro": "蛇行の最大チャージ数が3に増加する。",
+  "effects": [
+    "蛇行の最大チャージ数が3に増加する。"
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 41,
+    "name": "ヴァイパー",
+    "abbreviation": "VPR"
+  },
+  "unlock_level": 84,
+  "value": 3,
+  "icon": {
+    "id": 6506,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 196,
+  "source_class_job_id": 41
+}

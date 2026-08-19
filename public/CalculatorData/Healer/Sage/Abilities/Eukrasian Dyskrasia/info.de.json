@@ -1,0 +1,92 @@
+{
+  "kind": "ability",
+  "id": 37032,
+  "name": "Eukratische Dyskrasie",
+  "description": "Du belegst alle umstehenden Gegner mit elementneutralem Schaden über Zeit.\nAttacke-Wert: 40\nDauer: 30 Sekunden\nKann nicht zugleich mit Eukratische Dosis III aktiv sein.\nZusatzeffekt: Regeneriert LP bei dem Ziel mit von dir gewährtem Kardion.\nHeilpotenzial: 170\nBedingung: Eukrasie aktiv\nBei erfüllter Bedingung ändert sich Dyskrasie II zu diesem Kommando.\nKann nicht im Kommandomenü angelegt werden.",
+  "description_macro": "Du belegst alle umstehenden Gegner mit elementneutralem Schaden über Zeit.<br>Attacke-Wert: 40<br>Dauer: 30 Sekunden<br>Kann nicht zugleich mit <colortype(500)><edgecolortype(501)>Eukratische Dosis III<edgecolortype(0)><colortype(0)> aktiv sein.<br>Zusatzeffekt: Regeneriert LP bei dem Ziel mit von dir gewährtem <colortype(506)><edgecolortype(507)>Kardion<edgecolortype(0)><colortype(0)>.<br>Heilpotenzial: <if([gnum68==40],<if([gnum72>=85],170,130)>,130)><br>Bedingung: <colortype(506)><edgecolortype(507)>Eukrasie<edgecolortype(0)><colortype(0)> aktiv<br>Bei erfüllter Bedingung ändert sich <colortype(502)><edgecolortype(503)>Dyskrasie II<edgecolortype(0)><colortype(0)> zu diesem Kommando.<br>Kann nicht im Kommandomenü angelegt werden.",
+  "effects": [
+    "Du belegst alle umstehenden Gegner mit elementneutralem Schaden über Zeit.",
+    "Attacke-Wert: 40",
+    "Dauer: 30 Sekunden",
+    "Kann nicht zugleich mit Eukratische Dosis III aktiv sein.",
+    "Zusatzeffekt: Regeneriert LP bei dem Ziel mit von dir gewährtem Kardion.",
+    "Heilpotenzial: 170",
+    "Bedingung: Eukrasie aktiv",
+    "Bei erfüllter Bedingung ändert sich Dyskrasie II zu diesem Kommando.",
+    "Kann nicht im Kommandomenü angelegt werden."
+  ],
+  "role": "Healer",
+  "job": {
+    "id": 40,
+    "name": "Weiser",
+    "abbreviation": "WEI"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 82,
+  "icon": {
+    "id": 3687,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 2,
+    "name": "Zauber"
+  },
+  "attack_type": {
+    "id": 5,
+    "name": "魔法"
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 1.5,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 58,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 70,
+      "value": 4
+    },
+    "secondary": {
+      "type_id": 0,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": 0,
+    "effect_yalms": 5,
+    "cast_type": 2
+  },
+  "targeting": {
+    "self": true,
+    "party": false,
+    "alliance": false,
+    "hostile": false,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": false
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 7,
+    "behavior_type": 0,
+    "class_job_category_id": 181,
+    "source_class_job_id": 0,
+    "is_role_action": false,
+    "is_player_action": false,
+    "is_derived_action": true,
+    "equivalence_group": 0
+  }
+}

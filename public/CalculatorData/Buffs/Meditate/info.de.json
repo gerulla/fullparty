@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 1231,
+  "name": "Meditieren",
+  "description": "Füllt den Kenki-Balken.",
+  "effects": [
+    "Füllt den Kenki-Balken."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 213306,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 4,
+    "modifier": 10
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 7497,
+      "name": "Meditieren",
+      "description": "Du füllst nach und nach deinen Kenki-Balken.\nDauer: 15 Sekunden\nZusatzeffekt: Du erhältst kontinuierlich Meditationsebene\\Unterbindet Auto-Attacke.\nEffekt endet bei Bewegung, Umdrehen oder Ausführen eines Kommandos.\nKenki-Balken füllt sich nur im Kampf.\nReaktivierungs-Timer wie Waffenfertigkeiten",
+      "description_macro": "Du füllst nach und nach deinen Kenki-Balken.<br>Dauer: 15 Sekunden<br><if([gnum68==34],<if([gnum72>=80],Zusatzeffekt: Du erhältst kontinuierlich <colortype(506)><edgecolortype(507)>Meditationsebene<edgecolortype(0)><colortype(0)>\\, falls du im Kampf bist.<br>Ma<->xi<->mal<->sta<->pel<->zahl: 3<br>,)>,)>Unterbindet Auto-Attacke.<br>Effekt endet bei Bewegung, Umdrehen oder Ausführen eines Kommandos.<br>Kenki-Balken füllt sich nur im Kampf.<br>Reaktivierungs-Timer wie Waf<->fen<->fer<->tig<->kei<->ten",
+      "unlock_level": 60,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 34,
+          "name": "Samurai",
+          "abbreviation": "SAM",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,90 @@
+{
+  "kind": "ability",
+  "id": 25824,
+  "name": "Rite de topaze",
+  "description": "Effectue une attaque magique de terre sur la cible.\nPuissance : 340\nEffet additionnel : vous octroie Casse-montagnes préparé.\nCet effet disparaît si vous utilisez une autre action d'invocation.\nCondition : consomme un degré de Syntonie de terre.\n\n* Cette action ne peut pas être ajoutée aux barres de raccourcis.\nRemplace Éclat des gemmes lorsque les conditions sont réunies.",
+  "description_macro": "Effectue une attaque magique de terre sur la cible.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> <if([gnum68==27],<if([gnum72>=94],340,<if([gnum68==27],<if([gnum72>=84],330,320)>,320)>)>,<if([gnum68==27],<if([gnum72>=84],330,320)>,320)>)><br><if([gnum68==27],<if([gnum72>=86],<colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> vous octroie <colortype(500)><edgecolortype(501)>Casse-montagnes préparé<edgecolortype(0)><colortype(0)>.<br>Cet effet disparaît si vous utilisez une autre action d'invocation.<br>,)>,)><colortype(506)><edgecolortype(507)>Condition<nbsp>:<edgecolortype(0)><colortype(0)> consomme un degré de <colortype(500)><edgecolortype(501)>Syntonie de terre<edgecolortype(0)><colortype(0)>.<br><br><colortype(504)><edgecolortype(505)>* Cette action ne peut pas être ajoutée aux barres de raccourcis.<br>Remplace <colortype(500)><edgecolortype(501)>Éclat des gemmes<edgecolortype(0)><colortype(0)> lorsque les conditions sont réunies.<edgecolortype(0)><colortype(0)>",
+  "effects": [
+    "Effectue une attaque magique de terre sur la cible.",
+    "Puissance : 340",
+    "Effet additionnel : vous octroie Casse-montagnes préparé.",
+    "Cet effet disparaît si vous utilisez une autre action d'invocation.",
+    "Condition : consomme un degré de Syntonie de terre.",
+    "* Cette action ne peut pas être ajoutée aux barres de raccourcis.",
+    "Remplace Éclat des gemmes lorsque les conditions sont réunies."
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 27,
+    "name": "Invocateur",
+    "abbreviation": "INV"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 72,
+  "icon": {
+    "id": 2761,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 2,
+    "name": "Sort"
+  },
+  "attack_type": {
+    "id": 5,
+    "name": "magie"
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 2.5,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 58,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 73,
+      "value": 3
+    },
+    "secondary": {
+      "type_id": 119,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": 25,
+    "effect_yalms": 0,
+    "cast_type": 1
+  },
+  "targeting": {
+    "self": false,
+    "party": false,
+    "alliance": false,
+    "hostile": true,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": false
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 4,
+    "behavior_type": 0,
+    "class_job_category_id": 28,
+    "source_class_job_id": 0,
+    "is_role_action": false,
+    "is_player_action": false,
+    "is_derived_action": true,
+    "equivalence_group": 0
+  }
+}

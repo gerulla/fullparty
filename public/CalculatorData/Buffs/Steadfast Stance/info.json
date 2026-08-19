@@ -1,0 +1,51 @@
+{
+  "kind": "combat_status",
+  "id": 4800,
+  "name": "Steadfast Stance",
+  "description": "A highly effective defensive maneuver is nullifying damage.",
+  "effects": [
+    "A highly effective defensive maneuver is nullifying damage."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 229974,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 100
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 46604,
+      "name": "Steadfast Stance",
+      "description": "Grants Steadfast Stance.\nWhen targeting a party member, rush to their side, granting both you and the target Steadfast Stance.\nSteadfast Stance Effect: Grants a barrier that absorbs damage equal to 10% of maximum HP\nDuration: 30s",
+      "description_macro": "Grants <colortype(506)><edgecolortype(507)>Steadfast Stance<edgecolortype(0)><colortype(0)>.<br>When targeting a party member, rush to their side, granting both you and the target <colortype(506)><edgecolortype(507)>Steadfast Stance<edgecolortype(0)><colortype(0)>.<br><colortype(504)><edgecolortype(505)>Steadfast Stance Effect:<edgecolortype(0)><colortype(0)> Grants a barrier that absorbs damage equal to 10% of maximum HP<br><colortype(504)><edgecolortype(505)>Duration:<edgecolortype(0)><colortype(0)> 30s",
+      "unlock_level": 0,
+      "relations": [
+        "granted_by_description",
+        "same_name"
+      ],
+      "roles": [
+        "Phantom Jobs"
+      ],
+      "jobs": [
+        {
+          "id": 15,
+          "name": "Phantom Dancer",
+          "abbreviation": "Ph. Dancer",
+          "is_phantom": true
+        }
+      ]
+    }
+  ]
+}

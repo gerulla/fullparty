@@ -1,0 +1,89 @@
+{
+  "kind": "ability",
+  "id": 7437,
+  "name": "Aetherpact",
+  "description": "Orders faerie to execute Fey Union with target party member. Effect ends upon reuse.\nFaerie Gauge Cost: 10\nFey Union Effect: Gradually restores HP of party member with which faerie has a Fey Union.\nCure Potency: 300\nFaerie Gauge is depleted by 10 periodically while HP is restored. Fey Union effect fades upon execution of other faerie actions or when party member moves from within 30 yalms of the faerie.\nThe Faerie Gauge increases when a faerie or Seraph is summoned and an Aetherflow action is successfully executed while in combat.",
+  "description_macro": "Orders faerie to execute <colortype(500)><edgecolortype(501)>Fey Union<edgecolortype(0)><colortype(0)> with target party member. Effect ends upon reuse.<br><colortype(504)><edgecolortype(505)>Faerie Gauge Cost:<edgecolortype(0)><colortype(0)> 10<br><colortype(504)><edgecolortype(505)>Fey Union Effect: <edgecolortype(0)><colortype(0)>Gradually restores HP of party member with which faerie has a <colortype(506)><edgecolortype(507)>Fey Union<edgecolortype(0)><colortype(0)>.<br><colortype(504)><edgecolortype(505)>Cure Potency: <edgecolortype(0)><colortype(0)>300<br><colortype(500)><edgecolortype(501)>Faerie Gauge<edgecolortype(0)><colortype(0)> is depleted by 10 periodically while HP is restored. <colortype(506)><edgecolortype(507)>Fey Union<edgecolortype(0)><colortype(0)> effect fades upon execution of other faerie actions or when party member moves from within 30 yalms of the faerie.<br>The <colortype(500)><edgecolortype(501)>Faerie Gauge<edgecolortype(0)><colortype(0)> increases when <if([gnum68==28],<if([gnum72>=80],a faerie or <colortype(506)><edgecolortype(507)>Seraph<edgecolortype(0)><colortype(0)>,a faerie)>,a faerie)> is summoned and an <colortype(506)><edgecolortype(507)>Aetherflow<edgecolortype(0)><colortype(0)> action is successfully executed while in combat.",
+  "effects": [
+    "Orders faerie to execute Fey Union with target party member. Effect ends upon reuse.",
+    "Faerie Gauge Cost: 10",
+    "Fey Union Effect: Gradually restores HP of party member with which faerie has a Fey Union.",
+    "Cure Potency: 300",
+    "Faerie Gauge is depleted by 10 periodically while HP is restored. Fey Union effect fades upon execution of other faerie actions or when party member moves from within 30 yalms of the faerie.",
+    "The Faerie Gauge increases when a faerie or Seraph is summoned and an Aetherflow action is successfully executed while in combat."
+  ],
+  "role": "Healer",
+  "job": {
+    "id": 28,
+    "name": "Scholar",
+    "abbreviation": "SCH"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 70,
+  "icon": {
+    "id": 2816,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 4,
+    "name": "Ability"
+  },
+  "attack_type": {
+    "id": 0,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 3,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 6,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 0,
+      "value": 0
+    },
+    "secondary": {
+      "type_id": 77,
+      "value": 10
+    }
+  },
+  "range": {
+    "target_yalms": 30,
+    "effect_yalms": 0,
+    "cast_type": 1
+  },
+  "targeting": {
+    "self": true,
+    "party": true,
+    "alliance": false,
+    "hostile": false,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": false
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 0,
+    "behavior_type": 0,
+    "class_job_category_id": 29,
+    "source_class_job_id": 28,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 17
+  }
+}

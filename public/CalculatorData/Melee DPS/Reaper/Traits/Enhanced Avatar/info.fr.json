@@ -1,0 +1,26 @@
+{
+  "kind": "trait",
+  "id": 381,
+  "name": "Avatar amélioré",
+  "description": "Permet de recevoir Moissonneur d'âmes lorsque vous utilisez Fétu ensanglanté ou Andain sinistre avec succès.\nDurée : 30s\nCet effet disparaît si une technique d'arme ou un sort est utilisé.",
+  "description_macro": "Permet de recevoir <colortype(500)><edgecolortype(501)>Moissonneur d'âmes<edgecolortype(0)><colortype(0)> lorsque vous utilisez <colortype(500)><edgecolortype(501)>Fétu ensanglanté<edgecolortype(0)><colortype(0)> ou <colortype(500)><edgecolortype(501)>Andain sinistre<edgecolortype(0)><colortype(0)> avec succès.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 30s<br>Cet effet disparaît si une technique d'arme ou un sort est utilisé.",
+  "effects": [
+    "Permet de recevoir Moissonneur d'âmes lorsque vous utilisez Fétu ensanglanté ou Andain sinistre avec succès.",
+    "Durée : 30s",
+    "Cet effet disparaît si une technique d'arme ou un sort est utilisé."
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 39,
+    "name": "Faucheur",
+    "abbreviation": "FCH"
+  },
+  "unlock_level": 70,
+  "value": 0,
+  "icon": {
+    "id": 6403,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 180,
+  "source_class_job_id": 39
+}

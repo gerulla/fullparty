@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 1323,
+  "name": "Wildfeuer",
+  "description": "Die Anzahl der von einem Maschinisten ausgeführten Waffenfertigkeiten werden gespeichert und am Ende als Schaden erlitten.",
+  "effects": [
+    "Die Anzahl der von einem Maschinisten ausgeführten Waffenfertigkeiten werden gespeichert und am Ende als Schaden erlitten."
+  ],
+  "classification": "debuff",
+  "icon": {
+    "id": 213011,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 2,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": true,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 96,
+  "source_abilities": [
+    {
+      "id": 2878,
+      "name": "Wildfeuer",
+      "description": "Du übergießt das Ziel mit langsam brennendem Pech und fügst ihm dadurch Wildfeuer zu. Kommando ändert sich zu Detonator. Der Schaden wird am Ende der Wirkungsdauer oder beim Ausführen von Detonator auf das Ziel entladen.\nAttacke-Wert: 240 für jeden deiner Treffer einer Waffenfertigkeit beim Ziel während der Wirkungsdauer (maximal 6 Treffer)\nDauer: 10 Sekunden",
+      "description_macro": "Du übergießt das Ziel mit langsam brennendem Pech und fügst ihm dadurch <colortype(506)><edgecolortype(507)>Wildfeuer<edgecolortype(0)><colortype(0)> zu. Kommando ändert sich zu <colortype(502)><edgecolortype(503)>Detonator<edgecolortype(0)><colortype(0)>. Der Schaden wird am Ende der Wirkungsdauer oder beim Ausführen von <colortype(502)><edgecolortype(503)>Detonator<edgecolortype(0)><colortype(0)> auf das Ziel entladen.<br>Attacke-Wert: <if([gnum68==31],<if([gnum72>=78],240,100)>,100)> für jeden deiner Treffer einer Waf<->fen<->fer<->tig<->keit beim Ziel während der Wirkungsdauer (maximal 6 Treffer)<br>Dauer: 10 Sekunden",
+      "unlock_level": 45,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Physical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 31,
+          "name": "Maschinist",
+          "abbreviation": "MCH",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

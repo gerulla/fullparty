@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 5316,
+  "name": "Magi Leurre",
+  "description": "Insensible une seule fois à la plupart des attaques magiques.",
+  "effects": [
+    "Insensible une seule fois à la plupart des attaques magiques."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 229978,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 49069,
+      "name": "Magi Leurre",
+      "description": "Crée sur la cible une barrière annulant une seule fois la plupart des attaques magiques.\nDurée : 30s",
+      "description_macro": "Crée sur la cible une barrière annulant une seule fois la plupart des attaques magiques.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 30s",
+      "unlock_level": 0,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Phantom Jobs"
+      ],
+      "jobs": [
+        {
+          "id": 17,
+          "name": "Phantom Mage blanc fantôme",
+          "abbreviation": "Mage blanc fant.",
+          "is_phantom": true
+        }
+      ]
+    }
+  ]
+}

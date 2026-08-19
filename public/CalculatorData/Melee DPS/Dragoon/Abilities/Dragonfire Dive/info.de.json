@@ -1,0 +1,89 @@
+{
+  "kind": "ability",
+  "id": 96,
+  "name": "Wyrmodem",
+  "description": "Du springst zum Ziel und greifst alle umstehenden Gegner mit einer feuerbasierten Attacke an.\nAttacke-Wert: 500\nAttacke-Wert verringert sich ab dem zweiten Gegner um 50 %.\nZusatzeffekt: Gewährt dir Aufstiegsbereit.\nDauer: 30 Sekunden\nKann nicht während Fessel ausgeführt werden.",
+  "description_macro": "Du springst zum Ziel und greifst alle umstehenden Gegner mit einer feuerbasierten Attacke an.<br>Attacke-Wert: 500<br>Attacke-Wert verringert sich ab dem zweiten Gegner um 50<nbsp>%.<br><if([gnum68==22],<if([gnum72>=92],Zusatzeffekt: Gewährt dir <colortype(506)><edgecolortype(507)>Aufstiegsbereit<edgecolortype(0)><colortype(0)>.<br>Dauer: 30 Sekunden<br>,)>,)>Kann nicht während <colortype(500)><edgecolortype(501)>Fessel<edgecolortype(0)><colortype(0)> ausgeführt werden.",
+  "effects": [
+    "Du springst zum Ziel und greifst alle umstehenden Gegner mit einer feuerbasierten Attacke an.",
+    "Attacke-Wert: 500",
+    "Attacke-Wert verringert sich ab dem zweiten Gegner um 50 %.",
+    "Zusatzeffekt: Gewährt dir Aufstiegsbereit.",
+    "Dauer: 30 Sekunden",
+    "Kann nicht während Fessel ausgeführt werden."
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 22,
+    "name": "Dragoon",
+    "abbreviation": "DRG"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 50,
+  "icon": {
+    "id": 2578,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 4,
+    "name": "Talent"
+  },
+  "attack_type": {
+    "id": 4294967295,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 120,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 21,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 0,
+      "value": 0
+    },
+    "secondary": {
+      "type_id": 0,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": 20,
+    "effect_yalms": 5,
+    "cast_type": 2
+  },
+  "targeting": {
+    "self": false,
+    "party": false,
+    "alliance": false,
+    "hostile": true,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 1,
+    "behavior_type": 1,
+    "class_job_category_id": 23,
+    "source_class_job_id": 22,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

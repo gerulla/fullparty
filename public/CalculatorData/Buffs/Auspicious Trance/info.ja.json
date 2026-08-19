@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 2497,
+  "name": "玄天武水壁",
+  "description": "青魔法「玄天武水壁」が実行可能な状態。",
+  "effects": [
+    "青魔法「玄天武水壁」が実行可能な状態。"
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 213536,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": true,
+  "inflicted_by_actor": true,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 23273,
+      "name": "玄結界",
+      "description": "玄結界を展開して自身の被ダメージを20％軽減させる。\n効果時間：10秒\n追加効果：効果時間中に自身の最大ＨＰの30％分を超えるダメージを受けると、自身に「玄天武水壁」を付与する。\n玄天武水壁効果：アクション「玄結界」が「玄天武水壁」に変化する。\n効果時間中にアクションの実行や移動・ターンを行うと、玄結界は即座に解除される。\nまた、玄結界が解除されると「玄天武水壁」も解除される。\n実行後にオートアタックを停止する。\nこの魔法は固有のリキャストタイマーを持ち、「闘霊弾」「ルビーダイナモ」と共有する。\n\n【玄天武水壁】\n自身の周囲の敵に水属性範囲魔法攻撃。威力：500\n自身に「エーテルコピー：タンク」が付与されている場合は威力が上昇する。\nエーテルコピー：タンク時威力：1000\n2体目以降の対象への威力は50％減少する。\n発動条件：「玄天武水壁」効果中",
+      "description_macro": "玄結界を展開して自身の被ダメージを20％軽減させる。<br><colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>10秒<br><colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)>効果時間中に自身の最大ＨＰの30％分を超えるダメージを受けると、自身に<colortype(500)><edgecolortype(501)>「玄天武水壁」<edgecolortype(0)><colortype(0)>を付与する。<br><colortype(504)><edgecolortype(505)>玄天武水壁効果：<edgecolortype(0)><colortype(0)>アクション<colortype(500)><edgecolortype(501)>「玄結界」<edgecolortype(0)><colortype(0)>が<colortype(500)><edgecolortype(501)>「玄天武水壁」<edgecolortype(0)><colortype(0)>に変化する。<br>効果時間中にアクションの実行や移動・ターンを行うと、玄結界は即座に解除される。<br>また、玄結界が解除されると<colortype(500)><edgecolortype(501)>「玄天武水壁」<edgecolortype(0)><colortype(0)>も解除される。<br>実行後にオートアタックを停止する。<br>この魔法は固有のリキャストタイマーを持ち、<colortype(500)><edgecolortype(501)>「闘霊弾」「ルビーダイナモ」<edgecolortype(0)><colortype(0)>と共有する。<br><br><colortype(500)><edgecolortype(501)>【玄天武水壁】<edgecolortype(0)><colortype(0)><br>自身の周囲の敵に水属性範囲魔法攻撃。<colortype(504)><edgecolortype(505)>威力：<edgecolortype(0)><colortype(0)>500<br>自身に<colortype(500)><edgecolortype(501)>「エーテルコピー：タンク」<edgecolortype(0)><colortype(0)>が付与されている場合は威力が上昇する。<br><colortype(504)><edgecolortype(505)>エーテルコピー：タンク時威力：<edgecolortype(0)><colortype(0)>1000<br>2体目以降の対象への威力は50％減少する。<br><colortype(504)><edgecolortype(505)>発動条件：<edgecolortype(0)><colortype(0)><colortype(500)><edgecolortype(501)>「玄天武水壁」<edgecolortype(0)><colortype(0)>効果中",
+      "unlock_level": 1,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Magical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 36,
+          "name": "青魔道士",
+          "abbreviation": "BLU",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

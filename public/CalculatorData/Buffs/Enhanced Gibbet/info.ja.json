@@ -1,0 +1,71 @@
+{
+  "kind": "combat_status",
+  "id": 2588,
+  "name": "ジビトゥ効果アップ",
+  "description": "次に実行するジビトゥの威力が上昇する状態。",
+  "effects": [
+    "次に実行するジビトゥの威力が上昇する状態。"
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 212927,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 50,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 180,
+  "source_abilities": [
+    {
+      "id": 24383,
+      "name": "ギャロウズ",
+      "description": "対象に物理攻撃。\u3000威力：500\nギャロウズ効果アップ時威力：560\n背面攻撃時威力：560\nギャロウズ効果アップかつ背面攻撃時威力：620\n追加効果：自身に「ジビトゥ効果アップ」を付与する。\n効果時間：60秒\n効果中はストークスウェーズがジビトゥクロウに変化する。\n追加効果：「シュラウドゲージ」を10上昇させる。\n発動条件：「妖異の鎌」効果中",
+      "description_macro": "対象に物理攻撃。\u3000<colortype(504)><edgecolortype(505)>威力：<edgecolortype(0)><colortype(0)><if([gnum68==39],<if([gnum72>=94],500,400)>,400)><br><colortype(504)><edgecolortype(505)>ギャロウズ効果アップ時威力：<edgecolortype(0)><colortype(0)><if([gnum68==39],<if([gnum72>=94],560,460)>,460)><br><colortype(504)><edgecolortype(505)>背面攻撃時威力：<edgecolortype(0)><colortype(0)><if([gnum68==39],<if([gnum72>=94],560,460)>,460)><br><colortype(504)><edgecolortype(505)>ギャロウズ効果アップかつ背面攻撃時威力：<edgecolortype(0)><colortype(0)><if([gnum68==39],<if([gnum72>=94],620,520)>,520)><br><colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)>自身に<colortype(500)><edgecolortype(501)>「ジビトゥ効果アップ」<edgecolortype(0)><colortype(0)>を付与する。<br><colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>60秒<br>効果中はストークスウェーズがジビトゥクロウに変化する。<br><if([gnum68==39],<if([gnum72>=80],<colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)><colortype(500)><edgecolortype(501)>「シュラウドゲージ」<edgecolortype(0)><colortype(0)>を10上昇させる。<br>,)>,)><colortype(504)><edgecolortype(505)>発動条件：<edgecolortype(0)><colortype(0)><colortype(500)><edgecolortype(501)>「妖異の鎌」<edgecolortype(0)><colortype(0)>効果中",
+      "unlock_level": 70,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 39,
+          "name": "リーパー",
+          "abbreviation": "RPR",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 36971,
+      "name": "エクスギャロウズ",
+      "description": "対象に物理攻撃。\u3000威力：700\nギャロウズ効果アップ時威力：760\n背面攻撃時威力：760\nギャロウズ効果アップかつ背面攻撃時威力：820\n追加効果：自身に「ジビトゥ効果アップ」を付与する。\n効果時間：60秒\n効果中はストークスウェーズがジビトゥクロウに変化する。\n追加効果：「シュラウドゲージ」を10上昇させる。\n発動条件：「処刑人」効果中\n\n※このアクションはホットバーに登録することはできない。\n\u3000発動条件を満たすとギャロウズがエクスギャロウズに変化する。",
+      "description_macro": "対象に物理攻撃。\u3000<colortype(504)><edgecolortype(505)>威力：<edgecolortype(0)><colortype(0)>700<br><colortype(504)><edgecolortype(505)>ギャロウズ効果アップ時威力：<edgecolortype(0)><colortype(0)>760<br><colortype(504)><edgecolortype(505)>背面攻撃時威力：<edgecolortype(0)><colortype(0)>760<br><colortype(504)><edgecolortype(505)>ギャロウズ効果アップかつ背面攻撃時威力：<edgecolortype(0)><colortype(0)>820<br><colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)>自身に<colortype(500)><edgecolortype(501)>「ジビトゥ効果アップ」<edgecolortype(0)><colortype(0)>を付与する。<br><colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>60秒<br>効果中はストークスウェーズがジビトゥクロウに変化する。<br><if([gnum68==39],<if([gnum72>=80],<colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)><colortype(500)><edgecolortype(501)>「シュラウドゲージ」<edgecolortype(0)><colortype(0)>を10上昇させる。<br>,)>,)><colortype(504)><edgecolortype(505)>発動条件：<edgecolortype(0)><colortype(0)><colortype(500)><edgecolortype(501)>「処刑人」<edgecolortype(0)><colortype(0)>効果中<br><br><colortype(506)><edgecolortype(507)>※このアクションはホットバーに登録することはできない。<br>\u3000発動条件を満たすとギャロウズがエクスギャロウズに変化する。<edgecolortype(0)><colortype(0)>",
+      "unlock_level": 96,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 39,
+          "name": "リーパー",
+          "abbreviation": "RPR",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

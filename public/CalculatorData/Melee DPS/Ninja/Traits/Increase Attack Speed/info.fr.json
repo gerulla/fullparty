@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 584,
+  "name": "Vitesse améliorée",
+  "description": "Réduit de 15% le délai des attaques automatiques et les temps de lancement et de recharge des techniques d'arme et des sorts.",
+  "description_macro": "Réduit de 15% le délai des attaques automatiques et les temps de lancement et de recharge des techniques d'arme et des sorts.",
+  "effects": [
+    "Réduit de 15% le délai des attaques automatiques et les temps de lancement et de recharge des techniques d'arme et des sorts."
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 30,
+    "name": "Ninja",
+    "abbreviation": "NIN"
+  },
+  "unlock_level": 45,
+  "value": 0,
+  "icon": {
+    "id": 5421,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 92,
+  "source_class_job_id": 30
+}

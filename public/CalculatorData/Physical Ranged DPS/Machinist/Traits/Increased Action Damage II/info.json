@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 119,
+  "name": "Increased Action Damage II",
+  "description": "Increases base action damage and autoturret damage by 20%.",
+  "description_macro": "Increases base action damage and autoturret damage by 20%.",
+  "effects": [
+    "Increases base action damage and autoturret damage by 20%."
+  ],
+  "role": "Physical Ranged DPS",
+  "job": {
+    "id": 31,
+    "name": "Machinist",
+    "abbreviation": "MCH"
+  },
+  "unlock_level": 40,
+  "value": 20,
+  "icon": {
+    "id": 6003,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 96,
+  "source_class_job_id": 31
+}

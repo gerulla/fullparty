@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 166,
+  "name": "Enhanced Shukuchi",
+  "description": "Resets the recast timer for Shukuchi upon executing Katon, Raiton, or Hyoton on most targets.",
+  "description_macro": "Resets the recast timer for <colortype(500)><edgecolortype(501)>Shukuchi<edgecolortype(0)><colortype(0)> upon executing <colortype(500)><edgecolortype(501)>Katon<edgecolortype(0)><colortype(0)>, <colortype(500)><edgecolortype(501)>Raiton<edgecolortype(0)><colortype(0)>, or <colortype(500)><edgecolortype(501)>Hyoton<edgecolortype(0)><colortype(0)> on most targets.",
+  "effects": [
+    "Resets the recast timer for Shukuchi upon executing Katon, Raiton, or Hyoton on most targets."
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 30,
+    "name": "Ninja",
+    "abbreviation": "NIN"
+  },
+  "unlock_level": 64,
+  "value": 0,
+  "icon": {
+    "id": 5412,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 92,
+  "source_class_job_id": 30
+}

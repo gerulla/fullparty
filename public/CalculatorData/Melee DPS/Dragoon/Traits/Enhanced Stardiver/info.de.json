@@ -1,0 +1,26 @@
+{
+  "kind": "trait",
+  "id": 583,
+  "name": "Verbesserter Sternensturz",
+  "description": "Erfolgreiche Ausführung von Sternensturz gewährt dir Sternenkreuz.\nLäuft Drachengeist aus, so endet dieser Effekt.\nDauer: 20 Sekunden",
+  "description_macro": "Erfolgreiche Ausführung von <colortype(502)><edgecolortype(503)>Sternensturz<edgecolortype(0)><colortype(0)> gewährt dir <colortype(506)><edgecolortype(507)>Sternenkreuz<edgecolortype(0)><colortype(0)>.<br>Läuft <colortype(506)><edgecolortype(507)>Drachengeist<edgecolortype(0)><colortype(0)> aus, so endet dieser Effekt.<br>Dauer: 20 Sekunden",
+  "effects": [
+    "Erfolgreiche Ausführung von Sternensturz gewährt dir Sternenkreuz.",
+    "Läuft Drachengeist aus, so endet dieser Effekt.",
+    "Dauer: 20 Sekunden"
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 22,
+    "name": "Dragoon",
+    "abbreviation": "DRG"
+  },
+  "unlock_level": 100,
+  "value": 0,
+  "icon": {
+    "id": 5298,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 23,
+  "source_class_job_id": 22
+}

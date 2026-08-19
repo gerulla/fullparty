@@ -1,0 +1,35 @@
+{
+  "kind": "trait",
+  "id": 650,
+  "name": "Actions améliorées II",
+  "description": "Augmente la puissance de certaines actions.\n\nPuissance de Lame rapide : 220\nPuissance de Lame déchaînée : 170\nPuissance d'Autorité royale : 200\nPuissance d'Esprit saint : 400\nPuissance d'Absolution : 460\nPuissance d'Oraison : 500\nPuissance de Sépulcre : 540\nPuissance de Confiteor : 500\nPuissance de Lame de foi : 260\nPuissance de Lame de vérité : 380\nPuissance de Lame de vaillance : 500",
+  "description_macro": "Augmente la puissance de certaines actions.<br><br><colortype(506)><edgecolortype(507)>Puissance de Lame rapide<nbsp>:<edgecolortype(0)><colortype(0)> 220<br><colortype(506)><edgecolortype(507)>Puissance de Lame déchaînée<nbsp>:<edgecolortype(0)><colortype(0)> 170<br><colortype(506)><edgecolortype(507)>Puissance d'Autorité royale<nbsp>:<edgecolortype(0)><colortype(0)> 200<br><colortype(506)><edgecolortype(507)>Puissance d'Esprit saint<nbsp>:<edgecolortype(0)><colortype(0)> 400<br><colortype(506)><edgecolortype(507)>Puissance d'Absolution<nbsp>:<edgecolortype(0)><colortype(0)> 460<br><colortype(506)><edgecolortype(507)>Puissance d'Oraison<nbsp>:<edgecolortype(0)><colortype(0)> 500<br><colortype(506)><edgecolortype(507)>Puissance de Sépulcre<nbsp>:<edgecolortype(0)><colortype(0)> 540<br><colortype(506)><edgecolortype(507)>Puissance de Confiteor<nbsp>:<edgecolortype(0)><colortype(0)> 500<br><colortype(506)><edgecolortype(507)>Puissance de Lame de foi<nbsp>:<edgecolortype(0)><colortype(0)> 260<br><colortype(506)><edgecolortype(507)>Puissance de Lame de vérité<nbsp>:<edgecolortype(0)><colortype(0)> 380<br><colortype(506)><edgecolortype(507)>Puissance de Lame de vaillance<nbsp>:<edgecolortype(0)><colortype(0)> 500",
+  "effects": [
+    "Augmente la puissance de certaines actions.",
+    "Puissance de Lame rapide : 220",
+    "Puissance de Lame déchaînée : 170",
+    "Puissance d'Autorité royale : 200",
+    "Puissance d'Esprit saint : 400",
+    "Puissance d'Absolution : 460",
+    "Puissance d'Oraison : 500",
+    "Puissance de Sépulcre : 540",
+    "Puissance de Confiteor : 500",
+    "Puissance de Lame de foi : 260",
+    "Puissance de Lame de vérité : 380",
+    "Puissance de Lame de vaillance : 500"
+  ],
+  "role": "Tank",
+  "job": {
+    "id": 19,
+    "name": "Paladin",
+    "abbreviation": "PLD"
+  },
+  "unlock_level": 94,
+  "value": 0,
+  "icon": {
+    "id": 6802,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 20,
+  "source_class_job_id": 19
+}

@@ -1,0 +1,93 @@
+{
+  "kind": "ability",
+  "id": 3638,
+  "name": "Totenerweckung",
+  "description": "Du erhältst den Status Totenerweckung.\nDauer: 10 Sekunden\nWenn du während der Wirkungsdauer k. o. gehst, wird das K. o. in den Status Erweckter umgewandelt.\nDauer: 10 Sekunden\nWährend Erweckter kann kaum eine Attacke deine LP auf 0 sinken lassen.\nZusatzeffekt: Regeneriert bei einem erfolgreichen Treffer deiner Waffenfertigkeiten oder Zauber LP.\nHeilpotenzial: 1.500\nWenn du während der Wirkungsdauer Heilung von insgesamt 100 % deiner Maximal-LP erhalten hast, ändert sich Erweckter zu Untote Auferstehung. Läuft die Wirkungsdauer davor ab, gehst du k. o.\nWährend Untote Auferstehung kann kaum eine Attacke deine LP auf 0 sinken lassen.\nDauer von Untote Auferstehung: Restdauer von Erweckter",
+  "description_macro": "Du erhältst den Status <colortype(506)><edgecolortype(507)>Totenerweckung<edgecolortype(0)><colortype(0)>.<br>Dauer: 10 Sekunden<br>Wenn du während der Wirkungsdauer k. o. gehst, wird das K. o. in den Status <colortype(506)><edgecolortype(507)>Erweckter<edgecolortype(0)><colortype(0)> umgewandelt.<br>Dauer: 10 Sekunden<br>Während <colortype(506)><edgecolortype(507)>Erweckter<edgecolortype(0)><colortype(0)> kann kaum eine Attacke deine LP auf 0 sinken lassen.<br>Zusatzeffekt: Regeneriert bei einem erfolgreichen Treffer deiner Waf<->fen<->fer<->tig<->kei<->ten oder Zauber LP.<br>Heilpotenzial: 1.500<br>Wenn du während der Wirkungsdauer Heilung von insgesamt 100<nbsp>% deiner Maximal-LP erhalten hast, ändert sich <colortype(506)><edgecolortype(507)>Erweckter<edgecolortype(0)><colortype(0)> zu <colortype(506)><edgecolortype(507)>Untote Auferstehung<edgecolortype(0)><colortype(0)>. Läuft die Wirkungsdauer davor ab, gehst du k. o.<br>Während <colortype(506)><edgecolortype(507)>Untote Auferstehung<edgecolortype(0)><colortype(0)> kann kaum eine Attacke deine LP auf 0 sinken lassen.<br>Dauer von <colortype(506)><edgecolortype(507)>Untote Auferstehung<edgecolortype(0)><colortype(0)>: Restdauer von <colortype(506)><edgecolortype(507)>Erweckter<edgecolortype(0)><colortype(0)>",
+  "effects": [
+    "Du erhältst den Status Totenerweckung.",
+    "Dauer: 10 Sekunden",
+    "Wenn du während der Wirkungsdauer k. o. gehst, wird das K. o. in den Status Erweckter umgewandelt.",
+    "Dauer: 10 Sekunden",
+    "Während Erweckter kann kaum eine Attacke deine LP auf 0 sinken lassen.",
+    "Zusatzeffekt: Regeneriert bei einem erfolgreichen Treffer deiner Waffenfertigkeiten oder Zauber LP.",
+    "Heilpotenzial: 1.500",
+    "Wenn du während der Wirkungsdauer Heilung von insgesamt 100 % deiner Maximal-LP erhalten hast, ändert sich Erweckter zu Untote Auferstehung. Läuft die Wirkungsdauer davor ab, gehst du k. o.",
+    "Während Untote Auferstehung kann kaum eine Attacke deine LP auf 0 sinken lassen.",
+    "Dauer von Untote Auferstehung: Restdauer von Erweckter"
+  ],
+  "role": "Tank",
+  "job": {
+    "id": 32,
+    "name": "Dunkelritter",
+    "abbreviation": "DKR"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 50,
+  "icon": {
+    "id": 3077,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 4,
+    "name": "Talent"
+  },
+  "attack_type": {
+    "id": 0,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 300,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 25,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 0,
+      "value": 0
+    },
+    "secondary": {
+      "type_id": 0,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": 0,
+    "effect_yalms": 0,
+    "cast_type": 1
+  },
+  "targeting": {
+    "self": true,
+    "party": false,
+    "alliance": false,
+    "hostile": false,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 0,
+    "behavior_type": 0,
+    "class_job_category_id": 98,
+    "source_class_job_id": 32,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

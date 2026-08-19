@@ -1,0 +1,51 @@
+{
+  "kind": "combat_status",
+  "id": 4257,
+  "name": "Ruheglocke",
+  "description": "Mit jeder erlittenen Attacke tritt ein Heileffekt ein.",
+  "effects": [
+    "Mit jeder erlittenen Attacke tritt ein Heileffekt ein."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 229920,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 3000
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 41619,
+      "name": "Ruheglocke",
+      "description": "Du gewährst dem Ziel Ruheglocke, die bei erlittenem Schaden während der Effektdauer Heilung wirkt.\nDauer: 60 Sekunden\nHeilpotenzial: 2.000",
+      "description_macro": "Du gewährst dem Ziel <colortype(506)><edgecolortype(507)>Ruheglocke<edgecolortype(0)><colortype(0)>, die bei erlittenem Schaden während der Effektdauer Heilung wirkt.<br>Dauer: 60 Sekunden<br>Heilpotenzial: <if([gnum108>=5],3.000,2.000)>",
+      "unlock_level": 0,
+      "relations": [
+        "granted_by_description",
+        "same_name"
+      ],
+      "roles": [
+        "Phantom Jobs"
+      ],
+      "jobs": [
+        {
+          "id": 7,
+          "name": "Phantom Phantom-Geomant",
+          "abbreviation": "Ph-Geomant",
+          "is_phantom": true
+        }
+      ]
+    }
+  ]
+}

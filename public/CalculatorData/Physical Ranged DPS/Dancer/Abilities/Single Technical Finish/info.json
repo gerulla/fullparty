@@ -1,0 +1,104 @@
+{
+  "kind": "ability",
+  "id": 16193,
+  "name": "Single Technical Finish",
+  "description": "Delivers an attack to all nearby enemies within 15 yalms. Potency varies with number of successful steps, dealing full potency for the first enemy, and 60% less for all remaining enemies.\n0 Steps: 350\n1 Step: 540\n2 Steps: 720\n3 Steps: 900\n4 Steps: 1\\\nStep Bonus: Grants Technical Finish and Esprit to self and party members within 30 yalms\nDamage bonus of Technical Finish varies with number of successful steps.\n1 Step: 1%\n2 Steps: 2%\n3 Steps: 3%\n4 Steps: 5%\nDuration: 20s\nAdditional Effect: Grants Flourishing Finish\nDuration: 30s\nAdditional Effect: Grants Dance of the Dawn Ready\nDuration: 30s\nCan only be executed while dancing.\nThis weaponskill does not share a recast timer with any other actions. Upon execution, the recast timer for this action will be applied to all other weaponskills and magic actions.\n\n※This action cannot be assigned to a hotbar.\n※Technical Step changes to Single Technical Finish when requirements for execution are met.",
+  "description_macro": "Delivers an attack to all nearby enemies within 15 yalms. Potency varies with number of successful steps, dealing full potency for the first enemy, and 60% less for all remaining enemies.<br><colortype(504)><edgecolortype(505)>0 Steps: <edgecolortype(0)><colortype(0)>350<br><colortype(504)><edgecolortype(505)>1 Step: <edgecolortype(0)><colortype(0)>540<br><colortype(504)><edgecolortype(505)>2 Steps: <edgecolortype(0)><colortype(0)>720<br><colortype(504)><edgecolortype(505)>3 Steps: <edgecolortype(0)><colortype(0)>900<br><colortype(504)><edgecolortype(505)>4 Steps: <edgecolortype(0)><colortype(0)><if([gnum68==38],<if([gnum72>=94],1\\,300,1\\,200)>,1\\,200)><br><if([gnum68==38],<if([gnum72>=76],<colortype(504)><edgecolortype(505)>Step Bonus: <edgecolortype(0)><colortype(0)>Grants <colortype(506)><edgecolortype(507)>Technical Finish<edgecolortype(0)><colortype(0)> and <colortype(506)><edgecolortype(507)>Esprit<edgecolortype(0)><colortype(0)> to self and party members within 30 yalms,<colortype(504)><edgecolortype(505)>Step Bonus: <edgecolortype(0)><colortype(0)>Grants <colortype(506)><edgecolortype(507)>Technical Finish<edgecolortype(0)><colortype(0)> to self and party members within 30 yalms)>,<colortype(504)><edgecolortype(505)>Step Bonus: <edgecolortype(0)><colortype(0)>Grants <colortype(506)><edgecolortype(507)>Technical Finish<edgecolortype(0)><colortype(0)> to self and party members within 30 yalms)><br>Damage bonus of <colortype(506)><edgecolortype(507)>Technical Finish<edgecolortype(0)><colortype(0)> varies with number of successful steps.<br><colortype(504)><edgecolortype(505)>1 Step: <edgecolortype(0)><colortype(0)>1%<br><colortype(504)><edgecolortype(505)>2 Steps: <edgecolortype(0)><colortype(0)>2%<br><colortype(504)><edgecolortype(505)>3 Steps: <edgecolortype(0)><colortype(0)>3%<br><colortype(504)><edgecolortype(505)>4 Steps: <edgecolortype(0)><colortype(0)>5%<br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>20s<br><if([gnum68==38],<if([gnum72>=82],<colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>Grants <colortype(506)><edgecolortype(507)>Flourishing Finish<edgecolortype(0)><colortype(0)><br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>30s<br>,)>,)><if([gnum68==38],<if([gnum72>=100],<colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>Grants <colortype(506)><edgecolortype(507)>Dance of the Dawn Ready<edgecolortype(0)><colortype(0)><br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>30s<br>,)>,)>Can only be executed while dancing.<br>This weaponskill does not share a recast timer with any other actions. Upon execution, the recast timer for this action will be applied to all other weaponskills and magic actions.<br><br>※This action cannot be assigned to a hotbar.<br>※<colortype(500)><edgecolortype(501)>Technical Step<edgecolortype(0)><colortype(0)> changes to <colortype(500)><edgecolortype(501)>Single Technical Finish<edgecolortype(0)><colortype(0)> when requirements for execution are met.",
+  "effects": [
+    "Delivers an attack to all nearby enemies within 15 yalms. Potency varies with number of successful steps, dealing full potency for the first enemy, and 60% less for all remaining enemies.",
+    "0 Steps: 350",
+    "1 Step: 540",
+    "2 Steps: 720",
+    "3 Steps: 900",
+    "4 Steps: 1\\",
+    "Step Bonus: Grants Technical Finish and Esprit to self and party members within 30 yalms",
+    "Damage bonus of Technical Finish varies with number of successful steps.",
+    "1 Step: 1%",
+    "2 Steps: 2%",
+    "3 Steps: 3%",
+    "4 Steps: 5%",
+    "Duration: 20s",
+    "Additional Effect: Grants Flourishing Finish",
+    "Duration: 30s",
+    "Additional Effect: Grants Dance of the Dawn Ready",
+    "Duration: 30s",
+    "Can only be executed while dancing.",
+    "This weaponskill does not share a recast timer with any other actions. Upon execution, the recast timer for this action will be applied to all other weaponskills and magic actions.",
+    "※This action cannot be assigned to a hotbar.",
+    "※Technical Step changes to Single Technical Finish when requirements for execution are met."
+  ],
+  "role": "Physical Ranged DPS",
+  "job": {
+    "id": 38,
+    "name": "Dancer",
+    "abbreviation": "DNC"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 70,
+  "icon": {
+    "id": 3474,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 3,
+    "name": "Weaponskill"
+  },
+  "attack_type": {
+    "id": 4294967295,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 2.5,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 58,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 0,
+      "value": 0
+    },
+    "secondary": {
+      "type_id": 90,
+      "value": 5
+    }
+  },
+  "range": {
+    "target_yalms": 0,
+    "effect_yalms": 15,
+    "cast_type": 2
+  },
+  "targeting": {
+    "self": true,
+    "party": false,
+    "alliance": false,
+    "hostile": false,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 7,
+    "behavior_type": 0,
+    "class_job_category_id": 150,
+    "source_class_job_id": 0,
+    "is_role_action": false,
+    "is_player_action": false,
+    "is_derived_action": true,
+    "equivalence_group": 0
+  }
+}

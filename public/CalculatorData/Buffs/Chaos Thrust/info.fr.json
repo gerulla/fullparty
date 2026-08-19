@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 1312,
+  "name": "Percée chaotique",
+  "description": "Des dégâts périodiques sont subis, et les dégâts reçus du joueur ayant créé l'effet sont augmentés.",
+  "effects": [
+    "Des dégâts périodiques sont subis, et les dégâts reçus du joueur ayant créé l'effet sont augmentés."
+  ],
+  "classification": "debuff",
+  "icon": {
+    "id": 210307,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 2,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": true,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 10
+  },
+  "class_job_category_id": 23,
+  "source_abilities": [
+    {
+      "id": 88,
+      "name": "Percée chaotique",
+      "description": "Effectue une attaque physique sur la cible.\nPuissance : 100\nPuissance par derrière : 140\nCombo : Éventration\nPuissance du combo : 220\nPuissance du combo par derrière : 260\nBonus du combo : dégâts périodiques.\nPuissance : 40 Durée : 24s",
+      "description_macro": "Effectue une attaque physique sur la cible.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> 100<br><colortype(506)><edgecolortype(507)>Puissance par derrière<nbsp>:<edgecolortype(0)><colortype(0)> 140<br><colortype(506)><edgecolortype(507)>Combo<nbsp>:<edgecolortype(0)><colortype(0)> Éventration<br><colortype(506)><edgecolortype(507)>Puissance du combo<nbsp>:<edgecolortype(0)><colortype(0)> 220<br><colortype(506)><edgecolortype(507)>Puissance du combo par derrière<nbsp>:<edgecolortype(0)><colortype(0)> 260<br><colortype(506)><edgecolortype(507)>Bonus du combo<nbsp>:<edgecolortype(0)><colortype(0)> dégâts périodiques.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> 40 <colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 24s",
+      "unlock_level": 50,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 22,
+          "name": "Chevalier Dragon",
+          "abbreviation": "DRG",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

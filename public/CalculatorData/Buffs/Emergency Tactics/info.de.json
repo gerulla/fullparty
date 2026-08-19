@@ -1,0 +1,71 @@
+{
+  "kind": "combat_status",
+  "id": 792,
+  "name": "Apotropaion",
+  "description": "Nächste erlangte Dynamisieren- oder Katalyse-Barriere wird aufgehoben und in LP-Regeneration in Höhe der Schadensreduktion umgewandelt.",
+  "effects": [
+    "Nächste erlangte Dynamisieren- oder Katalyse-Barriere wird aufgehoben und in LP-Regeneration in Höhe der Schadensreduktion umgewandelt."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 212806,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 3586,
+      "name": "Apotropaion",
+      "description": "Du regenerierst beim nächsten erlangten Dynamisieren- oder Katalyse-Status LP in der Höhe der Schadensreduktion, die dir die Dynamisieren- oder Katalyse-Barriere gewährt hätte.\nDauer: 15 Sekunden",
+      "description_macro": "Du regenerierst beim nächsten erlangten <colortype(506)><edgecolortype(507)>Dynamisieren<edgecolortype(0)><colortype(0)>- oder <colortype(506)><edgecolortype(507)>Katalyse<edgecolortype(0)><colortype(0)>-Status LP in der Höhe der Schadensreduktion, die dir die <colortype(506)><edgecolortype(507)>Dynamisieren<edgecolortype(0)><colortype(0)>- oder <colortype(506)><edgecolortype(507)>Katalyse<edgecolortype(0)><colortype(0)>-Barriere gewährt hätte.<br>Dauer: 15 Sekunden",
+      "unlock_level": 58,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Healer"
+      ],
+      "jobs": [
+        {
+          "id": 28,
+          "name": "Gelehrter",
+          "abbreviation": "GLT",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 37037,
+      "name": "Apotropaion",
+      "description": "Du regenerierst beim nächsten erlangten Dynamisieren- oder Katalyse-Status LP in der Höhe der Schadensreduktion, die dir die Dynamisieren- oder Katalyse-Barriere gewährt hätte.\nDauer: 15 Sekunden",
+      "description_macro": "Du regenerierst beim nächsten erlangten <colortype(506)><edgecolortype(507)>Dynamisieren<edgecolortype(0)><colortype(0)>- oder <colortype(506)><edgecolortype(507)>Katalyse<edgecolortype(0)><colortype(0)>-Status LP in der Höhe der Schadensreduktion, die dir die <colortype(506)><edgecolortype(507)>Dynamisieren<edgecolortype(0)><colortype(0)>- oder <colortype(506)><edgecolortype(507)>Katalyse<edgecolortype(0)><colortype(0)>-Barriere gewährt hätte.<br>Dauer: 15 Sekunden",
+      "unlock_level": 100,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Healer"
+      ],
+      "jobs": [
+        {
+          "id": 28,
+          "name": "Gelehrter",
+          "abbreviation": "GLT",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

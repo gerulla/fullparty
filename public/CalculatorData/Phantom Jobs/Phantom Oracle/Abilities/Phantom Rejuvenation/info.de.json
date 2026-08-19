@@ -1,0 +1,86 @@
+{
+  "kind": "ability",
+  "id": 41643,
+  "name": "Phantom-Genesung",
+  "description": "Du gewährst dir oder einem Gruppenmitglied Phantom-Genesung. Bei Ende des Effekts werden die LP des Ziels und umstehender Gruppenmitglieder im Umkreis von 30y regeneriert.\nDauer: 20 Sekunden\nHeilpotenzial: 90.000",
+  "description_macro": "Du gewährst dir oder einem Grup<->pen<->mit<->glied <colortype(506)><edgecolortype(507)>Phantom-Genesung<edgecolortype(0)><colortype(0)>. Bei Ende des Effekts werden die LP des Ziels und umstehender Grup<->pen<->mit<->glieder im Umkreis von 30y regeneriert.<br>Dauer: 20 Sekunden<br>Heilpotenzial: 90.000",
+  "effects": [
+    "Du gewährst dir oder einem Gruppenmitglied Phantom-Genesung. Bei Ende des Effekts werden die LP des Ziels und umstehender Gruppenmitglieder im Umkreis von 30y regeneriert.",
+    "Dauer: 20 Sekunden",
+    "Heilpotenzial: 90.000"
+  ],
+  "role": "Phantom Jobs",
+  "job": {
+    "id": 11,
+    "name": "Phantom-Seher",
+    "abbreviation": "Ph-Seher"
+  },
+  "is_phantom_action": true,
+  "unlock_level": 4,
+  "icon": {
+    "id": 64565,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 4,
+    "name": "Talent"
+  },
+  "attack_type": {
+    "id": 0,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 60,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 86,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 0,
+      "value": 0
+    },
+    "secondary": {
+      "type_id": 0,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": 30,
+    "effect_yalms": 0,
+    "cast_type": 1
+  },
+  "targeting": {
+    "self": true,
+    "party": true,
+    "alliance": false,
+    "hostile": false,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": false
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 0,
+    "behavior_type": 0,
+    "class_job_category_id": 142,
+    "source_class_job_id": 4294967295,
+    "is_role_action": false,
+    "is_player_action": false,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

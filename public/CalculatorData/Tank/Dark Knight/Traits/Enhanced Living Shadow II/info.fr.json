@@ -1,0 +1,27 @@
+{
+  "kind": "trait",
+  "id": 423,
+  "name": "Ombre vivante améliorée II",
+  "description": "Votre estime utilise Porteur d'ombre à la place de Déluge d'ombre.\n\nEffectue une attaque magique neutre en ligne droite sur les ennemis devant vous.\nPuissance : 570\nLa puissance est réduite de 25% au-delà du premier ennemi touché.",
+  "description_macro": "Votre estime utilise <colortype(500)><edgecolortype(501)>Porteur d'ombre<edgecolortype(0)><colortype(0)> à la place de <colortype(500)><edgecolortype(501)>Déluge d'ombre<edgecolortype(0)><colortype(0)>.<br><br>Effectue une attaque magique neutre en ligne droite sur les ennemis devant vous.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> 570<br>La puissance est réduite de 25% au-delà du premier ennemi touché.",
+  "effects": [
+    "Votre estime utilise Porteur d'ombre à la place de Déluge d'ombre.",
+    "Effectue une attaque magique neutre en ligne droite sur les ennemis devant vous.",
+    "Puissance : 570",
+    "La puissance est réduite de 25% au-delà du premier ennemi touché."
+  ],
+  "role": "Tank",
+  "job": {
+    "id": 32,
+    "name": "Chevalier Noir",
+    "abbreviation": "CHN"
+  },
+  "unlock_level": 90,
+  "value": 0,
+  "icon": {
+    "id": 6066,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 98,
+  "source_class_job_id": 32
+}

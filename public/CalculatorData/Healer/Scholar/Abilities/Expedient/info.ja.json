@@ -1,0 +1,88 @@
+{
+  "kind": "ability",
+  "id": 25868,
+  "name": "疾風怒濤の計",
+  "description": "一定時間、自身と周囲のパーティメンバーに「疾風の計」と「怒涛の計」を付与する。\n疾風の計効果：対象の移動速度を上昇させる。\n効果時間：10秒\n怒涛の計効果：被ダメージを10％軽減させる。\n効果時間：20秒",
+  "description_macro": "一定時間、自身と周囲のパーティメンバーに<colortype(500)><edgecolortype(501)>「疾風の計」<edgecolortype(0)><colortype(0)>と<colortype(500)><edgecolortype(501)>「怒涛の計」<edgecolortype(0)><colortype(0)>を付与する。<br><colortype(504)><edgecolortype(505)>疾風の計効果：<edgecolortype(0)><colortype(0)>対象の移動速度を上昇させる。<br><colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>10秒<br><colortype(504)><edgecolortype(505)>怒涛の計効果：<edgecolortype(0)><colortype(0)>被ダメージを10％軽減させる。<br><colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>20秒",
+  "effects": [
+    "一定時間、自身と周囲のパーティメンバーに「疾風の計」と「怒涛の計」を付与する。",
+    "疾風の計効果：対象の移動速度を上昇させる。",
+    "効果時間：10秒",
+    "怒涛の計効果：被ダメージを10％軽減させる。",
+    "効果時間：20秒"
+  ],
+  "role": "Healer",
+  "job": {
+    "id": 28,
+    "name": "学者",
+    "abbreviation": "SCH"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 90,
+  "icon": {
+    "id": 2878,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 4,
+    "name": "アビリティ"
+  },
+  "attack_type": {
+    "id": 0,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 120,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 19,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 0,
+      "value": 0
+    },
+    "secondary": {
+      "type_id": 0,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": 0,
+    "effect_yalms": 30,
+    "cast_type": 2
+  },
+  "targeting": {
+    "self": true,
+    "party": false,
+    "alliance": false,
+    "hostile": false,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": false
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 0,
+    "behavior_type": 0,
+    "class_job_category_id": 29,
+    "source_class_job_id": 28,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

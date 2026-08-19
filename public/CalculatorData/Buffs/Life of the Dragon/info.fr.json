@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 3177,
+  "name": "Vie du dragon",
+  "description": "Les dégâts infligés et reçus sont augmentés.",
+  "effects": [
+    "Les dégâts infligés et reçus sont augmentés."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 214935,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": true,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 10
+  },
+  "class_job_category_id": 23,
+  "source_abilities": [
+    {
+      "id": 3555,
+      "name": "Geirskögul",
+      "description": "Effectue une attaque physique en ligne droite sur les ennemis devant vous.\nPuissance : 280\nLa puissance est réduite de 50% au-delà du premier ennemi touché.\nEffet additionnel : vous octroie Vie du dragon.\nDurée : 20s\nVie du dragon : augmente de 15% vos dégâts infligés.\nEffet additionnel : vous octroie Naströnd préparé.\nDurée : 20s",
+      "description_macro": "Effectue une attaque physique en ligne droite sur les ennemis devant vous.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> <if([gnum68==22],<if([gnum72>=90],280,200)>,200)><br>La puissance est réduite de 50% au-delà du premier ennemi touché.<br><if([gnum72>=70],<if([gnum68==22],<colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> vous octroie <colortype(500)><edgecolortype(501)>Vie du dragon<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 20s<br><colortype(506)><edgecolortype(507)>Vie du dragon<nbsp>:<edgecolortype(0)><colortype(0)> augmente de 15% vos dégâts infligés.<br><colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> vous octroie <colortype(500)><edgecolortype(501)>Naströnd préparé<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 20s,<colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> vous octroie <colortype(500)><edgecolortype(501)>Sang du dragon<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 20s<br><colortype(506)><edgecolortype(507)>Sang du dragon<nbsp>:<edgecolortype(0)><colortype(0)> augmente de 10% vos dégâts infligés.)>,<colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> vous octroie <colortype(500)><edgecolortype(501)>Sang du dragon<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 20s<br><colortype(506)><edgecolortype(507)>Sang du dragon<nbsp>:<edgecolortype(0)><colortype(0)> augmente de 10% vos dégâts infligés.)>",
+      "unlock_level": 60,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 22,
+          "name": "Chevalier Dragon",
+          "abbreviation": "DRG",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

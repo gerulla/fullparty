@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 271,
+  "name": "暗黒マスタリー",
+  "description": "暗黒の波動が漆黒の波動に、暗黒の剣が漆黒の剣に変化する。",
+  "description_macro": "暗黒の波動が漆黒の波動に、暗黒の剣が漆黒の剣に変化する。",
+  "effects": [
+    "暗黒の波動が漆黒の波動に、暗黒の剣が漆黒の剣に変化する。"
+  ],
+  "role": "Tank",
+  "job": {
+    "id": 32,
+    "name": "暗黒騎士",
+    "abbreviation": "DRK"
+  },
+  "unlock_level": 74,
+  "value": 0,
+  "icon": {
+    "id": 6062,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 98,
+  "source_class_job_id": 32
+}

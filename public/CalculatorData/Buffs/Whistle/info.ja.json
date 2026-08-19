@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 880,
+  "name": "仕事唄",
+  "description": "スタック数に応じてさまざまな製作効果が得られる状態。",
+  "effects": [
+    "スタック数に応じてさまざまな製作効果が得られる状態。"
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 218361,
+    "file": "icon.png"
+  },
+  "max_stacks": 11,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": true,
+  "is_permanent": false,
+  "inflicted_by_actor": true,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 50
+  },
+  "class_job_category_id": 33,
+  "source_abilities": [
+    {
+      "id": 18309,
+      "name": "ホイッスル",
+      "description": "効果時間中に実行する1回の魔法について、物理攻撃である場合は威力を80％上昇させる。\u3000効果時間：30秒\n「力溜め」とは同時に付与されない。",
+      "description_macro": "効果時間中に実行する1回の魔法について、物理攻撃である場合は威力を80％上昇させる。\u3000<colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>30秒<br><colortype(500)><edgecolortype(501)>「力溜め」<edgecolortype(0)><colortype(0)>とは同時に付与されない。",
+      "unlock_level": 1,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Magical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 36,
+          "name": "青魔道士",
+          "abbreviation": "BLU",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

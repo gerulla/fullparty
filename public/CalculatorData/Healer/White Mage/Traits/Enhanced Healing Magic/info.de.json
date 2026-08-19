@@ -1,0 +1,33 @@
+{
+  "kind": "trait",
+  "id": 489,
+  "name": "Meister der Heilmagie",
+  "description": "Erhöht das Heilpotenzial folgender Kommandos:\nHeilpotenzial von Vita: 500\nHeilpotenzial von Reseda: 400\nHeilpotenzial von Vitra: 800\nHeilpotenzial von Regena (stetige LP-Heilung): 250\nHeilpotenzial von Vitaga: 600\nHeilpotenzial von Resedra: 250\nHeilpotenzial von Resedra (stetige LP-Heilung): 150\nHeilpotenzial von Afflatus solatii: 800\nHeilpotenzial von Afflatus laetitiae: 400",
+  "description_macro": "Erhöht das Heilpotenzial folgender Kommandos:<br>Heilpotenzial von <colortype(502)><edgecolortype(503)>Vita<edgecolortype(0)><colortype(0)>: 500<br>Heilpotenzial von <colortype(502)><edgecolortype(503)>Reseda<edgecolortype(0)><colortype(0)>: 400<br>Heilpotenzial von <colortype(502)><edgecolortype(503)>Vitra<edgecolortype(0)><colortype(0)>: 800<br>Heilpotenzial von <colortype(502)><edgecolortype(503)>Regena<edgecolortype(0)><colortype(0)> (stetige LP-Heilung): 250<br>Heilpotenzial von <colortype(502)><edgecolortype(503)>Vitaga<edgecolortype(0)><colortype(0)>: 600<br>Heilpotenzial von <colortype(502)><edgecolortype(503)>Resedra<edgecolortype(0)><colortype(0)>: 250<br>Heilpotenzial von <colortype(502)><edgecolortype(503)>Resedra<edgecolortype(0)><colortype(0)> (stetige LP-Heilung): 150<br>Heilpotenzial von <colortype(502)><edgecolortype(503)>Afflatus solatii<edgecolortype(0)><colortype(0)>: 800<br>Heilpotenzial von <colortype(502)><edgecolortype(503)>Afflatus laetitiae<edgecolortype(0)><colortype(0)>: 400",
+  "effects": [
+    "Erhöht das Heilpotenzial folgender Kommandos:",
+    "Heilpotenzial von Vita: 500",
+    "Heilpotenzial von Reseda: 400",
+    "Heilpotenzial von Vitra: 800",
+    "Heilpotenzial von Regena (stetige LP-Heilung): 250",
+    "Heilpotenzial von Vitaga: 600",
+    "Heilpotenzial von Resedra: 250",
+    "Heilpotenzial von Resedra (stetige LP-Heilung): 150",
+    "Heilpotenzial von Afflatus solatii: 800",
+    "Heilpotenzial von Afflatus laetitiae: 400"
+  ],
+  "role": "Healer",
+  "job": {
+    "id": 24,
+    "name": "Weißmagier",
+    "abbreviation": "WMA"
+  },
+  "unlock_level": 85,
+  "value": 0,
+  "icon": {
+    "id": 6826,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 25,
+  "source_class_job_id": 24
+}

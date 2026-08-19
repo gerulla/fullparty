@@ -1,0 +1,32 @@
+{
+  "kind": "trait",
+  "id": 380,
+  "name": "Verbesserte Ernte",
+  "description": "Erhöht den Attacke-Wert folgender Kommandos:\nAttacke-Wert von Schlitzer: 300\nAttacke-Wert von Neulicht-Schlitzer: 140\nAttacke-Wert von Schatten des Todes: 300\nAttacke-Wert von Harpe: 300\nAttacke-Wert von Sichelwirbel: 140\nAttacke-Wert von Infernalischer Schlitzer: 140\nAttacke-Wert von Sog des Todes: 100\nAttacke-Wert von Schneidender Albtraum: 120",
+  "description_macro": "Erhöht den Attacke-Wert folgender Kommandos:<br>Attacke-Wert von <colortype(502)><edgecolortype(503)>Schlitzer<edgecolortype(0)><colortype(0)>: 300<br>Attacke-Wert von <colortype(502)><edgecolortype(503)>Neulicht-Schlitzer<edgecolortype(0)><colortype(0)>: 140<br>Attacke-Wert von <colortype(502)><edgecolortype(503)>Schatten des Todes<edgecolortype(0)><colortype(0)>: 300<br>Attacke-Wert von <colortype(502)><edgecolortype(503)>Harpe<edgecolortype(0)><colortype(0)>: 300<br>Attacke-Wert von <colortype(502)><edgecolortype(503)>Sichelwirbel<edgecolortype(0)><colortype(0)>: 140<br>Attacke-Wert von <colortype(502)><edgecolortype(503)>Infernalischer Schlitzer<edgecolortype(0)><colortype(0)>: 140<br>Attacke-Wert von <colortype(502)><edgecolortype(503)>Sog des Todes<edgecolortype(0)><colortype(0)>: 100<br>Attacke-Wert von <colortype(502)><edgecolortype(503)>Schneidender Albtraum<edgecolortype(0)><colortype(0)>: 120",
+  "effects": [
+    "Erhöht den Attacke-Wert folgender Kommandos:",
+    "Attacke-Wert von Schlitzer: 300",
+    "Attacke-Wert von Neulicht-Schlitzer: 140",
+    "Attacke-Wert von Schatten des Todes: 300",
+    "Attacke-Wert von Harpe: 300",
+    "Attacke-Wert von Sichelwirbel: 140",
+    "Attacke-Wert von Infernalischer Schlitzer: 140",
+    "Attacke-Wert von Sog des Todes: 100",
+    "Attacke-Wert von Schneidender Albtraum: 120"
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 39,
+    "name": "Schnitter",
+    "abbreviation": "SNT"
+  },
+  "unlock_level": 60,
+  "value": 0,
+  "icon": {
+    "id": 6801,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 180,
+  "source_class_job_id": 39
+}

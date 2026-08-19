@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 90,
+  "name": "All Fours",
+  "description": "Reduces damage taken when falling.",
+  "description_macro": "Reduces damage taken when falling.",
+  "effects": [
+    "Reduces damage taken when falling."
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 30,
+    "name": "Ninja",
+    "abbreviation": "NIN"
+  },
+  "unlock_level": 14,
+  "value": 10,
+  "icon": {
+    "id": 5401,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 93,
+  "source_class_job_id": 29
+}

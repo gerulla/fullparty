@@ -1,0 +1,95 @@
+{
+  "kind": "ability",
+  "id": 2245,
+  "name": "Dissimulation",
+  "description": "Vous cache de la plupart des ennemis, mais réduit de 50% votre vitesse de déplacement.\nN'a aucun effet sur certains ennemis et sur ceux ayant au moins 10 niveaux de plus que vous.\nL'effet prend fin en relançant l'action ou en en utilisant une autre à l'exception de Sprint.\nEffet additionnel : restaure les charges des mûdra.\nDissipe Doton si actif.\nCondition : hors combat.",
+  "description_macro": "Vous cache de la plupart des ennemis, mais réduit de 50% votre vitesse de déplacement.<br>N'a aucun effet sur certains ennemis et sur ceux ayant au moins 10 niveaux de plus que vous.<br>L'effet prend fin en relançant l'action ou en en utilisant une autre à l'exception de Sprint.<br><if([gnum72>=30],<if([gnum68==30],<colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> restaure les charges des mûdra.<br>,)>,)><if([gnum68==30],<if([gnum72>=45],Dissipe<colortype(500)><edgecolortype(501)> Doton <edgecolortype(0)><colortype(0)>si actif.<br>,)>,)><colortype(506)><edgecolortype(507)>Condition<nbsp>:<edgecolortype(0)><colortype(0)> hors combat.",
+  "effects": [
+    "Vous cache de la plupart des ennemis, mais réduit de 50% votre vitesse de déplacement.",
+    "N'a aucun effet sur certains ennemis et sur ceux ayant au moins 10 niveaux de plus que vous.",
+    "L'effet prend fin en relançant l'action ou en en utilisant une autre à l'exception de Sprint.",
+    "Effet additionnel : restaure les charges des mûdra.",
+    "Dissipe Doton si actif.",
+    "Condition : hors combat."
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 30,
+    "name": "Ninja",
+    "abbreviation": "NIN"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 10,
+  "icon": {
+    "id": 609,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 4,
+    "name": "Aptitude"
+  },
+  "attack_type": {
+    "id": 0,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 20,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 3,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 0,
+      "value": 0
+    },
+    "secondary": {
+      "type_id": 38,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": 0,
+    "effect_yalms": 0,
+    "cast_type": 1
+  },
+  "targeting": {
+    "self": true,
+    "party": false,
+    "alliance": false,
+    "hostile": false,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": {
+      "id": 614,
+      "name": "Dissimulation",
+      "description": "Invisible à la plupart des ennemis, mais la vitesse de déplacement est réduite.",
+      "icon_id": 210607,
+      "max_stacks": 0
+    },
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 0,
+    "behavior_type": 0,
+    "class_job_category_id": 93,
+    "source_class_job_id": 29,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

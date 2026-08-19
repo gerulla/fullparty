@@ -1,0 +1,91 @@
+{
+  "kind": "ability",
+  "id": 16146,
+  "name": "Croc pugnace",
+  "description": "Effectue une attaque physique sur la cible.\nPuissance : 440\nEffet additionnel : vous octroie Arrachage de la jugulaire préparé.\nDurée : 10s\nCet effet disparaît si une technique d'arme est utilisée.\nMaximum de charges : 2\nCondition : consomme une Cartouche d'éther.\nCette action a un temps de recharge indépendant.",
+  "description_macro": "Effectue une attaque physique sur la cible.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> <if([gnum68==37],<if([gnum72>=94],440,330)>,330)><br><if([gnum68==37],<if([gnum72>=70],<colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> vous octroie <colortype(500)><edgecolortype(501)>Arrachage de la jugulaire préparé<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 10s<br>Cet effet disparaît si une technique d'arme est utilisée.<br>,)>,)><colortype(506)><edgecolortype(507)>Maximum de charges<nbsp>:<edgecolortype(0)><colortype(0)> 2<br><colortype(506)><edgecolortype(507)>Condition<nbsp>:<edgecolortype(0)><colortype(0)> consomme une <colortype(500)><edgecolortype(501)>Cartouche d'éther<edgecolortype(0)><colortype(0)>.<br>Cette action a un temps de recharge indépendant.",
+  "effects": [
+    "Effectue une attaque physique sur la cible.",
+    "Puissance : 440",
+    "Effet additionnel : vous octroie Arrachage de la jugulaire préparé.",
+    "Durée : 10s",
+    "Cet effet disparaît si une technique d'arme est utilisée.",
+    "Maximum de charges : 2",
+    "Condition : consomme une Cartouche d'éther.",
+    "Cette action a un temps de recharge indépendant."
+  ],
+  "role": "Tank",
+  "job": {
+    "id": 37,
+    "name": "Pistosabreur",
+    "abbreviation": "PSB"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 60,
+  "icon": {
+    "id": 3410,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 3,
+    "name": "Technique d'arme"
+  },
+  "attack_type": {
+    "id": 4294967295,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 30,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 8,
+    "additional_cooldown_group": 58,
+    "max_charges": 2
+  },
+  "costs": {
+    "primary": {
+      "type_id": 55,
+      "value": 1
+    },
+    "secondary": {
+      "type_id": 0,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": -1,
+    "effect_yalms": 0,
+    "cast_type": 1
+  },
+  "targeting": {
+    "self": false,
+    "party": false,
+    "alliance": false,
+    "hostile": true,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 7,
+    "behavior_type": 0,
+    "class_job_category_id": 149,
+    "source_class_job_id": 37,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

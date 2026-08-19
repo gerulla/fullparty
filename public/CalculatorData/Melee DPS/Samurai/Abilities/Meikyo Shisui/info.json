@@ -1,0 +1,89 @@
+{
+  "kind": "ability",
+  "id": 7499,
+  "name": "Meikyo Shisui",
+  "description": "Execute up to 3 weaponskill combos without meeting combo prerequisites. Does not affect Iaijutsuor Ogi Namikiri.\nDuration: 20s\nAdditional Effect: Successfully landing Gekko grants Fugetsu, and successfully landing Kasha grants Fuka\nAdditional Effect: Grants Tendo\nDuration: 30s\nMaximum Charges: 2",
+  "description_macro": "Execute up to 3 weaponskill combos without meeting combo prerequisites. Does not affect <colortype(500)><edgecolortype(501)>Iaijutsu<edgecolortype(0)><colortype(0)><if([gnum68==34],<if([gnum72>=90], or <colortype(500)><edgecolortype(501)>Ogi Namikiri<edgecolortype(0)><colortype(0)>,)>,)>.<br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>20s<br><colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>Successfully landing <colortype(500)><edgecolortype(501)>Gekko<edgecolortype(0)><colortype(0)> grants <colortype(506)><edgecolortype(507)>Fugetsu<edgecolortype(0)><colortype(0)>, and successfully landing <colortype(500)><edgecolortype(501)>Kasha<edgecolortype(0)><colortype(0)> grants <colortype(506)><edgecolortype(507)>Fuka<edgecolortype(0)><colortype(0)><if([gnum68==34],<if([gnum72>=100],<br><colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>Grants <colortype(506)><edgecolortype(507)>Tendo<edgecolortype(0)><colortype(0)><br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>30s,)>,)><if([gnum68==34],<if([gnum72>=76],<br><colortype(504)><edgecolortype(505)>Maximum Charges: <edgecolortype(0)><colortype(0)>2,)>,)>",
+  "effects": [
+    "Execute up to 3 weaponskill combos without meeting combo prerequisites. Does not affect Iaijutsuor Ogi Namikiri.",
+    "Duration: 20s",
+    "Additional Effect: Successfully landing Gekko grants Fugetsu, and successfully landing Kasha grants Fuka",
+    "Additional Effect: Grants Tendo",
+    "Duration: 30s",
+    "Maximum Charges: 2"
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 34,
+    "name": "Samurai",
+    "abbreviation": "SAM"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 50,
+  "icon": {
+    "id": 3167,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 4,
+    "name": "Ability"
+  },
+  "attack_type": {
+    "id": 0,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 55,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 19,
+    "additional_cooldown_group": 71,
+    "max_charges": 1
+  },
+  "costs": {
+    "primary": {
+      "type_id": 0,
+      "value": 0
+    },
+    "secondary": {
+      "type_id": 0,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": 0,
+    "effect_yalms": 0,
+    "cast_type": 1
+  },
+  "targeting": {
+    "self": true,
+    "party": false,
+    "alliance": false,
+    "hostile": false,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 0,
+    "behavior_type": 0,
+    "class_job_category_id": 111,
+    "source_class_job_id": 34,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

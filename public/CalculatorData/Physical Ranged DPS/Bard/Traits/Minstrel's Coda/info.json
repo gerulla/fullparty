@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 448,
+  "name": "Minstrel's Coda",
+  "description": "Grants Mage's Coda, Army's Coda, or Wanderer's Coda upon singing Mage's Ballad, Army's Paeon, or the Wanderer's Minuet respectively.",
+  "description_macro": "Grants <colortype(506)><edgecolortype(507)>Mage's Coda<edgecolortype(0)><colortype(0)>, <colortype(506)><edgecolortype(507)>Army's Coda<edgecolortype(0)><colortype(0)>, or <colortype(506)><edgecolortype(507)>Wanderer's Coda<edgecolortype(0)><colortype(0)> upon singing <colortype(500)><edgecolortype(501)>Mage's Ballad<edgecolortype(0)><colortype(0)>, <colortype(500)><edgecolortype(501)>Army's Paeon<edgecolortype(0)><colortype(0)>, or the <colortype(500)><edgecolortype(501)>Wanderer's Minuet<edgecolortype(0)><colortype(0)> respectively.",
+  "effects": [
+    "Grants Mage's Coda, Army's Coda, or Wanderer's Coda upon singing Mage's Ballad, Army's Paeon, or the Wanderer's Minuet respectively."
+  ],
+  "role": "Physical Ranged DPS",
+  "job": {
+    "id": 23,
+    "name": "Bard",
+    "abbreviation": "BRD"
+  },
+  "unlock_level": 90,
+  "value": 0,
+  "icon": {
+    "id": 5320,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 24,
+  "source_class_job_id": 23
+}

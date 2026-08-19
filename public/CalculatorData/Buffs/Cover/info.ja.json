@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 1300,
+  "name": "かばう",
+  "description": "特定のパーティメンバーを護っている状態。",
+  "effects": [
+    "特定のパーティメンバーを護っている状態。"
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 212501,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": true,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 20,
+  "source_abilities": [
+    {
+      "id": 27,
+      "name": "かばう",
+      "description": "対象のパーティメンバーが受ける攻撃を肩代わりする。\nただし、一部の攻撃はかばうことができない。\n効果時間：12秒\n対象との距離が20mより離れると効果が発揮されない。\n発動条件：「オウス」50",
+      "description_macro": "対象のパーティメンバーが受ける攻撃を肩代わりする。<br>ただし、一部の攻撃はかばうことができない。<br><colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>12秒<br>対象との距離が20mより離れると効果が発揮されない。<br><colortype(504)><edgecolortype(505)>発動条件：<edgecolortype(0)><colortype(0)><colortype(500)><edgecolortype(501)>「オウス」<edgecolortype(0)><colortype(0)>50",
+      "unlock_level": 45,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Tank"
+      ],
+      "jobs": [
+        {
+          "id": 19,
+          "name": "ナイト",
+          "abbreviation": "PLD",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 2052,
+  "name": "Fächertanz",
+  "description": "Erlittener Schaden ist verringert.",
+  "effects": [
+    "Erlittener Schaden ist verringert."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 214861,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": true,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": -15
+  },
+  "class_job_category_id": 150,
+  "source_abilities": [
+    {
+      "id": 16007,
+      "name": "Fächertanz I",
+      "description": "Du führst eine physische Attacke aus.\nAttacke-Wert: 180\nZusatzeffekt: 50 % Wahrscheinlichkeit\\Plume Burlesque-Kosten: 1",
+      "description_macro": "Du führst eine physische Attacke aus.<br>Attacke-Wert: <if([gnum68==38],<if([gnum72>=94],180,150)>,150)><br><if([gnum68==38],<if([gnum72>=66],Zusatzeffekt: 50 % Wahr<->schein<->lich<->keit\\, sich selbst den Status <colortype(506)><edgecolortype(507)>Fächertanz III<edgecolortype(0)><colortype(0)> zu verleihen.<br>Dauer: 30 Sekunden<br>,)>,)><colortype(506)><edgecolortype(507)>Plume Burlesque<edgecolortype(0)><colortype(0)>-Kosten: 1",
+      "unlock_level": 30,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Physical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 38,
+          "name": "Tänzer",
+          "abbreviation": "TÄN",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

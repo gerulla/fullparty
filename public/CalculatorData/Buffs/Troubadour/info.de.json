@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 1934,
+  "name": "Troubadour",
+  "description": "Erlittener Schaden ist verringert.",
+  "effects": [
+    "Erlittener Schaden ist verringert."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 212615,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": -10
+  },
+  "class_job_category_id": 24,
+  "source_abilities": [
+    {
+      "id": 7405,
+      "name": "Troubadour",
+      "description": "Du verringerst den erlittenen Schaden von dir und den umstehenden Gruppenmitgliedern um 15 %.\nDauer: 15 Sekunden\nKann nicht zugleich mit Taktiker des Maschinisten oder Schildsamba des Tänzers aktiv sein.",
+      "description_macro": "Du verringerst den erlittenen Schaden von dir und den umstehenden Grup<->pen<->mit<->gliedern um <if([gnum68==23],<if([gnum72>=98],15,10)>,10)> %.<br>Dauer: 15 Sekunden<br>Kann nicht zugleich mit <colortype(500)><edgecolortype(501)>Taktiker<edgecolortype(0)><colortype(0)> des Maschinisten oder <colortype(500)><edgecolortype(501)>Schildsamba<edgecolortype(0)><colortype(0)> des Tänzers aktiv sein.",
+      "unlock_level": 62,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Physical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 23,
+          "name": "Barde",
+          "abbreviation": "BRD",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

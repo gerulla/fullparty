@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 4792,
+  "name": "Defend",
+  "description": "Damage taken is reduced.",
+  "effects": [
+    "Damage taken is reduced."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 229967,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": -50
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 46595,
+      "name": "Defend",
+      "description": "Reduces damage taken by 50%.\nDuration: 5s\nAdditional Effect: Grants a stack of Finishing Fervor upon taking reduced damage\nMaximum Stacks: 4\nDuration: 120s\nRemoves a stack of Finishing Fervor upon taking damage when the action is not on cooldown.",
+      "description_macro": "Reduces damage taken by 50%.<br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>5s<br><colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>Grants a stack of <colortype(506)><edgecolortype(507)>Finishing Fervor<edgecolortype(0)><colortype(0)> upon taking reduced damage<br><colortype(504)><edgecolortype(505)>Maximum Stacks: <edgecolortype(0)><colortype(0)>4<br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>120s<br>Removes a stack of <colortype(506)><edgecolortype(507)>Finishing Fervor<edgecolortype(0)><colortype(0)> upon taking damage when the action is not on cooldown.",
+      "unlock_level": 0,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Phantom Jobs"
+      ],
+      "jobs": [
+        {
+          "id": 14,
+          "name": "Phantom Gladiator",
+          "abbreviation": "Ph. Gladiator",
+          "is_phantom": true
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,96 @@
+{
+  "kind": "ability",
+  "id": 37012,
+  "name": "Gift und Galle",
+  "description": "Du fügst dem Ziel und den Gegnern in seiner Nähe elementneutralen magischen Schaden über Zeit zu.\nAttacke-Wert: 140\nDauer: 15 Sekunden\nBedingung: Mit Gift und Galle aktiv",
+  "description_macro": "Du fügst dem Ziel und den Gegnern in seiner Nähe elementneutralen magischen Schaden über Zeit zu.<br>Attacke-Wert: 140<br>Dauer: 15 Sekunden<br>Bedingung: <colortype(506)><edgecolortype(507)>Mit Gift und Galle<edgecolortype(0)><colortype(0)> aktiv",
+  "effects": [
+    "Du fügst dem Ziel und den Gegnern in seiner Nähe elementneutralen magischen Schaden über Zeit zu.",
+    "Attacke-Wert: 140",
+    "Dauer: 15 Sekunden",
+    "Bedingung: Mit Gift und Galle aktiv"
+  ],
+  "role": "Healer",
+  "job": {
+    "id": 28,
+    "name": "Gelehrter",
+    "abbreviation": "GLT"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 92,
+  "icon": {
+    "id": 2879,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 4,
+    "name": "Talent"
+  },
+  "attack_type": {
+    "id": 5,
+    "name": "魔法"
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 1,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 3,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 10,
+      "value": 3882
+    },
+    "secondary": {
+      "type_id": 32,
+      "value": 3882
+    }
+  },
+  "range": {
+    "target_yalms": 25,
+    "effect_yalms": 5,
+    "cast_type": 2
+  },
+  "targeting": {
+    "self": false,
+    "party": false,
+    "alliance": false,
+    "hostile": true,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": {
+      "id": 183,
+      "status": {
+        "id": 3882,
+        "name": "Mit Gift und Galle",
+        "description": "Gift und Galle kann ausgeführt werden.",
+        "icon_id": 212818,
+        "max_stacks": 0
+      }
+    }
+  },
+  "metadata": {
+    "aspect_id": 7,
+    "behavior_type": 0,
+    "class_job_category_id": 29,
+    "source_class_job_id": 28,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

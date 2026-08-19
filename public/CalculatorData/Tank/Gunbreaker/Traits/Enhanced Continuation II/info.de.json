@@ -1,0 +1,25 @@
+{
+  "kind": "trait",
+  "id": 575,
+  "name": "Verbesserte Triggerfolge II",
+  "description": "Die Ausführung von Schicksalszirkel gewährt dir nun Fäden des Schicksals, wodurch sich Triggerfolge zu Schicksalszeichen ändert.\nDauer: 10 Sekunden",
+  "description_macro": "Die Ausführung von <colortype(502)><edgecolortype(503)>Schicksalszirkel<edgecolortype(0)><colortype(0)> gewährt dir nun <colortype(506)><edgecolortype(507)>Fäden des Schicksals<edgecolortype(0)><colortype(0)>, wodurch sich <colortype(502)><edgecolortype(503)>Triggerfolge<edgecolortype(0)><colortype(0)> zu <colortype(502)><edgecolortype(503)>Schicksalszeichen<edgecolortype(0)><colortype(0)> ändert.<br>Dauer: 10 Sekunden",
+  "effects": [
+    "Die Ausführung von Schicksalszirkel gewährt dir nun Fäden des Schicksals, wodurch sich Triggerfolge zu Schicksalszeichen ändert.",
+    "Dauer: 10 Sekunden"
+  ],
+  "role": "Tank",
+  "job": {
+    "id": 37,
+    "name": "Revolverklinge",
+    "abbreviation": "REV"
+  },
+  "unlock_level": 96,
+  "value": 0,
+  "icon": {
+    "id": 6309,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 149,
+  "source_class_job_id": 37
+}

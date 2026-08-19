@@ -1,0 +1,51 @@
+{
+  "kind": "combat_status",
+  "id": 4271,
+  "name": "Gesundung",
+  "description": "Ändert sich bei Ablauf zu Vollständige Gesundung.",
+  "effects": [
+    "Ändert sich bei Ablauf zu Vollständige Gesundung."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 229928,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": true,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 41641,
+      "name": "Gesundung",
+      "description": "Du gewährst dir oder dem anvisierten Gruppenmitglied Gesundung. Nach Ablauf der Effektdauer wird ein negativer Status vom Ziel und Gruppenmitgliedern im Umkreis von 15y entfernt.\nDauer: 20 Sekunden\nFalls der Effekt nicht ausgelöst wird, ändert sich der Status zu Vollständige Gesundung.\nDauer: 3 Sekunden\nWird, während Vollständige Gesundung aktiv ist, ein negativer Effekt erhalten, wird ein negativer Status vom Ziel und umstehenden Gruppenmitgliedern entfernt.",
+      "description_macro": "Du gewährst dir oder dem anvisierten Grup<->pen<->mit<->glied <colortype(506)><edgecolortype(507)>Gesundung<edgecolortype(0)><colortype(0)>. Nach Ablauf der Effektdauer wird ein negativer Status vom Ziel und Grup<->pen<->mit<->gliedern im Umkreis von 15y entfernt.<br>Dauer: 20 Sekunden<br>Falls der Effekt nicht ausgelöst wird, ändert sich der Status zu <colortype(506)><edgecolortype(507)>Vollständige Gesundung<edgecolortype(0)><colortype(0)>.<br>Dauer: 3 Sekunden<br>Wird, während <colortype(506)><edgecolortype(507)>Vollständige Gesundung<edgecolortype(0)><colortype(0)> aktiv ist, ein negativer Effekt erhalten, wird ein negativer Status vom Ziel und umstehenden Grup<->pen<->mit<->gliedern entfernt.<if([gnum108>=3],<br>Gemeinsamer Reaktivierungs-Timer mit <colortype(502)><edgecolortype(503)>Phantom-Todesurteil<edgecolortype(0)><colortype(0)>,)>",
+      "unlock_level": 0,
+      "relations": [
+        "granted_by_description",
+        "same_name"
+      ],
+      "roles": [
+        "Phantom Jobs"
+      ],
+      "jobs": [
+        {
+          "id": 11,
+          "name": "Phantom Phantom-Seher",
+          "abbreviation": "Ph-Seher",
+          "is_phantom": true
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 168,
+  "name": "Meister der Bisse",
+  "description": "Giftbiss verwandelt sich in Kaustischer Biss, Beißender Wind in Sturmbiss.",
+  "description_macro": "<colortype(502)><edgecolortype(503)>Giftbiss<edgecolortype(0)><colortype(0)> verwandelt sich in <colortype(502)><edgecolortype(503)>Kaustischer Biss<edgecolortype(0)><colortype(0)>, <colortype(502)><edgecolortype(503)>Beißender Wind<edgecolortype(0)><colortype(0)> in <colortype(502)><edgecolortype(503)>Sturmbiss<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Giftbiss verwandelt sich in Kaustischer Biss, Beißender Wind in Sturmbiss."
+  ],
+  "role": "Physical Ranged DPS",
+  "job": {
+    "id": 23,
+    "name": "Barde",
+    "abbreviation": "BRD"
+  },
+  "unlock_level": 64,
+  "value": 0,
+  "icon": {
+    "id": 5309,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 24,
+  "source_class_job_id": 23
+}

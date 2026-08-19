@@ -1,0 +1,71 @@
+{
+  "kind": "combat_status",
+  "id": 173,
+  "name": "Lichtfeuer",
+  "description": "Deine Ätherbalance tendiert zum Licht. Feuerbasierte Zauber werden stärker, verbrauchen aber mehr MP. Eisbasierte Zauber werden schwächer, verbrauchen aber weniger MP. Außerdem werden keine MP mehr regeneriert.",
+  "effects": [
+    "Deine Ätherbalance tendiert zum Licht. Feuerbasierte Zauber werden stärker, verbrauchen aber mehr MP. Eisbasierte Zauber werden schwächer, verbrauchen aber weniger MP. Außerdem werden keine MP mehr regeneriert."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 210463,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": true,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 141,
+      "name": "Feuer",
+      "description": "Du fügst dem Ziel feuerbasierten magischen Schaden zu.\nAttacke-Wert: 180\nZusatzeffekt: Entfernt Schatteneis oder, falls nicht in diesem Status, gewährt Lichtfeuer.dass Feuga + gewährt wird.\nEffekt von Feuga +: Nächstes Feuga kann sofort und ohne MP-Kosten gewirkt werden.",
+      "description_macro": "Du fügst dem Ziel feuerbasierten magischen Schaden zu.<br>Attacke-Wert: 180<br>Zusatzeffekt: Entfernt <colortype(506)><edgecolortype(507)>Schatteneis<edgecolortype(0)><colortype(0)> oder, falls nicht in diesem Status, gewährt <colortype(506)><edgecolortype(507)>Lichtfeuer<edgecolortype(0)><colortype(0)>.<if([gnum72>=42],<if([gnum68==7],<br>Zusatzeffekt: 40 % Wahr<->schein<->lich<->keit\\, dass <colortype(506)><edgecolortype(507)>Feuga +<edgecolortype(0)><colortype(0)> gewährt wird.<br>Effekt von <colortype(506)><edgecolortype(507)>Feuga +<edgecolortype(0)><colortype(0)>: Nächstes <colortype(502)><edgecolortype(503)>Feuga<edgecolortype(0)><colortype(0)> kann sofort und ohne MP-Kosten gewirkt werden.,<if([gnum68==25],<br>Zusatzeffekt: 40 % Wahr<->schein<->lich<->keit\\, dass <colortype(506)><edgecolortype(507)>Feuga +<edgecolortype(0)><colortype(0)> gewährt wird.<br>Effekt von <colortype(506)><edgecolortype(507)>Feuga +<edgecolortype(0)><colortype(0)>: Nächstes <colortype(502)><edgecolortype(503)>Feuga<edgecolortype(0)><colortype(0)> kann sofort und ohne MP-Kosten gewirkt werden.,)>)>,)>",
+      "unlock_level": 2,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Magical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 25,
+          "name": "Schwarzmagier",
+          "abbreviation": "SMA",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 147,
+      "name": "Feura",
+      "description": "Du fügst dem Ziel und den Gegnern in seiner Nähe feuerbasierten magischen Schaden zu.\nAttacke-Wert: 80\nZusatzeffekt: Entfernt Schatteneis und gewährt dir die Maximalstapelzahl von Lichtfeuer.",
+      "description_macro": "Du fügst dem Ziel und den Gegnern in seiner Nähe feuerbasierten magischen Schaden zu.<br>Attacke-Wert: 80<br>Zusatzeffekt: Entfernt <colortype(506)><edgecolortype(507)>Schatteneis<edgecolortype(0)><colortype(0)> <if([gnum72>=35],<if([gnum68==7],und gewährt dir die Ma<->xi<->mal<->sta<->pel<->zahl von <colortype(506)><edgecolortype(507)>Lichtfeuer<edgecolortype(0)><colortype(0)>.,<if([gnum68==25],und gewährt dir die Ma<->xi<->mal<->sta<->pel<->zahl von <colortype(506)><edgecolortype(507)>Lichtfeuer<edgecolortype(0)><colortype(0)>.,oder\\, falls nicht in diesem Status\\, bewirkt <colortype(506)><edgecolortype(507)>Lichtfeuer<edgecolortype(0)><colortype(0)>.)>)>,oder\\, falls nicht in diesem Status\\, bewirkt <colortype(506)><edgecolortype(507)>Lichtfeuer<edgecolortype(0)><colortype(0)>.)>",
+      "unlock_level": 18,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Magical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 25,
+          "name": "Schwarzmagier",
+          "abbreviation": "SMA",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

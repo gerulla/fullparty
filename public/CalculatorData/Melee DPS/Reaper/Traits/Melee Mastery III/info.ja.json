@@ -1,0 +1,36 @@
+{
+  "kind": "trait",
+  "id": 657,
+  "name": "アクション威力アップIII",
+  "description": "特定のアクションの威力を上昇させる。\n\nスライスの威力：420\nワクシングスライスの威力：260\nインファナルスライスの威力：280\nソウルスライスの威力：520\nジビトゥの威力：500\nギャロウズの威力：500\nジビトゥクロウの威力：440\nギャロウズクロウの威力：440\nヴォイドリーパーの威力：580\nクロスリーパーの威力：580\nハーベストムーンの威力：800\nレムールスライスの威力：280",
+  "description_macro": "特定のアクションの威力を上昇させる。<br><br><colortype(504)><edgecolortype(505)>スライスの威力：<edgecolortype(0)><colortype(0)>420<br><colortype(504)><edgecolortype(505)>ワクシングスライスの威力：<edgecolortype(0)><colortype(0)>260<br><colortype(504)><edgecolortype(505)>インファナルスライスの威力：<edgecolortype(0)><colortype(0)>280<br><colortype(504)><edgecolortype(505)>ソウルスライスの威力：<edgecolortype(0)><colortype(0)>520<br><colortype(504)><edgecolortype(505)>ジビトゥの威力：<edgecolortype(0)><colortype(0)>500<br><colortype(504)><edgecolortype(505)>ギャロウズの威力：<edgecolortype(0)><colortype(0)>500<br><colortype(504)><edgecolortype(505)>ジビトゥクロウの威力：<edgecolortype(0)><colortype(0)>440<br><colortype(504)><edgecolortype(505)>ギャロウズクロウの威力：<edgecolortype(0)><colortype(0)>440<br><colortype(504)><edgecolortype(505)>ヴォイドリーパーの威力：<edgecolortype(0)><colortype(0)>580<br><colortype(504)><edgecolortype(505)>クロスリーパーの威力：<edgecolortype(0)><colortype(0)>580<br><colortype(504)><edgecolortype(505)>ハーベストムーンの威力：<edgecolortype(0)><colortype(0)>800<br><colortype(504)><edgecolortype(505)>レムールスライスの威力：<edgecolortype(0)><colortype(0)>280",
+  "effects": [
+    "特定のアクションの威力を上昇させる。",
+    "スライスの威力：420",
+    "ワクシングスライスの威力：260",
+    "インファナルスライスの威力：280",
+    "ソウルスライスの威力：520",
+    "ジビトゥの威力：500",
+    "ギャロウズの威力：500",
+    "ジビトゥクロウの威力：440",
+    "ギャロウズクロウの威力：440",
+    "ヴォイドリーパーの威力：580",
+    "クロスリーパーの威力：580",
+    "ハーベストムーンの威力：800",
+    "レムールスライスの威力：280"
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 39,
+    "name": "リーパー",
+    "abbreviation": "RPR"
+  },
+  "unlock_level": 94,
+  "value": 0,
+  "icon": {
+    "id": 6803,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 180,
+  "source_class_job_id": 39
+}

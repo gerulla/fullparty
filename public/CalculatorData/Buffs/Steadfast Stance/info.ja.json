@@ -1,0 +1,51 @@
+{
+  "kind": "combat_status",
+  "id": 4800,
+  "name": "ホールドポジション",
+  "description": "一定量のダメージを軽減する状態。",
+  "effects": [
+    "一定量のダメージを軽減する状態。"
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 229974,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 100
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 46604,
+      "name": "ホールドポジション",
+      "description": "自身かパーティメンバーひとりを対象とする。\n対象の目前まで素早く移動し、自身に「ホールドポジション」を付与する。\nパーティメンバーひとりを対象として実行した場合は、対象にも「ホールドポジション」を付与する。\nホールドポジション効果：使用者の最大ＨＰの10％分のダメージを軽減する。\n効果時間：30秒",
+      "description_macro": "自身かパーティメンバーひとりを対象とする。<br>対象の目前まで素早く移動し、自身に<colortype(500)><edgecolortype(501)>「ホールドポジション」<edgecolortype(0)><colortype(0)>を付与する。<br>パーティメンバーひとりを対象として実行した場合は、対象にも<colortype(500)><edgecolortype(501)>「ホールドポジション」<edgecolortype(0)><colortype(0)>を付与する。<br><colortype(504)><edgecolortype(505)>ホールドポジション効果：<edgecolortype(0)><colortype(0)>使用者の最大ＨＰの10％分のダメージを軽減する。<br><colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>30秒",
+      "unlock_level": 0,
+      "relations": [
+        "granted_by_description",
+        "same_name"
+      ],
+      "roles": [
+        "Phantom Jobs"
+      ],
+      "jobs": [
+        {
+          "id": 15,
+          "name": "Phantom サポート踊り子",
+          "abbreviation": "Ph. Dancer",
+          "is_phantom": true
+        }
+      ]
+    }
+  ]
+}

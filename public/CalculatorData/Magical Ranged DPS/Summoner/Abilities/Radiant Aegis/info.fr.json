@@ -1,0 +1,88 @@
+{
+  "kind": "ability",
+  "id": 25799,
+  "name": "Égide rayonnante",
+  "description": "Ordonne à votre Carbuncle d'exécuter Égide rayonnante.\n\nCrée une barrière sur le maître absorbant les dégâts subis pour un montant égal à 20% de vos PV maximums.\nDurée : 30s\nMaximum de charges : 2\nCondition : Carbuncle invoqué.",
+  "description_macro": "Ordonne à votre Carbuncle d'exécuter <colortype(500)><edgecolortype(501)>Égide rayonnante<edgecolortype(0)><colortype(0)>.<br><br>Crée une barrière sur le maître absorbant les dégâts subis pour un montant égal à 20% de vos PV maximums.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 30s<br><if([gnum68==27],<if([gnum72>=88],<colortype(506)><edgecolortype(507)>Maximum de charges<nbsp>:<edgecolortype(0)><colortype(0)> 2<br>,)>,)><colortype(506)><edgecolortype(507)>Condition<nbsp>:<edgecolortype(0)><colortype(0)> Carbuncle invoqué.",
+  "effects": [
+    "Ordonne à votre Carbuncle d'exécuter Égide rayonnante.",
+    "Crée une barrière sur le maître absorbant les dégâts subis pour un montant égal à 20% de vos PV maximums.",
+    "Durée : 30s",
+    "Maximum de charges : 2",
+    "Condition : Carbuncle invoqué."
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 27,
+    "name": "Invocateur",
+    "abbreviation": "INV"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 2,
+  "icon": {
+    "id": 2750,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 4,
+    "name": "Aptitude"
+  },
+  "attack_type": {
+    "id": 0,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 60,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 21,
+    "additional_cooldown_group": 71,
+    "max_charges": 1
+  },
+  "costs": {
+    "primary": {
+      "type_id": 0,
+      "value": 0
+    },
+    "secondary": {
+      "type_id": 115,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": 0,
+    "effect_yalms": 0,
+    "cast_type": 1
+  },
+  "targeting": {
+    "self": true,
+    "party": false,
+    "alliance": false,
+    "hostile": false,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": false
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 0,
+    "behavior_type": 0,
+    "class_job_category_id": 69,
+    "source_class_job_id": 26,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

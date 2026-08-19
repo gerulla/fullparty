@@ -1,0 +1,97 @@
+{
+  "kind": "ability",
+  "id": 16489,
+  "name": "Meisui",
+  "description": "Dispels Shadow Walker, increasing the Ninki Gauge by 50.\nAdditional Effect: Grants Meisui\nDuration: 30s\nMeisui Effect: Increases the potency of Zesho Meppo to 850 and Bhavacakra to 550\nCan only be executed while in combat and under the effect of Shadow Walker.",
+  "description_macro": "Dispels <colortype(506)><edgecolortype(507)>Shadow Walker<edgecolortype(0)><colortype(0)>, increasing the <colortype(500)><edgecolortype(501)>Ninki Gauge<edgecolortype(0)><colortype(0)> by 50.<br><if([gnum68==30],<if([gnum72>=88],<colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>Grants <colortype(506)><edgecolortype(507)>Meisui<edgecolortype(0)><colortype(0)><br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>30s<br><colortype(504)><edgecolortype(505)>Meisui Effect: <edgecolortype(0)><colortype(0)><if([gnum68==30],<if([gnum72>=96],Increases the potency of <colortype(500)><edgecolortype(501)>Zesho Meppo<edgecolortype(0)><colortype(0)> to 850 and <colortype(500)><edgecolortype(501)>Bhavacakra<edgecolortype(0)><colortype(0)> to 550,Increases the potency of <colortype(500)><edgecolortype(501)>Bhavacakra<edgecolortype(0)><colortype(0)> to <if([gnum68==30],<if([gnum72>=94],550,500)>,500)>)>,Increases the potency of <colortype(500)><edgecolortype(501)>Bhavacakra<edgecolortype(0)><colortype(0)> to <if([gnum68==30],<if([gnum72>=94],550,500)>,500)>)><br>,)>,)>Can only be executed while in combat and under the effect of <colortype(506)><edgecolortype(507)>Shadow Walker<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Dispels Shadow Walker, increasing the Ninki Gauge by 50.",
+    "Additional Effect: Grants Meisui",
+    "Duration: 30s",
+    "Meisui Effect: Increases the potency of Zesho Meppo to 850 and Bhavacakra to 550",
+    "Can only be executed while in combat and under the effect of Shadow Walker."
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 30,
+    "name": "Ninja",
+    "abbreviation": "NIN"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 72,
+  "icon": {
+    "id": 2924,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 4,
+    "name": "Ability"
+  },
+  "attack_type": {
+    "id": 0,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 120,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 19,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 10,
+      "value": 3848
+    },
+    "secondary": {
+      "type_id": 42,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": 0,
+    "effect_yalms": 0,
+    "cast_type": 1
+  },
+  "targeting": {
+    "self": true,
+    "party": false,
+    "alliance": false,
+    "hostile": false,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": {
+      "id": 163,
+      "status": {
+        "id": 3848,
+        "name": "Shadow Walker",
+        "description": "Able to use actions normally requiring the Hidden status.",
+        "icon_id": 212919,
+        "max_stacks": 0
+      }
+    }
+  },
+  "metadata": {
+    "aspect_id": 0,
+    "behavior_type": 0,
+    "class_job_category_id": 92,
+    "source_class_job_id": 30,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

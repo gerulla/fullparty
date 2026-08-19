@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 638,
+  "name": "Enhanced Physis II",
+  "description": "Extends the duration of the effect increasing HP recovered by healing actions to 15 seconds.",
+  "description_macro": "Extends the duration of the effect increasing HP recovered by healing actions to 15 seconds.",
+  "effects": [
+    "Extends the duration of the effect increasing HP recovered by healing actions to 15 seconds."
+  ],
+  "role": "Healer",
+  "job": {
+    "id": 40,
+    "name": "Sage",
+    "abbreviation": "SGE"
+  },
+  "unlock_level": 98,
+  "value": 0,
+  "icon": {
+    "id": 6462,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 181,
+  "source_class_job_id": 40
+}

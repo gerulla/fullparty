@@ -1,0 +1,96 @@
+{
+  "kind": "ability",
+  "id": 37012,
+  "name": "Baneful Impaction",
+  "description": "Deals unaspected damage over time to target and all enemies nearby it.\nPotency: 140\nDuration: 15s\nCan only be executed while under the effect of Impact Imminent.",
+  "description_macro": "Deals unaspected damage over time to target and all enemies nearby it.<br><colortype(504)><edgecolortype(505)>Potency:<edgecolortype(0)><colortype(0)> 140<br><colortype(504)><edgecolortype(505)>Duration:<edgecolortype(0)><colortype(0)> 15s<br>Can only be executed while under the effect of <colortype(506)><edgecolortype(507)>Impact Imminent<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Deals unaspected damage over time to target and all enemies nearby it.",
+    "Potency: 140",
+    "Duration: 15s",
+    "Can only be executed while under the effect of Impact Imminent."
+  ],
+  "role": "Healer",
+  "job": {
+    "id": 28,
+    "name": "Scholar",
+    "abbreviation": "SCH"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 92,
+  "icon": {
+    "id": 2879,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 4,
+    "name": "Ability"
+  },
+  "attack_type": {
+    "id": 5,
+    "name": "魔法"
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 1,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 3,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 10,
+      "value": 3882
+    },
+    "secondary": {
+      "type_id": 32,
+      "value": 3882
+    }
+  },
+  "range": {
+    "target_yalms": 25,
+    "effect_yalms": 5,
+    "cast_type": 2
+  },
+  "targeting": {
+    "self": false,
+    "party": false,
+    "alliance": false,
+    "hostile": true,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": {
+      "id": 183,
+      "status": {
+        "id": 3882,
+        "name": "Impact Imminent",
+        "description": "Able to execute Baneful Impaction.",
+        "icon_id": 212818,
+        "max_stacks": 0
+      }
+    }
+  },
+  "metadata": {
+    "aspect_id": 7,
+    "behavior_type": 0,
+    "class_job_category_id": 29,
+    "source_class_job_id": 28,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

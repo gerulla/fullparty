@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 196,
+  "name": "Secret of the Lily",
+  "description": "Adds a Lily to your Healing Gauge for every 20 seconds you are engaged in combat, up to a maximum of 3.",
+  "description_macro": "Adds a <colortype(506)><edgecolortype(507)>Lily<edgecolortype(0)><colortype(0)> to your <colortype(500)><edgecolortype(501)>Healing Gauge<edgecolortype(0)><colortype(0)> for every 20 seconds you are engaged in combat, up to a maximum of 3.",
+  "effects": [
+    "Adds a Lily to your Healing Gauge for every 20 seconds you are engaged in combat, up to a maximum of 3."
+  ],
+  "role": "Healer",
+  "job": {
+    "id": 24,
+    "name": "White Mage",
+    "abbreviation": "WHM"
+  },
+  "unlock_level": 52,
+  "value": 0,
+  "icon": {
+    "id": 5335,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 25,
+  "source_class_job_id": 24
+}

@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 2703,
+  "name": "Gleißender Schein",
+  "description": "Ausgeteilter Schaden ist erhöht.",
+  "effects": [
+    "Ausgeteilter Schaden ist erhöht."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 212699,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 50,
+  "parameter": {
+    "effect": 0,
+    "modifier": 5
+  },
+  "class_job_category_id": 28,
+  "source_abilities": [
+    {
+      "id": 25801,
+      "name": "Gleißender Schein",
+      "description": "Du erhöhst den ausgeteilten Schaden von dir und umstehenden Gruppenmitgliedern um 5 %.\nDauer: 20 Sekunden\nZusatzeffekt: Gewährt dir Gleißender Funke.\nDauer: 30 Sekunden",
+      "description_macro": "Du erhöhst den ausgeteilten Schaden von dir und umstehenden Grup<->pen<->mit<->gliedern um 5<nbsp>%.<br>Dauer: 20 Sekunden<if([gnum68==27],<if([gnum72>=96],<br>Zusatzeffekt: Gewährt dir <colortype(506)><edgecolortype(507)>Gleißender Funke<edgecolortype(0)><colortype(0)>.<br>Dauer: 30 Sekunden,)>,)>",
+      "unlock_level": 66,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Magical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 27,
+          "name": "Beschwörer",
+          "abbreviation": "BSW",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

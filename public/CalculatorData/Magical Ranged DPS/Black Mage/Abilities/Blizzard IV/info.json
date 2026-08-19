@@ -1,0 +1,87 @@
+{
+  "kind": "ability",
+  "id": 3576,
+  "name": "Blizzard IV",
+  "description": "Deals ice damage with a potency of 300.\nAdditional Effect: Grants 3 Umbral Hearts\nUmbral Heart Bonus: Nullifies Astral Fire's MP cost increase for Fire spells and reduces MP cost for Flare by one-third\nCan only be executed while under the effect of Umbral Ice.",
+  "description_macro": "Deals ice damage with a potency of 300.<br><colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>Grants 3 <colortype(506)><edgecolortype(507)>Umbral Hearts<edgecolortype(0)><colortype(0)><br><colortype(504)><edgecolortype(505)>Umbral Heart Bonus: <edgecolortype(0)><colortype(0)>Nullifies <colortype(506)><edgecolortype(507)>Astral Fire<edgecolortype(0)><colortype(0)>'s MP cost increase for <colortype(500)><edgecolortype(501)>Fire<edgecolortype(0)><colortype(0)> spells and reduces MP cost for <colortype(500)><edgecolortype(501)>Flare<edgecolortype(0)><colortype(0)> by one-third<br>Can only be executed while under the effect of <colortype(506)><edgecolortype(507)>Umbral Ice<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Deals ice damage with a potency of 300.",
+    "Additional Effect: Grants 3 Umbral Hearts",
+    "Umbral Heart Bonus: Nullifies Astral Fire's MP cost increase for Fire spells and reduces MP cost for Flare by one-third",
+    "Can only be executed while under the effect of Umbral Ice."
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 25,
+    "name": "Black Mage",
+    "abbreviation": "BLM"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 58,
+  "icon": {
+    "id": 2659,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 2,
+    "name": "Spell"
+  },
+  "attack_type": {
+    "id": 5,
+    "name": "魔法"
+  },
+  "timing": {
+    "cast_seconds": 2,
+    "recast_seconds": 2.5,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 58,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 3,
+      "value": 8
+    },
+    "secondary": {
+      "type_id": 48,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": 25,
+    "effect_yalms": 0,
+    "cast_type": 1
+  },
+  "targeting": {
+    "self": false,
+    "party": false,
+    "alliance": false,
+    "hostile": true,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": false
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 2,
+    "behavior_type": 0,
+    "class_job_category_id": 26,
+    "source_class_job_id": 25,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

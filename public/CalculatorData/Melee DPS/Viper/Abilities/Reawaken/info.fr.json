@@ -1,0 +1,99 @@
+{
+  "kind": "ability",
+  "id": 34626,
+  "name": "Réminiscence",
+  "description": "Effectue une attaque physique sur les ennemis alentour.\nPuissance : 750\nLa puissance est réduite de 75% au-delà du premier ennemi touché.\nEffet additionnel : vous octroie 5 degrés d'Esprit ophidien.\nDurée : 30s\nCoût Jauge ophidienne : 50\nCette technique d'arme a un temps de recharge indépendant.",
+  "description_macro": "Effectue une attaque physique sur les ennemis alentour.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> 750<br>La puissance est réduite de 75% au-delà du premier ennemi touché.<br><colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> vous octroie <if([gnum68==41],<if([gnum72>=96],5,4)>,4)> degrés d'<colortype(500)><edgecolortype(501)>Esprit ophidien<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 30s<br><colortype(506)><edgecolortype(507)>Coût Jauge ophidienne<nbsp>:<edgecolortype(0)><colortype(0)> 50<br>Cette technique d'arme a un temps de recharge indépendant.",
+  "effects": [
+    "Effectue une attaque physique sur les ennemis alentour.",
+    "Puissance : 750",
+    "La puissance est réduite de 75% au-delà du premier ennemi touché.",
+    "Effet additionnel : vous octroie 5 degrés d'Esprit ophidien.",
+    "Durée : 30s",
+    "Coût Jauge ophidienne : 50",
+    "Cette technique d'arme a un temps de recharge indépendant."
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 41,
+    "name": "Rôdeur Vipère",
+    "abbreviation": "VPR"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 90,
+  "icon": {
+    "id": 3721,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 3,
+    "name": "Technique d'arme"
+  },
+  "attack_type": {
+    "id": 4294967295,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 2.2,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 58,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 88,
+      "value": 50
+    },
+    "secondary": {
+      "type_id": 135,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": 0,
+    "effect_yalms": 5,
+    "cast_type": 2
+  },
+  "targeting": {
+    "self": true,
+    "party": false,
+    "alliance": false,
+    "hostile": false,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": {
+      "id": 218,
+      "status": {
+        "id": 3671,
+        "name": "Réminiscence préparée",
+        "description": "Réminiscence peut être utilisée sans consommer de Jauge ophidienne.",
+        "icon_id": 213777,
+        "max_stacks": 0
+      }
+    }
+  },
+  "metadata": {
+    "aspect_id": 7,
+    "behavior_type": 0,
+    "class_job_category_id": 196,
+    "source_class_job_id": 41,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

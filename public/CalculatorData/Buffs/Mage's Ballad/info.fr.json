@@ -1,0 +1,51 @@
+{
+  "kind": "combat_status",
+  "id": 2217,
+  "name": "Ballade du mage",
+  "description": "Les dégâts infligés sont augmentés.",
+  "effects": [
+    "Les dégâts infligés sont augmentés."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 212603,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": true,
+  "is_permanent": true,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 1
+  },
+  "class_job_category_id": 24,
+  "source_abilities": [
+    {
+      "id": 114,
+      "name": "Ballade du mage",
+      "description": "Entonne la Ballade du mage et augmente de 1% vos dégâts infligés ainsi que ceux des équipiers dans un rayon de 50 yalms.\nDurée : 45s\nEffet additionnel : 80% de chances qu'Inspiration poétique vous soit octroyée.\nCet effet est octroyé en continu pendant toute la durée de la Ballade du mage.\nInspiration poétique : réduit de 7,5s les temps de recharge de Tir crève-cœuret de Pluie mortelle.\nEffet additionnel : vous octroie la Coda du mage.\nCondition : en combat.",
+      "description_macro": "Entonne la Ballade du mage et augmente de 1% vos dégâts infligés ainsi que ceux des équipiers dans un rayon de 50 yalms.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 45s<br><colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> 80% de chances qu'<colortype(500)><edgecolortype(501)>Inspiration poétique<edgecolortype(0)><colortype(0)> vous soit octroyée.<br>Cet effet est octroyé en continu pendant toute la durée de la Ballade du mage.<br><colortype(506)><edgecolortype(507)>Inspiration poétique<nbsp>:<edgecolortype(0)><colortype(0)> réduit de 7,5s le<if([gnum72>=45],<if([gnum68==23],s,)>,)> temps de recharge <if([gnum68==23],<if([gnum72>=92],de Tir crève-cœur,d'Hémorragie)>,d'Hémorragie)><if([gnum72>=45],<if([gnum68==23], et de Pluie mortelle,)>,)>.<br><if([gnum68==23],<if([gnum72>=90],<colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> vous octroie la <colortype(500)><edgecolortype(501)>Coda du mage<edgecolortype(0)><colortype(0)>.<br>,)>,)><colortype(506)><edgecolortype(507)>Condition<nbsp>:<edgecolortype(0)><colortype(0)> en combat.",
+      "unlock_level": 30,
+      "relations": [
+        "granted_by_description",
+        "same_name"
+      ],
+      "roles": [
+        "Physical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 23,
+          "name": "Barde",
+          "abbreviation": "BRD",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

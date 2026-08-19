@@ -1,0 +1,92 @@
+{
+  "kind": "ability",
+  "id": 34576,
+  "name": "Réprobation ailée",
+  "description": "Effectue une attaque physique en ligne droite sur les ennemis devant vous.\nPuissance : 300\nLa puissance est réduite de 50% au-delà du premier ennemi touché.\nEffet additionnel : réinitialise immédiatement le temps de recharge de cette action et vous octroie un degré de Réprobation ailée, cumulable jusqu'au 4e degré.\nLorsque vous atteignez le 3e degré de Réprobation ailée, le temps de recharge de cette action n'est plus réinitialisé mais sa puissance est augmentée à 400 à la place.\nSi vous atteignez le degré maximum dans cet état, l'effet Réprobation ailée devient Bénédiction de l'Immaculé.\nDurée : 10s\nBénédiction de l'Immaculé : augmente la puissance de Conviction - marcato.\nCe sort a un temps de recharge indépendant.",
+  "description_macro": "Effectue une attaque physique en ligne droite sur les ennemis devant vous.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> 300<br>La puissance est réduite de 50% au-delà du premier ennemi touché.<br><colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> réinitialise im<->mé<->dia<->te<->ment le temps de recharge de cette action et vous octroie un degré de <colortype(500)><edgecolortype(501)>Réprobation ailée<edgecolortype(0)><colortype(0)>, cumulable jusqu'au 4e degré.<br>Lorsque vous atteignez le 3e degré de <colortype(500)><edgecolortype(501)>Réprobation ailée<edgecolortype(0)><colortype(0)>, le temps de recharge de cette action n'est plus réinitialisé mais sa puissance est augmentée à 400 à la place.<br>Si vous atteignez le degré maximum dans cet état, l'effet <colortype(500)><edgecolortype(501)>Réprobation ailée<edgecolortype(0)><colortype(0)> devient <colortype(500)><edgecolortype(501)>Bénédiction de l'Immaculé<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 10s<br><colortype(506)><edgecolortype(507)>Bénédiction de l'Immaculé<nbsp>:<edgecolortype(0)><colortype(0)> augmente la puissance de <colortype(500)><edgecolortype(501)>Conviction - marcato<edgecolortype(0)><colortype(0)>.<br>Ce sort a un temps de recharge indépendant.",
+  "effects": [
+    "Effectue une attaque physique en ligne droite sur les ennemis devant vous.",
+    "Puissance : 300",
+    "La puissance est réduite de 50% au-delà du premier ennemi touché.",
+    "Effet additionnel : réinitialise immédiatement le temps de recharge de cette action et vous octroie un degré de Réprobation ailée, cumulable jusqu'au 4e degré.",
+    "Lorsque vous atteignez le 3e degré de Réprobation ailée, le temps de recharge de cette action n'est plus réinitialisé mais sa puissance est augmentée à 400 à la place.",
+    "Si vous atteignez le degré maximum dans cet état, l'effet Réprobation ailée devient Bénédiction de l'Immaculé.",
+    "Durée : 10s",
+    "Bénédiction de l'Immaculé : augmente la puissance de Conviction - marcato.",
+    "Ce sort a un temps de recharge indépendant."
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 36,
+    "name": "Mage Bleu",
+    "abbreviation": "MBU"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 1,
+  "icon": {
+    "id": 3371,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 2,
+    "name": "Sort"
+  },
+  "attack_type": {
+    "id": 2,
+    "name": "perforant"
+  },
+  "timing": {
+    "cast_seconds": 1,
+    "recast_seconds": 90,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 13,
+    "additional_cooldown_group": 58,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 3,
+      "value": 2
+    },
+    "secondary": {
+      "type_id": 0,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": 25,
+    "effect_yalms": 25,
+    "cast_type": 4
+  },
+  "targeting": {
+    "self": false,
+    "party": false,
+    "alliance": false,
+    "hostile": true,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": false
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 7,
+    "behavior_type": 0,
+    "class_job_category_id": 129,
+    "source_class_job_id": 36,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

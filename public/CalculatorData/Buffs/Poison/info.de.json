@@ -1,0 +1,71 @@
+{
+  "kind": "combat_status",
+  "id": 18,
+  "name": "Gift",
+  "description": "Erleidet schrittweise Schaden durch Gift.",
+  "effects": [
+    "Erleidet schrittweise Schaden durch Gift."
+  ],
+  "classification": "debuff",
+  "icon": {
+    "id": 215007,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 2,
+  "target_type": 0,
+  "can_dispel": true,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 10,
+  "parameter": {
+    "effect": 0,
+    "modifier": 10
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 7406,
+      "name": "Kaustischer Biss",
+      "description": "Du führst eine physische Attacke aus.\nAttacke-Wert: 150\nZusatzeffekt: Giftschaden über Zeit\nAttacke-Wert: 20\nDauer: 45 Sekunden\nZusatzeffekt: 35 % Wahrscheinlichkeit auf Falkenauge\nDauer: 30 Sekunden",
+      "description_macro": "Du führst eine physische Attacke aus.<br>Attacke-Wert: 150<br>Zusatzeffekt: Giftschaden über Zeit<br>Attacke-Wert: 20<br>Dauer: 45 Sekunden<if([gnum68==23],<if([gnum72>=76],<br>Zusatzeffekt: 35 % Wahr<->schein<->lich<->keit auf <colortype(506)><edgecolortype(507)>Falkenauge<edgecolortype(0)><colortype(0)><br>Dauer: 30 Sekunden,)>,)>",
+      "unlock_level": 64,
+      "relations": [
+        "applied_by_description"
+      ],
+      "roles": [
+        "Physical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 23,
+          "name": "Barde",
+          "abbreviation": "BRD",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 11388,
+      "name": "Schlechter Atem",
+      "description": "Du bläst stinkende Luft auf die fächerförmig vor dir stehenden Gegner, die im Wirkungsbereich Gift, Faulgestank (10 %), Gewicht (40 %), Gemach (20 %), Blind und Paralyse erleiden.\nAttacke-Wert des Gifts: 20\nDauer des Gifts: 15 Sekunden\nZusatzeffekt: Unterbricht Kommandos des Gegners",
+      "description_macro": "Du bläst stinkende Luft auf die fächerförmig vor dir stehenden Gegner, die im Wir<->kungs<->be<->reich <colortype(506)><edgecolortype(507)>Gift<edgecolortype(0)><colortype(0)>, <colortype(506)><edgecolortype(507)>Faulgestank<edgecolortype(0)><colortype(0)> (10<nbsp>%), <colortype(506)><edgecolortype(507)>Gewicht<edgecolortype(0)><colortype(0)> (40<nbsp>%), <colortype(506)><edgecolortype(507)>Gemach<edgecolortype(0)><colortype(0)> (20<nbsp>%), <colortype(506)><edgecolortype(507)>Blind<edgecolortype(0)><colortype(0)> und <colortype(506)><edgecolortype(507)>Paralyse<edgecolortype(0)><colortype(0)> erleiden.<br>Attacke-Wert des Gifts: 20<br>Dauer des Gifts: 15 Sekunden<br>Zusatzeffekt: Unterbricht Kommandos des Gegners",
+      "unlock_level": 1,
+      "relations": [
+        "applied_by_description"
+      ],
+      "roles": [
+        "Magical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 36,
+          "name": "Blaumagier",
+          "abbreviation": "BMA",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

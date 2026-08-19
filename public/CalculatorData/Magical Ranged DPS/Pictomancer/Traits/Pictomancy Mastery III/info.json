@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 677,
+  "name": "Pictomancy Mastery III",
+  "description": "Increases the potency of Fire in Red to 420, Aero in Green to 460, Water in Blue to 500, Pom Muse to 800, Winged Muse to 800, Mog of the Ages to 1,000, Hammer Stamp to 540, Blizzard in Cyan to 750, Stone in Yellow to 790, Thunder in Magenta to 830, and Holy in White to 500.",
+  "description_macro": "Increases the potency of <colortype(500)><edgecolortype(501)>Fire in Red<edgecolortype(0)><colortype(0)> to 420, <colortype(500)><edgecolortype(501)>Aero in Green<edgecolortype(0)><colortype(0)> to 460, <colortype(500)><edgecolortype(501)>Water in Blue<edgecolortype(0)><colortype(0)> to 500, <colortype(500)><edgecolortype(501)>Pom Muse<edgecolortype(0)><colortype(0)> to 800, <colortype(500)><edgecolortype(501)>Winged Muse<edgecolortype(0)><colortype(0)> to 800, <colortype(500)><edgecolortype(501)>Mog of the Ages<edgecolortype(0)><colortype(0)> to 1,000, <colortype(500)><edgecolortype(501)>Hammer Stamp<edgecolortype(0)><colortype(0)> to 540, <colortype(500)><edgecolortype(501)>Blizzard in Cyan<edgecolortype(0)><colortype(0)> to 750, <colortype(500)><edgecolortype(501)>Stone in Yellow<edgecolortype(0)><colortype(0)> to 790, <colortype(500)><edgecolortype(501)>Thunder in Magenta<edgecolortype(0)><colortype(0)> to 830, and <colortype(500)><edgecolortype(501)>Holy in White<edgecolortype(0)><colortype(0)> to 500.",
+  "effects": [
+    "Increases the potency of Fire in Red to 420, Aero in Green to 460, Water in Blue to 500, Pom Muse to 800, Winged Muse to 800, Mog of the Ages to 1,000, Hammer Stamp to 540, Blizzard in Cyan to 750, Stone in Yellow to 790, Thunder in Magenta to 830, and Holy in White to 500."
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 42,
+    "name": "Pictomancer",
+    "abbreviation": "PCT"
+  },
+  "unlock_level": 84,
+  "value": 0,
+  "icon": {
+    "id": 6832,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 197,
+  "source_class_job_id": 42
+}

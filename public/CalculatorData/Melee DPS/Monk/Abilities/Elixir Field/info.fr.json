@@ -1,0 +1,93 @@
+{
+  "kind": "ability",
+  "id": 3545,
+  "name": "Champ-élixir",
+  "description": "Effectue une attaque physique sur les ennemis alentour.\nPuissance : 800\nLa puissance est réduite de 35% au-delà du premier ennemi touché.\nEffet additionnel : ouvre le Nadi lunaire.\nEffet additionnel : vous octroie Poing informe.\nDurée : 30s\nPoing informe : vous permet d'utiliser les techniques d'arme requérant une posture particulière sans être dans cette posture. Les effets additionnels associés seront appliqués.\nCondition : trois Chakras bestiaux identiques.\n\n* Cette action ne peut pas être ajoutée aux barres de raccourcis.\nRemplace Blitz magistral lorsque les conditions sont réunies.",
+  "description_macro": "Effectue une attaque physique sur les ennemis alentour.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> 800<br>La puissance est réduite de 35% au-delà du premier ennemi touché.<br><colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> ouvre le <colortype(500)><edgecolortype(501)>Nadi lunaire<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> vous octroie <colortype(500)><edgecolortype(501)>Poing informe<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 30s<br><colortype(506)><edgecolortype(507)>Poing informe<nbsp>:<edgecolortype(0)><colortype(0)> vous permet d'utiliser les techniques d'arme requérant une posture par<->ti<->cu<->liè<->re sans être dans cette posture. Les effets additionnels associés seront appliqués.<br><colortype(506)><edgecolortype(507)>Condition<nbsp>:<edgecolortype(0)><colortype(0)> trois <colortype(500)><edgecolortype(501)>Chakras bestiaux<edgecolortype(0)><colortype(0)> identiques.<br><br><colortype(504)><edgecolortype(505)>* Cette action ne peut pas être ajoutée aux barres de raccourcis.<br>Remplace <colortype(500)><edgecolortype(501)>Blitz magistral<edgecolortype(0)><colortype(0)> lorsque les conditions sont réunies.<edgecolortype(0)><colortype(0)>",
+  "effects": [
+    "Effectue une attaque physique sur les ennemis alentour.",
+    "Puissance : 800",
+    "La puissance est réduite de 35% au-delà du premier ennemi touché.",
+    "Effet additionnel : ouvre le Nadi lunaire.",
+    "Effet additionnel : vous octroie Poing informe.",
+    "Durée : 30s",
+    "Poing informe : vous permet d'utiliser les techniques d'arme requérant une posture particulière sans être dans cette posture. Les effets additionnels associés seront appliqués.",
+    "Condition : trois Chakras bestiaux identiques.",
+    "* Cette action ne peut pas être ajoutée aux barres de raccourcis.",
+    "Remplace Blitz magistral lorsque les conditions sont réunies."
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 20,
+    "name": "Moine",
+    "abbreviation": "MOI"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 60,
+  "icon": {
+    "id": 2533,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 3,
+    "name": "Technique d'arme"
+  },
+  "attack_type": {
+    "id": 4294967295,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 2.5,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 58,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 79,
+      "value": 4
+    },
+    "secondary": {
+      "type_id": 63,
+      "value": 577
+    }
+  },
+  "range": {
+    "target_yalms": 0,
+    "effect_yalms": 5,
+    "cast_type": 2
+  },
+  "targeting": {
+    "self": true,
+    "party": false,
+    "alliance": false,
+    "hostile": false,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 7,
+    "behavior_type": 0,
+    "class_job_category_id": 21,
+    "source_class_job_id": 0,
+    "is_role_action": false,
+    "is_player_action": false,
+    "is_derived_action": true,
+    "equivalence_group": 0
+  }
+}

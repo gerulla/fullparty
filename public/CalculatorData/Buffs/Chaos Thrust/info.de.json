@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 1312,
+  "name": "Chaotischer Tjost",
+  "description": "Erleidet schrittweise Schaden und erhöhten Schaden vom Verursacher des Status.",
+  "effects": [
+    "Erleidet schrittweise Schaden und erhöhten Schaden vom Verursacher des Status."
+  ],
+  "classification": "debuff",
+  "icon": {
+    "id": 210307,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 2,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": true,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 10
+  },
+  "class_job_category_id": 23,
+  "source_abilities": [
+    {
+      "id": 88,
+      "name": "Chaotischer Tjost",
+      "description": "Du führst eine physische Attacke aus.\nAttacke-Wert: 100\nVon hinten: 140\nKombo-Bedingung: Drachengriff\nAttacke-Wert: 220\nVon hinten: 260\nBonus: Schaden über Zeit\nAttacke-Wert: 40\nDauer: 24 Sekunden",
+      "description_macro": "Du führst eine physische Attacke aus.<br>Attacke-Wert: 100<br>Von hinten: 140<br>Kombo-Bedingung: <colortype(502)><edgecolortype(503)>Drachengriff<edgecolortype(0)><colortype(0)><br>Attacke-Wert: 220<br>Von hinten: 260<br>Bonus: Schaden über Zeit<br>Attacke-Wert: 40<br>Dauer: 24 Sekunden",
+      "unlock_level": 50,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 22,
+          "name": "Dragoon",
+          "abbreviation": "DRG",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

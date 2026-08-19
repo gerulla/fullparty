@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 260,
+  "name": "Meister des Grolls",
+  "description": "Verbessert Halones Groll zu Königsklinge.",
+  "description_macro": "Verbessert <colortype(502)><edgecolortype(503)>Halones Groll<edgecolortype(0)><colortype(0)> zu <colortype(502)><edgecolortype(503)>Königsklinge<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Verbessert Halones Groll zu Königsklinge."
+  ],
+  "role": "Tank",
+  "job": {
+    "id": 19,
+    "name": "Paladin",
+    "abbreviation": "PLD"
+  },
+  "unlock_level": 60,
+  "value": 0,
+  "icon": {
+    "id": 5213,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 20,
+  "source_class_job_id": 19
+}

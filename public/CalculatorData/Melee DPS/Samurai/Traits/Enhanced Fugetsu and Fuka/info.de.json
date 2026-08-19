@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 278,
+  "name": "Verbessertes Fugetsu und Fuka",
+  "description": "Erhöht die jeweiligen Effekte von Fugetsu und Fuka auf 13 %.",
+  "description_macro": "Erhöht die jeweiligen Effekte von <colortype(506)><edgecolortype(507)>Fugetsu<edgecolortype(0)><colortype(0)> und <colortype(506)><edgecolortype(507)>Fuka<edgecolortype(0)><colortype(0)> auf 13<nbsp>%.",
+  "effects": [
+    "Erhöht die jeweiligen Effekte von Fugetsu und Fuka auf 13 %."
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 34,
+    "name": "Samurai",
+    "abbreviation": "SAM"
+  },
+  "unlock_level": 78,
+  "value": 0,
+  "icon": {
+    "id": 6154,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 111,
+  "source_class_job_id": 34
+}

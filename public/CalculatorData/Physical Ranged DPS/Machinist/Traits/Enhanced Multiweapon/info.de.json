@@ -1,0 +1,25 @@
+{
+  "kind": "trait",
+  "id": 605,
+  "name": "Verbesserte Multiwaffe",
+  "description": "Erlaubt es dir, Bohrer und Bioblaster aufzuladen.\nMaximale Aufladungen: 2",
+  "description_macro": "Erlaubt es dir, <colortype(502)><edgecolortype(503)>Bohrer<edgecolortype(0)><colortype(0)> und <colortype(502)><edgecolortype(503)>Bioblaster<edgecolortype(0)><colortype(0)> aufzuladen.<br>Maximale Aufladungen: 2",
+  "effects": [
+    "Erlaubt es dir, Bohrer und Bioblaster aufzuladen.",
+    "Maximale Aufladungen: 2"
+  ],
+  "role": "Physical Ranged DPS",
+  "job": {
+    "id": 31,
+    "name": "Maschinist",
+    "abbreviation": "MCH"
+  },
+  "unlock_level": 94,
+  "value": 2,
+  "icon": {
+    "id": 6023,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 96,
+  "source_class_job_id": 31
+}

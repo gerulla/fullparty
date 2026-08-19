@@ -1,0 +1,88 @@
+{
+  "kind": "ability",
+  "id": 11424,
+  "name": "Diamantrücken",
+  "description": "Der eigene erlittene Schaden wird um 90 % reduziert, und bestimmte Rückstoß- und Heranzieheffekte werden verhindert.\nDer Magier ist für die Dauer des Effekts bewegungsunfähig und kann keine Kommandos ausführen.\nDauer: 10 Sekunden\nZusatzeffekt: Wenn der Status Ekstatischer Kampf aktiv ist, wird dieser umgehend zu Ermüdung des ekstatischen Kampfes geändert.\nDieser Effekt kann nicht durch den Magier aufgehoben werden.",
+  "description_macro": "Der eigene erlittene Schaden wird um 90<nbsp>% reduziert, und bestimmte Rückstoß- und Heranzieheffekte werden verhindert.<br>Der Magier ist für die Dauer des Effekts be<->we<->gungs<->un<->fäh<->ig und kann keine Kommandos ausführen.<br>Dauer: 10 Sekunden<br>Zusatzeffekt: Wenn der Status <colortype(506)><edgecolortype(507)>Ekstatischer Kampf<edgecolortype(0)><colortype(0)> aktiv ist, wird dieser umgehend zu <colortype(506)><edgecolortype(507)>Ermüdung des ekstatischen Kampfes<edgecolortype(0)><colortype(0)> geändert.<br>Dieser Effekt kann nicht durch den Magier aufgehoben werden.",
+  "effects": [
+    "Der eigene erlittene Schaden wird um 90 % reduziert, und bestimmte Rückstoß- und Heranzieheffekte werden verhindert.",
+    "Der Magier ist für die Dauer des Effekts bewegungsunfähig und kann keine Kommandos ausführen.",
+    "Dauer: 10 Sekunden",
+    "Zusatzeffekt: Wenn der Status Ekstatischer Kampf aktiv ist, wird dieser umgehend zu Ermüdung des ekstatischen Kampfes geändert.",
+    "Dieser Effekt kann nicht durch den Magier aufgehoben werden."
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 36,
+    "name": "Blaumagier",
+    "abbreviation": "BMA"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 1,
+  "icon": {
+    "id": 3292,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 2,
+    "name": "Zauber"
+  },
+  "attack_type": {
+    "id": 5,
+    "name": "魔法"
+  },
+  "timing": {
+    "cast_seconds": 2,
+    "recast_seconds": 2.5,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 58,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 3,
+      "value": 30
+    },
+    "secondary": {
+      "type_id": 0,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": 0,
+    "effect_yalms": 0,
+    "cast_type": 1
+  },
+  "targeting": {
+    "self": true,
+    "party": false,
+    "alliance": false,
+    "hostile": false,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": false
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 7,
+    "behavior_type": 0,
+    "class_job_category_id": 129,
+    "source_class_job_id": 36,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

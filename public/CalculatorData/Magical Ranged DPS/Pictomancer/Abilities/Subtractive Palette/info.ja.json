@@ -1,0 +1,96 @@
+{
+  "kind": "ability",
+  "id": 34683,
+  "name": "サブトラクティブパレット",
+  "description": "自身に3スタックの「サブトラクティブパレット」を付与する。\n追加効果：自身に「色調反転」を付与する。\n色調反転効果：ホワイトペイントが1スタックのみブラックペイントに変化する。\n発動条件：「サブトラクティブパレット」非効果中かつ「パレットゲージ」50",
+  "description_macro": "自身に3スタックの<colortype(500)><edgecolortype(501)>「サブトラクティブパレット」<edgecolortype(0)><colortype(0)>を付与する。<br><if([gnum68==42],<if([gnum72>=90],<colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)>自身に<colortype(500)><edgecolortype(501)>「色調反転」<edgecolortype(0)><colortype(0)>を付与する。<br><colortype(504)><edgecolortype(505)>色調反転効果：<edgecolortype(0)><colortype(0)>ホワイトペイントが1スタックのみブラックペイントに変化する。<br>,)>,)><colortype(504)><edgecolortype(505)>発動条件：<edgecolortype(0)><colortype(0)><colortype(500)><edgecolortype(501)>「サブトラクティブパレット」<edgecolortype(0)><colortype(0)>非効果中かつ<colortype(500)><edgecolortype(501)>「パレットゲージ」<edgecolortype(0)><colortype(0)>50",
+  "effects": [
+    "自身に3スタックの「サブトラクティブパレット」を付与する。",
+    "追加効果：自身に「色調反転」を付与する。",
+    "色調反転効果：ホワイトペイントが1スタックのみブラックペイントに変化する。",
+    "発動条件：「サブトラクティブパレット」非効果中かつ「パレットゲージ」50"
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 42,
+    "name": "ピクトマンサー",
+    "abbreviation": "PCT"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 60,
+  "icon": {
+    "id": 3833,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 4,
+    "name": "アビリティ"
+  },
+  "attack_type": {
+    "id": 0,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 1,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 1,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 91,
+      "value": 50
+    },
+    "secondary": {
+      "type_id": 46,
+      "value": 3674
+    }
+  },
+  "range": {
+    "target_yalms": 0,
+    "effect_yalms": 0,
+    "cast_type": 1
+  },
+  "targeting": {
+    "self": true,
+    "party": false,
+    "alliance": false,
+    "hostile": false,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": {
+      "id": 193,
+      "status": {
+        "id": 3690,
+        "name": "サブトラクティブパレット実行可",
+        "description": "サブトラクティブパレットを実行できる状態。",
+        "icon_id": 213813,
+        "max_stacks": 0
+      }
+    }
+  },
+  "metadata": {
+    "aspect_id": 0,
+    "behavior_type": 0,
+    "class_job_category_id": 197,
+    "source_class_job_id": 42,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

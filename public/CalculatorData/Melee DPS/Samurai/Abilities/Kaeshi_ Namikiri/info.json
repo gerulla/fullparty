@@ -1,0 +1,87 @@
+{
+  "kind": "ability",
+  "id": 25782,
+  "name": "Kaeshi: Namikiri",
+  "description": "Delivers a critical hit to all enemies in a cone before you with a potency of 1\\ for the first enemy, and 40% less for all remaining enemies.\nDamage dealt is increased when under an effect that raises critical hit rate.\n\n※This action cannot be assigned to a hotbar.\n※Ogi Namikiri changes to Kaeshi: Namikiri when requirements for execution are met.",
+  "description_macro": "Delivers a critical hit to all enemies in a cone before you with a potency of <if([gnum68==34],<if([gnum72>=94],1\\,000,860)>,860)> for the first enemy, and 40% less for all remaining enemies.<br>Damage dealt is increased when under an effect that raises critical hit rate.<br><br>※This action cannot be assigned to a hotbar.<br>※<colortype(500)><edgecolortype(501)>Ogi Namikiri<edgecolortype(0)><colortype(0)> changes to <colortype(500)><edgecolortype(501)>Kaeshi: Namikiri<edgecolortype(0)><colortype(0)> when requirements for execution are met.",
+  "effects": [
+    "Delivers a critical hit to all enemies in a cone before you with a potency of 1\\ for the first enemy, and 40% less for all remaining enemies.",
+    "Damage dealt is increased when under an effect that raises critical hit rate.",
+    "※This action cannot be assigned to a hotbar.",
+    "※Ogi Namikiri changes to Kaeshi: Namikiri when requirements for execution are met."
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 34,
+    "name": "Samurai",
+    "abbreviation": "SAM"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 90,
+  "icon": {
+    "id": 3188,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 3,
+    "name": "Weaponskill"
+  },
+  "attack_type": {
+    "id": 4294967295,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 2.5,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 58,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 0,
+      "value": 0
+    },
+    "secondary": {
+      "type_id": 18,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": 8,
+    "effect_yalms": 8,
+    "cast_type": 3
+  },
+  "targeting": {
+    "self": false,
+    "party": false,
+    "alliance": false,
+    "hostile": true,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 7,
+    "behavior_type": 0,
+    "class_job_category_id": 111,
+    "source_class_job_id": 0,
+    "is_role_action": false,
+    "is_player_action": false,
+    "is_derived_action": true,
+    "equivalence_group": 0
+  }
+}

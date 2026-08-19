@@ -1,0 +1,89 @@
+{
+  "kind": "ability",
+  "id": 25800,
+  "name": "Infusion d'éther",
+  "description": "Vous octroie Infusion d'éther.\nDurée : 15s\nInfusion d'éther : augmente de 50 la puissance de Ruine, Extra Ruine et Méga Ruine, ainsi que de 20 celle de Fracas élémentaire.\nEffet additionnel : vous octroie Arcane topaze et Arcane émeraude.\nCondition : en combat et Carbuncle invoqué.\nCe sort a un temps de recharge indépendant.",
+  "description_macro": "Vous octroie <colortype(500)><edgecolortype(501)>Infusion d'éther<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 15s<br><colortype(506)><edgecolortype(507)>Infusion d'éther<nbsp>:<edgecolortype(0)><colortype(0)> augmente de 50 la puissance de Ruine, Extra Ruine et Méga Ruine, ainsi que de 20 celle de Fracas élémentaire.<br><colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> vous octroie <if([gnum72>=22],<if([gnum68==26],<colortype(500)><edgecolortype(501)>Arcane rubis<edgecolortype(0)><colortype(0)>\\, <colortype(500)><edgecolortype(501)>Arcane topaze<edgecolortype(0)><colortype(0)> et <colortype(500)><edgecolortype(501)>Arcane émeraude<edgecolortype(0)><colortype(0)>,<if([gnum68==27],<colortype(500)><edgecolortype(501)>Arcane rubis<edgecolortype(0)><colortype(0)>\\, <colortype(500)><edgecolortype(501)>Arcane topaze<edgecolortype(0)><colortype(0)> et <colortype(500)><edgecolortype(501)>Arcane émeraude<edgecolortype(0)><colortype(0)>,<if([gnum72>=15],<if([gnum68==26],<colortype(500)><edgecolortype(501)>Arcane rubis<edgecolortype(0)><colortype(0)> et <colortype(500)><edgecolortype(501)>Arcane topaze<edgecolortype(0)><colortype(0)>,<if([gnum68==27],<colortype(500)><edgecolortype(501)>Arcane rubis<edgecolortype(0)><colortype(0)> et <colortype(500)><edgecolortype(501)>Arcane topaze<edgecolortype(0)><colortype(0)>,<colortype(500)><edgecolortype(501)>Arcane rubis<edgecolortype(0)><colortype(0)>)>)>,<colortype(500)><edgecolortype(501)>Arcane rubis<edgecolortype(0)><colortype(0)>)>)>)>,<if([gnum72>=15],<if([gnum68==26],<colortype(500)><edgecolortype(501)>Arcane rubis<edgecolortype(0)><colortype(0)> et <colortype(500)><edgecolortype(501)>Arcane topaze<edgecolortype(0)><colortype(0)>,<if([gnum68==27],<colortype(500)><edgecolortype(501)>Arcane rubis<edgecolortype(0)><colortype(0)> et <colortype(500)><edgecolortype(501)>Arcane topaze<edgecolortype(0)><colortype(0)>,<colortype(500)><edgecolortype(501)>Arcane rubis<edgecolortype(0)><colortype(0)>)>)>,<colortype(500)><edgecolortype(501)>Arcane rubis<edgecolortype(0)><colortype(0)>)>)>.<br><colortype(506)><edgecolortype(507)>Condition<nbsp>:<edgecolortype(0)><colortype(0)> en combat et Carbuncle invoqué.<br>Ce sort a un temps de recharge indépendant.",
+  "effects": [
+    "Vous octroie Infusion d'éther.",
+    "Durée : 15s",
+    "Infusion d'éther : augmente de 50 la puissance de Ruine, Extra Ruine et Méga Ruine, ainsi que de 20 celle de Fracas élémentaire.",
+    "Effet additionnel : vous octroie Arcane topaze et Arcane émeraude.",
+    "Condition : en combat et Carbuncle invoqué.",
+    "Ce sort a un temps de recharge indépendant."
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 27,
+    "name": "Invocateur",
+    "abbreviation": "INV"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 6,
+  "icon": {
+    "id": 2751,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 2,
+    "name": "Sort"
+  },
+  "attack_type": {
+    "id": 5,
+    "name": "magie"
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 60,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 10,
+    "additional_cooldown_group": 58,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 0,
+      "value": 0
+    },
+    "secondary": {
+      "type_id": 124,
+      "value": 474
+    }
+  },
+  "range": {
+    "target_yalms": 0,
+    "effect_yalms": 0,
+    "cast_type": 1
+  },
+  "targeting": {
+    "self": true,
+    "party": false,
+    "alliance": false,
+    "hostile": false,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 7,
+    "behavior_type": 0,
+    "class_job_category_id": 69,
+    "source_class_job_id": 26,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

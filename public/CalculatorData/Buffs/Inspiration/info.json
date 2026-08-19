@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 3689,
+  "name": "Inspiration",
+  "description": "Inspired by Starry Muse, your spell cast and recast times are reduced.",
+  "effects": [
+    "Inspired by Starry Muse, your spell cast and recast times are reduced."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 213811,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": true,
+  "inflicted_by_actor": false,
+  "party_list_priority": 49,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 197,
+  "source_abilities": [
+    {
+      "id": 34675,
+      "name": "Starry Muse",
+      "description": "Render a star streaming sky over a magicked landscape, increasing damage dealt by self and nearby party members by 5%.\nDuration: 20s\nAdditional Effect: Grants Subtractive Spectrum\nDuration: 30s\nAdditional Effect: Grants Inspiration and 5 stacks of Hyperphantasia\nStacks of Hyperphantasia are consumed upon casting certain spells while under the effect of Inspiration.\nDuration: 30s\nInspiration Effect: Reduces cast time and recast time of Star Prism and aetherhue spells by 25% while standing within the bounds of the magicked landscape\nEffect expires when all stacks of Hyperphantasia are consumed.\nAdditional Effect: Grants Rainbow Bright upon consuming all 5 stacks of Hyperphantasia\nDuration: 30s\nRainbow Bright Effect: Rainbow Drip can be cast immediately and has a reduced recast timer\nAdditional Effect: Grants Starstruck\nDuration: 20s\nCan only be executed while in combat and when a starry sky is painted on the Landscape Canvas.\n\n※This action cannot be assigned to a hotbar.\n※Scenic Muse changes to Starry Muse when requirements for execution are met.",
+      "description_macro": "Render a star streaming sky over a magicked landscape, increasing damage dealt by self and nearby party members by 5%.<br><colortype(504)><edgecolortype(505)>Duration:<edgecolortype(0)><colortype(0)> 20s<br><colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>Grants <colortype(506)><edgecolortype(507)>Subtractive Spectrum<edgecolortype(0)><colortype(0)><br><colortype(504)><edgecolortype(505)>Duration:<edgecolortype(0)><colortype(0)> 30s<br><if([gnum68==42],<if([gnum72>=82],<colortype(504)><edgecolortype(505)>Additional Effect:<edgecolortype(0)><colortype(0)> Grants <colortype(506)><edgecolortype(507)>Inspiration<edgecolortype(0)><colortype(0)> and 5 stacks of <colortype(506)><edgecolortype(507)>Hyperphantasia<edgecolortype(0)><colortype(0)><br>Stacks of <colortype(506)><edgecolortype(507)>Hyperphantasia<edgecolortype(0)><colortype(0)> are consumed upon casting certain spells while under the effect of <colortype(506)><edgecolortype(507)>Inspiration<edgecolortype(0)><colortype(0)>.<br><colortype(504)><edgecolortype(505)>Duration:<edgecolortype(0)><colortype(0)> 30s<br><colortype(504)><edgecolortype(505)>Inspiration Effect: <edgecolortype(0)><colortype(0)>Reduces cast time and recast time of <colortype(500)><edgecolortype(501)>Star Prism<edgecolortype(0)><colortype(0)> and aetherhue spells by 25% while standing within the bounds of the magicked landscape<br>Effect expires when all stacks of <colortype(506)><edgecolortype(507)>Hyperphantasia<edgecolortype(0)><colortype(0)> are consumed.<br>,)>,)><if([gnum68==42],<if([gnum72>=92],<colortype(504)><edgecolortype(505)>Additional Effect:<edgecolortype(0)><colortype(0)> Grants <colortype(506)><edgecolortype(507)>Rainbow Bright<edgecolortype(0)><colortype(0)> upon consuming all 5 stacks of <colortype(506)><edgecolortype(507)>Hyperphantasia<edgecolortype(0)><colortype(0)><br><colortype(504)><edgecolortype(505)>Duration:<edgecolortype(0)><colortype(0)> 30s<br><colortype(504)><edgecolortype(505)>Rainbow Bright Effect:<edgecolortype(0)><colortype(0)> <colortype(500)><edgecolortype(501)>Rainbow Drip<edgecolortype(0)><colortype(0)> can be cast immediately and has a reduced recast timer<br>,)>,)><if([gnum68==42],<if([gnum72>=100],<colortype(504)><edgecolortype(505)>Additional Effect:<edgecolortype(0)><colortype(0)> Grants <colortype(506)><edgecolortype(507)>Starstruck<edgecolortype(0)><colortype(0)><br><colortype(504)><edgecolortype(505)>Duration:<edgecolortype(0)><colortype(0)> 20s<br>,)>,)>Can only be executed while in combat and when a <colortype(506)><edgecolortype(507)>starry sky<edgecolortype(0)><colortype(0)> is painted on the <colortype(500)><edgecolortype(501)>Landscape Canvas<edgecolortype(0)><colortype(0)>.<br><br>※This action cannot be assigned to a hotbar.<br>※<colortype(500)><edgecolortype(501)>Scenic Muse<edgecolortype(0)><colortype(0)> changes to <colortype(500)><edgecolortype(501)>Starry Muse<edgecolortype(0)><colortype(0)> when requirements for execution are met.",
+      "unlock_level": 70,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Magical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 42,
+          "name": "Pictomancer",
+          "abbreviation": "PCT",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

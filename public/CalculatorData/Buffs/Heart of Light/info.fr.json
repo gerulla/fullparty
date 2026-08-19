@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 1839,
+  "name": "Cœur de Lumière",
+  "description": "Les dégâts physiques et magiques subis sont réduits.",
+  "effects": [
+    "Les dégâts physiques et magiques subis sont réduits."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 213609,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": -10
+  },
+  "class_job_category_id": 149,
+  "source_abilities": [
+    {
+      "id": 16160,
+      "name": "Cœur de Lumière",
+      "description": "Réduit de 5% les dégâts physiques et de 10% les dégâts magiques subis par vous et les équipiers alentour.\nDurée : 15s",
+      "description_macro": "Réduit de 5% les dégâts physiques et de 10% les dégâts magiques subis par vous et les équipiers alentour.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 15s",
+      "unlock_level": 64,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Tank"
+      ],
+      "jobs": [
+        {
+          "id": 37,
+          "name": "Pistosabreur",
+          "abbreviation": "PSB",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

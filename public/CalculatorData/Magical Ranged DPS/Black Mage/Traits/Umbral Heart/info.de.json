@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 295,
+  "name": "Schattenherz",
+  "description": "Gewährt Schattenherz, wenn Einfrieren, Schattenseele oder Mana-Brunnen ausgeführt wurde.",
+  "description_macro": "Gewährt <colortype(506)><edgecolortype(507)>Schattenherz<edgecolortype(0)><colortype(0)>, wenn <colortype(502)><edgecolortype(503)>Einfrieren<edgecolortype(0)><colortype(0)>, <colortype(502)><edgecolortype(503)>Schattenseele<edgecolortype(0)><colortype(0)> oder <colortype(502)><edgecolortype(503)>Mana-Brunnen<edgecolortype(0)><colortype(0)> ausgeführt wurde.",
+  "effects": [
+    "Gewährt Schattenherz, wenn Einfrieren, Schattenseele oder Mana-Brunnen ausgeführt wurde."
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 25,
+    "name": "Schwarzmagier",
+    "abbreviation": "SMA"
+  },
+  "unlock_level": 58,
+  "value": 0,
+  "icon": {
+    "id": 5656,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 26,
+  "source_class_job_id": 25
+}

@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 511,
+  "name": "影身具現効果アップ",
+  "description": "英雄の影身による攻撃の威力が420に上昇する。",
+  "description_macro": "英雄の影身による攻撃の威力が420に上昇する。",
+  "effects": [
+    "英雄の影身による攻撃の威力が420に上昇する。"
+  ],
+  "role": "Tank",
+  "job": {
+    "id": 32,
+    "name": "暗黒騎士",
+    "abbreviation": "DRK"
+  },
+  "unlock_level": 88,
+  "value": 0,
+  "icon": {
+    "id": 6065,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 98,
+  "source_class_job_id": 32
+}

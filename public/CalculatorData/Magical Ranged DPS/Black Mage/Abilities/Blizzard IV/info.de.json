@@ -1,0 +1,89 @@
+{
+  "kind": "ability",
+  "id": 3576,
+  "name": "Eiska",
+  "description": "Du führst eine eisbasierte magische Attacke aus.\nAttacke-Wert: 300\nZusatzeffekt: Gewährt dir 3 Schattenherzen.\nEffekt von Schattenherz: Verhindert die erhöhten MP-Kosten durch Lichtfeuer beim Ausführen von Feuer-Zaubern.\nAußerdem werden bei Ausführung von Flare alle Schattenherzen verbraucht, dafür aber die MP-Kosten um 1/3 reduziert.\nBedingung: Schatteneis aktiv",
+  "description_macro": "Du führst eine eisbasierte magische Attacke aus.<br>Attacke-Wert: 300<br>Zusatzeffekt: Gewährt dir 3 <colortype(506)><edgecolortype(507)>Schattenherzen<edgecolortype(0)><colortype(0)>.<br>Effekt von <colortype(506)><edgecolortype(507)>Schattenherz<edgecolortype(0)><colortype(0)>: Verhindert die erhöhten MP-Kosten durch <colortype(506)><edgecolortype(507)>Lichtfeuer<edgecolortype(0)><colortype(0)> beim Ausführen von Feuer-Zaubern.<br>Außerdem werden bei Ausführung von <colortype(502)><edgecolortype(503)>Flare<edgecolortype(0)><colortype(0)> alle <colortype(506)><edgecolortype(507)>Schattenherzen<edgecolortype(0)><colortype(0)> verbraucht, dafür aber die MP-Kosten um 1/3 reduziert.<br>Bedingung: <colortype(506)><edgecolortype(507)>Schatteneis<edgecolortype(0)><colortype(0)> aktiv",
+  "effects": [
+    "Du führst eine eisbasierte magische Attacke aus.",
+    "Attacke-Wert: 300",
+    "Zusatzeffekt: Gewährt dir 3 Schattenherzen.",
+    "Effekt von Schattenherz: Verhindert die erhöhten MP-Kosten durch Lichtfeuer beim Ausführen von Feuer-Zaubern.",
+    "Außerdem werden bei Ausführung von Flare alle Schattenherzen verbraucht, dafür aber die MP-Kosten um 1/3 reduziert.",
+    "Bedingung: Schatteneis aktiv"
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 25,
+    "name": "Schwarzmagier",
+    "abbreviation": "SMA"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 58,
+  "icon": {
+    "id": 2659,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 2,
+    "name": "Zauber"
+  },
+  "attack_type": {
+    "id": 5,
+    "name": "魔法"
+  },
+  "timing": {
+    "cast_seconds": 2,
+    "recast_seconds": 2.5,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 58,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 3,
+      "value": 8
+    },
+    "secondary": {
+      "type_id": 48,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": 25,
+    "effect_yalms": 0,
+    "cast_type": 1
+  },
+  "targeting": {
+    "self": false,
+    "party": false,
+    "alliance": false,
+    "hostile": true,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": false
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 2,
+    "behavior_type": 0,
+    "class_job_category_id": 26,
+    "source_class_job_id": 25,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

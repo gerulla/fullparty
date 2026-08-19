@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 15,
+  "name": "Kreszentes Erlernen I",
+  "description": "Erlaubt es, Kreszente Rakete und Kreszenter Aqua-Atem zu erlernen.\nEffekt von Kreszente Rakete: Fügt den meisten Gegnern mit einer Wahrscheinlichkeit von 35 % Schaden in Höhe von 75 % der aktuellen LP zu.\nEffekt von Kreszenter Aqua-Atem: Du führst eine elementneutrale magische Attacke auf das Ziel und die Gegner in seiner Nähe aus.",
+  "description_macro": "Erlaubt es, <colortype(502)><edgecolortype(503)>Kreszente Rakete<edgecolortype(0)><colortype(0)> und <colortype(502)><edgecolortype(503)>Kreszenter Aqua-Atem<edgecolortype(0)><colortype(0)> zu erlernen.<br>Effekt von <colortype(502)><edgecolortype(503)>Kreszente Rakete<edgecolortype(0)><colortype(0)>: Fügt den meisten Gegnern mit einer Wahr<->schein<->lich<->keit von 35<nbsp>% Schaden in Höhe von 75<nbsp>% der aktuellen LP zu.<br>Effekt von <colortype(502)><edgecolortype(503)>Kreszenter Aqua-Atem<edgecolortype(0)><colortype(0)>: Du führst eine elementneutrale magische Attacke auf das Ziel und die Gegner in seiner Nähe aus.",
+  "effects": [
+    "Erlaubt es, Kreszente Rakete und Kreszenter Aqua-Atem zu erlernen.",
+    "Effekt von Kreszente Rakete: Fügt den meisten Gegnern mit einer Wahrscheinlichkeit von 35 % Schaden in Höhe von 75 % der aktuellen LP zu.",
+    "Effekt von Kreszenter Aqua-Atem: Du führst eine elementneutrale magische Attacke auf das Ziel und die Gegner in seiner Nähe aus."
+  ],
+  "role": "Phantom Jobs",
+  "job": {
+    "id": 21,
+    "name": "Phantom-Blaumagier",
+    "abbreviation": "Ph-Blaumagier"
+  },
+  "is_phantom_trait": true,
+  "unlock_level": 1,
+  "icon": {
+    "id": 82215,
+    "file": "icon.png"
+  }
+}

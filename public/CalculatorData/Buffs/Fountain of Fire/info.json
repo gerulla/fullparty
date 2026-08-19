@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 2029,
+  "name": "Fountain of Fire",
+  "description": "Sustaining fire damage over time.",
+  "effects": [
+    "Sustaining fire damage over time."
+  ],
+  "classification": "debuff",
+  "icon": {
+    "id": 212731,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 2,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": true,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 100
+  },
+  "class_job_category_id": 28,
+  "source_abilities": [
+    {
+      "id": 16514,
+      "name": "Fountain of Fire",
+      "description": "Deals fire damage with a potency of 580.\nCan only be executed while under the effect of Firebird Trance.\n\n※This action cannot be assigned to a hotbar.\n※Ruin III changes to Fountain of Fire when requirements for execution are met.",
+      "description_macro": "Deals fire damage with a potency of <if([gnum68==27],<if([gnum72>=94],580,540)>,540)>.<br>Can only be executed while under the effect of <colortype(506)><edgecolortype(507)>Firebird Trance<edgecolortype(0)><colortype(0)>.<br><br>※This action cannot be assigned to a hotbar.<br>※<colortype(500)><edgecolortype(501)>Ruin III<edgecolortype(0)><colortype(0)> changes to <colortype(500)><edgecolortype(501)>Fountain of Fire<edgecolortype(0)><colortype(0)> when requirements for execution are met.",
+      "unlock_level": 80,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Magical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 27,
+          "name": "Summoner",
+          "abbreviation": "SMN",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

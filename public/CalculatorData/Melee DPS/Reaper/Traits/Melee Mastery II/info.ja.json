@@ -1,0 +1,27 @@
+{
+  "kind": "trait",
+  "id": 523,
+  "name": "アクション威力アップII",
+  "description": "特定のアクションの威力を上昇させる。\n\nスライスの威力：320\nワクシングスライスの威力：160\nインファナルスライスの威力：180",
+  "description_macro": "特定のアクションの威力を上昇させる。<br><br><colortype(504)><edgecolortype(505)>スライスの威力：<edgecolortype(0)><colortype(0)>320<br><colortype(504)><edgecolortype(505)>ワクシングスライスの威力：<edgecolortype(0)><colortype(0)>160<br><colortype(504)><edgecolortype(505)>インファナルスライスの威力：<edgecolortype(0)><colortype(0)>180",
+  "effects": [
+    "特定のアクションの威力を上昇させる。",
+    "スライスの威力：320",
+    "ワクシングスライスの威力：160",
+    "インファナルスライスの威力：180"
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 39,
+    "name": "リーパー",
+    "abbreviation": "RPR"
+  },
+  "unlock_level": 84,
+  "value": 0,
+  "icon": {
+    "id": 6802,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 180,
+  "source_class_job_id": 39
+}

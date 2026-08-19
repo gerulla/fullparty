@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 497,
+  "name": "Maîtrise de Malfaisance IV",
+  "description": "Remplace Malfaisance IV par Malfaisance en chute.",
+  "description_macro": "Remplace <colortype(500)><edgecolortype(501)>Malfaisance IV<edgecolortype(0)><colortype(0)> par <colortype(500)><edgecolortype(501)>Malfaisance en chute<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Remplace Malfaisance IV par Malfaisance en chute."
+  ],
+  "role": "Healer",
+  "job": {
+    "id": 33,
+    "name": "Astromancien",
+    "abbreviation": "AST"
+  },
+  "unlock_level": 82,
+  "value": 0,
+  "icon": {
+    "id": 6117,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 99,
+  "source_class_job_id": 33
+}

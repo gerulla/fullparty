@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 223,
+  "name": "アクションダメージ・回復量アップIV",
+  "description": "自身のオートアタックを除くアクションによる、ダメージと回復量をベース値の1.4倍にする。",
+  "description_macro": "自身のオートアタックを除くアクションによる、ダメージと回復量をベース値の1.4倍にする。",
+  "effects": [
+    "自身のオートアタックを除くアクションによる、ダメージと回復量をベース値の1.4倍にする。"
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 36,
+    "name": "青魔道士",
+    "abbreviation": "BLU"
+  },
+  "unlock_level": 40,
+  "value": 40,
+  "icon": {
+    "id": 5188,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 129,
+  "source_class_job_id": 36
+}

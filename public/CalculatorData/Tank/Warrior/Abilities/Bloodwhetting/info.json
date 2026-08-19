@@ -1,0 +1,94 @@
+{
+  "kind": "ability",
+  "id": 25751,
+  "name": "Bloodwhetting",
+  "description": "Reduces damage taken by 10%.\nDuration: 8s\nAdditional Effect: Restores HP with each weaponskill successfully delivered\nCure Potency: 400\nAdditional Effect: Grants Stem the Flow\nStem the Flow Effect: Reduces damage taken by 10%\nDuration: 4s\nAdditional Effect: Grants Stem the Tide\nStem the Tide Effect: Creates a barrier around self that absorbs damage equivalent to a heal of 400 potency\nDuration: 20s\nShares a recast timer with Nascent Flash.",
+  "description_macro": "Reduces damage taken by 10%.<br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>8s<br><colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>Restores HP with each weaponskill successfully delivered<br><colortype(504)><edgecolortype(505)>Cure Potency: <edgecolortype(0)><colortype(0)>400<br><colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>Grants <colortype(506)><edgecolortype(507)>Stem the Flow<edgecolortype(0)><colortype(0)><br><colortype(504)><edgecolortype(505)>Stem the Flow Effect: <edgecolortype(0)><colortype(0)>Reduces damage taken by 10%<br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>4s<br><colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>Grants <colortype(506)><edgecolortype(507)>Stem the Tide<edgecolortype(0)><colortype(0)><br><colortype(504)><edgecolortype(505)>Stem the Tide Effect: <edgecolortype(0)><colortype(0)>Creates a barrier around self that absorbs damage equivalent to a heal of 400 potency<br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>20s<br>Shares a recast timer with <colortype(500)><edgecolortype(501)>Nascent Flash<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Reduces damage taken by 10%.",
+    "Duration: 8s",
+    "Additional Effect: Restores HP with each weaponskill successfully delivered",
+    "Cure Potency: 400",
+    "Additional Effect: Grants Stem the Flow",
+    "Stem the Flow Effect: Reduces damage taken by 10%",
+    "Duration: 4s",
+    "Additional Effect: Grants Stem the Tide",
+    "Stem the Tide Effect: Creates a barrier around self that absorbs damage equivalent to a heal of 400 potency",
+    "Duration: 20s",
+    "Shares a recast timer with Nascent Flash."
+  ],
+  "role": "Tank",
+  "job": {
+    "id": 21,
+    "name": "Warrior",
+    "abbreviation": "WAR"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 82,
+  "icon": {
+    "id": 2569,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 4,
+    "name": "Ability"
+  },
+  "attack_type": {
+    "id": 0,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 25,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 7,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 0,
+      "value": 0
+    },
+    "secondary": {
+      "type_id": 0,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": 0,
+    "effect_yalms": 0,
+    "cast_type": 1
+  },
+  "targeting": {
+    "self": true,
+    "party": false,
+    "alliance": false,
+    "hostile": false,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 0,
+    "behavior_type": 0,
+    "class_job_category_id": 22,
+    "source_class_job_id": 21,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

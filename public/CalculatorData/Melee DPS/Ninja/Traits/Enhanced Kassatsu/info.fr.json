@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 250,
+  "name": "Kassatsu amélioré",
+  "description": "Sous l'effet de Kassatsu, remplace Katon par Gôka Mekkyaku, et Hyôton par Hyôshô Ranryû.",
+  "description_macro": "Sous l'effet de <colortype(500)><edgecolortype(501)>Kassatsu<edgecolortype(0)><colortype(0)>, remplace <colortype(500)><edgecolortype(501)>Katon<edgecolortype(0)><colortype(0)> par <colortype(500)><edgecolortype(501)>Gôka Mekkyaku<edgecolortype(0)><colortype(0)>, et <colortype(500)><edgecolortype(501)>Hyôton<edgecolortype(0)><colortype(0)> par <colortype(500)><edgecolortype(501)>Hyôshô Ranryû<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Sous l'effet de Kassatsu, remplace Katon par Gôka Mekkyaku, et Hyôton par Hyôshô Ranryû."
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 30,
+    "name": "Ninja",
+    "abbreviation": "NIN"
+  },
+  "unlock_level": 76,
+  "value": 0,
+  "icon": {
+    "id": 5414,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 92,
+  "source_class_job_id": 30
+}

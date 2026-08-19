@@ -1,0 +1,87 @@
+{
+  "kind": "ability",
+  "id": 34691,
+  "name": "Picto Paysage",
+  "description": "Peint une esquisse de type Paysage.\nLorsqu'elle est ajoutée aux barres de raccourcis, cette action devient automatiquement Picto Ciel.\nPeut être lancé instantanément si vous êtes hors combat.\nCe sort a un temps de recharge indépendant qui ne peut pas être modifié par des effets ou des pièces d'équipement, et qui est appliqué aux autres sorts ou techniques d'arme après utilisation.",
+  "description_macro": "Peint une esquisse de type <colortype(500)><edgecolortype(501)>Paysage<edgecolortype(0)><colortype(0)>.<br>Lorsqu'elle est ajoutée aux barres de raccourcis, cette action devient au<->to<->ma<->ti<->que<->ment Picto Ciel.<br>Peut être lancé instantanément si vous êtes hors combat.<br>Ce sort a un temps de recharge indépendant qui ne peut pas être modifié par des effets ou des pièces d'équipement, et qui est appliqué aux autres sorts ou techniques d'arme après utilisation.",
+  "effects": [
+    "Peint une esquisse de type Paysage.",
+    "Lorsqu'elle est ajoutée aux barres de raccourcis, cette action devient automatiquement Picto Ciel.",
+    "Peut être lancé instantanément si vous êtes hors combat.",
+    "Ce sort a un temps de recharge indépendant qui ne peut pas être modifié par des effets ou des pièces d'équipement, et qui est appliqué aux autres sorts ou techniques d'arme après utilisation."
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 42,
+    "name": "Pictomancien",
+    "abbreviation": "PIC"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 70,
+  "icon": {
+    "id": 3841,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 2,
+    "name": "Sort"
+  },
+  "attack_type": {
+    "id": 0,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 3,
+    "recast_seconds": 4,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 58,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 0,
+      "value": 0
+    },
+    "secondary": {
+      "type_id": 73,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": 0,
+    "effect_yalms": 0,
+    "cast_type": 1
+  },
+  "targeting": {
+    "self": true,
+    "party": false,
+    "alliance": false,
+    "hostile": false,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 0,
+    "behavior_type": 0,
+    "class_job_category_id": 197,
+    "source_class_job_id": 42,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

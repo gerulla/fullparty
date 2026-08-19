@@ -1,0 +1,25 @@
+{
+  "kind": "trait",
+  "id": 295,
+  "name": "アンブラルハート",
+  "description": "自身に「アンブラルハート」が付与される。\n発動条件：マナフォント、アンブラルソウル、フリーズの実行時",
+  "description_macro": "自身に<colortype(500)><edgecolortype(501)>「アンブラルハート」<edgecolortype(0)><colortype(0)>が付与される。<br><colortype(504)><edgecolortype(505)>発動条件：<edgecolortype(0)><colortype(0)>マナフォント、アンブラルソウル、フリーズの実行時",
+  "effects": [
+    "自身に「アンブラルハート」が付与される。",
+    "発動条件：マナフォント、アンブラルソウル、フリーズの実行時"
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 25,
+    "name": "黒魔道士",
+    "abbreviation": "BLM"
+  },
+  "unlock_level": 58,
+  "value": 0,
+  "icon": {
+    "id": 5656,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 26,
+  "source_class_job_id": 25
+}

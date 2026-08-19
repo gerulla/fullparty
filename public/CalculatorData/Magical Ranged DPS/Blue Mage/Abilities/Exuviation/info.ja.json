@@ -1,0 +1,88 @@
+{
+  "kind": "ability",
+  "id": 18318,
+  "name": "イグジュビエーション",
+  "description": "自身と周囲のパーティメンバーのＨＰを回復する。\n回復力：50\n追加効果：解除可能な弱体効果を1つ解除する。\n自身に「エーテルコピー：ヒーラー」が付与されている場合は効果量が上昇する。\nエーテルコピー：ヒーラー時回復力：300",
+  "description_macro": "自身と周囲のパーティメンバーのＨＰを回復する。<br><colortype(504)><edgecolortype(505)>回復力：<edgecolortype(0)><colortype(0)>50<br><colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)>解除可能な弱体効果を1つ解除する。<br>自身に<colortype(500)><edgecolortype(501)>「エーテルコピー：ヒーラー」<edgecolortype(0)><colortype(0)>が付与されている場合は効果量が上昇する。<br><colortype(504)><edgecolortype(505)>エーテルコピー：ヒーラー時回復力：<edgecolortype(0)><colortype(0)>300",
+  "effects": [
+    "自身と周囲のパーティメンバーのＨＰを回復する。",
+    "回復力：50",
+    "追加効果：解除可能な弱体効果を1つ解除する。",
+    "自身に「エーテルコピー：ヒーラー」が付与されている場合は効果量が上昇する。",
+    "エーテルコピー：ヒーラー時回復力：300"
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 36,
+    "name": "青魔道士",
+    "abbreviation": "BLU"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 1,
+  "icon": {
+    "id": 3323,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 2,
+    "name": "魔法"
+  },
+  "attack_type": {
+    "id": 5,
+    "name": "魔法"
+  },
+  "timing": {
+    "cast_seconds": 2,
+    "recast_seconds": 2.5,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 58,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 3,
+      "value": 2
+    },
+    "secondary": {
+      "type_id": 0,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": 0,
+    "effect_yalms": 6,
+    "cast_type": 2
+  },
+  "targeting": {
+    "self": true,
+    "party": false,
+    "alliance": false,
+    "hostile": false,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": false
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 7,
+    "behavior_type": 0,
+    "class_job_category_id": 129,
+    "source_class_job_id": 36,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

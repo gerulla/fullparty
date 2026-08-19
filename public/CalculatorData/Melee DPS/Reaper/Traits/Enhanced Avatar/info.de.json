@@ -1,0 +1,26 @@
+{
+  "kind": "trait",
+  "id": 381,
+  "name": "Verbesserter Avatar",
+  "description": "Bei erfolgreicher Ausführung von Knochengarbe und Nachtschwad erhältst du Nichtssense.\nDauer: 30 Sekunden\nDer Effekt endet bei Ausführung einer Waffenfertigkeit oder eines Zaubers.",
+  "description_macro": "Bei erfolgreicher Ausführung von <colortype(502)><edgecolortype(503)>Knochengarbe<edgecolortype(0)><colortype(0)> und <colortype(502)><edgecolortype(503)>Nachtschwad<edgecolortype(0)><colortype(0)> erhältst du <colortype(506)><edgecolortype(507)>Nichtssense<edgecolortype(0)><colortype(0)>.<br>Dauer: 30 Sekunden<br>Der Effekt endet bei Ausführung einer Waf<->fen<->fer<->tig<->keit oder eines Zaubers.",
+  "effects": [
+    "Bei erfolgreicher Ausführung von Knochengarbe und Nachtschwad erhältst du Nichtssense.",
+    "Dauer: 30 Sekunden",
+    "Der Effekt endet bei Ausführung einer Waffenfertigkeit oder eines Zaubers."
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 39,
+    "name": "Schnitter",
+    "abbreviation": "SNT"
+  },
+  "unlock_level": 70,
+  "value": 0,
+  "icon": {
+    "id": 6403,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 180,
+  "source_class_job_id": 39
+}

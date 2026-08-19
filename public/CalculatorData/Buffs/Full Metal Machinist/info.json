@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 3866,
+  "name": "Full Metal Machinist",
+  "description": "Able to execute Full Metal Field.",
+  "effects": [
+    "Able to execute Full Metal Field."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 213024,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 96,
+  "source_abilities": [
+    {
+      "id": 7414,
+      "name": "Barrel Stabilizer",
+      "description": "Grants Hypercharged.\nDuration: 30s\nAdditional Effect: Grants Full Metal Machinist\nDuration: 30s\nCan only be executed while in combat.",
+      "description_macro": "Grants <colortype(506)><edgecolortype(507)>Hypercharged<edgecolortype(0)><colortype(0)>.<br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>30s<br><if([gnum68==31],<if([gnum72>=100],<colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>Grants <colortype(506)><edgecolortype(507)>Full Metal Machinist<edgecolortype(0)><colortype(0)><br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>30s<br>,)>,)>Can only be executed while in combat.",
+      "unlock_level": 66,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Physical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 31,
+          "name": "Machinist",
+          "abbreviation": "MCH",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

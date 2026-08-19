@@ -1,0 +1,71 @@
+{
+  "kind": "combat_status",
+  "id": 165,
+  "name": "ファイガ効果アップ",
+  "description": "次に詠唱するファイガの詠唱時間と消費ＭＰを0にする状態。",
+  "effects": [
+    "次に詠唱するファイガの詠唱時間と消費ＭＰを0にする状態。"
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 210460,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": true,
+  "inflicted_by_actor": true,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 141,
+      "name": "ファイア",
+      "description": "対象に火属性魔法攻撃。\u3000威力：180\n追加効果：自身に「アンブラルブリザード」が付与されている場合は、これを解除する。\n自身に「アンブラルブリザード」が付与されていない場合は、「アストラルファイア」を付与する。\u3000効果時間：永続\n追加効果（発動確率40％）：自身に「ファイガ効果アップ」を付与する。\u3000効果時間：永続\nファイガ効果アップ効果：次に詠唱するファイガの詠唱時間と消費ＭＰを0にする。",
+      "description_macro": "対象に火属性魔法攻撃。\u3000<colortype(504)><edgecolortype(505)>威力：<edgecolortype(0)><colortype(0)>180<br><colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)>自身に<colortype(500)><edgecolortype(501)>「アンブラルブリザード」<edgecolortype(0)><colortype(0)>が付与されている場合は、これを解除する。<br>自身に<colortype(500)><edgecolortype(501)>「アンブラルブリザード」<edgecolortype(0)><colortype(0)>が付与されていない場合は、<colortype(500)><edgecolortype(501)>「アストラルファイア」<edgecolortype(0)><colortype(0)>を付与する。\u3000<colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>永続<if([gnum72>=42],<if([gnum68==7],<br><colortype(504)><edgecolortype(505)>追加効果（発動確率40％）：<edgecolortype(0)><colortype(0)>自身に<colortype(500)><edgecolortype(501)>「ファイガ効果アップ」<edgecolortype(0)><colortype(0)>を付与する。\u3000<colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>永続<br><colortype(504)><edgecolortype(505)>ファイガ効果アップ効果：<edgecolortype(0)><colortype(0)>次に詠唱するファイガの詠唱時間と消費ＭＰを0にする。,<if([gnum68==25],<br><colortype(504)><edgecolortype(505)>追加効果（発動確率40％）：<edgecolortype(0)><colortype(0)>自身に<colortype(500)><edgecolortype(501)>「ファイガ効果アップ」<edgecolortype(0)><colortype(0)>を付与する。\u3000<colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>永続<br><colortype(504)><edgecolortype(505)>ファイガ効果アップ効果：<edgecolortype(0)><colortype(0)>次に詠唱するファイガの詠唱時間と消費ＭＰを0にする。,)>)>,)>",
+      "unlock_level": 2,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Magical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 25,
+          "name": "黒魔道士",
+          "abbreviation": "BLM",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 25797,
+      "name": "パラドックス",
+      "description": "対象に無属性魔法攻撃。\u3000威力：540\nアストラルファイア時追加効果：自身に「ファイガ効果アップ」を付与する。\u3000効果時間：永続\nファイガ効果アップ効果：次に詠唱するファイガの詠唱時間と消費ＭＰを0にする。\nアンブラルブリザード時追加効果：この魔法の消費ＭＰが0になる。\n発動条件：「パラドックスシンボル」\n\n※このアクションはホットバーに登録することはできない。\n\u3000発動条件を満たすとファイアとブリザドがパラドックスに変化する。",
+      "description_macro": "対象に無属性魔法攻撃。\u3000<colortype(504)><edgecolortype(505)>威力：<edgecolortype(0)><colortype(0)>540<br><colortype(504)><edgecolortype(505)>アストラルファイア時追加効果：<edgecolortype(0)><colortype(0)>自身に<colortype(500)><edgecolortype(501)>「ファイガ効果アップ」<edgecolortype(0)><colortype(0)>を付与する。\u3000<colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>永続<br><colortype(504)><edgecolortype(505)>ファイガ効果アップ効果：<edgecolortype(0)><colortype(0)>次に詠唱するファイガの詠唱時間と消費ＭＰを0にする。<br><colortype(504)><edgecolortype(505)>アンブラルブリザード時追加効果：<edgecolortype(0)><colortype(0)>この魔法の消費ＭＰが0になる。<br><colortype(504)><edgecolortype(505)>発動条件：<edgecolortype(0)><colortype(0)><colortype(500)><edgecolortype(501)>「パラドックスシンボル」<edgecolortype(0)><colortype(0)><br><br><colortype(506)><edgecolortype(507)>※このアクションはホットバーに登録することはできない。<br>\u3000発動条件を満たすとファイアとブリザドがパラドックスに変化する。<edgecolortype(0)><colortype(0)>",
+      "unlock_level": 90,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Magical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 25,
+          "name": "黒魔道士",
+          "abbreviation": "BLM",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

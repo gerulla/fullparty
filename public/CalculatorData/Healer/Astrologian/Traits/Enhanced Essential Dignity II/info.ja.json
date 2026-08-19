@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 634,
+  "name": "ディグニティ効果アップII",
+  "description": "ディグニティの最大チャージ数が3に増加する。",
+  "description_macro": "ディグニティの最大チャージ数が3に増加する。",
+  "effects": [
+    "ディグニティの最大チャージ数が3に増加する。"
+  ],
+  "role": "Healer",
+  "job": {
+    "id": 33,
+    "name": "占星術師",
+    "abbreviation": "AST"
+  },
+  "unlock_level": 98,
+  "value": 3,
+  "icon": {
+    "id": 6124,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 99,
+  "source_class_job_id": 33
+}

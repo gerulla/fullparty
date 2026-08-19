@@ -1,0 +1,25 @@
+{
+  "kind": "trait",
+  "id": 665,
+  "name": "Verbesserte Verwegenheit",
+  "description": "Erfolgreiche Ausführung von Verwegenheit gewährt dir Gewetzte Klinge.\nDauer: 30 Sekunden",
+  "description_macro": "Erfolgreiche Ausführung von <colortype(502)><edgecolortype(503)>Verwegenheit<edgecolortype(0)><colortype(0)> gewährt dir <colortype(506)><edgecolortype(507)>Gewetzte Klinge<edgecolortype(0)><colortype(0)>.<br>Dauer: 30 Sekunden",
+  "effects": [
+    "Erfolgreiche Ausführung von Verwegenheit gewährt dir Gewetzte Klinge.",
+    "Dauer: 30 Sekunden"
+  ],
+  "role": "Tank",
+  "job": {
+    "id": 19,
+    "name": "Paladin",
+    "abbreviation": "PLD"
+  },
+  "unlock_level": 54,
+  "value": 0,
+  "icon": {
+    "id": 5205,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 20,
+  "source_class_job_id": 19
+}

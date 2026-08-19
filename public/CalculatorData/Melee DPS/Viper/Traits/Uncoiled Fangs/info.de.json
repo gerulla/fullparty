@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 532,
+  "name": "Verbesserte Schlangenschwinge",
+  "description": "Nach erfolgreicher Schlangenschwinge kannst du Flug der Zwillingsfänge und Flug der Zwillingsschuppen ausführen.",
+  "description_macro": "Nach erfolgreicher <colortype(502)><edgecolortype(503)>Schlangenschwinge<edgecolortype(0)><colortype(0)> kannst du <colortype(502)><edgecolortype(503)>Flug der Zwillingsfänge<edgecolortype(0)><colortype(0)> und <colortype(502)><edgecolortype(503)>Flug der Zwillingsschuppen<edgecolortype(0)><colortype(0)> ausführen.",
+  "effects": [
+    "Nach erfolgreicher Schlangenschwinge kannst du Flug der Zwillingsfänge und Flug der Zwillingsschuppen ausführen."
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 41,
+    "name": "Viper",
+    "abbreviation": "VPR"
+  },
+  "unlock_level": 92,
+  "value": 0,
+  "icon": {
+    "id": 6510,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 196,
+  "source_class_job_id": 41
+}

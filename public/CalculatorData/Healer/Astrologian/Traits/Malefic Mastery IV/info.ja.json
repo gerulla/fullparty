@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 497,
+  "name": "マレフィクマスタリーIV",
+  "description": "マレフィジャがフォールマレフィクに変化する。",
+  "description_macro": "マレフィジャがフォールマレフィクに変化する。",
+  "effects": [
+    "マレフィジャがフォールマレフィクに変化する。"
+  ],
+  "role": "Healer",
+  "job": {
+    "id": 33,
+    "name": "占星術師",
+    "abbreviation": "AST"
+  },
+  "unlock_level": 82,
+  "value": 0,
+  "icon": {
+    "id": 6117,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 99,
+  "source_class_job_id": 33
+}

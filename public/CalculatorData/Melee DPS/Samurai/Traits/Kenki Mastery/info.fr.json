@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 215,
+  "name": "Maîtrise de Kenki",
+  "description": "Permet à votre Jauge de Kenki de se remplir lorsque vous utilisez certaines techniques d'arme avec succès ou quand vous réduisez vos dégâts subis avec Troisième œil.",
+  "description_macro": "Permet à votre <colortype(502)><edgecolortype(503)>Jauge de Kenki<edgecolortype(0)><colortype(0)> de se remplir lorsque vous utilisez certaines techniques d'arme avec succès ou quand vous réduisez vos dégâts subis avec <colortype(500)><edgecolortype(501)>Troisième œil<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Permet à votre Jauge de Kenki de se remplir lorsque vous utilisez certaines techniques d'arme avec succès ou quand vous réduisez vos dégâts subis avec Troisième œil."
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 34,
+    "name": "Samouraï",
+    "abbreviation": "SAM"
+  },
+  "unlock_level": 52,
+  "value": 0,
+  "icon": {
+    "id": 6152,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 111,
+  "source_class_job_id": 34
+}

@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 282,
+  "name": "Meister des Direkten Schusses",
+  "description": "Verbessert Direkter Schuss zu Glänzender Pfeil.",
+  "description_macro": "Verbessert <colortype(502)><edgecolortype(503)>Direkter Schuss<edgecolortype(0)><colortype(0)> zu <colortype(502)><edgecolortype(503)>Glänzender Pfeil<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Verbessert Direkter Schuss zu Glänzender Pfeil."
+  ],
+  "role": "Physical Ranged DPS",
+  "job": {
+    "id": 23,
+    "name": "Barde",
+    "abbreviation": "BRD"
+  },
+  "unlock_level": 70,
+  "value": 0,
+  "icon": {
+    "id": 5311,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 24,
+  "source_class_job_id": 23
+}

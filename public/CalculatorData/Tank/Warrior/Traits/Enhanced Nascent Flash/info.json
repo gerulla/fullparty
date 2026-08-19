@@ -1,0 +1,28 @@
+{
+  "kind": "trait",
+  "id": 419,
+  "name": "Enhanced Nascent Flash",
+  "description": "Extends the duration of Nascent Flash and Nascent Glint to 8 seconds.\nGrants Stem the Flow to target, reducing damage taken by 10%.\nDuration: 4s\nGrants Stem the Tide to target, nullifying damage equivalent to a heal of 400 potency.\nDuration: 20s",
+  "description_macro": "Extends the duration of <colortype(506)><edgecolortype(507)>Nascent Flash<edgecolortype(0)><colortype(0)> and <colortype(506)><edgecolortype(507)>Nascent Glint<edgecolortype(0)><colortype(0)> to 8 seconds.<br>Grants <colortype(506)><edgecolortype(507)>Stem the Flow<edgecolortype(0)><colortype(0)> to target, reducing damage taken by 10%.<br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>4s<br>Grants <colortype(506)><edgecolortype(507)>Stem the Tide<edgecolortype(0)><colortype(0)> to target, nullifying damage equivalent to a heal of 400 potency.<br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>20s",
+  "effects": [
+    "Extends the duration of Nascent Flash and Nascent Glint to 8 seconds.",
+    "Grants Stem the Flow to target, reducing damage taken by 10%.",
+    "Duration: 4s",
+    "Grants Stem the Tide to target, nullifying damage equivalent to a heal of 400 potency.",
+    "Duration: 20s"
+  ],
+  "role": "Tank",
+  "job": {
+    "id": 21,
+    "name": "Warrior",
+    "abbreviation": "WAR"
+  },
+  "unlock_level": 82,
+  "value": 0,
+  "icon": {
+    "id": 5268,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 22,
+  "source_class_job_id": 21
+}

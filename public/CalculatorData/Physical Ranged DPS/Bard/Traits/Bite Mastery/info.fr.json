@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 168,
+  "name": "Maîtrise des Morsures",
+  "description": "Remplace Morsure venimeuse par Morsure caustique, et Morsure du vent par Morsure de la tempête.",
+  "description_macro": "Remplace <colortype(500)><edgecolortype(501)>Morsure venimeuse<edgecolortype(0)><colortype(0)> par <colortype(500)><edgecolortype(501)>Morsure caustique<edgecolortype(0)><colortype(0)>, et <colortype(500)><edgecolortype(501)>Morsure du vent<edgecolortype(0)><colortype(0)> par <colortype(500)><edgecolortype(501)>Morsure de la tempête<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Remplace Morsure venimeuse par Morsure caustique, et Morsure du vent par Morsure de la tempête."
+  ],
+  "role": "Physical Ranged DPS",
+  "job": {
+    "id": 23,
+    "name": "Barde",
+    "abbreviation": "BRD"
+  },
+  "unlock_level": 64,
+  "value": 0,
+  "icon": {
+    "id": 5309,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 24,
+  "source_class_job_id": 23
+}

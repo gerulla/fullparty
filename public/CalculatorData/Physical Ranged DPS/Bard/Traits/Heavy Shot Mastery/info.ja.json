@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 285,
+  "name": "ヘヴィショットマスタリー",
+  "description": "ヘヴィショットがバーストショットに変化する。",
+  "description_macro": "ヘヴィショットがバーストショットに変化する。",
+  "effects": [
+    "ヘヴィショットがバーストショットに変化する。"
+  ],
+  "role": "Physical Ranged DPS",
+  "job": {
+    "id": 23,
+    "name": "吟遊詩人",
+    "abbreviation": "BRD"
+  },
+  "unlock_level": 76,
+  "value": 0,
+  "icon": {
+    "id": 5306,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 24,
+  "source_class_job_id": 23
+}

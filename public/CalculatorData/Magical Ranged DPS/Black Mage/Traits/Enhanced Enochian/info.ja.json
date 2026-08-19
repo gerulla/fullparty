@@ -1,0 +1,26 @@
+{
+  "kind": "trait",
+  "id": 174,
+  "name": "エノキアン効果アップ",
+  "description": "自身に「ポリグロット」が付与される。\n発動条件：「エノキアン」の効果を30秒間継続させる\nさらに、エノキアンの効果量を10％に上昇させる。",
+  "description_macro": "自身に<colortype(500)><edgecolortype(501)>「ポリグロット」<edgecolortype(0)><colortype(0)>が付与される。<br><colortype(504)><edgecolortype(505)>発動条件：<edgecolortype(0)><colortype(0)><colortype(500)><edgecolortype(501)>「エノキアン」<edgecolortype(0)><colortype(0)>の効果を30秒間継続させる<br>さらに、エノキアンの効果量を10％に上昇させる。",
+  "effects": [
+    "自身に「ポリグロット」が付与される。",
+    "発動条件：「エノキアン」の効果を30秒間継続させる",
+    "さらに、エノキアンの効果量を10％に上昇させる。"
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 25,
+    "name": "黒魔道士",
+    "abbreviation": "BLM"
+  },
+  "unlock_level": 70,
+  "value": 5,
+  "icon": {
+    "id": 5360,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 26,
+  "source_class_job_id": 25
+}

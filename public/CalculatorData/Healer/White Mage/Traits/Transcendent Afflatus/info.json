@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 309,
+  "name": "Transcendent Afflatus",
+  "description": "Adds a Blood Lily to the Healing Gauge that blooms after three uses of Afflatus Solace or Afflatus Rapture.",
+  "description_macro": "Adds a <colortype(506)><edgecolortype(507)>Blood Lily<edgecolortype(0)><colortype(0)> to the <colortype(500)><edgecolortype(501)>Healing Gauge<edgecolortype(0)><colortype(0)> that blooms after three uses of <colortype(500)><edgecolortype(501)>Afflatus Solace<edgecolortype(0)><colortype(0)> or <colortype(500)><edgecolortype(501)>Afflatus Rapture<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Adds a Blood Lily to the Healing Gauge that blooms after three uses of Afflatus Solace or Afflatus Rapture."
+  ],
+  "role": "Healer",
+  "job": {
+    "id": 24,
+    "name": "White Mage",
+    "abbreviation": "WHM"
+  },
+  "unlock_level": 74,
+  "value": 0,
+  "icon": {
+    "id": 5341,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 25,
+  "source_class_job_id": 24
+}

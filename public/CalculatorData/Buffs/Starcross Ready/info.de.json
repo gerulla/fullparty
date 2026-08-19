@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 3846,
+  "name": "Sternenkreuz",
+  "description": "Sternenkreuz kann ausgeführt werden.",
+  "effects": [
+    "Sternenkreuz kann ausgeführt werden."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 212588,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 23,
+  "source_abilities": [
+    {
+      "id": 16480,
+      "name": "Sternensturz",
+      "description": "Du springst zum Ziel und greifst alle umstehenden Gegner mit einer feuerbasierten Attacke an.\nAttacke-Wert: 840\nAttacke-Wert verringert sich ab dem zweiten Gegner um 40 %.\nZusatzeffekt: Gewährt dir Sternenkreuz.\nDauer: 20 Sekunden\nLäuft Drachengeist aus\\Bedingung: Drachengeist aktiv\nKann nicht während Fessel ausgeführt werden.",
+      "description_macro": "Du springst zum Ziel und greifst alle umstehenden Gegner mit einer feuerbasierten Attacke an.<br>Attacke-Wert: <if([gnum68==22],<if([gnum72>=94],840,720)>,720)><br>Attacke-Wert verringert sich ab dem zweiten Gegner um 40 %.<br><if([gnum68==22],<if([gnum72>=100],Zusatzeffekt: Gewährt dir <colortype(506)><edgecolortype(507)>Sternenkreuz<edgecolortype(0)><colortype(0)>.<br>Dauer: 20 Sekunden<br>Läuft <colortype(506)><edgecolortype(507)>Drachengeist<edgecolortype(0)><colortype(0)> aus\\, so endet auch dieser Effekt.<br>,)>,)>Bedingung: <colortype(506)><edgecolortype(507)>Drachengeist<edgecolortype(0)><colortype(0)> aktiv<br>Kann nicht während <colortype(500)><edgecolortype(501)>Fessel<edgecolortype(0)><colortype(0)> ausgeführt werden.",
+      "unlock_level": 80,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 22,
+          "name": "Dragoon",
+          "abbreviation": "DRG",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

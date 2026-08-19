@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 572,
+  "name": "Verbessertes Blutdelirium",
+  "description": "Verbessert Blutvergießen zu Rotes Delirium und Quietus zu Blutige Pfählung, während Blutdelirium aktiv ist.",
+  "description_macro": "Verbessert <colortype(502)><edgecolortype(503)>Blutvergießen<edgecolortype(0)><colortype(0)> zu <colortype(502)><edgecolortype(503)>Rotes Delirium<edgecolortype(0)><colortype(0)> und <colortype(502)><edgecolortype(503)>Quietus<edgecolortype(0)><colortype(0)> zu <colortype(502)><edgecolortype(503)>Blutige Pfählung<edgecolortype(0)><colortype(0)>, während <colortype(506)><edgecolortype(507)>Blutdelirium<edgecolortype(0)><colortype(0)> aktiv ist.",
+  "effects": [
+    "Verbessert Blutvergießen zu Rotes Delirium und Quietus zu Blutige Pfählung, während Blutdelirium aktiv ist."
+  ],
+  "role": "Tank",
+  "job": {
+    "id": 32,
+    "name": "Dunkelritter",
+    "abbreviation": "DKR"
+  },
+  "unlock_level": 96,
+  "value": 0,
+  "icon": {
+    "id": 6069,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 98,
+  "source_class_job_id": 32
+}

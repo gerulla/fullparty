@@ -1,0 +1,88 @@
+{
+  "kind": "ability",
+  "id": 18322,
+  "name": "Imitation éthéréenne",
+  "description": "Aligne son propre éther sur celui de sa cible. Selon la classe de celle-ci, vous octroie un des états suivants et ses effets respectifs : \nÉther de protecteur : augmente votre défense ainsi que la puissance de certains sorts de magie bleue.\nÉther de combattant : augmente de 20% vos chances de coups critiques et de coups nets ainsi que la puissance de certains sorts de magie bleue.\nÉther de soigneur : augmente de 20% la puissance des effets curatifs que vous prodiguez ainsi que la puissance de certains sorts de magie bleue.\nL'effet prend fin en relançant l'action.",
+  "description_macro": "Aligne son propre éther sur celui de sa cible. Selon la classe de celle-ci, vous octroie un des états suivants et ses effets respectifs<nbsp>: <br><colortype(500)><edgecolortype(501)>Éther de protecteur<edgecolortype(0)><colortype(0)><nbsp>: augmente votre défense ainsi que la puissance de certains sorts de magie bleue.<br><colortype(500)><edgecolortype(501)>Éther de combattant<edgecolortype(0)><colortype(0)><nbsp>: augmente de 20% vos chances de coups critiques et de coups nets ainsi que la puissance de certains sorts de magie bleue.<br><colortype(500)><edgecolortype(501)>Éther de soigneur<edgecolortype(0)><colortype(0)><nbsp>: augmente de 20% la puissance des effets curatifs que vous prodiguez ainsi que la puissance de certains sorts de magie bleue.<br>L'effet prend fin en relançant l'action.",
+  "effects": [
+    "Aligne son propre éther sur celui de sa cible. Selon la classe de celle-ci, vous octroie un des états suivants et ses effets respectifs :",
+    "Éther de protecteur : augmente votre défense ainsi que la puissance de certains sorts de magie bleue.",
+    "Éther de combattant : augmente de 20% vos chances de coups critiques et de coups nets ainsi que la puissance de certains sorts de magie bleue.",
+    "Éther de soigneur : augmente de 20% la puissance des effets curatifs que vous prodiguez ainsi que la puissance de certains sorts de magie bleue.",
+    "L'effet prend fin en relançant l'action."
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 36,
+    "name": "Mage Bleu",
+    "abbreviation": "MBU"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 1,
+  "icon": {
+    "id": 3327,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 2,
+    "name": "Sort"
+  },
+  "attack_type": {
+    "id": 5,
+    "name": "magie"
+  },
+  "timing": {
+    "cast_seconds": 1,
+    "recast_seconds": 2.5,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 58,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 3,
+      "value": 3
+    },
+    "secondary": {
+      "type_id": 0,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": 25,
+    "effect_yalms": 0,
+    "cast_type": 1
+  },
+  "targeting": {
+    "self": false,
+    "party": true,
+    "alliance": true,
+    "hostile": false,
+    "ally": true,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": false
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": false
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 7,
+    "behavior_type": 0,
+    "class_job_category_id": 129,
+    "source_class_job_id": 36,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

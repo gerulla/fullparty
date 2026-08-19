@@ -1,0 +1,97 @@
+{
+  "kind": "ability",
+  "id": 36972,
+  "name": "エクスギロティン",
+  "description": "対象に向かって前方扇範囲物理攻撃。\u3000威力：260\n追加効果：「シュラウドゲージ」を10上昇させる。\n発動条件：「処刑人」効果中\n\n※このアクションはホットバーに登録することはできない。\n\u3000発動条件を満たすとギロティンがエクスギロティンに変化する。",
+  "description_macro": "対象に向かって前方扇範囲物理攻撃。\u3000<colortype(504)><edgecolortype(505)>威力：<edgecolortype(0)><colortype(0)>260<br><if([gnum68==39],<if([gnum72>=80],<colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)><colortype(500)><edgecolortype(501)>「シュラウドゲージ」<edgecolortype(0)><colortype(0)>を10上昇させる。<br>,)>,)><colortype(504)><edgecolortype(505)>発動条件：<edgecolortype(0)><colortype(0)><colortype(500)><edgecolortype(501)>「処刑人」<edgecolortype(0)><colortype(0)>効果中<br><br><colortype(506)><edgecolortype(507)>※このアクションはホットバーに登録することはできない。<br>\u3000発動条件を満たすとギロティンがエクスギロティンに変化する。<edgecolortype(0)><colortype(0)>",
+  "effects": [
+    "対象に向かって前方扇範囲物理攻撃。\u3000威力：260",
+    "追加効果：「シュラウドゲージ」を10上昇させる。",
+    "発動条件：「処刑人」効果中",
+    "※このアクションはホットバーに登録することはできない。",
+    "発動条件を満たすとギロティンがエクスギロティンに変化する。"
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 39,
+    "name": "リーパー",
+    "abbreviation": "RPR"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 96,
+  "icon": {
+    "id": 3637,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 3,
+    "name": "ウェポンスキル"
+  },
+  "attack_type": {
+    "id": 1,
+    "name": "斬"
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 2.5,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 58,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 0,
+      "value": 0
+    },
+    "secondary": {
+      "type_id": 113,
+      "value": 3858
+    }
+  },
+  "range": {
+    "target_yalms": 8,
+    "effect_yalms": 8,
+    "cast_type": 3
+  },
+  "targeting": {
+    "self": false,
+    "party": false,
+    "alliance": false,
+    "hostile": true,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": {
+      "id": 168,
+      "status": {
+        "id": 3858,
+        "name": "処刑人",
+        "description": "エクスジビトゥ、エクスギャロウズ、エクスギロティンを実行できる状態。",
+        "icon_id": 217198,
+        "max_stacks": 2
+      }
+    }
+  },
+  "metadata": {
+    "aspect_id": 7,
+    "behavior_type": 0,
+    "class_job_category_id": 180,
+    "source_class_job_id": 0,
+    "is_role_action": false,
+    "is_player_action": false,
+    "is_derived_action": true,
+    "equivalence_group": 0
+  }
+}

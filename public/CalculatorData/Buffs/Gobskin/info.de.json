@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 2114,
+  "name": "Gobhaut",
+  "description": "Erlittener Schaden ist um einen bestimmten Betrag verringert.",
+  "effects": [
+    "Erlittener Schaden ist um einen bestimmten Betrag verringert."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 213517,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 30,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 18304,
+      "name": "Gobhaut",
+      "description": "Du errichtest eine Barriere um dich und umgebende Verbündete, die Schaden entsprechend einem Heilpotenzial von 100 absorbiert.\nZusatzeffekt bei Äther-Mimikry: Heiler: Wirkung der Barriere erhöht sich auf 250.\nKann nicht zugleich mit Adloquium des Gelehrten und Eukratische Diagnose oder Eukratische Prognose des Weisen aktiv sein.",
+      "description_macro": "Du errichtest eine Barriere um dich und umgebende Verbündete, die Schaden entsprechend einem Heilpotenzial von 100 absorbiert.<br>Zusatzeffekt bei <colortype(506)><edgecolortype(507)>Äther-Mimikry: Heiler<edgecolortype(0)><colortype(0)>: Wirkung der Barriere erhöht sich auf 250.<br>Kann nicht zugleich mit <colortype(500)><edgecolortype(501)>Adloquium<edgecolortype(0)><colortype(0)> des Gelehrten und <colortype(500)><edgecolortype(501)>Eukratische Diagnose<edgecolortype(0)><colortype(0)> oder <colortype(500)><edgecolortype(501)>Eukratische Prognose<edgecolortype(0)><colortype(0)> des Weisen aktiv sein.",
+      "unlock_level": 1,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Magical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 36,
+          "name": "Blaumagier",
+          "abbreviation": "BMA",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

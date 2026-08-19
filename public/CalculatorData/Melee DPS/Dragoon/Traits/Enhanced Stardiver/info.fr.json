@@ -1,0 +1,26 @@
+{
+  "kind": "trait",
+  "id": 583,
+  "name": "Plongeon céleste amélioré",
+  "description": "Permet de recevoir Traversée céleste préparée lorsque vous utilisez Plongeon céleste.\nDurée : 20s\nCet effet disparaît lorsque Vie du dragon se dissipe.",
+  "description_macro": "Permet de recevoir <colortype(500)><edgecolortype(501)>Traversée céleste préparée<edgecolortype(0)><colortype(0)> lorsque vous utilisez <colortype(500)><edgecolortype(501)>Plongeon céleste<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 20s<br>Cet effet disparaît lorsque <colortype(500)><edgecolortype(501)>Vie du dragon<edgecolortype(0)><colortype(0)> se dissipe.",
+  "effects": [
+    "Permet de recevoir Traversée céleste préparée lorsque vous utilisez Plongeon céleste.",
+    "Durée : 20s",
+    "Cet effet disparaît lorsque Vie du dragon se dissipe."
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 22,
+    "name": "Chevalier Dragon",
+    "abbreviation": "DRG"
+  },
+  "unlock_level": 100,
+  "value": 0,
+  "icon": {
+    "id": 5298,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 23,
+  "source_class_job_id": 22
+}

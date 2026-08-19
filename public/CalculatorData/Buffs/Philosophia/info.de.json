@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 3898,
+  "name": "Philosophia",
+  "description": "Wirkung von Heilmagie ist erhöht.",
+  "effects": [
+    "Wirkung von Heilmagie ist erhöht."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 212974,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 50,
+  "parameter": {
+    "effect": 0,
+    "modifier": 30
+  },
+  "class_job_category_id": 181,
+  "source_abilities": [
+    {
+      "id": 37035,
+      "name": "Philosophia",
+      "description": "Du erhöhst die Wirkung deiner Heilmagie um 20 %.\nDauer: 20 Sekunden\nZusatzeffekt: Gewährt dir und deinen Gruppenmitgliedern Eudaimonie.\nDauer: 20 Sekunden\nEffekt von Eudaimonie: Wirkst du einen Zauber, regeneriert das Ziel LP.\nHeilpotenzial: 150",
+      "description_macro": "Du erhöhst die Wirkung deiner Heilmagie um 20<nbsp>%.<br>Dauer: 20 Sekunden<br>Zusatzeffekt: Gewährt dir und deinen Grup<->pen<->mit<->gliedern <colortype(506)><edgecolortype(507)>Eudaimonie<edgecolortype(0)><colortype(0)>.<br>Dauer: 20 Sekunden<br>Effekt von <colortype(506)><edgecolortype(507)>Eudaimonie<edgecolortype(0)><colortype(0)>: Wirkst du einen Zauber, regeneriert das Ziel LP.<br>Heilpotenzial: 150",
+      "unlock_level": 100,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Healer"
+      ],
+      "jobs": [
+        {
+          "id": 40,
+          "name": "Weiser",
+          "abbreviation": "WEI",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "kind": "trait",
+  "id": 669,
+  "name": "アクション威力アップ",
+  "description": "特定のアクションの威力を上昇させる。\n\nドシスIIIの威力：380\nエウクラシア・ドシスIIIの威力：90\nトキシコンIIの威力：380\nプネウマの威力：380",
+  "description_macro": "特定のアクションの威力を上昇させる。<br><br><colortype(504)><edgecolortype(505)>ドシスIIIの威力：<edgecolortype(0)><colortype(0)>380<br><colortype(504)><edgecolortype(505)>エウクラシア・ドシスIIIの威力：<edgecolortype(0)><colortype(0)>90<br><colortype(504)><edgecolortype(505)>トキシコンIIの威力：<edgecolortype(0)><colortype(0)>380<br><colortype(504)><edgecolortype(505)>プネウマの威力：<edgecolortype(0)><colortype(0)>380",
+  "effects": [
+    "特定のアクションの威力を上昇させる。",
+    "ドシスIIIの威力：380",
+    "エウクラシア・ドシスIIIの威力：90",
+    "トキシコンIIの威力：380",
+    "プネウマの威力：380"
+  ],
+  "role": "Healer",
+  "job": {
+    "id": 40,
+    "name": "賢者",
+    "abbreviation": "SGE"
+  },
+  "unlock_level": 94,
+  "value": 0,
+  "icon": {
+    "id": 6831,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 181,
+  "source_class_job_id": 40
+}

@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 497,
+  "name": "活殺自在",
+  "description": "忍術の威力を上昇させて実行できる状態。",
+  "effects": [
+    "忍術の威力を上昇させて実行できる状態。"
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 212902,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 100,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 2264,
+      "name": "活殺自在",
+      "description": "一定時間、「天の印」「地の印」「人の印」のリキャスト状態に関わらず、忍術を1回実行することができるようになる。\nこのとき、忍術の威力を30％上昇させる。\u3000効果時間：15秒",
+      "description_macro": "一定時間、<colortype(500)><edgecolortype(501)>「天の印」「地の印」「人の印」<edgecolortype(0)><colortype(0)>のリキャスト状態に関わらず、忍術を1回実行することができるようになる。<br>このとき、忍術の威力を30％上昇させる。\u3000<colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>15秒",
+      "unlock_level": 50,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 30,
+          "name": "忍者",
+          "abbreviation": "NIN",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

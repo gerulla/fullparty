@@ -1,0 +1,31 @@
+{
+  "kind": "trait",
+  "id": 499,
+  "name": "Magie curative améliorée",
+  "description": "Augmente la puissance de certaines actions curatives.\n\nPuissance de Bienfaisance : 500\nPuissance d'Hélios : 400\nPuissance de Bienfaisance II : 800\nPuissance de Bienfaisance aspectée : 250\nPuissance de Bienfaisance aspectée (périodique) : 250\nPuissance d'Hélios aspecté : 250\nPuissance d'Hélios aspecté (périodique) : 150",
+  "description_macro": "Augmente la puissance de certaines actions curatives.<br><br><colortype(506)><edgecolortype(507)>Puissance de Bienfaisance<nbsp>:<edgecolortype(0)><colortype(0)> 500<br><colortype(506)><edgecolortype(507)>Puissance d'Hélios<nbsp>:<edgecolortype(0)><colortype(0)> 400<br><colortype(506)><edgecolortype(507)>Puissance de Bienfaisance II<nbsp>:<edgecolortype(0)><colortype(0)> 800<br><colortype(506)><edgecolortype(507)>Puissance de Bienfaisance aspectée<nbsp>:<edgecolortype(0)><colortype(0)> 250<br><colortype(506)><edgecolortype(507)>Puissance de Bienfaisance aspectée (périodique)<nbsp>:<edgecolortype(0)><colortype(0)> 250<br><colortype(506)><edgecolortype(507)>Puissance d'Hélios aspecté<nbsp>:<edgecolortype(0)><colortype(0)> 250<br><colortype(506)><edgecolortype(507)>Puissance d'Hélios aspecté (périodique)<nbsp>:<edgecolortype(0)><colortype(0)> 150",
+  "effects": [
+    "Augmente la puissance de certaines actions curatives.",
+    "Puissance de Bienfaisance : 500",
+    "Puissance d'Hélios : 400",
+    "Puissance de Bienfaisance II : 800",
+    "Puissance de Bienfaisance aspectée : 250",
+    "Puissance de Bienfaisance aspectée (périodique) : 250",
+    "Puissance d'Hélios aspecté : 250",
+    "Puissance d'Hélios aspecté (périodique) : 150"
+  ],
+  "role": "Healer",
+  "job": {
+    "id": 33,
+    "name": "Astromancien",
+    "abbreviation": "AST"
+  },
+  "unlock_level": 85,
+  "value": 0,
+  "icon": {
+    "id": 6826,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 99,
+  "source_class_job_id": 33
+}

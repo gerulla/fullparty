@@ -1,0 +1,71 @@
+{
+  "kind": "combat_status",
+  "id": 165,
+  "name": "Feuga +",
+  "description": "Nächstes Feuga wird sofort und ohne MP-Kosten gewirkt.",
+  "effects": [
+    "Nächstes Feuga wird sofort und ohne MP-Kosten gewirkt."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 210460,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": true,
+  "inflicted_by_actor": true,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 141,
+      "name": "Feuer",
+      "description": "Du fügst dem Ziel feuerbasierten magischen Schaden zu.\nAttacke-Wert: 180\nZusatzeffekt: Entfernt Schatteneis oder, falls nicht in diesem Status, gewährt Lichtfeuer.dass Feuga + gewährt wird.\nEffekt von Feuga +: Nächstes Feuga kann sofort und ohne MP-Kosten gewirkt werden.",
+      "description_macro": "Du fügst dem Ziel feuerbasierten magischen Schaden zu.<br>Attacke-Wert: 180<br>Zusatzeffekt: Entfernt <colortype(506)><edgecolortype(507)>Schatteneis<edgecolortype(0)><colortype(0)> oder, falls nicht in diesem Status, gewährt <colortype(506)><edgecolortype(507)>Lichtfeuer<edgecolortype(0)><colortype(0)>.<if([gnum72>=42],<if([gnum68==7],<br>Zusatzeffekt: 40 % Wahr<->schein<->lich<->keit\\, dass <colortype(506)><edgecolortype(507)>Feuga +<edgecolortype(0)><colortype(0)> gewährt wird.<br>Effekt von <colortype(506)><edgecolortype(507)>Feuga +<edgecolortype(0)><colortype(0)>: Nächstes <colortype(502)><edgecolortype(503)>Feuga<edgecolortype(0)><colortype(0)> kann sofort und ohne MP-Kosten gewirkt werden.,<if([gnum68==25],<br>Zusatzeffekt: 40 % Wahr<->schein<->lich<->keit\\, dass <colortype(506)><edgecolortype(507)>Feuga +<edgecolortype(0)><colortype(0)> gewährt wird.<br>Effekt von <colortype(506)><edgecolortype(507)>Feuga +<edgecolortype(0)><colortype(0)>: Nächstes <colortype(502)><edgecolortype(503)>Feuga<edgecolortype(0)><colortype(0)> kann sofort und ohne MP-Kosten gewirkt werden.,)>)>,)>",
+      "unlock_level": 2,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Magical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 25,
+          "name": "Schwarzmagier",
+          "abbreviation": "SMA",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 25797,
+      "name": "Paradox",
+      "description": "Du führst eine elementneutrale magische Attacke aus.\nAttacke-Wert: 540\nZusatzeffekt bei Lichtfeuer: Gewährt dir Feuga +.\nEffekt von Feuga +: Nächstes Feuga kann sofort und ohne MP-Kosten gewirkt werden.\nZusatzeffekt bei Schatteneis: Die MP-Kosten dieser magischen Attacke werden auf 0 reduziert.\nBedingung: Paradoxie aktiv\nBei erfüllter Bedingung ändern sich Feuer und Eis zu diesem Kommando.\nKann nicht im Kommandomenü angelegt werden.",
+      "description_macro": "Du führst eine elementneutrale magische Attacke aus.<br>Attacke-Wert: 540<br>Zusatzeffekt bei <colortype(506)><edgecolortype(507)>Lichtfeuer<edgecolortype(0)><colortype(0)>: Gewährt dir <colortype(506)><edgecolortype(507)>Feuga +<edgecolortype(0)><colortype(0)>.<br>Effekt von <colortype(506)><edgecolortype(507)>Feuga +<edgecolortype(0)><colortype(0)>: Nächstes <colortype(502)><edgecolortype(503)>Feuga<edgecolortype(0)><colortype(0)> kann sofort und ohne MP-Kosten gewirkt werden.<br>Zusatzeffekt bei <colortype(506)><edgecolortype(507)>Schatteneis<edgecolortype(0)><colortype(0)>: Die MP-Kosten dieser magischen Attacke werden auf 0 reduziert.<br>Bedingung: <colortype(506)><edgecolortype(507)>Paradoxie<edgecolortype(0)><colortype(0)> aktiv<br>Bei erfüllter Bedingung ändern sich <colortype(502)><edgecolortype(503)>Feuer<edgecolortype(0)><colortype(0)> und <colortype(502)><edgecolortype(503)>Eis<edgecolortype(0)><colortype(0)> zu diesem Kommando.<br>Kann nicht im Kommandomenü angelegt werden.",
+      "unlock_level": 90,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Magical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 25,
+          "name": "Schwarzmagier",
+          "abbreviation": "SMA",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

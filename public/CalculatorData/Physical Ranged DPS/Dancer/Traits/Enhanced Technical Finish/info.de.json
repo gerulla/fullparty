@@ -1,0 +1,26 @@
+{
+  "kind": "trait",
+  "id": 453,
+  "name": "Verbessertes Komplexes Finale",
+  "description": "Erfolgreiche Ausführung von Komplexes Finale gewährt dir Tillana.\nDauer: 30 Sekunden\nWährend der Effektdauer ändert sich Komplexes Finale zu Tillana.",
+  "description_macro": "Erfolgreiche Ausführung von <colortype(502)><edgecolortype(503)>Komplexes Finale<edgecolortype(0)><colortype(0)> gewährt dir <colortype(506)><edgecolortype(507)>Tillana<edgecolortype(0)><colortype(0)>.<br>Dauer: 30 Sekunden<br>Während der Effektdauer ändert sich <colortype(502)><edgecolortype(503)>Komplexes Finale<edgecolortype(0)><colortype(0)> zu <colortype(502)><edgecolortype(503)>Tillana<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Erfolgreiche Ausführung von Komplexes Finale gewährt dir Tillana.",
+    "Dauer: 30 Sekunden",
+    "Während der Effektdauer ändert sich Komplexes Finale zu Tillana."
+  ],
+  "role": "Physical Ranged DPS",
+  "job": {
+    "id": 38,
+    "name": "Tänzer",
+    "abbreviation": "TÄN"
+  },
+  "unlock_level": 82,
+  "value": 0,
+  "icon": {
+    "id": 6357,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 150,
+  "source_class_job_id": 38
+}

@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 534,
+  "name": "Serpent's Legacy",
+  "description": "Allows the execution of First Legacy after successfully landing First Generation, Second Legacy after successfully landing Second Generation, Third Legacy after successfully landing Third Generation, and Fourth Legacy after successfully landing Fourth Generation.",
+  "description_macro": "Allows the execution of <colortype(500)><edgecolortype(501)>First Legacy<edgecolortype(0)><colortype(0)> after successfully landing <colortype(500)><edgecolortype(501)>First Generation<edgecolortype(0)><colortype(0)>, <colortype(500)><edgecolortype(501)>Second Legacy<edgecolortype(0)><colortype(0)> after successfully landing <colortype(500)><edgecolortype(501)>Second Generation<edgecolortype(0)><colortype(0)>, <colortype(500)><edgecolortype(501)>Third Legacy<edgecolortype(0)><colortype(0)> after successfully landing <colortype(500)><edgecolortype(501)>Third Generation<edgecolortype(0)><colortype(0)>, and <colortype(500)><edgecolortype(501)>Fourth Legacy<edgecolortype(0)><colortype(0)> after successfully landing <colortype(500)><edgecolortype(501)>Fourth Generation<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Allows the execution of First Legacy after successfully landing First Generation, Second Legacy after successfully landing Second Generation, Third Legacy after successfully landing Third Generation, and Fourth Legacy after successfully landing Fourth Generation."
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 41,
+    "name": "Viper",
+    "abbreviation": "VPR"
+  },
+  "unlock_level": 100,
+  "value": 0,
+  "icon": {
+    "id": 6509,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 196,
+  "source_class_job_id": 41
+}

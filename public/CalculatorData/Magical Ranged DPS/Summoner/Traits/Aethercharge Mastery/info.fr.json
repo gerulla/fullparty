@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 474,
+  "name": "Maîtrise d'Infusion d'éther",
+  "description": "Remplace Infusion d'éther par Transe-Bahamut.",
+  "description_macro": "Remplace <colortype(500)><edgecolortype(501)>Infusion d'éther<edgecolortype(0)><colortype(0)> par <colortype(500)><edgecolortype(501)>Transe-Bahamut<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Remplace Infusion d'éther par Transe-Bahamut."
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 27,
+    "name": "Invocateur",
+    "abbreviation": "INV"
+  },
+  "unlock_level": 58,
+  "value": 0,
+  "icon": {
+    "id": 5690,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 28,
+  "source_class_job_id": 27
+}

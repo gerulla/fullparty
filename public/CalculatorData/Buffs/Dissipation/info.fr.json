@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 791,
+  "name": "Dissipation",
+  "description": "La puissance de la magie curative est augmentée.",
+  "effects": [
+    "La puissance de la magie curative est augmentée."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 212805,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": true,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 50,
+  "parameter": {
+    "effect": 0,
+    "modifier": 30
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 3587,
+      "name": "Dissipation",
+      "description": "Renvoie votre fée afin de vous octroyer le plus haut degré de Flux d'éther.\nAugmente de 20% les effets de vos sorts de magie curative.\nDurée : 30s\nVous ne pouvez pas utiliser Invocation Eos pendant la durée de l'effet.\nVotre fée réapparaît à la fin de l'effet.\nCondition : en combat.",
+      "description_macro": "Renvoie votre fée afin de vous octroyer le plus haut degré de <colortype(500)><edgecolortype(501)>Flux d'éther<edgecolortype(0)><colortype(0)>.<br>Augmente de 20% les effets de vos sorts de magie curative.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 30s<br>Vous ne pouvez pas utiliser <colortype(500)><edgecolortype(501)>Invocation Eos<edgecolortype(0)><colortype(0)> pendant la durée de l'effet.<br>Votre fée réapparaît à la fin de l'effet.<br><colortype(506)><edgecolortype(507)>Condition<nbsp>:<edgecolortype(0)><colortype(0)> en combat.",
+      "unlock_level": 60,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Healer"
+      ],
+      "jobs": [
+        {
+          "id": 28,
+          "name": "Érudit",
+          "abbreviation": "ÉRU",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

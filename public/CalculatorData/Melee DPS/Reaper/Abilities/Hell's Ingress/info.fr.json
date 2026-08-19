@@ -1,0 +1,92 @@
+{
+  "kind": "ability",
+  "id": 24401,
+  "name": "Intrusion de l'enfer",
+  "description": "Permet de se déplacer rapidement de 15 yalms vers l'avant.\nEffet additionnel : vous octroie Harpé améliorée.\nHarpé améliorée : votre prochaine Harpé est instantanée.\nEn outre, réduit de 5s le temps de recharge d'Intrusion de l'enfer.\nDurée : 10s\nEffet additionnel : crée un Portail infernal où vous vous trouvez au moment de lancer l'action et vous octroie Repli préparé.\nDurée : 10s\nNe peut pas être utilisé sous l'effet Entrave.\nPartage le même temps de recharge que Retraite de l'enfer.",
+  "description_macro": "Permet de se déplacer rapidement de 15 yalms vers l'avant.<br><colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> vous octroie <colortype(500)><edgecolortype(501)>Harpé améliorée<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Harpé améliorée<nbsp>:<edgecolortype(0)><colortype(0)> votre prochaine Harpé est instantanée.<br>En outre, réduit de 5s le temps de recharge d'Intrusion de l'enfer.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 10s<br><if([gnum68==39],<if([gnum72>=74],<colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> crée un <colortype(500)><edgecolortype(501)>Portail infernal<edgecolortype(0)><colortype(0)> où vous vous trouvez au moment de lancer l'action et vous octroie <colortype(500)><edgecolortype(501)>Repli préparé<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 10s<br>,)>,)>Ne peut pas être utilisé sous l'effet Entrave.<br>Partage le même temps de recharge que <colortype(500)><edgecolortype(501)>Retraite de l'enfer<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Permet de se déplacer rapidement de 15 yalms vers l'avant.",
+    "Effet additionnel : vous octroie Harpé améliorée.",
+    "Harpé améliorée : votre prochaine Harpé est instantanée.",
+    "En outre, réduit de 5s le temps de recharge d'Intrusion de l'enfer.",
+    "Durée : 10s",
+    "Effet additionnel : crée un Portail infernal où vous vous trouvez au moment de lancer l'action et vous octroie Repli préparé.",
+    "Durée : 10s",
+    "Ne peut pas être utilisé sous l'effet Entrave.",
+    "Partage le même temps de recharge que Retraite de l'enfer."
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 39,
+    "name": "Faucheur",
+    "abbreviation": "FCH"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 20,
+  "icon": {
+    "id": 3629,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 4,
+    "name": "Aptitude"
+  },
+  "attack_type": {
+    "id": 0,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 20,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 5,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 0,
+      "value": 0
+    },
+    "secondary": {
+      "type_id": 0,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": 0,
+    "effect_yalms": 0,
+    "cast_type": 1
+  },
+  "targeting": {
+    "self": true,
+    "party": false,
+    "alliance": false,
+    "hostile": false,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 0,
+    "behavior_type": 50,
+    "class_job_category_id": 180,
+    "source_class_job_id": 39,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 5319,
+  "name": "Lance",
+  "description": "A highly effective weapons maneuver is nullifying damage.",
+  "effects": [
+    "A highly effective weapons maneuver is nullifying damage."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 229980,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 100
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 49079,
+      "name": "Lance",
+      "description": "Delivers an attack with a potency of 300.\nPotency scales with item level.\nAdditional Effect: Absorbs a portion of damage dealt as HP\nAdditional Effect: Absorbed HP that exceeds maximum HP will be applied as a barrier\nDuration: 60s",
+      "description_macro": "Delivers an attack with a potency of 300.<br>Potency scales with item level.<br><colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>Absorbs a portion of damage dealt as HP<br><colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>Absorbed HP that exceeds maximum HP will be applied as a barrier<br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>60s",
+      "unlock_level": 0,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Phantom Jobs"
+      ],
+      "jobs": [
+        {
+          "id": 19,
+          "name": "Phantom Dragoon",
+          "abbreviation": "Ph. Dragoon",
+          "is_phantom": true
+        }
+      ]
+    }
+  ]
+}

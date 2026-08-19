@@ -1,0 +1,68 @@
+{
+  "kind": "combat_status",
+  "id": 753,
+  "name": "Reprisal",
+  "description": "Damage dealt is reduced.",
+  "effects": [
+    "Damage dealt is reduced."
+  ],
+  "classification": "debuff",
+  "icon": {
+    "id": 213103,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 2,
+  "target_type": 0,
+  "can_dispel": true,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 50,
+  "parameter": {
+    "effect": 0,
+    "modifier": -10
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 7535,
+      "name": "Reprisal",
+      "description": "Reduces damage dealt by nearby enemies by 10%.\nDuration: 15s",
+      "description_macro": "Reduces damage dealt by nearby enemies by 10%.<br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)><if([gnum72>=98],<if([gnum68==1],15,<if([gnum68==19],15,<if([gnum68==3],15,<if([gnum68==21],15,<if([gnum68==32],15,<if([gnum68==37],15,10)>)>)>)>)>)>,10)>s",
+      "unlock_level": 22,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Tank"
+      ],
+      "jobs": [
+        {
+          "id": 19,
+          "name": "Paladin",
+          "abbreviation": "PLD",
+          "is_phantom": false
+        },
+        {
+          "id": 21,
+          "name": "Warrior",
+          "abbreviation": "WAR",
+          "is_phantom": false
+        },
+        {
+          "id": 32,
+          "name": "Dark Knight",
+          "abbreviation": "DRK",
+          "is_phantom": false
+        },
+        {
+          "id": 37,
+          "name": "Gunbreaker",
+          "abbreviation": "GNB",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

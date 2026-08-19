@@ -1,0 +1,26 @@
+{
+  "kind": "trait",
+  "id": 423,
+  "name": "影身具現効果アップII",
+  "description": "英雄の影身が使う漆黒の波動がシャドウブリンガーに変化する。\n\n対象に向かって無属性前方直線範囲魔法攻撃。\u3000威力：570\n2体目以降の対象への威力は25％減少する。",
+  "description_macro": "英雄の影身が使う漆黒の波動がシャドウブリンガーに変化する。<br><br>対象に向かって無属性前方直線範囲魔法攻撃。\u3000<colortype(504)><edgecolortype(505)>威力：<edgecolortype(0)><colortype(0)>570<br>2体目以降の対象への威力は25％減少する。",
+  "effects": [
+    "英雄の影身が使う漆黒の波動がシャドウブリンガーに変化する。",
+    "対象に向かって無属性前方直線範囲魔法攻撃。\u3000威力：570",
+    "2体目以降の対象への威力は25％減少する。"
+  ],
+  "role": "Tank",
+  "job": {
+    "id": 32,
+    "name": "暗黒騎士",
+    "abbreviation": "DRK"
+  },
+  "unlock_level": 90,
+  "value": 0,
+  "icon": {
+    "id": 6066,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 98,
+  "source_class_job_id": 32
+}

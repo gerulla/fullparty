@@ -1,0 +1,71 @@
+{
+  "kind": "combat_status",
+  "id": 3223,
+  "name": "Paradox",
+  "description": "Able to cast Paradox.",
+  "effects": [
+    "Able to cast Paradox."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 214961,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": true,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 26,
+  "source_abilities": [
+    {
+      "id": 158,
+      "name": "Manafont",
+      "description": "Fully restores MP.\nAdditional Effect: Grants Astral Fire III\nAdditional Effect: Grants Thunderhead\nAdditional Effect: Grants 3 Umbral Hearts\nUmbral Heart Bonus: Nullifies Astral Fire's MP cost increase for Fire spells and reduces MP cost for Flare by one-third\nAdditional Effect: Grants Paradox\nCan only be executed while under the effect of Astral Fire.",
+      "description_macro": "Fully restores MP.<br><colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>Grants <colortype(506)><edgecolortype(507)>Astral Fire III<edgecolortype(0)><colortype(0)><br><colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>Grants <colortype(506)><edgecolortype(507)>Thunderhead<edgecolortype(0)><colortype(0)><br><if([gnum68==25],<if([gnum72>=58],<colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>Grants 3 <colortype(506)><edgecolortype(507)>Umbral Hearts<edgecolortype(0)><colortype(0)><br><colortype(504)><edgecolortype(505)>Umbral Heart Bonus: <edgecolortype(0)><colortype(0)>Nullifies <colortype(506)><edgecolortype(507)>Astral Fire<edgecolortype(0)><colortype(0)>'s MP cost increase for <colortype(500)><edgecolortype(501)>Fire<edgecolortype(0)><colortype(0)> spells and reduces MP cost for <colortype(500)><edgecolortype(501)>Flare<edgecolortype(0)><colortype(0)> by one-third<br>,)>,)><if([gnum68==25],<if([gnum72>=90],<colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>Grants <colortype(506)><edgecolortype(507)>Paradox<edgecolortype(0)><colortype(0)><br>,)>,)>Can only be executed while under the effect of <colortype(506)><edgecolortype(507)>Astral Fire<edgecolortype(0)><colortype(0)>.",
+      "unlock_level": 30,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Magical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 25,
+          "name": "Black Mage",
+          "abbreviation": "BLM",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 25797,
+      "name": "Paradox",
+      "description": "Deals unaspected damage with a potency of 540.\nAstral Fire Bonus: Grants Firestarter\nFirestarter Effect: Next Fire III will require no time to cast and cost no MP\nUmbral Ice Bonus: Requires no MP to cast\nCan only be executed while under the effect of Paradox.\n\n※This action cannot be assigned to a hotbar.\n※Fire and Blizzard change to Paradox when requirements for execution are met.",
+      "description_macro": "Deals unaspected damage with a potency of 540.<br><colortype(504)><edgecolortype(505)>Astral Fire Bonus: <edgecolortype(0)><colortype(0)>Grants <colortype(506)><edgecolortype(507)>Firestarter<edgecolortype(0)><colortype(0)><br><colortype(504)><edgecolortype(505)>Firestarter Effect: <edgecolortype(0)><colortype(0)>Next <colortype(500)><edgecolortype(501)>Fire III<edgecolortype(0)><colortype(0)> will require no time to cast and cost no MP<br><colortype(504)><edgecolortype(505)>Umbral Ice Bonus: <edgecolortype(0)><colortype(0)>Requires no MP to cast<br>Can only be executed while under the effect of <colortype(506)><edgecolortype(507)>Paradox<edgecolortype(0)><colortype(0)>.<br><br>※This action cannot be assigned to a hotbar.<br>※<colortype(500)><edgecolortype(501)>Fire<edgecolortype(0)><colortype(0)> and <colortype(500)><edgecolortype(501)>Blizzard<edgecolortype(0)><colortype(0)> change to <colortype(500)><edgecolortype(501)>Paradox<edgecolortype(0)><colortype(0)> when requirements for execution are met.",
+      "unlock_level": 90,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Magical Ranged DPS"
+      ],
+      "jobs": [
+        {
+          "id": 25,
+          "name": "Black Mage",
+          "abbreviation": "BLM",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

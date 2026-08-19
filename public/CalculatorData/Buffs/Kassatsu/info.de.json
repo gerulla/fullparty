@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 497,
+  "name": "Kassatsu",
+  "description": "Ninjutsu kann mit erhöhtem Schaden ausgeführt werden.",
+  "effects": [
+    "Ninjutsu kann mit erhöhtem Schaden ausgeführt werden."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 212902,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 100,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 2264,
+      "name": "Kassatsu",
+      "description": "Das nächste Ninjutsu verbraucht keine Mudra-Stapel. Zusätzlich ist der Schaden des nächsten Ninjutsu um 30 % erhöht.\nDauer: 15 Sekunden",
+      "description_macro": "Das nächste <colortype(502)><edgecolortype(503)>Ninjutsu<edgecolortype(0)><colortype(0)> verbraucht keine Mudra-Stapel. Zusätzlich ist der Schaden des nächsten <colortype(502)><edgecolortype(503)>Ninjutsu<edgecolortype(0)><colortype(0)> um 30<nbsp>% erhöht.<br>Dauer: 15 Sekunden",
+      "unlock_level": 50,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 30,
+          "name": "Ninja",
+          "abbreviation": "NIN",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

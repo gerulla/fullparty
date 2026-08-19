@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 644,
+  "name": "Magie prompte améliorée",
+  "description": "Réduit à 40s le temps de recharge de Magie prompte.",
+  "description_macro": "Réduit à 40s le temps de recharge de <colortype(500)><edgecolortype(501)>Magie prompte<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "Réduit à 40s le temps de recharge de Magie prompte."
+  ],
+  "role": "Healer",
+  "job": {
+    "id": 28,
+    "name": "Érudit",
+    "abbreviation": "ÉRU"
+  },
+  "unlock_level": 94,
+  "value": -200,
+  "icon": {
+    "id": 6828,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 199,
+  "source_class_job_id": 0
+}

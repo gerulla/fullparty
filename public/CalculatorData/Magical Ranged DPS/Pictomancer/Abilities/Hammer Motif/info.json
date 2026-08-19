@@ -1,0 +1,91 @@
+{
+  "kind": "ability",
+  "id": 34668,
+  "name": "Hammer Motif",
+  "description": "Paints a hammer.\nCast immediately when used outside of combat.\nCannot be executed while under the effect of Hammer Time.\nThe Weapon Canvas must be empty to execute this action.\nThis action does not share a recast timer with any other actions. Recast timer cannot be affected by status effects or gear attributes.\nUpon execution, the recast timer for this action will be applied to all other weaponskills and magic actions.\n\n※This action cannot be assigned to a hotbar.\n※Weapon Motif changes to Hammer Motif when requirements for execution are met.",
+  "description_macro": "Paints a <colortype(506)><edgecolortype(507)>hammer<edgecolortype(0)><colortype(0)>.<br>Cast immediately when used outside of combat.<br>Cannot be executed while under the effect of <colortype(506)><edgecolortype(507)>Hammer Time<edgecolortype(0)><colortype(0)>.<br>The <colortype(500)><edgecolortype(501)>Weapon Canvas<edgecolortype(0)><colortype(0)> must be empty to execute this action.<br>This action does not share a recast timer with any other actions. Recast timer cannot be affected by status effects or gear attributes.<br>Upon execution, the recast timer for this action will be applied to all other weaponskills and magic actions.<br><br>※This action cannot be assigned to a hotbar.<br>※<colortype(500)><edgecolortype(501)>Weapon Motif<edgecolortype(0)><colortype(0)> changes to <colortype(500)><edgecolortype(501)>Hammer Motif<edgecolortype(0)><colortype(0)> when requirements for execution are met.",
+  "effects": [
+    "Paints a hammer.",
+    "Cast immediately when used outside of combat.",
+    "Cannot be executed while under the effect of Hammer Time.",
+    "The Weapon Canvas must be empty to execute this action.",
+    "This action does not share a recast timer with any other actions. Recast timer cannot be affected by status effects or gear attributes.",
+    "Upon execution, the recast timer for this action will be applied to all other weaponskills and magic actions.",
+    "※This action cannot be assigned to a hotbar.",
+    "※Weapon Motif changes to Hammer Motif when requirements for execution are met."
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 42,
+    "name": "Pictomancer",
+    "abbreviation": "PCT"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 50,
+  "icon": {
+    "id": 3819,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 2,
+    "name": "Spell"
+  },
+  "attack_type": {
+    "id": 0,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 3,
+    "recast_seconds": 4,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 58,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 0,
+      "value": 0
+    },
+    "secondary": {
+      "type_id": 137,
+      "value": 16
+    }
+  },
+  "range": {
+    "target_yalms": 0,
+    "effect_yalms": 0,
+    "cast_type": 1
+  },
+  "targeting": {
+    "self": true,
+    "party": false,
+    "alliance": false,
+    "hostile": false,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 0,
+    "behavior_type": 0,
+    "class_job_category_id": 197,
+    "source_class_job_id": 0,
+    "is_role_action": false,
+    "is_player_action": false,
+    "is_derived_action": true,
+    "equivalence_group": 0
+  }
+}

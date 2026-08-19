@@ -1,0 +1,91 @@
+{
+  "kind": "ability",
+  "id": 46594,
+  "name": "Finaler Stoß",
+  "description": "Du führst eine physische Attacke aus, deren Effekt je nach Erfolgsstufe variiert.\nAttacke-Wert bei großem Erfolg: 1.000 (skaliert mit Gegenstandsstufe)\nZusatzeffekt: 25 % Chance auf sofortigen Tod fast aller Ziele\nWahrscheinlichkeit: 20 %\nAttacke-Wert bei normalem Erfolg: 600 (skaliert mit Gegenstandsstufe)\nWahrscheinlichkeit: 60 %\nBei Fehlschlag verfehlt der Angriff sein Ziel.\nWahrscheinlichkeit: 20 %",
+  "description_macro": "Du führst eine physische Attacke aus, deren Effekt je nach Erfolgsstufe variiert.<br>Attacke-Wert bei großem Erfolg: 1.000 (skaliert mit Gegen<->stands<->stufe)<br>Zusatzeffekt: 25<nbsp>% Chance auf sofortigen Tod fast aller Ziele<br>Wahr<->schein<->lich<->keit: 20<nbsp>%<br>Attacke-Wert bei normalem Erfolg: 600 (skaliert mit Gegen<->stands<->stufe)<br>Wahr<->schein<->lich<->keit: 60<nbsp>%<br>Bei Fehlschlag verfehlt der Angriff sein Ziel.<br>Wahr<->schein<->lich<->keit: 20<nbsp>%<if([gnum108>=2],<br>Zusatzeffekt während <colortype(506)><edgecolortype(507)>Finaler Stoß-Verstärkung<edgecolortype(0)><colortype(0)>: Wahr<->schein<->lich<->keit für einen großen Erfolg ist pro Stapel um 20<nbsp>% erhöht. Darüber hinaus ist die Wahr<->schein<->lich<->keit eines normalen Erfolgs um 15<nbsp>% und die eines Fehlschlags um 5<nbsp>% verringert.,)>",
+  "effects": [
+    "Du führst eine physische Attacke aus, deren Effekt je nach Erfolgsstufe variiert.",
+    "Attacke-Wert bei großem Erfolg: 1.000 (skaliert mit Gegenstandsstufe)",
+    "Zusatzeffekt: 25 % Chance auf sofortigen Tod fast aller Ziele",
+    "Wahrscheinlichkeit: 20 %",
+    "Attacke-Wert bei normalem Erfolg: 600 (skaliert mit Gegenstandsstufe)",
+    "Wahrscheinlichkeit: 60 %",
+    "Bei Fehlschlag verfehlt der Angriff sein Ziel.",
+    "Wahrscheinlichkeit: 20 %"
+  ],
+  "role": "Phantom Jobs",
+  "job": {
+    "id": 14,
+    "name": "Phantom-Gladiator",
+    "abbreviation": "Ph-Gladiator"
+  },
+  "is_phantom_action": true,
+  "unlock_level": 1,
+  "icon": {
+    "id": 64579,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 3,
+    "name": "Waffenfertigkeit"
+  },
+  "attack_type": {
+    "id": 1,
+    "name": "斬"
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 60,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 84,
+    "additional_cooldown_group": 58,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 0,
+      "value": 0
+    },
+    "secondary": {
+      "type_id": 0,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": 5,
+    "effect_yalms": 0,
+    "cast_type": 1
+  },
+  "targeting": {
+    "self": false,
+    "party": false,
+    "alliance": false,
+    "hostile": true,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 7,
+    "behavior_type": 0,
+    "class_job_category_id": 142,
+    "source_class_job_id": 4294967295,
+    "is_role_action": false,
+    "is_player_action": false,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "kind": "trait",
+  "id": 124,
+  "name": "Enhanced Benefic",
+  "description": "Grants a 15% chance that your next Benefic II will restore critical HP.\nDuration: 15s",
+  "description_macro": "Grants a 15% chance that your next <colortype(500)><edgecolortype(501)>Benefic II<edgecolortype(0)><colortype(0)> will restore critical HP.<br><colortype(504)><edgecolortype(505)>Duration:<edgecolortype(0)><colortype(0)> 15s",
+  "effects": [
+    "Grants a 15% chance that your next Benefic II will restore critical HP.",
+    "Duration: 15s"
+  ],
+  "role": "Healer",
+  "job": {
+    "id": 33,
+    "name": "Astrologian",
+    "abbreviation": "AST"
+  },
+  "unlock_level": 36,
+  "value": 15,
+  "icon": {
+    "id": 6105,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 99,
+  "source_class_job_id": 33
+}

@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 3854,
+  "name": "Tengentsu's Foresight",
+  "description": "Damage taken is reduced and regenerating HP over time.",
+  "effects": [
+    "Damage taken is reduced and regenerating HP over time."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 213317,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 39,
+    "modifier": 10
+  },
+  "class_job_category_id": 111,
+  "source_abilities": [
+    {
+      "id": 36962,
+      "name": "Tengentsu",
+      "description": "Reduces the amount of damage taken by the next attack by 10%.\nDuration: 4s\nAdditional Effect: Grants Tengentsu's Foresight and increases Kenki Gauge by 10 when hit\nTengentsu's Foresight Effect: Gradually restores your HP and reduces damage taken by 10%\nDuration: 9s\nCure Potency: 200",
+      "description_macro": "Reduces the amount of damage taken by the next attack by 10%.<br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>4s<br><colortype(504)><edgecolortype(505)>Additional Effect: <edgecolortype(0)><colortype(0)>Grants <colortype(506)><edgecolortype(507)>Tengentsu's Foresight<edgecolortype(0)><colortype(0)> and increases <colortype(500)><edgecolortype(501)>Kenki Gauge<edgecolortype(0)><colortype(0)> by 10 when hit<br><colortype(504)><edgecolortype(505)>Tengentsu's Foresight Effect: <edgecolortype(0)><colortype(0)>Gradually restores your HP and reduces damage taken by 10%<br><colortype(504)><edgecolortype(505)>Duration: <edgecolortype(0)><colortype(0)>9s<br><colortype(504)><edgecolortype(505)>Cure Potency: <edgecolortype(0)><colortype(0)>200",
+      "unlock_level": 82,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 34,
+          "name": "Samurai",
+          "abbreviation": "SAM",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

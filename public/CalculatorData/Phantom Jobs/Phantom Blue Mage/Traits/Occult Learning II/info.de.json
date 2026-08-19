@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 16,
+  "name": "Kreszentes Erlernen II",
+  "description": "Erlaubt es, Kreszentes Windra und Kreszente Totalabwehr zu erlernen.\nEffekt von Kreszentes Windra: Du führst eine windbasierte magische Attacke aus.\nEffekt von Kreszente Totalabwehr: Verringert zeitweise den eigenen sowie den erlittenen Schaden von Gruppenmitgliedern um 20 %.",
+  "description_macro": "Erlaubt es, <colortype(502)><edgecolortype(503)>Kreszentes Windra<edgecolortype(0)><colortype(0)> und <colortype(502)><edgecolortype(503)>Kreszente Totalabwehr<edgecolortype(0)><colortype(0)> zu erlernen.<br>Effekt von <colortype(502)><edgecolortype(503)>Kreszentes Windra<edgecolortype(0)><colortype(0)>: Du führst eine windbasierte magische Attacke aus.<br>Effekt von <colortype(502)><edgecolortype(503)>Kreszente Totalabwehr<edgecolortype(0)><colortype(0)>: Verringert zeitweise den eigenen sowie den erlittenen Schaden von Grup<->pen<->mit<->gliedern um 20<nbsp>%.",
+  "effects": [
+    "Erlaubt es, Kreszentes Windra und Kreszente Totalabwehr zu erlernen.",
+    "Effekt von Kreszentes Windra: Du führst eine windbasierte magische Attacke aus.",
+    "Effekt von Kreszente Totalabwehr: Verringert zeitweise den eigenen sowie den erlittenen Schaden von Gruppenmitgliedern um 20 %."
+  ],
+  "role": "Phantom Jobs",
+  "job": {
+    "id": 21,
+    "name": "Phantom-Blaumagier",
+    "abbreviation": "Ph-Blaumagier"
+  },
+  "is_phantom_trait": true,
+  "unlock_level": 2,
+  "icon": {
+    "id": 82216,
+    "file": "icon.png"
+  }
+}

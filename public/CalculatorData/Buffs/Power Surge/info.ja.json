@@ -1,0 +1,92 @@
+{
+  "kind": "combat_status",
+  "id": 2720,
+  "name": "竜槍",
+  "description": "与ダメージが上昇した状態。",
+  "effects": [
+    "与ダメージが上昇した状態。"
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 210303,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 10
+  },
+  "class_job_category_id": 23,
+  "source_abilities": [
+    {
+      "id": 87,
+      "name": "ディセムボウル",
+      "description": "対象に物理攻撃。\u3000威力：140\nコンボ条件：トゥルースラストおよび竜眼雷電\nコンボ時威力：250\nコンボボーナス：自身に「竜槍」を付与する。\n効果時間：30秒\n竜槍効果：自身の与ダメージを10％上昇させる。",
+      "description_macro": "対象に物理攻撃。\u3000<colortype(504)><edgecolortype(505)>威力：<edgecolortype(0)><colortype(0)><if([gnum68==22],<if([gnum72>=76],140,100)>,100)><br><colortype(504)><edgecolortype(505)>コンボ条件：<edgecolortype(0)><colortype(0)><if([gnum68==22],<if([gnum72>=76],トゥルースラストおよび竜眼雷電<br>,トゥルースラスト\u3000)>,トゥルースラスト\u3000)><colortype(504)><edgecolortype(505)>コンボ時威力：<edgecolortype(0)><colortype(0)><edgecolortype(0)><colortype(0)><if([gnum68==22],<if([gnum72>=76],250,210)>,210)><br><colortype(504)><edgecolortype(505)>コンボボーナス：<edgecolortype(0)><colortype(0)>自身に<colortype(500)><edgecolortype(501)>「竜槍」<edgecolortype(0)><colortype(0)>を付与する。<br><colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>30秒<br><colortype(504)><edgecolortype(505)>竜槍効果：<edgecolortype(0)><colortype(0)>自身の与ダメージを10％上昇させる。",
+      "unlock_level": 18,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 22,
+          "name": "竜騎士",
+          "abbreviation": "DRG",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 7397,
+      "name": "ソニックスラスト",
+      "description": "対象に向かって前方直線範囲物理攻撃。\u3000威力：100\nコンボ条件：ドゥームスパイクおよび竜眼蒼穹\nコンボ時威力：120\nコンボボーナス：自身に「竜槍」を付与する。\n効果時間：30秒\n竜槍効果：自身の与ダメージを10％上昇させる。",
+      "description_macro": "対象に向かって前方直線範囲物理攻撃。\u3000<colortype(504)><edgecolortype(505)>威力：<edgecolortype(0)><colortype(0)>100<br><colortype(504)><edgecolortype(505)>コンボ条件：<edgecolortype(0)><colortype(0)><if([gnum68==22],<if([gnum72>=82],ドゥームスパイクおよび竜眼蒼穹<br>,ドゥームスパイク\u3000)>,ドゥームスパイク\u3000)><colortype(504)><edgecolortype(505)>コンボ時威力：<edgecolortype(0)><colortype(0)>120<br><colortype(504)><edgecolortype(505)>コンボボーナス：<edgecolortype(0)><colortype(0)>自身に<colortype(500)><edgecolortype(501)>「竜槍」<edgecolortype(0)><colortype(0)>を付与する。<br><colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>30秒<br><colortype(504)><edgecolortype(505)>竜槍効果：<edgecolortype(0)><colortype(0)>自身の与ダメージを10％上昇させる。",
+      "unlock_level": 62,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 22,
+          "name": "竜騎士",
+          "abbreviation": "DRG",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 36955,
+      "name": "スパイラルブロウ",
+      "description": "対象に物理攻撃。\u3000威力：140\nコンボ条件：トゥルースラストおよび竜眼雷電\nコンボ時威力：300\nコンボボーナス：自身に「竜槍」を付与する。\n効果時間：30秒\n竜槍効果：自身の与ダメージを10％上昇させる。",
+      "description_macro": "対象に物理攻撃。\u3000<colortype(504)><edgecolortype(505)>威力：<edgecolortype(0)><colortype(0)>140<br><colortype(504)><edgecolortype(505)>コンボ条件：<edgecolortype(0)><colortype(0)>トゥルースラストおよび竜眼雷電<br><colortype(504)><edgecolortype(505)>コンボ時威力：<edgecolortype(0)><colortype(0)>300<br><colortype(504)><edgecolortype(505)>コンボボーナス：<edgecolortype(0)><colortype(0)>自身に<colortype(500)><edgecolortype(501)>「竜槍」<edgecolortype(0)><colortype(0)>を付与する。<br><colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>30秒<br><colortype(504)><edgecolortype(505)>竜槍効果：<edgecolortype(0)><colortype(0)>自身の与ダメージを10％上昇させる。",
+      "unlock_level": 96,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 22,
+          "name": "竜騎士",
+          "abbreviation": "DRG",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

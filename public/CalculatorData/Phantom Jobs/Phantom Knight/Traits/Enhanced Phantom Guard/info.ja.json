@@ -1,0 +1,22 @@
+{
+  "kind": "trait",
+  "id": 1,
+  "name": "まもり効果アップ",
+  "description": "「まもり」の効果量を90％に上昇させる。",
+  "description_macro": "<colortype(500)><edgecolortype(501)>「まもり」<edgecolortype(0)><colortype(0)>の効果量を90％に上昇させる。",
+  "effects": [
+    "「まもり」の効果量を90％に上昇させる。"
+  ],
+  "role": "Phantom Jobs",
+  "job": {
+    "id": 1,
+    "name": "サポートナイト",
+    "abbreviation": "Ph. Knight"
+  },
+  "is_phantom_trait": true,
+  "unlock_level": 4,
+  "icon": {
+    "id": 82201,
+    "file": "icon.png"
+  }
+}

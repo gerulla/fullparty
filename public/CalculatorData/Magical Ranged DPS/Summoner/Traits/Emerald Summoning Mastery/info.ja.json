@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 470,
+  "name": "サモン・エメラルドマスタリー",
+  "description": "サモン・エメラルドがサモン・ガルーダに変化する。",
+  "description_macro": "サモン・エメラルドがサモン・ガルーダに変化する。",
+  "effects": [
+    "サモン・エメラルドがサモン・ガルーダに変化する。"
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 27,
+    "name": "召喚士",
+    "abbreviation": "SMN"
+  },
+  "unlock_level": 45,
+  "value": 0,
+  "icon": {
+    "id": 5684,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 28,
+  "source_class_job_id": 27
+}

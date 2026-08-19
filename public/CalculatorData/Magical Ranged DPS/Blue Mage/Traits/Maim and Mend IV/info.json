@@ -1,0 +1,24 @@
+{
+  "kind": "trait",
+  "id": 223,
+  "name": "Maim and Mend IV",
+  "description": "Increases base action damage and HP restoration by 40%.",
+  "description_macro": "Increases base action damage and HP restoration by 40%.",
+  "effects": [
+    "Increases base action damage and HP restoration by 40%."
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 36,
+    "name": "Blue Mage",
+    "abbreviation": "BLU"
+  },
+  "unlock_level": 40,
+  "value": 40,
+  "icon": {
+    "id": 5188,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 129,
+  "source_class_job_id": 36
+}

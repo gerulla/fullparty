@@ -1,0 +1,92 @@
+{
+  "kind": "combat_status",
+  "id": 1298,
+  "name": "Fugetsu",
+  "description": "Ausgeteilter Schaden ist erhöht.",
+  "effects": [
+    "Ausgeteilter Schaden ist erhöht."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 213311,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 15
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 7478,
+      "name": "Jinpu",
+      "description": "Du führst eine physische Attacke aus.\nAttacke-Wert: 140\nKombo-Bedingung: Gyofu\nAttacke-Wert: 300\nBonus: Gewährt dir Fugetsu.\nDauer: 40 Sekunden\nEffekt von Fugetsu: Ausgeteilter Schaden ist um 13 % erhöht.\nZusatzeffekt: Füllt den Kenki-Balken um 5.",
+      "description_macro": "Du führst eine physische Attacke aus.<br>Attacke-Wert: <if([gnum68==34],<if([gnum72>=94],140,<if([gnum68==34],<if([gnum72>=66],120,100)>,100)>)>,<if([gnum68==34],<if([gnum72>=66],120,100)>,100)>)><br>Kombo-Bedingung: <if([gnum68==34],<if([gnum72>=92],<colortype(502)><edgecolortype(503)>Gyofu<edgecolortype(0)><colortype(0)>,<colortype(502)><edgecolortype(503)>Hakaze<edgecolortype(0)><colortype(0)>)>,<colortype(502)><edgecolortype(503)>Hakaze<edgecolortype(0)><colortype(0)>)><br>Attacke-Wert: <if([gnum68==34],<if([gnum72>=94],300,<if([gnum68==34],<if([gnum72>=66],280,260)>,260)>)>,<if([gnum68==34],<if([gnum72>=66],280,260)>,260)>)><br>Bonus: Gewährt dir <colortype(506)><edgecolortype(507)>Fugetsu<edgecolortype(0)><colortype(0)>.<br>Dauer: 40 Sekunden<br>Effekt von <colortype(506)><edgecolortype(507)>Fugetsu<edgecolortype(0)><colortype(0)>: Ausgeteilter Schaden ist um <if([gnum68==34],<if([gnum72>=78],13,10)>,10)><nbsp>% erhöht.<if([gnum72>=62],<if([gnum68==34],<br>Zusatzeffekt: Füllt den Kenki-Balken um 5.,)>,)>",
+      "unlock_level": 4,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 34,
+          "name": "Samurai",
+          "abbreviation": "SAM",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 7484,
+      "name": "Mangetsu",
+      "description": "Du führst eine physische Attacke auf alle umstehenden Gegner aus.\nAttacke-Wert: 100\nKombo-Bedingung: Fuko\nAttacke-Wert: 120\nBonus: Gewährt dir Fugetsu.\nDauer: 40 Sekunden\nEffekt von Fugetsu: Ausgeteilter Schaden ist um 13 % erhöht.\nBonus: Füllt den Kenki-Balken um 10 und gewährt dir Getsu.",
+      "description_macro": "Du führst eine physische Attacke auf alle umstehenden Gegner aus.<br>Attacke-Wert: 100<br>Kombo-Bedingung: <if([gnum68==34],<if([gnum72>=86],<colortype(502)><edgecolortype(503)>Fuko<edgecolortype(0)><colortype(0)>,<colortype(502)><edgecolortype(503)>Fuga<edgecolortype(0)><colortype(0)>)>,<colortype(502)><edgecolortype(503)>Fuga<edgecolortype(0)><colortype(0)>)><br>Attacke-Wert: 120<br>Bonus: Gewährt dir <colortype(506)><edgecolortype(507)>Fugetsu<edgecolortype(0)><colortype(0)>.<br>Dauer: 40 Sekunden<br>Effekt von <colortype(506)><edgecolortype(507)>Fugetsu<edgecolortype(0)><colortype(0)>: Ausgeteilter Schaden ist um <if([gnum68==34],<if([gnum72>=78],13,10)>,10)><nbsp>% erhöht.<if([gnum72>=52],<if([gnum68==34],<br>Bonus: Füllt den Kenki-Balken um <if([gnum72>=62],<if([gnum68==34],10,5)>,5)> und gewährt dir <colortype(506)><edgecolortype(507)>Getsu<edgecolortype(0)><colortype(0)>.,<br>Bonus: Gewährt dir <colortype(506)><edgecolortype(507)>Getsu<edgecolortype(0)><colortype(0)>.)>,<br>Bonus: Gewährt dir <colortype(506)><edgecolortype(507)>Getsu<edgecolortype(0)><colortype(0)>.)>",
+      "unlock_level": 35,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 34,
+          "name": "Samurai",
+          "abbreviation": "SAM",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 7499,
+      "name": "Meikyo Shisui",
+      "description": "Du kannst drei Kombos ausführen, ohne die Kombo-Bedingungen zu erfüllen. Dabei gewährt Gekko Fugetsu und Kasha Fuka.\nDauer: 20 Sekunden oder bis 3 Waffenfertigkeiten außer Iaijutsuund Ogi Namikiri ausgeführt wurden\nZusatzeffekt: Gewährt dir Tendo.\nDauer: 30 Sekunden\nMaximale Aufladungen: 2",
+      "description_macro": "Du kannst drei Kombos ausführen, ohne die Kombo-Bedingungen zu erfüllen. Dabei gewährt <colortype(502)><edgecolortype(503)>Gekko<edgecolortype(0)><colortype(0)> <colortype(506)><edgecolortype(507)>Fugetsu<edgecolortype(0)><colortype(0)> und <colortype(502)><edgecolortype(503)>Kasha<edgecolortype(0)><colortype(0)> <colortype(506)><edgecolortype(507)>Fuka<edgecolortype(0)><colortype(0)>.<br>Dauer: 20 Sekunden oder bis 3 Waf<->fen<->fer<->tig<->kei<->ten außer <colortype(502)><edgecolortype(503)>Iaijutsu<edgecolortype(0)><colortype(0)><if([gnum68==34],<if([gnum72>=90], und <colortype(502)><edgecolortype(503)>Ogi Namikiri<edgecolortype(0)><colortype(0)>,)>,)> ausgeführt wurden<if([gnum68==34],<if([gnum72>=100],<br>Zusatzeffekt: Gewährt dir <colortype(506)><edgecolortype(507)>Tendo<edgecolortype(0)><colortype(0)>.<br>Dauer: 30 Sekunden,)>,)><if([gnum68==34],<if([gnum72>=76],<br>Maximale Aufladungen: 2,)>,)>",
+      "unlock_level": 50,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 34,
+          "name": "Samurai",
+          "abbreviation": "SAM",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

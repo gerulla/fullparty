@@ -1,0 +1,26 @@
+{
+  "kind": "trait",
+  "id": 426,
+  "name": "Consécution améliorée",
+  "description": "Permet de recevoir Hypervitesse préparée lorsque vous utilisez Frappe explosive.\nDurée : 10s\nRemplace Consécution par Hypervitesse pendant la durée de l'effet.",
+  "description_macro": "Permet de recevoir <colortype(500)><edgecolortype(501)>Hypervitesse préparée<edgecolortype(0)><colortype(0)> lorsque vous utilisez <colortype(500)><edgecolortype(501)>Frappe explosive<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 10s<br>Remplace <colortype(500)><edgecolortype(501)>Consécution<edgecolortype(0)><colortype(0)> par <colortype(500)><edgecolortype(501)>Hypervitesse<edgecolortype(0)><colortype(0)> pendant la durée de l'effet.",
+  "effects": [
+    "Permet de recevoir Hypervitesse préparée lorsque vous utilisez Frappe explosive.",
+    "Durée : 10s",
+    "Remplace Consécution par Hypervitesse pendant la durée de l'effet."
+  ],
+  "role": "Tank",
+  "job": {
+    "id": 37,
+    "name": "Pistosabreur",
+    "abbreviation": "PSB"
+  },
+  "unlock_level": 86,
+  "value": 0,
+  "icon": {
+    "id": 6306,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 149,
+  "source_class_job_id": 37
+}

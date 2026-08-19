@@ -1,0 +1,96 @@
+{
+  "kind": "ability",
+  "id": 19239,
+  "name": "エーテルコピー",
+  "description": "自身を除くプレイヤーひとりを対象とする。\n対象のエーテルをコピーし、自身に「エーテルコピー：タンク」、「エーテルコピー：ＤＰＳ」、「エーテルコピー：ヒーラー」のいずれかを付与する。\n付与するステータスは実行した時点での対象のロールにより変化する。\nエーテルコピー：タンク効果：自身の防御力を上昇させ、かつ一部の青魔法の効果が強化される。\nエーテルコピー：ＤＰＳ効果：自身のクリティカル発動率とダイレクトヒット発動率を20％上昇させ、かつ一部の青魔法の効果が強化される。\nエーテルコピー：ヒーラー効果：自身の回復魔法の回復量を20％上昇させ、かつ一部の青魔法の効果が強化される。\n再使用で解除する。\u3000効果時間：永続",
+  "description_macro": "自身を除くプレイヤーひとりを対象とする。<br>対象のエーテルをコピーし、自身に<colortype(500)><edgecolortype(501)>「エーテルコピー：タンク」<edgecolortype(0)><colortype(0)>、<colortype(500)><edgecolortype(501)>「エーテルコピー：ＤＰＳ」<edgecolortype(0)><colortype(0)>、<colortype(500)><edgecolortype(501)>「エーテルコピー：ヒーラー」<edgecolortype(0)><colortype(0)>のいずれかを付与する。<br>付与するステータスは実行した時点での対象のロールにより変化する。<br><colortype(504)><edgecolortype(505)>エーテルコピー：タンク効果：<edgecolortype(0)><colortype(0)>自身の防御力を上昇させ、かつ一部の青魔法の効果が強化される。<br><colortype(504)><edgecolortype(505)>エーテルコピー：ＤＰＳ効果：<edgecolortype(0)><colortype(0)>自身のクリティカル発動率とダイレクトヒット発動率を20％上昇させ、かつ一部の青魔法の効果が強化される。<br><colortype(504)><edgecolortype(505)>エーテルコピー：ヒーラー効果：<edgecolortype(0)><colortype(0)>自身の回復魔法の回復量を20％上昇させ、かつ一部の青魔法の効果が強化される。<br>再使用で解除する。\u3000<colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>永続",
+  "effects": [
+    "自身を除くプレイヤーひとりを対象とする。",
+    "対象のエーテルをコピーし、自身に「エーテルコピー：タンク」、「エーテルコピー：ＤＰＳ」、「エーテルコピー：ヒーラー」のいずれかを付与する。",
+    "付与するステータスは実行した時点での対象のロールにより変化する。",
+    "エーテルコピー：タンク効果：自身の防御力を上昇させ、かつ一部の青魔法の効果が強化される。",
+    "エーテルコピー：ＤＰＳ効果：自身のクリティカル発動率とダイレクトヒット発動率を20％上昇させ、かつ一部の青魔法の効果が強化される。",
+    "エーテルコピー：ヒーラー効果：自身の回復魔法の回復量を20％上昇させ、かつ一部の青魔法の効果が強化される。",
+    "再使用で解除する。\u3000効果時間：永続"
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 36,
+    "name": "青魔道士",
+    "abbreviation": "BLU"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 1,
+  "icon": {
+    "id": 3327,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 2,
+    "name": "魔法"
+  },
+  "attack_type": {
+    "id": 5,
+    "name": "魔法"
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 2.5,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 58,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 0,
+      "value": 0
+    },
+    "secondary": {
+      "type_id": 32,
+      "value": 2125
+    }
+  },
+  "range": {
+    "target_yalms": 0,
+    "effect_yalms": 0,
+    "cast_type": 1
+  },
+  "targeting": {
+    "self": true,
+    "party": false,
+    "alliance": false,
+    "hostile": false,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": false
+  },
+  "statuses": {
+    "gain_self": {
+      "id": 2125,
+      "name": "エーテルコピー：ＤＰＳ",
+      "description": "ＤＰＳのエーテルをコピーした状態。",
+      "icon_id": 213528,
+      "max_stacks": 0
+    },
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 7,
+    "behavior_type": 0,
+    "class_job_category_id": 129,
+    "source_class_job_id": 0,
+    "is_role_action": false,
+    "is_player_action": false,
+    "is_derived_action": true,
+    "equivalence_group": 0
+  }
+}

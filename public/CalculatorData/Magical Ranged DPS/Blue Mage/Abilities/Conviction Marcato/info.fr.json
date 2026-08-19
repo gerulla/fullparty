@@ -1,0 +1,88 @@
+{
+  "kind": "ability",
+  "id": 34574,
+  "name": "Conviction - marcato",
+  "description": "Effectue une attaque magique neutre en ligne droite sur les ennemis devant vous.\nPuissance : 220\nLa puissance est réduite de 50% au-delà du premier ennemi touché.\nLa puissance est augmentée si vous êtes sous l'effet de Bénédiction de l'Immaculé.\nPuissance avec Bénédiction de l'Immaculé : 440",
+  "description_macro": "Effectue une attaque magique neutre en ligne droite sur les ennemis devant vous.<br><colortype(506)><edgecolortype(507)>Puissance<nbsp>:<edgecolortype(0)><colortype(0)> 220<br>La puissance est réduite de 50% au-delà du premier ennemi touché.<br>La puissance est augmentée si vous êtes sous l'effet de <colortype(500)><edgecolortype(501)>Bénédiction de l'Immaculé<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Puissance avec Bénédiction de l'Immaculé<nbsp>:<edgecolortype(0)><colortype(0)> 440",
+  "effects": [
+    "Effectue une attaque magique neutre en ligne droite sur les ennemis devant vous.",
+    "Puissance : 220",
+    "La puissance est réduite de 50% au-delà du premier ennemi touché.",
+    "La puissance est augmentée si vous êtes sous l'effet de Bénédiction de l'Immaculé.",
+    "Puissance avec Bénédiction de l'Immaculé : 440"
+  ],
+  "role": "Magical Ranged DPS",
+  "job": {
+    "id": 36,
+    "name": "Mage Bleu",
+    "abbreviation": "MBU"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 1,
+  "icon": {
+    "id": 3369,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 2,
+    "name": "Sort"
+  },
+  "attack_type": {
+    "id": 5,
+    "name": "magie"
+  },
+  "timing": {
+    "cast_seconds": 2,
+    "recast_seconds": 2.5,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 58,
+    "additional_cooldown_group": 0,
+    "max_charges": 0
+  },
+  "costs": {
+    "primary": {
+      "type_id": 3,
+      "value": 2
+    },
+    "secondary": {
+      "type_id": 0,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": 25,
+    "effect_yalms": 25,
+    "cast_type": 4
+  },
+  "targeting": {
+    "self": false,
+    "party": false,
+    "alliance": false,
+    "hostile": true,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": false
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 7,
+    "behavior_type": 0,
+    "class_job_category_id": 129,
+    "source_class_job_id": 36,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

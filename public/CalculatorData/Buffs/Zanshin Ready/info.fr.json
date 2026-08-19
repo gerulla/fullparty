@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 1318,
+  "name": "Zanshin préparé",
+  "description": "Zanshin peut être lancé.",
+  "effects": [
+    "Zanshin peut être lancé."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 213318,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": true,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 111,
+  "source_abilities": [
+    {
+      "id": 16482,
+      "name": "Ikishôten",
+      "description": "Remplit la Jauge de Kenki de 50.\nEffet additionnel : vous octroie Ôgi : Namikiri préparée.\nDurée : 30s\nEffet additionnel : vous octroie Zanshin préparé.\nDurée : 30s\nCondition : en combat.",
+      "description_macro": "Remplit la <colortype(502)><edgecolortype(503)>Jauge de Kenki<edgecolortype(0)><colortype(0)> de 50.<br><if([gnum68==34],<if([gnum72>=90],<colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> vous octroie <colortype(500)><edgecolortype(501)>Ôgi<nbsp>: Namikiri préparée<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 30s<br>,)>,)><if([gnum68==34],<if([gnum72>=96],<colortype(506)><edgecolortype(507)>Effet additionnel<nbsp>:<edgecolortype(0)><colortype(0)> vous octroie <colortype(500)><edgecolortype(501)>Zanshin préparé<edgecolortype(0)><colortype(0)>.<br><colortype(506)><edgecolortype(507)>Durée<nbsp>:<edgecolortype(0)><colortype(0)> 30s<br>,)>,)><colortype(506)><edgecolortype(507)>Condition<nbsp>:<edgecolortype(0)><colortype(0)> en combat.",
+      "unlock_level": 68,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Melee DPS"
+      ],
+      "jobs": [
+        {
+          "id": 34,
+          "name": "Samouraï",
+          "abbreviation": "SAM",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,218 @@
+{
+  "kind": "combat_status",
+  "id": 897,
+  "name": "○削除予定",
+  "description": "連続してＨＰが回復している状態。",
+  "effects": [
+    "連続してＨＰが回復している状態。"
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 212626,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": true,
+  "inflicted_by_actor": true,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 10
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 133,
+      "name": "メディカラ",
+      "description": "自身と周囲のパーティメンバーのＨＰを回復する。\n回復力：250\n追加効果：対象のＨＰを継続回復する。\n回復力：150\u3000効果時間：15秒",
+      "description_macro": "自身と周囲のパーティメンバーのＨＰを回復する。<br><colortype(504)><edgecolortype(505)>回復力：<edgecolortype(0)><colortype(0)><if([gnum68==24],<if([gnum72>=85],250,200)>,200)><br><colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)>対象のＨＰを継続回復する。<br><colortype(504)><edgecolortype(505)>回復力：<edgecolortype(0)><colortype(0)><if([gnum68==24],<if([gnum72>=85],150,100)>,100)>\u3000<colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>15秒",
+      "unlock_level": 50,
+      "relations": [
+        "applied_by_description"
+      ],
+      "roles": [
+        "Healer"
+      ],
+      "jobs": [
+        {
+          "id": 24,
+          "name": "白魔道士",
+          "abbreviation": "WHM",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 188,
+      "name": "野戦治療の陣",
+      "description": "指定した地面を中心として被ダメージを軽減するシールドを生成する。\n効果時間中、範囲内にいるパーティメンバーの被ダメージを10％軽減し、かつＨＰを継続回復する。\n回復力：100\u3000効果時間：15秒\n追加効果：「フェイエーテル」を10上昇させる。\n発動条件：「エーテルフロー」",
+      "description_macro": "指定した地面を中心として被ダメージを軽減するシールドを生成する。<br><if([gnum68==28],<if([gnum72>=78],効果時間中、範囲内にいるパーティメンバーの被ダメージを10％軽減し、かつＨＰを継続回復する。<br><colortype(504)><edgecolortype(505)>回復力：<edgecolortype(0)><colortype(0)>100\u3000<colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>15秒<br>,効果時間中、範囲内にいるパーティメンバーの被ダメージを10％軽減する。\u3000<colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>15秒<br>)>,効果時間中、範囲内にいるパーティメンバーの被ダメージを10％軽減する。\u3000<colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>15秒<br>)><if([gnum72>=70],<if([gnum68==28],<colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)><colortype(500)><edgecolortype(501)>「フェイエーテル」<edgecolortype(0)><colortype(0)>を10上昇させる。<br>,)>,)><colortype(504)><edgecolortype(505)>発動条件：<edgecolortype(0)><colortype(0)><colortype(500)><edgecolortype(501)>「エーテルフロー」<edgecolortype(0)><colortype(0)>",
+      "unlock_level": 50,
+      "relations": [
+        "applied_by_description"
+      ],
+      "roles": [
+        "Healer"
+      ],
+      "jobs": [
+        {
+          "id": 28,
+          "name": "学者",
+          "abbreviation": "SCH",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 3595,
+      "name": "アスペクト・ベネフィク",
+      "description": "対象のＨＰを回復する。\u3000回復力：250\n追加効果：対象のＨＰを継続回復する。\n回復力：250\u3000効果時間：15秒",
+      "description_macro": "対象のＨＰを回復する。\u3000<colortype(504)><edgecolortype(505)>回復力：<edgecolortype(0)><colortype(0)><if([gnum68==33],<if([gnum72>=85],250,200)>,200)><br><colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)>対象のＨＰを継続回復する。<br><colortype(504)><edgecolortype(505)>回復力：<edgecolortype(0)><colortype(0)><if([gnum68==33],<if([gnum72>=85],250,200)>,200)>\u3000<colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>15秒",
+      "unlock_level": 34,
+      "relations": [
+        "applied_by_description"
+      ],
+      "roles": [
+        "Healer"
+      ],
+      "jobs": [
+        {
+          "id": 33,
+          "name": "占星術師",
+          "abbreviation": "AST",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 3601,
+      "name": "アスペクト・ヘリオス",
+      "description": "自身と周囲のパーティメンバーのＨＰを回復する。\n回復力：250\n追加効果：対象のＨＰを継続回復する。\n回復力：150\u3000効果時間：15秒",
+      "description_macro": "自身と周囲のパーティメンバーのＨＰを回復する。<br><colortype(504)><edgecolortype(505)>回復力：<edgecolortype(0)><colortype(0)><if([gnum68==33],<if([gnum72>=85],250,200)>,200)><br><colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)>対象のＨＰを継続回復する。<br><colortype(504)><edgecolortype(505)>回復力：<edgecolortype(0)><colortype(0)><if([gnum68==33],<if([gnum72>=85],150,100)>,100)>\u3000<colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>15秒",
+      "unlock_level": 40,
+      "relations": [
+        "applied_by_description"
+      ],
+      "roles": [
+        "Healer"
+      ],
+      "jobs": [
+        {
+          "id": 33,
+          "name": "占星術師",
+          "abbreviation": "AST",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 16151,
+      "name": "オーロラ",
+      "description": "対象のＨＰを継続回復する。\u3000回復力：300\u3000効果時間：18秒\n最大チャージ数：2",
+      "description_macro": "対象のＨＰを継続回復する。\u3000<colortype(504)><edgecolortype(505)>回復力：<edgecolortype(0)><colortype(0)>300\u3000<colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>18秒<if([gnum68==37],<if([gnum72>=84],<br><colortype(504)><edgecolortype(505)>最大チャージ数：<edgecolortype(0)><colortype(0)>2,)>,)>",
+      "unlock_level": 45,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Tank"
+      ],
+      "jobs": [
+        {
+          "id": 37,
+          "name": "ガンブレイカー",
+          "abbreviation": "GNB",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 16553,
+      "name": "星天対抗",
+      "description": "自身と周囲のパーティメンバーのＨＰを回復する。\n回復力：200\n追加効果：対象のＨＰを継続回復する。\n回復力：100\u3000効果時間：15秒",
+      "description_macro": "自身と周囲のパーティメンバーのＨＰを回復する。<br><colortype(504)><edgecolortype(505)>回復力：<edgecolortype(0)><colortype(0)>200<br><colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)>対象のＨＰを継続回復する。<br><colortype(504)><edgecolortype(505)>回復力：<edgecolortype(0)><colortype(0)>100\u3000<colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>15秒",
+      "unlock_level": 60,
+      "relations": [
+        "applied_by_description"
+      ],
+      "roles": [
+        "Healer"
+      ],
+      "jobs": [
+        {
+          "id": 33,
+          "name": "占星術師",
+          "abbreviation": "AST",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 24298,
+      "name": "ケーラコレ",
+      "description": "一定時間、自身と周囲のパーティメンバーの被ダメージを10％軽減させる。\u3000効果時間：15秒\n「タウロコレ」とは同時に付与されない。\n追加効果：対象のＨＰを継続回復する。\n回復力：100\u3000効果時間：15秒\n追加効果：自身のＭＰを最大ＭＰの7％分回復する。\n発動条件：「アダーガル」",
+      "description_macro": "一定時間、自身と周囲のパーティメンバーの被ダメージを10％軽減させる。\u3000<colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>15秒<br><colortype(500)><edgecolortype(501)>「タウロコレ」<edgecolortype(0)><colortype(0)>とは同時に付与されない。<br><if([gnum68==40],<if([gnum72>=78],<colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)>対象のＨＰを継続回復する。<br><colortype(504)><edgecolortype(505)>回復力：<edgecolortype(0)><colortype(0)>100\u3000<colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>15秒<br>,)>,)><colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)>自身のＭＰを最大ＭＰの7％分回復する。<br><colortype(504)><edgecolortype(505)>発動条件：<edgecolortype(0)><colortype(0)><colortype(500)><edgecolortype(501)>「アダーガル」<edgecolortype(0)><colortype(0)>",
+      "unlock_level": 50,
+      "relations": [
+        "applied_by_description"
+      ],
+      "roles": [
+        "Healer"
+      ],
+      "jobs": [
+        {
+          "id": 40,
+          "name": "賢者",
+          "abbreviation": "SGE",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 37030,
+      "name": "コンジャンクション・ヘリオス",
+      "description": "自身と周囲のパーティメンバーのＨＰを回復する。\n回復力：250\n追加効果：対象のＨＰを継続回復する。\n回復力：175\u3000効果時間：15秒",
+      "description_macro": "自身と周囲のパーティメンバーのＨＰを回復する。<br><colortype(504)><edgecolortype(505)>回復力：<edgecolortype(0)><colortype(0)>250<br><colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)>対象のＨＰを継続回復する。<br><colortype(504)><edgecolortype(505)>回復力：<edgecolortype(0)><colortype(0)>175\u3000<colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>15秒",
+      "unlock_level": 96,
+      "relations": [
+        "applied_by_description"
+      ],
+      "roles": [
+        "Healer"
+      ],
+      "jobs": [
+        {
+          "id": 33,
+          "name": "占星術師",
+          "abbreviation": "AST",
+          "is_phantom": false
+        }
+      ]
+    },
+    {
+      "id": 41636,
+      "name": "よげん",
+      "description": "自身に\n「よげん：せいなるしんぱん」\n「よげん：てんちほうかい」\n「よげん：てんのめぐみ」\n「よげん：いんせき」\nのうち、いずれかの予言ステータスを付与する。\n予言ステータスの効果中は、対応する予言アクションが実行可能となる。\nせいなるしんぱん効果：周囲の敵に範囲魔法攻撃を行うと同時に、自身と周囲のパーティメンバーを回復する。\nてんちほうかい効果：周囲の敵に範囲魔法攻撃を行い、さらに時間を停止させる。\nてんのめぐみ効果：自身と周囲のパーティメンバーを回復し、さらにＨＰを継続回復する。\nいんせき効果：自身と周囲の敵に範囲魔法攻撃。\n予言ステータスの効果時間が終了すると、他の予言ステータスに変化し、いずれの予言も成就しないまま一定時間が経過すると、「にせよげん」へと変化する。\n「にせよげん」効果中は、自身に継続ダメージの効果。\n効果量：50000\n効果時間：30秒",
+      "description_macro": "自身に<br><colortype(500)><edgecolortype(501)>「よげん：せいなるしんぱん」<br>「よげん：てんちほうかい」<br>「よげん：てんのめぐみ」<br>「よげん：いんせき」<br><edgecolortype(0)><colortype(0)>のうち、いずれかの予言ステータスを付与する。<br>予言ステータスの効果中は、対応する予言アクションが実行可能となる。<br><colortype(504)><edgecolortype(505)>せいなるしんぱん効果：<edgecolortype(0)><colortype(0)>周囲の敵に範囲魔法攻撃を行うと同時に、自身と周囲のパーティメンバーを回復する。<br><colortype(504)><edgecolortype(505)>てんちほうかい効果：<edgecolortype(0)><colortype(0)>周囲の敵に範囲魔法攻撃を行い、さらに時間を停止させる。<br><colortype(504)><edgecolortype(505)>てんのめぐみ効果：<edgecolortype(0)><colortype(0)>自身と周囲のパーティメンバーを回復し、さらにＨＰを継続回復する。<br><colortype(504)><edgecolortype(505)>いんせき効果：<edgecolortype(0)><colortype(0)>自身と周囲の敵に範囲魔法攻撃。<br>予言ステータスの効果時間が終了すると、他の予言ステータスに変化し、いずれの予言も成就しないまま一定時間が経過すると、<colortype(500)><edgecolortype(501)>「にせよげん」<edgecolortype(0)><colortype(0)>へと変化する。<br><colortype(500)><edgecolortype(501)>「にせよげん」<edgecolortype(0)><colortype(0)>効果中は、自身に継続ダメージの効果。<br><colortype(504)><edgecolortype(505)>効果量：<edgecolortype(0)><colortype(0)>50000<br><colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>30秒",
+      "unlock_level": 0,
+      "relations": [
+        "granted_by_description"
+      ],
+      "roles": [
+        "Phantom Jobs"
+      ],
+      "jobs": [
+        {
+          "id": 11,
+          "name": "Phantom サポート予言士",
+          "abbreviation": "Ph. Oracle",
+          "is_phantom": true
+        }
+      ]
+    }
+  ]
+}

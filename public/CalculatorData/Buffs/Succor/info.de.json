@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 166,
+  "name": "Kurieren +",
+  "description": "Nächstes Kurieren wird ohne MP-Kosten gewirkt.",
+  "effects": [
+    "Nächstes Kurieren wird ohne MP-Kosten gewirkt."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 212804,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 0
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 186,
+      "name": "Kurieren",
+      "description": "Du regenerierst eigene LP und die von umstehenden Gruppenmitgliedern.\nHeilpotenzial: 200\nZusatzeffekt: Errichtet eine Barriere um die Ziele, die Schaden in der Höhe von 160 % der Heilwirkung absorbiert.\nDauer: 30 Sekunden\nKann nicht zugleich mit einigen Barriere-Effekten des Weisen aktiv sein.",
+      "description_macro": "Du regenerierst eigene LP und die von umstehenden Grup<->pen<->mit<->gliedern.<br>Heilpotenzial: 200<br>Zusatzeffekt: Errichtet eine Barriere um die Ziele, die Schaden in der Höhe von <if([gnum68==28],<if([gnum72>=85],160,115)>,115)><nbsp>% der Heilwirkung absorbiert.<br>Dauer: 30 Sekunden<br>Kann nicht zugleich mit einigen Barriere-Effekten des Weisen aktiv sein.",
+      "unlock_level": 35,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Healer"
+      ],
+      "jobs": [
+        {
+          "id": 28,
+          "name": "Gelehrter",
+          "abbreviation": "GLT",
+          "is_phantom": false
+        }
+      ]
+    }
+  ]
+}

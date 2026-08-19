@@ -1,0 +1,91 @@
+{
+  "kind": "ability",
+  "id": 69,
+  "name": "踏鳴",
+  "description": "自身に3スタックの「踏鳴」を付与する。\u3000効果時間：20秒\n踏鳴効果：発動条件に「型」を持つウェポンスキルを、「型」が付与されていなくても実行できるようになる。\n追加効果：自身に「壱の型」「弐の型」「参の型」のいずれかを付与するウェポンスキルを実行すると、自身に対応する「チャクラ」を付与する。\n壱の型を付与するウェポンスキル：「猛虎のチャクラ」\n弐の型を付与するウェポンスキル：「魔猿のチャクラ」\n参の型を付与するウェポンスキル：「走竜のチャクラ」\n最大チャージ数：2\n発動条件：自身が戦闘状態かついずれのチャクラも付与されていない",
+  "description_macro": "自身に3スタックの<colortype(500)><edgecolortype(501)>「踏鳴」<edgecolortype(0)><colortype(0)>を付与する。\u3000<colortype(504)><edgecolortype(505)>効果時間：<edgecolortype(0)><colortype(0)>20秒<br><colortype(504)><edgecolortype(505)>踏鳴効果：<edgecolortype(0)><colortype(0)>発動条件に「型」を持つウェポンスキルを、「型」が付与されていなくても実行できるようになる。<br><if([gnum68==20],<if([gnum72>=60],<colortype(504)><edgecolortype(505)>追加効果：<edgecolortype(0)><colortype(0)>自身に<colortype(500)><edgecolortype(501)>「壱の型」「弐の型」「参の型」<edgecolortype(0)><colortype(0)>のいずれかを付与するウェポンスキルを実行すると、自身に対応する<colortype(500)><edgecolortype(501)>「チャクラ」<edgecolortype(0)><colortype(0)>を付与する。<br><colortype(504)><edgecolortype(505)>壱の型を付与するウェポンスキル：<edgecolortype(0)><colortype(0)><colortype(500)><edgecolortype(501)>「猛虎のチャクラ」<edgecolortype(0)><colortype(0)><br><colortype(504)><edgecolortype(505)>弐の型を付与するウェポンスキル：<edgecolortype(0)><colortype(0)><colortype(500)><edgecolortype(501)>「魔猿のチャクラ」<edgecolortype(0)><colortype(0)><br><colortype(504)><edgecolortype(505)>参の型を付与するウェポンスキル：<edgecolortype(0)><colortype(0)><colortype(500)><edgecolortype(501)>「走竜のチャクラ」<edgecolortype(0)><colortype(0)><br>,)>,)><colortype(504)><edgecolortype(505)>最大チャージ数：<edgecolortype(0)><colortype(0)>2<br><colortype(504)><edgecolortype(505)>発動条件：<edgecolortype(0)><colortype(0)><if([gnum68==20],<if([gnum72>=60],自身が戦闘状態かついずれのチャクラも付与されていない,自身が戦闘状態)>,自身が戦闘状態)>",
+  "effects": [
+    "自身に3スタックの「踏鳴」を付与する。\u3000効果時間：20秒",
+    "踏鳴効果：発動条件に「型」を持つウェポンスキルを、「型」が付与されていなくても実行できるようになる。",
+    "追加効果：自身に「壱の型」「弐の型」「参の型」のいずれかを付与するウェポンスキルを実行すると、自身に対応する「チャクラ」を付与する。",
+    "壱の型を付与するウェポンスキル：「猛虎のチャクラ」",
+    "弐の型を付与するウェポンスキル：「魔猿のチャクラ」",
+    "参の型を付与するウェポンスキル：「走竜のチャクラ」",
+    "最大チャージ数：2",
+    "発動条件：自身が戦闘状態かついずれのチャクラも付与されていない"
+  ],
+  "role": "Melee DPS",
+  "job": {
+    "id": 20,
+    "name": "モンク",
+    "abbreviation": "MNK"
+  },
+  "is_phantom_action": false,
+  "unlock_level": 50,
+  "icon": {
+    "id": 217,
+    "file": "icon.png"
+  },
+  "action_category": {
+    "id": 4,
+    "name": "アビリティ"
+  },
+  "attack_type": {
+    "id": 0,
+    "name": ""
+  },
+  "timing": {
+    "cast_seconds": 0,
+    "recast_seconds": 40,
+    "extra_cast_seconds": 0,
+    "cooldown_group": 14,
+    "additional_cooldown_group": 71,
+    "max_charges": 2
+  },
+  "costs": {
+    "primary": {
+      "type_id": 0,
+      "value": 0
+    },
+    "secondary": {
+      "type_id": 132,
+      "value": 0
+    }
+  },
+  "range": {
+    "target_yalms": 0,
+    "effect_yalms": 0,
+    "cast_type": 1
+  },
+  "targeting": {
+    "self": true,
+    "party": false,
+    "alliance": false,
+    "hostile": false,
+    "ally": false,
+    "own_pet": false,
+    "party_pet": false,
+    "is_area": false,
+    "dead_target_behavior": 0,
+    "requires_line_of_sight": true,
+    "requires_facing_target": true
+  },
+  "combo": {
+    "previous_action_id": null,
+    "preserves_combo": true
+  },
+  "statuses": {
+    "gain_self": null,
+    "proc": null
+  },
+  "metadata": {
+    "aspect_id": 0,
+    "behavior_type": 0,
+    "class_job_category_id": 21,
+    "source_class_job_id": 20,
+    "is_role_action": false,
+    "is_player_action": true,
+    "is_derived_action": false,
+    "equivalence_group": 0
+  }
+}

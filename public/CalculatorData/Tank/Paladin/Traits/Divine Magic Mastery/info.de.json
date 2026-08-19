@@ -1,0 +1,29 @@
+{
+  "kind": "trait",
+  "id": 207,
+  "name": "Meister der Göttlichen Magie",
+  "description": "MP-Kosten für Magie sind halbiert und erlittener Schaden unterbricht das Wirken von Zaubern nicht.\nDarüber hinaus werden Königsklinge die folgenden Effekte hinzugefügt:\nBonus: Göttliche Gunst\nDauer: 30 Sekunden\nEffekt von Göttliche Gunst: Der nächste Heilige Geist oder Heilige Kreis kann sofort gewirkt werden und hat einen erhöhten Attacke-Wert.\nBedingung: Erfolgreiches Ausführen einer Kombo mit Königsklinge.",
+  "description_macro": "MP-Kosten für Magie sind halbiert und erlittener Schaden unterbricht das Wirken von Zaubern nicht.<br>Darüber hinaus werden <colortype(502)><edgecolortype(503)>Königsklinge<edgecolortype(0)><colortype(0)> die folgenden Effekte hinzugefügt:<br>Bonus: <colortype(506)><edgecolortype(507)>Göttliche Gunst<edgecolortype(0)><colortype(0)><br>Dauer: 30 Sekunden<br>Effekt von <colortype(506)><edgecolortype(507)>Göttliche Gunst<edgecolortype(0)><colortype(0)>: Der nächste <colortype(502)><edgecolortype(503)>Heilige Geist<edgecolortype(0)><colortype(0)> oder <colortype(502)><edgecolortype(503)>Heilige Kreis<edgecolortype(0)><colortype(0)> kann sofort gewirkt werden und hat einen erhöhten Attacke-Wert.<br>Bedingung: Erfolgreiches Ausführen einer Kombo mit <colortype(502)><edgecolortype(503)>Königsklinge<edgecolortype(0)><colortype(0)>.",
+  "effects": [
+    "MP-Kosten für Magie sind halbiert und erlittener Schaden unterbricht das Wirken von Zaubern nicht.",
+    "Darüber hinaus werden Königsklinge die folgenden Effekte hinzugefügt:",
+    "Bonus: Göttliche Gunst",
+    "Dauer: 30 Sekunden",
+    "Effekt von Göttliche Gunst: Der nächste Heilige Geist oder Heilige Kreis kann sofort gewirkt werden und hat einen erhöhten Attacke-Wert.",
+    "Bedingung: Erfolgreiches Ausführen einer Kombo mit Königsklinge."
+  ],
+  "role": "Tank",
+  "job": {
+    "id": 19,
+    "name": "Paladin",
+    "abbreviation": "PLD"
+  },
+  "unlock_level": 64,
+  "value": -50,
+  "icon": {
+    "id": 5210,
+    "file": "icon.png"
+  },
+  "class_job_category_id": 20,
+  "source_class_job_id": 19
+}

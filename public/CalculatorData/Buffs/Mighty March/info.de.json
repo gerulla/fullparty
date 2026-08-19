@@ -1,0 +1,50 @@
+{
+  "kind": "combat_status",
+  "id": 4246,
+  "name": "Kraft-Choral",
+  "description": "Regeneriert schrittweise LP und Maximal-LP sind erhöht.",
+  "effects": [
+    "Regeneriert schrittweise LP und Maximal-LP sind erhöht."
+  ],
+  "classification": "buff",
+  "icon": {
+    "id": 229910,
+    "file": "icon.png"
+  },
+  "max_stacks": 0,
+  "status_category_id": 1,
+  "target_type": 0,
+  "can_dispel": false,
+  "can_remove_manually": false,
+  "is_permanent": false,
+  "inflicted_by_actor": false,
+  "party_list_priority": 0,
+  "parameter": {
+    "effect": 0,
+    "modifier": 10
+  },
+  "class_job_category_id": 1,
+  "source_abilities": [
+    {
+      "id": 41607,
+      "name": "Kraft-Choral",
+      "description": "Du regenerierst schrittweise eigene LP und die von umstehenden Gruppenmitgliedern. Du erhöhst dabei außerdem die Maximal-LP der Ziele um 20 % und heilst diesen Betrag bei Ausführung.\nHeilpotenzial: 3.000\nDauer: 30 Sekunden",
+      "description_macro": "Du regenerierst schrittweise eigene LP und die von umstehenden Grup<->pen<->mit<->gliedern. Du erhöhst dabei außerdem die Maximal-LP der Ziele um 20<nbsp>% und heilst diesen Betrag bei Ausführung.<br>Heilpotenzial: <if([gnum108>=4],3.500,3.000)><br>Dauer: 30 Sekunden",
+      "unlock_level": 0,
+      "relations": [
+        "same_name"
+      ],
+      "roles": [
+        "Phantom Jobs"
+      ],
+      "jobs": [
+        {
+          "id": 6,
+          "name": "Phantom Phantom-Barde",
+          "abbreviation": "Ph-Barde",
+          "is_phantom": true
+        }
+      ]
+    }
+  ]
+}

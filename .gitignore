@@ -13,6 +13,7 @@
 /.zed
 /auth.json
 /node_modules
+/output/pdf/fullparty-codebase-assessment-2026-09-08.pdf
 /public/build
 /public/hot
 /public/storage

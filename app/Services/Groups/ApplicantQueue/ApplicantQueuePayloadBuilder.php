@@ -129,6 +129,8 @@ class ApplicantQueuePayloadBuilder
                 'world' => $selectedCharacter->world,
                 'datacenter' => $selectedCharacter->datacenter,
                 'lodestone_refreshed_at' => $selectedCharacter->lodestone_refreshed_at?->toIso8601String(),
+                'has_class_progress_data' => $selectedCharacter->hasJobProgressData('character_classes'),
+                'has_phantom_job_progress_data' => $selectedCharacter->hasJobProgressData('phantom_jobs'),
                 'lodestone_last_checked_at' => ($selectedCharacter->lodestone_refreshed_at ?? $selectedCharacter->updated_at)?->toIso8601String(),
                 'occult_level' => $selectedCharacter->occultProgress?->knowledge_level,
                 'blood_progress' => $selectedCharacter->occultProgress?->forkedTowerBloodProgress(),

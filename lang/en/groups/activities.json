@@ -468,6 +468,8 @@
             "incompatible_slot_answers": "This application does not provide compatible answers for the target slot fields.",
             "ignore_application_choices": "Ignore Application Choices",
             "ignore_application_choices_warning_title": "Application choices will be ignored",
+            "missing_lodestone_data_warning_title": "Character Lodestone data not found",
+            "missing_lodestone_data_warning": "The character may or may not have any of the following options unlocked or leveled to the necessary point. Ignoring application choices is highly discouraged.",
             "ignore_application_choices_warning": "This might cause issues because the user may be forced to play something they did not choose.",
             "character_level": "Lvl {level}",
             "phantom_job_level": "Lvl {level}",

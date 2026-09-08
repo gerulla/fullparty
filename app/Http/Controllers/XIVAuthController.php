@@ -6,6 +6,7 @@ use App\Models\SocialAccount;
 use App\Models\User;
 use App\Services\AuditLogger;
 use App\Services\Auth\OAuthAccountLinkingPolicy;
+use App\Services\Auth\SocialLoginLinkService;
 use App\Services\Characters\XIVAuthCharacterSyncResult;
 use App\Services\Characters\XIVAuthCharacterSyncService;
 use App\Services\Notifications\AccountCharacterNotificationService;
@@ -28,15 +29,16 @@ class XIVAuthController extends Controller
         private readonly AccountCharacterNotificationService $accountCharacterNotificationService,
         private readonly XIVAuthCharacterSyncService $xivAuthCharacterSyncService,
         private readonly OAuthAccountLinkingPolicy $accountLinkingPolicy,
+        private readonly SocialLoginLinkService $loginLinkService,
     ) {}
 
     public function redirect()
     {
-        return Socialite::driver('xivauth')
+        return $this->loginLinkService->rememberOAuthRedirect(request(), 'xivauth', Socialite::driver('xivauth')
             ->enablePKCE()
             ->withEmailScope()
             ->withCharactersScope()
-            ->redirect();
+            ->redirect());
     }
 
     public function callback()
@@ -69,6 +71,10 @@ class XIVAuthController extends Controller
             ->where('provider', $provider)
             ->where('provider_user_id', $providerUserId)
             ->first();
+
+        if ($response = $this->loginLinkService->handleCallback(request(), $provider, $xivauthUser, $socialAccount)) {
+            return $response;
+        }
 
         try {
             $this->accountLinkingPolicy->authorize(auth()->user(), $socialAccount, $providerEmail);

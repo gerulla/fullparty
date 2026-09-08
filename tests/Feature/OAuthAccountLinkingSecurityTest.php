@@ -38,8 +38,9 @@ it('does not merge a provider into an existing email account', function (string 
     $password = $user->password;
     fakeSecurityOAuthProvider($provider, 'EXISTING@example.test');
 
-    $this->get(route($provider.'.callback'))->assertRedirect(route('login'))
-        ->assertSessionHasErrors(['email' => __('auth.social_link_requires_login')]);
+    $this->get(route($provider.'.callback'))
+        ->assertRedirect(route('social-link.show', session('social_link.token')))
+        ->assertSessionHasNoErrors();
 
     $this->assertGuest();
     expect(SocialAccount::count())->toBe(0)

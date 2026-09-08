@@ -468,6 +468,8 @@
             "incompatible_slot_answers": "Diese Bewerbung enthält keine passenden Antworten für die Zielfeld-Werte des Slots.",
             "ignore_application_choices": "Bewerbungsauswahl ignorieren",
             "ignore_application_choices_warning_title": "Bewerbungsauswahl wird ignoriert",
+            "missing_lodestone_data_warning_title": "Keine Lodestone-Daten für den Charakter gefunden",
+            "missing_lodestone_data_warning": "Es ist unbekannt, ob der Charakter die folgenden Optionen freigeschaltet oder auf die erforderliche Stufe gebracht hat. Vom Ignorieren der Bewerbungsangaben wird dringend abgeraten.",
             "ignore_application_choices_warning": "Dies kann zu Problemen führen, da die Person möglicherweise etwas spielen muss, das sie nicht ausgewählt hat.",
             "character_level": "St. {level}",
             "phantom_job_level": "St. {level}",

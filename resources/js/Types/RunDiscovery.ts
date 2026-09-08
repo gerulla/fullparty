@@ -95,6 +95,8 @@ export type RunDiscoveryResultItemData = {
 	organizer: {
 		name: string | null
 		avatar_url: string | null
+		world?: string | null
+		datacenter?: string | null
 	} | null
 	description: string | null
 	min_item_level: number | null

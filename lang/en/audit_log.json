@@ -22,6 +22,10 @@
     "any_severity": "Any Severity",
     "any_user": "Any User",
     "any_group": "Any Group",
+    "any_activity": "Any Run",
+    "activity_label": "By Run",
+    "search_activity": "Search runs...",
+    "unnamed_activity": "Run #{id}",
     "action": {
       "label": "By Action"
     },
@@ -60,6 +64,9 @@
   "list": {
     "empty": "No audit log entries match the current filters.",
     "loading_more": "Load More",
+    "loading": "Loading audit logs...",
+    "load_error": "Could not load audit logs.",
+    "retry": "Retry",
     "recorded_event": "Recorded audit event",
     "details": "Details",
     "changes": "Changes",

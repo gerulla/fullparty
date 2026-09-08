@@ -38,6 +38,8 @@ const page = usePage();
 const fallbackLocale = computed(() => String(page.props.locale?.fallback ?? 'en'));
 const selections = ref<Record<string, ActivitySlotFieldSelection>>({});
 const ignoreApplicationChoices = ref(false);
+const usesMissingLodestoneFallback = computed(() => ignoreApplicationChoices.value
+	&& targetFieldDefinitions.value.some(isMissingLodestoneDataForField));
 const selectedFilledGroupKey = ref<string | null>(null);
 const ANY_OPTION_KEY = 'any';
 
@@ -177,12 +179,30 @@ const canIgnoreChoicesForField = (field: QueueFilterField) => (
 	|| isHolsterPairField(field)
 );
 
+const isMissingLodestoneDataForField = (field: QueueFilterField) => {
+	const character = props.application?.selected_character;
+	if (!character) return false;
+	if (field.source === 'character_classes') {
+		return !(character.has_class_progress_data
+			?? character.available_character_classes?.some(job => job.level > 0));
+	}
+	if (field.source === 'phantom_jobs') {
+		return !(character.has_phantom_job_progress_data
+			?? character.available_phantom_jobs?.some(job => job.current_level > 0));
+	}
+	return false;
+};
+
 const optionAllowedWhenIgnoringChoices = (
 	field: QueueFilterField,
 	option: QueueFilterField["options"][number],
 	availableClassLevels: Map<string, number>,
 	availablePhantomJobs: Map<string, AvailablePhantomJob>,
 ) => {
+	if (isMissingLodestoneDataForField(field)) {
+		return option.key !== ANY_OPTION_KEY;
+	}
+
 	if (field.source === 'character_classes') {
 		return availableClassLevels.has(option.key);
 	}
@@ -237,6 +257,7 @@ const compatibleOptionsByField = computed(() => {
 				.map((entry) => [entry.id, entry]),
 		);
 		const ignoresChoicesForField = ignoreApplicationChoices.value && canIgnoreChoicesForField(field);
+		const usesFieldFallback = ignoresChoicesForField && isMissingLodestoneDataForField(field);
 		const compatibleOptions = ignoresChoicesForField
 			? field.options.filter(option => optionAllowedWhenIgnoringChoices(field, option, availableClassLevels, availablePhantomJobs))
 			: selectedAnyOption
@@ -247,13 +268,13 @@ const compatibleOptionsByField = computed(() => {
 			.map((option) => {
 				let label = optionLabel(field, option);
 
-				if (ignoresChoicesForField && field.source === 'character_classes') {
+				if (ignoresChoicesForField && !usesFieldFallback && field.source === 'character_classes') {
 					label = `${label} - ${t('groups.activities.management.queue.character_level', {
 						level: availableClassLevels.get(option.key),
 					})}`;
 				}
 
-				if (ignoresChoicesForField && field.source === 'phantom_jobs') {
+				if (ignoresChoicesForField && !usesFieldFallback && field.source === 'phantom_jobs') {
 					const progress = availablePhantomJobs.get(option.key);
 					label = `${label} - ${progress?.is_maxed
 						? t('groups.activities.management.queue.phantom_job_mastered')
@@ -263,7 +284,7 @@ const compatibleOptionsByField = computed(() => {
 				return {
 					label,
 					value: option.key,
-					isFavorite: submittedValueSet.has(option.key) && preferredOptionKeys.has(option.key),
+					isFavorite: !usesFieldFallback && submittedValueSet.has(option.key) && preferredOptionKeys.has(option.key),
 				};
 			});
 	}
@@ -479,6 +500,15 @@ const submit = () => {
 					icon="i-lucide-triangle-alert"
 					:title="t('groups.activities.management.queue.ignore_application_choices_warning_title')"
 					:description="t('groups.activities.management.queue.ignore_application_choices_warning')"
+				/>
+
+				<UAlert
+					v-if="usesMissingLodestoneFallback"
+					color="error"
+					variant="soft"
+					icon="i-lucide-triangle-alert"
+					:title="t('groups.activities.management.queue.missing_lodestone_data_warning_title')"
+					:description="t('groups.activities.management.queue.missing_lodestone_data_warning')"
 				/>
 
 				<div class="grid gap-4 md:grid-cols-2">

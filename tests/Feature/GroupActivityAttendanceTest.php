@@ -303,6 +303,70 @@ it('checks in all filled slots in a slot group and records a group attendance au
         ->and($auditLog->metadata['checked_in_count'])->toBe(2);
 });
 
+it('checks in the rest of a party without requiring or rewriting an already checked-in slot', function (bool $includeOldToken, bool $remainingIsLate) {
+    extract(createAttendanceTestSetup(partySize: 3, withBench: false));
+    foreach ($mainSlots->take(2) as $slot) {
+        $applicant = createAttendanceApplicant($activity, $owner);
+        $slot->update(['assigned_character_id' => $applicant['character']->id, 'assigned_by_user_id' => $owner->id]);
+    }
+    $this->actingAs($owner);
+    $first = $mainSlots[0];
+    $second = $mainSlots[1];
+    $oldToken = activity_slot_state_token($first);
+    $this->postJson(route('groups.dashboard.activities.slot-checkins.store', [
+        'group' => $group->slug, 'activity' => $activity->id, 'slot' => $first->id,
+    ]), ['expected_slot_state_token' => $oldToken])->assertOk();
+    $originalAssignment = $first->assignments()->whereNull('ended_at')->sole();
+    $originalCheckedInAt = $originalAssignment->checked_in_at->toIso8601String();
+    $secondToken = activity_slot_state_token($second);
+    if ($remainingIsLate) {
+        $lateResponse = $this->postJson(route('groups.dashboard.activities.slot-checkins.late', [
+            'group' => $group->slug, 'activity' => $activity->id, 'slot' => $second->id,
+        ]), ['expected_slot_state_token' => $secondToken])->assertOk();
+        $secondToken = $lateResponse->json('slot.state_token');
+    }
+    $this->travel(5)->minutes();
+    $tokens = [$second->id => $secondToken];
+    if ($includeOldToken) {
+        $tokens[$first->id] = $oldToken;
+    }
+
+    $response = $this->postJson(route('groups.dashboard.activities.slot-group-checkins.store', [
+        'group' => $group->slug, 'activity' => $activity->id,
+    ]), ['group_key' => 'party-a', 'expected_slot_state_tokens' => $tokens]);
+    $response->assertOk()->assertJsonCount(1, 'slots')->assertJsonPath('slots.0.id', $second->id)
+        ->assertJsonPath('slots.0.attendance_status', ActivitySlotAssignment::STATUS_CHECKED_IN);
+    expect($originalAssignment->fresh()->checked_in_at->toIso8601String())->toBe($originalCheckedInAt)
+        ->and($originalAssignment->fresh()->checked_in_by_user_id)->toBe($owner->id)
+        ->and($mainSlots[2]->assignments()->count())->toBe(0)
+        ->and(AuditLog::where('action', 'group.activity.attendance.group_checked_in')->sole()->metadata['checked_in_count'])->toBe(1);
+
+    $this->postJson(route('groups.dashboard.activities.slot-group-checkins.store', [
+        'group' => $group->slug, 'activity' => $activity->id,
+    ]), ['group_key' => 'party-a', 'expected_slot_state_tokens' => $tokens])->assertOk()->assertJsonCount(0, 'slots');
+    expect(AuditLog::where('action', 'group.activity.attendance.group_checked_in')->count())->toBe(1);
+})->with([false, true])->with([false, true]);
+
+it('rejects a missing or stale token for an unchecked member before checking in anyone', function (bool $missingToken) {
+    extract(createAttendanceTestSetup(partySize: 2, withBench: false));
+    foreach ($mainSlots as $slot) {
+        $applicant = createAttendanceApplicant($activity, $owner);
+        $slot->update(['assigned_character_id' => $applicant['character']->id, 'assigned_by_user_id' => $owner->id]);
+    }
+    $tokens = [$mainSlots[0]->id => activity_slot_state_token($mainSlots[0])];
+    if (! $missingToken) {
+        $tokens[$mainSlots[1]->id] = activity_slot_state_token($mainSlots[1]);
+        $mainSlots[1]->update(['is_raid_leader' => true]);
+    }
+
+    $this->actingAs($owner)->postJson(route('groups.dashboard.activities.slot-group-checkins.store', [
+        'group' => $group->slug, 'activity' => $activity->id,
+    ]), ['group_key' => 'party-a', 'expected_slot_state_tokens' => $tokens])->assertConflict();
+    expect(ActivitySlotAssignment::where('activity_id', $activity->id)
+        ->where('attendance_status', ActivitySlotAssignment::STATUS_CHECKED_IN)->count())->toBe(0)
+        ->and(AuditLog::where('action', 'group.activity.attendance.group_checked_in')->count())->toBe(0);
+})->with([false, true]);
+
 it('returns a validation error when undoing a missing assignment without any open destination slot', function () {
     extract(createAttendanceTestSetup(partySize: 1, withBench: true));
     extract(createAttendanceApplicant($activity, $owner));

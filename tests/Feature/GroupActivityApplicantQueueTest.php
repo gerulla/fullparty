@@ -261,6 +261,8 @@ it('includes selected character preferred class and phantom job ids in applicant
         ->firstWhere('id', $application->id);
 
     expect($queueItem)->not->toBeNull()
+        ->and($queueItem['selected_character']['has_class_progress_data'])->toBeTrue()
+        ->and($queueItem['selected_character']['has_phantom_job_progress_data'])->toBeTrue()
         ->and($queueItem['selected_character']['preferred_character_class_ids'])->toBe([(string) $characterClass->id])
         ->and($queueItem['selected_character']['preferred_phantom_job_ids'])->toBe([(string) $phantomJob->id])
         ->and($queueItem['selected_character']['available_character_classes'])->toContain(
@@ -282,6 +284,32 @@ it('includes selected character preferred class and phantom job ids in applicant
             ],
         );
 });
+
+it('reports usable progress per category including absent and all-zero data', function (string $knownSource, int $level) {
+    extract(createApplicantQueueActivity());
+    $member = User::factory()->create();
+    $character = Character::factory()->primary()->create(['user_id' => $member->id]);
+    $application = ActivityApplication::factory()->create([
+        'activity_id' => $activity->id, 'user_id' => $member->id,
+        'selected_character_id' => $character->id, 'status' => ActivityApplication::STATUS_PENDING,
+    ]);
+    $character->classes()->detach();
+    $character->phantomJobs()->detach();
+    if ($knownSource === 'classes') {
+        $character->classes()->attach($characterClass->id, ['level' => $level]);
+    } elseif ($knownSource === 'phantomJobs') {
+        $character->phantomJobs()->attach($phantomJob->id, ['current_level' => $level]);
+    }
+
+    $response = $this->actingAs($owner)->getJson(route('groups.dashboard.activities.applicant-queue', [
+        'group' => $group->slug, 'activity' => $activity->id,
+    ]))->assertOk();
+    $characterData = collect($response->json('applications'))->firstWhere('id', $application->id)['selected_character'];
+    expect($characterData['has_class_progress_data'])->toBe($knownSource === 'classes' && $level > 0)
+        ->and($characterData['has_phantom_job_progress_data'])->toBe($knownSource === 'phantomJobs' && $level > 0)
+        ->and($characterData['available_character_classes'])->toHaveCount($knownSource === 'classes' && $level > 0 ? 1 : 0)
+        ->and($characterData['available_phantom_jobs'])->toHaveCount($knownSource === 'phantomJobs' && $level > 0 ? 1 : 0);
+})->with(['none', 'classes', 'phantomJobs'])->with([0, 10]);
 
 it('forbids non moderators from loading the applicant queue payload', function () {
     extract(createApplicantQueueActivity());

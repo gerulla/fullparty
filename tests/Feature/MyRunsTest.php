@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Activity;
+use App\Models\Character;
 use App\Models\Group;
 use App\Models\GroupMembership;
 use App\Models\User;
@@ -63,9 +64,15 @@ it('shows visible runs from selected groups with their host group metadata', fun
         'joined_at' => now(),
     ]);
 
+    $host = Character::factory()->create([
+        'user_id' => $selectedGroup->owner_id, 'name' => 'Genesis Govette',
+        'world' => 'Lich', 'datacenter' => 'Light', 'avatar_url' => '/host-avatar.png',
+    ]);
     $scheduledRun = Activity::factory()->for($selectedGroup)->create([
         'status' => Activity::STATUS_SCHEDULED,
         'title' => 'Selected Run',
+        'organized_by_character_id' => $host->id,
+        'datacenter' => 'Chaos',
     ]);
 
     Activity::factory()->for($selectedGroup)->create([
@@ -90,6 +97,10 @@ it('shows visible runs from selected groups with their host group metadata', fun
             ->where('groups.0.slug', $selectedGroup->slug)
             ->has('activities', 1)
             ->where('activities.0.id', $scheduledRun->id)
+            ->where('activities.0.organized_by_character.name', 'Genesis Govette')
+            ->where('activities.0.organized_by_character.avatar_url', '/host-avatar.png')
+            ->where('activities.0.organized_by_character.world', 'Lich')
+            ->where('activities.0.organized_by_character.datacenter', 'Light')
             ->where('activities.0.group.id', $selectedGroup->id)
             ->where('activities.0.group.name', 'Selected Static')
             ->where('activities.0.group.slug', $selectedGroup->slug)

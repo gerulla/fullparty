@@ -22,6 +22,10 @@
         "any_severity": "Beliebige Schwere",
         "any_user": "Beliebiger Benutzer",
         "any_group": "Beliebige Gruppe",
+        "any_activity": "Beliebiger Run",
+        "activity_label": "Nach Run",
+        "search_activity": "Runs durchsuchen...",
+        "unnamed_activity": "Run #{id}",
         "action": {
             "label": "Nach Aktion"
         },
@@ -60,6 +64,9 @@
     "list": {
         "empty": "Keine Audit-Log-Einträge entsprechen den aktuellen Filtern.",
         "loading_more": "Mehr laden",
+        "loading": "Audit-Logs werden geladen...",
+        "load_error": "Audit-Logs konnten nicht geladen werden.",
+        "retry": "Erneut versuchen",
         "recorded_event": "Erfasstes Audit-Ereignis",
         "details": "Details",
         "changes": "Änderungen",

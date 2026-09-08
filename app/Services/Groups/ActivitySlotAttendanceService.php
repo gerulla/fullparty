@@ -12,7 +12,10 @@ use Illuminate\Validation\ValidationException;
 
 class ActivitySlotAttendanceService
 {
-    public function __construct(private readonly ActivityRosterLock $rosterLock) {}
+    public function __construct(
+        private readonly ActivityRosterLock $rosterLock,
+        private readonly ActivitySlotStateTokenService $stateTokens,
+    ) {}
 
     /**
      * @return array<string, mixed>
@@ -375,20 +378,28 @@ class ActivitySlotAttendanceService
     /**
      * @return Collection<int, ActivitySlot>
      */
-    public function checkInGroup(Activity $activity, string $groupKey, int $checkedInByUserId): Collection
+    public function checkInGroup(Activity $activity, string $groupKey, int $checkedInByUserId, array $expectedSlotStateTokens): Collection
     {
         return $this->rosterLock->run((int) $activity->id,
-            fn () => $this->checkInCurrentGroup($activity, $groupKey, $checkedInByUserId));
+            fn () => $this->checkInCurrentGroup($activity, $groupKey, $checkedInByUserId, $expectedSlotStateTokens));
     }
 
-    private function checkInCurrentGroup(Activity $activity, string $groupKey, int $checkedInByUserId): Collection
+    private function checkInCurrentGroup(Activity $activity, string $groupKey, int $checkedInByUserId, array $expectedSlotStateTokens): Collection
     {
         $slots = $activity->slots()
             ->with(['activity', 'assignedCharacter', 'fieldValues', 'assignments'])
             ->where('group_key', $groupKey)
             ->whereNotNull('assigned_character_id')
             ->orderBy('sort_order')
-            ->get();
+            ->get()
+            ->reject(fn (ActivitySlot $slot) => $this->stateTokens->resolveActiveAssignment($slot)?->attendance_status
+                === ActivitySlotAssignment::STATUS_CHECKED_IN)
+            ->values();
+
+        // Validate every remaining target under the roster lock before updating any of them.
+        foreach ($slots as $slot) {
+            $this->stateTokens->assertMatches($slot, $expectedSlotStateTokens[$slot->id] ?? null);
+        }
 
         if ($slots->isEmpty()) {
             return collect();

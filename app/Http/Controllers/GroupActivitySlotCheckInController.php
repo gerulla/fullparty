@@ -38,7 +38,7 @@ class GroupActivitySlotCheckInController extends Controller
             abort(404);
         }
 
-        if (!$slot->assigned_character_id) {
+        if (! $slot->assigned_character_id) {
             throw ValidationException::withMessages([
                 'slot' => 'Only filled slots can be checked in.',
             ]);
@@ -93,7 +93,7 @@ class GroupActivitySlotCheckInController extends Controller
             abort(404);
         }
 
-        if (!$slot->assigned_character_id) {
+        if (! $slot->assigned_character_id) {
             throw ValidationException::withMessages([
                 'slot' => 'Only filled slots can be marked late.',
             ]);
@@ -148,7 +148,7 @@ class GroupActivitySlotCheckInController extends Controller
             abort(404);
         }
 
-        if (!$slot->assigned_character_id) {
+        if (! $slot->assigned_character_id) {
             throw ValidationException::withMessages([
                 'slot' => 'Only filled slots can undo check-in.',
             ]);
@@ -161,7 +161,7 @@ class GroupActivitySlotCheckInController extends Controller
         $slotStateTokenService->assertMatches($slot, $validated['expected_slot_state_token']);
         $assignment = $attendanceService->undoCheckInSlot($slot);
 
-        if (!$assignment) {
+        if (! $assignment) {
             throw ValidationException::withMessages([
                 'slot' => 'Only checked-in or late slots can undo check-in.',
             ]);
@@ -192,7 +192,6 @@ class GroupActivitySlotCheckInController extends Controller
         ActivitySlotAttendanceService $attendanceService,
         GroupActivityAuditService $activityAuditService,
         ActivitySlotSerializer $slotSerializer,
-        ActivitySlotStateTokenService $slotStateTokenService,
         ActivityManagementRealtimeService $activityManagementRealtimeService,
     ): JsonResponse {
         $this->authorize('manageDashboard', [$activity, $group]);
@@ -206,25 +205,14 @@ class GroupActivitySlotCheckInController extends Controller
         $validated = $request->validate([
             'group_key' => ['required', 'string'],
             'expected_slot_state_tokens' => ['required', 'array'],
+            'expected_slot_state_tokens.*' => ['required', 'string'],
         ]);
-
-        $groupSlots = $activity->slots()
-            ->with(['activity', 'assignedCharacter', 'fieldValues', 'assignments'])
-            ->where('group_key', (string) $validated['group_key'])
-            ->whereNotNull('assigned_character_id')
-            ->get();
-
-        foreach ($groupSlots as $slot) {
-            $slotStateTokenService->assertMatches(
-                $slot,
-                data_get($validated['expected_slot_state_tokens'], (string) $slot->id),
-            );
-        }
 
         $slots = $attendanceService->checkInGroup(
             $activity,
             (string) $validated['group_key'],
             (int) auth()->id(),
+            $validated['expected_slot_state_tokens'],
         );
 
         if ($slots->isNotEmpty()) {

@@ -9,6 +9,7 @@ use App\Http\Controllers\AdminDiscordGuildIntegrationController;
 use App\Http\Controllers\AdminFflogsPlaygroundController;
 use App\Http\Controllers\AdminQuotaController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\SocialAccountLinkController;
 use App\Http\Controllers\BozjaItemController;
 use App\Http\Controllers\Calculator\CalculatorCatalogController;
 use App\Http\Controllers\Calculator\CalculatorController;
@@ -301,6 +302,15 @@ Route::prefix('{locale?}')
         */
 
         Route::prefix('auth')->group(function () {
+            Route::get('/link-social/{token}', [SocialAccountLinkController::class, 'show'])
+                ->where('token', '[A-Za-z0-9]{64}')->middleware('throttle:oauth')->name('social-link.show');
+            Route::post('/link-social/{token}', [SocialAccountLinkController::class, 'login'])
+                ->where('token', '[A-Za-z0-9]{64}')->middleware(['throttle:login', 'throttle:oauth'])->name('social-link.login');
+            Route::post('/link-social/{token}/complete', [SocialAccountLinkController::class, 'complete'])
+                ->where('token', '[A-Za-z0-9]{64}')->middleware(['auth', 'verified', 'throttle:oauth'])->name('social-link.complete');
+            Route::delete('/link-social/{token}', [SocialAccountLinkController::class, 'cancel'])
+                ->where('token', '[A-Za-z0-9]{64}')->middleware('throttle:oauth')->name('social-link.cancel');
+
             // Guest entry: login and registration.
             Route::middleware('guest')->group(function () {
                 Route::get('/login', function (Request $request) {
@@ -352,13 +362,14 @@ Route::prefix('{locale?}')
                 return Inertia::render('auth/VerifyEmail', [
                     'email' => request()->user()->email,
                     'status' => session('status'),
+                    'pendingSocialLinkUrl' => app(\App\Services\Auth\PendingSocialLinkStore::class)->resumeUrl(request()),
                 ]);
             })->middleware('auth')->name('verification.notice');
 
             Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
                 $request->fulfill();
 
-                return redirect()->route('dashboard');
+                return redirect()->to(app(\App\Services\Auth\PendingSocialLinkStore::class)->resumeUrl($request) ?? route('dashboard'));
             })->middleware(['auth', 'signed'])->name('verification.verify');
 
             Route::post('/email/verification-notification', function (Request $request) {

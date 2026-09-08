@@ -1223,6 +1223,88 @@ it('lets moderators ignore class and phantom job application choices when the ch
         ->toBeTrue();
 });
 
+it('allows known website options when ignoring choices without any character job progress', function (bool $hasRefreshTimestamp) {
+    extract(createRosterAssignmentSetup());
+    extract(createApplicantForAssignment($activity, $tankClass, $phantomKnight));
+    $character->classes()->detach();
+    $character->phantomJobs()->detach();
+    $character->update(['lodestone_refreshed_at' => $hasRefreshTimestamp ? now() : null]);
+
+    $this->actingAs($owner)->postJson(route('groups.dashboard.activities.slot-assignments.store', [
+        'group' => $group->slug, 'activity' => $activity->id, 'slot' => $mainSlot->id,
+    ]), [
+        'application_id' => $application->id,
+        'ignore_application_choices' => true,
+        'expected_slot_state_token' => activity_slot_state_token($mainSlot),
+        'field_values' => [
+            'character_class' => (string) $healerClass->id,
+            'phantom_job' => (string) $phantomBard->id,
+        ],
+    ])->assertOk();
+
+    $mainSlot->refresh()->load('fieldValues');
+    expect($mainSlot->assigned_character_id)->toBe($character->id)
+        ->and($mainSlot->fieldValues->firstWhere('field_key', 'character_class')->value['id'])->toBe($healerClass->id)
+        ->and($mainSlot->fieldValues->firstWhere('field_key', 'phantom_job')->value['id'])->toBe($phantomBard->id)
+        ->and($character->classes()->count())->toBe(0)
+        ->and($character->phantomJobs()->count())->toBe(0)
+        ->and(AuditLog::query()->where('action', 'group.activity.roster.assigned')->sole()->metadata['application_choices_ignored'])->toBeTrue();
+})->with([false, true]);
+
+it('keeps application and catalog validation when character job progress is missing', function (bool $ignore, string $invalidField) {
+    extract(createRosterAssignmentSetup());
+    extract(createApplicantForAssignment($activity, $tankClass, $phantomKnight));
+    $character->classes()->detach();
+    $character->phantomJobs()->detach();
+    $values = ['character_class' => (string) $healerClass->id, 'phantom_job' => (string) $phantomBard->id];
+    if ($ignore) {
+        $values[$invalidField] = '999999';
+    }
+
+    $this->actingAs($owner)->postJson(route('groups.dashboard.activities.slot-assignments.store', [
+        'group' => $group->slug, 'activity' => $activity->id, 'slot' => $mainSlot->id,
+    ]), [
+        'application_id' => $application->id,
+        'ignore_application_choices' => $ignore,
+        'expected_slot_state_token' => activity_slot_state_token($mainSlot),
+        'field_values' => $values,
+    ])->assertUnprocessable()->assertJsonValidationErrors('field_values.'.$invalidField);
+    expect($mainSlot->fresh()->assigned_character_id)->toBeNull()
+        ->and($application->fresh()->status)->toBe(ActivityApplication::STATUS_PENDING);
+})->with([[false, 'character_class'], [true, 'character_class'], [true, 'phantom_job']]);
+
+it('falls back per category for all-zero progress without bypassing the other categories known levels', function (string $missingSource, bool $invalidKnownChoice) {
+    extract(createRosterAssignmentSetup());
+    extract(createApplicantForAssignment($activity, $tankClass, $phantomKnight));
+    $character->classes()->attach($healerClass->id, ['level' => 0]);
+    $character->phantomJobs()->attach($phantomBard->id, ['current_level' => 0]);
+    if ($missingSource === 'classes') {
+        $character->classes()->updateExistingPivot($tankClass->id, ['level' => 0]);
+        $values = ['character_class' => (string) $healerClass->id,
+            'phantom_job' => (string) ($invalidKnownChoice ? $phantomBard->id : $phantomKnight->id)];
+    } else {
+        $character->phantomJobs()->updateExistingPivot($phantomKnight->id, ['current_level' => 0]);
+        $values = ['character_class' => (string) ($invalidKnownChoice ? $healerClass->id : $tankClass->id),
+            'phantom_job' => (string) $phantomBard->id];
+    }
+
+    $response = $this->actingAs($owner)->postJson(route('groups.dashboard.activities.slot-assignments.store', [
+        'group' => $group->slug, 'activity' => $activity->id, 'slot' => $mainSlot->id,
+    ]), [
+        'application_id' => $application->id,
+        'ignore_application_choices' => true,
+        'expected_slot_state_token' => activity_slot_state_token($mainSlot),
+        'field_values' => $values,
+    ]);
+    if ($invalidKnownChoice) {
+        $response->assertUnprocessable()->assertJsonValidationErrors('field_values.'.($missingSource === 'classes' ? 'phantom_job' : 'character_class'));
+        expect($mainSlot->fresh()->assigned_character_id)->toBeNull();
+    } else {
+        $response->assertOk();
+        expect($mainSlot->fresh()->assigned_character_id)->toBe($character->id);
+    }
+})->with(['classes', 'phantomJobs'])->with([false, true]);
+
 it('does not let ignored application choices assign jobs unavailable to the character', function () {
     extract(createRosterAssignmentSetup());
     extract(createApplicantForAssignment($activity, $tankClass, $phantomKnight));

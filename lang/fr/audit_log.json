@@ -22,6 +22,10 @@
         "any_severity": "Toute gravité",
         "any_user": "Tout utilisateur",
         "any_group": "Tout groupe",
+        "any_activity": "Toutes les sorties",
+        "activity_label": "Par sortie",
+        "search_activity": "Rechercher des sorties...",
+        "unnamed_activity": "Sortie n° {id}",
         "action": {
             "label": "Par action"
         },
@@ -60,6 +64,9 @@
     "list": {
         "empty": "Aucune entrée du journal d'audit ne correspond aux filtres actuels.",
         "loading_more": "Charger plus",
+        "loading": "Chargement du journal d'audit...",
+        "load_error": "Impossible de charger le journal d'audit.",
+        "retry": "Réessayer",
         "recorded_event": "Événement d'audit enregistré",
         "details": "Détails",
         "changes": "Modifications",

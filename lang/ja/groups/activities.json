@@ -468,6 +468,8 @@
             "incompatible_slot_answers": "この応募には対象スロット項目と互換性のある回答がありません。",
             "ignore_application_choices": "応募時の選択を無視",
             "ignore_application_choices_warning_title": "応募時の選択は無視されます",
+            "missing_lodestone_data_warning_title": "キャラクターのLodestoneデータが見つかりません",
+            "missing_lodestone_data_warning": "以下の選択肢をキャラクターが解放済みか、必要なレベルに達しているかは不明です。応募内容を無視することは強く非推奨とします。",
             "ignore_application_choices_warning": "応募者が選択していないジョブを割り当てられる可能性があるため、問題が発生することがあります。",
             "character_level": "レベル{level}",
             "phantom_job_level": "レベル{level}",

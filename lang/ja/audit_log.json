@@ -22,6 +22,10 @@
         "any_severity": "すべての重大度",
         "any_user": "すべてのユーザー",
         "any_group": "すべてのグループ",
+        "any_activity": "すべての開催回",
+        "activity_label": "開催回で絞り込み",
+        "search_activity": "開催回を検索...",
+        "unnamed_activity": "開催回 #{id}",
         "action": {
             "label": "アクションで絞り込み"
         },
@@ -60,6 +64,9 @@
     "list": {
         "empty": "現在のフィルターに一致する監査ログはありません。",
         "loading_more": "さらに読み込む",
+        "loading": "監査ログを読み込み中...",
+        "load_error": "監査ログを読み込めませんでした。",
+        "retry": "再試行",
         "recorded_event": "記録された監査イベント",
         "details": "詳細",
         "changes": "変更",

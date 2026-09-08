@@ -802,6 +802,11 @@ class ActivitySlotAssignmentService
             return [];
         }
 
+        if (in_array($definition['source'] ?? null, ['character_classes', 'phantom_jobs'], true)
+            && ! $character->hasJobProgressData($definition['source'])) {
+            return $this->definedOptionKeys($definition);
+        }
+
         $availableOptionKeys = match ($definition['source'] ?? null) {
             'character_classes' => $character->classes
                 ->filter(fn ($characterClass) => (int) ($characterClass->pivot?->level ?? 0) > 0)

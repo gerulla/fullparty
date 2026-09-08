@@ -10,8 +10,10 @@ const props = withDefaults(defineProps<{
 	item: RunDiscoveryResultItemData
 	savePending?: boolean
 	showSave?: boolean
+	showHost?: boolean
 }>(), {
 	showSave: true,
+	showHost: false,
 });
 
 const emit = defineEmits<{
@@ -43,6 +45,10 @@ const groupLocationLabel = computed(() => {
 
 	return datacenter || world || null;
 });
+
+const hostLocationLabel = computed(() => [props.item.organizer?.world, props.item.organizer?.datacenter]
+	.filter(Boolean).join(' - '));
+const hasHost = computed(() => props.showHost && Boolean(props.item.organizer?.name));
 
 const tagLabels = computed(() => {
 	const tags: string[] = [];
@@ -278,10 +284,12 @@ const toggleSaved = () => {
 					{{ t("runs.discovery.results.placeholder_item.host_group") }}
 				</p>
 
-				<div class="flex items-center justify-between gap-3">
+				<div :class="hasHost
+					? 'grid grid-cols-[minmax(0,1fr)_auto] items-center gap-3 @md:grid-cols-[minmax(0,1fr)_minmax(0,1fr)_auto] @6xl:grid-cols-1'
+					: 'flex items-center justify-between gap-3'">
 					<button
 						type="button"
-						class="flex min-w-0 items-center gap-3 text-left @6xl:gap-4"
+						class="order-1 flex min-w-0 items-center gap-3 text-left @6xl:gap-4"
 						:class="item.group_slug ? 'cursor-pointer hover:text-brand-200' : 'cursor-default'"
 						:disabled="!item.group_slug"
 						@click="goToGroup"
@@ -306,10 +314,26 @@ const toggleSaved = () => {
 						</span>
 					</button>
 
+					<UUser
+						v-if="hasHost && item.organizer"
+						:name="item.organizer.name || undefined"
+						:description="hostLocationLabel || undefined"
+						:avatar="{ src: item.organizer.avatar_url || undefined, alt: item.organizer.name || undefined }"
+						size="lg"
+						class="order-3 min-w-0 @md:order-2"
+						:ui="{ root: 'gap-3', avatar: 'size-10 shrink-0 ring-1 ring-brand-400/55', wrapper: 'min-w-0' }"
+					>
+						<span class="mb-0.5 block text-[9px] font-semibold uppercase text-brand-300">
+							{{ t('groups.activities.management.roster.host_badge') }}
+						</span>
+						<span class="block break-words text-sm font-semibold leading-4 text-white">{{ item.organizer.name }}</span>
+						<span v-if="hostLocationLabel" class="mt-0.5 block break-words text-[11px] text-white/58">{{ hostLocationLabel }}</span>
+					</UUser>
+
 					<UTooltip
 						v-if="item.group_discord_invite_url"
 						:text="t('runs.discovery.results.placeholder_item.group_discord')"
-						class="@6xl:hidden"
+						class="order-2 @md:order-3 @6xl:hidden"
 					>
 						<UButton
 							color="neutral"

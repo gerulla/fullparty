@@ -1,19 +1,20 @@
 <script setup lang="ts">
-import type { AuditLogRowRecord } from "@/Types/Audit";
+import type { AuditLogFilters, AuditLogFilterOptions, AuditLogRowRecord } from "@/Types/Audit";
 import AuditLogRow from "@/components/Audit/AuditLogRow.vue";
 import AccessBadge from "@/components/Groups/AccessBadge.vue";
 import PageHeader from "@/components/PageHeader.vue";
-import { computed, onBeforeUnmount, onMounted, ref, useTemplateRef, watch } from "vue";
+import { useAuditLogFeed } from "@/composables/useAuditLogFeed";
+import { useTimeDisplayMode } from "@/composables/useTimeDisplayMode";
+import { computed, ref } from "vue";
 import { useI18n } from "vue-i18n";
+import { route } from "ziggy-js";
 
 const props = defineProps<{
 	group: any
 	auditLogs: AuditLogRowRecord[]
-	filters: {
-		actions: Array<{ value: string, label: string }>
-		severities: Array<{ value: string, label: string }>
-		users: Array<{ value: string, label: string }>
-	}
+	nextCursor: string | null
+	selectedFilters?: Partial<AuditLogFilters>
+	filters: AuditLogFilterOptions
 }>();
 
 const { t } = useI18n();
@@ -39,97 +40,41 @@ const userOptions = computed(() => [
 	...props.filters.users,
 ]);
 
-const filters = ref({
-	search: '',
-	action: '__all__',
-	severity: '__all__',
-	user: '__all__',
-	beforeDate: '',
-	afterDate: '',
+const { withDisplayTimeZone } = useTimeDisplayMode();
+const activityOptions = computed(() => {
+	const formatter = new Intl.DateTimeFormat('en-GB', withDisplayTimeZone({
+		day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit', hourCycle: 'h23',
+	}));
+	return [
+		{ value: '__all__', label: t('audit_log.filters.any_activity') },
+		...(props.filters.activities ?? []).map((activity) => {
+			const title = activity.title || t('audit_log.filters.unnamed_activity', { id: activity.value });
+			if (!activity.starts_at) return { value: activity.value, label: title };
+			const parts = Object.fromEntries(formatter.formatToParts(new Date(activity.starts_at))
+				.map(({ type, value }) => [type, value]));
+			return {
+				value: activity.value,
+				label: `${parts.day}-${parts.month}-${parts.year} - ${title} - ${parts.hour}:${parts.minute}`,
+			};
+		}),
+	];
 });
-const chunkSize = 6;
-const visibleCount = ref(chunkSize);
+
+const { filters, rows, hasMore, loading, failed, sentinel, loadMore, retry } = useAuditLogFeed(
+	() => route('groups.dashboard.audit-log', { group: props.group.slug }), () => props,
+);
 const filtersOpen = ref(false);
-const sentinel = useTemplateRef('sentinel');
-let observer: IntersectionObserver | null = null;
-
-const filteredRows = computed(() => {
-	return props.auditLogs.filter((row) => {
-		const searchTarget = row.search_text.toLowerCase();
-		const search = filters.value.search.trim().toLowerCase();
-
-		if (search && !searchTarget.includes(search)) {
-			return false;
-		}
-
-		if (filters.value.action !== '__all__' && row.action !== filters.value.action) {
-			return false;
-		}
-
-		if (filters.value.severity !== '__all__' && row.severity !== filters.value.severity) {
-			return false;
-		}
-
-		const actorValue = row.actor.is_system ? '__system__' : String(row.actor.id);
-
-		if (filters.value.user !== '__all__' && actorValue !== filters.value.user) {
-			return false;
-		}
-
-		if (filters.value.beforeDate && row.created_at.slice(0, 10) > filters.value.beforeDate) {
-			return false;
-		}
-
-		if (filters.value.afterDate && row.created_at.slice(0, 10) < filters.value.afterDate) {
-			return false;
-		}
-
-		return true;
-	});
-});
-
-const visibleRows = computed(() => filteredRows.value.slice(0, visibleCount.value));
 
 const activeFilterCount = computed(() => [
 	filters.value.search.trim(),
 	filters.value.action !== '__all__',
 	filters.value.severity !== '__all__',
 	filters.value.user !== '__all__',
+	filters.value.activity !== '__all__',
 	filters.value.beforeDate,
 	filters.value.afterDate,
 ].filter(Boolean).length);
 
-const loadMore = () => {
-	if (visibleCount.value >= filteredRows.value.length) {
-		return;
-	}
-
-	visibleCount.value = Math.min(visibleCount.value + chunkSize, filteredRows.value.length);
-};
-
-watch(filters, () => {
-	visibleCount.value = chunkSize;
-}, { deep: true });
-
-onMounted(() => {
-	observer = new IntersectionObserver((entries) => {
-		const entry = entries[0];
-
-		if (entry?.isIntersecting) {
-			loadMore();
-		}
-	}, {
-		rootMargin: '200px',
-	});
-
-	if (sentinel.value) {
-		observer.observe(sentinel.value);
-	}
-});
-
-onBeforeUnmount(() => {
-	observer?.disconnect();
-});
 </script>
 
 <template>
@@ -177,6 +122,16 @@ onBeforeUnmount(() => {
 
 					<template #content>
 						<div class="grid grid-cols-1 gap-4 border-t border-default pt-4">
+							<USelectMenu
+								v-model="filters.activity"
+								:items="activityOptions"
+								value-key="value"
+								icon="i-lucide-calendar-days"
+								class="w-full min-w-0"
+								:aria-label="t('audit_log.filters.activity_label')"
+								:search-input="{ placeholder: t('audit_log.filters.search_activity') }"
+								:ui="{ itemLabel: 'whitespace-normal break-words' }"
+							/>
 							<UInput
 								v-model="filters.search"
 								icon="i-lucide-search"
@@ -228,6 +183,16 @@ onBeforeUnmount(() => {
 			</UCard>
 
 			<UCard class="hidden dark:bg-elevated/25 xl:block">
+				<USelectMenu
+					v-model="filters.activity"
+					:items="activityOptions"
+					value-key="value"
+					icon="i-lucide-calendar-days"
+					class="mb-4 w-full max-w-2xl min-w-0"
+					:aria-label="t('audit_log.filters.activity_label')"
+					:search-input="{ placeholder: t('audit_log.filters.search_activity') }"
+					:ui="{ itemLabel: 'whitespace-normal break-words' }"
+				/>
 				<div class="grid grid-cols-1 gap-4 xl:grid-cols-[1.45fr_repeat(3,minmax(0,1fr))_minmax(0,0.8fr)_minmax(0,0.8fr)]">
 					<UInput
 						v-model="filters.search"
@@ -273,19 +238,27 @@ onBeforeUnmount(() => {
 
 			<div class="flex flex-col gap-4">
 				<AuditLogRow
-					v-for="row in visibleRows"
+					v-for="row in rows"
 					:key="row.id"
 					:row="row"
 				/>
 
-				<UCard v-if="filteredRows.length === 0" class="dark:bg-elevated/25">
+				<UCard v-if="rows.length === 0 && !loading && !failed" class="dark:bg-elevated/25">
 					<div class="py-8 text-center text-sm text-muted">
 						{{ t('audit_log.list.empty') }}
 					</div>
 				</UCard>
 
+				<div v-if="loading" role="status" class="flex items-center justify-center gap-2 py-4 text-sm text-muted">
+					<UIcon name="i-lucide-loader-circle" class="size-4 animate-spin" />
+					{{ t('audit_log.list.loading') }}
+				</div>
+				<div v-if="failed" role="alert" class="flex flex-wrap items-center justify-center gap-3 py-4 text-sm text-error">
+					{{ t('audit_log.list.load_error') }}
+					<UButton icon="i-lucide-refresh-cw" color="neutral" variant="ghost" :label="t('audit_log.list.retry')" @click="retry" />
+				</div>
 				<div
-					v-if="visibleRows.length < filteredRows.length"
+					v-if="hasMore && !loading && !failed"
 					ref="sentinel"
 					class="flex justify-center py-4"
 				>

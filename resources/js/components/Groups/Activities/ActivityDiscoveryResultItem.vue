@@ -45,6 +45,8 @@ const item = computed<RunDiscoveryResultItemData>(() => {
 		organizer: organizer ? {
 			name: organizer.name,
 			avatar_url: organizer.avatar_url,
+			world: props.activity.organized_by_character?.world ?? null,
+			datacenter: props.activity.organized_by_character?.datacenter ?? null,
 		} : null,
 		description: props.activity.notes,
 		min_item_level: props.activity.min_item_level,
@@ -71,5 +73,6 @@ const item = computed<RunDiscoveryResultItemData>(() => {
 	<RunDiscoveryResultItem
 		:item="item"
 		:show-save="false"
+		:show-host="true"
 	/>
 </template>

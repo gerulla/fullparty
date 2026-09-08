@@ -468,6 +468,8 @@
             "incompatible_slot_answers": "Cette candidature ne fournit pas de réponses compatibles avec les champs de l'emplacement cible.",
             "ignore_application_choices": "Ignorer les choix de candidature",
             "ignore_application_choices_warning_title": "Les choix de candidature seront ignorés",
+            "missing_lodestone_data_warning_title": "Données Lodestone du personnage introuvables",
+            "missing_lodestone_data_warning": "Le personnage peut avoir débloqué les options suivantes et atteint le niveau requis, ou non. Il est fortement déconseillé d'ignorer les choix de la candidature.",
             "ignore_application_choices_warning": "Cela peut poser problème, car la personne pourrait être forcée de jouer quelque chose qu'elle n'a pas choisi.",
             "character_level": "Niv. {level}",
             "phantom_job_level": "Niv. {level}",

@@ -2,31 +2,62 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\AuditLogIndexRequest;
 use App\Models\AuditLog;
 use App\Models\Group;
+use App\Services\Audit\AuditLogFeedService;
+use Illuminate\Http\JsonResponse;
 use Inertia\Inertia;
 use Inertia\Response;
 
 class GroupAuditLogController extends Controller
 {
-    public function index(Group $group): Response
+    public function index(Group $group, AuditLogIndexRequest $request, AuditLogFeedService $feed): Response|JsonResponse
     {
-        $group->load([
-            'owner',
-            'memberships.user',
-            'features',
-        ]);
-
         $this->authorizeModeratorAccess($group);
 
-        $auditLogs = AuditLog::query()
-            ->with(['actor', 'subject'])
+        $query = AuditLog::query()
             ->where('scope_type', 'group')
-            ->where('scope_id', $group->id)
-            ->latest('created_at')
-            ->get();
+            ->where('scope_id', $group->id);
+        $auditLogs = $feed->paginate($query, $request->filters(), $request->validated('cursor'));
+        $payload = [
+            'nextCursor' => $auditLogs->nextCursor()?->encode(),
+            'auditLogs' => $auditLogs->getCollection()->map(fn (AuditLog $auditLog) => [
+                'id' => $auditLog->id,
+                'action' => $auditLog->action,
+                'severity' => $auditLog->severity,
+                'actor' => [
+                    'id' => $auditLog->actor?->id,
+                    'name' => $auditLog->actor?->name ?? __('audit_log.defaults.system'),
+                    'avatar_url' => $auditLog->actor?->avatar_url,
+                    'is_system' => $auditLog->actor === null,
+                ],
+                'subject' => [
+                    'type' => $auditLog->subject_type,
+                    'id' => $auditLog->subject?->id,
+                    'name' => $auditLog->subject?->name ?? __('audit_log.defaults.system'),
+                    'avatar_url' => $auditLog->subject?->avatar_url,
+                    'is_system' => $auditLog->subject === null,
+                ],
+                'title' => __($auditLog->message),
+                'summary' => $this->resolveSummary($auditLog),
+                'changes' => $this->resolveChanges($auditLog->metadata['changes'] ?? null),
+                'details' => $this->resolveMetadataDetails($auditLog->metadata ?? []),
+                'search_text' => $this->buildSearchText($auditLog),
+                'created_at' => $auditLog->created_at?->toIso8601String(),
+            ]),
+        ];
+
+        if ($request->wantsJson()) {
+            return response()->json($payload);
+        }
+
+        $group->load(['owner', 'memberships', 'features']);
 
         return Inertia::render('Dashboard/Groups/AuditLog/Index', [
+            ...$payload,
+            'selectedFilters' => $request->filters(),
+            'filters' => $feed->options($query, $group),
             'group' => [
                 'id' => $group->id,
                 'name' => $group->name,
@@ -55,67 +86,6 @@ class GroupAuditLogController extends Controller
                     'can_review_membership_applications' => $group->usesMembershipApplications() && $group->hasModeratorAccess(auth()->id()),
                     'can_manage_membership_application_form' => $group->usesMembershipApplications() && $group->hasAdminAccess(auth()->id()),
                 ],
-            ],
-            'auditLogs' => $auditLogs
-                ->map(fn (AuditLog $auditLog) => [
-                    'id' => $auditLog->id,
-                    'action' => $auditLog->action,
-                    'severity' => $auditLog->severity,
-                    'actor' => [
-                        'id' => $auditLog->actor?->id,
-                        'name' => $auditLog->actor?->name ?? __('audit_log.defaults.system'),
-                        'avatar_url' => $auditLog->actor?->avatar_url,
-                        'is_system' => $auditLog->actor === null,
-                    ],
-                    'subject' => [
-                        'type' => $auditLog->subject_type,
-                        'id' => $auditLog->subject?->id,
-                        'name' => $auditLog->subject?->name ?? __('audit_log.defaults.system'),
-                        'avatar_url' => $auditLog->subject?->avatar_url,
-                        'is_system' => $auditLog->subject === null,
-                    ],
-                    'title' => __($auditLog->message),
-                    'summary' => $this->resolveSummary($auditLog),
-                    'changes' => $this->resolveChanges($auditLog->metadata['changes'] ?? null),
-                    'details' => $this->resolveMetadataDetails($auditLog->metadata ?? []),
-                    'search_text' => $this->buildSearchText($auditLog),
-                    'created_at' => $auditLog->created_at?->toIso8601String(),
-                ]),
-            'filters' => [
-                'actions' => $auditLogs
-                    ->unique('action')
-                    ->map(fn (AuditLog $auditLog) => [
-                        'value' => $auditLog->action,
-                        'label' => $auditLog->message,
-                    ])
-                    ->sortBy('label')
-                    ->values(),
-                'severities' => $auditLogs
-                    ->pluck('severity')
-                    ->unique()
-                    ->sort()
-                    ->values()
-                    ->map(fn (string $severity) => [
-                        'value' => $severity,
-                        'label' => 'audit_log.severities.'.$severity,
-                    ]),
-                'users' => $group->memberships
-                    ->map(fn ($membership) => $membership->user)
-                    ->merge($auditLogs->pluck('actor')->filter())
-                    ->unique('id')
-                    ->sortBy('name')
-                    ->values()
-                    ->map(fn ($user) => [
-                        'value' => (string) $user->id,
-                        'label' => $user->name,
-                    ])
-                    ->when($auditLogs->contains(fn (AuditLog $auditLog) => $auditLog->actor === null), function ($users) {
-                        return $users->prepend([
-                            'value' => '__system__',
-                            'label' => __('audit_log.defaults.system'),
-                        ]);
-                    })
-                    ->values(),
             ],
         ]);
     }
@@ -173,7 +143,7 @@ class GroupAuditLogController extends Controller
     private function resolveMetadataDetails(array $metadata): array
     {
         $remainingMetadata = $metadata;
-        unset($remainingMetadata['changes']);
+        unset($remainingMetadata['changes'], $remainingMetadata['activity_id']);
 
         return collect($remainingMetadata)
             ->map(function ($value, $key) {

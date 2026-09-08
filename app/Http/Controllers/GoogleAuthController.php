@@ -6,6 +6,7 @@ use App\Models\SocialAccount;
 use App\Models\User;
 use App\Services\AuditLogger;
 use App\Services\Auth\OAuthAccountLinkingPolicy;
+use App\Services\Auth\SocialLoginLinkService;
 use App\Services\Notifications\AccountCharacterNotificationService;
 use App\Support\Audit\AuditScope;
 use App\Support\Audit\AuditSeverity;
@@ -22,11 +23,12 @@ class GoogleAuthController extends Controller
         private readonly AuditLogger $auditLogger,
         private readonly AccountCharacterNotificationService $accountCharacterNotificationService,
         private readonly OAuthAccountLinkingPolicy $accountLinkingPolicy,
+        private readonly SocialLoginLinkService $loginLinkService,
     ) {}
 
     public function redirect()
     {
-        return Socialite::driver('google')->redirect();
+        return $this->loginLinkService->rememberOAuthRedirect(request(), 'google', Socialite::driver('google')->redirect());
     }
 
     public function callback()
@@ -55,6 +57,10 @@ class GoogleAuthController extends Controller
             ->where('provider', $provider)
             ->where('provider_user_id', $providerUserId)
             ->first();
+
+        if ($response = $this->loginLinkService->handleCallback(request(), $provider, $googleUser, $socialAccount)) {
+            return $response;
+        }
 
         try {
             $this->accountLinkingPolicy->authorize(auth()->user(), $socialAccount, $providerEmail);

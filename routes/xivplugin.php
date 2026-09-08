@@ -46,6 +46,7 @@ Route::prefix('xivplugin')
             ->name('runs.party-snapshot.store');
 
         Route::post('/runs/{activity}/check-ins', [XivPluginRunCheckInController::class, 'store'])
+            ->middleware('roster.write')
             ->name('runs.check-ins.store');
 
         Route::post('/runs/{activity}/commands/{commandId}/ack', [XivPluginRunCommandAcknowledgementController::class, 'store'])

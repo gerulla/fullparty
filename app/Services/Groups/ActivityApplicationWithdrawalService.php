@@ -20,12 +20,23 @@ class ActivityApplicationWithdrawalService
         private readonly ActivitySlotSerializer $slotSerializer,
         private readonly ActivityManagementRealtimeService $activityManagementRealtimeService,
         private readonly ActivityManagementWarningService $managementWarningService,
+        private readonly ActivityRosterLock $rosterLock,
     ) {}
 
     /**
      * @return array{slot: array<string, mixed>|null, pending_application_count: int}
      */
     public function withdraw(ActivityApplication $application, mixed $actor): array
+    {
+        return $this->rosterLock->run((int) $application->activity_id, function () use ($application, $actor): array {
+            $application->setRelations([]);
+            $application->refresh();
+
+            return $this->withdrawCurrentApplication($application, $actor);
+        });
+    }
+
+    private function withdrawCurrentApplication(ActivityApplication $application, mixed $actor): array
     {
         $application->loadMissing(['activity.group', 'selectedCharacter', 'user']);
 

@@ -5,12 +5,14 @@ namespace App\Http\Controllers;
 use App\Models\SocialAccount;
 use App\Models\User;
 use App\Services\AuditLogger;
+use App\Services\Auth\OAuthAccountLinkingPolicy;
 use App\Services\Notifications\AccountCharacterNotificationService;
 use App\Support\Audit\AuditScope;
 use App\Support\Audit\AuditSeverity;
 use App\Support\Auth\OAuthEmailVerification;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
+use Illuminate\Validation\ValidationException;
 use Laravel\Socialite\Socialite;
 use Laravel\Socialite\Two\InvalidStateException;
 
@@ -19,6 +21,7 @@ class DiscordAuthController extends Controller
     public function __construct(
         private readonly AuditLogger $auditLogger,
         private readonly AccountCharacterNotificationService $accountCharacterNotificationService,
+        private readonly OAuthAccountLinkingPolicy $accountLinkingPolicy,
     ) {}
 
     public function redirect()
@@ -38,7 +41,7 @@ class DiscordAuthController extends Controller
 
         $provider = 'discord';
         $providerUserId = (string) $discordUser->getId();
-        $providerEmail = $discordUser->getEmail();
+        $providerEmail = Str::lower(trim((string) $discordUser->getEmail()));
 
         if (! OAuthEmailVerification::isVerified($discordUser, $provider)) {
             return redirect()
@@ -52,6 +55,12 @@ class DiscordAuthController extends Controller
             ->where('provider', $provider)
             ->where('provider_user_id', $providerUserId)
             ->first();
+
+        try {
+            $this->accountLinkingPolicy->authorize(auth()->user(), $socialAccount, $providerEmail);
+        } catch (ValidationException $exception) {
+            return redirect()->route(auth()->check() ? 'settings' : 'login')->withErrors($exception->errors());
+        }
 
         // If the user is already connected to the social account, we can log them in.
         if ($socialAccount) {
@@ -91,18 +100,9 @@ class DiscordAuthController extends Controller
             return redirect()->intended(route('dashboard'));
         }
 
-        $user = null;
+        $user = auth()->user();
         $createdUser = false;
         $linkingExistingSession = auth()->check();
-        // If the user is already authenticated, associate this social account with the user.
-        if (auth()->check()) {
-            $user = auth()->user();
-            // If the user is not authenticated, check if a user with the email exists.
-        } elseif ($providerEmail) {
-            $user = User::query()
-                ->where('email', $providerEmail)
-                ->first();
-        }
         // If the user doesn't exist, we need to create a new user
         if (! $user) {
             $user = User::forceCreate([

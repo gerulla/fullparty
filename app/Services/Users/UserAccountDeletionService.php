@@ -10,7 +10,9 @@ use App\Models\Group;
 use App\Models\GroupMembership;
 use App\Models\User;
 use App\Services\AuditLogger;
+use App\Services\Auth\UserSessionRevocationService;
 use App\Services\Groups\ActivitySlotAttendanceService;
+use App\Services\Groups\ActivitySlotDesignationService;
 use App\Services\Notifications\NotificationService;
 use App\Support\Activities\ActivityDisplayName;
 use App\Support\Audit\AuditScope;
@@ -29,6 +31,8 @@ class UserAccountDeletionService
         private readonly AuditLogger $auditLogger,
         private readonly ActivitySlotAttendanceService $attendanceService,
         private readonly NotificationService $notificationService,
+        private readonly UserSessionRevocationService $sessionRevocationService,
+        private readonly ActivitySlotDesignationService $slotDesignationService,
     ) {}
 
     public function delete(User $user): void
@@ -40,6 +44,14 @@ class UserAccountDeletionService
         $upcomingAssignmentNotifications = [];
 
         DB::transaction(function () use ($user, $originalEmail, $deletedUserName, &$upcomingAssignmentNotifications): void {
+            // Acquire all affected run locks in the same order before touching roster state.
+            Activity::query()
+                ->where(function ($query) use ($user): void {
+                    $query->whereHas('applications', fn ($applications) => $applications->where('user_id', $user->id))
+                        ->orWhereHas('slots.assignedCharacter', fn ($characters) => $characters->where('user_id', $user->id));
+                })
+                ->orderBy('id')->lockForUpdate()->get(['id']);
+
             $this->auditLogger->log(
                 action: 'user.account.deleted',
                 severity: AuditSeverity::SEVERE_CHANGE,
@@ -50,9 +62,7 @@ class UserAccountDeletionService
                 subject: $user,
             );
 
-            DB::table('sessions')
-                ->where('user_id', $user->id)
-                ->delete();
+            $this->sessionRevocationService->revokeAll($user);
 
             if (filled($originalEmail)) {
                 DB::table('password_reset_tokens')
@@ -146,7 +156,10 @@ class UserAccountDeletionService
             $slot->forceFill([
                 'assigned_character_id' => null,
                 'assigned_by_user_id' => null,
+                'application_review_required_application_id' => null,
+                'application_review_required_at' => null,
             ])->save();
+            $this->slotDesignationService->clearInvalidDesignations([$slot], $user);
 
             foreach ($slot->fieldValues as $fieldValue) {
                 $fieldValue->forceFill([

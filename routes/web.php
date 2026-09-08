@@ -235,7 +235,7 @@ Route::prefix('{locale?}')
 
         Route::post('/groups/{group:slug}/activities/{activity}/application/{secretKey?}', [GroupActivityApplicationController::class, 'store'])
             ->where('secretKey', '[A-Za-z0-9]{40}')
-            ->middleware(['throttle:guest.application', 'throttle:application.submit'])
+            ->middleware(['throttle:guest.application', 'throttle:application.submit', 'roster.write'])
             ->name('groups.activities.application.store');
 
         Route::get('/groups/{group:slug}/activities/{activity}/application-edit/{accessToken}/{secretKey?}', [GroupActivityApplicationController::class, 'editGuest'])
@@ -245,12 +245,14 @@ Route::prefix('{locale?}')
             ->name('groups.activities.application.edit-guest');
 
         Route::put('/groups/{group:slug}/activities/{activity}/application-edit/{accessToken}/{secretKey?}', [GroupActivityApplicationController::class, 'updateGuest'])
+            ->middleware('roster.write')
             ->where('accessToken', '[A-Za-z0-9]{40}')
             ->where('secretKey', '[A-Za-z0-9]{40}')
             ->middleware('throttle:guest.application')
             ->name('groups.activities.application.update-guest');
 
         Route::delete('/groups/{group:slug}/activities/{activity}/application-edit/{accessToken}/{secretKey?}', [GroupActivityApplicationController::class, 'destroyGuest'])
+            ->middleware('roster.write')
             ->where('accessToken', '[A-Za-z0-9]{40}')
             ->where('secretKey', '[A-Za-z0-9]{40}')
             ->middleware('throttle:guest.application')
@@ -429,14 +431,17 @@ Route::prefix('{locale?}')
 
             // Signed-in user application updates.
             Route::put('/groups/{group:slug}/activities/{activity}/application/{secretKey?}', [GroupActivityApplicationController::class, 'update'])
+                ->middleware('roster.write')
                 ->where('secretKey', '[A-Za-z0-9]{40}')
                 ->name('groups.activities.application.update');
 
             Route::post('/groups/{group:slug}/activities/{activity}/slots/{slot}/self-assign/{secretKey?}', [GroupActivitySelfAssignmentController::class, 'store'])
+                ->middleware('roster.write')
                 ->where('secretKey', '[A-Za-z0-9]{40}')
                 ->name('groups.activities.self-assignments.store');
 
             Route::delete('/groups/{group:slug}/activities/{activity}/slots/{slot}/self-assign/{secretKey?}', [GroupActivitySelfAssignmentController::class, 'destroy'])
+                ->middleware('roster.write')
                 ->where('secretKey', '[A-Za-z0-9]{40}')
                 ->name('groups.activities.self-assignments.destroy');
 
@@ -555,8 +560,8 @@ Route::prefix('{locale?}')
                     ->name('groups.dashboard.activities.store');
                 Route::get('/activities/{activity}', [GroupActivityController::class, 'show'])->name('groups.dashboard.activities.show');
                 Route::get('/activities/{activity}/edit', [GroupActivityController::class, 'edit'])->name('groups.dashboard.activities.edit');
-                Route::put('/activities/{activity}', [GroupActivityController::class, 'update'])->name('groups.dashboard.activities.update');
-                Route::delete('/activities/{activity}', [GroupActivityController::class, 'destroy'])->name('groups.dashboard.activities.destroy');
+                Route::put('/activities/{activity}', [GroupActivityController::class, 'update'])->middleware('roster.write')->name('groups.dashboard.activities.update');
+                Route::delete('/activities/{activity}', [GroupActivityController::class, 'destroy'])->middleware('roster.write')->name('groups.dashboard.activities.destroy');
 
                 /*
                 |--------------------------------------------------------------------------
@@ -603,28 +608,30 @@ Route::prefix('{locale?}')
                 */
 
                 // Roster assignment and queue state changes.
-                Route::post('/activities/{activity}/slot-swaps', [GroupActivitySlotSwapController::class, 'store'])->name('groups.dashboard.activities.slot-swaps.store');
-                Route::post('/activities/{activity}/fill-ins', [GroupActivityFillInSlotController::class, 'store'])->name('groups.dashboard.activities.fill-ins.store');
-                Route::patch('/activities/{activity}/fill-ins/{slot}', [GroupActivityFillInSlotController::class, 'update'])->name('groups.dashboard.activities.fill-ins.update');
-                Route::post('/activities/{activity}/slots/{slot}/assign-application', [GroupActivitySlotAssignmentController::class, 'store'])->name('groups.dashboard.activities.slot-assignments.store');
-                Route::post('/activities/{activity}/slots/{slot}/application-review-warning/clear', [GroupActivitySlotApplicationReviewWarningController::class, 'store'])->name('groups.dashboard.activities.slot-application-review-warnings.clear');
-                Route::post('/activities/{activity}/slots/{slot}/return-to-queue', [GroupActivitySlotUnassignmentController::class, 'store'])->name('groups.dashboard.activities.slot-unassignments.store');
-                Route::post('/activities/{activity}/applications/{application}/decline', [GroupActivityApplicationDeclineController::class, 'store'])->name('groups.dashboard.activities.application-declines.store');
+                Route::middleware('roster.write')->group(function (): void {
+                    Route::post('/activities/{activity}/slot-swaps', [GroupActivitySlotSwapController::class, 'store'])->name('groups.dashboard.activities.slot-swaps.store');
+                    Route::post('/activities/{activity}/fill-ins', [GroupActivityFillInSlotController::class, 'store'])->name('groups.dashboard.activities.fill-ins.store');
+                    Route::patch('/activities/{activity}/fill-ins/{slot}', [GroupActivityFillInSlotController::class, 'update'])->name('groups.dashboard.activities.fill-ins.update');
+                    Route::post('/activities/{activity}/slots/{slot}/assign-application', [GroupActivitySlotAssignmentController::class, 'store'])->name('groups.dashboard.activities.slot-assignments.store');
+                    Route::post('/activities/{activity}/slots/{slot}/application-review-warning/clear', [GroupActivitySlotApplicationReviewWarningController::class, 'store'])->name('groups.dashboard.activities.slot-application-review-warnings.clear');
+                    Route::post('/activities/{activity}/slots/{slot}/return-to-queue', [GroupActivitySlotUnassignmentController::class, 'store'])->name('groups.dashboard.activities.slot-unassignments.store');
+                    Route::post('/activities/{activity}/applications/{application}/decline', [GroupActivityApplicationDeclineController::class, 'store'])->name('groups.dashboard.activities.application-declines.store');
 
-                // Designation and attendance.
-                Route::post('/activities/{activity}/raid-leaders/mark-group-staff', [GroupActivitySlotDesignationController::class, 'markGroupStaffRaidLeaders'])->name('groups.dashboard.activities.raid-leaders.mark-group-staff');
-                Route::post('/activities/{activity}/slots/{slot}/designation', [GroupActivitySlotDesignationController::class, 'store'])->name('groups.dashboard.activities.slot-designations.store');
-                Route::post('/activities/{activity}/slots/{slot}/composition-hints', [GroupActivitySlotCompositionHintController::class, 'update'])->name('groups.dashboard.activities.slot-composition-hints.update');
-                Route::post('/activities/{activity}/slot-groups/composition-preset', [GroupActivitySlotGroupCompositionPresetController::class, 'store'])->name('groups.dashboard.activities.slot-group-composition-presets.store');
-                Route::post('/activities/{activity}/slot-groups/composition-preset/apply-to-all', [GroupActivitySlotGroupCompositionPresetController::class, 'applyToAll'])->name('groups.dashboard.activities.slot-group-composition-presets.apply-to-all');
-                Route::post('/activities/{activity}/slots/{slot}/check-in', [GroupActivitySlotCheckInController::class, 'store'])->name('groups.dashboard.activities.slot-checkins.store');
-                Route::post('/activities/{activity}/slots/{slot}/mark-late', [GroupActivitySlotCheckInController::class, 'storeLate'])->name('groups.dashboard.activities.slot-checkins.late');
-                Route::post('/activities/{activity}/slots/{slot}/undo-check-in', [GroupActivitySlotCheckInController::class, 'undo'])->name('groups.dashboard.activities.slot-checkins.undo');
-                Route::post('/activities/{activity}/slot-groups/check-in', [GroupActivitySlotCheckInController::class, 'storeGroup'])->name('groups.dashboard.activities.slot-group-checkins.store');
+                    // Designation and attendance.
+                    Route::post('/activities/{activity}/raid-leaders/mark-group-staff', [GroupActivitySlotDesignationController::class, 'markGroupStaffRaidLeaders'])->name('groups.dashboard.activities.raid-leaders.mark-group-staff');
+                    Route::post('/activities/{activity}/slots/{slot}/designation', [GroupActivitySlotDesignationController::class, 'store'])->name('groups.dashboard.activities.slot-designations.store');
+                    Route::post('/activities/{activity}/slots/{slot}/composition-hints', [GroupActivitySlotCompositionHintController::class, 'update'])->name('groups.dashboard.activities.slot-composition-hints.update');
+                    Route::post('/activities/{activity}/slot-groups/composition-preset', [GroupActivitySlotGroupCompositionPresetController::class, 'store'])->name('groups.dashboard.activities.slot-group-composition-presets.store');
+                    Route::post('/activities/{activity}/slot-groups/composition-preset/apply-to-all', [GroupActivitySlotGroupCompositionPresetController::class, 'applyToAll'])->name('groups.dashboard.activities.slot-group-composition-presets.apply-to-all');
+                    Route::post('/activities/{activity}/slots/{slot}/check-in', [GroupActivitySlotCheckInController::class, 'store'])->name('groups.dashboard.activities.slot-checkins.store');
+                    Route::post('/activities/{activity}/slots/{slot}/mark-late', [GroupActivitySlotCheckInController::class, 'storeLate'])->name('groups.dashboard.activities.slot-checkins.late');
+                    Route::post('/activities/{activity}/slots/{slot}/undo-check-in', [GroupActivitySlotCheckInController::class, 'undo'])->name('groups.dashboard.activities.slot-checkins.undo');
+                    Route::post('/activities/{activity}/slot-groups/check-in', [GroupActivitySlotCheckInController::class, 'storeGroup'])->name('groups.dashboard.activities.slot-group-checkins.store');
 
-                // Missing assignment tracking.
-                Route::post('/activities/{activity}/slots/{slot}/mark-missing', [GroupActivitySlotMissingController::class, 'store'])->name('groups.dashboard.activities.slot-missing.store');
-                Route::post('/activities/{activity}/missing-assignments/{assignment}/undo', [GroupActivitySlotMissingController::class, 'undo'])->name('groups.dashboard.activities.slot-missing.undo');
+                    // Missing assignment tracking.
+                    Route::post('/activities/{activity}/slots/{slot}/mark-missing', [GroupActivitySlotMissingController::class, 'store'])->name('groups.dashboard.activities.slot-missing.store');
+                    Route::post('/activities/{activity}/missing-assignments/{assignment}/undo', [GroupActivitySlotMissingController::class, 'undo'])->name('groups.dashboard.activities.slot-missing.undo');
+                });
 
                 /*
                 |--------------------------------------------------------------------------
@@ -636,9 +643,9 @@ Route::prefix('{locale?}')
                 Route::post('/activities/{activity}/duplicate', [GroupActivityDuplicationController::class, 'store'])
                     ->middleware('throttle:run.create')
                     ->name('groups.dashboard.activities.duplicate');
-                Route::post('/activities/{activity}/publish-roster', [GroupActivityController::class, 'publishRoster'])->name('groups.dashboard.activities.publish-roster');
-                Route::post('/activities/{activity}/complete', [GroupActivityCompletionController::class, 'store'])->name('groups.dashboard.activities.complete');
-                Route::post('/activities/{activity}/cancel', [GroupActivityController::class, 'cancel'])->name('groups.dashboard.activities.cancel');
+                Route::post('/activities/{activity}/publish-roster', [GroupActivityController::class, 'publishRoster'])->middleware('roster.write')->name('groups.dashboard.activities.publish-roster');
+                Route::post('/activities/{activity}/complete', [GroupActivityCompletionController::class, 'store'])->middleware('roster.write')->name('groups.dashboard.activities.complete');
+                Route::post('/activities/{activity}/cancel', [GroupActivityController::class, 'cancel'])->middleware('roster.write')->name('groups.dashboard.activities.cancel');
             });
 
             /*

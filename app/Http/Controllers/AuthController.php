@@ -8,6 +8,7 @@ use App\Http\Requests\ResetPasswordRequest;
 use App\Http\Requests\SendPasswordResetLinkRequest;
 use App\Models\User;
 use App\Services\AuditLogger;
+use App\Services\Auth\UserSessionRevocationService;
 use App\Support\Audit\AuditScope;
 use App\Support\Audit\AuditSeverity;
 use Illuminate\Auth\Events\PasswordReset;
@@ -23,7 +24,8 @@ use Illuminate\Validation\ValidationException;
 class AuthController extends Controller
 {
     public function __construct(
-        private readonly AuditLogger $auditLogger
+        private readonly AuditLogger $auditLogger,
+        private readonly UserSessionRevocationService $sessionRevocationService,
     ) {}
 
     public function register(RegisterRequest $request): RedirectResponse
@@ -132,14 +134,10 @@ class AuthController extends Controller
         $status = Password::broker()->reset(
             $request->safe()->only(['email', 'password', 'password_confirmation', 'token']),
             function (User $user, string $password) {
-                $user->forceFill([
-                    'password' => Hash::make($password),
-                    'remember_token' => Str::random(60),
-                ])->save();
-
-                DB::table('sessions')
-                    ->where('user_id', $user->id)
-                    ->delete();
+                DB::transaction(function () use ($user, $password): void {
+                    $user->forceFill(['password' => Hash::make($password)])->save();
+                    $this->sessionRevocationService->revokeAll($user);
+                });
 
                 event(new PasswordReset($user));
 

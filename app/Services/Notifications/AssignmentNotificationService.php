@@ -52,7 +52,7 @@ class AssignmentNotificationService
                     applicationId: $application->id,
                     characterId: null,
                     actorId: $actor instanceof User ? $actor->id : null,
-                );
+                )->afterCommit();
 
                 continue;
             }
@@ -62,7 +62,7 @@ class AssignmentNotificationService
                 applicationId: null,
                 characterId: $slot->assigned_character_id,
                 actorId: $actor instanceof User ? $actor->id : null,
-            );
+            )->afterCommit();
         }
     }
 

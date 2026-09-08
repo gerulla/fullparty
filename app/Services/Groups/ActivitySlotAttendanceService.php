@@ -12,6 +12,8 @@ use Illuminate\Validation\ValidationException;
 
 class ActivitySlotAttendanceService
 {
+    public function __construct(private readonly ActivityRosterLock $rosterLock) {}
+
     /**
      * @return array<string, mixed>
      */
@@ -25,6 +27,14 @@ class ActivitySlotAttendanceService
     }
 
     public function ensureActiveAssignments(Activity $activity): void
+    {
+        $this->rosterLock->run((int) $activity->id, function () use ($activity): void {
+            $activity->load(['slots.fieldValues', 'applications', 'slotAssignments']);
+            $this->ensureCurrentActiveAssignments($activity);
+        });
+    }
+
+    private function ensureCurrentActiveAssignments(Activity $activity): void
     {
         $activity->loadMissing([
             'slots',
@@ -82,6 +92,21 @@ class ActivitySlotAttendanceService
         ?int $applicationId,
         ?int $assignedByUserId,
         ?array $fieldValueSnapshot = null,
+    ): void {
+        $this->rosterLock->run((int) $slot->activity_id, function () use (
+            $slot, $characterId, $applicationId, $assignedByUserId, $fieldValueSnapshot,
+        ): void {
+            $this->moveOrCreateCurrentActiveAssignment($slot, $characterId, $applicationId,
+                $assignedByUserId, $fieldValueSnapshot);
+        });
+    }
+
+    private function moveOrCreateCurrentActiveAssignment(
+        ActivitySlot $slot,
+        int $characterId,
+        ?int $applicationId,
+        ?int $assignedByUserId,
+        ?array $fieldValueSnapshot,
     ): void {
         $activity = $slot->activity;
 
@@ -178,6 +203,11 @@ class ActivitySlotAttendanceService
 
     public function markMissing(ActivitySlot $slot, int $markedByUserId): ?ActivitySlotAssignment
     {
+        return $this->rosterLock->forSlot($slot, fn () => $this->markCurrentSlotMissing($slot, $markedByUserId));
+    }
+
+    private function markCurrentSlotMissing(ActivitySlot $slot, int $markedByUserId): ?ActivitySlotAssignment
+    {
         $activity = $slot->activity;
 
         if (! $activity || ! $slot->assigned_character_id) {
@@ -242,6 +272,11 @@ class ActivitySlotAttendanceService
 
     public function undoCheckInSlot(ActivitySlot $slot): ?ActivitySlotAssignment
     {
+        return $this->rosterLock->forSlot($slot, fn () => $this->undoCurrentSlotCheckIn($slot));
+    }
+
+    private function undoCurrentSlotCheckIn(ActivitySlot $slot): ?ActivitySlotAssignment
+    {
         $activity = $slot->activity;
 
         if (! $activity || ! $slot->assigned_character_id) {
@@ -291,6 +326,12 @@ class ActivitySlotAttendanceService
 
     private function markAttendance(ActivitySlot $slot, int $checkedInByUserId, string $attendanceStatus): ?ActivitySlotAssignment
     {
+        return $this->rosterLock->forSlot($slot,
+            fn () => $this->markCurrentSlotAttendance($slot, $checkedInByUserId, $attendanceStatus));
+    }
+
+    private function markCurrentSlotAttendance(ActivitySlot $slot, int $checkedInByUserId, string $attendanceStatus): ?ActivitySlotAssignment
+    {
         $activity = $slot->activity;
 
         if (! $activity || ! $slot->assigned_character_id) {
@@ -336,6 +377,12 @@ class ActivitySlotAttendanceService
      */
     public function checkInGroup(Activity $activity, string $groupKey, int $checkedInByUserId): Collection
     {
+        return $this->rosterLock->run((int) $activity->id,
+            fn () => $this->checkInCurrentGroup($activity, $groupKey, $checkedInByUserId));
+    }
+
+    private function checkInCurrentGroup(Activity $activity, string $groupKey, int $checkedInByUserId): Collection
+    {
         $slots = $activity->slots()
             ->with(['activity', 'assignedCharacter', 'fieldValues', 'assignments'])
             ->where('group_key', $groupKey)
@@ -360,6 +407,16 @@ class ActivitySlotAttendanceService
      * @return array{slots: array<int, ActivitySlot>, assignment: ActivitySlotAssignment}
      */
     public function undoMissing(ActivitySlotAssignment $assignment, int $userId, ActivitySlotBench $slotBench): array
+    {
+        return $this->rosterLock->run((int) $assignment->activity_id, function () use ($assignment, $userId, $slotBench): array {
+            $assignment->setRelations([]);
+            $assignment->refresh();
+
+            return $this->undoCurrentMissingAssignment($assignment, $userId, $slotBench);
+        });
+    }
+
+    private function undoCurrentMissingAssignment(ActivitySlotAssignment $assignment, int $userId, ActivitySlotBench $slotBench): array
     {
         $assignment->loadMissing(['activity.slots.fieldValues', 'application', 'slot.fieldValues']);
 

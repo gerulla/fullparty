@@ -171,6 +171,10 @@ it('clears upcoming assigned slots and notifies group moderators when deleting a
     $upcomingSlot->update([
         'assigned_character_id' => $character->id,
         'assigned_by_user_id' => $owner->id,
+        'is_host' => true,
+        'is_raid_leader' => true,
+        'application_review_required_application_id' => $upcomingApplication->id,
+        'application_review_required_at' => now(),
     ]);
     $upcomingFieldValue = $upcomingSlot->fieldValues()->create([
         'field_key' => 'delete_test_raid_position',
@@ -196,6 +200,8 @@ it('clears upcoming assigned slots and notifies group moderators when deleting a
     $historicalSlot->update([
         'assigned_character_id' => $character->id,
         'assigned_by_user_id' => $owner->id,
+        'is_host' => true,
+        'is_raid_leader' => true,
     ]);
 
     $this->actingAs($user)
@@ -206,8 +212,14 @@ it('clears upcoming assigned slots and notifies group moderators when deleting a
         ->and($historicalApplication->fresh()->status)->toBe(ActivityApplication::STATUS_APPROVED)
         ->and($upcomingSlot->fresh()->assigned_character_id)->toBeNull()
         ->and($upcomingSlot->fresh()->assigned_by_user_id)->toBeNull()
+        ->and($upcomingSlot->fresh()->is_host)->toBeFalse()
+        ->and($upcomingSlot->fresh()->is_raid_leader)->toBeFalse()
+        ->and($upcomingSlot->fresh()->application_review_required_application_id)->toBeNull()
+        ->and($upcomingSlot->fresh()->application_review_required_at)->toBeNull()
         ->and($upcomingFieldValue->fresh()->value)->toBeNull()
-        ->and($historicalSlot->fresh()->assigned_character_id)->toBe($character->id);
+        ->and($historicalSlot->fresh()->assigned_character_id)->toBe($character->id)
+        ->and($historicalSlot->fresh()->is_host)->toBeTrue()
+        ->and($historicalSlot->fresh()->is_raid_leader)->toBeTrue();
 
     expect(ActivitySlotAssignment::query()
         ->where('activity_id', $upcomingActivity->id)

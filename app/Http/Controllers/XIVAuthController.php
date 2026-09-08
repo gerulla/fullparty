@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\SocialAccount;
 use App\Models\User;
 use App\Services\AuditLogger;
+use App\Services\Auth\OAuthAccountLinkingPolicy;
 use App\Services\Characters\XIVAuthCharacterSyncResult;
 use App\Services\Characters\XIVAuthCharacterSyncService;
 use App\Services\Notifications\AccountCharacterNotificationService;
@@ -16,6 +17,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Str;
+use Illuminate\Validation\ValidationException;
 use Laravel\Socialite\Socialite;
 use Laravel\Socialite\Two\InvalidStateException;
 
@@ -25,6 +27,7 @@ class XIVAuthController extends Controller
         private readonly AuditLogger $auditLogger,
         private readonly AccountCharacterNotificationService $accountCharacterNotificationService,
         private readonly XIVAuthCharacterSyncService $xivAuthCharacterSyncService,
+        private readonly OAuthAccountLinkingPolicy $accountLinkingPolicy,
     ) {}
 
     public function redirect()
@@ -50,7 +53,7 @@ class XIVAuthController extends Controller
 
         $provider = 'xivauth';
         $providerUserId = (string) $xivauthUser->getId();
-        $providerEmail = $xivauthUser->getEmail();
+        $providerEmail = Str::lower(trim((string) $xivauthUser->getEmail()));
 
         if (! OAuthEmailVerification::isVerified($xivauthUser, $provider)) {
             return redirect()
@@ -66,6 +69,12 @@ class XIVAuthController extends Controller
             ->where('provider', $provider)
             ->where('provider_user_id', $providerUserId)
             ->first();
+
+        try {
+            $this->accountLinkingPolicy->authorize(auth()->user(), $socialAccount, $providerEmail);
+        } catch (ValidationException $exception) {
+            return redirect()->route(auth()->check() ? 'settings' : 'login')->withErrors($exception->errors());
+        }
 
         if ($socialAccount) {
             $socialAccount->update([
@@ -105,18 +114,9 @@ class XIVAuthController extends Controller
             return $this->redirectAfterLogin($syncResult);
         }
 
-        $user = null;
+        $user = auth()->user();
         $createdUser = false;
         $linkingExistingSession = auth()->check();
-        // If the user is already authenticated, associate this social account with the user.
-        if (auth()->check()) {
-            $user = auth()->user();
-            // If the user is not authenticated, check if a user with the email exists.
-        } elseif ($providerEmail) {
-            $user = User::query()
-                ->where('email', $providerEmail)
-                ->first();
-        }
 
         if (! $user) {
             $user = User::forceCreate([
@@ -128,16 +128,6 @@ class XIVAuthController extends Controller
             ]);
 
             $createdUser = true;
-        } else {
-            $updates = [];
-
-            if (! $user->email_verified_at && OAuthEmailVerification::isVerified($xivauthUser, $provider)) {
-                $updates['email_verified_at'] = now();
-            }
-
-            if (! empty($updates)) {
-                $user->forceFill($updates)->save();
-            }
         }
 
         $user->socialAccounts()->create([

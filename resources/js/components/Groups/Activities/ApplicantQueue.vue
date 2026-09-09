@@ -6,6 +6,7 @@ import { usePage } from "@inertiajs/vue3";
 import { useToast } from "@nuxt/ui/composables";
 import { localizedValue } from "@/utils/localizedValue";
 import { isArchivedActivityStatus } from "@/utils/activityLifecycle";
+import { matchesQueuePartyLeadFilter, matchesQueueRoleFilter } from "@/utils/applicantQueueFilters";
 import { route } from "ziggy-js";
 import ApplicantQueueItem from "@/components/Groups/Activities/ApplicantQueueItem.vue";
 import ApplicantQueueDetailsModal from "@/components/Groups/Activities/ApplicantQueueDetailsModal.vue";
@@ -17,7 +18,7 @@ import type { LocalizedText } from "@/Types/Common";
 import type {
 	QueueApplication,
 	QueueFilterField,
-	QueueFilterMilestone,
+	QueueFilters,
 } from "@/Types/ActivityQueue";
 
 type QueueEventNotice = {
@@ -40,18 +41,18 @@ const page = usePage();
 const isLoading = ref(true);
 const fflogsZoneId = ref<number | null>(null);
 const applications = ref<QueueApplication[]>([]);
-const queueFilters = ref<{
-	slot_fields: QueueFilterField[]
-	milestones: QueueFilterMilestone[]
-}>({
+const queueFilters = ref<QueueFilters>({
 	slot_fields: [],
 	milestones: [],
+	party_lead_question_key: null,
 });
 const searchTerm = ref('');
 const sortMode = ref<'oldest' | 'newest' | 'most_group_runs' | 'least_group_runs'>('oldest');
 const areFiltersOpen = ref(false);
 const milestoneFilter = ref<string[]>([]);
 const slotFieldFilters = ref<Record<string, string[]>>({});
+const roleFilter = ref<string[]>([]);
+const partyLeadsOnly = ref(false);
 const minimumKnowledgeLevel = ref('');
 const minimumPhantomMastery = ref('');
 const isQueueDropActive = ref(false);
@@ -60,6 +61,19 @@ const isApplicationModalOpen = ref(false);
 const selectedApplication = ref<QueueApplication | null>(null);
 const memberNotes = useMemberNotes({
 	groupSlug: computed(() => props.groupSlug),
+	onLoaded: (member) => {
+		const summary = {
+			can_view: member.notes.can_view,
+			current_group_count: member.notes.current_group_count,
+			shared_count: member.notes.shared_count,
+			highest_severity: member.notes.highest_severity ?? null,
+			severities: member.notes.severities,
+		};
+		for (const application of applications.value) {
+			if (application.user?.id === member.id) application.user.note_summary = summary;
+		}
+		if (selectedApplication.value?.user?.id === member.id) selectedApplication.value.user.note_summary = summary;
+	},
 });
 const newApplicationNoticeCount = ref(0);
 const queueEventNotices = ref<QueueEventNotice[]>([]);
@@ -124,6 +138,16 @@ const slotFieldFilterItems = computed(() => queueFilters.value.slot_fields
 		})),
 	})));
 
+const hasClassFilter = computed(() => queueFilters.value.slot_fields.some((field) => field.source === 'character_classes'));
+const partyLeadQuestionKey = computed(() => queueFilters.value.party_lead_question_key ?? null);
+const roleFilterItems = computed(() => [
+	{ value: 'tank', icon: 'i-lucide-shield', label: t('groups.activities.application.class_picker.categories.tank') },
+	{ value: 'healer', icon: 'i-lucide-heart-pulse', label: t('groups.activities.application.class_picker.categories.healer') },
+	{ value: 'melee dps', icon: 'i-lucide-swords', label: t('groups.activities.application.class_picker.categories.melee') },
+	{ value: 'physical ranged dps', icon: 'i-lucide-crosshair', label: t('groups.activities.application.class_picker.categories.phys') },
+	{ value: 'magic ranged dps', icon: 'i-lucide-sparkles', label: t('groups.activities.application.class_picker.categories.magic') },
+]);
+
 const milestoneFilterItems = computed(() => queueFilters.value.milestones.map((milestone) => ({
 	label: localizedText(milestone.label, milestone.key),
 	value: milestone.key,
@@ -167,7 +191,9 @@ const activeFilterCount = computed(() => {
 		.filter((value) => value !== null)
 		.length;
 
-	return slotFieldCount + scalarCount + (milestoneFilter.value.length > 0 ? 1 : 0);
+	return slotFieldCount + scalarCount + (milestoneFilter.value.length > 0 ? 1 : 0)
+		+ (hasClassFilter.value && roleFilter.value.length > 0 ? 1 : 0)
+		+ (partyLeadQuestionKey.value && partyLeadsOnly.value ? 1 : 0);
 });
 
 const normalizeAnswerValues = (rawValue: unknown): string[] => {
@@ -225,6 +251,8 @@ const updateSlotFieldFilter = (fieldKey: string, value: string[] | undefined) =>
 
 const clearFilters = () => {
 	slotFieldFilters.value = {};
+	roleFilter.value = [];
+	partyLeadsOnly.value = false;
 	milestoneFilter.value = [];
 	minimumKnowledgeLevel.value = '';
 	minimumPhantomMastery.value = '';
@@ -284,6 +312,7 @@ const fetchQueuePayload = async (options: { announceNewApplications?: boolean } 
 		queueFilters.value = response.data?.queue_filters ?? {
 			slot_fields: [],
 			milestones: [],
+			party_lead_question_key: null,
 		};
 
 		if (options.announceNewApplications && previousApplicationIds.size > 0) {
@@ -306,6 +335,7 @@ const fetchQueuePayload = async (options: { announceNewApplications?: boolean } 
 		queueFilters.value = {
 			slot_fields: [],
 			milestones: [],
+			party_lead_question_key: null,
 		};
 	} finally {
 		isLoading.value = false;
@@ -608,6 +638,11 @@ const visibleApplications = computed(() => {
 	});
 
 	const filteredApplications = searchedApplications.filter((application) => {
+		if (!matchesQueueRoleFilter(application.answers, queueFilters.value.slot_fields, roleFilter.value)
+			|| !matchesQueuePartyLeadFilter(application.answers, partyLeadQuestionKey.value, partyLeadsOnly.value)) {
+			return false;
+		}
+
 		const matchesSlotFields = slotFieldFilterItems.value.every((field) => {
 			const selectedValues = slotFieldFilters.value[field.key] ?? [];
 
@@ -765,6 +800,28 @@ const visibleApplications = computed(() => {
 			</div>
 
 			<div v-if="areFiltersOpen" class="mt-4 space-y-4 border-t border-default pt-4">
+				<UFormField
+					v-if="hasClassFilter"
+					:label="t('groups.activities.management.queue.role_filter')"
+				>
+					<USelectMenu
+						v-model="roleFilter"
+						multiple
+						size="lg"
+						class="w-full"
+						:items="roleFilterItems"
+						value-key="value"
+						:search-input="false"
+						:placeholder="t('groups.activities.management.queue.filter_any')"
+					/>
+				</UFormField>
+
+				<USwitch
+					v-if="partyLeadQuestionKey"
+					v-model="partyLeadsOnly"
+					:label="t('groups.activities.management.queue.party_leads_only')"
+				/>
+
 				<div
 					v-if="slotFieldFilterItems.length > 0"
 					class="grid gap-4"

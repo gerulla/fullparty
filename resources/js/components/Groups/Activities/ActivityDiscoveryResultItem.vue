@@ -9,6 +9,7 @@ import { localizedValue } from "@/utils/localizedValue";
 
 const props = defineProps<{
 	activity: ActivityIndexItem
+	participating?: boolean
 }>();
 
 const { locale } = useI18n();
@@ -72,6 +73,7 @@ const item = computed<RunDiscoveryResultItemData>(() => {
 <template>
 	<RunDiscoveryResultItem
 		:item="item"
+		:participating="participating"
 		:show-save="false"
 		:show-host="true"
 	/>

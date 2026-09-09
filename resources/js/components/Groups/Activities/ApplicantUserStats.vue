@@ -5,6 +5,7 @@ import { useI18n } from "vue-i18n";
 const props = defineProps<{
 	stats: QueueApplicationUserStats | null
 	emptyMessage?: string
+	embedded?: boolean
 }>();
 
 const { t } = useI18n();
@@ -17,7 +18,28 @@ const podiumIconClass = (index: number) => {
 </script>
 
 <template>
-	<div class="space-y-4 border border-default bg-default/60 p-4">
+	<div v-if="embedded" class="space-y-6 border-t border-default pt-5">
+		<template v-if="stats">
+			<section v-for="kind in (['class', 'phantom_job'] as const)" :key="kind" class="space-y-3">
+				<h3 class="text-xs font-medium text-muted">{{ t(`groups.activities.management.queue.modal.most_played_${kind}`) }}</h3>
+				<div class="grid grid-cols-2 gap-5">
+					<div v-for="scope in (['group', 'overall'] as const)" :key="scope" class="min-w-0">
+						<p class="mb-2 text-xs text-muted">{{ t(`groups.activities.management.queue.modal.${scope === 'group' ? 'with_group' : 'overall'}`) }}</p>
+						<ul class="divide-y divide-default text-xs">
+							<li v-for="item in stats[kind][scope].slice(0, 3)" :key="item.label" class="flex items-center gap-2 py-2">
+								<img v-if="item.flat_icon_url || item.transparent_icon_url || item.icon_url" :src="(kind === 'phantom_job' ? item.transparent_icon_url : item.flat_icon_url) || item.icon_url || undefined" alt="" class="size-5 shrink-0 object-contain">
+								<span class="min-w-0 [overflow-wrap:anywhere]">{{ item.label }}</span>
+								<span class="ml-auto pl-1 tabular-nums">{{ item.count }}</span>
+							</li>
+						</ul>
+						<p v-if="!stats[kind][scope].length" class="text-sm text-muted">-</p>
+					</div>
+				</div>
+			</section>
+		</template>
+		<p v-else class="text-sm text-muted">{{ emptyMessage || t('groups.activities.management.queue.modal.no_user_stats') }}</p>
+	</div>
+	<div v-else class="space-y-4 border border-default bg-default/60 p-4">
 		<!-- User stats header: summarizes historical play patterns for this applicant -->
 		<p class="text-[11px] font-medium uppercase tracking-[0.12em] text-muted">
 			{{ t('groups.activities.management.queue.modal.user_stats') }}

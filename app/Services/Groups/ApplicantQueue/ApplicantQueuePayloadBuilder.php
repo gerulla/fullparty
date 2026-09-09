@@ -45,6 +45,10 @@ class ApplicantQueuePayloadBuilder
             'queue_filters' => [
                 'slot_fields' => $this->serializeQueueSlotFields($activity->activityTypeVersion, $activity->group_id),
                 'milestones' => $this->serializeQueueMilestones($activity->activityTypeVersion),
+                'party_lead_question_key' => collect($activity->activityTypeVersion?->application_schema ?? [])
+                    ->first(fn ($question) => is_array($question)
+                        && ($question['key'] ?? null) === 'wants_to_party_lead'
+                        && ($question['type'] ?? null) === 'boolean')['key'] ?? null,
             ],
             'applications' => $activity->applications
                 ->map(fn ($application) => $this->serializeApplication(

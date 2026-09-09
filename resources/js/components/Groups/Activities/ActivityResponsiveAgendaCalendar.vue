@@ -28,6 +28,7 @@ const props = defineProps<{
 	canManageActivities?: boolean
 	showGroupBadge?: boolean
 	discoveryStyle?: boolean
+	groupColors?: Record<number, string>
 }>();
 
 const { t, locale } = useI18n();
@@ -90,6 +91,12 @@ const dayLabels = computed(() => {
 const monthDays = computed(() => buildMonthCalendarDays(activityMap.value, monthCursor.value, todayKey.value));
 const weekDays = computed(() => buildWeekCalendarDays(activityMap.value, selectedDate.value, todayKey.value));
 const visibleDays = computed(() => renderedCalendarMode.value === 'week' ? weekDays.value : monthDays.value);
+const dayGroups = computed(() => Object.fromEntries(visibleDays.value.map((day) => [
+	day.key,
+	[...new Map(day.activities.flatMap((activity) => activity.group && props.groupColors?.[activity.group.id]
+		? [[activity.group.id, activity.group] as const]
+		: [])).values()],
+])));
 const selectedDateActivities = computed(() => sortActivitiesByStart(activityMap.value[selectedDateKey.value] ?? []));
 const selectedDateCountLabel = computed(() => t('groups.activities.selected_day.count', {
 	count: selectedDateActivities.value.length,
@@ -275,7 +282,19 @@ const goToManagement = (activity: ActivityIndexItem) => {
 						>
 							<span>{{ day.date.getDate() }}</span>
 							<span
-								v-if="day.activities.length > 0"
+								v-if="dayGroups[day.key].length > 0"
+								class="absolute inset-x-1 bottom-1 flex h-1 gap-0.5"
+							>
+								<span
+									v-for="group in dayGroups[day.key]"
+									:key="group.id"
+									class="min-w-0 flex-1"
+									:style="{ backgroundColor: groupColors?.[group.id] }"
+									:title="group.name"
+								/>
+							</span>
+							<span
+								v-else-if="day.activities.length > 0"
 								class="absolute bottom-1 h-1 w-1 rounded-full"
 								:class="selectedDateKey === day.key ? 'bg-brand-600' : 'bg-brand-200'"
 							/>

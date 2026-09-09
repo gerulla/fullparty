@@ -127,6 +127,7 @@
       }
     },
     "severities": {
+      "commendation": "Commendations",
       "info": "Info",
       "warning": "Warning",
       "critical": "Critical"

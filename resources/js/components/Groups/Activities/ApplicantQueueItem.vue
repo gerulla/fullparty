@@ -305,13 +305,14 @@ const handleDragStart = (event: DragEvent) => {
 		</p>
 
 		<!-- Queue card action: opens the full application detail modal -->
-		<div class="mt-4 flex items-center gap-2">
+		<div class="mt-4 grid grid-cols-2 items-center gap-2">
 			<UButton
 				color="neutral"
 				variant="outline"
 				size="md"
 				icon="i-lucide-expand"
 				class="flex-1 items-center justify-center"
+				:class="{ 'col-span-2': !props.application.user?.note_summary.can_view }"
 				:label="t('general.view')"
 				@click="emit('openDetails', props.application)"
 			/>
@@ -319,6 +320,7 @@ const handleDragStart = (event: DragEvent) => {
 				v-if="props.application.user"
 				:user-id="props.application.user.id"
 				:note-summary="props.application.user.note_summary"
+				show-severity-indicator
 				color="secondary"
 				variant="soft"
 				size="md"

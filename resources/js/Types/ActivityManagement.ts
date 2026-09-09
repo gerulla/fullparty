@@ -150,4 +150,4 @@ export type ActivityManagementPatch = {
 	remove_missing_assignment_ids?: number[]
 }
 
-export type SlotDesignation = "host" | "raid_leader"
+export type { SlotDesignation } from "@/Types/ActivityRoster"

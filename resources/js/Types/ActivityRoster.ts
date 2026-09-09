@@ -1,5 +1,7 @@
 import type { LocalizedText } from "@/Types/Common"
 
+export type SlotDesignation = "host" | "raid_leader" | "duelist" | "trapper"
+
 export type ActivitySlotFieldValue = {
 	id: number
 	field_key: string
@@ -97,6 +99,9 @@ export type ActivitySlot = {
 	is_fill_in: boolean
 	is_host: boolean
 	is_raid_leader: boolean
+	is_duelist: boolean
+	is_trapper: boolean
+	available_designations?: SlotDesignation[]
 	assigned_character_id: number | null
 	application_review_required: boolean
 	application_review_required_at: string | null

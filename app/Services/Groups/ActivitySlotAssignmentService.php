@@ -987,35 +987,26 @@ class ActivitySlotAssignmentService
     }
 
     /**
-     * @return array{is_host: bool, is_raid_leader: bool}
+     * @return array<string, bool>
      */
     private function designationState(ActivitySlot $slot): array
     {
-        return [
-            'is_host' => (bool) $slot->is_host,
-            'is_raid_leader' => (bool) $slot->is_raid_leader,
-        ];
+        return $slot->designationState();
     }
 
     /**
-     * @return array{is_host: bool, is_raid_leader: bool}
+     * @return array<string, bool>
      */
     private function emptyDesignationState(): array
     {
-        return [
-            'is_host' => false,
-            'is_raid_leader' => false,
-        ];
+        return ActivitySlot::emptyDesignationState();
     }
 
     /**
-     * @param  array{is_host: bool, is_raid_leader: bool}  $designationState
+     * @param  array<string, bool>  $designationState
      */
     private function applyDesignationState(ActivitySlot $slot, array $designationState, bool $canCarryDesignation): void
     {
-        $slot->update([
-            'is_host' => $canCarryDesignation ? $designationState['is_host'] : false,
-            'is_raid_leader' => $canCarryDesignation ? $designationState['is_raid_leader'] : false,
-        ]);
+        $slot->update($canCarryDesignation ? $designationState : ActivitySlot::emptyDesignationState());
     }
 }

@@ -1,5 +1,31 @@
 {
   "title": "My Runs",
+  "hosting_groups": "Hosting groups",
+  "results": {
+    "today": "Today",
+    "tomorrow": "Tomorrow",
+    "relative_date": "{relative} · {date}",
+    "run_count": "{count} run | {count} runs",
+    "empty_day": "No matching runs on this day.",
+    "empty": "No runs match your filters."
+  },
+  "tools": {
+    "previous_week": "Previous week",
+    "next_week": "Next week",
+    "all_runs": "All runs",
+    "filtered_runs": "Filtered runs",
+    "run_filters": "Run filters",
+    "close_search": "Close search",
+    "search_placeholder": "Search runs...",
+    "search_label": "Search by group, title, or activity",
+    "clear_search": "Clear search",
+    "title": "Run tools",
+    "applied_only": "Applied to Only",
+    "hide_overlapping": "Hide Overlapping",
+    "groups": "Groups ({count})",
+    "open_group": "Open {name} dashboard",
+    "results": "Results"
+  },
   "subtitle": "Keep the calendars from your chosen groups together in one place.",
   "groups_count": "{count} groups",
   "upcoming_count": "{count} upcoming runs",

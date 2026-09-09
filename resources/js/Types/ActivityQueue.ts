@@ -22,6 +22,7 @@ export type QueueApplicationAnswer = {
 	display_values: string[]
 	role_values: string[]
 	display_items: QueueApplicationAnswerDisplayItem[]
+	complete_roles?: string[]
 }
 
 export type QueueApplicationUserStatItem = {
@@ -146,6 +147,12 @@ export type QueueFilterMilestone = {
 	matcher_type: string
 	encounter_id: number | null
 	phase_id: number | null
+}
+
+export type QueueFilters = {
+	slot_fields: QueueFilterField[]
+	milestones: QueueFilterMilestone[]
+	party_lead_question_key: string | null
 }
 
 export type ManualAssignmentCharacter = {

@@ -1,6 +1,8 @@
 <?php
 
 use App\Models\Activity;
+use App\Models\ActivityApplication;
+use App\Models\ActivitySlot;
 use App\Models\Character;
 use App\Models\Group;
 use App\Models\GroupMembership;
@@ -9,6 +11,42 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Inertia\Testing\AssertableInertia as Assert;
 
 uses(RefreshDatabase::class);
+
+it('includes only the viewers applied and assigned run times even outside selected groups', function () {
+    $user = User::factory()->create();
+    $character = Character::factory()->for($user)->create();
+    $applied = Activity::factory()->create(['status' => Activity::STATUS_SCHEDULED, 'duration_hours' => 2.5]);
+    ActivityApplication::factory()->for($applied)->for($user)->create();
+    $assigned = Activity::factory()->create(['status' => Activity::STATUS_ASSIGNED]);
+    ActivitySlot::factory()->for($assigned)->assignedTo($character)->create(['slot_key' => 'my-runs-assignment']);
+
+    $withdrawn = Activity::factory()->create(['status' => Activity::STATUS_SCHEDULED]);
+    ActivityApplication::factory()->for($withdrawn)->for($user)->create(['status' => ActivityApplication::STATUS_WITHDRAWN]);
+    $otherUsersRun = Activity::factory()->create(['status' => Activity::STATUS_SCHEDULED]);
+    ActivityApplication::factory()->for($otherUsersRun)->create();
+    ActivitySlot::factory()->for($otherUsersRun)->assignedTo(Character::factory()->create())->create(['slot_key' => 'my-runs-other-assignment']);
+    foreach ([Activity::STATUS_COMPLETE, Activity::STATUS_CANCELLED] as $status) {
+        $archived = Activity::factory()->create(['status' => $status]);
+        ActivityApplication::factory()->for($archived)->for($user)->create();
+        ActivitySlot::factory()->for($archived)->assignedTo($character)->create(['slot_key' => 'my-runs-archived-assignment']);
+    }
+
+    $this->actingAs($user)->get(route('account.runs.index'))
+        ->assertOk()
+        ->assertInertia(fn (Assert $page) => $page
+            ->has('groups', 0)
+            ->has('activities', 0)
+            ->has('commitments', 2)
+            ->where('commitments', function ($items) use ($applied, $assigned): bool {
+                $rows = collect($items)->keyBy('id');
+                expect($rows->keys()->sort()->values()->all())->toBe(collect([$applied->id, $assigned->id])->sort()->values()->all());
+                expect(array_keys($rows[$applied->id]))->toBe(['id', 'starts_at', 'duration_hours']);
+                expect((float) $rows[$applied->id]['duration_hours'])->toBe(2.5);
+                expect($rows[$applied->id]['starts_at'])->toBe($applied->starts_at->toIso8601String());
+
+                return true;
+            }));
+});
 
 it('lets users add and remove an accessible group from my runs', function () {
     $user = User::factory()->create();

@@ -197,7 +197,11 @@
                     "host_marked": "ロスター枠をホストとしてマークしました。",
                     "host_cleared": "ロスター枠のホスト指定を解除しました。",
                     "raid_leader_marked": "ロスター枠をレイドリーダーとしてマークしました。",
-                    "raid_leader_cleared": "ロスター枠のレイドリーダー指定を解除しました。"
+                    "raid_leader_cleared": "ロスター枠のレイドリーダー指定を解除しました。",
+                    "duelist_marked": "メンバーをデュエリストに指定しました。",
+                    "duelist_cleared": "デュエリストの指定を解除しました。",
+                    "trapper_marked": "メンバーをトラッパーに指定しました。",
+                    "trapper_cleared": "トラッパーの指定を解除しました。"
                 },
                 "attendance": {
                     "checked_in": "がロスター枠をチェックインしました。",
@@ -456,7 +460,11 @@
                     "host_marked": "ロスター枠をホストに指定しました",
                     "host_cleared": "ロスターのホスト指定を解除しました",
                     "raid_leader_marked": "ロスター枠をレイドリーダーに指定しました",
-                    "raid_leader_cleared": "ロスターのレイドリーダー指定を解除しました"
+                    "raid_leader_cleared": "ロスターのレイドリーダー指定を解除しました",
+                    "duelist_marked": "デュエリストを指定",
+                    "duelist_cleared": "デュエリストの指定を解除",
+                    "trapper_marked": "トラッパーを指定",
+                    "trapper_cleared": "トラッパーの指定を解除"
                 },
                 "attendance": {
                     "checked_in": "ロスター枠チェックイン",

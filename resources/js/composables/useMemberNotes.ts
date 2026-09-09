@@ -7,9 +7,11 @@ import { computed, ref, toValue, type MaybeRefOrGetter } from "vue";
 import { useI18n } from "vue-i18n";
 // @ts-ignore
 import { route } from "ziggy-js";
+import { memberNotePresentation } from "@/utils/memberNotePresentation";
 
 type UseMemberNotesOptions = {
 	groupSlug: MaybeRefOrGetter<string>
+	onLoaded?: (member: MemberNotesTarget) => void
 };
 
 export const useMemberNotes = (options: UseMemberNotesOptions) => {
@@ -47,9 +49,10 @@ export const useMemberNotes = (options: UseMemberNotesOptions) => {
 	const addendumDeleteForm = useForm({});
 
 	const severityOptions = computed(() => [
-		{ label: t('general.severity_levels.info'), value: 'info' },
-		{ label: t('general.severity_levels.warning'), value: 'warning' },
-		{ label: t('general.severity_levels.critical'), value: 'critical' },
+		{ label: t('groups.members.notes.severities.commendation'), value: 'commendation', icon: memberNotePresentation('commendation').icon },
+		{ label: t('general.severity_levels.info'), value: 'info', icon: memberNotePresentation('info').icon },
+		{ label: t('general.severity_levels.warning'), value: 'warning', icon: memberNotePresentation('warning').icon },
+		{ label: t('general.severity_levels.critical'), value: 'critical', icon: memberNotePresentation('critical').icon },
 	]);
 
 	const totalVisibleNoteCount = computed(() => {
@@ -128,6 +131,7 @@ export const useMemberNotes = (options: UseMemberNotesOptions) => {
 			}
 
 			member.value = response.data?.member ?? null;
+			if (member.value) options.onLoaded?.(member.value);
 		} catch {
 			if (activeRequestId.value !== requestId) {
 				return;

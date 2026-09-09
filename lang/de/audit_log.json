@@ -197,7 +197,11 @@
                     "host_marked": "hat einen Roster-Slot als Host markiert.",
                     "host_cleared": "hat die Host-Markierung eines Roster-Slots entfernt.",
                     "raid_leader_marked": "hat einen Roster-Slot als Raid-Leitung markiert.",
-                    "raid_leader_cleared": "hat die Raid-Leitungs-Markierung eines Roster-Slots entfernt."
+                    "raid_leader_cleared": "hat die Raid-Leitungs-Markierung eines Roster-Slots entfernt.",
+                    "duelist_marked": "markierte einen Kaderplatz als Duellant.",
+                    "duelist_cleared": "entfernte die Duellant-Markierung von einem Kaderplatz.",
+                    "trapper_marked": "markierte einen Kaderplatz als Fallensteller.",
+                    "trapper_cleared": "entfernte die Fallensteller-Markierung von einem Kaderplatz."
                 },
                 "attendance": {
                     "checked_in": "hat einen Roster-Slot eingecheckt.",
@@ -456,7 +460,11 @@
                     "host_marked": "Roster-Slot als Host markiert",
                     "host_cleared": "Host-Markierung im Roster entfernt",
                     "raid_leader_marked": "Roster-Slot als Raid-Leitung markiert",
-                    "raid_leader_cleared": "Raid-Leitungs-Markierung im Roster entfernt"
+                    "raid_leader_cleared": "Raid-Leitungs-Markierung im Roster entfernt",
+                    "duelist_marked": "Kaderplatz als Duellant markiert",
+                    "duelist_cleared": "Duellant-Markierung entfernt",
+                    "trapper_marked": "Kaderplatz als Fallensteller markiert",
+                    "trapper_cleared": "Fallensteller-Markierung entfernt"
                 },
                 "attendance": {
                     "checked_in": "Roster-Slot eingecheckt",

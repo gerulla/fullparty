@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import type { MemberNote } from "@/Types/Groups";
 import { memberNoteLimits } from "@/utils/memberNoteLimits";
+import { memberNotePresentation } from "@/utils/memberNotePresentation";
 import { ref, watch } from "vue";
 import { useI18n } from "vue-i18n";
 import { useMemberNotes } from "@/composables/useMemberNotes";
@@ -64,28 +65,11 @@ const formatDate = (value: string | null) => {
 };
 
 const severityBadge = (severity: MemberNote['severity']) => ({
-	info: {
-		label: t('general.severity_levels.info'),
-		color: 'info',
-		icon: 'i-lucide-info',
-	},
-	warning: {
-		label: t('general.severity_levels.warning'),
-		color: 'warning',
-		icon: 'i-lucide-triangle-alert',
-	},
-	critical: {
-		label: t('general.severity_levels.critical'),
-		color: 'error',
-		icon: 'i-lucide-octagon-alert',
-	},
-}[severity]);
+    ...memberNotePresentation(severity),
+    label: t(severity === 'commendation' ? 'groups.members.notes.severities.commendation' : `general.severity_levels.${severity}`),
+});
 
-const severityBorderClass = (severity: MemberNote['severity']) => ({
-	info: 'border-r-2 border-r-info',
-	warning: 'border-r-2 border-r-warning',
-	critical: 'border-r-2 border-r-error',
-}[severity]);
+const severityBorderClass = (severity: MemberNote['severity']) => memberNotePresentation(severity).borderClass;
 </script>
 
 <template>
@@ -273,6 +257,7 @@ const severityBorderClass = (severity: MemberNote['severity']) => ({
 													:label="severityBadge(note.severity).label"
 													:color="severityBadge(note.severity).color"
 													:icon="severityBadge(note.severity).icon"
+													:class="severityBadge(note.severity).badgeClass"
 													variant="subtle"
 												/>
 												<UBadge
@@ -513,6 +498,7 @@ const severityBorderClass = (severity: MemberNote['severity']) => ({
 												:label="severityBadge(note.severity).label"
 												:color="severityBadge(note.severity).color"
 												:icon="severityBadge(note.severity).icon"
+												:class="severityBadge(note.severity).badgeClass"
 												variant="subtle"
 											/>
 										</div>

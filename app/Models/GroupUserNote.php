@@ -17,11 +17,14 @@ class GroupUserNote extends Model
 
     public const SEVERITY_INFO = 'info';
 
+    public const SEVERITY_COMMENDATION = 'commendation';
+
     public const SEVERITY_WARNING = 'warning';
 
     public const SEVERITY_CRITICAL = 'critical';
 
     public const SEVERITIES = [
+        self::SEVERITY_COMMENDATION,
         self::SEVERITY_INFO,
         self::SEVERITY_WARNING,
         self::SEVERITY_CRITICAL,

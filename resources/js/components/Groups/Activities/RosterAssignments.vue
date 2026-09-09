@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import type { SlotDesignation } from "@/Types/ActivityRoster";
 import axios from "axios";
 import { computed, ref } from "vue";
 import { route } from "ziggy-js";
@@ -42,6 +43,7 @@ const emit = defineEmits<{
 	markSlotLate: [slotId: number]
 	markSlotHost: [slotId: number]
 	markSlotRaidLeader: [slotId: number]
+	markSlotDesignation: [slotId: number, designation: SlotDesignation]
 	checkInGroup: [groupKey: string]
 	createFillInSlot: []
 	slotsUpdated: [slots: ActivitySlot[]]
@@ -247,6 +249,7 @@ const replaceSlotCompositionHints = async (payload: { slotId: number, compositio
 			@mark-slot-late="emit('markSlotLate', $event)"
 			@mark-slot-host="emit('markSlotHost', $event)"
 			@mark-slot-raid-leader="emit('markSlotRaidLeader', $event)"
+			@mark-slot-designation="(slotId, designation) => emit('markSlotDesignation', slotId, designation)"
 			@replace-composition-hints="replaceSlotCompositionHints"
 			@customize-composition-hints="openCompositionHintModal"
 		/>
@@ -290,6 +293,7 @@ const replaceSlotCompositionHints = async (payload: { slotId: number, compositio
 			@mark-slot-late="emit('markSlotLate', $event)"
 			@mark-slot-host="emit('markSlotHost', $event)"
 			@mark-slot-raid-leader="emit('markSlotRaidLeader', $event)"
+			@mark-slot-designation="(slotId, designation) => emit('markSlotDesignation', slotId, designation)"
 			@check-in-group="emit('checkInGroup', $event)"
 			@create-fill-in-slot="emit('createFillInSlot')"
 			@slots-updated="emit('slotsUpdated', $event)"

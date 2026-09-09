@@ -11,6 +11,7 @@ const props = withDefaults(defineProps<{
 	savePending?: boolean
 	showSave?: boolean
 	showHost?: boolean
+	participating?: boolean
 }>(), {
 	showSave: true,
 	showHost: false,
@@ -180,7 +181,7 @@ const toggleSaved = () => {
 <template>
 	<article
 		class="@container relative isolate overflow-visible border border-white/10 bg-neutral-950/72 shadow-[0_20px_40px_rgba(0,0,0,0.2)]"
-		:class="props.item.has_existing_application ? 'border-r-4 border-r-brand-400' : ''"
+		:class="props.item.has_existing_application || props.participating ? 'border-r-4 border-r-brand-400' : ''"
 	>
 		<div
 			v-if="item.has_existing_application"

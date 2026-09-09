@@ -1,5 +1,31 @@
 {
   "title": "マイラン",
+  "hosting_groups": "主催グループ",
+  "results": {
+    "today": "今日",
+    "tomorrow": "明日",
+    "relative_date": "{relative} · {date}",
+    "run_count": "{count}件のラン",
+    "empty_day": "この日に条件に一致するランはありません。",
+    "empty": "条件に一致するランはありません。"
+  },
+  "tools": {
+    "previous_week": "前の週",
+    "next_week": "次の週",
+    "all_runs": "すべてのラン",
+    "filtered_runs": "絞り込み済み",
+    "run_filters": "ランの絞り込み",
+    "close_search": "検索を閉じる",
+    "search_placeholder": "ランを検索...",
+    "search_label": "グループ名、タイトル、アクティビティで検索",
+    "clear_search": "検索をクリア",
+    "title": "ランツール",
+    "applied_only": "応募済みのみ",
+    "hide_overlapping": "時間が重なるランを非表示",
+    "groups": "グループ ({count})",
+    "open_group": "{name}のダッシュボードを開く",
+    "results": "結果"
+  },
   "subtitle": "選んだグループのカレンダーを一か所で確認できます。",
   "groups_count": "{count}グループ",
   "upcoming_count": "今後のラン {count}件",

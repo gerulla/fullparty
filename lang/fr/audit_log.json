@@ -197,7 +197,11 @@
                     "host_marked": "a marqué un emplacement du roster comme hôte.",
                     "host_cleared": "a retiré la désignation d’hôte d’un emplacement du roster.",
                     "raid_leader_marked": "a marqué un emplacement du roster comme raid leader.",
-                    "raid_leader_cleared": "a retiré la désignation de raid leader d’un emplacement du roster."
+                    "raid_leader_cleared": "a retiré la désignation de raid leader d’un emplacement du roster.",
+                    "duelist_marked": "a désigné un duelliste dans le groupe.",
+                    "duelist_cleared": "a retiré la désignation de duelliste.",
+                    "trapper_marked": "a désigné un trappeur dans le groupe.",
+                    "trapper_cleared": "a retiré la désignation de trappeur."
                 },
                 "attendance": {
                     "checked_in": "a validé la présence sur un emplacement de roster.",
@@ -456,7 +460,11 @@
                     "host_marked": "Emplacement du roster marqué comme hôte",
                     "host_cleared": "Désignation d’hôte du roster retirée",
                     "raid_leader_marked": "Emplacement du roster marqué comme raid leader",
-                    "raid_leader_cleared": "Désignation de raid leader du roster retirée"
+                    "raid_leader_cleared": "Désignation de raid leader du roster retirée",
+                    "duelist_marked": "Duelliste désigné",
+                    "duelist_cleared": "Désignation de duelliste retirée",
+                    "trapper_marked": "Trappeur désigné",
+                    "trapper_cleared": "Désignation de trappeur retirée"
                 },
                 "attendance": {
                     "checked_in": "Emplacement de roster validé",

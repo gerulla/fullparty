@@ -2,19 +2,19 @@
 import axios from "axios";
 import { computed, ref, watch } from "vue";
 import { useI18n } from "vue-i18n";
-import { usePage } from "@inertiajs/vue3";
 import { useToast } from "@nuxt/ui/composables";
 import { route } from "ziggy-js";
-import { localizedValue } from "@/utils/localizedValue";
+import ApplicantInspectorLayout from "@/components/Groups/Activities/ApplicantInspectorLayout.vue";
+import ApplicantApplicationPanel from "@/components/Groups/Activities/ApplicantApplicationPanel.vue";
+import ApplicantNotesPanel from "@/components/Groups/Activities/ApplicantNotesPanel.vue";
+import { useApplicantNotes } from "@/composables/useApplicantNotes";
 import ActivityCharacterFflogsProgress from "@/components/Groups/Activities/ActivityCharacterFflogsProgress.vue";
 import ApplicantUserStats from "@/components/Groups/Activities/ApplicantUserStats.vue";
-import type { LocalizedText } from "@/Types/Common";
 import type { QueueApplication } from "@/Types/ActivityQueue";
 import { activityTextLimits } from "@/utils/activityTextLimits";
 import { createDateTimeFormatter } from "@/utils/dateTimeFormat";
 import { formatRelativeTime } from "@/utils/formatRelativeTime";
 import { useMinuteTicker } from "@/composables/useMinuteTicker";
-import { translateCharacterClassName, translatePhantomJobName, translateRaidPositionName } from "@/utils/characterJobTranslations";
 
 const CHARACTER_REFRESH_COOLDOWN_MS = 5 * 60 * 1000;
 
@@ -31,83 +31,15 @@ const emit = defineEmits<{
 
 const isOpen = defineModel<boolean>('open', { required: true });
 const canFetchPanelData = ref(false);
+const section = ref('application');
 const isDeclineModalOpen = ref(false);
 const declineReason = ref('');
 const isDeclining = ref(false);
 const isRefreshingCharacter = ref(false);
 
 const { t, locale } = useI18n();
-const page = usePage();
 const toast = useToast();
 const nowMs = useMinuteTicker();
-const fallbackLocale = computed(() => String(page.props.locale?.fallback ?? 'en'));
-
-const localizedText = (value: LocalizedText, fallback: string) => (
-	localizedValue(value, locale.value, fallbackLocale.value) || fallback
-);
-
-const roleBadgeColor = (role: string) => {
-	if (role === 'Tank') {
-		return 'info';
-	}
-
-	if (role === 'Healer') {
-		return 'success';
-	}
-
-	if (role === 'Melee') {
-		return 'error';
-	}
-
-	if (role === 'Phys Ranged') {
-		return 'warning';
-	}
-
-	if (role === 'Magic Ranged') {
-		return 'secondary';
-	}
-
-	return 'neutral';
-};
-
-const answerBadgeColor = (source: string | null, value: string) => {
-	const normalized = value.trim().toLowerCase();
-
-	if (normalized === 'yes') {
-		return 'success';
-	}
-
-	if (normalized === 'no') {
-		return 'error';
-	}
-
-	if (source === 'phantom_jobs') {
-		return 'secondary';
-	}
-
-	if (source === 'raid_positions' || source === 'static_options') {
-		return 'warning';
-	}
-
-	return 'neutral';
-};
-
-const answerValueLabel = (source: string | null, questionKey: string, value: string): string => {
-	if (source === 'character_classes') {
-		return translateCharacterClassName(t, { name: value }, value);
-	}
-
-	if (source === 'phantom_jobs') {
-		return translatePhantomJobName(t, { name: value }, value);
-	}
-
-	if (source === 'raid_positions' || questionKey.toLowerCase().includes('position')) {
-		return translateRaidPositionName(t, { name: value }, value);
-	}
-
-	return value;
-};
-
 const applicantCharacter = computed(() => {
 	if (!props.application) {
 		return null;
@@ -178,44 +110,7 @@ const editedAtLabel = computed(() => {
 	}).format(new Date(props.application.edited_at));
 });
 
-const detailedAnswers = computed(() => (props.application?.answers ?? [])
-	.filter((answer) => {
-		if (answer.display_values.length === 0) {
-			return false;
-		}
-
-		if (answer.source === 'character_classes' || answer.source === 'phantom_jobs') {
-			return false;
-		}
-
-		if (answer.source === 'raid_positions' || answer.source === 'static_options') {
-			return !answer.question_key.toLowerCase().includes('position');
-		}
-
-		return true;
-	})
-	.map((answer) => ({
-		key: answer.question_key,
-		label: localizedText(answer.question_label, answer.question_key),
-		source: answer.source,
-		displayValues: answer.display_values.map((value) => answerValueLabel(answer.source, answer.question_key, value)),
-	})));
-
-const classAnswer = computed(() => props.application?.answers.find((answer) => answer.source === 'character_classes') ?? null);
 const phantomAnswer = computed(() => props.application?.answers.find((answer) => answer.source === 'phantom_jobs') ?? null);
-const positionAnswer = computed(() => props.application?.answers.find((answer) => (
-	(answer.source === 'raid_positions' || answer.source === 'static_options')
-	&& answer.question_key.toLowerCase().includes('position')
-)) ?? null);
-const playableRoles = computed(() => classAnswer.value?.role_values ?? []);
-const classDisplayItems = computed(() => (classAnswer.value?.display_items ?? []).map((item) => ({
-	...item,
-	label: translateCharacterClassName(t, { name: item.label }, item.label),
-})));
-const phantomDisplayItems = computed(() => (phantomAnswer.value?.display_items ?? []).map((item) => ({
-	...item,
-	label: translatePhantomJobName(t, { name: item.label }, item.label),
-})));
 const shouldShowOccultLevel = computed(() => phantomAnswer.value !== null && props.application?.selected_character?.occult_level !== null && props.application?.selected_character?.occult_level !== undefined);
 const shouldShowPhantomMastery = computed(() => phantomAnswer.value !== null && props.application?.selected_character?.phantom_mastery !== null && props.application?.selected_character?.phantom_mastery !== undefined);
 const selectedCharacterLastCheckedAt = computed(() => props.application?.selected_character?.lodestone_last_checked_at ?? null);
@@ -270,6 +165,28 @@ const declineReasonValue = computed(() => {
 
 	return value === '' ? null : value;
 });
+
+const applicantNotes = useApplicantNotes(() => ({
+    groupSlug: props.groupSlug,
+    activityId: props.activityId,
+    applicationId: props.application?.id ?? null,
+    enabled: isOpen.value && section.value === 'notes' && Boolean(props.application?.user?.note_summary?.can_view),
+}));
+const notesSummary = computed(() => applicantNotes.notes.value ?? props.application?.user?.note_summary);
+const notesCount = computed(() => {
+    const summary = notesSummary.value;
+    return summary?.can_view ? summary.current_group_count + summary.shared_count : 0;
+});
+const characterFacts = computed(() => [
+    { label: t('groups.activities.management.queue.modal.character'), value: applicantCharacter.value?.name || '-' },
+    { label: t('groups.activities.management.queue.modal.account'), value: props.application?.user?.name || t('groups.activities.management.queue.modal.guest_account') },
+    { label: t('groups.activities.management.queue.modal.world'), value: applicantCharacter.value?.world || '-' },
+    { label: t('groups.activities.management.queue.modal.datacenter'), value: applicantCharacter.value?.datacenter || '-' },
+    { label: t('groups.activities.management.queue.modal.submitted'), value: submittedAtLabel.value },
+    ...(editedAtLabel.value ? [{ label: t('groups.activities.management.queue.modal.edited'), value: editedAtLabel.value }] : []),
+    ...(shouldShowOccultLevel.value ? [{ label: t('groups.activities.management.queue.modal.occult_level'), value: props.application?.selected_character?.occult_level }] : []),
+    ...(shouldShowPhantomMastery.value ? [{ label: t('groups.activities.management.queue.modal.phantom_mastery'), value: props.application?.selected_character?.phantom_mastery }] : []),
+]);
 
 const handleAfterEnter = () => {
 	canFetchPanelData.value = true;
@@ -388,11 +305,13 @@ const declineApplication = async () => {
 };
 
 watch(() => props.application?.id, () => {
+	section.value = 'application';
 	declineReason.value = '';
 	isDeclineModalOpen.value = false;
 });
 
 watch(isOpen, (open) => {
+	if (open) section.value = 'application';
 	if (!open) {
 		declineReason.value = '';
 		isDeclineModalOpen.value = false;
@@ -401,291 +320,91 @@ watch(isOpen, (open) => {
 </script>
 
 <template>
-	<UModal
-		v-model:open="isOpen"
-		:title="displayName"
-		:description="description || undefined"
-		:ui="{ content: 'sm:max-w-6xl' }"
-		@after:enter="handleAfterEnter"
-		@after:leave="handleAfterLeave"
-	>
-		<template #header>
-			<div class="flex w-full items-center gap-4 ">
-				<div class="flex min-w-0 items-center gap-3">
-					<UAvatar
-						v-if="avatarUrl"
-						:src="avatarUrl"
-						size="xl"
-						alt=""
-					/>
-
-					<div class="min-w-0">
-						<p class="break-words [overflow-wrap:anywhere] font-semibold text-highlighted">
-							{{ displayName }}
-						</p>
-						<p v-if="description" class="break-words [overflow-wrap:anywhere] text-sm text-muted">
-							{{ description }}
-						</p>
-					</div>
-				</div>
-
-				<UBadge
-					v-if="application?.is_guest"
-					color="warning"
-					variant="soft"
-					:label="t('groups.activities.management.queue.guest_badge')"
-				/>
-			</div>
-		</template>
-
-		<template #body>
-			<div
-				v-if="application"
-				class="grid gap-6 xl:grid-cols-[minmax(0,1.35fr)_minmax(360px,0.95fr)] xl:items-start"
-			>
-				<div class="space-y-6">
-					<div class="space-y-3 border border-default bg-default/60 p-4">
-						<p class="text-[11px] font-medium uppercase tracking-[0.12em] text-muted">
-							{{ t('groups.activities.management.queue.modal.applicant') }}
-						</p>
-
-						<div class="grid gap-3 text-sm md:grid-cols-2">
-							<div class="flex items-start justify-between gap-4">
-								<span class="text-muted">{{ t('groups.activities.management.queue.modal.account') }}</span>
-								<span class="text-right font-medium text-toned">
-									{{ application.user?.name || t('groups.activities.management.queue.modal.guest_account') }}
-								</span>
-							</div>
-
-							<div class="flex items-start justify-between gap-4">
-								<span class="text-muted">{{ t('groups.activities.management.queue.modal.character') }}</span>
-								<span class="text-right font-medium text-toned">
-									{{ applicantCharacter?.name || t('groups.activities.management.queue.unknown_applicant') }}
-								</span>
-							</div>
-
-							<div class="space-y-2">
-								<div class="flex items-start justify-between gap-4">
-									<span class="text-muted">{{ t('groups.activities.management.queue.modal.submitted') }}</span>
-									<span class="text-right font-medium text-toned">{{ submittedAtLabel }}</span>
-								</div>
-								<div v-if="editedAtLabel" class="flex items-start justify-between gap-4">
-									<span class="text-muted">{{ t('groups.activities.management.queue.modal.edited') }}</span>
-									<span class="text-right font-medium text-toned">{{ editedAtLabel }}</span>
-								</div>
-							</div>
-
-							<div class="flex items-start justify-between gap-4">
-								<span class="text-muted">{{ t('groups.activities.management.queue.modal.world') }}</span>
-								<span class="text-right font-medium text-toned">
-									{{ applicantCharacter?.world || '—' }}
-								</span>
-							</div>
-
-							<div class="flex items-start justify-between gap-4">
-								<span class="text-muted">{{ t('groups.activities.management.queue.modal.datacenter') }}</span>
-								<span class="text-right font-medium text-toned">
-									{{ applicantCharacter?.datacenter || '—' }}
-								</span>
-							</div>
-
-							<div v-if="shouldShowOccultLevel" class="flex items-start justify-between gap-4">
-								<span class="text-muted">{{ t('groups.activities.management.queue.modal.occult_level') }}</span>
-								<span class="text-right font-medium text-toned">
-									{{ application.selected_character?.occult_level }}
-								</span>
-							</div>
-
-							<div v-if="shouldShowPhantomMastery" class="flex items-start justify-between gap-4 md:col-start-1 md:row-start-4">
-								<span class="text-muted">{{ t('groups.activities.management.queue.modal.phantom_mastery') }}</span>
-								<span class="text-right font-medium text-toned">
-									{{ application.selected_character?.phantom_mastery }}
-								</span>
-							</div>
-
-							<div v-if="shouldShowOccultLevel && application.selected_character" class="flex items-center justify-between gap-4 md:col-start-2 md:row-start-4">
-								<span class="text-muted">{{ t('groups.activities.management.queue.modal.character_last_checked') }}</span>
-								<div class="flex items-center justify-end gap-2 text-right">
-									<span class="font-medium text-toned">
-										{{ selectedCharacterLastCheckedLabel }}
-									</span>
-									<UButton
-										size="xs"
-										color="neutral"
-										variant="ghost"
-										icon="i-lucide-refresh-cw"
-										:loading="isRefreshingCharacter"
-										:disabled="!canRefreshSelectedCharacter"
-										:aria-label="t('groups.activities.management.queue.modal.refresh_character')"
-										:title="selectedCharacterRefreshTitle"
-										@click="refreshSelectedCharacter"
-									/>
-								</div>
-							</div>
-						</div>
-					</div>
-
-					<div class="w-full flex flex-col gap-4">
-						<div
-							v-if="classAnswer"
-							class="w-full space-y-4 border border-default bg-default/60 p-4"
-						>
-							<p class="text-[11px] font-medium uppercase tracking-[0.12em] text-muted">
-								{{ localizedText(classAnswer.question_label, classAnswer.question_key) }}
-							</p>
-
-							<div class="flex flex-wrap gap-2">
-								<UBadge
-									v-for="item in classDisplayItems"
-									:key="item.label"
-									:color="roleBadgeColor(item.role || playableRoles[0] || '')"
-									variant="soft"
-									size="lg"
-								>
-									<div class="flex items-center gap-2">
-										<img
-											v-if="item.flat_icon_url || item.icon_url"
-											:src="item.flat_icon_url || item.icon_url || undefined"
-											:alt="item.label"
-											class="h-5 w-5 object-contain"
-										>
-										<span>{{ item.label }}</span>
-									</div>
-								</UBadge>
-							</div>
-						</div>
-
-						<div
-							v-if="phantomAnswer"
-							class="w-full space-y-4 border border-default bg-default/60 p-4"
-						>
-							<p class="text-[11px] font-medium uppercase tracking-[0.12em] text-muted">
-								{{ localizedText(phantomAnswer.question_label, phantomAnswer.question_key) }}
-							</p>
-
-							<div class="flex flex-wrap gap-2">
-								<UBadge
-									v-for="item in phantomDisplayItems"
-									:key="item.label"
-									color="secondary"
-									variant="soft"
-									size="lg"
-								>
-									<div class="flex items-center gap-2">
-										<img
-											v-if="item.transparent_icon_url || item.icon_url"
-											:src="item.transparent_icon_url || item.icon_url || undefined"
-											:alt="item.label"
-											class="h-5 w-5 object-contain"
-										>
-										<span>{{ item.label }}</span>
-									</div>
-								</UBadge>
-							</div>
-						</div>
-
-						<div
-							v-if="positionAnswer"
-							class="w-full space-y-4 border border-default bg-default/60 p-4"
-						>
-							<p class="text-[11px] font-medium uppercase tracking-[0.12em] text-muted">
-								{{ localizedText(positionAnswer.question_label, positionAnswer.question_key) }}
-							</p>
-
-							<div class="flex flex-wrap gap-2">
-								<UBadge
-									v-for="value in positionAnswer.display_values"
-									:key="value"
-									color="warning"
-									variant="outline"
-									:label="answerValueLabel(positionAnswer.source, positionAnswer.question_key, value)"
-								/>
-							</div>
-						</div>
-					</div>
-
-					<div class="space-y-4 border border-default bg-default/60 p-4">
-						<p class="text-[11px] font-medium uppercase tracking-[0.12em] text-muted">
-							{{ t('groups.activities.management.queue.modal.answers') }}
-						</p>
-
-						<div v-if="detailedAnswers.length > 0" class="grid gap-3 md:grid-cols-2 xl:grid-cols-3">
-							<div
-								v-for="answer in detailedAnswers"
-								:key="answer.key"
-								class="space-y-3 border border-default bg-muted/10 p-3"
-							>
-								<p class="break-words [overflow-wrap:anywhere] text-sm font-medium text-toned">
-									{{ answer.label }}
-								</p>
-								<div class="flex flex-wrap gap-2">
-									<UBadge
-										v-for="value in answer.displayValues"
-										:key="`${answer.key}-${value}`"
-										:color="answerBadgeColor(answer.source, value)"
-										variant="soft"
-										class="max-w-full whitespace-normal text-left leading-snug"
-									>
-										<span class="min-w-0 break-words [overflow-wrap:anywhere]">
-											{{ value }}
-										</span>
-									</UBadge>
-								</div>
-							</div>
-						</div>
-
-						<p v-else class="text-sm text-muted">
-							{{ t('groups.activities.management.queue.modal.no_answers') }}
-						</p>
-					</div>
-
-					<div class="space-y-3 border border-default bg-default/60 p-4">
-						<p class="text-[11px] font-medium uppercase tracking-[0.12em] text-muted">
-							{{ t('general.notes') }}
-						</p>
-
-						<p class="break-words [overflow-wrap:anywhere] text-sm whitespace-pre-line text-toned">
-							{{ application.notes || t('groups.activities.management.queue.modal.no_notes') }}
-						</p>
-					</div>
-				</div>
-
-				<div class="space-y-6">
-					<ActivityCharacterFflogsProgress
-						v-if="applicantCharacter?.name && applicantCharacter?.world"
-						:open="isOpen"
-						:group-slug="groupSlug"
-						:activity-id="activityId"
-						:application-id="application.id"
-						:character-id="application.selected_character?.id ?? null"
-						:character-name="applicantCharacter?.name ?? null"
-						:world="applicantCharacter?.world ?? null"
-						:fflogs-zone-id="fflogsZoneId"
-						:should-fetch="canFetchPanelData"
-					/>
-					<div
-						v-else
-						class="space-y-4 border border-default bg-default/60 p-4"
-					>
-						<p class="text-[11px] font-medium uppercase tracking-[0.12em] text-muted">
-							{{ t('groups.activities.management.queue.modal.fflogs_title') }}
-						</p>
-						<p class="text-sm text-muted">
-							{{ t('groups.activities.management.queue.modal.fflogs_unavailable_guest') }}
-						</p>
-					</div>
-
-					<ApplicantUserStats
-						:stats="application.user_stats"
-						:empty-message="userStatsEmptyMessage"
-					/>
-				</div>
-			</div>
-		</template>
-
+    <UModal
+        v-model:open="isOpen"
+        :title="displayName"
+        :description="description || undefined"
+        :ui="{ content: 'sm:max-w-4xl h-[min(40rem,calc(100dvh-2rem))] p-0 overflow-hidden' }"
+        @after:enter="handleAfterEnter"
+        @after:leave="handleAfterLeave"
+    >
+        <template #content>
+            <ApplicantInspectorLayout
+                v-if="application"
+                v-model="section"
+                :key="application.id"
+                :name="displayName"
+                :avatar-url="avatarUrl"
+                :description="[applicantCharacter?.world, applicantCharacter?.datacenter].filter(Boolean).join(' / ')"
+                :notes-count="notesCount"
+                :notes-severity="notesSummary?.highest_severity"
+                class="h-full"
+                @close="isOpen = false"
+            >
+                <template #identity>
+                    <UBadge v-if="application.is_guest" color="warning" variant="soft" size="xs" class="mt-2" :label="t('groups.activities.management.queue.guest_badge')" />
+                </template>
+                <template #metadata>
+                    <dl class="space-y-4">
+                        <div>
+                            <dt class="mb-1 text-muted">{{ t('groups.activities.management.queue.modal.account') }}</dt>
+                            <dd class="[overflow-wrap:anywhere]">{{ application.user?.name || t('groups.activities.management.queue.modal.guest_account') }}</dd>
+                        </div>
+                        <div>
+                            <dt class="mb-1 text-muted">{{ t('groups.activities.management.queue.modal.submitted') }}</dt>
+                            <dd>{{ submittedAtLabel }}</dd>
+                        </div>
+                        <div v-if="editedAtLabel">
+                            <dt class="mb-1 text-muted">{{ t('groups.activities.management.queue.modal.edited') }}</dt>
+                            <dd>{{ editedAtLabel }}</dd>
+                        </div>
+                    </dl>
+                </template>
+                <template #application>
+                    <ApplicantApplicationPanel :application="application" />
+                </template>
+                <template #character>
+                    <dl class="grid grid-cols-2 gap-x-6 gap-y-6 text-sm">
+                        <div v-for="fact in characterFacts" :key="fact.label" class="min-w-0">
+                            <dt class="mb-1.5 text-xs text-muted">{{ fact.label }}</dt>
+                            <dd class="[overflow-wrap:anywhere]">{{ fact.value }}</dd>
+                        </div>
+                    </dl>
+                    <div v-if="application.selected_character" class="mt-6 flex items-center justify-between gap-3 border-t border-default pt-4 text-xs text-muted">
+                        <div>
+                            <p>{{ t('groups.activities.management.queue.modal.character_last_checked') }}</p>
+                            <p class="mt-1 text-toned">{{ selectedCharacterLastCheckedLabel }}</p>
+                        </div>
+                        <UTooltip :text="selectedCharacterRefreshTitle">
+                            <UButton size="sm" color="neutral" variant="ghost" icon="i-lucide-refresh-cw"
+                                :loading="isRefreshingCharacter" :disabled="!canRefreshSelectedCharacter"
+                                :aria-label="t('groups.activities.management.queue.modal.refresh_character')"
+                                @click="refreshSelectedCharacter" />
+                        </UTooltip>
+                    </div>
+                </template>
+                <template #record>
+                    <div class="space-y-6">
+                        <ActivityCharacterFflogsProgress
+                            v-if="applicantCharacter?.name && applicantCharacter?.world"
+                            :open="isOpen" :group-slug="groupSlug" :activity-id="activityId"
+                            :application-id="application.id" :character-id="application.selected_character?.id ?? null"
+                            :character-name="applicantCharacter.name" :world="applicantCharacter.world"
+                            :fflogs-zone-id="fflogsZoneId" :should-fetch="canFetchPanelData && section === 'record'"
+                            embedded
+                        />
+                        <p v-else class="text-sm text-muted">{{ t('groups.activities.management.queue.modal.fflogs_unavailable_guest') }}</p>
+                        <ApplicantUserStats :stats="application.user_stats" :empty-message="userStatsEmptyMessage" embedded />
+                    </div>
+                </template>
+                <template #notes>
+                    <ApplicantNotesPanel :notes="applicantNotes.notes.value" :loading="applicantNotes.isLoading.value"
+                        :error="applicantNotes.hasError.value" :application-note="application.notes"
+                        @retry="applicantNotes.reload" />
+                </template>
 		<template #footer>
-			<div class="flex w-full items-center justify-between gap-3">
-				<p v-if="canDeclineApplication" class="text-sm text-muted">
+			<div class="flex w-full flex-wrap items-center justify-between gap-3">
+				<p v-if="canDeclineApplication" class="max-w-sm text-xs text-muted">
 					{{ t('groups.activities.management.queue.decline_footer_hint') }}
 				</p>
 				<div class="ml-auto flex items-center gap-2">
@@ -706,7 +425,9 @@ watch(isOpen, (open) => {
 				</div>
 			</div>
 		</template>
-	</UModal>
+            </ApplicantInspectorLayout>
+        </template>
+    </UModal>
 
 	<UModal
 		:open="isDeclineModalOpen"

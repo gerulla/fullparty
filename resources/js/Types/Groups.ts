@@ -1,6 +1,6 @@
 import type { LocalizedText } from "@/Types/Common"
 
-export type MemberNoteSeverity = "info" | "warning" | "critical"
+export type MemberNoteSeverity = "commendation" | "info" | "warning" | "critical"
 export type GroupType = "community" | "static"
 export type GroupJoinMode = "open" | "invite_only" | "application"
 export type GroupRole = "owner" | "admin" | "moderator" | "member"
@@ -175,6 +175,8 @@ export type MemberNote = {
 }
 
 export type MemberNotePayload = {
+	severities?: MemberNoteSeverity[]
+	highest_severity?: MemberNoteSeverity | null
 	can_view: boolean
 	can_add: boolean
 	current_group_count: number
@@ -184,6 +186,8 @@ export type MemberNotePayload = {
 }
 
 export type MemberNoteSummary = {
+	severities?: MemberNoteSeverity[]
+	highest_severity?: MemberNoteSeverity | null
 	can_view: boolean
 	current_group_count: number
 	shared_count: number

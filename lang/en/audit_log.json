@@ -197,7 +197,11 @@
           "host_marked": "marked a roster slot as host.",
           "host_cleared": "cleared the host designation from a roster slot.",
           "raid_leader_marked": "marked a roster slot as raid leader.",
-          "raid_leader_cleared": "cleared the raid leader designation from a roster slot."
+          "raid_leader_cleared": "cleared the raid leader designation from a roster slot.",
+          "duelist_marked": "marked a roster slot as duelist.",
+          "duelist_cleared": "cleared the duelist designation from a roster slot.",
+          "trapper_marked": "marked a roster slot as trapper.",
+          "trapper_cleared": "cleared the trapper designation from a roster slot."
         },
         "attendance": {
           "checked_in": "checked in a roster slot.",
@@ -456,7 +460,11 @@
           "host_marked": "Roster slot marked as host",
           "host_cleared": "Roster host designation cleared",
           "raid_leader_marked": "Roster slot marked as raid leader",
-          "raid_leader_cleared": "Roster raid leader designation cleared"
+          "raid_leader_cleared": "Roster raid leader designation cleared",
+          "duelist_marked": "Roster slot marked as duelist",
+          "duelist_cleared": "Roster duelist designation cleared",
+          "trapper_marked": "Roster slot marked as trapper",
+          "trapper_cleared": "Roster trapper designation cleared"
         },
         "attendance": {
           "checked_in": "Roster slot checked in",

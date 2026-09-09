@@ -587,6 +587,7 @@ Route::prefix('{locale?}')
                 Route::get('/activities/{activity}/export-roster', [GroupActivityRosterExportController::class, 'show'])->name('groups.dashboard.activities.export-roster');
                 Route::get('/activities/{activity}/applicant-queue', [GroupActivityApplicantQueueController::class, 'show'])->name('groups.dashboard.activities.applicant-queue');
                 Route::get('/activities/{activity}/applicant-queue/applications/{application}', [GroupActivityApplicantQueueController::class, 'showApplication'])->name('groups.dashboard.activities.applicant-queue.application');
+                Route::get('/activities/{activity}/applicant-queue/applications/{application}/notes', [GroupActivityApplicantQueueController::class, 'showApplicationNotes'])->name('groups.dashboard.activities.applicant-queue.application-notes');
                 Route::post('/activities/{activity}/applicant-queue/applications/{application}/character-refresh', [GroupActivityApplicantQueueController::class, 'refreshApplicationCharacter'])
                     ->middleware('throttle:external.lookup')
                     ->name('groups.dashboard.activities.applicant-queue.application-character-refresh');

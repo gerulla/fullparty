@@ -112,14 +112,8 @@ class GroupActivitySlotSwapController extends Controller
                 'application_review_required_application_id' => $targetSlot->application_review_required_application_id,
                 'application_review_required_at' => $targetSlot->application_review_required_at,
             ];
-            $sourceDesignationState = [
-                'is_host' => (bool) $sourceSlot->is_host,
-                'is_raid_leader' => (bool) $sourceSlot->is_raid_leader,
-            ];
-            $targetDesignationState = [
-                'is_host' => (bool) $targetSlot->is_host,
-                'is_raid_leader' => (bool) $targetSlot->is_raid_leader,
-            ];
+            $sourceDesignationState = $sourceSlot->designationState();
+            $targetDesignationState = $targetSlot->designationState();
 
             $sourceFieldValues = $sourceSlot->fieldValues
                 ->mapWithKeys(fn ($fieldValue) => [$fieldValue->field_key => $fieldValue->value])
@@ -130,22 +124,10 @@ class GroupActivitySlotSwapController extends Controller
 
             $sourceSlot->update($targetAssignment);
             $targetSlot->update($sourceAssignment);
-            $sourceSlot->update([
-                'is_host' => $targetAssignment['assigned_character_id'] !== null && $sourceCanCarryDesignation
-                    ? $targetDesignationState['is_host']
-                    : false,
-                'is_raid_leader' => $targetAssignment['assigned_character_id'] !== null && $sourceCanCarryDesignation
-                    ? $targetDesignationState['is_raid_leader']
-                    : false,
-            ]);
-            $targetSlot->update([
-                'is_host' => $sourceAssignment['assigned_character_id'] !== null && $targetCanCarryDesignation
-                    ? $sourceDesignationState['is_host']
-                    : false,
-                'is_raid_leader' => $sourceAssignment['assigned_character_id'] !== null && $targetCanCarryDesignation
-                    ? $sourceDesignationState['is_raid_leader']
-                    : false,
-            ]);
+            $sourceSlot->update($targetAssignment['assigned_character_id'] !== null && $sourceCanCarryDesignation
+                ? $targetDesignationState : ActivitySlot::emptyDesignationState());
+            $targetSlot->update($sourceAssignment['assigned_character_id'] !== null && $targetCanCarryDesignation
+                ? $sourceDesignationState : ActivitySlot::emptyDesignationState());
 
             $this->syncFieldValues($sourceSlot, $targetFieldValues, $sourceIsBench, $targetIsBench);
             $this->syncFieldValues($targetSlot, $sourceFieldValues, $targetIsBench, $sourceIsBench);

@@ -20,6 +20,9 @@ class ActivitySlotSerializer
      */
     private array $slotSchemaByActivityId = [];
 
+    /** @var array<int, list<string>> */
+    private array $designationsByActivityId = [];
+
     public function __construct(
         private readonly ActivitySlotBench $slotBench,
         private readonly ActivitySlotKind $slotKind,
@@ -48,8 +51,9 @@ class ActivitySlotSerializer
             'sort_order' => $slot->sort_order,
             'is_bench' => $this->slotBench->isBench($slot),
             'is_fill_in' => $this->slotKind->isFillIn($slot),
-            'is_host' => (bool) $slot->is_host,
-            'is_raid_leader' => (bool) $slot->is_raid_leader,
+            ...$slot->designationState(),
+            'available_designations' => $this->designationsByActivityId[$slot->activity_id]
+                ??= ActivitySlot::availableDesignationsForActivityType($slot->activity?->activityType?->slug),
             'assigned_character_id' => $slot->assigned_character_id,
             'application_review_required' => $slot->application_review_required_at !== null,
             'application_review_required_at' => $slot->application_review_required_at?->toIso8601String(),

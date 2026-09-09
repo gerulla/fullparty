@@ -1,5 +1,31 @@
 {
   "title": "Mes runs",
+  "hosting_groups": "Groupes organisateurs",
+  "results": {
+    "today": "Aujourd'hui",
+    "tomorrow": "Demain",
+    "relative_date": "{relative} · {date}",
+    "run_count": "{count} run | {count} runs",
+    "empty_day": "Aucun run correspondant à cette date.",
+    "empty": "Aucun run ne correspond à vos filtres."
+  },
+  "tools": {
+    "previous_week": "Semaine précédente",
+    "next_week": "Semaine suivante",
+    "all_runs": "Tous les runs",
+    "filtered_runs": "Runs filtrés",
+    "run_filters": "Filtres des runs",
+    "close_search": "Fermer la recherche",
+    "search_placeholder": "Rechercher des runs...",
+    "search_label": "Rechercher par groupe, titre ou activité",
+    "clear_search": "Effacer la recherche",
+    "title": "Outils des runs",
+    "applied_only": "Mes candidatures uniquement",
+    "hide_overlapping": "Masquer les chevauchements",
+    "groups": "Groupes ({count})",
+    "open_group": "Ouvrir le tableau de bord de {name}",
+    "results": "Résultats"
+  },
   "subtitle": "Retrouvez les calendriers des groupes sélectionnés au même endroit.",
   "groups_count": "{count} groupes",
   "upcoming_count": "{count} runs à venir",

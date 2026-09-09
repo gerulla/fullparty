@@ -512,6 +512,8 @@ class IntegrationGuildController extends Controller
                 'is_fill_in' => $this->slotKind->isFillIn($slot),
                 'is_host' => (bool) $slot->is_host,
                 'is_raid_leader' => (bool) $slot->is_raid_leader,
+                'is_duelist' => (bool) $slot->is_duelist,
+                'is_trapper' => (bool) $slot->is_trapper,
                 'attendance_status' => $slot->attendance_status ?? null,
             ] : null,
             'application' => $application ? [

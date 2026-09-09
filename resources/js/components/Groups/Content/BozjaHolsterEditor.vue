@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import '@/bootstrap/markdownEditor.js'
 import LocalizedTextFields from '@/components/Admin/ActivityTypes/LocalizedTextFields.vue'
 import type { BozjaHolsterItem, BozjaHolsterSummary, BozjaItemOption } from '@/Types/Bozja'
 import axios from 'axios'

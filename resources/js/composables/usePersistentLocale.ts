@@ -2,10 +2,8 @@ import { usePage } from "@inertiajs/vue3";
 import axios from "axios";
 import { computed, watch } from "vue";
 import { useI18n } from "vue-i18n";
-import { de, en, fr, ja } from "@nuxt/ui/locale";
+import { uiLocales } from "@/i18n/uiLocales";
 import { route } from "ziggy-js";
-
-const uiLocales = { en, de, fr, ja };
 
 export function usePersistentLocale() {
 	const page = usePage();
@@ -66,8 +64,6 @@ export function usePersistentLocale() {
 			return;
 		}
 
-		locale.value = value;
-		syncZiggyLocaleDefault(value);
 		const currentRoute = route();
 		const currentRouteName = currentRoute.current();
 

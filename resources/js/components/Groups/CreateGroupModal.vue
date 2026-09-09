@@ -9,7 +9,7 @@ import {
 	sanitizeSingleLineTextForInput,
 } from '@/utils/textInputSanitizer';
 import { buildGroupTimeZoneOptions } from '@/utils/groupTimeZoneOptions';
-import { de, en, fr, ja } from '@nuxt/ui/locale';
+import { uiLocales } from '@/i18n/uiLocales';
 import { useToast } from '@nuxt/ui/composables';
 import { useForm, usePage } from '@inertiajs/vue3';
 import { computed, onBeforeUnmount, ref, watch } from 'vue';
@@ -31,7 +31,6 @@ type GroupDiscoveryLookups = {
 	max_tags?: number
 }
 
-const uiLocales = { en, de, fr, ja };
 
 const { t, tm } = useI18n();
 const toast = useToast();

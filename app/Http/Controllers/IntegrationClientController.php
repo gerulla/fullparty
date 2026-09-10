@@ -39,6 +39,7 @@ class IntegrationClientController extends Controller
                     IntegrationClient::SCOPE_USERS_READ,
                     IntegrationClient::SCOPE_USERS_WRITE,
                     IntegrationClient::SCOPE_GUILDS_WRITE,
+                    IntegrationClient::SCOPE_RESOURCES_READ,
                 ],
                 'events' => [
                     IntegrationClient::EVENT_DISCORD_USER_APP_INSTALLED,
@@ -174,6 +175,7 @@ class IntegrationClientController extends Controller
                 IntegrationClient::SCOPE_USERS_READ,
                 IntegrationClient::SCOPE_USERS_WRITE,
                 IntegrationClient::SCOPE_GUILDS_WRITE,
+                IntegrationClient::SCOPE_RESOURCES_READ,
             ])],
             'allowed_events' => ['array'],
             'allowed_events.*' => [Rule::in([

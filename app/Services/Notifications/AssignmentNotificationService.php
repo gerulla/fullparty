@@ -800,6 +800,7 @@ class AssignmentNotificationService
             ActivitySlot::DESIGNATION_RAID_LEADER => 'Raid Leader',
             ActivitySlot::DESIGNATION_DUELIST => 'Duelist',
             ActivitySlot::DESIGNATION_TRAPPER => 'Trapper',
+            ActivitySlot::DESIGNATION_DARTER => 'Darter',
             default => 'Designation',
         };
     }

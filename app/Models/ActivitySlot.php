@@ -25,11 +25,14 @@ class ActivitySlot extends Model
 
     public const DESIGNATION_TRAPPER = 'trapper';
 
+    public const DESIGNATION_DARTER = 'darter';
+
     public const DESIGNATION_COLUMN_MAP = [
         self::DESIGNATION_HOST => 'is_host',
         self::DESIGNATION_RAID_LEADER => 'is_raid_leader',
         self::DESIGNATION_DUELIST => 'is_duelist',
         self::DESIGNATION_TRAPPER => 'is_trapper',
+        self::DESIGNATION_DARTER => 'is_darter',
     ];
 
     protected $fillable = [
@@ -51,6 +54,7 @@ class ActivitySlot extends Model
         'is_raid_leader',
         'is_duelist',
         'is_trapper',
+        'is_darter',
     ];
 
     protected $casts = [
@@ -62,6 +66,7 @@ class ActivitySlot extends Model
         'is_raid_leader' => 'boolean',
         'is_duelist' => 'boolean',
         'is_trapper' => 'boolean',
+        'is_darter' => 'boolean',
     ];
 
     public static function designationColumn(string $designation): string
@@ -78,7 +83,7 @@ class ActivitySlot extends Model
             self::DESIGNATION_RAID_LEADER,
             ...match ($slug) {
                 'delubrum-reginae-savage' => [self::DESIGNATION_DUELIST, self::DESIGNATION_TRAPPER],
-                'the-baldesion-arsenal', 'baldesion-arsenal' => [self::DESIGNATION_TRAPPER],
+                'the-baldesion-arsenal', 'baldesion-arsenal' => [self::DESIGNATION_TRAPPER, self::DESIGNATION_DARTER],
                 default => [],
             },
         ];

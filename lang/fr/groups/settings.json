@@ -84,8 +84,8 @@
                 "description": "Permet aux membres d'ajouter les runs du groupe à leur calendrier personnel."
             },
             "resource_hub_enabled": {
-                "label": "Hub de ressources",
-                "description": "Préparez un espace partagé pour les liens, notes et ressources utiles."
+                "label": "Ressources",
+                "description": "Activez la bibliothèque de ressources partagée du groupe."
             }
         },
         "toasts": {

@@ -155,6 +155,22 @@
             "removed": "がアカウントからキャラクターを削除しました。"
         },
         "group": {
+            "resources": {
+                "created": "リソースを作成しました。",
+                "save": "リソースの下書きを保存しました。",
+                "submit": "リソースの変更を提出しました。",
+                "publish": "リソースを公開しました。",
+                "discard": "リソースの変更を破棄しました。",
+                "restore": "リソースの履歴を復元しました。",
+                "archive": "リソースをアーカイブしました。",
+                "unpublish": "リソースを非公開にしました。",
+                "organize": "リソースを移動または並べ替えました。",
+                "settings_updated": "リソースライブラリの設定を更新しました。",
+                "all_deleted": "グループのすべてのリソースを削除しました。",
+                "collection_saved": "リソースコレクションを保存しました。",
+                "collection_deleted": "リソースコレクションを削除しました。",
+                "image_uploaded": "リソースの画像をアップロードしました。"
+            },
             "created": "がグループを作成しました。",
             "updated": "がグループ設定を更新しました。",
             "deleted": "がグループを削除しました。",
@@ -201,7 +217,9 @@
                     "duelist_marked": "メンバーをデュエリストに指定しました。",
                     "duelist_cleared": "デュエリストの指定を解除しました。",
                     "trapper_marked": "メンバーをトラッパーに指定しました。",
-                    "trapper_cleared": "トラッパーの指定を解除しました。"
+                    "trapper_cleared": "トラッパーの指定を解除しました。",
+                    "darter_marked": "メンバーをダーターに指定しました。",
+                    "darter_cleared": "ダーターの指定を解除しました。"
                 },
                 "attendance": {
                     "checked_in": "がロスター枠をチェックインしました。",
@@ -422,6 +440,22 @@
             "made_primary": "キャラクターをメインに設定"
         },
         "group": {
+            "resources": {
+                "created": "リソースを作成しました。",
+                "save": "リソースの下書きを保存しました。",
+                "submit": "リソースの変更を提出しました。",
+                "publish": "リソースを公開しました。",
+                "discard": "リソースの変更を破棄しました。",
+                "restore": "リソースの履歴を復元しました。",
+                "archive": "リソースをアーカイブしました。",
+                "unpublish": "リソースを非公開にしました。",
+                "organize": "リソースを移動または並べ替えました。",
+                "settings_updated": "リソースライブラリの設定を更新しました。",
+                "all_deleted": "グループのすべてのリソースを削除しました。",
+                "collection_saved": "リソースコレクションを保存しました。",
+                "collection_deleted": "リソースコレクションを削除しました。",
+                "image_uploaded": "リソースの画像をアップロードしました。"
+            },
             "created": "グループ作成",
             "updated": "グループ設定を更新",
             "deleted": "グループ削除",
@@ -464,7 +498,9 @@
                     "duelist_marked": "デュエリストを指定",
                     "duelist_cleared": "デュエリストの指定を解除",
                     "trapper_marked": "トラッパーを指定",
-                    "trapper_cleared": "トラッパーの指定を解除"
+                    "trapper_cleared": "トラッパーの指定を解除",
+                    "darter_marked": "ダーターを指定",
+                    "darter_cleared": "ダーターの指定を解除"
                 },
                 "attendance": {
                     "checked_in": "ロスター枠チェックイン",

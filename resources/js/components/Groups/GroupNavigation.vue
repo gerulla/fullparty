@@ -25,6 +25,7 @@ const props = defineProps<{
 			availability_minimum_role?: 'member' | 'moderator'
 			statistics_enabled?: boolean
 			leaderboard_enabled?: boolean
+			resource_hub_enabled?: boolean
 		}
 	}
 }>()
@@ -55,6 +56,10 @@ const legacyLeaderboardHref = computed(() => route('groups.dashboard.legacy-lead
 const legacyLeaderboardPath = computed(() => routePath('groups.dashboard.legacy-leaderboard'))
 const membersHref = computed(() => route('groups.dashboard.members', props.group.slug))
 const membersPath = computed(() => routePath('groups.dashboard.members'))
+const resourcesHref = computed(() => route('groups.dashboard.resources.index', props.group.slug))
+const resourcesPath = computed(() => routePath('groups.dashboard.resources.index'))
+const manageResourcesHref = computed(() => route('groups.dashboard.resources.manage', props.group.slug))
+const manageResourcesPath = computed(() => routePath('groups.dashboard.resources.manage'))
 const availabilityHref = computed(() => route('groups.dashboard.availability', props.group.slug))
 const availabilityPath = computed(() => routePath('groups.dashboard.availability'))
 const delubrumReginaeSavageHref = computed(() => route('groups.dashboard.content.delubrum-reginae-savage', props.group.slug))
@@ -81,6 +86,7 @@ const isGroupMember = computed(() => Boolean(
 ))
 const showsStatistics = computed(() => props.group.features?.statistics_enabled ?? true)
 const showsLeaderboard = computed(() => props.group.features?.leaderboard_enabled ?? true)
+const showsResources = computed(() => isGroupMember.value && Boolean(props.group.features?.resource_hub_enabled))
 const canUseAvailability = computed(() => (
 	props.group.features?.availability_minimum_role !== 'moderator'
 	|| ['owner', 'admin', 'moderator'].includes(props.group.current_user_role ?? '')
@@ -176,6 +182,12 @@ const desktopConfigurationMenuItems = computed<NavigationMenuItem[]>(() => [
 ])
 
 const desktopContentMenuItems = computed<NavigationMenuItem[]>(() => [
+	...(showsResources.value ? [desktopLinkItem({
+		label: t('groups.index.navigation.manage_resources'),
+		icon: 'i-lucide-folder-open',
+		to: manageResourcesHref.value,
+		active: isRouteActive(manageResourcesPath.value),
+	})] : []),
 	desktopLinkItem({
 		label: t('groups.index.navigation.delubrum_reginae_savage'),
 		icon: 'i-lucide-castle',
@@ -214,6 +226,12 @@ const desktopLeftItems = computed<NavigationMenuItem[]>(() => [
 		icon: 'i-lucide-users',
 		to: membersHref.value,
 		active: isRouteActive(membersPath.value),
+	})] : []),
+	...(showsResources.value ? [desktopLinkItem({
+		label: t('groups.index.navigation.resources'),
+		icon: 'i-lucide-book-open-text',
+		to: resourcesHref.value,
+		active: isRouteActive(resourcesPath.value),
 	})] : []),
 	...(showsAvailability.value ? [desktopLinkItem({
 		label: t('groups.index.navigation.availability'),
@@ -263,6 +281,12 @@ const desktopNavigationUi = {
 const settingsActive = computed(() => isRouteActive(settingsPath.value))
 
 const infoMenuItems = computed(() => [
+	...(showsResources.value ? [{
+		label: t('groups.index.navigation.resources'),
+		icon: 'i-lucide-book-open-text',
+		href: resourcesHref.value,
+		active: isRouteActive(resourcesPath.value),
+	}] : []),
 	...(showsAvailability.value ? [{
 		label: t('groups.index.navigation.availability'),
 		icon: 'i-lucide-calendar-clock',
@@ -320,6 +344,12 @@ const moderationMenuItems = computed(() => [
 		href: membersHref.value,
 		active: isRouteActive(membersPath.value),
 	}] : []),
+	...(showsResources.value && props.group.permissions?.can_manage_members ? [{
+		label: t('groups.index.navigation.manage_resources'),
+		icon: 'i-lucide-folder-open',
+		href: manageResourcesHref.value,
+		active: isRouteActive(manageResourcesPath.value),
+	}] : []),
 	...(canUpdateGroupSettings.value ? [{
 		label: t('groups.index.navigation.shortcuts'),
 		icon: 'i-lucide-mouse-pointer-click',
@@ -361,12 +391,13 @@ const memberMobileItems = computed(() => [
 		href: dashboardHref.value,
 		active: page.url === dashboardPath.value,
 	},
-	...(showsAvailability.value || showsLegacyLeaderboard.value ? [{
+	...(showsAvailability.value || showsLegacyLeaderboard.value || showsResources.value ? [{
 		label: t('groups.index.navigation.info'),
 		icon: 'i-lucide-info',
 		href: null,
 		menu: "info" as const,
 		active: activeMobileMenu.value === "info"
+			|| (showsResources.value && isRouteActive(resourcesPath.value))
 			|| (showsAvailability.value && isRouteActive(availabilityPath.value))
 			|| (showsStatistics.value && isRouteActive(statisticsPath.value))
 			|| (showsLeaderboard.value && isRouteActive(leaderboardPath.value))
@@ -431,6 +462,7 @@ const managerMobileItems = computed(() => [
 		href: null,
 		menu: "info" as const,
 		active: activeMobileMenu.value === "info"
+			|| (showsResources.value && isRouteActive(resourcesPath.value))
 			|| (showsAvailability.value && isRouteActive(availabilityPath.value))
 			|| (showsStatistics.value && isRouteActive(statisticsPath.value))
 			|| (showsLeaderboard.value && isRouteActive(leaderboardPath.value))
@@ -454,6 +486,7 @@ const managerMobileItems = computed(() => [
 			|| isRouteActive(membershipApplicationFormPath.value)
 			|| isRouteActive(membershipApplicationsPath.value)
 			|| isRouteActive(membersPath.value)
+			|| (showsResources.value && isRouteActive(manageResourcesPath.value))
 			|| isRouteActive(discordIntegrationPath.value)
 			|| isRouteActive(shortcutsPath.value),
 	},
@@ -475,7 +508,7 @@ const mobileItems = computed(() => {
 </script>
 
 <template>
-	<UDashboardToolbar class="relative z-40 hidden !overflow-visible !overflow-x-visible !overflow-y-visible lg:flex">
+	<UDashboardToolbar class="relative z-40 hidden flex-wrap gap-y-0.5 py-1 !overflow-visible !overflow-x-visible !overflow-y-visible lg:flex">
 		<UNavigationMenu
 			:items="desktopLeftItems"
 			variant="link"
@@ -484,7 +517,7 @@ const mobileItems = computed(() => {
 			content-orientation="vertical"
 			highlight
 			:ui="desktopNavigationUi"
-			class="relative z-50"
+			class="relative z-50 shrink-0"
 		/>
 		<UNavigationMenu
 			v-if="desktopRightItems.length > 0"
@@ -495,7 +528,7 @@ const mobileItems = computed(() => {
 			content-orientation="vertical"
 			highlight
 			:ui="desktopNavigationUi"
-			class="relative z-50 ml-auto"
+			class="relative z-50 ml-auto shrink-0"
 		/>
 	</UDashboardToolbar>
 

@@ -84,8 +84,8 @@
                 "description": "Allow members to add group runs to their personal calendars."
             },
             "resource_hub_enabled": {
-                "label": "Resource Hub",
-                "description": "Prepare a shared space for useful links, notes, and resources."
+                "label": "Resources",
+                "description": "Enable the group's shared resource library."
             }
         },
         "toasts": {

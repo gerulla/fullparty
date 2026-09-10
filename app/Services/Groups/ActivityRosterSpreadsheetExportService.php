@@ -197,6 +197,7 @@ class ActivityRosterSpreadsheetExportService
                 $slot->is_raid_leader ? 'Raid Leader' : null,
                 $slot->is_duelist ? 'Duelist' : null,
                 $slot->is_trapper ? 'Trapper' : null,
+                $slot->is_darter ? 'Darter' : null,
             ])->filter()->implode(' • ');
 
             if ($designationText !== '') {

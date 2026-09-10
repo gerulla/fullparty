@@ -5,6 +5,7 @@ use App\Http\Middleware\AuthenticateIntegrationClient;
 use App\Http\Middleware\EnsureGroupDashboardAccess;
 use App\Http\Middleware\EnsureWebsiteAdminAccess;
 use App\Http\Middleware\HandleInertiaRequests;
+use App\Http\Middleware\RestrictResourceHost;
 use App\Http\Middleware\SecurityHeaders;
 use App\Http\Middleware\SerializeActivityRosterMutation;
 use Illuminate\Auth\AuthenticationException;
@@ -40,6 +41,7 @@ return Application::configure(basePath: dirname(__DIR__))
         ]);
 
         $middleware->web(append: [
+            RestrictResourceHost::class,
             ApplyLocale::class,
             HandleInertiaRequests::class,
             SecurityHeaders::class,

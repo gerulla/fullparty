@@ -100,6 +100,7 @@ class XivPluginRunResource extends JsonResource
             'is_raid_leader' => $slot->is_raid_leader,
             'is_duelist' => $slot->is_duelist,
             'is_trapper' => $slot->is_trapper,
+            'is_darter' => $slot->is_darter,
             'assigned_character' => $this->character($slot->assignedCharacter),
             'field_values' => $slot->fieldValues
                 ->map(fn (ActivitySlotFieldValue $fieldValue): array => $this->fieldValue($fieldValue, $phantomJobsById))

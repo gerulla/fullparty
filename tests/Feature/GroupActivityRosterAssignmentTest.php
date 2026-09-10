@@ -322,6 +322,7 @@ it('preserves application roster designations when editing and moving the same c
     'raid leader' => ['is_raid_leader'],
     'duelist' => ['is_duelist'],
     'trapper' => ['is_trapper'],
+    'darter' => ['is_darter'],
 ]);
 
 it('clears application review warnings when a moderator rechecks an assigned application', function () {

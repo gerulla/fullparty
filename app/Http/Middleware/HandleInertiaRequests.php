@@ -65,6 +65,10 @@ class HandleInertiaRequests extends Middleware
      */
     public function share(Request $request): array
     {
+        if ($request->routeIs('public-resources.*')) {
+            return [];
+        }
+
         if ($request->routeIs('planner.*')) {
             return array_merge(parent::share($request), [
                 'auth' => [

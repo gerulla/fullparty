@@ -2,6 +2,7 @@
 import { computed, ref, watch } from "vue";
 import { useI18n } from "vue-i18n";
 import type { ConfirmationModalInput, ConfirmationModalSeverity } from "@/Types/Shared";
+import { isConfirmationInputValid } from "@/utils/confirmationInput";
 
 const props = withDefaults(defineProps<{
 	open?: boolean
@@ -46,6 +47,7 @@ const confirmColor = computed(() => ({
 }[props.severity]));
 
 const showInput = computed(() => Boolean(props.input));
+const confirmDisabled = computed(() => props.confirmLoading || !isConfirmationInputValid(inputValue.value, props.input));
 
 watch(() => props.open, (open) => {
 	if (open) {
@@ -54,6 +56,7 @@ watch(() => props.open, (open) => {
 });
 
 const handleOpenChange = (open: boolean) => {
+	if (!open && props.confirmLoading) return;
 	emit('update:open', open);
 
 	if (!open) {
@@ -62,6 +65,7 @@ const handleOpenChange = (open: boolean) => {
 };
 
 const handleConfirm = async () => {
+	if (confirmDisabled.value) return;
 	if (!props.onConfirm) {
 		emit('close', true);
 		return;
@@ -85,6 +89,7 @@ const handleConfirm = async () => {
 		:title="title"
 		:description="description"
 		:dismissible="!confirmLoading"
+		:close="!confirmLoading"
 		:ui="{ content: 'rounded-sm', header: 'border-0' }"
 		@update:open="handleOpenChange"
 		@after:leave="emit('after:leave')"
@@ -104,12 +109,24 @@ const handleConfirm = async () => {
 					:help="input?.help"
 					:error="input?.error"
 				>
+					<UInput
+						v-if="input?.type === 'text'"
+						v-model="inputValue"
+						class="w-full"
+						:placeholder="input?.placeholder"
+						:maxlength="input?.maxlength"
+						:disabled="confirmLoading"
+						autocomplete="off"
+						@keydown.enter.prevent="handleConfirm"
+					/>
 					<UTextarea
+						v-else
 						v-model="inputValue"
 						class="w-full"
 						:rows="input?.rows ?? 4"
 						:placeholder="input?.placeholder"
 						:maxlength="input?.maxlength"
+						:disabled="confirmLoading"
 					/>
 				</UFormField>
 
@@ -126,6 +143,7 @@ const handleConfirm = async () => {
 						:icon="confirmIcon"
 						:label="confirmLabel"
 						:loading="confirmLoading"
+						:disabled="confirmDisabled"
 						@click="handleConfirm"
 					/>
 				</div>

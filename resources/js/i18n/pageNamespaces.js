@@ -37,6 +37,8 @@ const features = {
     'Dashboard/Groups/MembershipApplications/Index': ['groups/access', 'groups/membership_applications'],
     'Dashboard/Groups/MembershipRequests/Index': ['groups/membership_applications'],
     'Dashboard/Groups/Runs/Index': [],
+    'Dashboard/Groups/Resources/Index': ['groups/resources'],
+    'Dashboard/Groups/Resources/Manage': ['groups/resources'],
     'Dashboard/Groups/Settings/Discovery': ['groups/access', 'groups/common', 'groups/settings'],
     'Dashboard/Groups/Settings/Index': ['groups/access', 'groups/common', 'groups/settings'],
     'Dashboard/Groups/Settings/Shortcuts': ['groups/shortcuts'],

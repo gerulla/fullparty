@@ -84,8 +84,8 @@
                 "description": "メンバーがグループの開催予定を個人のカレンダーに追加できるようにします。"
             },
             "resource_hub_enabled": {
-                "label": "リソースハブ",
-                "description": "便利なリンク、メモ、資料を共有する場所に備えます。"
+                "label": "リソース",
+                "description": "グループ共有のリソースライブラリを有効にします。"
             }
         },
         "toasts": {

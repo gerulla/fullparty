@@ -99,6 +99,21 @@ class Group extends Model
         return $this->belongsTo(User::class, 'owner_id');
     }
 
+    public function resourceLibrary(): HasOne
+    {
+        return $this->hasOne(GroupResourceLibrary::class);
+    }
+
+    public function resources(): HasMany
+    {
+        return $this->hasMany(GroupResource::class);
+    }
+
+    public function resourceCollections(): HasMany
+    {
+        return $this->hasMany(GroupResourceCollection::class);
+    }
+
     public function memberships(): HasMany
     {
         return $this->hasMany(GroupMembership::class);

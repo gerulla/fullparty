@@ -155,6 +155,22 @@
             "removed": "hat einen Charakter aus dem Konto entfernt."
         },
         "group": {
+            "resources": {
+                "created": "hat eine Ressource erstellt.",
+                "save": "hat einen Ressourcenentwurf gespeichert.",
+                "submit": "hat Ressourcenänderungen eingereicht.",
+                "publish": "hat eine Ressource veröffentlicht.",
+                "discard": "hat Ressourcenänderungen verworfen.",
+                "restore": "hat eine Ressourcenversion wiederhergestellt.",
+                "archive": "hat eine Ressource archiviert.",
+                "unpublish": "hat eine Ressource zurückgezogen.",
+                "organize": "hat eine Ressource verschoben oder neu geordnet.",
+                "settings_updated": "hat die Ressourcenbibliothek aktualisiert.",
+                "all_deleted": "hat alle Ressourcen der Gruppe gelöscht.",
+                "collection_saved": "hat eine Ressourcensammlung gespeichert.",
+                "collection_deleted": "hat eine Ressourcensammlung gelöscht.",
+                "image_uploaded": "hat ein Ressourcenbild hochgeladen."
+            },
             "created": "hat die Gruppe erstellt.",
             "updated": "hat die Gruppeneinstellungen aktualisiert.",
             "deleted": "hat die Gruppe gelöscht.",
@@ -201,7 +217,9 @@
                     "duelist_marked": "markierte einen Kaderplatz als Duellant.",
                     "duelist_cleared": "entfernte die Duellant-Markierung von einem Kaderplatz.",
                     "trapper_marked": "markierte einen Kaderplatz als Fallensteller.",
-                    "trapper_cleared": "entfernte die Fallensteller-Markierung von einem Kaderplatz."
+                    "trapper_cleared": "entfernte die Fallensteller-Markierung von einem Kaderplatz.",
+                    "darter_marked": "markierte einen Kaderplatz als Darter.",
+                    "darter_cleared": "entfernte die Darter-Markierung von einem Kaderplatz."
                 },
                 "attendance": {
                     "checked_in": "hat einen Roster-Slot eingecheckt.",
@@ -422,6 +440,22 @@
             "made_primary": "Charakter als primär festgelegt"
         },
         "group": {
+            "resources": {
+                "created": "hat eine Ressource erstellt.",
+                "save": "hat einen Ressourcenentwurf gespeichert.",
+                "submit": "hat Ressourcenänderungen eingereicht.",
+                "publish": "hat eine Ressource veröffentlicht.",
+                "discard": "hat Ressourcenänderungen verworfen.",
+                "restore": "hat eine Ressourcenversion wiederhergestellt.",
+                "archive": "hat eine Ressource archiviert.",
+                "unpublish": "hat eine Ressource zurückgezogen.",
+                "organize": "hat eine Ressource verschoben oder neu geordnet.",
+                "settings_updated": "hat die Ressourcenbibliothek aktualisiert.",
+                "all_deleted": "hat alle Ressourcen der Gruppe gelöscht.",
+                "collection_saved": "hat eine Ressourcensammlung gespeichert.",
+                "collection_deleted": "hat eine Ressourcensammlung gelöscht.",
+                "image_uploaded": "hat ein Ressourcenbild hochgeladen."
+            },
             "created": "Gruppe erstellt",
             "updated": "Gruppeneinstellungen aktualisiert",
             "deleted": "Gruppe gelöscht",
@@ -464,7 +498,9 @@
                     "duelist_marked": "Kaderplatz als Duellant markiert",
                     "duelist_cleared": "Duellant-Markierung entfernt",
                     "trapper_marked": "Kaderplatz als Fallensteller markiert",
-                    "trapper_cleared": "Fallensteller-Markierung entfernt"
+                    "trapper_cleared": "Fallensteller-Markierung entfernt",
+                    "darter_marked": "Kaderplatz als Darter markiert",
+                    "darter_cleared": "Darter-Markierung entfernt"
                 },
                 "attendance": {
                     "checked_in": "Roster-Slot eingecheckt",

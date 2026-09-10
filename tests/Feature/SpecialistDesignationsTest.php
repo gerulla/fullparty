@@ -63,71 +63,95 @@ it('restricts specialist designations by activity type on both the endpoint and 
     ['delubrum-reginae-savage', 'trapper', true],
     ['the-baldesion-arsenal', 'trapper', true],
     ['baldesion-arsenal', 'trapper', true],
+    ['the-baldesion-arsenal', 'darter', true],
+    ['baldesion-arsenal', 'darter', true],
+    ['delubrum-reginae-savage', 'darter', false],
+    ['other-activity', 'darter', false],
     ['the-baldesion-arsenal', 'duelist', false],
     ['delubrum-reginae', 'duelist', false],
     ['other-activity', 'trapper', false],
     ['other-activity', 'duelist', false],
 ]);
 
-it('toggles specialist marks with audit notifications and realtime updates', function ($designation) {
+it('toggles specialist marks with audit notifications and realtime updates', function ($slug, $designation) {
+    $this->type->update(['slug' => $slug]);
     ($this->toggle)($designation)->assertOk();
     expect(AuditLog::where('action', 'group.activity.roster.'.$designation.'_marked')->count())->toBe(1)
         ->and(NotificationEvent::where('type', 'assignments.designation_assigned')->count())->toBe(1);
+    expect(NotificationEvent::where('type', 'assignments.designation_assigned')->first()->payload['designation_key'])->toBe($designation)
+        ->and(NotificationEvent::where('type', 'assignments.designation_assigned')->first()->payload['designation_label'])->toBe(ucfirst($designation));
     Event::assertDispatched(ActivityManagementUpdated::class, fn ($event) => ($event->patch['updated_slots'][0]['is_'.$designation] ?? false) === true);
     ($this->toggle)($designation)->assertOk()->assertJsonPath('slot.is_'.$designation, false);
     expect(AuditLog::where('action', 'group.activity.roster.'.$designation.'_cleared')->count())->toBe(1)
         ->and(NotificationEvent::where('type', 'assignments.designation_removed')->count())->toBe(1);
-})->with(['duelist', 'trapper']);
+})->with([
+    ['delubrum-reginae-savage', 'duelist'],
+    ['delubrum-reginae-savage', 'trapper'],
+    ['the-baldesion-arsenal', 'darter'],
+]);
 
-it('keeps specialist marks independent of leadership marks', function () {
+it('keeps specialist marks independent of leadership marks', function ($slug, $specialist) {
+    $this->type->update(['slug' => $slug]);
     $this->slot->update(['is_host' => true]);
-    ($this->toggle)('duelist')->assertOk()->assertJsonPath('slot.is_host', true);
-    ($this->toggle)('trapper')->assertOk()->assertJsonPath('slot.is_duelist', true);
+    ($this->toggle)($specialist)->assertOk()->assertJsonPath('slot.is_host', true);
+    ($this->toggle)('trapper')->assertOk()->assertJsonPath('slot.is_'.$specialist, true);
     ($this->toggle)('raid_leader')->assertOk()
-        ->assertJsonPath('slot.is_host', false)->assertJsonPath('slot.is_duelist', true)->assertJsonPath('slot.is_trapper', true);
-});
+        ->assertJsonPath('slot.is_host', false)->assertJsonPath('slot.is_'.$specialist, true)->assertJsonPath('slot.is_trapper', true);
+})->with([['delubrum-reginae-savage', 'duelist'], ['the-baldesion-arsenal', 'darter']]);
 
 it('does not allow specialist marks on empty bench or fill-in slots', function ($kind, $occupied) {
     $this->slot->update(['slot_kind' => $kind, 'assigned_character_id' => $occupied ? $this->character->id : null]);
     ($this->toggle)('trapper')->assertUnprocessable()->assertJsonValidationErrors('slot');
 })->with([['roster', false], ['bench', true], ['fill_in', true]]);
 
-it('rejects unauthorized and archived requests', function () {
+it('does not allow darter marks on empty bench or fill-in slots', function ($kind, $occupied) {
+    $this->type->update(['slug' => 'the-baldesion-arsenal']);
+    $this->slot->update(['slot_kind' => $kind, 'assigned_character_id' => $occupied ? $this->character->id : null]);
+    ($this->toggle)('darter')->assertUnprocessable()->assertJsonValidationErrors('slot');
+})->with([['roster', false], ['bench', true], ['fill_in', true]]);
+
+it('rejects unauthorized and archived requests', function ($slug, $specialist) {
+    $this->type->update(['slug' => $slug]);
     $outsider = User::factory()->create();
     Character::factory()->primary()->create(['user_id' => $outsider->id]);
     $this->actingAs($outsider)->postJson($this->url, [
-        'designation' => 'duelist', 'expected_slot_state_token' => activity_slot_state_token($this->slot->fresh()),
+        'designation' => $specialist, 'expected_slot_state_token' => activity_slot_state_token($this->slot->fresh()),
     ])->assertNotFound();
     $this->activity->update(['status' => Activity::STATUS_COMPLETE]);
-    ($this->toggle)('duelist')->assertForbidden();
-});
+    ($this->toggle)($specialist)->assertForbidden();
+})->with([['delubrum-reginae-savage', 'duelist'], ['the-baldesion-arsenal', 'darter']]);
 
-it('rejects stale slot tokens after a specialist designation changes', function () {
+it('rejects stale slot tokens after a specialist designation changes', function ($slug, $specialist) {
+    $this->type->update(['slug' => $slug]);
     $token = activity_slot_state_token($this->slot->fresh());
-    ($this->toggle)('duelist', $token)->assertOk();
+    ($this->toggle)($specialist, $token)->assertOk();
     ($this->toggle)('trapper', $token)->assertConflict();
-});
+})->with([['delubrum-reginae-savage', 'duelist'], ['the-baldesion-arsenal', 'darter']]);
 
-it('clears specialist marks on invalid slots and when replacing an assignee', function () {
-    $this->slot->update(['is_duelist' => true, 'is_trapper' => true]);
+it('clears specialist marks on invalid slots and when replacing an assignee', function ($slug, $specialist) {
+    $this->type->update(['slug' => $slug]);
+    $column = 'is_'.$specialist;
+    $this->slot->update([$column => true, 'is_trapper' => true]);
     $application = ActivityApplication::factory()->create(['activity_id' => $this->activity->id]);
     app(ActivitySlotAssignmentService::class)->assignFromApplication(
         $this->slot->fresh(), $application, [], [], $this->owner->id,
     );
-    expect($this->slot->fresh()->is_duelist)->toBeFalse()->and($this->slot->fresh()->is_trapper)->toBeFalse();
-    $this->slot->update(['is_duelist' => true, 'is_trapper' => true, 'assigned_character_id' => null]);
+    expect($this->slot->fresh()->{$column})->toBeFalse()->and($this->slot->fresh()->is_trapper)->toBeFalse();
+    $this->slot->update([$column => true, 'is_trapper' => true, 'assigned_character_id' => null]);
     app(ActivitySlotDesignationService::class)->clearInvalidDesignations([$this->slot->fresh()], $this->owner);
-    expect($this->slot->fresh()->is_duelist)->toBeFalse()->and($this->slot->fresh()->is_trapper)->toBeFalse();
-});
+    expect($this->slot->fresh()->{$column})->toBeFalse()->and($this->slot->fresh()->is_trapper)->toBeFalse();
+})->with([['delubrum-reginae-savage', 'duelist'], ['the-baldesion-arsenal', 'darter']]);
 
-it('moves specialist marks with a swapped assignee', function () {
+it('moves specialist marks with a swapped assignee', function ($slug, $specialist) {
+    $this->type->update(['slug' => $slug]);
+    $column = 'is_'.$specialist;
     $target = $this->activity->slots()->whereKeyNot($this->slot->id)->firstOrFail();
-    $this->slot->update(['is_duelist' => true, 'is_trapper' => true]);
+    $this->slot->update([$column => true, 'is_trapper' => true]);
     $this->actingAs($this->owner)->postJson(route('groups.dashboard.activities.slot-swaps.store', [$this->group, $this->activity]), [
         'source_slot_id' => $this->slot->id, 'target_slot_id' => $target->id,
         'expected_source_slot_state_token' => activity_slot_state_token($this->slot->fresh()),
         'expected_target_slot_state_token' => activity_slot_state_token($target->fresh()),
     ])->assertOk();
-    expect($this->slot->fresh()->is_duelist)->toBeFalse()->and($this->slot->fresh()->is_trapper)->toBeFalse()
-        ->and($target->fresh()->is_duelist)->toBeTrue()->and($target->fresh()->is_trapper)->toBeTrue();
-});
+    expect($this->slot->fresh()->{$column})->toBeFalse()->and($this->slot->fresh()->is_trapper)->toBeFalse()
+        ->and($target->fresh()->{$column})->toBeTrue()->and($target->fresh()->is_trapper)->toBeTrue();
+})->with([['delubrum-reginae-savage', 'duelist'], ['the-baldesion-arsenal', 'darter']]);

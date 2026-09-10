@@ -52,6 +52,7 @@ use App\Http\Controllers\GroupAuditLogController;
 use App\Http\Controllers\GroupAvailabilityController;
 use App\Http\Controllers\GroupBozjaHolsterController;
 use App\Http\Controllers\GroupContentController;
+use App\Http\Controllers\GroupResourceController;
 use App\Http\Controllers\GroupController;
 use App\Http\Controllers\GroupDashboardController;
 use App\Http\Controllers\GroupDiscordIntegrationController;
@@ -108,6 +109,8 @@ use Inertia\Inertia;
 Route::pattern('locale', implode('|', ApplyLocale::SUPPORTED_LOCALES));
 
 $appHost = parse_url((string) config('app.url'), PHP_URL_HOST) ?: 'fullparty.test';
+
+require __DIR__.'/resources.php';
 
 Route::domain('plan.'.$appHost)
     ->name('planner.')
@@ -513,6 +516,12 @@ Route::prefix('{locale?}')
             Route::prefix('groups/{group:slug}/dashboard')->middleware('group.dashboard.access')->group(function () {
                 // Group dashboard landing and non-activity sections.
                 Route::get('/members', [GroupMemberController::class, 'index'])->name('groups.dashboard.members');
+                Route::get('/resources', [GroupResourceController::class, 'index'])->name('groups.dashboard.resources.index');
+                Route::get('/content/resources', [GroupResourceController::class, 'manage'])->name('groups.dashboard.resources.manage');
+                Route::get('/resources/collections/{collectionSlug}', [GroupResourceController::class, 'collection'])->name('groups.dashboard.resources.collections.show');
+                Route::get('/resources/{slug}', [GroupResourceController::class, 'show'])->name('groups.dashboard.resources.show');
+                Route::get('/content/resources/{resource}/edit', [GroupResourceController::class, 'edit'])->name('groups.dashboard.resources.edit');
+                require __DIR__.'/resource-management.php';
                 Route::get('/content/delubrum-reginae-savage', [GroupContentController::class, 'delubrumReginaeSavage'])->name('groups.dashboard.content.delubrum-reginae-savage');
                 Route::post('/content/delubrum-reginae-savage/holsters', [GroupBozjaHolsterController::class, 'store'])->middleware('throttle:group.content.write')->name('groups.dashboard.content.delubrum-reginae-savage.holsters.store');
                 Route::post('/content/delubrum-reginae-savage/holsters/{bozjaHolster}/clone', [GroupBozjaHolsterController::class, 'duplicate'])->middleware('throttle:group.content.write')->name('groups.dashboard.content.delubrum-reginae-savage.holsters.clone');

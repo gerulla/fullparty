@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\IntegrationGuildController;
+use App\Http\Controllers\Api\IntegrationResourceController;
 use App\Http\Controllers\Api\IntegrationRunController;
 use App\Http\Controllers\Api\IntegrationUserController;
 use App\Models\IntegrationClient;
@@ -8,6 +9,14 @@ use Illuminate\Support\Facades\Route;
 
 Route::prefix('integrations')
     ->group(function () {
+        Route::middleware(['integration.client:'.IntegrationClient::SCOPE_RESOURCES_READ, 'throttle:integration.api'])
+            ->group(function () {
+                Route::post('/resources/list', [IntegrationResourceController::class, 'index'])->name('api.integrations.resource-commands.index');
+                Route::post('/resources/{commandName}', [IntegrationResourceController::class, 'show'])->where('commandName', '[A-Za-z0-9-]{1,64}')->name('api.integrations.resource-commands.show');
+                Route::get('/discord-guilds/{discordGuildId}/resource-commands/{commandName}/assets/{image:uuid}', [IntegrationResourceController::class, 'image'])
+                    ->whereNumber('discordGuildId')->where('commandName', '[A-Za-z0-9-]{1,64}')->name('api.integrations.resource-commands.images.show');
+            });
+
         Route::middleware(['integration.client:'.IntegrationClient::SCOPE_USERS_READ, 'throttle:integration.api'])
             ->post('/discord-users/primary-characters', [IntegrationUserController::class, 'primaryCharacters'])
             ->name('api.integrations.discord-users.primary-characters.index');

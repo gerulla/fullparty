@@ -1,8 +1,9 @@
 <script setup lang="ts">
+import { workspaceHasUnpublishedChanges } from '@/utils/resourceWorkspace'
 import { computed } from 'vue'
 import { useI18n } from 'vue-i18n'
 import type { ResourceWorkspaceController } from '@/Types/ResourceWorkspace'
-import ResourceDiscordEditor from './ResourceDiscordEditor.vue'
+import ResourceEmbedList from './ResourceEmbedList.vue'
 import ResourceEmbedPreview from './ResourceEmbedPreview.vue'
 import ResourceImagePicker from './ResourceImagePicker.vue'
 
@@ -11,54 +12,89 @@ const { t, locale } = useI18n()
 const l = (key: string) => t(`groups.resources.workspace.${key}`)
 const resource = computed(() => props.workspace.selected)
 const draft = computed(() => props.workspace.state.draft)
+const activeTab = computed({
+    get: () => props.workspace.state.inspectorTab,
+    set: value => { props.workspace.state.inspectorTab = value; if (value === 'resource') props.workspace.showResourceEditor() },
+})
+const authors = computed(() => {
+    const options = props.workspace.authors.map(item => ({ value: item.id ? `character:${item.id}` : 'account', label: item.name, author: item }))
+    if (draft.value && !options.some(item => item.author.name === draft.value?.author && (item.author.id ?? null) === (draft.value.authorCharacterId ?? null))) {
+        options.unshift({ value: 'original', label: draft.value.author, author: { id: draft.value.authorCharacterId, name: draft.value.author, avatar_url: draft.value.authorAvatar } })
+    }
+    return options
+})
+const author = computed({
+    get: () => authors.value.find(item => item.author.name === draft.value?.author && (item.author.id ?? null) === (draft.value?.authorCharacterId ?? null))?.value ?? 'original',
+    set: value => {
+        const selected = authors.value.find(item => item.value === value)?.author
+        if (!draft.value || !selected) return
+        draft.value.author = selected.name; draft.value.authorCharacterId = selected.id ?? null; draft.value.authorAvatar = selected.avatar_url ?? undefined
+    },
+})
+const authorAvatar = computed(() => draft.value?.authorAvatar)
 const tabs = computed(() => [
     { label: l('resource'), value: 'resource' },
     { label: l('discord'), value: 'discord' },
     { label: l('history'), value: 'history' },
 ])
-const folders = computed(() => [{ value: 'root', label: l('unfiled') }, ...props.workspace.state.collections.map(item => ({ value: item.id, label: item.name }))])
+const folders = computed(() => [{ value: 'root', label: l('root') }, ...props.workspace.state.collections.map(item => ({ value: item.id, label: item.name }))])
 const folder = computed({ get: () => draft.value?.collectionId ?? 'root', set: value => { if (draft.value) draft.value.collectionId = value === 'root' ? null : value } })
 function date(value: string) { return new Date(value).toLocaleString(locale.value, { month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' }) }
 const editors = computed(() => [...new Map(resource.value?.history.map(item => [item.author, item]) ?? []).values()])
-const historyItems = computed(() => resource.value?.history.map(item => ({ date: date(item.at), title: item.summary, description: item.author, avatar: { src: item.authorAvatar, alt: item.author } })) ?? [])
+const historyItems = computed(() => resource.value?.history.map(item => ({ id: item.id, date: date(item.at), title: item.summary, description: item.author, avatar: { src: item.authorAvatar, alt: item.author } })) ?? [])
 </script>
 
 <template>
     <aside class="studio-inspector">
         <template v-if="workspace.state.mode === 'editor' && draft">
-            <UTabs v-model="workspace.state.inspectorTab" :items="tabs" :content="false" variant="link" size="sm" class="studio-inspector-tabs" :ui="{ list: 'w-full justify-start rounded-none px-3', trigger: 'flex-none rounded-none px-4 py-3', indicator: 'rounded-none' }" />
+            <UTabs v-model="activeTab" :items="tabs" :content="false" variant="link" size="sm" class="studio-inspector-tabs" :ui="{ list: 'w-full justify-start rounded-none px-3', trigger: 'flex-none rounded-none px-4 py-3', indicator: 'rounded-none' }" />
             <div class="studio-inspector-content">
                 <div v-if="workspace.state.inspectorTab === 'resource'" class="space-y-5">
                     <h2 class="text-sm font-semibold">{{ l('resource_details') }}</h2>
-                    <UFormField :label="l('collection')" class="studio-form-row"><USelect v-model="folder" :items="folders" size="sm" class="w-full" /></UFormField>
-                    <ResourceImagePicker v-model="draft.cover" :label="l('cover_image')" compact />
+                    <UFormField name="character_id" data-resource-field="character_id" :error="workspace.fieldError('character_id')" :label="l('author')" class="studio-form-row">
+                        <div class="flex min-w-0 items-center gap-2">
+                            <UAvatar :src="authorAvatar || undefined" :alt="draft.author" size="xs" />
+                            <USelect v-model="author" :items="authors" size="sm" class="min-w-0 flex-1" />
+                        </div>
+                    </UFormField>
+                    <dl class="studio-form-row text-xs">
+                        <dt class="text-muted">{{ l('last_edit') }}</dt>
+                        <dd><time v-if="resource" :datetime="resource.updatedAt">{{ date(resource.updatedAt) }}</time></dd>
+                    </dl>
+                    <UFormField name="collection_id" data-resource-field="collection_id" :error="workspace.fieldError('collection_id')" :label="l('collection')" class="studio-form-row"><USelect v-model="folder" :items="folders" :disabled="resource?.isHome" size="sm" class="w-full" /></UFormField>
+                    <ResourceImagePicker v-model="draft.cover" name="metadata_image_id" data-resource-field="metadata_image_id" :error="workspace.fieldError('metadata_image_id')" :label="l('cover_image')" compact />
                     <img v-if="draft.cover" :src="draft.cover" alt="" class="studio-resource-cover" />
                     <div class="space-y-3 border-t border-default pt-5">
                         <h3 class="text-sm font-semibold">{{ l('editors') }}</h3>
                         <div v-for="editor in editors" :key="editor.author" class="flex items-center gap-2 text-sm"><UAvatar :src="editor.authorAvatar" :alt="editor.author" size="xs" />{{ editor.author }}</div>
                     </div>
                 </div>
-                <ResourceDiscordEditor v-else-if="workspace.state.inspectorTab === 'discord'" :document="draft" @preview="workspace.preview()" />
+                <ResourceEmbedList v-else-if="workspace.state.inspectorTab === 'discord'" :workspace="workspace" />
                 <div v-else class="space-y-5">
                     <h2 class="text-sm font-semibold">{{ l('edit_history') }}</h2>
-                    <UTimeline v-if="historyItems.length" :items="historyItems" size="sm" :ui="{ date: 'text-xs text-muted', title: 'text-sm font-medium', description: 'text-xs text-muted' }" />
+                    <UTimeline v-if="historyItems.length" :items="historyItems" size="sm" :ui="{ date: 'text-xs text-muted', title: 'text-sm font-medium', description: 'text-xs text-muted' }">
+                        <template #description="{ item }">
+                            <p>{{ item.description }}</p>
+                            <UButton class="mt-2 rounded-none" icon="i-lucide-history" color="neutral" variant="outline" size="xs" :label="l('use_version')" :disabled="workspace.busy" @click="workspace.useRevision(item.id)" />
+                            <p v-if="workspace.state.sourceRevisionId === item.id" class="mt-2 text-primary">{{ l('version_loaded') }}</p>
+                        </template>
+                    </UTimeline>
                     <p v-if="!resource?.history.length" class="text-sm text-muted">{{ l('no_history') }}</p>
                 </div>
             </div>
         </template>
         <template v-else-if="resource">
-            <header class="flex items-center justify-between gap-2 border-b border-default px-4 py-4"><h2 class="text-sm font-semibold">{{ l('resource_details') }}</h2><UBadge :color="resource.status === 'published' ? 'success' : resource.status === 'pending' ? 'warning' : 'neutral'" variant="subtle" size="sm">{{ l(resource.status) }}</UBadge></header>
+            <header class="flex items-center justify-between gap-2 border-b border-default px-4 py-4"><h2 class="text-sm font-semibold">{{ l('resource_details') }}</h2><UBadge :color="resource.status === 'published' ? 'success' : 'neutral'" variant="subtle" size="sm">{{ l(resource.status) }}</UBadge></header>
             <div class="space-y-5 p-4">
                 <div class="flex items-start gap-3">
                     <img v-if="resource.cover" :src="resource.cover" alt="" class="size-14 shrink-0 border border-default bg-muted object-contain" />
                     <div class="min-w-0"><h3 class="break-words text-lg font-semibold">{{ resource.title }}</h3><p class="mt-2 text-xs leading-relaxed text-muted">{{ resource.description }}</p></div>
                 </div>
                 <div class="flex gap-2">
-                    <UButton v-if="resource.status !== 'pending'" icon="i-lucide-pencil" :label="l('edit_resource')" class="flex-1 justify-center" @click="workspace.edit(resource.id)" />
-                    <UButton v-else icon="i-lucide-check" :label="l('publish')" class="flex-1 justify-center" @click="workspace.publish([resource.id])" />
-                    <UTooltip :text="l('preview')"><UButton icon="i-lucide-eye" color="neutral" variant="outline" :aria-label="l('preview')" @click="workspace.preview(resource)" /></UTooltip>
+                    <UButton icon="i-lucide-pencil" :label="l('edit_resource')" class="flex-1 justify-center" @click="workspace.edit(resource.id)" />
+                    <UButton v-if="workspaceHasUnpublishedChanges(resource)" icon="i-lucide-check" :label="l('publish')" class="flex-1 justify-center" @click="workspace.publish([resource.id])" />
+                    <UTooltip :text="l('view')"><UButton icon="i-lucide-external-link" color="neutral" variant="outline" :aria-label="l('view')" :to="workspace.viewUrl(resource)" :disabled="!workspace.viewUrl(resource)" target="_blank" rel="noopener noreferrer" /></UTooltip>
                 </div>
-                <div v-if="resource.status === 'pending'" class="space-y-2 border-l-2 border-warning pl-3"><p class="text-xs leading-relaxed text-warning">{{ l('pending_lock') }}</p><UButton icon="i-lucide-trash-2" variant="solid" color="error" size="sm" :label="l('discard_pending')" @click="workspace.discardPending(resource.id)" /></div>
                 <dl class="space-y-3 border-t border-default pt-5 text-xs">
                     <div class="grid grid-cols-[5rem_minmax(0,1fr)] gap-2"><dt class="text-dimmed">{{ l('collection') }}</dt><dd class="break-words">{{ workspace.state.collections.find(item => item.id === resource.collectionId)?.name ?? l('unfiled') }}</dd></div>
                     <div class="grid grid-cols-[5rem_minmax(0,1fr)] gap-2"><dt class="text-dimmed">{{ l('activities') }}</dt><dd>{{ resource.activities.join(', ') || l('none') }}</dd></div>
@@ -68,9 +104,9 @@ const historyItems = computed(() => resource.value?.history.map(item => ({ date:
                     <div class="grid grid-cols-[5rem_minmax(0,1fr)] gap-2"><dt class="text-dimmed">{{ l('edited') }}</dt><dd>{{ date(resource.updatedAt) }}</dd></div>
                 </dl>
                 <section class="space-y-3 border-t border-default pt-5">
-                    <div class="flex items-center justify-between gap-2"><h3 class="text-xs font-semibold uppercase text-muted">{{ l('discord_command') }}</h3><UIcon :name="resource.embed.enabled ? 'i-lucide-circle-check' : 'i-lucide-circle-minus'" :class="resource.embed.enabled ? 'text-success' : 'text-dimmed'" class="size-4" :aria-label="l(resource.embed.enabled ? 'enabled' : 'disabled')" /></div>
-                    <template v-if="resource.embed.enabled"><p class="font-mono text-xs text-primary">/info {{ resource.embed.command }}</p><ResourceEmbedPreview :document="resource" @open="workspace.preview(resource)" /></template>
-                    <p v-else class="text-xs text-dimmed">{{ l('disabled') }}</p>
+                    <h3 class="text-xs font-semibold uppercase text-muted">{{ l('discord_embeds') }}</h3>
+                    <div v-for="(embed, index) in resource.embeds" :key="index" class="space-y-2"><p class="font-mono text-xs text-primary">/info {{ embed.command }}</p><ResourceEmbedPreview :document="resource" :embed="workspace.embedPreview(resource, embed)" :public-resource="workspace.library?.visibility === 'public'" :resource-url="workspace.viewUrl(resource)" /></div>
+                    <p v-if="!resource.embeds.length" class="text-xs text-dimmed">{{ l('no_embed') }}</p>
                 </section>
                 <section class="space-y-3 border-t border-default pt-5"><h3 class="text-xs font-semibold uppercase text-muted">{{ l('last_edit') }}</h3><template v-if="resource.history[0]"><p class="text-xs font-medium">{{ resource.history[0].author }}</p><p class="text-xs leading-relaxed text-muted">{{ resource.history[0].summary }}</p></template><p v-else class="text-xs text-muted">{{ l('no_history') }}</p></section>
             </div>

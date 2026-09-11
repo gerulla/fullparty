@@ -14,6 +14,7 @@ import type { QueueApplication } from "@/Types/ActivityQueue";
 import type { ActivitySlot, ActivitySlotCompositionHintInput, SlotDesignation } from "@/Types/ActivityRoster";
 import { specialistDesignationActions, specialistDesignationMarkers } from "@/utils/specialistDesignations";
 import { emptyCompositionSlotToneClass } from "@/utils/activityCompositionHints";
+import { useRosterDiscordCopyMenu } from "@/composables/useRosterDiscordCopy";
 
 type SlotMarker = {
 	key: string
@@ -68,6 +69,7 @@ const emit = defineEmits<{
 
 const { t, locale } = useI18n();
 const page = usePage();
+const discordCopyMenuItems = useRosterDiscordCopyMenu();
 const fallbackLocale = computed(() => String(page.props.locale?.fallback ?? 'en'));
 const slotCardElement = ref<HTMLElement | null>(null);
 let dragPreviewElement: HTMLElement | null = null;
@@ -302,6 +304,7 @@ const emptySlotContextMenuItems = computed<ContextMenuItem[][]>(() => (
 ));
 const contextMenuItems = computed<ContextMenuItem[][]>(() => [
 	[
+		...discordCopyMenuItems(props.slot),
 		...(props.slot.assignment_application_id !== null
 			? [{
 				label: t('groups.activities.management.roster.view_application_action'),

@@ -167,9 +167,12 @@
                 "organize": "リソースを移動または並べ替えました。",
                 "settings_updated": "リソースライブラリの設定を更新しました。",
                 "all_deleted": "グループのすべてのリソースを削除しました。",
+                "deleted": "リソースを削除しました。",
                 "collection_saved": "リソースコレクションを保存しました。",
                 "collection_deleted": "リソースコレクションを削除しました。",
-                "image_uploaded": "リソースの画像をアップロードしました。"
+        "image_uploaded": "リソースの画像をアップロードしました。",
+        "image_updated": "リソース画像の詳細を更新しました。",
+        "image_deleted": "リソース画像を削除しました。"
             },
             "created": "がグループを作成しました。",
             "updated": "がグループ設定を更新しました。",
@@ -452,9 +455,12 @@
                 "organize": "リソースを移動または並べ替えました。",
                 "settings_updated": "リソースライブラリの設定を更新しました。",
                 "all_deleted": "グループのすべてのリソースを削除しました。",
+                "deleted": "リソースを削除しました。",
                 "collection_saved": "リソースコレクションを保存しました。",
                 "collection_deleted": "リソースコレクションを削除しました。",
-                "image_uploaded": "リソースの画像をアップロードしました。"
+        "image_uploaded": "リソースの画像をアップロードしました。",
+        "image_updated": "リソース画像の詳細を更新しました。",
+        "image_deleted": "リソース画像を削除しました。"
             },
             "created": "グループ作成",
             "updated": "グループ設定を更新",

@@ -30,7 +30,7 @@ it('lets group members open the resources reader', function (string $role) {
             ->where('group.features.resource_hub_enabled', true)
             ->where('group.permissions.can_view_members', true)
             ->where('group.permissions.can_manage_members', $role !== GroupMembership::ROLE_MEMBER)
-            ->where('resources.total', 0)
+            ->where('resources.total', 1)->where('resource.is_home', true)
         );
 })->with(['owner', 'admin', 'moderator', 'member']);
 
@@ -48,7 +48,7 @@ it('lets group managers open resource management', function (string $role) {
             ->component('Dashboard/Groups/Resources/Manage')
             ->where('group.features.resource_hub_enabled', true)
             ->where('group.permissions.can_manage_members', true)
-            ->where('resources.total', 0)
+            ->where('resources.total', 1)->where('resources.data.0.is_home', true)
         );
 })->with(['owner', 'admin', 'moderator']);
 

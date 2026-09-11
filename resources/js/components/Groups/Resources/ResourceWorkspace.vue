@@ -1,62 +1,67 @@
 <script setup lang="ts">
-import '@/bootstrap/markdownEditor.js'
-import { MdPreview } from 'md-editor-v3'
-import { computed, ref } from 'vue'
+import { computed, provide, ref, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
-import { useMockResourceWorkspace } from '@/composables/useMockResourceWorkspace'
-import { collectionDescendants } from '@/utils/resourceWorkspace'
+import { useResourceWorkspace } from '@/composables/useResourceWorkspace'
+import type { ResourceCollectionData, ResourceDetailData, ResourceLibrary, ResourceWorkspaceData } from '@/Types/GroupResources'
 import ConfirmationModal from '@/components/Shared/Modals/ConfirmationModal.vue'
 import ResourceCollectionSidebar from './ResourceCollectionSidebar.vue'
 import ResourceLibraryBrowser from './ResourceLibraryBrowser.vue'
 import ResourceDocumentEditor from './ResourceDocumentEditor.vue'
+import ResourceDiscordEditor from './ResourceDiscordEditor.vue'
 import ResourceEditorToolbar from './ResourceEditorToolbar.vue'
 import ResourceWorkspaceInspector from './ResourceWorkspaceInspector.vue'
 import ResourceLibraryInspector from './ResourceLibraryInspector.vue'
+import ResourceSaveModal from './ResourceSaveModal.vue'
+import ResourceUploadsBrowser from './ResourceUploadsBrowser.vue'
+import ResourceImageInspector from './ResourceImageInspector.vue'
+import { resourceImageLibraryKey, useResourceImages } from '@/composables/useResourceImages'
 
-const workspace = useMockResourceWorkspace()
+const props = defineProps<{ groupSlug: string; collections: ResourceCollectionData[]; data: ResourceWorkspaceData; resource?: ResourceDetailData; library?: ResourceLibrary }>()
+const emit = defineEmits<{ libraryChanged: [] }>()
+const workspace = useResourceWorkspace(props, () => emit('libraryChanged'))
 const { state } = workspace
+const editingEmbed = computed(() => state.editorPane === 'embed' ? state.draft?.embeds[state.embedIndex] : null)
+const imageLibrary = { groupSlug: () => props.groupSlug, changed: () => emit('libraryChanged') }
+provide(resourceImageLibraryKey, { ...imageLibrary, resourceId: () => state.mode === 'editor' ? state.selectedId : null })
+const images = useResourceImages(imageLibrary)
 const { t, locale } = useI18n()
 const l = (key: string) => t(`groups.resources.workspace.${key}`)
 const showCollections = ref(false)
-const folders = computed(() => [{ value: 'root', label: l('unfiled') }, ...state.collections.map(item => ({ value: item.id, label: item.name }))])
-const parents = computed(() => {
-    const excluded = state.collectionForm.id ? collectionDescendants(state.collections, state.collectionForm.id) : []
-    return folders.value.filter(item => !excluded.includes(item.value))
-})
-const parent = computed({ get: () => state.collectionForm.parentId ?? 'root', set: value => { state.collectionForm.parentId = value === 'root' ? null : value } })
-const siblings = computed(() => state.collections.filter(item => item.parentId === state.collections.find(item => item.id === state.collectionForm.id)?.parentId))
-const siblingIndex = computed(() => siblings.value.findIndex(item => item.id === state.collectionForm.id))
+watch(() => workspace.collectionActions.state.editing, edit => { if (edit) showCollections.value = true })
+const folders = computed(() => [{ value: 'root', label: l('root') }, ...state.collections.map(item => ({ value: item.id, label: item.name }))])
 </script>
 
 <template>
     <div class="resource-workspace-shell">
         <UButton class="workspace-mobile-toggle mb-3" icon="i-lucide-panel-left" color="neutral" variant="outline" :label="l('collections')" :aria-expanded="showCollections" @click="showCollections = !showCollections" />
-        <UAlert v-if="state.error && !state.collectionDialog" color="error" variant="soft" icon="i-lucide-circle-alert" :title="state.error" class="mb-3" close @update:open="state.error = ''" />
-        <div class="resource-workspace-grid min-h-[760px] overflow-hidden bg-transparent" :class="{ 'is-library': state.mode === 'library', 'is-editor': state.mode === 'editor' }">
-            <ResourceCollectionSidebar :workspace="workspace" class="workspace-folders border-b border-default" :class="{ 'is-open': showCollections }">
+        <UAlert v-if="state.error && !state.createResourceDialog && !state.saveDialog && !state.confirmation.open" color="error" variant="soft" icon="i-lucide-circle-alert" :title="state.error" class="mb-3" close @update:open="state.error = ''" />
+        <div v-if="state.mode === 'editor' && (state.autosaveError || state.conflict)" class="mb-3 flex flex-wrap items-center gap-3 border border-error p-3" role="status">
+            <p class="min-w-0 flex-1 text-sm text-error">{{ l(state.conflict ? 'autosave_conflict' : 'autosave_failed') }}</p>
+            <UButton icon="i-lucide-refresh-cw" color="neutral" variant="outline" :label="l('retry_save')" :loading="workspace.autosaving" :disabled="!workspace.canRetrySave" @click="workspace.retrySave()" />
+            <UButton icon="i-lucide-file-clock" color="neutral" variant="outline" :label="l('reload_latest')" @click="workspace.reloadEditor()" />
+        </div>
+        <div class="resource-workspace-grid min-h-[760px] overflow-hidden bg-transparent" :class="{ 'is-library': state.mode !== 'editor', 'is-editor': state.mode === 'editor' }">
+            <ResourceCollectionSidebar :workspace="workspace" :inert="workspace.busy || images.state.busy" class="workspace-folders border-b border-default" :class="{ 'is-open': showCollections }">
                 <template #library-actions><slot name="library-actions" /></template>
             </ResourceCollectionSidebar>
             <ResourceEditorToolbar v-if="state.mode === 'editor'" :workspace="workspace" class="workspace-editor-toolbar" />
-            <ResourceLibraryBrowser v-if="state.mode === 'library'" :workspace="workspace" class="workspace-centre" />
-            <ResourceDocumentEditor v-else :key="`editor-${state.selectedId ?? 'new'}`" :workspace="workspace" class="workspace-centre" />
-            <ResourceLibraryInspector v-if="state.mode === 'library'" :workspace="workspace" class="workspace-inspector border-t border-default" />
-            <ResourceWorkspaceInspector v-else :key="`inspector-${state.selectedId ?? 'new'}`" :workspace="workspace" class="workspace-inspector border-t border-default" />
+            <ResourceLibraryBrowser v-if="state.mode === 'library'" :workspace="workspace" :inert="workspace.busy" class="workspace-centre" />
+            <ResourceUploadsBrowser v-else-if="state.mode === 'uploads'" :images="images" class="workspace-centre" />
+            <template v-else>
+                <ResourceDocumentEditor v-show="!editingEmbed" :key="`editor-${state.selectedId ?? 'new'}`" :workspace="workspace" :inert="workspace.busy" class="workspace-centre" />
+                <ResourceDiscordEditor v-if="editingEmbed && state.draft" :key="`embed-${state.selectedId}-${state.embedIndex}`" :document="state.draft" :embed="editingEmbed" :preview-embed="workspace.embedPreview(state.draft, editingEmbed)" :command-error="workspace.commandError(state.embedIndex)" :field-error="workspace.fieldError" :embed-index="state.embedIndex" :public-resource="workspace.library?.visibility === 'public'" :resource-url="workspace.viewUrl()" :inert="workspace.busy" class="workspace-centre" @back="workspace.showResourceEditor()" @save="workspace.save()" />
+            </template>
+            <div v-if="workspace.loadingResource" class="workspace-inspector flex items-center justify-center border-l border-default"><UIcon name="i-lucide-loader-circle" class="size-5 animate-spin" :aria-label="t('general.loading')" /></div>
+            <ResourceLibraryInspector v-else-if="state.mode === 'library'" :workspace="workspace" :inert="workspace.busy" class="workspace-inspector border-t border-default" />
+            <ResourceImageInspector v-else-if="state.mode === 'uploads'" :images="images" class="workspace-inspector border-t border-default" />
+            <ResourceWorkspaceInspector v-else :key="`inspector-${state.selectedId ?? 'new'}`" :workspace="workspace" :inert="workspace.busy" class="workspace-inspector border-t border-default" />
         </div>
-        <UModal v-model:open="state.collectionDialog" :title="l(state.collectionForm.id ? 'edit_collection' : 'new_collection')">
+        <UModal v-model:open="state.createResourceDialog" :title="l('new_resource')" :dismissible="!workspace.creatingResource">
             <template #body>
-                <form class="space-y-5" @submit.prevent="workspace.saveCollection()">
+                <form class="space-y-5" @submit.prevent="workspace.confirmCreateResource()">
                     <UAlert v-if="state.error" :title="state.error" color="error" variant="soft" />
-                    <UFormField :label="l('name')" required><UInput v-model="state.collectionForm.name" autofocus :maxlength="100" class="w-full" /></UFormField>
-                    <UFormField :label="l('parent_collection')"><USelect v-model="parent" :items="parents" class="w-full" /></UFormField>
-                    <div v-if="state.collectionForm.id" class="flex gap-2">
-                        <UTooltip :text="l('move_up')"><UButton icon="i-lucide-arrow-up" color="neutral" variant="outline" :aria-label="l('move_up')" :disabled="siblingIndex <= 0" @click="workspace.reorderCollection(state.collectionForm.id, -1)" /></UTooltip>
-                        <UTooltip :text="l('move_down')"><UButton icon="i-lucide-arrow-down" color="neutral" variant="outline" :aria-label="l('move_down')" :disabled="siblingIndex >= siblings.length - 1" @click="workspace.reorderCollection(state.collectionForm.id, 1)" /></UTooltip>
-                    </div>
-                    <div class="flex flex-wrap justify-end gap-2 border-t border-default pt-4">
-                        <UButton v-if="state.collectionForm.id" icon="i-lucide-trash-2" color="error" variant="ghost" :label="l('delete')" class="mr-auto" @click="workspace.removeCollection(state.collectionForm.id)" />
-                        <UButton color="neutral" variant="outline" :label="l('cancel')" @click="state.collectionDialog = false" />
-                        <UButton type="submit" icon="i-lucide-check" :label="l('save')" />
-                    </div>
+                    <UFormField :label="l('collection')" required><USelect v-model="state.createCollectionId" :items="folders.filter(item => item.value !== 'root')" :disabled="workspace.creatingResource" class="w-full" /></UFormField>
+                    <div class="flex justify-end gap-2"><UButton color="neutral" variant="outline" :label="l('cancel')" :disabled="workspace.creatingResource" @click="state.createResourceDialog = false" /><UButton type="submit" color="neutral" icon="i-lucide-plus" :label="l('new_resource')" :loading="workspace.creatingResource" /></div>
                 </form>
             </template>
         </UModal>
@@ -67,18 +72,10 @@ const siblingIndex = computed(() => siblings.value.findIndex(item => item.id ===
                 </div>
             </template>
         </UModal>
-        <ConfirmationModal v-model:open="state.confirmation.open" :title="state.confirmation.title" description="" :warning-text="state.confirmation.description" :confirm-label="state.confirmation.label" severity="warning" :on-confirm="workspace.confirm" />
+        <ResourceSaveModal :workspace="workspace" />
+        <ConfirmationModal v-model:open="state.confirmation.open" :title="state.confirmation.title" :description="state.error" :warning-text="state.confirmation.description" :confirm-label="state.confirmation.label" :severity="state.confirmation.severity ?? 'warning'" :confirm-loading="workspace.busy" :on-confirm="workspace.confirm" @close="state.confirmation.open = false" />
         <UModal v-model:open="state.historyOpen" :title="l('edit_history')" :description="workspace.selected?.title">
             <template #body><div class="space-y-5"><div v-for="revision in workspace.selected?.history" :key="revision.id" class="space-y-1 border-l-2 border-primary pl-4"><p class="text-xs text-muted">{{ new Date(revision.at).toLocaleString(locale) }}</p><p class="text-sm">{{ revision.summary }}</p><p class="text-xs text-muted">{{ revision.author }}</p></div><p v-if="!workspace.selected?.history.length" class="text-sm text-muted">{{ l('no_history') }}</p></div></template>
-        </UModal>
-        <UModal v-model:open="state.previewOpen" :title="state.preview?.title || l('preview')" :description="state.preview?.description" :ui="{ content: 'max-w-4xl' }">
-            <template #body>
-                <div v-if="state.preview" class="space-y-5">
-                    <div class="flex flex-wrap items-center gap-3 text-xs text-muted"><span>{{ state.preview.author }}</span><UBadge color="neutral" variant="soft">{{ l(state.preview.access) }}</UBadge><span>{{ state.preview.activities.join(' / ') }}</span></div>
-                    <img v-if="state.preview.cover" :src="state.preview.cover" alt="" class="max-h-64 w-full object-contain" />
-                    <MdPreview :model-value="state.preview.body" theme="dark" language="en-US" :no-mermaid="true" :no-katex="true" class="resource-document-preview" />
-                </div>
-            </template>
         </UModal>
     </div>
 </template>
@@ -88,7 +85,6 @@ const siblingIndex = computed(() => siblings.value.findIndex(item => item.id ===
 .resource-workspace-grid { display: grid; grid-template-columns: minmax(0, 1fr); }
 .workspace-folders { display: none; }
 .workspace-folders.is-open { display: flex; }
-.resource-document-preview { background: transparent; }
 .is-library, .is-editor { --ui-bg: #1a171d; --ui-bg-elevated: #242027; --ui-border: #37313d; --ui-border-accented: #49404f; --ui-text: #e9e2f0; --ui-text-muted: #b4a8c5; }
 .resource-workspace-shell :deep(button:not([role="switch"])), .resource-workspace-shell :deep(input), .resource-workspace-shell :deep(textarea), .resource-workspace-shell :deep(select), .resource-workspace-shell :deep(a[data-slot=base]) { border-radius: 0; }
 @container (min-width: 740px) {

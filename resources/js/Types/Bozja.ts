@@ -1,4 +1,5 @@
 import type { LocalizedStringRecord } from '@/Types/Common'
+import type { RichTextDocument } from './RichText'
 
 export type BozjaItemRecord = {
 	id: number
@@ -26,7 +27,9 @@ export type BozjaHolsterSummary = {
 	capacity_used: number
 	max_capacity: number
 	notes: string | null
-	guide: string | null
+	guide: RichTextDocument | null
+	guide_html?: string
+	guide_needs_conversion?: boolean
 	is_active: boolean
 	is_default: boolean
 	items: BozjaHolsterItem[]

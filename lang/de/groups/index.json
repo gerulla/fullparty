@@ -68,7 +68,7 @@
                 "manage_locales": "Sprachen verwalten",
                 "sections": "Bereiche",
                 "section_details": "Name, Rolle, Hinweise und Sprachen",
-                "section_guide": "Anweisungen und Markdown",
+                "section_guide": "Anweisungen und Diagramme",
                 "section_contents": "Ausgewählte Gegenstände ({count})",
                 "tip_title": "Tipp",
                 "tip_description": "Haltet eure Anleitung klar und knapp, damit sie im Spiel leichter nutzbar ist.",
@@ -126,7 +126,7 @@
                     "parent_holster_placeholder": "Vorbestückung zum Nachfüllen auswählen",
                     "max_capacity": "Maximale Kapazität",
                     "guide": "Anleitung",
-                    "guide_description": "Optionale Anleitung im Markdown-Format zur Verwendung dieses Holsters.",
+                    "guide_description": "Optionale Anleitung zur Verwendung dieses Holsters.",
                     "expand_guide": "Anleitung erweitern",
                     "shrink_guide": "Anleitung verkleinern"
                 },

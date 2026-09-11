@@ -13,6 +13,7 @@ use App\Services\SystemBannerService;
 use App\Support\Groups\GroupDiscoveryBadgePalette;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
+use Inertia\Inertia;
 use Inertia\Middleware;
 
 class HandleInertiaRequests extends Middleware
@@ -66,6 +67,8 @@ class HandleInertiaRequests extends Middleware
     public function share(Request $request): array
     {
         if ($request->routeIs('public-resources.*')) {
+            Inertia::flushShared();
+
             return [];
         }
 

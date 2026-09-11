@@ -44,7 +44,7 @@ final class TextInputSanitizer
         return trim(implode("\n", $lines));
     }
 
-    public function sanitizeMarkdown(?string $value): ?string
+    public function sanitizeMarkdown(?string $value, bool $preserveBlockquotes = false): ?string
     {
         if ($value === null) {
             return null;
@@ -57,7 +57,13 @@ final class TextInputSanitizer
         $sanitized = preg_replace('/[\x{0000}-\x{0008}\x{000B}\x{000C}\x{000E}-\x{001F}\x{007F}-\x{009F}]+/u', '', $sanitized) ?? $sanitized;
         $sanitized = preg_replace('/\b(?:j\s*a\s*v\s*a\s*s\s*c\s*r\s*i\s*p\s*t|v\s*b\s*s\s*c\s*r\s*i\s*p\s*t|d\s*a\s*t\s*a)\s*:/iu', '#blocked-', $sanitized) ?? $sanitized;
 
-        return trim(str_replace(['<', '>'], ['&lt;', '&gt;'], $sanitized));
+        $sanitized = trim(str_replace(['<', '>'], ['&lt;', '&gt;'], $sanitized));
+        if ($preserveBlockquotes) {
+            // Only restore Markdown quote prefixes, never escaped HTML tags.
+            $sanitized = preg_replace_callback('/^( {0,3})(?:&gt;[\t ]?)+/m', fn (array $match) => str_replace('&gt;', '>', $match[0]), $sanitized) ?? $sanitized;
+        }
+
+        return $sanitized;
     }
 
     private function normalizeUnicode(string $value): string

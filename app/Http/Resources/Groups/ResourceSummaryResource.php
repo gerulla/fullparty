@@ -12,7 +12,8 @@ class ResourceSummaryResource extends JsonResource
         $snapshot = $this->publishedRevision?->snapshot ?? [];
 
         return [
-            'id' => $this->id, 'slug' => $this->slug, 'collection_id' => $this->collection_id,
+            'id' => $this->id, 'slug' => $this->uuid, 'collection_id' => $this->collection_id,
+            'is_home' => $this->is_home,
             'title' => $snapshot['title'] ?? '', 'description' => $snapshot['description'] ?? '',
             'tags' => $snapshot['tags'] ?? [], 'activity_type_ids' => $snapshot['activity_type_ids'] ?? [],
             'metadata_image_id' => $snapshot['metadata_image_id'] ?? null,

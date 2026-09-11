@@ -68,7 +68,7 @@
                 "manage_locales": "Gérer les langues",
                 "sections": "Sections",
                 "section_details": "Nom, rôle, notes et langues",
-                "section_guide": "Instructions et Markdown",
+                "section_guide": "Instructions et schémas",
                 "section_contents": "Objets sélectionnés ({count})",
                 "tip_title": "Conseil",
                 "tip_description": "Gardez votre guide clair et concis afin qu'il soit plus facile à utiliser en jeu.",
@@ -126,7 +126,7 @@
                     "parent_holster_placeholder": "Sélectionnez la préparation à réapprovisionner",
                     "max_capacity": "Capacité maximale",
                     "guide": "Guide",
-                    "guide_description": "Instructions facultatives au format Markdown pour utiliser ce holster.",
+                    "guide_description": "Instructions facultatives pour utiliser ce holster.",
                     "expand_guide": "Agrandir le guide",
                     "shrink_guide": "Réduire le guide"
                 },

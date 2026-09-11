@@ -1,10 +1,29 @@
-import type { WorkspaceCollection, WorkspaceDocument, WorkspaceResource, WorkspaceTreeItem } from '../Types/ResourceWorkspace'
+import type { WorkspaceCollection, WorkspaceDocument, WorkspaceItemPosition, WorkspaceResource, WorkspaceTreeItem } from '../Types/ResourceWorkspace'
+
+export const MAX_RESOURCE_EMBEDS = 15
+
+export function workspaceMovePositions(collections: WorkspaceCollection[], resources: WorkspaceResource[], kind: 'collection' | 'resource', id: string, parentId: string | null, beforeId?: string | null): WorkspaceItemPosition[] | null {
+    if (parentId !== null && !collections.some(item => item.id === parentId)) return null
+    if (kind === 'collection' && collectionDescendants(collections, id).includes(parentId ?? '')) return null
+    if (kind === 'resource' && resources.some(item => item.id === id && item.isHome)) return null
+    const items = kind === 'collection'
+        ? collections.map(item => ({ id: item.id, parentId: item.parentId, order: item.order ?? 0 }))
+        : resources.filter(item => !item.isHome).map(item => ({ id: item.id, parentId: item.collectionId, order: item.order }))
+    if (!items.some(item => item.id === id)) return null
+    const siblings = items.filter(item => item.parentId === parentId && item.id !== id)
+        .sort((a, b) => a.order - b.order || a.id.localeCompare(b.id, 'en', { numeric: true }))
+    const index = beforeId == null ? siblings.length : siblings.findIndex(item => item.id === beforeId)
+    if (index < 0) return null
+    siblings.splice(index, 0, { id, parentId, order: index })
+    return siblings.map((item, order) => ({ ...item, order }))
+}
 
 export function cloneDocument(resource: WorkspaceDocument): WorkspaceDocument {
     return JSON.parse(JSON.stringify({
         title: resource.title, description: resource.description, body: resource.body,
         collectionId: resource.collectionId, access: resource.access, activities: resource.activities,
-        tags: resource.tags, author: resource.author, cover: resource.cover, embed: resource.embed,
+        tags: resource.tags, author: resource.author, authorAvatar: resource.authorAvatar, cover: resource.cover, embeds: resource.embeds,
+        authorCharacterId: resource.authorCharacterId, activityTypeIds: resource.activityTypeIds,
     }))
 }
 
@@ -37,10 +56,18 @@ export function workspaceCollectionPath(collections: WorkspaceCollection[], id: 
 
 export function buildWorkspaceTree(collections: WorkspaceCollection[], resources: WorkspaceResource[], collapsed: string[] = []): WorkspaceTreeItem[] {
     const rows: WorkspaceTreeItem[] = []
+    const addResource = (resource: WorkspaceResource, depth: number) => {
+        rows.push({ kind: 'resource', resource, depth })
+        if (!collapsed.includes(`resource:${resource.id}`)) {
+            resource.embeds.forEach((embed, index) => rows.push({ kind: 'embed', resource, embed, index, depth: depth + 1 }))
+        }
+    }
+    resources.filter(item => item.isHome).forEach(resource => addResource(resource, 0))
     const visited = new Set<string>()
-    const orderedResources = [...resources].sort((a, b) => a.order - b.order)
+    const orderedResources = resources.filter(item => !item.isHome).sort((a, b) => a.order - b.order)
+    const orderedCollections = [...collections].sort((a, b) => (a.order ?? 0) - (b.order ?? 0))
     const visit = (parentId: string | null, depth: number) => {
-        for (const collection of collections.filter(item => item.parentId === parentId)) {
+        for (const collection of orderedCollections.filter(item => item.parentId === parentId)) {
             if (visited.has(collection.id)) continue
             visited.add(collection.id)
             const descendants = collectionDescendants(collections, collection.id)
@@ -52,7 +79,7 @@ export function buildWorkspaceTree(collections: WorkspaceCollection[], resources
             if (!collapsed.includes(collection.id)) visit(collection.id, depth + 1)
         }
         for (const resource of orderedResources.filter(item => item.collectionId === parentId)) {
-            rows.push({ kind: 'resource', resource, depth })
+            addResource(resource, depth)
         }
     }
     visit(null, 0)
@@ -65,28 +92,55 @@ export function filterWorkspaceResources(resources: WorkspaceResource[], collect
     const folders = collectionDescendants(collections, filters.scope)
     const query = filters.query.trim().toLocaleLowerCase()
     return resources.filter(resource => {
-        if (filters.scope === 'drafts' && resource.status !== 'draft') return false
-        if (filters.scope === 'pending' && resource.status !== 'pending') return false
-        if (!['all', 'drafts', 'pending'].includes(filters.scope) && !folders.includes(resource.collectionId ?? '')) return false
+        if ((resource.status === 'archived') !== (filters.scope === 'archived')) return false
+        if (filters.scope === 'drafts' && !workspaceHasUnpublishedChanges(resource)) return false
+        if (!['all', 'drafts', 'archived'].includes(filters.scope) && !folders.includes(resource.collectionId ?? '')) return false
         if (filters.status !== 'all' && resource.status !== filters.status) return false
         if (filters.access !== 'all' && resource.access !== filters.access) return false
         if (filters.activity !== 'all' && !resource.activities.includes(filters.activity)) return false
         const folder = collections.find(item => item.id === resource.collectionId)?.name ?? ''
         return !query || [resource.title, resource.description, folder, ...resource.tags, ...resource.activities]
             .join(' ').toLocaleLowerCase().includes(query)
-    }).sort((a, b) => a.order - b.order)
+    }).sort((a, b) => Number(!!b.isHome) - Number(!!a.isHome) || a.order - b.order)
 }
 
 export function validateWorkspaceDocument(document: WorkspaceDocument, resources: WorkspaceResource[], id: string): string | null {
     if (!document.title.trim()) return 'title_required'
-    if (!document.embed.enabled && !document.embed.command) return null
-    const command = document.embed.command.toLowerCase()
-    if (command.length > 64 || !/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(command) || command === 'list') return 'command_invalid'
-    if (resources.some(resource => resource.id !== id && [resource.embed.command, resource.published?.embed.command].includes(command))) return 'command_duplicate'
-    return null
+    if (document.embeds.length > MAX_RESOURCE_EMBEDS) return 'embed_limit'
+    return workspaceCommandErrors(document, resources, id).find(Boolean) ?? null
+}
+
+export function workspaceCommandErrors(document: WorkspaceDocument, resources: WorkspaceResource[], id: string): (string | null)[] {
+    const names = new Set<string>()
+    return document.embeds.map(embed => {
+        const command = embed.command.toLowerCase()
+        if (!command.trim()) return 'command_required'
+        if (command === 'list') return 'command_reserved'
+        if (command.length > 64 || !/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(command)) return 'command_invalid'
+        if (names.has(command) || resources.some(resource => resource.id !== id && [...resource.embeds, ...(resource.published?.embeds ?? [])].some(item => item.command.toLowerCase() === command))) return 'command_duplicate'
+        names.add(command)
+        return null
+    })
 }
 
 export function publishWorkspaceResource(resource: WorkspaceResource): WorkspaceResource {
-    if (resource.status !== 'pending') return resource
-    return { ...resource, status: 'published', published: cloneDocument(resource) }
+    if (!workspaceHasUnpublishedChanges(resource)) return resource
+    return { ...resource, status: 'published', published: cloneDocument(resource), hasUnpublishedChanges: false }
+}
+
+export function workspaceHasUnpublishedChanges(resource: WorkspaceResource, draft?: WorkspaceDocument): boolean {
+    if (resource.status === 'archived') return false
+    if (resource.status !== 'published') return true
+    if (!draft && resource.hasUnpublishedChanges !== undefined) return resource.hasUnpublishedChanges
+    if (!resource.published) return true
+    const content = (document: WorkspaceDocument) => ({
+        title: document.title, description: document.description, body: document.body, access: document.access,
+        tags: document.tags, activities: document.activityTypeIds ?? document.activities,
+        author: document.author, authorCharacterId: document.authorCharacterId ?? null, cover: document.cover,
+        embeds: document.embeds.map(embed => ({
+            command: embed.command, title: embed.title, description: embed.description, color: embed.color,
+            url: embed.url, image: embed.image, thumbnail: embed.thumbnail, fields: embed.fields,
+        })),
+    })
+    return JSON.stringify(content(draft ?? resource)) !== JSON.stringify(content(resource.published))
 }

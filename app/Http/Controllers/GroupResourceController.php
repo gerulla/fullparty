@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Group;
 use App\Models\GroupResource;
 use App\Services\Groups\Resources\ResourceReaderService;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
@@ -20,6 +21,7 @@ class GroupResourceController extends Controller
 
         return Inertia::render('Dashboard/Groups/Resources/Index', [
             'group' => $this->navigationGroup($group),
+            'resource' => $this->reader->home($group, $request),
         ] + $this->reader->index($group, $request));
     }
 
@@ -29,6 +31,7 @@ class GroupResourceController extends Controller
 
         return Inertia::render('Dashboard/Groups/Resources/Manage', [
             'group' => $this->navigationGroup($group),
+            'workspace' => $this->reader->workspace($group, $request->user()),
         ] + $this->reader->index($group, $request, manage: true));
     }
 
@@ -43,18 +46,23 @@ class GroupResourceController extends Controller
     {
         $this->authorizeAccess($group);
         $resource = $this->reader->resolve($group, $slug, $request->user());
-        if ($resource->slug !== $slug) {
-            return redirect()->route('groups.dashboard.resources.show', ['group' => $group, 'slug' => $resource->slug]);
+        if ($resource->uuid !== $slug) {
+            return redirect()->route('groups.dashboard.resources.show', ['group' => $group, 'slug' => $resource->uuid]);
         }
 
         return Inertia::render('Dashboard/Groups/Resources/Index', ['group' => $this->navigationGroup($group), 'resource' => $this->reader->detail($resource, $request)] + $this->reader->index($group, $request));
     }
 
-    public function edit(Request $request, Group $group, GroupResource $resource): Response
+    public function edit(Request $request, Group $group, GroupResource $resource): Response|JsonResponse
     {
         $this->authorizeAccess($group, manage: true);
 
-        return Inertia::render('Dashboard/Groups/Resources/Manage', ['group' => $this->navigationGroup($group), 'resource' => $this->reader->managementDetail($group, $resource, $request->user())] + $this->reader->index($group, $request, manage: true));
+        $detail = $this->reader->managementDetail($group, $resource, $request->user());
+        if ($request->expectsJson() && ! $request->header('X-Inertia')) {
+            return response()->json(['data' => $detail])->header('Cache-Control', 'private, no-store');
+        }
+
+        return Inertia::render('Dashboard/Groups/Resources/Manage', ['group' => $this->navigationGroup($group), 'resource' => $detail, 'workspace' => $this->reader->workspace($group, $request->user())] + $this->reader->index($group, $request, manage: true));
     }
 
     private function authorizeAccess(Group $group, bool $manage = false): void

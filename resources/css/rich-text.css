@@ -1,0 +1,14 @@
+.rich-text-content { font-size: 15px; line-height: 1.65; overflow-wrap: anywhere; letter-spacing: 0; }
+.rich-text-content p { margin: 0 0 12px; }
+.rich-text-content h1 { font-size: 32px; }.rich-text-content h2 { font-size: 26px; }.rich-text-content h3 { font-size: 22px; }.rich-text-content h4 { font-size: 19px; }.rich-text-content h5 { font-size: 17px; }.rich-text-content h6 { font-size: 15px; }
+.rich-text-content :is(h1,h2,h3,h4,h5,h6) { font-weight: 600; line-height: 1.3; margin: 18px 0 10px; }
+.rich-text-content :is(ul,ol) { padding-left: 24px; margin: 10px 0; }.rich-text-content ul { list-style: disc; }.rich-text-content ol { list-style: decimal; }
+.rich-text-content li p { margin: 0; }.rich-text-content blockquote { border-left: 3px solid var(--ui-primary); padding-left: 14px; margin: 12px 0; }
+.rich-text-content a { color: var(--ui-info); text-decoration: underline; }.rich-text-content pre { background: var(--ui-bg-elevated); padding: 12px; overflow-x: auto; margin: 12px 0; }.rich-text-content code { font-family: var(--font-mono); background: var(--ui-bg-elevated); }
+.rich-text-content img { max-width: 100%; height: auto; }.rich-text-content hr { border-top: 1px solid var(--ui-border); margin: 18px 0; }
+.rich-text-content .tableWrapper { overflow-x: auto; }.rich-text-content table { border-collapse: collapse; table-layout: fixed; width: 100%; margin: 12px 0; }
+.rich-text-content :is(th,td) { position: relative; min-width: 40px; border: 1px solid var(--ui-border-accented); padding: 8px; vertical-align: top; }.rich-text-content th { background: var(--ui-bg-elevated); font-weight: 600; }
+.rich-text-content .selectedCell::after { content: ''; position: absolute; inset: 0; pointer-events: none; background: color-mix(in srgb, var(--ui-primary) 20%, transparent); }
+.rich-text-content .column-resize-handle { position: absolute; right: -2px; top: 0; bottom: 0; width: 4px; background: var(--ui-primary); pointer-events: none; }.rich-text-content.resize-cursor { cursor: col-resize; }
+.rich-text-content ul[data-type="taskList"] { list-style: none; padding: 0; }.rich-text-content li[data-type="taskItem"] { display: flex; align-items: baseline; gap: 8px; }.rich-text-content li[data-type="taskItem"] > div { flex: 1; min-width: 0; }
+.rich-text-content .ProseMirror-selectednode { outline: 2px solid var(--ui-primary); }.rich-text-editor :is(button,input,select,textarea) { border-radius: 0; }

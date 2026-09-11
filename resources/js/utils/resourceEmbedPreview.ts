@@ -1,5 +1,10 @@
 import type { WorkspaceEmbed } from '../Types/ResourceWorkspace'
 
+export function resourceEmbedCharacterCount(embed: WorkspaceEmbed): number {
+    return ['FullParty', embed.title, embed.description, embed.author, ...embed.fields.flatMap(field => [field.name, field.value])]
+        .reduce((count, text) => count + Array.from(text).length, 0)
+}
+
 export function resourceEmbedLink(value: string): string | undefined {
     try {
         const url = new URL(value.trim())

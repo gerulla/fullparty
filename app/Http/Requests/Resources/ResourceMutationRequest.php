@@ -24,12 +24,14 @@ class ResourceMutationRequest extends FormRequest
         return [
             'version' => [$this->route('resource') ? 'required' : 'sometimes', 'integer', 'min:1'],
             'editing_token' => ['sometimes', 'string', 'size:64'],
-            'content' => [! $this->route('resource') || $action === 'save' ? 'required' : 'sometimes', 'array'],
-            'collection_id' => [! $this->route('resource') || $action === 'organize' ? 'required' : 'sometimes', 'integer'],
+            'content' => [! $this->route('resource') || in_array($action, ['save', 'autosave'], true) ? 'required' : 'sometimes', 'array'],
+            'collection_id' => [$action === 'organize' ? 'present' : 'sometimes', 'nullable', 'integer'],
             'sort_order' => ['sometimes', 'integer', 'min:0', 'max:1000000'],
             'is_pinned' => ['sometimes', 'boolean'],
-            'summary' => [$action === 'submit' ? 'required' : 'sometimes', 'string', 'max:300', 'regex:/^[^\r\n]+$/u'],
+            'summary' => ['sometimes', 'nullable', 'string', 'max:300', 'regex:/^[^\r\n]+$/u'],
+            'publish' => ['sometimes', 'boolean'],
             'revision_id' => [$action === 'restore' ? 'required' : 'sometimes', 'integer'],
+            'source_revision_id' => ['sometimes', 'integer', 'min:1'],
         ];
     }
 }

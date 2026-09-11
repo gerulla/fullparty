@@ -11,6 +11,7 @@ import { getQueueApplicationDragData, isQueueApplicationDrag, setRosterSlotDragD
 import type { LocalizedText } from "@/Types/Common";
 import type { QueueApplication } from "@/Types/ActivityQueue";
 import type { ActivitySlot } from "@/Types/ActivityRoster";
+import { useRosterDiscordCopyMenu } from "@/composables/useRosterDiscordCopy";
 
 const props = defineProps<{
 	slots: ActivitySlot[]
@@ -57,6 +58,7 @@ const emit = defineEmits<{
 
 const { t, locale } = useI18n();
 const page = usePage();
+const discordCopyMenuItems = useRosterDiscordCopyMenu();
 const fallbackLocale = computed(() => String(page.props.locale?.fallback ?? 'en'));
 
 const localizedText = (value: LocalizedText, fallback: string) => (
@@ -198,6 +200,7 @@ const buildSlotContextMenuItems = (slot: ActivitySlot): ContextMenuItem[][] => {
 
 	return [
 		[
+			...discordCopyMenuItems(slot),
 			...(slot.assignment_application_id !== null
 				? [{
 					label: t('groups.activities.management.roster.view_application_action'),

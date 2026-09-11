@@ -7,6 +7,16 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class GroupResourceImage extends Model
 {
+    protected function casts(): array
+    {
+        return ['library_upload' => 'boolean'];
+    }
+
+    public function uploader(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'uploader_user_id');
+    }
+
     protected $guarded = ['id'];
 
     protected $hidden = ['path'];

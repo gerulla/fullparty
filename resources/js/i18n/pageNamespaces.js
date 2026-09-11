@@ -26,7 +26,7 @@ const features = {
     'Dashboard/Groups/AuditLog/Index': ['audit_log', 'groups/access'],
     'Dashboard/Groups/Availability': ['groups/availability'],
     'Dashboard/Groups/CommunityDashboard': ['groups/activities', 'groups/common', 'groups/notifications'],
-    'Dashboard/Groups/Content/DelubrumReginaeSavage': [],
+    'Dashboard/Groups/Content/DelubrumReginaeSavage': ['rich_text'],
     'Dashboard/Groups/Content/ForkedTowerBlood': [],
     'Dashboard/Groups/DiscordIntegration': ['groups/access', 'groups/discord'],
     'Dashboard/Groups/Index': ['groups/common', 'groups/notifications'],
@@ -38,7 +38,7 @@ const features = {
     'Dashboard/Groups/MembershipRequests/Index': ['groups/membership_applications'],
     'Dashboard/Groups/Runs/Index': [],
     'Dashboard/Groups/Resources/Index': ['groups/resources'],
-    'Dashboard/Groups/Resources/Manage': ['groups/resources'],
+    'Dashboard/Groups/Resources/Manage': ['groups/resources', 'rich_text'],
     'Dashboard/Groups/Settings/Discovery': ['groups/access', 'groups/common', 'groups/settings'],
     'Dashboard/Groups/Settings/Index': ['groups/access', 'groups/common', 'groups/settings'],
     'Dashboard/Groups/Settings/Shortcuts': ['groups/shortcuts'],
@@ -55,6 +55,7 @@ const features = {
 }
 
 const standalone = {
+    'Resources/Show': [],
     Home: ['auth', 'groups/activities', 'landing'],
     'Legal/CookiesPolicy': [],
     'Legal/PrivacyPolicy': [],

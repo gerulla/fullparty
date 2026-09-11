@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import '@/bootstrap/markdownEditor.js'
+import RichTextEditor from '@/components/Shared/RichText/RichTextEditor.vue'
+import { emptyRichTextDocument, hasRichTextContent } from '@/utils/richText'
 import LocalizedTextFields from '@/components/Admin/ActivityTypes/LocalizedTextFields.vue'
 import type { BozjaHolsterItem, BozjaHolsterSummary, BozjaItemOption } from '@/Types/Bozja'
 import axios from 'axios'
-import { MdEditor, type ToolbarNames } from 'md-editor-v3'
 import { useToast } from '@nuxt/ui/composables'
 import { computed, reactive, ref, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
@@ -22,28 +22,6 @@ const emit = defineEmits<{
 }>()
 
 const locales = ['en', 'de', 'fr', 'ja']
-const guideToolbars: ToolbarNames[] = [
-	'bold',
-	'italic',
-	'strikeThrough',
-	'-',
-	'title',
-	'quote',
-	'unorderedList',
-	'orderedList',
-	'task',
-	'-',
-	'codeRow',
-	'code',
-	'link',
-	'table',
-	'-',
-	'revoke',
-	'next',
-	'=',
-	'preview',
-	'fullscreen',
-]
 const { t } = useI18n()
 const toast = useToast()
 const search = ref('')
@@ -59,7 +37,7 @@ const draft = reactive({
 	parent_holster_id: null as number | null,
 	max_capacity: 99,
 	notes: '',
-	guide: '',
+	guide: emptyRichTextDocument(),
 	items: [] as BozjaHolsterItem[],
 })
 
@@ -75,7 +53,7 @@ const resetDraft = () => {
 	draft.parent_holster_id = props.holster?.parent_holster_id ?? null
 	draft.max_capacity = props.holster?.max_capacity ?? 99
 	draft.notes = props.holster?.notes ?? ''
-	draft.guide = props.holster?.guide ?? ''
+	draft.guide = JSON.parse(JSON.stringify(props.holster?.guide ?? emptyRichTextDocument()))
 	draft.items = (props.holster?.items ?? []).map(item => ({ ...item }))
 	search.value = ''
 	errors.value = {}
@@ -232,7 +210,7 @@ const save = async () => {
 		type: draft.type,
 		parent_holster_id: draft.type === 'refill' ? draft.parent_holster_id : null,
 		notes: draft.notes || null,
-		guide: draft.guide || null,
+		...(props.holster?.guide_needs_conversion ? {} : { guide: draft.guide }),
 		items: draft.items.map(item => ({ id: item.id, quantity: item.quantity })),
 	}
 
@@ -377,7 +355,7 @@ const save = async () => {
 								<span class="block text-xs font-medium">{{ t('groups.index.content.delubrum_reginae_savage.holsters.metadata.guide') }}</span>
 								<span class="block truncate text-[11px] text-muted">{{ t('groups.index.content.delubrum_reginae_savage.holsters.section_guide') }}</span>
 							</span>
-							<UIcon :name="draft.guide ? 'i-lucide-circle-check' : 'i-lucide-circle'" :class="draft.guide ? 'text-success' : 'text-muted'" />
+							<UIcon :name="hasRichTextContent(draft.guide) || holster?.guide_needs_conversion ? 'i-lucide-circle-check' : 'i-lucide-circle'" :class="hasRichTextContent(draft.guide) || holster?.guide_needs_conversion ? 'text-success' : 'text-muted'" />
 						</button>
 						<button type="button" class="flex w-full items-center gap-2 border border-primary/45 bg-primary/8 px-2 py-2 text-left" @click="scrollToSection(contentsSection)">
 							<UIcon name="i-lucide-package-open" class="size-4 text-primary" />
@@ -457,17 +435,8 @@ const save = async () => {
 						</header>
 						<div class="p-3">
 							<UFormField :error="errors.guide">
-								<MdEditor
-									v-model="draft.guide"
-									language="en-US"
-									theme="dark"
-									:toolbars="guideToolbars"
-									:no-mermaid="true"
-									:no-katex="true"
-									:no-echarts="true"
-									class="holster-guide-editor"
-									style="height: 26rem"
-								/>
+								<template v-if="holster?.guide_needs_conversion"><UAlert :title="t('rich_text.conversion_required')" color="warning" variant="soft" class="mb-3" /><div class="rich-text-content" v-html="holster.guide_html" /></template>
+								<RichTextEditor v-else :key="holster?.id ?? 'new'" v-model="draft.guide" :max-length="50000" class="h-[34rem] border border-default" @save="save" />
 							</UFormField>
 						</div>
 					</section>
@@ -572,46 +541,6 @@ const save = async () => {
 </template>
 
 <style scoped>
-.holster-guide-editor {
-	--md-color: var(--ui-text);
-	--md-hover-color: var(--ui-text-highlighted);
-	--md-bk-color: var(--ui-bg);
-	--md-bk-color-outstand: var(--ui-bg);
-	--md-bk-hover-color: var(--ui-bg-elevated);
-	--md-border-color: var(--ui-border);
-	--md-border-hover-color: var(--color-brand-400);
-	--md-border-active-color: var(--color-brand-500);
-
-	border-radius: 0;
-}
-
-:deep(.holster-guide-editor .md-editor-preview),
-:deep(.holster-guide-editor .md-editor-preview-wrapper) {
-	color: var(--ui-text);
-}
-
-:deep(.holster-guide-editor .md-editor-preview ul) {
-	list-style-type: disc;
-	padding-inline-start: 2rem;
-}
-
-:deep(.holster-guide-editor .md-editor-preview ul ul) {
-	list-style-type: circle;
-}
-
-:deep(.holster-guide-editor .md-editor-preview ul ul ul) {
-	list-style-type: square;
-}
-
-:deep(.holster-guide-editor .md-editor-preview ol) {
-	list-style-type: decimal;
-	padding-inline-start: 2rem;
-}
-
-:deep(.holster-guide-editor .md-editor-preview li::marker) {
-	color: var(--ui-text);
-}
-
 :deep(.holster-quantity-input input[type='number']) {
 	-moz-appearance: textfield;
 }

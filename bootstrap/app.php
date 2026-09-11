@@ -30,6 +30,8 @@ return Application::configure(basePath: dirname(__DIR__))
     )
     ->withMiddleware(function (Middleware $middleware): void {
         $middleware->trustHosts();
+        // Whitespace inside rich-text runs and code blocks is document content.
+        $middleware->trimStrings(except: ['content.body.*.text', 'guide.*.text']);
 
         $middleware->alias([
             'admin' => EnsureWebsiteAdminAccess::class,

@@ -167,9 +167,12 @@
                 "organize": "a déplacé ou réordonné une ressource.",
                 "settings_updated": "a modifié les paramètres de la bibliothèque.",
                 "all_deleted": "a supprimé toutes les ressources du groupe.",
+                "deleted": "a supprimé une ressource.",
                 "collection_saved": "a enregistré une collection de ressources.",
                 "collection_deleted": "a supprimé une collection de ressources.",
-                "image_uploaded": "a importé une image de ressource."
+        "image_uploaded": "a importé une image de ressource.",
+        "image_updated": "a modifié les détails d’une image de ressource.",
+        "image_deleted": "a supprimé une image de ressource."
             },
             "created": "a créé le groupe.",
             "updated": "a mis à jour les paramètres du groupe.",
@@ -452,9 +455,12 @@
                 "organize": "a déplacé ou réordonné une ressource.",
                 "settings_updated": "a modifié les paramètres de la bibliothèque.",
                 "all_deleted": "a supprimé toutes les ressources du groupe.",
+                "deleted": "a supprimé une ressource.",
                 "collection_saved": "a enregistré une collection de ressources.",
                 "collection_deleted": "a supprimé une collection de ressources.",
-                "image_uploaded": "a importé une image de ressource."
+        "image_uploaded": "a importé une image de ressource.",
+        "image_updated": "a modifié les détails d’une image de ressource.",
+        "image_deleted": "a supprimé une image de ressource."
             },
             "created": "Groupe créé",
             "updated": "Paramètres du groupe mis à jour",

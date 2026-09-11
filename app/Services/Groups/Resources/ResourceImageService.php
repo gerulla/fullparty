@@ -17,12 +17,13 @@ use Symfony\Component\HttpFoundation\StreamedResponse;
 
 class ResourceImageService
 {
-    public function __construct(private readonly ResourceLibraryService $libraries, private readonly GroupResourcePolicy $policy, private readonly ResourceWorkflowService $workflow, private readonly ResourceAudit $audit) {}
+    public function __construct(private readonly ResourceLibraryService $libraries, private readonly GroupResourcePolicy $policy, private readonly ResourceWorkflowService $workflow, private readonly ResourceAudit $audit, private readonly ResourceImageReferences $references) {}
 
     public function upload(Group $group, ?GroupResource $resource, User $user, UploadedFile $file, array $data): GroupResourceImage
     {
         abort_if($resource && (int) $resource->group_id !== (int) $group->id, 404);
-        abort_unless($resource ? $this->policy->manage($user, $resource) : $this->policy->configure($user, $group), 403);
+        $libraryUpload = ! $resource && ($data['library_upload'] ?? false);
+        abort_unless($resource ? $this->policy->manage($user, $resource) : ($libraryUpload ? $this->policy->manageLibrary($user, $group) : $this->policy->configure($user, $group)), 403);
         $info = @getimagesize($file->getRealPath());
         $mime = $info['mime'] ?? null;
         $extension = ['image/png' => 'png', 'image/jpeg' => 'jpg', 'image/webp' => 'webp', 'image/gif' => 'gif'][$mime] ?? null;
@@ -37,12 +38,12 @@ class ResourceImageService
         $uuid = (string) Str::uuid();
         $path = "group-resources/{$group->id}/{$uuid}.{$extension}";
         try {
-            return DB::transaction(function () use ($group, $resource, $user, $file, $data, $info, $mime, $uuid, $path) {
+            return DB::transaction(function () use ($group, $resource, $user, $file, $data, $info, $mime, $uuid, $path, $libraryUpload) {
                 $library = $this->libraries->lock($group);
                 if ($resource) {
                     $resource->refresh();
                     abort_unless($this->policy->manage($user, $resource), 403);
-                    abort_if($resource->pending_revision_id || (int) ($data['version'] ?? 0) !== $resource->version, 409, __('resource_errors.pending'));
+                    abort_if((int) ($data['version'] ?? 0) !== $resource->version, 409, __('resource_errors.stale'));
                     $this->workflow->assertLease($resource, $user, $data);
                 }
                 if ($library->storage_used_bytes + $file->getSize() > config('group_resources.quota_bytes')) {
@@ -52,7 +53,9 @@ class ResourceImageService
                 abort_unless($stored, 503);
                 $image = GroupResourceImage::create([
                     'uuid' => $uuid, 'group_id' => $group->id, 'resource_id' => $resource?->id, 'uploader_user_id' => $user->id,
-                    'access_level' => $resource?->management_access_level ?? 'admin',
+                    'access_level' => $resource?->management_access_level ?? ($libraryUpload ? 'everyone' : 'admin'),
+                    'original_name' => Str::limit(basename(str_replace('\\', '/', $file->getClientOriginalName())), 255, ''),
+                    'library_upload' => $libraryUpload,
                     'path' => $path, 'mime_type' => $mime, 'width' => $info[0], 'height' => $info[1], 'size_bytes' => $file->getSize(),
                     'alt_text' => $data['alt_text'] ?? '', 'caption' => $data['caption'] ?? null,
                 ]);
@@ -73,26 +76,18 @@ class ResourceImageService
         if (! $group->featureEnabled('resource_hub_enabled')) {
             return false;
         }
-        if (! $image->resource_id) {
-            $branding = GroupResourceLibrary::where('group_id', $group->id)->value('customization');
-            $branding = is_string($branding) ? json_decode($branding, true) : $branding;
-            $referenced = in_array($image->uuid, array_intersect_key($branding ?? [], array_flip(['banner_image_id', 'logo_image_id', 'sharing_image_id'])), true);
-
-            return $public ? $referenced && $this->libraries->isPublic($group) : ($user && $this->policy->configure($user, $group)) || ($referenced && $this->policy->library($user, $group));
-        }
-        $resource = $image->resource;
-        $live = in_array($image->uuid, $resource->publishedRevision?->snapshot['image_ids'] ?? [], true);
-        if ($public) {
-            return $live && $this->libraries->publicUrl($resource) !== null;
-        }
-        if (! $user) {
-            return false;
-        }
-        if ($this->policy->view($user, $resource) && $live) {
+        $library = GroupResourceLibrary::where('group_id', $group->id)->first();
+        if ($library && $this->references->branding($image, $library)
+            && ($public ? $this->libraries->isPublic($group) : $this->policy->library($user, $group))) {
             return true;
         }
+        if (! $public && $user && $this->policy->manageableImages($user, $group)->whereKey($image->id)->exists()) {
+            return true;
+        }
+        $resources = GroupResource::where('group_id', $group->id)->where('status', 'published')
+            ->whereHas('publishedRevision', fn ($query) => $query->whereJsonContains('snapshot->image_ids', $image->uuid))->get();
 
-        return $this->policy->useImage($user, $image, $resource);
+        return $resources->contains(fn ($resource) => $public ? $this->libraries->publicUrl($resource) !== null : ($user && $this->policy->view($user, $resource)));
     }
 
     public function response(GroupResourceImage $image): StreamedResponse
@@ -116,7 +111,8 @@ class ResourceImageService
                     }
                     $library = $this->libraries->lock($group);
                     $image = GroupResourceImage::find($candidate->id);
-                    if (! $image || $this->referenced($image, $library)) {
+                    if (! $image || $image->library_upload || $this->references->inUse($image, $library)
+                        || GroupResource::where('group_id', $group->id)->where('editing_expires_at', '>', now())->exists()) {
                         return 0;
                     }
                     if (! Storage::disk(config('group_resources.disk'))->delete($image->path)) {
@@ -156,18 +152,5 @@ class ResourceImageService
         }
 
         return $removed;
-    }
-
-    private function referenced(GroupResourceImage $image, GroupResourceLibrary $library): bool
-    {
-        if (! $image->resource_id) {
-            return in_array($image->uuid, array_intersect_key($library->customization ?? [], array_flip(['banner_image_id', 'logo_image_id', 'sharing_image_id'])), true);
-        }
-        $resource = $image->resource;
-        if ($resource->editing_expires_at?->isFuture() || in_array($image->uuid, $resource->working_copy['image_ids'] ?? [], true)) {
-            return true;
-        }
-
-        return $resource->revisions()->get(['snapshot'])->contains(fn ($revision) => in_array($image->uuid, $revision->snapshot['image_ids'] ?? [], true));
     }
 }

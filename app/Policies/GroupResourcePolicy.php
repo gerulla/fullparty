@@ -5,7 +5,9 @@ namespace App\Policies;
 use App\Models\Group;
 use App\Models\GroupResource;
 use App\Models\GroupResourceImage;
+use App\Models\GroupResourceRevision;
 use App\Models\User;
+use Illuminate\Database\Eloquent\Builder;
 
 class GroupResourcePolicy
 {
@@ -45,17 +47,31 @@ class GroupResourcePolicy
 
     public function useImage(User $user, GroupResourceImage $image, GroupResource $resource): bool
     {
-        if ((int) $image->resource_id !== (int) $resource->id || ! $this->manage($user, $resource)) {
-            return false;
-        }
-        $levels = $this->levels($user, $resource->group);
-        if (in_array('admin', $levels, true) || ((int) $image->uploader_user_id === (int) $user->id && in_array($image->access_level, $levels, true))) {
-            return true;
-        }
-        if (in_array($image->uuid, $resource->working_copy['image_ids'] ?? [], true)) {
-            return true;
-        }
+        return (int) $image->group_id === (int) $resource->group_id && $this->manage($user, $resource)
+            && $this->manageableImages($user, $resource->group)->whereKey($image->id)->exists();
+    }
 
-        return $resource->revisions()->get(['snapshot'])->contains(fn ($revision) => in_array($revision->snapshot['access_level'], $levels, true) && in_array($image->uuid, $revision->snapshot['image_ids'] ?? [], true));
+    public function manageableImages(User $user, Group $group): Builder
+    {
+        $query = GroupResourceImage::where('group_id', $group->id);
+        if (! $this->manageLibrary($user, $group)) {
+            return $query->whereRaw('1 = 0');
+        }
+        $levels = $this->levels($user, $group);
+        if (in_array('admin', $levels, true)) {
+            return $query;
+        }
+        $resources = GroupResource::where('group_id', $group->id)->whereIn('management_access_level', $levels)->get(['id', 'working_copy->image_ids as usable_image_ids']);
+        $ids = $resources->modelKeys();
+        $imageIds = $resources->flatMap(fn ($resource) => json_decode($resource->usable_image_ids ?? '[]', true) ?? []);
+        // A resource may have been downgraded from Admin access. Only accessible revisions can grant image access.
+        $revisions = GroupResourceRevision::whereIn('resource_id', $ids)->whereIn('snapshot->access_level', $levels)->get(['snapshot->image_ids as usable_image_ids']);
+        $imageIds = $imageIds->merge($revisions->flatMap(fn ($revision) => json_decode($revision->usable_image_ids ?? '[]', true) ?? []))->unique()->values()->all();
+
+        return $query->where(function (Builder $query) use ($levels, $ids, $imageIds, $user) {
+            $query->where(fn (Builder $query) => $query->whereNull('resource_id')->where('library_upload', true)->whereIn('access_level', $levels))
+                ->orWhere(fn (Builder $query) => $query->whereIn('resource_id', $ids)->where('uploader_user_id', $user->id)->whereIn('access_level', $levels))
+                ->orWhereIn('uuid', $imageIds);
+        });
     }
 }

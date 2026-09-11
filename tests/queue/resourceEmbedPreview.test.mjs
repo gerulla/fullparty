@@ -1,9 +1,15 @@
 import test from 'node:test'
 import assert from 'node:assert/strict'
-import { resourceEmbedFieldRows, resourceEmbedImage, resourceEmbedLink } from '../../resources/js/utils/resourceEmbedPreview.ts'
+import { resourceEmbedCharacterCount, resourceEmbedFieldRows, resourceEmbedImage, resourceEmbedLink } from '../../resources/js/utils/resourceEmbedPreview.ts'
 
 const field = (name, inline = true) => ({ name, value: 'Content', inline })
 const names = rows => rows.map(row => row.map(item => item.name))
+
+test('embed character counts include the fixed footer and all fields using Unicode characters', () => {
+    const embed = { title: 'Plan', description: '\u{1f31f}', author: 'Host', fields: [{ name: 'Side', value: 'West', inline: true }], url: 'https://fullparty.gg' }
+    assert.equal(resourceEmbedCharacterCount(embed), 9 + 4 + 1 + 4 + 4 + 4)
+    assert.equal(resourceEmbedCharacterCount({ title: '', description: 'x'.repeat(5991), author: '', fields: [] }), 6000)
+})
 
 test('embed links only allow absolute HTTP and HTTPS URLs', () => {
     assert.equal(resourceEmbedLink(' https://fullparty.gg/guide '), 'https://fullparty.gg/guide')

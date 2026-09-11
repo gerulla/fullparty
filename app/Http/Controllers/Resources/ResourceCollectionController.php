@@ -30,4 +30,11 @@ class ResourceCollectionController extends Controller
 
         return response()->noContent();
     }
+
+    public function reorder(Request $request, Group $group, GroupResourceCollection $collection, ResourceCollectionService $collections): JsonResponse
+    {
+        $data = $request->validate(['offset' => ['required', 'integer', 'in:-1,1']]);
+
+        return response()->json(['data' => $collections->reorder($group, $request->user(), $collection, (int) $data['offset'])]);
+    }
 }

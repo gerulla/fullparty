@@ -167,9 +167,12 @@
                 "organize": "hat eine Ressource verschoben oder neu geordnet.",
                 "settings_updated": "hat die Ressourcenbibliothek aktualisiert.",
                 "all_deleted": "hat alle Ressourcen der Gruppe gelöscht.",
+                "deleted": "hat eine Ressource gelöscht.",
                 "collection_saved": "hat eine Ressourcensammlung gespeichert.",
                 "collection_deleted": "hat eine Ressourcensammlung gelöscht.",
-                "image_uploaded": "hat ein Ressourcenbild hochgeladen."
+        "image_uploaded": "hat ein Ressourcenbild hochgeladen.",
+        "image_updated": "hat die Details eines Ressourcenbildes aktualisiert.",
+        "image_deleted": "hat ein Ressourcenbild gelöscht."
             },
             "created": "hat die Gruppe erstellt.",
             "updated": "hat die Gruppeneinstellungen aktualisiert.",
@@ -452,9 +455,12 @@
                 "organize": "hat eine Ressource verschoben oder neu geordnet.",
                 "settings_updated": "hat die Ressourcenbibliothek aktualisiert.",
                 "all_deleted": "hat alle Ressourcen der Gruppe gelöscht.",
+                "deleted": "hat eine Ressource gelöscht.",
                 "collection_saved": "hat eine Ressourcensammlung gespeichert.",
                 "collection_deleted": "hat eine Ressourcensammlung gelöscht.",
-                "image_uploaded": "hat ein Ressourcenbild hochgeladen."
+        "image_uploaded": "hat ein Ressourcenbild hochgeladen.",
+        "image_updated": "hat die Details eines Ressourcenbildes aktualisiert.",
+        "image_deleted": "hat ein Ressourcenbild gelöscht."
             },
             "created": "Gruppe erstellt",
             "updated": "Gruppeneinstellungen aktualisiert",

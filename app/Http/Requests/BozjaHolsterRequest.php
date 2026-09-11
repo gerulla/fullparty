@@ -5,9 +5,10 @@ namespace App\Http\Requests;
 use App\Models\BozjaHolster;
 use App\Models\BozjaItem;
 use App\Models\Group;
-use App\Support\Input\TextInputSanitizer;
+use App\Services\RichText\RichTextDocument;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
+use Illuminate\Validation\ValidationException;
 use Illuminate\Validation\Validator;
 
 class BozjaHolsterRequest extends FormRequest
@@ -19,19 +20,12 @@ class BozjaHolsterRequest extends FormRequest
         if (! $group instanceof Group) {
             return false;
         }
+        $holster = $this->route('bozjaHolster');
+        abort_if($holster instanceof BozjaHolster && $holster->group_id !== $group->id, 404);
 
         $group->loadMissing('memberships');
 
         return $group->hasModeratorAccess($this->user()?->id);
-    }
-
-    protected function prepareForValidation(): void
-    {
-        if (is_string($this->input('guide'))) {
-            $this->merge([
-                'guide' => app(TextInputSanitizer::class)->sanitizeMarkdown($this->input('guide')),
-            ]);
-        }
     }
 
     /** @return array<string, mixed> */
@@ -59,7 +53,7 @@ class BozjaHolsterRequest extends FormRequest
             ],
             'max_capacity' => ['prohibited'],
             'notes' => ['nullable', 'string', 'max:5000'],
-            'guide' => ['nullable', 'string', 'max:50000'],
+            'guide' => ['nullable', 'array'],
             'items' => ['present', 'array', 'max:250'],
             'items.*.id' => [
                 'required',
@@ -73,6 +67,27 @@ class BozjaHolsterRequest extends FormRequest
 
     public function withValidator(Validator $validator): void
     {
+        $validator->after(function (Validator $validator): void {
+            $holster = $this->route('bozjaHolster');
+            if ($this->exists('guide') && $holster instanceof BozjaHolster && $holster->guide_format === 'markdown' && filled($holster->getRawOriginal('guide'))) {
+                $validator->errors()->add('guide', __('rich_text.conversion_required'));
+
+                return;
+            }
+            if (! is_array($this->input('guide')) || $validator->errors()->has('guide')) {
+                return;
+            }
+            $documents = app(RichTextDocument::class);
+            $document = $documents->validate($this->input('guide'), 'guide', 50000);
+            // Group resource assets have a separate permission and revision lifecycle.
+            foreach ($documents->imageUrls($document) as $url) {
+                if (str_starts_with(rawurldecode(parse_url($url, PHP_URL_PATH) ?? ''), '/resource-assets/')) {
+                    throw ValidationException::withMessages(['guide' => __('rich_text.invalid')]);
+                }
+            }
+            $this->merge(['guide' => $document]);
+            $validator->setData(array_replace($validator->getData(), ['guide' => $document]));
+        });
         $validator->after(function (Validator $validator): void {
             $items = $this->input('items', []);
             $holster = $this->route('bozjaHolster');

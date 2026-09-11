@@ -1,14 +1,13 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import { useI18n } from 'vue-i18n'
-import type { WorkspaceDocument } from '@/Types/ResourceWorkspace'
+import type { WorkspaceDocument, WorkspaceEmbed } from '@/Types/ResourceWorkspace'
 import { resourceEmbedFieldRows, resourceEmbedImage, resourceEmbedLink } from '@/utils/resourceEmbedPreview'
 import ResourceEmbedMarkdown from './ResourceEmbedMarkdown.vue'
 
-const props = defineProps<{ document: WorkspaceDocument; compact?: boolean }>()
-defineEmits<{ open: [] }>()
+const props = defineProps<{ document: WorkspaceDocument; embed: WorkspaceEmbed; compact?: boolean; publicResource?: boolean; resourceUrl?: string }>()
 const { t, locale } = useI18n()
-const embed = computed(() => props.document.embed)
+const embed = computed(() => props.embed)
 const titleUrl = computed(() => resourceEmbedLink(embed.value.url))
 const authorUrl = computed(() => resourceEmbedLink(embed.value.authorUrl))
 const authorIcon = computed(() => resourceEmbedImage(embed.value.authorIcon))
@@ -49,7 +48,7 @@ const timestamp = computed(() => {
                 <footer class="discord-embed-footer"><span>FullParty</span><span v-if="timestamp">&bull; {{ timestamp }}</span></footer>
             </div>
         </article>
-        <UButton v-if="document.access === 'everyone'" trailing-icon="i-lucide-external-link" color="neutral" variant="solid" size="sm" class="discord-resource-link" :label="t('groups.resources.workspace.open_resource')" @click="$emit('open')" />
+        <UButton v-if="publicResource && document.access === 'everyone'" trailing-icon="i-lucide-external-link" color="neutral" variant="solid" size="sm" class="discord-resource-link" :label="t('groups.resources.workspace.open_resource')" :to="resourceUrl" :disabled="!resourceUrl" target="_blank" rel="noopener noreferrer" />
     </div>
 </template>
 

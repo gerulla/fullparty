@@ -8,25 +8,23 @@ const props = defineProps<{ workspace: ResourceWorkspaceController }>()
 const { t, locale } = useI18n()
 const l = (key: string) => t(`groups.resources.workspace.${key}`)
 const path = computed(() => workspaceCollectionPath(props.workspace.state.collections, props.workspace.state.draft?.collectionId ?? null) || l('unfiled'))
-const pendingCount = computed(() => props.workspace.state.resources.filter(item => item.status === 'pending').length)
 const savedTime = computed(() => props.workspace.selected ? new Date(props.workspace.selected.updatedAt).toLocaleTimeString(locale.value, { hour: '2-digit', minute: '2-digit', hour12: false }) : '')
 </script>
 
 <template>
     <header class="studio-toolbar">
         <div class="studio-breadcrumb">
-            <UTooltip :text="l('back_to_library')"><UButton icon="i-lucide-arrow-left" :aria-label="l('back_to_library')" color="neutral" variant="ghost" size="xs" @click="workspace.back()" /></UTooltip>
+            <UTooltip :text="l('back_to_library')"><UButton icon="i-lucide-arrow-left" :aria-label="l('back_to_library')" color="neutral" variant="ghost" size="xs" :disabled="workspace.busy" @click="workspace.back()" /></UTooltip>
             <span class="studio-path" :title="path">{{ path }}</span><span class="text-dimmed">/</span><strong :title="workspace.state.draft?.title">{{ workspace.state.draft?.title || l('untitled') }}</strong>
         </div>
         <div class="studio-save-state">
             <UBadge color="neutral" variant="soft" class="rounded-none" size="sm"><span class="size-1.5 bg-primary" />{{ l('editing_draft') }}</UBadge>
-            <span :class="workspace.dirty ? 'text-warning' : 'text-muted'"><UIcon :name="workspace.dirty ? 'i-lucide-circle' : 'i-lucide-check'" />{{ workspace.dirty ? l('unsaved_changes') : t('groups.resources.workspace.saved_at', { time: savedTime }) }}</span>
+            <span role="status" :class="workspace.state.autosaveError || workspace.state.conflict ? 'text-error' : workspace.dirty ? 'text-warning' : 'text-muted'"><UIcon :name="workspace.autosaving ? 'i-lucide-loader-circle' : workspace.dirty ? 'i-lucide-circle' : 'i-lucide-check'" :class="{ 'animate-spin': workspace.autosaving }" />{{ workspace.autosaving ? l('autosaving') : workspace.dirty ? l('unsaved_changes') : t('groups.resources.workspace.saved_at', { time: savedTime }) }}</span>
         </div>
         <div class="studio-save-actions">
-            <UButton icon="i-lucide-save" color="neutral" variant="outline" size="sm" :label="l('save_draft')" @click="workspace.save()" />
-            <UButton icon="i-lucide-send" size="sm" :label="l('submit')" @click="workspace.save(true)" />
+            <UButton icon="i-lucide-save" color="neutral" variant="outline" size="sm" :label="l('save_version')" :loading="workspace.busy" :disabled="workspace.autosaving || workspace.state.conflict" @click="workspace.save()" />
+            <UButton v-if="workspace.canPublish" icon="i-lucide-check" size="sm" :label="l('publish')" :disabled="workspace.busy || workspace.autosaving || workspace.state.conflict" @click="workspace.save(true)" />
         </div>
-        <UButton color="neutral" variant="outline" size="xs" class="studio-pending" @click="workspace.browse('pending')">{{ l('pending_publication') }}<UBadge color="neutral" variant="soft" class="rounded-none" size="xs">{{ pendingCount }}</UBadge></UButton>
     </header>
 </template>
 
@@ -38,6 +36,5 @@ const savedTime = computed(() => props.workspace.selected ? new Date(props.works
 .studio-save-state, .studio-save-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
 .studio-save-state > span:last-child { display: flex; align-items: center; gap: 5px; font-size: 11px; }
 .studio-save-state > span:last-child > span { width: 12px; height: 12px; }
-.studio-pending { margin-left: auto; }
 @media (max-width: 639px) { .studio-breadcrumb { flex-basis: 100%; }.studio-save-actions { order: 1; flex-basis: 100%; }.studio-save-actions > button { flex: 1; justify-content: center; } }
 </style>

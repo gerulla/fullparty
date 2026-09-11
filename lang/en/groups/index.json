@@ -68,7 +68,7 @@
         "manage_locales": "Manage Locales",
         "sections": "Sections",
         "section_details": "Name, role, notes and locales",
-        "section_guide": "Instructions and Markdown",
+        "section_guide": "Instructions and diagrams",
         "section_contents": "Selected items ({count})",
         "tip_title": "Tip",
         "tip_description": "Keep your guide clear and concise so it is easier to use in-game.",
@@ -126,7 +126,7 @@
           "parent_holster_placeholder": "Select the prepop this refills",
           "max_capacity": "Maximum Capacity",
           "guide": "Guide",
-          "guide_description": "Optional Markdown-formatted guidance for using this holster.",
+          "guide_description": "Optional guidance for using this holster.",
           "expand_guide": "Expand Guide",
           "shrink_guide": "Shrink Guide"
         },

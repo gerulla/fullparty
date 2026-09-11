@@ -12,7 +12,7 @@ use Illuminate\Http\Request;
 
 class ResourceCommandService
 {
-    public function __construct(private readonly ResourceLibraryService $libraries) {}
+    public function __construct(private readonly ResourceLibraryService $libraries, private readonly ResourceEmbedMetadata $embedMetadata) {}
 
     public function group(Request $request, string $discordGuildId): Group
     {
@@ -42,16 +42,52 @@ class ResourceCommandService
         return $this->available($group)->with('resource.group')->where('name', strtolower($name))->firstOrFail();
     }
 
+    public function listing(Group $group, string $guildId, int $page = 1, int $perPage = 25, ?string $search = null): array
+    {
+        $results = $this->available($group)
+            ->when($search !== null, fn ($query) => $query->whereLike('name', '%'.addcslashes(strtolower($search), '\\%_').'%'))
+            ->orderBy('name')->paginate(perPage: $perPage, columns: ['name', 'embed'], page: $page);
+
+        return [
+            'data' => $results->getCollection()->map(fn ($command) => [
+                'command_name' => $command->name, 'title' => $command->embed['title'] ?? null,
+            ]),
+            'meta' => [
+                'group_id' => $group->id,
+                'discord_guild_id' => $guildId,
+                'current_page' => $results->currentPage(),
+                'per_page' => $results->perPage(),
+                'total' => $results->total(),
+                'last_page' => $results->lastPage(),
+                'next_page' => $results->hasMorePages() ? $results->currentPage() + 1 : null,
+            ],
+        ];
+    }
+
+    public function lookup(Group $group, string $name, string $guildId, int $page = 1, int $perPage = 25): array
+    {
+        $command = $this->available($group)->with('resource.group')->where('name', strtolower($name))->first();
+        if ($command) {
+            return ['found' => true, 'data' => $this->payload($command, $guildId)];
+        }
+
+        return ['found' => false] + $this->listing($group, $guildId, $page, $perPage, $name);
+    }
+
     public function payload(GroupResourceCommand $command, string $guildId): array
     {
         $embed = $command->embed;
+        $snapshot = $command->resource->publishedRevision->snapshot;
+        $savedCommand = collect($snapshot['commands'] ?? [])->firstWhere('name', $command->name);
+        $embed['author'] = $this->embedMetadata->author($command->resource->group, $snapshot);
+        $embed['timestamp'] = $savedCommand['updated_at'] ?? $command->resource->publishedRevision->created_at->toIso8601String();
         $assets = [];
         foreach (['image', 'thumbnail'] as $key) {
             $id = $embed[$key]['asset_id'] ?? null;
             if (! $id) {
                 continue;
             }
-            $image = GroupResourceImage::where('group_id', $command->group_id)->where('resource_id', $command->resource_id)->where('uuid', $id)->firstOrFail();
+            $image = GroupResourceImage::where('group_id', $command->group_id)->where('uuid', $id)->firstOrFail();
             $filename = $id.'.'.pathinfo($image->path, PATHINFO_EXTENSION);
             $assets[$id] = ['id' => $id, 'filename' => $filename, 'mime_type' => $image->mime_type, 'url' => route('api.integrations.resource-commands.images.show', ['discordGuildId' => $guildId, 'commandName' => $command->name, 'image' => $id])];
             $embed[$key] = ['url' => 'attachment://'.$filename];

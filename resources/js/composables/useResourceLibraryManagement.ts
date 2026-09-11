@@ -5,7 +5,7 @@ import { useI18n } from 'vue-i18n'
 import { route } from 'ziggy-js'
 import ResourceLibraryManageModal from '@/components/Groups/Resources/ResourceLibraryManageModal.vue'
 import { useConfirmationModal } from '@/composables/useConfirmationModal'
-import type { ResourceLibrary, ResourceLibraryVisibility } from '@/Types/GroupResources'
+import type { ResourceLibrary, ResourceLibrarySettings } from '@/Types/GroupResources'
 
 export function useResourceLibraryManagement(groupSlug: () => string, library: () => ResourceLibrary) {
     const overlay = useOverlay()
@@ -24,18 +24,24 @@ export function useResourceLibraryManagement(groupSlug: () => string, library: (
             modal.patch({ busy: value })
         }
         const instance = modal.open({
-            visibility: library().visibility,
-            onSave: async (visibility: ResourceLibraryVisibility) => {
+            groupSlug: groupSlug(), library: library(),
+            onClearErrors: () => modal.patch({ error: '', errors: {} }),
+            onUploadsChanged: () => router.reload({ only: ['library'] }),
+            onSave: async (settings: ResourceLibrarySettings) => {
                 if (busy) return
                 setBusy(true)
-                modal.patch({ error: '' })
+                modal.patch({ error: '', errors: {} })
                 try {
-                    await axios.put(route('groups.dashboard.resources.library.update', { group: groupSlug() }), { visibility })
+                    await axios.put(route('groups.dashboard.resources.library.update', { group: groupSlug() }), settings)
                     toast.add({ title: t('groups.resources.library.saved'), color: 'success', icon: 'i-lucide-check' })
                     modal.close(true)
                     router.reload({ only: ['library'] })
                 } catch (error) {
-                    modal.patch({ error: axios.isAxiosError(error) ? error.response?.data?.errors?.visibility?.[0] ?? t('groups.resources.library.save_failed') : t('groups.resources.library.save_failed') })
+                    const errors = axios.isAxiosError(error) ? error.response?.data?.errors ?? {} : {}
+                    modal.patch({
+                        error: t(Object.keys(errors).length ? 'groups.resources.library.fix_fields' : 'groups.resources.library.save_failed'),
+                        errors: Object.fromEntries(Object.entries(errors).map(([field, messages]) => [field, Array.isArray(messages) ? messages.join(' ') : String(messages)])),
+                    })
                     setBusy(false)
                 }
             },

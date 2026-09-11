@@ -7,7 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Str;
 
 class GroupResource extends Model
 {
@@ -15,13 +16,25 @@ class GroupResource extends Model
 
     public const ACCESS_LEVELS = ['everyone', 'moderator', 'admin'];
 
+    public const MAX_COMMANDS = 15;
+
     protected $guarded = ['id'];
 
     protected $hidden = ['editing_token_hash'];
 
+    protected static function booted(): void
+    {
+        static::creating(function (self $resource) {
+            // The earlier Home backfill also creates models before the UUID migration.
+            if (Schema::hasColumn('group_resources', 'uuid')) {
+                $resource->uuid = (string) Str::uuid();
+            }
+        });
+    }
+
     protected function casts(): array
     {
-        return ['working_copy' => 'array', 'version' => 'integer', 'is_pinned' => 'boolean', 'sort_order' => 'integer', 'editing_expires_at' => 'datetime', 'published_at' => 'datetime', 'archived_at' => 'datetime'];
+        return ['is_home' => 'boolean', 'working_copy' => 'array', 'version' => 'integer', 'is_pinned' => 'boolean', 'sort_order' => 'integer', 'editing_expires_at' => 'datetime', 'published_at' => 'datetime', 'archived_at' => 'datetime'];
     }
 
     public function group(): BelongsTo
@@ -49,9 +62,9 @@ class GroupResource extends Model
         return $this->hasMany(GroupResourceRevision::class, 'resource_id');
     }
 
-    public function command(): HasOne
+    public function commands(): HasMany
     {
-        return $this->hasOne(GroupResourceCommand::class, 'resource_id');
+        return $this->hasMany(GroupResourceCommand::class, 'resource_id');
     }
 
     public function activityTypes(): BelongsToMany

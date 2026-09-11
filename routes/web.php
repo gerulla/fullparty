@@ -37,6 +37,7 @@ use App\Http\Controllers\GroupActivityManagementWarningController;
 use App\Http\Controllers\GroupActivityManualSlotAssignmentOptionsController;
 use App\Http\Controllers\GroupActivityPartyFinderInfoController;
 use App\Http\Controllers\GroupActivityRosterExportController;
+use App\Http\Controllers\GroupActivityRosterDiscordController;
 use App\Http\Controllers\GroupActivitySelfAssignmentController;
 use App\Http\Controllers\GroupActivitySlotApplicationReviewWarningController;
 use App\Http\Controllers\GroupActivitySlotAssignmentContextController;
@@ -591,6 +592,7 @@ Route::prefix('{locale?}')
 
                 // Full dashboard payloads, exports, and read-only queue details.
                 Route::get('/activities/{activity}/management-data', [GroupActivityManagementDataController::class, 'show'])->name('groups.dashboard.activities.management-data');
+                Route::get('/activities/{activity}/roster-discord-ids', [GroupActivityRosterDiscordController::class, 'show'])->name('groups.dashboard.activities.roster-discord-ids');
                 Route::delete('/activities/{activity}/management-warnings/{managementWarning}', [GroupActivityManagementWarningController::class, 'destroy'])->name('groups.dashboard.activities.management-warnings.destroy');
                 Route::post('/activities/{activity}/party-finder-info', [GroupActivityPartyFinderInfoController::class, 'store'])->name('groups.dashboard.activities.party-finder-info.store');
                 Route::get('/activities/{activity}/export-roster', [GroupActivityRosterExportController::class, 'show'])->name('groups.dashboard.activities.export-roster');

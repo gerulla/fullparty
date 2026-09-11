@@ -2,6 +2,8 @@ import type { LocalizedText } from "@/Types/Common"
 
 export type SlotDesignation = "host" | "raid_leader" | "duelist" | "trapper" | "darter"
 
+export type RosterDiscordIds = Record<string, string>
+
 export type ActivitySlotFieldValue = {
 	id: number
 	field_key: string

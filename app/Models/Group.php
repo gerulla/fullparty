@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Services\Groups\Resources\ResourceHomeService;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -86,6 +87,7 @@ class Group extends Model
     {
         static::created(function (Group $group): void {
             $group->features()->create(GroupFeature::defaults());
+            app(ResourceHomeService::class)->ensure($group);
         });
     }
 

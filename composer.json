@@ -21,7 +21,8 @@
         "socialiteproviders/discord": "^4.2",
         "symfony/http-client": "^8.0",
         "symfony/postmark-mailer": "^8.0",
-        "tightenco/ziggy": "^2.6"
+        "tightenco/ziggy": "^2.6",
+        "ueberdosis/tiptap-php": "^2.2"
     },
     "require-dev": {
         "fakerphp/faker": "^1.23",

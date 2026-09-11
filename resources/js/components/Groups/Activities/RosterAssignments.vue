@@ -5,6 +5,7 @@ import { computed, ref } from "vue";
 import { route } from "ziggy-js";
 import { useToast } from "@nuxt/ui/composables";
 import { useI18n } from "vue-i18n";
+import { provideRosterDiscordCopy } from "@/composables/useRosterDiscordCopy";
 import ActivitySlotCompositionCustomModal from "@/components/Groups/Activities/ActivitySlotCompositionCustomModal.vue";
 import ActivityFillInSlotsSection from "@/components/Groups/Activities/ActivityFillInSlotsSection.vue";
 import ActivityRosterPartyView from "@/components/Groups/Activities/ActivityRosterPartyView.vue";
@@ -54,6 +55,7 @@ const emit = defineEmits<{
 
 const { t } = useI18n();
 const toast = useToast();
+provideRosterDiscordCopy(() => props.groupSlug, () => props.activityId, () => props.slots);
 const draggedSlotId = ref<number | null>(null);
 const dropTargetSlotId = ref<number | null>(null);
 const isCompositionHintPending = ref(false);

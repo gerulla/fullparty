@@ -167,9 +167,12 @@
         "organize": "reordered or moved a resource.",
         "settings_updated": "updated resource library settings.",
         "all_deleted": "deleted all resources in the group.",
+        "deleted": "deleted a resource.",
         "collection_saved": "saved a resource collection.",
         "collection_deleted": "deleted a resource collection.",
-        "image_uploaded": "uploaded a resource image."
+        "image_uploaded": "uploaded a resource image.",
+        "image_updated": "updated resource image details.",
+        "image_deleted": "deleted a resource image."
       },
       "created": "created the group.",
       "updated": "updated the group settings.",
@@ -452,9 +455,12 @@
         "organize": "reordered or moved a resource.",
         "settings_updated": "updated resource library settings.",
         "all_deleted": "deleted all resources in the group.",
+        "deleted": "deleted a resource.",
         "collection_saved": "saved a resource collection.",
         "collection_deleted": "deleted a resource collection.",
-        "image_uploaded": "uploaded a resource image."
+        "image_uploaded": "uploaded a resource image.",
+        "image_updated": "updated resource image details.",
+        "image_deleted": "deleted a resource image."
       },
       "created": "Group created",
       "updated": "Group settings updated",

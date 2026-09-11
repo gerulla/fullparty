@@ -15,6 +15,11 @@ class RestrictResourceHost
             abort_unless($request->routeIs('public-resources.*'), 404);
         }
 
-        return $next($request);
+        $response = $next($request);
+        if ($request->routeIs('public-resources.*') && ! $request->routeIs('public-resources.images.show')) {
+            $response->headers->set('Cache-Control', 'no-store');
+        }
+
+        return $response;
     }
 }

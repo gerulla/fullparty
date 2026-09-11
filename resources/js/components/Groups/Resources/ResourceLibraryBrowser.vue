@@ -1,8 +1,9 @@
 <script setup lang="ts">
+import { workspaceHasUnpublishedChanges } from '@/utils/resourceWorkspace'
 import { computed, ref, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
 import type { ResourceWorkspaceController, WorkspaceResource } from '@/Types/ResourceWorkspace'
-import { workspaceActivities } from '@/utils/mockResourceData'
+import { resourceDragType } from '@/composables/useResourceTreeDrag'
 
 const props = defineProps<{ workspace: ResourceWorkspaceController }>()
 const { t, locale } = useI18n()
@@ -13,16 +14,16 @@ const page = ref(1)
 const pageSize = 7
 const draggedId = ref<string | null>(null)
 const dropTarget = ref<string | null>(null)
-const statusItems = computed(() => ['all', 'published', 'draft', 'pending'].map(value => ({ value, label: l(value === 'all' ? 'all_statuses' : value) })))
+const statusItems = computed(() => ['all', 'published', 'draft'].map(value => ({ value, label: l(value === 'all' ? 'all_statuses' : value) })))
 const accessItems = computed(() => ['all', 'everyone', 'moderators', 'admins'].map(value => ({ value, label: l(value === 'all' ? 'all_access' : value) })))
-const activityItems = computed(() => [{ value: 'all', label: l('all_activities') }, ...workspaceActivities.map(value => ({ value, label: value }))])
-const sorted = computed(() => [...props.workspace.visibleResources].sort((a, b) => sort.value === 'order' ? a.order - b.order : a[sort.value].localeCompare(b[sort.value], locale.value) * direction.value))
+const activityItems = computed(() => [{ value: 'all', label: l('all_activities') }, ...props.workspace.activities.map(value => ({ value, label: value }))])
+const sorted = computed(() => [...props.workspace.visibleResources].sort((a, b) => Number(!!b.isHome) - Number(!!a.isHome) || (sort.value === 'order' ? a.order - b.order : a[sort.value].localeCompare(b[sort.value], locale.value) * direction.value)))
 const pageCount = computed(() => Math.max(1, Math.ceil(sorted.value.length / pageSize)))
 const rows = computed(() => sorted.value.slice((page.value - 1) * pageSize, page.value * pageSize))
 const checked = computed(() => props.workspace.state.checked)
 const pageChecked = computed(() => rows.value.filter(item => checked.value.includes(item.id)).length)
-const pendingIds = computed(() => checked.value.filter(id => props.workspace.state.resources.find(item => item.id === id)?.status === 'pending'))
-const movableIds = computed(() => checked.value.filter(id => props.workspace.state.resources.find(item => item.id === id)?.status !== 'pending'))
+const publishableIds = computed(() => checked.value.filter(id => props.workspace.state.resources.some(item => item.id === id && workspaceHasUnpublishedChanges(item))))
+const movableIds = computed(() => checked.value.filter(id => props.workspace.state.resources.some(item => item.id === id && !item.isHome)))
 const range = computed(() => ({ start: sorted.value.length ? (page.value - 1) * pageSize + 1 : 0, end: Math.min(page.value * pageSize, sorted.value.length), total: sorted.value.length }))
 watch(() => [props.workspace.state.scope, props.workspace.state.query, props.workspace.state.status, props.workspace.state.access, props.workspace.state.activity], () => { page.value = 1 })
 watch(pageCount, value => { page.value = Math.min(page.value, value) })
@@ -38,17 +39,24 @@ function togglePage() {
 function changeSort(column: 'title' | 'updatedAt') { direction.value = sort.value === column ? -direction.value : 1; sort.value = column; page.value = 1 }
 function date(value: string) { return new Date(value).toLocaleString(locale.value, { month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit', hour12: false }) }
 function menu(resource: WorkspaceResource) {
-    const index = props.workspace.visibleResources.findIndex(item => item.id === resource.id)
+    const siblings = props.workspace.state.resources.filter(item => item.collectionId === resource.collectionId && !item.isHome).sort((a, b) => a.order - b.order)
+    const index = siblings.findIndex(item => item.id === resource.id)
     return [
-        { label: l('edit'), icon: 'i-lucide-pencil', disabled: resource.status === 'pending', onSelect: () => props.workspace.edit(resource.id) },
-        { label: l('preview'), icon: 'i-lucide-eye', onSelect: () => props.workspace.preview(resource) },
-        { label: l('move'), icon: 'i-lucide-folder-input', disabled: resource.status === 'pending', onSelect: () => props.workspace.openMove([resource.id]) },
-        { label: l('move_up'), icon: 'i-lucide-arrow-up', disabled: index === 0, onSelect: () => { sort.value = 'order'; props.workspace.reorder(resource.id, -1) } },
-        { label: l('move_down'), icon: 'i-lucide-arrow-down', disabled: index === props.workspace.visibleResources.length - 1, onSelect: () => { sort.value = 'order'; props.workspace.reorder(resource.id, 1) } },
-        { label: l('delete'), icon: 'i-lucide-trash-2', color: 'error' as const, onSelect: () => props.workspace.remove(resource.id) },
+        { label: l('edit'), icon: 'i-lucide-pencil', disabled: resource.status === 'archived', onSelect: () => props.workspace.edit(resource.id) },
+        { label: l('view'), icon: 'i-lucide-external-link', to: props.workspace.viewUrl(resource), target: '_blank', rel: 'noopener noreferrer', disabled: !props.workspace.viewUrl(resource) },
+        { label: l('move'), icon: 'i-lucide-folder-input', disabled: resource.isHome, onSelect: () => props.workspace.openMove([resource.id]) },
+        { label: l('move_up'), icon: 'i-lucide-arrow-up', disabled: resource.isHome || index <= 0, onSelect: () => { sort.value = 'order'; props.workspace.reorder(resource.id, -1) } },
+        { label: l('move_down'), icon: 'i-lucide-arrow-down', disabled: resource.isHome || index === siblings.length - 1, onSelect: () => { sort.value = 'order'; props.workspace.reorder(resource.id, 1) } },
+        { label: l(resource.status === 'archived' ? 'restore_draft' : 'archive'), icon: resource.status === 'archived' ? 'i-lucide-archive-restore' : 'i-lucide-archive', disabled: resource.isHome, onSelect: () => resource.status === 'archived' ? props.workspace.unarchive(resource.id) : props.workspace.archive(resource.id) },
+        { label: l('delete'), icon: 'i-lucide-trash-2', color: 'error' as const, disabled: resource.isHome, onSelect: () => props.workspace.remove(resource.id) },
     ]
 }
-function startDrag(event: DragEvent, id: string) { draggedId.value = id; if (event.dataTransfer) { event.dataTransfer.effectAllowed = 'move'; event.dataTransfer.setData('text/plain', id) } }
+function startDrag(event: DragEvent, id: string) {
+    const resource = props.workspace.state.resources.find(item => item.id === id)
+    if (!resource || resource.isHome) { event.preventDefault(); return }
+    draggedId.value = id
+    if (event.dataTransfer) { event.dataTransfer.effectAllowed = 'move'; event.dataTransfer.setData(resourceDragType, JSON.stringify({ kind: 'resource', id })) }
+}
 function drop(id: string) { if (draggedId.value) { sort.value = 'order'; props.workspace.reorderBefore(draggedId.value, id) } draggedId.value = null; dropTarget.value = null }
 </script>
 
@@ -59,8 +67,8 @@ function drop(id: string) { if (draggedId.value) { sort.value = 'order'; props.w
             <USelect v-model="workspace.state.status" :items="statusItems" :aria-label="l('status')" class="library-filter" />
             <USelect v-model="workspace.state.activity" :items="activityItems" :aria-label="l('activities')" class="library-filter" />
             <USelect v-model="workspace.state.access" :items="accessItems" :aria-label="l('access')" class="library-filter" />
-            <UButton icon="i-lucide-folder-plus" color="neutral" variant="outline" :label="l('collection')" class="library-new-folder" @click="workspace.openCollection()" />
-            <UButton icon="i-lucide-plus" color="neutral" variant="solid" :label="l('resource')" @click="workspace.createResource()" />
+            <UButton icon="i-lucide-folder-plus" color="neutral" variant="outline" :label="l('collection')" :disabled="!!workspace.collectionActions.state.editing" class="library-new-folder" @click="workspace.collectionActions.create(workspace.state.collections.some(item => item.id === workspace.state.scope) ? workspace.state.scope : null)" />
+            <UButton icon="i-lucide-plus" color="neutral" variant="solid" :label="l('resource')" :loading="workspace.creatingResource" @click="workspace.createResource()" />
         </header>
         <div class="library-table-scroll">
             <table class="library-table">
@@ -80,18 +88,18 @@ function drop(id: string) { if (draggedId.value) { sort.value = 'order'; props.w
                         <td @click.stop><UTooltip :text="l('reorder')"><UDropdownMenu :items="menu(resource).slice(3, 5)"><UButton icon="i-lucide-grip-vertical" color="neutral" variant="ghost" size="xs" :aria-label="`${l('reorder')}: ${resource.title}`" draggable="true" class="resource-drag-handle" @dragstart="startDrag($event, resource.id)" @dragend="draggedId = null; dropTarget = null" /></UDropdownMenu></UTooltip></td>
                         <td><button class="resource-title-cell" @click.stop="workspace.select(resource.id)" @dblclick="workspace.edit(resource.id)"><img v-if="resource.cover" :src="resource.cover" alt="" class="resource-thumbnail" /><span v-else class="resource-thumbnail resource-thumbnail-empty"><UIcon name="i-lucide-file-text" /></span><span class="resource-title-copy"><strong>{{ resource.title }}</strong><span>{{ resource.description }}</span></span></button></td>
                         <td><span class="resource-access"><UIcon :name="resource.access === 'everyone' ? 'i-lucide-globe' : resource.access === 'moderators' ? 'i-lucide-lock-keyhole' : 'i-lucide-shield-check'" />{{ l(resource.access) }}</span></td>
-                        <td><span class="resource-command" :class="{ 'text-dimmed': !resource.embed.enabled }">{{ resource.embed.command ? `/info ${resource.embed.command}` : l('none') }}</span></td>
-                        <td><UBadge :color="resource.status === 'published' ? 'success' : resource.status === 'pending' ? 'warning' : 'neutral'" variant="subtle" class="library-status" size="sm">{{ l(resource.status) }}</UBadge></td>
+                        <td><span v-for="(embed, index) in resource.embeds" :key="index" class="resource-command" :class="{ 'text-dimmed': !embed.enabled }" :title="`/info ${embed.command}`">/info {{ embed.command }}</span><span v-if="!resource.embeds.length" class="text-dimmed">{{ l('none') }}</span></td>
+                        <td><UBadge :color="resource.status === 'published' ? 'success' : 'neutral'" variant="subtle" class="library-status" size="sm">{{ l(resource.status) }}</UBadge></td>
                         <td class="resource-edited">{{ date(resource.updatedAt) }}</td>
                         <td @click.stop><UDropdownMenu :items="menu(resource)"><UButton icon="i-lucide-ellipsis" color="neutral" variant="ghost" size="xs" :aria-label="`${l('actions')}: ${resource.title}`" /></UDropdownMenu></td>
                     </tr>
-                    <tr v-if="!rows.length"><td colspan="8"><div class="library-empty"><UIcon name="i-lucide-files" /><p>{{ l('no_resources') }}</p><UButton icon="i-lucide-plus" color="neutral" variant="solid" :label="l('new_resource')" @click="workspace.createResource()" /></div></td></tr>
+                    <tr v-if="!rows.length"><td colspan="8"><div class="library-empty"><UIcon name="i-lucide-files" /><p>{{ l('no_resources') }}</p><UButton icon="i-lucide-plus" color="neutral" variant="solid" :label="l('new_resource')" :loading="workspace.creatingResource" @click="workspace.createResource()" /></div></td></tr>
                 </tbody>
             </table>
         </div>
         <footer class="library-bulk-bar">
             <span class="selection-summary">{{ checked.length ? t('groups.resources.workspace.selected_count', { count: checked.length }) : t('groups.resources.workspace.resource_count', { count: sorted.length }) }}</span>
-            <div class="library-bulk-actions"><UButton icon="i-lucide-folder-input" color="neutral" variant="outline" :label="l('move_to')" :disabled="!movableIds.length" @click="workspace.openMove(movableIds)" /><UButton icon="i-lucide-rocket" color="neutral" variant="outline" :label="l('publish')" :disabled="!pendingIds.length" @click="workspace.publish(pendingIds)" /><UTooltip :text="l('clear_selection')"><UButton icon="i-lucide-list-x" color="neutral" variant="outline" :aria-label="l('clear_selection')" :disabled="!checked.length" @click="workspace.state.checked = []" /></UTooltip></div>
+            <div class="library-bulk-actions"><UButton icon="i-lucide-folder-input" color="neutral" variant="outline" :label="l('move_to')" :disabled="!movableIds.length" @click="workspace.openMove(movableIds)" /><UButton icon="i-lucide-rocket" color="neutral" variant="outline" :label="l('publish')" v-if="publishableIds.length" :disabled="workspace.busy" @click="workspace.publish(publishableIds)" /><UTooltip :text="l('clear_selection')"><UButton icon="i-lucide-list-x" color="neutral" variant="outline" :aria-label="l('clear_selection')" :disabled="!checked.length" @click="workspace.state.checked = []" /></UTooltip></div>
             <div class="library-pagination"><span>{{ t('groups.resources.workspace.result_range', range) }}</span><UPagination v-model:page="page" :items-per-page="pageSize" :total="sorted.length" :sibling-count="0" :show-edges="false" size="xs" /></div>
         </footer>
     </section>

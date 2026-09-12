@@ -8,7 +8,7 @@ import ApplicantInspectorLayout from "@/components/Groups/Activities/ApplicantIn
 import ApplicantApplicationPanel from "@/components/Groups/Activities/ApplicantApplicationPanel.vue";
 import ApplicantNotesPanel from "@/components/Groups/Activities/ApplicantNotesPanel.vue";
 import { useApplicantNotes } from "@/composables/useApplicantNotes";
-import ActivityCharacterFflogsProgress from "@/components/Groups/Activities/ActivityCharacterFflogsProgress.vue";
+import ApplicantRecordPanel from "@/components/Groups/Activities/ApplicantRecordPanel.vue";
 import ApplicantUserStats from "@/components/Groups/Activities/ApplicantUserStats.vue";
 import type { QueueApplication } from "@/Types/ActivityQueue";
 import { activityTextLimits } from "@/utils/activityTextLimits";
@@ -385,15 +385,10 @@ watch(isOpen, (open) => {
                 </template>
                 <template #record>
                     <div class="space-y-6">
-                        <ActivityCharacterFflogsProgress
-                            v-if="applicantCharacter?.name && applicantCharacter?.world"
+                        <ApplicantRecordPanel
                             :open="isOpen" :group-slug="groupSlug" :activity-id="activityId"
-                            :application-id="application.id" :character-id="application.selected_character?.id ?? null"
-                            :character-name="applicantCharacter.name" :world="applicantCharacter.world"
-                            :fflogs-zone-id="fflogsZoneId" :should-fetch="canFetchPanelData && section === 'record'"
-                            embedded
+                            :application-id="application.id" :should-fetch="canFetchPanelData && section === 'record'"
                         />
-                        <p v-else class="text-sm text-muted">{{ t('groups.activities.management.queue.modal.fflogs_unavailable_guest') }}</p>
                         <ApplicantUserStats :stats="application.user_stats" :empty-message="userStatsEmptyMessage" embedded />
                     </div>
                 </template>

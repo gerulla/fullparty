@@ -36,6 +36,7 @@ class CharacterZoneProgressFetcher
         $zoneRankings = $this->fetchRawZoneRankingsForCharacter($character, $zoneId, difficulty: $difficulty);
         $encounters = $this->extractEncounterRankings($zoneRankings)
             ->map(fn (array $ranking) => [
+                'encounter_id' => (int) data_get($ranking, 'encounter.id', 0),
                 'name' => $this->extractRankingBossName($ranking) ?? 'Unknown Encounter',
                 'kills' => $this->resolveEncounterKills($ranking),
                 'progress' => $this->resolveEncounterProgress($ranking),
@@ -73,6 +74,7 @@ class CharacterZoneProgressFetcher
         );
         $encounters = $this->extractEncounterRankings($zoneRankings)
             ->map(fn (array $ranking) => [
+                'encounter_id' => (int) data_get($ranking, 'encounter.id', 0),
                 'name' => $this->extractRankingBossName($ranking) ?? 'Unknown Encounter',
                 'kills' => $this->resolveEncounterKills($ranking),
                 'progress' => $this->resolveEncounterProgress($ranking),

@@ -352,5 +352,21 @@
   "manage": {
     "title": "Gérer les ressources",
     "description": "Organisez et maintenez les guides, stratégies et documents de référence de votre groupe."
+  },
+  "holsters": {
+    "title": "Holsters DRS",
+    "description": "Afficher tous les holsters actifs de ce groupe comme ressources dans la collection choisie.",
+    "sync_description": "Les titres, descriptions, guides et contenus restent synchronisés avec l’éditeur DRS. Les holsters inactifs sont automatiquement masqués. Les ressources suivent la visibilité publique ou réservée au groupe de la bibliothèque. Retirer cette liste ne supprime aucun holster.",
+    "not_listed": "Ne pas afficher les holsters",
+    "active_count": "{count} holsters actifs",
+    "no_collections": "Créez d’abord une collection, puis sélectionnez-la ici.",
+    "save_failed": "Impossible d’enregistrer la collection des holsters. Veuillez réessayer.",
+    "change_collection": "Changer de collection",
+    "manage": "Gérer les holsters",
+    "managed_in_drs": "Ces ressources sont mises à jour automatiquement. Modifiez leur contenu et leur statut actif dans « Gérer les holsters ».",
+    "live": "À jour",
+    "loadout": "Contenu du holster",
+    "capacity": "Capacité : {used} / {max}",
+    "no_items": "Aucune action dans ce holster."
   }
 }

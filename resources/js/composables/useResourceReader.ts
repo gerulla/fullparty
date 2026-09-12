@@ -22,6 +22,7 @@ export function useResourceReader(getPage: () => ResourceReaderPage, publicView:
         history: (resource: ResourceReaderSummary) => route(`${prefix}.history`, { ...parameters(), slug: resource.slug }),
         resource: (resource: ResourceReaderSummary) => resource.is_home
             ? route(`${prefix}.index`, parameters())
+            : resource.source_type === 'holster' ? route(`${prefix}.holsters.show`, { ...parameters(), holster: resource.holster_id })
             : route(`${prefix}.show`, { ...parameters(), slug: resource.slug }),
     }
     const selectedCollection = computed(() => getPage().collections.find(item => item.id === getPage().reader.selected_collection_id))

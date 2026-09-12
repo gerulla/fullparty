@@ -15,12 +15,15 @@ export type ResourceLibrarySettings = { visibility: ResourceLibraryVisibility; c
 export type ResourceLibrarySettingsErrors = Record<string, string>
 
 export type ResourceReaderSummary = {
+    source_type?: 'holster'; holster_id?: number
     id: number; slug: string; collection_id: number | null; is_home: boolean
     title: string; description: string; tags: string[]; activity_type_ids: number[]
     metadata_image_id: string | null; author: ResourceAuthorData | null
     access_level: 'everyone' | 'moderator' | 'admin'; published_at: string | null
 }
 export type ResourceReaderDocument = ResourceReaderSummary & {
+    holster?: ResourceHolsterLoadout
+    legacy_body_html?: string | null
     commands: ResourceReaderCommand[]
     body: RichTextDocument
     images: { uuid: string; url: string; alt_text: string; caption: string | null }[]
@@ -91,6 +94,7 @@ export type ResourceDetailData = Omit<ResourceSummaryData, 'summary' | 'commands
     history: { id: number | string; kind?: 'edit' | 'publication'; editor: ResourceAuthorData; summary: string; created_at: string }[]
 }
 export type ResourceWorkspaceData = {
+    holsters?: ResourceHolsterSettings
     pin_limit: number
     editor_user_id?: number
     embed_context?: { group_icon_url: string | null; public_base_url: string }
@@ -98,6 +102,12 @@ export type ResourceWorkspaceData = {
     authors: ResourceAuthorData[]
     activities: { id: number; name: Record<string, string> }[]
     access_levels: ResourceSnapshot['access_level'][]
+}
+
+export type ResourceHolsterSettings = { collection_id: number | null; active_count: number; resources: ResourceReaderSummary[] }
+export type ResourceHolsterLoadout = {
+    role: string | null; type: string; capacity_used: number; max_capacity: number
+    items: { id: number; name: string; icon_url: string | null; quantity: number; cache_weight: number }[]
 }
 
 export type ResourceMutationData = {

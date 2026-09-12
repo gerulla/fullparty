@@ -4,6 +4,7 @@ namespace App\Services\Groups\Resources;
 
 use App\Models\Group;
 use App\Models\GroupResourceCollection;
+use App\Models\GroupResourceLibrary;
 use App\Models\User;
 use App\Policies\GroupResourcePolicy;
 use Illuminate\Database\Eloquent\Collection as EloquentCollection;
@@ -85,6 +86,10 @@ class ResourceCollectionService
                 throw ValidationException::withMessages(['collection' => __('resource_errors.collection_not_empty')]);
             }
             $this->audit->record($group, $user, $collection, 'collection_deleted');
+            if ($destinationId !== null) {
+                GroupResourceLibrary::where('group_id', $group->id)->where('holster_collection_id', $collection->id)
+                    ->update(['holster_collection_id' => $destinationId]);
+            }
             $collection->delete();
         });
     }

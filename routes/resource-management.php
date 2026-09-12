@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Resources\ResourceCollectionController;
+use App\Http\Controllers\Resources\ResourceHolsterController;
 use App\Http\Controllers\Resources\ResourceImageController;
 use App\Http\Controllers\Resources\ResourceLibraryController;
 use App\Http\Controllers\Resources\ResourceMutationController;
@@ -9,6 +10,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::prefix('content/resources')->name('groups.dashboard.resources.')->middleware('throttle:120,1')->group(function () {
     Route::put('/library', [ResourceLibraryController::class, 'update'])->name('library.update');
+    Route::put('/library/holsters', [ResourceHolsterController::class, 'update'])->name('library.holsters.update');
     Route::delete('/library/resources', [ResourceLibraryController::class, 'destroyResources'])->name('library.resources.destroy');
     Route::post('/collections', [ResourceCollectionController::class, 'store'])->name('collections.store');
     Route::post('/organization', ResourceOrganizationController::class)->name('organization');

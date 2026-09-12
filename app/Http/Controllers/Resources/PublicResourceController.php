@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Resources;
 
 use App\Http\Controllers\Controller;
+use App\Models\BozjaHolster;
 use App\Models\Group;
 use App\Services\Groups\Resources\ResourceReaderHistoryService;
 use App\Services\Groups\Resources\ResourceReaderService;
@@ -35,6 +36,15 @@ class PublicResourceController extends Controller
         }
 
         $detail = $reader->detail($resource, $request);
+
+        return $request->expectsJson() && ! $request->header('X-Inertia')
+            ? response()->json(['data' => $detail])->header('Cache-Control', 'no-store')
+            : $this->render($this->pageContext($group) + ['resource' => $detail] + $reader->index($group, $request, public: true));
+    }
+
+    public function holster(Request $request, Group $group, BozjaHolster $holster, ResourceReaderService $reader): JsonResponse|Response
+    {
+        $detail = $reader->holster($group, $holster, $request, public: true);
 
         return $request->expectsJson() && ! $request->header('X-Inertia')
             ? response()->json(['data' => $detail])->header('Cache-Control', 'no-store')

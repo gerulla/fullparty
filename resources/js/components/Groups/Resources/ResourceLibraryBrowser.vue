@@ -5,7 +5,7 @@ import { useI18n } from 'vue-i18n'
 import type { ResourceWorkspaceController, WorkspaceResource } from '@/Types/ResourceWorkspace'
 import { resourceDragType } from '@/composables/useResourceTreeDrag'
 
-const props = defineProps<{ workspace: ResourceWorkspaceController }>()
+const props = defineProps<{ workspace: ResourceWorkspaceController; hasLinkedResources?: boolean }>()
 const { t, locale } = useI18n()
 const l = (key: string) => t(`groups.resources.workspace.${key}`)
 const sort = ref<'order' | 'title' | 'updatedAt'>('order')
@@ -71,7 +71,7 @@ function drop(id: string) { if (draggedId.value) { sort.value = 'order'; props.w
             <UButton icon="i-lucide-folder-plus" color="neutral" variant="outline" :label="l('collection')" :disabled="!!workspace.collectionActions.state.editing" class="library-new-folder" @click="workspace.collectionActions.create(workspace.state.collections.some(item => item.id === workspace.state.scope) ? workspace.state.scope : null)" />
             <UButton icon="i-lucide-plus" color="neutral" variant="solid" :label="l('resource')" :loading="workspace.creatingResource" @click="workspace.createResource()" />
         </header>
-        <div class="library-table-scroll">
+        <div v-if="rows.length || !hasLinkedResources" class="library-table-scroll">
             <table class="library-table">
                 <caption class="sr-only">{{ l('all_resources') }}</caption>
                 <colgroup><col class="selection-col" /><col class="grip-col" /><col /><col class="access-col" /><col class="command-col" /><col class="status-col" /><col class="edited-col" /><col class="actions-col" /></colgroup>
@@ -94,10 +94,11 @@ function drop(id: string) { if (draggedId.value) { sort.value = 'order'; props.w
                         <td class="resource-edited">{{ date(resource.updatedAt) }}</td>
                         <td @click.stop><UDropdownMenu :items="menu(resource)"><UButton icon="i-lucide-ellipsis" color="neutral" variant="ghost" size="xs" :aria-label="`${l('actions')}: ${resource.title}`" /></UDropdownMenu></td>
                     </tr>
-                    <tr v-if="!rows.length"><td colspan="8"><div class="library-empty"><UIcon name="i-lucide-files" /><p>{{ l('no_resources') }}</p><UButton icon="i-lucide-plus" color="neutral" variant="solid" :label="l('new_resource')" :loading="workspace.creatingResource" @click="workspace.createResource()" /></div></td></tr>
+                    <tr v-if="!rows.length && !hasLinkedResources"><td colspan="8"><div class="library-empty"><UIcon name="i-lucide-files" /><p>{{ l('no_resources') }}</p><UButton icon="i-lucide-plus" color="neutral" variant="solid" :label="l('new_resource')" :loading="workspace.creatingResource" @click="workspace.createResource()" /></div></td></tr>
                 </tbody>
             </table>
         </div>
+        <slot name="linked-resources" />
         <footer class="library-bulk-bar">
             <span class="selection-summary">{{ checked.length ? t('groups.resources.workspace.selected_count', { count: checked.length }) : t('groups.resources.workspace.resource_count', { count: sorted.length }) }}</span>
             <div class="library-bulk-actions"><UButton icon="i-lucide-folder-input" color="neutral" variant="outline" :label="l('move_to')" :disabled="!movableIds.length" @click="workspace.openMove(movableIds)" /><UButton icon="i-lucide-rocket" color="neutral" variant="outline" :label="l('publish')" v-if="publishableIds.length" :disabled="workspace.busy" @click="workspace.publish(publishableIds)" /><UTooltip :text="l('clear_selection')"><UButton icon="i-lucide-list-x" color="neutral" variant="outline" :aria-label="l('clear_selection')" :disabled="!checked.length" @click="workspace.state.checked = []" /></UTooltip></div>

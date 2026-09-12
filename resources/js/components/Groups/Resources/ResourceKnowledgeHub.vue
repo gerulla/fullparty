@@ -39,9 +39,10 @@ const contentExtensions = resourceContentExtensions()
 provide(resourceContentKey, { resources: computed(() => readingResource.value?.linked_resources ?? []), href: navigation.resource })
 const outline = computed(() => readingResource.value ? resourceOutline(readingResource.value.body) : null)
 const contents = computed(() => outline.value ? [
+    ...(readingResource.value?.holster ? [{ id: 'resource-holster-loadout', title: t('groups.resources.holsters.loadout'), depth: 0 }] : []),
     ...outline.value.sections,
     ...(readingResource.value?.commands?.length ? [{ id: 'resource-discord-commands', title: t('groups.resources.reader.discord_commands'), depth: 0 }] : []),
-    { id: 'resource-history', title: t('groups.resources.reader.history'), depth: 0 },
+    ...(readingResource.value?.source_type === 'holster' ? [] : [{ id: 'resource-history', title: t('groups.resources.reader.history'), depth: 0 }]),
 ] : [])
 const contentRoot = ref<HTMLElement | null>(null)
 const { activeId } = useResourceContents(() => contentRoot.value, () => contents.value)
@@ -88,7 +89,7 @@ const { activeId } = useResourceContents(() => contentRoot.value, () => contents
                 <template v-if="article">
                     <ResourceReaderArticle :resource="article" :document="outline?.document" :activities="reader.activities" @tag="hub.visit(1, $event)" />
                     <ResourceReaderCommands :commands="article.commands ?? []" />
-                    <ResourceReaderHistory :resource="article" :history-url="navigation.history(article)" />
+                    <ResourceReaderHistory v-if="article.source_type !== 'holster'" :resource="article" :history-url="navigation.history(article)" />
                     <div class="mt-8 border-t border-default pt-5"><Link :href="navigation.home.value" class="inline-flex items-center gap-2 text-sm text-primary hover:underline"><UIcon name="i-lucide-arrow-left" class="size-4" />{{ t('groups.resources.reader.back_to_library') }}</Link></div>
                 </template>
                 <template v-else>

@@ -520,6 +520,7 @@ Route::prefix('{locale?}')
                 Route::get('/resources', [GroupResourceController::class, 'index'])->name('groups.dashboard.resources.index');
                 Route::get('/content/resources', [GroupResourceController::class, 'manage'])->name('groups.dashboard.resources.manage');
                 Route::get('/resources/collections/{collectionSlug}', [GroupResourceController::class, 'collection'])->name('groups.dashboard.resources.collections.show');
+                Route::get('/resources/holsters/{holster}', [GroupResourceController::class, 'holster'])->whereNumber('holster')->name('groups.dashboard.resources.holsters.show');
                 Route::get('/resources/{slug}', [GroupResourceController::class, 'show'])->name('groups.dashboard.resources.show');
                 Route::get('/resources/{slug}/history', [GroupResourceController::class, 'history'])->name('groups.dashboard.resources.history');
                 Route::get('/content/resources/{resource}/edit', [GroupResourceController::class, 'edit'])->name('groups.dashboard.resources.edit');

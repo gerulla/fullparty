@@ -6,6 +6,7 @@ import { resourceContentExtensions } from './resourceContentExtensions'
 import { useI18n } from 'vue-i18n'
 import { localizedValue } from '@/utils/localizedValue'
 import { readerDate } from '@/utils/resourceReader'
+import ResourceHolsterLoadout from './ResourceHolsterLoadout.vue'
 
 withDefaults(defineProps<{ resource: ResourceReaderDocument; document?: RichTextDocument; activities?: { id: number; name: Record<string, string> }[] }>(), { activities: () => [] })
 defineEmits<{ tag: [tag: string] }>()
@@ -34,7 +35,9 @@ const contentExtensions = resourceContentExtensions()
                 </div>
             </div>
         </header>
-        <RichTextReader :document="document ?? resource.body" :additional-extensions="contentExtensions" />
+        <ResourceHolsterLoadout v-if="resource.holster" :holster="resource.holster" />
+        <div v-if="resource.legacy_body_html" class="rich-text-content prose max-w-none dark:prose-invert" v-html="resource.legacy_body_html" />
+        <RichTextReader v-else :document="document ?? resource.body" :additional-extensions="contentExtensions" />
     </article>
 </template>
 

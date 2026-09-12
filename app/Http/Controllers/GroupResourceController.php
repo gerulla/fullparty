@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\BozjaHolster;
 use App\Models\Group;
 use App\Models\GroupResource;
 use App\Services\Groups\Resources\ResourceReaderHistoryService;
@@ -52,6 +53,16 @@ class GroupResourceController extends Controller
         }
 
         return Inertia::render('Dashboard/Groups/Resources/Index', ['group' => $this->navigationGroup($group), 'resource' => $this->reader->detail($resource, $request)] + $this->reader->index($group, $request));
+    }
+
+    public function holster(Request $request, Group $group, BozjaHolster $holster): Response
+    {
+        $this->authorizeAccess($group);
+
+        return Inertia::render('Dashboard/Groups/Resources/Index', [
+            'group' => $this->navigationGroup($group),
+            'resource' => $this->reader->holster($group, $holster, $request),
+        ] + $this->reader->index($group, $request));
     }
 
     public function edit(Request $request, Group $group, GroupResource $resource): Response|JsonResponse

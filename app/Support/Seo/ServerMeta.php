@@ -122,7 +122,9 @@ final class ServerMeta
             'title' => $title ? $title.' - '.$customization['title'] : $customization['title'],
             'description' => Str::limit(($article['description'] ?? '') ?: $customization['introduction'], 180),
             'url' => $article
-                ? route('public-resources.show', ['group' => $page['group']['slug'], 'slug' => $article['slug']])
+                ? (($article['source_type'] ?? null) === 'holster'
+                    ? route('public-resources.holsters.show', ['group' => $page['group']['slug'], 'holster' => $article['holster_id']])
+                    : route('public-resources.show', ['group' => $page['group']['slug'], 'slug' => $article['slug']]))
                 : ($collection
                     ? route('public-resources.collections.show', ['group' => $page['group']['slug'], 'collectionSlug' => $collection['slug']])
                     : route('public-resources.index', ['group' => $page['group']['slug']])),

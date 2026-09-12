@@ -3,10 +3,18 @@
 use App\Models\Activity;
 use App\Services\Groups\ActivityRosterLock;
 use Illuminate\Database\QueryException;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Illuminate\Foundation\Testing\DatabaseTruncation;
+use Illuminate\Foundation\Testing\RefreshDatabaseState;
 use Illuminate\Support\Facades\DB;
 
-uses(DatabaseMigrations::class);
+// Competing connections need committed rows, and content migrations cannot be rolled back.
+uses(DatabaseTruncation::class);
+
+afterEach(function () {
+    $this->truncateDatabaseTables();
+    // The rest of the suite uses RefreshDatabase and must not inherit committed fixtures.
+    RefreshDatabaseState::$migrated = false;
+});
 
 it('serializes competing PostgreSQL writers per run while leaving other runs unlocked', function () {
     if (DB::connection()->getDriverName() !== 'pgsql') {

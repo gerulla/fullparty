@@ -3,11 +3,13 @@ import { computed, nextTick, ref, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
 import type { ContextMenuItem } from '@nuxt/ui'
 import type { ResourceWorkspaceController, WorkspaceCollection } from '@/Types/ResourceWorkspace'
+import type { ResourceHolsterSettings, ResourceReaderSummary } from '@/Types/GroupResources'
 import { workspaceHasUnpublishedChanges, buildWorkspaceTree } from '@/utils/resourceWorkspace'
 import { formatBytes } from '@/utils/formatBytes'
 import ResourceCollectionNameInput from './ResourceCollectionNameInput.vue'
 import { useResourceTreeDrag } from '@/composables/useResourceTreeDrag'
-const props = defineProps<{ workspace: ResourceWorkspaceController }>()
+const props = defineProps<{ workspace: ResourceWorkspaceController; holsters: ResourceHolsterSettings; holsterUrl: (resource: ResourceReaderSummary) => string }>()
+defineEmits<{ configureHolsters: [] }>()
 const drag = useResourceTreeDrag(props.workspace)
 const { t, locale } = useI18n()
 const l = (key: string) => t(`groups.resources.workspace.${key}`)
@@ -25,7 +27,14 @@ const tree = computed(() => {
     const collections = edit && !edit.id ? [...props.workspace.state.collections, { id: temporaryId, name: edit.name, parentId: edit.parentId, icon: 'i-lucide-folder', order: Infinity }] : props.workspace.state.collections
     const resources = props.workspace.state.resources.filter(resource => resource.status !== 'archived').map(resource => props.workspace.state.mode === 'editor' && resource.id === props.workspace.state.selectedId && props.workspace.state.draft
         ? { ...resource, embeds: props.workspace.state.draft.embeds } : resource)
-    return buildWorkspaceTree(collections, resources, collapsed.value)
+    const holsterAncestors = new Set<string>()
+    let parent = props.holsters.collection_id === null ? null : String(props.holsters.collection_id)
+    while (parent && !holsterAncestors.has(parent)) {
+        holsterAncestors.add(parent)
+        parent = collections.find(item => item.id === parent)?.parentId ?? null
+    }
+    return buildWorkspaceTree(collections, resources, collapsed.value).map(item => item.kind === 'collection' && holsterAncestors.has(item.collection.id)
+        ? { ...item, hasChildren: item.hasChildren || props.holsters.resources.length > 0, count: item.count + props.holsters.resources.length } : item)
 })
 function expandAncestors(id: string | null | undefined) {
     const ancestors = new Set<string>()
@@ -42,9 +51,10 @@ watch(() => props.workspace.state.draft?.embeds.length, () => {
     if (props.workspace.state.selectedId) collapsed.value = collapsed.value.filter(id => id !== `resource:${props.workspace.state.selectedId}`)
 })
 const shortcuts = computed(() => [
-    { id: 'all', label: l('all_resources'), icon: 'i-lucide-shapes', count: props.workspace.state.resources.filter(item => item.status !== 'archived').length },
+    { id: 'all', label: l('all_resources'), icon: 'i-lucide-shapes', count: props.workspace.state.resources.filter(item => item.status !== 'archived').length + props.holsters.resources.length },
     { id: 'pinned', label: l('pinned'), icon: 'i-lucide-pin', count: props.workspace.state.resources.filter(item => item.isPinned && item.status !== 'archived').length },
     { id: 'uploads', label: t('groups.resources.uploads.title'), icon: 'i-lucide-images', count: null },
+    { id: 'holsters', label: t('groups.resources.holsters.title'), icon: 'i-lucide-backpack', count: props.holsters.active_count },
     { id: 'drafts', label: l('drafts'), icon: 'i-lucide-folder', count: props.workspace.state.resources.filter(item => workspaceHasUnpublishedChanges(item)).length },
     { id: 'archived', label: l('archive'), icon: 'i-lucide-archive', count: props.workspace.state.resources.filter(item => item.status === 'archived').length },
 ])
@@ -96,13 +106,14 @@ function toggle(id: string) { collapsed.value = collapsed.value.includes(id) ? c
     <aside class="collection-sidebar">
         <header class="collection-heading"><h2>{{ l('collections') }}</h2><UTooltip :text="l('new_collection')"><UButton icon="i-lucide-folder-plus" :aria-label="l('new_collection')" color="neutral" variant="ghost" size="xs" :disabled="menuDisabled" @click="actions.create(null)" /></UTooltip><UDropdownMenu :items="menu" :content="menuContent" :disabled="menuDisabled"><UButton icon="i-lucide-ellipsis-vertical" :aria-label="l('collections')" color="neutral" variant="ghost" size="xs" :disabled="menuDisabled" /></UDropdownMenu></header>
         <div class="collection-navigation">
-            <nav class="library-shortcuts" :aria-label="l('library')"><button v-for="item in shortcuts" :key="item.id" class="collection-shortcut" :class="{ active: workspace.state.scope === item.id }" :aria-current="workspace.state.scope === item.id ? 'page' : undefined" @click="workspace.browse(item.id)"><UIcon :name="item.icon" :class="{ 'collection-folder-icon': item.icon === 'i-lucide-folder' }" /><span class="shortcut-label">{{ item.label }}</span><span class="folder-count">{{ item.count }}</span></button></nav>
+            <nav class="library-shortcuts" :aria-label="l('library')"><button v-for="item in shortcuts" :key="item.id" class="collection-shortcut" :class="{ active: workspace.state.scope === item.id }" :aria-current="workspace.state.scope === item.id ? 'page' : undefined" @click="item.id === 'holsters' ? $emit('configureHolsters') : workspace.browse(item.id)"><UIcon :name="item.icon" :class="{ 'collection-folder-icon': item.icon === 'i-lucide-folder' }" /><span class="shortcut-label">{{ item.label }}</span><span class="folder-count">{{ item.count }}</span></button></nav>
             <div class="collection-separator" />
             <p v-if="actions.state.error" role="alert" class="px-4 pb-3 text-xs text-error break-words">{{ actions.state.error }}</p>
             <UContextMenu :items="emptyMenu" :disabled="menuDisabled" :content="menuContent">
             <nav class="collection-tree" :class="drag.classes()" :aria-label="l('collections')" @dragover.self="drag.over($event)" @drop.self="drag.drop($event)">
                 <template v-for="item in tree" :key="item.kind === 'collection' ? `collection-${item.collection.id}` : item.kind === 'resource' ? `resource-${item.resource.id}` : `embed-${item.resource.id}-${item.index}`">
-                    <UContextMenu v-if="item.kind === 'collection'" :items="folderMenu(item.collection.id, true)" :disabled="menuDisabled || item.collection.id === temporaryId" :content="menuContent">
+                    <template v-if="item.kind === 'collection'">
+                    <UContextMenu :items="folderMenu(item.collection.id, true)" :disabled="menuDisabled || item.collection.id === temporaryId" :content="menuContent">
                     <div class="collection-row" :class="[{ active: workspace.state.scope === item.collection.id && !workspace.selected, 'current-collection': workspace.state.scope === item.collection.id }, drag.classes(item)]" :style="{ paddingLeft: `${6 + item.depth * 18}px` }" :draggable="drag.canDrag(item)" @dragstart.stop="drag.start($event, item)" @dragend="drag.end()" @dragover.stop="drag.over($event, item)" @drop.stop="drag.drop($event, item)" @contextmenu.stop>
                         <button v-if="item.hasChildren" class="folder-chevron" :aria-label="item.collection.name" :aria-expanded="!collapsed.includes(item.collection.id)" @click="toggle(item.collection.id)"><UIcon :name="collapsed.includes(item.collection.id) ? 'i-lucide-chevron-right' : 'i-lucide-chevron-down'" /></button><span v-else class="folder-chevron" />
                         <div v-if="editing(item.collection.id)" class="folder-link"><UIcon name="i-lucide-folder" class="collection-folder-icon" /><UIcon v-if="item.collection.icon !== 'i-lucide-folder'" :name="item.collection.icon" class="size-4 shrink-0" /><ResourceCollectionNameInput ref="nameInputs" :actions="actions" /></div>
@@ -110,6 +121,12 @@ function toggle(id: string) { collapsed.value = collapsed.value.includes(id) ? c
                         <UDropdownMenu v-if="!editing(item.collection.id)" :items="folderMenu(item.collection.id)" :disabled="menuDisabled" :content="menuContent"><UButton icon="i-lucide-ellipsis" :aria-label="`${l('edit_collection')}: ${item.collection.name}`" color="neutral" variant="ghost" size="xs" class="folder-actions" :disabled="menuDisabled" /></UDropdownMenu>
                     </div>
                     </UContextMenu>
+                    <template v-if="String(holsters.collection_id) === item.collection.id && !collapsed.includes(item.collection.id)">
+                        <a v-for="holster in holsters.resources" :key="holster.id" :href="holsterUrl(holster)" target="_blank" rel="noopener noreferrer" class="collection-row resource-file-row" :style="{ paddingLeft: `${29 + item.depth * 18}px` }" :title="t('groups.resources.holsters.managed_in_drs')" @contextmenu.stop>
+                            <span class="folder-link resource-file-link"><UIcon name="i-lucide-backpack" /><span class="folder-name">{{ holster.title }}</span><UIcon name="i-lucide-external-link" class="size-3 shrink-0 text-muted" /></span>
+                        </a>
+                    </template>
+                    </template>
                     <div v-else-if="item.kind === 'resource'" class="collection-row resource-file-row" :class="[{ active: workspace.state.selectedId === item.resource.id }, drag.classes(item)]" :style="{ paddingLeft: `${6 + item.depth * 18}px` }" :draggable="drag.canDrag(item)" @dragstart.stop="drag.start($event, item)" @dragend="drag.end()" @dragover.stop="drag.over($event, item)" @drop.stop="drag.drop($event, item)" @contextmenu.stop>
                         <button v-if="item.resource.embeds.length" class="folder-chevron" :aria-label="item.resource.title" :aria-expanded="!collapsed.includes(`resource:${item.resource.id}`)" @click="toggle(`resource:${item.resource.id}`)"><UIcon :name="collapsed.includes(`resource:${item.resource.id}`) ? 'i-lucide-chevron-right' : 'i-lucide-chevron-down'" /></button><span v-else class="folder-chevron" />
                         <button class="folder-link resource-file-link" :title="item.resource.title" :aria-current="workspace.state.selectedId === item.resource.id ? 'page' : undefined" @click="workspace.browseResource(item.resource.id)" @dblclick="workspace.edit(item.resource.id)"><UIcon :name="item.resource.isHome ? 'i-lucide-house' : 'i-lucide-file'" /><span class="folder-name">{{ item.resource.title }}</span></button>

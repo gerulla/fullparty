@@ -4,6 +4,7 @@ namespace App\Services\Groups\Resources;
 
 use App\Http\Resources\Groups\ResourceSummaryResource;
 use App\Models\ActivityType;
+use App\Models\BozjaHolster;
 use App\Models\Group;
 use App\Models\GroupResource;
 use App\Models\GroupResourceCollection;
@@ -18,7 +19,7 @@ use Illuminate\Support\Str;
 
 class ResourceReaderService
 {
-    public function __construct(private readonly GroupResourcePolicy $policy, private readonly ResourceLibraryService $libraries, private readonly RichTextDocument $documents, private readonly ResourceEmbedMetadata $embedMetadata, private readonly ResourcePublicationService $publication, private readonly ResourceReaderHistoryService $history, private readonly ResourceDocumentLinks $links) {}
+    public function __construct(private readonly GroupResourcePolicy $policy, private readonly ResourceLibraryService $libraries, private readonly RichTextDocument $documents, private readonly ResourceEmbedMetadata $embedMetadata, private readonly ResourcePublicationService $publication, private readonly ResourceReaderHistoryService $history, private readonly ResourceDocumentLinks $links, private readonly ResourceHolsterService $holsters) {}
 
     public function query(Group $group, ?User $user, bool $public = false, bool $manage = false): Builder
     {
@@ -42,6 +43,10 @@ class ResourceReaderService
         $base = $this->query($group, $public ? null : $request->user(), $public, $manage);
         $collections = GroupResourceCollection::where('group_id', $group->id)->orderBy('sort_order')->orderBy('id')->get();
         $counts = (clone $base)->selectRaw('collection_id, count(*) as total')->groupBy('collection_id')->pluck('total', 'collection_id');
+        $holsterCollectionId = $this->holsters->collectionId($group);
+        if ($holsterCollectionId !== null) {
+            $counts[$holsterCollectionId] = ($counts[$holsterCollectionId] ?? 0) + $this->holsters->query($group)->count();
+        }
         $visible = [];
         $keyed = $collections->keyBy('id');
         foreach ($counts as $id => $count) {
@@ -79,7 +84,18 @@ class ResourceReaderService
             return $resource->only(['id', 'is_home', 'slug', 'collection_id', 'status', 'access_level', 'management_access_level', 'version', 'sort_order', 'is_pinned', 'editing_user_id', 'editing_expires_at']) + ['title' => $snapshot['title'] ?? $resource->slug, 'tags' => $snapshot['tags'] ?? [], 'has_unpublished_changes' => $this->publication->hasChanges($resource)];
         });
 
-        return ['library' => $this->libraries->payload($group, $manage), 'collections' => $tree, 'resources' => ['data' => $items, 'current_page' => $page->currentPage(), 'last_page' => $page->lastPage(), 'per_page' => $page->perPage(), 'total' => $page->total()], 'filters' => $filters]
+        $total = $page->total();
+        if (! $manage && $holsterCollectionId !== null && ($collectionSlug === null || $selected['id'] === $holsterCollectionId)) {
+            $holsters = $this->holsters->query($group, $filters);
+            $total += (clone $holsters)->count();
+            $remaining = $page->perPage() - $items->count();
+            if ($remaining > 0) {
+                $offset = max(0, ($page->currentPage() - 1) * $page->perPage() - $page->total());
+                $items = $items->concat($this->holsters->summaries($holsters->orderByDesc('is_default')->orderBy('id')->offset($offset)->limit($remaining), $holsterCollectionId));
+            }
+        }
+
+        return ['library' => $this->libraries->payload($group, $manage), 'collections' => $tree, 'resources' => ['data' => $items, 'current_page' => $page->currentPage(), 'last_page' => max(1, (int) ceil($total / $page->perPage())), 'per_page' => $page->perPage(), 'total' => $total], 'filters' => $filters]
             + ($manage ? [] : ['reader' => $this->navigation($group, $request, $public) + ['selected_collection_id' => $selected['id'] ?? null]]);
     }
 
@@ -91,10 +107,16 @@ class ResourceReaderService
             ->map(fn ($type) => ['id' => $type->id, 'name' => $type->currentPublishedVersion?->name ?? []]);
         $recent = (clone $visible)->where('is_home', false)->with('publishedRevision')->orderByDesc('published_at')->orderByDesc('id')->limit(5)->get();
         $pinned = $visible->where('is_home', false)->where('is_pinned', true)->with('publishedRevision')->orderBy('sort_order')->orderBy('id')->get();
+        $recentItems = ResourceSummaryResource::collection($recent)->resolve($request);
+        if (($collectionId = $this->holsters->collectionId($group)) !== null) {
+            $recentItems = collect($recentItems)->concat($this->holsters->summaries(
+                $this->holsters->query($group)->orderByDesc('updated_at')->orderByDesc('id')->limit(5), $collectionId,
+            ))->sortByDesc('published_at')->take(5)->values()->all();
+        }
 
         return [
             'activities' => $activities,
-            'recent_resources' => ResourceSummaryResource::collection($recent)->resolve($request),
+            'recent_resources' => $recentItems,
             'pinned_resources' => ResourceSummaryResource::collection($pinned)->resolve($request),
         ];
     }
@@ -151,16 +173,37 @@ class ResourceReaderService
         $images = GroupResourceImage::where('group_id', $resource->group_id)->whereIn('uuid', $snapshot['image_ids'] ?? [])->get(['uuid', 'width', 'height', 'mime_type', 'alt_text', 'caption'])->map(fn ($image) => $image->toArray() + ['url' => '/resource-assets/'.$image->uuid]);
         $public = $request->routeIs('public-resources.*');
         $linked = $this->query($resource->group, $public ? null : $request->user(), $public)->whereIn('uuid', $this->links->ids($snapshot['body']))->with('publishedRevision')->get();
-        $related = $this->query($resource->group, $public ? null : $request->user(), $public)->where('collection_id', $resource->collection_id)->whereKeyNot($resource->id)->with('publishedRevision')->orderByDesc('is_pinned')->orderBy('sort_order')->limit(6)->get();
 
         return (new ResourceSummaryResource($resource))->resolve($request) + [
             'body' => $snapshot['body'], 'body_html' => $this->documents->html($snapshot['body'], resourceBlocks: true), 'images' => $images, 'editors' => $editors,
             'linked_resources' => ResourceSummaryResource::collection($linked)->resolve($request),
-            'related_resources' => ResourceSummaryResource::collection($related)->resolve($request), 'public_url' => $this->libraries->publicUrl($resource),
+            'related_resources' => $this->related($resource->group, $resource->collection_id, $request, $public, $resource->id), 'public_url' => $this->libraries->publicUrl($resource),
             'history' => $this->history->preview($resource, $request),
             'commands' => collect($snapshot['commands'] ?? [])->filter(fn ($command) => $command['enabled'] ?? false)
                 ->map(fn ($command) => ['name' => $command['name'], 'title' => $command['embed']['title'] ?? ''])->values()->all(),
         ];
+    }
+
+    public function holster(Group $group, BozjaHolster $holster, Request $request, bool $public = false): array
+    {
+        $detail = $this->holsters->detail($group, $holster, $request->user(), $public);
+
+        return $detail + ['related_resources' => $this->related($group, $detail['collection_id'], $request, $public, holsterId: $holster->id)];
+    }
+
+    private function related(Group $group, ?int $collectionId, Request $request, bool $public, ?int $resourceId = null, ?int $holsterId = null): array
+    {
+        $resources = $this->query($group, $public ? null : $request->user(), $public)->where('collection_id', $collectionId)
+            ->when($resourceId, fn ($query) => $query->whereKeyNot($resourceId))
+            ->with('publishedRevision')->orderByDesc('is_pinned')->orderBy('sort_order')->limit(6)->get();
+        $related = ResourceSummaryResource::collection($resources)->resolve($request);
+        if ($collectionId !== null && $this->holsters->collectionId($group) === $collectionId && count($related) < 6) {
+            $query = $this->holsters->query($group)->when($holsterId, fn ($query) => $query->whereKeyNot($holsterId))
+                ->orderByDesc('is_default')->orderBy('id')->limit(6 - count($related));
+            $related = array_merge($related, $this->holsters->summaries($query, $collectionId));
+        }
+
+        return $related;
     }
 
     public function managementDetail(Group $group, GroupResource $resource, User $user): array
@@ -198,6 +241,7 @@ class ResourceReaderService
         return [
             'editor_user_id' => $user->id,
             'pin_limit' => GroupResource::MAX_PINS,
+            'holsters' => $this->holsters->management($group),
             'resources' => $resources,
             'embed_context' => [
                 'group_icon_url' => $this->embedMetadata->groupIconUrl($group),

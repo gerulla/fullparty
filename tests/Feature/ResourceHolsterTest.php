@@ -35,7 +35,7 @@ beforeEach(function () {
     $this->articleUrl = route('public-resources.holsters.show', ['group' => $this->group, 'holster' => $this->holster]);
 });
 
-it('lets managers select a same-group collection and remove the listing without copying or deleting holsters', function (string $role) {
+it('lets managers select a same-group collection and remove the listing while preserving linked metadata and original holsters', function (string $role) {
     $user = $this->group->owner;
     if ($role !== 'owner') {
         $user = User::factory()->create();
@@ -48,7 +48,7 @@ it('lets managers select a same-group collection and remove the listing without 
         ->assertJsonPath('data.resources.0.title', 'Moonlit tank')->assertJsonMissingPath('data.resources.0.body');
     $this->putJson($this->settingsUrl, ['collection_id' => null])->assertOk()
         ->assertJsonPath('data.collection_id', null)->assertJsonPath('data.resources', []);
-    expect(GroupResource::count())->toBe($count)->and($this->holster->fresh()->is_active)->toBeTrue();
+    expect(GroupResource::count())->toBe($count + 1)->and($this->holster->fresh()->is_active)->toBeTrue();
     $this->assertDatabaseHas('audit_logs', ['action' => 'group.resources.settings_updated']);
     $this->getJson($this->articleUrl)->assertNotFound();
 })->with(['owner', 'admin', 'moderator']);
@@ -146,6 +146,7 @@ it('moves the listing when a collection is replaced and clears it when the colle
     $this->actingAs($this->group->owner)->deleteJson(holster_internal_url('groups.dashboard.resources.collections.destroy', ['group' => $this->group, 'collection' => $this->folder]), ['destination_id' => $destination->id])->assertNoContent();
     expect($this->library->fresh()->holster_collection_id)->toBe($destination->id);
     $this->getJson($this->articleUrl)->assertOk()->assertJsonPath('data.collection_id', $destination->id);
+    $this->putJson($this->settingsUrl, ['collection_id' => null])->assertOk();
     $this->deleteJson(holster_internal_url('groups.dashboard.resources.collections.destroy', ['group' => $this->group, 'collection' => $destination]))->assertNoContent();
     expect($this->library->fresh()->holster_collection_id)->toBeNull()->and($this->holster->fresh())->not->toBeNull();
     $this->getJson($this->articleUrl)->assertNotFound();

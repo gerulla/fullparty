@@ -23,6 +23,7 @@ export type WorkspaceDocument = {
 export type WorkspaceRevision = { id: string; kind?: 'edit' | 'publication'; author: string; authorAvatar?: string; summary: string; at: string }
 export type WorkspaceRevisionSource = { id: string; document: WorkspaceDocument }
 export type WorkspaceResource = WorkspaceDocument & {
+    holsterId?: number | null; inheritedBodyHtml?: string | null
     id: string; uuid?: string; isHome?: boolean; status: WorkspaceStatus; order: number; updatedAt: string; version: number; slug: string
     history: WorkspaceRevision[]; published: WorkspaceDocument | null; hasUnpublishedChanges?: boolean
     readerUrls?: ResourceReaderUrls | null
@@ -52,6 +53,7 @@ export type ResourceWorkspaceState = {
     confirmation: { open: boolean; title: string; description: string; label: string; severity?: 'warning' | 'error' }
 }
 export type ResourceWorkspaceController = {
+    refresh: () => void
     state: ResourceWorkspaceState
     readonly visibleResources: WorkspaceResource[]
     readonly selected: WorkspaceResource | null

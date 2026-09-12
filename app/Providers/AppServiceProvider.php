@@ -8,6 +8,7 @@ use App\Models\Group;
 use App\Models\IntegrationClient;
 use App\Models\User;
 use App\Policies\GroupActivityPolicy;
+use App\Services\Groups\Resources\ResourceHolsterContent;
 use App\Support\Passport\XivPluginAuthorizationServerFactory;
 use DateInterval;
 use Illuminate\Cache\RateLimiting\Limit;
@@ -37,6 +38,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
+        $this->app->scoped(ResourceHolsterContent::class);
         $this->app->when(XivPluginDeviceAuthorizationController::class)
             ->needs(StatefulGuard::class)
             ->give(fn () => Auth::guard(config('passport.guard', null)));

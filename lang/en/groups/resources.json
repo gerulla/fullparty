@@ -363,6 +363,8 @@
     "save_failed": "Could not save the holster collection. Please try again.",
     "change_collection": "Change collection",
     "manage": "Manage holsters",
+    "inherited_title": "Inherited from DRS",
+    "inherited_description": "The title, description, and guide update automatically from the holster. Activity is linked to DRS. Edit resource settings here; archive the resource to hide it.",
     "managed_in_drs": "These resources update automatically. Edit their content and active status in Manage holsters.",
     "live": "Live",
     "loadout": "Holster loadout",

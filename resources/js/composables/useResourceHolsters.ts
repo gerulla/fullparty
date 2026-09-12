@@ -4,7 +4,7 @@ import { route } from 'ziggy-js'
 import { useI18n } from 'vue-i18n'
 import type { ResourceHolsterSettings } from '@/Types/GroupResources'
 
-export function useResourceHolsters(groupSlug: () => string, settings: () => ResourceHolsterSettings | undefined) {
+export function useResourceHolsters(groupSlug: () => string, settings: () => ResourceHolsterSettings | undefined, saved: () => void = () => {}) {
     const { t } = useI18n()
     const state = reactive({
         open: false, busy: false, error: '', collectionId: 'disabled',
@@ -26,6 +26,7 @@ export function useResourceHolsters(groupSlug: () => string, settings: () => Res
             })
             state.data = response.data.data
             state.open = false
+            saved()
         } catch (error) {
             state.error = axios.isAxiosError(error) && error.response?.status === 422
                 ? error.response.data.errors?.collection_id?.[0] || t('groups.resources.holsters.save_failed')

@@ -3,11 +3,9 @@ import { computed, defineAsyncComponent, provide, ref, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useResourceWorkspace } from '@/composables/useResourceWorkspace'
 import { useResourceHolsters } from '@/composables/useResourceHolsters'
-import { collectionDescendants } from '@/utils/resourceWorkspace'
+import { router } from '@inertiajs/vue3'
 import { route } from 'ziggy-js'
-import type { ResourceReaderSummary } from '@/Types/GroupResources'
 import ResourceHolsterModal from './ResourceHolsterModal.vue'
-import ResourceHolsterBrowser from './ResourceHolsterBrowser.vue'
 import type { ResourceCollectionData, ResourceDetailData, ResourceLibrary, ResourceWorkspaceData } from '@/Types/GroupResources'
 import ConfirmationModal from '@/components/Shared/Modals/ConfirmationModal.vue'
 import ResourceCollectionSidebar from './ResourceCollectionSidebar.vue'
@@ -26,18 +24,9 @@ const props = defineProps<{ groupSlug: string; collections: ResourceCollectionDa
 const emit = defineEmits<{ libraryChanged: [] }>()
 const workspace = useResourceWorkspace(props, () => emit('libraryChanged'))
 const { state } = workspace
-const holsters = useResourceHolsters(() => props.groupSlug, () => props.data.holsters)
+const holsters = useResourceHolsters(() => props.groupSlug, () => props.data.holsters, () => router.reload({ only: ['workspace', 'collections'], onSuccess: () => workspace.refresh() }))
 const holsterSettings = computed(() => state.collections.some(item => item.id === String(holsters.state.data.collection_id))
     ? holsters.state.data : { ...holsters.state.data, collection_id: null, resources: [] })
-const listedHolsters = computed(() => {
-    const settings = holsterSettings.value
-    if (state.scope !== 'all' && !collectionDescendants(state.collections, state.scope).includes(String(settings.collection_id))) return []
-    if (!['all', 'published'].includes(state.status) || !['all', 'everyone'].includes(state.access) || state.activity !== 'all') return []
-    const query = state.query.trim().toLocaleLowerCase()
-    const collectionName = state.collections.find(item => item.id === String(settings.collection_id))?.name ?? ''
-    return settings.resources.filter(item => !query || [item.title, item.description, collectionName, ...item.tags].join(' ').toLocaleLowerCase().includes(query))
-})
-const holsterUrl = (resource: ResourceReaderSummary) => route('groups.dashboard.resources.holsters.show', { group: props.groupSlug, holster: resource.holster_id })
 const holsterEditUrl = computed(() => route('groups.dashboard.content.delubrum-reginae-savage', { group: props.groupSlug }))
 function openHolsters() { holsters.state.data = holsterSettings.value; holsters.open() }
 const editingEmbed = computed(() => state.editorPane === 'embed' ? state.draft?.embeds[state.embedIndex] : null)
@@ -63,16 +52,14 @@ const iconCollection = computed(() => state.collections.find(item => item.id ===
             <UButton icon="i-lucide-file-clock" color="neutral" variant="outline" :label="l('reload_latest')" @click="workspace.reloadEditor()" />
         </div>
         <div class="resource-workspace-grid min-h-[760px] overflow-hidden bg-transparent" :class="{ 'is-library': state.mode !== 'editor', 'is-editor': state.mode === 'editor' }">
-            <ResourceCollectionSidebar :workspace="workspace" :holsters="holsterSettings" :holster-url="holsterUrl" :inert="workspace.busy || images.state.busy" class="workspace-folders border-b border-default" :class="{ 'is-open': showCollections }" @configure-holsters="openHolsters">
+            <ResourceCollectionSidebar :workspace="workspace" :holsters="holsterSettings" :inert="workspace.busy || images.state.busy" class="workspace-folders border-b border-default" :class="{ 'is-open': showCollections }" @configure-holsters="openHolsters">
                 <template #library-actions><slot name="library-actions" /></template>
             </ResourceCollectionSidebar>
             <ResourceEditorToolbar v-if="state.mode === 'editor'" :workspace="workspace" class="workspace-editor-toolbar" />
-            <ResourceLibraryBrowser v-if="state.mode === 'library'" :workspace="workspace" :has-linked-resources="listedHolsters.length > 0" :inert="workspace.busy" class="workspace-centre">
-                <template #linked-resources><ResourceHolsterBrowser :resources="listedHolsters" :href="holsterUrl" :edit-url="holsterEditUrl" @configure="openHolsters" /></template>
-            </ResourceLibraryBrowser>
+            <ResourceLibraryBrowser v-if="state.mode === 'library'" :workspace="workspace" :inert="workspace.busy" class="workspace-centre" />
             <ResourceUploadsBrowser v-else-if="state.mode === 'uploads'" :images="images" class="workspace-centre" />
             <template v-else>
-                <ResourceDocumentEditor v-show="!editingEmbed" :key="`editor-${state.selectedId ?? 'new'}`" :workspace="workspace" :inert="workspace.busy" class="workspace-centre" />
+                <ResourceDocumentEditor v-show="!editingEmbed" :key="`editor-${state.selectedId ?? 'new'}`" :workspace="workspace" :holster-edit-url="holsterEditUrl" :inert="workspace.busy" class="workspace-centre" />
                 <ResourceDiscordEditor v-if="editingEmbed && state.draft" :key="`embed-${state.selectedId}-${state.embedIndex}`" :document="state.draft" :embed="editingEmbed" :preview-embed="workspace.embedPreview(state.draft, editingEmbed)" :command-error="workspace.commandError(state.embedIndex)" :field-error="workspace.fieldError" :embed-index="state.embedIndex" :public-resource="workspace.library?.visibility === 'public'" :resource-url="workspace.viewUrl()" :inert="workspace.busy" class="workspace-centre" @back="workspace.showResourceEditor()" @save="workspace.save()" />
             </template>
             <div v-if="workspace.loadingResource" class="workspace-inspector flex items-center justify-center border-l border-default"><UIcon name="i-lucide-loader-circle" class="size-5 animate-spin" :aria-label="t('general.loading')" /></div>

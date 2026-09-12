@@ -37,6 +37,9 @@ class ResourcePublicationService
 
     private function content(array $snapshot): array
     {
+        if (($snapshot['source_type'] ?? null) === 'holster') {
+            unset($snapshot['title'], $snapshot['description'], $snapshot['body'], $snapshot['activity_type_ids']);
+        }
         // Locations and generated metadata are not content edits requiring publication.
         unset($snapshot['collection_id'], $snapshot['body_format'], $snapshot['body_text'], $snapshot['image_ids']);
         foreach ($snapshot['commands'] ?? [] as $index => $command) {

@@ -1,6 +1,7 @@
 <?php
 
 return [
+    'holster_protected' => 'Archivez cette ressource liée pour la masquer, ou gérez le holster d’origine dans DRS.',
     'save_before_publish' => 'Enregistrez une version avec une description des modifications avant de publier.',
     'resource_reference' => 'Choisissez une ressource disponible dans ce groupe.',
     'library_fields' => [

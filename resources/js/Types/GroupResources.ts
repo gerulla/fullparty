@@ -68,7 +68,7 @@ export type ResourceReaderUrls = { public: string | null; group: string }
 export type ResourceSnapshot = {
     collection_id?: number | null
     title: string; slug?: string; description?: string; body?: RichTextDocument; access_level: 'everyone' | 'moderator' | 'admin'
-    tags: string[]; activity_type_ids: number[]; author: ResourceAuthorData; metadata_image_id?: string | null
+    tags: string[]; activity_type_ids: number[]; author: ResourceAuthorData | null; metadata_image_id?: string | null
     commands?: ResourceCommandData[]
 }
 export type ResourceCommandData = { name: string; enabled: boolean; updated_at?: string; embed?: {
@@ -82,6 +82,7 @@ export type ResourceRevisionData = {
     state: string; created_at: string; published_at: string | null
 }
 export type ResourceSummaryData = {
+    holster_id?: number | null
     id: number; uuid?: string; collection_id: number | null; is_home?: boolean; slug: string; status: string; version: number; sort_order: number; updated_at: string
     has_unpublished_changes: boolean
     can_publish: boolean
@@ -90,6 +91,7 @@ export type ResourceSummaryData = {
     summary: ResourceSnapshot; commands: ResourceCommandData[]
 }
 export type ResourceDetailData = Omit<ResourceSummaryData, 'summary' | 'commands'> & {
+    inherited_body_html?: string | null
     working_copy: ResourceSnapshot | null; published: ResourceSnapshot | null
     history: { id: number | string; kind?: 'edit' | 'publication'; editor: ResourceAuthorData; summary: string; created_at: string }[]
 }

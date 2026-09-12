@@ -3,12 +3,12 @@ import { computed, nextTick, ref, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
 import type { ContextMenuItem } from '@nuxt/ui'
 import type { ResourceWorkspaceController, WorkspaceCollection } from '@/Types/ResourceWorkspace'
-import type { ResourceHolsterSettings, ResourceReaderSummary } from '@/Types/GroupResources'
+import type { ResourceHolsterSettings } from '@/Types/GroupResources'
 import { workspaceHasUnpublishedChanges, buildWorkspaceTree } from '@/utils/resourceWorkspace'
 import { formatBytes } from '@/utils/formatBytes'
 import ResourceCollectionNameInput from './ResourceCollectionNameInput.vue'
 import { useResourceTreeDrag } from '@/composables/useResourceTreeDrag'
-const props = defineProps<{ workspace: ResourceWorkspaceController; holsters: ResourceHolsterSettings; holsterUrl: (resource: ResourceReaderSummary) => string }>()
+const props = defineProps<{ workspace: ResourceWorkspaceController; holsters: ResourceHolsterSettings }>()
 defineEmits<{ configureHolsters: [] }>()
 const drag = useResourceTreeDrag(props.workspace)
 const { t, locale } = useI18n()
@@ -27,14 +27,7 @@ const tree = computed(() => {
     const collections = edit && !edit.id ? [...props.workspace.state.collections, { id: temporaryId, name: edit.name, parentId: edit.parentId, icon: 'i-lucide-folder', order: Infinity }] : props.workspace.state.collections
     const resources = props.workspace.state.resources.filter(resource => resource.status !== 'archived').map(resource => props.workspace.state.mode === 'editor' && resource.id === props.workspace.state.selectedId && props.workspace.state.draft
         ? { ...resource, embeds: props.workspace.state.draft.embeds } : resource)
-    const holsterAncestors = new Set<string>()
-    let parent = props.holsters.collection_id === null ? null : String(props.holsters.collection_id)
-    while (parent && !holsterAncestors.has(parent)) {
-        holsterAncestors.add(parent)
-        parent = collections.find(item => item.id === parent)?.parentId ?? null
-    }
-    return buildWorkspaceTree(collections, resources, collapsed.value).map(item => item.kind === 'collection' && holsterAncestors.has(item.collection.id)
-        ? { ...item, hasChildren: item.hasChildren || props.holsters.resources.length > 0, count: item.count + props.holsters.resources.length } : item)
+    return buildWorkspaceTree(collections, resources, collapsed.value)
 })
 function expandAncestors(id: string | null | undefined) {
     const ancestors = new Set<string>()
@@ -51,7 +44,7 @@ watch(() => props.workspace.state.draft?.embeds.length, () => {
     if (props.workspace.state.selectedId) collapsed.value = collapsed.value.filter(id => id !== `resource:${props.workspace.state.selectedId}`)
 })
 const shortcuts = computed(() => [
-    { id: 'all', label: l('all_resources'), icon: 'i-lucide-shapes', count: props.workspace.state.resources.filter(item => item.status !== 'archived').length + props.holsters.resources.length },
+    { id: 'all', label: l('all_resources'), icon: 'i-lucide-shapes', count: props.workspace.state.resources.filter(item => item.status !== 'archived').length },
     { id: 'pinned', label: l('pinned'), icon: 'i-lucide-pin', count: props.workspace.state.resources.filter(item => item.isPinned && item.status !== 'archived').length },
     { id: 'uploads', label: t('groups.resources.uploads.title'), icon: 'i-lucide-images', count: null },
     { id: 'holsters', label: t('groups.resources.holsters.title'), icon: 'i-lucide-backpack', count: props.holsters.active_count },
@@ -121,15 +114,10 @@ function toggle(id: string) { collapsed.value = collapsed.value.includes(id) ? c
                         <UDropdownMenu v-if="!editing(item.collection.id)" :items="folderMenu(item.collection.id)" :disabled="menuDisabled" :content="menuContent"><UButton icon="i-lucide-ellipsis" :aria-label="`${l('edit_collection')}: ${item.collection.name}`" color="neutral" variant="ghost" size="xs" class="folder-actions" :disabled="menuDisabled" /></UDropdownMenu>
                     </div>
                     </UContextMenu>
-                    <template v-if="String(holsters.collection_id) === item.collection.id && !collapsed.includes(item.collection.id)">
-                        <a v-for="holster in holsters.resources" :key="holster.id" :href="holsterUrl(holster)" target="_blank" rel="noopener noreferrer" class="collection-row resource-file-row" :style="{ paddingLeft: `${29 + item.depth * 18}px` }" :title="t('groups.resources.holsters.managed_in_drs')" @contextmenu.stop>
-                            <span class="folder-link resource-file-link"><UIcon name="i-lucide-backpack" /><span class="folder-name">{{ holster.title }}</span><UIcon name="i-lucide-external-link" class="size-3 shrink-0 text-muted" /></span>
-                        </a>
-                    </template>
                     </template>
                     <div v-else-if="item.kind === 'resource'" class="collection-row resource-file-row" :class="[{ active: workspace.state.selectedId === item.resource.id }, drag.classes(item)]" :style="{ paddingLeft: `${6 + item.depth * 18}px` }" :draggable="drag.canDrag(item)" @dragstart.stop="drag.start($event, item)" @dragend="drag.end()" @dragover.stop="drag.over($event, item)" @drop.stop="drag.drop($event, item)" @contextmenu.stop>
                         <button v-if="item.resource.embeds.length" class="folder-chevron" :aria-label="item.resource.title" :aria-expanded="!collapsed.includes(`resource:${item.resource.id}`)" @click="toggle(`resource:${item.resource.id}`)"><UIcon :name="collapsed.includes(`resource:${item.resource.id}`) ? 'i-lucide-chevron-right' : 'i-lucide-chevron-down'" /></button><span v-else class="folder-chevron" />
-                        <button class="folder-link resource-file-link" :title="item.resource.title" :aria-current="workspace.state.selectedId === item.resource.id ? 'page' : undefined" @click="workspace.browseResource(item.resource.id)" @dblclick="workspace.edit(item.resource.id)"><UIcon :name="item.resource.isHome ? 'i-lucide-house' : 'i-lucide-file'" /><span class="folder-name">{{ item.resource.title }}</span></button>
+                        <button class="folder-link resource-file-link" :title="item.resource.title" :aria-current="workspace.state.selectedId === item.resource.id ? 'page' : undefined" @click="workspace.browseResource(item.resource.id)" @dblclick="workspace.edit(item.resource.id)"><UIcon :name="item.resource.isHome ? 'i-lucide-house' : item.resource.holsterId ? 'i-lucide-backpack' : 'i-lucide-file'" /><span class="folder-name">{{ item.resource.title }}</span></button>
                     </div>
                     <div v-else class="collection-row resource-file-row" :class="{ active: workspace.state.selectedId === item.resource.id && workspace.state.inspectorTab === 'discord' && workspace.state.embedIndex === item.index }" :style="{ paddingLeft: `${23 + item.depth * 18}px` }" @contextmenu.stop @dragover.stop @drop.stop>
                         <button class="folder-link resource-file-link" :title="item.embed.command ? `/info ${item.embed.command}` : l('new_embed')" @click="workspace.openEmbed(item.resource.id, item.index)"><UIcon name="ic:baseline-discord" /><span class="folder-name">{{ item.embed.command || item.embed.title || l('new_embed') }}</span><UIcon v-if="!item.embed.enabled" name="i-lucide-circle-pause" class="size-3 shrink-0 text-muted" :aria-label="l('disabled')" /></button>

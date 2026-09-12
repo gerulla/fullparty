@@ -11,6 +11,7 @@ use App\Models\GroupResourceCollection;
 use App\Models\GroupResourceImage;
 use App\Models\User;
 use App\Policies\GroupResourcePolicy;
+use App\Services\RichText\MarkdownGuideConverter;
 use App\Services\RichText\RichTextDocument;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
@@ -32,7 +33,9 @@ class ResourceReaderService
             $levels = $this->policy->levels($user, $group);
         }
 
-        return GroupResource::where('group_id', $group->id)
+        $this->holsters->synchronize($group);
+
+        return GroupResource::where('group_id', $group->id)->withAvailableSource()->with('holster')
             ->whereIn($manage ? 'management_access_level' : 'access_level', $levels)
             ->when(! $manage, fn ($q) => $q->where('status', 'published')->whereNotNull('published_revision_id'));
     }
@@ -43,10 +46,6 @@ class ResourceReaderService
         $base = $this->query($group, $public ? null : $request->user(), $public, $manage);
         $collections = GroupResourceCollection::where('group_id', $group->id)->orderBy('sort_order')->orderBy('id')->get();
         $counts = (clone $base)->selectRaw('collection_id, count(*) as total')->groupBy('collection_id')->pluck('total', 'collection_id');
-        $holsterCollectionId = $this->holsters->collectionId($group);
-        if ($holsterCollectionId !== null) {
-            $counts[$holsterCollectionId] = ($counts[$holsterCollectionId] ?? 0) + $this->holsters->query($group)->count();
-        }
         $visible = [];
         $keyed = $collections->keyBy('id');
         foreach ($counts as $id => $count) {
@@ -63,15 +62,30 @@ class ResourceReaderService
             abort_unless($selected, 404);
             $base->where('collection_id', $selected['id']);
         }
-        // Reader searches must never expose unpublished draft text.
-        if (! $manage) {
-            $base->whereHas('publishedRevision', fn ($query) => $this->filterSnapshot($query, 'snapshot', $filters));
-        } elseif (! empty($filters['q']) || ! empty($filters['tag']) || ! empty($filters['activity_type_id'])) {
-            $base->where(function ($query) use ($filters) {
-                $query->where(function ($working) use ($filters) {
-                    $working->whereNotNull('working_copy');
-                    $this->filterSnapshot($working, 'working_copy', $filters);
-                })->orWhere(fn ($published) => $published->whereNull('working_copy')->whereHas('publishedRevision', fn ($q) => $this->filterSnapshot($q, 'snapshot', $filters)));
+        $this->filterResources($base, array_intersect_key($filters, ['tag' => true]), $manage);
+        if (($text = trim($filters['q'] ?? '')) !== '') {
+            $pattern = '%'.str_replace(['%', '_'], ['\\%', '\\_'], mb_strtolower($text)).'%';
+            $base->where(function ($search) use ($text, $pattern, $manage) {
+                $search->where(fn ($snapshot) => $this->filterResources($snapshot, ['q' => $text], $manage))
+                    ->orWhereHas('holster', function ($holster) use ($pattern) {
+                        $holster->where(function ($content) use ($pattern) {
+                            foreach (['en', 'de', 'fr', 'ja'] as $locale) {
+                                $content->orWhereLike('name->'.$locale, $pattern);
+                            }
+                            $content->orWhereLike('notes', $pattern)->orWhereLike('guide', $pattern);
+                        });
+                    });
+            });
+        }
+        if ($activity = $filters['activity_type_id'] ?? null) {
+            $base->where(function ($query) use ($activity, $manage) {
+                $query->where(function ($normal) use ($activity, $manage) {
+                    $normal->whereNull('holster_id');
+                    $this->filterResources($normal, ['activity_type_id' => $activity], $manage);
+                });
+                if (in_array((int) $activity, app(ResourceHolsterContent::class)->activityIds(), true)) {
+                    $query->orWhereNotNull('holster_id');
+                }
             });
         }
         $page = $base->with('publishedRevision')->orderByDesc('is_home')->orderByDesc('is_pinned')->orderBy('sort_order')->orderBy('id')->paginate(50);
@@ -79,21 +93,12 @@ class ResourceReaderService
             if (! $manage) {
                 return (new ResourceSummaryResource($resource))->resolve($request);
             }
-            $snapshot = $resource->working_copy ?? $resource->publishedRevision?->snapshot ?? [];
+            $snapshot = app(ResourceHolsterContent::class)->inherit($resource, $resource->working_copy ?? $resource->publishedRevision?->snapshot ?? []);
 
             return $resource->only(['id', 'is_home', 'slug', 'collection_id', 'status', 'access_level', 'management_access_level', 'version', 'sort_order', 'is_pinned', 'editing_user_id', 'editing_expires_at']) + ['title' => $snapshot['title'] ?? $resource->slug, 'tags' => $snapshot['tags'] ?? [], 'has_unpublished_changes' => $this->publication->hasChanges($resource)];
         });
 
         $total = $page->total();
-        if (! $manage && $holsterCollectionId !== null && ($collectionSlug === null || $selected['id'] === $holsterCollectionId)) {
-            $holsters = $this->holsters->query($group, $filters);
-            $total += (clone $holsters)->count();
-            $remaining = $page->perPage() - $items->count();
-            if ($remaining > 0) {
-                $offset = max(0, ($page->currentPage() - 1) * $page->perPage() - $page->total());
-                $items = $items->concat($this->holsters->summaries($holsters->orderByDesc('is_default')->orderBy('id')->offset($offset)->limit($remaining), $holsterCollectionId));
-            }
-        }
 
         return ['library' => $this->libraries->payload($group, $manage), 'collections' => $tree, 'resources' => ['data' => $items, 'current_page' => $page->currentPage(), 'last_page' => max(1, (int) ceil($total / $page->perPage())), 'per_page' => $page->perPage(), 'total' => $total], 'filters' => $filters]
             + ($manage ? [] : ['reader' => $this->navigation($group, $request, $public) + ['selected_collection_id' => $selected['id'] ?? null]]);
@@ -108,11 +113,6 @@ class ResourceReaderService
         $recent = (clone $visible)->where('is_home', false)->with('publishedRevision')->orderByDesc('published_at')->orderByDesc('id')->limit(5)->get();
         $pinned = $visible->where('is_home', false)->where('is_pinned', true)->with('publishedRevision')->orderBy('sort_order')->orderBy('id')->get();
         $recentItems = ResourceSummaryResource::collection($recent)->resolve($request);
-        if (($collectionId = $this->holsters->collectionId($group)) !== null) {
-            $recentItems = collect($recentItems)->concat($this->holsters->summaries(
-                $this->holsters->query($group)->orderByDesc('updated_at')->orderByDesc('id')->limit(5), $collectionId,
-            ))->sortByDesc('published_at')->take(5)->values()->all();
-        }
 
         return [
             'activities' => $activities,
@@ -136,13 +136,28 @@ class ResourceReaderService
         return $this->detail($this->query($group, $request->user(), $public)->where('is_home', true)->with('publishedRevision')->firstOrFail(), $request);
     }
 
+    private function filterResources(Builder $query, array $filters, bool $manage): void
+    {
+        if (! $manage) {
+            $query->whereHas('publishedRevision', fn ($revision) => $this->filterSnapshot($revision, 'snapshot', $filters));
+
+            return;
+        }
+        $query->where(function ($query) use ($filters) {
+            $query->where(function ($working) use ($filters) {
+                $working->whereNotNull('working_copy');
+                $this->filterSnapshot($working, 'working_copy', $filters);
+            })->orWhere(fn ($published) => $published->whereNull('working_copy')->whereHas('publishedRevision', fn ($q) => $this->filterSnapshot($q, 'snapshot', $filters)));
+        });
+    }
+
     private function filterSnapshot(Builder $query, string $column, array $filters): void
     {
         if (($q = trim($filters['q'] ?? '')) !== '') {
             $pattern = '%'.str_replace(['%', '_'], ['\\%', '\\_'], mb_strtolower($q)).'%';
             $tagPattern = '%'.str_replace(['%', '_'], ['\\%', '\\_'], mb_strtolower(ltrim($q, '#'))).'%';
-            $query->where(fn ($search) => $search->whereLike($column.'->title', $pattern)
-                ->orWhereLike($column.'->description', $pattern)->orWhereLike($column.'->body_text', $pattern)
+            $query->where(fn ($search) => $search->where(fn ($content) => $content->whereNull($column.'->source_type')
+                ->where(fn ($text) => $text->whereLike($column.'->title', $pattern)->orWhereLike($column.'->description', $pattern)->orWhereLike($column.'->body_text', $pattern)))
                 ->when(trim($q, '#') !== '', fn ($tags) => $this->searchTags($tags, $column, $tagPattern)));
         }
         if ($tag = $filters['tag'] ?? null) {
@@ -166,7 +181,7 @@ class ResourceReaderService
 
     public function detail(GroupResource $resource, Request $request): array
     {
-        $snapshot = $resource->publishedRevision->snapshot;
+        $snapshot = app(ResourceHolsterContent::class)->inherit($resource, $resource->publishedRevision->snapshot);
         $level = array_search($resource->access_level, GroupResource::ACCESS_LEVELS, true);
         $editors = $resource->revisions()->where('state', 'published')->get(['editor_user_id', 'editor', 'snapshot'])->filter(fn ($revision) => array_search($revision->snapshot['access_level'], GroupResource::ACCESS_LEVELS, true) <= $level)->unique('editor_user_id')->pluck('editor')->values();
 
@@ -174,34 +189,31 @@ class ResourceReaderService
         $public = $request->routeIs('public-resources.*');
         $linked = $this->query($resource->group, $public ? null : $request->user(), $public)->whereIn('uuid', $this->links->ids($snapshot['body']))->with('publishedRevision')->get();
 
-        return (new ResourceSummaryResource($resource))->resolve($request) + [
-            'body' => $snapshot['body'], 'body_html' => $this->documents->html($snapshot['body'], resourceBlocks: true), 'images' => $images, 'editors' => $editors,
-            'linked_resources' => ResourceSummaryResource::collection($linked)->resolve($request),
-            'related_resources' => $this->related($resource->group, $resource->collection_id, $request, $public, $resource->id), 'public_url' => $this->libraries->publicUrl($resource),
-            'history' => $this->history->preview($resource, $request),
-            'commands' => collect($snapshot['commands'] ?? [])->filter(fn ($command) => $command['enabled'] ?? false)
-                ->map(fn ($command) => ['name' => $command['name'], 'title' => $command['embed']['title'] ?? ''])->values()->all(),
-        ];
+        return (new ResourceSummaryResource($resource))->resolve($request)
+            + ($resource->holster_id ? $this->holsters->presentation($resource, $request->user(), $public) : []) + [
+                'body' => $snapshot['body'], 'body_html' => $this->documents->html($snapshot['body'], resourceBlocks: true), 'images' => $images, 'editors' => $editors,
+                'linked_resources' => ResourceSummaryResource::collection($linked)->resolve($request),
+                'related_resources' => $this->related($resource->group, $resource->collection_id, $request, $public, $resource->id), 'public_url' => $this->libraries->publicUrl($resource),
+                'history' => $this->history->preview($resource, $request),
+                'commands' => collect($snapshot['commands'] ?? [])->filter(fn ($command) => $command['enabled'] ?? false)
+                    ->map(fn ($command) => ['name' => $command['name'], 'title' => $command['embed']['title'] ?? ''])->values()->all(),
+            ];
     }
 
     public function holster(Group $group, BozjaHolster $holster, Request $request, bool $public = false): array
     {
-        $detail = $this->holsters->detail($group, $holster, $request->user(), $public);
+        $resource = $this->query($group, $public ? null : $request->user(), $public)
+            ->where('holster_id', $holster->id)->with('publishedRevision')->firstOrFail();
 
-        return $detail + ['related_resources' => $this->related($group, $detail['collection_id'], $request, $public, holsterId: $holster->id)];
+        return $this->detail($resource, $request);
     }
 
-    private function related(Group $group, ?int $collectionId, Request $request, bool $public, ?int $resourceId = null, ?int $holsterId = null): array
+    private function related(Group $group, ?int $collectionId, Request $request, bool $public, ?int $resourceId = null): array
     {
         $resources = $this->query($group, $public ? null : $request->user(), $public)->where('collection_id', $collectionId)
             ->when($resourceId, fn ($query) => $query->whereKeyNot($resourceId))
             ->with('publishedRevision')->orderByDesc('is_pinned')->orderBy('sort_order')->limit(6)->get();
         $related = ResourceSummaryResource::collection($resources)->resolve($request);
-        if ($collectionId !== null && $this->holsters->collectionId($group) === $collectionId && count($related) < 6) {
-            $query = $this->holsters->query($group)->when($holsterId, fn ($query) => $query->whereKeyNot($holsterId))
-                ->orderByDesc('is_default')->orderBy('id')->limit(6 - count($related));
-            $related = array_merge($related, $this->holsters->summaries($query, $collectionId));
-        }
 
         return $related;
     }
@@ -210,11 +222,14 @@ class ResourceReaderService
     {
         abort_unless((int) $resource->group_id === (int) $group->id, 404);
         abort_unless($this->policy->manage($user, $resource), 403);
-        $resource->load(['publishedRevision', 'latestRevision']);
+        abort_unless(GroupResource::whereKey($resource->id)->withAvailableSource()->exists(), 404);
+        $resource->load(['publishedRevision', 'latestRevision', 'holster']);
 
-        return $resource->only(['id', 'uuid', 'is_home', 'is_pinned', 'collection_id', 'slug', 'status', 'version', 'sort_order', 'updated_at', 'editing_user_id', 'editing_expires_at']) + [
+        return $resource->only(['id', 'uuid', 'holster_id', 'is_home', 'is_pinned', 'collection_id', 'slug', 'status', 'version', 'sort_order', 'updated_at', 'editing_user_id', 'editing_expires_at']) + [
             'has_unpublished_changes' => $this->publication->hasChanges($resource),
             'can_publish' => $this->publication->canPublish($resource),
+            'inherited_body_html' => $resource->holster_id && is_string($resource->holster?->guide)
+                ? app(MarkdownGuideConverter::class)->legacyHtml($resource->holster->guide) : null,
             'reader_urls' => $this->readerUrls($group, $resource),
             'working_copy' => $this->embedMetadata->present($group, $resource->working_copy, $resource->updated_at->toIso8601String(), $resource),
             'published' => $this->embedMetadata->present($group, $resource->publishedRevision?->snapshot, ($resource->publishedRevision?->created_at ?? $resource->updated_at)->toIso8601String(), $resource),
@@ -227,9 +242,9 @@ class ResourceReaderService
         // The tree needs every visible file, but bodies and full embeds load only on selection.
         $resources = $this->query($group, $user, manage: true)->with(['publishedRevision', 'latestRevision'])
             ->orderByDesc('is_home')->orderBy('sort_order')->orderBy('id')->lazy(100)->map(function ($resource) use ($group) {
-                $snapshot = $resource->working_copy ?? $resource->publishedRevision?->snapshot ?? [];
+                $snapshot = app(ResourceHolsterContent::class)->inherit($resource, $resource->working_copy ?? $resource->publishedRevision?->snapshot ?? []);
 
-                return $resource->only(['id', 'uuid', 'is_home', 'is_pinned', 'collection_id', 'slug', 'status', 'version', 'sort_order', 'updated_at']) + [
+                return $resource->only(['id', 'uuid', 'holster_id', 'is_home', 'is_pinned', 'collection_id', 'slug', 'status', 'version', 'sort_order', 'updated_at']) + [
                     'has_unpublished_changes' => $this->publication->hasChanges($resource),
                     'can_publish' => $this->publication->canPublish($resource),
                     'reader_urls' => $this->readerUrls($group, $resource),
@@ -241,7 +256,7 @@ class ResourceReaderService
         return [
             'editor_user_id' => $user->id,
             'pin_limit' => GroupResource::MAX_PINS,
-            'holsters' => $this->holsters->management($group),
+            'holsters' => $this->holsters->management($group, $user),
             'resources' => $resources,
             'embed_context' => [
                 'group_icon_url' => $this->embedMetadata->groupIconUrl($group),

@@ -1,6 +1,7 @@
 <?php
 
 return [
+    'holster_protected' => 'Archive this linked resource to hide it, or manage the original holster in DRS.',
     'save_before_publish' => 'Save a version with a changelog before publishing.',
     'resource_reference' => 'Choose an available resource from this group.',
     'library_fields' => [

@@ -738,7 +738,7 @@ class ActivitySlotAssignmentService
 
     /**
      * @param  array<string, mixed>  $definition
-     * @return array{prepop_id: int, refill_id: int, prepop_label: mixed, refill_label: mixed}
+     * @return array{prepop_id: int, refill_id: int|null, prepop_label: mixed, refill_label: mixed}
      */
     private function resolveHolsterPairStoredValue(array $definition, mixed $selection, string $attribute): array
     {
@@ -746,7 +746,7 @@ class ActivitySlotAssignmentService
 
         if ($pair === null) {
             throw ValidationException::withMessages([
-                $attribute => 'Select both a Prepop and Refill holster.',
+                $attribute => __('holsters.invalid_selection'),
             ]);
         }
 
@@ -756,13 +756,9 @@ class ActivitySlotAssignmentService
         $prepop = $options->get((string) $pair['prepop_id']);
         $refill = $options->get((string) $pair['refill_id']);
 
-        if (! is_array($prepop)
-            || ! is_array($refill)
-            || ($prepop['meta']['holster_type'] ?? null) !== 'prepop'
-            || ($refill['meta']['holster_type'] ?? null) !== 'refill'
-            || (int) ($refill['meta']['parent_holster_id'] ?? 0) !== $pair['prepop_id']) {
+        if (! $this->bozjaHolsterPairService->pairIsAvailableInOptions($pair, $definition['options'] ?? [])) {
             throw ValidationException::withMessages([
-                $attribute => 'Select a valid Prepop and Refill holster pair.',
+                $attribute => __('holsters.invalid_selection'),
             ]);
         }
 

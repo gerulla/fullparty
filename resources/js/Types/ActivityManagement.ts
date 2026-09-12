@@ -50,6 +50,7 @@ export type ActivityCompletionPreviewMilestone = {
 }
 
 export type FflogsEncounterProgress = {
+	encounter_id: number
 	name: string
 	kills: number
 	progress: number

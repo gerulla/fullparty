@@ -9,6 +9,7 @@ import type { QueueApplication, QueueFilterField } from "@/Types/ActivityQueue";
 import type { ActivityFillInPartyOption, ActivitySlot } from "@/Types/ActivityRoster";
 import type { ActivitySlotFieldSelection, HolsterPairValue } from '@/Types/ActivityHolsters'
 import HolsterPairSelector from '@/components/Groups/Activities/HolsterPairSelector.vue'
+import { availableHolsterPairs, holsterPairKey, normalizeHolsterPairs } from '@/utils/holsterPlanner'
 import { translateCharacterClassName, translatePhantomJobName, translateRaidPositionName } from "@/utils/characterJobTranslations";
 
 const props = defineProps<{
@@ -123,34 +124,8 @@ const isRaidPositionField = (field: QueueFilterField) => (
 const isHolsterPairField = (field: QueueFilterField) => field.source === 'bozja_holsters'
 	&& field.type === 'holster_pair';
 
-const normalizeHolsterPair = (value: unknown): HolsterPairValue | null => {
-	if (!value || typeof value !== 'object' || Array.isArray(value)) {
-		return null;
-	}
-
-	const pair = value as Record<string, unknown>;
-	const prepopId = pair.prepop_id == null ? '' : String(pair.prepop_id);
-	const refillId = pair.refill_id == null ? '' : String(pair.refill_id);
-
-	return prepopId && refillId ? { prepop_id: prepopId, refill_id: refillId } : null;
-};
-
-const holsterPairKey = (pair: HolsterPairValue) => `${pair.prepop_id}:${pair.refill_id}`;
-
-const allValidHolsterPairs = (field: QueueFilterField): HolsterPairValue[] => {
-	const prepopIds = new Set(field.options
-		.filter(option => option.meta?.holster_type === 'prepop')
-		.map(option => option.key));
-
-	return field.options
-		.filter(option => option.meta?.holster_type === 'refill')
-		.map((option): HolsterPairValue => ({
-			prepop_id: String(option.meta?.parent_holster_id ?? ''),
-			refill_id: option.key,
-		}))
-		.filter(pair => pair.prepop_id !== ''
-			&& prepopIds.has(pair.prepop_id));
-};
+const normalizeHolsterPair = (value: unknown): HolsterPairValue | null => normalizeHolsterPairs(value, false)[0] ?? null;
+const allValidHolsterPairs = (field: QueueFilterField): HolsterPairValue[] => availableHolsterPairs(field.options);
 
 const compatibleHolsterPairs = (field: QueueFilterField): HolsterPairValue[] => {
 	if (ignoreApplicationChoices.value) {
@@ -158,18 +133,8 @@ const compatibleHolsterPairs = (field: QueueFilterField): HolsterPairValue[] => 
 	}
 
 	const answer = props.application?.answers.find(entry => entry.question_key === field.application_key);
-	const prepopIds = new Set(field.options
-		.filter(option => option.meta?.holster_type === 'prepop')
-		.map(option => option.key));
-	const refillParents = new Map(field.options
-		.filter(option => option.meta?.holster_type === 'refill')
-		.map(option => [option.key, String(option.meta?.parent_holster_id ?? '')]));
-
-	return (Array.isArray(answer?.raw_value) ? answer.raw_value : [])
-		.map(normalizeHolsterPair)
-		.filter((pair): pair is HolsterPairValue => Boolean(pair
-			&& prepopIds.has(pair.prepop_id)
-			&& refillParents.get(pair.refill_id) === pair.prepop_id));
+	const availableKeys = new Set(allValidHolsterPairs(field).map(holsterPairKey));
+	return normalizeHolsterPairs(answer?.raw_value, true).filter(pair => availableKeys.has(holsterPairKey(pair)));
 };
 
 const canIgnoreChoicesForField = (field: QueueFilterField) => (

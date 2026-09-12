@@ -1,0 +1,21 @@
+{
+    "prepop": "Préparation",
+    "refill": "Recharge",
+    "capacity": "Capacité : {used} / {max}",
+    "contents": "Contenu du holster",
+    "details": "Les {count} objets et les notes",
+    "no_items": "Ce holster ne contient aucun objet.",
+    "choose_pairs": "Choisir des holsters",
+    "choose_multiple_hint": "Choisissez un ou plusieurs ensembles. Les recharges incluent leur holster de préparation ; les holsters sans recharge peuvent être sélectionnés seuls.",
+    "choose_single_hint": "Choisissez un ensemble. Les recharges incluent leur holster de préparation ; un holster sans recharge peut être sélectionné seul.",
+    "standalone": "Autonome · aucune recharge requise",
+    "search": "Rechercher des holsters, objets ou notes…",
+    "paired_with": "Associé à {name}",
+    "no_results": "Aucun holster correspondant.",
+    "selected_count": "{count} ensembles sélectionnés",
+    "use_selection": "Utiliser la sélection",
+    "selected_pair": "Ensemble sélectionné",
+    "remove_pair": "Retirer cet ensemble",
+    "unavailable_pair": "Cet ensemble n’est plus disponible. Choisissez-en un autre ou retirez-le.",
+    "change_selection": "Modifier la sélection"
+}

@@ -1,0 +1,21 @@
+{
+    "prepop": "Pre-pop",
+    "refill": "Refill",
+    "capacity": "{used} / {max} capacity",
+    "contents": "Holster contents",
+    "details": "All {count} items & notes",
+    "no_items": "This holster has no items.",
+    "choose_pairs": "Choose holsters",
+    "choose_multiple_hint": "Choose one or more loadouts. Refills include their linked pre-pop; pre-pops without refills can be selected on their own.",
+    "choose_single_hint": "Choose a loadout. Refills include their linked pre-pop; a pre-pop without refills can be selected on its own.",
+    "standalone": "Standalone · no refill required",
+    "search": "Search holsters, items, or notes…",
+    "paired_with": "Paired with {name}",
+    "no_results": "No matching holsters.",
+    "selected_count": "{count} loadouts selected",
+    "use_selection": "Use selection",
+    "selected_pair": "Selected loadout",
+    "remove_pair": "Remove loadout",
+    "unavailable_pair": "This loadout is no longer available. Choose another or remove it.",
+    "change_selection": "Change holster selection"
+}

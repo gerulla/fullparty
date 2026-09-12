@@ -4,9 +4,9 @@ import type { MemberNoteSummary } from "@/Types/Groups"
 export type QueueApplicationAnswerDisplayItem = {
 	label: string
 	prepop_id?: number
-	refill_id?: number
+	refill_id?: number | null
 	prepop_label?: string
-	refill_label?: string
+	refill_label?: string | null
 	role?: string | null
 	icon_url?: string | null
 	flat_icon_url?: string | null

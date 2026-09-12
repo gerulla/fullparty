@@ -5,12 +5,17 @@ import { usePage } from "@inertiajs/vue3";
 import { localizedValue } from "@/utils/localizedValue";
 import { displayActivityPartyLabel } from "@/utils/activityPartyLabels";
 import { useRunOverviewPreferences } from "@/composables/useRunOverviewPreferences";
+import { useAllianceProgress } from "@/composables/useAllianceProgress";
+import AllianceProgressLegend from "@/components/Groups/Activities/AllianceProgressLegend.vue";
 import ActivitySelfAssignRosterSlot from "@/components/Groups/Activities/ActivitySelfAssignRosterSlot.vue";
 import type { ActivitySlot } from "@/Types/ActivityRoster";
 import type { LocalizedText } from "@/Types/Common";
 
 const props = defineProps<{
 	slots: ActivitySlot[]
+	groupSlug: string
+	activityId: number
+	targetProgPointKey?: string | null
 	canSelfAssign: boolean
 	hasVerifiedCharacters: boolean
 	viewerAssignedSlotId: number | null
@@ -27,7 +32,17 @@ const page = usePage();
 const fallbackLocale = computed(() => String(page.props.locale?.fallback ?? "en"));
 const scrollContainer = ref<HTMLElement | null>(null);
 const groupElementRefs = new Map<string, HTMLElement>();
-const { plainDpsEnabled, numberedSecondaryPartiesEnabled } = useRunOverviewPreferences();
+const { plainDpsEnabled, numberedSecondaryPartiesEnabled, allianceProgressEnabled } = useRunOverviewPreferences();
+const progression = useAllianceProgress({
+    get enabled() { return allianceProgressEnabled.value },
+    get groupSlug() { return props.groupSlug },
+    get activityId() { return props.activityId },
+    get targetProgPointKey() { return props.targetProgPointKey },
+    get slots() { return props.slots },
+});
+const progressStatus = (slot: ActivitySlot) => allianceProgressEnabled.value && slot.assigned_character_id !== null
+    ? progression.records.value[slot.assigned_character_id]?.status ?? null
+    : null;
 
 type SlotGroup = {
 	key: string
@@ -163,7 +178,10 @@ watch(
 <template>
 	<section class="border border-default bg-muted/20">
 		<div class="flex flex-col gap-3 border-b border-default px-4 py-3 lg:flex-row lg:items-end lg:justify-between">
-			<p class="font-semibold text-base text-toned">{{ t("groups.activities.overview.board.title") }}</p>
+			<div class="flex min-w-0 items-start gap-x-4 gap-y-2">
+				<p class="shrink-0 font-semibold text-base text-toned">{{ t("groups.activities.overview.board.title") }}</p>
+				<AllianceProgressLegend v-if="allianceProgressEnabled" :loading="progression.loading.value" :failed="progression.failed.value" :fflogs-unavailable="progression.fflogsUnavailable.value" @retry="progression.reload()" />
+			</div>
 
 			<div class="flex flex-wrap items-center gap-2">
 				<UBadge
@@ -186,6 +204,8 @@ watch(
 				/>
 
 				<div class="hidden h-5 w-px bg-default sm:block"></div>
+
+				<USwitch v-model="allianceProgressEnabled" size="sm" :label="t('groups.activities.overview.board.progression.toggle')" />
 
 				<label class="inline-flex cursor-pointer items-center gap-2 text-xs font-medium text-muted">
 					<span>{{ t("groups.activities.overview.board.plain_dps") }}</span>
@@ -249,6 +269,7 @@ watch(
 								v-for="slot in group.slots"
 								:key="slot.id"
 								:slot="slot"
+								:progress-status="progressStatus(slot)"
 								:role-highlights="!plainDpsEnabled"
 								:can-self-assign="canSelfAssign"
 								:has-verified-characters="hasVerifiedCharacters"
@@ -292,6 +313,7 @@ watch(
 							<ActivitySelfAssignRosterSlot
 								v-if="group.slots[rowIndex - 1]"
 								:slot="group.slots[rowIndex - 1]"
+								:progress-status="progressStatus(group.slots[rowIndex - 1])"
 								:role-highlights="!plainDpsEnabled"
 								:can-self-assign="canSelfAssign"
 								:has-verified-characters="hasVerifiedCharacters"
@@ -333,6 +355,7 @@ watch(
 					v-for="slot in benchSlots"
 					:key="slot.id"
 					:slot="slot"
+					:progress-status="progressStatus(slot)"
 					:role-highlights="!plainDpsEnabled"
 					:can-self-assign="canSelfAssign"
 					:has-verified-characters="hasVerifiedCharacters"

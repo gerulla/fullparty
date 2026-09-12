@@ -73,15 +73,13 @@ const leftQuestionRank = (question: ApplicationQuestion): number => {
 		return 1;
 	}
 
-	if (question.source === 'bozja_holsters') {
-		return 2;
-	}
-
 	return -1;
 };
 const isLeftQuestion = (question: ApplicationQuestion): boolean => leftQuestionRank(question) !== -1;
 const isRaidPositionQuestion = (question: ApplicationQuestion): boolean => question.source === 'raid_positions' || question.key.includes('raid_position');
 const isCheckboxQuestion = (question: ApplicationQuestion): boolean => question.type === 'boolean';
+const isHolsterQuestion = (question: ApplicationQuestion): boolean => question.source === 'bozja_holsters' && !isCheckboxQuestion(question);
+const holsterQuestions = computed(() => props.questions.filter(isHolsterQuestion));
 
 const leftQuestions = computed(() => props.questions
 	.filter((question) => !isCheckboxQuestion(question) && isLeftQuestion(question))
@@ -91,7 +89,7 @@ const leftQuestions = computed(() => props.questions
 const leftQuestionKeys = computed(() => new Set(leftQuestions.value.map((question) => question.key)));
 const otherInputQuestions = computed(() => props.questions
 	.map((question, index) => ({ question, index }))
-	.filter(({ question }) => !isCheckboxQuestion(question) && !leftQuestionKeys.value.has(question.key))
+	.filter(({ question }) => !isCheckboxQuestion(question) && !isHolsterQuestion(question) && !leftQuestionKeys.value.has(question.key))
 	.sort((left, right) => {
 		const leftRank = isRaidPositionQuestion(left.question) ? 0 : 1;
 		const rightRank = isRaidPositionQuestion(right.question) ? 0 : 1;
@@ -617,6 +615,20 @@ const submit = () => {
 							:favorite-option-keys="favoriteOptionKeysForQuestion(question)"
 						/>
 					</div>
+				</div>
+
+				<div
+					v-if="holsterQuestions.length > 0"
+					class="w-full space-y-5"
+				>
+					<ApplicationQuestionField
+						v-for="question in holsterQuestions"
+						:key="question.key"
+						v-model="form.answers[question.key]"
+						:question="question"
+						:error="form.errors[`answers.${question.key}`] || form.errors[question.key]"
+						:disabled="applicationLocked || !canSubmit"
+					/>
 				</div>
 
 				<div

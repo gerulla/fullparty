@@ -30,5 +30,6 @@ export function useRunOverviewPreferences() {
     return {
         plainDpsEnabled: useBooleanPreferenceCookie('fullparty_overview_plain_dps'),
         numberedSecondaryPartiesEnabled: useBooleanPreferenceCookie('fullparty_overview_numbered_parties'),
+        allianceProgressEnabled: useBooleanPreferenceCookie('fullparty_overview_alliance_progress'),
     };
 }

@@ -5,6 +5,8 @@ import { usePage } from "@inertiajs/vue3";
 import { localizedValue } from "@/utils/localizedValue";
 import { emptyCompositionSlotToneClass } from "@/utils/activityCompositionHints";
 import { specialistDesignationMarkers } from "@/utils/specialistDesignations";
+import { allianceProgressTones } from "@/utils/allianceProgress";
+import type { AllianceProgressStatus } from "@/Types/AllianceProgress";
 import type { ActivityApplicationFieldGroup, ActivitySlot, ActivitySlotFieldValue } from "@/Types/ActivityRoster";
 import type { LocalizedText } from "@/Types/Common";
 
@@ -20,6 +22,7 @@ type SlotMarker = {
 const props = defineProps<{
 	slot: ActivitySlot
 	roleHighlights: boolean
+	progressStatus?: AllianceProgressStatus | null
 	canSelfAssign: boolean
 	hasVerifiedCharacters: boolean
 	viewerAssignedSlotId: number | null
@@ -74,6 +77,9 @@ const benchApplicationFieldGroups = computed<ActivityApplicationFieldGroup[]>(()
 ));
 
 const slotToneClass = computed(() => {
+	if (props.progressStatus && props.slot.assigned_character_id !== null) {
+		return allianceProgressTones[props.progressStatus].slot;
+	}
 	if (props.roleHighlights) {
 		if (roleField.value === "melee dps") {
 			return "border-rose-400/70 bg-rose-400/10";
@@ -292,6 +298,7 @@ const designationMarkers = computed(() => {
 	<div
 		class="relative min-h-26 border transition-colors"
 		:class="slotToneClass"
+		:title="progressStatus ? t(`groups.activities.overview.board.progression.${progressStatus}`) : undefined"
 	>
 		<UTooltip
 			v-for="marker in designationMarkers"

@@ -472,6 +472,9 @@ const removeSelfFromSlot = async (slot: ActivitySlot) => {
 				:slots="currentActivity.slots"
 			/>
 			<ActivitySelfAssignRosterBoard
+				:group-slug="group.slug"
+				:activity-id="currentActivity.id"
+				:target-prog-point-key="currentActivity.target_prog_point_key"
 				:slots="currentActivity.slots"
 				:can-self-assign="canSelfAssign"
 				:has-verified-characters="hasSelfAssignmentCharacters"

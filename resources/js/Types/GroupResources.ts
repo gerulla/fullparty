@@ -105,9 +105,9 @@ export type ResourceWorkspaceData = {
 }
 
 export type ResourceHolsterSettings = { collection_id: number | null; active_count: number; resources: ResourceReaderSummary[] }
-export type ResourceHolsterLoadout = {
-    role: string | null; type: string; capacity_used: number; max_capacity: number
-    items: { id: number; name: string; icon_url: string | null; quantity: number; cache_weight: number }[]
+export type ResourceHolsterLoadout = import('./HolsterPlanner').HolsterLoadout & {
+    prepop: import('./HolsterPlanner').HolsterLoadout | null
+    refills: import('./HolsterPlanner').HolsterLoadout[]
 }
 
 export type ResourceMutationData = {

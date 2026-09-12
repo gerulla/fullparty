@@ -162,3 +162,47 @@ it('shows other active holsters in the same collection', function () {
     $this->getJson($this->articleUrl)->assertOk()->assertJsonPath('data.related_resources.0.holster_id', $other->id)
         ->assertJsonCount(1, 'data.related_resources');
 });
+
+it('shows only active same-group refills beside their pre-pop loadout', function (bool $public) {
+    $refill = BozjaHolster::create([
+        'group_id' => $this->group->id, 'parent_holster_id' => $this->holster->id,
+        'type' => 'refill', 'name' => ['en' => 'Tank refill'], 'notes' => 'Bring extra actions',
+    ]);
+    $item = BozjaItem::create(['key' => 'planner-action', 'category' => 'lost_actions', 'name' => ['en' => 'Lost Action'], 'classification' => 'lost_action', 'cache_weight' => 4]);
+    $refill->items()->attach($item, ['quantity' => 3]);
+    foreach (['inactive', 'foreign'] as $hidden) {
+        BozjaHolster::create([
+            'group_id' => $hidden === 'foreign' ? Group::factory()->create()->id : $this->group->id,
+            'parent_holster_id' => $this->holster->id, 'type' => 'refill',
+            'name' => ['en' => 'Secret refill'], 'is_active' => $hidden !== 'inactive',
+        ]);
+    }
+    $url = $public ? $this->articleUrl : holster_internal_url('groups.dashboard.resources.holsters.show', ['group' => $this->group, 'holster' => $this->holster]);
+    if (! $public) {
+        $this->actingAs($this->group->owner);
+    }
+    $this->get($url)->assertOk()->assertInertia(fn (Assert $page) => $page
+        ->where('resource.holster.prepop.id', $this->holster->id)
+        ->has('resource.holster.refills', 1)->where('resource.holster.refills.0.id', $refill->id)
+        ->where('resource.holster.refills.0.notes', 'Bring extra actions')
+        ->where('resource.holster.refills.0.capacity_used', 12)
+        ->where('resource.holster.refills.0.items.0.quantity', 3)
+        ->missing('resource.holster.refills.0.guide'));
+})->with([true, false]);
+
+it('keeps a refill guide focused on its pair and hides unavailable parent content', function (string $parentState) {
+    $refill = BozjaHolster::create(['group_id' => $this->group->id, 'parent_holster_id' => $this->holster->id, 'type' => 'refill']);
+    BozjaHolster::create(['group_id' => $this->group->id, 'parent_holster_id' => $this->holster->id, 'type' => 'refill']);
+    if ($parentState === 'inactive') {
+        $this->holster->update(['is_active' => false]);
+    } elseif ($parentState === 'foreign') {
+        $this->holster->update(['group_id' => Group::factory()->create()->id]);
+    }
+    $response = $this->getJson(route('public-resources.holsters.show', ['group' => $this->group, 'holster' => $refill]))->assertOk()
+        ->assertJsonCount(1, 'data.holster.refills')->assertJsonPath('data.holster.refills.0.id', $refill->id);
+    if ($parentState === 'active') {
+        $response->assertJsonPath('data.holster.prepop.id', $this->holster->id);
+    } else {
+        $response->assertJsonPath('data.holster.prepop', null);
+    }
+})->with(['active', 'inactive', 'foreign']);

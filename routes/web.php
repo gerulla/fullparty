@@ -25,6 +25,7 @@ use App\Http\Controllers\GoogleAuthController;
 use App\Http\Controllers\GroupActivityApplicantQueueController;
 use App\Http\Controllers\GroupActivityApplicationController;
 use App\Http\Controllers\GroupActivityApplicationDeclineController;
+use App\Http\Controllers\GroupActivityApplicationRecordController;
 use App\Http\Controllers\GroupActivityCalendarController;
 use App\Http\Controllers\GroupActivityCompletionController;
 use App\Http\Controllers\GroupActivityController;
@@ -282,6 +283,10 @@ Route::prefix('{locale?}')
         Route::get('/groups/{group:slug}/activities/{activity}/calendar.ics/{secretKey?}', GroupActivityCalendarController::class)
             ->where('secretKey', '[A-Za-z0-9]{40}')
             ->name('groups.activities.calendar');
+
+        Route::get('/groups/{group:slug}/activities/{activity}/alliance-progress', \App\Http\Controllers\GroupActivityAllianceProgressController::class)
+            ->middleware('throttle:external.lookup')
+            ->name('groups.activities.alliance-progress');
 
         // Public activity overview, with optional secret key for private activities.
         Route::get('/groups/{group:slug}/activities/{activity}/{secretKey?}', [GroupActivityController::class, 'overview'])
@@ -606,6 +611,9 @@ Route::prefix('{locale?}')
                     ->name('groups.dashboard.activities.applicant-queue.application-character-refresh');
 
                 // FF Logs lookups and completion previews.
+                Route::get('/activities/{activity}/applications/{application}/record', [GroupActivityApplicationRecordController::class, 'show'])
+                    ->middleware('throttle:external.lookup')
+                    ->name('groups.dashboard.activities.application-record');
                 Route::get('/activities/{activity}/characters/{character}/fflogs-progress', [GroupActivityFflogsController::class, 'show'])
                     ->middleware('throttle:external.lookup')
                     ->name('groups.dashboard.activities.fflogs-progress');

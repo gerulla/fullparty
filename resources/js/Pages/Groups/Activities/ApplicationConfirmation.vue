@@ -8,6 +8,7 @@ import { useToast } from "@nuxt/ui/composables";
 import SeoHead from "@/components/Shared/SeoHead.vue";
 import AddToCalendarMenu from "@/components/Groups/Activities/AddToCalendarMenu.vue";
 import { localizedValue } from "@/utils/localizedValue";
+import { formatApplicationAnswerSummary } from "@/utils/applicationAnswerSummary";
 import { getActivityStatusMeta } from "@/utils/activityStatusMeta";
 import { createDateTimeFormatter } from "@/utils/dateTimeFormat";
 import { formatRelativeTime } from "@/utils/formatRelativeTime";
@@ -216,7 +217,7 @@ const withdrawalConfirmDescription = computed(() => (
 const answerSummaries = computed(() => props.applicationSchema
 	.map((question) => {
 		const value = props.application?.answers?.[question.key];
-		const summary = formatAnswerValue(question, value);
+		const summary = formatApplicationAnswerSummary(question, value, optionLabel, t);
 
 		if (summary === null) {
 			return null;
@@ -230,65 +231,6 @@ const answerSummaries = computed(() => props.applicationSchema
 		};
 	})
 	.filter((answer): answer is { key: string, label: string, value: string, isLongText: boolean } => answer !== null));
-
-function formatAnswerValue(question: ApplicationQuestion, value: unknown): { value: string, isLongText: boolean } | null
-{
-	if (value === null || value === undefined || value === "") {
-		return null;
-	}
-
-	if (question.type === "boolean") {
-		return {
-			value: value ? t("general.yes") : t("general.no"),
-			isLongText: false,
-		};
-	}
-
-	if (question.type === "multi_select" && Array.isArray(value)) {
-		const labels = value
-			.map((entry) => optionLabel(question, String(entry)))
-			.filter((entry) => entry !== "");
-
-		if (labels.length === 0) {
-			return null;
-		}
-
-		return {
-			value: labels.join(", "),
-			isLongText: labels.length > 2,
-		};
-	}
-
-	if (question.type === "single_select" && typeof value === "string") {
-		const label = optionLabel(question, value);
-
-		return label === ""
-			? null
-			: {
-				value: label,
-				isLongText: false,
-			};
-	}
-
-	if (typeof value === "string") {
-		return {
-			value,
-			isLongText: question.type === "textarea" || value.length > 80,
-		};
-	}
-
-	if (typeof value === "number") {
-		return {
-			value: String(value),
-			isLongText: false,
-		};
-	}
-
-	return {
-		value: String(value),
-		isLongText: false,
-	};
-}
 
 function optionLabel(question: ApplicationQuestion, optionKey: string): string
 {

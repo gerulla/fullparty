@@ -84,6 +84,9 @@ it('duplicates a run and rebuilds selected roster assignments without operationa
         'assigned_by_user_id' => $owner->id,
         'is_host' => true,
         'is_raid_leader' => true,
+        'is_duelist' => true,
+        'is_trapper' => true,
+        'is_darter' => true,
     ]);
     $mainSlot->fieldValues()->where('field_key', 'character_class')->firstOrFail()->update([
         'value' => ['id' => 33, 'name' => 'Astrologian', 'shorthand' => 'AST'],
@@ -186,6 +189,9 @@ it('duplicates a run and rebuilds selected roster assignments without operationa
         ->and($copiedMainSlot->assigned_by_user_id)->toBe($owner->id)
         ->and($copiedMainSlot->is_host)->toBeTrue()
         ->and($copiedMainSlot->is_raid_leader)->toBeTrue()
+        ->and($copiedMainSlot->is_duelist)->toBeTrue()
+        ->and($copiedMainSlot->is_trapper)->toBeTrue()
+        ->and($copiedMainSlot->is_darter)->toBeTrue()
         ->and($copiedMainSlot->fieldValues()->where('field_key', 'character_class')->firstOrFail()->value)
         ->toBe(['id' => 33, 'name' => 'Astrologian', 'shorthand' => 'AST'])
         ->and($copiedBenchSlot->assigned_character_id)->toBeNull()

@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import type { SlotDesignation } from "@/Types/ActivityRoster";
 import { computed } from "vue";
 import { useI18n } from "vue-i18n";
 import ActivityRosterSlotCard from "@/components/Groups/Activities/ActivityRosterSlotCard.vue";
@@ -41,6 +42,7 @@ const emit = defineEmits<{
 	markSlotLate: [slotId: number]
 	markSlotHost: [slotId: number]
 	markSlotRaidLeader: [slotId: number]
+	markSlotDesignation: [slotId: number, designation: SlotDesignation]
 	cutSlot: [slotId: number]
 	pasteCutSlot: [slotId: number]
 	clearCutSlot: []
@@ -117,6 +119,7 @@ const assignedCount = computed(() => props.slots.filter((slot) => slot.assigned_
 					@mark-slot-late="emit('markSlotLate', $event)"
 					@mark-slot-host="emit('markSlotHost', $event)"
 					@mark-slot-raid-leader="emit('markSlotRaidLeader', $event)"
+					@mark-slot-designation="(slotId, designation) => emit('markSlotDesignation', slotId, designation)"
 					@replace-composition-hints="emit('replaceCompositionHints', $event)"
 					@customize-composition-hints="emit('customizeCompositionHints', $event)"
 				/>

@@ -126,7 +126,8 @@
                 "placeholder": "Ajouter une note à propos de cet utilisateur"
             }
         },
-        "severities": {
+    "severities": {
+      "commendation": "Félicitations",
             "info": "Infos",
             "warning": "Avertissement",
             "critical": "Critique"

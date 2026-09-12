@@ -21,6 +21,7 @@ const props = defineProps<{
 	quickCreateShortcuts: GroupQuickCreateShortcut[]
 	opensUpward?: boolean
 	showGroupBadge?: boolean
+	groupColors?: Record<number, string>
 }>();
 
 const emit = defineEmits<{
@@ -66,6 +67,7 @@ const activityTime = (activity: ActivityIndexItem) => {
 };
 
 const activityStatusBorderClass = (activity: ActivityIndexItem) => getActivityStatusBorderClass(activity.status);
+const activityGroupColor = (activity: ActivityIndexItem) => activity.group ? props.groupColors?.[activity.group.id] : undefined;
 const activityGroupSlug = (activity: ActivityIndexItem) => activity.group?.slug ?? props.groupSlug ?? '';
 const canManageActivity = (activity: ActivityIndexItem) => activity.group?.can_manage_activities ?? Boolean(props.canManageActivities);
 
@@ -138,7 +140,8 @@ const dayContextMenuItems = computed<ContextMenuItem[][]>(() => (
 				>
 					<div
 						class="group relative z-0 origin-top-left overflow-visible rounded-sm border-t-2 bg-primary/15 px-2 py-1.5 text-xs shadow-sm transition duration-150 ease-out hover:z-50 hover:scale-125 hover:bg-elevated hover:shadow-xl"
-						:class="activityStatusBorderClass(activity)"
+						:class="activityGroupColor(activity) ? undefined : activityStatusBorderClass(activity)"
+						:style="{ borderTopColor: activityGroupColor(activity) }"
 					>
 						<div
 							v-if="activity.has_existing_application"
@@ -183,6 +186,7 @@ const dayContextMenuItems = computed<ContextMenuItem[][]>(() => (
 								v-if="showGroupBadge"
 								class="mt-2"
 								:group="activity.group"
+								:text-color="activityGroupColor(activity)"
 							/>
 						</div>
 					</div>

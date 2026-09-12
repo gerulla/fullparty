@@ -4,6 +4,7 @@ import { useI18n } from "vue-i18n";
 import { usePage } from "@inertiajs/vue3";
 import { localizedValue } from "@/utils/localizedValue";
 import { displayActivityPartyLabel } from "@/utils/activityPartyLabels";
+import { useRunOverviewPreferences } from "@/composables/useRunOverviewPreferences";
 import ActivityAttendeeRosterSlot from "@/components/Groups/Activities/ActivityAttendeeRosterSlot.vue";
 import type { ActivitySlot } from "@/Types/ActivityRoster";
 import type { LocalizedText } from "@/Types/Common";
@@ -17,8 +18,7 @@ const page = usePage();
 const fallbackLocale = computed(() => String(page.props.locale?.fallback ?? "en"));
 const scrollContainer = ref<HTMLElement | null>(null);
 const groupElementRefs = new Map<string, HTMLElement>();
-const roleHighlightsEnabled = ref(false);
-const numberedSecondaryPartiesEnabled = ref(false);
+const { plainDpsEnabled, numberedSecondaryPartiesEnabled } = useRunOverviewPreferences();
 
 type SlotGroup = {
 	key: string
@@ -185,8 +185,8 @@ watch(
 				<div class="hidden h-5 w-px bg-default sm:block"></div>
 
 				<label class="inline-flex cursor-pointer items-center gap-2 text-xs font-medium text-muted">
-					<span>{{ t("groups.activities.overview.board.role_highlights") }}</span>
-					<USwitch v-model="roleHighlightsEnabled" size="sm" />
+					<span>{{ t("groups.activities.overview.board.plain_dps") }}</span>
+					<USwitch v-model="plainDpsEnabled" size="sm" />
 				</label>
 
 				<label class="inline-flex cursor-pointer items-center gap-2 text-xs font-medium text-muted">
@@ -246,7 +246,7 @@ watch(
 								v-for="slot in group.slots"
 								:key="slot.id"
 								:slot="slot"
-								:role-highlights="roleHighlightsEnabled"
+								:role-highlights="!plainDpsEnabled"
 							/>
 						</div>
 					</div>
@@ -283,7 +283,7 @@ watch(
 							<ActivityAttendeeRosterSlot
 								v-if="group.slots[rowIndex - 1]"
 								:slot="group.slots[rowIndex - 1]"
-								:role-highlights="roleHighlightsEnabled"
+								:role-highlights="!plainDpsEnabled"
 							/>
 
 							<div
@@ -318,7 +318,7 @@ watch(
 					v-for="slot in benchSlots"
 					:key="slot.id"
 					:slot="slot"
-					:role-highlights="roleHighlightsEnabled"
+					:role-highlights="!plainDpsEnabled"
 				/>
 			</div>
 		</div>

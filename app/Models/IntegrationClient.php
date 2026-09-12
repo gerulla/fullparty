@@ -28,6 +28,8 @@ class IntegrationClient extends Model
 
     public const SCOPE_GUILDS_WRITE = 'guilds:write';
 
+    public const SCOPE_RESOURCES_READ = 'resources:read';
+
     public const EVENT_DISCORD_USER_APP_INSTALLED = 'discord.user_app.installed';
 
     public const EVENT_DISCORD_USER_APP_DISCONNECTED = 'discord.user_app.disconnected';

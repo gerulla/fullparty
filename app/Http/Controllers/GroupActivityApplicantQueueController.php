@@ -11,6 +11,7 @@ use App\Models\ActivityApplication;
 use App\Models\Group;
 use App\Services\Groups\ActivityApplicationCharacterRefreshService;
 use App\Services\Groups\ApplicantQueue\ApplicantQueuePayloadBuilder;
+use App\Services\Groups\GroupUserNoteVisibilityService;
 use Illuminate\Http\JsonResponse;
 
 class GroupActivityApplicantQueueController extends Controller
@@ -67,6 +68,35 @@ class GroupActivityApplicantQueueController extends Controller
                 (int) auth()->id(),
             ),
         ]);
+    }
+
+    public function showApplicationNotes(
+        Group $group,
+        Activity $activity,
+        ActivityApplication $application,
+        GroupUserNoteVisibilityService $noteVisibility,
+    ): JsonResponse {
+        $this->authorize('manageDashboard', [$activity, $group]);
+
+        if ((int) $application->activity_id !== (int) $activity->id) {
+            abort(404);
+        }
+
+        $user = $application->user;
+        $viewerId = (int) auth()->id();
+        $notes = $noteVisibility->loadVisibleNotesForTargets(
+            $group,
+            $viewerId,
+            collect($user && $user->id !== $viewerId ? [$user->id] : []),
+        );
+
+        return response()->json(['notes' => $noteVisibility->serializeVisibleNotesForUser(
+            $group,
+            $user,
+            $viewerId,
+            $notes['group_notes_by_user_id'],
+            $notes['shared_notes_by_user_id'],
+        )]);
     }
 
     public function refreshApplicationCharacter(

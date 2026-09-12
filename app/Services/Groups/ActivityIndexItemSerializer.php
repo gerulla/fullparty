@@ -76,6 +76,7 @@ final class ActivityIndexItemSerializer
                 'name' => $activity->organizerCharacter->name,
                 'avatar_url' => $activity->organizerCharacter->avatar_url,
                 'world' => $activity->organizerCharacter->world,
+                'datacenter' => $activity->organizerCharacter->datacenter,
             ] : null,
             'slot_count' => $mainSlots->count(),
             'assigned_slot_count' => $mainSlots

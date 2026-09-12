@@ -8,6 +8,9 @@ use App\Http\Requests\ResetPasswordRequest;
 use App\Http\Requests\SendPasswordResetLinkRequest;
 use App\Models\User;
 use App\Services\AuditLogger;
+use App\Services\Auth\PasswordLoginService;
+use App\Services\Auth\PendingSocialLinkStore;
+use App\Services\Auth\UserSessionRevocationService;
 use App\Support\Audit\AuditScope;
 use App\Support\Audit\AuditSeverity;
 use Illuminate\Auth\Events\PasswordReset;
@@ -17,13 +20,15 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Password;
-use Illuminate\Support\Str;
 use Illuminate\Validation\ValidationException;
 
 class AuthController extends Controller
 {
     public function __construct(
-        private readonly AuditLogger $auditLogger
+        private readonly AuditLogger $auditLogger,
+        private readonly UserSessionRevocationService $sessionRevocationService,
+        private readonly PasswordLoginService $passwordLogin,
+        private readonly PendingSocialLinkStore $pendingLinks,
     ) {}
 
     public function register(RegisterRequest $request): RedirectResponse
@@ -64,13 +69,7 @@ class AuthController extends Controller
         $login = $request->validated('login');
         $password = $request->validated('password');
         $remember = (bool) $request->validated('remember', false);
-        $user = $this->findPasswordLoginUser($login);
-
-        if (! $user || ! $user->password || ! Hash::check($password, $user->password)) {
-            throw ValidationException::withMessages([
-                'login' => __('auth.failed'),
-            ]);
-        }
+        $user = $this->passwordLogin->authenticate($login, $password);
 
         Auth::login($user, $remember);
 
@@ -91,21 +90,6 @@ class AuthController extends Controller
         );
 
         return redirect()->intended(route('dashboard'));
-    }
-
-    private function findPasswordLoginUser(string $login): ?User
-    {
-        $normalizedLogin = Str::lower($login);
-
-        if (filter_var($login, FILTER_VALIDATE_EMAIL)) {
-            return User::query()
-                ->whereRaw('LOWER(email) = ?', [$normalizedLogin])
-                ->first();
-        }
-
-        return User::query()
-            ->whereRaw('LOWER(name) = ?', [$normalizedLogin])
-            ->first();
     }
 
     public function logout(Request $request): RedirectResponse
@@ -132,14 +116,10 @@ class AuthController extends Controller
         $status = Password::broker()->reset(
             $request->safe()->only(['email', 'password', 'password_confirmation', 'token']),
             function (User $user, string $password) {
-                $user->forceFill([
-                    'password' => Hash::make($password),
-                    'remember_token' => Str::random(60),
-                ])->save();
-
-                DB::table('sessions')
-                    ->where('user_id', $user->id)
-                    ->delete();
+                DB::transaction(function () use ($user, $password): void {
+                    $user->forceFill(['password' => Hash::make($password)])->save();
+                    $this->sessionRevocationService->revokeAll($user);
+                });
 
                 event(new PasswordReset($user));
 
@@ -165,7 +145,7 @@ class AuthController extends Controller
         }
 
         return redirect()
-            ->route('login')
+            ->to($this->pendingLinks->resumeUrl($request) ?? route('login'))
             ->with('success', ['password_reset']);
     }
 

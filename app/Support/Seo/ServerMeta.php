@@ -107,6 +107,32 @@ final class ServerMeta
         ]);
     }
 
+    /** Build previews from the already-authorized public reader payload. */
+    public function resourceLibrary(array $page): array
+    {
+        $customization = $page['library']['customization'];
+        $resource = $page['resource'] ?? null;
+        $article = $resource && ! $resource['is_home'] ? $resource : null;
+        $collection = collect($page['collections'])->firstWhere('id', $page['reader']['selected_collection_id']);
+        $title = $article['title'] ?? $collection['name'] ?? null;
+        $imageId = $article['metadata_image_id'] ?? $customization['sharing_image_id']
+            ?? $customization['banner_image_id'] ?? $customization['logo_image_id'] ?? null;
+
+        return $this->build([
+            'title' => $title ? $title.' - '.$customization['title'] : $customization['title'],
+            'description' => Str::limit(($article['description'] ?? '') ?: $customization['introduction'], 180),
+            'url' => $article
+                ? (($article['source_type'] ?? null) === 'holster'
+                    ? route('public-resources.holsters.show', ['group' => $page['group']['slug'], 'holster' => $article['holster_id']])
+                    : route('public-resources.show', ['group' => $page['group']['slug'], 'slug' => $article['slug']]))
+                : ($collection
+                    ? route('public-resources.collections.show', ['group' => $page['group']['slug'], 'collectionSlug' => $collection['slug']])
+                    : route('public-resources.index', ['group' => $page['group']['slug']])),
+            'image' => $imageId ? route('public-resources.images.show', ['image' => $imageId]) : self::DEFAULT_IMAGE,
+            'type' => $article ? 'article' : 'website',
+        ]);
+    }
+
     /**
      * @return array<string, mixed>
      */

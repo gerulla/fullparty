@@ -90,15 +90,23 @@ class ActivitySlotDesignationService
 
         if (! $this->slotKind->isMainRoster($slot)) {
             throw ValidationException::withMessages([
-                'slot' => 'Only main roster slots can be marked as host or raid leader.',
+                'slot' => 'Only main roster slots can be marked with run designations.',
             ]);
         }
 
         $column = ActivitySlot::designationColumn($designation);
-        $oppositeDesignation = $designation === ActivitySlot::DESIGNATION_HOST
-            ? ActivitySlot::DESIGNATION_RAID_LEADER
-            : ActivitySlot::DESIGNATION_HOST;
-        $oppositeColumn = ActivitySlot::designationColumn($oppositeDesignation);
+        if (! in_array($designation, ActivitySlot::availableDesignationsForActivityType($activity->activityType?->slug), true)) {
+            throw ValidationException::withMessages([
+                'designation' => __('groups.activities.management.messages.designation_unavailable'),
+            ]);
+        }
+
+        $oppositeDesignation = match ($designation) {
+            ActivitySlot::DESIGNATION_HOST => ActivitySlot::DESIGNATION_RAID_LEADER,
+            ActivitySlot::DESIGNATION_RAID_LEADER => ActivitySlot::DESIGNATION_HOST,
+            default => null,
+        };
+        $oppositeColumn = $oppositeDesignation ? ActivitySlot::designationColumn($oppositeDesignation) : null;
         $actor = User::query()->find($actorUserId);
 
         /** @var array{updated_slots: array<int, ActivitySlot>, notifications: array<int, array{slot: ActivitySlot, designation: string, assigned: bool}>} $result */
@@ -113,7 +121,7 @@ class ActivitySlotDesignationService
             $updatedSlots = [];
             $pendingNotifications = [];
 
-            if ((bool) $targetSlot->{$oppositeColumn} && $shouldAssignDesignation) {
+            if ($oppositeColumn !== null && (bool) $targetSlot->{$oppositeColumn} && $shouldAssignDesignation) {
                 $targetSlot->update([$oppositeColumn => false]);
                 $updatedTargetSlot = $targetSlot->fresh(['activity.group', 'assignedCharacter', 'fieldValues', 'assignments']);
 
@@ -219,10 +227,7 @@ class ActivitySlotDesignationService
                 continue;
             }
 
-            $slot->update([
-                'is_host' => false,
-                'is_raid_leader' => false,
-            ]);
+            $slot->update(ActivitySlot::emptyDesignationState());
 
             $updatedSlot = $slot->fresh(['activity.group', 'assignedCharacter', 'fieldValues', 'assignments']);
 

@@ -2120,6 +2120,7 @@ onBeforeUnmount(() => {
 					@mark-slot-late="markSlotLate"
 					@mark-slot-host="markSlotHost"
 					@mark-slot-raid-leader="markSlotRaidLeader"
+					@mark-slot-designation="updateSlotDesignation"
 					@check-in-group="checkInGroup"
 					@create-fill-in-slot="createFillInSlot"
 					@slots-updated="applyManagementPatch({ updated_slots: $event })"

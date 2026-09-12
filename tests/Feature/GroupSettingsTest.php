@@ -239,6 +239,8 @@ it('includes group feature settings when viewing settings', function () {
 });
 
 it('allows admins to update group feature settings', function () {
+    Storage::fake('local');
+
     $owner = User::factory()->create();
     $admin = User::factory()->create();
     $group = Group::factory()->create([

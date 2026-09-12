@@ -22,6 +22,10 @@
         "any_severity": "すべての重大度",
         "any_user": "すべてのユーザー",
         "any_group": "すべてのグループ",
+        "any_activity": "すべての開催回",
+        "activity_label": "開催回で絞り込み",
+        "search_activity": "開催回を検索...",
+        "unnamed_activity": "開催回 #{id}",
         "action": {
             "label": "アクションで絞り込み"
         },
@@ -60,6 +64,9 @@
     "list": {
         "empty": "現在のフィルターに一致する監査ログはありません。",
         "loading_more": "さらに読み込む",
+        "loading": "監査ログを読み込み中...",
+        "load_error": "監査ログを読み込めませんでした。",
+        "retry": "再試行",
         "recorded_event": "記録された監査イベント",
         "details": "詳細",
         "changes": "変更",
@@ -148,6 +155,27 @@
             "removed": "がアカウントからキャラクターを削除しました。"
         },
         "group": {
+            "resources": {
+                "created": "リソースを作成しました。",
+                "save": "リソースの下書きを保存しました。",
+                "submit": "リソースの変更を提出しました。",
+                "publish": "リソースを公開しました。",
+                "discard": "リソースの変更を破棄しました。",
+                "restore": "リソースの履歴を復元しました。",
+                "archive": "リソースをアーカイブしました。",
+                "unpublish": "リソースを非公開にしました。",
+                "organize": "リソースを移動または並べ替えました。",
+                "pin": "リソースをピン留めしました。",
+                "unpin": "リソースのピン留めを解除しました。",
+                "settings_updated": "リソースライブラリの設定を更新しました。",
+                "all_deleted": "グループのすべてのリソースを削除しました。",
+                "deleted": "リソースを削除しました。",
+                "collection_saved": "リソースコレクションを保存しました。",
+                "collection_deleted": "リソースコレクションを削除しました。",
+        "image_uploaded": "リソースの画像をアップロードしました。",
+        "image_updated": "リソース画像の詳細を更新しました。",
+        "image_deleted": "リソース画像を削除しました。"
+            },
             "created": "がグループを作成しました。",
             "updated": "がグループ設定を更新しました。",
             "deleted": "がグループを削除しました。",
@@ -190,7 +218,13 @@
                     "host_marked": "ロスター枠をホストとしてマークしました。",
                     "host_cleared": "ロスター枠のホスト指定を解除しました。",
                     "raid_leader_marked": "ロスター枠をレイドリーダーとしてマークしました。",
-                    "raid_leader_cleared": "ロスター枠のレイドリーダー指定を解除しました。"
+                    "raid_leader_cleared": "ロスター枠のレイドリーダー指定を解除しました。",
+                    "duelist_marked": "メンバーをデュエリストに指定しました。",
+                    "duelist_cleared": "デュエリストの指定を解除しました。",
+                    "trapper_marked": "メンバーをトラッパーに指定しました。",
+                    "trapper_cleared": "トラッパーの指定を解除しました。",
+                    "darter_marked": "メンバーをダーターに指定しました。",
+                    "darter_cleared": "ダーターの指定を解除しました。"
                 },
                 "attendance": {
                     "checked_in": "がロスター枠をチェックインしました。",
@@ -411,6 +445,27 @@
             "made_primary": "キャラクターをメインに設定"
         },
         "group": {
+            "resources": {
+                "created": "リソースを作成しました。",
+                "save": "リソースの下書きを保存しました。",
+                "submit": "リソースの変更を提出しました。",
+                "publish": "リソースを公開しました。",
+                "discard": "リソースの変更を破棄しました。",
+                "restore": "リソースの履歴を復元しました。",
+                "archive": "リソースをアーカイブしました。",
+                "unpublish": "リソースを非公開にしました。",
+                "organize": "リソースを移動または並べ替えました。",
+                "pin": "リソースをピン留めしました。",
+                "unpin": "リソースのピン留めを解除しました。",
+                "settings_updated": "リソースライブラリの設定を更新しました。",
+                "all_deleted": "グループのすべてのリソースを削除しました。",
+                "deleted": "リソースを削除しました。",
+                "collection_saved": "リソースコレクションを保存しました。",
+                "collection_deleted": "リソースコレクションを削除しました。",
+        "image_uploaded": "リソースの画像をアップロードしました。",
+        "image_updated": "リソース画像の詳細を更新しました。",
+        "image_deleted": "リソース画像を削除しました。"
+            },
             "created": "グループ作成",
             "updated": "グループ設定を更新",
             "deleted": "グループ削除",
@@ -449,7 +504,13 @@
                     "host_marked": "ロスター枠をホストに指定しました",
                     "host_cleared": "ロスターのホスト指定を解除しました",
                     "raid_leader_marked": "ロスター枠をレイドリーダーに指定しました",
-                    "raid_leader_cleared": "ロスターのレイドリーダー指定を解除しました"
+                    "raid_leader_cleared": "ロスターのレイドリーダー指定を解除しました",
+                    "duelist_marked": "デュエリストを指定",
+                    "duelist_cleared": "デュエリストの指定を解除",
+                    "trapper_marked": "トラッパーを指定",
+                    "trapper_cleared": "トラッパーの指定を解除",
+                    "darter_marked": "ダーターを指定",
+                    "darter_cleared": "ダーターの指定を解除"
                 },
                 "attendance": {
                     "checked_in": "ロスター枠チェックイン",

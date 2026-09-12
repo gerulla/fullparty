@@ -1,9 +1,11 @@
 <script setup lang="ts">
+import type { SlotDesignation } from "@/Types/ActivityRoster";
 import axios from "axios";
 import { computed, ref } from "vue";
 import { route } from "ziggy-js";
 import { useToast } from "@nuxt/ui/composables";
 import { useI18n } from "vue-i18n";
+import { provideRosterDiscordCopy } from "@/composables/useRosterDiscordCopy";
 import ActivitySlotCompositionCustomModal from "@/components/Groups/Activities/ActivitySlotCompositionCustomModal.vue";
 import ActivityFillInSlotsSection from "@/components/Groups/Activities/ActivityFillInSlotsSection.vue";
 import ActivityRosterPartyView from "@/components/Groups/Activities/ActivityRosterPartyView.vue";
@@ -42,6 +44,7 @@ const emit = defineEmits<{
 	markSlotLate: [slotId: number]
 	markSlotHost: [slotId: number]
 	markSlotRaidLeader: [slotId: number]
+	markSlotDesignation: [slotId: number, designation: SlotDesignation]
 	checkInGroup: [groupKey: string]
 	createFillInSlot: []
 	slotsUpdated: [slots: ActivitySlot[]]
@@ -52,6 +55,7 @@ const emit = defineEmits<{
 
 const { t } = useI18n();
 const toast = useToast();
+provideRosterDiscordCopy(() => props.groupSlug, () => props.activityId, () => props.slots);
 const draggedSlotId = ref<number | null>(null);
 const dropTargetSlotId = ref<number | null>(null);
 const isCompositionHintPending = ref(false);
@@ -247,6 +251,7 @@ const replaceSlotCompositionHints = async (payload: { slotId: number, compositio
 			@mark-slot-late="emit('markSlotLate', $event)"
 			@mark-slot-host="emit('markSlotHost', $event)"
 			@mark-slot-raid-leader="emit('markSlotRaidLeader', $event)"
+			@mark-slot-designation="(slotId, designation) => emit('markSlotDesignation', slotId, designation)"
 			@replace-composition-hints="replaceSlotCompositionHints"
 			@customize-composition-hints="openCompositionHintModal"
 		/>
@@ -290,6 +295,7 @@ const replaceSlotCompositionHints = async (payload: { slotId: number, compositio
 			@mark-slot-late="emit('markSlotLate', $event)"
 			@mark-slot-host="emit('markSlotHost', $event)"
 			@mark-slot-raid-leader="emit('markSlotRaidLeader', $event)"
+			@mark-slot-designation="(slotId, designation) => emit('markSlotDesignation', slotId, designation)"
 			@check-in-group="emit('checkInGroup', $event)"
 			@create-fill-in-slot="emit('createFillInSlot')"
 			@slots-updated="emit('slotsUpdated', $event)"

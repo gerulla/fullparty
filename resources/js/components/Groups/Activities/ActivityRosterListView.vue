@@ -1,14 +1,17 @@
 <script setup lang="ts">
+import type { SlotDesignation } from "@/Types/ActivityRoster";
 import type { ContextMenuItem } from "@nuxt/ui";
 import { computed } from "vue";
 import { useI18n } from "vue-i18n";
 import { usePage } from "@inertiajs/vue3";
 import { localizedValue } from "@/utils/localizedValue";
+import { specialistDesignationActions, specialistDesignationMarkers } from "@/utils/specialistDesignations";
 import { displayActivityPartyLabel, displayActivitySlotLabel } from "@/utils/activityPartyLabels";
 import { getQueueApplicationDragData, isQueueApplicationDrag, setRosterSlotDragData } from "@/components/Groups/Activities/rosterDragData";
 import type { LocalizedText } from "@/Types/Common";
 import type { QueueApplication } from "@/Types/ActivityQueue";
 import type { ActivitySlot } from "@/Types/ActivityRoster";
+import { useRosterDiscordCopyMenu } from "@/composables/useRosterDiscordCopy";
 
 const props = defineProps<{
 	slots: ActivitySlot[]
@@ -46,6 +49,7 @@ const emit = defineEmits<{
 	markSlotLate: [slotId: number]
 	markSlotHost: [slotId: number]
 	markSlotRaidLeader: [slotId: number]
+	markSlotDesignation: [slotId: number, designation: SlotDesignation]
 	createFillInSlot: []
 	cutSlot: [slotId: number]
 	pasteCutSlot: [slotId: number]
@@ -54,6 +58,7 @@ const emit = defineEmits<{
 
 const { t, locale } = useI18n();
 const page = usePage();
+const discordCopyMenuItems = useRosterDiscordCopyMenu();
 const fallbackLocale = computed(() => String(page.props.locale?.fallback ?? 'en'));
 
 const localizedText = (value: LocalizedText, fallback: string) => (
@@ -195,6 +200,7 @@ const buildSlotContextMenuItems = (slot: ActivitySlot): ContextMenuItem[][] => {
 
 	return [
 		[
+			...discordCopyMenuItems(slot),
 			...(slot.assignment_application_id !== null
 				? [{
 					label: t('groups.activities.management.roster.view_application_action'),
@@ -256,6 +262,7 @@ const buildSlotContextMenuItems = (slot: ActivitySlot): ContextMenuItem[][] => {
 				disabled: slot.is_bench || slot.is_fill_in || props.isSwapPending,
 				onSelect: () => emit('markSlotRaidLeader', slot.id),
 			},
+			...specialistDesignationActions(slot, t, (slotId, designation) => emit('markSlotDesignation', slotId, designation), Boolean(props.isSwapPending)),
 		],
 		[
 			...(slot.is_bench
@@ -335,6 +342,7 @@ const rows = computed(() => [...props.slots]
 				? { label: t('groups.activities.management.roster.raid_leader_badge'), color: 'warning' as const }
 				: null,
 		].filter((badge): badge is { label: string, color: 'info' | 'warning' } => Boolean(badge)),
+		specialistBadges: specialistDesignationMarkers(slot).map(marker => ({ ...marker, label: t(marker.labelKey) })),
 		rowToneClass: slot.is_raid_leader && slot.is_host
 			? 'border-amber-400/70 bg-amber-400/10 ring-2 ring-sky-400/50 hover:bg-amber-400/15'
 			: slot.is_raid_leader
@@ -405,6 +413,15 @@ const rows = computed(() => [...props.slots]
 								:color="badge.color"
 								variant="soft"
 								:label="badge.label"
+							/>
+							<UBadge
+								v-for="badge in row.specialistBadges"
+								:key="badge.key"
+								:color="badge.color"
+								:class="badge.badgeClass"
+								:icon="badge.icon"
+								:label="badge.label"
+								variant="soft"
 							/>
 							<UBadge
 								v-for="field in row.fields"

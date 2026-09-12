@@ -22,6 +22,10 @@
         "any_severity": "Beliebige Schwere",
         "any_user": "Beliebiger Benutzer",
         "any_group": "Beliebige Gruppe",
+        "any_activity": "Beliebiger Run",
+        "activity_label": "Nach Run",
+        "search_activity": "Runs durchsuchen...",
+        "unnamed_activity": "Run #{id}",
         "action": {
             "label": "Nach Aktion"
         },
@@ -60,6 +64,9 @@
     "list": {
         "empty": "Keine Audit-Log-Einträge entsprechen den aktuellen Filtern.",
         "loading_more": "Mehr laden",
+        "loading": "Audit-Logs werden geladen...",
+        "load_error": "Audit-Logs konnten nicht geladen werden.",
+        "retry": "Erneut versuchen",
         "recorded_event": "Erfasstes Audit-Ereignis",
         "details": "Details",
         "changes": "Änderungen",
@@ -148,6 +155,27 @@
             "removed": "hat einen Charakter aus dem Konto entfernt."
         },
         "group": {
+            "resources": {
+                "created": "hat eine Ressource erstellt.",
+                "save": "hat einen Ressourcenentwurf gespeichert.",
+                "submit": "hat Ressourcenänderungen eingereicht.",
+                "publish": "hat eine Ressource veröffentlicht.",
+                "discard": "hat Ressourcenänderungen verworfen.",
+                "restore": "hat eine Ressourcenversion wiederhergestellt.",
+                "archive": "hat eine Ressource archiviert.",
+                "unpublish": "hat eine Ressource zurückgezogen.",
+                "organize": "hat eine Ressource verschoben oder neu geordnet.",
+                "pin": "hat eine Ressource angeheftet.",
+                "unpin": "hat eine Ressource gelöst.",
+                "settings_updated": "hat die Ressourcenbibliothek aktualisiert.",
+                "all_deleted": "hat alle Ressourcen der Gruppe gelöscht.",
+                "deleted": "hat eine Ressource gelöscht.",
+                "collection_saved": "hat eine Ressourcensammlung gespeichert.",
+                "collection_deleted": "hat eine Ressourcensammlung gelöscht.",
+        "image_uploaded": "hat ein Ressourcenbild hochgeladen.",
+        "image_updated": "hat die Details eines Ressourcenbildes aktualisiert.",
+        "image_deleted": "hat ein Ressourcenbild gelöscht."
+            },
             "created": "hat die Gruppe erstellt.",
             "updated": "hat die Gruppeneinstellungen aktualisiert.",
             "deleted": "hat die Gruppe gelöscht.",
@@ -190,7 +218,13 @@
                     "host_marked": "hat einen Roster-Slot als Host markiert.",
                     "host_cleared": "hat die Host-Markierung eines Roster-Slots entfernt.",
                     "raid_leader_marked": "hat einen Roster-Slot als Raid-Leitung markiert.",
-                    "raid_leader_cleared": "hat die Raid-Leitungs-Markierung eines Roster-Slots entfernt."
+                    "raid_leader_cleared": "hat die Raid-Leitungs-Markierung eines Roster-Slots entfernt.",
+                    "duelist_marked": "markierte einen Kaderplatz als Duellant.",
+                    "duelist_cleared": "entfernte die Duellant-Markierung von einem Kaderplatz.",
+                    "trapper_marked": "markierte einen Kaderplatz als Fallensteller.",
+                    "trapper_cleared": "entfernte die Fallensteller-Markierung von einem Kaderplatz.",
+                    "darter_marked": "markierte einen Kaderplatz als Darter.",
+                    "darter_cleared": "entfernte die Darter-Markierung von einem Kaderplatz."
                 },
                 "attendance": {
                     "checked_in": "hat einen Roster-Slot eingecheckt.",
@@ -411,6 +445,27 @@
             "made_primary": "Charakter als primär festgelegt"
         },
         "group": {
+            "resources": {
+                "created": "hat eine Ressource erstellt.",
+                "save": "hat einen Ressourcenentwurf gespeichert.",
+                "submit": "hat Ressourcenänderungen eingereicht.",
+                "publish": "hat eine Ressource veröffentlicht.",
+                "discard": "hat Ressourcenänderungen verworfen.",
+                "restore": "hat eine Ressourcenversion wiederhergestellt.",
+                "archive": "hat eine Ressource archiviert.",
+                "unpublish": "hat eine Ressource zurückgezogen.",
+                "organize": "hat eine Ressource verschoben oder neu geordnet.",
+                "pin": "hat eine Ressource angeheftet.",
+                "unpin": "hat eine Ressource gelöst.",
+                "settings_updated": "hat die Ressourcenbibliothek aktualisiert.",
+                "all_deleted": "hat alle Ressourcen der Gruppe gelöscht.",
+                "deleted": "hat eine Ressource gelöscht.",
+                "collection_saved": "hat eine Ressourcensammlung gespeichert.",
+                "collection_deleted": "hat eine Ressourcensammlung gelöscht.",
+        "image_uploaded": "hat ein Ressourcenbild hochgeladen.",
+        "image_updated": "hat die Details eines Ressourcenbildes aktualisiert.",
+        "image_deleted": "hat ein Ressourcenbild gelöscht."
+            },
             "created": "Gruppe erstellt",
             "updated": "Gruppeneinstellungen aktualisiert",
             "deleted": "Gruppe gelöscht",
@@ -449,7 +504,13 @@
                     "host_marked": "Roster-Slot als Host markiert",
                     "host_cleared": "Host-Markierung im Roster entfernt",
                     "raid_leader_marked": "Roster-Slot als Raid-Leitung markiert",
-                    "raid_leader_cleared": "Raid-Leitungs-Markierung im Roster entfernt"
+                    "raid_leader_cleared": "Raid-Leitungs-Markierung im Roster entfernt",
+                    "duelist_marked": "Kaderplatz als Duellant markiert",
+                    "duelist_cleared": "Duellant-Markierung entfernt",
+                    "trapper_marked": "Kaderplatz als Fallensteller markiert",
+                    "trapper_cleared": "Fallensteller-Markierung entfernt",
+                    "darter_marked": "Kaderplatz als Darter markiert",
+                    "darter_cleared": "Darter-Markierung entfernt"
                 },
                 "attendance": {
                     "checked_in": "Roster-Slot eingecheckt",

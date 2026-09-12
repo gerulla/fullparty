@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Services\Groups\Resources\ResourceHomeService;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -86,6 +87,7 @@ class Group extends Model
     {
         static::created(function (Group $group): void {
             $group->features()->create(GroupFeature::defaults());
+            app(ResourceHomeService::class)->ensure($group);
         });
     }
 
@@ -97,6 +99,21 @@ class Group extends Model
     public function owner(): BelongsTo
     {
         return $this->belongsTo(User::class, 'owner_id');
+    }
+
+    public function resourceLibrary(): HasOne
+    {
+        return $this->hasOne(GroupResourceLibrary::class);
+    }
+
+    public function resources(): HasMany
+    {
+        return $this->hasMany(GroupResource::class);
+    }
+
+    public function resourceCollections(): HasMany
+    {
+        return $this->hasMany(GroupResourceCollection::class);
     }
 
     public function memberships(): HasMany

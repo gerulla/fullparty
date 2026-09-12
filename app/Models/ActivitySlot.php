@@ -21,9 +21,18 @@ class ActivitySlot extends Model
 
     public const DESIGNATION_RAID_LEADER = 'raid_leader';
 
+    public const DESIGNATION_DUELIST = 'duelist';
+
+    public const DESIGNATION_TRAPPER = 'trapper';
+
+    public const DESIGNATION_DARTER = 'darter';
+
     public const DESIGNATION_COLUMN_MAP = [
         self::DESIGNATION_HOST => 'is_host',
         self::DESIGNATION_RAID_LEADER => 'is_raid_leader',
+        self::DESIGNATION_DUELIST => 'is_duelist',
+        self::DESIGNATION_TRAPPER => 'is_trapper',
+        self::DESIGNATION_DARTER => 'is_darter',
     ];
 
     protected $fillable = [
@@ -43,6 +52,9 @@ class ActivitySlot extends Model
         'application_review_required_at',
         'is_host',
         'is_raid_leader',
+        'is_duelist',
+        'is_trapper',
+        'is_darter',
     ];
 
     protected $casts = [
@@ -52,12 +64,43 @@ class ActivitySlot extends Model
         'slot_label' => 'array',
         'is_host' => 'boolean',
         'is_raid_leader' => 'boolean',
+        'is_duelist' => 'boolean',
+        'is_trapper' => 'boolean',
+        'is_darter' => 'boolean',
     ];
 
     public static function designationColumn(string $designation): string
     {
         return self::DESIGNATION_COLUMN_MAP[$designation]
             ?? throw new \InvalidArgumentException("Unsupported slot designation [{$designation}].");
+    }
+
+    /** @return list<string> */
+    public static function availableDesignationsForActivityType(?string $slug): array
+    {
+        return [
+            self::DESIGNATION_HOST,
+            self::DESIGNATION_RAID_LEADER,
+            ...match ($slug) {
+                'delubrum-reginae-savage' => [self::DESIGNATION_DUELIST, self::DESIGNATION_TRAPPER],
+                'the-baldesion-arsenal', 'baldesion-arsenal' => [self::DESIGNATION_TRAPPER, self::DESIGNATION_DARTER],
+                default => [],
+            },
+        ];
+    }
+
+    /** @return array<string, bool> */
+    public function designationState(): array
+    {
+        return collect(self::DESIGNATION_COLUMN_MAP)
+            ->mapWithKeys(fn (string $column) => [$column => (bool) $this->{$column}])
+            ->all();
+    }
+
+    /** @return array<string, bool> */
+    public static function emptyDesignationState(): array
+    {
+        return array_fill_keys(array_values(self::DESIGNATION_COLUMN_MAP), false);
     }
 
     public function activity(): BelongsTo

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { GroupDashboardGroup } from '@/Types/Groups'
 import { buildGroupTimeZoneOptions } from '@/utils/groupTimeZoneOptions'
-import { de, en, fr, ja } from '@nuxt/ui/locale'
+import { uiLocales } from '@/i18n/uiLocales'
 import { useToast } from '@nuxt/ui/composables'
 import { useForm, usePage } from '@inertiajs/vue3'
 import { computed, ref, watch } from 'vue'
@@ -17,7 +17,6 @@ type GroupDiscoveryLookups = {
 	max_tags?: number
 }
 
-const uiLocales = { en, de, fr, ja }
 
 const props = defineProps<{
 	group: GroupDashboardGroup

@@ -8,6 +8,8 @@ export type ConfirmationModalInput = {
 	initialValue?: string
 	rows?: number
 	maxlength?: number
+	type?: 'text' | 'textarea'
+	requiredValue?: string
 }
 
 export type ConfirmationModalConfirmContext = {

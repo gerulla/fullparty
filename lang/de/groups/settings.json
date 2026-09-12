@@ -84,8 +84,8 @@
                 "description": "Erlaube Mitgliedern, Gruppen-Runs zu ihrem persönlichen Kalender hinzuzufügen."
             },
             "resource_hub_enabled": {
-                "label": "Ressourcen-Hub",
-                "description": "Bereite einen gemeinsamen Bereich für Links, Notizen und Ressourcen vor."
+                "label": "Ressourcen",
+                "description": "Aktiviere die gemeinsame Ressourcenbibliothek der Gruppe. Beim ersten Aktivieren werden bearbeitbare Beispielsammlungen, Ressourcen und Anleitungen hinzugefügt."
             }
         },
         "toasts": {

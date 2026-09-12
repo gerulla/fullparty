@@ -14,6 +14,7 @@ const props = withDefaults(defineProps<{
 	world: string | null
 	fflogsZoneId: number | null
 	shouldFetch?: boolean
+	embedded?: boolean
 }>(), {
 	shouldFetch: true,
 });
@@ -56,7 +57,6 @@ const fetchProgress = async () => {
 		progress.value = response.data?.progress ?? null;
 		hasLoaded.value = true;
 	} catch (requestError) {
-		console.error(requestError);
 		error.value = t('groups.activities.management.queue.modal.fflogs_error');
 	} finally {
 		isLoading.value = false;
@@ -98,11 +98,11 @@ watch(() => [props.open, props.shouldFetch, props.applicationId], ([isOpen, shou
 </script>
 
 <template>
-	<div class="space-y-4 border border-default bg-default/60 p-4">
+	<div class="space-y-4" :class="embedded ? 'text-sm' : 'border border-default bg-default/60 p-4'">
 		<!-- FF Logs progress header: character context and zone-backed summary title -->
 		<div class="flex flex-wrap items-start justify-between gap-3">
 			<div class="min-w-0">
-				<p class="text-[11px] font-medium uppercase tracking-[0.12em] text-muted">
+				<p class="text-xs font-medium text-muted">
 					{{ t('groups.activities.management.queue.modal.fflogs_title') }}
 				</p>
 			</div>
@@ -147,7 +147,7 @@ watch(() => [props.open, props.shouldFetch, props.applicationId], ([isOpen, shou
 							<UBadge
 								color="neutral"
 								variant="outline"
-								:label="`${encounter.kills} kills`"
+								:label="t('groups.activities.management.queue.modal.inspector.kills', { count: encounter.kills })"
 							/>
 							<UBadge
 								:color="getEncounterProgressColor(encounter.progress)"

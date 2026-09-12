@@ -45,6 +45,10 @@ class ApplicantQueuePayloadBuilder
             'queue_filters' => [
                 'slot_fields' => $this->serializeQueueSlotFields($activity->activityTypeVersion, $activity->group_id),
                 'milestones' => $this->serializeQueueMilestones($activity->activityTypeVersion),
+                'party_lead_question_key' => collect($activity->activityTypeVersion?->application_schema ?? [])
+                    ->first(fn ($question) => is_array($question)
+                        && ($question['key'] ?? null) === 'wants_to_party_lead'
+                        && ($question['type'] ?? null) === 'boolean')['key'] ?? null,
             ],
             'applications' => $activity->applications
                 ->map(fn ($application) => $this->serializeApplication(
@@ -129,6 +133,8 @@ class ApplicantQueuePayloadBuilder
                 'world' => $selectedCharacter->world,
                 'datacenter' => $selectedCharacter->datacenter,
                 'lodestone_refreshed_at' => $selectedCharacter->lodestone_refreshed_at?->toIso8601String(),
+                'has_class_progress_data' => $selectedCharacter->hasJobProgressData('character_classes'),
+                'has_phantom_job_progress_data' => $selectedCharacter->hasJobProgressData('phantom_jobs'),
                 'lodestone_last_checked_at' => ($selectedCharacter->lodestone_refreshed_at ?? $selectedCharacter->updated_at)?->toIso8601String(),
                 'occult_level' => $selectedCharacter->occultProgress?->knowledge_level,
                 'blood_progress' => $selectedCharacter->occultProgress?->forkedTowerBloodProgress(),

@@ -5,7 +5,9 @@ use App\Http\Middleware\AuthenticateIntegrationClient;
 use App\Http\Middleware\EnsureGroupDashboardAccess;
 use App\Http\Middleware\EnsureWebsiteAdminAccess;
 use App\Http\Middleware\HandleInertiaRequests;
+use App\Http\Middleware\RestrictResourceHost;
 use App\Http\Middleware\SecurityHeaders;
+use App\Http\Middleware\SerializeActivityRosterMutation;
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
@@ -28,6 +30,8 @@ return Application::configure(basePath: dirname(__DIR__))
     )
     ->withMiddleware(function (Middleware $middleware): void {
         $middleware->trustHosts();
+        // Whitespace inside rich-text runs and code blocks is document content.
+        $middleware->trimStrings(except: ['content.body.*.text', 'guide.*.text']);
 
         $middleware->alias([
             'admin' => EnsureWebsiteAdminAccess::class,
@@ -35,9 +39,11 @@ return Application::configure(basePath: dirname(__DIR__))
             'integration.client' => AuthenticateIntegrationClient::class,
             'scopes' => CheckToken::class,
             'scope' => CheckTokenForAnyScope::class,
+            'roster.write' => SerializeActivityRosterMutation::class,
         ]);
 
         $middleware->web(append: [
+            RestrictResourceHost::class,
             ApplyLocale::class,
             HandleInertiaRequests::class,
             SecurityHeaders::class,

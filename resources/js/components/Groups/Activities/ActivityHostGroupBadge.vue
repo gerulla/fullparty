@@ -3,6 +3,7 @@ defineProps<{
 	group: {
 		name: string
 	} | null | undefined
+	textColor?: string
 }>();
 </script>
 
@@ -15,6 +16,6 @@ defineProps<{
 		size="sm"
 		icon="i-lucide-shield"
 	>
-		<span class="truncate">{{ group.name }}</span>
+		<span class="truncate" :style="{ color: textColor }">{{ group.name }}</span>
 	</UBadge>
 </template>

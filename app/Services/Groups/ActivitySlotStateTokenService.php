@@ -54,8 +54,7 @@ class ActivitySlotStateTokenService
                 ? (int) $slot->application_review_required_application_id
                 : null,
             'application_review_required_at' => $slot->application_review_required_at?->toIso8601String(),
-            'is_host' => (bool) $slot->is_host,
-            'is_raid_leader' => (bool) $slot->is_raid_leader,
+            ...$slot->designationState(),
             'field_values' => $slot->fieldValues
                 ->sortBy('field_key')
                 ->mapWithKeys(fn ($fieldValue) => [$fieldValue->field_key => $fieldValue->value])

@@ -106,8 +106,7 @@ class ActivityDuplicationService
                     'sort_order' => $sourceSlot->sort_order,
                     'assigned_character_id' => $copyAssignment ? $sourceSlot->assigned_character_id : null,
                     'assigned_by_user_id' => $copyAssignment ? $actor->id : null,
-                    'is_host' => $copyAssignment && $sourceSlot->is_host,
-                    'is_raid_leader' => $copyAssignment && $sourceSlot->is_raid_leader,
+                    ...($copyAssignment ? $sourceSlot->designationState() : ActivitySlot::emptyDesignationState()),
                 ]);
 
                 foreach ($sourceSlot->fieldValues as $sourceFieldValue) {

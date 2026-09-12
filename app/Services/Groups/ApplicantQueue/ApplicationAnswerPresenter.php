@@ -14,6 +14,8 @@ class ApplicationAnswerPresenter
 {
     private const ANY_OPTION_KEY = 'any';
 
+    private ?Collection $classCatalog = null;
+
     /**
      * @return array<int, array<string, mixed>>
      */
@@ -47,7 +49,25 @@ class ApplicationAnswerPresenter
             'display_values' => $displayValues->values()->all(),
             'role_values' => $this->resolveRoleValues($answer->source, $answer->value)->values()->all(),
             'display_items' => $this->resolveDisplayItems($answer->source, $answer->value, $questionDefinition)->values()->all(),
+            ...($answer->source === 'character_classes' ? ['complete_roles' => $this->completeClassRoles($answer->value)] : []),
         ];
+    }
+
+    /** @return array<int, string> */
+    private function completeClassRoles(mixed $value): array
+    {
+        $selectedIds = collect(is_array($value) ? $value : [$value])
+            ->map(fn ($id) => (string) $id);
+        $this->classCatalog ??= CharacterClass::query()->get(['id', 'role']);
+
+        return $this->classCatalog
+            ->whereIn('role', CharacterClass::ROLES)
+            ->groupBy('role')
+            ->filter(fn (Collection $classes) => $classes->every(
+                fn (CharacterClass $class) => $selectedIds->containsStrict((string) $class->id),
+            ))
+            ->keys()
+            ->all();
     }
 
     /**

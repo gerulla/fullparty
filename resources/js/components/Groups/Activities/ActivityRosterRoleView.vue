@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import type { SlotDesignation } from "@/Types/ActivityRoster";
 import { computed } from "vue";
 import { useI18n } from "vue-i18n";
 import ActivityFillInSlotsSection from "@/components/Groups/Activities/ActivityFillInSlotsSection.vue";
@@ -43,6 +44,7 @@ const emit = defineEmits<{
 	markSlotLate: [slotId: number]
 	markSlotHost: [slotId: number]
 	markSlotRaidLeader: [slotId: number]
+	markSlotDesignation: [slotId: number, designation: SlotDesignation]
 	createFillInSlot: []
 	cutSlot: [slotId: number]
 	pasteCutSlot: [slotId: number]
@@ -213,6 +215,7 @@ const canShowFillIns = computed(() => (props.fillInSlots?.length ?? 0) > 0 || Bo
 					@mark-slot-late="emit('markSlotLate', $event)"
 					@mark-slot-host="emit('markSlotHost', $event)"
 					@mark-slot-raid-leader="emit('markSlotRaidLeader', $event)"
+					@mark-slot-designation="(slotId, designation) => emit('markSlotDesignation', slotId, designation)"
 					@replace-composition-hints="emit('replaceCompositionHints', $event)"
 					@customize-composition-hints="emit('customizeCompositionHints', $event)"
 				/>
@@ -256,6 +259,7 @@ const canShowFillIns = computed(() => (props.fillInSlots?.length ?? 0) > 0 || Bo
 			@mark-slot-late="emit('markSlotLate', $event)"
 			@mark-slot-host="emit('markSlotHost', $event)"
 			@mark-slot-raid-leader="emit('markSlotRaidLeader', $event)"
+			@mark-slot-designation="(slotId, designation) => emit('markSlotDesignation', slotId, designation)"
 			@replace-composition-hints="emit('replaceCompositionHints', $event)"
 			@customize-composition-hints="emit('customizeCompositionHints', $event)"
 		/>
@@ -324,6 +328,7 @@ const canShowFillIns = computed(() => (props.fillInSlots?.length ?? 0) > 0 || Bo
 					@mark-slot-late="emit('markSlotLate', $event)"
 					@mark-slot-host="emit('markSlotHost', $event)"
 					@mark-slot-raid-leader="emit('markSlotRaidLeader', $event)"
+					@mark-slot-designation="(slotId, designation) => emit('markSlotDesignation', slotId, designation)"
 					@replace-composition-hints="emit('replaceCompositionHints', $event)"
 					@customize-composition-hints="emit('customizeCompositionHints', $event)"
 				/>

@@ -46,7 +46,7 @@ const featureToggleRows = [
 	{ key: "statistics_enabled", icon: "i-lucide-chart-no-axes-column-increasing", implemented: true },
 	{ key: "leaderboard_enabled", icon: "i-lucide-trophy", implemented: true },
 	{ key: "calendar_sync_enabled", icon: "i-lucide-calendar-sync", implemented: true },
-	{ key: "resource_hub_enabled", icon: "i-lucide-folder-open", implemented: false },
+	{ key: "resource_hub_enabled", icon: "i-lucide-folder-open", implemented: true },
 ] satisfies Array<{ key: keyof GroupFeatureSettings, icon: string, implemented: boolean }>;
 
 const submit = () => {
@@ -107,6 +107,7 @@ const submit = () => {
 						<span class="inline-flex">
 							<USwitch
 								v-model="form.features[feature.key]"
+								:aria-label="t(`groups.settings.features.items.${feature.key}.label`)"
 								:disabled="!feature.implemented || !group.permissions.can_update_group_settings"
 							/>
 						</span>

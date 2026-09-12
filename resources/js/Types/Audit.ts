@@ -31,3 +31,30 @@ export type AuditLogRowRecord = {
 	search_text?: string
 	created_at: string
 }
+
+export type AuditLogFilters = {
+	search: string
+	action: string
+	severity: string
+	user: string
+	group: string
+	activity: string
+	beforeDate: string
+	afterDate: string
+}
+
+export type AuditLogFeedPage = {
+	auditLogs: AuditLogRowRecord[]
+	nextCursor: string | null
+	selectedFilters?: Partial<AuditLogFilters>
+}
+
+export type AuditLogFilterOption = { value: string, label: string }
+
+export type AuditLogFilterOptions = {
+	actions: AuditLogFilterOption[]
+	severities: AuditLogFilterOption[]
+	users: AuditLogFilterOption[]
+	groups?: AuditLogFilterOption[]
+	activities?: Array<{ value: string, title: string | null, starts_at: string | null }>
+}

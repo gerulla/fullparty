@@ -14,7 +14,7 @@ class GroupUserNoteVisibilityService
      */
     public function loadVisibleNotesForTargets(Group $group, int $currentUserId, Collection $targetUserIds): array
     {
-        if (!$group->hasModeratorAccess($currentUserId) || $targetUserIds->isEmpty()) {
+        if (! $group->hasModeratorAccess($currentUserId) || $targetUserIds->isEmpty()) {
             return [
                 'group_notes_by_user_id' => collect(),
                 'shared_notes_by_user_id' => collect(),
@@ -47,7 +47,7 @@ class GroupUserNoteVisibilityService
     /**
      * @param  Collection<int, Collection<int, GroupUserNote>>  $groupNotesByUserId
      * @param  Collection<int, Collection<int, GroupUserNote>>  $sharedNotesByUserId
-     * @return array{can_view: bool, current_group_count: int, shared_count: int}
+     * @return array{can_view: bool, current_group_count: int, shared_count: int, highest_severity: ?string, severities: list<string>}
      */
     public function serializeVisibleNoteSummaryForUser(
         Group $group,
@@ -58,16 +58,20 @@ class GroupUserNoteVisibilityService
     ): array {
         if (
             $user === null
-            || !$group->hasModeratorAccess($currentUserId)
+            || ! $group->hasModeratorAccess($currentUserId)
             || $user->id === $currentUserId
         ) {
             return $this->emptyVisibleNoteSummary();
         }
 
+        $visibleNotes = collect($groupNotesByUserId->get($user->id, []))->concat($sharedNotesByUserId->get($user->id, []));
+
         return [
             'can_view' => true,
             'current_group_count' => count($groupNotesByUserId->get($user->id, [])),
             'shared_count' => count($sharedNotesByUserId->get($user->id, [])),
+            'highest_severity' => $this->highestVisibleSeverity($visibleNotes),
+            'severities' => $this->visibleSeverities($visibleNotes),
         ];
     }
 
@@ -85,7 +89,7 @@ class GroupUserNoteVisibilityService
     ): array {
         if (
             $user === null
-            || !$group->hasModeratorAccess($currentUserId)
+            || ! $group->hasModeratorAccess($currentUserId)
             || $user->id === $currentUserId
         ) {
             return $this->emptyVisibleNotes();
@@ -108,11 +112,13 @@ class GroupUserNoteVisibilityService
             'shared_count' => count($sharedNotes),
             'current_group' => $currentGroupNotes,
             'shared' => $sharedNotes,
+            'highest_severity' => $this->highestVisibleSeverity(collect($currentGroupNotes)->concat($sharedNotes)),
+            'severities' => $this->visibleSeverities(collect($currentGroupNotes)->concat($sharedNotes)),
         ];
     }
 
     /**
-     * @return array{can_view: bool, current_group_count: int, shared_count: int}
+     * @return array{can_view: bool, current_group_count: int, shared_count: int, highest_severity: ?string, severities: list<string>}
      */
     public function emptyVisibleNoteSummary(): array
     {
@@ -120,11 +126,13 @@ class GroupUserNoteVisibilityService
             'can_view' => false,
             'current_group_count' => 0,
             'shared_count' => 0,
+            'highest_severity' => null,
+            'severities' => [],
         ];
     }
 
     /**
-     * @return array{can_view: bool, can_add: bool, current_group_count: int, shared_count: int, current_group: array<int, array<string, mixed>>, shared: array<int, array<string, mixed>>}
+     * @return array{can_view: bool, can_add: bool, current_group_count: int, shared_count: int, highest_severity: ?string, severities: list<string>, current_group: array<int, array<string, mixed>>, shared: array<int, array<string, mixed>>}
      */
     public function emptyVisibleNotes(): array
     {
@@ -135,7 +143,29 @@ class GroupUserNoteVisibilityService
             'shared_count' => 0,
             'current_group' => [],
             'shared' => [],
+            'highest_severity' => null,
+            'severities' => [],
         ];
+    }
+
+    /** @return list<string> */
+    private function visibleSeverities(Collection $notes): array
+    {
+        return array_values(array_filter(
+            [GroupUserNote::SEVERITY_INFO, GroupUserNote::SEVERITY_COMMENDATION, GroupUserNote::SEVERITY_WARNING, GroupUserNote::SEVERITY_CRITICAL],
+            fn (string $severity) => $notes->contains('severity', $severity),
+        ));
+    }
+
+    private function highestVisibleSeverity(Collection $notes): ?string
+    {
+        foreach ([GroupUserNote::SEVERITY_CRITICAL, GroupUserNote::SEVERITY_WARNING, GroupUserNote::SEVERITY_COMMENDATION] as $severity) {
+            if ($notes->contains('severity', $severity)) {
+                return $severity;
+            }
+        }
+
+        return null;
     }
 
     /**
@@ -150,9 +180,9 @@ class GroupUserNoteVisibilityService
             'is_shared_with_groups' => $note->is_shared_with_groups,
             'created_at' => $note->created_at?->toIso8601String(),
             'permissions' => [
-                'can_edit_body' => !$includeSourceGroup && $note->author_user_id === $currentUserId,
-                'can_delete' => !$includeSourceGroup && $note->author_user_id === $currentUserId,
-                'can_add_addendum' => !$includeSourceGroup,
+                'can_edit_body' => ! $includeSourceGroup && $note->author_user_id === $currentUserId,
+                'can_delete' => ! $includeSourceGroup && $note->author_user_id === $currentUserId,
+                'can_add_addendum' => ! $includeSourceGroup,
             ],
             'author' => $note->author ? [
                 'id' => $note->author->id,
@@ -165,8 +195,8 @@ class GroupUserNoteVisibilityService
                     'body' => $addendum->body,
                     'created_at' => $addendum->created_at?->toIso8601String(),
                     'permissions' => [
-                        'can_edit_body' => !$includeSourceGroup && $addendum->author_user_id === $currentUserId,
-                        'can_delete' => !$includeSourceGroup && $addendum->author_user_id === $currentUserId,
+                        'can_edit_body' => ! $includeSourceGroup && $addendum->author_user_id === $currentUserId,
+                        'can_delete' => ! $includeSourceGroup && $addendum->author_user_id === $currentUserId,
                     ],
                     'author' => $addendum->author ? [
                         'id' => $addendum->author->id,

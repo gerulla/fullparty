@@ -98,6 +98,16 @@ class Character extends Model
         return $this->phantomJobs()->wherePivot('is_preferred', true);
     }
 
+    public function hasJobProgressData(string $source): bool
+    {
+        // The scraper also stores zero when a category's Lodestone data is absent.
+        return match ($source) {
+            'character_classes' => $this->classes->contains(fn ($job) => (int) ($job->pivot?->level ?? 0) > 0),
+            'phantom_jobs' => $this->phantomJobs->contains(fn ($job) => (int) ($job->pivot?->current_level ?? 0) > 0),
+            default => false,
+        };
+    }
+
     /**
      * Get the occult progression data for this character.
      */

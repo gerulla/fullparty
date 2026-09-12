@@ -22,6 +22,7 @@ export type QueueApplicationAnswer = {
 	display_values: string[]
 	role_values: string[]
 	display_items: QueueApplicationAnswerDisplayItem[]
+	complete_roles?: string[]
 }
 
 export type QueueApplicationUserStatItem = {
@@ -70,6 +71,8 @@ export type QueueApplication = {
 		world: string | null
 		datacenter: string | null
 		lodestone_refreshed_at: string | null
+		has_class_progress_data: boolean
+		has_phantom_job_progress_data: boolean
 		lodestone_last_checked_at: string | null
 		occult_level: number | null
 		phantom_mastery: number | null
@@ -144,6 +147,12 @@ export type QueueFilterMilestone = {
 	matcher_type: string
 	encounter_id: number | null
 	phase_id: number | null
+}
+
+export type QueueFilters = {
+	slot_fields: QueueFilterField[]
+	milestones: QueueFilterMilestone[]
+	party_lead_question_key: string | null
 }
 
 export type ManualAssignmentCharacter = {

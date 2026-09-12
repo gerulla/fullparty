@@ -22,6 +22,10 @@
     "any_severity": "Any Severity",
     "any_user": "Any User",
     "any_group": "Any Group",
+    "any_activity": "Any Run",
+    "activity_label": "By Run",
+    "search_activity": "Search runs...",
+    "unnamed_activity": "Run #{id}",
     "action": {
       "label": "By Action"
     },
@@ -60,6 +64,9 @@
   "list": {
     "empty": "No audit log entries match the current filters.",
     "loading_more": "Load More",
+    "loading": "Loading audit logs...",
+    "load_error": "Could not load audit logs.",
+    "retry": "Retry",
     "recorded_event": "Recorded audit event",
     "details": "Details",
     "changes": "Changes",
@@ -148,6 +155,27 @@
       "removed": "removed a character from the account."
     },
     "group": {
+      "resources": {
+        "created": "created a resource.",
+        "save": "saved a resource draft.",
+        "submit": "submitted resource changes.",
+        "publish": "published a resource.",
+        "discard": "discarded resource changes.",
+        "restore": "restored a resource revision.",
+        "archive": "archived a resource.",
+        "unpublish": "unpublished a resource.",
+        "organize": "reordered or moved a resource.",
+        "pin": "pinned a resource.",
+        "unpin": "unpinned a resource.",
+        "settings_updated": "updated resource library settings.",
+        "all_deleted": "deleted all resources in the group.",
+        "deleted": "deleted a resource.",
+        "collection_saved": "saved a resource collection.",
+        "collection_deleted": "deleted a resource collection.",
+        "image_uploaded": "uploaded a resource image.",
+        "image_updated": "updated resource image details.",
+        "image_deleted": "deleted a resource image."
+      },
       "created": "created the group.",
       "updated": "updated the group settings.",
       "deleted": "deleted the group.",
@@ -190,7 +218,13 @@
           "host_marked": "marked a roster slot as host.",
           "host_cleared": "cleared the host designation from a roster slot.",
           "raid_leader_marked": "marked a roster slot as raid leader.",
-          "raid_leader_cleared": "cleared the raid leader designation from a roster slot."
+          "raid_leader_cleared": "cleared the raid leader designation from a roster slot.",
+          "duelist_marked": "marked a roster slot as duelist.",
+          "duelist_cleared": "cleared the duelist designation from a roster slot.",
+          "trapper_marked": "marked a roster slot as trapper.",
+          "trapper_cleared": "cleared the trapper designation from a roster slot.",
+          "darter_marked": "marked a roster slot as darter.",
+          "darter_cleared": "cleared the darter designation from a roster slot."
         },
         "attendance": {
           "checked_in": "checked in a roster slot.",
@@ -411,6 +445,27 @@
       "made_primary": "Character made primary"
     },
     "group": {
+      "resources": {
+        "created": "created a resource.",
+        "save": "saved a resource draft.",
+        "submit": "submitted resource changes.",
+        "publish": "published a resource.",
+        "discard": "discarded resource changes.",
+        "restore": "restored a resource revision.",
+        "archive": "archived a resource.",
+        "unpublish": "unpublished a resource.",
+        "organize": "reordered or moved a resource.",
+        "pin": "pinned a resource.",
+        "unpin": "unpinned a resource.",
+        "settings_updated": "updated resource library settings.",
+        "all_deleted": "deleted all resources in the group.",
+        "deleted": "deleted a resource.",
+        "collection_saved": "saved a resource collection.",
+        "collection_deleted": "deleted a resource collection.",
+        "image_uploaded": "uploaded a resource image.",
+        "image_updated": "updated resource image details.",
+        "image_deleted": "deleted a resource image."
+      },
       "created": "Group created",
       "updated": "Group settings updated",
       "deleted": "Group deleted",
@@ -449,7 +504,13 @@
           "host_marked": "Roster slot marked as host",
           "host_cleared": "Roster host designation cleared",
           "raid_leader_marked": "Roster slot marked as raid leader",
-          "raid_leader_cleared": "Roster raid leader designation cleared"
+          "raid_leader_cleared": "Roster raid leader designation cleared",
+          "duelist_marked": "Roster slot marked as duelist",
+          "duelist_cleared": "Roster duelist designation cleared",
+          "trapper_marked": "Roster slot marked as trapper",
+          "trapper_cleared": "Roster trapper designation cleared",
+          "darter_marked": "Roster slot marked as darter",
+          "darter_cleared": "Roster darter designation cleared"
         },
         "attendance": {
           "checked_in": "Roster slot checked in",

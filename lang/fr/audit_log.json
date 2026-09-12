@@ -22,6 +22,10 @@
         "any_severity": "Toute gravité",
         "any_user": "Tout utilisateur",
         "any_group": "Tout groupe",
+        "any_activity": "Toutes les sorties",
+        "activity_label": "Par sortie",
+        "search_activity": "Rechercher des sorties...",
+        "unnamed_activity": "Sortie n° {id}",
         "action": {
             "label": "Par action"
         },
@@ -60,6 +64,9 @@
     "list": {
         "empty": "Aucune entrée du journal d'audit ne correspond aux filtres actuels.",
         "loading_more": "Charger plus",
+        "loading": "Chargement du journal d'audit...",
+        "load_error": "Impossible de charger le journal d'audit.",
+        "retry": "Réessayer",
         "recorded_event": "Événement d'audit enregistré",
         "details": "Détails",
         "changes": "Modifications",
@@ -148,6 +155,27 @@
             "removed": "a retiré un personnage du compte."
         },
         "group": {
+            "resources": {
+                "created": "a créé une ressource.",
+                "save": "a enregistré un brouillon de ressource.",
+                "submit": "a soumis des modifications de ressource.",
+                "publish": "a publié une ressource.",
+                "discard": "a abandonné des modifications de ressource.",
+                "restore": "a restauré une version de ressource.",
+                "archive": "a archivé une ressource.",
+                "unpublish": "a retiré une ressource de la publication.",
+                "organize": "a déplacé ou réordonné une ressource.",
+                "pin": "a épinglé une ressource.",
+                "unpin": "a désépinglé une ressource.",
+                "settings_updated": "a modifié les paramètres de la bibliothèque.",
+                "all_deleted": "a supprimé toutes les ressources du groupe.",
+                "deleted": "a supprimé une ressource.",
+                "collection_saved": "a enregistré une collection de ressources.",
+                "collection_deleted": "a supprimé une collection de ressources.",
+        "image_uploaded": "a importé une image de ressource.",
+        "image_updated": "a modifié les détails d’une image de ressource.",
+        "image_deleted": "a supprimé une image de ressource."
+            },
             "created": "a créé le groupe.",
             "updated": "a mis à jour les paramètres du groupe.",
             "deleted": "a supprimé le groupe.",
@@ -190,7 +218,13 @@
                     "host_marked": "a marqué un emplacement du roster comme hôte.",
                     "host_cleared": "a retiré la désignation d’hôte d’un emplacement du roster.",
                     "raid_leader_marked": "a marqué un emplacement du roster comme raid leader.",
-                    "raid_leader_cleared": "a retiré la désignation de raid leader d’un emplacement du roster."
+                    "raid_leader_cleared": "a retiré la désignation de raid leader d’un emplacement du roster.",
+                    "duelist_marked": "a désigné un duelliste dans le groupe.",
+                    "duelist_cleared": "a retiré la désignation de duelliste.",
+                    "trapper_marked": "a désigné un trappeur dans le groupe.",
+                    "trapper_cleared": "a retiré la désignation de trappeur.",
+                    "darter_marked": "a désigné un Darter dans le groupe.",
+                    "darter_cleared": "a retiré la désignation de Darter."
                 },
                 "attendance": {
                     "checked_in": "a validé la présence sur un emplacement de roster.",
@@ -411,6 +445,27 @@
             "made_primary": "Personnage défini comme principal"
         },
         "group": {
+            "resources": {
+                "created": "a créé une ressource.",
+                "save": "a enregistré un brouillon de ressource.",
+                "submit": "a soumis des modifications de ressource.",
+                "publish": "a publié une ressource.",
+                "discard": "a abandonné des modifications de ressource.",
+                "restore": "a restauré une version de ressource.",
+                "archive": "a archivé une ressource.",
+                "unpublish": "a retiré une ressource de la publication.",
+                "organize": "a déplacé ou réordonné une ressource.",
+                "pin": "a épinglé une ressource.",
+                "unpin": "a désépinglé une ressource.",
+                "settings_updated": "a modifié les paramètres de la bibliothèque.",
+                "all_deleted": "a supprimé toutes les ressources du groupe.",
+                "deleted": "a supprimé une ressource.",
+                "collection_saved": "a enregistré une collection de ressources.",
+                "collection_deleted": "a supprimé une collection de ressources.",
+        "image_uploaded": "a importé une image de ressource.",
+        "image_updated": "a modifié les détails d’une image de ressource.",
+        "image_deleted": "a supprimé une image de ressource."
+            },
             "created": "Groupe créé",
             "updated": "Paramètres du groupe mis à jour",
             "deleted": "Groupe supprimé",
@@ -449,7 +504,13 @@
                     "host_marked": "Emplacement du roster marqué comme hôte",
                     "host_cleared": "Désignation d’hôte du roster retirée",
                     "raid_leader_marked": "Emplacement du roster marqué comme raid leader",
-                    "raid_leader_cleared": "Désignation de raid leader du roster retirée"
+                    "raid_leader_cleared": "Désignation de raid leader du roster retirée",
+                    "duelist_marked": "Duelliste désigné",
+                    "duelist_cleared": "Désignation de duelliste retirée",
+                    "trapper_marked": "Trappeur désigné",
+                    "trapper_cleared": "Désignation de trappeur retirée",
+                    "darter_marked": "Darter désigné",
+                    "darter_cleared": "Désignation de Darter retirée"
                 },
                 "attendance": {
                     "checked_in": "Emplacement de roster validé",

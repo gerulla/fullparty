@@ -938,29 +938,7 @@ JSON, true, flags: JSON_THROW_ON_ERROR);
             );
         }
 
-        return [
-            ...$fields,
-            $this->schemaField(
-                key: 'relevant_experience',
-                label: ['en' => 'Relevant Experience', 'de' => 'Relevante Erfahrung', 'fr' => 'Experience pertinente', 'ja' => '関連経験'],
-                type: 'textarea',
-                source: null,
-            ),
-            $this->schemaField(
-                key: 'fflogs_link',
-                label: ['en' => 'FFLogs Link', 'de' => 'FFLogs-Link', 'fr' => 'Lien FFLogs', 'ja' => 'FFLogsリンク'],
-                type: 'url',
-                source: null,
-                required: false,
-            ),
-            $this->schemaField(
-                key: 'lodestone_link',
-                label: ['en' => 'Lodestone Link', 'de' => 'Lodestone-Link', 'fr' => 'Lien Lodestone', 'ja' => 'Lodestoneリンク'],
-                type: 'url',
-                source: null,
-                required: false,
-            ),
-        ];
+        return $fields;
     }
 
     /**

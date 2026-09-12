@@ -1444,24 +1444,6 @@ class SavageActivityTypeSeeder extends Seeder
                 acceptsAny: true,
                 anyLabel: ['en' => 'Put Me Anywhere Coach', 'de' => 'Setz mich ein, wo du willst, Coach', 'fr' => 'Mets-moi où tu veux, coach', 'ja' => 'どこでもいいです'],
             ),
-            $this->schemaField(
-                key: 'relevant_experience',
-                label: ['en' => 'Relevant Experience', 'de' => 'Relevante Erfahrung', 'fr' => 'Experience pertinente', 'ja' => '関連経験'],
-                type: 'textarea',
-                source: null,
-            ),
-            $this->schemaField(
-                key: 'fflogs_link',
-                label: ['en' => 'FFLogs Link', 'de' => 'FFLogs-Link', 'fr' => 'Lien FFLogs', 'ja' => 'FFLogsリンク'],
-                type: 'url',
-                source: null,
-            ),
-            $this->schemaField(
-                key: 'lodestone_link',
-                label: ['en' => 'Lodestone Link', 'de' => 'Lodestone-Link', 'fr' => 'Lien Lodestone', 'ja' => 'Lodestoneリンク'],
-                type: 'url',
-                source: null,
-            ),
         ];
     }
 

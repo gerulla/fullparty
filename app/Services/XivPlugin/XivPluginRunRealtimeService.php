@@ -251,6 +251,9 @@ class XivPluginRunRealtimeService
             'is_bench' => $this->slotBench->isBench($slot),
             'is_host' => $slot->is_host,
             'is_raid_leader' => $slot->is_raid_leader,
+            'is_duelist' => $slot->is_duelist,
+            'is_trapper' => $slot->is_trapper,
+            'is_darter' => $slot->is_darter,
             'user' => $slot->assignedCharacter?->user
                 ? $this->userPayload($slot->assignedCharacter->user)
                 : null,

@@ -24,6 +24,8 @@ class ActivitySlotAssignmentService
         private readonly GroupActivityAuditService $activityAuditService,
         private readonly AssignmentNotificationService $assignmentNotificationService,
         private readonly BozjaHolsterPairService $bozjaHolsterPairService,
+        private readonly ActivityRosterLock $rosterLock,
+        private readonly ActivitySlotStateTokenService $stateTokens,
     ) {}
 
     /**
@@ -38,6 +40,40 @@ class ActivitySlotAssignmentService
         int $assignedByUserId,
         ?ActivitySlot $sourceSlot = null,
         bool $ignoreApplicationChoices = false,
+    ): void {
+        $expectedTarget = $this->stateTokens->generate($targetSlot);
+        $expectedSource = $sourceSlot ? $this->stateTokens->generate($sourceSlot) : null;
+
+        $this->rosterLock->run((int) $targetSlot->activity_id, function () use (
+            $targetSlot, $sourceSlot, $application, $fieldSelections, $fieldDefinitions,
+            $assignedByUserId, $ignoreApplicationChoices, $expectedTarget, $expectedSource,
+        ): void {
+            $this->rosterLock->refreshSlot($targetSlot, $expectedTarget);
+            if ($sourceSlot) {
+                abort_unless((int) $sourceSlot->activity_id === (int) $targetSlot->activity_id, 404);
+                $this->rosterLock->refreshSlot($sourceSlot, $expectedSource);
+            }
+            $application->setRelations([]);
+            $application->refresh();
+            abort_unless((int) $application->activity_id === (int) $targetSlot->activity_id, 404);
+            if (! in_array($application->status, ActivityApplication::ACTIVE_STATUSES, true)) {
+                throw ValidationException::withMessages([
+                    'application_id' => __('groups.activities.management.messages.application_no_longer_pending_assignment'),
+                ]);
+            }
+            $this->assignCurrentApplication($targetSlot, $application, $fieldSelections, $fieldDefinitions,
+                $assignedByUserId, $sourceSlot, $ignoreApplicationChoices);
+        });
+    }
+
+    private function assignCurrentApplication(
+        ActivitySlot $targetSlot,
+        ActivityApplication $application,
+        array $fieldSelections,
+        array $fieldDefinitions,
+        int $assignedByUserId,
+        ?ActivitySlot $sourceSlot,
+        bool $ignoreApplicationChoices,
     ): void {
         $targetSlot->loadMissing('fieldValues');
 
@@ -287,6 +323,31 @@ class ActivitySlotAssignmentService
         int $assignedByUserId,
         ?ActivitySlot $sourceSlot = null,
     ): void {
+        $expectedTarget = $this->stateTokens->generate($targetSlot);
+        $expectedSource = $sourceSlot ? $this->stateTokens->generate($sourceSlot) : null;
+
+        $this->rosterLock->run((int) $targetSlot->activity_id, function () use (
+            $targetSlot, $sourceSlot, $character, $fieldSelections, $fieldDefinitions,
+            $assignedByUserId, $expectedTarget, $expectedSource,
+        ): void {
+            $this->rosterLock->refreshSlot($targetSlot, $expectedTarget);
+            if ($sourceSlot) {
+                abort_unless((int) $sourceSlot->activity_id === (int) $targetSlot->activity_id, 404);
+                $this->rosterLock->refreshSlot($sourceSlot, $expectedSource);
+            }
+            $this->assignCurrentManualCharacter($targetSlot, $character, $fieldSelections,
+                $fieldDefinitions, $assignedByUserId, $sourceSlot);
+        });
+    }
+
+    private function assignCurrentManualCharacter(
+        ActivitySlot $targetSlot,
+        Character $character,
+        array $fieldSelections,
+        array $fieldDefinitions,
+        int $assignedByUserId,
+        ?ActivitySlot $sourceSlot,
+    ): void {
         $targetSlot->loadMissing('fieldValues');
         $character->loadMissing(['user', 'classes', 'phantomJobs']);
 
@@ -363,9 +424,16 @@ class ActivitySlotAssignmentService
             $isTargetBench,
             $targetCanCarryDesignation,
             $activity,
+            $targetPreviousCharacterId,
         ) {
             $targetDesignationState = $this->designationState($targetSlot);
             $sourceDesignationState = $sourceSlot ? $this->designationState($sourceSlot) : $this->emptyDesignationState();
+
+            $designationState = $sourceSlot ? $sourceDesignationState : $this->emptyDesignationState();
+            if (! $sourceSlot && $targetPreviousCharacterId !== null
+                && (int) $targetPreviousCharacterId === (int) $character->id) {
+                $designationState = $targetDesignationState;
+            }
 
             $targetSlot->update([
                 'assigned_character_id' => $character->id,
@@ -375,7 +443,7 @@ class ActivitySlotAssignmentService
             ]);
             $this->applyDesignationState(
                 $targetSlot,
-                $sourceSlot ? $sourceDesignationState : $targetDesignationState,
+                $designationState,
                 $targetCanCarryDesignation,
             );
 
@@ -734,6 +802,11 @@ class ActivitySlotAssignmentService
             return [];
         }
 
+        if (in_array($definition['source'] ?? null, ['character_classes', 'phantom_jobs'], true)
+            && ! $character->hasJobProgressData($definition['source'])) {
+            return $this->definedOptionKeys($definition);
+        }
+
         $availableOptionKeys = match ($definition['source'] ?? null) {
             'character_classes' => $character->classes
                 ->filter(fn ($characterClass) => (int) ($characterClass->pivot?->level ?? 0) > 0)
@@ -914,35 +987,26 @@ class ActivitySlotAssignmentService
     }
 
     /**
-     * @return array{is_host: bool, is_raid_leader: bool}
+     * @return array<string, bool>
      */
     private function designationState(ActivitySlot $slot): array
     {
-        return [
-            'is_host' => (bool) $slot->is_host,
-            'is_raid_leader' => (bool) $slot->is_raid_leader,
-        ];
+        return $slot->designationState();
     }
 
     /**
-     * @return array{is_host: bool, is_raid_leader: bool}
+     * @return array<string, bool>
      */
     private function emptyDesignationState(): array
     {
-        return [
-            'is_host' => false,
-            'is_raid_leader' => false,
-        ];
+        return ActivitySlot::emptyDesignationState();
     }
 
     /**
-     * @param  array{is_host: bool, is_raid_leader: bool}  $designationState
+     * @param  array<string, bool>  $designationState
      */
     private function applyDesignationState(ActivitySlot $slot, array $designationState, bool $canCarryDesignation): void
     {
-        $slot->update([
-            'is_host' => $canCarryDesignation ? $designationState['is_host'] : false,
-            'is_raid_leader' => $canCarryDesignation ? $designationState['is_raid_leader'] : false,
-        ]);
+        $slot->update($canCarryDesignation ? $designationState : ActivitySlot::emptyDesignationState());
     }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\AuditLogIndexRequest;
 use App\Models\ActivityType;
 use App\Models\AuditLog;
 use App\Models\BozjaItem;
@@ -12,6 +13,8 @@ use App\Models\Group;
 use App\Models\PhantomJob;
 use App\Models\RaidPosition;
 use App\Models\User;
+use App\Services\Audit\AuditLogFeedService;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Collection;
 use Inertia\Inertia;
 use Inertia\Response;
@@ -37,17 +40,17 @@ class AdminController extends Controller
         ]);
     }
 
-    public function auditLog(): Response
+    public function auditLog(AuditLogIndexRequest $request, AuditLogFeedService $feed): Response|JsonResponse
     {
         $this->authorizeAdminAccess();
 
-        $auditLogs = AuditLog::query()
-            ->with(['actor', 'subject'])
-            ->latest('created_at')
-            ->get();
+        $query = AuditLog::query();
+        $page = $feed->paginate($query, $request->filters(), $request->validated('cursor'));
+        $auditLogs = $page->getCollection();
         $scopeEntities = $this->resolveScopeEntities($auditLogs);
 
-        return Inertia::render('Admin/AuditLog', [
+        $payload = [
+            'nextCursor' => $page->nextCursor()?->encode(),
             'auditLogs' => $auditLogs
                 ->map(fn (AuditLog $auditLog) => [
                     'id' => $auditLog->id,
@@ -77,49 +80,16 @@ class AdminController extends Controller
                     'search_text' => $this->buildSearchText($auditLog),
                     'created_at' => $auditLog->created_at?->toIso8601String(),
                 ]),
-            'filters' => [
-                'actions' => $auditLogs
-                    ->unique('action')
-                    ->map(fn (AuditLog $auditLog) => [
-                        'value' => $auditLog->action,
-                        'label' => $auditLog->message,
-                    ])
-                    ->sortBy('label')
-                    ->values(),
-                'severities' => $auditLogs
-                    ->pluck('severity')
-                    ->unique()
-                    ->sort()
-                    ->values()
-                    ->map(fn (string $severity) => [
-                        'value' => $severity,
-                        'label' => 'audit_log.severities.'.$severity,
-                    ]),
-                'users' => $auditLogs
-                    ->pluck('actor')
-                    ->filter()
-                    ->unique('id')
-                    ->sortBy('name')
-                    ->values()
-                    ->map(fn ($user) => [
-                        'value' => (string) $user->id,
-                        'label' => $user->name,
-                    ])
-                    ->when($auditLogs->contains(fn (AuditLog $auditLog) => $auditLog->actor === null), function ($users) {
-                        return $users->prepend([
-                            'value' => '__system__',
-                            'label' => 'audit_log.defaults.system',
-                        ]);
-                    })
-                    ->values(),
-                'groups' => collect($scopeEntities['group'] ?? [])
-                    ->map(fn (string $name, int $id) => [
-                        'value' => (string) $id,
-                        'label' => $name,
-                    ])
-                    ->sortBy('label')
-                    ->values(),
-            ],
+        ];
+
+        if ($request->wantsJson()) {
+            return response()->json($payload);
+        }
+
+        return Inertia::render('Admin/AuditLog', [
+            ...$payload,
+            'selectedFilters' => $request->filters(),
+            'filters' => $feed->options($query),
         ]);
     }
 
@@ -250,7 +220,7 @@ class AdminController extends Controller
     private function resolveMetadataDetails(array $metadata): array
     {
         $remainingMetadata = $metadata;
-        unset($remainingMetadata['changes']);
+        unset($remainingMetadata['changes'], $remainingMetadata['activity_id']);
 
         return collect($remainingMetadata)
             ->map(function ($value, $key) {

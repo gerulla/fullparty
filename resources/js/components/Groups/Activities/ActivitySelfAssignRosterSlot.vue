@@ -4,6 +4,7 @@ import { useI18n } from "vue-i18n";
 import { usePage } from "@inertiajs/vue3";
 import { localizedValue } from "@/utils/localizedValue";
 import { emptyCompositionSlotToneClass } from "@/utils/activityCompositionHints";
+import { specialistDesignationMarkers } from "@/utils/specialistDesignations";
 import type { ActivityApplicationFieldGroup, ActivitySlot, ActivitySlotFieldValue } from "@/Types/ActivityRoster";
 import type { LocalizedText } from "@/Types/Common";
 
@@ -250,6 +251,7 @@ const showNoCharacterState = computed(() => (
 
 const designationMarkers = computed(() => {
 	const markers: SlotMarker[] = [];
+	markers.push(...specialistDesignationMarkers(props.slot, isViewerAssignedCharacter.value).map(marker => ({ ...marker, label: t(marker.labelKey) })));
 
 	if (props.slot.is_raid_leader) {
 		markers.push({

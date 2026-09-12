@@ -296,7 +296,7 @@ class GroupActivityAuditService
         Model|array|null $subject = null,
         ?array $metadata = null,
     ): void {
-        if (!$group) {
+        if (! $group) {
             return;
         }
 
@@ -308,13 +308,13 @@ class GroupActivityAuditService
             message: $message,
             actor: $actor,
             subject: $subject ?? $activity,
-            metadata: $metadata,
+            metadata: array_merge($metadata ?? [], ['activity_id' => $activity?->id]),
         );
     }
 
     private function activityTitle(?Activity $activity): ?string
     {
-        if (!$activity) {
+        if (! $activity) {
             return null;
         }
 

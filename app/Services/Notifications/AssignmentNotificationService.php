@@ -52,7 +52,7 @@ class AssignmentNotificationService
                     applicationId: $application->id,
                     characterId: null,
                     actorId: $actor instanceof User ? $actor->id : null,
-                );
+                )->afterCommit();
 
                 continue;
             }
@@ -62,7 +62,7 @@ class AssignmentNotificationService
                 applicationId: null,
                 characterId: $slot->assigned_character_id,
                 actorId: $actor instanceof User ? $actor->id : null,
-            );
+            )->afterCommit();
         }
     }
 
@@ -378,26 +378,10 @@ class AssignmentNotificationService
         ActivitySlot $slot,
         mixed $actor,
     ): void {
-        if ($slot->is_host) {
-            $this->notifyDesignationChanged(
-                $activity,
-                $character,
-                $slot,
-                ActivitySlot::DESIGNATION_HOST,
-                true,
-                $actor,
-            );
-        }
-
-        if ($slot->is_raid_leader) {
-            $this->notifyDesignationChanged(
-                $activity,
-                $character,
-                $slot,
-                ActivitySlot::DESIGNATION_RAID_LEADER,
-                true,
-                $actor,
-            );
+        foreach (ActivitySlot::DESIGNATION_COLUMN_MAP as $designation => $column) {
+            if ($slot->{$column}) {
+                $this->notifyDesignationChanged($activity, $character, $slot, $designation, true, $actor);
+            }
         }
     }
 
@@ -814,6 +798,9 @@ class AssignmentNotificationService
         return match ($designation) {
             ActivitySlot::DESIGNATION_HOST => 'Host',
             ActivitySlot::DESIGNATION_RAID_LEADER => 'Raid Leader',
+            ActivitySlot::DESIGNATION_DUELIST => 'Duelist',
+            ActivitySlot::DESIGNATION_TRAPPER => 'Trapper',
+            ActivitySlot::DESIGNATION_DARTER => 'Darter',
             default => 'Designation',
         };
     }

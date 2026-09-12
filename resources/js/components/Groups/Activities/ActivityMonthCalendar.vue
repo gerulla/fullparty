@@ -19,6 +19,7 @@ const props = defineProps<{
 	canManageActivities?: boolean
 	quickCreateShortcuts: GroupQuickCreateShortcut[]
 	showGroupBadge?: boolean
+	groupColors?: Record<number, string>
 }>();
 
 const emit = defineEmits<{
@@ -139,6 +140,7 @@ const selectDay = (dayKey: string) => {
 					:can-manage-activities="canManageActivities"
 					:quick-create-shortcuts="quickCreateShortcuts"
 					:show-group-badge="showGroupBadge"
+					:group-colors="groupColors"
 					:opens-upward="index >= 35"
 					@select="selectDay"
 				/>

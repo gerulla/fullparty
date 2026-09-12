@@ -33,3 +33,13 @@ it('sanitizes obfuscated markdown link schemes', function () {
 
     expect($sanitizer->sanitizeMarkdown($raw))->toBe("[encoded](#blocked-alert(1))\n[spaced](#blocked-alert(1))\n[vb](#blocked-msgbox(1))");
 });
+
+it('preserves resource blockquotes without restoring escaped HTML or dangerous links', function () {
+    $sanitizer = new TextInputSanitizer;
+    $raw = "> Ready check\n>\n> > Nested quote\n\n> <script>alert(1)</script> [bad](javascript:alert(1))\n\nText > comparison";
+
+    expect($sanitizer->sanitizeMarkdown($raw, preserveBlockquotes: true))->toBe(
+        "> Ready check\n>\n> > Nested quote\n\n> &lt;script&gt;alert(1)&lt;/script&gt; [bad](#blocked-alert(1))\n\nText &gt; comparison"
+    );
+    expect($sanitizer->sanitizeMarkdown('> Existing behavior'))->toBe('&gt; Existing behavior');
+});

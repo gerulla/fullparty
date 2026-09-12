@@ -65,6 +65,7 @@ export interface ActivityIndexItem {
 		name: string
 		avatar_url: string | null
 		world: string | null
+		datacenter?: string | null
 	} | null
 	datacenter: string | null
 	intensity: ActivityIntensity | string | null

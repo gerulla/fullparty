@@ -26,6 +26,11 @@ to stay consistent with each other.
 6. Do not hide uncertainty. If a change touches behavior that depends on queues,
    Reverb, FF Logs, Lodestone, XIVAuth, Discord, or mail delivery, call out what
    was and was not verified.
+7. Keep generated reports, assessments, walkthroughs, and explanatory artifacts
+   outside the repository. Do not create or track them in `docs/` or elsewhere in
+   the repo unless the user explicitly requests repository documentation. Requests
+   for explanations or reports alone are not permission to add documentation files
+   to the repository.
 
 ## Common Commands
 

@@ -167,6 +167,54 @@ it('returns only pending applications in the applicant queue payload and include
     expect($guestQueueItem['applicant_character']['is_claimed'])->toBeFalse();
 });
 
+it('exposes the party lead filter only for a boolean question on the runs activity version', function (?string $questionType) {
+    extract(createApplicantQueueActivity());
+
+    $version = $activity->activityTypeVersion;
+    if ($questionType !== null) {
+        $version->update(['application_schema' => [
+            ...$version->application_schema,
+            ['key' => 'wants_to_party_lead', 'label' => ['en' => 'Party Lead'], 'type' => $questionType, 'source' => null],
+        ]]);
+    }
+
+    $this->actingAs($owner)->getJson(route('groups.dashboard.activities.applicant-queue', [
+        'group' => $group->slug,
+        'activity' => $activity->id,
+    ]))->assertOk()
+        ->assertJsonCount(0, 'applications')
+        ->assertJsonPath('queue_filters.party_lead_question_key', $questionType === 'boolean' ? 'wants_to_party_lead' : null)
+        ->assertJsonPath('queue_filters.slot_fields.0.filter_options.0.meta.role', 'tank');
+})->with([null, 'boolean', 'text']);
+
+it('includes party lead preferences for both member and guest queue applications', function () {
+    extract(createApplicantQueueActivity());
+    $version = $activity->activityTypeVersion;
+    $version->update(['application_schema' => [
+        ...$version->application_schema,
+        ['key' => 'wants_to_party_lead', 'label' => ['en' => 'Party Lead'], 'type' => 'boolean', 'source' => null],
+    ]]);
+
+    $memberApplication = createQueueApplication($activity, $characterClass, ['user_id' => User::factory()->create()->id]);
+    $guestApplication = createQueueApplication($activity, $characterClass);
+    foreach ([$memberApplication, $guestApplication] as $application) {
+        $application->answers()->updateOrCreate(['question_key' => 'wants_to_party_lead'], [
+            'question_label' => ['en' => 'Party Lead'],
+            'question_type' => 'boolean',
+            'source' => null,
+            'value' => $application->id === $memberApplication->id,
+        ]);
+    }
+
+    $response = $this->actingAs($owner)->getJson(route('groups.dashboard.activities.applicant-queue', [
+        'group' => $group->slug,
+        'activity' => $activity->id,
+    ]))->assertOk()->assertJsonPath('queue_filters.party_lead_question_key', 'wants_to_party_lead');
+    $items = collect($response->json('applications'))->keyBy('id');
+    expect(collect($items[$memberApplication->id]['answers'])->firstWhere('question_key', 'wants_to_party_lead')['raw_value'])->toBeTrue()
+        ->and(collect($items[$guestApplication->id]['answers'])->firstWhere('question_key', 'wants_to_party_lead')['raw_value'])->toBeFalse();
+});
+
 it('keeps the original queue position and exposes the application edit time', function () {
     extract(createApplicantQueueActivity());
 
@@ -261,6 +309,8 @@ it('includes selected character preferred class and phantom job ids in applicant
         ->firstWhere('id', $application->id);
 
     expect($queueItem)->not->toBeNull()
+        ->and($queueItem['selected_character']['has_class_progress_data'])->toBeTrue()
+        ->and($queueItem['selected_character']['has_phantom_job_progress_data'])->toBeTrue()
         ->and($queueItem['selected_character']['preferred_character_class_ids'])->toBe([(string) $characterClass->id])
         ->and($queueItem['selected_character']['preferred_phantom_job_ids'])->toBe([(string) $phantomJob->id])
         ->and($queueItem['selected_character']['available_character_classes'])->toContain(
@@ -282,6 +332,32 @@ it('includes selected character preferred class and phantom job ids in applicant
             ],
         );
 });
+
+it('reports usable progress per category including absent and all-zero data', function (string $knownSource, int $level) {
+    extract(createApplicantQueueActivity());
+    $member = User::factory()->create();
+    $character = Character::factory()->primary()->create(['user_id' => $member->id]);
+    $application = ActivityApplication::factory()->create([
+        'activity_id' => $activity->id, 'user_id' => $member->id,
+        'selected_character_id' => $character->id, 'status' => ActivityApplication::STATUS_PENDING,
+    ]);
+    $character->classes()->detach();
+    $character->phantomJobs()->detach();
+    if ($knownSource === 'classes') {
+        $character->classes()->attach($characterClass->id, ['level' => $level]);
+    } elseif ($knownSource === 'phantomJobs') {
+        $character->phantomJobs()->attach($phantomJob->id, ['current_level' => $level]);
+    }
+
+    $response = $this->actingAs($owner)->getJson(route('groups.dashboard.activities.applicant-queue', [
+        'group' => $group->slug, 'activity' => $activity->id,
+    ]))->assertOk();
+    $characterData = collect($response->json('applications'))->firstWhere('id', $application->id)['selected_character'];
+    expect($characterData['has_class_progress_data'])->toBe($knownSource === 'classes' && $level > 0)
+        ->and($characterData['has_phantom_job_progress_data'])->toBe($knownSource === 'phantomJobs' && $level > 0)
+        ->and($characterData['available_character_classes'])->toHaveCount($knownSource === 'classes' && $level > 0 ? 1 : 0)
+        ->and($characterData['available_phantom_jobs'])->toHaveCount($knownSource === 'phantomJobs' && $level > 0 ? 1 : 0);
+})->with(['none', 'classes', 'phantomJobs'])->with([0, 10]);
 
 it('forbids non moderators from loading the applicant queue payload', function () {
     extract(createApplicantQueueActivity());

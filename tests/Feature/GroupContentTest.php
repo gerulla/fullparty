@@ -6,6 +6,7 @@ use App\Models\Group;
 use App\Models\GroupMembership;
 use App\Models\PhantomJob;
 use App\Models\User;
+use App\Services\RichText\MarkdownGuideConverter;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Inertia\Testing\AssertableInertia as Assert;
 
@@ -91,7 +92,7 @@ it('allows moderators to create and update group holsters', function () {
             'role' => 'healer',
             'type' => BozjaHolster::TYPE_PREPOP,
             'notes' => 'Bring these actions.',
-            'guide' => '## Opener',
+            'guide' => app(MarkdownGuideConverter::class)->convert('## Opener'),
             'items' => [
                 ['id' => $item->id, 'quantity' => 3],
             ],
@@ -193,7 +194,7 @@ it('allows moderators to create and update group holsters', function () {
     ]);
 });
 
-it('sanitizes holster markdown guides before storing them', function () {
+it('stores holster documents and safely renders literal HTML', function () {
     $owner = User::factory()->create();
     $moderator = User::factory()->create();
     $group = Group::factory()->create(['owner_id' => $owner->id]);
@@ -204,8 +205,7 @@ it('sanitizes holster markdown guides before storing them', function () {
         'joined_at' => now(),
     ]);
 
-    $guide = "## Usage\r\n\n<script>alert('x')</script>\n[bad](javascript:alert(1))\n![bad](data:text/html,<svg onload=alert(1)>)";
-    $expected = "## Usage\n\n&lt;script&gt;alert('x')&lt;/script&gt;\n[bad](#blocked-alert(1))\n![bad](#blocked-text/html,&lt;svg onload=alert(1)&gt;)";
+    $guide = app(MarkdownGuideConverter::class)->convert("## Usage\n\n<script>alert('x')</script>");
 
     $response = $this->actingAs($moderator)
         ->postJson(route('groups.dashboard.content.delubrum-reginae-savage.holsters.store', $group), [
@@ -216,12 +216,15 @@ it('sanitizes holster markdown guides before storing them', function () {
             'items' => [],
         ])
         ->assertCreated()
-        ->assertJsonPath('data.guide', $expected);
+        ->assertJsonPath('data.guide', $guide)
+        ->assertJsonPath('data.guide_needs_conversion', false);
 
     $this->assertDatabaseHas('bozja_holsters', [
         'id' => $response->json('data.id'),
-        'guide' => $expected,
+        'guide_format' => 'tiptap',
     ]);
+    expect(BozjaHolster::findOrFail($response->json('data.id'))->guide)->toBe($guide);
+    expect($response->json('data.guide_html'))->toContain('&lt;script&gt;')->not->toContain('<script>');
 });
 
 it('allows moderators to duplicate group holsters with their contents', function () {
@@ -246,7 +249,7 @@ it('allows moderators to duplicate group holsters with their contents', function
         'role' => 'tank',
         'type' => BozjaHolster::TYPE_PREPOP,
         'notes' => 'Bring this exact kit.',
-        'guide' => '## Clone me',
+        'guide' => app(MarkdownGuideConverter::class)->convert('## Clone me'),
         'is_active' => false,
         'is_default' => true,
     ]);
@@ -263,7 +266,7 @@ it('allows moderators to duplicate group holsters with their contents', function
         ->assertJsonPath('data.role', 'tank')
         ->assertJsonPath('data.type', BozjaHolster::TYPE_PREPOP)
         ->assertJsonPath('data.notes', 'Bring this exact kit.')
-        ->assertJsonPath('data.guide', '## Clone me')
+        ->assertJsonPath('data.guide', app(MarkdownGuideConverter::class)->convert('## Clone me'))
         ->assertJsonPath('data.is_active', false)
         ->assertJsonPath('data.is_default', false)
         ->assertJsonPath('data.capacity_used', 15)

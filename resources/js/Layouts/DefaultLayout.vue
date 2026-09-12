@@ -24,6 +24,7 @@ const activityOverviewComponents = [
 	'Groups/Activities/NonApplicationOverview',
 ]
 const isGroupActivityOverviewPage = computed(() => activityOverviewComponents.includes(page.component))
+const isResourceManagementPage = computed(() => page.component === 'Dashboard/Groups/Resources/Manage')
 const showGroupNavigation = computed(() => {
 	if (currentGroup.value === null) {
 		return false
@@ -79,7 +80,7 @@ defineProps({
 			<UDashboardGroup storage="local" storage-key="fullparty-dashboard">
 				<CSidebar />
 
-				<UDashboardPanel :ui="{ body: 'p-2 sm:p-3 lg:p-4 xl:p-6' }">
+				<UDashboardPanel :ui="{ body: isResourceManagementPage ? 'p-0 sm:p-0 lg:min-h-0 lg:overflow-hidden' : 'p-2 sm:p-3 lg:p-4 xl:p-6' }">
 					<template #header>
 						<SystemBanner
 							v-if="systemBanner"
@@ -93,13 +94,14 @@ defineProps({
 					</template>
 
 					<template #body>
-						<div class="flex min-h-full flex-col">
-							<div class="flex-1">
+						<div class="flex min-h-full flex-col" :class="{ 'lg:h-full lg:min-h-0': isResourceManagementPage }">
+							<div class="flex-1" :class="{ 'lg:flex lg:min-h-0 lg:flex-col': isResourceManagementPage }">
 								<slot />
 							</div>
 
 							<DashboardFooter
 								class="mt-8"
+								:class="{ 'lg:mt-4': isResourceManagementPage }"
 								:has-bottom-navigation="showGroupNavigation"
 							/>
 						</div>

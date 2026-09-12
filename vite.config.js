@@ -95,7 +95,34 @@ export default defineConfig({
             ],
         },
     },
+    optimizeDeps: {
+        // Nuxt UI is excluded from prebundling. Include its editor imports alongside
+        // our extensions so every plugin uses the same ProseMirror registry.
+        include: [
+            '@tiptap/core',
+            '@tiptap/vue-3',
+            '@tiptap/vue-3/menus',
+            '@tiptap/starter-kit',
+            '@tiptap/extension-code',
+            '@tiptap/extension-horizontal-rule',
+            '@tiptap/extension-image',
+            '@tiptap/extension-mention',
+            '@tiptap/extension-placeholder',
+            '@tiptap/markdown',
+            '@tiptap/extension-highlight',
+            '@tiptap/extension-list',
+            '@tiptap/extension-subscript',
+            '@tiptap/extension-superscript',
+            '@tiptap/extension-table',
+            '@tiptap/extension-text-align',
+            '@tiptap/extension-text-style',
+        ],
+    },
     resolve: {
+        dedupe: [
+            '@tiptap/core', '@tiptap/pm', '@tiptap/vue-3',
+            'prosemirror-model', 'prosemirror-state', 'prosemirror-transform', 'prosemirror-view',
+        ],
         alias: {
             'ziggy-js': path.resolve('vendor/tightenco/ziggy'),
         },

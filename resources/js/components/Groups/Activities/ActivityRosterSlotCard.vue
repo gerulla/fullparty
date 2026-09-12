@@ -11,8 +11,10 @@ import ActivitySlotCompositionHintBadge from "@/components/Groups/Activities/Act
 import ActivitySlotApplicationMatches from "@/components/Groups/Activities/ActivitySlotApplicationMatches.vue";
 import type { LocalizedText } from "@/Types/Common";
 import type { QueueApplication } from "@/Types/ActivityQueue";
-import type { ActivitySlot, ActivitySlotCompositionHintInput } from "@/Types/ActivityRoster";
+import type { ActivitySlot, ActivitySlotCompositionHintInput, SlotDesignation } from "@/Types/ActivityRoster";
+import { specialistDesignationActions, specialistDesignationMarkers } from "@/utils/specialistDesignations";
 import { emptyCompositionSlotToneClass } from "@/utils/activityCompositionHints";
+import { useRosterDiscordCopyMenu } from "@/composables/useRosterDiscordCopy";
 
 type SlotMarker = {
 	key: string
@@ -57,6 +59,7 @@ const emit = defineEmits<{
 	markSlotLate: [slotId: number]
 	markSlotHost: [slotId: number]
 	markSlotRaidLeader: [slotId: number]
+	markSlotDesignation: [slotId: number, designation: SlotDesignation]
 	cutSlot: [slotId: number]
 	pasteCutSlot: [slotId: number]
 	clearCutSlot: []
@@ -66,6 +69,7 @@ const emit = defineEmits<{
 
 const { t, locale } = useI18n();
 const page = usePage();
+const discordCopyMenuItems = useRosterDiscordCopyMenu();
 const fallbackLocale = computed(() => String(page.props.locale?.fallback ?? 'en'));
 const slotCardElement = ref<HTMLElement | null>(null);
 let dragPreviewElement: HTMLElement | null = null;
@@ -123,6 +127,7 @@ const visibleFieldEntries = computed(() => (
 ));
 const designationMarkers = computed(() => {
 	const markers: SlotMarker[] = [];
+	markers.push(...specialistDesignationMarkers(props.slot, needsApplicationReview.value || isViewerAssignedCharacter.value).map(marker => ({ ...marker, label: t(marker.labelKey) })));
 
 	if (props.slot.is_raid_leader) {
 		markers.push({
@@ -299,6 +304,7 @@ const emptySlotContextMenuItems = computed<ContextMenuItem[][]>(() => (
 ));
 const contextMenuItems = computed<ContextMenuItem[][]>(() => [
 	[
+		...discordCopyMenuItems(props.slot),
 		...(props.slot.assignment_application_id !== null
 			? [{
 				label: t('groups.activities.management.roster.view_application_action'),
@@ -360,6 +366,7 @@ const contextMenuItems = computed<ContextMenuItem[][]>(() => [
 			disabled: props.slot.is_bench || props.slot.is_fill_in || props.isSwapPending,
 			onSelect: () => emit('markSlotRaidLeader', props.slot.id),
 		},
+		...specialistDesignationActions(props.slot, t, (slotId, designation) => emit('markSlotDesignation', slotId, designation), Boolean(props.isSwapPending)),
 	],
 	[
 		...(props.slot.is_bench

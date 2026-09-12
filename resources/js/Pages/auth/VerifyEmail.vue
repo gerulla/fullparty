@@ -9,6 +9,7 @@ import SeoHead from "@/components/Shared/SeoHead.vue";
 const props = defineProps<{
 	email: string
 	status?: string | null
+	pendingSocialLinkUrl?: string | null
 }>()
 
 const { t } = useI18n({ useScope: 'global' })
@@ -87,6 +88,9 @@ defineOptions({
 				</div>
 			</div>
 
+			<Link v-if="pendingSocialLinkUrl" :href="pendingSocialLinkUrl" class="mt-6 block text-brand text-sm">
+				{{ t('auth.link_social.return_to_link') }}
+			</Link>
 			<div class="mt-8 flex flex-col gap-3 sm:flex-row">
 				<button
 					type="button"

@@ -8,6 +8,7 @@ use App\Models\Group;
 use App\Models\GroupMembership;
 use App\Services\AuditLogger;
 use App\Services\Groups\MembershipApplicationFormSchemaService;
+use App\Services\Groups\Resources\ResourceStarterLibraryService;
 use App\Services\ManagedImageStorage;
 use App\Support\Audit\AuditScope;
 use App\Support\Audit\AuditSeverity;
@@ -27,6 +28,7 @@ class GroupSettingsController extends Controller
         private readonly AuditLogger $auditLogger,
         private readonly GroupDiscoveryBadgePalette $groupDiscoveryBadgePalette,
         private readonly MembershipApplicationFormSchemaService $membershipApplicationFormSchemaService,
+        private readonly ResourceStarterLibraryService $resourceStarterLibraryService,
     ) {}
 
     public function show(Group $group): Response
@@ -90,7 +92,7 @@ class GroupSettingsController extends Controller
             'features' => $group->featureSettings(),
         ];
 
-        DB::transaction(function () use ($group, $validated, $profilePictureUrl, $bannerImageUrl) {
+        DB::transaction(function () use ($group, $validated, $profilePictureUrl, $bannerImageUrl, $request) {
             $group->update([
                 'name' => $validated['name'],
                 'description' => $validated['description'] ?? null,
@@ -112,6 +114,9 @@ class GroupSettingsController extends Controller
 
             if (isset($validated['features']) && is_array($validated['features'])) {
                 $group->features()->updateOrCreate([], $validated['features']);
+                if ($validated['features']['resource_hub_enabled'] ?? false) {
+                    $this->resourceStarterLibraryService->initialize($group, $request->user());
+                }
             }
         });
 

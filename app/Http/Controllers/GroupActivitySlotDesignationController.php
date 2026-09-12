@@ -11,6 +11,7 @@ use App\Services\Groups\ActivitySlotSerializer;
 use App\Services\Groups\ActivitySlotStateTokenService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class GroupActivitySlotDesignationController extends Controller
 {
@@ -72,7 +73,7 @@ class GroupActivitySlotDesignationController extends Controller
         }
 
         $validated = $request->validate([
-            'designation' => ['required', 'string', 'in:host,raid_leader'],
+            'designation' => ['required', 'string', Rule::in(array_keys(ActivitySlot::DESIGNATION_COLUMN_MAP))],
             'expected_slot_state_token' => ['required', 'string'],
         ]);
 

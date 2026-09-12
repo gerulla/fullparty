@@ -126,7 +126,8 @@
                 "placeholder": "Eine Notiz über diesen Benutzer hinzufügen"
             }
         },
-        "severities": {
+    "severities": {
+      "commendation": "Belobigungen",
             "info": "Info",
             "warning": "Warnung",
             "critical": "Kritisch"

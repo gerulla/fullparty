@@ -98,6 +98,18 @@ class BozjaHolster extends Model
         );
     }
 
+    protected function guide(): Attribute
+    {
+        return Attribute::make(
+            get: fn ($value, $attributes) => ($attributes['guide_format'] ?? 'markdown') === 'tiptap' && $value !== null
+                ? json_decode($value, true, 512, JSON_THROW_ON_ERROR) : $value,
+            set: fn ($value) => [
+                'guide' => is_array($value) ? json_encode($value, JSON_THROW_ON_ERROR | JSON_UNESCAPED_UNICODE) : $value,
+                'guide_format' => is_string($value) ? 'markdown' : 'tiptap',
+            ],
+        );
+    }
+
     public function localizedName(?string $locale = null): ?string
     {
         $names = array_filter($this->name ?? [], fn ($name) => filled($name));

@@ -2,6 +2,8 @@
 
 namespace App\Http\Resources;
 
+use App\Services\RichText\MarkdownGuideConverter;
+use App\Services\RichText\RichTextDocument;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -20,7 +22,9 @@ class BozjaHolsterResource extends JsonResource
             'max_capacity' => $this->max_capacity,
             'capacity_used' => $this->capacity_used,
             'notes' => $this->notes,
-            'guide' => $this->guide,
+            'guide' => is_array($this->guide) ? $this->guide : null,
+            'guide_html' => is_array($this->guide) ? app(RichTextDocument::class)->html($this->guide) : app(MarkdownGuideConverter::class)->legacyHtml($this->guide ?? ''),
+            'guide_needs_conversion' => $this->guide_format === 'markdown' && filled($this->guide),
             'is_active' => $this->is_active,
             'is_default' => $this->is_default,
             'items' => $this->whenLoaded('items', fn () => $this->items

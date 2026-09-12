@@ -85,7 +85,7 @@
             },
             "resource_hub_enabled": {
                 "label": "Ressourcen",
-                "description": "Aktiviere die gemeinsame Ressourcenbibliothek der Gruppe."
+                "description": "Aktiviere die gemeinsame Ressourcenbibliothek der Gruppe. Beim ersten Aktivieren werden bearbeitbare Beispielsammlungen, Ressourcen und Anleitungen hinzugefügt."
             }
         },
         "toasts": {

@@ -2,7 +2,10 @@ import type { WorkspaceCollection } from './ResourceWorkspace'
 
 export type ResourceCollectionEdit = { id: string | null; parentId: string | null; name: string }
 export type ResourceCollectionActions = {
-    state: { editing: ResourceCollectionEdit | null; busy: boolean; error: string }
+    state: { editing: ResourceCollectionEdit | null; iconCollectionId: string | null; busy: boolean; error: string }
+    changeIcon: (id: string) => void
+    closeIconPicker: () => void
+    saveIcon: (icon: string | null) => Promise<void>
     create: (parentId?: string | null) => void
     rename: (id: string) => void
     cancel: () => void

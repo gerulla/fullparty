@@ -85,7 +85,7 @@
             },
             "resource_hub_enabled": {
                 "label": "Ressources",
-                "description": "Activez la bibliothèque de ressources partagée du groupe."
+                "description": "Activez la bibliothèque de ressources partagée du groupe. La première activation inclut des collections, des ressources et des guides d’utilisation modifiables."
             }
         },
         "toasts": {

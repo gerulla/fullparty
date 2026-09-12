@@ -3,7 +3,7 @@ import test from 'node:test'
 import { readFileSync } from 'node:fs'
 import { parse, compileScript, compileTemplate } from '@vue/compiler-sfc'
 import ts from 'typescript'
-import { computed, ref, watch, nextTick } from 'vue'
+import { computed, reactive, ref, watch, nextTick } from 'vue'
 import * as settings from '../../resources/js/utils/resourceLibrarySettings.ts'
 
 const library = (customization = {}) => ({ visibility: 'public', customization: {
@@ -113,14 +113,23 @@ test('settings modal preserves edits when visibility changes and supplies its ow
     const filename = '../../resources/js/components/Groups/Resources/ResourceLibraryManageModal.vue'
     const { descriptor } = parse(readFileSync(new URL(filename, import.meta.url), 'utf8'))
     const source = compileScript(descriptor, { id: filename }).content
-    const provided = new Map(), emitted = []
-    const libraryKey = Symbol('library'), uploadKey = Symbol('upload'), upload = async () => '/resource-assets/new'
-    let context
+    const provided = new Map(), emitted = [], requests = []
+    const existingImages = [{ uuid: 'existing-resource-image', name: 'Positions.png', url: '/resource-assets/existing-resource-image' }]
+    const imageApi = load(readFileSync(new URL('../../resources/js/composables/useResourceImages.ts', import.meta.url), 'utf8'), {
+        axios: { default: { get: async (url, options) => {
+            requests.push({ url, ...options })
+            return { data: { data: options.params.library_only ? [] : existingImages, total: 1, current_page: 1 } }
+        } } },
+        vue: { reactive, ref, inject: key => provided.get(key), onBeforeUnmount() {} },
+        'vue-i18n': { useI18n: () => ({ t: key => key }) },
+        'ziggy-js': { route: (name, params) => `${name}/${params.group}` },
+    })
+    const libraryKey = imageApi.resourceImageLibraryKey, uploadKey = Symbol('upload')
     const component = load(source, {
         vue: { defineComponent: value => value, computed, ref, watch, nextTick, provide: (key, value) => provided.set(key, value) },
         'vue-i18n': { useI18n: () => ({ t: key => key }) },
         '@/utils/resourceLibrarySettings': settings,
-        '@/composables/useResourceImages': { resourceImageLibraryKey: libraryKey, useResourceImages: value => { context = value; return { state: { busy: false }, upload } } },
+        '@/composables/useResourceImages': imageApi,
         '@/composables/useResourceImageUpload': { resourceImageUploadKey: uploadKey },
         './ResourceLibraryCustomizationForm.vue': { default: {} },
     }).default
@@ -130,10 +139,14 @@ test('settings modal preserves edits when visibility changes and supplies its ow
     assert.equal(state.customization.value.title, 'Keep my edits')
     state.visibility.value = 'public'; await nextTick()
     assert.equal(state.customization.value.title, 'Keep my edits')
-    assert.equal(context.libraryOnly, true)
-    assert.equal(context.resourceId, undefined)
-    assert.equal(provided.get(libraryKey), context)
-    assert.equal(provided.get(uploadKey), upload)
+    const picker = imageApi.useResourceImages()
+    await picker.load()
+    assert.equal(requests[0].url, 'groups.dashboard.resources.images.index/our-group')
+    assert.equal(requests[0].params.library_only, undefined)
+    assert.equal(requests[0].params.resource_id, undefined)
+    assert.deepEqual(picker.state.items, existingImages)
+    assert.equal(provided.get(libraryKey).groupSlug(), 'our-group')
+    assert.equal(provided.get(uploadKey), state.images.upload)
     assert.equal(emitted.some(event => event[0] === 'clearErrors'), true)
     assert.match(descriptor.template.content, /v-if="visibility === 'public'"[\s\S]*ResourceLibraryCustomizationForm/)
 })

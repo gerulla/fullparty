@@ -85,7 +85,7 @@
             },
             "resource_hub_enabled": {
                 "label": "Resources",
-                "description": "Enable the group's shared resource library."
+                "description": "Enable the group's shared resource library. First activation includes editable example collections, resources, and how-to guides."
             }
         },
         "toasts": {

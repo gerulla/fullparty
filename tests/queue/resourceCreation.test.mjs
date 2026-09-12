@@ -17,9 +17,10 @@ test('new resources use a real collection ID and a blank draft with no sample co
     assert.notEqual(payload.content.slug, untitledResourcePayload('5', 'Untitled resource', 'second').content.slug)
 })
 
-test('server collection IDs and nesting are retained, using only folder icons', () => {
-    assert.deepEqual(workspaceCollection({ id: 5, parent_id: 2, name: 'DRS', icon: 'custom', sort_order: 3 }), { id: '5', parentId: '2', name: 'DRS', icon: 'i-lucide-folder', order: 3 })
+test('server collection IDs, nesting and chosen icons are retained with a folder fallback', () => {
+    assert.deepEqual(workspaceCollection({ id: 5, parent_id: 2, name: 'DRS', icon: 'i-lucide-swords', sort_order: 3 }), { id: '5', parentId: '2', name: 'DRS', icon: 'i-lucide-swords', order: 3 })
     assert.equal(workspaceCollection({ id: 2, parent_id: null, name: 'Root' }).parentId, null)
+    assert.equal(workspaceCollection({ id: 2, parent_id: null, name: 'Root' }).icon, 'i-lucide-folder')
 })
 
 test('created drafts use server author and timestamps', () => {

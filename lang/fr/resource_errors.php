@@ -1,6 +1,8 @@
 <?php
 
 return [
+    'save_before_publish' => 'Enregistrez une version avec une description des modifications avant de publier.',
+    'resource_reference' => 'Choisissez une ressource disponible dans ce groupe.',
     'library_fields' => [
         'customization.title' => 'Titre de la bibliothèque',
         'customization.introduction' => 'Introduction',
@@ -36,6 +38,7 @@ return [
         'embed_fields_item_name' => 'nom du champ',
         'embed_fields_item_value' => 'valeur du champ',
     ],
+    'pin_limit' => 'Vous pouvez épingler jusqu’à :limit ressources. Désépinglez-en une pour libérer une place.',
     'archived' => 'Restaurez cette ressource archivée comme brouillon avant de la modifier ou de la publier.',
     'home_protected' => 'Home doit rester à la racine, visible par tous et publiée. Cette page ne peut être déplacée ni supprimée.',
     'collection_name_invalid' => 'Utilisez uniquement A-Z, a-z, 0-9, les espaces et .-(){}[];_&.',

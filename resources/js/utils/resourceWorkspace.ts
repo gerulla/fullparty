@@ -94,7 +94,8 @@ export function filterWorkspaceResources(resources: WorkspaceResource[], collect
     return resources.filter(resource => {
         if ((resource.status === 'archived') !== (filters.scope === 'archived')) return false
         if (filters.scope === 'drafts' && !workspaceHasUnpublishedChanges(resource)) return false
-        if (!['all', 'drafts', 'archived'].includes(filters.scope) && !folders.includes(resource.collectionId ?? '')) return false
+        if (filters.scope === 'pinned' && !resource.isPinned) return false
+        if (!['all', 'drafts', 'archived', 'pinned'].includes(filters.scope) && !folders.includes(resource.collectionId ?? '')) return false
         if (filters.status !== 'all' && resource.status !== filters.status) return false
         if (filters.access !== 'all' && resource.access !== filters.access) return false
         if (filters.activity !== 'all' && !resource.activities.includes(filters.activity)) return false

@@ -28,7 +28,7 @@ const { t } = useI18n()
 const visibility = ref(props.library.visibility)
 const customization = ref(resourceLibraryCustomization(props.library))
 const form = ref<HTMLFormElement | null>(null)
-const imageContext = { groupSlug: () => props.groupSlug, libraryOnly: true, changed: () => emit('uploadsChanged') }
+const imageContext = { groupSlug: () => props.groupSlug, changed: () => emit('uploadsChanged') }
 provide(resourceImageLibraryKey, imageContext)
 const images = useResourceImages(imageContext)
 provide(resourceImageUploadKey, images.upload)

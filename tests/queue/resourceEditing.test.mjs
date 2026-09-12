@@ -13,6 +13,7 @@ const snapshot = { title: 'Untitled resource', slug: 'untitled-first', descripti
 const detail = () => ({ id: 42, collection_id: 5, slug: 'untitled-first', status: 'draft', version: 1, sort_order: 0, updated_at: '2026-09-10T10:00:00Z', working_copy: structuredClone(snapshot), published: null, history: [] })
 const resource = () => workspaceData.workspaceResource(detail(), new Map())
 const flush = () => new Promise(resolve => setImmediate(resolve))
+async function saveVersion(api) { api.save(); await flush(); if (api.state.saveDialog) { api.state.summary = 'Updated the guide.'; await api.confirmSave() } }
 
 test('tree embed selection preserves unsaved content and reuses the current editing lease', async () => {
     const existing = resource()
@@ -42,7 +43,7 @@ test('tree embed selection preserves unsaved content and reuses the current edit
     await api.confirm()
     assert.equal(api.state.draft.embeds.length, 2)
     assert.equal(api.state.embedIndex, 1)
-    api.save(); await flush()
+    await saveVersion(api)
     const payload = calls.find(call => call[0] === 'save')[2]
     assert.deepEqual(payload.content.commands.map(item => item.name), ['west', 'east'])
     assert.equal(payload.content.commands[1].embed.description, 'Unsaved east plan')
@@ -94,18 +95,18 @@ test('embed creation stops at fifteen and saving an oversized document makes no 
     assert.equal(api.state.draft.embeds.length, 15)
     assert.equal(api.state.embedIndex, 14)
     api.state.draft.embeds.push(workspaceData.workspaceEmbed({ name: 'extra', embed: {} }))
-    api.save(); await flush()
+    await saveVersion(api)
     assert.equal(calls.some(call => call[0] === 'save'), false)
     assert.equal(api.fieldError('commands'), 'groups.resources.workspace.embed_limit')
     api.state.draft.embeds.pop()
-    api.save(); await flush()
+    await saveVersion(api)
     assert.equal(calls.find(call => call[0] === 'save')[2].content.commands.length, 15)
 })
 
 test('every present embed is enabled in the save payload without an editor toggle', () => {
     const existing = resource()
     existing.embeds = [workspaceData.workspaceEmbed({ name: 'plan', enabled: false, embed: { title: 'Plan' } })]
-    const payload = resourceSavePayload(workspaceUtils.cloneDocument(existing), existing, '', false)
+    const payload = resourceSavePayload(workspaceUtils.cloneDocument(existing), existing, '')
     assert.equal(payload.content.commands[0].enabled, true)
     assert.equal(existing.embeds[0].enabled, false)
 })
@@ -118,7 +119,7 @@ test('saving an empty command opens its embed with a required field error that c
     api.showResourceEditor()
     const draft = api.state.draft
     assert.equal(api.commandError(1), undefined)
-    api.save(true); await flush()
+    await saveVersion(api)
     assert.equal(calls.some(call => call[0] === 'save'), false)
     assert.equal(api.state.embedIndex, 1)
     assert.equal(api.state.editorPane, 'embed')
@@ -133,7 +134,7 @@ test('saving an empty command opens its embed with a required field error that c
     draft.embeds[1].command = 'east'
     assert.equal(api.commandError(1), undefined)
     assert.equal(api.state.draft, draft)
-    api.save(true); await flush()
+    await saveVersion(api)
     assert.deepEqual(calls.find(call => call[0] === 'save')[2].content.commands.map(item => item.name), ['west', 'east'])
 })
 
@@ -159,7 +160,7 @@ for (const path of ['commands.1.name', 'content.commands.1.name']) {
         for (const command of ['west', 'east']) { api.addEmbed(); api.state.draft.embeds.at(-1).command = command }
         api.showResourceEditor()
         mutations.mutate = async () => { throw { isAxiosError: true, response: { status: 422, data: { errors: { [path]: ['This command name was just taken.'] } } } } }
-        api.save(); await flush()
+        await saveVersion(api)
         assert.equal(api.state.editorPane, 'embed')
         assert.equal(api.state.embedIndex, 1)
         assert.equal(api.commandError(0), undefined)
@@ -264,8 +265,9 @@ function workspaceHarness({ existing = resource(), fail = () => false, revisions
                 saved = { ...saved, ...workspaceData.workspaceDocument({ ...payload.content, author: { name: 'Author' } }, payload.collection_id, new Map()), version: version + 1 }
                 if (action === 'save') saved.history.unshift({ id: String(saved.history.length + 1), author: 'Author', summary: payload.summary ?? `Author created ${saved.title}`, at: saved.updatedAt })
             }
-            if (action === 'publish' || payload?.publish) { saved.status = 'published'; saved.published = workspaceUtils.cloneDocument(saved) }
+            if (action === 'publish') { saved.status = 'published'; saved.published = workspaceUtils.cloneDocument(saved); saved.history.unshift({ id: 'publication-1', kind: 'publication', author: 'Publisher', summary: 'Publisher published the resource.', at: saved.updatedAt }) }
             saved.hasUnpublishedChanges = workspaceUtils.workspaceHasUnpublishedChanges(saved, saved)
+            saved.canPublish = action === 'save' && saved.hasUnpublishedChanges
             return structuredClone(saved)
         },
     }
@@ -427,18 +429,18 @@ test('opening Uploads autosaves changes before releasing the editor', async () =
     assert.equal(calls.find(call => call[0] === 'autosave')[2].content.title, 'Unsaved guide')
 })
 
-test('initial creation acquires a lease and first save needs no summary modal', async () => {
+test('initial creation acquires a lease and first save requires a changelog', async () => {
     const { api, calls } = workspaceHarness()
-    api.createResource(); api.createResource()
-    await flush()
+    api.createResource(); api.createResource(); await flush()
     assert.equal(calls.filter(call => call[0] === 'create').length, 1)
-    assert.equal(api.state.mode, 'editor')
     api.state.draft.title = 'DRS Bridges'
-    api.save()
-    await flush()
-    assert.equal(api.state.saveDialog, false)
-    assert.equal(calls.find(call => call[0] === 'save')[2].summary, undefined)
-    assert.equal(api.selected.history[0].summary, 'Author created DRS Bridges')
+    api.save(); await flush()
+    assert.equal(api.state.saveDialog, true)
+    assert.equal(calls.some(call => call[0] === 'save'), false)
+    await api.confirmSave()
+    assert.equal(calls.some(call => call[0] === 'save'), false)
+    api.state.summary = 'Prepared bridge assignments.'; await api.confirmSave()
+    assert.equal(api.selected.history[0].summary, 'Prepared bridge assignments.')
     assert.equal(api.dirty, false)
 })
 
@@ -460,32 +462,30 @@ test('edited resources ask for a sentence and do not save until confirmed', asyn
     assert.equal(api.dirty, false)
 })
 
-test('Publish follows differences from live, including unsaved changes and reverting them', async () => {
+test('Publish stays blocked for unsaved and autosaved edits until a version is saved', async () => {
     const existing = resource()
     existing.status = 'published'; existing.published = workspaceUtils.cloneDocument(existing)
     existing.hasUnpublishedChanges = false; existing.history = [{ id: '1', summary: 'Created' }]
-    const { api, calls } = workspaceHarness({ existing })
+    const { api, calls, runAutosave } = workspaceHarness({ existing })
     api.createResource(); await flush()
-    assert.equal(api.canPublish, false)
     api.state.draft.title = 'New title'
-    assert.equal(api.canPublish, true)
-    api.state.draft.title = existing.title
     assert.equal(api.canPublish, false)
-    api.state.draft.body = document('Unpublished edit')
-    api.save(true); await flush()
-    assert.equal(api.state.saveDialog, true)
-    assert.equal(api.state.publishAfterSave, true)
-    assert.equal(calls.some(call => call[0] === 'save'), false)
-    api.state.summary = 'Clarified the plan'
-    await api.confirmSave()
-    assert.equal(calls.find(call => call[0] === 'save')[2].publish, true)
-    assert.equal(api.canPublish, false)
+    api.publish([existing.id]); await flush()
+    assert.equal(calls.some(call => call[0] === 'publish'), false)
+    assert.equal(api.state.confirmation.open, false)
+    await runAutosave()
     assert.equal(api.dirty, false)
-    assert.deepEqual(api.selected.published.body, document('Unpublished edit'))
-    assert.equal(api.state.mode, 'editor')
+    assert.equal(api.canPublish, false)
+    api.publish([existing.id]); await flush()
+    assert.equal(api.state.saveDialog, false)
+    assert.equal(api.state.confirmation.open, false)
+    await saveVersion(api)
+    assert.equal(api.canPublish, true)
+    api.state.draft.title = 'Another edit'
+    assert.equal(api.canPublish, false)
 })
 
-test('saved draft content stays private until publication with a changelog sentence', async () => {
+test('publishing a saved draft asks only for confirmation and creates no additional save', async () => {
     const existing = resource()
     existing.status = 'published'; existing.published = workspaceUtils.cloneDocument(existing)
     existing.hasUnpublishedChanges = false; existing.history = [{ id: '1', summary: 'Created' }]
@@ -494,16 +494,20 @@ test('saved draft content stays private until publication with a changelog sente
     api.state.draft.body = document('Saved draft')
     api.save(); api.state.summary = 'Prepared the new plan'; await api.confirmSave()
     assert.equal(api.canPublish, true)
-    assert.equal(api.dirty, false)
     assert.deepEqual(api.selected.published.body, existing.body)
-    api.save(true); await flush()
-    assert.equal(api.state.saveDialog, true)
-    api.state.summary = 'Published the new plan'
-    await api.confirmSave()
-    assert.equal(calls.filter(call => call[0] === 'save').length, 2)
-    assert.equal(calls.filter(call => call[0] === 'save').at(-1)[2].publish, true)
+    api.publish([existing.id]); await flush()
+    assert.equal(api.state.saveDialog, false)
+    assert.equal(api.state.confirmation.open, true)
+    assert.equal(api.state.confirmation.description, 'groups.resources.workspace.publish_confirmation')
+    assert.equal(calls.some(call => call[0] === 'publish'), false)
+    await api.confirm()
+    assert.equal(calls.filter(call => call[0] === 'save').length, 1)
+    assert.equal(calls.filter(call => call[0] === 'publish').length, 1)
+    assert.equal(calls.find(call => call[0] === 'publish')[2], undefined)
+    assert.equal('publish' in calls.find(call => call[0] === 'save')[2], false)
     assert.equal(api.canPublish, false)
     assert.equal(api.state.mode, 'editor')
+    assert.deepEqual(api.selected.published.body, document('Saved draft'))
 })
 
 test('automatic embed attribution and timestamps do not trigger Publish', () => {
@@ -606,19 +610,20 @@ test('a revision source preserves its author unless a different author is select
     const original = resource()
     const source = { id: '10', document: { ...workspaceUtils.cloneDocument(original), author: 'Past author', authorCharacterId: 90 } }
     const draft = workspaceUtils.cloneDocument(source.document)
-    const payload = resourceSavePayload(draft, original, 'Reused.', false, source)
+    const payload = resourceSavePayload(draft, original, 'Reused.', source)
     assert.equal(payload.source_revision_id, 10)
     assert.equal('character_id' in payload.content, false)
     draft.author = 'New author'; draft.authorCharacterId = 15
-    assert.equal(resourceSavePayload(draft, original, 'Reattributed.', false, source).content.character_id, 15)
+    assert.equal(resourceSavePayload(draft, original, 'Reattributed.', source).content.character_id, 15)
 })
 
-test('publish saves atomically and retains the editor, then confirmed deletion updates the library', async () => {
+test('publishing retains the editor, then confirmed deletion updates the library', async () => {
     const { api, calls } = workspaceHarness()
     api.createResource(); await flush()
     api.state.draft.title = 'Ready guide'
-    api.save(true); await flush()
-    assert.equal(calls.find(call => call[0] === 'save')[2].publish, true)
+    await saveVersion(api)
+    api.publish(['42']); await flush(); await api.confirm()
+    assert.equal(calls.filter(call => call[0] === 'save').length, 1)
     assert.equal(api.state.mode, 'editor')
     assert.equal(api.canPublish, false)
     assert.equal(api.selected.status, 'published')
@@ -655,7 +660,7 @@ test('payload preserves resource attribution and editable embed fields but omits
     draft.activityTypeIds = [3, 8]; draft.activities = ['Same label', 'Same label']
     draft.cover = `/resource-assets/${uuid}`
     draft.embeds = [{ enabled: true, command: 'bridges', title: 'Bridge plan', description: 'Both groups', color: '#12abcd', url: 'https://example.com', author: 'Author', authorUrl: 'https://example.com/author', authorIcon: 'https://example.com/avatar.png', image: draft.cover, thumbnail: 'https://example.com/thumb.png', timestamp: '2026-09-10T10:00:00Z', fields: [{ name: 'West', value: 'Party A', inline: true }] }]
-    const { content } = resourceSavePayload(draft, original, 'Updated.', true)
+    const { content } = resourceSavePayload(draft, original, 'Updated.')
     assert.equal(content.slug, original.slug)
     assert.equal('character_id' in content, false)
     assert.deepEqual(content.activity_type_ids, [3, 8])
@@ -667,7 +672,7 @@ test('payload preserves resource attribution and editable embed fields but omits
     assert.equal('timestamp' in content.commands[0].embed, false)
     assert.equal('updated_at' in content.commands[0], false)
     draft.author = 'Character'; draft.authorCharacterId = 20
-    assert.equal(resourceSavePayload(draft, original, '', false).content.character_id, 20)
+    assert.equal(resourceSavePayload(draft, original, '').content.character_id, 20)
 })
 
 test('lease requests serialize versions and remain active through saving and publication', async () => {
@@ -806,7 +811,7 @@ for (const status of [422, 409, 500]) {
         assert.equal(api.state.conflict, false)
         assert.deepEqual(api.state.fieldErrors, {})
 
-        api.save(); await flush()
+        await saveVersion(api)
         assert.deepEqual(attempts.at(-1), ['save', previousVersion], 'manual saves retain the known version for conflict protection')
         assert.ok(api.state.error)
         if (status === 422) assert.equal(api.fieldError('title'), 'Title rejected')
@@ -839,15 +844,13 @@ test('reopening a failed-save draft recovers it, but never overwrites a newer se
     }
 })
 
-for (const publish of [false, true]) {
-    test(`explicit ${publish ? 'publish' : 'save'} focuses the invalid field while showing its inline message`, async () => {
+    test('explicit save focuses the invalid field while showing its inline message', async () => {
         let focused = 0
         const fields = [{ dataset: { resourceField: 'title' }, querySelector: () => ({ focus: () => focused++ }), scrollIntoView() {} }]
         const { api } = workspaceHarness({ fields })
         api.createResource(); await flush()
         api.state.draft.title = ''
-        api.save(publish); await flush()
+        api.save(); await flush()
         assert.equal(focused, 1)
         assert.equal(api.fieldError('title'), 'groups.resources.workspace.validation.required')
     })
-}

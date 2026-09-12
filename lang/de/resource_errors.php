@@ -1,6 +1,8 @@
 <?php
 
 return [
+    'save_before_publish' => 'Speichere vor dem Veröffentlichen eine Version mit Änderungsbeschreibung.',
+    'resource_reference' => 'Wähle eine verfügbare Ressource dieser Gruppe aus.',
     'library_fields' => [
         'customization.title' => 'Bibliothekstitel',
         'customization.introduction' => 'Einleitung',
@@ -36,6 +38,7 @@ return [
         'embed_fields_item_name' => 'Feldname',
         'embed_fields_item_value' => 'Feldwert',
     ],
+    'pin_limit' => 'Du kannst bis zu :limit Ressourcen anheften. Löse eine, um Platz zu schaffen.',
     'archived' => 'Stelle diese archivierte Ressource vor dem Bearbeiten oder Veröffentlichen als Entwurf wieder her.',
     'home_protected' => 'Home muss im Stammverzeichnis bleiben, für alle sichtbar und veröffentlicht sein. Die Seite kann nicht verschoben oder gelöscht werden.',
     'collection_name_invalid' => 'Erlaubt sind nur A-Z, a-z, 0-9, Leerzeichen und .-(){}[];_&.',

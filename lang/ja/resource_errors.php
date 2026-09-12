@@ -1,6 +1,8 @@
 <?php
 
 return [
+    'save_before_publish' => '公開する前に変更内容を入力してバージョンを保存してください。',
+    'resource_reference' => 'このグループの利用可能なリソースを選択してください。',
     'library_fields' => [
         'customization.title' => 'ライブラリ名',
         'customization.introduction' => '紹介文',
@@ -36,6 +38,7 @@ return [
         'embed_fields_item_name' => 'フィールド名',
         'embed_fields_item_value' => 'フィールド値',
     ],
+    'pin_limit' => 'ピン留めできるリソースは:limit件までです。追加するには別のピン留めを解除してください。',
     'archived' => '編集または公開する前に、アーカイブ済みリソースを下書きとして復元してください。',
     'home_protected' => 'Home はライブラリのルートに配置され、全員に公開される必要があります。移動や削除はできません。',
     'collection_name_invalid' => '使用できる文字は A-Z、a-z、0-9、半角スペース、および .-(){}[];_& のみです。',

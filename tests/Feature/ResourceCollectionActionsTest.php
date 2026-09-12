@@ -42,6 +42,20 @@ it('accepts only the permitted name characters on collection creation and renami
         ->assertJsonPath('data.name', $name.' A');
 });
 
+it('changes and clears collection icons without changing the name or location', function () {
+    $parent = ($this->folder)('Parent');
+    $collection = ($this->folder)('Guides', $parent->id, 4);
+    $this->putJson(($this->endpoint)('update', $collection), ['icon' => 'i-lucide-swords'])->assertOk()
+        ->assertJsonPath('data.icon', 'i-lucide-swords')->assertJsonPath('data.name', 'Guides')
+        ->assertJsonPath('data.parent_id', $parent->id)->assertJsonPath('data.sort_order', 4)->assertJsonPath('data.slug', 'guides');
+    $this->get(route('groups.dashboard.resources.manage', $this->group))->assertInertia(fn (Assert $page) => $page
+        ->where('collections', fn ($items) => collect($items)->firstWhere('id', $collection->id)['icon'] === 'i-lucide-swords'));
+    $this->putJson(($this->endpoint)('update', $collection), ['icon' => '<svg>'])->assertUnprocessable()->assertJsonValidationErrors('icon');
+    expect($collection->fresh()->icon)->toBe('i-lucide-swords');
+    $this->putJson(($this->endpoint)('update', $collection), ['icon' => null])->assertOk()->assertJsonPath('data.icon', null);
+    $this->assertDatabaseHas('audit_logs', ['action' => 'group.resources.collection_saved', 'subject_id' => $collection->id]);
+});
+
 it('rejects disallowed characters on create and rename without changing existing collections', function () {
     $this->withoutMiddleware(ThrottleRequests::class);
     $collection = ($this->folder)('Original');
@@ -118,6 +132,7 @@ it('enforces collection management permissions for every action', function (stri
     $this->actingAs($user);
     $folder = ($this->folder)('Folder');
     $this->putJson(($this->endpoint)('update', $folder), ['name' => 'Renamed'])->assertForbidden();
+    $this->putJson(($this->endpoint)('update', $folder), ['icon' => 'i-lucide-swords'])->assertForbidden();
     $this->postJson(($this->endpoint)('reorder', $folder), ['offset' => 1])->assertForbidden();
     $this->deleteJson(($this->endpoint)('destroy', $folder))->assertForbidden();
     $this->postJson(($this->endpoint)('store'), ['name' => 'New', 'slug' => 'new'])->assertForbidden();

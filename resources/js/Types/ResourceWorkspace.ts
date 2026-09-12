@@ -20,12 +20,14 @@ export type WorkspaceDocument = {
     authorCharacterId?: number | null; activityTypeIds?: number[]
     cover: string; embeds: WorkspaceEmbed[]
 }
-export type WorkspaceRevision = { id: string; author: string; authorAvatar?: string; summary: string; at: string }
+export type WorkspaceRevision = { id: string; kind?: 'edit' | 'publication'; author: string; authorAvatar?: string; summary: string; at: string }
 export type WorkspaceRevisionSource = { id: string; document: WorkspaceDocument }
 export type WorkspaceResource = WorkspaceDocument & {
     id: string; uuid?: string; isHome?: boolean; status: WorkspaceStatus; order: number; updatedAt: string; version: number; slug: string
     history: WorkspaceRevision[]; published: WorkspaceDocument | null; hasUnpublishedChanges?: boolean
     readerUrls?: ResourceReaderUrls | null
+    isPinned: boolean
+    canPublish: boolean
 }
 export type WorkspaceTreeItem =
     | { kind: 'collection'; collection: WorkspaceCollection; depth: number; hasChildren: boolean; count: number }
@@ -39,13 +41,12 @@ export type ResourceWorkspaceState = {
     error: string
     historyOpen: boolean
     sourceRevisionId: string | null
-    saveDialog: boolean; publishAfterSave: boolean
+    saveDialog: boolean
     commandValidationAttempted: boolean
     commandErrors: Record<number, { value: string; message: string }>
     fieldErrors: ResourceFieldErrors
     autosaveError: boolean
     conflict: boolean
-    publishIds: string[]
     createResourceDialog: boolean; createCollectionId: string
     moveDialog: boolean; moveTarget: string; moveIds: string[]
     confirmation: { open: boolean; title: string; description: string; label: string; severity?: 'warning' | 'error' }
@@ -61,6 +62,9 @@ export type ResourceWorkspaceController = {
     readonly collectionActions: ResourceCollectionActions
     readonly loadingResource: boolean
     readonly busy: boolean
+    readonly pinnedCount: number
+    readonly pinLimit: number
+    togglePin: (id: string) => void
     readonly autosaving: boolean
     readonly canRetrySave: boolean
     readonly library: ResourceLibrary | undefined
@@ -88,7 +92,7 @@ export type ResourceWorkspaceController = {
     back: () => void
     createResource: (collectionId?: string | null) => void
     organize: (kind: 'collection' | 'resource', id: string, parentId: string | null, beforeId?: string | null) => void
-    save: (publish?: boolean) => void
+    save: () => void
     confirmSave: () => Promise<void>
     useRevision: (id: string) => void
     publish: (ids: string[]) => void

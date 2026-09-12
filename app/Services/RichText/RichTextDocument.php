@@ -2,6 +2,8 @@
 
 namespace App\Services\RichText;
 
+use App\Support\VideoEmbedUrl;
+use Illuminate\Support\Str;
 use Illuminate\Validation\ValidationException;
 use Tiptap\Editor;
 use Tiptap\Extensions;
@@ -30,10 +32,11 @@ class RichTextDocument
             new Marks\Highlight(['multicolor' => true]), new Marks\TextStyle,
             new Extensions\Color, new Extensions\FontFamily,
             new DocumentStyles,
+            new ResourceLinkNode, new VideoEmbedNode,
         ]]);
     }
 
-    public function validate(mixed $document, string $field = 'body', int $maxText = 200000): array
+    public function validate(mixed $document, string $field = 'body', int $maxText = 200000, bool $resourceBlocks = false): array
     {
         $fail = fn () => throw ValidationException::withMessages([$field => __('rich_text.invalid')]);
         if (! is_array($document) || ($document['type'] ?? null) !== 'doc' || strlen(json_encode($document)) > 2000000) {
@@ -41,12 +44,13 @@ class RichTextDocument
         }
         $count = 0;
         $length = 0;
-        $walk = function (mixed $node, int $depth = 0) use (&$walk, &$count, &$length, $maxText, $fail): array {
+        $blocks = [...self::BLOCKS, ...($resourceBlocks ? ['resourceLink', 'videoEmbed'] : [])];
+        $walk = function (mixed $node, int $depth = 0) use (&$walk, &$count, &$length, $maxText, $fail, $blocks): array {
             if (! is_array($node) || array_is_list($node) || ++$count > 20000 || $depth > 32 || array_diff(array_keys($node), ['type', 'attrs', 'content', 'marks', 'text'])) {
                 $fail();
             }
             $type = $node['type'] ?? '';
-            if (! in_array($type, [...self::BLOCKS, 'doc', 'text', 'hardBreak', 'listItem', 'taskItem', 'tableRow', 'tableCell', 'tableHeader'], true)) {
+            if (! in_array($type, [...$blocks, 'doc', 'text', 'hardBreak', 'listItem', 'taskItem', 'tableRow', 'tableCell', 'tableHeader'], true)) {
                 $fail();
             }
             if ($type === 'doc' && $depth !== 0) {
@@ -66,6 +70,12 @@ class RichTextDocument
                 $fail();
             }
             $attrs = $this->attributes($type, $node['attrs'] ?? [], $fail);
+            if ($type === 'videoEmbed') {
+                $length += mb_strlen($attrs['title'] ?? '');
+                if ($length > $maxText) {
+                    $fail();
+                }
+            }
             if ($attrs !== []) {
                 $result['attrs'] = $attrs;
             }
@@ -92,7 +102,7 @@ class RichTextDocument
                 $fail();
             }
             $allowed = match ($type) {
-                'doc', 'blockquote', 'listItem', 'taskItem', 'tableCell', 'tableHeader' => self::BLOCKS,
+                'doc', 'blockquote', 'listItem', 'taskItem', 'tableCell', 'tableHeader' => $blocks,
                 'paragraph', 'heading' => ['text', 'hardBreak'],
                 'codeBlock' => ['text'],
                 'bulletList', 'orderedList' => ['listItem'],
@@ -130,7 +140,9 @@ class RichTextDocument
             'tableCell', 'tableHeader' => ['colspan', 'rowspan', 'colwidth', 'align'],
             'link' => ['href', 'target', 'rel', 'class', 'title'],
             'textStyle' => ['color', 'backgroundColor', 'fontSize', 'fontFamily', 'lineHeight'],
-            'highlight' => ['color'], default => [],
+            'highlight' => ['color'],
+            'resourceLink' => ['resourceId'], 'videoEmbed' => ['url', 'title'],
+            default => [],
         };
         if (! is_array($attributes) || array_diff(array_keys($attributes), $allowed)) {
             $fail();
@@ -148,6 +160,8 @@ class RichTextDocument
                 'src' => is_string($value) && $this->safeUrl($value, true),
                 'href' => is_string($value) && $this->safeUrl($value),
                 'alt', 'title' => is_string($value) && mb_strlen($value) <= 1000,
+                'resourceId' => is_string($value) && Str::isUuid($value),
+                'url' => is_string($value) && VideoEmbedUrl::normalize($value) !== null,
                 'language' => is_string($value) && preg_match('/^[\w+#.-]{0,50}$/D', $value),
                 'color', 'backgroundColor' => is_string($value) && (preg_match('/^#[a-f0-9]{3}(?:[a-f0-9]{3})?$/iD', $value) || preg_match('/^rgb\(\s*(?:\d{1,3}\s*,\s*){2}\d{1,3}\s*\)$/D', $value)),
                 'fontSize' => is_string($value) && preg_match('/^(?:[89]|[1-6][0-9]|7[0-2])px$/D', $value),
@@ -171,6 +185,15 @@ class RichTextDocument
         if ($type === 'link') {
             unset($attributes['class']);
             $attributes['rel'] = 'nofollow noopener noreferrer';
+        }
+        if ($type === 'resourceLink' && empty($attributes['resourceId'])) {
+            $fail();
+        }
+        if ($type === 'videoEmbed') {
+            if (empty($attributes['url'])) {
+                $fail();
+            }
+            $attributes['url'] = VideoEmbedUrl::normalize($attributes['url']);
         }
 
         return $attributes;
@@ -224,10 +247,10 @@ class RichTextDocument
         return (bool) filter_var($url, FILTER_VALIDATE_URL) && in_array(strtolower(parse_url($url, PHP_URL_SCHEME) ?? ''), $image ? ['https', 'http'] : ['https', 'http', 'mailto'], true);
     }
 
-    public function html(array $document): string
+    public function html(array $document, bool $resourceBlocks = false): string
     {
         // Only normalized allowlisted nodes/attributes reach the renderer.
-        return $this->editor()->setContent($this->validate($document))->getHTML();
+        return $this->editor()->setContent($this->validate($document, resourceBlocks: $resourceBlocks))->getHTML();
     }
 
     public function text(array $document): string
@@ -238,6 +261,9 @@ class RichTextDocument
             }
             if (($node['type'] ?? '') === 'hardBreak') {
                 return "\n";
+            }
+            if (($node['type'] ?? '') === 'videoEmbed') {
+                return $node['attrs']['title'] ?? '';
             }
             $separator = in_array($node['type'], ['paragraph', 'heading', 'codeBlock']) ? '' : "\n";
 

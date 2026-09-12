@@ -1,6 +1,8 @@
 <?php
 
 return [
+    'save_before_publish' => 'Save a version with a changelog before publishing.',
+    'resource_reference' => 'Choose an available resource from this group.',
     'library_fields' => [
         'customization.title' => 'Library title',
         'customization.introduction' => 'Introduction',
@@ -36,6 +38,7 @@ return [
         'embed_fields_item_name' => 'field name',
         'embed_fields_item_value' => 'field value',
     ],
+    'pin_limit' => 'You can pin up to :limit resources. Unpin one to make room.',
     'archived' => 'Restore this archived resource as a draft before editing or publishing it.',
     'home_protected' => 'Home must stay at the library root, visible to everyone and published. It cannot be moved or deleted.',
     'collection_name_invalid' => 'Use only A-Z, a-z, 0-9, spaces and .-(){}[];_&.',

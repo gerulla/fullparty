@@ -15,7 +15,7 @@ class ResourceCollectionRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => ['required', 'string', 'max:160', 'regex:/\A[A-Za-z0-9 .(){}\[\];_&-]+\z/'],
+            'name' => [$this->route('collection') ? 'sometimes' : 'required', 'string', 'max:160', 'regex:/\A[A-Za-z0-9 .(){}\[\];_&-]+\z/'],
             'slug' => [$this->route('collection') ? 'sometimes' : 'required', 'string', 'max:160', 'regex:/^[a-z0-9]+(?:-[a-z0-9]+)*$/'],
             'parent_id' => ['nullable', 'integer'],
             'icon' => ['nullable', 'string', 'max:100', 'regex:/^i-lucide-[a-z0-9-]+$/'],

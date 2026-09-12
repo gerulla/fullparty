@@ -14,7 +14,36 @@ export type ResourceLibraryCustomization = {
 export type ResourceLibrarySettings = { visibility: ResourceLibraryVisibility; customization?: ResourceLibraryCustomization }
 export type ResourceLibrarySettingsErrors = Record<string, string>
 
-export type ResourceReaderDocument = { id: number; title: string; description: string; body: RichTextDocument; metadata_image_id?: string | null }
+export type ResourceReaderSummary = {
+    id: number; slug: string; collection_id: number | null; is_home: boolean
+    title: string; description: string; tags: string[]; activity_type_ids: number[]
+    metadata_image_id: string | null; author: ResourceAuthorData | null
+    access_level: 'everyone' | 'moderator' | 'admin'; published_at: string | null
+}
+export type ResourceReaderDocument = ResourceReaderSummary & {
+    commands: ResourceReaderCommand[]
+    body: RichTextDocument
+    images: { uuid: string; url: string; alt_text: string; caption: string | null }[]
+    related_resources: ResourceReaderSummary[]
+    linked_resources: ResourceReaderSummary[]
+    history: ResourceReaderHistory
+}
+export type ResourceReaderCommand = { name: string; title: string }
+export type ResourceReaderSection = { id: string; title: string; depth: number }
+export type ResourceReaderHistoryEntry = { id: number | string; kind?: 'edit' | 'publication'; editor: { name?: string; avatar_url?: string | null }; summary: string | null; created_at: string | null }
+export type ResourceReaderHistory = { data: ResourceReaderHistoryEntry[]; has_more: boolean }
+export type ResourceReaderCollection = ResourceCollectionData & { icon: string | null; resource_count: number }
+export type ResourceReaderFilters = { q?: string | null; tag?: string | null; activity_type_id?: number | null; page?: number }
+export type ResourceReaderSeo = { title: string; description: string; url: string; image: string | null; type: string }
+export type ResourceReaderPage = {
+    group: { name: string; slug: string; description?: string | null; datacenter?: string | null; profile_picture_url?: string | null; banner_image_url?: string | null }
+    library: ResourceLibrary
+    collections: ResourceReaderCollection[]
+    resources: { data: ResourceReaderSummary[]; current_page: number; last_page: number; per_page: number; total: number }
+    resource?: ResourceReaderDocument
+    filters: ResourceReaderFilters
+    reader: { selected_collection_id: number | null; activities: { id: number; name: Record<string, string> }[]; recent_resources: ResourceReaderSummary[]; pinned_resources: ResourceReaderSummary[] }
+}
 
 export type ResourceLibrary = {
     visibility: ResourceLibraryVisibility
@@ -30,7 +59,7 @@ export type ResourceManagementGroup = {
     permissions: { can_update_group_settings: boolean }
 }
 
-export type ResourceCollectionData = { id: number; parent_id: number | null; name: string; slug: string; sort_order?: number }
+export type ResourceCollectionData = { id: number; parent_id: number | null; name: string; slug: string; icon?: string | null; sort_order?: number }
 export type ResourceAuthorData = { id?: number | null; name: string; avatar_url?: string | null }
 export type ResourceReaderUrls = { public: string | null; group: string }
 export type ResourceSnapshot = {
@@ -52,14 +81,17 @@ export type ResourceRevisionData = {
 export type ResourceSummaryData = {
     id: number; uuid?: string; collection_id: number | null; is_home?: boolean; slug: string; status: string; version: number; sort_order: number; updated_at: string
     has_unpublished_changes: boolean
+    can_publish: boolean
+    is_pinned: boolean
     reader_urls: ResourceReaderUrls | null
     summary: ResourceSnapshot; commands: ResourceCommandData[]
 }
 export type ResourceDetailData = Omit<ResourceSummaryData, 'summary' | 'commands'> & {
     working_copy: ResourceSnapshot | null; published: ResourceSnapshot | null
-    history: { id: number; editor: ResourceAuthorData; summary: string; created_at: string }[]
+    history: { id: number | string; kind?: 'edit' | 'publication'; editor: ResourceAuthorData; summary: string; created_at: string }[]
 }
 export type ResourceWorkspaceData = {
+    pin_limit: number
     editor_user_id?: number
     embed_context?: { group_icon_url: string | null; public_base_url: string }
     resources: ResourceSummaryData[]

@@ -1,3 +1,3 @@
 <?php
 
-return ['created' => ':author created :title'];
+return ['created' => ':author created :title', 'published' => ':user published the resource.'];

@@ -23,9 +23,9 @@ export function useResourceWorkspace(props: { groupSlug: string; collections: Re
         collections: props.collections.map(workspaceCollection), resources: props.data.resources.map(item => workspaceResource(item, activities.value)),
         scope: 'all', selectedId: null, checked: [], query: '', status: 'all', access: 'all', activity: 'all',
         mode: 'library', draft: null, summary: '', inspectorTab: 'resource', embedIndex: 0, editorPane: 'resource',
-        historyOpen: false, sourceRevisionId: null, saveDialog: false, publishAfterSave: false, error: '',
+        historyOpen: false, sourceRevisionId: null, saveDialog: false, error: '',
         commandValidationAttempted: false, commandErrors: {},
-        fieldErrors: {}, autosaveError: false, conflict: false, publishIds: [],
+        fieldErrors: {}, autosaveError: false, conflict: false,
         createResourceDialog: false, createCollectionId: '', moveDialog: false, moveTarget: 'root', moveIds: [],
         confirmation: { open: false, title: '', description: '', label: '' },
     })
@@ -78,7 +78,7 @@ export function useResourceWorkspace(props: { groupSlug: string; collections: Re
             const document = cloneDocument(state.draft)
             const sent = JSON.stringify(document)
             try {
-                const result = await mutations.mutate(original.id, original.version, 'autosave', resourceSavePayload(document, original, '', false, revisionSource))
+                const result = await mutations.mutate(original.id, original.version, 'autosave', resourceSavePayload(document, original, '', revisionSource))
                 if (!result || state.selectedId !== original.id || state.mode !== 'editor') return false
                 replace(result)
                 const saved = cloneDocument(result)
@@ -227,7 +227,7 @@ export function useResourceWorkspace(props: { groupSlug: string; collections: Re
     }
     async function loadRevision(id: string) {
         const resource = selected.value
-        if (state.mode !== 'editor' || !resource || !resource.history.some(item => item.id === id)) return
+        if (state.mode !== 'editor' || !resource || !resource.history.some(item => item.id === id && item.kind !== 'publication')) return
         let revision: ResourceRevisionData | undefined
         if (!await run(async () => { revision = await mutations.revision(resource.id, id) }) || !revision) return
         const snapshot = revision.snapshot
@@ -307,10 +307,10 @@ export function useResourceWorkspace(props: { groupSlug: string; collections: Re
             throw error
         }
     }
-    async function persist(publish: boolean) {
+    async function persist() {
         if (!state.draft || !selected.value) return
         const original = selected.value
-        const result = await mutations.mutate(original.id, original.version, 'save', resourceSavePayload(cloneDocument(state.draft), original, state.summary.trim(), publish, revisionSource))
+        const result = await mutations.mutate(original.id, original.version, 'save', resourceSavePayload(cloneDocument(state.draft), original, state.summary.trim(), revisionSource))
         if (!result) return
         replace(result); state.saveDialog = false; state.summary = ''
         resetCommandErrors()
@@ -348,11 +348,21 @@ export function useResourceWorkspace(props: { groupSlug: string; collections: Re
     return {
         state,
         get selected() { return selected.value }, get visibleResources() { return visibleResources.value }, get dirty() { return dirty.value },
-        get canPublish() { return !!selected.value && workspaceHasUnpublishedChanges(selected.value, state.draft ?? undefined) },
+        get canPublish() { return !!selected.value?.canPublish && !dirty.value && !autosave.saving.value && !state.conflict },
         get creatingResource() { return api.creatingResource.value }, get creatingCollection() { return api.creatingCollection.value },
         collectionActions,
         get loadingResource() { return loadingResource.value }, get authors() { return props.data.authors }, get activities() { return [...activities.value.values()] },
         get busy() { return busy.value },
+        get pinnedCount() { return state.resources.filter(item => item.isPinned).length },
+        get pinLimit() { return props.data.pin_limit },
+        togglePin(id) {
+            guard(async () => {
+                const resource = state.resources.find(item => item.id === id)
+                if (!resource || resource.isHome || (resource.status === 'archived' && !resource.isPinned)) return
+                const result = await mutations.mutate(id, resource.version, 'pin', { is_pinned: !resource.isPinned })
+                if (result) replace(result)
+            })
+        },
         get autosaving() { return autosave.saving.value },
         get canRetrySave() { return !recoveryConflict },
         fieldError,
@@ -444,35 +454,23 @@ export function useResourceWorkspace(props: { groupSlug: string; collections: Re
             if (!urls) return undefined
             return props.library?.visibility === 'public' && urls.public ? urls.public : urls.group
         },
-        save(publish = false) {
+        save() {
             if (busy.value || autosave.saving.value || !state.draft || !selected.value || state.conflict) return
             if (!validateDraft()) return
-            if (publish && !workspaceHasUnpublishedChanges(selected.value, state.draft)) return
-            state.error = ''; state.summary = ''; state.publishAfterSave = publish; state.publishIds = []
-            if (!selected.value.history.length) { void run(() => persist(publish)); return }
+            state.error = ''; state.summary = ''
             state.saveDialog = true
         },
         async confirmSave() {
-            if (busy.value || (!state.publishIds.length && !validateDraft())) return
+            if (busy.value || !validateDraft()) return
             if (!state.summary.trim() || state.summary.length > 300 || /[\r\n]/.test(state.summary)) {
                 state.fieldErrors.summary = { message: label('summary_required'), value: state.summary }; return
             }
-            if (state.publishIds.length) {
-                await run(async () => {
-                    for (const id of [...state.publishIds]) {
-                        const resource = state.resources.find(item => item.id === id)
-                        if (!resource) continue
-                        const result = await mutations.mutate(id, resource.version, 'publish', { summary: state.summary.trim() })
-                        if (result) replace(result)
-                        state.publishIds = state.publishIds.filter(value => value !== id)
-                        state.checked = state.checked.filter(value => value !== id)
-                    }
-                    state.saveDialog = false
-                })
-            } else await run(() => persist(state.publishAfterSave))
+            await run(persist)
         },
         useRevision(id) { void loadRevision(id) },
         publish(ids) {
+            if (busy.value || autosave.saving.value || state.conflict) return
+            if (dirty.value && ids.includes(state.selectedId ?? '')) { state.error = label('save_before_publish'); return }
             void run(async () => {
                 const resources: WorkspaceResource[] = []
                 for (const id of [...new Set(ids)]) {
@@ -481,15 +479,24 @@ export function useResourceWorkspace(props: { groupSlug: string; collections: Re
                     if (!loaded.has(id)) { resource = await api.load(id); replace(resource) }
                     resources.push(resource)
                 }
-                if (resources.some(resource => resource.history.length)) {
-                    state.publishIds = resources.map(resource => resource.id); state.summary = ''; state.publishAfterSave = true; state.saveDialog = true
-                    return
-                }
-                for (const resource of resources) {
-                    const id = resource.id
-                    const result = await mutations.mutate(id, resource.version, 'publish')
-                    if (result) replace(result)
-                    state.checked = state.checked.filter(value => value !== id)
+                if (!resources.length) return
+                if (resources.some(resource => !resource.canPublish)) { state.error = label('save_before_publish'); return }
+                state.confirmation = { open: true, title: label('publish'), description: label('publish_confirmation'), label: label('publish') }
+                const remaining = resources.map(resource => resource.id)
+                confirmAction = async () => {
+                    if (dirty.value && remaining.includes(state.selectedId ?? '')) throw new Error('unsaved_resource')
+                    for (const id of [...remaining]) {
+                        const resource = state.resources.find(item => item.id === id)!
+                        const result = await mutations.mutate(id, resource.version, 'publish')
+                        if (result) {
+                            replace(result)
+                            if (state.mode === 'editor' && state.selectedId === id) {
+                                state.draft = cloneDocument(result); savedDraft.value = JSON.stringify(state.draft)
+                            }
+                        }
+                        remaining.splice(remaining.indexOf(id), 1)
+                        state.checked = state.checked.filter(value => value !== id)
+                    }
                 }
             })
         },

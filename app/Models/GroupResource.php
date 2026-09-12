@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Str;
 
@@ -17,6 +18,8 @@ class GroupResource extends Model
     public const ACCESS_LEVELS = ['everyone', 'moderator', 'admin'];
 
     public const MAX_COMMANDS = 15;
+
+    public const MAX_PINS = 6;
 
     protected $guarded = ['id'];
 
@@ -60,6 +63,11 @@ class GroupResource extends Model
     public function revisions(): HasMany
     {
         return $this->hasMany(GroupResourceRevision::class, 'resource_id');
+    }
+
+    public function latestRevision(): HasOne
+    {
+        return $this->hasOne(GroupResourceRevision::class, 'resource_id')->latestOfMany();
     }
 
     public function commands(): HasMany

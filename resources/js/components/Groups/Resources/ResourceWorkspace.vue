@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, provide, ref, watch } from 'vue'
+import { computed, defineAsyncComponent, provide, ref, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useResourceWorkspace } from '@/composables/useResourceWorkspace'
 import type { ResourceCollectionData, ResourceDetailData, ResourceLibrary, ResourceWorkspaceData } from '@/Types/GroupResources'
@@ -29,6 +29,8 @@ const l = (key: string) => t(`groups.resources.workspace.${key}`)
 const showCollections = ref(false)
 watch(() => workspace.collectionActions.state.editing, edit => { if (edit) showCollections.value = true })
 const folders = computed(() => [{ value: 'root', label: l('root') }, ...state.collections.map(item => ({ value: item.id, label: item.name }))])
+const ResourceCollectionIconModal = defineAsyncComponent(() => import('./ResourceCollectionIconModal.vue'))
+const iconCollection = computed(() => state.collections.find(item => item.id === workspace.collectionActions.state.iconCollectionId))
 </script>
 
 <template>
@@ -72,6 +74,7 @@ const folders = computed(() => [{ value: 'root', label: l('root') }, ...state.co
                 </div>
             </template>
         </UModal>
+        <ResourceCollectionIconModal v-if="iconCollection" :key="iconCollection.id" :name="iconCollection.name" :icon="iconCollection.icon" :busy="workspace.collectionActions.state.busy" :error="workspace.collectionActions.state.error" @close="workspace.collectionActions.closeIconPicker()" @select="workspace.collectionActions.saveIcon" />
         <ResourceSaveModal :workspace="workspace" />
         <ConfirmationModal v-model:open="state.confirmation.open" :title="state.confirmation.title" :description="state.error" :warning-text="state.confirmation.description" :confirm-label="state.confirmation.label" :severity="state.confirmation.severity ?? 'warning'" :confirm-loading="workspace.busy" :on-confirm="workspace.confirm" @close="state.confirmation.open = false" />
         <UModal v-model:open="state.historyOpen" :title="l('edit_history')" :description="workspace.selected?.title">

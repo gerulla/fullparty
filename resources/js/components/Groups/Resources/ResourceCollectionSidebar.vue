@@ -43,6 +43,7 @@ watch(() => props.workspace.state.draft?.embeds.length, () => {
 })
 const shortcuts = computed(() => [
     { id: 'all', label: l('all_resources'), icon: 'i-lucide-shapes', count: props.workspace.state.resources.filter(item => item.status !== 'archived').length },
+    { id: 'pinned', label: l('pinned'), icon: 'i-lucide-pin', count: props.workspace.state.resources.filter(item => item.isPinned && item.status !== 'archived').length },
     { id: 'uploads', label: t('groups.resources.uploads.title'), icon: 'i-lucide-images', count: null },
     { id: 'drafts', label: l('drafts'), icon: 'i-lucide-folder', count: props.workspace.state.resources.filter(item => workspaceHasUnpublishedChanges(item)).length },
     { id: 'archived', label: l('archive'), icon: 'i-lucide-archive', count: props.workspace.state.resources.filter(item => item.status === 'archived').length },
@@ -71,7 +72,8 @@ const folderMenus = computed(() => {
         siblings.forEach(({ id }, index) => {
             const dots: ContextMenuItem[][] = [
                 [{ label: l('new_resource'), icon: 'i-lucide-file-plus', onSelect: () => props.workspace.createResource(id) }],
-                [{ label: l('rename'), icon: 'i-lucide-pencil', onSelect: () => actions.value.rename(id) }],
+                [{ label: l('rename'), icon: 'i-lucide-pencil', onSelect: () => actions.value.rename(id) },
+                    { label: l('change_icon'), icon: 'i-lucide-shapes', onSelect: () => actions.value.changeIcon(id) }],
                 [{ label: l('move_up'), icon: 'i-lucide-arrow-up', disabled: index === 0, onSelect: () => { void actions.value.reorder(id, -1) } },
                     { label: l('move_down'), icon: 'i-lucide-arrow-down', disabled: index === siblings.length - 1, onSelect: () => { void actions.value.reorder(id, 1) } }],
                 [{ label: l('delete'), icon: 'i-lucide-trash-2', color: 'error', onSelect: () => { void actions.value.remove(id) } }],
@@ -103,8 +105,8 @@ function toggle(id: string) { collapsed.value = collapsed.value.includes(id) ? c
                     <UContextMenu v-if="item.kind === 'collection'" :items="folderMenu(item.collection.id, true)" :disabled="menuDisabled || item.collection.id === temporaryId" :content="menuContent">
                     <div class="collection-row" :class="[{ active: workspace.state.scope === item.collection.id && !workspace.selected, 'current-collection': workspace.state.scope === item.collection.id }, drag.classes(item)]" :style="{ paddingLeft: `${6 + item.depth * 18}px` }" :draggable="drag.canDrag(item)" @dragstart.stop="drag.start($event, item)" @dragend="drag.end()" @dragover.stop="drag.over($event, item)" @drop.stop="drag.drop($event, item)" @contextmenu.stop>
                         <button v-if="item.hasChildren" class="folder-chevron" :aria-label="item.collection.name" :aria-expanded="!collapsed.includes(item.collection.id)" @click="toggle(item.collection.id)"><UIcon :name="collapsed.includes(item.collection.id) ? 'i-lucide-chevron-right' : 'i-lucide-chevron-down'" /></button><span v-else class="folder-chevron" />
-                        <div v-if="editing(item.collection.id)" class="folder-link"><UIcon name="i-lucide-folder" class="collection-folder-icon" /><ResourceCollectionNameInput ref="nameInputs" :actions="actions" /></div>
-                        <button v-else class="folder-link" :title="item.collection.name" :aria-current="workspace.state.scope === item.collection.id ? 'page' : undefined" @click="workspace.browse(item.collection.id)" @keydown.f2.prevent="actions.rename(item.collection.id)"><UIcon name="i-lucide-folder" class="collection-folder-icon" /><span class="folder-name">{{ item.collection.name }}</span><span class="folder-count">{{ item.count }}</span></button>
+                        <div v-if="editing(item.collection.id)" class="folder-link"><UIcon name="i-lucide-folder" class="collection-folder-icon" /><UIcon v-if="item.collection.icon !== 'i-lucide-folder'" :name="item.collection.icon" class="size-4 shrink-0" /><ResourceCollectionNameInput ref="nameInputs" :actions="actions" /></div>
+                        <button v-else class="folder-link" :title="item.collection.name" :aria-current="workspace.state.scope === item.collection.id ? 'page' : undefined" @click="workspace.browse(item.collection.id)" @keydown.f2.prevent="actions.rename(item.collection.id)"><UIcon name="i-lucide-folder" class="collection-folder-icon" /><UIcon v-if="item.collection.icon !== 'i-lucide-folder'" :name="item.collection.icon" class="size-4 shrink-0" /><span class="folder-name">{{ item.collection.name }}</span><span class="folder-count">{{ item.count }}</span></button>
                         <UDropdownMenu v-if="!editing(item.collection.id)" :items="folderMenu(item.collection.id)" :disabled="menuDisabled" :content="menuContent"><UButton icon="i-lucide-ellipsis" :aria-label="`${l('edit_collection')}: ${item.collection.name}`" color="neutral" variant="ghost" size="xs" class="folder-actions" :disabled="menuDisabled" /></UDropdownMenu>
                     </div>
                     </UContextMenu>

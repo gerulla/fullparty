@@ -521,6 +521,7 @@ Route::prefix('{locale?}')
                 Route::get('/content/resources', [GroupResourceController::class, 'manage'])->name('groups.dashboard.resources.manage');
                 Route::get('/resources/collections/{collectionSlug}', [GroupResourceController::class, 'collection'])->name('groups.dashboard.resources.collections.show');
                 Route::get('/resources/{slug}', [GroupResourceController::class, 'show'])->name('groups.dashboard.resources.show');
+                Route::get('/resources/{slug}/history', [GroupResourceController::class, 'history'])->name('groups.dashboard.resources.history');
                 Route::get('/content/resources/{resource}/edit', [GroupResourceController::class, 'edit'])->name('groups.dashboard.resources.edit');
                 require __DIR__.'/resource-management.php';
                 Route::get('/content/delubrum-reginae-savage', [GroupContentController::class, 'delubrumReginaeSavage'])->name('groups.dashboard.content.delubrum-reginae-savage');

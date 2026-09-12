@@ -55,7 +55,7 @@ const features = {
 }
 
 const standalone = {
-    'Resources/Show': [],
+    'Resources/Show': ['groups/resources'],
     Home: ['auth', 'groups/activities', 'landing'],
     'Legal/CookiesPolicy': [],
     'Legal/PrivacyPolicy': [],

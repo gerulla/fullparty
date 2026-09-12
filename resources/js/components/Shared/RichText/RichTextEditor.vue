@@ -1,18 +1,18 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
 import { useI18n } from 'vue-i18n'
-import type { Editor } from '@tiptap/core'
+import type { Editor, Extensions } from '@tiptap/core'
 import type { RichTextDocument, RichTextImage } from '@/Types/RichText'
 import { richTextExtensions } from '@/utils/richTextExtensions'
 import { emptyRichTextDocument, richTextPlainText, safeEditorUrl } from '@/utils/richText'
 import RichTextToolbar from './RichTextToolbar.vue'
 import '@/../css/rich-text.css'
 
-const props = withDefaults(defineProps<{ modelValue: RichTextDocument; maxLength?: number; imageLibrary?: boolean; upload?: (file: File) => Promise<string> }>(), { maxLength: 200000 })
+const props = withDefaults(defineProps<{ modelValue: RichTextDocument; maxLength?: number; imageLibrary?: boolean; upload?: (file: File) => Promise<string>; additionalExtensions?: Extensions }>(), { maxLength: 200000 })
 const emit = defineEmits<{ 'update:modelValue': [value: RichTextDocument]; save: []; image: [insert: (image: RichTextImage) => void] }>()
 const { t } = useI18n()
 const instance = ref<{ editor: Editor }>()
-const extensions = richTextExtensions()
+const extensions = [...richTextExtensions(), ...(props.additionalExtensions ?? [])]
 const error = ref('')
 const imageOpen = ref(false)
 const imageUrl = ref('')
@@ -70,7 +70,7 @@ const editorProps = {
     <div class="rich-text-editor flex min-h-0 min-w-0 flex-col">
         <UAlert v-if="error || length > maxLength" :title="error || t('rich_text.too_long', { max: maxLength })" color="error" variant="soft" />
         <UEditor ref="instance" v-model="model" content-type="json" :extensions="extensions" :mention="false" :image="{ resize: { enabled: true, alwaysPreserveAspectRatio: true } }" :editor-props="editorProps" :ui="{ root: 'flex min-h-0 flex-1 flex-col', content: 'min-h-0 flex-1 overflow-auto', base: 'rich-text-content min-h-full p-4 focus:outline-none' }">
-            <template #default="{ editor }"><RichTextToolbar :editor="editor" @image="openImage(editor)" /></template>
+            <template #default="{ editor }"><RichTextToolbar :editor="editor" @image="openImage(editor)"><slot name="tools" :editor="editor" /></RichTextToolbar></template>
         </UEditor>
         <div class="border-t border-default px-3 py-1 text-xs text-muted" aria-live="polite">{{ t('rich_text.character_count', { count: length, max: maxLength }) }}</div>
         <UModal v-model:open="imageOpen" :title="t('rich_text.image')">

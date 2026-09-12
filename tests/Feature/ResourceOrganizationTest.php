@@ -51,7 +51,8 @@ it('creates root resources with null or omitted collection and retains root in r
     expect($resource->collection_id)->toBeNull();
     $this->postJson(route('groups.dashboard.resources.store', $this->group), ['content' => ($this->content)('omitted')])->assertCreated()->assertJsonPath('data.collection_id', null);
     $lease = ($this->action)($resource, 'acquire')->assertOk()->json('data.editing_token');
-    ($this->action)($resource, 'save', ['editing_token' => $lease, 'collection_id' => null, 'content' => ($this->content)('root-guide'), 'publish' => true])->assertOk()->assertJsonPath('data.resource.published.collection_id', null);
+    ($this->action)($resource, 'save', ['editing_token' => $lease, 'collection_id' => null, 'content' => ($this->content)('root-guide'), 'summary' => 'Prepared root guide.'])->assertOk();
+    ($this->action)($resource, 'publish', ['editing_token' => $lease])->assertOk()->assertJsonPath('data.resource.published.collection_id', null);
     expect($resource->fresh()->collection_id)->toBeNull()->and($resource->fresh()->publishedRevision->snapshot['collection_id'])->toBeNull();
 });
 

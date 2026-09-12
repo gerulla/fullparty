@@ -9,6 +9,7 @@ Route::domain(config('group_resources.public_host'))->name('public-resources.')-
     Route::get('/{group:slug}', [PublicResourceController::class, 'index'])->name('index');
     Route::get('/{group:slug}/collections/{collectionSlug}', [PublicResourceController::class, 'index'])->name('collections.show');
     Route::get('/{group:slug}/{slug}', [PublicResourceController::class, 'show'])->name('show');
+    Route::get('/{group:slug}/{slug}/history', [PublicResourceController::class, 'history'])->name('history');
 });
 
 Route::get('/resource-assets/{image:uuid}', [ResourceImageController::class, 'show'])->middleware('throttle:120,1')->name('resource-images.show');

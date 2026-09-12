@@ -15,7 +15,7 @@ use Illuminate\Validation\ValidationException;
 
 class ResourceSnapshotValidator
 {
-    public function __construct(private readonly TextInputSanitizer $sanitizer, private readonly GroupResourcePolicy $policy, private readonly RichTextDocument $documents, private readonly ResourceEmbedMetadata $embedMetadata) {}
+    public function __construct(private readonly TextInputSanitizer $sanitizer, private readonly GroupResourcePolicy $policy, private readonly RichTextDocument $documents, private readonly ResourceEmbedMetadata $embedMetadata, private readonly ResourceDocumentLinks $links) {}
 
     public function validate(Group $group, User $user, array $input, ?GroupResource $resource = null): array
     {
@@ -69,7 +69,8 @@ class ResourceSnapshotValidator
 
         $data['title'] = $this->sanitizer->sanitizeSingleLine($data['title']);
         $data['description'] = $this->sanitizer->sanitizeMultiline($data['description'] ?? '');
-        $data['body'] = $this->documents->validate($data['body']);
+        $data['body'] = $this->documents->validate($data['body'], resourceBlocks: true);
+        $this->links->validate($group, $user, $data['body'], $resource);
         $data['body_format'] = RichTextDocument::FORMAT;
         $data['body_text'] = $this->documents->text($data['body']);
         $data['tags'] = array_values(array_unique(array_filter(array_map(fn ($tag) => mb_strtolower($this->sanitizer->sanitizeSingleLine($tag)), $data['tags']))));

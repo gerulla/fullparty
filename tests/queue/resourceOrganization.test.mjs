@@ -25,7 +25,7 @@ test('root IDs remain null in editor documents, creation, saves and published sn
     const item = resource(1)
     assert.equal(item.collectionId, null)
     assert.equal(data.untitledResourcePayload(null, 'Untitled', 'uuid').collection_id, null)
-    assert.equal(resourceSavePayload(item, item, '', false).collection_id, null)
+    assert.equal(resourceSavePayload(item, item, '').collection_id, null)
     assert.equal(utils.cloneDocument(item).collectionId, null)
 })
 

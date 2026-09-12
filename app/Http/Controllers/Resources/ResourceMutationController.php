@@ -26,7 +26,7 @@ class ResourceMutationController extends Controller
     {
         $result = $workflow->mutate($group, $resource, $request->user(), $operation, $request->validated());
 
-        return response()->json(['data' => $result + (in_array($operation, ['acquire', 'autosave', 'save', 'publish', 'restore', 'archive', 'unarchive', 'unpublish'], true)
+        return response()->json(['data' => $result + (in_array($operation, ['acquire', 'autosave', 'save', 'publish', 'restore', 'archive', 'unarchive', 'unpublish', 'pin'], true)
             ? ['resource' => $reader->managementDetail($group, $resource->refresh(), $request->user())] : [])])->header('Cache-Control', 'private, no-store');
     }
 

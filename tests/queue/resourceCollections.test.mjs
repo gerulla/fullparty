@@ -144,6 +144,29 @@ test('failed reorders and non-empty deletions keep the original tree', async () 
     assert.equal(actions.state.error, 'Move the contents first')
 })
 
+test('changing an icon saves only the icon and applies the server response to the existing collection', async () => {
+    const { actions, calls, collections } = harness({ put: async (_, data) => ({ data: { data: { ...raw(2, 'Child', 1, 4), icon: data.icon } } }) })
+    actions.changeIcon('2')
+    await actions.saveIcon('i-lucide-swords')
+    assert.deepEqual(calls[0][2], { icon: 'i-lucide-swords' })
+    assert.equal(actions.state.iconCollectionId, null)
+    assert.deepEqual(collections().find(item => item.id === '2'), { id: '2', name: 'Child', parentId: '1', order: 4, icon: 'i-lucide-swords' })
+    actions.changeIcon('2')
+    await actions.saveIcon(null)
+    assert.equal(collections().find(item => item.id === '2').icon, 'i-lucide-folder')
+})
+
+test('failed icon saves retain the picker and original icon so the selection can be retried', async () => {
+    const { actions, collections } = harness({ put: async () => { throw { response: { data: { errors: { icon: ['Invalid icon'] } } } } } })
+    actions.changeIcon('2')
+    await actions.saveIcon('i-lucide-swords')
+    assert.equal(actions.state.iconCollectionId, '2')
+    assert.equal(actions.state.error, 'Invalid icon')
+    assert.equal(collections().find(item => item.id === '2').icon, 'i-lucide-folder')
+    actions.closeIconPicker()
+    assert.equal(actions.state.iconCollectionId, null)
+})
+
 test('successful deletion removes only the selected empty collection', async () => {
     const { actions, calls, collections } = harness()
     await actions.remove('2')
@@ -181,6 +204,7 @@ test('folder dots, folder context menus, and empty-area menus use the intended a
     const actions = {
         state: vue.reactive({ editing: null, busy: false, error: '' }),
         create: id => calls.push(['create', id]), rename: id => calls.push(['rename', id]),
+        changeIcon: id => calls.push(['icon', id]),
         reorder: (id, offset) => calls.push(['reorder', id, offset]), remove: id => calls.push(['remove', id]),
     }
     const file = new URL('../../resources/js/components/Groups/Resources/ResourceCollectionSidebar.vue', import.meta.url)
@@ -201,16 +225,16 @@ test('folder dots, folder context menus, and empty-area menus use the intended a
         assert.equal(vm.folderMenu('2', true), contextMenu)
     }
     const dots = vm.folderMenu('2').flat()
-    assert.deepEqual(dots.map(item => item.label.split('.').at(-1)), ['new_resource', 'rename', 'move_up', 'move_down', 'delete'])
-    assert.equal(dots[2].disabled, false)
-    assert.equal(dots[3].disabled, true)
-    dots[0].onSelect(); dots[1].onSelect(); dots[2].onSelect(); dots[4].onSelect()
+    assert.deepEqual(dots.map(item => item.label.split('.').at(-1)), ['new_resource', 'rename', 'change_icon', 'move_up', 'move_down', 'delete'])
+    assert.equal(dots[3].disabled, false)
+    assert.equal(dots[4].disabled, true)
+    dots[0].onSelect(); dots[1].onSelect(); dots[2].onSelect(); dots[3].onSelect(); dots[5].onSelect()
     vm.folderMenu('2', true)[0][0].onSelect()
     assert.equal(vm.emptyMenu.value.length, 1)
     vm.emptyMenu.value[0].onSelect()
-    assert.deepEqual(calls, [['resource', '2'], ['rename', '2'], ['reorder', '2', -1], ['remove', '2'], ['create', '2'], ['create', null]])
+    assert.deepEqual(calls, [['resource', '2'], ['rename', '2'], ['icon', '2'], ['reorder', '2', -1], ['remove', '2'], ['create', '2'], ['create', null]])
     workspace.state.collections[1].order = -1
     assert.notEqual(vm.folderMenu('2'), menu)
-    assert.equal(vm.folderMenu('2').flat()[2].disabled, true)
-    assert.equal(vm.folderMenu('2').flat()[3].disabled, false)
+    assert.equal(vm.folderMenu('2').flat()[3].disabled, true)
+    assert.equal(vm.folderMenu('2').flat()[4].disabled, false)
 })

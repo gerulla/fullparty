@@ -12,6 +12,7 @@ use App\Models\IntegrationClient;
 use App\Models\User;
 use App\Services\Groups\Resources\ResourceImageService;
 use App\Services\Groups\Resources\ResourceLibraryService;
+use App\Services\Groups\Resources\ResourcePublicationService;
 use App\Services\Groups\Resources\ResourceReaderService;
 use App\Services\Groups\Resources\ResourceWorkflowService;
 use App\Services\RichText\MarkdownGuideConverter;
@@ -59,6 +60,9 @@ function resource_action($test, GroupResource $resource, string $operation, arra
 function resource_publish($test, GroupResource $resource): void
 {
     $lease = resource_action($test, $resource, 'acquire')->assertOk()->json('data.editing_token');
+    if (! app(ResourcePublicationService::class)->savedRevision($resource->fresh())) {
+        resource_action($test, $resource, 'save', ['editing_token' => $lease, 'content' => $resource->fresh()->working_copy, 'summary' => 'Initial guide.'])->assertOk();
+    }
     resource_action($test, $resource, 'release', ['editing_token' => $lease, 'summary' => 'Initial guide.'])->assertOk();
     resource_action($test, $resource, 'publish')->assertOk();
     $resource->refresh();
@@ -206,14 +210,14 @@ it('rejects raw Markdown and unsafe JSON rather than publishing executable conte
     expect(GroupResource::where('is_home', false)->count())->toBe(0);
 });
 
-it('automatically describes the first save and requires a sentence for subsequent edits', function () {
+it('requires a sentence for every saved version and adds a separate publication event', function () {
     $resource = resource_create($this);
     $lease = resource_action($this, $resource, 'acquire')->json('data.editing_token');
     $character = Character::factory()->primary()->create(['user_id' => $this->owner->id]);
     resource_action($this, $resource, 'save', [
-        'editing_token' => $lease, 'summary' => null,
+        'editing_token' => $lease, 'summary' => 'Prepared bridge assignments.',
         'content' => resource_content(['title' => 'Bridge Assignments', 'character_id' => $character->id]),
-    ])->assertOk()->assertJsonPath('data.resource.history.0.summary', $character->name.' created Bridge Assignments')
+    ])->assertOk()->assertJsonPath('data.resource.history.0.summary', 'Prepared bridge assignments.')
         ->assertJsonPath('data.resource.history.0.editor.avatar_url', $character->avatar_url);
     $savedVersion = $resource->fresh()->version;
     resource_action($this, $resource, 'save', [
@@ -227,11 +231,11 @@ it('automatically describes the first save and requires a sentence for subsequen
     ])->assertOk()->assertJsonCount(2, 'data.resource.history')
         ->assertJsonPath('data.resource.history.0.summary', 'Clarified the east group.')
         ->assertJsonPath('data.resource.working_copy.author.id', $character->id);
-    resource_action($this, $resource, 'publish', ['editing_token' => $lease])->assertOk()->assertJsonCount(2, 'data.resource.history')
+    resource_action($this, $resource, 'publish', ['editing_token' => $lease])->assertOk()->assertJsonCount(3, 'data.resource.history')
         ->assertJsonPath('data.resource.published.title', 'Bridge Assignments');
 });
 
-it('saves and publishes atomically including the collection activities and disabled embed while retaining the lease', function () {
+it('publishes the saved collection activities and disabled embed while retaining the lease', function () {
     $resource = resource_create($this);
     $lease = resource_action($this, $resource, 'acquire')->json('data.editing_token');
     $collection = GroupResourceCollection::create(['group_id' => $this->group->id, 'name' => 'Strats', 'slug' => 'strats']);
@@ -239,8 +243,9 @@ it('saves and publishes atomically including the collection activities and disab
     $content = resource_content(['title' => 'Saved title', 'activity_type_ids' => $activities]);
     $content['commands'][0]['enabled'] = false;
     resource_action($this, $resource, 'save', [
-        'editing_token' => $lease, 'summary' => null, 'publish' => true, 'collection_id' => $collection->id, 'content' => $content,
-    ])->assertOk()->assertJsonPath('data.resource.working_copy.title', 'Saved title')
+        'editing_token' => $lease, 'summary' => 'Prepared guide.', 'collection_id' => $collection->id, 'content' => $content,
+    ])->assertOk()->assertJsonPath('data.resource.working_copy.title', 'Saved title')->assertJsonPath('data.resource.published', null);
+    resource_action($this, $resource, 'publish', ['editing_token' => $lease])->assertOk()
         ->assertJsonPath('data.resource.published.title', 'Saved title')
         ->assertJsonPath('data.resource.published.activity_type_ids', $activities)
         ->assertJsonPath('data.resource.published.commands.0.enabled', false)
@@ -284,6 +289,7 @@ it('deletes only the selected resource and releases its images command and quota
         'version' => $resource->fresh()->version, 'editing_token' => $lease, 'alt_text' => 'Bridge diagram',
     ])->assertCreated()->json('data');
     $imagePath = GroupResourceImage::where('uuid', $image['uuid'])->value('path');
+    resource_action($this, $resource, 'save', ['editing_token' => $lease, 'content' => resource_content(), 'summary' => 'Prepared guide.'])->assertOk();
     resource_action($this, $resource, 'release', ['editing_token' => $lease])->assertOk();
     resource_action($this, $resource, 'publish')->assertOk();
     $other = resource_create($this, ['slug' => 'other-resource', 'command' => null]);
@@ -398,6 +404,7 @@ it('enforces exclusive expiring leases and optimistic versions even for the same
 it('lets another authorized manager publish a saved draft without an approver role', function () {
     $resource = resource_create($this);
     $lease = resource_action($this, $resource, 'acquire')->json('data.editing_token');
+    resource_action($this, $resource, 'save', ['editing_token' => $lease, 'content' => resource_content(), 'summary' => 'Ready for publication.'])->assertOk();
     resource_action($this, $resource, 'release', ['editing_token' => $lease, 'summary' => 'Ready for publication.'])->assertOk();
     $moderator = User::factory()->create();
     $this->group->memberships()->create(['user_id' => $moderator->id, 'role' => 'moderator']);
@@ -667,7 +674,7 @@ it('does not expose historical admin revisions or allow moderators to change adm
     $this->group->memberships()->create(['user_id' => $moderator->id, 'role' => 'moderator']);
     $this->actingAs($moderator);
     $this->getJson(route('groups.dashboard.resources.revisions.show', ['group' => $this->group, 'resource' => $resource, 'revisionId' => $adminRevision]))->assertNotFound();
-    $this->get(route('groups.dashboard.resources.edit', ['group' => $this->group, 'resource' => $resource]))->assertInertia(fn (Assert $page) => $page->has('resource.history', 1));
+    $this->get(route('groups.dashboard.resources.edit', ['group' => $this->group, 'resource' => $resource]))->assertInertia(fn (Assert $page) => $page->has('resource.history', 2));
     $lease = resource_action($this, $resource, 'acquire')->json('data.editing_token');
     resource_action($this, $resource, 'save', ['editing_token' => $lease, 'source_revision_id' => $adminRevision, 'content' => resource_content()])->assertNotFound();
     resource_action($this, $resource, 'save', ['editing_token' => $lease, 'content' => resource_content(['access_level' => 'admin'])])->assertUnprocessable();

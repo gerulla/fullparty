@@ -1,6 +1,6 @@
 import type { WorkspaceDocument, WorkspaceResource, WorkspaceRevisionSource } from '../Types/ResourceWorkspace'
 
-export function resourceSavePayload(draft: WorkspaceDocument, original: WorkspaceResource, summary: string, publish: boolean, source?: WorkspaceRevisionSource | null) {
+export function resourceSavePayload(draft: WorkspaceDocument, original: WorkspaceResource, summary: string, source?: WorkspaceRevisionSource | null) {
     const image = (value: string) => {
         const asset = value.match(/^\/resource-assets\/([a-f0-9-]{36})$/i)
         return asset ? { asset_id: asset[1] } : { url: value }
@@ -10,7 +10,7 @@ export function resourceSavePayload(draft: WorkspaceDocument, original: Workspac
     const previousAuthor = source?.document ?? original
     const authorChanged = draft.authorCharacterId !== previousAuthor.authorCharacterId || draft.author !== previousAuthor.author
     return {
-        collection_id: draft.collectionId === null ? null : Number(draft.collectionId), summary: summary || undefined, publish,
+        collection_id: draft.collectionId === null ? null : Number(draft.collectionId), summary: summary || undefined,
         ...(source ? { source_revision_id: Number(source.id) } : {}),
         content: {
             title: draft.title, slug: original.slug, description: draft.description, body: draft.body,

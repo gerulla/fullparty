@@ -7,11 +7,12 @@ export function emptyRichTextDocument(): RichTextDocument {
 
 export function richTextPlainText(node: JSONContent): string {
     if (node.type === 'text') return node.text ?? ''
+    if (node.type === 'videoEmbed') return node.attrs?.title ?? ''
     return (node.content ?? []).map(richTextPlainText).join(['paragraph', 'heading'].includes(node.type ?? '') ? '' : '\n')
 }
 
 export function hasRichTextContent(node: JSONContent): boolean {
-    return !!node.text?.trim() || node.type === 'image' || node.type === 'horizontalRule' || (node.content ?? []).some(hasRichTextContent)
+    return !!node.text?.trim() || ['image', 'horizontalRule', 'resourceLink', 'videoEmbed'].includes(node.type ?? '') || (node.content ?? []).some(hasRichTextContent)
 }
 
 export function safeEditorUrl(url: string, image = false): boolean {

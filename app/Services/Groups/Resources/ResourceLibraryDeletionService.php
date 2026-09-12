@@ -4,6 +4,7 @@ namespace App\Services\Groups\Resources;
 
 use App\Models\Group;
 use App\Models\GroupResource;
+use App\Models\GroupResourceCollection;
 use App\Models\GroupResourceImage;
 use App\Models\User;
 use App\Policies\GroupResourcePolicy;
@@ -69,29 +70,14 @@ class ResourceLibraryDeletionService
 
         return DB::transaction(function () use ($group, $user) {
             $library = $this->libraries->lock($group);
-            $images = GroupResourceImage::where('group_id', $group->id)->where(fn ($query) => $query->whereNotNull('resource_id')->orWhere('library_upload', true))->get()
-                ->reject(fn ($image) => $this->references->branding($image, $library) || $this->references->resources($image)->where('is_home', true)->exists());
-            GroupResourceImage::whereKey($images->modelKeys())->delete();
-            GroupResourceImage::where('group_id', $group->id)->whereNotNull('resource_id')->update(['resource_id' => null]);
+            // Keep uploads reusable and protected from abandoned-upload cleanup after their resources are removed.
+            GroupResourceImage::where('group_id', $group->id)->update(['resource_id' => null, 'library_upload' => true]);
             $deleted = GroupResource::where('group_id', $group->id)->where('is_home', false)->delete();
+            GroupResourceCollection::where('group_id', $group->id)->delete();
             $customization = $library->customization ?? [];
             unset($customization['start_resource_id']);
-            $library->update([
-                'customization' => $customization,
-                'storage_used_bytes' => max(0, $library->storage_used_bytes - $images->sum('size_bytes')),
-            ]);
+            $library->update(['customization' => $customization]);
             $this->audit->record($group, $user, $library, 'all_deleted');
-
-            // Never remove files before the database commits. Orphan cleanup retries failed storage deletes.
-            DB::afterCommit(function () use ($images) {
-                try {
-                    foreach ($images->pluck('path')->chunk(100) as $paths) {
-                        Storage::disk(config('group_resources.disk'))->delete($paths->all());
-                    }
-                } catch (\Throwable $exception) {
-                    report($exception);
-                }
-            });
 
             return $deleted;
         });

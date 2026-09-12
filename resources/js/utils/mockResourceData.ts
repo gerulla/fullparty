@@ -6,7 +6,7 @@ import { workspaceEmbed } from './resourceWorkspaceData'
 export const workspaceActivities = ['DRS', 'BA', 'Forked Tower']
 export const workspaceAuthors = ['Faust Gottes', 'Yenpress', 'Kaede Sato']
 export const workspaceImages = [
-    '/resource-sample-bridges.png',
+    '/resource-sample-planning-map.jpg',
     '/BozjaInfo/Essence of the Guardian/icon.png',
     '/reference-icons/character-classes/icons/whm.webp',
     '/prereqimages/forked.jpg',

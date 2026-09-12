@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Group;
 use App\Models\GroupResource;
+use App\Services\Groups\Resources\ResourceReaderHistoryService;
 use App\Services\Groups\Resources\ResourceReaderService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
@@ -63,6 +64,14 @@ class GroupResourceController extends Controller
         }
 
         return Inertia::render('Dashboard/Groups/Resources/Manage', ['group' => $this->navigationGroup($group), 'resource' => $detail, 'workspace' => $this->reader->workspace($group, $request->user())] + $this->reader->index($group, $request, manage: true));
+    }
+
+    public function history(Request $request, Group $group, string $slug, ResourceReaderHistoryService $history): JsonResponse
+    {
+        $this->authorizeAccess($group);
+        $resource = $this->reader->resolve($group, $slug, $request->user());
+
+        return response()->json(['data' => $history->remaining($resource, $request)])->header('Cache-Control', 'private, no-store');
     }
 
     private function authorizeAccess(Group $group, bool $manage = false): void

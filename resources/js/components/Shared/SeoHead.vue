@@ -11,6 +11,7 @@ const props = withDefaults(defineProps<{
 	ogType?: string
 	image?: string | null
 	structuredData?: Record<string, unknown> | Array<Record<string, unknown>> | null
+	appendSiteName?: boolean
 }>(), {
 	title: null,
 	description: null,
@@ -19,6 +20,7 @@ const props = withDefaults(defineProps<{
 	ogType: "website",
 	image: null,
 	structuredData: null,
+	appendSiteName: true,
 });
 
 const { t } = useI18n();
@@ -53,7 +55,7 @@ const structuredDataJson = computed(() => (
 
 <template>
 	<Head>
-		<title>{{ fullTitle }}</title>
+		<title>{{ appendSiteName ? fullTitle : title }}</title>
 		<meta head-key="description" name="description" :content="description">
 		<meta head-key="robots" name="robots" :content="robots">
 		<link v-if="canonicalUrl" head-key="canonical" rel="canonical" :href="canonicalUrl">

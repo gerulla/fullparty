@@ -63,7 +63,7 @@ it('keeps explicit library uploads through cleanup and preserves animated GIF by
     expect(Storage::disk('local')->get($image->path))->toBe($binary);
 });
 
-it('limits the branding chooser to unscoped group images before pagination', function () {
+it('supports explicitly filtering to unscoped group images before pagination', function () {
     $first = library_upload($this);
     $second = library_upload($this);
     $restricted = library_upload($this);
@@ -76,6 +76,33 @@ it('limits the branding chooser to unscoped group images before pagination', fun
     $this->getJson($this->indexUrl.'?library_only=0')->assertJsonPath('total', 3);
     $this->getJson($this->indexUrl.'?library_only=invalid')->assertUnprocessable();
 });
+
+it('reuses existing resource images for branding and preserves them when the source resource is deleted', function (string $field) {
+    $resource = GroupResource::factory()->create(['group_id' => $this->group->id]);
+    $image = library_upload($this);
+    $image->update(['resource_id' => $resource->id, 'library_upload' => false]);
+    $publicUrl = route('public-resources.images.show', ['image' => $image->uuid]);
+    $settingsUrl = route('groups.dashboard.resources.library.update', $this->group);
+
+    $this->getJson($this->indexUrl)->assertOk()->assertJsonPath('total', 1)->assertJsonPath('data.0.uuid', $image->uuid);
+    $this->getJson($publicUrl)->assertNotFound();
+    $this->putJson($settingsUrl, [
+        'visibility' => 'public', 'customization' => [$field => $image->uuid],
+    ])->assertOk()->assertJsonPath('data.customization.'.$field, $image->uuid);
+    $this->get($publicUrl)->assertOk();
+    $this->deleteJson(library_image_url($this, $image))->assertUnprocessable()->assertJsonValidationErrors('image');
+
+    app(ResourceLibraryDeletionService::class)->deleteResource($this->group, $resource, $this->group->owner, ['version' => $resource->fresh()->version]);
+    expect($image->fresh()->resource_id)->toBeNull()->and($image->fresh()->library_upload)->toBeTrue();
+    expect($this->library->fresh()->storage_used_bytes)->toBe($image->size_bytes);
+    Storage::disk('local')->assertExists($image->path);
+    $this->get($publicUrl)->assertOk();
+    $this->travel(2)->days();
+    expect(app(ResourceImageService::class)->cleanup())->toBe(0);
+
+    $this->library->update(['visibility' => 'private']);
+    $this->getJson($publicUrl)->assertNotFound();
+})->with(['banner_image_id', 'logo_image_id', 'sharing_image_id']);
 
 it('lets moderators manage group uploads but not admin images or historical admin images', function () {
     $secret = library_upload($this, ['library_upload' => false]);
@@ -126,7 +153,7 @@ it('reuses group images in a saved resource and serves them publicly only after 
     $resource = GroupResource::factory()->create(['group_id' => $this->group->id]);
     $action = fn ($operation, $data = []) => $this->postJson(rtrim(config('app.url'), '/').route('groups.dashboard.resources.update', ['group' => $this->group, 'resource' => $resource, 'operation' => $operation], false), ['version' => $resource->fresh()->version] + $data);
     $token = $action('acquire')->assertOk()->json('data.editing_token');
-    $action('save', ['editing_token' => $token, 'content' => [
+    $action('save', ['editing_token' => $token, 'summary' => 'Added bridge image.', 'content' => [
         'title' => 'Bridges', 'slug' => $resource->slug, 'description' => '', 'body' => ['type' => 'doc', 'content' => [['type' => 'image', 'attrs' => ['src' => '/resource-assets/'.$image->uuid, 'alt' => 'Positions']]]],
         'access_level' => 'everyone', 'tags' => [], 'activity_type_ids' => [], 'metadata_image_id' => $image->uuid,
         'commands' => [['name' => 'bridges', 'enabled' => true, 'embed' => ['title' => 'Bridges', 'image' => ['asset_id' => $image->uuid]]]],

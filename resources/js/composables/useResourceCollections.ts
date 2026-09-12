@@ -7,7 +7,7 @@ import type { WorkspaceCollection } from '@/Types/ResourceWorkspace'
 import { isValidCollectionName, workspaceCollection } from '@/utils/resourceWorkspaceData'
 
 export function useResourceCollections(options: ResourceCollectionOptions): ResourceCollectionActions {
-    const state = reactive<ResourceCollectionActions['state']>({ editing: null, busy: false, error: '' })
+    const state = reactive<ResourceCollectionActions['state']>({ editing: null, iconCollectionId: null, busy: false, error: '' })
     const blocked = () => state.busy || options.blocked()
     const endpoint = (action: string, id: string) => route(`groups.dashboard.resources.collections.${action}`, { group: options.groupSlug(), collection: id })
     function report(error: unknown) {
@@ -22,6 +22,21 @@ export function useResourceCollections(options: ResourceCollectionOptions): Reso
     }
     return {
         state,
+        changeIcon(id) {
+            if (blocked() || state.editing || !options.collections().some(item => item.id === id)) return
+            state.error = ''; state.iconCollectionId = id
+        },
+        closeIconPicker() { if (!state.busy) { state.iconCollectionId = null; state.error = '' } },
+        async saveIcon(icon) {
+            const id = state.iconCollectionId
+            if (!id || blocked()) return
+            state.busy = true; state.error = ''
+            try {
+                const { data } = await axios.put<{ data: ResourceCollectionData }>(endpoint('update', id), { icon })
+                merge([workspaceCollection(data.data)]); state.iconCollectionId = null
+            } catch (error) { report(error) }
+            finally { state.busy = false }
+        },
         create(parentId = null) {
             if (blocked() || state.editing) return
             if (parentId !== null && !options.collections().some(item => item.id === parentId)) return

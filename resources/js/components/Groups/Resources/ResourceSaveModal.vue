@@ -17,7 +17,7 @@ const l = (key: string) => t(`groups.resources.workspace.${key}`)
                 </UFormField>
                 <div class="flex justify-end gap-2">
                     <UButton color="neutral" variant="outline" class="rounded-none" :label="l('cancel')" :disabled="workspace.busy" @click="workspace.state.saveDialog = false" />
-                    <UButton icon="i-lucide-save" type="submit" class="rounded-none" :label="l(workspace.state.publishAfterSave ? 'publish' : 'save')" :loading="workspace.busy" :disabled="!workspace.state.summary.trim()" />
+                    <UButton icon="i-lucide-save" type="submit" class="rounded-none" :label="l('save')" :loading="workspace.busy" :disabled="!workspace.state.summary.trim()" />
                 </div>
             </form>
         </template>

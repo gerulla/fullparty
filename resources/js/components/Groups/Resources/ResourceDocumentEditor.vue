@@ -1,5 +1,9 @@
 <script setup lang="ts">
-import { computed, ref } from 'vue'
+import { computed, provide, ref } from 'vue'
+import { resourceContentKey } from '@/Types/ResourceContent'
+import type { ResourceReaderSummary } from '@/Types/GroupResources'
+import { resourceContentExtensions } from './resourceContentExtensions'
+import ResourceContentTools from './ResourceContentTools.vue'
 import { useI18n } from 'vue-i18n'
 import type { ResourceWorkspaceController } from '@/Types/ResourceWorkspace'
 import type { RichTextImage } from '@/Types/RichText'
@@ -12,6 +16,14 @@ const props = defineProps<{ workspace: ResourceWorkspaceController }>()
 const { t } = useI18n()
 const l = (key: string) => t('groups.resources.workspace.' + key)
 const draft = computed(() => props.workspace.state.draft)
+const contentExtensions = resourceContentExtensions()
+const linkedResources = computed<ResourceReaderSummary[]>(() => props.workspace.state.resources.filter(item => item.uuid && item.status !== 'archived').map(item => ({
+    id: Number(item.id), slug: item.uuid!, collection_id: item.collectionId ? Number(item.collectionId) : null, is_home: Boolean(item.isHome),
+    title: item.title, description: item.description, tags: item.tags, activity_type_ids: item.activityTypeIds ?? [],
+    metadata_image_id: /^\/resource-assets\//.test(item.cover) ? item.cover.split('/').at(-1)! : null,
+    author: { name: item.author }, access_level: item.access === 'admins' ? 'admin' : item.access === 'moderators' ? 'moderator' : 'everyone', published_at: null,
+})))
+provide(resourceContentKey, { resources: linkedResources, href: () => '' })
 const upload = useResourceImageUpload()
 const imageLibraryOpen = ref(false)
 let insert: ((image: RichTextImage) => void) | undefined
@@ -41,7 +53,9 @@ const activityOptions = computed(() => [...props.workspace.activityOptions, ...a
         <UFormField name="title" data-resource-field="title" :error="workspace.fieldError('title')"><UInput v-model="draft.title" :placeholder="l('title')" :aria-label="l('title')" class="studio-title w-full" :ui="{ base: 'rounded-none px-3 py-2 text-3xl font-semibold bg-transparent' }" /></UFormField>
         <UFormField name="description" data-resource-field="description" :error="workspace.fieldError('description')"><UTextarea v-model="draft.description" :placeholder="l('description')" :aria-label="l('description')" :rows="1" autoresize class="studio-description w-full" :ui="{ base: 'rounded-none px-3 py-2 text-sm bg-transparent resize-none' }" /></UFormField>
         <div class="studio-editor-surface" data-resource-field="body" :class="{ 'ring-2 ring-error': workspace.fieldError('body') }">
-            <RichTextEditor v-model="draft.body" image-library :upload="upload" class="flex-1 min-w-0" @image="openImages" @save="workspace.save()" />
+            <RichTextEditor v-model="draft.body" image-library :upload="upload" :additional-extensions="contentExtensions" class="flex-1 min-w-0" @image="openImages" @save="workspace.save()">
+                <template #tools="{ editor }"><ResourceContentTools :editor="editor" :current-resource-id="workspace.selected?.uuid" /></template>
+            </RichTextEditor>
         </div>
         <p v-if="workspace.fieldError('body')" role="alert" class="text-sm text-error">{{ workspace.fieldError('body') }}</p>
         <ResourceImageLibraryModal v-model:open="imageLibraryOpen" @select="insertImage" />

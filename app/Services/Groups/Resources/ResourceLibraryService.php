@@ -33,7 +33,7 @@ class ResourceLibraryService
             if (($input['visibility'] ?? null) === 'public' && is_array($input['customization'] ?? null)) {
                 $input['customization'] += array_intersect_key($customization, array_flip(['title', 'introduction']));
             }
-            $imageRule = Rule::exists('group_resource_images', 'uuid')->where('group_id', $group->id)->whereNull('resource_id');
+            $imageRule = Rule::exists('group_resource_images', 'uuid')->where('group_id', $group->id);
             $data = Validator::make($input, [
                 'visibility' => ['required', Rule::in(['public', 'private'])],
                 'customization' => ['exclude_unless:visibility,public', 'sometimes', 'array:title,introduction,banner_image_id,banner_focal_x,banner_focal_y,logo_image_id,accent_color,appearance,start_resource_id,links,sharing_image_id'],

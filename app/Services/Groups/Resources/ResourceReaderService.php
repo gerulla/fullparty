@@ -18,7 +18,7 @@ use Illuminate\Support\Str;
 
 class ResourceReaderService
 {
-    public function __construct(private readonly GroupResourcePolicy $policy, private readonly ResourceLibraryService $libraries, private readonly RichTextDocument $documents, private readonly ResourceEmbedMetadata $embedMetadata, private readonly ResourcePublicationService $publication) {}
+    public function __construct(private readonly GroupResourcePolicy $policy, private readonly ResourceLibraryService $libraries, private readonly RichTextDocument $documents, private readonly ResourceEmbedMetadata $embedMetadata, private readonly ResourcePublicationService $publication, private readonly ResourceReaderHistoryService $history, private readonly ResourceDocumentLinks $links) {}
 
     public function query(Group $group, ?User $user, bool $public = false, bool $manage = false): Builder
     {
@@ -79,7 +79,24 @@ class ResourceReaderService
             return $resource->only(['id', 'is_home', 'slug', 'collection_id', 'status', 'access_level', 'management_access_level', 'version', 'sort_order', 'is_pinned', 'editing_user_id', 'editing_expires_at']) + ['title' => $snapshot['title'] ?? $resource->slug, 'tags' => $snapshot['tags'] ?? [], 'has_unpublished_changes' => $this->publication->hasChanges($resource)];
         });
 
-        return ['library' => $this->libraries->payload($group, $manage), 'collections' => $tree, 'resources' => ['data' => $items, 'current_page' => $page->currentPage(), 'last_page' => $page->lastPage(), 'total' => $page->total()], 'filters' => $filters];
+        return ['library' => $this->libraries->payload($group, $manage), 'collections' => $tree, 'resources' => ['data' => $items, 'current_page' => $page->currentPage(), 'last_page' => $page->lastPage(), 'per_page' => $page->perPage(), 'total' => $page->total()], 'filters' => $filters]
+            + ($manage ? [] : ['reader' => $this->navigation($group, $request, $public) + ['selected_collection_id' => $selected['id'] ?? null]]);
+    }
+
+    private function navigation(Group $group, Request $request, bool $public): array
+    {
+        $visible = $this->query($group, $public ? null : $request->user(), $public);
+        $activityIds = DB::table('group_resource_activity_type')->whereIn('resource_id', (clone $visible)->select('id'))->distinct()->pluck('activity_type_id');
+        $activities = ActivityType::whereIn('id', $activityIds)->with('currentPublishedVersion:id,name')->get(['id', 'current_published_version_id'])
+            ->map(fn ($type) => ['id' => $type->id, 'name' => $type->currentPublishedVersion?->name ?? []]);
+        $recent = (clone $visible)->where('is_home', false)->with('publishedRevision')->orderByDesc('published_at')->orderByDesc('id')->limit(5)->get();
+        $pinned = $visible->where('is_home', false)->where('is_pinned', true)->with('publishedRevision')->orderBy('sort_order')->orderBy('id')->get();
+
+        return [
+            'activities' => $activities,
+            'recent_resources' => ResourceSummaryResource::collection($recent)->resolve($request),
+            'pinned_resources' => ResourceSummaryResource::collection($pinned)->resolve($request),
+        ];
     }
 
     public function resolve(Group $group, string $slug, ?User $user, bool $public = false): GroupResource
@@ -99,15 +116,29 @@ class ResourceReaderService
 
     private function filterSnapshot(Builder $query, string $column, array $filters): void
     {
-        if ($q = $filters['q'] ?? null) {
+        if (($q = trim($filters['q'] ?? '')) !== '') {
             $pattern = '%'.str_replace(['%', '_'], ['\\%', '\\_'], mb_strtolower($q)).'%';
-            $query->where(fn ($q) => $q->whereLike($column.'->title', $pattern)->orWhereLike($column.'->description', $pattern)->orWhereLike($column.'->body_text', $pattern));
+            $tagPattern = '%'.str_replace(['%', '_'], ['\\%', '\\_'], mb_strtolower(ltrim($q, '#'))).'%';
+            $query->where(fn ($search) => $search->whereLike($column.'->title', $pattern)
+                ->orWhereLike($column.'->description', $pattern)->orWhereLike($column.'->body_text', $pattern)
+                ->when(trim($q, '#') !== '', fn ($tags) => $this->searchTags($tags, $column, $tagPattern)));
         }
         if ($tag = $filters['tag'] ?? null) {
             $query->whereJsonContains($column.'->tags', mb_strtolower($tag));
         }
         if ($activity = $filters['activity_type_id'] ?? null) {
             $query->whereJsonContains($column.'->activity_type_ids', (int) $activity);
+        }
+    }
+
+    private function searchTags(Builder $query, string $column, string $pattern): void
+    {
+        $tags = $query->getQuery()->getGrammar()->wrap($column.'->tags');
+        // Search decoded tag values so non-Latin tags are not compared as JSON escape sequences.
+        if ($query->getConnection()->getDriverName() === 'pgsql') {
+            $query->orWhereRaw("exists (select 1 from jsonb_array_elements_text(({$tags})::jsonb) as resource_search_tag(value) where value ilike ?)", [$pattern]);
+        } else {
+            $query->orWhereRaw("exists (select 1 from json_each({$tags}) as resource_search_tag where resource_search_tag.value like ? escape '\\')", [$pattern]);
         }
     }
 
@@ -119,11 +150,16 @@ class ResourceReaderService
 
         $images = GroupResourceImage::where('group_id', $resource->group_id)->whereIn('uuid', $snapshot['image_ids'] ?? [])->get(['uuid', 'width', 'height', 'mime_type', 'alt_text', 'caption'])->map(fn ($image) => $image->toArray() + ['url' => '/resource-assets/'.$image->uuid]);
         $public = $request->routeIs('public-resources.*');
+        $linked = $this->query($resource->group, $public ? null : $request->user(), $public)->whereIn('uuid', $this->links->ids($snapshot['body']))->with('publishedRevision')->get();
         $related = $this->query($resource->group, $public ? null : $request->user(), $public)->where('collection_id', $resource->collection_id)->whereKeyNot($resource->id)->with('publishedRevision')->orderByDesc('is_pinned')->orderBy('sort_order')->limit(6)->get();
 
         return (new ResourceSummaryResource($resource))->resolve($request) + [
-            'body' => $snapshot['body'], 'body_html' => $this->documents->html($snapshot['body']), 'images' => $images, 'editors' => $editors,
+            'body' => $snapshot['body'], 'body_html' => $this->documents->html($snapshot['body'], resourceBlocks: true), 'images' => $images, 'editors' => $editors,
+            'linked_resources' => ResourceSummaryResource::collection($linked)->resolve($request),
             'related_resources' => ResourceSummaryResource::collection($related)->resolve($request), 'public_url' => $this->libraries->publicUrl($resource),
+            'history' => $this->history->preview($resource, $request),
+            'commands' => collect($snapshot['commands'] ?? [])->filter(fn ($command) => $command['enabled'] ?? false)
+                ->map(fn ($command) => ['name' => $command['name'], 'title' => $command['embed']['title'] ?? ''])->values()->all(),
         ];
     }
 
@@ -131,26 +167,28 @@ class ResourceReaderService
     {
         abort_unless((int) $resource->group_id === (int) $group->id, 404);
         abort_unless($this->policy->manage($user, $resource), 403);
-        $resource->load('publishedRevision');
+        $resource->load(['publishedRevision', 'latestRevision']);
 
-        return $resource->only(['id', 'uuid', 'is_home', 'collection_id', 'slug', 'status', 'version', 'sort_order', 'updated_at', 'editing_user_id', 'editing_expires_at']) + [
+        return $resource->only(['id', 'uuid', 'is_home', 'is_pinned', 'collection_id', 'slug', 'status', 'version', 'sort_order', 'updated_at', 'editing_user_id', 'editing_expires_at']) + [
             'has_unpublished_changes' => $this->publication->hasChanges($resource),
+            'can_publish' => $this->publication->canPublish($resource),
             'reader_urls' => $this->readerUrls($group, $resource),
             'working_copy' => $this->embedMetadata->present($group, $resource->working_copy, $resource->updated_at->toIso8601String(), $resource),
             'published' => $this->embedMetadata->present($group, $resource->publishedRevision?->snapshot, ($resource->publishedRevision?->created_at ?? $resource->updated_at)->toIso8601String(), $resource),
-            'history' => $resource->revisions()->latest('id')->get()->filter(fn ($revision) => in_array($revision->snapshot['access_level'], $this->policy->levels($user, $group), true))->map(fn ($revision) => $revision->only(['id', 'editor', 'summary', 'state', 'created_at', 'published_at']))->values(),
+            'history' => $this->history->management($resource, $user),
         ];
     }
 
     public function workspace(Group $group, User $user): array
     {
         // The tree needs every visible file, but bodies and full embeds load only on selection.
-        $resources = $this->query($group, $user, manage: true)->with('publishedRevision')
+        $resources = $this->query($group, $user, manage: true)->with(['publishedRevision', 'latestRevision'])
             ->orderByDesc('is_home')->orderBy('sort_order')->orderBy('id')->lazy(100)->map(function ($resource) use ($group) {
                 $snapshot = $resource->working_copy ?? $resource->publishedRevision?->snapshot ?? [];
 
-                return $resource->only(['id', 'uuid', 'is_home', 'collection_id', 'slug', 'status', 'version', 'sort_order', 'updated_at']) + [
+                return $resource->only(['id', 'uuid', 'is_home', 'is_pinned', 'collection_id', 'slug', 'status', 'version', 'sort_order', 'updated_at']) + [
                     'has_unpublished_changes' => $this->publication->hasChanges($resource),
+                    'can_publish' => $this->publication->canPublish($resource),
                     'reader_urls' => $this->readerUrls($group, $resource),
                     'summary' => array_intersect_key($snapshot, array_flip(['title', 'description', 'access_level', 'tags', 'author', 'activity_type_ids', 'metadata_image_id'])),
                     'commands' => array_map(fn ($command) => array_intersect_key($command, array_flip(['name', 'enabled'])), $snapshot['commands'] ?? []),
@@ -159,6 +197,7 @@ class ResourceReaderService
 
         return [
             'editor_user_id' => $user->id,
+            'pin_limit' => GroupResource::MAX_PINS,
             'resources' => $resources,
             'embed_context' => [
                 'group_icon_url' => $this->embedMetadata->groupIconUrl($group),

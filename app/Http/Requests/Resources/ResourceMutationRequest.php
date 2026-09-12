@@ -24,12 +24,12 @@ class ResourceMutationRequest extends FormRequest
         return [
             'version' => [$this->route('resource') ? 'required' : 'sometimes', 'integer', 'min:1'],
             'editing_token' => ['sometimes', 'string', 'size:64'],
-            'content' => [! $this->route('resource') || in_array($action, ['save', 'autosave'], true) ? 'required' : 'sometimes', 'array'],
+            'content' => [$action === 'publish' ? 'prohibited' : (! $this->route('resource') || in_array($action, ['save', 'autosave'], true) ? 'required' : 'sometimes'), 'array'],
             'collection_id' => [$action === 'organize' ? 'present' : 'sometimes', 'nullable', 'integer'],
             'sort_order' => ['sometimes', 'integer', 'min:0', 'max:1000000'],
-            'is_pinned' => ['sometimes', 'boolean'],
-            'summary' => ['sometimes', 'nullable', 'string', 'max:300', 'regex:/^[^\r\n]+$/u'],
-            'publish' => ['sometimes', 'boolean'],
+            'is_pinned' => [$action === 'pin' ? 'required' : 'sometimes', 'boolean'],
+            'summary' => [$action === 'publish' ? 'prohibited' : (in_array($action, ['save', 'restore'], true) ? 'required' : 'sometimes'), 'nullable', 'string', 'max:300', 'regex:/^[^\r\n]+$/u'],
+            'publish' => ['prohibited'],
             'revision_id' => [$action === 'restore' ? 'required' : 'sometimes', 'integer'],
             'source_revision_id' => ['sometimes', 'integer', 'min:1'],
         ];

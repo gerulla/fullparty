@@ -35,7 +35,7 @@ test('image chooser requests searchable paginated images for its current resourc
     assert.equal(api.state.loading, false)
 })
 
-test('branding image requests use the library-only filter without an editor resource', async () => {
+test('explicit library-only image requests omit an editor resource', async () => {
     let request
     const { api } = harness({ get: async (...args) => { request = args; return page([]) } }, { resourceId: undefined, libraryOnly: true })
     await api.load()

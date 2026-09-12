@@ -32,6 +32,7 @@ class GroupFeature extends Model
         'leaderboard_enabled' => 'boolean',
         'calendar_sync_enabled' => 'boolean',
         'resource_hub_enabled' => 'boolean',
+        'resource_hub_initialized_at' => 'datetime',
     ];
 
     public function group(): BelongsTo

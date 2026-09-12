@@ -81,6 +81,7 @@ function saveLink() {
         </UPopover>
         <UDropdownMenu v-if="editor.isActive('table')" :items="tableActions"><UButton icon="i-lucide-table-properties" color="neutral" variant="outline" size="xs" :label="l('table_actions')" /></UDropdownMenu>
         <UTooltip v-if="editor.isActive('image')" :text="l('delete_image')"><UButton icon="i-lucide-trash-2" color="error" variant="soft" size="xs" :aria-label="l('delete_image')" @click="editor.chain().focus().deleteSelection().run()" /></UTooltip>
+        <slot />
     </div>
     <UModal v-model:open="linkOpen" :title="l('link')">
         <template #body><form class="space-y-4" @submit.prevent="saveLink"><UFormField :label="l('url')" :error="href && !safeEditorUrl(href) ? l('invalid_url') : undefined"><UInput v-model="href" autofocus class="w-full" /></UFormField><div class="flex justify-end gap-2"><UButton v-if="editor.isActive('link')" color="error" variant="soft" :label="l('remove_link')" @click="editor.chain().focus().unsetLink().run(); linkOpen = false" /><UButton type="submit" :label="l('apply')" :disabled="!safeEditorUrl(href)" /></div></form></template>

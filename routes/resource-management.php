@@ -22,5 +22,5 @@ Route::prefix('content/resources')->name('groups.dashboard.resources.')->middlew
     Route::post('/', [ResourceMutationController::class, 'store'])->name('store');
     Route::delete('/{resource}', [ResourceMutationController::class, 'destroy'])->whereNumber('resource')->name('destroy');
     Route::get('/{resource}/revisions/{revisionId}', [ResourceMutationController::class, 'revision'])->whereNumber(['resource', 'revisionId'])->name('revisions.show');
-    Route::post('/{resource}/{operation}', [ResourceMutationController::class, 'update'])->whereNumber('resource')->where('operation', 'acquire|heartbeat|release|autosave|save|publish|restore|archive|unarchive|unpublish|organize')->name('update');
+    Route::post('/{resource}/{operation}', [ResourceMutationController::class, 'update'])->whereNumber('resource')->where('operation', 'acquire|heartbeat|release|autosave|save|publish|restore|archive|unarchive|unpublish|organize|pin')->name('update');
 });

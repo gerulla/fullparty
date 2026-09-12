@@ -2,10 +2,12 @@
 
 use App\Models\Group;
 use App\Models\GroupResource;
+use App\Models\GroupResourceCollection;
 use App\Models\GroupResourceImage;
 use App\Models\GroupResourceLibrary;
 use App\Models\User;
 use App\Services\Groups\Resources\ResourceAudit;
+use App\Services\Groups\Resources\ResourceImageService;
 use App\Services\Groups\Resources\ResourceLibraryDeletionService;
 use App\Services\Groups\Resources\ResourceLibraryService;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -174,45 +176,68 @@ it('returns precise customization errors and leaves settings unchanged on failur
     expect($library->fresh()->customization)->toBe(['title' => 'Keep me']);
 });
 
-it('refuses branding images belonging to another group or a specific resource', function () {
+it('refuses branding images belonging to another group or missing from storage records', function () {
     $otherImage = library_management_image(Group::factory()->create(), null);
-    $restricted = library_management_image($this->group, library_management_resource($this->group));
     $this->putJson($this->settingsUrl, ['visibility' => 'public', 'customization' => [
-        'banner_image_id' => $otherImage->uuid, 'logo_image_id' => $restricted->uuid, 'sharing_image_id' => (string) Str::uuid(),
+        'banner_image_id' => $otherImage->uuid, 'logo_image_id' => $otherImage->uuid, 'sharing_image_id' => (string) Str::uuid(),
     ]])->assertUnprocessable()->assertJsonValidationErrors([
         'customization.banner_image_id', 'customization.logo_image_id', 'customization.sharing_image_id',
     ]);
 });
 
-it('deletes every resource state and related data but preserves collections branding and other groups', function () {
+it('deletes resources and nested collections while preserving all uploads branding and other groups', function () {
     $resource = library_management_resource($this->group);
-    GroupResource::factory()->create(['group_id' => $this->group->id, 'status' => 'draft', 'editing_expires_at' => now()->addMinutes(10)]);
-    GroupResource::factory()->create(['group_id' => $this->group->id, 'status' => 'archived']);
+    $draft = GroupResource::factory()->create(['group_id' => $this->group->id, 'status' => 'draft', 'editing_expires_at' => now()->addMinutes(10)]);
+    $archived = GroupResource::factory()->create(['group_id' => $this->group->id, 'status' => 'archived']);
+    $draft->collection->update(['parent_id' => $resource->collection_id]);
+    $archived->collection->update(['parent_id' => $draft->collection_id]);
     $image = library_management_image($this->group, $resource);
     $branding = library_management_image($this->group, null);
-    $library = GroupResourceLibrary::create(['group_id' => $this->group->id, 'visibility' => 'private', 'storage_used_bytes' => 20, 'customization' => ['title' => 'Keep this', 'logo_image_id' => $branding->uuid, 'start_resource_id' => $resource->id]]);
+    $upload = library_management_image($this->group, null);
+    $upload->update(['library_upload' => true]);
+    $unused = library_management_image($this->group, null);
+    $images = collect([$image, $branding, $upload, $unused]);
+    $library = GroupResourceLibrary::create(['group_id' => $this->group->id, 'visibility' => 'private', 'storage_used_bytes' => 40, 'customization' => ['title' => 'Keep this', 'logo_image_id' => $branding->uuid, 'start_resource_id' => $resource->id]]);
     $otherResource = library_management_resource(Group::factory()->create());
     $otherImage = library_management_image($otherResource->group, $otherResource);
-    $collectionIds = $this->group->resourceCollections()->pluck('id')->all();
 
     $this->deleteJson($this->deleteUrl, ['confirmation' => 'i am sure'])->assertOk()->assertJsonPath('deleted_count', 3)
-        ->assertJsonPath('data.visibility', 'private')->assertJsonPath('data.storage.used_bytes', 10)
+        ->assertJsonPath('data.visibility', 'private')->assertJsonPath('data.storage.used_bytes', 40)
         ->assertJsonPath('data.customization.title', 'Keep this')->assertJsonPath('data.customization.logo_image_id', $branding->uuid)
         ->assertJsonPath('data.customization.start_resource_id', GroupResource::where('group_id', $this->group->id)->where('is_home', true)->value('id'));
 
     expect(GroupResource::where('group_id', $this->group->id)->where('is_home', false)->count())->toBe(0)
-        ->and($this->group->resourceCollections()->pluck('id')->all())->toBe($collectionIds)
-        ->and($library->fresh()->storage_used_bytes)->toBe(10);
+        ->and($this->group->resourceCollections()->count())->toBe(0)
+        ->and($library->fresh()->storage_used_bytes)->toBe(40);
     foreach (['group_resource_revisions', 'group_resource_commands', 'group_resource_slugs'] as $table) {
         $this->assertDatabaseMissing($table, ['resource_id' => $resource->id]);
         $this->assertDatabaseHas($table, ['resource_id' => $otherResource->id]);
     }
-    $this->assertDatabaseMissing('group_resource_images', ['id' => $image->id]);
-    $this->assertDatabaseHas('group_resource_images', ['id' => $branding->id]);
+    foreach ($images as $kept) {
+        $this->assertDatabaseHas('group_resource_images', ['id' => $kept->id, 'resource_id' => null, 'library_upload' => true, 'access_level' => 'admin']);
+    }
     $this->assertDatabaseHas('group_resources', ['id' => $otherResource->id]);
-    Storage::disk('local')->assertMissing($image->path);
-    Storage::disk('local')->assertExists([$branding->path, $otherImage->path]);
+    $this->assertDatabaseHas('group_resource_collections', ['id' => $otherResource->collection_id]);
+    $this->assertDatabaseHas('group_resource_images', ['id' => $otherImage->id, 'resource_id' => $otherResource->id, 'library_upload' => false]);
+    Storage::disk('local')->assertExists([...$images->pluck('path')->all(), $otherImage->path]);
     $this->assertDatabaseHas('audit_logs', ['action' => 'group.resources.all_deleted', 'scope_id' => $this->group->id]);
+
+    $this->get(route('groups.dashboard.resources.manage', $this->group))->assertOk()->assertInertia(fn (Assert $page) => $page
+        ->has('collections', 0)->has('workspace.resources', 1)->where('workspace.resources.0.is_home', true));
+    $this->travel(2)->days();
+    app(ResourceImageService::class)->cleanup();
+    expect(GroupResourceImage::where('group_id', $this->group->id)->count())->toBe(4)
+        ->and($library->fresh()->storage_used_bytes)->toBe(40);
+    Storage::disk('local')->assertExists($images->pluck('path')->all());
+});
+
+it('clears nested empty collections when there are no resources to delete', function () {
+    $parent = GroupResourceCollection::create(['group_id' => $this->group->id, 'name' => 'Guides', 'slug' => 'guides']);
+    GroupResourceCollection::create(['group_id' => $this->group->id, 'parent_id' => $parent->id, 'name' => 'Empty', 'slug' => 'empty']);
+
+    $this->deleteJson($this->deleteUrl, ['confirmation' => 'i am sure'])->assertOk()->assertJsonPath('deleted_count', 0);
+    expect($this->group->resourceCollections()->count())->toBe(0);
+    $this->assertDatabaseHas('group_resources', ['group_id' => $this->group->id, 'is_home' => true]);
 });
 
 it('retains images referenced by Home including old and pending revisions when clearing the library', function () {
@@ -265,7 +290,8 @@ it('rolls back deletion without removing files if the transaction fails', functi
 
     expect(fn () => app(ResourceLibraryDeletionService::class)->deleteResources($this->group, $this->group->owner))->toThrow(RuntimeException::class, 'Audit failed');
     $this->assertDatabaseHas('group_resources', ['id' => $resource->id]);
-    $this->assertDatabaseHas('group_resource_images', ['id' => $image->id]);
+    $this->assertDatabaseHas('group_resource_collections', ['id' => $resource->collection_id]);
+    $this->assertDatabaseHas('group_resource_images', ['id' => $image->id, 'resource_id' => $resource->id, 'library_upload' => false]);
     expect(GroupResourceLibrary::where('group_id', $this->group->id)->value('storage_used_bytes'))->toBe(10);
     Storage::disk('local')->assertExists($image->path);
 });

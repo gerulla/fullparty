@@ -3,7 +3,7 @@ import type { WorkspaceCollection, WorkspaceDocument, WorkspaceEmbed, WorkspaceR
 import { emptyRichTextDocument } from './richText.ts'
 
 export function workspaceCollection(data: ResourceCollectionData): WorkspaceCollection {
-    return { id: String(data.id), name: data.name, parentId: data.parent_id === null ? null : String(data.parent_id), icon: 'i-lucide-folder', order: data.sort_order ?? 0 }
+    return { id: String(data.id), name: data.name, parentId: data.parent_id === null ? null : String(data.parent_id), icon: data.icon || 'i-lucide-folder', order: data.sort_order ?? 0 }
 }
 
 export function workspaceEmbed(command?: ResourceCommandData): WorkspaceEmbed {
@@ -38,10 +38,12 @@ export function workspaceResource(data: ResourceSummaryData | ResourceDetailData
         version: data.version, uuid: data.uuid, isHome: data.is_home ?? false, slug: snapshot.slug ?? data.slug,
         status: data.status === 'archived' ? 'archived' : data.status === 'published' ? 'published' : 'draft',
         hasUnpublishedChanges: data.has_unpublished_changes,
+        canPublish: data.can_publish ?? false,
+        isPinned: data.is_pinned ?? false,
         readerUrls: data.reader_urls ?? null,
         order: data.sort_order, updatedAt: data.updated_at,
         published: detail?.published ? workspaceDocument(detail.published, data.collection_id, activities) : null,
-        history: detail?.history.map(item => ({ id: String(item.id), author: item.editor.name, authorAvatar: item.editor.avatar_url ?? undefined, summary: item.summary, at: item.created_at })) ?? [],
+        history: detail?.history.map(item => ({ id: String(item.id), kind: item.kind ?? 'edit', author: item.editor.name, authorAvatar: item.editor.avatar_url ?? undefined, summary: item.summary, at: item.created_at })) ?? [],
     }
 }
 

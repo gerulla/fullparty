@@ -21,6 +21,13 @@ test('collection scope includes all nested descendants, not other branches', () 
     assert.deepEqual(collectionDescendants(collections, 'drs'), ['drs', 'encounters', 'bridges'])
     assert.deepEqual(filter([resource(), resource({ id: 'two', collectionId: 'ba' })], { scope: 'drs' }).map(item => item.id), ['one'])
 })
+test('the pinned category includes pins across collections and still applies search and status filters', () => {
+    const rows = [resource({ id: 'draft-pin', isPinned: true }), resource({ id: 'live-pin', isPinned: true, collectionId: 'ba', status: 'published' }), resource({ id: 'normal' }), resource({ id: 'archived', isPinned: true, status: 'archived' })]
+    assert.deepEqual(filter(rows, { scope: 'pinned' }).map(item => item.id), ['draft-pin', 'live-pin'])
+    assert.deepEqual(filter(rows, { scope: 'pinned', status: 'published', query: 'strategy' }).map(item => item.id), ['live-pin'])
+    rows[1].isPinned = false
+    assert.deepEqual(filter(rows, { scope: 'pinned' }).map(item => item.id), ['draft-pin'])
+})
 test('malformed collection cycles terminate', () => {
     assert.deepEqual(collectionDescendants([{ id: 'a', parentId: 'b' }, { id: 'b', parentId: 'a' }], 'a'), ['a', 'b'])
 })

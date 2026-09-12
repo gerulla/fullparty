@@ -23,6 +23,9 @@ beforeEach(function () {
     $this->action = function (string $action, array $data = []) {
         return $this->postJson(rtrim(config('app.url'), '/').route('groups.dashboard.resources.update', ['group' => $this->group, 'resource' => $this->resource, 'operation' => $action], false), ['version' => $this->resource->refresh()->version] + $data);
     };
+    $token = ($this->action)('acquire')->assertOk()->json('data.editing_token');
+    ($this->action)('save', ['editing_token' => $token, 'content' => $this->content, 'summary' => 'Initial guide.'])->assertOk();
+    ($this->action)('release', ['editing_token' => $token])->assertOk();
 });
 
 it('autosaves the working copy without creating checkpoints or publishing bot commands', function () {
@@ -35,7 +38,9 @@ it('autosaves the working copy without creating checkpoints or publishing bot co
         ->and($this->resource->publishedRevision->snapshot['title'])->toBe('Guide')
         ->and($this->resource->revisions()->count())->toBe(1)
         ->and(app(ResourceCommandService::class)->available($this->group)->count())->toBe(0);
-    ($this->action)('publish', ['editing_token' => $token, 'summary' => 'Updated the guide.'])->assertOk();
+    ($this->action)('publish', ['editing_token' => $token])->assertUnprocessable();
+    ($this->action)('save', ['editing_token' => $token, 'content' => $content, 'summary' => 'Updated the guide.'])->assertOk();
+    ($this->action)('publish', ['editing_token' => $token])->assertOk();
     expect($this->resource->refresh()->revisions()->count())->toBe(2)
         ->and($this->resource->publishedRevision->summary)->toBe('Updated the guide.')
         ->and(app(ResourceCommandService::class)->available($this->group)->count())->toBe(1);
@@ -82,7 +87,7 @@ it('archives without losing history and restores as an unpublished draft', funct
     ($this->action)('unarchive')->assertOk()->assertJsonPath('data.resource.status', 'draft');
     expect($this->resource->refresh()->uuid)->toBe($uuid)->and($this->resource->revisions()->count())->toBe(1);
     $this->get(route('groups.dashboard.resources.show', ['group' => $this->group, 'slug' => $uuid]))->assertNotFound();
-    ($this->action)('publish', ['summary' => 'Restored the guide.'])->assertOk();
+    ($this->action)('publish')->assertOk();
     $this->get(route('groups.dashboard.resources.show', ['group' => $this->group, 'slug' => $uuid]))->assertOk();
 });
 

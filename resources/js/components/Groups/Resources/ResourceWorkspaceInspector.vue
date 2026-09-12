@@ -37,11 +37,12 @@ const tabs = computed(() => [
     { label: l('discord'), value: 'discord' },
     { label: l('history'), value: 'history' },
 ])
-const folders = computed(() => [{ value: 'root', label: l('root') }, ...props.workspace.state.collections.map(item => ({ value: item.id, label: item.name }))])
+const folders = computed(() => [{ value: 'root', label: l('root'), icon: 'i-lucide-folder' }, ...props.workspace.state.collections.map(item => ({ value: item.id, label: item.name, icon: item.icon }))])
 const folder = computed({ get: () => draft.value?.collectionId ?? 'root', set: value => { if (draft.value) draft.value.collectionId = value === 'root' ? null : value } })
+const selectedFolder = computed(() => folders.value.find(item => item.value === folder.value))
 function date(value: string) { return new Date(value).toLocaleString(locale.value, { month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' }) }
 const editors = computed(() => [...new Map(resource.value?.history.map(item => [item.author, item]) ?? []).values()])
-const historyItems = computed(() => resource.value?.history.map(item => ({ id: item.id, date: date(item.at), title: item.summary, description: item.author, avatar: { src: item.authorAvatar, alt: item.author } })) ?? [])
+const historyItems = computed(() => resource.value?.history.map(item => ({ id: item.id, kind: item.kind, date: date(item.at), title: item.summary, description: item.author, avatar: { src: item.authorAvatar, alt: item.author } })) ?? [])
 </script>
 
 <template>
@@ -61,7 +62,12 @@ const historyItems = computed(() => resource.value?.history.map(item => ({ id: i
                         <dt class="text-muted">{{ l('last_edit') }}</dt>
                         <dd><time v-if="resource" :datetime="resource.updatedAt">{{ date(resource.updatedAt) }}</time></dd>
                     </dl>
-                    <UFormField name="collection_id" data-resource-field="collection_id" :error="workspace.fieldError('collection_id')" :label="l('collection')" class="studio-form-row"><USelect v-model="folder" :items="folders" :disabled="resource?.isHome" size="sm" class="w-full" /></UFormField>
+                    <UFormField name="collection_id" data-resource-field="collection_id" :error="workspace.fieldError('collection_id')" :label="l('collection')" class="studio-form-row">
+                        <USelect v-model="folder" :items="folders" :disabled="resource?.isHome" size="sm" class="w-full">
+                            <template #default><span class="flex min-w-0 items-center gap-2"><UIcon name="i-lucide-folder" class="size-4 shrink-0 text-[#d5b168]" /><UIcon v-if="selectedFolder && selectedFolder.icon !== 'i-lucide-folder'" :name="selectedFolder.icon" class="size-4 shrink-0" /><span class="truncate">{{ selectedFolder?.label }}</span></span></template>
+                            <template #item-leading="{ item }"><UIcon name="i-lucide-folder" class="size-4 shrink-0 text-[#d5b168]" /><UIcon v-if="item.icon !== 'i-lucide-folder'" :name="item.icon" class="size-4 shrink-0" /></template>
+                        </USelect>
+                    </UFormField>
                     <ResourceImagePicker v-model="draft.cover" name="metadata_image_id" data-resource-field="metadata_image_id" :error="workspace.fieldError('metadata_image_id')" :label="l('cover_image')" compact />
                     <img v-if="draft.cover" :src="draft.cover" alt="" class="studio-resource-cover" />
                     <div class="space-y-3 border-t border-default pt-5">
@@ -75,7 +81,7 @@ const historyItems = computed(() => resource.value?.history.map(item => ({ id: i
                     <UTimeline v-if="historyItems.length" :items="historyItems" size="sm" :ui="{ date: 'text-xs text-muted', title: 'text-sm font-medium', description: 'text-xs text-muted' }">
                         <template #description="{ item }">
                             <p>{{ item.description }}</p>
-                            <UButton class="mt-2 rounded-none" icon="i-lucide-history" color="neutral" variant="outline" size="xs" :label="l('use_version')" :disabled="workspace.busy" @click="workspace.useRevision(item.id)" />
+                            <UButton v-if="item.kind !== 'publication'" class="mt-2 rounded-none" icon="i-lucide-history" color="neutral" variant="outline" size="xs" :label="l('use_version')" :disabled="workspace.busy" @click="workspace.useRevision(item.id)" />
                             <p v-if="workspace.state.sourceRevisionId === item.id" class="mt-2 text-primary">{{ l('version_loaded') }}</p>
                         </template>
                     </UTimeline>
@@ -92,7 +98,7 @@ const historyItems = computed(() => resource.value?.history.map(item => ({ id: i
                 </div>
                 <div class="flex gap-2">
                     <UButton icon="i-lucide-pencil" :label="l('edit_resource')" class="flex-1 justify-center" @click="workspace.edit(resource.id)" />
-                    <UButton v-if="workspaceHasUnpublishedChanges(resource)" icon="i-lucide-check" :label="l('publish')" class="flex-1 justify-center" @click="workspace.publish([resource.id])" />
+                    <UButton v-if="workspaceHasUnpublishedChanges(resource)" icon="i-lucide-check" :label="l('publish')" :disabled="workspace.busy || !resource.canPublish" :title="resource.canPublish ? undefined : l('save_before_publish')" class="flex-1 justify-center" @click="workspace.publish([resource.id])" />
                     <UTooltip :text="l('view')"><UButton icon="i-lucide-external-link" color="neutral" variant="outline" :aria-label="l('view')" :to="workspace.viewUrl(resource)" :disabled="!workspace.viewUrl(resource)" target="_blank" rel="noopener noreferrer" /></UTooltip>
                 </div>
                 <dl class="space-y-3 border-t border-default pt-5 text-xs">

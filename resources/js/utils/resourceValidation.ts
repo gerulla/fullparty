@@ -39,8 +39,10 @@ export function validateResourceFields(draft: WorkspaceDocument, resources: Work
         catch { add(path, 'validation.url') }
         text(path, value, 2048)
     }
-    text('title', draft.title, 200, true)
-    text('description', draft.description, 1000)
+    if (!resources.some(resource => resource.id === id && resource.holsterId)) {
+        text('title', draft.title, 200, true)
+        text('description', draft.description, 1000)
+    }
     if (draft.cover && !/^\/resource-assets\/[a-f0-9-]{36}$/i.test(draft.cover)) add('metadata_image_id', 'validation.image')
     if (draft.tags.length > 20) add('tags', 'validation.max_items', { max: 20 })
     draft.tags.forEach(tag => text('tags', tag, 50, true))

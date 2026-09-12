@@ -64,6 +64,9 @@ class ResourceEmbedMetadata
         if ($snapshot === null) {
             return null;
         }
+        if ($resource) {
+            $snapshot = app(ResourceHolsterContent::class)->inherit($resource, $snapshot);
+        }
         $author = $this->author($group, $snapshot, $resource);
         foreach ($snapshot['commands'] ?? [] as $index => $command) {
             $snapshot['commands'][$index]['embed']['author'] = $author;

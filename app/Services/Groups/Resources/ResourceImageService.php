@@ -84,7 +84,7 @@ class ResourceImageService
         if (! $public && $user && $this->policy->manageableImages($user, $group)->whereKey($image->id)->exists()) {
             return true;
         }
-        $resources = GroupResource::where('group_id', $group->id)->where('status', 'published')
+        $resources = GroupResource::where('group_id', $group->id)->withAvailableSource()->where('status', 'published')
             ->whereHas('publishedRevision', fn ($query) => $query->whereJsonContains('snapshot->image_ids', $image->uuid))->get();
 
         return $resources->contains(fn ($resource) => $public ? $this->libraries->publicUrl($resource) !== null : ($user && $this->policy->view($user, $resource)));

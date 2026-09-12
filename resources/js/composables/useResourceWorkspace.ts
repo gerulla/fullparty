@@ -32,6 +32,21 @@ export function useResourceWorkspace(props: { groupSlug: string; collections: Re
     const loadingResource = ref(false)
     const loaded = new Set<string>()
     let selectionRequest = 0
+    function refresh() {
+        const editing = state.mode === 'editor' ? selected.value : null
+        selectionRequest++
+        loadingResource.value = false
+        loaded.clear()
+        state.collections = props.collections.map(workspaceCollection)
+        state.resources = props.data.resources.map(item => workspaceResource(item, activities.value))
+        if (editing) {
+            state.resources = state.resources.filter(item => item.id !== editing.id).concat(editing)
+            loaded.add(editing.id)
+            return
+        }
+        state.selectedId = null
+        state.checked = []
+    }
     const savedDraft = ref('')
     let revisionSource: WorkspaceRevisionSource | null = null
     let recoveryConflict = false
@@ -346,6 +361,7 @@ export function useResourceWorkspace(props: { groupSlug: string; collections: Re
     }
 
     return {
+        refresh,
         state,
         get selected() { return selected.value }, get visibleResources() { return visibleResources.value }, get dirty() { return dirty.value },
         get canPublish() { return !!selected.value?.canPublish && !dirty.value && !autosave.saving.value && !state.conflict },

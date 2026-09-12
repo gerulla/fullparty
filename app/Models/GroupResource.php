@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -38,6 +39,19 @@ class GroupResource extends Model
     protected function casts(): array
     {
         return ['is_home' => 'boolean', 'working_copy' => 'array', 'version' => 'integer', 'is_pinned' => 'boolean', 'sort_order' => 'integer', 'editing_expires_at' => 'datetime', 'published_at' => 'datetime', 'archived_at' => 'datetime'];
+    }
+
+    public function holster(): BelongsTo
+    {
+        return $this->belongsTo(BozjaHolster::class, 'holster_id');
+    }
+
+    public function scopeWithAvailableSource(Builder $query): void
+    {
+        $query->where(fn ($source) => $source->whereNull('holster_id')->orWhere(fn ($linked) => $linked
+            ->whereHas('holster', fn ($holster) => $holster->where('is_active', true)->whereColumn('bozja_holsters.group_id', 'group_resources.group_id'))
+            ->whereExists(fn ($library) => $library->selectRaw('1')->from('group_resource_libraries')
+                ->whereColumn('group_resource_libraries.group_id', 'group_resources.group_id')->whereNotNull('holster_collection_id'))));
     }
 
     public function group(): BelongsTo

@@ -363,6 +363,8 @@
     "save_failed": "Die Holster-Sammlung konnte nicht gespeichert werden. Bitte versuche es erneut.",
     "change_collection": "Sammlung ändern",
     "manage": "Holster verwalten",
+    "inherited_title": "Aus DRS übernommen",
+    "inherited_description": "Titel, Beschreibung und Anleitung werden automatisch vom Holster übernommen. Die Aktivität ist mit DRS verknüpft. Bearbeite hier die Ressourceneinstellungen; archiviere die Ressource, um sie auszublenden.",
     "managed_in_drs": "Diese Ressourcen werden automatisch aktualisiert. Inhalte und Aktivstatus lassen sich unter „Holster verwalten“ bearbeiten.",
     "live": "Aktuell",
     "loadout": "Holster-Inhalt",

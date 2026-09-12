@@ -363,6 +363,8 @@
     "save_failed": "Impossible d’enregistrer la collection des holsters. Veuillez réessayer.",
     "change_collection": "Changer de collection",
     "manage": "Gérer les holsters",
+    "inherited_title": "Hérité de DRS",
+    "inherited_description": "Le titre, la description et le guide sont automatiquement repris du holster. L’activité est liée à DRS. Modifiez ici les paramètres de la ressource ; archivez-la pour la masquer.",
     "managed_in_drs": "Ces ressources sont mises à jour automatiquement. Modifiez leur contenu et leur statut actif dans « Gérer les holsters ».",
     "live": "À jour",
     "loadout": "Contenu du holster",

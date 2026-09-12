@@ -18,7 +18,7 @@ const historyItems = computed(() => (resource.value?.history ?? []).slice(0, 2).
 })))
 const actions = computed(() => resource.value ? [
     { label: l('move'), icon: 'i-lucide-folder-input', disabled: resource.value.isHome, onSelect: () => props.workspace.openMove([resource.value!.id]) },
-    { label: l('delete'), icon: 'i-lucide-trash-2', color: 'error' as const, disabled: resource.value.isHome, onSelect: () => props.workspace.remove(resource.value!.id) },
+    { label: l('delete'), icon: 'i-lucide-trash-2', color: 'error' as const, disabled: resource.value.isHome || !!resource.value.holsterId, onSelect: () => props.workspace.remove(resource.value!.id) },
     { label: l(resource.value.status === 'archived' ? 'restore_draft' : 'archive'), icon: resource.value.status === 'archived' ? 'i-lucide-archive-restore' : 'i-lucide-archive', disabled: resource.value.isHome, onSelect: () => resource.value?.status === 'archived' ? props.workspace.unarchive(resource.value.id) : props.workspace.archive(resource.value!.id) },
 ] : [])
 function date(value: string) { return new Date(value).toLocaleString(locale.value, { month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit', hour12: false }) }

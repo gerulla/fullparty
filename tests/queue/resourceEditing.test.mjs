@@ -300,6 +300,21 @@ function workspaceHarness({ existing = resource(), fail = () => false, revisions
     return { api, calls, mutations, async runAutosave() { const timer = autosaveTimer; autosaveTimer = undefined; timer?.(); await flush() } }
 }
 
+test('refreshing linked holster listings preserves another resource editor and its unsaved draft', async () => {
+    const { api, calls } = workspaceHarness()
+    api.createResource(); await flush()
+    const selected = api.selected
+    const draft = api.state.draft
+    draft.title = 'Unsaved title'
+    const callCount = calls.length
+    api.refresh()
+    assert.equal(api.selected.id, selected.id)
+    assert.equal(api.state.mode, 'editor')
+    assert.equal(api.state.draft, draft)
+    assert.equal(api.state.draft.title, 'Unsaved title')
+    assert.equal(calls.length, callCount)
+})
+
 for (const kind of ['collection', 'resource']) {
     test(`${kind} moves render immediately, reconcile on success, and roll back positions on failure`, async () => {
         const collections = [

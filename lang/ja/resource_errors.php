@@ -1,6 +1,7 @@
 <?php
 
 return [
+    'holster_protected' => 'このリンクされたリソースを非表示にするにはアーカイブするか、DRSで元のホルスターを管理してください。',
     'save_before_publish' => '公開する前に変更内容を入力してバージョンを保存してください。',
     'resource_reference' => 'このグループの利用可能なリソースを選択してください。',
     'library_fields' => [

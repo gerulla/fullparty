@@ -35,6 +35,7 @@ export function workspaceResource(data: ResourceSummaryData | ResourceDetailData
     if (!snapshot) throw new Error('Resource has no readable content')
     return {
         ...workspaceDocument(snapshot, data.collection_id, activities), id: String(data.id),
+        holsterId: data.holster_id, inheritedBodyHtml: detail?.inherited_body_html,
         version: data.version, uuid: data.uuid, isHome: data.is_home ?? false, slug: snapshot.slug ?? data.slug,
         status: data.status === 'archived' ? 'archived' : data.status === 'published' ? 'published' : 'draft',
         hasUnpublishedChanges: data.has_unpublished_changes,

@@ -29,6 +29,7 @@ class ResourceLibraryDeletionService
             $resource = GroupResource::whereKey($resource->id)->lockForUpdate()->firstOrFail();
             abort_unless($this->policy->manage($user, $resource), 403);
             abort_if($resource->is_home, 422, __('resource_errors.home_protected'));
+            abort_if($resource->holster_id, 422, __('resource_errors.holster_protected'));
             abort_unless((int) $data['version'] === $resource->version, 409, __('resource_errors.stale'));
             if ($resource->editing_token_hash && $resource->editing_expires_at?->isFuture()) {
                 $this->workflow->assertLease($resource, $user, $data);

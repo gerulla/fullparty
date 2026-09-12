@@ -19,6 +19,14 @@ class ResourceSnapshotValidator
 
     public function validate(Group $group, User $user, array $input, ?GroupResource $resource = null): array
     {
+        if ($resource?->holster_id) {
+            // Only resource metadata belongs to this editor. Source guides also permit
+            // images outside the resource upload library, so validate metadata separately.
+            $input = array_replace($input, [
+                'title' => 'DRS holster', 'description' => '', 'body' => RichTextDocument::empty(),
+                'slug' => $resource->slug, 'activity_type_ids' => app(ResourceHolsterContent::class)->activityIds(),
+            ]);
+        }
         if (is_array($input['commands'] ?? null)) {
             foreach ($input['commands'] as &$command) {
                 if (! is_array($command)) {
@@ -93,7 +101,8 @@ class ResourceSnapshotValidator
             $names[] = $command['name'];
             $command['enabled'] = (bool) $command['enabled'];
             $embed = $command['embed'];
-            $length = mb_strlen('FullParty') + mb_strlen($embed['title'] ?? '') + mb_strlen($embed['description'] ?? '') + mb_strlen($data['title']);
+            $length = mb_strlen('FullParty') + mb_strlen($embed['title'] ?? '') + mb_strlen($embed['description'] ?? '')
+                + mb_strlen($resource?->holster?->localizedName() ?? $data['title']);
             foreach ($embed['fields'] ?? [] as $field) {
                 $length += mb_strlen($field['name']) + mb_strlen($field['value']);
             }
@@ -144,7 +153,7 @@ class ResourceSnapshotValidator
         }
         $data['image_ids'] = $imageIds;
 
-        return $data;
+        return $resource ? app(ResourceHolsterContent::class)->inherit($resource, $data) : $data;
     }
 
     public function imageIds(array $snapshot): array

@@ -34,7 +34,7 @@ class ResourceCommandService
     public function available(Group $group): Builder
     {
         return GroupResourceCommand::where('group_id', $group->id)->where('enabled', true)
-            ->whereHas('resource', fn ($q) => $q->where('group_id', $group->id)->where('status', 'published')->whereNotNull('published_revision_id'));
+            ->whereHas('resource', fn ($q) => $q->withAvailableSource()->where('group_id', $group->id)->where('status', 'published')->whereNotNull('published_revision_id'));
     }
 
     public function find(Group $group, string $name): GroupResourceCommand
@@ -77,7 +77,7 @@ class ResourceCommandService
     public function payload(GroupResourceCommand $command, string $guildId): array
     {
         $embed = $command->embed;
-        $snapshot = $command->resource->publishedRevision->snapshot;
+        $snapshot = app(ResourceHolsterContent::class)->inherit($command->resource, $command->resource->publishedRevision->snapshot);
         $savedCommand = collect($snapshot['commands'] ?? [])->firstWhere('name', $command->name);
         $embed['author'] = $this->embedMetadata->author($command->resource->group, $snapshot);
         $embed['timestamp'] = $savedCommand['updated_at'] ?? $command->resource->publishedRevision->created_at->toIso8601String();

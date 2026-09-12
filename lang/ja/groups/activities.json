@@ -643,6 +643,17 @@
             "party_label": "パーティ",
             "plain_dps": "DPS配色を簡略化",
             "party_label_mode": "ABC/123",
+            "progression": {
+                "toggle": "アライアンスの進行度",
+                "cleared": "完全クリア",
+                "at_target": "募集の進行度以上",
+                "below_target": "募集の進行度未満",
+                "no_progress": "進行記録なし",
+                "loading": "進行度を読み込み中…",
+                "failed": "一部の進行度を読み込めませんでした。",
+                "fflogs_unavailable": "一部のプレイヤーのFF Logsを取得できないため、FullPartyの進行記録を表示しています。",
+                "retry": "再試行"
+            },
             "party_count": "パーティ {count}",
             "filled_count": "埋まっている枠 {count}",
             "open_count": "空き枠 {count}",

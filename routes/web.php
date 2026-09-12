@@ -284,6 +284,10 @@ Route::prefix('{locale?}')
             ->where('secretKey', '[A-Za-z0-9]{40}')
             ->name('groups.activities.calendar');
 
+        Route::get('/groups/{group:slug}/activities/{activity}/alliance-progress', \App\Http\Controllers\GroupActivityAllianceProgressController::class)
+            ->middleware('throttle:external.lookup')
+            ->name('groups.activities.alliance-progress');
+
         // Public activity overview, with optional secret key for private activities.
         Route::get('/groups/{group:slug}/activities/{activity}/{secretKey?}', [GroupActivityController::class, 'overview'])
             ->where('secretKey', '[A-Za-z0-9]{40}')

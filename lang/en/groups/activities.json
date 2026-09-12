@@ -643,6 +643,17 @@
             "party_label": "Party",
             "plain_dps": "Plain DPS",
             "party_label_mode": "ABC/123",
+            "progression": {
+                "toggle": "Alliance progression",
+                "cleared": "Fully cleared",
+                "at_target": "At or past run progress",
+                "below_target": "Below run progress",
+                "no_progress": "No recorded progress",
+                "loading": "Loading progress…",
+                "failed": "Some progress could not be loaded.",
+                "fflogs_unavailable": "FF Logs unavailable for some players; showing recorded FullParty progress.",
+                "retry": "Retry"
+            },
             "party_count": "{count} parties",
             "filled_count": "{count} filled",
             "open_count": "{count} open",

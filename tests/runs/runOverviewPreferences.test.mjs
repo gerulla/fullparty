@@ -41,6 +41,7 @@ test('defaults to distinct DPS colors and alphabetic parties without creating co
     const prefs = mount();
     assert.equal(prefs.plainDpsEnabled.value, false);
     assert.equal(prefs.numberedSecondaryPartiesEnabled.value, false);
+    assert.equal(prefs.allianceProgressEnabled.value, false);
     assert.equal(writes.length, 0);
 });
 
@@ -71,6 +72,17 @@ test('ignores malformed values and works on HTTP development sites', () => {
     assert.equal(prefs.numberedSecondaryPartiesEnabled.value, false);
     prefs.plainDpsEnabled.value = true;
     assert.ok(!writes[0].includes('Secure'));
+});
+
+test('alliance progression is remembered independently of role and party label settings', () => {
+    const first = mount();
+    first.allianceProgressEnabled.value = true;
+    const second = mount();
+    assert.equal(second.allianceProgressEnabled.value, true);
+    assert.equal(second.plainDpsEnabled.value, false);
+    assert.equal(second.numberedSecondaryPartiesEnabled.value, false);
+    second.allianceProgressEnabled.value = false;
+    assert.equal(mount().allianceProgressEnabled.value, false);
 });
 
 test('blocked cookies do not prevent toggles from working', () => {

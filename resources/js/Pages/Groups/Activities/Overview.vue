@@ -321,7 +321,7 @@ const goToManagementPage = () => {
 				:presets="activity.roster_summary_presets"
 				:slots="activity.slots"
 			/>
-			<ActivityAttendeeRosterBoard :slots="activity.slots" />
+			<ActivityAttendeeRosterBoard :slots="activity.slots" :group-slug="group.slug" :activity-id="activity.id" :target-prog-point-key="activity.target_prog_point_key" />
 		</div>
 	</div>
 </template>

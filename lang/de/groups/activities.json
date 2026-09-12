@@ -643,6 +643,17 @@
             "party_label": "Party",
             "plain_dps": "Einfache DPS-Farben",
             "party_label_mode": "ABC/123",
+            "progression": {
+                "toggle": "Allianzfortschritt",
+                "cleared": "Vollständig abgeschlossen",
+                "at_target": "Run-Fortschritt erreicht oder übertroffen",
+                "below_target": "Unter dem Run-Fortschritt",
+                "no_progress": "Kein erfasster Fortschritt",
+                "loading": "Fortschritt wird geladen…",
+                "failed": "Einige Fortschritte konnten nicht geladen werden.",
+                "fflogs_unavailable": "FF Logs ist für einige Spieler nicht verfügbar; angezeigt wird der erfasste FullParty-Fortschritt.",
+                "retry": "Erneut versuchen"
+            },
             "party_count": "{count} Partys",
             "filled_count": "{count} gefüllt",
             "open_count": "{count} offen",

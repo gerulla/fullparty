@@ -3,6 +3,9 @@
 namespace App\Services\FFLogs;
 
 use App\Models\Character;
+use Closure;
+use Illuminate\Http\Client\ConnectionException;
+use Illuminate\Http\Client\RequestException;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Http;
@@ -16,6 +19,8 @@ class CharacterZoneProgressFetcher
     private const TOKEN_CACHE_TTL_BUFFER = 60;
 
     private const ZONE_PROGRESS_CACHE_TTL_HOURS = 24;
+
+    private const FAILURE_CACHE_TTL_SECONDS = 120;
 
     private const DATACENTER_REGION_MAP = [
         'aether' => 'NA',
@@ -106,9 +111,8 @@ class CharacterZoneProgressFetcher
             return $this->refreshRawZoneRankingsForCharacter($character, $zoneId, $difficulty);
         }
 
-        return Cache::remember(
+        return $this->rememberRankings(
             $this->zoneProgressCacheKey($character, $zoneId, $difficulty),
-            now()->addHours(self::ZONE_PROGRESS_CACHE_TTL_HOURS),
             fn () => $this->queryRawZoneRankingsForCharacter($character, $zoneId, $difficulty)
         );
     }
@@ -130,16 +134,14 @@ class CharacterZoneProgressFetcher
             throw new RuntimeException('FF Logs character identity is incomplete.');
         }
 
-        return Cache::remember(
+        return $this->rememberRankings(
             $this->zoneProgressIdentityCacheKey(
                 $normalizedName,
                 $normalizedWorld,
                 $datacenter,
-                $lodestoneId,
                 $zoneId,
                 $difficulty,
             ),
-            now()->addHours(self::ZONE_PROGRESS_CACHE_TTL_HOURS),
             function () use ($normalizedName, $normalizedWorld, $datacenter, $zoneId, $difficulty) {
                 $response = $this->queryCharacterZoneRankings(
                     name: $normalizedName,
@@ -171,28 +173,55 @@ class CharacterZoneProgressFetcher
             throw new RuntimeException('FF Logs character identity is incomplete.');
         }
 
-        $response = $this->queryCharacterZoneRankings(
-            name: $normalizedName,
-            serverSlug: $this->resolveServerSlug($normalizedServerSlug),
-            serverRegion: $normalizedServerRegion,
-            zoneId: $zoneId,
-            difficulty: $difficulty,
-        );
+        return $this->rememberRankings(
+            $this->zoneProgressIdentityCacheKey($normalizedName, $normalizedServerSlug, $normalizedServerRegion, $zoneId, $difficulty),
+            function () use ($normalizedName, $normalizedServerSlug, $normalizedServerRegion, $zoneId, $difficulty) {
+                $response = $this->queryCharacterZoneRankings(
+                    name: $normalizedName,
+                    serverSlug: $this->resolveServerSlug($normalizedServerSlug),
+                    serverRegion: $normalizedServerRegion,
+                    zoneId: $zoneId,
+                    difficulty: $difficulty,
+                );
 
-        return $this->extractZoneRankingsForIdentity($normalizedName, $normalizedServerSlug, $normalizedServerRegion, $response);
+                return $this->extractZoneRankingsForIdentity($normalizedName, $normalizedServerSlug, $normalizedServerRegion, $response);
+            },
+        );
     }
 
     private function refreshRawZoneRankingsForCharacter(Character $character, int $zoneId, ?int $difficulty): array
     {
-        $zoneRankings = $this->queryRawZoneRankingsForCharacter($character, $zoneId, $difficulty);
-
-        Cache::put(
+        return $this->rememberRankings(
             $this->zoneProgressCacheKey($character, $zoneId, $difficulty),
-            $zoneRankings,
-            now()->addHours(self::ZONE_PROGRESS_CACHE_TTL_HOURS),
+            fn () => $this->queryRawZoneRankingsForCharacter($character, $zoneId, $difficulty),
+            refresh: true,
         );
+    }
 
-        return $zoneRankings;
+    private function rememberRankings(string $key, Closure $fetch, bool $refresh = false): array
+    {
+        if (! $refresh && ($cached = Cache::get($key)) !== null) {
+            return $cached;
+        }
+
+        // Recheck after acquiring the lock: another viewer may have just filled this cache.
+        return Cache::lock($key.':fetching', 45)->block(5, function () use ($key, $fetch, $refresh) {
+            if (! $refresh && ($cached = Cache::get($key)) !== null) {
+                return $cached;
+            }
+            if (Cache::has($key.':failed')) {
+                throw new RuntimeException('FF Logs progress is temporarily unavailable; retry shortly.');
+            }
+            try {
+                $rankings = $fetch();
+                Cache::put($key, $rankings, now()->addHours(self::ZONE_PROGRESS_CACHE_TTL_HOURS));
+
+                return $rankings;
+            } catch (\Throwable $exception) {
+                Cache::put($key.':failed', true, self::FAILURE_CACHE_TTL_SECONDS);
+                throw $exception;
+            }
+        });
     }
 
     private function queryRawZoneRankingsForCharacter(Character $character, int $zoneId, ?int $difficulty): array
@@ -256,14 +285,25 @@ GRAPHQL;
             $variables['difficulty'] = $difficulty;
         }
 
-        $response = Http::withToken($this->getAccessToken())
-            ->acceptJson()
-            ->post(config('services.ff_logs.graphql_url'), [
-                'query' => $query,
-                'variables' => $variables,
-            ])
-            ->throw()
-            ->json();
+        if (Cache::has('fflogs:zone-requests:cooldown')) {
+            throw new RuntimeException('FF Logs requests are temporarily paused after a service failure.');
+        }
+        try {
+            $response = Http::withToken($this->getAccessToken())
+                ->connectTimeout(5)->timeout(15)
+                ->acceptJson()
+                ->post(config('services.ff_logs.graphql_url'), [
+                    'query' => $query,
+                    'variables' => $variables,
+                ])
+                ->throw()
+                ->json();
+        } catch (ConnectionException|RequestException $exception) {
+            if ($exception instanceof ConnectionException || $exception->response->status() === 429 || $exception->response->serverError()) {
+                Cache::put('fflogs:zone-requests:cooldown', true, 60);
+            }
+            throw $exception;
+        }
 
         if (! empty($response['errors'])) {
             throw new RuntimeException('FF Logs GraphQL query failed: '.json_encode($response['errors']));
@@ -416,6 +456,24 @@ GRAPHQL;
             return $cachedToken;
         }
 
+        return Cache::lock(self::TOKEN_CACHE_KEY.':fetching', 20)->block(5, function () {
+            if ($cachedToken = Cache::get(self::TOKEN_CACHE_KEY)) {
+                return $cachedToken;
+            }
+            if (Cache::has(self::TOKEN_CACHE_KEY.':failed')) {
+                throw new RuntimeException('FF Logs authentication is temporarily unavailable.');
+            }
+            try {
+                return $this->requestAccessToken();
+            } catch (\Throwable $exception) {
+                Cache::put(self::TOKEN_CACHE_KEY.':failed', true, self::FAILURE_CACHE_TTL_SECONDS);
+                throw $exception;
+            }
+        });
+    }
+
+    private function requestAccessToken(): string
+    {
         $clientId = config('services.ff_logs.client_id');
         $clientSecret = config('services.ff_logs.client_secret');
 
@@ -424,6 +482,7 @@ GRAPHQL;
         }
 
         $response = Http::asForm()
+            ->connectTimeout(5)->timeout(10)
             ->withBasicAuth($clientId, $clientSecret)
             ->post(config('services.ff_logs.token_url'), [
                 'grant_type' => 'client_credentials',
@@ -465,14 +524,12 @@ GRAPHQL;
 
     private function zoneProgressCacheKey(Character $character, int $zoneId, ?int $difficulty): string
     {
-        return sprintf(
-            'fflogs:zone-progress:character:%s:%s:%s:%s:zone:%d:difficulty:%s',
-            $character->lodestone_id ?: 'unknown',
-            Str::slug($character->name),
-            Str::slug((string) $character->world),
-            Str::slug((string) $character->datacenter),
+        return $this->zoneProgressIdentityCacheKey(
+            $character->name,
+            (string) $character->world,
+            $character->datacenter,
             $zoneId,
-            $this->difficultyCacheSegment($difficulty),
+            $difficulty,
         );
     }
 
@@ -480,16 +537,14 @@ GRAPHQL;
         string $name,
         string $world,
         ?string $datacenter,
-        ?string $lodestoneId,
         int $zoneId,
         ?int $difficulty,
     ): string {
         return sprintf(
-            'fflogs:zone-progress:identity:%s:%s:%s:%s:zone:%d:difficulty:%s',
-            $lodestoneId ?: 'unknown',
+            'fflogs:zone-progress:v2:%s:%s:%s:zone:%d:difficulty:%s',
             Str::slug($name),
             Str::slug($world),
-            Str::slug((string) $datacenter),
+            Str::slug(self::DATACENTER_REGION_MAP[strtolower(trim((string) $datacenter))] ?? (string) $datacenter),
             $zoneId,
             $this->difficultyCacheSegment($difficulty),
         );

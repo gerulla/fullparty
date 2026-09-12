@@ -2,6 +2,7 @@
 
 use App\Models\BozjaHolster;
 use App\Models\BozjaItem;
+use App\Models\Group;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 uses(RefreshDatabase::class);
@@ -57,4 +58,21 @@ it('allows a holster to have no localized name', function () {
 it('does not allow a maximum capacity above 99', function () {
     expect(fn () => BozjaHolster::query()->create(['max_capacity' => 100]))
         ->toThrow(InvalidArgumentException::class);
+});
+
+it('includes notes capacity and quantified items in live selection options without guides', function () {
+    $group = Group::factory()->create();
+    $prepop = BozjaHolster::create(['group_id' => $group->id, 'name' => ['en' => 'Starter'], 'notes' => 'Prepare this first']);
+    $refill = BozjaHolster::create(['group_id' => $group->id, 'type' => 'refill', 'parent_holster_id' => $prepop->id]);
+    $item = BozjaItem::create(['key' => 'selection-item', 'category' => 'lost_actions', 'name' => ['en' => 'Test Action'], 'classification' => 'lost_action', 'cache_weight' => 5]);
+    $refill->items()->attach($item, ['quantity' => 2]);
+    $options = collect(BozjaHolster::schemaOptionsForGroup($group->id))->keyBy('key');
+    expect($options[(string) $prepop->id]['meta']['notes'])->toBe('Prepare this first')
+        ->and($options[(string) $refill->id]['meta']['capacity_used'])->toBe(10)
+        ->and($options[(string) $refill->id]['meta']['max_capacity'])->toBe(99)
+        ->and($options[(string) $refill->id]['meta']['items'][0]['quantity'])->toBe(2)
+        ->and($options[(string) $refill->id]['meta']['items'][0]['cache_weight'])->toBe(5)
+        ->and($options[(string) $refill->id]['meta'])->not->toHaveKey('guide');
+    $prepop->update(['group_id' => Group::factory()->create()->id]);
+    expect(BozjaHolster::schemaOptionsForGroup($group->id))->toBe([]);
 });

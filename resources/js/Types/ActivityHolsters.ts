@@ -12,6 +12,7 @@ export type HolsterContentItem = {
 	label: LocalizedText
 	icon_url?: string | null
 	quantity: number
+	cache_weight?: number
 }
 
 export type HolsterPairOption = {
@@ -21,6 +22,9 @@ export type HolsterPairOption = {
 		holster_type?: 'prepop' | 'refill' | null
 		parent_holster_id?: number | string | null
 		role?: string | null
+		notes?: string | null
+		capacity_used?: number | null
+		max_capacity?: number | null
 		items?: HolsterContentItem[]
 	} | null
 }

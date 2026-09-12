@@ -103,6 +103,12 @@ class ResourceHolsterService
         abort_unless($collectionId !== null && (int) $holster->group_id === (int) $group->id && $holster->is_active, 404);
         $body = is_array($holster->guide) ? $holster->guide : RichTextDocument::empty();
         $holster->loadMissing(['items' => fn ($items) => $items->orderBy('bozja_items.sort_order')->orderBy('bozja_items.key')]);
+        $prepop = $holster->type === BozjaHolster::TYPE_PREPOP ? $holster : $holster->parentHolster()
+            ->where('group_id', $group->id)->where('is_active', true)->where('type', BozjaHolster::TYPE_PREPOP)
+            ->with('items')->first();
+        $refills = $holster->type === BozjaHolster::TYPE_REFILL ? collect([$holster]) : $holster->refillHolsters()
+            ->where('group_id', $group->id)->where('is_active', true)->where('type', BozjaHolster::TYPE_REFILL)
+            ->with('items')->orderByDesc('is_default')->orderBy('id')->get();
 
         return $this->summary($holster, $collectionId) + [
             'body' => $body,
@@ -110,14 +116,24 @@ class ResourceHolsterService
             'body_html' => is_array($holster->guide) ? $this->documents->html($body) : $this->markdown->legacyHtml($holster->guide ?? ''),
             'images' => [], 'linked_resources' => [], 'commands' => [],
             'history' => ['data' => [], 'has_more' => false],
-            'holster' => [
-                'role' => $holster->role, 'type' => $holster->type,
-                'capacity_used' => $holster->capacity_used, 'max_capacity' => $holster->max_capacity,
-                'items' => $holster->items->map(fn ($item) => [
-                    'id' => $item->id, 'name' => $item->localizedName(), 'icon_url' => $item->icon_url,
-                    'quantity' => (int) $item->pivot->quantity, 'cache_weight' => $item->cache_weight,
-                ])->all(),
+            'holster' => $this->loadout($holster) + [
+                'prepop' => $prepop ? $this->loadout($prepop) : null,
+                'refills' => $refills->map(fn (BozjaHolster $refill) => $this->loadout($refill))->all(),
             ],
+        ];
+    }
+
+    private function loadout(BozjaHolster $holster): array
+    {
+        return [
+            'id' => $holster->id,
+            'name' => $holster->localizedName() ?? __('resource_library.untitled_holster'),
+            'role' => $holster->role, 'type' => $holster->type, 'notes' => $holster->notes,
+            'capacity_used' => $holster->capacity_used, 'max_capacity' => $holster->max_capacity,
+            'items' => $holster->items->sortBy([['sort_order', 'asc'], ['key', 'asc']])->map(fn ($item) => [
+                'id' => $item->id, 'name' => $item->localizedName(), 'icon_url' => $item->icon_url,
+                'quantity' => (int) $item->pivot->quantity, 'cache_weight' => $item->cache_weight,
+            ])->values()->all(),
         ];
     }
 

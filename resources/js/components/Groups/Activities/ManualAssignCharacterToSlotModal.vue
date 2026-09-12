@@ -9,6 +9,7 @@ import type { ManualAssignmentCharacter, QueueFilterField } from "@/Types/Activi
 import type { ActivityFillInPartyOption, ActivitySlot } from "@/Types/ActivityRoster";
 import type { ActivitySlotFieldSelection, HolsterPairValue } from "@/Types/ActivityHolsters";
 import HolsterPairSelector from "@/components/Groups/Activities/HolsterPairSelector.vue";
+import { availableHolsterPairs, holsterPairKey } from '@/utils/holsterPlanner';
 
 const props = defineProps<{
 	open: boolean
@@ -109,19 +110,7 @@ const compatibleOptionsByField = computed(() => {
 	return map
 })
 
-const firstAvailableHolsterPair = (field: QueueFilterField): HolsterPairValue | null => {
-	const prepop = field.options.find((option) => option.meta?.holster_type === "prepop"
-		&& field.options.some((refill) => refill.meta?.holster_type === "refill"
-			&& String(refill.meta.parent_holster_id ?? "") === option.key))
-	const refill = prepop
-		? field.options.find((option) => option.meta?.holster_type === "refill"
-			&& String(option.meta.parent_holster_id ?? "") === prepop.key)
-		: null
-
-	return prepop && refill
-		? { prepop_id: prepop.key, refill_id: refill.key }
-		: null
-}
+const firstAvailableHolsterPair = (field: QueueFilterField): HolsterPairValue | null => availableHolsterPairs(field.options)[0] ?? null
 
 const hasCompatibleOptions = computed(() => targetFieldDefinitions.value.every((field) => (
 	field.type === "holster_pair"
@@ -139,7 +128,7 @@ const canSubmit = computed(() => {
 		if (field.type === "holster_pair") {
 			const pair = selectedValue as HolsterPairValue | undefined
 
-			return Boolean(pair?.prepop_id && pair?.refill_id)
+			return Boolean(pair && availableHolsterPairs(field.options).some(value => holsterPairKey(value) === holsterPairKey(pair)))
 		}
 
 		if (Array.isArray(selectedValue)) {
@@ -245,7 +234,7 @@ watch(
 					prepop_id: pair?.prepop_id == null ? "" : String(pair.prepop_id),
 					refill_id: pair?.refill_id == null ? "" : String(pair.refill_id),
 				}
-				defaults[field.key] = currentPair.prepop_id && currentPair.refill_id
+				defaults[field.key] = availableHolsterPairs(field.options).some(value => holsterPairKey(value) === holsterPairKey(currentPair))
 					? currentPair
 					: firstAvailableHolsterPair(field) ?? currentPair
 				continue

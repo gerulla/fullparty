@@ -1,0 +1,21 @@
+{
+    "prepop": "事前準備",
+    "refill": "補充",
+    "capacity": "容量：{used} / {max}",
+    "contents": "ホルダーの内容",
+    "details": "全{count}個のアイテムとメモ",
+    "no_items": "このホルダーにはアイテムがありません。",
+    "choose_pairs": "ホルダーを選択",
+    "choose_multiple_hint": "構成を1つ以上選択してください。補充用には対応する事前準備用が含まれます。補充用がない事前準備用は単独で選択できます。",
+    "choose_single_hint": "構成を選択してください。補充用には対応する事前準備用が含まれます。補充用がない事前準備用は単独で選択できます。",
+    "standalone": "単独 · 補充用は不要",
+    "search": "ホルダー、アイテム、メモを検索…",
+    "paired_with": "対応する事前準備：{name}",
+    "no_results": "一致するホルダーがありません。",
+    "selected_count": "{count}個の構成を選択中",
+    "use_selection": "選択を適用",
+    "selected_pair": "選択した構成",
+    "remove_pair": "構成を削除",
+    "unavailable_pair": "この構成は利用できなくなりました。別の構成を選択するか、削除してください。",
+    "change_selection": "ホルダーの選択を変更"
+}

@@ -693,6 +693,27 @@ it('rejects a refill that does not belong to the selected prepop', function () {
     expect(ActivityApplication::query()->count())->toBe(0);
 });
 
+it('saves and remembers a standalone pre-pop holster in an application', function (mixed $refillId) {
+    $activity = createGuestApplicationActivity(['allow_guest_applications' => false]);
+    $prepop = BozjaHolster::create(['group_id' => $activity->group_id, 'name' => ['en' => 'Solo pre-pop']]);
+    $activity->activityTypeVersion->update(['application_schema' => [[
+        'key' => 'holster_loadouts', 'label' => ['en' => 'Holster Loadouts'],
+        'type' => 'holster_pair_list', 'source' => 'bozja_holsters', 'required' => true,
+    ]]]);
+    $user = User::factory()->create();
+    $character = Character::factory()->primary()->create(['user_id' => $user->id]);
+    $this->actingAs($user)->post(route('groups.activities.application.store', [
+        'group' => $activity->group->slug, 'activity' => $activity->id,
+    ]), [
+        'selected_character_id' => $character->id,
+        'answers' => ['holster_loadouts' => [['prepop_id' => $prepop->id, 'refill_id' => $refillId]]],
+        'remember_application_defaults' => true,
+    ])->assertRedirect()->assertSessionHasNoErrors();
+    expect(ActivityApplicationAnswer::query()->sole()->value)->toBe([['prepop_id' => $prepop->id, 'refill_id' => null]]);
+    expect(UserActivityApplicationDefault::query()->sole()->answers['holster_loadouts'])
+        ->toBe([['prepop_id' => $prepop->id, 'refill_id' => null]]);
+})->with([null, '']);
+
 it('stores remembered application defaults for authenticated users on create by default', function () {
     $activity = createGuestApplicationActivity([
         'allow_guest_applications' => false,

@@ -378,8 +378,7 @@ trait InteractsWithActivitySlotFieldDisplay
     {
         return is_array($value)
             && ! array_is_list($value)
-            && filled($value['prepop_id'] ?? null)
-            && filled($value['refill_id'] ?? null);
+            && filled($value['prepop_id'] ?? null);
     }
 
     /**
@@ -391,7 +390,7 @@ trait InteractsWithActivitySlotFieldDisplay
         $prepopId = (int) ($value['prepop_id'] ?? 0);
         $refillId = (int) ($value['refill_id'] ?? 0);
 
-        if ($prepopId <= 0 || $refillId <= 0) {
+        if ($prepopId <= 0) {
             return [];
         }
 
@@ -423,12 +422,12 @@ trait InteractsWithActivitySlotFieldDisplay
         $prepopLabel = $prepop?->localizedName() ?? $storedLabel($value['prepop_label'] ?? null);
         $refillLabel = $refill?->localizedName() ?? $storedLabel($value['refill_label'] ?? null);
 
-        if (! $prepopLabel || ! $refillLabel) {
+        if (! $prepopLabel || ($refillId > 0 && ! $refillLabel)) {
             return [];
         }
 
         return [[
-            'label' => $prepopLabel.' + '.$refillLabel,
+            'label' => $refillLabel ? $prepopLabel.' + '.$refillLabel : $prepopLabel,
             'prepop_label' => $prepopLabel,
             'refill_label' => $refillLabel,
         ]];

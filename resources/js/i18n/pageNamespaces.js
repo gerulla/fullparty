@@ -74,8 +74,12 @@ export function pageNamespaces(name, application = 'main') {
     if (application === 'calculator' && name === 'Home') return ['auth', 'calculator', 'navigation']
     if (application === 'planner' && name === 'Home') return ['auth', 'general', 'navigation', 'planner']
     if (application === 'main') {
-        if (Object.hasOwn(standalone, name)) return [...common, ...standalone[name]]
-        if (Object.hasOwn(features, name)) return [...new Set([...dashboard, ...features[name]])]
+        const namespaces = Object.hasOwn(standalone, name) ? [...common, ...standalone[name]]
+            : Object.hasOwn(features, name) ? [...new Set([...dashboard, ...features[name]])] : null
+        if (namespaces) {
+            if (namespaces.includes('groups/activities') || namespaces.includes('groups/resources')) namespaces.push('holsters')
+            return namespaces
+        }
     }
     throw new Error(`Translation namespaces are not configured for ${application}:${name}`)
 }

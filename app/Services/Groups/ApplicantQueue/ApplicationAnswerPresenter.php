@@ -406,8 +406,7 @@ class ApplicationAnswerPresenter
             && array_is_list($value)
             && ($value === [] || collect($value)->every(fn (mixed $pair): bool => is_array($pair)
                 && ! array_is_list($pair)
-                && filled($pair['prepop_id'] ?? null)
-                && filled($pair['refill_id'] ?? null)));
+                && filled($pair['prepop_id'] ?? null)));
     }
 
     /**
@@ -436,19 +435,19 @@ class ApplicationAnswerPresenter
                 /** @var BozjaHolster|null $refill */
                 $refill = $holsters->get((int) ($pair['refill_id'] ?? 0));
 
-                if (! $prepop || ! $refill) {
+                if (! $prepop || (filled($pair['refill_id'] ?? null) && ! $refill)) {
                     return null;
                 }
 
                 $prepopLabel = $prepop->localizedName();
-                $refillLabel = $refill->localizedName();
+                $refillLabel = $refill?->localizedName();
 
                 return [
-                    'label' => $prepopLabel.' + '.$refillLabel,
+                    'label' => $refillLabel ? $prepopLabel.' + '.$refillLabel : $prepopLabel,
                     'prepop_label' => $prepopLabel,
                     'refill_label' => $refillLabel,
                     'prepop_id' => $prepop->id,
-                    'refill_id' => $refill->id,
+                    'refill_id' => $refill?->id,
                 ];
             })
             ->filter()

@@ -1,0 +1,21 @@
+{
+    "prepop": "Vorbereitung",
+    "refill": "Nachfüllung",
+    "capacity": "{used} / {max} Kapazität",
+    "contents": "Holsterinhalt",
+    "details": "Alle {count} Gegenstände und Hinweise",
+    "no_items": "Dieses Holster enthält keine Gegenstände.",
+    "choose_pairs": "Holster auswählen",
+    "choose_multiple_hint": "Wähle eine oder mehrere Zusammenstellungen. Nachfüllungen enthalten das zugehörige Vorbereitungsholster; Vorbereitungsholster ohne Nachfüllungen sind einzeln wählbar.",
+    "choose_single_hint": "Wähle eine Zusammenstellung. Nachfüllungen enthalten das zugehörige Vorbereitungsholster; Vorbereitungsholster ohne Nachfüllungen sind einzeln wählbar.",
+    "standalone": "Einzeln · keine Nachfüllung erforderlich",
+    "search": "Holster, Gegenstände oder Hinweise suchen…",
+    "paired_with": "Gehört zu {name}",
+    "no_results": "Keine passenden Holster.",
+    "selected_count": "{count} Zusammenstellungen ausgewählt",
+    "use_selection": "Auswahl übernehmen",
+    "selected_pair": "Ausgewählte Zusammenstellung",
+    "remove_pair": "Zusammenstellung entfernen",
+    "unavailable_pair": "Diese Zusammenstellung ist nicht mehr verfügbar. Wähle eine andere oder entferne sie.",
+    "change_selection": "Holsterauswahl ändern"
+}

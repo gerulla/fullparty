@@ -127,9 +127,10 @@ class BozjaHolster extends Model
         return self::query()
             ->where('group_id', $groupId)
             ->where('is_active', true)
-            ->where(function ($query) {
+            ->where(function ($query) use ($groupId) {
                 $query->where('type', self::TYPE_PREPOP)
                     ->orWhereHas('parentHolster', fn ($parentQuery) => $parentQuery
+                        ->where('group_id', $groupId)
                         ->where('is_active', true)
                         ->where('type', self::TYPE_PREPOP));
             })
@@ -147,12 +148,16 @@ class BozjaHolster extends Model
                     'holster_type' => $holster->type,
                     'parent_holster_id' => $holster->parent_holster_id,
                     'role' => $holster->role,
+                    'notes' => $holster->notes,
+                    'capacity_used' => $holster->capacity_used,
+                    'max_capacity' => $holster->max_capacity,
                     'items' => $holster->items
                         ->map(fn (BozjaItem $item) => [
                             'key' => (string) $item->id,
                             'label' => $item->name,
                             'icon_url' => $item->icon_url,
                             'quantity' => (int) $item->pivot->quantity,
+                            'cache_weight' => $item->cache_weight,
                         ])
                         ->values()
                         ->all(),

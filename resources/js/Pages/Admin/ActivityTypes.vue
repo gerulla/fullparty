@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import PageHeader from "@/components/PageHeader.vue";
+import { useConfirmationModal } from "@/composables/useConfirmationModal";
 import { router, usePage } from "@inertiajs/vue3";
 import { useToast } from "@nuxt/ui/composables";
 import { useI18n } from "vue-i18n";
@@ -17,6 +18,7 @@ type ActivityTypeIndexMeta = {
 }
 
 const props = defineProps<{
+	totalActivityTypes: number
 	activityTypes: {
 		data: Array<any>
 		meta: ActivityTypeIndexMeta
@@ -33,6 +35,9 @@ const props = defineProps<{
 const { t, locale } = useI18n();
 const page = usePage();
 const toast = useToast();
+const confirmationModal = useConfirmationModal();
+const publishingAll = ref(false);
+const publishAllError = ref('');
 const search = ref(props.filters.search ?? '');
 let searchTimeout: ReturnType<typeof setTimeout> | null = null;
 
@@ -70,7 +75,7 @@ const visitIndex = (pageNumber = 1) => {
 	router.get(route('admin.activity-types.index'), params, {
 		preserveState: true,
 		replace: true,
-		only: ['activityTypes', 'filters'],
+		only: ['activityTypes', 'filters', 'totalActivityTypes'],
 	});
 };
 
@@ -162,7 +167,44 @@ const goToEditPage = (activityTypeId: number) => {
 };
 
 const publishActivityType = (activityTypeId: number) => {
+	if (publishingAll.value) return;
 	router.post(route('admin.activity-types.publish', activityTypeId), {});
+};
+
+const publishAllActivityTypes = async () => {
+	if (publishingAll.value || props.totalActivityTypes === 0) return;
+	publishingAll.value = true;
+	publishAllError.value = '';
+
+	const confirmed = await confirmationModal.open({
+		title: t('admin.activity_types.publish_all'),
+		description: t('admin.activity_types.publish_all_description', { count: props.totalActivityTypes }),
+		warningText: t('admin.activity_types.publish_all_warning'),
+		severity: 'info',
+		confirmLabel: t('admin.activity_types.publish_all'),
+		confirmIcon: 'i-lucide-upload',
+	});
+
+	if (!confirmed) {
+		publishingAll.value = false;
+		return;
+	}
+
+	router.post(route('admin.activity-types.publish-all'), {}, {
+		preserveScroll: true,
+		onSuccess: (response) => {
+			toast.add({
+				title: t('general.success'),
+				description: t('admin.activity_types.toasts.published_all', { count: response.props.flash?.data?.published_count ?? 0 }),
+				color: 'success',
+				icon: 'i-lucide-upload',
+			});
+		},
+		onError: (errors) => {
+			publishAllError.value = errors.publish_all || Object.values(errors)[0] || t('admin.activity_types.publish_all_failed');
+		},
+		onFinish: () => { publishingAll.value = false; },
+	});
 };
 
 const cloneActivityType = (activityTypeId: number) => {
@@ -180,14 +222,34 @@ const clearSearch = () => {
 			:title="t('admin.activity_types.title')"
 			:subtitle="t('admin.activity_types.subtitle')"
 		>
-			<UButton
-				color="neutral"
-				class="w-full cursor-pointer rounded-none"
-				icon="i-lucide-plus"
-				:label="t('admin.activity_types.create')"
-				@click.stop="goToCreatePage"
-			/>
+			<div class="flex w-full flex-col gap-2 sm:flex-row">
+				<UButton
+					color="primary"
+					variant="soft"
+					icon="i-lucide-upload"
+					:label="t('admin.activity_types.publish_all')"
+					:loading="publishingAll"
+					:disabled="publishingAll || totalActivityTypes === 0"
+					@click="publishAllActivityTypes"
+				/>
+				<UButton
+					color="neutral"
+					class="cursor-pointer rounded-none"
+					icon="i-lucide-plus"
+					:label="t('admin.activity_types.create')"
+					@click.stop="goToCreatePage"
+				/>
+			</div>
 		</PageHeader>
+
+		<UAlert
+			v-if="publishAllError"
+			class="mt-4"
+			color="error"
+			icon="i-lucide-triangle-alert"
+			:title="t('admin.activity_types.publish_all_failed')"
+			:description="publishAllError"
+		/>
 
 		<UCard class="mt-6 dark:bg-elevated/25">
 			<div class="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
@@ -252,6 +314,7 @@ const clearSearch = () => {
 							variant="soft"
 							icon="i-lucide-upload"
 							:label="t('admin.activity_types.publish')"
+							:disabled="publishingAll"
 							@click="publishActivityType(activityType.id)"
 						/>
 

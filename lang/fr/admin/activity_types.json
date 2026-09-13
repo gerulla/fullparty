@@ -27,7 +27,8 @@
         "created": "Type d'activité créé avec succès.",
         "updated": "Type d'activité mis à jour avec succès.",
         "published": "Type d'activité publié avec succès.",
-        "cloned": "Type d'activité cloné. Mettez à jour le nouveau brouillon avant de le publier."
+        "cloned": "Type d'activité cloné. Mettez à jour le nouveau brouillon avant de le publier.",
+        "published_all": "Une nouvelle version a été publiée pour chacun des {count} types d’activité."
     },
     "general": {
         "title": "Général",
@@ -287,5 +288,10 @@
         "default_min_item_level": "ILVL par défaut",
         "fflogs_zone_id": "ID de zone FF Logs",
         "bench": "Réserve"
-    }
+    },
+    "publish_all": "Tout publier",
+    "publish_all_description": "Publier une nouvelle version des {count} types d’activité à partir de leurs brouillons enregistrés ?",
+    "publish_all_warning": "Cela inclut les types inactifs et non publiés de toutes les pages, quelle que soit la recherche en cours. Chaque type reçoit une nouvelle version, même si son brouillon est inchangé. Les activités existantes conservent leur version actuelle et les types inactifs restent inactifs.",
+    "publish_all_invalid": "Aucune version n’a été publiée. Corrigez d’abord le brouillon de « {activity} » : {reason}",
+    "publish_all_failed": "Impossible de publier tous les types d’activité"
 }

@@ -111,9 +111,9 @@ class ResourceHolsterService
         $prepop = $holster->type === BozjaHolster::TYPE_PREPOP ? $holster : $holster->parentHolster()
             ->where('group_id', $group->id)->whereIn('id', $visibleIds)->where('type', BozjaHolster::TYPE_PREPOP)
             ->with('items')->first();
-        $refills = $holster->type === BozjaHolster::TYPE_REFILL ? collect([$holster]) : $holster->refillHolsters()
+        $refills = $prepop ? $prepop->refillHolsters()
             ->where('group_id', $group->id)->whereIn('id', $visibleIds)->where('type', BozjaHolster::TYPE_REFILL)
-            ->with('items')->orderByDesc('is_default')->orderBy('id')->get();
+            ->with('items')->orderByDesc('is_default')->orderBy('id')->get() : collect([$holster]);
 
         return [
             'body' => $body,

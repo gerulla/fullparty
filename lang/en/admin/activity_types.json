@@ -27,7 +27,8 @@
     "created": "Activity type created successfully.",
     "updated": "Activity type updated successfully.",
     "published": "Activity type published successfully.",
-    "cloned": "Activity type cloned. Update the new draft before publishing it."
+    "cloned": "Activity type cloned. Update the new draft before publishing it.",
+    "published_all": "Published one new version for each of {count} activity types."
   },
   "general": {
     "title": "General",
@@ -287,5 +288,10 @@
     "default_min_item_level": "Default ILVL",
     "fflogs_zone_id": "FF Logs Zone ID",
     "bench": "Bench"
-  }
+  },
+  "publish_all": "Publish all",
+  "publish_all_description": "Publish a new version of all {count} activity types from their saved drafts?",
+  "publish_all_warning": "This includes inactive and unpublished types across every page, regardless of the current search. Each type gets one new version, even if its draft is unchanged. Existing runs keep their assigned version, and inactive types stay inactive.",
+  "publish_all_invalid": "Nothing was published. Fix the draft for “{activity}” first: {reason}",
+  "publish_all_failed": "Could not publish all activity types"
 }

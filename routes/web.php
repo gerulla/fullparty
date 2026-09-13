@@ -804,6 +804,7 @@ Route::prefix('{locale?}')
                 Route::get('/activity-types', [ActivityTypeController::class, 'index'])->name('admin.activity-types.index');
                 Route::get('/activity-types/create', [ActivityTypeController::class, 'create'])->name('admin.activity-types.create');
                 Route::post('/activity-types', [ActivityTypeController::class, 'store'])->name('admin.activity-types.store');
+                Route::post('/activity-types/publish-all', [ActivityTypeController::class, 'publishAll'])->middleware('throttle:admin.write')->name('admin.activity-types.publish-all');
                 Route::get('/activity-types/{activityType}/edit', [ActivityTypeController::class, 'edit'])->name('admin.activity-types.edit');
                 Route::put('/activity-types/{activityType}', [ActivityTypeController::class, 'update'])->name('admin.activity-types.update');
                 Route::post('/activity-types/{activityType}/clone', [ActivityTypeController::class, 'duplicate'])->name('admin.activity-types.clone');

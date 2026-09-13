@@ -27,7 +27,8 @@
         "created": "Aktivitätstyp erfolgreich erstellt.",
         "updated": "Aktivitätstyp erfolgreich aktualisiert.",
         "published": "Aktivitätstyp erfolgreich veröffentlicht.",
-        "cloned": "Aktivitätstyp geklont. Aktualisiere den neuen Entwurf, bevor du ihn veröffentlichst."
+        "cloned": "Aktivitätstyp geklont. Aktualisiere den neuen Entwurf, bevor du ihn veröffentlichst.",
+        "published_all": "Für jeden der {count} Aktivitätstypen wurde eine neue Version veröffentlicht."
     },
     "general": {
         "title": "Allgemein",
@@ -287,5 +288,10 @@
         "default_min_item_level": "Standard-ILVL",
         "fflogs_zone_id": "FF-Logs-Zonen-ID",
         "bench": "Ersatzbank"
-    }
+    },
+    "publish_all": "Alle veröffentlichen",
+    "publish_all_description": "Für alle {count} Aktivitätstypen eine neue Version aus ihren gespeicherten Entwürfen veröffentlichen?",
+    "publish_all_warning": "Dies umfasst auch inaktive und unveröffentlichte Typen auf allen Seiten, unabhängig von der aktuellen Suche. Jeder Typ erhält eine neue Version, auch wenn sein Entwurf unverändert ist. Bestehende Aktivitäten behalten ihre zugewiesene Version, und inaktive Typen bleiben inaktiv.",
+    "publish_all_invalid": "Es wurde nichts veröffentlicht. Korrigiere zuerst den Entwurf für „{activity}“: {reason}",
+    "publish_all_failed": "Die Aktivitätstypen konnten nicht alle veröffentlicht werden"
 }

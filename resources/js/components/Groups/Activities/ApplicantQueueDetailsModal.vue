@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import ReportButton from '@/components/Shared/Reports/ReportButton.vue';
 import axios from "axios";
 import { computed, ref, watch } from "vue";
 import { useI18n } from "vue-i18n";
@@ -343,6 +344,9 @@ watch(isOpen, (open) => {
             >
                 <template #identity>
                     <UBadge v-if="application.is_guest" color="warning" variant="soft" size="xs" class="mt-2" :label="t('groups.activities.management.queue.guest_badge')" />
+                </template>
+                <template #actions="{ section: activeSection }">
+                    <ReportButton v-if="activeSection === 'application'" :target="{ type: 'application', id: application.id, label: displayName }" />
                 </template>
                 <template #metadata>
                     <dl class="space-y-4">

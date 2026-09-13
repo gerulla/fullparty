@@ -44,6 +44,7 @@ class GroupMemberNoteController extends Controller
             'member' => [
                 'id' => $user->id,
                 'name' => $user->name,
+                'can_report_profile' => (bool) $user->public_profile,
                 'characters' => $user->characters
                     ->sort(function ($left, $right) {
                         if ($left->is_primary === $right->is_primary) {

@@ -5,6 +5,7 @@ import { route } from "ziggy-js";
 import { useI18n } from "vue-i18n";
 import SeoHead from "@/components/Shared/SeoHead.vue";
 import PageHeader from "@/components/PageHeader.vue";
+import ReportButton from '@/components/Shared/Reports/ReportButton.vue';
 import ActivityAttendeeRosterBoard from "@/components/Groups/Activities/ActivityAttendeeRosterBoard.vue";
 import ActivityCompletionSummaryPanel from "@/components/Groups/Activities/ActivityCompletionSummaryPanel.vue";
 import AddToCalendarMenu from "@/components/Groups/Activities/AddToCalendarMenu.vue";
@@ -239,6 +240,7 @@ const goToManagementPage = () => {
 			:subtitle="t('groups.activities.overview.subtitle', { group: group.name, type: activityTypeName })"
 		>
 			<div class="flex flex-wrap items-center justify-center gap-2 xl:justify-end">
+				<ReportButton :target="{ type: 'run', id: activity.id, label: activityTitle }" />
 				<UBadge
 					size="md"
 					variant="subtle"

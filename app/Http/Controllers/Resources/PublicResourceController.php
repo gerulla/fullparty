@@ -64,6 +64,7 @@ class PublicResourceController extends Controller
             'group' => $group->only(['name', 'slug', 'description', 'datacenter', 'profile_picture_url', 'banner_image_url']),
             'locale' => ['current' => app()->getLocale()],
             'main_site_url' => config('app.url'),
+            'reporting' => ['guest_submit_url' => route('public-resources.reports.store', $group, false)],
         ];
     }
 

@@ -63,6 +63,7 @@ class User extends Authenticatable implements MustVerifyEmail, OAuthenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
             'is_admin' => 'boolean',
+            'banned_at' => 'datetime',
             'public_profile' => 'boolean',
             'public_characters' => 'boolean',
             'application_notifications' => 'boolean',

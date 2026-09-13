@@ -37,7 +37,7 @@ class GroupResourcePolicy
 
     public function view(User $user, GroupResource $resource): bool
     {
-        return $resource->status === 'published' && $resource->published_revision_id !== null && in_array($resource->access_level, $this->levels($user, $resource->group), true);
+        return ! $resource->moderation_hidden_at && $resource->status === 'published' && $resource->published_revision_id !== null && in_array($resource->access_level, $this->levels($user, $resource->group), true);
     }
 
     public function manage(User $user, GroupResource $resource): bool
@@ -53,7 +53,7 @@ class GroupResourcePolicy
 
     public function manageableImages(User $user, Group $group): Builder
     {
-        $query = GroupResourceImage::where('group_id', $group->id);
+        $query = GroupResourceImage::where('group_id', $group->id)->whereNull('moderation_hidden_at');
         if (! $this->manageLibrary($user, $group)) {
             return $query->whereRaw('1 = 0');
         }

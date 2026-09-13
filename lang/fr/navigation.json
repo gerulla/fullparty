@@ -1,4 +1,12 @@
 {
+  "admin_panel": {
+    "title": "Administration",
+    "description": "Gérez la modération, les paramètres de la communauté, les données du jeu et les intégrations.",
+    "overview": "Vue d’ensemble",
+    "moderation": "Modération",
+    "content_data": "Contenu et données",
+    "community": "Communauté"
+  },
     "sidebar": {
         "dashboard": "Accueil",
         "runs": "Runs",

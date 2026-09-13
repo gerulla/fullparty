@@ -44,6 +44,7 @@ const activityOptions = computed(() => [...props.workspace.activityOptions, ...a
 
 <template>
     <section v-if="draft" class="studio-document">
+        <UAlert v-if="workspace.selected?.moderationHidden" icon="i-lucide-eye-off" color="warning" :description="t('reports.hidden_editor_notice')" />
         <UAlert v-if="workspace.selected?.holsterId" icon="i-lucide-link" color="neutral" variant="soft" :title="t('groups.resources.holsters.inherited_title')" :description="t('groups.resources.holsters.inherited_description')">
             <template #actions><UButton :to="holsterEditUrl" target="_blank" rel="noopener noreferrer" icon="i-lucide-external-link" color="neutral" variant="outline" :label="t('groups.resources.holsters.manage')" /></template>
         </UAlert>

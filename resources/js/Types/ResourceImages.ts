@@ -1,11 +1,13 @@
 import type { Ref } from 'vue'
 
 export type ResourceImage = {
+    id: number
     uuid: string; name: string; url: string; mime_type: string
     width: number; height: number; size_bytes: number
     alt_text: string; caption: string | null; created_at: string
     uploader: string | null; in_use: boolean
 }
+export type ResourceReaderImage = { id: number; uuid: string; url: string; alt_text: string; caption: string | null; report_url: string }
 export type ResourceImagePage = { data: ResourceImage[]; current_page: number; per_page: number; total: number; last_page: number }
 export type ResourceImageContext = { groupSlug: () => string; resourceId?: () => string | null; libraryOnly?: boolean; changed: () => void }
 export type ResourceImageUpload = (file: File, altText?: string, caption?: string) => Promise<string>

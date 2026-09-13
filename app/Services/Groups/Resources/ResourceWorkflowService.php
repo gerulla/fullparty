@@ -58,7 +58,7 @@ class ResourceWorkflowService
             $this->libraries->lock($group);
             $resource = GroupResource::whereKey($resource->id)->lockForUpdate()->firstOrFail();
             abort_unless($this->policy->manage($user, $resource), 403);
-            abort_unless(GroupResource::whereKey($resource->id)->withAvailableSource()->exists(), 404);
+            abort_unless(GroupResource::whereKey($resource->id)->withAvailableSource(includeHidden: true)->exists(), 404);
             abort_unless((int) $data['version'] === $resource->version, 409, __('resource_errors.stale'));
             if ($data['publish'] ?? false) {
                 throw ValidationException::withMessages(['publish' => __('resource_errors.save_before_publish')]);

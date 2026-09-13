@@ -623,6 +623,7 @@ export type GroupBannedMemberRecord = {
 }
 
 export type MemberNotesTarget = {
+    can_report_profile?: boolean
 	id: number
 	name: string
 	characters: GroupMemberCharacter[]

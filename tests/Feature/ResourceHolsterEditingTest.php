@@ -63,6 +63,19 @@ it('loads linked holsters through the normal manager and enforces inherited fiel
     $this->assertDatabaseHas('audit_logs', ['action' => 'group.resources.save']);
 });
 
+it('allows editing a hidden holster resource while keeping its source inactive and unreadable', function () {
+    $this->holster->forceFill(['moderation_hidden_at' => now()])->save();
+    $reader = app(ResourceReaderService::class);
+    expect($reader->managementDetail($this->group, $this->resource->fresh(), $this->owner)['moderation_hidden'])->toBeTrue();
+    $lease = ($this->action)('acquire')['editing_token'];
+    $snapshot = array_replace($this->resource->fresh()->working_copy, ['tags' => ['corrected']]);
+    ($this->action)('save', ['editing_token' => $lease, 'content' => $snapshot, 'summary' => 'Correct resource settings']);
+    ($this->action)('publish', ['editing_token' => $lease]);
+    expect($this->holster->fresh()->is_active)->toBeFalse()
+        ->and($reader->query($this->group, $this->owner)->whereKey($this->resource->id)->exists())->toBeFalse();
+    $this->getJson($this->url)->assertNotFound();
+});
+
 it('inherits source changes without overwriting metadata or requiring another publication', function () {
     $lease = ($this->action)('acquire')['editing_token'];
     $snapshot = array_replace($this->resource->working_copy, ['tags' => ['retained']]);

@@ -22,11 +22,12 @@ export type ResourceReaderSummary = {
     access_level: 'everyone' | 'moderator' | 'admin'; published_at: string | null
 }
 export type ResourceReaderDocument = ResourceReaderSummary & {
+    report_url: string
     holster?: ResourceHolsterLoadout
     legacy_body_html?: string | null
     commands: ResourceReaderCommand[]
     body: RichTextDocument
-    images: { uuid: string; url: string; alt_text: string; caption: string | null }[]
+    images: import('./ResourceImages').ResourceReaderImage[]
     related_resources: ResourceReaderSummary[]
     linked_resources: ResourceReaderSummary[]
     history: ResourceReaderHistory
@@ -82,6 +83,7 @@ export type ResourceRevisionData = {
     state: string; created_at: string; published_at: string | null
 }
 export type ResourceSummaryData = {
+    moderation_hidden?: boolean
     holster_id?: number | null
     id: number; uuid?: string; collection_id: number | null; is_home?: boolean; slug: string; status: string; version: number; sort_order: number; updated_at: string
     has_unpublished_changes: boolean

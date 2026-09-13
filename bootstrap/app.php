@@ -2,6 +2,7 @@
 
 use App\Http\Middleware\ApplyLocale;
 use App\Http\Middleware\AuthenticateIntegrationClient;
+use App\Http\Middleware\EnsureAccountNotBanned;
 use App\Http\Middleware\EnsureGroupDashboardAccess;
 use App\Http\Middleware\EnsureWebsiteAdminAccess;
 use App\Http\Middleware\HandleInertiaRequests;
@@ -46,9 +47,11 @@ return Application::configure(basePath: dirname(__DIR__))
         $middleware->web(append: [
             RestrictResourceHost::class,
             ApplyLocale::class,
+            EnsureAccountNotBanned::class,
             HandleInertiaRequests::class,
             SecurityHeaders::class,
         ]);
+        $middleware->api(append: [EnsureAccountNotBanned::class]);
     })
     ->withExceptions(function (Exceptions $exceptions): void {
         $exceptions->render(function (HttpExceptionInterface $exception, Request $request) {

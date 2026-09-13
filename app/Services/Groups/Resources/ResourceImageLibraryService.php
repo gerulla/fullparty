@@ -46,6 +46,7 @@ class ResourceImageLibraryService
         $library ??= GroupResourceLibrary::where('group_id', $image->group_id)->firstOrFail();
 
         return [
+            'id' => $image->id,
             'uuid' => $image->uuid, 'name' => $image->original_name ?: $image->uuid.'.'.pathinfo($image->path, PATHINFO_EXTENSION),
             'url' => '/resource-assets/'.$image->uuid, 'mime_type' => $image->mime_type,
             'width' => $image->width, 'height' => $image->height, 'size_bytes' => $image->size_bytes,

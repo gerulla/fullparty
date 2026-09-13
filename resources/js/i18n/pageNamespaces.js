@@ -1,8 +1,12 @@
-const common = ['general', 'meta']
+const common = ['general', 'meta', 'reports']
 const dashboard = [...common, 'applications', 'auth', 'characters', 'dashboard', 'groups/dashboard', 'groups/index', 'navigation', 'notifications', 'settings']
 
 // Include modal and shared-component dictionaries, not just the page's visible labels.
 const features = {
+    'Reports/Create': [],
+    'Admin/Index': [],
+    'Admin/Reports': [],
+    'Admin/Reports/Show': [],
     'Admin/ActivityTypes': ['admin/activity_types'],
     'Admin/ActivityTypesCreate': ['admin/activity_types'],
     'Admin/ActivityTypesEdit': ['admin/activity_types'],
@@ -55,6 +59,7 @@ const features = {
 }
 
 const standalone = {
+    'auth/Banned': [],
     'Resources/Show': ['groups/resources'],
     Home: ['auth', 'groups/activities', 'landing'],
     'Legal/CookiesPolicy': ['legal'],

@@ -40,6 +40,24 @@ it('requires a changelog on the first save and never turns publishing into a sav
     expect(DB::table('group_resource_publications')->count())->toBe(1);
 });
 
+it('allows authorized corrections to hidden resources without lifting the moderation restriction', function () {
+    $lease = publication_action($this, 'acquire')['editing_token'];
+    publication_action($this, 'save', ['editing_token' => $lease, 'content' => $this->content, 'summary' => 'Initial guide.']);
+    publication_action($this, 'publish', ['editing_token' => $lease]);
+    $this->resource->refresh()->forceFill(['moderation_hidden_at' => now()])->save();
+    $reader = app(ResourceReaderService::class);
+    expect($reader->query($this->group, $this->user, manage: true)->whereKey($this->resource->id)->exists())->toBeTrue()
+        ->and($reader->managementDetail($this->group, $this->resource->fresh(), $this->user)['moderation_hidden'])->toBeTrue();
+    publication_action($this, 'save', ['editing_token' => $lease, 'content' => array_replace($this->content, ['title' => 'Corrected guide']), 'summary' => 'Fixed the reported issue.']);
+    publication_action($this, 'publish', ['editing_token' => $lease]);
+    expect($this->resource->fresh()->publishedRevision->snapshot['title'])->toBe('Corrected guide')
+        ->and($this->resource->fresh()->moderation_hidden_at)->not->toBeNull()
+        ->and($reader->query($this->group, null, true)->whereKey($this->resource->id)->exists())->toBeFalse()
+        ->and($reader->query($this->group, $this->user)->whereKey($this->resource->id)->exists())->toBeFalse()
+        ->and($reader->managementDetail($this->group, $this->resource->fresh(), $this->user)['reader_urls'])->toBeNull();
+    $this->getJson(route('public-resources.show', ['group' => $this->group, 'slug' => $this->resource->uuid]))->assertNotFound();
+});
+
 it('blocks publication of autosaved changes until they have an explicit saved revision', function () {
     $lease = publication_action($this, 'acquire')['editing_token'];
     publication_action($this, 'save', ['editing_token' => $lease, 'content' => $this->content, 'summary' => 'Initial guide.']);

@@ -7,6 +7,7 @@ import { route } from "ziggy-js";
 import AccessBadge from "@/components/Groups/AccessBadge.vue";
 import MembershipApplicationAnswerList from "@/components/Groups/MembershipApplicationAnswerList.vue";
 import PageHeader from "@/components/PageHeader.vue";
+import ReportButton from '@/components/Shared/Reports/ReportButton.vue';
 import { createDateTimeFormatter } from "@/utils/dateTimeFormat";
 
 const props = defineProps<{
@@ -156,6 +157,7 @@ const submitDecline = () => {
 									</div>
 								</div>
 
+								<ReportButton :target="{ type: 'membership_application', id: application.id, label: applicantName(application) }" />
 								<div class="hidden flex-wrap items-center gap-2 sm:flex">
 									<UButton
 										color="success"
@@ -231,6 +233,7 @@ const submitDecline = () => {
 					>
 						<div class="grid gap-4 lg:grid-cols-[minmax(0,1fr)_minmax(0,2fr)]">
 							<div class="space-y-2">
+								<ReportButton :target="{ type: 'membership_application', id: application.id, label: applicantName(application) }" />
 								<div class="flex items-center gap-3">
 									<UAvatar
 										:src="application.user?.avatar_url ?? undefined"

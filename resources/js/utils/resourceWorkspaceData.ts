@@ -39,6 +39,7 @@ export function workspaceResource(data: ResourceSummaryData | ResourceDetailData
         version: data.version, uuid: data.uuid, isHome: data.is_home ?? false, slug: snapshot.slug ?? data.slug,
         status: data.status === 'archived' ? 'archived' : data.status === 'published' ? 'published' : 'draft',
         hasUnpublishedChanges: data.has_unpublished_changes,
+        moderationHidden: data.moderation_hidden ?? false,
         canPublish: data.can_publish ?? false,
         isPinned: data.is_pinned ?? false,
         readerUrls: data.reader_urls ?? null,

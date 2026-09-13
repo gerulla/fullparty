@@ -1,4 +1,12 @@
 {
+  "admin_panel": {
+    "title": "Admin Panel",
+    "description": "Manage moderation, community settings, game data, and integrations.",
+    "overview": "Overview",
+    "moderation": "Moderation",
+    "content_data": "Content & Data",
+    "community": "Community"
+  },
   "sidebar": {
     "dashboard": "Home",
     "runs": "Runs",

@@ -7,6 +7,7 @@ import { useI18n } from "vue-i18n";
 import { useToast } from "@nuxt/ui/composables";
 import SeoHead from "@/components/Shared/SeoHead.vue";
 import PageHeader from "@/components/PageHeader.vue";
+import ReportButton from '@/components/Shared/Reports/ReportButton.vue';
 import ActivityCompletionSummaryPanel from "@/components/Groups/Activities/ActivityCompletionSummaryPanel.vue";
 import AddToCalendarMenu from "@/components/Groups/Activities/AddToCalendarMenu.vue";
 import ActivityOverviewInfoPanel from "@/components/Groups/Activities/ActivityOverviewInfoPanel.vue";
@@ -384,6 +385,7 @@ const removeSelfFromSlot = async (slot: ActivitySlot) => {
 			:subtitle="t('groups.activities.overview.subtitle', { group: group.name, type: activityTypeName })"
 		>
 			<div class="flex flex-wrap items-center justify-center gap-2 xl:justify-end">
+				<ReportButton :target="{ type: 'run', id: currentActivity.id, label: activityTitle }" />
 				<UBadge
 					size="md"
 					variant="subtle"

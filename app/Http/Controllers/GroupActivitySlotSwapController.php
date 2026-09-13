@@ -72,7 +72,7 @@ class GroupActivitySlotSwapController extends Controller
 
         if (! $sourceSlot->assigned_character_id) {
             throw ValidationException::withMessages([
-                'source_slot_id' => 'Only filled slots can be dragged.',
+                'source_slot_id' => __('errors.only_filled_slots_can_be_dragged'),
             ]);
         }
 
@@ -89,13 +89,13 @@ class GroupActivitySlotSwapController extends Controller
 
         if ($sourceIsBench && ! $targetIsBench) {
             throw ValidationException::withMessages([
-                'target_slot_id' => 'Moving a bench player onto the main roster requires reassignment so slot fields can be chosen.',
+                'target_slot_id' => __('errors.moving_a_bench_player_onto_the_main_roster_requires_reassignment_so_slot_fields_can_be_chosen'),
             ]);
         }
 
         if (! $sourceIsBench && $targetIsBench && $targetSlot->assigned_character_id) {
             throw ValidationException::withMessages([
-                'target_slot_id' => 'Roster and bench slots cannot be swapped.',
+                'target_slot_id' => __('errors.roster_and_bench_slots_cannot_be_swapped'),
             ]);
         }
 

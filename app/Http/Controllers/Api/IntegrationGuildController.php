@@ -259,7 +259,7 @@ class IntegrationGuildController extends Controller
             ->first();
 
         if (! $integration?->group) {
-            abort(404, 'Discord guild is not linked to a FullParty group.');
+            abort(404, __('errors.discord_guild_is_not_linked_to_a_fullparty_group'));
         }
 
         return $integration;

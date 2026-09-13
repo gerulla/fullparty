@@ -5,7 +5,7 @@
     "today": "Aujourd'hui",
     "tomorrow": "Demain",
     "relative_date": "{relative} · {date}",
-    "run_count": "{count} run | {count} runs",
+    "run_count": "{count} sortie | {count} sorties",
     "empty_day": "Aucun run correspondant à cette date.",
     "empty": "Aucun run ne correspond à vos filtres."
   },

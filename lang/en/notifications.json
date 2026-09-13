@@ -224,5 +224,13 @@
       "title": "Integration delivery failed",
       "body": "{client} could not receive {event}. Error: {error}"
     }
-  }
+  },
+  "designations": {
+    "host": "Host",
+    "raid_leader": "Raid Leader",
+    "duelist": "Duelist",
+    "trapper": "Trapper",
+    "darter": "Darter"
+  },
+  "system_run_cancelled": "Run cancelled."
 }

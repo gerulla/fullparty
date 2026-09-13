@@ -39,7 +39,7 @@
         "availability": "Verfügbarkeit",
         "content": "Inhalte",
         "delubrum_reginae_savage": "Delubrum Reginae (episch)",
-        "forked_tower_blood": "Forked Tower",
+        "forked_tower_blood": "Der Fork-Turm: Blut",
         "moderation": "Moderation",
         "configuration": "Konfiguration",
         "membership_applications": "Anfragen",
@@ -111,12 +111,12 @@
                 "empty_description": "Erstellt einen Holster, um eine Zusammenstellung zu planen.",
                 "no_selection": "Wählt einen Holster aus oder erstellt einen neuen.",
                 "saved": "Holster gespeichert",
-        "save_failed": "Der Holster konnte nicht gespeichert werden.",
-        "types": {
-          "prepop": "Vorbestückung",
-          "refill": "Nachfüllen"
-        },
-        "metadata": {
+                "save_failed": "Der Holster konnte nicht gespeichert werden.",
+                "types": {
+                    "prepop": "Vorbestückung",
+                    "refill": "Nachfüllen"
+                },
+                "metadata": {
                     "title": "Details",
                     "description": "Benennt den Holster und fügt Hinweise für eure Gruppe hinzu.",
                     "name": "Name",
@@ -147,8 +147,8 @@
             }
         },
         "forked_tower_blood": {
-            "title": "Forked Tower",
-            "subtitle": "Plant und verwaltet die Forked-Tower-Inhalte eurer Gruppe.",
+            "title": "Der Fork-Turm: Blut",
+            "subtitle": "Plant und verwaltet die Inhalte eurer Gruppe für den Fork-Turm: Blut.",
             "compositions": {
                 "title": "Kompositionen",
                 "create": "Neue Komposition",
@@ -583,7 +583,7 @@
         },
         "fields": {
             "name": {
-                "placeholder": "Forked Tower Enjoyers"
+                "placeholder": "Freunde des Fork-Turms"
             },
             "slug": {
                 "label": "Slug",

@@ -207,7 +207,7 @@ final class ServerMeta
 
         return $name !== ''
             ? $name
-            : ($activity->activityType?->slug ?: 'FullParty run');
+            : ($activity->activityType?->slug ?: __('ui.fullparty_run'));
     }
 
     /**

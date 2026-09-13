@@ -67,7 +67,9 @@
     "tags_help": "Optional freeform tags used for search and filtering.",
     "tags_placeholder": "Type a tag and press enter",
     "active": "Active",
-    "active_help": "Inactive activity types stay in the admin history but should not be used for new activities."
+    "active_help": "Inactive activity types stay in the admin history but should not be used for new activities.",
+    "bench_size": "Bench size",
+    "bench_size_help": "How many generic bench positions this activity type should create."
   },
   "difficulties": {
     "normal": "Normal",
@@ -255,17 +257,17 @@
       "url": "URL"
     },
     "option_sources": {
-        "character_classes": "Character Classes",
-        "phantom_jobs": "Phantom Jobs",
-        "bozja_holsters": "Bozja Holsters",
-        "raid_positions": "Raid Positions",
-        "bozja_banners": "Bozja Banners",
-        "bozja_essences": "Bozja Essences",
-        "bozja_deep_essences": "Bozja Deep Essences",
-        "bozja_pure_essences": "Bozja Pure Essences",
-        "bozja_lost_actions": "Bozja Lost Actions",
-        "bozja_lost_items": "Bozja Lost Items",
-        "static_options": "Static Options"
+      "character_classes": "Character Classes",
+      "phantom_jobs": "Phantom Jobs",
+      "bozja_holsters": "Bozja Holsters",
+      "raid_positions": "Raid Positions",
+      "bozja_banners": "Bozja Banners",
+      "bozja_essences": "Bozja Essences",
+      "bozja_deep_essences": "Bozja Deep Essences",
+      "bozja_pure_essences": "Bozja Pure Essences",
+      "bozja_lost_actions": "Bozja Lost Actions",
+      "bozja_lost_items": "Bozja Lost Items",
+      "static_options": "Static Options"
     }
   },
   "summary": {
@@ -283,6 +285,7 @@
     "prog_points": "Prog Points",
     "difficulty": "Difficulty",
     "default_min_item_level": "Default ILVL",
-    "fflogs_zone_id": "FF Logs Zone ID"
+    "fflogs_zone_id": "FF Logs Zone ID",
+    "bench": "Bench"
   }
 }

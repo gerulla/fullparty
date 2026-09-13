@@ -124,7 +124,7 @@ class GroupPhantomCompositionController extends Controller
 
         if ($compositionCount !== count($compositionIds)) {
             throw ValidationException::withMessages([
-                'composition_ids' => 'All composition IDs must belong to this group and content page.',
+                'composition_ids' => __('errors.all_composition_ids_must_belong_to_this_group_and_content_page'),
             ]);
         }
 

@@ -445,7 +445,7 @@ class ActivitySlotAttendanceService
 
         if (! $activity || ! $originalSlot) {
             throw ValidationException::withMessages([
-                'assignment' => 'The original slot for this missing assignment could not be found.',
+                'assignment' => __('errors.the_original_slot_for_this_missing_assignment_could_not_be_found'),
             ]);
         }
 
@@ -469,7 +469,7 @@ class ActivitySlotAttendanceService
 
             if (! $targetSlot) {
                 throw ValidationException::withMessages([
-                    'assignment' => 'No space is available to undo this missing assignment. Free a bench slot first.',
+                    'assignment' => __('errors.no_space_is_available_to_undo_this_missing_assignment_free_a_bench_slot_first'),
                 ]);
             }
 

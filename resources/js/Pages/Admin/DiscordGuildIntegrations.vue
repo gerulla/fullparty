@@ -25,7 +25,7 @@ const props = defineProps<{
 	links: DiscordGuildLink[]
 }>();
 
-const { t } = useI18n();
+const { t, locale } = useI18n();
 const toast = useToast();
 const confirmationModal = useConfirmationModal();
 const search = ref("");
@@ -47,7 +47,7 @@ const filteredLinks = computed(() => {
 });
 
 const formatDate = (value: string | null) => value
-	? new Date(value).toLocaleString()
+	? new Date(value).toLocaleString(locale.value)
 	: t("admin.discord_guild_links.unknown_date");
 
 const forceUnlink = async (link: DiscordGuildLink) => {

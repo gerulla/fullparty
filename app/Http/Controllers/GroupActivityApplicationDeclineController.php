@@ -38,7 +38,7 @@ class GroupActivityApplicationDeclineController extends Controller
 
         if ($activity->isArchived()) {
             throw ValidationException::withMessages([
-                'activity' => 'Archived activities cannot review applications.',
+                'activity' => __('errors.archived_activities_cannot_review_applications'),
             ]);
         }
 
@@ -52,7 +52,7 @@ class GroupActivityApplicationDeclineController extends Controller
 
         if (! $wasPending && ! $hasReviewWarning) {
             throw ValidationException::withMessages([
-                'application' => 'Only pending applications or applications awaiting roster review can be declined.',
+                'application' => __('errors.only_pending_applications_or_applications_awaiting_roster_review_can_be_declined'),
             ]);
         }
 

@@ -39,7 +39,7 @@
         "availability": "Disponibilités",
         "content": "Contenu",
         "delubrum_reginae_savage": "Delubrum Reginae (sadique)",
-        "forked_tower_blood": "Tour fourchue",
+        "forked_tower_blood": "La Tour fourchue de la Force",
         "moderation": "Modération",
         "configuration": "Configuration",
         "membership_applications": "Demandes",
@@ -111,12 +111,12 @@
                 "empty_description": "Créez un holster pour commencer à préparer une composition.",
                 "no_selection": "Sélectionnez un holster ou créez-en un nouveau.",
                 "saved": "Holster enregistré",
-        "save_failed": "Le holster n’a pas pu être enregistré.",
-        "types": {
-          "prepop": "Préparation",
-          "refill": "Réapprovisionnement"
-        },
-        "metadata": {
+                "save_failed": "Le holster n’a pas pu être enregistré.",
+                "types": {
+                    "prepop": "Préparation",
+                    "refill": "Réapprovisionnement"
+                },
+                "metadata": {
                     "title": "Détails",
                     "description": "Nommez le holster et ajoutez les notes utiles à votre groupe.",
                     "name": "Nom",
@@ -147,8 +147,8 @@
             }
         },
         "forked_tower_blood": {
-            "title": "Tour fourchue",
-            "subtitle": "Planifiez et gérez le contenu de la Tour fourchue de votre groupe.",
+            "title": "La Tour fourchue de la Force",
+            "subtitle": "Planifiez et gérez le contenu de votre groupe pour la Tour fourchue de la Force.",
             "compositions": {
                 "title": "Compositions",
                 "create": "Nouvelle composition",
@@ -583,7 +583,7 @@
         },
         "fields": {
             "name": {
-                "placeholder": "Forked Tower Enjoyers"
+                "placeholder": "Les passionnés de la Tour fourchue"
             },
             "slug": {
                 "label": "Slug",

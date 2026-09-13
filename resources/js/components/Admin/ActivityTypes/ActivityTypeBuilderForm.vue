@@ -307,8 +307,8 @@ const addCreatedTag = (rawTag: string) => {
 						</UFormField>
 
 						<UFormField
-							label="Bench size"
-							description="How many generic bench positions this activity type should create."
+							:label="t('admin.activity_types.general.bench_size')"
+							:description="t('admin.activity_types.general.bench_size_help')"
 						>
 							<UInput
 								v-model.number="form.draft_bench_size"

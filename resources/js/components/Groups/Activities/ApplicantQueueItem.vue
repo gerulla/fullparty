@@ -49,6 +49,8 @@ const answerBadgeColor = (source: string | null, value: string) => {
 };
 
 const answerValueLabel = (source: string | null, questionKey: string, value: string): string => {
+    if (value === 'Yes') return t('general.yes');
+    if (value === 'No') return t('general.no');
 	if (source === 'phantom_jobs') {
 		return translatePhantomJobName(t, { name: value }, value);
 	}

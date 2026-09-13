@@ -76,11 +76,11 @@ class ActivitySlotStateTokenService
     public function assertMatches(ActivitySlot $slot, ?string $expectedToken): void
     {
         if (! is_string($expectedToken) || $expectedToken === '') {
-            throw new ConflictHttpException('This slot changed while you were editing it. Refresh and try again.');
+            throw new ConflictHttpException(__('errors.this_slot_changed_while_you_were_editing_it_refresh_and_try_again'));
         }
 
         if (! hash_equals($this->generate($slot), $expectedToken)) {
-            throw new ConflictHttpException('This slot changed while you were editing it. Refresh and try again.');
+            throw new ConflictHttpException(__('errors.this_slot_changed_while_you_were_editing_it_refresh_and_try_again'));
         }
     }
 }

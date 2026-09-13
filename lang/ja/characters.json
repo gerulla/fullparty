@@ -214,8 +214,8 @@
         "sections": {
             "classes": "クラス",
             "occult": "オカルト",
-            "forked_tower_blood": "フォークタワー・血",
-            "forked_tower_magic": "フォークタワー・魔法（エクストリーム）"
+            "forked_tower_blood": "フォークタワー：力の塔",
+            "forked_tower_magic": "極フォークタワー：魔の塔"
         },
         "forked_tower": {
             "clear_count": "クリア回数",
@@ -226,10 +226,10 @@
             "verified_with_fflogs": "FFLogsで確認済み",
             "verified_with_lodestone": "Lodestoneで確認済み",
             "bosses": {
-                "demon_tablet": "デーモンタブレット",
-                "dead_stars": "デッドスターズ",
+                "demon_tablet": "デモンズ・タブレット",
+                "dead_stars": "星頭の三人組",
                 "marble_dragon": "マーブルドラゴン",
-                "magitaur": "マギタウル",
+                "magitaur": "マギタウロス",
                 "two_headed_aevis": "ツーヘッド・エイビス",
                 "sword_dancer": "ソードダンサー",
                 "necrophobia": "ネクロフォビア",

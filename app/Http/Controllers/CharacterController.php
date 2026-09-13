@@ -56,7 +56,7 @@ class CharacterController extends Controller
     private function invalidLodestoneInputValidationException(): ValidationException
     {
         return ValidationException::withMessages([
-            'lodestone_id' => 'Enter a valid Lodestone ID or Lodestone character URL.',
+            'lodestone_id' => __('errors.enter_a_valid_lodestone_id_or_lodestone_character_url'),
         ]);
     }
 

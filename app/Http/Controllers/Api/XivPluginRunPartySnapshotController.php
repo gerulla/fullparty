@@ -43,7 +43,7 @@ class XivPluginRunPartySnapshotController extends Controller
 
         if (! $realtimeService->partyKeyExists($activity, $partyKey)) {
             throw ValidationException::withMessages([
-                'party_key' => 'The selected party does not exist on this run.',
+                'party_key' => __('errors.party_not_in_run'),
             ]);
         }
 
@@ -51,7 +51,7 @@ class XivPluginRunPartySnapshotController extends Controller
 
         if (RateLimiter::tooManyAttempts($rateLimitKey, 1)) {
             return new JsonResponse([
-                'message' => 'Too many party snapshots. Please wait before sending another update.',
+                'message' => __('errors.too_many_party_snapshots_please_wait_before_sending_another_update'),
                 'retry_after' => RateLimiter::availableIn($rateLimitKey),
             ], 429);
         }
@@ -84,7 +84,7 @@ class XivPluginRunPartySnapshotController extends Controller
             ->map(function (array $member): array {
                 if (! filled($member['cid'] ?? null) && (! filled($member['n'] ?? null) || ! filled($member['w'] ?? null))) {
                     throw ValidationException::withMessages([
-                        'members' => 'Each party member must include either a character id or a character name and world.',
+                        'members' => __('errors.each_party_member_must_include_either_a_character_id_or_a_character_name_and_world'),
                     ]);
                 }
 

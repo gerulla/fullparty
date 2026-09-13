@@ -96,7 +96,7 @@ class ResourceCommandService
         $url = $this->libraries->publicUrl($command->resource);
 
         return ['command_name' => $command->name, 'embed' => $embed, 'assets' => array_values($assets), 'components' => $url ? [[
-            'type' => 1, 'components' => [['type' => 2, 'style' => 5, 'label' => 'Open Resource', 'url' => $url]],
+            'type' => 1, 'components' => [['type' => 2, 'style' => 5, 'label' => __('ui.open_resource'), 'url' => $url]],
         ]] : []];
     }
 }

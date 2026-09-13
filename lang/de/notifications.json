@@ -224,5 +224,13 @@
             "title": "Integrationszustellung fehlgeschlagen",
             "body": "{client} konnte {event} nicht empfangen. Fehler: {error}"
         }
-    }
+    },
+    "designations": {
+        "host": "Host",
+        "raid_leader": "Raid-Leitung",
+        "duelist": "Duellant",
+        "trapper": "Fallensteller",
+        "darter": "Darter"
+    },
+    "system_run_cancelled": "Run abgesagt."
 }

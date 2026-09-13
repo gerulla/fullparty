@@ -90,7 +90,7 @@ class BozjaHolster extends Model
         return Attribute::make(
             set: function (int $value): int {
                 if ($value < 1 || $value > self::MAX_CAPACITY) {
-                    throw new InvalidArgumentException('A Bozja holster capacity must be between 1 and 99.');
+                    throw new InvalidArgumentException(__('errors.a_bozja_holster_capacity_must_be_between_1_and_99'));
                 }
 
                 return $value;

@@ -3,10 +3,8 @@
 namespace App\Services\FFLogs;
 
 use App\Models\Activity;
-use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Http;
-use Illuminate\Support\Str;
 use RuntimeException;
 
 class ActivityReportProgressFetcher
@@ -23,7 +21,7 @@ class ActivityReportProgressFetcher
         $reportCode = $this->extractReportCode($reportInput);
 
         if ($reportCode === null) {
-            throw new RuntimeException('The provided FF Logs report link or code is invalid.');
+            throw new RuntimeException(__('errors.the_provided_ff_logs_report_link_or_code_is_invalid'));
         }
 
         $activity->loadMissing('activityTypeVersion');
@@ -141,13 +139,13 @@ GRAPHQL;
             ->throw()
             ->json();
 
-        if (!empty($response['errors'])) {
-            throw new RuntimeException('FF Logs GraphQL query failed: ' . json_encode($response['errors']));
+        if (! empty($response['errors'])) {
+            throw new RuntimeException('FF Logs GraphQL query failed: '.json_encode($response['errors']));
         }
 
         $report = data_get($response, 'data.reportData.report');
 
-        if (!is_array($report)) {
+        if (! is_array($report)) {
             throw new RuntimeException("FF Logs report [{$reportCode}] could not be resolved.");
         }
 
@@ -209,7 +207,7 @@ GRAPHQL;
         $clientId = config('services.ff_logs.client_id');
         $clientSecret = config('services.ff_logs.client_secret');
 
-        if (!$clientId || !$clientSecret) {
+        if (! $clientId || ! $clientSecret) {
             throw new RuntimeException('FF Logs credentials are not configured.');
         }
 
@@ -223,7 +221,7 @@ GRAPHQL;
 
         $token = $response['access_token'] ?? null;
 
-        if (!$token) {
+        if (! $token) {
             throw new RuntimeException('FF Logs access token was not returned.');
         }
 

@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import { useI18n } from 'vue-i18n'
+import { usePersistentLocale } from '@/composables/usePersistentLocale'
 import SeoHead from '@/components/Shared/SeoHead.vue'
 import ResourceKnowledgeHub from '@/components/Groups/Resources/ResourceKnowledgeHub.vue'
 import ResourcePublicHeader from '@/components/Groups/Resources/ResourcePublicHeader.vue'
@@ -10,13 +11,14 @@ import type { ResourceReaderPage, ResourceReaderSeo } from '../../Types/GroupRes
 defineOptions({ layout: [] })
 const props = defineProps<ResourceReaderPage & { main_site_url: string; seo: ResourceReaderSeo }>()
 const { t } = useI18n()
+const { currentUiLocale } = usePersistentLocale()
 const { isDark, toggle } = usePublicResourceAppearance(() => props.library)
 const accent = computed(() => /^#[a-fA-F0-9]{6}$/.test(props.library.customization.accent_color || '') ? { '--ui-primary': props.library.customization.accent_color } : {})
 </script>
 
 <template>
     <SeoHead :title="seo.title" :description="seo.description" :canonical="seo.url" :image="seo.image" :og-type="seo.type" :append-site-name="false" />
-    <UApp>
+    <UApp :locale="currentUiLocale">
         <div class="public-resource-page min-h-screen bg-default text-default" :style="accent">
             <ResourcePublicHeader :group="group" :library="library">
                 <UButton :icon="isDark ? 'i-lucide-sun' : 'i-lucide-moon'" :label="t(`groups.resources.reader.${isDark ? 'light_mode' : 'dark_mode'}`)" color="neutral" variant="outline" size="sm" @click="toggle" />

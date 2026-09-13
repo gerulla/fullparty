@@ -94,12 +94,12 @@ class BozjaHolsterRequest extends FormRequest
 
             if ($holster instanceof BozjaHolster) {
                 if ((int) $this->input('parent_holster_id') === (int) $holster->id) {
-                    $validator->errors()->add('parent_holster_id', 'A holster cannot refill itself.');
+                    $validator->errors()->add('parent_holster_id', __('errors.a_holster_cannot_refill_itself'));
                 }
 
                 if ($this->input('type') !== BozjaHolster::TYPE_PREPOP
                     && $holster->refillHolsters()->exists()) {
-                    $validator->errors()->add('type', 'A prepop holster with refills cannot be changed to a refill.');
+                    $validator->errors()->add('type', __('errors.a_prepop_holster_with_refills_cannot_be_changed_to_a_refill'));
                 }
             }
 
@@ -119,7 +119,7 @@ class BozjaHolsterRequest extends FormRequest
                 : 0);
 
             if ($capacity > $maxCapacity) {
-                $validator->errors()->add('items', 'The selected items exceed this holster\'s maximum capacity.');
+                $validator->errors()->add('items', __('errors.holster_capacity'));
             }
         });
     }

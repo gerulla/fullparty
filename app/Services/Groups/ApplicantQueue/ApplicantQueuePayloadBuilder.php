@@ -177,7 +177,7 @@ class ApplicantQueuePayloadBuilder
             'submitted_at' => $application->created_at?->toIso8601String(),
             'edited_at' => $application->edited_at?->toIso8601String(),
             'reviewed_at' => $application->reviewed_at?->toIso8601String(),
-            'review_reason' => $application->review_reason,
+            'review_reason' => $application->localizedReviewReason(),
             'answers' => $this->orderedAnswers($application->answers, $activityTypeVersion)
                 ->map(fn ($answer) => $this->answerPresenter->present($answer, $activityTypeVersion))
                 ->filter()

@@ -60,5 +60,20 @@
     },
     "copied_to_clipboard": "クリップボードにコピーしました！",
     "copied_to_clipboard_short": "コピーしました！",
-    "copied_to_clipboard_short_timeout": 2000
+    "copied_to_clipboard_short_timeout": 2000,
+    "all_locales": "すべての言語",
+    "required": "必須",
+    "image_alt": {
+        "avatar": "{name}のアバター",
+        "icon": "{name}のアイコン",
+        "profile": "{name}のプロフィール画像",
+        "black_icon": "{name}の黒いアイコン",
+        "transparent_icon": "{name}の透過アイコン",
+        "flat_icon": "{name}のフラットアイコン",
+        "sprite": "{name}のスプライト"
+    },
+    "account_completion": {
+        "success_title": "アカウントの設定が完了しました",
+        "success_description": "アカウントの設定手順をすべて完了しました。"
+    }
 }

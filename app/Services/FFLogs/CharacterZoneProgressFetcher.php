@@ -210,7 +210,7 @@ class CharacterZoneProgressFetcher
                 return $cached;
             }
             if (Cache::has($key.':failed')) {
-                throw new RuntimeException('FF Logs progress is temporarily unavailable; retry shortly.');
+                throw new RuntimeException(__('errors.ff_logs_progress_is_temporarily_unavailable_retry_shortly'));
             }
             try {
                 $rankings = $fetch();
@@ -286,7 +286,7 @@ GRAPHQL;
         }
 
         if (Cache::has('fflogs:zone-requests:cooldown')) {
-            throw new RuntimeException('FF Logs requests are temporarily paused after a service failure.');
+            throw new RuntimeException(__('errors.ff_logs_requests_are_temporarily_paused_after_a_service_failure'));
         }
         try {
             $response = Http::withToken($this->getAccessToken())
@@ -461,7 +461,7 @@ GRAPHQL;
                 return $cachedToken;
             }
             if (Cache::has(self::TOKEN_CACHE_KEY.':failed')) {
-                throw new RuntimeException('FF Logs authentication is temporarily unavailable.');
+                throw new RuntimeException(__('errors.ff_logs_authentication_is_temporarily_unavailable'));
             }
             try {
                 return $this->requestAccessToken();

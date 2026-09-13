@@ -69,7 +69,7 @@ class PhantomCompositionRequest extends FormRequest
             $ruleAttribute = "{$attribute}.{$index}";
 
             if (! is_array($rule)) {
-                $validator->errors()->add($ruleAttribute, 'Each phantom composition rule must be an object.');
+                $validator->errors()->add($ruleAttribute, __('errors.each_phantom_composition_rule_must_be_an_object'));
 
                 continue;
             }
@@ -77,13 +77,13 @@ class PhantomCompositionRequest extends FormRequest
             $type = $rule['type'] ?? null;
 
             if (! is_string($type) || ! in_array($type, PhantomComposition::ruleTypes(), true)) {
-                $validator->errors()->add("{$ruleAttribute}.type", 'Choose a supported phantom composition rule type.');
+                $validator->errors()->add("{$ruleAttribute}.type", __('errors.choose_a_supported_phantom_composition_rule_type'));
 
                 continue;
             }
 
             if ($isPackageChild && $type === PhantomComposition::RULE_PACKAGE) {
-                $validator->errors()->add("{$ruleAttribute}.type", 'Packages cannot contain nested package rules.');
+                $validator->errors()->add("{$ruleAttribute}.type", __('errors.packages_cannot_contain_nested_package_rules'));
 
                 continue;
             }
@@ -108,14 +108,14 @@ class PhantomCompositionRequest extends FormRequest
         }
 
         if (! is_string($label) || mb_strlen($label) > 120) {
-            $validator->errors()->add($attribute, 'Rule labels must be 120 characters or fewer.');
+            $validator->errors()->add($attribute, __('errors.rule_labels_must_be_120_characters_or_fewer'));
         }
     }
 
     private function validateRuleSeverity(mixed $severity, string $attribute, Validator $validator): void
     {
         if (! is_string($severity) || ! in_array($severity, PhantomComposition::severities(), true)) {
-            $validator->errors()->add($attribute, 'Choose a supported phantom composition severity.');
+            $validator->errors()->add($attribute, __('errors.choose_a_supported_phantom_composition_severity'));
         }
     }
 
@@ -127,13 +127,13 @@ class PhantomCompositionRequest extends FormRequest
         $children = $rule['children'] ?? null;
 
         if (! is_array($children) || $children === []) {
-            $validator->errors()->add("{$attribute}.children", 'Package rules must contain at least one child rule.');
+            $validator->errors()->add("{$attribute}.children", __('errors.package_rules_must_contain_at_least_one_child_rule'));
 
             return;
         }
 
         if (count($children) > 25) {
-            $validator->errors()->add("{$attribute}.children", 'Package rules can contain up to 25 child rules.');
+            $validator->errors()->add("{$attribute}.children", __('errors.package_rules_can_contain_up_to_25_child_rules'));
 
             return;
         }
@@ -150,25 +150,25 @@ class PhantomCompositionRequest extends FormRequest
         $targetCount = $rule['target_count'] ?? null;
 
         if (! is_string($comparison) || ! in_array($comparison, PhantomComposition::comparisons(), true)) {
-            $validator->errors()->add("{$attribute}.comparison", 'Choose a supported phantom composition comparison.');
+            $validator->errors()->add("{$attribute}.comparison", __('errors.choose_a_supported_phantom_composition_comparison'));
         }
 
         if (! $this->isWholeNumber($targetCount)) {
-            $validator->errors()->add("{$attribute}.target_count", 'Rule target counts must be whole numbers.');
+            $validator->errors()->add("{$attribute}.target_count", __('errors.rule_target_counts_must_be_whole_numbers'));
         } else {
             $targetCount = (int) $targetCount;
 
             if ($targetCount < 0 || $targetCount > 48) {
-                $validator->errors()->add("{$attribute}.target_count", 'Rule target counts must be between 0 and 48.');
+                $validator->errors()->add("{$attribute}.target_count", __('errors.rule_target_counts_must_be_between_0_and_48'));
             }
         }
 
         if ($type === PhantomComposition::RULE_ANY_JOB_IN_SET && ($comparison !== PhantomComposition::COMPARISON_AT_LEAST || (int) $targetCount !== 1)) {
-            $validator->errors()->add("{$attribute}.comparison", 'Any-job rules must use at least 1.');
+            $validator->errors()->add("{$attribute}.comparison", __('errors.any_job_rules_must_use_at_least_1'));
         }
 
         if ($type === PhantomComposition::RULE_DUPLICATE_LIMIT && $comparison !== PhantomComposition::COMPARISON_AT_MOST) {
-            $validator->errors()->add("{$attribute}.comparison", 'Duplicate-limit rules must use at most.');
+            $validator->errors()->add("{$attribute}.comparison", __('errors.duplicate_limit_rules_must_use_at_most'));
         }
 
         $this->validateScope($rule['scope'] ?? null, "{$attribute}.scope", $validator);
@@ -185,7 +185,7 @@ class PhantomCompositionRequest extends FormRequest
     private function validateScope(mixed $scope, string $attribute, Validator $validator): void
     {
         if (! is_array($scope)) {
-            $validator->errors()->add($attribute, 'Each non-package rule requires a scope.');
+            $validator->errors()->add($attribute, __('errors.each_non_package_rule_requires_a_scope'));
 
             return;
         }
@@ -193,7 +193,7 @@ class PhantomCompositionRequest extends FormRequest
         $type = $scope['type'] ?? null;
 
         if (! is_string($type) || ! in_array($type, PhantomComposition::scopeTypes(), true)) {
-            $validator->errors()->add("{$attribute}.type", 'Choose a supported phantom composition scope.');
+            $validator->errors()->add("{$attribute}.type", __('errors.choose_a_supported_phantom_composition_scope'));
 
             return;
         }
@@ -218,26 +218,26 @@ class PhantomCompositionRequest extends FormRequest
     private function validatePhantomJobId(mixed $phantomJobId, string $attribute, Validator $validator): void
     {
         if (! $this->isWholeNumber($phantomJobId)) {
-            $validator->errors()->add($attribute, 'Choose a valid Phantom Job.');
+            $validator->errors()->add($attribute, __('errors.choose_a_valid_phantom_job'));
 
             return;
         }
 
         if (! PhantomJob::query()->whereKey((int) $phantomJobId)->exists()) {
-            $validator->errors()->add($attribute, 'Choose a valid Phantom Job.');
+            $validator->errors()->add($attribute, __('errors.choose_a_valid_phantom_job'));
         }
     }
 
     private function validatePhantomJobIds(mixed $phantomJobIds, string $attribute, Validator $validator): void
     {
         if (! is_array($phantomJobIds) || $phantomJobIds === []) {
-            $validator->errors()->add($attribute, 'Choose at least one Phantom Job.');
+            $validator->errors()->add($attribute, __('errors.choose_at_least_one_phantom_job'));
 
             return;
         }
 
         if (count($phantomJobIds) > 20) {
-            $validator->errors()->add($attribute, 'Choose up to 20 Phantom Jobs.');
+            $validator->errors()->add($attribute, __('errors.choose_up_to_20_phantom_jobs'));
 
             return;
         }
@@ -248,7 +248,7 @@ class PhantomCompositionRequest extends FormRequest
             $itemAttribute = "{$attribute}.{$index}";
 
             if (! $this->isWholeNumber($phantomJobId)) {
-                $validator->errors()->add($itemAttribute, 'Choose a valid Phantom Job.');
+                $validator->errors()->add($itemAttribute, __('errors.choose_a_valid_phantom_job'));
 
                 continue;
             }
@@ -256,7 +256,7 @@ class PhantomCompositionRequest extends FormRequest
             $phantomJobId = (int) $phantomJobId;
 
             if (in_array($phantomJobId, $seen, true)) {
-                $validator->errors()->add($itemAttribute, 'Phantom Jobs must be unique within a rule.');
+                $validator->errors()->add($itemAttribute, __('errors.phantom_jobs_must_be_unique_within_a_rule'));
 
                 continue;
             }
@@ -264,7 +264,7 @@ class PhantomCompositionRequest extends FormRequest
             $seen[] = $phantomJobId;
 
             if (! PhantomJob::query()->whereKey($phantomJobId)->exists()) {
-                $validator->errors()->add($itemAttribute, 'Choose a valid Phantom Job.');
+                $validator->errors()->add($itemAttribute, __('errors.choose_a_valid_phantom_job'));
             }
         }
     }
@@ -272,7 +272,7 @@ class PhantomCompositionRequest extends FormRequest
     private function validateScopeGroupKeys(mixed $groupKeys, string $attribute, Validator $validator, int $min, ?int $max = null): void
     {
         if (! is_array($groupKeys)) {
-            $validator->errors()->add($attribute, 'Choose one or more slot groups for this scope.');
+            $validator->errors()->add($attribute, __('errors.choose_one_or_more_slot_groups_for_this_scope'));
 
             return;
         }
@@ -281,8 +281,8 @@ class PhantomCompositionRequest extends FormRequest
 
         if ($count < $min || ($max !== null && $count > $max)) {
             $validator->errors()->add($attribute, $max === 1
-                ? 'Choose exactly one slot group for this scope.'
-                : 'Choose at least one slot group for this scope.');
+                ? __('errors.choose_exactly_one_slot_group_for_this_scope')
+                : __('errors.choose_at_least_one_slot_group_for_this_scope'));
         }
 
         $this->validateKnownGroupKeys($groupKeys, $attribute, $validator);
@@ -291,13 +291,13 @@ class PhantomCompositionRequest extends FormRequest
     private function validateScopeGroupSets(mixed $groupSets, string $attribute, Validator $validator): void
     {
         if (! is_array($groupSets) || $groupSets === []) {
-            $validator->errors()->add($attribute, 'Choose at least one slot group set for this scope.');
+            $validator->errors()->add($attribute, __('errors.choose_at_least_one_slot_group_set_for_this_scope'));
 
             return;
         }
 
         if (count($groupSets) > 12) {
-            $validator->errors()->add($attribute, 'Choose up to 12 slot group sets for this scope.');
+            $validator->errors()->add($attribute, __('errors.choose_up_to_12_slot_group_sets_for_this_scope'));
 
             return;
         }
@@ -321,13 +321,13 @@ class PhantomCompositionRequest extends FormRequest
             $itemAttribute = "{$attribute}.{$index}";
 
             if (! is_string($groupKey) || ! in_array($groupKey, $allowedGroupKeys, true)) {
-                $validator->errors()->add($itemAttribute, 'Choose a supported Forked Tower party.');
+                $validator->errors()->add($itemAttribute, __('errors.choose_a_supported_forked_tower_party'));
 
                 continue;
             }
 
             if (in_array($groupKey, $seen, true)) {
-                $validator->errors()->add($itemAttribute, 'Slot groups must be unique within a scope.');
+                $validator->errors()->add($itemAttribute, __('errors.slot_groups_must_be_unique_within_a_scope'));
 
                 continue;
             }

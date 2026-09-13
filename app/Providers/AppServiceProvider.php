@@ -9,7 +9,9 @@ use App\Models\IntegrationClient;
 use App\Models\User;
 use App\Policies\GroupActivityPolicy;
 use App\Services\Groups\Resources\ResourceHolsterContent;
+use App\Support\Localization\JsonGroupTranslationLoader;
 use App\Support\Passport\XivPluginAuthorizationServerFactory;
+use App\Support\SeedData\ActivityLocalizationCatalog;
 use DateInterval;
 use Illuminate\Cache\RateLimiting\Limit;
 use Illuminate\Contracts\Auth\StatefulGuard;
@@ -38,7 +40,11 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
+        $this->app->extend('translation.loader', fn ($loader, $app) => new JsonGroupTranslationLoader(
+            $loader, $app['files'], $app->langPath(),
+        ));
         $this->app->scoped(ResourceHolsterContent::class);
+        $this->app->scoped(ActivityLocalizationCatalog::class);
         $this->app->when(XivPluginDeviceAuthorizationController::class)
             ->needs(StatefulGuard::class)
             ->give(fn () => Auth::guard(config('passport.guard', null)));
@@ -79,7 +85,7 @@ class AppServiceProvider extends ServiceProvider
         URL::defaults(['locale' => app()->getLocale()]);
 
         Passport::tokensCan([
-            'xivplugin:read' => 'Read your FullParty account and character summary for the XIV plugin.',
+            'xivplugin:read' => __('errors.read_your_fullparty_account_and_character_summary_for_the_xiv_plugin'),
         ]);
         Passport::tokensExpireIn(new DateInterval('PT1H'));
         Passport::refreshTokensExpireIn(new DateInterval('P30D'));
@@ -96,7 +102,9 @@ class AppServiceProvider extends ServiceProvider
             'scopes' => collect($parameters['scopes'])
                 ->map(fn ($scope) => [
                     'id' => $scope->id,
-                    'description' => $scope->description,
+                    'description' => $scope->id === 'xivplugin:read'
+                        ? __('errors.read_your_fullparty_account_and_character_summary_for_the_xiv_plugin')
+                        : $scope->description,
                 ])
                 ->values()
                 ->all(),

@@ -262,7 +262,7 @@ it('allows moderators to duplicate group holsters with their contents', function
         ]))
         ->assertCreated()
         ->assertJsonPath('data.name.en', 'Progression Copy')
-        ->assertJsonPath('data.name.de', 'Fortschritt Copy')
+        ->assertJsonPath('data.name.de', 'Fortschritt Kopie')
         ->assertJsonPath('data.role', 'tank')
         ->assertJsonPath('data.type', BozjaHolster::TYPE_PREPOP)
         ->assertJsonPath('data.notes', 'Bring this exact kit.')

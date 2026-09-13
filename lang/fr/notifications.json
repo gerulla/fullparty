@@ -224,5 +224,13 @@
             "title": "Échec d'envoi vers l'intégration",
             "body": "{client} n'a pas pu recevoir {event}. Erreur : {error}"
         }
-    }
+    },
+    "designations": {
+        "host": "Hôte",
+        "raid_leader": "Raid leader",
+        "duelist": "Duelliste",
+        "trapper": "Trappeur",
+        "darter": "Darter"
+    },
+    "system_run_cancelled": "Sortie annulée."
 }

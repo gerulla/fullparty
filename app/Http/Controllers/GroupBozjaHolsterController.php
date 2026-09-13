@@ -115,7 +115,7 @@ class GroupBozjaHolsterController extends Controller
 
         if ($bozjaHolster->refillHolsters()->exists()) {
             throw ValidationException::withMessages([
-                'holster' => 'Delete or reassign this holster\'s refills before deleting it.',
+                'holster' => __('errors.delete_or_reassign_this_holster_s_refills_before_deleting_it'),
             ]);
         }
 
@@ -138,12 +138,10 @@ class GroupBozjaHolsterController extends Controller
      */
     private function cloneLocalizedName(?array $name): array
     {
-        $localizedName = collect($name ?? ['en' => 'Untitled Holster'])
-            ->map(fn (mixed $value) => filled($value) ? sprintf('%s Copy', (string) $value) : '')
-            ->all();
-
-        if (blank($localizedName['en'] ?? null)) {
-            $localizedName['en'] = 'Untitled Holster Copy';
+        $localizedName = [];
+        foreach (['en', 'de', 'fr', 'ja'] as $locale) {
+            $value = $name[$locale] ?? $name['en'] ?? __('ui.untitled_holster', [], $locale);
+            $localizedName[$locale] = __('ui.holster_copy', ['name' => filled($value) ? $value : __('ui.untitled_holster', [], $locale)], $locale);
         }
 
         return $localizedName;

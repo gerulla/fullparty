@@ -157,7 +157,7 @@ const props = defineProps<{
 	membershipCoverage?: MembershipCoverage | null
 }>();
 
-const { t } = useI18n();
+const { t, locale } = useI18n();
 const page = usePage();
 const toast = useToast();
 const confirmationModal = useConfirmationModal();
@@ -732,7 +732,7 @@ watch(
 						<div class="min-w-0">
 							<p class="text-xs font-semibold uppercase tracking-wide text-brand">{{ t("groups.discord.link.generated_token") }}</p>
 							<p class="mt-1 break-all font-mono text-lg font-semibold text-highlighted">{{ linkToken.token }}</p>
-							<p class="mt-1 text-xs text-muted">{{ t("groups.discord.link.expires_at", { date: new Date(linkToken.expires_at).toLocaleString() }) }}</p>
+							<p class="mt-1 text-xs text-muted">{{ t("groups.discord.link.expires_at", { date: new Date(linkToken.expires_at).toLocaleString(locale) }) }}</p>
 						</div>
 						<UButton
 							icon="i-lucide-copy"
@@ -750,7 +750,7 @@ watch(
 						variant="soft"
 						icon="i-lucide-clock"
 						:title="t('groups.discord.link.active_token_title')"
-						:description="t('groups.discord.link.active_token_description', { date: tokenExpiresAt ? new Date(tokenExpiresAt).toLocaleString() : '' })"
+						:description="t('groups.discord.link.active_token_description', { date: tokenExpiresAt ? new Date(tokenExpiresAt).toLocaleString(locale) : '' })"
 					/>
 				</div>
 			</UCard>

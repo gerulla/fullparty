@@ -1,0 +1,175 @@
+{
+  "last_updated": "Dernière mise à jour : {date}",
+  "contact_fallback": "l’adresse de contact configurée pour cette instance FullParty auto-hébergée",
+  "privacy": {
+    "intro": [
+      "Cette politique de confidentialité s’applique uniquement au site ou service FullParty sur lequel elle est publiée. Si vous utilisez une copie auto-hébergée ou dérivée de FullParty, son exploitant doit remplacer ou adapter cette politique afin qu’elle décrive fidèlement ses propres pratiques en matière de données.",
+      "{operator_sentence}",
+      "FullParty est une plateforme de gestion des groupes, candidatures, effectifs, personnages, notifications et activités associées pour les communautés de jeux en ligne."
+    ],
+    "sections": [
+      {
+        "title": "Qui nous sommes",
+        "paragraphs": [
+          "{operator_details}",
+          "Pour toute question sur cette politique de confidentialité ou pour exercer vos droits en matière de protection des données, vous pouvez nous contacter à l’adresse {contact}."
+        ]
+      },
+      {
+        "title": "Les informations que nous recueillons",
+        "bullets": [
+          "Les informations du compte, telles que votre adresse e-mail, nom d’utilisateur, empreinte du mot de passe si vous en définissez un, avatar et préférences du compte.",
+          "Les informations de connexion sociale et de comptes que vous choisissez de lier, telles que les identifiants de compte, noms d’affichage, avatars et adresses e-mail transmis par le fournisseur.",
+          "Les informations des personnages, telles que les identifiants Lodestone ou liés au jeu, personnages revendiqués, choix du personnage principal, classes, jobs et données de profil importées ou actualisées à votre demande.",
+          "Les informations des groupes et activités, telles que les adhésions, rôles de modération, candidatures, affectations, confirmations de présence, notes, bannissements et entrées du journal d’audit.",
+          "Les données de notification et de communication, telles que vos préférences de notification, l’état de la boîte de réception, les enregistrements de livraison et l’état de lecture des annonces système.",
+          "Les informations techniques et de sécurité, telles que l’adresse IP, l’agent utilisateur du navigateur ou de l’appareil, les sessions, les métadonnées des requêtes et les journaux de sécurité ou de prévention des abus."
+        ]
+      },
+      {
+        "title": "La provenance des informations personnelles",
+        "bullets": [
+          "Directement auprès de vous lorsque vous créez un compte, modifiez votre profil, liez des comptes, envoyez des candidatures, rejoignez des groupes ou utilisez FullParty d’une autre manière.",
+          "Auprès des fournisseurs d’authentification sociale lorsque vous vous connectez ou liez un compte via des services comme Google, Discord ou XIVAuth.",
+          "Auprès des fournisseurs de journaux de raid ou de données de personnages lorsque vous demandez à FullParty d’importer ou d’actualiser des informations, notamment FF Logs ou des sources liées au Lodestone.",
+          "Auprès d’autres utilisateurs lorsqu’ils gèrent des groupes, effectifs, notes de modération, invitations ou autres fonctionnalités partagées concernant votre compte ou vos personnages."
+        ]
+      },
+      {
+        "title": "Pourquoi nous utilisons vos informations",
+        "bullets": [
+          "Pour créer et gérer votre compte et vous permettre de vous connecter en toute sécurité.",
+          "Pour fournir les fonctionnalités principales, comme les groupes, candidatures, effectifs, notifications et la gestion des personnages.",
+          "Pour assurer les fonctions de modération, de sécurité, de prévention des abus et de journalisation d’audit.",
+          "Pour envoyer des e-mails et autres communications liés au service, notamment des avis opérationnels ou de sécurité importants.",
+          "Pour résoudre les problèmes, sécuriser, maintenir et améliorer FullParty.",
+          "Pour respecter les obligations légales applicables."
+        ]
+      },
+      {
+        "title": "Nos bases légales",
+        "paragraphs": [
+          "Nous traitons généralement vos informations personnelles parce que cela est nécessaire pour fournir le service que vous nous demandez, notamment l’accès au compte, la participation aux groupes, les candidatures, les effectifs et les notifications.",
+          "Nous traitons également des informations dans notre intérêt légitime à exploiter, sécuriser, modérer et améliorer FullParty, à condition que vos droits et libertés ne prévalent pas sur ces intérêts.",
+          "Lorsque nous nous fondons sur votre consentement, par exemple pour certaines communications facultatives ou liaisons de comptes que vous activez, vous pouvez le retirer à tout moment."
+        ]
+      },
+      {
+        "title": "Avec qui nous partageons les informations",
+        "paragraphs": [
+          "Nous partageons les informations personnelles uniquement lorsque cela est nécessaire pour exploiter FullParty de manière légale et efficace."
+        ],
+        "bullets": [
+          "Les fournisseurs d’hébergement, d’infrastructure et de stockage.",
+          "Les fournisseurs d’envoi d’e-mails et de services de communication associés.",
+          "Les fournisseurs d’authentification sociale que vous choisissez d’utiliser.",
+          "Les fournisseurs de données de personnages, d’identité ou de journaux de raid que vous demandez à FullParty de consulter ou d’importer.",
+          "Les conseillers professionnels, forces de l’ordre, autorités de contrôle ou autres parties lorsque la divulgation est obligatoire ou raisonnablement nécessaire pour protéger des droits, la sécurité ou le service."
+        ]
+      },
+      {
+        "title": "Transferts internationaux",
+        "paragraphs": [
+          "Certains fournisseurs peuvent traiter des informations personnelles hors de votre pays, y compris hors du Royaume-Uni ou de l’EEE. Dans ce cas, nous cherchons à utiliser des fournisseurs et des dispositifs offrant un niveau de protection approprié au regard du droit applicable en matière de protection des données."
+        ]
+      },
+      {
+        "title": "Durée de conservation des informations",
+        "bullets": [
+          "Nous conservons les informations du compte et du profil tant que votre compte est actif, puis pendant une durée raisonnable si nécessaire pour la sécurité, le traitement des litiges, le respect de la loi ou l’intégrité des enregistrements.",
+          "Nous conservons les données des groupes, candidatures, effectifs, audits et modération aussi longtemps que nécessaire pour préserver l’historique opérationnel, la responsabilité et l’intégrité du service.",
+          "Nous conservons les notifications et enregistrements de livraison aussi longtemps que raisonnablement nécessaire pour assurer les communications, résoudre les problèmes et permettre leur audit.",
+          "Nous pouvons supprimer ou anonymiser plus tôt les informations devenues inutiles, et les conserver plus longtemps si la loi l’exige ou si cela est nécessaire pour établir, exercer ou défendre des droits en justice."
+        ]
+      },
+      {
+        "title": "Vos droits",
+        "paragraphs": [
+          "Selon votre lieu de résidence et le droit applicable, vous pouvez disposer de droits d’accès, de rectification, de suppression, de limitation, d’opposition ou de portabilité concernant certaines de vos informations personnelles.",
+          "Vous pouvez également avoir le droit de retirer votre consentement lorsque celui-ci constitue la base du traitement.",
+          "Pour adresser une demande, contactez {contact}. Nous pourrons devoir vérifier votre identité avant d’y donner suite."
+        ]
+      },
+      {
+        "title": "Comment déposer une réclamation",
+        "paragraphs": [
+          "Si notre utilisation de vos informations personnelles vous préoccupe, veuillez d’abord nous contacter à l’adresse {contact}.",
+          "Si vous êtes au Royaume-Uni, vous pouvez également déposer une réclamation auprès de l’Information Commissioner’s Office (ICO) : https://ico.org.uk/make-a-complaint/."
+        ]
+      },
+      {
+        "title": "Modifications de cette politique",
+        "paragraphs": [
+          "Nous pouvons mettre à jour cette politique de confidentialité de temps à autre. Nous modifierons alors la date de « Dernière mise à jour » sur cette page."
+        ]
+      }
+    ],
+    "title": "Politique de confidentialité",
+    "operator_sentence": "{controller} exploite ce service FullParty. Cette politique de confidentialité explique quelles informations personnelles nous recueillons, comment nous les utilisons, avec qui nous les partageons et les choix dont vous disposez.",
+    "operator_sentence_fallback": "Cette politique de confidentialité explique quelles informations personnelles sont recueillies par l’exploitant de ce service FullParty, comment elles sont utilisées, avec qui elles sont partagées et les choix qui vous sont proposés.",
+    "operator_details": "Ce service FullParty est exploité par {controller}.",
+    "operator_details_fallback": "Ce service FullParty est exploité par la personne ou l’organisation responsable de cette instance."
+  },
+  "cookies": {
+    "intro": [
+      "Cette politique relative aux cookies s’applique uniquement au site ou service FullParty sur lequel elle est publiée. Les copies auto-hébergées ou dérivées de FullParty doivent remplacer ou adapter cette page afin de décrire fidèlement leur propre utilisation des cookies et du stockage.",
+      "Cette politique explique comment ce service FullParty utilise les cookies et technologies similaires sur le site.",
+      "Actuellement, FullParty utilise principalement les cookies et le stockage associé pour la sécurité essentielle, la connexion, la gestion des sessions et les préférences choisies par l’utilisateur."
+    ],
+    "sections": [
+      {
+        "title": "Ce que sont les cookies",
+        "paragraphs": [
+          "Les cookies sont de petits fichiers texte déposés sur votre appareil lorsque vous consultez un site web. Ils aident le site à mémoriser des informations sur votre visite, par exemple votre connexion ou les préférences que vous avez choisies."
+        ]
+      },
+      {
+        "title": "Cookies et technologies similaires que nous utilisons",
+        "bullets": [
+          "Les cookies de session et d’authentification, qui maintiennent votre connexion, assurent la sécurité des sessions et protègent l’accès au compte.",
+          "Les cookies de sécurité et de validation des requêtes, notamment ceux utilisés pour la protection CSRF et l’envoi sécurisé des formulaires.",
+          "Les cookies de préférence, par exemple celui qui mémorise la langue d’interface choisie."
+        ]
+      },
+      {
+        "title": "Pourquoi nous les utilisons",
+        "bullets": [
+          "Pour vous permettre de vous connecter et de rester connecté pendant l’utilisation de FullParty.",
+          "Pour sécuriser les requêtes et réduire les abus ou les utilisations détournées du service.",
+          "Pour mémoriser les réglages que vous choisissez explicitement, comme vos préférences régionales ou linguistiques.",
+          "Pour maintenir la stabilité et l’utilisabilité du service pendant son fonctionnement normal."
+        ]
+      },
+      {
+        "title": "Cookies actuellement nécessaires",
+        "bullets": [
+          "Un cookie de session utilisé par l’application Laravel pour maintenir votre session.",
+          "Un cookie lié à la protection CSRF pour aider à valider les requêtes.",
+          "Un cookie de langue qui mémorise la langue choisie."
+        ]
+      },
+      {
+        "title": "Consentement",
+        "paragraphs": [
+          "Dans la configuration actuelle de FullParty, ces cookies servent aux fonctionnalités essentielles du service et aux préférences demandées par l’utilisateur, plutôt qu’à la publicité ou au suivi comportemental facultatif.",
+          "Si FullParty ajoute ultérieurement des technologies non essentielles d’analyse, de marketing ou de suivi similaire nécessitant un consentement, nous mettrons à jour cette politique et instaurerons une procédure de consentement appropriée."
+        ]
+      },
+      {
+        "title": "Gestion des cookies",
+        "paragraphs": [
+          "Vous pouvez contrôler ou supprimer les cookies dans les paramètres de votre navigateur. Toutefois, si vous bloquez les cookies essentiels, certaines parties de FullParty peuvent ne plus fonctionner correctement, notamment la connexion, les fonctions de sécurité et les préférences enregistrées."
+        ]
+      },
+      {
+        "title": "Contact",
+        "paragraphs": [
+          "{contact_line}"
+        ]
+      }
+    ],
+    "title": "Politique relative aux cookies",
+    "contact_line": "Pour toute question sur l’utilisation des cookies ou technologies similaires par ce service FullParty, contactez {controller} à l’adresse {contact}.",
+    "contact_line_fallback": "Pour toute question sur l’utilisation des cookies ou technologies similaires par ce service FullParty, contactez l’exploitant de cette instance à l’adresse {contact}."
+  }
+}

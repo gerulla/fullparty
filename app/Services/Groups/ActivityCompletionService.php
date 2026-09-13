@@ -61,19 +61,19 @@ class ActivityCompletionService
 
         if (! in_array($entryMode, [self::ENTRY_MODE_MANUAL, self::ENTRY_MODE_FFLOGS], true)) {
             throw ValidationException::withMessages([
-                'progress_entry_mode' => 'The selected progress entry mode is invalid.',
+                'progress_entry_mode' => __('errors.progress_mode_invalid'),
             ]);
         }
 
         if ($entryMode === self::ENTRY_MODE_FFLOGS && ! $supportsFflogs) {
             throw ValidationException::withMessages([
-                'progress_entry_mode' => 'FF Logs progress is not supported for this activity type.',
+                'progress_entry_mode' => __('errors.ff_logs_progress_is_not_supported_for_this_activity_type'),
             ]);
         }
 
         if ($entryMode === self::ENTRY_MODE_FFLOGS && blank($payload['progress_link_url'] ?? null)) {
             throw ValidationException::withMessages([
-                'progress_link_url' => 'An FF Logs link is required for FF Logs completion.',
+                'progress_link_url' => __('errors.an_ff_logs_link_is_required_for_ff_logs_completion'),
             ]);
         }
 
@@ -172,7 +172,7 @@ class ActivityCompletionService
     {
         if (! is_array($milestones)) {
             throw ValidationException::withMessages([
-                'milestones' => 'Milestones must be provided as an array.',
+                'milestones' => __('errors.milestones_array'),
             ]);
         }
 
@@ -185,7 +185,7 @@ class ActivityCompletionService
             ->mapWithKeys(function ($entry, $key) use ($knownKeys) {
                 if (! is_array($entry)) {
                     throw ValidationException::withMessages([
-                        'milestones' => 'Each milestone must be provided as an object.',
+                        'milestones' => __('errors.milestone_object'),
                     ]);
                 }
 
@@ -195,7 +195,7 @@ class ActivityCompletionService
 
                 if (! in_array($milestoneKey, $knownKeys, true)) {
                     throw ValidationException::withMessages([
-                        'milestones' => sprintf('Unknown milestone key [%s].', $milestoneKey),
+                        'milestones' => sprintf(__('errors.unknown_milestone_key_s'), $milestoneKey),
                     ]);
                 }
 
@@ -229,7 +229,7 @@ class ActivityCompletionService
 
         if ($availableKeys !== [] && ! in_array($normalizedKey, $availableKeys, true)) {
             throw ValidationException::withMessages([
-                'furthest_progress_key' => 'The selected furthest progress point is invalid for this activity type.',
+                'furthest_progress_key' => __('errors.furthest_progress_invalid'),
             ]);
         }
 

@@ -39,7 +39,7 @@
         "availability": "参加可能時間",
         "content": "コンテンツ",
         "delubrum_reginae_savage": "グンヒルド・ディルーブラム零式",
-        "forked_tower_blood": "フォークタワー",
+        "forked_tower_blood": "フォークタワー：力の塔",
         "moderation": "モデレーション",
         "configuration": "構成",
         "membership_applications": "リクエスト",
@@ -111,12 +111,12 @@
                 "empty_description": "ホルスターを作成して構成の計画を始めましょう。",
                 "no_selection": "ホルスターを選択するか、新しく作成してください。",
                 "saved": "ホルスターを保存しました",
-        "save_failed": "ホルスターを保存できませんでした。",
-        "types": {
-          "prepop": "事前準備",
-          "refill": "補充"
-        },
-        "metadata": {
+                "save_failed": "ホルスターを保存できませんでした。",
+                "types": {
+                    "prepop": "事前準備",
+                    "refill": "補充"
+                },
+                "metadata": {
                     "title": "詳細",
                     "description": "ホルスターに名前を付け、グループ向けのメモを追加します。",
                     "name": "名前",
@@ -147,8 +147,8 @@
             }
         },
         "forked_tower_blood": {
-            "title": "フォークタワー",
-            "subtitle": "グループのフォークタワーコンテンツを計画・管理します。",
+            "title": "フォークタワー：力の塔",
+            "subtitle": "グループの「フォークタワー：力の塔」のコンテンツを計画・管理します。",
             "compositions": {
                 "title": "構成",
                 "create": "新しい構成",
@@ -583,7 +583,7 @@
         },
         "fields": {
             "name": {
-                "placeholder": "Forked Tower Enjoyers"
+                "placeholder": "フォークタワー愛好会"
             },
             "slug": {
                 "label": "スラッグ",

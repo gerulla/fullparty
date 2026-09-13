@@ -30,7 +30,7 @@ class GroupActivityFflogsController extends Controller
 
         return response()->json([
             'progress' => [
-                'title' => 'FF Logs Progress',
+                'title' => __('ui.fflogs_progress'),
                 ...$fetcher->fetchEncounterProgressForCharacter($character, $zoneId, $difficulty),
             ],
         ]);
@@ -63,7 +63,7 @@ class GroupActivityFflogsController extends Controller
         if ($application->user_id !== null && $application->selectedCharacter) {
             return response()->json([
                 'progress' => [
-                    'title' => 'FF Logs Progress',
+                    'title' => __('ui.fflogs_progress'),
                     ...$fetcher->fetchEncounterProgressForCharacter($application->selectedCharacter, $zoneId, $difficulty),
                 ],
             ]);
@@ -81,7 +81,7 @@ class GroupActivityFflogsController extends Controller
 
         return response()->json([
             'progress' => [
-                'title' => 'FF Logs Progress',
+                'title' => __('ui.fflogs_progress'),
                 ...$fetcher->fetchEncounterProgressForIdentity(
                     $application->applicant_character_name,
                     $application->applicant_world,

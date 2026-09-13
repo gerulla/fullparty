@@ -9,6 +9,8 @@ use App\Models\ActivitySlotFieldValue;
 use App\Models\CharacterClass;
 use App\Models\PhantomJob;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Lang;
+use Illuminate\Support\Number;
 use Illuminate\Support\Str;
 use ZipArchive;
 
@@ -16,7 +18,21 @@ class ActivityRosterSpreadsheetExportService
 {
     use InteractsWithActivitySlotFieldDisplay;
 
-    private const SHEET_NAME = 'Roster';
+    private function sheetName(): string
+    {
+        return __('ui.roster');
+    }
+
+    private function translatedPhantomJob(string $name): string
+    {
+        // Keep the established English spreadsheet values; localize both dropdowns and formula targets together.
+        if (app()->getLocale() === 'en') {
+            return $name;
+        }
+        $key = 'characters.jobs.phantom.'.Str::of($name)->lower()->replaceStart('phantom ', '')->replaceMatches('/[^a-z0-9]+/', '_')->trim('_');
+
+        return Lang::has($key) ? __($key) : $name;
+    }
 
     public function __construct(
         private readonly ActivitySlotBench $slotBench,
@@ -81,8 +97,8 @@ class ActivityRosterSpreadsheetExportService
 
                 return [
                     'label' => $referenceSlot
-                        ? ($this->localizedText($referenceSlot->slot_label) ?: sprintf('Slot %d', $position))
-                        : sprintf('Slot %d', $position),
+                        ? ($this->localizedText($referenceSlot->slot_label) ?: __('ui.slot', ['number' => $position]))
+                        : __('ui.slot', ['number' => $position]),
                     'theme' => $theme,
                     'cells' => collect($mainGroups)
                         ->map(fn (array $group) => $this->buildSlotCell(
@@ -102,7 +118,7 @@ class ActivityRosterSpreadsheetExportService
             ->all();
 
         return [
-            'title' => filled($activity->title) ? (string) $activity->title : sprintf('Run #%d', $activity->id),
+            'title' => filled($activity->title) ? (string) $activity->title : __('ui.run', ['number' => $activity->id]),
             'group_name' => $activity->group?->name ?? '',
             'scheduled_for' => $activity->starts_at,
             'duration_hours' => $activity->duration_hours,
@@ -119,7 +135,7 @@ class ActivityRosterSpreadsheetExportService
                 ->get(['name', 'shorthand', 'role'])
                 ->map(fn (CharacterClass $characterClass) => [
                     'value' => $characterClass->shorthand,
-                    'label' => $characterClass->name,
+                    'label' => __('characters.jobs.classes.'.strtolower($characterClass->shorthand)),
                     'role' => $characterClass->role,
                 ])
                 ->all(),
@@ -128,8 +144,8 @@ class ActivityRosterSpreadsheetExportService
                     ->orderBy('name')
                     ->get(['name'])
                     ->map(fn (PhantomJob $phantomJob) => [
-                        'value' => $phantomJob->name,
-                        'label' => $phantomJob->name,
+                        'value' => $this->translatedPhantomJob($phantomJob->name),
+                        'label' => $this->translatedPhantomJob($phantomJob->name),
                     ])
                     ->all()
                 : [],
@@ -193,11 +209,11 @@ class ActivityRosterSpreadsheetExportService
             }
 
             $designationText = collect([
-                $slot->is_host ? 'Host' : null,
-                $slot->is_raid_leader ? 'Raid Leader' : null,
-                $slot->is_duelist ? 'Duelist' : null,
-                $slot->is_trapper ? 'Trapper' : null,
-                $slot->is_darter ? 'Darter' : null,
+                $slot->is_host ? __('ui.host') : null,
+                $slot->is_raid_leader ? __('ui.raid_leader') : null,
+                $slot->is_duelist ? __('ui.duelist') : null,
+                $slot->is_trapper ? __('ui.trapper') : null,
+                $slot->is_darter ? __('ui.darter') : null,
             ])->filter()->implode(' • ');
 
             if ($designationText !== '') {
@@ -212,7 +228,7 @@ class ActivityRosterSpreadsheetExportService
                 ? trim((string) ($classMeta['shorthand'] ?? $this->displayValueToString($classField)))
                 : '',
             'phantom_text' => $slot->assignedCharacter && $phantomField
-                ? $this->displayValueToString($phantomField)
+                ? $this->translatedPhantomJob($this->displayValueToString($phantomField))
                 : '',
         ];
     }
@@ -310,8 +326,8 @@ class ActivityRosterSpreadsheetExportService
         $titleParts = array_filter([
             $payload['group_name'] !== '' ? $payload['group_name'] : null,
             $payload['title'],
-            $payload['scheduled_for'] ? $payload['scheduled_for']->format('d/m/Y H:i').' UTC' : null,
-            $payload['duration_hours'] ? rtrim(rtrim(number_format((float) $payload['duration_hours'], 1, '.', ''), '0'), '.').'h' : null,
+            $payload['scheduled_for'] ? (app()->getLocale() === 'en' ? $payload['scheduled_for']->format('d/m/Y H:i') : $payload['scheduled_for']->copy()->locale(app()->getLocale())->isoFormat('L LT')).' UTC' : null,
+            $payload['duration_hours'] ? Number::format((float) $payload['duration_hours'], maxPrecision: 1, locale: app()->getLocale()).'h' : null,
         ]);
 
         $rows[1] = [
@@ -348,7 +364,7 @@ class ActivityRosterSpreadsheetExportService
         }
 
         $rows[2]['cells'][$rightStartColumn] = [
-            'value' => 'Bench',
+            'value' => __('ui.bench'),
             'style' => 'group_header',
         ];
 
@@ -435,7 +451,7 @@ class ActivityRosterSpreadsheetExportService
 
             if ($benchSlot) {
                 $rows[$rowNumber]['cells'][$rightStartColumn] = [
-                    'value' => sprintf('Bench %d', $rowOffset + 1),
+                    'value' => __('ui.bench_slot', ['number' => $rowOffset + 1]),
                     'style' => 'bench_label',
                 ];
                 $rows[$rowNumber]['cells'][$rightStartColumn + 1] = [
@@ -509,7 +525,7 @@ class ActivityRosterSpreadsheetExportService
         }
 
         $rows[$bottomHeaderRow]['cells'][$rightStartColumn] = [
-            'value' => 'Requirements',
+            'value' => __('ui.requirements'),
             'style' => 'group_header',
         ];
 
@@ -646,10 +662,10 @@ class ActivityRosterSpreadsheetExportService
         $columnWidths[$classLabelColumn] = 18;
         $columnWidths[$classRoleColumn] = 18;
 
-        $rows[2]['cells'][$classReferenceColumn] = ['value' => 'Classes', 'style' => 'group_header'];
-        $rows[3]['cells'][$classReferenceColumn] = ['value' => 'Code', 'style' => 'group_header'];
-        $rows[3]['cells'][$classLabelColumn] = ['value' => 'Job', 'style' => 'group_header'];
-        $rows[3]['cells'][$classRoleColumn] = ['value' => 'Role', 'style' => 'group_header'];
+        $rows[2]['cells'][$classReferenceColumn] = ['value' => __('ui.classes'), 'style' => 'group_header'];
+        $rows[3]['cells'][$classReferenceColumn] = ['value' => __('ui.code'), 'style' => 'group_header'];
+        $rows[3]['cells'][$classLabelColumn] = ['value' => __('ui.job'), 'style' => 'group_header'];
+        $rows[3]['cells'][$classRoleColumn] = ['value' => __('ui.role'), 'style' => 'group_header'];
 
         $classOptionsStartRow = 4;
 
@@ -663,7 +679,7 @@ class ActivityRosterSpreadsheetExportService
         $classOptionsEndRow = max($classOptionsStartRow, $classOptionsStartRow + count($payload['class_options']) - 1);
         $classValidationFormula = sprintf(
             '%s!$%s$%d:$%s$%d',
-            self::SHEET_NAME,
+            $this->sheetName(),
             $this->columnLetter($classReferenceColumn),
             $classOptionsStartRow,
             $this->columnLetter($classReferenceColumn),
@@ -673,8 +689,8 @@ class ActivityRosterSpreadsheetExportService
         if ($payload['has_phantom_jobs']) {
             $phantomReferenceColumn = $classReferenceColumn + 4;
             $columnWidths[$phantomReferenceColumn] = 18;
-            $rows[2]['cells'][$phantomReferenceColumn] = ['value' => 'Phantom Jobs', 'style' => 'group_header'];
-            $rows[3]['cells'][$phantomReferenceColumn] = ['value' => 'Name', 'style' => 'group_header'];
+            $rows[2]['cells'][$phantomReferenceColumn] = ['value' => __('ui.phantom_jobs'), 'style' => 'group_header'];
+            $rows[3]['cells'][$phantomReferenceColumn] = ['value' => __('ui.name'), 'style' => 'group_header'];
 
             $phantomOptionsStartRow = 4;
 
@@ -686,7 +702,7 @@ class ActivityRosterSpreadsheetExportService
             $phantomOptionsEndRow = max($phantomOptionsStartRow, $phantomOptionsStartRow + count($payload['phantom_job_options']) - 1);
             $phantomValidationFormula = sprintf(
                 '%s!$%s$%d:$%s$%d',
-                self::SHEET_NAME,
+                $this->sheetName(),
                 $this->columnLetter($phantomReferenceColumn),
                 $phantomOptionsStartRow,
                 $this->columnLetter($phantomReferenceColumn),
@@ -1096,7 +1112,7 @@ XML;
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <workbook xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships">
   <sheets>
-    <sheet name="{$this->xmlAttribute(self::SHEET_NAME)}" sheetId="1" r:id="rId1"/>
+    <sheet name="{$this->xmlAttribute($this->sheetName())}" sheetId="1" r:id="rId1"/>
   </sheets>
 </workbook>
 XML;
@@ -1159,7 +1175,7 @@ XML;
             ->filter(fn (mixed $requirement) => is_array($requirement))
             ->groupBy(function (array $requirement): string {
                 if (($requirement['scope_type'] ?? 'all_slots') === 'all_slots') {
-                    return 'Either';
+                    return __('ui.either');
                 }
 
                 $groupLabels = collect($requirement['scope_groups'] ?? [])
@@ -1175,42 +1191,31 @@ XML;
                     return $groupLabels->implode('/');
                 }
 
-                return 'Other';
+                return __('ui.other');
             })
             ->map(function (Collection $groupedRequirements, string $label): array {
                 return [
                     'label' => $label,
                     'items' => $groupedRequirements
                         ->map(function (array $requirement): array {
-                            $displayName = $this->cleanRequirementLabel(
-                                $this->localizedText(
-                                    is_array($requirement['item']['label'] ?? null)
-                                        ? $requirement['item']['label']
-                                        : null
-                                )
-                            );
-                            $name = $this->cleanRequirementLabel(
-                                $this->localizedText(
-                                    is_array($requirement['item']['label'] ?? null)
-                                        ? $requirement['item']['label']
-                                        : null
-                                )
-                            );
                             $rawMatchValue = $this->localizedText(
-                                is_array($requirement['item']['label'] ?? null)
-                                    ? $requirement['item']['label']
-                                    : null
+                                is_array($requirement['item']['label'] ?? null) ? $requirement['item']['label'] : null
                             );
+                            if (($requirement['source'] ?? null) === 'phantom_jobs') {
+                                $rawMatchValue = $this->translatedPhantomJob($rawMatchValue);
+                            }
+                            $displayName = $this->cleanRequirementLabel($rawMatchValue);
+                            $name = $displayName;
                             $targetCount = max(1, (int) ($requirement['target_count'] ?? 1));
 
                             return [
                                 'text' => trim(sprintf(
                                     '%d %s',
                                     $targetCount,
-                                    $displayName !== '' ? $displayName : 'Unknown'
+                                    $displayName !== '' ? $displayName : __('ui.unknown')
                                 )),
                                 'target_count' => $targetCount,
-                                'match_value' => $rawMatchValue !== '' ? $rawMatchValue : ($name !== '' ? $name : 'Unknown'),
+                                'match_value' => $rawMatchValue !== '' ? $rawMatchValue : ($name !== '' ? $name : __('ui.unknown')),
                                 'scope_type' => (string) ($requirement['scope_type'] ?? 'all_slots'),
                                 'scope_group_keys' => collect($requirement['scope_group_keys'] ?? [])
                                     ->filter(fn (mixed $groupKey) => is_string($groupKey) && $groupKey !== '')

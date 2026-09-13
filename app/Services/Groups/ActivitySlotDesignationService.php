@@ -78,19 +78,19 @@ class ActivitySlotDesignationService
 
         if (! $activity instanceof Activity) {
             throw ValidationException::withMessages([
-                'slot' => 'The selected slot is not attached to an activity.',
+                'slot' => __('errors.slot_activity_missing'),
             ]);
         }
 
         if (! $slot->assigned_character_id) {
             throw ValidationException::withMessages([
-                'slot' => 'Only assigned roster slots can be marked with run designations.',
+                'slot' => __('errors.only_assigned_roster_slots_can_be_marked_with_run_designations'),
             ]);
         }
 
         if (! $this->slotKind->isMainRoster($slot)) {
             throw ValidationException::withMessages([
-                'slot' => 'Only main roster slots can be marked with run designations.',
+                'slot' => __('errors.only_main_roster_slots_can_be_marked_with_run_designations'),
             ]);
         }
 

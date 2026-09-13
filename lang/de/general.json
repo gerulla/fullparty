@@ -60,5 +60,20 @@
     },
     "copied_to_clipboard": "In die Zwischenablage kopiert!",
     "copied_to_clipboard_short": "Kopiert!",
-    "copied_to_clipboard_short_timeout": 2000
+    "copied_to_clipboard_short_timeout": 2000,
+    "all_locales": "Alle Sprachen",
+    "required": "Erforderlich",
+    "image_alt": {
+        "avatar": "Avatar von {name}",
+        "icon": "Symbol für {name}",
+        "profile": "Profilbild von {name}",
+        "black_icon": "Schwarzes Symbol für {name}",
+        "transparent_icon": "Transparentes Symbol für {name}",
+        "flat_icon": "Flaches Symbol für {name}",
+        "sprite": "Sprite von {name}"
+    },
+    "account_completion": {
+        "success_title": "Kontoeinrichtung abgeschlossen",
+        "success_description": "Du hast alle Schritte zur Kontoeinrichtung abgeschlossen."
+    }
 }

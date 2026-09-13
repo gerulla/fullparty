@@ -109,7 +109,7 @@ watch(bannedGlobalFilter, () => {
 							<div v-if="row.original.avatar_url" class="h-10 w-10 shrink-0 overflow-hidden rounded-sm border border-default bg-muted/30">
 								<img
 									:src="row.original.avatar_url"
-									:alt="`${row.original.name_display} avatar`"
+									:alt="t('general.image_alt.avatar', { name: row.original.name_display })"
 									class="h-full w-full object-cover"
 								>
 							</div>
@@ -134,7 +134,7 @@ watch(bannedGlobalFilter, () => {
 									<div v-if="character.avatar_url" class="h-8 w-8 shrink-0 overflow-hidden rounded-sm border border-default bg-muted/30">
 										<img
 											:src="character.avatar_url"
-											:alt="`${character.name} avatar`"
+											:alt="t('general.image_alt.avatar', { name: character.name })"
 											class="h-full w-full object-cover"
 										>
 									</div>
@@ -170,7 +170,7 @@ watch(bannedGlobalFilter, () => {
 							<div v-if="row.original.banned_by?.avatar_url" class="h-8 w-8 shrink-0 overflow-hidden rounded-sm border border-default bg-muted/30">
 								<img
 									:src="row.original.banned_by.avatar_url"
-									:alt="`${row.original.banned_by.name} avatar`"
+									:alt="t('general.image_alt.avatar', { name: row.original.banned_by.name })"
 									class="h-full w-full object-cover"
 								>
 							</div>

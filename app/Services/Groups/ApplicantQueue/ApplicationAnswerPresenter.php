@@ -170,7 +170,7 @@ class ApplicationAnswerPresenter
                     $label = $option['label'] ?? null;
 
                     if (is_array($label)) {
-                        return (string) ($label['en'] ?? reset($label) ?: $entry);
+                        return (string) ($label[app()->getLocale()] ?? $label['en'] ?? reset($label) ?: $entry);
                     }
 
                     return (string) $entry;
@@ -494,10 +494,10 @@ class ApplicationAnswerPresenter
         $label = $questionDefinition['any_label'] ?? null;
 
         if (! is_array($label)) {
-            return 'Any';
+            return __('ui.any');
         }
 
-        return (string) ($label['en'] ?? reset($label) ?: 'Any');
+        return (string) ($label[app()->getLocale()] ?? $label['en'] ?? reset($label) ?: __('ui.any'));
     }
 
     /**

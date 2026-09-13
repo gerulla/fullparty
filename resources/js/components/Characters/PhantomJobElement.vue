@@ -68,7 +68,7 @@ const handleCompactTap = () => {
 			<img
 				v-if="phantomJob.icon_url"
 				:src="phantomJob.is_maxed ? phantomJob.icon_url : phantomJob.black_icon_url"
-				:alt="`${translatedPhantomJobName} icon`"
+				:alt="t('general.image_alt.icon', { name: translatedPhantomJobName })"
 				class="size-10 rounded-sm object-contain"
 			>
 			<div
@@ -95,7 +95,7 @@ const handleCompactTap = () => {
 		<img
 			v-if="phantomJob.icon_url"
 			:src="phantomJob.is_maxed ? phantomJob.icon_url : phantomJob.black_icon_url"
-			:alt="`${translatedPhantomJobName} icon`"
+			:alt="t('general.image_alt.icon', { name: translatedPhantomJobName })"
 			class="h-8 w-8 rounded-sm object-contain"
 		>
 		<div

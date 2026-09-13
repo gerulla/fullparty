@@ -401,7 +401,7 @@ class GroupDiscordIntegrationController extends Controller
 
                 return [
                     'activity_id' => (int) $activityId,
-                    'activity_name' => (string) ($override['activity_name'] ?? sprintf('Activity Type #%d', (int) $activityId)),
+                    'activity_name' => (string) ($override['activity_name'] ?? __('ui.activity_type_number', ['number' => (int) $activityId])),
                     'role_id' => (string) $roleId,
                 ];
             })

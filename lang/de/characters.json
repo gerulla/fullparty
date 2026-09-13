@@ -214,8 +214,8 @@
         "sections": {
             "classes": "Klassen",
             "occult": "Okkult",
-            "forked_tower_blood": "Forked Tower des Blutes",
-            "forked_tower_magic": "Forked Tower der Magie (Extrem)"
+            "forked_tower_blood": "Der Fork-Turm: Blut",
+            "forked_tower_magic": "Fork-Turm - Magie (extrem)"
         },
         "forked_tower": {
             "clear_count": "Abschlussanzahl",
@@ -227,12 +227,12 @@
             "verified_with_lodestone": "Mit Lodestone verifiziert",
             "bosses": {
                 "demon_tablet": "Dämonentafel",
-                "dead_stars": "Tote Sterne",
+                "dead_stars": "Astronomisches Trio",
                 "marble_dragon": "Marmordrache",
-                "magitaur": "Magitaur",
-                "two_headed_aevis": "Two-headed Aevis",
-                "sword_dancer": "Sword Dancer",
-                "necrophobia": "Necrophobia",
+                "magitaur": "Magitaurus",
+                "two_headed_aevis": "Zweiköpfiger Avis",
+                "sword_dancer": "Schwerttänzer",
+                "necrophobia": "Nekrophobia",
                 "index": "Index",
                 "tba": "Noch offen"
             }

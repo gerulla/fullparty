@@ -561,7 +561,7 @@ class GroupLeaderboardController extends Controller
     {
         return [
             'id' => $character?->id,
-            'name' => $character?->name ?? 'Unknown Character',
+            'name' => $character?->name ?? __('ui.unknown_character'),
             'world' => $character?->world,
             'datacenter' => $character?->datacenter,
             'avatar_url' => $character?->avatar_url,

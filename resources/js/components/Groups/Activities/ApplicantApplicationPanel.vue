@@ -36,6 +36,8 @@ const answerBadgeColor = (source: string | null, value: string) => {
 };
 
 const answerValueLabel = (source: string | null, questionKey: string, value: string): string => {
+    if (value === 'Yes') return t('general.yes');
+    if (value === 'No') return t('general.no');
 	if (source === 'character_classes') {
 		return translateCharacterClassName(t, { name: value }, value);
 	}

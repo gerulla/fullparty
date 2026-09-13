@@ -169,7 +169,7 @@ const phantomJobIconUrl = (run: GroupMemberActivitySummaryRun) => (
 				<div v-if="run.activity_icon_url" class="h-14 w-14 shrink-0 overflow-hidden border border-default bg-muted/30">
 					<img
 						:src="run.activity_icon_url"
-						:alt="`${runDisplayName(run)} icon`"
+						:alt="t('general.image_alt.icon', { name: runDisplayName(run) })"
 						class="h-full w-full object-cover"
 						loading="lazy"
 					>
@@ -206,7 +206,7 @@ const phantomJobIconUrl = (run: GroupMemberActivitySummaryRun) => (
 							<div v-if="run.character.avatar_url" class="h-8 w-8 shrink-0 overflow-hidden border border-default bg-muted/30">
 								<img
 									:src="run.character.avatar_url"
-									:alt="`${run.character.name} avatar`"
+									:alt="t('general.image_alt.avatar', { name: run.character.name })"
 									class="h-full w-full object-cover"
 									loading="lazy"
 								>

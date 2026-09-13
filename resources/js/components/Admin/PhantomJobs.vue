@@ -180,7 +180,7 @@ const shouldFixTableHeight = () => {
 							<img
 								v-if="row.original.icon_url"
 								:src="row.original.icon_url"
-								:alt="`${row.original.name} icon`"
+								:alt="t('general.image_alt.icon', { name: row.original.name })"
 								class="h-8 w-8 rounded-sm object-contain"
 							>
 							<span v-else class="text-sm text-gray-600 dark:text-gray-400">
@@ -194,7 +194,7 @@ const shouldFixTableHeight = () => {
 							<img
 								v-if="row.original.black_icon_url"
 								:src="row.original.black_icon_url"
-								:alt="`${row.original.name} black icon`"
+								:alt="t('general.image_alt.black_icon', { name: row.original.name })"
 								class="h-8 w-8 rounded-sm object-contain"
 							>
 							<span v-else class="text-sm text-gray-600 dark:text-gray-400">
@@ -208,7 +208,7 @@ const shouldFixTableHeight = () => {
 							<img
 								v-if="row.original.transparent_icon_url"
 								:src="row.original.transparent_icon_url"
-								:alt="`${row.original.name} transparent icon`"
+								:alt="t('general.image_alt.transparent_icon', { name: row.original.name })"
 								class="h-8 w-8 rounded-sm object-contain"
 							>
 							<span v-else class="text-sm text-gray-600 dark:text-gray-400">
@@ -222,7 +222,7 @@ const shouldFixTableHeight = () => {
 							<img
 								v-if="row.original.sprite_url"
 								:src="row.original.sprite_url"
-								:alt="`${row.original.name} sprite`"
+								:alt="t('general.image_alt.sprite', { name: row.original.name })"
 								class="h-8 w-8 rounded-sm object-contain"
 							>
 							<span v-else class="text-sm text-gray-600 dark:text-gray-400">

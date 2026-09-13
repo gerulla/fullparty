@@ -5,7 +5,7 @@
     "saved": "Integrationseinstellungen gespeichert.",
     "empty": "Es wurden noch keine Integrationsclients erstellt.",
     "no_endpoint": "Kein Endpunkt für ausgehende Events eingerichtet.",
-    "healthcheck_endpoint": "Healthcheck: {value}",
+    "healthcheck_endpoint": "Statusprüfung: {value}",
     "no_healthcheck": "Kein Healthcheck-Endpunkt eingerichtet.",
     "no_samples": "Noch keine Checks",
     "never": "Nie",

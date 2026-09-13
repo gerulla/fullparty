@@ -201,7 +201,7 @@ const getRoleLabel = (role: string) => {
 							<img
 								v-if="row.original.icon_url"
 								:src="row.original.icon_url"
-								:alt="`${row.original.name} icon`"
+								:alt="t('general.image_alt.icon', { name: row.original.name })"
 								class="h-8 w-8 rounded-sm object-contain"
 							>
 							<span v-else class="text-sm text-gray-600 dark:text-gray-400">
@@ -215,7 +215,7 @@ const getRoleLabel = (role: string) => {
 							<img
 								v-if="row.original.flaticon_url"
 								:src="row.original.flaticon_url"
-								:alt="`${row.original.name} flaticon`"
+								:alt="t('general.image_alt.flat_icon', { name: row.original.name })"
 								class="h-8 w-8 rounded-sm object-contain"
 							>
 							<span v-else class="text-sm text-gray-600 dark:text-gray-400">
@@ -282,7 +282,7 @@ const getRoleLabel = (role: string) => {
 					</UFormField>
 				</div>
 
-				<UFormField :label="t('admin.character_classes.fields.role.label')" required>
+				<UFormField :label="t('general.role')" required>
 					<USelect
 						v-model="createForm.role"
 						:items="roleOptions"
@@ -358,7 +358,7 @@ const getRoleLabel = (role: string) => {
 					</UFormField>
 				</div>
 
-				<UFormField :label="t('admin.character_classes.fields.role.label')" required>
+				<UFormField :label="t('general.role')" required>
 					<USelect
 						v-model="editForm.role"
 						:items="roleOptions"

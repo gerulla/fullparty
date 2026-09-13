@@ -8,6 +8,7 @@ use App\Models\CharacterClass;
 use App\Models\Group;
 use App\Models\PhantomJob;
 use App\Models\User;
+use App\Services\Groups\ActivityRosterSpreadsheetExportService;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 uses(RefreshDatabase::class);
@@ -329,6 +330,26 @@ it('exports a styled excel-compatible roster sheet', function () {
     expect($archive->locateName('xl/media/image1.png'))->toBeFalse();
 
     $archive->close();
+
+    foreach (['de', 'fr', 'ja'] as $locale) {
+        app()->setLocale($locale);
+        $exporter = app(ActivityRosterSpreadsheetExportService::class);
+        $payload = $exporter->build($activity->fresh());
+        expect($payload['class_options'][0]['label'])->toBe(__('characters.jobs.classes.pld'));
+        $geomancer = __('characters.jobs.phantom.geomancer');
+        expect(collect($payload['phantom_job_options'])->pluck('value'))->toContain($geomancer);
+        expect($payload['requirements'][0]['items'][0]['match_value'])->toBe($geomancer);
+
+        file_put_contents($temporaryFile, $exporter->render($activity->fresh()));
+        $archive->open($temporaryFile);
+        $localizedSheet = $archive->getFromName('xl/worksheets/sheet1.xml');
+        expect($localizedSheet)->toContain(htmlspecialchars(__('ui.requirements'), ENT_XML1));
+        expect($localizedSheet)->toContain(htmlspecialchars($geomancer, ENT_XML1));
+        expect($localizedSheet)->toContain(__('ui.roster').'!$R$4:$R$4');
+        expect($localizedSheet)->toContain('COUNTIF');
+        expect($archive->getFromName('xl/workbook.xml'))->toContain('name="'.__('ui.roster').'"');
+        $archive->close();
+    }
     @unlink($temporaryFile);
 });
 

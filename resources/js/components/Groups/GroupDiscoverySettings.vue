@@ -22,7 +22,7 @@ const props = defineProps<{
 	group: GroupDashboardGroup
 }>()
 
-const { t } = useI18n()
+const { t, locale } = useI18n()
 const toast = useToast()
 const page = usePage()
 const tagSearchTerm = ref('')
@@ -257,7 +257,7 @@ const submit = () => {
 							v-model="form.active_start_time"
 							class="w-full"
 							type="time"
-							lang="en-GB"
+							:lang="locale"
 							step="60"
 							:ui="{ base: 'rounded-none' }"
 						/>
@@ -272,7 +272,7 @@ const submit = () => {
 							v-model="form.active_end_time"
 							class="w-full"
 							type="time"
-							lang="en-GB"
+							:lang="locale"
 							step="60"
 							:ui="{ base: 'rounded-none' }"
 						/>

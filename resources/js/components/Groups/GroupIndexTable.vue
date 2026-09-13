@@ -182,7 +182,7 @@ const statItems = (group: GroupIndexRecord) => ([
 							<div v-if="group.profile_picture_url" class="h-12 w-12 shrink-0 overflow-hidden rounded-sm border border-default bg-muted/30">
 								<img
 									:src="group.profile_picture_url"
-									:alt="`${group.name} profile picture`"
+									:alt="t('general.image_alt.profile', { name: group.name })"
 									class="h-full w-full object-cover"
 								>
 							</div>

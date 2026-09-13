@@ -60,5 +60,20 @@
     },
     "copied_to_clipboard": "Copié dans le presse-papiers !",
     "copied_to_clipboard_short": "Copié !",
-    "copied_to_clipboard_short_timeout": 2000
+    "copied_to_clipboard_short_timeout": 2000,
+    "all_locales": "Toutes les langues",
+    "required": "Obligatoire",
+    "image_alt": {
+        "avatar": "Avatar de {name}",
+        "icon": "Icône de {name}",
+        "profile": "Photo de profil de {name}",
+        "black_icon": "Icône noire de {name}",
+        "transparent_icon": "Icône transparente de {name}",
+        "flat_icon": "Icône plate de {name}",
+        "sprite": "Sprite de {name}"
+    },
+    "account_completion": {
+        "success_title": "Configuration du compte terminée",
+        "success_description": "Vous avez terminé toutes les étapes de configuration de votre compte."
+    }
 }

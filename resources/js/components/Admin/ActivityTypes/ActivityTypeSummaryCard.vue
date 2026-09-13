@@ -123,7 +123,7 @@ const difficultyLabel = computed(() => props.form.draft_difficulty
 				</div>
 
 				<div class="rounded-lg border border-default p-4">
-					<p class="text-xs uppercase tracking-wide text-muted">Bench</p>
+					<p class="text-xs uppercase tracking-wide text-muted">{{ t('admin.activity_types.summary.bench') }}</p>
 					<p class="mt-2 text-2xl font-semibold">{{ form.draft_bench_size ?? 0 }}</p>
 				</div>
 			</div>

@@ -382,12 +382,10 @@ class ActivityTypeController extends Controller
      */
     private function cloneLocalizedName(?array $localizedName): array
     {
-        $name = collect($localizedName ?? ['en' => 'Activity Type'])
-            ->map(fn (mixed $value) => filled($value) ? sprintf('%s (Copy)', (string) $value) : '')
-            ->all();
-
-        if (blank($name['en'] ?? null)) {
-            $name['en'] = 'Activity Type (Copy)';
+        $name = [];
+        foreach (['en', 'de', 'fr', 'ja'] as $locale) {
+            $value = $localizedName[$locale] ?? $localizedName['en'] ?? __('ui.activity_type', [], $locale);
+            $name[$locale] = __('ui.activity_copy', ['name' => filled($value) ? $value : __('ui.activity_type', [], $locale)], $locale);
         }
 
         return $name;
@@ -461,32 +459,32 @@ class ActivityTypeController extends Controller
 
         if (! is_array($name) || ! array_key_exists('en', $name) || blank($name['en'])) {
             throw ValidationException::withMessages([
-                'draft_name.en' => 'An English activity type name is required.',
+                'draft_name.en' => __('errors.an_english_activity_type_name_is_required'),
             ]);
         }
 
         if (! is_array($layoutSchema) || ! isset($layoutSchema['groups']) || ! is_array($layoutSchema['groups']) || $layoutSchema['groups'] === []) {
             throw ValidationException::withMessages([
-                'draft_layout_schema.groups' => 'At least one slot group is required.',
+                'draft_layout_schema.groups' => __('errors.at_least_one_slot_group_is_required'),
             ]);
         }
 
         foreach ($layoutSchema['groups'] as $index => $group) {
             if (! is_array($group)) {
                 throw ValidationException::withMessages([
-                    "draft_layout_schema.groups.$index" => 'Each slot group must be an object.',
+                    "draft_layout_schema.groups.$index" => __('errors.each_slot_group_must_be_an_object'),
                 ]);
             }
 
             if (blank($group['key'] ?? null) || blank($group['size'] ?? null)) {
                 throw ValidationException::withMessages([
-                    "draft_layout_schema.groups.$index" => 'Each slot group requires a key and size.',
+                    "draft_layout_schema.groups.$index" => __('errors.each_slot_group_requires_a_key_and_size'),
                 ]);
             }
 
             if (! is_numeric($group['size']) || (int) $group['size'] < 1) {
                 throw ValidationException::withMessages([
-                    "draft_layout_schema.groups.$index.size" => 'Each slot group size must be at least 1.',
+                    "draft_layout_schema.groups.$index.size" => __('errors.each_slot_group_size_must_be_at_least_1'),
                 ]);
             }
 
@@ -523,7 +521,7 @@ class ActivityTypeController extends Controller
 
         if (! is_array($hints)) {
             throw ValidationException::withMessages([
-                $attribute => 'Composition hints must be an array.',
+                $attribute => __('errors.composition_hints_must_be_an_array'),
             ]);
         }
 
@@ -532,7 +530,7 @@ class ActivityTypeController extends Controller
         foreach ($hints as $index => $hint) {
             if (! is_array($hint)) {
                 throw ValidationException::withMessages([
-                    "$attribute.$index" => 'Each composition hint must be an object.',
+                    "$attribute.$index" => __('errors.each_composition_hint_must_be_an_object'),
                 ]);
             }
 
@@ -540,7 +538,7 @@ class ActivityTypeController extends Controller
 
             if (! is_numeric($position) || (int) $position < 1 || (int) $position > $groupSize) {
                 throw ValidationException::withMessages([
-                    "$attribute.$index.position" => 'Composition hint positions must point to an existing slot.',
+                    "$attribute.$index.position" => __('errors.composition_hint_positions_must_point_to_an_existing_slot'),
                 ]);
             }
 
@@ -548,7 +546,7 @@ class ActivityTypeController extends Controller
 
             if (in_array($position, $positions, true)) {
                 throw ValidationException::withMessages([
-                    "$attribute.$index.position" => 'Each slot position can only have one composition hint object.',
+                    "$attribute.$index.position" => __('errors.each_slot_position_can_only_have_one_composition_hint_object'),
                 ]);
             }
 
@@ -556,7 +554,7 @@ class ActivityTypeController extends Controller
 
             if (! isset($hint['accepts']) || ! is_array($hint['accepts']) || $hint['accepts'] === []) {
                 throw ValidationException::withMessages([
-                    "$attribute.$index.accepts" => 'Each composition hint requires at least one accepted role or class.',
+                    "$attribute.$index.accepts" => __('errors.each_composition_hint_requires_at_least_one_accepted_role_or_class'),
                 ]);
             }
 
@@ -565,7 +563,7 @@ class ActivityTypeController extends Controller
             foreach ($hint['accepts'] as $acceptIndex => $accept) {
                 if (! is_array($accept)) {
                     throw ValidationException::withMessages([
-                        "$attribute.$index.accepts.$acceptIndex" => 'Each accepted composition value must be an object.',
+                        "$attribute.$index.accepts.$acceptIndex" => __('errors.each_accepted_composition_value_must_be_an_object'),
                     ]);
                 }
 
@@ -574,19 +572,19 @@ class ActivityTypeController extends Controller
 
                 if (! in_array($type, ['role', 'class'], true)) {
                     throw ValidationException::withMessages([
-                        "$attribute.$index.accepts.$acceptIndex.type" => 'Composition hint types must be role or class.',
+                        "$attribute.$index.accepts.$acceptIndex.type" => __('errors.composition_hint_types_must_be_role_or_class'),
                     ]);
                 }
 
                 if (blank($key) || mb_strlen($key) > 50) {
                     throw ValidationException::withMessages([
-                        "$attribute.$index.accepts.$acceptIndex.key" => 'Composition hint keys are required and must stay short.',
+                        "$attribute.$index.accepts.$acceptIndex.key" => __('errors.composition_hint_keys_are_required_and_must_stay_short'),
                     ]);
                 }
 
                 if ($type === 'role' && ! in_array($key, ActivityCompositionPresets::validRoleKeys(), true)) {
                     throw ValidationException::withMessages([
-                        "$attribute.$index.accepts.$acceptIndex.key" => 'Unsupported composition role key.',
+                        "$attribute.$index.accepts.$acceptIndex.key" => __('errors.unsupported_composition_role_key'),
                     ]);
                 }
 
@@ -594,7 +592,7 @@ class ActivityTypeController extends Controller
 
                 if (in_array($acceptKey, $acceptKeys, true)) {
                     throw ValidationException::withMessages([
-                        "$attribute.$index.accepts.$acceptIndex.key" => 'Accepted composition values must be unique per slot.',
+                        "$attribute.$index.accepts.$acceptIndex.key" => __('errors.accepted_composition_values_must_be_unique_per_slot'),
                     ]);
                 }
 
@@ -607,7 +605,7 @@ class ActivityTypeController extends Controller
     {
         if (! in_array($difficulty, ActivityType::DIFFICULTIES, true)) {
             throw ValidationException::withMessages([
-                'draft_difficulty' => 'Unsupported activity difficulty.',
+                'draft_difficulty' => __('errors.unsupported_activity_difficulty'),
             ]);
         }
 
@@ -617,7 +615,7 @@ class ActivityTypeController extends Controller
 
         if (! is_numeric($defaultMinItemLevel) || (int) $defaultMinItemLevel < 1 || (int) $defaultMinItemLevel > 9999) {
             throw ValidationException::withMessages([
-                'draft_default_min_item_level' => 'Default minimum item level must be a valid positive number.',
+                'draft_default_min_item_level' => __('errors.default_minimum_item_level_must_be_a_valid_positive_number'),
             ]);
         }
     }
@@ -635,7 +633,7 @@ class ActivityTypeController extends Controller
     {
         if (! is_numeric($benchSize) || (int) $benchSize < 0) {
             throw ValidationException::withMessages([
-                $attribute => 'Bench size must be a valid non-negative number.',
+                $attribute => __('errors.bench_size_must_be_a_valid_non_negative_number'),
             ]);
         }
     }
@@ -648,7 +646,7 @@ class ActivityTypeController extends Controller
 
         if (! is_array($tags)) {
             throw ValidationException::withMessages([
-                $attribute => 'Tags must be an array.',
+                $attribute => __('errors.tags_must_be_an_array'),
             ]);
         }
 
@@ -659,13 +657,13 @@ class ActivityTypeController extends Controller
 
         if ($normalizedTags->count() !== count($tags)) {
             throw ValidationException::withMessages([
-                $attribute => 'Tags must only contain non-empty strings.',
+                $attribute => __('errors.tags_must_only_contain_non_empty_strings'),
             ]);
         }
 
         if ($normalizedTags->duplicates()->isNotEmpty()) {
             throw ValidationException::withMessages([
-                $attribute => 'Tags must be unique.',
+                $attribute => __('errors.tags_must_be_unique'),
             ]);
         }
     }
@@ -708,20 +706,20 @@ class ActivityTypeController extends Controller
 
         if (! is_array($progPoints)) {
             throw ValidationException::withMessages([
-                $attribute => 'Prog points must be an array.',
+                $attribute => __('errors.prog_points_must_be_an_array'),
             ]);
         }
 
         foreach ($progPoints as $index => $progPoint) {
             if (! is_array($progPoint)) {
                 throw ValidationException::withMessages([
-                    "$attribute.$index" => 'Each prog point must be an object.',
+                    "$attribute.$index" => __('errors.each_prog_point_must_be_an_object'),
                 ]);
             }
 
             if (blank($progPoint['key'] ?? null)) {
                 throw ValidationException::withMessages([
-                    "$attribute.$index.key" => 'Each prog point requires a key.',
+                    "$attribute.$index.key" => __('errors.each_prog_point_requires_a_key'),
                 ]);
             }
 
@@ -733,7 +731,7 @@ class ActivityTypeController extends Controller
     {
         if (! is_array($progressSchema)) {
             throw ValidationException::withMessages([
-                $attribute => 'Progress schema must be an object.',
+                $attribute => __('errors.progress_schema_must_be_an_object'),
             ]);
         }
 
@@ -741,26 +739,26 @@ class ActivityTypeController extends Controller
 
         if (! is_array($milestones)) {
             throw ValidationException::withMessages([
-                "$attribute.milestones" => 'Progress milestones must be an array.',
+                "$attribute.milestones" => __('errors.progress_milestones_must_be_an_array'),
             ]);
         }
 
         foreach ($milestones as $index => $milestone) {
             if (! is_array($milestone)) {
                 throw ValidationException::withMessages([
-                    "$attribute.milestones.$index" => 'Each milestone must be an object.',
+                    "$attribute.milestones.$index" => __('errors.each_milestone_must_be_an_object'),
                 ]);
             }
 
             if (blank($milestone['key'] ?? null)) {
                 throw ValidationException::withMessages([
-                    "$attribute.milestones.$index.key" => 'Each milestone requires a key.',
+                    "$attribute.milestones.$index.key" => __('errors.each_milestone_requires_a_key'),
                 ]);
             }
 
             if (! is_numeric($milestone['order'] ?? null) || (int) $milestone['order'] < 1) {
                 throw ValidationException::withMessages([
-                    "$attribute.milestones.$index.order" => 'Each milestone requires a valid order.',
+                    "$attribute.milestones.$index.order" => __('errors.each_milestone_requires_a_valid_order'),
                 ]);
             }
 
@@ -768,7 +766,7 @@ class ActivityTypeController extends Controller
 
             if (! is_array($matcher)) {
                 throw ValidationException::withMessages([
-                    "$attribute.milestones.$index.fflogs_matcher" => 'Each milestone requires an FF Logs matcher.',
+                    "$attribute.milestones.$index.fflogs_matcher" => __('errors.each_milestone_requires_an_ff_logs_matcher'),
                 ]);
             }
 
@@ -776,19 +774,19 @@ class ActivityTypeController extends Controller
 
             if (! in_array($matcherType, ['encounter', 'phase'], true)) {
                 throw ValidationException::withMessages([
-                    "$attribute.milestones.$index.fflogs_matcher.type" => 'Unsupported FF Logs matcher type.',
+                    "$attribute.milestones.$index.fflogs_matcher.type" => __('errors.unsupported_ff_logs_matcher_type'),
                 ]);
             }
 
             if (! is_numeric($matcher['encounter_id'] ?? null) || (int) $matcher['encounter_id'] < 1) {
                 throw ValidationException::withMessages([
-                    "$attribute.milestones.$index.fflogs_matcher.encounter_id" => 'Each milestone requires a valid FF Logs encounter ID.',
+                    "$attribute.milestones.$index.fflogs_matcher.encounter_id" => __('errors.each_milestone_requires_a_valid_ff_logs_encounter_id'),
                 ]);
             }
 
             if ($matcherType === 'phase' && (! is_numeric($matcher['phase_id'] ?? null) || (int) $matcher['phase_id'] < 1)) {
                 throw ValidationException::withMessages([
-                    "$attribute.milestones.$index.fflogs_matcher.phase_id" => 'Phase milestones require a valid FF Logs phase ID.',
+                    "$attribute.milestones.$index.fflogs_matcher.phase_id" => __('errors.phase_milestones_require_a_valid_ff_logs_phase_id'),
                 ]);
             }
 
@@ -807,7 +805,7 @@ class ActivityTypeController extends Controller
 
         if (! is_array($presets)) {
             throw ValidationException::withMessages([
-                $attribute => 'Roster summary presets must be an array.',
+                $attribute => __('errors.roster_summary_presets_must_be_an_array'),
             ]);
         }
 
@@ -816,7 +814,7 @@ class ActivityTypeController extends Controller
         foreach ($presets as $presetIndex => $preset) {
             if (! is_array($preset)) {
                 throw ValidationException::withMessages([
-                    "$attribute.$presetIndex" => 'Each roster summary preset must be an object.',
+                    "$attribute.$presetIndex" => __('errors.each_roster_summary_preset_must_be_an_object'),
                 ]);
             }
 
@@ -824,13 +822,13 @@ class ActivityTypeController extends Controller
 
             if (blank($presetKey)) {
                 throw ValidationException::withMessages([
-                    "$attribute.$presetIndex.key" => 'Each roster summary preset requires a key.',
+                    "$attribute.$presetIndex.key" => __('errors.each_roster_summary_preset_requires_a_key'),
                 ]);
             }
 
             if (in_array($presetKey, $seenPresetKeys, true)) {
                 throw ValidationException::withMessages([
-                    "$attribute.$presetIndex.key" => 'Roster summary preset keys must be unique.',
+                    "$attribute.$presetIndex.key" => __('errors.roster_summary_preset_keys_must_be_unique'),
                 ]);
             }
 
@@ -846,7 +844,7 @@ class ActivityTypeController extends Controller
 
             if (! is_array($requirements) || $requirements === []) {
                 throw ValidationException::withMessages([
-                    "$attribute.$presetIndex.requirements" => 'Each roster summary preset requires at least one requirement.',
+                    "$attribute.$presetIndex.requirements" => __('errors.each_roster_summary_preset_requires_at_least_one_requirement'),
                 ]);
             }
 
@@ -855,7 +853,7 @@ class ActivityTypeController extends Controller
             foreach ($requirements as $requirementIndex => $requirement) {
                 if (! is_array($requirement)) {
                     throw ValidationException::withMessages([
-                        "$attribute.$presetIndex.requirements.$requirementIndex" => 'Each roster summary requirement must be an object.',
+                        "$attribute.$presetIndex.requirements.$requirementIndex" => __('errors.each_roster_summary_requirement_must_be_an_object'),
                     ]);
                 }
 
@@ -868,13 +866,13 @@ class ActivityTypeController extends Controller
 
                 if (! in_array($source, ['character_classes', 'phantom_jobs'], true)) {
                     throw ValidationException::withMessages([
-                        "$attribute.$presetIndex.requirements.$requirementIndex.source" => 'Unsupported roster summary requirement source.',
+                        "$attribute.$presetIndex.requirements.$requirementIndex.source" => __('errors.unsupported_roster_summary_requirement_source'),
                     ]);
                 }
 
                 if (! is_numeric($sourceId) || (int) $sourceId < 1) {
                     throw ValidationException::withMessages([
-                        "$attribute.$presetIndex.requirements.$requirementIndex.source_id" => 'Each roster summary requirement requires a valid source option.',
+                        "$attribute.$presetIndex.requirements.$requirementIndex.source_id" => __('errors.each_roster_summary_requirement_requires_a_valid_source_option'),
                     ]);
                 }
 
@@ -886,31 +884,31 @@ class ActivityTypeController extends Controller
 
                 if (! $sourceExists) {
                     throw ValidationException::withMessages([
-                        "$attribute.$presetIndex.requirements.$requirementIndex.source_id" => 'The selected roster summary source option does not exist.',
+                        "$attribute.$presetIndex.requirements.$requirementIndex.source_id" => __('errors.roster_source_missing'),
                     ]);
                 }
 
                 if (! in_array($comparison, ['at_least', 'exactly', 'at_most'], true)) {
                     throw ValidationException::withMessages([
-                        "$attribute.$presetIndex.requirements.$requirementIndex.comparison" => 'Unsupported roster summary comparison mode.',
+                        "$attribute.$presetIndex.requirements.$requirementIndex.comparison" => __('errors.unsupported_roster_summary_comparison_mode'),
                     ]);
                 }
 
                 if (! is_numeric($targetCount) || (int) $targetCount < 1) {
                     throw ValidationException::withMessages([
-                        "$attribute.$presetIndex.requirements.$requirementIndex.target_count" => 'Each roster summary requirement needs a target count of at least 1.',
+                        "$attribute.$presetIndex.requirements.$requirementIndex.target_count" => __('errors.each_roster_summary_requirement_needs_a_target_count_of_at_least_1'),
                     ]);
                 }
 
                 if (! in_array($scopeType, ['all_slots', 'slot_group', 'slot_group_set'], true)) {
                     throw ValidationException::withMessages([
-                        "$attribute.$presetIndex.requirements.$requirementIndex.scope_type" => 'Unsupported roster summary scope type.',
+                        "$attribute.$presetIndex.requirements.$requirementIndex.scope_type" => __('errors.unsupported_roster_summary_scope_type'),
                     ]);
                 }
 
                 if (! is_array($scopeGroupKeys)) {
                     throw ValidationException::withMessages([
-                        "$attribute.$presetIndex.requirements.$requirementIndex.scope_group_keys" => 'Roster summary scope group keys must be an array.',
+                        "$attribute.$presetIndex.requirements.$requirementIndex.scope_group_keys" => __('errors.roster_summary_scope_group_keys_must_be_an_array'),
                     ]);
                 }
 
@@ -922,13 +920,13 @@ class ActivityTypeController extends Controller
 
                 if (count($normalizedScopeGroupKeys) !== count($scopeGroupKeys)) {
                     throw ValidationException::withMessages([
-                        "$attribute.$presetIndex.requirements.$requirementIndex.scope_group_keys" => 'Roster summary scope group keys must only contain non-empty strings.',
+                        "$attribute.$presetIndex.requirements.$requirementIndex.scope_group_keys" => __('errors.roster_summary_scope_group_keys_must_only_contain_non_empty_strings'),
                     ]);
                 }
 
                 if (collect($normalizedScopeGroupKeys)->duplicates()->isNotEmpty()) {
                     throw ValidationException::withMessages([
-                        "$attribute.$presetIndex.requirements.$requirementIndex.scope_group_keys" => 'Roster summary scope group keys must be unique.',
+                        "$attribute.$presetIndex.requirements.$requirementIndex.scope_group_keys" => __('errors.roster_summary_scope_group_keys_must_be_unique'),
                     ]);
                 }
 
@@ -939,25 +937,25 @@ class ActivityTypeController extends Controller
 
                 if ($unknownScopeGroupKeys !== []) {
                     throw ValidationException::withMessages([
-                        "$attribute.$presetIndex.requirements.$requirementIndex.scope_group_keys" => 'Roster summary requirements can only reference groups defined in the activity layout.',
+                        "$attribute.$presetIndex.requirements.$requirementIndex.scope_group_keys" => __('errors.roster_summary_requirements_can_only_reference_groups_defined_in_the_activity_layout'),
                     ]);
                 }
 
                 if ($scopeType === 'all_slots' && $normalizedScopeGroupKeys !== []) {
                     throw ValidationException::withMessages([
-                        "$attribute.$presetIndex.requirements.$requirementIndex.scope_group_keys" => 'All-roster requirements cannot target specific groups.',
+                        "$attribute.$presetIndex.requirements.$requirementIndex.scope_group_keys" => __('errors.all_roster_requirements_cannot_target_specific_groups'),
                     ]);
                 }
 
                 if ($scopeType === 'slot_group' && count($normalizedScopeGroupKeys) !== 1) {
                     throw ValidationException::withMessages([
-                        "$attribute.$presetIndex.requirements.$requirementIndex.scope_group_keys" => 'Single-group requirements must target exactly one group.',
+                        "$attribute.$presetIndex.requirements.$requirementIndex.scope_group_keys" => __('errors.single_group_requirements_must_target_exactly_one_group'),
                     ]);
                 }
 
                 if ($scopeType === 'slot_group_set' && count($normalizedScopeGroupKeys) < 1) {
                     throw ValidationException::withMessages([
-                        "$attribute.$presetIndex.requirements.$requirementIndex.scope_group_keys" => 'Group-set requirements must target at least one group.',
+                        "$attribute.$presetIndex.requirements.$requirementIndex.scope_group_keys" => __('errors.group_set_requirements_must_target_at_least_one_group'),
                     ]);
                 }
 
@@ -976,7 +974,7 @@ class ActivityTypeController extends Controller
 
                 if (in_array($requirementKey, $seenRequirementKeys, true)) {
                     throw ValidationException::withMessages([
-                        "$attribute.$presetIndex.requirements.$requirementIndex.source_id" => 'Each roster summary requirement must be unique within its scope.',
+                        "$attribute.$presetIndex.requirements.$requirementIndex.source_id" => __('errors.each_roster_summary_requirement_must_be_unique_within_its_scope'),
                     ]);
                 }
 
@@ -993,20 +991,20 @@ class ActivityTypeController extends Controller
     ): void {
         if (! is_array($fields)) {
             throw ValidationException::withMessages([
-                $attribute => 'Schema fields must be an array.',
+                $attribute => __('errors.schema_fields_must_be_an_array'),
             ]);
         }
 
         foreach ($fields as $index => $field) {
             if (! is_array($field)) {
                 throw ValidationException::withMessages([
-                    "$attribute.$index" => 'Each schema field must be an object.',
+                    "$attribute.$index" => __('errors.each_schema_field_must_be_an_object'),
                 ]);
             }
 
             if (blank($field['key'] ?? null)) {
                 throw ValidationException::withMessages([
-                    "$attribute.$index.key" => 'Each schema field requires a key.',
+                    "$attribute.$index.key" => __('errors.each_schema_field_requires_a_key'),
                 ]);
             }
 
@@ -1022,7 +1020,7 @@ class ActivityTypeController extends Controller
                 'url',
             ], true)) {
                 throw ValidationException::withMessages([
-                    "$attribute.$index.type" => 'Unsupported schema field type.',
+                    "$attribute.$index.type" => __('errors.unsupported_schema_field_type'),
                 ]);
             }
 
@@ -1040,21 +1038,21 @@ class ActivityTypeController extends Controller
                 || ($fieldType === 'holster_pair_list' && $schemaKind !== 'application')
                 || (in_array($fieldType, ['holster_pair', 'holster_pair_list'], true) && $source !== 'bozja_holsters')) {
                 throw ValidationException::withMessages([
-                    "$attribute.$index.type" => 'Holster pair fields must use the Bozja holster source in the correct schema.',
+                    "$attribute.$index.type" => __('errors.holster_pair_fields_must_use_the_bozja_holster_source_in_the_correct_schema'),
                 ]);
             }
 
             if (in_array($fieldType, ['single_select', 'multi_select'], true)
                 && ! in_array($source, $this->supportedOptionSources(), true)) {
                 throw ValidationException::withMessages([
-                    "$attribute.$index.source" => 'Select fields require a supported option source.',
+                    "$attribute.$index.source" => __('errors.select_fields_require_a_supported_option_source'),
                 ]);
             }
 
             if ($acceptsAny) {
                 if (! $supportsAnySelection || ! in_array($fieldType, ['single_select', 'multi_select'], true)) {
                     throw ValidationException::withMessages([
-                        "$attribute.$index.accepts_any" => 'Any selections are only supported on application select fields.',
+                        "$attribute.$index.accepts_any" => __('errors.any_selection_application_only'),
                     ]);
                 }
 
@@ -1064,14 +1062,14 @@ class ActivityTypeController extends Controller
             if (($field['source'] ?? null) === 'static_options') {
                 if (! isset($field['options']) || ! is_array($field['options']) || $field['options'] === []) {
                     throw ValidationException::withMessages([
-                        "$attribute.$index.options" => 'Static option fields require at least one option.',
+                        "$attribute.$index.options" => __('errors.static_option_fields_require_at_least_one_option'),
                     ]);
                 }
 
                 foreach ($field['options'] as $optionIndex => $option) {
                     if (! is_array($option) || blank($option['value'] ?? null)) {
                         throw ValidationException::withMessages([
-                            "$attribute.$index.options.$optionIndex" => 'Each static option requires a value.',
+                            "$attribute.$index.options.$optionIndex" => __('errors.each_static_option_requires_a_value'),
                         ]);
                     }
 
@@ -1085,20 +1083,20 @@ class ActivityTypeController extends Controller
     {
         if (! is_array($value) || $value === []) {
             throw ValidationException::withMessages([
-                $attribute => 'This field must be a localized object.',
+                $attribute => __('errors.this_field_must_be_a_localized_object'),
             ]);
         }
 
         if ($requireEnglish && (! array_key_exists('en', $value) || blank($value['en']))) {
             throw ValidationException::withMessages([
-                "$attribute.en" => 'An English translation is required.',
+                "$attribute.en" => __('errors.an_english_translation_is_required'),
             ]);
         }
 
         foreach ($value as $locale => $translation) {
             if (! is_string($locale) || (! is_string($translation) && ! is_null($translation))) {
                 throw ValidationException::withMessages([
-                    $attribute => 'Localized values must be keyed by locale and contain strings.',
+                    $attribute => __('errors.localized_values_must_be_keyed_by_locale_and_contain_strings'),
                 ]);
             }
         }

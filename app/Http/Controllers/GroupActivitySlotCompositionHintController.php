@@ -86,13 +86,13 @@ class GroupActivitySlotCompositionHintController extends Controller
 
                 if ($type === ActivitySlotCompositionHint::TYPE_ROLE && ! in_array($key, ['tank', 'healer', 'dps'], true)) {
                     throw ValidationException::withMessages([
-                        'composition_hints' => 'The selected role hint is not supported.',
+                        'composition_hints' => __('errors.role_hint_unsupported'),
                     ]);
                 }
 
                 if ($type === ActivitySlotCompositionHint::TYPE_CLASS && ! isset($classKeyLookup[$key])) {
                     throw ValidationException::withMessages([
-                        'composition_hints' => 'The selected class hint is not supported.',
+                        'composition_hints' => __('errors.class_hint_unsupported'),
                     ]);
                 }
 

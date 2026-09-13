@@ -42,7 +42,7 @@ class GroupActivitySlotUnassignmentController extends Controller
 
         if ($activity->isArchived()) {
             throw ValidationException::withMessages([
-                'activity' => 'Archived activities cannot have roster assignments removed.',
+                'activity' => __('errors.archived_activities_cannot_have_roster_assignments_removed'),
             ]);
         }
 
@@ -52,7 +52,7 @@ class GroupActivitySlotUnassignmentController extends Controller
 
         if (! $slot->assigned_character_id) {
             throw ValidationException::withMessages([
-                'slot' => 'Only filled roster slots can be unassigned.',
+                'slot' => __('errors.only_filled_roster_slots_can_be_unassigned'),
             ]);
         }
 
@@ -173,7 +173,7 @@ class GroupActivitySlotUnassignmentController extends Controller
 
         if (! $application) {
             throw ValidationException::withMessages([
-                'slot' => 'No assigned application could be found for this roster assignment.',
+                'slot' => __('errors.no_assigned_application_could_be_found_for_this_roster_assignment'),
             ]);
         }
 

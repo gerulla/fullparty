@@ -39,7 +39,7 @@ const props = defineProps<{
 
 const isHomeProfileModalOpen = ref(false)
 const isAccountChecklistOpen = ref(true)
-const hasShownCompletionDebugToast = ref(false)
+const hasShownCompletionToast = ref(false)
 const accountCompletionPanel = ref<HTMLElement | null>(null)
 const accountCompletionBadgeTarget = ref<HTMLElement | null>(null)
 const accountCompletionFlightStyle = ref<Record<string, string>>({})
@@ -469,14 +469,14 @@ watch(
 watch(
 	() => props.homeAccountCompletion?.should_celebrate_completion,
 	(shouldCelebrateCompletion) => {
-		if (!shouldCelebrateCompletion || hasShownCompletionDebugToast.value) {
+		if (!shouldCelebrateCompletion || hasShownCompletionToast.value) {
 			return
 		}
 
-		hasShownCompletionDebugToast.value = true
+		hasShownCompletionToast.value = true
 		toast.add({
-			title: "Account completion debug",
-			description: "Completed all account setup steps for the first time.",
+			title: t('general.account_completion.success_title'),
+			description: t('general.account_completion.success_description'),
 			color: "success",
 			icon: "i-lucide-party-popper",
 		})

@@ -67,7 +67,9 @@
         "tags_help": "Tags libres facultatifs utilisés pour la recherche et le filtrage.",
         "tags_placeholder": "Saisissez un tag et appuyez sur Entrée",
         "active": "Actif",
-        "active_help": "Les types d'activité inactifs restent dans l'historique admin mais ne doivent pas être utilisés pour de nouvelles activités."
+        "active_help": "Les types d'activité inactifs restent dans l'historique admin mais ne doivent pas être utilisés pour de nouvelles activités.",
+        "bench_size": "Nombre de places de réserve",
+        "bench_size_help": "Nombre de places de réserve génériques à créer pour ce type d’activité."
     },
     "difficulties": {
         "normal": "Normal",
@@ -255,17 +257,17 @@
             "url": "URL"
         },
         "option_sources": {
-              "character_classes": "Classes de personnage",
-              "phantom_jobs": "Jobs fantômes",
-              "bozja_holsters": "Holsters de Bozja",
-              "raid_positions": "Positions de raid",
-              "bozja_banners": "Bannières de Bozja",
-              "bozja_essences": "Essences de Bozja",
-              "bozja_deep_essences": "Essences profondes de Bozja",
-              "bozja_pure_essences": "Essences pures de Bozja",
-              "bozja_lost_actions": "Actions oubliées de Bozja",
-              "bozja_lost_items": "Objets oubliés de Bozja",
-              "static_options": "Options statiques"
+            "character_classes": "Classes de personnage",
+            "phantom_jobs": "Jobs fantômes",
+            "bozja_holsters": "Holsters de Bozja",
+            "raid_positions": "Positions de raid",
+            "bozja_banners": "Bannières de Bozja",
+            "bozja_essences": "Essences de Bozja",
+            "bozja_deep_essences": "Essences profondes de Bozja",
+            "bozja_pure_essences": "Essences pures de Bozja",
+            "bozja_lost_actions": "Actions oubliées de Bozja",
+            "bozja_lost_items": "Objets oubliés de Bozja",
+            "static_options": "Options statiques"
         }
     },
     "summary": {
@@ -283,6 +285,7 @@
         "prog_points": "Points de progression",
         "difficulty": "Difficulté",
         "default_min_item_level": "ILVL par défaut",
-        "fflogs_zone_id": "ID de zone FF Logs"
+        "fflogs_zone_id": "ID de zone FF Logs",
+        "bench": "Réserve"
     }
 }

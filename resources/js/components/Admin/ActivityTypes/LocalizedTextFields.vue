@@ -1,5 +1,7 @@
 <script setup lang="ts">
 import { computed, ref } from "vue";
+import { useI18n } from "vue-i18n";
+const { t } = useI18n();
 
 const props = defineProps<{
 	label: string
@@ -69,7 +71,7 @@ defineExpose({ openLocales });
 					color="neutral"
 					variant="soft"
 					icon="i-lucide-languages"
-					:label="allLocalesLabel ?? 'All locales'"
+					:label="allLocalesLabel ?? t('general.all_locales')"
 					@click="openLocales"
 				/>
 			</div>
@@ -106,7 +108,7 @@ defineExpose({ openLocales });
 					>
 						<div class="mb-2 flex items-center justify-between">
 							<span class="text-xs font-semibold uppercase tracking-wide text-muted">{{ locale }}</span>
-							<UBadge v-if="locale === primaryLocale" color="primary" variant="subtle" label="Required" />
+							<UBadge v-if="locale === primaryLocale" color="primary" variant="subtle" :label="t('general.required')" />
 						</div>
 
 						<UTextarea

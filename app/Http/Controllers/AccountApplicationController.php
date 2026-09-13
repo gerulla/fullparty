@@ -94,7 +94,7 @@ class AccountApplicationController extends Controller
 
         if (! $this->applicationWithdrawalService->applicationCanBeWithdrawn($application->activity, $application)) {
             throw ValidationException::withMessages([
-                'application' => 'This application cannot be withdrawn.',
+                'application' => __('errors.this_application_cannot_be_withdrawn'),
             ]);
         }
 
@@ -293,7 +293,7 @@ class AccountApplicationController extends Controller
             'status' => $application->status,
             'submitted_at' => $application->submitted_at?->toIso8601String(),
             'reviewed_at' => $application->reviewed_at?->toIso8601String(),
-            'review_reason' => $application->review_reason,
+            'review_reason' => $application->localizedReviewReason(),
             'notes' => $application->notes,
             'can_edit' => $canEdit,
             'can_withdraw' => $canWithdraw,

@@ -38,7 +38,7 @@ class XivPluginRunCheckInController extends Controller
 
         if ($slotIds->isEmpty() && $characterIds->isEmpty()) {
             throw ValidationException::withMessages([
-                'slots' => 'Provide at least one slot id or character id to check in.',
+                'slots' => __('errors.provide_at_least_one_slot_id_or_character_id_to_check_in'),
             ]);
         }
 
@@ -128,11 +128,11 @@ class XivPluginRunCheckInController extends Controller
         $errors = [];
 
         if ($missingSlotIds->isNotEmpty()) {
-            $errors['slot_ids'] = 'One or more slots are not assigned on this run.';
+            $errors['slot_ids'] = __('errors.one_or_more_slots_are_not_assigned_on_this_run');
         }
 
         if ($missingCharacterIds->isNotEmpty()) {
-            $errors['character_ids'] = 'One or more characters are not assigned on this run.';
+            $errors['character_ids'] = __('errors.one_or_more_characters_are_not_assigned_on_this_run');
         }
 
         if ($errors !== []) {

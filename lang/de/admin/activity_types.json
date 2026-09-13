@@ -67,7 +67,9 @@
         "tags_help": "Optionale freie Tags für Suche und Filter.",
         "tags_placeholder": "Tag eingeben und Enter drücken",
         "active": "Aktiv",
-        "active_help": "Inaktive Aktivitätstypen bleiben im Admin-Verlauf, sollten aber nicht für neue Aktivitäten genutzt werden."
+        "active_help": "Inaktive Aktivitätstypen bleiben im Admin-Verlauf, sollten aber nicht für neue Aktivitäten genutzt werden.",
+        "bench_size": "Anzahl der Ersatzplätze",
+        "bench_size_help": "Wie viele allgemeine Ersatzplätze dieser Aktivitätstyp erstellen soll."
     },
     "difficulties": {
         "normal": "Normal",
@@ -255,17 +257,17 @@
             "url": "URL"
         },
         "option_sources": {
-              "character_classes": "Charakterklassen",
-              "phantom_jobs": "Phantom-Jobs",
-              "bozja_holsters": "Bozja-Holster",
-              "raid_positions": "Raid-Positionen",
-              "bozja_banners": "Bozja-Banner",
-              "bozja_essences": "Bozja-Essenzen",
-              "bozja_deep_essences": "Tiefe Bozja-Essenzen",
-              "bozja_pure_essences": "Reine Bozja-Essenzen",
-              "bozja_lost_actions": "Verschollene Bozja-Kommandos",
-              "bozja_lost_items": "Verschollene Bozja-Gegenstände",
-              "static_options": "Statische Optionen"
+            "character_classes": "Charakterklassen",
+            "phantom_jobs": "Phantom-Jobs",
+            "bozja_holsters": "Bozja-Holster",
+            "raid_positions": "Raid-Positionen",
+            "bozja_banners": "Bozja-Banner",
+            "bozja_essences": "Bozja-Essenzen",
+            "bozja_deep_essences": "Tiefe Bozja-Essenzen",
+            "bozja_pure_essences": "Reine Bozja-Essenzen",
+            "bozja_lost_actions": "Verschollene Bozja-Kommandos",
+            "bozja_lost_items": "Verschollene Bozja-Gegenstände",
+            "static_options": "Statische Optionen"
         }
     },
     "summary": {
@@ -283,6 +285,7 @@
         "prog_points": "Prog-Punkte",
         "difficulty": "Schwierigkeit",
         "default_min_item_level": "Standard-ILVL",
-        "fflogs_zone_id": "FF-Logs-Zonen-ID"
+        "fflogs_zone_id": "FF-Logs-Zonen-ID",
+        "bench": "Ersatzbank"
     }
 }

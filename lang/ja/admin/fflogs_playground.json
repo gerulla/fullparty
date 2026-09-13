@@ -45,7 +45,7 @@
       "description": "キャラクター名、ワールド、リージョン、zone で進捗を取得する applicant lookup です。"
     },
     "report_structure": {
-      "label": "Report structure",
+      "label": "レポート構造",
       "description": "encounter ID、phase フィールド、fight timing を確認する debug 用クエリです。"
     }
   }

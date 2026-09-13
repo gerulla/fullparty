@@ -45,7 +45,7 @@ class AdminFflogsPlaygroundController extends Controller
                     'ok' => false,
                     'status' => null,
                     'body' => [
-                        'message' => 'Unable to execute FF Logs request.',
+                        'message' => __('errors.unable_to_execute_ff_logs_request'),
                         'detail' => $exception->getMessage(),
                     ],
                 ],

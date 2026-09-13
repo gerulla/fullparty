@@ -5,8 +5,13 @@ import { createI18n } from 'vue-i18n'
 import ui from '@nuxt/ui/vue-plugin'
 import { createPageResolver } from '../i18n/createPageResolver.js'
 import { normalizeLocale, supportedLocales } from '../i18n/createTranslationLoader.js'
+import enLoading from '../../../lang/en/loading.json'
+import deLoading from '../../../lang/de/loading.json'
+import frLoading from '../../../lang/fr/loading.json'
+import jaLoading from '../../../lang/ja/loading.json'
 
-const loadErrors = import.meta.glob('../../../lang/*/loading.json', { import: 'default' })
+// These two tiny messages must remain available when network requests for page dictionaries fail.
+const loadingMessages = { en: enLoading, de: deLoading, fr: frLoading, ja: jaLoading }
 
 export async function createLocalizedApp({ pages, translations, application = 'main', loadDefaultLayout, plugins = [], title, progress }) {
     const initialPage = getInitialPageFromDOM('app', false)
@@ -37,18 +42,14 @@ export async function createLocalizedApp({ pages, translations, application = 'm
         stop()
         const root = document.getElementById('app')
         const notice = document.createElement('p')
-        // Keep a usable English fallback even when the translation server is unreachable.
-        notice.textContent = 'Unable to load this page. Check your connection and try again.'
+        const messages = loadingMessages[initialLocale]
+        notice.textContent = messages.failed
         const retry = document.createElement('button')
         retry.type = 'button'
-        retry.textContent = 'Try again'
+        retry.textContent = messages.retry
         retry.addEventListener('click', () => window.location.reload())
         root.replaceChildren(notice, retry)
         root.setAttribute('role', 'alert')
         console.error('Unable to initialize FullParty', error)
-        loadErrors[`../../../lang/${initialLocale}/loading.json`]?.().then(messages => {
-            notice.textContent = messages.failed
-            retry.textContent = messages.retry
-        }).catch(() => {})
     }
 }

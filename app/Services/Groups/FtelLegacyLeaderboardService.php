@@ -114,7 +114,7 @@ final class FtelLegacyLeaderboardService
         $normalized = [
             'character' => [
                 'id' => isset($record['character_id']) ? (int) $record['character_id'] : null,
-                'name' => filled($record['name'] ?? null) ? trim((string) $record['name']) : 'Unknown Character',
+                'name' => filled($record['name'] ?? null) ? trim((string) $record['name']) : __('ui.unknown_character'),
                 'world' => filled($record['world'] ?? null) ? trim((string) $record['world']) : null,
                 'datacenter' => filled($record['data_center'] ?? null) ? trim((string) $record['data_center']) : null,
                 'avatar_url' => filled($record['avatar_url'] ?? null) ? trim((string) $record['avatar_url']) : null,

@@ -113,7 +113,7 @@ const relativeStartsAtLabel = computed(() => {
 	return formatRelativeTime(
 		props.activity.starts_at,
 		locale.value,
-		t("notifications.just_now"),
+		t("notifications.ui.just_now"),
 		t("groups.activities.cards.no_relative_time"),
 		relativeTimeTick.value,
 	);

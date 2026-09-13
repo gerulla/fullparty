@@ -64,7 +64,7 @@ class ActivityFillInSlotService
 
         if (! $this->slotKind->isFillIn($slot)) {
             throw ValidationException::withMessages([
-                'slot' => 'Only fill-in slots can track a filled party.',
+                'slot' => __('errors.only_fill_in_slots_can_track_a_filled_party'),
             ]);
         }
 
@@ -94,7 +94,7 @@ class ActivityFillInSlotService
 
         if (! $this->slotKind->isFillIn($slot)) {
             throw ValidationException::withMessages([
-                'slot' => 'Only fill-in slots can be removed through this flow.',
+                'slot' => __('errors.only_fill_in_slots_can_be_removed_through_this_flow'),
             ]);
         }
 
@@ -147,7 +147,7 @@ class ActivityFillInSlotService
 
         if (! $group) {
             throw ValidationException::withMessages([
-                'filled_group_key' => 'Choose a valid party for this fill-in.',
+                'filled_group_key' => __('errors.choose_a_valid_party_for_this_fill_in'),
             ]);
         }
 
@@ -203,10 +203,10 @@ class ActivityFillInSlotService
     private function fillInSlotLabel(int $position): array
     {
         return [
-            'en' => sprintf('Fill in %d', $position),
-            'de' => sprintf('Fill in %d', $position),
-            'fr' => sprintf('Fill in %d', $position),
-            'ja' => sprintf('Fill in %d', $position),
+            'en' => __('ui.fill_in', ['number' => $position], 'en'),
+            'de' => __('ui.fill_in', ['number' => $position], 'de'),
+            'fr' => __('ui.fill_in', ['number' => $position], 'fr'),
+            'ja' => __('ui.fill_in', ['number' => $position], 'ja'),
         ];
     }
 }

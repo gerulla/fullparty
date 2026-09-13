@@ -81,7 +81,7 @@ class GroupActivitySlotAssignmentController extends Controller
 
         if ($slot->slot_kind === ActivitySlot::SLOT_KIND_FILL_IN && blank($validated['filled_group_key'] ?? null)) {
             throw ValidationException::withMessages([
-                'filled_group_key' => 'Choose the party this fill-in covered.',
+                'filled_group_key' => __('errors.choose_the_party_this_fill_in_covered'),
             ]);
         }
 

@@ -26,7 +26,8 @@ function referencedNamespaces(file, seen = new Set()) {
     const found = new Set();
     // Include literal keys, template prefixes and keys stored in helper objects.
     // Only actual dictionary paths count, so named Laravel routes are excluded.
-    for (const match of source.matchAll(/['"`]([a-z][\w]*(?:\.[\w-]+)+(?:\.)?)(?:['"`]|\$\{)/g)) {
+    const translationSource = source.replace(/\broute\(\s*['"][^'"]+['"]/g, 'route(');
+    for (const match of translationSource.matchAll(/['"`]([a-z][\w]*(?:\.[\w-]+)+(?:\.)?)(?:['"`]|\$\{)/g)) {
         const key = match[1];
         for (const ns of namespaces) if (key.startsWith(ns.replaceAll('/', '.') + '.')) {
             const rest = key.slice(ns.length + 1).replace(/\.$/, '');

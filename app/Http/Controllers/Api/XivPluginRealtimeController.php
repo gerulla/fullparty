@@ -11,7 +11,7 @@ class XivPluginRealtimeController extends Controller
     {
         $key = config('broadcasting.connections.reverb.key');
 
-        abort_if(blank($key), 503, 'Realtime is not configured.');
+        abort_if(blank($key), 503, __('errors.realtime_is_not_configured'));
 
         return new JsonResponse([
             'data' => [

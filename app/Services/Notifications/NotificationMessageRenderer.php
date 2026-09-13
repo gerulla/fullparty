@@ -34,6 +34,25 @@ class NotificationMessageRenderer
     {
         $locale = config('app.locale');
         $params = $this->resolveParams($event->message_params ?? [], $locale);
+        $designation = $event->payload['designation_key'] ?? null;
+        if (in_array($designation, ['host', 'raid_leader', 'duelist', 'trapper', 'darter'], true)) {
+            $params['designation'] = __('ui.'.$designation, [], $locale);
+        }
+        if (($event->payload['status'] ?? null) === 'cancelled' && ($params['reason'] ?? null) === 'Run cancelled.') {
+            $params['reason'] = __('ui.run_cancelled', [], $locale);
+        }
+
+        if ($locale !== 'en') {
+            $jobKeys = [
+                'class' => 'characters.jobs.classes.'.strtolower($params['class_shorthand'] ?? ''),
+                'phantom_job' => 'characters.jobs.phantom.'.str_replace(' ', '_', preg_replace('/^phantom /i', '', strtolower($params['phantom_job'] ?? ''))),
+            ];
+            foreach ($jobKeys as $parameter => $key) {
+                if (isset($params[$parameter]) && Lang::has($key, $locale)) {
+                    $params[$parameter] = __($key, [], $locale);
+                }
+            }
+        }
 
         return [
             'subject' => $this->translateNotificationKey($event->title_key, $params, $locale),

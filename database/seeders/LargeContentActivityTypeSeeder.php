@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use App\Models\ActivityType;
 use App\Models\User;
 use App\Support\ActivityCompositionPresets;
+use App\Support\SeedData\ActivityLocalizationCatalog;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use RuntimeException;
@@ -19,6 +20,7 @@ class LargeContentActivityTypeSeeder extends Seeder
         $publisherId = User::query()->value('id');
 
         foreach ($this->activityTypes() as $activityTypeData) {
+            $activityTypeData = app(ActivityLocalizationCatalog::class)->localize($activityTypeData, freshSeed: true);
             DB::transaction(function () use ($activityTypeData, $publisherId) {
                 $activityType = ActivityType::query()->firstOrNew([
                     'slug' => $activityTypeData['slug'],

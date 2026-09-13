@@ -39,9 +39,9 @@ class RegisterRequest extends FormRequest
     public function attributes(): array
     {
         return [
-            'username' => 'username',
-            'email' => 'email address',
-            'password' => 'password',
+            'username' => __('validation.attributes.username'),
+            'email' => __('validation.attributes.email'),
+            'password' => __('validation.attributes.password'),
         ];
     }
 }

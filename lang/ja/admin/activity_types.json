@@ -67,7 +67,9 @@
         "tags_help": "検索やフィルタリングに使う任意の自由入力タグです。",
         "tags_placeholder": "タグを入力してEnterキーを押してください",
         "active": "有効",
-        "active_help": "非アクティブなアクティビティ種別は管理履歴に残りますが、新しいアクティビティには使用しないでください。"
+        "active_help": "非アクティブなアクティビティ種別は管理履歴に残りますが、新しいアクティビティには使用しないでください。",
+        "bench_size": "補欠枠数",
+        "bench_size_help": "このアクティビティタイプで作成する汎用の補欠枠の数です。"
     },
     "difficulties": {
         "normal": "ノーマル",
@@ -255,17 +257,17 @@
             "url": "URL"
         },
         "option_sources": {
-              "character_classes": "キャラクタークラス",
-              "phantom_jobs": "ファントムジョブ",
-              "bozja_holsters": "ボズヤホルスター",
-              "raid_positions": "レイドポジション",
-              "bozja_banners": "ボズヤの戦旗",
-              "bozja_essences": "ボズヤの秘薬",
-              "bozja_deep_essences": "ボズヤの霊薬",
-              "bozja_pure_essences": "ボズヤの仙薬",
-              "bozja_lost_actions": "ボズヤのロストアクション",
-              "bozja_lost_items": "ボズヤのロストアイテム",
-              "static_options": "固定選択肢"
+            "character_classes": "キャラクタークラス",
+            "phantom_jobs": "ファントムジョブ",
+            "bozja_holsters": "ボズヤホルスター",
+            "raid_positions": "レイドポジション",
+            "bozja_banners": "ボズヤの戦旗",
+            "bozja_essences": "ボズヤの秘薬",
+            "bozja_deep_essences": "ボズヤの霊薬",
+            "bozja_pure_essences": "ボズヤの仙薬",
+            "bozja_lost_actions": "ボズヤのロストアクション",
+            "bozja_lost_items": "ボズヤのロストアイテム",
+            "static_options": "固定選択肢"
         }
     },
     "summary": {
@@ -283,6 +285,7 @@
         "prog_points": "攻略ポイント",
         "difficulty": "難易度",
         "default_min_item_level": "標準ILVL",
-        "fflogs_zone_id": "FF Logs ゾーンID"
+        "fflogs_zone_id": "FF Logs ゾーンID",
+        "bench": "補欠"
     }
 }

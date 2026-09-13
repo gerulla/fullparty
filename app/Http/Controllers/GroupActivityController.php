@@ -243,7 +243,7 @@ class GroupActivityController extends Controller
         $activityTypeVersion = $activityType->currentPublishedVersion;
 
         if (! $activityType->is_active || ! $activityTypeVersion) {
-            abort(422, 'The selected activity type is not available.');
+            abort(422, __('errors.activity_type_unavailable'));
         }
 
         $validated = $this->normalizeAndValidateTargetProgPoint($validated, $activityTypeVersion);
@@ -647,13 +647,13 @@ class GroupActivityController extends Controller
         $character = Character::query()->find($characterId);
 
         if (! $character) {
-            abort(422, 'The selected organizer character is invalid.');
+            abort(422, __('errors.organizer_character_invalid'));
         }
 
         $organizerUserId = $validated['organized_by_user_id'] ?? auth()->id();
 
         if ($character->user_id !== (int) $organizerUserId) {
-            abort(422, 'The selected organizer character must belong to the organizer user.');
+            abort(422, __('errors.organizer_character_owner'));
         }
 
         $validated['organized_by_user_id'] = $organizerUserId;
@@ -679,7 +679,7 @@ class GroupActivityController extends Controller
             ->all();
 
         if (! in_array($targetProgPointKey, $availableKeys, true)) {
-            abort(422, 'The selected target prog point is invalid for this activity type.');
+            abort(422, __('errors.invalid_target_progress'));
         }
 
         return $validated;

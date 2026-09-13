@@ -8,10 +8,10 @@ use App\Models\ActivityTypeVersion;
 
 class ActivityDisplayName
 {
-    public static function for(?Activity $activity, string $fallback = 'Activity'): string
+    public static function for(?Activity $activity, ?string $fallback = null): string
     {
         if (! $activity instanceof Activity) {
-            return $fallback;
+            return $fallback ?? __('ui.activity');
         }
 
         if (filled($activity->title)) {
@@ -47,7 +47,7 @@ class ActivityDisplayName
             return $activityTypeName;
         }
 
-        return sprintf('Activity #%d', $activity->id);
+        return __('ui.activity_number', ['number' => $activity->id]);
     }
 
     private static function localizedLabel(mixed $label): ?string
@@ -60,7 +60,7 @@ class ActivityDisplayName
             return null;
         }
 
-        $englishLabel = $label['en'] ?? null;
+        $englishLabel = $label[app()->getLocale()] ?? $label['en'] ?? null;
 
         if (is_string($englishLabel) && filled($englishLabel)) {
             return $englishLabel;

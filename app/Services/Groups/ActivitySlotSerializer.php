@@ -241,10 +241,10 @@ class ActivitySlotSerializer
         $position = max(1, (int) $slot->position_in_group);
 
         return [
-            'en' => sprintf('Fill in %d', $position),
-            'de' => sprintf('Fill in %d', $position),
-            'fr' => sprintf('Fill in %d', $position),
-            'ja' => sprintf('Fill in %d', $position),
+            'en' => __('ui.fill_in', ['number' => $position], 'en'),
+            'de' => __('ui.fill_in', ['number' => $position], 'de'),
+            'fr' => __('ui.fill_in', ['number' => $position], 'fr'),
+            'ja' => __('ui.fill_in', ['number' => $position], 'ja'),
         ];
     }
 

@@ -98,7 +98,7 @@
     "updated": "更新日：{date}",
     "access_moderator": "モデレーター",
     "access_admin": "管理者",
-    "powered_by": "Powered by FullParty"
+    "powered_by": "FullParty を利用しています"
   },
   "workspace": {
     "save_before_publish": "公開する前に変更内容を入力してバージョンを保存してください。",
@@ -202,7 +202,7 @@
     "collections": "コレクション",
     "collection": "コレクション",
     "new_collection": "新しいコレクション",
-    "new_collection_name": "New collection",
+    "new_collection_name": "新しいコレクション",
     "collection_name_invalid": "使用できる文字は A-Z、a-z、0-9、半角スペース、および {'.-(){}[];_&'} のみです。",
     "rename": "名前を変更",
     "edit_collection": "コレクションを編集",

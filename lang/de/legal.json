@@ -1,0 +1,175 @@
+{
+  "last_updated": "Zuletzt aktualisiert: {date}",
+  "contact_fallback": "die für diese selbst gehostete FullParty-Instanz konfigurierte Kontaktadresse",
+  "privacy": {
+    "intro": [
+      "Diese Datenschutzerklärung gilt nur für die FullParty-Website oder den Dienst, auf dem sie veröffentlicht wird. Wenn du eine selbst gehostete oder abgeleitete Version von FullParty nutzt, muss deren Betreiber diese Erklärung ersetzen oder anpassen, damit sie die eigene Datenverarbeitung zutreffend beschreibt.",
+      "{operator_sentence}",
+      "FullParty ist eine Plattform zur Verwaltung von Gruppen, Bewerbungen, Aufstellungen, Charakteren, Benachrichtigungen und damit verbundenen Aktivitäten für Online-Spielgemeinschaften."
+    ],
+    "sections": [
+      {
+        "title": "Wer wir sind",
+        "paragraphs": [
+          "{operator_details}",
+          "Bei Fragen zu dieser Datenschutzerklärung oder zur Ausübung deiner Datenschutzrechte erreichst du uns unter {contact}."
+        ]
+      },
+      {
+        "title": "Welche Informationen wir erheben",
+        "bullets": [
+          "Kontoinformationen wie E-Mail-Adresse, Benutzername, Passwort-Hash, sofern ein Passwort festgelegt wurde, Avatar und Kontoeinstellungen.",
+          "Informationen zu sozialen Anmeldungen und von dir verknüpften Konten, beispielsweise Konto-IDs, Anzeigenamen, Avatare und vom Anbieter übermittelte E-Mail-Adressen.",
+          "Charakterinformationen wie Lodestone- oder spielbezogene Kennungen, zugeordnete Charaktere, die Auswahl des Hauptcharakters, Klassen, Jobs sowie auf deinen Wunsch importierte oder aktualisierte Profildaten.",
+          "Gruppen- und Aktivitätsinformationen wie Mitgliedschaften, Moderationsrollen, Bewerbungen, Aufstellungszuweisungen, Check-ins, Notizen, Sperren und Einträge im Audit-Protokoll.",
+          "Benachrichtigungs- und Kommunikationsdaten wie Benachrichtigungseinstellungen, Posteingangsstatus, Zustellungsprotokolle und der Lesestatus von Systemmitteilungen.",
+          "Technische und sicherheitsbezogene Informationen wie IP-Adresse, Browser- oder Geräte-User-Agent, Sitzungsdaten, Anfragemetadaten sowie Sicherheits- und Missbrauchsschutzprotokolle."
+        ]
+      },
+      {
+        "title": "Woher wir personenbezogene Informationen erhalten",
+        "bullets": [
+          "Direkt von dir, wenn du ein Konto erstellst, dein Profil bearbeitest, Konten verknüpfst, Bewerbungen einreichst, Gruppen beitrittst oder FullParty anderweitig nutzt.",
+          "Von Anbietern sozialer Authentifizierung, wenn du dich über Dienste wie Google, Discord oder XIVAuth anmeldest oder ein Konto verknüpfst.",
+          "Von Anbietern von Raid-Logs oder Charakterdaten, wenn du FullParty mit dem Import oder der Aktualisierung von Informationen beauftragst, darunter FF Logs oder Lodestone-bezogene Quellen.",
+          "Von anderen Nutzern, wenn sie Gruppen, Aufstellungen, Moderationsnotizen, Einladungen oder andere gemeinsame Funktionen verwalten, die dein Konto oder deine Charaktere betreffen."
+        ]
+      },
+      {
+        "title": "Warum wir deine Informationen verwenden",
+        "bullets": [
+          "Um dein Konto zu erstellen und zu verwalten und dir eine sichere Anmeldung zu ermöglichen.",
+          "Um Kernfunktionen wie Gruppen, Bewerbungen, Aufstellungen, Benachrichtigungen und Charakterverwaltung bereitzustellen.",
+          "Um Moderation, Sicherheit, Missbrauchsschutz und Audit-Protokollierung zu ermöglichen.",
+          "Um dienstbezogene E-Mails und andere Mitteilungen zu versenden, einschließlich wichtiger Betriebs- oder Sicherheitshinweise.",
+          "Um Fehler zu beheben und FullParty zu sichern, zu warten und zu verbessern.",
+          "Um gegebenenfalls rechtlichen Verpflichtungen nachzukommen."
+        ]
+      },
+      {
+        "title": "Unsere Rechtsgrundlagen",
+        "paragraphs": [
+          "Wir verarbeiten deine personenbezogenen Informationen in der Regel, weil dies zur Bereitstellung des von dir gewünschten Dienstes erforderlich ist, einschließlich Kontozugang, Gruppenteilnahme, Bewerbungen, Aufstellungen und Benachrichtigungen.",
+          "Wir verarbeiten Informationen auch, wenn dies unserem berechtigten Interesse am Betrieb, der Sicherheit, der Moderation und der Verbesserung von FullParty dient, sofern deine Rechte und Freiheiten diese Interessen nicht überwiegen.",
+          "Soweit wir uns auf deine Einwilligung stützen, etwa bei bestimmten optionalen Mitteilungen oder von dir aktivierten Kontoverknüpfungen, kannst du diese Einwilligung jederzeit widerrufen."
+        ]
+      },
+      {
+        "title": "Mit wem wir Informationen teilen",
+        "paragraphs": [
+          "Wir geben personenbezogene Informationen nur weiter, soweit dies für den rechtmäßigen und wirksamen Betrieb von FullParty erforderlich ist."
+        ],
+        "bullets": [
+          "Anbieter von Hosting, Infrastruktur und Speicherplatz.",
+          "Anbieter von E-Mail-Zustellung und damit verbundenen Kommunikationsdiensten.",
+          "Von dir gewählte Anbieter sozialer Authentifizierung.",
+          "Anbieter von Charakter-, Identitäts- oder Raid-Log-Daten, bei denen FullParty auf deinen Wunsch Daten abfragt oder importiert.",
+          "Fachliche Berater, Strafverfolgungsbehörden, Aufsichtsbehörden oder andere Stellen, wenn die Offenlegung vorgeschrieben oder zum Schutz von Rechten, Sicherheit oder des Dienstes angemessen erforderlich ist."
+        ]
+      },
+      {
+        "title": "Internationale Übermittlungen",
+        "paragraphs": [
+          "Einige unserer Anbieter können personenbezogene Informationen außerhalb deines Landes verarbeiten, auch außerhalb des Vereinigten Königreichs oder des EWR. In diesem Fall bemühen wir uns um Anbieter und Vereinbarungen, die ein angemessenes Schutzniveau nach dem geltenden Datenschutzrecht bieten."
+        ]
+      },
+      {
+        "title": "Wie lange wir Informationen aufbewahren",
+        "bullets": [
+          "Wir bewahren Konto- und Profilinformationen auf, solange dein Konto aktiv ist, und danach für einen angemessenen Zeitraum, soweit dies für Sicherheit, Streitbeilegung, Rechtskonformität oder die Integrität der Aufzeichnungen erforderlich ist.",
+          "Wir bewahren Gruppen-, Bewerbungs-, Aufstellungs-, Audit- und Moderationsdaten so lange auf, wie es zur Erhaltung des Betriebsverlaufs, der Nachvollziehbarkeit und der Dienstintegrität erforderlich ist.",
+          "Wir bewahren Benachrichtigungs- und Zustellungsdaten so lange auf, wie es für den Kommunikationsbetrieb, die Fehlerbehebung und die Prüfbarkeit angemessen erforderlich ist.",
+          "Wir können Informationen früher löschen oder anonymisieren, wenn sie nicht mehr benötigt werden, und sie länger aufbewahren, wenn dies gesetzlich vorgeschrieben oder zur Geltendmachung, Ausübung oder Verteidigung von Rechtsansprüchen erforderlich ist."
+        ]
+      },
+      {
+        "title": "Deine Rechte",
+        "paragraphs": [
+          "Je nach deinem Aufenthaltsort und dem geltenden Recht hast du möglicherweise das Recht, bestimmte personenbezogene Informationen einzusehen, zu berichtigen, zu löschen, ihre Verarbeitung einzuschränken, ihr zu widersprechen oder die Informationen zu übertragen.",
+          "Wenn die Verarbeitung auf einer Einwilligung beruht, hast du möglicherweise auch das Recht, diese zu widerrufen.",
+          "Für eine Anfrage wende dich an {contact}. Vor der Bearbeitung müssen wir gegebenenfalls deine Identität prüfen."
+        ]
+      },
+      {
+        "title": "Wie du dich beschweren kannst",
+        "paragraphs": [
+          "Wenn du Bedenken zur Verwendung deiner personenbezogenen Informationen hast, kontaktiere uns bitte zunächst unter {contact}.",
+          "Wenn du dich im Vereinigten Königreich befindest, kannst du dich auch beim Information Commissioner’s Office (ICO) beschweren: https://ico.org.uk/make-a-complaint/."
+        ]
+      },
+      {
+        "title": "Änderungen dieser Erklärung",
+        "paragraphs": [
+          "Wir können diese Datenschutzerklärung von Zeit zu Zeit aktualisieren. Dabei passen wir das Datum „Zuletzt aktualisiert“ auf dieser Seite an."
+        ]
+      }
+    ],
+    "title": "Datenschutzerklärung",
+    "operator_sentence": "{controller} betreibt diesen FullParty-Dienst. Diese Datenschutzerklärung erläutert, welche personenbezogenen Informationen wir erheben, wie wir sie verwenden, mit wem wir sie teilen und welche Wahlmöglichkeiten du hast.",
+    "operator_sentence_fallback": "Diese Datenschutzerklärung erläutert, welche personenbezogenen Informationen der Betreiber dieses FullParty-Dienstes erhebt, wie sie verwendet und mit wem sie geteilt werden und welche Wahlmöglichkeiten du hast.",
+    "operator_details": "Dieser FullParty-Dienst wird von {controller} betrieben.",
+    "operator_details_fallback": "Dieser FullParty-Dienst wird von der für diese Instanz verantwortlichen Person oder Organisation betrieben."
+  },
+  "cookies": {
+    "intro": [
+      "Diese Cookie-Richtlinie gilt nur für die FullParty-Website oder den Dienst, auf dem sie veröffentlicht wird. Selbst gehostete oder abgeleitete Versionen von FullParty sollten diese Seite ersetzen oder anpassen, damit sie ihre eigene Cookie- und Speichernutzung zutreffend beschreibt.",
+      "Diese Cookie-Richtlinie erläutert, wie dieser FullParty-Dienst Cookies und ähnliche Technologien auf der Website verwendet.",
+      "Derzeit verwendet FullParty Cookies und zugehörige Speicher vor allem für grundlegende Sicherheit, Anmeldung, Sitzungsverwaltung und vom Nutzer gewählte Einstellungen."
+    ],
+    "sections": [
+      {
+        "title": "Was Cookies sind",
+        "paragraphs": [
+          "Cookies sind kleine Textdateien, die beim Besuch einer Website auf deinem Gerät gespeichert werden. Sie helfen der Website, Informationen über deinen Besuch zu speichern, etwa ob du angemeldet bist oder welche Einstellungen du gewählt hast."
+        ]
+      },
+      {
+        "title": "Von uns verwendete Cookies und ähnliche Technologien",
+        "bullets": [
+          "Sitzungs- und Authentifizierungs-Cookies, die deine Anmeldung aufrechterhalten, sichere Sitzungen ermöglichen und den Kontozugang schützen.",
+          "Sicherheits- und Anfrageprüfungs-Cookies, einschließlich Cookies für CSRF-Schutz und sichere Formularübermittlung.",
+          "Einstellungs-Cookies, etwa zur Speicherung deiner gewählten Oberflächensprache."
+        ]
+      },
+      {
+        "title": "Warum wir sie verwenden",
+        "bullets": [
+          "Damit du dich anmelden und während der Nutzung von FullParty angemeldet bleiben kannst.",
+          "Um Anfragen abzusichern und Missbrauch oder Fehlgebrauch des Dienstes zu verringern.",
+          "Um ausdrücklich von dir gewählte Einstellungen wie Region oder Sprache zu speichern.",
+          "Um den Dienst im normalen Betrieb stabil und nutzbar zu halten."
+        ]
+      },
+      {
+        "title": "Derzeit verwendete Cookies",
+        "bullets": [
+          "Ein Sitzungs-Cookie, mit dem die Laravel-Anwendung deine Sitzung aufrechterhält.",
+          "Ein CSRF-bezogenes Cookie zur Unterstützung der Anfrageprüfung.",
+          "Ein Sprach-Cookie, das deine gewählte Sprache speichert."
+        ]
+      },
+      {
+        "title": "Einwilligung",
+        "paragraphs": [
+          "In der aktuellen Konfiguration von FullParty dienen diese Cookies notwendigen Dienstfunktionen und vom Nutzer gewünschten Einstellungen, nicht Werbung oder optionaler Verhaltensverfolgung.",
+          "Falls FullParty später nicht notwendige Analyse-, Marketing- oder ähnliche Tracking-Technologien einführt, die eine Einwilligung erfordern, werden wir diese Richtlinie aktualisieren und ein angemessenes Einwilligungsverfahren einführen."
+        ]
+      },
+      {
+        "title": "Cookies verwalten",
+        "paragraphs": [
+          "Du kannst Cookies in deinen Browsereinstellungen verwalten oder löschen. Wenn du notwendige Cookies blockierst, funktionieren Teile von FullParty möglicherweise nicht mehr richtig, einschließlich Anmeldung, Sicherheitsfunktionen und gespeicherter Einstellungen."
+        ]
+      },
+      {
+        "title": "Kontakt",
+        "paragraphs": [
+          "{contact_line}"
+        ]
+      }
+    ],
+    "title": "Cookie-Richtlinie",
+    "contact_line": "Bei Fragen zur Verwendung von Cookies oder ähnlichen Technologien durch diesen FullParty-Dienst kontaktiere {controller} unter {contact}.",
+    "contact_line_fallback": "Bei Fragen zur Verwendung von Cookies oder ähnlichen Technologien durch diesen FullParty-Dienst kontaktiere den Betreiber dieser Instanz unter {contact}."
+  }
+}

@@ -157,9 +157,9 @@ const isGroupQuickLinkSectionActive = (section) => {
 	<UDashboardSidebar id="main" v-model:open="sidebarOpen" :default-size="15" collapsible :collapsed-size="4" :ui="{ footer: '',  body: 'px-0' }" class="max-w-96 border-0 lg:max-2xl:data-[collapsed=false]:!w-1/5">
 		<template #header="{ collapsed }">
 			<div v-if="!collapsed" class="w-full h-full mt-8">
-				<img :src="full_logo" class="h-full w-auto mx-auto object-contain" alt="FullParty Logo">
+				<img :src="full_logo" class="h-full w-auto mx-auto object-contain" alt="FullParty">
 			</div>
-			<img v-else :src="compact_logo" class="mx-auto mt-4 h-9 w-auto object-contain" alt="FullParty Logo">
+			<img v-else :src="compact_logo" class="mx-auto mt-4 h-9 w-auto object-contain" alt="FullParty">
 		</template>
 
 		<template #default="{ collapsed }">

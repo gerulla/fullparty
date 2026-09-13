@@ -47,7 +47,7 @@ const props = defineProps<{
 	overrides: PaginatedOverrides
 }>();
 
-const { t } = useI18n();
+const { t, locale } = useI18n();
 const toast = useToast();
 const confirmationModal = useConfirmationModal();
 const editingId = ref<number | null>(null);
@@ -173,7 +173,7 @@ const removeOverride = async (override: QuotaOverride) => {
 	});
 };
 
-const formatDate = (value: string | null) => value ? new Date(value).toLocaleString() : t("admin.quotas.no_expiry");
+const formatDate = (value: string | null) => value ? new Date(value).toLocaleString(locale.value) : t("admin.quotas.no_expiry");
 const paginationLabel = (label: string) => label
 	.replace("&laquo;", "‹")
 	.replace("&raquo;", "›");

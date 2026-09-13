@@ -1037,7 +1037,7 @@ const save = () => {
 														<img
 															v-if="targetJobIconUrl(row.original.target_id)"
 															:src="targetJobIconUrl(row.original.target_id) ?? undefined"
-															:alt="`${targetJobLabel(row.original.target_id)} icon`"
+															:alt="t('general.image_alt.icon', { name: targetJobLabel(row.original.target_id) })"
 															class="size-7 object-contain"
 														>
 														<span v-else class="text-[0.65rem] font-semibold text-muted">
@@ -1086,7 +1086,7 @@ const save = () => {
 																<img
 																	v-if="job.iconUrl"
 																	:src="job.iconUrl"
-																	:alt="`${job.label} icon`"
+																	:alt="t('general.image_alt.icon', { name: job.label })"
 																	class="size-6 object-contain"
 																>
 																<span v-else class="text-[0.62rem] font-semibold">
@@ -1421,7 +1421,7 @@ const save = () => {
 										<img
 											v-if="requirement.itemIconUrl"
 											:src="requirement.itemIconUrl"
-											:alt="`${requirement.itemLabel} icon`"
+											:alt="t('general.image_alt.icon', { name: requirement.itemLabel })"
 											class="size-5 object-contain"
 										>
 										<span v-else class="text-[0.55rem] font-semibold">

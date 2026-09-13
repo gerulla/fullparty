@@ -57,7 +57,7 @@ class GroupActivitySelfAssignmentController extends Controller
 
         if ($activity->isArchived()) {
             throw ValidationException::withMessages([
-                'activity' => 'Archived activities cannot accept self-assigned roster changes.',
+                'activity' => __('errors.archived_activities_cannot_accept_self_assigned_roster_changes'),
             ]);
         }
 
@@ -76,7 +76,7 @@ class GroupActivitySelfAssignmentController extends Controller
 
         if ($slot->assigned_character_id !== null) {
             throw ValidationException::withMessages([
-                'slot' => 'Only free slots can be self-assigned.',
+                'slot' => __('errors.only_free_slots_can_be_self_assigned'),
             ]);
         }
 
@@ -86,7 +86,7 @@ class GroupActivitySelfAssignmentController extends Controller
 
         if ($existingUserAssignment) {
             throw ValidationException::withMessages([
-                'slot' => 'You are already assigned to this run.',
+                'slot' => __('errors.you_are_already_assigned_to_this_run'),
             ]);
         }
 
@@ -99,7 +99,7 @@ class GroupActivitySelfAssignmentController extends Controller
 
         if (! $character) {
             throw ValidationException::withMessages([
-                'character_id' => 'Please choose one of your verified characters.',
+                'character_id' => __('errors.please_choose_one_of_your_verified_characters'),
             ]);
         }
 
@@ -162,7 +162,7 @@ class GroupActivitySelfAssignmentController extends Controller
 
         if ($activity->isArchived()) {
             throw ValidationException::withMessages([
-                'activity' => 'Archived activities cannot accept self-assigned roster changes.',
+                'activity' => __('errors.archived_activities_cannot_accept_self_assigned_roster_changes'),
             ]);
         }
 
@@ -179,7 +179,7 @@ class GroupActivitySelfAssignmentController extends Controller
 
         if (! $slot->assigned_character_id) {
             throw ValidationException::withMessages([
-                'slot' => 'Only filled roster slots can be removed.',
+                'slot' => __('errors.only_filled_roster_slots_can_be_removed'),
             ]);
         }
 
@@ -197,7 +197,7 @@ class GroupActivitySelfAssignmentController extends Controller
 
         if (! $activeAssignment || $activeAssignment->application_id !== null) {
             throw ValidationException::withMessages([
-                'slot' => 'Only self-assigned roster slots can be removed from this page.',
+                'slot' => __('errors.only_self_assigned_roster_slots_can_be_removed_from_this_page'),
             ]);
         }
 

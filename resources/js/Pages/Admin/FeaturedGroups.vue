@@ -36,7 +36,7 @@ const props = defineProps<{
 	groupOptions: GroupOption[]
 }>();
 
-const { t } = useI18n();
+const { t, locale } = useI18n();
 const page = usePage();
 const toast = useToast();
 const confirmationModal = useConfirmationModal();
@@ -53,7 +53,7 @@ const toDateTimeLocal = (value: string | null) => {
 	return localDate.toISOString().slice(0, 16);
 };
 
-const formatDate = (value: string | null) => value ? new Date(value).toLocaleString() : "-";
+const formatDate = (value: string | null) => value ? new Date(value).toLocaleString(locale.value) : "-";
 
 const form = useForm({
 	group_id: null as number | string | null,

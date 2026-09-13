@@ -39,7 +39,7 @@ class GroupActivitySlotMissingController extends Controller
 
         if ($activity->isArchived()) {
             throw ValidationException::withMessages([
-                'activity' => 'Archived activities cannot be updated for attendance.',
+                'activity' => __('errors.archived_activities_cannot_be_updated_for_attendance'),
             ]);
         }
 
@@ -49,7 +49,7 @@ class GroupActivitySlotMissingController extends Controller
 
         if (! $slot->assigned_character_id) {
             throw ValidationException::withMessages([
-                'slot' => 'Only filled slots can be marked missing.',
+                'slot' => __('errors.only_filled_slots_can_be_marked_missing'),
             ]);
         }
 
@@ -118,7 +118,7 @@ class GroupActivitySlotMissingController extends Controller
 
         if ($activity->isArchived()) {
             throw ValidationException::withMessages([
-                'activity' => 'Archived activities cannot be updated for attendance.',
+                'activity' => __('errors.archived_activities_cannot_be_updated_for_attendance'),
             ]);
         }
 
@@ -128,7 +128,7 @@ class GroupActivitySlotMissingController extends Controller
 
         if ($assignment->attendance_status !== ActivitySlotAssignment::STATUS_MISSING) {
             throw ValidationException::withMessages([
-                'assignment' => 'Only missing assignments can be undone.',
+                'assignment' => __('errors.only_missing_assignments_can_be_undone'),
             ]);
         }
 

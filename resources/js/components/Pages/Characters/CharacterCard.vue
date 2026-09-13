@@ -101,7 +101,7 @@ const removeCharacter = () => {
 					<img
 						class="h-24 w-24 rounded-sm object-cover"
 						:src="character.avatar_url"
-						:alt="character.name+' avatar'"
+						:alt="t('general.image_alt.avatar', { name: character.name })"
 					>
 				</div>
 

@@ -435,7 +435,7 @@ const getDisplayContextLabels = (displayContexts: string[] = []) => {
 					<USwitch class="w-full" v-model="createForm.is_visible" size="xl"/>
 				</UFormField>
 
-				<UFormField :label="t('admin.character_definitions.fields.description.label')" class="w-full">
+				<UFormField :label="t('general.description')" class="w-full">
 					<UTextarea
 						v-model="createForm.description"
 						:placeholder="t('admin.character_definitions.fields.description.placeholder')"
@@ -564,7 +564,7 @@ const getDisplayContextLabels = (displayContexts: string[] = []) => {
 					<USwitch class="w-full" v-model="editForm.is_visible" size="xl"/>
 				</UFormField>
 
-				<UFormField :label="t('admin.character_definitions.fields.description.label')" class="w-full">
+				<UFormField :label="t('general.description')" class="w-full">
 					<UTextarea
 						v-model="editForm.description"
 						:placeholder="t('admin.character_definitions.fields.description.placeholder')"

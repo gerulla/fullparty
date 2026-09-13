@@ -30,7 +30,7 @@ class GroupActivitySlotCheckInController extends Controller
 
         if ($activity->isArchived()) {
             throw ValidationException::withMessages([
-                'activity' => 'Archived activities cannot be updated for attendance.',
+                'activity' => __('errors.archived_activities_cannot_be_updated_for_attendance'),
             ]);
         }
 
@@ -40,7 +40,7 @@ class GroupActivitySlotCheckInController extends Controller
 
         if (! $slot->assigned_character_id) {
             throw ValidationException::withMessages([
-                'slot' => 'Only filled slots can be checked in.',
+                'slot' => __('errors.only_filled_slots_can_be_checked_in'),
             ]);
         }
 
@@ -85,7 +85,7 @@ class GroupActivitySlotCheckInController extends Controller
 
         if ($activity->isArchived()) {
             throw ValidationException::withMessages([
-                'activity' => 'Archived activities cannot be updated for attendance.',
+                'activity' => __('errors.archived_activities_cannot_be_updated_for_attendance'),
             ]);
         }
 
@@ -95,7 +95,7 @@ class GroupActivitySlotCheckInController extends Controller
 
         if (! $slot->assigned_character_id) {
             throw ValidationException::withMessages([
-                'slot' => 'Only filled slots can be marked late.',
+                'slot' => __('errors.only_filled_slots_can_be_marked_late'),
             ]);
         }
 
@@ -140,7 +140,7 @@ class GroupActivitySlotCheckInController extends Controller
 
         if ($activity->isArchived()) {
             throw ValidationException::withMessages([
-                'activity' => 'Archived activities cannot be updated for attendance.',
+                'activity' => __('errors.archived_activities_cannot_be_updated_for_attendance'),
             ]);
         }
 
@@ -150,7 +150,7 @@ class GroupActivitySlotCheckInController extends Controller
 
         if (! $slot->assigned_character_id) {
             throw ValidationException::withMessages([
-                'slot' => 'Only filled slots can undo check-in.',
+                'slot' => __('errors.only_filled_slots_can_undo_check_in'),
             ]);
         }
 
@@ -163,7 +163,7 @@ class GroupActivitySlotCheckInController extends Controller
 
         if (! $assignment) {
             throw ValidationException::withMessages([
-                'slot' => 'Only checked-in or late slots can undo check-in.',
+                'slot' => __('errors.only_checked_in_or_late_slots_can_undo_check_in'),
             ]);
         }
 
@@ -198,7 +198,7 @@ class GroupActivitySlotCheckInController extends Controller
 
         if ($activity->isArchived()) {
             throw ValidationException::withMessages([
-                'activity' => 'Archived activities cannot be updated for attendance.',
+                'activity' => __('errors.archived_activities_cannot_be_updated_for_attendance'),
             ]);
         }
 

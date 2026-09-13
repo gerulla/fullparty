@@ -33,7 +33,7 @@ class GroupActivitySlotApplicationReviewWarningController extends Controller
 
         if ($activity->isArchived()) {
             throw ValidationException::withMessages([
-                'activity' => 'Archived activities cannot review roster warnings.',
+                'activity' => __('errors.archived_activities_cannot_review_roster_warnings'),
             ]);
         }
 
@@ -50,7 +50,7 @@ class GroupActivitySlotApplicationReviewWarningController extends Controller
 
         if (! $slot->assigned_character_id || ! $slot->application_review_required_application_id) {
             throw ValidationException::withMessages([
-                'slot' => 'This slot does not have an application warning to clear.',
+                'slot' => __('errors.this_slot_does_not_have_an_application_warning_to_clear'),
             ]);
         }
 
@@ -65,7 +65,7 @@ class GroupActivitySlotApplicationReviewWarningController extends Controller
             ActivityApplication::STATUS_ON_BENCH,
         ], true)) {
             throw ValidationException::withMessages([
-                'slot' => 'This application warning can no longer be cleared.',
+                'slot' => __('errors.this_application_warning_can_no_longer_be_cleared'),
             ]);
         }
 
@@ -73,7 +73,7 @@ class GroupActivitySlotApplicationReviewWarningController extends Controller
 
         if ((int) $application->selected_character_id !== (int) $slot->assigned_character_id) {
             throw ValidationException::withMessages([
-                'slot' => 'The edited application selected a different character. Change the assignment or decline the application instead.',
+                'slot' => __('errors.application_character_changed'),
             ]);
         }
 

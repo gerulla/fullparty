@@ -50,7 +50,7 @@ class XivPluginRunCommandController extends Controller
 
         if ($target['user_ids'] === []) {
             throw ValidationException::withMessages([
-                'target' => 'The selected command target does not include any assigned users.',
+                'target' => __('errors.command_target_empty'),
             ]);
         }
 

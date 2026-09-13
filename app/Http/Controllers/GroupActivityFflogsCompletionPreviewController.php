@@ -22,14 +22,14 @@ class GroupActivityFflogsCompletionPreviewController extends Controller
     ): JsonResponse {
         $this->authorize('manageDashboard', [$activity, $group]);
 
-        if (!$activity->canBeCompleted()) {
+        if (! $activity->canBeCompleted()) {
             abort(403);
         }
 
         $activity->loadMissing('activityTypeVersion');
 
-        if (!$completionService->supportsFflogsCompletion($activity->activityTypeVersion)) {
-            abort(422, 'FF Logs completion is not supported for this activity.');
+        if (! $completionService->supportsFflogsCompletion($activity->activityTypeVersion)) {
+            abort(422, __('errors.ff_logs_completion_is_not_supported_for_this_activity'));
         }
 
         $validated = $request->validate([
@@ -49,7 +49,7 @@ class GroupActivityFflogsCompletionPreviewController extends Controller
             ]);
 
             return response()->json([
-                'message' => 'Unable to process this FF Logs report right now.',
+                'message' => __('errors.unable_to_process_this_ff_logs_report_right_now'),
             ], 422);
         }
     }

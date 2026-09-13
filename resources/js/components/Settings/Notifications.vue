@@ -41,7 +41,7 @@ type NotificationGroup = {
 	topics: NotificationTopic[]
 };
 
-const { t } = useI18n();
+const { t, locale } = useI18n();
 const page = usePage();
 const toast = useToast();
 const confirmationModal = useConfirmationModal();
@@ -633,7 +633,7 @@ onUnmounted(() => {
 									linkToken
 										? "settings.notifications.discord_link_token_expires"
 										: "settings.notifications.discord_link_token_active",
-									{ date: linkTokenExpiresAt ? new Date(linkTokenExpiresAt).toLocaleString() : "" },
+									{ date: linkTokenExpiresAt ? new Date(linkTokenExpiresAt).toLocaleString(locale) : "" },
 								) }}
 							</p>
 						</div>

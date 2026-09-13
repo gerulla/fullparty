@@ -79,7 +79,7 @@ class ActivitySlotAssignmentService
 
         if (! $application->selected_character_id) {
             throw ValidationException::withMessages([
-                'application_id' => 'The application must have a selected character before it can be assigned.',
+                'application_id' => __('errors.application_character_required'),
             ]);
         }
 
@@ -89,7 +89,7 @@ class ActivitySlotAssignmentService
             && (int) $sourceSlot->application_review_required_application_id !== (int) $application->id
         ) {
             throw ValidationException::withMessages([
-                'source_slot_id' => 'The source slot does not match the selected application character.',
+                'source_slot_id' => __('errors.source_application_character_mismatch'),
             ]);
         }
 
@@ -101,7 +101,7 @@ class ActivitySlotAssignmentService
 
         if ($conflictingSlot) {
             throw ValidationException::withMessages([
-                'application_id' => 'This character is already assigned to another slot in this run.',
+                'application_id' => __('errors.this_character_is_already_assigned_to_another_slot_in_this_run'),
             ]);
         }
 
@@ -140,7 +140,7 @@ class ActivitySlotAssignmentService
 
             if ($sourceSlot && ! $isSourceBench && $isTargetBench && $targetSlot->assigned_character_id) {
                 throw ValidationException::withMessages([
-                    'slot' => 'Promoting a bench player into a filled roster slot must use the reassignment flow.',
+                    'slot' => __('errors.promoting_a_bench_player_into_a_filled_roster_slot_must_use_the_reassignment_flow'),
                 ]);
             }
 
@@ -355,13 +355,13 @@ class ActivitySlotAssignmentService
 
         if (! $activity) {
             throw ValidationException::withMessages([
-                'slot' => 'The selected slot is not attached to an activity.',
+                'slot' => __('errors.slot_activity_missing'),
             ]);
         }
 
         if ($sourceSlot && (int) $sourceSlot->assigned_character_id !== (int) $character->id) {
             throw ValidationException::withMessages([
-                'source_slot_id' => 'The source slot does not match the selected character.',
+                'source_slot_id' => __('errors.source_character_mismatch'),
             ]);
         }
 
@@ -370,7 +370,7 @@ class ActivitySlotAssignmentService
             && (int) $targetSlot->assigned_character_id !== (int) $character->id
         ) {
             throw ValidationException::withMessages([
-                'slot' => 'Manual assignment is only available for empty slots or the currently assigned manual character.',
+                'slot' => __('errors.manual_assignment_is_only_available_for_empty_slots_or_the_currently_assigned_manual_character'),
             ]);
         }
 
@@ -382,7 +382,7 @@ class ActivitySlotAssignmentService
 
         if ($conflictingSlot) {
             throw ValidationException::withMessages([
-                'character_id' => 'This character is already assigned to another slot in this run.',
+                'character_id' => __('errors.this_character_is_already_assigned_to_another_slot_in_this_run'),
             ]);
         }
 
@@ -393,7 +393,7 @@ class ActivitySlotAssignmentService
 
         if ($activeApplicationExists) {
             throw ValidationException::withMessages([
-                'character_id' => 'This character already has an active application for this run.',
+                'character_id' => __('errors.this_character_already_has_an_active_application_for_this_run'),
             ]);
         }
 
@@ -405,7 +405,7 @@ class ActivitySlotAssignmentService
 
         if ($missingAssignmentExists) {
             throw ValidationException::withMessages([
-                'character_id' => 'This character is currently marked missing for this run and must be restored before being assigned again.',
+                'character_id' => __('errors.this_character_is_currently_marked_missing_for_this_run_and_must_be_restored_before_being_assigned_again'),
             ]);
         }
 
@@ -580,7 +580,7 @@ class ActivitySlotAssignmentService
 
             if ($selectedValue === null || $selectedValue === '' || $selectedValue === []) {
                 throw ValidationException::withMessages([
-                    "field_values.{$fieldValue->field_key}" => 'Please choose a value for every slot field.',
+                    "field_values.{$fieldValue->field_key}" => __('errors.please_choose_a_value_for_every_slot_field'),
                 ]);
             }
 
@@ -600,7 +600,7 @@ class ActivitySlotAssignmentService
 
             if (count($normalizedSelection) === 0) {
                 throw ValidationException::withMessages([
-                    "field_values.{$fieldValue->field_key}" => 'Please choose a value for every slot field.',
+                    "field_values.{$fieldValue->field_key}" => __('errors.please_choose_a_value_for_every_slot_field'),
                 ]);
             }
 
@@ -613,7 +613,7 @@ class ActivitySlotAssignmentService
             foreach ($normalizedSelection as $selection) {
                 if (! in_array($selection, $allowedOptionKeys, true)) {
                     throw ValidationException::withMessages([
-                        "field_values.{$fieldValue->field_key}" => 'Selected slot values must be valid options for this field.',
+                        "field_values.{$fieldValue->field_key}" => __('errors.selected_slot_values_must_be_valid_options_for_this_field'),
                     ]);
                 }
             }
@@ -653,7 +653,7 @@ class ActivitySlotAssignmentService
 
             if ($selectedValue === null || $selectedValue === '' || $selectedValue === []) {
                 throw ValidationException::withMessages([
-                    "field_values.{$fieldValue->field_key}" => 'Please choose a value for every slot field.',
+                    "field_values.{$fieldValue->field_key}" => __('errors.please_choose_a_value_for_every_slot_field'),
                 ]);
             }
 
@@ -671,7 +671,7 @@ class ActivitySlotAssignmentService
                 if (! $choicesIgnoredForField && ! $this->submittedHolsterPairKeys($applicationAnswer?->value)
                     ->contains($this->bozjaHolsterPairService->pairKey($pair))) {
                     throw ValidationException::withMessages([
-                        "field_values.{$fieldValue->field_key}" => 'Selected holster pairs must come from the application.',
+                        "field_values.{$fieldValue->field_key}" => __('errors.selected_holster_pairs_must_come_from_the_application'),
                     ]);
                 }
 
@@ -688,7 +688,7 @@ class ActivitySlotAssignmentService
 
             if (count($normalizedSelection) === 0) {
                 throw ValidationException::withMessages([
-                    "field_values.{$fieldValue->field_key}" => 'Please choose a value for every slot field.',
+                    "field_values.{$fieldValue->field_key}" => __('errors.please_choose_a_value_for_every_slot_field'),
                 ]);
             }
 
@@ -697,7 +697,7 @@ class ActivitySlotAssignmentService
                     throw ValidationException::withMessages([
                         "field_values.{$fieldValue->field_key}" => $choicesIgnoredForField
                             ? $this->ignoredApplicationChoicesValidationMessage($definition)
-                            : 'Selected slot values must come from the application.',
+                            : __('errors.selected_slot_values_must_come_from_the_application'),
                     ]);
                 }
             }
@@ -775,10 +775,10 @@ class ActivitySlotAssignmentService
     private function ignoredApplicationChoicesValidationMessage(array $definition): string
     {
         if ($this->isRaidPositionField($definition)) {
-            return 'Selected raid position values must be valid options for this field.';
+            return __('errors.selected_raid_position_values_must_be_valid_options_for_this_field');
         }
 
-        return 'Selected class and phantom job values must be available to the character.';
+        return __('errors.selected_class_and_phantom_job_values_must_be_available_to_the_character');
     }
 
     /**

@@ -224,5 +224,13 @@
             "title": "インテグレーション配信に失敗しました",
             "body": "{client} が {event} を受信できませんでした。エラー: {error}"
         }
-    }
+    },
+    "designations": {
+        "host": "ホスト",
+        "raid_leader": "レイドリーダー",
+        "duelist": "デュエリスト",
+        "trapper": "トラッパー",
+        "darter": "ダーター"
+    },
+    "system_run_cancelled": "募集が中止されました。"
 }

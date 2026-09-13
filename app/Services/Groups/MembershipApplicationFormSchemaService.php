@@ -51,7 +51,10 @@ final class MembershipApplicationFormSchemaService
             'id' => 'are_you_a_gamer',
             'type' => self::TYPE_TOGGLE,
             'name' => [
-                'en' => 'Are you a gamer?',
+                'en' => __('ui.gamer_question', [], 'en'),
+                'de' => __('ui.gamer_question', [], 'de'),
+                'fr' => __('ui.gamer_question', [], 'fr'),
+                'ja' => __('ui.gamer_question', [], 'ja'),
             ],
             'description' => [],
             'required' => true,

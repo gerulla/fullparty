@@ -81,13 +81,13 @@ class ManagedImageStorage
 
         if (! is_dir($directory) && ! mkdir($directory, 0755, true) && ! is_dir($directory)) {
             throw ValidationException::withMessages([
-                $field => 'Unable to create the destination directory for the downloaded image.',
+                $field => __('errors.unable_to_create_the_destination_directory_for_the_downloaded_image'),
             ]);
         }
 
         if (file_put_contents($absolutePath, $response->body()) === false) {
             throw ValidationException::withMessages([
-                $field => 'Unable to save the downloaded image.',
+                $field => __('errors.unable_to_save_the_downloaded_image'),
             ]);
         }
     }
@@ -98,7 +98,7 @@ class ManagedImageStorage
 
         if ($binary === false) {
             throw ValidationException::withMessages([
-                'image' => 'Unable to read the local image.',
+                'image' => __('errors.unable_to_read_the_local_image'),
             ]);
         }
 
@@ -165,13 +165,13 @@ class ManagedImageStorage
             $response = Http::timeout(15)->get($url);
         } catch (\Throwable $exception) {
             throw ValidationException::withMessages([
-                $field => 'Unable to download image from the provided URL.',
+                $field => __('errors.unable_to_download_image_from_the_provided_url'),
             ]);
         }
 
         if (! $response->successful()) {
             throw ValidationException::withMessages([
-                $field => 'Unable to download image from the provided URL.',
+                $field => __('errors.unable_to_download_image_from_the_provided_url'),
             ]);
         }
 
@@ -179,13 +179,13 @@ class ManagedImageStorage
 
         if (! str_starts_with(strtolower($contentType), 'image/')) {
             throw ValidationException::withMessages([
-                $field => 'The provided URL must point to an image.',
+                $field => __('errors.the_provided_url_must_point_to_an_image'),
             ]);
         }
 
         if (! $this->extensionFromMimeType($contentType)) {
             throw ValidationException::withMessages([
-                $field => 'The image must be a JPG, PNG, GIF, or WEBP file.',
+                $field => __('errors.the_image_must_be_a_jpg_png_gif_or_webp_file'),
             ]);
         }
 
@@ -264,7 +264,7 @@ class ManagedImageStorage
 
         if ($binary === false) {
             throw ValidationException::withMessages([
-                $field => 'Unable to read the uploaded image.',
+                $field => __('errors.unable_to_read_the_uploaded_image'),
             ]);
         }
 
@@ -277,7 +277,7 @@ class ManagedImageStorage
     {
         if (! function_exists('imagecreatefromstring') || ! function_exists('imagewebp')) {
             throw ValidationException::withMessages([
-                $field => 'Image processing is not available on this server.',
+                $field => __('errors.image_processing_is_not_available_on_this_server'),
             ]);
         }
 
@@ -285,7 +285,7 @@ class ManagedImageStorage
 
         if (! $source) {
             throw ValidationException::withMessages([
-                $field => 'The file must be a valid image.',
+                $field => __('errors.the_file_must_be_a_valid_image'),
             ]);
         }
 
@@ -363,7 +363,7 @@ class ManagedImageStorage
 
         if (! $canvas) {
             throw ValidationException::withMessages([
-                $field => 'Unable to process the uploaded image.',
+                $field => __('errors.unable_to_process_the_uploaded_image'),
             ]);
         }
 
@@ -379,7 +379,7 @@ class ManagedImageStorage
             imagedestroy($canvas);
 
             throw ValidationException::withMessages([
-                $field => 'Unable to process the uploaded image.',
+                $field => __('errors.unable_to_process_the_uploaded_image'),
             ]);
         }
 
@@ -402,7 +402,7 @@ class ManagedImageStorage
             imagedestroy($canvas);
 
             throw ValidationException::withMessages([
-                $field => 'Unable to process the uploaded image.',
+                $field => __('errors.unable_to_process_the_uploaded_image'),
             ]);
         }
 
@@ -417,7 +417,7 @@ class ManagedImageStorage
 
         if (! $result || ! is_string($binary) || $binary === '') {
             throw ValidationException::withMessages([
-                $field => 'Unable to save the processed image.',
+                $field => __('errors.unable_to_save_the_processed_image'),
             ]);
         }
 

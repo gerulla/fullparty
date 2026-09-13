@@ -152,7 +152,7 @@ final class QuotaService
             return;
         }
 
-        Log::warning('Quota limit reached.', [
+        Log::warning(__('errors.quota_limit'), [
             'quota_key' => $check->key,
             'subject_type' => $status['scope'],
             'subject_id' => $check->subject->getKey(),

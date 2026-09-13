@@ -497,7 +497,7 @@ watch(activitySummaryModalOpen, (open) => {
 							<div v-if="card.avatarUrl" class="h-10 w-10 shrink-0 overflow-hidden rounded-full border border-primary/40 bg-muted/30 shadow-sm shadow-primary/10 sm:h-12 sm:w-12 xl:h-16 xl:w-16">
 								<img
 									:src="card.avatarUrl"
-									:alt="`${card.displayName} avatar`"
+									:alt="t('general.image_alt.avatar', { name: card.displayName })"
 									class="h-full w-full object-cover"
 									loading="lazy"
 								>
@@ -565,7 +565,7 @@ watch(activitySummaryModalOpen, (open) => {
 								<div v-if="featuredCharacter(card.characters)?.avatar_url" class="h-7 w-7 shrink-0 overflow-hidden border border-default bg-muted/30 sm:h-8 sm:w-8 xl:h-10 xl:w-10">
 									<img
 										:src="featuredCharacter(card.characters)?.avatar_url || undefined"
-										:alt="`${featuredCharacter(card.characters)?.name} avatar`"
+										:alt="t('general.image_alt.avatar', { name: featuredCharacter(card.characters)?.name })"
 										class="h-full w-full object-cover"
 										loading="lazy"
 									>
@@ -812,7 +812,7 @@ watch(activitySummaryModalOpen, (open) => {
 							<div v-if="card.avatarUrl" class="h-20 w-20 overflow-hidden rounded-full border-4 border-default bg-muted/30 shadow-sm">
 								<img
 									:src="card.avatarUrl"
-									:alt="`${card.displayName} avatar`"
+									:alt="t('general.image_alt.avatar', { name: card.displayName })"
 									class="h-full w-full object-cover"
 									loading="lazy"
 								>
@@ -879,7 +879,7 @@ watch(activitySummaryModalOpen, (open) => {
 									<div v-if="character.avatar_url" class="h-8 w-8 shrink-0 overflow-hidden rounded-sm border border-default bg-muted/30">
 										<img
 											:src="character.avatar_url"
-											:alt="`${character.name} avatar`"
+											:alt="t('general.image_alt.avatar', { name: character.name })"
 											class="h-full w-full object-cover"
 											loading="lazy"
 										>

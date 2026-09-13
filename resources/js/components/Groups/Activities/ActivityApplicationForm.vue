@@ -536,7 +536,7 @@ const submit = () => {
 								<img
 									v-if="character.avatar_url"
 									:src="character.avatar_url"
-									:alt="`${character.name} avatar`"
+									:alt="t('general.image_alt.avatar', { name: character.name })"
 									class="guest-search-result__avatar"
 								>
 								<div

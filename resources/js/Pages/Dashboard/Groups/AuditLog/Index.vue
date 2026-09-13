@@ -17,7 +17,7 @@ const props = defineProps<{
 	filters: AuditLogFilterOptions
 }>();
 
-const { t } = useI18n();
+const { t, locale } = useI18n();
 
 const actionOptions = computed(() => [
 	{ label: t('audit_log.filters.any_action'), value: '__all__' },
@@ -42,7 +42,7 @@ const userOptions = computed(() => [
 
 const { withDisplayTimeZone } = useTimeDisplayMode();
 const activityOptions = computed(() => {
-	const formatter = new Intl.DateTimeFormat('en-GB', withDisplayTimeZone({
+	const formatter = new Intl.DateTimeFormat(locale.value, withDisplayTimeZone({
 		day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit', hourCycle: 'h23',
 	}));
 	return [
@@ -50,11 +50,9 @@ const activityOptions = computed(() => {
 		...(props.filters.activities ?? []).map((activity) => {
 			const title = activity.title || t('audit_log.filters.unnamed_activity', { id: activity.value });
 			if (!activity.starts_at) return { value: activity.value, label: title };
-			const parts = Object.fromEntries(formatter.formatToParts(new Date(activity.starts_at))
-				.map(({ type, value }) => [type, value]));
 			return {
 				value: activity.value,
-				label: `${parts.day}-${parts.month}-${parts.year} - ${title} - ${parts.hour}:${parts.minute}`,
+				label: `${formatter.format(new Date(activity.starts_at))} - ${title}`,
 			};
 		}),
 	];

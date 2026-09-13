@@ -66,9 +66,9 @@ class UpdateCharacterRequest extends FormRequest
     public function attributes(): array
     {
         return [
-            'lodestone_id' => 'Lodestone ID',
-            'avatar_url' => 'avatar URL',
-            'datacenter' => 'data center',
+            'lodestone_id' => __('validation.attributes.lodestone_id'),
+            'avatar_url' => __('validation.attributes.avatar_url'),
+            'datacenter' => __('validation.attributes.datacenter'),
         ];
     }
 }

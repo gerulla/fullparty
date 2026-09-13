@@ -23,7 +23,7 @@ class XivPluginBroadcastAuthController extends Controller
 
         if ($activityId === null) {
             throw ValidationException::withMessages([
-                'channel_name' => 'Unsupported XIV plugin channel.',
+                'channel_name' => __('errors.unsupported_xiv_plugin_channel'),
             ]);
         }
 
@@ -61,7 +61,7 @@ class XivPluginBroadcastAuthController extends Controller
         $key = (string) config('broadcasting.connections.reverb.key');
         $secret = (string) config('broadcasting.connections.reverb.secret');
 
-        abort_if(blank($key) || blank($secret), 503, 'Realtime is not configured.');
+        abort_if(blank($key) || blank($secret), 503, __('errors.realtime_is_not_configured'));
 
         $stringToSign = sprintf('%s:%s:%s', $socketId, $channelName, $channelData);
 

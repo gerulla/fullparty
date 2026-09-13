@@ -74,6 +74,16 @@ class ActivityApplication extends Model
         'reviewed_at' => 'datetime',
     ];
 
+    public function localizedReviewReason(): ?string
+    {
+        // Only the system's default cancellation sentence is translated; moderator-written reasons stay intact.
+        if ($this->status === self::STATUS_CANCELLED && $this->review_reason === 'Run cancelled.') {
+            return __('ui.run_cancelled');
+        }
+
+        return $this->review_reason;
+    }
+
     public function activity(): BelongsTo
     {
         return $this->belongsTo(Activity::class);

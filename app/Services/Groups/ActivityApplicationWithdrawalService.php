@@ -44,7 +44,7 @@ class ActivityApplicationWithdrawalService
 
         if (! $activity instanceof Activity || ! $this->applicationCanBeWithdrawn($activity, $application)) {
             throw ValidationException::withMessages([
-                'application' => 'This application cannot be withdrawn.',
+                'application' => __('errors.this_application_cannot_be_withdrawn'),
             ]);
         }
 

@@ -32,7 +32,7 @@ type GroupDiscoveryLookups = {
 }
 
 
-const { t, tm } = useI18n();
+const { t, tm, locale } = useI18n();
 const toast = useToast();
 const page = usePage();
 const self_open = ref(false);
@@ -703,7 +703,7 @@ defineExpose({
 								v-model="form.active_start_time"
 								class="w-full"
 								type="time"
-								lang="en-GB"
+								:lang="locale"
 								step="60"
 								:ui="{ base: 'rounded-none' }"
 								@update:model-value="clearFieldError('active_start_time')"
@@ -719,7 +719,7 @@ defineExpose({
 								v-model="form.active_end_time"
 								class="w-full"
 								type="time"
-								lang="en-GB"
+								:lang="locale"
 								step="60"
 								:ui="{ base: 'rounded-none' }"
 								@update:model-value="clearFieldError('active_end_time')"

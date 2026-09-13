@@ -214,8 +214,8 @@
     "sections": {
       "classes": "Classes",
       "occult": "Occult",
-      "forked_tower_blood": "Forked Tower of Blood",
-      "forked_tower_magic": "Forked Tower of Magic (Extreme)"
+      "forked_tower_blood": "The Forked Tower: Blood",
+      "forked_tower_magic": "The Forked Tower: Magic (Extreme)"
     },
     "forked_tower": {
       "clear_count": "Clear Count",

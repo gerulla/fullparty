@@ -299,7 +299,7 @@ class GroupActivityApplicationController extends Controller
         $validated = $this->validateApplicationPayload($request, $activity, $user?->id);
 
         if ($this->hasExistingApplicationForApplicantLodestoneId($activity, $validated['applicant']['lodestone_id'])) {
-            abort(422, 'An application already exists for this character.');
+            abort(422, __('errors.an_application_already_exists_for_this_character'));
         }
 
         if ($user && isset($validated['selected_character_id'])) {
@@ -432,7 +432,7 @@ class GroupActivityApplicationController extends Controller
             $validated['applicant']['lodestone_id'],
             $application->id,
         )) {
-            abort(422, 'An application already exists for this character.');
+            abort(422, __('errors.an_application_already_exists_for_this_character'));
         }
 
         if (isset($validated['selected_character_id'])) {
@@ -566,7 +566,7 @@ class GroupActivityApplicationController extends Controller
             $validated['applicant']['lodestone_id'],
             $application->id,
         )) {
-            abort(422, 'An application already exists for this character.');
+            abort(422, __('errors.an_application_already_exists_for_this_character'));
         }
 
         $updatedSlots = [];
@@ -873,7 +873,7 @@ class GroupActivityApplicationController extends Controller
             'is_rostered' => $this->applicationWithdrawalService->applicationIsRostered($application),
             'notes' => $application->notes,
             'submitted_at' => $application->submitted_at?->toIso8601String(),
-            'review_reason' => $application->review_reason,
+            'review_reason' => $application->localizedReviewReason(),
             'applicant_character' => $application->applicant_lodestone_id ? [
                 'lodestone_id' => $application->applicant_lodestone_id,
                 'name' => $application->applicant_character_name,
@@ -1043,7 +1043,7 @@ class GroupActivityApplicationController extends Controller
 
             if (! $selectedCharacter || $selectedCharacter->user_id !== $userId) {
                 throw ValidationException::withMessages([
-                    'selected_character_id' => 'The selected character is invalid for this application.',
+                    'selected_character_id' => __('errors.invalid_application_character'),
                 ]);
             }
         }
@@ -1083,7 +1083,7 @@ class GroupActivityApplicationController extends Controller
 
             if ($isEmpty) {
                 throw ValidationException::withMessages([
-                    sprintf('answers.%s', $questionKey) => sprintf('The %s field is required.', $questionKey),
+                    sprintf('answers.%s', $questionKey) => __('validation.required', ['attribute' => $questionKey]),
                 ]);
             }
         }
@@ -1116,7 +1116,7 @@ class GroupActivityApplicationController extends Controller
 
         if ($verifiedCharacterExists) {
             throw ValidationException::withMessages([
-                'guest_applicant.lodestone_id' => 'This character is already claimed by a verified FullParty account.',
+                'guest_applicant.lodestone_id' => __('errors.this_character_is_already_claimed_by_a_verified_fullparty_account'),
             ]);
         }
     }
@@ -1149,7 +1149,7 @@ class GroupActivityApplicationController extends Controller
 
         if ($character->verified_at !== null) {
             throw ValidationException::withMessages([
-                'guest_applicant.lodestone_id' => 'This character is already claimed by a verified FullParty account.',
+                'guest_applicant.lodestone_id' => __('errors.this_character_is_already_claimed_by_a_verified_fullparty_account'),
             ]);
         }
 
@@ -1207,7 +1207,7 @@ class GroupActivityApplicationController extends Controller
         }
 
         throw ValidationException::withMessages([
-            'selected_character_id' => 'This character is already assigned to this run.',
+            'selected_character_id' => __('errors.this_character_is_already_assigned_to_this_run'),
         ]);
     }
 
@@ -1378,7 +1378,7 @@ class GroupActivityApplicationController extends Controller
 
             if ($selectedKeys->contains(fn (string $key) => ! in_array($key, $allowedKeys, true))) {
                 throw ValidationException::withMessages([
-                    "answers.{$questionKey}" => 'The selected holster is not available for this group.',
+                    "answers.{$questionKey}" => __('errors.holster_unavailable'),
                 ]);
             }
         }
@@ -1551,7 +1551,7 @@ class GroupActivityApplicationController extends Controller
 
             if (! $this->answerValueFitsWithinLimit($answer['value'] ?? null, $limit)) {
                 throw ValidationException::withMessages([
-                    "answers.{$questionKey}" => "The {$questionKey} field must not be greater than {$limit} characters.",
+                    "answers.{$questionKey}" => __('validation.max.string', ['attribute' => $questionKey, 'max' => $limit]),
                 ]);
             }
         }

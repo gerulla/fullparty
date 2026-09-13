@@ -16,6 +16,7 @@ use Illuminate\Http\Request;
 use Illuminate\Session\TokenMismatchException;
 use Laravel\Passport\Http\Middleware\CheckToken;
 use Laravel\Passport\Http\Middleware\CheckTokenForAnyScope;
+use Symfony\Component\HttpKernel\Exception\HttpExceptionInterface;
 
 return Application::configure(basePath: dirname(__DIR__))
     ->withRouting(
@@ -50,6 +51,23 @@ return Application::configure(basePath: dirname(__DIR__))
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions): void {
+        $exceptions->render(function (HttpExceptionInterface $exception, Request $request) {
+            // Unmatched routes never reach the web locale middleware.
+            $candidates = [
+                $request->hasSession() ? $request->session()->get('locale') : null,
+                $request->cookie('locale'),
+                $request->segment(1),
+            ];
+            foreach ($candidates as $locale) {
+                if (in_array($locale, ApplyLocale::SUPPORTED_LOCALES, true)) {
+                    app()->setLocale($locale);
+                    break;
+                }
+            }
+
+            return null;
+        });
+
         $isAuthPath = static function (Request $request): bool {
             $segments = array_values(array_filter(explode('/', trim($request->path(), '/'))));
             $firstSegment = $segments[0] ?? null;
@@ -70,7 +88,7 @@ return Application::configure(basePath: dirname(__DIR__))
 
         $exceptions->render(function (AuthenticationException $exception, Request $request) use ($isAuthPath, $rememberIntendedPath) {
             if ($request->expectsJson() || $request->is('api/*')) {
-                return response()->json(['message' => 'Unauthenticated.'], 401);
+                return response()->json(['message' => __('Unauthenticated.')], 401);
             }
 
             if (! $isAuthPath($request)) {

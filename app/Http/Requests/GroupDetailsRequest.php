@@ -38,7 +38,7 @@ abstract class GroupDetailsRequest extends FormRequest
                     }
 
                     if (! $this->isValidDiscordInviteUrl($value)) {
-                        $fail('The discord invite must be a valid Discord invite URL.');
+                        $fail(__('errors.the_discord_invite_must_be_a_valid_discord_invite_url'));
                     }
                 },
             ],

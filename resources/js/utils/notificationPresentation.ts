@@ -1,5 +1,6 @@
 import type { NotificationDisplayMeta, NotificationRecord, NotificationTranslator } from "@/Types/Notifications"
 import { createRelativeTimeFormatter } from "@/utils/dateTimeFormat"
+import { translateCharacterClassName, translatePhantomJobName, translateRaidPositionName } from "@/utils/characterJobTranslations"
 
 const TYPE_META: Record<string, NotificationDisplayMeta> = {
 	'user.settings.notifications_updated': {
@@ -117,12 +118,33 @@ export const resolveNotificationMeta = (notification: NotificationRecord) => {
 	}
 }
 
+const notificationParams = (notification: NotificationRecord, t: NotificationTranslator) => {
+    const params = notification.message_params ? { ...notification.message_params } : {}
+    if (typeof params.class === 'string') {
+        params.class = translateCharacterClassName(t, { name: params.class, shorthand: String(params.class_shorthand ?? '') }, params.class)
+    }
+    if (typeof params.phantom_job === 'string') {
+        params.phantom_job = translatePhantomJobName(t, { name: params.phantom_job }, params.phantom_job)
+    }
+    if (typeof params.position === 'string') {
+        params.position = translateRaidPositionName(t, { key: String(params.position_key ?? ''), name: params.position }, params.position)
+    }
+    const designation = notification.payload?.designation_key
+    if (typeof designation === 'string' && ['host', 'raid_leader', 'duelist', 'trapper', 'darter'].includes(designation)) {
+        params.designation = t(`notifications.designations.${designation}`)
+    }
+    if (notification.payload?.status === 'cancelled' && params.reason === 'Run cancelled.') {
+        params.reason = t('notifications.system_run_cancelled')
+    }
+    return params
+}
+
 export const resolveNotificationTitle = (notification: NotificationRecord, t: NotificationTranslator) => {
 	if (!notification.title_key) {
 		return t('notifications.ui.fallback_title')
 	}
 
-	const params = notification.message_params ? { ...notification.message_params } : {}
+	const params = notificationParams(notification, t)
 
 	return t(notification.title_key, params)
 }
@@ -132,7 +154,7 @@ export const resolveNotificationDescription = (notification: NotificationRecord,
 		return null
 	}
 
-	const params = notification.message_params ? { ...notification.message_params } : {}
+	const params = notificationParams(notification, t)
 	const settings = formatLabelKeyList(params.changed_setting_label_keys, t)
 
 	if (settings) {

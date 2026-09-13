@@ -70,7 +70,7 @@ const acceptInvite = () => {
 					<img
 						v-if="group.profile_picture_url"
 						:src="group.profile_picture_url"
-						:alt="`${group.name} profile picture`"
+						:alt="t('general.image_alt.profile', { name: group.name })"
 						class="h-full w-full object-cover"
 					>
 					<UIcon

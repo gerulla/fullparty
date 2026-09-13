@@ -31,7 +31,7 @@ class ActivityPartyCompositionHintService
 
         if ($slots->isEmpty()) {
             throw ValidationException::withMessages([
-                'group_key' => 'The selected party could not be found.',
+                'group_key' => __('errors.party_missing'),
             ]);
         }
 
@@ -58,7 +58,7 @@ class ActivityPartyCompositionHintService
 
         if ($sourceSlots->isEmpty()) {
             throw ValidationException::withMessages([
-                'source_group_key' => 'The selected source party could not be found.',
+                'source_group_key' => __('errors.source_party_missing'),
             ]);
         }
 
@@ -82,7 +82,7 @@ class ActivityPartyCompositionHintService
 
         if ($targetSlotGroups->isEmpty()) {
             throw ValidationException::withMessages([
-                'source_group_key' => 'No compatible parties are available for these composition hints.',
+                'source_group_key' => __('errors.no_compatible_parties_are_available_for_these_composition_hints'),
             ]);
         }
 
@@ -112,13 +112,13 @@ class ActivityPartyCompositionHintService
 
         if (! $this->slotKind->isMainRoster($slot)) {
             throw ValidationException::withMessages([
-                'slot' => 'Only main roster slots can have composition hints.',
+                'slot' => __('errors.only_main_roster_slots_can_have_composition_hints'),
             ]);
         }
 
         if ($slot->assigned_character_id !== null) {
             throw ValidationException::withMessages([
-                'slot' => 'Composition hints can only be changed on empty slots.',
+                'slot' => __('errors.composition_hints_can_only_be_changed_on_empty_slots'),
             ]);
         }
 
@@ -144,7 +144,7 @@ class ActivityPartyCompositionHintService
     {
         if (! ActivityCompositionPresets::isCompositionKeyValidForPartySize($compositionPresetKey, $partySize)) {
             throw ValidationException::withMessages([
-                'composition_preset_key' => 'The selected composition preset is not valid for this party size.',
+                'composition_preset_key' => __('errors.composition_party_size'),
             ]);
         }
     }

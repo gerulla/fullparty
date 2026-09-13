@@ -68,7 +68,7 @@ const handleCompactTap = () => {
 			<img
 				v-if="characterClass.icon_url"
 				:src="characterClass.icon_url"
-				:alt="`${translatedClassName} icon`"
+				:alt="t('general.image_alt.icon', { name: translatedClassName })"
 				class="size-10 rounded-sm object-contain"
 			>
 			<div
@@ -95,7 +95,7 @@ const handleCompactTap = () => {
 		<img
 			v-if="characterClass.icon_url"
 			:src="characterClass.icon_url"
-			:alt="`${translatedClassName} icon`"
+			:alt="t('general.image_alt.icon', { name: translatedClassName })"
 			class="h-8 w-8 rounded-sm object-contain"
 		>
 		<div

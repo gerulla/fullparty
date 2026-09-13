@@ -249,7 +249,7 @@ class IntegrationUserController extends Controller
             ->first();
 
         if (! $user) {
-            abort(404, 'Discord user is not linked to a FullParty account.');
+            abort(404, __('errors.discord_user_is_not_linked_to_a_fullparty_account'));
         }
 
         return $user;

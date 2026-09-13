@@ -221,7 +221,7 @@ defineExpose({
 				</div>
 				<div v-if="character" class="w-full flex flex-row items-center p-4 border border-muted rounded-sm gap-4">
 					<div class="h-full">
-						<img class="h-18 w-18 rounded-sm" :src="character.avatar" :alt="character.name + ' avatar'">
+						<img class="h-18 w-18 rounded-sm" :src="character.avatar" :alt="t('general.image_alt.avatar', { name: character.name })">
 					</div>
 					<div class="flex flex-col items-start ">
 						<p class="font-bold">{{character.name}}</p>
@@ -314,7 +314,7 @@ defineExpose({
 					</div>
 					<div v-if="character" class="w-full flex flex-row items-center p-4 border border-muted rounded-sm gap-4">
 						<div class="h-full">
-							<img class="h-18 w-18 rounded-sm" :src="character.avatar" :alt="character.name + ' avatar'">
+							<img class="h-18 w-18 rounded-sm" :src="character.avatar" :alt="t('general.image_alt.avatar', { name: character.name })">
 						</div>
 						<div class="flex flex-col items-start ">
 							<p class="font-bold">{{character.name}}</p>

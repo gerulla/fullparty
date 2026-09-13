@@ -76,7 +76,7 @@ const props = defineProps<{
 	}
 }>();
 
-const { t } = useI18n();
+const { t, locale } = useI18n();
 const page = usePage();
 const toast = useToast();
 const confirmationModal = useConfirmationModal();
@@ -132,7 +132,7 @@ const healthcheckBucketClass = (status: HealthcheckBucket['status']) => {
 
 	return 'bg-muted';
 };
-const formatHealthcheckTime = (value: string) => new Date(value).toLocaleString();
+const formatHealthcheckTime = (value: string) => new Date(value).toLocaleString(locale.value);
 const healthcheckBucketTitle = (bucket: HealthcheckBucket) => t('admin.integrations.health_status.bucket_title', {
 	status: t(`admin.integrations.health_status.statuses.${bucket.status}`),
 	checked: bucket.checked,

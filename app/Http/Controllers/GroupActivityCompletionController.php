@@ -39,7 +39,7 @@ class GroupActivityCompletionController extends Controller
                 'max:2000',
                 function (string $attribute, mixed $value, \Closure $fail): void {
                     if (filled($value) && ! $this->isAllowedProgressLink((string) $value)) {
-                        $fail('The progress link must be a valid FF Logs report URL.');
+                        $fail(__('errors.the_progress_link_must_be_a_valid_ff_logs_report_url'));
                     }
                 },
             ],

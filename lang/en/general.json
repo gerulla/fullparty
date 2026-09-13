@@ -60,5 +60,20 @@
   },
   "copied_to_clipboard": "Copied to clipboard!",
   "copied_to_clipboard_short": "Copied!",
-  "copied_to_clipboard_short_timeout": 2000
+  "copied_to_clipboard_short_timeout": 2000,
+  "all_locales": "All languages",
+  "required": "Required",
+  "image_alt": {
+    "avatar": "Avatar of {name}",
+    "icon": "{name} icon",
+    "profile": "Profile picture of {name}",
+    "black_icon": "Black {name} icon",
+    "transparent_icon": "Transparent {name} icon",
+    "flat_icon": "Flat {name} icon",
+    "sprite": "{name} sprite"
+  },
+  "account_completion": {
+    "success_title": "Account setup complete",
+    "success_description": "You have completed all account setup steps."
+  }
 }

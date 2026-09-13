@@ -1,12 +1,18 @@
 <script setup lang="ts">
 import type { LegalSection } from "@/Types/Legal"
+import { computed } from 'vue'
+import { useI18n } from 'vue-i18n'
 
-defineProps<{
+const props = defineProps<{
 	title: string
 	intro: string[]
 	lastUpdated: string
 	sections: LegalSection[]
 }>()
+const { t, locale } = useI18n()
+const updatedDate = computed(() => new Intl.DateTimeFormat(locale.value, {
+    dateStyle: 'long', timeZone: 'UTC',
+}).format(new Date(`${props.lastUpdated}T00:00:00Z`)))
 </script>
 
 <template>
@@ -14,7 +20,7 @@ defineProps<{
 		<div class="space-y-8">
 			<div class="space-y-3">
 				<p class="text-sm font-medium uppercase tracking-[0.18em] text-muted">
-					Last updated {{ lastUpdated }}
+					{{ t('legal.last_updated', { date: updatedDate }) }}
 				</p>
 				<h1 class="text-4xl font-semibold tracking-tight text-highlighted xl:text-5xl">
 					{{ title }}

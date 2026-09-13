@@ -4,6 +4,7 @@ import { useI18n } from 'vue-i18n';
 import type { MemberNotePayload } from '@/Types/Groups';
 import { createDateTimeFormatter } from '@/utils/dateTimeFormat';
 import { memberNotePresentation } from '@/utils/memberNotePresentation';
+import ReportButton from '@/components/Shared/Reports/ReportButton.vue';
 
 const props = defineProps<{
     notes: MemberNotePayload | null
@@ -54,6 +55,7 @@ const date = (value: string | null) => value
                                     </div>
                                 </div>
                                 <div class="flex max-w-full flex-wrap items-center gap-2">
+                                    <ReportButton :target="{ type: 'member_note', id: note.id, label: t('reports.types.member_note') + ' #' + note.id }" />
                                     <UBadge :color="memberNotePresentation(note.severity).color" :class="memberNotePresentation(note.severity).badgeClass" :icon="memberNotePresentation(note.severity).icon" variant="subtle" :label="t(`groups.members.notes.severities.${note.severity}`)" />
                                     <UBadge v-if="section.key === 'current_group' && note.is_shared_with_groups" color="secondary" variant="soft" icon="i-lucide-globe" :label="t('general.shared')" />
                                 </div>

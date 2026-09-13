@@ -3,6 +3,7 @@ import type { GroupDashboardGroup } from "@/Types/Groups";
 import { computed } from "vue";
 import { useI18n } from "vue-i18n";
 import GroupDashboardActionButtons from "@/components/Groups/GroupDashboardActionButtons.vue";
+import ReportButton from '@/components/Shared/Reports/ReportButton.vue';
 
 const props = defineProps<{
 	group: GroupDashboardGroup
@@ -44,8 +45,9 @@ const titleStyle = computed(() => {
 		<div class="absolute inset-0 bg-gradient-to-r from-neutral-950 via-neutral-950/72 to-neutral-950/18" />
 		<div class="absolute inset-0 bg-gradient-to-t from-neutral-950 via-transparent to-neutral-950/18" />
 
+		<div class="absolute right-4 top-4 z-10 sm:right-6 sm:top-6"><ReportButton :target="{ type: 'group', id: group.id, label: group.name }" class="bg-black/45 text-white ring-white/30 hover:bg-black/65" /></div>
 		<div class="relative flex h-full flex-col items-start justify-between gap-4 p-4 sm:p-6 lg:flex-row lg:gap-6 lg:p-8">
-			<div class="max-w-3xl pb-4 sm:pb-5 lg:pb-6">
+			<div class="max-w-3xl pb-4 pr-24 sm:pb-5 lg:pb-6">
 				<p class="text-[11px] uppercase tracking-[0.22em] text-brand-200/80">
 					{{ groupTypeLabel }}
 				</p>

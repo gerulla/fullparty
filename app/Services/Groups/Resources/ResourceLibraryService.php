@@ -68,7 +68,7 @@ class ResourceLibraryService
 
     public function publicUrl(GroupResource $resource): ?string
     {
-        if (! $this->isPublic($resource->group) || $resource->status !== 'published' || ! $resource->published_revision_id || $resource->access_level !== 'everyone') {
+        if ($resource->moderation_hidden_at || ! $this->isPublic($resource->group) || $resource->status !== 'published' || ! $resource->published_revision_id || $resource->access_level !== 'everyone') {
             return null;
         }
 

@@ -72,6 +72,9 @@ class ResourceImageService
 
     public function canRead(GroupResourceImage $image, ?User $user, bool $public): bool
     {
+        if ($image->moderation_hidden_at) {
+            return false;
+        }
         $group = Group::findOrFail($image->group_id);
         if (! $group->featureEnabled('resource_hub_enabled')) {
             return false;
@@ -92,6 +95,7 @@ class ResourceImageService
 
     public function response(GroupResourceImage $image): StreamedResponse
     {
+        abort_if($image->moderation_hidden_at, 404);
         abort_unless(Storage::disk(config('group_resources.disk'))->exists($image->path), 404);
 
         return Storage::disk(config('group_resources.disk'))->response($image->path, $image->uuid.'.'.pathinfo($image->path, PATHINFO_EXTENSION), [

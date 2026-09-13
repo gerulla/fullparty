@@ -4,6 +4,7 @@ import { useI18n } from 'vue-i18n'
 import type { ResourceImagesController } from '@/Types/ResourceImages'
 import { formatBytes } from '@/utils/formatBytes'
 import ConfirmationModal from '@/components/Shared/Modals/ConfirmationModal.vue'
+import ReportButton from '@/components/Shared/Reports/ReportButton.vue'
 const props = defineProps<{ images: ResourceImagesController }>()
 const { t, locale } = useI18n()
 const l = (key: string) => t(`groups.resources.uploads.${key}`)
@@ -19,7 +20,7 @@ async function remove() { const success = await props.images.remove(); if (succe
 <template>
     <aside class="min-w-0 p-4">
         <form v-if="image" class="space-y-5" @submit.prevent="images.save(image, form)">
-            <h2 class="text-base font-semibold">{{ l('details') }}</h2>
+            <div class="flex flex-wrap items-center justify-between gap-2"><h2 class="text-base font-semibold">{{ l('details') }}</h2><ReportButton :target="{ type: 'upload', id: image.id, label: image.name }" label-key="reports.report_image" /></div>
             <a :href="image.url" target="_blank" rel="noopener noreferrer" class="flex aspect-[4/3] items-center justify-center overflow-hidden bg-muted" :aria-label="w('preview')"><img :src="image.url" :alt="image.alt_text" class="size-full object-contain" /></a>
             <div class="flex flex-wrap items-center gap-2"><UBadge color="neutral" variant="soft">{{ image.mime_type.split('/').pop()?.toUpperCase() }}</UBadge><UBadge :color="image.in_use ? 'info' : 'neutral'" variant="soft">{{ image.in_use ? l('in_use') : l('unused') }}</UBadge></div>
             <dl class="grid grid-cols-[auto_minmax(0,1fr)] gap-x-4 gap-y-2 text-sm"><dt class="text-muted">{{ l('dimensions') }}</dt><dd>{{ image.width }} &times; {{ image.height }}</dd><dt class="text-muted">{{ l('size') }}</dt><dd>{{ formatBytes(image.size_bytes, locale) }}</dd><dt class="text-muted">{{ l('uploaded_by') }}</dt><dd class="break-words">{{ image.uploader || w('none') }}</dd><dt class="text-muted">{{ l('uploaded_at') }}</dt><dd>{{ new Date(image.created_at).toLocaleDateString(locale) }}</dd></dl>

@@ -9,6 +9,7 @@ use App\Http\Controllers\AdminDiscordGuildIntegrationController;
 use App\Http\Controllers\AdminFflogsPlaygroundController;
 use App\Http\Controllers\AdminQuotaController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\BannedAccountController;
 use App\Http\Controllers\SocialAccountLinkController;
 use App\Http\Controllers\BozjaItemController;
 use App\Http\Controllers\Calculator\CalculatorCatalogController;
@@ -409,6 +410,9 @@ Route::prefix('{locale?}')
 
         Route::post('/locale', [LocaleController::class, 'update'])->name('locale.update');
 
+        Route::get('/account/banned', BannedAccountController::class)
+            ->middleware('auth')->name('account.banned');
+
         /*
         |--------------------------------------------------------------------------
         | Authenticated And Verified Application Surface
@@ -416,6 +420,7 @@ Route::prefix('{locale?}')
         */
 
         Route::middleware(['auth', 'verified'])->group(function () {
+            require __DIR__.'/reports.php';
             /*
             |--------------------------------------------------------------------------
             | Home
@@ -761,6 +766,7 @@ Route::prefix('{locale?}')
             */
 
             Route::prefix('admin')->group(function () {
+                Route::get('/', [AdminController::class, 'index'])->middleware('admin')->name('admin.index');
                 // Admin dashboards and audit surfaces.
                 Route::get('/character-data', [AdminController::class, 'characterData'])->name('admin.character-data');
                 Route::get('/audit-log', [AdminController::class, 'auditLog'])->name('admin.audit-log');

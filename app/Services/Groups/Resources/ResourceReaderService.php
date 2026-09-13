@@ -13,6 +13,7 @@ use App\Models\User;
 use App\Policies\GroupResourcePolicy;
 use App\Services\RichText\MarkdownGuideConverter;
 use App\Services\RichText\RichTextDocument;
+use App\Support\ReportUrl;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -24,6 +25,7 @@ class ResourceReaderService
 
     public function query(Group $group, ?User $user, bool $public = false, bool $manage = false): Builder
     {
+        abort_if($public && $manage, 403);
         if ($public) {
             abort_unless($this->libraries->isPublic($group), 404);
             $levels = ['everyone'];
@@ -35,7 +37,7 @@ class ResourceReaderService
 
         $this->holsters->synchronize($group);
 
-        return GroupResource::where('group_id', $group->id)->withAvailableSource()->with('holster')
+        return GroupResource::where('group_id', $group->id)->withAvailableSource(includeHidden: $manage)->with('holster')
             ->whereIn($manage ? 'management_access_level' : 'access_level', $levels)
             ->when(! $manage, fn ($q) => $q->where('status', 'published')->whereNotNull('published_revision_id'));
     }
@@ -185,13 +187,14 @@ class ResourceReaderService
         $level = array_search($resource->access_level, GroupResource::ACCESS_LEVELS, true);
         $editors = $resource->revisions()->where('state', 'published')->get(['editor_user_id', 'editor', 'snapshot'])->filter(fn ($revision) => array_search($revision->snapshot['access_level'], GroupResource::ACCESS_LEVELS, true) <= $level)->unique('editor_user_id')->pluck('editor')->values();
 
-        $images = GroupResourceImage::where('group_id', $resource->group_id)->whereIn('uuid', $snapshot['image_ids'] ?? [])->get(['uuid', 'width', 'height', 'mime_type', 'alt_text', 'caption'])->map(fn ($image) => $image->toArray() + ['url' => '/resource-assets/'.$image->uuid]);
+        $images = GroupResourceImage::where('group_id', $resource->group_id)->whereNull('moderation_hidden_at')->whereIn('uuid', $snapshot['image_ids'] ?? [])->get(['id', 'uuid', 'width', 'height', 'mime_type', 'alt_text', 'caption'])->map(fn ($image) => $image->toArray() + ['url' => '/resource-assets/'.$image->uuid, 'report_url' => ReportUrl::for('upload', $image->id)]);
         $public = $request->routeIs('public-resources.*');
         $linked = $this->query($resource->group, $public ? null : $request->user(), $public)->whereIn('uuid', $this->links->ids($snapshot['body']))->with('publishedRevision')->get();
 
         return (new ResourceSummaryResource($resource))->resolve($request)
             + ($resource->holster_id ? $this->holsters->presentation($resource, $request->user(), $public) : []) + [
                 'body' => $snapshot['body'], 'body_html' => $this->documents->html($snapshot['body'], resourceBlocks: true), 'images' => $images, 'editors' => $editors,
+                'report_url' => ReportUrl::for($resource->holster_id ? 'holster' : 'resource', $resource->holster_id ?? $resource->id),
                 'linked_resources' => ResourceSummaryResource::collection($linked)->resolve($request),
                 'related_resources' => $this->related($resource->group, $resource->collection_id, $request, $public, $resource->id), 'public_url' => $this->libraries->publicUrl($resource),
                 'history' => $this->history->preview($resource, $request),
@@ -222,10 +225,11 @@ class ResourceReaderService
     {
         abort_unless((int) $resource->group_id === (int) $group->id, 404);
         abort_unless($this->policy->manage($user, $resource), 403);
-        abort_unless(GroupResource::whereKey($resource->id)->withAvailableSource()->exists(), 404);
+        abort_unless(GroupResource::whereKey($resource->id)->withAvailableSource(includeHidden: true)->exists(), 404);
         $resource->load(['publishedRevision', 'latestRevision', 'holster']);
 
         return $resource->only(['id', 'uuid', 'holster_id', 'is_home', 'is_pinned', 'collection_id', 'slug', 'status', 'version', 'sort_order', 'updated_at', 'editing_user_id', 'editing_expires_at']) + [
+            'moderation_hidden' => (bool) ($resource->moderation_hidden_at || $resource->holster?->moderation_hidden_at),
             'has_unpublished_changes' => $this->publication->hasChanges($resource),
             'can_publish' => $this->publication->canPublish($resource),
             'inherited_body_html' => $resource->holster_id && is_string($resource->holster?->guide)
@@ -245,6 +249,7 @@ class ResourceReaderService
                 $snapshot = app(ResourceHolsterContent::class)->inherit($resource, $resource->working_copy ?? $resource->publishedRevision?->snapshot ?? []);
 
                 return $resource->only(['id', 'uuid', 'holster_id', 'is_home', 'is_pinned', 'collection_id', 'slug', 'status', 'version', 'sort_order', 'updated_at']) + [
+                    'moderation_hidden' => (bool) ($resource->moderation_hidden_at || $resource->holster?->moderation_hidden_at),
                     'has_unpublished_changes' => $this->publication->hasChanges($resource),
                     'can_publish' => $this->publication->canPublish($resource),
                     'reader_urls' => $this->readerUrls($group, $resource),
@@ -284,7 +289,7 @@ class ResourceReaderService
 
     private function readerUrls(Group $group, GroupResource $resource): ?array
     {
-        if ($resource->status !== 'published' || ! $resource->published_revision_id) {
+        if ($resource->moderation_hidden_at || $resource->holster?->moderation_hidden_at || $resource->status !== 'published' || ! $resource->published_revision_id) {
             return null;
         }
         // Reader links use live access and slugs, never unpublished editor metadata.

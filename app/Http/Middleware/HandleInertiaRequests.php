@@ -66,6 +66,17 @@ class HandleInertiaRequests extends Middleware
      */
     public function share(Request $request): array
     {
+        if ($request->routeIs('account.banned')) {
+            return array_merge(parent::share($request), [
+                'auth' => ['user' => $request->user() ? ['id' => $request->user()->id] : null],
+                'locale' => [
+                    'current' => app()->getLocale(),
+                    'fallback' => config('app.fallback_locale'),
+                    'available' => ApplyLocale::SUPPORTED_LOCALES,
+                ],
+            ]);
+        }
+
         if ($request->routeIs('public-resources.*')) {
             Inertia::flushShared();
 

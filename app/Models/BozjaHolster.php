@@ -14,6 +14,15 @@ class BozjaHolster extends Model
 {
     use HasFactory;
 
+    protected static function booted(): void
+    {
+        static::saving(function (self $holster) {
+            if ($holster->moderation_hidden_at) {
+                $holster->is_active = false;
+            }
+        });
+    }
+
     public const DEFAULT_MAX_CAPACITY = 99;
 
     public const MAX_CAPACITY = 99;
@@ -112,6 +121,9 @@ class BozjaHolster extends Model
 
     public function localizedName(?string $locale = null): ?string
     {
+        if ($this->moderation_hidden_at) {
+            return __('reports.hidden_content', [], $locale);
+        }
         $names = array_filter($this->name ?? [], fn ($name) => filled($name));
         $locale ??= app()->getLocale();
         $name = $names[$locale] ?? $names['en'] ?? reset($names);

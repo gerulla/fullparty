@@ -15,6 +15,9 @@ import ResourceReaderSidebar from './ResourceReaderSidebar.vue'
 import ResourceReaderHistory from './ResourceReaderHistory.vue'
 import ResourceReaderCommands from './ResourceReaderCommands.vue'
 import ResourceTableOfContents from './ResourceTableOfContents.vue'
+import ReportButton from '@/components/Shared/Reports/ReportButton.vue'
+import ResourceImageViewerModal from './ResourceImageViewerModal.vue'
+import type { ResourceReaderImage } from '@/Types/ResourceImages'
 
 const props = withDefaults(defineProps<ResourceReaderPage & { publicView?: boolean }>(), { publicView: false })
 const { t } = useI18n()
@@ -35,6 +38,17 @@ const sidebar = computed(() => ({
 }))
 const hasRows = computed(() => sections.value.some(section => section.resources.length))
 const readingResource = computed(() => article.value || (showHome.value ? props.resource : null))
+const selectedImage = ref<ResourceReaderImage | null>(null)
+const imageOpen = ref(false)
+function openImage(uuid: string) {
+    selectedImage.value = readingResource.value?.images.find(image => image.uuid === uuid) ?? null
+    imageOpen.value = Boolean(selectedImage.value)
+}
+function onContentClick(event: MouseEvent) {
+    if (!(event.target instanceof HTMLImageElement) || event.target.closest('a, button')) return
+    const image = readingResource.value?.images.find(image => event.target instanceof HTMLImageElement && new URL(image.url, window.location.origin).href === event.target.src)
+    if (image) openImage(image.uuid)
+}
 const contentExtensions = resourceContentExtensions()
 provide(resourceContentKey, { resources: computed(() => readingResource.value?.linked_resources ?? []), href: navigation.resource })
 const outline = computed(() => readingResource.value ? resourceOutline(readingResource.value.body) : null)
@@ -81,20 +95,23 @@ const { activeId } = useResourceContents(() => contentRoot.value, () => contents
         </details>
         <div class="grid min-w-0 gap-8 pt-6 lg:grid-cols-[minmax(0,1fr)_16rem]" :class="readingResource ? 'xl:grid-cols-[10rem_minmax(0,1fr)_14rem]' : 'xl:gap-10'">
             <aside v-if="readingResource" class="hidden min-w-0 xl:block"><ResourceTableOfContents :sections="contents" :active-id="activeId" class="sticky top-6 max-h-[calc(100vh-3rem)] overflow-y-auto" /></aside>
-            <main ref="contentRoot" class="resource-reader-content min-w-0">
+            <main ref="contentRoot" class="resource-reader-content min-w-0" @click="onContentClick">
                 <details v-if="readingResource" class="mb-6 border-b border-default pb-4 xl:hidden">
                     <summary class="flex cursor-pointer items-center gap-2 text-sm font-medium text-muted"><UIcon name="i-lucide-list" class="size-4" />{{ t('groups.resources.reader.contents') }}<UIcon name="i-lucide-chevron-down" class="ml-auto size-4" /></summary>
                     <ResourceTableOfContents :sections="contents" :active-id="activeId" :show-title="false" class="pt-4" />
                 </details>
                 <template v-if="article">
-                    <ResourceReaderArticle :resource="article" :document="outline?.document" :activities="reader.activities" @tag="hub.visit(1, $event)" />
+                    <ResourceReaderArticle :resource="article" :document="outline?.document" :activities="reader.activities" @tag="hub.visit(1, $event)" @image="openImage" />
                     <ResourceReaderCommands :commands="article.commands ?? []" />
                     <ResourceReaderHistory v-if="article.source_type !== 'holster'" :resource="article" :history-url="navigation.history(article)" />
                     <div class="mt-8 border-t border-default pt-5"><Link :href="navigation.home.value" class="inline-flex items-center gap-2 text-sm text-primary hover:underline"><UIcon name="i-lucide-arrow-left" class="size-4" />{{ t('groups.resources.reader.back_to_library') }}</Link></div>
                 </template>
                 <template v-else>
                     <section v-if="showHome && resource" class="resource-home mb-8 border-b border-default pb-6">
-                        <h2 class="mb-4 break-words text-xl font-semibold text-highlighted">{{ resource.title }}</h2>
+                        <div class="mb-4 flex flex-wrap items-start justify-between gap-3">
+                            <h2 class="min-w-0 flex-1 break-words text-xl font-semibold text-highlighted">{{ resource.title }}</h2>
+                            <ReportButton :target="{ type: 'resource', id: resource.id, label: resource.title }" :entry-url="resource.report_url" />
+                        </div>
                         <RichTextReader :document="outline?.document ?? resource.body" :additional-extensions="contentExtensions" />
                         <ResourceReaderCommands :commands="resource.commands ?? []" />
                         <ResourceReaderHistory :resource="resource" :history-url="navigation.history(resource)" />
@@ -120,6 +137,7 @@ const { activeId } = useResourceContents(() => contentRoot.value, () => contents
             </main>
             <aside class="hidden min-w-0 border-l border-default pl-6 lg:block xl:pl-8"><ResourceReaderSidebar v-bind="sidebar" /></aside>
         </div>
+        <ResourceImageViewerModal v-model:open="imageOpen" :image="selectedImage" />
     </section>
 </template>
 

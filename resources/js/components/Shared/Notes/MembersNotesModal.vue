@@ -6,6 +6,7 @@ import { ref, watch } from "vue";
 import { useI18n } from "vue-i18n";
 import { useMemberNotes } from "@/composables/useMemberNotes";
 import { createDateTimeFormatter } from "@/utils/dateTimeFormat";
+import ReportButton from '@/components/Shared/Reports/ReportButton.vue';
 
 const props = defineProps<{
 	notes: ReturnType<typeof useMemberNotes>
@@ -80,6 +81,9 @@ const severityBorderClass = (severity: MemberNote['severity']) => memberNotePres
 		:ui="{ content: 'rounded-sm max-w-6xl', header: 'border-0 sm:px-6 sm:pt-6', body: 'sm:px-6 sm:pb-6' }"
 		@update:open="handleNotesModalOpenChange"
 	>
+		<template #actions>
+			<ReportButton v-if="member?.can_report_profile" :target="{ type: 'profile', id: member.id, label: member.name }" label-key="reports.report_profile" />
+		</template>
 		<template #body>
 			<div v-if="isLoading" class="flex flex-col gap-6">
 				<div class="flex flex-wrap items-center gap-2">
@@ -253,6 +257,7 @@ const severityBorderClass = (severity: MemberNote['severity']) => memberNotePres
 												</div>
 											</div>
 											<div class="flex flex-wrap items-center gap-2">
+												<ReportButton :target="{ type: 'member_note', id: note.id, label: t('reports.types.member_note') + ' #' + note.id }" />
 												<UBadge
 													:label="severityBadge(note.severity).label"
 													:color="severityBadge(note.severity).color"
@@ -494,6 +499,7 @@ const severityBorderClass = (severity: MemberNote['severity']) => memberNotePres
 													{{ t('groups.members.notes.shared_from', { author: note.author?.name ?? t('audit_log.defaults.system'), date: formatDate(note.created_at) }) }}
 												</p>
 											</div>
+											<ReportButton :target="{ type: 'member_note', id: note.id, label: t('reports.types.member_note') + ' #' + note.id }" />
 											<UBadge
 												:label="severityBadge(note.severity).label"
 												:color="severityBadge(note.severity).color"

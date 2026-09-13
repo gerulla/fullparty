@@ -9,6 +9,7 @@ use App\Models\IntegrationClient;
 use App\Models\User;
 use App\Policies\GroupActivityPolicy;
 use App\Services\Groups\Resources\ResourceHolsterContent;
+use App\Services\Moderation\GuestReportIdentity;
 use App\Support\Localization\JsonGroupTranslationLoader;
 use App\Support\Passport\XivPluginAuthorizationServerFactory;
 use App\Support\SeedData\ActivityLocalizationCatalog;
@@ -190,6 +191,18 @@ class AppServiceProvider extends ServiceProvider
             Limit::perMinute(10)->by('minute:user:'.$request->user()->id),
             Limit::perHour(30)->by('hour:user:'.$request->user()->id),
         ]);
+        RateLimiter::for('reports.submit', fn (Request $request) => [
+            Limit::perMinute(5)->by('minute:'.$request->user()->id),
+            Limit::perDay(30)->by('day:'.$request->user()->id),
+        ]);
+        RateLimiter::for('reports.guest', function (Request $request) {
+            $identity = app(GuestReportIdentity::class)->fingerprint($request);
+
+            return [
+                Limit::perMinute(3)->by('minute:'.$identity),
+                Limit::perDay(10)->by('day:'.$identity),
+            ];
+        });
 
         RateLimiter::for('group.content.write', function (Request $request) {
             $group = $request->route('group');

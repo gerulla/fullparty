@@ -88,6 +88,11 @@ class ResourceCommandService
                 continue;
             }
             $image = GroupResourceImage::where('group_id', $command->group_id)->where('uuid', $id)->firstOrFail();
+            if ($image->moderation_hidden_at) {
+                unset($embed[$key]);
+
+                continue;
+            }
             $filename = $id.'.'.pathinfo($image->path, PATHINFO_EXTENSION);
             $assets[$id] = ['id' => $id, 'filename' => $filename, 'mime_type' => $image->mime_type, 'url' => route('api.integrations.resource-commands.images.show', ['discordGuildId' => $guildId, 'commandName' => $command->name, 'image' => $id])];
             $embed[$key] = ['url' => 'attachment://'.$filename];

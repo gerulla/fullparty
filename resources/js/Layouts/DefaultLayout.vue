@@ -4,6 +4,7 @@ import CTopbar from "@/components/Navigation/CTopbar.vue";
 import ViewportBreakpointIndicator from "@/components/Navigation/ViewportBreakpointIndicator.vue";
 import DashboardFooter from "@/components/DashboardFooter.vue";
 import GroupNavigation from "@/components/Groups/GroupNavigation.vue";
+import AdminNavigation from "@/components/Admin/AdminNavigation.vue";
 import SystemBanner from "@/components/SystemBanner.vue";
 import WelcomeOnboardingModal from "@/components/Home/WelcomeOnboardingModal.vue";
 import { usePage } from '@inertiajs/vue3'
@@ -25,6 +26,7 @@ const activityOverviewComponents = [
 ]
 const isGroupActivityOverviewPage = computed(() => activityOverviewComponents.includes(page.component))
 const isResourceManagementPage = computed(() => page.component === 'Dashboard/Groups/Resources/Manage')
+const showAdminNavigation = computed(() => Boolean(page.props.auth?.user?.is_admin) && page.component.startsWith('Admin/'))
 const showGroupNavigation = computed(() => {
 	if (currentGroup.value === null) {
 		return false
@@ -87,8 +89,9 @@ defineProps({
 							:banner="systemBanner"
 						/>
 						<CTopbar :title="title" />
+						<AdminNavigation v-if="showAdminNavigation" />
 						<GroupNavigation
-							v-if="showGroupNavigation"
+							v-else-if="showGroupNavigation"
 							:group="currentGroup"
 						/>
 					</template>

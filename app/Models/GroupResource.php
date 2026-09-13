@@ -46,10 +46,12 @@ class GroupResource extends Model
         return $this->belongsTo(BozjaHolster::class, 'holster_id');
     }
 
-    public function scopeWithAvailableSource(Builder $query): void
+    public function scopeWithAvailableSource(Builder $query, bool $includeHidden = false): void
     {
+        $query->when(! $includeHidden, fn ($visible) => $visible->whereNull('group_resources.moderation_hidden_at'));
         $query->where(fn ($source) => $source->whereNull('holster_id')->orWhere(fn ($linked) => $linked
-            ->whereHas('holster', fn ($holster) => $holster->where('is_active', true)->whereColumn('bozja_holsters.group_id', 'group_resources.group_id'))
+            ->whereHas('holster', fn ($holster) => $holster->whereColumn('bozja_holsters.group_id', 'group_resources.group_id')
+                ->where(fn ($state) => $state->where('is_active', true)->when($includeHidden, fn ($hidden) => $hidden->orWhereNotNull('moderation_hidden_at'))))
             ->whereExists(fn ($library) => $library->selectRaw('1')->from('group_resource_libraries')
                 ->whereColumn('group_resource_libraries.group_id', 'group_resources.group_id')->whereNotNull('holster_collection_id'))));
     }

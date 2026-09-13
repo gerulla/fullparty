@@ -65,9 +65,9 @@ const items = computed(() => [
                 <div class="hidden w-full pt-6 text-xs sm:block"><slot name="metadata" /></div>
             </template>
             <template #content="{ item }">
-                <header class="mb-5 flex items-center justify-between gap-3">
+                <header class="mb-5 flex flex-wrap items-center justify-between gap-3">
                     <h2 class="text-base font-medium text-highlighted">{{ item.value === 'application' ? t('groups.activities.management.queue.modal.inspector.application') : item.label }}</h2>
-                    <UButton class="hidden sm:inline-flex" icon="i-lucide-x" color="neutral" variant="ghost" :aria-label="t('general.close')" :title="t('general.close')" @click="$emit('close')" />
+                    <div class="ml-auto flex items-center gap-2"><slot name="actions" :section="item.value" /><UButton class="hidden sm:inline-flex" icon="i-lucide-x" color="neutral" variant="ghost" :aria-label="t('general.close')" :title="t('general.close')" @click="$emit('close')" /></div>
                 </header>
                 <slot :name="item.value" />
             </template>

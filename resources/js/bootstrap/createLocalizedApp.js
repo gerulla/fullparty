@@ -13,7 +13,7 @@ import jaLoading from '../../../lang/ja/loading.json'
 // These two tiny messages must remain available when network requests for page dictionaries fail.
 const loadingMessages = { en: enLoading, de: deLoading, fr: frLoading, ja: jaLoading }
 
-export async function createLocalizedApp({ pages, translations, application = 'main', loadDefaultLayout, plugins = [], title, progress }) {
+export async function createLocalizedApp({ pages, translations, application = 'main', loadDefaultLayout, plugins = [], rootComponents = [], title, progress }) {
     const initialPage = getInitialPageFromDOM('app', false)
     const initialLocale = normalizeLocale(initialPage.props.locale?.current)
     const i18n = createI18n({ legacy: false, locale: initialLocale, fallbackLocale: 'en', messages: {} })
@@ -33,7 +33,7 @@ export async function createLocalizedApp({ pages, translations, application = 'm
         return await createInertiaApp({
             page: initialPage, resolve, title, progress,
             setup({ el, App, props, plugin }) {
-                const app = createApp({ render: () => h(App, props) }).use(plugin).use(ui).use(i18n)
+                const app = createApp({ render: () => [h(App, props), ...rootComponents.map(component => h(component))] }).use(plugin).use(ui).use(i18n)
                 for (const extra of plugins) app.use(extra)
                 app.mount(el)
             },

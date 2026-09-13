@@ -7,6 +7,7 @@ import { route } from "ziggy-js";
 import { useConfirmationModal } from "@/composables/useConfirmationModal";
 import GroupNotificationPreferencesModal from "@/components/Groups/GroupNotificationPreferencesModal.vue";
 import { groupNotificationIcon } from "@/utils/groupNotifications";
+import ReportButton from '@/components/Shared/Reports/ReportButton.vue';
 
 const GroupDiscoveryInfoTab = defineAsyncComponent(() => import("@/components/Groups/GroupDiscoveryInfoTab.vue"));
 const GroupDiscoveryActivityTab = defineAsyncComponent(() => import("@/components/Groups/GroupDiscoveryActivityTab.vue"));
@@ -236,6 +237,7 @@ const openNotificationPreferences = () => {
 				<div v-else-if="group" class="flex h-full min-h-0 flex-col">
 					<div class="sticky top-0 z-20 shrink-0 bg-default">
 						<div class="relative h-44 overflow-hidden border-b border-default bg-neutral-950">
+							<div v-if="!loading" class="absolute right-4 top-4 z-10"><ReportButton :target="{ type: 'group', id: group.id, label: group.name }" class="bg-black/45 text-white ring-white/30 hover:bg-black/65" /></div>
 							<img
 								:src="bannerUrl"
 								:alt="group.name"

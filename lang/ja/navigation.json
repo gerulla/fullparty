@@ -1,4 +1,12 @@
 {
+  "admin_panel": {
+    "title": "管理パネル",
+    "description": "モデレーション、コミュニティ設定、ゲームデータ、外部連携を管理します。",
+    "overview": "概要",
+    "moderation": "モデレーション",
+    "content_data": "コンテンツ・データ",
+    "community": "コミュニティ"
+  },
     "sidebar": {
         "dashboard": "ホーム",
         "runs": "ラン",

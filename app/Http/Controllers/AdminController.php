@@ -21,6 +21,13 @@ use Inertia\Response;
 
 class AdminController extends Controller
 {
+    public function index(): Response
+    {
+        $this->authorizeAdminAccess();
+
+        return Inertia::render('Admin/Index');
+    }
+
     /**
      * Display the consolidated character data admin page.
      */

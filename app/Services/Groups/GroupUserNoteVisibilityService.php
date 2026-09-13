@@ -9,6 +9,31 @@ use Illuminate\Support\Collection;
 
 class GroupUserNoteVisibilityService
 {
+    public function canViewNote(GroupUserNote $note, User $viewer): bool
+    {
+        if ($note->user_id === $viewer->id) {
+            return false;
+        }
+        if (! $note->group->isBanned($viewer->id) && $note->group->hasModeratorAccess($viewer->id)) {
+            return true;
+        }
+        if (! $note->is_shared_with_groups) {
+            return false;
+        }
+
+        // Shared notes appear only when reviewing a member, banned member, or applicant
+        // in another group the viewer moderates. Knowing a note ID grants no access.
+        return Group::query()
+            ->where(fn ($query) => $query->where('owner_id', $viewer->id)
+                ->orWhereHas('memberships', fn ($memberships) => $memberships->where('user_id', $viewer->id)->whereIn('role', ['admin', 'moderator'])))
+            ->whereDoesntHave('bans', fn ($bans) => $bans->where('user_id', $viewer->id))
+            ->where(fn ($query) => $query->where('owner_id', $note->user_id)
+                ->orWhereHas('memberships', fn ($memberships) => $memberships->where('user_id', $note->user_id))
+                ->orWhereHas('bans', fn ($bans) => $bans->where('user_id', $note->user_id))
+                ->orWhereHas('activities.applications', fn ($applications) => $applications->where('user_id', $note->user_id)))
+            ->exists();
+    }
+
     /**
      * @return array{group_notes_by_user_id: Collection<int, Collection<int, GroupUserNote>>, shared_notes_by_user_id: Collection<int, Collection<int, GroupUserNote>>}
      */

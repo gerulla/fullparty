@@ -14,7 +14,7 @@
 .rich-text-content .ProseMirror-selectednode { outline: 2px solid var(--ui-primary); }.rich-text-editor :is(button,input,select,textarea) { border-radius: 0; }
 
 /* Match stored image layouts in both the editor's resize wrapper and the reader. */
-.rich-text-content { display: flow-root; }
+.rich-text-content { display: flow-root; container: rich-text / inline-size; }
 .rich-text-content :where(img:not([data-inline-image]), [data-resize-container][data-node="image"]) { display: block; clear: both; max-width: 100%; margin: 12px 0; }
 .rich-text-content [data-resize-container][data-node="image"] { width: fit-content; }
 .rich-text-content [data-resize-wrapper] { max-width: 100%; }
@@ -30,3 +30,8 @@
 .rich-text-content [data-resize-container]:is(.ProseMirror-selectednode,[data-resize-state="true"]) [data-resize-handle] { opacity: 1; pointer-events: auto; }
 .rich-text-content [data-resize-handle="bottom-left"] { cursor: nesw-resize; }
 .rich-text-content [data-resize-handle="bottom-right"] { cursor: nwse-resize; }
+.rich-text-content[contenteditable="false"] .ProseMirror-selectednode { outline: none; }
+@container rich-text (max-width: 480px) {
+    .rich-text-content :is([data-image-layout="wrap-left"], [data-image-layout="wrap-right"]) { float: none; clear: both; max-width: 100%; margin: 12px 0; }
+    .rich-text-content [data-resize-container][data-node="image"] img { margin: 0; }
+}

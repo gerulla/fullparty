@@ -638,6 +638,7 @@
             "no_min_item_level": "最低なし"
         },
         "board": {
+            "designation_legend": "編成アイコン",
             "title": "ロスターボード",
             "subtitle": "メンバーが現在の編成をすばやく確認できるよう、パーティを横並びで表示します。",
             "party_label": "パーティ",

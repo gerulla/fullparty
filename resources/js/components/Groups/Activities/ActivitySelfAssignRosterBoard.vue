@@ -7,6 +7,7 @@ import { displayActivityPartyLabel } from "@/utils/activityPartyLabels";
 import { useRunOverviewPreferences } from "@/composables/useRunOverviewPreferences";
 import { useAllianceProgress } from "@/composables/useAllianceProgress";
 import AllianceProgressLegend from "@/components/Groups/Activities/AllianceProgressLegend.vue";
+import RosterDesignationLegend from "@/components/Groups/Activities/RosterDesignationLegend.vue";
 import ActivitySelfAssignRosterSlot from "@/components/Groups/Activities/ActivitySelfAssignRosterSlot.vue";
 import type { ActivitySlot } from "@/Types/ActivityRoster";
 import type { LocalizedText } from "@/Types/Common";
@@ -218,6 +219,8 @@ watch(
 				</label>
 			</div>
 		</div>
+
+        <RosterDesignationLegend :slots="slots" :show-self="viewerAssignedSlotId !== null" />
 
 		<div v-if="mainSlotGroups.length > 0">
 			<div class="relative xl:hidden">

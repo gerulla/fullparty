@@ -4,33 +4,28 @@ import { computed, ref, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
 import type { ResourceWorkspaceController, WorkspaceResource } from '@/Types/ResourceWorkspace'
 import { resourceDragType } from '@/composables/useResourceTreeDrag'
+import { useResourceBrowserPagination } from '@/composables/useResourceBrowserPagination'
 
 const props = defineProps<{ workspace: ResourceWorkspaceController }>()
 const { t, locale } = useI18n()
 const l = (key: string) => t(`groups.resources.workspace.${key}`)
 const sort = ref<'order' | 'title' | 'updatedAt'>('order')
 const direction = ref(1)
-const page = ref(1)
-const pageSize = 7
+const tableViewport = ref<HTMLElement | null>(null)
+const tableElement = ref<HTMLTableElement | null>(null)
 const draggedId = ref<string | null>(null)
 const dropTarget = ref<string | null>(null)
 const statusItems = computed(() => ['all', 'published', 'draft'].map(value => ({ value, label: l(value === 'all' ? 'all_statuses' : value) })))
 const accessItems = computed(() => ['all', 'everyone', 'moderators', 'admins'].map(value => ({ value, label: l(value === 'all' ? 'all_access' : value) })))
 const activityItems = computed(() => [{ value: 'all', label: l('all_activities') }, ...props.workspace.activities.map(value => ({ value, label: value }))])
 const sorted = computed(() => [...props.workspace.visibleResources].sort((a, b) => Number(!!b.isHome) - Number(!!a.isHome) || (sort.value === 'order' ? a.order - b.order : a[sort.value].localeCompare(b[sort.value], locale.value) * direction.value)))
-const pageCount = computed(() => Math.max(1, Math.ceil(sorted.value.length / pageSize)))
-const rows = computed(() => sorted.value.slice((page.value - 1) * pageSize, page.value * pageSize))
+const { page, pageCount, rows, range, showResource } = useResourceBrowserPagination(() => sorted.value, () => tableViewport.value, () => tableElement.value)
 const checked = computed(() => props.workspace.state.checked)
 const pageChecked = computed(() => rows.value.filter(item => checked.value.includes(item.id)).length)
 const publishableIds = computed(() => checked.value.filter(id => props.workspace.state.resources.some(item => item.id === id && item.canPublish && workspaceHasUnpublishedChanges(item))))
 const movableIds = computed(() => checked.value.filter(id => props.workspace.state.resources.some(item => item.id === id && !item.isHome)))
-const range = computed(() => ({ start: sorted.value.length ? (page.value - 1) * pageSize + 1 : 0, end: Math.min(page.value * pageSize, sorted.value.length), total: sorted.value.length }))
 watch(() => [props.workspace.state.scope, props.workspace.state.query, props.workspace.state.status, props.workspace.state.access, props.workspace.state.activity], () => { page.value = 1 })
-watch(pageCount, value => { page.value = Math.min(page.value, value) })
-watch(() => props.workspace.state.selectedId, id => {
-    const index = sorted.value.findIndex(item => item.id === id)
-    if (index >= 0) page.value = Math.floor(index / pageSize) + 1
-})
+watch(() => props.workspace.state.selectedId, showResource)
 function toggle(id: string) { props.workspace.state.checked = checked.value.includes(id) ? checked.value.filter(item => item !== id) : [...checked.value, id] }
 function togglePage() {
     const ids = rows.value.map(item => item.id)
@@ -71,8 +66,8 @@ function drop(id: string) { if (draggedId.value) { sort.value = 'order'; props.w
             <UButton icon="i-lucide-folder-plus" color="neutral" variant="outline" :label="l('collection')" :disabled="!!workspace.collectionActions.state.editing" class="library-new-folder" @click="workspace.collectionActions.create(workspace.state.collections.some(item => item.id === workspace.state.scope) ? workspace.state.scope : null)" />
             <UButton icon="i-lucide-plus" color="neutral" variant="solid" :label="l('resource')" :loading="workspace.creatingResource" @click="workspace.createResource()" />
         </header>
-        <div class="library-table-scroll">
-            <table class="library-table">
+        <div ref="tableViewport" class="library-table-scroll">
+            <table ref="tableElement" class="library-table">
                 <caption class="sr-only">{{ l('all_resources') }}</caption>
                 <colgroup><col class="selection-col" /><col class="grip-col" /><col /><col class="access-col" /><col class="command-col" /><col class="status-col" /><col class="edited-col" /><col class="actions-col" /></colgroup>
                 <thead><tr>
@@ -101,7 +96,7 @@ function drop(id: string) { if (draggedId.value) { sort.value = 'order'; props.w
         <footer class="library-bulk-bar">
             <span class="selection-summary">{{ checked.length ? t('groups.resources.workspace.selected_count', { count: checked.length }) : t('groups.resources.workspace.resource_count', { count: sorted.length }) }}</span>
             <div class="library-bulk-actions"><UButton icon="i-lucide-folder-input" color="neutral" variant="outline" :label="l('move_to')" :disabled="!movableIds.length" @click="workspace.openMove(movableIds)" /><UButton icon="i-lucide-rocket" color="neutral" variant="outline" :label="l('publish')" v-if="publishableIds.length" :disabled="workspace.busy" @click="workspace.publish(publishableIds)" /><UTooltip :text="l('clear_selection')"><UButton icon="i-lucide-list-x" color="neutral" variant="outline" :aria-label="l('clear_selection')" :disabled="!checked.length" @click="workspace.state.checked = []" /></UTooltip></div>
-            <div class="library-pagination"><span>{{ t('groups.resources.workspace.result_range', range) }}</span><UPagination v-model:page="page" :items-per-page="pageSize" :total="sorted.length" :sibling-count="0" :show-edges="false" size="xs" /></div>
+            <div class="library-pagination"><span>{{ t('groups.resources.workspace.result_range', range) }}</span><UPagination v-model:page="page" :items-per-page="1" :total="pageCount" :sibling-count="0" :show-edges="false" size="xs" /></div>
         </footer>
     </section>
 </template>
@@ -111,15 +106,15 @@ function drop(id: string) { if (draggedId.value) { sort.value = 'order'; props.w
 .library-toolbar { display: grid; grid-template-columns: minmax(130px, 1fr) 120px 122px 108px auto auto; align-items: center; gap: 10px; flex: none; margin: 0 6px 16px; }
 .library-toolbar :deep(button), .library-toolbar :deep(input) { font-size: 12px; font-weight: 400; }
 .library-search, .library-filter { width: 100%; min-width: 0; }
-.library-table-scroll { min-height: 0; overflow: auto; border: 1px solid var(--ui-border); border-radius: 3px; }
-.library-table { width: 100%; table-layout: fixed; border-collapse: collapse; font-size: 12px; }
+.library-table-scroll { flex: 1 1 auto; height: 60dvh; min-height: 0; overflow: auto; border: 1px solid var(--ui-border); border-radius: 3px; }
+.library-table { --resource-row-height: 73px; --resource-command-line-height: 18px; width: 100%; table-layout: fixed; border-collapse: collapse; font-size: 12px; }
 .selection-col { width: 34px; }.grip-col { width: 28px; }.access-col { width: 118px; }.command-col { width: 134px; }.status-col { width: 106px; }.edited-col { width: 116px; }.actions-col { width: 40px; }
 .library-table th { height: 40px; text-align: left; font-weight: 400; background: var(--ui-bg-elevated); position: sticky; top: 0; z-index: 1; }
 .library-table th, .library-table td { padding: 0 9px; border-bottom: 1px solid var(--ui-border); }
 .library-table td:first-child, .library-table th:first-child { padding-left: 12px; padding-right: 0; }
 .library-table td:nth-child(2), .library-table th:nth-child(2) { padding: 0; }
 .library-table tr:last-child td { border-bottom: 0; }
-.library-table tbody tr { height: 73px; cursor: pointer; transition: background-color .12s; }
+.library-table tbody tr { height: var(--resource-row-height); cursor: pointer; transition: background-color .12s; }
 .library-table tbody tr:hover { background: color-mix(in srgb, var(--ui-bg-elevated) 65%, transparent); }
 .library-table tbody tr.is-selected { background: color-mix(in srgb, var(--color-brand-400) 25%, var(--ui-bg)); }
 .library-table tbody tr.is-drop-target { box-shadow: inset 0 2px var(--ui-primary); }
@@ -127,9 +122,9 @@ function drop(id: string) { if (draggedId.value) { sort.value = 'order'; props.w
 .resource-thumbnail { width: 52px; height: 52px; border: 1px solid var(--ui-border-accented); border-radius: 3px; flex: none; object-fit: cover; }
 .resource-thumbnail-empty { display: flex; align-items: center; justify-content: center; background: var(--ui-bg-elevated); color: var(--ui-text-muted); }.resource-thumbnail-empty > span { width: 22px; height: 22px; }
 .resource-title-copy { display: flex; min-width: 0; flex-direction: column; gap: 5px; }.resource-title-copy strong { font-size: 13px; font-weight: 600; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }.resource-title-copy > span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: var(--ui-text-muted); }
-.resource-access { display: flex; align-items: center; gap: 9px; white-space: nowrap; }.resource-access > span { width: 17px; height: 17px; flex: none; }.resource-command { display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }.resource-edited { color: var(--ui-text-muted); white-space: nowrap; font-variant-numeric: tabular-nums; font-size: 11px; }
+.resource-access { display: flex; align-items: center; gap: 9px; white-space: nowrap; }.resource-access > span { width: 17px; height: 17px; flex: none; }.resource-command { line-height: var(--resource-command-line-height); display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }.resource-edited { color: var(--ui-text-muted); white-space: nowrap; font-variant-numeric: tabular-nums; font-size: 11px; }
 .resource-drag-handle { cursor: grab; color: var(--ui-text-muted); }.resource-drag-handle:active { cursor: grabbing; }.sort-heading { display: flex; align-items: center; gap: 6px; }.sort-heading > span { width: 13px; height: 13px; }.title-heading { padding-left: 66px; }.library-status { padding: 4px 10px; border-radius: 3px; font-size: 11px; font-weight: 400; }
-.library-bulk-bar { display: flex; align-items: center; flex-wrap: wrap; gap: 12px; min-height: 62px; flex: none; margin-top: auto; padding: 10px 12px; border: 1px solid var(--ui-border); border-radius: 3px; background: var(--ui-bg-elevated); }.selection-summary { font-size: 13px; font-weight: 500; margin-right: 10px; }.library-bulk-actions { display: flex; gap: 10px; }.library-pagination { display: flex; align-items: center; gap: 12px; margin-left: auto; font-size: 12px; white-space: nowrap; }
+.library-bulk-bar { display: flex; align-items: center; flex-wrap: wrap; gap: 12px; min-height: 62px; flex: none; margin-top: 20px; padding: 10px 12px; border: 1px solid var(--ui-border); border-radius: 3px; background: var(--ui-bg-elevated); }.selection-summary { font-size: 13px; font-weight: 500; margin-right: 10px; }.library-bulk-actions { display: flex; gap: 10px; }.library-pagination { display: flex; align-items: center; gap: 12px; margin-left: auto; font-size: 12px; white-space: nowrap; }
 .library-empty { display: flex; min-height: 260px; flex-direction: column; align-items: center; justify-content: center; gap: 16px; color: var(--ui-text-muted); }.library-empty > span { width: 28px; height: 28px; }
 @media (min-width: 1024px) { .library-table-scroll { min-height: 120px; } }
 @container (max-width: 820px) { .library-toolbar { grid-template-columns: minmax(120px, 1fr) 116px 116px 104px auto auto; gap: 6px; }.access-col { width: 100px; }.command-col { width: 114px; }.status-col { width: 90px; }.edited-col { width: 104px; }.resource-access { gap: 5px; } }

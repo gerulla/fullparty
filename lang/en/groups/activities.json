@@ -638,6 +638,7 @@
             "no_min_item_level": "No minimum"
         },
         "board": {
+            "designation_legend": "Roster icons",
             "title": "Roster Board",
             "subtitle": "Parties are laid out side by side so members can scan the current lineup quickly.",
             "party_label": "Party",

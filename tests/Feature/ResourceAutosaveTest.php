@@ -55,6 +55,21 @@ it('rejects invalid autosaves with exact field errors and preserves the last sav
     expect($this->resource->refresh()->working_copy['title'])->toBe('Guide');
 });
 
+it('autosaves and saves a Discord-pasted article without losing its content or links', function () {
+    $documents = app(RichTextDocument::class);
+    $body = $documents->editor()->setContent(file_get_contents(base_path('tests/Fixtures/rich-text/discord-guide.html')))->getDocument();
+    $originalText = $documents->text($body);
+    $content = array_replace($this->content, ['title' => 'Demon Tablet', 'body' => $body]);
+    $token = ($this->action)('acquire')->assertOk()->json('data.editing_token');
+    ($this->action)('autosave', ['editing_token' => $token, 'content' => $content])->assertOk();
+    ($this->action)('save', ['editing_token' => $token, 'content' => $content, 'summary' => 'Add the boss guide.'])->assertOk();
+    $snapshot = $this->resource->fresh()->latestRevision->snapshot;
+    $html = $documents->html($snapshot['body']);
+    expect($documents->text($snapshot['body']))->toBe($originalText)
+        ->and($html)->toContain('<h1>', '<strong>', '<ul>', '<blockquote>', 'https://raidplan.io/plan/EJzwrqkqyWdPlBWL', 'https://sourpuh.github.io/waymarkstudio?preset=wms1.AeQEd8C5Vc_bOvChLo9O8KsBANCGA5BO8KsB4F2fnAEAz4YD313PjAEURm9ya2VkIEJvc3MgMSAtIEZURUw.KPkIUw')
+        ->not->toContain('gg sans', 'line-height: 22px');
+});
+
 it('reacquires an expired session without permitting stale versions to overwrite another edit', function () {
     $token = ($this->action)('acquire')->json('data.editing_token');
     $version = $this->resource->refresh()->version;

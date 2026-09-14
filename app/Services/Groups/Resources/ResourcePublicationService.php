@@ -44,6 +44,7 @@ class ResourcePublicationService
         unset($snapshot['collection_id'], $snapshot['body_format'], $snapshot['body_text'], $snapshot['image_ids']);
         foreach ($snapshot['commands'] ?? [] as $index => $command) {
             unset($snapshot['commands'][$index]['updated_at'], $snapshot['commands'][$index]['embed']['timestamp'], $snapshot['commands'][$index]['embed']['author']);
+            $snapshot['commands'][$index]['buttons'] ??= [];
         }
 
         return $snapshot;

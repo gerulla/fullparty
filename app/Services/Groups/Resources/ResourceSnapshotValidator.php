@@ -5,6 +5,7 @@ namespace App\Services\Groups\Resources;
 use App\Models\Character;
 use App\Models\Group;
 use App\Models\GroupResource;
+use App\Models\GroupResourceCommand;
 use App\Models\User;
 use App\Policies\GroupResourcePolicy;
 use App\Services\RichText\RichTextDocument;
@@ -53,9 +54,13 @@ class ResourceSnapshotValidator
             'metadata_image_id' => ['nullable', 'uuid'],
             'command' => ['prohibited'],
             'commands' => ['sometimes', 'array', 'list', 'max:'.GroupResource::MAX_COMMANDS],
-            'commands.*' => ['required', 'array:name,enabled,embed'],
+            'commands.*' => ['required', 'array:name,enabled,embed,buttons'],
             'commands.*.name' => ['required_with:commands.*', 'string', 'max:64', 'regex:/^[a-zA-Z0-9]+(?:-[a-zA-Z0-9]+)*$/'],
             'commands.*.enabled' => ['required_with:commands.*', 'boolean'],
+            'commands.*.buttons' => ['sometimes', 'array', 'list', 'max:'.GroupResourceCommand::MAX_LINK_BUTTONS],
+            'commands.*.buttons.*' => ['required', 'array:label,url'],
+            'commands.*.buttons.*.label' => ['required', 'string', 'max:80'],
+            'commands.*.buttons.*.url' => ['required', 'url:http,https', 'max:512'],
             'commands.*.embed' => ['required_with:commands.*', 'array:title,url,description,color,thumbnail,image,fields'],
             'commands.*.embed.title' => ['nullable', 'string', 'max:256'],
             'commands.*.embed.url' => ['nullable', 'url:http,https', 'max:2048'],
@@ -100,6 +105,7 @@ class ResourceSnapshotValidator
             }
             $names[] = $command['name'];
             $command['enabled'] = (bool) $command['enabled'];
+            $command['buttons'] ??= [];
             $embed = $command['embed'];
             $length = mb_strlen('FullParty') + mb_strlen($embed['title'] ?? '') + mb_strlen($embed['description'] ?? '')
                 + mb_strlen($resource?->holster?->localizedName() ?? $data['title']);
@@ -180,7 +186,7 @@ class ResourceSnapshotValidator
         foreach ($fields as $field) {
             $attributes[$field] = __('resource_errors.fields.'.$field);
         }
-        foreach (['name', 'embed', 'embed.title', 'embed.description', 'embed.url', 'embed.color', 'embed.image', 'embed.thumbnail', 'embed.fields', 'embed.fields.*.name', 'embed.fields.*.value'] as $field) {
+        foreach (['name', 'buttons', 'buttons.*.label', 'buttons.*.url', 'embed', 'embed.title', 'embed.description', 'embed.url', 'embed.color', 'embed.image', 'embed.thumbnail', 'embed.fields', 'embed.fields.*.name', 'embed.fields.*.value'] as $field) {
             $attributes['commands.*.'.$field] = __('resource_errors.fields.'.str_replace(['.', '*'], ['_', 'item'], $field));
         }
 

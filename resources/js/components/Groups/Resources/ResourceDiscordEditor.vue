@@ -5,6 +5,7 @@ import type { WorkspaceDocument, WorkspaceEmbed } from '@/Types/ResourceWorkspac
 import { resourceEmbedCharacterCount } from '@/utils/resourceEmbedPreview'
 import ResourceEmbedPreview from './ResourceEmbedPreview.vue'
 import ResourceImagePicker from './ResourceImagePicker.vue'
+import ResourceDiscordButtonsEditor from './ResourceDiscordButtonsEditor.vue'
 
 const props = defineProps<{ document: WorkspaceDocument; embed: WorkspaceEmbed; previewEmbed: WorkspaceEmbed; commandError?: string; publicResource?: boolean; resourceUrl?: string; fieldError?: (path: string) => string | undefined; embedIndex?: number }>()
 defineEmits<{ back: []; save: [] }>()
@@ -102,6 +103,7 @@ function moveField(index: number, offset: number) {
                 </div>
             </div>
         </section>
+        <ResourceDiscordButtonsEditor :model-value="embed.buttons ?? []" class="embed-editor-section" :command-index="embedIndex ?? 0" :field-error="fieldError" @update:model-value="embed.buttons = $event" />
         <section class="embed-editor-section">
             <p class="flex items-start gap-2 text-sm text-muted"><UIcon name="i-lucide-lock-keyhole" class="mt-0.5 size-4 shrink-0" /><span>{{ help('footer') }}</span></p>
         </section>

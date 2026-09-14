@@ -1,4 +1,4 @@
-import type { ResourceLibrary, ResourceReaderUrls } from './GroupResources'
+import type { ResourceLibrary, ResourceLinkButton, ResourceReaderUrls } from './GroupResources'
 import type { RichTextDocument } from './RichText'
 import type { ResourceCollectionActions } from './ResourceCollections'
 import type { ResourceFieldErrors } from './ResourceValidation'
@@ -12,6 +12,7 @@ export type WorkspaceEmbed = {
     url: string; author: string; authorUrl: string; authorIcon: string
     image: string; thumbnail: string; timestamp: string
     fields: { name: string; value: string; inline: boolean }[]
+    buttons: ResourceLinkButton[]
 }
 export type WorkspaceDocument = {
     title: string; description: string; body: RichTextDocument; collectionId: string | null

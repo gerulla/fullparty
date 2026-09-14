@@ -19,6 +19,7 @@ export function resourceSavePayload(draft: WorkspaceDocument, original: Workspac
             ...(authorChanged ? { character_id: draft.authorCharacterId ?? null } : {}),
             commands: draft.embeds.map(embed => ({
                 name: embed.command, enabled: true,
+                buttons: (embed.buttons ?? []).map(button => ({ label: button.label.trim(), url: button.url.trim() })),
                 embed: {
                     ...(embed.title ? { title: embed.title } : {}),
                     ...(embed.description ? { description: embed.description } : {}),

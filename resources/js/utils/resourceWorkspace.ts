@@ -1,6 +1,7 @@
 import type { WorkspaceCollection, WorkspaceDocument, WorkspaceItemPosition, WorkspaceResource, WorkspaceTreeItem } from '../Types/ResourceWorkspace'
 
 export const MAX_RESOURCE_EMBEDS = 15
+export const MAX_RESOURCE_LINK_BUTTONS = 5
 
 export function workspaceMovePositions(collections: WorkspaceCollection[], resources: WorkspaceResource[], kind: 'collection' | 'resource', id: string, parentId: string | null, beforeId?: string | null): WorkspaceItemPosition[] | null {
     if (parentId !== null && !collections.some(item => item.id === parentId)) return null
@@ -141,6 +142,7 @@ export function workspaceHasUnpublishedChanges(resource: WorkspaceResource, draf
         embeds: document.embeds.map(embed => ({
             command: embed.command, title: embed.title, description: embed.description, color: embed.color,
             url: embed.url, image: embed.image, thumbnail: embed.thumbnail, fields: embed.fields,
+            buttons: embed.buttons ?? [],
         })),
     })
     return JSON.stringify(content(draft ?? resource)) !== JSON.stringify(content(resource.published))

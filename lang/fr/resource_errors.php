@@ -19,6 +19,9 @@ return [
         'customization.links.*.url' => 'URL',
     ],
     'fields' => [
+        'buttons' => 'boutons de lien',
+        'buttons_item_label' => 'libellé du bouton',
+        'buttons_item_url' => 'URL du bouton',
         'title' => 'titre de la ressource',
         'description' => 'description',
         'body' => 'contenu de la ressource',

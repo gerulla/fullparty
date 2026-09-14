@@ -14,6 +14,7 @@ export function workspaceEmbed(command?: ResourceCommandData): WorkspaceEmbed {
         color: `#${(embed?.color ?? 0x8457b0).toString(16).padStart(6, '0')}`, url: embed?.url ?? '',
         author: embed?.author?.name ?? '', authorUrl: embed?.author?.url ?? '', authorIcon: embed?.author?.icon_url ?? '',
         image: imageUrl(embed?.image), thumbnail: imageUrl(embed?.thumbnail), timestamp: command?.updated_at ?? embed?.timestamp ?? '', fields: embed?.fields ?? [],
+        buttons: (command?.buttons ?? []).map(button => ({ ...button })),
     }
 }
 

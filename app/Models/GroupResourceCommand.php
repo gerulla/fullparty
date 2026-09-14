@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class GroupResourceCommand extends Model
 {
+    public const MAX_LINK_BUTTONS = 5;
+
     protected $guarded = ['id'];
 
     protected function casts(): array

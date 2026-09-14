@@ -361,10 +361,10 @@
   },
   "holsters": {
     "title": "Holsters DRS",
-    "description": "Afficher tous les holsters actifs de ce groupe comme ressources dans la collection choisie.",
+    "description": "Afficher chaque holster de préparation actif une seule fois dans la collection choisie, avec toutes ses options de recharge actives dans la même ressource.",
     "sync_description": "Les titres, descriptions, guides et contenus restent synchronisés avec l’éditeur DRS. Les holsters inactifs sont automatiquement masqués. Les ressources suivent la visibilité publique ou réservée au groupe de la bibliothèque. Retirer cette liste ne supprime aucun holster.",
     "not_listed": "Ne pas afficher les holsters",
-    "active_count": "{count} holsters actifs",
+    "active_count": "{count} holsters de préparation actifs",
     "no_collections": "Créez d’abord une collection, puis sélectionnez-la ici.",
     "save_failed": "Impossible d’enregistrer la collection des holsters. Veuillez réessayer.",
     "change_collection": "Changer de collection",

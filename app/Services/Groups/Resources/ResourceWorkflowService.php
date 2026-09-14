@@ -2,6 +2,7 @@
 
 namespace App\Services\Groups\Resources;
 
+use App\Models\BozjaHolster;
 use App\Models\Group;
 use App\Models\GroupResource;
 use App\Models\GroupResourceCollection;
@@ -183,7 +184,9 @@ class ResourceWorkflowService
     private function assertPinAvailable(Group $group): void
     {
         // The library/group lock serializes this count with every resource mutation.
-        if (GroupResource::where('group_id', $group->id)->where('is_pinned', true)->count() >= GroupResource::MAX_PINS) {
+        if (GroupResource::where('group_id', $group->id)->where('is_pinned', true)
+            ->whereDoesntHave('holster', fn ($holster) => $holster->where('type', BozjaHolster::TYPE_REFILL))
+            ->count() >= GroupResource::MAX_PINS) {
             throw ValidationException::withMessages(['is_pinned' => __('resource_errors.pin_limit', ['limit' => GroupResource::MAX_PINS])]);
         }
     }

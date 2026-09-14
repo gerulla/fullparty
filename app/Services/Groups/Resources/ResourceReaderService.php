@@ -125,12 +125,22 @@ class ResourceReaderService
 
     public function resolve(Group $group, string $slug, ?User $user, bool $public = false): GroupResource
     {
-        if (Str::isUuid($slug) && ($resource = $this->query($group, $user, $public)->where('uuid', $slug)->with('publishedRevision')->first())) {
+        $query = $this->query($group, $user, $public)->with('publishedRevision');
+        $id = Str::isUuid($slug)
+            ? GroupResource::where('group_id', $group->id)->where('uuid', $slug)->value('id')
+            : null;
+        $id ??= DB::table('group_resource_slugs')->where('group_id', $group->id)->where('slug', $slug)->value('resource_id');
+        if ($resource = (clone $query)->find($id)) {
             return $resource;
         }
-        $id = DB::table('group_resource_slugs')->where('group_id', $group->id)->where('slug', $slug)->value('resource_id');
 
-        return $this->query($group, $user, $public)->with('publishedRevision')->findOrFail($id);
+        // Previously shared refill resource links now open the visible pre-pop resource.
+        $legacy = GroupResource::where('group_id', $group->id)->whereKey($id)
+            ->whereHas('holster', fn ($holster) => $holster->where('group_id', $group->id)
+                ->where('type', BozjaHolster::TYPE_REFILL)->where('is_active', true)->whereNull('moderation_hidden_at'))
+            ->with('holster')->firstOrFail();
+
+        return $query->whereNotNull('holster_id')->where('holster_id', $legacy->holster->parent_holster_id)->firstOrFail();
     }
 
     public function home(Group $group, Request $request, bool $public = false): array
@@ -205,8 +215,10 @@ class ResourceReaderService
 
     public function holster(Group $group, BozjaHolster $holster, Request $request, bool $public = false): array
     {
+        abort_unless((int) $holster->group_id === (int) $group->id && $holster->is_active && ! $holster->moderation_hidden_at, 404);
+        $holsterId = $holster->type === BozjaHolster::TYPE_REFILL ? $holster->parent_holster_id : $holster->id;
         $resource = $this->query($group, $public ? null : $request->user(), $public)
-            ->where('holster_id', $holster->id)->with('publishedRevision')->firstOrFail();
+            ->whereNotNull('holster_id')->where('holster_id', $holsterId)->with('publishedRevision')->firstOrFail();
 
         return $this->detail($resource, $request);
     }

@@ -104,7 +104,7 @@ it('enforces resource access on legacy URLs UUID URLs listings and paired loadou
     $this->getJson($this->url)->assertNotFound();
     $this->getJson(route('public-resources.show', ['group' => $this->group, 'slug' => $this->resource->uuid]))->assertNotFound();
     $this->getJson(route('public-resources.index', $this->group).'?q=Original')->assertOk()->assertJsonPath('resources.total', 0);
-    $this->getJson(route('public-resources.holsters.show', ['group' => $this->group, 'holster' => $refill]))->assertOk()->assertJsonPath('data.holster.prepop', null);
+    $this->getJson(route('public-resources.holsters.show', ['group' => $this->group, 'holster' => $refill]))->assertNotFound();
     $moderator = User::factory()->create();
     $this->group->memberships()->create(['user_id' => $moderator->id, 'role' => 'moderator', 'joined_at' => now()]);
     $workspace = app(ResourceReaderService::class)->workspace($this->group, $moderator);
@@ -131,4 +131,13 @@ it('retains metadata through disabling reactivation and collection changes and s
     $this->getJson($this->url)->assertNotFound();
     app(ResourceHolsterService::class)->synchronize($this->group);
     expect(GroupResource::where('holster_id', $this->holster->id)->count())->toBe(1)->and($this->resource->fresh()->status)->toBe('archived');
+});
+
+it('does not let retired refill resource pins consume the library pin limit', function () {
+    for ($i = 0; $i < GroupResource::MAX_PINS; $i++) {
+        $refill = BozjaHolster::create(['group_id' => $this->group->id, 'parent_holster_id' => $this->holster->id, 'type' => 'refill']);
+        GroupResource::factory()->create(['group_id' => $this->group->id, 'collection_id' => $this->folder->id, 'holster_id' => $refill->id, 'is_pinned' => true]);
+    }
+    ($this->action)('pin', ['is_pinned' => true]);
+    expect($this->resource->fresh()->is_pinned)->toBeTrue();
 });
